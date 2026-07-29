@@ -1,8 +1,15 @@
+import KIP126.Classical
+import KIP126.Comparison
+import KIP126.Core
+import KIP126.External
+import KIP126.Kervaire
+import KIP126.Synthetic
+
 /-!
 # KIP126
 
-The Lean project is intentionally empty for now. This module only establishes
-the package entry point and verifies that the pinned toolchain builds.
+The package entry point imports the architectural scaffold.  The modules are
+intentionally definition-free until their corresponding roadmap stages begin.
 -/
 
 namespace KIP126
