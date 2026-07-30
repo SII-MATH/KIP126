@@ -9,3 +9,7 @@ require mathlib from git
 
 @[default_target]
 lean_lib KIP126 where
+
+-- Used by the classic Lean Blueprint declaration cross-checker.
+require checkdecls from git
+  "https://github.com/PatrickMassot/checkdecls.git" @ "3d425859e73fcfbef85b9638c2a91708ef4a22d4"

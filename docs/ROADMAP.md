@@ -1,5 +1,11 @@
 # KIP126 Roadmap
 
+The actual Lean Blueprint source is
+[`../blueprint/src/content.tex`](../blueprint/src/content.tex). The broader
+declaration-level specification is
+[FORMALIZATION_SPEC.md](FORMALIZATION_SPEC.md); this file records the migration
+order.
+
 ## 架构决定
 
 本项目采用“共享结构内核 + classical/synthetic 领域层 + comparison 层”的架构。
