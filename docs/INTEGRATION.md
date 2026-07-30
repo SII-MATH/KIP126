@@ -28,16 +28,17 @@ homotopy、synthetic spectra、经典 Adams 端点、外部输入边界和来源
 
 | 仓库 | 本机相对目录 |
 | --- | --- |
-| `SSP-1` | [../../Archon/workspace/SSP-1/](../../Archon/workspace/SSP-1/) |
-| `ESS-conv` | [../../Archon/workspace/ESS-conv/](../../Archon/workspace/ESS-conv/) |
-| `KIP-base` | [../../Archon/workspace/KIP-base/](../../Archon/workspace/KIP-base/) |
-| `KIP-ess` | [../../Archon/workspace/KIP-ess/](../../Archon/workspace/KIP-ess/) |
-| `KIP-fextension` | [../../Archon/workspace/KIP-fextension/](../../Archon/workspace/KIP-fextension/) |
-| `KIP-infra` | [../../KIP-infra/](../../KIP-infra/) |
-| `leanworkspace` | [../../Archon/workspace/leanworkspace/](../../Archon/workspace/leanworkspace/) |
-| `126-ZERO` | [../../Archon/workspace/126-ZERO/](../../Archon/workspace/126-ZERO/) |
-| `126-ZERO-0629` | [../../Archon/workspace/126-ZERO-0629/](../../Archon/workspace/126-ZERO-0629/) |
-| `126-ZERO-0728` | [../../Archon/workspace/126-ZERO-0728/](../../Archon/workspace/126-ZERO-0728/) |
+| `SSP-1` | [../../LeanProjects/SSP-1/](../../LeanProjects/SSP-1/) |
+| `ESS-conv` | [../../LeanProjects/ESS-conv/](../../LeanProjects/ESS-conv/) |
+| `KIP` | [../../LeanProjects/KIP/](../../LeanProjects/KIP/) |
+| `KIP-base` | [../../LeanProjects/KIP-base/](../../LeanProjects/KIP-base/) |
+| `KIP-ess` | [../../LeanProjects/KIP-ess/](../../LeanProjects/KIP-ess/) |
+| `KIP-fextension` | [../../LeanProjects/KIP-fextension/](../../LeanProjects/KIP-fextension/) |
+| `KIP-infra` | [../../LeanProjects/KIP-infra/](../../LeanProjects/KIP-infra/) |
+| `leanworkspace` | [../../LeanProjects/leanworkspace/](../../LeanProjects/leanworkspace/) |
+| `126-ZERO` | [../../LeanProjects/126-ZERO/](../../LeanProjects/126-ZERO/) |
+| `126-ZERO-0629` | [../../LeanProjects/126-ZERO-0629/](../../LeanProjects/126-ZERO-0629/) |
+| `126-ZERO-0728` | [../../LeanProjects/126-ZERO-0728/](../../LeanProjects/126-ZERO-0728/) |
 
 ## 各仓库的实际定位
 
@@ -49,6 +50,7 @@ homotopy、synthetic spectra、经典 Adams 端点、外部输入边界和来源
 | `KIP-ess` | 与 `KIP-infra` 同源的较完整核心；项目状态报告称 substantive `sorry = 0` | 仍有约 38 个项目 `axiom`，不符合当前边界 | 核心 API 和 proof pattern 的重要来源 |
 | `KIP-fextension` | F-extension、commutativity、ESS decomposition 的集中实现，源码层面几乎无 `sorry` | `ess₂` 被定义成原 ESS，恒等同构只是定义相等；这可能违反论文语义 | 取证明技巧，不直接接受其语义退化 |
 | `KIP-infra` | 最宽的综合架构：bilateral truncated ESS、filtered-complex morphism、F-extension、synthetic extensions、stable homotopy | 仍有约 41 个 live `sorry` 和约 74 个 `axiom`/`opaque` 边界；状态文件明确列出多个基础阻塞 | 最适合作为最终架构候选 |
+| `KIP` | 在 Abelian category 上的 `SSData`、page/`E∞`，以及 `FilteredComplex → SpectralSequence`、weak convergence 和 detection 的实际构造/证明；`Basic`、`Convergence`、`FilteredComplex` 自身不声明项目公理 | 固定 Lean/mathlib 4.28.0；17 个 Lean 文件、7,698 行，无 `sorry`/`admit`，但有 131 个项目 `axiom`：ESS 36 个、commutativity 21 个、stable homotopy 42 个、synthetic 32 个；`weakConvergence` 仍留有与当前实现不一致的 TODO 叙述，须另做语义审计 | 只提取 `Basic`、`Convergence`、`FilteredComplex` 的定义、局部证明和 porting pattern；不得迁入任何项目公理，也不得把 ESS、commutativity、stable homotopy 或 synthetic 层当作已证基线 |
 | `leanworkspace` | 基于 `Submodule` 的谱序列/分级谱序列内核；较大规模的 classical F-extension、crossing、page-shift 与主证明逻辑骨架 | 内核限于域上线性代数；约 10 个 theorem-level `sorry`，Massey product 有 10 个真实全局 `axiom`；大量深层事实藏在未具体实例化的 `Has*` 字段中；顶层入口还引用缺失模块，且固定 Lean 4.28 | 提取具体线性代数 SS/F-extension 引理、证明模式和迁移经验；不作为规范共同内核 |
 | `126-ZERO` | 直接面向论文主定理的逻辑骨架 | `MainTheorem` 中大量全局 `axiom`，不满足信任边界 | 只保留定理依赖图和旧的命名 |
 | `126-ZERO-0629` | 最好的信任边界设计、`ExternalResults`/`ExternalInputs`、参数化的 Kervaire 主定理、Milnor cobar 进展 | 自定义 `AdamsSS` 与 `KIP-infra` 的通用 SS 类型不兼容；主定理仍含 `sorryAx` | 作为最终端点和外部输入模型的主要来源 |
@@ -72,7 +74,7 @@ essentiality、crossing、composition、page shift 和 f-extension 的接口与�
 1. 其基础内核以 `Field K`、`Module K V` 和 `Submodule K V` 为中心，不能直接覆盖
    本项目需要的任意 Abelian category 版本；
 2. 它把很多深层数学放进 `Has*` typeclass 或数据结构字段。其
-   [`MIGRATION_GUIDE.md`](../../Archon/workspace/leanworkspace/MIGRATION_GUIDE.md)
+   [`MIGRATION_GUIDE.md`](../../LeanProjects/leanworkspace/MIGRATION_GUIDE.md)
    明确记载有 15 个从未具体实例化的 `Has*` 类；这会使“源码没有 `sorry`”看起来比
    实际信任边界更强；
 3. `DGAMasseyProduct.lean` 仍含 10 个项目级全局 `axiom`，同时 Kervaire 领域层仍有
