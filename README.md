@@ -1,9 +1,16 @@
 # KIP126
 
-Minimal Lean 4.32.2 project scaffold for the KIP126 formalization.
+Lean 4.32.2 project scaffold for the KIP126 formalization.
 
-The project currently contains no mathematical content. The toolchain and
-mathlib dependency are pinned to matching `4.32.2` releases.
+The first shared Core is deliberately small.  It imports Mathlib's
+`CategoryTheory.SpectralSequence` directly, without a competing wrapper or
+synonym, and adds only the category-level filtration data that Mathlib does not
+provide: decreasing filtrations of graded objects, associated graded quotients,
+filtered morphisms, and filtered chain complexes with their induced
+associated-graded differential.  Convergence, extension spectral sequences,
+and heterogeneous spectral-sequence morphisms remain deferred until a concrete
+downstream construction determines their correct interface.  The toolchain and
+Mathlib dependency are pinned to matching `4.32.2` releases.
 
 The Lean Blueprint source is [blueprint/src/content.tex](blueprint/src/content.tex).
 The broader migration and theorem specification is

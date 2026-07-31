@@ -118,11 +118,11 @@ KIP126/
 │   │   ├── Triangle.lean             -- distinguished triangle、长 exact 序列
 │   │   └── AdamsFiltration.lean      -- 类和映射的 Adams filtration
 │   └── SpectralSequence/
-│       ├── Basic.lean                -- SSData、Z/B、page、E∞、微分、page passage
-│       ├── FilteredComplex.lean      -- filtered complex → spectral sequence
-│       ├── Convergence.lean          -- 强/弱收敛与 E∞-过滤 homotopy
-│       ├── Morphism.lean             -- 同分级与异分级/reindexed morphism
-│       └── Extension.lean            -- 一般 filtered extension spectral sequence
+│       ├── Basic.lean                -- Mathlib SpectralSequence 的直接导入边界
+│       ├── FilteredComplex.lean      -- 必要时的 filtered-complex 适配器
+│       ├── Convergence.lean          -- 项目专用的收敛接口
+│       ├── Morphism.lean             -- 必要时的异分级/reindexed morphism
+│       └── Extension.lean            -- 必要时的一般 filtered extension SS
 ├── Classical/
 │   ├── Adams/
 │   │   ├── Basic.lean                -- 经典 Adams SS 与微分度
@@ -177,63 +177,46 @@ Kervaire → Comparison → Classical/Synthetic → Core
 
 ### 4.1 分级和过滤
 
-需要以下可计算/可重用接口：
+当前实现直接采用 `CategoryTheory.GradedObject I C`，即 $I$-indexed 的对象族，
+不另建 project-local graded-object record。`KIP126.Core.Algebra.Filtration A`
+对每个 $(s,i)$ 给出子对象
+$F^sA_i\subseteq A_i$，并要求 $F^{s+1}A_i\subseteq F^sA_i$。它在任意范畴中
+定义；在 Abelian category 中，`associatedGraded` 用 cokernel 定义
+$F^sA_i/F^{s+1}A_i$，`FilteredMorphism` 诱导各关联分次上的映射。
 
-```lean
-structure GradedObject (ι C : Type*) where
-  obj : ι → C
-
-structure Filtration (X : Type*) where
-  level : ℤ → X
-  mono  : ∀ i j, i ≤ j → level i ≤ level j
-  exhaustive : ...
-  separated  : ...
-
-structure FilteredMap (F G : Filtration X) where
-  map : ...
-  preserves : ∀ s, map (F.level s) ≤ G.level s
-```
-
-实际实现可用 mathlib 的 `Submodule`、子对象和商对象，但抽象层不能限制在
-域上线性代数；经典和 synthetic 的共同内核应至少能工作在加性/Abelian
-category 上。
+端点条件不被塞进过滤的定义字段：`IsExhaustive`、`IsEventuallyZero`、
+`IsBoundedBelow`、`IsBoundedAbove` 与 `IsBounded` 是单独的谓词/结构。这使未来的
+convergence 接口能明确选择它真正需要的假设，而不会把有限性或分离性错误地强加给
+所有 filtered object。
 
 ### 4.2 谱序列
 
-规范 `SpectralSequence C ι` 必须提供：
+共同内核不定义新的 `SpectralSequence C ι`。规范的通用对象是 mathlib
+v4.32.2 的 `CategoryTheory.SpectralSequence C c r₀`：它为每个 $r\ge r_0$
+给出 shape 为 `c r` 的 homological complex，并给出该页同调与下一页之间的明确同构。
+项目中的通用声明直接使用这一类型，不通过 `abbrev`、wrapper 或平行 record 改名。
 
-* 每个 `PageLevel` 的分级对象 `E r`;
-* differential 的 source/target degree；
-* `d ∘ d = 0`；
-* `Z r` 和 `B r` 以及 `E (r+1) ≅ Z r / B r`；
-* page passage、cycle/boundary 单调性；
-* `E∞`（作为稳定页或相容商，而非随意选一个有限页）；
-* 乘法谱序列可选的 `ProductSS` 接口和 Leibniz 规则接口；
-* 同构/等价需要明确声明，不能用 record 定义相同替代。
+因此，differential 的 source/target degree 和 `d \circ d = 0` 由 page complex
+及其 `ComplexShape` 表示，page passage 由相邻页同调同构表示。`Z/B`、$E_\infty$、
+乘法和 Leibniz 规则不是这一定义的强制字段：若某个 filtered-complex 或 extension
+构造需要它们，应以该构造的专用呈现和定理提供，而不倒灌进通用内核。
 
-`FilteredComplex.lean` 提供从 filtered chain complex 构造上述对象的实例；
-`Convergence.lean` 规定强收敛、完备性、分离性和
-`E∞ ≅ gr_F (abutment)` 的证据字段。
+`FilteredComplex.lean` 现以 Mathlib `ChainComplex` 为底层：其额外字段仅断言微分保持
+过滤，并构造关联分次上的微分，证明其平方为零。它尚不声称从任意 filtered complex
+自动构造出一个谱序列；这一步需要 concrete page shape 与构造数据。
+`Convergence.lean` 只在下游确定强收敛、完备性、分离性及
+$E_\infty \cong \operatorname{gr}_F(\text{abutment})$ 的精确需求后，再定义相应证据
+接口。
 
 ### 4.3 异分级态射
 
-阶段 2 的关键缺口必须在共同内核解决：
+阶段 2 的关键缺口是 mathlib 现有同-index-type 态射以外的 comparison。只有在一个
+具体 classical--synthetic comparison 的 page map、shape map 和 degree convention 都已
+确定后，才定义最小的 reindexed/heterogeneous morphism 接口；该接口直接以 mathlib 的
+`CategoryTheory.SpectralSequence` 为输入，不能要求一套新的 `Z/B/E∞` 基础 record。
 
-```lean
-structure Reindex (ι κ : Type*) where
-  indexMap : ι → κ
-  degreeMap : ι → ι → Prop
-
-structure ReindexedMorphism (S : SpectralSequence C ι)
-    (T : SpectralSequence D κ) (R : Reindex ι κ) where
-  pageMap : ∀ r, ...
-  comm_d  : ...
-  comm_ZB : ...
-  comm_Einf : ...
-```
-
-至少提供 `(s,t,w) ↦ (s,t)`、`(s,t,w) ↦ (s,t,t-w)` 和 suspension 平移的
-实例。比较层不得再手写两套 record 的逐字段翻译。
+至少支持 `(s,t,w) \mapsto (s,t)`、`(s,t,w) \mapsto (s,t,t-w)` 和 suspension 平移的
+实际用例。比较层不得再手写两套 project-local spectral-sequence record 的逐字段翻译。
 
 ### 4.4 Stable-homotopy context
 
@@ -269,24 +252,15 @@ structure ReindexedMorphism (S : SpectralSequence C ι)
 
 ### 5.2 Section 2：一般 f-ESS
 
-对 `f : X ⟶ Y` 定义：
+对 `f : X ⟶ Y`，`ExtensionSS` 必须在具体的目标范畴、index type、page shape 和起始页
+都确定后，构造一个 `CategoryTheory.SpectralSequence C c r₀`；它不能返回项目本地的通用
+谱序列 record。其精确 Lean 签名暂不固定，直到该 concrete construction 的输入与
+abutment 已经确定。
 
-```lean
-def ExtensionSS (f : X ⟶ Y) : SpectralSequence (AbelianGroup) Bidegree
-
-def ZESS (f) (n : Nat) (x : E∞ X) : Prop
-def BESS (f) (n : Nat) (y : E∞ Y) : Prop
-
-structure FExtension where
-  source : E∞ X
-  target : E∞ Y
-  length : Nat
-  relation : d_f length source = target
-
-def Essential   (e : FExtension) : Prop
-def Inessential (e : FExtension) : Prop
-def DetectedBy  (x : E∞ X) (a : π _ X) : Prop
-```
+在该构造上，`ZESS`、`BESS`、`FExtension`、`Essential`、`Inessential` 和 `DetectedBy`
+是计划中的 paper-specific 概念：它们的 source、target、length 与 detection relation
+须以该 extension construction 提供的专用 $E_\infty$ 呈现来表述，而不是假设通用
+谱序列对象本身存有 `Z/B/E∞` 字段。
 
 `ExtensionSS` 的 `E₀` 必须是
 `E∞(X) ⊕ E∞(Y)`，abuts 到
@@ -722,14 +696,16 @@ structure AppendixEvidence where
 
 ### Stage 1：Core
 
-在 Lean 4.32.2 下独立构建 `SSData`、`SpectralSequence`、
-`FilteredComplex`、`Convergence`、零微分/有限页 regression。此阶段不得导入
-Classical 或 Synthetic 领域。
+在 Lean 4.32.2 下独立构建直接导入 mathlib 的
+`CategoryTheory.SpectralSequence` 边界，并以最小例子验证 page、微分和 page passage。
+只为已确认的缺口实现 filtered-complex 适配器或 convergence 接口；此阶段不得导入
+Classical 或 Synthetic 领域，也不得迁入旧的 `SSData` 作为通用对象。
 
 ### Stage 2：异分级
 
-实现 `ReindexedMorphism`，验证 `(s,t,w)` 的忘记 weight、平移和
-`page/differential/Z/B/E∞` 相容性。
+在 concrete comparison 用例确定后，实现最小的异分级 comparison 接口，验证
+`(s,t,w)` 的忘记 weight、平移及实际所需的 page/differential/convergence 相容性。
+若某个专用构造使用 `Z/B/E∞` 呈现，其相容性在该构造层验证。
 
 ### Stage 3：Classical
 
