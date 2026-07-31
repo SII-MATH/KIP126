@@ -103,7 +103,8 @@ dependency graph.  They are not project proof obligations.
   \label{def:core-eventually-zero-filtration}
   \lean{KIP126.Core.Algebra.Filtration.IsEventuallyZero}
   \uses{def:core-filtration}
-  A filtration is \emph{eventually zero} if for every $i$ there is an $s$
+  In an abelian category, a filtration is \emph{eventually zero} if for every
+  $i$ there is an $s$
   with $F^sA_i=0$.
 \end{definition}
 
@@ -121,8 +122,8 @@ dependency graph.  They are not project proof obligations.
   \label{def:core-bounded-above-filtration}
   \lean{KIP126.Core.Algebra.Filtration.IsBoundedAbove}
   \uses{def:core-filtration}
-  A filtration is bounded above if each $i$ has an integer $u(i)$ such that
-  $F^sA_i=0$ for $u(i)\le s$.
+  In an abelian category, a filtration is bounded above if each $i$ has an
+  integer $u(i)$ such that $F^sA_i=0$ for $u(i)\le s$.
 \end{definition}
 
 \begin{definition}[Degreewise bounded filtration]
@@ -130,8 +131,9 @@ dependency graph.  They are not project proof obligations.
   \label{def:core-bounded-filtration}
   \lean{KIP126.Core.Algebra.Filtration.IsBounded}
   \uses{def:core-bounded-below-filtration,def:core-bounded-above-filtration}
-  A filtration is degreewise bounded when it is both bounded below and bounded
-  above, with chosen bounds satisfying $l(i)\le u(i)$ for every $i$.
+  In an abelian category, a filtration is degreewise bounded when it is both
+  bounded below and bounded above, with chosen bounds satisfying
+  $l(i)\le u(i)$ for every $i$.
 \end{definition}
 
 \begin{lemma}[A lower bound gives exhaustiveness]
@@ -153,10 +155,11 @@ dependency graph.  They are not project proof obligations.
   \label{lem:core-bounded-above-eventually-zero}
   \lean{KIP126.Core.Algebra.Filtration.IsBoundedAbove.isEventuallyZero}
   \uses{def:core-bounded-above-filtration,def:core-eventually-zero-filtration}
-  A bounded-above filtration is eventually zero.
+  In an abelian category, a bounded-above filtration is eventually zero.
 \end{lemma}
 
 \begin{proof}
+  \leanok
   For a component $i$, use $u(i)$ as the witness for eventual vanishing.  The
   defining endpoint equation gives the conclusion.
 \end{proof}
@@ -221,14 +224,15 @@ dependency graph.  They are not project proof obligations.
   \uses{def:core-associated-graded-differential}
   For every filtration degree $s$ and chain degree $k$,
   \[
-    d^{\operatorname{gr}}_{s,k}\circ
-    d^{\operatorname{gr}}_{s,k-1}=0.
+    d^{\operatorname{gr}}_{s,k-1}\circ
+    d^{\operatorname{gr}}_{s,k}=0.
   \]
 \end{theorem}
 
 \begin{proof}
+  \leanok
   Precompose with the quotient epimorphism $F^sC_k\longrightarrow
   \operatorname{gr}^s_F(C_k)$.  The resulting composite factors through
-  $d_k\circ d_{k-1}$, which is zero because $C$ is a chain complex.  The
+  $d_{k-1}\circ d_k$, which is zero because $C$ is a chain complex.  The
   epimorphism then gives the asserted equality.
 \end{proof}
