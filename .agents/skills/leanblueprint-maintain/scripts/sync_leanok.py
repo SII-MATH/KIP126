@@ -55,6 +55,7 @@ PRINT_AXIOMS_RE = re.compile(
     r"^'(?P<name>.+)' (?:(?:does not depend on any axioms)|"
     r"(?:depends on axioms: \[(?P<axioms>.*)\]))$"
 )
+PRINT_AXIOMS_START_RE = re.compile(r"^'(?P<name>.+)' (?P<rest>.*)$")
 SKIP_DIRS = {
     ".git",
     ".lake",
@@ -151,6 +152,57 @@ def strip_lean_comments_and_strings(text: str) -> str:
 
 def split_names(value: str) -> tuple[str, ...]:
     return tuple(item.strip() for item in value.split(",") if item.strip())
+
+
+def parse_axiom_output(output: str) -> dict[str, set[str]]:
+    """Parse ``#print axioms`` output, including pretty-printer continuations.
+
+    Lean may wrap a long axiom list over several physical lines.  Keep one
+    result pending until the normalized text matches ``PRINT_AXIOMS_RE``;
+    incomplete or unrelated output is deliberately discarded so callers keep
+    their fail-closed behavior.
+    """
+
+    parsed: dict[str, set[str]] = {}
+    pending_name: str | None = None
+    pending_parts: list[str] = []
+
+    def finish_pending() -> None:
+        nonlocal pending_name, pending_parts
+        if pending_name is None:
+            return
+        candidate = f"'{pending_name}' {' '.join(pending_parts)}"
+        match = PRINT_AXIOMS_RE.fullmatch(candidate)
+        if match:
+            parsed[match.group("name")] = {
+                item.strip()
+                for item in (match.group("axioms") or "").split(",")
+                if item.strip()
+            }
+        pending_name = None
+        pending_parts = []
+
+    for raw_line in output.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        start = PRINT_AXIOMS_START_RE.match(line)
+        if start:
+            finish_pending()
+            pending_name = start.group("name")
+            pending_parts = [start.group("rest")]
+        elif pending_name is not None:
+            pending_parts.append(line)
+        else:
+            continue
+
+        if pending_name is not None:
+            candidate = f"'{pending_name}' {' '.join(pending_parts)}"
+            if PRINT_AXIOMS_RE.fullmatch(candidate):
+                finish_pending()
+
+    finish_pending()
+    return parsed
 
 
 def parse_blocks(text: str) -> list[Block]:
@@ -305,17 +357,7 @@ def query_axioms(
             for name in module_names:
                 result[name] = None
             continue
-        parsed: dict[str, set[str]] = {}
-        for line in completed.stdout.splitlines():
-            match = PRINT_AXIOMS_RE.match(line.strip())
-            if not match:
-                continue
-            axioms = {
-                item.strip()
-                for item in (match.group("axioms") or "").split(",")
-                if item.strip()
-            }
-            parsed[match.group("name")] = axioms
+        parsed = parse_axiom_output(completed.stdout)
         for alias, canonical in aliases.items():
             declaration = declarations.get(alias)
             if declaration is None or declaration.module != module:
