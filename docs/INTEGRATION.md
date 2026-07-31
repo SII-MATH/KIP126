@@ -97,8 +97,10 @@ SpectralSequence C ι
 
 它以 Abelian category `C` 和加法分级 `ι` 参数化。现有 classical Adams SS 使用
 双分级 `ℤ × ℤ`，synthetic Adams SS 使用三分级 `ℤ × ℤ × ℤ`，并且都以该类型为
-目标。因此，结构性的谱序列机制——`Z/B` 数据、page、`E∞`、微分、page passage、
-filtered complex、convergence、extension construction——应当成为共同内核。
+目标。这里的 `Z/B`、`E∞`、convergence 与 extension construction 是识别下游需求的
+历史参考，而不是共同内核的既定字段：当前规范的 generic object 是 Mathlib 的
+`CategoryTheory.SpectralSequence`，其 page、微分与 page-passage 直接复用；只有过滤、
+关联分次和 filtered chain complex 作为目前确证的项目增量。
 
 不过，这还不是完整的跨 classical/synthetic 复用：两端目前多由公理提供，synthetic
 extension SS 的实际构造尚未完成，且不同分级之间的 reindexing/heterogeneous

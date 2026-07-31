@@ -1,20 +1,234 @@
-% KIP126 Lean Blueprint
-%
-% This is intentionally an environment-only skeleton for the first setup
-% commit.  Mathematical nodes will be added after the declaration interfaces
-% and source inventory have been agreed.
-%
-% A node must use the classic Blueprint macros, for example:
-%
-% \begin{definition}\label{def:example}
-%   \lean{KIP126.example}
-%   \notready
-%   Informal definition.
-% \end{definition}
-%
-% \begin{theorem}\label{thm:example}
-%   \lean{KIP126.example_theorem}
-%   \uses{def:example}
-%   \notready
-%   Informal theorem statement and proof plan.
-% \end{theorem}
+\chapter{Shared algebraic and spectral-sequence core}
+\label{chap:core-spectral-sequence}
+
+The generic spectral-sequence foundation is imported directly from the pinned
+Mathlib revision.  The project introduces no second spectral-sequence record:
+the additional Core notions below are only decreasing filtrations, their
+associated graded objects, and filtered chain complexes.  Project-specific
+convergence hypotheses, extension spectral sequences, and cross-index
+comparisons remain absent until a downstream construction fixes their required
+data.
+
+\section{Mathlib foundations}
+
+\begin{definition}[Graded object]
+  \label{def:mathlib-graded-object}
+  \lean{CategoryTheory.GradedObject}
+  \mathlibok
+  For an index type $I$ and a category $\mathcal C$, a graded object is a
+  family $(A_i)_{i\in I}$ of objects of $\mathcal C$.  In the pinned Mathlib
+  revision this is definitionally the function type $I\to\mathcal C$.
+\end{definition}
+
+\begin{definition}[Spectral sequence in an abelian category]
+  \label{def:mathlib-spectral-sequence}
+  \lean{CategoryTheory.SpectralSequence}
+  \mathlibok
+  Let $\mathcal C$ be an abelian category, let $\kappa$ be an index type, let
+  $c : \mathbb Z \to \operatorname{ComplexShape}(\kappa)$ specify the shape
+  of the differential on each page, and fix a starting page $r_0\in\mathbb Z$.
+  A spectral sequence consists of a homological complex $E_r$ of shape $c(r)$
+  for every $r\ge r_0$, together with, for every $p\in\kappa$, an isomorphism
+  \[
+    H(E_r)_p \cong (E_{r+1})_p.
+  \]
+  This is Mathlib's definition \texttt{CategoryTheory.SpectralSequence} in
+  the pinned revision.  All generic KIP126 statements use this definition
+  directly rather than a project-local synonym.
+\end{definition}
+
+Definitions~\ref{def:mathlib-graded-object} and
+\ref{def:mathlib-spectral-sequence} are intentional Mathlib roots of the
+dependency graph.  They are not project proof obligations.
+
+\section{Filtered graded objects}
+
+\begin{definition}[Decreasing filtration]
+  \leanok
+  \label{def:core-filtration}
+  \lean{KIP126.Core.Algebra.Filtration}
+  \uses{def:mathlib-graded-object}
+  Let $A=(A_i)_{i\in I}$ be a graded object in a category.  A decreasing
+  filtration $F$ of $A$ assigns a subobject $F^sA_i\subseteq A_i$ for every
+  $s\in\mathbb Z$ and $i\in I$, together with inclusions
+  \[
+    F^{s+1}A_i\subseteq F^sA_i.
+  \]
+\end{definition}
+
+\begin{definition}[Associated graded piece]
+  \leanok
+  \label{def:core-associated-graded}
+  \lean{KIP126.Core.Algebra.Filtration.associatedGraded}
+  \uses{def:core-filtration}
+  If $\mathcal C$ is abelian and $F$ is a decreasing filtration of $A$, define
+  \[
+    \operatorname{gr}^s_F(A_i) := F^sA_i/F^{s+1}A_i
+  \]
+  as the cokernel of the canonical inclusion
+  $F^{s+1}A_i\hookrightarrow F^sA_i$.
+\end{definition}
+
+\begin{definition}[Quotient to an associated graded piece]
+  \leanok
+  \label{def:core-to-associated-graded}
+  \lean{KIP126.Core.Algebra.Filtration.toAssociatedGraded}
+  \uses{def:core-associated-graded}
+  For every $(s,i)$, the canonical quotient morphism is
+  \[
+    F^sA_i\longrightarrow \operatorname{gr}^s_F(A_i).
+  \]
+\end{definition}
+
+\begin{definition}[Associated graded object]
+  \leanok
+  \label{def:core-associated-graded-object}
+  \lean{KIP126.Core.Algebra.Filtration.associatedGradedObject}
+  \uses{def:core-associated-graded}
+  The associated graded object is the $(\mathbb Z\times I)$-graded object
+  whose $(s,i)$-component is $\operatorname{gr}^s_F(A_i)$.
+\end{definition}
+
+\begin{definition}[Exhaustive filtration]
+  \leanok
+  \label{def:core-exhaustive-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsExhaustive}
+  \uses{def:core-filtration}
+  A filtration is \emph{exhaustive} if for every $i$ there is an $s$ with
+  $F^sA_i=A_i$.
+\end{definition}
+
+\begin{definition}[Eventually zero filtration]
+  \leanok
+  \label{def:core-eventually-zero-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsEventuallyZero}
+  \uses{def:core-filtration}
+  A filtration is \emph{eventually zero} if for every $i$ there is an $s$
+  with $F^sA_i=0$.
+\end{definition}
+
+\begin{definition}[Bounded-below filtration]
+  \leanok
+  \label{def:core-bounded-below-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsBoundedBelow}
+  \uses{def:core-filtration}
+  A filtration is bounded below if each $i$ has an integer $l(i)$ such
+  that $F^sA_i=A_i$ for $s\le l(i)$.
+\end{definition}
+
+\begin{definition}[Bounded-above filtration]
+  \leanok
+  \label{def:core-bounded-above-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsBoundedAbove}
+  \uses{def:core-filtration}
+  A filtration is bounded above if each $i$ has an integer $u(i)$ such that
+  $F^sA_i=0$ for $u(i)\le s$.
+\end{definition}
+
+\begin{definition}[Degreewise bounded filtration]
+  \leanok
+  \label{def:core-bounded-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsBounded}
+  \uses{def:core-bounded-below-filtration,def:core-bounded-above-filtration}
+  A filtration is degreewise bounded when it is both bounded below and bounded
+  above, with chosen bounds satisfying $l(i)\le u(i)$ for every $i$.
+\end{definition}
+
+\begin{lemma}[A lower bound gives exhaustiveness]
+  \leanok
+  \label{lem:core-bounded-below-exhaustive}
+  \lean{KIP126.Core.Algebra.Filtration.IsBoundedBelow.isExhaustive}
+  \uses{def:core-bounded-below-filtration,def:core-exhaustive-filtration}
+  A bounded-below filtration is exhaustive.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  For a component $i$, use $l(i)$ as the witness for exhaustiveness.  The
+  defining endpoint equation gives the conclusion.
+\end{proof}
+
+\begin{lemma}[An upper bound gives eventual vanishing]
+  \leanok
+  \label{lem:core-bounded-above-eventually-zero}
+  \lean{KIP126.Core.Algebra.Filtration.IsBoundedAbove.isEventuallyZero}
+  \uses{def:core-bounded-above-filtration,def:core-eventually-zero-filtration}
+  A bounded-above filtration is eventually zero.
+\end{lemma}
+
+\begin{proof}
+  For a component $i$, use $u(i)$ as the witness for eventual vanishing.  The
+  defining endpoint equation gives the conclusion.
+\end{proof}
+
+\begin{definition}[Filtered morphism]
+  \leanok
+  \label{def:core-filtered-morphism}
+  \lean{KIP126.Core.Algebra.FilteredMorphism}
+  \uses{def:core-filtration}
+  For filtered graded objects $(A,F)$ and $(B,G)$, a filtered morphism is a
+  degree-preserving map $f:A\to B$ such that, for every $(s,i)$, its component
+  $f_i$ restricts to a map $F^sA_i\to G^sB_i$.  Equivalently, the square of
+  the two subobject inclusions and $f_i$ commutes.
+\end{definition}
+
+\begin{definition}[Map on associated graded pieces]
+  \leanok
+  \label{def:core-associated-graded-map}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.associatedGradedMap}
+  \uses{def:core-filtered-morphism,def:core-associated-graded}
+  A filtered morphism $f:(A,F)\to(B,G)$ induces, for each $(s,i)$, a morphism
+  \[
+    \operatorname{gr}^s_F(A_i)\longrightarrow
+    \operatorname{gr}^s_G(B_i),
+  \]
+  obtained from the commuting square on the two consecutive filtration levels
+  by the universal property of cokernels.
+\end{definition}
+
+\section{Filtered chain complexes}
+
+\begin{definition}[Filtered chain complex]
+  \leanok
+  \label{def:core-filtered-chain-complex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex}
+  \uses{def:core-filtration}
+  In an abelian category, a filtered chain complex is a Mathlib chain complex
+  $(C_k,d_k)$ together with a decreasing filtration $F^sC_k$ of its underlying
+  $\mathbb Z$-graded object such that every differential restricts to a map
+  \[
+    F^sC_k\longrightarrow F^sC_{k-1}.
+  \]
+\end{definition}
+
+\begin{definition}[Associated graded differential]
+  \leanok
+  \label{def:core-associated-graded-differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedDifferential}
+  \uses{def:core-filtered-chain-complex,def:core-associated-graded}
+  The restriction of $d_k$ in a filtered chain complex descends to a morphism
+  \[
+    d^{\operatorname{gr}}_{s,k}:
+    \operatorname{gr}^s_F(C_k)\longrightarrow
+    \operatorname{gr}^s_F(C_{k-1}).
+  \]
+\end{definition}
+
+\begin{theorem}[The associated graded differential squares to zero]
+  \leanok
+  \label{thm:core-associated-graded-differential-sq}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedDifferential_sq}
+  \uses{def:core-associated-graded-differential}
+  For every filtration degree $s$ and chain degree $k$,
+  \[
+    d^{\operatorname{gr}}_{s,k}\circ
+    d^{\operatorname{gr}}_{s,k-1}=0.
+  \]
+\end{theorem}
+
+\begin{proof}
+  Precompose with the quotient epimorphism $F^sC_k\longrightarrow
+  \operatorname{gr}^s_F(C_k)$.  The resulting composite factors through
+  $d_k\circ d_{k-1}$, which is zero because $C$ is a chain complex.  The
+  epimorphism then gives the asserted equality.
+\end{proof}

@@ -13,12 +13,15 @@ order.
 ```text
 KIP126/
 ├── Core/
+│   ├── Algebra/
+│   │   ├── Graded             -- Mathlib GradedObject 的直接导入边界
+│   │   └── Filtered           -- 递减过滤、关联分次与 filtered maps
 │   └── SpectralSequence/
-│       ├── Basic              -- Z/B、page、E∞、微分和 page passage
-│       ├── Morphism           -- 同分级与异分级/reindexed morphism
-│       ├── FilteredComplex
-│       ├── Convergence
-│       └── Extension
+│       ├── Basic              -- Mathlib SpectralSequence 的直接导入边界
+│       ├── Morphism           -- 仅在需要时补充异分级/reindexed morphism
+│       ├── FilteredComplex    -- Mathlib ChainComplex 上的过滤与关联分次微分
+│       ├── Convergence        -- 项目专用的收敛假设
+│       └── Extension          -- 项目专用的 extension SS 构造
 ├── Classical/
 │   ├── SpectralSequence/      -- classical Adams 的实例与专用结果
 │   ├── Adams/
@@ -76,22 +79,27 @@ synthetic Adams SS、`λ`-模结构、Ext、`ν`、rigidity、Kervaire 类和外
 **完成条件：** 不再以“哪个文件看起来更新”作为迁移依据；每个迁入项都有可追溯
 来源和明确的目标层。
 
-## 阶段 1：移植并收紧共同谱序列内核
+## 阶段 1：接入并审计共同谱序列内核
 
-**主要来源：** `KIP-infra` 与 `KIP-ess`；`SSP-1`、`ESS-conv`、`KIP-base` 用于
-差异比对。
+**主要来源：** mathlib v4.32.2；`KIP-infra`、`KIP-ess`、`SSP-1`、`ESS-conv` 和
+`KIP-base` 仅用于识别 mathlib 尚未覆盖的项目需求与迁移模式。
 
 **工作：**
 
-- 在当前 toolchain 下移植 `SSData`、page、`E∞`、微分、page passage；
-- 移植 `FilteredComplex`、`Convergence`、`Truncation`、`Completion`；
-- 把 `KIP-infra` 的 bilateral truncated ESS 作为优先设计，而不是同时保留
-  bounded/unbounded 的平行主实现；
-- 保留 `ESS-conv` 中确有独立价值的 unbounded/convergence 设计和测试；
+- 直接采用 `CategoryTheory.SpectralSequence` 作为唯一的通用谱序列对象，不创建
+  `SSData` 或项目本地的 `SpectralSequence` 别名；
+- 验证其 page、differential 与 page-passage API 能覆盖首批抽象使用点；
+- 为共同的代数输入提供最小的递减过滤、关联分次、filtered map 与 filtered
+  chain-complex 接口；
+- 只在实际下游需求出现后，分别增加从 filtered complex 到谱序列的构造、
+  convergence 假设、异分级比较或 extension SS；
+- 审计旧仓库的 `Z/B` 与 `E∞` 表示，把它们视为候选的专用呈现，而非共同内核；
 - 删除纯 namespace 差异产生的重复实现。
 
 **完成条件：** `Core/SpectralSequence` 在 Lean 4.32.2 下独立构建；仓库内只有一套
-规范的 `SpectralSequence`、`FilteredComplex` 与 `Convergence` 定义。
+规范的通用 `SpectralSequence` 定义，即 Mathlib 的
+`CategoryTheory.SpectralSequence`。项目增量只覆盖 Mathlib 尚未提供且被两侧实际共用
+的数学。
 
 ## 阶段 2：补齐跨分级的谱序列态射
 
@@ -100,8 +108,10 @@ synthetic Adams SS、`λ`-模结构、Ext、`ν`、rigidity、Kervaire 类和外
 
 **工作：**
 
-- 设计并实现带 index map 的 reindexed/heterogeneous morphism；
-- 使其携带 page、differential degree、`Z/B` 与 convergence 的相容性；
+- 在一个 concrete classical--synthetic comparison 用例确定后，设计并实现带 index
+  map 的 reindexed/heterogeneous morphism；
+- 使其携带实际需要的 page、differential degree 与 convergence 相容性；若某个专用
+  呈现引入 `Z/B` 或 $E_\infty$ 数据，再为该呈现单独陈述相容性；
 - 为常用的 `(s,t,w) ↦ (s,t)`、`(s,t,w) ↦ (s,t-s,w)` 等重分级建立 API；
 - 用小型回归例子验证 page passage、零微分和 convergence 传输。
 
@@ -189,7 +199,9 @@ comparison 可在共同内核的语言中表达。
 
 ## 近期第一个可执行里程碑
 
-先完成阶段 0 与阶段 1 的最小切片：在 `Core/SpectralSequence` 中移植并编译
-`SSData`、`SpectralSequence`、`FilteredComplex`、`Convergence` 和一组最小
-page/convergence 回归测试。只有这一切片在 Lean 4.32.2 下稳定后，才开始接入
-classical 或 synthetic 的领域对象。
+阶段 1 的当前切片已经直接导入并编译 mathlib 的
+`CategoryTheory.SpectralSequence`，并以最小使用例确认 page、微分和 page-passage。
+共同的 filtration/associated-graded/filtered-chain-complex 基础也已在 Abelian
+category 的一般性下实现。下一步仍须由 concrete classical 或 synthetic 用例驱动：在
+此之前不接入领域对象，不移植旧的 `SSData` 表示，也不猜测 convergence、extension 或
+异分级比较的接口。

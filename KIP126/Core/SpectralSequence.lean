@@ -8,6 +8,8 @@ import KIP126.Core.SpectralSequence.Morphism
 # Spectral-sequence core
 
 This umbrella module fixes the boundary of the shared spectral-sequence API.
+Its generic object is Mathlib's `CategoryTheory.SpectralSequence`; KIP126 does
+not define a competing wrapper or synonym.
 -/
 
 namespace KIP126.Core.SpectralSequence
