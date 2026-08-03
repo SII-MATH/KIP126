@@ -1,0 +1,381 @@
+\chapter{$H\mathbb F_2$-synthetic foundations}
+\label{chap:synthetic-foundations}
+
+Section 3 of the paper imports its synthetic foundations from Pstragowski and
+Burklund--Hahn--Senger.  The category and its comparison functor are therefore
+interfaces, and each load-bearing property is a separately located external
+result.  This prevents an undifferentiated ``synthetic package'' from hiding
+the hypotheses used by later proofs.
+
+\section{The category, spheres, and deformation element}
+
+% SOURCE: aimpaper/main.tex:755-758; Pstragowski, construction of Syn_E.
+\begin{definition}[Synthetic context]
+  \label{def:synthetic-context}
+  \uses{def:stable-context,def:hf2-homology}
+  \notready
+  An $H\mathbb F_2$-synthetic context is a stable, presentable, symmetric
+  monoidal category $\operatorname{Syn}_{H\mathbb F_2}$, together with a lax
+  symmetric monoidal, filtered-colimit-preserving functor
+  $\nu:\operatorname{Sp}\to\operatorname{Syn}_{H\mathbb F_2}$.  It has
+  bigraded suspension, bigraded homotopy groups, cofibers, smash products, and
+  the coherences required by the constructions below.
+\end{definition}
+
+% SOURCE: Pstragowski, Synthetic Spectra and the Cellular Motivic Category, category construction and synthetic analogue functor; summarized at aimpaper/main.tex:755-758.
+\begin{theorem}[Existence and functoriality of the synthetic context]
+  \label{thm:external-synthetic-foundation}
+  \uses{def:synthetic-context,def:external-result}
+  \notready
+  An explicit Pstragowski external result supplies the synthetic category and
+  functor of Definition~\ref{def:synthetic-context}, including stability,
+  presentability, the symmetric monoidal structure, lax monoidality of $\nu$,
+  and preservation of filtered colimits.
+\end{theorem}
+
+\begin{proof}
+  Store the cited construction and the synthetic-analogue functor as a
+  source-bearing external result, then package only the listed operations and
+  coherences into the project interface.  No claim that $\nu$ preserves all
+  cofibers is included.
+\end{proof}
+
+% SOURCE: Pstragowski Definition 4.6; aimpaper/main.tex:770-772.
+\begin{definition}[Synthetic spheres]
+  \label{def:synthetic-sphere}
+  \uses{def:synthetic-context}
+  \notready
+  For integers $s,w$, define the synthetic sphere
+  \[
+    S^{s,w}=\Sigma^{s-w}\nu(S^w).
+  \]
+  Suspension by $S^{s,w}$ is written $\Sigma^{s,w}$ and the corresponding
+  bigraded homotopy group is $\pi_{s,w}$.
+\end{definition}
+
+% SOURCE: Pstragowski Definition 4.27; aimpaper/main.tex:774-782.
+\begin{definition}[The deformation element and its quotients]
+  \label{def:synthetic-lambda-quotient}
+  \uses{def:synthetic-sphere}
+  \notready
+  The comparison map $S^{0,-1}\to S^{0,0}$ is denoted
+  $\lambda\in\pi_{0,-1}S^{0,0}$.  For any synthetic spectrum $X$, multiplication
+  by $\lambda^n$ is a natural map
+  $\Sigma^{0,-n}X\to X$, and $X/\lambda^n$ is its cofiber.  In particular,
+  $X/\lambda\simeq(S^{0,0}/\lambda)\mathbin{\wedge}X$.
+\end{definition}
+
+% SOURCE: BHSmot, Appendices B-C; aimpaper/main.tex:784-786.
+\begin{theorem}[$\lambda^n$-quotient ring structure]
+  \label{thm:external-lambda-quotient-ring}
+  \uses{def:synthetic-lambda-quotient,def:external-result}
+  \notready
+  For every $n\ge1$, an explicit external result supplies an
+  $E_\infty$-algebra structure on $S^{0,0}/\lambda^n$ compatible with its
+  quotient map.  Later multiplicative quotient arguments use only the
+  structure and compatibilities stated by this input.
+\end{theorem}
+
+\begin{proof}
+  Instantiate the result located in the cited appendices and record its
+  compatibility maps.  This node is a literature input, not a project proof
+  of an $E_\infty$ structure.
+\end{proof}
+
+% SOURCE: Pstragowski Proposition 4.40 and generic-fiber results; aimpaper/main.tex:788-797.
+\begin{theorem}[$\lambda$-inversion recovers classical spectra]
+  \label{thm:external-lambda-inversion}
+  \uses{def:synthetic-context,def:synthetic-lambda-quotient,def:external-result}
+  \notready
+  An explicit Pstragowski result identifies the $\lambda$-invertible synthetic
+  category with $2$-complete spectra and makes $\lambda^{-1}\nu$ naturally
+  equivalent to the identity.  The mod-$\lambda$ special fiber comparison is
+  recorded separately and is not needed as an equality of categories in the
+  main proof.
+\end{theorem}
+
+\begin{proof}
+  Apply the located generic-fiber equivalence and retain its monoidal and
+  naturality data.  Transport of a later map or triangle must cite this node
+  and its relevant compatibility explicitly.
+\end{proof}
+
+% SOURCE: Pstragowski Lemma 4.23; aimpaper/main.tex:759-767, Proposition prop:1f7950df.
+\begin{theorem}[Cofiber criterion for $\nu$]
+  \label{thm:external-nu-cofiber-criterion}
+  \uses{def:synthetic-context,def:cofiber-triangle,def:hf2-homology,def:external-result}
+  \notready
+  For a cofiber sequence $X\to Y\to Z$, the sequence
+  $\nu X\to\nu Y\to\nu Z$ is a synthetic cofiber sequence if and only if
+  \[
+    0\to H_*(X;\mathbb F_2)\to H_*(Y;\mathbb F_2)
+      \to H_*(Z;\mathbb F_2)\to0
+  \]
+  is short exact.
+\end{theorem}
+
+\begin{proof}
+  This is the specialization of Pstragowski's Lemma 4.23 carried by an
+  external-result parameter.  Check that the project's homology and cofiber
+  conventions match the cited statement, then transport it into the abstract
+  contexts.
+\end{proof}
+
+\section{Synthetic Adams rigidity}
+
+% SOURCE: BHS Appendix A grading; aimpaper/main.tex:799-811.
+\begin{definition}[BHS-to-AIM regrading]
+  \label{def:bhs-aim-regrading}
+  \uses{def:synthetic-tridegree,def:reindexed-ss-morphism}
+  \notready
+  If BHS uses indices $(s,k,w_{\mathrm{BHS}})$, the paper uses
+  \[
+    (s,t,w_{\mathrm{AIM}})=(s,s+k,k+w_{\mathrm{BHS}}).
+  \]
+  Under this change a classical class in $(s,t)$ has synthetic degree
+  $(s,t,t)$, $\lambda$ has degree $(0,0,-1)$, and differentials preserve the
+  third coordinate.  The adapter includes proofs that page shapes and all
+  displayed source and target degrees agree.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:799-807, definition implicit in Theorem thm:rigid.
+\begin{definition}[Synthetic Adams spectral sequence]
+  \label{def:synthetic-adams-ss}
+  \uses{def:synthetic-context,def:synthetic-tridegree,def:chosen-page-presentation,def:multiplicative-ss,def:strong-convergence-detection}
+  \notready
+  For a synthetic spectrum in scope, its synthetic Adams spectral sequence is
+  a trigraded, multiplicative spectral sequence
+  \[
+    {}^{\mathrm{syn}}E_r^{s,t,w}\Longrightarrow\pi_{t-s,w},
+    \qquad d_r:(s,t,w)\mapsto(s+r,t+r-1,w),
+  \]
+  with elementwise cycles, boundaries, naturality, and strong convergence in
+  the ranges used by the paper.
+\end{definition}
+
+% SOURCE: BHS Theorem A.8; aimpaper/main.tex:799-807, Theorem thm:rigid.
+\begin{theorem}[Synthetic Adams rigidity]
+  \label{thm:external-synthetic-rigidity}
+  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:bhs-aim-regrading,def:synthetic-lambda-quotient,def:external-result}
+  \notready
+  For every admissible $X$, a BHS external result gives
+  \[
+    {}^{\mathrm{syn}}E_2^{*,*,*}(\nu X)
+      \cong E_2^{*,*}(X)\otimes\mathbb F_2[\lambda].
+  \]
+  Every classical differential $d_r(x)=y$ corresponds to the synthetic
+  differential $d_r(x)=\lambda^{r-1}y$, and all synthetic Adams differentials
+  arise this way, after applying the regrading adapter.
+\end{theorem}
+
+\begin{proof}
+  Instantiate BHS Theorem A.8, transport it along
+  Definition~\ref{def:bhs-aim-regrading}, and verify the three coordinates of
+  each differential.  The resulting isomorphism and differential
+  correspondence remain an explicit external-result parameter.
+\end{proof}
+
+% SOURCE: BHS Theorem A.1; aimpaper/main.tex:813-823, Theorem thm:17e90ac0.
+% VERIFIED-IN: aimpaper/main.tex:819 says tau-Bockstein; in the HF2-synthetic notation it is lambda-Bockstein.
+\begin{theorem}[$\lambda$-Bockstein comparison]
+  \label{thm:external-lambda-bockstein}
+  \uses{thm:external-synthetic-rigidity,def:synthetic-lambda-quotient,def:external-result}
+  \notready
+  The synthetic Adams spectral sequence of $\nu X$ is isomorphic to the
+  $\lambda$-Bockstein spectral sequence.  In particular,
+  $E_2^{s,t}(X)\cong\pi_{t-s,t}(\nu X/\lambda)$, and a classical
+  $d_r(x)=y$ is represented by a lift of $x$ to
+  $\nu X/\lambda^{r-1}$ whose Bockstein boundary is $y$.  The ``$\tau$'' in
+  \texttt{aimpaper/main.tex:819} is corrected to $\lambda$ in this context.
+\end{theorem}
+
+\begin{proof}
+  Apply BHS Theorem A.1 over $\mathbb F_2$, where the sign ambiguity vanishes,
+  and transport the grading through the AIM adapter.  Match the cofiber
+  boundary with the project's $\lambda$-quotient convention.
+\end{proof}
+
+% SOURCE: BHS Corollary A.9; aimpaper/main.tex:841-847, Proposition prop:30e8b746.
+\begin{theorem}[$E_\infty$ of $\nu X$]
+  \label{thm:external-synthetic-einfty-nu}
+  \uses{thm:external-synthetic-rigidity,def:chosen-page-presentation,def:external-result}
+  \notready
+  In AIM grading,
+  \[
+    E_\infty^{s,t,w}(\nu X)\cong
+    \begin{cases}
+      Z_\infty^{s,t}(X)/B_{1+t-w}^{s,t}(X),&t\ge w,\\
+      0,&t<w.
+    \end{cases}
+  \]
+  This is the regraded form of BHS Corollary A.9.
+\end{theorem}
+
+\begin{proof}
+  Instantiate the external corollary, apply the BHS-to-AIM regrading, and
+  check that the Bockstein filtration is $t-w$.  For nonpositive boundary
+  indices use the explicit zero convention, not an implicit natural-number
+  subtraction.
+\end{proof}
+
+% SOURCE: BHS Corollary A.11; aimpaper/main.tex:849-855, Proposition prop:59f111f.
+\begin{theorem}[$E_\infty$ of a finite $\lambda$-quotient]
+  \label{thm:external-synthetic-einfty-quotient}
+  \uses{thm:external-lambda-bockstein,def:chosen-page-presentation,def:external-result}
+  \notready
+  For $r\ge2$,
+  \[
+    E_\infty^{s,t,w}(\nu X/\lambda^r)\cong
+    \begin{cases}
+      Z_{r-t+w}^{s,t}(X)/B_{1+t-w}^{s,t}(X),&0\le t-w<r,\\
+      0,&\text{otherwise}.
+    \end{cases}
+  \]
+  This is BHS Corollary A.11 after regrading.
+\end{theorem}
+
+\begin{proof}
+  Transport the cited result through the grading adapter and identify its
+  truncation length with the exponent $r$.  Prove separately that every
+  nonpositive cycle or boundary subscript denotes the zero group, so no
+  truncated subtraction is hidden in the statement.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:865-875, load-bearing compatibility remark after Propositions 3.11-3.12.
+\begin{proposition}[Compatibility of $E_\infty$ formulas with $\lambda$ and $\rho$]
+  \label{prop:synthetic-einfty-map-compatibility}
+  \uses{thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient}
+  \notready
+  Under the preceding isomorphisms, multiplication
+  $\lambda^{r'-r}:\nu X/\lambda^r\to\nu X/\lambda^{r'}$ for
+  $r'\ge r$ is the quotient map that enlarges the boundary subgroup, while
+  reduction $\rho:\nu X/\lambda^r\to\nu X/\lambda^{r''}$ for
+  $r\ge r''$ is the inclusion obtained by shrinking the cycle subgroup.
+  Both statements include the third-degree shifts printed in
+  \texttt{aimpaper/main.tex:865--875}.
+\end{proposition}
+
+\begin{proof}
+  Express both synthetic maps on the $\lambda$-Bockstein exact couple.  The
+  first changes the boundary cutoff by $r'-r$ and the second changes the cycle
+  cutoff.  Transport these maps through the two external $E_\infty$
+  isomorphisms and check the zero-index edge cases separately.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:878-910, Example exam:synEinfty.
+\begin{proposition}[Synthetic $14$-stem regression]
+  \label{prop:synthetic-14-stem-regression}
+  \uses{thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,def:external-evidence}
+  \notready
+  Given the explicit classical evidence
+  $d_2(h_4)=h_0h_3^2$,
+  $d_3(h_0h_4)=h_0d_0$, and
+  $d_3(h_0^2h_4)=h_0^2d_0$, the synthetic spectral sequences of
+  $S^{0,0}$, $S^{0,0}/\lambda^2$, and $S^{0,0}/\lambda^3$ have exactly the
+  differentials, permanent multiples, and $\lambda$-torsion classes listed in
+  Example 3.15.
+\end{proposition}
+
+\begin{proof}
+  Apply rigidity to insert the factors $\lambda$ and $\lambda^2$, truncate at
+  the quotient exponent, and evaluate the two $E_\infty$ formulas.  A finite
+  degree check verifies the list and serves as a regression test for grading
+  and zero-index conventions.
+\end{proof}
+
+\section{Synthetic lifts of maps and triangles}
+
+% SOURCE: BHS Lemma 9.15; aimpaper/main.tex:912-919, Proposition prop:ef21f9bc.
+\begin{theorem}[Synthetic lift of a filtered map]
+  \label{thm:external-synthetic-lift}
+  \uses{def:adams-filtration,def:synthetic-context,def:synthetic-lambda-quotient,def:external-result}
+  \notready
+  If $\operatorname{AF}(f)=k$, an explicit BHS result supplies a map
+  $\widetilde f:\Sigma^{0,k}\nu X\to\nu Y$ with
+  $\nu f=\lambda^k\widetilde f$.
+\end{theorem}
+
+\begin{proof}
+  Instantiate BHS Lemma 9.15 at $f$, transport its suspension convention, and
+  retain the chosen factorization and its equality as fields of the external
+  result.
+\end{proof}
+
+% SOURCE: proof of BHS Lemma 9.15; aimpaper/main.tex:929-940, Proposition prop:41561db2.
+\begin{theorem}[Lift of a classical distinguished triangle]
+  \label{thm:external-synthetic-triangle-lift}
+  \uses{thm:external-nu-cofiber-criterion,thm:external-synthetic-lift,def:external-result}
+  \notready
+  For a distinguished triangle
+  $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
+  $\operatorname{AF}(h)>0$ and short exact $H\mathbb F_2$-homology, an
+  explicit BHS input supplies a synthetic distinguished triangle ending in
+  $\Sigma^{1,0}\nu X$ and a map $\widehat h$ satisfying
+  $\nu h=\lambda\widehat h$.
+\end{theorem}
+
+\begin{proof}
+  Use the cofiber criterion on the first two maps and the located construction
+  in the proof of BHS Lemma 9.15 for the connecting map.  Verify the suspension
+  $\Sigma^{0,-1}\nu\Sigma X=\Sigma^{1,0}\nu X$ in AIM grading.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:946-961, Notation not:fhat.
+\begin{definition}[Chosen normalized synthetic map]
+  \label{def:synthetic-hat-map}
+  \uses{thm:external-synthetic-lift}
+  \notready
+  For a map used by the paper, choose either a proof
+  $\operatorname{AF}(f)=0$, or a finite $k\ge1$ together with the full lift
+  $\widetilde f$ of Theorem~\ref{thm:external-synthetic-lift}.  Put $e(f)=0$
+  in the first case and $e(f)=1$ in the second.  A chosen normalized lift is
+  $\widehat f:\Sigma^{0,e(f)}\nu X\to\nu Y$ satisfying
+  $\nu f=\lambda^{e(f)}\widehat f$; for $e(f)=0$ it is $\nu f$, and for
+  $e(f)=1$ set $\widehat f=\lambda^{k-1}\widetilde f$.  The lift and equality
+  are fields of the data: no canonicity is asserted, and changes by
+  $\lambda$-torsion must be tracked in every later cofiber comparison.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:946-961, cofiber assertion in Notation not:fhat.
+\begin{proposition}[Cofiber of a normalized synthetic map]
+  \label{prop:synthetic-hat-cofiber}
+  \uses{def:synthetic-hat-map,thm:external-nu-cofiber-criterion,thm:external-synthetic-triangle-lift}
+  \notready
+  If $X\xrightarrow fY\xrightarrow gC(f)$ is a cofiber sequence in the
+  normalized cases used by the paper, then
+  \[
+    C(\widehat f)\simeq\Sigma^{0,-e(g)}\nu C(f).
+  \]
+  Thus no shift occurs when $f$ is zero or injective on
+  $H\mathbb F_2$-homology, and a $(0,-1)$ shift occurs when $f$ is
+  surjective.  The hypotheses include the required exactness alternative.
+\end{proposition}
+
+\begin{proof}
+  Split according to the $H\mathbb F_2$-homology behavior.  Apply the cofiber
+  criterion in the injective case and rotate the lifted triangle in the
+  surjective case.  Identify the chosen cofiber by the universal property and
+  verify the displayed shift.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:965-971, unlabelled Proposition 3.20.
+\begin{proposition}[Normalized synthetic triangle]
+  \label{prop:normalized-synthetic-triangle}
+  \uses{def:synthetic-hat-map,prop:synthetic-hat-cofiber,thm:external-synthetic-triangle-lift}
+  \notready
+  If $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ is a
+  distinguished triangle and $e(f)+e(g)+e(h)=1$, there is a distinguished
+  synthetic triangle
+  \[
+    \nu X\xrightarrow{\widehat f}\Sigma^{0,-e(f)}\nu Y
+    \xrightarrow{\widehat g}\Sigma^{0,-e(f)-e(g)}\nu Z
+    \xrightarrow{\widehat h}\Sigma^{0,-1}\nu\Sigma X.
+  \]
+\end{proposition}
+
+\begin{proof}
+  Rotate the classical triangle so the positive-filtration map is the
+  connecting map, apply the triangle lift, and rotate back.  At each rotation
+  replace the cofiber using Proposition~\ref{prop:synthetic-hat-cofiber}; the
+  equality of the three $e$-values makes the total weight shift exactly $-1$.
+\end{proof}

@@ -1,26 +1,38 @@
 # KIP126
 
-Lean 4.32.2 project scaffold for the KIP126 formalization.
+Lean 4.32.2 project and source-grounded Blueprint for the KIP126
+formalization.
 
-The first shared Core is deliberately small.  It imports Mathlib's
+The executable Lean implementation is still at the first shared-Core
+milestone.  That Core is deliberately small: it imports Mathlib's
 `CategoryTheory.SpectralSequence` directly, without a competing wrapper or
 synonym, and adds only the category-level filtration data that Mathlib does not
 provide: decreasing filtrations of graded objects, associated graded quotients,
 filtered morphisms, and filtered chain complexes with their induced
-associated-graded differential.  Convergence, extension spectral sequences,
-and heterogeneous spectral-sequence morphisms remain deferred until a concrete
-downstream construction determines their correct interface.  The toolchain and
-Mathlib dependency are pinned to matching `4.32.2` releases.
+associated-graded differential.  The toolchain and Mathlib dependency are
+pinned to matching `4.32.2` releases.
 
-The Lean Blueprint source is [blueprint/src/content.tex](blueprint/src/content.tex).
-The broader migration and theorem specification is
-[docs/FORMALIZATION_SPEC.md](docs/FORMALIZATION_SPEC.md).
+The Blueprint is substantially ahead of the Lean implementation.  Its entry
+point is [blueprint/src/content.tex](blueprint/src/content.tex), with the
+paper-specific chapters under [blueprint/src/chapters](blueprint/src/chapters).
+It covers the paper's Sections 1--7, all 401 nonempty appendix rows and nine
+zero bands, the stable/spectral-sequence/Steenrod/synthetic background absent
+from Mathlib, explicit literature and computation provenance, and the full
+dependency cone from the compiled Core to the conditional Kervaire endpoints.
+All unimplemented nodes are conservatively marked `notready`; the Blueprint
+does not claim that the main theorem is already formalized.  The broader
+migration specification is
+[docs/FORMALIZATION_SPEC.md](docs/FORMALIZATION_SPEC.md), and the staged Lean
+implementation order is [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Build
 
 ```sh
 lake build
 ```
+
+The Blueprint PDF, web output, declaration checks, structural doctor, and DAG
+checks are maintained separately under `blueprint/` and `.agents/skills/`.
 
 ## Repository-private Blueprint skills
 

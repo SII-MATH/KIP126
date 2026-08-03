@@ -1,8 +1,11 @@
 # KIP126 Roadmap
 
-The actual Lean Blueprint source is
-[`../blueprint/src/content.tex`](../blueprint/src/content.tex). The broader
-declaration-level specification is
+The Lean Blueprint entry point is
+[`../blueprint/src/content.tex`](../blueprint/src/content.tex), with its
+paper-specific chapters in [`../blueprint/src/chapters`](../blueprint/src/chapters).
+The Blueprint now records the complete paper-level plan and proof frontier;
+the compiled Lean code remains at the first shared-Core milestone described
+below. The broader declaration-level specification is
 [FORMALIZATION_SPEC.md](FORMALIZATION_SPEC.md); this file records the migration
 order.
 
@@ -197,11 +200,14 @@ comparison 可在共同内核的语言中表达。
 **最终完成条件：** 满足 [项目边界](../PROJECT_BOUNDARY.md) 所列全部验收条件，而不只是
 “构建通过”。
 
-## 近期第一个可执行里程碑
+## 当前实现前沿与下一个可执行里程碑
 
 阶段 1 的当前切片已经直接导入并编译 mathlib 的
 `CategoryTheory.SpectralSequence`，并以最小使用例确认 page、微分和 page-passage。
 共同的 filtration/associated-graded/filtered-chain-complex 基础也已在 Abelian
-category 的一般性下实现。下一步仍须由 concrete classical 或 synthetic 用例驱动：在
-此之前不接入领域对象，不移植旧的 `SSData` 表示，也不猜测 convergence、extension 或
-异分级比较的接口。
+category 的一般性下实现。完整 Blueprint 已经给出 concrete classical 与 synthetic
+用例所需的接口和依赖顺序，但这些节点仍是 `notready`。下一个 Lean 切片是实现
+complete/separated filtration、filtered-complex 到谱序列的构造与 elementwise
+`Z_r/B_r` adapter，再以二项 filtered complex 构造第一个真实的 extension spectral
+sequence；在这些验收通过前，不把领域结论标成 `leanok`，也不移植旧的 `SSData`
+表示。

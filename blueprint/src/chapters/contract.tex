@@ -1,0 +1,80 @@
+\chapter{Formalization contract and provenance}
+\label{chap:formalization-contract}
+
+This chapter fixes the trust boundary used throughout the Blueprint.  The
+mathematical source of record is Lin--Wang--Xu, \emph{On the Last Kervaire
+Invariant Problem}, represented by \texttt{aimpaper/main.tex},
+\texttt{aimpaper/112.tex}, and the local PDF.  Earlier literature and machine
+calculations may enter only through the explicit records below.  In
+particular, a citation or a table row is not silently promoted to a project
+axiom.
+
+\section{Source-bearing inputs}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
+\begin{definition}[Source locator]
+  \label{def:source-ref}
+  \notready
+  A source locator is a record consisting of an author or owner, a title or
+  dataset name, a stable identifier, a locator inside that source (theorem,
+  page, table, row, file and line range, or machine-output key), and a source
+  class.  The allowed source classes are \emph{paper}, \emph{literature},
+  \emph{machine computation}, and \emph{project governance}.  A locator is
+  required to identify the proposition actually supplied, rather than merely
+  a nearby document.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs, conceptual Exterresult record.
+\begin{definition}[External result]
+  \label{def:external-result}
+  \uses{def:source-ref}
+  \notready
+  For a proposition $P$, an external result is a pair $(p,\sigma)$ with
+  $p:P$ and a literature source locator $\sigma$ whose cited statement is
+  $P$.  It is supplied as an explicit argument to every theorem that uses it;
+  the project shall not install it as an axiom or an untracked global
+  instance.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs, conceptual Exterevidence record.
+\begin{definition}[External evidence]
+  \label{def:external-evidence}
+  \uses{def:source-ref}
+  \notready
+  For a proposition $P$, external evidence is a record containing evidence
+  $p:P$, a source locator, the computational or transcription method, and
+  enough indexing metadata to identify the input and output.  It is used for
+  finite Ext data, differentials, table entries, and diagram relations.  Like
+  an external result, it is always an explicit theorem parameter.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Examples, remarks, and questions.
+\begin{definition}[Open proposition]
+  \label{def:open-proposition}
+  \notready
+  An open proposition is a proposition recorded as a formalization target but
+  neither assumed nor asserted.  Its Blueprint node has no incoming edge to a
+  proved conclusion unless a later theorem explicitly takes a proof of it as
+  a hypothesis.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decisions and Axiom policy.
+\begin{definition}[KIP126 trust boundary]
+  \label{def:kip126-trust-boundary}
+  \uses{def:external-result,def:external-evidence,def:open-proposition}
+  \notready
+  The KIP126 development may use Lean's foundational axioms and declarations
+  proved in the pinned Mathlib revision.  Paper-internal arguments are project
+  proof obligations.  Results from earlier literature are explicit external
+  results, while high-stem computations and every appendix row are explicit
+  external evidence.  No project declaration may use \texttt{axiom},
+  \texttt{sorry}, or \texttt{admit}; the two geometric endpoints are
+  conditional theorems.
+\end{definition}
+
+The comments beginning with \texttt{SOURCE} in later chapters give the primary
+locator.  Comments beginning with \texttt{VERIFIED-IN} record a second local
+copy that was checked, but never replace the primary source.  A
+\texttt{mathlibok} node has an exact declaration in Mathlib v4.32.2.  Existing
+\texttt{leanok} nodes name compiled project declarations.  Every other node is
+conservatively marked \texttt{notready}.

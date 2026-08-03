@@ -1,13 +1,16 @@
+\input{chapters/contract}
+
 \chapter{Shared algebraic and spectral-sequence core}
 \label{chap:core-spectral-sequence}
 
 The generic spectral-sequence foundation is imported directly from the pinned
 Mathlib revision.  The project introduces no second spectral-sequence record:
 the additional Core notions below are only decreasing filtrations, their
-associated graded objects, and filtered chain complexes.  Project-specific
-convergence hypotheses, extension spectral sequences, and cross-index
-comparisons remain absent until a downstream construction fixes their required
-data.
+associated graded objects, and filtered chain complexes.  The later Blueprint
+chapters specify project-level convergence hypotheses, extension spectral
+sequences, and cross-index comparisons as conservative \texttt{notready}
+interfaces; they do not pretend that those interfaces are already implemented
+in the shared Core.
 
 \section{Mathlib foundations}
 
@@ -24,6 +27,7 @@ data.
   \label{def:mathlib-spectral-sequence}
   \lean{CategoryTheory.SpectralSequence}
   \mathlibok
+  \uses{def:mathlib-abelian,def:mathlib-homological-complex}
   Let $\mathcal C$ be an abelian category, let $\kappa$ be an index type, let
   $c : \mathbb Z \to \operatorname{ComplexShape}(\kappa)$ specify the shape
   of the differential on each page, and fix a starting page $r_0\in\mathbb Z$.
@@ -236,3 +240,16 @@ dependency graph.  They are not project proof obligations.
   $d_{k-1}\circ d_k$, which is zero because $C$ is a chain complex.  The
   epimorphism then gives the asserted equality.
 \end{proof}
+
+\input{chapters/background}
+\input{chapters/stable}
+\input{chapters/classical}
+\input{chapters/extension_ss}
+\input{chapters/synthetic}
+\input{chapters/synthetic_extensions}
+\input{chapters/page_extensions}
+\input{chapters/generalized_rules}
+\input{chapters/appendix_data}
+\input{chapters/near126}
+\input{chapters/final_kervaire}
+\input{chapters/coverage}

@@ -1,0 +1,85 @@
+\chapter{Source coverage and audit index}
+\label{chap:coverage-audit}
+
+This chapter is a navigation and audit record, not an additional mathematical
+input.  It maps the source-of-record snapshot to the chapters above and makes
+the known source repairs visible.  Mathematical claims still live in their
+individual nodes, with their own direct dependencies and status markers.
+
+\section{Section-by-section coverage}
+
+The introduction at \texttt{aimpaper/main.tex:78--252} is represented by the
+classical Adams interfaces and low-line inputs in
+Chapter~\ref{chap:classical-adams}, the permanent-cycle reduction in
+Chapter~\ref{chap:near126}, and the conditional geometric endpoints in
+Chapter~\ref{chap:final-kervaire}.  The two open questions remain open
+proposition nodes and do not feed the proof graph.
+
+Section 2, lines 253--669, is represented in
+Chapter~\ref{chap:extension-ss}: the filtered two-term construction,
+essential and inessential extensions, crossings, all comparison corollaries,
+and the exact-at-the-middle theorem are separate nodes.  The regression
+example is retained only where it fixes the intended crossing semantics.
+
+Section 3, lines 670--997, is represented in the stable and synthetic
+background chapters: the $H\mathbb F_2$-synthetic context, $\nu$, $\lambda$,
+quotients, rigidity, $E_\infty$ formulas, synthetic lifts, and normalized
+triangles all have explicit external or project status.
+
+Section 4, lines 998--1272, is represented in the synthetic-extension
+chapter.  It includes the $\lambda$-, $\rho$-, and $\delta$-extension spectral
+sequences, the finite and infinite target formulas, quotient compatibility,
+and the classical-crossing comparison.
+
+Section 5, lines 1273--1601, is represented in the classical-page extension
+chapter.  The $\widehat f_{r-1}$ page reduction, exact indeterminacy, crossing
+comparison, $\lambda$-inversion, and the load-bearing Hopf-map regressions are
+all explicit.
+
+Section 6, lines 1602--2101, is represented in the generalized-rules chapter:
+the generalized Leibniz rule, May's two-triangle input, the generalized
+Mahowald trick, the page-loss theorem, and stretching to later pages are
+separate obligations with proof routes.
+
+Section 7, lines 2102--2782, is represented in
+Chapter~\ref{chap:near126}.  Its graph separates BJM/BX literature, typed
+high-stem evidence, choice-independence, the unique possible $d_{12}$,
+Toda/two-extension arguments, the Hopf-cofiber obstruction, and the final
+contradiction.  The source's circular-looking use at line 2496 is repaired by
+first proving the filtration-leading-term Lemma
+\ref{lem:toda-h0-leading-nonvanishing}; only after the Toda candidate
+enumeration does Corollary~\ref{cor:h02x1259-d5-zero} deduce the unresolved
+$d_5$ is zero.
+
+The appendix at lines 2783--3290 and Table 1 in Section 7 are represented by
+the twelve typed datasets in Chapter~\ref{chap:appendix-data}: 401 nonempty
+rows and nine zero bands.  The active part of \texttt{aimpaper/112.tex}
+defines Figure 9 only; Definition~\ref{def:near126-figure-contract} treats it
+as a derived visualization, while its commented duplicate block is excluded.
+
+\section{Recorded source repairs}
+
+The Blueprint deliberately does not copy the following source defects:
+\begin{enumerate}
+  \item line 146's Hopf-survival inequality is read as $j\le3$, consistently
+    with the following nonzero $d_2$ formula for $j\ge4$;
+  \item line 604's class $z$ lies in $E_\infty(Z)$, not $E_\infty(Y)$;
+  \item line 819's Bockstein variable is $\lambda$, not $\tau$;
+  \item Proposition 4.6 separates the infinite target from its image in a
+    finite $\lambda$-quotient;
+  \item line 1522 uses $\widehat f_{r-1}$, consistent with Definition 5.1;
+  \item Proposition 6.20 receives typed ranges for its correction classes;
+  \item line 2496's backwards dependence is replaced by a noncircular
+    filtration-leading-term argument;
+  \item the lift from modulo $\lambda^3$ to modulo $\lambda^5$ in Lemma 7.20
+    requires the independent obstruction-vanishing evidence node.
+\end{enumerate}
+
+\section{Status boundary}
+
+Only exact declarations already compiled in the repository carry
+\texttt{leanok}; only declaration names checked against the pinned Mathlib
+revision carry \texttt{mathlibok}.  Every paper theorem, literature adapter,
+data transcription, and missing background interface remains
+\texttt{notready}.  Thus this document describes a complete formalization
+plan and its proof frontier, not a completed Lean proof of the paper.

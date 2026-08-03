@@ -1,0 +1,238 @@
+\chapter{Extensions on a classical Adams page}
+\label{chap:page-extensions}
+
+Section 5 defines an $(f,E_r)$-extension by reducing the normalized synthetic
+map modulo $\lambda^{r-1}$.  This is not a new classical spectral sequence: it
+is a typed classical notation for a particular synthetic ESS differential.
+
+\section{Definition and indeterminacy}
+
+% SOURCE: aimpaper/main.tex:1277-1282, Notation 5.1.
+\begin{definition}[Finite-page normalized map]
+  \label{def:hat-map-page-reduction}
+  \uses{def:synthetic-hat-map,def:synthetic-lambda-quotient}
+  \notready
+  For $2\le r\le\infty$, define
+  \[
+    \widehat f_{r-1}:\Sigma^{0,e(f)}\nu X/\lambda^{r-1}
+       \longrightarrow\nu Y/\lambda^{r-1}
+  \]
+  as reduction of $\widehat f$ modulo $\lambda^{r-1}$.  The exponent and
+  subscript are always $r-1$; the occurrence of $\widehat f_r$ in the proof of
+  Proposition 5.10 is treated as a source typo.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:1284-1298, E_0 formulas before Definition def:6c076a33.
+\begin{proposition}[$E_0$ presentation for the reduced-map ESS]
+  \label{prop:hat-map-ess-e0}
+  \uses{def:hat-map-page-reduction,def:synthetic-extension-ss,thm:external-synthetic-einfty-quotient}
+  \notready
+  In weight $t-k+e(f)$, the $E_0$ page of the
+  $\widehat f_{r-1}$-ESS is
+  \[
+  \frac{Z_{r-1-k}^{s,t}(X)}{B_{1+k}^{s,t}(X)}\oplus
+  \frac{Z_{r-1-k+e(f)}^{s,t}(Y)}{B_{1+k-e(f)}^{s,t}(Y)}.
+  \]
+  Its length-$n$ differential is a map from
+  \[
+    {}^{\widehat f_{r-1}}\!Z_{n-1}^{s,t,t-k}(X)
+      \subseteq Z_{r-1-k}^{s,t}(X)/B_{1+k}^{s,t}(X)
+  \]
+  to
+  \[
+    \frac{Z_{r-1-k-n+e(f)}^{s+n,t+n}(Y)/
+      B_{1+k+n-e(f)}^{s+n,t+n}(Y)}
+    {{}^{\widehat f_{r-1}}\!B_{n-1}^{s+n,t+n,t-k}(Y)}.
+  \]
+  It vanishes for degree reasons when $n<\operatorname{AF}(f)$ or
+  $n>r-2-k+e(f)$.
+\end{proposition}
+
+\begin{proof}
+  Substitute the source and target weights into the finite-quotient
+  $E_\infty$ formula, then apply the elementwise ESS presentation.  Simplify
+  the two cycle and boundary subscripts over integers and check the quotient
+  range before converting to a finite page index.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:1301-1317, Definition def:6c076a33.
+\begin{definition}[$(f,E_r)$-extension]
+  \label{def:page-extension}
+  \uses{prop:hat-map-ess-e0,def:f-extension-essential}
+  \notready
+  Let $x\in Z_{r-1}^{s,t}(X)$ and
+  $y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y)$, with
+  $e(f)\le n\le r-2+e(f)$.  An $(f,E_r)$-extension
+  $d_n^{f,E_r}(x)=y$ is the synthetic extension
+  \[
+    d_n^{\widehat f_{r-1}}(x)=\lambda^{n-e(f)}y.
+  \]
+  It is essential exactly when the synthetic extension is essential.  For
+  $r=\infty$, use $\widehat f$ and the untruncated synthetic spectra.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:1386-1389, Remark def:fErextess.
+\begin{definition}[Page-extension target coset]
+  \label{def:page-extension-coset}
+  \uses{def:page-extension,def:fess-cycles-boundaries}
+  \notready
+  The target $y$ of $d_n^{f,E_r}(x)$ is a coset modulo
+  $B_{1+n-e(f)}^{s+n,t+n}(Y)$ plus the sum of images of all shorter
+  $\widehat f_{r-1}$-ESS differentials.  The page extension is essential if
+  and only if this complete coset does not contain zero.
+\end{definition}
+
+\section{Regressions that fix the intended semantics}
+
+% SOURCE: aimpaper/main.tex:1391-1402, Example exam:extonEn(1).
+\begin{proposition}[Hopf-map $E_2$ page extension]
+  \label{prop:hopf-e2-page-extension}
+  \uses{def:page-extension,def:external-evidence}
+  \notready
+  Let $\nu_{\mathrm{Hopf}}:S^3\to S^0$ denote the classical Hopf map.  Typed Ext
+  product evidence supplies the essential extension
+  \[
+    d_1^{\nu_{\mathrm{Hopf}},E_2}(h_5)=h_2h_5.
+  \]
+  The notation $\nu_{\mathrm{Hopf}}$ is kept distinct from the synthetic functor
+  $\nu$.
+\end{proposition}
+
+\begin{proof}
+  Use that $\nu_{\mathrm{Hopf}}$ has Adams filtration one and is detected by $h_2$.
+  In the mod-$\lambda$ model the reduced normalized map is multiplication by
+  $h_2$, so the stated extension is exactly the supplied Ext product.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:1403-1423, Example exam:extonEn(2); proved later by Example exam:Mahowald.
+\begin{proposition}[Hopf-map $E_3$ page extension]
+  \label{prop:hopf-e3-page-extension}
+  \uses{def:page-extension,thm:generalized-mahowald,prop:mahowald-cofiber-regression}
+  \notready
+  The normalized Hopf map has the essential extension
+  \[
+    d_2^{\nu_{\mathrm{Hopf}},E_3}(h_0h_4^2)=h_0p.
+  \]
+  Equivalently, modulo $\lambda^2$ there are detected representatives with
+  $[h_0h_4^2][h_2]=[\lambda h_0p]$.
+\end{proposition}
+
+\begin{proof}
+  This is the conclusion of the cofiber regression obtained from the
+  generalized Mahowald trick.  Transport that synthetic extension through
+  Definition~\ref{def:page-extension} and verify the displayed bidegrees.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:1424-1433, Example exam:extonEn(3); proved later by Example exam:stretchext.
+\begin{proposition}[Hopf-map $E_\infty$ page extension]
+  \label{prop:hopf-einfty-page-extension}
+  \uses{prop:hopf-e3-page-extension,cor:page-extension-stretch,prop:page-stretch-regression,thm:external-synthetic-lambda-complete}
+  \notready
+  The preceding relation lifts to an essential extension
+  \[
+    d_2^{\nu_{\mathrm{Hopf}},E_\infty}(h_0h_4^2)=h_0p.
+  \]
+\end{proposition}
+
+\begin{proof}
+  Apply the page-stretching corollary to the $E_3$ extension and the explicit
+  no-crossing certificate in the page-stretch regression.  Passing to the
+  inverse limit supplies compatible detected representatives in the
+  untruncated synthetic sphere.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:1391-1433, Example exam:extonEn(4).
+\begin{proposition}[Multiplication-by-two page-extension regression]
+  \label{prop:two-page-extension-regression}
+  \uses{def:page-extension-coset,prop:no-crossing-iff-uniform-detection,def:external-evidence}
+  \notready
+  Given the stated $14$-stem evidence and the comparison
+  $\lambda[h_0]=2$, multiplication by two has
+  $d_2^{2,E_\infty}(h_0h_3^2)=0$, while
+  $d_1^{2,E_\infty}(d_0)=h_0d_0$ is essential and makes the alternative target
+  $d_2^{2,E_\infty}(h_0h_3^2)=h_0d_0$ inessential.
+\end{proposition}
+
+\begin{proof}
+  Evaluate multiplication by $[h_0]$ on the supplied synthetic homotopy group.
+  Its only nonzero leading target comes from the higher-filtration class
+  $[\lambda d_0]$.  The representative and inessentiality criteria yield the
+  three asserted page-extension statuses.
+\end{proof}
+
+\section{Crossings and passage to classical extensions}
+
+% SOURCE: aimpaper/main.tex:1437-1441, Definition def:41d51149.
+\begin{definition}[Crossing of a page extension]
+  \label{def:page-extension-crossing}
+  \uses{def:page-extension,def:page-extension-coset}
+  \notready
+  A crossing of $d_n^{f,E_r}(x)=y$ is an essential
+  $(f,E_{r-a})$-extension from
+  $x'\in Z_{r-1-a}^{s+a,t+a}(X)$ to a nonboundary
+  $y'\in Z_{r-1-n+b+e(f)}^{s+n-b,t+n-b}(Y)$, where
+  $0<a\le r-2$ and $0\le b\le n-a-e(f)$.  Nonboundary means outside
+  $B_{1+n-b-e(f)}$ and includes the full shorter-extension coset.  The same
+  definition applies at $r=\infty$ using finite witnesses.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:1515-1539, Proposition prop:cross-f-Er.
+\begin{proposition}[Page crossing iff synthetic crossing]
+  \label{prop:page-crossing-iff-synthetic-crossing}
+  \uses{def:page-extension-crossing,def:fess-crossing,prop:synthetic-einfty-map-compatibility,prop:synthetic-ess-weightwise-transport}
+  \notready
+  An $(f,E_r)$-extension has a page crossing if and only if its defining
+  $\widehat f_{r-1}$-ESS extension has a crossing.  The statement includes
+  $r=\infty$.
+\end{proposition}
+
+\begin{proof}
+  A synthetic crossing necessarily has the form
+  $d_{n-a-b}^{\widehat f_{r-1}}(\lambda^ax')
+   =\lambda^{n-b-e(f)}y'$.  Compare the quotient of exponent $r-1$ with that
+  of exponent $r-1-a$.  Dividing by $\lambda^a$ introduces exactly
+  $B_{1+n-b-e(f)}$; therefore essentiality is equivalent to the nonboundary
+  condition in the page-crossing definition.  The same finite witness proves
+  the inverse-limit case.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:1541-1579, Example exam:Ercross.
+\begin{proposition}[Page-crossing regression]
+  \label{prop:page-crossing-regression}
+  \uses{prop:hopf-e2-page-extension,prop:hopf-e3-page-extension,prop:two-page-extension-regression,prop:page-crossing-iff-synthetic-crossing,def:external-evidence}
+  \notready
+  The four examples of Section 5 have the stated crossing behavior: the
+  $E_2$, $E_3$, and $E_\infty$ Hopf-map extensions have no crossings, while
+  the zero multiplication-by-two extension is crossed by the essential
+  length-one $d_0$ target.  The no-crossing certificates include the Ext
+  relation $h_0^2h_4^2h_2=0\ne h_0p$.
+\end{proposition}
+
+\begin{proof}
+  Enumerate the degree-allowed crossing pairs.  For the Hopf-map $E_3$ and
+  $E_\infty$ cases only the displayed Ext product could occur, and the supplied
+  product evidence excludes it.  For multiplication by two, the essential
+  $d_1$ extension from $d_0$ meets the crossing inequalities and witnesses the
+  failure of no-crossing.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:1581-1597, unlabelled Proposition 5.14.
+\begin{proposition}[$E_\infty$ page extension gives a classical extension]
+  \label{prop:einfty-page-to-classical-extension}
+  \uses{def:page-extension,thm:external-lambda-inversion,def:reindexed-ss-morphism,def:f-extension-essential}
+  \notready
+  If $x\in Z_\infty^{s,t}(X)$ and
+  $y\in Z_\infty^{s+n,t+n}(Y)$ satisfy
+  $d_n^{f,E_\infty}(x)=y$, then after passing to classical $E_\infty$ cosets,
+  \[
+    d_n^f(x+B_\infty)=y+B_\infty.
+  \]
+  The resulting classical extension may be inessential.
+\end{proposition}
+
+\begin{proof}
+  Invert $\lambda$ in the $\widehat f$-ESS.  Generic-fiber equivalence
+  identifies its source and target with the classical $f$-ESS and sends the
+  normalized map to $f$.  Naturality of the induced reindexed page maps sends
+  the synthetic differential coset to the displayed classical coset.
+\end{proof}

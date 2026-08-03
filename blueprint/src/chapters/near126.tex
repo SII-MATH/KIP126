@@ -1,0 +1,611 @@
+\chapter{The near-$126$ reduction and permanent cycle}
+\label{chap:near126}
+
+This chapter formalizes Section 7.  Computed Ext groups, products,
+differentials, exclusions, and $tmf$ images are explicit evidence inputs.
+Logical reductions, representative changes, the Toda argument, the Mahowald
+application, and the final contradiction are project proofs.
+
+\section{The inductive criterion and three conditions}
+
+% SOURCE: aimpaper/main.tex:2112-2114, Notation 7.2.
+\begin{definition}[Synthetic $\theta_5$ and $\eta$ choices]
+  \label{def:synthetic-theta5-choice}
+  \uses{def:adams-hj,def:synthetic-adams-ss,def:adams-detection}
+  \notready
+  A synthetic $\theta_5$ is a class in
+  $\pi_{62,64}S^{0,0}$ detected by $h_5^2$; the same symbol denotes each of its
+  quotient images.  Let $\eta=[h_1]\in\pi_{1,2}S^{0,0}$.  Every use records
+  the chosen representative unless choice independence has already been
+  proved.
+\end{definition}
+
+% SOURCE: Barratt--Jones--Mahowald inductive method and Burklund--Xu Proposition 7.19; aimpaper/main.tex:2117-2125.
+\begin{theorem}[Barratt--Jones--Mahowald--Burklund--Xu criterion]
+  \label{thm:external-bjm-bx-criterion}
+  \uses{def:synthetic-theta5-choice,def:external-result}
+  \notready
+  For an order-two choice of $\theta_5$, an explicit external result supplies:
+  \begin{enumerate}
+    \item $h_6^2$ survives to $E_{r+3}$ if and only if
+      $\lambda\eta\theta_5^2=0$ in
+      $\pi_{125,129}(S^{0,0}/\lambda^{r+1})$;
+    \item $h_6^2$ is permanent if and only if
+      $\lambda\eta\theta_5^2=0$ in $\pi_{125,129}S^{0,0}$.
+  \end{enumerate}
+  The record includes the grading translation from Burklund--Xu to AIM.
+\end{theorem}
+
+\begin{proof}
+  Instantiate the BJM inductive theorem and Burklund--Xu Proposition 7.19 at
+  an order-two $\theta_5$, then apply the explicit suspension and grading
+  adapter.  The finite and infinite quotient statements remain fields of the
+  source-bearing external result.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2127-2139, Remarks 7.4-7.5; Xu and IWX inputs.
+\begin{proposition}[$\theta_5$ order and torsion evidence]
+  \label{evidence:theta5-order-torsion}
+  \uses{def:synthetic-theta5-choice,thm:external-synthetic-einfty-nu,def:external-result,def:external-evidence,data:table-s123,data:table-s124-low}
+  \notready
+  Explicit Xu/IWX results and finite Ext evidence supply: every classical
+  $\theta_5$ has order two; the difference of two choices has filtration at
+  least six; $\pi_{62,64}S^{0,0}$ has no $\lambda$-torsion; and
+  $\pi_{125,130}S^{0,0}$ has no $\lambda$-torsion in the comparison range.
+  These facts validate both the order-two hypothesis and the paper's
+  one-$\lambda$ shift of the finite BJM/BX statement.
+\end{proposition}
+
+\begin{proof}
+  Load the located homotopy-group structure theorem and order computation, then
+  evaluate the synthetic $E_\infty$ formula on the complete table data in the
+  two stated bidegrees.  Exhaustively exclude a class with the required
+  torsion length and record the search range in the evidence certificate.
+\end{proof}
+
+% SOURCE: proof of Burklund--Xu Proposition 7.19 as used at aimpaper/main.tex:2133-2139 and 2300-2303.
+\begin{theorem}[Total differential identity]
+  \label{thm:external-total-differential-identity}
+  \uses{thm:external-bjm-bx-criterion,def:lambda-rho-delta-triangle,def:external-result}
+  \notready
+  The located proof of the inductive criterion supplies the identity
+  \[
+    \delta_1(h_6^2)=\lambda\eta\theta_5^2
+  \]
+  in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem, with
+  its representative and grading conventions.
+\end{theorem}
+
+\begin{proof}
+  Extract the total-differential comparison from the cited proof, translate
+  the target suspension to $S^{1,-1}$, and store it as an external result
+  rather than reconstructing the quadratic construction internally.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
+\begin{proposition}[Choice independence of the inductive expression]
+  \label{prop:theta5-choice-independence}
+  \uses{evidence:theta5-order-torsion,thm:external-total-differential-identity}
+  \notready
+  Every synthetic $\theta_5$ has order two, and the element
+  $\lambda\eta\theta_5^2$ is independent of the choice of $\theta_5$.
+  Consequently the external criterion may be applied to any such choice.
+\end{proposition}
+
+\begin{proof}
+  Lift the classical order statement through the torsion-free synthetic group.
+  The total differential is defined solely by the fixed source class $h_6^2$
+  and the connecting map, so its identity with
+  $\lambda\eta\theta_5^2$ makes the latter independent of the representative.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2181-2204, Proposition prop:possibleh62, statements (3)-(5).
+\begin{definition}[The three near-$126$ conditions]
+  \label{def:near126-conditions}
+  \uses{def:synthetic-theta5-choice,def:adams-detection}
+  \notready
+  Define:
+  \begin{enumerate}
+    \item[$C_3$:] $d_6(x_{126,8,4}+x_{126,8})=0$;
+    \item[$C_4$:] for some $\theta_5$,
+      $\theta_5^2=\lambda^6[h_0^2x_{124,8}]\ne0$ in
+      $\pi_{124,128}S^{0,0}$;
+    \item[$C_5$:] for some detected $[h_0^2x_{124,8}]$,
+      $\lambda^3\eta[h_0^2x_{124,8}]
+       =\lambda^6[h_1h_4x_{109,12}]$ in
+      $\pi_{125,133}S^{0,0}$.
+  \end{enumerate}
+  Quantified detected representatives and nonzero assertions are fields of the
+  propositions, not informal annotations.
+\end{definition}
+
+\section{Load-bearing near-$126$ evidence}
+
+% SOURCE: aimpaper/main.tex:2156-2177, Fact fact:theta5sqAF and following remark; Appendix Tables 5,6,7,9.
+\begin{proposition}[Core near-$126$ evidence]
+  \label{evidence:near126-core}
+  \uses{def:near126-conditions,data:table-s124-low,data:table-s125-high,data:table-s125-low,data:table-s126-low,thm:appendix-all-rows-encoded,prop:lin-computation-provenance}
+  \notready
+  Explicit computation evidence supplies:
+  \begin{enumerate}
+    \item $x_{126,8,4}+x_{126,8}$ survives through $E_6$;
+    \item $h_1h_4x_{109,12}$ supports no outgoing differential, and the
+      exhaustive search leaves exactly two possible incoming killers:
+      $d_6(x_{126,8,4}+x_{126,8})$ and $d_{12}(h_6^2)$;
+    \item $h_0^2x_{124,8}$ is permanent;
+    \item $g^4\Delta h_1g$ is the unique class in its bidegree surviving to
+      $E_5$;
+    \item $d_3(x_{126,6})$ is one of the two printed nonzero target sums and
+      therefore cannot kill $h_1h_4x_{109,12}$.
+  \end{enumerate}
+  Item (2) deliberately does not call the class permanent before both possible
+  incoming differentials are excluded.
+\end{proposition}
+
+\begin{proof}
+  Run typed queries over the complete four table ranges and their differential
+  relation graph.  Check survival, outgoing and incoming ranges separately,
+  preserve the finite ambiguity of $d_3(x_{126,6})$, and attach the Zenodo
+  disproof identifiers for every excluded potential differential.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2221-2258, proofs of Lemmas lem:equistate4 and lem:equistate5.
+\begin{proposition}[Representative-indeterminacy evidence]
+  \label{evidence:near126-indeterminacy}
+  \uses{evidence:theta5-order-torsion,data:table-s124-high,data:table-s124-low,thm:appendix-all-rows-encoded}
+  \notready
+  The complete stem-$124$ data supply that filtration-11 and -12 cycles relevant
+  to $C_5$ are killed by $d_2$ or $d_3$, filtration-13 correction terms are
+  annihilated by $h_1$, and all remaining corrections begin in filtration at
+  least 15 after multiplication by $\lambda^3\eta$.
+\end{proposition}
+
+\begin{proof}
+  Enumerate every cycle in stem 124 and filtrations 11--13 from both table
+  bands, join its outgoing relation and product-by-$h_1$ record, and verify the
+  stated alternative for each.  Completeness excludes an unlisted correction.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2221-2241, Lemma lem:equistate4.
+\begin{lemma}[Existential and universal forms of $C_4$]
+  \label{lem:near126-equiv-c4}
+  \uses{def:near126-conditions,evidence:theta5-order-torsion}
+  \notready
+  Condition $C_4$ is equivalent to the same statement for every choice of
+  $\theta_5$.
+\end{lemma}
+
+\begin{proof}
+  The difference of two $\theta_5$ choices has filtration at least six, and
+  every choice has order two.  Hence their squares differ in filtration at
+  least 12.  The displayed detector in $C_4$ has filtration ten and is nonzero,
+  so changing $\theta_5$ cannot alter its leading term.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2244-2258, Lemma lem:equistate5.
+\begin{lemma}[Existential and universal forms of $C_5$]
+  \label{lem:near126-equiv-c5}
+  \uses{def:near126-conditions,evidence:near126-indeterminacy}
+  \notready
+  Condition $C_5$ is equivalent to the statement that its displayed relation
+  holds for every homotopy class detected by $h_0^2x_{124,8}$.
+\end{lemma}
+
+\begin{proof}
+  Two detected representatives differ by a class of filtration at least 11.
+  The exhaustive evidence shows that multiplication by $\lambda^3\eta$ sends
+  this difference to filtration at least 15.  Since the target leading class
+  has filtration 14, the relation is independent of the representative.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2323-2354, exhaustive theta-square and eta-square analysis; tmf citation.
+\begin{proposition}[$\theta_5^2$ and $tmf$ exhaustive evidence]
+  \label{evidence:theta5-square-tmf}
+  \uses{evidence:near126-core,evidence:near126-indeterminacy,data:table-s125-low,data:table-s125-high,def:external-result,def:external-evidence}
+  \notready
+  Explicit table and $tmf$ inputs supply:
+  \begin{enumerate}
+    \item the only possibilities for $\theta_5^2$ are
+      $\lambda^6[h_0^2x_{124,8}]$,
+      $\lambda^9[e_0\Delta h_6g]$, or a $\lambda^{10}$-multiple;
+    \item $h_1e_0\Delta h_6g=0$;
+    \item the only relevant high-filtration $\lambda^{10}$-multiple is the
+      class represented by $\lambda^{20}g^4\Delta h_1g$;
+    \item its $tmf$ Hurewicz image is nonzero, while every $\theta_5$ maps to
+      zero in $tmf$;
+    \item if $C_3$ fails, the unique alternative incoming differential is
+      $d_6(x_{126,8,4}+x_{126,8})=h_1h_4x_{109,12}$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Query the complete filtration ranges and product table to produce the three
+  alternatives and unique surviving high class.  Attach independent, located
+  $tmf$ Hurewicz evidence for its image and the image of $\theta_5$.  Finally
+  use the incoming-differential completeness certificate for the stated
+  alternative.  Each negative conclusion retains its finite search bounds.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possibleh62.
+\begin{proposition}[Only possible differential on $h_6^2$]
+  \label{prop:possible-h62}
+  \uses{def:near126-conditions,prop:theta5-choice-independence,thm:external-bjm-bx-criterion,thm:external-total-differential-identity,thm:delta-classical-equivalence,evidence:near126-core,evidence:theta5-square-tmf,lem:near126-equiv-c4,lem:near126-equiv-c5}
+  \notready
+  Exactly one of the following holds:
+  \begin{enumerate}
+    \item $h_6^2$ is a permanent cycle;
+    \item $d_{12}(h_6^2)=h_1h_4x_{109,12}$ is nonzero.
+  \end{enumerate}
+  Moreover, the second statement holds if and only if
+  $C_3$, $C_4$, and $C_5$ all hold.
+\end{proposition}
+
+\begin{proof}
+  Identify the total $\delta_1$ differential with
+  $\lambda\eta\theta_5^2$ and then with the corresponding classical
+  differential coset.  Under $C_4$ and $C_5$, its target is the stated
+  filtration-14 class; $C_3$ and the two-killer certificate make its
+  $\lambda^{10}$ multiple nonzero, giving $d_{12}$.  Conversely, use the
+  exhaustive three-way classification of $\theta_5^2$.  Failure of $C_4$ or
+  $C_5$ forces the total expression into the unique $tmf$-detected high class,
+  where its zero $tmf$ image makes it zero.  Failure of $C_3$ activates the
+  unique $d_6$ alternative and again kills the relevant synthetic multiple.
+  The BJM/BX criterion then gives permanence.  The two alternatives are
+  exclusive because a source supporting a nonzero $d_{12}$ is not permanent.
+\end{proof}
+
+\section{Reduction of $C_5$ to a two-extension}
+
+% SOURCE: aimpaper/main.tex:2377-2385, Fact fact:x1239; Tables S123 and S125.19.
+\begin{proposition}[$x_{123,9}$ computation evidence]
+  \label{evidence:x1239}
+  \uses{data:table-s123,data:table-s125-low,thm:appendix-all-rows-encoded}
+  \notready
+  The class $x_{123,9}+h_0x_{123,8}$ survives through $E_{12}$ and has no
+  incoming differential, and
+  \[
+    d_2(x_{125,8})=
+      h_1(x_{123,9}+h_0x_{123,8})+h_0^2x_{124,8}.
+  \]
+\end{proposition}
+
+\begin{proof}
+  Retrieve the named rows and shared differential relation, then use complete
+  source ranges to certify the negative incoming claim through the relevant
+  maximum length.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2387-2446, Lemma lem:x1239.
+\begin{lemma}[The classes $\alpha_1,\alpha_2,\alpha_3$]
+  \label{lem:near126-alpha-relations}
+  \uses{evidence:x1239,thm:external-synthetic-einfty-quotient,evidence:near126-indeterminacy,data:table-s123,data:table-s124-high}
+  \notready
+  There exists
+  $\alpha_1=[x_{123,9}+h_0x_{123,8}]$ in
+  $\pi_{123,132}(S^{0,0}/\lambda^9)$ such that for every
+  $[h_0^2x_{124,8}]$ there are
+  $\alpha_2\in\pi_{124,137}(S^{0,0}/\lambda^9)$ and
+  $\alpha_3\in\pi_{125,140}(S^{0,0}/\lambda^9)$ satisfying
+  \[
+  \begin{aligned}
+    \lambda^3\eta\alpha_1
+      &=\lambda^3[h_0^2x_{124,8}]+\lambda^6\alpha_2,\\
+    \eta\alpha_2&=\lambda\alpha_3,
+  \end{aligned}
+  \]
+  and $\lambda^3\alpha_1[h_0]=0$.  Moreover
+  $\operatorname{AF}(\alpha_3)>14$, so
+  $\lambda^7\alpha_3$ lies strictly above filtration $14$ in the target
+  group.
+\end{lemma}
+
+\begin{proof}
+  Lift $\alpha_1$ first modulo $\lambda^{11}$ using its $E_{12}$ survival.
+  The computed $d_2$ identifies the leading $h_1$ product; enumerate the
+  remaining filtration-13 correction and choose $\alpha_2$, whose $h_1$
+  product is zero in associated-graded filtration $14$ and is
+  $\lambda$-divisible, to obtain $\alpha_3$ in filtration at least $15$.
+  For the final zero,
+  evaluate the finite-quotient $E_\infty$ formula and exclude the two lower
+  candidates using the recorded $d_7$ and $d_3$ relations.  What remains is
+  $\lambda^{10}$-divisible modulo $\lambda^{11}$ and hence maps to zero modulo
+  $\lambda^9$.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2466-2468, Fact fact:h02x1259; Table S125.19.
+\begin{proposition}[$h_0^2x_{125,9,2}$ evidence]
+  \label{evidence:h02x1259}
+  \uses{data:table-s125-low,thm:appendix-all-rows-encoded}
+  \notready
+  The class $h_0^2x_{125,9,2}$ survives through $E_5$ and no incoming
+  differential hits it.  Its printed $d_5?$ status remains unresolved and is
+  not asserted nonzero.
+\end{proposition}
+
+\begin{proof}
+  Read the typed row and query every possible incoming source in the complete
+  adjacent-stem ranges.  Preserve the unresolved-outgoing constructor for the
+  $d_5$ column.
+\end{proof}
+
+% SOURCE: noncircular repair of aimpaper/main.tex:2493-2496 using lines 2427-2429 and 2579.
+\begin{lemma}[Leading-term nonvanishing for the Toda product]
+  \label{lem:toda-h0-leading-nonvanishing}
+  \uses{def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,evidence:near126-core,thm:external-synthetic-einfty-quotient,thm:toda-product-identities}
+  \notready
+  Assume $C_3$ and the universal form of $C_5$.  For the classes from
+  Lemma~\ref{lem:near126-alpha-relations}, the element
+  \[
+    \beta=\lambda^6[h_1h_4x_{109,12}]+\lambda^7\alpha_3
+      \in\pi_{125,133}(S^{0,0}/\lambda^9)
+  \]
+  is nonzero and has filtration-$14$ leading term
+  $\lambda^6h_1h_4x_{109,12}$.  Every element of the defined bracket
+  $\langle\lambda^3\alpha_1,[h_0],\eta\rangle$ has $[h_0]$-product
+  $\beta$; consequently the bracket does not contain zero.
+\end{lemma}
+
+\begin{proof}
+  Multiply the first $\alpha$ relation by $\eta$, replace
+  $\eta\alpha_2$ by $\lambda\alpha_3$, and apply the universal $C_5$
+  relation.  The computation evidence leaves only a $d_6$ or $d_{12}$ as an
+  incoming killer of $h_1h_4x_{109,12}$.  Condition $C_3$ removes the former,
+  while the finite $\lambda^9$ quotient does not see the latter; hence the
+  first summand is nonzero in filtration $14$.  The $\alpha$ lemma places the
+  second summand in filtration at least $15$, so separatedness prevents
+  cancellation.  Finally apply the stated Toda shuffle and
+  $\eta^2$ identities.  This argument uses neither the unresolved $d_5$ nor
+  the Toda-detection conclusion below.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
+\begin{lemma}[Toda bracket detects the two-extension source]
+  \label{lem:toda-two-extension}
+  \uses{def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h02x1259,def:external-evidence}
+  \notready
+  Assuming $C_3$ and the universal form of $C_5$, the synthetic Toda bracket
+  \[
+    \langle\lambda^3\alpha_1,[h_0],\eta\rangle
+       \subseteq\pi_{125,132}(S^{0,0}/\lambda^9)
+  \]
+  is defined, does not contain zero, and is detected by
+  $\lambda^4h_0^2x_{125,9,2}$.
+\end{lemma}
+
+\begin{proof}
+  The zero product from the $\alpha$ lemma defines the bracket, and the
+  leading-term lemma proves its $[h_0]$ product is nonzero without assuming the
+  unresolved $d_5$.  Exhaustively enumerate the filtration-at-most-12
+  candidates.  Exclude the filtration-7 class by its $d_3$ torsion length.
+  For the filtration-9 class, apply the located Moss theorem to the displayed
+  Massey product, control Toda indeterminacy, and use the explicit Ext product
+  inequality to contradict $C_5$.  The sole remaining candidate is the stated
+  filtration-11 class.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2478-2480, Remark rem:h02x1259, now deduced after Lemma lem:toda2ext.
+\begin{corollary}[Conditional vanishing of the unresolved $d_5$]
+  \label{cor:h02x1259-d5-zero}
+  \uses{lem:toda-two-extension,evidence:h02x1259,thm:external-synthetic-einfty-quotient}
+  \notready
+  Under $C_3$ and $C_5$, the class
+  $\lambda^4h_0^2x_{125,9,2}$ detects a nonzero class modulo $\lambda^9$.
+  Equivalently, the unresolved classical differential satisfies
+  $d_5(h_0^2x_{125,9,2})=0$ under these hypotheses.
+\end{corollary}
+
+\begin{proof}
+  The Toda lemma supplies a nonzero bracket element detected by the displayed
+  class.  Apply the finite-quotient $E_\infty$ formula: because the underlying
+  row survives through $E_5$ and has no incoming differential, this
+  $\lambda^4$ multiple exists modulo $\lambda^9$ exactly when its possible
+  outgoing $d_5$ vanishes.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2571-2581, Corollary cor:2ext125.
+\begin{corollary}[The required two-extension]
+  \label{cor:near126-two-extension}
+  \uses{lem:toda-two-extension,cor:h02x1259-d5-zero,lem:near126-equiv-c5}
+  \notready
+  Under $C_3$ and $C_5$, every class detected by
+  $\lambda^4h_0^2x_{125,9,2}$ satisfies
+  \[
+    [\lambda^4h_0^2x_{125,9,2}][h_0]
+      =\lambda^6[h_1h_4x_{109,12}]\ne0
+  \]
+  in $\pi_{125,133}(S^{0,0}/\lambda^9)$, for a suitable detected target
+  representative.
+\end{corollary}
+
+\begin{proof}
+  Choose the bracket representative supplied by the Toda lemma and compute its
+  $[h_0]$ product.  Absorb the higher-filtration $\lambda^7\alpha_3$ term by
+  changing the detected target representative.  The candidate enumeration
+  also shows that changing the source representative cannot remove the
+  filtration-14 leading target, giving the universal assertion.
+\end{proof}
+
+\section{The $\nu_{\mathrm{Hopf}}$ extension and contradiction}
+
+% SOURCE: aimpaper/main.tex:2613-2615, Fact fact:h1x1217; Table S122.
+\begin{proposition}[$h_1x_{121,7}$ evidence]
+  \label{evidence:h1x1217}
+  \uses{data:table-s122,thm:appendix-all-rows-encoded}
+  \notready
+  The class $h_1x_{121,7}$ survives through $E_6$ and has no incoming
+  differential in the complete range.
+\end{proposition}
+
+\begin{proof}
+  Query its table row and all degree-compatible incoming relation identifiers;
+  use table completeness to certify the negative result.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2617-2673, missing obstruction check in Lemma lem:nuext125.
+\begin{proposition}[Obstruction vanishing for the mod-$\lambda^5$ lift]
+  \label{evidence:nu-extension-obstruction-vanishing}
+  \uses{data:table-s125-low,data:table-s126-low,data:table-cnu126,thm:appendix-all-rows-encoded}
+  \notready
+  For the relation produced modulo $\lambda^3$ by the $S^0/\nu_{\mathrm{Hopf}}$
+  $d_3$, every filtration-10 correction that could obstruct a lift modulo
+  $\lambda^5$ either has no detected homotopy class or can be killed by changing
+  the lift.  Therefore a lift exists with no additional $[\lambda x]$ term.
+\end{proposition}
+
+\begin{proof}
+  Enumerate the complete filtration-10 source group, compute the relevant
+  $\rho$ obstruction and each candidate's synthetic survival from the table
+  relations, and give an explicit correction or vanishing certificate for
+  every element.  This evidence is independent of the formal properties of
+  $\rho$; it fills the unsupported ``upon inspection'' step at
+  \texttt{aimpaper/main.tex:2661--2665}.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
+\begin{lemma}[The required Hopf extension]
+  \label{lem:near126-nu-extension}
+  \uses{evidence:h1x1217,thm:generalized-mahowald,def:hopf-cofiber-cell-notation,data:table-cnu126,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility}
+  \notready
+  There is a class
+  $[\lambda^4h_1x_{121,7}]\in
+  \pi_{122,126}(S^{0,0}/\lambda^9)$ such that
+  \[
+    [\lambda^4h_1x_{121,7}][h_2]
+       =\lambda[\lambda^5h_0^2x_{125,9,2}]
+  \]
+  in $\pi_{125,130}(S^{0,0}/\lambda^9)$.
+\end{lemma}
+
+\begin{proof}
+  Apply the generalized Mahowald trick to the Hopf cofiber triangle and the
+  typed $S^0/\nu_{\mathrm{Hopf}}$ differential
+  displayed in \texttt{aimpaper/main.tex:2638--2648}.  Its edge extensions and
+  no-crossing certificate give an $([h_2],E_4)$ extension, hence a relation
+  modulo $\lambda^3$.  Use the independent obstruction-vanishing certificate
+  to lift it modulo $\lambda^5$, then multiply by $\lambda^4$ and apply quotient
+  compatibility to obtain the displayed relation modulo $\lambda^9$.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2689-2696, Fact fact:stem122; Table S122.
+\begin{proposition}[Stem-$122$ permanent-class evidence]
+  \label{evidence:stem122-permanent}
+  \uses{data:table-s122,thm:appendix-all-rows-encoded}
+  \notready
+  The classes $h_6Md_0$ and $h_5x_{91,11}$ are permanent in the classical
+  Adams spectral sequence.
+\end{proposition}
+
+\begin{proof}
+  Retrieve their rows, certify no outgoing or incoming differential through
+  the complete source ranges, and validate the permanent status against the
+  program artifact identifiers.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2707-2728, two ``upon inspection'' steps in the proof of Proposition prop:state5false.
+\begin{proposition}[Stem-$122$ candidate and product exhaustion]
+  \label{evidence:stem122-product-exhaustion}
+  \uses{data:table-s122,data:table-s125-low,evidence:stem122-permanent,thm:appendix-all-rows-encoded,def:external-evidence}
+  \notready
+  In the bidegree and $\lambda$-quotient occurring in the proof of
+  Proposition \texttt{prop:state5false}, every nonzero representative of
+  $[\lambda^4h_1x_{121,7}][h_0]$ of Adams filtration at most $12$ is exactly
+  one of
+  \[
+    \lambda^6[h_6Md_0]\quad\text{or}\quad
+    \lambda^7[h_5x_{91,11}].
+  \]
+  The typed product and differential evidence further shows, in either case,
+  that $\lambda^4[h_1h_4x_{109,12}]$ is a
+  $\lambda[h_2]$-multiple in the untruncated synthetic sphere.  This record
+  includes the filtration-$13$ candidate search and the $d_2/d_4$ exclusions
+  used in lines 2716--2728.
+\end{proposition}
+
+\begin{proof}
+  Enumerate the complete stem-$122$ permanent representatives through
+  filtration $12$, evaluate the typed $h_0$ and $h_2$ products, and transport
+  each known differential through the shared relation identifiers.  Query the
+  complete stem-$125$ ranges for filtration-$13$ corrections and prove that
+  each is killed by the recorded $d_2$ or $d_4$.  The resulting finite
+  certificate has exactly the two source cases and the asserted common
+  divisibility conclusion.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2731 and the Hopf cofiber triangle used throughout Section 7.
+\begin{proposition}[Synthetic Hopf cofiber]
+  \label{prop:synthetic-hopf-cofiber-equivalence}
+  \uses{thm:external-synthetic-lift,thm:external-nu-cofiber-criterion,prop:synthetic-hat-cofiber,def:hopf-cofiber-cell-notation,def:external-evidence}
+  \notready
+  With the explicit detection identity
+  $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$ and
+  $\nu(\nu_{\mathrm{Hopf}})=\lambda[h_2]$, there is a compatible equivalence
+  \[
+    S^{0,0}/(\lambda[h_2])\simeq\nu(S^0/\nu_{\mathrm{Hopf}}).
+  \]
+\end{proposition}
+
+\begin{proof}
+  Apply the synthetic lift theorem to the filtration-one Hopf map and use the
+  detection evidence to identify its normalized lift with $[h_2]$.  The
+  $H\mathbb F_2$-homology cofiber sequence is short exact, so the cofiber
+  criterion identifies the cofiber of $\nu(\nu_{\mathrm{Hopf}})$ with the synthetic
+  analogue of the classical cofiber.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2698-2778 and Table Table:Cnu126.
+\begin{proposition}[$S^0/\nu$ short-incoming exclusion]
+  \label{evidence:cnu126-short-incoming-exclusion}
+  \uses{data:table-cnu126,thm:appendix-all-rows-encoded,prop:lin-computation-provenance}
+  \notready
+  In the classical Adams spectral sequence of $S^0/\nu_{\mathrm{Hopf}}$, the class
+  $h_1h_4x_{109,12}[0]$ is not hit by any $d_r$ with $r\le5$.  This negative
+  statement is a range-completeness query over all 26 table rows, not a claim
+  read from a single row.
+\end{proposition}
+
+\begin{proof}
+  Enumerate every degree-compatible source in filtrations 9--14, follow its
+  relation status, and prove none has target the named bottom-cell class with
+  length at most five.  Table and artifact completeness make the finite
+  negative query exhaustive.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.
+\begin{proposition}[$C_3$ excludes $C_5$]
+  \label{prop:near126-c3-not-c5}
+  \uses{def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion,def:external-evidence}
+  \notready
+  If $C_3$ holds, then $C_5$ is false.
+\end{proposition}
+
+\begin{proof}
+  Assume $C_3$ and the universal form of $C_5$.  Compose the $[h_2]$ relation
+  with the $[h_0]$ extension to obtain the nonzero
+  $\lambda^8[h_1h_4x_{109,12}]$.  Exhaustive stem-$122$ evidence says the
+  intermediate $[h_0]$ multiple is represented only by
+  $\lambda^6[h_6Md_0]$ or $\lambda^7[h_5x_{91,11}]$.  Product and filtration
+  evidence in either case makes
+  $\lambda^4[h_1h_4x_{109,12}]$ a $\lambda[h_2]$ multiple in the untruncated
+  sphere.  Pass to the cofiber of $\lambda[h_2]$; rigidity would then require an
+  incoming differential of length at most five on the corresponding
+  bottom-cell class in $S^0/\nu_{\mathrm{Hopf}}$.  The complete Table 1 exclusion
+  contradicts this.  Hence $C_5$ cannot hold.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:128-130 and 2106-2214, Theorems thm:h62 and thm:126survives.
+\begin{theorem}[$h_6^2$ is a permanent cycle]
+  \label{thm:h6-square-permanent}
+  \uses{prop:possible-h62,prop:near126-c3-not-c5}
+  \notready
+  Under the explicit literature results and computation-evidence values in the
+  preceding dependency cone, $h_6^2$ survives to $E_\infty$ in the classical
+  mod--2 Adams spectral sequence of the sphere.
+\end{theorem}
+
+\begin{proof}
+  If the nonzero $d_{12}$ alternative of
+  Proposition~\ref{prop:possible-h62} held, then $C_3$, $C_4$, and $C_5$ would
+  all hold.  Proposition~\ref{prop:near126-c3-not-c5} contradicts the first and
+  third simultaneously.  Therefore the differential alternative is false,
+  and the exclusive permanent-cycle alternative holds.
+\end{proof}

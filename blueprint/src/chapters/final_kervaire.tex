@@ -1,0 +1,130 @@
+\chapter{Conditional geometric conclusions}
+\label{chap:final-kervaire}
+
+The paper states its geometric conclusions unconditionally.  Under the project
+boundary they are formalized as implications from explicit literature and
+computation records: the project proves the assembly of those inputs, not
+Browder's theorem or the earlier geometric classification anew.
+
+\section{Geometric interface and literature roots}
+
+% SOURCE: aimpaper/main.tex:78-101; PROJECT_BOUNDARY.md, Final geometric conclusions.
+\begin{definition}[Framed Kervaire context]
+  \label{def:framed-kervaire-context}
+  \uses{def:stable-context}
+  \notready
+  A framed Kervaire context provides closed smooth framed manifolds, framed
+  cobordism, the Pontryagin--Thom correspondence with stable sphere homotopy,
+  the middle-dimensional mod--$2$ intersection pairing, its quadratic
+  refinement, the Arf invariant, and the proposition that a manifold has
+  Kervaire invariant one.  Only the laws needed to state and apply Browder's
+  criterion are exposed.
+\end{definition}
+
+% SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; aimpaper/main.tex:117-123, Theorem thm:browder.
+\begin{theorem}[Browder criterion]
+  \label{thm:external-browder-criterion}
+  \uses{def:framed-kervaire-context,def:adams-hj,def:ss-cycle-boundary-permanent,def:external-result}
+  \notready
+  An explicit Browder external result supplies that a framed manifold with
+  Kervaire invariant one exists in dimension $n$ if and only if
+  $n=2^{j+1}-2$ for some $j\ge1$ and $h_j^2$ is a permanent cycle in the classical
+  Adams spectral sequence.  The record must carry the precise theorem or page
+  locator in Browder's paper and the Pontryagin--Thom convention.
+\end{theorem}
+
+\begin{proof}
+  Instantiate the located Browder theorem and transport its Adams grading and
+  framed-cobordism notation into the two project interfaces.  This node remains
+  an explicit literature parameter; no project proof of Browder's criterion is
+  claimed.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:151-162 and cited classical Kervaire literature.
+\begin{theorem}[Prior low-dimensional Kervaire existence]
+  \label{thm:external-low-kervaire-existence}
+  \uses{def:framed-kervaire-context,def:external-result}
+  \notready
+  Explicit literature results supply framed Kervaire-invariant-one manifolds
+  in dimensions $2,6,14,30,$ and $62$, with one source locator for each
+  dimension or a single theorem covering the complete list.
+\end{theorem}
+
+\begin{proof}
+  Assemble the five located external results into a finite family indexed by
+  the stated dimensions, verifying that each conclusion uses the same framed
+  and Kervaire conventions as the project context.
+\end{proof}
+
+% SOURCE: Hill--Hopkins--Ravenel; cited at aimpaper/main.tex:86-92 and 151-160.
+\begin{theorem}[HHR nonexistence beyond dimension $126$]
+  \label{thm:external-hhr-nonexistence}
+  \uses{def:framed-kervaire-context,def:external-result}
+  \notready
+  An explicit Hill--Hopkins--Ravenel result supplies nonexistence of
+  Kervaire-invariant-one framed manifolds in dimensions
+  $2^{j+1}-2$ for $j\ge7$, in the precise form and range of the cited theorem.
+\end{theorem}
+
+\begin{proof}
+  Import the located HHR statement as an external-result parameter and align
+  its dimension indexing and geometric conventions with the project context.
+\end{proof}
+
+% SOURCE: Barratt--Jones--Mahowald induction; aimpaper/main.tex:162.
+\begin{theorem}[BJM induction on order-two Kervaire classes]
+  \label{thm:external-bjm-induction}
+  \uses{def:adams-detection,def:external-result}
+  \notready
+  An explicit Barratt--Jones--Mahowald result supplies: if a class $\theta_j$
+  detected by $h_j^2$ satisfies $2\theta_j=0$ and $\theta_j^2=0$, then there is
+  an order-two class $\theta_{j+1}$ detected by $h_{j+1}^2$.  This result
+  motivates the two open propositions but is not used to prove
+  $h_6^2$ permanent.
+\end{theorem}
+
+\begin{proof}
+  Store the exact inductive theorem and its range as a source-bearing external
+  result.  The Blueprint records no converse and does not turn either open
+  hypothesis into an assumption.
+\end{proof}
+
+\section{Conditional endpoints}
+
+% SOURCE: aimpaper/main.tex:102-104, Theorem thm:main; made conditional by PROJECT_BOUNDARY.md.
+\begin{theorem}[Conditional Kervaire manifold in dimension $126$]
+  \label{thm:kervaire-126-conditional}
+  \uses{thm:h6-square-permanent,thm:external-browder-criterion,def:kip126-trust-boundary}
+  \notready
+  Given the explicit external-result and external-evidence arguments in the
+  dependency cone, including Browder's criterion, there exists a closed framed
+  smooth $126$-manifold with Kervaire invariant one.
+\end{theorem}
+
+\begin{proof}
+  The permanent-cycle theorem gives survival of $h_6^2$, whose stem is
+  $2^7-2=126$.  Apply the forward implication of the supplied Browder
+  criterion.  All high-stem computations remain explicit parameters inherited
+  from Theorem~\ref{thm:h6-square-permanent}.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:108-110, unlabelled Corollary 1.2; made conditional by PROJECT_BOUNDARY.md.
+\begin{corollary}[Conditional exact list of Kervaire dimensions]
+  \label{cor:kervaire-dimensions-exact}
+  \uses{thm:kervaire-126-conditional,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence,thm:external-browder-criterion}
+  \notready
+  Given the preceding explicit literature and evidence arguments, the
+  dimensions admitting a framed smooth manifold of Kervaire invariant one are
+  exactly
+  \[
+    \{2,6,14,30,62,126\}.
+  \]
+\end{corollary}
+
+\begin{proof}
+  Low-dimensional external results and the conditional $126$ theorem give
+  existence in every listed dimension.  Browder's criterion restricts any
+  other positive dimension to $2^{j+1}-2$; the low-index classification covers
+  $1\le j\le5$, the new theorem covers $j=6$, and the HHR input excludes every
+  $j\ge7$.
+\end{proof}
