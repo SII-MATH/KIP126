@@ -13,24 +13,29 @@ Browder's theorem or the earlier geometric classification anew.
   \label{def:framed-kervaire-context}
   \uses{def:stable-context}
   \notready
-  A framed Kervaire context provides closed smooth framed manifolds, framed
-  cobordism, the Pontryagin--Thom correspondence with stable sphere homotopy,
-  the middle-dimensional mod--$2$ intersection pairing, its quadratic
-  refinement, the Arf invariant, and the proposition that a manifold has
-  Kervaire invariant one.  Only the laws needed to state and apply Browder's
-  criterion are exposed.
+  For a fixed stable context $\mathcal C$, a framed Kervaire context provides
+  closed smooth framed manifolds, framed cobordism, and a Pontryagin--Thom
+  correspondence landing in the stable homotopy of the same sphere
+  $S^0_{\mathcal C}$.  It also provides the middle-dimensional mod--$2$
+  intersection pairing, its quadratic refinement, the Arf invariant, and the
+  proposition that a manifold has Kervaire invariant one.  Only the laws needed
+  to state and apply Browder's criterion are exposed.
 \end{definition}
 
 % SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; aimpaper/main.tex:117-123, Theorem thm:browder.
 \begin{theorem}[Browder criterion]
   \label{thm:external-browder-criterion}
-  \uses{def:framed-kervaire-context,def:adams-hj,def:ss-cycle-boundary-permanent,def:external-result}
+  \uses{def:framed-kervaire-context,def:classical-adams-ss,def:adams-hj,def:ss-cycle-boundary-permanent,def:external-result}
   \notready
-  An explicit Browder external result supplies that a framed manifold with
-  Kervaire invariant one exists in dimension $n$ if and only if
-  $n=2^{j+1}-2$ for some $j\ge1$ and $h_j^2$ is a permanent cycle in the classical
-  Adams spectral sequence.  The record must carry the precise theorem or page
-  locator in Browder's paper and the Pontryagin--Thom convention.
+  Fix a stable context $\mathcal C$, a framed Kervaire context over
+  $\mathcal C$, and a chosen classical Adams spectral sequence
+  $A_{\mathrm{cl}}$ of $S^0_{\mathcal C}$.  An explicit Browder external result
+  supplies that a framed manifold with Kervaire invariant one exists in
+  dimension $n$ if and only if $n=2^{j+1}-2$ for some $j\ge1$ and the class
+  $h_j^2$ is a permanent cycle in this same $A_{\mathrm{cl}}$.  The record must
+  carry the precise theorem or page locator in Browder's paper and the
+  Pontryagin--Thom convention; it cannot quantify over or silently select a
+  second sphere Adams spectral sequence.
 \end{theorem}
 
 \begin{proof}
@@ -89,42 +94,202 @@ Browder's theorem or the earlier geometric classification anew.
   hypothesis into an assumption.
 \end{proof}
 
+\section{Explicit input records}
+
+% SOURCE: PROJECT_BOUNDARY.md, shared-kernel and explicit-input policy;
+% docs/FORMALIZATION_SPEC.md, Section 9.1.
+\begin{definition}[Classical--synthetic sphere coherence]
+  \label{def:sphere-adams-coherence}
+  \uses{def:stable-context,def:stable-sphere-suspension,def:synthetic-context,def:synthetic-sphere,def:classical-adams-ss,def:synthetic-adams-ss,def:adams-hj,def:bhs-aim-regrading}
+  \notready
+  Fix a stable context $\mathcal C$, a synthetic context $\mathcal S$ over
+  $\mathcal C$, a classical Adams sequence $A_{\mathrm{cl}}$ on
+  $S^0_{\mathcal C}$, and a synthetic Adams sequence $A_{\mathrm{syn}}$ on
+  $\nu_{\mathcal S}(S^0_{\mathcal C})=S^{0,0}_{\mathcal S}$.  A sphere
+  coherence datum records the object identifications, the common unit and
+  sphere multiplication, and the grading and naming transports for the classes
+  used below.  It does not assert the classical--synthetic $E_2$ identification
+  or differential comparison: those are carried by the separately named
+  \texttt{syntheticRigidity} external result.  When an object equality is not
+  definitional, its equality or transport is an explicit field.  This datum
+  contains no rigidity, differential, convergence, or computation assertion.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs; docs/FORMALIZATION_SPEC.md,
+% Sections 9.1 and 9.4.
+\begin{definition}[Near-$126$ literature input]
+  \label{def:near126-literature-input}
+  \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-theta5-order-data,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
+  \notready
+  For fixed $\mathcal C$, $\mathcal S$, $A_{\mathrm{cl}}$,
+  $A_{\mathrm{syn}}$, and their sphere coherence datum, a near-$126$
+  literature input is a dependent record.  Its named \texttt{ExternalResult}
+  fields are \texttt{syntheticFoundation}, \texttt{syntheticRigidity},
+  \texttt{syntheticEinfNu}, \texttt{syntheticEinfQuotient},
+  \texttt{lambdaBockstein}, \texttt{syntheticLift},
+  \texttt{syntheticTriangleLift}, \texttt{nuCofiberCriterion},
+  \texttt{maySmashBoundary}, \texttt{mossConvergence},
+  \texttt{todaProducts}, \texttt{bjmBx}, \texttt{theta5OrderData}, and
+  \texttt{totalDifferential}.  The Xu/IWX order and choice-comparison facts are
+  supplied specifically by \texttt{theta5OrderData}, whose proposition is
+  Theorem~\ref{thm:external-theta5-order-data}; finite torsion exclusions remain
+  in the computation package.  Its named \texttt{ExternalEvidence} field
+  \texttt{normalizedHopfDetection} supplies the triangle-compatible identity
+  $\widehat\nu=[h_2]$ from
+  Proposition~\ref{evidence:normalized-hopf-detection}.  Every proposition is
+  typed over the fixed contexts and sphere sequences and carries the locator
+  required by Definition~\ref{def:source-ref}.  There is no
+  \texttt{classicalConvergence} field: convergence is already part of the
+  chosen $A_{\mathrm{cl}}$ interface.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Final geometric conclusions;
+% docs/FORMALIZATION_SPEC.md:580--592.
+\begin{definition}[Geometric Kervaire input]
+  \label{def:geometric-kervaire-input}
+  \uses{def:sphere-adams-coherence,def:external-result,def:framed-kervaire-context,thm:external-browder-criterion,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence}
+  \notready
+  For fixed $\mathcal C$ and $A_{\mathrm{cl}}$ as above, a geometric Kervaire
+  input contains a framed context \texttt{framed} over $\mathcal C$ and named
+  external-result values \texttt{browder}, \texttt{lowKervaire}, and
+  \texttt{hhr}.  The proposition carried by \texttt{browder} is
+  Browder's criterion for \texttt{framed} and this exact
+  $A_{\mathrm{cl}}$; this dependency is part of the field's type.  The other two
+  fields use the same framed context, Pontryagin--Thom map, dimension, and
+  invariant conventions.  Any nondefinitional identifications are stored as
+  explicit coherence witnesses rather than resolved by an unconstrained
+  transport.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, explicit-input policy;
+% docs/FORMALIZATION_SPEC.md, Sections 9.1 and 10.
+\begin{definition}[Classical interpretation of the computation catalogue]
+  \label{def:classical-catalogue-coherence}
+  \uses{def:near126-computation-input,def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:typed-class-expression,def:appendix-evidence-record,def:stable-context,def:classical-adams-ss,def:sphere-adams-coherence,thm:adams-external-pairing}
+  \notready
+  Fix a raw near-$126$ computation input $D$, a stable context $\mathcal C$,
+  the selected sphere sequence $A_{\mathrm{cl}}$, and its sphere coherence.
+  A classical catalogue coherence datum contains:
+  \begin{enumerate}
+    \item for every spectrum identifier of $D$, an admissible spectrum of
+      $\mathcal C$ and a chosen classical Adams sequence, with the sphere
+      identifier identified with $S^0_{\mathcal C}$ and its sequence
+      transported to exactly $A_{\mathrm{cl}}$;
+    \item for every typed class expression, an element of the stated spectrum's
+      $E_2$ page in exactly its stored bidegree, preserving zero, sums, named
+      generators, external products, and module actions whenever those
+      operations are present in the catalogue;
+    \item for every map identifier, a stable map with the stored suspension,
+      source, and target, together with its induced page map; identities,
+      compositions, cofiber keys, and the stored linear $E_2$ action commute
+      with these interpretations;
+    \item a typing equality saying that every appendix row, differential key,
+      product record, and finite negative query in $D$ states its proposition
+      about these interpreted pages and elements.
+  \end{enumerate}
+  These are structure fields, not a blanket assertion named
+  ``catalogue models the sphere.''  In particular, they expose the transports
+  used when a table theorem is applied to $A_{\mathrm{cl}}$.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, explicit-input policy;
+% docs/FORMALIZATION_SPEC.md, Sections 6, 9.1, and 10.
+\begin{definition}[Synthetic interpretation of the computation catalogue]
+  \label{def:synthetic-catalogue-coherence}
+  \uses{def:classical-catalogue-coherence,def:near126-literature-input,def:near126-computation-input,def:synthetic-context,def:synthetic-adams-ss,def:synthetic-lambda-quotient,prop:synthetic-einfty-first-quotient,prop:synthetic-einfty-map-compatibility,def:sphere-adams-coherence}
+  \notready
+  Fix the data above, the selected synthetic sphere sequence
+  $A_{\mathrm{syn}}$, a near-$126$ literature input $L$, and a classical
+  catalogue coherence datum $C_{\mathrm{cl}}$.  A synthetic catalogue
+  coherence datum contains:
+  \begin{enumerate}
+    \item interpretations of every consumed spectrum as its chosen synthetic
+      analogue and of every required finite $\lambda$-quotient, with the
+      synthetic sphere identifier transported to exactly $A_{\mathrm{syn}}$;
+    \item interpretations of the raw class identifiers as page or homotopy
+      classes in the stored tridegrees, together with detection witnesses and
+      agreement with $C_{\mathrm{cl}}$ through the grading transport and the
+      specifically named rigidity/Bockstein fields of $L$;
+    \item compatibility of $\lambda$, $\rho$, quotient maps, suspensions,
+      stable-map actions, sphere products, and module actions with the
+      corresponding typed catalogue operations, including the separate
+      exponent-one interface;
+    \item a typing equality saying that every synthetic product, Toda input,
+      quotient relation, torsion exclusion, and obstruction record consumed by
+      the near-$126$ proof is a proposition about these interpreted objects.
+  \end{enumerate}
+  Thus no proof may turn a raw string or archive row into a class of
+  $A_{\mathrm{syn}}$ without an explicit field of this datum.
+\end{definition}
+
+% SOURCE: docs/FORMALIZATION_SPEC.md:489--505 and 573--592;
+% PROJECT_BOUNDARY.md, External inputs.
+\begin{definition}[Main formalization input]
+  \label{def:kervaire-main-input}
+  \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence,def:geometric-kervaire-input}
+  \notready
+  A \emph{main input} $I$ is an ordered dependent record with fields
+  \texttt{stable}, \texttt{synthetic} over \texttt{stable},
+  \texttt{classicalSphere} on \texttt{stable}'s $S^0$,
+  \texttt{syntheticSphere} on
+  \texttt{synthetic.nu} of that same $S^0$, and
+  \texttt{sphereCoherence} for those exact four fields.  Its
+  \texttt{literature} field is a near-$126$ literature input parameterized by
+  those fields.  Its \texttt{computation} field is the context-independent raw
+  near-$126$ ledger of Definition~\ref{def:near126-computation-input}.  The
+  subsequent MainInput fields \texttt{classicalCatalogueCoherence} and
+  \texttt{syntheticCatalogueCoherence} identify every consumed page, class,
+  product, and quotient interpretation in that ledger with
+  \texttt{classicalSphere} and \texttt{syntheticSphere} through
+  Definitions~\ref{def:classical-catalogue-coherence} and
+  \ref{def:synthetic-catalogue-coherence}; the latter is also parameterized by
+  \texttt{literature} and the former coherence datum.  These witnesses are not
+  fields hidden inside \texttt{computation}.  Its \texttt{geometry} field is a
+  geometric input parameterized by
+  \texttt{stable} and \texttt{classicalSphere}.  Thus no subpackage may carry
+  an unrelated context or sphere sequence.  These projections are the only
+  route by which external literature and machine evidence enter the main
+  proof.  The record contains no field asserting $h_6^2$ is permanent and no
+  geometric endpoint; those remain project theorems assembled from the fields.
+\end{definition}
+
 \section{Conditional endpoints}
 
 % SOURCE: aimpaper/main.tex:102-104, Theorem thm:main; made conditional by PROJECT_BOUNDARY.md.
 \begin{theorem}[Conditional Kervaire manifold in dimension $126$]
   \label{thm:kervaire-126-conditional}
-  \uses{thm:h6-square-permanent,thm:external-browder-criterion,def:kip126-trust-boundary}
+  \uses{def:kervaire-main-input,thm:h6-square-permanent,thm:external-browder-criterion,def:kip126-trust-boundary}
   \notready
-  Given the explicit external-result and external-evidence arguments in the
-  dependency cone, including Browder's criterion, there exists a closed framed
-  smooth $126$-manifold with Kervaire invariant one.
+  For every main input $I$, there exists a closed framed smooth
+  $126$-manifold in $I$'s geometric context with Kervaire invariant one.
 \end{theorem}
 
 \begin{proof}
-  The permanent-cycle theorem gives survival of $h_6^2$, whose stem is
-  $2^7-2=126$.  Apply the forward implication of the supplied Browder
-  criterion.  All high-stem computations remain explicit parameters inherited
-  from Theorem~\ref{thm:h6-square-permanent}.
+  Apply Theorem~\ref{thm:h6-square-permanent} to $I$, obtaining survival of
+  $h_6^2$, whose stem is $2^7-2=126$.  Apply the forward implication of
+  $I.\mathrm{geometry}.\mathrm{browder}$; by construction its permanent-cycle
+  premise is stated in $I.\mathrm{classicalSphere}$, the same sequence used by
+  the first step.  Every high-stem computation used there is a projection of
+  $I.\mathrm{computation}$ and its coherence witnesses.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:108-110, unlabelled Corollary 1.2; made conditional by PROJECT_BOUNDARY.md.
 \begin{corollary}[Conditional exact list of Kervaire dimensions]
   \label{cor:kervaire-dimensions-exact}
-  \uses{thm:kervaire-126-conditional,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence,thm:external-browder-criterion}
+  \uses{def:kervaire-main-input,thm:kervaire-126-conditional,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence,thm:external-browder-criterion}
   \notready
-  Given the preceding explicit literature and evidence arguments, the
-  dimensions admitting a framed smooth manifold of Kervaire invariant one are
-  exactly
+  For every main input $I$ and natural number $n$, a framed smooth manifold in
+  $I.\mathrm{geometry}.\mathrm{framed}$ with Kervaire invariant one exists in
+  dimension $n$ if and only if
   \[
-    \{2,6,14,30,62,126\}.
+    n=2\ \vee\ n=6\ \vee\ n=14\ \vee\ n=30\ \vee\ n=62\ \vee\ n=126.
   \]
 \end{corollary}
 
 \begin{proof}
-  Low-dimensional external results and the conditional $126$ theorem give
-  existence in every listed dimension.  Browder's criterion restricts any
-  other positive dimension to $2^{j+1}-2$; the low-index classification covers
-  $1\le j\le5$, the new theorem covers $j=6$, and the HHR input excludes every
-  $j\ge7$.
+  The low-dimensional fields of $I.\mathrm{geometry}$ and the conditional
+  $126$ theorem give existence in every listed dimension.  The Browder field
+  restricts any other positive dimension to $2^{j+1}-2$; the low-index fields
+  cover $1\le j\le5$, the new theorem covers $j=6$, and the HHR field excludes
+  every $j\ge7$.
 \end{proof}

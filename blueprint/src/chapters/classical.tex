@@ -39,14 +39,20 @@ paper's internal deductions are project proof obligations.
   derived degree $s$ and internal degree $t$.  It is represented equivalently
   by internal graded Ext in $\mathcal A_*$-comodules, with an explicit proof
   translating the paper's module convention to the comodule convention.  The
-  interface supplies Yoneda products and internal-degree shifts; Mathlib's
-  singly graded derived Ext alone does not.
+  interface supplies internal-degree shifts, external tensor pairings, and the
+  action of
+  $\operatorname{Ext}_{\mathcal A}^{*,*}(\mathbb F_2,\mathbb F_2)$.
+  It supplies an internal product on
+  $\operatorname{Ext}_{\mathcal A}^{*,*}(M,\mathbb F_2)$ only when $M$ carries
+  the additional coalgebra data that induces one; there is no such product for
+  an arbitrary $M$.  Mathlib's singly graded derived Ext alone does not provide
+  these bigraded structures.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:126-150; finite-type standing assumption at lines 253-263.
 \begin{proposition}[Module--comodule Adams Ext comparison]
   \label{prop:adams-module-comodule-ext-comparison}
-  \uses{def:adams-bigraded-ext,def:admissible-spectrum,def:hf2-homology}
+  \uses{def:adams-bigraded-ext,def:admissible-spectrum,def:hf2-homology,def:unital-multiplication-data}
   \notready
   For an admissible spectrum $X$, degreewise finite duality identifies the
   paper's module expression
@@ -56,27 +62,34 @@ paper's internal deductions are project proof obligations.
   \]
   with the corresponding internal Ext, equivalently Cotor, expression built
   from the graded $\mathcal A_*$-comodule $H_*(X;\mathbb F_2)$.  The
-  isomorphism preserves $(s,t)$, products, suspension, and maps induced by
-  spectra.
+  isomorphism preserves $(s,t)$, external pairings, the sphere-Ext action,
+  suspension, and maps induced by spectra.  When $X$ has unital multiplication
+  data, it also preserves the resulting internal product.
 \end{proposition}
 
 \begin{proof}
   Use finite type to dualize each graded piece, identify Steenrod-module
   actions with dual-Steenrod coactions, and compare the bar and cobar
-  resolutions degreewise.  Verify the internal grading and Yoneda product on
-  the chain-level comparison before passing to cohomology.
+  resolutions degreewise.  Verify the internal grading, external tensor
+  pairing, and sphere action on the chain-level comparison before passing to
+  cohomology.  For a spectrum with multiplication, compare the internal
+  product obtained by composing with its multiplication map.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:134-150; PROJECT_BOUNDARY.md, Steenrod algebra and Ext.
 \begin{definition}[Mod--2 Steenrod algebra and Ext]
   \label{def:steenrod-ext}
-  \uses{def:adams-bigraded-ext,prop:adams-module-comodule-ext-comparison,def:hf2-homology}
+  \uses{def:adams-bigraded-ext,prop:adams-module-comodule-ext-comparison,def:hf2-homology,def:unital-multiplication-data}
   \notready
   Let $\mathcal A$ be the mod--$2$ Steenrod algebra and let
   $\mathbb F_2$ be its trivial module.  The project interface provides the
   bigraded groups
   $\operatorname{Ext}_{\mathcal A}^{s,t}(H^*(X;\mathbb F_2),\mathbb F_2)$,
-  Yoneda products, suspension/regrading maps, and functoriality in $X$.
+  external pairings, their action by the sphere group
+  $\operatorname{Ext}_{\mathcal A}^{*,*}(\mathbb F_2,\mathbb F_2)$,
+  suspension/regrading maps, and functoriality in $X$.  An internal product is
+  present only after supplying multiplication data on $X$; in particular it
+  is canonical for $X=S^0$.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:126-150 and 253-275; standard mod-2 Adams resolution used implicitly.
@@ -91,8 +104,10 @@ paper's internal deductions are project proof obligations.
     \cdots\longrightarrow X_2\longrightarrow X_1\longrightarrow X_0=X.
   \]
   The interface records the exact triangles, augmentations to $X$, naturality,
-  multiplicative pairings, and the fact that every successive cofiber is an
-  $H\mathbb F_2$-module spectrum.
+  external tower pairings
+  $X_s\wedge Y_{s'}\to (X\wedge Y)_{s+s'}$, and the fact that every successive
+  cofiber is an $H\mathbb F_2$-module spectrum.  The pairings do not give an
+  internal multiplication on the tower of an arbitrary $X$.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:253-343, Adams filtration on classes and maps.
@@ -106,8 +121,35 @@ paper's internal deductions are project proof obligations.
   \]
   A map has filtration at least $k$ when it factors through the $k$th stage of
   the target tower, with the chosen factorization retained as data.  Tower
-  pairings give the filtration inequalities for products and composition.
+  pairings give filtration inequalities for external smash products and for
+  composition.  They give internal-product inequalities only after a
+  multiplication on the spectrum has been supplied.
 \end{definition}
+
+% SOURCE: aimpaper/main.tex:929-971, especially the homology consequence in
+% Proposition prop:41561db2; standard first-stage Adams-tower argument.
+\begin{proposition}[Positive Adams filtration is homologically trivial]
+  \label{prop:positive-adams-filtration-homology-zero}
+  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:adams-filtration,def:hf2-homology}
+  \notready
+  For an admissible stable map $u:X\to Y$, if
+  $\operatorname{AF}(u)>0$, including infinite filtration, then
+  \[
+    H_*u=0.
+  \]
+  Consequently, if $H_*u$ is nonzero then $\operatorname{AF}(u)=0$.  The
+  converse direction is not used implicitly: whenever homological vanishing
+  is meant to produce positive filtration, a chosen lift through the first
+  Adams stage must be supplied separately.
+\end{proposition}
+
+\begin{proof}
+  Positive filtration supplies a factorization through the first fiber in the
+  $H\mathbb F_2$-Adams tower of $Y$.  The composite of that fiber with the
+  unit $Y\to H\mathbb F_2\wedge Y$ is null, so applying
+  $H\mathbb F_2$-homology makes the induced map zero.  The final assertion is
+  its contrapositive, using the nonnegative filtration convention.
+\end{proof}
 
 % SOURCE: aimpaper/main.tex:126-150 and standing convergence assumption at 253-263; classical Adams construction.
 \begin{theorem}[Adams tower, Ext, and convergence comparison]
@@ -115,8 +157,8 @@ paper's internal deductions are project proof obligations.
   \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:steenrod-ext,thm:filtered-complex-to-spectral-sequence,def:strong-convergence-detection,def:external-result}
   \notready
   The exact couple or filtered cobar complex of the
-  $H\mathbb F_2$-Adams tower yields a multiplicative spectral sequence whose
-  $E_2$ page is naturally
+  $H\mathbb F_2$-Adams tower yields a spectral sequence whose $E_2$ page is
+  naturally
   $\operatorname{Ext}_{\mathcal A}^{s,t}
   (H^*(X;\mathbb F_2),\mathbb F_2)$ and whose induced abutment filtration is
   Definition~\ref{def:adams-tower-filtration}.  A located classical Adams
@@ -127,16 +169,48 @@ paper's internal deductions are project proof obligations.
 \begin{proof}
   Apply the filtered-complex construction to the tower's cobar resolution,
   identify its normalized cochains with the Steenrod cobar complex, and use
-  the module--comodule comparison to obtain the bigraded Ext page.  Transport
-  tower pairings to page products.  Finally instantiate the located
-  convergence theorem and identify its complete separated filtration with the
-  tower-image filtration.
+  the module--comodule comparison to obtain the bigraded Ext page.  Finally
+  instantiate the located convergence theorem and identify its complete
+  separated filtration with the tower-image filtration.  Pairings are treated
+  separately in Theorem~\ref{thm:adams-external-pairing}; they are not silently
+  converted into an internal product for arbitrary $X$.
+\end{proof}
+
+% SOURCE: classical Adams tower pairing; aimpaper/main.tex:135-159 uses its
+% internal specialization only for the sphere Adams spectral sequence.
+\begin{theorem}[Adams external pairings and multiplicative specializations]
+  \label{thm:adams-external-pairing}
+  \uses{thm:adams-tower-ext-comparison,def:hf2-adams-tower,def:unital-multiplication-data,def:multiplicative-ss}
+  \notready
+  Whenever $X$, $Y$, and $X\wedge Y$ are in the Adams construction, the tower
+  pairings induce natural pagewise pairings
+  \[
+    E_r^{s,t}(X)\otimes E_r^{s',t'}(Y)
+      \longrightarrow E_r^{s+s',t+t'}(X\wedge Y)
+  \]
+  compatible with page passage and satisfying the Leibniz rule.  Taking
+  $X=S^0$ makes the sphere Adams spectral sequence an internally unital
+  multiplicative spectral sequence, and every $E_r(Y)$ is naturally a module
+  over it.  More generally, if $R$ has chosen unital multiplication data, then
+  composing the external pairing with $R\wedge R\to R$ gives an internal
+  multiplicative Adams spectral sequence for $R$.  No internal multiplication
+  is asserted for an arbitrary admissible spectrum.
+\end{theorem}
+
+\begin{proof}
+  Pass the external pairings of Adams towers to their exact couples, then to
+  every page.  Addition of filtration indices gives the displayed bidegree and
+  the boundary in the paired filtered complex gives the Leibniz rule.  For the
+  sphere, compose with the unit identification
+  $S^0\wedge S^0\simeq S^0$; for $R$, compose with its chosen multiplication.
+  Associativity and units follow from the supplied algebra coherences, while
+  $S^0\wedge Y\simeq Y$ gives the module action.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:134-150 and 253-263.
 \begin{definition}[Classical Adams spectral sequence]
   \label{def:classical-adams-ss}
-  \uses{thm:adams-tower-ext-comparison,def:steenrod-ext,def:adams-bidegree,def:adams-complex-shape,def:chosen-page-presentation,def:multiplicative-ss,def:admissible-spectrum,def:stable-homotopy-group,def:strong-convergence-detection}
+  \uses{thm:adams-tower-ext-comparison,thm:adams-external-pairing,def:steenrod-ext,def:adams-bidegree,def:adams-complex-shape,def:chosen-page-presentation,def:admissible-spectrum,def:stable-homotopy-group,def:strong-convergence-detection}
   \notready
   For every admissible spectrum $X$, the classical mod--$2$ Adams spectral
   sequence has
@@ -145,8 +219,13 @@ paper's internal deductions are project proof obligations.
       (H^*(X;\mathbb F_2),\mathbb F_2),
     \qquad d_r:E_r^{s,t}\to E_r^{s+r,t+r-1},
   \]
-  together with the chosen $Z_r/B_r$ presentation, products, naturality, and
-  strong convergence to the $2$-complete stable homotopy of $X$.
+  together with the AIM presentation
+  $E_r\cong Z_{r-1}/B_{r-1}$ for $r\ge2$, naturality, and strong
+  convergence to the $2$-complete stable homotopy of $X$.  These sequences
+  have external smash pairings and are modules over the sphere Adams spectral
+  sequence.  The sphere sequence, and more generally the sequence of an
+  admissible spectrum with chosen unital multiplication data, is internally
+  multiplicative; no internal product is included for general $X$.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:253-263 and 841-864.
@@ -170,12 +249,14 @@ paper's internal deductions are project proof obligations.
 % SOURCE: aimpaper/main.tex:136-162.
 \begin{definition}[The classes $h_j$]
   \label{def:adams-hj}
-  \uses{def:classical-adams-ss}
+  \uses{def:classical-adams-ss,thm:adams-external-pairing}
   \notready
   For $j\ge0$, $h_j$ denotes the standard generator in
   $E_2^{1,2^j}(S^0)$.  Its square $h_j^2$ lies in
   $E_2^{2,2^{j+1}}(S^0)$ and has stem $2^{j+1}-2$.  In particular,
-  $h_6^2$ lies in bidegree $(2,128)$ and stem $126$.
+  $h_6^2$ lies in bidegree $(2,128)$ and stem $126$.  All products here use
+  the canonical internal multiplication on the sphere Adams spectral sequence
+  supplied by Theorem~\ref{thm:adams-external-pairing}.
 \end{definition}
 
 \section{Low-line literature inputs}

@@ -240,12 +240,27 @@ $E_\infty \cong \operatorname{gr}_F(\text{abutment})$ 的精确需求后，再�
 
 * `𝔽₂`、Steenrod algebra `A`（至少论文所用模块/余模接口）；
 * graded modules、cobar/Ext 接口；
-* Ext 的加法和乘法；
+* Ext 的加法、外部张量配对，以及球 Ext 对一般 Ext 的模作用；
 * `h j : ExtClass`，其度 `(1, 2^j)`；
 * `h_j²`、`h_i h_j` 和论文中使用的有限乘法关系；
-* Adams `E₂`、`Z_r`、`B_r` 的统一表示；
+* Adams `E₂`、`Z_r`、`B_r` 的统一表示，并固定 AIM 偏移
+  `E_r = Z_{r-1}/B_{r-1}`（`r ≥ 2`）；
 * `d_r : (s,t) ↦ (s+r,t+r-1)`；
 * 强收敛到 `π_{t-s}` 及“被某 Ext 类检测”的关系。
+
+这里采用 AIM 的 predecessor 下标：`Z₁=E₂`、`B₁=0`，经典
+`d_r : Z_{r-1} → E₂/B_{r-1}`，因此 displayed page 是
+`E_r = Z_{r-1}/B_{r-1}`。由 `d_r` 取 homology 后得到的下一页才是
+`Z_r/B_r`；filtered-complex 若从 `E₀` 开始，必须先经过显式 page reindexing。
+
+对一般 `X,Y`，乘法型结构只能是
+`E_r(X) ⊗ E_r(Y) → E_r(X ∧ Y)` 的 external pairing；每个 `E_r(X)`
+是球谱序列 `E_r(S⁰)` 的 module。只有球谱，或额外给定 unital
+multiplication data 的 ring spectrum `R`，才有
+`E_r(R) ⊗ E_r(R) → E_r(R)` 的 internal multiplication。Ext 层同理：一般
+Steenrod comodule 的 Ext 没有无条件 internal product，只有在相应
+coalgebra/ring data 已显式给定时才能由 external pairing 合成。Leibniz、单位元和
+`h_i h_j` 的调用点必须指向这些 sphere/ring 字段，不能从“任意 Adams SS”推出。
 
 `h_j` 的一般定义和低层代数关系属于 Lean；高 stem 的具体群维数、差分和
 永久性来自 `ExternalEvidence`。
@@ -335,11 +350,58 @@ d_r : (s,t,w) ↦ (s+r, t+r-1, w)
 * `lambdaBocksteinIso`；
 * `Einf_syn_nu`：
   `E∞^{s,t,w}(νX) ≅ Z∞^{s,t}(X)/B_{1+t-w}^{s,t}(X)`（`t ≥ w`，否则 0）；
-* `Einf_syn_quotient`：
+* `Einf_syn_quotient`（只对 `r ≥ 2`）：
   `E∞(νX/λ^r) ≅ Z_{r-t+w}/B_{1+t-w}`（`0 ≤ t-w < r`，否则 0）；
-* `λ`、`ρ` 诱导映射对应 quotient/inclusion；
+* `prop:synthetic-einfty-first-quotient`（指数一的单独接口）：
+  `E∞^{s,t,w}(νX/λ) ≅ E₂^{s,t}(X)` 当 `w=t`，而当 `w≠t` 时为 0；其
+  special-fiber edge class 在对应 tridegree 中有唯一检测到的 homotopy class；
+* 对 `r' ≥ r ≥ 2`，必须把乘法写成带源 suspension 的 degree-zero map
+  ```text
+  λ^(r'-r) : Σ^(0,r-r') (νX/λ^r) → νX/λ^(r')
+  ```
+  它在 `E∞` 上把 `(s,t,w)` 映到 `(s,t,w-r'+r)`，并对应 boundary
+  cutoff 的 quotient map；
+* 对 `r ≥ r'' ≥ 2`，reduction
+  `ρ : νX/λ^r → νX/λ^(r'')` 不改变 weight，并对应 cycle cutoff 的
+  inclusion；
 * Adams filtration `k` 的 synthetic lift `\tilde f`；
 * distinguished triangle 的 `\hat f`、`e(f) ∈ {0,1}` 和 cofiber equivalence。
+
+上述有限商公式的零下标约定只处理 `Z_i/B_j` 的下标，不把商指数 `r=1`
+自动纳入该公式。指数一边界必须通过
+`prop:synthetic-einfty-first-quotient`：当 `r=1<r'` 时，同一个带 suspension
+的 `λ^(r'-1)` map 从 special-fiber edge group 映到 `r'` 商的相应 weight，
+逐 tridegree 是 canonical quotient，因而为 surjective 或 zero；当
+`r''=1<r` 时，`ρ` 把 surviving-cycle subgroup 嵌入 special-fiber edge
+group，逐 tridegree 为 injective 或 zero；两个指数都为 1 时是 identity。
+这些 boundary quotient/inclusion 不得伪装成把有限商的 `Z_i/B_j`
+`E_∞` 公式外推到商指数 `r=1`；这里的 `i,j` 也不得与经典页公式
+`E_r=Z_{r-1}/B_{r-1}` 的前驱下标混淆。
+
+normalized cofiber 接口必须使用 tagged `NormalizedCofiberExactnessCase`，
+而不能只按可能重叠的“`H_*f=0` / mono / epi”谓词分支。三个 constructor
+分别携带互斥的 AF pattern
+`(e(f),e(g),e(h))=(1,0,0),(0,0,1),(0,1,0)`、相应 homology-map 条件和
+同一个 rotated short-exact sequence，以及一次选定的 triangle-lift theorem
+应用；后一个字段真正保存 lifted distinguished triangle 及其三个 component，
+不能只保存存在性命题。前两个 constructor 因显式
+`e(g)=0` 给 `C(\hat f) ≃ νC(f)`；第三个因显式 `e(g)=1` 给
+`C(\hat f) ≃ Σ^(0,-1)νC(f)`。这样即使退化 map 同时是 zero 与 mono/epi，
+也不能导出两个 shift。`\hat f` 与 `\hat g` 必须从该 constructor 所带的同一
+lifted triangle 同时选出。任意另选的 full lift
+`\tilde f` 即使与 `\hat f` 只差 `λ`-torsion，也不能据此获得同一个 cofiber
+equivalence。
+
+从 `e(f)+e(g)+e(h)=1` 构造 tag 的唯一允许路径是单独的
+`positive Adams filtration → H𝔽₂-homology map = 0` 定理，再用 cofiber
+homology 长正合列推出对应的 zero/mono/epi 与 rotated short exact sequence，
+最后只调用一次 triangle-lift theorem。任意 distinguished triangle 还要沿其与
+chosen cofiber triangle 的显式等价运输。Hopf map 回归必须先构造专门的 zero tag：
+`(e(ν_Hopf),e(g),e(h))=(1,0,0)`，并让它复用 normalized-detection evidence
+保存的那一个完整 lifted triangle 及 component equality `\hatν_Hopf=[h₂]`，再应用
+normalized-cofiber 命题；不得第二次调用非唯一的 triangle-lift theorem 后把两个
+component 静默视为相同。`E₂`、`E₃`、`E∞` 三个 Hopf page-extension 回归也必须
+从这同一个 chosen component 约化。
 
 低 stem 的例子（`d₂(h₄)=h₀h₃²`、`d₃(h₀h₄)=h₀d₀`及
 `λ^r`-truncation）作为 rigidity 回归测试，而不是主定理的隐藏假设。
@@ -375,6 +437,14 @@ Section 2 的所有 ESS 定义、检测、essentiality、crossing、naturality
 * 幂次推广 `d_r^δ(λ^a x)=λ^(a+r-n-1)y`；
 * δ-ESS 与 classical Adams differential 的等信息性。
 
+`m=∞` 不能伪装成 finite quotient formula 的代入。必须单独证明
+`λ^n : Σ^(0,-n)νX → νX` 在 `E∞` 上把 boundary cutoff 从 `B_j` quotient
+到 `B_{j+n}`，因而 surjective/zero；并证明
+`ρ : νX → νX/λ^n` 把 `Z∞/B_j` inclusion 到 finite cycle cutoff，因而
+injective/zero。`n=1` 的 reduction 仍走 special-fiber edge group。随后
+`lambda_rho_ESS_only_d0` 的 proof 必须分 finite `m` 与 `m=∞` 两支；infinite
+`δ_n` 不得借用一个只覆盖 finite endpoints 的兼容性命题。
+
 ### 7.3 Classical crossing 与 `(f,E_r)`-extension
 
 定义：
@@ -393,6 +463,14 @@ def PageExtension (f : X ⟶ Y) (r : PageLevel) where
 `\hat f_{r-1}`-ESS 中的
 `d_n(x)=λ^(n-e(f))y`；目标是 coset，并携带
 `B_{1+n-e(f)}` 与较短 synthetic 微分造成的 indeterminacy。
+其 `E₀` typing 在 finite `r` 使用 finite quotient 的 cycle cutoff；在
+`r=∞` 必须另用 `Z∞/B_j` 的 untruncated 公式，不能书写或化简
+`Z_{∞-1-k}`。
+
+同样，`E∞` crossing 必须定义成 permanent source/target 上一个实际的、较短且
+essential 的 `(f,E∞)`-extension。有限页候选即使逐页存在，也不能自动当成
+untruncated crossing；只有 actual untruncated witness 才能借助 infinite-endpoint
+`λ^a : Z∞/B_j → Z∞/B_{j+a}` quotient 与 synthetic crossing 对应。
 
 必须形式化：
 
@@ -403,6 +481,28 @@ def PageExtension (f : X ⟶ Y) (r : PageLevel) where
 * `pageExtension_mono`（`E_r` 向较早页面退化）；
 * `pageExtension_stretch` 及其 no-crossing 反命题；
 * `extension_stretch_to_Einf`（AIM Corollary 6.3）。
+
+`pageExtension_stretch` 的有限页版本必须使用精确的 first-obstruction/loss
+certificate：它要记录首次失败页面、cycle-set difference、较短 essential
+extension、目标所在的完整 coset 及全部 `a',b` 范围；“没有 crossing”不能替代这组
+条件。除此之外，source 必须属于 later `Z_{r-1}`，target 必须属于 later
+`Z_{r-1-n+e(f)}`；在 `r=∞` 时二者都必须是 permanent representative。否则
+later `PageExtension` 本身尚未类型正确，不能写 `Sol_r(x,y)`。拉伸到 `E∞` 时，
+逐页存在代表元还不够；精确附加条件是 solution-torsor
+obstruction `ω(Sol_•) ∈ lim¹ K_m` 消失。以下三条是可择一使用的充分路径：直接给出
+coherent solution tower；证明每个 solution-fiber restriction 都 surjective；或证明
+difference-group tower `K_m` 的 images 最终稳定，即 Mittag--Leffler，从而
+`lim¹ K_m=0`。得到 `ω=0` 后再与 `λ`-adic completeness 组合形成
+untruncated relation；不能把 coherent tower 与 ML 同时强加为必要条件，也不得把
+互不相容的有限页存在量直接取逆极限。
+
+Hopf 回归中的有限 Ext 枚举必须先形成一个不假设 `E∞` relation 已存在的
+crossing/loss-obstruction certificate。该 certificate 用于证明每个 finite
+solution-fiber restriction surjective，并独立给出 `h₀h₄²,h₀p∈Z∞` 的 source/target
+typing，继而拉伸到 `E∞`；只有在得到 `E∞`
+extension 以后，才能把它与同一 certificate 合成“该 `E∞` extension 无
+crossing”的回归结论。依赖图不得让 `E∞` existence、stretching 与 no-crossing
+互相证明。
 
 回归样例至少包括：
 
@@ -486,23 +586,147 @@ d_n^(f,E_(n+m+1+e(h)))(x) ≡ y mod B_(r')
 
 ### 9.1 输入包
 
-`Kervaire.Assumptions` 不声明公理，而定义一个待传入的输入包：
+`Kervaire.Assumptions` 不声明公理，而定义 dependent 输入记录。下列代码中的
+`UnderlyingSpectrum`、`SphereProductCompatible` 等名称是要实现的最小 coherence
+谓词，不代表允许用非依赖的占位类型替代它们。
 
 ```lean
+structure SphereAdamsCoherence
+    (stable : StableHomotopyContext)
+    (synthetic : SyntheticContext stable)
+    (classicalSphere : ClassicalAdamsSS stable.S0)
+    (syntheticSphere : SyntheticAdamsSS synthetic (synthetic.nu stable.S0)) where
+  classicalTarget : UnderlyingSpectrum classicalSphere = stable.S0
+  syntheticTarget :
+    UnderlyingSyntheticSpectrum syntheticSphere = synthetic.nu stable.S0
+  sphereProducts :
+    SphereProductCompatible stable synthetic classicalSphere syntheticSphere
+  gradingAndClassNames :
+    SphereGradingNotationCompatible classicalSphere syntheticSphere
+
+structure Near126LiteratureInput
+    (stable : StableHomotopyContext)
+    (synthetic : SyntheticContext stable)
+    (classicalSphere : ClassicalAdamsSS stable.S0)
+    (syntheticSphere : SyntheticAdamsSS synthetic (synthetic.nu stable.S0))
+    (sphereCoherence :
+      SphereAdamsCoherence stable synthetic classicalSphere syntheticSphere) where
+  syntheticFoundation : ExternalResult (SyntheticFoundation synthetic)
+  syntheticRigidity :
+    ExternalResult (SyntheticRigidity classicalSphere syntheticSphere)
+  syntheticEinfNu : ExternalResult (SyntheticEinfNu stable synthetic)
+  syntheticEinfQuotient : ExternalResult (SyntheticEinfQuotient stable synthetic)
+  lambdaBockstein : ExternalResult (LambdaBockstein stable synthetic)
+  syntheticLift : ExternalResult (SyntheticLiftComparison stable synthetic)
+  syntheticTriangleLift :
+    ExternalResult (SyntheticTriangleLiftComparison stable synthetic)
+  nuCofiberCriterion : ExternalResult (NuCofiberCriterion stable synthetic)
+  maySmashBoundary : ExternalResult (MaySmashBoundary stable)
+  mossConvergence : ExternalResult (MossConvergence classicalSphere)
+  todaProducts : ExternalResult (TodaProductIdentities stable)
+  bjmBx : ExternalResult (BJM_BXCriterion classicalSphere syntheticSphere)
+  theta5OrderData :
+    ExternalResult (Theta5OrderData classicalSphere syntheticSphere)
+  totalDifferential :
+    ExternalResult (TotalDifferentialIdentity classicalSphere syntheticSphere)
+  normalizedHopfDetection :
+    ExternalEvidence (NormalizedHopfDetection sphereCoherence)
+
+structure ClassicalCatalogueCoherence
+    (stable : StableHomotopyContext)
+    (synthetic : SyntheticContext stable)
+    (classicalSphere : ClassicalAdamsSS stable.S0)
+    (syntheticSphere : SyntheticAdamsSS synthetic (synthetic.nu stable.S0))
+    (sphereCoherence : SphereAdamsCoherence
+      stable synthetic classicalSphere syntheticSphere)
+    (computation : Near126ComputationInput) where
+  spectrumObject : computation.SpectrumId → stable.Spectrum
+  adamsPage : ∀ i, ClassicalAdamsSS (spectrumObject i)
+  sphereObject : spectrumObject computation.sphereId = stable.S0
+  spherePage : HEq (adamsPage computation.sphereId) classicalSphere
+  classValue : ∀ e : computation.ClassExpression,
+    PageElement (adamsPage e.spectrum) e.bidegree
+  classOperations : PreservesTypedSumsProductsAndModules classValue
+  mapValue : ∀ m : computation.MapId,
+    SuspendedStableMap (spectrumObject m.source) (spectrumObject m.target) m.degree
+  mapOperations : PreservesMapActionsCompositionsAndCofibers mapValue classValue
+  evidenceTyping : ClassicalLedgerStatementsUse
+    computation classValue mapValue
+
+structure SyntheticCatalogueCoherence
+    (stable : StableHomotopyContext)
+    (synthetic : SyntheticContext stable)
+    (classicalSphere : ClassicalAdamsSS stable.S0)
+    (syntheticSphere : SyntheticAdamsSS synthetic (synthetic.nu stable.S0))
+    (sphereCoherence : SphereAdamsCoherence
+      stable synthetic classicalSphere syntheticSphere)
+    (literature : Near126LiteratureInput
+      stable synthetic classicalSphere syntheticSphere sphereCoherence)
+    (computation : Near126ComputationInput)
+    (classicalCatalogueCoherence : ClassicalCatalogueCoherence
+      stable synthetic classicalSphere syntheticSphere sphereCoherence
+      computation) where
+  syntheticObjectAndQuotients : SyntheticInterpretations
+    synthetic computation classicalCatalogueCoherence
+  spherePage : SyntheticSphereInterpretationIs
+    syntheticObjectAndQuotients syntheticSphere
+  classDetection : SyntheticClassDetections
+    syntheticObjectAndQuotients literature.syntheticRigidity
+    literature.lambdaBockstein
+  lambdaRhoAndActions : PreservesLambdaRhoSuspensionsProductsAndModules
+    syntheticObjectAndQuotients classDetection
+  evidenceTyping : SyntheticLedgerStatementsUse
+    computation syntheticObjectAndQuotients classDetection
+
+structure GeometricKervaireInput
+    (stable : StableHomotopyContext)
+    (classicalSphere : ClassicalAdamsSS stable.S0) where
+  framed : FramedKervaireContext stable
+  browder : ExternalResult (BrowderCriterion framed classicalSphere)
+  lowKervaire : ExternalResult (LowKervaireExistence framed)
+  hhr : ExternalResult (HHRNonexistence framed)
+  pontryaginThomCoherence :
+    PontryaginThomSphereCompatible framed stable.S0
+
 structure MainInput where
-  classicalSphere : ClassicalAdamsSS S0
-  syntheticSphere : SyntheticAdamsSS (ν S0)
-  browder : ExternalResult (BrowderCriterion ...)
-  bjm_bx : ExternalResult (BJM_BXCriterion ...)
-  rigidity : ExternalResult (Rigidity ...)
-  priorSynthetic : ExternalResult (PriorSyntheticInterfaces ...)
-  priorExt : ExternalResult (PriorExtFacts ...)
-  tmfDetection : ExternalEvidence (TmfDetectionFacts ...)
-  appendix : AppendixEvidence
-  lin : LinComputationEvidence
+  stable : StableHomotopyContext
+  synthetic : SyntheticContext stable
+  classicalSphere : ClassicalAdamsSS stable.S0
+  syntheticSphere : SyntheticAdamsSS synthetic (synthetic.nu stable.S0)
+  sphereCoherence :
+    SphereAdamsCoherence stable synthetic classicalSphere syntheticSphere
+  literature : Near126LiteratureInput
+    stable synthetic classicalSphere syntheticSphere sphereCoherence
+  computation : Near126ComputationInput
+  classicalCatalogueCoherence :
+    ClassicalCatalogueCoherence
+      stable synthetic classicalSphere syntheticSphere sphereCoherence computation
+  syntheticCatalogueCoherence :
+    SyntheticCatalogueCoherence
+      stable synthetic classicalSphere syntheticSphere sphereCoherence
+      literature computation classicalCatalogueCoherence
+  geometry : GeometricKervaireInput stable classicalSphere
 ```
 
-`MainInput` 的字段可以按实现拆成多个包，但所有主定理都必须显式接收它们。
+`ClassicalAdamsSS stable.S0` 自身携带项目需要的 convergence/detection 数据；
+`Near126LiteratureInput` 不得再保存第二个 `classicalConvergence` 字段。
+`sphereCoherence.gradingAndClassNames` 只固定 index transport 与命名，不包含
+经典--synthetic `E₂` 同构或 differential comparison；后两者只能来自带 locator 的
+`literature.syntheticRigidity`。
+`theta5OrderData` 对应纯文献节点 `thm:external-theta5-order-data`，只聚合 Xu/IWX
+给出的 order 与 choice-filtration 比较；由有限 Ext 表排除 `λ`-torsion 的部分仍由
+`computation` 给出。`normalizedHopfDetection` 是单独命名的
+`ExternalEvidence`，不能藏在一个无结构的 synthetic package 中。
+
+所有 literature 命题都依赖上述同一组 context/sphere 参数。第 10 节定义的
+`Near126ComputationInput` 仍是 context-independent raw ledger；
+`classicalCatalogueCoherence` 与 `syntheticCatalogueCoherence` 是
+`MainInput` 中紧随 `computation` 的后续字段，并把所有计算条目解释为这同一组 page
+和 class，而不是反过来把 context 塞进 raw ledger。尤其
+`I.geometry.browder` 的类型是
+`ExternalResult (BrowderCriterion I.geometry.framed I.classicalSphere)`，因此它
+不能谈论另一个经典 Adams 谱序列。所有主定理都显式接收同一个
+`I : MainInput`，不得通过全局 instance 或项目 axiom 隐式取得任何子包。
 
 ### 9.2 论文中的终局对象
 
@@ -529,12 +753,15 @@ filtration、classical/synthetic page 和来源 locator。
 
 ### 9.3 必须形式化的逻辑链
 
-1. `BJM_BXCriterion`：
-   `h₆²` permanent iff 某个 `θ₅` 满足
-   `λ η θ₅² = 0 ∈ π_{125,125+4}(S^{0,0})`。
+1. `BJM_BXCriterion`：外部来源先给出一个 distinguished `θ₅`，并对每个
+   `r ≥ 1` 给出 `h₆²` survives to `E_{r+3}` iff
+   `λ η θ₅² = 0 ∈ π_{125,125+4}(S^{0,0}/λ^{r+1})`，以及
+   `h₆²` permanent iff `λ η θ₅² = 0 ∈ π_{125,125+4}(S^{0,0})`；再由
+   total-differential identity 证明该乘积不依赖 order-two `θ₅` 的选择，
+   最后在项目内把判据传递到任意 order-two 选择。
 2. `FactTheta5AF`：
    * `x₁₂₆,₈,₄+x₁₂₆,₈` 存活到 `E₆`；
-   * `h₁h₄x₁₀₉,₁₂` permanent，唯一潜在 killer 是
+   * `h₁h₄x₁₀₉,₁₂` 无 outgoing differential，且唯一潜在 incoming killer 是
      `d₆(x₁₂₆,₈,₄+x₁₂₆,₈)` 或 `d₁₂(h₆²)`；
    * `h₀²x₁₂₄,₈` permanent；
    * `g⁴Δh₁g` 是 `(25,125+25)` 中唯一存活到 `E₅` 的类。
@@ -562,7 +789,7 @@ filtration、classical/synthetic page 和来源 locator。
    λ[\lambda⁵h₀²x₁₂₅,₉,₂]`（在 `S/λ⁹`）。
 9. `state5_false`：
    若条件 (3) 成立，则条件 (5) 不成立；证明中必须形式化
-   `S^{0,0}/(\lambda[h₂]) ≃ ν(S⁰/ν)`、低页差分排除和
+   `C([h₂]) ≃ ν(S⁰/ν)`、由 `λ[h₂]`-整除推出 `[h₂]`-整除、低页差分排除和
    `S⁰/ν` 的 `h₁h₄x₁₀₉,₁₂[0]` 在 `r≤5` 不被杀。
 10. `h6_sq_permanent`：
     由 `state5_false` 和 `possible_h62` 得到 `h₆²` permanent。
@@ -579,17 +806,22 @@ theorem h6_sq_permanent
 
 theorem kervaire_126
     (I : MainInput) :
-    ∃ M : FramedSmoothManifold, M.dimension = 126 ∧ M.kervaireInvariant = 1
+    ∃ M : I.geometry.framed.FramedSmoothManifold,
+      M.dimension = 126 ∧ M.kervaireInvariant = 1
 
 theorem kervaire_dimensions_exact
     (I : MainInput) (n : Nat) :
-    KervaireOneDimension n ↔
+    I.geometry.framed.KervaireOneDimension n ↔
       n = 2 ∨ n = 6 ∨ n = 14 ∨ n = 30 ∨ n = 62 ∨ n = 126
 ```
 
-第二、第三个定理应通过 `I.browder` 与已知维数的外部
+第二、第三个定理应通过 `I.geometry.browder`、
+`I.geometry.lowKervaire` 与 `I.geometry.hhr` 的外部
 `ExternalResult`/`ExternalEvidence` 参数化，而不是把 Browder、Mahowald–Tangora、
-BJM、HHR 的结论编写为本项目 axiom。
+BJM、HHR 的结论编写为本项目 axiom。其中
+`I.geometry.browder` 的 permanent-cycle 前提必须定义在
+`I.classicalSphere` 上，与第一个定理的结论定义性相同或由
+`I.sphereCoherence` 的显式 transport 对齐。
 
 `Question`/`StrongKervaireQuestion` 只保留：
 
@@ -652,8 +884,9 @@ structure AppendixEvidence where
 
 表格外还必须编码：
 
-* 所有 CW spectrum 的 `E₂` 页；
-* 它们之间的 map；
+* 恰好 49 个带稳定标识和 source locator 的 CW spectrum，以及这 49 个
+  spectrum 的全部指定 `E₂` 页；
+* 恰好 180 个带 domain、codomain、degree、relation id 和 source locator 的 map；
 * 各指定 spectrum 的 `d₂`；
 * 三条人工输入：
   `d₅(h₀²⁴h₆)=h₀²P⁶d₀`、
@@ -665,7 +898,9 @@ structure AppendixEvidence where
 
 每一条记录的 `SourceRef` 必须能定位到 `aimpaper/main.tex` 表标签、
 `reference/LWXMachine/` 的程序/输出或对应论文/Zenodo 记录。不能只写
-`"Lin computation"`。
+`"Lin computation"`。完整性证明必须同时验证 spectrum catalogue 的基数为
+49、map catalogue 的基数为 180、稳定标识无重复，并且每条 map 的两端都属于这
+49 个 spectrum；不能只证明“列表中的每项有类型”。
 
 ## 11. 形式化/外部化分类表
 

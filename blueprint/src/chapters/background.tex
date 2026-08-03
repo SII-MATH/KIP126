@@ -73,6 +73,17 @@ must still be constructed.
   Mathlib homological complex with differential of degree $-1$.
 \end{definition}
 
+% SOURCE: Mathlib/Algebra/Homology/HomologicalComplex.lean, abbreviation CategoryTheory.CochainComplex.
+\begin{definition}[Cochain complex]
+  \label{def:mathlib-cochain-complex}
+  \lean{CochainComplex}
+  \mathlibok
+  A cochain complex in $\mathcal C$ indexed by an additive index type is the
+  Mathlib homological complex with differential of degree $+1$.  Passing from a
+  chain complex to a cochain complex therefore requires an explicit reindexing;
+  the two abbreviations are not interchangeable.
+\end{definition}
+
 % SOURCE: Mathlib/Algebra/Homology/ShortComplex/Exact.lean, declaration CategoryTheory.ShortComplex.Exact.
 \begin{definition}[Exact short complex]
   \label{def:mathlib-short-complex-exact}
@@ -126,6 +137,32 @@ must still be constructed.
   compatible with passage to homology, but both sequences must have the same
   index type, complex shape, and starting page.  It therefore cannot express
   the classical--synthetic reindexing required later.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:49, declaration CategoryTheory.Triangulated.SpectralObject.
+\begin{definition}[Mathlib triangulated spectral object]
+  \label{def:mathlib-triangulated-spectral-object}
+  \lean{CategoryTheory.Triangulated.SpectralObject}
+  \mathlibok
+  \uses{def:mathlib-shift,def:mathlib-triangle,def:mathlib-pretriangulated}
+  For a pretriangulated category $\mathcal C$ and an index category $I$, a
+  triangulated spectral object consists of a functor from length-one composable
+  arrows in $I$ to $\mathcal C$ and a functorial distinguished triangle for
+  every composable pair $i\to j\to k$.  It is an object of
+  \texttt{CategoryTheory.Triangulated.SpectralObject}; it is not the abelian
+  spectral object in the next node.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:103, declaration CategoryTheory.Triangulated.SpectralObject.precomp.
+\begin{definition}[Precomposition of a triangulated spectral object]
+  \label{def:mathlib-triangulated-spectral-object-precomp}
+  \lean{CategoryTheory.Triangulated.SpectralObject.precomp}
+  \mathlibok
+  \uses{def:mathlib-triangulated-spectral-object}
+  For a triangulated spectral object $T$ indexed by $I$ and a functor
+  $G:I'\to I$, Mathlib constructs the triangulated spectral object
+  $T\circ G$ indexed by $I'$.  Its functorial distinguished triangles are
+  obtained by applying $G$ to composable pairs in $I'$.
 \end{definition}
 
 % SOURCE: Mathlib/Algebra/Homology/SpectralObject/Basic.lean, declaration CategoryTheory.Abelian.SpectralObject.
@@ -207,11 +244,17 @@ must still be constructed.
   \label{def:mathlib-mapping-cone-spectral-object}
   \lean{HomotopyCategory.spectralObjectMappingCone}
   \mathlibok
-  \uses{def:mathlib-spectral-object,def:mathlib-chain-complex}
-  Mathlib's mapping-cone construction is a spectral object valued in the
-  homotopy category of cochain complexes.  Precomposing it with a filtered
-  complex regarded as a filtration-indexed functor is the intended project
-  route to a filtered-complex spectral sequence.
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-cochain-complex}
+  For a preadditive category $\mathcal C$ with a zero object and binary
+  biproducts, Mathlib's declaration has type
+  \[
+    \operatorname{Triangulated.SpectralObject}
+      \bigl(\operatorname{HomotopyCategory}_{\operatorname{up}(\mathbb Z)}
+      (\mathcal C),\operatorname{CochainComplex}(\mathcal C,\mathbb Z)\bigr).
+  \]
+  Thus it is a triangulated spectral object valued in the homotopy category of
+  cochain complexes.  It neither consumes a chain complex nor produces an
+  abelian spectral object; those two conversions are project obligations below.
 \end{definition}
 
 % SOURCE: Mathlib/Algebra/Homology/DerivedCategory/Ext/Basic.lean, declaration CategoryTheory.Abelian.Ext.
@@ -264,6 +307,42 @@ must still be constructed.
   triangle to an exact short complex.
 \end{definition}
 
+% SOURCE: Mathlib/CategoryTheory/Shift/ShiftSequence.lean:48, declaration CategoryTheory.Functor.ShiftSequence.
+\begin{definition}[Mathlib shift sequence for a functor]
+  \label{def:mathlib-homological-shift-sequence}
+  \lean{CategoryTheory.Functor.ShiftSequence}
+  \mathlibok
+  \uses{def:mathlib-shift}
+  For a functor $F:\mathcal C\to\mathcal A$, a shift sequence indexed by
+  $\mathbb Z$ chooses functors $F_n:\mathcal C\to\mathcal A$ and coherent
+  isomorphisms identifying $F_n\circ[m]$ with $F_{m+n}$.  This is additional
+  data on a homological functor and is what lets Mathlib state its long exact
+  sequence with separately indexed functors $F_n$.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:173, declaration CategoryTheory.Functor.homologySequenceδ.
+\begin{definition}[Homology-sequence connecting morphism]
+  \label{def:mathlib-homology-sequence-connecting}
+  \lean{CategoryTheory.Functor.homologySequenceδ}
+  \mathlibok
+  \uses{def:mathlib-triangle,def:mathlib-homological-shift-sequence}
+  Let $F:\mathcal C\to\mathcal A$ have a $\mathbb Z$-shift sequence.  For a
+  triangle $X\to Y\to Z\to X[1]$ and $n_0+1=n_1$, Mathlib constructs the
+  connecting morphism $F_{n_0}(Z)\to F_{n_1}(X)$ by applying the shift map of
+  $F$ to the third morphism of the triangle.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:181, declaration CategoryTheory.Functor.homologySequenceδ_naturality.
+\begin{theorem}[Naturality of the homology-sequence connecting morphism]
+  \label{thm:mathlib-homology-sequence-connecting-naturality}
+  \lean{CategoryTheory.Functor.homologySequenceδ_naturality}
+  \mathlibok
+  \uses{def:mathlib-homology-sequence-connecting}
+  For every morphism of triangles, the third component mapped by $F_{n_0}$,
+  the two connecting morphisms, and the first component mapped by $F_{n_1}$
+  form a commutative square.
+\end{theorem}
+
 % SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:217, declaration CategoryTheory.Functor.homologySequence_exact₂.
 \begin{theorem}[Middle exactness of a homology sequence]
   \label{thm:mathlib-homology-sequence-exact-two}
@@ -293,6 +372,72 @@ must still be constructed.
   Inverse rotation gives the remaining adjacent exactness statement, allowing
   the three short complexes to splice into a long exact sequence.
 \end{theorem}
+
+% SOURCE: Mathlib/Algebra/Homology/HomotopyCategory/HomologicalFunctor.lean:34, instance HomotopyCategory.instIsHomologicalIntUpHomologyFunctor.
+\begin{theorem}[Cochain homology is homological on the homotopy category]
+  \label{thm:mathlib-homotopy-cochain-homology-is-homological}
+  \lean{HomotopyCategory.instIsHomologicalIntUpHomologyFunctor}
+  \mathlibok
+  \uses{def:mathlib-cochain-complex,def:mathlib-homological-functor}
+  If $\mathcal C$ is abelian, then for every $n\in\mathbb Z$ the degree-$n$
+  homology functor from the homotopy category of $\mathbb Z$-indexed cochain
+  complexes in $\mathcal C$ to $\mathcal C$ is homological.
+\end{theorem}
+
+% SOURCE: Mathlib/Algebra/Homology/HomotopyCategory/ShiftSequence.lean:192-196, instance HomotopyCategory.instShiftSequenceIntUpHomologyFunctorOfNat.
+\begin{definition}[Shift sequence on cochain homology]
+  \label{def:mathlib-homotopy-cochain-homology-shift-sequence}
+  \lean{HomotopyCategory.instShiftSequenceIntUpHomologyFunctorOfNat}
+  \mathlibok
+  \uses{def:mathlib-cochain-complex,def:mathlib-homological-shift-sequence}
+  In a preadditive category equipped with Mathlib's homology structure, the
+  degree-zero homology functor on the homotopy category of $\mathbb Z$-indexed
+  cochain complexes has a $\mathbb Z$-shift sequence whose degree-$n$ member is
+  the degree-$n$ homology functor.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:20-24 records this bridge as TODO;
+% Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:217-240 supplies the three exactness lemmas.
+\begin{theorem}[Exactness obligations for a homological image]
+  \label{thm:homological-spectral-object-exactness}
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-connecting-naturality,thm:mathlib-homology-sequence-exact-one,thm:mathlib-homology-sequence-exact-two,thm:mathlib-homology-sequence-exact-three}
+  \notready
+  Let $T$ be a triangulated spectral object in a pretriangulated category
+  $\mathcal C$, indexed by $I$, and let $F:\mathcal C\to\mathcal A$ be a
+  homological functor to an abelian category, equipped with a $\mathbb Z$-shift
+  sequence $(F_n)$.  For every composable pair $i\to j\to k$ in $I$, applying
+  $(F_n)$ to the distinguished triangle of $T$ gives three exact short
+  complexes: exactness at the middle term, exactness at the third term followed
+  by the connecting map to $F_{n+1}$, and exactness at the shifted first term.
+  These statements are natural in the composable pair.
+\end{theorem}
+
+\begin{proof}
+  Use Mathlib's homology-sequence connecting morphism on the distinguished
+  triangle attached to $i\to j\to k$.  Apply the mapped middle-exactness,
+  connecting-map exactness, and shifted exactness theorems to that triangle;
+  the latter two declarations implement the required rotation and inverse
+  rotation.  Naturality of the functorial triangle together with Mathlib's
+  connecting-morphism naturality theorem gives naturality in the index arrows.
+\end{proof}
+
+% SOURCE: project bridge required by Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:20-24.
+\begin{definition}[Homological image as an abelian spectral object]
+  \label{def:homological-image-abelian-spectral-object}
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-connecting-naturality,thm:homological-spectral-object-exactness}
+  \notready
+  For $T$, $F$, and $(F_n)$ as above, define an abelian spectral object
+  $\operatorname{HImage}(T,F)$ by
+  \[
+    H^n_T(i\to j):=F_n\bigl(T(i\to j)\bigr).
+  \]
+  Its connecting morphisms are the homology-sequence connecting maps of the
+  functorial distinguished triangles of $T$, and its three exactness fields are
+  the three obligations in
+  Theorem~\ref{thm:homological-spectral-object-exactness}.  The pinned Mathlib
+  revision does not contain a declaration performing this conversion; this is
+  a project-owned construction and remains \texttt{notready}.
+\end{definition}
 
 % SOURCE: Mathlib/CategoryTheory/Monoidal/Category.lean, declaration CategoryTheory.MonoidalCategory.
 \begin{definition}[Mathlib monoidal category]
@@ -335,10 +480,13 @@ must still be constructed.
   \label{def:ss-page-level}
   \notready
   A page-level convention records the first page, successor operation, page
-  index used in $Z_r/B_r$, and the translation from any auxiliary quotient
-  level to that page.  In particular, a classical $E_r$ page corresponds to
-  the synthetic quotient $S/\lambda^{r-1}$; the two integers must never be
-  identified definitionally.
+  index used in the chosen cycle/boundary presentation, and the translation
+  from any auxiliary quotient level to that page.  In the AIM Adams
+  convention the displayed page has the predecessor offset
+  $E_r\cong Z_{r-1}/B_{r-1}$ for $r\ge2$, while the corresponding synthetic
+  quotient is $S/\lambda^{r-1}$.  These three roles of $r$, $r-1$, and the
+  quotient exponent are recorded explicitly and are never identified
+  definitionally.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:134-150 and 799-807, Adams differential degree.
@@ -397,11 +545,25 @@ must still be constructed.
   \label{def:chosen-page-presentation}
   \uses{def:mathlib-spectral-sequence,def:adams-bidegree,def:ss-page-level,def:adams-complex-shape}
   \notready
-  An elementwise presentation of a spectral sequence chooses nested subgroups
-  $B_r^{s,t}\subseteq Z_r^{s,t}$ and identifications
-  $E_r^{s,t}\cong Z_r^{s,t}/B_r^{s,t}$, with
-  $Z_{r+1}$ the classes on which $d_r$ vanishes and $B_{r+1}$ enlarged by the
-  image of $d_r$.  It also includes
+  An elementwise presentation includes its displayed-page reindexing.  In the
+  AIM Adams convention it chooses nested subgroups of the initial page
+  $E_2$, with $Z_1=E_2$, $B_1=0$ and
+  $B_r^{s,t}\subseteq Z_r^{s,t}\subseteq E_2^{s,t}$, and, for every
+  $r\ge2$, identifications
+  \[
+    E_r^{s,t}\cong Z_{r-1}^{s,t}/B_{r-1}^{s,t}.
+  \]
+  The displayed differential is represented before quotienting as
+  \[
+    d_r:Z_{r-1}^{s,t}\longrightarrow
+    E_2^{s+r,t+r-1}/B_{r-1}^{s+r,t+r-1};
+  \]
+  its kernel inside $Z_{r-1}$ defines $Z_r$.  The subgroup $B_r$ is the
+  inverse image in $E_2$ of the differential image in $E_2/B_{r-1}$, so it
+  contains $B_{r-1}$.
+  A filtered spectral sequence initialized at $E_0$ must first apply its
+  stored page reindexing before using these Adams symbols.  The presentation
+  also includes
   $Z_\infty=\bigcap_r Z_r$ and $B_\infty=\bigcup_r B_r$ when these operations
   exist in the chosen algebraic setting.
 \end{definition}
@@ -411,8 +573,11 @@ must still be constructed.
   \label{def:ss-cycle-boundary-permanent}
   \uses{def:chosen-page-presentation}
   \notready
-  A representative is an $r$-cycle when it lies in $Z_r$, an $r$-boundary
-  when it lies in $B_r$, and a permanent cycle when it lies in $Z_\infty$.
+  A representative in the initial $E_2$ page is an $r$-cycle when it lies in
+  $Z_r$, an $r$-boundary when it lies in $B_r$, and a permanent cycle when it
+  lies in $Z_\infty$.  Thus an element of the displayed $E_r$ page is
+  represented by an $(r-1)$-cycle modulo $(r-1)$-boundaries, and surviving
+  the displayed $d_r$ upgrades its representative from $Z_{r-1}$ to $Z_r$.
   A page class survives to $E_\infty$ when it has a permanent representative;
   it may still represent zero if that representative lies in $B_\infty$.
 \end{definition}
@@ -431,43 +596,117 @@ must still be constructed.
 \end{definition}
 
 % SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean design note; Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean.
+\begin{definition}[Filtered chain map]
+  \label{def:filtered-chain-map}
+  \uses{def:mathlib-chain-complex,def:core-filtered-chain-complex,def:core-filtered-morphism}
+  \notready
+  For filtered chain complexes $(C,F)$ and $(D,G)$, a filtered chain map is a
+  Mathlib chain-complex morphism $u:C\to D$ whose underlying graded morphism is
+  filtration preserving.  Equivalently, for every $(s,k)$ it includes the
+  restriction $F^sC_k\to G^sD_k$ commuting with the two subobject inclusions;
+  the chain-map square makes these restrictions commute with the restricted
+  differentials.  Identities and composites retain this data.
+\end{definition}
+
+\begin{definition}[Associated-graded chain complex]
+  \label{def:filtered-associated-graded-complex}
+  \uses{def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq}
+  \notready
+  For a filtered chain complex $(C,F)$ and fixed filtration degree $s$, the
+  associated-graded chain complex has degree-$k$ object
+  $\operatorname{gr}^s_F(C_k)$ and differential the compiled
+  associated-graded differential.  The compiled square-zero theorem supplies
+  the chain-complex relation; this node packages those existing components as a
+  Mathlib chain complex rather than introducing a second differential.
+\end{definition}
+
+\begin{definition}[Associated-graded chain map]
+  \label{def:filtered-associated-graded-chain-map}
+  \uses{def:filtered-chain-map,def:filtered-associated-graded-complex,def:core-associated-graded-map}
+  \notready
+  A filtered chain map $u:(C,F)\to(D,G)$ induces a chain map on every fixed
+  filtration grade.  Its component in chain degree $k$ is the compiled map
+  \[
+    \operatorname{gr}^s_F(C_k)\longrightarrow\operatorname{gr}^s_G(D_k),
+  \]
+  and the chain-map equation is compatibility with the compiled
+  associated-graded differentials.  The construction preserves identities and
+  composition.
+\end{definition}
+
+\begin{definition}[Filtered complex as a cochain diagram]
+  \label{def:filtered-complex-cochain-diagram}
+  \uses{def:mathlib-cochain-complex,def:core-filtered-chain-complex,def:filtered-chain-map}
+  \notready
+  Let $\mathbb Z_{\mathrm{dec}}$ be the filtration category with a unique arrow
+  $s\to t$ exactly when $t\le s$.  A filtered chain complex $(C,F)$ determines
+  a functor
+  \[
+    D_F:\mathbb Z_{\mathrm{dec}}\longrightarrow
+      \operatorname{CochainComplex}(\mathbb F_2\text{-}\mathrm{Mod},\mathbb Z),
+    \qquad D_F(s)^n=F^sC_{-n}.
+  \]
+  The differential is the restriction of $d_{-n}:C_{-n}\to C_{-n-1}$, and an
+  arrow $s\to t$ is sent to the inclusion $F^sC\hookrightarrow F^tC$.  This
+  records the reversal $k=-n$ and the decreasing-order convention explicitly.
+  A filtered chain map induces a natural transformation of these diagrams.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean design note;
+% Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean;
+% Mathlib/CategoryTheory/Triangulated/SpectralObject.lean;
+% Mathlib/Algebra/Homology/HomotopyCategory/HomologicalFunctor.lean;
+% Mathlib/Algebra/Homology/HomotopyCategory/ShiftSequence.lean.
 \begin{definition}[Filtered-complex to spectral-object adapter]
   \label{def:filtered-complex-spectral-object-adapter}
-  \uses{def:core-filtered-chain-complex,def:complete-separated-filtration,def:mathlib-f2-module-category,thm:mathlib-module-category-abelian,def:mathlib-mapping-cone-spectral-object}
+  \uses{def:filtered-complex-cochain-diagram,def:complete-separated-filtration,def:mathlib-f2-module-category,thm:mathlib-module-category-abelian,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp,thm:mathlib-homotopy-cochain-homology-is-homological,def:mathlib-homotopy-cochain-homology-shift-sequence,def:homological-image-abelian-spectral-object}
   \notready
-  Reindex a filtered chain complex as a cochain complex and regard its
-  decreasing filtration inclusions as a functor from the opposite filtration
-  order to $\mathbb F_2$-module-valued cochain complexes.  Extend the integer
-  filtration to the required endpoint indices using its exhaustive and
-  complete data, then precompose Mathlib's mapping-cone spectral object with
-  this functor.  The adapter records the chain/cochain sign, filtration-order,
-  and endpoint conventions explicitly.
+  Start with the cochain diagram $D_F$.  When the page recipe needs endpoint
+  indices, extend its integer filtration category by the limit and colimit
+  objects specified by the complete, separated, and exhaustive data; do not
+  identify either endpoint with an integer filtration level.  Apply Mathlib's
+  triangulated-spectral-object precomposition construction to the mapping-cone
+  spectral object and the extended diagram, producing a \emph{triangulated}
+  spectral object.  Apply
+  Definition~\ref{def:homological-image-abelian-spectral-object} to the
+  degree-zero homology functor on the homotopy category of cochain complexes,
+  using Mathlib's homological-functor and shift-sequence instances, to obtain
+  the required \emph{abelian} spectral object.  The adapter retains the
+  chain/cochain reindexing, filtration order, endpoints, and comparison
+  isomorphisms as data.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
 \begin{theorem}[Filtered complex produces a spectral sequence]
   \label{thm:filtered-complex-to-spectral-sequence}
-  \uses{def:filtered-complex-spectral-object-adapter,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,def:complete-separated-filtration,def:ss-page-level}
+  \uses{def:filtered-complex-spectral-object-adapter,def:filtered-chain-map,def:filtered-associated-graded-chain-map,def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,def:complete-separated-filtration,def:ss-page-level}
   \notready
   A decreasingly filtered chain complex of $\mathbb F_2$-vector spaces whose
   differential preserves filtration has a functorial spectral sequence with
   $E_0$ the associated-graded complex.  Under exhaustive, complete,
   separated, and degreewise regular convergence data, its $E_\infty$ page is
-  the associated graded of filtered homology.  The construction supplies the
-  chosen $Z_r/B_r$ presentation and is natural for filtration-preserving chain
-  maps.
+  the associated graded of filtered homology.  After applying the stored
+  displayed-page reindexing, the construction supplies the chosen
+  $E_r\cong Z_{r-1}/B_{r-1}$ presentation.  Every filtered chain map induces a Mathlib
+  spectral-sequence morphism; on $E_0$ it is the associated-graded chain map,
+  and this assignment preserves identities and composition.
 \end{theorem}
 
 \begin{proof}
-  Apply the adapter, define the page recipe for the chosen $E_0$ convention,
+  Apply the adapter and use the compiled associated-graded differential and its
+  square-zero theorem to identify the initial page as a complex.  Define the
+  page recipe for the chosen $E_0$ convention,
   and discharge Mathlib's endpoint-vanishing
   \texttt{HasSpectralSequence} fields from regularity.  Invoke Mathlib's
   spectral-object construction rather than defining a second spectral
   sequence.  Identify its categorical cycles and opcycles with the filtration
-  kernels and cokernels and hence with $Z_r$ and $B_r$.  Finally use
+  kernels and cokernels and hence, with the recorded predecessor offset, with
+  $Z_{r-1}$ and $B_{r-1}$ on the displayed $E_r$ page.  Finally use
   completeness, separatedness, and degreewise regularity to eliminate the
   Boardman obstruction and identify the limiting filtration with filtered
-  homology.
+  homology.  For a filtered chain map, apply functoriality of the cochain
+  diagram, mapping-cone construction, and homological-image bridge; the initial
+  component is the associated-graded chain map by construction.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:461-631 and 1218-1235, maps with shifted degrees.
@@ -501,16 +740,19 @@ must still be constructed.
   \uses{def:mathlib-spectral-sequence,def:mathlib-short-complex-exact,thm:mathlib-exact-iff-image-kernel,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,thm:filtered-complex-to-spectral-sequence}
   \notready
   For a spectral sequence in graded $\mathbb F_2$-vector spaces constructed
-  from a chosen exact couple or filtered complex, the Mathlib page objects are
-  naturally isomorphic to the quotients $Z_r/B_r$, and the Mathlib page
-  differential corresponds to the elementwise differential.
+  from a chosen exact couple or filtered complex, the Mathlib page objects,
+  after the stored page reindexing, are naturally isomorphic in the AIM Adams
+  convention to $Z_{r-1}/B_{r-1}$ on the displayed $E_r$ page.  The Mathlib
+  page differential corresponds to the representative map
+  $Z_{r-1}\to E_2/B_{r-1}$.
 \end{proposition}
 
 \begin{proof}
-  Construct the isomorphism on the initial page, identify each next Mathlib
-  page with homology, and induct on $r$.  At the inductive step, the kernel and
-  image description of homology gives precisely $Z_{r+1}/B_{r+1}$; naturality
-  supplies compatibility with page passage.  The construction must be carried
+  Construct the isomorphism on $E_2=Z_1/B_1$, identify each next Mathlib page
+  with homology, and induct on the displayed index $r$.  Passing from $E_r$ to
+  $E_{r+1}$ takes the homology of
+  $Z_{r-1}/B_{r-1}$ and gives precisely $Z_r/B_r$; naturality supplies
+  compatibility with page passage.  The construction must be carried
   out for the concrete classical and synthetic presentations, not postulated
   for an arbitrary spectral sequence.
 \end{proof}

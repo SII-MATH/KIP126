@@ -59,6 +59,21 @@ abstract interfaces with exactly the operations and laws used by the paper.
   admissible spectra.
 \end{definition}
 
+% SOURCE: aimpaper/main.tex:135-159, where products are used for the sphere;
+% standard associative-algebra-object structure in a symmetric monoidal category.
+\begin{definition}[Unital multiplication data]
+  \label{def:unital-multiplication-data}
+  \uses{def:stable-context,def:stable-sphere-suspension}
+  \notready
+  A unital multiplication datum on a spectrum $R$ is an associative algebra
+  object in the stable symmetric monoidal context: it includes multiplication
+  $R\wedge R\to R$, a unit $S^0\to R$, and all associativity and unit
+  coherences.  This is extra structure and is not implied by admissibility.
+  The sphere $S^0$, as the monoidal unit, has its canonical such datum.  The
+  same terminology will be used for associative algebra objects in the
+  synthetic context.
+\end{definition}
+
 % SOURCE: aimpaper/main.tex:688-769; Pstragowski interface used in Proposition 3.1.
 \begin{definition}[$H\mathbb F_2$ homology]
   \label{def:hf2-homology}
@@ -82,7 +97,10 @@ abstract interfaces with exactly the operations and laws used by the paper.
   \]
   A morphism of triangles is three compatible maps, and a triangle equivalence
   is a morphism whose three components are isomorphisms.  Rotations and
-  suspensions preserve distinguished triangles.
+  suspensions preserve distinguished triangles.  Every distinguished triangle
+  whose first map is $f$ also carries a chosen triangle equivalence to this
+  selected cofiber triangle; transporting along that equivalence is explicit
+  data rather than definitional equality of its third object with $C(f)$.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:253-271, 648-664, and 929-971; exactness used repeatedly.

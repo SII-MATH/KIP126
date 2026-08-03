@@ -61,15 +61,17 @@ axiom.
 % SOURCE: PROJECT_BOUNDARY.md, Confirmed design decisions and Axiom policy.
 \begin{definition}[KIP126 trust boundary]
   \label{def:kip126-trust-boundary}
-  \uses{def:external-result,def:external-evidence,def:open-proposition}
+  \uses{def:external-result,def:external-evidence,def:open-proposition,def:kervaire-main-input}
   \notready
   The KIP126 development may use Lean's foundational axioms and declarations
   proved in the pinned Mathlib revision.  Paper-internal arguments are project
   proof obligations.  Results from earlier literature are explicit external
   results, while high-stem computations and every appendix row are explicit
-  external evidence.  No project declaration may use \texttt{axiom},
-  \texttt{sorry}, or \texttt{admit}; the two geometric endpoints are
-  conditional theorems.
+  external evidence.  The conditional permanent-cycle and geometric endpoints
+  are universally quantified over the explicit main-input record of
+  Definition~\ref{def:kervaire-main-input}; none of its fields is installed as
+  a global instance.  No project declaration may use \texttt{axiom},
+  \texttt{sorry}, or \texttt{admit}.
 \end{definition}
 
 The comments beginning with \texttt{SOURCE} in later chapters give the primary

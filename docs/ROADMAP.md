@@ -94,8 +94,13 @@ synthetic Adams SS、`λ`-模结构、Ext、`ν`、rigidity、Kervaire 类和外
 - 验证其 page、differential 与 page-passage API 能覆盖首批抽象使用点；
 - 为共同的代数输入提供最小的递减过滤、关联分次、filtered map 与 filtered
   chain-complex 接口；
+- 为 filtered chain complex 定义同时满足 filtration 与 chain-map 相容性的态射，
+  并构造其关联分次 chain map；
 - 只在实际下游需求出现后，分别增加从 filtered complex 到谱序列的构造、
   convergence 假设、异分级比较或 extension SS；
+- 明确区分 Mathlib 的 `Triangulated.SpectralObject` mapping-cone 构造与
+  `Abelian.SpectralObject` 谱序列 API；实现“施加同调函子并验证三条 exactness law”
+  的项目 bridge，不能把二者当成同一类型；
 - 审计旧仓库的 `Z/B` 与 `E∞` 表示，把它们视为候选的专用呈现，而非共同内核；
 - 删除纯 namespace 差异产生的重复实现。
 
@@ -130,6 +135,8 @@ comparison 可在共同内核的语言中表达。
 
 - 将 classical Adams SS 实现为共同内核的具体实例；
 - 接入 Adams 双分级、Ext/`h_j` 接口、classical convergence；
+- 对一般 spectrum 提供 external pairing 和 sphere-ASS module；只有输入携带
+  ring-spectrum 乘法时才构造内部 unital multiplicative Adams SS；
 - 迁移 ESS、essentiality、crossing、no-crossing 和 F-extension 的基础结果；
 - 审核 `KIP-fextension` 的 `ess₂` 定义：保留可用证明技巧，但不接受未证明的定义性
   塌缩作为论文结论；
@@ -150,6 +157,11 @@ comparison 可在共同内核的语言中表达。
 - 建立 synthetic extension SS 的实际构造，使其复用 `Core/SpectralSequence/Extension`
   而非仅以 `sorry` 或公理给出结果；
 - 迁移 bigraded sphere、`ν`、rigidity 与 lift 所需的最小接口。
+- 将 `λ`-反演的全 synthetic-category 结论与 hypercomplete/`HF₂`-local
+  子范畴结论分开；所有 quotient comparison map 在类型中显式保留 suspension；
+- cofiber comparison 只使用 triangle-compatible normalized lift，任意 full lift
+  与其相差的 `λ`-torsion 不得被静默忽略；normalized exactness case 还要携带
+  互斥 `e`-pattern、rotated short exact sequence 和一次选定的 lifted triangle。
 
 **完成条件：** synthetic SS 与 synthetic ESS 都是可检查的共同内核实例；它们的
 领域专用假设仅来自显式外部输入或已证基础设施。
@@ -165,7 +177,9 @@ comparison 可在共同内核的语言中表达。
 - 把 rigidity 和 classical differential comparison 表达为阶段 2 的异分级态射结果；
 - 从 synthetic extension 得出 classical `(f,E_r)`-extension；
 - 迁移 crossing/no-crossing 的比较定理，以及 Generalized Leibniz Rule 与
-  Generalized Mahowald Trick 所需的桥梁。
+  Generalized Mahowald Trick 所需的桥梁；
+- page stretching 先用不预设 `E∞` existence 的 finite loss-obstruction
+  certificate 建立 coherent solution tower，再证明所得 `E∞` relation 无 crossing。
 
 **完成条件：** classical 与 synthetic 的联系不是并列公理，而是具有明确输入、映射和
 可审计依赖的 comparison 定理。
@@ -179,9 +193,13 @@ comparison 可在共同内核的语言中表达。
 - 迁移并改进 0629 的 `ExternalResults`、`ExternalInputs`、
   `ComputationProvenance`；
 - 为所有引用文献、Lin 程序输出和附录表格建立带 locator 的证据记录；
+- 建立 49 个 CW spectra、各自 `E₂` 页、180 个 maps、初始 `d₂` 与 propagated
+  differential/extension/disproof 的 typed catalogue 和双向完整性检查；
 - 将 0728 的 source inventory 从 `sorry` scaffold 改为可枚举、按 owner declaration
   绑定的真实账本；
 - 将 Kervaire 逻辑终局参数化地接到 canonical classical Adams SS；
+- 在 `Kervaire.Assumptions` 中实现显式 `MainInput`，组合 literature、computation
+  和 geometry 子记录，并让三个主定理都接收同一个 `I : MainInput`；
 - 保留“条件结论”的性质：外部数据是显式参数，论文内部推演必须在 Lean 中完成。
 
 **完成条件：** `h₆²` permanent-cycle 定理和维数 126 的 Kervaire 结论均为条件定理；
@@ -206,8 +224,9 @@ comparison 可在共同内核的语言中表达。
 `CategoryTheory.SpectralSequence`，并以最小使用例确认 page、微分和 page-passage。
 共同的 filtration/associated-graded/filtered-chain-complex 基础也已在 Abelian
 category 的一般性下实现。完整 Blueprint 已经给出 concrete classical 与 synthetic
-用例所需的接口和依赖顺序，但这些节点仍是 `notready`。下一个 Lean 切片是实现
-complete/separated filtration、filtered-complex 到谱序列的构造与 elementwise
-`Z_r/B_r` adapter，再以二项 filtered complex 构造第一个真实的 extension spectral
-sequence；在这些验收通过前，不把领域结论标成 `leanok`，也不移植旧的 `SSData`
-表示。
+用例所需的接口和依赖顺序，但这些节点仍是 `notready`。下一个 Lean 切片先实现
+filtered-chain morphism，再把 mapping-cone 的 triangulated spectral object 经同调
+函子转换为满足三条 exactness law 的 abelian spectral object；随后构造谱序列、
+elementwise `E_r = Z_{r-1}/B_{r-1}` adapter 和二项 extension spectral
+sequence。在这些验收通过
+前，不把领域结论标成 `leanok`，也不移植旧的 `SSData` 表示。

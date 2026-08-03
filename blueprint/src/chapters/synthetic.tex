@@ -65,39 +65,68 @@ the hypotheses used by later proofs.
   $X/\lambda\simeq(S^{0,0}/\lambda)\mathbin{\wedge}X$.
 \end{definition}
 
-% SOURCE: BHSmot, Appendices B-C; aimpaper/main.tex:784-786.
-\begin{theorem}[$\lambda^n$-quotient ring structure]
+% SOURCE: Pstragowski, Corollary 4.45
+% (label cor:ctau_is_an_algebra; reference/Pst/source/synthetic_spectra.tex:2247-2253).
+% VERIFIED-IN: BHSmot, Appendix B, Lemma prop:mod-fil
+% (reference/BHSmot/source/Filtered.tex:95-105).
+\begin{theorem}[$\lambda$-quotient ring structure]
   \label{thm:external-lambda-quotient-ring}
   \uses{def:synthetic-lambda-quotient,def:external-result}
   \notready
-  For every $n\ge1$, an explicit external result supplies an
-  $E_\infty$-algebra structure on $S^{0,0}/\lambda^n$ compatible with its
-  quotient map.  Later multiplicative quotient arguments use only the
-  structure and compatibilities stated by this input.
+  The cofiber $S^{0,0}/\lambda$ has a unique commutative, equivalently
+  $E_\infty$, algebra structure compatible with the canonical quotient map
+  $S^{0,0}\to S^{0,0}/\lambda$.
 \end{theorem}
 
 \begin{proof}
-  Instantiate the result located in the cited appendices and record its
-  compatibility maps.  This node is a literature input, not a project proof
-  of an $E_\infty$ structure.
+  Instantiate Pstragowski's located corollary; the filtered-object construction
+  in BHSmot gives an independent checked copy for $C\tau$.  This external
+  theorem concerns the first cofiber only and supplies no assertion about
+  $S^{0,0}/\lambda^n$ for $n>1$.
 \end{proof}
 
-% SOURCE: Pstragowski Proposition 4.40 and generic-fiber results; aimpaper/main.tex:788-797.
+% SOURCE: PROJECT_BOUNDARY.md, External inputs and Acceptance criteria;
+% prompted by the unlocated assertion in aimpaper/main.tex:784-786.
+\begin{definition}[Higher $\lambda$-power quotient algebra input]
+  \label{def:higher-lambda-quotient-algebra-input}
+  \uses{def:synthetic-lambda-quotient,def:external-result}
+  \notready
+  For a fixed $n\ge2$, a higher quotient algebra input consists of an explicit
+  external-result record whose proposition supplies an $E_\infty$-algebra
+  structure on $S^{0,0}/\lambda^n$, compatibility with the quotient map, and
+  every comparison map required by a later multiplicative argument.  The
+  assertion in \texttt{aimpaper/main.tex:784--786} points to BHSmot Appendices
+  B--C, but the checked local appendices locate only the $C\tau$ result above.
+  Consequently no input for $n>1$ is available until a source locator for the
+  actual higher-power proposition is supplied.
+\end{definition}
+
+% SOURCE: Pstragowski, theorem
+% thm:tau_invertible_synthetic_spectra_are_just_spectra
+% (reference/Pst/source/synthetic_spectra.tex:2355-2360), together with
+% Proposition prop:spectral_yoneda_embedding_the_tau_inversion_of_the_synthetic_analogue
+% (reference/Pst/source/synthetic_spectra.tex:2344-2346).
+% VERIFIED-IN: reference/BHS/source/SynRevBigraded.tex:34-40.
 \begin{theorem}[$\lambda$-inversion recovers classical spectra]
   \label{thm:external-lambda-inversion}
   \uses{def:synthetic-context,def:synthetic-lambda-quotient,def:external-result}
   \notready
-  An explicit Pstragowski result identifies the $\lambda$-invertible synthetic
-  category with $2$-complete spectra and makes $\lambda^{-1}\nu$ naturally
-  equivalent to the identity.  The mod-$\lambda$ special fiber comparison is
-  recorded separately and is not needed as an equality of categories in the
-  main proof.
+  The spectral Yoneda embedding identifies the category of all spectra
+  $\operatorname{Sp}$ with the full subcategory of $\lambda$-invertible
+  $H\mathbb F_2$-synthetic spectra, and this equivalence is canonically
+  symmetric monoidal.  For every spectrum $X$, the canonical map from $\nu X$
+  to its spectral Yoneda image is a $\lambda$-inversion; hence
+  $\lambda^{-1}\nu X\simeq X$ naturally.  No completion restriction is part of
+  this generic-fiber statement.
 \end{theorem}
 
 \begin{proof}
-  Apply the located generic-fiber equivalence and retain its monoidal and
-  naturality data.  Transport of a later map or triangle must cite this node
-  and its relevant compatibility explicitly.
+  Apply the two located Pstragowski results and retain their monoidal and
+  naturality data.  The separate restriction to hypercomplete synthetic
+  spectra and $H\mathbb F_2$-local spectra occurs only later in Pstragowski
+  (\texttt{reference/Pst/source/synthetic\_spectra.tex:2867--2874}) and is not
+  used here.  Transport of a later map or triangle must cite this node and its
+  relevant compatibility explicitly.
 \end{proof}
 
 % SOURCE: Pstragowski Lemma 4.23; aimpaper/main.tex:759-767, Proposition prop:1f7950df.
@@ -141,16 +170,21 @@ the hypotheses used by later proofs.
 % SOURCE: aimpaper/main.tex:799-807, definition implicit in Theorem thm:rigid.
 \begin{definition}[Synthetic Adams spectral sequence]
   \label{def:synthetic-adams-ss}
-  \uses{def:synthetic-context,def:synthetic-tridegree,def:chosen-page-presentation,def:multiplicative-ss,def:strong-convergence-detection}
+  \uses{def:synthetic-context,def:synthetic-tridegree,def:chosen-page-presentation,def:multiplicative-ss,def:strong-convergence-detection,def:unital-multiplication-data}
   \notready
   For a synthetic spectrum in scope, its synthetic Adams spectral sequence is
-  a trigraded, multiplicative spectral sequence
+  a trigraded spectral sequence
   \[
     {}^{\mathrm{syn}}E_r^{s,t,w}\Longrightarrow\pi_{t-s,w},
     \qquad d_r:(s,t,w)\mapsto(s+r,t+r-1,w),
   \]
   with elementwise cycles, boundaries, naturality, and strong convergence in
-  the ranges used by the paper.
+  the ranges used by the paper.  It has natural external smash pairings, and
+  every such sequence is a module over the sequence for the synthetic sphere
+  $S^{0,0}$.  The sphere sequence is internally multiplicative.  More
+  generally, an internal multiplicative spectral sequence is obtained only
+  for a synthetic spectrum equipped with chosen unital multiplication data;
+  no internal product is asserted for an arbitrary synthetic spectrum.
 \end{definition}
 
 % SOURCE: BHS Theorem A.8; aimpaper/main.tex:799-807, Theorem thm:rigid.
@@ -241,25 +275,135 @@ the hypotheses used by later proofs.
   truncated subtraction is hidden in the statement.
 \end{proof}
 
+% PROOF-SOURCE: BHS Theorem A.1 and its special-fiber edge isomorphism;
+% aimpaper/main.tex:813-823.  This is the exponent-one boundary case that is
+% not covered by aimpaper/main.tex:849-855.
+\begin{proposition}[$E_\infty$ at the first $\lambda$-quotient]
+  \label{prop:synthetic-einfty-first-quotient}
+  \uses{thm:external-lambda-bockstein,thm:external-synthetic-rigidity,def:synthetic-lambda-quotient,def:synthetic-adams-ss,def:strong-convergence-detection,def:bhs-aim-regrading}
+  \notready
+  For every admissible $X$, the special-fiber edge map identifies the
+  synthetic Adams abutment of $\nu X/\lambda$ with the classical initial page:
+  \[
+    E_\infty^{s,t,w}(\nu X/\lambda)\cong
+    \begin{cases}
+      E_2^{s,t}(X),&w=t,\\
+      0,&w\ne t.
+    \end{cases}
+  \]
+  Under this isomorphism the edge class has a unique detected homotopy class
+  in its tridegree.  This proposition is the explicit exponent-one interface;
+  it does not extend the finite $E_\infty$ formula $Z_i/B_j$ of
+  Theorem~\ref{thm:external-synthetic-einfty-quotient} outside its stated
+  range $r\ge2$.
+\end{proposition}
+
+\begin{proof}
+  Apply the synthetic Adams $E_2$ functor to the cofiber of $\lambda$.
+  Rigidity identifies its page with
+  $E_2^{*,*}(X)\otimes\mathbb F_2[\lambda]/(\lambda)$, concentrated in weight
+  $w=t$.  The $\lambda$-Bockstein comparison gives the edge isomorphism
+  $E_2^{s,t}(X)\cong\pi_{t-s,t}(\nu X/\lambda)$.  Strong convergence and the
+  fact that this edge map already exhausts the abutment force every
+  differential and hidden additive extension at this quotient to vanish.
+  Regrade to AIM's three coordinates to obtain the displayed presentation and
+  uniqueness statement.
+\end{proof}
+
 % SOURCE: aimpaper/main.tex:865-875, load-bearing compatibility remark after Propositions 3.11-3.12.
 \begin{proposition}[Compatibility of $E_\infty$ formulas with $\lambda$ and $\rho$]
   \label{prop:synthetic-einfty-map-compatibility}
-  \uses{thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient}
+  \uses{thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient,def:synthetic-lambda-quotient,def:bhs-aim-regrading}
   \notready
-  Under the preceding isomorphisms, multiplication
-  $\lambda^{r'-r}:\nu X/\lambda^r\to\nu X/\lambda^{r'}$ for
-  $r'\ge r$ is the quotient map that enlarges the boundary subgroup, while
-  reduction $\rho:\nu X/\lambda^r\to\nu X/\lambda^{r''}$ for
-  $r\ge r''$ is the inclusion obtained by shrinking the cycle subgroup.
-  Both statements include the third-degree shifts printed in
-  \texttt{aimpaper/main.tex:865--875}.
+  For $r'\ge r\ge2$, multiplication is the degree-zero synthetic map
+  \[
+    \lambda^{r'-r}:
+    \Sigma^{0,r-r'}(\nu X/\lambda^r)\longrightarrow\nu X/\lambda^{r'}.
+  \]
+  Under the preceding isomorphisms, its map on $E_\infty$ is
+  \[
+    E_\infty^{s,t,w}(\nu X/\lambda^r)
+      \longrightarrow
+    E_\infty^{s,t,w-r'+r}(\nu X/\lambda^{r'}),
+  \]
+  and, when the displayed cycle and boundary indices are positive, it is the
+  quotient map
+  \[
+    \frac{Z_{r-t+w}^{s,t}(X)}{B_{1+t-w}^{s,t}(X)}
+      \longrightarrow
+    \frac{Z_{r-t+w}^{s,t}(X)}{B_{1+t-w+r'-r}^{s,t}(X)}.
+  \]
+  For $r\ge r''\ge2$, reduction
+  $\rho:\nu X/\lambda^r\to\nu X/\lambda^{r''}$
+  is, in the same range, the inclusion
+  \[
+    \frac{Z_{r-t+w}^{s,t}(X)}{B_{1+t-w}^{s,t}(X)}
+      \hookrightarrow
+    \frac{Z_{r''-t+w}^{s,t}(X)}{B_{1+t-w}^{s,t}(X)}.
+  \]
+  The project's zero-index convention supplies the remaining cycle- and
+  boundary-subscript cases within these exponent ranges.
+
+  For the boundary case $r=1<r'$, the same suspended multiplication map sends
+  the special-fiber edge group to the indicated weight of the $r'$ quotient;
+  it is the canonical quotient and hence is surjective or zero in each
+  tridegree.  For $r''=1<r$, reduction identifies the surviving-cycle subgroup
+  with a subgroup of the special-fiber edge group and hence is injective or
+  zero.  When both exponents are one the map is the identity.  These boundary
+  statements use Proposition~\ref{prop:synthetic-einfty-first-quotient}, not
+  the finite-quotient formula outside its range.
+
+  There are also two explicit infinite-endpoint clauses.  For every $n>0$,
+  multiplication
+  \[
+    \lambda^n:\Sigma^{0,-n}\nu X\longrightarrow\nu X
+  \]
+  is described as follows.  On a tridegree $(s,t,w)$ of the suspended domain,
+  put $j=1+t-(w+n)$.  When the source is nonzero, suspension identifies it
+  with $Z_\infty^{s,t}(X)/B_j^{s,t}(X)$ and the map is the
+  boundary-cutoff quotient
+  \[
+    Z_\infty^{s,t}(X)/B_j^{s,t}(X)
+      \longrightarrow
+    Z_\infty^{s,t}(X)/B_{j+n}^{s,t}(X),
+  \]
+  since the target cutoff is $1+t-w=j+n$.  It is therefore surjective or zero
+  in each tridegree.  For reduction
+  \[
+    \rho:\nu X\longrightarrow\nu X/\lambda^n
+  \]
+  fix a tridegree $(s,t,w)$ and put $j=1+t-w$.  It is the cycle-cutoff inclusion
+  \[
+    Z_\infty^{s,t}(X)/B_j^{s,t}(X)
+      \hookrightarrow
+    Z_{n-t+w}^{s,t}(X)/B_j^{s,t}(X)
+  \]
+  whenever $n\ge2$ and $0\le t-w<n$, and is injective or zero otherwise.  At
+  $n=1$ it is the inclusion of permanent representatives
+  into the special-fiber edge group (or zero off its unique weight).  The
+  infinite source uses Theorem~\ref{thm:external-synthetic-einfty-nu}; it is
+  not obtained by substituting $r=\infty$ into the finite formula.
 \end{proposition}
 
 \begin{proof}
   Express both synthetic maps on the $\lambda$-Bockstein exact couple.  The
-  first changes the boundary cutoff by $r'-r$ and the second changes the cycle
-  cutoff.  Transport these maps through the two external $E_\infty$
-  isomorphisms and check the zero-index edge cases separately.
+  first changes the boundary cutoff by $r'-r$ and shifts the weight by
+  $r-r'$, while the second changes the cycle cutoff without shifting weight.
+  For exponents at least two, transport these maps through the two external
+  $E_\infty$ isomorphisms and check the zero-index edge cases separately.  If
+  an endpoint exponent is one, use the special-fiber edge presentation: the
+  multiplication map quotients the initial-page group by the later boundary
+  cutoff, while reduction includes the surviving-cycle subgroup.  This gives
+  the asserted surjective/zero and injective/zero alternatives without
+  applying the finite-quotient theorem at exponent one.
+
+  For an infinite endpoint, compare the untruncated formula
+  $Z_\infty/B_j$ directly with its weight-shifted copy and with the finite
+  quotient formula.  Multiplication by $\lambda^n$ raises the boundary cutoff
+  from $j$ to $j+n$, hence is the displayed quotient.  Reduction retains the
+  boundary cutoff and includes $Z_\infty$ into the finite cycle subgroup; for
+  exponent one use the special-fiber edge group.  These calculations prove
+  the two infinite clauses independently of any limiting shorthand.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:878-910, Example exam:synEinfty.
@@ -290,9 +434,11 @@ the hypotheses used by later proofs.
   \label{thm:external-synthetic-lift}
   \uses{def:adams-filtration,def:synthetic-context,def:synthetic-lambda-quotient,def:external-result}
   \notready
-  If $\operatorname{AF}(f)=k$, an explicit BHS result supplies a map
+  If $\operatorname{AF}(f)=k<\infty$, an explicit BHS result supplies a map
   $\widetilde f:\Sigma^{0,k}\nu X\to\nu Y$ with
-  $\nu f=\lambda^k\widetilde f$.
+  $\nu f=\lambda^k\widetilde f$.  This is an arbitrary chosen full lift; the
+  result does not make it a component of a lifted distinguished triangle and
+  does not assign a cofiber equivalence to it.
 \end{theorem}
 
 \begin{proof}
@@ -304,67 +450,122 @@ the hypotheses used by later proofs.
 % SOURCE: proof of BHS Lemma 9.15; aimpaper/main.tex:929-940, Proposition prop:41561db2.
 \begin{theorem}[Lift of a classical distinguished triangle]
   \label{thm:external-synthetic-triangle-lift}
-  \uses{thm:external-nu-cofiber-criterion,thm:external-synthetic-lift,def:external-result}
+  \uses{thm:external-nu-cofiber-criterion,thm:external-synthetic-lift,def:synthetic-lambda-quotient,def:external-result}
   \notready
   For a distinguished triangle
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
   $\operatorname{AF}(h)>0$ and short exact $H\mathbb F_2$-homology, an
   explicit BHS input supplies a synthetic distinguished triangle ending in
-  $\Sigma^{1,0}\nu X$ and a map $\widehat h$ satisfying
-  $\nu h=\lambda\widehat h$.
+  $\Sigma^{1,0}\nu X$ and a particular triangle-compatible map $\widehat h$
+  satisfying $\nu h=\lambda\widehat h$.  If
+  $\operatorname{AF}(h)=k<\infty$ and a full lift $\widetilde h$ is chosen
+  separately, the source identifies $\widehat h$ with
+  $\lambda^{k-1}\widetilde h$ only modulo a $\lambda$-torsion map, not by an
+  equality of maps.
 \end{theorem}
 
 \begin{proof}
-  Use the cofiber criterion on the first two maps and the located construction
-  in the proof of BHS Lemma 9.15 for the connecting map.  Verify the suspension
-  $\Sigma^{0,-1}\nu\Sigma X=\Sigma^{1,0}\nu X$ in AIM grading.
+  Use the cofiber criterion on the first two maps and retain the located
+  construction in the proof of BHS Lemma 9.15 as the chosen connecting map.
+  Verify the suspension
+  $\Sigma^{0,-1}\nu\Sigma X=\Sigma^{1,0}\nu X$ in AIM grading.  The final
+  torsion qualification is exactly the comparison recorded in
+  \texttt{aimpaper/main.tex:942--943}.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:946-961, Notation not:fhat.
+% SOURCE: aimpaper/main.tex:929-961, Proposition prop:41561db2, its following
+% torsion remark, and Notation not:fhat.
 \begin{definition}[Chosen normalized synthetic map]
   \label{def:synthetic-hat-map}
-  \uses{thm:external-synthetic-lift}
+  \uses{thm:external-synthetic-lift,thm:external-synthetic-triangle-lift}
   \notready
-  For a map used by the paper, choose either a proof
-  $\operatorname{AF}(f)=0$, or a finite $k\ge1$ together with the full lift
-  $\widetilde f$ of Theorem~\ref{thm:external-synthetic-lift}.  Put $e(f)=0$
-  in the first case and $e(f)=1$ in the second.  A chosen normalized lift is
-  $\widehat f:\Sigma^{0,e(f)}\nu X\to\nu Y$ satisfying
-  $\nu f=\lambda^{e(f)}\widehat f$; for $e(f)=0$ it is $\nu f$, and for
-  $e(f)=1$ set $\widehat f=\lambda^{k-1}\widetilde f$.  The lift and equality
-  are fields of the data: no canonicity is asserted, and changes by
-  $\lambda$-torsion must be tracked in every later cofiber comparison.
+  For a selected occurrence of a map $f:X\to Y$ in a distinguished triangle
+  to which a suitable rotation of
+  Theorem~\ref{thm:external-synthetic-triangle-lift} applies, put $e(f)=0$ when
+  $\operatorname{AF}(f)=0$ and $e(f)=1$ when
+  $\operatorname{AF}(f)>0$, including the infinite-filtration zero map.  A
+  triangle-compatible normalized lift is the corresponding component
+  \[
+    \widehat f:\Sigma^{0,e(f)}\nu X\longrightarrow\nu Y,
+    \qquad \nu f=\lambda^{e(f)}\widehat f,
+  \]
+  obtained from that one lifted triangle after rotating back.  When $e(f)=0$
+  this component is $\nu f$.  When $e(f)=1$, it is the particular component of
+  the lifted triangle, not the map $\lambda^{k-1}\widetilde f$ formed from an
+  arbitrary full lift.  If $k=\operatorname{AF}(f)<\infty$ and such a full lift
+  is also chosen, the two maps are related only modulo $\lambda$-torsion as in
+  Theorem~\ref{thm:external-synthetic-triangle-lift}.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:929-971, the three rotations used in Proposition
+% prop:41561db2 and Notation not:fhat; project disjoint packaging of the
+% filtration hypotheses, including degenerate homology objects.
+\begin{definition}[Normalized cofiber exactness case]
+  \label{def:normalized-synthetic-exactness-case}
+  \uses{def:synthetic-hat-map,thm:external-synthetic-triangle-lift,def:hf2-homology,def:cofiber-triangle}
+  \notready
+  For a cofiber triangle
+  $X\xrightarrow fY\xrightarrow gC(f)\xrightarrow h\Sigma X$, a normalized
+  cofiber exactness case is one of the following tagged, disjoint data:
+  \begin{enumerate}
+    \item a zero case with $H_*f=0$ and
+      $(e(f),e(g),e(h))=(1,0,0)$;
+    \item a monomorphism case with $H_*f$ injective and
+      $(e(f),e(g),e(h))=(0,0,1)$;
+    \item an epimorphism case with $H_*f$ surjective and
+      $(e(f),e(g),e(h))=(0,1,0)$.
+  \end{enumerate}
+  Each constructor also carries both the short exact homology sequence for the
+  relevant rotation and one chosen application of
+  Theorem~\ref{thm:external-synthetic-triangle-lift} to that rotation.  The
+  latter field contains the resulting lifted distinguished triangle and its
+  three compatible components; it is not merely an existence assertion.  The explicit
+  $e$-pattern is part of the constructor, so degenerate maps that are both zero
+  and mono or epi cannot be used with two contradictory shifts.  Equivalently,
+  the data always includes $e(f)+e(g)+e(h)=1$ and records which summand is one.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:946-961, cofiber assertion in Notation not:fhat.
 \begin{proposition}[Cofiber of a normalized synthetic map]
   \label{prop:synthetic-hat-cofiber}
-  \uses{def:synthetic-hat-map,thm:external-nu-cofiber-criterion,thm:external-synthetic-triangle-lift}
+  \uses{def:synthetic-hat-map,def:normalized-synthetic-exactness-case,thm:external-nu-cofiber-criterion,thm:external-synthetic-triangle-lift}
   \notready
-  If $X\xrightarrow fY\xrightarrow gC(f)$ is a cofiber sequence in the
-  normalized cases used by the paper, then
+  Let $X\xrightarrow fY\xrightarrow gC(f)$ be a cofiber sequence equipped with
+  a normalized cofiber exactness case.  Let $\widehat f$ and $\widehat g$ be
+  the triangle-compatible components obtained simultaneously from the same
+  lifted rotation carried by that case.  Then
   \[
     C(\widehat f)\simeq\Sigma^{0,-e(g)}\nu C(f).
   \]
-  Thus no shift occurs when $f$ is zero or injective on
-  $H\mathbb F_2$-homology, and a $(0,-1)$ shift occurs when $f$ is
-  surjective.  The hypotheses include the required exactness alternative.
+  Thus the tagged zero and monomorphism cases, both of which explicitly have
+  $e(g)=0$, give no shift.  The tagged epimorphism case explicitly has
+  $e(g)=1$ and gives a $(0,-1)$ shift.  The homology-map adjective alone does
+  not select a shift in a degenerate case.  No such equivalence is asserted for
+  $\lambda^{k-1}\widetilde f$ formed from an arbitrary full lift.
 \end{proposition}
 
 \begin{proof}
-  Split according to the $H\mathbb F_2$-homology behavior.  Apply the cofiber
-  criterion in the injective case and rotate the lifted triangle in the
-  surjective case.  Identify the chosen cofiber by the universal property and
-  verify the displayed shift.
+  Eliminate the tagged exactness datum.  In the zero constructor, rotate so
+  that $f$ is the positive-filtration connecting map; in the monomorphism
+  constructor, use the original short exact homology sequence; in the
+  epimorphism constructor, rotate so that $g$ is the positive-filtration
+  connecting map.
+  Apply the cofiber criterion to the other two components in that chosen
+  rotation.  Because $\widehat f$ and $\widehat g$ are components of this one
+  lifted triangle, its cofiber identifies with the displayed object.  After
+  rotating back, use the constructor's explicit $e(g)$ field to obtain exactly
+  the asserted shift.  The argument never
+  replaces $\widehat f$ by a torsion-equivalent arbitrary full lift.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:965-971, unlabelled Proposition 3.20.
 \begin{proposition}[Normalized synthetic triangle]
   \label{prop:normalized-synthetic-triangle}
-  \uses{def:synthetic-hat-map,prop:synthetic-hat-cofiber,thm:external-synthetic-triangle-lift}
+  \uses{def:synthetic-hat-map,def:normalized-synthetic-exactness-case,prop:positive-adams-filtration-homology-zero,prop:synthetic-hat-cofiber,thm:external-synthetic-triangle-lift,def:cofiber-triangle,def:hf2-homology}
   \notready
   If $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ is a
-  distinguished triangle and $e(f)+e(g)+e(h)=1$, there is a distinguished
+  distinguished triangle and $e(f)+e(g)+e(h)=1$, there is a simultaneous
+  choice of triangle-compatible normalized lifts that forms a distinguished
   synthetic triangle
   \[
     \nu X\xrightarrow{\widehat f}\Sigma^{0,-e(f)}\nu Y
@@ -374,8 +575,16 @@ the hypotheses used by later proofs.
 \end{proposition}
 
 \begin{proof}
-  Rotate the classical triangle so the positive-filtration map is the
-  connecting map, apply the triangle lift, and rotate back.  At each rotation
-  replace the cofiber using Proposition~\ref{prop:synthetic-hat-cofiber}; the
-  equality of the three $e$-values makes the total weight shift exactly $-1$.
+  The sum-one hypothesis selects exactly one of the three explicit
+  $e$-patterns.  Proposition~\ref{prop:positive-adams-filtration-homology-zero}
+  makes the unique positive-filtration map zero on homology.  Exactness of the
+  cofiber long exact sequence then says respectively that $H_*f$ is zero,
+  injective, or surjective, and supplies the corresponding rotated short exact
+  sequence.  Transport along the chosen equivalence with the selected cofiber
+  triangle, rotate so that this positive-filtration map is the connecting map,
+  and apply the triangle-lift theorem once.  These fields form the appropriate
+  tagged exactness datum.  Rotate that same synthetic triangle back.  Its three components define the normalized lifts
+  simultaneously; Proposition~\ref{prop:synthetic-hat-cofiber} identifies the
+  required cofibers.  The equality of the three $e$-values makes the total
+  weight shift exactly $-1$.
 \end{proof}

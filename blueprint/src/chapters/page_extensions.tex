@@ -12,7 +12,7 @@ is a typed classical notation for a particular synthetic ESS differential.
   \label{def:hat-map-page-reduction}
   \uses{def:synthetic-hat-map,def:synthetic-lambda-quotient}
   \notready
-  For $2\le r\le\infty$, define
+  For finite $2\le r<\infty$, define
   \[
     \widehat f_{r-1}:\Sigma^{0,e(f)}\nu X/\lambda^{r-1}
        \longrightarrow\nu Y/\lambda^{r-1}
@@ -20,20 +20,30 @@ is a typed classical notation for a particular synthetic ESS differential.
   as reduction of $\widehat f$ modulo $\lambda^{r-1}$.  The exponent and
   subscript are always $r-1$; the occurrence of $\widehat f_r$ in the proof of
   Proposition 5.10 is treated as a source typo.
+  For $r=\infty$, set $\widehat f_\infty:=\widehat f$ on the untruncated
+  synthetic spectra.  This clause has no quotient exponent or arithmetic
+  involving $\infty-1$.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:1284-1298, E_0 formulas before Definition def:6c076a33.
 \begin{proposition}[$E_0$ presentation for the reduced-map ESS]
   \label{prop:hat-map-ess-e0}
-  \uses{def:hat-map-page-reduction,def:synthetic-extension-ss,thm:external-synthetic-einfty-quotient}
+  \uses{def:hat-map-page-reduction,def:synthetic-extension-ss,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient}
   \notready
-  In weight $t-k+e(f)$, the $E_0$ page of the
+  For finite $r$, in weight $t-k+e(f)$, the $E_0$ page of the
   $\widehat f_{r-1}$-ESS is
   \[
   \frac{Z_{r-1-k}^{s,t}(X)}{B_{1+k}^{s,t}(X)}\oplus
   \frac{Z_{r-1-k+e(f)}^{s,t}(Y)}{B_{1+k-e(f)}^{s,t}(Y)}.
   \]
-  Its length-$n$ differential is a map from
+  This displayed formula is for finite $r$.  At $r=\infty$, the $E_0$ page
+  of the $\widehat f$-ESS is instead
+  \[
+  \frac{Z_\infty^{s,t}(X)}{B_{1+k}^{s,t}(X)}\oplus
+  \frac{Z_\infty^{s,t}(Y)}{B_{1+k-e(f)}^{s,t}(Y)};
+  \]
+  no expression such as $\infty-1-k$ is formed.
+  For finite $r$, its length-$n$ differential is a map from
   \[
     {}^{\widehat f_{r-1}}\!Z_{n-1}^{s,t,t-k}(X)
       \subseteq Z_{r-1-k}^{s,t}(X)/B_{1+k}^{s,t}(X)
@@ -46,13 +56,18 @@ is a typed classical notation for a particular synthetic ESS differential.
   \]
   It vanishes for degree reasons when $n<\operatorname{AF}(f)$ or
   $n>r-2-k+e(f)$.
+  At $r=\infty$, replace $\widehat f_{r-1}$ by $\widehat f$ and every cycle
+  numerator in these source and target groups by $Z_\infty$; only the lower
+  vanishing bound $n<\operatorname{AF}(f)$ remains.
 \end{proposition}
 
 \begin{proof}
-  Substitute the source and target weights into the finite-quotient
-  $E_\infty$ formula, then apply the elementwise ESS presentation.  Simplify
-  the two cycle and boundary subscripts over integers and check the quotient
-  range before converting to a finite page index.
+  If $r=2$, substitute the source and target weights into the first-quotient
+  edge presentation.  If $3\le r<\infty$, use the finite-quotient
+  $E_\infty$ formula at exponent $r-1\ge2$.  If $r=\infty$, use the
+  untruncated $Z_\infty/B_j$ formula separately.  Then apply the elementwise ESS presentation,
+  simplify the two cycle and boundary subscripts over integers, and check the
+  quotient range before converting to a finite page index.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:1301-1317, Definition def:6c076a33.
@@ -60,15 +75,24 @@ is a typed classical notation for a particular synthetic ESS differential.
   \label{def:page-extension}
   \uses{prop:hat-map-ess-e0,def:f-extension-essential}
   \notready
-  Let $x\in Z_{r-1}^{s,t}(X)$ and
+  For finite $2\le r<\infty$, let $x\in Z_{r-1}^{s,t}(X)$ and
   $y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y)$, with
   $e(f)\le n\le r-2+e(f)$.  An $(f,E_r)$-extension
   $d_n^{f,E_r}(x)=y$ is the synthetic extension
   \[
     d_n^{\widehat f_{r-1}}(x)=\lambda^{n-e(f)}y.
   \]
-  It is essential exactly when the synthetic extension is essential.  For
-  $r=\infty$, use $\widehat f$ and the untruncated synthetic spectra.
+  It is essential exactly when the synthetic extension is essential.
+
+  An $(f,E_\infty)$-extension instead starts with permanent representatives
+  $x\in Z_\infty^{s,t}(X)$ and
+  $y\in Z_\infty^{s+n,t+n}(Y)$ and an integer $n\ge e(f)$, and is the
+  untruncated $\widehat f$-ESS relation
+  \[
+    d_n^{\widehat f}(x)=\lambda^{n-e(f)}y.
+  \]
+  It has no finite upper page bound.  This is a separate clause, not arithmetic
+  with an infinity symbol.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:1386-1389, Remark def:fErextess.
@@ -78,8 +102,10 @@ is a typed classical notation for a particular synthetic ESS differential.
   \notready
   The target $y$ of $d_n^{f,E_r}(x)$ is a coset modulo
   $B_{1+n-e(f)}^{s+n,t+n}(Y)$ plus the sum of images of all shorter
-  $\widehat f_{r-1}$-ESS differentials.  The page extension is essential if
-  and only if this complete coset does not contain zero.
+  $\widehat f_{r-1}$-ESS differentials for finite $r$, or all shorter
+  untruncated $\widehat f$-ESS differentials for $r=\infty$.  The page
+  extension is essential if and only if this complete coset does not contain
+  zero.
 \end{definition}
 
 \section{Regressions that fix the intended semantics}
@@ -87,7 +113,7 @@ is a typed classical notation for a particular synthetic ESS differential.
 % SOURCE: aimpaper/main.tex:1391-1402, Example exam:extonEn(1).
 \begin{proposition}[Hopf-map $E_2$ page extension]
   \label{prop:hopf-e2-page-extension}
-  \uses{def:page-extension,def:external-evidence}
+  \uses{def:page-extension,evidence:normalized-hopf-detection,prop:synthetic-einfty-first-quotient,def:external-evidence}
   \notready
   Let $\nu_{\mathrm{Hopf}}:S^3\to S^0$ denote the classical Hopf map.  Typed Ext
   product evidence supplies the essential extension
@@ -99,15 +125,18 @@ is a typed classical notation for a particular synthetic ESS differential.
 \end{proposition}
 
 \begin{proof}
-  Use that $\nu_{\mathrm{Hopf}}$ has Adams filtration one and is detected by $h_2$.
-  In the mod-$\lambda$ model the reduced normalized map is multiplication by
-  $h_2$, so the stated extension is exactly the supplied Ext product.
+  Reduce the precise lifted-triangle component identified in
+  Proposition~\ref{evidence:normalized-hopf-detection} modulo $\lambda$.
+  The first-quotient uniqueness statement identifies its reduction with
+  multiplication by $h_2$, so the stated extension is exactly the supplied
+  Ext product.  Thus this node and the later $E_3/E_\infty$ nodes use the same
+  chosen normalized Hopf map.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:1403-1423, Example exam:extonEn(2); proved later by Example exam:Mahowald.
 \begin{proposition}[Hopf-map $E_3$ page extension]
   \label{prop:hopf-e3-page-extension}
-  \uses{def:page-extension,thm:generalized-mahowald,prop:mahowald-cofiber-regression}
+  \uses{def:page-extension,thm:generalized-mahowald,prop:mahowald-cofiber-regression,evidence:hopf-crossing-obstruction-exclusion}
   \notready
   The normalized Hopf map has the essential extension
   \[
@@ -120,13 +149,72 @@ is a typed classical notation for a particular synthetic ESS differential.
 \begin{proof}
   This is the conclusion of the cofiber regression obtained from the
   generalized Mahowald trick.  Transport that synthetic extension through
-  Definition~\ref{def:page-extension} and verify the displayed bidegrees.
+  Definition~\ref{def:page-extension} and verify the displayed bidegrees.  The
+  independent Hopf obstruction certificate says that $h_0p$ is nonzero modulo
+  $B_2$ and is not a shorter Hopf-ESS image, so the complete target coset does
+  not contain zero; hence the extension is essential.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:1541-1564 and 2084-2099, the finite Ext-product
+% enumeration used both for no-crossing and for page stretching.  This node is
+% deliberately stated without assuming that the E_infinity extension exists.
+\begin{proposition}[Hopf crossing-obstruction exclusion]
+  \label{evidence:hopf-crossing-obstruction-exclusion}
+  \uses{def:page-extension-crossing,prop:page-extension-loss-certificate,thm:external-adams-one-line,def:chosen-page-presentation,def:ss-cycle-boundary-permanent,def:external-evidence,evidence:normalized-hopf-detection}
+  \notready
+  For the candidate Hopf relation of length two from
+  $h_0h_4^2$ to $h_0p$, a finite evidence record enumerates every
+  degree-allowed crossing tuple and every tuple satisfying the
+  page-loss-certificate bounds between $E_3$ and any finite page.  The list is
+  empty.  A separate part enumerates every permanent source and target in the
+  same forced bidegrees and excludes every actual shorter
+  $(\nu_{\mathrm{Hopf}},E_\infty)$-extension; this is not inferred from the
+  finite list.  Both the finite-page reductions and this permanent-candidate
+  enumeration use the Hopf component of the single stored normalized
+  triangle lift from Proposition~\ref{evidence:normalized-hopf-detection},
+  together with its retained equality
+  $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$.  Its decisive typed product check is
+  \[
+    h_0^2h_4^2h_2=0\ne h_0p.
+  \]
+  The same record supplies the independent typing facts
+  \[
+    h_0h_4^2\in Z_\infty(S^3),
+    \qquad h_0p\in Z_\infty(S^0).
+  \]
+  The first follows from the known $d_2(h_5)=h_0h_4^2$ and
+  $B_2\subseteq Z_\infty$; the second is a complete outgoing-differential
+  exclusion in the target bidegree.  Thus both the source and target remain
+  typed on every later page.  It also certifies
+  $h_0p\notin B_2$ and that no shorter Hopf-ESS image reaches its complete
+  target coset.  Consequently, whenever the candidate length-two relation
+  exists at a finite or infinite level, it is essential.
+  Thus the record contains both a finite-page obstruction list and an
+  independently computed untruncated candidate list.  Neither branch assumes
+  nor concludes that the candidate relation already exists at its respective
+  finite or infinite level.
+\end{proposition}
+
+\begin{proof}
+  Enumerate the finitely many integers $a,a',b$ allowed by the crossing and
+  loss-certificate inequalities and then enumerate the Ext groups in their
+  forced source and target bidegrees.  Intersect the same finite bidegree lists
+  with $Z_\infty$ to obtain the independent untruncated-candidate list.  The
+  stored equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$ identifies, on every
+  finite reduction and on the untruncated list, the only possible shorter Hopf
+  product with the displayed zero class, whereas the proposed target is
+  nonzero.  Store
+  the degree bounds, cycle-range checks, complete incoming/outgoing target
+  search, and typed product inequality in the evidence record.  The source cycle fact is
+  also obtained from the one-line differential and the inclusion of boundaries
+  into permanent representatives.  No inverse-limit representative or
+  $E_\infty$ extension is used in this enumeration.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:1424-1433, Example exam:extonEn(3); proved later by Example exam:stretchext.
 \begin{proposition}[Hopf-map $E_\infty$ page extension]
   \label{prop:hopf-einfty-page-extension}
-  \uses{prop:hopf-e3-page-extension,cor:page-extension-stretch,prop:page-stretch-regression,thm:external-synthetic-lambda-complete}
+  \uses{prop:hopf-e3-page-extension,prop:page-stretch-regression}
   \notready
   The preceding relation lifts to an essential extension
   \[
@@ -135,10 +223,9 @@ is a typed classical notation for a particular synthetic ESS differential.
 \end{proposition}
 
 \begin{proof}
-  Apply the page-stretching corollary to the $E_3$ extension and the explicit
-  no-crossing certificate in the page-stretch regression.  Passing to the
-  inverse limit supplies compatible detected representatives in the
-  untruncated synthetic sphere.
+  This is the essential untruncated relation proved by the page-stretch
+  regression.  Its coherent inverse-limit construction supplies the relation,
+  and the independent nonzero target-coset clause supplies essentiality.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:1391-1433, Example exam:extonEn(4).
@@ -173,7 +260,18 @@ is a typed classical notation for a particular synthetic ESS differential.
   $y'\in Z_{r-1-n+b+e(f)}^{s+n-b,t+n-b}(Y)$, where
   $0<a\le r-2$ and $0\le b\le n-a-e(f)$.  Nonboundary means outside
   $B_{1+n-b-e(f)}$ and includes the full shorter-extension coset.  The same
-  definition applies at $r=\infty$ using finite witnesses.
+  formula is used only for finite $r$.
+
+  A crossing of an actual $(f,E_\infty)$-extension is instead an actual
+  essential shorter $(f,E_\infty)$-extension
+  \[
+    d_{n-a-b}^{f,E_\infty}(x')=y'
+  \]
+  with $0<a\le n-e(f)$, $0\le b\le n-a-e(f)$, permanent representatives
+  $x'\in Z_\infty^{s+a,t+a}(X)$ and
+  $y'\in Z_\infty^{s+n-b,t+n-b}(Y)$, and the same nonzero complete target
+  coset modulo $B_{1+n-b-e(f)}$.  A collection of unrelated finite crossing
+  candidates is not an $E_\infty$ crossing.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:1515-1539, Proposition prop:cross-f-Er.
@@ -182,8 +280,9 @@ is a typed classical notation for a particular synthetic ESS differential.
   \uses{def:page-extension-crossing,def:fess-crossing,prop:synthetic-einfty-map-compatibility,prop:synthetic-ess-weightwise-transport}
   \notready
   An $(f,E_r)$-extension has a page crossing if and only if its defining
-  $\widehat f_{r-1}$-ESS extension has a crossing.  The statement includes
-  $r=\infty$.
+  $\widehat f_{r-1}$-ESS extension has a crossing for finite $r$.  For
+  $r=\infty$, the equivalent objects are the actual untruncated
+  $(f,E_\infty)$ crossing and an actual crossing in the $\widehat f$-ESS.
 \end{proposition}
 
 \begin{proof}
@@ -192,14 +291,22 @@ is a typed classical notation for a particular synthetic ESS differential.
    =\lambda^{n-b-e(f)}y'$.  Compare the quotient of exponent $r-1$ with that
   of exponent $r-1-a$.  Dividing by $\lambda^a$ introduces exactly
   $B_{1+n-b-e(f)}$; therefore essentiality is equivalent to the nonboundary
-  condition in the page-crossing definition.  The same finite witness proves
-  the inverse-limit case.
+  condition in the finite page-crossing definition.
+
+  At $r=\infty$, start with an actual untruncated shorter page extension on
+  permanent representatives.  The infinite-endpoint clause of
+  Proposition~\ref{prop:synthetic-einfty-map-compatibility} identifies
+  multiplication by $\lambda^a$ with the corresponding boundary-cutoff
+  quotient on $Z_\infty/B_j$.  This converts that actual page witness to an
+  actual crossing in the untruncated $\widehat f$-ESS, and the same quotient
+  calculation gives the converse.  No finite solution tower is promoted to an
+  infinite witness in this argument.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:1541-1579, Example exam:Ercross.
 \begin{proposition}[Page-crossing regression]
   \label{prop:page-crossing-regression}
-  \uses{prop:hopf-e2-page-extension,prop:hopf-e3-page-extension,prop:two-page-extension-regression,prop:page-crossing-iff-synthetic-crossing,def:external-evidence}
+  \uses{prop:hopf-e2-page-extension,prop:hopf-e3-page-extension,prop:hopf-einfty-page-extension,evidence:hopf-crossing-obstruction-exclusion,prop:two-page-extension-regression,prop:page-crossing-iff-synthetic-crossing,def:external-evidence}
   \notready
   The four examples of Section 5 have the stated crossing behavior: the
   $E_2$, $E_3$, and $E_\infty$ Hopf-map extensions have no crossings, while
@@ -209,9 +316,11 @@ is a typed classical notation for a particular synthetic ESS differential.
 \end{proposition}
 
 \begin{proof}
-  Enumerate the degree-allowed crossing pairs.  For the Hopf-map $E_3$ and
-  $E_\infty$ cases only the displayed Ext product could occur, and the supplied
-  product evidence excludes it.  For multiplication by two, the essential
+  There is no positive $a$ in the $E_2$ crossing range.  For the actual
+  Hopf-map $E_3$ and $E_\infty$ extensions, apply the independent finite
+  obstruction certificate.  Its separate permanent-candidate enumeration
+  excludes every actual untruncated shorter extension without having assumed
+  the candidate $E_\infty$ relation.  For multiplication by two, the essential
   $d_1$ extension from $d_0$ meets the crossing inequalities and witnesses the
   failure of no-crossing.
 \end{proof}

@@ -60,7 +60,9 @@ homotopy、synthetic spectra、经典 Adams 端点、外部输入边界和来源
 
 `leanworkspace` 是一条与 `KIP-infra` 谱系不同、但颇有价值的实现路线。它的
 `FormalMathProject/Common/SpectralSequence.lean` 用 `Submodule`、商空间和线性映射
-直接构造 `Z_r/B_r`、page differential、下一页 cycle/boundary 商及其相关引理；
+直接构造 cycle/boundary 商、page differential 和下一页商及其相关引理；迁移时
+必须通过项目的 page-level adapter 对齐 AIM 的
+`E_r = Z_{r-1}/B_{r-1}` 约定，不能照搬其内部下标；
 `GradedSpectralSequence.lean` 还明确处理了双分级和三分级的微分位移。对本项目而言，
 这是一组可迁移的、较具体且可测试的线性代数证明资产。
 
