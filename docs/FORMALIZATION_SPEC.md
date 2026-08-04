@@ -16,9 +16,8 @@
 可检查的接口；凡是论文、程序或表格提供的事实，都必须显式携带来源并作为
 条件输入传入。最终包固定使用 Lean 4.32.2 / mathlib v4.32.2。
 
-规范名称采用 `ExternalResult` / `ExternalEvidence`。`PROJECT_BOUNDARY.md`
-中历史上出现的 `Exterresult` / `Exterevidence` 仅是旧拼写，不应成为新的
-API。
+规范名称采用 `ExternalResult` / `ExternalEvidence`。旧版边界文档中的非规范
+拼写仅作历史记录，不应成为新的 API。
 
 ## 1. 最终目标与信任边界
 
@@ -49,24 +48,43 @@ API。
 
 ```lean
 structure SourceRef where
-  source  : String
-  locator : String
+  source  : SourceId
+  locator : Locator
   note    : Option String := none
 
 structure ExternalResult (P : Prop) where
   proof : P
   ref   : SourceRef
 
+structure ArtifactRef where
+  path    : String
+  sha256  : String
+  version : Option String := none
+
 structure ExternalEvidence (P : Prop) where
   evidence : P
   ref      : SourceRef
   method   : String
+  artifact : Option ArtifactRef := none
 ```
 
 `ExternalResult` 用于文献中的定理或已接受的基础接口，
 `ExternalEvidence` 用于程序输出、表格行、有限计算和检测结论。二者都是
 普通的显式参数；没有任何构造器可以把它们自动提升为项目公理。主定理的
 `#print axioms` 结果只允许 Lean 基础机制的公理。
+
+实现区分三层检查。基础 `Valid` 只检查可复用结构字段；`InventoryValid`
+再把 locator（以及 evidence 的可选 artifact）限制为 canonical source
+目录下的安全相对路径；`CataloguedExternalResult` / `CataloguedExternalEvidence`
+进一步把实际 wrapper 绑定到一个 claim root 与兼容的 trust class。Lean
+不读取工作区文件，因此 JSON checker 仍负责 canonical claim locator 的
+artifact membership、`required=true` regular-file 存在性、canonical kind 和 SHA-256；checker 同时比较 18 个 source
+rows 与 55 个 claim rows。catalogued evidence 的 artifact path 必须等于该
+claim locator 的 canonical path，Lean 还检查安全 source-relative path 与 digest
+形状；wrapper 中的 digest 文本除非调用方另行导出并校验，否则不会自动与 JSON
+值比较。claim ledger 本身只是 provenance 元数据，不能单独生成
+其中记录的数学命题；55 个 root 是显式的 family-level 闭包，不能推出每个
+Blueprint label 都有一条独立 claim。
 
 ## 2. 统一索引和记号
 
@@ -103,8 +121,9 @@ syntheticEssShift    (n : Nat) : Tridegree := (n, n, 0)
 
 ## 3. 目录和依赖层
 
-下列路径是规范目标。当前仓库中的同名文件是占位入口；迁移时不得创建第二套
-平行的 `SpectralSequence`、`AdamsSS` 或 `ExtensionSS` 定义。
+下列路径是规范目标。已完成的 `External` provenance 文件是正式接口；其他尚未
+展开的同名入口仍可能是占位层。迁移时不得创建第二套平行的
+`SpectralSequence`、`AdamsSS` 或 `ExtensionSS` 定义。
 
 ```text
 KIP126/
@@ -156,12 +175,14 @@ KIP126/
 │   ├── ClassicalSynthetic.lean       -- ν、λ-inversion、δ/ρ compatibility
 │   └── Rigidity.lean
 ├── External/
+│   ├── Provenance.lean              -- stable IDs, locators, explicit wrappers
 │   ├── Results.lean                  -- 文献结果的结构化输入
 │   ├── Evidence.lean                 -- 计算/表格证据
-│   ├── AppendixData.lean              -- 全部 Appendix 行的编码
-│   └── SourceInventory.lean           -- 每个根的 source/locator 账本
+│   ├── Claims.lean                   -- external root/source-locator ledger
+│   └── SourceInventory.lean          -- source catalogue/projection
 └── Kervaire/
     ├── Assumptions.lean              -- Browder、BJM/BX、tmf 等输入包
+    ├── AppendixData.lean              -- 全部 Appendix 行的编码
     ├── Near126.lean                  -- 126 终局数据与逻辑归约
     └── MainTheorem.lean              -- h₆² 与 Kervaire 条件结论
 ```

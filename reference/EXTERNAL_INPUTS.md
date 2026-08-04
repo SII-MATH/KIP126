@@ -1,9 +1,32 @@
 # External-input ledger
 
 Only the sources below contribute an external theorem or external evidence
-that the formalization must expose through `Exterresult` or `Exterevidence`.
+that the formalization must expose through `ExternalResult` or `ExternalEvidence`.
 References used only for historical context, notation, motivation, or a
 survey are intentionally not archived in this project.
+
+The complete machine-readable ledger, including the target paper row and
+artifact digests, is [`source-inventory.json`](source-inventory.json).  The
+Lean-side stable keys are exposed by `KIP126.External.SourceId`; acquisition
+state is checked with `python3 scripts/check_source_inventory.py`.
+
+The Lean-side claim ledger (`KIP126.External.externalClaimLedger`) gives each
+external root an intended owner declaration, a Blueprint label or enumerated
+source target, a dependency list,
+and explicit `SourceRef` metadata; composite claim rows therefore remain
+distinguishable from primitive literature results.  Owners in later, not-yet-
+implemented domain layers are recorded as stable names rather than being
+pretended to be existing proofs.  Its dependency relation has a checked
+strictly decreasing rank, and the source/claim exporter makes locator-artifact
+membership part of the JSON validation.  `CataloguedExternalResult` and
+`CataloguedExternalEvidence` are the bridge from this metadata ledger to an
+actual proposition-bearing wrapper; they still do not prove the external
+mathematics or inspect the filesystem.  The closed inventory uses the checked-in
+AIM paper as the source of record for claims that cite unarchived primary works
+(for example, the Ravenel theorem quoted by the AIM paper); those primary works
+are not silently represented as separate source IDs.  Claim roots are
+family-level records, so several downstream evidence labels can be covered by
+one aggregate root.
 
 | Source | External input represented in Lean |
 | --- | --- |

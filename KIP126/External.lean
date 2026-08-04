@@ -1,3 +1,5 @@
+import KIP126.External.Provenance
+import KIP126.External.Claims
 import KIP126.External.Evidence
 import KIP126.External.Results
 import KIP126.External.SourceInventory

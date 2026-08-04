@@ -26,7 +26,7 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    filtered objects, and Ext/Adams pages. We do not reimplement the large
    high-stem Ext calculations performed by Lin's programs. Concrete
    high-stem values, computer output, and table entries are external inputs
-   represented by `Exterresult` or `Exterevidence`.
+   represented by `ExternalResult` or `ExternalEvidence`.
 
 3. **Appendix data.** Every entry in the Appendix tables is to be encoded,
    not only the entries used directly in the final proof. The encoding records
@@ -147,22 +147,48 @@ The project will use the following conceptual interfaces (the exact field
 names may be refined during implementation):
 
 ```lean
-structure Exterresult (P : Prop) where
-  proof    : P
-  source   : String
-  locator  : String
+structure SourceRef where
+  source  : SourceId
+  locator : Locator
+  note    : Option String := none
 
-structure Exterevidence (P : Prop) where
+structure ExternalResult (P : Prop) where
+  proof : P
+  ref   : SourceRef
+
+structure ArtifactRef where
+  path   : String
+  sha256 : String
+  version : Option String := none
+
+structure ExternalEvidence (P : Prop) where
   evidence : P
-  source   : String
-  locator  : String
+  ref      : SourceRef
   method   : String
+  artifact : Option ArtifactRef := none
 ```
 
-`Exterresult` is intended for a theorem imported from the literature.
-`Exterevidence` is intended for a computation, program output, table fact, or
+`ExternalResult` is intended for a theorem imported from the literature.
+`ExternalEvidence` is intended for a computation, program output, table fact, or
 other finite evidence record. Both are hypotheses to conditional theorems;
 neither is a project-level axiom.
+
+The implementation deliberately separates structural and checkout-facing
+validity.  `InventoryValid` adds syntactically safe, source-relative locator
+and evidence-artifact paths.  `CataloguedExternalResult` and
+`CataloguedExternalEvidence` then bind an actual proposition-bearing wrapper
+to one canonical claim root and a compatible trust class.  The Lean claim
+ledger proves finite completeness, global source coverage, and acyclicity of
+its dependency relation, but remains metadata: it does not prove the recorded
+external proposition.  The JSON checker is authoritative for artifact-list
+membership of canonical claim locators, required existing-file status, and
+SHA-256 equality.  Lean's source-relative condition is syntactic (a directory-prefix
+check, not a filesystem/symlink traversal check).  For a dynamically attached
+evidence artifact, Lean additionally checks a safe source-relative path and
+digest shape; a catalogued wrapper also requires its path to equal the
+canonical claim locator.  Lean does not silently assert the file's actual
+digest, nor compare an arbitrary wrapper digest automatically.  Root coverage is relative
+to the explicitly closed, family-level `ExternalRootId` enum.
 
 Examples of external inputs include:
 
@@ -199,7 +225,7 @@ prove conditionally:
 2. the dimensions in which framed smooth manifolds with Kervaire invariant one
    exist are exactly `2, 6, 14, 30, 62, 126`.
 
-These are implications from explicit `Exterresult`/`Exterevidence` arguments,
+These are implications from explicit `ExternalResult`/`ExternalEvidence` arguments,
 not unconditional declarations of the external mathematics.
 
 ## Acceptance criteria
@@ -209,7 +235,7 @@ The project is complete only when all of the following hold:
 - `lake build` succeeds with the pinned Lean/mathlib versions;
 - no Lean source file contains `sorry`, `admit`, or a project-declared
   `axiom`;
-- every external input is passed through `Exterresult` or `Exterevidence`;
+- every external input is passed through `ExternalResult` or `ExternalEvidence`;
 - every Appendix table entry has a Lean encoding;
 - the two geometric conclusions are available as conditional theorems;
 - the final theorem(s) pass a `#print axioms` audit with:
