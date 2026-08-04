@@ -52,6 +52,9 @@ lake build KIP126.External.ProvenanceRegression \
   KIP126.External.ClaimsRegression
 ```
 
+On a slow or cold checkout, increase the two Lean subprocess timeouts with
+`python3 scripts/check_source_inventory.py --lean-timeout 900`.
+
 The checker validates provenance metadata and reproducibility bookkeeping; it
 also rebuilds and executes the Lean exporter, compares all 18 source rows,
 checks acquisition-status grammar and canonical artifact kinds, checks all 55

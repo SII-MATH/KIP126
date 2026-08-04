@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import re
 import subprocess
 import sys
@@ -26,6 +27,8 @@ from typing import Any, Iterable, Mapping
 
 
 SCHEMA_VERSION = 1
+DEFAULT_LEAN_TIMEOUT = 600.0
+HASH_CHUNK_SIZE = 1024 * 1024
 EXPECTED_CLAIM_CODES = (
     "adams_one_line",
     "map_filtration_factorization",
@@ -216,13 +219,44 @@ REQUIRED_ARTIFACT_FIELDS = {"path", "kind", "required", "sha256"}
 AVAILABILITY_FIELDS = {"metadata", "pdf", "text", "source"}
 
 
+def _parse_positive_timeout(value: str) -> float:
+    """Parse a finite, strictly positive subprocess timeout."""
+
+    try:
+        timeout = float(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("must be a number of seconds") from exc
+    if not math.isfinite(timeout) or timeout <= 0:
+        raise argparse.ArgumentTypeError("must be a finite number greater than zero")
+    return timeout
+
+
+def _sha256_file(path: Path) -> str:
+    """Hash a file incrementally so large artifacts do not fill memory."""
+
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(HASH_CHUNK_SIZE), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 class InventoryValidator:
     """Collect validation errors without raising on the first malformed row."""
 
-    def __init__(self, root: Path, inventory_path: Path, check_lean_projection: bool = True):
+    def __init__(
+        self,
+        root: Path,
+        inventory_path: Path,
+        check_lean_projection: bool = True,
+        lean_timeout: float = DEFAULT_LEAN_TIMEOUT,
+    ):
         self.root = root.resolve()
         self.inventory_path = inventory_path.resolve()
         self.check_lean_projection = check_lean_projection
+        if not math.isfinite(lean_timeout) or lean_timeout <= 0:
+            raise ValueError("lean_timeout must be a finite number greater than zero")
+        self.lean_timeout = lean_timeout
         self.errors: list[str] = []
         self.artifact_count = 0
         self.artifact_paths: dict[str, str] = {}
@@ -315,7 +349,7 @@ class InventoryValidator:
                 check=False,
                 capture_output=True,
                 text=True,
-                timeout=300,
+                timeout=self.lean_timeout,
             )
         except (OSError, subprocess.TimeoutExpired) as exc:
             self.error("lean_projection", f"could not build Lean projection: {exc}")
@@ -332,7 +366,7 @@ class InventoryValidator:
                 check=False,
                 capture_output=True,
                 text=True,
-                timeout=300,
+                timeout=self.lean_timeout,
             )
         except (OSError, subprocess.TimeoutExpired) as exc:
             self.error("lean_projection", f"could not execute Lean projection: {exc}")
@@ -965,7 +999,7 @@ class InventoryValidator:
                 continue
             if valid_hash:
                 try:
-                    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+                    digest = _sha256_file(path)
                 except (OSError, UnicodeError) as exc:
                     self.error(f"{artifact_where}.sha256", f"cannot hash artifact: {exc}")
                     self.artifact_count += 1
@@ -1105,13 +1139,19 @@ def validate_inventory(
     root: Path,
     inventory_path: Path | None = None,
     check_lean_projection: bool = True,
+    lean_timeout: float = DEFAULT_LEAN_TIMEOUT,
 ) -> list[str]:
     """Return validation errors for callers that want a library API."""
 
     root = root.resolve()
     if inventory_path is None:
         inventory_path = root / "reference/source-inventory.json"
-    return InventoryValidator(root, inventory_path, check_lean_projection=check_lean_projection).validate()
+    return InventoryValidator(
+        root,
+        inventory_path,
+        check_lean_projection=check_lean_projection,
+        lean_timeout=lean_timeout,
+    ).validate()
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -1128,6 +1168,13 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="skip the Lean↔JSON projection comparison (for metadata-only fixtures)",
     )
+    parser.add_argument(
+        "--lean-timeout",
+        type=_parse_positive_timeout,
+        default=DEFAULT_LEAN_TIMEOUT,
+        metavar="SECONDS",
+        help=f"timeout for each Lean build/export command (default: {DEFAULT_LEAN_TIMEOUT:g})",
+    )
     args = parser.parse_args(argv)
 
     script_root = Path(__file__).resolve().parents[1]
@@ -1139,7 +1186,10 @@ def main(argv: list[str] | None = None) -> int:
         inventory = root / inventory
 
     validator = InventoryValidator(
-        root, inventory, check_lean_projection=not args.skip_lean_projection
+        root,
+        inventory,
+        check_lean_projection=not args.skip_lean_projection,
+        lean_timeout=args.lean_timeout,
     )
     errors = validator.validate()
     if errors:

@@ -196,6 +196,9 @@ example :
       .partialAvailability := by
   decide
 
+example : SourceEntry.citationKeysNonempty [] = false := by
+  decide
+
 example :
     ¬SourceEntry.Valid
       { source := .aimPaper

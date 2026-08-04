@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import argparse
+import hashlib
 import json
 import sys
 import tempfile
@@ -14,8 +16,11 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from check_source_inventory import (  # noqa: E402
+    HASH_CHUNK_SIZE,
     EXPECTED_CLAIM_CODES,
     InventoryValidator,
+    _parse_positive_timeout,
+    _sha256_file,
     extract_tex_labels,
     validate_inventory,
 )
@@ -112,6 +117,20 @@ class SourceInventoryTests(unittest.TestCase):
         artifact["kind"] = "citation"
         errors = self.validate_document(document, check_lean_projection=False)
         self.assertTrue(any("requires kind" in error for error in errors))
+
+    def test_sha256_helper_reads_large_files_incrementally(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "large.bin"
+            payload = b"KIP126" * (HASH_CHUNK_SIZE // 6 + 17)
+            path.write_bytes(payload)
+            self.assertEqual(_sha256_file(path), hashlib.sha256(payload).hexdigest())
+
+    def test_lean_timeout_is_configurable_and_positive(self) -> None:
+        self.assertEqual(_parse_positive_timeout("17.5"), 17.5)
+        with self.assertRaises(argparse.ArgumentTypeError):
+            _parse_positive_timeout("0")
+        validator = InventoryValidator(ROOT, INVENTORY, check_lean_projection=False, lean_timeout=17.5)
+        self.assertEqual(validator.lean_timeout, 17.5)
 
     def test_artifact_symlink_cannot_escape_source_directory(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

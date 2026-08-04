@@ -207,9 +207,10 @@ def citationKeySafe (key : String) : Bool :=
   key.toList.any (fun char => !schemaWhitespace char) &&
     key.toList.all (fun char => schemaCharSafe char && char != ',')
 
-/-- Citation keys are schema-safe and pairwise distinct within a row. -/
+/-- Citation keys are nonempty and schema-safe.  Pairwise distinctness is a
+separate row-level invariant checked by `CitationKeysValid`. -/
 def citationKeysNonempty (keys : List String) : Bool :=
-  keys.all citationKeySafe
+  decide (keys ≠ []) && keys.all citationKeySafe
 
 def CitationKeysValid (entry : SourceEntry) : Prop :=
   entry.citationKeys ≠ [] ∧

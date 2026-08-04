@@ -25,6 +25,9 @@ file in the corresponding JSON artifact list:
 python3 scripts/check_source_inventory.py
 ```
 
+The checker allows a longer Lean build/export timeout on slow or cold
+checkouts, for example `--lean-timeout 900`.
+
 Claim-level external roots, intended owners, dependencies, and explicit
 `SourceRef` metadata are enumerated by
 `KIP126.External.externalClaimLedger`; names for future domain declarations
