@@ -569,6 +569,7 @@ def ArtifactCompatible (record : ExternalClaimRecord)
 def Valid (record : ExternalClaimRecord) : Prop :=
   record.OwnerConsistent ∧
     record.target ≠ "" ∧
+    SourceEntry.projectionFieldSafe record.ref.locator.description = true ∧
     record.TargetConsistent ∧
     record.ClassificationConsistent ∧
     record.dependencies.Nodup ∧
@@ -592,7 +593,7 @@ theorem sourceEntry_valid (record : ExternalClaimRecord) :
 
 theorem ref_inventoryValid_of_valid (record : ExternalClaimRecord)
     (h : record.Valid) : record.ref.InventoryValid := by
-  rcases h with ⟨_, _, _, _, _, _, hRef, hPath⟩
+  rcases h with ⟨_, _, _, _, _, _, _, hRef, hPath⟩
   exact ⟨hRef, hPath⟩
 
 end ExternalClaimRecord
@@ -713,19 +714,19 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
       claim .mahowaldTangoraDifferentials .literatureResult
         `KIP126.Kervaire.MahowaldTangoraDifferentials
         "source:mahowald-tangora-differentials" .mahowaldTangora
-        "Mahowald--Tangora, concrete Adams differentials and h_4^2 survival input"
+        "Primary text unavailable; AIM paper lines 159--160 cite Mahowald--Tangora for d_3(h_2 h_5), d_4(h_3 h_5), and h_4^2 survival"
   | .theta5Existence =>
       claim .theta5Existence .literatureResult `KIP126.Kervaire.Theta5Existence
         "source:bjm-theta5-existence" .bjmTheta5
-        "Barratt--Jones--Mahowald, h_5^2 survival and dimension-62 theta_5 input"
+        "Primary text unavailable; AIM paper line 159 cites BJMtheta5 for h_5^2 survival and the dimension-62 theta_5 input"
   | .bjmInduction =>
       claim .bjmInduction .literatureResult `KIP126.Kervaire.BJMInduction
         "thm:external-bjm-induction" .bjmInduction
-        "Barratt--Jones--Mahowald induction on order-two Kervaire classes"
+        "Primary text unavailable; AIM paper line 162 cites BJMinduction for the order-two theta_j to theta_{j+1} induction"
   | .mayLowPageSurvival =>
       claim .mayLowPageSurvival .literatureResult `KIP126.Classical.MayLowPageSurvival
         "source:may-low-page-survival" .mayThesis
-        "May thesis, low-page Adams survival results used by the low-dimensional package"
+        "Primary text unavailable; AIM paper line 159 cites Maythesis for the low-page survivors and h_j^2 survival for j <= 3"
   | .hhrNonexistence =>
       claim .hhrNonexistence .literatureResult `KIP126.Kervaire.HHRNonexistence
         "thm:external-hhr-nonexistence" .hhr
@@ -814,11 +815,11 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
   | .maySmashBoundary =>
       claim .maySmashBoundary .literatureResult `KIP126.Stable.MaySmashBoundary
         "thm:external-may-smash-boundary" .may01
-        "May, The Additivity of Traces, Lemma 4.6 and the TC3 condition"
+        "Primary text unavailable; AIM paper lines 1755--1778 cite May01 Lemma 4.6 and TC3 for the smash-boundary diagram"
   | .mossConvergence =>
       claim .mossConvergence .literatureResult `KIP126.Stable.MossConvergence
         "thm:moss-convergence-adapter" .moss
-        "Moss, Theorem 1.2, convergence of the relevant Massey product to a Toda bracket"
+        "Primary text unavailable; AIM paper lines 2542--2543 cite Moss Theorem 1.2 for the no-crossing Toda-bracket criterion"
   | .todaProductIdentities =>
       claim .todaProductIdentities .compositeResult `KIP126.Stable.TodaProductIdentities
         "thm:toda-product-identities" .aimPaper
@@ -848,7 +849,7 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
   | .br21TmfDifferential =>
       claim .br21TmfDifferential .literatureResult `KIP126.Kervaire.Br21TmfDifferential
         "source:br21-tmf-differential" .br21
-        "Bruner--Rognes, the manual tmf Adams differential d_3(v_2^16)=beta^5 g"
+        "Primary text unavailable; AIM paper lines 2790--2791 record Bruner--Rognes' manual tmf differential d_3(v_2^16)=beta^5 g"
   | .linMachineRelease =>
       claim .linMachineRelease .machineEvidence `KIP126.External.LinMachineRelease
         "prop:lin-computation-provenance" .lwxMachine
@@ -982,7 +983,8 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
         "AIM Cnu126 finite short-incoming-differential exclusion"
         (some "aimpaper/main.tex") [.appendixTables]
 
-/-- The checked-in, complete claim-level provenance ledger. -/
+/- The checked-in, complete claim-level provenance ledger. -/
+set_option maxRecDepth 100000 in
 def externalClaimLedger : ExternalClaimLedger :=
   { lookup := lookupClaim
     id_eq := by
@@ -1114,6 +1116,7 @@ structure ExternalClaimProjection where
   id : ExternalRootId
   source : SourceId
   artifact : Option String
+  description : String
   owner : Lean.Name
   target : String
   deriving DecidableEq, Repr, Inhabited
@@ -1124,6 +1127,7 @@ def ofRecord (record : ExternalClaimRecord) : ExternalClaimProjection :=
   { id := record.id
     source := record.ref.source
     artifact := record.ref.locator.artifact
+    description := record.ref.locator.description
     owner := record.owner
     target := record.target }
 
@@ -1132,6 +1136,7 @@ def encode (projection : ExternalClaimProjection) : String :=
     [ ExternalRootId.code projection.id
     , SourceId.code projection.source
     , projection.artifact.getD ""
+    , projection.description
     , projection.owner.toString
     , projection.target ]
 

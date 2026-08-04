@@ -9,37 +9,42 @@ must still be constructed.
 
 \section{Exact Mathlib roots}
 
-% SOURCE: Mathlib/Data/ZMod/Defs.lean:142, declaration ZMod; Mathlib/Algebra/Field/ZMod.lean:29-30, prime-field instance.
-\begin{definition}[The field $\mathbb F_2$]
+% SOURCE: Mathlib/Data/ZMod/Defs.lean:140--144, declaration ZMod; Mathlib/Algebra/Field/ZMod.lean:29--30, prime-field instance.
+\begin{definition}[The $\operatorname{ZMod}$ coefficient family]
   \label{def:mathlib-f2}
   \lean{ZMod}
   \mathlibok
-  The coefficient field used throughout is
-  $\mathbb F_2:=\operatorname{ZMod}(2)$ with its pinned Mathlib field
-  structure.  The interface records $1+1=0$, characteristic two, decidable
-  equality, and finiteness; later sign simplifications must cite these
+  Mathlib's declaration is the family $\operatorname{ZMod}(n)$ indexed by
+  $n\in\mathbb N$; it does not itself fix a modulus.  The project uses the
+  specialization $\mathbb F_2:=\operatorname{ZMod}(2)$, whose pinned Mathlib
+  instances provide $1+1=0$, characteristic two, decidable equality, and
+  finiteness.  Later sign simplifications must cite these specialized
   properties rather than treating every abelian category as characteristic
   two.
 \end{definition}
 
-% SOURCE: Mathlib/Algebra/Category/ModuleCat/Basic.lean, declaration ModuleCat.
-\begin{definition}[$\mathbb F_2$-module category]
+% SOURCE: Mathlib/Algebra/Category/ModuleCat/Basic.lean:48--62, declaration ModuleCat.
+\begin{definition}[Category of modules over a ring]
   \label{def:mathlib-f2-module-category}
   \lean{ModuleCat}
   \mathlibok
-  Mathlib's category of modules over $\mathbb F_2=\operatorname{ZMod}(2)$ is
-  the concrete abelian category in which the elementwise spectral-sequence
-  adapter is constructed.
+  Mathlib's declaration $\operatorname{ModuleCat}(R)$ is the category of
+  modules over an arbitrary ring $R$.  The concrete category used by the
+  elementwise spectral-sequence adapter is its specialization
+  $\operatorname{ModuleCat}(\mathbb F_2)$ with
+  $\mathbb F_2=\operatorname{ZMod}(2)$; the generic declaration does not
+  silently choose that coefficient ring.
 \end{definition}
 
-% SOURCE: Mathlib/Algebra/Category/ModuleCat/Abelian.lean:75, instance ModuleCat.abelian.
-\begin{theorem}[The module category is abelian]
+% SOURCE: Mathlib/Algebra/Category/ModuleCat/Abelian.lean:74--78, instance ModuleCat.abelian.
+\begin{theorem}[Module categories are abelian]
   \label{thm:mathlib-module-category-abelian}
   \lean{ModuleCat.abelian}
   \mathlibok
   \uses{def:mathlib-f2,def:mathlib-f2-module-category}
-  The category of modules over $\mathbb F_2$ carries Mathlib's abelian-category
-  instance.
+  For every ring $R$, the category $\operatorname{ModuleCat}(R)$ carries
+  Mathlib's abelian-category instance.  In particular this applies after the
+  project specializes $R$ to $\mathbb F_2$.
 \end{theorem}
 
 % SOURCE: Mathlib/CategoryTheory/Abelian/Basic.lean, declaration CategoryTheory.Abelian.
@@ -268,13 +273,15 @@ must still be constructed.
   comodules, or the bigraded Adams $\operatorname{Ext}_{\mathcal A}^{s,t}$.
 \end{definition}
 
-% SOURCE: Mathlib/CategoryTheory/Shift/Basic.lean, declaration CategoryTheory.HasShift.
+% SOURCE: Mathlib/CategoryTheory/Shift/Basic.lean:60--68, declaration CategoryTheory.HasShift.
 \begin{definition}[Mathlib shift structure]
   \label{def:mathlib-shift}
   \lean{CategoryTheory.HasShift}
   \mathlibok
-  Mathlib's shift structure supplies a coherent family of autoequivalences
-  indexed here by $\mathbb Z$.
+  Mathlib's declaration supplies a coherent family of autoequivalences indexed
+  by an arbitrary additive monoid $A$.  The project uses the specialization
+  $A=\mathbb Z$; this node records the generic declaration and does not claim
+  that every instance has an integer indexing type.
 \end{definition}
 
 % SOURCE: Mathlib/CategoryTheory/Triangulated/Basic.lean, declaration CategoryTheory.Pretriangulated.Triangle.

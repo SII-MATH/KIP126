@@ -28,6 +28,13 @@ are not silently represented as separate source IDs.  Claim roots are
 family-level records, so several downstream evidence labels can be covered by
 one aggregate root.
 
+For claim roots whose primary work is not archived locally (`MahowaldTangora`,
+`BJMtheta5`, `BJMinduction`, `Maythesis`, `May01`, `Moss`, and `BR21`), the
+Lean locator description explicitly records that unavailability and names the
+exact AIM-paper line or line range where the input is cited.  The source
+inventory integration checker rejects a newly added artifact-less claim that
+lacks this secondary line locator.
+
 | Source | External input represented in Lean |
 | --- | --- |
 | `Browder` | The Kervaire-invariant criterion relating survival of \(h_j^2\) to a nonzero Kervaire class, used for the conditional geometric conclusions. |

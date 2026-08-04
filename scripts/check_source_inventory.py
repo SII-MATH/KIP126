@@ -152,6 +152,10 @@ def strip_unescaped_percent_comments(text: str) -> str:
 ID_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 PROJECTION_LINE_SEPARATORS = {0x85, 0x2028, 0x2029}
+UNLOCATED_CLAIM_LOCATOR_RE = re.compile(
+    r"^Primary text unavailable; AIM paper lines? \d+(?:--\d+)?\b",
+    re.IGNORECASE,
+)
 ALLOWED_KINDS = {"paper", "literature", "machine", "governance"}
 ALLOWED_ARTIFACT_KINDS = {
     "citation",
@@ -330,9 +334,9 @@ class InventoryValidator:
         `.olean` cache gap as well as the otherwise easy-to-miss drift gap where
         both a hand-edited `lookupRow` and the JSON checker could remain locally
         valid.
-        Citation prose, artifact paths, and hashes intentionally stay outside
-        this comparison; they belong to the filesystem-facing half of the
-        ledger.
+        Source-row citation prose and hashes intentionally stay outside this
+        comparison; claim locator descriptions are exported because they are
+        part of the exact-claim locator contract.
         """
         helper = self.root / "scripts/lean_source_inventory_projection.lean"
         if not helper.is_file():
@@ -457,22 +461,22 @@ class InventoryValidator:
         sources: list[Any],
         expected_sources: Mapping[str, tuple[str, ...]],
     ) -> None:
-        """Check claim owners/targets and bind locator artifacts to JSON rows."""
+        """Check claim locators/owners/targets and bind artifacts to JSON rows."""
 
-        claim_rows: dict[str, tuple[str, str, str, str]] = {}
+        claim_rows: dict[str, tuple[str, str, str, str, str]] = {}
         owners: dict[str, str] = {}
         targets: dict[str, str] = {}
         for line in output.splitlines():
             if not line.startswith("KIP126_CLAIM|"):
                 continue
             fields = line.split("|")
-            if len(fields) != 6:
+            if len(fields) != 7:
                 self.error("lean_projection.claims", f"malformed exported claim row: {line!r}")
                 continue
-            _, claim_id, source_id, artifact, owner, target = fields
+            _, claim_id, source_id, artifact, description, owner, target = fields
             if claim_id in claim_rows:
                 self.error("lean_projection.claims", f"duplicate claim id {claim_id!r}")
-            claim_rows[claim_id] = (source_id, artifact, owner, target)
+            claim_rows[claim_id] = (source_id, artifact, description, owner, target)
             previous_owner = owners.get(owner)
             if previous_owner is not None and previous_owner != claim_id:
                 self.error(
@@ -534,7 +538,7 @@ class InventoryValidator:
                     self.error("lean_projection.claims", f"cannot read {tex_path}: {exc}")
 
         covered_sources: set[str] = set()
-        for claim_id, (source_id, artifact, owner, target) in claim_rows.items():
+        for claim_id, (source_id, artifact, description, owner, target) in claim_rows.items():
             where = f"lean_projection.claim.{claim_id}"
             if not ID_RE.fullmatch(claim_id):
                 self.error(where, "claim id must use canonical snake_case")
@@ -542,6 +546,14 @@ class InventoryValidator:
                 self.error(where, f"unknown source id {source_id!r}")
                 continue
             covered_sources.add(source_id)
+            if not description:
+                self.error(where, "locator description must be non-empty")
+            elif not artifact and UNLOCATED_CLAIM_LOCATOR_RE.search(description) is None:
+                self.error(
+                    where,
+                    "claims without a local artifact must use an exact AIM paper line locator "
+                    "and state that the primary text is unavailable",
+                )
             if not owner.startswith("KIP126."):
                 self.error(where, f"owner must be in the KIP126 namespace, got {owner!r}")
             if target.startswith("source:") and target not in EXPECTED_SOURCE_TARGETS:

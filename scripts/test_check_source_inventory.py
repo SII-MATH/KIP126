@@ -34,14 +34,14 @@ class SourceInventoryTests(unittest.TestCase):
     def read_inventory(self) -> dict:
         return json.loads(INVENTORY.read_text(encoding="utf-8"))
 
-    def validate_document(self, document: dict, *, check_lean_projection: bool = True) -> list[str]:
+    def validate_document(self, document: dict, *, check_lean_projection: bool = False) -> list[str]:
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "inventory.json"
             path.write_text(json.dumps(document), encoding="utf-8")
             return validate_inventory(ROOT, path, check_lean_projection=check_lean_projection)
 
-    def test_checked_in_inventory_is_valid(self) -> None:
-        self.assertEqual(validate_inventory(ROOT), [])
+    def test_checked_in_inventory_metadata_is_valid(self) -> None:
+        self.assertEqual(validate_inventory(ROOT, check_lean_projection=False), [])
 
     def test_duplicate_id_is_rejected(self) -> None:
         document = self.read_inventory()
@@ -173,13 +173,6 @@ class SourceInventoryTests(unittest.TestCase):
         self.assertIsNone(path)
         self.assertTrue(any("cannot resolve path" in error for error in errors))
 
-    def test_lean_projection_drift_is_rejected(self) -> None:
-        document = self.read_inventory()
-        browder = next(source for source in document["sources"] if source["id"] == "browder")
-        browder["citation_keys"] = ["DriftedKey"]
-        errors = self.validate_document(document)
-        self.assertTrue(any("lean_projection.browder" in error for error in errors))
-
     def test_projection_delimiters_are_reserved(self) -> None:
         document = self.read_inventory()
         browder = next(source for source in document["sources"] if source["id"] == "browder")
@@ -193,28 +186,11 @@ class SourceInventoryTests(unittest.TestCase):
         errors = self.validate_document(document, check_lean_projection=False)
         self.assertTrue(any("non-ASCII line separators" in error for error in errors))
 
-    def test_claim_locator_artifact_must_be_catalogued(self) -> None:
-        document = self.read_inventory()
-        aim = next(source for source in document["sources"] if source["id"] == "aim_paper")
-        aim["artifacts"] = [
-            artifact
-            for artifact in aim["artifacts"]
-            if artifact["path"] != "aimpaper/main.tex"
-        ]
-        errors = self.validate_document(document)
-        self.assertTrue(
-            any(
-                "lean_projection.claim." in error
-                and "aimpaper/main.tex" in error
-                and "not listed" in error
-                for error in errors
-            )
-        )
-
     def test_claim_locator_must_be_required_existing_file(self) -> None:
         claim_prefix = (
             "KIP126_CLAIM|adams_one_line|aim_paper|{artifact}|"
-            "KIP126.Classical.adamsOneLineDifferentials|thm:external-adams-one-line"
+            "AIM paper lines 140--150|KIP126.Classical.adamsOneLineDifferentials|"
+            "thm:external-adams-one-line"
         )
 
         validator = InventoryValidator(ROOT, INVENTORY)
@@ -249,6 +225,22 @@ class SourceInventoryTests(unittest.TestCase):
             any("must be an existing file" in error for error in validator.errors)
         )
 
+    def test_unlocated_claim_requires_secondary_line_locator(self) -> None:
+        document = self.read_inventory()
+        sources = document["sources"]
+        expected_sources = {source["id"]: () for source in sources}
+        validator = InventoryValidator(ROOT, INVENTORY, check_lean_projection=False)
+        validator._check_lean_claim_projection(
+            "KIP126_CLAIM|mahowald_tangora_differentials|mahowald_tangora||"
+            "Mahowald--Tangora, some result|KIP126.Kervaire.MahowaldTangoraDifferentials|"
+            "source:mahowald-tangora-differentials",
+            sources,
+            expected_sources,
+        )
+        self.assertTrue(
+            any("without a local artifact" in error for error in validator.errors)
+        )
+
     def test_source_of_record_artifacts_are_required(self) -> None:
         document = self.read_inventory()
         aim = next(source for source in document["sources"] if source["id"] == "aim_paper")
@@ -263,7 +255,8 @@ class SourceInventoryTests(unittest.TestCase):
         expected_sources = {source["id"]: () for source in sources}
         validator = InventoryValidator(ROOT, INVENTORY)
         validator._check_lean_claim_projection(
-            "KIP126_CLAIM|invented_claim|aim_paper||KIP126.Invented|source:invented",
+            "KIP126_CLAIM|invented_claim|aim_paper||AIM paper line 1|"
+            "KIP126.Invented|source:invented",
             sources,
             expected_sources,
         )
@@ -335,7 +328,7 @@ class SourceInventoryTests(unittest.TestCase):
     def test_projection_parser_rejects_unexpected_lines(self) -> None:
         validator = InventoryValidator(ROOT, INVENTORY, check_lean_projection=False)
         validator._check_projection_output_shape(
-            "KIP126_CLAIM|adams_one_line|aim_paper||KIP126.Owner|"
+            "KIP126_CLAIM|adams_one_line|aim_paper||AIM paper line 1|KIP126.Owner|"
             "thm:external-adams-one-line\u2028NOT_THE_TARGET"
         )
         self.assertTrue(any("unexpected exporter output" in error for error in validator.errors))

@@ -46,7 +46,9 @@ the filesystem ledger and its regression tests with:
 
 ```sh
 python3 scripts/check_source_inventory.py
-python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 -m unittest discover -s scripts -p 'test_check_source_inventory.py'  # unit tests
+python3 -m unittest discover -s scripts -p 'test_source_inventory_projection.py'  # Lean integration tests
+python3 -m unittest discover -s scripts -p 'test_*.py'  # all tests
 lake build KIP126.External.ProvenanceRegression \
   KIP126.External.SourceInventoryRegression \
   KIP126.External.ClaimsRegression
