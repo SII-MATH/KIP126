@@ -34,6 +34,44 @@ lake build
 The Blueprint PDF, web output, declaration checks, structural doctor, and DAG
 checks are maintained separately under `blueprint/` and `.agents/skills/`.
 
+## Provenance and source inventory
+
+`KIP126.External.Provenance` defines the explicit `SourceId`, `SourceRef`,
+`ExternalResult`, and `ExternalEvidence` records.  The typed Lean projection
+of the finite catalogue is in `KIP126.External.SourceInventory`, and the
+claim-level root/owner/dependency ledger is in `KIP126.External.Claims`.
+Citation metadata, acquisition state, artifact paths, and SHA-256 digests are kept in
+[`reference/source-inventory.json`](reference/source-inventory.json).  Check
+the filesystem ledger and its regression tests with:
+
+```sh
+python3 scripts/check_source_inventory.py
+python3 -m unittest discover -s scripts -p 'test_*.py'
+lake build KIP126.External.ProvenanceRegression \
+  KIP126.External.SourceInventoryRegression \
+  KIP126.External.ClaimsRegression
+```
+
+The checker validates provenance metadata and reproducibility bookkeeping; it
+also rebuilds and executes the Lean exporter, compares all 18 source rows,
+checks acquisition-status grammar and canonical artifact kinds, checks all 55
+claim rows, and requires every nonempty canonical locator
+artifact path to name a listed, `required=true`, existing regular file.  Lean's
+`InventoryValid` predicates reject unsafe
+paths and paths that fail the syntactic source-directory prefix check, while
+`CataloguedExternalResult` and
+`CataloguedExternalEvidence` bind an actual wrapper value to one canonical
+claim root and compatible trust class; a catalogued evidence artifact must use
+the claim locator's canonical path.  The checker compares the checked-in file
+with the JSON digest; it does not automatically compare an arbitrary wrapper's
+digest field with that value.  None of these checks turns an external record
+into an unconditional theorem.  The root, locator, and trust-class
+checks are metadata checks: they do not establish that the wrapper proposition
+is definitionally the proposition named by a future owner declaration.  The
+canonical ledger is closed over 55 explicitly declared, family-level roots;
+coverage is relative to that enum rather than a claim that every Blueprint
+label has a one-to-one row.
+
 ## Repository-private Blueprint skills
 
 The reusable Blueprint workflow lives under

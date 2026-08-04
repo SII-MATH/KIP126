@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "project": "KIP126",
+  "description": "Canonical, machine-readable inventory for the sources that may enter the KIP126 formalization. The source-status.json file in each reference directory remains authoritative for acquisition state.",
+  "sources": [
+    {
+      "id": "aim_paper",
+      "directory": "aimpaper",
+      "kind": "paper",
+      "citation_keys": ["LWX126"],
+      "title": "On the Last Kervaire Invariant Problem",
+      "year": 2024,
+      "canonical_url": "https://arxiv.org/abs/2412.10879",
+      "role": "Target paper; theorem, table, and locator source for the formalization blueprint.",
+      "status_file": null,
+      "status_class": "source_of_record",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {"path": "aimpaper/main.tex", "kind": "tex", "required": true, "sha256": "1125462bcae4a4ec56e3bfcaad15df4febf98757dfb83462b155af162c99c9e0"},
+        {"path": "aimpaper/112.tex", "kind": "tex", "required": true, "sha256": "5eb83ef105ce9dbbda87a9f57726bb5c078308fd3718840ea29ee8100cbefabb"},
+        {"path": "aimpaper/main.bib", "kind": "bibliography", "required": true, "sha256": "ef28d62f0343a70c6176387d25fd19c50cc053197d522170632aa9aa24f1cd1d"},
+        {"path": "aimpaper/main.bbl", "kind": "bibliography", "required": false, "sha256": "bab55d90e78aa1910e086c0b811be5113eea2470af20e4eb3bf1e26e9d8f6675"},
+        {"path": "aimpaper/2412.10879.pdf", "kind": "pdf", "required": true, "sha256": "7cae269851a88d10dd194651dbf7497b75ef8b8b914bc1901dfa3734cd8096b4"}
+      ]
+    },
+    {
+      "id": "browder",
+      "directory": "reference/Browder",
+      "kind": "literature",
+      "citation_keys": ["Browder"],
+      "title": "The Kervaire invariant of framed manifolds and its generalization",
+      "year": 1969,
+      "doi": "10.2307/1970686",
+      "canonical_url": "https://doi.org/10.2307/1970686",
+      "role": "Kervaire-invariant criterion relating survival of h_j^2 to a nonzero Kervaire class.",
+      "status_file": "reference/Browder/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": true, "pdf": true, "text": true, "source": false},
+      "artifacts": [
+        {"path": "reference/Browder/citation.bib", "kind": "citation", "required": true, "sha256": "57c7b5b0e1c37ebea4163f831e27f1607a0dc677f8d6b705b4cc08d3163e9ea9"},
+        {"path": "reference/Browder/source-status.json", "kind": "status", "required": true, "sha256": "5fce9aa430e08a6c432824c63a73407286831009cd88b7410b015a5b8b7e87c1"},
+        {"path": "reference/Browder/openalex.json", "kind": "metadata", "required": true, "sha256": "db1d6df5fe79e1b92b234fd78022acaf288bc99b8fccb1ddee2aec3eb0160471"},
+        {"path": "reference/Browder/paper.pdf", "kind": "pdf", "required": true, "sha256": "c193503233aa6885b094c83cbc98c91405650ff30d22b12baec34d7c30d823b3"},
+        {"path": "reference/Browder/paper.txt", "kind": "text", "required": true, "sha256": "740589b47594fc47dfb4328b69833ede27a185f9bf7258d23870dca979fc0377"}
+      ]
+    },
+    {
+      "id": "mahowald_tangora",
+      "directory": "reference/MahowaldTangora",
+      "kind": "literature",
+      "citation_keys": ["MahowaldTangora"],
+      "title": "Some differentials in the Adams spectral sequence",
+      "year": 1967,
+      "doi": "10.1016/0040-9383(67)90023-7",
+      "canonical_url": "https://doi.org/10.1016/0040-9383(67)90023-7",
+      "role": "Earlier Adams differentials and the h_4^2 survival input.",
+      "status_file": "reference/MahowaldTangora/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {"metadata": true, "pdf": false, "text": false, "source": false},
+      "artifacts": [
+        {"path": "reference/MahowaldTangora/citation.bib", "kind": "citation", "required": true, "sha256": "573448eb965d8209bd63f370cc1d70ef1adb4ba82a4c122a6eb7ff4f9ce1179a"},
+        {"path": "reference/MahowaldTangora/source-status.json", "kind": "status", "required": true, "sha256": "9d93742531cfb2c526cbb68459fec8c112f516031df2c2f6e6fb929d3f467334"},
+        {"path": "reference/MahowaldTangora/openalex.json", "kind": "metadata", "required": true, "sha256": "bd153d7ea007fce820192f9117ef6e604b9cfc9ecbc293f021331209e14bf947"}
+      ]
+    },
+    {
+      "id": "bjm_theta5",
+      "directory": "reference/BJMtheta5",
+      "kind": "literature",
+      "citation_keys": ["BJMtheta5"],
+      "title": "Relations amongst Toda brackets and the Kervaire invariant in dimension 62",
+      "year": 1984,
+      "doi": "10.1112/jlms/s2-30.3.533",
+      "canonical_url": "https://doi.org/10.1112/jlms/s2-30.3.533",
+      "role": "h_5^2 survival and dimension-62 input supplying theta_5.",
+      "status_file": "reference/BJMtheta5/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {"metadata": true, "pdf": false, "text": false, "source": false},
+      "artifacts": [
+        {"path": "reference/BJMtheta5/citation.bib", "kind": "citation", "required": true, "sha256": "e29fee8f9a4d7fc71e4ca71719a4c4ee1a19f4a3eab1210a451db52a31b45230"},
+        {"path": "reference/BJMtheta5/source-status.json", "kind": "status", "required": true, "sha256": "473a51351b2cbebbd0ade357bdac62ff9f8fac1187a68d495caedf85f9a1594c"},
+        {"path": "reference/BJMtheta5/openalex.json", "kind": "metadata", "required": true, "sha256": "e27b63bf3352b9d422c6a7bcab5c46d9c470e61506feb812919194ec8dd5bcbc"},
+        {"path": "reference/BJMtheta5/semantic-scholar.json", "kind": "metadata", "required": true, "sha256": "c71f7b1fe80bef14172a78b893f07ea36dffb802fb3517c765009dd1b2332d87"}
+      ]
+    },
+    {
+      "id": "bjm_induction",
+      "directory": "reference/BJMinduction",
+      "kind": "literature",
+      "citation_keys": ["BJMinduction", "BarrattJonesMahowald"],
+      "title": "The Kervaire invariant problem",
+      "year": 1983,
+      "doi": "10.1090/conm/019/711039",
+      "canonical_url": "https://doi.org/10.1090/conm/019/711039",
+      "role": "Barratt–Jones–Mahowald inductive criterion for theta_j.",
+      "status_file": "reference/BJMinduction/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {"metadata": true, "pdf": false, "text": false, "source": false},
+      "artifacts": [
+        {"path": "reference/BJMinduction/citation.bib", "kind": "citation", "required": true, "sha256": "8b08f1d3c475c7f834f5e84e9b43001852fe29f288f6f607b0f8af17aa5fbd4e"},
+        {"path": "reference/BJMinduction/source-status.json", "kind": "status", "required": true, "sha256": "4236c88cafb6f457c6e66c17c2ac2f6e8f79f9297d9736b223cc4627ace8bcde"},
+        {"path": "reference/BJMinduction/openalex.json", "kind": "metadata", "required": true, "sha256": "3353faa63b0c855d09fef6d2c36510e6b6435f8d5b78841af0685e0fa1267f9e"}
+      ]
+    },
+    {
+      "id": "may_thesis",
+      "directory": "reference/Maythesis",
+      "kind": "literature",
+      "citation_keys": ["Maythesis"],
+      "title": "The cohomology of restricted Lie algebras and of Hopf algebras",
+      "year": 1966,
+      "doi": "10.1016/0021-8693(66)90009-3",
+      "canonical_url": "https://doi.org/10.1016/0021-8693(66)90009-3",
+      "role": "Low-page Adams-survival results used by the lower-dimensional package.",
+      "status_file": "reference/Maythesis/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {"metadata": true, "pdf": false, "text": false, "source": false},
+      "artifacts": [
+        {"path": "reference/Maythesis/citation.bib", "kind": "citation", "required": true, "sha256": "b231d4d775a1a975644dae52f34df053a5dc75a57f03efb8dcd21c469d83bd26"},
+        {"path": "reference/Maythesis/source-status.json", "kind": "status", "required": true, "sha256": "2cd35e8c40d58efbf1aa9a8be020e1294a8496f8e71dad9e8114feec21bb82c3"},
+        {"path": "reference/Maythesis/openalex.json", "kind": "metadata", "required": true, "sha256": "d5402b5b43ada2b33432c407d6ff1764e0d722d8a91580f92c6fa33ad96bf487"}
+      ]
+    },
+    {
+      "id": "hhr",
+      "directory": "reference/HHR",
+      "kind": "literature",
+      "citation_keys": ["HHR"],
+      "title": "On the nonexistence of elements of Kervaire invariant one",
+      "year": 2016,
+      "doi": "10.4007/annals.2016.184.1.1",
+      "canonical_url": "https://doi.org/10.4007/annals.2016.184.1.1",
+      "role": "Nonexistence of Kervaire-invariant-one classes in forbidden higher dimensions.",
+      "status_file": "reference/HHR/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": true, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/HHR/citation.bib", "kind": "citation", "required": true, "sha256": "1ea332d9b9487c6ae2f67fd1c31ce01eea02ca62aaf3617ff9573455828770c0"},
+        {"path": "reference/HHR/source-status.json", "kind": "status", "required": true, "sha256": "b7a1616b3717acd58c66cffaa7f5020d0cdf4a9ed88a927509c612c2311b1e10"},
+        {"path": "reference/HHR/openalex.json", "kind": "metadata", "required": true, "sha256": "37fac92079be007677f4d32bc302b644c9eb6ce16b97534db253caa4accdc979"},
+        {"path": "reference/HHR/arxiv-source", "kind": "source_archive", "required": true, "sha256": "8ae2e3f4e7cbfccafbf4557a621e07e1fadc95a200f6b3500f2488c047c79484"},
+        {"path": "reference/HHR/paper.pdf", "kind": "pdf", "required": true, "sha256": "f2c42787c5ca6532b131c2deae2cf211fef6bdc2513559dbb5e69f2c92daf1d2"},
+        {"path": "reference/HHR/paper.txt", "kind": "text", "required": true, "sha256": "2ea86c84f33d30dcfb3c712d0b131b84def2963a2d78c97c7c78ca412e491e0d"}
+      ]
+    },
+    {
+      "id": "xu",
+      "directory": "reference/Xu",
+      "kind": "literature",
+      "citation_keys": ["Xu"],
+      "title": "The strong Kervaire invariant problem in dimension 62",
+      "year": 2016,
+      "doi": "10.2140/gt.2016.20.1611",
+      "canonical_url": "https://doi.org/10.2140/gt.2016.20.1611",
+      "role": "Dimension-62 stable-stem and order-two facts for theta_5.",
+      "status_file": "reference/Xu/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": true, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/Xu/citation.bib", "kind": "citation", "required": true, "sha256": "bef724085402bffd78cd862b4020c69b032e7b57803b884166db9787ab217141"},
+        {"path": "reference/Xu/source-status.json", "kind": "status", "required": true, "sha256": "7c7854dec1fba9816988aefb596fcd7d6378e36a58d0c6697d196630e577f01c"},
+        {"path": "reference/Xu/openalex.json", "kind": "metadata", "required": true, "sha256": "77a7c7a7c81c0cf975e144bf907517a59f6af84bc4c95fa5a043ae29ee164e0b"},
+        {"path": "reference/Xu/arxiv-source", "kind": "source_archive", "required": true, "sha256": "fd37b77a8b7d5e38b3cf87f7c6ea6e95a8bcc4c69e6c7e7ca6778622dea95275"},
+        {"path": "reference/Xu/paper.pdf", "kind": "pdf", "required": true, "sha256": "133f6258fb9e4d2cc28651020697203b15ed793b1e4705bd111bd1fd27efa183"},
+        {"path": "reference/Xu/paper.txt", "kind": "text", "required": true, "sha256": "7de73c13b272eba9f8e45e90077cc27d09f35d5ea77f6fd8ea16f82cd9a35496"}
+      ]
+    },
+    {
+      "id": "iwx",
+      "directory": "reference/IWX",
+      "kind": "literature",
+      "citation_keys": ["IWX"],
+      "title": "Stable homotopy groups of spheres: from dimension 0 to 90",
+      "year": 2023,
+      "doi": "10.1007/s10240-023-00139-1",
+      "canonical_url": "https://doi.org/10.1007/s10240-023-00139-1",
+      "role": "Stable-stem and theta_5 indeterminacy/order-two facts.",
+      "status_file": "reference/IWX/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": true, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/IWX/citation.bib", "kind": "citation", "required": true, "sha256": "cc9a29719d448a700ebdc1e68426a791e23e3621f7125a560d85bf86aaf81a74"},
+        {"path": "reference/IWX/source-status.json", "kind": "status", "required": true, "sha256": "f6b6b89d57e280e2990ce8e3ac6d12c4d7a992ac7cb45f7bb421391ad9fd0fe4"},
+        {"path": "reference/IWX/openalex.json", "kind": "metadata", "required": true, "sha256": "a25101836295eefa85a1054efa4fafd2d7c9fdbfffdab2e61786e91ecd57b186"},
+        {"path": "reference/IWX/arxiv-source", "kind": "source_archive", "required": true, "sha256": "178477986a1d07c6fae12ca657bca191d6b8903d98d78f3eb9650aedc9ac25cb"},
+        {"path": "reference/IWX/paper.pdf", "kind": "pdf", "required": true, "sha256": "f79cf973414fb3c1d6fa5fd94c522755518eb73933945b5ef0cece4e70e85bcc"},
+        {"path": "reference/IWX/paper.txt", "kind": "text", "required": true, "sha256": "e7b07da9365d801d0d3026886b180cbbe0fa41833387666bcd6fc1ef050a7f00"}
+      ]
+    },
+    {
+      "id": "tmf",
+      "directory": "reference/tmf",
+      "kind": "literature",
+      "citation_keys": ["tmf"],
+      "title": "The 2-primary Hurewicz image of tmf",
+      "year": 2023,
+      "doi": "10.2140/gt.2023.27.2763",
+      "canonical_url": "https://doi.org/10.2140/gt.2023.27.2763",
+      "role": "Hurewicz-detection input for the possible lambda^20 g^4 Delta h_1 g class.",
+      "status_file": "reference/tmf/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": true, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/tmf/citation.bib", "kind": "citation", "required": true, "sha256": "e4d34be2fae0b5f48b72249c7ae75b4b6eda985b217d2212c304bde0d6373d6f"},
+        {"path": "reference/tmf/source-status.json", "kind": "status", "required": true, "sha256": "4cdd914c0079f9bca0d396d466cbc981cd026e256864912beb978c26afa30fd7"},
+        {"path": "reference/tmf/openalex.json", "kind": "metadata", "required": true, "sha256": "a8323936c039591718cd6e487de6f44ab620ae104fa7c6bc2fd8cb916d614796"},
+        {"path": "reference/tmf/arxiv-source", "kind": "source_archive", "required": true, "sha256": "8e8f095032b7f41d57aeac1d336ac626f8f0396daa5b2cf643cc3960f20eeac8"},
+        {"path": "reference/tmf/paper.pdf", "kind": "pdf", "required": true, "sha256": "4cf5ba296d4a6bc1402b4c0dbdac10b689c2d41dda039372bef357f67b45561b"},
+        {"path": "reference/tmf/paper.txt", "kind": "text", "required": true, "sha256": "fa657969d0ca224ed0d2a71704239021ad7a8ca1394fdb46e4ee9f6af47d3ee6"}
+      ]
+    },
+    {
+      "id": "pst",
+      "directory": "reference/Pst",
+      "kind": "literature",
+      "citation_keys": ["Pst"],
+      "title": "Synthetic spectra and the cellular motivic category",
+      "year": 2023,
+      "doi": "10.1007/s00222-022-01173-2",
+      "canonical_url": "https://doi.org/10.1007/s00222-022-01173-2",
+      "role": "Synthetic spectra, nu, and deformation/localization interfaces.",
+      "status_file": "reference/Pst/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": true, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/Pst/citation.bib", "kind": "citation", "required": true, "sha256": "96a6bdae98f0d6242a7d536cfea9c213b3bfdceaf5fa373357465fc15a89c7b1"},
+        {"path": "reference/Pst/source-status.json", "kind": "status", "required": true, "sha256": "cd9df0c7ec01cc685b2de3ae87865e23eeb30cf1c0ca9d6fecd79fa7057574f7"},
+        {"path": "reference/Pst/openalex.json", "kind": "metadata", "required": true, "sha256": "a9d49db8f7db478a32c0e7e98552989c83df667675b8c45d8e1581cac65d6eb2"},
+        {"path": "reference/Pst/arxiv-source", "kind": "source_archive", "required": true, "sha256": "bc3187f0a63dc833b2c88aa580ad32674242587ee50765ac1ecd36633185d917"},
+        {"path": "reference/Pst/paper.pdf", "kind": "pdf", "required": true, "sha256": "7d27ca462cafbbb6ef3befc0ef76bb340c44a7bb666581a7e2eb7c10ada1c76d"},
+        {"path": "reference/Pst/paper.txt", "kind": "text", "required": true, "sha256": "5bf56a321eb0557ed99f44fdb07a56c2d3607df43a1e8416d2d00548a551f517"}
+      ]
+    },
+    {
+      "id": "bhs",
+      "directory": "reference/BHS",
+      "kind": "literature",
+      "citation_keys": ["BHS"],
+      "title": "On the boundaries of highly connected, almost closed manifolds",
+      "year": 2023,
+      "doi": "10.4310/acta.2023.v231.n2.a1",
+      "canonical_url": "https://doi.org/10.4310/acta.2023.v231.n2.a1",
+      "role": "Rigidity, synthetic Adams/Bockstein comparison, and extension interfaces.",
+      "status_file": "reference/BHS/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": true, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/BHS/citation.bib", "kind": "citation", "required": true, "sha256": "a2a01ae7adf8723a7204d18a839044a550380bdb7d9d5fa59cb140e3a5f2ece4"},
+        {"path": "reference/BHS/source-status.json", "kind": "status", "required": true, "sha256": "1d1534796214722cc1d42bc46d8f492114f2724183fa957160d469f7e1f4d057"},
+        {"path": "reference/BHS/openalex.json", "kind": "metadata", "required": true, "sha256": "28e4e8266b33cd1ab03420e6322c260cad734b39d3715cf6c9699b77206a91a9"},
+        {"path": "reference/BHS/arxiv-source", "kind": "source_archive", "required": true, "sha256": "1caedec23a4a9d827930c8718d17d9a5643eda4457148ebd88cccd243c8df9db"},
+        {"path": "reference/BHS/paper.pdf", "kind": "pdf", "required": true, "sha256": "563c5bb63166c54033e82fcd90df1cef094def0dc7f8c69104a0888565474e6b"},
+        {"path": "reference/BHS/paper.txt", "kind": "text", "required": true, "sha256": "69e6c64c752723f4dd10f3edd8f27310011aec0073e22fe96de5d5e4d6fa6d74"}
+      ]
+    },
+    {
+      "id": "bhs_mot",
+      "directory": "reference/BHSmot",
+      "kind": "literature",
+      "citation_keys": ["BHSmot"],
+      "title": "Galois reconstruction of Artin–Tate R-motivic spectra",
+      "year": 2020,
+      "doi": "10.48550/arXiv.2010.10325",
+      "canonical_url": "https://arxiv.org/abs/2010.10325",
+      "role": "E_infinity structure on lambda^n-quotients used by synthetic constructions.",
+      "status_file": "reference/BHSmot/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": false, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/BHSmot/citation.bib", "kind": "citation", "required": true, "sha256": "2601dede1852dfbec033aaf04ef0bb189083da6f3fd424cc67e3106fd8de902c"},
+        {"path": "reference/BHSmot/source-status.json", "kind": "status", "required": true, "sha256": "a502afcb353203fd176f89a55ddca793eb0496c7cc026573c10fc6c90c988036"},
+        {"path": "reference/BHSmot/arxiv-source", "kind": "source_archive", "required": true, "sha256": "d873685e6f859a40952d55ec9a41beccd8d48e64bb7b74dbc101968d13cabd3d"},
+        {"path": "reference/BHSmot/paper.pdf", "kind": "pdf", "required": true, "sha256": "f74a6f89b5774c5e022750ddd46cbc8cb77abd6fddb9485746171d52586e2ef8"},
+        {"path": "reference/BHSmot/paper.txt", "kind": "text", "required": true, "sha256": "f8e2bb9eac1a3d6d050e743f4ca46db2fc28ae8176f1a4ace122ccec7350311e"}
+      ]
+    },
+    {
+      "id": "burklund_xu",
+      "directory": "reference/BurklundXu",
+      "kind": "literature",
+      "citation_keys": ["BurklundXu"],
+      "title": "The Adams differentials on the classes h_j^3",
+      "year": 2025,
+      "doi": "10.1007/s00222-024-01298-6",
+      "canonical_url": "https://doi.org/10.1007/s00222-024-01298-6",
+      "role": "Synthetic extension of the BJM criterion and the lambda eta theta_5^2 differential relation.",
+      "status_file": "reference/BurklundXu/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": true, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/BurklundXu/citation.bib", "kind": "citation", "required": true, "sha256": "4e3494ac2239ac49b2319cdbe54ebd740c7744faad189356f15dc639cfc32883"},
+        {"path": "reference/BurklundXu/source-status.json", "kind": "status", "required": true, "sha256": "c6ccb83ea3956f0ec4c590456c05390af67df518a9cd85d8ca236c6b15852fa1"},
+        {"path": "reference/BurklundXu/openalex.json", "kind": "metadata", "required": true, "sha256": "9855be643480048ccd3669522b840b57115eb6652229fba5ebbe1a479e21c5dd"},
+        {"path": "reference/BurklundXu/arxiv-source", "kind": "source_archive", "required": true, "sha256": "a30c50a346291dde22bab52d07cff3fc378afb3088ec92643b45418fb615e028"},
+        {"path": "reference/BurklundXu/paper.pdf", "kind": "pdf", "required": true, "sha256": "c94a3184977162ccbc3fa538a184c2bc3789e67e56de60ef9b1d72bb60617b6a"},
+        {"path": "reference/BurklundXu/paper.txt", "kind": "text", "required": true, "sha256": "5487db430f7d1173f09ec2691bdc7a28796e806bcc25268254bc52f53cd08f4e"}
+      ]
+    },
+    {
+      "id": "may01",
+      "directory": "reference/May01",
+      "kind": "literature",
+      "citation_keys": ["May01"],
+      "title": "The additivity of traces in triangulated categories",
+      "year": 2001,
+      "doi": "10.1006/aima.2001.1995",
+      "canonical_url": "https://doi.org/10.1006/aima.2001.1995",
+      "role": "Triangulated pullback lemma used in the generalized Leibniz argument.",
+      "status_file": "reference/May01/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {"metadata": true, "pdf": false, "text": false, "source": false},
+      "artifacts": [
+        {"path": "reference/May01/citation.bib", "kind": "citation", "required": true, "sha256": "30765408084974b75e03b0e7e97ce6d4511119f3b99c80b39085a52ee8a94d04"},
+        {"path": "reference/May01/source-status.json", "kind": "status", "required": true, "sha256": "92349814ea51006b8d4e8fdf6db2c423b5524a115ed0c371b8a8fb814fbbd0ee"},
+        {"path": "reference/May01/openalex.json", "kind": "metadata", "required": true, "sha256": "dbedbd5347d40d8272f23d8162d56d7ce7800428ea8b13f0d6c75805e3e23888"}
+      ]
+    },
+    {
+      "id": "moss",
+      "directory": "reference/Moss",
+      "kind": "literature",
+      "citation_keys": ["Moss"],
+      "title": "Secondary compositions and the Adams spectral sequence",
+      "year": 1970,
+      "doi": "10.1007/BF01129978",
+      "canonical_url": "https://doi.org/10.1007/BF01129978",
+      "role": "No-crossing/Toda-bracket criterion used in the final extension contradiction.",
+      "status_file": "reference/Moss/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {"metadata": true, "pdf": false, "text": false, "source": false},
+      "artifacts": [
+        {"path": "reference/Moss/citation.bib", "kind": "citation", "required": true, "sha256": "24755b33ce39a3bdfca49af7ccb065256050c541c77e46ef952b3bec98c41dfd"},
+        {"path": "reference/Moss/source-status.json", "kind": "status", "required": true, "sha256": "90fd45004ecbac787304a7e057b6fcd229d231f05d629dded1cfbc99656a9b41"},
+        {"path": "reference/Moss/openalex.json", "kind": "metadata", "required": true, "sha256": "0d8ab7e5fe9108c75a2e92c7a9ccf985632d4fc831c3eb0cd7174ed978eb7e51"},
+        {"path": "reference/Moss/semantic-scholar.json", "kind": "metadata", "required": true, "sha256": "5e938ee760c86289d296e385b6dd8b4243dd070012037cd04f2709b9b633af44"}
+      ]
+    },
+    {
+      "id": "br21",
+      "directory": "reference/BR21",
+      "kind": "literature",
+      "citation_keys": ["BR21"],
+      "title": "The Adams spectral sequence for topological modular forms",
+      "year": 2021,
+      "doi": "10.1090/surv/253",
+      "canonical_url": "https://doi.org/10.1090/surv/253",
+      "role": "Manually supplied tmf differential d_3(v_2^16)=beta^5 g.",
+      "status_file": "reference/BR21/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {"metadata": true, "pdf": false, "text": false, "source": false},
+      "artifacts": [
+        {"path": "reference/BR21/citation.bib", "kind": "citation", "required": true, "sha256": "f36a963b2b4c9f45ab0b86cb9418b53cf327799f7b14192be7215a2e2cb22c47"},
+        {"path": "reference/BR21/source-status.json", "kind": "status", "required": true, "sha256": "c4426803bad972e02fdab482d0aa370e0dde8962437a5e3082c75da3cb8d5438"},
+        {"path": "reference/BR21/openalex.json", "kind": "metadata", "required": true, "sha256": "e6d60ececf20d6ee696509464259c405f03f8b244a8e72a8336e49d21793cf47"}
+      ]
+    },
+    {
+      "id": "lwx_machine",
+      "directory": "reference/LWXMachine",
+      "kind": "machine",
+      "citation_keys": ["LWXMachine", "LWXZenodo", "LinProgram", "LinPlot"],
+      "title": "Machine Proofs for Adams Differentials and Extension Problems Among CW Spectra",
+      "year": 2024,
+      "doi": "10.48550/arXiv.2412.10876",
+      "canonical_url": "https://arxiv.org/abs/2412.10876",
+      "role": "Lin–Wang–Xu paper, Zenodo proofs/data, SSeqCpp, and plot evidence for Appendix facts.",
+      "status_file": "reference/LWXMachine/source-status.json",
+      "status_class": "full_text",
+      "availability": {"metadata": false, "pdf": true, "text": true, "source": true},
+      "artifacts": [
+        {"path": "reference/LWXMachine/citation.bib", "kind": "citation", "required": true, "sha256": "335a38a8aa422e134562d17957856a26c449d499a2d54b9364c1115fb57f2b9a"},
+        {"path": "reference/LWXMachine/source-status.json", "kind": "status", "required": true, "sha256": "6da3f6ede4fd2f6c8e5a59b884fcb329e8beaa3e8d6b516d8e90d20a668306ac"},
+        {"path": "reference/LWXMachine/arxiv-source", "kind": "source_archive", "required": true, "sha256": "1431b62157e5e430e8fb62a0e11a666a969794d67597f132f89ce92a57a301c0"},
+        {"path": "reference/LWXMachine/paper.pdf", "kind": "pdf", "required": true, "sha256": "226fdd5b7d0078eaa9fd6c599a922d172ede5f8c095394b55c7550d4c8743935"},
+        {"path": "reference/LWXMachine/paper.txt", "kind": "text", "required": true, "sha256": "d3caf1c0541328b8409ea24216d1ec168d3ccadf21aa3e898068e0c2602bb51d"},
+        {"path": "reference/LWXMachine/zenodo-record.json", "kind": "machine_metadata", "required": true, "sha256": "ee6a6622777d04cce0f268eded8255a108714e4bf4fddc333321309475fa43b3"},
+        {"path": "reference/LWXMachine/lin-program-page.html", "kind": "machine_artifact", "required": true, "sha256": "4bbec290b545ec628834307701939937d206090cff6c9831cd439ee80737c1dd"},
+        {"path": "reference/LWXMachine/lin-plot.html", "kind": "machine_artifact", "required": true, "sha256": "96d3a345648b94971fb51fd15befd15f011878c2c2d7818e70e041955a0761bb"}
+      ]
+    }
+  ]
+}

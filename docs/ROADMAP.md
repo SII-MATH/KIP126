@@ -39,9 +39,11 @@ KIP126/
 ├── Comparison/
 │   └── ClassicalSynthetic/    -- ν、λ、ρ、δ、weight forget/reindex、rigidity
 ├── External/
+│   ├── Provenance
 │   ├── Results
 │   ├── Evidence
-│   └── SourceInventory
+│   ├── SourceInventory
+│   └── Claims
 └── Kervaire/
     ├── Assumptions
     ├── AppendixData
