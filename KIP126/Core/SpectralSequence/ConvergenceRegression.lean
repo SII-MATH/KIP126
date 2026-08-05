@@ -22,6 +22,115 @@ universe u v
 variable {C : Type u} [Category.{v} C] [Abelian C]
 variable {FC : FilteredComplex C} (P : EndpointExtension FC)
 
+section ConstructedZeroEndpoint
+
+/-- A genuinely constructed endpoint-extension regression fixture.  All finite
+filtration levels are zero subcomplexes of the zero complex, so the finite
+comparison and both endpoint universal properties can be proved rather than
+assumed as variables. -/
+private noncomputable def zeroFilteredComplex : FilteredComplex C where
+  complex := HomologicalComplex.zero
+  filtration :=
+    { F := fun _ _ => ⊥
+      decreasing := by
+        intro s k
+        exact le_rfl }
+  differential_preserves := by
+    intro s k
+    refine ⟨0, ?_⟩
+    simp
+
+private noncomputable def zeroFilteredChainIso (s : ℤ) :
+    (zeroFilteredComplex (C := C)).filteredChainComplex s ≅ HomologicalComplex.zero := by
+  refine HomologicalComplex.Hom.isoOfComponents (fun k => Subobject.botCoeIsoZero) ?_
+  intro i j hij
+  exact ((isZero_zero C).of_iso (Subobject.botCoeIsoZero)).eq_of_src _ _
+
+private noncomputable def zeroFilteredCochainComplex : CochainComplex C ℤ :=
+  (ChainComplex.cochainComplexEquivalence C).functor.obj HomologicalComplex.zero
+
+private noncomputable def zeroFilteredCochainIso (s : ℤ) :
+    (zeroFilteredComplex (C := C)).filteredCochainComplex s ≅
+      zeroFilteredCochainComplex (C := C) :=
+  (ChainComplex.cochainComplexEquivalence C).functor.mapIso
+    (zeroFilteredChainIso (C := C) s)
+
+private theorem zeroFilteredCochainIsZero (s : ℤ) :
+    IsZero ((zeroFilteredComplex (C := C)).filteredCochainComplex s) :=
+  (((ChainComplex.cochainComplexEquivalence C).functor.map_isZero
+      (HomologicalComplex.isZero_zero (V := C) (c := ComplexShape.down ℤ))).of_iso
+    (zeroFilteredCochainIso (C := C) s))
+
+private theorem zeroFilteredCochainComplexIsZero :
+    IsZero (zeroFilteredCochainComplex (C := C)) :=
+  (ChainComplex.cochainComplexEquivalence C).functor.map_isZero
+    (HomologicalComplex.isZero_zero (V := C) (c := ComplexShape.down ℤ))
+
+private noncomputable def zeroFilteredFiniteIso :
+    (zeroFilteredComplex (C := C)).filteredCochainDiagram ≅
+      (Functor.const (OrderDual ℤ)).obj (zeroFilteredCochainComplex (C := C)) :=
+  NatIso.ofComponents
+    (fun s => zeroFilteredCochainIso (C := C) s)
+    (by
+      intro s t f
+      exact (zeroFilteredCochainIsZero (C := C) s).eq_of_src _ _)
+
+private noncomputable def zeroEndpointExtension :
+    EndpointExtension (zeroFilteredComplex (C := C)) where
+  diagram := (Functor.const EInt).obj (zeroFilteredCochainComplex (C := C))
+  finiteIso := zeroFilteredFiniteIso (C := C)
+
+private noncomputable def zeroEndpointBoundaryWitness :
+    (zeroEndpointExtension (C := C)).BoundaryWitness where
+  bottomIsLimit := IsLimit.ofIsZero _
+    (Functor.isZero _ (fun _ => zeroFilteredCochainComplexIsZero (C := C)))
+    (zeroFilteredCochainComplexIsZero (C := C))
+  botIsZero := zeroFilteredCochainComplexIsZero (C := C)
+  topIsColimit := IsColimit.ofIsZero _
+    (Functor.isZero _ (fun _ => zeroFilteredCochainComplexIsZero (C := C)))
+    (zeroFilteredCochainComplexIsZero (C := C))
+  top := zeroFilteredCochainComplex (C := C)
+  topIso := Iso.refl _
+
+private noncomputable def zeroGradedObject : CategoryTheory.GradedObject ℤ C :=
+  fun _ => HasZeroObject.zero.choose
+
+private noncomputable def zeroFiltration : Algebra.Filtration (zeroGradedObject (C := C)) where
+  F := fun _ _ => ⊥
+  decreasing := by
+    intro s i
+    exact le_rfl
+
+private theorem zeroFiltrationEventuallyZero :
+    (zeroFiltration (C := C)).IsEventuallyZero := by
+  intro i
+  exact ⟨0, rfl⟩
+
+example : EndpointExtension (zeroFilteredComplex (C := ModuleCat ℤ)) :=
+  zeroEndpointExtension (C := ModuleCat ℤ)
+
+example : (zeroEndpointExtension (C := ModuleCat ℤ)).BoundaryWitness :=
+  zeroEndpointBoundaryWitness (C := ModuleCat ℤ)
+
+example : IsLimit (zeroEndpointExtension (C := ModuleCat ℤ)).finiteBottomCone :=
+  (zeroEndpointExtension (C := ModuleCat ℤ)).finiteBottomIsLimit
+    (zeroEndpointBoundaryWitness (C := ModuleCat ℤ))
+
+example : IsColimit (zeroEndpointExtension (C := ModuleCat ℤ)).finiteTopCocone :=
+  (zeroEndpointExtension (C := ModuleCat ℤ)).finiteTopIsColimit
+    (zeroEndpointBoundaryWitness (C := ModuleCat ℤ))
+
+example (n : ℤ) :
+    (zeroGradedObject (C := ModuleCat ℤ)) n ≅
+      limit ((zeroFiltration (C := ModuleCat ℤ)).quotientTower n) := by
+  let W := Algebra.Filtration.CompletionWitness.of_isEventuallyZero
+    (zeroFiltration (C := ModuleCat ℤ))
+    (zeroFiltrationEventuallyZero (C := ModuleCat ℤ)) n
+  letI : HasLimit ((zeroFiltration (C := ModuleCat ℤ)).quotientTower n) := W.hasLimit
+  exact W.completionIso
+
+end ConstructedZeroEndpoint
+
 section Endpoints
 
 example : OrderDual ℤ ⥤ EInt :=
@@ -109,6 +218,9 @@ variable (W : PageAbutmentComparisonWitness P A F)
 
 example : P.BoundaryWitness :=
   W.boundary
+
+example : P.endpointAbutment A F ≅ W.abutment :=
+  W.endpointAbutmentIso
 
 example (n : ℤ) : Algebra.Filtration.CompletionWitness W.filtration n :=
   W.completion n

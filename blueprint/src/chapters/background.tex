@@ -543,6 +543,11 @@ must still be constructed.
   \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.hasLimit}
   \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.completionIso}
   \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.completionIso_hom_comp_limit_π}
+  \lean{KIP126.Core.Algebra.Filtration.eq_bot_of_le_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientProjection_isIso_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition_isIso_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTower_isEventuallyConstantTo_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTowerCone_isLimit_of_eq_bot}
   \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.of_isEventuallyZero}
   \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.of_isBoundedAbove}
   \leanok
@@ -1018,6 +1023,7 @@ must still be constructed.
   \uses{def:filtered-complex-endpoint-extension,def:filtered-complex-triangulated-spectral-object,def:homological-image-abelian-spectral-object,def:mathlib-e2-spectral-sequence,def:mathlib-spectral-sequence-first-page}
   \lean{KIP126.Core.SpectralSequence.EndpointExtension.triangulatedSpectralObject}
   \lean{KIP126.Core.SpectralSequence.EndpointExtension.abelianSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.endpointAbutment}
   \lean{KIP126.Core.SpectralSequence.EndpointExtension.spectralSequence}
   \lean{KIP126.Core.SpectralSequence.EndpointExtension.firstPageXIso}
   \leanok
@@ -1034,7 +1040,7 @@ must still be constructed.
 \end{definition}
 
 % SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, explicit selected-page/abutment comparison witness.
-\begin{definition}[Selected-page comparison with a bounded complete abutment]
+\begin{definition}[Pointwise selected-page comparison with a bounded complete endpoint abutment]
   \label{def:page-abutment-comparison-witness}
   \uses{def:filtered-complex-endpoint-e2-spectral-sequence,def:core-filtration-completion-witness,def:core-bounded-filtration,def:core-associated-graded,lem:core-bounded-below-exhaustive,lem:core-bounded-above-eventually-zero}
   \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness}
@@ -1043,13 +1049,14 @@ must still be constructed.
   \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.eventuallyZero}
   \leanok
   For one endpoint extension and one chosen homological functor, this witness
-  records its endpoint boundary data, a graded abutment with a decreasing
-  filtration, and degreewise boundedness.  It derives a canonical completion
-  witness in every grading degree from the bounded-above component.  It also
-  chooses, for every bidegree $(p,q)$, a page at least $2$ and an isomorphism
-  from that page object to the indicated associated-graded piece of the
-  abutment.  The boundedness field yields compiled proofs that the abutment
-  filtration is exhaustive and eventually zero.
+  records its endpoint boundary data, a graded abutment explicitly isomorphic
+  to the shifted homological image of the upper endpoint, a decreasing
+  filtration on that abutment, and degreewise boundedness.  It derives a
+  canonical completion witness in every grading degree from the bounded-above
+  component.  It also chooses, for every bidegree $(p,q)$, a page at least $2$
+  and an isomorphism from that page object to the indicated associated-graded
+  piece of the endpoint abutment.  The boundedness field yields compiled proofs
+  that the abutment filtration is exhaustive and eventually zero.
 
   This is intentionally a selected-page comparison, not a strong-convergence
   theorem: it supplies neither coherence of comparisons under page passage nor
@@ -1074,8 +1081,9 @@ must still be constructed.
   They induce morphisms of the associated triangulated spectral objects and,
   after a fixed homological functor is applied, of the resulting abelian
   spectral objects.  The present interface deliberately stops there: it does
-  not claim a packaged Mathlib spectral-sequence morphism or pagewise
-  naturality for the canonical $E_2$ sequences.
+  not require preservation of separately chosen boundary or page/abutment
+  witnesses, and it does not claim a packaged Mathlib spectral-sequence
+  morphism or pagewise naturality for the canonical $E_2$ sequences.
 \end{definition}
 
 % SOURCE: KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean: project adapter declarations;

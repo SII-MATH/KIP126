@@ -143,7 +143,10 @@ equating it definitionally to any finite filtration level. -/
 /-- A map of endpoint extensions lying over a filtered-complex morphism.
 The compatibility square is stated after restricting the endpoint diagrams to
 the finite filtration range; it therefore prevents endpoint-level functoriality
-from losing the already-established finite filtration map. -/
+from losing the already-established finite filtration map.  This structure
+deliberately concerns the raw endpoint diagrams only: preservation of chosen
+`BoundaryWitness` or page/abutment comparison data is extra data for a
+concrete convergence construction. -/
 structure Hom {FC GD : FilteredComplex C}
     (P : EndpointExtension FC) (Q : EndpointExtension GD) (f : FC ⟶ GD) where
   /-- A natural transformation between the endpoint-extended diagrams. -/
@@ -216,6 +219,18 @@ noncomputable def abelianSpectralObject
     Abelian.SpectralObject A EInt :=
   cochainDiagramHomologicalImage P.diagram A F
 
+/-- The graded object obtained by applying each shifted component of a
+homological functor to the upper endpoint.  A page/abutment comparison records
+an explicit isomorphism to this object, so its named abutment is not detached
+from the endpoint diagram. -/
+noncomputable def endpointAbutment
+    (A : Type*) [Category A] [Abelian A]
+    (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
+    [F.ShiftSequence ℤ] [F.IsHomological] :
+    CategoryTheory.GradedObject ℤ A :=
+  fun n => (F.shift n).obj
+    ((HomotopyCategory.quotient C (ComplexShape.up ℤ)).obj (P.diagram.obj ⊤))
+
 /-- A map of endpoint extensions induces a map of the corresponding
 triangulated spectral objects. -/
 noncomputable def Hom.triangulatedSpectralObjectHom
@@ -266,11 +281,12 @@ noncomputable def firstPageXIso
 
 end EndpointExtension
 
-/-- Explicit input for comparing one specified page of an endpoint-extended
+/-- Explicit input for comparing pointwise selected pages of an endpoint-extended
 spectral sequence with the associated graded of a complete, degreewise bounded
-abutment filtration.  The record is deliberately narrower than a strong
-convergence theorem: it stores a page comparison, but does not claim the
-additional page-passage coherence needed to construct a canonical `E∞` object.
+endpoint abutment filtration.  The record is deliberately narrower than a
+strong convergence theorem: it stores one selected page for each bidegree, but
+does not claim the additional page-passage coherence needed to construct a
+canonical `E∞` object.
 
 Completeness is proved from the canonical tower `Aᵢ / FˢAᵢ`, while the
 boundedness field proves the stated exhaustive and separated consequences.
@@ -285,6 +301,10 @@ spectral sequence. -/
   boundary : P.BoundaryWitness
   /-- The chosen graded abutment. -/
   abutment : CategoryTheory.GradedObject ℤ A
+  /-- The chosen abutment is explicitly the shifted homological image of the
+upper endpoint.  This keeps the associated-graded comparison connected to the
+same endpoint data that supplied the boundary witnesses. -/
+  endpointAbutmentIso : P.endpointAbutment A F ≅ abutment
   /-- Its decreasing filtration.  This is separate data because the filtration
 on an abutment need not be definitionally the filtration on a chain complex. -/
   filtration : Algebra.Filtration abutment
@@ -295,11 +315,13 @@ degreewise completion respectively. -/
   /-- Which abutment-filtration degree represents a page bidegree.  Keeping
 this translation explicit prevents a hidden sign or page-index convention. -/
   filtrationDegree : ℤ × ℤ → ℤ
-  /-- The page selected by the concrete convergence argument. -/
+  /-- The page selected by the concrete comparison at each bidegree.  It is
+intentionally bidegree-dependent; no uniform-page or page-passage coherence is
+claimed by this witness. -/
   comparisonPage : ℤ × ℤ → ℤ
   comparisonPage_ge_two : ∀ pq, 2 ≤ comparisonPage pq
-  /-- The selected page is explicitly identified with the associated graded
-piece of the chosen abutment. -/
+  /-- Each pointwise selected page is explicitly identified with the associated
+graded piece of the chosen endpoint abutment. -/
   pageComparison : ∀ pq,
     ((P.spectralSequence A F).page (comparisonPage pq)
       (comparisonPage_ge_two pq)).X pq ≅

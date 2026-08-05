@@ -233,7 +233,7 @@ exactness law 的 abelian spectral object，已经在共享内核中编译并接
 filtered complex 的反变 filtration diagram、cochain 视图及其态射自然变换也已经
 编译并接入 Blueprint；mapping-cone 的 triangulated/abelian spectral-object
 adapter 也已完成其不含端点与收敛假设的核心层。端点扩张、端点的极限/余极限
-见证及其态射、商塔的逐度完备化，以及基于 `EInt` 的真实 Mathlib `E₂` 谱序列
+见证、仅保留有限层相容性的端点扩张态射、商塔的逐度完备化，以及基于 `EInt` 的真实 Mathlib `E₂` 谱序列
 现已接入该 adapter，并有显式的 selected-page/abutment comparison 接口。
 `SpectralObjectAdapterRegression.lean` 与 `ConvergenceRegression.lean` 对三角与
 阿贝尔态射、函子映射、端点态射、完备化接口及 `ModuleCat` 的具体同调特化保持
