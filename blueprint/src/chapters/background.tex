@@ -407,8 +407,9 @@ must still be constructed.
 % Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:217-240 supplies the three exactness lemmas.
 \begin{theorem}[Exactness obligations for a homological image]
   \label{thm:homological-spectral-object-exactness}
-  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-connecting-naturality,thm:mathlib-homology-sequence-exact-one,thm:mathlib-homology-sequence-exact-two,thm:mathlib-homology-sequence-exact-three}
-  \notready
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-exact-one,thm:mathlib-homology-sequence-exact-two,thm:mathlib-homology-sequence-exact-three}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage_exactness}
+  \leanok
   Let $T$ be a triangulated spectral object in a pretriangulated category
   $\mathcal C$, indexed by $I$, and let $F:\mathcal C\to\mathcal A$ be a
   homological functor to an abelian category, equipped with a $\mathbb Z$-shift
@@ -416,23 +417,42 @@ must still be constructed.
   $(F_n)$ to the distinguished triangle of $T$ gives three exact short
   complexes: exactness at the middle term, exactness at the third term followed
   by the connecting map to $F_{n+1}$, and exactness at the shifted first term.
-  These statements are natural in the composable pair.
 \end{theorem}
 
 \begin{proof}
-  Use Mathlib's homology-sequence connecting morphism on the distinguished
-  triangle attached to $i\to j\to k$.  Apply the mapped middle-exactness,
-  connecting-map exactness, and shifted exactness theorems to that triangle;
+  \leanok
+  In the construction, use Mathlib's homology-sequence connecting morphism on
+  the distinguished triangle attached to $i\to j\to k$, then apply the mapped
+  middle-exactness, connecting-map exactness, and shifted exactness theorems;
   the latter two declarations implement the required rotation and inverse
-  rotation.  Naturality of the functorial triangle together with Mathlib's
-  connecting-morphism naturality theorem gives naturality in the index arrows.
+  rotation.  The Lean theorem projects the three exactness fields together.
+\end{proof}
+
+\begin{theorem}[Naturality of the homological-image connecting maps]
+  \label{thm:homological-image-delta-naturality}
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,thm:mathlib-homology-sequence-connecting-naturality}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage_delta_naturality}
+  \leanok
+  For every shift step $n_0+1=n_1$, the connecting transformation in the
+  homological image is natural in morphisms of composable pairs in the index
+  category.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  This is the naturality field of the connecting natural transformation,
+  obtained from Mathlib's connecting-map naturality theorem after applying the
+  shift sequence to the functorial distinguished triangles.
 \end{proof}
 
 % SOURCE: project bridge required by Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:20-24.
 \begin{definition}[Homological image as an abelian spectral object]
   \label{def:homological-image-abelian-spectral-object}
-  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-connecting-naturality,thm:homological-spectral-object-exactness}
-  \notready
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-connecting-naturality,thm:homological-spectral-object-exactness,thm:homological-image-delta-naturality}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage_H}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage_delta_app}
+  \leanok
   For $T$, $F$, and $(F_n)$ as above, define an abelian spectral object
   $\operatorname{HImage}(T,F)$ by
   \[
@@ -441,9 +461,36 @@ must still be constructed.
   Its connecting morphisms are the homology-sequence connecting maps of the
   functorial distinguished triangles of $T$, and its three exactness fields are
   the three obligations in
-  Theorem~\ref{thm:homological-spectral-object-exactness}.  The pinned Mathlib
-  revision does not contain a declaration performing this conversion; this is
-  a project-owned construction and remains \texttt{notready}.
+  Theorem~\ref{thm:homological-spectral-object-exactness}.  The connecting-map
+  naturality and all three exactness fields are now implemented by the
+  project-owned construction \texttt{homologicalImage}.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/HomologicalImage.lean:158-194, homological-image morphism and functor.
+\begin{definition}[Functoriality of the homological image]
+  \label{def:homological-image-functoriality}
+  \uses{def:homological-image-abelian-spectral-object,def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence}
+  \lean{KIP126.Core.SpectralSequence.homologicalImageHom}
+  \lean{KIP126.Core.SpectralSequence.homologicalImageFunctor}
+  \leanok
+  A morphism of triangulated spectral objects is sent, after applying a fixed
+  homological functor and its shift sequence, to a morphism of abelian spectral
+  objects.  Naturality of the connecting maps proves the commutative square;
+  identities and composition are preserved, so the bridge is functorial.
+\end{definition}
+
+\begin{definition}[Mapping-cone homological image]
+  \label{def:mapping-cone-homological-image}
+  \uses{def:mathlib-mapping-cone-spectral-object,def:homological-image-abelian-spectral-object}
+  \lean{KIP126.Core.SpectralSequence.mappingConeHomologicalImage}
+  \lean{KIP126.Core.SpectralSequence.mappingConeHomologicalImage_H}
+  \lean{KIP126.Core.SpectralSequence.mappingConeHomologicalImage_exactness}
+  \leanok
+  For a preadditive category with a zero object and binary biproducts, and a
+  homological functor with its integer shift sequence, specialize the preceding
+  bridge to Mathlib's mapping-cone spectral object.  The result is an abelian
+  spectral object indexed by cochain complexes, with exactness inherited from
+  the distinguished mapping-cone triangles.
 \end{definition}
 
 % SOURCE: Mathlib/CategoryTheory/Monoidal/Category.lean, declaration CategoryTheory.MonoidalCategory.
@@ -602,11 +649,15 @@ must still be constructed.
   maps to $x$ in this quotient.
 \end{definition}
 
-% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean design note; Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean.
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean: filtered-complex morphism declarations; Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean.
 \begin{definition}[Filtered chain map]
   \label{def:filtered-chain-map}
   \uses{def:mathlib-chain-complex,def:core-filtered-chain-complex,def:core-filtered-morphism}
-  \notready
+  \leanok
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.toFilteredMorphism}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.comp}
   For filtered chain complexes $(C,F)$ and $(D,G)$, a filtered chain map is a
   Mathlib chain-complex morphism $u:C\to D$ whose underlying graded morphism is
   filtration preserving.  Equivalently, for every $(s,k)$ it includes the
@@ -615,70 +666,291 @@ must still be constructed.
   differentials.  Identities and composites retain this data.
 \end{definition}
 
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean:193-344, fixed-level complexes and filtration inclusion chain maps.
+\begin{definition}[Fixed-level filtered complexes and inclusions]
+  \label{def:filtered-chain-level-complex-and-inclusions}
+  \uses{def:core-filtered-chain-complex,def:core-filtration-inclusions}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex_X}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex_d}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtration_inclusion_comp_differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_f}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.instCategory}
+  \leanok
+  At a fixed filtration level, the restricted objects and differentials form a
+  genuine chain complex.  Every order relation $t\le s$ gives a chain map
+  $F^sC\to F^tC$; its component is the canonical filtration inclusion, and
+  these maps satisfy identity and composition laws.  The explicit
+  differential-compatibility lemma records why the inclusions are chain maps.
+\end{definition}
+
+\begin{definition}[Fixed-level filtered-complex functor]
+  \label{def:filtered-chain-level-functor}
+  \uses{def:filtered-chain-map,def:core-filtered-chain-complex,def:filtered-chain-level-complex-and-inclusions}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplexFunctor}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainDiagramNatTrans}
+  \leanok
+  Restricting a filtered chain map to a fixed filtration degree gives a chain
+  map between the two restricted complexes.  These restrictions preserve
+  identities and composition, and assemble into a natural transformation of
+  the decreasing filtration diagrams.
+\end{definition}
+
+\begin{theorem}[Compatibility of filtered restrictions]
+  \label{thm:filtered-chain-map-restricted-differential}
+  \uses{def:filtered-chain-map,def:core-filtered-chain-complex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.preserves_differential}
+  \leanok
+  For a filtered chain map $u:(C,F)\to(D,G)$, write
+  $\phi^u_{s,k}:F^sC_k\to G^sD_k$ for its chosen restriction and write
+  $\delta^F_{s,k}$ and $\delta^G_{s,k}$ for the restricted differentials.
+  Then the restriction squares commute:
+  \[
+    \phi^u_{s,k}\,;\,\delta^G_{s,k}
+      =\delta^F_{s,k}\,;\,\phi^u_{s,k-1}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Postcompose both sides with the target filtration inclusion.  The two
+  factorisation equations and the chain-map square identify the resulting
+  composites; cancellation of the monomorphism given by that inclusion gives
+  the displayed equality.
+\end{proof}
+
+\begin{lemma}[Projection equation for a restricted differential]
+  \label{lem:filtered-associated-graded-differential-projection}
+  \uses{def:core-associated-graded-differential,def:core-filtered-chain-complex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.toAssociatedGraded_comp_associatedGradedDifferential}
+  \leanok
+  The quotient projection from $F^sC_k$ to
+  $\operatorname{gr}^s_F(C_k)$ followed by the associated-graded differential
+  equals the chosen restriction of $d_k$ followed by the quotient projection at
+  degree $k-1$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  Apply the cokernel universal property to the defining factorisation of the
+  restricted differential.
+\end{proof}
+
 \begin{definition}[Associated-graded chain complex]
   \label{def:filtered-associated-graded-complex}
   \uses{def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq}
-  \notready
+  \leanok
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedComplex}
   For a filtered chain complex $(C,F)$ and fixed filtration degree $s$, the
   associated-graded chain complex has degree-$k$ object
   $\operatorname{gr}^s_F(C_k)$ and differential the compiled
-  associated-graded differential.  The compiled square-zero theorem supplies
-  the chain-complex relation; this node packages those existing components as a
-  Mathlib chain complex rather than introducing a second differential.
+  associated-graded differential.  In the displayed consecutive component the
+  differential is followed by the canonical index transport induced by
+  $(k+1)-1=k$.  The compiled square-zero theorem supplies the chain-complex
+  relation; this node packages those existing components as a Mathlib chain
+  complex rather than introducing a second differential.
 \end{definition}
+
+\begin{theorem}[Displayed differential of the associated-graded complex]
+  \label{thm:filtered-associated-graded-complex-d}
+  \uses{def:filtered-associated-graded-complex,def:core-associated-graded-differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedComplex_d}
+  \leanok
+  In consecutive chain degrees, the differential of the associated-graded
+  complex is the induced differential followed by the canonical transport
+  along $(k+1)-1=k$.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Unfold the chain-complex constructor and simplify its allowed differential
+  component.
+\end{proof}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean:641-764, associated-graded maps and functoriality.
+\begin{definition}[Associated-graded map of a filtered chain map]
+  \label{def:filtered-associated-graded-map}
+  \uses{def:filtered-chain-map,def:core-associated-graded-map}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedMap}
+  \leanok
+  At each filtration and chain degree, a filtered chain map induces the
+  associated-graded map obtained from its filtration-level factorisation.
+\end{definition}
+
+\begin{theorem}[Naturality of the associated-graded differential]
+  \label{thm:filtered-associated-graded-map-comm}
+  \uses{def:filtered-chain-map,def:filtered-associated-graded-map,def:core-associated-graded-map,def:core-associated-graded-differential,thm:filtered-chain-map-restricted-differential,lem:core-associated-graded-map-projection,lem:filtered-associated-graded-differential-projection}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedMap_comm}
+  \leanok
+  For every filtration degree $s$ and chain degree $k$, the map induced by a
+  filtered chain map $u$ satisfies
+  \[
+    \operatorname{gr}^s(u)_k\,;\,d^{\operatorname{gr},G}_{s,k}
+      =d^{\operatorname{gr},F}_{s,k}\,;\,\operatorname{gr}^s(u)_{k-1}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Precompose with the quotient epimorphism from $F^sC_k$.  The universal
+  property of the two cokernels replaces the two associated-graded maps by
+  their filtration-level factorisations, and the preceding restriction
+  theorem identifies the middle composites.  The corresponding projection
+  equation for the source differential then finishes by cancellation.
+\end{proof}
 
 \begin{definition}[Associated-graded chain map]
   \label{def:filtered-associated-graded-chain-map}
-  \uses{def:filtered-chain-map,def:filtered-associated-graded-complex,def:core-associated-graded-map}
-  \notready
+  \uses{def:filtered-chain-map,def:filtered-associated-graded-complex,def:filtered-associated-graded-map,def:core-associated-graded-map}
+  \leanok
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedChainMap}
   A filtered chain map $u:(C,F)\to(D,G)$ induces a chain map on every fixed
   filtration grade.  Its component in chain degree $k$ is the compiled map
   \[
     \operatorname{gr}^s_F(C_k)\longrightarrow\operatorname{gr}^s_G(D_k),
   \]
   and the chain-map equation is compatibility with the compiled
-  associated-graded differentials.  The construction preserves identities and
-  composition.
+  associated-graded differentials.
+\end{definition}
+
+\begin{definition}[Functorial associated-graded chain maps]
+  \label{def:filtered-associated-graded-functoriality}
+  \uses{def:filtered-associated-graded-chain-map,def:filtered-associated-graded-map,def:core-filtered-morphism-functoriality}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedChainMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedChainMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedFunctor}
+  \leanok
+  The associated-graded construction is functorial in filtered chain maps:
+  identities induce identity maps, composites induce composites, and the
+  fixed-filtration chain maps assemble into
+  \texttt{associatedGradedFunctor}.  These equations are part of the compiled
+  interface and are used by the later spectral-object adapter.
 \end{definition}
 
 \begin{definition}[Filtered complex as a cochain diagram]
   \label{def:filtered-complex-cochain-diagram}
-  \uses{def:mathlib-cochain-complex,def:core-filtered-chain-complex,def:filtered-chain-map}
-  \notready
+  \uses{def:mathlib-chain-complex,def:mathlib-cochain-complex,def:core-filtered-chain-complex,def:core-filtration-inclusions,def:filtered-chain-level-complex-and-inclusions,def:filtered-chain-level-functor}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainDiagram}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredCochainComplex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredCochainDiagram}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredCochainDiagramNatTrans}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainDiagramFunctor}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredCochainDiagramFunctor}
+  \leanok
   Let $\mathbb Z_{\mathrm{dec}}$ be the filtration category with a unique arrow
   $s\to t$ exactly when $t\le s$.  A filtered chain complex $(C,F)$ determines
   a functor
   \[
     D_F:\mathbb Z_{\mathrm{dec}}\longrightarrow
-      \operatorname{CochainComplex}(\mathbb F_2\text{-}\mathrm{Mod},\mathbb Z),
-    \qquad D_F(s)^n=F^sC_{-n}.
+      \operatorname{CochainComplex}(\mathcal C,\mathbb Z),
+    \qquad D_F(s)^n=F^sC_{-n},
   \]
+  where $\mathcal C$ is the ambient abelian category.
   The differential is the restriction of $d_{-n}:C_{-n}\to C_{-n-1}$, and an
   arrow $s\to t$ is sent to the inclusion $F^sC\hookrightarrow F^tC$.  This
-  records the reversal $k=-n$ and the decreasing-order convention explicitly.
-  A filtered chain map induces a natural transformation of these diagrams.
+  records the reversal $k=-n$ and the decreasing-order convention explicitly;
+  the implementation uses Mathlib's canonical chain/cochain equivalence rather
+  than silently identifying the two abbreviations.  A filtered chain map
+  induces a natural transformation of both the chain and cochain diagrams.
 \end{definition}
 
-% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean design note;
+\begin{definition}[Filtered-complex triangulated spectral-object adapter]
+  \label{def:filtered-complex-triangulated-spectral-object}
+  \uses{def:filtered-complex-cochain-diagram,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramTriangulatedSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObject_ω₁}
+  \leanok
+  Precomposing Mathlib's mapping-cone triangulated spectral object with the
+  cochain diagram of a filtered complex gives a triangulated spectral object
+  indexed by the decreasing filtration category.  This adapter records the
+  mapping-cone construction and the filtration-to-cochain index map without
+  asserting any endpoint or convergence property.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean:26-342, precomposition morphism and filtered triangulated adapter functor.
+\begin{definition}[Morphisms and functor of the triangulated adapter]
+  \label{def:filtered-complex-triangulated-spectral-object-morphism}
+  \uses{def:filtered-complex-cochain-diagram,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp}
+  \lean{KIP126.Core.SpectralSequence.spectralObjectMapComposableArrows}
+  \lean{KIP126.Core.SpectralSequence.spectralObjectArrowMap}
+  \lean{KIP126.Core.SpectralSequence.spectralObjectMapComposableArrows_one_app}
+  \lean{KIP126.Core.SpectralSequence.spectralObjectPrecompHom}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramTriangulatedSpectralObjectHom}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramTriangulatedSpectralObjectFunctor}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObjectHom}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObjectFunctor}
+  \leanok
+  A natural transformation between cochain diagrams induces a morphism of
+  the precomposed triangulated spectral objects.  Naturality of the mapping-cone
+  structure supplies the commutative square, and identity/composition laws
+  make the construction a functor from cochain diagrams, hence from filtered
+  complexes through their filtered cochain-diagram functor.
+\end{definition}
+
+\begin{definition}[Filtered-complex abelian spectral-object adapter]
+  \label{def:filtered-complex-abelian-spectral-object}
+  \uses{def:filtered-complex-triangulated-spectral-object,def:homological-image-abelian-spectral-object}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramHomologicalImage}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramHomologicalImage_H}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObject_H}
+  \leanok
+  Applying a homological functor with its shift sequence to the preceding
+  triangulated adapter yields an abelian spectral object.  The functor and its
+  shift sequence remain explicit parameters; the construction does not infer
+  convergence or identify formal endpoint objects with integer filtration
+  levels.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean:359-394, homological-image adapter morphisms and functor.
+\begin{definition}[Morphisms and functor of the abelian adapter]
+  \label{def:filtered-complex-abelian-spectral-object-morphism}
+  \uses{def:filtered-complex-triangulated-spectral-object-morphism,def:homological-image-abelian-spectral-object,def:homological-image-functoriality}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramHomologicalImageHom}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramHomologicalImageFunctor}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObjectHom}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObjectFunctor}
+  \leanok
+  Applying the homological-image bridge to the preceding morphisms gives
+  morphisms of abelian spectral objects.  The resulting identity and
+  composition equations are packaged as a functor, with the homological
+  functor and its shift sequence remaining explicit parameters.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean: project adapter declarations;
 % Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean;
 % Mathlib/CategoryTheory/Triangulated/SpectralObject.lean;
 % Mathlib/Algebra/Homology/HomotopyCategory/HomologicalFunctor.lean;
 % Mathlib/Algebra/Homology/HomotopyCategory/ShiftSequence.lean.
 \begin{definition}[Filtered-complex to spectral-object adapter]
   \label{def:filtered-complex-spectral-object-adapter}
-  \uses{def:filtered-complex-cochain-diagram,def:complete-separated-filtration,def:mathlib-f2-module-category,thm:mathlib-module-category-abelian,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp,thm:mathlib-homotopy-cochain-homology-is-homological,def:mathlib-homotopy-cochain-homology-shift-sequence,def:homological-image-abelian-spectral-object}
+  \uses{def:filtered-complex-cochain-diagram,def:filtered-complex-triangulated-spectral-object,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object,def:filtered-complex-abelian-spectral-object-morphism,def:complete-separated-filtration,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp,def:homological-image-abelian-spectral-object}
   \notready
-  Start with the cochain diagram $D_F$.  When the page recipe needs endpoint
+  The core precomposition and homological-image steps are implemented by
+  Definitions~\ref{def:filtered-complex-triangulated-spectral-object} and
+  \ref{def:filtered-complex-abelian-spectral-object}.  The full adapter remains
+  pending until the endpoint and convergence data are formalized.  Start with
+  the cochain diagram $D_F$.  When the page recipe needs endpoint
   indices, extend its integer filtration category by the limit and colimit
   objects specified by the complete, separated, and exhaustive data; do not
   identify either endpoint with an integer filtration level.  Apply Mathlib's
   triangulated-spectral-object precomposition construction to the mapping-cone
   spectral object and the extended diagram, producing a \emph{triangulated}
   spectral object.  Apply
-  Definition~\ref{def:homological-image-abelian-spectral-object} to the
-  degree-zero homology functor on the homotopy category of cochain complexes,
-  using Mathlib's homological-functor and shift-sequence instances, to obtain
-  the required \emph{abelian} spectral object.  The adapter retains the
+  Definition~\ref{def:homological-image-abelian-spectral-object} to a chosen
+  homological functor on the homotopy category of cochain complexes together
+  with its shift sequence, to obtain the required \emph{abelian} spectral
+  object.  A degree-zero homology specialization is a later explicit
+  instance, not part of this generic adapter.  The adapter retains the
   chain/cochain reindexing, filtration order, endpoints, and comparison
   isomorphisms as data.
 \end{definition}
@@ -686,7 +958,7 @@ must still be constructed.
 % SOURCE: aimpaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
 \begin{theorem}[Filtered complex produces a spectral sequence]
   \label{thm:filtered-complex-to-spectral-sequence}
-  \uses{def:filtered-complex-spectral-object-adapter,def:filtered-chain-map,def:filtered-associated-graded-chain-map,def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,def:complete-separated-filtration,def:ss-page-level}
+  \uses{def:filtered-complex-spectral-object-adapter,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object-morphism,def:filtered-chain-map,def:filtered-associated-graded-chain-map,def:filtered-associated-graded-functoriality,def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,def:complete-separated-filtration,def:ss-page-level}
   \notready
   A decreasingly filtered chain complex of $\mathbb F_2$-vector spaces whose
   differential preserves filtration has a functorial spectral sequence with

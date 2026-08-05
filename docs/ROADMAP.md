@@ -226,9 +226,16 @@ comparison 可在共同内核的语言中表达。
 `CategoryTheory.SpectralSequence`，并以最小使用例确认 page、微分和 page-passage。
 共同的 filtration/associated-graded/filtered-chain-complex 基础也已在 Abelian
 category 的一般性下实现。完整 Blueprint 已经给出 concrete classical 与 synthetic
-用例所需的接口和依赖顺序，但这些节点仍是 `notready`。下一个 Lean 切片先实现
-filtered-chain morphism，再把 mapping-cone 的 triangulated spectral object 经同调
-函子转换为满足三条 exactness law 的 abelian spectral object；随后构造谱序列、
-elementwise `E_r = Z_{r-1}/B_{r-1}` adapter 和二项 extension spectral
-sequence。在这些验收通过
+用例所需的接口和依赖顺序。
+filtered-chain morphism、固定过滤度的 associated-graded chain complex 及其自然性，
+以及 mapping-cone 的 triangulated spectral object 经同调函子转换为满足三条
+exactness law 的 abelian spectral object，已经在共享内核中编译并接入 Blueprint。
+filtered complex 的反变 filtration diagram、cochain 视图及其态射自然变换也已经
+编译并接入 Blueprint；mapping-cone 的 triangulated/abelian spectral-object
+adapter 也已完成其不含端点与收敛假设的核心层。下一片切片是把端点、完备性与
+收敛见证接入该 adapter，随后再构造谱序列、elementwise `E_r = Z_{r-1}/B_{r-1}`
+adapter 和二项 extension spectral sequence。
+`SpectralObjectAdapterRegression.lean` 对三角与阿贝尔态射、函子映射以及
+`ModuleCat` 的具体同调特化保持编译级回归检查。
+在这些验收通过
 前，不把领域结论标成 `leanok`，也不移植旧的 `SSData` 表示。

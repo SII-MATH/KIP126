@@ -9,8 +9,11 @@ milestone.  That Core is deliberately small: it imports Mathlib's
 synonym, and adds only the category-level filtration data that Mathlib does not
 provide: decreasing filtrations of graded objects, associated graded quotients,
 filtered morphisms, and filtered chain complexes with their induced
-associated-graded differential.  The toolchain and Mathlib dependency are
-pinned to matching `4.32.2` releases.
+associated-graded differential.  It now also includes the generic
+homological-image bridge and the filtered-complex triangulated/abelian
+spectral-object adapter; endpoint and convergence data remain explicit
+Blueprint interfaces.  The toolchain and Mathlib dependency are pinned to
+matching `4.32.2` releases.
 
 The Blueprint is substantially ahead of the Lean implementation.  Its entry
 point is [blueprint/src/content.tex](blueprint/src/content.tex), with the
