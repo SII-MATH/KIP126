@@ -1,5 +1,6 @@
 import KIP126.Core.SpectralSequence.Basic
 import KIP126.Core.SpectralSequence.Convergence
+import KIP126.Core.SpectralSequence.ConvergenceRegression
 import KIP126.Core.SpectralSequence.Extension
 import KIP126.Core.SpectralSequence.FilteredComplex
 import KIP126.Core.SpectralSequence.HomologicalImage
