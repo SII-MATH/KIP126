@@ -74,6 +74,10 @@ example :
       filteredComplexTriangulatedSpectralObject GD :=
   filteredComplexTriangulatedSpectralObjectHom f
 
+example :
+    (filteredComplexTriangulatedSpectralObjectFunctor (C := C)).map f =
+      filteredComplexTriangulatedSpectralObjectHom f := rfl
+
 variable {A : Type*} [Category A] [Abelian A]
 variable (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
 variable [F.ShiftSequence ℤ] [F.IsHomological]
@@ -82,6 +86,10 @@ example :
     filteredComplexAbelianSpectralObject FC A F ⟶
       filteredComplexAbelianSpectralObject GD A F :=
   filteredComplexAbelianSpectralObjectHom f A F
+
+example :
+    (filteredComplexAbelianSpectralObjectFunctor (C := C) A F).map f =
+      filteredComplexAbelianSpectralObjectHom f A F := rfl
 
 example :
     FilteredComplex C ⥤ Abelian.SpectralObject A (OrderDual ℤ) :=
