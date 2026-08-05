@@ -60,6 +60,24 @@ dependency graph.  They are not project proof obligations.
   \]
 \end{definition}
 
+\begin{definition}[Arbitrary-level filtration inclusions]
+  \leanok
+  \label{def:core-filtration-inclusions}
+  \lean{KIP126.Core.Algebra.Filtration.le_of_le}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion_refl}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion_comp}
+  \lean{KIP126.Core.Algebra.Filtration.transport_arrow}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion_naturality}
+  \uses{def:core-filtration}
+  The successor inclusions of a decreasing filtration extend canonically to
+  every pair of levels: for $t\le s$ there is a map
+  $F^sA_i\to F^tA_i$.  These maps are identity at equal levels and compose
+  along chains of inequalities.  The transport and naturality equations keep
+  the construction well-typed when a graded index is represented by
+  propositionally equal integer expressions.
+\end{definition}
+
 \begin{definition}[Associated graded piece]
   \leanok
   \label{def:core-associated-graded}
@@ -191,6 +209,35 @@ dependency graph.  They are not project proof obligations.
   \]
   obtained from the commuting square on the two consecutive filtration levels
   by the universal property of cokernels.
+\end{definition}
+
+\begin{lemma}[Projection equation for an associated-graded map]
+  \leanok
+  \label{lem:core-associated-graded-map-projection}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.toAssociatedGraded_comp_associatedGradedMap}
+  \uses{def:core-filtered-morphism,def:core-associated-graded-map}
+  The quotient projection from a filtration level to its associated-graded
+  piece followed by the induced map agrees with the chosen filtration-level
+  factorisation followed by the target quotient projection.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  This is the cokernel universal-property equation defining the induced map.
+\end{proof}
+
+\begin{definition}[Functorial filtered morphisms]
+  \leanok
+  \label{def:core-filtered-morphism-functoriality}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.id}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.comp}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.associatedGradedMap_id}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.associatedGradedMap_comp}
+  \uses{def:core-filtered-morphism,def:core-associated-graded-map}
+  Filtered morphisms have the identity and composition operations needed for
+  categorical transport.  The induced maps on associated graded pieces
+  preserve those operations, so the quotient construction is functorial in
+  filtered maps.
 \end{definition}
 
 \section{Filtered chain complexes}
