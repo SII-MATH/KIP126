@@ -232,10 +232,13 @@ filtered-chain morphism、固定过滤度的 associated-graded chain complex 及
 exactness law 的 abelian spectral object，已经在共享内核中编译并接入 Blueprint。
 filtered complex 的反变 filtration diagram、cochain 视图及其态射自然变换也已经
 编译并接入 Blueprint；mapping-cone 的 triangulated/abelian spectral-object
-adapter 也已完成其不含端点与收敛假设的核心层。下一片切片是把端点、完备性与
-收敛见证接入该 adapter，随后再构造谱序列、elementwise `E_r = Z_{r-1}/B_{r-1}`
-adapter 和二项 extension spectral sequence。
-`SpectralObjectAdapterRegression.lean` 对三角与阿贝尔态射、函子映射以及
-`ModuleCat` 的具体同调特化保持编译级回归检查。
+adapter 也已完成其不含端点与收敛假设的核心层。端点扩张、端点的极限/余极限
+见证、仅保留有限层相容性的端点扩张态射、商塔的逐度完备化，以及基于 `EInt` 的真实 Mathlib `E₂` 谱序列
+现已接入该 adapter，并有显式的 selected-page/abutment comparison 接口。
+`SpectralObjectAdapterRegression.lean` 与 `ConvergenceRegression.lean` 对三角与
+阿贝尔态射、函子映射、端点态射、完备化接口及 `ModuleCat` 的具体同调特化保持
+编译级回归检查。元素式 `E_r = Z_{r-1}/B_{r-1}` 呈现和二项 extension spectral
+sequence 必须由 concrete classical/synthetic 构造给出，不能作为任意 Abelian
+category 中的泛型公理化接口；它们留在相应的后续领域阶段。
 在这些验收通过
 前，不把领域结论标成 `leanok`，也不移植旧的 `SSData` 表示。

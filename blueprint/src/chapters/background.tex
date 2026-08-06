@@ -223,6 +223,20 @@ must still be constructed.
   cohomological $E_2$ spectral sequence on $\mathbb Z\times\mathbb Z$.
 \end{definition}
 
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/FirstPage.lean:78--84, declaration CategoryTheory.Abelian.SpectralObject.spectralSequenceFirstPageXIso.
+\begin{definition}[Mathlib first-page computation]
+  \label{def:mathlib-spectral-sequence-first-page}
+  \lean{CategoryTheory.Abelian.SpectralObject.spectralSequenceFirstPageXIso}
+  \mathlibok
+  \uses{def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence}
+  If a spectral object has the required spectral-sequence instance and its
+  data core has the first-page equalities required for Mathlib's computation,
+  then the object at a bidegree of its initial page is canonically isomorphic
+  to the corresponding value of the underlying spectral object's homology
+  functor on the selected interval.  This computes the initial page object; it
+  does not identify it with an associated-graded object of a filtered complex.
+\end{definition}
+
 % SOURCE: Mathlib/Algebra/Homology/SpectralObject/Cycles.lean:58, declaration CategoryTheory.Abelian.SpectralObject.cycles.
 \begin{definition}[Mathlib spectral-object cycles]
   \label{def:mathlib-spectral-object-cycles}
@@ -513,10 +527,51 @@ must still be constructed.
 
 \section{Filtration completeness and page shapes}
 
+% SOURCE: KIP126/Core/Algebra/Completion.lean, quotient-tower and completion-witness interface.
+\begin{definition}[Degreewise completion witness]
+  \label{def:core-filtration-completion-witness}
+  \uses{def:core-filtration,def:core-eventually-zero-filtration,def:core-bounded-above-filtration,def:mathlib-abelian}
+  \lean{KIP126.Core.Algebra.Filtration.quotientAt}
+  \lean{KIP126.Core.Algebra.Filtration.quotientProjection}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition}
+  \lean{KIP126.Core.Algebra.Filtration.quotientProjection_transition}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition_comp}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition_id}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTower}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTowerCone}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.hasLimit}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.completionIso}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.completionIso_hom_comp_limit_π}
+  \lean{KIP126.Core.Algebra.Filtration.eq_bot_of_le_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientProjection_isIso_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition_isIso_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTower_isEventuallyConstantTo_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTowerCone_isLimit_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.of_isEventuallyZero}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.of_isBoundedAbove}
+  \leanok
+  For a filtered graded object $A$ and a grading degree $i$, the quotient
+  tower has value $A_i/F^sA_i$ at $s$ and transition
+  $A_i/F^sA_i\to A_i/F^tA_i$ when $t\le s$.  Its canonical cone has point
+  $A_i$ and legs the quotient projections.  A degreewise completion witness
+  is precisely a proof that this canonical cone is limiting, and it supplies
+  existence of the corresponding limit.  With that limit chosen, it gives the
+  canonical isomorphism
+  \[
+    A_i\ \cong\ \varprojlim_s A_i/F^sA_i,
+  \]
+  characterized by its composites with every quotient projection.  The
+  witness is explicit data: this definition does not prove that arbitrary
+  filtrations are complete, separated, exhaustive, or convergent.  It does
+  prove that a degreewise eventually-zero filtration, and in particular a
+  degreewise bounded-above filtration, supplies this completion witness.
+\end{definition}
+
 % SOURCE: aimpaper/main.tex:253-271 and 827-862; strong convergence is assumed throughout.
 \begin{definition}[Complete and separated decreasing filtration]
   \label{def:complete-separated-filtration}
-  \uses{def:core-filtration,def:core-exhaustive-filtration}
+  \uses{def:core-filtration,def:core-exhaustive-filtration,def:core-filtration-completion-witness}
   \notready
   For a decreasing filtration $F$ on a graded abelian group $A$, exhaustive
   means $\bigcup_{s\in\mathbb Z}F^sA=A$, separated means
@@ -524,9 +579,13 @@ must still be constructed.
   \[
     A\longrightarrow\varprojlim_s A/F^sA
   \]
-  is an isomorphism, degree by degree.  A convergence witness also records the
-  regularity or boundedness condition that makes only finitely many filtration
-  pieces relevant in each total degree.
+  is an isomorphism, degree by degree.  The quotient-tower part of this
+  condition is represented by the explicit witness in
+  Definition~\ref{def:core-filtration-completion-witness}; the combined
+  complete, separated, and convergence interface remains pending.  A
+  convergence witness must also record the regularity or boundedness condition
+  that makes only finitely many filtration pieces relevant in each total
+  degree.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
@@ -926,6 +985,107 @@ must still be constructed.
   functor and its shift sequence remaining explicit parameters.
 \end{definition}
 
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, endpoint-extension and boundary-witness interface.
+\begin{definition}[Endpoint extension of a filtered-complex diagram]
+  \label{def:filtered-complex-endpoint-extension}
+  \uses{def:filtered-complex-cochain-diagram,def:mathlib-cochain-complex}
+  \lean{KIP126.Core.SpectralSequence.decreasingFiltrationEmbedding}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteDiagram}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.bottomCone}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.topCocone}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.BoundaryWitness}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteBottomCone}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteTopCocone}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteBottomIsLimit}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteTopIsColimit}
+  \leanok
+  For the decreasing filtration diagram $D_F$, write
+  $\iota:\mathbb Z_{\mathrm{dec}}\to\operatorname{EInt}$ for
+  $s\mapsto-s$.  An endpoint extension is an
+  $\operatorname{EInt}$-indexed cochain-complex diagram $D$ together with a
+  natural isomorphism $D_F\cong D\circ\iota$.  Thus the two formal endpoint
+  objects are kept distinct from every finite filtration level.
+
+  The construction supplies the canonical cone from $D(\bot)$ and cocone to
+  $D(\top)$ over the finite restriction.  A boundary witness is additional
+  data saying that this cone is limiting and zero, that this cocone is
+  colimiting, and that $D(\top)$ is isomorphic to a designated cochain
+  complex.  The two universal properties are also transported across the
+  finite comparison isomorphism to $D_F$.  This interface neither constructs
+  an endpoint extension for every filtered complex nor asserts completeness,
+  separatedness, or convergence of filtered homology.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, endpoint-extended spectral-object and first-page construction.
+\begin{definition}[Canonical $E_2$ sequence of an endpoint extension]
+  \label{def:filtered-complex-endpoint-e2-spectral-sequence}
+  \uses{def:filtered-complex-endpoint-extension,def:filtered-complex-triangulated-spectral-object,def:homological-image-abelian-spectral-object,def:mathlib-e2-spectral-sequence,def:mathlib-spectral-sequence-first-page}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.triangulatedSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.abelianSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.endpointAbutment}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.spectralSequence}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.firstPageXIso}
+  \leanok
+  Given an endpoint extension $D$ and a homological functor from the homotopy
+  category of cochain complexes, equipped with its integer shift sequence,
+  the mapping-cone and homological-image constructions yield an abelian
+  spectral object indexed by $\operatorname{EInt}$.  Mathlib then supplies
+  its canonical cohomological $E_2$ spectral sequence on
+  $\mathbb Z\times\mathbb Z$.  At $(p,q)$, the compiled first-page
+  isomorphism identifies the $E_2$ object with the degree-$(p+q)$ homology
+  functor evaluated on the interval from $q$ to $q+1$ in that spectral object.
+  It does not identify this page with the associated graded of filtered
+  homology or establish stabilization.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, explicit selected-page/abutment comparison witness.
+\begin{definition}[Pointwise selected-page comparison with a bounded complete endpoint abutment]
+  \label{def:page-abutment-comparison-witness}
+  \uses{def:filtered-complex-endpoint-e2-spectral-sequence,def:core-filtration-completion-witness,def:core-bounded-filtration,def:core-associated-graded,lem:core-bounded-below-exhaustive,lem:core-bounded-above-eventually-zero}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.completion}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.exhaustive}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.eventuallyZero}
+  \leanok
+  For one endpoint extension and one chosen homological functor, this witness
+  records its endpoint boundary data, a graded abutment explicitly isomorphic
+  to the shifted homological image of the upper endpoint, a decreasing
+  filtration on that abutment, and degreewise boundedness.  It derives a
+  canonical completion witness in every grading degree from the bounded-above
+  component.  It also chooses, for every bidegree $(p,q)$, a page at least $2$
+  and an isomorphism from that page object to the indicated associated-graded
+  piece of the endpoint abutment.  The boundedness field yields compiled proofs
+  that the abutment filtration is exhaustive and eventually zero.
+
+  This is intentionally a selected-page comparison, not a strong-convergence
+  theorem: it supplies neither coherence of comparisons under page passage nor
+  a canonical $E_\infty$ object, and it does not identify the abutment with
+  filtered homology of the original filtered complex.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, endpoint-extension morphisms and induced spectral-object morphisms.
+\begin{definition}[Functoriality of endpoint extensions]
+  \label{def:filtered-complex-endpoint-extension-morphism}
+  \uses{def:filtered-complex-endpoint-extension,def:filtered-complex-endpoint-e2-spectral-sequence,def:filtered-complex-triangulated-spectral-object-morphism,def:homological-image-functoriality}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom.id}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom.comp}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom.triangulatedSpectralObjectHom}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom.abelianSpectralObjectHom}
+  \leanok
+  Over a filtered chain map, a morphism of endpoint extensions is a natural
+  transformation of the extended diagrams whose finite restriction agrees
+  with the filtered cochain-diagram map through the two comparison
+  isomorphisms.  Such morphisms have specified identities and composites.
+  They induce morphisms of the associated triangulated spectral objects and,
+  after a fixed homological functor is applied, of the resulting abelian
+  spectral objects.  The present interface deliberately stops there: it does
+  not require preservation of separately chosen boundary or page/abutment
+  witnesses, and it does not claim a packaged Mathlib spectral-sequence
+  morphism or pagewise naturality for the canonical $E_2$ sequences.
+\end{definition}
+
 % SOURCE: KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean: project adapter declarations;
 % Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean;
 % Mathlib/CategoryTheory/Triangulated/SpectralObject.lean;
@@ -933,16 +1093,18 @@ must still be constructed.
 % Mathlib/Algebra/Homology/HomotopyCategory/ShiftSequence.lean.
 \begin{definition}[Filtered-complex to spectral-object adapter]
   \label{def:filtered-complex-spectral-object-adapter}
-  \uses{def:filtered-complex-cochain-diagram,def:filtered-complex-triangulated-spectral-object,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object,def:filtered-complex-abelian-spectral-object-morphism,def:complete-separated-filtration,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp,def:homological-image-abelian-spectral-object}
+  \uses{def:filtered-complex-cochain-diagram,def:filtered-complex-triangulated-spectral-object,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object,def:filtered-complex-abelian-spectral-object-morphism,def:filtered-complex-endpoint-extension,def:filtered-complex-endpoint-e2-spectral-sequence,def:page-abutment-comparison-witness,def:filtered-complex-endpoint-extension-morphism,def:core-filtration-completion-witness,def:complete-separated-filtration,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp,def:homological-image-abelian-spectral-object}
   \notready
   The core precomposition and homological-image steps are implemented by
   Definitions~\ref{def:filtered-complex-triangulated-spectral-object} and
-  \ref{def:filtered-complex-abelian-spectral-object}.  The full adapter remains
-  pending until the endpoint and convergence data are formalized.  Start with
-  the cochain diagram $D_F$.  When the page recipe needs endpoint
-  indices, extend its integer filtration category by the limit and colimit
-  objects specified by the complete, separated, and exhaustive data; do not
-  identify either endpoint with an integer filtration level.  Apply Mathlib's
+  \ref{def:filtered-complex-abelian-spectral-object}; the conditional
+  endpoint-extension and $E_2$ constructions are implemented by
+  Definitions~\ref{def:filtered-complex-endpoint-extension} and
+  \ref{def:filtered-complex-endpoint-e2-spectral-sequence}.  The full adapter
+  from an arbitrary filtered complex remains pending.  A concrete application
+  must supply an $\operatorname{EInt}$ extension of the cochain diagram and
+  any required endpoint comparison witnesses; it must not identify either
+  endpoint with an integer filtration level.  Apply Mathlib's
   triangulated-spectral-object precomposition construction to the mapping-cone
   spectral object and the extended diagram, producing a \emph{triangulated}
   spectral object.  Apply
@@ -950,9 +1112,14 @@ must still be constructed.
   homological functor on the homotopy category of cochain complexes together
   with its shift sequence, to obtain the required \emph{abelian} spectral
   object.  A degree-zero homology specialization is a later explicit
-  instance, not part of this generic adapter.  The adapter retains the
-  chain/cochain reindexing, filtration order, endpoints, and comparison
-  isomorphisms as data.
+  instance, not part of this generic adapter.  A
+  degreewise \texttt{CompletionWitness} now expresses the canonical
+  quotient-tower completion condition, and a selected-page comparison can be
+  kept as explicit data by
+  Definition~\ref{def:page-abutment-comparison-witness}.  Their existence,
+  page-passage coherence, and comparison with filtered homology are still
+  separate obligations.  Separatedness, the elementwise $Z/B$ presentation,
+  and a functorial spectral-sequence morphism also remain unformalized here.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
