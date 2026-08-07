@@ -603,6 +603,25 @@ must still be constructed.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:134-150 and 799-807, Adams differential degree.
+% VERIFIED-IN: KIP126/Classical/Adams/Basic.lean, declarations Bidegree,
+% classicalAdamsShift, classicalAdamsTarget, classicalAdamsShape, and
+% classicalAdamsShape_two_rel.
+\begin{definition}[Compiled classical Adams $E_2\to E_3$ shape slice]
+  \label{def:classical-adams-e2-e3-shape-slice}
+  \uses{def:mathlib-spectral-sequence,def:mathlib-complex-shape-up}
+  \lean{KIP126.Classical.Adams.ClassicalAdamsSpectralSequence}
+  \lean{KIP126.Classical.Adams.classicalAdamsShape_two_rel}
+  \lean{KIP126.Classical.Adams.ClassicalAdamsSS.e₂ToE₃}
+  \leanok
+  The compiled tracer bullet is a Mathlib spectral sequence of
+  $\mathbb F_2$-modules indexed by $\mathbb Z\times\mathbb Z$, displayed from
+  $E_2$, whose page-$r$ differential shape is
+  $\operatorname{up}'(r,r-1)$.  In particular, its $d_2$ component sends
+  $(s,t)$ to $(s+2,t+1)$, and Mathlib's page-passage isomorphism identifies
+  the homology of this $E_2$ page with $E_3$.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:134-150 and 799-807, Adams differential degree.
 \begin{definition}[Classical and synthetic Adams complex shape]
   \label{def:adams-complex-shape}
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
@@ -629,6 +648,9 @@ must still be constructed.
 % SOURCE: aimpaper/main.tex:134-150 and 253-295.
 \begin{definition}[Adams bidegree convention]
   \label{def:adams-bidegree}
+  \lean{KIP126.Classical.Adams.Bidegree}
+  \lean{KIP126.Classical.Adams.classicalAdamsShift}
+  \lean{KIP126.Classical.Adams.classicalAdamsTarget}
   \notready
   A classical Adams class has bidegree $(s,t)$, Adams filtration $s$, and stem
   $t-s$.  A classical differential has

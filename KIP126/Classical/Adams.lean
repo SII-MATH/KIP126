@@ -1,9 +1,10 @@
 import KIP126.Classical.Adams.Basic
+import KIP126.Classical.Adams.Regression
 
 /-!
 # Classical Adams data
 
-Placeholder for Adams bidegrees, Ext interfaces, and named classes.
+Adams bidegrees, page interfaces, named classes, and the h₄ regression.
 -/
 
 namespace KIP126.Classical.Adams
