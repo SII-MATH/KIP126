@@ -137,6 +137,29 @@ example (P : SphereAdamsPresentation A)
         statement.target.degree = (3, 17) :=
   cataloguedAdamsOneLine_h₄_degrees P input
 
+example (P : SphereAdamsPresentation sphereSystem.pageSlice)
+    (algebra : SphereAdamsAlgebraPresentation P)
+    (input : CataloguedExternalResult
+      (KIP126.Classical.adamsOneLineDifferentials P)) :
+    H₄D₂Bound sphereSystem P algebra :=
+  cataloguedAdamsOneLine_h₄_degrees_bound sphereSystem P algebra input
+
+example (P : SphereAdamsPresentation sphereSystem.pageSlice)
+    (algebra : SphereAdamsAlgebraPresentation P)
+    (input : CataloguedExternalResult
+      (KIP126.Classical.adamsOneLineDifferentials P)) :
+    IsAdamsFiltrationSeparated sphereSystem.strongConvergence.filtration ∧
+      (P.h 4).representative ≠ 0 ∧
+      (sphereProduct P (P.h 0)
+        (sphereProduct P (P.h 3) (P.h 3))).representative ≠ 0 := by
+  rcases cataloguedAdamsOneLine_h₄_degrees_bound sphereSystem P algebra input with
+    ⟨bound⟩
+  have hSeparated := bound.strongConvergence.separated
+  rw [bound.strongConvergence_eq] at hSeparated
+  have hSourceNonzero := bound.lawfulAlgebra.h_nonzero 4
+  have hTargetNonzero := bound.lawfulAlgebra.h₀h₃Squared_nonzero
+  exact ⟨hSeparated, hSourceNonzero, hTargetNonzero⟩
+
 end KIP126.Classical.Adams.Regression
 
 #print axioms KIP126.Classical.Adams.classicalAdamsShift_two
@@ -145,3 +168,4 @@ end KIP126.Classical.Adams.Regression
 #print axioms KIP126.Classical.adamsOneLineDifferentials_h₄_degrees
 #print axioms KIP126.Classical.Adams.cataloguedAdamsOneLine_proof
 #print axioms KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees
+#print axioms KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees_bound

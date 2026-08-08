@@ -355,6 +355,28 @@ def h₄D₂ (P : SphereAdamsPresentation A) : Prop :=
       statement.target = sphereProduct P (P.h 0)
         (sphereProduct P (P.h 3) (P.h 3))
 
+structure H₄D₂BoundData {π₂ : TwoCompleteStableHomotopy stable}
+    (system : SpectrumBoundClassicalAdamsSS π₂ stable.sphere)
+    (P : SphereAdamsPresentation system.pageSlice)
+    (algebra : SphereAdamsAlgebraPresentation P) where
+  strongConvergence : StrongClassicalAdamsConvergence π₂ stable.sphere
+    system.pageSlice.sequence
+  strongConvergence_eq : strongConvergence = system.strongConvergence
+  lawfulAlgebra : SphereAdamsAlgebraPresentation P
+  lawfulAlgebra_eq : lawfulAlgebra = algebra
+  statement : ∃ statement : AdamsD₂Statement system.pageSlice,
+      statement.source = P.h 4 ∧
+        statement.target = sphereProduct P (P.h 0)
+          (sphereProduct P (P.h 3) (P.h 3)) ∧
+        statement.source.degree = (1, 16) ∧
+        statement.target.degree = (3, 17)
+
+def H₄D₂Bound {π₂ : TwoCompleteStableHomotopy stable}
+    (system : SpectrumBoundClassicalAdamsSS π₂ stable.sphere)
+    (P : SphereAdamsPresentation system.pageSlice)
+    (algebra : SphereAdamsAlgebraPresentation P) : Prop :=
+  Nonempty (H₄D₂BoundData system P algebra)
+
 end KIP126.Classical.Adams
 
 namespace KIP126.Classical
@@ -432,5 +454,18 @@ theorem cataloguedAdamsOneLine_h₄_degrees (P : SphereAdamsPresentation A)
         statement.target.degree = (3, 17) :=
   KIP126.Classical.adamsOneLineDifferentials_h₄_degrees P
     (cataloguedAdamsOneLine_proof P input)
+
+theorem cataloguedAdamsOneLine_h₄_degrees_bound
+    {stable : StableHomotopyContext}
+    {π₂ : TwoCompleteStableHomotopy stable}
+    (system : SpectrumBoundClassicalAdamsSS π₂ stable.sphere)
+    (P : SphereAdamsPresentation system.pageSlice)
+    (algebra : SphereAdamsAlgebraPresentation P)
+    (input : KIP126.External.CataloguedExternalResult
+      (KIP126.Classical.adamsOneLineDifferentials P)) :
+    H₄D₂Bound system P algebra := by
+  exact ⟨⟨system.strongConvergence, rfl, algebra, rfl,
+    KIP126.Classical.adamsOneLineDifferentials_h₄_degrees P
+      (cataloguedAdamsOneLine_proof P input)⟩⟩
 
 end KIP126.Classical.Adams

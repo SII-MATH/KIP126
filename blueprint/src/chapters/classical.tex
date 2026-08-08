@@ -262,34 +262,32 @@ paper's internal deductions are project proof obligations.
 \section{Low-line literature inputs}
 
 % SOURCE: aimpaper/main.tex:140--150, specialized to j=4.
-% VERIFIED-IN: KIP126/Classical/Adams/Basic.lean, declarations
-% KIP126.Classical.adamsOneLineDifferentials and cataloguedAdamsOneLine.
+% VERIFIED-IN: KIP126/Classical/Adams/Basic.lean, declaration
+% KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees_bound.
 \begin{theorem}[$h_4$ $d_2$ tracer bullet]
   \label{thm:external-adams-h4-d2-slice}
   \uses{def:classical-adams-e2-e3-shape-slice,def:catalogued-external-result}
-  \lean{KIP126.Classical.adamsOneLineDifferentials}
-  \lean{KIP126.Classical.Adams.cataloguedAdamsOneLine}
+  \lean{KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees_bound}
   \leanok
-  For a chosen sphere $E_2$ presentation with its explicit internal
-  multiplication, the located \texttt{adams\_one\_line} result supplies the
+  For a chosen spectrum-bound sphere $E_2$ presentation with its lawful
+  bilinear, unital, associative, Leibniz-compatible and nondegenerate
+  internal multiplication, the located \texttt{adams\_one\_line} result is
+  consumed together with the strong-convergence witnesses and supplies the
   relation
   \[
     d_2(h_4)=h_0h_3^2.
   \]
-  The source is in bidegree $(1,16)$ and the target in $(3,17)$.  The wrapper
+  The source is in bidegree $(1,16)$ and the target in $(3,17)$.  The consumer
   is tied to the canonical claim root, owner, trust class, and locator in the
   external claim ledger; it does not turn the literature result into a project
   axiom.
 \end{theorem}
 
 \begin{proof}
-  The relation itself is an explicit hypothesis at the literature boundary.
-  Package it with
-  \texttt{KIP126.Classical.Adams.cataloguedAdamsOneLine}; the constructor fixes
-  the root to \texttt{adams\_one\_line}, copies the canonical source reference
-  from the claim ledger, and proves the wrapper's reference equality and
-  supported trust class.  The internal relation uses the actual Mathlib
-  $E_2$ differential component and the separately supplied sphere product.
+  The exact consumer extracts the located result, retains the chosen
+  spectrum's strong-convergence data, checks all lawful algebra fields, and
+  derives the displayed bidegrees from the actual Mathlib $E_2$ differential
+  component and the supplied sphere product.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:140-150; citations Adams/Mahowald--Tangora/May.
