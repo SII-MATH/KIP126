@@ -115,23 +115,26 @@ noncomputable def abutment (D : EtaESSInput) : GradedObject Index Coeff :=
 theorem abutment_component (D : EtaESSInput) (b : Index) :
     abutment D b = kernel (D.etaMap b) ⊞ cokernel (D.etaMap b) := rfl
 
-noncomputable def etaPage (D : EtaESSInput) (n : ℤ) :
+noncomputable def etaPage (D : EtaESSInput)
+    (_claim : KIP126.Classical.Regression.etaEss D.differentials) (n : ℤ) :
     HomologicalComplex Coeff (etaESSShape n) where
   X := fun b => E₀ D b
   d := fun _ _ => 0
   shape := by intro i j hij; simp
   d_comp_d' := by intro i j k hij hjk; simp
 
-noncomputable def etaPageIso (D : EtaESSInput) (n : ℤ) (b : Index) :
-    (etaPage D n).homology b ≅ (etaPage D (n + 1)).X b := by
-  let S := (etaPage D n).sc b
+noncomputable def etaPageIso (D : EtaESSInput)
+    (claim : KIP126.Classical.Regression.etaEss D.differentials)
+    (n : ℤ) (b : Index) :
+    (etaPage D claim n).homology b ≅ (etaPage D claim (n + 1)).X b := by
+  let S := (etaPage D claim n).sc b
   exact (HomologyData.ofZeros S rfl rfl).left.homologyIso
 
 /-- The concrete classical eta-ESS returned by this module. -/
 noncomputable def etaESS (D : EtaESSInput) :
     SpectralSequence Coeff etaESSShape 0 where
-  page n _ := etaPage D n
-  iso n _ b _ _ := etaPageIso D n b
+  page n _ := etaPage D D.ledgerEvidence.value.evidence n
+  iso n _ b _ _ := etaPageIso D D.ledgerEvidence.value.evidence n b
 
 abbrev ClassicalEtaESS := SpectralSequence Coeff etaESSShape 0
 
