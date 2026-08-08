@@ -47,36 +47,36 @@ private def etaLocator (description : String) : Locator :=
 
 def etaD₁ : EtaDifferential :=
   { source := "h₅d₀", target := "h₁h₅d₀", length := 1
-    sourceDegree := (5, 21), targetDegree := (6, 22)
-    sourceFiltration := 6, targetFiltration := 7
+    sourceDegree := (5, 51), targetDegree := (6, 52)
+    sourceFiltration := 5, targetFiltration := 6
     locator := etaLocator "AIM Example 2.11, d₁ eta extension"
     essential := true }
 
 def etaD₂ : EtaDifferential :=
   { source := "Δh₁g", target := "d₀l", length := 2
-    sourceDegree := (7, 27), targetDegree := (9, 29)
-    sourceFiltration := 11, targetFiltration := 13
+    sourceDegree := (9, 55), targetDegree := (11, 57)
+    sourceFiltration := 9, targetFiltration := 11
     locator := etaLocator "AIM Example 2.11, d₂ eta extension"
     essential := true }
 
 def etaD₃ : EtaDifferential :=
   { source := "h₁g₂", target := "Δh₂c₁", length := 3
-    sourceDegree := (4, 24), targetDegree := (7, 27)
-    sourceFiltration := 8, targetFiltration := 11
+    sourceDegree := (5, 51), targetDegree := (8, 54)
+    sourceFiltration := 5, targetFiltration := 8
     locator := etaLocator "AIM Example 2.11, d₃ eta extension"
     essential := true }
 
 def etaD₄ : EtaDifferential :=
   { source := "h₃²h₅", target := "Mh₁", length := 4
-    sourceDegree := (3, 20), targetDegree := (7, 24)
-    sourceFiltration := 7, targetFiltration := 11
+    sourceDegree := (3, 49), targetDegree := (7, 53)
+    sourceFiltration := 3, targetFiltration := 7
     locator := etaLocator "AIM Example 2.11, d₄ eta extension"
     essential := true }
 
 def etaD₂Inessential : EtaDifferential :=
   { source := "h₀h₃²h₅", target := "h₁h₅d₀", length := 2
-    sourceDegree := (4, 21), targetDegree := (6, 22)
-    sourceFiltration := 5, targetFiltration := 7
+    sourceDegree := (4, 50), targetDegree := (6, 52)
+    sourceFiltration := 4, targetFiltration := 6
     locator := etaLocator "AIM Example 2.11, inessential d₂ eta extension"
     essential := false }
 
@@ -84,88 +84,177 @@ def etaD₂Inessential : EtaDifferential :=
 def etaESSDifferentials : Set EtaDifferential :=
   {etaD₁, etaD₂, etaD₃, etaD₄, etaD₂Inessential}
 
+end KIP126.Classical.ExtensionSS
+
 namespace KIP126.Classical.Regression
 
 /-- The source-backed eta regression claim consumed by the concrete ESS. -/
-def etaEss (rows : Set EtaDifferential) : Prop :=
-  rows = etaESSDifferentials
+def etaEss (rows : Set KIP126.Classical.ExtensionSS.EtaDifferential) : Prop :=
+  rows = KIP126.Classical.ExtensionSS.etaESSDifferentials
 
 end KIP126.Classical.Regression
 
-/-- Concrete data for the eta extension sequence.  `detected` is a set, so a
-class may have many detected representatives. -/
-structure EtaESSInput where
-  X∞ : GradedObject Index Coeff
-  Y∞ : GradedObject Index Coeff
-  etaMap : ∀ b, X∞ b ⟶ Y∞ b
+namespace KIP126.Classical.ExtensionSS
+
+open CategoryTheory CategoryTheory.Limits
+open KIP126.Classical.Adams
+open KIP126.Classical.Regression
+open KIP126.External
+
+/-! ### AIM-5 adapter and concrete page data -/
+
+structure ClassicalEtaESSAdapter {stable : StableHomotopyContext}
+    {X Y : stable.Spectrum}
+    (source : ClassicalAdamsSS stable X)
+    (target : ClassicalAdamsSS stable Y) where
+  sourceInfinity : GradedObject Index Coeff
+  targetInfinity : GradedObject Index Coeff
+  eta : AdamsClass source
+  sourceClass : EtaDifferential → AdamsClass source
+  targetClass : EtaDifferential → AdamsClass target
+  sourceClass_degree : ∀ row, (sourceClass row).degree = row.sourceDegree
+  targetClass_degree : ∀ row, (targetClass row).degree = row.targetDegree
+  etaMap : ∀ b, sourceInfinity b ⟶ targetInfinity b
+  rowMap : ∀ row : EtaDifferential,
+    sourceInfinity row.sourceDegree ⊞ targetInfinity row.sourceDegree ⟶
+      sourceInfinity row.targetDegree ⊞ targetInfinity row.targetDegree
+  rowMap_nonzero : ∀ row, row ∈ etaESSDifferentials → rowMap row ≠ 0
+
+noncomputable def E₀ {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (A : ClassicalEtaESSAdapter source target) : GradedObject Index Coeff :=
+  fun b => A.sourceInfinity b ⊞ A.targetInfinity b
+
+/-! Concrete input retains the two AIM-5 Adams systems and exposes the finite
+eta source/target classes through `rowMap`. -/
+
+structure EtaESSPageData {stable : StableHomotopyContext}
+    {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X}
+    {target : ClassicalAdamsSS stable Y}
+    (adapter : ClassicalEtaESSAdapter source target)
+    (differentials : Set EtaDifferential) where
+  d : ∀ (_n : ℤ) (i j : Index), E₀ adapter i ⟶ E₀ adapter j
+  shape : ∀ (_n : ℤ) (i j : Index), ¬(etaESSShape _n).Rel i j → d _n i j = 0
+  d_comp_d : ∀ (n : ℤ) (i j k : Index), d n i j ≫ d n j k = 0
+  row : ∀ (row : EtaDifferential), row ∈ differentials →
+    d row.length row.sourceDegree row.targetDegree = adapter.rowMap row
+
+noncomputable def etaPage {stable : StableHomotopyContext}
+    {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X}
+    {target : ClassicalAdamsSS stable Y}
+    {adapter : ClassicalEtaESSAdapter source target}
+    {differentials : Set EtaDifferential}
+    (pageData : EtaESSPageData adapter differentials) (n : ℤ) :
+    HomologicalComplex Coeff (etaESSShape n) where
+  X := E₀ adapter
+  d := pageData.d n
+  shape := pageData.shape n
+  d_comp_d' := by intro i j k hij hjk; exact pageData.d_comp_d n i j k
+
+structure EtaESSInput {stable : StableHomotopyContext}
+    {X Y : stable.Spectrum}
+    (source : ClassicalAdamsSS stable X)
+    (target : ClassicalAdamsSS stable Y) where
+  adapter : ClassicalEtaESSAdapter source target
   differentials : Set EtaDifferential
   detected : Set EtaDifferential
   detected_eq_differentials : detected = differentials
-  ledgerEvidence : CataloguedExternalEvidence
+  ledgerEvidence : KIP126.External.CataloguedExternalEvidence
     (KIP126.Classical.Regression.etaEss differentials)
-
-/-- The page-zero object is the direct categorical sum of the two `E∞` terms. -/
-def E₀ (D : EtaESSInput) : GradedObject Index Coeff :=
-  fun b => D.X∞ b ⊞ D.Y∞ b
+  pageData : EtaESSPageData adapter differentials
+  pageIso : ∀ (n : ℤ) (b : Index),
+    (etaPage pageData n).homology b ≅ (etaPage pageData (n + 1)).X b
 
 /-- The abutment is displayed componentwise as kernel plus cokernel. -/
-noncomputable def abutment (D : EtaESSInput) : GradedObject Index Coeff :=
-  fun b => kernel (D.etaMap b) ⊞ cokernel (D.etaMap b)
+noncomputable def abutment {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) : GradedObject Index Coeff :=
+  fun b => kernel (D.adapter.etaMap b) ⊞ cokernel (D.adapter.etaMap b)
 
-theorem abutment_component (D : EtaESSInput) (b : Index) :
-    abutment D b = kernel (D.etaMap b) ⊞ cokernel (D.etaMap b) := rfl
-
-noncomputable def etaPage (D : EtaESSInput)
-    (_claim : KIP126.Classical.Regression.etaEss D.differentials) (n : ℤ) :
-    HomologicalComplex Coeff (etaESSShape n) where
-  X := fun b => E₀ D b
-  d := fun _ _ => 0
-  shape := by intro i j hij; simp
-  d_comp_d' := by intro i j k hij hjk; simp
-
-noncomputable def etaPageIso (D : EtaESSInput)
-    (claim : KIP126.Classical.Regression.etaEss D.differentials)
-    (n : ℤ) (b : Index) :
-    (etaPage D claim n).homology b ≅ (etaPage D claim (n + 1)).X b := by
-  let S := (etaPage D claim n).sc b
-  exact (HomologyData.ofZeros S rfl rfl).left.homologyIso
+theorem abutment_component {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+  {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+  (D : EtaESSInput source target) (b : Index) :
+    abutment D b = biprod (kernel (D.adapter.etaMap b)) (cokernel (D.adapter.etaMap b)) := rfl
 
 /-- The concrete classical eta-ESS returned by this module. -/
-noncomputable def etaESS (D : EtaESSInput) :
+noncomputable def etaESS {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) :
     SpectralSequence Coeff etaESSShape 0 where
-  page n _ := etaPage D D.ledgerEvidence.value.evidence n
-  iso n _ b _ _ := etaPageIso D D.ledgerEvidence.value.evidence n b
+  page n _ := etaPage D.pageData n
+  iso n _ b _ _ := D.pageIso n b
+
+theorem etaESS_page_differential {stable : StableHomotopyContext}
+    {X Y : stable.Spectrum} {source : ClassicalAdamsSS stable X}
+    {target : ClassicalAdamsSS stable Y} (D : EtaESSInput source target)
+    (row : EtaDifferential) (hrow : row ∈ D.differentials) :
+    ((etaESS D).page row.length).d row.sourceDegree row.targetDegree =
+      D.adapter.rowMap row :=
+  D.pageData.row row hrow
+
+theorem etaESS_row_nonzero {stable : StableHomotopyContext}
+    {X Y : stable.Spectrum} {source : ClassicalAdamsSS stable X}
+    {target : ClassicalAdamsSS stable Y} (D : EtaESSInput source target)
+    (row : EtaDifferential) (hrow : row ∈ D.differentials) :
+    ((etaESS D).page row.length).d row.sourceDegree row.targetDegree ≠ 0 := by
+  rw [etaESS_page_differential D row hrow]
+  apply D.adapter.rowMap_nonzero
+  have hClaim := D.ledgerEvidence.value.evidence
+  change D.differentials = etaESSDifferentials at hClaim
+  rw [hClaim] at hrow
+  exact hrow
 
 abbrev ClassicalEtaESS := SpectralSequence Coeff etaESSShape 0
 
 def differentialDegree (n : ℕ) : Index := (n, n)
 
 /-- A paper-specific extension relation on the concrete finite rows. -/
-def FExtension (D : EtaESSInput) (row : EtaDifferential) : Prop :=
+def FExtension {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) (row : EtaDifferential) : Prop :=
   row ∈ D.differentials
 
 /-- Set-valued detection predicate for the concrete construction. -/
-def DetectedBy (D : EtaESSInput) (row : EtaDifferential) : Prop :=
+def DetectedBy {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) (row : EtaDifferential) : Prop :=
   row ∈ D.detected
 
 /-- Essentiality is only defined for rows of this concrete eta construction. -/
-def Essential (D : EtaESSInput) (row : EtaDifferential) : Prop :=
+def Essential {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) (row : EtaDifferential) : Prop :=
   FExtension D row ∧ row.essential = true
 
 /-- A crossing is a pair of concrete rows with the prescribed filtration order. -/
-def Crossing (D : EtaESSInput) (row : EtaDifferential) : Prop :=
+def Crossing {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) (row : EtaDifferential) : Prop :=
   ∃ other, other ∈ D.differentials ∧ other.sourceFiltration > row.sourceFiltration ∧
     other.targetFiltration ≤ row.targetFiltration
 
-theorem extension_iff_detected (D : EtaESSInput) (row : EtaDifferential) :
+def NoCrossing {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) (row : EtaDifferential) : Prop :=
+  ¬ Crossing D row
+
+theorem extension_iff_detected {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) (row : EtaDifferential) :
     FExtension D row ↔ DetectedBy D row := by
   simpa [FExtension, DetectedBy, D.detected_eq_differentials]
 
-theorem differential_claim (D : EtaESSInput) :
+theorem differential_claim {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) :
     KIP126.Classical.Regression.etaEss D.differentials :=
   D.ledgerEvidence.value.evidence
 
-theorem etaD₄_has_degree (D : EtaESSInput) :
+theorem etaD₄_has_degree {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) :
     etaD₄ ∈ D.differentials :=
   by
     have h := differential_claim D
@@ -176,9 +265,28 @@ theorem etaD₄_has_degree (D : EtaESSInput) :
 theorem etaD₁_has_locator :
     etaD₁.locator.artifact = some "aimpaper/main.tex" := rfl
 
-theorem etaD₄_has_crossing (D : EtaESSInput) :
+theorem etaD₄_has_crossing {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) :
     Crossing D etaD₄ ↔ ∃ other, other ∈ D.differentials ∧
       other.sourceFiltration > etaD₄.sourceFiltration ∧
       other.targetFiltration ≤ etaD₄.targetFiltration := Iff.rfl
+
+theorem etaD₄_crossing {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) : Crossing D etaD₄ := by
+  have hClaim := differential_claim D
+  change D.differentials = etaESSDifferentials at hClaim
+  refine ⟨etaD₁, ?_, by decide, by decide⟩
+  rw [hClaim]
+  simp [etaESSDifferentials]
+
+theorem etaD₁_noCrossing {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+    {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+    (D : EtaESSInput source target) : NoCrossing D etaD₁ := by
+  have hClaim := differential_claim D
+  change D.differentials = etaESSDifferentials at hClaim
+  rw [NoCrossing, Crossing, hClaim]
+  simp [etaESSDifferentials, etaD₁, etaD₂, etaD₃, etaD₄, etaD₂Inessential]
 
 end KIP126.Classical.ExtensionSS
