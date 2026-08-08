@@ -25,11 +25,22 @@ def syntheticAdamsTarget (r : ℕ) (i : Tridegree) : Tridegree :=
 def syntheticAdamsShape (r : ℤ) : ComplexShape Tridegree :=
   ComplexShape.up' (r, r - 1, 0)
 
+def lambdaDegree : Tridegree := (0, 0, -1)
+
+def lambdaTarget (i : Tridegree) : Tridegree := i + lambdaDegree
+
 abbrev SyntheticAdamsSpectralSequence :=
   CategoryTheory.SpectralSequence (ModuleCat (ZMod 2)) syntheticAdamsShape 2
 
 structure SyntheticAdamsSS where
   sequence : SyntheticAdamsSpectralSequence
+  h₄ : (sequence.page 2).X (1, 16, 16)
+  h₀h₃Squared : (sequence.page 2).X (3, 17, 17)
+  lambdaMap : ∀ i : Tridegree,
+    (sequence.page 2).X i ⟶ (sequence.page 2).X (lambdaTarget i)
+  weightPreserving : ∀ (r : ℤ) (hr : 2 ≤ r) (i j : Tridegree),
+    (syntheticAdamsShape r).Rel i j →
+      (sequence.page r).d i j ≠ 0 → i.2.2 = j.2.2
 
 namespace SyntheticAdamsSS
 
@@ -66,10 +77,6 @@ def forgetWeight (i : Tridegree) : KIP126.Classical.Adams.Bidegree :=
 def nuDegree (b : KIP126.Classical.Adams.Bidegree) : Tridegree :=
   (b.1, b.2, b.2)
 
-def lambdaDegree : Tridegree := (0, 0, -1)
-
-def lambdaTarget (i : Tridegree) : Tridegree := i + lambdaDegree
-
 @[simp] theorem forgetWeight_nuDegree
     (b : KIP126.Classical.Adams.Bidegree) :
     forgetWeight (nuDegree b) = b := by
@@ -89,13 +96,12 @@ def lambdaTarget (i : Tridegree) : Tridegree := i + lambdaDegree
       KIP126.Classical.Adams.classicalAdamsTarget,
       KIP126.Classical.Adams.classicalAdamsShift]
 
-def weightPreserving (_A : SyntheticAdamsSS) : Prop :=
-  ∀ (_r : ℤ) (_hr : 2 ≤ _r) (i j : Tridegree),
-    (syntheticAdamsShape _r).Rel i j → i.2.2 = j.2.2
-
-theorem weightPreserving_differential (_A : SyntheticAdamsSS) (r : ℕ)
-    (i : Tridegree) :
+theorem weightPreserving_differential (A : SyntheticAdamsSS) (r : ℕ)
+    (hr : 2 ≤ r)
+    (i : Tridegree)
+    (h : (A.sequence.page (r : ℤ)).d i (syntheticAdamsTarget r i) ≠ 0) :
     i.2.2 = (syntheticAdamsTarget r i).2.2 := by
-  simp [syntheticAdamsTarget, syntheticAdamsShift]
+  exact A.weightPreserving (r : ℤ) (by omega) i
+    (syntheticAdamsTarget r i) (syntheticAdamsShape_rel r i) h
 
 end KIP126.Synthetic.SpectralSequence

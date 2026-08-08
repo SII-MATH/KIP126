@@ -83,12 +83,6 @@ abbrev syntheticH₀H₃SquaredDegree : Tridegree :=
 abbrev syntheticH₄TargetDegree : Tridegree :=
   lambdaTarget syntheticH₀H₃SquaredDegree
 
-structure SyntheticH₄DifferentialData (synthetic : SyntheticAdamsSS) where
-  h₄ : synthetic.E₂.X syntheticH₄Degree
-  h₀h₃Squared : synthetic.E₂.X syntheticH₀H₃SquaredDegree
-  lambdaMul : synthetic.E₂.X syntheticH₀H₃SquaredDegree →
-    synthetic.E₂.X syntheticH₄TargetDegree
-
 structure H₄DifferentialComparison
     {stable : StableHomotopyContext}
     {classical : ClassicalAdamsSS stable stable.sphere}
@@ -102,23 +96,30 @@ structure H₄DifferentialComparison
   classical_source : classicalStatement.source = P.h 4
   classical_target : classicalStatement.target =
     sphereProduct P (P.h 0) (sphereProduct P (P.h 3) (P.h 3))
-  syntheticData : SyntheticH₄DifferentialData synthetic
-  sourceMap : classical.E₂.X classicalStatement.source.degree →
+  source_degree : classicalStatement.source.degree = classicalH₄Degree
+  target_degree_h0 : classicalStatement.target.degree = classicalH₀H₃SquaredDegree
+  sourceMap : classical.E₂.X classicalH₄Degree ⟶
     synthetic.E₂.X syntheticH₄Degree
-  sourceMap_h₄ : sourceMap classicalStatement.source.representative =
-    syntheticData.h₄
-  targetMap : classical.E₂.X
-      (classicalAdamsTarget 2 classicalStatement.source.degree) →
-    synthetic.E₂.X syntheticH₄TargetDegree
+  sourceMap_h₄ : sourceMap
+      (transportRepresentative classicalStatement.source source_degree) =
+    synthetic.h₄
+  targetMap : classical.E₂.X classicalH₀H₃SquaredDegree ⟶
+    synthetic.E₂.X syntheticH₀H₃SquaredDegree
   targetMap_h₀h₃Squared : targetMap
-      (transportRepresentative classicalStatement.target
-        classicalStatement.target_degree) =
-    syntheticData.lambdaMul syntheticData.h₀h₃Squared
-  differentialMap_comm : targetMap
-      ((classical.d₂ classicalStatement.source.degree).hom
-        classicalStatement.source.representative) =
+      (transportRepresentative classicalStatement.target target_degree_h0) =
+    synthetic.h₀h₃Squared
+  classical_d₂_target :
+    (classical.d₂ classicalH₄Degree).hom
+        (transportRepresentative classicalStatement.source source_degree) =
+      transportRepresentative classicalStatement.target target_degree_h0
+  differentialMap_comm :
     (synthetic.d₂ syntheticH₄Degree).hom
-      (sourceMap classicalStatement.source.representative)
+        (sourceMap.hom
+          (transportRepresentative classicalStatement.source source_degree)) =
+      (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
+        (targetMap.hom
+          ((classical.d₂ classicalH₄Degree).hom
+            (transportRepresentative classicalStatement.source source_degree)))
 
 theorem H₄DifferentialComparison.classical_degrees
     {stable : StableHomotopyContext}
@@ -150,36 +151,53 @@ theorem H₄DifferentialComparison.catalogued_classical_degrees
         (sphereProduct P (P.h 3) (P.h 3)) ∧
       statement.source.degree = classicalH₄Degree ∧
       statement.target.degree = classicalH₀H₃SquaredDegree :=
-  KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees P
-    comparison.catalogue
+  by
+    let h := KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees P
+      comparison.catalogue
+    refine ⟨comparison.classicalStatement, ?_, ?_, ?_, ?_⟩
+    · rw [comparison.classicalStatement_catalogued]
+      exact h.choose_spec.1
+    · rw [comparison.classicalStatement_catalogued]
+      exact h.choose_spec.2.1
+    · rw [comparison.classicalStatement_catalogued]
+      exact h.choose_spec.2.2.1
+    · rw [comparison.classicalStatement_catalogued]
+      exact h.choose_spec.2.2.2
 
 theorem H₄DifferentialComparison.synthetic_lambda_regression
     {stable : StableHomotopyContext}
     {classical : ClassicalAdamsSS stable stable.sphere}
     {synthetic : SyntheticAdamsSS}
     {P : SphereAdamsPresentation classical}
-    (comparison : H₄DifferentialComparison synthetic P) :
-    (synthetic.d₂ syntheticH₄Degree).hom comparison.syntheticData.h₄ =
-      comparison.syntheticData.lambdaMul comparison.syntheticData.h₀h₃Squared := by
+  (comparison : H₄DifferentialComparison synthetic P) :
+    (synthetic.d₂ syntheticH₄Degree).hom synthetic.h₄ =
+      (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
+        synthetic.h₀h₃Squared := by
   calc
-    (synthetic.d₂ syntheticH₄Degree).hom comparison.syntheticData.h₄ =
+    (synthetic.d₂ syntheticH₄Degree).hom synthetic.h₄ =
         (synthetic.d₂ syntheticH₄Degree).hom
-          (comparison.sourceMap
-            comparison.classicalStatement.source.representative) :=
+          (comparison.sourceMap.hom
+            (transportRepresentative comparison.classicalStatement.source
+              comparison.source_degree)) :=
       (congrArg (synthetic.d₂ syntheticH₄Degree).hom
         comparison.sourceMap_h₄).symm
-    _ = comparison.targetMap
-        ((classical.d₂ comparison.classicalStatement.source.degree).hom
-          comparison.classicalStatement.source.representative) :=
-      comparison.differentialMap_comm.symm
-    _ = comparison.targetMap
-        (transportRepresentative comparison.classicalStatement.target
-          comparison.classicalStatement.target_degree) :=
-      congrArg comparison.targetMap
-        comparison.classicalStatement.representative_relation
-    _ = comparison.syntheticData.lambdaMul
-        comparison.syntheticData.h₀h₃Squared :=
-      comparison.targetMap_h₀h₃Squared
+    _ = (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
+        (comparison.targetMap.hom
+          ((classical.d₂ classicalH₄Degree).hom
+            (transportRepresentative comparison.classicalStatement.source
+              comparison.source_degree))) := by
+      exact comparison.differentialMap_comm
+    _ = (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
+        (comparison.targetMap.hom
+          (transportRepresentative comparison.classicalStatement.target
+            comparison.target_degree_h0)) := by
+      exact congrArg
+        (fun x => (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
+          (comparison.targetMap.hom x)) comparison.classical_d₂_target
+    _ = (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
+        synthetic.h₀h₃Squared :=
+      congrArg (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
+        comparison.targetMap_h₀h₃Squared
 
 theorem synthetic_h₄_degree_forgets :
     forgetWeight syntheticH₄Degree = classicalH₄Degree := by

@@ -191,7 +191,10 @@ the hypotheses used by later proofs.
 \begin{proposition}[The $h_4$ classical--synthetic $d_2$ comparison]
   \label{prop:aim6-h4-comparison}
   \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism,def:external-result}
-  \lean{KIP126.Comparison.ClassicalSynthetic.SyntheticH₄DifferentialData}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.h₄}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.h₀h₃Squared}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.lambdaMap}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.weightPreserving}
   \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison}
   \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.classical_degrees}
   \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.catalogued_classical_degrees}
@@ -199,18 +202,22 @@ the hypotheses used by later proofs.
   \notready
   In the concrete three-graded slice, the classical catalogue entry
   $d_2^{\mathrm{cl}}(h_4)=h_0h_3^2$ is transported along
-  $(s,t,w)\mapsto(s,t)$.  The synthetic differential has the same first two
-  degree shift, preserves $w$, and its target is the corresponding
-  $\lambda\cdot h_0h_3^2$ representative.
+  $(s,t,w)\mapsto(s,t)$.  The synthetic sequence carries a pagewise
+  weight-preservation law for its actual Mathlib differentials and a concrete
+  page-$2$ map induced by the $λ$ regrading $(s,t,w)\mapsto(s,t,w-1)$.
+  The comparison uses those maps to identify the synthetic target as
+  $\lambda\cdot h_0h_3^2$.
 \end{proposition}
 
 \begin{proof}
-  Consume the AIM-5 catalogue wrapper to obtain the classical differential and
-  its $(1,16)\to(3,17)$ degree calculation.  The concrete reindexed comparison
-  commutes with the page-$2$ differentials, while the synthetic presentation
-  identifies the image target with multiplication by $\lambda$.  Since the
-  synthetic shift is $(2,1,0)$, this target has tridegree $(3,17,16)$ and the
-  weight is unchanged.
+  The concrete synthetic slice stores the two representatives on its actual
+  $E_2$ page, its $λ$ regrading map, and a pagewise law for nonzero Mathlib
+  differentials.  Consume the AIM-5 catalogue wrapper to choose the same
+  classical statement stored in the comparison.  The forget-weight page maps
+  commute with the page-$2$ differential; applying the slice's $λ$ map to
+  the transported target gives the synthetic regression.  Since the shift is
+  $(2,1,0)$, the target has tridegree $(3,17,16)$ and the stored law supplies
+  the unchanged-weight conclusion.
 \end{proof}
 
 % SOURCE: BHS Theorem A.8; aimpaper/main.tex:799-807, Theorem thm:rigid.

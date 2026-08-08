@@ -25,9 +25,11 @@ example (r : ℕ) (i : Tridegree) :
     (syntheticAdamsShape r).Rel i (syntheticAdamsTarget r i) :=
   syntheticAdamsShape_rel r i
 
-example (A : SyntheticAdamsSS) (r : ℕ) (i : Tridegree) :
+example (A : SyntheticAdamsSS) (r : ℕ) (i : Tridegree)
+    (hr : 2 ≤ r)
+    (h : (A.sequence.page (r : ℤ)).d i (syntheticAdamsTarget r i) ≠ 0) :
     i.2.2 = (syntheticAdamsTarget r i).2.2 :=
-  weightPreserving_differential A r i
+  weightPreserving_differential A r hr i h
 
 example : forgetWeight syntheticH₄Degree = classicalH₄Degree :=
   synthetic_h₄_degree_forgets
@@ -63,8 +65,9 @@ example {stable : StableHomotopyContext}
     {synthetic : SyntheticAdamsSS}
     {P : SphereAdamsPresentation classical}
     (comparison : H₄DifferentialComparison synthetic P) :
-    (synthetic.d₂ syntheticH₄Degree).hom comparison.syntheticData.h₄ =
-      comparison.syntheticData.lambdaMul comparison.syntheticData.h₀h₃Squared :=
+    (synthetic.d₂ syntheticH₄Degree).hom synthetic.h₄ =
+      (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
+        synthetic.h₀h₃Squared :=
   comparison.synthetic_lambda_regression
 
 example :
