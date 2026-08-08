@@ -666,6 +666,15 @@ must still be constructed.
 \begin{definition}[Synthetic tridegree and page-level conversion]
   \label{def:synthetic-tridegree}
   \uses{def:adams-bidegree}
+  \lean{KIP126.Synthetic.SpectralSequence.Tridegree}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShift}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsTarget}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape}
+  \lean{KIP126.Synthetic.SpectralSequence.nuDegree}
+  \lean{KIP126.Synthetic.SpectralSequence.lambdaDegree}
+  \lean{KIP126.Synthetic.SpectralSequence.lambdaTarget}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.e₂ToE₃}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.d₂}
   \notready
   A synthetic Adams class is indexed by $(s,t,w)$, where $s$ is Adams
   filtration, $t-s$ is the topological stem, and $w$ is synthetic weight.  A
@@ -1181,6 +1190,9 @@ must still be constructed.
 \begin{definition}[Reindexed spectral-sequence morphism]
   \label{def:reindexed-ss-morphism}
   \uses{def:mathlib-graded-comap,def:mathlib-complex-shape-up,def:mathlib-spectral-sequence-hom,def:adams-bidegree,def:synthetic-tridegree}
+  \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap}
+  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeightComparison}
+  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
   \notready
   A reindexed morphism specifies a map of page index types, a map of grading
   indices, page maps, and proofs that the page maps commute with differentials
