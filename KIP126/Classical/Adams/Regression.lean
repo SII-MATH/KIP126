@@ -142,7 +142,19 @@ example (P : SphereAdamsPresentation sphereSystem.pageSlice)
     (input : CataloguedExternalResult
       (KIP126.Classical.adamsOneLineDifferentials P)) :
     H₄D₂Bound sphereSystem P algebra :=
-  cataloguedAdamsOneLine_h₄_degrees_bound sphereSystem P algebra input
+  cataloguedAdamsOneLine_h₄_degrees_bound sphereSystem P algebra
+    (cataloguedAdamsOneLineCanonical P input.value.proof)
+
+example (P : SphereAdamsPresentation sphereSystem.pageSlice)
+    (input : AdamsOneLineCatalogue P) :
+    input.value.ref = (externalClaimLedger.lookup .adamsOneLine).ref ∧
+      (externalClaimLedger.lookup .adamsOneLine).owner =
+        `KIP126.Classical.adamsOneLineDifferentials ∧
+      (externalClaimLedger.lookup .adamsOneLine).classification =
+        .compositeResult ∧
+      (externalClaimLedger.lookup .adamsOneLine).ref.locator.artifact =
+        some "aimpaper/main.tex" := by
+  exact ⟨input.ref_eq, rfl, rfl, rfl⟩
 
 example (P : SphereAdamsPresentation sphereSystem.pageSlice)
     (algebra : SphereAdamsAlgebraPresentation P)
@@ -152,7 +164,8 @@ example (P : SphereAdamsPresentation sphereSystem.pageSlice)
       (P.h 4).representative ≠ 0 ∧
       (sphereProduct P (P.h 0)
         (sphereProduct P (P.h 3) (P.h 3))).representative ≠ 0 := by
-  rcases cataloguedAdamsOneLine_h₄_degrees_bound sphereSystem P algebra input with
+  rcases cataloguedAdamsOneLine_h₄_degrees_bound sphereSystem P algebra
+    (cataloguedAdamsOneLineCanonical P input.value.proof) with
     ⟨bound⟩
   have hSeparated := bound.strongConvergence.separated
   rw [bound.strongConvergence_eq] at hSeparated

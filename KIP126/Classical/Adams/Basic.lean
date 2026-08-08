@@ -455,17 +455,36 @@ theorem cataloguedAdamsOneLine_h₄_degrees (P : SphereAdamsPresentation A)
   KIP126.Classical.adamsOneLineDifferentials_h₄_degrees P
     (cataloguedAdamsOneLine_proof P input)
 
+structure AdamsOneLineCatalogue {stable : StableHomotopyContext}
+    {A : ClassicalAdamsSS stable stable.sphere}
+    (P : SphereAdamsPresentation A) where
+  value : KIP126.External.ExternalResult
+    (KIP126.Classical.adamsOneLineDifferentials P)
+  ref_eq : value.ref =
+    (KIP126.External.externalClaimLedger.lookup .adamsOneLine).ref
+
+def cataloguedAdamsOneLineCanonical
+    {stable : StableHomotopyContext}
+    {A : ClassicalAdamsSS stable stable.sphere}
+    (P : SphereAdamsPresentation A)
+    (proof : KIP126.Classical.adamsOneLineDifferentials P) :
+    AdamsOneLineCatalogue P :=
+  { value := adamsOneLineResult P proof
+    ref_eq := rfl }
+
 theorem cataloguedAdamsOneLine_h₄_degrees_bound
     {stable : StableHomotopyContext}
     {π₂ : TwoCompleteStableHomotopy stable}
     (system : SpectrumBoundClassicalAdamsSS π₂ stable.sphere)
     (P : SphereAdamsPresentation system.pageSlice)
     (algebra : SphereAdamsAlgebraPresentation P)
-    (input : KIP126.External.CataloguedExternalResult
-      (KIP126.Classical.adamsOneLineDifferentials P)) :
+    (input : AdamsOneLineCatalogue P) :
     H₄D₂Bound system P algebra := by
+  have canonicalInput : KIP126.External.CataloguedExternalResult
+      (KIP126.Classical.adamsOneLineDifferentials P) :=
+    cataloguedAdamsOneLine P input.value.proof
   exact ⟨⟨system.strongConvergence, rfl, algebra, rfl,
     KIP126.Classical.adamsOneLineDifferentials_h₄_degrees P
-      (cataloguedAdamsOneLine_proof P input)⟩⟩
+      (cataloguedAdamsOneLine_proof P canonicalInput)⟩⟩
 
 end KIP126.Classical.Adams
