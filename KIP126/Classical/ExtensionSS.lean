@@ -1,4 +1,5 @@
 import KIP126.Classical.ExtensionSS.Basic
+import KIP126.Classical.ExtensionSS.Regression
 
 /-!
 # Classical extension spectral sequences
