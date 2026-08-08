@@ -187,6 +187,42 @@ the hypotheses used by later proofs.
   no internal product is asserted for an arbitrary synthetic spectrum.
 \end{definition}
 
+% SOURCE: aimpaper/main.tex:685-691; AIM-6 concrete synthetic comparison slice.
+\begin{proposition}[The $h_4$ classical--synthetic $d_2$ comparison]
+  \label{prop:aim6-h4-comparison}
+  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism,def:external-result}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.h₄}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.h₀h₃Squared}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.lambdaMap}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.weightPreserving}
+  \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison}
+  \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.classical_degrees}
+  \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.catalogued_classical_degrees}
+  \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.synthetic_lambda_regression}
+  \notready
+  The current Lean slice exposes the three-graded indices, the actual
+  Mathlib page/differential interface, and the $(s,t,w)\mapsto(s,t)$ degree
+  adapter.  It does not yet construct a typed multiplication-by-$λ$ action
+  (with grading and page/multiplication coherence), nor canonical
+  classical--synthetic page morphisms from representatives.  Consequently
+  `SyntheticAdamsSS.lambdaMap` and
+  `H₄DifferentialComparison` still expose these maps and their differential
+  square as input data; they must not be read as a constructed
+  $\lambda\cdot h_0h_3^2$ correspondence.  The proposition remains `notready`
+  until the upstream synthetic spectrum/action and canonical page-map data
+  are available.
+\end{proposition}
+
+\begin{proof}
+  The AIM-5 catalogue wrapper supplies the classical statement and the
+  index adapter proves the displayed degree equalities.  Mathlib's
+  `CategoryTheory.SpectralSequence` supplies page objects, differentials,
+  and page-passage isomorphisms, but not a multiplicative $λ$ action or a
+  heterogeneous canonical page map.  The missing typed action/coherence and
+  representative-induced maps are therefore an upstream data-model blocker;
+  no proof of the differential correspondence is claimed here.
+\end{proof}
+
 % SOURCE: BHS Theorem A.8; aimpaper/main.tex:799-807, Theorem thm:rigid.
 \begin{theorem}[Synthetic Adams rigidity]
   \label{thm:external-synthetic-rigidity}
