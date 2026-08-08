@@ -200,24 +200,27 @@ the hypotheses used by later proofs.
   \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.catalogued_classical_degrees}
   \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.synthetic_lambda_regression}
   \notready
-  In the concrete three-graded slice, the classical catalogue entry
-  $d_2^{\mathrm{cl}}(h_4)=h_0h_3^2$ is transported along
-  $(s,t,w)\mapsto(s,t)$.  The synthetic sequence carries a pagewise
-  weight-preservation law for its actual Mathlib differentials and a concrete
-  page-$2$ map induced by the $λ$ regrading $(s,t,w)\mapsto(s,t,w-1)$.
-  The comparison uses those maps to identify the synthetic target as
-  $\lambda\cdot h_0h_3^2$.
+  The current Lean slice exposes the three-graded indices, the actual
+  Mathlib page/differential interface, and the $(s,t,w)\mapsto(s,t)$ degree
+  adapter.  It does not yet construct a typed multiplication-by-$λ$ action
+  (with grading and page/multiplication coherence), nor canonical
+  classical--synthetic page morphisms from representatives.  Consequently
+  `SyntheticAdamsSS.lambdaMap` and
+  `H₄DifferentialComparison` still expose these maps and their differential
+  square as input data; they must not be read as a constructed
+  $\lambda\cdot h_0h_3^2$ correspondence.  The proposition remains `notready`
+  until the upstream synthetic spectrum/action and canonical page-map data
+  are available.
 \end{proposition}
 
 \begin{proof}
-  The concrete synthetic slice stores the two representatives on its actual
-  $E_2$ page, its $λ$ regrading map, and a pagewise law for nonzero Mathlib
-  differentials.  Consume the AIM-5 catalogue wrapper to choose the same
-  classical statement stored in the comparison.  The forget-weight page maps
-  commute with the page-$2$ differential; applying the slice's $λ$ map to
-  the transported target gives the synthetic regression.  Since the shift is
-  $(2,1,0)$, the target has tridegree $(3,17,16)$ and the stored law supplies
-  the unchanged-weight conclusion.
+  The AIM-5 catalogue wrapper supplies the classical statement and the
+  index adapter proves the displayed degree equalities.  Mathlib's
+  `CategoryTheory.SpectralSequence` supplies page objects, differentials,
+  and page-passage isomorphisms, but not a multiplicative $λ$ action or a
+  heterogeneous canonical page map.  The missing typed action/coherence and
+  representative-induced maps are therefore an upstream data-model blocker;
+  no proof of the differential correspondence is claimed here.
 \end{proof}
 
 % SOURCE: BHS Theorem A.8; aimpaper/main.tex:799-807, Theorem thm:rigid.
