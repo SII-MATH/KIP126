@@ -23,6 +23,7 @@ jobs:
       - name: Run project health gates
         run: |
           set -euo pipefail
+          pipx install 'leanblueprint==1.9.8'
           lake build
           python3 scripts/check_source_inventory.py --lean-timeout 900
           python3 -m unittest discover -s scripts -p 'test_*.py' -v

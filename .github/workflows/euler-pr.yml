@@ -44,7 +44,7 @@ jobs:
             test "$(jq -r .draft pr.json)" = false
             HEAD_SHA=$(jq -r .head.sha pr.json)
             BASE_SHA=$(jq -r .base.sha pr.json)
-            gh api "repos/$REPO/pulls/$PR_NUMBER/files?per_page=100" --paginate > files.json
+            gh api "repos/$REPO/pulls/$PR_NUMBER/files?per_page=100" --paginate --slurp | jq 'add' > files.json
           else
             HEAD_SHA="$EVENT_HEAD"
             BASE_SHA="$EVENT_BASE"
@@ -109,6 +109,7 @@ jobs:
       - name: Build and run project gates
         run: |
           set -euo pipefail
+          pipx install 'leanblueprint==1.9.8'
           lake cache get
           lake build
           python3 scripts/check_source_inventory.py --lean-timeout 900
