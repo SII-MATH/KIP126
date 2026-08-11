@@ -184,7 +184,7 @@ example : ¬malformedProjectionOwnerClaim.Valid := by
 
 example : ¬malformedTargetClaim.Valid := by
   intro h
-  have hTarget := h.2.2.1
+  have hTarget := h.2.2.2.1
   have hRejected : ¬malformedTargetClaim.TargetConsistent := by
     unfold malformedTargetClaim ExternalClaimRecord.TargetConsistent
     decide
@@ -192,7 +192,7 @@ example : ¬malformedTargetClaim.Valid := by
 
 example : ¬malformedProjectionTargetClaim.Valid := by
   intro h
-  have hTarget := h.2.2.1
+  have hTarget := h.2.2.2.1
   have hRejected : ¬malformedProjectionTargetClaim.TargetConsistent := by
     unfold malformedProjectionTargetClaim ExternalClaimRecord.TargetConsistent
     unfold SourceEntry.projectionFieldSafe SourceEntry.schemaCharSafe
@@ -202,7 +202,7 @@ example : ¬malformedProjectionTargetClaim.Valid := by
 
 example : ¬malformedClassificationClaim.Valid := by
   intro h
-  have hClassification := h.2.2.2.1
+  have hClassification := h.2.2.2.2.1
   have hRejected : ¬malformedClassificationClaim.ClassificationConsistent := by
     unfold malformedClassificationClaim ExternalClaimRecord.ClassificationConsistent
     decide
@@ -210,7 +210,7 @@ example : ¬malformedClassificationClaim.Valid := by
 
 example : ¬malformedSelfDependencyClaim.Valid := by
   intro h
-  have hSelf := h.2.2.2.2.2.1
+  have hSelf := h.2.2.2.2.2.2.1
   have hMember :
       malformedSelfDependencyClaim.id ∈ malformedSelfDependencyClaim.dependencies := by
     unfold malformedSelfDependencyClaim
@@ -219,7 +219,7 @@ example : ¬malformedSelfDependencyClaim.Valid := by
 
 example : ¬malformedDuplicateDependencyClaim.Valid := by
   intro h
-  have hNodup := h.2.2.2.2.1
+  have hNodup := h.2.2.2.2.2.1
   have hRejected : ¬malformedDuplicateDependencyClaim.dependencies.Nodup := by
     unfold malformedDuplicateDependencyClaim
     decide
