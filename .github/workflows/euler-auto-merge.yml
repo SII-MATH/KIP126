@@ -1,0 +1,37 @@
+name: euler-auto-merge
+
+on:
+  status:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  enable-auto-merge:
+    if: ${{ github.event.context == 'semantic-review' && github.event.state == 'success' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Recheck exact head and required contexts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.sha }}
+        run: |
+          set -euo pipefail
+          PR=$(gh api "repos/$REPO/commits/$HEAD_SHA/pulls" --jq '[.[] | select(.state == "open" and .draft == false)] | if length == 1 then .[0].number else empty end')
+          test -n "$PR"
+          gh api "repos/$REPO/pulls/$PR" > pr.json
+          test "$(jq -r .head.sha pr.json)" = "$HEAD_SHA"
+          BODY=$(jq -r '.body // ""' pr.json)
+          ISSUE=$(printf '%s\n' "$BODY" | grep -m1 -Eo '(^|[[:space:]])Closes[[:space:]]+[A-Z][A-Z0-9]*-[1-9][0-9]*' | sed -E 's/.*Closes[[:space:]]+//')
+          test -n "$ISSUE"
+          gh api "repos/$REPO/commits/$HEAD_SHA/status" > statuses.json
+          for CHECK in scope build audit semantic-review; do
+            jq -e --arg check "$CHECK" '[.statuses[] | select(.context == $check and .state == "success")] | length == 1' statuses.json >/dev/null
+          done
+          printf 'PR=%s\n' "$PR" >> "$GITHUB_ENV"
+      - name: Enable native auto-merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr merge "$PR" --repo "$REPO" --auto --squash

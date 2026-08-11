@@ -1,0 +1,180 @@
+name: euler-pr
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  merge_group:
+    types: [checks_requested]
+
+permissions:
+  contents: read
+  pull-requests: read
+  statuses: write
+
+concurrency:
+  group: euler-pr-${{ github.event.pull_request.number || github.event.merge_group.head_sha }}
+  cancel-in-progress: true
+
+env:
+  ALLOWED_OVERLAY_PATHS: KIP126 blueprint reference docs README.md
+
+jobs:
+  scope:
+    name: scope
+    runs-on: ubuntu-24.04
+    outputs:
+      head_sha: ${{ steps.resolve.outputs.head_sha }}
+      base_sha: ${{ steps.resolve.outputs.base_sha }}
+      merge_base_sha: ${{ steps.resolve.outputs.merge_base_sha }}
+    steps:
+      - name: Resolve exact head and scope
+        id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          EVENT_HEAD: ${{ github.event.merge_group.head_sha }}
+          EVENT_BASE: ${{ github.event.merge_group.base_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$PR_NUMBER" ]]; then
+            gh api "repos/$REPO/pulls/$PR_NUMBER" > pr.json
+            test "$(jq -r .state pr.json)" = open
+            test "$(jq -r .draft pr.json)" = false
+            HEAD_SHA=$(jq -r .head.sha pr.json)
+            BASE_SHA=$(jq -r .base.sha pr.json)
+            gh api "repos/$REPO/pulls/$PR_NUMBER/files?per_page=100" --paginate > files.json
+          else
+            HEAD_SHA="$EVENT_HEAD"
+            BASE_SHA="$EVENT_BASE"
+            test -n "$HEAD_SHA"
+            test -n "$BASE_SHA"
+            gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq '.files' > files.json
+          fi
+          test -n "$HEAD_SHA"
+          test -n "$BASE_SHA"
+          MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
+          test -n "$MERGE_BASE_SHA"
+          jq -e 'length <= 500 and (map(.changes // ((.additions // 0) + (.deletions // 0))) | add // 0) <= 20000' files.json >/dev/null
+          if jq -r '.[].filename' files.json | grep -Ev '^(KIP126/|blueprint/|reference/|docs/|README\.md$|scripts/ci/|\.github/workflows/|\.github/actions/)' | grep -q .; then
+            echo 'scope: changed path is outside the initialization/project allowlist' >&2
+            exit 1
+          fi
+          gh api "repos/$REPO/git/trees/$HEAD_SHA?recursive=1" > tree.json
+          if jq -e '.tree[] | select(.mode == "120000")' tree.json >/dev/null; then
+            echo 'scope: symlinks are not permitted' >&2
+            exit 1
+          fi
+          printf 'head_sha=%s\nbase_sha=%s\nmerge_base_sha=%s\n' "$HEAD_SHA" "$BASE_SHA" "$MERGE_BASE_SHA" >> "$GITHUB_OUTPUT"
+          printf 'HEAD_SHA=%s\n' "$HEAD_SHA" >> "$GITHUB_ENV"
+      - name: Publish exact-head scope status
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ steps.resolve.outputs.head_sha || github.event.pull_request.head.sha || github.event.merge_group.head_sha }}
+        run: |
+          set -euo pipefail
+          test -n "$HEAD_SHA"
+          STATE=success
+          DESCRIPTION='scope passed for exact head'
+          if [[ "${{ job.status }}" != success ]]; then
+            STATE=error
+            DESCRIPTION='scope rejected the exact head'
+          fi
+          gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" -f state="$STATE" -f context=scope -f description="$DESCRIPTION"
+
+  build:
+    name: build
+    needs: scope
+    if: needs.scope.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout trusted base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.scope.outputs.base_sha }}
+          fetch-depth: 0
+      - name: Overlay allowlisted project paths
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ needs.scope.outputs.head_sha }}
+          BASE_SHA: ${{ needs.scope.outputs.base_sha }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin "$HEAD_SHA"
+          git diff --binary "$BASE_SHA...$HEAD_SHA" -- KIP126 blueprint reference docs README.md | git apply --binary --whitespace=nowarn || test "$(git diff --binary "$BASE_SHA...$HEAD_SHA" -- KIP126 blueprint reference docs README.md | wc -c)" -eq 0
+      - name: Build and run project gates
+        run: |
+          set -euo pipefail
+          lake cache get
+          lake build
+          python3 scripts/check_source_inventory.py --lean-timeout 900
+          python3 -m unittest discover -s scripts -p 'test_*.py' -v
+          lake build KIP126.External.ProvenanceRegression KIP126.External.SourceInventoryRegression KIP126.External.ClaimsRegression
+          leanblueprint web
+          leanblueprint checkdecls
+          python3 .agents/skills/leanblueprint-dag/scripts/blueprint_graph.py . --format json > blueprint-graph.json
+          python3 .agents/skills/leanblueprint-audit/scripts/blueprint_doctor.py . --format json > blueprint-doctor.json
+          git diff --check
+      - name: Publish exact-head build status
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ needs.scope.outputs.head_sha }}
+        run: |
+          set -euo pipefail
+          STATE=success
+          DESCRIPTION='build passed for exact head'
+          if [[ "${{ job.status }}" != success ]]; then
+            STATE=error
+            DESCRIPTION='build failed for exact head'
+          fi
+          gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" -f state="$STATE" -f context=build -f description="$DESCRIPTION"
+
+  audit:
+    name: audit
+    needs: scope
+    if: needs.scope.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout trusted base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.scope.outputs.base_sha }}
+          fetch-depth: 0
+      - name: Overlay allowlisted project paths
+        env:
+          HEAD_SHA: ${{ needs.scope.outputs.head_sha }}
+          BASE_SHA: ${{ needs.scope.outputs.base_sha }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin "$HEAD_SHA"
+          DIFF=$(git diff --binary "$BASE_SHA...$HEAD_SHA" -- KIP126 blueprint reference docs README.md)
+          if [[ -n "$DIFF" ]]; then
+            printf '%s\n' "$DIFF" | git apply --binary --whitespace=nowarn
+          fi
+      - name: Run compiled declaration audit
+        run: |
+          set -euo pipefail
+          lake cache get
+          lake build
+          python3 scripts/ci/axiom_audit.py
+      - name: Publish exact-head audit status
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ needs.scope.outputs.head_sha }}
+        run: |
+          set -euo pipefail
+          STATE=success
+          DESCRIPTION='compiled audit passed for exact head'
+          if [[ "${{ job.status }}" != success ]]; then
+            STATE=error
+            DESCRIPTION='compiled audit failed for exact head'
+          fi
+          gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" -f state="$STATE" -f context=audit -f description="$DESCRIPTION"
