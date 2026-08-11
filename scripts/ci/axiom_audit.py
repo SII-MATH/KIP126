@@ -24,8 +24,9 @@ def main() -> int:
 
     for path in regression_files:
         relative = path.relative_to(root)
+        module = ".".join(relative.with_suffix("").parts)
         result = subprocess.run(
-            ["lake", "env", "lean", str(relative)],
+            ["lake", "build", module],
             cwd=root,
             capture_output=True,
             text=True,
