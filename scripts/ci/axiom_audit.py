@@ -11,7 +11,7 @@ from pathlib import Path
 
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 FORBIDDEN_MARKERS = ("sorryAx", "admitAx", "Lean.ofReduceBool")
-AXIOM_LINE = re.compile(r"axioms?\s*:\s*\[(?P<axioms>[^]]*)\]")
+AXIOM_BLOCK = re.compile(r"depends on axioms:\s*\[(?P<axioms>[^]]*)\]", re.DOTALL)
 
 
 def main() -> int:
@@ -25,6 +25,9 @@ def main() -> int:
     for path in regression_files:
         relative = path.relative_to(root)
         module = ".".join(relative.with_suffix("").parts)
+        artifact = root / ".lake" / "build" / "lib" / "lean" / relative
+        for suffix in (".olean", ".ilean", ".olean.hash", ".ilean.hash"):
+            artifact.with_suffix(suffix).unlink(missing_ok=True)
         result = subprocess.run(
             ["lake", "build", module],
             cwd=root,
@@ -34,13 +37,12 @@ def main() -> int:
         output = f"{result.stdout}\n{result.stderr}"
         if result.returncode:
             failures.append(f"{relative}: Lean compilation failed")
+        elif "depends on axioms:" not in output and "does not depend on any axioms" not in output:
+            failures.append(f"{relative}: no compiled axiom evidence")
         for marker in FORBIDDEN_MARKERS:
             if marker in output:
                 failures.append(f"{relative}: forbidden marker {marker}")
-        for line in output.splitlines():
-            match = AXIOM_LINE.search(line)
-            if not match:
-                continue
+        for match in AXIOM_BLOCK.finditer(output):
             axioms = {
                 item.strip().strip("'")
                 for item in match.group("axioms").split(",")
