@@ -29,7 +29,7 @@ jobs:
         run: |
           set -euo pipefail
           lake build --iofail
-          pipx install 'leanblueprint==1.9.8'
+          pipx install 'leanblueprint==0.0.20'
           python3 scripts/check_source_inventory.py --lean-timeout 900
           python3 -m unittest discover -s scripts -p 'test_*.py' -v
           lake build \
