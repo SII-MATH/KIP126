@@ -75,12 +75,3 @@ example :
       `KIP126.Classical.adamsOneLineDifferentials := rfl
 
 end KIP126.Comparison.ClassicalSynthetic.Regression
-
-#print axioms KIP126.Synthetic.SpectralSequence.syntheticAdamsShift
-#print axioms KIP126.Synthetic.SpectralSequence.syntheticAdamsTarget
-#print axioms KIP126.Synthetic.SpectralSequence.nuDegree
-#print axioms KIP126.Synthetic.SpectralSequence.lambdaTarget
-#print axioms KIP126.Comparison.ClassicalSynthetic.forgetWeightComparison
-#print axioms KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.classical_degrees
-#print axioms KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.catalogued_classical_degrees
-#print axioms KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.synthetic_lambda_regression

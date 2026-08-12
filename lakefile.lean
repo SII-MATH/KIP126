@@ -9,6 +9,14 @@ require mathlib from git
 
 @[default_target]
 lean_lib KIP126 where
+  globs := #[.andSubmodules `KIP126]
+
+/-!
+The trusted compiled-environment audit. Keep this target and its implementation
+outside the worker-editable source overlay used by CI.
+-/
+lean_exe axioms where
+  root := `scripts.Axioms
 
 -- Used by the classic Lean Blueprint declaration cross-checker.
 require checkdecls from git

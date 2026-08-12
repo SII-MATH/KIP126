@@ -244,7 +244,7 @@ theorem extension_iff_detected {stable : StableHomotopyContext} {X Y : stable.Sp
     {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
     (D : EtaESSInput source target) (row : EtaDifferential) :
     FExtension D row ↔ DetectedBy D row := by
-  simpa [FExtension, DetectedBy, D.detected_eq_differentials]
+  simp [FExtension, DetectedBy, D.detected_eq_differentials]
 
 theorem differential_claim {stable : StableHomotopyContext} {X Y : stable.Spectrum}
     {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}

@@ -1,0 +1,247 @@
+name: euler-pr
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+  merge_group:
+    types: [checks_requested]
+
+permissions: {}
+
+concurrency:
+  group: euler-pr-${{ github.event.pull_request.number || github.event.merge_group.head_sha }}
+  cancel-in-progress: true
+
+jobs:
+  resolve:
+    name: resolve-exact-head
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      head_sha: ${{ steps.resolve.outputs.head_sha }}
+      base_sha: ${{ steps.resolve.outputs.base_sha }}
+      merge_base_sha: ${{ steps.resolve.outputs.merge_base_sha }}
+    steps:
+      - name: Resolve the live PR head
+        id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          EVENT_HEAD: ${{ github.event.merge_group.head_sha }}
+          EVENT_BASE: ${{ github.event.merge_group.base_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$PR_NUMBER" ]]; then
+            gh api "repos/$REPO/pulls/$PR_NUMBER" > pr.json
+            test "$(jq -r .state pr.json)" = open
+            test "$(jq -r .draft pr.json)" = false
+            HEAD_SHA=$(jq -r .head.sha pr.json)
+            BASE_SHA=$(jq -r .base.sha pr.json)
+          else
+            HEAD_SHA="$EVENT_HEAD"
+            BASE_SHA="$EVENT_BASE"
+          fi
+          test -n "$HEAD_SHA"
+          test -n "$BASE_SHA"
+          MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
+          test -n "$MERGE_BASE_SHA"
+          printf 'head_sha=%s\nbase_sha=%s\nmerge_base_sha=%s\n' \
+            "$HEAD_SHA" "$BASE_SHA" "$MERGE_BASE_SHA" >> "$GITHUB_OUTPUT"
+
+  scope-gate:
+    name: scope-gate
+    needs: resolve
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Enforce the trusted source overlay boundary
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ needs.resolve.outputs.head_sha }}
+          BASE_SHA: ${{ needs.resolve.outputs.base_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$PR_NUMBER" ]]; then
+            gh api "repos/$REPO/pulls/$PR_NUMBER" > pr.json
+            test "$(jq -r .state pr.json)" = open
+            test "$(jq -r .draft pr.json)" = false
+            test "$(jq -r .head.sha pr.json)" = "$HEAD_SHA"
+            gh api "repos/$REPO/pulls/$PR_NUMBER/files?per_page=100" \
+              --paginate --slurp | jq 'add' > files.json
+          else
+            gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq '.files' > files.json
+          fi
+
+          jq -e '
+            length < 300 and
+            (map(.changes // ((.additions // 0) + (.deletions // 0))) | add // 0) <= 20000 and
+            all(.[].filename;
+              test("^(KIP126/|KIP126\\.lean$|blueprint/|reference/|docs/|README\\.md$)"))
+          ' files.json >/dev/null
+
+          gh api "repos/$REPO/git/trees/$HEAD_SHA?recursive=1" > tree.json
+          jq -e '.truncated == false' tree.json >/dev/null
+          if jq -e '.tree[] | select(.mode == "120000" or .mode == "160000")' tree.json >/dev/null; then
+            echo 'scope: symlinks and submodules are not permitted' >&2
+            exit 1
+          fi
+          jq -e '[.tree[] | select(.type == "blob") | .size // 0] | max <= 50000000' tree.json >/dev/null
+
+  build-gate:
+    name: build-gate
+    needs: [resolve, scope-gate]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout the trusted base
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ needs.resolve.outputs.base_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Overlay allowlisted source from the exact head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ needs.resolve.outputs.head_sha }}
+          BASE_SHA: ${{ needs.resolve.outputs.base_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          AUTH_HEADER=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic $AUTH_HEADER" \
+            fetch --no-tags "https://github.com/$REPO.git" "$HEAD_SHA"
+          unset AUTH_HEADER GH_TOKEN
+          git diff --binary "$BASE_SHA...$HEAD_SHA" -- \
+            KIP126 KIP126.lean blueprint reference docs README.md > .ci-overlay.patch
+          if [[ -s .ci-overlay.patch ]]; then
+            git apply --binary --whitespace=nowarn .ci-overlay.patch
+          fi
+      - name: Install the pinned Lean toolchain and Mathlib cache
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
+        with:
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Run source, regression, and Blueprint gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake build --iofail
+          pipx install 'leanblueprint==1.9.8'
+          python3 scripts/check_source_inventory.py --lean-timeout 900
+          python3 -m unittest discover -s scripts -p 'test_*.py' -v
+          lake build \
+            KIP126.Classical.Adams.Regression \
+            KIP126.Classical.ExtensionSS.Regression \
+            KIP126.Comparison.ClassicalSynthetic.Regression \
+            KIP126.Core.SpectralSequence.ConvergenceRegression \
+            KIP126.Core.SpectralSequence.SpectralObjectAdapterRegression \
+            KIP126.External.ClaimsRegression \
+            KIP126.External.ProvenanceRegression \
+            KIP126.External.SourceInventoryRegression
+          leanblueprint web
+          leanblueprint checkdecls
+          python3 .agents/skills/leanblueprint-dag/scripts/blueprint_graph.py \
+            . --format json > blueprint-graph.json
+          python3 .agents/skills/leanblueprint-audit/scripts/blueprint_doctor.py \
+            . --format json > blueprint-doctor.json
+          git diff --check
+
+  audit-gate:
+    name: audit-gate
+    needs: [resolve, scope-gate]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout the trusted base
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ needs.resolve.outputs.base_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Overlay allowlisted source from the exact head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ needs.resolve.outputs.head_sha }}
+          BASE_SHA: ${{ needs.resolve.outputs.base_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          AUTH_HEADER=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic $AUTH_HEADER" \
+            fetch --no-tags "https://github.com/$REPO.git" "$HEAD_SHA"
+          unset AUTH_HEADER GH_TOKEN
+          git diff --binary "$BASE_SHA...$HEAD_SHA" -- \
+            KIP126 KIP126.lean blueprint reference docs README.md > .ci-overlay.patch
+          if [[ -s .ci-overlay.patch ]]; then
+            git apply --binary --whitespace=nowarn .ci-overlay.patch
+          fi
+      - name: Install the pinned Lean toolchain and Mathlib cache
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
+        with:
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+      - name: Run the fresh compiled declaration audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake build --iofail
+          lake exe axioms
+
+  publish-statuses:
+    name: publish-exact-head-statuses
+    if: always()
+    needs: [resolve, scope-gate, build-gate, audit-gate]
+    runs-on: ubuntu-24.04
+    permissions:
+      statuses: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      HEAD_SHA: ${{ needs.resolve.outputs.head_sha || github.event.pull_request.head.sha || github.event.merge_group.head_sha }}
+      SCOPE_RESULT: ${{ needs.scope-gate.result }}
+      BUILD_RESULT: ${{ needs.build-gate.result }}
+      AUDIT_RESULT: ${{ needs.audit-gate.result }}
+      DETAILS_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Publish every required mechanical context terminally
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$HEAD_SHA"
+          publish() {
+            local context=$1 result=$2 state description
+            if [[ "$result" == success ]]; then
+              state=success
+              description="$context passed for exact head"
+            else
+              state=error
+              description="$context failed or was skipped for exact head"
+            fi
+            gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" \
+              -f state="$state" -f context="$context" \
+              -f description="$description" -f target_url="$DETAILS_URL"
+          }
+          FAILURES=0
+          publish scope "$SCOPE_RESULT" || FAILURES=1
+          publish build "$BUILD_RESULT" || FAILURES=1
+          publish audit "$AUDIT_RESULT" || FAILURES=1
+          exit "$FAILURES"

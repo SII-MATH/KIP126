@@ -174,11 +174,3 @@ example (P : SphereAdamsPresentation sphereSystem.pageSlice)
   exact ⟨hSeparated, hSourceNonzero, hTargetNonzero⟩
 
 end KIP126.Classical.Adams.Regression
-
-#print axioms KIP126.Classical.Adams.classicalAdamsShift_two
-#print axioms KIP126.Classical.Adams.classicalAdamsShape_two_rel
-#print axioms KIP126.Classical.Adams.cataloguedAdamsOneLine
-#print axioms KIP126.Classical.adamsOneLineDifferentials_h₄_degrees
-#print axioms KIP126.Classical.Adams.cataloguedAdamsOneLine_proof
-#print axioms KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees
-#print axioms KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees_bound
