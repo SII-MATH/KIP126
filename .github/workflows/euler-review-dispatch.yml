@@ -11,7 +11,7 @@ permissions:
   statuses: write
 
 concurrency:
-  group: euler-review-${{ github.event.workflow_run.head_sha }}
+  group: euler-review-${{ github.event.workflow_run.pull_requests[0].number || github.event.workflow_run.id }}
   cancel-in-progress: true
 
 jobs:
@@ -21,30 +21,53 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       REPO: ${{ github.repository }}
-      RUN_HEAD: ${{ github.event.workflow_run.head_sha }}
       WEBHOOK_URL: ${{ secrets.MULTICA_REVIEW_WEBHOOK_URL }}
       ROADMAP_REPOSITORY: ${{ vars.LEAN_MAS_ROADMAP_REPOSITORY }}
       RUBRIC_REVISION: ${{ vars.LEAN_MAS_RUBRIC_REVISION }}
+      DETAILS_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - name: Resolve current PR and exact mechanical evidence
+      - name: Resolve eligibility and exact-head evidence
         id: resolve
         shell: bash
         run: |
           set -euo pipefail
-          PR=$(gh api "repos/$REPO/commits/$RUN_HEAD/pulls" --jq '[.[] | select(.state == "open" and .draft == false)] | if length == 1 then .[0].number else empty end')
+          printf 'INITIALIZER=false\n' >> "$GITHUB_ENV"
+          PR=$(jq -r '.workflow_run.pull_requests | if length == 1 then .[0].number else empty end' "$GITHUB_EVENT_PATH")
+          EVENT_PR_HEAD=$(jq -r '.workflow_run.pull_requests[0].head.sha // empty' "$GITHUB_EVENT_PATH")
           test -n "$PR"
+          test -n "$EVENT_PR_HEAD"
+
           gh api "repos/$REPO/pulls/$PR" > pr.json
+          test "$(jq -r .state pr.json)" = open
+          test "$(jq -r .draft pr.json)" = false
           HEAD_SHA=$(jq -r .head.sha pr.json)
           BASE_SHA=$(jq -r .base.sha pr.json)
-          test "$HEAD_SHA" = "$RUN_HEAD"
-          MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
+          HEAD_REF=$(jq -r .head.ref pr.json)
+          BODY=$(jq -r '.body // ""' pr.json)
+          test "$HEAD_SHA" = "$EVENT_PR_HEAD"
+          printf 'HEAD_SHA=%s\n' "$HEAD_SHA" >> "$GITHUB_ENV"
+
+          if [[ "$HEAD_REF" == agent/euler-initializer/* ]] || \
+              grep -Eq '^Initialization PR for [A-Z][A-Z0-9]*-[1-9][0-9]*$' <<<"$BODY"; then
+            printf 'INITIALIZER=true\n' >> "$GITHUB_ENV"
+            echo 'Initializer PR: semantic review dispatch intentionally skipped.'
+            exit 0
+          fi
+
           test -n "$ROADMAP_REPOSITORY"
           test -n "$RUBRIC_REVISION"
+          MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
+          test -n "$MERGE_BASE_SHA"
           gh api "repos/$REPO/commits/$HEAD_SHA/status" > statuses.json
           for CHECK in scope build audit; do
-            jq -e --arg check "$CHECK" '[.statuses[] | select(.context == $check and .state == "success")] | length == 1' statuses.json >/dev/null
+            jq -e --arg name "$CHECK" '
+              [.statuses[] | select(.context == $name)] |
+              max_by(.updated_at // .created_at) | .state == "success"
+            ' statuses.json >/dev/null
           done
-          AIM_ISSUE=$(jq -r '[.title, (.body // ""), .head.ref] | join("\n")' pr.json | grep -m1 -Eo '[A-Z][A-Z0-9]*-[1-9][0-9]*')
+
+          AIM_ISSUE=$(jq -r '[.title, (.body // ""), .head.ref] | join("\n")' pr.json | \
+            grep -m1 -Eo '[A-Z][A-Z0-9]*-[1-9][0-9]*')
           test -n "$AIM_ISSUE"
           jq -n \
             --arg repository "$REPO" \
@@ -57,31 +80,56 @@ jobs:
             --arg aim_issue "$AIM_ISSUE" \
             --slurpfile statuses statuses.json '
               def evidence($name):
-                ($statuses[0].statuses | map(select(.context == $name)) | .[0]) as $status |
-                {conclusion: "success", head_sha: $head_sha, run_id: ($status.id | tostring), details_url: ($status.target_url // "")};
+                ($statuses[0].statuses |
+                  map(select(.context == $name)) |
+                  max_by(.updated_at // .created_at)) as $status |
+                {conclusion: "success", head_sha: $head_sha,
+                 run_id: ($status.id | tostring),
+                 details_url: ($status.target_url // "")};
               {schema: "lean-mas-review.request/v1", repository: $repository,
-               roadmap_repository: $roadmap_repository, pull_request: $pull_request,
-               head_sha: $head_sha, base_sha: $base_sha, merge_base_sha: $merge_base_sha,
+               roadmap_repository: $roadmap_repository,
+               pull_request: $pull_request, head_sha: $head_sha,
+               base_sha: $base_sha, merge_base_sha: $merge_base_sha,
                rubric_revision: $rubric_revision, aim_issue: $aim_issue,
-               ci: {scope: evidence("scope"), build: evidence("build"), audit: evidence("audit")}}' > request.json
-          KEY=$(jq -r '[(.repository | ascii_downcase), (.pull_request | tostring), .head_sha, .rubric_revision] | join(":")' request.json | sha256sum | cut -d' ' -f1)
+               ci: {scope: evidence("scope"), build: evidence("build"),
+                    audit: evidence("audit")}}
+            ' > request.json
+          KEY=$(jq -r \
+            '[(.repository | ascii_downcase), (.pull_request | tostring), .head_sha, .rubric_revision] | join(":")' \
+            request.json | sha256sum | cut -d' ' -f1)
           IDEMPOTENCY_KEY="lean-mas-review-$KEY"
-          jq --arg key "$IDEMPOTENCY_KEY" '. + {idempotency_key: $key}' request.json > request-with-key.json
+          jq --arg key "$IDEMPOTENCY_KEY" '. + {idempotency_key: $key}' \
+            request.json > request-with-key.json
           mv request-with-key.json request.json
-          printf 'PR=%s\nHEAD_SHA=%s\nIDEMPOTENCY_KEY=%s\n' "$PR" "$HEAD_SHA" "$IDEMPOTENCY_KEY" >> "$GITHUB_ENV"
+          printf 'IDEMPOTENCY_KEY=%s\n' "$IDEMPOTENCY_KEY" >> "$GITHUB_ENV"
       - name: Mark semantic review pending
-        run: gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" -f state=pending -f context=semantic-review -f description='Euler semantic review queued'
-      - name: Dispatch trusted run-only reviewer
+        if: env.INITIALIZER != 'true'
+        run: |
+          gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" \
+            -f state=pending -f context=semantic-review \
+            -f description='Euler semantic review queued' \
+            -f target_url="$DETAILS_URL"
+      - name: Dispatch the trusted run-only reviewer
+        if: env.INITIALIZER != 'true'
         shell: bash
         run: |
           set -euo pipefail
           test -n "$WEBHOOK_URL"
           HTTP=$(curl --silent --show-error --output response.json --write-out '%{http_code}' \
             --request POST --header 'Content-Type: application/json' \
-            --header "Idempotency-Key: $IDEMPOTENCY_KEY" --data-binary @request.json "$WEBHOOK_URL")
-          jq -e '.status == "accepted" or .status == "skipped" or .status == "duplicate"' response.json >/dev/null
+            --header "Idempotency-Key: $IDEMPOTENCY_KEY" \
+            --data-binary @request.json "$WEBHOOK_URL")
           test "$HTTP" = 200
+          jq -e '.status == "accepted" or .status == "skipped" or .status == "duplicate"' \
+            response.json >/dev/null
           jq '{status, run_id}' response.json
       - name: Fail closed on dispatch error
-        if: failure() && env.HEAD_SHA != ''
-        run: gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" -f state=error -f context=semantic-review -f description='Euler semantic review dispatch failed'
+        if: failure() && env.HEAD_SHA != '' && env.INITIALIZER != 'true'
+        run: |
+          gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" \
+            -f state=error -f context=semantic-review \
+            -f description='Euler semantic review dispatch failed' \
+            -f target_url="$DETAILS_URL"
+
+# Initializer PRs are intentionally excluded without a semantic-review status.
+# Their authorized engineering merge path remains separate from worker review.

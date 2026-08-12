@@ -6,32 +6,49 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  statuses: read
 
 jobs:
   enable-auto-merge:
     if: ${{ github.event.context == 'semantic-review' && github.event.state == 'success' }}
     runs-on: ubuntu-24.04
     steps:
-      - name: Recheck exact head and required contexts
+      - name: Resolve and validate the current PR head
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          HEAD_SHA: ${{ github.event.sha }}
+          STATUS_SHA: ${{ github.event.sha }}
+        shell: bash
         run: |
           set -euo pipefail
-          PR=$(gh api "repos/$REPO/commits/$HEAD_SHA/pulls" --jq '[.[] | select(.state == "open" and .draft == false)] | if length == 1 then .[0].number else empty end')
+          PR=$(gh api "repos/$REPO/commits/$STATUS_SHA/pulls" \
+            --jq '[.[] | select(.state == "open" and .draft == false)] | if length == 1 then .[0].number else empty end')
           test -n "$PR"
           gh api "repos/$REPO/pulls/$PR" > pr.json
-          test "$(jq -r .head.sha pr.json)" = "$HEAD_SHA"
+          test "$(jq -r .head.sha pr.json)" = "$STATUS_SHA"
+          HEAD_REF=$(jq -r .head.ref pr.json)
           BODY=$(jq -r '.body // ""' pr.json)
-          ISSUE=$(printf '%s\n' "$BODY" | grep -m1 -Eo '(^|[[:space:]])Closes[[:space:]]+[A-Z][A-Z0-9]*-[1-9][0-9]*' | sed -E 's/.*Closes[[:space:]]+//')
+          [[ "$HEAD_REF" != agent/euler-initializer/* ]]
+          if grep -Eq '^Initialization PR for [A-Z][A-Z0-9]*-[1-9][0-9]*$' <<<"$BODY"; then
+            echo 'Initializer PRs are never eligible for auto-merge.' >&2
+            exit 1
+          fi
+          ISSUE=$(printf '%s\n' "$BODY" | \
+            grep -m1 -E '^Closes[[:space:]]+[A-Z][A-Z0-9]*-[1-9][0-9]*[[:space:]]*$' | \
+            sed -E 's/^Closes[[:space:]]+//; s/[[:space:]]+$//')
           test -n "$ISSUE"
-          gh api "repos/$REPO/commits/$HEAD_SHA/status" > statuses.json
+
+          gh api "repos/$REPO/commits/$STATUS_SHA/status" > statuses.json
           for CHECK in scope build audit semantic-review; do
-            jq -e --arg check "$CHECK" '[.statuses[] | select(.context == $check and .state == "success")] | length == 1' statuses.json >/dev/null
+            jq -e --arg name "$CHECK" '
+              [.statuses[] | select(.context == $name)] |
+              max_by(.updated_at // .created_at) | .state == "success"
+            ' statuses.json >/dev/null
           done
-          printf 'PR=%s\n' "$PR" >> "$GITHUB_ENV"
-      - name: Enable native auto-merge
+          printf 'REPO=%s\nPR=%s\n' "$REPO" "$PR" >> "$GITHUB_ENV"
+      - name: Enable GitHub native auto-merge
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh pr merge "$PR" --repo "$REPO" --auto --squash
+
+# Validation canaries omit Closes AIM-N and therefore fail closed before merge.

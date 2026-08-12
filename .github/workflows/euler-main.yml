@@ -13,24 +13,42 @@ jobs:
     name: main-health
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: leanprover/lean-action@v1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          persist-credentials: false
+      - name: Build the normal default target with the pinned toolchain
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
+        with:
+          build: true
           test: false
           lint: false
           use-mathlib-cache: true
           use-github-cache: false
-      - name: Run project health gates
+      - name: Run source, regression, and Blueprint gates
+        shell: bash
         run: |
           set -euo pipefail
           pipx install 'leanblueprint==1.9.8'
-          lake build
           python3 scripts/check_source_inventory.py --lean-timeout 900
           python3 -m unittest discover -s scripts -p 'test_*.py' -v
-          lake build KIP126.External.ProvenanceRegression KIP126.External.SourceInventoryRegression KIP126.External.ClaimsRegression
+          lake build \
+            KIP126.Classical.Adams.Regression \
+            KIP126.Classical.ExtensionSS.Regression \
+            KIP126.Comparison.ClassicalSynthetic.Regression \
+            KIP126.Core.SpectralSequence.ConvergenceRegression \
+            KIP126.Core.SpectralSequence.SpectralObjectAdapterRegression \
+            KIP126.External.ProvenanceRegression \
+            KIP126.External.SourceInventoryRegression
           leanblueprint web
           leanblueprint checkdecls
-          python3 scripts/ci/axiom_audit.py
-          python3 .agents/skills/leanblueprint-dag/scripts/blueprint_graph.py . --format json > blueprint-graph.json
-          python3 .agents/skills/leanblueprint-audit/scripts/blueprint_doctor.py . --format json > blueprint-doctor.json
+          python3 .agents/skills/leanblueprint-dag/scripts/blueprint_graph.py \
+            . --format json > blueprint-graph.json
+          python3 .agents/skills/leanblueprint-audit/scripts/blueprint_doctor.py \
+            . --format json > blueprint-doctor.json
           git diff --check
+      - name: Run the fresh compiled declaration audit
+        run: python3 scripts/ci/axiom_audit.py
+
+# KIP126.External.ClaimsRegression is an explicit post-initialization target
+# owned by AIM-69/PR #8. It is tested on any PR that changes its claim slice;
+# remove the audit exclusion after that worker change reaches main.
