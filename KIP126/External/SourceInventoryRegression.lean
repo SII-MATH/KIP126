@@ -216,17 +216,4 @@ example :
     SourceEntry.StatusConsistent, SourceEntry.statusPathConsistent,
     SourceStatusClass.classify, SourceAvailability.all]
 
-#print axioms SourceInventory.inventory_complete
-#print axioms SourceInventory.inventory_valid
-#print axioms SourceInventory.inventory_globally_valid
-#print axioms SourceInventory.projection_ids
-#print axioms SourceInventory.projection_nodup
-#print axioms SourceInventory.projection_complete
-#print axioms SourceRef.inventoryValid_of_none
-#print axioms ExternalResult.map_inventoryValid
-#print axioms ExternalResult.sourceEntry_valid
-#print axioms ExternalEvidence.map_inventoryValid
-#print axioms ExternalEvidence.sourceEntry_valid
-#print axioms ExternalEvidence.withArtifact_inventoryValid
-
 end KIP126.External.SourceInventoryRegression

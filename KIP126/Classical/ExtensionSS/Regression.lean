@@ -78,13 +78,4 @@ example (D : EtaESSInput source target) (row : EtaDifferential) :
       (D.adapter.targetClass row).degree = row.targetDegree :=
   ⟨D.adapter.sourceClass_degree row, D.adapter.targetClass_degree row⟩
 
-#print axioms KIP126.Classical.ExtensionSS.etaESS
-#print axioms KIP126.Classical.ExtensionSS.extension_iff_detected
-#print axioms KIP126.Classical.ExtensionSS.differential_claim
-#print axioms KIP126.Classical.ExtensionSS.etaD₄_has_degree
-#print axioms KIP126.Classical.ExtensionSS.etaESS_page_differential
-#print axioms KIP126.Classical.ExtensionSS.etaESS_row_nonzero
-#print axioms KIP126.Classical.ExtensionSS.etaD₄_crossing
-#print axioms KIP126.Classical.ExtensionSS.etaD₁_noCrossing
-
 end KIP126.Classical.ExtensionSS.Regression

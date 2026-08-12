@@ -119,25 +119,4 @@ example : artifact.ValidSha256 := by
   · unfold ArtifactRef.IsSha256
     decide
 
-#print axioms SourceId.ofCode_code
-#print axioms SourceId.code_of_ofCode
-#print axioms SourceId.ofCode_eq_some_iff
-#print axioms SourceId.ofCode_eq_none_iff
-#print axioms SourceId.all_nodup
-#print axioms SourceId.codes_nodup
-#print axioms SourceKind.all_nodup
-#print axioms SourceKind.codes_nodup
-#print axioms SourceKind.ofCode_eq_some_iff
-#print axioms SourceKind.ofCode_eq_none_iff
-#print axioms SourceStatusClass.ofCode_eq_some_iff
-#print axioms SourceStatusClass.ofCode_eq_none_iff
-#print axioms ArtifactRef.validSha256_implies_valid
-#print axioms ExternalResult.map_id
-#print axioms ExternalResult.map_comp
-#print axioms ExternalResult.map_valid
-#print axioms ExternalEvidence.map_id
-#print axioms ExternalEvidence.map_comp
-#print axioms ExternalEvidence.map_valid
-#print axioms ExternalEvidence.withArtifact_valid
-
 end KIP126.External.ProvenanceRegression

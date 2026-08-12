@@ -225,31 +225,4 @@ example : ¬malformedDuplicateDependencyClaim.Valid := by
     decide
   exact hRejected hNodup
 
-#print axioms ExternalRootId.all_nodup
-#print axioms ExternalRootId.codes_nodup
-#print axioms ExternalRootId.code_injective
-#print axioms ExternalRootId.ofCode_eq_some_iff
-#print axioms ExternalClaimClass.all_nodup
-#print axioms ExternalClaimClass.codes_nodup
-#print axioms ExternalClaimClass.ofCode_eq_some_iff
-#print axioms ExternalClaimClass.ofCode_eq_none_iff
-#print axioms ExternalClaimRecord.sourceTargets_nodup
-#print axioms externalClaimLedger_complete
-#print axioms externalClaimLedger_nodup
-#print axioms externalClaimLedger_valid
-#print axioms externalClaimLedger_dependency_ranked
-#print axioms externalClaimLedger_dependency_acyclic
-#print axioms externalClaimLedger_no_dependency_cycle
-#print axioms externalClaimLedger_owners_nodup
-#print axioms externalClaimLedger_targets_nodup
-#print axioms externalClaimLedger_refs_nodup
-#print axioms externalClaimProjection_ids
-#print axioms externalClaimProjection_count
-#print axioms resolveClaimCode_code
-#print axioms CataloguedExternalResult.inventoryValid
-#print axioms CataloguedExternalEvidence.inventory_valid
-#print axioms CataloguedExternalEvidence.artifactPath_eq_claim
-#print axioms ExternalClaimLedger.dependency_valid
-#print axioms every_source_has_claim
-
 end KIP126.External.ClaimsRegression

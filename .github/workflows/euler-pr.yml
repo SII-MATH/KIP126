@@ -127,10 +127,10 @@ jobs:
           if [[ -s .ci-overlay.patch ]]; then
             git apply --binary --whitespace=nowarn .ci-overlay.patch
           fi
-      - name: Build the normal default target with the pinned toolchain
+      - name: Install the pinned Lean toolchain and Mathlib cache
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
         with:
-          build: true
+          build: false
           test: false
           lint: false
           use-mathlib-cache: true
@@ -139,6 +139,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          lake build --iofail
           pipx install 'leanblueprint==1.9.8'
           python3 scripts/check_source_inventory.py --lean-timeout 900
           python3 -m unittest discover -s scripts -p 'test_*.py' -v
@@ -199,7 +200,11 @@ jobs:
           use-mathlib-cache: true
           use-github-cache: false
       - name: Run the fresh compiled declaration audit
-        run: python3 scripts/ci/axiom_audit.py
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake build --iofail
+          lake exe axioms
 
   publish-statuses:
     name: publish-exact-head-statuses
