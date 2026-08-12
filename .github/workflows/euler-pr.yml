@@ -122,7 +122,6 @@ jobs:
           git -c http.extraheader="AUTHORIZATION: basic $AUTH_HEADER" \
             fetch --no-tags "https://github.com/$REPO.git" "$HEAD_SHA"
           unset AUTH_HEADER GH_TOKEN
-          git diff --name-only "$BASE_SHA...$HEAD_SHA" > .ci-changed-files
           git diff --binary "$BASE_SHA...$HEAD_SHA" -- \
             KIP126 KIP126.lean blueprint reference docs README.md > .ci-overlay.patch
           if [[ -s .ci-overlay.patch ]]; then
@@ -149,11 +148,9 @@ jobs:
             KIP126.Comparison.ClassicalSynthetic.Regression \
             KIP126.Core.SpectralSequence.ConvergenceRegression \
             KIP126.Core.SpectralSequence.SpectralObjectAdapterRegression \
+            KIP126.External.ClaimsRegression \
             KIP126.External.ProvenanceRegression \
             KIP126.External.SourceInventoryRegression
-          if grep -Eq '^KIP126/External/(Claims|ClaimsRegression)\.lean$' .ci-changed-files; then
-            lake build KIP126.External.ClaimsRegression
-          fi
           leanblueprint web
           leanblueprint checkdecls
           python3 .agents/skills/leanblueprint-dag/scripts/blueprint_graph.py \
@@ -188,7 +185,6 @@ jobs:
           git -c http.extraheader="AUTHORIZATION: basic $AUTH_HEADER" \
             fetch --no-tags "https://github.com/$REPO.git" "$HEAD_SHA"
           unset AUTH_HEADER GH_TOKEN
-          git diff --name-only "$BASE_SHA...$HEAD_SHA" > .ci-changed-files
           git diff --binary "$BASE_SHA...$HEAD_SHA" -- \
             KIP126 KIP126.lean blueprint reference docs README.md > .ci-overlay.patch
           if [[ -s .ci-overlay.patch ]]; then
@@ -203,15 +199,7 @@ jobs:
           use-mathlib-cache: true
           use-github-cache: false
       - name: Run the fresh compiled declaration audit
-        shell: bash
-        run: |
-          set -euo pipefail
-          if grep -Eq '^KIP126/External/(Claims|ClaimsRegression)\.lean$' .ci-changed-files; then
-            python3 scripts/ci/axiom_audit.py \
-              --include-deferred KIP126.External.ClaimsRegression
-          else
-            python3 scripts/ci/axiom_audit.py
-          fi
+        run: python3 scripts/ci/axiom_audit.py
 
   publish-statuses:
     name: publish-exact-head-statuses

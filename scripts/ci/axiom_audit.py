@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import argparse
 import re
 import subprocess
 import sys
@@ -16,17 +15,6 @@ FORBIDDEN_MARKERS = ("sorryAx", "admitAx", "Lean.ofReduceBool")
 AXIOM_BLOCK = re.compile(r"depends on axioms:\s*\[(?P<axioms>[^]]*)\]", re.DOTALL)
 PROJECT_AXIOM = re.compile(r"^\s*(?:private\s+)?axiom\s+")
 SOURCE_PLACEHOLDER = re.compile(r"\b(?:sorry|admit)\b")
-
-# This target is not part of the repository's normal default Lake build.  Its
-# five stale `ExternalClaimRecord.Valid` projections are owned by AIM-69/PR #8,
-# so initialization must neither absorb that proof branch nor hide the target's
-# state.  PR CI explicitly opts the module back in whenever its claim slice is
-# changed; remove this exception after the worker repair reaches `main`.
-DEFERRED_REGRESSIONS = {
-    "KIP126.External.ClaimsRegression": (
-        "AIM-69/PR #8: five stale Valid conjunction projections"
-    )
-}
 
 # These regression modules contain only examples/private fixtures, so their
 # successful compilation intentionally emits no `#print axioms` output.  Audit
@@ -42,21 +30,6 @@ EXTERNAL_AUDIT_TARGETS = {
         "KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObjectFunctor",
     ),
 }
-
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Audit freshly compiled regression declarations and Lean sources"
-    )
-    parser.add_argument(
-        "--include-deferred",
-        action="append",
-        default=[],
-        choices=sorted(DEFERRED_REGRESSIONS),
-        metavar="MODULE",
-        help="also audit a named, explicitly deferred regression module",
-    )
-    return parser.parse_args()
 
 
 def module_name(root: Path, path: Path) -> str:
@@ -91,26 +64,12 @@ def compiled_axiom_evidence(root: Path, module: str, build_output: str) -> str:
 
 
 def main() -> int:
-    args = parse_args()
     root = Path(__file__).resolve().parents[2]
     failures: list[str] = []
-    all_regression_files = sorted((root / "KIP126").rglob("*Regression.lean"))
-    if not all_regression_files:
+    regression_files = sorted((root / "KIP126").rglob("*Regression.lean"))
+    if not regression_files:
         print("axiom audit: no regression modules found", file=sys.stderr)
         return 1
-
-    included_deferred = set(args.include_deferred)
-    regression_files: list[Path] = []
-    skipped: list[tuple[str, str]] = []
-    for path in all_regression_files:
-        module = module_name(root, path)
-        if module in DEFERRED_REGRESSIONS and module not in included_deferred:
-            skipped.append((module, DEFERRED_REGRESSIONS[module]))
-        else:
-            regression_files.append(path)
-
-    for module, reason in skipped:
-        print(f"axiom audit: DEFERRED {module} ({reason})", file=sys.stderr)
 
     for path in regression_files:
         relative = path.relative_to(root)
@@ -167,7 +126,6 @@ def main() -> int:
         return 1
     print(
         f"axiom audit: OK ({len(regression_files)} regression modules; "
-        f"{len(skipped)} explicitly deferred; allowed axioms: "
         "propext, Classical.choice, Quot.sound)"
     )
     return 0

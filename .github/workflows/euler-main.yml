@@ -37,6 +37,7 @@ jobs:
             KIP126.Comparison.ClassicalSynthetic.Regression \
             KIP126.Core.SpectralSequence.ConvergenceRegression \
             KIP126.Core.SpectralSequence.SpectralObjectAdapterRegression \
+            KIP126.External.ClaimsRegression \
             KIP126.External.ProvenanceRegression \
             KIP126.External.SourceInventoryRegression
           leanblueprint web
@@ -48,7 +49,3 @@ jobs:
           git diff --check
       - name: Run the fresh compiled declaration audit
         run: python3 scripts/ci/axiom_audit.py
-
-# KIP126.External.ClaimsRegression is an explicit post-initialization target
-# owned by AIM-69/PR #8. It is tested on any PR that changes its claim slice;
-# remove the audit exclusion after that worker change reaches main.
