@@ -1,0 +1,77 @@
+name: PR status labels
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
+  workflow_run:
+    workflows: [pr-build]
+    types: [completed]
+  issue_comment:
+    types: [created, edited]
+  schedule:
+    - cron: "20 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+  statuses: read
+
+concurrency:
+  group: pr-labels-${{ github.event.pull_request.number || github.event.issue.number || github.event.workflow_run.pull_requests[0].number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  reconcile:
+    if: >-
+      github.event_name != 'issue_comment'
+      || contains(github.event.comment.body, '<!-- euler-semantic-review:v1 -->')
+      || contains(github.event.comment.body, '<!-- lean-mas-semantic-review:v1 -->')
+      || contains(github.event.comment.body, '<!--tauceti-scoreboard-->')
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+    steps:
+      - name: Checkout trusted status projection
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+          sparse-checkout: |
+            .github/euler/status_projection.py
+            .github/euler/status-labels.json
+          sparse-checkout-cone-mode: false
+
+      - name: Install the advisory label definitions
+        run: >-
+          python3 .github/euler/status_projection.py install-labels
+          --repo "$REPO" --config .github/euler/status-labels.json
+
+      - name: Reconcile the current exact-head projection
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ '${{ github.event_name }}' == 'pull_request_target' ]]; then
+            selector=(--pr '${{ github.event.pull_request.number }}')
+          elif [[ '${{ github.event_name }}' == 'issue_comment' ]]; then
+            selector=(--pr '${{ github.event.issue.number }}')
+          elif [[ '${{ github.event_name }}' == 'workflow_run' ]]; then
+            event_pr='${{ github.event.workflow_run.pull_requests[0].number }}'
+            event_head='${{ github.event.workflow_run.pull_requests[0].head.sha }}'
+            test -n "$event_pr"
+            test -n "$event_head"
+            live_head=$(gh api "repos/$REPO/pulls/$event_pr" --jq '.head.sha')
+            if [[ "$live_head" != "$event_head" ]]; then
+              echo 'Stale pr-build delivery; current head will be handled by its own event.'
+              exit 0
+            fi
+            selector=(--pr "$event_pr")
+          else
+            selector=(--all-open)
+          fi
+          python3 .github/euler/status_projection.py reconcile \
+            --repo "$REPO" --config .github/euler/status-labels.json "${selector[@]}"
+
+# Labels are advisory only. This workflow never supplies merge authorization.

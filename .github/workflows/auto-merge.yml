@@ -1,0 +1,25 @@
+name: Auto-merge
+
+on:
+  workflow_run:
+    workflows: [pr-build]
+    types: [completed]
+  issue_comment:
+    types: [created, edited]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  unavailable:
+    # KIP126 has no reviewed target-compatible merge-only backend yet. Keep the
+    # canonical listener identity without minting tokens or making merge calls.
+    if: ${{ false }}
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo 'Auto-merge remains fail-closed pending Stage 2 backend acceptance.'
+
+# Do not replace this with TauCetiReview's raw reusable workflow: that backend is
+# repository-, ledger-, path-, and App-installation-specific to TauCeti.

@@ -1,14 +1,11 @@
 import Lean
 
 /-!
-# `axioms`: the axiom-allowlist audit for the `KIP126` library
+Compiled-environment axiom allowlist audit, adapted from TauCeti
+`scripts/Axioms.lean` at f9451cdfb137000f0bf6f28f138887db15e65894.
 
-Adapted from TauCeti `scripts/Axioms.lean` at
-`cc6ce758421ce3a0731ff62667b7771cfc4aa3da`.
-
-This executable imports every compiled module below `KIP126`, selects every
-declaration defined by those modules, and rejects transitive axiom dependencies
-outside `propext`, `Classical.choice`, and `Quot.sound`.
+Generated for the `KIP126` source root. The audit imports every module under
+that root and checks every declaration defined there.
 -/
 
 open Lean
