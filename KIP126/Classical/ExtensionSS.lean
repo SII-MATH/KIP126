@@ -1,4 +1,6 @@
 import KIP126.Classical.ExtensionSS.Basic
+import KIP126.Classical.ExtensionSS.EtaData
+import KIP126.Classical.ExtensionSS.EtaDataRegression
 import KIP126.Classical.ExtensionSS.Regression
 
 /-!
