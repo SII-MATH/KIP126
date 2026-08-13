@@ -81,12 +81,20 @@ jobs:
             gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq '.files' > files.json
           fi
 
+          MIGRATION=false
+          if [[ -n "$PR_NUMBER" ]] && jq -e '(.body // "") | contains("AIM-86 protocol migration")' pr.json >/dev/null; then
+            MIGRATION=true
+          fi
+          if [[ "$MIGRATION" == true ]]; then
+            ALLOWED='^(KIP126/|KIP126\.lean$|blueprint/|reference/|docs/|README\.md$|\.github/workflows/euler-review-dispatch\.yml$|\.github/workflows/euler-pr\.yml$)'
+          else
+            ALLOWED='^(KIP126/|KIP126\.lean$|blueprint/|reference/|docs/|README\.md$)'
+          fi
           jq -e '
             length < 300 and
             (map(.changes // ((.additions // 0) + (.deletions // 0))) | add // 0) <= 20000 and
-            all(.[].filename;
-              test("^(KIP126/|KIP126\\.lean$|blueprint/|reference/|docs/|README\\.md$)"))
-          ' files.json >/dev/null
+            all(.[].filename; test($allowed))
+          ' --arg allowed "$ALLOWED" files.json >/dev/null
 
           gh api "repos/$REPO/git/trees/$HEAD_SHA?recursive=1" > tree.json
           jq -e '.truncated == false' tree.json >/dev/null

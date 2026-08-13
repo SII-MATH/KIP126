@@ -22,8 +22,8 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       REPO: ${{ github.repository }}
       WEBHOOK_URL: ${{ secrets.MULTICA_REVIEW_WEBHOOK_URL }}
-      ROADMAP_REPOSITORY: ${{ vars.LEAN_MAS_ROADMAP_REPOSITORY }}
-      RUBRIC_REVISION: ${{ vars.LEAN_MAS_RUBRIC_REVISION }}
+      ROADMAP_REPOSITORY: ${{ vars.EULER_ROADMAP_REPOSITORY }}
+      RUBRIC_REVISION: ${{ vars.EULER_RUBRIC_REVISION }}
       DETAILS_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Resolve eligibility and exact-head evidence
@@ -86,7 +86,7 @@ jobs:
                 {conclusion: "success", head_sha: $head_sha,
                  run_id: ($status.id | tostring),
                  details_url: ($status.target_url // "")};
-              {schema: "lean-mas-review.request/v1", repository: $repository,
+              {schema: "euler-review.request/v1", repository: $repository,
                roadmap_repository: $roadmap_repository,
                pull_request: $pull_request, head_sha: $head_sha,
                base_sha: $base_sha, merge_base_sha: $merge_base_sha,
@@ -99,7 +99,7 @@ jobs:
           KEY=$(jq -jr \
             '[(.repository | ascii_downcase), (.pull_request | tostring), .head_sha, .rubric_revision] | join(":")' \
             request.json | sha256sum | cut -d' ' -f1)
-          IDEMPOTENCY_KEY="lean-mas-review-$KEY"
+          IDEMPOTENCY_KEY="euler-review-$KEY"
           jq --arg key "$IDEMPOTENCY_KEY" '. + {idempotency_key: $key}' \
             request.json > request-with-key.json
           mv request-with-key.json request.json
