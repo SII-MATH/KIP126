@@ -94,7 +94,9 @@ jobs:
                ci: {scope: evidence("scope"), build: evidence("build"),
                     audit: evidence("audit")}}
             ' > request.json
-          KEY=$(jq -r \
+          # `jq -j` is required: the pinned EulerReview contract hashes the
+          # colon-joined identity bytes without a trailing newline.
+          KEY=$(jq -jr \
             '[(.repository | ascii_downcase), (.pull_request | tostring), .head_sha, .rubric_revision] | join(":")' \
             request.json | sha256sum | cut -d' ' -f1)
           IDEMPOTENCY_KEY="lean-mas-review-$KEY"
