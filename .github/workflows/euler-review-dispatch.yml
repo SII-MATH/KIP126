@@ -104,7 +104,31 @@ jobs:
           printf 'IDEMPOTENCY_KEY=%s\n' "$IDEMPOTENCY_KEY" >> "$GITHUB_ENV"
       - name: Mark semantic review pending
         if: env.INITIALIZER != 'true'
+        shell: bash
         run: |
+          set -euo pipefail
+          CURRENT_STATE=$(gh api "repos/$REPO/commits/$HEAD_SHA/status" --jq '
+            [.statuses[] | select(.context == "semantic-review")] |
+            if length == 0 then "missing"
+            else max_by(.updated_at // .created_at).state
+            end
+          ')
+          case "$CURRENT_STATE" in
+            success|failure|error)
+              echo "Preserving terminal semantic-review state on exact head: $CURRENT_STATE"
+              exit 0
+              ;;
+            pending)
+              echo 'semantic-review is already pending on the exact head.'
+              exit 0
+              ;;
+            missing)
+              ;;
+            *)
+              echo "Unknown semantic-review state: $CURRENT_STATE" >&2
+              exit 1
+              ;;
+          esac
           gh api --method POST "repos/$REPO/statuses/$HEAD_SHA" \
             -f state=pending -f context=semantic-review \
             -f description='Euler semantic review queued' \
