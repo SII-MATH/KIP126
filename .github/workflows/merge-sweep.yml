@@ -6,24 +6,105 @@ on:
   workflow_dispatch:
     inputs:
       dry-run:
-        description: "List actions without enqueueing, updating, or flagging"
+        description: List eligible exact heads without enabling auto-merge
         type: boolean
         default: true
 
+# The sweep evaluates with the read-only workflow token.  It mints the same
+# target-scoped App capability as Auto-merge only when a non-dry-run candidate
+# has independently passed the shared decision.
 permissions:
   contents: read
+  issues: read
+  pull-requests: read
+  statuses: read
 
 concurrency:
   group: merge-sweep
   cancel-in-progress: false
 
 jobs:
-  unavailable:
-    # Stage 2 must install and validate the same reviewed KIP126 merge decision
-    # used by auto-merge before this recovery path can run, even in dry-run mode.
-    if: ${{ false }}
+  sweep:
     runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      READ_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      RUBRIC_REVISION: ${{ vars.EULER_RUBRIC_REVISION }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs['dry-run'] && '1' || '' }}
     steps:
-      - run: echo 'Merge sweep remains fail-closed pending Stage 2 backend acceptance.'
+      - name: Checkout the trusted merge decision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+          sparse-checkout: |
+            .github/euler/status-labels.json
+            scripts/euler_merge_decision.py
+          sparse-checkout-cone-mode: false
 
-# This intentionally contains no reviewer, provider credential, or raw TauCeti backend call.
+      - name: Re-read every open head through the shared decision
+        id: candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$RUBRIC_REVISION"
+          : > candidates.tsv
+          while read -r pr; do
+            [[ -n "$pr" ]] || continue
+            head=$(gh api "repos/$REPO/pulls/$pr" --jq .head.sha)
+            python3 scripts/euler_merge_decision.py \
+              --repo "$REPO" --pr "$pr" --expected-head "$head" \
+              --rubric-revision "$RUBRIC_REVISION" --output "decision-$pr.json"
+            jq '{eligible, pull_request, head_sha, close_issue, queue_entry, reasons}' "decision-$pr.json"
+            if [[ "$(jq -r .eligible "decision-$pr.json")" == true ]]; then
+              printf '%s\t%s\n' "$pr" "$head" >> candidates.tsv
+            fi
+          done < <(gh api --paginate "repos/$REPO/pulls?state=open&base=main&per_page=100" --jq '.[].number')
+          count=$(wc -l < candidates.tsv)
+          printf 'count=%s\ndry_run=%s\n' "$count" "${DRY_RUN:-0}" >> "$GITHUB_OUTPUT"
+          if [[ -n "$DRY_RUN" ]]; then
+            echo "Dry-run: $count exact-head candidate(s); no write token will be minted."
+          else
+            echo "Sweep: $count exact-head candidate(s) require final revalidation."
+          fi
+
+      - name: Mint a target-scoped merge token after candidate decisions
+        id: merge-token
+        if: steps.candidates.outputs.count != '0' && steps.candidates.outputs.dry_run != '1'
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
+        with:
+          app-id: ${{ vars.EULER_MERGE_APP_ID }}
+          private-key: ${{ secrets.EULER_MERGE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: KIP126
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Revalidate and re-drive evicted eligible heads
+        if: steps.candidates.outputs.count != '0' && steps.candidates.outputs.dry_run != '1'
+        env:
+          MERGE_TOKEN: ${{ steps.merge-token.outputs.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS=$'\t' read -r pr head; do
+            [[ -n "$pr" && -n "$head" ]] || continue
+            GH_TOKEN="$READ_TOKEN" python3 scripts/euler_merge_decision.py \
+              --repo "$REPO" --pr "$pr" --expected-head "$head" \
+              --rubric-revision "$RUBRIC_REVISION" --output "revalidated-$pr.json"
+            if [[ "$(jq -r .eligible "revalidated-$pr.json")" != true ]]; then
+              echo "#$pr changed after the sweep decision; skipping."
+              continue
+            fi
+            live=$(GH_TOKEN="$MERGE_TOKEN" gh api "repos/$REPO/pulls/$pr" --jq .head.sha)
+            if [[ "$live" != "$head" ]]; then
+              echo "#$pr head moved ($head -> $live); skipping."
+              continue
+            fi
+            GH_TOKEN="$MERGE_TOKEN" gh pr merge "$pr" --repo "$REPO" \
+              --auto --squash --match-head-commit "$head"
+          done < candidates.tsv
+
+# Dry-run executes the identical live decision but cannot mint a write token.
+# The sweep invokes no reviewer and therefore spends no semantic-review budget.

@@ -10,13 +10,13 @@ generated inventory is pinned by `generated-file-hashes.sha256`.
 
 | Generated file | Required difference | Trust boundary |
 | --- | --- | --- |
-| `pr-build.yml` | Uses `KIP126/`, `KIP126.lean`, `lakefile.lean`, `surenny/KIP126`, `kip126-public`, KIP126's inventory/unit/Regression commands, and repository-local trusted helpers. TauCeti-only roadmap, graph, module-system, and environment-lint commands are absent. | Candidate code is limited to the KIP126 source overlay and a separately validated manifest/toolchain move; every elaborating command runs offline under `landrun`. Only public cache endpoints reach trusted setup, and no endpoint or credential enters the sandbox. |
+| `pr-build.yml` | Uses `KIP126/`, `KIP126.lean`, `lakefile.lean`, `surenny/KIP126`, `kip126-public`, KIP126's inventory/unit/Regression commands, and repository-local trusted helpers. TauCeti-only roadmap, graph, module-system, and environment-lint commands are absent. Stage 2 adds the explicit `pull-requests: read` permission required to enumerate the live PR overlay. | Candidate code is limited to the KIP126 source overlay and a separately validated manifest/toolchain move; every elaborating command runs offline under `landrun`. Only public cache endpoints reach trusted setup, and no endpoint or credential enters the sandbox. |
 | `ci.yml` | Builds every KIP126 module, runs the compiled audit and repository-approved tests, then optionally publishes only KIP126 root-package outputs through `kip126-r2 --repo surenny/KIP126`. | Upload secret and private endpoints exist only in the trusted default-branch producer. Missing cache configuration skips publication without weakening health. |
-| `review.yml` | Uses the `euler-review.request/v1` contract, `EULER_*` variables, exact `workflow_run.pull_requests[0].head.sha`, newest `scope`/`build`/`bump-guard`, strict `/review` authorization, Euler idempotency, and initializer exclusion. | The protected webhook is never exposed to candidate code. The workflow never runs a model or reusable reviewer and preserves terminal exact-head semantic status. |
+| `review.yml` | Uses the `euler-review.request/v1` contract, `EULER_*` variables, exact `workflow_run.pull_requests[0].head.sha`, newest `scope`/`build`/`bump-guard`, strict `/review` authorization, Euler idempotency, and initializer/validation exclusion. | The protected webhook is never exposed to candidate code. The workflow never runs a model or reusable reviewer and preserves terminal exact-head semantic status. |
 | `pr-profile.yml` | Uses KIP126 source paths, cache identity, forward-pin validator, and generated perf/profile helpers. | Candidate measurement is offline under the same `landrun`/watchdog boundary; host counters and tokens remain outside the sandbox. |
-| `pr-labels.yml` | Runs the bundled Euler/legacy-compatible status projection from the trusted default branch with the repository token's narrow read/status and issue-label permissions. | Labels are advisory projections of re-read exact-head facts and never authorize merge. No App credential is required or exposed. |
-| `auto-merge.yml` | Retains the canonical `pr-build` listener identity but has no runnable merge job. | No reviewed Euler-compatible KIP126 merge decision exists yet, so it has read-only permissions, receives no secrets, and remains fail-closed for Stage 2. Raw TauCetiReview calls are forbidden. |
-| `merge-sweep.yml` | Retains scheduled/manual identity but has no runnable recovery job. | It has read-only permissions and no reviewer, provider credential, or merge backend. Stage 2 must install the same reviewed decision as auto-merge before dry-run acceptance. |
+| `pr-labels.yml` | Runs the bundled Euler/legacy-compatible status projection from the trusted default branch with explicit read access to pull requests, statuses, and check runs plus issue-label write access. | Labels are advisory projections of re-read exact-head facts and never authorize merge. No App credential is required or exposed. |
+| `auto-merge.yml` | Calls the repository-local `scripts/euler_merge_decision.py`, which re-reads the exact live head, newest trusted `scope`/`build`/`bump-guard`/`perf`/`semantic-review`, canonical head-bound Euler scoreboard, exact `Closes AIM-N`, KIP126 path policy, mergeability, repository settings, branch protection, and queue entry. | The workflow token is read-only. Only an eligible non-initializer/non-validation/non-review-smoke head may mint the target-scoped App token (`EULER_MERGE_APP_ID` plus `EULER_MERGE_APP_PRIVATE_KEY`) and request exact-head auto-merge; raw TauCetiReview calls and label-based authorization remain forbidden. |
+| `merge-sweep.yml` | Runs the same repository-local decision over every open `main` PR, revalidates an eligible exact head immediately before re-drive, and supports a default-on manual dry-run. | Dry-run cannot mint a write token and the sweep invokes no reviewer. Non-dry-run uses the same delayed target-scoped App token as auto-merge, so stale, non-green, conflicting, initializer, validation, review-smoke, out-of-scope, or unreviewed heads remain fail-closed. |
 
 All `actions/checkout` uses are pinned to
 `11d5960a326750d5838078e36cf38b85af677262`; `leanprover/lean-action` is pinned
@@ -53,3 +53,14 @@ order.
 
 No new theorem, definition choice, project axiom, `sorry`, or specification edit
 is introduced by initialization.
+
+## Stage 2 trusted-infrastructure repair
+
+The first live validation head exposed two missing read permissions: `pr-build`
+could not enumerate PR files and status projection could not read check runs.
+The Stage 2 repair adds only those reads, introduces explicit validation-head
+review exclusion, and installs the shared KIP126 merge-only decision described
+above. The decision and its unit tests are part of the generated trusted-file
+hash inventory. Merge capability remains unavailable until the App variable and
+private-key secret names are configured and the exact repair head receives the
+required engineering/security acceptance.

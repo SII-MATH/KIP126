@@ -29,6 +29,7 @@ jobs:
       pr: ${{ steps.resolve.outputs.pr }}
       head_sha: ${{ steps.resolve.outputs.head_sha }}
       initializer: ${{ steps.resolve.outputs.initializer }}
+      validation: ${{ steps.resolve.outputs.validation }}
       idempotency_key: ${{ steps.resolve.outputs.idempotency_key }}
     env:
       GH_TOKEN: ${{ github.token }}
@@ -86,10 +87,18 @@ jobs:
           if [[ "$HEAD_REF" == agent/euler-initializer/* ]] || \
               grep -Eq '^(Initialization PR|Initialization Repair) for [A-Z][A-Z0-9]*-[1-9][0-9]*$' <<<"$BODY"; then
             echo 'initializer=true' >> "$GITHUB_OUTPUT"
+            echo 'validation=false' >> "$GITHUB_OUTPUT"
             echo 'Initializer PR: semantic review dispatch intentionally skipped.'
             exit 0
           fi
           echo 'initializer=false' >> "$GITHUB_OUTPUT"
+          if [[ "$HEAD_REF" == validation/* ]] || \
+              grep -Eq '^Euler Validation for [A-Z][A-Z0-9]*-[1-9][0-9]*$' <<<"$BODY"; then
+            echo 'validation=true' >> "$GITHUB_OUTPUT"
+            echo 'Validation PR: semantic review dispatch intentionally skipped.'
+            exit 0
+          fi
+          echo 'validation=false' >> "$GITHUB_OUTPUT"
           test -n "$ROADMAP_REPOSITORY"
           test -n "$RUBRIC_REVISION"
           MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
@@ -139,7 +148,7 @@ jobs:
           printf 'idempotency_key=%s\n' "$IDEMPOTENCY_KEY" >> "$GITHUB_OUTPUT"
 
       - name: Mark semantic review pending
-        if: steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.pr != ''
+        if: steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.validation != 'true' && steps.resolve.outputs.pr != ''
         shell: bash
         run: |
           set -euo pipefail
@@ -160,7 +169,7 @@ jobs:
             -f description='Euler semantic review queued'
 
       - name: Dispatch the Multica Euler reviewer webhook
-        if: steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.pr != ''
+        if: steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.validation != 'true' && steps.resolve.outputs.pr != ''
         shell: bash
         run: |
           set -euo pipefail
@@ -175,7 +184,7 @@ jobs:
           jq '{status, run_id}' response.json
 
       - name: Fail closed on dispatch error
-        if: failure() && steps.resolve.outputs.head_sha != '' && steps.resolve.outputs.initializer != 'true'
+        if: failure() && steps.resolve.outputs.head_sha != '' && steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.validation != 'true'
         run: |
           gh api --method POST "repos/$REPO/statuses/${{ steps.resolve.outputs.head_sha }}" \
             -f state=error -f context=semantic-review \

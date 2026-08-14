@@ -7,19 +7,128 @@ on:
   issue_comment:
     types: [created, edited]
   workflow_dispatch:
+    inputs:
+      pr:
+        description: Pull request number to re-evaluate
+        required: true
+        type: string
 
+# The default workflow token is read-only.  A target-scoped App token is minted
+# only after the shared exact-head decision passes.
 permissions:
   contents: read
+  issues: read
   pull-requests: read
+  statuses: read
+
+concurrency:
+  group: auto-merge-${{ github.event.issue.number || github.event.workflow_run.pull_requests[0].number || inputs.pr || github.run_id }}
+  cancel-in-progress: false
 
 jobs:
-  unavailable:
-    # KIP126 has no reviewed target-compatible merge-only backend yet. Keep the
-    # canonical listener identity without minting tokens or making merge calls.
-    if: ${{ false }}
+  decide:
+    if: >-
+      github.event_name != 'workflow_run'
+      || (github.event.workflow_run.conclusion == 'success'
+        && github.event.workflow_run.event == 'pull_request_target')
     runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      RUBRIC_REVISION: ${{ vars.EULER_RUBRIC_REVISION }}
     steps:
-      - run: echo 'Auto-merge remains fail-closed pending Stage 2 backend acceptance.'
+      - name: Resolve one live pull request and exact head
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+          pr=''
+          event_head=''
+          case '${{ github.event_name }}' in
+            workflow_run)
+              pr=$(jq -r '.workflow_run.pull_requests | if length == 1 then .[0].number else empty end' "$GITHUB_EVENT_PATH")
+              event_head=$(jq -r '.workflow_run.pull_requests | if length == 1 then .[0].head.sha else empty end' "$GITHUB_EVENT_PATH")
+              ;;
+            issue_comment)
+              if ! jq -er '.issue.pull_request != null and ((.comment.body // "") | contains("<!-- euler-semantic-review:v1 -->"))' "$GITHUB_EVENT_PATH" >/dev/null; then
+                echo 'Not a canonical Euler scoreboard event; skipping.'
+                exit 0
+              fi
+              pr=$(jq -r '.issue.number' "$GITHUB_EVENT_PATH")
+              ;;
+            workflow_dispatch)
+              pr='${{ inputs.pr }}'
+              ;;
+          esac
+          test -n "$pr"
+          gh api "repos/$REPO/pulls/$pr" > pull.json
+          test "$(jq -r .state pull.json)" = open
+          test "$(jq -r .draft pull.json)" = false
+          head=$(jq -r .head.sha pull.json)
+          test "$head" != null
+          if [[ -n "$event_head" && "$event_head" != "$head" ]]; then
+            echo "Stale delivery ($event_head != $head); refusing to act."
+            exit 0
+          fi
+          printf 'pr=%s\nhead=%s\n' "$pr" "$head" >> "$GITHUB_OUTPUT"
 
-# Do not replace this with TauCetiReview's raw reusable workflow: that backend is
-# repository-, ledger-, path-, and App-installation-specific to TauCeti.
+      - name: Checkout the trusted merge decision
+        if: steps.resolve.outputs.pr != ''
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+          sparse-checkout: |
+            .github/euler/status-labels.json
+            scripts/euler_merge_decision.py
+          sparse-checkout-cone-mode: false
+
+      - name: Re-read every merge fact and decide
+        id: decision
+        if: steps.resolve.outputs.pr != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$RUBRIC_REVISION"
+          python3 scripts/euler_merge_decision.py \
+            --repo "$REPO" \
+            --pr '${{ steps.resolve.outputs.pr }}' \
+            --expected-head '${{ steps.resolve.outputs.head }}' \
+            --rubric-revision "$RUBRIC_REVISION" \
+            --output decision.json
+          eligible=$(jq -r .eligible decision.json)
+          echo "eligible=$eligible" >> "$GITHUB_OUTPUT"
+          jq '{eligible, repository, pull_request, head_sha, close_issue, queue_entry, reasons}' decision.json
+
+      - name: Mint a target-scoped merge token after the decision
+        id: merge-token
+        if: steps.decision.outputs.eligible == 'true'
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
+        with:
+          app-id: ${{ vars.EULER_MERGE_APP_ID }}
+          private-key: ${{ secrets.EULER_MERGE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: KIP126
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Enable exact-head auto-merge
+        if: steps.decision.outputs.eligible == 'true'
+        env:
+          MERGE_TOKEN: ${{ steps.merge-token.outputs.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          pr='${{ steps.resolve.outputs.pr }}'
+          head='${{ steps.resolve.outputs.head }}'
+          live=$(GH_TOKEN="$MERGE_TOKEN" gh api "repos/$REPO/pulls/$pr" --jq .head.sha)
+          if [[ "$live" != "$head" ]]; then
+            echo "Head moved ($head -> $live); a fresh event must re-decide."
+            exit 0
+          fi
+          GH_TOKEN="$MERGE_TOKEN" gh pr merge "$pr" --repo "$REPO" \
+            --auto --squash --match-head-commit "$head"
+
+# No reviewer runs here.  Initializer, validation, review-smoke, stale, non-green,
+# out-of-scope, unreviewed, conflicting, or improperly protected heads fail closed
+# in scripts/euler_merge_decision.py before a write-capable token exists.
