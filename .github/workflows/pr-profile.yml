@@ -156,7 +156,7 @@ jobs:
           fi
 
       - name: Checkout workflow-pinned trusted tooling
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.workflow_sha }}
           path: gate
@@ -164,7 +164,7 @@ jobs:
           fetch-depth: 1
 
       - name: Checkout immutable base (trusted)
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@v4
         with:
           ref: ${{ steps.pr.outputs.base_sha }}
           path: base
@@ -172,7 +172,7 @@ jobs:
           fetch-depth: 100
 
       - name: Checkout base again for the head overlay (trusted config)
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@v4
         with:
           ref: ${{ steps.pr.outputs.base_sha }}
           path: head
@@ -180,7 +180,7 @@ jobs:
           fetch-depth: 1
 
       - name: Checkout merge-base config (trusted ancestor)
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@v4
         with:
           ref: ${{ steps.pr.outputs.mergebase }}
           path: mergebase
@@ -188,7 +188,7 @@ jobs:
           fetch-depth: 1
 
       - name: Checkout candidate head (untrusted, no credentials)
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@v4
         with:
           # pull_request_target intentionally fetches untrusted source for a
           # data-only overlay; it is executed only later, offline in landrun.
@@ -214,7 +214,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if jq -e '.[] | select(.filename == "lakefile.toml" or .filename == "lakefile.lean")' \
+          if jq -e '.[] | select(.filename == "lakefile.lean" or .filename == "lakefile.lean")' \
                "$RUNNER_TEMP/files.json" >/dev/null; then
             # Lakefiles are human-owned and are never executed here. Measure
             # any KIP126/ delta against the trusted base config, as pr-build does.
@@ -320,7 +320,7 @@ jobs:
           mkdir -p base/.lake/tmp
 
       - name: Fetch immutable-base KIP126 oleans (network, no candidate code)
-        id: kip126_cache
+        id: project_cache
         if: ${{ steps.manifest.outputs.count != '0' }}
         env:
           PUBLIC_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT_PUBLIC }}
@@ -354,7 +354,7 @@ jobs:
           clean=0
           for attempt in 1 2 3 4 5 6; do
             discard_cache
-            log="$RUNNER_TEMP/kip126-cache-$attempt.log"
+            log="$RUNNER_TEMP/project-cache-$attempt.log"
             rc=0
             ( cd base && LAKE_CONFIG="$config" LAKE_CACHE_DIR="$cache_dir" \
                 lake cache get --service kip126-public --repo surenny/KIP126 ) \
@@ -430,7 +430,7 @@ jobs:
             # affect those retired base-cache inodes, but cannot reach the raw
             # base result in RUNNER_TEMP or any trusted scripts/config.
             cp -al base/.lake head/.lake
-            if [ '${{ steps.kip126_cache.outputs.enabled }}' = 1 ]; then
+            if [ '${{ steps.project_cache.outputs.enabled }}' = 1 ]; then
               echo "LAKE_CACHE_DIR=$PWD/head/.lake/cache" >> "$GITHUB_ENV"
             fi
           fi
@@ -578,3 +578,4 @@ jobs:
           done
           [ "$posted" = 1 ] || { echo '::error::could not post terminal perf status'; exit 1; }
           [ "$state" = success ]
+

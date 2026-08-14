@@ -48,7 +48,10 @@ jobs:
           EVENT_HEAD=''
           if [[ "$EVENT" == workflow_run ]]; then
             PR=$(jq -r '.workflow_run.pull_requests | if length == 1 then .[0].number else empty end' "$GITHUB_EVENT_PATH")
-            EVENT_HEAD=$(jq -r '.workflow_run.pull_requests | if length == 1 then .[0].head.sha else empty end' "$GITHUB_EVENT_PATH")
+            EVENT_HEAD=$(jq -r '.workflow_run.head_sha // empty' "$GITHUB_EVENT_PATH")
+            if [[ -z "$PR" ]]; then
+              PR=$(gh api "repos/$REPO/commits/$EVENT_HEAD/pulls" --jq '[.[] | select(.state == "open" and .draft == false)] | if length == 1 then .[0].number else empty end')
+            fi
           else
             ACTOR=$(jq -r '.sender.login // empty' "$GITHUB_EVENT_PATH")
             ASSOCIATION=$(jq -r '.comment.author_association // empty' "$GITHUB_EVENT_PATH")
@@ -70,7 +73,6 @@ jobs:
             PR=$(jq -r '.issue.number // empty' "$GITHUB_EVENT_PATH")
           fi
           test -n "$PR"
-          if [[ "$EVENT" == workflow_run ]]; then test -n "$EVENT_HEAD"; fi
           gh api "repos/$REPO/pulls/$PR" > pr.json
           test "$(jq -r .state pr.json)" = open
           test "$(jq -r .draft pr.json)" = false
@@ -183,3 +185,4 @@ jobs:
 
 # All model execution is owned by the Multica Euler reviewer webhook. This workflow only resolves
 # trusted PR identity, checks exact-head mechanical evidence, and sends the versioned request.
+
