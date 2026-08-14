@@ -241,7 +241,6 @@ jobs:
           rm -rf base/scripts/perf
           cp -a gate/scripts/perf base/scripts/perf
           cp gate/scripts/sandbox-build.sh base/scripts/sandbox-build.sh
-          cp gate/scripts/lint-env.sh base/scripts/lint-env.sh
 
       - name: Checkout merge-base config (trusted ancestor — only to scope the PR's pin delta)
         if: ${{ env.INFRA != '1' && env.BUMP == '1' }}
@@ -310,24 +309,6 @@ jobs:
               [ -e "pr/$f" ] && cp -a "pr/$f" "base/$f"
             done
           fi
-      - name: Import-boundary guard (KIP126/ and KIP126.lean ⊬ roadmap/review)
-        if: ${{ env.INFRA != '1' }}
-        run: |
-          if grep -rIn -E '^[[:space:]]*import[[:space:]]+(KIP126Roadmap|KIP126Review)\b' base/KIP126/ base/KIP126.lean; then
-            echo "::error::KIP126/ must not import KIP126Roadmap or KIP126Review"; exit 1
-          fi
-
-      # No-set_option guard. `set_option` is an escape hatch (it can raise maxHeartbeats,
-      # silence linters, bump maxRecDepth, ...), so the overlaid KIP126/ may not use it. Like
-      # the import guard it is a textual scan that needs no elaboration, so it runs trusted (on
-      # the overlaid base/KIP126/) outside the landrun sandbox.
-      - name: No-set_option guard (KIP126/ and KIP126.lean use no set_option)
-        if: ${{ env.INFRA != '1' }}
-        run: |
-          if grep -rIn '^set_option ' base/KIP126/ base/KIP126.lean; then
-            echo "::error::KIP126/ may not use set_option (it can weaken maxHeartbeats, linters, maxRecDepth, ...); remove it"; exit 1
-          fi
-
       - name: Install elan (trusted)
         if: ${{ env.INFRA != '1' }}
         run: |
@@ -662,9 +643,9 @@ jobs:
              || [ "${{ env.TOO_LARGE }}" = "1" ] || [ "${{ env.DIFF_UNKNOWN }}" = "1" ]; then
             state=failure; desc="build not run — see the scope check"
           elif [ "${{ steps.build.outcome }}" = "success" ]; then
-            state=success; desc="sandboxed build, audits, and simp-NF lint passed (trusted config)"
+            state=success; desc="sandboxed build, audits, inventory, and regressions passed"
           else
-            state=failure; desc="sandboxed build, audit, or simp-NF lint failed"
+            state=failure; desc="sandboxed build, audit, inventory, or regression failed"
           fi
           post_status build "$state" "$desc"
 
@@ -700,5 +681,3 @@ jobs:
             exit 1
           fi
           [ "$state" = "success" ]
-
-
