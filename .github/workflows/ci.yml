@@ -42,7 +42,9 @@ jobs:
       # Quot.sound}, catching sorry/admit (sorryAx), native_decide (Lean.ofReduceBool),
       # and home-rolled axioms, including ones reaching in through imports.
       - name: Axiom audit (KIP126/ uses only allowlisted axioms)
-        run: lake exe axioms
+        run: |
+          lake build --iofail
+          lake exe axioms
 
       - name: Run source inventory, unit, and Regression gates
         shell: bash
