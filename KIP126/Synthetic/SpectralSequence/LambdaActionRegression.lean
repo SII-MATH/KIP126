@@ -40,9 +40,3 @@ example (A : SyntheticAdamsSS) (L : TypedLambdaAction A)
   h₄_differential_eq_lambdaShifted A L S
 
 end KIP126.Synthetic.SpectralSequence.Regression
-
-#print axioms KIP126.Synthetic.SpectralSequence.lambdaMapFromAction_eq_lambdaMap
-#print axioms KIP126.Synthetic.SpectralSequence.h₄Representative_degree
-#print axioms KIP126.Synthetic.SpectralSequence.h₀h₃SquaredRepresentative_degree
-#print axioms KIP126.Synthetic.SpectralSequence.lambdaShiftedRepresentative_degree
-#print axioms KIP126.Synthetic.SpectralSequence.h₄_differential_eq_lambdaShifted
