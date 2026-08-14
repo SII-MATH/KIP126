@@ -1,0 +1,29 @@
+name: Merge sweep
+
+on:
+  schedule:
+    - cron: "40 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "List actions without enqueueing, updating, or flagging"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: merge-sweep
+  cancel-in-progress: false
+
+jobs:
+  unavailable:
+    # Stage 2 must install and validate the same reviewed KIP126 merge decision
+    # used by auto-merge before this recovery path can run, even in dry-run mode.
+    if: ${{ false }}
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo 'Merge sweep remains fail-closed pending Stage 2 backend acceptance.'
+
+# This intentionally contains no reviewer, provider credential, or raw TauCeti backend call.

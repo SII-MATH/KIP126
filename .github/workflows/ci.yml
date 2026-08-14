@@ -1,0 +1,108 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: main-ci-cache-publisher
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Install the pinned Lean toolchain and Mathlib cache
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
+        with:
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          use-github-cache: false
+
+      - name: Build every KIP126 module
+        run: lake build --iofail
+
+      - name: Run the compiled all-declaration axiom audit
+        run: lake exe axioms
+
+      - name: Run source inventory, unit, and Regression gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/check_source_inventory.py --lean-timeout 900
+          python3 -m unittest discover -s scripts -p 'test_*.py' -v
+          lake build \
+            KIP126.Classical.Adams.Regression \
+            KIP126.Classical.ExtensionSS.Regression \
+            KIP126.Comparison.ClassicalSynthetic.Regression \
+            KIP126.Core.SpectralSequence.ConvergenceRegression \
+            KIP126.Core.SpectralSequence.SpectralObjectAdapterRegression \
+            KIP126.External.ClaimsRegression \
+            KIP126.External.ProvenanceRegression \
+            KIP126.External.SourceInventoryRegression
+          git diff --check
+
+      - name: Run trusted infrastructure unit tests
+        run: |
+          PYTHONPATH=. python3 scripts/perf/test_perf.py -v
+          PYTHONPATH=. python3 scripts/test_status_projection.py
+          python3 -m py_compile .github/euler/status_projection.py scripts/perf/*.py scripts/profile/*.py
+
+      - name: Configure the KIP126 Lake cache upload
+        id: cachecfg
+        env:
+          LAKE_CACHE_KEY_RAW: ${{ secrets.LAKE_CACHE_KEY }}
+          PRIVATE_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT }}
+          PRIVATE_REVISION_ENDPOINT: ${{ vars.LAKE_CACHE_REVISION_ENDPOINT }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "$LAKE_CACHE_KEY_RAW" && -n "$PRIVATE_ARTIFACT_ENDPOINT" && -n "$PRIVATE_REVISION_ENDPOINT" ]]; then
+            echo 'enabled=true' >> "$GITHUB_OUTPUT"
+            echo '::notice::KIP126 root-package cache publication is enabled.'
+          else
+            echo 'enabled=false' >> "$GITHUB_OUTPUT"
+            echo '::notice::KIP126 root-package cache publication is not configured; health remains authoritative.'
+          fi
+
+      - name: Publish only KIP126 root-package outputs
+        if: ${{ steps.cachecfg.outputs.enabled == 'true' }}
+        env:
+          LAKE_ARTIFACT_CACHE: "true"
+          LAKE_RESTORE_ARTIFACTS: "true"
+          LAKE_NO_CACHE: "true"
+          LAKE_CACHE_DIR: ${{ github.workspace }}/.lake/cache
+          PRIVATE_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT }}
+          PRIVATE_REVISION_ENDPOINT: ${{ vars.LAKE_CACHE_REVISION_ENDPOINT }}
+          LAKE_CACHE_KEY_RAW: ${{ secrets.LAKE_CACHE_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          key="$(printf %s "$LAKE_CACHE_KEY_RAW" | sed -e 's/[[:space:]]*$//')"
+          test -n "$key"
+          echo "::add-mask::$key"
+          export LAKE_CACHE_KEY="$key"
+          cfg="$RUNNER_TEMP/kip126-lake-cache.toml"
+          cat > "$cfg" <<TOML
+          cache.defaultUploadService = "kip126-r2"
+          [[cache.service]]
+          name = "kip126-r2"
+          kind = "s3"
+          artifactEndpoint = "$PRIVATE_ARTIFACT_ENDPOINT"
+          revisionEndpoint = "$PRIVATE_REVISION_ENDPOINT"
+          TOML
+          export LAKE_CONFIG="$cfg"
+          lake build --no-build -o .lake/outputs.jsonl
+          test -s .lake/outputs.jsonl
+          echo "KIP126 root-package mapping entries: $(wc -l < .lake/outputs.jsonl)"
+          lake cache put .lake/outputs.jsonl --service kip126-r2 --repo surenny/KIP126
