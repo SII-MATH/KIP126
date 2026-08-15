@@ -1,16 +1,15 @@
 import Lean
 
 /-!
-Compiled-environment axiom allowlist audit, adapted from TauCeti
-`scripts/Axioms.lean` at f9451cdfb137000f0bf6f28f138887db15e65894.
-
-Generated for the `KIP126` source root. The audit imports every module under
-that root and checks every declaration defined there.
+Compiled-environment axiom allowlist audit for the rendered project source root.
+The initializer substitutes the namespace and source directory placeholders.
 -/
 
 open Lean
 
 def auditedRoot : Name := `KIP126
+def auditedDirectory : System.FilePath := "KIP126"
+def rootLeanFile : System.FilePath := "KIP126.lean"
 
 def allowedAxioms : List Name := [``propext, ``Classical.choice, ``Quot.sound]
 
@@ -37,8 +36,11 @@ partial def collectLeanModules (directory : System.FilePath) : IO (Array Name) :
       modules := modules.push (pathToModule entry.path)
   return modules
 
-def auditedModules : IO (Array Name) :=
-  return #[auditedRoot] ++ (← collectLeanModules (auditedRoot.toString : System.FilePath))
+def auditedModules : IO (Array Name) := do
+  let modules ← collectLeanModules auditedDirectory
+  if (← rootLeanFile.pathExists) then
+    return #[auditedRoot] ++ modules
+  return modules
 
 abbrev AxiomCacheM := ReaderT Environment (StateM (Lean.NameMap Bool))
 
@@ -86,6 +88,9 @@ def audit : CoreM (Nat × Array String) := do
 
 def main : IO UInt32 := do
   let modules ← auditedModules
+  if modules.isEmpty then
+    IO.eprintln s!"axioms: found no Lean modules under {auditedDirectory}: the audit is miswired."
+    return 1
   let (audited, messages) ← withImportedEnv modules audit
   if audited == 0 then
     IO.eprintln s!"axioms: audited 0 declarations in {auditedRoot}: the audit is miswired."
@@ -93,9 +98,8 @@ def main : IO UInt32 := do
   if messages.isEmpty then
     IO.println s!"axioms: audited {audited} {auditedRoot} declaration(s); all within the allowlist {allowedAxioms}."
     return 0
-  else
-    IO.eprintln s!"axioms: {messages.size} declaration(s) in {auditedRoot} use disallowed axioms:"
-    for message in messages do
-      IO.eprintln message
-    IO.eprintln s!"allowed: {allowedAxioms}"
-    return 1
+  IO.eprintln s!"axioms: {messages.size} declaration(s) in {auditedRoot} use disallowed axioms:"
+  for message in messages do
+    IO.eprintln message
+  IO.eprintln s!"allowed: {allowedAxioms}"
+  return 1
