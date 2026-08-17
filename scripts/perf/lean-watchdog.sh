@@ -3,8 +3,10 @@
 #
 # GNU timeout uses a separate process group by default, sends TERM at the first
 # deadline, and escalates to KILL after --kill-after. The production landrun
-# environment does not pass the EULER_* variables below; they exist only so
-# the trusted unit test can exercise this in milliseconds rather than minutes.
+# environment normally uses the defaults below. Trusted workflows may pass a
+# larger fixed budget for cold full builds, and the unit test overrides both
+# values so it can exercise this in milliseconds rather than minutes. Candidate
+# code never controls these variables.
 set -uo pipefail
 
 deadline="${EULER_LEAN_TIMEOUT_SECONDS:-300}"
