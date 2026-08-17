@@ -3,12 +3,12 @@
 #
 # GNU timeout uses a separate process group by default, sends TERM at the first
 # deadline, and escalates to KILL after --kill-after. The production landrun
-# environment does not pass the KIP126_* variables below; they exist only so
+# environment does not pass the EULER_* variables below; they exist only so
 # the trusted unit test can exercise this in milliseconds rather than minutes.
 set -uo pipefail
 
-deadline="${KIP126_LEAN_TIMEOUT_SECONDS:-300}"
-grace="${KIP126_LEAN_KILL_GRACE_SECONDS:-30}"
+deadline="${EULER_LEAN_TIMEOUT_SECONDS:-300}"
+grace="${EULER_LEAN_KILL_GRACE_SECONDS:-30}"
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
 toolchain_root=${script_dir%/bin}
 
