@@ -285,6 +285,42 @@ jobs:
             echo "::warning::Lake-pin change is not a validated forward bump — routing to human"
           fi
 
+      # No-new-set_option guard. `set_option` is an escape hatch (it can raise maxHeartbeats,
+      # silence linters, bump maxRecDepth, ...), so candidate code may not introduce one. Compare
+      # the untrusted candidate against the trusted base before overlaying it: existing trusted
+      # uses are grandfathered, while any added or modified `set_option` line fails closed. This
+      # textual diff executes no candidate code and therefore runs safely outside landrun.
+      - name: No-new-set_option guard (candidate adds no set_option)
+        if: ${{ env.INFRA != '1' }}
+        run: |
+          set -euo pipefail
+
+          check_no_new_set_option() {
+            local trusted="$1" candidate="$2" label="$3" patch status additions
+            set +e
+            patch=$(git diff --no-index --unified=0 -- "$trusted" "$candidate")
+            status=$?
+            set -e
+            if [ "$status" -gt 1 ]; then
+              echo "::error::could not compare trusted and candidate $label sources"
+              exit "$status"
+            fi
+            additions=$(printf '%s\n' "$patch" | awk '
+              /^\+\+\+ / { file=$2; next }
+              /^\+[[:space:]]*set_option[[:space:]]/ { print file ": " substr($0, 2) }
+            ')
+            if [ -n "$additions" ]; then
+              echo "$additions"
+              echo "::error::$label may not add set_option (it can weaken maxHeartbeats, linters, maxRecDepth, ...); remove it"
+              return 1
+            fi
+          }
+
+          check_no_new_set_option base/KIP126 pr/KIP126 KIP126/
+          if [ -e pr/KIP126.lean ]; then
+            check_no_new_set_option base/KIP126.lean pr/KIP126.lean KIP126.lean
+          fi
+
       - name: Overlay PR KIP126/ and root KIP126.lean onto the trusted base (reject symlinks)
         if: ${{ env.INFRA != '1' }}
         run: |
@@ -314,17 +350,6 @@ jobs:
         run: |
           if grep -rIn -E '^[[:space:]]*import[[:space:]]+(KIP126Roadmap|KIP126Review)\b' base/KIP126/ base/KIP126.lean; then
             echo "::error::KIP126/ must not import KIP126Roadmap or KIP126Review"; exit 1
-          fi
-
-      # No-set_option guard. `set_option` is an escape hatch (it can raise maxHeartbeats,
-      # silence linters, bump maxRecDepth, ...), so the overlaid KIP126/ may not use it. Like
-      # the import guard it is a textual scan that needs no elaboration, so it runs trusted (on
-      # the overlaid base/KIP126/) outside the landrun sandbox.
-      - name: No-set_option guard (KIP126/ and KIP126.lean use no set_option)
-        if: ${{ env.INFRA != '1' }}
-        run: |
-          if grep -rIn '^set_option ' base/KIP126/ base/KIP126.lean; then
-            echo "::error::KIP126/ may not use set_option (it can weaken maxHeartbeats, linters, maxRecDepth, ...); remove it"; exit 1
           fi
 
       - name: Install elan (trusted)
@@ -699,6 +724,4 @@ jobs:
             exit 1
           fi
           [ "$state" = "success" ]
-
-
 
