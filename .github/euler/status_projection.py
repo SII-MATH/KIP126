@@ -21,6 +21,8 @@ REVIEW_META = re.compile(r"<!-- euler-meta:(\{.*?\}) -->", re.DOTALL)
 LEGACY_REVIEW_META = re.compile(r"<!-- lean-mas-meta:(\{.*?\}) -->", re.DOTALL)
 TAUCETI_MARKER = "<!--tauceti-scoreboard-->"
 TAUCETI_META = re.compile(r"<!--tauceti-meta:v1 (.*?)-->", re.DOTALL)
+KIP126_MARKER = "<!--kip126-scoreboard-->"
+KIP126_META = re.compile(r"<!--kip126-meta:v1\s+(.*?)\s*-->", re.DOTALL)
 
 
 class ProjectionError(RuntimeError):
@@ -259,6 +261,30 @@ def _repository_labels(repository: str) -> dict[str, dict]:
     }
 
 
+def _issue_comments(repository: str, pull_request: int) -> list[dict]:
+    try:
+        return _paged(f"repos/{repository}/issues/{pull_request}/comments?per_page=100")
+    except ProjectionError as error:
+        if "HTTP 404" not in str(error) and "Not Found" not in str(error):
+            raise
+        owner, name = repository.split("/", 1)
+        raw = _gh_json(["pr", "view", str(pull_request), "--repo", f"{owner}/{name}", "--json", "comments"])
+        comments = raw.get("comments") if isinstance(raw, dict) else None
+        if not isinstance(comments, list):
+            raise ProjectionError("GitHub returned no pull request comments")
+        return [
+            {
+                "body": item.get("body") or "",
+                "updated_at": item.get("updatedAt") or item.get("createdAt") or "",
+                "html_url": item.get("url") or "",
+                "user": {"login": ((item.get("author") or {}).get("login") or "")},
+                "author_association": item.get("authorAssociation") or "NONE",
+            }
+            for item in comments
+            if isinstance(item, dict)
+        ]
+
+
 def _verify_semantic_statuses(
     statuses: list,
     comments: list,
@@ -311,6 +337,34 @@ def _verify_semantic_statuses(
             and str(metadata.get("repo", "")).lower() == repository.lower()
             and metadata.get("pr") == pull_request
             and metadata.get("head_sha") == head_sha
+            and isinstance(states, dict)
+            and bool(states)
+        )
+        approved = exact and all(value == "green" for value in states.values())
+        adverse = exact and any(value in {"blocking_request", "blocking_block"} for value in states.values())
+        if (
+            status.get("state") == "success"
+            and approved
+            and re.search(r"^## AI review — approved(?:\s|$)", body, re.MULTILINE | re.IGNORECASE)
+        ) or (
+            status.get("state") == "failure"
+            and adverse
+            and re.search(r"^## AI review — (?:blocked|changes requested)(?:\s|$)", body, re.MULTILINE | re.IGNORECASE)
+        ):
+            status["verified_verdict"] = True
+            continue
+        kip126 = KIP126_META.findall(body)
+        if KIP126_MARKER not in body or not kip126:
+            continue
+        try:
+            metadata = json.loads(kip126[-1].strip())
+        except json.JSONDecodeError:
+            continue
+        states = metadata.get("states")
+        exact = (
+            metadata.get("head_sha") == head_sha
+            and metadata.get("pr") == pull_request
+            and str(metadata.get("repo", "")).lower() == repository.lower()
             and isinstance(states, dict)
             and bool(states)
         )
@@ -432,11 +486,19 @@ def fetch_facts(repository: str, pull_request: int, config: dict) -> dict:
         for status in statuses:
             if isinstance(status, dict):
                 status.setdefault("sha", head_sha)
-        check_runs = _check_runs(repository, head_sha)
+        try:
+            check_runs = _check_runs(repository, head_sha)
+        except ProjectionError as error:
+            # Some installations expose commit statuses but deny the Check Runs endpoint. The
+            # trusted status contexts remain authoritative for this repository; missing contexts
+            # still fail closed below.
+            if "HTTP 404" not in str(error) and "Not Found" not in str(error):
+                raise
+            check_runs = []
         statuses.extend(
             _normalized_check_statuses(check_runs, head_sha, set(config["mechanical_contexts"]))
         )
-        comments = _paged(f"repos/{repository}/issues/{pull_request}/comments?per_page=100")
+        comments = _issue_comments(repository, pull_request)
         _verify_semantic_statuses(
             statuses,
             comments,
