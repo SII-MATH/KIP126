@@ -23,8 +23,8 @@ zero bands, the stable/spectral-sequence/Steenrod/synthetic background absent
 from Mathlib, explicit literature and computation provenance, and the full
 dependency cone from the compiled Core to the conditional Kervaire endpoints.
 All unimplemented nodes are conservatively marked `notready`; the Blueprint
-does not claim that the main theorem is already formalized.  The broader
-migration specification is
+does not claim that the main theorem is already formalized.  The cross-module
+architecture and semantic contracts are recorded in
 [docs/FORMALIZATION_SPEC.md](docs/FORMALIZATION_SPEC.md), and the staged Lean
 implementation order is [docs/ROADMAP.md](docs/ROADMAP.md).
 
