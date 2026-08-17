@@ -22,9 +22,7 @@ All `actions/checkout` uses are pinned to
 `11d5960a326750d5838078e36cf38b85af677262`; `leanprover/lean-action` is pinned
 to `38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9`. The generated audit imports
 every module under `KIP126`, rejects a zero-declaration wiring, and permits only
-`propext`, `Classical.choice`, and `Quot.sound`. Its bounded fixtures are the
-initializer-supplied positive, Regression-independence, orphan-axiom, `sorry`,
-`native_decide`, and zero-declaration cases.
+`propext`, `Classical.choice`, and `Quot.sound`.
 
 The bootstrap change deletes `euler-pr`, `euler-main-health`,
 `euler-review-dispatch`, and `euler-auto-merge`; no compatibility listener or

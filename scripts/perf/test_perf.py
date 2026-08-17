@@ -52,8 +52,8 @@ class WatchdogTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = self.make_toolchain(directory)
             env = dict(
-                os.environ, TAUCETI_LEAN_TIMEOUT_SECONDS="0.1",
-                TAUCETI_LEAN_KILL_GRACE_SECONDS="0.1",
+                os.environ, EULER_LEAN_TIMEOUT_SECONDS="0.1",
+                EULER_LEAN_KILL_GRACE_SECONDS="0.1",
             )
             result = subprocess.run(
                 [root / "bin" / "lean", "-c", "trap '' TERM; sleep 20"],
