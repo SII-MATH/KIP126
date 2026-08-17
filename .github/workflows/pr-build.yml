@@ -604,6 +604,11 @@ jobs:
         id: build
         if: ${{ env.INFRA != '1' }}
         env:
+          # Cold full builds have a trusted baseline module (External.Claims) that normally takes
+          # ~225s but has exceeded the watchdog's 300s default under runner contention. Keep a hard
+          # per-process deadline, with enough headroom for the required build only; the performance
+          # workflow does not receive this override and retains its stricter 300s measurement cap.
+          EULER_LEAN_TIMEOUT_SECONDS: "600"
           # The sandboxed build is always offline: never let Lake reach out to a remote
           # cache from inside landrun. When the artifact cache is enabled above, it restores
           # KIP126's oleans purely from the locally-populated $LAKE_CACHE_DIR; when it is
@@ -622,7 +627,7 @@ jobs:
             --rox "$PWD/base" --rw "$PWD/base/.lake" \
             --env PATH --env HOME --env CI \
             --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
-            --env WATCHDOG_TOOLCHAIN \
+            --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
             -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh'
 
       - name: Report build and bump-guard statuses to the PR head commit
@@ -724,4 +729,3 @@ jobs:
             exit 1
           fi
           [ "$state" = "success" ]
-
