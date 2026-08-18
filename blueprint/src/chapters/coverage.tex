@@ -9,41 +9,48 @@ individual nodes, with their own direct dependencies and status markers.
 \section{Section-by-section coverage}
 
 The introduction at \texttt{aimpaper/main.tex:78--252} is represented by the
-classical Adams interfaces and low-line inputs in
-Chapter~\ref{chap:classical-adams}, the permanent-cycle reduction in
-Chapter~\ref{chap:near126}, and the conditional geometric endpoints in
-Chapter~\ref{chap:final-kervaire}.  The two open questions remain open
-proposition nodes and do not feed the proof graph.
+classical Adams interfaces in Chapter~\ref{chap:classical-adams}, the precise
+low-line literature statements in Chapter~\ref{chap:external-results}, the
+permanent-cycle reduction in Chapter~\ref{chap:near126}, and the geometric
+endpoints in Chapter~\ref{chap:final-kervaire}.  The two open questions live
+in the Kervaire-setup chapter and do not feed the proof graph.
 
 Section 2, lines 253--669, is represented in
 Chapter~\ref{chap:extension-ss}: the filtered two-term construction,
 essential and inessential extensions, crossings, all comparison corollaries,
-and the exact-at-the-middle theorem are separate nodes.  The regression
-example is retained only where it fixes the intended crossing semantics.
+and the exact-at-the-middle theorem are separate nodes.  The concrete
+$\eta$-regression and the factorization consumer occur later in the internal
+comparison chapter, after their explicit inputs.
 
-Section 3, lines 670--997, is represented in the stable and synthetic
-background chapters: the $H\mathbb F_2$-synthetic context, $\nu$, $\lambda$,
-quotients, rigidity, $E_\infty$ formulas, synthetic lifts, and normalized
-triangles all have explicit external or project status.
+Section 3, lines 670--997, is split by role.  The stable and synthetic object
+chapters define the $H\mathbb F_2$-synthetic context, $\nu$, $\lambda$,
+quotients, normalized-map data, and synthetic Adams objects.  Pstragowski and
+BHS statements occur only in Chapter~\ref{chap:external-results}; rigidity,
+$E_\infty$ formulas, lifted-triangle consumers, and normalized-triangle proofs
+occur in Chapter~\ref{chap:comparison-and-rules}.
 
-Section 4, lines 998--1272, is represented in the synthetic-extension
-chapter.  It includes the $\lambda$-, $\rho$-, and $\delta$-extension spectral
-sequences, the finite and infinite target formulas, quotient compatibility,
-and the classical-crossing comparison.
+Section 4, lines 998--1272, uses the synthetic-extension chapter for the
+weightwise ESS, the $\lambda$--$\rho$--$\delta$ triangle, and solution-tower
+definitions.  Located completeness is an external result; finite and infinite
+target formulas, quotient compatibility, and classical-crossing comparison
+are internal deductions in Chapter~\ref{chap:comparison-and-rules}.
 
 Section 5, lines 1273--1601, is represented in the classical-page extension
 chapter.  The $\widehat f_{r-1}$ page reduction, exact indeterminacy, crossing
-comparison, $\lambda$-inversion, and the load-bearing Hopf-map regressions are
-all explicit.
+definition, and finite/infinite clauses are defined there.  Crossing
+comparison, $\lambda$-inversion consumers, and the load-bearing Hopf-map
+regressions occur later in the internal and computed-input chapters.
 
-Section 6, lines 1602--2101, is represented in the generalized-rules chapter:
-the generalized Leibniz rule, May's two-triangle input, the generalized
-Mahowald trick, the page-loss theorem, and stretching to later pages are
-separate obligations with proof routes.
+Section 6, lines 1602--2101, is represented in
+Chapter~\ref{chap:comparison-and-rules}: the generalized Leibniz rule, the
+generalized Mahowald trick, the page-loss theorem, and stretching to later
+pages are separate project obligations.  May's two-triangle theorem itself is
+listed earlier as a located external result.
 
 Section 7, lines 2102--2782, is represented in
-Chapter~\ref{chap:near126}.  Its graph separates BJM/BX literature, typed
-high-stem evidence, choice-independence, the unique possible $d_{12}$,
+the flat setup, external-results, computed-results, and near-$126$ chapters.
+Their graph separates BJM/BX literature, typed high-stem evidence,
+choice-independence, the unique possible $d_{12}$,
 Toda/two-extension arguments, the Hopf-cofiber obstruction, and the final
 contradiction.  The source's circular-looking use at line 2496 is repaired by
 first proving the filtration-leading-term Lemma
@@ -58,15 +65,16 @@ geometric subrecords expose every trust-boundary value as a named projection;
 every data-dependent near-$126$ lemma is parameterized by the same computation
 projection, and the graph contains no implicit global package of those inputs.
 
-The appendix at lines 2783--3290 and Table 1 in Section 7 are represented by
-the twelve typed datasets in Chapter~\ref{chap:appendix-data}: 401 nonempty
-rows and nine zero bands.  The same chapter separately models all 49 CW
-spectra and their $E_2$ pages, all 180 maps, the declared initial $d_2$ ranges,
-and every imported propagated differential, extension, disproof, and unresolved
-candidate.  The catalogue-completeness theorem links those machine records to
-the appendix rows.  The active part of \texttt{aimpaper/112.tex} defines
-Figure 9 only; Definition~\ref{def:near126-figure-contract} treats it as a
-derived visualization, while its commented duplicate block is excluded.
+The appendix at lines 2783--3290 and Table 1 in Section 7 use two flat
+chapters.  The computation-schema chapter defines the row, expression,
+catalogue, and bundle types without asserting any value.  Chapter
+\ref{chap:appendix-data} then contains the twelve datasets---401 nonempty rows
+and nine zero bands---together with all 49 CW spectra and their $E_2$ pages,
+all 180 maps, initial $d_2$ ranges, and imported propagated outputs.  Its
+catalogue-completeness theorem links the machine records to the appendix rows.
+The active part of \texttt{aimpaper/112.tex} defines Figure 9 only;
+Definition~\ref{def:near126-figure-contract} treats it as a derived
+visualization, while its commented duplicate block is excluded.
 
 \section{Recorded source repairs}
 
@@ -121,6 +129,6 @@ The Blueprint deliberately does not copy the following source defects:
 Only exact declarations already compiled in the repository carry
 \texttt{leanok}; only declaration names checked against the pinned Mathlib
 revision carry \texttt{mathlibok}.  Every paper theorem, literature adapter,
-data transcription, and missing background interface remains
+data transcription, and missing semantic interface remains
 \texttt{notready}.  Thus this document describes a complete formalization
 plan and its proof frontier, not a completed Lean proof of the paper.

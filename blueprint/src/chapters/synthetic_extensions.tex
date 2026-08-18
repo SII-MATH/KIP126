@@ -1,11 +1,7 @@
 \chapter{Synthetic extension spectral sequences}
-\label{chap:synthetic-extensions}
+\label{chap:synthetic-extension-ss}
 
-This chapter covers Section 4.  We first transport the general extension
-spectral sequence weight by weight, then show that the connecting map in a
-$\lambda$-quotient triangle encodes precisely the classical Adams
-differentials.  The finite-quotient statement below makes explicit an image
-that is ambiguous in the paper's printed Proposition 4.6.
+This chapter defines weightwise extension spectral sequences, the basic $\lambda$--$\rho$--$\delta$ triangle, and coherent solution towers.  Comparison theorems are deferred to the internal-results layer.
 
 \section{Weightwise extension spectral sequences}
 
@@ -42,42 +38,6 @@ that is ambiguous in the paper's printed Proposition 4.6.
   graded groups.  Reuse the two-term filtered-complex construction and each
   proof from Chapter~\ref{chap:extension-ss}; all maps preserve $w$, so no
   additional reindexing occurs.  Reassemble the family over all weights.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:1009-1021, Notation not:deltaandrho.
-\begin{definition}[$\lambda$--$\rho$--$\delta$ quotient triangle]
-  \label{def:lambda-rho-delta-triangle}
-  \uses{def:synthetic-lambda-quotient,def:cofiber-triangle}
-  \notready
-  For $0<n<m\le\infty$, define the distinguished triangle
-  \[
-    \Sigma^{0,-n}\nu X/\lambda^{m-n}
-      \xrightarrow{\lambda^n}\nu X/\lambda^m
-      \xrightarrow{\rho_{n,m}}\nu X/\lambda^n
-      \xrightarrow{\delta_{n,m}}
-      \Sigma^{1,-n}\nu X/\lambda^{m-n}.
-  \]
-  For $m=\infty$, the first two terms are
-  $\Sigma^{0,-n}\nu X$ and $\nu X$.  Translation in the synthetic category is
-  suspension by $S^{1,0}$.
-\end{definition}
-
-% SOURCE: BHS Proposition A.13; aimpaper/main.tex:1016-1019.
-\begin{theorem}[$\lambda$-adic completeness]
-  \label{thm:external-synthetic-lambda-complete}
-  \uses{def:lambda-rho-delta-triangle,def:external-result}
-  \notready
-  An explicit BHS external result supplies a natural equivalence
-  \[
-    \nu X\simeq\varprojlim_m\nu X/\lambda^m
-  \]
-  compatible with the quotient maps and the finite
-  $\lambda$--$\rho$--$\delta$ triangles.
-\end{theorem}
-
-\begin{proof}
-  Instantiate BHS Proposition A.13 and transport its grading and inverse-system
-  maps to the conventions of Definition~\ref{def:lambda-rho-delta-triangle}.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:1981-2081, representative equations used in the
@@ -122,45 +82,22 @@ that is ambiguous in the paper's printed Proposition 4.6.
   quotient squares induce the restriction maps and their equivariance.
 \end{proof}
 
-% PROOF-SOURCE: the standard obstruction calculation for a countable inverse
-% system of abelian torsors, combined with BHS Proposition A.13.
+\section{The elementary lambda and rho extensions}
 
-
-\section{The elementary $\lambda$ and $\rho$ extensions}
-
-% SOURCE: aimpaper/main.tex:1025-1048, Proposition prop:9770ae6e.
-
-
-\section{The connecting extension and classical differentials}
-
-% SOURCE: aimpaper/main.tex:1068-1131, proof of Proposition prop:6de7d130.
-
-
-% SOURCE: aimpaper/main.tex:1068-1131, Proposition prop:6de7d130, m=infinity case.
-
-
-% SOURCE: aimpaper/main.tex:1068-1131, Proposition prop:6de7d130, finite m case.
-% VERIFIED-IN: the printed second case places y in E_infty(nu X); the finite target requires its rho-image.
-
-
-% SOURCE: aimpaper/main.tex:1138-1144, Corollary cor:2a636737.
-
-
-% SOURCE: aimpaper/main.tex:1146-1150, Remark rmk:qvoewfj.
-
-
-% SOURCE: aimpaper/main.tex:1152-1163, Example 4.13.
-
-
-\section{Crossings of classical differentials}
-
-% SOURCE: aimpaper/main.tex:1165-1173, Definition def:classicalcrossdiff.
-
-
-% SOURCE: aimpaper/main.tex:1218-1234, Proposition prop:cross-dr-En.
-
-
-% SOURCE: aimpaper/main.tex:1236-1238, Remark nocrossE2.
-
-
-% SOURCE: aimpaper/main.tex:1240-1271, Example exam:classcrossdiff.
+% SOURCE: aimpaper/main.tex:1009-1021, Notation not:deltaandrho.
+\begin{definition}[$\lambda$--$\rho$--$\delta$ quotient triangle]
+  \label{def:lambda-rho-delta-triangle}
+  \uses{def:synthetic-lambda-quotient,def:cofiber-triangle}
+  \notready
+  For $0<n<m\le\infty$, define the distinguished triangle
+  \[
+    \Sigma^{0,-n}\nu X/\lambda^{m-n}
+      \xrightarrow{\lambda^n}\nu X/\lambda^m
+      \xrightarrow{\rho_{n,m}}\nu X/\lambda^n
+      \xrightarrow{\delta_{n,m}}
+      \Sigma^{1,-n}\nu X/\lambda^{m-n}.
+  \]
+  For $m=\infty$, the first two terms are
+  $\Sigma^{0,-n}\nu X$ and $\nu X$.  Translation in the synthetic category is
+  suspension by $S^{1,0}$.
+\end{definition}

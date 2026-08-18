@@ -1,118 +1,117 @@
 \chapter{The near-$126$ reduction and permanent cycle}
 \label{chap:near126}
 
-This chapter formalizes Section 7.  Computed Ext groups, products,
-differentials, exclusions, and $tmf$ images are explicit evidence inputs.
-Logical reductions, representative changes, the Toda argument, the Mahowald
-application, and the final contradiction are project proofs.
+This chapter contains only the project deductions that assemble the setup, external results, and finite evidence into the permanent-cycle proof.
 
-Every declaration below whose direct dependencies include
-Definition~\ref{def:near126-computation-input} is universally quantified over
-an explicit parameter $D$ of that type.  Repeated dependencies in one proof
-are instantiated with that same $D$; they are not resolved by typeclass search
-or a global dataset.  Likewise, every literature or evidence dependency is an
-explicit theorem argument.  The final theorem supplies these arguments from
-the corresponding projections of its main input.
+\section{Assembly of explicit inputs}
 
-\section{The inductive criterion and three conditions}
-
-% SOURCE: aimpaper/main.tex:2112-2114, Notation 7.2.
-\begin{definition}[Synthetic $\theta_5$ and $\eta$ choices]
-  \label{def:synthetic-theta5-choice}
-  \uses{def:adams-hj,def:synthetic-adams-ss,def:adams-detection}
+% SOURCE: PROJECT_BOUNDARY.md, External inputs and Axiom policy.
+\begin{definition}[Near-$126$ literature input]
+  \label{def:near126-literature-input}
+  \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-theta5-order-data,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
   \notready
-  A synthetic $\theta_5$ is a class in
-  $\pi_{62,64}S^{0,0}$ detected by $h_5^2$; the same symbol denotes each of its
-  quotient images.  Let $\eta=[h_1]\in\pi_{1,2}S^{0,0}$.  Every use records
-  the chosen representative unless choice independence has already been
-  proved.
+  For fixed $\mathcal C$, $\mathcal S$, $A_{\mathrm{cl}}$,
+  $A_{\mathrm{syn}}$, and their sphere coherence datum, a near-$126$
+  literature input is a dependent record.  Its named \texttt{ExternalResult}
+  fields are \texttt{syntheticFoundation}, \texttt{syntheticRigidity},
+  \texttt{syntheticEinfNu}, \texttt{syntheticEinfQuotient},
+  \texttt{lambdaBockstein}, \texttt{syntheticLift},
+  \texttt{syntheticTriangleLift}, \texttt{nuCofiberCriterion},
+  \texttt{maySmashBoundary}, \texttt{mossConvergence},
+  \texttt{todaProducts}, \texttt{bjmBx}, \texttt{theta5OrderData}, and
+  \texttt{totalDifferential}.  The Xu/IWX order and choice-comparison facts are
+  supplied specifically by \texttt{theta5OrderData}, whose proposition is
+  Theorem~\ref{thm:external-theta5-order-data}; finite torsion exclusions remain
+  in the computation package.  Its named \texttt{ExternalEvidence} field
+  \texttt{normalizedHopfDetection} supplies the triangle-compatible identity
+  $\widehat\nu=[h_2]$ from
+  Proposition~\ref{evidence:normalized-hopf-detection}.  Every proposition is
+  typed over the fixed contexts and sphere sequences and carries the locator
+  required by Definition~\ref{def:source-ref}.  There is no
+  \texttt{classicalConvergence} field: convergence is already part of the
+  chosen $A_{\mathrm{cl}}$ interface.
 \end{definition}
 
-% SOURCE: Barratt--Jones--Mahowald inductive method and Burklund--Xu Proposition 7.19; aimpaper/main.tex:2117-2125, whose quantifier is ``for some theta_5''.
-\begin{theorem}[BJM/BX criterion for the source choice]
-  \label{thm:external-bjm-bx-criterion}
-  \uses{def:synthetic-theta5-choice,def:external-result}
+% SOURCE: PROJECT_BOUNDARY.md, Final geometric conclusions, External inputs,
+% and Conditional final theorems.
+\begin{definition}[Geometric Kervaire input]
+  \label{def:geometric-kervaire-input}
+  \uses{def:sphere-adams-coherence,def:external-result,def:framed-kervaire-context,thm:external-browder-criterion,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence}
   \notready
-  An explicit external-result record supplies a distinguished order-two class
-  $\theta_5^{\mathrm{src}}$ detected by $h_5^2$ for which:
+  For fixed $\mathcal C$ and $A_{\mathrm{cl}}$ as above, a geometric Kervaire
+  input contains a framed context \texttt{framed} over $\mathcal C$ and named
+  external-result values \texttt{browder}, \texttt{lowKervaire}, and
+  \texttt{hhr}.  The proposition carried by \texttt{browder} is
+  Browder's criterion for \texttt{framed} and this exact
+  $A_{\mathrm{cl}}$; this dependency is part of the field's type.  The other two
+  fields use the same framed context, Pontryagin--Thom map, dimension, and
+  invariant conventions.  Any nondefinitional identifications are stored as
+  explicit coherence witnesses rather than resolved by an unconstrained
+  transport.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, Appendix data,
+% and External inputs; aimpaper/main.tex:755--1274.
+\begin{definition}[Synthetic interpretation of the computation catalogue]
+  \label{def:synthetic-catalogue-coherence}
+  \uses{def:classical-catalogue-coherence,def:near126-literature-input,def:near126-computation-input,def:synthetic-context,def:synthetic-adams-ss,def:synthetic-lambda-quotient,prop:synthetic-einfty-first-quotient,prop:synthetic-einfty-map-compatibility,def:sphere-adams-coherence}
+  \notready
+  Fix the data above, the selected synthetic sphere sequence
+  $A_{\mathrm{syn}}$, a near-$126$ literature input $L$, and a classical
+  catalogue coherence datum $C_{\mathrm{cl}}$.  A synthetic catalogue
+  coherence datum contains:
   \begin{enumerate}
-    \item for every integer $r\ge1$, $h_6^2$ survives to $E_{r+3}$ if and
-      only if $\lambda\eta(\theta_5^{\mathrm{src}})^2=0$ in
-      $\pi_{125,129}(S^{0,0}/\lambda^{r+1})$;
-    \item $h_6^2$ is permanent if and only if
-      $\lambda\eta(\theta_5^{\mathrm{src}})^2=0$ in
-      $\pi_{125,129}S^{0,0}$.
+    \item interpretations of every consumed spectrum as its chosen synthetic
+      analogue and of every required finite $\lambda$-quotient, with the
+      synthetic sphere identifier transported to exactly $A_{\mathrm{syn}}$;
+    \item interpretations of the raw class identifiers as page or homotopy
+      classes in the stored tridegrees, together with detection witnesses and
+      agreement with $C_{\mathrm{cl}}$ through the grading transport and the
+      specifically named rigidity/Bockstein fields of $L$;
+    \item compatibility of $\lambda$, $\rho$, quotient maps, suspensions,
+      stable-map actions, sphere products, and module actions with the
+      corresponding typed catalogue operations, including the separate
+      exponent-one interface;
+    \item a typing equality saying that every synthetic product, Toda input,
+      quotient relation, torsion exclusion, and obstruction record consumed by
+      the near-$126$ proof is a proposition about these interpreted objects.
   \end{enumerate}
-  The witness and the two equivalences belong to the same source-bearing
-  record, which also includes the grading translation from Burklund--Xu to AIM.
-\end{theorem}
+  Thus no proof may turn a raw string or archive row into a class of
+  $A_{\mathrm{syn}}$ without an explicit field of this datum.
+\end{definition}
 
-\begin{proof}
-  This node is the located external input, not a project proof.  Retain the
-  distinguished class used by the BJM/BX construction, and apply the explicit
-  suspension and grading adapter to its finite and infinite statements.  No
-  assertion for an arbitrary choice of $\theta_5$ is included here.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2127-2139, Remarks 7.4-7.5; Xu and IWX inputs.
-\begin{theorem}[External $\theta_5$ order and choice comparison]
-  \label{thm:external-theta5-order-data}
-  \uses{def:synthetic-theta5-choice,def:external-result}
+% SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, External inputs,
+% and Conditional final theorems.
+\begin{definition}[Main formalization input]
+  \label{def:kervaire-main-input}
+  \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence,def:geometric-kervaire-input}
   \notready
-  A named Xu/IWX external-result value supplies that every classical
-  $\theta_5$ detected by $h_5^2$ has order two and that the difference of any
-  two choices has Adams filtration at least six.  The value carries exact
-  theorem locators and the comparison from the source's classical convention
-  to Definition~\ref{def:synthetic-theta5-choice}.
-\end{theorem}
+  A \emph{main input} $I$ is an ordered dependent record with fields
+  \texttt{stable}, \texttt{synthetic} over \texttt{stable},
+  \texttt{classicalSphere} on \texttt{stable}'s $S^0$,
+  \texttt{syntheticSphere} on
+  \texttt{synthetic.nu} of that same $S^0$, and
+  \texttt{sphereCoherence} for those exact four fields.  Its
+  \texttt{literature} field is a near-$126$ literature input parameterized by
+  those fields.  Its \texttt{computation} field is the context-independent raw
+  near-$126$ ledger of Definition~\ref{def:near126-computation-input}.  The
+  subsequent MainInput fields \texttt{classicalCatalogueCoherence} and
+  \texttt{syntheticCatalogueCoherence} identify every consumed page, class,
+  product, and quotient interpretation in that ledger with
+  \texttt{classicalSphere} and \texttt{syntheticSphere} through
+  Definitions~\ref{def:classical-catalogue-coherence} and
+  \ref{def:synthetic-catalogue-coherence}; the latter is also parameterized by
+  \texttt{literature} and the former coherence datum.  These witnesses are not
+  fields hidden inside \texttt{computation}.  Its \texttt{geometry} field is a
+  geometric input parameterized by
+  \texttt{stable} and \texttt{classicalSphere}.  Thus no subpackage may carry
+  an unrelated context or sphere sequence.  These projections are the only
+  route by which external literature and machine evidence enter the main
+  proof.  The record contains no field asserting $h_6^2$ is permanent and no
+  geometric endpoint; those remain project theorems assembled from the fields.
+\end{definition}
 
-\begin{proof}
-  This is a pure literature input.  Store the two quantified conclusions and
-  their grading adapter in one named field; do not derive either conclusion
-  from the near-$126$ tables.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2127-2139, Remarks 7.4-7.5; Appendix Tables 3 and 5.
-\begin{proposition}[$\theta_5$ order and torsion evidence]
-  \label{evidence:theta5-order-torsion}
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,thm:external-theta5-order-data,thm:external-synthetic-einfty-nu,def:external-evidence,data:table-s123,data:table-s124-low}
-  \notready
-  For a near-$126$ computation input $D$, the named Xu/IWX result and $D$'s
-  finite Ext evidence supply: every classical
-  $\theta_5$ has order two; the difference of two choices has filtration at
-  least six; $\pi_{62,64}S^{0,0}$ has no $\lambda$-torsion; and
-  $\pi_{125,130}S^{0,0}$ has no $\lambda$-torsion in the comparison range.
-  These facts validate both the order-two hypothesis and the paper's
-  one-$\lambda$ shift of the finite BJM/BX statement.
-\end{proposition}
-
-\begin{proof}
-  Load the located homotopy-group structure theorem and order computation, then
-  evaluate the synthetic $E_\infty$ formula on the complete table data in the
-  two stated bidegrees.  Exhaustively exclude a class with the required
-  torsion length and record the search range in the evidence certificate.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice, applying the construction in the proof of Burklund--Xu Proposition 7.19 to an order-two bottom-cell choice.
-\begin{theorem}[Total differential identity for an order-two choice]
-  \label{thm:external-total-differential-identity}
-  \uses{def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
-  \notready
-  For every order-two synthetic choice $\theta_5$, the located quadratic-
-  construction input supplies the identity
-  \[
-    \delta_1(h_6^2)=\lambda\eta\theta_5^2
-  \]
-  in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem, with
-  its representative and grading conventions.
-\end{theorem}
-
-\begin{proof}
-  This is the external total-differential comparison asserted in the cited AIM
-  remark: use the chosen order-two class as the bottom-cell restriction in the
-  quadratic construction, then translate the target suspension to $S^{1,-1}$.
-  The project does not reconstruct that construction internally.
-\end{proof}
+\section{The near-126 reduction and contradiction}
 
 % SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
 \begin{proposition}[Choice independence of the inductive expression]
@@ -159,75 +158,6 @@ the corresponding projections of its main input.
   external source record.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:2181-2204, Proposition prop:possibleh62, statements (3)-(5).
-\begin{definition}[The three near-$126$ conditions]
-  \label{def:near126-conditions}
-  \uses{def:synthetic-theta5-choice,def:adams-detection}
-  \notready
-  Define:
-  \begin{enumerate}
-    \item[$C_3$:] $d_6(x_{126,8,4}+x_{126,8})=0$;
-    \item[$C_4$:] for some $\theta_5$,
-      $\theta_5^2=\lambda^6[h_0^2x_{124,8}]\ne0$ in
-      $\pi_{124,128}S^{0,0}$;
-    \item[$C_5$:] for some detected $[h_0^2x_{124,8}]$,
-      $\lambda^3\eta[h_0^2x_{124,8}]
-       =\lambda^6[h_1h_4x_{109,12}]$ in
-      $\pi_{125,133}S^{0,0}$.
-  \end{enumerate}
-  Quantified detected representatives and nonzero assertions are fields of the
-  propositions, not informal annotations.
-\end{definition}
-
-\section{Load-bearing near-$126$ evidence}
-
-% SOURCE: aimpaper/main.tex:2156-2177, Fact fact:theta5sqAF and following remark; Appendix Tables 5,6,7,9.
-\begin{proposition}[Core near-$126$ evidence]
-  \label{evidence:near126-core}
-  \uses{def:near126-computation-input,def:near126-conditions,data:table-s124-low,data:table-s125-high,data:table-s125-low,data:table-s126-low,thm:appendix-all-rows-encoded,prop:lin-computation-provenance}
-  \notready
-  For a near-$126$ computation input $D$, its explicit computation evidence
-  supplies:
-  \begin{enumerate}
-    \item $x_{126,8,4}+x_{126,8}$ survives through $E_6$;
-    \item $h_1h_4x_{109,12}$ supports no outgoing differential, and the
-      exhaustive search leaves exactly two possible incoming killers:
-      $d_6(x_{126,8,4}+x_{126,8})$ and $d_{12}(h_6^2)$;
-    \item $h_0^2x_{124,8}$ is permanent;
-    \item $g^4\Delta h_1g$ is the unique class in its bidegree surviving to
-      $E_5$;
-    \item $d_3(x_{126,6})$ is one of the two printed nonzero target sums and
-      therefore cannot kill $h_1h_4x_{109,12}$.
-  \end{enumerate}
-  Item (2) deliberately does not call the class permanent before both possible
-  incoming differentials are excluded.
-\end{proposition}
-
-\begin{proof}
-  Run typed queries over the complete four table ranges and their differential
-  relation graph.  Check survival, outgoing and incoming ranges separately,
-  preserve the finite ambiguity of $d_3(x_{126,6})$, and attach the Zenodo
-  disproof identifiers for every excluded potential differential.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2221-2258, proofs of Lemmas lem:equistate4 and lem:equistate5.
-\begin{proposition}[Representative-indeterminacy evidence]
-  \label{evidence:near126-indeterminacy}
-  \uses{def:near126-computation-input,evidence:theta5-order-torsion,data:table-s124-high,data:table-s124-low,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, its complete stem-$124$ data supply
-  that filtration-11 and -12 cycles relevant
-  to $C_5$ are killed by $d_2$ or $d_3$, filtration-13 correction terms are
-  annihilated by $h_1$, and all remaining corrections begin in filtration at
-  least 15 after multiplication by $\lambda^3\eta$.
-\end{proposition}
-
-\begin{proof}
-  Enumerate every cycle in stem 124 and filtrations 11--13 from both table
-  bands, join its outgoing relation and product-by-$h_1$ record, and verify the
-  stated alternative for each.  Completeness excludes an unlisted correction.
-\end{proof}
-
 % SOURCE: aimpaper/main.tex:2221-2241, Lemma lem:equistate4.
 \begin{lemma}[Existential and universal forms of $C_4$]
   \label{lem:near126-equiv-c4}
@@ -261,35 +191,6 @@ the corresponding projections of its main input.
   has filtration 14, the relation is independent of the representative.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:2323-2354, exhaustive theta-square and eta-square analysis; tmf citation.
-\begin{proposition}[$\theta_5^2$ and $tmf$ exhaustive evidence]
-  \label{evidence:theta5-square-tmf}
-  \uses{def:near126-computation-input,evidence:near126-core,evidence:near126-indeterminacy,data:table-s125-low,data:table-s125-high,def:external-result,def:external-evidence}
-  \notready
-  For a near-$126$ computation input $D$, its explicit table and $tmf$ inputs
-  supply:
-  \begin{enumerate}
-    \item the only possibilities for $\theta_5^2$ are
-      $\lambda^6[h_0^2x_{124,8}]$,
-      $\lambda^9[e_0\Delta h_6g]$, or a $\lambda^{10}$-multiple;
-    \item $h_1e_0\Delta h_6g=0$;
-    \item the only relevant high-filtration $\lambda^{10}$-multiple is the
-      class represented by $\lambda^{20}g^4\Delta h_1g$;
-    \item its $tmf$ Hurewicz image is nonzero, while every $\theta_5$ maps to
-      zero in $tmf$;
-    \item if $C_3$ fails, the unique alternative incoming differential is
-      $d_6(x_{126,8,4}+x_{126,8})=h_1h_4x_{109,12}$.
-  \end{enumerate}
-\end{proposition}
-
-\begin{proof}
-  Query the complete filtration ranges and product table to produce the three
-  alternatives and unique surviving high class.  Attach independent, located
-  $tmf$ Hurewicz evidence for its image and the image of $\theta_5$.  Finally
-  use the incoming-differential completeness certificate for the stated
-  alternative.  Each negative conclusion retains its finite search bounds.
-\end{proof}
-
 % SOURCE: aimpaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possibleh62.
 \begin{proposition}[Only possible differential on $h_6^2$]
   \label{prop:possible-h62}
@@ -316,28 +217,6 @@ the corresponding projections of its main input.
   unique $d_6$ alternative and again kills the relevant synthetic multiple.
   The BJM/BX criterion then gives permanence.  The two alternatives are
   exclusive because a source supporting a nonzero $d_{12}$ is not permanent.
-\end{proof}
-
-\section{Reduction of $C_5$ to a two-extension}
-
-% SOURCE: aimpaper/main.tex:2377-2385, Fact fact:x1239; Tables S123 and S125.19.
-\begin{proposition}[$x_{123,9}$ computation evidence]
-  \label{evidence:x1239}
-  \uses{def:near126-computation-input,data:table-s123,data:table-s125-low,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, the class
-  $x_{123,9}+h_0x_{123,8}$ survives through $E_{12}$ and has no incoming
-  differential in $D$, and
-  \[
-    d_2(x_{125,8})=
-      h_1(x_{123,9}+h_0x_{123,8})+h_0^2x_{124,8}.
-  \]
-\end{proposition}
-
-\begin{proof}
-  Retrieve the named rows and shared differential relation, then use complete
-  source ranges to certify the negative incoming claim through the relevant
-  maximum length.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:2387-2446, Lemma lem:x1239.
@@ -375,23 +254,6 @@ the corresponding projections of its main input.
   candidates using the recorded $d_7$ and $d_3$ relations.  What remains is
   $\lambda^{10}$-divisible modulo $\lambda^{11}$ and hence maps to zero modulo
   $\lambda^9$.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2466-2468, Fact fact:h02x1259; Table S125.19.
-\begin{proposition}[$h_0^2x_{125,9,2}$ evidence]
-  \label{evidence:h02x1259}
-  \uses{def:near126-computation-input,data:table-s125-low,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, the class $h_0^2x_{125,9,2}$
-  survives through $E_5$ and no incoming
-  differential hits it.  Its printed $d_5?$ status remains unresolved and is
-  not asserted nonzero.
-\end{proposition}
-
-\begin{proof}
-  Read the typed row and query every possible incoming source in the complete
-  adjacent-stem ranges.  Preserve the unresolved-outgoing constructor for the
-  $d_5$ column.
 \end{proof}
 
 % SOURCE: noncircular repair of aimpaper/main.tex:2493-2496 using lines 2427-2429 and 2579.
@@ -538,44 +400,6 @@ the corresponding projections of its main input.
   filtration-$14$ leading term gives the asserted nonvanishing.
 \end{proof}
 
-\section{The $\nu_{\mathrm{Hopf}}$ extension and contradiction}
-
-% SOURCE: aimpaper/main.tex:2613-2615, Fact fact:h1x1217; Table S122.
-\begin{proposition}[$h_1x_{121,7}$ evidence]
-  \label{evidence:h1x1217}
-  \uses{def:near126-computation-input,data:table-s122,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, the class $h_1x_{121,7}$ survives
-  through $E_6$ and has no incoming
-  differential in the complete range.
-\end{proposition}
-
-\begin{proof}
-  Query its table row and all degree-compatible incoming relation identifiers;
-  use table completeness to certify the negative result.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2617-2673, missing obstruction check in Lemma lem:nuext125.
-\begin{proposition}[Obstruction vanishing for the mod-$\lambda^5$ lift]
-  \label{evidence:nu-extension-obstruction-vanishing}
-  \uses{def:near126-computation-input,data:table-s125-low,data:table-s126-low,data:table-cnu126,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$ and the relation produced modulo
-  $\lambda^3$ by the $S^0/\nu_{\mathrm{Hopf}}$
-  $d_3$, every filtration-10 correction that could obstruct a lift modulo
-  $\lambda^5$ either has no detected homotopy class or can be killed by changing
-  the lift.  Therefore a lift exists with no additional $[\lambda x]$ term.
-\end{proposition}
-
-\begin{proof}
-  Enumerate the complete filtration-10 source group, compute the relevant
-  $\rho$ obstruction and each candidate's synthetic survival from the table
-  relations, and give an explicit correction or vanishing certificate for
-  every element.  This evidence is independent of the formal properties of
-  $\rho$; it fills the unsupported ``upon inspection'' step at
-  \texttt{aimpaper/main.tex:2661--2665}.
-\end{proof}
-
 % SOURCE: aimpaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
@@ -603,83 +427,6 @@ the corresponding projections of its main input.
   to lift it modulo $\lambda^5$, then multiply by $\lambda^4$ and apply quotient
   compatibility to obtain the displayed relation modulo $\lambda^9$.
 \end{proof}
-
-% SOURCE: aimpaper/main.tex:2689-2696, Fact fact:stem122; Table S122.
-\begin{proposition}[Stem-$122$ permanent-class evidence]
-  \label{evidence:stem122-permanent}
-  \uses{def:near126-computation-input,data:table-s122,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, the classes $h_6Md_0$ and
-  $h_5x_{91,11}$ are permanent in the classical Adams spectral sequence
-  encoded by $D$.
-\end{proposition}
-
-\begin{proof}
-  Retrieve their rows, certify no outgoing or incoming differential through
-  the complete source ranges, and validate the permanent status against the
-  program artifact identifiers.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2707-2728, two ``upon inspection'' steps in the proof of Proposition prop:state5false.
-\begin{proposition}[Stem-$122$ candidate and product exhaustion]
-  \label{evidence:stem122-product-exhaustion}
-  \uses{def:near126-computation-input,data:table-s122,data:table-s125-low,evidence:stem122-permanent,thm:appendix-all-rows-encoded,def:external-evidence}
-  \notready
-  For a near-$126$ computation input $D$, in the bidegree and
-  $\lambda$-quotient occurring in the proof of
-  Proposition \texttt{prop:state5false}, every nonzero representative of
-  $[\lambda^4h_1x_{121,7}][h_0]$ of Adams filtration at most $12$ is exactly
-  one of
-  \[
-    \lambda^6[h_6Md_0]\quad\text{or}\quad
-    \lambda^7[h_5x_{91,11}].
-  \]
-  The typed product and differential evidence further shows, in either case,
-  that $\lambda^4[h_1h_4x_{109,12}]$ is a
-  $\lambda[h_2]$-multiple in the untruncated synthetic sphere.  This record
-  includes the filtration-$13$ candidate search and the $d_2/d_4$ exclusions
-  used in lines 2716--2728.
-\end{proposition}
-
-\begin{proof}
-  Enumerate the complete stem-$122$ permanent representatives through
-  filtration $12$, evaluate the typed $h_0$ and $h_2$ products, and transport
-  each known differential through the shared relation identifiers.  Query the
-  complete stem-$125$ ranges for filtration-$13$ corrections and prove that
-  each is killed by the recorded $d_2$ or $d_4$.  The resulting finite
-  certificate has exactly the two source cases and the asserted common
-  divisibility conclusion.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:1398-1405, Example exam:extonEn(2), for the
-% identity \widehat{\nu_{\mathrm{Hopf}}}=[h_2] and its grading;
-% aimpaper/main.tex:929-961, Notation not:fhat, for normalization.
-\begin{proposition}[Normalized Hopf-map detection]
-  \label{evidence:normalized-hopf-detection}
-  \uses{def:synthetic-hat-map,def:adams-detection,thm:external-synthetic-triangle-lift,def:cofiber-triangle,def:external-evidence}
-  \notready
-  Explicit detection evidence retains one chosen application of the synthetic
-  triangle-lift theorem to the appropriate rotation of the classical Hopf
-  cofiber triangle.  It identifies that stored triangle's Hopf component with
-  \[
-    \widehat{\nu_{\mathrm{Hopf}}}=[h_2]:S^{3,4}\longrightarrow S^{0,0},
-  \]
-  where $[h_2]$ is detected by $h_2$ in the source's stated synthetic
-  tridegree.  With this fixed normalization,
-  $\nu(\nu_{\mathrm{Hopf}})=\lambda[h_2]$.
-\end{proposition}
-
-\begin{proof}
-  Use the explicit normalization and tridegree calculation in Example
-  \texttt{exam:extonEn(2)} at \texttt{aimpaper/main.tex:1398--1405}.  Store
-  the entire chosen lifted-triangle witness, the detected class, the equality
-  with its Hopf component, and the factorization by $\lambda$ as one
-  source-bearing evidence value.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:1398-1405 and 929-961; project packaging of the
-% zero-homology rotation needed by the normalized-cofiber interface.
-
 
 % SOURCE: aimpaper/main.tex:1398-1405 and 929-961; the erroneous cofiber
 % conclusion at aimpaper/main.tex:2730-2732 is repaired: the cofiber equivalent
@@ -712,25 +459,6 @@ the corresponding projections of its main input.
   $\nu(\nu_{\mathrm{Hopf}})=\lambda[h_2]$ gives the displayed factorization.
   Functoriality of cofibers gives the comparison map, while direct substitution
   shows that every $\lambda[h_2]$-multiple is already an $[h_2]$-multiple.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2698-2778 and Table Table:Cnu126.
-\begin{proposition}[$S^0/\nu$ short-incoming exclusion]
-  \label{evidence:cnu126-short-incoming-exclusion}
-  \uses{def:near126-computation-input,data:table-cnu126,thm:appendix-all-rows-encoded,prop:lin-computation-provenance}
-  \notready
-  For a near-$126$ computation input $D$, in its classical Adams spectral
-  sequence of $S^0/\nu_{\mathrm{Hopf}}$, the class
-  $h_1h_4x_{109,12}[0]$ is not hit by any $d_r$ with $r\le5$.  This negative
-  statement is a range-completeness query over all 26 table rows, not a claim
-  read from a single row.
-\end{proposition}
-
-\begin{proof}
-  Enumerate every degree-compatible source in filtrations 9--14, follow its
-  relation status, and prove none has target the named bottom-cell class with
-  length at most five.  Table and artifact completeness make the finite
-  negative query exhaustive.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.

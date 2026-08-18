@@ -1,258 +1,35 @@
-\chapter{Conditional geometric conclusions}
+\chapter{Geometric conclusions}
 \label{chap:final-kervaire}
 
-The paper states its geometric conclusions unconditionally.  Under the project
-boundary they are formalized as implications from explicit literature and
-computation records: the project proves the assembly of those inputs, not
-Browder's theorem or the earlier geometric classification anew.
+This chapter derives the conditional dimension-$126$ manifold and the final dimension list from the internal permanent-cycle theorem and the explicitly listed geometric inputs.
 
-\section{Geometric interface and literature roots}
+\section{Classical two-line consequence}
 
-% SOURCE: aimpaper/main.tex:78-101; PROJECT_BOUNDARY.md, Final geometric conclusions.
-\begin{definition}[Framed Kervaire context]
-  \label{def:framed-kervaire-context}
-  \uses{def:stable-context}
+% SOURCE: aimpaper/main.tex:151-163, Corollary cor:2line and its cited inputs.
+\begin{corollary}[Survivors on the Adams two-line]
+  \label{cor:adams-two-line-survivors}
+  \uses{def:adams-hj,thm:external-adams-one-line,thm:h6-square-permanent,def:external-result,def:external-evidence}
   \notready
-  For a fixed stable context $\mathcal C$, a framed Kervaire context provides
-  closed smooth framed manifolds, framed cobordism, and a Pontryagin--Thom
-  correspondence landing in the stable homotopy of the same sphere
-  $S^0_{\mathcal C}$.  It also provides the middle-dimensional mod--$2$
-  intersection pairing, its quadratic refinement, the Arf invariant, and the
-  proposition that a manifold has Kervaire invariant one.  Only the laws needed
-  to state and apply Browder's criterion are exposed.
-\end{definition}
-
-% SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; aimpaper/main.tex:117-123, Theorem thm:browder.
-\begin{theorem}[Browder criterion]
-  \label{thm:external-browder-criterion}
-  \uses{def:framed-kervaire-context,def:classical-adams-ss,def:adams-hj,def:ss-cycle-boundary-permanent,def:external-result}
-  \notready
-  Fix a stable context $\mathcal C$, a framed Kervaire context over
-  $\mathcal C$, and a chosen classical Adams spectral sequence
-  $A_{\mathrm{cl}}$ of $S^0_{\mathcal C}$.  An explicit Browder external result
-  supplies that a framed manifold with Kervaire invariant one exists in
-  dimension $n$ if and only if $n=2^{j+1}-2$ for some $j\ge1$ and the class
-  $h_j^2$ is a permanent cycle in this same $A_{\mathrm{cl}}$.  The record must
-  carry the precise theorem or page locator in Browder's paper and the
-  Pontryagin--Thom convention; it cannot quantify over or silently select a
-  second sphere Adams spectral sequence.
-\end{theorem}
+  Subject to the explicitly cited Ext calculations and differential results,
+  the nonzero classes on the Adams two-line that survive to $E_\infty$ are
+  precisely
+  \[
+    h_0h_2,\quad h_0h_3,\quad h_2h_4,\quad
+    h_1h_j\ (j\ge3),\quad h_j^2\ (0\le j\le6).
+  \]
+\end{corollary}
 
 \begin{proof}
-  Instantiate the located Browder theorem and transport its Adams grading and
-  framed-cobordism notation into the two project interfaces.  This node remains
-  an explicit literature parameter; no project proof of Browder's criterion is
-  claimed.
+  The supplied Adams, Lin, May, Mahowald--Tangora, Isaksen--Wang--Xu,
+  Mahowald, Barratt--Jones--Mahowald, and Hill--Hopkins--Ravenel results first
+  enumerate the $E_3$ candidates and then remove $h_2h_5$, $h_3h_5$,
+  $h_3h_6$, and every $h_j^2$ with $j\ge7$.  Their positive survival results
+  give every listed class except $h_6^2$; apply
+  Theorem~\ref{thm:h6-square-permanent} for that final class.  The dependency
+  points from this corollary to the main theorem, never conversely.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:151-162 and cited classical Kervaire literature.
-\begin{theorem}[Prior low-dimensional Kervaire existence]
-  \label{thm:external-low-kervaire-existence}
-  \uses{def:framed-kervaire-context,def:external-result}
-  \notready
-  Explicit literature results supply framed Kervaire-invariant-one manifolds
-  in dimensions $2,6,14,30,$ and $62$, with one source locator for each
-  dimension or a single theorem covering the complete list.
-\end{theorem}
-
-\begin{proof}
-  Assemble the five located external results into a finite family indexed by
-  the stated dimensions, verifying that each conclusion uses the same framed
-  and Kervaire conventions as the project context.
-\end{proof}
-
-% SOURCE: Hill--Hopkins--Ravenel; cited at aimpaper/main.tex:86-92 and 151-160.
-\begin{theorem}[HHR nonexistence beyond dimension $126$]
-  \label{thm:external-hhr-nonexistence}
-  \uses{def:framed-kervaire-context,def:external-result}
-  \notready
-  An explicit Hill--Hopkins--Ravenel result supplies nonexistence of
-  Kervaire-invariant-one framed manifolds in dimensions
-  $2^{j+1}-2$ for $j\ge7$, in the precise form and range of the cited theorem.
-\end{theorem}
-
-\begin{proof}
-  Import the located HHR statement as an external-result parameter and align
-  its dimension indexing and geometric conventions with the project context.
-\end{proof}
-
-% SOURCE: Barratt--Jones--Mahowald induction; aimpaper/main.tex:162.
-\begin{theorem}[BJM induction on order-two Kervaire classes]
-  \label{thm:external-bjm-induction}
-  \uses{def:adams-detection,def:external-result}
-  \notready
-  An explicit Barratt--Jones--Mahowald result supplies: if a class $\theta_j$
-  detected by $h_j^2$ satisfies $2\theta_j=0$ and $\theta_j^2=0$, then there is
-  an order-two class $\theta_{j+1}$ detected by $h_{j+1}^2$.  This result
-  motivates the two open propositions but is not used to prove
-  $h_6^2$ permanent.
-\end{theorem}
-
-\begin{proof}
-  Store the exact inductive theorem and its range as a source-bearing external
-  result.  The Blueprint records no converse and does not turn either open
-  hypothesis into an assumption.
-\end{proof}
-
-\section{Explicit input records}
-
-% SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, External inputs,
-% and Conditional final theorems.
-\begin{definition}[Classical--synthetic sphere coherence]
-  \label{def:sphere-adams-coherence}
-  \uses{def:stable-context,def:stable-sphere-suspension,def:synthetic-context,def:synthetic-sphere,def:classical-adams-ss,def:synthetic-adams-ss,def:adams-hj,def:bhs-aim-regrading}
-  \notready
-  Fix a stable context $\mathcal C$, a synthetic context $\mathcal S$ over
-  $\mathcal C$, a classical Adams sequence $A_{\mathrm{cl}}$ on
-  $S^0_{\mathcal C}$, and a synthetic Adams sequence $A_{\mathrm{syn}}$ on
-  $\nu_{\mathcal S}(S^0_{\mathcal C})=S^{0,0}_{\mathcal S}$.  A sphere
-  coherence datum records the object identifications, the common unit and
-  sphere multiplication, and the grading and naming transports for the classes
-  used below.  It does not assert the classical--synthetic $E_2$ identification
-  or differential comparison: those are carried by the separately named
-  \texttt{syntheticRigidity} external result.  When an object equality is not
-  definitional, its equality or transport is an explicit field.  This datum
-  contains no rigidity, differential, convergence, or computation assertion.
-\end{definition}
-
-% SOURCE: PROJECT_BOUNDARY.md, External inputs and Axiom policy.
-\begin{definition}[Near-$126$ literature input]
-  \label{def:near126-literature-input}
-  \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-theta5-order-data,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
-  \notready
-  For fixed $\mathcal C$, $\mathcal S$, $A_{\mathrm{cl}}$,
-  $A_{\mathrm{syn}}$, and their sphere coherence datum, a near-$126$
-  literature input is a dependent record.  Its named \texttt{ExternalResult}
-  fields are \texttt{syntheticFoundation}, \texttt{syntheticRigidity},
-  \texttt{syntheticEinfNu}, \texttt{syntheticEinfQuotient},
-  \texttt{lambdaBockstein}, \texttt{syntheticLift},
-  \texttt{syntheticTriangleLift}, \texttt{nuCofiberCriterion},
-  \texttt{maySmashBoundary}, \texttt{mossConvergence},
-  \texttt{todaProducts}, \texttt{bjmBx}, \texttt{theta5OrderData}, and
-  \texttt{totalDifferential}.  The Xu/IWX order and choice-comparison facts are
-  supplied specifically by \texttt{theta5OrderData}, whose proposition is
-  Theorem~\ref{thm:external-theta5-order-data}; finite torsion exclusions remain
-  in the computation package.  Its named \texttt{ExternalEvidence} field
-  \texttt{normalizedHopfDetection} supplies the triangle-compatible identity
-  $\widehat\nu=[h_2]$ from
-  Proposition~\ref{evidence:normalized-hopf-detection}.  Every proposition is
-  typed over the fixed contexts and sphere sequences and carries the locator
-  required by Definition~\ref{def:source-ref}.  There is no
-  \texttt{classicalConvergence} field: convergence is already part of the
-  chosen $A_{\mathrm{cl}}$ interface.
-\end{definition}
-
-% SOURCE: PROJECT_BOUNDARY.md, Final geometric conclusions, External inputs,
-% and Conditional final theorems.
-\begin{definition}[Geometric Kervaire input]
-  \label{def:geometric-kervaire-input}
-  \uses{def:sphere-adams-coherence,def:external-result,def:framed-kervaire-context,thm:external-browder-criterion,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence}
-  \notready
-  For fixed $\mathcal C$ and $A_{\mathrm{cl}}$ as above, a geometric Kervaire
-  input contains a framed context \texttt{framed} over $\mathcal C$ and named
-  external-result values \texttt{browder}, \texttt{lowKervaire}, and
-  \texttt{hhr}.  The proposition carried by \texttt{browder} is
-  Browder's criterion for \texttt{framed} and this exact
-  $A_{\mathrm{cl}}$; this dependency is part of the field's type.  The other two
-  fields use the same framed context, Pontryagin--Thom map, dimension, and
-  invariant conventions.  Any nondefinitional identifications are stored as
-  explicit coherence witnesses rather than resolved by an unconstrained
-  transport.
-\end{definition}
-
-% SOURCE: PROJECT_BOUNDARY.md, Appendix data and External inputs;
-% aimpaper/main.tex:2738--3290.
-\begin{definition}[Classical interpretation of the computation catalogue]
-  \label{def:classical-catalogue-coherence}
-  \uses{def:near126-computation-input,def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:typed-class-expression,def:appendix-evidence-record,def:stable-context,def:classical-adams-ss,def:sphere-adams-coherence,thm:adams-external-pairing}
-  \notready
-  Fix a raw near-$126$ computation input $D$, a stable context $\mathcal C$,
-  the selected sphere sequence $A_{\mathrm{cl}}$, and its sphere coherence.
-  A classical catalogue coherence datum contains:
-  \begin{enumerate}
-    \item for every spectrum identifier of $D$, an admissible spectrum of
-      $\mathcal C$ and a chosen classical Adams sequence, with the sphere
-      identifier identified with $S^0_{\mathcal C}$ and its sequence
-      transported to exactly $A_{\mathrm{cl}}$;
-    \item for every typed class expression, an element of the stated spectrum's
-      $E_2$ page in exactly its stored bidegree, preserving zero, sums, named
-      generators, external products, and module actions whenever those
-      operations are present in the catalogue;
-    \item for every map identifier, a stable map with the stored suspension,
-      source, and target, together with its induced page map; identities,
-      compositions, cofiber keys, and the stored linear $E_2$ action commute
-      with these interpretations;
-    \item a typing equality saying that every appendix row, differential key,
-      product record, and finite negative query in $D$ states its proposition
-      about these interpreted pages and elements.
-  \end{enumerate}
-  These are structure fields, not a blanket assertion named
-  ``catalogue models the sphere.''  In particular, they expose the transports
-  used when a table theorem is applied to $A_{\mathrm{cl}}$.
-\end{definition}
-
-% SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, Appendix data,
-% and External inputs; aimpaper/main.tex:755--1274.
-\begin{definition}[Synthetic interpretation of the computation catalogue]
-  \label{def:synthetic-catalogue-coherence}
-  \uses{def:classical-catalogue-coherence,def:near126-literature-input,def:near126-computation-input,def:synthetic-context,def:synthetic-adams-ss,def:synthetic-lambda-quotient,prop:synthetic-einfty-first-quotient,prop:synthetic-einfty-map-compatibility,def:sphere-adams-coherence}
-  \notready
-  Fix the data above, the selected synthetic sphere sequence
-  $A_{\mathrm{syn}}$, a near-$126$ literature input $L$, and a classical
-  catalogue coherence datum $C_{\mathrm{cl}}$.  A synthetic catalogue
-  coherence datum contains:
-  \begin{enumerate}
-    \item interpretations of every consumed spectrum as its chosen synthetic
-      analogue and of every required finite $\lambda$-quotient, with the
-      synthetic sphere identifier transported to exactly $A_{\mathrm{syn}}$;
-    \item interpretations of the raw class identifiers as page or homotopy
-      classes in the stored tridegrees, together with detection witnesses and
-      agreement with $C_{\mathrm{cl}}$ through the grading transport and the
-      specifically named rigidity/Bockstein fields of $L$;
-    \item compatibility of $\lambda$, $\rho$, quotient maps, suspensions,
-      stable-map actions, sphere products, and module actions with the
-      corresponding typed catalogue operations, including the separate
-      exponent-one interface;
-    \item a typing equality saying that every synthetic product, Toda input,
-      quotient relation, torsion exclusion, and obstruction record consumed by
-      the near-$126$ proof is a proposition about these interpreted objects.
-  \end{enumerate}
-  Thus no proof may turn a raw string or archive row into a class of
-  $A_{\mathrm{syn}}$ without an explicit field of this datum.
-\end{definition}
-
-% SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, External inputs,
-% and Conditional final theorems.
-\begin{definition}[Main formalization input]
-  \label{def:kervaire-main-input}
-  \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence,def:geometric-kervaire-input}
-  \notready
-  A \emph{main input} $I$ is an ordered dependent record with fields
-  \texttt{stable}, \texttt{synthetic} over \texttt{stable},
-  \texttt{classicalSphere} on \texttt{stable}'s $S^0$,
-  \texttt{syntheticSphere} on
-  \texttt{synthetic.nu} of that same $S^0$, and
-  \texttt{sphereCoherence} for those exact four fields.  Its
-  \texttt{literature} field is a near-$126$ literature input parameterized by
-  those fields.  Its \texttt{computation} field is the context-independent raw
-  near-$126$ ledger of Definition~\ref{def:near126-computation-input}.  The
-  subsequent MainInput fields \texttt{classicalCatalogueCoherence} and
-  \texttt{syntheticCatalogueCoherence} identify every consumed page, class,
-  product, and quotient interpretation in that ledger with
-  \texttt{classicalSphere} and \texttt{syntheticSphere} through
-  Definitions~\ref{def:classical-catalogue-coherence} and
-  \ref{def:synthetic-catalogue-coherence}; the latter is also parameterized by
-  \texttt{literature} and the former coherence datum.  These witnesses are not
-  fields hidden inside \texttt{computation}.  Its \texttt{geometry} field is a
-  geometric input parameterized by
-  \texttt{stable} and \texttt{classicalSphere}.  Thus no subpackage may carry
-  an unrelated context or sphere sequence.  These projections are the only
-  route by which external literature and machine evidence enter the main
-  proof.  The record contains no field asserting $h_6^2$ is permanent and no
-  geometric endpoint; those remain project theorems assembled from the fields.
-\end{definition}
-
-\section{Conditional endpoints}
+\section{Conditional geometric endpoints}
 
 % SOURCE: aimpaper/main.tex:102-104, Theorem thm:main; made conditional by PROJECT_BOUNDARY.md.
 \begin{theorem}[Conditional Kervaire manifold in dimension $126$]
