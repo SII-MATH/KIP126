@@ -5,12 +5,8 @@ name: Auto-merge
 # running kip126-review / kip126 locally, which push the verdict ledger to the reviews branch and
 # post the scoreboard comment. This workflow just reads that ledger and merges when ready.
 #
-# It calls the lightweight TauCetiReview merge-only workflow, which mints no provider keys, runs no
-# reviewer, and merges only when the engine's own rule says so: build green on HEAD, every blocking
-# rubric green on HEAD, every changed path under KIP126/ (plus the allowed root files), and bump-guard
-# green for any Lake-pin change. The decision is read from the real ledger, so a forged scoreboard
-# comment can only TRIGGER a re-check, never supply a verdict — which is why the triggers below can be
-# loose: an over-trigger is a cheap no-op, never a wrong merge.
+# The local merge gate reads KIP126's exact-head statuses and verified semantic-review evidence. It
+# never runs a reviewer, accepts out-of-scope changes for automatic merging, or uses an App secret.
 
 on:
   # Head is freshly green: re-check whether this PR is now mergeable.
@@ -20,10 +16,21 @@ on:
   # A review scoreboard was just posted or edited (a local review may have turned the PR green).
   issue_comment:
     types: [created, edited]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "PR number to evaluate"
+        required: true
+        type: string
+      dry_run:
+        description: "Evaluate without enqueueing"
+        type: boolean
+        default: false
 
 permissions:
-  contents: read
-  pull-requests: read
+  contents: write
+  issues: read
+  pull-requests: write
 
 concurrency:
   group: auto-merge-${{ github.event.issue.number || github.event.workflow_run.head_sha }}
@@ -32,14 +39,18 @@ concurrency:
 jobs:
   resolve:
     runs-on: ubuntu-latest
-    # Only react to a successful build, or to a comment carrying the scoreboard marker on a PR.
+    # Only react to a successful build, a scoreboard update, or an explicit dispatch.
     if: >
       (github.event_name == 'workflow_run'
         && github.event.workflow_run.conclusion == 'success'
         && github.event.workflow_run.event == 'pull_request_target')
       || (github.event_name == 'issue_comment'
         && github.event.issue.pull_request != null
-        && contains(github.event.comment.body, 'kip126-meta:v1'))
+        && (contains(github.event.comment.body, 'kip126-scoreboard')
+            || contains(github.event.comment.body, 'kip126-meta:v1')
+            || contains(github.event.comment.body, 'euler-semantic-review:v1')
+            || contains(github.event.comment.body, 'tauceti-scoreboard')))
+      || (github.event_name == 'workflow_dispatch' && github.event.inputs.pr != '')
     outputs:
       pr: ${{ steps.r.outputs.pr }}
     steps:
@@ -47,10 +58,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
+          EVENT: ${{ github.event_name }}
+          DISPATCH_PR: ${{ inputs.pr || '' }}
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "issue_comment" ]; then
+          if [ "$EVENT" = "issue_comment" ]; then
             echo "pr=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
+          elif [ "$EVENT" = "workflow_dispatch" ]; then
+            [[ "$DISPATCH_PR" =~ ^[0-9]+$ ]]
+            echo "pr=$DISPATCH_PR" >> "$GITHUB_OUTPUT"
           else
             pr="${{ github.event.workflow_run.pull_requests[0].number }}"
             if [ -z "$pr" ]; then
@@ -62,14 +78,21 @@ jobs:
   merge:
     needs: resolve
     if: ${{ needs.resolve.outputs.pr != '' }}
-    # Pinned to a TauCetiReview commit; bump deliberately. The reusable workflow receives the App
-    # secrets, so a floating @main would be a supply-chain risk.
-    uses: TauCetiProject/TauCetiReview/.github/workflows/merge-only.yml@a66b04d97721565b13c8abe07f750fb1d2959ad5
-    with:
-      pr: ${{ needs.resolve.outputs.pr }}
-      review_ref: a66b04d97721565b13c8abe07f750fb1d2959ad5
-    # Pass only the App credentials merge-only needs, not all of KIP126's secrets.
-    secrets:
-      APP_ID: ${{ secrets.APP_ID }}
-      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
-
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout trusted workflow sources
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+      - name: Evaluate KIP126 merge gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ needs.resolve.outputs.pr }}
+          DRY_RUN: ${{ inputs.dry_run || false }}
+        run: |
+          set -euo pipefail
+          args=(--repo "$REPO" --pr "$PR")
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          python3 scripts/merge_gate.py "${args[@]}"
