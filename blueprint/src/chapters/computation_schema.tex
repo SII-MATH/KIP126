@@ -1,0 +1,194 @@
+\chapter{Typed computation schemas}
+\label{chap:computation-schema}
+
+This chapter defines the types used to state machine and appendix results.  It contains no Lin output, table row, or other computed value.
+
+\section{Typed catalogue schemas}
+
+% SOURCE: aimpaper/main.tex:1930-1977, Example exam:Mahowald.
+\begin{definition}[Atiyah--Hirzebruch cell notation for $S^0/\nu_{\mathrm{Hopf}}$]
+  \label{def:hopf-cofiber-cell-notation}
+  \uses{def:cofiber-triangle,def:steenrod-ext}
+  \notready
+  In the Ext long exact sequence of
+  $S^3\xrightarrow{\nu_{\mathrm{Hopf}}}S^0\to S^0/\nu_{\mathrm{Hopf}}\to S^4$, write
+  $a[4]$ for a class restricting nontrivially to the top cell as $a$, and
+  $b[0]$ for a class induced from the bottom-cell class $b$.  The notation is
+  typed by spectrum, cell, bidegree, and a chosen dataset identifier.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2738-3290, all twelve tables.
+\begin{definition}[Appendix table identifier]
+  \label{def:appendix-table-id}
+  \notready
+  The table identifier is a twelve-element finite type containing
+  $C\nu126$, $S122$, $S123$, the two $S124$ bands, the two $S125$ bands, the
+  two $S126$ bands, and the three $S127$ bands.  It records the paper table
+  number, spectrum, stem, filtration interval, source line range, and PDF page.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2738-3290, class-expression column; aimpaper/112.tex:8-1026.
+\begin{definition}[Typed Ext class expression]
+  \label{def:typed-class-expression}
+  \uses{def:steenrod-ext,def:hopf-cofiber-cell-notation}
+  \notready
+  A typed class expression is a sparse $\mathbb F_2$ expression built from a
+  dataset-versioned generator $x_{n,s,k}$, a named class, product, and finite
+  sum, together with spectrum, stem, filtration, internal degree, and optional
+  bottom- or top-cell tag.  Constructors prove degree compatibility; a finite
+  candidate set represents ambiguity without converting it to free-form text.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2738-3290, differential/status columns.
+\begin{definition}[Appendix row status]
+  \label{def:appendix-row-status}
+  \uses{def:typed-class-expression}
+  \notready
+  Row status is one of:
+  \begin{enumerate}
+    \item an explicit zero filtration band;
+    \item a permanent class;
+    \item a known outgoing $d_r$ with a nonempty finite target set;
+    \item a known incoming $d_r$ with a nonempty finite source set;
+    \item survival through a stated page with the next outgoing differential
+      unresolved.
+  \end{enumerate}
+  An incoming marker $d_r^{-1}$ is not an inverse map.  A printed $d_r?$ does
+  not assert existence of a nonzero differential.  A ``possibly'' term is a
+  finite target ambiguity attached to a known relation.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2738-3290; duplicated source/target presentations across adjacent stems.
+\begin{definition}[Differential relation identifier]
+  \label{def:differential-relation-id}
+  \uses{def:appendix-row-status}
+  \notready
+  Each known differential has a stable relation identifier, length, typed
+  source expression, and typed target candidate set.  The outgoing row in one
+  stem and incoming row in the next refer to the same identifier.  A validation
+  rule rejects two records with incompatible length, source, or target data.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.1 and Tables 1--5; Zenodo record 14875701,
+% version v126.3.cw49; PROJECT_BOUNDARY.md, Appendix data.
+\begin{definition}[Lin CW-spectrum catalogue]
+  \label{def:lin-spectrum-catalogue}
+  \uses{def:source-ref}
+  \notready
+  The computation input contains a finite, versioned catalogue of the 49 CW
+  spectra used by Lin--Wang--Xu.  Each entry records its stable name, cell
+  presentation and suspensions, whether it is used as a ring or module
+  spectrum, its maximum computed internal degree, and source locators for the
+  corresponding files in the Zenodo archive.  Spectrum names appearing in a
+  table, map, or proof record are typed references to this catalogue rather
+  than free-form strings.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.1, Notations 2.1--2.5 and the
+% *_AdamsE2_generators/relations/basis files described there.
+\begin{definition}[Lin Adams $E_2$-page catalogue]
+  \label{def:lin-e2-page-catalogue}
+  \uses{def:lin-spectrum-catalogue,def:typed-class-expression,def:external-evidence}
+  \notready
+  For every spectrum in the Lin catalogue, an $E_2$-page record contains the
+  complete finite generator, relation, and basis tables through its declared
+  internal-degree bound.  It includes typed multiplication or module-action
+  tables only when the spectrum catalogue supplies the corresponding ring or
+  module structure.  An external-evidence value identifies the three archived
+  files and proves that their normalized serialization is the value stored in
+  the record.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.2 and Tables 6--10; the map_*.csv files in
+% Zenodo record 14875701.
+\begin{definition}[Lin map catalogue]
+  \label{def:lin-map-catalogue}
+  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:external-evidence}
+  \notready
+  The map catalogue contains the 180 versioned maps used by the computation.
+  A record gives source and target spectrum identifiers, suspension degree,
+  geometric map kind, maximum computed degree, and the induced linear map on
+  the stored $E_2$ bases.  Cofiber-sequence membership and composition keys are
+  explicit fields, and the evidence locator names the archived map table rather
+  than merely the display name of the map.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.3 and Table 11; the d_2 columns in the
+% per-spectrum Adams E_2 basis files;
+% aimpaper/main.tex:2785--2792 for the additional manual inputs.
+\begin{definition}[Lin initial $d_2$ catalogue]
+  \label{def:lin-d2-catalogue}
+  \uses{def:lin-e2-page-catalogue,def:differential-relation-id,def:external-evidence}
+  \notready
+  For every spectrum and degree range declared by the computation, the initial
+  $d_2$ catalogue records all supplied $d_2$ values as typed differential
+  relations and carries a range-completeness certificate.  A missing row is
+  therefore distinguishable from a certified zero differential.  Later manual
+  $d_3$, $d_5$, and $d_6$ inputs are stored separately and are never
+  reconstructed from program output.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 3, especially the Adams-SS, cofiber-SS, and
+% Tables-of-Proofs formats; proofs_csv.rar in Zenodo record 14875701.
+\begin{definition}[Lin propagated-output record]
+  \label{def:lin-propagated-output-record}
+  \uses{def:lin-spectrum-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:differential-relation-id,def:external-evidence}
+  \notready
+  A propagated-output record is one of a proved Adams differential, a proved
+  map extension, a disproof of a candidate value, or an explicitly unresolved
+  finite candidate set.  It stores the source inputs, propagation rule,
+  normalized source and target, page or extension length, proof-database key,
+  program version, and archived output row.  A disproof record contains the
+  rejected candidate and contradiction key; it is not represented as an absent
+  differential row.
+\end{definition}
+
+% SOURCE: LWXMachine Sections 2--3; Zenodo record 14875701, version
+% v126.3.cw49; PROJECT_BOUNDARY.md, Appendix data.
+\begin{definition}[Lin computation bundle]
+  \label{def:lin-computation-bundle}
+  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:lin-propagated-output-record}
+  \notready
+  A Lin computation bundle contains the five catalogues above with one common
+  archive version and hashes for the program, database, CSV export, and proof
+  files.  Its validation data states that every map references stored source
+  and target pages, every propagated output references stored inputs, and no
+  two records assign incompatible values to the same typed relation key.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Appendix data; aimpaper/main.tex:2785-2800.
+\begin{definition}[Appendix evidence record]
+  \label{def:appendix-evidence-record}
+  \uses{def:appendix-table-id,def:appendix-row-status,def:differential-relation-id,def:external-evidence}
+  \notready
+  An appendix evidence record contains a table identifier, a unique row key,
+  spectrum and bidegree, typed class expression or zero band, row status,
+  relation identifier when applicable, paper locator, computation-artifact
+  locator, program version, input hash, method, and an explicit evidence proof
+  of the proposition represented by that status.
+\end{definition}
+
+\section{Input bundles and output contracts}
+
+% SOURCE: PROJECT_BOUNDARY.md, Appendix data and External inputs;
+% aimpaper/main.tex:2738--3290.
+\begin{definition}[Near-$126$ computation input]
+  \label{def:near126-computation-input}
+  \uses{def:lin-computation-bundle,def:appendix-evidence-record,def:external-result,def:external-evidence}
+  \notready
+  A near-$126$ computation input is an explicit record containing a Lin
+  computation bundle, the twelve finite appendix tables, the nine zero-band
+  records, the three manual differential inputs, the $tmf$-detection evidence,
+  and the finite high-stem product and indeterminacy evidence consumed in
+  Section~7.  The latter are named fields, including
+  \texttt{theta5TorsionRanges}, \texttt{theta5SquareTmf},
+  \texttt{todaCandidateProducts},
+  \texttt{twoExtensionIndeterminacyProducts},
+  \texttt{hopfLiftObstructions}, \texttt{stem122Products}, and
+  \texttt{cnuIncomingRange}; a proof cannot request an anonymous
+  \texttt{ExternalEvidence}.  Every field is an external-evidence or
+  external-result value, as
+  appropriate, with a source locator; project theorems receive this record as a
+  parameter and prove all finite coverage and negative-search conclusions from
+  its fields.
+\end{definition}

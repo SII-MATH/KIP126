@@ -1,0 +1,124 @@
+\chapter{The near-$126$ and Kervaire problem setup}
+\label{chap:kervaire-setup}
+
+This final chapter of the definition layer fixes the Kervaire contexts, near-$126$ predicates, open questions, coherence records, and explicit input-bundle shapes needed by the endpoint proof.
+
+\section{Open questions and near-126 objects}
+
+% SOURCE: aimpaper/main.tex:164-171, Questions que:2theta6 and que:theta5sq.
+\begin{definition}[Order-two $\theta_6$ question]
+  \label{def:question-order-two-theta6}
+  \uses{def:open-proposition,def:adams-hj,def:adams-detection}
+  \notready
+  This open proposition asks whether $h_6^2$ detects a Kervaire class
+  $\theta_6\in\pi_{126}S^0$ of exact order two.  It is recorded but is not a
+  hypothesis of the permanent-cycle proof.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:168-171, Question que:theta5sq.
+\begin{definition}[$\theta_5^2=0$ question]
+  \label{def:question-theta5-square-zero}
+  \uses{def:open-proposition,def:adams-detection}
+  \notready
+  This open proposition asks whether one can choose a class
+  $\theta_5\in\pi_{62}S^0$ detected by $h_5^2$ such that
+  $\theta_5^2=0$.  It is neither assumed nor proved by this project.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2112-2114, Notation 7.2.
+\begin{definition}[Synthetic $\theta_5$ and $\eta$ choices]
+  \label{def:synthetic-theta5-choice}
+  \uses{def:adams-hj,def:synthetic-adams-ss,def:adams-detection}
+  \notready
+  A synthetic $\theta_5$ is a class in
+  $\pi_{62,64}S^{0,0}$ detected by $h_5^2$; the same symbol denotes each of its
+  quotient images.  Let $\eta=[h_1]\in\pi_{1,2}S^{0,0}$.  Every use records
+  the chosen representative unless choice independence has already been
+  proved.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2181-2204, Proposition prop:possibleh62, statements (3)-(5).
+\begin{definition}[The three near-$126$ conditions]
+  \label{def:near126-conditions}
+  \uses{def:synthetic-theta5-choice,def:adams-detection}
+  \notready
+  Define:
+  \begin{enumerate}
+    \item[$C_3$:] $d_6(x_{126,8,4}+x_{126,8})=0$;
+    \item[$C_4$:] for some $\theta_5$,
+      $\theta_5^2=\lambda^6[h_0^2x_{124,8}]\ne0$ in
+      $\pi_{124,128}S^{0,0}$;
+    \item[$C_5$:] for some detected $[h_0^2x_{124,8}]$,
+      $\lambda^3\eta[h_0^2x_{124,8}]
+       =\lambda^6[h_1h_4x_{109,12}]$ in
+      $\pi_{125,133}S^{0,0}$.
+  \end{enumerate}
+  Quantified detected representatives and nonzero assertions are fields of the
+  propositions, not informal annotations.
+\end{definition}
+
+\section{Framed Kervaire and coherence contexts}
+
+% SOURCE: aimpaper/main.tex:78-101; PROJECT_BOUNDARY.md, Final geometric conclusions.
+\begin{definition}[Framed Kervaire context]
+  \label{def:framed-kervaire-context}
+  \uses{def:stable-context}
+  \notready
+  For a fixed stable context $\mathcal C$, a framed Kervaire context provides
+  closed smooth framed manifolds, framed cobordism, and a Pontryagin--Thom
+  correspondence landing in the stable homotopy of the same sphere
+  $S^0_{\mathcal C}$.  It also provides the middle-dimensional mod--$2$
+  intersection pairing, its quadratic refinement, the Arf invariant, and the
+  proposition that a manifold has Kervaire invariant one.  Only the laws needed
+  to state and apply Browder's criterion are exposed.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, External inputs,
+% and Conditional final theorems.
+\begin{definition}[Classical--synthetic sphere coherence]
+  \label{def:sphere-adams-coherence}
+  \uses{def:stable-context,def:stable-sphere-suspension,def:synthetic-context,def:synthetic-sphere,def:classical-adams-ss,def:synthetic-adams-ss,def:adams-hj,def:bhs-aim-regrading}
+  \notready
+  Fix a stable context $\mathcal C$, a synthetic context $\mathcal S$ over
+  $\mathcal C$, a classical Adams sequence $A_{\mathrm{cl}}$ on
+  $S^0_{\mathcal C}$, and a synthetic Adams sequence $A_{\mathrm{syn}}$ on
+  $\nu_{\mathcal S}(S^0_{\mathcal C})=S^{0,0}_{\mathcal S}$.  A sphere
+  coherence datum records the object identifications, the common unit and
+  sphere multiplication, and the grading and naming transports for the classes
+  used below.  It does not assert the classical--synthetic $E_2$ identification
+  or differential comparison: those are carried by the separately named
+  \texttt{syntheticRigidity} external result.  When an object equality is not
+  definitional, its equality or transport is an explicit field.  This datum
+  contains no rigidity, differential, convergence, or computation assertion.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Appendix data and External inputs;
+% aimpaper/main.tex:2738--3290.
+\begin{definition}[Classical interpretation of the computation catalogue]
+  \label{def:classical-catalogue-coherence}
+  \uses{def:near126-computation-input,def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:typed-class-expression,def:appendix-evidence-record,def:stable-context,def:classical-adams-ss,def:sphere-adams-coherence,thm:adams-external-pairing}
+  \notready
+  Fix a raw near-$126$ computation input $D$, a stable context $\mathcal C$,
+  the selected sphere sequence $A_{\mathrm{cl}}$, and its sphere coherence.
+  A classical catalogue coherence datum contains:
+  \begin{enumerate}
+    \item for every spectrum identifier of $D$, an admissible spectrum of
+      $\mathcal C$ and a chosen classical Adams sequence, with the sphere
+      identifier identified with $S^0_{\mathcal C}$ and its sequence
+      transported to exactly $A_{\mathrm{cl}}$;
+    \item for every typed class expression, an element of the stated spectrum's
+      $E_2$ page in exactly its stored bidegree, preserving zero, sums, named
+      generators, external products, and module actions whenever those
+      operations are present in the catalogue;
+    \item for every map identifier, a stable map with the stored suspension,
+      source, and target, together with its induced page map; identities,
+      compositions, cofiber keys, and the stored linear $E_2$ action commute
+      with these interpretations;
+    \item a typing equality saying that every appendix row, differential key,
+      product record, and finite negative query in $D$ states its proposition
+      about these interpreted pages and elements.
+  \end{enumerate}
+  These are structure fields, not a blanket assertion named
+  ``catalogue models the sphere.''  In particular, they expose the transports
+  used when a table theorem is applied to $A_{\mathrm{cl}}$.
+\end{definition}

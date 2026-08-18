@@ -1,9 +1,7 @@
 \chapter{Extensions on a classical Adams page}
 \label{chap:page-extensions}
 
-Section 5 defines an $(f,E_r)$-extension by reducing the normalized synthetic
-map modulo $\lambda^{r-1}$.  This is not a new classical spectral sequence: it
-is a typed classical notation for a particular synthetic ESS differential.
+This chapter contains the definitions of normalized page reductions, page extensions, indeterminacy, and crossings.  Concrete regressions and comparison theorems occur later.
 
 \section{Definition and indeterminacy}
 
@@ -25,13 +23,10 @@ is a typed classical notation for a particular synthetic ESS differential.
   involving $\infty-1$.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:1284-1298, E_0 formulas before Definition def:6c076a33.
-
-
 % SOURCE: aimpaper/main.tex:1301-1317, Definition def:6c076a33.
 \begin{definition}[$(f,E_r)$-extension]
   \label{def:page-extension}
-  \uses{prop:hat-map-ess-e0,def:f-extension-essential}
+  \uses{def:hat-map-page-reduction,def:synthetic-extension-ss,def:f-extension-essential,def:chosen-page-presentation}
   \notready
   For finite $2\le r<\infty$, let $x\in Z_{r-1}^{s,t}(X)$ and
   $y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y)$, with
@@ -66,25 +61,6 @@ is a typed classical notation for a particular synthetic ESS differential.
   zero.
 \end{definition}
 
-\section{Regressions that fix the intended semantics}
-
-% SOURCE: aimpaper/main.tex:1391-1402, Example exam:extonEn(1).
-
-
-% SOURCE: aimpaper/main.tex:1403-1423, Example exam:extonEn(2); proved later by Example exam:Mahowald.
-
-
-% SOURCE: aimpaper/main.tex:1541-1564 and 2084-2099, the finite Ext-product
-% enumeration used both for no-crossing and for page stretching.  This node is
-% deliberately stated without assuming that the E_infinity extension exists.
-
-
-% SOURCE: aimpaper/main.tex:1424-1433, Example exam:extonEn(3); proved later by Example exam:stretchext.
-
-
-% SOURCE: aimpaper/main.tex:1391-1433, Example exam:extonEn(4).
-
-
 \section{Crossings and passage to classical extensions}
 
 % SOURCE: aimpaper/main.tex:1437-1441, Definition def:41d51149.
@@ -111,11 +87,3 @@ is a typed classical notation for a particular synthetic ESS differential.
   coset modulo $B_{1+n-b-e(f)}$.  A collection of unrelated finite crossing
   candidates is not an $E_\infty$ crossing.
 \end{definition}
-
-% SOURCE: aimpaper/main.tex:1515-1539, Proposition prop:cross-f-Er.
-
-
-% SOURCE: aimpaper/main.tex:1541-1579, Example exam:Ercross.
-
-
-% SOURCE: aimpaper/main.tex:1581-1597, unlabelled Proposition 5.14.
