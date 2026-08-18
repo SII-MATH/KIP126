@@ -4,25 +4,23 @@ name: Merge sweep
 # enqueues a green PR once per triggering event (a push, a /review comment, or a fresh pr-build); if the
 # merge queue then evicts it — a merge group that could not form, or a rebuild against a moved main that
 # failed — nothing re-drives an otherwise-idle green PR and it strands: green on every rubric, never
-# merged. housekeeping.yml only CLOSES PRs (and only blocking ones), so a wedged-but-green PR is closed
-# by nothing. This scheduled sweep re-enqueues such PRs (reusing the existing head-pinned review — no
-# re-review, no API spend), and for a head the queue has repeatedly rejected, updates the branch onto
-# main or flags a conflict. It calls the lightweight TauCetiReview merge-sweep workflow, which mints no
-# provider keys and runs no reviewer; the merge decision is the same one auto-merge uses, so the sweep
-# can never merge something the normal gate would refuse.
+# merged. This scheduled sweep re-evaluates KIP126's exact-head gate and re-enqueues only PRs that are
+# already eligible; it never runs a reviewer and routes out-of-scope or ambiguous PRs to humans.
 
 on:
   schedule:
     - cron: "40 * * * *"   # hourly, offset from housekeeping (:20) and the daily bump
   workflow_dispatch:
     inputs:
-      dry-run:
+      dry_run:
         description: "List actions without enqueuing / updating / flagging"
         type: boolean
         default: false
 
 permissions:
-  contents: read
+  contents: write
+  issues: read
+  pull-requests: write
 
 concurrency:
   group: merge-sweep
@@ -30,13 +28,20 @@ concurrency:
 
 jobs:
   sweep:
-    # Pinned to a TauCetiReview commit; bump deliberately. The reusable workflow receives the App
-    # secrets, so a floating @main would be a supply-chain risk.
-    uses: TauCetiProject/TauCetiReview/.github/workflows/merge-sweep.yml@a66b04d97721565b13c8abe07f750fb1d2959ad5
-    with:
-      dry_run: ${{ inputs.dry-run || false }}
-      review_ref: a66b04d97721565b13c8abe07f750fb1d2959ad5
-    secrets:
-      APP_ID: ${{ secrets.APP_ID }}
-      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
-
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout trusted workflow sources
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+      - name: Re-evaluate eligible KIP126 pull requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          DRY_RUN: ${{ inputs.dry_run || false }}
+        run: |
+          set -euo pipefail
+          args=(--repo "$REPO" --all-open)
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          python3 scripts/merge_gate.py "${args[@]}"
