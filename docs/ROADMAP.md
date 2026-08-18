@@ -5,9 +5,10 @@ The Lean Blueprint entry point is
 paper-specific chapters in [`../blueprint/src/chapters`](../blueprint/src/chapters).
 The Blueprint now records the complete paper-level plan and proof frontier;
 the compiled Lean code remains at the first shared-Core milestone described
-below. The cross-module architecture and semantic contracts are recorded in
-[FORMALIZATION_SPEC.md](FORMALIZATION_SPEC.md); this file alone records the
-migration order and stage completion criteria.
+below.  Implemented interfaces and dependencies are authoritative in the Lean
+source, while planned interfaces and semantic constraints live in the
+Blueprint.  This file records only the migration order and stage completion
+criteria.
 
 ## 架构决定
 

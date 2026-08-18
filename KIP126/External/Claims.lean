@@ -9,8 +9,8 @@ boundary.  A claim row names its intended owning Lean declaration and Blueprint
 target, classifies the trust boundary, supplies an exact `SourceRef`, and lists
 other claim rows used to assemble a composite input.
 
-The owner names are stable declaration names from the formalisation
-specification.  Some owners live in later, currently unimplemented layers; the
+The owner names are stable declaration names from the formalisation plan in the
+Blueprint.  Some owners live in later, currently unimplemented layers; the
 ledger makes those obligations enumerable now without postulating their
 propositions or proofs.
 -/
@@ -20,7 +20,7 @@ namespace KIP126.External
 /-! ## Claim identifiers and classifications -/
 
 /-- Stable identifiers for the external and evidence-bearing claim families
-named by the Blueprint and `docs/FORMALIZATION_SPEC.md`.
+named by the Blueprint.
 
 The list contains primitive literature results, composite literature packages,
 the machine catalogues, and the finite evidence families consumed by the final
