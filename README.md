@@ -23,10 +23,12 @@ zero bands, the stable/spectral-sequence/Steenrod/synthetic background absent
 from Mathlib, explicit literature and computation provenance, and the full
 dependency cone from the compiled Core to the conditional Kervaire endpoints.
 All unimplemented nodes are conservatively marked `notready`; the Blueprint
-does not claim that the main theorem is already formalized.  The cross-module
-architecture and semantic contracts are recorded in
-[docs/FORMALIZATION_SPEC.md](docs/FORMALIZATION_SPEC.md), and the staged Lean
-implementation order is [docs/ROADMAP.md](docs/ROADMAP.md).
+does not claim that the main theorem is already formalized.  Implemented APIs
+and dependencies are authoritative in the Lean source; planned mathematical
+interfaces, semantic constraints, dependencies, sources, and status live in the
+Blueprint.  [PROJECT_BOUNDARY.md](PROJECT_BOUNDARY.md) records scope and trust
+policy, while [docs/ROADMAP.md](docs/ROADMAP.md) records the staged Lean
+implementation order.
 
 ## Build
 
