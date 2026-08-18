@@ -4,42 +4,41 @@
 
 ## 模块划分与进度口径
 
-Blueprint 仍使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录，只用注释标出“数学定义 → 外部输入 → 内部证明”三层。Lean 文件列出各章当前最接近的公共入口；同一现有入口暂时承载两个新章时，后续实现任务再按 chapter 边界拆 facade。`Blueprint 节点`按正式 theorem-like environment 计数，状态依次为 `leanok / mathlibok / notready`。
+每个模块对应一个 Blueprint chapter。Lean 文件列出该模块当前最接近的公共入口或实现承载文件；一个模块在实际代码中可以依赖多个内部文件，但不会把依赖文件重复计入本模块行数。`Blueprint 节点`按 DAG 工具统计的正式节点计数；括号内给出 `leanok / mathlibok / notready` 标记计数。`Lean 行数`为对应文件当前物理行数，包括注释和空行，用于显示实现规模而不是证明完成度。占位文件的行数保留显示，避免把“文件存在”误读为“模块已实现”。
 
-| 层 | 顺序 | 模块（Blueprint chapter） | Lean 文件（当前最近入口） | Blueprint 节点 | 状态 |
-| --- | ---: | --- | --- | ---: | --- |
-| 定义 | 1 | Algebraic foundations | `KIP126/Core.lean` | 46 | 19 / 27 / 0 |
-| 定义 | 2 | Spectral-sequence machinery | `KIP126/Core/SpectralSequence.lean` | 54 | 27 / 13 / 14 |
-| 定义 | 3 | Stable-homotopy objects | — | 11 | 0 / 0 / 11 |
-| 定义 | 4 | Classical mod-2 Adams spectral sequence | `KIP126/Classical/Adams.lean` | 15 | 0 / 0 / 15 |
-| 定义 | 5 | Extension spectral sequences | `KIP126/Classical/ExtensionSS.lean` | 17 | 0 / 0 / 17 |
-| 定义 | 6 | Synthetic homotopy and synthetic Adams objects | `KIP126/Synthetic.lean` | 8 | 0 / 0 / 8 |
-| 定义 | 7 | Synthetic extension spectral sequences | `KIP126/Synthetic/ExtensionSS.lean` | 4 | 0 / 0 / 4 |
-| 定义 | 8 | Extensions on a classical Adams page | `KIP126/Classical/PageExtensions.lean` | 4 | 0 / 0 / 4 |
-| 定义 | 9 | Typed computation schemas | `KIP126/Kervaire/AppendixData.lean` | 13 | 0 / 0 / 13 |
-| 定义 | 10 | Near-126 and Kervaire problem setup | `KIP126/Kervaire/Assumptions.lean` | 7 | 0 / 0 / 7 |
-| 外部输入 | 11 | External literature results | `KIP126/External/Results.lean` | 23 | 1 / 0 / 22 |
-| 外部输入 | 12 | External computed results | `KIP126/Kervaire/AppendixData.lean` | 31 | 0 / 0 / 31 |
-| 内部证明 | 13 | Comparison and generalized rules | `KIP126/Comparison.lean` | 49 | 0 / 0 / 49 |
-| 内部证明 | 14 | Near-126 reduction and permanent cycle | `KIP126/Kervaire/Assumptions.lean` | 19 | 0 / 0 / 19 |
-| 内部证明 | 15 | Geometric conclusions | `KIP126/Kervaire/MainTheorem.lean` | 3 | 0 / 0 / 3 |
-| 审计 | 16 | External-input provenance audit | `KIP126/External.lean` | 32 | 30 / 0 / 2 |
-| 审计 | 17 | Source coverage and audit index | — | 0 | — |
-|  |  | **合计** |  | **336** | **77 / 40 / 219** |
+| 顺序 | 模块（Blueprint chapter） | Lean 文件（当前公共入口） | Blueprint 节点 | 状态 | Lean 行数 |
+| ---: | --- | --- | ---: | --- | ---: |
+| 0 | Formalization contract | `KIP126/External/Provenance.lean` | 32 | 30 / 0 / 2 | 561 |
+| 1 | Shared algebraic and spectral-sequence core | `KIP126/Core/SpectralSequence/FilteredComplex.lean` | 21 | 19 / 2 / 0 | 770 |
+| 2 | Algebraic and spectral-sequence background | `KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean` | 79 | 27 / 38 / 14 | 411 |
+| 3 | Stable-homotopy interfaces | — | 15 | 0 / 0 / 15 | 0 |
+| 4 | Classical mod-2 Adams spectral sequence | `KIP126/Classical/Adams/Basic.lean` | 18 | 1 / 0 / 17 | 490 |
+| 5 | Extension spectral sequences | `KIP126/Classical/ExtensionSS/Basic.lean` | 21 | 0 / 0 / 21 | 292 |
+| 6 | $H\mathbb F_2$-synthetic foundations | `KIP126/Synthetic/SpectralSequence/Basic.lean` | 24 | 0 / 0 / 24 | 107 |
+| 7 | Synthetic extension spectral sequences | `KIP126/Synthetic/ExtensionSS/Basic.lean` | 17 | 0 / 0 / 17 | 9 |
+| 8 | Extensions on a classical Adams page | `KIP126/Classical/PageExtensions/Basic.lean` | 13 | 0 / 0 / 13 | 9 |
+| 9 | Generalized Leibniz and Mahowald rules | — | 19 | 0 / 0 / 19 | 0 |
+| 10 | Typed appendix and computation data | `KIP126/Kervaire/AppendixData.lean` | 31 | 0 / 0 / 31 | 9 |
+| 11 | Near-$126$ reduction and permanent cycle | `KIP126/Kervaire/Assumptions.lean` | 33 | 0 / 0 / 33 | 9 |
+| 12 | Conditional geometric conclusions | `KIP126/Kervaire/MainTheorem.lean` | 13 | 0 / 0 / 13 | 9 |
+|  | **合计** |  | **336** | **77 / 40 / 219** |  |
 
 ### 统计解释
 
-- 336 是 DAG 的正式节点总数；其中 117 个节点已有完成标记（77 个项目声明为 `leanok`、40 个 Mathlib 根为 `mathlibok`），219 个节点仍为 `notready`。
-- `leanok` 与 `mathlibok` 不等价于“整章完成”：Spectral-sequence machinery 仍有 14 个 `notready`，而外部结果、内部比较和 near-$126$ 主体仍基本未实现。
-- `content.tex` 只保留按依赖顺序的平铺 `\input` 清单与三层注释；没有 LaTeX `\part`。`blueprint/web`、`blueprint/print` 和 `blueprint/lean_decls` 是生成/检查产物，不手工编辑。
-- 章节不按代码行数均分，而按数学定义、外部黑盒和内部消费者的边界拆分。同一现有 Lean facade 暂时覆盖两个 chapter 不表示两章已经合并；实现层仍需最终形成一章一入口。
+- 336 是 DAG 的正式节点总数；其中 116 个节点已有完成标记（77 个项目声明为 `leanok`、40 个 Mathlib 根为 `mathlibok`），219 个节点仍为 `notready`。
+- `leanok` 与 `mathlibok` 不等价于“整章完成”：例如 Background 仍有 14 个 `notready` 节点，Classical 还有 17 个；代码行数也不等价于证明进度。
+- `content.tex` 只保留按依赖顺序的 `\input` 清单；Core 正文在 `chapters/core.tex`。`blueprint/web`、`blueprint/print` 和 `blueprint/lean_decls` 是生成/检查产物，不手工编辑。
+- 章节内容规模并不强行按行数均分；先按数学依赖和可审计边界划分模块，再用节点与 Lean 行数展示不均衡处。后续若某章明显过大，将在不拆断 `\uses` 语义的前提下拆成独立 chapter 与对应入口文件。
 
 ## 依赖顺序
 
-1. **数学定义层**：Algebraic foundations → spectral-sequence machinery → stable objects → classical Adams → extension SS → synthetic objects → synthetic ESS → page extensions → computation schemas → Kervaire setup。
-2. **外部输入层**：在所有 statement 所需对象已经定义后，再陈述逐条 external literature result；具体 Lin 输出与附录表则依赖 computation schema。
-3. **内部证明层**：comparison/generalized rules 消费外部定理与计算输入，随后完成 near-$126$ reduction，最后推出 geometric conclusions。
-4. **技术审计层**：provenance 与 coverage 章节保持平铺，但不作为所有数学章节的父节点；`ExternalResult` 等 Lean 技术类型按需 import，不改变数学 DAG 的方向。
+1. **Contract → Core**：先固定 provenance、外部输入边界和共享过滤/谱序列结构。
+2. **Background → Stable**：补齐 Mathlib 适配、收敛/端点接口和最小稳定同伦接口。
+3. **Classical → Extension SS**：建立 classical Adams、Ext、ESS、essentiality、crossing 和页面扩张的共同基础。
+4. **Synthetic → Synthetic ESS**：建立 synthetic Adams、权重保持、`λ/ρ/δ` 传输和 synthetic extension 语义。
+5. **Page extensions → Generalized rules**：完成 classical page extension 后，接入 generalized Leibniz、May/Mahowald 规则和有限页 loss certificate。
+6. **Appendix data → Near-126**：先完成 typed catalogue、provenance 和完整性检查，再推进 near-126 三条件、two-extension 与 permanent-cycle 反证。
+7. **Conditional geometry**：最后把同一个显式 `MainInput` 接到 permanent-cycle、126 维和全维数的条件结论。
 
 ## 阶段验收
 
@@ -53,7 +52,7 @@ Blueprint 仍使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目
 
 ## 当前执行前沿
 
-当前优先级是 Spectral-sequence machinery 的剩余 14 个节点与 Stable-homotopy objects 的最小接口；随后完成 Classical Adams/ESS 和 Synthetic 定义，使 external-results statements 获得真实类型，再推进 comparison、数据、near-$126$ 与几何端点。主帖负责更新完成状态、下一步和本表中的快照；本文件只在模块边界、依赖顺序或统计口径变化时更新。
+当前优先级是 Background 的剩余 14 个节点与 Stable 的最小接口；随后进入 Classical Adams/ESS，再推进 Synthetic/comparison，最后完成数据、near-126 与条件几何端点。主帖负责更新完成状态、下一步和本表中的快照；本文件只在模块边界、依赖顺序或统计口径变化时更新。
 
 ## 架构边界
 

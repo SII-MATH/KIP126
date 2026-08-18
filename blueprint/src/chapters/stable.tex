@@ -1,7 +1,10 @@
-\chapter{Stable-homotopy objects}
+\chapter{Stable-homotopy interfaces absent from Mathlib}
 \label{chap:stable-background}
 
-This chapter defines the stable-homotopy language required by the paper.  Located May, Moss, and Toda inputs are stated later in the external-results chapter rather than treated as definitions.
+Mathlib v4.32.2 has preadditive and triangulated-category infrastructure, but
+no model of spectra, the Steenrod algebra, the Adams spectral sequence, or
+$H\mathbb F_2$-synthetic spectra.  Following the project boundary, these are
+abstract interfaces with exactly the operations and laws used by the paper.
 
 \section{Spectra, triangles, and homology}
 
@@ -136,6 +139,34 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
 
 \section{Homotopy classes and secondary operations}
 
+% SOURCE: aimpaper/main.tex:253-263, 283-306, and 912-997.
+\begin{definition}[Adams filtration of elements and maps]
+  \label{def:adams-filtration}
+  \uses{def:admissible-spectrum,def:hf2-homology,def:stable-homotopy-group,def:adams-tower-filtration}
+  \notready
+  The primitive notions are predicates $\operatorname{AF}(\alpha)\ge s$ and
+  $\operatorname{AF}(f)\ge k$: respectively, $\alpha$ lies in filtration
+  $F^s\pi_nX$, and $f$ factors through the $k$th Adams-tower stage.  Their
+  suprema take values in $\mathbb Z\cup\{+\infty\}$ for elements and
+  $\mathbb N\cup\{+\infty\}$ for maps; in particular the zero element and zero
+  map have infinite filtration.  The paper's notation
+  $\operatorname{AF}(-)=k$ abbreviates that the finite supremum is attained
+  and equal to $k$.  The interface records monotonicity under sums,
+  composition, and the shift induced on detected classes.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:307-343, 408-459, and 461-648.
+\begin{definition}[Detection relation]
+  \label{def:adams-detection}
+  \uses{def:strong-convergence-detection,def:adams-filtration}
+  \notready
+  For a permanent Adams class $x\in E_\infty^{s,t}(X)$ and a homotopy class
+  $\alpha\in\pi_{t-s}X$, write $x\leadsto\alpha$ when $x$ is the associated
+  graded image of $\alpha$ in filtration $s$.  Detection is a relation rather
+  than a function: a homotopy element can have several representatives after
+  adding higher-filtration terms.
+\end{definition}
+
 % SOURCE: aimpaper/main.tex:2387-2616, Toda-bracket arguments.
 \begin{definition}[Toda bracket interface]
   \label{def:toda-bracket}
@@ -161,3 +192,52 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   indeterminacy, naturality, change-of-choice formula, and a proposition that
   the indeterminacy is zero in a specified finite bidegree.
 \end{definition}
+
+% SOURCE: aimpaper/main.tex:2493-2567 and cited Toda/Moss identities; explicit load-bearing identities.
+\begin{theorem}[Toda product and shuffle identities]
+  \label{thm:toda-product-identities}
+  \uses{def:toda-bracket,def:massey-product,def:adams-detection,def:external-result}
+  \notready
+  Explicitly located stable-homotopy results supply the Toda naturality,
+  suspension, product, and shuffle containments used in Section 7, with their
+  full indeterminacy.  In the particular degrees and chosen nullhomotopies of
+  the paper they supply
+  \[
+    \eta^2\in\langle[h_0],\eta,[h_0]\rangle
+  \]
+  and, for every
+  $b\in\langle\lambda^3\alpha_1,[h_0],\eta\rangle$,
+  \[
+    b[h_0]=\eta\lambda^3\eta\alpha_1.
+  \]
+  The record also carries the zero-indeterminacy checks needed for these
+  equalities; a general containment is never silently strengthened to an
+  equality.
+\end{theorem}
+
+\begin{proof}
+  Instantiate the standard Toda composition and shuffle theorems with the
+  paper's chosen nullhomotopies, calculate both indeterminacy subgroups, and
+  use the typed vanishing evidence in the two relevant stems to show they are
+  zero.  Transport the Hopf relation and signs to the characteristic-two
+  convention.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:2387-2477; external Moss convergence theorem is required.
+\begin{theorem}[Moss convergence adapter]
+  \label{thm:moss-convergence-adapter}
+  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result}
+  \notready
+  Given an explicit external result supplying the relevant Moss convergence
+  theorem and hypotheses excluding crossings and indeterminacy, a Massey
+  product in the Adams $E_r$-page detecting a permanent class yields a
+  corresponding element of the stated Toda bracket in stable homotopy.
+\end{theorem}
+
+\begin{proof}
+  Unpack the external theorem at the chosen spectra and representatives,
+  discharge its convergence and no-crossing hypotheses from the supplied
+  spectral-sequence data, and transport the detected class through the
+  associated-graded isomorphism.  Keep the resulting Toda indeterminacy
+  explicit rather than choosing a canonical element.
+\end{proof}

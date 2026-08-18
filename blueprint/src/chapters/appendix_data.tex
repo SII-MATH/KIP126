@@ -1,24 +1,191 @@
-\chapter{External computed results}
-\label{chap:computed-inputs}
+\chapter{Typed appendix and near-$126$ computation data}
 \label{chap:appendix-data}
 
-This chapter contains the concrete Lin outputs, appendix rows, and finite evidence certificates carried as external computation inputs.  Their schemas were defined earlier.
+The paper's appendix contains 401 nonempty class rows and nine explicit empty
+filtration bands.  All 410 semantic records are in scope.  The intended Lean
+encoding is finite, typed data carried by external-evidence values; it is not a
+collection of project axioms.  Every duplicated display of a differential
+shares one relation identifier.
 
-\section{Lin catalogues and appendix tables}
+\section{Data schema and provenance}
 
-% SOURCE: aimpaper/112.tex:5-1029, Figure Fig:near126; included at aimpaper/main.tex:2152; local PDF p.43.
-\begin{definition}[Near-$126$ figure contract]
-  \label{def:near126-figure-contract}
-  \uses{thm:appendix-all-rows-encoded}
+All propositions in this chapter that inspect computation data are universally
+quantified over an explicit near-$126$ computation input.  The symbol $I$ in
+their Lean signatures denotes that record; no table or program result is
+obtained from a global instance.
+
+% SOURCE: aimpaper/main.tex:2738-3290, all twelve tables.
+\begin{definition}[Appendix table identifier]
+  \label{def:appendix-table-id}
   \notready
-  Figure 9 is a derived visualization over stems $122$--$127$ and filtrations
-  $0$--$19$.  Its left panel has 289 dots, 384 black structural edges, and 157
-  colored known differentials (87 $d_2$, 44 $d_3$, 17 $d_4$, seven $d_5$,
-  and two $d_7$).  Its right panel has 42 dots, 21 black edges, and 12 dashed
-  shortest-potential differentials.  Dashed arrows are unresolved candidates,
-  and the figure is not accepted as independent evidence because its source
-  has no complete legend and uses layout offsets for multiple classes.  Lines
-  1031--1919 of \texttt{112.tex} are commented duplicates and are ignored.
+  The table identifier is a twelve-element finite type containing
+  $C\nu126$, $S122$, $S123$, the two $S124$ bands, the two $S125$ bands, the
+  two $S126$ bands, and the three $S127$ bands.  It records the paper table
+  number, spectrum, stem, filtration interval, source line range, and PDF page.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2738-3290, class-expression column; aimpaper/112.tex:8-1026.
+\begin{definition}[Typed Ext class expression]
+  \label{def:typed-class-expression}
+  \uses{def:steenrod-ext,def:hopf-cofiber-cell-notation}
+  \notready
+  A typed class expression is a sparse $\mathbb F_2$ expression built from a
+  dataset-versioned generator $x_{n,s,k}$, a named class, product, and finite
+  sum, together with spectrum, stem, filtration, internal degree, and optional
+  bottom- or top-cell tag.  Constructors prove degree compatibility; a finite
+  candidate set represents ambiguity without converting it to free-form text.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2738-3290, differential/status columns.
+\begin{definition}[Appendix row status]
+  \label{def:appendix-row-status}
+  \uses{def:typed-class-expression}
+  \notready
+  Row status is one of:
+  \begin{enumerate}
+    \item an explicit zero filtration band;
+    \item a permanent class;
+    \item a known outgoing $d_r$ with a nonempty finite target set;
+    \item a known incoming $d_r$ with a nonempty finite source set;
+    \item survival through a stated page with the next outgoing differential
+      unresolved.
+  \end{enumerate}
+  An incoming marker $d_r^{-1}$ is not an inverse map.  A printed $d_r?$ does
+  not assert existence of a nonzero differential.  A ``possibly'' term is a
+  finite target ambiguity attached to a known relation.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:2738-3290; duplicated source/target presentations across adjacent stems.
+\begin{definition}[Differential relation identifier]
+  \label{def:differential-relation-id}
+  \uses{def:appendix-row-status}
+  \notready
+  Each known differential has a stable relation identifier, length, typed
+  source expression, and typed target candidate set.  The outgoing row in one
+  stem and incoming row in the next refer to the same identifier.  A validation
+  rule rejects two records with incompatible length, source, or target data.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.1 and Tables 1--5; Zenodo record 14875701,
+% version v126.3.cw49; PROJECT_BOUNDARY.md, Appendix data.
+\begin{definition}[Lin CW-spectrum catalogue]
+  \label{def:lin-spectrum-catalogue}
+  \uses{def:source-ref}
+  \notready
+  The computation input contains a finite, versioned catalogue of the 49 CW
+  spectra used by Lin--Wang--Xu.  Each entry records its stable name, cell
+  presentation and suspensions, whether it is used as a ring or module
+  spectrum, its maximum computed internal degree, and source locators for the
+  corresponding files in the Zenodo archive.  Spectrum names appearing in a
+  table, map, or proof record are typed references to this catalogue rather
+  than free-form strings.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.1, Notations 2.1--2.5 and the
+% *_AdamsE2_generators/relations/basis files described there.
+\begin{definition}[Lin Adams $E_2$-page catalogue]
+  \label{def:lin-e2-page-catalogue}
+  \uses{def:lin-spectrum-catalogue,def:typed-class-expression,def:external-evidence}
+  \notready
+  For every spectrum in the Lin catalogue, an $E_2$-page record contains the
+  complete finite generator, relation, and basis tables through its declared
+  internal-degree bound.  It includes typed multiplication or module-action
+  tables only when the spectrum catalogue supplies the corresponding ring or
+  module structure.  An external-evidence value identifies the three archived
+  files and proves that their normalized serialization is the value stored in
+  the record.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.2 and Tables 6--10; the map_*.csv files in
+% Zenodo record 14875701.
+\begin{definition}[Lin map catalogue]
+  \label{def:lin-map-catalogue}
+  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:external-evidence}
+  \notready
+  The map catalogue contains the 180 versioned maps used by the computation.
+  A record gives source and target spectrum identifiers, suspension degree,
+  geometric map kind, maximum computed degree, and the induced linear map on
+  the stored $E_2$ bases.  Cofiber-sequence membership and composition keys are
+  explicit fields, and the evidence locator names the archived map table rather
+  than merely the display name of the map.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.3 and Table 11; the d_2 columns in the
+% per-spectrum Adams E_2 basis files;
+% aimpaper/main.tex:2785--2792 for the additional manual inputs.
+\begin{definition}[Lin initial $d_2$ catalogue]
+  \label{def:lin-d2-catalogue}
+  \uses{def:lin-e2-page-catalogue,def:differential-relation-id,def:external-evidence}
+  \notready
+  For every spectrum and degree range declared by the computation, the initial
+  $d_2$ catalogue records all supplied $d_2$ values as typed differential
+  relations and carries a range-completeness certificate.  A missing row is
+  therefore distinguishable from a certified zero differential.  Later manual
+  $d_3$, $d_5$, and $d_6$ inputs are stored separately and are never
+  reconstructed from program output.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 3, especially the Adams-SS, cofiber-SS, and
+% Tables-of-Proofs formats; proofs_csv.rar in Zenodo record 14875701.
+\begin{definition}[Lin propagated-output record]
+  \label{def:lin-propagated-output-record}
+  \uses{def:lin-spectrum-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:differential-relation-id,def:external-evidence}
+  \notready
+  A propagated-output record is one of a proved Adams differential, a proved
+  map extension, a disproof of a candidate value, or an explicitly unresolved
+  finite candidate set.  It stores the source inputs, propagation rule,
+  normalized source and target, page or extension length, proof-database key,
+  program version, and archived output row.  A disproof record contains the
+  rejected candidate and contradiction key; it is not represented as an absent
+  differential row.
+\end{definition}
+
+% SOURCE: LWXMachine Sections 2--3; Zenodo record 14875701, version
+% v126.3.cw49; PROJECT_BOUNDARY.md, Appendix data.
+\begin{definition}[Lin computation bundle]
+  \label{def:lin-computation-bundle}
+  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:lin-propagated-output-record}
+  \notready
+  A Lin computation bundle contains the five catalogues above with one common
+  archive version and hashes for the program, database, CSV export, and proof
+  files.  Its validation data states that every map references stored source
+  and target pages, every propagated output references stored inputs, and no
+  two records assign incompatible values to the same typed relation key.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Appendix data; aimpaper/main.tex:2785-2800.
+\begin{definition}[Appendix evidence record]
+  \label{def:appendix-evidence-record}
+  \uses{def:appendix-table-id,def:appendix-row-status,def:differential-relation-id,def:external-evidence}
+  \notready
+  An appendix evidence record contains a table identifier, a unique row key,
+  spectrum and bidegree, typed class expression or zero band, row status,
+  relation identifier when applicable, paper locator, computation-artifact
+  locator, program version, input hash, method, and an explicit evidence proof
+  of the proposition represented by that status.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Appendix data and External inputs;
+% aimpaper/main.tex:2738--3290.
+\begin{definition}[Near-$126$ computation input]
+  \label{def:near126-computation-input}
+  \uses{def:lin-computation-bundle,def:appendix-evidence-record,def:external-result,def:external-evidence}
+  \notready
+  A near-$126$ computation input is an explicit record containing a Lin
+  computation bundle, the twelve finite appendix tables, the nine zero-band
+  records, the three manual differential inputs, the $tmf$-detection evidence,
+  and the finite high-stem product and indeterminacy evidence consumed in
+  Section~7.  The latter are named fields, including
+  \texttt{theta5TorsionRanges}, \texttt{theta5SquareTmf},
+  \texttt{todaCandidateProducts},
+  \texttt{twoExtensionIndeterminacyProducts},
+  \texttt{hopfLiftObstructions}, \texttt{stem122Products}, and
+  \texttt{cnuIncomingRange}; a proof cannot request an anonymous
+  \texttt{ExternalEvidence}.  Every field is an external-evidence or
+  external-result value, as
+  appropriate, with a source locator; project theorems receive this record as a
+  parameter and prove all finite coverage and negative-search conclusions from
+  its fields.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:213-240 and 2785-2800; LWXMachine and LWXZenodo bibliography entries.
@@ -115,6 +282,8 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
   summand as the finite coefficient $\epsilon$, then link every display to the
   shared relation identifier.
 \end{proof}
+
+\section{The twelve table datasets}
 
 % SOURCE: aimpaper/main.tex:2738-2773, Table Table:Cnu126, PDF p.54.
 \begin{proposition}[$S^0/\nu$ stem-$126$ table]
@@ -301,6 +470,8 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
   verify the counts, bidegrees, and zero band by finite enumeration.
 \end{proof}
 
+\section{Completeness and the near-$126$ visualization}
+
 % SOURCE: aimpaper/main.tex:2738-3290, all tables; local PDF pp.54,56-64.
 \begin{theorem}[All appendix rows are encoded]
   \label{thm:appendix-all-rows-encoded}
@@ -322,6 +493,21 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
   listing every source row and zero band.
 \end{proof}
 
+% SOURCE: aimpaper/112.tex:5-1029, Figure Fig:near126; included at aimpaper/main.tex:2152; local PDF p.43.
+\begin{definition}[Near-$126$ figure contract]
+  \label{def:near126-figure-contract}
+  \uses{thm:appendix-all-rows-encoded}
+  \notready
+  Figure 9 is a derived visualization over stems $122$--$127$ and filtrations
+  $0$--$19$.  Its left panel has 289 dots, 384 black structural edges, and 157
+  colored known differentials (87 $d_2$, 44 $d_3$, 17 $d_4$, seven $d_5$,
+  and two $d_7$).  Its right panel has 42 dots, 21 black edges, and 12 dashed
+  shortest-potential differentials.  Dashed arrows are unresolved candidates,
+  and the figure is not accepted as independent evidence because its source
+  has no complete legend and uses layout offsets for multiple classes.  Lines
+  1031--1919 of \texttt{112.tex} are commented duplicates and are ignored.
+\end{definition}
+
 % VERIFIED-IN: local source hashes recorded during audit.
 \begin{proposition}[Primary-source snapshot]
   \label{prop:paper-source-snapshot}
@@ -340,268 +526,4 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
   Recompute the three hashes, verify the PDF page count, and compare them with
   the stored source-reference fields before accepting any row-completeness
   certificate.
-\end{proof}
-
-\section{Near-126 finite evidence}
-
-% SOURCE: aimpaper/main.tex:2127-2139, Remarks 7.4-7.5; Appendix Tables 3 and 5.
-\begin{proposition}[$\theta_5$ order and torsion evidence]
-  \label{evidence:theta5-order-torsion}
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,thm:external-theta5-order-data,thm:external-synthetic-einfty-nu,def:external-evidence,data:table-s123,data:table-s124-low}
-  \notready
-  For a near-$126$ computation input $D$, the named Xu/IWX result and $D$'s
-  finite Ext evidence supply: every classical
-  $\theta_5$ has order two; the difference of two choices has filtration at
-  least six; $\pi_{62,64}S^{0,0}$ has no $\lambda$-torsion; and
-  $\pi_{125,130}S^{0,0}$ has no $\lambda$-torsion in the comparison range.
-  These facts validate both the order-two hypothesis and the paper's
-  one-$\lambda$ shift of the finite BJM/BX statement.
-\end{proposition}
-
-\begin{proof}
-  Load the located homotopy-group structure theorem and order computation, then
-  evaluate the synthetic $E_\infty$ formula on the complete table data in the
-  two stated bidegrees.  Exhaustively exclude a class with the required
-  torsion length and record the search range in the evidence certificate.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2156-2177, Fact fact:theta5sqAF and following remark; Appendix Tables 5,6,7,9.
-\begin{proposition}[Core near-$126$ evidence]
-  \label{evidence:near126-core}
-  \uses{def:near126-computation-input,def:near126-conditions,data:table-s124-low,data:table-s125-high,data:table-s125-low,data:table-s126-low,thm:appendix-all-rows-encoded,prop:lin-computation-provenance}
-  \notready
-  For a near-$126$ computation input $D$, its explicit computation evidence
-  supplies:
-  \begin{enumerate}
-    \item $x_{126,8,4}+x_{126,8}$ survives through $E_6$;
-    \item $h_1h_4x_{109,12}$ supports no outgoing differential, and the
-      exhaustive search leaves exactly two possible incoming killers:
-      $d_6(x_{126,8,4}+x_{126,8})$ and $d_{12}(h_6^2)$;
-    \item $h_0^2x_{124,8}$ is permanent;
-    \item $g^4\Delta h_1g$ is the unique class in its bidegree surviving to
-      $E_5$;
-    \item $d_3(x_{126,6})$ is one of the two printed nonzero target sums and
-      therefore cannot kill $h_1h_4x_{109,12}$.
-  \end{enumerate}
-  Item (2) deliberately does not call the class permanent before both possible
-  incoming differentials are excluded.
-\end{proposition}
-
-\begin{proof}
-  Run typed queries over the complete four table ranges and their differential
-  relation graph.  Check survival, outgoing and incoming ranges separately,
-  preserve the finite ambiguity of $d_3(x_{126,6})$, and attach the Zenodo
-  disproof identifiers for every excluded potential differential.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2221-2258, proofs of Lemmas lem:equistate4 and lem:equistate5.
-\begin{proposition}[Representative-indeterminacy evidence]
-  \label{evidence:near126-indeterminacy}
-  \uses{def:near126-computation-input,evidence:theta5-order-torsion,data:table-s124-high,data:table-s124-low,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, its complete stem-$124$ data supply
-  that filtration-11 and -12 cycles relevant
-  to $C_5$ are killed by $d_2$ or $d_3$, filtration-13 correction terms are
-  annihilated by $h_1$, and all remaining corrections begin in filtration at
-  least 15 after multiplication by $\lambda^3\eta$.
-\end{proposition}
-
-\begin{proof}
-  Enumerate every cycle in stem 124 and filtrations 11--13 from both table
-  bands, join its outgoing relation and product-by-$h_1$ record, and verify the
-  stated alternative for each.  Completeness excludes an unlisted correction.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2323-2354, exhaustive theta-square and eta-square analysis; tmf citation.
-\begin{proposition}[$\theta_5^2$ and $tmf$ exhaustive evidence]
-  \label{evidence:theta5-square-tmf}
-  \uses{def:near126-computation-input,evidence:near126-core,evidence:near126-indeterminacy,data:table-s125-low,data:table-s125-high,def:external-result,def:external-evidence}
-  \notready
-  For a near-$126$ computation input $D$, its explicit table and $tmf$ inputs
-  supply:
-  \begin{enumerate}
-    \item the only possibilities for $\theta_5^2$ are
-      $\lambda^6[h_0^2x_{124,8}]$,
-      $\lambda^9[e_0\Delta h_6g]$, or a $\lambda^{10}$-multiple;
-    \item $h_1e_0\Delta h_6g=0$;
-    \item the only relevant high-filtration $\lambda^{10}$-multiple is the
-      class represented by $\lambda^{20}g^4\Delta h_1g$;
-    \item its $tmf$ Hurewicz image is nonzero, while every $\theta_5$ maps to
-      zero in $tmf$;
-    \item if $C_3$ fails, the unique alternative incoming differential is
-      $d_6(x_{126,8,4}+x_{126,8})=h_1h_4x_{109,12}$.
-  \end{enumerate}
-\end{proposition}
-
-\begin{proof}
-  Query the complete filtration ranges and product table to produce the three
-  alternatives and unique surviving high class.  Attach independent, located
-  $tmf$ Hurewicz evidence for its image and the image of $\theta_5$.  Finally
-  use the incoming-differential completeness certificate for the stated
-  alternative.  Each negative conclusion retains its finite search bounds.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2377-2385, Fact fact:x1239; Tables S123 and S125.19.
-\begin{proposition}[$x_{123,9}$ computation evidence]
-  \label{evidence:x1239}
-  \uses{def:near126-computation-input,data:table-s123,data:table-s125-low,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, the class
-  $x_{123,9}+h_0x_{123,8}$ survives through $E_{12}$ and has no incoming
-  differential in $D$, and
-  \[
-    d_2(x_{125,8})=
-      h_1(x_{123,9}+h_0x_{123,8})+h_0^2x_{124,8}.
-  \]
-\end{proposition}
-
-\begin{proof}
-  Retrieve the named rows and shared differential relation, then use complete
-  source ranges to certify the negative incoming claim through the relevant
-  maximum length.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2466-2468, Fact fact:h02x1259; Table S125.19.
-\begin{proposition}[$h_0^2x_{125,9,2}$ evidence]
-  \label{evidence:h02x1259}
-  \uses{def:near126-computation-input,data:table-s125-low,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, the class $h_0^2x_{125,9,2}$
-  survives through $E_5$ and no incoming
-  differential hits it.  Its printed $d_5?$ status remains unresolved and is
-  not asserted nonzero.
-\end{proposition}
-
-\begin{proof}
-  Read the typed row and query every possible incoming source in the complete
-  adjacent-stem ranges.  Preserve the unresolved-outgoing constructor for the
-  $d_5$ column.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2613-2615, Fact fact:h1x1217; Table S122.
-\begin{proposition}[$h_1x_{121,7}$ evidence]
-  \label{evidence:h1x1217}
-  \uses{def:near126-computation-input,data:table-s122,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, the class $h_1x_{121,7}$ survives
-  through $E_6$ and has no incoming
-  differential in the complete range.
-\end{proposition}
-
-\begin{proof}
-  Query its table row and all degree-compatible incoming relation identifiers;
-  use table completeness to certify the negative result.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2617-2673, missing obstruction check in Lemma lem:nuext125.
-\begin{proposition}[Obstruction vanishing for the mod-$\lambda^5$ lift]
-  \label{evidence:nu-extension-obstruction-vanishing}
-  \uses{def:near126-computation-input,data:table-s125-low,data:table-s126-low,data:table-cnu126,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$ and the relation produced modulo
-  $\lambda^3$ by the $S^0/\nu_{\mathrm{Hopf}}$
-  $d_3$, every filtration-10 correction that could obstruct a lift modulo
-  $\lambda^5$ either has no detected homotopy class or can be killed by changing
-  the lift.  Therefore a lift exists with no additional $[\lambda x]$ term.
-\end{proposition}
-
-\begin{proof}
-  Enumerate the complete filtration-10 source group, compute the relevant
-  $\rho$ obstruction and each candidate's synthetic survival from the table
-  relations, and give an explicit correction or vanishing certificate for
-  every element.  This evidence is independent of the formal properties of
-  $\rho$; it fills the unsupported ``upon inspection'' step at
-  \texttt{aimpaper/main.tex:2661--2665}.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2689-2696, Fact fact:stem122; Table S122.
-\begin{proposition}[Stem-$122$ permanent-class evidence]
-  \label{evidence:stem122-permanent}
-  \uses{def:near126-computation-input,data:table-s122,thm:appendix-all-rows-encoded}
-  \notready
-  For a near-$126$ computation input $D$, the classes $h_6Md_0$ and
-  $h_5x_{91,11}$ are permanent in the classical Adams spectral sequence
-  encoded by $D$.
-\end{proposition}
-
-\begin{proof}
-  Retrieve their rows, certify no outgoing or incoming differential through
-  the complete source ranges, and validate the permanent status against the
-  program artifact identifiers.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2707-2728, two ``upon inspection'' steps in the proof of Proposition prop:state5false.
-\begin{proposition}[Stem-$122$ candidate and product exhaustion]
-  \label{evidence:stem122-product-exhaustion}
-  \uses{def:near126-computation-input,data:table-s122,data:table-s125-low,evidence:stem122-permanent,thm:appendix-all-rows-encoded,def:external-evidence}
-  \notready
-  For a near-$126$ computation input $D$, in the bidegree and
-  $\lambda$-quotient occurring in the proof of
-  Proposition \texttt{prop:state5false}, every nonzero representative of
-  $[\lambda^4h_1x_{121,7}][h_0]$ of Adams filtration at most $12$ is exactly
-  one of
-  \[
-    \lambda^6[h_6Md_0]\quad\text{or}\quad
-    \lambda^7[h_5x_{91,11}].
-  \]
-  The typed product and differential evidence further shows, in either case,
-  that $\lambda^4[h_1h_4x_{109,12}]$ is a
-  $\lambda[h_2]$-multiple in the untruncated synthetic sphere.  This record
-  includes the filtration-$13$ candidate search and the $d_2/d_4$ exclusions
-  used in lines 2716--2728.
-\end{proposition}
-
-\begin{proof}
-  Enumerate the complete stem-$122$ permanent representatives through
-  filtration $12$, evaluate the typed $h_0$ and $h_2$ products, and transport
-  each known differential through the shared relation identifiers.  Query the
-  complete stem-$125$ ranges for filtration-$13$ corrections and prove that
-  each is killed by the recorded $d_2$ or $d_4$.  The resulting finite
-  certificate has exactly the two source cases and the asserted common
-  divisibility conclusion.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:1398-1405, Example exam:extonEn(2), for the
-% identity \widehat{\nu_{\mathrm{Hopf}}}=[h_2] and its grading;
-% aimpaper/main.tex:929-961, Notation not:fhat, for normalization.
-\begin{proposition}[Normalized Hopf-map detection]
-  \label{evidence:normalized-hopf-detection}
-  \uses{def:synthetic-hat-map,def:adams-detection,thm:external-synthetic-triangle-lift,def:cofiber-triangle,def:external-evidence}
-  \notready
-  Explicit detection evidence retains one chosen application of the synthetic
-  triangle-lift theorem to the appropriate rotation of the classical Hopf
-  cofiber triangle.  It identifies that stored triangle's Hopf component with
-  \[
-    \widehat{\nu_{\mathrm{Hopf}}}=[h_2]:S^{3,4}\longrightarrow S^{0,0},
-  \]
-  where $[h_2]$ is detected by $h_2$ in the source's stated synthetic
-  tridegree.  With this fixed normalization,
-  $\nu(\nu_{\mathrm{Hopf}})=\lambda[h_2]$.
-\end{proposition}
-
-\begin{proof}
-  Use the explicit normalization and tridegree calculation in Example
-  \texttt{exam:extonEn(2)} at \texttt{aimpaper/main.tex:1398--1405}.  Store
-  the entire chosen lifted-triangle witness, the detected class, the equality
-  with its Hopf component, and the factorization by $\lambda$ as one
-  source-bearing evidence value.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:2698-2778 and Table Table:Cnu126.
-\begin{proposition}[$S^0/\nu$ short-incoming exclusion]
-  \label{evidence:cnu126-short-incoming-exclusion}
-  \uses{def:near126-computation-input,data:table-cnu126,thm:appendix-all-rows-encoded,prop:lin-computation-provenance}
-  \notready
-  For a near-$126$ computation input $D$, in its classical Adams spectral
-  sequence of $S^0/\nu_{\mathrm{Hopf}}$, the class
-  $h_1h_4x_{109,12}[0]$ is not hit by any $d_r$ with $r\le5$.  This negative
-  statement is a range-completeness query over all 26 table rows, not a claim
-  read from a single row.
-\end{proposition}
-
-\begin{proof}
-  Enumerate every degree-compatible source in filtrations 9--14, follow its
-  relation status, and prove none has target the named bottom-cell class with
-  length at most five.  Table and artifact completeness make the finite
-  negative query exhaustive.
 \end{proof}
