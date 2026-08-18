@@ -1,11 +1,9 @@
 \chapter{The classical mod--2 Adams spectral sequence}
 \label{chap:classical-adams}
 
-This chapter turns the paper's classical background into explicit interfaces.
-The high-stem Ext calculations remain evidence; only general algebra and the
-paper's internal deductions are project proof obligations.
+This chapter defines the Steenrod, Ext, tower, convergence, product, and named-class interfaces.  Concrete published differentials and low-line calculations occur only in the later external-results chapter.
 
-\section{Steenrod algebra, Ext, and convergence}
+\section{Steenrod algebra, Ext, towers, and convergence}
 
 % SOURCE: aimpaper/main.tex:126-150; PROJECT_BOUNDARY.md, Steenrod algebra and Ext.
 \begin{definition}[Dual Steenrod algebra]
@@ -259,100 +257,32 @@ paper's internal deductions are project proof obligations.
   supplied by Theorem~\ref{thm:adams-external-pairing}.
 \end{definition}
 
-\section{Low-line literature inputs}
+\section{Adams filtration and detection}
 
-% SOURCE: aimpaper/main.tex:140--150, specialized to j=4.
-% VERIFIED-IN: KIP126/Classical/Adams/Basic.lean, declaration
-% KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees_bound.
-\begin{theorem}[$h_4$ $d_2$ tracer bullet]
-  \label{thm:external-adams-h4-d2-slice}
-  \uses{def:classical-adams-e2-e3-shape-slice,def:catalogued-external-result}
-  \lean{KIP126.Classical.Adams.cataloguedAdamsOneLine_h₄_degrees_bound}
-  \leanok
-  For a chosen spectrum-bound sphere $E_2$ presentation with its lawful
-  bilinear, unital, associative, Leibniz-compatible and nondegenerate
-  internal multiplication, the located \texttt{adams\_one\_line} result is
-  consumed together with the strong-convergence witnesses and supplies the
-  relation
-  \[
-    d_2(h_4)=h_0h_3^2.
-  \]
-  The source is in bidegree $(1,16)$ and the target in $(3,17)$.  The consumer
-  is tied to the canonical claim root, owner, trust class, and locator in the
-  external claim ledger; it does not turn the literature result into a project
-  axiom.
-\end{theorem}
-
-\begin{proof}
-  The exact consumer extracts the located result, retains the chosen
-  spectrum's strong-convergence data, checks all lawful algebra fields, and
-  derives the displayed bidegrees from the actual Mathlib $E_2$ differential
-  component and the supplied sphere product.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:140-150; citations Adams/Mahowald--Tangora/May.
-% VERIFIED-IN: aimpaper/main.tex:140-150 contains a typo: survival is j <= 3, while d_2 is nonzero for j >= 4.
-\begin{theorem}[Adams one-line differentials]
-  \label{thm:external-adams-one-line}
-  \uses{def:adams-hj,def:external-result}
+% SOURCE: aimpaper/main.tex:253-263, 283-306, and 912-997.
+\begin{definition}[Adams filtration of elements and maps]
+  \label{def:adams-filtration}
+  \uses{def:admissible-spectrum,def:hf2-homology,def:stable-homotopy-group,def:adams-tower-filtration}
   \notready
-  An explicit external result supplies that $h_0,h_1,h_2,h_3$ survive and
-  that, for $j\ge4$,
-  \[
-    d_2(h_j)=h_0h_{j-1}^2\ne0.
-  \]
-  This is the mathematically consistent reading of the two consecutive
-  sentences in \texttt{aimpaper/main.tex:140--150}; the printed ``$j\ge3$
-  survives'' is recorded as a source typo, not adopted as a project theorem.
-\end{theorem}
-
-\begin{proof}
-  This node is a literature input.  Instantiate the external-result record at
-  the cited theorem and transport its grading to
-  Definition~\ref{def:adams-bidegree}; no internal proof of the classical
-  calculation is claimed.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:151-163, Corollary cor:2line and its cited inputs.
-\begin{corollary}[Survivors on the Adams two-line]
-  \label{cor:adams-two-line-survivors}
-  \uses{def:adams-hj,thm:external-adams-one-line,thm:h6-square-permanent,def:external-result,def:external-evidence}
-  \notready
-  Subject to the explicitly cited Ext calculations and differential results,
-  the nonzero classes on the Adams two-line that survive to $E_\infty$ are
-  precisely
-  \[
-    h_0h_2,\quad h_0h_3,\quad h_2h_4,\quad
-    h_1h_j\ (j\ge3),\quad h_j^2\ (0\le j\le6).
-  \]
-\end{corollary}
-
-\begin{proof}
-  The supplied Adams, Lin, May, Mahowald--Tangora, Isaksen--Wang--Xu,
-  Mahowald, Barratt--Jones--Mahowald, and Hill--Hopkins--Ravenel results first
-  enumerate the $E_3$ candidates and then remove $h_2h_5$, $h_3h_5$,
-  $h_3h_6$, and every $h_j^2$ with $j\ge7$.  Their positive survival results
-  give every listed class except $h_6^2$; apply
-  Theorem~\ref{thm:h6-square-permanent} for that final class.  The dependency
-  points from this corollary to the main theorem, never conversely.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:164-171, Questions que:2theta6 and que:theta5sq.
-\begin{definition}[Order-two $\theta_6$ question]
-  \label{def:question-order-two-theta6}
-  \uses{def:open-proposition,def:adams-hj,def:adams-detection}
-  \notready
-  This open proposition asks whether $h_6^2$ detects a Kervaire class
-  $\theta_6\in\pi_{126}S^0$ of exact order two.  It is recorded but is not a
-  hypothesis of the permanent-cycle proof.
+  The primitive notions are predicates $\operatorname{AF}(\alpha)\ge s$ and
+  $\operatorname{AF}(f)\ge k$: respectively, $\alpha$ lies in filtration
+  $F^s\pi_nX$, and $f$ factors through the $k$th Adams-tower stage.  Their
+  suprema take values in $\mathbb Z\cup\{+\infty\}$ for elements and
+  $\mathbb N\cup\{+\infty\}$ for maps; in particular the zero element and zero
+  map have infinite filtration.  The paper's notation
+  $\operatorname{AF}(-)=k$ abbreviates that the finite supremum is attained
+  and equal to $k$.  The interface records monotonicity under sums,
+  composition, and the shift induced on detected classes.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:168-171, Question que:theta5sq.
-\begin{definition}[$\theta_5^2=0$ question]
-  \label{def:question-theta5-square-zero}
-  \uses{def:open-proposition,def:adams-detection}
+% SOURCE: aimpaper/main.tex:307-343, 408-459, and 461-648.
+\begin{definition}[Detection relation]
+  \label{def:adams-detection}
+  \uses{def:strong-convergence-detection,def:adams-filtration}
   \notready
-  This open proposition asks whether one can choose a class
-  $\theta_5\in\pi_{62}S^0$ detected by $h_5^2$ such that
-  $\theta_5^2=0$.  It is neither assumed nor proved by this project.
+  For a permanent Adams class $x\in E_\infty^{s,t}(X)$ and a homotopy class
+  $\alpha\in\pi_{t-s}X$, write $x\leadsto\alpha$ when $x$ is the associated
+  graded image of $\alpha$ in filtration $s$.  Detection is a relation rather
+  than a function: a homotopy element can have several representatives after
+  adding higher-filtration terms.
 \end{definition}
