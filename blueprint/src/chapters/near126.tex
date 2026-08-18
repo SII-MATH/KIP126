@@ -679,43 +679,7 @@ the corresponding projections of its main input.
 
 % SOURCE: aimpaper/main.tex:1398-1405 and 929-961; project packaging of the
 % zero-homology rotation needed by the normalized-cofiber interface.
-\begin{lemma}[Normalized Hopf cofiber exactness case]
-  \label{lem:normalized-hopf-exactness-case}
-  \uses{evidence:normalized-hopf-detection,def:normalized-synthetic-exactness-case,prop:positive-adams-filtration-homology-zero,def:cofiber-triangle,def:hf2-homology,thm:external-synthetic-triangle-lift}
-  \notready
-  The classical Hopf cofiber triangle
-  \[
-    S^3\xrightarrow{\nu_{\mathrm{Hopf}}}S^0\xrightarrow g
-    S^0/\nu_{\mathrm{Hopf}}\xrightarrow hS^4
-  \]
-  carries the zero constructor of
-  Definition~\ref{def:normalized-synthetic-exactness-case}.  Explicitly,
-  \[
-    H_*\nu_{\mathrm{Hopf}}=0,
-    \qquad
-    (e(\nu_{\mathrm{Hopf}}),e(g),e(h))=(1,0,0),
-  \]
-  and its long exact homology sequence supplies the rotated short exact
-  sequence.  The constructor's lifted-triangle field is exactly the witness
-  retained by Proposition~\ref{evidence:normalized-hopf-detection}, and its
-  normalized Hopf component is therefore equal to $[h_2]$.
-\end{lemma}
 
-\begin{proof}
-  The filtration-one detection by $h_2$ gives
-  $e(\nu_{\mathrm{Hopf}})=1$, while degree considerations make the Hopf map
-  zero on $H\mathbb F_2$-homology.  In the cofiber long exact sequence, $g$
-  is the nonzero bottom-cell inclusion on homology and $h$ is the nonzero
-  top-cell quotient.  The contrapositive of
-  Proposition~\ref{prop:positive-adams-filtration-homology-zero} therefore
-  gives Adams filtration zero and $e(g)=e(h)=0$.  The remaining
-  long-exact-sequence terms split by degree into
-  the required short exact sequence.  Package these facts and the displayed
-  $e$-pattern around the precise lifted-triangle witness retained by the
-  normalized-detection evidence; do not invoke the nonunique lift theorem a
-  second time.  The evidence's component equality becomes the zero tag's
-  equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1398-1405 and 929-961; the erroneous cofiber
 % conclusion at aimpaper/main.tex:2730-2732 is repaired: the cofiber equivalent
