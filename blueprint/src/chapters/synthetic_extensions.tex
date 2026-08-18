@@ -124,288 +124,43 @@ that is ambiguous in the paper's printed Proposition 4.6.
 
 % PROOF-SOURCE: the standard obstruction calculation for a countable inverse
 % system of abelian torsors, combined with BHS Proposition A.13.
-\begin{lemma}[Mittag--Leffler criterion for an inverse-limit ESS extension]
-  \label{lem:synthetic-ess-coherent-tower-limit}
-  \uses{def:synthetic-ess-solution-tower,thm:external-synthetic-lambda-complete}
-  \notready
-  In the setting of
-  Definition~\ref{def:synthetic-ess-solution-tower}, suppose every finite
-  solution fiber is nonempty and that the compatible maps $F_m$ are the
-  reductions of a map $F_\infty$ between $\lambda$-complete synthetic spectra.
-  There is a canonical torsor obstruction
-  \[
-    \omega(\operatorname{Sol}_\bullet)
-      \in \varprojlim^{1}_{m} K_m
-  \]
-  whose vanishing is equivalent to the existence of a coherent solution
-  tower.  Either of the following is sufficient for vanishing:
-  \begin{enumerate}
-    \item every finite solution lifts, that is, each
-      $\operatorname{res}_{m+1,m}$ is surjective;
-    \item the difference-group tower $(K_m)$ is Mittag--Leffler: for every
-      $m$, the images of $K_l\to K_m$ stabilize as $l$ increases.  Surjective
-      transition maps are a sufficient special case.  Then
-      $\varprojlim^1_m K_m=0$.
-  \end{enumerate}
-  A coherent solution tower determines the untruncated relation
-  \[
-    d_n^{F_\infty}(x_\infty)=y_\infty
-  \]
-  in the complete target coset.  Conversely, every untruncated representative
-  solution restricts to a coherent finite tower.
-\end{lemma}
 
-\begin{proof}
-  Choose one point in each finite solution torsor.  The differences between a
-  chosen point and the restriction of the next one form the usual cocycle for
-  the inverse system $(K_m)$; changing the choices changes it by a coboundary.
-  Its class is $\omega$, and a coboundary correction makes the chosen points
-  coherent exactly when $\omega=0$.  Surjective lifting constructs such a
-  tower recursively.  The Mittag--Leffler hypothesis gives
-  $\varprojlim^1K_m=0$ and hence the same conclusion.
-
-  At the representative-space level, the solution equation is a homotopy fiber
-  of the filtered two-term-complex map, and homotopy limits preserve that
-  fiber.  The $\lambda$-adic equivalences identify the limit source, target,
-  map, and shorter-image corrections with their untruncated counterparts.
-  Thus a coherent finite solution is exactly an $F_\infty$ solution; restriction
-  proves the converse.
-\end{proof}
 
 \section{The elementary $\lambda$ and $\rho$ extensions}
 
 % SOURCE: aimpaper/main.tex:1025-1048, Proposition prop:9770ae6e.
-\begin{proposition}[$\lambda^n$- and $\rho$-ESS have only $d_0$]
-  \label{prop:lambda-rho-ess-only-d0}
-  \uses{def:lambda-rho-delta-triangle,prop:synthetic-einfty-map-compatibility,prop:synthetic-einfty-first-quotient,prop:synthetic-ess-weightwise-transport,prop:fess-exact-middle-boundary}
-  \notready
-  In the extension spectral sequences of $\lambda^n$ and $\rho_{n,m}$, the
-  only possibly nonzero differentials are
-  $d_0^{\lambda^n}=\lambda^n$ and $d_0^\rho=\rho$.  These $d_0$ extensions have
-  no crossings.  On each tridegree, $\lambda^n$ is surjective or zero and
-  $\rho$ is injective or zero on $E_\infty$.
-\end{proposition}
 
-\begin{proof}
-  First suppose $m<\infty$.  If one of the quotient exponents is one, use the
-  mod-$\lambda$ collapse and unique-detection statement of
-  Proposition~\ref{prop:synthetic-einfty-first-quotient}; when both relevant
-  exponents are at least two, use the two finite $E_\infty$ formulas.  If a
-  tridegree is outside the quotient range its group is zero, while in range
-  $\rho$ is a cycle inclusion and $\lambda^n$ is a boundary quotient.
-
-  If $m=\infty$, instead use the two infinite-endpoint clauses of
-  Proposition~\ref{prop:synthetic-einfty-map-compatibility}: on the
-  untruncated $E_\infty$ formula, $\lambda^n$ is the quotient that raises the
-  boundary cutoff by $n$, and
-  $\rho:\nu X\to\nu X/\lambda^n$ includes permanent representatives into the
-  finite cycle cutoff (using the special-fiber clause when $n=1$).  Thus the
-  sequence is exact at its middle term in every tridegree in both the finite
-  and infinite branches.
-  Apply the synthetic exact-middle theorem to eliminate higher differentials,
-  and use the degree-zero filtration shift to obtain no-crossing.
-\end{proof}
 
 \section{The connecting extension and classical differentials}
 
 % SOURCE: aimpaper/main.tex:1068-1131, proof of Proposition prop:6de7d130.
-\begin{lemma}[Shorter $\delta_n$ images are classical boundaries]
-  \label{lem:delta-images-equal-classical-boundaries}
-  \uses{thm:external-lambda-bockstein,prop:synthetic-einfty-map-compatibility,prop:synthetic-ess-weightwise-transport,cor:fess-triangle-shift}
-  \notready
-  For the infinite connecting map
-  $\delta_n:\nu X/\lambda^n\to\Sigma^{1,-n}\nu X$, the subgroup generated by
-  extension differentials of length less than $r$ in the target tridegree is
-  exactly the image of the classical boundary subgroup
-  $B_{r-1}^{s+r,t+r-1}(X)$ under the corresponding $\lambda$-multiple.
-\end{lemma}
 
-\begin{proof}
-  Induct on $r$.  Write each generator of $B_{r-1}$ as the target of an
-  essential classical $d_{r'}$ with $2\le r'<r$.  The Bockstein comparison and
-  triangle-shift propagation turn it into a shorter $\delta_n$ extension with
-  the required $\lambda$ power.  Conversely, apply the same comparison to
-  every shorter $\delta_n$ extension.  The inductive hypothesis removes its
-  lower-page indeterminacy.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1068-1131, Proposition prop:6de7d130, m=infinity case.
-\begin{proposition}[Infinite $\delta_n$-ESS formula]
-  \label{prop:delta-ess-formula-infinite}
-  \uses{lem:delta-images-equal-classical-boundaries,thm:external-lambda-bockstein,cor:fess-triangle-shift,prop:lambda-rho-ess-only-d0}
-  \notready
-  Suppose the classical Adams spectral sequence has
-  $d_r(x)=y$, with $x\in Z_{r-1}^{s,t}$ and
-  $y\in Z_\infty^{s+r,t+r-1}$.  For
-  $\delta_n:\nu X/\lambda^n\to\Sigma^{1,-n}\nu X$:
-  \begin{enumerate}
-    \item if $r\ge n+1$, then
-      $d_r^{\delta_n}(x)=\lambda^{r-n-1}y$;
-    \item if $r\le n+1$, then
-      $d_r^{\delta_n}(\lambda^{n+1-r}x)=y$.
-  \end{enumerate}
-  The formulas agree when $r=n+1$ and are equalities in the correct ESS
-  quotient, whether or not the displayed extension is essential.
-\end{proposition}
 
-\begin{proof}
-  Start with $n=1$, where the assertion is the $\lambda$-Bockstein theorem.
-  Induct on $n$ using the commuting triangle relating multiplication by
-  $\lambda$, $\delta_{n-1}$, and $\delta_n$.  Triangle propagation gives the
-  formula before quotient indeterminacy.  Division by one $\lambda$ introduces
-  only the next classical boundary subgroup; Lemma~\ref{lem:delta-images-equal-classical-boundaries}
-  identifies and removes precisely that ESS indeterminacy.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1068-1131, Proposition prop:6de7d130, finite m case.
 % VERIFIED-IN: the printed second case places y in E_infty(nu X); the finite target requires its rho-image.
-\begin{proposition}[Finite $\delta_{n,m}$-ESS formula]
-  \label{prop:delta-ess-formula-finite}
-  \uses{prop:delta-ess-formula-infinite,cor:fess-composition,prop:lambda-rho-ess-only-d0}
-  \notready
-  For finite $m>n$, compose the formulas of
-  Proposition~\ref{prop:delta-ess-formula-infinite} with the reduction
-  $\rho:\nu X\to\nu X/\lambda^{m-n}$.  Thus the displayed target is the image
-  of $\lambda^{r-n-1}y$, or of $y$ in the second case, in the finite quotient;
-  it is zero once the required $\lambda$ power lies outside that quotient.
-  This explicit image corrects the type ambiguity in
-  \texttt{aimpaper/main.tex:1088--1094}.
-\end{proposition}
 
-\begin{proof}
-  Factor $\delta_{n,m}$ as $\delta_{n,\infty}$ followed by $\rho$.  The
-  $\rho$-ESS has only its injective-or-zero $d_0$, with no crossing, so ESS
-  composition transports the infinite formula to the finite target.  The
-  quotient formula decides exactly when the image is zero.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1138-1144, Corollary cor:2a636737.
-\begin{corollary}[$\lambda$-multiple form of the $\delta$ formula]
-  \label{cor:delta-ess-lambda-multiples}
-  \uses{prop:delta-ess-formula-finite}
-  \notready
-  In the situation above,
-  \[
-    d_r^\delta(\lambda^a x)=\lambda^{a+r-n-1}y
-  \]
-  whenever $0\le a\le n$ and
-  $0\le a+r-n-1<m-n$; outside the finite quotient range the right-hand side
-  and the extension are zero.
-\end{corollary}
 
-\begin{proof}
-  Multiply the finite formula by $\lambda^a$, using $\lambda$-linearity of the
-  synthetic Adams and extension spectral sequences.  Check the source and
-  target quotient ranges directly.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1146-1150, Remark rmk:qvoewfj.
-\begin{theorem}[$\delta$-ESS and classical differential cosets are equivalent]
-  \label{thm:delta-classical-equivalence}
-  \uses{cor:delta-ess-lambda-multiples,lem:delta-images-equal-classical-boundaries,thm:external-lambda-bockstein}
-  \notready
-  For every allowed $a,n,m,r$, the equation
-  $d_r^\delta(\lambda^a x)=\lambda^{a+r-n-1}y$ holds if and only if the
-  classical differential coset is $d_r(x)=y$.  Both sides have the same
-  indeterminacy $B_{r-1}$ after applying the stated $\lambda$ power.
-\end{theorem}
 
-\begin{proof}
-  The forward direction applies the Bockstein comparison to a representative
-  and uses the shorter-image lemma to identify the quotient.  The reverse
-  direction is the $\lambda$-multiple formula.  Equality of the two boundary
-  subgroups makes the correspondence bijective at the level of differential
-  cosets, not merely at the level of nonvanishing.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1152-1163, Example 4.13.
-\begin{proposition}[$\delta_1,\delta_2,\delta_3$ regression]
-  \label{prop:delta-14-stem-regression}
-  \uses{prop:synthetic-14-stem-regression,cor:delta-ess-lambda-multiples}
-  \notready
-  The $d_2(h_4)=h_0h_3^2$ and
-  $d_3(h_0h_4)=h_0d_0$ examples yield exactly the eight
-  $\delta_1,\delta_2,\delta_3$ extensions and $\lambda$ powers listed in
-  Example 4.13: two for $\delta_1$, three for $\delta_2$, and three for
-  $\delta_3$.
-\end{proposition}
 
-\begin{proof}
-  Substitute $(n,m)=(1,\infty),(2,\infty),(3,\infty)$ and each admissible
-  value of $a$ into Corollary~\ref{cor:delta-ess-lambda-multiples}.  The
-  synthetic $E_\infty$ regression verifies that every source and target exists
-  in the displayed tridegree.
-\end{proof}
 
 \section{Crossings of classical differentials}
 
 % SOURCE: aimpaper/main.tex:1165-1173, Definition def:classicalcrossdiff.
-\begin{definition}[Classical crossing on an $E_{n+1}$ page]
-  \label{def:classical-differential-crossing}
-  \uses{def:classical-adams-ss,def:ss-cycle-boundary-permanent}
-  \notready
-  Let $r\ge n+1$ and $d_r(x)=y$, with $x$ in filtration $s$.  A crossing on
-  the $E_{n+1}$ page is an essential differential
-  $d_{r-a-b}(x')=y'$ where the source filtration is $s+a$, the target
-  filtration is $s+r-b$, $0<a\le n-1$, and
-  $0\le b\le r-n-1$.
-\end{definition}
+
 
 % SOURCE: aimpaper/main.tex:1218-1234, Proposition prop:cross-dr-En.
-\begin{proposition}[Classical crossing iff $\delta_n$ crossing]
-  \label{prop:classical-crossing-iff-delta-crossing}
-  \uses{def:classical-differential-crossing,def:fess-crossing,thm:delta-classical-equivalence,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient}
-  \notready
-  A classical $d_r(x)=y$ has a crossing on $E_{n+1}$ if and only if the
-  corresponding extension
-  $d_r^{\delta_n}(x)=\lambda^{r-n-1}y$ has a crossing in the synthetic
-  $\delta_n$-ESS.
-\end{proposition}
 
-\begin{proof}
-  A synthetic crossing has the unique degree form
-  $d_{r-a-b}^{\delta_n}(\lambda^a x')=\lambda^{r-n-1-b}y'$.  The two
-  sides are both empty when $n=1$: the classical range would require
-  $0<a\le0$, while mod-$\lambda$ collapse and unique detection exclude an
-  additional synthetic representative.  For $n\ge2$, the two $E_\infty$
-  formulas force exactly the inequalities in
-  Definition~\ref{def:classical-differential-crossing}.  Apply the
-  $\delta$--classical equivalence in each direction, preserving essentiality
-  through the shared boundary quotient.  The first-quotient proposition is
-  used only in the $n=1$ branch.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1236-1238, Remark nocrossE2.
-\begin{corollary}[No classical crossing on $E_2$]
-  \label{cor:classical-e2-no-crossing}
-  \uses{def:classical-differential-crossing,prop:classical-crossing-iff-delta-crossing}
-  \notready
-  No classical Adams differential has a crossing on the $E_2$ page, and every
-  corresponding $\delta_1$ extension has no crossing.
-\end{corollary}
 
-\begin{proof}
-  Setting $n=1$ would require an integer $a$ with $0<a\le0$.  Hence no
-  classical crossing exists; transfer the conclusion through
-  Proposition~\ref{prop:classical-crossing-iff-delta-crossing}.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1240-1271, Example exam:classcrossdiff.
-\begin{proposition}[Stem-$38$ crossing regression]
-  \label{prop:stem38-crossing-regression}
-  \uses{prop:classical-crossing-iff-delta-crossing,cor:classical-e2-no-crossing,def:external-evidence}
-  \notready
-  Given the typed computation evidence
-  $d_3(e_1)=h_1t$ and
-  $d_4(h_0h_3h_5)=h_0^2x$, the former is a crossing of the latter on the
-  $E_3$ and $E_4$ pages, but not on $E_2$ or on pages $E_r$ for $r\ge5$.
-  The associated $\delta_n$ extensions and their weights are exactly those in
-  Example 4.18.
-\end{proposition}
-
-\begin{proof}
-  Check the four inequalities in the crossing definition for $n=1,2,3$ and
-  $n\ge4$, then transport the two computed differential cosets using the
-  crossing equivalence.  The synthetic $E_\infty$ formulas verify which
-  $\lambda$ multiples remain represented.
-\end{proof}

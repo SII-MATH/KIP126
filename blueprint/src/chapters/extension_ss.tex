@@ -24,23 +24,7 @@ they are not consequences of page-level naturality alone.
 \end{definition}
 
 % SOURCE: AIM-7 concrete tracer bullet; aimpaper/main.tex:430-453.
-\begin{definition}[Concrete classical $\eta$-ESS tracer bullet]
-  \label{def:classical-eta-ess-concrete}
-  \uses{def:classical-adams-ss,thm:external-adams-h4-d2-slice,prop:eta-ess-regression,def:catalogued-external-evidence}
-  \lean{KIP126.Classical.ExtensionSS.etaESS}
-  \lean{KIP126.Classical.ExtensionSS.E₀}
-  \lean{KIP126.Classical.ExtensionSS.abutment}
-  \lean{KIP126.Classical.ExtensionSS.etaESSShape}
-  \lean{KIP126.Classical.ExtensionSS.ClassicalEtaESSAdapter}
-  \notready
-  On the AIM-5 concrete classical Adams data, the $\eta$ tracer bullet uses
-  Mathlib's `CategoryTheory.SpectralSequence` with page-zero object
-  $E_\infty(X)\oplus E_\infty(Y)$, differential degree $(n,n)$, and
-  componentwise abutment $\ker(\pi_*\eta)\oplus\operatorname{coker}(\pi_*\eta)$.
-  The finite differential rows carry the AIM paper locator and are injected
-  through the `etaEssRegression` claim ledger; this does not add a global
-  differential axiom.
-\end{definition}
+
 
 % SOURCE: aimpaper/main.tex:264-271, Definition def:ess.
 \begin{definition}[$f$-extension spectral sequence]
@@ -61,26 +45,7 @@ they are not consequences of page-level naturality alone.
 \end{definition}
 
 % SOURCE: AIM-7 concrete tracer bullet; aimpaper/main.tex:430-453.
-\begin{proposition}[Concrete eta detection slice]
-  \label{prop:classical-eta-extension-iff-detected}
-  \uses{def:classical-eta-ess-concrete,prop:eta-ess-regression}
-  \lean{KIP126.Classical.ExtensionSS.extension_iff_detected}
-  \lean{KIP126.Classical.ExtensionSS.FExtension}
-  \lean{KIP126.Classical.ExtensionSS.DetectedBy}
-  \lean{KIP126.Classical.ExtensionSS.Essential}
-  \lean{KIP126.Classical.ExtensionSS.Crossing}
-  \notready
-  For the concrete finite eta rows, extension is equivalent to membership in
-  the set-valued detection predicate.  Essentiality and crossing are defined
-  only on this construction, so detection representatives are not forced to
-  be unique.
-\end{proposition}
 
-\begin{proof}
-  Expand the two predicates as membership in the detected and differential
-  sets and rewrite with the concrete input's equality between those sets.
-  The eta rows themselves are supplied by the catalogued regression evidence.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:277-295, Notation nota:6fb333a2.
 \begin{definition}[$f$-ESS cycles and boundaries]
@@ -177,19 +142,7 @@ they are not consequences of page-level naturality alone.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:327-342, unlabelled Corollary 2.6.
-\begin{corollary}[Map filtration forces initial ESS differentials to vanish]
-  \label{cor:fess-below-map-filtration-zero}
-  \uses{thm:external-map-filtration-factorization,prop:fextension-iff-detected}
-  \notready
-  If $\operatorname{AF}(f)=k$, then $d_i^f=0$ for every $i<k$.
-\end{corollary}
 
-\begin{proof}
-  Factor $f$ into $k$ homology-trivial maps.  Each factor raises Adams
-  filtration by at least one, so the composite raises it by at least $k$.
-  Proposition~\ref{prop:fextension-iff-detected} then excludes a nonzero
-  target in any smaller filtration shift.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:344-352, Definition def:98skj23.
 \begin{definition}[Crossing and no-crossing range]

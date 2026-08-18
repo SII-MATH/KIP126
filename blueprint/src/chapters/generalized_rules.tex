@@ -9,106 +9,16 @@ no-crossing hypothesis.
 \section{Generalized Leibniz rule}
 
 % SOURCE: aimpaper/main.tex:1606-1652, Theorem thm:e73f481e.
-\begin{theorem}[Generalized Leibniz rule]
-  \label{thm:generalized-leibniz}
-  \uses{prop:delta-ess-formula-infinite,thm:delta-classical-equivalence,prop:classical-crossing-iff-delta-crossing,def:page-extension,prop:page-crossing-iff-synthetic-crossing,cor:fess-square-naturality}
-  \notready
-  Let $f:X\to Y$, $2\le n\le r$,
-  $e(f)\le m\le n-2+e(f)$, and $l\ge e(f)$.  Suppose
-  \[
-  \begin{aligned}
-    &x\in Z_{r-1}^{s,t}(X),&&
-    y\in Z_{r-1-m+e(f)}^{s+m,t+m}(Y),\\
-    &x_\infty\in Z_\infty^{s+r,t+r-1}(X),&&
-    y_\infty\in Z_\infty^{s+r+l,t+r+l-1}(Y),
-  \end{aligned}
-  \]
-  and assume:
-  \begin{enumerate}
-    \item $d_r(x)=x_\infty$;
-    \item $d_m^{f,E_n}(x)=y$;
-    \item $d_l^{f,E_\infty}(x_\infty)=y_\infty$;
-    \item either the first differential has no crossing on $E_n$, or the
-      second page extension has no crossing;
-    \item the third page extension has no crossing.
-  \end{enumerate}
-  Then $d_{r+l-m}(y)=y_\infty$.
-\end{theorem}
 
-\begin{proof}
-  Form the square whose horizontal maps are
-  $\widehat f_{n-1}$ and $\widehat f$ and whose vertical maps are the two
-  connecting maps from reduction modulo $\lambda^{n-1}$.  Translate (1) by the
-  $\delta$ formula and (2)--(3) by the definition of page extension.  The two
-  crossing comparison theorems turn hypothesis (4) into synchronized-source
-  no-crossing and hypothesis (5) into target no-crossing.  Apply ESS square
-  propagation.  Finally use the $\delta$--classical equivalence to remove the
-  displayed $\lambda$ powers and obtain the asserted classical differential
-  coset.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1664-1692, Example exam:Leibnizyes.
-\begin{proposition}[Positive Leibniz regression]
-  \label{prop:leibniz-positive-regression}
-  \uses{thm:generalized-leibniz,thm:external-adams-one-line,prop:hopf-e2-page-extension,prop:hopf-einfty-page-extension,cor:classical-e2-no-crossing,prop:page-crossing-regression}
-  \notready
-  The inputs
-  $d_2(h_5)=h_0h_4^2$,
-  $d_1^{\nu_{\mathrm{Hopf}},E_2}(h_5)=h_2h_5$, and
-  $d_2^{\nu_{\mathrm{Hopf}},E_\infty}(h_0h_4^2)=h_0p$
-  satisfy the generalized Leibniz hypotheses and give
-  \[
-    d_3(h_2h_5)=h_0p.
-  \]
-\end{proposition}
 
-\begin{proof}
-  Substitute $(n,r,m,l,e(f))=(2,2,1,2,1)$.  The $E_2$ classical crossing
-  condition is automatic, and the two Hopf-map page extensions have the
-  no-crossing certificates from the regression.  The theorem gives a
-  differential of length $2+2-1=3$ with the claimed target.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1694-1720, Example exam:Leibnizno.
-\begin{proposition}[No-crossing is necessary]
-  \label{prop:leibniz-negative-regression}
-  \uses{thm:generalized-leibniz,prop:two-page-extension-regression,prop:page-crossing-regression,def:external-evidence}
-  \notready
-  For $f=2$ and the computed differential
-  $d_2(h_4)=h_0h_3^2$, all generalized Leibniz hypotheses except target
-  no-crossing can be met using
-  $d_2^{2,E_\infty}(h_0h_3^2)=0$.  The missing hypothesis is false because
-  $d_1^{2,E_\infty}(d_0)=h_0d_0$ crosses it.  Omitting that hypothesis would
-  assert the false zero differential $d_3(h_0h_4)=0$.
-\end{proposition}
 
-\begin{proof}
-  Evaluate every hypothesis using the page-extension regression and the typed
-  classical computation.  The length-one extension meets the crossing bounds,
-  so the generalized theorem is inapplicable.  The known nonzero differential
-  on $h_0h_4$ supplies the regression check that the weakened statement is
-  false.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1733-1753, Remark rem:chuaerror; Chua Definition 12.5 and Theorem 12.9.
-\begin{proposition}[Counterexample to the maximal-extension rule]
-  \label{prop:chua-rule-counterexample}
-  \uses{prop:leibniz-negative-regression,def:external-result,def:external-evidence}
-  \notready
-  The maximal-$[h_0]$ lift of $h_0h_3^2$ in the stated synthetic $14$-stem
-  example maps to zero, while another lift maps to $[h_0d_0]$.  Consequently
-  the rule quoted as Chua Theorem 12.9, when read without a no-crossing
-  hypothesis, predicts the false conclusion of
-  Proposition~\ref{prop:leibniz-negative-regression}.
-\end{proposition}
 
-\begin{proof}
-  Use the two distinct detected lifts and their products from the supplied
-  evidence.  The zero product is maximally $\lambda$-divisible under the cited
-  definition.  Substitution into the quoted rule yields the false zero target,
-  so these data form a concrete counterexample; no claim about a corrected
-  version is made.
-\end{proof}
 
 \section{The smash-product lemma}
 
@@ -134,198 +44,22 @@ no-crossing hypothesis.
 \section{Generalized Mahowald trick}
 
 % SOURCE: aimpaper/main.tex:1780-1917, complete hypotheses and degree package for Theorem thm:158d451a.
-\begin{definition}[Generalized Mahowald input package]
-  \label{def:mahowald-input-data}
-  \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing}
-  \notready
-  A Mahowald input package consists of a distinguished triangle
-  $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
-  $e(f)+e(g)+e(h)=1$, integers $s,t,n,m,l$, and
-  \[
-    r=n+m+l,\quad n_1=n-e(f)\ge1,\quad
-    m_1=m-e(g)\ge0,\quad l_1=l-e(h)\ge0,\quad
-    r'=r-m_1=n_1+l_1+1.
-  \]
-  It contains classes
-  \[
-  \begin{aligned}
-    x&\in Z_{n_1}^{s+l,t+l-1}(X),&
-    y&\in Z_{m_1+1}^{s+n+l,t+n+l-1}(Y),\\
-    \bar x&\in Z_{r-1}^{s,t}(Z),&
-    \bar y&\in Z_\infty^{s+r,t+r-1}(Z),
-  \end{aligned}
-  \]
-  proofs of $d_l^{h,E_{r'}}(\bar x)=x$, $d_r(\bar x)=\bar y$,
-  $d_m^{g,E_{m_1+2}}(y)=\bar y$, and a proof that either the first page
-  extension has no crossing or the classical differential has no crossing on
-  $E_{r'}$.
-\end{definition}
+
 
 % SOURCE: aimpaper/main.tex:1780-1917, representative choices in the proof of Theorem thm:158d451a.
-\begin{lemma}[Synchronized Mahowald representatives]
-  \label{lem:mahowald-synchronized-representatives}
-  \uses{def:mahowald-input-data,prop:no-crossing-iff-uniform-detection,prop:classical-crossing-iff-delta-crossing,prop:page-crossing-iff-synthetic-crossing,thm:delta-classical-equivalence}
-  \notready
-  For a Mahowald input package, one can choose
-  \[
-    [\bar x]\in\pi_{t-s,t}(\nu Z/\lambda^{r'-1})
-  \]
-  detected by $\bar x$ such that
-  $\widehat h_{r'-1}[\bar x]$ is detected by
-  $\lambda^{l_1}x$ in
-  $\pi_{t-s-1,t-1+e(h)}(\nu X/\lambda^{r'-1})$ and
-  $\delta_{r'-1}[\bar x]$ is detected by
-  $\lambda^{m_1}\bar y$ in
-  $\pi_{t-s-1,t+r'-1}(\nu Z/\lambda^{m_1+1})$.
-\end{lemma}
 
-\begin{proof}
-  Translate the page extension and classical differential into the two
-  synthetic ESS extensions in the common quotient.  The assumed no-crossing
-  of at least one extension invokes uniform detection for every representative
-  chosen to realize the other.  Hence one representative realizes both
-  leading terms simultaneously.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1886-1907, the representative for y, degree-uniqueness, and the application of May's pullback lemma.
-\begin{lemma}[May-compatible lift in the Mahowald diagram]
-  \label{lem:mahowald-compatible-quotient-lift}
-  \uses{def:mahowald-input-data,lem:mahowald-synchronized-representatives,thm:external-may-smash-boundary,prop:synthetic-ess-weightwise-transport,prop:fextension-iff-detected,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle}
-  \notready
-  For a Mahowald input package, choose the synchronized representative
-  $[\bar x]$ of Lemma~\ref{lem:mahowald-synchronized-representatives}.
-  There are a representative
 
-  \[
-    [y]\in\pi_{t-s-1,t+n+l-1}(\nu Y/\lambda^{m_1+1})
-  \]
-  detected by $y$ and a class
-
-  \[
-    u\in\pi_{t-s-1,t-1+e(h)}(\nu X/\lambda^r)
-  \]
-  detected by $\lambda^{l_1}x$ such that
-
-  \[
-    \rho(u)=\widehat h_{r'-1}([\bar x]),
-    \qquad
-    \widehat f_r(u)=\lambda^{r'-1}[y].
-  \]
-\end{lemma}
-
-\begin{proof}
-  The fourth page-extension hypothesis and the representative criterion choose
-  $[y]$ whose image under $\widehat g_{m_1+1}$ is detected by
-  $\lambda^{m_1}\bar y$.  If $m_1=0$, the first-quotient collapse and its
-  unique-detection conclusion make that mod-$\lambda$ homotopy class unique;
-  if $m_1\ge1$, the finite-quotient $E_\infty$ formula gives uniqueness in the
-  indicated top weight.  Hence in both cases
-  $\widehat g_{m_1+1}([y])$ equals
-  $\delta_{r'-1}([\bar x])$.  Apply May's smash-boundary theorem to the
-  normalized synthetic triangle and the $\lambda$--$\rho$--$\delta$ triangle.
-  Its pullback class is $u$, and its two structure maps give exactly the two
-  displayed equalities.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1900-1910, equation eq:f4848f29 and the ensuing one-way survival deduction.
-\begin{lemma}[A compatible quotient lift gives source survival]
-  \label{lem:mahowald-quotient-lift-survival}
-  \uses{def:mahowald-input-data,lem:mahowald-synchronized-representatives,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-map-compatibility}
-  \notready
-  For a Mahowald input package, suppose
 
-  \[
-    u\in\pi_{t-s-1,t-1+e(h)}(\nu X/\lambda^r)
-  \]
-  is detected by $\lambda^{l_1}x$ and its $\rho$-image is the synchronized
-  representative detected by $\lambda^{l_1}x$ modulo $\lambda^{r'-1}$.
-  Then
-
-  \[
-    x\in Z_{n+m+e(h)}^{s+l,t+l-1}(X).
-  \]
-  No converse for a preselected representative in the smaller quotient is
-  asserted.
-\end{lemma}
-
-\begin{proof}
-  Apply the finite-quotient $E_\infty$ formula to the class $u$.  Its exponent
-  after removing the displayed $\lambda^{l_1}$ is
-  $r-l_1=n+m+e(h)$, so the existence of $u$ places $x$ in the corresponding
-  cycle subgroup.  Compatibility of $\rho$ verifies that its reduction is the
-  synchronized smaller-quotient representative; it is not used to manufacture
-  a lift from survival alone.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1903-1917, final lambda-division step of Theorem thm:158d451a.
-\begin{lemma}[$\lambda$-division indeterminacy in the Mahowald diagram]
-  \label{lem:mahowald-lambda-division}
-  \uses{def:mahowald-input-data,prop:synthetic-einfty-map-compatibility,def:page-extension-coset}
-  \notready
-  For a Mahowald input package, if the smash diagram gives
-  \[
-    d_n^{\widehat f_r}(\lambda^{l_1}x)=\lambda^{r'-1}y,
-  \]
-  then division by $\lambda^{l_1}$ is defined in the quotient of exponent
-  $r-l_1=n+m+e(h)$ and changes the target exactly by
-  $B_{r'}^{s+n+l,t+n+l-1}(Y)$.  The result is
-  \[
-    d_n^{f,E_{n+m+1+e(h)}}(x)
-       \equiv y\pmod{B_{r'}^{s+n+l,t+n+l-1}(Y)}.
-  \]
-\end{lemma}
 
-\begin{proof}
-  Apply the quotient-map description of multiplication by $\lambda^{l_1}$.
-  Its kernel is the boundary cutoff enlarged by $l_1$; after substituting the
-  definitions of $n_1,m_1,l_1,r'$, this cutoff is $B_{r'}$.  Compare with the
-  complete page-extension target coset to obtain the asserted equivalence.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1780-1917, Theorem thm:158d451a.
-\begin{theorem}[Generalized Mahowald trick]
-  \label{thm:generalized-mahowald}
-  \uses{def:mahowald-input-data,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
-  \notready
-  Let
-  $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ be distinguished
-  with $e(f)+e(g)+e(h)=1$.  Put
-  $r=n+m+l$, $n_1=n-e(f)\ge1$,
-  $m_1=m-e(g)\ge0$, $l_1=l-e(h)\ge0$, and
-  $r'=r-m_1=n_1+l_1+1$.  Suppose
-  \[
-  \begin{aligned}
-    x&\in Z_{n_1}^{s+l,t+l-1}(X),&
-    y&\in Z_{m_1+1}^{s+n+l,t+n+l-1}(Y),\\
-    \bar x&\in Z_{r-1}^{s,t}(Z),&
-    \bar y&\in Z_\infty^{s+r,t+r-1}(Z),
-  \end{aligned}
-  \]
-  and assume
-  \begin{enumerate}
-    \item $d_l^{h,E_{r'}}(\bar x)=x$;
-    \item $d_r(\bar x)=\bar y$;
-    \item either (1) has no page crossing or (2) has no crossing on $E_{r'}$;
-    \item $d_m^{g,E_{m_1+2}}(y)=\bar y$.
-  \end{enumerate}
-  Then $x\in Z_{n+m+e(h)}$ and
-  \[
-    d_n^{f,E_{n+m+1+e(h)}}(x)
-       \equiv y\quad\text{modulo }B_{r'}.
-  \]
-\end{theorem}
 
-\begin{proof}
-  Smash the normalized synthetic triangle with the quotient triangle of
-  exponents $r$ and $r'-1$.  The synchronization lemma chooses the common
-  representative of $\bar x$.  The May-compatible-lift lemma uses condition
-  (4), the degree-unique common target, and May's pullback theorem to produce a
-  single class mapping to both sides of the diagram.  The one-way
-  quotient-lift lemma turns that actual $\rho$ lift into the stronger survival
-  statement for $x$.  Its other image is the normalized $f$ relation; divide
-  by $\lambda^{l_1}$ using the final lemma to obtain the page extension with
-  exactly $B_{r'}$ indeterminacy.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1930-1977, Example exam:Mahowald.
 \begin{definition}[Atiyah--Hirzebruch cell notation for $S^0/\nu_{\mathrm{Hopf}}$]
@@ -340,269 +74,27 @@ no-crossing hypothesis.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:1930-1977, Example exam:Mahowald; computed cofiber d_2 is external evidence.
-\begin{proposition}[Cofiber regression for the Mahowald trick]
-  \label{prop:mahowald-cofiber-regression}
-  \uses{thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,cor:classical-e2-no-crossing,def:external-evidence}
-  \notready
-  Given the computed differential
-  $d_2(h_0h_4^2[4])=h_0p[0]$ in the Adams spectral sequence of
-  $S^0/\nu_{\mathrm{Hopf}}$ and the two displayed Ext edge-map facts, the
-  generalized Mahowald trick proves that $h_0h_4^2$ survives to $E_3$ and
-  \[
-    d_2^{\nu_{\mathrm{Hopf}},E_3}(h_0h_4^2)=h_0p.
-  \]
-\end{proposition}
 
-\begin{proof}
-  Use Lemma~\ref{lem:normalized-hopf-exactness-case} to instantiate the Hopf
-  triangle with $(e(f),e(g),e(h))=(1,0,0)$ and its one chosen lifted triangle.
-  Substitute $m=l=0$, $n=r=r'=2$, $n_1=1$, and $m_1=l_1=0$ into the theorem.
-  Bottom- and top-cell Ext exactness give the two length-zero page extensions;
-  the supplied cofiber differential gives condition (2), and $E_2$
-  no-crossing gives condition (3).  The theorem produces the stated
-  extension with zero additional indeterminacy in this degree.
-\end{proof}
 
 \section{Restriction and stretching across pages}
 
 % SOURCE: aimpaper/main.tex:1981-2068, Proposition prop:dec738d3, first part.
-\begin{proposition}[Restriction of a page extension]
-  \label{prop:page-extension-restrict}
-  \uses{def:page-extension,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0}
-  \notready
-  If $d_n^{f,E_r}(x)=y$ and $2\le r'<r$, reduction along
-  \[
-    \rho_X:\nu X/\lambda^{r-1}\to\nu X/\lambda^{r'-1},
-    \qquad
-    \rho_Y:\nu Y/\lambda^{r-1}\to\nu Y/\lambda^{r'-1}
-  \]
-  gives
-  $d_n^{f,E_{r'}}(x)=y$ whenever the source and target are defined.
-\end{proposition}
 
-\begin{proof}
-  The square of reduced normalized maps commutes.  Since both vertical
-  $\rho$-ESS have only $d_0$, the stable-page map theorem induces a morphism of
-  the two $\widehat f$ extension spectral sequences.  Naturality sends the
-  length-$n$ differential to its earlier-page version.
-\end{proof}
 
 % PROOF-SOURCE: aimpaper/main.tex:1981-2068, proof of Proposition
 % prop:dec738d3; project exact-obstruction reformulation of the representative
 % lifting calculation needed for the later-page converse.
-\begin{lemma}[Exact obstruction for finite page-extension restriction]
-  \label{lem:page-extension-restriction-exact-obstruction}
-  \uses{def:page-extension,def:page-extension-coset,def:page-extension-crossing,def:synthetic-ess-solution-tower,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:fextension-inessential-iff-higher}
-  \notready
-  Let $2\le r'<r<\infty$, let
-  $e(f)\le n\le r'-2+e(f)$, and suppose
-  \[
-    x\in Z_{r-1}^{s,t}(X),\qquad
-    y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y).
-  \]
-  Write $\operatorname{Sol}_{r}^{n}(x,y)$ and
-  $\operatorname{Sol}_{r'}^{n}(x,y)$ for the representative solution fibers
-  of Definition~\ref{def:synthetic-ess-solution-tower} for
-  $\widehat f_{r-1}$ and $\widehat f_{r'-1}$.  Reduction defines a restriction
-  map and a pointed obstruction sequence
-  \[
-    \operatorname{Sol}_{r}^{n}(x,y)
-      \xrightarrow{\ \rho_*\ }
-    \operatorname{Sol}_{r'}^{n}(x,y)
-      \xrightarrow{\ \operatorname{ob}_{r,r'}\ }
-    \operatorname{Ob}_{r,r'}^{n}(x,y).
-  \]
-  Here $\operatorname{Ob}_{r,r'}^{n}(x,y)$ is the cokernel of restriction on
-  the groups of representative equations after the target is divided by its
-  complete shorter-image coset.  The sequence is exact in the pointed sense:
-  for every earlier-page solution $u$, the equality
-  \[
-    \operatorname{ob}_{r,r'}(u)=0
-  \]
-  holds exactly when $u\in\operatorname{im}(\rho_*)$.
 
-  Every nonzero obstruction has a representative with
-  $0<a'\le n-e(f)$, $0\le b\le n-a'-e(f)$, and classes
-  \[
-    x'\in Z_{r'-1-a'}^{s+a',t+a'}(X)
-       \setminus Z_{r-1-a'}^{s+a',t+a'}(X),
-    \qquad
-    y'\in Z_{r'-1-n+b+e(f)}^{s+n-b,t+n-b}(Y),
-  \]
-  for which
-  \[
-    d_{n-a'-b}^{\widehat f_{r'-1}}(\lambda^{a'}x')
-       =\lambda^{n-b-e(f)}y'.
-  \]
-  This is a shorter essential contributor, and its target class is nonzero in
-  the complete target coset measuring the discrepancy.  Consequently, if no
-  such tuple exists, $\rho_*$ is surjective.  This is a statement about lifting
-  representative solutions, not merely naturality of their page-level
-  differentials.
-\end{lemma}
-
-\begin{proof}
-  Represent an earlier solution by a filtered source lift together with its
-  equality in the complete target coset.  Restrict the two-term filtered
-  complexes for $\widehat f_{r-1}$ and $\widehat f_{r'-1}$.  Since the vertical
-  $\rho$-ESS has only $d_0$, failure to lift this representative equation is
-  exactly a class in the displayed cokernel; this defines
-  $\operatorname{ob}_{r,r'}$.
-  If that class is zero, alter the chosen equation by a restricted shorter
-  correction and lift both sides, producing an element of
-  $\operatorname{Sol}_{r}^{n}(x,y)$.  Restriction proves the reverse
-  implication, and hence pointed exactness.
-
-  For a nonzero obstruction, expand its target correction as a finite sum of
-  shorter ESS images and choose a summand of least extension length that does
-  not lift.  Replace an inessential summand by the higher-filtration essential
-  contributor supplied by
-  Proposition~\ref{prop:fextension-inessential-iff-higher}.  Length strictly
-  decreases, so this process terminates.  The terminal source lifts at page
-  $r'$ but not at page $r$, giving the displayed cycle-set difference.
-  Filtration and weight preservation give the bounds on $a',b$ and the type of
-  $y'$; minimality makes its target nonzero in the complete discrepancy coset.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1981-2068, Proposition prop:dec738d3, corrected second part.
-\begin{proposition}[Certificate for loss of essentiality on an earlier page]
-  \label{prop:page-extension-loss-certificate}
-  \uses{prop:page-extension-restrict,def:page-extension-crossing,def:page-extension-coset}
-  \notready
-  Suppose an essential $(f,E_r)$ extension of length $n$ becomes inessential
-  on $E_{r'}$, where $2\le r'<r$ and
-  $e(f)\le n\le r'-2+e(f)$.  Then there exist
-  $0<a'\le n-e(f)$ and
-  $0\le b\le n-a'-e(f)$, a source
-  \[
-    x'\in Z_{r'-1-a'}^{s+a',t+a'}(X)
-      \setminus Z_{r-1-a'}^{s+a',t+a'}(X),
-  \]
-  and a typed target
-  $y'\in Z_{r'-1-n+b+e(f)}^{s+n-b,t+n-b}(Y)$, nonzero in the complete target
-  coset, such that
-  \[
-    d_{n-a'-b}^{\widehat f_{r'-1}}(\lambda^{a'}x')
-       =\lambda^{n-b-e(f)}y'.
-  \]
-  Its target coset is one of the shorter images making the restricted target
-  inessential.  This formulation supplies the ranges and target type omitted
-  in the printed Proposition 6.20.
-\end{proposition}
 
-\begin{proof}
-  Expand inessentiality in the earlier $\widehat f$-ESS and choose a shortest
-  essential contributor.  If its source does not lift under $\rho$, it has the
-  displayed cycle-set difference.  Otherwise lift it and replace it by the
-  strictly shorter essential contributor responsible for the discrepancy.
-  Finite descent reaches a nonliftable source.  Degree preservation fixes the
-  target group and bounds $b$; essentiality puts $y'$ outside the complete
-  target indeterminacy.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:1981-2081, the first-obstruction implication used to pass from Proposition prop:dec738d3 to Corollary cor:dfc6043e.
-\begin{lemma}[First obstruction to lifting a page extension]
-  \label{lem:page-extension-first-obstruction}
-  \uses{def:page-extension,def:page-extension-coset,def:synthetic-ess-solution-tower,lem:page-extension-restriction-exact-obstruction}
-  \notready
-  Let $2\le r'<r<\infty$ and
-  $e(f)\le n\le r'-2+e(f)$.  Suppose
 
-  \[
-    x\in Z_{r-1}^{s,t}(X),\qquad
-    y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y),\qquad
-    d_n^{f,E_{r'}}(x)=y.
-  \]
-  If the same relation $d_n^{f,E_r}(x)=y$ does not hold, then there are
-  $0<a'\le n-e(f)$, $0\le b\le n-a'-e(f)$, and
-  \[
-    x'\in Z_{r'-1-a'}^{s+a',t+a'}(X)
-       \setminus Z_{r-1-a'}^{s+a',t+a'}(X),
-    \qquad
-    y'\in Z_{r'-1-n+b+e(f)}^{s+n-b,t+n-b}(Y),
-  \]
-  such that
-  \[
-    d_{n-a'-b}^{\widehat f_{r'-1}}(\lambda^{a'}x')
-       =\lambda^{n-b-e(f)}y'.
-  \]
-  The shorter contributor is essential and its target is nonzero in the
-  complete target coset.  Thus failure of a finite lift produces the full
-  obstruction tuple directly from the representative-restriction sequence.
-\end{lemma}
-
-\begin{proof}
-  The $E_{r'}$ relation makes
-  $\operatorname{Sol}_{r'}^n(x,y)$ nonempty; choose a solution $u$.  If $u$
-  lay in the image of
-  $\operatorname{Sol}_{r}^n(x,y)\to
-  \operatorname{Sol}_{r'}^n(x,y)$, its lift would witness the asserted
-  $E_r$ relation.  Hence its exact obstruction is nonzero.  Apply
-  Lemma~\ref{lem:page-extension-restriction-exact-obstruction}; its nonzero
-  obstruction representative is precisely the displayed tuple.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:2074-2081, Corollary cor:dfc6043e; the explicit
 % inverse-limit obstruction hypothesis is a project correction for r=infinity.
-\begin{corollary}[Page-extension stretching]
-  \label{cor:page-extension-stretch}
-  \uses{prop:page-extension-loss-certificate,lem:page-extension-first-obstruction,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
-  \notready
-  Let $r'\le r\le\infty$, suppose
-  $e(f)\le n\le r'-2+e(f)$ and $d_n^{f,E_{r'}}(x)=y$, and suppose $x$
-  and $y$ have the later-page types required by
-  Definition~\ref{def:page-extension}: for finite $r$,
-  \[
-    x\in Z_{r-1}^{s,t}(X),\qquad
-    y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y),
-  \]
-  while for $r=\infty$ both are permanent representatives.  If no tuple satisfying the loss-certificate conditions of
-  Proposition~\ref{prop:page-extension-loss-certificate} exists between
-  $r'$ and any finite page $q\le r$, then $d_n^{f,E_r}(x)=y$.
-  When $r=\infty$, additionally assume that the finite representative-solution
-  tower has vanishing torsor obstruction
-  $\omega(\operatorname{Sol}_\bullet)$.  It is enough to supply a coherent
-  solution tower, to prove every restriction on solution fibers surjective, or
-  to verify the Mittag--Leffler condition of
-  Lemma~\ref{lem:synthetic-ess-coherent-tower-limit}.
-\end{corollary}
 
-\begin{proof}
-  For finite $r$, this is the contrapositive of the first-obstruction lemma.
-  For $r=\infty$, the finite result makes every finite solution fiber
-  nonempty.  The additional hypothesis and
-  Lemma~\ref{lem:synthetic-ess-coherent-tower-limit} replace these unrelated
-  choices by a coherent representative tower and identify its limit with a
-  solution for $\widehat f$.  That solution is exactly
-  $d_n^{f,E_\infty}(x)=y$ in the complete target coset.
-\end{proof}
 
 % SOURCE: aimpaper/main.tex:2084-2099, Example exam:stretchext; the solution-
 % tower assertion makes explicit the representative compatibility used there.
-\begin{proposition}[Stretching the Hopf-map extension to $E_\infty$]
-  \label{prop:page-stretch-regression}
-  \uses{prop:hopf-e3-page-extension,evidence:hopf-crossing-obstruction-exclusion,cor:page-extension-stretch,def:synthetic-ess-solution-tower,lem:page-extension-restriction-exact-obstruction,lem:synthetic-ess-coherent-tower-limit}
-  \notready
-  The $E_3$ extension
-  $d_2^{\nu_{\mathrm{Hopf}},E_3}(h_0h_4^2)=h_0p$ has no loss certificate.
-  Its finite representative-solution tower has surjective restriction maps,
-  and therefore vanishing torsor obstruction.  Consequently it stretches to
-  the essential extension
-  $d_2^{\nu_{\mathrm{Hopf}},E_\infty}(h_0h_4^2)=h_0p$.
-\end{proposition}
-
-\begin{proof}
-  The independent finite Hopf obstruction certificate exhausts the only
-  degree-allowed shorter extension and excludes it by the Ext product relation
-  at every finite quotient; its statement does not presuppose an
-  $E_\infty$ relation.  It also supplies independently that
-  $h_0h_4^2$ and $h_0p$ are permanent representatives, so both sides have the
-  later-page types required by the stretching corollary.  Apply the finite
-  exact-obstruction lemma to each adjacent pair:
-  every representative solution lifts, so the solution-fiber restriction maps
-  are surjective and the inverse-limit obstruction vanishes.  The source is a
-  permanent cycle in the required range.  Apply page-extension stretching and
-  the coherent-tower limit criterion.  Finally, the certificate's nonzero
-  complete target-coset clause shows that the resulting length-two relation is
-  essential.
-\end{proof}

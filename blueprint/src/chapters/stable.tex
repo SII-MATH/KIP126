@@ -224,20 +224,3 @@ abstract interfaces with exactly the operations and laws used by the paper.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:2387-2477; external Moss convergence theorem is required.
-\begin{theorem}[Moss convergence adapter]
-  \label{thm:moss-convergence-adapter}
-  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result}
-  \notready
-  Given an explicit external result supplying the relevant Moss convergence
-  theorem and hypotheses excluding crossings and indeterminacy, a Massey
-  product in the Adams $E_r$-page detecting a permanent class yields a
-  corresponding element of the stated Toda bracket in stable homotopy.
-\end{theorem}
-
-\begin{proof}
-  Unpack the external theorem at the chosen spectra and representatives,
-  discharge its convergence and no-crossing hypotheses from the supplied
-  spectral-sequence data, and transport the detected class through the
-  associated-graded isomorphism.  Keep the resulting Toda indeterminacy
-  explicit rather than choosing a canonical element.
-\end{proof}
