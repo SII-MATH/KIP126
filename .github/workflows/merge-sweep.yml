@@ -18,9 +18,11 @@ on:
         default: false
 
 permissions:
+  checks: read
   contents: write
   issues: read
   pull-requests: write
+  statuses: read
 
 concurrency:
   group: merge-sweep
