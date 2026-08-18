@@ -97,7 +97,7 @@ Browder's theorem or the earlier geometric classification anew.
 \section{Explicit input records}
 
 % SOURCE: PROJECT_BOUNDARY.md, shared-kernel and explicit-input policy;
-% docs/FORMALIZATION_SPEC.md, Section 9.1.
+% docs/FORMALIZATION_SPEC.md, Section 8, Near-126 shared-context contract.
 \begin{definition}[Classical--synthetic sphere coherence]
   \label{def:sphere-adams-coherence}
   \uses{def:stable-context,def:stable-sphere-suspension,def:synthetic-context,def:synthetic-sphere,def:classical-adams-ss,def:synthetic-adams-ss,def:adams-hj,def:bhs-aim-regrading}
@@ -116,7 +116,7 @@ Browder's theorem or the earlier geometric classification anew.
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs; docs/FORMALIZATION_SPEC.md,
-% Sections 9.1 and 9.4.
+% Sections 7--8, explicit-input and shared-context contracts.
 \begin{definition}[Near-$126$ literature input]
   \label{def:near126-literature-input}
   \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-theta5-order-data,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
@@ -144,7 +144,7 @@ Browder's theorem or the earlier geometric classification anew.
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, Final geometric conclusions;
-% docs/FORMALIZATION_SPEC.md:580--592.
+% docs/FORMALIZATION_SPEC.md, Section 8, Near-126 shared-context contract.
 \begin{definition}[Geometric Kervaire input]
   \label{def:geometric-kervaire-input}
   \uses{def:sphere-adams-coherence,def:external-result,def:framed-kervaire-context,thm:external-browder-criterion,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence}
@@ -162,7 +162,8 @@ Browder's theorem or the earlier geometric classification anew.
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, explicit-input policy;
-% docs/FORMALIZATION_SPEC.md, Sections 9.1 and 10.
+% docs/FORMALIZATION_SPEC.md, Sections 8--9, shared-context interpretation
+% and catalogue completeness contracts.
 \begin{definition}[Classical interpretation of the computation catalogue]
   \label{def:classical-catalogue-coherence}
   \uses{def:near126-computation-input,def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:typed-class-expression,def:appendix-evidence-record,def:stable-context,def:classical-adams-ss,def:sphere-adams-coherence,thm:adams-external-pairing}
@@ -193,7 +194,8 @@ Browder's theorem or the earlier geometric classification anew.
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, explicit-input policy;
-% docs/FORMALIZATION_SPEC.md, Sections 6, 9.1, and 10.
+% docs/FORMALIZATION_SPEC.md, Sections 5 and 8--9, synthetic endpoint,
+% shared-context interpretation, and catalogue completeness contracts.
 \begin{definition}[Synthetic interpretation of the computation catalogue]
   \label{def:synthetic-catalogue-coherence}
   \uses{def:classical-catalogue-coherence,def:near126-literature-input,def:near126-computation-input,def:synthetic-context,def:synthetic-adams-ss,def:synthetic-lambda-quotient,prop:synthetic-einfty-first-quotient,prop:synthetic-einfty-map-compatibility,def:sphere-adams-coherence}
@@ -222,8 +224,8 @@ Browder's theorem or the earlier geometric classification anew.
   $A_{\mathrm{syn}}$ without an explicit field of this datum.
 \end{definition}
 
-% SOURCE: docs/FORMALIZATION_SPEC.md:489--505 and 573--592;
-% PROJECT_BOUNDARY.md, External inputs.
+% SOURCE: docs/FORMALIZATION_SPEC.md, Section 8, Near-126 shared-context
+% contract; PROJECT_BOUNDARY.md, External inputs.
 \begin{definition}[Main formalization input]
   \label{def:kervaire-main-input}
   \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence,def:geometric-kervaire-input}
