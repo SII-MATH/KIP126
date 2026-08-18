@@ -1,15 +1,10 @@
-\chapter{Formalization contract and provenance}
+\chapter{External-input provenance audit}
+\label{chap:provenance-audit}
 \label{chap:formalization-contract}
 
-This chapter fixes the trust boundary used throughout the Blueprint.  The
-mathematical source of record is Lin--Wang--Xu, \emph{On the Last Kervaire
-Invariant Problem}, represented by \texttt{aimpaper/main.tex},
-\texttt{aimpaper/112.tex}, and the local PDF.  Earlier literature and machine
-calculations may enter only through the explicit records below.  In
-particular, a citation or a table row is not silently promoted to a project
-axiom.
+This audit chapter records source identifiers, locators, inventories, claim ledgers, and the trust boundary.  It is technical bookkeeping, not a mathematical prerequisite and not a parent of every chapter.
 
-\section{Source-bearing inputs}
+\section{Source-bearing input structures}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
 % VERIFIED-IN: KIP126/External/Provenance.lean, declaration SourceId.
@@ -115,6 +110,8 @@ axiom.
   it does not turn either one into a project theorem.
   \uses{def:source-ref,def:artifact-ref,def:evidence-metadata}
 \end{definition}
+
+\section{Inventory validity and trust boundary}
 
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceAvailability.
 \begin{definition}[Source availability]
@@ -268,6 +265,53 @@ axiom.
   \uses{def:source-inventory,def:source-entry}
 \end{definition}
 
+% VERIFIED-IN: KIP126/External/Evidence.lean, declaration ExternalEvidence.withArtifact_inventoryValid.
+\begin{theorem}[Inventory-valid artifact transport]
+  \label{thm:inventory-valid-artifact-transport}
+  \lean{KIP126.External.ExternalEvidence.withArtifact_inventoryValid}
+  \leanok
+  Replacing an evidence wrapper's optional artifact preserves
+  \texttt{InventoryValid} when the original certificate, the new artifact's
+  syntactic SHA-256 certificate, and its source-relative path certificate are
+  supplied explicitly.  This is a transport lemma, not a filesystem theorem.
+  \uses{def:inventory-valid-evidence,def:artifact-ref}
+\end{theorem}
+
+\begin{proof}
+  Unfold the wrapper update.  The proposition, source locator, and method
+  remain unchanged; combine the supplied digest and path certificates with the
+  structural validity fields.
+  \leanok
+\end{proof}
+
+% SOURCE: PROJECT_BOUNDARY.md, Examples, remarks, and questions.
+\begin{definition}[Open proposition]
+  \label{def:open-proposition}
+  \notready
+  An open proposition is a proposition recorded as a formalization target but
+  neither assumed nor asserted.  Its Blueprint node has no incoming edge to a
+  proved conclusion unless a later theorem explicitly takes a proof of it as
+  a hypothesis.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decisions and Axiom policy.
+\begin{definition}[KIP126 trust boundary]
+  \label{def:kip126-trust-boundary}
+  \uses{def:external-result,def:external-evidence,def:open-proposition,def:kervaire-main-input}
+  \notready
+  The KIP126 development may use Lean's foundational axioms and declarations
+  proved in the pinned Mathlib revision.  Paper-internal arguments are project
+  proof obligations.  Results from earlier literature are explicit external
+  results, while high-stem computations and every appendix row are explicit
+  external evidence.  The conditional permanent-cycle and geometric endpoints
+  are universally quantified over the explicit main-input record of
+  Definition~\ref{def:kervaire-main-input}; none of its fields is installed as
+  a global instance.  No project declaration may use \texttt{axiom},
+  \texttt{sorry}, or \texttt{admit}.
+\end{definition}
+
+\section{Claim ledger and catalogued inputs}
+
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalRootId.
 \begin{definition}[External root identifier]
   \label{def:external-root-id}
@@ -416,25 +460,6 @@ axiom.
   \uses{def:external-evidence,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-source-ref,def:inventory-valid-evidence}
 \end{definition}
 
-% VERIFIED-IN: KIP126/External/Evidence.lean, declaration ExternalEvidence.withArtifact_inventoryValid.
-\begin{theorem}[Inventory-valid artifact transport]
-  \label{thm:inventory-valid-artifact-transport}
-  \lean{KIP126.External.ExternalEvidence.withArtifact_inventoryValid}
-  \leanok
-  Replacing an evidence wrapper's optional artifact preserves
-  \texttt{InventoryValid} when the original certificate, the new artifact's
-  syntactic SHA-256 certificate, and its source-relative path certificate are
-  supplied explicitly.  This is a transport lemma, not a filesystem theorem.
-  \uses{def:inventory-valid-evidence,def:artifact-ref}
-\end{theorem}
-
-\begin{proof}
-  Unfold the wrapper update.  The proposition, source locator, and method
-  remain unchanged; combine the supplied digest and path certificates with the
-  structural validity fields.
-  \leanok
-\end{proof}
-
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimProjectionManifest.
 \begin{definition}[External-claim projection manifest]
   \label{def:external-claim-projection}
@@ -468,36 +493,3 @@ axiom.
   selected row.
   \leanok
 \end{proof}
-
-% SOURCE: PROJECT_BOUNDARY.md, Examples, remarks, and questions.
-\begin{definition}[Open proposition]
-  \label{def:open-proposition}
-  \notready
-  An open proposition is a proposition recorded as a formalization target but
-  neither assumed nor asserted.  Its Blueprint node has no incoming edge to a
-  proved conclusion unless a later theorem explicitly takes a proof of it as
-  a hypothesis.
-\end{definition}
-
-% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decisions and Axiom policy.
-\begin{definition}[KIP126 trust boundary]
-  \label{def:kip126-trust-boundary}
-  \uses{def:external-result,def:external-evidence,def:open-proposition,def:kervaire-main-input}
-  \notready
-  The KIP126 development may use Lean's foundational axioms and declarations
-  proved in the pinned Mathlib revision.  Paper-internal arguments are project
-  proof obligations.  Results from earlier literature are explicit external
-  results, while high-stem computations and every appendix row are explicit
-  external evidence.  The conditional permanent-cycle and geometric endpoints
-  are universally quantified over the explicit main-input record of
-  Definition~\ref{def:kervaire-main-input}; none of its fields is installed as
-  a global instance.  No project declaration may use \texttt{axiom},
-  \texttt{sorry}, or \texttt{admit}.
-\end{definition}
-
-The comments beginning with \texttt{SOURCE} in later chapters give the primary
-locator.  Comments beginning with \texttt{VERIFIED-IN} record a second local
-copy that was checked, but never replace the primary source.  A
-\texttt{mathlibok} node has an exact declaration in Mathlib v4.32.2.  Existing
-\texttt{leanok} nodes name compiled project declarations.  Every other node is
-conservatively marked \texttt{notready}.
