@@ -1,136 +1,27 @@
-\chapter{Algebraic and spectral-sequence background}
+\chapter{Spectral-sequence machinery}
+\label{chap:spectral-sequence-machinery}
 \label{chap:background}
 
-The paper uses elementwise pages, cycles, boundaries, detection, and several
-changes of grading.  Mathlib supplies categorical complexes and a generic
-spectral-sequence record, but not this Adams-specific elementwise layer.  This
-chapter separates the exact Mathlib roots from the project interfaces that
-must still be constructed.
+This chapter packages spectral objects, filtered-complex realizations, page presentations, reindexing, convergence, and comparison interfaces.  It replaces the former catch-all Background chapter.
 
-\section{Exact Mathlib roots}
+\section{Mathlib spectral-sequence and spectral-object interfaces}
 
-% SOURCE: Mathlib/Data/ZMod/Defs.lean:140--144, declaration ZMod; Mathlib/Algebra/Field/ZMod.lean:29--30, prime-field instance.
-\begin{definition}[The $\operatorname{ZMod}$ coefficient family]
-  \label{def:mathlib-f2}
-  \lean{ZMod}
+\begin{definition}[Spectral sequence in an abelian category]
+  \label{def:mathlib-spectral-sequence}
+  \lean{CategoryTheory.SpectralSequence}
   \mathlibok
-  Mathlib's declaration is the family $\operatorname{ZMod}(n)$ indexed by
-  $n\in\mathbb N$; it does not itself fix a modulus.  The project uses the
-  specialization $\mathbb F_2:=\operatorname{ZMod}(2)$, whose pinned Mathlib
-  instances provide $1+1=0$, characteristic two, decidable equality, and
-  finiteness.  Later sign simplifications must cite these specialized
-  properties rather than treating every abelian category as characteristic
-  two.
-\end{definition}
-
-% SOURCE: Mathlib/Algebra/Category/ModuleCat/Basic.lean:48--62, declaration ModuleCat.
-\begin{definition}[Category of modules over a ring]
-  \label{def:mathlib-f2-module-category}
-  \lean{ModuleCat}
-  \mathlibok
-  Mathlib's declaration $\operatorname{ModuleCat}(R)$ is the category of
-  modules over an arbitrary ring $R$.  The concrete category used by the
-  elementwise spectral-sequence adapter is its specialization
-  $\operatorname{ModuleCat}(\mathbb F_2)$ with
-  $\mathbb F_2=\operatorname{ZMod}(2)$; the generic declaration does not
-  silently choose that coefficient ring.
-\end{definition}
-
-% SOURCE: Mathlib/Algebra/Category/ModuleCat/Abelian.lean:74--78, instance ModuleCat.abelian.
-\begin{theorem}[Module categories are abelian]
-  \label{thm:mathlib-module-category-abelian}
-  \lean{ModuleCat.abelian}
-  \mathlibok
-  \uses{def:mathlib-f2,def:mathlib-f2-module-category}
-  For every ring $R$, the category $\operatorname{ModuleCat}(R)$ carries
-  Mathlib's abelian-category instance.  In particular this applies after the
-  project specializes $R$ to $\mathbb F_2$.
-\end{theorem}
-
-% SOURCE: Mathlib/CategoryTheory/Abelian/Basic.lean, declaration CategoryTheory.Abelian.
-\begin{definition}[Abelian category]
-  \label{def:mathlib-abelian}
-  \lean{CategoryTheory.Abelian}
-  \mathlibok
-  In the pinned Mathlib declaration, an abelian category is preadditive, has
-  kernels, cokernels, and finite products, and every monomorphism and
-  epimorphism is normal.  A zero object and the usual finite biproduct
-  consequences are derived from these fields.
-\end{definition}
-
-% SOURCE: Mathlib/Algebra/Homology/HomologicalComplex.lean, declaration CategoryTheory.HomologicalComplex.
-\begin{definition}[Homological complex]
-  \label{def:mathlib-homological-complex}
-  \lean{HomologicalComplex}
-  \mathlibok
-  For a category $\mathcal C$, an index type $\iota$, and a complex shape
-  $c$, a homological complex consists of objects $K_i$, differentials
-  $d_{ij}:K_i\to K_j$ allowed by $c$, and the square-zero relations required
-  by that shape.
-\end{definition}
-
-% SOURCE: Mathlib/Algebra/Homology/HomologicalComplex.lean, abbreviation CategoryTheory.ChainComplex.
-\begin{definition}[Chain complex]
-  \label{def:mathlib-chain-complex}
-  \lean{ChainComplex}
-  \mathlibok
-  A chain complex in $\mathcal C$ indexed by an additive index type is the
-  Mathlib homological complex with differential of degree $-1$.
-\end{definition}
-
-% SOURCE: Mathlib/Algebra/Homology/HomologicalComplex.lean, abbreviation CategoryTheory.CochainComplex.
-\begin{definition}[Cochain complex]
-  \label{def:mathlib-cochain-complex}
-  \lean{CochainComplex}
-  \mathlibok
-  A cochain complex in $\mathcal C$ indexed by an additive index type is the
-  Mathlib homological complex with differential of degree $+1$.  Passing from a
-  chain complex to a cochain complex therefore requires an explicit reindexing;
-  the two abbreviations are not interchangeable.
-\end{definition}
-
-% SOURCE: Mathlib/Algebra/Homology/ShortComplex/Exact.lean, declaration CategoryTheory.ShortComplex.Exact.
-\begin{definition}[Exact short complex]
-  \label{def:mathlib-short-complex-exact}
-  \lean{CategoryTheory.ShortComplex.Exact}
-  \mathlibok
-  For a short complex $X_1\xrightarrow{f}X_2\xrightarrow{g}X_3$, Mathlib
-  exactness means that there exists homology data whose homology object is
-  zero.  In an abelian category, the next node identifies this with the
-  familiar image-to-kernel comparison being an isomorphism.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Abelian/Exact.lean:77, theorem CategoryTheory.ShortComplex.exact_iff_isIso_imageToKernel.
-\begin{theorem}[Exactness via image and kernel]
-  \label{thm:mathlib-exact-iff-image-kernel}
-  \lean{CategoryTheory.ShortComplex.exact_iff_isIso_imageToKernel}
-  \mathlibok
-  \uses{def:mathlib-short-complex-exact,def:mathlib-abelian}
-  In an abelian category, a short complex is exact if and only if its canonical
-  morphism from the image of the first map to the kernel of the second map is
-  an isomorphism.
-\end{theorem}
-
-% SOURCE: Mathlib/CategoryTheory/GradedObject.lean, declaration CategoryTheory.GradedObject.comap.
-\begin{definition}[Regrading a Mathlib graded object]
-  \label{def:mathlib-graded-comap}
-  \lean{CategoryTheory.GradedObject.comap}
-  \mathlibok
-  A function $h:J\to I$ induces Mathlib's regrading functor from
-  $I$-graded objects to $J$-graded objects by precomposition.  This declaration
-  regrades objects only; it does not by itself regrade complexes or spectral
-  sequences.
-\end{definition}
-
-% SOURCE: Mathlib/Algebra/Homology/ComplexShape.lean, declaration ComplexShape.up'.
-\begin{definition}[Complex shape of a fixed additive degree]
-  \label{def:mathlib-complex-shape-up}
-  \lean{ComplexShape.up'}
-  \mathlibok
-  For an additive index type and a fixed degree $a$, Mathlib's
-  $\operatorname{up}'(a)$ permits a differential from $i$ to $j$ exactly when
-  $i+a=j$.  The AIM Adams shape therefore uses the integer pair
-  $(r,r-1)$, not Mathlib's prepackaged cohomological convention $(r,1-r)$.
+  \uses{def:mathlib-abelian,def:mathlib-homological-complex}
+  Let $\mathcal C$ be an abelian category, let $\kappa$ be an index type, let
+  $c : \mathbb Z \to \operatorname{ComplexShape}(\kappa)$ specify the shape
+  of the differential on each page, and fix a starting page $r_0\in\mathbb Z$.
+  A spectral sequence consists of a homological complex $E_r$ of shape $c(r)$
+  for every $r\ge r_0$, together with, for every $p\in\kappa$, an isomorphism
+  \[
+    H(E_r)_p \cong (E_{r+1})_p.
+  \]
+  This is Mathlib's definition \texttt{CategoryTheory.SpectralSequence} in
+  the pinned revision.  All generic KIP126 statements use this definition
+  directly rather than a project-local synonym.
 \end{definition}
 
 % SOURCE: Mathlib/Algebra/Homology/SpectralSequence/Basic.lean, declaration CategoryTheory.SpectralSequence.Hom.
@@ -276,146 +167,7 @@ must still be constructed.
   abelian spectral object; those two conversions are project obligations below.
 \end{definition}
 
-% SOURCE: Mathlib/Algebra/Homology/DerivedCategory/Ext/Basic.lean, declaration CategoryTheory.Abelian.Ext.
-\begin{definition}[Mathlib derived Ext]
-  \label{def:mathlib-derived-ext}
-  \lean{CategoryTheory.Abelian.Ext}
-  \mathlibok
-  In an abelian category satisfying Mathlib's Ext-size hypothesis,
-  $\operatorname{Ext}(X,Y,n)$ is a singly graded derived Ext type indexed by
-  $n\in\mathbb N$.  It does not provide the Steenrod algebra, internal grading,
-  comodules, or the bigraded Adams $\operatorname{Ext}_{\mathcal A}^{s,t}$.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Shift/Basic.lean:60--68, declaration CategoryTheory.HasShift.
-\begin{definition}[Mathlib shift structure]
-  \label{def:mathlib-shift}
-  \lean{CategoryTheory.HasShift}
-  \mathlibok
-  Mathlib's declaration supplies a coherent family of autoequivalences indexed
-  by an arbitrary additive monoid $A$.  The project uses the specialization
-  $A=\mathbb Z$; this node records the generic declaration and does not claim
-  that every instance has an integer indexing type.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Triangulated/Basic.lean, declaration CategoryTheory.Pretriangulated.Triangle.
-\begin{definition}[Mathlib triangle]
-  \label{def:mathlib-triangle}
-  \lean{CategoryTheory.Pretriangulated.Triangle}
-  \mathlibok
-  A Mathlib triangle consists of $X\to Y\to Z\to X[1]$ in a category with
-  integer shifts.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Triangulated/Pretriangulated.lean, declaration CategoryTheory.Pretriangulated.
-\begin{definition}[Mathlib pretriangulated structure]
-  \label{def:mathlib-pretriangulated}
-  \lean{CategoryTheory.Pretriangulated}
-  \mathlibok
-  Mathlib's pretriangulated class chooses distinguished triangles and their
-  closure laws.  It does not include a stable-spectrum model or compatibility
-  of a monoidal product with distinguished triangles.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:82, declaration CategoryTheory.Functor.IsHomological.
-\begin{definition}[Mathlib homological functor]
-  \label{def:mathlib-homological-functor}
-  \lean{CategoryTheory.Functor.IsHomological}
-  \mathlibok
-  \uses{def:mathlib-pretriangulated,def:mathlib-abelian}
-  A functor from a pretriangulated category to an abelian category is
-  homological when it preserves zero morphisms and sends every distinguished
-  triangle to an exact short complex.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Shift/ShiftSequence.lean:48, declaration CategoryTheory.Functor.ShiftSequence.
-\begin{definition}[Mathlib shift sequence for a functor]
-  \label{def:mathlib-homological-shift-sequence}
-  \lean{CategoryTheory.Functor.ShiftSequence}
-  \mathlibok
-  \uses{def:mathlib-shift}
-  For a functor $F:\mathcal C\to\mathcal A$, a shift sequence indexed by
-  $\mathbb Z$ chooses functors $F_n:\mathcal C\to\mathcal A$ and coherent
-  isomorphisms identifying $F_n\circ[m]$ with $F_{m+n}$.  This is additional
-  data on a homological functor and is what lets Mathlib state its long exact
-  sequence with separately indexed functors $F_n$.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:173, declaration CategoryTheory.Functor.homologySequenceδ.
-\begin{definition}[Homology-sequence connecting morphism]
-  \label{def:mathlib-homology-sequence-connecting}
-  \lean{CategoryTheory.Functor.homologySequenceδ}
-  \mathlibok
-  \uses{def:mathlib-triangle,def:mathlib-homological-shift-sequence}
-  Let $F:\mathcal C\to\mathcal A$ have a $\mathbb Z$-shift sequence.  For a
-  triangle $X\to Y\to Z\to X[1]$ and $n_0+1=n_1$, Mathlib constructs the
-  connecting morphism $F_{n_0}(Z)\to F_{n_1}(X)$ by applying the shift map of
-  $F$ to the third morphism of the triangle.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:181, declaration CategoryTheory.Functor.homologySequenceδ_naturality.
-\begin{theorem}[Naturality of the homology-sequence connecting morphism]
-  \label{thm:mathlib-homology-sequence-connecting-naturality}
-  \lean{CategoryTheory.Functor.homologySequenceδ_naturality}
-  \mathlibok
-  \uses{def:mathlib-homology-sequence-connecting}
-  For every morphism of triangles, the third component mapped by $F_{n_0}$,
-  the two connecting morphisms, and the first component mapped by $F_{n_1}$
-  form a commutative square.
-\end{theorem}
-
-% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:217, declaration CategoryTheory.Functor.homologySequence_exact₂.
-\begin{theorem}[Middle exactness of a homology sequence]
-  \label{thm:mathlib-homology-sequence-exact-two}
-  \lean{CategoryTheory.Functor.homologySequence_exact₂}
-  \mathlibok
-  \uses{def:mathlib-homological-functor,def:mathlib-triangle}
-  A Mathlib homological functor sends the middle two maps of every shifted
-  distinguished triangle to an exact short complex.
-\end{theorem}
-
-% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:226, declaration CategoryTheory.Functor.homologySequence_exact₃.
-\begin{theorem}[Connecting-map exactness of a homology sequence]
-  \label{thm:mathlib-homology-sequence-exact-three}
-  \lean{CategoryTheory.Functor.homologySequence_exact₃}
-  \mathlibok
-  \uses{def:mathlib-homological-functor,def:mathlib-triangle}
-  Rotation gives exactness at the term adjacent to the homology-sequence
-  connecting morphism.
-\end{theorem}
-
-% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:234, declaration CategoryTheory.Functor.homologySequence_exact₁.
-\begin{theorem}[Shifted exactness of a homology sequence]
-  \label{thm:mathlib-homology-sequence-exact-one}
-  \lean{CategoryTheory.Functor.homologySequence_exact₁}
-  \mathlibok
-  \uses{def:mathlib-homological-functor,def:mathlib-triangle}
-  Inverse rotation gives the remaining adjacent exactness statement, allowing
-  the three short complexes to splice into a long exact sequence.
-\end{theorem}
-
-% SOURCE: Mathlib/Algebra/Homology/HomotopyCategory/HomologicalFunctor.lean:34, instance HomotopyCategory.instIsHomologicalIntUpHomologyFunctor.
-\begin{theorem}[Cochain homology is homological on the homotopy category]
-  \label{thm:mathlib-homotopy-cochain-homology-is-homological}
-  \lean{HomotopyCategory.instIsHomologicalIntUpHomologyFunctor}
-  \mathlibok
-  \uses{def:mathlib-cochain-complex,def:mathlib-homological-functor}
-  If $\mathcal C$ is abelian, then for every $n\in\mathbb Z$ the degree-$n$
-  homology functor from the homotopy category of $\mathbb Z$-indexed cochain
-  complexes in $\mathcal C$ to $\mathcal C$ is homological.
-\end{theorem}
-
-% SOURCE: Mathlib/Algebra/Homology/HomotopyCategory/ShiftSequence.lean:192-196, instance HomotopyCategory.instShiftSequenceIntUpHomologyFunctorOfNat.
-\begin{definition}[Shift sequence on cochain homology]
-  \label{def:mathlib-homotopy-cochain-homology-shift-sequence}
-  \lean{HomotopyCategory.instShiftSequenceIntUpHomologyFunctorOfNat}
-  \mathlibok
-  \uses{def:mathlib-cochain-complex,def:mathlib-homological-shift-sequence}
-  In a preadditive category equipped with Mathlib's homology structure, the
-  degree-zero homology functor on the homotopy category of $\mathbb Z$-indexed
-  cochain complexes has a $\mathbb Z$-shift sequence whose degree-$n$ member is
-  the degree-$n$ homology functor.
-\end{definition}
+\section{Pages, convergence, and comparison}
 
 % SOURCE: Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:20-24 records this bridge as TODO;
 % Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:217-240 supplies the three exactness lemmas.
@@ -506,26 +258,6 @@ must still be constructed.
   spectral object indexed by cochain complexes, with exactness inherited from
   the distinguished mapping-cone triangles.
 \end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Monoidal/Category.lean, declaration CategoryTheory.MonoidalCategory.
-\begin{definition}[Mathlib monoidal category]
-  \label{def:mathlib-monoidal-category}
-  \lean{CategoryTheory.MonoidalCategory}
-  \mathlibok
-  Mathlib's monoidal category provides tensor product, unit, associator, and
-  unitors with their coherence laws.
-\end{definition}
-
-% SOURCE: Mathlib/CategoryTheory/Monoidal/Braided/Basic.lean, declaration CategoryTheory.SymmetricCategory.
-\begin{definition}[Mathlib symmetric category]
-  \label{def:mathlib-symmetric-category}
-  \lean{CategoryTheory.SymmetricCategory}
-  \mathlibok
-  A symmetric category extends a monoidal category with a symmetric braiding.
-  Exactness of tensoring a triangle remains extra project data.
-\end{definition}
-
-\section{Filtration completeness and page shapes}
 
 % SOURCE: KIP126/Core/Algebra/Completion.lean, quotient-tower and completion-witness interface.
 \begin{definition}[Degreewise completion witness]
@@ -643,8 +375,6 @@ must still be constructed.
   synthetic weight retained as an additional fixed index.
 \end{definition}
 
-\section{Gradings and page presentations}
-
 % SOURCE: aimpaper/main.tex:134-150 and 253-295.
 \begin{definition}[Adams bidegree convention]
   \label{def:adams-bidegree}
@@ -738,82 +468,6 @@ must still be constructed.
   $x\in E_\infty^{s,s+n}$ detects $\alpha\in A_n$ when $\alpha\in F^sA_n$
   maps to $x$ in this quotient.
 \end{definition}
-
-% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean: filtered-complex morphism declarations; Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean.
-\begin{definition}[Filtered chain map]
-  \label{def:filtered-chain-map}
-  \uses{def:mathlib-chain-complex,def:core-filtered-chain-complex,def:core-filtered-morphism}
-  \leanok
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.toFilteredMorphism}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.id}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.comp}
-  For filtered chain complexes $(C,F)$ and $(D,G)$, a filtered chain map is a
-  Mathlib chain-complex morphism $u:C\to D$ whose underlying graded morphism is
-  filtration preserving.  Equivalently, for every $(s,k)$ it includes the
-  restriction $F^sC_k\to G^sD_k$ commuting with the two subobject inclusions;
-  the chain-map square makes these restrictions commute with the restricted
-  differentials.  Identities and composites retain this data.
-\end{definition}
-
-% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean:193-344, fixed-level complexes and filtration inclusion chain maps.
-\begin{definition}[Fixed-level filtered complexes and inclusions]
-  \label{def:filtered-chain-level-complex-and-inclusions}
-  \uses{def:core-filtered-chain-complex,def:core-filtration-inclusions}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex_X}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex_d}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtration_inclusion_comp_differential}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_f}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_id}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_comp}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.instCategory}
-  \leanok
-  At a fixed filtration level, the restricted objects and differentials form a
-  genuine chain complex.  Every order relation $t\le s$ gives a chain map
-  $F^sC\to F^tC$; its component is the canonical filtration inclusion, and
-  these maps satisfy identity and composition laws.  The explicit
-  differential-compatibility lemma records why the inclusions are chain maps.
-\end{definition}
-
-\begin{definition}[Fixed-level filtered-complex functor]
-  \label{def:filtered-chain-level-functor}
-  \uses{def:filtered-chain-map,def:core-filtered-chain-complex,def:filtered-chain-level-complex-and-inclusions}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap_id}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap_comp}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplexFunctor}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainDiagramNatTrans}
-  \leanok
-  Restricting a filtered chain map to a fixed filtration degree gives a chain
-  map between the two restricted complexes.  These restrictions preserve
-  identities and composition, and assemble into a natural transformation of
-  the decreasing filtration diagrams.
-\end{definition}
-
-\begin{theorem}[Compatibility of filtered restrictions]
-  \label{thm:filtered-chain-map-restricted-differential}
-  \uses{def:filtered-chain-map,def:core-filtered-chain-complex}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.preserves_differential}
-  \leanok
-  For a filtered chain map $u:(C,F)\to(D,G)$, write
-  $\phi^u_{s,k}:F^sC_k\to G^sD_k$ for its chosen restriction and write
-  $\delta^F_{s,k}$ and $\delta^G_{s,k}$ for the restricted differentials.
-  Then the restriction squares commute:
-  \[
-    \phi^u_{s,k}\,;\,\delta^G_{s,k}
-      =\delta^F_{s,k}\,;\,\phi^u_{s,k-1}.
-  \]
-\end{theorem}
-
-\begin{proof}
-  \leanok
-  Postcompose both sides with the target filtration inclusion.  The two
-  factorisation equations and the chain-map square identify the resulting
-  composites; cancellation of the monomorphism given by that inclusion gives
-  the displayed equality.
-\end{proof}
 
 \begin{lemma}[Projection equation for a restricted differential]
   \label{lem:filtered-associated-graded-differential-projection}
@@ -924,6 +578,160 @@ must still be constructed.
   \texttt{associatedGradedFunctor}.  These equations are part of the compiled
   interface and are used by the later spectral-object adapter.
 \end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, explicit selected-page/abutment comparison witness.
+\begin{definition}[Pointwise selected-page comparison with a bounded complete endpoint abutment]
+  \label{def:page-abutment-comparison-witness}
+  \uses{def:filtered-complex-endpoint-e2-spectral-sequence,def:core-filtration-completion-witness,def:core-bounded-filtration,def:core-associated-graded,lem:core-bounded-below-exhaustive,lem:core-bounded-above-eventually-zero}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.completion}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.exhaustive}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.eventuallyZero}
+  \leanok
+  For one endpoint extension and one chosen homological functor, this witness
+  records its endpoint boundary data, a graded abutment explicitly isomorphic
+  to the shifted homological image of the upper endpoint, a decreasing
+  filtration on that abutment, and degreewise boundedness.  It derives a
+  canonical completion witness in every grading degree from the bounded-above
+  component.  It also chooses, for every bidegree $(p,q)$, a page at least $2$
+  and an isomorphism from that page object to the indicated associated-graded
+  piece of the endpoint abutment.  The boundedness field yields compiled proofs
+  that the abutment filtration is exhaustive and eventually zero.
+
+  This is intentionally a selected-page comparison, not a strong-convergence
+  theorem: it supplies neither coherence of comparisons under page passage nor
+  a canonical $E_\infty$ object, and it does not identify the abutment with
+  filtered homology of the original filtered complex.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:461-631 and 1218-1235, maps with shifted degrees.
+\begin{definition}[Reindexed spectral-sequence morphism]
+  \label{def:reindexed-ss-morphism}
+  \uses{def:mathlib-graded-comap,def:mathlib-complex-shape-up,def:mathlib-spectral-sequence-hom,def:adams-bidegree,def:synthetic-tridegree}
+  \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap}
+  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeightComparison}
+  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
+  \notready
+  A reindexed morphism specifies a map of page index types, a map of grading
+  indices, page maps, and proofs that the page maps commute with differentials
+  after the stated degree translation and with page passage.  The interface
+  must cover shifts $(s,t)\mapsto(s+k,t+k+d)$ and the forgetful map
+  $(s,t,w)\mapsto(s,t)$ used in classical--synthetic comparison.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:138-150, 159-162, 1606-1753.
+\begin{definition}[Multiplicative spectral sequence]
+  \label{def:multiplicative-ss}
+  \uses{def:chosen-page-presentation}
+  \notready
+  A multiplicative spectral sequence has unital associative products on its
+  pages, compatible page maps, additive bidegrees, and a Leibniz rule for page
+  differentials with the chosen sign convention.  Its convergence data also
+  identifies the $E_\infty$ product with the associated-graded product on the
+  abutment.  This interface is required before expressions such as $h_j^2$ or
+  $h_0x$ are meaningful.
+\end{definition}
+
+% SOURCE: aimpaper/main.tex:253-263 and all later elementwise arguments.
+\begin{proposition}[Categorical and elementwise presentations agree]
+  \label{prop:categorical-elementwise-comparison}
+  \uses{def:mathlib-spectral-sequence,def:mathlib-short-complex-exact,thm:mathlib-exact-iff-image-kernel,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,thm:filtered-complex-to-spectral-sequence}
+  \notready
+  For a spectral sequence in graded $\mathbb F_2$-vector spaces constructed
+  from a chosen exact couple or filtered complex, the Mathlib page objects,
+  after the stored page reindexing, are naturally isomorphic in the AIM Adams
+  convention to $Z_{r-1}/B_{r-1}$ on the displayed $E_r$ page.  The Mathlib
+  page differential corresponds to the representative map
+  $Z_{r-1}\to E_2/B_{r-1}$.
+\end{proposition}
+
+\begin{proof}
+  Construct the isomorphism on $E_2=Z_1/B_1$, identify each next Mathlib page
+  with homology, and induct on the displayed index $r$.  Passing from $E_r$ to
+  $E_{r+1}$ takes the homology of
+  $Z_{r-1}/B_{r-1}$ and gives precisely $Z_r/B_r$; naturality supplies
+  compatibility with page passage.  The construction must be carried
+  out for the concrete classical and synthetic presentations, not postulated
+  for an arbitrary spectral sequence.
+\end{proof}
+
+\section{Filtered-complex realization}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean: filtered-complex morphism declarations; Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean.
+\begin{definition}[Filtered chain map]
+  \label{def:filtered-chain-map}
+  \uses{def:mathlib-chain-complex,def:core-filtered-chain-complex,def:core-filtered-morphism}
+  \leanok
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.toFilteredMorphism}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.comp}
+  For filtered chain complexes $(C,F)$ and $(D,G)$, a filtered chain map is a
+  Mathlib chain-complex morphism $u:C\to D$ whose underlying graded morphism is
+  filtration preserving.  Equivalently, for every $(s,k)$ it includes the
+  restriction $F^sC_k\to G^sD_k$ commuting with the two subobject inclusions;
+  the chain-map square makes these restrictions commute with the restricted
+  differentials.  Identities and composites retain this data.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean:193-344, fixed-level complexes and filtration inclusion chain maps.
+\begin{definition}[Fixed-level filtered complexes and inclusions]
+  \label{def:filtered-chain-level-complex-and-inclusions}
+  \uses{def:core-filtered-chain-complex,def:core-filtration-inclusions}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex_X}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex_d}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtration_inclusion_comp_differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_f}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.instCategory}
+  \leanok
+  At a fixed filtration level, the restricted objects and differentials form a
+  genuine chain complex.  Every order relation $t\le s$ gives a chain map
+  $F^sC\to F^tC$; its component is the canonical filtration inclusion, and
+  these maps satisfy identity and composition laws.  The explicit
+  differential-compatibility lemma records why the inclusions are chain maps.
+\end{definition}
+
+\begin{definition}[Fixed-level filtered-complex functor]
+  \label{def:filtered-chain-level-functor}
+  \uses{def:filtered-chain-map,def:core-filtered-chain-complex,def:filtered-chain-level-complex-and-inclusions}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplexFunctor}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainDiagramNatTrans}
+  \leanok
+  Restricting a filtered chain map to a fixed filtration degree gives a chain
+  map between the two restricted complexes.  These restrictions preserve
+  identities and composition, and assemble into a natural transformation of
+  the decreasing filtration diagrams.
+\end{definition}
+
+\begin{theorem}[Compatibility of filtered restrictions]
+  \label{thm:filtered-chain-map-restricted-differential}
+  \uses{def:filtered-chain-map,def:core-filtered-chain-complex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.preserves_differential}
+  \leanok
+  For a filtered chain map $u:(C,F)\to(D,G)$, write
+  $\phi^u_{s,k}:F^sC_k\to G^sD_k$ for its chosen restriction and write
+  $\delta^F_{s,k}$ and $\delta^G_{s,k}$ for the restricted differentials.
+  Then the restriction squares commute:
+  \[
+    \phi^u_{s,k}\,;\,\delta^G_{s,k}
+      =\delta^F_{s,k}\,;\,\phi^u_{s,k-1}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Postcompose both sides with the target filtration inclusion.  The two
+  factorisation equations and the chain-map square identify the resulting
+  composites; cancellation of the monomorphism given by that inclusion gives
+  the displayed equality.
+\end{proof}
 
 \begin{definition}[Filtered complex as a cochain diagram]
   \label{def:filtered-complex-cochain-diagram}
@@ -1070,31 +878,6 @@ must still be constructed.
   homology or establish stabilization.
 \end{definition}
 
-% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, explicit selected-page/abutment comparison witness.
-\begin{definition}[Pointwise selected-page comparison with a bounded complete endpoint abutment]
-  \label{def:page-abutment-comparison-witness}
-  \uses{def:filtered-complex-endpoint-e2-spectral-sequence,def:core-filtration-completion-witness,def:core-bounded-filtration,def:core-associated-graded,lem:core-bounded-below-exhaustive,lem:core-bounded-above-eventually-zero}
-  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness}
-  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.completion}
-  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.exhaustive}
-  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.eventuallyZero}
-  \leanok
-  For one endpoint extension and one chosen homological functor, this witness
-  records its endpoint boundary data, a graded abutment explicitly isomorphic
-  to the shifted homological image of the upper endpoint, a decreasing
-  filtration on that abutment, and degreewise boundedness.  It derives a
-  canonical completion witness in every grading degree from the bounded-above
-  component.  It also chooses, for every bidegree $(p,q)$, a page at least $2$
-  and an isomorphism from that page object to the indicated associated-graded
-  piece of the endpoint abutment.  The boundedness field yields compiled proofs
-  that the abutment filtration is exhaustive and eventually zero.
-
-  This is intentionally a selected-page comparison, not a strong-convergence
-  theorem: it supplies neither coherence of comparisons under page passage nor
-  a canonical $E_\infty$ object, and it does not identify the abutment with
-  filtered homology of the original filtered complex.
-\end{definition}
-
 % SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, endpoint-extension morphisms and induced spectral-object morphisms.
 \begin{definition}[Functoriality of endpoint extensions]
   \label{def:filtered-complex-endpoint-extension-morphism}
@@ -1184,55 +967,4 @@ must still be constructed.
   homology.  For a filtered chain map, apply functoriality of the cochain
   diagram, mapping-cone construction, and homological-image bridge; the initial
   component is the associated-graded chain map by construction.
-\end{proof}
-
-% SOURCE: aimpaper/main.tex:461-631 and 1218-1235, maps with shifted degrees.
-\begin{definition}[Reindexed spectral-sequence morphism]
-  \label{def:reindexed-ss-morphism}
-  \uses{def:mathlib-graded-comap,def:mathlib-complex-shape-up,def:mathlib-spectral-sequence-hom,def:adams-bidegree,def:synthetic-tridegree}
-  \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap}
-  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeightComparison}
-  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
-  \notready
-  A reindexed morphism specifies a map of page index types, a map of grading
-  indices, page maps, and proofs that the page maps commute with differentials
-  after the stated degree translation and with page passage.  The interface
-  must cover shifts $(s,t)\mapsto(s+k,t+k+d)$ and the forgetful map
-  $(s,t,w)\mapsto(s,t)$ used in classical--synthetic comparison.
-\end{definition}
-
-% SOURCE: aimpaper/main.tex:138-150, 159-162, 1606-1753.
-\begin{definition}[Multiplicative spectral sequence]
-  \label{def:multiplicative-ss}
-  \uses{def:chosen-page-presentation}
-  \notready
-  A multiplicative spectral sequence has unital associative products on its
-  pages, compatible page maps, additive bidegrees, and a Leibniz rule for page
-  differentials with the chosen sign convention.  Its convergence data also
-  identifies the $E_\infty$ product with the associated-graded product on the
-  abutment.  This interface is required before expressions such as $h_j^2$ or
-  $h_0x$ are meaningful.
-\end{definition}
-
-% SOURCE: aimpaper/main.tex:253-263 and all later elementwise arguments.
-\begin{proposition}[Categorical and elementwise presentations agree]
-  \label{prop:categorical-elementwise-comparison}
-  \uses{def:mathlib-spectral-sequence,def:mathlib-short-complex-exact,thm:mathlib-exact-iff-image-kernel,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,thm:filtered-complex-to-spectral-sequence}
-  \notready
-  For a spectral sequence in graded $\mathbb F_2$-vector spaces constructed
-  from a chosen exact couple or filtered complex, the Mathlib page objects,
-  after the stored page reindexing, are naturally isomorphic in the AIM Adams
-  convention to $Z_{r-1}/B_{r-1}$ on the displayed $E_r$ page.  The Mathlib
-  page differential corresponds to the representative map
-  $Z_{r-1}\to E_2/B_{r-1}$.
-\end{proposition}
-
-\begin{proof}
-  Construct the isomorphism on $E_2=Z_1/B_1$, identify each next Mathlib page
-  with homology, and induct on the displayed index $r$.  Passing from $E_r$ to
-  $E_{r+1}$ takes the homology of
-  $Z_{r-1}/B_{r-1}$ and gives precisely $Z_r/B_r$; naturality supplies
-  compatibility with page passage.  The construction must be carried
-  out for the concrete classical and synthetic presentations, not postulated
-  for an arbitrary spectral sequence.
 \end{proof}
