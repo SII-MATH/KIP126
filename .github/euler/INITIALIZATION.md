@@ -10,8 +10,8 @@ generated inventory is pinned by `generated-file-hashes.sha256`.
 
 | Generated file | Required difference | Trust boundary |
 | --- | --- | --- |
-| `pr-build.yml` | Uses `KIP126/`, `KIP126.lean`, `lakefile.lean`, `surenny/KIP126`, `kip126-public`, KIP126's inventory/unit/Regression commands, and repository-local trusted helpers. TauCeti-only roadmap, graph, module-system, and environment-lint commands are absent. | Candidate code is limited to the KIP126 source overlay and a separately validated manifest/toolchain move; every elaborating command runs offline under `landrun`. Only public cache endpoints reach trusted setup, and no endpoint or credential enters the sandbox. |
-| `ci.yml` | Builds every KIP126 module, runs the compiled audit and repository-approved tests, then optionally publishes only KIP126 root-package outputs through `kip126-r2 --repo surenny/KIP126`. | Upload secret and private endpoints exist only in the trusted default-branch producer. Missing cache configuration skips publication without weakening health. |
+| `pr-build.yml` | Uses `KIP126/`, `KIP126.lean`, `lakefile.lean`, `surenny/KIP126`, `kip126-public`, KIP126's inventory/unit/Regression commands, and repository-local trusted helpers. TauCeti-only roadmap, graph, module-system, and environment-lint commands are absent. It reports the pin-only `bump-guard` before the build and restores exact-base trusted build outputs when available. | Candidate code is limited to the KIP126 source overlay and a separately validated manifest/toolchain move; every elaborating command runs offline under `landrun`. Only public cache endpoints and a restore-only default-branch GitHub cache reach trusted setup, and no endpoint or credential enters the sandbox. |
+| `ci.yml` | Builds every KIP126 module, runs the compiled audit and repository-approved tests, saves exact-commit build outputs in GitHub's cache for PR reuse, then optionally publishes KIP126 root-package outputs through `kip126-r2 --repo surenny/KIP126`. | Only successful default-branch CI writes the exact-commit GitHub cache; PR jobs restore it without saving. Upload secrets and private endpoints exist only in the trusted default-branch producer. Missing external cache configuration skips that publication without weakening health. |
 | `review.yml` | Uses the `euler-review.request/v1` contract, `EULER_*` variables, exact `workflow_run.pull_requests[0].head.sha`, newest `scope`/`build`/`bump-guard`, strict `/review` authorization, Euler idempotency, and initializer exclusion. | The protected webhook is never exposed to candidate code. The workflow never runs a model or reusable reviewer and preserves terminal exact-head semantic status. |
 | `pr-profile.yml` | Uses KIP126 source paths, cache identity, forward-pin validator, and generated perf/profile helpers. | Candidate measurement is offline under the same `landrun`/watchdog boundary; host counters and tokens remain outside the sandbox. |
 | `pr-labels.yml` | Runs the bundled Euler status projection from the trusted default branch with the repository token's narrow read/status and issue-label permissions. | Labels are advisory projections of re-read exact-head facts and never authorize merge. No App credential is required or exposed. |
@@ -20,7 +20,8 @@ generated inventory is pinned by `generated-file-hashes.sha256`.
 
 All `actions/checkout` uses are pinned to
 `11d5960a326750d5838078e36cf38b85af677262`; `leanprover/lean-action` is pinned
-to `38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9`. The generated audit imports
+to `38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9`; `actions/cache` restore/save
+uses are pinned to `0057852bfaa89a56745cba8c7296529d2fc39830`. The generated audit imports
 every module under `KIP126`, rejects a zero-declaration wiring, and permits only
 `propext`, `Classical.choice`, and `Quot.sound`.
 

@@ -31,6 +31,21 @@ jobs:
       - name: Run fixed core and project gates
         run: bash scripts/euler-ci.sh
 
+      # Only successful default-branch CI may publish these outputs. PR builds restore an exact
+      # base-commit key with actions/cache/restore, so candidate code can neither overwrite this
+      # cache nor seed artifacts for a later run.
+      - name: Stage trusted build outputs for pull requests
+        run: |
+          mkdir -p base/.lake
+          cp -a .lake/build base/.lake/build
+
+      - name: Save trusted build outputs for pull requests
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          # Keep this path identical to pr-build: cache versions include the path as well as the key.
+          path: base/.lake/build
+          key: kip126-main-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
+
       - name: Configure the Lake cache upload
         id: cachecfg
         env:
