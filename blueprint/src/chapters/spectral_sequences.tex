@@ -303,10 +303,10 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
 % SOURCE: aimpaper/main.tex:253-271 and 827-862; strong convergence is assumed throughout.
 \begin{definition}[Complete and separated decreasing filtration]
   \label{def:complete-separated-filtration}
-  \uses{def:core-filtration,def:core-exhaustive-filtration,def:core-filtration-completion-witness}
+  \uses{def:core-filtration,def:core-filtration-completion-witness}
   \notready
-  For a decreasing filtration $F$ on a graded abelian group $A$, exhaustive
-  means $\bigcup_{s\in\mathbb Z}F^sA=A$, separated means
+  For a decreasing filtration $F$ on a graded abelian group $A$, ordinary
+  exhaustiveness means $\bigcup_{s\in\mathbb Z}F^sA=A$, separatedness means
   $\bigcap_{s\in\mathbb Z}F^sA=0$, and complete means that the canonical map
   \[
     A\longrightarrow\varprojlim_s A/F^sA
@@ -314,8 +314,12 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   is an isomorphism, degree by degree.  The quotient-tower part of this
   condition is represented by the explicit witness in
   Definition~\ref{def:core-filtration-completion-witness}; the combined
-  complete, separated, and convergence interface remains pending.  A
-  convergence witness must also record the regularity or boundedness condition
+  complete, separated, and convergence interface remains pending.  These
+  ordinary union/intersection conditions must not be confused with the
+  stronger degreewise eventual-top predicate
+  \texttt{Filtration.IsExhaustive} or eventual-bottom predicate
+  \texttt{Filtration.IsEventuallyZero} from the Core.  A convergence witness
+  must also record the regularity or boundedness condition
   that makes only finitely many filtration pieces relevant in each total
   degree.
 \end{definition}
@@ -340,7 +344,7 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
 % classicalAdamsShape_two_rel.
 \begin{definition}[Compiled classical Adams $E_2\to E_3$ shape slice]
   \label{def:classical-adams-e2-e3-shape-slice}
-  \uses{def:mathlib-spectral-sequence,def:mathlib-complex-shape-up}
+  \uses{def:mathlib-spectral-sequence,def:mathlib-complex-shape-up,def:core-f2-module-category,thm:mathlib-module-category-abelian}
   \lean{KIP126.Classical.Adams.ClassicalAdamsSpectralSequence}
   \lean{KIP126.Classical.Adams.classicalAdamsShape_two_rel}
   \lean{KIP126.Classical.Adams.ClassicalAdamsSS.e₂ToE₃}
@@ -471,7 +475,7 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
 
 \begin{lemma}[Projection equation for a restricted differential]
   \label{lem:filtered-associated-graded-differential-projection}
-  \uses{def:core-associated-graded-differential,def:core-filtered-chain-complex}
+  \uses{def:core-associated-graded-differential,def:core-filtered-chain-complex,def:core-to-associated-graded}
   \lean{KIP126.Core.SpectralSequence.FilteredComplex.toAssociatedGraded_comp_associatedGradedDifferential}
   \leanok
   The quotient projection from $F^sC_k$ to
@@ -596,7 +600,10 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   component.  It also chooses, for every bidegree $(p,q)$, a page at least $2$
   and an isomorphism from that page object to the indicated associated-graded
   piece of the endpoint abutment.  The boundedness field yields compiled proofs
-  that the abutment filtration is exhaustive and eventually zero.
+  of the strong degreewise eventual-top predicate named
+  \texttt{IsExhaustive} and of degreewise eventual-bottom.  These imply
+  ordinary exhaustiveness and separatedness, but are not definitions of those
+  weaker notions.
 
   This is intentionally a selected-page comparison, not a strong-convergence
   theorem: it supplies neither coherence of comparisons under page passage nor

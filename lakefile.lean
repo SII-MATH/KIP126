@@ -7,6 +7,14 @@ package KIP126 where
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git" @ "v4.32.2"
 
+/-!
+`leanblueprint checkdecls` shells out to this executable.  Pin the dependency
+instead of following its default branch so declaration checking is reproducible.
+-/
+require checkdecls from git
+  "https://github.com/PatrickMassot/checkdecls.git" @
+    "3d425859e73fcfbef85b9638c2a91708ef4a22d4"
+
 @[default_target]
 lean_lib KIP126 where
   globs := #[.andSubmodules `KIP126]
