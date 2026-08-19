@@ -1,7 +1,59 @@
 # KIP126
 
+## Dependencies
+
+KIP126 is developed with the following projects and tools:
+
+- [Lean](https://leanprover.github.io/) `4.32.2`, selected by
+  [`lean-toolchain`](lean-toolchain);
+- [Lake](https://github.com/leanprover/lake), the Lean package manager and
+  build tool, configured in [`lakefile.lean`](lakefile.lean);
+- [Mathlib](https://github.com/leanprover-community/mathlib4/) `v4.32.2`,
+  pinned in [`lakefile.lean`](lakefile.lean);
+- [Lean Blueprint](https://github.com/PatrickMassot/leanblueprint), exposed by
+  the `leanblueprint` command for the natural-language formalization graph and
+  its PDF, web, and declaration-check outputs;
+- Python 3 for repository audits and regression checks under `scripts/`;
+- a LaTeX toolchain with `latexmk` for Blueprint PDF generation.
+
+The Lean and Mathlib versions must remain aligned.  Blueprint's generated
+directories (`blueprint/print`, `blueprint/web`, and `blueprint/lean_decls`) are
+build outputs and should not be edited by hand.
+
 Lean 4.32.2 project and source-grounded Blueprint for the KIP126
 formalization.
+
+## Project documents and workflow
+
+The repository separates the goal, scope, plan, and formalization sketch:
+
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) is the implementation plan.  It briefly
+  states what to do and the dependency order in which the Lean modules should
+  be developed.
+- [`aimpaper/`](aimpaper/) contains the target paper and its source material.
+  It is the mathematical document to be formalized; its claims are not, by
+  themselves, Lean proofs or project theorems.
+- [`PROJECT_BOUNDARY.md`](PROJECT_BOUNDARY.md) defines what this project does
+  and does not formalize, together with its source, trust, and acceptance
+  boundaries.
+- [`blueprint/src/content.tex`](blueprint/src/content.tex) and the chapters
+  under [`blueprint/src/chapters`](blueprint/src/chapters) form the
+  natural-language formalization sketch.  The Blueprint follows the paper's
+  definitions and the roadmap's order, and refines each step into nodes whose
+  mathematical statement, dependencies, sources, and intended Lean object can
+  be checked together.  In the usual layout, one chapter corresponds to one
+  Lean file; temporary shared facades are allowed during migration, but the
+  final implementation should expose chapter-level Lean entry points.
+
+The intended workflow is therefore:
+
+1. use `aimpaper/` to identify the mathematical target;
+2. use `PROJECT_BOUNDARY.md` to decide which claims and inputs are in scope;
+3. use `docs/ROADMAP.md` to choose the next implementation slice;
+4. record its node-level natural-language statement and Lean correspondence
+   in the matching Blueprint chapter; and
+5. implement and verify the corresponding Lean declarations with Lake and the
+   pinned Mathlib dependency.
 
 The executable Lean implementation is still at the first shared-Core
 milestone.  That Core is deliberately small: it imports Mathlib's
