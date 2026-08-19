@@ -164,7 +164,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes graphviz libgraphviz-dev pkg-config
           python3 -m venv "$RUNNER_TEMP/blueprint-venv"
-          "$RUNNER_TEMP/blueprint-venv/bin/pip" install "leanblueprint==1.9.8"
+          "$RUNNER_TEMP/blueprint-venv/bin/pip" install "leanblueprint==0.0.20"
 
       - name: Build Blueprint component
         if: needs.classify.outputs.blueprint == 'true' || steps.reuse.outcome != 'success'
