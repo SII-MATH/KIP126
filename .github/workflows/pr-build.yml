@@ -18,7 +18,9 @@ name: pr-build
 # status. Keeping the job name distinct leaves exactly one `build` (the status) as the merge gate.
 #
 # Live on pull_request_target (fires for all PRs, incl. forks, from the trusted base definition).
-# workflow_dispatch is also kept for ad-hoc re-testing of a given PR number.
+# workflow_dispatch is also used by branch reconciliation. Its explicit refresh_review input lets a
+# reconciled build refresh semantic review without making ordinary ad-hoc rebuilds spend review
+# budget; that review then reconciles the PR's status label.
 
 on:
   pull_request_target:
@@ -34,8 +36,14 @@ on:
   workflow_dispatch:
     inputs:
       pr: { description: "PR number to build", required: true, type: string }
+      refresh_review:
+        description: "Refresh exact-head semantic review after a successful build"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
+  actions: write
   contents: read
   pull-requests: read
   statuses: write
@@ -772,3 +780,13 @@ jobs:
             exit 1
           fi
           [ "$state" = "success" ]
+
+      - name: Refresh semantic review after a reconciled branch build
+        if: ${{ success() && github.event_name == 'workflow_dispatch' && inputs.refresh_review }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ steps.pr.outputs.num }}
+        run: |
+          set -euo pipefail
+          [[ "$PR" =~ ^[0-9]+$ ]]
+          gh workflow run review.yml --repo '${{ github.repository }}' --ref main -f pr="$PR"

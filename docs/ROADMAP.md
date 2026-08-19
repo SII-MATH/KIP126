@@ -31,7 +31,7 @@ Blueprint 仍使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目
 
 - 336 是 DAG 的正式节点总数；其中 117 个节点已有完成标记（77 个项目声明为 `leanok`、40 个 Mathlib 根为 `mathlibok`），219 个节点仍为 `notready`。
 - `leanok` 与 `mathlibok` 不等价于“整章完成”：Spectral-sequence machinery 仍有 14 个 `notready`，而外部结果、内部比较和 near-$126$ 主体仍基本未实现。
-- `content.tex` 只保留按依赖顺序的平铺 `\input` 清单与三层注释；没有 LaTeX `\part`。`blueprint/web`、`blueprint/print` 和 `blueprint/lean_decls` 是生成/检查产物，不手工编辑。
+- `content.tex` 只保留按依赖顺序的平铺 `\input` 清单与三层注释；没有 LaTeX `\part`。`blueprint/web`、`blueprint/print` 和 `blueprint/lean_decls` 是生成/检查产物，不手工编辑；其中 `blueprint/lean_decls` 纳入版本控制，以支持干净检出后的声明检查。
 - 章节不按代码行数均分，而按数学定义、外部黑盒和内部消费者的边界拆分。同一现有 Lean facade 暂时覆盖两个 chapter 不表示两章已经合并；实现层仍需最终形成一章一入口。
 
 ## 依赖顺序

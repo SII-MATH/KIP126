@@ -1,6 +1,8 @@
 name: pr-performance
 
-# Required, base-branch-defined performance gate for untrusted Lean changes.
+# Advisory, base-branch-defined performance signal for untrusted Lean changes. A red `perf` status
+# is visible on the PR and in its report, but is deliberately absent from branch rules and the
+# automatic merge gate; scope/build/bump-guard plus semantic review remain authoritative.
 #
 # Security boundary: GitHub/API resolution, perf, threshold evaluation, status
 # posting, and report rendering run as trusted host steps. The PR contributes
@@ -544,7 +546,7 @@ jobs:
           update_comment '<!-- lean-performance-comment -->' performance.md
           update_comment '<!-- proof-profile-comment -->' profile.md
 
-      - name: Post terminal required perf status
+      - name: Post terminal advisory perf status
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
@@ -578,4 +580,3 @@ jobs:
           done
           [ "$posted" = 1 ] || { echo '::error::could not post terminal perf status'; exit 1; }
           [ "$state" = success ]
-

@@ -689,23 +689,20 @@ later chapters.
   \label{def:reindexed-ss-morphism}
   \uses{def:mathlib-graded-comap,def:mathlib-complex-shape-up,def:mathlib-spectral-sequence-hom,def:adams-bidegree,def:synthetic-tridegree}
   \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap}
-  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeightComparison}
+  \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap.differential_comm}
+  \lean{KIP126.Synthetic.SpectralSequence.fixedWeightPage}
   \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
   \notready
-  For a sequence $E$ graded by $J$, a sequence $E'$ graded by $I$, and a
-  reindexing $\phi:I\to J$, a reindexed morphism specifies a page-index map,
-  admissibility proofs, pagewise maps
-  $E_r^{\phi(i)}\to (E'_{r'})^i$, and the
-  equation saying that $\phi$ carries every $E'$ differential target to the
-  corresponding $E$ differential target.  Its differential squares commute,
-  and its maps on homology agree with the maps used in the successor-page
-  square.
+  For every fixed synthetic weight and every page $r\geq2$, the compiled
+  classical--synthetic comparison supplies a homological-complex map from the
+  classical page to the corresponding fixed-weight synthetic page, together
+  with page-passage isomorphisms and their coherence.  Commutation with
+  differentials is derived from the chain-map law.  This realizes the
+  forgetful grading map $(s,t,w)\mapsto(s,t)$.
 
-  The compiled classical--synthetic slice has the same page index on both
-  sides and $\phi(s,t,w)=(s,t)$.  It stores page maps, homology maps,
-  differential commutation, and successor-page commutation.  It does not yet
-  prove that the stored homology map is induced by the stored page map, nor
-  provide identities, composition, or the shifted reindexings
+  This compiled interface is specialized to fixed-weight comparison.  A fully
+  general reindexed morphism must still provide arbitrary page and grading
+  reindexings, identities, composition, and the shifted reindexings
   $(s,t)\mapsto(s+k,t+k+d)$ required later.  Those laws are the remaining
   obligations of this node.
 \end{definition}
