@@ -91,6 +91,37 @@ lake build
 The Blueprint PDF, web output, declaration checks, structural doctor, and DAG
 checks are maintained separately under `blueprint/` and `.agents/skills/`.
 
+The published Blueprint and API documentation are assembled by
+`.github/workflows/pages.yml` and served at
+<https://surenny.github.io/KIP126/>. The workflow prunes work by changed path,
+restores only caches written by successful `main` builds, and falls back to a
+full component rebuild when a reusable artifact is unavailable. `checkdecls`
+is pinned in `lakefile.lean`; the nested `docbuild/` project pins doc-gen4 to
+the Lean 4.32.2-compatible commit `1d0643dd819f8ca71b1dd82cba6e3e3050f0a255`.
+
+The Pages workflow uses the following change matrix:
+
+| Changed paths | Blueprint render | Lean/checkdecls | API docs |
+| --- | --- | --- | --- |
+| `blueprint/src/**` | rebuild | run | reuse artifact |
+| `KIP126.lean`, `KIP126/**/*.lean` | reuse artifact | run | rebuild incrementally |
+| Lake/toolchain, `docbuild/**`, docs workflow/helpers | rebuild | run | rebuild |
+| other paths | workflow skipped | workflow skipped | workflow skipped |
+
+Successful `main` runs are the only writers of the GitHub caches. PRs restore
+the trusted Lean baseline and the single doc-gen dependency baseline, but do
+not upload `.lake` state. Mathlib files always come from `lake exe cache get`.
+The large doc-gen cache has one immutable key per toolchain/manifest graph,
+rather than one key per commit. Blueprint and API docs are separate workflow
+artifacts; the deploy job assembles them as `_site/blueprint/` and
+`_site/docs/`, then uses the Actions Pages artifact flow without a `gh-pages`
+branch. A missing component artifact causes a safe rebuild. Weekly and manual
+runs skip GitHub caches and record cold plus immediate warm command timings;
+normal runs report both elapsed times and cache-hit outcomes in the job summary.
+doc-gen equation pages are disabled because the site is used for declaration
+types, source links, and search; deriving equations for the full dependency
+closure dominates cold builds without improving that evidence chain.
+
 ## Provenance and source inventory
 
 `KIP126.External.Provenance` defines the explicit `SourceId`, `SourceRef`,

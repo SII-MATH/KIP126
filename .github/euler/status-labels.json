@@ -6,7 +6,7 @@
   "semantic_trusted_creators": ["github-actions[bot]", "surenny"],
   "semantic_pending_ttl_seconds": 21600,
   "semantic_review_ttl_seconds": 259200,
-  "ready_mergeable_states": ["clean", "has_hooks"],
+  "ready_mergeable_states": ["clean", "has_hooks", "unstable"],
   "labels": [
     {
       "name": "awaiting-CI",
@@ -31,7 +31,7 @@
     {
       "name": "ready-to-merge",
       "color": "0e8a16",
-      "description": "Fresh exact-head gates are green and mergeability is clean; not merge authorization."
+      "description": "Fresh exact-head merge gates are green and the PR has no conflict; not merge authorization."
     }
   ]
 }
