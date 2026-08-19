@@ -161,10 +161,8 @@ jobs:
       - name: Set up Blueprint generator
         if: needs.classify.outputs.blueprint == 'true' || steps.reuse.outcome != 'success'
         run: |
-          if ! command -v dot >/dev/null; then
-            sudo apt-get update
-            sudo apt-get install --yes graphviz libgraphviz-dev pkg-config
-          fi
+          sudo apt-get update
+          sudo apt-get install --yes graphviz libgraphviz-dev pkg-config
           python3 -m venv "$RUNNER_TEMP/blueprint-venv"
           "$RUNNER_TEMP/blueprint-venv/bin/pip" install "leanblueprint==1.9.8"
 
