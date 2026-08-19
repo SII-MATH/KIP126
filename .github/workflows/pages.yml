@@ -142,7 +142,7 @@ jobs:
   blueprint:
     needs: classify
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -166,14 +166,27 @@ jobs:
             -o Acquire::http::Timeout=30
             -o Acquire::https::Timeout=30
           )
-          if ! sudo timeout 180s apt-get "${apt_options[@]}" update; then
+          packages=(
+            ghostscript graphviz libgraphviz-dev pdf2svg pkg-config texlive-latex-base
+          )
+          use_canonical_mirror() {
             sudo sed -i \
               's|mirror+file:/etc/apt/apt-mirrors.txt|https://archive.ubuntu.com/ubuntu|' \
               /etc/apt/sources.list.d/ubuntu.sources
-            sudo timeout 180s apt-get "${apt_options[@]}" update
+          }
+          if ! sudo timeout --kill-after=10s 120s apt-get "${apt_options[@]}" update; then
+            use_canonical_mirror
+            sudo timeout --kill-after=10s 120s apt-get "${apt_options[@]}" update
           fi
-          sudo timeout 300s apt-get "${apt_options[@]}" install --yes \
-            ghostscript graphviz libgraphviz-dev pdf2svg pkg-config texlive-latex-base
+          if ! sudo timeout --kill-after=10s 180s apt-get "${apt_options[@]}" \
+            install --download-only --yes "${packages[@]}"; then
+            use_canonical_mirror
+            sudo timeout --kill-after=10s 120s apt-get "${apt_options[@]}" update
+            sudo timeout --kill-after=10s 600s apt-get "${apt_options[@]}" \
+              install --download-only --yes "${packages[@]}"
+          fi
+          sudo timeout --kill-after=10s 180s apt-get "${apt_options[@]}" \
+            install --no-download --yes "${packages[@]}"
           python3 -m venv "$RUNNER_TEMP/blueprint-venv"
           "$RUNNER_TEMP/blueprint-venv/bin/pip" install "leanblueprint==0.0.20"
           echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
