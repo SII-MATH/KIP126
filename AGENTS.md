@@ -28,8 +28,10 @@ explicitly restored. Prefer the exact-SHA CI result as evidence for read-only an
 - Lean source change: after `lake exe cache get`, check the changed module or smallest
   relevant target first; run `lake build` once before delivery when the change warrants it.
 - Blueprint prose or graph change: run `leanblueprint web`.
-- Changed `\lean` annotations or declaration names: build the affected Lean target, then
-  run `lake exe checkdecls blueprint/lean_decls`.
+- Changed `\lean` annotations or declaration names: regenerate
+  `blueprint/lean_decls` with `leanblueprint web` and build the affected Lean target
+  (these may run in parallel); after both succeed, run
+  `lake exe checkdecls blueprint/lean_decls`.
 - Print-only Blueprint change: run `leanblueprint pdf`.
 - Run `leanblueprint all` only when a task explicitly requires every Blueprint artifact
   or when changes span all of the checks above.
