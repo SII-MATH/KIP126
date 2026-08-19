@@ -16,9 +16,10 @@ KIP126 is developed with the following projects and tools:
 - Python 3 for repository audits and regression checks under `scripts/`;
 - a LaTeX toolchain with `latexmk` for Blueprint PDF generation.
 
-The Lean and Mathlib versions must remain aligned.  Blueprint's generated
-directories (`blueprint/print`, `blueprint/web`, and `blueprint/lean_decls`) are
-build outputs and should not be edited by hand.
+The Lean and Mathlib versions must remain aligned. Blueprint's generated
+directories (`blueprint/print` and `blueprint/web`) are ignored build outputs.
+`blueprint/lean_decls` is also generated rather than hand-edited, but it is
+tracked so declaration checks work from a clean checkout.
 
 Lean 4.32.2 project and source-grounded Blueprint for the KIP126
 formalization.
@@ -121,6 +122,20 @@ normal runs report both elapsed times and cache-hit outcomes in the job summary.
 doc-gen equation pages are disabled because the site is used for declaration
 types, source links, and search; deriving equations for the full dependency
 closure dominates cold builds without improving that evidence chain.
+
+Install the pinned Blueprint renderer and verify that the tracked declaration
+manifest is current and every name resolves in the pinned Lean environment:
+
+```sh
+python3 -m pip install --user -r requirements-blueprint.txt
+bash scripts/check-blueprint-decls.sh
+```
+
+The script regenerates `blueprint/lean_decls` with `leanblueprint web`, compares
+it with the tracked manifest, and then runs `leanblueprint checkdecls`. A stale
+or missing manifest is regenerated and reported as a failure so its diff can be
+reviewed and committed. A removed or renamed Lean declaration is reported by
+name by the pinned `checkdecls` executable configured in `lakefile.lean`.
 
 ## Provenance and source inventory
 
