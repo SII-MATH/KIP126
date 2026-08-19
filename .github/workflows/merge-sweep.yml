@@ -1,11 +1,10 @@
 name: Merge sweep
 
-# Re-drive green PRs that the merge queue evicted, so an eviction is never terminal. auto-merge.yml
-# enqueues a green PR once per triggering event (a push, a /review comment, or a fresh pr-build); if the
-# merge queue then evicts it — a merge group that could not form, or a rebuild against a moved main that
-# failed — nothing re-drives an otherwise-idle green PR and it strands: green on every rubric, never
-# merged. This scheduled sweep re-evaluates KIP126's exact-head gate and re-enqueues only PRs that are
-# already eligible; it never runs a reviewer and routes out-of-scope or ambiguous PRs to humans.
+# Reconcile open PRs that missed an event or became stale after main moved. This repository currently
+# has no merge queue, so a ready PR gets native auto-merge and a fully-green same-repository PR whose
+# only blocker is BEHIND is updated from main. The update is followed by explicit exact-head build and
+# performance dispatches; the build dispatch refreshes semantic review and status labels. Forks,
+# conflicts, hold-labelled PRs, and ambiguous evidence remain human-owned and fail closed.
 
 on:
   schedule:
@@ -13,11 +12,12 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "List actions without enqueuing / updating / flagging"
+        description: "List merge and branch-update actions without mutating"
         type: boolean
         default: false
 
 permissions:
+  actions: write
   checks: read
   contents: write
   issues: read
@@ -37,7 +37,7 @@ jobs:
         with:
           ref: ${{ github.workflow_sha }}
           persist-credentials: false
-      - name: Re-evaluate eligible KIP126 pull requests
+      - name: Reconcile eligible KIP126 pull requests
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}

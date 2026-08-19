@@ -615,13 +615,15 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   \label{def:reindexed-ss-morphism}
   \uses{def:mathlib-graded-comap,def:mathlib-complex-shape-up,def:mathlib-spectral-sequence-hom,def:adams-bidegree,def:synthetic-tridegree}
   \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap}
-  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeightComparison}
+  \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap.differential_comm}
+  \lean{KIP126.Synthetic.SpectralSequence.fixedWeightPage}
   \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
   \notready
-  A reindexed morphism specifies a map of page index types, a map of grading
-  indices, page maps, and proofs that the page maps commute with differentials
-  after the stated degree translation and with page passage.  The interface
-  must cover shifts $(s,t)\mapsto(s+k,t+k+d)$ and the forgetful map
+  For every fixed synthetic weight and every page $r\geq2$, a reindexed
+  morphism supplies a homological-complex map from the classical page to the
+  corresponding fixed-weight synthetic page, together with page-passage
+  isomorphisms and their coherence.  Commutation with differentials is derived
+  from the chain-map law.  This realizes the forgetful grading map
   $(s,t,w)\mapsto(s,t)$ used in classical--synthetic comparison.
 \end{definition}
 

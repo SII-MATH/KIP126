@@ -90,34 +90,29 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism,def:external-result}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.h₄}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.h₀h₃Squared}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.lambdaMap}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.lambdaMap_comm}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.weightPreserving}
-  \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison}
-  \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.classical_degrees}
-  \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.catalogued_classical_degrees}
-  \lean{KIP126.Comparison.ClassicalSynthetic.H₄DifferentialComparison.synthetic_lambda_regression}
+  \lean{KIP126.Comparison.ClassicalSynthetic.sourcePageMap}
+  \lean{KIP126.Comparison.ClassicalSynthetic.sourcePageMap_differential_naturality}
   \notready
-  The current Lean slice exposes the three-graded indices, the actual
-  Mathlib page/differential interface, and the $(s,t,w)\mapsto(s,t)$ degree
-  adapter.  It does not yet construct a typed multiplication-by-$λ$ action
-  (with grading and page/multiplication coherence), nor canonical
-  classical--synthetic page morphisms from representatives.  Consequently
-  `SyntheticAdamsSS.lambdaMap` and
-  `H₄DifferentialComparison` still expose these maps and their differential
-  square as input data; they must not be read as a constructed
-  $\lambda\cdot h_0h_3^2$ correspondence.  The proposition remains `notready`
-  until the upstream synthetic spectrum/action and canonical page-map data
-  are available.
+  The upstream data layer now attaches multiplication by $\lambda$ to each
+  Mathlib page through \texttt{SyntheticLambdaAction}; its page maps are
+  morphisms of homological complexes, so \texttt{lambdaMap\_comm} follows from
+  chain-map commutativity.  The concrete \texttt{fixedWeightPage} and
+  \texttt{ReindexedSpectralSequenceMap.differential\_comm} similarly derive
+  differential naturality for fixed-weight comparison maps.  The final $h_4$
+  correspondence remains `notready`: the project still lacks
+  representative-level comparison across the two weights and compatibility
+  of that comparison with the typed action.
 \end{proposition}
 
 \begin{proof}
-  The AIM-5 catalogue wrapper supplies the classical statement and the
-  index adapter proves the displayed degree equalities.  Mathlib's
-  `CategoryTheory.SpectralSequence` supplies page objects, differentials,
-  and page-passage isomorphisms, but not a multiplicative $λ$ action or a
-  heterogeneous canonical page map.  The missing typed action/coherence and
-  representative-induced maps are therefore an upstream data-model blocker;
-  no proof of the differential correspondence is claimed here.
+  The AIM-5 catalogue wrapper supplies the classical statement and degree
+  equalities.  The remaining proof obligation is the representative-induced
+  comparison across the two fixed weights and its compatibility with the
+  typed action; no proof of the differential correspondence is claimed here.
 \end{proof}
 
 % PROOF-SOURCE: BHS Theorem A.1 and its special-fiber edge isomorphism;

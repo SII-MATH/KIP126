@@ -119,6 +119,11 @@ def test_mergeability_is_required_for_ready():
     assert target(facts(review, mergeable=None, mergeable_state="unknown")) == "awaiting-review"
 
 
+def test_advisory_failure_does_not_override_explicit_green_merge_gates():
+    review = status("semantic-review", "success", creator="surenny", target_url="x", verified_verdict=True)
+    assert target(facts(review, mergeable=True, mergeable_state="unstable")) == "ready-to-merge"
+
+
 def test_closed_pull_request_has_no_status_label():
     assert target(facts(state="closed")) is None
     assert target(facts(state="closed", merged=True)) is None
