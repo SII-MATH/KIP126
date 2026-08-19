@@ -1,7 +1,14 @@
 \chapter{Spectral-sequence machinery}
 \label{chap:spectral-sequence-machinery}
 
-This chapter packages spectral objects, filtered-complex realizations, page presentations, reindexing, convergence, and comparison interfaces.  It replaces the former catch-all Background chapter.
+This chapter fixes the common machinery used by every later classical,
+synthetic, and extension spectral sequence.  It has four layers: the Mathlib
+spectral-sequence and spectral-object APIs; the paper's page, grading,
+convergence, and multiplicative conventions; the categorical--elementwise
+comparison; and the functorial construction from filtered complexes through
+triangulated and abelian spectral objects.  Paper-specific Adams towers,
+synthetic rigidity, and extension-spectral-sequence calculations belong to
+later chapters.
 
 \section{Mathlib spectral-sequence and spectral-object interfaces}
 
@@ -303,38 +310,53 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
 \begin{definition}[Complete and separated decreasing filtration]
   \label{def:complete-separated-filtration}
   \uses{def:core-filtration,def:core-filtration-completion-witness}
+  \lean{KIP126.Classical.Adams.IsAdamsFiltrationSeparated}
   \notready
-  For a decreasing filtration $F$ on a graded abelian group $A$, ordinary
-  exhaustiveness means $\bigcup_{s\in\mathbb Z}F^sA=A$, separatedness means
-  $\bigcap_{s\in\mathbb Z}F^sA=0$, and complete means that the canonical map
+  Let $F$ be a decreasing filtration by subobjects of a graded object $A$.
+  Degreewise ordinary exhaustiveness and separatedness mean, respectively,
   \[
-    A\longrightarrow\varprojlim_s A/F^sA
+    \bigvee_{s\in\mathbb Z}F^sA_n=\top
+    \qquad\text{and}\qquad
+    \bigwedge_{s\in\mathbb Z}F^sA_n=\bot
   \]
-  is an isomorphism, degree by degree.  The quotient-tower part of this
-  condition is represented by the explicit witness in
+  for every degree $n$.  For graded abelian groups these are the familiar
+  union and intersection conditions.  Degreewise completeness means that the
+  canonical map
+  \[
+    A_n\longrightarrow\varprojlim_s A_n/F^sA_n
+  \]
+  is an isomorphism for every $n$.  The quotient-tower part is represented by
+  the explicit witness in
   Definition~\ref{def:core-filtration-completion-witness}; the combined
-  complete, separated, and convergence interface remains pending.  These
-  ordinary union/intersection conditions must not be confused with the
-  stronger degreewise eventual-top predicate
-  \texttt{Filtration.IsExhaustive} or eventual-bottom predicate
-  \texttt{Filtration.IsEventuallyZero} from the Core.  A convergence witness
-  must also record the regularity or boundedness condition
-  that makes only finitely many filtration pieces relevant in each total
-  degree.
+  generic interface remains pending.  It must not identify ordinary
+  exhaustiveness with the stronger condition that $F^sA_n=\top$ for all
+  sufficiently small $s$, nor separatedness with the stronger condition that
+  $F^sA_n=\bot$ for all sufficiently large $s$.  The latter two are the
+  current Core predicates \texttt{Filtration.IsExhaustive} and
+  \texttt{Filtration.IsEventuallyZero}.  Any later convergence theorem must
+  state explicitly whether it assumes the ordinary conditions, these stronger
+  eventual conditions, or degreewise boundedness.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
 \begin{definition}[Spectral-sequence page-level convention]
   \label{def:ss-page-level}
   \notready
-  A page-level convention records the first page, successor operation, page
-  index used in the chosen cycle/boundary presentation, and the translation
-  from any auxiliary quotient level to that page.  In the AIM Adams
-  convention the displayed page has the predecessor offset
-  $E_r\cong Z_{r-1}/B_{r-1}$ for $r\ge2$, while the corresponding synthetic
-  quotient is $S/\lambda^{r-1}$.  These three roles of $r$, $r-1$, and the
-  quotient exponent are recorded explicitly and are never identified
-  definitionally.
+  A page-level convention consists of a first displayed page, a map from its
+  natural-number display index to Mathlib's integer page index, a
+  cycle/boundary level, and, when synthetic quotients are involved, a quotient
+  exponent.  It must preserve successors and record the lower bounds that make
+  every page admissible.  In the AIM Adams convention, for every $r\ge2$,
+  these functions have values
+  \[
+    \operatorname{page}(r)=r,\qquad
+    \operatorname{cycleLevel}(r)=r-1,\qquad
+    \operatorname{quotientExponent}(r)=r-1.
+  \]
+  Thus the displayed page is $E_r\cong Z_{r-1}/B_{r-1}$ and the associated
+  synthetic quotient is $\nu X/\lambda^{r-1}$.  Equality of the last two
+  numerical values is a proved convention law, not a definitional
+  identification of cycles with a synthetic quotient.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:134-150 and 799-807, Adams differential degree.
@@ -360,22 +382,37 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
 \begin{definition}[Classical and synthetic Adams complex shape]
   \label{def:adams-complex-shape}
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
+  \lean{KIP126.Classical.Adams.classicalAdamsShape}
+  \lean{KIP126.Classical.Adams.classicalAdamsTarget}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsTarget}
   \notready
-  On the bidegree index $\mathbb Z\times\mathbb Z$, the page-$r$ Adams
-  differential has additive degree $(r,r-1)$, hence is represented by
-  Mathlib's fixed-degree shape $\operatorname{up}'(r,r-1)$.  The synthetic
-  shape uses the same first two coordinates and fixes the weight coordinate.
+  For every integer page $r\ge2$, the classical shape on
+  $\mathbb Z\times\mathbb Z$ is $\operatorname{up}'(r,r-1)$, and the
+  synthetic shape on $\mathbb Z\times\mathbb Z\times\mathbb Z$ is
+  $\operatorname{up}'(r,r-1,0)$.  Consequently a nonzero component can only
+  run from $(s,t)$ to $(s+r,t+r-1)$, or from $(s,t,w)$ to
+  $(s+r,t+r-1,w)$, respectively.  The raw target and shape functions are
+  implemented; the remaining obligation in this node is to package them with
+  the page-level convention and its admissibility/successor laws.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:264-295 and 999-1007, extension differential degree.
 \begin{definition}[Extension spectral-sequence complex shape]
   \label{def:ess-complex-shape}
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
+  \lean{KIP126.Classical.ExtensionSS.etaESSShape}
+  \lean{KIP126.Classical.ExtensionSS.etaESSShape_rel}
+  \lean{KIP126.Classical.ExtensionSS.differentialDegree}
   \notready
-  On the paper's $(s,t)$ indexing, an extension differential $d_n^f$ has
-  additive degree $(n,n)$.  The corresponding Mathlib complex shape is
-  specified pagewise by $\operatorname{up}'(n,n)$, with any spectrum side or
-  synthetic weight retained as an additional fixed index.
+  The first displayed extension page is $n=0$.  On the paper's $(s,t)$
+  indexing, its page-$n$ differential has additive degree $(n,n)$ and is
+  represented by $\operatorname{up}'(n,n)$.  Any summand tag distinguishing
+  the source and target spectra, and any synthetic weight, is an additional
+  index whose transition must be stated separately; it is not encoded by the
+  pair $(n,n)$.  The current Lean slice implements this shape for the
+  classical $\eta$-ESS.  The pending generic interface must also specify the
+  summand transition, the starting-page witness, and the page-passage law.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:134-150 and 253-295.
@@ -384,15 +421,19 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   \lean{KIP126.Classical.Adams.Bidegree}
   \lean{KIP126.Classical.Adams.classicalAdamsShift}
   \lean{KIP126.Classical.Adams.classicalAdamsTarget}
+  \lean{KIP126.Classical.Adams.adamsStem}
   \notready
-  A classical Adams class has bidegree $(s,t)$, Adams filtration $s$, and stem
-  $t-s$.  A classical differential has
+  The two coordinates in a classical Adams bidegree $(s,t)$ are Adams
+  filtration and internal degree; its topological stem is $t-s$.  A
+  page-$r$ classical differential has
   \[
     d_r:E_r^{s,t}\longrightarrow E_r^{s+r,t+r-1},
   \]
-  hence lowers the stem by one.  In an extension spectral sequence the page
-  differential is instead written with the paper's filtration shift
-  $(n,n)$; every comparison must record which convention it uses.
+  so it raises filtration by $r$ and lowers the stem by one.  A page-$n$
+  extension differential has shift $(n,n)$ and therefore preserves the stem.
+  The bidegree, stem, and classical target functions are implemented.  The
+  remaining interface must prevent a theorem from using an Adams page index
+  as an extension length without an explicit conversion.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:690-739, 799-823, and 1138-1150.
@@ -412,9 +453,11 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   A synthetic Adams class is indexed by $(s,t,w)$, where $s$ is Adams
   filtration, $t-s$ is the topological stem, and $w$ is synthetic weight.  A
   synthetic $d_r$ has degree $(r,r-1,0)$.  Multiplication by $\lambda$ has
-  degree $(0,0,-1)$.  The classical page $E_r$ corresponds to the quotient
-  level $S/\lambda^{r-1}$; this translation is data, not a definitional
-  equality.
+  degree $(0,0,-1)$, while the functor $\nu$ sends a classical bidegree
+  $(s,t)$ to $(s,t,t)$.  These grading operations are implemented.  They do
+  not by themselves assert that a classical page is a homotopy group of a
+  synthetic quotient: the later rigidity input supplies the isomorphism with
+  $S/\lambda^{r-1}$, and every use must retain that witness and its source.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:827-862, definitions of Z_r and B_r.
@@ -425,24 +468,36 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   An elementwise presentation includes its displayed-page reindexing.  In the
   AIM Adams convention it chooses nested subgroups of the initial page
   $E_2$, with $Z_1=E_2$, $B_1=0$ and
-  $B_r^{s,t}\subseteq Z_r^{s,t}\subseteq E_2^{s,t}$, and, for every
-  $r\ge2$, identifications
+  \[
+    B_{r-1}^{s,t}\subseteq B_r^{s,t}\subseteq Z_r^{s,t}
+      \subseteq Z_{r-1}^{s,t}\subseteq E_2^{s,t}.
+  \]
+  For every $r\ge2$ it supplies isomorphisms
   \[
     E_r^{s,t}\cong Z_{r-1}^{s,t}/B_{r-1}^{s,t}.
   \]
-  The displayed differential is represented before quotienting as
+  These isomorphisms commute with page passage.  Before quotienting, the
+  displayed differential is represented by a homomorphism
   \[
-    d_r:Z_{r-1}^{s,t}\longrightarrow
+    \widetilde d_r:Z_{r-1}^{s,t}\longrightarrow
     E_2^{s+r,t+r-1}/B_{r-1}^{s+r,t+r-1};
   \]
-  its kernel inside $Z_{r-1}$ defines $Z_r$.  The subgroup $B_r$ is the
-  inverse image in $E_2$ of the differential image in $E_2/B_{r-1}$, so it
-  contains $B_{r-1}$.
+  it vanishes on $B_{r-1}$ and therefore induces the categorical page
+  differential.  Its kernel inside $Z_{r-1}$ is $Z_r$.  The subgroup $B_r$
+  is the inverse image in $E_2$ of the image of the incoming differential in
+  $E_2/B_{r-1}$, namely the image of
+  \[
+    \widetilde d_r:Z_{r-1}^{s-r,t-r+1}
+      \longrightarrow E_2^{s,t}/B_{r-1}^{s,t}.
+  \]
+  This proves $B_{r-1}\subseteq B_r\subseteq Z_r$.
   A filtered spectral sequence initialized at $E_0$ must first apply its
   stored page reindexing before using these Adams symbols.  The presentation
   also includes
-  $Z_\infty=\bigcap_r Z_r$ and $B_\infty=\bigcup_r B_r$ when these operations
-  exist in the chosen algebraic setting.
+  $Z_\infty=\bigcap_{r\ge1} Z_r$ and
+  $B_\infty=\bigcup_{r\ge1} B_r$, together with the quotient
+  $E_\infty=Z_\infty/B_\infty$, when these operations exist in the chosen
+  algebraic setting.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:134-151, 827-862, and throughout the appendix.
@@ -454,22 +509,41 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   $Z_r$, an $r$-boundary when it lies in $B_r$, and a permanent cycle when it
   lies in $Z_\infty$.  Thus an element of the displayed $E_r$ page is
   represented by an $(r-1)$-cycle modulo $(r-1)$-boundaries, and surviving
-  the displayed $d_r$ upgrades its representative from $Z_{r-1}$ to $Z_r$.
-  A page class survives to $E_\infty$ when it has a permanent representative;
-  it may still represent zero if that representative lies in $B_\infty$.
+  the displayed $d_r$ means that its coset has a representative in $Z_r$.
+  This is an existence statement because a different $E_2$ representative
+  may differ by $B_{r-1}$.  A page class survives to $E_\infty$ when some
+  compatible representative lies in $Z_\infty$; its limiting class is the
+  corresponding coset in $Z_\infty/B_\infty$, and is zero precisely when the
+  permanent representative lies in $B_\infty$.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:253-263, standing convergence assumptions.
 \begin{definition}[Strong convergence with detection]
   \label{def:strong-convergence-detection}
   \uses{def:core-filtration,def:complete-separated-filtration,def:chosen-page-presentation}
+  \lean{KIP126.Classical.Adams.StrongClassicalAdamsConvergence}
+  \lean{KIP126.Classical.Adams.IsAdamsFiltrationSeparated}
   \notready
   A strongly convergent elementwise spectral sequence for a graded abutment
   $A_*$ consists of a complete, exhaustive, degreewise separated filtration
-  $F^sA_n$ and compatible isomorphisms
-  $E_\infty^{s,s+n}\cong F^sA_n/F^{s+1}A_n$.  A class
-  $x\in E_\infty^{s,s+n}$ detects $\alpha\in A_n$ when $\alpha\in F^sA_n$
-  maps to $x$ in this quotient.
+  $F^sA_n$, a stable-page bound $R(s,n)$, and isomorphisms
+  \[
+    E_r^{s,s+n}\cong F^sA_n/F^{s+1}A_n
+    \qquad(r\ge R(s,n))
+  \]
+  compatible with every page-passage isomorphism.  It also records a
+  degreewise regularity hypothesis strong enough to rule out the relevant
+  Boardman obstruction; completeness and separatedness alone are not used as
+  a substitute for this hypothesis.  The implemented classical structure
+  contains the stable-page coherence, completion, exhaustiveness, and
+  separatedness data.  A generic regularity interface and the elementwise
+  detection relation remain pending.
+
+  Under these data, $x\in E_\infty^{s,s+n}$ detects $\alpha\in A_n$ exactly
+  when $\alpha\in F^sA_n$ and its image in
+  $F^sA_n/F^{s+1}A_n$ is the image of $x$ under the limiting comparison.
+  Detection determines the lift only modulo $F^{s+1}A_n$; it is a relation,
+  not a chosen function from page classes to abutment elements.
 \end{definition}
 
 \begin{lemma}[Projection equation for a restricted differential]
@@ -619,12 +693,18 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   \lean{KIP126.Synthetic.SpectralSequence.fixedWeightPage}
   \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
   \notready
-  For every fixed synthetic weight and every page $r\geq2$, a reindexed
-  morphism supplies a homological-complex map from the classical page to the
-  corresponding fixed-weight synthetic page, together with page-passage
-  isomorphisms and their coherence.  Commutation with differentials is derived
-  from the chain-map law.  This realizes the forgetful grading map
-  $(s,t,w)\mapsto(s,t)$ used in classical--synthetic comparison.
+  For every fixed synthetic weight and every page $r\geq2$, the compiled
+  classical--synthetic comparison supplies a homological-complex map from the
+  classical page to the corresponding fixed-weight synthetic page, together
+  with page-passage isomorphisms and their coherence.  Commutation with
+  differentials is derived from the chain-map law.  This realizes the
+  forgetful grading map $(s,t,w)\mapsto(s,t)$.
+
+  This compiled interface is specialized to fixed-weight comparison.  A fully
+  general reindexed morphism must still provide arbitrary page and grading
+  reindexings, identities, composition, and the shifted reindexings
+  $(s,t)\mapsto(s+k,t+k+d)$ required later.  Those laws are the remaining
+  obligations of this node.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:138-150, 159-162, 1606-1753.
@@ -632,12 +712,20 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   \label{def:multiplicative-ss}
   \uses{def:chosen-page-presentation}
   \notready
-  A multiplicative spectral sequence has unital associative products on its
-  pages, compatible page maps, additive bidegrees, and a Leibniz rule for page
-  differentials with the chosen sign convention.  Its convergence data also
-  identifies the $E_\infty$ product with the associated-graded product on the
-  abutment.  This interface is required before expressions such as $h_j^2$ or
-  $h_0x$ are meaningful.
+  A multiplicative spectral sequence specifies, on every displayed page,
+  products $E_r^i\otimes E_r^j\to E_r^{i+j}$ and a unit in degree zero, with
+  associativity and unit laws.  Page passage is multiplicative, and the
+  page-$r$ differential is a derivation
+  \[
+    d_r(xy)=d_r(x)y+(-1)^{|x|}x d_r(y)
+  \]
+  for an explicitly chosen parity convention; over $\mathbb F_2$ the sign
+  disappears but the degree shift does not.  Strong convergence additionally
+  requires a filtered product $F^sA\,F^{s'}A\subseteq F^{s+s'}A$ and identifies
+  the limiting page product with the associated-graded product.  Module
+  spectral sequences use the analogous action laws and must not be promoted
+  to internally multiplicative objects.  This interface is required before
+  expressions such as $h_j^2$ or $h_0x$ are meaningful.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:253-263 and all later elementwise arguments.
@@ -645,12 +733,16 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   \label{prop:categorical-elementwise-comparison}
   \uses{def:mathlib-spectral-sequence,def:mathlib-short-complex-exact,thm:mathlib-exact-iff-image-kernel,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,thm:filtered-complex-to-spectral-sequence}
   \notready
-  For a spectral sequence in graded $\mathbb F_2$-vector spaces constructed
-  from a chosen exact couple or filtered complex, the Mathlib page objects,
-  after the stored page reindexing, are naturally isomorphic in the AIM Adams
-  convention to $Z_{r-1}/B_{r-1}$ on the displayed $E_r$ page.  The Mathlib
-  page differential corresponds to the representative map
-  $Z_{r-1}\to E_2/B_{r-1}$.
+  Let a spectral sequence in graded $\mathbb F_2$-vector spaces be constructed
+  from a specified exact couple or filtered complex, and let its elementwise
+  presentation be the one induced by that same construction.  After the
+  stored page reindexing, there are natural isomorphisms
+  $E_r\cong Z_{r-1}/B_{r-1}$ for every $r\ge2$.  They commute with page
+  passage and identify the Mathlib page differential with the map induced by
+  the representative homomorphism
+  $\widetilde d_r:Z_{r-1}\to E_2/B_{r-1}$.  The proposition makes no claim
+  for an arbitrary independently chosen family of subgroups named $Z$ and
+  $B$.
 \end{proposition}
 
 \begin{proof}
@@ -922,11 +1014,17 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   \ref{def:filtered-complex-abelian-spectral-object}; the conditional
   endpoint-extension and $E_2$ constructions are implemented by
   Definitions~\ref{def:filtered-complex-endpoint-extension} and
-  \ref{def:filtered-complex-endpoint-e2-spectral-sequence}.  The full adapter
-  from an arbitrary filtered complex remains pending.  A concrete application
-  must supply an $\operatorname{EInt}$ extension of the cochain diagram and
-  any required endpoint comparison witnesses; it must not identify either
-  endpoint with an integer filtration level.  Apply Mathlib's
+  \ref{def:filtered-complex-endpoint-e2-spectral-sequence}.  The phrase
+  ``full adapter'' denotes the following integration contract, not an
+  unconditional construction from an arbitrary filtered complex.  Its input
+  is a filtered complex, an $\operatorname{EInt}$ extension of its cochain
+  diagram, lower-limit and upper-colimit boundary witnesses, a homological
+  functor with shift sequence, a Mathlib page recipe with a
+  \texttt{HasSpectralSequence} witness, and any requested page/abutment
+  comparison.  Neither endpoint is identified with an integer filtration
+  level.  Its output is the corresponding abelian spectral object, Mathlib
+  spectral sequence, initial-page comparison, and functorial maps for
+  morphisms preserving all chosen input data.  Apply Mathlib's
   triangulated-spectral-object precomposition construction to the mapping-cone
   spectral object and the extended diagram, producing a \emph{triangulated}
   spectral object.  Apply
@@ -940,8 +1038,11 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   kept as explicit data by
   Definition~\ref{def:page-abutment-comparison-witness}.  Their existence,
   page-passage coherence, and comparison with filtered homology are still
-  separate obligations.  Separatedness, the elementwise $Z/B$ presentation,
-  and a functorial spectral-sequence morphism also remain unformalized here.
+  separate obligations.  The current implementation reaches functorial
+  morphisms of triangulated and abelian spectral objects.  It does not yet
+  package the induced Mathlib spectral-sequence morphism, preservation of
+  boundary/comparison witnesses, separatedness, or the elementwise $Z/B$
+  presentation; these are precisely the remaining obligations.
 \end{definition}
 
 % SOURCE: aimpaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
@@ -949,30 +1050,40 @@ This chapter packages spectral objects, filtered-complex realizations, page pres
   \label{thm:filtered-complex-to-spectral-sequence}
   \uses{def:filtered-complex-spectral-object-adapter,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object-morphism,def:filtered-chain-map,def:filtered-associated-graded-chain-map,def:filtered-associated-graded-functoriality,def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:chosen-page-presentation,def:complete-separated-filtration,def:ss-page-level}
   \notready
-  A decreasingly filtered chain complex of $\mathbb F_2$-vector spaces whose
-  differential preserves filtration has a functorial spectral sequence with
-  $E_0$ the associated-graded complex.  Under exhaustive, complete,
-  separated, and degreewise regular convergence data, its $E_\infty$ page is
-  the associated graded of filtered homology.  After applying the stored
-  displayed-page reindexing, the construction supplies the chosen
-  $E_r\cong Z_{r-1}/B_{r-1}$ presentation.  Every filtered chain map induces a Mathlib
-  spectral-sequence morphism; on $E_0$ it is the associated-graded chain map,
-  and this assignment preserves identities and composition.
+  Let a decreasingly filtered chain complex of $\mathbb F_2$-vector spaces
+  have a filtration-preserving differential.  Assume the full adapter input
+  of Definition~\ref{def:filtered-complex-spectral-object-adapter}, and assume
+  an initial-page comparison identifying the recipe's initial displayed page
+  with the associated-graded complex.  Then the adapter produces the stated
+  Mathlib spectral sequence.  If, in addition, coherent strong-convergence
+  data identify the endpoint abutment with filtered homology, its limiting
+  page is the associated graded of filtered homology.  If the induced
+  categorical--elementwise comparison is supplied, the stored display
+  reindexing gives $E_r\cong Z_{r-1}/B_{r-1}$.
+
+  For functoriality, a filtered chain map must be accompanied by compatible
+  maps of the chosen endpoint extensions, boundary witnesses, recipes, and
+  convergence comparisons.  Under those hypotheses it induces a Mathlib
+  spectral-sequence morphism whose initial component is the associated-graded
+  chain map; identities and composition are preserved.  No claim is made that
+  an arbitrary filtered chain map automatically preserves independently
+  chosen endpoint or convergence data.
 \end{theorem}
 
 \begin{proof}
   Apply the adapter and use the compiled associated-graded differential and its
-  square-zero theorem to identify the initial page as a complex.  Define the
-  page recipe for the chosen $E_0$ convention,
-  and discharge Mathlib's endpoint-vanishing
-  \texttt{HasSpectralSequence} fields from regularity.  Invoke Mathlib's
-  spectral-object construction rather than defining a second spectral
-  sequence.  Identify its categorical cycles and opcycles with the filtration
-  kernels and cokernels and hence, with the recorded predecessor offset, with
-  $Z_{r-1}$ and $B_{r-1}$ on the displayed $E_r$ page.  Finally use
+  square-zero theorem to identify the initial page as a complex.  Use the
+  supplied page recipe and discharge Mathlib's endpoint-vanishing
+  \texttt{HasSpectralSequence} fields from the stated boundary hypotheses;
+  regularity alone does not manufacture an endpoint extension.  Invoke
+  Mathlib's spectral-object construction rather than defining a second
+  spectral sequence.  Identify its categorical cycles and opcycles with the
+  filtration kernels and cokernels and hence, with the recorded predecessor
+  offset, with $Z_{r-1}$ and $B_{r-1}$ on the displayed $E_r$ page.  Finally use
   completeness, separatedness, and degreewise regularity to eliminate the
   Boardman obstruction and identify the limiting filtration with filtered
-  homology.  For a filtered chain map, apply functoriality of the cochain
-  diagram, mapping-cone construction, and homological-image bridge; the initial
-  component is the associated-graded chain map by construction.
+  homology.  For a filtered chain map with the compatibility data above, apply
+  functoriality of the cochain diagram, mapping-cone construction, and
+  homological-image bridge, then construct the spectral-sequence morphism and
+  prove that its initial component is the associated-graded chain map.
 \end{proof}
