@@ -1,12 +1,14 @@
 name: Merge sweep
 
-# Reconcile open PRs that missed an event or became stale after main moved. This repository currently
-# has no merge queue, so a ready PR gets native auto-merge and a fully-green same-repository PR whose
-# only blocker is BEHIND is updated from main. The update is followed by explicit exact-head build and
-# performance dispatches; the build dispatch refreshes semantic review and status labels. Forks,
-# conflicts, hold-labelled PRs, and ambiguous evidence remain human-owned and fail closed.
+# Advance one fallback merge-train head after main moves or an event was missed. This repository has
+# no native merge queue, so the workflow marks exactly one exact-head-green candidate, updates only
+# that same-repository branch when it is BEHIND, and waits for its refreshed exact-head gates before
+# another PR may advance. Forks, conflicts, hold-labelled PRs, and ambiguous evidence remain
+# human-owned and fail closed.
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: "40 * * * *"   # hourly, offset from housekeeping (:20) and the daily bump
   workflow_dispatch:
@@ -20,12 +22,13 @@ permissions:
   actions: write
   checks: read
   contents: write
-  issues: read
+  issues: write
   pull-requests: write
   statuses: read
 
 concurrency:
-  group: merge-sweep
+  # Shared with auto-merge.yml: only one coordinator may claim or advance the persistent train head.
+  group: kip126-merge-train
   cancel-in-progress: false
 
 jobs:
@@ -37,7 +40,7 @@ jobs:
         with:
           ref: ${{ github.workflow_sha }}
           persist-credentials: false
-      - name: Reconcile eligible KIP126 pull requests
+      - name: Advance one KIP126 merge-train candidate
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}

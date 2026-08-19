@@ -94,6 +94,26 @@ class EvaluateTests(unittest.TestCase):
         fetch.assert_not_called()
 
 
+class EnqueueTests(unittest.TestCase):
+    def test_native_auto_merge_uses_squash_independently_of_branch_update(self) -> None:
+        result = {
+            "data": {
+                "enablePullRequestAutoMerge": {
+                    "pullRequest": {
+                        "number": 17,
+                        "autoMergeRequest": {"mergeMethod": "SQUASH"},
+                    }
+                }
+            }
+        }
+        with mock.patch.object(merge_gate, "gh_json", return_value=result) as gh_json:
+            message = merge_gate.enqueue("surenny/KIP126", pull_request(), False, False)
+        self.assertEqual(message, "#17: native auto-merge enabled (SQUASH)")
+        args = gh_json.call_args.args[0]
+        self.assertIn("method=SQUASH", args)
+        self.assertEqual(merge_gate.BRANCH_UPDATE_METHOD, "MERGE")
+
+
 class BranchUpdateTests(unittest.TestCase):
     def test_same_repository_branch_updates_and_dispatches_exact_head_checks(self) -> None:
         new_head = "2" * 40
@@ -140,6 +160,207 @@ class BranchUpdateTests(unittest.TestCase):
                 merge_gate.update_behind_branch("surenny/KIP126", pull_request(), False)
 
 
+class MergeTrainTests(unittest.TestCase):
+    READY = {"target_label": "ready-to-merge", "reason": "fresh-exact-head-evidence-green"}
+    BEHIND = {"target_label": "awaiting-review", "reason": "mergeability-ambiguous:behind"}
+
+    def reconcile(
+        self,
+        pulls: list[dict],
+        decisions: dict[int, dict],
+        requested: int | None = None,
+        dry_run: bool = False,
+    ) -> tuple[list[str], mock.Mock, mock.Mock]:
+        by_number = {pull["number"]: pull for pull in pulls}
+
+        def decide(_repository: str, pull: dict) -> tuple[dict | None, str | None]:
+            return decisions[pull["number"]], None
+
+        label = mock.Mock()
+        apply = mock.Mock(
+            side_effect=lambda _repo, pull, _decision, _queue, _dry: (
+                f"#{pull['number']}: advanced",
+                True,
+            )
+        )
+        with (
+            mock.patch.object(merge_gate, "pull_request_identity", side_effect=lambda _repo, number: by_number[number]),
+            mock.patch.object(merge_gate, "pull_decision", side_effect=decide),
+            mock.patch.object(merge_gate, "set_train_label", label),
+            mock.patch.object(merge_gate, "apply_decision", apply),
+        ):
+            messages = merge_gate.reconcile_train(
+                "surenny/KIP126",
+                [pull["number"] for pull in pulls],
+                requested,
+                dry_run,
+            )
+        return messages, label, apply
+
+    def test_clean_candidate_precedes_behind_candidate_and_only_one_advances(self) -> None:
+        behind = pull_request(number=10)
+        clean = pull_request(number=11, mergeable_state="clean")
+        messages, label, apply = self.reconcile(
+            [behind, clean],
+            {10: self.BEHIND, 11: self.READY},
+        )
+        label.assert_called_once_with("surenny/KIP126", 11, True, False)
+        apply.assert_called_once_with("surenny/KIP126", clean, self.READY, None, False)
+        self.assertEqual(messages, ["#11: claimed merge-train head", "#11: advanced"])
+
+    def test_oldest_number_wins_within_the_same_readiness_class(self) -> None:
+        newer = pull_request(number=19)
+        older = pull_request(number=12)
+        _, label, apply = self.reconcile(
+            [newer, older],
+            {19: self.BEHIND, 12: self.BEHIND},
+        )
+        label.assert_called_once_with("surenny/KIP126", 12, True, False)
+        self.assertEqual(apply.call_args.args[1]["number"], 12)
+
+    def test_behind_fork_is_not_claimed_by_the_fallback_train(self) -> None:
+        fork = pull_request(number=12)
+        fork["head"]["repo"]["full_name"] = "contributor/KIP126"
+        messages, label, apply = self.reconcile([fork], {12: self.BEHIND})
+        self.assertEqual(messages, ["merge train idle — no exact-head-green candidate"])
+        label.assert_not_called()
+        apply.assert_not_called()
+
+    def test_existing_head_blocks_another_requested_pr_without_reading_evidence(self) -> None:
+        head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
+        other = pull_request(number=11)
+        with (
+            mock.patch.object(
+                merge_gate,
+                "pull_request_identity",
+                side_effect=lambda _repo, number: {10: head, 11: other}[number],
+            ),
+            mock.patch.object(merge_gate, "pull_decision") as decision,
+        ):
+            messages = merge_gate.reconcile_train("surenny/KIP126", [10, 11], 11, False)
+        self.assertEqual(messages, ["#11: skip — merge train is occupied by #10"])
+        decision.assert_not_called()
+
+    def test_multiple_heads_fail_closed(self) -> None:
+        first = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
+        second = pull_request(number=11, labels=[{"name": merge_gate.TRAIN_LABEL}])
+        with mock.patch.object(
+            merge_gate,
+            "pull_request_identity",
+            side_effect=lambda _repo, number: {10: first, 11: second}[number],
+        ):
+            with self.assertRaisesRegex(RuntimeError, "multiple merge-train heads: #10, #11"):
+                merge_gate.reconcile_train("surenny/KIP126", [10, 11], None, False)
+
+    def test_multiple_unmanaged_auto_merge_requests_fail_closed(self) -> None:
+        first = pull_request(number=10, auto_merge={"merge_method": "squash"})
+        second = pull_request(number=11, auto_merge={"merge_method": "squash"})
+        with mock.patch.object(
+            merge_gate,
+            "pull_request_identity",
+            side_effect=lambda _repo, number: {10: first, 11: second}[number],
+        ):
+            with self.assertRaisesRegex(RuntimeError, "multiple native auto-merge requests"):
+                merge_gate.reconcile_train("surenny/KIP126", [10, 11], None, False)
+
+    def test_pending_head_waits_without_releasing_or_advancing_another_pr(self) -> None:
+        head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
+        waiting = {"target_label": "awaiting-CI", "reason": "mechanical-not-green:build:pending"}
+        with (
+            mock.patch.object(merge_gate, "pull_decision", return_value=(waiting, None)),
+            mock.patch.object(merge_gate, "release_train_head") as release,
+            mock.patch.object(merge_gate, "apply_decision") as apply,
+        ):
+            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+        self.assertIn("merge-train head waiting", message)
+        release.assert_not_called()
+        apply.assert_not_called()
+
+    def test_missing_mechanical_evidence_retries_exact_head_workflows(self) -> None:
+        head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
+        missing = {"target_label": "awaiting-CI", "reason": "mechanical-not-green:build:missing"}
+        with (
+            mock.patch.object(merge_gate, "pull_decision", return_value=(missing, None)),
+            mock.patch.object(merge_gate, "head_check_states", return_value={}),
+            mock.patch.object(merge_gate, "dispatch_recheck") as dispatch,
+        ):
+            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+        self.assertEqual(dispatch.call_count, 2)
+        self.assertEqual(
+            [call.args[1] for call in dispatch.call_args_list],
+            ["pr-build.yml", "pr-profile.yml"],
+        )
+        self.assertEqual(message, "#10: re-dispatched missing exact-head checks")
+
+    def test_missing_status_waits_while_exact_head_build_is_active(self) -> None:
+        head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
+        missing = {"target_label": "awaiting-CI", "reason": "mechanical-not-green:build:missing"}
+        with (
+            mock.patch.object(merge_gate, "pull_decision", return_value=(missing, None)),
+            mock.patch.object(
+                merge_gate,
+                "head_check_states",
+                return_value={"sandboxed-build": "in_progress", "performance-gate": "completed"},
+            ),
+            mock.patch.object(merge_gate, "dispatch_recheck") as dispatch,
+        ):
+            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+        dispatch.assert_not_called()
+        self.assertEqual(message, "#10: merge-train head waiting — exact-head build is active")
+
+    def test_missing_semantic_review_retries_only_the_reviewer(self) -> None:
+        head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
+        missing = {
+            "target_label": "awaiting-review",
+            "reason": "semantic-unavailable:semantic-review:missing",
+        }
+        with (
+            mock.patch.object(merge_gate, "pull_decision", return_value=(missing, None)),
+            mock.patch.object(merge_gate, "dispatch_review") as review,
+            mock.patch.object(merge_gate, "dispatch_recheck") as recheck,
+        ):
+            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+        review.assert_called_once_with("surenny/KIP126", 10)
+        recheck.assert_not_called()
+        self.assertEqual(message, "#10: re-dispatched missing exact-head semantic review")
+
+    def test_terminal_head_releases_label_and_native_auto_merge(self) -> None:
+        head = pull_request(
+            number=10,
+            labels=[{"name": merge_gate.TRAIN_LABEL}],
+            auto_merge={"merge_method": "squash"},
+        )
+        terminal = {"target_label": "awaiting-author", "reason": "semantic-request-changes"}
+        with (
+            mock.patch.object(merge_gate, "pull_decision", return_value=(terminal, None)),
+            mock.patch.object(merge_gate, "disable_auto_merge") as disable,
+            mock.patch.object(merge_gate, "set_train_label") as label,
+        ):
+            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+        disable.assert_called_once_with("surenny/KIP126", head, False)
+        label.assert_called_once_with("surenny/KIP126", 10, False, False)
+        self.assertEqual(message, "#10: released merge-train head — semantic-request-changes")
+
+    def test_dry_run_never_writes_the_train_label(self) -> None:
+        with mock.patch.object(merge_gate, "gh_json") as gh_json:
+            merge_gate.set_train_label("surenny/KIP126", 17, True, True)
+            merge_gate.set_train_label("surenny/KIP126", 17, False, True)
+        gh_json.assert_not_called()
+
+    def test_closed_train_labels_are_cleared_without_touching_plain_issues(self) -> None:
+        pages = [[
+            {"number": 10, "pull_request": {"url": "https://example.test/pulls/10"}},
+            {"number": 11},
+        ]]
+        with (
+            mock.patch.object(merge_gate, "gh_json", return_value=pages),
+            mock.patch.object(merge_gate, "set_train_label") as label,
+        ):
+            messages = merge_gate.cleanup_closed_train_heads("surenny/KIP126", False)
+        label.assert_called_once_with("surenny/KIP126", 10, False, False)
+        self.assertEqual(messages, ["#10: cleared stale merge-train label"])
+
+
 class WorkflowContractTests(unittest.TestCase):
     def text(self, relative: str) -> str:
         return (ROOT / relative).read_text(encoding="utf-8")
@@ -147,6 +368,14 @@ class WorkflowContractTests(unittest.TestCase):
     def test_sync_callers_can_dispatch_rechecks(self) -> None:
         for workflow in (".github/workflows/auto-merge.yml", ".github/workflows/merge-sweep.yml"):
             self.assertIn("actions: write", self.text(workflow))
+
+    def test_fallback_train_is_global_and_advances_after_main_push(self) -> None:
+        auto_merge = self.text(".github/workflows/auto-merge.yml")
+        sweep = self.text(".github/workflows/merge-sweep.yml")
+        for workflow in (auto_merge, sweep):
+            self.assertIn("group: kip126-merge-train", workflow)
+            self.assertIn("issues: write", workflow)
+        self.assertIn("push:\n    branches: [main]", sweep)
 
     def test_dispatched_build_refreshes_review_and_labels(self) -> None:
         build = self.text(".github/workflows/pr-build.yml")

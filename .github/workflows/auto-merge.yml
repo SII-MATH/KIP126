@@ -5,10 +5,11 @@ name: Auto-merge
 # running kip126-review / kip126 locally, which push the verdict ledger to the reviews branch and
 # post the scoreboard comment. This workflow just reads that ledger and merges when ready.
 #
-# The local merge gate reads KIP126's exact-head statuses and verified semantic-review evidence. A
-# fully-green same-repository PR whose only blocker is an out-of-date head is updated from main, then
-# pr-build and pr-performance are explicitly dispatched for the new exact head. The gate never
-# rewrites forks, runs a reviewer directly, accepts out-of-scope changes, or uses an App secret.
+# The local merge gate reads KIP126's exact-head statuses and verified semantic-review evidence. In
+# the fallback path it serializes all events through one persistent merge-train head. Only that PR is
+# updated from main and rechecked, so later candidates do not spend review budget on heads that an
+# earlier merge would immediately invalidate. The gate never rewrites forks, runs a reviewer directly,
+# accepts out-of-scope changes, or uses an App secret.
 
 on:
   # Head is freshly green: re-check whether this PR is now mergeable.
@@ -33,16 +34,13 @@ permissions:
   actions: write
   checks: read
   contents: write
-  issues: read
+  issues: write
   pull-requests: write
   statuses: read
 
 concurrency:
-  group: >-
-    auto-merge-${{
-      github.event.issue.number || inputs.pr ||
-      github.event.workflow_run.pull_requests[0].number || github.event.workflow_run.head_sha
-    }}
+  # Shared with merge-sweep.yml: cross-PR events may never race to claim two train heads.
+  group: kip126-merge-train
   cancel-in-progress: false
 
 jobs:

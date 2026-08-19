@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Enqueue KIP126 pull requests only when trusted exact-head gates are green."""
+"""Advance KIP126 pull requests through a fail-closed merge train."""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ import json
 import pathlib
 import subprocess
 import sys
+import urllib.parse
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -21,7 +22,13 @@ projection = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(projection)
 CONFIG = projection.validate_config(json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
 BRANCH_UPDATE_METHOD = "MERGE"
+AUTO_MERGE_METHOD = "SQUASH"
 RECHECK_WORKFLOWS = ("pr-build.yml", "pr-profile.yml")
+TRAIN_LABEL = "merge-train-head"
+TRAIN_LABEL_COLOR = "5319e7"
+TRAIN_LABEL_DESCRIPTION = "The only PR currently advancing through KIP126's fallback merge train"
+HOLD_LABELS = frozenset({"keep", "hold", "wip", "human", "do-not-close"})
+ACTIVE_CHECK_STATES = frozenset({"queued", "in_progress", "waiting", "pending", "requested"})
 
 
 def gh_json(args: list[str]) -> object:
@@ -41,6 +48,33 @@ def pull_request_identity(repository: str, number: int) -> dict:
     if not isinstance(pull, dict):
         raise RuntimeError("unexpected pull request response")
     return pull
+
+
+def pull_labels(pull: dict) -> set[str]:
+    return {
+        label.get("name")
+        for label in pull.get("labels") or []
+        if isinstance(label, dict) and isinstance(label.get("name"), str)
+    }
+
+
+def eligibility_skip(pull: dict) -> str | None:
+    number = pull.get("number", "?")
+    if pull.get("state") != "open" or pull.get("draft"):
+        return f"#{number}: skip closed/draft"
+    if pull.get("base", {}).get("ref") != "main":
+        return f"#{number}: skip non-main base"
+    if pull_labels(pull).intersection(HOLD_LABELS):
+        return f"#{number}: skip hold label"
+    return None
+
+
+def pull_decision(repository: str, pull: dict) -> tuple[dict | None, str | None]:
+    skip = eligibility_skip(pull)
+    if skip:
+        return None, skip
+    facts = projection.fetch_facts(repository, pull["number"], CONFIG)
+    return projection.reduce_facts(facts, CONFIG), None
 
 
 def queue_entries(repository: str) -> set[int] | None:
@@ -84,22 +118,29 @@ def enqueue(repository: str, pull: dict, dry_run: bool, has_queue: bool) -> str:
     if not node_id or not head:
         raise RuntimeError(f"#{number}: missing pull request node/head")
     if dry_run:
-        action = "enqueue" if has_queue else "enable native auto-merge"
+        action = "enqueue" if has_queue else f"enable native auto-merge ({AUTO_MERGE_METHOD})"
         return f"#{number}: would {action} {head[:12]}"
     if not has_queue:
         query = """
-        mutation($prId: ID!) {
-          enablePullRequestAutoMerge(input: { pullRequestId: $prId, mergeMethod: MERGE }) {
+        mutation($prId: ID!, $method: PullRequestMergeMethod!) {
+          enablePullRequestAutoMerge(input: { pullRequestId: $prId, mergeMethod: $method }) {
             pullRequest { number autoMergeRequest { mergeMethod } }
           }
         }
         """
         result = gh_json([
-            "api", "graphql", "-f", f"query={query}", "-F", f"prId={node_id}",
+            "api", "graphql", "-f", f"query={query}",
+            "-F", f"prId={node_id}", "-f", f"method={AUTO_MERGE_METHOD}",
         ])
         if not isinstance(result, dict) or result.get("errors"):
             raise RuntimeError(f"#{number}: enabling native auto-merge failed: {result}")
-        return f"#{number}: native auto-merge enabled"
+        request = (((result.get("data") or {}).get("enablePullRequestAutoMerge") or {}).get("pullRequest") or {})
+        auto_merge = request.get("autoMergeRequest") or {}
+        if request.get("number") != number:
+            raise RuntimeError(f"#{number}: native auto-merge returned an invalid pull request: {result}")
+        if auto_merge and auto_merge.get("mergeMethod") != AUTO_MERGE_METHOD:
+            raise RuntimeError(f"#{number}: native auto-merge returned an invalid method: {result}")
+        return f"#{number}: native auto-merge enabled ({AUTO_MERGE_METHOD})"
     query = """
     mutation($prId: ID!, $headOid: GitObjectID!) {
       enqueuePullRequest(input: { pullRequestId: $prId, expectedHeadOid: $headOid }) {
@@ -125,6 +166,33 @@ def dispatch_recheck(repository: str, workflow: str, number: int) -> None:
     if workflow == "pr-build.yml":
         args.extend(["-F", "inputs[refresh_review]=true"])
     gh_json(args)
+
+
+def dispatch_review(repository: str, number: int) -> None:
+    gh_json([
+        "api", "--method", "POST",
+        f"repos/{repository}/actions/workflows/review.yml/dispatches",
+        "-f", "ref=main", "-F", f"inputs[pr]={number}",
+    ])
+
+
+def head_check_states(repository: str, pull: dict) -> dict[str, str]:
+    number = pull["number"]
+    head = (pull.get("head") or {}).get("sha")
+    if not isinstance(head, str) or len(head) != 40:
+        raise RuntimeError(f"#{number}: missing pull request head")
+    result = gh_json([
+        "api", f"repos/{repository}/commits/{head}/check-runs?filter=latest&per_page=100",
+    ])
+    if not isinstance(result, dict) or not isinstance(result.get("check_runs"), list):
+        raise RuntimeError(f"#{number}: unexpected check-runs response")
+    return {
+        run["name"]: run["status"]
+        for run in result["check_runs"]
+        if isinstance(run, dict)
+        and isinstance(run.get("name"), str)
+        and isinstance(run.get("status"), str)
+    }
 
 
 def update_behind_branch(repository: str, pull: dict, dry_run: bool) -> str:
@@ -177,20 +245,112 @@ def update_behind_branch(repository: str, pull: dict, dry_run: bool) -> str:
     )
 
 
-def evaluate(repository: str, number: int, queued: set[int] | None, dry_run: bool) -> tuple[str, bool]:
-    pull = pull_request_identity(repository, number)
-    if pull.get("state") != "open" or pull.get("draft"):
-        return f"#{number}: skip closed/draft", False
-    if pull.get("base", {}).get("ref") != "main":
-        return f"#{number}: skip non-main base", False
-    labels = {label.get("name") for label in pull.get("labels") or [] if isinstance(label, dict)}
-    if labels.intersection({"keep", "hold", "wip", "human", "do-not-close"}):
-        return f"#{number}: skip hold label", False
-    if queued is not None and number in queued:
-        return f"#{number}: already queued", False
+def ensure_train_label(repository: str) -> None:
+    pages = gh_json([
+        "api", "--paginate", "--slurp", f"repos/{repository}/labels?per_page=100",
+    ])
+    if not isinstance(pages, list):
+        raise RuntimeError("unexpected repository label pages")
+    names = {
+        label.get("name")
+        for page in pages
+        if isinstance(page, list)
+        for label in page
+        if isinstance(label, dict)
+    }
+    if TRAIN_LABEL in names:
+        return
+    result = gh_json([
+        "api", "--method", "POST", f"repos/{repository}/labels",
+        "-f", f"name={TRAIN_LABEL}",
+        "-f", f"color={TRAIN_LABEL_COLOR}",
+        "-f", f"description={TRAIN_LABEL_DESCRIPTION}",
+    ])
+    if not isinstance(result, dict) or result.get("name") != TRAIN_LABEL:
+        raise RuntimeError(f"could not create {TRAIN_LABEL}: {result}")
 
-    facts = projection.fetch_facts(repository, number, CONFIG)
-    decision = projection.reduce_facts(facts, CONFIG)
+
+def set_train_label(repository: str, number: int, present: bool, dry_run: bool) -> None:
+    if dry_run:
+        return
+    if present:
+        ensure_train_label(repository)
+        result = gh_json([
+            "api", "--method", "POST", f"repos/{repository}/issues/{number}/labels",
+            "-f", f"labels[]={TRAIN_LABEL}",
+        ])
+        if not isinstance(result, list) or TRAIN_LABEL not in {
+            label.get("name") for label in result if isinstance(label, dict)
+        }:
+            raise RuntimeError(f"#{number}: could not claim merge train: {result}")
+        return
+    encoded = urllib.parse.quote(TRAIN_LABEL, safe="")
+    gh_json([
+        "api", "--method", "DELETE", f"repos/{repository}/issues/{number}/labels/{encoded}",
+    ])
+
+
+def disable_auto_merge(repository: str, pull: dict, dry_run: bool) -> None:
+    if dry_run or not pull.get("auto_merge"):
+        return
+    number = pull["number"]
+    node_id = pull.get("node_id")
+    if not node_id:
+        raise RuntimeError(f"#{number}: missing pull request node")
+    query = """
+    mutation($prId: ID!) {
+      disablePullRequestAutoMerge(input: { pullRequestId: $prId }) {
+        pullRequest { number autoMergeRequest { enabledAt } }
+      }
+    }
+    """
+    result = gh_json([
+        "api", "graphql", "-f", f"query={query}", "-F", f"prId={node_id}",
+    ])
+    if not isinstance(result, dict) or result.get("errors"):
+        raise RuntimeError(f"#{number}: disabling native auto-merge failed: {result}")
+
+
+def release_train_head(repository: str, pull: dict, reason: str, dry_run: bool) -> str:
+    number = pull["number"]
+    disable_auto_merge(repository, pull, dry_run)
+    set_train_label(repository, number, False, dry_run)
+    action = "would release" if dry_run else "released"
+    return f"#{number}: {action} merge-train head — {reason}"
+
+
+def cleanup_closed_train_heads(repository: str, dry_run: bool) -> list[str]:
+    encoded = urllib.parse.quote(TRAIN_LABEL, safe="")
+    pages = gh_json([
+        "api", "--paginate", "--slurp",
+        f"repos/{repository}/issues?state=closed&labels={encoded}&per_page=100",
+    ])
+    if not isinstance(pages, list):
+        raise RuntimeError("unexpected closed train-head pages")
+    messages = []
+    for page in pages:
+        if not isinstance(page, list):
+            continue
+        for issue in page:
+            if not isinstance(issue, dict) or not isinstance(issue.get("pull_request"), dict):
+                continue
+            number = issue.get("number")
+            if not isinstance(number, int):
+                continue
+            set_train_label(repository, number, False, dry_run)
+            action = "would clear" if dry_run else "cleared"
+            messages.append(f"#{number}: {action} stale merge-train label")
+    return messages
+
+
+def apply_decision(
+    repository: str,
+    pull: dict,
+    decision: dict,
+    queued: set[int] | None,
+    dry_run: bool,
+) -> tuple[str, bool]:
+    number = pull["number"]
     if decision["target_label"] == "ready-to-merge":
         if pull.get("auto_merge"):
             return f"#{number}: native auto-merge already enabled", False
@@ -203,6 +363,130 @@ def evaluate(repository: str, number: int, queued: set[int] | None, dry_run: boo
         message = update_behind_branch(repository, pull, dry_run)
         return message, message.startswith(f"#{number}: would update") or message.startswith(f"#{number}: updated")
     return f"#{number}: skip — {decision['reason']}", False
+
+
+def evaluate(repository: str, number: int, queued: set[int] | None, dry_run: bool) -> tuple[str, bool]:
+    pull = pull_request_identity(repository, number)
+    decision, skip = pull_decision(repository, pull)
+    if skip:
+        return skip, False
+    if queued is not None and number in queued:
+        return f"#{number}: already queued", False
+    if decision is None:
+        raise RuntimeError(f"#{number}: missing merge decision")
+    return apply_decision(repository, pull, decision, queued, dry_run)
+
+
+def train_candidate(repository: str, pull: dict) -> tuple[tuple[int, int], dict] | None:
+    decision, skip = pull_decision(repository, pull)
+    if skip or decision is None:
+        return None
+    if decision["target_label"] == "ready-to-merge":
+        return (0, pull["number"]), decision
+    if decision["reason"] != "mergeability-ambiguous:behind":
+        return None
+    head_repository = ((pull.get("head") or {}).get("repo") or {}).get("full_name")
+    if not isinstance(head_repository, str) or head_repository.lower() != repository.lower():
+        return None
+    return (1, pull["number"]), decision
+
+
+def advance_train_head(repository: str, pull: dict, dry_run: bool) -> str:
+    decision, skip = pull_decision(repository, pull)
+    if skip:
+        return release_train_head(repository, pull, skip.removeprefix(f"#{pull['number']}: "), dry_run)
+    if decision is None:
+        raise RuntimeError(f"#{pull['number']}: missing merge decision")
+    reason = decision["reason"]
+    if decision["target_label"] == "ready-to-merge":
+        if pull.get("auto_merge"):
+            return f"#{pull['number']}: merge-train head waiting for native auto-merge"
+        message, _ = apply_decision(repository, pull, decision, None, dry_run)
+        return message
+    if reason == "mergeability-ambiguous:behind":
+        message, _ = apply_decision(repository, pull, decision, None, dry_run)
+        return message
+    if decision["target_label"] == "awaiting-CI":
+        if ":missing" in reason:
+            checks = head_check_states(repository, pull)
+            if checks.get("sandboxed-build") in ACTIVE_CHECK_STATES:
+                return f"#{pull['number']}: merge-train head waiting — exact-head build is active"
+            if not dry_run:
+                dispatch_recheck(repository, "pr-build.yml", pull["number"])
+                if "performance-gate" not in checks:
+                    dispatch_recheck(repository, "pr-profile.yml", pull["number"])
+            action = "would re-dispatch" if dry_run else "re-dispatched"
+            return f"#{pull['number']}: {action} missing exact-head checks"
+        if ":ambiguous" not in reason:
+            return f"#{pull['number']}: merge-train head waiting — {reason}"
+    if decision["target_label"] == "review-in-progress":
+        return f"#{pull['number']}: merge-train head waiting — {reason}"
+    if reason == "semantic-unavailable:semantic-review:missing":
+        if not dry_run:
+            dispatch_review(repository, pull["number"])
+        action = "would re-dispatch" if dry_run else "re-dispatched"
+        return f"#{pull['number']}: {action} missing exact-head semantic review"
+    return release_train_head(repository, pull, reason, dry_run)
+
+
+def reconcile_train(
+    repository: str,
+    numbers: list[int],
+    requested: int | None,
+    dry_run: bool,
+) -> list[str]:
+    pulls = [pull_request_identity(repository, number) for number in numbers]
+    labelled = [pull for pull in pulls if TRAIN_LABEL in pull_labels(pull)]
+    if len(labelled) > 1:
+        conflicts = ", ".join(f"#{pull['number']}" for pull in labelled)
+        raise RuntimeError(f"multiple merge-train heads: {conflicts}")
+    if labelled:
+        head = labelled[0]
+        if requested is not None and head["number"] != requested:
+            return [f"#{requested}: skip — merge train is occupied by #{head['number']}"]
+        return [advance_train_head(repository, head, dry_run)]
+
+    auto_merge = [pull for pull in pulls if pull.get("auto_merge")]
+    if len(auto_merge) > 1:
+        conflicts = ", ".join(f"#{pull['number']}" for pull in auto_merge)
+        raise RuntimeError(f"multiple native auto-merge requests without a train head: {conflicts}")
+    if auto_merge:
+        head = auto_merge[0]
+        if requested is not None and head["number"] != requested:
+            return [f"#{requested}: skip — native auto-merge is occupied by #{head['number']}"]
+        set_train_label(repository, head["number"], True, dry_run)
+        prefix = "would adopt" if dry_run else "adopted"
+        return [
+            f"#{head['number']}: {prefix} native auto-merge as merge-train head",
+            advance_train_head(repository, head, dry_run),
+        ]
+
+    candidates = []
+    for pull in pulls:
+        candidate = train_candidate(repository, pull)
+        if candidate is not None:
+            priority, decision = candidate
+            candidates.append((priority, pull, decision))
+    if not candidates:
+        if requested is not None:
+            requested_pull = next((pull for pull in pulls if pull["number"] == requested), None)
+            if requested_pull is None:
+                return [f"#{requested}: skip — pull request is not open"]
+            decision, skip = pull_decision(repository, requested_pull)
+            if skip:
+                return [skip]
+            if decision is None:
+                raise RuntimeError(f"#{requested}: missing merge decision")
+            return [f"#{requested}: skip — {decision['reason']}"]
+        return ["merge train idle — no exact-head-green candidate"]
+
+    _, head, decision = min(candidates, key=lambda item: item[0])
+    if requested is not None and head["number"] != requested:
+        return [f"#{requested}: skip — merge-train candidate #{head['number']} has priority"]
+    set_train_label(repository, head["number"], True, dry_run)
+    claim = "would claim" if dry_run else "claimed"
+    message, _ = apply_decision(repository, head, decision, None, dry_run)
+    return [f"#{head['number']}: {claim} merge-train head", message]
 
 
 def open_pull_requests(repository: str) -> list[int]:
@@ -231,6 +515,14 @@ def main() -> int:
         parser.error("exactly one of --pr or --all-open is required")
     try:
         queued = queue_entries(args.repo)
+        cleanup_messages = cleanup_closed_train_heads(args.repo, args.dry_run)
+        if queued is None:
+            numbers = open_pull_requests(args.repo)
+            for message in cleanup_messages + reconcile_train(args.repo, numbers, args.pr, args.dry_run):
+                print(message)
+            return 0
+        for message in cleanup_messages:
+            print(message)
         numbers = [args.pr] if args.pr is not None else open_pull_requests(args.repo)
         failures = 0
         for number in numbers:
