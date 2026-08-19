@@ -107,7 +107,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   relations.  Like an external result, it is always an explicit theorem
   parameter.  The wrapper records the declared evidence and its provenance;
   it does not turn either one into a project theorem.
-  \uses{def:source-ref,def:artifact-ref,def:evidence-metadata}
+  \uses{def:source-ref,def:artifact-ref}
 \end{definition}
 
 \section{Inventory validity and trust boundary}
@@ -117,10 +117,12 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \label{def:source-availability}
   \lean{KIP126.External.SourceAvailability}
   \leanok
-  A source-availability value records the four independently checked flags for
-  metadata, PDF, extracted text, and source archive access.  The status-class
-  consistency predicate is proved for every row of the finite catalogue.
-  \uses{def:source-id}
+  A source-availability value records four Boolean flags for metadata, PDF,
+  extracted-text, and source-archive availability.  These fields are claims
+  about acquisition state, not mathematical evidence.  For canonical rows,
+  the filesystem checker compares them with the status file and the artifacts
+  actually present; the typed inventory separately proves that each row's
+  status class agrees with its flags.
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceStatusClass.
@@ -131,7 +133,6 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   The status class is the stable acquisition summary shared with the JSON
   ledger: source of record, full text, metadata only, or partial availability.
   Its encoder and decoder are inverse on the finite set of admitted classes.
-  \uses{def:source-availability}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceEntry.
@@ -141,9 +142,12 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \leanok
   A typed source entry exposes the JSON/Lean synchronization fields: source
   identifier, kind, citation keys, local directory, status-file path, status
-  class, and availability flags.  Its validity predicate checks nonempty and
-  duplicate-free citation keys, kind/status consistency, and source-relative
-  status paths; filesystem hashes remain under the external checker.
+  class, and availability flags.  Its validity predicate checks schema-safe,
+  nonempty, duplicate-free citation keys; a nonempty safe
+  directory; kind/status consistency; the distinguished source-of-record
+  convention; and a safe, source-relative status path when present.
+  Filesystem existence, bibliographic prose, and artifact hashes remain under
+  the external checker.
   \uses{def:source-id,def:source-kind,def:source-status-class,def:source-availability}
 \end{definition}
 
@@ -162,7 +166,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   propositions carried by an \texttt{ExternalResult} or
   \texttt{ExternalEvidence} value.  The Lean resolver uses a
   \texttt{SourceRef}'s stable identifier to select its catalogue row.
-  \uses{def:source-id,def:source-kind,def:source-ref,def:source-entry,def:source-status-class}
+  \uses{def:source-entry}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceRef.InventoryValid.
@@ -258,9 +262,11 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \lean{KIP126.External.SourceInventory.projectionManifest}
   \leanok
   The projection manifest is the ordered, delimiter-stable export of the
-  fields shared by Lean and JSON.  The inventory checker executes the Lean
-  exporter and rejects any row-level drift before accepting the filesystem
-  ledger.
+  fields shared by Lean and JSON: source ID, directory, kind, citation keys,
+  status-file path, status class, and the four availability flags.  The
+  inventory checker executes the Lean exporter and rejects any disagreement
+  with those JSON fields.  Titles, publication data, artifact membership,
+  filesystem existence, and digests remain separate checker obligations.
   \uses{def:source-inventory,def:source-entry}
 \end{definition}
 
@@ -319,7 +325,6 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   An external-root identifier is a closed, enumerable key for a literature
   result, machine catalogue, appendix family, or finite evidence family that
   may cross the project boundary.  It carries no proposition by itself.
-  \uses{def:source-id}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalClaimClass.
@@ -333,7 +338,6 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   machine, table, and transcribed rows.  These compatibility predicates
   constrain which wrapper interface may bind to a canonical row; the class
   itself is provenance metadata, not a proof of the associated proposition.
-  \uses{def:external-root-id}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalClaimRecord.
@@ -348,7 +352,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   recognized target class, no repeated or direct self-dependencies, and an
   inventory-valid locator.  Composite rows retain a nonempty dependency list
   and are not reclassified as primitive external facts.
-  \uses{def:external-root-id,def:external-claim-class,def:inventory-valid-source-ref,def:source-entry}
+  \uses{def:external-root-id,def:external-claim-class,def:inventory-valid-source-ref}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimLedger.
@@ -360,7 +364,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   each enumerated external root.  Its completeness and source-coverage facts
   are stated separately below; this definition is a provenance/catalogue
   object, not a theorem asserting any recorded mathematical claim.
-  \uses{def:external-claim-record,def:source-inventory}
+  \uses{def:external-claim-record}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimLedger_complete.
@@ -390,7 +394,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   The exact source references attached to the 55 canonical claim roots are
   pairwise distinct.  Therefore a wrapper whose reference is equal to a
   canonical row cannot ambiguously select two roots.
-  \uses{def:external-claim-ledger,thm:external-claim-ledger-complete}
+  \uses{def:external-claim-ledger}
 \end{theorem}
 
 \begin{proof}
@@ -448,15 +452,15 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   A catalogued external-evidence value similarly binds an explicit
   \texttt{ExternalEvidence} to one canonical root and compatible evidence
   class, and carries the stronger inventory-validity certificate for both its
-  locator and optional evidence artifact.  Its artifact path must equal the
-  canonical claim locator.  The Lean certificate checks the artifact's safe
-  source-relative path and SHA-256 spelling.  The JSON checker then validates
-  membership of that canonical path, filesystem existence, and equality of the
-  checked-in file with the JSON digest; it does not automatically compare an
-  arbitrary wrapper's digest text with that JSON value.  The wrapper does not
-  type-check that its proposition is definitionally the one named by the
-  future owner declaration.
-  \uses{def:external-evidence,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-source-ref,def:inventory-valid-evidence}
+  locator and optional evidence artifact.  If an artifact is attached, its
+  path must equal the canonical claim locator.  The Lean certificate checks
+  the artifact's safe source-relative path and SHA-256 spelling.  Independently
+  of whether a wrapper artifact is attached, the JSON checker validates the
+  canonical locator's ledger membership, required status, filesystem
+  existence, and checked-in digest; it does not compare an arbitrary wrapper's
+  digest text with that JSON value.  The wrapper does not type-check that its
+  proposition is definitionally the one named by the future owner declaration.
+  \uses{def:external-evidence,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-evidence}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimProjectionManifest.
@@ -465,12 +469,15 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \lean{KIP126.External.externalClaimProjectionManifest}
   \leanok
   The claim projection exports, for every canonical root, its identifier,
-  source, optional locator artifact, owner, and Blueprint-label or enumerated
-  source target.  The external checker rejects duplicate rows, owners, or
-  targets; missing source coverage; unknown Blueprint/source targets; and any
-  nonempty canonical locator artifact path that does not name a listed,
-  required, existing regular file under the corresponding source directory.
-  \uses{def:external-claim-ledger,def:source-projection}
+  source, optional locator artifact, locator description, owner, and
+  Blueprint-label or enumerated source target.  The external checker rejects
+  duplicate or missing root rows, duplicate owners or targets, missing source
+  coverage, unknown Blueprint/source targets, unlocated claims without the
+  required exact fallback locator, and any nonempty canonical locator artifact
+  path that does not name a listed, required, existing regular file under the
+  corresponding source directory.  This exported metadata still does not
+  assert the truth of a claim.
+  \uses{def:external-claim-ledger}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration every_source_has_valid_claim.
@@ -482,7 +489,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   least one valid claim row.  This proves valid coverage of the provenance
   index only; it does not assert the truth of the referenced literature or
   computation.
-  \uses{def:external-claim-ledger,def:source-inventory,def:inventory-valid-source-ref}
+  \uses{def:external-claim-ledger,def:source-id}
 \end{theorem}
 
 \begin{proof}
