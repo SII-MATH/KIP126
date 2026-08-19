@@ -161,8 +161,18 @@ jobs:
       - name: Set up Blueprint generator
         if: needs.classify.outputs.blueprint == 'true' || steps.reuse.outcome != 'success'
         run: |
-          sudo apt-get update
-          sudo apt-get install --yes \
+          apt_options=(
+            -o Acquire::Retries=3
+            -o Acquire::http::Timeout=30
+            -o Acquire::https::Timeout=30
+          )
+          if ! sudo timeout 180s apt-get "${apt_options[@]}" update; then
+            sudo sed -i \
+              's|mirror+file:/etc/apt/apt-mirrors.txt|https://archive.ubuntu.com/ubuntu|' \
+              /etc/apt/sources.list.d/ubuntu.sources
+            sudo timeout 180s apt-get "${apt_options[@]}" update
+          fi
+          sudo timeout 300s apt-get "${apt_options[@]}" install --yes \
             ghostscript graphviz libgraphviz-dev pdf2svg pkg-config texlive-latex-base
           python3 -m venv "$RUNNER_TEMP/blueprint-venv"
           "$RUNNER_TEMP/blueprint-venv/bin/pip" install "leanblueprint==0.0.20"
