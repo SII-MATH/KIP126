@@ -218,6 +218,8 @@ jobs:
     needs: classify
     runs-on: ubuntu-24.04
     timeout-minutes: 90
+    env:
+      DISABLE_EQUATIONS: "1"
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -286,7 +288,7 @@ jobs:
             .lake/packages/UnicodeBasic/.lake/build
             .lake/packages/doc-gen4/.lake/build
             .lake/packages/leansqlite/.lake/build
-          key: kip126-docgen-deps-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'docbuild/lakefile.toml', 'docbuild/lake-manifest.json') }}
+          key: kip126-docgen-deps-v2-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'docbuild/lakefile.toml', 'docbuild/lake-manifest.json') }}
 
       - name: Restore trusted main Lean outputs
         id: lean-cache
@@ -362,7 +364,7 @@ jobs:
             .lake/packages/UnicodeBasic/.lake/build
             .lake/packages/doc-gen4/.lake/build
             .lake/packages/leansqlite/.lake/build
-          key: kip126-docgen-deps-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'docbuild/lakefile.toml', 'docbuild/lake-manifest.json') }}
+          key: kip126-docgen-deps-v2-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'docbuild/lakefile.toml', 'docbuild/lake-manifest.json') }}
 
       - name: Verify API docs and revision
         run: |

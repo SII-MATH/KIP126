@@ -66,6 +66,9 @@ artifacts; the deploy job assembles them as `_site/blueprint/` and
 branch. A missing component artifact causes a safe rebuild. Weekly and manual
 runs skip GitHub caches and record cold plus immediate warm command timings;
 normal runs report both elapsed times and cache-hit outcomes in the job summary.
+doc-gen equation pages are disabled because the site is used for declaration
+types, source links, and search; deriving equations for the full dependency
+closure dominates cold builds without improving that evidence chain.
 
 ## Provenance and source inventory
 
