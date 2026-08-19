@@ -107,14 +107,17 @@ noncomputable def associatedGradedObject [Abelian C] (F : Filtration A) :
     CategoryTheory.GradedObject (ℤ × ι) C :=
   fun si => F.associatedGraded si.1 si.2
 
-/-- A filtration is exhaustive degreewise when every component is the whole
-object at some filtration level. -/
+/-- A filtration is degreewise eventually top: every component is the whole
+object at some filtration level.  Because the filtration is decreasing, it is
+then top at every lower level.  This predicate is stronger than ordinary
+exhaustiveness expressed only by a union or colimit of filtration levels. -/
 def IsExhaustive (F : Filtration A) : Prop :=
   ∀ i : ι, ∃ s : ℤ, F.F s i = ⊤
 
-/-- A filtration is eventually zero degreewise when every component vanishes
-at some filtration level.  This is stronger than merely having zero
-intersection. -/
+/-- A filtration is degreewise eventually bottom: every component vanishes at
+some filtration level.  Because the filtration is decreasing, it then vanishes
+at every higher level.  This is stronger than separatedness, which asks only
+for zero intersection. -/
 def IsEventuallyZero [Abelian C] (F : Filtration A) : Prop :=
   ∀ i : ι, ∃ s : ℤ, F.F s i = ⊥
 

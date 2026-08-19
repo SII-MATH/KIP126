@@ -1,6 +1,4 @@
 import KIP126.Classical.Adams.Basic
-import Mathlib.Algebra.Category.ModuleCat.Abelian
-import Mathlib.Algebra.Field.ZMod
 import Mathlib.Algebra.Homology.SpectralSequence.Basic
 
 /-!
@@ -14,6 +12,7 @@ only supplies the synthetic index and the weight-preserving degree interface.
 namespace KIP126.Synthetic.SpectralSequence
 
 open CategoryTheory
+open KIP126.Core.Algebra
 
 abbrev Tridegree := ℤ × ℤ × ℤ
 
@@ -30,7 +29,7 @@ def lambdaDegree : Tridegree := (0, 0, -1)
 def lambdaTarget (i : Tridegree) : Tridegree := i + lambdaDegree
 
 abbrev SyntheticAdamsSpectralSequence :=
-  CategoryTheory.SpectralSequence (ModuleCat (ZMod 2)) syntheticAdamsShape 2
+  CategoryTheory.SpectralSequence F2ModuleCat syntheticAdamsShape 2
 
 structure SyntheticAdamsSS where
   sequence : SyntheticAdamsSpectralSequence
