@@ -115,6 +115,25 @@ class EnqueueTests(unittest.TestCase):
 
 
 class BranchUpdateTests(unittest.TestCase):
+    def test_blueprint_only_surface_uses_only_blueprint_recheck(self) -> None:
+        files = [[{"filename": "blueprint/src/content.tex"}]]
+        with mock.patch.object(merge_gate, "gh_json", return_value=files):
+            self.assertEqual(
+                merge_gate.recheck_workflows("surenny/KIP126", 17),
+                ("blueprint-pr.yml",),
+            )
+
+    def test_mixed_surface_stays_on_the_lean_scope_gate(self) -> None:
+        files = [[
+            {"filename": "blueprint/src/content.tex"},
+            {"filename": "KIP126/Core.lean"},
+        ]]
+        with mock.patch.object(merge_gate, "gh_json", return_value=files):
+            self.assertEqual(
+                merge_gate.recheck_workflows("surenny/KIP126", 17),
+                merge_gate.RECHECK_WORKFLOWS,
+            )
+
     def test_same_repository_branch_updates_and_dispatches_exact_head_checks(self) -> None:
         new_head = "2" * 40
         update_result = {
@@ -124,12 +143,15 @@ class BranchUpdateTests(unittest.TestCase):
                 }
             }
         }
-        with mock.patch.object(merge_gate, "gh_json", side_effect=[update_result, None, None]) as gh_json:
+        files = [[{"filename": "KIP126/Core.lean"}]]
+        with mock.patch.object(
+            merge_gate, "gh_json", side_effect=[update_result, files, None, None]
+        ) as gh_json:
             message = merge_gate.update_behind_branch("surenny/KIP126", pull_request(), False)
         self.assertIn("111111111111 -> 222222222222", message)
         self.assertIn("pr-build.yml, pr-profile.yml", message)
-        self.assertEqual(gh_json.call_count, 3)
-        dispatched = [call.args[0][3] for call in gh_json.call_args_list[1:]]
+        self.assertEqual(gh_json.call_count, 4)
+        dispatched = [call.args[0][3] for call in gh_json.call_args_list[2:]]
         self.assertEqual(
             dispatched,
             [
@@ -137,8 +159,8 @@ class BranchUpdateTests(unittest.TestCase):
                 "repos/surenny/KIP126/actions/workflows/pr-profile.yml/dispatches",
             ],
         )
-        self.assertIn("inputs[refresh_review]=true", gh_json.call_args_list[1].args[0])
-        self.assertNotIn("inputs[refresh_review]=true", gh_json.call_args_list[2].args[0])
+        self.assertIn("inputs[refresh_review]=true", gh_json.call_args_list[2].args[0])
+        self.assertNotIn("inputs[refresh_review]=true", gh_json.call_args_list[3].args[0])
 
     def test_dry_run_has_no_side_effects(self) -> None:
         with mock.patch.object(merge_gate, "gh_json") as gh_json:
@@ -282,6 +304,7 @@ class MergeTrainTests(unittest.TestCase):
         with (
             mock.patch.object(merge_gate, "pull_decision", return_value=(missing, None)),
             mock.patch.object(merge_gate, "head_check_states", return_value={}),
+            mock.patch.object(merge_gate, "recheck_workflows", return_value=merge_gate.RECHECK_WORKFLOWS),
             mock.patch.object(merge_gate, "dispatch_recheck") as dispatch,
         ):
             message = merge_gate.advance_train_head("surenny/KIP126", head, False)
@@ -302,11 +325,29 @@ class MergeTrainTests(unittest.TestCase):
                 "head_check_states",
                 return_value={"sandboxed-build": "in_progress", "performance-gate": "completed"},
             ),
+            mock.patch.object(merge_gate, "recheck_workflows", return_value=merge_gate.RECHECK_WORKFLOWS),
             mock.patch.object(merge_gate, "dispatch_recheck") as dispatch,
         ):
             message = merge_gate.advance_train_head("surenny/KIP126", head, False)
         dispatch.assert_not_called()
         self.assertEqual(message, "#10: merge-train head waiting — exact-head build is active")
+
+    def test_missing_blueprint_evidence_retries_only_blueprint_workflow(self) -> None:
+        head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
+        missing = {"target_label": "awaiting-CI", "reason": "mechanical-not-green:build:missing"}
+        with (
+            mock.patch.object(merge_gate, "pull_decision", return_value=(missing, None)),
+            mock.patch.object(merge_gate, "head_check_states", return_value={}),
+            mock.patch.object(
+                merge_gate,
+                "recheck_workflows",
+                return_value=merge_gate.BLUEPRINT_RECHECK_WORKFLOWS,
+            ),
+            mock.patch.object(merge_gate, "dispatch_recheck") as dispatch,
+        ):
+            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+        dispatch.assert_called_once_with("surenny/KIP126", "blueprint-pr.yml", 10)
+        self.assertEqual(message, "#10: re-dispatched missing exact-head checks")
 
     def test_missing_semantic_review_retries_only_the_reviewer(self) -> None:
         head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])

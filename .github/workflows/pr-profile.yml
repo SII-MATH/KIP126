@@ -19,6 +19,8 @@ name: pr-performance
 
 on:
   pull_request_target:
+    paths-ignore:
+      - "blueprint/src/**"
     types: [opened, synchronize, reopened]
   merge_group:
     types: [checks_requested]

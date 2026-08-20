@@ -2,7 +2,7 @@ name: Review
 
 on:
   workflow_run:
-    workflows: [pr-build]
+    workflows: [pr-build, blueprint-pr]
     types: [completed]
   issue_comment:
     types: [created]
@@ -36,6 +36,7 @@ jobs:
       pr: ${{ steps.resolve.outputs.pr }}
       head_sha: ${{ steps.resolve.outputs.head_sha }}
       initializer: ${{ steps.resolve.outputs.initializer }}
+      review_kind: ${{ steps.resolve.outputs.review_kind }}
       idempotency_key: ${{ steps.resolve.outputs.idempotency_key }}
     env:
       GH_TOKEN: ${{ github.token }}
@@ -103,6 +104,25 @@ jobs:
             exit 0
           fi
           echo 'initializer=false' >> "$GITHUB_OUTPUT"
+
+          files=$(gh api --paginate "repos/$REPO/pulls/$PR/files" --jq '.[].filename')
+          blueprint=false
+          lean=false
+          while IFS= read -r path; do
+            case "$path" in
+              blueprint/src/*) blueprint=true ;;
+              KIP126.lean|KIP126/*.lean|lakefile.lean|lake-manifest.json|lean-toolchain) lean=true ;;
+            esac
+          done <<< "$files"
+          if [[ "$blueprint" == true && "$lean" == true ]]; then
+            REVIEW_KIND=mixed
+          elif [[ "$blueprint" == true ]]; then
+            REVIEW_KIND=blueprint
+          else
+            REVIEW_KIND=lean
+          fi
+          echo "review_kind=$REVIEW_KIND" >> "$GITHUB_OUTPUT"
+
           test -n "$ROADMAP_REPOSITORY"
           test -n "$RUBRIC_REVISION"
           MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
@@ -114,6 +134,12 @@ jobs:
               max_by(.updated_at // .created_at) | .state == "success"
             ' statuses.json >/dev/null
           done
+          if [[ "$REVIEW_KIND" == blueprint || "$REVIEW_KIND" == mixed ]]; then
+            jq -e '
+              [.statuses[] | select(.context == "blueprint")] |
+              max_by(.updated_at // .created_at) | .state == "success"
+            ' statuses.json >/dev/null
+          fi
           AIM_ISSUE=$(jq -r '[.title, (.body // ""), .head.ref] | join("\n")' pr.json | \
             grep -m1 -Eo '[A-Z][A-Z0-9]*-[1-9][0-9]*')
           test -n "$AIM_ISSUE"
@@ -125,6 +151,7 @@ jobs:
             --arg base_sha "$BASE_SHA" \
             --arg merge_base_sha "$MERGE_BASE_SHA" \
             --arg rubric_revision "$RUBRIC_REVISION" \
+            --arg review_kind "$REVIEW_KIND" \
             --arg aim_issue "$AIM_ISSUE" \
             --slurpfile statuses statuses.json '
               def evidence($name):
@@ -138,9 +165,12 @@ jobs:
                roadmap_repository: $roadmap_repository,
                pull_request: $pull_request, head_sha: $head_sha,
                base_sha: $base_sha, merge_base_sha: $merge_base_sha,
-               rubric_revision: $rubric_revision, aim_issue: $aim_issue,
-               ci: {scope: evidence("scope"), build: evidence("build"),
-                    "bump-guard": evidence("bump-guard")}}
+               rubric_revision: $rubric_revision, review_kind: $review_kind,
+               aim_issue: $aim_issue,
+               ci: ({scope: evidence("scope"), build: evidence("build"),
+                     "bump-guard": evidence("bump-guard")}
+                    + (if $review_kind == "blueprint" or $review_kind == "mixed"
+                       then {blueprint: evidence("blueprint")} else {} end))}
             ' > request.json
           KEY=$(jq -jr \
             '[(.repository | ascii_downcase), (.pull_request | tostring), .head_sha, .rubric_revision] | join(":")' \

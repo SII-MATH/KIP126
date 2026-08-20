@@ -11,90 +11,56 @@ import graph 以 `KIP126/**/*.lean` 为准；项目范围、信任边界与最�
 
 | 阶段 | 目标 | 主要产物 | 阶段出口 |
 | --- | --- | --- | --- |
-| 一、建立包络面 | 审计所有旧仓库，逐章识别可借鉴的最高完成度 | 可追溯的章级迁移账本，以及自足、可编译的 KIP126 基线 | 每章都有权威来源或“无可复用实现”的明确结论；迁入内容通过语义与信任审计 |
+| 一、建立包络面 | 分析所有旧仓库，逐章识别可借鉴的完成度 | 以 aimpaper 为唯一语义标准的自足、可编译 KIP126 基线 | 17 章均完成参考调研；选用或重写的实现达到 aimpaper 的语义、分次和定理强度 |
 | 二、继续形式化 | 在包络面基线上按数学依赖补完 Blueprint 与 Lean | 17 个章级模块及其 Lean 入口、外部输入接口和内部证明 | 所有应由项目实现的节点均完成；只允许保留经 `PROJECT_BOUNDARY.md` 明确分类的外部、开放或政策边界节点 |
-| 三、最终审计 | 对全仓库而非单个模块做完整性、信任、来源和可复现性审计 | 最终审计记录、干净构建结果和主定理依赖锥报告 | 满足 `PROJECT_BOUNDARY.md` 的全部最终验收条件，而不只是“构建通过” |
+| 三、最终审计 | 对全仓库而非单个模块做论文一致性、完整性、信任和可复现性审计 | 最终审计记录、干净构建结果和主定理依赖锥报告 | 满足 `PROJECT_BOUNDARY.md` 的全部最终验收条件，而不只是“构建通过” |
 
-三个阶段按产物依赖排列。第二阶段只能消费第一阶段已经审计并迁入 KIP126 的内容；
-旧仓库中未经审计的代码始终只是迁移线索。第二阶段中的模块级检查是持续门槛，不能
-代替第三阶段结束时面向整个仓库的完整审计。
+三个阶段按产物依赖排列。第二阶段只以第一阶段形成的 KIP126 基线为起点；旧仓库不
+定义项目的目标语义，只提供实现和证明思路。凡是弱于或不对齐 aimpaper 的参考实现，
+都不能直接充当完成结果，仍须按 aimpaper 的语义、分次、page convention 和定理强度
+重新实现。第二阶段中的模块级检查是持续门槛，不能代替第三阶段结束时面向整个仓库
+的完整审计。
 
 ## 第一阶段：从旧仓库建立包络面
 
 KIP126 不是从零开始的单线实现，而是此前多轮谱序列、extension spectral
-sequence、stable homotopy、synthetic spectra、classical Adams、论文端点和来源
-审计探索的**最优进度包络面**。第一阶段的产物不是一份调研报告，而是将各仓库中
+sequence、stable homotopy、synthetic spectra、classical Adams 和论文端点等多轮
+实现探索的**最优进度包络面**。第一阶段的产物不是一份调研报告，而是将各仓库中
 真正成熟、语义忠实且可维护的部分迁入同一规范接口之后形成的可编译代码仓库。
 
 “包络面”不表示机械合并所有文件，也不以代码行数或 `sorry` 数量最少作为选择标准。
-同一概念只保留一个权威实现；无法证明语义等价、依赖不透明或把数学内容藏入公理/
-typeclass 字段的实现，只能作为证明模式或迁移线索。
+同一概念只保留一个面向 aimpaper 的权威实现；比 aimpaper 语义更弱、分次或 page
+convention 不一致、定理强度不对齐，或把数学内容藏入公理/typeclass 字段的旧实现，
+都只能作为 proof pattern 或实现线索，不能降低最终形式化目标。
 
-所有旧仓库只作为只读迁移来源。最终 KIP126 不得通过 path dependency 依赖它们，
-也不继承它们锁定的旧版 Lean/Mathlib 或未经审计的信任边界。
-
-### 迁移账本的最小字段
-
-每个候选声明或模块至少记录：
-
-1. 来源仓库、锁定 commit、源文件和声明名；
-2. 对应 Blueprint chapter/node 与目标 Lean namespace；
-3. 当前是已证声明、`sorry`、项目 `axiom`、`opaque`、typeclass 假设还是外部输入；
-4. 与 aimpaper 语义、分次、page convention 和定理强度的差异；
-5. Lean/Mathlib porting 成本、依赖闭包和可复现构建结果；
-6. 迁入、重写、仅借鉴 proof pattern 或明确弃用的决定及理由。
+所有旧仓库只作为只读参考。最终 KIP126 不得通过 path dependency 依赖它们，也不
+继承它们锁定的旧版 Lean/Mathlib。
 
 ### 第一阶段完成条件
 
-1. 17 章均有完整迁移账本；没有可复用实现的章节也有明确结论；
+1. 17 章均完成参考调研；没有可借鉴实现的章节也有明确结论；
 2. 每个重复概念选定唯一权威实现，不以平行 alias 掩盖接口分叉；
 3. 选中的成果已经迁入 KIP126 并在 Lean 4.32.2 / Mathlib v4.32.2 下构建，不依赖
    旧仓库本机路径；
-4. 迁入源码不新增 `sorry`、`admit` 或项目自定义 `axiom`；外部事实改写为带
-   provenance 的显式条件输入；
-5. 任何定义相等、索引换算、adapter 或语义弱化均有单独审计和回归测试；
+4. 迁入源码不新增 `sorry`、`admit` 或项目自定义 `axiom`；外部事实改写为显式条件
+   输入；
+5. 任何定义相等、索引换算和 adapter 均有证明义务与回归测试，不允许弱化或改变
+   aimpaper 的语义和定理强度；
 6. 形成可供第二阶段继续实现的、自足且可审计的 KIP126 包络面基线。
 
 ## 第二阶段：在包络面上继续形式化
 
 第二阶段以第一阶段形成的 KIP126 为唯一代码基线。旧仓库仍可用于查找证明思路，
-但任何新增复用都必须先补入迁移账本并通过第一阶段的迁入门槛。
+但参考实现不决定目标 statement；所有新增声明与证明都必须严格达到 aimpaper 的
+语义、分次、page convention 和定理强度。
 
-### 模块划分与进度口径
+### 模块划分口径
 
 Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录，只用注释标出
 “数学定义 → 外部输入 → 内部证明”三层。Lean 文件列出各章当前最接近的公共入口；
 同一现有入口暂时承载两个新章时，后续实现任务再按 chapter 边界拆 facade。
-`Blueprint 节点`按正式 theorem-like environment 计数，状态依次为
-`leanok / mathlibok / notready`。
+章级 Blueprint 节点数量与完成度不在本文件汇总，以对应章节子 Wiki 的当前记录为准。
 
-| 层 | 顺序 | 模块（Blueprint chapter） | Lean 文件（当前最近入口） | Blueprint 节点 | 状态 |
-| --- | ---: | --- | --- | ---: | --- |
-| 定义 | 1 | Algebraic foundations | `KIP126/Core.lean` | 46 | 19 / 27 / 0 |
-| 定义 | 2 | Spectral-sequence machinery | `KIP126/Core/SpectralSequence.lean` | 54 | 27 / 13 / 14 |
-| 定义 | 3 | Stable-homotopy objects | — | 11 | 0 / 0 / 11 |
-| 定义 | 4 | Classical mod-2 Adams spectral sequence | `KIP126/Classical/Adams.lean` | 15 | 0 / 0 / 15 |
-| 定义 | 5 | Extension spectral sequences | `KIP126/Classical/ExtensionSS.lean` | 17 | 0 / 0 / 17 |
-| 定义 | 6 | Synthetic homotopy and synthetic Adams objects | `KIP126/Synthetic.lean` | 8 | 0 / 0 / 8 |
-| 定义 | 7 | Synthetic extension spectral sequences | `KIP126/Synthetic/ExtensionSS.lean` | 4 | 0 / 0 / 4 |
-| 定义 | 8 | Extensions on a classical Adams page | `KIP126/Classical/PageExtensions.lean` | 4 | 0 / 0 / 4 |
-| 定义 | 9 | Typed computation schemas | `KIP126/Kervaire/AppendixData.lean` | 13 | 0 / 0 / 13 |
-| 定义 | 10 | Near-126 and Kervaire problem setup | `KIP126/Kervaire/Assumptions.lean` | 7 | 0 / 0 / 7 |
-| 外部输入 | 11 | External literature results | `KIP126/External/Results.lean` | 23 | 1 / 0 / 22 |
-| 外部输入 | 12 | External computed results | `KIP126/Kervaire/AppendixData.lean` | 31 | 0 / 0 / 31 |
-| 内部证明 | 13 | Comparison and generalized rules | `KIP126/Comparison.lean` | 49 | 0 / 0 / 49 |
-| 内部证明 | 14 | Near-126 reduction and permanent cycle | `KIP126/Kervaire/Assumptions.lean` | 19 | 0 / 0 / 19 |
-| 内部证明 | 15 | Geometric conclusions | `KIP126/Kervaire/MainTheorem.lean` | 3 | 0 / 0 / 3 |
-| 审计 | 16 | External-input provenance audit | `KIP126/External.lean` | 32 | 30 / 0 / 2 |
-| 审计 | 17 | Source coverage and audit index | — | 0 | — |
-|  |  | **合计** |  | **336** | **77 / 40 / 219** |
-
-### 统计解释
-
-- 336 是 DAG 的正式节点总数；其中 117 个节点已有完成标记（77 个项目声明为
-  `leanok`、40 个 Mathlib 根为 `mathlibok`），219 个节点仍为 `notready`。
-- `leanok` 与 `mathlibok` 不等价于“整章完成”：Spectral-sequence machinery 仍有
-  14 个 `notready`，而外部结果、内部比较和 near-126 主体仍基本未实现。
 - `content.tex` 只保留按依赖顺序的平铺 `\input` 清单与三层注释；没有 LaTeX
   `\part`。`blueprint/print` 和 `blueprint/web` 是生成物，不手工编辑；
   `blueprint/lean_decls` 由工具生成并纳入版本控制，以支持干净检出后的声明检查。
@@ -121,22 +87,22 @@ Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录
 2. 相关 Blueprint 节点有准确 `\lean`、`\uses` 和状态标记，DAG 无未知依赖、环或
    无意孤立节点；
 3. `leanblueprint pdf`、`leanblueprint web` 和 `leanblueprint checkdecls` 通过；
-4. 外部文献、Lin 输出和附录数据都以带 locator/provenance 的显式输入进入 Lean，
-   不伪装成项目内部定理或全局公理；
+4. 外部文献、Lin 输出和附录数据都以显式、类型正确的输入进入 Lean，不伪装成项目
+   内部定理或全局公理；
 5. 生成物只由工具生成，不手工编辑。
 
 ### 当前执行前沿
 
-当前优先级是 Spectral-sequence machinery 的剩余 14 个节点与 Stable-homotopy
-objects 的最小接口；随后完成 Classical Adams/ESS 和 Synthetic 定义，使
+当前优先级是补完 Spectral-sequence machinery 并建立 Stable-homotopy objects 的
+最小接口；随后完成 Classical Adams/ESS 和 Synthetic 定义，使
 external-results statements 获得真实类型，再推进 comparison、数据、near-126 与
 几何端点。主 Wiki 负责更新章级完成状态和下一步；本文件只在阶段、模块边界、依赖
-顺序或统计口径变化时更新。
+顺序变化时更新。
 
 ## 第三阶段：最终完整审计
 
 第三阶段在第二阶段的正式节点全部完成后执行。此前每个模块已经通过增量检查，但
-最终审计必须从干净检出出发，对完整依赖锥和全部外部输入重新取证，不能简单汇总
+最终审计必须从干净检出出发，对完整依赖锥和全部外部输入重新核验，不能简单汇总
 历史 CI 结果。
 
 ### 审计范围
@@ -146,17 +112,16 @@ external-results statements 获得真实类型，再推进 comparison、数据�
    主定理及关键中间结论运行 `#print axioms`。
 2. **Blueprint 完整性**：验证全部正式节点的 `\lean`、`\uses`、状态和声明映射；
    DAG 不得有未知依赖、环、重复 label 或无意孤立节点。
-3. **外部输入与 provenance**：逐条核对文献、locator、Lin 程序输出、附录数据、
-   source inventory、claim/evidence ledger 和 computation catalogue；外部事实不得
-   被提升为无条件内部定理。
+3. **外部输入边界**：逐条确认文献定理、Lin 程序输出和附录数据被建模为显式、类型
+   正确的条件输入；外部事实不得被提升为无条件内部定理。
 4. **架构与去重**：删除临时 compatibility shim、过渡 alias、重复模型和未使用
    import；确认 Mathlib `CategoryTheory.SpectralSequence` 仍是唯一通用谱序列内核，
    Classical、Synthetic、Comparison、External 与 Kervaire 边界清晰。
 5. **可复现构建**：在无缓存、干净检出的 Lean 4.32.2 / Mathlib v4.32.2 环境中运行
    完整 `lake build`、回归测试、Blueprint PDF/web 和声明检查；生成物必须可由工具
    重建。
-6. **迁移闭环**：逐项回看第一阶段迁移账本，确认所有迁入项可追溯，所有未迁入项有
-   明确弃用理由，最终仓库不依赖旧仓库本机路径或未锁定外部状态。
+6. **论文一致性**：逐章核对 aimpaper 的 statement、分次、page convention 和定理
+   强度；仅复用了较弱或不对齐的参考实现，不算完成对应节点。
 
 ### 最终完成条件
 
@@ -164,9 +129,9 @@ external-results statements 获得真实类型，再推进 comparison、数据�
 
 1. 所有应由项目内部实现的 Blueprint 节点均具有真实、可解析的 `leanok` 或锁定的
    `mathlibok`；保留的 `notready` 只能是经 `PROJECT_BOUNDARY.md` 明确分类并有完整
-   来源/边界记录的外部、开放或政策节点；
+   边界记录的外部、开放或政策节点；
 2. 主定理及其完整依赖锥不含 `sorryAx` 或项目自定义公理；
-3. 所有外部文献和计算输入均有可定位、可枚举、边界明确的 provenance；
+3. 所有外部文献和计算输入均以显式、类型正确且边界明确的条件进入 Lean；
 4. 干净环境中的完整构建、回归、Blueprint 和声明检查全部通过；
 5. `PROJECT_BOUNDARY.md` 所列范围、信任与验收条件全部满足。
 
@@ -178,9 +143,9 @@ external-results statements 获得真实类型，再推进 comparison、数据�
    同构、构造或比较定理。
 3. **适配优于伪统一。** 不同分次和领域对象通过有证明义务的 adapter/reindex 接入，
    不在没有等价证明时粗暴替换。
-4. **外部根显式化。** 文献定理、程序输出和附录表格作为带 provenance 的条件输入，
+4. **外部根显式化。** 文献定理、程序输出和附录表格作为显式、类型正确的条件输入，
    不转化为项目全局公理。
-5. **最终包自足。** 旧仓库仅是只读迁移来源；KIP126 不以它们作为运行时或构建依赖。
+5. **最终包自足。** 旧仓库仅是只读参考；KIP126 不以它们作为运行时或构建依赖。
 6. **共享 Core 保持最小。** 直接采用锁定 Mathlib 的
    `CategoryTheory.SpectralSequence`，只增加实际下游共用的过滤、关联分次、filtered
    complex、spectral-object adapter 等结构；领域数学留在对应模块。
