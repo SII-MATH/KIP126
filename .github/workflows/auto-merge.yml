@@ -14,7 +14,7 @@ name: Auto-merge
 on:
   # Head is freshly green: re-check whether this PR is now mergeable.
   workflow_run:
-    workflows: ["pr-build"]
+    workflows: ["pr-build", "blueprint-pr"]
     types: [completed]
   # A review scoreboard was just posted or edited (a local review may have turned the PR green).
   issue_comment:
