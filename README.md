@@ -18,27 +18,29 @@ KIP126 is developed with the following projects and tools:
 
 The Lean and Mathlib versions must remain aligned. Blueprint's generated
 directories (`blueprint/print` and `blueprint/web`) are ignored build outputs.
-`blueprint/lean_decls` is also generated rather than hand-edited, but it is
-tracked so declaration checks work from a clean checkout.
+`blueprint/lean_decls` is likewise generated and ignored rather than hand-edited;
+commands that consume it must run `leanblueprint web` first. CI preserves the
+generated declaration list in the Blueprint artifact when it is needed later.
 
 Lean 4.32.2 project and source-grounded Blueprint for the KIP126
 formalization.
 
 ## Project documents and workflow
 
-The repository separates the goal, scope, plan, and formalization sketch:
+The repository assigns different questions to different authoritative sources;
+this is a responsibility map rather than one document overriding every other
+document:
 
-- [`docs/ROADMAP.md`](docs/ROADMAP.md) is the three-stage implementation plan:
-  audit the earlier repositories and form KIP126's best-progress envelope,
-  continue the chapter-level formalization in dependency order, and finish
-  with a repository-wide trust, provenance, completeness, and reproducibility
-  audit.
 - [`aimpaper/`](aimpaper/) contains the target paper and its source material.
   It is the mathematical document to be formalized; its claims are not, by
   themselves, Lean proofs or project theorems.
 - [`PROJECT_BOUNDARY.md`](PROJECT_BOUNDARY.md) defines what this project does
   and does not formalize, together with its source, trust, and acceptance
   boundaries.
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) owns the long-term stages and dependency
+  order: audit the earlier repositories and form KIP126's best-progress
+  envelope, continue the chapter-level formalization, and finish with a
+  repository-wide trust, provenance, completeness, and reproducibility audit.
 - [`blueprint/src/content.tex`](blueprint/src/content.tex) and the chapters
   under [`blueprint/src/chapters`](blueprint/src/chapters) form the
   natural-language formalization sketch.  The Blueprint follows the paper's
@@ -47,6 +49,20 @@ The repository separates the goal, scope, plan, and formalization sketch:
   be checked together.  In the usual layout, one chapter corresponds to one
   Lean file; temporary shared facades are allowed during migration, but the
   final implementation should expose chapter-level Lean entry points.
+- [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
+  authoritative for interfaces and proofs that are actually implemented, as
+  well as their import graph.
+- [`reference/source-inventory.json`](reference/source-inventory.json), the
+  per-source status records under [`reference/`](reference/), and the Lean
+  claim ledger own the catalogue and provenance of external inputs. They record
+  evidence and assumptions; they do not turn those inputs into unconditional
+  project theorems.
+
+When two sources appear to disagree, resolve the question through the owner
+above: scope, trust, and final acceptance through `PROJECT_BOUNDARY.md`;
+implemented facts through Lean; planned statements, dependencies, and status
+through the Blueprint; long-term order through the Roadmap; and external-input
+records through the source inventory and claim ledger.
 
 The intended workflow is therefore:
 
@@ -79,11 +95,8 @@ from Mathlib, explicit literature and computation provenance, and the full
 dependency cone from the compiled Core to the conditional Kervaire endpoints.
 All unimplemented nodes are conservatively marked `notready`; the Blueprint
 does not claim that the main theorem is already formalized.  Implemented APIs
-and dependencies are authoritative in the Lean source; planned mathematical
-interfaces, semantic constraints, dependencies, sources, and status live in the
-Blueprint.  [PROJECT_BOUNDARY.md](PROJECT_BOUNDARY.md) records scope and trust
-policy, while [docs/ROADMAP.md](docs/ROADMAP.md) records the staged Lean
-implementation order.
+and planned nodes retain the responsibilities defined once in
+`Project documents and workflow` above.
 
 ## Build
 
@@ -125,19 +138,18 @@ doc-gen equation pages are disabled because the site is used for declaration
 types, source links, and search; deriving equations for the full dependency
 closure dominates cold builds without improving that evidence chain.
 
-Install the pinned Blueprint renderer and verify that the tracked declaration
-manifest is current and every name resolves in the pinned Lean environment:
+Install the pinned Blueprint renderer, regenerate the declaration list, and
+verify that every name resolves in the pinned Lean environment:
 
 ```sh
 python3 -m pip install --user -r requirements-blueprint.txt
 bash scripts/check-blueprint-decls.sh
 ```
 
-The script regenerates `blueprint/lean_decls` with `leanblueprint web`, compares
-it with the tracked manifest, and then runs `leanblueprint checkdecls`. A stale
-or missing manifest is regenerated and reported as a failure so its diff can be
-reviewed and committed. A removed or renamed Lean declaration is reported by
-name by the pinned `checkdecls` executable configured in `lakefile.lean`.
+The script regenerates the ignored `blueprint/lean_decls` with
+`leanblueprint web` and then runs the pinned `checkdecls` executable configured
+in `lakefile.lean`. A removed or renamed Lean declaration is reported by name;
+the generated list is not committed.
 
 ## Provenance and source inventory
 
