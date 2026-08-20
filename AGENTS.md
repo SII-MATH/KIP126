@@ -1,5 +1,18 @@
 # KIP126 agent guidance
 
+## Worker authoring modes
+
+Each implementation issue must use exactly one authoring mode. Do not combine the
+two source boundaries in one worker task or diff.
+
+- Lean mode may edit only `KIP126.lean` and `.lean` files under `KIP126/`.
+- Blueprint mode may edit only files under `blueprint/src/`.
+- Files generated from Blueprint source, including `blueprint/lean_decls`, are
+  validation outputs and must not be included in the delivered diff.
+
+If an issue does not select exactly one mode, or requires a path outside its mode,
+stop before editing and request that the issue be split or clarified.
+
 ## Validation policy
 
 Use the cheapest evidence that answers the task. Do not start with a full build.
