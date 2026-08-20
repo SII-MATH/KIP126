@@ -13,6 +13,46 @@ two source boundaries in one worker task or diff.
 If an issue does not select exactly one mode, or requires a path outside its mode,
 stop before editing and request that the issue be split or clarified.
 
+### Blueprint authoring tasks
+
+Rewrite or complete the requested Blueprint mathematics and submit a Blueprint-only
+pull request. Do not include Lean source changes. Follow the marker and validation
+policies below.
+
+### Lean implementation tasks
+
+Use the relevant Blueprint nodes as the mathematical specification. Implement their
+statements and proof obligations in Lean, but keep the pull request entirely inside
+the Lean-mode boundary. Helper definitions and lemmas need not already have Blueprint
+nodes when they are implementation details needed for a sound proof.
+
+Every Lean pull request description must list the affected Blueprint labels and give
+an exact, per-node recommendation for declaration mappings and status markers: what
+to add, remove, or retain, together with the compiled declaration, axiom evidence,
+and semantic-correspondence justification. These are review inputs only; the Lean
+pull request must not edit Blueprint source.
+
+## Reviewed Blueprint status synchronization
+
+After a Lean pull request passes semantic review at its exact current head, the
+reviewer may apply verified declaration-mapping and status recommendations in a
+fresh, separate Blueprint-only pull request containing one commit. Never append the
+status commit to the Lean pull request, modify Lean source in the synchronization
+pull request, merge either pull request, or reuse approval after the reviewed head
+changes.
+
+Use `.agents/skills/leanblueprint-maintain/scripts/sync_leanok.py` in dry-run mode
+before `--write`. A positive `\leanok` transition requires a successful build, an
+exact resolving declaration, no `sorryAx` or disallowed transitive axiom, and
+independent semantic confirmation that the Lean type implements the Blueprint
+statement. The synchronizer does not override `\notready`; change or remove
+`\notready` only when the approved review explicitly confirms that the mathematical
+statement and Lean interface are stable. Treat `\mathlibok` as a separate
+source-verification claim, never as a consequence of project Lean compilation.
+
+Validate the resulting Blueprint-only diff using the applicable checks below. Do not
+commit generated output, including `blueprint/lean_decls`.
+
 ## Validation policy
 
 Use the cheapest evidence that answers the task. Do not start with a full build.
