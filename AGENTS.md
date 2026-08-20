@@ -63,10 +63,13 @@ validation is actually needed, run `lake exe cache get` first to restore Mathlib
 published artifacts, then run the narrowest relevant target. Do not run `lake update`
 unless the task is specifically changing dependency pins.
 
-GitHub Actions' `kip126-main-build-v1-*` cache contains trusted `.lake/build` output for
-an exact `main` SHA. The repository's PR workflow restores it automatically; a Multica
-local checkout does not. Do not claim that cache was reused locally unless it was
-explicitly restored. Prefer the exact-SHA CI result as evidence for read-only analysis.
+GitHub Actions' `kip126-main-build-v2-*` cache contains trusted `.lake/build` output
+keyed by OS, architecture, and the committed Lean/build-input digest. Documentation-only
+`main` commits therefore reuse their parent's outputs, while Lean source, Lake config or
+pins, and toolchain changes get a new key. The repository's workflows restore it
+automatically; a Multica local checkout does not. Do not claim that cache was reused
+locally unless it was explicitly restored. Prefer exact-SHA CI results as evidence for
+read-only analysis.
 
 ## Check selection
 

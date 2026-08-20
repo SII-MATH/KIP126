@@ -100,6 +100,18 @@ jobs:
           persist-credentials: false
           allow-unsafe-pr-checkout: true
 
+      # The scope guard proved that the candidate changes only blueprint/src/, so these committed
+      # Lean/build inputs are byte-identical to the trusted base and yield its published key.
+      - name: Compute the trusted build-input cache key
+        id: build-cache-key
+        if: steps.scope.outputs.ok == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          digest=$(bash scripts/ci-build-cache-key.sh . HEAD)
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          echo "Trusted build-input digest: $digest"
+
       - name: Set up the pinned Blueprint renderer
         if: steps.scope.outputs.ok == 'true'
         shell: bash
@@ -122,13 +134,13 @@ jobs:
           use-mathlib-cache: false
           use-github-cache: false
 
-      - name: Restore exact-base trusted Lean outputs
+      - name: Restore trusted Lean outputs for the base build inputs
         id: lean-cache
         if: steps.scope.outputs.ok == 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: base/.lake/build
-          key: kip126-main-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.pr.outputs.base_sha }}
+          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}
 
       - name: Adopt trusted Lean outputs
         if: steps.scope.outputs.ok == 'true' && steps.lean-cache.outputs.cache-matched-key != ''

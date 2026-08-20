@@ -236,6 +236,16 @@ jobs:
           # mapping yet. Harmless (just a slightly deeper fetch) when the cache is off.
           fetch-depth: 100
 
+      - name: Compute the trusted base build-input cache key
+        id: base-build-cache-key
+        if: ${{ env.INFRA != '1' && env.BUMP != '1' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          digest=$(bash base/scripts/ci-build-cache-key.sh base "${{ steps.pr.outputs.base_sha }}")
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          echo "Trusted base build-input digest: $digest"
+
       # Pin the new build/watchdog scripts to the commit that supplied this
       # workflow. This matters during first rollout and historical manual
       # dispatches, where the PR's base predates those scripts. For normal
@@ -472,16 +482,16 @@ jobs:
           fi
           echo "Mathlib cache is complete at the bump target."
 
-      # Restore only an exact-base cache produced by the successful default-branch CI job. PR
-      # code never writes GitHub caches, so untrusted output cannot become input to another run.
-      # A miss is harmless (the normal cold build follows), and pin bumps deliberately skip reuse.
-      - name: Restore trusted build outputs for the exact base commit
+      # Restore only the content-addressed cache produced by successful default-branch CI for the
+      # trusted base's committed Lean/build inputs. Documentation-only base commits therefore hit
+      # the same archive. PR code never writes GitHub caches, and pin bumps deliberately skip reuse.
+      - name: Restore trusted build outputs for the base build inputs
         id: main-build-cache
         if: ${{ env.INFRA != '1' && env.BUMP != '1' }}
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: base/.lake/build
-          key: kip126-main-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.pr.outputs.base_sha }}
+          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.base-build-cache-key.outputs.digest }}
 
       # Enable Lake's built-in artifact cache for the build below ONLY when the public read
       # endpoints are configured (repo variables). Until then this is a no-op: LAKE_*
