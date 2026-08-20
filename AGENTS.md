@@ -34,10 +34,11 @@ pull request must not edit Blueprint source.
 
 ## Reviewed Blueprint status synchronization
 
-After a Lean pull request passes semantic review at its exact current head, the
-reviewer may apply verified declaration-mapping and status recommendations in a
-fresh, separate Blueprint-only pull request containing one commit. Never append the
-status commit to the Lean pull request, modify Lean source in the synchronization
+After a Lean pull request passes semantic review at its exact current head and that
+head is integrated into the current default branch, the reviewer may apply verified
+declaration-mapping and status recommendations in a fresh, separate Blueprint-only
+pull request containing one commit and based on that default branch. Never append
+the status commit to the Lean pull request, modify Lean source in the synchronization
 pull request, merge either pull request, or reuse approval after the reviewed head
 changes.
 
