@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "blueprint/src/**"
+      - "requirements-blueprint.txt"
       - "KIP126.lean"
       - "KIP126/*.lean"
       - "KIP126/**/*.lean"
@@ -13,11 +14,13 @@ on:
       - "lean-toolchain"
       - "docbuild/**"
       - "scripts/docs/**"
+      - "scripts/test_workflow_routing.py"
       - ".github/workflows/pages.yml"
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
       - "blueprint/src/**"
+      - "requirements-blueprint.txt"
       - "KIP126.lean"
       - "KIP126/*.lean"
       - "KIP126/**/*.lean"
@@ -26,6 +29,7 @@ on:
       - "lean-toolchain"
       - "docbuild/**"
       - "scripts/docs/**"
+      - "scripts/test_workflow_routing.py"
       - ".github/workflows/pages.yml"
   schedule:
     - cron: "17 4 * * 1"
@@ -107,7 +111,8 @@ jobs:
               case "$path" in
                 blueprint/src/*) blueprint=true ;;
                 KIP126.lean|KIP126/*.lean) lean=true ;;
-                lakefile.lean|lake-manifest.json|lean-toolchain|docbuild/*|scripts/docs/*|.github/workflows/pages.yml)
+                requirements-blueprint.txt) blueprint=true ;;
+                lakefile.lean|lake-manifest.json|lean-toolchain|docbuild/*|scripts/docs/*|scripts/test_workflow_routing.py|.github/workflows/pages.yml)
                   config=true
                   ;;
               esac
@@ -137,7 +142,7 @@ jobs:
       - name: Test documentation helpers
         run: |
           python3 -m py_compile scripts/docs/*.py
-          python3 -m unittest scripts.test_docs_helpers -v
+          python3 -m unittest scripts.test_docs_helpers scripts.test_workflow_routing -v
 
   blueprint:
     needs: classify
@@ -188,7 +193,7 @@ jobs:
           sudo timeout --kill-after=10s 180s apt-get "${apt_options[@]}" \
             install --no-download --yes "${packages[@]}"
           python3 -m venv "$RUNNER_TEMP/blueprint-venv"
-          "$RUNNER_TEMP/blueprint-venv/bin/pip" install "leanblueprint==0.0.20"
+          "$RUNNER_TEMP/blueprint-venv/bin/pip" install -r requirements-blueprint.txt
           echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
 
       - name: Build Blueprint component

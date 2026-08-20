@@ -3,6 +3,19 @@ name: CI
 on:
   push:
     branches: [main]
+    paths:
+      - "KIP126.lean"
+      - "KIP126/**/*.lean"
+      - "lakefile.lean"
+      - "lake-manifest.json"
+      - "lean-toolchain"
+      - "scripts/euler-ci.sh"
+      - "scripts/sandbox-build.sh"
+      - "scripts/Axioms.lean"
+      - "scripts/perf/**"
+      - "scripts/profile/**"
+      - "scripts/pr_status/**"
+      - ".github/workflows/ci.yml"
 
 permissions:
   contents: read

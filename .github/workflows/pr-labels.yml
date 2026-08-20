@@ -29,7 +29,7 @@ on:
   # requested event for an old head could force awaiting-CI onto a moved PR, and a new commit already
   # paints awaiting-CI via pull_request_target: synchronize.)
   workflow_run:
-    workflows: ["pr-build"]
+    workflows: ["pr-build", "blueprint-pr"]
     types: [completed]
   # A review scoreboard or an in-progress marker was posted/edited -> re-derive the label.
   issue_comment:

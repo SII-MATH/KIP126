@@ -25,6 +25,10 @@ name: pr-build
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
+    # Blueprint-only PRs have their own trusted workflow. A mixed PR still runs here and fails the
+    # source-boundary scope guard, as required by AGENTS.md.
+    paths-ignore:
+      - "blueprint/src/**"
   # The merge queue tests a batch (one or more PRs combined onto current main) before it lands. We
   # build the COMBINED merge-group commit and post the `build` status on it so the queue's required
   # check is satisfied. The merge-group commit's KIP126/ (all batched PRs) is overlaid onto a

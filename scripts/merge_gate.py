@@ -24,6 +24,7 @@ CONFIG = projection.validate_config(json.loads(CONFIG_PATH.read_text(encoding="u
 BRANCH_UPDATE_METHOD = "MERGE"
 AUTO_MERGE_METHOD = "SQUASH"
 RECHECK_WORKFLOWS = ("pr-build.yml", "pr-profile.yml")
+BLUEPRINT_RECHECK_WORKFLOWS = ("blueprint-pr.yml",)
 TRAIN_LABEL = "merge-train-head"
 TRAIN_LABEL_COLOR = "5319e7"
 TRAIN_LABEL_DESCRIPTION = "The only PR currently advancing through KIP126's fallback merge train"
@@ -48,6 +49,37 @@ def pull_request_identity(repository: str, number: int) -> dict:
     if not isinstance(pull, dict):
         raise RuntimeError("unexpected pull request response")
     return pull
+
+
+def review_surface(repository: str, number: int) -> str:
+    pages = gh_json([
+        "api", "--paginate", "--slurp",
+        f"repos/{repository}/pulls/{number}/files?per_page=100",
+    ])
+    if not isinstance(pages, list):
+        raise RuntimeError(f"#{number}: unexpected pull request files response")
+    paths = [
+        item.get("filename")
+        for page in pages
+        if isinstance(page, list)
+        for item in page
+        if isinstance(item, dict) and isinstance(item.get("filename"), str)
+    ]
+    if not paths:
+        raise RuntimeError(f"#{number}: pull request files response is empty")
+    blueprint = any(path.startswith("blueprint/src/") for path in paths)
+    lean = any(
+        path.endswith(".lean") or path in {"lake-manifest.json", "lean-toolchain"}
+        for path in paths
+    )
+    if blueprint and not lean and all(path.startswith("blueprint/src/") for path in paths):
+        return "blueprint"
+    return "lean"
+
+
+def recheck_workflows(repository: str, number: int) -> tuple[str, ...]:
+    return (BLUEPRINT_RECHECK_WORKFLOWS
+            if review_surface(repository, number) == "blueprint" else RECHECK_WORKFLOWS)
 
 
 def pull_labels(pull: dict) -> set[str]:
@@ -237,7 +269,9 @@ def update_behind_branch(repository: str, pull: dict, dry_run: bool) -> str:
         raise RuntimeError(f"#{number}: branch update returned an invalid pull request: {result}")
     if updated_head == head:
         raise RuntimeError(f"#{number}: branch update did not move the head")
-    for workflow in RECHECK_WORKFLOWS:
+    selected_workflows = recheck_workflows(repository, number)
+    workflows = ", ".join(selected_workflows)
+    for workflow in selected_workflows:
         dispatch_recheck(repository, workflow, number)
     return (
         f"#{number}: updated behind branch with {BRANCH_UPDATE_METHOD} "
@@ -409,12 +443,15 @@ def advance_train_head(repository: str, pull: dict, dry_run: bool) -> str:
     if decision["target_label"] == "awaiting-CI":
         if ":missing" in reason:
             checks = head_check_states(repository, pull)
-            if checks.get("sandboxed-build") in ACTIVE_CHECK_STATES:
+            workflows = recheck_workflows(repository, pull["number"])
+            active_checks = ({"blueprint-check"} if workflows == BLUEPRINT_RECHECK_WORKFLOWS
+                             else {"sandboxed-build", "performance-gate"})
+            if any(checks.get(name) in ACTIVE_CHECK_STATES for name in active_checks):
                 return f"#{pull['number']}: merge-train head waiting — exact-head build is active"
             if not dry_run:
-                dispatch_recheck(repository, "pr-build.yml", pull["number"])
-                if "performance-gate" not in checks:
-                    dispatch_recheck(repository, "pr-profile.yml", pull["number"])
+                for workflow in workflows:
+                    if workflow != "pr-profile.yml" or "performance-gate" not in checks:
+                        dispatch_recheck(repository, workflow, pull["number"])
             action = "would re-dispatch" if dry_run else "re-dispatched"
             return f"#{pull['number']}: {action} missing exact-head checks"
         if ":ambiguous" not in reason:
