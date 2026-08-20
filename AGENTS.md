@@ -15,61 +15,17 @@ Agents running in this repository operate in one of two roles:
 If the task does not explicitly establish that the agent is a worker, do not infer
 worker status solely because the task touches Lean or Blueprint files.
 
-## Worker-only authoring contract
+## Worker source boundaries
 
-Each implementation issue must use exactly one authoring mode. Do not combine the
-two source boundaries in one worker task or diff.
+The bound worker skills define the generic authoring, review, and pull-request
+workflow. This repository supplies only the mode-specific editable directories:
 
-- Lean mode may edit only `KIP126.lean` and `.lean` files under `KIP126/`.
-- Blueprint mode may edit only files under `blueprint/src/`.
-- Files generated from Blueprint source, including `blueprint/lean_decls`, are
-  validation outputs and must not be included in the delivered diff.
+- Blueprint-only work may edit only files under `blueprint/src/`.
+- Lean-only work may edit only `KIP126.lean` and `.lean` files under `KIP126/`.
 
-If an issue does not select exactly one mode, or requires a path outside its mode,
-stop before editing and request that the issue be split or clarified.
-
-### Blueprint authoring tasks
-
-Rewrite or complete the requested Blueprint mathematics and submit a Blueprint-only
-pull request. Do not include Lean source changes. Follow the marker and validation
-policies below.
-
-### Lean implementation tasks
-
-Use the relevant Blueprint nodes as the mathematical specification. Implement their
-statements and proof obligations in Lean, but keep the pull request entirely inside
-the Lean-mode boundary. Helper definitions and lemmas need not already have Blueprint
-nodes when they are implementation details needed for a sound proof.
-
-Every Lean pull request description must list the affected Blueprint labels and give
-an exact, per-node recommendation for declaration mappings and status markers: what
-to add, remove, or retain, together with the compiled declaration, axiom evidence,
-and semantic-correspondence justification. These are review inputs only; the Lean
-pull request must not edit Blueprint source.
-
-## Reviewed Blueprint status synchronization
-
-This is a reviewer follow-up mechanism, not a worker implementation mode.
-
-After a Lean pull request passes semantic review at its exact current head and that
-head is integrated into the current default branch, the reviewer may apply verified
-declaration-mapping and status recommendations in a fresh, separate Blueprint-only
-pull request containing one commit and based on that default branch. Never append
-the status commit to the Lean pull request, modify Lean source in the synchronization
-pull request, merge either pull request, or reuse approval after the reviewed head
-changes.
-
-Use `.agents/skills/leanblueprint-maintain/scripts/sync_leanok.py` in dry-run mode
-before `--write`. A positive `\leanok` transition requires a successful build, an
-exact resolving declaration, no `sorryAx` or disallowed transitive axiom, and
-independent semantic confirmation that the Lean type implements the Blueprint
-statement. The synchronizer does not override `\notready`; change or remove
-`\notready` only when the approved review explicitly confirms that the mathematical
-statement and Lean interface are stable. Treat `\mathlibok` as a separate
-source-verification claim, never as a consequence of project Lean compilation.
-
-Validate the resulting Blueprint-only diff using the applicable checks below. Do not
-commit generated output, including `blueprint/lean_decls`.
+If a worker task does not select exactly one mode, or requires a path outside the
+selected boundary, stop before editing and request that the task be split or
+clarified.
 
 ## Validation policy
 
