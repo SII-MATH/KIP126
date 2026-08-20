@@ -1,6 +1,21 @@
 # KIP126 agent guidance
 
-## Worker authoring modes
+## Agent roles and scope
+
+Agents running in this repository operate in one of two roles:
+
+1. **General-purpose agents** have broad repository access appropriate to their
+   assigned task. They are not restricted by the worker-only source boundaries
+   below, but remain governed by their task, higher-priority instructions, review
+   and merge authorization, and all other repository policies in this file.
+2. **Workers** receive one concrete implementation task: either rewrite or complete
+   Lean Blueprint source, or implement Lean code. The worker-only contract below
+   applies whenever an agent is assigned in that role.
+
+If the task does not explicitly establish that the agent is a worker, do not infer
+worker status solely because the task touches Lean or Blueprint files.
+
+## Worker-only authoring contract
 
 Each implementation issue must use exactly one authoring mode. Do not combine the
 two source boundaries in one worker task or diff.
@@ -33,6 +48,8 @@ and semantic-correspondence justification. These are review inputs only; the Lea
 pull request must not edit Blueprint source.
 
 ## Reviewed Blueprint status synchronization
+
+This is a reviewer follow-up mechanism, not a worker implementation mode.
 
 After a Lean pull request passes semantic review at its exact current head and that
 head is integrated into the current default branch, the reviewer may apply verified
