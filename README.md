@@ -28,9 +28,11 @@ formalization.
 
 The repository separates the goal, scope, plan, and formalization sketch:
 
-- [`docs/ROADMAP.md`](docs/ROADMAP.md) is the implementation plan.  It briefly
-  states what to do and the dependency order in which the Lean modules should
-  be developed.
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) is the three-stage implementation plan:
+  audit the earlier repositories and form KIP126's best-progress envelope,
+  continue the chapter-level formalization in dependency order, and finish
+  with a repository-wide trust, provenance, completeness, and reproducibility
+  audit.
 - [`aimpaper/`](aimpaper/) contains the target paper and its source material.
   It is the mathematical document to be formalized; its claims are not, by
   themselves, Lean proofs or project theorems.
