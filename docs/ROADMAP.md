@@ -54,41 +54,13 @@ convention 不一致、定理强度不对齐，或把数学内容藏入公理/ty
 但参考实现不决定目标 statement；所有新增声明与证明都必须严格达到 aimpaper 的
 语义、分次、page convention 和定理强度。
 
-### 模块划分与进度口径
+### 模块划分口径
 
 Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录，只用注释标出
 “数学定义 → 外部输入 → 内部证明”三层。Lean 文件列出各章当前最接近的公共入口；
 同一现有入口暂时承载两个新章时，后续实现任务再按 chapter 边界拆 facade。
-`Blueprint 节点`按正式 theorem-like environment 计数，状态依次为
-`leanok / mathlibok / notready`。
+章级 Blueprint 节点数量与完成度不在本文件汇总，以对应章节子 Wiki 的当前记录为准。
 
-| 层 | 顺序 | 模块（Blueprint chapter） | Lean 文件（当前最近入口） | Blueprint 节点 | 状态 |
-| --- | ---: | --- | --- | ---: | --- |
-| 定义 | 1 | Algebraic foundations | `KIP126/Core.lean` | 46 | 19 / 27 / 0 |
-| 定义 | 2 | Spectral-sequence machinery | `KIP126/Core/SpectralSequence.lean` | 54 | 27 / 13 / 14 |
-| 定义 | 3 | Stable-homotopy objects | — | 11 | 0 / 0 / 11 |
-| 定义 | 4 | Classical mod-2 Adams spectral sequence | `KIP126/Classical/Adams.lean` | 15 | 0 / 0 / 15 |
-| 定义 | 5 | Extension spectral sequences | `KIP126/Classical/ExtensionSS.lean` | 17 | 0 / 0 / 17 |
-| 定义 | 6 | Synthetic homotopy and synthetic Adams objects | `KIP126/Synthetic.lean` | 8 | 0 / 0 / 8 |
-| 定义 | 7 | Synthetic extension spectral sequences | `KIP126/Synthetic/ExtensionSS.lean` | 4 | 0 / 0 / 4 |
-| 定义 | 8 | Extensions on a classical Adams page | `KIP126/Classical/PageExtensions.lean` | 4 | 0 / 0 / 4 |
-| 定义 | 9 | Typed computation schemas | `KIP126/Kervaire/AppendixData.lean` | 13 | 0 / 0 / 13 |
-| 定义 | 10 | Near-126 and Kervaire problem setup | `KIP126/Kervaire/Assumptions.lean` | 7 | 0 / 0 / 7 |
-| 外部输入 | 11 | External literature results | `KIP126/External/Results.lean` | 23 | 1 / 0 / 22 |
-| 外部输入 | 12 | External computed results | `KIP126/Kervaire/AppendixData.lean` | 31 | 0 / 0 / 31 |
-| 内部证明 | 13 | Comparison and generalized rules | `KIP126/Comparison.lean` | 49 | 0 / 0 / 49 |
-| 内部证明 | 14 | Near-126 reduction and permanent cycle | `KIP126/Kervaire/Assumptions.lean` | 19 | 0 / 0 / 19 |
-| 内部证明 | 15 | Geometric conclusions | `KIP126/Kervaire/MainTheorem.lean` | 3 | 0 / 0 / 3 |
-| 审计 | 16 | External-input provenance audit | `KIP126/External.lean` | 32 | 30 / 0 / 2 |
-| 审计 | 17 | Source coverage and audit index | — | 0 | — |
-|  |  | **合计** |  | **336** | **77 / 40 / 219** |
-
-### 统计解释
-
-- 336 是 DAG 的正式节点总数；其中 117 个节点已有完成标记（77 个项目声明为
-  `leanok`、40 个 Mathlib 根为 `mathlibok`），219 个节点仍为 `notready`。
-- `leanok` 与 `mathlibok` 不等价于“整章完成”：Spectral-sequence machinery 仍有
-  14 个 `notready`，而外部结果、内部比较和 near-126 主体仍基本未实现。
 - `content.tex` 只保留按依赖顺序的平铺 `\input` 清单与三层注释；没有 LaTeX
   `\part`。`blueprint/print` 和 `blueprint/web` 是生成物，不手工编辑；
   `blueprint/lean_decls` 由工具生成并纳入版本控制，以支持干净检出后的声明检查。
@@ -121,11 +93,11 @@ Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录
 
 ### 当前执行前沿
 
-当前优先级是 Spectral-sequence machinery 的剩余 14 个节点与 Stable-homotopy
-objects 的最小接口；随后完成 Classical Adams/ESS 和 Synthetic 定义，使
+当前优先级是补完 Spectral-sequence machinery 并建立 Stable-homotopy objects 的
+最小接口；随后完成 Classical Adams/ESS 和 Synthetic 定义，使
 external-results statements 获得真实类型，再推进 comparison、数据、near-126 与
 几何端点。主 Wiki 负责更新章级完成状态和下一步；本文件只在阶段、模块边界、依赖
-顺序或统计口径变化时更新。
+顺序变化时更新。
 
 ## 第三阶段：最终完整审计
 
