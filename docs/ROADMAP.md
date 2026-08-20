@@ -30,13 +30,6 @@ sequence、stable homotopy、synthetic spectra、classical Adams、论文端点�
 同一概念只保留一个权威实现；无法证明语义等价、依赖不透明或把数学内容藏入公理/
 typeclass 字段的实现，只能作为证明模式或迁移线索。
 
-### 候选来源的维护边界
-
-第一阶段仍按当前 17 个 Blueprint chapter 调研旧仓库，但具体候选仓库、章级映射和
-可借鉴数学内容不在本文件维护。调研期间的候选清单集中保留在 Multica 的 AIM-179
-主 Wiki；核验后的结论按章更新到 AIM-179 的各章级子 Wiki。本 Roadmap 只维护阶段
-目标、迁入准则、迁移账本字段和验收条件。
-
 所有旧仓库只作为只读迁移来源。最终 KIP126 不得通过 path dependency 依赖它们，
 也不继承它们锁定的旧版 Lean/Mathlib 或未经审计的信任边界。
 
