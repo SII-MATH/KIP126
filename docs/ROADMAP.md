@@ -30,53 +30,15 @@ sequence、stable homotopy、synthetic spectra、classical Adams、论文端点�
 同一概念只保留一个权威实现；无法证明语义等价、依赖不透明或把数学内容藏入公理/
 typeclass 字段的实现，只能作为证明模式或迁移线索。
 
-### 旧仓库的初始定位
+### 候选来源的维护边界
 
-下表整合自历史 `docs/INTEGRATION.md`，用于确定第一轮审计方向。表中的完成度判断是
-历史起点，不是当前事实；正式迁入前必须重新锁定 commit，并重新统计 `sorry`、
-`admit`、项目 `axiom`、`opaque`、外部根、可构建性和 Lean/Mathlib 版本差异。
+第一阶段仍按当前 17 个 Blueprint chapter 调研旧仓库，但具体候选仓库、章级映射和
+可借鉴数学内容不在本文件维护。调研期间的候选清单集中保留在 Multica 的 AIM-179
+主 Wiki；核验后的结论按章更新到 AIM-179 的各章级子 Wiki。本 Roadmap 只维护阶段
+目标、迁入准则、迁移账本字段和验收条件。
 
-| 仓库 | 可借鉴的主要成果 | 风险与在 KIP126 中的角色 |
-| --- | --- | --- |
-| `SSP-1` | 最小、相对干净的谱序列核心 | 功能较少；只作早期 SS API 参考，不作为最终基线 |
-| `ESS-conv` | convergence、completion、unbounded extension 与测试 | 接口与后续分支有分叉；提取设计和已审计局部证明 |
-| `KIP` | Abelian category 上的 page/`E∞`、filtered complex、weak convergence 与 detection | 固定旧版 Lean/Mathlib 且项目公理面较大；只迁移无公理的定义、局部证明和 porting pattern |
-| `KIP-base` | stable homotopy、synthetic、ESS 的宽基础层 | 自定义公理面较大；作为历史基线和 API 对照 |
-| `KIP-ess` | 较完整的共享核心与 proof pattern | 仍有项目公理；作为核心 API 和证明模式来源，不整体作为已证基线 |
-| `KIP-fextension` | F-extension、commutativity、ESS decomposition | 存在用定义相等弱化论文同构的风险；取证明技巧，不接受语义退化 |
-| `KIP-infra` | 最宽的综合架构，包括 filtered-complex morphism、F-extension、synthetic extensions 与 stable homotopy | 有较大的 `sorry`/公理边界；作为架构候选，逐声明审计后迁移 |
-| `leanworkspace` | `Submodule` 谱序列、分级结构，以及大规模 classical F-extension、crossing、page shift 证明 | 只覆盖域上线性代数，且存在未实例化 `Has*` 与项目公理；提取具体局部引理和 proof pattern |
-| `126-ZERO` | 直接面向主定理的逻辑骨架 | 大量全局公理；只保留依赖图和历史命名 |
-| `126-ZERO-0629` | 较好的信任边界、`ExternalResults`/`ExternalInputs`、参数化主定理与 Milnor cobar 进展 | 论文端类型与共享 SS 接口不兼容，且仍有 `sorryAx`；作为端点和显式外部输入模型的主要来源 |
-| `126-ZERO-0728` | source inventory 与较大规模 classical F-ESS 代数 | 历史状态有明确缺口；作为来源账本和经验证 classical 代数的候选来源 |
-
-这些仓库只作为只读迁移来源。最终 KIP126 不得通过 path dependency 依赖它们，也不
-继承它们锁定的旧版 Lean/Mathlib 或未经审计的信任边界。
-
-### 章级包络面来源图
-
-第一阶段按当前 17 个 Blueprint chapter 建迁移账本。下表给出初始候选来源；它不
-表示整仓库可直接复用，也不表示未列出的代码禁止参考。
-
-| 顺序 | Blueprint chapter | 优先审计的旧仓库 | 期望提取的包络面内容 |
-| ---: | --- | --- | --- |
-| 1 | Algebraic foundations | `SSP-1`、`ESS-conv`、`KIP`、`KIP-infra`、`leanworkspace` | 分次对象、过滤、associated graded、filtered complex 的定义和局部证明 |
-| 2 | Spectral-sequence machinery | `SSP-1`、`ESS-conv`、`KIP`、`KIP-ess`、`KIP-infra`、`leanworkspace` | page、微分、page passage、收敛、端点与 adapter 设计 |
-| 3 | Stable-homotopy objects | `KIP-base`、`KIP-infra`、`126-ZERO-0629` | 下游所需的最小 stable-homotopy、cofiber 与 Toda/Massey 接口 |
-| 4 | Classical mod-2 Adams spectral sequence | `KIP-infra`、`KIP-fextension`、`leanworkspace`、`126-ZERO-0728` | Adams 双分次、Ext、收敛、乘法与 detection 接口 |
-| 5 | Extension spectral sequences | `ESS-conv`、`KIP-fextension`、`KIP-infra`、`leanworkspace`、`126-ZERO-0728` | ESS、essentiality、crossing、composition 与 page shift |
-| 6 | Synthetic homotopy and synthetic Adams objects | `KIP-base`、`KIP-ess`、`KIP-infra`、`126-ZERO-0629` | synthetic sphere、`λ`、synthetic Adams 与归一化 lift 接口 |
-| 7 | Synthetic extension spectral sequences | `KIP-ess`、`KIP-infra`、`126-ZERO-0629` | synthetic ESS 的真实构造、exactness 与 comparison 输入 |
-| 8 | Extensions on a classical Adams page | `KIP-fextension`、`leanworkspace`、`126-ZERO-0629`、`126-ZERO-0728` | classical page extension、crossing/no-crossing 与有限页证书 |
-| 9 | Typed computation schemas | `126-ZERO-0629`、`126-ZERO-0728` | typed catalogue、map/differential/extension schema 与完整性接口 |
-| 10 | Near-126 and Kervaire problem setup | `126-ZERO`、`126-ZERO-0629`、`126-ZERO-0728` | 主问题类型、显式输入记录、历史命名和条件接口 |
-| 11 | External literature results | `126-ZERO-0629`、`126-ZERO-0728` | 带来源定位的 external-result statement 与 evidence 边界 |
-| 12 | External computed results | `126-ZERO-0629`、`126-ZERO-0728` | Lin 输出、附录表格、computation provenance 与 catalogue coverage |
-| 13 | Comparison and generalized rules | `KIP-infra`、`leanworkspace`、`126-ZERO-0629` | classical–synthetic reindex/forget、rigidity、Leibniz/Mahowald bridge |
-| 14 | Near-126 reduction and permanent cycle | `126-ZERO`、`126-ZERO-0629`、`126-ZERO-0728` | 主定理依赖图、three-condition reduction 与 two-extension 逻辑骨架 |
-| 15 | Geometric conclusions | `126-ZERO`、`126-ZERO-0629` | permanent cycle 到 126 维及条件维数结论的参数化端点 |
-| 16 | External-input provenance audit | `126-ZERO-0629`、`126-ZERO-0728` | source inventory、claim/evidence ledger 与 trust-boundary 模型 |
-| 17 | Source coverage and audit index | 所有旧仓库 | 逐来源、逐章节、逐声明的迁移覆盖与弃用理由 |
+所有旧仓库只作为只读迁移来源。最终 KIP126 不得通过 path dependency 依赖它们，
+也不继承它们锁定的旧版 Lean/Mathlib 或未经审计的信任边界。
 
 ### 迁移账本的最小字段
 
@@ -176,7 +138,7 @@ Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录
 objects 的最小接口；随后完成 Classical Adams/ESS 和 Synthetic 定义，使
 external-results statements 获得真实类型，再推进 comparison、数据、near-126 与
 几何端点。主 Wiki 负责更新章级完成状态和下一步；本文件只在阶段、模块边界、依赖
-顺序、候选来源或统计口径变化时更新。
+顺序或统计口径变化时更新。
 
 ## 第三阶段：最终完整审计
 
