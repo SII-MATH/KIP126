@@ -236,6 +236,91 @@ example : W.filtration.IsEventuallyZero :=
 
 end PageAbutmentComparison
 
+section StrongConvergence
+
+variable {A : Type*} [Category A] [Abelian A]
+variable (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
+variable [F.ShiftSequence ℤ] [F.IsHomological]
+variable (W : StrongConvergenceWitness P A F)
+
+example : CategoryTheory.GradedObject (ℤ × ℤ) A :=
+  W.eInfinity
+
+example (pq : ℤ × ℤ) :
+    W.eInfinity pq ≅ W.comparison.filtration.associatedGraded
+      (W.comparison.filtrationDegree pq) (pq.1 + pq.2) :=
+  W.eInfinityComparison pq
+
+example (pq : ℤ × ℤ) (r : ℤ)
+    (hr : W.comparison.comparisonPage pq ≤ r) :
+    ((P.spectralSequence A F).page r
+      ((W.comparison.comparisonPage_ge_two pq).trans hr)).X pq ≅
+        W.comparison.filtration.associatedGraded
+          (W.comparison.filtrationDegree pq) (pq.1 + pq.2) :=
+  W.pageComparison pq r hr
+
+example (pq : ℤ × ℤ) (r : ℤ)
+    (hr : W.comparison.comparisonPage pq ≤ r) :
+    (W.pageHomologyIso pq r hr).inv ≫
+        ((P.spectralSequence A F).iso r (r + 1) pq rfl
+          ((W.comparison.comparisonPage_ge_two pq).trans hr)).hom ≫
+      (W.pageComparison pq (r + 1) (hr.trans (by omega))).hom =
+        (W.pageComparison pq r hr).hom :=
+  W.pagePassage_pageComparison pq r hr
+
+example (pq : ℤ × ℤ) :
+    W.pageComparison pq (W.comparison.comparisonPage pq) le_rfl =
+      W.comparison.pageComparison pq :=
+  W.pageComparison_selected pq
+
+example (n : ℤ) :
+    Algebra.Filtration.CompletionWitness W.comparison.filtration n :=
+  W.completion n
+
+example : W.comparison.filtration.IsExhaustive :=
+  W.exhaustive
+
+example : W.comparison.filtration.IsEventuallyZero :=
+  W.eventuallyZero
+
+example {T : A} {pq : ℤ × ℤ}
+    (x : T ⟶ Subobject.underlying.obj
+      (W.comparison.filtration.F
+        (W.comparison.filtrationDegree pq) (pq.1 + pq.2))) :
+    W.Detects (0 : T ⟶ W.eInfinity pq) x ↔
+      ∃ x' : T ⟶ Subobject.underlying.obj
+          (W.comparison.filtration.F
+            (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2)),
+        x' ≫ Subobject.ofLE
+          (W.comparison.filtration.F
+            (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2))
+          (W.comparison.filtration.F
+            (W.comparison.filtrationDegree pq) (pq.1 + pq.2))
+          (W.comparison.filtration.decreasing
+            (W.comparison.filtrationDegree pq) (pq.1 + pq.2)) = x :=
+  W.detect_zero x
+
+example {T : A} {pq : ℤ × ℤ}
+    (y : T ⟶ W.eInfinity pq)
+    (x x' : T ⟶ Subobject.underlying.obj
+      (W.comparison.filtration.F
+        (W.comparison.filtrationDegree pq) (pq.1 + pq.2))) :
+    (W.Detects y x ∧ W.Detects y x') ↔
+      (W.Detects y x ∧
+        ∃ z : T ⟶ Subobject.underlying.obj
+            (W.comparison.filtration.F
+              (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2)),
+          z ≫ Subobject.ofLE
+            (W.comparison.filtration.F
+              (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2))
+            (W.comparison.filtration.F
+              (W.comparison.filtrationDegree pq) (pq.1 + pq.2))
+            (W.comparison.filtration.decreasing
+              (W.comparison.filtrationDegree pq) (pq.1 + pq.2)) = x - x') :=
+  W.detect_difference y x x'
+
+end StrongConvergence
+
 section ConcreteSpecialization
 
 example {FC : FilteredComplex (ModuleCat ℤ)} (P : EndpointExtension FC) :

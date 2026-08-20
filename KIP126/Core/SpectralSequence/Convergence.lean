@@ -357,4 +357,201 @@ lemma eventuallyZero (W : PageAbutmentComparisonWitness P A F) :
 
 end PageAbutmentComparisonWitness
 
+/-- Coherent strong-convergence data built on a pointwise page/abutment
+comparison.  Mathlib deliberately has no distinguished `E∞` page, so the
+limiting page is explicit data.  Every sufficiently late page is identified
+with that object, the identifications commute with Mathlib's successor-page
+isomorphisms, and the limiting page is identified with the associated graded
+of the endpoint abutment filtration. -/
+structure StrongConvergenceWitness
+    {FC : FilteredComplex C} (P : EndpointExtension FC)
+    (A : Type*) [Category A] [Abelian A]
+    (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
+    [F.ShiftSequence ℤ] [F.IsHomological] where
+  /-- The selected-page comparison and bounded endpoint data on which strong
+  convergence is built. -/
+  comparison : PageAbutmentComparisonWitness P A F
+  /-- The coherent limiting page, indexed by spectral-sequence bidegree. -/
+  eInfinity : CategoryTheory.GradedObject (ℤ × ℤ) A
+  /-- Stable pages have zero differential at the selected bidegree, expressed
+  by identifying page homology with the page object itself. -/
+  pageHomologyIso : ∀ (pq : ℤ × ℤ) (r : ℤ)
+      (hr : comparison.comparisonPage pq ≤ r),
+    ((P.spectralSequence A F).page r
+      ((comparison.comparisonPage_ge_two pq).trans hr)).homology pq ≅
+        ((P.spectralSequence A F).page r
+          ((comparison.comparisonPage_ge_two pq).trans hr)).X pq
+  /-- Every page after the selected stable bound is identified with `E∞`. -/
+  pageIso : ∀ (pq : ℤ × ℤ) (r : ℤ)
+      (hr : comparison.comparisonPage pq ≤ r),
+    ((P.spectralSequence A F).page r
+      ((comparison.comparisonPage_ge_two pq).trans hr)).X pq ≅ eInfinity pq
+  /-- The stable-page identifications commute with Mathlib's page passage. -/
+  pagePassage_coherent : ∀ (pq : ℤ × ℤ) (r : ℤ)
+      (hr : comparison.comparisonPage pq ≤ r),
+    (pageHomologyIso pq r hr).inv ≫
+        ((P.spectralSequence A F).iso r (r + 1) pq rfl
+          ((comparison.comparisonPage_ge_two pq).trans hr)).hom ≫
+      (pageIso pq (r + 1) (hr.trans (by omega))).hom =
+        (pageIso pq r hr).hom
+  /-- The limiting page is the associated graded of the chosen endpoint
+  abutment filtration. -/
+  eInfinityComparison : ∀ pq,
+    eInfinity pq ≅ comparison.filtration.associatedGraded
+      (comparison.filtrationDegree pq) (pq.1 + pq.2)
+  /-- At the selected page, the coherent comparison recovers the original
+  pointwise comparison. -/
+  selectedPage_compat : ∀ pq,
+    (pageIso pq (comparison.comparisonPage pq) le_rfl).hom ≫
+        (eInfinityComparison pq).hom =
+      (comparison.pageComparison pq).hom
+
+namespace StrongConvergenceWitness
+
+variable {FC : FilteredComplex C} {P : EndpointExtension FC}
+variable {A : Type*} [Category A] [Abelian A]
+variable {F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A}
+variable [F.ShiftSequence ℤ] [F.IsHomological]
+
+/-- The comparison from any stable page to the associated graded, factored
+through the coherent limiting page. -/
+noncomputable def pageComparison (W : StrongConvergenceWitness P A F)
+    (pq : ℤ × ℤ) (r : ℤ) (hr : W.comparison.comparisonPage pq ≤ r) :
+    ((P.spectralSequence A F).page r
+      ((W.comparison.comparisonPage_ge_two pq).trans hr)).X pq ≅
+        W.comparison.filtration.associatedGraded
+          (W.comparison.filtrationDegree pq) (pq.1 + pq.2) :=
+  (W.pageIso pq r hr).trans (W.eInfinityComparison pq)
+
+/-- The stable-page comparisons with the associated graded commute with
+Mathlib's successor-page isomorphisms. -/
+lemma pagePassage_pageComparison (W : StrongConvergenceWitness P A F)
+    (pq : ℤ × ℤ) (r : ℤ) (hr : W.comparison.comparisonPage pq ≤ r) :
+    (W.pageHomologyIso pq r hr).inv ≫
+        ((P.spectralSequence A F).iso r (r + 1) pq rfl
+          ((W.comparison.comparisonPage_ge_two pq).trans hr)).hom ≫
+      (W.pageComparison pq (r + 1) (hr.trans (by omega))).hom =
+        (W.pageComparison pq r hr).hom := by
+  simp only [pageComparison, Iso.trans_hom, Category.assoc,
+    W.pagePassage_coherent]
+
+/-- The coherent stable-page comparison restricts to the selected pointwise
+comparison stored by the underlying witness. -/
+lemma pageComparison_selected (W : StrongConvergenceWitness P A F)
+    (pq : ℤ × ℤ) :
+    W.pageComparison pq (W.comparison.comparisonPage pq) le_rfl =
+      W.comparison.pageComparison pq := by
+  apply Iso.ext
+  exact W.selectedPage_compat pq
+
+/-- Strong convergence retains the canonical degreewise completion supplied
+by the bounded pointwise witness. -/
+noncomputable def completion (W : StrongConvergenceWitness P A F) (n : ℤ) :
+    Algebra.Filtration.CompletionWitness W.comparison.filtration n :=
+  W.comparison.completion n
+
+/-- Strong convergence retains degreewise eventual-top exhaustiveness. -/
+lemma exhaustive (W : StrongConvergenceWitness P A F) :
+    W.comparison.filtration.IsExhaustive :=
+  W.comparison.exhaustive
+
+/-- The bounded regularity input makes the filtration degreewise eventually
+zero, hence in particular separated. -/
+lemma eventuallyZero (W : StrongConvergenceWitness P A F) :
+    W.comparison.filtration.IsEventuallyZero :=
+  W.comparison.eventuallyZero
+
+/-- A limiting class detects a filtered generalized element when their images
+agree in the associated graded piece selected by the bidegree.  Detection is
+a relation: changing the filtered lift by the next filtration level does not
+change the detected limiting class. -/
+def Detects (W : StrongConvergenceWitness P A F)
+    {T : A} {pq : ℤ × ℤ}
+    (y : T ⟶ W.eInfinity pq)
+    (x : T ⟶ Subobject.underlying.obj
+      (W.comparison.filtration.F
+        (W.comparison.filtrationDegree pq) (pq.1 + pq.2))) : Prop :=
+  y ≫ (W.eInfinityComparison pq).hom =
+    x ≫ W.comparison.filtration.toAssociatedGraded
+      (W.comparison.filtrationDegree pq) (pq.1 + pq.2)
+
+/-- The zero limiting class detects exactly the generalized elements that
+lift to the next filtration level. -/
+theorem detect_zero (W : StrongConvergenceWitness P A F)
+    {T : A} {pq : ℤ × ℤ}
+    (x : T ⟶ Subobject.underlying.obj
+      (W.comparison.filtration.F
+        (W.comparison.filtrationDegree pq) (pq.1 + pq.2))) :
+    W.Detects (0 : T ⟶ W.eInfinity pq) x ↔
+      ∃ x' : T ⟶ Subobject.underlying.obj
+          (W.comparison.filtration.F
+            (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2)),
+        x' ≫ Subobject.ofLE
+          (W.comparison.filtration.F
+            (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2))
+          (W.comparison.filtration.F
+            (W.comparison.filtrationDegree pq) (pq.1 + pq.2))
+          (W.comparison.filtration.decreasing
+            (W.comparison.filtrationDegree pq) (pq.1 + pq.2)) = x := by
+  simp only [Detects, Algebra.Filtration.toAssociatedGraded,
+    Algebra.Filtration.associatedGraded, Limits.zero_comp]
+  constructor
+  · intro h
+    exact ⟨Abelian.monoLift _ x (by rw [h]),
+      Abelian.monoLift_comp _ x (by rw [h])⟩
+  · rintro ⟨x', hx'⟩
+    rw [← hx', Category.assoc, cokernel.condition, Limits.comp_zero]
+
+/-- Two filtered generalized elements are detected by the same limiting class
+exactly when their difference lifts to the next filtration level. -/
+theorem detect_difference (W : StrongConvergenceWitness P A F)
+    {T : A} {pq : ℤ × ℤ}
+    (y : T ⟶ W.eInfinity pq)
+    (x x' : T ⟶ Subobject.underlying.obj
+      (W.comparison.filtration.F
+        (W.comparison.filtrationDegree pq) (pq.1 + pq.2))) :
+    (W.Detects y x ∧ W.Detects y x') ↔
+      (W.Detects y x ∧
+        ∃ z : T ⟶ Subobject.underlying.obj
+            (W.comparison.filtration.F
+              (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2)),
+          z ≫ Subobject.ofLE
+            (W.comparison.filtration.F
+              (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2))
+            (W.comparison.filtration.F
+              (W.comparison.filtrationDegree pq) (pq.1 + pq.2))
+            (W.comparison.filtration.decreasing
+              (W.comparison.filtrationDegree pq) (pq.1 + pq.2)) = x - x') := by
+  constructor
+  · rintro ⟨hx, hx'⟩
+    refine ⟨hx, ?_⟩
+    have key :
+        (x - x') ≫ W.comparison.filtration.toAssociatedGraded
+          (W.comparison.filtrationDegree pq) (pq.1 + pq.2) = 0 := by
+      rw [Detects] at hx hx'
+      rw [Preadditive.sub_comp, sub_eq_zero]
+      exact hx.symm.trans hx'
+    exact ⟨Abelian.monoLift _ (x - x') key,
+      Abelian.monoLift_comp _ (x - x') key⟩
+  · rintro ⟨hx, z, hz⟩
+    refine ⟨hx, ?_⟩
+    change y ≫ (W.eInfinityComparison pq).hom =
+      x' ≫ W.comparison.filtration.toAssociatedGraded
+        (W.comparison.filtrationDegree pq) (pq.1 + pq.2)
+    have detected : W.Detects y x := hx
+    rw [Detects] at detected
+    have hx'eq : x' = x - z ≫ Subobject.ofLE
+        (W.comparison.filtration.F
+          (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2))
+        (W.comparison.filtration.F
+          (W.comparison.filtrationDegree pq) (pq.1 + pq.2))
+        (W.comparison.filtration.decreasing
+          (W.comparison.filtrationDegree pq) (pq.1 + pq.2)) := by
+      rw [hz, sub_sub_cancel]
+    rw [hx'eq, Preadditive.sub_comp, detected]
+    simp only [Category.assoc, Algebra.Filtration.toAssociatedGraded,
+      cokernel.condition, Limits.comp_zero, sub_zero]
+
+end StrongConvergenceWitness
+
 end KIP126.Core.SpectralSequence
