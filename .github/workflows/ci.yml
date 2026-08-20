@@ -15,6 +15,7 @@ on:
       - "scripts/perf/**"
       - "scripts/profile/**"
       - "scripts/pr_status/**"
+      - "scripts/ci-build-cache-key.sh"
       - ".github/workflows/ci.yml"
 
 permissions:
@@ -32,6 +33,15 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Compute the committed build-input cache key
+        id: build-cache-key
+        shell: bash
+        run: |
+          set -euo pipefail
+          digest=$(bash scripts/ci-build-cache-key.sh . "$GITHUB_SHA")
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          echo "KIP126 build-input digest: $digest"
+
       - name: Prepare Lean toolchain and Mathlib cache
         uses: leanprover/lean-action@v1
         with:
@@ -44,9 +54,10 @@ jobs:
       - name: Run fixed core and project gates
         run: bash scripts/euler-ci.sh
 
-      # Only successful default-branch CI may publish these outputs. PR builds restore an exact
-      # base-commit key with actions/cache/restore, so candidate code can neither overwrite this
-      # cache nor seed artifacts for a later run.
+      # Only successful default-branch CI may publish these outputs. Consumers restore the
+      # content digest of the trusted base's committed Lean/build inputs, so documentation-only
+      # main commits reuse the same archive while candidate code can neither overwrite the cache
+      # nor seed artifacts for a later run.
       - name: Stage trusted build outputs for pull requests
         run: |
           mkdir -p base/.lake
@@ -57,7 +68,7 @@ jobs:
         with:
           # Keep this path identical to pr-build: cache versions include the path as well as the key.
           path: base/.lake/build
-          key: kip126-main-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
+          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}
 
       - name: Configure the Lake cache upload
         id: cachecfg

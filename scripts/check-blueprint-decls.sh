@@ -15,24 +15,11 @@ fi
 
 manifest=blueprint/lean_decls
 
-manifest_existed=false
-if [[ -f "$manifest" ]]; then
-  manifest_hash="$(sha256sum "$manifest" | cut -d ' ' -f 1)"
-  manifest_existed=true
-fi
-
 leanblueprint web
 
-if [[ "$manifest_existed" != true ]]; then
-  echo "$manifest was missing and has been regenerated; add it to the repository." >&2
+if [[ ! -s "$manifest" ]]; then
+  echo "$manifest was not generated or is empty." >&2
   exit 1
 fi
 
-generated_hash="$(sha256sum "$manifest" | cut -d ' ' -f 1)"
-if [[ "$manifest_hash" != "$generated_hash" ]]; then
-  git diff -- "$manifest" || true
-  echo "$manifest was stale and has been regenerated; review and commit the diff." >&2
-  exit 1
-fi
-
-leanblueprint checkdecls
+lake exe checkdecls "$manifest"

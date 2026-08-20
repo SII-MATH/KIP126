@@ -63,7 +63,8 @@ Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录
 
 - `content.tex` 只保留按依赖顺序的平铺 `\input` 清单与三层注释；没有 LaTeX
   `\part`。`blueprint/print` 和 `blueprint/web` 是生成物，不手工编辑；
-  `blueprint/lean_decls` 由工具生成并纳入版本控制，以支持干净检出后的声明检查。
+  `blueprint/lean_decls` 也是被忽略的生成物，声明检查前由 `leanblueprint web`
+  重新生成，不手工编辑或提交。
 - 章节不按代码行数均分，而按数学定义、外部黑盒和内部消费者的边界拆分。同一现有
   Lean facade 暂时覆盖两个 chapter 不表示两章已经合并；实现层仍需最终形成一章一入口。
 
