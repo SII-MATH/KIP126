@@ -266,12 +266,12 @@ example (pq : ℤ × ℤ) (r : ℤ)
           ((W.comparison.comparisonPage_ge_two pq).trans hr)).hom ≫
       (W.pageComparison pq (r + 1) (hr.trans (by omega))).hom =
         (W.pageComparison pq r hr).hom :=
-  W.pagePassage_pageComparison pq r hr
+  by simp
 
 example (pq : ℤ × ℤ) :
     W.pageComparison pq (W.comparison.comparisonPage pq) le_rfl =
       W.comparison.pageComparison pq :=
-  W.pageComparison_selected pq
+  by simp
 
 example (n : ℤ) :
     Algebra.Filtration.CompletionWitness W.comparison.filtration n :=

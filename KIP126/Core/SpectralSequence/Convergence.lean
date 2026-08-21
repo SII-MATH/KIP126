@@ -430,6 +430,7 @@ noncomputable def pageComparison (W : StrongConvergenceWitness P A F)
 
 /-- The stable-page comparisons with the associated graded commute with
 Mathlib's successor-page isomorphisms. -/
+@[simp]
 lemma pagePassage_pageComparison (W : StrongConvergenceWitness P A F)
     (pq : ℤ × ℤ) (r : ℤ) (hr : W.comparison.comparisonPage pq ≤ r) :
     (W.pageHomologyIso pq r hr).inv ≫
@@ -444,6 +445,7 @@ lemma pagePassage_pageComparison (W : StrongConvergenceWitness P A F)
 
 /-- The coherent stable-page comparison restricts to the selected pointwise
 comparison stored by the underlying witness. -/
+@[simp]
 lemma pageComparison_selected (W : StrongConvergenceWitness P A F)
     (pq : ℤ × ℤ) :
     W.pageComparison pq (W.comparison.comparisonPage pq) le_rfl =
