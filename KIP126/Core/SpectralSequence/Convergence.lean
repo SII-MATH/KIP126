@@ -423,18 +423,6 @@ noncomputable def pageComparison (W : StrongConvergenceWitness P A F)
           (W.comparison.filtrationDegree pq) (pq.1 + pq.2) :=
   (W.pageIso pq r hr).trans (W.eInfinityComparison pq)
 
-/-- The stable-page comparisons with the associated graded commute with
-Mathlib's successor-page isomorphisms. -/
-lemma pagePassage_pageComparison (W : StrongConvergenceWitness P A F)
-    (pq : ℤ × ℤ) (r : ℤ) (hr : W.comparison.comparisonPage pq ≤ r) :
-    (W.pageHomologyIso pq r hr).inv ≫
-        ((P.spectralSequence A F).iso r (r + 1) pq rfl
-          ((W.comparison.comparisonPage_ge_two pq).trans hr)).hom ≫
-      (W.pageComparison pq (r + 1) (hr.trans (by omega))).hom =
-        (W.pageComparison pq r hr).hom := by
-  simp only [pageComparison, Iso.trans_hom, Category.assoc,
-    W.pagePassage_coherent]
-
 /-- The coherent stable-page comparison restricts to the selected pointwise
 comparison stored by the underlying witness. -/
 lemma pageComparison_selected (W : StrongConvergenceWitness P A F)
@@ -549,8 +537,21 @@ theorem detect_difference (W : StrongConvergenceWitness P A F)
           (W.comparison.filtrationDegree pq) (pq.1 + pq.2)) := by
       rw [hz, sub_sub_cancel]
     rw [hx'eq, Preadditive.sub_comp, detected]
-    simp only [Category.assoc, Algebra.Filtration.toAssociatedGraded,
-      cokernel.condition, Limits.comp_zero, sub_zero]
+    let inclusion := Subobject.ofLE
+          (W.comparison.filtration.F
+            (W.comparison.filtrationDegree pq + 1) (pq.1 + pq.2))
+          (W.comparison.filtration.F
+            (W.comparison.filtrationDegree pq) (pq.1 + pq.2))
+          (W.comparison.filtration.decreasing
+            (W.comparison.filtrationDegree pq) (pq.1 + pq.2))
+    have hCoker : inclusion ≫ cokernel.π inclusion = 0 :=
+      cokernel.condition inclusion
+    have hzero : (z ≫ inclusion) ≫ cokernel.π inclusion = 0 := by
+      simpa only [Category.assoc, Limits.comp_zero] using congrArg
+        (fun f => z ≫ f) hCoker
+    change x ≫ cokernel.π inclusion =
+      x ≫ cokernel.π inclusion - (z ≫ inclusion) ≫ cokernel.π inclusion
+    rw [hzero, sub_zero]
 
 end StrongConvergenceWitness
 

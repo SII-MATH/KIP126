@@ -259,15 +259,6 @@ example (pq : ℤ × ℤ) (r : ℤ)
           (W.comparison.filtrationDegree pq) (pq.1 + pq.2) :=
   W.pageComparison pq r hr
 
-example (pq : ℤ × ℤ) (r : ℤ)
-    (hr : W.comparison.comparisonPage pq ≤ r) :
-    (W.pageHomologyIso pq r hr).inv ≫
-        ((P.spectralSequence A F).iso r (r + 1) pq rfl
-          ((W.comparison.comparisonPage_ge_two pq).trans hr)).hom ≫
-      (W.pageComparison pq (r + 1) (hr.trans (by omega))).hom =
-        (W.pageComparison pq r hr).hom :=
-  W.pagePassage_pageComparison pq r hr
-
 example (pq : ℤ × ℤ) :
     W.pageComparison pq (W.comparison.comparisonPage pq) le_rfl =
       W.comparison.pageComparison pq :=
