@@ -489,8 +489,10 @@ theorem detect_zero (W : StrongConvergenceWitness P A F)
     W.comparison.filtration.comp_toAssociatedGraded_eq_zero_iff_lifts
       (W.comparison.filtrationDegree pq) (pq.1 + pq.2) x
 
-/-- Two filtered generalized elements are detected by the same limiting class
-exactly when their difference lifts to the next filtration level. -/
+/-- The conjunction that `y` detects both filtered generalized elements is
+equivalent to `y` detecting `x` and the difference `x - x'` lifting through
+the next filtration level.  Thus, assuming `y` detects `x`, it also detects
+`x'` exactly when that difference lifts. -/
 theorem detect_difference (W : StrongConvergenceWitness P A F)
     {T : A} {pq : ℤ × ℤ}
     (y : T ⟶ W.eInfinity pq)
