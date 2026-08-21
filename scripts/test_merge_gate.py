@@ -428,6 +428,15 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("actions: write", review)
         self.assertIn("pr-labels.yml", review)
 
+    def test_review_retry_is_exact_and_keeps_mechanical_checks(self) -> None:
+        review = self.text(".github/workflows/review.yml")
+        self.assertIn("grep -qxE '[[:space:]]*/review-retry[[:space:]]*'", review)
+        self.assertIn("admin|write|maintain", review)
+        self.assertIn("for CHECK in scope build bump-guard", review)
+        for context in ("scope", "build", "bump-guard"):
+            self.assertIn(f'evidence("{context}")', review)
+        self.assertIn("WEBHOOK_IDEMPOTENCY_KEY=\"euler-review-retry-$RETRY_KEY\"", review)
+
     def test_perf_remains_advisory_to_merge_gate(self) -> None:
         config = json.loads(self.text(".github/euler/status-labels.json"))
         self.assertNotIn("perf", config["mechanical_contexts"])
