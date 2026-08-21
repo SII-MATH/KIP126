@@ -8,7 +8,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: PROJECT_BOUNDARY.md, External inputs and Axiom policy.
 \begin{definition}[Near-$126$ literature input]
   \label{def:near126-literature-input}
-  \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-theta5-order-data,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
+  \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-theta5-order-data,thm:external-bx-quadratic-cell-calculus,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
   \notready
   For fixed $\mathcal C$, $\mathcal S$, $A_{\mathrm{cl}}$,
   $A_{\mathrm{syn}}$, and their sphere coherence datum, a near-$126$
@@ -18,8 +18,9 @@ This chapter contains only the project deductions that assemble the setup, exter
   \texttt{lambdaBockstein}, \texttt{syntheticLift},
   \texttt{syntheticTriangleLift}, \texttt{nuCofiberCriterion},
   \texttt{maySmashBoundary}, \texttt{mossConvergence},
-  \texttt{todaProducts}, \texttt{bjmBx}, \texttt{theta5OrderData}, and
-  \texttt{totalDifferential}.  The Xu/IWX order and choice-comparison facts are
+  \texttt{todaProducts}, \texttt{bjmBx}, \texttt{theta5OrderData},
+  \texttt{quadraticCells}, and \texttt{totalDifferential}.  The Xu/IWX order
+  and choice-comparison facts are
   supplied specifically by \texttt{theta5OrderData}, whose proposition is
   Theorem~\ref{thm:external-theta5-order-data}; finite torsion exclusions remain
   in the computation package.  Its named \texttt{ExternalEvidence} field
@@ -115,28 +116,56 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 % SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice; project
 % transport required by PROJECT_BOUNDARY.md for Section 7 logical reductions.
+\begin{lemma}[Moore extension of an order-two $\theta_5$]
+  \label{lem:theta5-moore-extension}
+  \uses{def:stable-context,def:synthetic-context,def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion}
+  \notready
+  For a near-$126$ computation input $D$ and a synthetic choice $\theta_5$,
+  the order-two witness supplied by
+  Proposition~\ref{evidence:theta5-order-torsion} gives a chosen nullhomotopy
+  of $2\theta_5$ and hence, by the cofiber universal property, a map
+  \[
+    \widehat\theta_5:\Sigma^{62,64}(S/2)\longrightarrow S^{0,0}
+  \]
+  whose bottom-cell restriction is $\theta_5$.  The output retains the chosen
+  nullhomotopy and the bottom-cell commuting triangle required to instantiate
+  Theorem~\ref{thm:external-bx-quadratic-cell-calculus}.
+\end{lemma}
+
+\begin{proof}
+  Interpret $S/2$ as the cofiber of multiplication by two in the selected
+  synthetic stable context.  The nullhomotopy of $2\theta_5$ is exactly the
+  extension datum for the cofiber eliminator.  This step constructs only the
+  Moore-spectrum map; it asserts neither equality of squares nor independence
+  of the chosen nullhomotopy.
+\end{proof}
+
 \begin{proposition}[Total differential identity for an arbitrary choice]
   \label{prop:theta5-total-differential-choice-comparison}
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion,thm:external-total-differential-identity}
+  \uses{def:near126-computation-input,def:synthetic-theta5-choice,lem:theta5-moore-extension,thm:external-bx-quadratic-cell-calculus}
   \notready
   For a near-$126$ computation input $D$ and every order-two synthetic choice
-  $\theta_5$, the project proves the comparison
+  $\theta_5$, one has
   \[
     \delta_1(h_6^2)=\lambda\eta\theta_5^2
   \]
   in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem.
-  The external source-choice identity is used only as the base case for this
-  comparison; the universal quantifier is an internal Section 7 obligation.
+  This node is the internal Section~7 instantiation of the published uniform
+  cell calculus, not an algebraic inference from order two and not an external
+  arbitrary-choice identity.
 \end{proposition}
 
 \begin{proof}
-  Starting from the distinguished source choice supplied by
-  \ref{thm:external-total-differential-identity}, compare the quadratic
-  constructions for an arbitrary order-two choice and for the source choice.
-  Use the order-two and torsion/choice-comparison evidence to show that their
-  bottom-cell total differentials agree, then transport the source identity
-  across this equality.  This proof must construct the comparison itself; it
-  may not invoke a universal external identity.
+  Use Lemma~\ref{lem:theta5-moore-extension} to choose
+  $\widehat\theta_5$.  Instantiate the three fields of
+  Theorem~\ref{thm:external-bx-quadratic-cell-calculus}: the quadratic map sends
+  $Q_0(a)$ to $\theta_5^2$ and $Q_0(b)$ to the fixed class $h_6^2$, while its
+  source satisfies
+  $\delta_1(Q_0(b))=\lambda\eta Q_0(a)$.  Naturality of $\delta_1$ under this
+  same quadratic map gives the displayed identity.  No comparison of
+  $(\theta_5^{\mathrm{src}}+x)^2$ with
+  $(\theta_5^{\mathrm{src}})^2$ is used, so order two is not being asked to
+  kill unrecorded cross or square terms.
 \end{proof}
 
 \begin{proposition}[Choice independence of the inductive expression]
@@ -156,8 +185,8 @@ This chapter contains only the project deductions that assemble the setup, exter
   Apply the internal arbitrary-choice identity to each of two choices.  Both
   products equal the same fixed total differential $\delta_1(h_6^2)$.
   Naturality of the quotient maps then gives equality in every finite quotient.
-  The source-choice identity enters only through the internal proposition's
-  proof, not as a universal external premise.
+  The arbitrary-choice statement enters only through the internal proposition,
+  not as a universal external premise.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:2117-2139, Theorem thm:bjmbx and Remark rem:theta5choice; project transport from the distinguished source choice.
@@ -221,7 +250,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: aimpaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possibleh62.
 \begin{proposition}[Only possible differential on $h_6^2$]
   \label{prop:possible-h62}
-  \uses{def:near126-computation-input,def:near126-conditions,thm:bjm-bx-criterion-any-choice,thm:external-total-differential-identity,thm:delta-classical-equivalence,evidence:near126-core,evidence:theta5-square-tmf,lem:near126-equiv-c4,lem:near126-equiv-c5}
+  \uses{def:near126-computation-input,def:near126-conditions,thm:bjm-bx-criterion-any-choice,prop:theta5-total-differential-choice-comparison,thm:delta-classical-equivalence,evidence:near126-core,evidence:theta5-square-tmf,lem:near126-equiv-c4,lem:near126-equiv-c5}
   \notready
   For a near-$126$ computation input $D$, exactly one of the following holds:
   \begin{enumerate}

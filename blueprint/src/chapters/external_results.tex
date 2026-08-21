@@ -409,6 +409,50 @@ This flat chapter contains only precise published theorem statements that the pr
   from the near-$126$ tables.
 \end{proof}
 
+% SOURCE: Burklund--Xu Theorem 7.15, proof (the paragraph containing property
+% (*), the quadratic-construction diagram, and Q_0(a), Q_0(b)); Proposition
+% 7.19, proof (the attaching-map formula before naturality);
+% aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
+\begin{theorem}[B--X quadratic-construction cell calculus]
+  \label{thm:external-bx-quadratic-cell-calculus}
+  \uses{def:stable-context,def:synthetic-context,def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
+  \notready
+  A located external-result record supplies the following uniform construction
+  theorem, translated to the AIM grading convention.  Let $\theta_5$ be an
+  order-two synthetic class detected by $h_5^2$, choose a nullhomotopy of
+  $2\theta_5$, and let
+  $\widehat\theta_5$ be the resulting map from the synthetic mod--$2$ Moore
+  object whose bottom-cell restriction is $\theta_5$.  Write $a$ and $b$ for
+  its bottom and top cells.  In the quadratic construction:
+  \begin{enumerate}
+    \item the bottom quadratic cell maps by
+      $Q_0(a)\mapsto\theta_5^2$;
+    \item after reduction modulo $\lambda$, the top cell maps by
+      $b\mapsto h_6$ and hence $Q_0(b)\mapsto h_6^2$; this identification is
+      valid for every choice of $\widehat\theta_5$ arising from a
+      nullhomotopy of $2\theta_5$;
+    \item before applying $\operatorname{Sq}(\widehat\theta_5)$, the bottom
+      two-cell source has the attaching-map identity
+      \[
+        \delta_1(Q_0(b))=\lambda\eta Q_0(a).
+      \]
+  \end{enumerate}
+  The record contains the quadratic-construction map and its naturality with
+  the total $\lambda$-Bockstein.  It does not contain the pushed-forward
+  identity
+  $\delta_1(h_6^2)=\lambda\eta\theta_5^2$ for arbitrary $\theta_5$; deriving
+  that statement from these fields is a Section~7 project obligation.
+\end{theorem}
+
+\begin{proof}
+  The first two fields are the statements about all choices of
+  $\widehat\theta_j$ and the images of $Q_0(a)$ and $Q_0(b)$ in the proof of
+  Burklund--Xu Theorem~7.15.  The third is the source-cell attaching-map
+  calculation displayed in the proof of Proposition~7.19, before naturality is
+  applied.  Store these maps and commutative square, with their exact locators,
+  rather than storing their arbitrary-choice consequence.
+\end{proof}
+
 % SOURCE: Burklund--Xu Proposition 7.19; aimpaper/main.tex:2117-2125, 2133-2139.
 \begin{theorem}[Total differential identity for the source choice]
   \label{thm:external-total-differential-identity}
