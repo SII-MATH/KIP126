@@ -132,3 +132,78 @@ revision carry \texttt{mathlibok}.  Every paper theorem, literature adapter,
 data transcription, and missing semantic interface remains
 \texttt{notready}.  Thus this document describes a complete formalization
 plan and its proof frontier, not a completed Lean proof of the paper.
+
+\section{Statement traceability gate}
+
+The following gate is the frozen source-to-Blueprint index for every formal
+definition, theorem, proposition, corollary, and fact in
+\texttt{aimpaper/main.tex}. The source labels are copied from the frozen
+aimpaper snapshot; the Blueprint reference is deliberately
+written as \verb|\ref{...}| so rendered numbers remain dynamic. An unlabelled
+source statement is recorded as ``unlabelled'' rather than being given a new
+label in the frozen paper. The statement text is kept short but identifying;
+the complete source statement remains at the cited line span.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{p{0.49\linewidth}p{0.17\linewidth}p{0.25\linewidth}}
+\textbf{Statement content} & \textbf{aimpaper label} & \textbf{Blueprint node} \\
+\hline
+Framed manifolds of Kervaire invariant one exist in dimension $126$. & \texttt{thm:main} & Theorem~\ref{thm:kervaire-126-conditional} \\
+The Kervaire dimensions are $2,6,14,30,62,126$. & unlabelled & Corollary~\ref{cor:kervaire-dimensions-exact} \\
+Kervaire existence is equivalent to $n=2^{j+1}-2$ and permanence of $h_j^2$. & \texttt{thm:browder} & Theorem~\ref{thm:external-browder-criterion} \\
+$h_6^2$ survives to $E_\infty$. & \texttt{thm:h62} & Theorem~\ref{thm:h6-square-permanent} \\
+The surviving Adams two-line classes are the displayed $h_0h_2,h_0h_3,h_2h_4,h_1h_j,h_j^2$. & \texttt{cor:2line} & Corollary~\ref{cor:adams-two-line-survivors} \\
+Definition of the $f$-extension spectral sequence. & \texttt{def:ess} & Definition~\ref{def:f-extension-ss} \\
+Definition of an essential $f$-extension. & \texttt{def:768fba8a} & Definition~\ref{def:f-extension-essential} \\
+Representative criterion and competing-target alternatives for an $f$-extension. & \texttt{prop:8154e6f1} & Propositions~\ref{prop:fextension-iff-detected} and~\ref{prop:fextension-inessential-iff-higher} \\
+Map-filtration lower bound forces initial $f$-ESS differentials to vanish. & unlabelled & Corollary~\ref{cor:fess-below-map-filtration-zero} \\
+Definition of a crossing hitting Adams filtration $p$. & \texttt{def:98skj23} & Definition~\ref{def:fess-crossing} \\
+No crossing is equivalent to uniform representative detection. & \texttt{prop:i8r47oe} & Proposition~\ref{prop:no-crossing-iff-uniform-detection} \\
+Homotopy-commutative square propagation for extension differentials. & \texttt{thm:4114f70c} & Theorem~\ref{thm:fess-commutative-square} \\
+Unrestricted square propagation. & \texttt{cor:0012nik} & Corollary~\ref{cor:fess-square-naturality} \\
+Triangle-shaped shift. & \texttt{cor:166dc180} & Corollary~\ref{cor:fess-triangle-shift} \\
+Composition of successive extensions. & \texttt{cor:290d35ce} & Corollary~\ref{cor:fess-composition} \\
+Stable-page maps between extension spectral sequences. & \texttt{cor:e7b20ae2} & Corollary~\ref{cor:fess-map-of-stable-pages} \\
+A zero composite makes the target permanent. & \texttt{cor:aed3d1a4} & Corollary~\ref{cor:fess-zero-composite-permanent} \\
+Exactness in the middle makes permanent cycles boundaries. & \texttt{prop:cfe810af} & Proposition~\ref{prop:fess-exact-middle-boundary} \\
+Functoriality of synthetic spectra on cofiber sequences. & \texttt{prop:1f7950df} & Theorem~\ref{thm:external-nu-cofiber-criterion} \\
+Definition of the synthetic spheres $S^{s,w}$. & unlabelled & Definition~\ref{def:synthetic-sphere} \\
+Definition of the deformation element $\lambda$ and its quotients. & unlabelled & Definition~\ref{def:synthetic-lambda-quotient} \\
+Synthetic Adams rigidity for $\nu X$. & \texttt{thm:rigid} & Theorem~\ref{thm:external-synthetic-rigidity} \\
+Synthetic Adams equals the $\lambda$-Bockstein spectral sequence. & \texttt{thm:17e90ac0} & Theorem~\ref{thm:external-lambda-bockstein} \\
+$E_\infty$ formula for $\nu X$. & \texttt{prop:30e8b746} & Theorem~\ref{thm:external-synthetic-einfty-nu} \\
+$E_\infty$ formula for $\nu X/\lambda^r$. & \texttt{prop:59f111f} & Theorem~\ref{thm:external-synthetic-einfty-quotient} \\
+Positive-filtration maps factor through $\lambda^k$. & \texttt{prop:ef21f9bc} & Theorem~\ref{thm:external-synthetic-lift} \\
+Distinguished triangles lift to synthetic triangles. & \texttt{prop:41561db2} & Theorem~\ref{thm:external-synthetic-triangle-lift} \\
+Normalized synthetic triangle from a homology short exact sequence. & unlabelled & Proposition~\ref{prop:normalized-synthetic-triangle} \\
+Only $d_0$ occurs in the $\lambda^n$- and $\rho$-ESS. & \texttt{prop:9770ae6e} & Proposition~\ref{prop:lambda-rho-ess-only-d0} \\
+Classical $d_r$ and the $\delta_n$ extension correspond. & \texttt{prop:6de7d130} & Propositions~\ref{prop:delta-ess-formula-infinite},~\ref{prop:delta-ess-formula-finite}, and~\ref{thm:delta-classical-equivalence} \\
+$\lambda$-multiple form of the $\delta$ formula. & \texttt{cor:2a636737} & Corollary~\ref{cor:delta-ess-lambda-multiples} \\
+Definition of a classical differential crossing. & \texttt{def:classicalcrossdiff} & Definition~\ref{def:classical-differential-crossing} \\
+Classical crossing iff $\delta_n$ crossing. & \texttt{prop:cross-dr-En} & Proposition~\ref{prop:classical-crossing-iff-delta-crossing} \\
+Definition of an $(f,E_r)$-extension. & \texttt{def:6c076a33} & Definition~\ref{def:page-extension} \\
+Definition of a page-extension crossing. & \texttt{def:41d51149} & Definition~\ref{def:page-extension-crossing} \\
+Page crossing iff synthetic crossing. & \texttt{prop:cross-f-Er} & Proposition~\ref{prop:page-crossing-iff-synthetic-crossing} \\
+Generalized Leibniz rule. & \texttt{thm:e73f481e} & Theorem~\ref{thm:generalized-leibniz} \\
+Generalized Mahowald trick. & \texttt{thm:158d451a} & Theorem~\ref{thm:generalized-mahowald} \\
+Restriction of a page extension and its obstruction certificate. & \texttt{prop:dec738d3} & Propositions~\ref{prop:page-extension-restrict} and~\ref{prop:page-extension-loss-certificate} \\
+Page-extension stretching. & \texttt{cor:dfc6043e} & Corollary~\ref{cor:page-extension-stretch} \\
+$h_6^2$ survives to $E_\infty$. & \texttt{thm:126survives} & Theorem~\ref{thm:h6-square-permanent} \\
+BJM/BX criterion for $h_6^2$ and an order-two $\theta_5$ choice. & \texttt{thm:bjmbx} & Theorem~\ref{thm:external-bjm-bx-criterion} \\
+The listed $\theta_5^2$ filtration alternatives and incoming-killer facts. & \texttt{fact:theta5sqAF} & Proposition~\ref{evidence:near126-core} \\
+Exactly one of permanence or the displayed nonzero $d_{12}(h_6^2)$ holds, with the $C_3,C_4,C_5$ criterion. & \texttt{prop:possibleh62} & Proposition~\ref{prop:possible-h62} \\
+If $C_3$ holds, $C_5$ is false. & \texttt{prop:state5false} & Proposition~\ref{prop:near126-c3-not-c5} \\
+The $x_{123,9}$ representative survives and is not killed. & \texttt{fact:x1239} & Proposition~\ref{evidence:x1239} \\
+$h_0^2x_{125,9,2}$ survives to $E_5$. & \texttt{fact:h02x1259} & Proposition~\ref{evidence:h02x1259} \\
+The conditional two-extension relation detected by $\lambda^4h_0^2x_{125,9,2}$. & \texttt{cor:2ext125} & Corollary~\ref{cor:near126-two-extension} \\
+$h_1x_{121,7}$ survives to $E_6$. & \texttt{fact:h1x1217} & Proposition~\ref{evidence:h1x1217} \\
+$h_6Md_0$ and $h_5x_{91,11}$ are permanent. & \texttt{fact:stem122} & Proposition~\ref{evidence:stem122-permanent} \\
+\end{tabular}
+\end{center}
+
+This table is a gate, not a claim that every row is proved. A row is accepted
+only when its statement content, frozen source locator, and dynamic Blueprint
+reference are all present. Any future repair that changes the mathematical
+claim (rather than correcting a locator, notation, or presentation) must be
+reviewed as a separate claim-changing repair before the row is updated.
