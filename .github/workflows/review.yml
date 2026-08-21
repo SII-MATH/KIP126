@@ -38,10 +38,12 @@ jobs:
       initializer: ${{ steps.resolve.outputs.initializer }}
       review_kind: ${{ steps.resolve.outputs.review_kind }}
       idempotency_key: ${{ steps.resolve.outputs.idempotency_key }}
+      webhook_idempotency_key: ${{ steps.resolve.outputs.webhook_idempotency_key }}
     env:
       GH_TOKEN: ${{ github.token }}
       REPO: ${{ github.repository }}
       COMMENT_BODY: ${{ github.event.comment.body }}
+      COMMENT_ID: ${{ github.event.comment.id || '' }}
       EVENT: ${{ github.event_name }}
       DISPATCH_PR: ${{ inputs.pr || '' }}
       WEBHOOK_URL: ${{ secrets.MULTICA_REVIEW_WEBHOOK_URL }}
@@ -55,6 +57,7 @@ jobs:
           set -euo pipefail
           PR=''
           EVENT_HEAD=''
+          RETRY_REQUESTED=false
           if [[ "$EVENT" == workflow_run ]]; then
             PR=$(jq -r '.workflow_run.pull_requests | if length == 1 then .[0].number else empty end' "$GITHUB_EVENT_PATH")
             EVENT_HEAD=$(jq -r '.workflow_run.head_sha // empty' "$GITHUB_EVENT_PATH")
@@ -67,19 +70,24 @@ jobs:
           else
             ACTOR=$(jq -r '.sender.login // empty' "$GITHUB_EVENT_PATH")
             ASSOCIATION=$(jq -r '.comment.author_association // empty' "$GITHUB_EVENT_PATH")
-            if ! printf '%s' "$COMMENT_BODY" | grep -qxE '[[:space:]]*/review[[:space:]]*'; then
-              echo 'Comment does not contain an exact /review command; skipping.'
+            if printf '%s' "$COMMENT_BODY" | grep -qxE '[[:space:]]*/review-retry[[:space:]]*'; then
+              COMMAND=/review-retry
+              RETRY_REQUESTED=true
+            elif printf '%s' "$COMMENT_BODY" | grep -qxE '[[:space:]]*/review[[:space:]]*'; then
+              COMMAND=/review
+            else
+              echo 'Comment does not contain an exact /review or /review-retry command; skipping.'
               exit 0
             fi
             if PERMISSION=$(gh api "repos/$REPO/collaborators/$ACTOR/permission" --jq '.permission' 2>/dev/null); then
               case "$PERMISSION" in
                 admin|write|maintain) ;;
-                *) echo "Unauthorized /review by $ACTOR (permission=$PERMISSION); skipping."; exit 0 ;;
+                *) echo "Unauthorized $COMMAND by $ACTOR (permission=$PERMISSION); skipping."; exit 0 ;;
               esac
             else
               case "$ASSOCIATION" in
                 OWNER|MEMBER|COLLABORATOR) ;;
-                *) echo "Unauthorized /review by $ACTOR; permission API unavailable and association=$ASSOCIATION."; exit 0 ;;
+                *) echo "Unauthorized $COMMAND by $ACTOR; permission API unavailable and association=$ASSOCIATION."; exit 0 ;;
               esac
             fi
             PR=$(jq -r '.issue.number // empty' "$GITHUB_EVENT_PATH")
@@ -176,10 +184,20 @@ jobs:
             '[(.repository | ascii_downcase), (.pull_request | tostring), .head_sha, .rubric_revision] | join(":")' \
             request.json | sha256sum | cut -d' ' -f1)
           IDEMPOTENCY_KEY="euler-review-$KEY"
+          WEBHOOK_IDEMPOTENCY_KEY="$IDEMPOTENCY_KEY"
+          if [[ "$RETRY_REQUESTED" == true ]]; then
+            # Keep the request's canonical exact-head key for euler-review.request/v1 validation,
+            # but give this explicit human retry its own webhook delivery identity. Replaying the
+            # same GitHub event still deduplicates; posting a new /review-retry creates a new attempt.
+            [[ "$COMMENT_ID" =~ ^[0-9]+$ ]]
+            RETRY_KEY=$(printf '%s' "$IDEMPOTENCY_KEY:$COMMENT_ID" | sha256sum | cut -d' ' -f1)
+            WEBHOOK_IDEMPOTENCY_KEY="euler-review-retry-$RETRY_KEY"
+          fi
           jq --arg key "$IDEMPOTENCY_KEY" '. + {idempotency_key: $key}' \
             request.json > request-with-key.json
           mv request-with-key.json request.json
           printf 'idempotency_key=%s\n' "$IDEMPOTENCY_KEY" >> "$GITHUB_OUTPUT"
+          printf 'webhook_idempotency_key=%s\n' "$WEBHOOK_IDEMPOTENCY_KEY" >> "$GITHUB_OUTPUT"
 
       - name: Mark semantic review pending
         if: steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.pr != ''
@@ -210,7 +228,7 @@ jobs:
           test -n "$WEBHOOK_URL"
           HTTP=$(curl --silent --show-error --output response.json --write-out '%{http_code}' \
             --request POST --header 'Content-Type: application/json' \
-            --header "Idempotency-Key: ${{ steps.resolve.outputs.idempotency_key }}" \
+            --header "Idempotency-Key: ${{ steps.resolve.outputs.webhook_idempotency_key }}" \
             --data-binary @request.json "$WEBHOOK_URL")
           test "$HTTP" = 200
           jq -e '.status == "accepted" or .status == "skipped" or .status == "duplicate"' \

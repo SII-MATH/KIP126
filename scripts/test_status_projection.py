@@ -217,6 +217,15 @@ def test_dispatch_hashes_exact_identity_without_a_trailing_newline():
     assert 'IDEMPOTENCY_KEY="euler-review-$KEY"' in workflow
 
 
+def test_explicit_review_retry_uses_a_new_delivery_identity_only():
+    workflow = (ROOT / ".github" / "workflows" / "review.yml").read_text(encoding="utf-8")
+    assert "grep -qxE '[[:space:]]*/review-retry[[:space:]]*'" in workflow
+    assert '[[ "$COMMENT_ID" =~ ^[0-9]+$ ]]' in workflow
+    assert 'WEBHOOK_IDEMPOTENCY_KEY="euler-review-retry-$RETRY_KEY"' in workflow
+    assert "jq --arg key \"$IDEMPOTENCY_KEY\" '. + {idempotency_key: $key}'" in workflow
+    assert '--header "Idempotency-Key: ${{ steps.resolve.outputs.webhook_idempotency_key }}"' in workflow
+
+
 def test_trusted_check_runs_normalize_into_mechanical_evidence():
     checks = [
         {
