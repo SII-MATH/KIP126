@@ -59,23 +59,50 @@ Use the cheapest evidence that answers the task. Do not start with a full build.
 
 A fresh checkout has no local Lake packages or build outputs. Never run `lake build`
 directly in that state: it clones dependencies and then cold-builds them. If local Lean
-validation is actually needed, run `lake exe cache get` first to restore Mathlib's
-published artifacts, then run the narrowest relevant target. Do not run `lake update`
-unless the task is specifically changing dependency pins.
+validation is actually needed, run the narrowest relevant target through the repository's
+cache wrapper, for example:
+
+```bash
+bash scripts/shared-main-cache.sh run lake build KIP126.SomeModule
+```
+
+The wrapper first runs `lake exe cache get` without any project-cache environment, so
+Mathlib artifacts still come from Mathlib's official cache. It then overlays KIP126's
+latest successful `main` artifact cache from the single daemon's persistent checkout at
+`/inspire/hdd/global_user/czxs25250150/KIP126/.lake/shared-main-cache` and executes the
+requested command. Do not run `lake update` unless the task is specifically changing
+dependency pins.
+
+The persistent checkout `/inspire/hdd/global_user/czxs25250150/KIP126` and everything
+under its `.lake/` directory are daemon-owned. Agents must not edit files there, run Git
+or Lake write operations there, change permissions, retarget the `current` symlink, or
+set that shared path as a writable cache. In particular, never set
+`LAKE_ARTIFACT_CACHE=true` while using it and never run `lake cache clean` against it.
+Agents may only read it through `scripts/shared-main-cache.sh run`; branch-specific misses
+are built in the Agent's own checkout and do not enter the shared cache. If the wrapper
+reports no matching cache or a daemon failure, stop and report it instead of modifying the
+persistent checkout.
+
+The daemon is the sole writer. It polls `origin/main`, fast-forwards the clean persistent
+checkout, skips documentation-only changes using the committed build-input digest, pulls
+Mathlib from the official cache, builds changed KIP126 inputs, and atomically publishes a
+new immutable generation. Its lifecycle commands are reserved for daemon maintenance:
+`bash scripts/shared-main-cache.sh start`, `stop`, and `status`.
 
 GitHub Actions' `kip126-main-build-v2-*` cache contains trusted `.lake/build` output
 keyed by OS, architecture, and the committed Lean/build-input digest. Documentation-only
 `main` commits therefore reuse their parent's outputs, while Lean source, Lake config or
 pins, and toolchain changes get a new key. The repository's workflows restore it
-automatically; a Multica local checkout does not. Do not claim that cache was reused
-locally unless it was explicitly restored. Prefer exact-SHA CI results as evidence for
-read-only analysis.
+automatically; a Multica local checkout does not. The local wrapper described above uses
+the daemon-owned Lake artifact cache instead, not GitHub Actions Cache. Do not claim that
+either cache was reused unless the relevant restore actually ran. Prefer exact-SHA CI
+results as evidence for read-only analysis.
 
 ## Check selection
 
-- Lean source change: after `lake exe cache get`, check the changed module or smallest
-  relevant target first. Run a full local `lake build` only when the task explicitly
-  requests it or an unresolved question requires it.
+- Lean source change: use `scripts/shared-main-cache.sh run` to check the changed module
+  or smallest relevant target first. Run a full local `lake build` only when the task
+  explicitly requests it or an unresolved question requires it.
 - Blueprint prose or graph change: run `leanblueprint web`.
 - Changed `\lean` annotations: regenerate the ignored `blueprint/lean_decls` with
   `leanblueprint web`, then run `lake exe checkdecls blueprint/lean_decls`.
