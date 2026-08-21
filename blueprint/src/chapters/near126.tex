@@ -113,24 +113,51 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 \section{The near-126 reduction and contradiction}
 
-% SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
+% SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice; project
+% transport required by PROJECT_BOUNDARY.md for Section 7 logical reductions.
+\begin{proposition}[Total differential identity for an arbitrary choice]
+  \label{prop:theta5-total-differential-choice-comparison}
+  \uses{def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion,thm:external-total-differential-identity}
+  \notready
+  For a near-$126$ computation input $D$ and every order-two synthetic choice
+  $\theta_5$, the project proves the comparison
+  \[
+    \delta_1(h_6^2)=\lambda\eta\theta_5^2
+  \]
+  in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem.
+  The external source-choice identity is used only as the base case for this
+  comparison; the universal quantifier is an internal Section 7 obligation.
+\end{proposition}
+
+\begin{proof}
+  Starting from the distinguished source choice supplied by
+  \ref{thm:external-total-differential-identity}, compare the quadratic
+  constructions for an arbitrary order-two choice and for the source choice.
+  Use the order-two and torsion/choice-comparison evidence to show that their
+  bottom-cell total differentials agree, then transport the source identity
+  across this equality.  This proof must construct the comparison itself; it
+  may not invoke a universal external identity.
+\end{proof}
+
 \begin{proposition}[Choice independence of the inductive expression]
   \label{prop:theta5-choice-independence}
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion,thm:external-total-differential-identity}
+  \uses{def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion,prop:theta5-total-differential-choice-comparison}
   \notready
   For a near-$126$ computation input $D$, every synthetic $\theta_5$ has order
   two, and the element
   $\lambda\eta\theta_5^2$ is independent of the choice of $\theta_5$.
   More precisely, any two choices give equal elements in the untruncated
   synthetic sphere and hence equal images in every finite $\lambda$-quotient.
+  This is a project theorem, not an external strengthening of the
+  source-choice identity.
 \end{proposition}
 
 \begin{proof}
-  Lift the classical order statement through the torsion-free synthetic group.
-  The total differential is defined solely by the fixed source class $h_6^2$
-  and the connecting map.  Apply the order-two total-differential identity to
-  each of two choices; both products equal that same differential.  Naturality
-  of the quotient maps gives equality in every finite quotient.
+  Apply the internal arbitrary-choice identity to each of two choices.  Both
+  products equal the same fixed total differential $\delta_1(h_6^2)$.
+  Naturality of the quotient maps then gives equality in every finite quotient.
+  The source-choice identity enters only through the internal proposition's
+  proof, not as a universal external premise.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:2117-2139, Theorem thm:bjmbx and Remark rem:theta5choice; project transport from the distinguished source choice.

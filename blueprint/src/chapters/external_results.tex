@@ -409,25 +409,26 @@ This flat chapter contains only precise published theorem statements that the pr
   from the near-$126$ tables.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice, applying the construction in the proof of Burklund--Xu Proposition 7.19 to an order-two bottom-cell choice.
-\begin{theorem}[Total differential identity for an order-two choice]
+% SOURCE: Burklund--Xu Proposition 7.19; aimpaper/main.tex:2117-2125, 2133-2139.
+\begin{theorem}[Total differential identity for the source choice]
   \label{thm:external-total-differential-identity}
   \uses{def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
   \notready
-  For every order-two synthetic choice $\theta_5$, the located quadratic-
-  construction input supplies the identity
+  The located quadratic-construction input supplies a distinguished order-two
+  source choice $\theta_5^{\mathrm{src}}$ and the identity
   \[
-    \delta_1(h_6^2)=\lambda\eta\theta_5^2
+    \delta_1(h_6^2)=\lambda\eta(\theta_5^{\mathrm{src}})^2
   \]
   in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem, with
-  its representative and grading conventions.
+  the source representative and grading conventions.  No assertion for an
+  arbitrary order-two choice is part of this external input.
 \end{theorem}
 
 \begin{proof}
-  This is the external total-differential comparison asserted in the cited AIM
-  remark: use the chosen order-two class as the bottom-cell restriction in the
-  quadratic construction, then translate the target suspension to $S^{1,-1}$.
-  The project does not reconstruct that construction internally.
+  This node records the source-choice comparison from Burklund--Xu
+  Proposition 7.19, with the AIM grading translation.  The extension from the
+  source choice to arbitrary order-two choices is an internal Section 7 proof
+  obligation and is not imported here.
 \end{proof}
 
 % SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; aimpaper/main.tex:117-123, Theorem thm:browder.
