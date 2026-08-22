@@ -55,6 +55,7 @@ jobs:
       cold: ${{ steps.paths.outputs.cold }}
       checkout_ref: ${{ steps.paths.outputs.checkout_ref }}
       base_sha: ${{ steps.paths.outputs.base_sha }}
+      build_cache_digest: ${{ steps.paths.outputs.build_cache_digest }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -130,6 +131,17 @@ jobs:
           else
             links=false
           fi
+
+          # Hash the trusted base's committed Lean/build inputs rather than its commit id. During
+          # this rollout the base may predate the helper, so use the checked-out copy only for that
+          # one case; once merged, all PRs execute the helper from their trusted current base.
+          key_script="$RUNNER_TEMP/ci-build-cache-key.sh"
+          if git cat-file -e "$base_sha:scripts/ci-build-cache-key.sh" 2>/dev/null; then
+            git show "$base_sha:scripts/ci-build-cache-key.sh" > "$key_script"
+          else
+            cp scripts/ci-build-cache-key.sh "$key_script"
+          fi
+          build_cache_digest=$(bash "$key_script" . "$base_sha")
           {
             echo "blueprint=$blueprint"
             echo "docs=$lean"
@@ -137,6 +149,7 @@ jobs:
             echo "cold=$cold"
             echo "checkout_ref=$checkout_ref"
             echo "base_sha=$base_sha"
+            echo "build_cache_digest=$build_cache_digest"
           } >> "$GITHUB_OUTPUT"
 
       - name: Test documentation helpers
@@ -324,9 +337,9 @@ jobs:
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: base/.lake/build
-          key: kip126-main-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ needs.classify.outputs.base_sha }}
+          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ needs.classify.outputs.build_cache_digest }}
           restore-keys: |
-            kip126-main-build-v1-${{ runner.os }}-${{ runner.arch }}-
+            kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
 
       - name: Adopt restored Lean outputs
         if: steps.lean-cache.outputs.cache-matched-key != ''
@@ -456,9 +469,9 @@ jobs:
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: base/.lake/build
-          key: kip126-main-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ needs.classify.outputs.base_sha }}
+          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ needs.classify.outputs.build_cache_digest }}
           restore-keys: |
-            kip126-main-build-v1-${{ runner.os }}-${{ runner.arch }}-
+            kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
 
       - name: Adopt restored Lean outputs
         if: steps.lean-cache.outputs.cache-matched-key != ''
