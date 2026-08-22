@@ -337,7 +337,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % system of abelian torsors, combined with BHS Proposition A.13.
 \begin{lemma}[Mittag--Leffler criterion for an inverse-limit ESS extension]
   \label{lem:synthetic-ess-coherent-tower-limit}
-  \uses{def:synthetic-ess-solution-tower,thm:external-synthetic-lambda-complete}
+  \uses{def:synthetic-ess-solution-tower,prop:lambda-quotient-restriction-coherence,thm:external-synthetic-lambda-complete}
   \notready
   In the setting of
   Definition~\ref{def:synthetic-ess-solution-tower}, suppose every finite
@@ -386,7 +386,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: aimpaper/main.tex:1025-1048, Proposition prop:9770ae6e.
 \begin{proposition}[$\lambda^n$- and $\rho$-ESS have only $d_0$]
   \label{prop:lambda-rho-ess-only-d0}
-  \uses{def:lambda-rho-delta-triangle,prop:synthetic-einfty-map-compatibility,prop:synthetic-einfty-first-quotient,prop:synthetic-ess-weightwise-transport,prop:fess-exact-middle-boundary}
+  \uses{def:lambda-rho-delta-triangle,prop:lambda-quotient-restriction-coherence,prop:synthetic-einfty-map-compatibility,prop:synthetic-einfty-first-quotient,prop:synthetic-ess-weightwise-transport,prop:fess-exact-middle-boundary}
   \notready
   In the extension spectral sequences of $\lambda^n$ and $\rho_{n,m}$, the
   only possibly nonzero differentials are
@@ -468,7 +468,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % VERIFIED-IN: the printed second case places y in E_infty(nu X); the finite target requires its rho-image.
 \begin{proposition}[Finite $\delta_{n,m}$-ESS formula]
   \label{prop:delta-ess-formula-finite}
-  \uses{prop:delta-ess-formula-infinite,cor:fess-composition,prop:lambda-rho-ess-only-d0}
+  \uses{prop:delta-ess-formula-infinite,cor:fess-composition,prop:lambda-rho-ess-only-d0,prop:lambda-quotient-restriction-coherence}
   \notready
   For finite $m>n$, compose the formulas of
   Proposition~\ref{prop:delta-ess-formula-infinite} with the reduction
@@ -1196,7 +1196,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: aimpaper/main.tex:1981-2068, Proposition prop:dec738d3, first part.
 \begin{proposition}[Restriction of a page extension]
   \label{prop:page-extension-restrict}
-  \uses{def:page-extension,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0}
+  \uses{def:page-extension,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:lambda-quotient-restriction-coherence}
   \notready
   If $d_n^{f,E_r}(x)=y$ and $2\le r'<r$, reduction along
   \[
@@ -1220,7 +1220,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % lifting calculation needed for the later-page converse.
 \begin{lemma}[Exact obstruction for finite page-extension restriction]
   \label{lem:page-extension-restriction-exact-obstruction}
-  \uses{def:page-extension,def:page-extension-coset,def:page-extension-crossing,def:synthetic-ess-solution-tower,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:fextension-inessential-iff-higher}
+  \uses{def:page-extension,def:page-extension-coset,def:page-extension-crossing,def:synthetic-ess-solution-tower,prop:lambda-quotient-restriction-coherence,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:fextension-inessential-iff-higher}
   \notready
   Let $2\le r'<r<\infty$, let
   $e(f)\le n\le r'-2+e(f)$, and suppose

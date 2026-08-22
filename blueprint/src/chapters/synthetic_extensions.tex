@@ -44,7 +44,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 % page-restriction argument; project packaging of their inverse system.
 \begin{definition}[Finite ESS solution torsors and coherent towers]
   \label{def:synthetic-ess-solution-tower}
-  \uses{def:synthetic-extension-ss,def:fess-cycles-boundaries,cor:fess-map-of-stable-pages}
+  \uses{def:synthetic-extension-ss,def:fess-cycles-boundaries,cor:fess-map-of-stable-pages,prop:lambda-quotient-restriction-coherence}
   \notready
   Let $F_m:A_m\to B_m$, $m\ge m_0$, be compatible maps of finite
   $\lambda$-quotients, with restriction maps from level $m+1$ to level $m$.
@@ -80,6 +80,45 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   representative equation.  Subtracting two solutions gives the stated
   difference group, and addition acts freely and transitively.  The compatible
   quotient squares induce the restriction maps and their equivariance.
+\end{proof}
+
+% SOURCE: Burklund--Xu Construction 7.7, reference/BurklundXu/paper.txt:3022--3039;
+% the project-level statement deliberately forgets the commutative-algebra
+% structure and retains only the quotient maps and their triangle data.
+\begin{proposition}[Coherence of quotient restrictions]
+  \label{prop:lambda-quotient-restriction-coherence}
+  \uses{def:synthetic-lambda-quotient,def:cofiber-triangle,def:lambda-rho-delta-triangle}
+  \notready
+  For every map of synthetic spectra $f:X\to Y$ and integers
+  $0<k<n<m\le\infty$, the quotient restriction maps are natural:
+  \[
+    \rho^Y_{n,m}\circ(\nu f/\lambda^m)
+      =(\nu f/\lambda^n)\circ\rho^X_{n,m}.
+  \]
+  They satisfy the identity and composition laws
+  \[
+    \rho^X_{n,n}=\operatorname{id},\qquad
+    \rho^X_{k,n}\circ\rho^X_{n,m}=\rho^X_{k,m}.
+  \]
+  Moreover, the nested quotient maps for every triple $0<k<n<m\le\infty$
+  assemble with the canonical $\lambda$-power maps on the first and last
+  terms into a morphism between the corresponding
+  $\lambda$--$\rho$--$\delta$ cofiber triangles.  Its middle components are
+  the identity on the largest quotient and $\rho_{k,n}$ on the smaller one;
+  thus the multiplication and connecting maps commute with restriction,
+  including the $m=\infty$ endpoint.  The same triangle compatibility is
+  natural in $f$.  This proposition asserts no map of $E_\infty$- or
+  $\mathrm{CAlg}$-objects.
+\end{proposition}
+
+\begin{proof}
+  The quotient maps are induced by the nested cofibers of the natural maps
+  $\lambda^m$, so functoriality of cofibers gives the displayed naturality
+  square and the morphism of distinguished triangles.  The identity and
+  composition equations are the equalities of the corresponding quotient
+  projections; the same argument applies to the untruncated endpoint by
+  taking the colimit along the quotient tower.  No multiplicative structure
+  is used.
 \end{proof}
 
 \section{The elementary lambda and rho extensions}
