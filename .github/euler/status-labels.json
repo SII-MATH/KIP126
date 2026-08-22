@@ -1,0 +1,37 @@
+{
+  "schema": "euler-pr-status-projection/v1",
+  "mechanical_contexts": ["scope", "build", "bump-guard"],
+  "mechanical_trusted_creators": ["github-actions[bot]"],
+  "semantic_context": "semantic-review",
+  "semantic_trusted_creators": ["github-actions[bot]", "surenny"],
+  "semantic_pending_ttl_seconds": 21600,
+  "semantic_review_ttl_seconds": 259200,
+  "ready_mergeable_states": ["clean", "has_hooks", "unstable"],
+  "labels": [
+    {
+      "name": "awaiting-CI",
+      "color": "d4c5f9",
+      "description": "Current-head scope/build/bump-guard evidence is missing or running; advisory only."
+    },
+    {
+      "name": "awaiting-review",
+      "color": "fbca04",
+      "description": "Current head lacks a fresh trusted semantic-review verdict; advisory only."
+    },
+    {
+      "name": "review-in-progress",
+      "color": "1d76db",
+      "description": "A fresh trusted semantic review is pending for the current head; advisory only."
+    },
+    {
+      "name": "awaiting-author",
+      "color": "d93f0b",
+      "description": "Current-head evidence or mergeability requires author action; advisory only."
+    },
+    {
+      "name": "ready-to-merge",
+      "color": "0e8a16",
+      "description": "Fresh exact-head merge gates are green and the PR has no conflict; not merge authorization."
+    }
+  ]
+}

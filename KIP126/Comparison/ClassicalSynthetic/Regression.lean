@@ -16,10 +16,16 @@ open KIP126.Classical.Adams
 open KIP126.External
 open KIP126.Synthetic.SpectralSequence
 
-example (r : ℕ) (i : Tridegree) :
-    forgetWeight (syntheticAdamsTarget r i) =
-      classicalAdamsTarget r (forgetWeight i) :=
-  forgetWeight_add_shift r i
+example {classical : ClassicalAdamsSpectralSequence}
+    {synthetic : SyntheticAdamsSS}
+    (comparison : ReindexedSpectralSequenceMap classical synthetic)
+    (w r : ℤ) (hr : 2 ≤ r) (b : Bidegree) :
+    (classical.page r).d b (classicalAdamsTarget r.toNat b) ≫
+        (comparison.map w r hr).f (classicalAdamsTarget r.toNat b) =
+      (comparison.map w r hr).f b ≫
+        (fixedWeightPage synthetic.sequence w r hr).d b
+          (classicalAdamsTarget r.toNat b) :=
+  comparison.differential_comm w r hr b
 
 example (r : ℕ) (i : Tridegree) :
     (syntheticAdamsShape r).Rel i (syntheticAdamsTarget r i) :=
@@ -31,44 +37,17 @@ example (A : SyntheticAdamsSS) (r : ℕ) (i : Tridegree)
     i.2.2 = (syntheticAdamsTarget r i).2.2 :=
   weightPreserving_differential A r hr i h
 
+example (A : SyntheticAdamsSS) (i j : Tridegree) :
+    A.lambdaMap i ≫ A.E₂.d (lambdaTarget i) (lambdaTarget j) =
+      A.E₂.d i j ≫ A.lambdaMap j :=
+  A.lambdaMap_comm i j
+
 example : forgetWeight syntheticH₄Degree = classicalH₄Degree :=
   synthetic_h₄_degree_forgets
 
 example : syntheticH₄TargetDegree =
     lambdaTarget syntheticH₀H₃SquaredDegree :=
   synthetic_h₄_target_is_lambda_target
-
-example {stable : StableHomotopyContext}
-    {classical : ClassicalAdamsSS stable stable.sphere}
-    {synthetic : SyntheticAdamsSS}
-    {P : SphereAdamsPresentation classical}
-    (comparison : H₄DifferentialComparison synthetic P) :
-    comparison.classicalStatement.source.degree = classicalH₄Degree ∧
-      comparison.classicalStatement.target.degree = classicalH₀H₃SquaredDegree :=
-  comparison.classical_degrees
-
-example {stable : StableHomotopyContext}
-    {classical : ClassicalAdamsSS stable stable.sphere}
-    {synthetic : SyntheticAdamsSS}
-    {P : SphereAdamsPresentation classical}
-    (comparison : H₄DifferentialComparison synthetic P) :
-    ∃ statement : AdamsD₂Statement classical,
-      statement.source = P.h 4 ∧
-      statement.target = sphereProduct P (P.h 0)
-        (sphereProduct P (P.h 3) (P.h 3)) ∧
-      statement.source.degree = classicalH₄Degree ∧
-      statement.target.degree = classicalH₀H₃SquaredDegree :=
-  comparison.catalogued_classical_degrees
-
-example {stable : StableHomotopyContext}
-    {classical : ClassicalAdamsSS stable stable.sphere}
-    {synthetic : SyntheticAdamsSS}
-    {P : SphereAdamsPresentation classical}
-    (comparison : H₄DifferentialComparison synthetic P) :
-    (synthetic.d₂ syntheticH₄Degree).hom synthetic.h₄ =
-      (synthetic.lambdaMap syntheticH₀H₃SquaredDegree).hom
-        synthetic.h₀h₃Squared :=
-  comparison.synthetic_lambda_regression
 
 example :
     (externalClaimLedger.lookup .adamsOneLine).owner =

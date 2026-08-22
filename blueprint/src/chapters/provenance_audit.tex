@@ -1,0 +1,501 @@
+\chapter{External-input provenance audit}
+\label{chap:provenance-audit}
+
+This audit chapter records source identifiers, locators, inventories, claim ledgers, and the trust boundary.  It is technical bookkeeping, not a mathematical prerequisite and not a parent of every chapter.
+
+\section{Source-bearing input structures}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
+% VERIFIED-IN: KIP126/External/Provenance.lean, declaration SourceId.
+\begin{definition}[Source identifier]
+  \label{def:source-id}
+  \lean{KIP126.External.SourceId}
+  \leanok
+  A source identifier is a finite, stable key for an item in the project
+  inventory; the identifier itself carries no mathematical claim.  Its
+  associated source-kind entry records whether the item is a paper, prior
+  literature result, machine archive, or governance record.
+  Human-readable citation data and artifact hashes live in the external
+  inventory rather than in this index type.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
+% VERIFIED-IN: KIP126/External/Provenance.lean, declaration SourceKind.
+\begin{definition}[Source kind]
+  \label{def:source-kind}
+  \lean{KIP126.External.SourceKind}
+  \leanok
+  A source kind records whether an inventory entry is a paper, literature
+  source, machine computation, or project-governance record.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
+% VERIFIED-IN: KIP126/External/Provenance.lean, declaration Locator.
+\begin{definition}[Source locator]
+  \label{def:locator}
+  \lean{KIP126.External.Locator}
+  \leanok
+  A source locator is a structured description string and may optionally
+  name the artifact in which the description is found.  The locator records
+  where to look; it does not by itself assert that the located statement is
+  true.  The description is explanatory ledger/human-audit metadata: when
+  available, the surrounding claim prose interprets it as a theorem, page,
+  table-row, file-range, or output key.  The machine checker validates the
+  associated path, not the prose description itself.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
+% VERIFIED-IN: KIP126/External/Provenance.lean, declaration SourceRef.
+\begin{definition}[Source reference]
+  \label{def:source-ref}
+  \lean{KIP126.External.SourceRef}
+  \leanok
+  A source reference pairs a stable source identifier with a structured locator and
+  may carry an optional note.  It identifies the provenance of one supplied
+  proposition.  Citation metadata, source class, and content hashes are
+  resolved by the inventory keyed by the source identifier; they are not
+  silently inferred from the reference.
+  \uses{def:source-id,def:locator}
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
+% VERIFIED-IN: KIP126/External/Provenance.lean, declaration ArtifactRef.
+\begin{definition}[Artifact reference]
+  \label{def:artifact-ref}
+  \lean{KIP126.External.ArtifactRef}
+  \leanok
+  An artifact reference records a local or archived path, a SHA-256 digest,
+  and an optional version.  It is metadata for a reproducibility check and is
+  not itself evidence for a mathematical proposition.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs and Acceptance criteria.
+% VERIFIED-IN: KIP126/External/Provenance.lean, declaration EvidenceMetadata.
+\begin{definition}[Evidence metadata]
+  \label{def:evidence-metadata}
+  \lean{KIP126.External.EvidenceMetadata}
+  \leanok
+  Evidence metadata consists of the method string used to obtain or transcribe
+  a finite input and optional artifact metadata.  It is a reusable view of
+  metadata; the proposition supported by that metadata remains a field of an
+  explicit \texttt{ExternalEvidence} value.
+  \uses{def:artifact-ref}
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md:149--167, explicit proposition-bearing wrappers.
+% VERIFIED-IN: KIP126/External/Provenance.lean, declaration ExternalResult.
+\begin{definition}[External result]
+  \label{def:external-result}
+  \lean{KIP126.External.ExternalResult}
+  \leanok
+  For a proposition $P$, an external result is a pair $(p,\sigma)$ with
+  $p:P$ and a source reference $\sigma$.  It is supplied as an explicit
+  argument to every theorem that uses it; the project shall not install it as
+  an axiom or an untracked global instance.
+  \uses{def:source-ref}
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md:149--167, explicit proposition-bearing wrappers.
+% VERIFIED-IN: KIP126/External/Provenance.lean, declaration ExternalEvidence.
+\begin{definition}[External evidence]
+  \label{def:external-evidence}
+  \lean{KIP126.External.ExternalEvidence}
+  \leanok
+  For a proposition $P$, external evidence is a record containing evidence
+  $p:P$, a source reference, a method string, and optional artifact metadata.
+  It is used for finite Ext data, differentials, table entries, and diagram
+  relations.  Like an external result, it is always an explicit theorem
+  parameter.  The wrapper records the declared evidence and its provenance;
+  it does not turn either one into a project theorem.
+  \uses{def:source-ref,def:artifact-ref}
+\end{definition}
+
+\section{Inventory validity and trust boundary}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceAvailability.
+\begin{definition}[Source availability]
+  \label{def:source-availability}
+  \lean{KIP126.External.SourceAvailability}
+  \leanok
+  A source-availability value records four Boolean flags for metadata, PDF,
+  extracted-text, and source-archive availability.  These fields are claims
+  about acquisition state, not mathematical evidence.  For canonical rows,
+  the filesystem checker compares them with the status file and the artifacts
+  actually present; the typed inventory separately proves that each row's
+  status class agrees with its flags.
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceStatusClass.
+\begin{definition}[Source status class]
+  \label{def:source-status-class}
+  \lean{KIP126.External.SourceStatusClass}
+  \leanok
+  The status class is the stable acquisition summary shared with the JSON
+  ledger: source of record, full text, metadata only, or partial availability.
+  Its encoder and decoder are inverse on the finite set of admitted classes.
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceEntry.
+\begin{definition}[Typed source entry]
+  \label{def:source-entry}
+  \lean{KIP126.External.SourceEntry}
+  \leanok
+  A typed source entry exposes the JSON/Lean synchronization fields: source
+  identifier, kind, citation keys, local directory, status-file path, status
+  class, and availability flags.  Its validity predicate checks schema-safe,
+  nonempty, duplicate-free citation keys; a nonempty safe
+  directory; kind/status consistency; the distinguished source-of-record
+  convention; and a safe, source-relative status path when present.
+  Filesystem existence, bibliographic prose, and artifact hashes remain under
+  the external checker.
+  \uses{def:source-id,def:source-kind,def:source-status-class,def:source-availability}
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, External inputs and Acceptance criteria.
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceInventory.inventory.
+\begin{definition}[Source inventory]
+  \label{def:source-inventory}
+  \lean{KIP126.External.SourceInventory.inventory}
+  \leanok
+  The source inventory is a complete typed projection keyed by
+  Definition~\ref{def:source-id}.  Its Lean rows expose source kinds,
+  citation keys, local status-file paths, and acquisition-status classes.  The
+  machine-readable ledger additionally supplies titles, canonical identifiers,
+  artifact paths, hashes, and filesystem verification; a separate
+  checker validates those fields.  Neither representation proves the
+  propositions carried by an \texttt{ExternalResult} or
+  \texttt{ExternalEvidence} value.  The Lean resolver uses a
+  \texttt{SourceRef}'s stable identifier to select its catalogue row.
+  \uses{def:source-entry}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceRef.InventoryValid.
+\begin{definition}[Inventory-valid source reference]
+  \label{def:inventory-valid-source-ref}
+  \lean{KIP126.External.SourceRef.InventoryValid}
+  \leanok
+  A source reference is inventory-valid when it is structurally valid and any
+  artifact named by its locator is a syntactically safe relative path lying
+  below the directory of the selected source row (a syntactic directory
+  prefix; filesystem links are outside Lean's view).  Thus absolute paths,
+  backslashes, empty components, and the components \texttt{.} and
+  \texttt{..} are rejected.  This predicate does not inspect the filesystem
+  and does not claim that the path is an artifact listed in the JSON ledger;
+  existence, canonical-ledger membership, and digest equality remain
+  obligations of the external checker.
+  \uses{def:source-ref,def:source-inventory}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration ExternalEvidence.InventoryValid.
+\begin{definition}[Inventory-valid external evidence]
+  \label{def:inventory-valid-evidence}
+  \lean{KIP126.External.ExternalEvidence.InventoryValid}
+  \leanok
+  An evidence wrapper is inventory-valid when its structural metadata is
+  valid, its source locator is safe and source-relative, and an optional
+  attached artifact has a lower-case 64-hex SHA-256 spelling and a safe path
+  below the same source directory.  This Lean predicate intentionally stops at
+  syntax and syntactic source-relative containment.  For canonical claim
+  locators, the JSON checker is responsible for artifact-list membership, file
+  existence, and equality with the checked-in digest.  An arbitrary dynamic
+  wrapper is not visible to that checker, and its own digest text is not
+  automatically compared unless the caller exports and checks it.
+  \uses{def:external-evidence,def:inventory-valid-source-ref,def:artifact-ref}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceInventory.inventory_complete.
+\begin{theorem}[Source inventory completeness]
+  \label{thm:source-inventory-complete}
+  \lean{KIP126.External.SourceInventory.inventory_complete}
+  \leanok
+  The ordered Lean rows project to exactly the closed list of source
+  identifiers, so no admitted source is silently omitted.
+  \uses{def:source-inventory,def:source-id}
+\end{theorem}
+
+\begin{proof}
+  Map the canonical lookup rows over the finite \texttt{SourceId.all} list.
+  The Lean equality \texttt{SourceInventory.inventory\_complete} is the
+  resulting catalogue invariant; duplicate-freeness is recorded separately by
+  \texttt{SourceInventory.inventory\_complete\_nodup}.
+  \leanok
+\end{proof}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceInventory.inventory_globally_valid.
+\begin{theorem}[Global source-inventory validity]
+  \label{thm:source-inventory-globally-valid}
+  \lean{KIP126.External.SourceInventory.inventory_globally_valid}
+  \leanok
+  Across all rows of the canonical source inventory, source directories are
+  pairwise distinct, present status-file paths are pairwise distinct, and all
+  citation keys are pairwise distinct.
+  \uses{def:source-inventory}
+\end{theorem}
+
+\begin{proof}
+  The three flattened finite lists are computed from the 18 canonical rows;
+  their no-duplicate predicates reduce to decidable equalities of the checked
+  strings.
+  \leanok
+\end{proof}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceInventory.inventory_valid.
+\begin{theorem}[Source inventory row validity]
+  \label{thm:source-inventory-valid}
+  \lean{KIP126.External.SourceInventory.inventory_valid}
+  \leanok
+  Every row selected by the canonical inventory satisfies the typed kind,
+  status, citation-key, and source-relative path invariants.
+  \uses{def:source-inventory,def:source-entry}
+\end{theorem}
+
+\begin{proof}
+  Each of the 18 lookup cases reduces the typed row predicates to decidable
+  string, kind, status, key, and directory-prefix checks; the checked
+  \texttt{inventory} definition discharges all of them.
+  \leanok
+\end{proof}
+
+% VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceInventory.projectionManifest.
+\begin{definition}[Source projection manifest]
+  \label{def:source-projection}
+  \lean{KIP126.External.SourceInventory.projectionManifest}
+  \leanok
+  The projection manifest is the ordered, delimiter-stable export of the
+  fields shared by Lean and JSON: source ID, directory, kind, citation keys,
+  status-file path, status class, and the four availability flags.  The
+  inventory checker executes the Lean exporter and rejects any disagreement
+  with those JSON fields.  Titles, publication data, artifact membership,
+  filesystem existence, and digests remain separate checker obligations.
+  \uses{def:source-inventory,def:source-entry}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/Evidence.lean, declaration ExternalEvidence.withArtifact_inventoryValid.
+\begin{theorem}[Inventory-valid artifact transport]
+  \label{thm:inventory-valid-artifact-transport}
+  \lean{KIP126.External.ExternalEvidence.withArtifact_inventoryValid}
+  \leanok
+  Replacing an evidence wrapper's optional artifact preserves
+  \texttt{InventoryValid} when the original certificate, the new artifact's
+  syntactic SHA-256 certificate, and its source-relative path certificate are
+  supplied explicitly.  This is a transport lemma, not a filesystem theorem.
+  \uses{def:inventory-valid-evidence,def:artifact-ref}
+\end{theorem}
+
+\begin{proof}
+  Unfold the wrapper update.  The proposition, source locator, and method
+  remain unchanged; combine the supplied digest and path certificates with the
+  structural validity fields.
+  \leanok
+\end{proof}
+
+% SOURCE: PROJECT_BOUNDARY.md, Examples, remarks, and questions.
+\begin{definition}[Open proposition]
+  \label{def:open-proposition}
+  \notready
+  An open proposition is a proposition recorded as a formalization target but
+  neither assumed nor asserted.  Its Blueprint node has no incoming edge to a
+  proved conclusion unless a later theorem explicitly takes a proof of it as
+  a hypothesis.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decisions and Axiom policy.
+\begin{definition}[KIP126 trust boundary]
+  \label{def:kip126-trust-boundary}
+  \uses{def:external-result,def:external-evidence,def:open-proposition,def:kervaire-main-input}
+  \notready
+  The KIP126 development may use Lean's foundational axioms and declarations
+  proved in the pinned Mathlib revision.  Paper-internal arguments are project
+  proof obligations.  Results from earlier literature are explicit external
+  results, while high-stem computations and every appendix row are explicit
+  external evidence.  The conditional permanent-cycle and geometric endpoints
+  are universally quantified over the explicit main-input record of
+  Definition~\ref{def:kervaire-main-input}; none of its fields is installed as
+  a global instance.  No project declaration may use \texttt{axiom},
+  \texttt{sorry}, or \texttt{admit}.
+\end{definition}
+
+\section{Claim ledger and catalogued inputs}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalRootId.
+\begin{definition}[External root identifier]
+  \label{def:external-root-id}
+  \lean{KIP126.External.ExternalRootId}
+  \leanok
+  An external-root identifier is a closed, enumerable key for a literature
+  result, machine catalogue, appendix family, or finite evidence family that
+  may cross the project boundary.  It carries no proposition by itself.
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalClaimClass.
+\begin{definition}[External claim class]
+  \label{def:external-claim-class}
+  \lean{KIP126.External.ExternalClaimClass}
+  \leanok
+  The five classes are literature result, machine evidence, table evidence,
+  transcribed evidence, and composite result.  The result wrapper supports
+  exactly literature and composite rows; the evidence wrapper supports exactly
+  machine, table, and transcribed rows.  These compatibility predicates
+  constrain which wrapper interface may bind to a canonical row; the class
+  itself is provenance metadata, not a proof of the associated proposition.
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalClaimRecord.
+\begin{definition}[External claim record]
+  \label{def:external-claim-record}
+  \lean{KIP126.External.ExternalClaimRecord}
+  \leanok
+  A claim record binds one root identifier to a trust classification, an owner
+  declaration name, a Blueprint-label or enumerated source target, explicit
+  dependencies, and a valid \texttt{SourceRef}.  A valid row also has a
+  project-namespace owner, a
+  recognized target class, no repeated or direct self-dependencies, and an
+  inventory-valid locator.  Composite rows retain a nonempty dependency list
+  and are not reclassified as primitive external facts.
+  \uses{def:external-root-id,def:external-claim-class,def:inventory-valid-source-ref}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimLedger.
+\begin{definition}[External claim ledger]
+  \label{def:external-claim-ledger}
+  \lean{KIP126.External.externalClaimLedger}
+  \leanok
+  The claim ledger is the checked-in finite record supplying one valid row for
+  each enumerated external root.  Its completeness and source-coverage facts
+  are stated separately below; this definition is a provenance/catalogue
+  object, not a theorem asserting any recorded mathematical claim.
+  \uses{def:external-claim-record}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimLedger_complete.
+\begin{theorem}[External claim ledger completeness]
+  \label{thm:external-claim-ledger-complete}
+  \lean{KIP126.External.externalClaimLedger_complete}
+  \leanok
+  The IDs in the ledger entries enumerate exactly the closed list of external
+  roots.  This is a finite catalogue invariant, not a proof of the propositions
+  named by those roots.
+  \uses{def:external-claim-ledger,def:external-root-id}
+\end{theorem}
+
+\begin{proof}
+  Case analysis over the closed \texttt{ExternalRootId} index verifies the lookup ID
+  equation; mapping the lookup over \texttt{ExternalRootId.all} gives the stated
+  equality.  Duplicate-freeness is recorded separately by
+  \texttt{externalClaimLedger\_nodup}.
+  \leanok
+\end{proof}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimLedger_refs_nodup.
+\begin{theorem}[Unique canonical claim references]
+  \label{thm:external-claim-refs-unique}
+  \lean{KIP126.External.externalClaimLedger_refs_nodup}
+  \leanok
+  The exact source references attached to the 55 canonical claim roots are
+  pairwise distinct.  Therefore a wrapper whose reference is equal to a
+  canonical row cannot ambiguously select two roots.
+  \uses{def:external-claim-ledger}
+\end{theorem}
+
+\begin{proof}
+  The finite list of claim records is mapped to its references and the
+  resulting equality checks reduce to decidable equality of source IDs,
+  descriptions, and optional artifact paths.
+  \leanok
+\end{proof}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimLedger_no_dependency_cycle.
+\begin{theorem}[Acyclic external-claim dependencies]
+  \label{thm:external-claim-dependency-acyclic}
+  \lean{KIP126.External.externalClaimLedger_no_dependency_cycle}
+  \leanok
+  The dependency relation of the canonical external-claim ledger admits a
+  natural-number rank that strictly decreases along every direct dependency.
+  Consequently, the transitive closure of the direct-dependency relation has
+  no path from a root back to itself.
+  \uses{def:external-claim-ledger}
+\end{theorem}
+
+\begin{proof}
+  Assign the explicit finite rank \texttt{ExternalRootId.dependencyRank} to
+  each of the 55 roots.  Exhaustive reduction of every admitted edge proves
+  that a dependency has smaller rank than its owner.  Strict descent in the
+  natural numbers excludes cycles.
+  \leanok
+\end{proof}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration CataloguedExternalResult.
+\begin{definition}[Catalogued external result]
+  \label{def:catalogued-external-result}
+  \lean{KIP126.External.CataloguedExternalResult}
+  \leanok
+  A catalogued external result consists of an explicit
+  \texttt{ExternalResult}, an external-root identifier, equality of the
+  result's source reference with that root's canonical claim row, and a proof
+  that the row's trust class supports literature-style results.  The canonical
+  row validity theorem then supplies the stronger inventory-validity
+  certificate.  The proposition and its proof still come from the explicit
+  wrapper value, not from the ledger metadata.
+  The root, locator, and trust-class fields are metadata checks; they do not
+  type-check that the proposition $P$ is definitionally the proposition named
+  by the future owner declaration.  Exact source references are pairwise
+  distinct across the canonical ledger, so the reference equality does select
+  a unique canonical root.
+  \uses{def:external-result,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-source-ref,thm:external-claim-refs-unique}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration CataloguedExternalEvidence.
+\begin{definition}[Catalogued external evidence]
+  \label{def:catalogued-external-evidence}
+  \lean{KIP126.External.CataloguedExternalEvidence}
+  \leanok
+  A catalogued external-evidence value similarly binds an explicit
+  \texttt{ExternalEvidence} to one canonical root and compatible evidence
+  class, and carries the stronger inventory-validity certificate for both its
+  locator and optional evidence artifact.  If an artifact is attached, its
+  path must equal the canonical claim locator.  The Lean certificate checks
+  the artifact's safe source-relative path and SHA-256 spelling.  Independently
+  of whether a wrapper artifact is attached, the JSON checker validates the
+  canonical locator's ledger membership, required status, filesystem
+  existence, and checked-in digest; it does not compare an arbitrary wrapper's
+  digest text with that JSON value.  The wrapper does not type-check that its
+  proposition is definitionally the one named by the future owner declaration.
+  \uses{def:external-evidence,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-evidence}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimProjectionManifest.
+\begin{definition}[External-claim projection manifest]
+  \label{def:external-claim-projection}
+  \lean{KIP126.External.externalClaimProjectionManifest}
+  \leanok
+  The claim projection exports, for every canonical root, its identifier,
+  source, optional locator artifact, locator description, owner, and
+  Blueprint-label or enumerated source target.  The external checker rejects
+  duplicate or missing root rows, duplicate owners or targets, missing source
+  coverage, unknown Blueprint/source targets, unlocated claims without the
+  required exact fallback locator, and any nonempty canonical locator artifact
+  path that does not name a listed, required, existing regular file under the
+  corresponding source directory.  This exported metadata still does not
+  assert the truth of a claim.
+  \uses{def:external-claim-ledger}
+\end{definition}
+
+% VERIFIED-IN: KIP126/External/Claims.lean, declaration every_source_has_valid_claim.
+\begin{theorem}[Source coverage by claim roots]
+  \label{thm:source-coverage-by-claims}
+  \lean{KIP126.External.every_source_has_valid_claim}
+  \leanok
+  Every source identifier in the closed source inventory is referenced by at
+  least one valid claim row.  This proves valid coverage of the provenance
+  index only; it does not assert the truth of the referenced literature or
+  computation.
+  \uses{def:external-claim-ledger,def:source-id}
+\end{theorem}
+
+\begin{proof}
+  For each constructor of \texttt{SourceId}, select the corresponding named claim
+  row in the finite ledger.  The resulting 18 witnesses are checked by
+  definitional reduction; the canonical ledger then supplies validity of the
+  selected row.
+  \leanok
+\end{proof}

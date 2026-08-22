@@ -1,9 +1,8 @@
 import KIP126.Core.SpectralSequence.Basic
 import KIP126.Core.Algebra.Completion
+import KIP126.Core.Algebra.Coefficients
 import KIP126.External.Claims
 import Mathlib.Algebra.Category.Grp.Abelian
-import Mathlib.Algebra.Category.ModuleCat.Abelian
-import Mathlib.Algebra.Field.ZMod
 
 /-!
 # The first classical Adams slice
@@ -17,6 +16,7 @@ namespace KIP126.Classical.Adams
 
 open CategoryTheory
 open KIP126.External
+open KIP126.Core.Algebra
 
 abbrev Bidegree := ℤ × ℤ
 
@@ -46,7 +46,7 @@ def classicalAdamsShape (r : ℤ) : ComplexShape Bidegree :=
 /-- A mod-2 classical Adams spectral sequence, with the differential shape
 fixed to `(r,r-1)` and displayed from `E₂`. -/
 abbrev ClassicalAdamsSpectralSequence :=
-  CategoryTheory.SpectralSequence (ModuleCat (ZMod 2)) classicalAdamsShape 2
+  CategoryTheory.SpectralSequence F2ModuleCat classicalAdamsShape 2
 
 /-! ### Stable-homotopy and page interfaces -/
 
@@ -60,7 +60,7 @@ structure StableHomotopyContext where
 /-- Explicit convergence data for a chosen Adams sequence. The propositions
 are witnesses supplied by a concrete construction, not global assumptions. -/
 structure ClassicalAdamsConvergence (E : ClassicalAdamsSpectralSequence) where
-  abutment : CategoryTheory.GradedObject Bidegree (ModuleCat (ZMod 2))
+  abutment : CategoryTheory.GradedObject Bidegree F2ModuleCat
   filtration : KIP126.Core.Algebra.Filtration abutment
   filtrationDegree : Bidegree → ℤ
   comparisonPage : Bidegree → ℤ
@@ -69,7 +69,9 @@ structure ClassicalAdamsConvergence (E : ClassicalAdamsSpectralSequence) where
     (E.page (comparisonPage b) (comparisonPage_ge_two b)).X b ≅
       filtration.associatedGraded (filtrationDegree b) b
   complete : ∀ b, KIP126.Core.Algebra.Filtration.CompletionWitness filtration b
+  /-- The strong degreewise eventual-top predicate named `IsExhaustive`. -/
   exhaustive : filtration.IsExhaustive
+  /-- Degreewise eventual-bottom, stronger than separatedness. -/
   eventuallyZero : filtration.IsEventuallyZero
 
 /-- A chosen classical Adams sequence for one spectrum. -/
@@ -84,7 +86,7 @@ def adamsStem (b : Bidegree) : ℤ := b.2 - b.1
 /-- The underlying additive group of one component of a classical Adams page. -/
 abbrev UnderlyingAdamsPage (E : ClassicalAdamsSpectralSequence) (r : ℤ)
     (hr : 2 ≤ r) (b : Bidegree) : AddCommGrpCat :=
-  (forget₂ (ModuleCat (ZMod 2)) AddCommGrpCat).obj ((E.page r hr).X b)
+  (forget₂ F2ModuleCat AddCommGrpCat).obj ((E.page r hr).X b)
 
 /-- The `2`-complete stable homotopy groups attached to every spectrum in a
 chosen stable-homotopy context. -/
@@ -116,14 +118,15 @@ structure StrongClassicalAdamsConvergence {stable : StableHomotopyContext}
     UnderlyingAdamsPage E r ((stablePage_ge_two b).trans hr) b ≅
       filtration.associatedGraded b.1 (adamsStem b)
   pagePassage_coherent : ∀ (b : Bidegree) (r : ℤ) (hr : stablePage b ≤ r),
-    (forget₂ (ModuleCat (ZMod 2)) AddCommGrpCat).map
+    (forget₂ F2ModuleCat AddCommGrpCat).map
         (pageHomologyIso b r hr).inv ≫
-      (forget₂ (ModuleCat (ZMod 2)) AddCommGrpCat).map
+      (forget₂ F2ModuleCat AddCommGrpCat).map
         (E.iso r (r + 1) b rfl ((stablePage_ge_two b).trans hr)).hom ≫
       (pageComparison b (r + 1) (hr.trans (by omega))).hom =
         (pageComparison b r hr).hom
   complete : ∀ n,
     KIP126.Core.Algebra.Filtration.CompletionWitness filtration n
+  /-- The strong degreewise eventual-top predicate named `IsExhaustive`. -/
   exhaustive : filtration.IsExhaustive
   separated : IsAdamsFiltrationSeparated filtration
 
@@ -210,7 +213,7 @@ structure SphereAdamsAlgebraPresentation {stable : StableHomotopyContext}
     {A : ClassicalAdamsSS stable stable.sphere}
     (P : SphereAdamsPresentation A) where
   productMap : ∀ a b : Bidegree,
-    (A.E₂).X a →ₗ[ZMod 2] (A.E₂).X b →ₗ[ZMod 2] (A.E₂).X (a + b)
+    (A.E₂).X a →ₗ[F2] (A.E₂).X b →ₗ[F2] (A.E₂).X (a + b)
   product_representation : ∀ x y,
     transportRepresentative (sphereProduct P x y)
         (P.multiplication.product_degree x y) =
@@ -262,7 +265,7 @@ structure ExternalAdamsPairingLaws {stable : StableHomotopyContext}
     {AZ : ClassicalAdamsSS stable (stable.smash X Y)}
     (pairing : ExternalAdamsPairing AX AY AZ) where
   pairMap : ∀ a b : Bidegree,
-    (AX.E₂).X a →ₗ[ZMod 2] (AY.E₂).X b →ₗ[ZMod 2] (AZ.E₂).X (a + b)
+    (AX.E₂).X a →ₗ[F2] (AY.E₂).X b →ₗ[F2] (AZ.E₂).X (a + b)
   pair_representation : ∀ x y,
     transportRepresentative (pairing.pair x y) (pairing.pair_degree x y) =
       pairMap x.degree y.degree x.representative y.representative
@@ -301,7 +304,7 @@ structure SphereAdamsModuleLaws {stable : StableHomotopyContext}
     (algebra : SphereAdamsAlgebraPresentation P)
     (module : SphereAdamsModule sphere target) where
   actionMap : ∀ a b : Bidegree,
-    (sphere.E₂).X a →ₗ[ZMod 2] (target.E₂).X b →ₗ[ZMod 2]
+    (sphere.E₂).X a →ₗ[F2] (target.E₂).X b →ₗ[F2]
       (target.E₂).X (a + b)
   action_representation : ∀ x y,
     transportRepresentative (module.action x y) (module.action_degree x y) =

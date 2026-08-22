@@ -289,7 +289,9 @@ does not claim the additional page-passage coherence needed to construct a
 canonical `E∞` object.
 
 Completeness is proved from the canonical tower `Aᵢ / FˢAᵢ`, while the
-boundedness field proves the stated exhaustive and separated consequences.
+boundedness field proves degreewise eventual-top and eventual-bottom
+consequences.  These are stronger than ordinary exhaustiveness and
+separatedness.
 All of this remains explicit data for a concrete construction; it is not
 inferred from an arbitrary filtered complex. -/
 structure PageAbutmentComparisonWitness
@@ -309,8 +311,8 @@ same endpoint data that supplied the boundary witnesses. -/
 on an abutment need not be definitionally the filtration on a chain complex. -/
   filtration : Algebra.Filtration abutment
   /-- Degreewise boundedness is the regularity hypothesis used here.  Its lower
-and upper components imply exhaustiveness, eventual vanishing, and canonical
-degreewise completion respectively. -/
+and upper components imply degreewise eventual-top, eventual-bottom, and
+canonical degreewise completion respectively. -/
   bounded : Algebra.Filtration.IsBounded filtration
   /-- Which abutment-filtration degree represents a page bidegree.  Keeping
 this translation explicit prevents a hidden sign or page-index convention. -/
@@ -342,13 +344,13 @@ noncomputable def completion (W : PageAbutmentComparisonWitness P A F) (n : ℤ)
     W.bounded.toIsBoundedAbove n
 
 /-- The bounded-below part of the witness makes the abutment filtration
-degreewise exhaustive. -/
+degreewise eventually top (the project predicate named `IsExhaustive`). -/
 lemma exhaustive (W : PageAbutmentComparisonWitness P A F) :
     W.filtration.IsExhaustive :=
   W.bounded.toIsBoundedBelow.isExhaustive
 
 /-- The bounded-above part of the witness makes the abutment filtration
-degreewise eventually zero, a strong categorical form of separatedness. -/
+degreewise eventually bottom, which is stronger than separatedness. -/
 lemma eventuallyZero (W : PageAbutmentComparisonWitness P A F) :
     W.filtration.IsEventuallyZero :=
   W.bounded.toIsBoundedAbove.isEventuallyZero

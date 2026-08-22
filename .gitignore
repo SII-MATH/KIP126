@@ -1,4 +1,6 @@
 .lake/
+**/__pycache__/
+**/*.pyc
 
 # Lean build artifacts
 *.olean
@@ -23,6 +25,12 @@ blueprint/web/
 blueprint/lean_decls
 blueprint/src/*.paux
 blueprint/src/web.bbl
+
+# Nested doc-gen4 build output
+docbuild/.lake/
+
+# Local timing output (CI uploads the same data as workflow artifacts)
+metrics/
 
 # Repository-private Codex skill runtime caches
 .agents/skills/**/__pycache__/
