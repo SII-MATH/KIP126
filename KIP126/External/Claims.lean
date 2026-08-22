@@ -41,6 +41,7 @@ inductive ExternalRootId
   | syntheticFoundation
   | lambdaQuotientRing
   | higherLambdaQuotientAlgebra
+  | symmetricMonoidalDeformation
   | lambdaInversion
   | nuCofiberCriterion
   | syntheticRigidity
@@ -102,6 +103,7 @@ def code : ExternalRootId → String
   | .syntheticFoundation => "synthetic_foundation"
   | .lambdaQuotientRing => "lambda_quotient_ring"
   | .higherLambdaQuotientAlgebra => "higher_lambda_quotient_algebra"
+  | .symmetricMonoidalDeformation => "symmetric_monoidal_deformation"
   | .lambdaInversion => "lambda_inversion"
   | .nuCofiberCriterion => "nu_cofiber_criterion"
   | .syntheticRigidity => "synthetic_rigidity"
@@ -159,6 +161,7 @@ def ofCode : String → Option ExternalRootId
   | "synthetic_foundation" => some .syntheticFoundation
   | "lambda_quotient_ring" => some .lambdaQuotientRing
   | "higher_lambda_quotient_algebra" => some .higherLambdaQuotientAlgebra
+  | "symmetric_monoidal_deformation" => some .symmetricMonoidalDeformation
   | "lambda_inversion" => some .lambdaInversion
   | "nu_cofiber_criterion" => some .nuCofiberCriterion
   | "synthetic_rigidity" => some .syntheticRigidity
@@ -218,6 +221,7 @@ def all : List ExternalRootId :=
   , .syntheticFoundation
   , .lambdaQuotientRing
   , .higherLambdaQuotientAlgebra
+  , .symmetricMonoidalDeformation
   , .lambdaInversion
   , .nuCofiberCriterion
   , .syntheticRigidity
@@ -264,7 +268,7 @@ def all : List ExternalRootId :=
 theorem all_nodup : all.Nodup := by
   decide
 
-theorem all_length : all.length = 55 := by
+theorem all_length : all.length = 56 := by
   decide
 
 theorem codes_nodup : (all.map code).Nodup := by
@@ -427,47 +431,48 @@ def dependencyRank : ExternalRootId → Nat
   | .syntheticFoundation => 11
   | .lambdaQuotientRing => 12
   | .higherLambdaQuotientAlgebra => 13
-  | .lambdaInversion => 14
-  | .nuCofiberCriterion => 15
-  | .syntheticRigidity => 16
-  | .lambdaBockstein => 17
-  | .syntheticEinfNu => 18
-  | .syntheticEinfQuotient => 19
-  | .syntheticLift => 20
-  | .syntheticTriangleLift => 21
-  | .syntheticLambdaComplete => 22
-  | .maySmashBoundary => 23
-  | .mossConvergence => 24
-  | .todaProductIdentities => 25
-  | .bjmBxCriterion => 26
-  | .theta5OrderData => 27
-  | .totalDifferentialIdentity => 28
-  | .tmfDetection => 29
-  | .br21TmfDifferential => 30
-  | .linMachineRelease => 31
-  | .linSpectrumCatalogue => 32
-  | .linE2PageCatalogue => 33
-  | .linMapCatalogue => 34
-  | .linD2Catalogue => 35
-  | .linPropagatedOutputs => 36
-  | .appendixTables => 37
-  | .manualDifferentials => 38
-  | .normalizedHopfDetection => 39
-  | .etaEssRegression => 40
-  | .leibnizNegativeRegression => 41
-  | .chuaRuleCounterexample => 42
-  | .mahowaldCofiberRegression => 43
-  | .synthetic14StemRegression => 44
-  | .stem38CrossingRegression => 45
-  | .hopfCrossingExclusion => 46
-  | .pageCrossingRegression => 47
-  | .theta5OrderTorsion => 48
-  | .theta5SquareTmf => 49
-  | .todaCandidateProducts => 50
-  | .twoExtensionIndeterminacy => 51
-  | .hopfLiftObstructions => 52
-  | .stem122ProductExhaustion => 53
-  | .cnuIncomingExclusion => 54
+  | .symmetricMonoidalDeformation => 14
+  | .lambdaInversion => 15
+  | .nuCofiberCriterion => 16
+  | .syntheticRigidity => 17
+  | .lambdaBockstein => 18
+  | .syntheticEinfNu => 19
+  | .syntheticEinfQuotient => 20
+  | .syntheticLift => 21
+  | .syntheticTriangleLift => 22
+  | .syntheticLambdaComplete => 23
+  | .maySmashBoundary => 24
+  | .mossConvergence => 25
+  | .todaProductIdentities => 26
+  | .bjmBxCriterion => 27
+  | .theta5OrderData => 28
+  | .totalDifferentialIdentity => 29
+  | .tmfDetection => 30
+  | .br21TmfDifferential => 31
+  | .linMachineRelease => 32
+  | .linSpectrumCatalogue => 33
+  | .linE2PageCatalogue => 34
+  | .linMapCatalogue => 35
+  | .linD2Catalogue => 36
+  | .linPropagatedOutputs => 37
+  | .appendixTables => 38
+  | .manualDifferentials => 39
+  | .normalizedHopfDetection => 40
+  | .etaEssRegression => 41
+  | .leibnizNegativeRegression => 42
+  | .chuaRuleCounterexample => 43
+  | .mahowaldCofiberRegression => 44
+  | .synthetic14StemRegression => 45
+  | .stem38CrossingRegression => 46
+  | .hopfCrossingExclusion => 47
+  | .pageCrossingRegression => 48
+  | .theta5OrderTorsion => 49
+  | .theta5SquareTmf => 50
+  | .todaCandidateProducts => 51
+  | .twoExtensionIndeterminacy => 52
+  | .hopfLiftObstructions => 53
+  | .stem122ProductExhaustion => 54
+  | .cnuIncomingExclusion => 55
 
 end ExternalRootId
 
@@ -495,14 +500,19 @@ prevents a misspelled `source:` key from passing row validity. -/
 def sourceTargets : List String :=
   [ "source:bjm-theta5-existence"
   , "source:br21-tmf-differential"
+  , "source:higher-lambda-quotient-algebra-tower"
   , "source:iwx-theta5-filtration"
   , "source:mahowald-tangora-differentials"
   , "source:may-low-page-survival"
+  , "source:symmetric-monoidal-deformation-construction"
   , "source:tmf-detection"
   , "source:xu-theta5-order"
   ]
 
 theorem sourceTargets_nodup : sourceTargets.Nodup := by
+  decide
+
+theorem sourceTargets_length : sourceTargets.length = 9 := by
   decide
 
 /-! A classification is part of the trust boundary, so it is checked against
@@ -762,8 +772,14 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
   | .higherLambdaQuotientAlgebra =>
       claim .higherLambdaQuotientAlgebra .literatureResult
         `KIP126.Synthetic.HigherLambdaQuotientAlgebra
-        "def:higher-lambda-quotient-algebra-input" .bhsMot
-        "Burklund--Hahn--Senger motivic input, E_infinity structures on lambda-power quotients"
+        "source:higher-lambda-quotient-algebra-tower" .burklundXu
+        "Burklund--Xu, Construction 7.7, direct tower of commutative algebras on the higher lambda-power quotients"
+        (some "reference/BurklundXu/paper.pdf")
+  | .symmetricMonoidalDeformation =>
+      claim .symmetricMonoidalDeformation .literatureResult
+        `KIP126.Synthetic.SymmetricMonoidalDeformationConstruction
+        "source:symmetric-monoidal-deformation-construction" .bhsMot
+        "Burklund--Hahn--Senger, Appendix C, symmetric monoidal filtered-to-synthetic deformation construction underlying the Burklund--Xu tower"
         (some "reference/BHSmot/paper.pdf")
   | .lambdaInversion =>
       claim .lambdaInversion .literatureResult `KIP126.Synthetic.LambdaInversion
@@ -1036,7 +1052,7 @@ theorem externalClaimLedger_nodup :
   externalClaimLedger.entries_nodup
 
 theorem externalClaimLedger_count :
-    externalClaimLedger.entries.length = 55 := by
+    externalClaimLedger.entries.length = 56 := by
   simp [ExternalClaimLedger.entries, ExternalRootId.all_length]
 
 theorem externalClaimLedger_valid (root : ExternalRootId) :
@@ -1153,7 +1169,7 @@ theorem externalClaimProjection_ids :
   change externalClaimLedger.entries.map ExternalClaimRecord.id = ExternalRootId.all
   exact externalClaimLedger_complete
 
-theorem externalClaimProjection_count : externalClaimProjection.length = 55 := by
+theorem externalClaimProjection_count : externalClaimProjection.length = 56 := by
   simp [externalClaimProjection, externalClaimLedger_count]
 
 /-- Every admitted document or machine archive owns at least one claim row. -/
@@ -1172,7 +1188,7 @@ theorem every_source_has_claim (source : SourceId) :
   | iwx => exact ⟨.iwxTheta5Filtration, rfl⟩
   | pst => exact ⟨.syntheticFoundation, rfl⟩
   | bhs => exact ⟨.syntheticRigidity, rfl⟩
-  | bhsMot => exact ⟨.higherLambdaQuotientAlgebra, rfl⟩
+  | bhsMot => exact ⟨.symmetricMonoidalDeformation, rfl⟩
   | burklundXu => exact ⟨.bjmBxCriterion, rfl⟩
   | moss => exact ⟨.mossConvergence, rfl⟩
   | br21 => exact ⟨.br21TmfDifferential, rfl⟩

@@ -44,6 +44,7 @@ EXPECTED_CLAIM_CODES = (
     "synthetic_foundation",
     "lambda_quotient_ring",
     "higher_lambda_quotient_algebra",
+    "symmetric_monoidal_deformation",
     "lambda_inversion",
     "nu_cofiber_criterion",
     "synthetic_rigidity",
@@ -89,9 +90,11 @@ EXPECTED_CLAIM_CODES = (
 EXPECTED_SOURCE_TARGETS = {
     "source:bjm-theta5-existence",
     "source:br21-tmf-differential",
+    "source:higher-lambda-quotient-algebra-tower",
     "source:iwx-theta5-filtration",
     "source:mahowald-tangora-differentials",
     "source:may-low-page-survival",
+    "source:symmetric-monoidal-deformation-construction",
     "source:tmf-detection",
     "source:xu-theta5-order",
 }

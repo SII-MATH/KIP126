@@ -18,6 +18,7 @@ if str(SCRIPT_DIR) not in sys.path:
 from check_source_inventory import (  # noqa: E402
     HASH_CHUNK_SIZE,
     EXPECTED_CLAIM_CODES,
+    EXPECTED_SOURCE_TARGETS,
     InventoryValidator,
     _parse_positive_timeout,
     _sha256_file,
@@ -260,8 +261,9 @@ class SourceInventoryTests(unittest.TestCase):
             sources,
             expected_sources,
         )
-        self.assertEqual(len(EXPECTED_CLAIM_CODES), 55)
-        self.assertEqual(len(set(EXPECTED_CLAIM_CODES)), 55)
+        self.assertEqual(len(EXPECTED_CLAIM_CODES), 56)
+        self.assertEqual(len(set(EXPECTED_CLAIM_CODES)), 56)
+        self.assertEqual(len(EXPECTED_SOURCE_TARGETS), 9)
         self.assertTrue(
             any("missing canonical claim ids" in error for error in validator.errors)
         )
