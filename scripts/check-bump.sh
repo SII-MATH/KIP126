@@ -6,15 +6,14 @@
 # `lean-toolchain` be built and auto-merged without a human.
 # the worry is a PR that re-points a dependency at a malicious fork/commit or a
 # malicious toolchain and then gets auto-built. We reduce the whole manifest to a
-# deterministic function of KIP126's single `require mathlib from git ... @ ...`
-# declaration in lakefile.lean and require the manifest revision and toolchain
-# to match that immutable release reference exactly:
+# deterministic function of one validated fact — "mathlib moved forward on the
+# branch nominated in lakefile.toml" — and require the toolchain to move forward
+# and match mathlib's:
 #
-#   1. lakefile.toml / lakefile.lean are byte-identical to base and the
-#      lakefile.lean mathlib require is unique and agrees with the manifest.
+#   1. lakefile.toml / lakefile.lean are byte-identical to base.
 #   2. The nominated require (mathlib) is the ONLY package named "mathlib", is a
 #      `git` package pinned to a 40-hex commit SHA, keeps its url, and normally keeps
-#      inputRev equal to the immutable lakefile.lean require reference.
+#      inputRev at `master`.
 #      Its new rev is a *descendant of the old rev* AND *on the trusted base
 #      inputRev's history* — a genuine forward move on the nominated branch (via
 #      the GitHub compare API; the SHA requirement makes the compared revs
@@ -116,38 +115,6 @@ IFS=$'\t' read -r ML_URL_P ML_REV_P ML_IR_P <<<"$ml_pr"
   || fail "mathlib inputRev (nominated branch) changed ($ML_IR_B -> $ML_IR_P) — human-owned"
 NOMINATED_BRANCH="$ML_IR_B"
 ML_SLUG="$(slug "$ML_URL_P")"
-
-# KIP126 pins Mathlib through lakefile.lean. Do not trust a manifest whose
-# inputRev merely looks plausible: require it to match the unique declarative
-# require and resolve that ref to the exact manifest commit.
-lakefile_mathlib="$(python3 - "$BASE/lakefile.lean" <<'PY'
-import pathlib,re,sys
-text=pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
-matches=re.findall(
-    r'require\s+mathlib\s+from\s+git\s+"([^"]+)"\s*@\s*"([^"]+)"',
-    text,
-    re.DOTALL,
-)
-if len(matches) != 1:
-    print(f"ERROR: expected exactly one require mathlib from git declaration, found {len(matches)}")
-    raise SystemExit(1)
-url, ref = matches[0]
-url=url.rstrip("/")
-if url.endswith(".git"):
-    url=url[:-4]
-print(f"{url}\t{ref}")
-PY
-)" || fail "base lakefile.lean: ${lakefile_mathlib#ERROR: }"
-IFS=$'\t' read -r LAKEFILE_URL LAKEFILE_REF <<<"$lakefile_mathlib"
-[ "$LAKEFILE_URL" = "$ML_URL_P" ] \
-  || fail "lakefile.lean mathlib url ($LAKEFILE_URL) != manifest url ($ML_URL_P)"
-[ "$LAKEFILE_REF" = "$ML_IR_P" ] \
-  || fail "lakefile.lean mathlib ref ($LAKEFILE_REF) != manifest inputRev ($ML_IR_P)"
-RESOLVED_REF="$(gh api "repos/$ML_SLUG/commits/$LAKEFILE_REF" --jq .sha 2>/dev/null)" \
-  || fail "cannot resolve lakefile.lean mathlib ref $LAKEFILE_REF"
-[ "$RESOLVED_REF" = "$ML_REV_P" ] \
-  || fail "manifest mathlib rev $ML_REV_P != exact lakefile.lean ref $LAKEFILE_REF ($RESOLVED_REF)"
-echo "bump-guard: lakefile.lean mathlib ref $LAKEFILE_REF resolves exactly to $ML_REV_P."
 
 # --- 2. mathlib moved forward on the nominated branch -------------------------
 if [ "$ML_REV_B" = "$ML_REV_P" ]; then

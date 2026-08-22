@@ -119,6 +119,11 @@ def test_mergeability_is_required_for_ready():
     assert target(facts(review, mergeable=None, mergeable_state="unknown")) == "awaiting-review"
 
 
+def test_advisory_failure_does_not_override_explicit_green_merge_gates():
+    review = status("semantic-review", "success", creator="surenny", target_url="x", verified_verdict=True)
+    assert target(facts(review, mergeable=True, mergeable_state="unstable")) == "ready-to-merge"
+
+
 def test_closed_pull_request_has_no_status_label():
     assert target(facts(state="closed")) is None
     assert target(facts(state="closed", merged=True)) is None
@@ -210,6 +215,15 @@ def test_dispatch_hashes_exact_identity_without_a_trailing_newline():
     assert "KEY=$(jq -jr" in workflow
     assert 'schema: "euler-review.request/v1"' in workflow
     assert 'IDEMPOTENCY_KEY="euler-review-$KEY"' in workflow
+
+
+def test_explicit_review_retry_uses_a_new_delivery_identity_only():
+    workflow = (ROOT / ".github" / "workflows" / "review.yml").read_text(encoding="utf-8")
+    assert "grep -qxE '[[:space:]]*/review-retry[[:space:]]*'" in workflow
+    assert '[[ "$COMMENT_ID" =~ ^[0-9]+$ ]]' in workflow
+    assert 'WEBHOOK_IDEMPOTENCY_KEY="euler-review-retry-$RETRY_KEY"' in workflow
+    assert "jq --arg key \"$IDEMPOTENCY_KEY\" '. + {idempotency_key: $key}'" in workflow
+    assert '--header "Idempotency-Key: ${{ steps.resolve.outputs.webhook_idempotency_key }}"' in workflow
 
 
 def test_trusted_check_runs_normalize_into_mechanical_evidence():

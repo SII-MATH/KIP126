@@ -1,15 +1,9 @@
-\chapter{Formalization contract and provenance}
-\label{chap:formalization-contract}
+\chapter{External-input provenance audit}
+\label{chap:provenance-audit}
 
-This chapter fixes the trust boundary used throughout the Blueprint.  The
-mathematical source of record is Lin--Wang--Xu, \emph{On the Last Kervaire
-Invariant Problem}, represented by \texttt{aimpaper/main.tex},
-\texttt{aimpaper/112.tex}, and the local PDF.  Earlier literature and machine
-calculations may enter only through the explicit records below.  In
-particular, a citation or a table row is not silently promoted to a project
-axiom.
+This audit chapter records source identifiers, locators, inventories, claim ledgers, and the trust boundary.  It is technical bookkeeping, not a mathematical prerequisite and not a parent of every chapter.
 
-\section{Source-bearing inputs}
+\section{Source-bearing input structures}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
 % VERIFIED-IN: KIP126/External/Provenance.lean, declaration SourceId.
@@ -75,7 +69,7 @@ axiom.
   not itself evidence for a mathematical proposition.
 \end{definition}
 
-% SOURCE: PROJECT_BOUNDARY.md, External inputs; docs/FORMALIZATION_SPEC.md:51--64.
+% SOURCE: PROJECT_BOUNDARY.md, External inputs and Acceptance criteria.
 % VERIFIED-IN: KIP126/External/Provenance.lean, declaration EvidenceMetadata.
 \begin{definition}[Evidence metadata]
   \label{def:evidence-metadata}
@@ -88,7 +82,7 @@ axiom.
   \uses{def:artifact-ref}
 \end{definition}
 
-% SOURCE: PROJECT_BOUNDARY.md:149--167; docs/FORMALIZATION_SPEC.md:50--69.
+% SOURCE: PROJECT_BOUNDARY.md:149--167, explicit proposition-bearing wrappers.
 % VERIFIED-IN: KIP126/External/Provenance.lean, declaration ExternalResult.
 \begin{definition}[External result]
   \label{def:external-result}
@@ -101,7 +95,7 @@ axiom.
   \uses{def:source-ref}
 \end{definition}
 
-% SOURCE: PROJECT_BOUNDARY.md:149--167; docs/FORMALIZATION_SPEC.md:50--69.
+% SOURCE: PROJECT_BOUNDARY.md:149--167, explicit proposition-bearing wrappers.
 % VERIFIED-IN: KIP126/External/Provenance.lean, declaration ExternalEvidence.
 \begin{definition}[External evidence]
   \label{def:external-evidence}
@@ -113,18 +107,22 @@ axiom.
   relations.  Like an external result, it is always an explicit theorem
   parameter.  The wrapper records the declared evidence and its provenance;
   it does not turn either one into a project theorem.
-  \uses{def:source-ref,def:artifact-ref,def:evidence-metadata}
+  \uses{def:source-ref,def:artifact-ref}
 \end{definition}
+
+\section{Inventory validity and trust boundary}
 
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceAvailability.
 \begin{definition}[Source availability]
   \label{def:source-availability}
   \lean{KIP126.External.SourceAvailability}
   \leanok
-  A source-availability value records the four independently checked flags for
-  metadata, PDF, extracted text, and source archive access.  The status-class
-  consistency predicate is proved for every row of the finite catalogue.
-  \uses{def:source-id}
+  A source-availability value records four Boolean flags for metadata, PDF,
+  extracted-text, and source-archive availability.  These fields are claims
+  about acquisition state, not mathematical evidence.  For canonical rows,
+  the filesystem checker compares them with the status file and the artifacts
+  actually present; the typed inventory separately proves that each row's
+  status class agrees with its flags.
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceStatusClass.
@@ -135,7 +133,6 @@ axiom.
   The status class is the stable acquisition summary shared with the JSON
   ledger: source of record, full text, metadata only, or partial availability.
   Its encoder and decoder are inverse on the finite set of admitted classes.
-  \uses{def:source-availability}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceEntry.
@@ -145,13 +142,16 @@ axiom.
   \leanok
   A typed source entry exposes the JSON/Lean synchronization fields: source
   identifier, kind, citation keys, local directory, status-file path, status
-  class, and availability flags.  Its validity predicate checks nonempty and
-  duplicate-free citation keys, kind/status consistency, and source-relative
-  status paths; filesystem hashes remain under the external checker.
+  class, and availability flags.  Its validity predicate checks schema-safe,
+  nonempty, duplicate-free citation keys; a nonempty safe
+  directory; kind/status consistency; the distinguished source-of-record
+  convention; and a safe, source-relative status path when present.
+  Filesystem existence, bibliographic prose, and artifact hashes remain under
+  the external checker.
   \uses{def:source-id,def:source-kind,def:source-status-class,def:source-availability}
 \end{definition}
 
-% SOURCE: PROJECT_BOUNDARY.md, External inputs; docs/FORMALIZATION_SPEC.md:929--930.
+% SOURCE: PROJECT_BOUNDARY.md, External inputs and Acceptance criteria.
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceInventory.inventory.
 \begin{definition}[Source inventory]
   \label{def:source-inventory}
@@ -166,7 +166,7 @@ axiom.
   propositions carried by an \texttt{ExternalResult} or
   \texttt{ExternalEvidence} value.  The Lean resolver uses a
   \texttt{SourceRef}'s stable identifier to select its catalogue row.
-  \uses{def:source-id,def:source-kind,def:source-ref,def:source-entry,def:source-status-class}
+  \uses{def:source-entry}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/SourceInventory.lean, declaration SourceRef.InventoryValid.
@@ -262,11 +262,60 @@ axiom.
   \lean{KIP126.External.SourceInventory.projectionManifest}
   \leanok
   The projection manifest is the ordered, delimiter-stable export of the
-  fields shared by Lean and JSON.  The inventory checker executes the Lean
-  exporter and rejects any row-level drift before accepting the filesystem
-  ledger.
+  fields shared by Lean and JSON: source ID, directory, kind, citation keys,
+  status-file path, status class, and the four availability flags.  The
+  inventory checker executes the Lean exporter and rejects any disagreement
+  with those JSON fields.  Titles, publication data, artifact membership,
+  filesystem existence, and digests remain separate checker obligations.
   \uses{def:source-inventory,def:source-entry}
 \end{definition}
+
+% VERIFIED-IN: KIP126/External/Evidence.lean, declaration ExternalEvidence.withArtifact_inventoryValid.
+\begin{theorem}[Inventory-valid artifact transport]
+  \label{thm:inventory-valid-artifact-transport}
+  \lean{KIP126.External.ExternalEvidence.withArtifact_inventoryValid}
+  \leanok
+  Replacing an evidence wrapper's optional artifact preserves
+  \texttt{InventoryValid} when the original certificate, the new artifact's
+  syntactic SHA-256 certificate, and its source-relative path certificate are
+  supplied explicitly.  This is a transport lemma, not a filesystem theorem.
+  \uses{def:inventory-valid-evidence,def:artifact-ref}
+\end{theorem}
+
+\begin{proof}
+  Unfold the wrapper update.  The proposition, source locator, and method
+  remain unchanged; combine the supplied digest and path certificates with the
+  structural validity fields.
+  \leanok
+\end{proof}
+
+% SOURCE: PROJECT_BOUNDARY.md, Examples, remarks, and questions.
+\begin{definition}[Open proposition]
+  \label{def:open-proposition}
+  \notready
+  An open proposition is a proposition recorded as a formalization target but
+  neither assumed nor asserted.  Its Blueprint node has no incoming edge to a
+  proved conclusion unless a later theorem explicitly takes a proof of it as
+  a hypothesis.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decisions and Axiom policy.
+\begin{definition}[KIP126 trust boundary]
+  \label{def:kip126-trust-boundary}
+  \uses{def:external-result,def:external-evidence,def:open-proposition,def:kervaire-main-input}
+  \notready
+  The KIP126 development may use Lean's foundational axioms and declarations
+  proved in the pinned Mathlib revision.  Paper-internal arguments are project
+  proof obligations.  Results from earlier literature are explicit external
+  results, while high-stem computations and every appendix row are explicit
+  external evidence.  The conditional permanent-cycle and geometric endpoints
+  are universally quantified over the explicit main-input record of
+  Definition~\ref{def:kervaire-main-input}; none of its fields is installed as
+  a global instance.  No project declaration may use \texttt{axiom},
+  \texttt{sorry}, or \texttt{admit}.
+\end{definition}
+
+\section{Claim ledger and catalogued inputs}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalRootId.
 \begin{definition}[External root identifier]
@@ -276,7 +325,6 @@ axiom.
   An external-root identifier is a closed, enumerable key for a literature
   result, machine catalogue, appendix family, or finite evidence family that
   may cross the project boundary.  It carries no proposition by itself.
-  \uses{def:source-id}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalClaimClass.
@@ -290,7 +338,6 @@ axiom.
   machine, table, and transcribed rows.  These compatibility predicates
   constrain which wrapper interface may bind to a canonical row; the class
   itself is provenance metadata, not a proof of the associated proposition.
-  \uses{def:external-root-id}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration ExternalClaimRecord.
@@ -305,7 +352,7 @@ axiom.
   recognized target class, no repeated or direct self-dependencies, and an
   inventory-valid locator.  Composite rows retain a nonempty dependency list
   and are not reclassified as primitive external facts.
-  \uses{def:external-root-id,def:external-claim-class,def:inventory-valid-source-ref,def:source-entry}
+  \uses{def:external-root-id,def:external-claim-class,def:inventory-valid-source-ref}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimLedger.
@@ -317,7 +364,7 @@ axiom.
   each enumerated external root.  Its completeness and source-coverage facts
   are stated separately below; this definition is a provenance/catalogue
   object, not a theorem asserting any recorded mathematical claim.
-  \uses{def:external-claim-record,def:source-inventory}
+  \uses{def:external-claim-record}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimLedger_complete.
@@ -347,7 +394,7 @@ axiom.
   The exact source references attached to the 55 canonical claim roots are
   pairwise distinct.  Therefore a wrapper whose reference is equal to a
   canonical row cannot ambiguously select two roots.
-  \uses{def:external-claim-ledger,thm:external-claim-ledger-complete}
+  \uses{def:external-claim-ledger}
 \end{theorem}
 
 \begin{proof}
@@ -405,35 +452,16 @@ axiom.
   A catalogued external-evidence value similarly binds an explicit
   \texttt{ExternalEvidence} to one canonical root and compatible evidence
   class, and carries the stronger inventory-validity certificate for both its
-  locator and optional evidence artifact.  Its artifact path must equal the
-  canonical claim locator.  The Lean certificate checks the artifact's safe
-  source-relative path and SHA-256 spelling.  The JSON checker then validates
-  membership of that canonical path, filesystem existence, and equality of the
-  checked-in file with the JSON digest; it does not automatically compare an
-  arbitrary wrapper's digest text with that JSON value.  The wrapper does not
-  type-check that its proposition is definitionally the one named by the
-  future owner declaration.
-  \uses{def:external-evidence,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-source-ref,def:inventory-valid-evidence}
+  locator and optional evidence artifact.  If an artifact is attached, its
+  path must equal the canonical claim locator.  The Lean certificate checks
+  the artifact's safe source-relative path and SHA-256 spelling.  Independently
+  of whether a wrapper artifact is attached, the JSON checker validates the
+  canonical locator's ledger membership, required status, filesystem
+  existence, and checked-in digest; it does not compare an arbitrary wrapper's
+  digest text with that JSON value.  The wrapper does not type-check that its
+  proposition is definitionally the one named by the future owner declaration.
+  \uses{def:external-evidence,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-evidence}
 \end{definition}
-
-% VERIFIED-IN: KIP126/External/Evidence.lean, declaration ExternalEvidence.withArtifact_inventoryValid.
-\begin{theorem}[Inventory-valid artifact transport]
-  \label{thm:inventory-valid-artifact-transport}
-  \lean{KIP126.External.ExternalEvidence.withArtifact_inventoryValid}
-  \leanok
-  Replacing an evidence wrapper's optional artifact preserves
-  \texttt{InventoryValid} when the original certificate, the new artifact's
-  syntactic SHA-256 certificate, and its source-relative path certificate are
-  supplied explicitly.  This is a transport lemma, not a filesystem theorem.
-  \uses{def:inventory-valid-evidence,def:artifact-ref}
-\end{theorem}
-
-\begin{proof}
-  Unfold the wrapper update.  The proposition, source locator, and method
-  remain unchanged; combine the supplied digest and path certificates with the
-  structural validity fields.
-  \leanok
-\end{proof}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration externalClaimProjectionManifest.
 \begin{definition}[External-claim projection manifest]
@@ -441,12 +469,15 @@ axiom.
   \lean{KIP126.External.externalClaimProjectionManifest}
   \leanok
   The claim projection exports, for every canonical root, its identifier,
-  source, optional locator artifact, owner, and Blueprint-label or enumerated
-  source target.  The external checker rejects duplicate rows, owners, or
-  targets; missing source coverage; unknown Blueprint/source targets; and any
-  nonempty canonical locator artifact path that does not name a listed,
-  required, existing regular file under the corresponding source directory.
-  \uses{def:external-claim-ledger,def:source-projection}
+  source, optional locator artifact, locator description, owner, and
+  Blueprint-label or enumerated source target.  The external checker rejects
+  duplicate or missing root rows, duplicate owners or targets, missing source
+  coverage, unknown Blueprint/source targets, unlocated claims without the
+  required exact fallback locator, and any nonempty canonical locator artifact
+  path that does not name a listed, required, existing regular file under the
+  corresponding source directory.  This exported metadata still does not
+  assert the truth of a claim.
+  \uses{def:external-claim-ledger}
 \end{definition}
 
 % VERIFIED-IN: KIP126/External/Claims.lean, declaration every_source_has_valid_claim.
@@ -458,7 +489,7 @@ axiom.
   least one valid claim row.  This proves valid coverage of the provenance
   index only; it does not assert the truth of the referenced literature or
   computation.
-  \uses{def:external-claim-ledger,def:source-inventory,def:inventory-valid-source-ref}
+  \uses{def:external-claim-ledger,def:source-id}
 \end{theorem}
 
 \begin{proof}
@@ -468,36 +499,3 @@ axiom.
   selected row.
   \leanok
 \end{proof}
-
-% SOURCE: PROJECT_BOUNDARY.md, Examples, remarks, and questions.
-\begin{definition}[Open proposition]
-  \label{def:open-proposition}
-  \notready
-  An open proposition is a proposition recorded as a formalization target but
-  neither assumed nor asserted.  Its Blueprint node has no incoming edge to a
-  proved conclusion unless a later theorem explicitly takes a proof of it as
-  a hypothesis.
-\end{definition}
-
-% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decisions and Axiom policy.
-\begin{definition}[KIP126 trust boundary]
-  \label{def:kip126-trust-boundary}
-  \uses{def:external-result,def:external-evidence,def:open-proposition,def:kervaire-main-input}
-  \notready
-  The KIP126 development may use Lean's foundational axioms and declarations
-  proved in the pinned Mathlib revision.  Paper-internal arguments are project
-  proof obligations.  Results from earlier literature are explicit external
-  results, while high-stem computations and every appendix row are explicit
-  external evidence.  The conditional permanent-cycle and geometric endpoints
-  are universally quantified over the explicit main-input record of
-  Definition~\ref{def:kervaire-main-input}; none of its fields is installed as
-  a global instance.  No project declaration may use \texttt{axiom},
-  \texttt{sorry}, or \texttt{admit}.
-\end{definition}
-
-The comments beginning with \texttt{SOURCE} in later chapters give the primary
-locator.  Comments beginning with \texttt{VERIFIED-IN} record a second local
-copy that was checked, but never replace the primary source.  A
-\texttt{mathlibok} node has an exact declaration in Mathlib v4.32.2.  Existing
-\texttt{leanok} nodes name compiled project declarations.  Every other node is
-conservatively marked \texttt{notready}.

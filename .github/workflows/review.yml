@@ -2,18 +2,24 @@ name: Review
 
 on:
   workflow_run:
-    workflows: [pr-build]
+    workflows: [pr-build, blueprint-pr]
     types: [completed]
   issue_comment:
     types: [created]
+  # Branch reconciliation dispatches pr-build for the new head; the successful build then uses this
+  # explicit path so semantic review never relies on recursive pull_request_target delivery.
+  workflow_dispatch:
+    inputs:
+      pr: { description: "PR number whose exact head passed pr-build", required: true, type: string }
 
 permissions:
+  actions: write
   contents: read
   pull-requests: read
   statuses: write
 
 concurrency:
-  group: review-${{ github.event.issue.number || github.event.workflow_run.pull_requests[0].number || github.event.workflow_run.id }}
+  group: review-${{ github.event.issue.number || inputs.pr || github.event.workflow_run.pull_requests[0].number || github.event.workflow_run.id }}
   cancel-in-progress: true
 
 jobs:
@@ -22,6 +28,7 @@ jobs:
       (github.event_name == 'workflow_run'
         && github.event.workflow_run.conclusion == 'success'
         && github.event.workflow_run.event == 'pull_request_target')
+      || (github.event_name == 'workflow_dispatch' && inputs.pr != '')
       || (github.event_name == 'issue_comment'
         && github.event.issue.pull_request != null)
     runs-on: ubuntu-24.04
@@ -29,12 +36,16 @@ jobs:
       pr: ${{ steps.resolve.outputs.pr }}
       head_sha: ${{ steps.resolve.outputs.head_sha }}
       initializer: ${{ steps.resolve.outputs.initializer }}
+      review_kind: ${{ steps.resolve.outputs.review_kind }}
       idempotency_key: ${{ steps.resolve.outputs.idempotency_key }}
+      webhook_idempotency_key: ${{ steps.resolve.outputs.webhook_idempotency_key }}
     env:
       GH_TOKEN: ${{ github.token }}
       REPO: ${{ github.repository }}
       COMMENT_BODY: ${{ github.event.comment.body }}
+      COMMENT_ID: ${{ github.event.comment.id || '' }}
       EVENT: ${{ github.event_name }}
+      DISPATCH_PR: ${{ inputs.pr || '' }}
       WEBHOOK_URL: ${{ secrets.MULTICA_REVIEW_WEBHOOK_URL }}
       ROADMAP_REPOSITORY: ${{ vars.EULER_ROADMAP_REPOSITORY }}
       RUBRIC_REVISION: ${{ vars.EULER_RUBRIC_REVISION }}
@@ -46,28 +57,37 @@ jobs:
           set -euo pipefail
           PR=''
           EVENT_HEAD=''
+          RETRY_REQUESTED=false
           if [[ "$EVENT" == workflow_run ]]; then
             PR=$(jq -r '.workflow_run.pull_requests | if length == 1 then .[0].number else empty end' "$GITHUB_EVENT_PATH")
             EVENT_HEAD=$(jq -r '.workflow_run.head_sha // empty' "$GITHUB_EVENT_PATH")
             if [[ -z "$PR" ]]; then
               PR=$(gh api "repos/$REPO/commits/$EVENT_HEAD/pulls" --jq '[.[] | select(.state == "open" and .draft == false)] | if length == 1 then .[0].number else empty end')
             fi
+          elif [[ "$EVENT" == workflow_dispatch ]]; then
+            [[ "$DISPATCH_PR" =~ ^[0-9]+$ ]]
+            PR="$DISPATCH_PR"
           else
             ACTOR=$(jq -r '.sender.login // empty' "$GITHUB_EVENT_PATH")
             ASSOCIATION=$(jq -r '.comment.author_association // empty' "$GITHUB_EVENT_PATH")
-            if ! printf '%s' "$COMMENT_BODY" | grep -qxE '[[:space:]]*/review[[:space:]]*'; then
-              echo 'Comment does not contain an exact /review command; skipping.'
+            if printf '%s' "$COMMENT_BODY" | grep -qxE '[[:space:]]*/review-retry[[:space:]]*'; then
+              COMMAND=/review-retry
+              RETRY_REQUESTED=true
+            elif printf '%s' "$COMMENT_BODY" | grep -qxE '[[:space:]]*/review[[:space:]]*'; then
+              COMMAND=/review
+            else
+              echo 'Comment does not contain an exact /review or /review-retry command; skipping.'
               exit 0
             fi
             if PERMISSION=$(gh api "repos/$REPO/collaborators/$ACTOR/permission" --jq '.permission' 2>/dev/null); then
               case "$PERMISSION" in
                 admin|write|maintain) ;;
-                *) echo "Unauthorized /review by $ACTOR (permission=$PERMISSION); skipping."; exit 0 ;;
+                *) echo "Unauthorized $COMMAND by $ACTOR (permission=$PERMISSION); skipping."; exit 0 ;;
               esac
             else
               case "$ASSOCIATION" in
                 OWNER|MEMBER|COLLABORATOR) ;;
-                *) echo "Unauthorized /review by $ACTOR; permission API unavailable and association=$ASSOCIATION."; exit 0 ;;
+                *) echo "Unauthorized $COMMAND by $ACTOR; permission API unavailable and association=$ASSOCIATION."; exit 0 ;;
               esac
             fi
             PR=$(jq -r '.issue.number // empty' "$GITHUB_EVENT_PATH")
@@ -92,6 +112,25 @@ jobs:
             exit 0
           fi
           echo 'initializer=false' >> "$GITHUB_OUTPUT"
+
+          files=$(gh api --paginate "repos/$REPO/pulls/$PR/files" --jq '.[].filename')
+          blueprint=false
+          lean=false
+          while IFS= read -r path; do
+            case "$path" in
+              blueprint/src/*) blueprint=true ;;
+              KIP126.lean|KIP126/*.lean|lakefile.lean|lake-manifest.json|lean-toolchain) lean=true ;;
+            esac
+          done <<< "$files"
+          if [[ "$blueprint" == true && "$lean" == true ]]; then
+            REVIEW_KIND=mixed
+          elif [[ "$blueprint" == true ]]; then
+            REVIEW_KIND=blueprint
+          else
+            REVIEW_KIND=lean
+          fi
+          echo "review_kind=$REVIEW_KIND" >> "$GITHUB_OUTPUT"
+
           test -n "$ROADMAP_REPOSITORY"
           test -n "$RUBRIC_REVISION"
           MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
@@ -103,6 +142,12 @@ jobs:
               max_by(.updated_at // .created_at) | .state == "success"
             ' statuses.json >/dev/null
           done
+          if [[ "$REVIEW_KIND" == blueprint || "$REVIEW_KIND" == mixed ]]; then
+            jq -e '
+              [.statuses[] | select(.context == "blueprint")] |
+              max_by(.updated_at // .created_at) | .state == "success"
+            ' statuses.json >/dev/null
+          fi
           AIM_ISSUE=$(jq -r '[.title, (.body // ""), .head.ref] | join("\n")' pr.json | \
             grep -m1 -Eo '[A-Z][A-Z0-9]*-[1-9][0-9]*')
           test -n "$AIM_ISSUE"
@@ -114,6 +159,7 @@ jobs:
             --arg base_sha "$BASE_SHA" \
             --arg merge_base_sha "$MERGE_BASE_SHA" \
             --arg rubric_revision "$RUBRIC_REVISION" \
+            --arg review_kind "$REVIEW_KIND" \
             --arg aim_issue "$AIM_ISSUE" \
             --slurpfile statuses statuses.json '
               def evidence($name):
@@ -127,18 +173,31 @@ jobs:
                roadmap_repository: $roadmap_repository,
                pull_request: $pull_request, head_sha: $head_sha,
                base_sha: $base_sha, merge_base_sha: $merge_base_sha,
-               rubric_revision: $rubric_revision, aim_issue: $aim_issue,
-               ci: {scope: evidence("scope"), build: evidence("build"),
-                    "bump-guard": evidence("bump-guard")}}
+               rubric_revision: $rubric_revision, review_kind: $review_kind,
+               aim_issue: $aim_issue,
+               ci: ({scope: evidence("scope"), build: evidence("build"),
+                     "bump-guard": evidence("bump-guard")}
+                    + (if $review_kind == "blueprint" or $review_kind == "mixed"
+                       then {blueprint: evidence("blueprint")} else {} end))}
             ' > request.json
           KEY=$(jq -jr \
             '[(.repository | ascii_downcase), (.pull_request | tostring), .head_sha, .rubric_revision] | join(":")' \
             request.json | sha256sum | cut -d' ' -f1)
           IDEMPOTENCY_KEY="euler-review-$KEY"
+          WEBHOOK_IDEMPOTENCY_KEY="$IDEMPOTENCY_KEY"
+          if [[ "$RETRY_REQUESTED" == true ]]; then
+            # Keep the request's canonical exact-head key for euler-review.request/v1 validation,
+            # but give this explicit human retry its own webhook delivery identity. Replaying the
+            # same GitHub event still deduplicates; posting a new /review-retry creates a new attempt.
+            [[ "$COMMENT_ID" =~ ^[0-9]+$ ]]
+            RETRY_KEY=$(printf '%s' "$IDEMPOTENCY_KEY:$COMMENT_ID" | sha256sum | cut -d' ' -f1)
+            WEBHOOK_IDEMPOTENCY_KEY="euler-review-retry-$RETRY_KEY"
+          fi
           jq --arg key "$IDEMPOTENCY_KEY" '. + {idempotency_key: $key}' \
             request.json > request-with-key.json
           mv request-with-key.json request.json
           printf 'idempotency_key=%s\n' "$IDEMPOTENCY_KEY" >> "$GITHUB_OUTPUT"
+          printf 'webhook_idempotency_key=%s\n' "$WEBHOOK_IDEMPOTENCY_KEY" >> "$GITHUB_OUTPUT"
 
       - name: Mark semantic review pending
         if: steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.pr != ''
@@ -169,7 +228,7 @@ jobs:
           test -n "$WEBHOOK_URL"
           HTTP=$(curl --silent --show-error --output response.json --write-out '%{http_code}' \
             --request POST --header 'Content-Type: application/json' \
-            --header "Idempotency-Key: ${{ steps.resolve.outputs.idempotency_key }}" \
+            --header "Idempotency-Key: ${{ steps.resolve.outputs.webhook_idempotency_key }}" \
             --data-binary @request.json "$WEBHOOK_URL")
           test "$HTTP" = 200
           jq -e '.status == "accepted" or .status == "skipped" or .status == "duplicate"' \
@@ -183,6 +242,14 @@ jobs:
             -f state=error -f context=semantic-review \
             -f description='Euler semantic review dispatch failed'
 
+      - name: Refresh the exact-head status label
+        if: ${{ always() && steps.resolve.outputs.pr != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ steps.resolve.outputs.pr }}
+        run: |
+          set -euo pipefail
+          gh workflow run pr-labels.yml --repo '${{ github.repository }}' --ref main -f pr="$PR"
+
 # All model execution is owned by the Multica Euler reviewer webhook. This workflow only resolves
 # trusted PR identity, checks exact-head mechanical evidence, and sends the versioned request.
-

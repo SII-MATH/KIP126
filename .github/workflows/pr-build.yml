@@ -18,11 +18,17 @@ name: pr-build
 # status. Keeping the job name distinct leaves exactly one `build` (the status) as the merge gate.
 #
 # Live on pull_request_target (fires for all PRs, incl. forks, from the trusted base definition).
-# workflow_dispatch is also kept for ad-hoc re-testing of a given PR number.
+# workflow_dispatch is also used by branch reconciliation. Its explicit refresh_review input lets a
+# reconciled build refresh semantic review without making ordinary ad-hoc rebuilds spend review
+# budget; that review then reconciles the PR's status label.
 
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
+    # Blueprint-only PRs have their own trusted workflow. A mixed PR still runs here and fails the
+    # source-boundary scope guard, as required by AGENTS.md.
+    paths-ignore:
+      - "blueprint/src/**"
   # The merge queue tests a batch (one or more PRs combined onto current main) before it lands. We
   # build the COMBINED merge-group commit and post the `build` status on it so the queue's required
   # check is satisfied. The merge-group commit's KIP126/ (all batched PRs) is overlaid onto a
@@ -34,8 +40,14 @@ on:
   workflow_dispatch:
     inputs:
       pr: { description: "PR number to build", required: true, type: string }
+      refresh_review:
+        description: "Refresh exact-head semantic review after a successful build"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
+  actions: write
   contents: read
   pull-requests: read
   statuses: write
@@ -79,6 +91,7 @@ jobs:
             # base_sha drives the trusted base checkout, the combined-diff scope compare, and the bump
             # merge-base below.
             BASE_REF='${{ github.event.merge_group.base_sha }}'
+            BASE_SHA='${{ github.event.merge_group.base_sha }}'
             STATUS_SHA='${{ github.event.merge_group.head_sha }}'
             NUM="merge-group"   # not a single PR; scope/diff use the combined base..head diff below
             AUTHOR=""           # author was checked before enqueue; strict config validation repeats below
@@ -87,6 +100,7 @@ jobs:
             SHA='${{ github.event.pull_request.head.sha }}'
             REPO='${{ github.event.pull_request.head.repo.full_name }}'
             BASE_REF='${{ github.event.pull_request.base.ref }}'
+            BASE_SHA='${{ github.event.pull_request.base.sha }}'
             STATUS_SHA="$SHA"
             AUTHOR='${{ github.event.pull_request.user.login }}'
           else
@@ -94,6 +108,7 @@ jobs:
             SHA=$(gh api "repos/${{ github.repository }}/pulls/$NUM"  --jq .head.sha)
             REPO=$(gh api "repos/${{ github.repository }}/pulls/$NUM" --jq .head.repo.full_name)
             BASE_REF=$(gh api "repos/${{ github.repository }}/pulls/$NUM" --jq .base.ref)
+            BASE_SHA=$(gh api "repos/${{ github.repository }}/pulls/$NUM" --jq .base.sha)
             STATUS_SHA="$SHA"
             AUTHOR=$(gh api "repos/${{ github.repository }}/pulls/$NUM" --jq .user.login)
           fi
@@ -110,11 +125,12 @@ jobs:
             echo "sha=$SHA"
             echo "repo=$REPO"
             echo "base_ref=$BASE_REF"
+            echo "base_sha=$BASE_SHA"
             echo "mergebase=$MB"
             echo "status_sha=$STATUS_SHA"
             echo "author=$AUTHOR"
           } >> "$GITHUB_OUTPUT"
-          echo "Building PR #$NUM @ $SHA from $REPO (author=${AUTHOR:-merge-group}, status -> $STATUS_SHA, bump delta vs merge-base $MB)"
+          echo "Building PR #$NUM @ $SHA from $REPO on trusted base $BASE_SHA (author=${AUTHOR:-merge-group}, status -> $STATUS_SHA, bump delta vs merge-base $MB)"
 
       - name: Scope guard — allow KIP126 sources and validated pins
         env:
@@ -212,13 +228,23 @@ jobs:
         # untrusted combined commit, so this is what keeps the build config (lakefile, scripts,
         # manifest, toolchain) base-trusted; only KIP126/ is overlaid from the merge-group commit.
         with:
-          ref: "${{ steps.pr.outputs.base_ref }}"
+          ref: "${{ steps.pr.outputs.base_sha }}"
           path: base
           persist-credentials: false
           # Enough base history for `lake cache get` to backtrack to a recently-built
           # ancestor commit (its `--max-revs`) when the exact base tip has no cache
           # mapping yet. Harmless (just a slightly deeper fetch) when the cache is off.
           fetch-depth: 100
+
+      - name: Compute the trusted base build-input cache key
+        id: base-build-cache-key
+        if: ${{ env.INFRA != '1' && env.BUMP != '1' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          digest=$(bash base/scripts/ci-build-cache-key.sh base "${{ steps.pr.outputs.base_sha }}")
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          echo "Trusted base build-input digest: $digest"
 
       # Pin the new build/watchdog scripts to the commit that supplied this
       # workflow. This matters during first rollout and historical manual
@@ -285,6 +311,69 @@ jobs:
             echo "::warning::Lake-pin change is not a validated forward bump — routing to human"
           fi
 
+      # `bump-guard` depends only on the scope decision and the trusted textual pin validator,
+      # not on the expensive Mathlib download or Lean build. Publish it now so a normal PR sees
+      # this required check finish in seconds rather than waiting roughly eight minutes for the
+      # shared job. The final report step refreshes it and retries again if these API calls fail.
+      - name: Report bump-guard status immediately after validation
+        if: always()
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          if [ "${{ env.BUMP_BAD }}" = "1" ]; then
+            state=failure; desc="Lake pin change is not a validated forward bump — needs human review"
+          elif [ "${{ env.HUMAN_LAKEFILE }}" = "1" ]; then
+            state=success; desc="lakefile is not auto-validated — human merge required"
+          else
+            state=success; desc="validated forward Lake pin bump (or no pin change)"
+          fi
+          for attempt in 1 2 3; do
+            if gh api -X POST "repos/${{ github.repository }}/statuses/${{ steps.pr.outputs.status_sha }}" \
+                 -f state="$state" -f context=bump-guard -f description="$desc" \
+                 -f target_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"; then
+              echo "posted bump-guard=$state ($desc) to ${{ steps.pr.outputs.status_sha }}"
+              exit 0
+            fi
+            echo "::warning::posting the early bump-guard status failed (attempt $attempt/3)"
+            if [ "$attempt" != 3 ]; then sleep $(( attempt * 5 )); fi
+          done
+          echo "::warning::early bump-guard status could not be posted; the final report step will retry"
+
+      # No-new-set_option guard. `set_option` is an escape hatch (it can raise maxHeartbeats,
+      # silence linters, bump maxRecDepth, ...), so candidate code may not introduce one. Compare
+      # the untrusted candidate against the trusted base before overlaying it: existing trusted
+      # uses are grandfathered, while any added or modified `set_option` line fails closed. This
+      # textual diff executes no candidate code and therefore runs safely outside landrun.
+      - name: No-new-set_option guard (candidate adds no set_option)
+        if: ${{ env.INFRA != '1' }}
+        run: |
+          set -euo pipefail
+
+          check_no_new_set_option() {
+            local trusted="$1" candidate="$2" label="$3" patch status additions
+            set +e
+            patch=$(git diff --no-index --unified=0 -- "$trusted" "$candidate")
+            status=$?
+            set -e
+            if [ "$status" -gt 1 ]; then
+              echo "::error::could not compare trusted and candidate $label sources"
+              exit "$status"
+            fi
+            additions=$(printf '%s\n' "$patch" | awk '
+              /^\+\+\+ / { file=$2; next }
+              /^\+[[:space:]]*set_option[[:space:]]/ { print file ": " substr($0, 2) }
+            ')
+            if [ -n "$additions" ]; then
+              echo "$additions"
+              echo "::error::$label may not add set_option (it can weaken maxHeartbeats, linters, maxRecDepth, ...); remove it"
+              return 1
+            fi
+          }
+
+          check_no_new_set_option base/KIP126 pr/KIP126 KIP126/
+          if [ -e pr/KIP126.lean ]; then
+            check_no_new_set_option base/KIP126.lean pr/KIP126.lean KIP126.lean
+          fi
+
       - name: Overlay PR KIP126/ and root KIP126.lean onto the trusted base (reject symlinks)
         if: ${{ env.INFRA != '1' }}
         run: |
@@ -309,6 +398,13 @@ jobs:
               [ -e "pr/$f" ] && cp -a "pr/$f" "base/$f"
             done
           fi
+      - name: Import-boundary guard (KIP126/ and KIP126.lean ⊬ roadmap/review)
+        if: ${{ env.INFRA != '1' }}
+        run: |
+          if grep -rIn -E '^[[:space:]]*import[[:space:]]+(KIP126Roadmap|KIP126Review)\b' base/KIP126/ base/KIP126.lean; then
+            echo "::error::KIP126/ must not import KIP126Roadmap or KIP126Review"; exit 1
+          fi
+
       - name: Install elan (trusted)
         if: ${{ env.INFRA != '1' }}
         run: |
@@ -386,6 +482,17 @@ jobs:
           fi
           echo "Mathlib cache is complete at the bump target."
 
+      # Restore only the content-addressed cache produced by successful default-branch CI for the
+      # trusted base's committed Lean/build inputs. Documentation-only base commits therefore hit
+      # the same archive. PR code never writes GitHub caches, and pin bumps deliberately skip reuse.
+      - name: Restore trusted build outputs for the base build inputs
+        id: main-build-cache
+        if: ${{ env.INFRA != '1' && env.BUMP != '1' }}
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.base-build-cache-key.outputs.digest }}
+
       # Enable Lake's built-in artifact cache for the build below ONLY when the public read
       # endpoints are configured (repo variables). Until then this is a no-op: LAKE_*
       # stay empty and the landrun build recompiles KIP126/ from scratch exactly as before.
@@ -394,7 +501,7 @@ jobs:
       # pass the cache *endpoints* into landrun, so the sandboxed build stays offline and
       # can only consult the locally-populated cache.
       - name: Configure the Lake artifact cache (no-op unless the public endpoints are set)
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && steps.main-build-cache.outputs.cache-hit != 'true' }}
         env:
           PUBLIC_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT_PUBLIC }}
           PUBLIC_REVISION_ENDPOINT: ${{ vars.LAKE_CACHE_REVISION_ENDPOINT_PUBLIC }}
@@ -561,6 +668,11 @@ jobs:
         id: build
         if: ${{ env.INFRA != '1' }}
         env:
+          # Cold full builds have a trusted baseline module (External.Claims) that normally takes
+          # ~225s but has exceeded the watchdog's 300s default under runner contention. Keep a hard
+          # per-process deadline, with enough headroom for the required build only; the performance
+          # workflow does not receive this override and retains its stricter 300s measurement cap.
+          EULER_LEAN_TIMEOUT_SECONDS: "600"
           # The sandboxed build is always offline: never let Lake reach out to a remote
           # cache from inside landrun. When the artifact cache is enabled above, it restores
           # KIP126's oleans purely from the locally-populated $LAKE_CACHE_DIR; when it is
@@ -579,7 +691,7 @@ jobs:
             --rox "$PWD/base" --rw "$PWD/base/.lake" \
             --env PATH --env HOME --env CI \
             --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
-            --env WATCHDOG_TOOLCHAIN \
+            --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
             -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh'
 
       - name: Report build and bump-guard statuses to the PR head commit
@@ -619,14 +731,15 @@ jobs:
 
           # bump-guard: this job already ran the trusted base scripts/check-bump.sh inline
           # (the "Validate the Lake-pin bump" step), so we post the required `bump-guard`
-          # status from its result here rather than from a separate workflow. BUMP_BAD is set
+          # status from its result here rather than from a separate workflow. This refreshes the
+          # early status posted immediately after validation and gives a transient API failure
+          # another retry window. BUMP_BAD is set
           # only when a manifest/toolchain change failed that validator; anything else (no pin
-          # change, or a validated forward bump) is a pass. Posting it from this job also means
-          # both required statuses land together, before the auto-merge workflow_run fires.
+          # change, or a validated forward bump) is a pass.
           if [ "${{ env.BUMP_BAD }}" = "1" ]; then
             bg_state=failure; bg_desc="Lake pin change is not a validated forward bump — needs human review"
           elif [ "${{ env.HUMAN_LAKEFILE }}" = "1" ]; then
-            bg_state=success; bg_desc="lakefile not auto-validated; trusted base config built — human merge required"
+            bg_state=success; bg_desc="lakefile is not auto-validated — human merge required"
           else
             bg_state=success; bg_desc="validated forward Lake pin bump (or no pin change)"
           fi
@@ -643,9 +756,9 @@ jobs:
              || [ "${{ env.TOO_LARGE }}" = "1" ] || [ "${{ env.DIFF_UNKNOWN }}" = "1" ]; then
             state=failure; desc="build not run — see the scope check"
           elif [ "${{ steps.build.outcome }}" = "success" ]; then
-            state=success; desc="sandboxed build, audits, inventory, and regressions passed"
+            state=success; desc="sandboxed build, audits, and simp-NF lint passed (trusted config)"
           else
-            state=failure; desc="sandboxed build, audit, inventory, or regression failed"
+            state=failure; desc="sandboxed build, audit, or simp-NF lint failed"
           fi
           post_status build "$state" "$desc"
 
@@ -681,3 +794,13 @@ jobs:
             exit 1
           fi
           [ "$state" = "success" ]
+
+      - name: Refresh semantic review after a reconciled branch build
+        if: ${{ success() && github.event_name == 'workflow_dispatch' && inputs.refresh_review }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ steps.pr.outputs.num }}
+        run: |
+          set -euo pipefail
+          [[ "$PR" =~ ^[0-9]+$ ]]
+          gh workflow run review.yml --repo '${{ github.repository }}' --ref main -f pr="$PR"

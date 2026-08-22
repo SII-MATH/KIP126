@@ -1,244 +1,152 @@
 # KIP126 Roadmap
 
-The Lean Blueprint entry point is
-[`../blueprint/src/content.tex`](../blueprint/src/content.tex), with its
-paper-specific chapters in [`../blueprint/src/chapters`](../blueprint/src/chapters).
-The Blueprint now records the complete paper-level plan and proof frontier;
-the compiled Lean code remains at the first shared-Core milestone described
-below. The broader declaration-level specification is
-[FORMALIZATION_SPEC.md](FORMALIZATION_SPEC.md); this file records the migration
-order.
+本 Roadmap 回答 KIP126 如何从既有形式化成果出发，形成可持续推进的代码基线，
+完成论文形式化，并通过最终审计。数学声明、`\label`、`\lean`、`\uses` 与节点状态以
+[`../blueprint/src/content.tex`](../blueprint/src/content.tex) 及其章节为准；已实现接口和
+import graph 以 `KIP126/**/*.lean` 为准；项目范围、信任边界与最终验收边界以
+[`../PROJECT_BOUNDARY.md`](../PROJECT_BOUNDARY.md) 为准。实时进度镜像维护在 Multica
+的 AIM-179 主 Wiki，本文件维护长期稳定的阶段、依赖顺序和验收口径。
 
-## 架构决定
+## 三阶段总览
 
-本项目采用“共享结构内核 + classical/synthetic 领域层 + comparison 层”的架构。
+| 阶段 | 目标 | 主要产物 | 阶段出口 |
+| --- | --- | --- | --- |
+| 一、建立包络面 | 分析所有旧仓库，逐章识别可借鉴的完成度 | 以 aimpaper 为唯一语义标准的自足、可编译 KIP126 基线 | 17 章均完成参考调研；选用或重写的实现达到 aimpaper 的语义、分次和定理强度 |
+| 二、继续形式化 | 在包络面基线上按数学依赖补完 Blueprint 与 Lean | 17 个章级模块及其 Lean 入口、外部输入接口和内部证明 | 所有应由项目实现的节点均完成；只允许保留经 `PROJECT_BOUNDARY.md` 明确分类的外部、开放或政策边界节点 |
+| 三、最终审计 | 对全仓库而非单个模块做论文一致性、完整性、信任和可复现性审计 | 最终审计记录、干净构建结果和主定理依赖锥报告 | 满足 `PROJECT_BOUNDARY.md` 的全部最终验收条件，而不只是“构建通过” |
 
-```text
-KIP126/
-├── Core/
-│   ├── Algebra/
-│   │   ├── Graded             -- Mathlib GradedObject 的直接导入边界
-│   │   └── Filtered           -- 递减过滤、关联分次与 filtered maps
-│   └── SpectralSequence/
-│       ├── Basic              -- Mathlib SpectralSequence 的直接导入边界
-│       ├── Morphism           -- 仅在需要时补充异分级/reindexed morphism
-│       ├── FilteredComplex    -- Mathlib ChainComplex 上的过滤与关联分次微分
-│       ├── Convergence        -- 项目专用的收敛假设
-│       └── Extension          -- 项目专用的 extension SS 构造
-├── Classical/
-│   ├── SpectralSequence/      -- classical Adams 的实例与专用结果
-│   ├── Adams/
-│   ├── ExtensionSS/
-│   ├── FExtension/
-│   └── PageExtensions/
-├── Synthetic/
-│   ├── SpectralSequence/      -- synthetic Adams 的实例与专用结果
-│   ├── Adams/
-│   ├── ExtensionSS/
-│   └── Rigidity/
-├── Comparison/
-│   └── ClassicalSynthetic/    -- ν、λ、ρ、δ、weight forget/reindex、rigidity
-├── External/
-│   ├── Provenance
-│   ├── Results
-│   ├── Evidence
-│   ├── SourceInventory
-│   └── Claims
-└── Kervaire/
-    ├── Assumptions
-    ├── AppendixData
-    └── MainTheorem
-```
+三个阶段按产物依赖排列。第二阶段只以第一阶段形成的 KIP126 基线为起点；旧仓库不
+定义项目的目标语义，只提供实现和证明思路。凡是弱于或不对齐 aimpaper 的参考实现，
+都不能直接充当完成结果，仍须按 aimpaper 的语义、分次、page convention 和定理强度
+重新实现。第二阶段中的模块级检查是持续门槛，不能代替第三阶段结束时面向整个仓库
+的完整审计。
 
-这里的 `Core/SpectralSequence` 只包含与领域无关的谱序列结构。经典 Adams SS、
-synthetic Adams SS、`λ`-模结构、Ext、`ν`、rigidity、Kervaire 类和外部计算数据
-均留在各自的领域层。这样既让谱序列内核被两侧真实复用，也不牺牲各自的数学语义。
+## 第一阶段：从旧仓库建立包络面
 
-## 不可妥协的验收条件
+KIP126 不是从零开始的单线实现，而是此前多轮谱序列、extension spectral
+sequence、stable homotopy、synthetic spectra、classical Adams 和论文端点等多轮
+实现探索的**最优进度包络面**。第一阶段的产物不是一份调研报告，而是将各仓库中
+真正成熟、语义忠实且可维护的部分迁入同一规范接口之后形成的可编译代码仓库。
 
-每一阶段完成前都应维持以下条件：
+“包络面”不表示机械合并所有文件，也不以代码行数或 `sorry` 数量最少作为选择标准。
+同一概念只保留一个面向 aimpaper 的权威实现；比 aimpaper 语义更弱、分次或 page
+convention 不一致、定理强度不对齐，或把数学内容藏入公理/typeclass 字段的旧实现，
+都只能作为 proof pattern 或实现线索，不能降低最终形式化目标。
 
-1. 当前仓库使用 Lean 4.32.2 和 mathlib v4.32.2；
-2. 不以候选仓库的 path dependency 作为最终实现；
-3. 新迁入的项目源码不引入 `sorry`、`admit` 或项目 `axiom`；
-4. 外部数学与计算事实均经由显式、带来源定位的条件输入；
-5. 对进入主依赖锥的结论运行 `#print axioms`，不得出现 `sorryAx` 或项目自定义
-   公理；
-6. 任何“定义相等替代论文同构”的方案都必须经过语义审计。
+所有旧仓库只作为只读参考。最终 KIP126 不得通过 path dependency 依赖它们，也不
+继承它们锁定的旧版 Lean/Mathlib。
 
-短期内，旧仓库可作为只读迁移来源；它们的本机相对路径与定位记录在
-[INTEGRATION.md](INTEGRATION.md)。
+### 第一阶段完成条件
 
-## 阶段 0：建立迁移账本
+1. 17 章均完成参考调研；没有可借鉴实现的章节也有明确结论；
+2. 每个重复概念选定唯一权威实现，不以平行 alias 掩盖接口分叉；
+3. 选中的成果已经迁入 KIP126 并在 Lean 4.32.2 / Mathlib v4.32.2 下构建，不依赖
+   旧仓库本机路径；
+4. 迁入源码不新增 `sorry`、`admit` 或项目自定义 `axiom`；外部事实改写为显式条件
+   输入；
+5. 任何定义相等、索引换算和 adapter 均有证明义务与回归测试，不允许弱化或改变
+   aimpaper 的语义和定理强度；
+6. 形成可供第二阶段继续实现的、自足且可审计的 KIP126 包络面基线。
 
-**目标：** 为每个候选模块建立来源、目标命名空间、依赖、语义状态和验收方式的
-迁移清单。
+## 第二阶段：在包络面上继续形式化
 
-**工作：**
+第二阶段以第一阶段形成的 KIP126 为唯一代码基线。旧仓库仍可用于查找证明思路，
+但参考实现不决定目标 statement；所有新增声明与证明都必须严格达到 aimpaper 的
+语义、分次、page convention 和定理强度。
 
-- 锁定候选仓库的具体提交或工作树快照；
-- 把 `sorry`、项目 `axiom`、`opaque`、外部根和真正已证声明分开统计；
-- 为重复模块指定唯一权威来源；
-- 记录从 Lean 4.28/4.29/4.33-rc 到 4.32.2 的 porting 差异。
+### 模块划分口径
 
-**完成条件：** 不再以“哪个文件看起来更新”作为迁移依据；每个迁入项都有可追溯
-来源和明确的目标层。
+Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录，只用注释标出
+“数学定义 → 外部输入 → 内部证明”三层。Lean 文件列出各章当前最接近的公共入口；
+同一现有入口暂时承载两个新章时，后续实现任务再按 chapter 边界拆 facade。
+章级 Blueprint 节点数量与完成度不在本文件汇总，以对应章节子 Wiki 的当前记录为准。
 
-## 阶段 1：接入并审计共同谱序列内核
+- `content.tex` 只保留按依赖顺序的平铺 `\input` 清单与三层注释；没有 LaTeX
+  `\part`。`blueprint/print` 和 `blueprint/web` 是生成物，不手工编辑；
+  `blueprint/lean_decls` 也是被忽略的生成物，声明检查前由 `leanblueprint web`
+  重新生成，不手工编辑或提交。
+- 章节不按代码行数均分，而按数学定义、外部黑盒和内部消费者的边界拆分。同一现有
+  Lean facade 暂时覆盖两个 chapter 不表示两章已经合并；实现层仍需最终形成一章一入口。
 
-**主要来源：** mathlib v4.32.2；`KIP-infra`、`KIP-ess`、`SSP-1`、`ESS-conv` 和
-`KIP-base` 仅用于识别 mathlib 尚未覆盖的项目需求与迁移模式。
+### 依赖顺序
 
-**工作：**
+1. **数学定义层**：Algebraic foundations → spectral-sequence machinery → stable
+   objects → classical Adams → extension SS → synthetic objects → synthetic ESS →
+   page extensions → computation schemas → Kervaire setup。
+2. **外部输入层**：在所有 statement 所需对象已经定义后，再陈述逐条 external
+   literature result；具体 Lin 输出与附录表依赖 computation schema。
+3. **内部证明层**：comparison/generalized rules 消费外部定理与计算输入，随后完成
+   near-126 reduction，最后推出 geometric conclusions。
+4. **技术审计层**：provenance 与 coverage 章节保持平铺，但不作为所有数学章节的
+   父节点；`ExternalResult` 等 Lean 技术类型按需 import，不改变数学 DAG 的方向。
 
-- 直接采用 `CategoryTheory.SpectralSequence` 作为唯一的通用谱序列对象，不创建
-  `SSData` 或项目本地的 `SpectralSequence` 别名；
-- 验证其 page、differential 与 page-passage API 能覆盖首批抽象使用点；
-- 为共同的代数输入提供最小的递减过滤、关联分次、filtered map 与 filtered
-  chain-complex 接口；
-- 为 filtered chain complex 定义同时满足 filtration 与 chain-map 相容性的态射，
-  并构造其关联分次 chain map；
-- 只在实际下游需求出现后，分别增加从 filtered complex 到谱序列的构造、
-  convergence 假设、异分级比较或 extension SS；
-- 明确区分 Mathlib 的 `Triangulated.SpectralObject` mapping-cone 构造与
-  `Abelian.SpectralObject` 谱序列 API；实现“施加同调函子并验证三条 exactness law”
-  的项目 bridge，不能把二者当成同一类型；
-- 审计旧仓库的 `Z/B` 与 `E∞` 表示，把它们视为候选的专用呈现，而非共同内核；
-- 删除纯 namespace 差异产生的重复实现。
+### 模块增量验收
 
-**完成条件：** `Core/SpectralSequence` 在 Lean 4.32.2 下独立构建；仓库内只有一套
-规范的通用 `SpectralSequence` 定义，即 Mathlib 的
-`CategoryTheory.SpectralSequence`。项目增量只覆盖 Mathlib 尚未提供且被两侧实际共用
-的数学。
+每个模块进入下一依赖层前，必须满足：
 
-## 阶段 2：补齐跨分级的谱序列态射
+1. `lake build` 通过，新增源码无项目 `sorry`、`admit` 或自定义 `axiom`；
+2. 相关 Blueprint 节点有准确 `\lean`、`\uses` 和状态标记，DAG 无未知依赖、环或
+   无意孤立节点；
+3. `leanblueprint pdf`、`leanblueprint web` 和 `leanblueprint checkdecls` 通过；
+4. 外部文献、Lin 输出和附录数据都以显式、类型正确的输入进入 Lean，不伪装成项目
+   内部定理或全局公理；
+5. 生成物只由工具生成，不手工编辑。
 
-**问题：** 现有内核的态射主要面向相同 index type。它不足以直接表达 classical
-双分级与 synthetic 三分级之间的 forget/reindex/comparison。
+### 当前执行前沿
 
-**工作：**
+当前优先级是补完 Spectral-sequence machinery 并建立 Stable-homotopy objects 的
+最小接口；随后完成 Classical Adams/ESS 和 Synthetic 定义，使
+external-results statements 获得真实类型，再推进 comparison、数据、near-126 与
+几何端点。主 Wiki 负责更新章级完成状态和下一步；本文件只在阶段、模块边界、依赖
+顺序变化时更新。
 
-- 在一个 concrete classical--synthetic comparison 用例确定后，设计并实现带 index
-  map 的 reindexed/heterogeneous morphism；
-- 使其携带实际需要的 page、differential degree 与 convergence 相容性；若某个专用
-  呈现引入 `Z/B` 或 $E_\infty$ 数据，再为该呈现单独陈述相容性；
-- 为常用的 `(s,t,w) ↦ (s,t)`、`(s,t,w) ↦ (s,t-s,w)` 等重分级建立 API；
-- 用小型回归例子验证 page passage、零微分和 convergence 传输。
+## 第三阶段：最终完整审计
 
-**完成条件：** comparison 不再依赖两个无关 record 之间手写的逐字段翻译；异分级
-comparison 可在共同内核的语言中表达。
+第三阶段在第二阶段的正式节点全部完成后执行。此前每个模块已经通过增量检查，但
+最终审计必须从干净检出出发，对完整依赖锥和全部外部输入重新核验，不能简单汇总
+历史 CI 结果。
 
-## 阶段 3：接入 classical 层
+### 审计范围
 
-**主要来源：** `KIP-infra/StableHomotopy`、`KIP-fextension`、`126-ZERO-0728`
-的 `ClassicalExtensions`。
+1. **源码与信任边界**：扫描全部项目源码中的 `sorry`、`admit`、项目自定义
+   `axiom`、可疑 `opaque` 和通过 typeclass/structure 字段隐藏的数学假设；对最终
+   主定理及关键中间结论运行 `#print axioms`。
+2. **Blueprint 完整性**：验证全部正式节点的 `\lean`、`\uses`、状态和声明映射；
+   DAG 不得有未知依赖、环、重复 label 或无意孤立节点。
+3. **外部输入边界**：逐条确认文献定理、Lin 程序输出和附录数据被建模为显式、类型
+   正确的条件输入；外部事实不得被提升为无条件内部定理。
+4. **架构与去重**：删除临时 compatibility shim、过渡 alias、重复模型和未使用
+   import；确认 Mathlib `CategoryTheory.SpectralSequence` 仍是唯一通用谱序列内核，
+   Classical、Synthetic、Comparison、External 与 Kervaire 边界清晰。
+5. **可复现构建**：在无缓存、干净检出的 Lean 4.32.2 / Mathlib v4.32.2 环境中运行
+   完整 `lake build`、回归测试、Blueprint PDF/web 和声明检查；生成物必须可由工具
+   重建。
+6. **论文一致性**：逐章核对 aimpaper 的 statement、分次、page convention 和定理
+   强度；仅复用了较弱或不对齐的参考实现，不算完成对应节点。
 
-**工作：**
+### 最终完成条件
 
-- 将 classical Adams SS 实现为共同内核的具体实例；
-- 接入 Adams 双分级、Ext/`h_j` 接口、classical convergence；
-- 对一般 spectrum 提供 external pairing 和 sphere-ASS module；只有输入携带
-  ring-spectrum 乘法时才构造内部 unital multiplicative Adams SS；
-- 迁移 ESS、essentiality、crossing、no-crossing 和 F-extension 的基础结果；
-- 审核 `KIP-fextension` 的 `ess₂` 定义：保留可用证明技巧，但不接受未证明的定义性
-  塌缩作为论文结论；
-- 从 0728 提取已经真正证明的 classical page/filtration 代数。
+只有同时满足以下条件，KIP126 才可视为完成：
 
-**完成条件：** classical F-ESS 的核心声明从共同内核派生，并且其语义与论文中的
-`E∞`-anchored 表述相符。
+1. 所有应由项目内部实现的 Blueprint 节点均具有真实、可解析的 `leanok` 或锁定的
+   `mathlibok`；保留的 `notready` 只能是经 `PROJECT_BOUNDARY.md` 明确分类并有完整
+   边界记录的外部、开放或政策节点；
+2. 主定理及其完整依赖锥不含 `sorryAx` 或项目自定义公理；
+3. 所有外部文献和计算输入均以显式、类型正确且边界明确的条件进入 Lean；
+4. 干净环境中的完整构建、回归、Blueprint 和声明检查全部通过；
+5. `PROJECT_BOUNDARY.md` 所列范围、信任与验收条件全部满足。
 
-## 阶段 4：接入 synthetic 层
+## 跨阶段架构原则
 
-**主要来源：** `KIP-ess`、`KIP-infra/Synthetic`。
-
-**工作：**
-
-- 将 synthetic Adams SS 实现为共同内核的三分级实例；
-- 迁移 weight-preserving differential、`λ`-module enrichment、synthetic
-  convergence、synthetic filtration；
-- 建立 synthetic extension SS 的实际构造，使其复用 `Core/SpectralSequence/Extension`
-  而非仅以 `sorry` 或公理给出结果；
-- 迁移 bigraded sphere、`ν`、rigidity 与 lift 所需的最小接口。
-- 将 `λ`-反演的全 synthetic-category 结论与 hypercomplete/`HF₂`-local
-  子范畴结论分开；所有 quotient comparison map 在类型中显式保留 suspension；
-- cofiber comparison 只使用 triangle-compatible normalized lift，任意 full lift
-  与其相差的 `λ`-torsion 不得被静默忽略；normalized exactness case 还要携带
-  互斥 `e`-pattern、rotated short exact sequence 和一次选定的 lifted triangle。
-
-**完成条件：** synthetic SS 与 synthetic ESS 都是可检查的共同内核实例；它们的
-领域专用假设仅来自显式外部输入或已证基础设施。
-
-## 阶段 5：建立 classical–synthetic comparison 层
-
-**主要来源：** `KIP-infra/Synthetic/Rigidity`、`Synthetic/Extensions`，以及
-0629 的 `SyntheticExtensions` 和 `ExtensionsEnPage`。
-
-**工作：**
-
-- 形式化 `ν`、`λ`、`ρ`、`δ` 及其重分级/forget compatibility；
-- 把 rigidity 和 classical differential comparison 表达为阶段 2 的异分级态射结果；
-- 从 synthetic extension 得出 classical `(f,E_r)`-extension；
-- 迁移 crossing/no-crossing 的比较定理，以及 Generalized Leibniz Rule 与
-  Generalized Mahowald Trick 所需的桥梁；
-- page stretching 先用不预设 `E∞` existence 的 finite loss-obstruction
-  certificate 建立 coherent solution tower，再证明所得 `E∞` relation 无 crossing。
-
-**完成条件：** classical 与 synthetic 的联系不是并列公理，而是具有明确输入、映射和
-可审计依赖的 comparison 定理。
-
-## 阶段 6：接入论文端点、外部输入和来源账本
-
-**主要来源：** `126-ZERO-0629` 与 `126-ZERO-0728`。
-
-**工作：**
-
-- 迁移并改进 0629 的 `ExternalResults`、`ExternalInputs`、
-  `ComputationProvenance`；
-- 为所有引用文献、Lin 程序输出和附录表格建立带 locator 的证据记录；
-- 建立 49 个 CW spectra、各自 `E₂` 页、180 个 maps、初始 `d₂` 与 propagated
-  differential/extension/disproof 的 typed catalogue 和双向完整性检查；
-- 将 0728 的 source inventory 从 `sorry` scaffold 改为可枚举、按 owner declaration
-  绑定的真实账本；
-- 将 Kervaire 逻辑终局参数化地接到 canonical classical Adams SS；
-- 在 `Kervaire.Assumptions` 中实现显式 `MainInput`，组合 literature、computation
-  和 geometry 子记录，并让三个主定理都接收同一个 `I : MainInput`；
-- 保留“条件结论”的性质：外部数据是显式参数，论文内部推演必须在 Lean 中完成。
-
-**完成条件：** `h₆²` permanent-cycle 定理和维数 126 的 Kervaire 结论均为条件定理；
-所有外部根可定位，且没有被伪装成全局公理。
-
-## 阶段 7：收尾审计与去重
-
-**工作：**
-
-- 逐步删除临时 compatibility shim、旧命名空间别名和重复模型；
-- 对所有 imported/ported 声明做 source-level `sorry`/`admit`/`axiom` 扫描；
-- 对主定理及其依赖锥运行 `#print axioms`；
-- 验证每个附录条目均已编码，并连接到 source inventory；
-- 在无缓存环境下运行完整 `lake build`。
-
-**最终完成条件：** 满足 [项目边界](../PROJECT_BOUNDARY.md) 所列全部验收条件，而不只是
-“构建通过”。
-
-## 当前实现前沿与下一个可执行里程碑
-
-阶段 1 的当前切片已经直接导入并编译 mathlib 的
-`CategoryTheory.SpectralSequence`，并以最小使用例确认 page、微分和 page-passage。
-共同的 filtration/associated-graded/filtered-chain-complex 基础也已在 Abelian
-category 的一般性下实现。完整 Blueprint 已经给出 concrete classical 与 synthetic
-用例所需的接口和依赖顺序。
-filtered-chain morphism、固定过滤度的 associated-graded chain complex 及其自然性，
-以及 mapping-cone 的 triangulated spectral object 经同调函子转换为满足三条
-exactness law 的 abelian spectral object，已经在共享内核中编译并接入 Blueprint。
-filtered complex 的反变 filtration diagram、cochain 视图及其态射自然变换也已经
-编译并接入 Blueprint；mapping-cone 的 triangulated/abelian spectral-object
-adapter 也已完成其不含端点与收敛假设的核心层。端点扩张、端点的极限/余极限
-见证、仅保留有限层相容性的端点扩张态射、商塔的逐度完备化，以及基于 `EInt` 的真实 Mathlib `E₂` 谱序列
-现已接入该 adapter，并有显式的 selected-page/abutment comparison 接口。
-`SpectralObjectAdapterRegression.lean` 与 `ConvergenceRegression.lean` 对三角与
-阿贝尔态射、函子映射、端点态射、完备化接口及 `ModuleCat` 的具体同调特化保持
-编译级回归检查。元素式 `E_r = Z_{r-1}/B_{r-1}` 呈现和二项 extension spectral
-sequence 必须由 concrete classical/synthetic 构造给出，不能作为任意 Abelian
-category 中的泛型公理化接口；它们留在相应的后续领域阶段。
-在这些验收通过
-前，不把领域结论标成 `leanok`，也不移植旧的 `SSData` 表示。
+1. **一个概念，一个权威实现。** 不保留多套平行定义或只为兼容旧仓库而存在的
+   永久别名。
+2. **先语义，后完成度数字。** 无 `sorry` 的定义性退化不能替代论文要求有内容的
+   同构、构造或比较定理。
+3. **适配优于伪统一。** 不同分次和领域对象通过有证明义务的 adapter/reindex 接入，
+   不在没有等价证明时粗暴替换。
+4. **外部根显式化。** 文献定理、程序输出和附录表格作为显式、类型正确的条件输入，
+   不转化为项目全局公理。
+5. **最终包自足。** 旧仓库仅是只读参考；KIP126 不以它们作为运行时或构建依赖。
+6. **共享 Core 保持最小。** 直接采用锁定 Mathlib 的
+   `CategoryTheory.SpectralSequence`，只增加实际下游共用的过滤、关联分次、filtered
+   complex、spectral-object adapter 等结构；领域数学留在对应模块。
