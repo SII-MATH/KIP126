@@ -1,146 +1,28 @@
 import KIP126.Core.SpectralSequence.FilteredComplex
-import Mathlib.Algebra.Homology.Refinements
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
 import Mathlib.CategoryTheory.Preadditive.Projective.Basic
 
 /-!
-# Representatives on pages of a spectral sequence
+# Representatives for filtered-complex differentials
 
-This file connects Mathlib's categorical pages with generalized-element
-representatives. A cycle on the `r`-th page maps through Mathlib's homology
-quotient and the page-passage isomorphism to the next page. Vanishing and
-equality of such classes are characterized by boundary lifts after an
-epimorphic refinement, which is the elementwise content available in an
-arbitrary abelian category.
-
-The filtered representative equations are adapted from
+This file connects the associated-graded differential of a filtered complex
+with filtration-level generalized-element representatives. The representative
+equations are adapted from
 `KIPInfra/SpectralSequence/FilteredComplex.lean` at commit `65de864`.
-Unlike that source, this module keeps Mathlib's `SpectralSequence` as the only
-page engine and uses the project's existing filtered and associated-graded
-functors.
+Unlike that source, this module uses the project's existing filtered and
+associated-graded functors and does not introduce a spectral-sequence engine.
 
-For a filtered complex, the leading-term projection used by these
-representative calculations is the existing
-`Algebra.Filtration.toAssociatedGraded`; no second spectral-sequence or
-associated-graded interface is introduced here.
+The leading-term projection used by these representative calculations is the
+existing `Algebra.Filtration.toAssociatedGraded`; no second spectral-sequence
+or associated-graded interface is introduced here.
 -/
 
 namespace KIP126.Core.SpectralSequence
 
 open CategoryTheory CategoryTheory.Limits
 
-universe u v w
+universe u v
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
-variable {κ : Type w} {c : ℤ → ComplexShape κ} {r₀ : ℤ}
-
-/-- The class on the next page represented by a generalized cycle on the
-current page. -/
-noncomputable def pageClass (E : CategoryTheory.SpectralSequence C c r₀)
-    (r : ℤ) (hr : r₀ ≤ r) (pq : κ) {T : C}
-    (x : T ⟶ (E.page r hr).X pq)
-    (hx : x ≫ (E.page r hr).dFrom pq = 0) :
-    T ⟶ (E.page (r + 1) (by omega)).X pq :=
-  (E.page r hr).liftCycles x ((c r).next pq) rfl hx ≫
-    (E.page r hr).homologyπ pq ≫
-      (E.iso r (r + 1) pq rfl hr).hom
-
-/-- A page representative gives the zero class exactly when, after an
-epimorphic refinement, it is the image of an incoming page differential. -/
-theorem pageClass_eq_zero_iff_boundary_up_to_refinements
-    (E : CategoryTheory.SpectralSequence C c r₀)
-    (r : ℤ) (hr : r₀ ≤ r) (pq : κ) {T : C}
-    (x : T ⟶ (E.page r hr).X pq)
-    (hx : x ≫ (E.page r hr).dFrom pq = 0) :
-    pageClass E r hr pq x hx = 0 ↔
-      ∃ (T' : C) (π : T' ⟶ T) (_ : Epi π)
-        (y : T' ⟶ (E.page r hr).xPrev pq),
-        π ≫ x = y ≫ (E.page r hr).dTo pq := by
-  unfold pageClass
-  constructor
-  · intro h
-    apply ((E.page r hr).liftCycles_comp_homologyπ_eq_zero_iff_up_to_refinements
-      ((c r).prev pq) pq ((c r).next pq) rfl rfl x hx).mp
-    apply (cancel_mono (E.iso r (r + 1) pq rfl hr).hom).mp
-    simpa only [Category.assoc, zero_comp] using h
-  · intro h
-    have h' := ((E.page r hr).liftCycles_comp_homologyπ_eq_zero_iff_up_to_refinements
-      ((c r).prev pq) pq ((c r).next pq) rfl rfl x hx).mpr h
-    rw [← Category.assoc, h', zero_comp]
-
-/-- Two cycle representatives give the same class on the next page exactly
-when their difference is a boundary after an epimorphic refinement. -/
-theorem pageClass_eq_iff_sub_boundary_up_to_refinements
-    (E : CategoryTheory.SpectralSequence C c r₀)
-    (r : ℤ) (hr : r₀ ≤ r) (pq : κ) {T : C}
-    (x x' : T ⟶ (E.page r hr).X pq)
-    (hx : x ≫ (E.page r hr).dFrom pq = 0)
-    (hx' : x' ≫ (E.page r hr).dFrom pq = 0) :
-    pageClass E r hr pq x hx = pageClass E r hr pq x' hx' ↔
-      ∃ (T' : C) (π : T' ⟶ T) (_ : Epi π)
-        (y : T' ⟶ (E.page r hr).xPrev pq),
-        π ≫ x = π ≫ x' + y ≫ (E.page r hr).dTo pq := by
-  unfold pageClass
-  constructor
-  · intro h
-    apply ((E.page r hr).liftCycles_comp_homologyπ_eq_iff_up_to_refinements
-      ((c r).prev pq) pq ((c r).next pq) rfl rfl x x' hx hx').mp
-    apply (cancel_mono (E.iso r (r + 1) pq rfl hr).hom).mp
-    simpa only [Category.assoc] using h
-  · intro h
-    have h' := ((E.page r hr).liftCycles_comp_homologyπ_eq_iff_up_to_refinements
-      ((c r).prev pq) pq ((c r).next pq) rfl rfl x x' hx hx').mpr h
-    simpa only [Category.assoc] using
-      congrArg (fun q => q ≫ (E.iso r (r + 1) pq rfl hr).hom) h'
-
-/-- The class represented by a page differential is zero on the next page. -/
-theorem pageClass_differential_eq_zero
-    (E : CategoryTheory.SpectralSequence C c r₀)
-    (r : ℤ) (hr : r₀ ≤ r) {pq pq' : κ} (hpq : (c r).Rel pq pq')
-    {T : C} (x : T ⟶ (E.page r hr).X pq) :
-    pageClass E r hr pq' (x ≫ (E.page r hr).d pq pq')
-      (by simp only [Category.assoc, HomologicalComplex.d_comp_d, comp_zero]) = 0 := by
-  apply (pageClass_eq_zero_iff_boundary_up_to_refinements E r hr pq'
-    (x ≫ (E.page r hr).d pq pq') _).mpr
-  refine ⟨T, 𝟙 T, inferInstance, x ≫ ((E.page r hr).xPrevIso hpq).inv, ?_⟩
-  simp only [Category.id_comp, Category.assoc,
-    HomologicalComplex.xPrevIso_comp_dTo]
-
-/-- Page classes are natural with respect to Mathlib morphisms of spectral
-sequences. -/
-theorem pageClass_naturality
-    {E E' : CategoryTheory.SpectralSequence C c r₀} (f : E ⟶ E')
-    (r : ℤ) (hr : r₀ ≤ r) (pq : κ) {T : C}
-    (x : T ⟶ (E.page r hr).X pq)
-    (hx : x ≫ (E.page r hr).dFrom pq = 0) :
-    pageClass E r hr pq x hx ≫ (f.hom (r + 1) (by omega)).f pq =
-      pageClass E' r hr pq (x ≫ (f.hom r hr).f pq)
-        (by rw [Category.assoc, HomologicalComplex.Hom.comm_from, ← Category.assoc, hx,
-          zero_comp]) := by
-  unfold pageClass
-  simp only [Category.assoc]
-  rw [← f.comm r (r + 1) pq rfl hr]
-  calc
-    _ = (E.page r hr).liftCycles x ((c r).next pq) rfl hx ≫
-          ((E.page r hr).homologyπ pq ≫
-            HomologicalComplex.homologyMap (f.hom r hr) pq) ≫
-          (E'.iso r (r + 1) pq rfl hr).hom := by
-        simp only [Category.assoc]
-    _ = (E.page r hr).liftCycles x ((c r).next pq) rfl hx ≫
-          (HomologicalComplex.cyclesMap (f.hom r hr) pq ≫
-            (E'.page r hr).homologyπ pq) ≫
-          (E'.iso r (r + 1) pq rfl hr).hom := by
-        rw [HomologicalComplex.homologyπ_naturality]
-    _ = ((E.page r hr).liftCycles x ((c r).next pq) rfl hx ≫
-          HomologicalComplex.cyclesMap (f.hom r hr) pq) ≫
-          (E'.page r hr).homologyπ pq ≫
-          (E'.iso r (r + 1) pq rfl hr).hom := by
-        simp only [Category.assoc]
-    _ = (E'.page r hr).liftCycles (x ≫ (f.hom r hr).f pq)
-          ((c r).next pq) rfl _ ≫
-          (E'.page r hr).homologyπ pq ≫
-          (E'.iso r (r + 1) pq rfl hr).hom := by
-        rw [HomologicalComplex.liftCycles_comp_cyclesMap]
 
 /-- The associated-graded differential has value `b` on a generalized
 element `a` exactly when `a` and `b` admit filtration-level representatives

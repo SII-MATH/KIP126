@@ -1,10 +1,10 @@
-import KIP126.Core.SpectralSequence.PageRepresentatives
+import KIP126.Core.SpectralSequence.FilteredRepresentatives
 
 /-!
-# Regression checks for page representatives
+# Regression checks for filtered representatives
 
-These examples keep the representative bridge connected to Mathlib's page
-and morphism APIs and to the filtered associated-graded functor.
+These examples keep the representative bridge connected to filtered-complex
+morphisms and the associated-graded functor.
 -/
 
 namespace KIP126.Core.SpectralSequence
@@ -13,10 +13,9 @@ open CategoryTheory CategoryTheory.Limits
 
 noncomputable section
 
-universe u v w
+universe u v
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
-variable {κ : Type w} {c : ℤ → ComplexShape κ} {r₀ : ℤ}
 
 section FilteredRepresentatives
 
@@ -43,30 +42,6 @@ example (a : T ⟶ FC.filtration.associatedGraded s k) :
   FC.associatedGradedDifferential_eq_zero_iff_representative s k a
 
 end FilteredRepresentatives
-
-example (E : CategoryTheory.SpectralSequence C c r₀)
-    (r : ℤ) (hr : r₀ ≤ r) (pq : κ) {T : C}
-    (x : T ⟶ (E.page r hr).X pq)
-    (hx : x ≫ (E.page r hr).dFrom pq = 0) :
-    T ⟶ (E.page (r + 1) (by omega)).X pq :=
-  pageClass E r hr pq x hx
-
-example {E E' : CategoryTheory.SpectralSequence C c r₀} (f : E ⟶ E')
-    (r : ℤ) (hr : r₀ ≤ r) (pq : κ) {T : C}
-    (x : T ⟶ (E.page r hr).X pq)
-    (hx : x ≫ (E.page r hr).dFrom pq = 0) :
-    pageClass E r hr pq x hx ≫ (f.hom (r + 1) (by omega)).f pq =
-      pageClass E' r hr pq (x ≫ (f.hom r hr).f pq)
-        (by rw [Category.assoc, HomologicalComplex.Hom.comm_from, ← Category.assoc, hx,
-          zero_comp]) :=
-  pageClass_naturality f r hr pq x hx
-
-example (E : CategoryTheory.SpectralSequence C c r₀)
-    (r : ℤ) (hr : r₀ ≤ r) {pq pq' : κ} (hpq : (c r).Rel pq pq')
-    {T : C} (x : T ⟶ (E.page r hr).X pq) :
-    pageClass E r hr pq' (x ≫ (E.page r hr).d pq pq')
-      (by simp only [Category.assoc, HomologicalComplex.d_comp_d, comp_zero]) = 0 :=
-  pageClass_differential_eq_zero E r hr hpq x
 
 example {FC GD : FilteredComplex C} (f : FC ⟶ GD)
     (s k : ℤ) (page : ℕ) {T : C}
