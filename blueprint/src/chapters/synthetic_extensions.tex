@@ -82,43 +82,45 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   quotient squares induce the restriction maps and their equivariance.
 \end{proof}
 
-% SOURCE: Burklund--Xu Construction 7.7, reference/BurklundXu/paper.txt:3022--3039;
-% the project-level statement deliberately forgets the commutative-algebra
-% structure and retains only the quotient maps and their triangle data.
+% SOURCE: aimpaper/main.tex:1009--1021; Burklund--Xu Construction 7.7,
+% reference/BurklundXu/paper.txt:3022--3035.  The project-level statement
+% deliberately forgets the commutative-algebra structure and retains only the
+% finite quotient maps and their triangle data.
 \begin{proposition}[Coherence of quotient restrictions]
   \label{prop:lambda-quotient-restriction-coherence}
   \uses{def:synthetic-lambda-quotient,def:cofiber-triangle,def:lambda-rho-delta-triangle}
   \notready
-  For every map of synthetic spectra $f:X\to Y$ and integers
-  $0<k<n<m\le\infty$, the quotient restriction maps are natural:
+  For every map of synthetic spectra $f:X\to Y$ and finite integers
+  $0<k<n<m$, write
+  $\bar f_j:X/\lambda^j\to Y/\lambda^j$ for the map induced by $\nu f$.
+  The quotient restriction maps are natural:
   \[
-    \rho^Y_{n,m}\circ(\nu f/\lambda^m)
-      =(\nu f/\lambda^n)\circ\rho^X_{n,m}.
+    \rho^Y_{n,m}\circ\bar f_m
+      =\bar f_n\circ\rho^X_{n,m}.
   \]
   They satisfy the identity and composition laws
   \[
     \rho^X_{n,n}=\operatorname{id},\qquad
     \rho^X_{k,n}\circ\rho^X_{n,m}=\rho^X_{k,m}.
   \]
-  Moreover, the nested quotient maps for every triple $0<k<n<m\le\infty$
-  assemble with the canonical $\lambda$-power maps on the first and last
-  terms into a morphism between the corresponding
-  $\lambda$--$\rho$--$\delta$ cofiber triangles.  Its middle components are
-  the identity on the largest quotient and $\rho_{k,n}$ on the smaller one;
-  thus the multiplication and connecting maps commute with restriction,
-  including the $m=\infty$ endpoint.  The same triangle compatibility is
-  natural in $f$.  This proposition asserts no map of $E_\infty$- or
-  $\mathrm{CAlg}$-objects.
+  For the same triple, the canonical shifted $\lambda^{n-k}$ maps on the
+  first and last terms, the identity on $X/\lambda^m$, and $\rho^X_{k,n}$ on
+  the third term form a morphism from the finite
+  $\lambda$--$\rho$--$\delta$ triangle at $(n,m)$ to the one at $(k,m)$.
+  Thus multiplication and connecting maps commute with finite restriction,
+  naturally in $f$.  This proposition asserts no map of $E_\infty$- or
+  $\mathrm{CAlg}$-objects; the $m=\infty$ endpoint is handled separately by
+  the complete-tower statements.
 \end{proposition}
 
 \begin{proof}
-  The quotient maps are induced by the nested cofibers of the natural maps
-  $\lambda^m$, so functoriality of cofibers gives the displayed naturality
-  square and the morphism of distinguished triangles.  The identity and
-  composition equations are the equalities of the corresponding quotient
-  projections; the same argument applies to the untruncated endpoint by
-  taking the colimit along the quotient tower.  No multiplicative structure
-  is used.
+  The maps $\bar f_j$ and $\rho_{i,j}$ are induced by the compatible finite
+  cofiber presentations of multiplication by powers of $\lambda$.  The
+  functoriality of cofibers gives the displayed naturality square and the
+  morphism of finite distinguished triangles; the first and last components
+  are the shifted $\lambda^{n-k}$ maps in that cofiber diagram.  The identity
+  and composition equations are the equalities of the corresponding quotient
+  projections.  No multiplicative algebra structure is used.
 \end{proof}
 
 \section{The elementary lambda and rho extensions}
