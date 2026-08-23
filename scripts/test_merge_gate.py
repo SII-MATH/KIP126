@@ -38,6 +38,37 @@ def pull_request(**overrides: object) -> dict:
     return pull
 
 
+class GhJsonTests(unittest.TestCase):
+    def test_read_retries_transient_server_error(self) -> None:
+        failed = mock.Mock(returncode=1, stderr="gh: HTTP 504", stdout="")
+        succeeded = mock.Mock(returncode=0, stderr="", stdout='{"ok": true}')
+        with (
+            mock.patch.object(merge_gate.subprocess, "run", side_effect=[failed, succeeded]) as run,
+            mock.patch.object(merge_gate.time, "sleep") as sleep,
+        ):
+            result = merge_gate.gh_json(["api", "repos/surenny/KIP126"], retry_transient=True)
+        self.assertEqual(result, {"ok": True})
+        self.assertEqual(run.call_count, 2)
+        sleep.assert_called_once_with(1.0)
+
+    def test_write_does_not_blindly_retry_transient_server_error(self) -> None:
+        failed = mock.Mock(returncode=1, stderr="gh: HTTP 502", stdout="")
+        with mock.patch.object(merge_gate.subprocess, "run", return_value=failed) as run:
+            with self.assertRaises(merge_gate.GitHubCommandError) as raised:
+                merge_gate.gh_json(["api", "--method", "POST", "repos/surenny/KIP126/labels"])
+        self.assertTrue(raised.exception.transient)
+        run.assert_called_once()
+
+    def test_projection_read_retries_transient_server_error(self) -> None:
+        expected = {"head_sha": "1" * 40}
+        operation = mock.Mock(side_effect=[RuntimeError("gh: HTTP 504"), expected])
+        with mock.patch.object(merge_gate.time, "sleep") as sleep:
+            result = merge_gate.retry_transient_read(operation)
+        self.assertEqual(result, expected)
+        self.assertEqual(operation.call_count, 2)
+        sleep.assert_called_once_with(1.0)
+
+
 class EvaluateTests(unittest.TestCase):
     def evaluate(self, pull: dict, decision: dict, queued: set[int] | None = None) -> tuple[str, bool]:
         with (
@@ -113,6 +144,26 @@ class EnqueueTests(unittest.TestCase):
         self.assertIn("method=SQUASH", args)
         self.assertEqual(merge_gate.BRANCH_UPDATE_METHOD, "MERGE")
 
+    def test_transient_auto_merge_error_is_reconciled_from_live_state(self) -> None:
+        error = merge_gate.GitHubCommandError("gh: HTTP 504", transient=True)
+        with (
+            mock.patch.object(merge_gate, "gh_json", side_effect=error),
+            mock.patch.object(merge_gate, "wait_for_auto_merge", return_value=True) as wait,
+        ):
+            message = merge_gate.enqueue("surenny/KIP126", pull_request(), False, False)
+        self.assertIn("confirmed after transient GitHub error", message)
+        wait.assert_called_once_with("surenny/KIP126", 17)
+
+    def test_transient_queue_error_is_reconciled_from_live_state(self) -> None:
+        error = merge_gate.GitHubCommandError("gh: HTTP 503", transient=True)
+        with (
+            mock.patch.object(merge_gate, "gh_json", side_effect=error),
+            mock.patch.object(merge_gate, "wait_for_queue_entry", return_value=True) as wait,
+        ):
+            message = merge_gate.enqueue("surenny/KIP126", pull_request(), False, True)
+        self.assertIn("confirmed after transient GitHub error", message)
+        wait.assert_called_once_with("surenny/KIP126", 17)
+
 
 class BranchUpdateTests(unittest.TestCase):
     def test_blueprint_only_surface_uses_only_blueprint_recheck(self) -> None:
@@ -161,6 +212,54 @@ class BranchUpdateTests(unittest.TestCase):
         )
         self.assertIn("inputs[refresh_review]=true", gh_json.call_args_list[2].args[0])
         self.assertNotIn("inputs[refresh_review]=true", gh_json.call_args_list[3].args[0])
+
+    def test_stale_mutation_head_waits_for_rest_consistency(self) -> None:
+        new_head = "2" * 40
+        update_result = {
+            "data": {
+                "updatePullRequestBranch": {
+                    "pullRequest": {"number": 17, "headRefOid": "1" * 40}
+                }
+            }
+        }
+        files = [[{"filename": "KIP126/Core.lean"}]]
+        with (
+            mock.patch.object(
+                merge_gate, "gh_json", side_effect=[update_result, files, None, None]
+            ),
+            mock.patch.object(
+                merge_gate, "wait_for_updated_head", return_value=new_head
+            ) as wait,
+        ):
+            message = merge_gate.update_behind_branch("surenny/KIP126", pull_request(), False)
+        wait.assert_called_once_with("surenny/KIP126", 17, "1" * 40)
+        self.assertIn("111111111111 -> 222222222222", message)
+
+    def test_transient_branch_update_error_reconciles_before_dispatch(self) -> None:
+        new_head = "2" * 40
+        error = merge_gate.GitHubCommandError("gh: HTTP 504", transient=True)
+        files = [[{"filename": "KIP126/Core.lean"}]]
+        with (
+            mock.patch.object(merge_gate, "gh_json", side_effect=[error, files, None, None]),
+            mock.patch.object(
+                merge_gate, "wait_for_updated_head", return_value=new_head
+            ) as wait,
+        ):
+            message = merge_gate.update_behind_branch("surenny/KIP126", pull_request(), False)
+        wait.assert_called_once_with("surenny/KIP126", 17, "1" * 40)
+        self.assertIn("111111111111 -> 222222222222", message)
+
+    def test_updated_head_poll_observes_eventual_consistency(self) -> None:
+        old = pull_request()
+        new = pull_request()
+        new["head"]["sha"] = "2" * 40
+        with (
+            mock.patch.object(merge_gate, "pull_request_identity", side_effect=[old, new]),
+            mock.patch.object(merge_gate.time, "sleep") as sleep,
+        ):
+            observed = merge_gate.wait_for_updated_head("surenny/KIP126", 17, "1" * 40)
+        self.assertEqual(observed, "2" * 40)
+        sleep.assert_called_once_with(1.0)
 
     def test_dry_run_has_no_side_effects(self) -> None:
         with mock.patch.object(merge_gate, "gh_json") as gh_json:
