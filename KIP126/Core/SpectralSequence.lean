@@ -5,6 +5,8 @@ import KIP126.Core.SpectralSequence.Extension
 import KIP126.Core.SpectralSequence.FilteredComplex
 import KIP126.Core.SpectralSequence.HomologicalImage
 import KIP126.Core.SpectralSequence.Morphism
+import KIP126.Core.SpectralSequence.PageRepresentatives
+import KIP126.Core.SpectralSequence.PageRepresentativesRegression
 import KIP126.Core.SpectralSequence.SpectralObjectAdapter
 import KIP126.Core.SpectralSequence.SpectralObjectAdapterRegression
 
