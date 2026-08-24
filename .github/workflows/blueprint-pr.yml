@@ -152,6 +152,16 @@ jobs:
           echo "digest=$digest" >> "$GITHUB_OUTPUT"
           echo "Trusted build-input digest: $digest"
 
+      - name: Compute the trusted PR-build contract
+        id: build-contract
+        if: steps.eligible.outputs.ok == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          digest=$(bash gate/scripts/ci-build-contract.sh gate)
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          echo "Trusted PR-build contract: $digest"
+
       - name: Set up the pinned Blueprint renderer
         if: steps.eligible.outputs.ok == 'true'
         shell: bash
@@ -176,14 +186,22 @@ jobs:
 
       - name: Restore trusted Lean outputs for the base build inputs
         id: lean-cache
-        if: steps.eligible.outputs.ok == 'true' && steps.scope.outputs.mixed != 'true'
+        if: steps.eligible.outputs.ok == 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: base/.lake/build
           key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}
 
-      - name: Adopt trusted Lean outputs
-        if: steps.eligible.outputs.ok == 'true' && steps.scope.outputs.mixed != 'true' && steps.lean-cache.outputs.cache-matched-key != ''
+      - name: Restore successful PR outputs for the same attested build inputs
+        id: pr-lean-cache
+        if: steps.eligible.outputs.ok == 'true' && steps.lean-cache.outputs.cache-matched-key == '' && steps.pr.outputs.head_repo == github.repository
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: base/.lake/build
+          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}-${{ steps.build-contract.outputs.digest }}
+
+      - name: Adopt restored Lean outputs
+        if: steps.eligible.outputs.ok == 'true' && (steps.lean-cache.outputs.cache-matched-key != '' || steps.pr-lean-cache.outputs.cache-matched-key != '')
         shell: bash
         run: |
           mkdir -p .lake/build
@@ -206,11 +224,13 @@ jobs:
           GH_TOKEN: ""
           GITHUB_TOKEN: ""
           MIXED: ${{ steps.scope.outputs.mixed }}
+          LEAN_OUTPUTS_RESTORED: ${{ steps.lean-cache.outputs.cache-matched-key != '' || steps.pr-lean-cache.outputs.cache-matched-key != '' }}
         run: |
           set -euo pipefail
           "$RUNNER_TEMP/blueprint-venv/bin/leanblueprint" web
           lake exe cache get
-          if [[ "$MIXED" == true ]]; then
+          if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]; then
+            echo "::notice::no matching Lean outputs were available; falling back to a local build"
             lake build KIP126
           fi
           lake exe checkdecls blueprint/lean_decls

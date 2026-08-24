@@ -21,6 +21,11 @@ name: pr-build
 # workflow_dispatch is also used by branch reconciliation. Its explicit refresh_review input lets a
 # reconciled build refresh semantic review without making ordinary ad-hoc rebuilds spend review
 # budget; that review then reconciles the PR's status label.
+#
+# A same-repository PR head may inherit a first-parent ancestor's successful build while the
+# committed Lean/build-input digest and the trusted build contract remain byte-for-byte identical.
+# The inherited result is still republished as an exact-head `build` status. Anything missing,
+# stale, foreign, or ambiguous simply falls back to the normal sandboxed build.
 
 on:
   pull_request_target:
@@ -290,7 +295,12 @@ jobs:
           set -euo pipefail
           rm -rf base/scripts/perf
           cp -a gate/scripts/perf base/scripts/perf
+          cp gate/scripts/Axioms.lean base/scripts/Axioms.lean
           cp gate/scripts/sandbox-build.sh base/scripts/sandbox-build.sh
+          rm -f base/scripts/euler-project-gates.sh
+          if [[ -f gate/scripts/euler-project-gates.sh ]]; then
+            cp gate/scripts/euler-project-gates.sh base/scripts/euler-project-gates.sh
+          fi
 
       - name: Checkout merge-base config (trusted ancestor — only to scope the PR's pin delta)
         if: ${{ env.INFRA != '1' && env.BUMP == '1' }}
@@ -308,6 +318,8 @@ jobs:
           ref: ${{ steps.pr.outputs.sha }}
           path: pr
           persist-credentials: false
+          # A short first-parent history is enough to cross reviewer-only synchronization commits.
+          fetch-depth: 21
           # actions/checkout now refuses to fetch fork PR code under
           # pull_request_target unless this opt-in is set. Fetching the fork's
           # sources is exactly this workflow's job; it is safe here because the
@@ -429,15 +441,83 @@ jobs:
             echo "::error::KIP126/ must not import KIP126Roadmap or KIP126Review"; exit 1
           fi
 
+      - name: Reuse a trusted equivalent first-parent build
+        id: inherit-build
+        if: ${{ env.INFRA != '1' && github.event_name != 'merge_group' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REPOSITORY: ${{ steps.pr.outputs.repo }}
+          HEAD_SHA: ${{ steps.pr.outputs.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Attest both the candidate inputs and the trusted machinery that defines the sandboxed
+          # build. The 128-bit contract keeps the attestation under GitHub's description limit.
+          if ! input=$(bash gate/scripts/ci-build-cache-key.sh pr "$HEAD_SHA"); then
+            echo "::warning::could not compute the current build inputs: running the sandboxed build"
+            exit 0
+          fi
+          if ! contract=$(bash gate/scripts/ci-build-contract.sh gate); then
+            echo "::warning::could not compute the trusted build contract: running the sandboxed build"
+            exit 0
+          fi
+          attestation="build:v1 input=$input contract=$contract"
+          {
+            echo "BUILD_INPUT_DIGEST=$input"
+            echo "BUILD_CONTRACT=$contract"
+            echo "BUILD_ATTESTATION=$attestation"
+          } >> "$GITHUB_ENV"
+
+          # Fork ancestors need not be addressable in this repository's trusted status namespace.
+          if [[ "$HEAD_REPOSITORY" != "$GITHUB_REPOSITORY" ]]; then
+            echo "::notice::fork PR: running the sandboxed build"
+            exit 0
+          fi
+
+          ancestors=$(git -C pr rev-list --first-parent --max-count=20 "$HEAD_SHA^" 2>/dev/null || true)
+          if [[ -z "$ancestors" ]]; then
+            echo "::notice::no first-parent history is available: running the sandboxed build"
+            exit 0
+          fi
+          for ancestor in $ancestors; do
+            ancestor_input=$(bash gate/scripts/ci-build-cache-key.sh pr "$ancestor" 2>/dev/null || true)
+            if [[ "$ancestor_input" != "$input" ]]; then
+              echo "::notice::build inputs changed at $ancestor: stopping inheritance search"
+              break
+            fi
+            if ! statuses=$(gh api "repos/$GITHUB_REPOSITORY/commits/$ancestor/statuses?per_page=100"); then
+              echo "::warning::could not read build statuses at $ancestor: running the sandboxed build"
+              break
+            fi
+            status=$(jq -c '[.[] | select(.context == "build" and .creator.login == "github-actions[bot]")][0] // {}' <<<"$statuses")
+            state=$(jq -r '.state // ""' <<<"$status")
+            description=$(jq -r '.description // ""' <<<"$status")
+            if [[ -z "$state" ]]; then
+              continue
+            fi
+            if [[ "$state" == success && "$description" == "$attestation" ]]; then
+              {
+                echo "BUILD_REUSED=1"
+                echo "BUILD_REUSED_FROM=$ancestor"
+              } >> "$GITHUB_ENV"
+              echo "::notice::reusing trusted build from ancestor $ancestor (input=$input, contract=$contract)"
+            else
+              echo "::notice::nearest trusted build evidence at $ancestor is not reusable"
+            fi
+            # Never jump past a newer trusted red or differently-versioned build result.
+            break
+          done
+
       - name: Install elan (trusted)
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         run: |
           curl -sSfL https://elan.lean-lang.org/elan-init.sh -o elan-init.sh
           chmod +x elan-init.sh && ./elan-init.sh -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Install landrun (pinned + checksum) and self-test (fail closed)
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         run: |
           curl -sSL -H "Accept: application/octet-stream" \
             "https://github.com/Zouuup/landrun/releases/download/${LANDRUN_VER}/landrun-linux-amd64" -o landrun
@@ -466,7 +546,7 @@ jobs:
       # so the code run here is still trusted Mathlib master under the project's "track master"
       # policy; only the PR's KIP126/ code stays untrusted and runs solely under landrun below.
       - name: Fetch Mathlib with the (bump-validated) config (network, no token; no PR code)
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         # `set -o pipefail` is not optional here. A `run:` step with no explicit `shell:`
         # gets the runner default `bash -e {0}`, which does NOT set pipefail, so piping
         # into `tee` would report the pipeline's status as tee's and swallow a failing
@@ -488,7 +568,7 @@ jobs:
       # choose and cannot fix; failing those would take every PR in the repo down for as
       # long as a bad pin sat on main, which is precisely backwards.
       - name: Require a complete Mathlib cache for a bump
-        if: ${{ env.INFRA != '1' && env.BUMP == '1' }}
+        if: ${{ env.INFRA != '1' && env.BUMP == '1' && env.BUILD_REUSED != '1' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -508,10 +588,11 @@ jobs:
 
       # Restore only the content-addressed cache produced by successful default-branch CI for the
       # trusted base's committed Lean/build inputs. Documentation-only base commits therefore hit
-      # the same archive. PR code never writes GitHub caches, and pin bumps deliberately skip reuse.
+      # the same archive. PR jobs never write this trusted-main namespace, and pin bumps deliberately
+      # skip its reuse; successful same-repository PR outputs use the isolated namespace below.
       - name: Restore trusted build outputs for the base build inputs
         id: main-build-cache
-        if: ${{ env.INFRA != '1' && env.BUMP != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUMP != '1' && env.BUILD_REUSED != '1' }}
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: base/.lake/build
@@ -525,7 +606,7 @@ jobs:
       # pass the cache *endpoints* into landrun, so the sandboxed build stays offline and
       # can only consult the locally-populated cache.
       - name: Configure the Lake artifact cache (no-op unless the public endpoints are set)
-        if: ${{ env.INFRA != '1' && steps.main-build-cache.outputs.cache-hit != 'true' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && steps.main-build-cache.outputs.cache-hit != 'true' }}
         env:
           PUBLIC_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT_PUBLIC }}
           PUBLIC_REVISION_ENDPOINT: ${{ vars.LAKE_CACHE_REVISION_ENDPOINT_PUBLIC }}
@@ -568,7 +649,7 @@ jobs:
       # cache is whole; it is affordable because a failing attempt aborts in seconds and a full
       # refetch is ~30s.
       - name: Fetch KIP126's own oleans from the Lake cache (network, no token; no PR code)
-        if: ${{ env.INFRA != '1' && env.PROJECT_CACHE_ENABLED == '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && env.PROJECT_CACHE_ENABLED == '1' }}
         env:
           # Passed under non-LAKE_ names so Lake never sees the deprecated endpoint
           # environment variables; we hand it the endpoints through a `--service` config.
@@ -679,7 +760,7 @@ jobs:
           fi
 
       - name: Prepare trusted read-only Lean watchdog toolchain
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         run: |
           set -euo pipefail
           export PATH="$HOME/.elan/bin:$PATH"
@@ -690,7 +771,7 @@ jobs:
 
       - name: Build (trusted config + overlaid KIP126/) under landrun, offline
         id: build
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         env:
           # Cold full builds have a trusted baseline module (External.Claims) that normally takes
           # ~225s but has exceeded the watchdog's 300s default under runner contention. Keep a hard
@@ -717,6 +798,17 @@ jobs:
             --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
             --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
             -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh'
+
+      # This separate namespace never feeds the trusted-main cache. It only supplies compiled
+      # material to the Blueprint declaration check for a later head with the same attested inputs.
+      # The build-inheritance decision above does not depend on this optional cache.
+      - name: Save successful same-repository PR outputs for Blueprint checks
+        if: ${{ steps.build.outcome == 'success' && steps.pr.outputs.repo == github.repository && env.BUILD_ATTESTATION != '' }}
+        continue-on-error: true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
 
       - name: Report build and bump-guard statuses to the PR head commit
         if: always()
@@ -779,8 +871,15 @@ jobs:
           if [ "${{ env.BUMP_BAD }}" = "1" ] || [ "${{ env.INFRA }}" = "1" ] \
              || [ "${{ env.TOO_LARGE }}" = "1" ] || [ "${{ env.DIFF_UNKNOWN }}" = "1" ]; then
             state=failure; desc="build not run — see the scope check"
+          elif [ "${{ env.BUILD_REUSED }}" = "1" ]; then
+            state=success; desc="${{ env.BUILD_ATTESTATION }}"
           elif [ "${{ steps.build.outcome }}" = "success" ]; then
-            state=success; desc="sandboxed build, audits, and simp-NF lint passed (trusted config)"
+            state=success
+            if [ -n "${{ env.BUILD_ATTESTATION }}" ]; then
+              desc="${{ env.BUILD_ATTESTATION }}"
+            else
+              desc="sandboxed build, audits, and simp-NF lint passed (trusted config)"
+            fi
           else
             state=failure; desc="sandboxed build, audit, or simp-NF lint failed"
           fi
