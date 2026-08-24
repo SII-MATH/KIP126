@@ -23,10 +23,14 @@ class WorkflowRoutingTests(unittest.TestCase):
             self.assertIn("paths-ignore:", workflow)
             self.assertIn('      - "blueprint/src/**"', workflow)
 
-    def test_blueprint_pr_has_separate_gate_and_review_trigger(self):
+    def test_blueprint_pr_has_separate_gate_and_authorized_mixed_sync(self):
         blueprint = self.read("blueprint-pr.yml")
+        lean = self.read("pr-build.yml")
         review = self.read("review.yml")
-        self.assertIn("grep -qvE '^blueprint/src/'", blueprint)
+        self.assertIn("validate-sync", blueprint)
+        self.assertIn("validate-sync", lean)
+        self.assertIn("MIXED_SYNC=1", lean)
+        self.assertIn('if [[ "$MIXED" != true ]]', blueprint)
         for context in ("scope", "bump-guard", "blueprint", "build"):
             self.assertIn(f"post_status {context} ", blueprint)
         self.assertIn("workflows: [pr-build, blueprint-pr]", review)

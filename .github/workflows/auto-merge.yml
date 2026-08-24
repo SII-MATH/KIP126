@@ -5,7 +5,7 @@ name: Auto-merge
 # running kip126-review / kip126 locally, which push the verdict ledger to the reviews branch and
 # post the scoreboard comment. This workflow just reads that ledger and merges when ready.
 #
-# The local merge gate reads KIP126's exact-head statuses and verified semantic-review evidence. In
+# The local merge gate reads KIP126's exact-head statuses and the trusted TauCeti scoreboard. In
 # the fallback path it serializes all events through one persistent merge-train head. Only that PR is
 # updated from main and rechecked, so later candidates do not spend review budget on heads that an
 # earlier merge would immediately invalidate. The gate never rewrites forks, runs a reviewer directly,
@@ -53,10 +53,7 @@ jobs:
         && github.event.workflow_run.event == 'pull_request_target')
       || (github.event_name == 'issue_comment'
         && github.event.issue.pull_request != null
-        && (contains(github.event.comment.body, 'kip126-scoreboard')
-            || contains(github.event.comment.body, 'kip126-meta:v1')
-            || contains(github.event.comment.body, 'euler-semantic-review:v1')
-            || contains(github.event.comment.body, 'tauceti-scoreboard')))
+        && contains(github.event.comment.body, 'tauceti-scoreboard'))
       || (github.event_name == 'workflow_dispatch' && github.event.inputs.pr != '')
     outputs:
       pr: ${{ steps.r.outputs.pr }}

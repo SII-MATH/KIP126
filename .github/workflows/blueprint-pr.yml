@@ -1,8 +1,9 @@
 name: blueprint-pr
 
 # Trusted-base workflow for untrusted Blueprint source. It never exposes a token to the renderer or
-# Lean process. Blueprint-only PRs publish the same mechanical merge contexts as Lean PRs, plus a
-# dedicated `blueprint` status that the semantic-review dispatcher and local CLI can verify.
+# Lean process. Blueprint-only PRs publish all mechanical contexts. An exactly authorized reviewer
+# mixed synchronization publishes only `blueprint`; pr-build remains the sole owner of its shared
+# scope/build/bump-guard contexts and builds the Lean side independently.
 
 on:
   pull_request_target:
@@ -55,6 +56,14 @@ jobs:
             echo "base_sha=$(jq -r .base.sha "$RUNNER_TEMP/pr.json")"
           } >> "$GITHUB_OUTPUT"
 
+      - name: Checkout workflow-pinned trusted projection tooling
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: gate
+          persist-credentials: false
+          fetch-depth: 1
+
       - name: Classify the source boundary and diff size
         id: scope
         env:
@@ -66,13 +75,17 @@ jobs:
           files=$(gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$PR/files" --jq '.[].filename')
           printf '%s\n' "$files"
           scope_ok=true
+          mixed=false
           reason='Blueprint-only source change'
           if [[ -z "$files" ]]; then
             scope_ok=false
             reason='changed-file list is empty or unavailable'
-          elif grep -qvE '^blueprint/src/' <<<"$files"; then
+          elif grep -qvE '^blueprint/src/|^KIP126/.*\.lean$|^KIP126\.lean$' <<<"$files"; then
             scope_ok=false
-            reason='mixed or out-of-boundary change; split Blueprint and Lean work'
+            reason='change reaches outside Blueprint and Lean source boundaries'
+          elif grep -qE '^KIP126/.*\.lean$|^KIP126\.lean$' <<<"$files"; then
+            mixed=true
+            reason='reviewer mixed synchronization candidate'
           fi
 
           read -r additions deletions changed_files < <(
@@ -88,11 +101,38 @@ jobs:
           fi
           {
             echo "ok=$scope_ok"
+            echo "mixed=$mixed"
             echo "reason=$reason"
           } >> "$GITHUB_OUTPUT"
 
+      - name: Validate authorized reviewer mixed synchronization
+        id: sync
+        if: steps.scope.outputs.ok == 'true' && steps.scope.outputs.mixed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 gate/scripts/pr_status/cli.py validate-sync \
+            --repo "$GITHUB_REPOSITORY" --pr '${{ steps.pr.outputs.number }}'
+
+      - name: Resolve executable candidate eligibility
+        id: eligible
+        if: always()
+        env:
+          SCOPE_OK: ${{ steps.scope.outputs.ok }}
+          MIXED: ${{ steps.scope.outputs.mixed }}
+          SYNC_OUTCOME: ${{ steps.sync.outcome }}
+        shell: bash
+        run: |
+          if [[ "$SCOPE_OK" == true && ( "$MIXED" != true || "$SYNC_OUTCOME" == success ) ]]; then
+            echo 'ok=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ok=false' >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        if: steps.scope.outputs.ok == 'true'
+        if: steps.eligible.outputs.ok == 'true'
         with:
           repository: ${{ steps.pr.outputs.head_repo }}
           ref: ${{ steps.pr.outputs.head_sha }}
@@ -104,7 +144,7 @@ jobs:
       # Lean/build inputs are byte-identical to the trusted base and yield its published key.
       - name: Compute the trusted build-input cache key
         id: build-cache-key
-        if: steps.scope.outputs.ok == 'true'
+        if: steps.eligible.outputs.ok == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -113,7 +153,7 @@ jobs:
           echo "Trusted build-input digest: $digest"
 
       - name: Set up the pinned Blueprint renderer
-        if: steps.scope.outputs.ok == 'true'
+        if: steps.eligible.outputs.ok == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -125,7 +165,7 @@ jobs:
           echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
 
       - name: Set up Lean without running the Lean project gate
-        if: steps.scope.outputs.ok == 'true'
+        if: steps.eligible.outputs.ok == 'true'
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
         with:
           build: false
@@ -136,21 +176,21 @@ jobs:
 
       - name: Restore trusted Lean outputs for the base build inputs
         id: lean-cache
-        if: steps.scope.outputs.ok == 'true'
+        if: steps.eligible.outputs.ok == 'true' && steps.scope.outputs.mixed != 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: base/.lake/build
           key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}
 
       - name: Adopt trusted Lean outputs
-        if: steps.scope.outputs.ok == 'true' && steps.lean-cache.outputs.cache-matched-key != ''
+        if: steps.eligible.outputs.ok == 'true' && steps.scope.outputs.mixed != 'true' && steps.lean-cache.outputs.cache-matched-key != ''
         shell: bash
         run: |
           mkdir -p .lake/build
           cp -a base/.lake/build/. .lake/build/
 
       - name: Restore the checkdecls tool build
-        if: steps.scope.outputs.ok == 'true'
+        if: steps.eligible.outputs.ok == 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/packages/checkdecls/.lake/build
@@ -158,17 +198,21 @@ jobs:
 
       - name: Build Blueprint and verify declaration mappings
         id: blueprint
-        if: steps.scope.outputs.ok == 'true'
+        if: steps.eligible.outputs.ok == 'true'
         shell: bash
         env:
           # The candidate contributes TeX only. No GitHub token or credential is passed to either
           # process; the checkout has persist-credentials disabled.
           GH_TOKEN: ""
           GITHUB_TOKEN: ""
+          MIXED: ${{ steps.scope.outputs.mixed }}
         run: |
           set -euo pipefail
           "$RUNNER_TEMP/blueprint-venv/bin/leanblueprint" web
           lake exe cache get
+          if [[ "$MIXED" == true ]]; then
+            lake build KIP126
+          fi
           lake exe checkdecls blueprint/lean_decls
           test -s blueprint/web/index.html
           test -s blueprint/lean_decls
@@ -179,6 +223,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           HEAD_SHA: ${{ steps.pr.outputs.head_sha }}
           SCOPE_OK: ${{ steps.scope.outputs.ok }}
+          ELIGIBLE: ${{ steps.eligible.outputs.ok }}
+          MIXED: ${{ steps.scope.outputs.mixed }}
           SCOPE_REASON: ${{ steps.scope.outputs.reason }}
           BLUEPRINT_OUTCOME: ${{ steps.blueprint.outcome }}
         shell: bash
@@ -199,14 +245,18 @@ jobs:
             post_fail=1
           }
 
-          if [[ "$SCOPE_OK" == true ]]; then
+          if [[ "$ELIGIBLE" == true ]]; then
             scope_state=success
-            scope_desc='Blueprint-only source boundary and diff-size guard passed'
+            scope_desc='Blueprint source boundary and synchronization guard passed'
           else
             scope_state=failure
-            scope_desc="$SCOPE_REASON"
+            if [[ "$MIXED" == true ]]; then
+              scope_desc='mixed synchronization lacks exact trusted authorization'
+            else
+              scope_desc="$SCOPE_REASON"
+            fi
           fi
-          if [[ "$SCOPE_OK" == true && "$BLUEPRINT_OUTCOME" == success ]]; then
+          if [[ "$ELIGIBLE" == true && "$BLUEPRINT_OUTCOME" == success ]]; then
             blueprint_state=success
             blueprint_desc='Blueprint web build and Lean declaration mapping passed'
           else
@@ -214,8 +264,10 @@ jobs:
             blueprint_desc='Blueprint mechanical check failed or was not run'
           fi
 
-          post_status scope "$scope_state" "$scope_desc"
-          post_status bump-guard success 'not applicable to Blueprint-only source changes'
           post_status blueprint "$blueprint_state" "$blueprint_desc"
-          post_status build "$blueprint_state" "$blueprint_desc"
+          if [[ "$MIXED" != true ]]; then
+            post_status scope "$scope_state" "$scope_desc"
+            post_status bump-guard success 'not applicable to Blueprint-only source changes'
+            post_status build "$blueprint_state" "$blueprint_desc"
+          fi
           [[ "$post_fail" == 0 && "$blueprint_state" == success ]]

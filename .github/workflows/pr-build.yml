@@ -25,8 +25,8 @@ name: pr-build
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
-    # Blueprint-only PRs have their own trusted workflow. A mixed PR still runs here and fails the
-    # source-boundary scope guard, as required by AGENTS.md.
+    # Blueprint-only PRs have their own trusted workflow. A reviewer-authored mixed synchronization
+    # still runs here: this job builds its Lean delta while blueprint-pr checks the Blueprint delta.
     paths-ignore:
       - "blueprint/src/**"
   # The merge queue tests a batch (one or more PRs combined onto current main) before it lands. We
@@ -162,12 +162,23 @@ jobs:
           # transitive pins derived from mathlib, toolchain monotonic).
           if [ -z "$files" ]; then
             echo "INFRA=1" >> "$GITHUB_ENV"; echo "::warning::no files / unable to list — cannot determine the overlay, routing to human"
-          elif echo "$files" | grep -vqE '^KIP126/|^KIP126\.lean$|^lake-manifest\.json$|^lean-toolchain$'; then
+          elif echo "$files" | grep -vqE '^KIP126/|^KIP126\.lean$|^blueprint/src/|^lake-manifest\.json$|^lean-toolchain$'; then
             if echo "$files" | grep -qE '^lakefile\.toml$'; then
               echo "HUMAN_LAKEFILE=1" >> "$GITHUB_ENV"
             fi
             echo "OUT_OF_SCOPE=1" >> "$GITHUB_ENV"
-            echo "::warning::PR changes paths outside KIP126/ + Lake pins — its KIP126/ is still sandbox-built against the trusted base (so the build result is visible), but merging needs human review"
+            echo "::warning::PR changes paths outside KIP126/, Blueprint source, and Lake pins — its KIP126/ is still sandbox-built against the trusted base (so the build result is visible), but merging needs human review"
+          elif echo "$files" | grep -qE '^blueprint/src/'; then
+            if [ "${{ github.event_name }}" = "merge_group" ]; then
+              echo "::notice::merge group contains Blueprint and Lean changes already validated at their PR heads"
+            elif echo "$files" | grep -qE '^KIP126/.*\.lean$|^KIP126\.lean$' \
+                 && ! echo "$files" | grep -qE '^lake-manifest\.json$|^lean-toolchain$'; then
+              echo "MIXED_SYNC=1" >> "$GITHUB_ENV"
+              echo "::notice::reviewer mixed synchronization candidate — validating exact parent and authorization"
+            else
+              echo "OUT_OF_SCOPE=1" >> "$GITHUB_ENV"
+              echo "::warning::Blueprint changes may be mixed only with Lean sources through the authorized reviewer synchronization path"
+            fi
           elif echo "$files" | grep -qE '^lake-manifest\.json$|^lean-toolchain$'; then
             echo "BUMP=1" >> "$GITHUB_ENV"
             echo "::notice::PR changes Lake pins — validating as a forward bump before building"
@@ -259,6 +270,19 @@ jobs:
           path: gate
           persist-credentials: false
           fetch-depth: 1
+
+      - name: Validate authorized reviewer mixed synchronization
+        if: ${{ env.MIXED_SYNC == '1' }}
+        env:
+          GH_TOKEN: "${{ github.token }}"
+        run: |
+          if python3 gate/scripts/pr_status/cli.py validate-sync \
+               --repo '${{ github.repository }}' --pr '${{ steps.pr.outputs.num }}'; then
+            echo "MIXED_SYNC_OK=1" >> "$GITHUB_ENV"
+          else
+            echo "OUT_OF_SCOPE=1" >> "$GITHUB_ENV"
+            echo "::warning::mixed synchronization lacks an exact authorized source/recommendation pair"
+          fi
 
       - name: Stage workflow-pinned build tooling into the trusted base
         if: ${{ env.INFRA != '1' }}
@@ -771,7 +795,11 @@ jobs:
           if [ "${{ env.SCOPE_OK }}" != "1" ]; then
             sc_state=failure; sc_desc="trusted scope guard did not complete — re-run pr-build"
           elif [ "${{ env.OUT_OF_SCOPE }}" = "1" ]; then
-            sc_state=failure; sc_desc="changes outside KIP126/ — human review + merge required"
+            if [ "${{ env.MIXED_SYNC }}" = "1" ]; then
+              sc_state=failure; sc_desc="mixed Lean/Blueprint synchronization is not exactly authorized"
+            else
+              sc_state=failure; sc_desc="changes outside the automatic source boundary — human review + merge required"
+            fi
           elif [ "${{ env.BUMP_BAD }}" = "1" ]; then
             sc_state=failure; sc_desc="Lake pin change failed the trusted bump validator"
           elif [ "${{ env.INFRA }}" = "1" ]; then
@@ -783,7 +811,7 @@ jobs:
           elif [ "${{ env.NEWFILE_TOO_LONG }}" = "1" ]; then
             sc_state=failure; sc_desc="a newly added .lean file exceeds 1000 lines — split it (existing files may grow to 1500)"
           else
-            sc_state=success; sc_desc="changes are in scope (KIP126/ and the allowed root files only)"
+            sc_state=success; sc_desc="changes are in scope (including an authorized mixed synchronization when present)"
           fi
           post_status scope "$sc_state" "$sc_desc"
 

@@ -73,7 +73,7 @@ class EvaluateTests(unittest.TestCase):
     def evaluate(self, pull: dict, decision: dict, queued: set[int] | None = None) -> tuple[str, bool]:
         with (
             mock.patch.object(merge_gate, "pull_request_identity", return_value=pull),
-            mock.patch.object(merge_gate.projection, "fetch_facts", return_value={}),
+            mock.patch.object(merge_gate.status_cli, "fetch_facts", return_value={}),
             mock.patch.object(merge_gate.projection, "reduce_facts", return_value=decision),
         ):
             return merge_gate.evaluate("surenny/KIP126", pull["number"], queued, False)
@@ -82,7 +82,7 @@ class EvaluateTests(unittest.TestCase):
         with mock.patch.object(merge_gate, "enqueue", return_value="#17: native auto-merge enabled") as enqueue:
             message, changed = self.evaluate(
                 pull_request(mergeable_state="clean"),
-                {"target_label": "ready-to-merge", "reason": "fresh-exact-head-evidence-green"},
+                {"target_label": "ready-to-merge", "reason": "fresh-exact-head-scoreboard-green"},
             )
         self.assertTrue(changed)
         self.assertEqual(message, "#17: native auto-merge enabled")
@@ -117,7 +117,7 @@ class EvaluateTests(unittest.TestCase):
         pull = pull_request(labels=[{"name": "hold"}])
         with (
             mock.patch.object(merge_gate, "pull_request_identity", return_value=pull),
-            mock.patch.object(merge_gate.projection, "fetch_facts") as fetch,
+            mock.patch.object(merge_gate.status_cli, "fetch_facts") as fetch,
         ):
             message, changed = merge_gate.evaluate("surenny/KIP126", 17, None, False)
         self.assertFalse(changed)
@@ -282,7 +282,7 @@ class BranchUpdateTests(unittest.TestCase):
 
 
 class MergeTrainTests(unittest.TestCase):
-    READY = {"target_label": "ready-to-merge", "reason": "fresh-exact-head-evidence-green"}
+    READY = {"target_label": "ready-to-merge", "reason": "fresh-exact-head-scoreboard-green"}
     BEHIND = {"target_label": "awaiting-review", "reason": "mergeability-ambiguous:behind"}
 
     def reconcile(
@@ -448,11 +448,11 @@ class MergeTrainTests(unittest.TestCase):
         dispatch.assert_called_once_with("surenny/KIP126", "blueprint-pr.yml", 10)
         self.assertEqual(message, "#10: re-dispatched missing exact-head checks")
 
-    def test_missing_semantic_review_retries_only_the_reviewer(self) -> None:
+    def test_missing_scoreboard_retries_only_the_reviewer(self) -> None:
         head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
         missing = {
             "target_label": "awaiting-review",
-            "reason": "semantic-unavailable:semantic-review:missing",
+            "reason": "scoreboard:absent",
         }
         with (
             mock.patch.object(merge_gate, "pull_decision", return_value=(missing, None)),
@@ -462,7 +462,7 @@ class MergeTrainTests(unittest.TestCase):
             message = merge_gate.advance_train_head("surenny/KIP126", head, False)
         review.assert_called_once_with("surenny/KIP126", 10)
         recheck.assert_not_called()
-        self.assertEqual(message, "#10: re-dispatched missing exact-head semantic review")
+        self.assertEqual(message, "#10: re-dispatched missing exact-head TauCeti scoreboard")
 
     def test_terminal_head_releases_label_and_native_auto_merge(self) -> None:
         head = pull_request(
@@ -470,7 +470,7 @@ class MergeTrainTests(unittest.TestCase):
             labels=[{"name": merge_gate.TRAIN_LABEL}],
             auto_merge={"merge_method": "squash"},
         )
-        terminal = {"target_label": "awaiting-author", "reason": "semantic-request-changes"}
+        terminal = {"target_label": "awaiting-author", "reason": "scoreboard:blocked"}
         with (
             mock.patch.object(merge_gate, "pull_decision", return_value=(terminal, None)),
             mock.patch.object(merge_gate, "disable_auto_merge") as disable,
@@ -479,7 +479,7 @@ class MergeTrainTests(unittest.TestCase):
             message = merge_gate.advance_train_head("surenny/KIP126", head, False)
         disable.assert_called_once_with("surenny/KIP126", head, False)
         label.assert_called_once_with("surenny/KIP126", 10, False, False)
-        self.assertEqual(message, "#10: released merge-train head — semantic-request-changes")
+        self.assertEqual(message, "#10: released merge-train head — scoreboard:blocked")
 
     def test_dry_run_never_writes_the_train_label(self) -> None:
         with mock.patch.object(merge_gate, "gh_json") as gh_json:
@@ -534,10 +534,10 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("for CHECK in scope build bump-guard", review)
         for context in ("scope", "build", "bump-guard"):
             self.assertIn(f'evidence("{context}")', review)
-        self.assertIn("WEBHOOK_IDEMPOTENCY_KEY=\"euler-review-retry-$RETRY_KEY\"", review)
+        self.assertIn("WEBHOOK_IDEMPOTENCY_KEY=\"tauceti-review-retry-$RETRY_KEY\"", review)
 
     def test_perf_remains_advisory_to_merge_gate(self) -> None:
-        config = json.loads(self.text(".github/euler/status-labels.json"))
+        config = json.loads(self.text("scripts/pr_status/config.json"))
         self.assertNotIn("perf", config["mechanical_contexts"])
         self.assertIn("unstable", config["ready_mergeable_states"])
         self.assertIn("advisory", self.text(".github/workflows/pr-profile.yml").lower())
