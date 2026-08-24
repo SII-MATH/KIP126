@@ -203,6 +203,13 @@ def enqueue(repository: str, pull: dict, dry_run: bool, has_queue: bool) -> str:
         action = "enqueue" if has_queue else f"enable native auto-merge ({AUTO_MERGE_METHOD})"
         return f"#{number}: would {action} {head[:12]}"
     if not has_queue:
+        live = pull_request_identity(repository, number)
+        live_head = (live.get("head") or {}).get("sha")
+        if live_head != head:
+            raise RuntimeError(
+                f"#{number}: pull request head changed before auto-merge "
+                f"(expected {head}, found {live_head or 'missing'})"
+            )
         query = """
         mutation($prId: ID!, $method: PullRequestMergeMethod!) {
           enablePullRequestAutoMerge(input: { pullRequestId: $prId, mergeMethod: $method }) {

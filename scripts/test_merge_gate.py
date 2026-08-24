@@ -137,7 +137,10 @@ class EnqueueTests(unittest.TestCase):
                 }
             }
         }
-        with mock.patch.object(merge_gate, "gh_json", return_value=result) as gh_json:
+        with (
+            mock.patch.object(merge_gate, "pull_request_identity", return_value=pull_request()),
+            mock.patch.object(merge_gate, "gh_json", return_value=result) as gh_json,
+        ):
             message = merge_gate.enqueue("surenny/KIP126", pull_request(), False, False)
         self.assertEqual(message, "#17: native auto-merge enabled (SQUASH)")
         args = gh_json.call_args.args[0]
@@ -147,12 +150,26 @@ class EnqueueTests(unittest.TestCase):
     def test_transient_auto_merge_error_is_reconciled_from_live_state(self) -> None:
         error = merge_gate.GitHubCommandError("gh: HTTP 504", transient=True)
         with (
+            mock.patch.object(merge_gate, "pull_request_identity", return_value=pull_request()),
             mock.patch.object(merge_gate, "gh_json", side_effect=error),
             mock.patch.object(merge_gate, "wait_for_auto_merge", return_value=True) as wait,
         ):
             message = merge_gate.enqueue("surenny/KIP126", pull_request(), False, False)
         self.assertIn("confirmed after transient GitHub error", message)
         wait.assert_called_once_with("surenny/KIP126", 17)
+
+    def test_native_auto_merge_stops_if_head_changed_before_mutation(self) -> None:
+        changed = pull_request(head={
+            "sha": "2" * 40,
+            "repo": {"full_name": "surenny/KIP126"},
+        })
+        with (
+            mock.patch.object(merge_gate, "pull_request_identity", return_value=changed),
+            mock.patch.object(merge_gate, "gh_json") as gh_json,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "head changed before auto-merge"):
+                merge_gate.enqueue("surenny/KIP126", pull_request(), False, False)
+        gh_json.assert_not_called()
 
     def test_transient_queue_error_is_reconciled_from_live_state(self) -> None:
         error = merge_gate.GitHubCommandError("gh: HTTP 503", transient=True)
@@ -516,6 +533,13 @@ class WorkflowContractTests(unittest.TestCase):
             self.assertIn("group: kip126-merge-train", workflow)
             self.assertIn("issues: write", workflow)
         self.assertIn("push:\n    branches: [main]", sweep)
+
+    def test_auto_merge_waits_for_explicit_reviewer_handoff(self) -> None:
+        auto_merge = self.text(".github/workflows/auto-merge.yml")
+        self.assertIn("workflow_dispatch:", auto_merge)
+        self.assertIn("DISPATCH_PR", auto_merge)
+        self.assertNotIn("issue_comment:", auto_merge)
+        self.assertNotIn("github.event_name == 'issue_comment'", auto_merge)
 
     def test_dispatched_build_refreshes_review_and_labels(self) -> None:
         build = self.text(".github/workflows/pr-build.yml")
