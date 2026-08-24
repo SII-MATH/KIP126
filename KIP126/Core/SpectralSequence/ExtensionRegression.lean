@@ -6,7 +6,7 @@ import KIP126.Core.SpectralSequence.Extension
 
 namespace KIP126.Core.SpectralSequence
 
-open CategoryTheory
+open CategoryTheory CategoryTheory.Limits
 
 universe u v
 
@@ -26,5 +26,10 @@ example (F : Algebra.Filtration A) {s₀ s₁ s₂ : ℤ}
       F.quotientTransition (show s₀ + 1 ≤ s₂ + 1 by omega) i :=
   F.quotientTransition_comp (show s₀ + 1 ≤ s₁ + 1 by omega)
     (show s₁ + 1 ≤ s₂ + 1 by omega) i
+
+example (D : BoundedExtension.TwoTermData (C := C))
+    (k : ℤ) (hk₁ : k ≠ 1) (hk₀ : k ≠ 0) :
+    IsZero (D.complex.complex.X k) :=
+  D.two_term k hk₁ hk₀
 
 end KIP126.Core.SpectralSequence
