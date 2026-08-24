@@ -4,11 +4,14 @@
 from __future__ import annotations
 
 import argparse
+from collections.abc import Callable
 import importlib.util
 import json
 import pathlib
+import re
 import subprocess
 import sys
+import time
 import urllib.parse
 
 
@@ -30,32 +33,82 @@ TRAIN_LABEL_COLOR = "5319e7"
 TRAIN_LABEL_DESCRIPTION = "The only PR currently advancing through KIP126's fallback merge train"
 HOLD_LABELS = frozenset({"keep", "hold", "wip", "human", "do-not-close"})
 ACTIVE_CHECK_STATES = frozenset({"queued", "in_progress", "waiting", "pending", "requested"})
+GH_READ_RETRY_DELAYS = (1.0, 2.0, 4.0)
+BRANCH_UPDATE_POLL_DELAYS = (0.0, 1.0, 2.0, 4.0)
+TRANSIENT_GH_ERROR = re.compile(r"\bHTTP\s+5\d{2}\b", re.IGNORECASE)
 
 
-def gh_json(args: list[str]) -> object:
-    completed = subprocess.run(["gh", *args], text=True, capture_output=True)
-    if completed.returncode != 0:
-        raise RuntimeError(completed.stderr.strip() or "gh command failed")
-    try:
-        return json.loads(completed.stdout or "null")
-    except json.JSONDecodeError as error:
-        raise RuntimeError("gh returned malformed JSON") from error
+class GitHubCommandError(RuntimeError):
+    def __init__(self, message: str, *, transient: bool) -> None:
+        super().__init__(message)
+        self.transient = transient
+
+
+def retry_transient_read(operation: Callable[[], object]) -> object:
+    for attempt in range(len(GH_READ_RETRY_DELAYS) + 1):
+        try:
+            return operation()
+        except RuntimeError as error:
+            if not TRANSIENT_GH_ERROR.search(str(error)) or attempt == len(GH_READ_RETRY_DELAYS):
+                raise
+            time.sleep(GH_READ_RETRY_DELAYS[attempt])
+    raise AssertionError("unreachable")
+
+
+def gh_json(args: list[str], *, retry_transient: bool = False) -> object:
+    delays = GH_READ_RETRY_DELAYS if retry_transient else ()
+    for attempt in range(len(delays) + 1):
+        completed = subprocess.run(["gh", *args], text=True, capture_output=True)
+        if completed.returncode == 0:
+            try:
+                return json.loads(completed.stdout or "null")
+            except json.JSONDecodeError as error:
+                raise RuntimeError("gh returned malformed JSON") from error
+        message = completed.stderr.strip() or "gh command failed"
+        transient = bool(TRANSIENT_GH_ERROR.search(message))
+        if transient and attempt < len(delays):
+            time.sleep(delays[attempt])
+            continue
+        raise GitHubCommandError(message, transient=transient)
+    raise AssertionError("unreachable")
 
 
 def pull_request_identity(repository: str, number: int) -> dict:
     pull = gh_json([
         "api", f"repos/{repository}/pulls/{number}",
-    ])
+    ], retry_transient=True)
     if not isinstance(pull, dict):
         raise RuntimeError("unexpected pull request response")
     return pull
+
+
+def wait_for_auto_merge(repository: str, number: int) -> bool:
+    for delay in BRANCH_UPDATE_POLL_DELAYS:
+        if delay:
+            time.sleep(delay)
+        live = pull_request_identity(repository, number)
+        auto_merge = live.get("auto_merge") or {}
+        method = auto_merge.get("merge_method") if isinstance(auto_merge, dict) else None
+        if isinstance(method, str) and method.upper() == AUTO_MERGE_METHOD:
+            return True
+    return False
+
+
+def wait_for_queue_entry(repository: str, number: int) -> bool:
+    for delay in BRANCH_UPDATE_POLL_DELAYS:
+        if delay:
+            time.sleep(delay)
+        queued = queue_entries(repository)
+        if queued is not None and number in queued:
+            return True
+    return False
 
 
 def review_surface(repository: str, number: int) -> str:
     pages = gh_json([
         "api", "--paginate", "--slurp",
         f"repos/{repository}/pulls/{number}/files?per_page=100",
-    ])
+    ], retry_transient=True)
     if not isinstance(pages, list):
         raise RuntimeError(f"#{number}: unexpected pull request files response")
     paths = [
@@ -105,7 +158,9 @@ def pull_decision(repository: str, pull: dict) -> tuple[dict | None, str | None]
     skip = eligibility_skip(pull)
     if skip:
         return None, skip
-    facts = projection.fetch_facts(repository, pull["number"], CONFIG)
+    facts = retry_transient_read(
+        lambda: projection.fetch_facts(repository, pull["number"], CONFIG)
+    )
     return projection.reduce_facts(facts, CONFIG), None
 
 
@@ -125,7 +180,7 @@ def queue_entries(repository: str) -> set[int] | None:
     owner, name = repository.split("/", 1)
     result = gh_json([
         "api", "graphql", "-f", f"query={query}", "-F", f"owner={owner}", "-F", f"name={name}",
-    ])
+    ], retry_transient=True)
     if not isinstance(result, dict) or result.get("errors"):
         raise RuntimeError(f"cannot read merge queue: {result}")
     repository_data = ((result.get("data") or {}).get("repository") or {})
@@ -160,10 +215,18 @@ def enqueue(repository: str, pull: dict, dry_run: bool, has_queue: bool) -> str:
           }
         }
         """
-        result = gh_json([
-            "api", "graphql", "-f", f"query={query}",
-            "-F", f"prId={node_id}", "-f", f"method={AUTO_MERGE_METHOD}",
-        ])
+        try:
+            result = gh_json([
+                "api", "graphql", "-f", f"query={query}",
+                "-F", f"prId={node_id}", "-f", f"method={AUTO_MERGE_METHOD}",
+            ])
+        except GitHubCommandError as error:
+            if not error.transient or not wait_for_auto_merge(repository, number):
+                raise
+            return (
+                f"#{number}: native auto-merge enabled ({AUTO_MERGE_METHOD}); "
+                "confirmed after transient GitHub error"
+            )
         if not isinstance(result, dict) or result.get("errors"):
             raise RuntimeError(f"#{number}: enabling native auto-merge failed: {result}")
         request = (((result.get("data") or {}).get("enablePullRequestAutoMerge") or {}).get("pullRequest") or {})
@@ -180,9 +243,14 @@ def enqueue(repository: str, pull: dict, dry_run: bool, has_queue: bool) -> str:
       }
     }
     """
-    result = gh_json([
-        "api", "graphql", "-f", f"query={query}", "-F", f"prId={node_id}", "-F", f"headOid={head}",
-    ])
+    try:
+        result = gh_json([
+            "api", "graphql", "-f", f"query={query}", "-F", f"prId={node_id}", "-F", f"headOid={head}",
+        ])
+    except GitHubCommandError as error:
+        if not error.transient or not wait_for_queue_entry(repository, number):
+            raise
+        return f"#{number}: enqueued; confirmed after transient GitHub error"
     if not isinstance(result, dict) or result.get("errors"):
         raise RuntimeError(f"#{number}: enqueue failed: {result}")
     entry = (((result.get("data") or {}).get("enqueuePullRequest") or {}).get("mergeQueueEntry") or {})
@@ -215,7 +283,7 @@ def head_check_states(repository: str, pull: dict) -> dict[str, str]:
         raise RuntimeError(f"#{number}: missing pull request head")
     result = gh_json([
         "api", f"repos/{repository}/commits/{head}/check-runs?filter=latest&per_page=100",
-    ])
+    ], retry_transient=True)
     if not isinstance(result, dict) or not isinstance(result.get("check_runs"), list):
         raise RuntimeError(f"#{number}: unexpected check-runs response")
     return {
@@ -225,6 +293,17 @@ def head_check_states(repository: str, pull: dict) -> dict[str, str]:
         and isinstance(run.get("name"), str)
         and isinstance(run.get("status"), str)
     }
+
+
+def wait_for_updated_head(repository: str, number: int, previous_head: str) -> str:
+    for delay in BRANCH_UPDATE_POLL_DELAYS:
+        if delay:
+            time.sleep(delay)
+        live = pull_request_identity(repository, number)
+        live_head = (live.get("head") or {}).get("sha")
+        if isinstance(live_head, str) and len(live_head) == 40 and live_head != previous_head:
+            return live_head
+    raise RuntimeError(f"#{number}: branch update did not move the head after consistency wait")
 
 
 def update_behind_branch(repository: str, pull: dict, dry_run: bool) -> str:
@@ -256,19 +335,25 @@ def update_behind_branch(repository: str, pull: dict, dry_run: bool) -> str:
       }
     }
     """
-    result = gh_json([
-        "api", "graphql", "-f", f"query={query}",
-        "-F", f"prId={node_id}", "-F", f"headOid={head}",
-        "-f", f"method={BRANCH_UPDATE_METHOD}",
-    ])
-    if not isinstance(result, dict) or result.get("errors"):
-        raise RuntimeError(f"#{number}: branch update failed: {result}")
-    updated = (((result.get("data") or {}).get("updatePullRequestBranch") or {}).get("pullRequest") or {})
-    updated_head = updated.get("headRefOid")
-    if updated.get("number") != number or not isinstance(updated_head, str) or len(updated_head) != 40:
-        raise RuntimeError(f"#{number}: branch update returned an invalid pull request: {result}")
-    if updated_head == head:
-        raise RuntimeError(f"#{number}: branch update did not move the head")
+    try:
+        result = gh_json([
+            "api", "graphql", "-f", f"query={query}",
+            "-F", f"prId={node_id}", "-F", f"headOid={head}",
+            "-f", f"method={BRANCH_UPDATE_METHOD}",
+        ])
+    except GitHubCommandError as error:
+        if not error.transient:
+            raise
+        updated_head = wait_for_updated_head(repository, number, head)
+    else:
+        if not isinstance(result, dict) or result.get("errors"):
+            raise RuntimeError(f"#{number}: branch update failed: {result}")
+        updated = (((result.get("data") or {}).get("updatePullRequestBranch") or {}).get("pullRequest") or {})
+        updated_head = updated.get("headRefOid")
+        if updated.get("number") != number or not isinstance(updated_head, str) or len(updated_head) != 40:
+            raise RuntimeError(f"#{number}: branch update returned an invalid pull request: {result}")
+        if updated_head == head:
+            updated_head = wait_for_updated_head(repository, number, head)
     selected_workflows = recheck_workflows(repository, number)
     workflows = ", ".join(selected_workflows)
     for workflow in selected_workflows:
@@ -282,7 +367,7 @@ def update_behind_branch(repository: str, pull: dict, dry_run: bool) -> str:
 def ensure_train_label(repository: str) -> None:
     pages = gh_json([
         "api", "--paginate", "--slurp", f"repos/{repository}/labels?per_page=100",
-    ])
+    ], retry_transient=True)
     if not isinstance(pages, list):
         raise RuntimeError("unexpected repository label pages")
     names = {
@@ -358,7 +443,7 @@ def cleanup_closed_train_heads(repository: str, dry_run: bool) -> list[str]:
     pages = gh_json([
         "api", "--paginate", "--slurp",
         f"repos/{repository}/issues?state=closed&labels={encoded}&per_page=100",
-    ])
+    ], retry_transient=True)
     if not isinstance(pages, list):
         raise RuntimeError("unexpected closed train-head pages")
     messages = []
@@ -529,7 +614,7 @@ def reconcile_train(
 def open_pull_requests(repository: str) -> list[int]:
     pages = gh_json([
         "api", "--paginate", "--slurp", f"repos/{repository}/pulls?state=open&per_page=100",
-    ])
+    ], retry_transient=True)
     if not isinstance(pages, list):
         raise RuntimeError("unexpected pull request pages")
     return sorted({
