@@ -9,43 +9,6 @@ boundedness, and two-term hypotheses are explicit fields; the `d₀` map is the
 associated-graded differential of that filtered complex.
 -/
 
-namespace KIP126.Core.Algebra.Filtration
-
-open CategoryTheory CategoryTheory.Limits
-
-universe u v w
-
-variable {C : Type u} [Category.{v} C] [Abelian C]
-variable {ι : Type w} {A : CategoryTheory.GradedObject ι C}
-
-/-- The truncation quotient at the cut `s₀`. -/
-noncomputable def truncatedObj (F : Filtration A) (s₀ : ℤ) (i : ι) : C :=
-  F.quotientAt (s₀ + 1) i
-
-/-- The projection to the truncation quotient. -/
-noncomputable def truncationProj (F : Filtration A) (s₀ : ℤ) (i : ι) :
-    A i ⟶ F.truncatedObj s₀ i := F.quotientProjection (s₀ + 1) i
-
-/-- The transition between truncation quotients. -/
-noncomputable def truncationTransition (F : Filtration A)
-    {s₀ s₁ : ℤ} (h : s₀ ≤ s₁) (i : ι) :
-    F.truncatedObj s₁ i ⟶ F.truncatedObj s₀ i :=
-  F.quotientTransition (show s₀ + 1 ≤ s₁ + 1 by omega) i
-
-theorem truncationProj_transition (F : Filtration A)
-    {s₀ s₁ : ℤ} (h : s₀ ≤ s₁) (i : ι) :
-    F.truncationProj s₁ i ≫ F.truncationTransition h i = F.truncationProj s₀ i := by
-  exact F.quotientProjection_transition (show s₀ + 1 ≤ s₁ + 1 by omega) i
-
-theorem truncationTransition_comp (F : Filtration A)
-    {s₀ s₁ s₂ : ℤ} (h₀₁ : s₀ ≤ s₁) (h₁₂ : s₁ ≤ s₂) (i : ι) :
-    F.truncationTransition h₁₂ i ≫ F.truncationTransition h₀₁ i =
-      F.truncationTransition (h₀₁.trans h₁₂) i := by
-  exact F.quotientTransition_comp (show s₀ + 1 ≤ s₁ + 1 by omega)
-    (show s₁ + 1 ≤ s₂ + 1 by omega) i
-
-end KIP126.Core.Algebra.Filtration
-
 namespace KIP126.Core.SpectralSequence.BoundedExtension
 
 open CategoryTheory CategoryTheory.Limits
