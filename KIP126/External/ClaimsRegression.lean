@@ -87,7 +87,7 @@ example :
 example : (externalClaimLedger.entries.map ExternalClaimRecord.id).Nodup :=
   externalClaimLedger_nodup
 
-example : externalClaimLedger.entries.length = 55 :=
+example : externalClaimLedger.entries.length = 56 :=
   externalClaimLedger_count
 
 example (root : ExternalRootId) : (externalClaimLedger.lookup root).Valid :=
@@ -106,7 +106,10 @@ example (root : ExternalRootId) :
     ExternalRootId.ofCode (ExternalRootId.code root) = some root :=
   ExternalRootId.ofCode_code root
 
-example : ExternalRootId.all.length = 55 := ExternalRootId.all_length
+example : ExternalRootId.all.length = 56 := ExternalRootId.all_length
+
+example : ExternalClaimRecord.sourceTargets.length = 9 :=
+  ExternalClaimRecord.sourceTargets_length
 
 example : ExternalClaimClass.all.length = 5 := ExternalClaimClass.all_length
 
@@ -136,8 +139,30 @@ example :
     externalClaimProjection.map ExternalClaimProjection.id = ExternalRootId.all :=
   externalClaimProjection_ids
 
-example : externalClaimProjection.length = 55 :=
+example : externalClaimProjection.length = 56 :=
   externalClaimProjection_count
+
+example :
+    (externalClaimLedger.lookup .higherLambdaQuotientAlgebra).target =
+      "source:higher-lambda-quotient-algebra-tower" := by
+  rfl
+
+example :
+    (externalClaimLedger.lookup .higherLambdaQuotientAlgebra).ref.source =
+      .burklundXu := by
+  rfl
+
+example :
+    (externalClaimLedger.lookup .symmetricMonoidalDeformation).target =
+      "source:symmetric-monoidal-deformation-construction" := by
+  rfl
+
+/-- The opaque BJM/BX criterion does not acquire the commutative-algebra tower
+as a project proof dependency. -/
+example :
+    (externalClaimLedger.lookup .bjmBxCriterion).dependencies =
+      [.bjmInduction] := by
+  rfl
 
 example (root : ExternalRootId) :
     resolveClaimCode (ExternalRootId.code root) =
