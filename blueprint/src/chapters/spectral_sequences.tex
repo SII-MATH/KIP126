@@ -564,6 +564,79 @@ later chapters.
   restricted differential.
 \end{proof}
 
+% SOURCE: KIP126/Core/SpectralSequence/FilteredRepresentatives.lean:18-62;
+% adapted from KIP-infra/SpectralSequence/FilteredComplex.lean at commit 65de864.
+\begin{theorem}[Associated-graded differential and filtered representatives]
+  \label{thm:filtered-associated-graded-differential-representative}
+  \uses{def:core-filtered-chain-complex,def:core-associated-graded-differential,def:core-to-associated-graded,lem:filtered-associated-graded-differential-projection}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedDifferential_iff_representative}
+  \leanok
+  Let $T$ be a projective object and let
+  $a:T\to\operatorname{gr}^s_F(C_k)$ and
+  $b:T\to\operatorname{gr}^s_F(C_{k-1})$ be generalized elements.  Then
+  $a$ followed by the associated-graded differential equals $b$ if and only
+  if there are a filtration-level representative $x:T\to F^sC_k$ and a
+  filtration-level map $dx:T\to F^sC_{k-1}$ such that $x$ projects to $a$,
+  $dx$ is the differential of $x$ after inclusion into the underlying
+  complex, and $dx$ projects to $b$.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Projectivity lifts $a$ through the quotient map.  The filtered differential
+  supplies the restricted map $F^sC_k\to F^sC_{k-1}$, and the projection
+  equation identifies its quotient with the associated-graded differential.
+  Conversely, cancel the monomorphism $F^sC_{k-1}\hookrightarrow C_{k-1}$
+  to identify any stated $dx$ with the restricted differential of $x$, then
+  use the projection equation.
+\end{proof}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredRepresentatives.lean:66-108;
+% adapted from KIP-infra/SpectralSequence/FilteredComplex.lean at commit 65de864.
+\begin{theorem}[Cycle criterion by a higher-filtration differential lift]
+  \label{thm:filtered-associated-graded-cycle-representative}
+  \uses{thm:filtered-associated-graded-differential-representative,def:core-filtered-chain-complex,def:core-to-associated-graded}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedDifferential_eq_zero_iff_representative}
+  \leanok
+  For a projective generalized element $a:T\to\operatorname{gr}^s_F(C_k)$,
+  its associated-graded differential is zero if and only if $a$ has a
+  representative $x:T\to F^sC_k$ whose differential lifts to
+  $F^{s+1}C_{k-1}$.  Thus the vanishing condition is expressed by a
+  filtration-level cycle lift, not by choosing a representative in the
+  quotient without further data.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Apply the preceding representative equivalence with the zero generalized
+  element.  The zero projection condition is equivalent, by the cokernel
+  universal property, to lifting the differential through the next filtration
+  inclusion.
+\end{proof}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredRepresentatives.lean:112-166;
+% adapted from KIP-infra/SpectralSequence/FilteredComplex.lean at commit 65de864.
+\begin{theorem}[Naturality of filtered differential representatives]
+  \label{thm:filtered-differential-representative-naturality}
+  \uses{def:filtered-chain-map,thm:filtered-chain-map-restricted-differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.differentialRepresentative_naturality}
+  \leanok
+  Let $u:(C,F)\to(D,G)$ be a filtered chain map.  If a map $dx$ at target
+  filtration level $t$ represents the differential of $x$ at source level
+  $s$, then applying the filtration restrictions of $u$ to $x$ and $dx$
+  gives a map at the same respective levels representing the differential of
+  the image of $x$.  The source and target levels are arbitrary; choosing
+  $t=s+r$ gives the cycle lift and choosing $s=t-r+1$ gives the boundary lift
+  used in page comparisons.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Postcompose the representative equation with the chain-map component of
+  $u$.  The chain-map square and the two filtration-preservation
+  factorisations rewrite the result as the target representative equation.
+\end{proof}
+
 \begin{definition}[Associated-graded chain complex]
   \label{def:filtered-associated-graded-complex}
   \uses{def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq}
