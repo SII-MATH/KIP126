@@ -1,4 +1,5 @@
 import KIP126.Core.SpectralSequence.Basic
+import KIP126.Core.SpectralSequence.PageLevel
 import KIP126.Core.Algebra.Completion
 import KIP126.Core.Algebra.Coefficients
 import KIP126.External.Claims
@@ -17,6 +18,7 @@ namespace KIP126.Classical.Adams
 open CategoryTheory
 open KIP126.External
 open KIP126.Core.Algebra
+open KIP126.Core.SpectralSequence
 
 abbrev Bidegree := ℤ × ℤ
 
@@ -26,6 +28,18 @@ def classicalAdamsShift (r : ℕ) : Bidegree := (r, (r : ℤ) - 1)
 /-- The target bidegree of a page-`r` classical Adams differential. -/
 def classicalAdamsTarget (r : ℕ) (b : Bidegree) : Bidegree :=
   b + classicalAdamsShift r
+
+def classicalAdamsPageLevel : PageLevelConvention where
+  firstPage := 2
+  admissibleFrom := 2
+  page := fun r => r
+  cycleLevel := fun r => r - 1
+  quotientExponent := fun r => r - 1
+  page_first := by norm_num
+  page_succ := by intro r; norm_num
+  cycle_succ := by intro r; omega
+  quotient_succ := by intro r; omega
+  cycleLevel_eq_quotientExponent := by intro r; rfl
 
 @[simp] theorem classicalAdamsShift_two :
     classicalAdamsShift 2 = (2, 1) := by
@@ -100,6 +114,19 @@ def IsAdamsFiltrationSeparated
     {G : CategoryTheory.GradedObject ℤ AddCommGrpCat}
     (F : KIP126.Core.Algebra.Filtration G) : Prop :=
   ∀ n (S : Subobject (G n)), (∀ s, S ≤ F.F s n) → S = ⊥
+
+theorem isAdamsFiltrationSeparated_of_eventuallyZero
+    {G : CategoryTheory.GradedObject ℤ AddCommGrpCat}
+    (F : KIP126.Core.Algebra.Filtration G)
+    (hF : F.IsEventuallyZero) :
+    IsAdamsFiltrationSeparated F := by
+  intro n S hS
+  obtain ⟨s, hs⟩ := hF n
+  apply le_antisymm
+  · have h := hS s
+    rw [hs] at h
+    exact h
+  · exact bot_le
 
 /-- Strong convergence data for the Adams sequence of the specified spectrum.
 Every page after `stablePage b` is identified with the associated graded of

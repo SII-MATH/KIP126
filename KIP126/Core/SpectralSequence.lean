@@ -7,6 +7,7 @@ import KIP126.Core.SpectralSequence.FilteredRepresentatives
 import KIP126.Core.SpectralSequence.FilteredRepresentativesRegression
 import KIP126.Core.SpectralSequence.HomologicalImage
 import KIP126.Core.SpectralSequence.Morphism
+import KIP126.Core.SpectralSequence.PageLevel
 import KIP126.Core.SpectralSequence.SpectralObjectAdapter
 import KIP126.Core.SpectralSequence.SpectralObjectAdapterRegression
 
