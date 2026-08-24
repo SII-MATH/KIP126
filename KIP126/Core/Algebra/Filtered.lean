@@ -101,6 +101,34 @@ noncomputable def toAssociatedGraded [Abelian C] (F : Filtration A) (s : ℤ) (i
     Subobject.underlying.obj (F.F s i) ⟶ F.associatedGraded s i :=
   cokernel.π (Subobject.ofLE (F.F (s + 1) i) (F.F s i) (F.decreasing s i))
 
+/-- A generalized element of one filtration level maps to zero in the
+associated graded exactly when it lifts through the next filtration level. -/
+lemma comp_toAssociatedGraded_eq_zero_iff_lifts [Abelian C]
+    (F : Filtration A) {T : C} (s : ℤ) (i : ι)
+    (x : T ⟶ Subobject.underlying.obj (F.F s i)) :
+    x ≫ F.toAssociatedGraded s i = 0 ↔
+      ∃ x' : T ⟶ Subobject.underlying.obj (F.F (s + 1) i),
+        x' ≫ Subobject.ofLE (F.F (s + 1) i) (F.F s i)
+          (F.decreasing s i) = x := by
+  unfold toAssociatedGraded associatedGraded
+  constructor
+  · intro h
+    exact ⟨Abelian.monoLift _ x h, Abelian.monoLift_comp _ x h⟩
+  · rintro ⟨x', rfl⟩
+    rw [Category.assoc, cokernel.condition, Limits.comp_zero]
+
+/-- Two generalized elements have the same associated-graded image exactly
+when their difference lifts through the next filtration level. -/
+lemma comp_toAssociatedGraded_eq_iff_sub_lifts [Abelian C]
+    (F : Filtration A) {T : C} (s : ℤ) (i : ι)
+    (x x' : T ⟶ Subobject.underlying.obj (F.F s i)) :
+    x ≫ F.toAssociatedGraded s i = x' ≫ F.toAssociatedGraded s i ↔
+      ∃ z : T ⟶ Subobject.underlying.obj (F.F (s + 1) i),
+        z ≫ Subobject.ofLE (F.F (s + 1) i) (F.F s i)
+          (F.decreasing s i) = x - x' := by
+  rw [← sub_eq_zero, ← Preadditive.sub_comp]
+  exact F.comp_toAssociatedGraded_eq_zero_iff_lifts s i (x - x')
+
 /-- All associated graded pieces, graded by filtration degree and the original
 grading index. -/
 noncomputable def associatedGradedObject [Abelian C] (F : Filtration A) :
