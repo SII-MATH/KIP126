@@ -9,13 +9,9 @@ name: PR status labels
 #   awaiting-author     a review requested changes
 #   ready-to-merge      CI green and every rubric approved
 #
-# scripts/pr_status/labels.py is the SOLE writer of these labels and derives all six from GitHub
-# truth alone (core.derive): the `build` commit status, the canonical <!--kip126-scoreboard--> meta,
-# and the review engine's <!--kip126-review-in-progress--> marker. It assumes nothing about any
-# worker or review harness -- a harness that posts the (optional) in-progress marker gets a
-# review-in-progress label; one that doesn't just shows awaiting-review during review. reconcile is
-# idempotent and convergent, so the trigger only decides *when* to refresh; a forged comment can only
-# TRIGGER a re-derive (from author-association-checked data), never supply a verdict.
+# scripts/pr_status is the SOLE status consumer and label writer. It combines exact-head mechanical
+# statuses, the trusted <!--tauceti-scoreboard-->, and controlled mixed-sync ancestry into one
+# projection also consumed by merge_gate.py. Labels are advisory views of that projection.
 #
 # Runs on pull_request_target so it can label fork PRs, but it NEVER checks out or executes PR head
 # code: it reads only PR metadata via the API and runs the trusted base-branch script under the
@@ -81,8 +77,8 @@ jobs:
             && github.event.workflow_run.pull_requests[0] != null)
         || (github.event_name == 'issue_comment'
             && github.event.issue.pull_request != null
-            && (contains(github.event.comment.body, 'kip126-scoreboard')
-                || contains(github.event.comment.body, 'kip126-review-in-progress')))
+            && (contains(github.event.comment.body, 'tauceti-scoreboard')
+                || contains(github.event.comment.body, 'tauceti-review-in-progress')))
       )
     runs-on: ubuntu-latest
     # Serialize all events for one PR on its number. Don't cancel: GitHub already collapses a burst
@@ -111,7 +107,7 @@ jobs:
           # used to do that -- but a payload is a snapshot of the moment the event fired, and after a
           # queue wait it can describe a commit the PR has already moved past. One API call is a good
           # price for a label that always reflects live truth. A PR's NUMBER cannot go stale.
-        run: python3 scripts/pr_status/labels.py reconcile "$PR"
+        run: python3 scripts/pr_status/cli.py reconcile --repo '${{ github.repository }}' --pr "$PR"
 
   # Resolve the PR number for the events whose payload doesn't carry it, so `label-resolved` can key
   # its concurrency on the result. See the `label` job above for why this exists for these events only.
@@ -183,7 +179,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           PR: ${{ needs.resolve.outputs.pr }}
-        run: python3 scripts/pr_status/labels.py reconcile "$PR"
+        run: python3 scripts/pr_status/cli.py reconcile --repo '${{ github.repository }}' --pr "$PR"
 
   # Scheduled backstop: reconcile the PRs currently carrying review-in-progress, so an expired
   # in-flight marker (a crashed review) drops the label even though nothing else fired. It is the only
@@ -219,5 +215,5 @@ jobs:
           prs=$(gh pr list --repo "$REPO" --state open --label review-in-progress \
                   --json number --jq '.[].number' 2>/dev/null || true)
           for pr in $prs; do
-            python3 scripts/pr_status/labels.py reconcile "$pr"
+            python3 scripts/pr_status/cli.py reconcile --repo "$REPO" --pr "$pr"
           done
