@@ -3,7 +3,8 @@ name: Auto-merge
 # Merge a PR automatically once it is genuinely ready, WITHOUT generating any reviews here (that is
 # expensive — it spends API budget — and is gated off in review.yml). Reviews are produced by people
 # running kip126-review / kip126 locally, which push the verdict ledger to the reviews branch and
-# post the scoreboard comment. This workflow just reads that ledger and merges when ready.
+# post the scoreboard comment. A scoreboard publication alone does not arm merging: the trusted
+# Reviewer explicitly dispatches this workflow only after deciding no Blueprint sync is required.
 #
 # The local merge gate reads KIP126's exact-head statuses and the trusted TauCeti scoreboard. In
 # the fallback path it serializes all events through one persistent merge-train head. Only that PR is
@@ -16,9 +17,7 @@ on:
   workflow_run:
     workflows: ["pr-build", "blueprint-pr"]
     types: [completed]
-  # A review scoreboard was just posted or edited (a local review may have turned the PR green).
-  issue_comment:
-    types: [created, edited]
+  # Trusted Reviewer handoff after an exact-head green scoreboard and the no-sync decision.
   workflow_dispatch:
     inputs:
       pr:
@@ -46,14 +45,11 @@ concurrency:
 jobs:
   resolve:
     runs-on: ubuntu-latest
-    # Only react to a successful build, a scoreboard update, or an explicit dispatch.
+    # Only react to a successful build or an explicit trusted Reviewer handoff.
     if: >
       (github.event_name == 'workflow_run'
         && github.event.workflow_run.conclusion == 'success'
         && github.event.workflow_run.event == 'pull_request_target')
-      || (github.event_name == 'issue_comment'
-        && github.event.issue.pull_request != null
-        && contains(github.event.comment.body, 'tauceti-scoreboard'))
       || (github.event_name == 'workflow_dispatch' && github.event.inputs.pr != '')
     outputs:
       pr: ${{ steps.r.outputs.pr }}
@@ -66,9 +62,7 @@ jobs:
           DISPATCH_PR: ${{ inputs.pr || '' }}
         run: |
           set -euo pipefail
-          if [ "$EVENT" = "issue_comment" ]; then
-            echo "pr=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
-          elif [ "$EVENT" = "workflow_dispatch" ]; then
+          if [ "$EVENT" = "workflow_dispatch" ]; then
             [[ "$DISPATCH_PR" =~ ^[0-9]+$ ]]
             echo "pr=$DISPATCH_PR" >> "$GITHUB_OUTPUT"
           else
