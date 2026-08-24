@@ -3,9 +3,10 @@ import KIP126.Core.SpectralSequence.Convergence
 /-!
 # Bounded extension spectral sequences
 
-This module records finite truncation transitions and the two-term associated
-graded map used by a bounded extension.  The endpoint and convergence data
-remain explicit through the Core API.
+This module records finite truncation transitions and the bounded two-term
+filtered-complex data used by an extension spectral sequence.  The endpoint,
+boundedness, and two-term hypotheses are explicit fields; the `d₀` map is the
+associated-graded differential of that filtered complex.
 -/
 
 namespace KIP126.Core.Algebra.Filtration
@@ -53,39 +54,43 @@ open KIP126.Core.Algebra
 universe u v
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
-variable {X₁ X₂ : C}
 
-/-- Data for a bounded extension at one graded stem. -/
+/-- Data for a bounded two-term extension at one graded stem.
+
+The complex, its degreewise boundedness, and its endpoint extension are all
+inputs.  The `twoTerm` field rules out additional nonzero chain degrees, while
+`differential_at_one` identifies the remaining differential with the specified
+extension map. -/
 structure TwoTermData where
-  source : Filtration (fun _ : ℤ => X₁)
-  target : Filtration (fun _ : ℤ => X₂)
-  map : X₁ ⟶ X₂
-  preserves : ∀ (s i : ℤ), ∃ φ : Subobject.underlying.obj (source.F s i) ⟶
-    Subobject.underlying.obj (target.F s i), φ ≫ (target.F s i).arrow =
-      (source.F s i).arrow ≫ map
-
-/-- The filtration-preserving graded morphism underlying `TwoTermData`. -/
-noncomputable def filteredMap (D : TwoTermData (C := C) (X₁ := X₁) (X₂ := X₂)) :
-    FilteredMorphism D.source D.target where
-  map := fun _ => D.map
-  preserves := D.preserves
+  complex : FilteredComplex C
+  bounded : Filtration.IsBounded complex.filtration
+  endpoint : EndpointExtension complex
+  boundary : endpoint.BoundaryWitness
+  source : C
+  target : C
+  map : source ⟶ target
+  sourceIso : complex.complex.X 1 ≅ source
+  targetIso : complex.complex.X 0 ≅ target
+  differential_at_one : sourceIso.inv ≫ complex.complex.d 1 0 ≫ targetIso.hom = map
+  twoTerm : ∀ k : ℤ, k ≠ 1 → k ≠ 0 → IsZero (complex.complex.X k)
 
 /-- The source `E₀` object of a bounded extension. -/
-noncomputable def e0Source (D : TwoTermData (C := C) (X₁ := X₁) (X₂ := X₂)) (s : ℤ) : C :=
-  D.source.associatedGraded s 0
+noncomputable def e0Source (D : TwoTermData (C := C)) (s : ℤ) : C :=
+  D.complex.filtration.associatedGraded s 1
 
 /-- The target `E₀` object of a bounded extension. -/
-noncomputable def e0Target (D : TwoTermData (C := C) (X₁ := X₁) (X₂ := X₂)) (s : ℤ) : C :=
-  D.target.associatedGraded s 0
+noncomputable def e0Target (D : TwoTermData (C := C)) (s : ℤ) : C :=
+  D.complex.filtration.associatedGraded s (1 - 1)
 
-/-- The `d₀` map induced on associated graded pieces by the filtered map. -/
-noncomputable def d0 (D : TwoTermData (C := C) (X₁ := X₁) (X₂ := X₂)) (s : ℤ) :
+/-- The `d₀` map induced by the differential of the bounded two-term complex. -/
+noncomputable def d0 (D : TwoTermData (C := C)) (s : ℤ) :
     e0Source D s ⟶ e0Target D s :=
-  filteredMap D |>.associatedGradedMap s 0
+  D.complex.associatedGradedDifferential s 1
 
-@[simp] theorem d0_projection (D : TwoTermData (C := C) (X₁ := X₁) (X₂ := X₂)) (s : ℤ) :
-    D.source.toAssociatedGraded s 0 ≫ d0 D s =
-      ((filteredMap D).preserves s 0).choose ≫ D.target.toAssociatedGraded s 0 := by
-  exact FilteredMorphism.toAssociatedGraded_comp_associatedGradedMap (filteredMap D) s 0
+@[simp] theorem d0_projection (D : TwoTermData (C := C)) (s : ℤ) :
+    D.complex.filtration.toAssociatedGraded s 1 ≫ d0 D s =
+      (D.complex.differential_preserves s 1).choose ≫
+        D.complex.filtration.toAssociatedGraded s (1 - 1) := by
+  exact D.complex.toAssociatedGraded_comp_associatedGradedDifferential s 1
 
 end KIP126.Core.SpectralSequence.BoundedExtension
