@@ -11,6 +11,11 @@ on:
   workflow_dispatch:
     inputs:
       pr: { description: "PR number whose exact head passed pr-build", required: true, type: string }
+      retry:
+        description: "Start a fresh review attempt for this exact head"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   actions: write
@@ -46,6 +51,8 @@ jobs:
       COMMENT_ID: ${{ github.event.comment.id || '' }}
       EVENT: ${{ github.event_name }}
       DISPATCH_PR: ${{ inputs.pr || '' }}
+      DISPATCH_RETRY: ${{ inputs.retry || false }}
+      RUN_ID: ${{ github.run_id }}
       WEBHOOK_URL: ${{ secrets.MULTICA_REVIEW_WEBHOOK_URL }}
       RUBRIC_REVISION: ${{ vars.EULER_RUBRIC_REVISION }}
     steps:
@@ -66,6 +73,9 @@ jobs:
           elif [[ "$EVENT" == workflow_dispatch ]]; then
             [[ "$DISPATCH_PR" =~ ^[0-9]+$ ]]
             PR="$DISPATCH_PR"
+            if [[ "$DISPATCH_RETRY" == true ]]; then
+              RETRY_REQUESTED=true
+            fi
           else
             ACTOR=$(jq -r '.sender.login // empty' "$GITHUB_EVENT_PATH")
             ASSOCIATION=$(jq -r '.comment.author_association // empty' "$GITHUB_EVENT_PATH")
@@ -184,9 +194,15 @@ jobs:
           if [[ "$RETRY_REQUESTED" == true ]]; then
             # Keep the request's canonical exact-head key for tauceti-review.request/v1 validation,
             # but give this explicit human retry its own webhook delivery identity. Replaying the
-            # same GitHub event still deduplicates; posting a new /review-retry creates a new attempt.
-            [[ "$COMMENT_ID" =~ ^[0-9]+$ ]]
-            RETRY_KEY=$(printf '%s' "$IDEMPOTENCY_KEY:$COMMENT_ID" | sha256sum | cut -d' ' -f1)
+            # same GitHub event still deduplicates; a new retry dispatch or /review-retry creates a
+            # new attempt.
+            if [[ "$EVENT" == issue_comment ]]; then
+              RETRY_SEED="$COMMENT_ID"
+            else
+              RETRY_SEED="$RUN_ID"
+            fi
+            [[ "$RETRY_SEED" =~ ^[0-9]+$ ]]
+            RETRY_KEY=$(printf '%s' "$IDEMPOTENCY_KEY:$RETRY_SEED" | sha256sum | cut -d' ' -f1)
             WEBHOOK_IDEMPOTENCY_KEY="tauceti-review-retry-$RETRY_KEY"
           fi
           jq --arg key "$IDEMPOTENCY_KEY" '. + {idempotency_key: $key}' \
