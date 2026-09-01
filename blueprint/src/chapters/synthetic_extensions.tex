@@ -63,7 +63,9 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 
   When nonempty, $\operatorname{Sol}_m^n(x_m,y_m)$ is a torsor under the
   abelian \emph{difference group} $K_m$ of changes preserving the source class
-  and complete target coset.  Stable-page naturality gives equivariant maps
+  and complete target coset.  Proposition~\ref{prop:lambda-quotient-restriction-coherence}
+  makes the finite restriction maps an inverse system; stable-page naturality
+  gives equivariant maps
   \[
     \operatorname{res}_{m+1,m}:\operatorname{Sol}_{m+1}^n
       \longrightarrow\operatorname{Sol}_m^n,
@@ -82,45 +84,69 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   quotient squares induce the restriction maps and their equivariance.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:1009--1021; Burklund--Xu Construction 7.7,
-% reference/BurklundXu/paper.txt:3022--3035.  The project-level statement
-% deliberately forgets the commutative-algebra structure and retains only the
-% finite quotient maps and their triangle data.
+% SOURCE: aimpaper/main.tex:1009--1021 defines the quotient triangles;
+% Burklund--Xu Construction 7.7, reference/BurklundXu/paper.txt:3022--3035,
+% supplies the finite tower and its cofiber sequences.  Naturality and the
+% identity/composition laws below are project-level consequences of the finite
+% cofiber presentations, not additional external algebra input.
 \begin{proposition}[Coherence of quotient restrictions]
   \label{prop:lambda-quotient-restriction-coherence}
   \uses{def:synthetic-lambda-quotient,def:cofiber-triangle,def:lambda-rho-delta-triangle}
   \notready
-  For every map of synthetic spectra $f:X\to Y$ and finite integers
-  $0<k<n<m$, write
-  $\bar f_j:X/\lambda^j\to Y/\lambda^j$ for the map induced by $\nu f$.
-  The quotient restriction maps are natural:
+  For every map of classical spectra $f:X\to Y$ in the stable homotopy
+  context (so $\nu f:\nu X\to\nu Y$ is the induced synthetic map), put
+  $Q_j(X):=\nu X/\lambda^j$ for each finite $j\ge1$ and write
+  $\bar f_j:Q_j(X)\to Q_j(Y)$ for the map induced by $\nu f$.  For finite
+  $1\le i\le j$, the quotient restriction maps are natural:
   \[
-    \rho^Y_{n,m}\circ\bar f_m
-      =\bar f_n\circ\rho^X_{n,m}.
+    \rho^Y_{i,j}\circ\bar f_j
+      =\bar f_i\circ\rho^X_{i,j}.
   \]
   They satisfy the identity and composition laws
   \[
-    \rho^X_{n,n}=\operatorname{id},\qquad
-    \rho^X_{k,n}\circ\rho^X_{n,m}=\rho^X_{k,m}.
+    \rho^X_{i,i}=\operatorname{id},\qquad
+    \rho^X_{k,i}\circ\rho^X_{i,j}=\rho^X_{k,j}
+    \quad(1\le k\le i\le j).
   \]
-  For the same triple, the canonical shifted $\lambda^{n-k}$ maps on the
-  first and last terms, the identity on $X/\lambda^m$, and $\rho^X_{k,n}$ on
-  the third term form a morphism from the finite
-  $\lambda$--$\rho$--$\delta$ triangle at $(n,m)$ to the one at $(k,m)$.
-  Thus multiplication and connecting maps commute with finite restriction,
-  naturally in $f$.  This proposition asserts no map of $E_\infty$- or
-  $\mathrm{CAlg}$-objects; the $m=\infty$ endpoint is handled separately by
-  the complete-tower statements.
+  For every finite pair $0<i<j$, the maps
+  $\Sigma^{0,-i}\bar f_{j-i}$, $\bar f_j$, $\bar f_i$, and
+  $\Sigma^{1,-i}\bar f_{j-i}$ form a morphism from the finite
+  $\lambda$--$\rho$--$\delta$ triangle for $X$ at $(i,j)$ to the
+  corresponding triangle for $Y$.  Thus multiplication, restriction, and
+  connecting maps commute in the finite tower, naturally in $f$.  This
+  proposition asserts no map of $E_\infty$- or $\mathrm{CAlg}$-objects; the
+  $m=\infty$ endpoint is handled separately by the complete-tower statements.
 \end{proposition}
 
 \begin{proof}
-  The maps $\bar f_j$ and $\rho_{i,j}$ are induced by the compatible finite
-  cofiber presentations of multiplication by powers of $\lambda$.  The
-  functoriality of cofibers gives the displayed naturality square and the
-  morphism of finite distinguished triangles; the first and last components
-  are the shifted $\lambda^{n-k}$ maps in that cofiber diagram.  The identity
-  and composition equations are the equalities of the corresponding quotient
-  projections.  No multiplicative algebra structure is used.
+  Write $\mu^X_j:\Sigma^{0,-j}\nu X\to\nu X$ for multiplication by
+  $\lambda^j$ (and put $\mu^X_0=\operatorname{id}_{\nu X}$).  For each finite
+  $j$, the square
+  \[
+    \begin{array}{ccc}
+      \Sigma^{0,-j}\nu X & \xrightarrow{\mu^X_j} & \nu X \\
+      {\scriptstyle\Sigma^{0,-j}\nu f}\downarrow && \downarrow{\scriptstyle\nu f} \\
+      \Sigma^{0,-j}\nu Y & \xrightarrow{\mu^Y_j} & \nu Y
+    \end{array}
+  \]
+  commutes by naturality of multiplication by $\lambda^j$.  Applying the
+  chosen cofiber construction gives $\bar f_j$.  For $i\le j$, define the shifted
+  factor map
+  \[
+    q^X_{i,j}:=\Sigma^{0,-i}\mu^X_{j-i}:
+      \Sigma^{0,-j}\nu X\longrightarrow\Sigma^{0,-i}\nu X,
+    \qquad \mu^X_i\circ q^X_{i,j}=\mu^X_j.
+  \]
+  The square with horizontal maps $\mu^X_j,\mu^X_i$ and vertical maps
+  $q^X_{i,j},\operatorname{id}_{\nu X}$ induces $\rho^X_{i,j}$ by the
+  chosen cofiber construction.  The identities
+  $q^X_{i,i}=\operatorname{id}$ and
+  $q^X_{k,i}\circ q^X_{i,j}=q^X_{k,j}$ induce the displayed identity and
+  composition laws.  Naturality of the $q^X_{i,j}$ squares with respect to
+  $\nu f$, followed by the chosen triangle equivalences, gives the morphism
+  of finite distinguished triangles with the four components displayed above.
+  This is a finite cofiber calculation and uses no multiplicative algebra
+  structure.
 \end{proof}
 
 \section{The elementary lambda and rho extensions}
