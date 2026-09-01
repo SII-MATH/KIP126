@@ -32,7 +32,7 @@ def status(context: str, state: str, *, head: str = HEAD, creator: str = "github
 def scoreboard_comment(states: dict, *, head: str = HEAD, sha: str | None = None, association: str = "OWNER") -> dict:
     meta = {
         "kind": "scoreboard",
-        "repo": "surenny/KIP126",
+        "repo": "SII-MATH/KIP126",
         "pr": 17,
         "head_sha": head,
         "rubrics_sha": sha or CONFIG["review_rubrics_sha"],
@@ -51,7 +51,7 @@ def facts(profile: str = "lean", review: dict | None = None, **overrides) -> dic
     if profile in {"blueprint", "reviewer-mixed-sync"}:
         contexts.append("blueprint")
     result = {
-        "repository": "surenny/KIP126",
+        "repository": "SII-MATH/KIP126",
         "number": 17,
         "state": "open",
         "merged": False,
@@ -80,7 +80,7 @@ class ScoreboardTests(unittest.TestCase):
         rubrics = set(CONFIG["review_rubrics"]["lean"])
         result = scoreboard.evaluate(
             [scoreboard_comment({rubric: "green" for rubric in rubrics})],
-            "surenny/KIP126", 17, HEAD, rubrics, CONFIG["review_rubrics_sha"], {"OWNER"},
+            "SII-MATH/KIP126", 17, HEAD, rubrics, CONFIG["review_rubrics_sha"], {"OWNER"},
         )
         self.assertEqual(result["state"], "green")
 
@@ -95,7 +95,7 @@ class ScoreboardTests(unittest.TestCase):
         for comment, expected in cases:
             with self.subTest(expected=expected):
                 result = scoreboard.evaluate(
-                    [comment], "surenny/KIP126", 17, HEAD, rubrics,
+                    [comment], "SII-MATH/KIP126", 17, HEAD, rubrics,
                     CONFIG["review_rubrics_sha"], {"OWNER"},
                 )
                 self.assertEqual(result["state"], expected)
@@ -105,7 +105,7 @@ class ScoreboardTests(unittest.TestCase):
         states = {rubric: "green" for rubric in rubrics}
         states[next(iter(rubrics))] = "blocking_request"
         self.assertEqual(
-            scoreboard.evaluate([scoreboard_comment(states)], "surenny/KIP126", 17, HEAD, rubrics,
+            scoreboard.evaluate([scoreboard_comment(states)], "SII-MATH/KIP126", 17, HEAD, rubrics,
                                 CONFIG["review_rubrics_sha"], {"OWNER"})["state"],
             "blocked",
         )
@@ -180,7 +180,7 @@ class SyncTests(unittest.TestCase):
             description=f"recommendation={RECOMMENDATION}",
         )
         result = sync.validate(
-            HEAD, "surenny/KIP126", "surenny/KIP126", self.commit(),
+            HEAD, "SII-MATH/KIP126", "SII-MATH/KIP126", self.commit(),
             ["blueprint/src/content.tex"], [authorization], CONFIG["sync_context"], {"surenny"},
         )
         self.assertTrue(result["authorization_valid"])
@@ -189,7 +189,7 @@ class SyncTests(unittest.TestCase):
 
     def test_forged_trailer_fork_and_non_blueprint_delta_fail(self) -> None:
         result = sync.validate(
-            HEAD, "fork/KIP126", "surenny/KIP126", self.commit(),
+            HEAD, "fork/KIP126", "SII-MATH/KIP126", self.commit(),
             ["KIP126/A.lean"], [], CONFIG["sync_context"], {"surenny"},
         )
         self.assertFalse(result["authorization_valid"])

@@ -70,7 +70,7 @@ jobs:
   # the number comes from.
   label:
     if: >
-      github.repository == 'surenny/KIP126' && (
+      github.repository == 'SII-MATH/KIP126' && (
         github.event_name == 'pull_request_target'
         || (github.event_name == 'workflow_run'
             && github.event.workflow_run.event == 'pull_request_target'
@@ -113,7 +113,7 @@ jobs:
   # its concurrency on the result. See the `label` job above for why this exists for these events only.
   resolve:
     if: >
-      github.repository == 'surenny/KIP126' && (
+      github.repository == 'SII-MATH/KIP126' && (
         github.event_name == 'workflow_dispatch'
         || (github.event_name == 'workflow_run'
             && github.event.workflow_run.event == 'pull_request_target'
@@ -193,7 +193,7 @@ jobs:
   # worst case is a PR that briefly shows two labels until the next event settles it. Closing the gap
   # properly means one job per swept PR, which costs more runner time than the drift is worth.
   sweep:
-    if: github.event_name == 'schedule' && github.repository == 'surenny/KIP126'
+    if: github.event_name == 'schedule' && github.repository == 'SII-MATH/KIP126'
     runs-on: ubuntu-latest
     concurrency:
       group: pr-labels-sweep

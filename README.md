@@ -109,7 +109,7 @@ checks are maintained separately under `blueprint/` and `.agents/skills/`.
 
 The published Blueprint and API documentation are assembled by
 `.github/workflows/pages.yml` and served at
-<https://surenny.github.io/KIP126/>. The workflow prunes work by changed path,
+<https://sii-math.github.io/KIP126/>. The workflow prunes work by changed path,
 restores only caches written by successful `main` builds, and falls back to a
 full component rebuild when a reusable artifact is unavailable. `checkdecls`
 is pinned in `lakefile.lean`; the nested `docbuild/` project pins doc-gen4 to

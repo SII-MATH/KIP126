@@ -639,7 +639,7 @@ jobs:
       # `--fail-level=info`, so those warnings fail a build in which every module compiled.
       # Partial fetches are routine: they cost about a third of merge-group builds their cache.
       # Fixed by https://github.com/leanprover/lean4/pull/14651, landing in v4.34.0-rc1;
-      # see https://github.com/surenny/KIP126/issues/2062.
+      # see https://github.com/SII-MATH/KIP126/issues/2062.
       #
       # Hence: retry from an EMPTY cache each time, then fall back to no cache at all. Retrying
       # over the dirty cache a failed attempt left behind does not work: Lake skips any artifact
@@ -719,7 +719,7 @@ jobs:
             LOG="$RUNNER_TEMP/cache-get-$attempt.log"
             rc=0
             ( cd base && LAKE_CONFIG="$CFG" lake cache get --service kip126-public \
-                --repo surenny/KIP126 ) > "$LOG" 2>&1 || rc=$?
+                --repo SII-MATH/KIP126 ) > "$LOG" 2>&1 || rc=$?
             cat "$LOG"
             if [ "$rc" = 0 ] && ! grep -qE "$FAIL_RE" "$LOG"; then clean=1; break; fi
             if grep -qE "$MISS_RE" "$LOG"; then break; fi
