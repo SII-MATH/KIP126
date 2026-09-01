@@ -930,4 +930,4 @@ jobs:
         run: |
           set -euo pipefail
           [[ "$PR" =~ ^[0-9]+$ ]]
-          gh workflow run review.yml --repo '${{ github.repository }}' --ref main -f pr="$PR"
+          gh workflow run review.yml --repo '${{ github.repository }}' --ref main -f pr="$PR" -f retry=true
