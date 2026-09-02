@@ -88,6 +88,13 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("scripts/ci-build-contract.sh", blueprint)
         self.assertIn('if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]', blueprint)
 
+    def test_blueprint_checkout_preserves_trusted_gate(self):
+        blueprint = self.read("blueprint-pr.yml")
+        candidate_checkout = blueprint.split("repository: ${{ steps.pr.outputs.head_repo }}", 1)[1]
+        candidate_checkout = candidate_checkout.split("      - name:", 1)[0]
+        self.assertIn("clean: false", candidate_checkout)
+        self.assertIn("test -f gate/scripts/ci-build-contract.sh", blueprint)
+
     def test_build_contract_changes_with_trusted_build_machinery(self):
         contract_script = ROOT / "scripts" / "ci-build-contract.sh"
         with tempfile.TemporaryDirectory() as directory:
