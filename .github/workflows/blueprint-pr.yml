@@ -137,6 +137,7 @@ jobs:
           repository: ${{ steps.pr.outputs.head_repo }}
           ref: ${{ steps.pr.outputs.head_sha }}
           fetch-depth: 100
+          clean: false
           persist-credentials: false
           allow-unsafe-pr-checkout: true
 
@@ -158,6 +159,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          test -f gate/scripts/ci-build-contract.sh
           digest=$(bash gate/scripts/ci-build-contract.sh gate)
           echo "digest=$digest" >> "$GITHUB_OUTPUT"
           echo "Trusted PR-build contract: $digest"
