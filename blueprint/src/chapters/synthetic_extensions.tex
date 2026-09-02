@@ -82,6 +82,31 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   quotient squares induce the restriction maps and their equivariance.
 \end{proof}
 
+% SOURCE: Burklund--Xu Construction 7.7; project-level quotient transport.
+\begin{proposition}[Coherence of quotient restrictions]
+  \label{prop:lambda-quotient-restriction-coherence}
+  \uses{def:synthetic-lambda-quotient,def:cofiber-triangle,def:lambda-rho-delta-triangle}
+  \notready
+  For every synthetic map $f:X\to Y$ and $0<k<n<m\le\infty$, the quotient
+  restrictions are natural and compose:
+  \[
+    \rho^Y_{n,m}(\nu f/\lambda^m)=(\nu f/\lambda^n)\rho^X_{n,m},\qquad
+    \rho^X_{k,n}\rho^X_{n,m}=\rho^X_{k,m},\qquad
+    \rho^X_{n,n}=\mathrm{id}.
+  \]
+  The nested quotient maps, including the $m=\infty$ endpoint, form a morphism
+  of the corresponding $\lambda$--$\rho$--$\delta$ cofiber triangles.  Thus
+  multiplication and connecting maps commute with restriction, naturally in
+  $f$, without asserting any multiplicative or $E_\infty$ structure.
+\end{proposition}
+
+\begin{proof}
+  The maps are induced by the nested cofibers of the powers of $\lambda$.
+  Functoriality of cofibers gives naturality and the morphism of triangles;
+  equality of quotient projections gives identity and composition.  The same
+  construction at the colimit endpoint gives the $m=\infty$ clauses.
+\end{proof}
+
 \section{The elementary lambda and rho extensions}
 
 % SOURCE: aimpaper/main.tex:1009-1021, Notation not:deltaandrho.

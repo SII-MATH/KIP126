@@ -142,7 +142,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 \begin{proposition}[Total differential identity for an arbitrary choice]
   \label{prop:theta5-total-differential-choice-comparison}
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,lem:theta5-moore-extension,thm:external-bx-quadratic-cell-calculus}
+  \uses{def:near126-computation-input,def:synthetic-theta5-choice,lem:theta5-moore-extension,thm:external-bx-quadratic-cell-calculus,prop:lambda-quotient-restriction-coherence}
   \notready
   For a near-$126$ computation input $D$ and every order-two synthetic choice
   $\theta_5$, one has
@@ -150,41 +150,52 @@ This chapter contains only the project deductions that assemble the setup, exter
     \delta_1(h_6^2)=\lambda\eta\theta_5^2
   \]
   in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem.
-  This node is the internal Section~7 instantiation of the published uniform
-  cell calculus, not an algebraic inference from order two and not an external
-  arbitrary-choice identity.
+  This node is the internal Section~7 comparison obligation.  It is not an
+  algebraic inference from order two and not an external arbitrary-choice
+  identity.  For every $r\ge1$, its image under the canonical quotient map
+  $q_{r+1}:S^{0,0}\to S^{0,0}/\lambda^{r+1}$ agrees with the corresponding
+  finite total differential:
+  \[
+    q_{r+1}(\lambda\eta\theta_5^2)
+      =\lambda\eta(q_{r+1}\theta_5)^2
+      =\delta_{1,r+1}\bigl(q_1(h_6^2)\bigr).
+  \]
+  The same equation at $r=\infty$ is the untruncated statement above.
 \end{proposition}
 
 \begin{proof}
   Use Lemma~\ref{lem:theta5-moore-extension} to choose
-  $\widehat\theta_5$.  Instantiate the three fields of
-  Theorem~\ref{thm:external-bx-quadratic-cell-calculus}: the quadratic map sends
-  $Q_0(a)$ to $\theta_5^2$ and $Q_0(b)$ to the fixed class $h_6^2$, while its
-  source satisfies
-  $\delta_1(Q_0(b))=\lambda\eta Q_0(a)$.  Naturality of $\delta_1$ under this
-  same quadratic map gives the displayed identity.  No comparison of
-  $(\theta_5^{\mathrm{src}}+x)^2$ with
-  $(\theta_5^{\mathrm{src}})^2$ is used, so order two is not being asked to
-  kill unrecorded cross or square terms.
+  $\widehat\theta_5$.  The project must construct the quadratic map for this
+  choice, prove that its top-cell reduction is the same $h_6$, and exhibit the
+  commutative square carrying the source attaching identity to the two
+  displayed classes.  The external theorem supplies only the distinguished
+  instance, so these comparison maps cannot be cited as external facts.
+  Finally apply Proposition~\ref{prop:lambda-quotient-restriction-coherence}
+  to the square for $q_{r+1}$ (and its $\infty$ endpoint) to obtain the
+  quotient equations.
 \end{proof}
 
 \begin{proposition}[Choice independence of the inductive expression]
   \label{prop:theta5-choice-independence}
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion,prop:theta5-total-differential-choice-comparison}
+  \uses{def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion,prop:theta5-total-differential-choice-comparison,prop:lambda-quotient-restriction-coherence}
   \notready
   For a near-$126$ computation input $D$, every synthetic $\theta_5$ has order
   two, and the element
   $\lambda\eta\theta_5^2$ is independent of the choice of $\theta_5$.
-  More precisely, any two choices give equal elements in the untruncated
-  synthetic sphere and hence equal images in every finite $\lambda$-quotient.
+  More precisely, any two choices have equal products in the untruncated
+  synthetic sphere, and their quotient images agree at every finite exponent
+  by the canonical restriction maps.
   This is a project theorem, not an external strengthening of the
   source-choice identity.
 \end{proposition}
 
 \begin{proof}
   Apply the internal arbitrary-choice identity to each of two choices.  Both
-  products equal the same fixed total differential $\delta_1(h_6^2)$.
-  Naturality of the quotient maps then gives equality in every finite quotient.
+  products equal the same fixed total differential $\delta_1(h_6^2)$ in the
+  untruncated sphere.  Proposition~\ref{prop:lambda-quotient-restriction-coherence}
+  identifies the restriction of this equality with equality of the two finite
+  quotient products, including the $m=\infty$ endpoint; no finite quotient is
+  silently identified with the untruncated group.
   The arbitrary-choice statement enters only through the internal proposition,
   not as a universal external premise.
 \end{proof}
@@ -192,10 +203,10 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: aimpaper/main.tex:2117-2139, Theorem thm:bjmbx and Remark rem:theta5choice; project transport from the distinguished source choice.
 \begin{theorem}[BJM/BX criterion for any order-two choice]
   \label{thm:bjm-bx-criterion-any-choice}
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,thm:external-bjm-bx-criterion,prop:theta5-choice-independence}
+  \uses{def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion,thm:external-bjm-bx-criterion,prop:theta5-choice-independence,prop:lambda-quotient-restriction-coherence}
   \notready
-  For a near-$126$ computation input $D$ and every order-two synthetic choice
-  $\theta_5$:
+  For a near-$126$ computation input $D$, every synthetic choice $\theta_5$
+  detected by $h_5^2$ has order two.  For each such choice:
   \begin{enumerate}
     \item for every integer $r\ge1$, $h_6^2$ survives to $E_{r+3}$ if and
       only if $\lambda\eta\theta_5^2=0$ in
@@ -206,10 +217,13 @@ This chapter contains only the project deductions that assemble the setup, exter
 \end{theorem}
 
 \begin{proof}
-  Choose the distinguished $\theta_5^{\mathrm{src}}$ carried by the external
+  The order-two conclusion is the explicit content of
+  Proposition~\ref{evidence:theta5-order-torsion}; it is not inferred from the
+  BJM/BX criterion.  Choose the distinguished $\theta_5^{\mathrm{src}}$ carried by the external
   criterion.  Fix an integer $r\ge1$.  Choice independence identifies its
-  product with the product for the given $\theta_5$, both before and after reduction modulo
-  $\lambda^{r+1}$.  Substitute these equalities into the two source
+  product with the product for the given $\theta_5$ in the untruncated sphere.
+  Proposition~\ref{prop:lambda-quotient-restriction-coherence} transports the
+  same equality to the quotient $S/\lambda^{r+1}$.  Substitute these equalities into the two source
   equivalences.  This transport is a project proof and does not strengthen the
   external source record.
 \end{proof}
