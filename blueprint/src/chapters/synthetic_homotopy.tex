@@ -43,21 +43,19 @@ This chapter introduces the synthetic objects and the language in which the impo
   $X/\lambda\simeq(S^{0,0}/\lambda)\mathbin{\wedge}X$.
 \end{definition}
 
-% SOURCE: PROJECT_BOUNDARY.md, External inputs and Acceptance criteria;
-% prompted by the unlocated assertion in aimpaper/main.tex:784-786.
-\begin{definition}[Higher $\lambda$-power quotient algebra input]
-  \label{def:higher-lambda-quotient-algebra-input}
-  \uses{def:synthetic-lambda-quotient,def:external-result}
-  \notready
-  For a fixed $n\ge2$, a higher quotient algebra input consists of an explicit
-  external-result record whose proposition supplies an $E_\infty$-algebra
-  structure on $S^{0,0}/\lambda^n$, compatibility with the quotient map, and
-  every comparison map required by a later multiplicative argument.  The
-  assertion in \texttt{aimpaper/main.tex:784--786} points to BHSmot Appendices
-  B--C, but the checked local appendices locate only the $C\tau$ result above.
-  Consequently no input for $n>1$ is available until a source locator for the
-  actual higher-power proposition is supplied.
-\end{definition}
+% SOURCE NOTE: aimpaper/main.tex:784--786; Burklund--Xu Construction 7.7
+% (reference/BurklundXu/paper.txt:3017--3039), using the filtered deformation
+% machinery of Burklund--Hahn--Senger, Example C.15 and Appendix C.
+\paragraph{Remark (higher $\lambda$-power quotient algebras).}
+The claim in \texttt{aimpaper/main.tex:784--786} is true: the locally filtered
+synthetic category supplies a coherent tower of commutative algebra objects
+$S^{0,0}\to\cdots\to S^{0,0}/\lambda^3\to S^{0,0}/\lambda^2\to
+S^{0,0}/\lambda$.  Its precise source chain is Burklund--Xu Construction 7.7,
+which invokes Burklund--Hahn--Senger Example C.15 and the surrounding filtered
+deformation construction.  This is an expository provenance record, not a
+formalization obligation: the project models the quotient maps and their
+coherence below, while a complete $\mathrm{CAlg}$ tower and its higher
+coherences remain outside the Project Boundary.
 
 \section{Synthetic Adams objects}
 
