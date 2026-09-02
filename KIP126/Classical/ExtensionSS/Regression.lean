@@ -9,6 +9,12 @@ namespace KIP126.Classical.ExtensionSS.Regression
 open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
 
+example : etaESSPageLevel.firstPage = 0 := rfl
+example (r : ℕ) : etaESSPageLevel.page r = r := rfl
+example (r : ℕ) : etaESSPageLevel.cycleLevel r = r := rfl
+example (r : ℕ) :
+    etaESSPageLevel.quotientExponent r = etaESSPageLevel.page r := rfl
+
 variable {stable : StableHomotopyContext} {X Y : stable.Spectrum}
   {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
 

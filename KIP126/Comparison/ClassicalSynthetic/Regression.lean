@@ -16,6 +16,13 @@ open KIP126.Classical.Adams
 open KIP126.External
 open KIP126.Synthetic.SpectralSequence
 
+example : syntheticAdamsPageLevel.firstPage = 2 := rfl
+example (r : ℕ) : syntheticAdamsPageLevel.page r = r := rfl
+example (r : ℕ) :
+    syntheticAdamsPageLevel.cycleLevel r =
+      syntheticAdamsPageLevel.quotientExponent r :=
+  syntheticAdamsPageLevel.cycleLevel_eq_quotientExponent r
+
 example {classical : ClassicalAdamsSpectralSequence}
     {synthetic : SyntheticAdamsSS}
     (comparison : ReindexedSpectralSequenceMap classical synthetic)
