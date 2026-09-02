@@ -112,4 +112,4 @@ jobs:
           lake build >/dev/null
           lake build --no-build -o .lake/outputs.jsonl
           echo "root-package mapping entries: $(wc -l < .lake/outputs.jsonl)"
-          lake cache put .lake/outputs.jsonl --service kip126-r2 --repo surenny/KIP126
+          lake cache put .lake/outputs.jsonl --service kip126-r2 --repo SII-MATH/KIP126

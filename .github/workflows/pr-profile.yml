@@ -361,7 +361,7 @@ jobs:
             log="$RUNNER_TEMP/project-cache-$attempt.log"
             rc=0
             ( cd base && LAKE_CONFIG="$config" LAKE_CACHE_DIR="$cache_dir" \
-                lake cache get --service kip126-public --repo surenny/KIP126 ) \
+                lake cache get --service kip126-public --repo SII-MATH/KIP126 ) \
                 >"$log" 2>&1 || rc=$?
             cat "$log"
             if [ "$rc" = 0 ] && ! grep -qE "$fail_re" "$log"; then
