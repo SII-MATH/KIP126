@@ -131,13 +131,23 @@ jobs:
             echo 'ok=false' >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Compute the trusted PR-build contract
+        id: build-contract
+        if: steps.eligible.outputs.ok == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f gate/scripts/ci-build-contract.sh
+          digest=$(bash gate/scripts/ci-build-contract.sh gate)
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          echo "Trusted PR-build contract: $digest"
+
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         if: steps.eligible.outputs.ok == 'true'
         with:
           repository: ${{ steps.pr.outputs.head_repo }}
           ref: ${{ steps.pr.outputs.head_sha }}
           fetch-depth: 100
-          clean: false
           persist-credentials: false
           allow-unsafe-pr-checkout: true
 
@@ -152,17 +162,6 @@ jobs:
           digest=$(bash scripts/ci-build-cache-key.sh . HEAD)
           echo "digest=$digest" >> "$GITHUB_OUTPUT"
           echo "Trusted build-input digest: $digest"
-
-      - name: Compute the trusted PR-build contract
-        id: build-contract
-        if: steps.eligible.outputs.ok == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -f gate/scripts/ci-build-contract.sh
-          digest=$(bash gate/scripts/ci-build-contract.sh gate)
-          echo "digest=$digest" >> "$GITHUB_OUTPUT"
-          echo "Trusted PR-build contract: $digest"
 
       - name: Set up the pinned Blueprint renderer
         if: steps.eligible.outputs.ok == 'true'
