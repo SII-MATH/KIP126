@@ -2,11 +2,13 @@ import KIP126.Core.SpectralSequence.Basic
 import KIP126.Core.SpectralSequence.Convergence
 import KIP126.Core.SpectralSequence.ConvergenceRegression
 import KIP126.Core.SpectralSequence.Extension
+import KIP126.Core.SpectralSequence.ExtensionRegression
 import KIP126.Core.SpectralSequence.FilteredComplex
 import KIP126.Core.SpectralSequence.FilteredRepresentatives
 import KIP126.Core.SpectralSequence.FilteredRepresentativesRegression
 import KIP126.Core.SpectralSequence.HomologicalImage
 import KIP126.Core.SpectralSequence.Morphism
+import KIP126.Core.SpectralSequence.PageLevel
 import KIP126.Core.SpectralSequence.SpectralObjectAdapter
 import KIP126.Core.SpectralSequence.SpectralObjectAdapterRegression
 

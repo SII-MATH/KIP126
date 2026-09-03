@@ -14,6 +14,24 @@ namespace KIP126.Classical.Adams.Regression
 
 open CategoryTheory KIP126.External
 
+example : classicalAdamsPageLevel.firstPage = 2 := rfl
+example : classicalAdamsPageLevel.admissibleFrom = 2 := rfl
+example (r : ℕ) : classicalAdamsPageLevel.page r = r := rfl
+example (r : ℕ) : classicalAdamsPageLevel.cycleLevel r = (r : ℤ) - 1 := rfl
+example (r : ℕ) :
+    classicalAdamsPageLevel.cycleLevel r =
+      classicalAdamsPageLevel.quotientExponent r :=
+  classicalAdamsPageLevel.cycleLevel_eq_quotientExponent r
+example (r : ℕ) (h : 2 ≤ r) :
+    classicalAdamsPageLevel.admissibleFrom ≤ classicalAdamsPageLevel.page r :=
+  classicalAdamsPageLevel.page_ge h
+
+example {G : CategoryTheory.GradedObject ℤ AddCommGrpCat}
+    (F : KIP126.Core.Algebra.Filtration G)
+    (hF : F.IsEventuallyZero) :
+    IsAdamsFiltrationSeparated F :=
+  isAdamsFiltrationSeparated_of_eventuallyZero F hF
+
 variable {stable : StableHomotopyContext}
   {A : ClassicalAdamsSS stable stable.sphere}
 

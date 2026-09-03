@@ -1,4 +1,5 @@
 import KIP126.Classical.Adams.Basic
+import KIP126.Core.SpectralSequence.PageLevel
 import Mathlib.Algebra.Homology.SpectralSequence.Basic
 
 /-!
@@ -13,6 +14,7 @@ namespace KIP126.Synthetic.SpectralSequence
 
 open CategoryTheory
 open KIP126.Core.Algebra
+open KIP126.Core.SpectralSequence
 
 abbrev Tridegree := ℤ × ℤ × ℤ
 
@@ -20,6 +22,18 @@ def syntheticAdamsShift (r : ℕ) : Tridegree := (r, (r : ℤ) - 1, 0)
 
 def syntheticAdamsTarget (r : ℕ) (i : Tridegree) : Tridegree :=
   i + syntheticAdamsShift r
+
+def syntheticAdamsPageLevel : PageLevelConvention where
+  firstPage := 2
+  admissibleFrom := 2
+  page := fun r => r
+  cycleLevel := fun r => r - 1
+  quotientExponent := fun r => r - 1
+  page_first := by norm_num
+  page_succ := by intro r; norm_num
+  cycle_succ := by intro r; omega
+  quotient_succ := by intro r; omega
+  cycleLevel_eq_quotientExponent := by intro r; rfl
 
 def syntheticAdamsShape (r : ℤ) : ComplexShape Tridegree :=
   ComplexShape.up' (r, r - 1, 0)

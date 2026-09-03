@@ -9,6 +9,6 @@ if [[ -x scripts/euler-project-gates.sh ]]; then
 fi
 
 PYTHONPATH=. python3 scripts/perf/test_perf.py -v
-PYTHONPATH=scripts/pr_status python3 scripts/pr_status/test_pr_labels.py
+PYTHONPATH=scripts python3 -m unittest scripts.pr_status.test_pr_status -v
 python3 -m py_compile scripts/perf/*.py scripts/profile/*.py scripts/pr_status/*.py
 git diff --check

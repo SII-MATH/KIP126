@@ -1,4 +1,5 @@
 import KIP126.Classical.Adams.Basic
+import KIP126.Core.SpectralSequence.PageLevel
 import KIP126.External.Claims
 import Mathlib.Algebra.Homology.SpectralSequence.Basic
 
@@ -16,6 +17,7 @@ namespace KIP126.Classical.ExtensionSS
 open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
 open KIP126.Core.Algebra
+open KIP126.Core.SpectralSequence
 open KIP126.External
 
 abbrev Index := Bidegree
@@ -23,6 +25,18 @@ abbrev Coeff := F2ModuleCat
 
 /-- The `(n,n)` differential shape of a classical eta-ESS page. -/
 def etaESSShape (n : ℤ) : ComplexShape Index := ComplexShape.up' (n, n)
+
+def etaESSPageLevel : PageLevelConvention where
+  firstPage := 0
+  admissibleFrom := 0
+  page := fun r => r
+  cycleLevel := fun r => r
+  quotientExponent := fun r => r
+  page_first := by norm_num
+  page_succ := by intro r; norm_num
+  cycle_succ := by intro r; norm_num
+  quotient_succ := by intro r; norm_num
+  cycleLevel_eq_quotientExponent := by intro r; rfl
 
 @[simp] theorem etaESSShape_rel (n : ℤ) (b : Index) :
     (etaESSShape n).Rel b (b + (n, n)) := by
