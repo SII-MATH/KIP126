@@ -56,12 +56,16 @@ document:
   natural-language formalization sketch.  The Blueprint follows the paper's
   definitions and the roadmap's order, and refines each step into nodes whose
   mathematical statement, dependencies, sources, and intended Lean object can
-  be checked together.  In the usual layout, one chapter corresponds to one
-  Lean file; temporary shared facades are allowed during migration, but the
-  final implementation should expose chapter-level Lean entry points.
+  be checked together.  A chapter indexes several small Lean modules under
+  `KIP126/Def/`, `KIP126/External/`, and `KIP126/Challenge/`;
+  `KIP126/Def.lean` and `KIP126/Challenge.lean` are package entry points.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
-  well as their import graph.
+  well as their import graph.  `Def/` owns mathematical data and properties,
+  `External/` owns provenance-bearing inputs, `Challenge/` owns internal proof
+  targets, and `Checks/` owns compilation regressions.  The
+  [layout migration map](docs/DEF_CHALLENGE_LAYOUT_STATUS.md) records moved
+  source modules and remaining open milestones.
 - [`reference/source-inventory.json`](reference/source-inventory.json), the
   per-source status records under [`reference/`](reference/), and the Lean
   claim ledger own the catalogue and provenance of external inputs. They record
@@ -90,17 +94,21 @@ milestone.  That Core is deliberately small: it imports Mathlib's
 synonym, and adds only the category-level filtration data that Mathlib does not
 provide: decreasing filtrations of graded objects, associated graded quotients,
 filtered morphisms, and filtered chain complexes with their induced
-associated-graded differential.  It now also includes the generic
+associated-graded differential.  The canonical filtered-complex layer also
+constructs homology filtrations, cycle/boundary subobjects, quotient pages, and
+finite-page differentials with their square-zero law.  It now also includes the generic
 homological-image bridge and the filtered-complex triangulated/abelian
 spectral-object adapter; endpoint and convergence data remain explicit
 Blueprint interfaces.  The toolchain and Mathlib dependency are pinned to
 matching `4.32.2` releases.
 
-The Blueprint is substantially ahead of the Lean implementation.  Its entry
+The Blueprint remains ahead of the theorem proofs, while the source catalogue
+interfaces now cover the completed migration slices.  Its entry
 point is [blueprint/src/content.tex](blueprint/src/content.tex), with the
 paper-specific chapters under [blueprint/src/chapters](blueprint/src/chapters).
 It covers the paper's Sections 1--7, all 401 nonempty appendix rows and nine
-zero bands, the stable/spectral-sequence/Steenrod/synthetic background absent
+zero bands (the rows are now typed AST input records with executable catalogue
+regressions), the stable/spectral-sequence/Steenrod/synthetic background absent
 from Mathlib, explicit literature and computation provenance, and the full
 dependency cone from the compiled Core to the conditional Kervaire endpoints.
 All unimplemented nodes are conservatively marked `notready`; the Blueprint
