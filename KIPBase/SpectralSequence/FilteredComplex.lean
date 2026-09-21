@@ -298,7 +298,6 @@ theorem FilteredComplex.dToK_comp_d (FC : FilteredComplex C) (k : ℤ) :
     from by simp [heq]]
   rw [← Category.assoc, FC.d_comp_d, zero_comp]
 
-set_option maxHeartbeats 800000 in
 -- Large case split on WithTop ℕ with deep subobject reasoning
 /-- B r ≤ Z r for the filtered complex: boundaries are cycles. -/
 theorem FilteredComplex.B_le_Z_aux (FC : FilteredComplex C) (s k : ℤ)
@@ -376,7 +375,6 @@ theorem FilteredComplex.B_le_Z_aux (FC : FilteredComplex C) (s k : ℤ)
       _ ≤ imageSubobject ((kernelSubobject f).arrow ≫ πV) :=
           imageSubobject_comp_le _ _
 
-set_option maxHeartbeats 800000 in
 -- Complex SSData construction with multiple WithTop ℕ case analyses
 /-- Constructs `SSData C` from a filtered complex at bidegree `(s, k)`.
     - `V` is the associated graded `gr^s A^k = F^s / F^{s+1}`.
@@ -677,7 +675,6 @@ private theorem FilteredComplex.eqToHom_arrow_dToK (FC : FilteredComplex C)
   rw [FC.eqToHom_arrow_dToK_gen s (k - 1) k (by omega)]
   simp
 
-set_option maxHeartbeats 800000 in
 -- Large proof with many kernel/cokernel factoring steps for the induced page differential
 /-- The induced differential on pages: `d_r : E_r^{s,k} → E_r^{s+r,k-1}`.
     This maps Z_r-cycles modulo B_r-boundaries at (s,k) to the same at (s+r,k-1),
@@ -1109,7 +1106,6 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
   -- Final: cokernel.desc gives source page → target page
   exact cokernel.desc _ h_on_Zn h_B_zero
 
-set_option maxHeartbeats 800000 in
 -- Heavy unification through epi/mono factoring of kernel and image subobjects
 /-- The kernel of `Abelian.epiDesc p g hg` (where `p` is epi) is the image of
     `(kernelSubobject g).arrow ≫ p`. This is the epi analogue of
@@ -1174,7 +1170,6 @@ private theorem kernelSubobject_epiDesc' {C' : Type*} [Category C'] [Abelian C']
         imageSubobject_arrow_comp ((kernelSubobject g).arrow ≫ p),
         Category.assoc, Abelian.comp_epiDesc, kernelSubobject_arrow_comp]
 
-set_option maxHeartbeats 800000 in
 -- Heavy unification through cokernel desc and kernel subobject factoring
 private theorem kernelSubobject_cokernel_desc' {C' : Type*} [Category C'] [Abelian C']
     {A' B' D' : C'} (f : A' ⟶ B') (g : B' ⟶ D') (w : f ≫ g = 0) :
@@ -1244,7 +1239,6 @@ private theorem kernelSubobject_cokernel_desc' {C' : Type*} [Category C'] [Abeli
         imageSubobject_arrow_comp ((kernelSubobject g).arrow ≫ cokernel.π f),
         Category.assoc, cokernel.π_desc, kernelSubobject_arrow_comp]
 
-set_option maxHeartbeats 6400000 in
 -- Long proof: d² = 0 requires nested kernel/image factoring across three filtration levels
 theorem FilteredComplex.pageDifferential_comp (FC : FilteredComplex C)
     (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
@@ -1330,7 +1324,6 @@ theorem FilteredComplex.pageDifferential_comp (FC : FilteredComplex C)
   -- Use erw [Category.assoc] twice to fully right-associate, then d_comp_d k
   erw [Category.assoc, Category.assoc, FC.d_comp_d k, comp_zero, comp_zero]
 
-set_option maxHeartbeats 3200000 in
 -- Multi-step proof: Z_{n+1} ↪ Z_n maps to kernel of page differential via index shifting
 /-- The ≥ direction of Z_succ: image(ofLE(Z_{n+1}, Z_n) ≫ pageπ n) ≤ kernel(pageDifferential).
     Elements of Z_{n+1} (deeper cycle condition: dx ∈ F^{s+n+1}) map to zero under pageDiff
@@ -1589,7 +1582,6 @@ private lemma imageSubobject_le_of_epi_factor {C' : Type*} [Category C'] [Abelia
   rw [← imageSubobject_epi_comp' e f, hfac]
   exact imageSubobject_comp_le h g
 
-set_option maxHeartbeats 6400000 in
 -- Long proof: kernel of page differential ≤ Z_{n+1} via pullback and epi lifting arguments
 /-- The ≤ direction of Z_succ: kernel(pageDifferential) ≤ image(ofLE(Z_{n+1}, Z_n) ≫ pageπ n).
     Every element in the kernel of the page differential lies in the image of the deeper
@@ -2102,7 +2094,6 @@ theorem pageDifferential_Z_succ_le (FC : FilteredComplex C)
   exact imageSubobject_comp_le _ _
 
 
-set_option maxHeartbeats 6400000 in
 -- Long proof: image of page differential = B_{n+1}/B_n via pullback and boundary factoring
 /-- The image of the page differential `d_n` at `(s,k)` equals `B_{n+1}/B_n` at the target
     `(s+n, k-1)`. This is the content of the `B_succ` field for the spectral sequence. -/
@@ -2597,7 +2588,6 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
       simp only [Category.assoc]]
     exact imageSubobject_comp_le _ _
 
-set_option maxHeartbeats 6400000 in
 -- Assembling the data fields requires heavy unification of subobject and
 -- page computations
 /-- 第一步（纯数据）：由滤复形组装预谱序列 `PreSS C (ℤ × ℤ)`。
@@ -2623,7 +2613,6 @@ noncomputable def FilteredComplex.toPreSS (FC : FilteredComplex C)
         eqToHom (by simp [sub_zero, Int.toNat_of_nonneg hr]; ring_nf)
     else 0
 
-set_option maxHeartbeats 6400000 in
 -- Assembling the proof fields requires heavy unification of subobject and
 -- page computations
 /-- 第二步（证明）：调用 Basic 中的构造函数 `SpectralSequence.ofPreSS`，
