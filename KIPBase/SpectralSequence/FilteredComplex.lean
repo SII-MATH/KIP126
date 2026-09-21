@@ -115,39 +115,6 @@ theorem FilteredComplex.filDiff_to_cokernel_eq_zero (FC : FilteredComplex C)
     Category.assoc, Subobject.ofLE_arrow, Category.assoc, cokernel.condition,
     comp_zero]
 
-/-- The source cycle lift determined by a filtered differential equation. -/
-noncomputable def FilteredComplex.sourceCycleLift (FC : FilteredComplex C)
-    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
-    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
-    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))}
-    (hd : xl ≫ FC.filDiff s k =
-      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
-        (FC.fil_anti_of_le (k - 1) (by omega))) :
-    T ⟶ Subobject.underlying.obj (FC.cycleSubobject s k (↑r.toNat : WithTop ℕ)) := by
-  let f := (FC.fil s k).arrow ≫ FC.d k ≫
-    cokernel.π ((FC.fil (s + ↑r.toNat) (k - 1)).arrow)
-  have hzero : xl ≫ f = 0 := by
-    simpa [f, Int.toNat_of_nonneg hr] using
-      FC.filDiff_to_cokernel_eq_zero s k r hd
-  exact factorThruKernelSubobject f xl hzero ≫
-    factorThruImageSubobject ((kernelSubobject f).arrow ≫ FC.filToAssocGraded s k)
-
-/-- The source cycle lift projects to the original associated-graded element. -/
-theorem FilteredComplex.sourceCycleLift_arrow (FC : FilteredComplex C)
-    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
-    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
-    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))}
-    (hd : xl ≫ FC.filDiff s k =
-      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
-        (FC.fil_anti_of_le (k - 1) (by omega))) :
-    FC.sourceCycleLift r hr s k hd ≫
-      (FC.cycleSubobject s k (↑r.toNat : WithTop ℕ)).arrow =
-      xl ≫ FC.filToAssocGraded s k := by
-  unfold FilteredComplex.sourceCycleLift
-  dsimp
-  rw [Category.assoc, imageSubobject_arrow_comp, ← Category.assoc,
-    factorThruKernelSubobject_comp_arrow]
-
 /-- In a filtered differential equation, the target lift is a cycle. -/
 theorem FilteredComplex.targetLift_filDiff_eq_zero (FC : FilteredComplex C)
     (s k r : ℤ) {T : C}
@@ -166,36 +133,6 @@ theorem FilteredComplex.targetLift_filDiff_eq_zero (FC : FilteredComplex C)
       rw [Category.assoc, Subobject.ofLE_arrow]]
   rw [← hd, ← Category.assoc, FC.filDiff_comp_arrow, Category.assoc,
     FC.d_comp_d, comp_zero]
-
-/-- The target component of a filtered differential equation gives a cycle on
-the target page. -/
-noncomputable def FilteredComplex.targetCycleLift (FC : FilteredComplex C)
-    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
-    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
-    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))}
-    (hd : xl ≫ FC.filDiff s k =
-      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
-        (FC.fil_anti_of_le (k - 1) (by omega))) :
-    T ⟶ Subobject.underlying.obj
-      (FC.cycleSubobject (s + r) (k - 1) (↑r.toNat : WithTop ℕ)) := by
-  apply FC.sourceCycleLift r hr (s + r) (k - 1) (xl := yl) (yl := 0)
-  simpa using FC.targetLift_filDiff_eq_zero s k r hd
-
-/-- The target cycle lift projects to the associated-graded target lift. -/
-theorem FilteredComplex.targetCycleLift_arrow (FC : FilteredComplex C)
-    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
-    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
-    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))}
-    (hd : xl ≫ FC.filDiff s k =
-      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
-        (FC.fil_anti_of_le (k - 1) (by omega))) :
-    FC.targetCycleLift r hr s k hd ≫
-      (FC.cycleSubobject (s + r) (k - 1) (↑r.toNat : WithTop ℕ)).arrow =
-      yl ≫ FC.filToAssocGraded (s + r) (k - 1) := by
-  unfold FilteredComplex.targetCycleLift
-  simpa using FC.sourceCycleLift_arrow r hr (s + r) (k - 1)
-    (xl := yl) (yl := 0)
-    (by simpa using FC.targetLift_filDiff_eq_zero s k r hd)
 
 /-- The induced differential on the associated graded:
     `gr^s A^k → gr^s A^{k-1}`.
@@ -371,6 +308,67 @@ noncomputable def FilteredComplex.cycleSubobject (FC : FilteredComplex C)
     let f := (FC.fil s k).arrow ≫ FC.d k ≫
       cokernel.π ((FC.fil (s + ↑n) (k - 1)).arrow)
     imageSubobject ((kernelSubobject f).arrow ≫ πV)
+
+/-- The cycle represented by a filtered lift whose differential lands in
+`F^{s+r}`. -/
+noncomputable def FilteredComplex.sourceCycleLift (FC : FilteredComplex C)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
+    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
+    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))}
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega))) :
+    T ⟶ Subobject.underlying.obj (FC.cycleSubobject s k (↑r.toNat : WithTop ℕ)) := by
+  let f := (FC.fil s k).arrow ≫ FC.d k ≫
+    cokernel.π ((FC.fil (s + ↑r.toNat) (k - 1)).arrow)
+  have hzero : xl ≫ f = 0 := by
+    simpa [f, Int.toNat_of_nonneg hr] using
+      FC.filDiff_to_cokernel_eq_zero s k r hd
+  exact factorThruKernelSubobject f xl hzero ≫
+    factorThruImageSubobject ((kernelSubobject f).arrow ≫ FC.filToAssocGraded s k)
+
+theorem FilteredComplex.sourceCycleLift_arrow (FC : FilteredComplex C)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
+    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
+    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))}
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega))) :
+    FC.sourceCycleLift r hr s k hd ≫
+      (FC.cycleSubobject s k (↑r.toNat : WithTop ℕ)).arrow =
+      xl ≫ FC.filToAssocGraded s k := by
+  unfold FilteredComplex.sourceCycleLift
+  dsimp
+  rw [Category.assoc, imageSubobject_arrow_comp, ← Category.assoc,
+    factorThruKernelSubobject_comp_arrow]
+
+/-- The target of a filtered differential is a cycle on the target page. -/
+noncomputable def FilteredComplex.targetCycleLift (FC : FilteredComplex C)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
+    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
+    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))}
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega))) :
+    T ⟶ Subobject.underlying.obj
+      (FC.cycleSubobject (s + r) (k - 1) (↑r.toNat : WithTop ℕ)) := by
+  apply FC.sourceCycleLift r hr (s + r) (k - 1) (xl := yl) (yl := 0)
+  simpa using FC.targetLift_filDiff_eq_zero s k r hd
+
+theorem FilteredComplex.targetCycleLift_arrow (FC : FilteredComplex C)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
+    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
+    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))}
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega))) :
+    FC.targetCycleLift r hr s k hd ≫
+      (FC.cycleSubobject (s + r) (k - 1) (↑r.toNat : WithTop ℕ)).arrow =
+      yl ≫ FC.filToAssocGraded (s + r) (k - 1) := by
+  unfold FilteredComplex.targetCycleLift
+  simpa using FC.sourceCycleLift_arrow r hr (s + r) (k - 1)
+    (xl := yl) (yl := 0)
+    (by simpa using FC.targetLift_filDiff_eq_zero s k r hd)
 
 /-- The r-boundary subobject B_r of V = gr^s A^k.
     B_r = image in V of { dz | z ∈ F^{s-r} A^{k+1}, dz ∈ F^s A^k }.
@@ -2859,7 +2857,8 @@ theorem FilteredComplex.differentialRelation_crossed_of_two
     {x : T ⟶ FC.assocGraded s k}
     {y₁ y₂ : T ⟶ FC.assocGraded (s + r) (k - 1)}
     (h₁ : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y₁)
-    (h₂ : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y₂) :
+    (h₂ : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y₂)
+    (hne : y₁ ≠ y₂) :
     RelationCrossedBy (FC.toSpectralSequence bnd)
       (fun p => p.1) r ⟨s, k⟩ x y₁ h₁ := by
   sorry
