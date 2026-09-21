@@ -226,6 +226,37 @@ def ESSNoCrossingRange {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     (dd : DifferentialDatum C ω) (p : ℤ) : Prop :=
   NoCrossingRange dd p
 
+/-! ### Blueprint-aligned extension relations -/
+
+/-- A concrete extension differential relation.  Unlike the obsolete
+`ESSRelation := ¬ IsZero (...)` shorthand below, this keeps the page, source,
+target, and generalized element which occur in Theorem 2.12 of the Blueprint.
+The test object is required to be projective because the representative
+characterization of an extension differential lifts page classes back to the
+filtered complex. -/
+structure ExtensionDifferentialRelation {ι : Type w}
+    [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence C ι) where
+  page : ℤ
+  index : ι
+  /-- Filtration degree used by the crossing condition. -/
+  filtDeg : ι → ℤ
+  T : C
+  [projective : Projective T]
+  source : T ⟶ (E.ssData index).V
+  target : T ⟶ (E.ssData (index + E.diffDeg page)).V
+  relation : DifferentialRelation E page index source target
+
+/-- The no-crossing condition belongs to a *particular* extension relation,
+not merely to an unrelated differential datum in the source spectral sequence.
+This is the formal counterpart of the no-crossing hypotheses in Blueprint
+Theorem `thm:fess-commutative-square`. -/
+def ExtensionDifferentialRelation.NoCrossing {ι : Type w}
+    [AddCommGroup ι] [DecidableEq ι]
+  {E : SpectralSequence C ι}
+    (h : ExtensionDifferentialRelation E) : Prop :=
+  ¬ RelationCrossedBy E h.filtDeg h.page h.index h.source h.target h.relation
+
 /-! ### Theorem 2.12 — Commutativity (main theorem) -/
 
 section ESSCommutativityLemmas
@@ -513,10 +544,10 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
   -- 主定理本体：由引理 C1 直接给出（C1 的证明内部经 A1→B1→B2→B3 组装）。
   essComm_auxC1 sq bnd₁ bnd₂ bnd₃ bnd₄ extf extq extg n m l sfx t y w
 
-/-- **Theorem 2.12 (value form)**: The ESS differential `d_{m+l-n}^q(y)` equals
+/-- **Removed non-Blueprint API.** The ESS differential `d_{m+l-n}^q(y)` equals
     the composition of `d_l^g(z)` through the commutativity square, expressed
     as an isomorphism between the differential objects. -/
-theorem essCommutativity_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+/- theorem essCommutativity_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₂ A₃ A₄ : ω' → C}
     {F₁ : Filtration A₁} {F₂ : Filtration A₂}
@@ -544,6 +575,7 @@ theorem essCommutativity_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     (_hq_nc : NoCrossing ddq) :
     Nonempty (sq.extq.essDiff (m + l - n) ky kw ≅ sq.extg.essDiff l kz kw) := by
   sorry
+-/
 /-! ### Corollary 2.15 — Simplified commutativity (no crossing everywhere) -/
 
 /-- **Corollary 2.15**: Simplified commutativity — same as Thm 2.12 but with
@@ -571,9 +603,9 @@ theorem essCommutativity_noCrossing {ω : Type w} [AddCommGroup ω] [DecidableEq
     (_hg_nc : NoCrossing ddg) :
     ESSRelation sq.extq (m + l - n) ky kw := by
   sorry
-/-- **Corollary 2.15 (iso form)**: Under no-crossing-everywhere, the differential
+/-- **Removed non-Blueprint API.** Under no-crossing-everywhere, the differential
     objects are isomorphic. -/
-theorem essCommutativity_noCrossing_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+/- theorem essCommutativity_noCrossing_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₂ A₃ A₄ : ω' → C}
     {F₁ : Filtration A₁} {F₂ : Filtration A₂}
@@ -596,6 +628,7 @@ theorem essCommutativity_noCrossing_iso {ω : Type w} [AddCommGroup ω] [Decidab
     (_hg_nc : NoCrossing ddg) :
     Nonempty (sq.extq.essDiff (m + l - n) ky kw ≅ sq.extg.essDiff l kz kw) := by
   sorry
+-/
 /-! ### Corollary 2.16 — Triangle case -/
 
 /-- **Corollary 2.16 (Triangle)**: When V₃ = V₄ and g = id.
@@ -633,8 +666,8 @@ theorem essCommutativity_triangle {ω : Type w} [AddCommGroup ω] [DecidableEq �
     (_hf_or_p_nc : NoCrossing ddf ∨ NoCrossing ddp) :
     ESSRelation extq (m - n) ky kz := by
   sorry
-/-- **Corollary 2.16 (iso form)**: Triangle case iso. -/
-theorem essCommutativity_triangle_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+/-- **Removed non-Blueprint API.** Triangle case iso. -/
+/- theorem essCommutativity_triangle_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₂ A₃ : ω' → C}
     {F₁ : Filtration A₁} {F₂ : Filtration A₂} {F₃ : Filtration A₃}
@@ -660,6 +693,7 @@ theorem essCommutativity_triangle_iso {ω : Type w} [AddCommGroup ω] [Decidable
     (_hf_or_p_nc : NoCrossing ddf ∨ NoCrossing ddp) :
     Nonempty (extq.essDiff (m - n) ky kz ≅ extp.essDiff m kx kz) := by
   sorry
+-/
 /-! ### Corollary 2.17 — Composition case -/
 
 /-- **Corollary 2.17 (Composition)**: When V₁ = V₂ and f = id.
@@ -695,8 +729,8 @@ theorem essCommutativity_composition {ω : Type w} [AddCommGroup ω] [DecidableE
     (_hg_nc : NoCrossing ddg) :
     ESSRelation extq (m + l) kx kw := by
   sorry
-/-- **Corollary 2.17 (iso form)**: Composition case iso. -/
-theorem essCommutativity_composition_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+/-- **Removed non-Blueprint API.** Composition case iso. -/
+/- theorem essCommutativity_composition_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₃ A₄ : ω' → C}
     {F₁ : Filtration A₁} {F₃ : Filtration A₃} {F₄ : Filtration A₄}
@@ -720,6 +754,7 @@ theorem essCommutativity_composition_iso {ω : Type w} [AddCommGroup ω] [Decida
     (_hg_nc : NoCrossing ddg) :
     Nonempty (extq.essDiff (m + l) kx kw ≅ extg.essDiff l kz kw) := by
   sorry
+-/
 /-! ### Corollary 2.18 — Induced map on ESS pages -/
 
 /-- The ESS page map induced by the commutativity square: if the source E∞-pages
