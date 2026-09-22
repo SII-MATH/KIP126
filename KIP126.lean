@@ -5,6 +5,8 @@ import KIP126.Core
 import KIP126.External
 import KIP126.Kervaire
 import KIP126.Synthetic
+import KIP126.Def.AdamsE2
+import KIP126.Examples.AdamsE2Table
 
 /-!
 # KIP126

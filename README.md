@@ -62,6 +62,9 @@ document:
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
   well as their import graph.
+  The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
+  small executable example connecting imported dimensions and multiplication
+  coefficients to an existing spectral sequence's page.
 - [`reference/source-inventory.json`](reference/source-inventory.json), the
   per-source status records under [`reference/`](reference/), and the Lean
   claim ledger own the catalogue and provenance of external inputs. They record
