@@ -1,13 +1,10 @@
 /-
   KIPBase.SpectralSequence.Commutativity
-  §2.12–2.19 Commutativity of ESS differentials
+  第 2.12–2.19 条：ESS 微分的交换性。
 
-  Blueprint: §2.12–2.19 from arXiv:2412.10879 (KIP)
-  Informal: informal/commutativity_ss.md
-
-  Defines the homotopy commutative square of converging spectral
-  sequences, and axiomatizes Theorem 2.12 (commutativity), its
-  corollaries (2.15–2.19), and the induced map on ESS pages.
+  对应 Blueprint 中的第 2.12–2.19 条。
+  定义收敛谱序列的同伦交换方块，陈述第 2.12 条及其推论，
+  并研究 ESS 页上的诱导映射。未完成的证明不得视为公理。
 -/
 import KIPBase.Mathlib
 import KIPBase.SpectralSequence.Basic
@@ -87,6 +84,15 @@ structure ConvergingSSSquare {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
   g : V₃ ⟶ V₄
   /-- 方块交换：`f ≫ q = p ≫ g`（范畴中的复合交换）。 -/
   comm : f ≫ q = p ≫ g
+
+/-- 范畴方块交换律在极限对象上的分量形式。后续复形计算必须使用
+这个 `aMap` 等式，而不能把四个 ESS 当成同一个谱序列。 -/
+theorem ConvergingSSSquare.aMap_comm
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω] {ω' : Type w}
+    (sq : ConvergingSSSquare (C := C) (ω := ω) (ω' := ω')) (t : ω') :
+    sq.f.aMap t ≫ sq.q.aMap t = sq.p.aMap t ≫ sq.g.aMap t := by
+  have h := congrArg (fun h : sq.V₁ ⟶ sq.V₄ => h.aMap t) sq.comm
+  exact h
 
 /-- A homotopy commutative square of converging spectral sequences:
     ```
@@ -247,17 +253,221 @@ structure ExtensionDifferentialRelation {ι : Type w}
   target : T ⟶ (E.ssData (index + E.diffDeg page)).V
   relation : DifferentialRelation E page index source target
 
-/-- The no-crossing condition belongs to a *particular* extension relation,
-not merely to an unrelated differential datum in the source spectral sequence.
-This is the formal counterpart of the no-crossing hypotheses in Blueprint
-Theorem `thm:fess-commutative-square`. -/
+/-- 对应 Blueprint 的 `def:fess-crossing`：此具体扩张关系在目标过滤范围
+`[p, s + page]` 内没有本质 crossing，其中 `s` 是源过滤次数。
+零扩张同样适用；并不要求原关系本身是本质微分。 -/
+def ExtensionDifferentialRelation.NoCrossingRange {ι : Type w}
+    [AddCommGroup ι] [DecidableEq ι]
+  {E : SpectralSequence C ι}
+    (h : ExtensionDifferentialRelation E) (p : ℤ) : Prop :=
+  ¬ ∃ (a : ℤ) (_ : 0 < a) (m : ℤ) (k' : ι)
+      (x' : h.T ⟶ (E.ssData k').V)
+      (y' : h.T ⟶ (E.ssData (k' + E.diffDeg m)).V),
+      h.filtDeg k' = h.filtDeg h.index + a ∧
+        EssentialDifferentialRelation E m k' x' y' ∧
+        p ≤ h.filtDeg (k' + E.diffDeg m) ∧
+        h.filtDeg (k' + E.diffDeg m) ≤ h.filtDeg h.index + h.page
+
+/-- 不带范围限定的无 crossing：下界为源过滤次数加一。 -/
 def ExtensionDifferentialRelation.NoCrossing {ι : Type w}
     [AddCommGroup ι] [DecidableEq ι]
   {E : SpectralSequence C ι}
     (h : ExtensionDifferentialRelation E) : Prop :=
-  ¬ RelationCrossedBy E h.filtDeg h.page h.index h.source h.target h.relation
+  h.NoCrossingRange (h.filtDeg h.index + 1)
+
+/-- 对非负页的扩张谱序列，Blueprint 的范围条件排除过滤复形代表元引理
+使用的关系级 crossing。两个结构性前提说明：更高过滤的源，其目标不能
+落在原源过滤次数以下。 -/
+theorem ExtensionDifferentialRelation.not_crossed_of_noCrossing {ι : Type w}
+    [AddCommGroup ι] [DecidableEq ι]
+    {E : SpectralSequence C ι} (h : ExtensionDifferentialRelation E)
+    (hnc : h.NoCrossing)
+    (hpages : ∀ (m : ℤ) (k' : ι)
+      (x' : h.T ⟶ (E.ssData k').V)
+      (y' : h.T ⟶ (E.ssData (k' + E.diffDeg m)).V),
+      EssentialDifferentialRelation E m k' x' y' → 0 ≤ m)
+    (hdegree : ∀ (m : ℤ) (k' : ι),
+      h.filtDeg (k' + E.diffDeg m) = h.filtDeg k' + m) :
+    ¬ RelationCrossedBy E h.filtDeg h.page h.index h.source h.target h.relation := by
+  intro hc
+  rcases hc with ⟨a, ha, m, k', x', y', hk', hessential, hupper⟩
+  apply hnc
+  refine ⟨a, ha, m, k', x', y', hk', hessential, ?_, hupper⟩
+  rw [hdegree m k', hk']
+  have hm := hpages m k' x' y' hessential
+  omega
+
+/-- 将 ESS 中的一条具体微分关系及其过滤次数打包，再陈述无 crossing。
+此处固定过滤次数为双指标第一分量，避免误用输入谱序列的指标。 -/
+def ESSRelationNoCrossing
+    {E : SpectralSequence C (ℤ × ℤ)} (r : ℤ) (index : ℤ × ℤ)
+    {T : C} [Projective T]
+    {x : T ⟶ (E.ssData index).V}
+    {y : T ⟶ (E.ssData (index + E.diffDeg r)).V}
+    (h : DifferentialRelation E r index x y) : Prop :=
+  (⟨r, index, Prod.fst, T, x, y, h⟩ : ExtensionDifferentialRelation E).NoCrossing
+
+/-- 带目标过滤下界的 ESS 无 crossing，仍绑定同一条具体微分关系。 -/
+def ESSRelationNoCrossingRange
+    {E : SpectralSequence C (ℤ × ℤ)} (r : ℤ) (index : ℤ × ℤ)
+    {T : C} [Projective T]
+    {x : T ⟶ (E.ssData index).V}
+    {y : T ⟶ (E.ssData (index + E.diffDeg r)).V}
+    (h : DifferentialRelation E r index x y) (p : ℤ) : Prop :=
+  (⟨r, index, Prod.fst, T, x, y, h⟩ : ExtensionDifferentialRelation E).NoCrossingRange p
+
+/-- 过滤复形版本的统一检测：所有已经落入目标过滤层的源代表元，
+其实际微分都检测到同一个指定目标类。目标过滤层作为显式参数，
+避免把“像落入该层”误写成由无 crossing 自动得到的结论。 -/
+def UniformDetection
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k p : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y) : Prop :=
+  ∀ (xl : T ⟶ Subobject.underlying.obj (FC.fil s k)),
+    FC.IsLift s k xl x →
+  ∀ (yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))),
+    xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega)) →
+    FC.IsLift (s + r) (k - 1) yl y
+
+/-- 对过滤复形构造的 ESS，具体扩张关系的无 crossing 条件可转化为
+过滤复形代表元引理使用的关系级无 crossing 条件。 -/
+theorem ESSRelationNoCrossing.not_crossed_of_filteredComplex
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (index : ℤ × ℤ) {T : C} [Projective T]
+    {x : T ⟶ ((FC.toSpectralSequence bnd).ssData index).V}
+    {y : T ⟶ ((FC.toSpectralSequence bnd).ssData
+      (index + (FC.toSpectralSequence bnd).diffDeg r)).V}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r index x y)
+    (hnc : ESSRelationNoCrossing r index hrel) :
+    ¬ RelationCrossedBy (FC.toSpectralSequence bnd) Prod.fst
+      r index x y hrel := by
+  let h : ExtensionDifferentialRelation (FC.toSpectralSequence bnd) :=
+    ⟨r, index, Prod.fst, T, x, y, hrel⟩
+  apply h.not_crossed_of_noCrossing hnc
+  · intro m k' x' y' hessential
+    exact FC.essentialRelation_nonneg bnd m k' hessential
+  · intro m k'
+    rfl
+
+/-- ESS 形式的零关系无 crossing 可直接产生更深过滤的代表元。 -/
+theorem ESSRelationNoCrossing.zero_relation_deeper_lift
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x 0)
+    (hnc : ESSRelationNoCrossing r ⟨s, k⟩ hrel) :
+    ∃ (xl : T ⟶ Subobject.underlying.obj (FC.fil s k))
+      (yd : T ⟶ Subobject.underlying.obj (FC.fil (s + r + 1) (k - 1))),
+      FC.IsLift s k xl x ∧
+      xl ≫ FC.filDiff s k =
+        yd ≫ Subobject.ofLE (FC.fil (s + r + 1) (k - 1)) (FC.fil s (k - 1))
+          (FC.fil_anti_of_le (k - 1) (by omega)) := by
+  apply FC.zero_relation_deeper_lift bnd r hr s k hrel
+  exact ESSRelationNoCrossing.not_crossed_of_filteredComplex
+    FC bnd r ⟨s, k⟩ hrel hnc
+
+/-- 若指定关系在目标过滤次数所处范围内无 crossing，则同源同页的
+目标是唯一的。竞争目标所产生的本质 crossing 恰命中原目标过滤次数。 -/
+theorem ESSRelationNoCrossingRange.target_unique_of_filteredComplex
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (s k p : ℤ) (hp : p ≤ s + r)
+    {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y₁ y₂ : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (h₁ : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y₁)
+    (h₂ : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y₂)
+    (hnc : ESSRelationNoCrossingRange r ⟨s, k⟩ h₁ p) :
+    y₁ = y₂ := by
+  by_contra hne
+  obtain ⟨a, ha, m, index, x', y', hs, he, ht⟩ :=
+    FC.differentialRelation_crossed_of_two_exact bnd r s k h₁ h₂ hne
+  unfold ESSRelationNoCrossingRange ExtensionDifferentialRelation.NoCrossingRange at hnc
+  apply hnc
+  refine ⟨a, ha, m, index, x', y', hs, he, ?_, ?_⟩
+  · change p ≤ (index + (FC.toSpectralSequence bnd).diffDeg m).1
+    change (index + (FC.toSpectralSequence bnd).diffDeg m).1 = s + r at ht
+    rw [ht]
+    exact hp
+  · exact le_of_eq ht
+
+/-- 范围性无 crossing 的代表元结论：若源代表元的实际微分已经进入
+目标过滤层，则该微分在目标关联分次上的类必为指定目标。
+这里的进入目标过滤层仍是显式前提；完整统一检测还需证明此前提。 -/
+theorem ESSRelationNoCrossingRange.lift_rel_of_filteredComplex
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k p : ℤ) (hp : p ≤ s + r)
+    {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y)
+    (hnc : ESSRelationNoCrossingRange r ⟨s, k⟩ hrel p)
+    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
+    (hx : FC.IsLift s k xl x)
+    (yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1)))
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega))) :
+    FC.IsLift (s + r) (k - 1) yl y := by
+  let y' := yl ≫ FC.filToAssocGraded (s + r) (k - 1)
+  have hrel' : DifferentialRelation (FC.toSpectralSequence bnd)
+      r ⟨s, k⟩ x y' :=
+    FC.differentialRelation_of_lift bnd r hr s k hx rfl hd
+  have heq := ESSRelationNoCrossingRange.target_unique_of_filteredComplex
+    FC bnd r s k p hp hrel hrel' hnc
+  exact heq.symm
+
+/-- 范围性无 crossing 推出上述统一检测结论。 -/
+theorem ESSRelationNoCrossingRange.uniformDetection_of_filteredComplex
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k p : ℤ) (hp : p ≤ s + r)
+    {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y)
+    (hnc : ESSRelationNoCrossingRange r ⟨s, k⟩ hrel p) :
+    UniformDetection FC bnd r hr s k p hrel := by
+  intro xl hx yl hd
+  exact ESSRelationNoCrossingRange.lift_rel_of_filteredComplex
+    FC bnd r hr s k p hp hrel hnc hx yl hd
+
+/-- 零扩张的范围性无 crossing：只要代表元的像已进入零关系的
+目标过滤层，就必能进一步提升到严格更深的一层。 -/
+theorem ESSRelationNoCrossingRange.zero_lift_deeper_of_filteredComplex
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k p : ℤ) (hp : p ≤ s + r)
+    {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x 0)
+    (hnc : ESSRelationNoCrossingRange r ⟨s, k⟩ hrel p)
+    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
+    (hx : FC.IsLift s k xl x)
+    (yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1)))
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega))) :
+    ∃ yd : T ⟶ Subobject.underlying.obj (FC.fil (s + r + 1) (k - 1)),
+      yl ≫ (FC.fil (s + r) (k - 1)).arrow =
+        yd ≫ (FC.fil (s + r + 1) (k - 1)).arrow := by
+  have hy : FC.IsLift (s + r) (k - 1) yl 0 :=
+    ESSRelationNoCrossingRange.lift_rel_of_filteredComplex
+      FC bnd r hr s k p hp hrel hnc hx yl hd
+  obtain ⟨yd, hdeeper⟩ := FC.lift_zero_deeper (s + r) (k - 1) yl hy
+  refine ⟨yd, ?_⟩
+  rw [← hdeeper, Category.assoc, Subobject.ofLE_arrow]
 
 /-! ### Theorem 2.12 — Commutativity (main theorem) -/
+
+/-! 下列方块有四个输入谱序列 `sq.V₁.E` 至 `sq.V₄.E`，以及对应四条边的
+扩张谱序列 `extf.ess t`、`extp.ess t`、`extq.ess t`、`extg.ess t`。
+每条边的构造涉及三个谱序列：两端的输入谱序列，以及由极限对象之间的映射
+构造的新 ESS。输入谱序列的指标类型为 `ω`，ESS 的指标类型为 `ℤ × ℤ`。
+收敛同构只将输入的 `E∞` 对象与 ESS 的 `E₀` 项联系起来，并不等同这些
+谱序列。讨论 crossing 时必须写明具体关系及其所属谱序列；不能仅凭
+`E₁`、`E₂` 记号或 `E∞` 对象同构转移 crossing 命题。 -/
 
 section ESSCommutativityLemmas
 
@@ -280,34 +490,6 @@ variable (w : T ⟶ (extg.complex t).assocGraded (sfx + m + l) 0)
 lemma ess_g_q_assocGraded :
     (extg.complex t).assocGraded (sfx + m + l) 0 =
       (extq.complex t).assocGraded (sfx + m + l) 0 := rfl
-
-/-- **引理 A1**（方块交换下放到过滤层）：设 `yl` 是 `y` 在 ESS(q) 源过滤层
-    `F^{s+n}` 中的 lift，`wl` 是 `w` 在目标过滤层 `F^{s+m+l}` 中的 lift。
-    由方块交换（`f≫q = p≫g`）与 `_hf_rel`/`_hg_rel` 的 lift 刻画，
-    `yl` 在 q 复形中的微分与 `wl` 之差落在更深过滤 `F^{s+m+l+1}` 中，
-    即差项经 assocGraded 投影为 `0`。证明依赖 Crossing/FilteredComplex
-    的桥引理，暂 sorry。
-    数学注记：q 复形中 `y` 的 lift `yl` 是 `A₂(t)` 的元素
-    （类型为 `F^{s+n}A₂⁰` 的底层对象），微分后落在 `F^{s+n}A₄⁰`；
-    `wl` 是 `A₄(t)` 的元素（`F^{s+m+l}A₄⁰`），两者相减在 `A₄(t)` 中进行。 -/
-theorem essComm_auxA1
-    (yl : T ⟶ Subobject.underlying.obj ((extq.complex t).fil (sfx + n) 1))
-    (hy_lift : (extq.complex t).IsLift (sfx + n) 1 yl
-      (Eq.mpr (congrArg (fun X : C => T ⟶ X) (ess_ssData_V extq t (sfx + n) 1).symm) y))
-    (wl : T ⟶ Subobject.underlying.obj ((extq.complex t).fil (sfx + m + l) 0))
-    (hw_lift : (extq.complex t).IsLift (sfx + m + l) 0 wl
-      (Eq.mpr (congrArg (fun X : C => T ⟶ X)
-        (ess_g_q_assocGraded sq bnd₂ bnd₃ bnd₄ extq extg m l sfx t).symm) w))
-    (hmln : 0 ≤ m + l - n) :
-    (yl ≫ (extq.complex t).filDiff (sfx + n) 1 ≫
-      Subobject.ofLE ((extq.complex t).fil (sfx + n) 0)
-        ((extq.complex t).fil (sfx + n - 1) 0)
-        ((extq.complex t).fil_anti_of_le 0 (by omega)) -
-      wl ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
-        ((extq.complex t).fil (sfx + n - 1) 0)
-        ((extq.complex t).fil_anti_of_le 0 (by omega))) ≫
-        (extq.complex t).filToAssocGraded (sfx + n - 1) 0 = 0 := by
-  sorry
 
 /-- **引理 B1**（lift 数据产生候选微分关系）：给定一个严格短于目标页的
     filtration-level 微分 lift，`FilteredComplex.differentialRelation_of_lift`
@@ -347,30 +529,8 @@ theorem essComm_auxB1
   exact FilteredComplex.differentialRelation_of_lift (extq.complex t)
     (extq.bounded t) r' hr' (sfx + n) 1 hy hw hd
 
-/-- **引理 B2**（non-crossing 排除竞争）：`_hf_or_p_nc`、`_hg_nc_range`、
-    `_hq_nc` 联合蕴含：从 `y` 出发不存在次数严格小于 `m+l-n` 且目标过滤
-    在 `[s+n+1, s+m+l]` 内的 essential 微分关系。暂 sorry。 -/
-theorem essComm_auxB2
-    (ddf : DifferentialDatum C ω) (ddp : DifferentialDatum C ω)
-    (ddg : DifferentialDatum C ω) (ddq : DifferentialDatum C ω)
-    (_hf_or_p_nc : NoCrossing ddf ∨ NoCrossing ddp)
-    (_hg_nc_range : ∀ (s kval : ℤ), 0 < kval → kval ≤ m + l - n →
-      NoCrossingRange ddg (s + n + kval))
-    (_hq_nc : NoCrossing ddq) :
-    ∀ (r' : ℤ), 0 ≤ r' → r' < m + l - n →
-      ∀ (y₀ : T ⟶ (((extq.complex t).toSpectralSequence (extq.bounded t)).ssData
-        (⟨sfx + n, 1⟩ + ((extq.complex t).toSpectralSequence (extq.bounded t)).diffDeg
-          r')).V),
-        ¬ EssentialDifferentialRelation
-          ((extq.complex t).toSpectralSequence (extq.bounded t)) r' ⟨sfx + n, 1⟩
-          (Eq.mpr (congrArg (fun X : C => T ⟶ X)
-            (show (((extq.complex t).toSpectralSequence (extq.bounded t)).ssData
-              ⟨sfx + n, 1⟩).V = (extq.complex t).assocGraded (sfx + n) 1 from rfl)) y)
-          y₀ := by
-  sorry
-
 /-- **引理 B3**（`_hq_vanish` 排除残余次数）：若竞争关系次数恰为 `kval-1`，
-    则 `_hq_vanish` 迫使目标为 `0`。暂 sorry。 -/
+    则 `_hq_vanish` 迫使目标为 `0`。 -/
 theorem essComm_auxB3
     (kval : ℤ) (_hk_pos : 0 < kval)
     (_hq_vanish : ∀ (y₀ : T ⟶ (((extq.complex t).toSpectralSequence (extq.bounded t)).ssData
@@ -394,33 +554,6 @@ theorem essComm_auxB3
     y₀ = 0 :=
   _hq_vanish y₀ hrel
 
-/-- **引理 C1**（组装结论关系）：`y` 在 ESS(q) 中存在页 `m+l-n` 的 Z 提升，
-    使 `y` 与 `w` 满足 `DifferentialRelation` 的页上等式。
-    由 `A1` 的候选 lift 经 `B1–B3` 排除所有竞争修正后得到。暂 sorry。 -/
-theorem essComm_auxC1 :
-    DifferentialRelation ((extq.complex t).toSpectralSequence (extq.bounded t))
-      (m + l - n) ⟨sfx + n, 1⟩
-      (Eq.mpr (congrArg (fun X : C => T ⟶ X)
-        (show (((extq.complex t).toSpectralSequence (extq.bounded t)).ssData
-          ⟨sfx + n, 1⟩).V = (extq.complex t).assocGraded (sfx + n) 1 from rfl)) y)
-      (Eq.mpr (congrArg (fun X : C => T ⟶ X)
-        (show (((extq.complex t).toSpectralSequence (extq.bounded t)).ssData
-          (⟨sfx + n, 1⟩ + ((extq.complex t).toSpectralSequence (extq.bounded t)).diffDeg
-            (m + l - n))).V = (extg.complex t).assocGraded (sfx + m + l) 0 from by
-          have h : (⟨sfx + n, 1⟩ +
-              ((extq.complex t).toSpectralSequence (extq.bounded t)).diffDeg
-                (m + l - n) : ℤ × ℤ) = ⟨sfx + m + l, 0⟩ := by
-            show (⟨sfx + n, 1⟩ + (m + l - n, -1) : ℤ × ℤ) = ⟨sfx + m + l, 0⟩
-            apply Prod.ext
-            · show sfx + n + (m + l - n) = sfx + m + l; ring
-            · rfl
-          rw [h]
-          show ((extq.complex t).toSSData (extq.bounded t) (sfx + m + l) 0).V =
-            (extg.complex t).assocGraded (sfx + m + l) 0
-          rw [ess_g_q_assocGraded sq bnd₂ bnd₃ bnd₄ extq extg m l sfx t]
-          rfl)) w) := by
-  sorry
-
 /-- 结论的 w 侧搬运：与主定理结论中的 cast 逐项相同，但写成
     「essq 的关联分次 = ESS(q) 页对象」方向，供 `Eq.mpr` 使用。 -/
 lemma essComm_concl_cast :
@@ -443,16 +576,12 @@ lemma essComm_concl_cast :
 
 end ESSCommutativityLemmas
 
-/-- **Theorem 2.12**: Commutativity of ESS differentials (full version).
+/-- **定理 2.12**：ESS 微分的交换方块传播。
 
-    Given a commutative square in the `ConvergingSS` category and:
-    1. `d_n^f(x) = y`（表述为 ESS 微分关系 `DifferentialRelation`）
-    2. `d_m^p(x) = z`（微分关系）
-    3. One of (1) or (2) has no crossing
-    4. `d_l^g(z) = w` with no crossing hitting Fil ≥ s + n + k (for 0 < k ≤ m + l − n)
-    5. `d_{k-1}^q(y) = 0` with no crossing
-
-    Then `d_{m+l-n}^q(y) = w`（微分关系）。
+    在 `ConvergingSS` 的交换方块中，设 `d_n^f(x)=y`、`d_m^p(x)=z`，
+    其中至少一个关系无 crossing；又设 `d_l^g(z)=w` 在过滤次数
+    `≥ s+n+k` 的范围无 crossing，`0<k≤m+l−n`，并且零扩张关系
+    `d_{k-1}^q(y)=0` 无 crossing。结论是 `d_{m+l-n}^q(y)=w`。
     所有「`d(x) = y`」均按 `DifferentialRelation` 表述。
     **关键**：四个关系共享同一批广义元素——`x` 同时是 ESS(f) 与 ESS(p) 的源
     （两者在次数 `1` 处的关联分次定义性相同，均为 `F₁` 层），
@@ -469,9 +598,8 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     (extq : BoundedExtensionSS sq.V₂.conv sq.V₄.conv sq.q bnd₂ bnd₄)
     (extg : BoundedExtensionSS sq.V₃.conv sq.V₄.conv sq.g bnd₃ bnd₄)
     (n m l : ℤ) (sfx : ℤ) (t : ω')
-    (kx ky kz kw : ω)
     (_hn : 0 ≤ n) (_hm : 0 ≤ m) (_hl : 0 ≤ l)
-    {T : C}
+    {T : C} [Projective T]
     (x : T ⟶ (extf.complex t).assocGraded sfx 1)
     (y : T ⟶ (extf.complex t).assocGraded (sfx + n) 0)
     (z : T ⟶ (extp.complex t).assocGraded (sfx + m) 0)
@@ -497,11 +625,8 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
         (show (((extp.complex t).toSpectralSequence (extp.bounded t)).ssData
           (⟨sfx, 1⟩ + ((extp.complex t).toSpectralSequence (extp.bounded t)).diffDeg m)).V =
           (extp.complex t).assocGraded (sfx + m) 0 from rfl)) z))
-    (ddf : DifferentialDatum C ω)
-    (_hddf : ddf.E = sq.V₁.E ∧ ddf.r = n ∧ ddf.k = kx)
-    (ddp : DifferentialDatum C ω)
-    (_hddp : ddp.E = sq.V₁.E ∧ ddp.r = m ∧ ddp.k = kx)
-    (_hf_or_p_nc : NoCrossing ddf ∨ NoCrossing ddp)
+    (_hf_or_p_nc : ESSRelationNoCrossing n ⟨sfx, 1⟩ _hf_rel ∨
+      ESSRelationNoCrossing m ⟨sfx, 1⟩ _hp_rel)
     -- 4. `d_l^g(z) = w`：ESS(g) 中的微分关系（源与 (2) 共享同一个 `z`）
     (_hg_rel : DifferentialRelation ((extg.complex t).toSpectralSequence (extg.bounded t))
       l ⟨sfx + m, 1⟩
@@ -513,25 +638,18 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
         (show (((extg.complex t).toSpectralSequence (extg.bounded t)).ssData
           (⟨sfx + m, 1⟩ + ((extg.complex t).toSpectralSequence (extg.bounded t)).diffDeg l)).V =
           (extg.complex t).assocGraded (sfx + m + l) 0 from rfl)) w))
-    (ddg : DifferentialDatum C ω)
-    (_hddg : ddg.E = sq.V₃.E ∧ ddg.r = l ∧ ddg.k = kz)
-    (s : ℤ) (kval : ℤ) (_hk_pos : 0 < kval) (_hk_bound : kval ≤ m + l - n)
-    (_hg_nc_range : NoCrossingRange ddg (s + n + kval))
-    (ddq : DifferentialDatum C ω)
-    (_hddq : ddq.E = sq.V₂.E ∧ ddq.r = kval - 1 ∧
-      ddq.k = ky)
+    (kval : ℤ) (_hk_pos : 0 < kval) (_hk_bound : kval ≤ m + l - n)
+    (_hg_nc_range : ESSRelationNoCrossingRange l ⟨sfx + m, 1⟩ _hg_rel
+      (sfx + n + kval))
     -- 5. `d_{k-1}^q(y) = 0`：ESS(q) 中从 `y`（与 (1) 共享）出发的短微分消失
-    (_hq_vanish : ∀ (y₀ : T ⟶ (((extq.complex t).toSpectralSequence (extq.bounded t)).ssData
-        (⟨sfx + n, 1⟩ + ((extq.complex t).toSpectralSequence (extq.bounded t)).diffDeg
-          (kval - 1))).V),
-      DifferentialRelation ((extq.complex t).toSpectralSequence (extq.bounded t))
-        (kval - 1) ⟨sfx + n, 1⟩
-        (Eq.mpr (congrArg (fun X : C => T ⟶ X)
-          (show (((extq.complex t).toSpectralSequence (extq.bounded t)).ssData
-            ⟨sfx + n, 1⟩).V =
-            (extq.complex t).assocGraded (sfx + n) 1 from rfl)) y)
-        y₀ → y₀ = 0)
-    (_hq_nc : NoCrossing ddq) :
+    (_hq_zero : DifferentialRelation
+      ((extq.complex t).toSpectralSequence (extq.bounded t))
+      (kval - 1) ⟨sfx + n, 1⟩
+      (Eq.mpr (congrArg (fun X : C => T ⟶ X)
+        (show (((extq.complex t).toSpectralSequence (extq.bounded t)).ssData
+          ⟨sfx + n, 1⟩).V =
+          (extq.complex t).assocGraded (sfx + n) 1 from rfl)) y) 0)
+    (_hq_nc : ESSRelationNoCrossing (kval - 1) ⟨sfx + n, 1⟩ _hq_zero) :
     -- 结论：`d_{m+l-n}^q(y) = w`：ESS(q) 中 `y` 与 `w`（与 (4) 共享）的微分关系
     DifferentialRelation ((extq.complex t).toSpectralSequence (extq.bounded t))
       (m + l - n) ⟨sfx + n, 1⟩
@@ -541,12 +659,12 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
           (extq.complex t).assocGraded (sfx + n) 1 from rfl)) y)
       (Eq.mpr (congrArg (fun X : C => T ⟶ X)
         (essComm_concl_cast sq bnd₂ bnd₃ bnd₄ extq extg n m l sfx t)) w) :=
-  -- 主定理本体：由引理 C1 直接给出（C1 的证明内部经 A1→B1→B2→B3 组装）。
-  essComm_auxC1 sq bnd₁ bnd₂ bnd₃ bnd₄ extf extq extg n m l sfx t y w
+  -- 这里必须使用上述四条扩张关系和无 crossing 假设来选取共同代表元。
+  -- 旧版无前提的 auxC1 对任意 y、w 声称此结论，不是合法的证明桥梁。
+  -- 四个无 crossing 条件现已绑定各边的具体扩张关系。
+  -- 尚需证明 Blueprint `prop:no-crossing-iff-uniform-detection` 的代表元刻画。
+  sorry
 
-/-- **Removed non-Blueprint API.** The ESS differential `d_{m+l-n}^q(y)` equals
-    the composition of `d_l^g(z)` through the commutativity square, expressed
-    as an isomorphism between the differential objects. -/
 /- theorem essCommutativity_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₂ A₃ A₄ : ω' → C}
@@ -603,8 +721,6 @@ theorem essCommutativity_noCrossing {ω : Type w} [AddCommGroup ω] [DecidableEq
     (_hg_nc : NoCrossing ddg) :
     ESSRelation sq.extq (m + l - n) ky kw := by
   sorry
-/-- **Removed non-Blueprint API.** Under no-crossing-everywhere, the differential
-    objects are isomorphic. -/
 /- theorem essCommutativity_noCrossing_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₂ A₃ A₄ : ω' → C}
@@ -666,7 +782,6 @@ theorem essCommutativity_triangle {ω : Type w} [AddCommGroup ω] [DecidableEq �
     (_hf_or_p_nc : NoCrossing ddf ∨ NoCrossing ddp) :
     ESSRelation extq (m - n) ky kz := by
   sorry
-/-- **Removed non-Blueprint API.** Triangle case iso. -/
 /- theorem essCommutativity_triangle_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₂ A₃ : ω' → C}
@@ -729,7 +844,6 @@ theorem essCommutativity_composition {ω : Type w} [AddCommGroup ω] [DecidableE
     (_hg_nc : NoCrossing ddg) :
     ESSRelation extq (m + l) kx kw := by
   sorry
-/-- **Removed non-Blueprint API.** Composition case iso. -/
 /- theorem essCommutativity_composition_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₃ A₄ : ω' → C}

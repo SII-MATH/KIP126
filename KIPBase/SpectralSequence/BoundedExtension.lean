@@ -187,8 +187,19 @@ The extension spectral sequence (ESS) associated to a morphism of converging
 spectral sequences. For each stem degree `t`, the ESS is the spectral sequence
 of the two-term filtered complex `A₁(t) → A₂(t)`.
 
-The `E₀`-page of the ESS decomposes as `E∞(V₁) ⊕ E∞(V₂)`, and the
-differential has only the `E∞(V₁) → E∞(V₂)` component nonzero. -/
+使用此构造时必须区分三个谱序列：
+
+* `E₁ : SpectralSequence C ω` 是收敛到过滤对象 `(A₁, F₁)` 的输入谱序列。
+* `E₂ : SpectralSequence C ω` 是收敛到 `(A₂, F₂)` 的输入谱序列。
+  收敛态射包含 `eMap : E₁∞ ⟶ E₂∞` 与 `aMap : A₁ ⟶ A₂`，
+  相容方块连接这两个映射。
+* `ext.ess t : SpectralSequence C (ℤ × ℤ)` 是第三个谱序列，
+  由过滤两项复形 `A₁(t) →[aMap t] A₂(t)` 构造。其 `E₀` 项是
+  `A₁(t)`、`A₂(t)` 的关联分次，经收敛同构与 `E₁∞`、`E₂∞` 对应。
+  这并不意味着三个谱序列相等。
+
+因此 `E₁` 和 `E₂` 不是 `ext.ess t` 的源页、目标页名称；
+输入谱序列自身的页微分与 `ext.ess t` 的扩张微分属于不同谱序列。 -/
 
 variable {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
 
