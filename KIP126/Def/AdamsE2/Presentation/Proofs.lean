@@ -27,5 +27,23 @@ theorem Presentation.basis_mul {T : Table} {E : ClassicalAdamsSpectralSequence}
         T.mulCoeff p q hp hq hpq i j k • P.basis (p + q) hpq k) := by
       simp [P.generator_image]
 
+theorem Presentation.basis_mul_eq_basis {T : Table} {E : ClassicalAdamsSpectralSequence}
+    {A : PageAlgebra E} (P : Presentation T A) (p q : Degree)
+    (hp : p ∈ T.region) (hq : q ∈ T.region) (hpq : p + q ∈ T.region)
+    (i : Fin (T.dim p)) (j : Fin (T.dim q)) (k : Fin (T.dim (p + q)))
+    (h : ∀ l, T.mulCoeff p q hp hq hpq i j l = if l = k then 1 else 0) :
+    A.product p q (P.basis p hp i) (P.basis q hq j) = P.basis (p + q) hpq k := by
+  rw [P.basis_mul p q hp hq hpq]
+  simp [h]
+
+theorem Presentation.basis_mul_eq_zero {T : Table} {E : ClassicalAdamsSpectralSequence}
+    {A : PageAlgebra E} (P : Presentation T A) (p q : Degree)
+    (hp : p ∈ T.region) (hq : q ∈ T.region) (hpq : p + q ∈ T.region)
+    (i : Fin (T.dim p)) (j : Fin (T.dim q))
+    (h : ∀ k, T.mulCoeff p q hp hq hpq i j k = 0) :
+    A.product p q (P.basis p hp i) (P.basis q hq j) = 0 := by
+  rw [P.basis_mul p q hp hq hpq]
+  simp [h]
+
 end
 end KIP126.AdamsE2

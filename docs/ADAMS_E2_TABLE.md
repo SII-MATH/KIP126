@@ -1,11 +1,86 @@
 # 将 E₂ 维数和乘法表接入已有谱序列
 
-先读 `KIP126/Examples/AdamsE2Table.lean`。这是一个真实的 Lean 小样例，
-不是实际球谱 Adams 数据，也没有构造或假定一个虚假的球谱实例。
+现在先读 `KIP126/Examples/AdamsE2LowDegrees/Data.lean` 中的两张数据列表，
+再读 `KIP126/Examples/AdamsE2LowDegrees.lean` 中的使用示例。
+原来只有三个格点的 `AdamsE2Table.lean` 保留作最小回归测试。
 
-## 小样例输入
+## Lin 数据的低次数示例
 
-样例的 `table` 定义是数值输入入口：
+数据来自 Weinan Lin 的 [Cohomology of the Mod 2 Steenrod algebra，t261.2](https://zenodo.org/records/7865526)，
+文件 `S0_AdamsE2_csv.zip` 中的 `basis`、`generators`、`relations` 三张 CSV。
+下载文件的 SHA-256 为
+`bb53d84a3450d58535f7119d3a4fa2123688f9574c396d592763c37be89de470`；
+MD5 与发布页面相符，为 `91b64bf4745a73e72dd4150a87bb018b`。
+
+用户指定的范围采用 **Adams 图坐标**：`0 ≤ s ≤ 8`、`0 ≤ n = t-s ≤ 8`。
+Lean 内一律存 `(s,t) = (s,s+n)`，不是 `(n,s)`。
+另外保留 `(1,64)`、`(2,128)`，并加入 `(1,16)`、`(4,18)`、`(5,20)`，
+展示第一个二维格点及其相关乘法。
+
+低次数矩形内全部非零格点如下；其余格点明确为零维：
+
+| stem `n` | filtration `s` 与选定加法基 |
+| --- | --- |
+| 0 | `s=0,…,8`：`1,h₀,…,h₀⁸` |
+| 1 | `s=1`：`h₁` |
+| 2 | `s=2`：`h₁²` |
+| 3 | `s=1,2,3`：`h₂,h₀h₂,h₀²h₂` |
+| 4、5 | 无非零格点 |
+| 6 | `s=2`：`h₂²` |
+| 7 | `s=1,2,3,4`：`h₃,h₀h₃,h₀²h₃,h₀³h₃` |
+| 8 | `s=2`：`h₁h₃`；`s=3`：`c₀` |
+
+扩展后共 **86 个格点、27 个基向量**：60 个零维、25 个一维、1 个二维。
+不能仅凭不同名称就认为同一格点有多个基向量；例如 `h₁³=h₀²h₂`。
+
+### 数字记录如何进入原接口
+
+`basisRows` 保存 `(原始 CSV 基编号, (s,t), 名称)`，同一次数的行按原编号
+排序后成为局部基。`dim` 是该格点行数，不是重新计算 Ext。
+`productRows` 保存 `(左基编号, 右基编号, 结果基编号列表)`；列表允许多个项，
+表示 F₂ 线性组合。它来自原始乘法关系的化简，不是只按次数猜结果。
+单位乘积由统一分支处理；交换的两个输入先排序。
+
+例如源基编号 `3` 是 `h₁`，`6` 是 `h₁²`，`11` 是 `h₀²h₂`，
+所以记录 `(3,6,[11])`。编号 `50,51` 是 `(5,20)` 中依次选定的两个基：
+
+| 乘积 | 基编号结果 | 在 `(5,20)` 的坐标 |
+| --- | --- | --- |
+| `h₁·d₀` | `[50]` | `[1,0]` |
+| `h₀⁴·h₄` | `[51]` | `[0,1]` |
+| `(h₀h₃)·c₀` | `[]` | `[0,0]` |
+
+Lean 验证了 `h₀h₁=0`、`h₁h₂=0`、`h₀c₀=0`、`h₁³=h₀²h₂`、
+`h₁h₃`、`h₆²` 等查表关系。给定外部 presentation，还验证两个二维格点
+乘积之和在实际页中非零，对应坐标 `[1,1]`。
+
+`productCoordinates` 返回 `Option (List Nat)`：`some []` 是零维目标中的
+已知零向量，`some [0,0]` 是二维目标中的已知零向量；`none` 表示输入
+或目标未覆盖、或基下标不合法。比如 `h₀h₆` 的目标未覆盖，不能读成零。
+
+### 重现提取结果
+
+先下载上述固定版本的 ZIP，再运行：
+
+```sh
+python3 scripts/extract_adams_e2_low.py /path/to/S0_AdamsE2_csv.zip \
+  --include-two-dimensional-cell \
+  --check KIP126/Examples/AdamsE2LowDegrees/Data.lean
+bash scripts/shared-main-cache.sh run lake build KIP126.Examples.AdamsE2LowDegrees
+```
+
+脚本先检查完整 ZIP 的 SHA-256 和 CRC，再核对基次数，枚举所有覆盖范围内
+的基乘积，并用源 CSV 关系在 F₂ 上化简为指定基，最后逐字核对 Lean 中的
+数据区块。142 个无序乘积（包括单位）全部检查后才省略零项。
+不带 `--check` 时输出可复制的 Lean 数据区块；不会改写源文件。
+
+这不是在 Lean 内重新证明 Lin 的 Ext 计算，也不自动制造实际页的
+`Presentation` 证据。这个旧版本 E₂ 数据集也不应冒充项目中另一版本的
+近 126 维微分/扩张证据；正式登记外部证据时需要对应的来源记录。
+
+## 保留的三格点最小测试
+
+原 `AdamsE2Table.lean` 的 `table` 定义是最小数值输入入口：
 
 | 次数 `(s,t)` | 维数 | 基的说明性名称 |
 | --- | --- | --- |

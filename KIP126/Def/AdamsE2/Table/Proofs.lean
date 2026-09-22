@@ -23,6 +23,23 @@ theorem generator_unit (T : Table) :
     Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.subset_span (Or.inl rfl))
   simpa [unitRelation, generator, map_sub, map_sum, sub_eq_zero] using h
 
+/-- A coordinate lookup can certify a product without unfolding the model ring. -/
+theorem generator_mul_eq_generator (T : Table) (p q : Degree)
+    (hp : p ∈ T.region) (hq : q ∈ T.region) (hpq : p + q ∈ T.region)
+    (i : Fin (T.dim p)) (j : Fin (T.dim q)) (k : Fin (T.dim (p + q)))
+    (h : ∀ l, T.mulCoeff p q hp hq hpq i j l = if l = k then 1 else 0) :
+    T.generator p hp i * T.generator q hq j = T.generator (p + q) hpq k := by
+  rw [T.generator_mul p q hp hq hpq]
+  simp [h]
+
+theorem generator_mul_eq_zero (T : Table) (p q : Degree)
+    (hp : p ∈ T.region) (hq : q ∈ T.region) (hpq : p + q ∈ T.region)
+    (i : Fin (T.dim p)) (j : Fin (T.dim q))
+    (h : ∀ k, T.mulCoeff p q hp hq hpq i j k = 0) :
+    T.generator p hp i * T.generator q hq j = 0 := by
+  rw [T.generator_mul p q hp hq hpq]
+  simp [h]
+
 theorem generator_mem_piece (T : Table) (p : Degree) (hp : p ∈ T.region)
     (i : Fin (T.dim p)) : T.generator p hp i ∈ T.piece p := by
   refine ⟨T.symbol p hp i, ?_, rfl⟩
