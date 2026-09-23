@@ -1,4 +1,4 @@
-import KIP126.Classical.Adams.Basic
+import KIP126.Def.ClassicalAdams.Page.Data
 import Mathlib.Algebra.DirectSum.Module
 
 /-!

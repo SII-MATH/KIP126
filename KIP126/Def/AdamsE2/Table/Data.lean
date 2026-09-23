@@ -1,4 +1,4 @@
-import KIP126.Core.Algebra.Coefficients
+import KIP126.Def.Algebra.Coefficients.Data
 import Mathlib.Algebra.MvPolynomial.Eval
 import Mathlib.RingTheory.Ideal.Quotient.Operations
 import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
