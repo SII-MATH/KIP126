@@ -2,28 +2,27 @@ import KIP126.Examples.AdamsE2LowDegrees.Data
 import Mathlib.Tactic.Ring
 
 /-!
-# Using Lin's low-degree table
+# 使用林氏低次数数据表
 
-The numerical input is in `AdamsE2LowDegrees/Data.lean`. Here the kernel checks
-queries, then proves ring relations from the table, then transports products to
-an EXISTING E₂ page under explicit presentation evidence. The first two steps
-do not assert that a numerical table is the sphere's actual E₂ page.
+数值输入位于 `AdamsE2LowDegrees/Data.lean`。本文件先由内核检查查询结果，
+再根据数据表证明环中的关系，最后在显式表示证据的条件下，将乘法等式传递到
+已有的实际 E₂ 页。前两步并不声称数值表就是球谱的实际 E₂ 页。
 -/
 
 namespace KIP126.Examples.AdamsE2LowDegrees
 
 open KIP126.AdamsE2 KIP126.Core.Algebra KIP126.Classical.Adams
 
--- Kernel-checked decisions unfold the finite region and its coordinate lists.
+-- 内核检查的判定过程需要展开有限覆盖区域及其坐标列表。
 set_option maxRecDepth 4096
 
 theorem region_size : table.region.card = 86 := by decide
 theorem basis_count : basisRows.length = 27 := by decide
 
--- These are checks of imported dimensions, not new computations of Ext.
+-- 这里检查的是已导入的维数，并未重新计算 Ext。
 example : table.dim (1, 1) = 1 := by decide
 example : table.dim (2, 3) = 0 := by decide
-example : table.dim (3, 11) = 1 := by decide -- c₀, chart coordinate (8,3)
+example : table.dim (3, 11) = 1 := by decide -- c₀，图上的坐标为 (8,3)
 example : table.dim (2, 128) = 1 := by decide
 example : table.dim (5, 20) = 2 := by decide
 
@@ -68,7 +67,7 @@ theorem h1_times_h1Sq : h1 * h1Sq = h0Sqh2 := by
   apply table.generator_mul_eq_generator (1, 2) (2, 4)
   decide
 
-/-- A nontrivial relation identifying two different monomial expressions. -/
+/-- 一个非平凡关系：两个不同的单项式表达式表示同一元素。 -/
 theorem h1_cube : h1 ^ 3 = h0 ^ 2 * h2 := by
   calc
     h1 ^ 3 = h1 * (h1 * h1) := by ring
@@ -108,7 +107,7 @@ theorem two_monomials_sum : h1 * d0 + h0 ^ 4 * h4 = b0 + b1 := by
 
 variable (E : ClassicalAdamsSpectralSequence) (A : PageAlgebra E)
 
-/-- Attach this larger table without rebuilding E₂ or the spectral sequence. -/
+/-- 将这张较大的表接入已有对象，不重新构造 E₂ 或谱序列。 -/
 def myAdams
     (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
     Input where
@@ -126,7 +125,7 @@ theorem page_h0_h1_zero (P : Presentation table A) :
   apply P.basis_mul_eq_zero _ _ _ _ (by decide)
   decide
 
-/-- The entry h₁·h₁² = h₀²h₂, now in the actual E₂ component at (3,6). -/
+/-- 将表中关系 h₁·h₁² = h₀²h₂ 解释为实际 E₂ 页在 (3,6) 分量中的等式。 -/
 theorem page_h1_times_h1Sq (P : Presentation table A) :
     A.product (1, 2) (2, 4)
       (P.basis (1, 2) (by decide) ⟨0, by decide⟩)
@@ -151,8 +150,8 @@ theorem page_h0Fourth_times_h4 (P : Presentation table A) :
   apply P.basis_mul_eq_basis
   decide
 
-/-- The two different products are independent, not two names for one class.
-Applying the basis-coordinate map gives the actual vector [1,1]. -/
+/-- 这两个不同的乘积线性无关，而不是同一个类的两个名称。
+对它们的和应用基坐标映射，得到向量 [1,1]。 -/
 theorem page_two_products_sum_ne_zero (P : Presentation table A) :
     Add.add (α := Page E (5, 20))
       (A.product (1, 2) (4, 18)

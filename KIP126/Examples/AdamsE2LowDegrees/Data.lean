@@ -2,32 +2,31 @@ import KIP126.Def.AdamsE2
 import Mathlib.Data.Int.Interval
 
 /-!
-# A sourced, nontrivial Adams E₂ table
+# 带有明确来源和非平凡乘法的 Adams E₂ 数据表
 
-Source: Weinan Lin, *Cohomology of the Mod 2 Steenrod algebra*, t261.2,
-https://doi.org/10.5281/zenodo.7865526, `S0_AdamsE2_csv.zip`.
-SHA-256: bb53d84a3450d58535f7119d3a4fa2123688f9574c396d592763c37be89de470.
+来源：林伟南，《模 2 Steenrod 代数的上同调》，版本 t261.2，
+https://doi.org/10.5281/zenodo.7865526，文件 `S0_AdamsE2_csv.zip`。
+SHA-256 校验值：bb53d84a3450d58535f7119d3a4fa2123688f9574c396d592763c37be89de470。
 
-The chart rectangle is 0 ≤ s ≤ 8 and 0 ≤ stem = t-s ≤ 8. We also retain
-(1,64) and (2,128), and add (1,16), (4,18), (5,20) to exhibit a two-dimensional
-cell. All stored degrees are INTERNAL (s,t), not (stem,s).
-The source basis IDs are preserved, and the product rows are reduced using
-the published relations, not inferred merely from the dimensions.
+图上的矩形范围为 0 ≤ s ≤ 8、0 ≤ t-s ≤ 8，其中 t-s 为稳定茎次数。
+另外保留 (1,64)、(2,128)，并加入 (1,16)、(4,18)、(5,20)，以展示二维格点。
+所有存储的次数均为内部双次数 (s,t)，不是图上的坐标 (t-s,s)。
+保留源数据中的基编号；乘法记录由已发表的关系化简得到，不是仅根据维数推测。
 
-Reproduce the marked block with `scripts/extract_adams_e2_low.py`.
-These numerical data do not prove their interpretation on the sphere page:
-that remains an explicit `ExternalEvidence (Nonempty (Presentation table A))`.
+可用 `scripts/extract_adams_e2_low.py` 重现带标记的数据区块。
+这些数值数据本身并不证明它们描述了球谱的实际页；这一解释仍须由显式输入
+`ExternalEvidence (Nonempty (Presentation table A))` 提供。
 -/
 
 namespace KIP126.Examples.AdamsE2LowDegrees
 
 open KIP126.AdamsE2 KIP126.Core.Algebra
 
--- Kernel-checked decisions unfold the finite region and its coordinate lists.
+-- 内核检查的判定过程需要展开有限覆盖区域及其坐标列表。
 set_option maxRecDepth 4096
 
--- BEGIN LIN CSV EXTRACT
-/-- CSV basis IDs, internal bidegrees, and readable monomials. -/
+-- 林氏 CSV 提取数据开始
+/-- CSV 中的基编号、内部双次数和便于阅读的单项式名称。 -/
 def basisRows : List (Nat × Degree × String) :=
   [
     (0, (0, 0), "1"),
@@ -59,7 +58,7 @@ def basisRows : List (Nat × Degree × String) :=
     (2314, (2, 128), "h_6^2")
   ]
 
-/-- All nonzero non-unit products with covered target; IDs refer to basisRows. -/
+/-- 目标在覆盖范围内且不含单位因子的全部非零乘积；编号对应 basisRows。 -/
 def productRows : List (Nat × Nat × List Nat) :=
   [
     (1, 1, [2]),
@@ -95,12 +94,12 @@ def productRows : List (Nat × Nat × List Nat) :=
     (7, 7, [14]),
     (401, 401, [2314])
   ]
--- 86 covered cells; dimension counts {0: 60, 1: 25, 2: 1}.
--- 27 basis vectors; 142 covered unordered products checked (including units).
--- END LIN CSV EXTRACT
+-- 共覆盖 86 个格点；各维数的格点数量为 {0: 60, 1: 25, 2: 1}。
+-- 共 27 个基向量；已检查覆盖范围内的 142 个无序乘积（包括单位乘积）。
+-- 林氏 CSV 提取数据结束
 
-/-- Include zero-dimensional cells explicitly; absence of a basis row is
-zero only inside this declared, completely extracted region. -/
+/-- 显式包含零维格点；只有在此已声明且完整提取的区域内，
+缺少基记录才表示该格点为零维。 -/
 def region : Finset Degree :=
   ((Finset.Icc (0 : ℤ) 8 ×ˢ Finset.Icc (0 : ℤ) 8).image
     (fun p => (p.1, p.1 + p.2))) ∪ {(1, 64), (2, 128), (1, 16), (4, 18), (5, 20)}
@@ -110,8 +109,8 @@ def basisIds (p : Degree) : List Nat :=
 
 def dim (p : Degree) : Nat := (basisIds p).length
 
-/-- Internal lookup, called only after degree/index coverage has been checked.
-The source extraction has checked ALL covered pairs before omitting zeros. -/
+/-- 内部查询，仅在确认次数位于覆盖范围内、基下标合法后调用。
+源数据提取过程先检查全部覆盖范围内的基对，再省略零乘积。 -/
 def productIds (left right : Nat) : List Nat :=
   if left = 0 then [right]
   else if right = 0 then [left]
@@ -129,8 +128,8 @@ def table : Table where
   zero_mem := by decide
   unitCoeff := fun i => if (basisIds (0, 0))[i] = 0 then 1 else 0
 
-/-- User-facing query: `none` is unknown/out-of-range/invalid, while `some []`
-is the zero vector in a covered zero-dimensional target. -/
+/-- 面向使用者的查询：`none` 表示未知、超出范围或输入不合法；
+`some []` 表示已覆盖的零维目标空间中的零向量。 -/
 def productCoordinates (p q : Degree) (i j : Nat) : Option (List Nat) :=
   if p ∈ region ∧ q ∈ region ∧ p + q ∈ region then
     if hi : i < dim p then

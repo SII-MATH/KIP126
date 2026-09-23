@@ -19,8 +19,8 @@ from pathlib import Path
 from zipfile import ZipFile
 
 SHA256 = "bb53d84a3450d58535f7119d3a4fa2123688f9574c396d592763c37be89de470"
-BEGIN = "-- BEGIN LIN CSV EXTRACT"
-END = "-- END LIN CSV EXTRACT"
+BEGIN = "-- 林氏 CSV 提取数据开始"
+END = "-- 林氏 CSV 提取数据结束"
 
 
 def monomial(text):
@@ -124,19 +124,19 @@ def extract(path, extra):
         return " * ".join(generators[g]["name"] + (f"^{e}" if e != 1 else "")
                           for g, e in mon) or "1"
 
-    lines = [BEGIN, "/-- CSV basis IDs, internal bidegrees, and readable monomials. -/",
+    lines = [BEGIN, "/-- CSV 中的基编号、内部双次数和便于阅读的单项式名称。 -/",
              "def basisRows : List (Nat × Degree × String) :=", "  ["]
     lines += [f'    ({i}, ({p[0]}, {p[1]}), "{label(m)}")' +
               ("," if k + 1 < len(selected) else "")
               for k, (i, p, m) in enumerate(selected)]
-    lines += ["  ]", "", "/-- All nonzero non-unit products with covered target; IDs refer to basisRows. -/",
+    lines += ["  ]", "", "/-- 目标在覆盖范围内且不含单位因子的全部非零乘积；编号对应 basisRows。 -/",
               "def productRows : List (Nat × Nat × List Nat) :=", "  ["]
     lines += [f"    ({i}, {j}, {out})" + ("," if k + 1 < len(products) else "")
               for k, (i, j, out) in enumerate(products)]
     dimensions = Counter(p for _, p, _ in selected)
     counts = Counter(dimensions.get(p, 0) for p in region)
-    lines += ["  ]", f"-- {len(region)} covered cells; dimension counts {dict(sorted(counts.items()))}.",
-              f"-- {len(selected)} basis vectors; {checked} covered unordered products checked (including units).", END]
+    lines += ["  ]", f"-- 共覆盖 {len(region)} 个格点；各维数的格点数量为 {dict(sorted(counts.items()))}。",
+              f"-- 共 {len(selected)} 个基向量；已检查覆盖范围内的 {checked} 个无序乘积（包括单位乘积）。", END]
     return "\n".join(lines)
 
 

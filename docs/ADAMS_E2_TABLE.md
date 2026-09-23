@@ -4,9 +4,9 @@
 再读 `KIP126/Examples/AdamsE2LowDegrees.lean` 中的使用示例。
 原来只有三个格点的 `AdamsE2Table.lean` 保留作最小回归测试。
 
-## Lin 数据的低次数示例
+## 林氏数据的低次数示例
 
-数据来自 Weinan Lin 的 [Cohomology of the Mod 2 Steenrod algebra，t261.2](https://zenodo.org/records/7865526)，
+数据来自林伟南的[《模 2 Steenrod 代数的上同调》，版本 t261.2](https://zenodo.org/records/7865526)，
 文件 `S0_AdamsE2_csv.zip` 中的 `basis`、`generators`、`relations` 三张 CSV。
 下载文件的 SHA-256 为
 `bb53d84a3450d58535f7119d3a4fa2123688f9574c396d592763c37be89de470`；
@@ -19,7 +19,7 @@ Lean 内一律存 `(s,t) = (s,s+n)`，不是 `(n,s)`。
 
 低次数矩形内全部非零格点如下；其余格点明确为零维：
 
-| stem `n` | filtration `s` 与选定加法基 |
+| 稳定茎次数 `n` | 滤过次数 `s` 与选定加法基 |
 | --- | --- |
 | 0 | `s=0,…,8`：`1,h₀,…,h₀⁸` |
 | 1 | `s=1`：`h₁` |
@@ -51,7 +51,7 @@ Lean 内一律存 `(s,t) = (s,s+n)`，不是 `(n,s)`。
 | `(h₀h₃)·c₀` | `[]` | `[0,0]` |
 
 Lean 验证了 `h₀h₁=0`、`h₁h₂=0`、`h₀c₀=0`、`h₁³=h₀²h₂`、
-`h₁h₃`、`h₆²` 等查表关系。给定外部 presentation，还验证两个二维格点
+`h₁h₃`、`h₆²` 等查表关系。给定外部表示证据，还验证二维格点中的两个
 乘积之和在实际页中非零，对应坐标 `[1,1]`。
 
 `productCoordinates` 返回 `Option (List Nat)`：`some []` 是零维目标中的
@@ -74,7 +74,7 @@ bash scripts/shared-main-cache.sh run lake build KIP126.Examples.AdamsE2LowDegre
 数据区块。142 个无序乘积（包括单位）全部检查后才省略零项。
 不带 `--check` 时输出可复制的 Lean 数据区块；不会改写源文件。
 
-这不是在 Lean 内重新证明 Lin 的 Ext 计算，也不自动制造实际页的
+这不是在 Lean 内重新证明林伟南的 Ext 计算，也不自动制造实际页的
 `Presentation` 证据。这个旧版本 E₂ 数据集也不应冒充项目中另一版本的
 近 126 维微分/扩张证据；正式登记外部证据时需要对应的来源记录。
 
@@ -107,7 +107,7 @@ bash scripts/shared-main-cache.sh run lake build KIP126.Examples.AdamsE2LowDegre
 `PageAlgebra E` 的各次数空间直接取 `(E.page 2).X p`。
 它把这些实际页空间的直和与一个交换 `F₂`-代数线性识别，并使次数相加
 的乘法与该代数的乘法一致。没有重新定义页空间；也不要求提供球谱、
-Adams resolution 或 Milnor cocycle 的构造。
+Adams 消解或 Milnor 上闭链的构造。
 
 外部结论是 `Nonempty (Presentation table algebra)`，经
 `ExternalEvidence` 携带来源后交给 `myAdams`。其内容包括：
@@ -142,7 +142,7 @@ Adams resolution 或 Milnor cocycle 的构造。
 对 `h6_mem`、`h6_dim` 的证明只是检查固定输入中的格点和数字，可由
 生成代码中的 `decide`、`rfl` 等完成；不要求重新计算真实 Ext。
 
-本接口尚不限定某个任意 Adams-shaped 序列就是球谱的目标序列，也不包含
+本接口尚不限定任意具有 Adams 微分次数的谱序列就是球谱的目标序列，也不包含
 证明永久性所需的全部外部输入。因此本次没有添加对任意 `Input` 都声称
 `h₆²` 永久存活的定理，也没有替换正在其他分支开发的主定理。
 
