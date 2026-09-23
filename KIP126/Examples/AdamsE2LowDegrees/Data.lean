@@ -22,9 +22,6 @@ namespace KIP126.Examples.AdamsE2LowDegrees
 
 open KIP126.AdamsE2 KIP126.Core.Algebra
 
--- 内核检查的判定过程需要展开有限覆盖区域及其坐标列表。
-set_option maxRecDepth 4096
-
 -- 林氏 CSV 提取数据开始
 /-- CSV 中的基编号、内部双次数和便于阅读的单项式名称。 -/
 def basisRows : List (Nat × Degree × String) :=
@@ -121,11 +118,27 @@ def coefficient (p q : Degree) (i : Fin (dim p)) (j : Fin (dim q))
     (k : Fin (dim (p + q))) : F2 :=
   if (basisIds (p + q))[k] ∈ productIds (basisIds p)[i] (basisIds q)[j] then 1 else 0
 
+/-- 低次矩形中格点的成员证明不展开整个已枚举的 `Finset`。 -/
+theorem rectangle_mem (s n : ℤ) (hs0 : 0 ≤ s) (hs8 : s ≤ 8)
+    (hn0 : 0 ≤ n) (hn8 : n ≤ 8) : (s, s + n) ∈ region := by
+  apply Finset.mem_union_left
+  apply Finset.mem_image.mpr
+  refine ⟨(s, n), ?_, rfl⟩
+  simp only [Finset.mem_product, Finset.mem_Icc]
+  exact ⟨⟨hs0, hs8⟩, ⟨hn0, hn8⟩⟩
+
+/-- 矩形外手动保留的五个格点。 -/
+theorem exceptional_mem (p : Degree)
+    (hp : p = (1, 64) ∨ p = (2, 128) ∨ p = (1, 16) ∨ p = (4, 18) ∨ p = (5, 20)) :
+    p ∈ region := by
+  apply Finset.mem_union_right
+  rcases hp with rfl | rfl | rfl | rfl | rfl <;> simp
+
 def table : Table where
   region := region
   dim := dim
   mulCoeff := fun p q _ _ _ => coefficient p q
-  zero_mem := by decide
+  zero_mem := rectangle_mem 0 0 (by omega) (by omega) (by omega) (by omega)
   unitCoeff := fun i => if (basisIds (0, 0))[i] = 0 then 1 else 0
 
 /-- 面向使用者的查询：`none` 表示未知、超出范围或输入不合法；
@@ -142,23 +155,60 @@ def productCoordinates (p q : Degree) (i j : Nat) : Option (List Nat) :=
 
 noncomputable section
 
-def h0 : table.Model := table.generator (1, 1) (by decide) ⟨0, by decide⟩
-def h1 : table.Model := table.generator (1, 2) (by decide) ⟨0, by decide⟩
-def h2 : table.Model := table.generator (1, 4) (by decide) ⟨0, by decide⟩
-def h3 : table.Model := table.generator (1, 8) (by decide) ⟨0, by decide⟩
-def c0 : table.Model := table.generator (3, 11) (by decide) ⟨0, by decide⟩
-def h6 : table.Model := table.generator (1, 64) (by decide) ⟨0, by decide⟩
-def h0Sq : table.Model := table.generator (2, 2) (by decide) ⟨0, by decide⟩
-def h1Sq : table.Model := table.generator (2, 4) (by decide) ⟨0, by decide⟩
-def h0h2 : table.Model := table.generator (2, 5) (by decide) ⟨0, by decide⟩
-def h0Sqh2 : table.Model := table.generator (3, 6) (by decide) ⟨0, by decide⟩
-def h1h3 : table.Model := table.generator (2, 10) (by decide) ⟨0, by decide⟩
-def h6Sq : table.Model := table.generator (2, 128) (by decide) ⟨0, by decide⟩
-def h4 : table.Model := table.generator (1, 16) (by decide) ⟨0, by decide⟩
-def d0 : table.Model := table.generator (4, 18) (by decide) ⟨0, by decide⟩
-def h0Fourth : table.Model := table.generator (4, 4) (by decide) ⟨0, by decide⟩
-def b0 : table.Model := table.generator (5, 20) (by decide) ⟨0, by decide⟩
-def b1 : table.Model := table.generator (5, 20) (by decide) ⟨1, by decide⟩
+/-- 由导入的生成元和乘法关系定义的模型环。它不是谱序列的 `E₂` 页。 -/
+abbrev ModelRing := table.Model
+
+/-- 以 `model` 为前缀的类都只属于 `ModelRing`。
+给定 `Presentation` 后，才能把它们映到真实 `E₂` 页。 -/
+def modelH0 : ModelRing :=
+  table.generator (1, 1) (rectangle_mem 1 0 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH1 : ModelRing :=
+  table.generator (1, 2) (rectangle_mem 1 1 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH2 : ModelRing :=
+  table.generator (1, 4) (rectangle_mem 1 3 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH3 : ModelRing :=
+  table.generator (1, 8) (rectangle_mem 1 7 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelC0 : ModelRing :=
+  table.generator (3, 11) (rectangle_mem 3 8 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH6 : ModelRing :=
+  table.generator (1, 64) (exceptional_mem _ (Or.inl rfl)) ⟨0, by decide⟩
+def modelH0Sq : ModelRing :=
+  table.generator (2, 2) (rectangle_mem 2 0 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH1Sq : ModelRing :=
+  table.generator (2, 4) (rectangle_mem 2 2 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH0H2 : ModelRing :=
+  table.generator (2, 5) (rectangle_mem 2 3 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH0SqH2 : ModelRing :=
+  table.generator (3, 6) (rectangle_mem 3 3 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH1H3 : ModelRing :=
+  table.generator (2, 10) (rectangle_mem 2 8 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelH6Sq : ModelRing :=
+  table.generator (2, 128) (exceptional_mem _ (Or.inr (Or.inl rfl))) ⟨0, by decide⟩
+def modelH4 : ModelRing :=
+  table.generator (1, 16) (exceptional_mem _ (Or.inr (Or.inr (Or.inl rfl))))
+    ⟨0, by decide⟩
+def modelD0 : ModelRing :=
+  table.generator (4, 18) (exceptional_mem _ (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))
+    ⟨0, by decide⟩
+def modelH0Fourth : ModelRing :=
+  table.generator (4, 4) (rectangle_mem 4 0 (by omega) (by omega) (by omega) (by omega))
+    ⟨0, by decide⟩
+def modelB0 : ModelRing :=
+  table.generator (5, 20) (exceptional_mem _ (Or.inr (Or.inr (Or.inr (Or.inr rfl)))))
+    ⟨0, by decide⟩
+def modelB1 : ModelRing :=
+  table.generator (5, 20) (exceptional_mem _ (Or.inr (Or.inr (Or.inr (Or.inr rfl)))))
+    ⟨1, by decide⟩
 
 end
 

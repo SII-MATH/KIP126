@@ -3,18 +3,16 @@ import Mathlib.Algebra.Polynomial.Basic
 import Mathlib.Algebra.Polynomial.AlgebraMap
 
 /-!
-# A small, replaceable E₂ table
+# 用三个格点演示模型环与真实 E₂ 的分层
 
-Read this file first. `table` is the only numerical input: three one-dimensional
-cells with basis names `1`, `x`, `y`, and the product `x * x = y`.
-The table does NOT assert `x * y = 0`: that target is outside its coverage.
+这个最小例子只导入三个一维格点，形式基元为 `1`, `x`, `y`，
+并导入关系 `x * x = y`。因为 `x * y` 的目标次数不在覆盖域中，
+数据不声称 `x * y = 0`。
 
-`Table.Model table` is a presentation by all covered multiplication relations.
-We independently map it to `F₂[X]` to check that `y` is not accidentally killed.
-Then `myAdams` shows exactly how to attach this table to an EXISTING Adams-shaped
-spectral sequence, conditional on its provenance-carrying presentation evidence.
-No external witness is fabricated, and this table is not claimed to describe
-the sphere's actual Adams E₂ page.
+`ModelRing` 是由这些生成元和覆盖范围内的乘法关系定义的模型环。
+我们先完全在模型环中检查关系和非零性。只有给定 `Presentation`
+这个带来源的外部表示定理后，`pageH6` 才是已有谱序列的真实
+`E₂` 元素。这里没有用表重新定义 `E₂`，也没有伪造外部见证。
 -/
 
 namespace KIP126.Examples.AdamsE2Table
@@ -40,17 +38,21 @@ private theorem filtration_nonneg (p : Degree) (hp : p ∈ table.region) : 0 ≤
 
 noncomputable section
 
-def x : table.Model := table.generator (1, 64) h6_covered (0 : Fin 1)
-def y : table.Model := table.generator (2, 128) square_covered (0 : Fin 1)
+/-- 数据首先定义这个模型环，而不是定义真实 `E₂` 页。 -/
+abbrev ModelRing := table.Model
+
+def modelX : ModelRing := table.generator (1, 64) h6_covered (0 : Fin 1)
+def modelY : ModelRing := table.generator (2, 128) square_covered (0 : Fin 1)
 
 /-- The relation comes from the input table, with no computation of Ext. -/
-theorem x_mul_x : x * x = y := by
+theorem x_mul_x : modelX * modelX = modelY := by
   have h := table.generator_mul (1, 64) (1, 64)
     h6_covered h6_covered square_covered (0 : Fin 1) (0 : Fin 1)
-  change x * x = ∑ k : Fin 1, (1 : F2) • table.generator (2, 128) square_covered k at h
+  change modelX * modelX =
+    ∑ k : Fin 1, (1 : F2) • table.generator (2, 128) square_covered k at h
   rw [Fintype.sum_unique, one_smul] at h
   have hi : (default : Fin 1) = 0 := Subsingleton.elim _ _
-  simpa only [hi, y] using h
+  simpa only [hi, modelY] using h
 
 def polynomialEvaluation : table.Poly →ₐ[F2] Polynomial F2 :=
   MvPolynomial.aeval (fun g => Polynomial.X ^ g.1.val.1.toNat)
@@ -90,19 +92,52 @@ theorem evaluate_generator (p : Degree) (hp : p ∈ table.region)
   simp [modelEvaluation, Table.generator, Table.quotient,
     Ideal.Quotient.liftₐ_apply, polynomialEvaluation, Table.symbol]
 
-theorem y_ne_zero : y ≠ 0 := by
+theorem y_ne_zero : modelY ≠ 0 := by
   intro h
   have hh := congrArg modelEvaluation h
-  simp [y, evaluate_generator] at hh
+  simp [modelY, evaluate_generator] at hh
 
 /-- The missing product stays nonzero in this model, rather than being
 silently zero-filled at the edge of the table. -/
-theorem x_mul_y_ne_zero : x * y ≠ 0 := by
+theorem x_mul_y_ne_zero : modelX * modelY ≠ 0 := by
   intro h
   have hh := congrArg modelEvaluation h
-  simp [x, y, map_mul, evaluate_generator] at hh
+  simp [modelX, modelY, map_mul, evaluate_generator] at hh
 
 variable (E : ClassicalAdamsSpectralSequence) (A : PageAlgebra E)
+
+def modelH6Class : table.piece (1, 64) :=
+  ⟨modelX, table.generator_mem_piece (1, 64) h6_covered (0 : Fin 1)⟩
+
+def modelH6SqClass : table.piece (2, 128) :=
+  ⟨modelY, table.generator_mem_piece (2, 128) square_covered (0 : Fin 1)⟩
+
+/-- `h₆` 是模型生成元在真实 `E₂` 页上的像。 -/
+def pageH6 (P : Presentation table A) : Page E (1, 64) :=
+  P.onDegree (1, 64) modelH6Class
+
+/-- 模型中标记为 `h₆²` 的基元在真实 `E₂` 页上的像。 -/
+def pageH6Sq (P : Presentation table A) : Page E (2, 128) :=
+  P.onDegree (2, 128) modelH6SqClass
+
+theorem pageH6_eq_basis (P : Presentation table A) :
+    pageH6 E A P = P.basis (1, 64) h6_covered (0 : Fin 1) := by
+  apply A.embed_injective (1, 64)
+  calc
+    A.embed (1, 64) (pageH6 E A P) = P.comparison modelX := by
+      simpa [pageH6, modelH6Class] using (P.compatible (1, 64) modelH6Class).symm
+    _ = A.embed (1, 64) (P.basis (1, 64) h6_covered (0 : Fin 1)) :=
+      P.generator_image (1, 64) h6_covered (0 : Fin 1)
+
+theorem pageH6Sq_eq_basis (P : Presentation table A) :
+    pageH6Sq E A P = P.basis (2, 128) square_covered (0 : Fin 1) := by
+  apply A.embed_injective (2, 128)
+  calc
+    A.embed (2, 128) (pageH6Sq E A P) = P.comparison modelY := by
+      simpa [pageH6Sq, modelH6SqClass] using
+        (P.compatible (2, 128) modelH6SqClass).symm
+    _ = A.embed (2, 128) (P.basis (2, 128) square_covered (0 : Fin 1)) :=
+      P.generator_image (2, 128) square_covered (0 : Fin 1)
 
 /-- A SINGLE input bundles the existing sequence and the table's external
 interpretation. The evidence is a parameter, not a new Lean axiom. -/
@@ -120,34 +155,48 @@ def myAdams
 in the actual E₂ page of `E`. -/
 theorem page_square (P : Presentation table A) :
     A.product (1, 64) (1, 64)
-        (P.basis (1, 64) h6_covered (0 : Fin 1))
-        (P.basis (1, 64) h6_covered (0 : Fin 1)) =
-      P.basis (2, 128) square_covered (0 : Fin 1) := by
-  have h := P.basis_mul (1, 64) (1, 64)
-    h6_covered h6_covered square_covered (0 : Fin 1) (0 : Fin 1)
-  change A.product (1, 64) (1, 64)
-      (P.basis (1, 64) h6_covered (0 : Fin 1))
-      (P.basis (1, 64) h6_covered (0 : Fin 1)) =
-    ∑ k : Fin 1, (1 : F2) • P.basis (2, 128) square_covered k at h
-  rw [Fintype.sum_unique, one_smul] at h
-  have hi : (default : Fin 1) = 0 := Subsingleton.elim _ _
-  simpa only [hi] using h
+        (pageH6 E A P) (pageH6 E A P) = pageH6Sq E A P := by
+  apply A.embed_injective (2, 128)
+  calc
+    A.embed (2, 128) (A.product (1, 64) (1, 64)
+        (pageH6 E A P) (pageH6 E A P)) =
+        A.embed (1, 64) (pageH6 E A P) * A.embed (1, 64) (pageH6 E A P) :=
+      A.product_assembly (1, 64) (1, 64) _ _
+    _ = P.comparison modelX * P.comparison modelX := by
+      change A.embed (1, 64) (P.onDegree (1, 64) modelH6Class) *
+        A.embed (1, 64) (P.onDegree (1, 64) modelH6Class) = _
+      rw [← P.compatible (1, 64) modelH6Class]
+      rfl
+    _ = P.comparison (modelX * modelX) := (map_mul P.comparison modelX modelX).symm
+    _ = P.comparison modelY := by rw [x_mul_x]
+    _ = A.embed (2, 128) (pageH6Sq E A P) :=
+      P.compatible (2, 128) modelH6SqClass
 
 theorem imported_h6_square
     (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
     (myAdams E A evidence).h6Square =
-      (myAdams E A evidence).presentation.basis (2, 128) square_covered (0 : Fin 1) := by
-  exact page_square E A (myAdams E A evidence).presentation
+      (myAdams E A evidence).presentation.basis
+        (2, 128) square_covered (0 : Fin 1) := by
+  have h := (myAdams E A evidence).presentation.basis_mul (1, 64) (1, 64)
+    h6_covered h6_covered square_covered (0 : Fin 1) (0 : Fin 1)
+  change (myAdams E A evidence).h6Square =
+    ∑ k : Fin 1, (1 : F2) •
+      (myAdams E A evidence).presentation.basis (2, 128) square_covered k at h
+  rw [Fintype.sum_unique, one_smul] at h
+  have hi : (default : Fin 1) = 0 := Subsingleton.elim _ _
+  simpa only [hi] using h
 
 theorem imported_h6_square_ne_zero
     (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
     (myAdams E A evidence).h6Square ≠ 0 := by
   rw [imported_h6_square]
-  exact ((myAdams E A evidence).presentation.basis (2, 128) square_covered).ne_zero (0 : Fin 1)
+  exact ((myAdams E A evidence).presentation.basis (2, 128) square_covered).ne_zero
+    (0 : Fin 1)
 
 #print axioms x_mul_x
 #print axioms y_ne_zero
 #print axioms x_mul_y_ne_zero
+#print axioms page_square
 #print axioms imported_h6_square
 #print axioms imported_h6_square_ne_zero
 
