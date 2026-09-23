@@ -88,10 +88,35 @@ Blueprint 的证明依赖 `prop:no-crossing-iff-uniform-detection`：无 crossin
 - 新增 `FilteredComplex.essential_or_boundary_correction`：单步分支现在形式化
   为“非边界则产生本质关系；边界则推进一层”。结合最大层有限性即可进行
   有限迭代；该接口已本地离线编译通过。
-- 有限迭代的递归草稿已检查：还需显式处理 `t + m + 1` 与 `t + (m+1)`
-  的过滤对象 `eqToHom` 搬运。曾尝试加入独立的搬运接口，但其声明中的
-  `by congr 1; omega` 不能稳定生成依赖对象等式，已撤回该接口；当前只保留
-  可编译的单步分支，避免用未验证的类型转换掩盖递归证明缺口。
+- 新增 `FilteredComplex.transport_fil_nat_succ`：自然数后继对应的整数过滤
+  次数搬运现在通过显式等式参数和 `eqToHom` 完成，并已独立离线编译通过。
+- 另新增 `FilteredComplex.ofLE_transport_fil_nat_succ`，并在有限迭代中用
+  `Subobject.arrow_congr` 完成包含态射的自然性转换。
+- 已完成 `FilteredComplex.iterated_essential_or_zero`：以有界过滤层差的
+  强归纳为基础，边界分支通过显式 `eqToHom` 搬运代表元，并用
+  `Subobject.arrow_congr` 证明 `ofLE` 包含态射的自然性；顶层过滤层为零的
+  分支也已单独处理。现已加强结论，确保最终本质关系或零微分代表元与
+  起始源关联分次类相同；该递归定理已本地离线编译通过。
+- 新增 `FilteredComplex.essential_ancestor_of_nonzero_boundary`：非零页边界
+  在同一目标过滤次数上必来自更高源过滤层的本质微分。该引理沿微分页数
+  下降归纳，已本地离线编译通过。它是处理“目标是边界”时构造 crossing
+  的正确接口；仅把目标逐层推深的迭代不能替代这一论证。
+- 新增 `FilteredComplex.filDiff_of_sub_lift`：同一关联分次类的两个源代表
+  之差提升到下一层后，其下一层微分经包含态射等于原微分之差。这是从
+  任意源代表元构造较高过滤源并产生 crossing 的代数接口，已本地编译通过。
+- 已证明 `ESSRelationNoCrossingRange.no_nonzero_boundary` 与
+  `higher_source_image_deeper`：范围内的非零边界或更高源的浅层非零像
+  都会产生被无 crossing 排除的本质关系。由此证明正页的
+  `ESSRelationNoCrossing.uniform_detection_full_of_pos`，并得到正页零扩张
+  对每个源代表元的严格更深过滤结论 `zero_uniform_deeper_of_pos`。
+- 新增第零页自动范围无 crossing 引理 `zero_page_automatic`：较高源过滤
+  的非负本质微分不可能回到第零页的目标过滤次数。由此证明第零页的
+  `uniform_detection_full_of_zero`，再与正页合并成适用于所有非负页的
+  `uniform_detection_full` 和零关系的 `zero_uniform_deeper`。
+- 已证明 `essComm_common_source_lift`：只要 f、p 中一条具体关系无 crossing，
+  即可选取同一个源过滤代表元，同时使 f 与 p 的实际微分检测到指定的
+  `y` 与 `z`。该证明还显式核对了方块三处公共顶点的过滤层定义相等，
+  没有同一化四条边的 ESS。上述新引理均已本地离线编译通过。
 - 对反向代表元、竞争目标两个新引理执行 `#print axioms` 审计并筛查
   `sorryAx`，未发现依赖 `sorryAx`。新增引理及依赖模块已本地离线编译通过。
 - 当前相关 Lean 模块可以本地离线编译，但编译成功不代表这些 `sorry` 已消除。
@@ -106,17 +131,13 @@ Blueprint 的证明依赖 `prop:no-crossing-iff-uniform-detection`：无 crossin
 1. `essCommutativity` 的无 crossing 假设现已改为绑定具体的 (f,p,g,q)
    ESS 关系，且 (q) 边采用真正的零扩张关系；已通过本地离线编译。
    主定理的证明本体仍是 `sorry`，不能把“陈述已对齐”误报为“定理已证明”。
-2. 需证明 Blueprint 的代表元检测等价命题，尤其是零 `q` 扩张所给出的
-   更深过滤结论，以及 `g` 扩张在指定过滤范围内的唯一检测结论。
-3. 竞争目标引理已完全证明；尚缺 Blueprint
-   `prop:no-crossing-iff-uniform-detection` 的完整代表元版本。
-   现有目标唯一性只处理已经形成同页微分关系的两个目标；仍需证明
-   无 crossing 会迫使每个满足指定较浅过滤下界的源代表元，其像进入
-   指定目标过滤层。零 `q` 扩张要求严格更深的像过滤，`g` 边还要求
-   只在给定过滤范围内作此推断。不能把目标唯一性冒充统一检测。
-   `lift_rel_of_not_crossed` 依赖的竞争目标引理现已证明，因此该局部
-   依赖链不再含 `sorry`；它本身仍以“源提升的微分已到达目标过滤层”
-   为前提，不能代替完整统一检测。
+2. Blueprint 的普通无 crossing 统一检测已覆盖全部非负页；零 `q` 扩张
+   对任意 `y` 代表元的严格更深过滤结论也已证明。范围性无 crossing 的
+   `g` 边目前有 `uniform_detection_from_reference`，仍需在方块中用
+   `qf=gp` 构造其“像已进入范围下界”的前提，并完成目标过滤层比较。
+3. 方块的共同 `x` 代表元已由 `essComm_common_source_lift` 取得。尚需把
+   两项复形微分与四个极限对象映射连接，随后用 `qf=gp`、`q` 的更深过滤
+   及 `g` 的范围性检测，最终构造结论中的 ESS(q) 微分关系。
 4. `BoundedExtension.lean` 中 `essDiff`、`essBoundary` 等抽象对象仍有
    `sorry`，因此依赖这些对象的若干旧版推论也未获得实质证明。
 5. `Commutativity.lean` 中部分旧版定理只要求“存在某个态射”或断言
@@ -125,7 +146,7 @@ Blueprint 的证明依赖 `prop:no-crossing-iff-uniform-detection`：无 crossin
 
 ## 后续证明顺序
 
-页微分计算、双向代表元引理、竞争目标引理及范围性目标唯一性均已完成；
+页微分计算、双向代表元引理、竞争目标引理、有限迭代及范围性目标唯一性均已完成；
 接下来证明无 crossing 的完整统一检测刻画，之后在方块中选共同代表元、
 用过滤层上的 `qf=gp` 比较目标，最后组装第 2.12 条的
 `DifferentialRelation`。每一步均需本地编译，并检查最终定理及其依赖

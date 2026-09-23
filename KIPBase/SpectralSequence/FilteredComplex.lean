@@ -179,6 +179,25 @@ theorem FilteredComplex.fil_anti_of_le (FC : FilteredComplex C) {a b : ℤ} (k :
       exact FC.fil_anti (a + ↑n) k
     exact le_trans key ih
 
+/- 过滤层下包含态射在自然数后继搬运下保持不变；该引理专门供有限迭代
+   的边界修正使用。 -/
+theorem FilteredComplex.ofLE_transport_fil_nat_succ
+    (FC : FilteredComplex C) (t k : ℤ) (m : ℕ)
+    (heq : t + (m : ℤ) + 1 = t + ((m + 1 : ℕ) : ℤ))
+    {T : C} (c : T ⟶ Subobject.underlying.obj
+      (FC.fil (t + (m : ℤ) + 1) (k - 1))) :
+    c ≫ Subobject.ofLE (FC.fil (t + (m : ℤ) + 1) (k - 1))
+        (FC.fil t (k - 1)) (FC.fil_anti_of_le (k - 1) (by omega)) =
+      (c ≫ eqToHom (congrArg (fun s : ℤ =>
+        Subobject.underlying.obj (FC.fil s (k - 1))) heq)) ≫
+        Subobject.ofLE (FC.fil (t + ((m + 1 : ℕ) : ℤ)) (k - 1))
+          (FC.fil t (k - 1)) (FC.fil_anti_of_le (k - 1) (by omega)) := by
+  apply (cancel_mono (FC.fil t (k - 1)).arrow).mp
+  simp only [Category.assoc, Subobject.ofLE_arrow]
+  congr 1
+  exact (Subobject.arrow_congr _ _
+    (congrArg (fun s : ℤ => FC.fil s (k - 1)) heq)).symm
+
 /-- A filtered lift whose differential lands in `F^{s+r}` satisfies the
 kernel condition defining the `r`-cycle subobject. -/
 theorem FilteredComplex.filDiff_to_cokernel_eq_zero (FC : FilteredComplex C)
@@ -3079,6 +3098,60 @@ theorem FilteredComplex.lift_zero_deeper (FC : FilteredComplex C)
       (FC.fil_anti s k)) yl hz, ?_⟩
   exact Abelian.monoLift_comp _ _ _
 
+/- 若一个映射恰在过滤次数 `s` 终止分解，则它在相应关联分次中的类非零。 -/
+theorem FilteredComplex.assocGraded_ne_zero_of_maximal
+    (FC : FilteredComplex C) (s k : ℤ) {T : C}
+    (b : T ⟶ Subobject.underlying.obj (FC.fil s k))
+    (hmax : ¬ (FC.fil (s + 1) k).Factors (b ≫ (FC.fil s k).arrow)) :
+    b ≫ FC.filToAssocGraded s k ≠ 0 := by
+  intro hzero
+  obtain ⟨c, hc⟩ := FC.lift_zero_deeper s k b hzero
+  apply hmax
+  have hbc : b ≫ (FC.fil s k).arrow =
+      c ≫ (FC.fil (s + 1) k).arrow := by
+    rw [← hc, Category.assoc, Subobject.ofLE_arrow]
+  rw [hbc]
+  exact Subobject.factors_comp_arrow c
+
+/- 两个同一过滤层代表元之差由下一层代表时，下一层微分经包含态射
+   等于原两个微分之差。这是统一检测反证中构造 crossing 的代数桥梁。 -/
+theorem FilteredComplex.filDiff_of_sub_lift
+    (FC : FilteredComplex C) (s k : ℤ) {T : C}
+    (xl₁ xl₂ : T ⟶ Subobject.underlying.obj (FC.fil s k))
+    (v : T ⟶ Subobject.underlying.obj (FC.fil (s + 1) k))
+    (hv : v ≫ Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+      (FC.fil_anti s k) = xl₁ - xl₂) :
+    v ≫ FC.filDiff (s + 1) k ≫
+        Subobject.ofLE (FC.fil (s + 1) (k - 1)) (FC.fil s (k - 1))
+          (FC.fil_anti_of_le (k - 1) (by omega)) =
+      xl₁ ≫ FC.filDiff s k - xl₂ ≫ FC.filDiff s k := by
+  apply (cancel_mono (FC.fil s (k - 1)).arrow).mp
+  simp only [Category.assoc, Subobject.ofLE_arrow,
+    FC.filDiff_comp_arrow]
+  have hvD :
+      (v ≫ Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+        (FC.fil_anti s k)) ≫ (FC.fil s k).arrow ≫ FC.d k =
+      (xl₁ - xl₂) ≫ (FC.fil s k).arrow ≫ FC.d k :=
+    congrArg (fun q : T ⟶ Subobject.underlying.obj (FC.fil s k) =>
+      q ≫ (FC.fil s k).arrow ≫ FC.d k) hv
+  have hleft : v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k =
+      (xl₁ - xl₂) ≫ (FC.fil s k).arrow ≫ FC.d k := by
+    calc
+      v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k =
+          (v ≫ Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+            (FC.fil_anti s k)) ≫ (FC.fil s k).arrow ≫ FC.d k := by
+              have hinc :
+                  Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+                    (FC.fil_anti s k) ≫ (FC.fil s k).arrow =
+                    (FC.fil (s + 1) k).arrow :=
+                Subobject.ofLE_arrow (FC.fil_anti s k)
+              rw [Category.assoc, ← hinc]
+              simp only [Category.assoc]
+      _ = (xl₁ - xl₂) ≫ (FC.fil s k).arrow ≫ FC.d k := hvD
+  rw [hleft, Preadditive.sub_comp]
+  rw [Preadditive.sub_comp]
+  simp only [Category.assoc, FC.filDiff_comp_arrow]
+
 /-- **d_r 关系的复形实现（正方向）**：
     设 `x y` 是谱序列环境对象中的元素，`xl yl` 是它们在复形
     相应过滤层中的 lift，且在复形层面微分相等并落入更深过滤
@@ -3296,19 +3369,17 @@ theorem FilteredComplex.essentialRelation_of_filtered_lift
       b ≫ (FC.fil p (k - 1)).arrow)
     (hn : ¬ Subobject.Factors (FC.boundarySubobject p (k - 1) (↑m))
       (b ≫ FC.filToAssocGraded p (k - 1))) :
-    ∃ (x' : T ⟶ FC.assocGraded t k)
-      (y' : T ⟶ FC.assocGraded p (k - 1)),
-      EssentialDifferentialRelation (FC.toSpectralSequence bnd)
+    EssentialDifferentialRelation (FC.toSpectralSequence bnd)
         (↑m) ⟨t, k⟩
         (Eq.mpr (congrArg (fun X : C => T ⟶ X)
           (show (((FC.toSpectralSequence bnd).ssData ⟨t, k⟩).V =
-            FC.assocGraded t k) from rfl)) x')
+            FC.assocGraded t k) from rfl)) (a ≫ FC.filToAssocGraded t k))
         (Eq.mpr (congrArg (fun X : C => T ⟶ X)
           (show (((FC.toSpectralSequence bnd).ssData
             (⟨t, k⟩ + (FC.toSpectralSequence bnd).diffDeg (↑m))).V =
             FC.assocGraded p (k - 1)) by
               rw [← ht]
-              rfl)) y') := by
+              rfl)) (b ≫ FC.filToAssocGraded p (k - 1))) := by
   subst p
   let j := Subobject.ofLE (FC.fil (t + ↑m) (k - 1))
     (FC.fil t (k - 1)) (FC.fil_anti_of_le (k - 1) (by omega))
@@ -3321,8 +3392,6 @@ theorem FilteredComplex.essentialRelation_of_filtered_lift
       _ = b ≫ (FC.fil (t + ↑m) (k - 1)).arrow := hdb
       _ = (b ≫ j) ≫ (FC.fil t (k - 1)).arrow := by
         simp only [Category.assoc, j, Subobject.ofLE_arrow]
-  refine ⟨a ≫ FC.filToAssocGraded t k,
-    b ≫ FC.filToAssocGraded (t + ↑m) (k - 1), ?_⟩
   constructor
   · exact FC.differentialRelation_of_lift bnd (↑m) (Int.natCast_nonneg m)
       t k (by rfl) (by rfl) hd
@@ -3330,6 +3399,52 @@ theorem FilteredComplex.essentialRelation_of_filtered_lift
       (FC.boundarySubobject (t + ↑m) (k - 1) (↑m))
         (b ≫ FC.filToAssocGraded (t + ↑m) (k - 1))
     exact hn
+
+/- 非零页边界来自更高源过滤层的本质微分，且目标过滤次数保持不变。
+   逐次降低微分页数，故有限步后必到达非边界目标。 -/
+theorem FilteredComplex.essential_ancestor_of_nonzero_boundary
+    (FC : FilteredComplex C) (bnd : FC.IsBounded) (k : ℤ)
+    (m : ℕ) (t p : ℤ) (ht : t + (m : ℤ) = p)
+    {T : C} [Projective T]
+    (v : T ⟶ FC.assocGraded p (k - 1)) (hv : v ≠ 0)
+    (hb : (FC.boundarySubobject p (k - 1) (↑m)).Factors v) :
+    ∃ (u : ℤ) (j : ℕ) (huj : u + (j : ℤ) = p)
+      (x' : T ⟶ FC.assocGraded u k),
+      t < u ∧ EssentialDifferentialRelation (FC.toSpectralSequence bnd)
+        (↑j) ⟨u, k⟩
+        (Eq.mpr (congrArg (fun X : C => T ⟶ X)
+          (show (((FC.toSpectralSequence bnd).ssData ⟨u, k⟩).V =
+            FC.assocGraded u k) from rfl)) x')
+        (Eq.mpr (congrArg (fun X : C => T ⟶ X)
+          (show (((FC.toSpectralSequence bnd).ssData
+            (⟨u, k⟩ + (FC.toSpectralSequence bnd).diffDeg (↑j))).V =
+            FC.assocGraded p (k - 1)) by rw [← huj]; rfl)) v) := by
+  induction m generalizing t p with
+  | zero =>
+    cases ht
+    have hvzero : v = 0 := by
+      simpa only [Int.cast_zero, add_zero] using
+        (FC.boundary_zero_apply (t + (0 : ℤ)) k hb)
+    exact (hv hvzero).elim
+  | succ n ih =>
+    cases ht
+    obtain ⟨a, b, hdb, hbb⟩ :=
+      FC.lift_boundary_at_differential t k (n + 1) hb
+    have ht' : (t + 1) + (n : ℤ) = t + ((n + 1 : ℕ) : ℤ) := by omega
+    by_cases hbn : (FC.boundarySubobject (t + ((n + 1 : ℕ) : ℤ))
+        (k - 1) (↑n)).Factors v
+    · obtain ⟨u, j, huj, x', htu, hess⟩ :=
+        ih (t + 1) (t + ((n + 1 : ℕ) : ℤ)) ht' v hv hbn
+      exact ⟨u, j, huj, x', by omega, hess⟩
+    · have hnot : ¬ (FC.boundarySubobject (t + ((n + 1 : ℕ) : ℤ))
+          (k - 1) (↑n)).Factors
+          (b ≫ FC.filToAssocGraded (t + ((n + 1 : ℕ) : ℤ)) (k - 1)) := by
+        rwa [hbb]
+      have hess := FC.essentialRelation_of_filtered_lift
+        bnd (t + 1) (t + ((n + 1 : ℕ) : ℤ)) k n ht' a b hdb hnot
+      rw [hbb] at hess
+      exact ⟨t + 1, n, ht', a ≫ FC.filToAssocGraded (t + 1) k,
+        by omega, hess⟩
 
 /-- 最大过滤层且非边界时，过滤微分给出较短本质关系；这是首次层
 构造 crossing 的直接接口。 -/
@@ -3343,17 +3458,16 @@ theorem FilteredComplex.essentialRelation_of_maximal_lift
     (hn : ¬ Subobject.Factors
       (FC.boundarySubobject (t + m) (k - 1) (↑m))
       (b ≫ FC.filToAssocGraded (t + m) (k - 1))) :
-    ∃ (x' : T ⟶ FC.assocGraded t k)
-      (y' : T ⟶ FC.assocGraded (t + m) (k - 1)),
-      EssentialDifferentialRelation (FC.toSpectralSequence bnd)
+    EssentialDifferentialRelation (FC.toSpectralSequence bnd)
         (↑m) ⟨t, k⟩
         (Eq.mpr (congrArg (fun X : C => T ⟶ X)
           (show (((FC.toSpectralSequence bnd).ssData ⟨t, k⟩).V =
-            FC.assocGraded t k) from rfl)) x')
+            FC.assocGraded t k) from rfl)) (a ≫ FC.filToAssocGraded t k))
         (Eq.mpr (congrArg (fun X : C => T ⟶ X)
           (show (((FC.toSpectralSequence bnd).ssData
             (⟨t, k⟩ + (FC.toSpectralSequence bnd).diffDeg (↑m))).V =
-            FC.assocGraded (t + m) (k - 1)) by rfl)) y') :=
+            FC.assocGraded (t + m) (k - 1)) by rfl))
+              (b ≫ FC.filToAssocGraded (t + m) (k - 1))) :=
   FC.essentialRelation_of_filtered_lift bnd t (t + m) k m rfl a b hdb hn
 
 /-- 边界修正：若最大层目标类是边界，则从更高源过滤层减去一个
@@ -3426,17 +3540,16 @@ theorem FilteredComplex.essential_or_boundary_correction
     (b : T ⟶ Subobject.underlying.obj (FC.fil (t + m) (k - 1)))
     (hdb : a ≫ (FC.fil t k).arrow ≫ FC.d k =
       b ≫ (FC.fil (t + m) (k - 1)).arrow) :
-    (∃ (x' : T ⟶ FC.assocGraded t k)
-      (y' : T ⟶ FC.assocGraded (t + m) (k - 1)),
-      EssentialDifferentialRelation (FC.toSpectralSequence bnd)
+    EssentialDifferentialRelation (FC.toSpectralSequence bnd)
         (↑m) ⟨t, k⟩
         (Eq.mpr (congrArg (fun X : C => T ⟶ X)
           (show (((FC.toSpectralSequence bnd).ssData ⟨t, k⟩).V =
-            FC.assocGraded t k) from rfl)) x')
+            FC.assocGraded t k) from rfl)) (a ≫ FC.filToAssocGraded t k))
         (Eq.mpr (congrArg (fun X : C => T ⟶ X)
           (show (((FC.toSpectralSequence bnd).ssData
             (⟨t, k⟩ + (FC.toSpectralSequence bnd).diffDeg (↑m))).V =
-            FC.assocGraded (t + m) (k - 1)) by rfl)) y')) ∨
+            FC.assocGraded (t + m) (k - 1)) by rfl))
+              (b ≫ FC.filToAssocGraded (t + m) (k - 1))) ∨
     (∃ (a' : T ⟶ Subobject.underlying.obj (FC.fil t k))
       (c : T ⟶ Subobject.underlying.obj (FC.fil (t + m + 1) (k - 1))),
       FC.IsLift t k a' (a ≫ FC.filToAssocGraded t k) ∧
@@ -3450,9 +3563,8 @@ theorem FilteredComplex.essential_or_boundary_correction
   · exact Or.inr (FC.boundary_correction_lift t k m a b hdb
       (Classical.not_not.mp hn))
 
-/- 有界性使单步分支有限终止：最终得到某个本质关系，或实际微分为零。
-   递归主体仍需把 `ofLE` 与 `eqToHom` 的自然性完全展开。 -/
-/-
+/-- 有界性使单步分支有限终止：最终得到某个本质关系，或实际微分为零。
+    递归主体中的对象搬运与包含态射自然性均显式展开。 -/
 theorem FilteredComplex.iterated_essential_or_zero
     (FC : FilteredComplex C) (bnd : FC.IsBounded)
     (t k : ℤ) (m : ℕ) {T : C} [Projective T]
@@ -3460,55 +3572,74 @@ theorem FilteredComplex.iterated_essential_or_zero
     (b : T ⟶ Subobject.underlying.obj (FC.fil (t + m) (k - 1)))
     (hdb : a ≫ (FC.fil t k).arrow ≫ FC.d k =
       b ≫ (FC.fil (t + m) (k - 1)).arrow) :
-    (∃ (m' : ℕ) (x' : T ⟶ FC.assocGraded t k)
+    (∃ (m' : ℕ)
       (y' : T ⟶ FC.assocGraded (t + m') (k - 1)),
       EssentialDifferentialRelation (FC.toSpectralSequence bnd)
         (↑m') ⟨t, k⟩
         (Eq.mpr (congrArg (fun X : C => T ⟶ X)
           (show (((FC.toSpectralSequence bnd).ssData ⟨t, k⟩).V =
-            FC.assocGraded t k) from rfl)) x')
+            FC.assocGraded t k) from rfl)) (a ≫ FC.filToAssocGraded t k))
         (Eq.mpr (congrArg (fun X : C => T ⟶ X)
           (show (((FC.toSpectralSequence bnd).ssData
             (⟨t, k⟩ + (FC.toSpectralSequence bnd).diffDeg (↑m'))).V =
             FC.assocGraded (t + m') (k - 1)) by rfl)) y')) ∨
     ∃ a' : T ⟶ Subobject.underlying.obj (FC.fil t k),
-      a' ≫ FC.filDiff t k = 0 := by
+      FC.IsLift t k a' (a ≫ FC.filToAssocGraded t k) ∧
+        a' ≫ FC.filDiff t k = 0 := by
   classical
-  let N : ℕ := (bnd.hi (k - 1) - (t + m)).toNat
+  generalize hN : (bnd.hi (k - 1) - (t + m)).toNat = N
   induction N using Nat.strong_induction_on generalizing m a b with
   | h N ih =>
     by_cases htop : bnd.hi (k - 1) ≤ t + m
     · right
-      refine ⟨a, ?_⟩
+      refine ⟨a, rfl, ?_⟩
       have hbot : FC.fil (t + m) (k - 1) = ⊥ :=
         bnd.boundedAbove (k - 1) (t + m) htop
-      have hzero : b ≫ (FC.fil (t + m) (k - 1)).arrow = 0 := by
+      have hzero' : (FC.fil (t + m) (k - 1)).arrow = 0 := by
         rw [hbot, Subobject.bot_arrow]
-        simp
+      have hzero : b ≫ (FC.fil (t + m) (k - 1)).arrow = 0 := by
+        rw [hzero', comp_zero]
       apply (cancel_mono (FC.fil t (k - 1)).arrow).mp
-      simpa only [Category.assoc, FC.filDiff_comp_arrow] using hdb.trans hzero
+      simp only [Category.assoc, FC.filDiff_comp_arrow]
+      rw [hdb, hzero, zero_comp]
     · rcases FC.essential_or_boundary_correction bnd t k m a b hdb with hess | hcorr
-      · exact Or.inl (by
-          rcases hess with ⟨x', y', h⟩
-          exact ⟨m, x', y', h⟩)
+      · exact Or.inl ⟨m, b ≫ FC.filToAssocGraded (t + m) (k - 1), hess⟩
       · rcases hcorr with ⟨a', c, ha', hdc⟩
         have hmnext : t + (m : ℤ) + 1 = t + ((m + 1 : ℕ) : ℤ) := by omega
         obtain ⟨c', hc'⟩ := FC.transport_fil_nat_succ t (k - 1) m hmnext c
+        have hc'' : c' = c ≫ eqToHom (congrArg (fun s : ℤ =>
+            Subobject.underlying.obj (FC.fil s (k - 1))) hmnext) := by
+          rw [← hc', Category.assoc, eqToHom_trans, eqToHom_refl, Category.comp_id]
         have hdc' : a' ≫ FC.filDiff t k =
             c' ≫ Subobject.ofLE
               (FC.fil (t + ((m + 1 : ℕ) : ℤ)) (k - 1)) (FC.fil t (k - 1))
               (FC.fil_anti_of_le (k - 1) (by omega)) := by
-          rw [← hc']
-          simpa only [Category.assoc, eqToHom_trans, eqToHom_refl,
-            Category.comp_id] using hdc
+          rw [hc'', ← FC.ofLE_transport_fil_nat_succ t k m hmnext c]
+          exact hdc
         have hNlt : (bnd.hi (k - 1) -
             (t + ((m + 1 : ℕ) : ℤ))).toNat < N := by
-          dsimp [N]
+          rw [← hN]
           omega
-        exact ih _ (by simpa [N] using hNlt) (m + 1) a' c' hdc'
-
-
--/
+        have hdb' : a' ≫ (FC.fil t k).arrow ≫ FC.d k =
+            c' ≫ (FC.fil (t + ((m + 1 : ℕ) : ℤ)) (k - 1)).arrow := by
+          calc
+            a' ≫ (FC.fil t k).arrow ≫ FC.d k =
+                (a' ≫ FC.filDiff t k) ≫ (FC.fil t (k - 1)).arrow := by
+                  simp only [Category.assoc, FC.filDiff_comp_arrow]
+            _ = (c' ≫ Subobject.ofLE
+              (FC.fil (t + ((m + 1 : ℕ) : ℤ)) (k - 1)) (FC.fil t (k - 1))
+              (FC.fil_anti_of_le (k - 1) (by omega))) ≫
+                (FC.fil t (k - 1)).arrow := by rw [hdc']
+            _ = c' ≫ (FC.fil (t + ((m + 1 : ℕ) : ℤ)) (k - 1)).arrow := by
+              simp only [Category.assoc, Subobject.ofLE_arrow]
+        rcases ih ((bnd.hi (k - 1) -
+          (t + ((m + 1 : ℕ) : ℤ))).toNat) hNlt (m + 1) a' c' hdb' rfl with
+          ⟨m', y', hess'⟩ | ⟨a'', ha'', hz⟩
+        · change a' ≫ FC.filToAssocGraded t k =
+            a ≫ FC.filToAssocGraded t k at ha'
+          rw [ha'] at hess'
+          exact Or.inl ⟨m', y', hess'⟩
+        · exact Or.inr ⟨a'', ha''.trans ha', hz⟩
 
 /-- **两个不同目标的微分关系产生 crossing**：
     两次反向提升一般得到不同的源代表元，不能直接断言它们的微分相等。
@@ -3578,7 +3709,7 @@ theorem FilteredComplex.differentialRelation_crossed_of_two_exact
         (b ≫ FC.filToAssocGraded p (k - 1)) := by
       rw [hbb]
       exact hm_not
-    obtain ⟨x', y', hessential⟩ :=
+    have hessential :=
       FC.essentialRelation_of_filtered_lift bnd t p k m ht aK b hdbK hnot
     refine ⟨t - s, by dsimp [t, p]; omega,
       (↑m), ⟨t, k⟩, _, _, ?_, hessential, ?_⟩

@@ -51,6 +51,62 @@ theorem ess_diffDeg {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     ((ext.complex t).toSpectralSequence (ext.bounded t)).diffDeg r = (r, -1) :=
   rfl
 
+/- 两项 ESS 复形在次数 1 的过滤微分，与收敛态射的极限对象映射
+   相同；把过滤层中的微分等式送入环境对象即可得到代表元像等式。 -/
+theorem BoundedExtensionSS.lift_ambient_map
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
+    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
+    {cm : ConvergenceMorphism conv₁ conv₂}
+    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
+    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
+    (t : ω') (s u : ℤ) (hsu : s ≤ u) {T : C}
+    (xl : T ⟶ Subobject.underlying.obj ((ext.complex t).fil s 1))
+    (yl : T ⟶ Subobject.underlying.obj ((ext.complex t).fil u 0))
+    (hd : xl ≫ (ext.complex t).filDiff s 1 =
+      yl ≫ Subobject.ofLE ((ext.complex t).fil u 0)
+        ((ext.complex t).fil s 0)
+        ((ext.complex t).fil_anti_of_le 0 hsu)) :
+    xl ≫ ((ext.complex t).fil s 1).arrow ≫ cm.aMap t =
+      yl ≫ ((ext.complex t).fil u 0).arrow := by
+  have hmap : (ext.complex t).d 1 = cm.aMap t := by
+    simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
+  have hfil := (ext.complex t).filDiff_comp_arrow s 1
+  change (ext.complex t).filDiff s 1 ≫ ((ext.complex t).fil s 0).arrow =
+    ((ext.complex t).fil s 1).arrow ≫ (ext.complex t).d 1 at hfil
+  calc
+    xl ≫ ((ext.complex t).fil s 1).arrow ≫ cm.aMap t =
+        xl ≫ ((ext.complex t).fil s 1).arrow ≫ (ext.complex t).d 1 := by rw [hmap]
+    _ = (xl ≫ (ext.complex t).filDiff s 1) ≫
+        ((ext.complex t).fil s 0).arrow := by
+          simpa only [Category.assoc] using congrArg (fun f => xl ≫ f) hfil.symm
+    _ = yl ≫ ((ext.complex t).fil u 0).arrow := by
+          rw [hd, Category.assoc, Subobject.ofLE_arrow]
+
+/- 当目标过滤次数用算术上相等的另一表达式给出时，代表元引理
+   仍可直接构造原页数的微分关系；等式只用于目标类型的搬运。 -/
+theorem FilteredComplex.differentialRelation_of_lift_at_target
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k u : ℤ) (hu : s + r = u) {T : C}
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded u (k - 1)}
+    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
+    {yl : T ⟶ Subobject.underlying.obj (FC.fil u (k - 1))}
+    (hx : FC.IsLift s k xl x) (hy : FC.IsLift u (k - 1) yl y)
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil u (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega))) :
+    DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x
+      (Eq.mpr (congrArg (fun X : C => T ⟶ X)
+        (show ((FC.toSpectralSequence bnd).ssData
+            (⟨s, k⟩ + (FC.toSpectralSequence bnd).diffDeg r)).V =
+          FC.assocGraded u (k - 1) from by
+          rw [← hu]
+          rfl)) y) := by
+  subst u
+  simpa using FC.differentialRelation_of_lift bnd r hr s k hx hy hd
+
 /-! ### Homotopy commutative square in the category of converging spectral sequences -/
 
 /-- **收敛谱序列范畴中的交换方块**（新定义，范畴化形式）：
@@ -394,6 +450,370 @@ theorem ESSRelationNoCrossingRange.target_unique_of_filteredComplex
     exact hp
   · exact le_of_eq ht
 
+/- 范围性无 crossing 排除目标过滤区间内的非零页边界：任何这样的边界
+   都会由更高源过滤层的本质微分实现，因而直接违反范围条件。 -/
+theorem ESSRelationNoCrossingRange.no_nonzero_boundary
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r s k p : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y)
+    (hnc : ESSRelationNoCrossingRange r ⟨s, k⟩ hrel p)
+    (t q : ℤ) (m : ℕ) (ht : t + (m : ℤ) = q)
+    (hst : s ≤ t) (hpq : p ≤ q) (hqr : q ≤ s + r)
+    (v : T ⟶ FC.assocGraded q (k - 1))
+    (hb : (FC.boundarySubobject q (k - 1) (↑m)).Factors v) :
+    v = 0 := by
+  by_contra hv
+  obtain ⟨u, j, huj, x', htu, hess⟩ :=
+    FC.essential_ancestor_of_nonzero_boundary bnd k m t q ht v hv hb
+  unfold ESSRelationNoCrossingRange ExtensionDifferentialRelation.NoCrossingRange at hnc
+  apply hnc
+  refine ⟨u - s, by omega, (j : ℤ), ⟨u, k⟩, _, _, ?_, hess, ?_, ?_⟩
+  · change u = s + (u - s)
+    omega
+  · change p ≤ u + (j : ℤ)
+    omega
+  · change u + (j : ℤ) ≤ s + r
+    omega
+
+/- 更高过滤源的微分若已进入无 crossing 的目标范围，则必进入原关系的
+   完整目标过滤层。证明取微分像的最大过滤次数；非边界类直接给出 crossing，
+   非零边界类则由同目标过滤次数的本质祖先引理给出 crossing。 -/
+theorem ESSRelationNoCrossingRange.higher_source_image_deeper
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r s k p : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y)
+    (hnc : ESSRelationNoCrossingRange r ⟨s, k⟩ hrel p)
+    (t : ℤ) (hst : s < t)
+    (a : T ⟶ Subobject.underlying.obj (FC.fil t k))
+    (hp : (FC.fil p (k - 1)).Factors
+      (a ≫ (FC.fil t k).arrow ≫ FC.d k)) :
+    (FC.fil (s + r) (k - 1)).Factors
+      (a ≫ (FC.fil t k).arrow ≫ FC.d k) := by
+  classical
+  let v := a ≫ (FC.fil t k).arrow ≫ FC.d k
+  have hv_t : (FC.fil t (k - 1)).Factors v := by
+    change (FC.fil t (k - 1)).Factors
+      (a ≫ (FC.fil t k).arrow ≫ FC.d k)
+    rw [← FC.filDiff_comp_arrow]
+    simpa only [Category.assoc] using
+      (Subobject.factors_comp_arrow (a ≫ FC.filDiff t k))
+  rcases FC.factor_max_or_zero bnd p (k - 1) v hp with hz | ⟨q, hpq, hqfac, hqmax⟩
+  · change (FC.fil (s + r) (k - 1)).Factors v
+    rw [hz]
+    exact Subobject.factors_zero
+  have htq : t ≤ q := by
+    by_contra hn
+    have hle : FC.fil t (k - 1) ≤ FC.fil (q + 1) (k - 1) :=
+      FC.fil_anti_of_le (k - 1) (by omega)
+    exact hqmax (Subobject.factors_of_le v hle hv_t)
+  by_contra hnot
+  have hqr : q < s + r := by
+    by_contra hn
+    have hle : FC.fil q (k - 1) ≤ FC.fil (s + r) (k - 1) :=
+      FC.fil_anti_of_le (k - 1) (by omega)
+    exact hnot (Subobject.factors_of_le v hle hqfac)
+  let b := (FC.fil q (k - 1)).factorThru v hqfac
+  have hdb : a ≫ (FC.fil t k).arrow ≫ FC.d k =
+      b ≫ (FC.fil q (k - 1)).arrow := by
+    exact ((FC.fil q (k - 1)).factorThru_arrow v hqfac).symm
+  let m : ℕ := (q - t).toNat
+  have htm : t + (m : ℤ) = q := by
+    dsimp [m]
+    omega
+  have hyne : b ≫ FC.filToAssocGraded q (k - 1) ≠ 0 :=
+    FC.assocGraded_ne_zero_of_maximal q (k - 1) b (by simpa [b, v] using hqmax)
+  by_cases hb : (FC.boundarySubobject q (k - 1) (↑m)).Factors
+      (b ≫ FC.filToAssocGraded q (k - 1))
+  · exact hyne (ESSRelationNoCrossingRange.no_nonzero_boundary
+      FC bnd r s k p hrel hnc t q m htm (le_of_lt hst) hpq (le_of_lt hqr)
+      (b ≫ FC.filToAssocGraded q (k - 1)) hb)
+  · have hess := FC.essentialRelation_of_filtered_lift
+      bnd t q k m htm a b hdb hb
+    unfold ESSRelationNoCrossingRange ExtensionDifferentialRelation.NoCrossingRange at hnc
+    apply hnc
+    refine ⟨t - s, by omega, (m : ℤ), ⟨t, k⟩, _, _, ?_, hess, ?_, ?_⟩
+    · change t = s + (t - s)
+      omega
+    · change p ≤ t + (m : ℤ)
+      omega
+    · change t + (m : ℤ) ≤ s + r
+      omega
+
+/- 普通无 crossing 的完整代表元检测：同一源类的任意过滤代表元，都可
+   实际微分到目标过滤层，并在该层检测出指定目标类。 -/
+theorem ESSRelationNoCrossing.uniform_detection_full_of_pos
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 < r) (s k : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y)
+    (hnc : ESSRelationNoCrossing r ⟨s, k⟩ hrel)
+    (xl : T ⟶ Subobject.underlying.obj (FC.fil s k))
+    (hx : FC.IsLift s k xl x) :
+    ∃ yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1)),
+      xl ≫ FC.filDiff s k =
+        yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+          (FC.fil_anti_of_le (k - 1) (by omega)) ∧
+      FC.IsLift (s + r) (k - 1) yl y := by
+  classical
+  obtain ⟨x₀, y₀, hx₀, _hy₀, hd₀⟩ :=
+    FC.lift_of_differentialRelation bnd r (le_of_lt hr) s k hrel
+  obtain ⟨v, hv⟩ := FC.isLift_sub_lift s k hx hx₀
+  have hp : (FC.fil (s + 1) (k - 1)).Factors
+      (v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k) := by
+    rw [← FC.filDiff_comp_arrow]
+    simpa only [Category.assoc] using
+      (Subobject.factors_comp_arrow (v ≫ FC.filDiff (s + 1) k))
+  have htarget := ESSRelationNoCrossingRange.higher_source_image_deeper
+    FC bnd r s k (s + 1) hrel hnc (s + 1) (by omega) v hp
+  let c := (FC.fil (s + r) (k - 1)).factorThru
+    (v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k) htarget
+  have hdiff_sub : (xl - x₀) ≫ (FC.fil s k).arrow ≫ FC.d k =
+      c ≫ (FC.fil (s + r) (k - 1)).arrow := by
+    calc
+      (xl - x₀) ≫ (FC.fil s k).arrow ≫ FC.d k =
+          (v ≫ Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+            (FC.fil_anti s k)) ≫ (FC.fil s k).arrow ≫ FC.d k := by rw [hv]
+      _ = v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k := by
+        have hinc : Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+            (FC.fil_anti s k) ≫ (FC.fil s k).arrow =
+            (FC.fil (s + 1) k).arrow :=
+          Subobject.ofLE_arrow (FC.fil_anti s k)
+        calc
+          (v ≫ Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+            (FC.fil_anti s k)) ≫ (FC.fil s k).arrow ≫ FC.d k =
+              v ≫ (Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+                (FC.fil_anti s k) ≫ (FC.fil s k).arrow) ≫ FC.d k := by
+                  simp only [Category.assoc]
+          _ = v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k := by rw [hinc]
+      _ = c ≫ (FC.fil (s + r) (k - 1)).arrow := by
+        exact ((FC.fil (s + r) (k - 1)).factorThru_arrow _ htarget).symm
+  have hdiff₀ : x₀ ≫ (FC.fil s k).arrow ≫ FC.d k =
+      y₀ ≫ (FC.fil (s + r) (k - 1)).arrow := by
+    rw [← FC.filDiff_comp_arrow]
+    rw [← Category.assoc, hd₀]
+    simp only [Category.assoc, Subobject.ofLE_arrow]
+  let yl := y₀ + c
+  have hdiff : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega)) := by
+    apply (cancel_mono (FC.fil s (k - 1)).arrow).mp
+    simp only [Category.assoc, FC.filDiff_comp_arrow, Subobject.ofLE_arrow]
+    change xl ≫ (FC.fil s k).arrow ≫ FC.d k =
+      (y₀ + c) ≫ (FC.fil (s + r) (k - 1)).arrow
+    rw [Preadditive.add_comp, ← hdiff₀, ← hdiff_sub]
+    simp only [Preadditive.sub_comp]
+    abel
+  refine ⟨yl, hdiff, ?_⟩
+  let y' := yl ≫ FC.filToAssocGraded (s + r) (k - 1)
+  have hrel' : DifferentialRelation (FC.toSpectralSequence bnd)
+      r ⟨s, k⟩ x y' :=
+    FC.differentialRelation_of_lift bnd r (le_of_lt hr) s k hx rfl hdiff
+  have heq := ESSRelationNoCrossingRange.target_unique_of_filteredComplex
+    FC bnd r s k (s + 1) (by omega) hrel hrel' hnc
+  exact heq.symm
+
+/- 正页零扩张的无 crossing 条件对每个源代表元都给出严格更深的像过滤。 -/
+theorem ESSRelationNoCrossing.zero_uniform_deeper_of_pos
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 < r) (s k : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd)
+      r ⟨s, k⟩ x 0)
+    (hnc : ESSRelationNoCrossing r ⟨s, k⟩ hrel)
+    (xl : T ⟶ Subobject.underlying.obj (FC.fil s k))
+    (hx : FC.IsLift s k xl x) :
+    ∃ yd : T ⟶ Subobject.underlying.obj (FC.fil (s + r + 1) (k - 1)),
+      xl ≫ FC.filDiff s k =
+        yd ≫ Subobject.ofLE (FC.fil (s + r + 1) (k - 1))
+          (FC.fil s (k - 1))
+          (FC.fil_anti_of_le (k - 1) (by omega)) := by
+  obtain ⟨yl, hd, hy⟩ :=
+    ESSRelationNoCrossing.uniform_detection_full_of_pos
+      FC bnd r hr s k hrel hnc xl hx
+  obtain ⟨yd, hdeeper⟩ := FC.lift_zero_deeper (s + r) (k - 1) yl hy
+  refine ⟨yd, ?_⟩
+  apply (cancel_mono (FC.fil s (k - 1)).arrow).mp
+  rw [hd, ← hdeeper]
+  simp only [Category.assoc, Subobject.ofLE_arrow]
+
+/- 范围性无 crossing 的完整代表元检测接口。显式给出一位检测到指定目标
+   的参照代表元，并要求两个源代表元之差的像已进入范围下界。 -/
+theorem ESSRelationNoCrossingRange.uniform_detection_from_reference
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k p : ℤ) (hpr : p ≤ s + r)
+    {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y)
+    (hnc : ESSRelationNoCrossingRange r ⟨s, k⟩ hrel p)
+    (x₀ xl : T ⟶ Subobject.underlying.obj (FC.fil s k))
+    (y₀ : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1)))
+    (hx₀ : FC.IsLift s k x₀ x)
+    (hx : FC.IsLift s k xl x)
+    (hd₀ : x₀ ≫ FC.filDiff s k =
+      y₀ ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega)))
+    (v : T ⟶ Subobject.underlying.obj (FC.fil (s + 1) k))
+    (hv : v ≫ Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+      (FC.fil_anti s k) = xl - x₀)
+    (hp : (FC.fil p (k - 1)).Factors
+      (v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k)) :
+    ∃ yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1)),
+      xl ≫ FC.filDiff s k =
+        yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+          (FC.fil_anti_of_le (k - 1) (by omega)) ∧
+      FC.IsLift (s + r) (k - 1) yl y := by
+  classical
+  have htarget := ESSRelationNoCrossingRange.higher_source_image_deeper
+    FC bnd r s k p hrel hnc (s + 1) (by omega) v hp
+  let c := (FC.fil (s + r) (k - 1)).factorThru
+    (v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k) htarget
+  have hdiff_sub : (xl - x₀) ≫ (FC.fil s k).arrow ≫ FC.d k =
+      c ≫ (FC.fil (s + r) (k - 1)).arrow := by
+    calc
+      (xl - x₀) ≫ (FC.fil s k).arrow ≫ FC.d k =
+          (v ≫ Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+            (FC.fil_anti s k)) ≫ (FC.fil s k).arrow ≫ FC.d k := by rw [hv]
+      _ = v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k := by
+        have hinc : Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+            (FC.fil_anti s k) ≫ (FC.fil s k).arrow =
+            (FC.fil (s + 1) k).arrow :=
+          Subobject.ofLE_arrow (FC.fil_anti s k)
+        calc
+          (v ≫ Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+            (FC.fil_anti s k)) ≫ (FC.fil s k).arrow ≫ FC.d k =
+              v ≫ (Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+                (FC.fil_anti s k) ≫ (FC.fil s k).arrow) ≫ FC.d k := by
+                  simp only [Category.assoc]
+          _ = v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k := by rw [hinc]
+      _ = c ≫ (FC.fil (s + r) (k - 1)).arrow := by
+        exact ((FC.fil (s + r) (k - 1)).factorThru_arrow _ htarget).symm
+  have hdiff₀ : x₀ ≫ (FC.fil s k).arrow ≫ FC.d k =
+      y₀ ≫ (FC.fil (s + r) (k - 1)).arrow := by
+    rw [← FC.filDiff_comp_arrow]
+    rw [← Category.assoc, hd₀]
+    simp only [Category.assoc, Subobject.ofLE_arrow]
+  let yl := y₀ + c
+  have hdiff : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+        (FC.fil_anti_of_le (k - 1) (by omega)) := by
+    apply (cancel_mono (FC.fil s (k - 1)).arrow).mp
+    simp only [Category.assoc, FC.filDiff_comp_arrow, Subobject.ofLE_arrow]
+    change xl ≫ (FC.fil s k).arrow ≫ FC.d k =
+      (y₀ + c) ≫ (FC.fil (s + r) (k - 1)).arrow
+    rw [Preadditive.add_comp, ← hdiff₀, ← hdiff_sub]
+    simp only [Preadditive.sub_comp]
+    abel
+  refine ⟨yl, hdiff, ?_⟩
+  let y' := yl ≫ FC.filToAssocGraded (s + r) (k - 1)
+  have hrel' : DifferentialRelation (FC.toSpectralSequence bnd)
+      r ⟨s, k⟩ x y' :=
+    FC.differentialRelation_of_lift bnd r hr s k hx rfl hdiff
+  have heq := ESSRelationNoCrossingRange.target_unique_of_filteredComplex
+    FC bnd r s k p hpr hrel hrel' hnc
+  exact heq.symm
+
+/- 第零页的目标过滤次数等于源过滤次数。更高过滤的源所产生的
+   非负页本质微分，其目标过滤次数必严格更高，所以该范围自动无 crossing。 -/
+theorem ESSRelationNoCrossingRange.zero_page_automatic
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (s k : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + 0) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) 0 ⟨s, k⟩ x y) :
+    ESSRelationNoCrossingRange 0 ⟨s, k⟩ hrel s := by
+  intro hc
+  rcases hc with ⟨a, ha, m, index, x', y', hs, he, _hp, hupper⟩
+  have hm := FC.essentialRelation_nonneg bnd m index he
+  change index.1 = s + a at hs
+  change (index + (FC.toSpectralSequence bnd).diffDeg m).1 ≤ s + 0 at hupper
+  rw [show (FC.toSpectralSequence bnd).diffDeg m = (m, -1) from rfl] at hupper
+  change index.1 + m ≤ s + 0 at hupper
+  omega
+
+/- 第零页的任意源代表元都检测到同一目标类。此处不需要额外的
+   无 crossing 前提，因为第零页的目标过滤范围自动无 crossing。 -/
+theorem ESSRelationNoCrossing.uniform_detection_full_of_zero
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (s k : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + 0) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) 0 ⟨s, k⟩ x y)
+    (xl : T ⟶ Subobject.underlying.obj (FC.fil s k))
+    (hx : FC.IsLift s k xl x) :
+    ∃ yl : T ⟶ Subobject.underlying.obj (FC.fil (s + 0) (k - 1)),
+      xl ≫ FC.filDiff s k =
+        yl ≫ Subobject.ofLE (FC.fil (s + 0) (k - 1)) (FC.fil s (k - 1))
+          (FC.fil_anti_of_le (k - 1) (by omega)) ∧
+      FC.IsLift (s + 0) (k - 1) yl y := by
+  classical
+  obtain ⟨x₀, y₀, hx₀, _hy₀, hd₀⟩ :=
+    FC.lift_of_differentialRelation bnd 0 (by omega) s k hrel
+  obtain ⟨v, hv⟩ := FC.isLift_sub_lift s k hx hx₀
+  have hp : (FC.fil s (k - 1)).Factors
+      (v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k) := by
+    rw [← FC.filDiff_comp_arrow]
+    have hle : FC.fil (s + 1) (k - 1) ≤ FC.fil s (k - 1) :=
+      FC.fil_anti_of_le (k - 1) (by omega)
+    apply Subobject.factors_of_le _ hle
+    simpa only [Category.assoc] using
+      (Subobject.factors_comp_arrow (v ≫ FC.filDiff (s + 1) k))
+  exact ESSRelationNoCrossingRange.uniform_detection_from_reference
+    FC bnd 0 (by omega) s k s (by omega) hrel
+    (ESSRelationNoCrossingRange.zero_page_automatic FC bnd s k hrel)
+    x₀ xl y₀ hx₀ hx hd₀ v hv hp
+
+/- 普通无 crossing 的完整代表元检测，同时覆盖第零页和正页。 -/
+theorem ESSRelationNoCrossing.uniform_detection_full
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y)
+    (hnc : ESSRelationNoCrossing r ⟨s, k⟩ hrel)
+    (xl : T ⟶ Subobject.underlying.obj (FC.fil s k))
+    (hx : FC.IsLift s k xl x) :
+    ∃ yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1)),
+      xl ≫ FC.filDiff s k =
+        yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+          (FC.fil_anti_of_le (k - 1) (by omega)) ∧
+      FC.IsLift (s + r) (k - 1) yl y := by
+  rcases eq_or_lt_of_le hr with hzero | hpos
+  · subst r
+    exact ESSRelationNoCrossing.uniform_detection_full_of_zero
+      FC bnd s k hrel xl hx
+  · exact ESSRelationNoCrossing.uniform_detection_full_of_pos
+      FC bnd r hpos s k hrel hnc xl hx
+
+/- 零扩张无 crossing 时，任意源代表元的像都严格落入目标的下一层；
+   第零页由自动无 crossing 处理，正页沿用已有的更深过滤引理。 -/
+theorem ESSRelationNoCrossing.zero_uniform_deeper
+    (FC : FilteredComplex C) (bnd : FC.IsBounded)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C} [Projective T]
+    {x : T ⟶ FC.assocGraded s k}
+    (hrel : DifferentialRelation (FC.toSpectralSequence bnd)
+      r ⟨s, k⟩ x 0)
+    (hnc : ESSRelationNoCrossing r ⟨s, k⟩ hrel)
+    (xl : T ⟶ Subobject.underlying.obj (FC.fil s k))
+    (hx : FC.IsLift s k xl x) :
+    ∃ yd : T ⟶ Subobject.underlying.obj (FC.fil (s + r + 1) (k - 1)),
+      xl ≫ FC.filDiff s k =
+        yd ≫ Subobject.ofLE (FC.fil (s + r + 1) (k - 1))
+          (FC.fil s (k - 1))
+          (FC.fil_anti_of_le (k - 1) (by omega)) := by
+  obtain ⟨yl, hd, hy⟩ :=
+    ESSRelationNoCrossing.uniform_detection_full FC bnd r hr s k hrel hnc xl hx
+  obtain ⟨yd, hdeeper⟩ := FC.lift_zero_deeper (s + r) (k - 1) yl hy
+  refine ⟨yd, ?_⟩
+  apply (cancel_mono (FC.fil s (k - 1)).arrow).mp
+  rw [hd, ← hdeeper]
+  simp only [Category.assoc, Subobject.ofLE_arrow]
+
 /-- 范围性无 crossing 的代表元结论：若源代表元的实际微分已经进入
 目标过滤层，则该微分在目标关联分次上的类必为指定目标。
 这里的进入目标过滤层仍是显式前提；完整统一检测还需证明此前提。 -/
@@ -484,6 +904,129 @@ variable (x : T ⟶ (extf.complex t).assocGraded sfx 1)
 variable (y : T ⟶ (extf.complex t).assocGraded (sfx + n) 0)
 variable (z : T ⟶ (extp.complex t).assocGraded (sfx + m) 0)
 variable (w : T ⟶ (extg.complex t).assocGraded (sfx + m + l) 0)
+
+/- 方块四条边的两项复形在公共顶点使用同一过滤层。以下三个
+   定义相等只比较复形第 1/0 项，不把四个 ESS 误认为同一谱序列。 -/
+lemma ess_f_p_source_fil :
+    (extf.complex t).fil sfx 1 = (extp.complex t).fil sfx 1 := rfl
+
+lemma ess_f_q_middle_fil :
+    (extf.complex t).fil (sfx + n) 0 =
+      (extq.complex t).fil (sfx + n) 1 := rfl
+
+lemma ess_p_g_middle_fil :
+    (extp.complex t).fil (sfx + m) 0 =
+      (extg.complex t).fil (sfx + m) 1 := rfl
+
+/- 若 f、p 中至少一条具体关系无 crossing，则可以选取同一个源过滤
+   代表元，同时实现两条边的指定目标。该结论是第 2.12 条第一步。 -/
+theorem essComm_common_source_lift [Projective T]
+    (hn : 0 ≤ n) (hm : 0 ≤ m)
+    (hf : DifferentialRelation
+      ((extf.complex t).toSpectralSequence (extf.bounded t))
+      n ⟨sfx, 1⟩ x y)
+    (hp : DifferentialRelation
+      ((extp.complex t).toSpectralSequence (extp.bounded t))
+      m ⟨sfx, 1⟩ x z)
+    (hnc : ESSRelationNoCrossing n ⟨sfx, 1⟩ hf ∨
+      ESSRelationNoCrossing m ⟨sfx, 1⟩ hp) :
+    ∃ (xl : T ⟶ Subobject.underlying.obj ((extf.complex t).fil sfx 1))
+      (yl : T ⟶ Subobject.underlying.obj ((extf.complex t).fil (sfx + n) 0))
+      (zl : T ⟶ Subobject.underlying.obj ((extp.complex t).fil (sfx + m) 0)),
+      (extf.complex t).IsLift sfx 1 xl x ∧
+      (extf.complex t).IsLift (sfx + n) 0 yl y ∧
+      (extp.complex t).IsLift (sfx + m) 0 zl z ∧
+      xl ≫ (extf.complex t).filDiff sfx 1 =
+        yl ≫ Subobject.ofLE ((extf.complex t).fil (sfx + n) 0)
+          ((extf.complex t).fil sfx 0)
+          ((extf.complex t).fil_anti_of_le 0 (by omega)) ∧
+      xl ≫ (extp.complex t).filDiff sfx 1 =
+        zl ≫ Subobject.ofLE ((extp.complex t).fil (sfx + m) 0)
+          ((extp.complex t).fil sfx 0)
+          ((extp.complex t).fil_anti_of_le 0 (by omega)) := by
+  rcases hnc with hfnc | hpnc
+  · obtain ⟨xl, zl, hx, hz, hdz⟩ :=
+      (extp.complex t).lift_of_differentialRelation
+        (extp.bounded t) m hm sfx 1 hp
+    obtain ⟨yl, hdy, hy⟩ :=
+      ESSRelationNoCrossing.uniform_detection_full
+        (extf.complex t) (extf.bounded t) n hn sfx 1 hf hfnc xl hx
+    exact ⟨xl, yl, zl, hx, hy, hz, hdy, hdz⟩
+  · obtain ⟨xl, yl, hx, hy, hdy⟩ :=
+      (extf.complex t).lift_of_differentialRelation
+        (extf.bounded t) n hn sfx 1 hf
+    obtain ⟨zl, hdz, hz⟩ :=
+      ESSRelationNoCrossing.uniform_detection_full
+        (extp.complex t) (extp.bounded t) m hm sfx 1 hp hpnc xl hx
+    exact ⟨xl, yl, zl, hx, hy, hz, hdy, hdz⟩
+
+/- 把同一个源代表元在 f、p 两边的实际微分送入公共右下对象后，
+   两个结果相等。这一步只用两项复形的微分定义及方块的 `aMap` 交换律。 -/
+theorem essComm_lift_square_ambient
+    (hn : 0 ≤ n) (hm : 0 ≤ m)
+    (xl : T ⟶ Subobject.underlying.obj ((extf.complex t).fil sfx 1))
+    (yl : T ⟶ Subobject.underlying.obj ((extf.complex t).fil (sfx + n) 0))
+    (zl : T ⟶ Subobject.underlying.obj ((extp.complex t).fil (sfx + m) 0))
+    (hdy : xl ≫ (extf.complex t).filDiff sfx 1 =
+      yl ≫ Subobject.ofLE ((extf.complex t).fil (sfx + n) 0)
+        ((extf.complex t).fil sfx 0)
+        ((extf.complex t).fil_anti_of_le 0 (by omega)))
+    (hdz : xl ≫ (extp.complex t).filDiff sfx 1 =
+      zl ≫ Subobject.ofLE ((extp.complex t).fil (sfx + m) 0)
+        ((extp.complex t).fil sfx 0)
+        ((extp.complex t).fil_anti_of_le 0 (by omega))) :
+    yl ≫ ((extf.complex t).fil (sfx + n) 0).arrow ≫ sq.q.aMap t =
+      zl ≫ ((extp.complex t).fil (sfx + m) 0).arrow ≫ sq.g.aMap t := by
+  have hf : xl ≫ ((extf.complex t).fil sfx 1).arrow ≫ sq.f.aMap t =
+      yl ≫ ((extf.complex t).fil (sfx + n) 0).arrow := by
+    have hdf : (extf.complex t).d 1 = sq.f.aMap t := by
+      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
+    have hfd := (extf.complex t).filDiff_comp_arrow sfx 1
+    change (extf.complex t).filDiff sfx 1 ≫
+      ((extf.complex t).fil sfx 0).arrow =
+      ((extf.complex t).fil sfx 1).arrow ≫ (extf.complex t).d 1 at hfd
+    calc
+      xl ≫ ((extf.complex t).fil sfx 1).arrow ≫ sq.f.aMap t =
+          xl ≫ ((extf.complex t).fil sfx 1).arrow ≫ (extf.complex t).d 1 := by rw [hdf]
+      _ = (xl ≫ (extf.complex t).filDiff sfx 1) ≫
+          ((extf.complex t).fil sfx 0).arrow := by
+            simpa only [Category.assoc] using congrArg (fun f => xl ≫ f) hfd.symm
+      _ = yl ≫ ((extf.complex t).fil (sfx + n) 0).arrow := by
+            rw [hdy, Category.assoc, Subobject.ofLE_arrow]
+  have hp : xl ≫ ((extp.complex t).fil sfx 1).arrow ≫ sq.p.aMap t =
+      zl ≫ ((extp.complex t).fil (sfx + m) 0).arrow := by
+    have hdp : (extp.complex t).d 1 = sq.p.aMap t := by
+      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
+    have hpd := (extp.complex t).filDiff_comp_arrow sfx 1
+    change (extp.complex t).filDiff sfx 1 ≫
+      ((extp.complex t).fil sfx 0).arrow =
+      ((extp.complex t).fil sfx 1).arrow ≫ (extp.complex t).d 1 at hpd
+    calc
+      xl ≫ ((extp.complex t).fil sfx 1).arrow ≫ sq.p.aMap t =
+          xl ≫ ((extp.complex t).fil sfx 1).arrow ≫ (extp.complex t).d 1 := by rw [hdp]
+      _ = (xl ≫ (extp.complex t).filDiff sfx 1) ≫
+          ((extp.complex t).fil sfx 0).arrow := by
+            simpa only [Category.assoc] using congrArg (fun f => xl ≫ f) hpd.symm
+      _ = zl ≫ ((extp.complex t).fil (sfx + m) 0).arrow := by
+            rw [hdz, Category.assoc, Subobject.ofLE_arrow]
+  change xl ≫ (sq.V₁.F.F sfx t).arrow ≫ sq.f.aMap t =
+      yl ≫ (sq.V₂.F.F (sfx + n) t).arrow at hf
+  change xl ≫ (sq.V₁.F.F sfx t).arrow ≫ sq.p.aMap t =
+      zl ≫ (sq.V₃.F.F (sfx + m) t).arrow at hp
+  change yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
+      zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t
+  calc
+    yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
+        xl ≫ (sq.V₁.F.F sfx t).arrow ≫ sq.f.aMap t ≫ sq.q.aMap t := by
+          simpa only [Category.assoc] using
+            (congrArg (fun u : T ⟶ sq.V₂.A t => u ≫ sq.q.aMap t) hf).symm
+    _ = xl ≫ (sq.V₁.F.F sfx t).arrow ≫ sq.p.aMap t ≫ sq.g.aMap t := by
+          simpa only [Category.assoc] using
+            congrArg (fun u : sq.V₁.A t ⟶ sq.V₄.A t =>
+              (xl ≫ (sq.V₁.F.F sfx t).arrow) ≫ u) (sq.aMap_comm t)
+    _ = zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t := by
+          simpa only [Category.assoc] using
+            congrArg (fun u : T ⟶ sq.V₃.A t => u ≫ sq.g.aMap t) hp
 
 /-- `w` 同时作为 ESS(g) 的目标与 ESS(q) 的目标出现：两者对象均为
     `F₄` 层在过滤 `sfx+m+l`、次数 `0` 的关联分次，定义性相等（`rfl`）。 -/
@@ -658,12 +1201,148 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
           ⟨sfx + n, 1⟩).V =
           (extq.complex t).assocGraded (sfx + n) 1 from rfl)) y)
       (Eq.mpr (congrArg (fun X : C => T ⟶ X)
-        (essComm_concl_cast sq bnd₂ bnd₃ bnd₄ extq extg n m l sfx t)) w) :=
-  -- 这里必须使用上述四条扩张关系和无 crossing 假设来选取共同代表元。
-  -- 旧版无前提的 auxC1 对任意 y、w 声称此结论，不是合法的证明桥梁。
-  -- 四个无 crossing 条件现已绑定各边的具体扩张关系。
-  -- 尚需证明 Blueprint `prop:no-crossing-iff-uniform-detection` 的代表元刻画。
-  sorry
+        (essComm_concl_cast sq bnd₂ bnd₃ bnd₄ extq extg n m l sfx t)) w) := by
+  classical
+  obtain ⟨xl, yl, zl, hx, hy, hz, hdy, hdz⟩ :=
+    essComm_common_source_lift sq bnd₁ bnd₂ bnd₃ extf extp
+      n m sfx t x y z _hn _hm _hf_rel _hp_rel _hf_or_p_nc
+  have hsquare := essComm_lift_square_ambient
+    sq bnd₁ bnd₂ bnd₃ extf extp n m sfx t _hn _hm xl yl zl hdy hdz
+  have hyq : (extq.complex t).IsLift (sfx + n) 1 yl y := hy
+  obtain ⟨qdeep, hqdeep⟩ := ESSRelationNoCrossing.zero_uniform_deeper
+    (extq.complex t) (extq.bounded t) (kval - 1) (by omega)
+      (sfx + n) 1 _hq_zero _hq_nc yl hyq
+  have hqambient := (extq.lift_ambient_map t (sfx + n)
+    (sfx + n + (kval - 1) + 1) (by omega) yl qdeep hqdeep)
+  change yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
+    qdeep ≫ (sq.V₄.F.F (sfx + n + (kval - 1) + 1) t).arrow at hqambient
+  change yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
+    zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t at hsquare
+  have hgRange : (sq.V₄.F.F (sfx + n + kval) t).Factors
+      (zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) := by
+    have hraw : zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t =
+        qdeep ≫ (sq.V₄.F.F (sfx + n + (kval - 1) + 1) t).arrow := by
+      exact hsquare.symm.trans hqambient
+    rw [hraw]
+    have hle : sq.V₄.F.F (sfx + n + (kval - 1) + 1) t ≤
+        sq.V₄.F.F (sfx + n + kval) t := by
+      change (extq.complex t).fil (sfx + n + (kval - 1) + 1) 0 ≤
+        (extq.complex t).fil (sfx + n + kval) 0
+      exact (extq.complex t).fil_anti_of_le 0 (by omega)
+    exact Subobject.factors_of_le _ hle
+      (Subobject.factors_comp_arrow qdeep)
+  let zl_g : T ⟶ Subobject.underlying.obj ((extg.complex t).fil (sfx + m) 1) := zl
+  have hz_g : (extg.complex t).IsLift (sfx + m) 1 zl_g z := hz
+  obtain ⟨z₀, w₀, hz₀, hw₀, hdg₀⟩ :=
+    (extg.complex t).lift_of_differentialRelation
+      (extg.bounded t) l _hl (sfx + m) 1 _hg_rel
+  obtain ⟨v, hv⟩ :=
+    (extg.complex t).isLift_sub_lift (sfx + m) 1 hz_g hz₀
+  have hg₀ambient := extg.lift_ambient_map t (sfx + m) (sfx + m + l)
+    (by omega) z₀ w₀ hdg₀
+  change z₀ ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t =
+    w₀ ≫ (sq.V₄.F.F (sfx + m + l) t).arrow at hg₀ambient
+  have hg₀Range : (sq.V₄.F.F (sfx + n + kval) t).Factors
+      (z₀ ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) := by
+    rw [hg₀ambient]
+    have hle : sq.V₄.F.F (sfx + m + l) t ≤
+        sq.V₄.F.F (sfx + n + kval) t := by
+      change (extg.complex t).fil (sfx + m + l) 0 ≤
+        (extg.complex t).fil (sfx + n + kval) 0
+      exact (extg.complex t).fil_anti_of_le 0 (by omega)
+    exact Subobject.factors_of_le _ hle (Subobject.factors_comp_arrow w₀)
+  have hgDiffRange : (sq.V₄.F.F (sfx + n + kval) t).Factors
+      ((zl_g - z₀) ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) := by
+    simp only [Preadditive.sub_comp]
+    refine (Subobject.factors_iff _ _).2 ⟨
+      (sq.V₄.F.F (sfx + n + kval) t).factorThru
+          (zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) hgRange -
+      (sq.V₄.F.F (sfx + n + kval) t).factorThru
+          (z₀ ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) hg₀Range,
+      ?_⟩
+    rw [Preadditive.sub_comp]
+    change
+      (sq.V₄.F.F (sfx + n + kval) t).factorThru
+          (zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) hgRange ≫
+        (sq.V₄.F.F (sfx + n + kval) t).arrow -
+      (sq.V₄.F.F (sfx + n + kval) t).factorThru
+          (z₀ ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) hg₀Range ≫
+        (sq.V₄.F.F (sfx + n + kval) t).arrow = _
+    rw [Subobject.factorThru_arrow, Subobject.factorThru_arrow]
+  have hgVRange : ((extg.complex t).fil (sfx + n + kval) 0).Factors
+      (v ≫ ((extg.complex t).fil (sfx + m + 1) 1).arrow ≫
+        (extg.complex t).d 1) := by
+    have hvambient : v ≫ (sq.V₃.F.F (sfx + m + 1) t).arrow ≫ sq.g.aMap t =
+        (zl_g - z₀) ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t := by
+      have hinc : Subobject.ofLE ((extg.complex t).fil (sfx + m + 1) 1)
+          ((extg.complex t).fil (sfx + m) 1)
+          ((extg.complex t).fil_anti (sfx + m) 1) ≫
+          (sq.V₃.F.F (sfx + m) t).arrow =
+          (sq.V₃.F.F (sfx + m + 1) t).arrow := by
+        exact Subobject.ofLE_arrow _
+      calc
+        v ≫ (sq.V₃.F.F (sfx + m + 1) t).arrow ≫ sq.g.aMap t =
+            v ≫ (Subobject.ofLE ((extg.complex t).fil (sfx + m + 1) 1)
+              ((extg.complex t).fil (sfx + m) 1)
+              ((extg.complex t).fil_anti (sfx + m) 1) ≫
+              (sq.V₃.F.F (sfx + m) t).arrow) ≫ sq.g.aMap t := by rw [hinc]
+        _ = (v ≫ Subobject.ofLE ((extg.complex t).fil (sfx + m + 1) 1)
+              ((extg.complex t).fil (sfx + m) 1)
+              ((extg.complex t).fil_anti (sfx + m) 1)) ≫
+              (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t := by
+                simp only [Category.assoc]
+        _ = (zl_g - z₀) ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t := by
+              rw [hv]
+    have hmap : (extg.complex t).d 1 = sq.g.aMap t := by
+      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
+    rw [hmap]
+    change (sq.V₄.F.F (sfx + n + kval) t).Factors
+      (v ≫ (sq.V₃.F.F (sfx + m + 1) t).arrow ≫ sq.g.aMap t)
+    rw [hvambient]
+    exact hgDiffRange
+  obtain ⟨wg, hdg, hwg⟩ :=
+    ESSRelationNoCrossingRange.uniform_detection_from_reference
+      (extg.complex t) (extg.bounded t) l _hl (sfx + m) 1
+      (sfx + n + kval) (by omega) _hg_rel _hg_nc_range
+      z₀ zl_g w₀ hz₀ hz_g hdg₀ v hv hgVRange
+  have hgambient := extg.lift_ambient_map t (sfx + m) (sfx + m + l)
+    (by omega) zl_g wg hdg
+  change zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t =
+    wg ≫ (sq.V₄.F.F (sfx + m + l) t).arrow at hgambient
+  have hqgambient : yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
+      wg ≫ (sq.V₄.F.F (sfx + m + l) t).arrow :=
+    hsquare.trans hgambient
+  have hqfil : yl ≫ (extq.complex t).filDiff (sfx + n) 1 =
+      wg ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
+        ((extq.complex t).fil (sfx + n) 0)
+        ((extq.complex t).fil_anti_of_le 0 (by omega)) := by
+    have hmap : (extq.complex t).d 1 = sq.q.aMap t := by
+      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
+    have hfil := (extq.complex t).filDiff_comp_arrow (sfx + n) 1
+    change (extq.complex t).filDiff (sfx + n) 1 ≫
+      ((extq.complex t).fil (sfx + n) 0).arrow =
+      ((extq.complex t).fil (sfx + n) 1).arrow ≫ (extq.complex t).d 1 at hfil
+    apply (cancel_mono ((extq.complex t).fil (sfx + n) 0).arrow).mp
+    calc
+      (yl ≫ (extq.complex t).filDiff (sfx + n) 1) ≫
+          ((extq.complex t).fil (sfx + n) 0).arrow =
+          yl ≫ ((extq.complex t).fil (sfx + n) 1).arrow ≫
+            (extq.complex t).d 1 := by
+            simpa only [Category.assoc] using congrArg (fun f => yl ≫ f) hfil
+      _ = yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t := by
+            rw [← hmap]
+            rfl
+      _ = wg ≫ (sq.V₄.F.F (sfx + m + l) t).arrow := hqgambient
+      _ = (wg ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
+            ((extq.complex t).fil (sfx + n) 0)
+            ((extq.complex t).fil_anti_of_le 0 (by omega))) ≫
+            ((extq.complex t).fil (sfx + n) 0).arrow := by
+              rw [Category.assoc, Subobject.ofLE_arrow]
+              rfl
+  have hwq : (extq.complex t).IsLift (sfx + m + l) 0 wg w := hwg
+  exact (extq.complex t).differentialRelation_of_lift_at_target
+    (extq.bounded t) (m + l - n) (by omega) (sfx + n) 1
+    (sfx + m + l) (by omega) hyq hwq hqfil
 
 /- theorem essCommutativity_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
