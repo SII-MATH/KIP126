@@ -82,8 +82,10 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    An unfinished theorem instead remains in `Proofs.lean` with `by sorry`;
    it must not be converted into an axiom merely to avoid `sorryAx`.
    Literature results and computational inputs remain explicit external
-   premises as specified below, not project axioms. This development allowance
-   does not change the final proof-completion criteria below.
+   premises as specified below, not project axioms. Individual audit makes
+   development debt visible; it does not authorize retaining project axioms at
+   final acceptance. Every such axiom declaration must be replaced by a proof
+   or removed before the final proof-completion criteria below can be met.
 
 7. **Pinned toolchain.**
    - Lean: `4.32.2`
