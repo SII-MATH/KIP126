@@ -1,4 +1,5 @@
 import KIPBase.StableHomotopy.AdamsE2Comparison
+import KIPBase.multiplicativeSS.adamsdata.adamsE2
 
 /-!
 # h₆² 在球谱的经典模 2 Adams 谱序列中存活至 E∞
@@ -7,7 +8,7 @@ import KIPBase.StableHomotopy.AdamsE2Comparison
 On the Last Kervaire Invariant Problem, Theorem 1.4 (= Theorem 7.1).
 https://arxiv.org/html/2412.10879v2
 
-沿用本仓库外部给定的 `AdamsSS 𝒮 SphereSpectrum` 和 E₂ 比较公理。
+沿用本仓库外部给定的 `AdamsSS 𝒮 SphereSpectrum` 和 E₂ 逐次数基公理。
 CSV 中编号 69 的生成元是 h₆，双次数为 (s,t) = (1,64)；
 其平方的双次数是 (2,128)，对应 stem t-s = 126。
 
@@ -36,36 +37,57 @@ theorem h6Generator_name : generatorName h6Generator = "h_6" := by decide
 
 theorem h6Generator_degree : generatorDegree h6Generator = (1, 64) := by decide
 
-private theorem generator_mem (i : Generator) :
-    generator i ∈ homogeneousPart (generatorDegree i).1 (generatorDegree i).2 := by
-  apply Submodule.subset_span
-  refine ⟨Finsupp.single i 1, ?_, ?_⟩
-  · simp [monomialDegree]
-  · rfl
+/-- 按原始生成元编号给出的齐次表达式。 -/
+def h6Expression : CSV.Expression 1 64 := .gen h6Generator
 
-/-- 计算环 D 中的 h₆，附带其齐次次数。 -/
-noncomputable def dataH6 : E2At 1 64 :=
-  ⟨generator h6Generator, by
-    simpa only [h6Generator_degree] using generator_mem h6Generator⟩
+def h6SqExpression : CSV.Expression 2 128 := .mul h6Expression h6Expression
 
-/-- 计算环 D 中的 h₆²；内部次数 128 仍在数据比较范围内。 -/
-noncomputable def dataH6Sq : E2At 2 128 :=
-  mulAt (s := 1) (t := 64) (s' := 1) (t' := 64) dataH6 dataH6
+/-- 保留计算环中的表达式，供原来的 e2_mul 使用。 -/
+noncomputable def dataH6 : E2 := h6Expression.data
+noncomputable def dataH6Sq : E2 := h6SqExpression.data
 
 variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
 
-/-- 通过已有比较同构得到的、实际球谱 Adams 第二页上的 h₆。 -/
-noncomputable def h6 : Page 𝒮 1 64 :=
-  comparison 𝒮 1 64 (by decide) dataH6
+/-- 实际第二页上的指定生成元 h₆，无比较同构。 -/
+noncomputable def h6 : Page 𝒮 1 64 := evaluate 𝒮 h6Expression
 
-/-- 实际第二页上的乘积 h₆ · h₆，位于 E₂^{2,128}。 -/
+def h6BasisIndex : CSV.BasisIndex 1 64 := ⟨0, by native_decide⟩
+
+/-- h₆ 对应 (1,64) 的唯一 CSV 基元素。 -/
+theorem h6_eq_basisValue :
+    h6 𝒮 = SphereAdamsE2.basisValue 𝒮 1 64 h6BasisIndex := by
+  simpa [CSV.coordinateVector, h6] using
+    evaluate_eq_coordinates 𝒮 1 64 (by decide) h6Expression
+      [h6BasisIndex] 1000000 (by native_decide)
+
+/-- 若同时使用已有 AdamsE2Data，则这个非零 h₆ 与其 hi 6 一致。 -/
+theorem h6_eq_hi [AdamsE2Data.{u, v} 𝒮] :
+    h6 𝒮 = AdamsE2Data.hi (𝒮 := 𝒮) 6 := by
+  apply AdamsE2Data.eq_hi_of_ne_zero 6
+  rw [h6_eq_basisValue]
+  exact basisValue_ne_zero 𝒮 1 64 (by decide) h6BasisIndex
+
+/-- 实际第二页上的乘积 h₆ · h₆。 -/
 noncomputable def h6Sq : Page 𝒮 2 128 :=
   pageMul 𝒮 1 64 1 64 (h6 𝒮) (h6 𝒮)
 
-/-- 实际第二页的平方与计算环中的平方由既有乘法相容公理联系。 -/
-theorem h6Sq_eq_comparison :
-    h6Sq 𝒮 = comparison 𝒮 2 128 (by decide) dataH6Sq := by
-  exact (comparison_mul 𝒮 1 64 1 64 (by decide) dataH6 dataH6).symm
+/-- CSV 在 (2,128) 位置的第 0 个基元素。 -/
+def h6SqBasisIndex : CSV.BasisIndex 2 128 := ⟨0, by native_decide⟩
+
+theorem h6SqBasis_monomial :
+    (CSV.basisRow 2 128 h6SqBasisIndex).monomial = "69,2" := by native_decide
+
+/-- 具体坐标公式：h₆² 就是 (2,128) 位置明确列出的第 0 个加法基元素。 -/
+theorem h6Sq_eq_basisValue :
+    h6Sq 𝒮 = SphereAdamsE2.basisValue 𝒮 2 128 h6SqBasisIndex := by
+  simpa [CSV.coordinateVector, h6Sq, h6, h6SqExpression, evaluate] using
+    evaluate_eq_coordinates 𝒮 2 128 (by decide) h6SqExpression
+      [h6SqBasisIndex] 1000000 (by native_decide)
+
+/-- E₂ 中非零来自基性质；这不等于已经证明存活至 E∞。 -/
+theorem h6Sq_ne_zero : h6Sq 𝒮 ≠ 0 := by
+  rw [h6Sq_eq_basisValue]
+  exact basisValue_ne_zero 𝒮 2 128 (by decide) h6SqBasisIndex
 
 /-- 指定 E₂ 元素存活至 E∞ 并保持非零。
 
@@ -84,7 +106,7 @@ def SurvivesToEInfty (s t : ℕ) (x : Page 𝒮 s t) : Prop :=
 
 /-- Lin–Wang–Xu, Theorem 1.4 / 7.1：
 h₆² 在球谱的经典模 2 Adams 谱序列中存活至 E∞^{2,128}，且非零。
-谱序列和 E₂ 比较沿用已导入的外部公理；本结论的证明尚未形式化。 -/
+谱序列和 E₂ 基数据沿用已导入的外部公理；本结论的证明尚未形式化。 -/
 theorem h6_sq_survives_to_eInfty :
     SurvivesToEInfty 𝒮 2 128 (h6Sq 𝒮) := by
   sorry

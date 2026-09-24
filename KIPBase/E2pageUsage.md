@@ -98,52 +98,87 @@ tactic 报错而不关闭目标。每次成功使用都会输出桥接尚未证�
 正反示例位于 `E2pageTacticExamples.lean`。待完成桥接正确性证明后，使用者的
 `by e2_mul` 语句不需要改变。
 
-## 连接到球谱的 Adams 第二页
+## 实际第二页：逐双次数明确列出加法基
 
 导入 `KIPBase.StableHomotopy.AdamsE2Comparison`，使用命名空间
-`KIPBase.StableHomotopy.SphereAdamsE2`。这里的 `Page 𝒮 s t` 直接取既有
-`AdamsSS 𝒮 SphereSpectrum` 的第二页 `(s,t)` 分量，采用非负整数双次数。
-`SphereE2.E2` 仍表示原来的截断数据环 D，计算器的实现不变。
+`KIPBase.StableHomotopy.SphereAdamsE2`。`Page 𝒮 s t` 是既有
+`AdamsSS 𝒮 SphereSpectrum` 的实际第二页分量。
 
-按本次要求，新增四个显式外部公理：
+按照逐位置列基的要求，已删除 `comparison`、`comparison_mul` 两个同构公理，
+以及依赖它们的旧搬运接口。原商环 `SphereE2.E2`、CSV、Gröbner 算法与
+`e2_mul` 均保留。文件名 `AdamsE2Comparison` 保留以便沿用导入路径，但其
+数学接口现在是实际页的明确基元素及坐标公式，不再直接假定 D 与 E₂ 同构。
 
-| 声明 | 内容 |
+### 如何明确指定每个基元素
+
+`KIPBase.E2pageBasis` 定义了以下数据接口（命名空间 `SphereE2.CSV`）：
+
+- `rowsAt s t`：该位置所有原始 CSV 基行，保持原顺序。
+- `BasisIndex s t`：这些行的有限索引类型；空位置允许零个基元素。
+- `basisRow s t i`：包含原始 `index` 和 `monomial` 的具体行。
+- `Expression s t`：带双次数的零、单位、生成元、加法和乘法表达式。
+- `basisExpression s t i`：严格解码对应的 CSV 单项式得到的表达式。
+- `coordinates e fuel`：调用已有计算器，返回系数为 1 的基索引列表。
+- `coordinateVector`：将列表转成 F₂ 上的有限支撑坐标；重复项相消。
+
+`all_basis_rows_decode` 使用 `native_decide` 检查全部 23,822 行都能成功解码，
+且表达式次数与 CSV 行一致。解码错误不会被解释成零。
+`all_basis_indices_valid` 检查每个位置的原始 index 恰按 0,1,… 排列。
+计算时还核实原始 CSV index 与有限索引一致；次数不匹配、未知索引、超范围、
+燃料耗尽都显式报错。这些是数据和算法检查，不是线性无关或张成性的证明。
+
+在实际第二页中，`pageGenerator i` 指定该编号的生成元，`pageOne` 指定空单项式
+的值。`evaluate` 用实际的加法和 `pageMul` 递归解释表达式。
+`basisValue 𝒮 s t i` 定义为该位置第 i 个 CSV 单项式的实际解释。
+因此基元素的数学含义由原始编号、指数和实际乘法明确指定。
+
+### 外部数学输入与可引用的定理
+
+| 名称 | 内容 |
 |---|---|
-| `pageModule` | 实际第二页各分量上的 F₂ 模结构，沿用已有加法群 |
-| `pageMul` | 实际第二页上的双线性乘法 |
-| `comparison s t ht` | 当 `ht : t ≤ 261` 时，D 的齐次分量到实际页的线性同构 |
-| `comparison_mul` | 当 `t + t' ≤ 261` 时，上述同构保持乘法 |
+| `pageModule`、`pageMul` | 沿用的实际页模结构及双线性乘法 |
+| `pageOne`、`pageGenerator` | 指定实际页的单位类及 CSV 生成元 |
+| `basis_linearIndependent` | 明确的 CSV 单项式族线性无关，要求 t ≤ 261 |
+| `basis_span` | 同一个元素族张成整个分量，要求 t ≤ 261 |
+| `coordinates_spec` | 成功计算的输出是实际表达式在上述基中的坐标，要求 t ≤ 261 |
 
-这组选定的同构是外部数学输入，并非从 CSV 自动证明得到。
-没有声明整个截断环到完整第二页总代数的环同态，也没有把范围外的截断零关系
-搬到实际页。`pageMul` 提供运算；本模块没有另外公理化全次数的单位、结合律、
-交换律或后续各页的乘法与 Leibniz 法则。
+以上七个声明是显式外部公理；基的数学正确性和实际乘法与计算的一致性没有被
+伪装成已经完成的形式化证明。`csvBasis` 则用 `Module.Basis.mk` 从线性无关与
+张成性构造出来。它的每个向量就是 `basisValue`，不是额外选取的抽象基。
 
-常用的已证明搬运定理：
+`csvBasis.repr` 是这组明确基自带的坐标线性同构。这里允许从基构造坐标同构，
+与直接公理化计算商环到 E₂ 的比较同构有区别。
 
-- `mul_eq_of_data`：从 D 中的 `x * y = z` 得到实际页上的乘积等式。
-- `mul_eq_zero_of_data`：零乘积的便捷版本。
-- `comparison_eq_iff`：比较两个同次数的像，相当于比较 D 中的代表元素。
-- `exists_data_preimage`：范围内每个实际页元素都有 D 中的原像。
+常用定理：
 
-完整可编译示例见 `KIPBase/StableHomotopy/AdamsE2ComparisonExamples.lean`。
-其中 `dataH0 : E2At 1 1` 和 `dataH1 : E2At 1 2` 是带齐次性证明的数据元素：
+- `evaluate_eq_coordinates`：将成功的计算结果表示为实际基元素的线性组合。
+- `evaluate_eq_of_coordinates`：两个表达式成功算出同一坐标列表，则实际页中相等。
+- `evaluate_eq_zero`：成功算出空坐标列表，则实际页中为零。
+- `basis_mul_eq_coordinates`：两个指定基元素的乘积等于计算输出的基线性组合。
+- `basisValue_ne_zero`：任一指定的基元素非零。
+- `exists_unique_coordinates`：每个实际页元素唯一地由有限支撑基坐标表示。
+
+实际页的使用示意见 `AdamsE2ComparisonExamples.lean`：
 
 ```lean
-example :
-    pageMul 𝒮 1 1 1 2
-      (comparison 𝒮 1 1 (by decide) dataH0)
-      (comparison 𝒮 1 2 (by decide) dataH1) = 0 := by
-  apply mul_eq_zero_of_data 𝒮 1 1 1 2 (by decide) (by decide) (by decide)
-  change h0 * h1 = 0
-  e2_mul
+-- x0 : Expression 1 1，x1 : Expression 1 2 是指定编号的生成元表达式。
+example : pageMul 𝒮 1 1 1 2 (evaluate 𝒮 x0) (evaluate 𝒮 x1) = 0 := by
+  exact evaluate_eq_zero 𝒮 2 3 (by decide) (.mul x0 x1) 1000000 (by native_decide)
 ```
 
-需导入比较模块和 `KIPBase.E2pageTactic`，并像示例文件一样提供
-`𝒮` 的 `StableHomotopyCategory` 实例。实际页上的任意抽象元素虽有同构原像，
-但只有给定具体数据表达式后才能交给计算器执行；公理同构的逆映射不是可执行算法。
+这里的 `native_decide` 只执行计算，实际页的数学等式通过 `coordinates_spec`
+得到。原来的 `by e2_mul` 仍服务于商环等式，并仍依赖 `coordinateCheck_sound`
+中的 `sorry`。新实际页搬运定理没有新增 `sorry`。
 
-新增搬运定理没有 `sorry`，但使用外部比较公理和现有 `mulAt`（其齐次性证明
-`multiply_mem` 尚有 `sorry`）；通过 `e2_mul` 得到的具体等式还依赖
-`coordinateCheck_sound` 的 `sorry`。这些依赖与“已经无条件证明实际 Adams
-第二页的计算结果”有明确区别。
+`chanllege.lean` 中的 `h6` 现在直接使用指定的实际页生成元。
+`h6Sq_eq_basisValue` 明确说明 h₆² 是 (2,128) 位置的第 0 个 CSV 基元素
+（单项式 `69,2`），因此可以由基性质证明它在 E₂ 中非零。
+`h6_eq_hi` 在已有 `AdamsE2Data` 实例的前提下，将这里的 h₆ 与
+`multiplicativeSS/adamsdata/adamsE2.lean` 中的 `hi 6` 联系起来。
+`h6_sq_survives_to_eInfty` 的证明仍按要求保留 `sorry`：E₂ 中非零不代表已经
+证明后续存活。此改动没有增加任何后续微分值或 Leibniz 法则。
+
+已用 `#print axioms` 核查 `csvBasis`、`evaluate_eq_of_coordinates`、
+`h6Sq_eq_basisValue` 和 `h6_eq_hi`：它们依赖所列外部公理及
+`native_decide` 的编译器信任，但不依赖 `sorryAx`。
+存活主定理仍明确依赖 `sorryAx`。
