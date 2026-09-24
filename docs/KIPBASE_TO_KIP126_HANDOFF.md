@@ -140,6 +140,7 @@ KIP126/Def/<数学模块>/<概念>/
 
 - 候选数据放 `Data.lean`；
 - 独立性质的 Prop 放 `Predicates.lean`；
+- 开发期确需显式引入的内部公理只放同组件 `Axiom.lean`，注明来源、含义和引入原因，单独审计依赖锥；最终验收须清零；
 - 定理和证明放 `Proofs.lean`，开发中的未完成证明可显式使用 `by sorry`；
 - 一个文件只承担一个主要概念；
 - Data 中不放命名引理；构造需要的性质先在下层 Proofs 证明，再由后续 Data 使用；
@@ -166,7 +167,7 @@ KIP126/Solution/Final
 - Challenge 与 Solution 的相对路径和完整定理签名同步；
 - Challenge 定理始终保留 `by sorry`；证明只写在 Solution，开发中的 Solution 可暂用 `by sorry`；
 - Solution 及其证明依赖不得调用 Challenge 占位声明；
-- 禁止新增项目 axiom；
+- 不得把 Challenge/Solution 的未完成证明改写成项目 axiom；
 - 禁止任意选取对象、弱化命题或把占位证明当作完成证据；
 - Blueprint 中“目标命题可编译”不能标记为证明完成。
 
@@ -213,7 +214,7 @@ KIP126/Solution/Final
   - README 和 Roadmap；
   - 回归检查；
   - `scripts/Axioms.lean`；
-  - 规范库没有项目 axiom；已完成的 Solution/Def 证明及其依赖不含 sorryAx，
+  - 最终验收时规范库没有项目 axiom；已完成的 Solution/Def 证明及其依赖不含 sorryAx，
     Challenge 占位与开发中证明分别记录，不能冒充完成证据；
   - 尚未证明的主目标仍保持开放。
 

@@ -11,7 +11,7 @@ AGENTS.md supplies the repository's source rules and validation procedure.
 This document describes the layout contract; DEF_CHALLENGE_LAYOUT_STATUS.md
 records current ownership and remaining migration work.
 
-## Data, predicates, and proofs
+## Data, predicates, axioms, and proofs
 
 Organize each component under KIP126/Def/ into the layers it actually needs:
 
@@ -19,13 +19,18 @@ Organize each component under KIP126/Def/ into the layers it actually needs:
 | --- | --- | --- |
 | Data.lean | Objects, structures, maps, operations, and constructions | Mathlib and earlier components, including their proved construction laws |
 | Predicates.lean | Definitions of conditions and relations | Relevant data layers; not its own proof layer |
+| Axiom.lean | Deliberately declared, individually audited project axioms during development | Relevant data and predicates; never a substitute for an unfinished theorem |
 | Proofs.lean | Lemmas and theorems about data and predicates | Data, predicates where needed, and earlier proofs |
 
 Data files contain no named lemmas/theorems or hidden sorry in data definitions.
 Required structure fields may use lower-layer property results. Predicate files
 state conditions rather than prove them. Proof files must not become the home
 of new mathematical objects or constructions. An unfinished property theorem
-may temporarily use `by sorry`, but is not completed evidence.
+may temporarily use `by sorry` in `Proofs.lean`, but is not completed evidence.
+An explicit project `axiom` belongs only in the same component's `Axiom.lean`,
+with its source, intended meaning, and reason for being assumed documented.
+It and its dependency cone are audited separately from `sorryAx`; all project
+axioms must be eliminated for final acceptance.
 Do not create empty layers simply to match the table.
 
 When a construction requires a preservation or well-definedness theorem,
@@ -121,7 +126,8 @@ without removing those targets from the project boundary.
   statements and recursive axiom dependencies.
 - External facts enter as explicit, provenance-bearing ExternalResult or
   ExternalEvidence inputs about the same objects used by their consumers.
-  Do not add project axioms or move internal proof obligations into External.
+  Do not move internal proof obligations into External or introduce external
+  facts as project axioms.
 - Imports express compilation dependencies; Blueprint dependency edges
   express mathematical dependencies. They need not be identical.
 - Audit Solution and its actual dependencies separately from intentional

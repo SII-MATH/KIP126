@@ -18,16 +18,18 @@ strict_build_status=$?
 set -e
 warning_only=0
 sorry_audit=0
+project_axiom_audit=0
 if [ "$strict_build_status" -ne 0 ]; then
   lake build
   warning_only=1
 fi
 
 # The compiled axiom audit remains strict when invoked directly.  During PR
-# development, however, an open theorem may carry `sorryAx`: that is review
-# debt that should be routed to human review rather than treated as a compiler
-# failure. Treat an audit containing only `sorryAx` entries as a warning so the
-# required `build` status can pass;
+# development, however, an open theorem may carry `sorryAx` and a component
+# Axiom.lean may declare an inventoried project axiom. Both are review debt,
+# not completed proofs. Route only these two classified debts to human review;
+# misplaced or unexpected axioms and audit failures still fail the build.
+# The required `build` status can pass for classified review debt;
 # the outer workflow publishes the warning status separately, which keeps
 # automatic merge disabled until a human review accepts the open proofs.
 axiom_log=$(mktemp "$PWD/.lake/axioms.XXXXXX")
@@ -38,11 +40,15 @@ axiom_status=$?
 set -e
 cat "$axiom_log"
 if [ "$axiom_status" -ne 0 ]; then
-  offender_lines=$(grep -E '^  .* → \[[^][]+\]$' "$axiom_log" || true)
-  if [ -n "$offender_lines" ] &&
-     ! printf '%s\n' "$offender_lines" | grep -qvE ' → \[sorryAx\]$'; then
+  if grep -qx 'AXIOM_AUDIT_DEBT=1' "$axiom_log" &&
+     ! grep -qx 'AXIOM_AUDIT_ERROR=1' "$axiom_log"; then
     warning_only=1
-    sorry_audit=1
+    if grep -qx 'AXIOM_AUDIT_SORRY=1' "$axiom_log"; then
+      sorry_audit=1
+    fi
+    if grep -qx 'AXIOM_AUDIT_PROJECT=1' "$axiom_log"; then
+      project_axiom_audit=1
+    fi
   else
     exit "$axiom_status"
   fi
@@ -59,4 +65,7 @@ if [ "$warning_only" = 1 ]; then
 fi
 if [ "$sorry_audit" = 1 ]; then
   echo "KIP126_SORRY_AUDIT=1"
+fi
+if [ "$project_axiom_audit" = 1 ]; then
+  echo "KIP126_PROJECT_AXIOM_AUDIT=1"
 fi
