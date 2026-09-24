@@ -4,7 +4,7 @@ import Mathlib.Algebra.Homology.HomotopyCategory.ShiftSequence
 import Mathlib.Algebra.Homology.SpectralObject.Basic
 
 /-!
-# Homological image of a triangulated spectral object
+# Mathlib homological image of a triangulated spectral object
 
 Mathlib provides the two sides of this bridge separately: a triangulated
 spectral object and the long exact sequence produced by a homological functor.

@@ -1,5 +1,5 @@
 import KIP126.Def.SpectralSequence.Crossing.Data
-import KIP126.Def.SpectralSequence.Convergence.SSData.Data
+import KIP126.Def.SpectralSequence.Convergence.Data
 
 /-! Differential relations and crossing predicates for the `SSData` model. -/
 

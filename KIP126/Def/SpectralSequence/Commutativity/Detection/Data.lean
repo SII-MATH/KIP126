@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.Convergence.SSData.Data
+import KIP126.Def.SpectralSequence.Convergence.Data
 
 /-!
 # Graded projection used in detection compatibility

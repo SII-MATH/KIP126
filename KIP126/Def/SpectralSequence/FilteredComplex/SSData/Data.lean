@@ -1,6 +1,6 @@
 import KIP126.Def.SpectralSequence.FilteredComplex.Data
 import KIP126.Def.SpectralSequence.Basic.Data
-import KIP126.Def.SpectralSequence.Convergence.SSData.Data
+import KIP126.Def.SpectralSequence.Convergence.Data
 
 /-!
 # Historical filtered-complex data API

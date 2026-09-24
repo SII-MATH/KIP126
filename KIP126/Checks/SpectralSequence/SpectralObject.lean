@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.SpectralObject.Data
+import KIP126.Mathlib.SpectralSequence.SpectralObject.Data
 import Mathlib.Algebra.Category.ModuleCat.Abelian
 
 /-!

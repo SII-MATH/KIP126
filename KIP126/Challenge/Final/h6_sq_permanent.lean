@@ -1,5 +1,5 @@
 import KIP126.Def.ClassicalAdams.SphereClasses.Data
-import KIP126.Def.SpectralSequence.Permanence.Data
+import KIP126.Mathlib.SpectralSequence.Permanence.Data
 
 /-!
 # The permanent `h₆²` proof target

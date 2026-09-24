@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.FilteredPage.AssemblyProofs
+import KIP126.Mathlib.SpectralSequence.FilteredComplex.FinitePage.Proofs
 
 /-! Assemble the proved internal `Z/B` pages as a Mathlib spectral sequence. -/
 

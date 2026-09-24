@@ -1,4 +1,4 @@
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
+import Mathlib.Data.Int.Basic
 
 namespace KIP126.Core.SpectralSequence
 

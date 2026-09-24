@@ -1,6 +1,6 @@
 import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
 import KIP126.Def.SpectralSequence.FilteredComplex.HomologyTarget.Data
-import KIP126.Def.SpectralSequence.Convergence.SSData.Proofs
+import KIP126.Def.SpectralSequence.Convergence.Proofs
 
 /-!
 # Weak convergence of the filtered-complex spectral sequence

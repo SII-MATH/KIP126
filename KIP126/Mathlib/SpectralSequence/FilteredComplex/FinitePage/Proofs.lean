@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.FilteredPage.Complex
+import KIP126.Mathlib.SpectralSequence.FilteredComplex.FinitePage.Data
 import Mathlib.CategoryTheory.Abelian.Pseudoelements
 
 /-! Adjacent-page homology and assembly of the canonical finite quotient pages. -/

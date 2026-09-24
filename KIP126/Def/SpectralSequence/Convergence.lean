@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.Convergence.SSData.Category.Data
+import KIP126.Def.SpectralSequence.Convergence.Category.Data
 
 /-!
 # Convergence of nested-subobject spectral sequences

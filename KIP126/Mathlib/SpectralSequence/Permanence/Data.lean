@@ -4,7 +4,7 @@ import Mathlib.Algebra.Homology.SpectralSequence.Basic
 import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
 
 /-!
-# Permanent classes in a concrete spectral sequence
+# Permanent classes in a concrete Mathlib spectral sequence
 
 Mathlib's categorical spectral sequence has no map from one page object to the
 next: the next page is the homology of the current one.  For spectral sequences

@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.SpectralObject.Data
+import KIP126.Mathlib.SpectralSequence.SpectralObject.Data
 import KIP126.Def.Algebra.Completion.Data
 import Mathlib.Algebra.Homology.SpectralObject.FirstPage
 

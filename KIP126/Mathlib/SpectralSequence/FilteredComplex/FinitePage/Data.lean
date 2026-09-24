@@ -2,7 +2,7 @@ import Mathlib.Algebra.Homology.SpectralSequence.Basic
 import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
 
 /-!
-# Finite quotient pages as Mathlib homological complexes
+# Mathlib homological complexes from finite quotient pages
 
 The canonical quotient page and its filtered differential determine a Mathlib
 `HomologicalComplex` at every finite page.  The adjacent-page homology

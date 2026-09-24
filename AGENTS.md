@@ -59,6 +59,12 @@ itself make a module an adapter. Preserve Mathlib-facing declarations until
 their replacement internal statements and checked adapters are available;
 do not treat a file move as a proof of semantic equivalence.
 
+`KIP126/Def/SpectralSequence/` is the internal spectral-sequence tree, not a
+container that needs another `SSData/` level for general results. Its
+`Convergence/` component owns convergence of the nested-subobject sequence.
+Endpoint/spectral-object constructions and claims stated directly for
+Mathlib's spectral sequence belong under `KIP126/Mathlib/SpectralSequence/`.
+
 - Organize each mathematical component under `KIP126/Def/` into separate
   `Data.lean`, `Predicates.lean`, `Axiom.lean`, and `Proofs.lean` modules as
   applicable. Do not mix these responsibilities in one implementation file or
