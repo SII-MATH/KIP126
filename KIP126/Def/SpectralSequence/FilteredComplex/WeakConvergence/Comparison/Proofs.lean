@@ -3,11 +3,11 @@ import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Data
 import KIP126.Def.SpectralSequence.Convergence.Proofs
 
 /-!
-# Infinity-page comparison with filtered homology
+# Infinity-page comparison for weak convergence
 
 This proof identifies the infinity page of the bounded filtered-complex
 spectral sequence with the associated graded of its homology filtration.
-The convergence record is assembled in `WeakConvergence/Data.lean`.
+The convergence record is assembled in the parent `Data.lean` module.
 -/
 
 namespace KIP126.Core.SpectralSequence

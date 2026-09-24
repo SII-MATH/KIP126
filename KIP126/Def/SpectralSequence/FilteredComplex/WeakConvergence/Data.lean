@@ -1,10 +1,10 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.HomologyTarget.Proofs
+import KIP126.Def.SpectralSequence.FilteredComplex.WeakConvergence.Comparison.Proofs
 import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
 
 /-!
 # Weak convergence of a bounded filtered complex
 
-The infinity-page comparison is proved in `HomologyTarget/Proofs.lean`.
+The infinity-page comparison is proved in `Comparison/Proofs.lean`.
 This module assembles the convergence record with the identity reindexing.
 -/
 
