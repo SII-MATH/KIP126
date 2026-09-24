@@ -1,5 +1,6 @@
 import KIP126.Def.SpectralSequence.FilteredPage.Data
 import KIP126.Def.SpectralSequence.Basic.Data
+import Mathlib.CategoryTheory.Preadditive.Projective.Basic
 
 /-!
 # Order laws for filtered-complex pages
@@ -299,5 +300,97 @@ noncomputable def Subobject.thirdQuotientIso {V : C}
     cokernel (Subobject.cokernelMapOfLE P Q R hPQ hQR hPR) ≅
       cokernel (Subobject.ofLE Q R hQR) :=
   Subobject.thirdIso P Q R hPQ hQR hPR
+
+/-- A generalized element in a finite page boundary has a filtered source
+representative whose differential lands at the target filtration level. -/
+theorem lift_boundary (FC : FilteredComplex C) (s k : ℤ) (n : ℕ)
+    {T : C} [Projective T]
+    {v : T ⟶ FC.filtration.associatedGraded s k}
+    (hv : (FC.boundarySubobject s k (↑n)).Factors v) :
+    ∃ (a : T ⟶ Subobject.underlying.obj (FC.filtration.F (s - ↑n + 1) (k + 1)))
+      (b : T ⟶ Subobject.underlying.obj (FC.filtration.F s k)),
+      a ≫ (FC.filtration.F (s - ↑n + 1) (k + 1)).arrow ≫ FC.dToK k =
+        b ≫ (FC.filtration.F s k).arrow ∧
+      b ≫ FC.filtration.toAssociatedGraded s k = v := by
+  let h := (FC.filtration.F (s - ↑n + 1) (k + 1)).arrow ≫ FC.dToK k
+  let J := imageSubobject h
+  let I := J ⊓ FC.filtration.F s k
+  let i := Subobject.ofLE I (FC.filtration.F s k) inf_le_right
+  let j := Subobject.ofLE I J inf_le_left
+  let g := i ≫ FC.filtration.toAssociatedGraded s k
+  have hfac : (imageSubobject g).Factors v := by
+    simpa [FilteredComplex.boundarySubobject, h, J, I, i, g] using hv
+  let vB := Subobject.factorThru (imageSubobject g) v hfac
+  let bI := Projective.factorThru vB (factorThruImageSubobject g)
+  let bJ := bI ≫ j
+  let a := Projective.factorThru bJ (factorThruImageSubobject h)
+  let b := bI ≫ i
+  refine ⟨a, b, ?_, ?_⟩
+  · calc
+      a ≫ (FC.filtration.F (s - ↑n + 1) (k + 1)).arrow ≫ FC.dToK k =
+          a ≫ h := by rfl
+      _ = (a ≫ factorThruImageSubobject h) ≫ J.arrow := by
+        rw [Category.assoc, imageSubobject_arrow_comp]
+      _ = bJ ≫ J.arrow := by rw [Projective.factorThru_comp]
+      _ = bI ≫ I.arrow := by
+        simp only [bJ, j, Category.assoc, Subobject.ofLE_arrow]
+      _ = b ≫ (FC.filtration.F s k).arrow := by
+        simp only [b, i, Category.assoc, Subobject.ofLE_arrow]
+  · calc
+      b ≫ FC.filtration.toAssociatedGraded s k = bI ≫ g := by
+        simp only [b, g, Category.assoc]
+      _ = (bI ≫ factorThruImageSubobject g) ≫ (imageSubobject g).arrow := by
+        rw [Category.assoc, imageSubobject_arrow_comp]
+      _ = vB ≫ (imageSubobject g).arrow := by
+        rw [Projective.factorThru_comp]
+      _ = v := Subobject.factorThru_arrow _ _ _
+
+/-- A boundary on the differential's target page can be represented by a
+source in filtration `s + 1` whose differential lies in filtration `s + n`. -/
+theorem lift_boundary_at_differential (FC : FilteredComplex C)
+    (s k : ℤ) (n : ℕ) {T : C} [Projective T]
+    {v : T ⟶ FC.filtration.associatedGraded (s + ↑n) (k - 1)}
+    (hv : (FC.boundarySubobject (s + ↑n) (k - 1) (↑n)).Factors v) :
+    ∃ (a : T ⟶ Subobject.underlying.obj (FC.filtration.F (s + 1) k))
+      (b : T ⟶ Subobject.underlying.obj (FC.filtration.F (s + ↑n) (k - 1))),
+      a ≫ (FC.filtration.F (s + 1) k).arrow ≫ FC.complex.d k (k - 1) =
+        b ≫ (FC.filtration.F (s + ↑n) (k - 1)).arrow ∧
+      b ≫ FC.filtration.toAssociatedGraded (s + ↑n) (k - 1) = v := by
+  have htmp := FC.lift_boundary (s + ↑n) (k - 1) n hv
+  rw [show s + ↑n - ↑n + 1 = s + 1 by omega] at htmp
+  obtain ⟨a₀, b₀, hdb₀, hbb₀⟩ := htmp
+  let e : Subobject.underlying.obj (FC.filtration.F (s + 1) k) =
+      Subobject.underlying.obj (FC.filtration.F (s + 1) (k - 1 + 1)) := by
+    rw [show k - 1 + 1 = k by omega]
+  let a₁ := a₀ ≫ eqToHom e.symm
+  have he : eqToHom e ≫
+      ((FC.filtration.F (s + 1) (k - 1 + 1)).arrow ≫ FC.dToK (k - 1)) =
+      (FC.filtration.F (s + 1) k).arrow ≫ FC.complex.d k (k - 1) := by
+    have htransport : ∀ {a b : ℤ} (h : a = b),
+        eqToHom (congrArg
+          (fun j => Subobject.underlying.obj (FC.filtration.F (s + 1) j)) h) ≫
+          ((FC.filtration.F (s + 1) b).arrow ≫ FC.complex.d b (k - 1)) =
+        (FC.filtration.F (s + 1) a).arrow ≫ FC.complex.d a (k - 1) := by
+      intro a b h
+      subst b
+      simp
+    have hk : k = k - 1 + 1 := by omega
+    have heq : e = congrArg
+        (fun j => Subobject.underlying.obj (FC.filtration.F (s + 1) j)) hk :=
+      Subsingleton.elim _ _
+    rw [heq]
+    simpa only [FilteredComplex.dToK] using htransport hk
+  have hc : (a₀ ≫ eqToHom e.symm) ≫ eqToHom e = a₀ := by
+    rw [Category.assoc, eqToHom_trans, eqToHom_refl, Category.comp_id]
+  refine ⟨a₁, b₀, ?_, hbb₀⟩
+  calc
+    a₁ ≫ (FC.filtration.F (s + 1) k).arrow ≫ FC.complex.d k (k - 1) =
+        a₁ ≫ (eqToHom e ≫
+          ((FC.filtration.F (s + 1) (k - 1 + 1)).arrow ≫ FC.dToK (k - 1))) := by
+            rw [he]
+    _ = a₀ ≫ (FC.filtration.F (s + 1) (k - 1 + 1)).arrow ≫ FC.dToK (k - 1) := by
+      simp only [a₁, ← Category.assoc]
+      rw [hc]
+    _ = b₀ ≫ (FC.filtration.F (s + ↑n) (k - 1)).arrow := hdb₀
 
 end KIP126.Core.SpectralSequence.FilteredComplex
