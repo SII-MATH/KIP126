@@ -10,11 +10,7 @@ open CategoryTheory CategoryTheory.Limits
 
 universe u v w
 
-set_option linter.dupNamespace false
-set_option linter.defProp false
-set_option backward.defeqAttrib.useBackward true
 set_option backward.isDefEq.respectTransparency false
-set_option maxSynthPendingDepth 3
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
@@ -163,8 +159,9 @@ theorem ConvergenceMorphism.ext
   subst ha
   rfl
 
+omit [Abelian C] in
 /-- Filtration compatibility witnesses for an identity map. -/
-def Filtration.fcId
+theorem Filtration.fcId
     {ω' : Type w} {A : ω' → C} (F : Filtration A)
     (s : ℤ) (k' : ω') :
     ∃ (φ : Subobject.underlying.obj (F.F s k') ⟶
@@ -173,7 +170,7 @@ def Filtration.fcId
   ⟨𝟙 _, by simp⟩
 
 /-- Filtration compatibility witnesses for a composite convergence morphism. -/
-def ConvergenceMorphismData.fcComp
+theorem ConvergenceMorphismData.fcComp
     {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ : SpectralSequence C ω} {ω' : Type w}
     {A₁ A₂ A₃ : ω' → C}

@@ -9,6 +9,13 @@ crossing definitions, and lift statements are included, not just the Git HEAD.
 
 ## Coverage and recovery
 
+Later extension: PR #110 has been merged into the local development branch,
+preserving all eleven original E₂ computation/comparison files. It is not part
+of the 4.28 snapshot or its original debt allowance. See
+[the integration map](../../docs/PR110_INTEGRATION.md) for the canonical KIP126
+ports and the separately disclosed new historical proof debt. No migration
+audit allowance is expanded by this import.
+
 - All 21 original Lean modules are under `KIPBase.lean` and `KIPBase/`, retain
   their names, and are included in the `KIPBase` Lake library's explicit glob.
 - All 73 tracked files have an entry in `source-manifest.json`. Non-Lean

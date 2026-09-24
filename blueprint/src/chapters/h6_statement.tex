@@ -6,7 +6,10 @@ target.  The reduction to $d_{12}$ and the conditions used in its exclusion
 belong to the later proof, not to these definitions.  The ambient category
 of spectra is abstract.  Its mod--$2$ Eilenberg--Mac Lane object and the
 explicit Milnor cooperation coordinates below are foundational inputs.
-The current implementation still takes those coordinates as an argument.
+The generic implementation still takes those coordinates as an argument.
+The final targets now select one fixed foundation and coordinates through
+explicitly named development axioms; removing parameters does not discharge
+those dependencies.
 The next comparison stage keeps the abstract background and derives them
 from the ring structure, cooperations, and tensor compatibility of $H$;
 that derivation is not yet implemented.
@@ -292,3 +295,108 @@ that derivation is not yet implemented.
   $x_n\ne0$ for every $n$.  This definition uses the actual differentials
   and homology quotients and makes no claim of convergence to an abutment.
 \end{definition}
+
+\begin{definition}[Fixed standard and computational sphere objects]
+  \label{def:h6-fixed-computation}
+  \lean{KIP126.Classical.Adams.sphereAdams}
+  \lean{KIP126.Classical.Adams.sphereH6Square}
+  \lean{KIP126.Classical.Adams.sphereAdamsData}
+  \lean{KIP126.Classical.Adams.computedH6Square}
+  \lean{KIP126.Core.SpectralSequence.NonzeroSurvival}
+  \uses{def:h6-constructed-square,def:h6-pagewise-permanence}
+  \notready
+  Select the stable foundation, $H\mathbb F_2$, and Milnor coordinates once.
+  The standard sequence and class specialize the existing tower construction.
+  The computational object uses the internal SSData presentation; its specified
+  class is the image of generator 69 squared in the fixed Lin CSV quotient
+  (Zenodo 14875701, v126.3.cw49, internal degree at most 261).
+  Its nonzero survival means a common $Z_\infty$ representative whose $E_2$
+  image is the specified class and whose $E_\infty$ image is nonzero.
+  Foundation selection, the internal model, the range-limited Lin comparison,
+  and the tower, class, and survival comparisons remain named development
+  axioms. They do not assert that the specified class survives. The internal
+  computational proof imports neither KIPBase nor the Mathlib SS adapter.
+\end{definition}
+
+\begin{definition}[Fixed Lin algebra and additive catalogue]
+  \label{def:lin-e2-catalogue}
+  \lean{KIP126.LinE2.E2}
+  \lean{KIP126.LinE2.basisRowsAt}
+  \lean{KIP126.LinE2.findBasisIndex?}
+  \lean{KIP126.LinE2.mulAt}
+  \lean{KIP126.LinE2.Compute.Engine.multiplyBasis}
+  \uses{def:h6-fixed-computation}
+  \notready
+  Use the fixed Zenodo 14875701 dataset, version v126.3.cw49, imported from
+  PR 110 at commit \texttt{ff39e951}. Its quotient algebra has 2914 algebra
+  generators and 231848 relations and is truncated above internal degree 261.
+  The separate additive catalogue has 23822 monomials, indexed by $(s,t,k)$;
+  these indices are not algebra-generator numbers. The catalogue entry
+  $(2,128,0)$ is generator 69 squared. Lookup rejects absent coordinates.
+  Multiplication is that of the quotient, with homogeneous closure proved;
+  the executable reducer reports invalid input, range violations and fuel
+  exhaustion rather than silently returning a value.
+\end{definition}
+
+\begin{theorem}[Additive catalogue certification, pending]
+  \label{thm:lin-e2-basis-certification}
+  \lean{KIP126.LinE2.basisTable_correct}
+  \uses{def:lin-e2-catalogue}
+  \notready
+  For $t\le261$, the actual listed monomial values of degree $(s,t)$ form an
+  $\mathbb F_2$-basis of the specified quotient component. This asserts both
+  linear independence and spanning, not merely that the list has the right
+  length. The Lean proof remains admitted; executable checks of degrees,
+  distinct coordinates and irreducibility do not discharge it.
+\end{theorem}
+
+\begin{definition}[Data and internal Adams additive coordinates]
+  \label{def:lin-e2-coordinates}
+  \lean{KIP126.LinE2.dataBasis}
+  \lean{KIP126.LinE2.dataCoordinates}
+  \lean{KIP126.Classical.Adams.sphereE2BasisByCSV?}
+  \lean{KIP126.Classical.Adams.sphereE2Coordinates}
+  \lean{KIP126.Classical.Adams.linToSphere_product_eq}
+  \lean{KIP126.Classical.Adams.linToSphere_exists_preimage}
+  \lean{KIP126.Classical.Adams.linToSphere_eq_iff}
+  \lean{KIP126.Classical.Adams.linToSphere_product_eq_zero}
+  \uses{thm:lin-e2-basis-certification,def:h6-fixed-computation}
+  \notready
+  Under the pending basis certification, obtain unique finite-support
+  $\mathbb F_2$ coordinates on each covered component. Transport them through
+  the fixed Lin comparison to the internal SSData $E_2$ page, using an
+  integer-linear equivalence to retain its existing additive structure.
+  Basis vectors have the specified CSV values and are nonzero; coordinates
+  reconstruct any element. Product equalities in the data quotient transfer
+  to the internal page, including zero products. Every covered page element
+  has a data preimage, and equality of images is equivalent to equality of
+  data representatives. These interfaces import no Mathlib spectral-sequence
+  adapter, and neither they nor the data assert higher-page survival.
+\end{definition}
+
+\begin{lemma}[The computed class is the square of computed $h_6$]
+  \label{lem:lin-h6-square-product}
+  \lean{KIP126.Classical.Adams.computedH6_mul_self}
+  \uses{def:h6-fixed-computation,def:lin-e2-catalogue}
+  \notready
+  Under the fixed Lin comparison, the internal $E_2$ product of the image of
+  data $h_6$ with itself is the computational target class. This replaces
+  PR 110's historical \texttt{h6Sq\_eq\_comparison}, with no additional
+  admitted theorem. It neither asserts permanence nor eliminates the
+  existing presentation axiom.
+\end{lemma}
+
+\begin{theorem}[Coordinate-check soundness, pending]
+  \label{thm:lin-e2-coordinate-check}
+  \lean{KIP126.LinE2.Automation.coordinateCheck_sound}
+  \uses{def:lin-e2-catalogue}
+  \notready
+  If the concrete reducer successfully checks equal CSV coordinates for two
+  expressions within range, their interpretations in the quotient algebra
+  are equal. The migrated \texttt{e2\_mul} tactic executes the check but uses
+  this admitted theorem to close goals. This algorithm-correctness debt is
+  separate from additive-basis certification and from the comparison with
+  the actual sphere Adams page. On Lean 4.32, the tactic's native evaluation
+  also generates evaluation axioms; the strict project audit rejects them.
+  Kernel-checkable reduction certificates remain a separate required step.
+\end{theorem}

@@ -1,31 +1,25 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Data
-import KIP126.Mathlib.SpectralSequence.Permanence.Data
+import KIP126.Solution.Final.h6_sq_permanent_computational
+import KIP126.Mathlib.ClassicalAdams.FinalComparison.Axiom
 
 /-!
-# The permanent `h₆²` solution target
+# The fixed standard permanent h₆² statement
 
-This theorem records the statement with its proof left as `sorry`.  The sphere
-Adams sequence and the class are constructed from the abstract stable
-foundation and its explicitly specified Milnor cooperations.  No near-126
-condition, differential exclusion, or intermediate theorem is an input.
-
-This statement matches the corresponding Challenge theorem.  Its independent
-solution proof is not implemented yet.
+All standard objects are fixed in the foundation layer. The statement has no
+category, coefficient-object, coordinate, table, or presentation parameters.
+The proof below transports the computational Solution. It has no local sorry,
+but still depends on that Solution's sorryAx and the named comparison axioms.
+It is not a completed proof of permanence.
 -/
 namespace KIP126.Solution.Final.H6SquarePermanent
 
-open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
-open KIP126.Classical.Adams
+open KIP126.Classical.Adams KIP126.Core.SpectralSequence
 
-universe u v
-
-/-- The standard `h₆² ∈ E₂^{2,128}(S⁰)` has compatible nonzero descendants
-on every later page of the constructed sphere Adams spectral sequence. -/
-theorem h6_sq_permanent {C : Type u} [StableHomotopyCategory.{u, v} C]
-    [HasFunctorialCofiber (C := C)]
-    (H : Mod2EilenbergMacLane (C := C)) (M : MilnorCooperations H) :
-  KIP126.Core.SpectralSequence.IsPermanent
-    (mod2SphereAdams H) 2 (by decide) (2, 128) (Sphere.h6Square H M) := by
-  sorry
+/-- The standard h₆² ∈ E₂^(2,128)(S⁰) has compatible nonzero descendants on
+all later pages of the fixed tower-constructed sphere Adams sequence. -/
+theorem h6_sq_permanent :
+    IsPermanent sphereAdams 2 (by decide) (2, 128) sphereH6Square := by
+  have hcomp := KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent_computational
+  have htower := (survival_comparison (2, 128) computedH6Square).mp hcomp
+  simpa only [h6Square_comparison] using htower
 
 end KIP126.Solution.Final.H6SquarePermanent

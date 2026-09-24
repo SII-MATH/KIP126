@@ -16,10 +16,7 @@ open CategoryTheory CategoryTheory.Limits
 
 universe u v
 
-set_option linter.dupNamespace false
-set_option backward.defeqAttrib.useBackward true
 set_option backward.isDefEq.respectTransparency false
-set_option maxSynthPendingDepth 3
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
 

@@ -15,24 +15,22 @@ open CategoryTheory
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 variable {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
 
 /-- The Mathlib complex shape corresponding to the internal differential degree. -/
-def SpectralSequence.mathlibPageShape (E : SpectralSequence C ι)
+def MathlibAdapter.pageShape (E : SpectralSequence C ι)
     (r : ℤ) : ComplexShape ι :=
   ComplexShape.up' (E.diffDeg r)
 
 /-- An internal `Z/B` page, packaged as a Mathlib homological complex. -/
-noncomputable def SpectralSequence.mathlibPageComplex
+noncomputable def MathlibAdapter.pageComplex
     (E : SpectralSequence C ι) (r : ℤ) :
-    HomologicalComplex C (E.mathlibPageShape r) := by
+    HomologicalComplex C (MathlibAdapter.pageShape E r) := by
   classical
   refine {
   X k := E.Page r k
-  d k l := if h : (E.mathlibPageShape r).Rel k l then
+  d k l := if h : (MathlibAdapter.pageShape E r).Rel k l then
       E.d r k ≫ eqToHom (by
         change k + E.diffDeg r = l at h
         rw [← h])
@@ -50,28 +48,28 @@ noncomputable def SpectralSequence.mathlibPageComplex
 
 /-- Assemble an internal nested-subobject spectral sequence as a Mathlib
 spectral sequence, with the same finite quotient pages and differentials. -/
-noncomputable def SpectralSequence.toMathlib
+noncomputable def MathlibAdapter.toMathlib
     (E : SpectralSequence C ι) :
-    CategoryTheory.SpectralSequence C E.mathlibPageShape E.r₀ where
-  page r _ := E.mathlibPageComplex r
+    CategoryTheory.SpectralSequence C (MathlibAdapter.pageShape E) E.r₀ where
+  page r _ := MathlibAdapter.pageComplex E r
   iso r r' k hrr' hr := by
     subst r'
     let δ := E.diffDeg r
     let source : ι := k - δ
     let mid : ι := source + δ
     let target : ι := mid + δ
-    let K := E.mathlibPageComplex r
+    let K := MathlibAdapter.pageComplex E r
     have hm : mid = k := sub_add_cancel k δ
-    have hs : (E.mathlibPageShape r).Rel source mid := by
+    have hs : (MathlibAdapter.pageShape E r).Rel source mid := by
       change source + δ = mid
       rfl
-    have ht : (E.mathlibPageShape r).Rel mid target := by
+    have ht : (MathlibAdapter.pageShape E r).Rel mid target := by
       change mid + δ = target
       rfl
     have hsc : K.sc' source mid target = E.pageShortComplex r source := by
       change ShortComplex.mk (K.d source mid) (K.d mid target) _ =
         ShortComplex.mk (E.d r source) (E.d r (source + E.diffDeg r)) _
-      simp only [K, SpectralSequence.mathlibPageComplex, dif_pos hs, dif_pos ht,
+      simp only [K, MathlibAdapter.pageComplex, dif_pos hs, dif_pos ht,
         mid, target, eqToHom_refl, Category.comp_id]
       rfl
     have hhom : (K.sc' source mid target).homology =
@@ -79,8 +77,8 @@ noncomputable def SpectralSequence.toMathlib
       exact congrArg (fun (S : ShortComplex C) => S.homology) hsc
     exact eqToIso (congrArg (fun j : ι => K.homology j) hm.symm) ≪≫
       K.homologyIsoSc' source mid target
-        ((E.mathlibPageShape r).prev_eq' hs)
-        ((E.mathlibPageShape r).next_eq' ht) ≪≫
+        ((MathlibAdapter.pageShape E r).prev_eq' hs)
+        ((MathlibAdapter.pageShape E r).next_eq' ht) ≪≫
       eqToIso hhom ≪≫
       (E.pageHomologyIso r k hr).symm
 

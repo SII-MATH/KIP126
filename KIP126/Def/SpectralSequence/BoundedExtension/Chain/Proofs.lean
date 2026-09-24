@@ -9,7 +9,6 @@ namespace KIP126.Core.SpectralSequence
 
 open CategoryTheory
 
-set_option linter.defProp false
 
 universe u v w
 
@@ -19,7 +18,7 @@ variable {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
 
 /-- The extension spectral sequence for the first morphism in a
 three-spectra chain. -/
-noncomputable def ThreeSpectraChain.boundedEssF
+theorem ThreeSpectraChain.boundedEssF
     {E₁ E₂ E₃ : SpectralSequence C ω}
     {A₁ A₂ A₃ : ω' → C}
     {F₁ : Filtration A₁} {F₂ : Filtration A₂} {F₃ : Filtration A₃}
@@ -32,7 +31,7 @@ noncomputable def ThreeSpectraChain.boundedEssF
 
 /-- The extension spectral sequence for the second morphism in a
 three-spectra chain. -/
-noncomputable def ThreeSpectraChain.boundedEssG
+theorem ThreeSpectraChain.boundedEssG
     {E₁ E₂ E₃ : SpectralSequence C ω}
     {A₁ A₂ A₃ : ω' → C}
     {F₁ : Filtration A₁} {F₂ : Filtration A₂} {F₃ : Filtration A₃}

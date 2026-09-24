@@ -13,22 +13,20 @@ open CategoryTheory
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 variable {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
 
 /-- The adapted page object is the internal `SSData` quotient page. -/
-theorem SpectralSequence.toMathlib_page_X (E : SpectralSequence C ι)
+theorem MathlibAdapter.toMathlib_page_X (E : SpectralSequence C ι)
     (r : ℤ) (hr : E.r₀ ≤ r) (k : ι) :
-    ((E.toMathlib).page r hr).X k = E.Page r k := by
+    ((MathlibAdapter.toMathlib E).page r hr).X k = E.Page r k := by
   rfl
 
 /-- The adapted page differential is the internal `SSData` differential. -/
-theorem SpectralSequence.toMathlib_page_d (E : SpectralSequence C ι)
+theorem MathlibAdapter.toMathlib_page_d (E : SpectralSequence C ι)
     (r : ℤ) (hr : E.r₀ ≤ r) (k : ι) :
-    ((E.toMathlib).page r hr).d k (k + E.diffDeg r) = E.d r k := by
-  simp [SpectralSequence.toMathlib, SpectralSequence.mathlibPageComplex,
-    SpectralSequence.mathlibPageShape]
+    ((MathlibAdapter.toMathlib E).page r hr).d k (k + E.diffDeg r) = E.d r k := by
+  simp [MathlibAdapter.toMathlib, MathlibAdapter.pageComplex,
+    MathlibAdapter.pageShape]
 
 end KIP126.Core.SpectralSequence

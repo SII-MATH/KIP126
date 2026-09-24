@@ -10,8 +10,6 @@ open CategoryTheory
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- A filtration is bounded on both sides degreewise. -/

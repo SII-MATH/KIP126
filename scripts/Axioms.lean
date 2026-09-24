@@ -2,7 +2,8 @@ import Lean
 
 /-!
 Compiled-environment audit of the canonical library's proof dependencies.
-Development-only project axioms must be declared in a component's `Axiom.lean`;
+Development-only project axioms must be declared in a Def or Mathlib adapter
+component's `Axiom.lean` (see PROJECT_BOUNDARY.md, fixed h₆² exception);
 they are inventoried separately from `sorryAx` and remain failures of this
 strict, final-acceptance audit. The initializer substitutes the source root.
 -/
@@ -101,7 +102,7 @@ def audit : CoreM AuditReport := do
   for name in projectAxioms do
     let some moduleName := owningModule? env moduleNames name
       | continue
-    if (`KIP126.Def).isPrefixOf moduleName &&
+    if ((`KIP126.Def).isPrefixOf moduleName || (`KIP126.Mathlib).isPrefixOf moduleName) &&
         moduleName.toString.endsWith ".Axiom" then
       let line := s!"  {name} (declared in {moduleName})"
       report := { report with registered := report.registered.push line }

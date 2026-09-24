@@ -16,8 +16,6 @@ open CategoryTheory CategoryTheory.Limits
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- A decreasing filtration with the historical `mono` field name. -/
