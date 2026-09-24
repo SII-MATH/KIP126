@@ -159,9 +159,10 @@ factorization input is required for this construction.
 Its lift predicate factors through the canonical cycle subobject and `pageπ`, and it no
 longer identifies every page with the associated graded object. The
 `Mathlib/SpectralSequence/FilteredComplex/Relations/Proofs.lean` contains the
-comparison declarations: the uniqueness lemma is proved, while three relation theorems have
-`by sorry` proof bodies. They are reusable internal lemmas, not Challenge
-milestones. `FilteredPage/AssemblyProofs.lean` constructs `pageHomologyIso`
+proved comparison declarations, with the three lift/relation theorems explicitly
+restricted to `PageView.canonical`. The quotient-page no-crossing form follows
+from target uniqueness and does not replace the historical representative-level
+argument. `FilteredPage/AssemblyProofs.lean` constructs `pageHomologyIso`
 and `canonicalPageSpectralSequence` directly. See
 `SPECTRAL_SEQUENCE_STATUS.md` for the remaining finite-page and convergence work.
 

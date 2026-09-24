@@ -119,10 +119,12 @@ KIP126 是新布局和主接口的权威来源。KIPBase 只有在提供独有�
 - `differentialRelation_crossed_of_two`；
 - `lift_rel_of_not_crossed`。
 
-其中两个 lift 对应和 no-crossing 定理目前以 `by sorry` 留在
-`KIP126/Mathlib/SpectralSequence/FilteredComplex/Relations/Proofs.lean`；
-旧 competing-target crossing 陈述在商页关系下不成立，须先改为代表元关系。
-完成前均不能作为已证结论或 Blueprint 完成证据。
+两个 lift 对应和一个保留旧名称的 no-crossing 形式，现已针对
+`PageView.canonical` 在
+`KIP126/Mathlib/SpectralSequence/FilteredComplex/Relations/Proofs.lean`
+证明。后者在商页上只需目标唯一性，并不复现历史的代表元级结论。
+旧 competing-target crossing 陈述在商页关系下不成立，须先改为代表元关系；
+这些适配层定理不能充当历史代表元论证或 Blueprint 完成证据。
 
 旧 `weakConvergence` 中标注未完成的收敛同构，也不能作为证明来源。
 

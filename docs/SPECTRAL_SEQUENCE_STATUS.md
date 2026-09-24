@@ -55,7 +55,7 @@ FilteredComplex
 
 按建议的先后顺序：
 
-1. 完成任意有限页的代表元、lift 和 crossing 关系；目前三个关系定理仍是占位证明。
+1. 完成任意有限页的代表元与 crossing 关系；canonical 商页的三个 lift/微分关系定理已证明，但不能替代代表元级 crossing。
 2. 建立 canonical 页面关于 filtered-complex morphism 的函子性，并产生相应的
    Mathlib 谱序列态射。
 3. 明确并实现 canonical 页号/双分次与 Adams 常用约定之间的 reindex。
@@ -70,19 +70,19 @@ Mathlib 谱序列类型；要使内部推理完全回到 `SSData`，需先建立
 
 ## 当前明确的证明缺口
 
-谱序列适配层中有三个实际的 `sorry`，均在
+谱序列适配层中原有的三个 `sorry` 已去除，均在
 `KIP126/Mathlib/SpectralSequence/FilteredComplex/Relations/Proofs.lean`：
 
 - `differentialRelationOfLift`
 - `liftOfDifferentialRelation`
 - `liftRelOfNotCrossed`
 
-`PageView` 目前只携带页面对象与 canonical 商页的同构，并不要求该同构
-与微分相容。因此，上述以任意 `PageView` 为参数的关系定理缺少连接过滤
-复形微分与 `P.sequence` 微分的接口；后续必须补充相容字段及 canonical
-实例证明，或把这些定理限定到 canonical 页面，不能直接填入证明。
+`PageView` 只携带页面对象与 canonical 商页的同构，并不要求该同构与微分
+相容；三个定理现在显式要求 `P = PageView.canonical FC`。特别是
+`liftRelOfNotCrossed` 在商页上的结论由目标唯一性推出，`not crossed`
+前提仅为保留旧接口；这**不是**历史的关联分次代表元级 no-crossing 定理。
 
-前三项属于有限页代表元关系。原 `strongConvergenceFromComparison` 占位定理
+原 `strongConvergenceFromComparison` 占位定理
 已移除：`PageAbutmentComparisonWitness` 只给逐点、逐页的比较，不能自动推出
 后续页面稳定、页面间 coherence 和统一的 `E_∞` 数据。强收敛必须显式提供
 `StrongConvergenceWitness`，或在将来先证明满足这些额外条件的构造定理。
