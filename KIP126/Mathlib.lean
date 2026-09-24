@@ -9,6 +9,7 @@ import Mathlib.CategoryTheory.Triangulated.HomologicalFunctor
 import Mathlib.CategoryTheory.Triangulated.Pretriangulated
 import KIP126.Mathlib.SpectralSequence.FilteredComplex.Adapter.Proofs
 import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Proofs
+import KIP126.Mathlib.SpectralSequence.SSData.Assembly.Proofs
 
 /-!
 # Mathlib dependencies
