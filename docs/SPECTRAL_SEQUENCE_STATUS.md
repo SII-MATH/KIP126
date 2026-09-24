@@ -5,7 +5,11 @@
 
 ## 已确定的结构
 
-- Mathlib 的 `CategoryTheory.SpectralSequence` 是唯一的通用谱序列类型。
+- 目标是以 Mathlib 的 `CategoryTheory.SpectralSequence` 为唯一通用公开谱序列类型。
+  当前 `Def/SpectralSequence/Basic/Data.lean` 仍定义了独立的
+  `KIP126.Core.SpectralSequence.SpectralSequence`，其 `SSData`/`PreSS` 到
+  Mathlib 页面、微分和态射的完整受检适配尚未建立（见 issue #105）。
+  因此这条仍是架构目标，不能视为已完成事实。
 - KIP126 的具体计算仍从 `FilteredComplex` 的代表元模型出发；`Z_r`、`B_r`、
   `pageObj = Z_r/B_r` 和 `pageDifferential` 不是从任意 Mathlib 谱序列反向恢复的附加数据。
 - canonical 页面直接装配成 Mathlib 谱序列，不再经过
@@ -54,23 +58,29 @@ FilteredComplex
 
 ## 当前明确的证明缺口
 
-`KIP126/Def/SpectralSequence` 中有五个实际的 `sorry`：
+`KIP126/Def/SpectralSequence` 中有四个实际的 `sorry`：
 
 - `FilteredComplex/Relations/Proofs.lean`
   - `differentialRelationOfLift`
   - `liftOfDifferentialRelation`
-  - `differentialRelationCrossedOfTwo`
   - `liftRelOfNotCrossed`
 - `Convergence/Proofs.lean`
   - `strongConvergenceFromComparison`
 
-前四项属于有限页代表元关系。第五项不应直接按现有陈述填证明：
+前三项属于有限页代表元关系。第四项不应直接按现有陈述填证明：
 `PageAbutmentComparisonWitness` 目前只给逐点、逐页的比较，而结论要求后续页面稳定、
 页面间 coherence 和统一的 `E_∞` 数据。继续收敛工作前，应先加强假设，或者删除这个
 自动构造定理，改为显式要求 `StrongConvergenceWitness`。
 
+原 `differentialRelationCrossedOfTwo` 占位命题不能直接证明：它把同一页上的
+`d_r(x)=y₁` 与 `d_r(x)=y₂` 当作两个不同目标，但页上目标由函数性必然相等，
+而历史定理比较的是**关联分次代表元**，并且额外假设 `y₁ ≠ y₂`。
+目前已分离严格 filtered-lift 形式的 `RepresentativeRelation`；尚不能称其
+等价于历史的商集关系。要恢复 crossing 定理，还须证明两者比较、与商页微分的
+兼容，以及目标差的边界/首次出现页定理。
+
 ## 下次继续时
 
-优先从四个有限页关系定理开始；这一步最直接承接 KIPBase 基于 `SSData` 的证明，
+优先从三个有限页关系定理开始；这一步最直接承接 KIPBase 基于 `SSData` 的证明，
 也会检验当前 `PageView` 和代表元接口是否足够。不要重新引入 witness 装配层，
 也不要另建一套 `Z_r`、`B_r`、页面或谱序列定义。

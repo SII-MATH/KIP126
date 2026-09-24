@@ -10,6 +10,22 @@ universe u v
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
+/-- A strict filtered-lift relation between associated-graded representatives.
+Unlike a relation between elements of a quotient page, its target is not
+necessarily unique: changing a filtered lift can change the target by a
+boundary. The comparison with the historical quotient-coset relation remains
+to be proved; this definition does not assume that equivalence. -/
+def RepresentativeRelation (FC : FilteredComplex C)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
+    (x : T ⟶ FC.filtration.associatedGraded s k)
+    (y : T ⟶ FC.filtration.associatedGraded (s + r) (k - 1)) : Prop :=
+  ∃ (xl : T ⟶ Subobject.underlying.obj (FC.filtration.F s k))
+    (yl : T ⟶ Subobject.underlying.obj (FC.filtration.F (s + r) (k - 1))),
+    xl ≫ FC.filtration.toAssociatedGraded s k = x ∧
+    yl ≫ FC.filtration.toAssociatedGraded (s + r) (k - 1) = y ∧
+    xl ≫ PageView.filDiff (FC := FC) s k =
+      yl ≫ PageView.drop (FC := FC) r s k hr
+
 namespace PageView
 
 variable {FC : FilteredComplex C} (P : PageView FC)

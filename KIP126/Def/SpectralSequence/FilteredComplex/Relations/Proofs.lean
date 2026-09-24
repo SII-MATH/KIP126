@@ -3,9 +3,9 @@ import KIP126.Def.SpectralSequence.FilteredComplex.Relations.Predicates
 /-!
 # Proofs for filtered-complex/page relations
 
-The four relation theorems are internal proof obligations, rather than paper
-milestones.  Their theorem statements are kept here directly; the unfinished
-proof bodies are explicit `by sorry` placeholders.
+The remaining relation theorems are internal proof obligations, rather than
+paper milestones. Their unfinished proof bodies are explicit `by sorry`
+placeholders. Representative-level and quotient-page relations are distinct.
 -/
 
 namespace KIP126.Core.SpectralSequence.FilteredComplex
@@ -17,9 +17,34 @@ universe u v
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
+/-- An actual filtered lift gives a representative-level differential
+relation.  The target is recorded before quotienting by page boundaries. -/
+theorem representativeRelation_of_lifts
+    (FC : FilteredComplex C) (r : ℤ) (hr : 0 ≤ r) (s k : ℤ)
+    {T : C}
+    (xl : T ⟶ Subobject.underlying.obj (FC.filtration.F s k))
+    (yl : T ⟶ Subobject.underlying.obj (FC.filtration.F (s + r) (k - 1)))
+    (hd : xl ≫ PageView.filDiff (FC := FC) s k =
+      yl ≫ PageView.drop (FC := FC) r s k hr) :
+    RepresentativeRelation FC r hr s k
+      (xl ≫ FC.filtration.toAssociatedGraded s k)
+      (yl ≫ FC.filtration.toAssociatedGraded (s + r) (k - 1)) := by
+  exact ⟨xl, yl, rfl, rfl, hd⟩
+
 namespace PageView
 
 variable {FC : FilteredComplex C} (P : PageView FC)
+
+/-- On a quotient page the differential has a unique target.  The historical
+crossing argument instead uses representatives in the associated graded,
+where two targets may differ by a boundary. -/
+theorem relation_target_unique
+    {r : ℤ} {hr : P.firstPage ≤ r} {s k : ℤ} {T : C}
+    {x : P.element r hr s k T}
+    {y₁ y₂ : P.element r hr (s + r) (k - 1) T}
+    (h₁ : P.relation r hr s k x y₁)
+    (h₂ : P.relation r hr s k x y₂) : y₁ = y₂ := by
+  exact h₁.symm.trans h₂
 
 /-- Two lifts of one page element differ by a map through the page boundary. -/
 theorem isLift_sub_factors_boundary
@@ -59,7 +84,7 @@ theorem isLift_sub_factors_boundary
 
 end PageView
 
-/-! The following four declarations are internal relation lemmas, not
+/-! The following three declarations are internal relation lemmas, not
 challenge milestones. -/
 
 theorem differentialRelationOfLift
@@ -92,18 +117,6 @@ theorem liftOfDifferentialRelation
       P.IsLift r hrPage (s + r) (k - 1) yl y ∧
       xl ≫ PageView.filDiff (FC := FC) s k =
         yl ≫ PageView.drop (FC := FC) r s k hrZero := by
-  sorry
-
-theorem differentialRelationCrossedOfTwo
-    (FC : FilteredComplex C) (P : PageView FC)
-    (_bnd : FC.filtration.IsBounded)
-    (r : ℤ) (hrPage : P.firstPage ≤ r) (s k : ℤ)
-    {T : C} [Projective T]
-    {x : P.element r hrPage s k T}
-    {y₁ y₂ : P.element r hrPage (s + r) (k - 1) T}
-    (h₁ : P.relation r hrPage s k x y₁)
-    (h₂ : P.relation r hrPage s k x y₂) :
-    P.crossed r hrPage s k x y₁ h₁ := by
   sorry
 
 theorem liftRelOfNotCrossed
