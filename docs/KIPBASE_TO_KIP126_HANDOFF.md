@@ -25,6 +25,8 @@
 该 head 的检查结果；不要根据旧交接记录切换分支或宣称 CI 已通过。
 
 当前目录映射和未完成分层见 `docs/DEF_CHALLENGE_LAYOUT_STATUS.md`；
+当前 KIPBase 源码中尚未进入规范库的数学内容和信任债务分区见
+`docs/KIPBASE_GAP_INVENTORY.md`；
 有限页构造和剩余数学缺口见 `docs/SPECTRAL_SEQUENCE_STATUS.md`。
 当前源码已直接构造 `pageHomologyIso`、`canonicalPageSpectralSequence`
 和 `PageView.canonical`，不再要求额外的 page-homology witness/factorization 输入。

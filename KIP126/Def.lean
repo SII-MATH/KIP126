@@ -41,6 +41,7 @@ import KIP126.Def.Synthetic.Sphere.Data
 import KIP126.Def.StableHomotopy.Context.Data
 import KIP126.Def.StableHomotopy.Context.Proofs
 import KIP126.Def.StableHomotopy.Context.MappingProofs
+import KIP126.Def.StableHomotopy.Toda.Proofs
 import KIP126.Def.StableHomotopy.Cohomology.Data
 import KIP126.Def.StableHomotopy.Cohomology.Proofs
 import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Proofs
