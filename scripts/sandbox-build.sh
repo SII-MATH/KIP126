@@ -31,7 +31,7 @@ fi
 # misplaced or unexpected axioms and audit failures still fail the build.
 # The required `build` status can pass for classified review debt;
 # the outer workflow publishes the warning status separately, which keeps
-# automatic merge disabled until a human review accepts the open proofs.
+# automatic merge disabled until human review accepts the open proof/axiom debt.
 axiom_log=$(mktemp "$PWD/.lake/axioms.XXXXXX")
 trap 'rm -f "$axiom_log"' EXIT
 set +e
