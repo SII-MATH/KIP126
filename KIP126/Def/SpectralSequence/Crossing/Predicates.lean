@@ -66,6 +66,19 @@ def RelationCrossedBy
       EssentialDifferentialRelation E m k' x' y' ∧
       filtDeg (k' + E.diffDeg m) ≤ filtDeg k + r
 
+/-- A crossing whose target filtration is exactly that of the original differential. -/
+def RelationCrossedByAt
+    (E : SpectralSequence C ι) (filtDeg : ι → ℤ) (r : ℤ) (k : ι)
+    {T : C} (x : T ⟶ (E.ssData k).V)
+    (y : T ⟶ (E.ssData (k + E.diffDeg r)).V)
+    (_h : DifferentialRelation E r k x y) : Prop :=
+  ∃ (a : ℤ) (_ : 0 < a) (m : ℤ) (k' : ι)
+    (x' : T ⟶ (E.ssData k').V)
+    (y' : T ⟶ (E.ssData (k' + E.diffDeg m)).V),
+    filtDeg k' = filtDeg k + a ∧
+      EssentialDifferentialRelation E m k' x' y' ∧
+      filtDeg (k' + E.diffDeg m) = filtDeg k + r
+
 /-- A crossing whose target filtration is `p`. -/
 def HasCrossingAt (dd : DifferentialDatum C ι) (p : ℤ) : Prop :=
   let s := dd.filtDeg dd.k

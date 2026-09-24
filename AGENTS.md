@@ -50,6 +50,15 @@ clarified.
 
 ## Data, predicates, axioms, and proofs
 
+For spectral sequences, use KIP126's `SSData`/`PreSS` nested-subobject model
+for internal cycle, boundary, representative, and crossing arguments. Put
+bridges to Mathlib's `CategoryTheory.SpectralSequence` under `KIP126/Mathlib/`;
+that layer may import proved `Def` modules, but internal `SSData` reasoning
+must not import it back. Using Mathlib's categorical foundations does not by
+itself make a module an adapter. Preserve Mathlib-facing declarations until
+their replacement internal statements and checked adapters are available;
+do not treat a file move as a proof of semantic equivalence.
+
 - Organize each mathematical component under `KIP126/Def/` into separate
   `Data.lean`, `Predicates.lean`, `Axiom.lean`, and `Proofs.lean` modules as
   applicable. Do not mix these responsibilities in one implementation file or

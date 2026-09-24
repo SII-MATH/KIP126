@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Relations.Predicates
+import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Predicates
 
 /-!
 # Proofs for filtered-complex/page relations
@@ -16,20 +16,6 @@ open KIP126.Core.Algebra
 universe u v
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
-
-/-- An actual filtered lift gives a representative-level differential
-relation.  The target is recorded before quotienting by page boundaries. -/
-theorem representativeRelation_of_lifts
-    (FC : FilteredComplex C) (r : ℤ) (hr : 0 ≤ r) (s k : ℤ)
-    {T : C}
-    (xl : T ⟶ Subobject.underlying.obj (FC.filtration.F s k))
-    (yl : T ⟶ Subobject.underlying.obj (FC.filtration.F (s + r) (k - 1)))
-    (hd : xl ≫ PageView.filDiff (FC := FC) s k =
-      yl ≫ PageView.drop (FC := FC) r s k hr) :
-    RepresentativeRelation FC r hr s k
-      (xl ≫ FC.filtration.toAssociatedGraded s k)
-      (yl ≫ FC.filtration.toAssociatedGraded (s + r) (k - 1)) := by
-  exact ⟨xl, yl, rfl, rfl, hd⟩
 
 namespace PageView
 

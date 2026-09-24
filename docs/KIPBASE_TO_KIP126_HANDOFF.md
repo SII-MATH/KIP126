@@ -108,17 +108,21 @@ KIP126 是新布局和主接口的权威来源。KIPBase 只有在提供独有�
 - `pageHomologyIso`；
 - `canonicalPageSpectralSequence`。
 
-旧 `SSData` / `PreSS` 及其装配函数只作迁移参考，不重新引入平行谱序列模型。
+已迁入的 `SSData` / `PreSS` 是 KIP126 内部循环、边界和代表元叙述的基础；
+`KIP126/Mathlib/` 负责与 Mathlib 谱序列 API 的受检适配，不在内部证明中
+另造平行的页面定义。
 
-以下四个 KIPBase 定理仍然是开放目标，不能作为现成证明迁移：
+以下历史 KIPBase 定理不能作为现成证明迁移：
 
 - `differentialRelation_of_lift`；
 - `lift_of_differentialRelation`；
 - `differentialRelation_crossed_of_two`；
 - `lift_rel_of_not_crossed`。
 
-它们是内部支持定理，位于 `Def/SpectralSequence/FilteredComplex/Relations/Proofs.lean`；
-开发期间可用 `by sorry`，完成前不能作为已证结论或 Blueprint 完成证据。
+其中两个 lift 对应和 no-crossing 定理目前以 `by sorry` 留在
+`KIP126/Mathlib/SpectralSequence/FilteredComplex/Relations/Proofs.lean`；
+旧 competing-target crossing 陈述在商页关系下不成立，须先改为代表元关系。
+完成前均不能作为已证结论或 Blueprint 完成证据。
 
 旧 `weakConvergence` 中标注未完成的收敛同构，也不能作为证明来源。
 

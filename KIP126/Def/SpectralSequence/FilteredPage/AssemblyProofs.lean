@@ -269,17 +269,4 @@ noncomputable def pageHomologyIso (FC : FilteredComplex C)
   exact K.homologyIsoSc' source (s, k) target
       ((pageShape n).prev_eq' hsource) ((pageShape n).next_eq' htarget) ≪≫ hS
 
-/-- The canonical quotient pages of a filtered complex, assembled as a
-Mathlib spectral sequence. -/
-noncomputable def canonicalPageSpectralSequence (FC : FilteredComplex C) :
-    CategoryTheory.SpectralSequence C (fun r : ℤ => pageShape r.toNat) 0 where
-  page r hr := FC.pageComplex r.toNat
-  iso r r' p hrr' hr := by
-    subst r'
-    exact FC.pageHomologyIso r.toNat p ≪≫ eqToIso (by
-      change FC.pageObj p.1 p.2 (↑(r.toNat + 1) : WithTop ℕ) =
-        FC.pageObj p.1 p.2 (↑((r + 1).toNat) : WithTop ℕ)
-      congr 2
-      omega)
-
 end KIP126.Core.SpectralSequence.FilteredComplex

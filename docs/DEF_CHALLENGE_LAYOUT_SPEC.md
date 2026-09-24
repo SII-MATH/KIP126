@@ -73,7 +73,8 @@ They do not require empty directories for planned mathematics.
 | --- | --- |
 | Algebra | Def/Algebra/ |
 | Filtered complexes, quotient pages, finite-page assembly, convergence interfaces | Def/SpectralSequence/ |
-| Generic page differential, essentiality, crossing, and no-crossing predicates | Def/SpectralSequence/PageDifferential/ |
+| Mathlib spectral-sequence imports and checked `SSData`/Mathlib adapters | Mathlib/, Mathlib.lean |
+| Mathlib-page differential, essentiality, crossing, and no-crossing adapters | Mathlib/SpectralSequence/PageDifferential/ |
 | Stable homotopy and cohomology | Def/StableHomotopy/ |
 | Classical Adams constructions and sphere classes | Def/ClassicalAdams/ |
 | Synthetic contexts, spheres, and Adams data | Def/Synthetic/ |
@@ -124,6 +125,8 @@ without removing those targets from the project boundary.
 - Production mathematics must not import Checks. Canonical KIP126 modules
   must not import KIPBase. Historical reuse requires a port with checked
   statements and recursive axiom dependencies.
+- Internal `SSData` reasoning must not depend on `KIP126/Mathlib/` adapters;
+  adapters may import proved internal definitions, with no reverse import.
 - External facts enter as explicit, provenance-bearing ExternalResult or
   ExternalEvidence inputs about the same objects used by their consumers.
   Do not move internal proof obligations into External or introduce external

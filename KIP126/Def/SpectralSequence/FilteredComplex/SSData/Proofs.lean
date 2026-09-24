@@ -15,6 +15,19 @@ variable {C : Type u} [Category.{v} C] [Abelian C]
 
 namespace FilteredComplex
 
+/-- Actual filtered lifts give a representative-level differential relation. -/
+theorem representativeRelation_of_lifts
+    (FC : FilteredComplex C) (r : ℤ) (hr : 0 ≤ r) (s k : ℤ)
+    {T : C}
+    (xl : T ⟶ Subobject.underlying.obj (FC.filtration.F s k))
+    (yl : T ⟶ Subobject.underlying.obj (FC.filtration.F (s + r) (k - 1)))
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ FC.filtration.inclusion (by omega) (k - 1)) :
+    RepresentativeRelation FC r hr s k
+      (xl ≫ FC.filtration.toAssociatedGraded s k)
+      (yl ≫ FC.filtration.toAssociatedGraded (s + r) (k - 1)) := by
+  exact ⟨xl, yl, rfl, rfl, hd⟩
+
 /-- Convert historical boundedness to KIP126's canonical filtration predicate. -/
 def IsBounded.toAlgebra {FC : FilteredComplex C} (bnd : FC.IsBounded) :
     FC.filtration.IsBounded where

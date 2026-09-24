@@ -172,6 +172,52 @@ instance cokernelMap_ofLE_mono
 
 end PageHomology
 
+/-- Equal page classes of cycle representatives differ by a boundary in the ambient object. -/
+theorem SSData.sub_factors_boundary_of_page_eq (D : SSData C)
+    (n : WithTop ℕ) {T : C}
+    (u v : T ⟶ Subobject.underlying.obj (D.Z n))
+    (h : u ≫ D.pageπ n = v ≫ D.pageπ n) :
+    Subobject.Factors (D.B n)
+      (u ≫ (D.Z n).arrow - v ≫ (D.Z n).arrow) := by
+  let i := Subobject.ofLE (D.B n) (D.Z n) (D.B_le_Z n)
+  have hz : (u - v) ≫ cokernel.π i = 0 := by
+    change (u - v) ≫ D.pageπ n = 0
+    rw [Preadditive.sub_comp, h, sub_self]
+  let b := Abelian.monoLift i (u - v) hz
+  have hb : b ≫ (D.B n).arrow =
+      u ≫ (D.Z n).arrow - v ≫ (D.Z n).arrow := by
+    calc
+      b ≫ (D.B n).arrow = b ≫ i ≫ (D.Z n).arrow := by
+        rw [Subobject.ofLE_arrow]
+      _ = (u - v) ≫ (D.Z n).arrow := by
+        rw [← Category.assoc, Abelian.monoLift_comp]
+      _ = u ≫ (D.Z n).arrow - v ≫ (D.Z n).arrow := by
+        rw [Preadditive.sub_comp]
+  rw [← hb]
+  exact Subobject.factors_comp_arrow b
+
+/-- A nonzero page boundary has a first finite stage at which it enters the boundary tower. -/
+theorem SSData.first_boundary_page (D : SSData C) {T : C}
+    (v : T ⟶ D.V) (n : ℕ)
+    (hn : Subobject.Factors (D.B (↑n)) v)
+    (hzero : ¬ Subobject.Factors (D.B (↑(0 : ℕ))) v) :
+    ∃ m : ℕ, m < n ∧
+      Subobject.Factors (D.B (↑(m + 1))) v ∧
+      ¬ Subobject.Factors (D.B (↑m)) v := by
+  classical
+  let P : ℕ → Prop := fun j => Subobject.Factors (D.B (↑j)) v
+  have hex : ∃ j : ℕ, P j := ⟨n, hn⟩
+  let p := Nat.find hex
+  have hp : P p := Nat.find_spec hex
+  have hp0 : 0 < p := by
+    by_contra h
+    have h0 : p = 0 := by omega
+    exact hzero (by simpa only [P, h0] using hp)
+  have hple : p ≤ n := Nat.find_min' hex hn
+  refine ⟨p - 1, by omega, ?_, ?_⟩
+  · simpa only [show p - 1 + 1 = p by omega, P] using hp
+  · exact Nat.find_min hex (by omega)
+
 /-- The packaged infinity page vanishes when every finite page at the grading vanishes. -/
 noncomputable def EInftyData.eInfty_isZero_of_page_isZero
     {C : Type u} [Category.{v} C] [Abelian C]

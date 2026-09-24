@@ -17,13 +17,13 @@ the mathematical index; compiling a Challenge module does not prove its node.
 | `SpectralSequence/Commutativity` | Retained as isolated historical evidence; its ESS and convergence statements depend on the retired `PreSS`/`ConvergenceMorphism` architecture and are not asserted in KIP126 |
 | `SpectralSequence/UnboundedExtension` | Retained as isolated historical evidence; its stabilization and weak-convergence declarations remain open and depend on the retired extension architecture |
 | `Core/SpectralSequence/PageLevel` | `Def/SpectralSequence/PageLevel/{Data,Proofs}` |
-| `Core/SpectralSequence/FilteredComplex` | `Def/SpectralSequence/FilteredComplex/Data`, `Def/SpectralSequence/FilteredPage/{Data,Proofs,Complex,AssemblyProofs}`, `Def/SpectralSequence/FilteredComplex/Relations/{Data,Predicates,Proofs}`, `Def/SpectralSequence/FilteredDifferential/{Data,Proofs}`, `Checks/SpectralSequence/{FilteredComplex,FilteredPage,FilteredDifferential}`, `Challenge/` only for paper milestones (canonical filtered complex, homology filtration, cycle/boundary subobjects, page quotient, finite-page differential, and proved `B ≤ Z`/`d² = 0`; direct Mathlib `SpectralSequence` assembly is implemented; the full ESS adapter and four lift/relation theorems remain open) |
+| `Core/SpectralSequence/FilteredComplex` | `Def/SpectralSequence/FilteredComplex/Data`, `Def/SpectralSequence/FilteredComplex/SSData/{Data,Predicates,Proofs}`, `Def/SpectralSequence/FilteredPage/{Data,Proofs,Complex,AssemblyProofs}`, `Mathlib/SpectralSequence/FilteredComplex/{Relations,Adapter}/`, `Def/SpectralSequence/FilteredDifferential/{Data,Proofs}`, `Checks/SpectralSequence/{FilteredComplex,FilteredPage,FilteredDifferential}`, `Challenge/` only for paper milestones (canonical filtered complex, homology filtration, cycle/boundary subobjects, page quotient, finite-page differential, and proved `B ≤ Z`/`d² = 0`; direct Mathlib `SpectralSequence` assembly is implemented; the full ESS adapter and three lift/relation theorems remain open) |
 | `Core/SpectralSequence/FilteredRepresentatives` | `Def/SpectralSequence/Representatives/Proofs` |
 | `Core/SpectralSequence/HomologicalImage` | `Def/SpectralSequence/HomologicalImage/Data` |
 | `Core/SpectralSequence/SpectralObjectAdapter` | `Def/SpectralSequence/SpectralObject/Data` |
 | `Core/SpectralSequence/Convergence` | `Def/SpectralSequence/EndpointExtension/Data`, `Convergence/{Data,Predicates,Proofs}` |
 | `Core/SpectralSequence/Extension` | `Def/SpectralSequence/Extension/Data` (canonical two-term object, differential, chain-complex, square-zero and filtration helpers; full ESS adapter remains open) |
-| `SpectralSequence/Crossing` | `Def/SpectralSequence/PageDifferential/{Data,Predicates,Proofs}` (partial: finite-page relations; representative equivalence still open) |
+| `SpectralSequence/Crossing` | `Mathlib/SpectralSequence/PageDifferential/{Data,Predicates,Proofs}` for Mathlib-page adapters and `Def/SpectralSequence/Crossing/{Data,Predicates,Proofs}` for internal `SSData` relations (representative equivalence remains open) |
 | `StableHomotopy/{Basic,TensorTriangulatedCategory}` | `Def/StableHomotopy/Context/{Data,Proofs,MappingProofs}` (category structure, sphere shifts, homotopy-group functor, sphere-smash/mapping-spectrum consequences, distinguished-triangle zero-composition laws, middle-term and connecting-map-at-`Z` homotopy-group exactness, and explicit closed/cofiber witness interfaces; exactness at the shifted `X` term and model-specific witnesses remain open) |
 | `StableHomotopy/Cohomology` | `Def/StableHomotopy/Cohomology/{Data,Proofs}` (explicit HF₂, representable mod-2 cohomology/homology, functorial maps, Steenrod carrier, and universal-coefficient input records; mapping-spectrum action and UCT instances remain supplied data) |
 | `Synthetic/{Basic,Sphere}` | `Def/Synthetic/Context/{Data,Proofs}`, `Def/Synthetic/Sphere/Data` (bigraded suspension, λ-powers, λ-cofiber triangles, synthetic spheres, bigraded homotopy, and suspension/λ-action interfaces; enrichment and model-specific equivalences remain open) |
@@ -151,15 +151,15 @@ degreewise-Mittag-Leffler predicate and the bounded-above/bounded proofs. This
 is a filtration property only; it does not recreate the retired completion
 object or its convergence-morphism adapter.
 
-The filtered-complex relation definition layer now makes its page adapter explicit:
+The Mathlib adapter layer makes the filtered-complex page comparison explicit:
 `PageView` supplies a page-number translation and compares each Mathlib page
 with the canonical `pageObj` quotient. `PageView.canonical` uses the directly constructed
 `canonicalPageSpectralSequence`; no separate page-homology witness or
 factorization input is required for this construction.
 Its lift predicate factors through the canonical cycle subobject and `pageπ`, and it no
 longer identifies every page with the associated graded object. The
-`Relations/Proofs.lean` module contains the direct theorem declarations: the
-uniqueness lemma is proved, while the four relation theorems currently have
+`Mathlib/SpectralSequence/FilteredComplex/Relations/Proofs.lean` contains the
+comparison declarations: the uniqueness lemma is proved, while three relation theorems have
 `by sorry` proof bodies. They are reusable internal lemmas, not Challenge
 milestones. `FilteredPage/AssemblyProofs.lean` constructs `pageHomologyIso`
 and `canonicalPageSpectralSequence` directly. See
@@ -212,7 +212,7 @@ imports. Top-level relocation does not make these files compliant.
 
 ## Remaining mathematical and historical boundaries
 
-`Def/SpectralSequence/PageDifferential/{Data,Predicates,Proofs}` now owns the Mathlib
+`Mathlib/SpectralSequence/PageDifferential/{Data,Predicates,Proofs}` now owns the Mathlib
 page-level
 differential, essentiality, crossing, and no-crossing interfaces inspired by
 the historical crossing definitions. Essentiality means the target class is

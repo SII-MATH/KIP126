@@ -1,11 +1,11 @@
 import KIP126.Def.Algebra.Filtration.Proofs
 import KIP126.Def.SpectralSequence.FilteredComplex.Data
 import KIP126.Def.SpectralSequence.FilteredPage.Data
-import KIP126.Def.SpectralSequence.FilteredPage.AssemblyProofs
-import KIP126.Def.SpectralSequence.PageDifferential.Proofs
+import KIP126.Mathlib.SpectralSequence.FilteredComplex.Assembly.Data
+import KIP126.Mathlib.SpectralSequence.PageDifferential.Proofs
 
 /-!
-# Data for filtered-complex/page relations
+# Data for Mathlib-page/filtered-complex comparison
 
 This file contains only the objects used to compare filtered-complex lifts
 with page elements.  Their properties live in `Predicates.lean`, and the

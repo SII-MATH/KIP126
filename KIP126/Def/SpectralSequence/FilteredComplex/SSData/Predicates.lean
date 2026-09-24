@@ -34,6 +34,18 @@ def IsLift (FC : FilteredComplex C) {T : C} (s k : ℤ)
     (x : T ⟶ FC.assocGraded s k) : Prop :=
   xl ≫ FC.filToAssocGraded s k = x
 
+/-- A strict filtered-lift relation between associated-graded representatives. -/
+def RepresentativeRelation (FC : FilteredComplex C)
+    (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
+    (x : T ⟶ FC.filtration.associatedGraded s k)
+    (y : T ⟶ FC.filtration.associatedGraded (s + r) (k - 1)) : Prop :=
+  ∃ (xl : T ⟶ Subobject.underlying.obj (FC.filtration.F s k))
+    (yl : T ⟶ Subobject.underlying.obj (FC.filtration.F (s + r) (k - 1))),
+    xl ≫ FC.filtration.toAssociatedGraded s k = x ∧
+    yl ≫ FC.filtration.toAssociatedGraded (s + r) (k - 1) = y ∧
+    xl ≫ FC.filDiff s k =
+      yl ≫ FC.filtration.inclusion (by omega) (k - 1)
+
 end FilteredComplex
 
 end KIP126.Core.SpectralSequence
