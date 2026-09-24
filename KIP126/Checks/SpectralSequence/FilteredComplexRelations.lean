@@ -28,6 +28,14 @@ example (FC : FilteredComplex C) (P : PageView FC)
       ((xl₁ - xl₂) ≫ FC.filtration.toAssociatedGraded s k) :=
   P.isLift_sub_factors_boundary h₁ h₂
 
+example (FC : FilteredComplex C) (P : PageView FC)
+    {r : ℤ} {hr : P.firstPage ≤ r} {s k : ℤ} {T : C}
+    {x : P.element r hr s k T}
+    {y₁ y₂ : P.element r hr (s + r) (k - 1) T}
+    (h₁ : P.relation r hr s k x y₁)
+    (h₂ : P.relation r hr s k x y₂) : y₁ = y₂ :=
+  P.relation_target_unique h₁ h₂
+
 end
 
 end KIP126.Core.SpectralSequence.FilteredComplex
