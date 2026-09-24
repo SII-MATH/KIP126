@@ -9,6 +9,8 @@
   当前 `Def/SpectralSequence/Basic/Data.lean` 仍定义了独立的
   `KIP126.Core.SpectralSequence.SpectralSequence`，其 `SSData`/`PreSS` 到
   Mathlib 页面、微分和态射的完整受检适配尚未建立（见 issue #105）。
+  对同一个有界过滤复形，`FilteredComplex/Adapter/Proofs.lean` 已证明两条
+  构造路径的有限页对象和微分相同；这不是任意 `PreSS` 的通用适配，也尚未覆盖态射。
   因此这条仍是架构目标，不能视为已完成事实。
 - KIP126 的具体计算仍从 `FilteredComplex` 的代表元模型出发；`Z_r`、`B_r`、
   `pageObj = Z_r/B_r` 和 `pageDifferential` 不是从任意 Mathlib 谱序列反向恢复的附加数据。
@@ -39,6 +41,7 @@ FilteredComplex
 - `KIP126/Def/SpectralSequence/FilteredPage/Complex.lean`
 - `KIP126/Def/SpectralSequence/FilteredPage/AssemblyProofs.lean`
 - `KIP126/Def/SpectralSequence/FilteredComplex/Relations/Data.lean`
+- `KIP126/Def/SpectralSequence/FilteredComplex/Adapter/Proofs.lean`
 
 因此 canonical 谱序列的页面和微分仍可通过 KIP126 的 `Z_r/B_r` 模型计算，
 同时它本身可以使用只依赖 Mathlib `SpectralSequence` 接口的通用结果。
@@ -58,19 +61,17 @@ FilteredComplex
 
 ## 当前明确的证明缺口
 
-`KIP126/Def/SpectralSequence` 中有四个实际的 `sorry`：
+`KIP126/Def/SpectralSequence` 中有三个实际的 `sorry`，均在
+`FilteredComplex/Relations/Proofs.lean`：
 
-- `FilteredComplex/Relations/Proofs.lean`
-  - `differentialRelationOfLift`
-  - `liftOfDifferentialRelation`
-  - `liftRelOfNotCrossed`
-- `Convergence/Proofs.lean`
-  - `strongConvergenceFromComparison`
+- `differentialRelationOfLift`
+- `liftOfDifferentialRelation`
+- `liftRelOfNotCrossed`
 
-前三项属于有限页代表元关系。第四项不应直接按现有陈述填证明：
-`PageAbutmentComparisonWitness` 目前只给逐点、逐页的比较，而结论要求后续页面稳定、
-页面间 coherence 和统一的 `E_∞` 数据。继续收敛工作前，应先加强假设，或者删除这个
-自动构造定理，改为显式要求 `StrongConvergenceWitness`。
+前三项属于有限页代表元关系。原 `strongConvergenceFromComparison` 占位定理
+已移除：`PageAbutmentComparisonWitness` 只给逐点、逐页的比较，不能自动推出
+后续页面稳定、页面间 coherence 和统一的 `E_∞` 数据。强收敛必须显式提供
+`StrongConvergenceWitness`，或在将来先证明满足这些额外条件的构造定理。
 
 原 `differentialRelationCrossedOfTwo` 占位命题不能直接证明：它把同一页上的
 `d_r(x)=y₁` 与 `d_r(x)=y₂` 当作两个不同目标，但页上目标由函数性必然相等，
