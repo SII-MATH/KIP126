@@ -72,8 +72,18 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 6. **Axiom policy.** The project may use Lean's foundational axioms and the
    axioms already intrinsic to Lean's standard foundational mechanisms.
-   However, the project itself must not introduce additional axioms or
-   unresolved proof placeholders.
+   During development, including KIPBase integration, an internal statement
+   deliberately introduced with Lean's `axiom` command must be placed in the
+   relevant mathematical component's `Axiom.lean`, alongside its `Data.lean`,
+   `Predicates.lean`, and `Proofs.lean` where those layers are needed. Each such
+   statement must record its source, intended meaning, and reason for being
+   assumed, and must be audited individually together with its downstream
+   dependencies. Its presence is not evidence that the statement is proved.
+   An unfinished theorem instead remains in `Proofs.lean` with `by sorry`;
+   it must not be converted into an axiom merely to avoid `sorryAx`.
+   Literature results and computational inputs remain explicit external
+   premises as specified below, not project axioms. This development allowance
+   does not change the final proof-completion criteria below.
 
 7. **Pinned toolchain.**
    - Lean: `4.32.2`
