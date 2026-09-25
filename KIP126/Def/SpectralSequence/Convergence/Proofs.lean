@@ -10,8 +10,6 @@ open CategoryTheory CategoryTheory.Limits
 
 universe u v w
 
-set_option backward.isDefEq.respectTransparency false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 @[simp]
@@ -108,9 +106,15 @@ theorem detect_difference
         (F.F (conv.reindex k).1 (conv.reindex k).2)
         (F.mono (conv.reindex k).1 (conv.reindex k).2) := by
       rw [hz, sub_sub_cancel]
-    rw [hx'eq, Preadditive.sub_comp, hd]
-    simp only [Category.assoc, Filtration.toAssociatedGraded,
-      cokernel.condition, Limits.comp_zero, sub_zero]
+    have hz0 : (z ≫ Subobject.ofLE
+        (F.F ((conv.reindex k).1 + 1) (conv.reindex k).2)
+        (F.F (conv.reindex k).1 (conv.reindex k).2)
+        (F.mono (conv.reindex k).1 (conv.reindex k).2)) ≫
+        F.toAssociatedGraded (conv.reindex k).1 (conv.reindex k).2 = 0 := by
+      dsimp only [Filtration.toAssociatedGraded, Filtration.associatedGraded]
+      rw [Category.assoc, cokernel.condition, comp_zero]
+      rfl
+    rw [hx'eq, Preadditive.sub_comp, hd, hz0, sub_zero]
 
 /-- A two-sided bounded filtration is bounded below. -/
 def Filtration.IsBounded.toIsBoundedBelow
@@ -154,7 +158,6 @@ theorem ConvergenceMorphism.ext
   cases f_data with | mk f_e f_a f_fil => ?_
   cases g with | mk g_data g_re g_iso => ?_
   cases g_data with | mk g_e g_a g_fil => ?_
-  simp only [mk.injEq] at he ha
   subst he
   subst ha
   rfl
@@ -218,10 +221,9 @@ theorem Filtration.inducedGradedMapOfMap_id
       𝟙 (F.associatedGraded s k') := by
   haveI := Classical.decEq ω'
   apply (cancel_epi (cokernel.π _)).mp
-  simp only [Filtration.inducedGradedMapOfMap, cokernel.map, cokernel.π_desc,
-    Category.id_comp]
-  show cokernel.π _ = cokernel.π _ ≫ 𝟙 (cokernel _)
-  simp only [Category.comp_id]
+  dsimp only [Filtration.associatedGraded]
+  simp only [Filtration.inducedGradedMapOfMap, cokernel.map,
+    Category.id_comp, Category.comp_id, cokernel.π_desc]
 
 /-- Explicit composite lifts induce the composite associated-graded map. -/
 theorem Filtration.inducedGradedMapOfMap_comp
@@ -250,9 +252,11 @@ theorem Filtration.inducedGradedMapOfMap_comp
         Filtration.inducedGradedMapOfMap ψ hwψ s k' := by
   haveI := Classical.decEq ω'
   apply (cancel_epi (cokernel.π _)).mp
+  dsimp only [Filtration.associatedGraded]
   simp only [Filtration.inducedGradedMapOfMap, cokernel.map,
-    cokernel.π_desc_assoc, cokernel.π_desc, Category.assoc]
+    Category.assoc, cokernel.π_desc_assoc, cokernel.π_desc]
 
+omit [Abelian C] in
 /-- Chosen filtration restrictions commute with level inclusions. -/
 theorem Filtration.choose_compat
     {ω' : Type w} {A₁ A₂ : ω' → C}

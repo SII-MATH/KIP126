@@ -65,7 +65,47 @@ theorem toSpectralSequence_d_eq_canonicalPage_d (FC : FilteredComplex C)
   change (FC.toPreSS bnd).d (n : ℤ) (s, k) = _
   exact FC.toPreSS_d_eq_canonicalPage_d bnd s k n
 
-set_option maxHeartbeats 2000000
+private theorem toSpectralSequence_source_pageπ (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    ((FC.toSpectralSequence bnd).ssData (s, k)).pageπ
+        (↑((n : ℤ) - (FC.toSpectralSequence bnd).r₀).toNat : WithTop ℕ) =
+      FC.pageπ s k (n : WithTop ℕ) := by
+  change (FC.toSSData bnd s k).pageπ
+    (↑((n : ℤ) - 0).toNat : WithTop ℕ) = FC.pageπ s k (n : WithTop ℕ)
+  rfl
+
+private theorem toSpectralSequence_target_pageπ (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    ((FC.toSpectralSequence bnd).ssData
+        ((s, k) + (FC.toSpectralSequence bnd).diffDeg (n : ℤ))).pageπ
+        (↑((n : ℤ) - (FC.toSpectralSequence bnd).r₀).toNat : WithTop ℕ) =
+      FC.pageπ (s + (n : ℤ)) (k - 1) (n : WithTop ℕ) := by
+  change (FC.toSSData bnd (s + (n : ℤ)) (k + -1)).pageπ
+    (↑((n : ℤ) - 0).toNat : WithTop ℕ) =
+    FC.pageπ (s + (n : ℤ)) (k - 1) (n : WithTop ℕ)
+  rfl
+
+private theorem toSpectralSequence_relation_of_eq (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) {T : C}
+    (x : T ⟶ FC.filtration.associatedGraded s k)
+    (y : T ⟶ FC.filtration.associatedGraded (s + (n : ℤ)) (k - 1))
+    (xZ : T ⟶ Subobject.underlying.obj (FC.cycleSubobject s k (n : WithTop ℕ)))
+    (yZ : T ⟶ Subobject.underlying.obj
+      (FC.cycleSubobject (s + (n : ℤ)) (k - 1) (n : WithTop ℕ)))
+    (hx : xZ ≫ (FC.cycleSubobject s k (n : WithTop ℕ)).arrow = x)
+    (hy : yZ ≫ (FC.cycleSubobject (s + (n : ℤ)) (k - 1) (n : WithTop ℕ)).arrow = y)
+    (δ : ((FC.toSpectralSequence bnd).ssData (s, k)).page (n : WithTop ℕ) ⟶
+      ((FC.toSpectralSequence bnd).ssData
+        ((s, k) + (FC.toSpectralSequence bnd).diffDeg (n : ℤ))).page (n : WithTop ℕ))
+    (hδ : (FC.toSpectralSequence bnd).d (n : ℤ) (s, k) = δ)
+    (hd : xZ ≫ FC.pageπ s k (n : WithTop ℕ) ≫ δ =
+      yZ ≫ FC.pageπ (s + (n : ℤ)) (k - 1) (n : WithTop ℕ)) :
+    DifferentialRelation (FC.toSpectralSequence bnd) (n : ℤ) (s, k) x y := by
+  refine ⟨xZ, hx, yZ, hy, ?_⟩
+  rw [FC.toSpectralSequence_source_pageπ bnd s k n]
+  rw [FC.toSpectralSequence_target_pageπ bnd s k n]
+  rw [hδ]
+  exact hd
 
 /-- The multivalued relation on associated-graded representatives in the
 nested-subobject construction is precisely equality of their classes after
@@ -94,11 +134,7 @@ theorem toSpectralSequence_relation_iff (FC : FilteredComplex C)
     rw [FC.toSpectralSequence_d_eq_canonicalPage_d bnd s k n] at hd
     exact hd
   · rintro ⟨xZ, yZ, hx, hy, hd⟩
-    refine ⟨xZ, hx, yZ, hy, ?_⟩
-    change xZ ≫ FC.pageπ s k (n : WithTop ℕ) ≫
-      (FC.toSpectralSequence bnd).d (n : ℤ) (s, k) =
-      yZ ≫ FC.pageπ (s + (n : ℤ)) (k - 1) (n : WithTop ℕ)
-    rw [FC.toSpectralSequence_d_eq_canonicalPage_d bnd s k n]
-    exact hd
+    exact FC.toSpectralSequence_relation_of_eq bnd s k n x y xZ yZ hx hy
+      _ (FC.toSpectralSequence_d_eq_canonicalPage_d bnd s k n) hd
 
 end KIP126.Core.SpectralSequence.FilteredComplex

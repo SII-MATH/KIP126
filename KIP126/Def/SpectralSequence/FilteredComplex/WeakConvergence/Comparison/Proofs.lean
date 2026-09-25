@@ -16,8 +16,6 @@ open CategoryTheory CategoryTheory.Limits
 
 universe u v
 
-set_option backward.isDefEq.respectTransparency false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- The infinity page is isomorphic to the associated graded of filtered homology. -/
@@ -263,6 +261,7 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
               (FC.homologySSFiltration.F s k) h_Fs1_le_Fs) ≫
             (FC.homologySSFiltration.F s k).arrow = ker_to_I_s1 ≫ gen_s1
           simp only [Category.assoc]
+          dsimp only [FilteredComplex.homologySSFiltration] at h_ofLE_arrow ⊢
           rw [h_ofLE_arrow]
           -- Now: ker_to_I_s1 ≫ fTI gen_s1 ≫ (imageSubobject gen_s1).arrow
           -- = ker_to_I_s1 ≫ gen_s1
@@ -270,15 +269,18 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
           change ker_to_I_s1 ≫ factorThruImageSubobject gen_s1 ≫
             (imageSubobject gen_s1).arrow = ker_to_I_s1 ≫ gen_s1
           rw [imageSubobject_arrow_comp]
+        dsimp only [FilteredComplex.homologySSFiltration] at h_rhs ⊢
         rw [h_rhs]
         exact h_func_s1.symm
       -- Step E: compose with πRHS = cokernel.π → 0
       change kernel.ι e_Z ≫ (φ_to_Fs ≫ πRHS) = 0
+      dsimp only [FilteredComplex.homologySSFiltration] at h_factor_ofLE ⊢
       rw [← Category.assoc, h_factor_ofLE, Category.assoc, Category.assoc]
-      rw [show Subobject.ofLE (FC.homologySSFiltration.F (s + 1) k)
+      erw [show Subobject.ofLE (FC.homologySSFiltration.F (s + 1) k)
             (FC.homologySSFiltration.F s k) h_Fs1_le_Fs ≫ πRHS = 0
         from cokernel.condition _]
-      rw [comp_zero, comp_zero]
+      erw [comp_zero, comp_zero]
+      rfl
     -- Descended map on Z_⊤
     let fwd_Z := Abelian.epiDesc e_Z fwd_kerZ h_desc_fwd
     -- Property: e_Z ≫ fwd_Z = fwd_kerZ
@@ -316,21 +318,26 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
           Subobject.ofLE ((FC.toSSData bnd s k).B ⊤) ((FC.toSSData bnd s k).Z ⊤)
           ((FC.toSSData bnd s k).B_le_Z ⊤) = oI_lift ≫ e_Z := by
         apply (cancel_mono ((FC.toSSData bnd s k).Z ⊤).arrow).mp
-        rw [Category.assoc, Subobject.ofLE_arrow]
+        dsimp only [FilteredComplex.toSSData, FilteredComplex.cycleSubobject,
+          FilteredComplex.boundarySubobject] at *
+        erw [Category.assoc, Subobject.ofLE_arrow]
         change factorThruImageSubobject (oI ≫ πV) ≫
           ((FC.toSSData bnd s k).B ⊤).arrow = (oI_lift ≫ e_Z) ≫ _
         rw [show ((FC.toSSData bnd s k).B ⊤).arrow =
             (imageSubobject (oI ≫ πV)).arrow from rfl]
-        rw [imageSubobject_arrow_comp]
+        erw [imageSubobject_arrow_comp]
         rw [Category.assoc]
-        rw [show e_Z ≫ ((FC.toSSData bnd s k).Z ⊤).arrow =
+        erw [show e_Z ≫ ((FC.toSSData bnd s k).Z ⊤).arrow =
           kerZ.arrow ≫ πV from imageSubobject_arrow_comp (kerZ.arrow ≫ πV)]
-        rw [← Category.assoc, h_oI_lift]
+        erw [← Category.assoc, h_oI_lift]
+        rfl
       -- Step B: Cancel epi
-      rw [← cancel_epi (factorThruImageSubobject (oI ≫ πV))]
-      rw [comp_zero, ← Category.assoc, h_fti_ofLE]
+      dsimp only [FilteredComplex.toSSData, FilteredComplex.boundarySubobject] at *
+      erw [← cancel_epi (factorThruImageSubobject (oI ≫ πV))]
+      erw [comp_zero]
+      erw [← Category.assoc, h_fti_ofLE]
       -- Goal: (oI_lift ≫ e_Z) ≫ fwd_Z = 0
-      rw [Category.assoc, h_fwd_Z]
+      erw [Category.assoc, h_fwd_Z]
       -- Goal: oI_lift ≫ fwd_kerZ = 0
       change oI_lift ≫ (φ_to_Fs ≫ πRHS) = 0
       rw [← Category.assoc]
@@ -567,7 +574,15 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
           have : S.leftHomologyπ ≫ σ.hom = cokernel.π S.toCycles :=
             IsColimit.comp_coconePointUniqueUpToIso_hom S.leftHomologyIsCokernel
               (cokernelIsCokernel S.toCycles) WalkingParallelPair.one
-          rw [← this, ← Category.assoc, h_φ_lHπ, zero_comp]
+          calc
+            (kernel.ι e_Fs ≫ S.liftCycles I_s.arrow h_zero_s) ≫
+                cokernel.π S.toCycles =
+                ((kernel.ι e_Fs ≫ S.liftCycles I_s.arrow h_zero_s) ≫
+                  S.leftHomologyπ) ≫ σ.hom :=
+                    (congrArg (fun f =>
+                      (kernel.ι e_Fs ≫ S.liftCycles I_s.arrow h_zero_s) ≫ f)
+                        this.symm).trans (Category.assoc _ _ _).symm
+            _ = 0 := (congrArg (fun f => f ≫ σ.hom) h_φ_lHπ).trans zero_comp
         -- Factor through kernel(cokernel.π S.toCycles) = Abelian.image(S.toCycles)
         let κ := kernel.lift (cokernel.π S.toCycles)
             (kernel.ι e_Fs ≫ S.liftCycles I_s.arrow h_zero_s) h_φ_cok_tC
@@ -654,20 +669,26 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
           Subobject.ofLE ((FC.toSSData bnd s k).B ⊤) ((FC.toSSData bnd s k).Z ⊤)
           ((FC.toSSData bnd s k).B_le_Z ⊤) = oI_lift ≫ e_Z := by
         apply (cancel_mono ((FC.toSSData bnd s k).Z ⊤).arrow).mp
-        rw [Category.assoc, Subobject.ofLE_arrow]
+        dsimp only [FilteredComplex.toSSData, FilteredComplex.cycleSubobject,
+          FilteredComplex.boundarySubobject] at *
+        erw [Category.assoc, Subobject.ofLE_arrow]
         change factorThruImageSubobject (oI ≫ πV) ≫
           ((FC.toSSData bnd s k).B ⊤).arrow = (oI_lift ≫ e_Z) ≫ _
         rw [show ((FC.toSSData bnd s k).B ⊤).arrow =
             (imageSubobject (oI ≫ πV)).arrow from rfl]
-        rw [imageSubobject_arrow_comp, Category.assoc]
-        rw [show e_Z ≫ ((FC.toSSData bnd s k).Z ⊤).arrow =
+        erw [imageSubobject_arrow_comp, Category.assoc]
+        erw [show e_Z ≫ ((FC.toSSData bnd s k).Z ⊤).arrow =
           kerZ.arrow ≫ πV from imageSubobject_arrow_comp (kerZ.arrow ≫ πV)]
-        rw [← Category.assoc, h_oI_lift]
+        erw [← Category.assoc, h_oI_lift]
+        rfl
       have h_oI_kill : oI_lift ≫ e_Z ≫ πLHS = 0 := by
-        rw [← Category.assoc, ← h_fti_ofLE, Category.assoc]
-        rw [show Subobject.ofLE ((FC.toSSData bnd s k).B ⊤) ((FC.toSSData bnd s k).Z ⊤)
+        dsimp only [FilteredComplex.toSSData, FilteredComplex.cycleSubobject,
+          FilteredComplex.boundarySubobject] at h_fti_ofLE ⊢
+        erw [← Category.assoc, ← h_fti_ofLE, Category.assoc]
+        erw [show Subobject.ofLE ((FC.toSSData bnd s k).B ⊤) ((FC.toSSData bnd s k).Z ⊤)
             ((FC.toSSData bnd s k).B_le_Z ⊤) ≫ πLHS = 0 from cokernel.condition _]
-        rw [comp_zero]
+        erw [comp_zero]
+        rfl
       -- ═══ Step 9: Conclude ═══
       change kernel.ι e_Fs ≫ (Is_to_kerZ ≫ e_Z ≫ πLHS) = 0
       rw [← Category.assoc, ← Category.assoc, h_factor_kerZ,
@@ -715,7 +736,8 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
         -- LHS: fTI gen_s1 ≫ ofLE(F_{s+1}, F_s) ≫ (F_s).arrow
         --     = fTI gen_s1 ≫ (F_{s+1}).arrow  (by ofLE_arrow)
         --     = gen_s1                          (by imageSubobject_arrow_comp)
-        rw [Category.assoc, Subobject.ofLE_arrow (FC.homologySSFiltration.mono s k)]
+        dsimp only [FilteredComplex.homologySSFiltration] at *
+        erw [Category.assoc, Subobject.ofLE_arrow (FC.homologySSFiltration.mono s k)]
         change factorThruImageSubobject gen_s1 ≫ (imageSubobject gen_s1).arrow =
           (Subobject.ofLE I_s1 I_s hle ≫ factorThruImageSubobject gen_s) ≫
             (imageSubobject gen_s).arrow
@@ -724,6 +746,7 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
       -- Step 3: substitute and rewrite
       -- Goal: fTI gen_s1 ≫ ofLE(F_{s+1}, F_s) ≫ inv_Fs = 0
       -- Reassociate to (fTI gen_s1 ≫ ofLE(F_{s+1}, F_s)) ≫ inv_Fs
+      dsimp only [FilteredComplex.homologySSFiltration] at h_fTI_ofLE ⊢
       rw [← Category.assoc, h_fTI_ofLE, Category.assoc]
       -- Goal: ofLE(I_s1, I_s) ≫ (factorThruImageSubobject gen_s ≫ inv_Fs) = 0
       -- factorThruImageSubobject gen_s = e_Fs
@@ -795,23 +818,25 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
       -- Strategy: cancel_epi πLHS, then cancel_epi e_Z, then algebraic manipulations.
       -- Step 1: It suffices to show πLHS ≫ (fwd ≫ inv) = πLHS (cancel_epi πLHS)
       apply (cancel_epi πLHS).mp
-      rw [Category.comp_id]
+      dsimp only [FilteredComplex.toSSData, FilteredComplex.boundarySubobject,
+        FilteredComplex.cycleSubobject] at *
+      erw [Category.comp_id]
       -- Now: πLHS ≫ (fwd ≫ inv) = πLHS
       -- πLHS ≫ fwd = fwd_Z by cokernel.π_desc
       have h_πLHS_fwd : πLHS ≫ fwd = fwd_Z := cokernel.π_desc _ _ _
-      rw [← Category.assoc, h_πLHS_fwd]
+      erw [← Category.assoc, h_πLHS_fwd]
       -- Now: fwd_Z ≫ inv = πLHS
       -- Step 2: cancel_epi e_Z (e_Z is epi as factorThruImageSubobject)
       apply (cancel_epi e_Z).mp
       -- Now: e_Z ≫ (fwd_Z ≫ inv) = e_Z ≫ πLHS
-      rw [← Category.assoc, h_fwd_Z]
+      erw [← Category.assoc, h_fwd_Z]
       -- Now: fwd_kerZ ≫ inv = e_Z ≫ πLHS
       -- fwd_kerZ = φ_to_Fs ≫ πRHS
       change (φ_to_Fs ≫ πRHS) ≫ inv = e_Z ≫ πLHS
       rw [Category.assoc]
       -- πRHS ≫ inv = cokernel.π _ ≫ cokernel.desc _ inv_Fs _ = inv_Fs
       have h_πRHS_inv : πRHS ≫ inv = inv_Fs := cokernel.π_desc _ _ _
-      rw [h_πRHS_inv]
+      erw [h_πRHS_inv]
       -- Now: φ_to_Fs ≫ inv_Fs = e_Z ≫ πLHS
       -- Step 3: show kerZ_to_Is ≫ e_Fs = φ_to_Fs (via cancel_mono)
       have h_compat : kerZ_to_Is ≫ e_Fs = φ_to_Fs := by
@@ -820,7 +845,7 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
         -- LHS: kerZ_to_Is ≫ gen_s = φ_pre (by h_func)
         rw [h_func, h_φ_to_Fs]
       -- Step 4: φ_to_Fs ≫ inv_Fs = kerZ_to_Is ≫ e_Fs ≫ inv_Fs
-      rw [← h_compat, Category.assoc, h_inv_Fs]
+      erw [← h_compat, Category.assoc, h_inv_Fs]
       -- Now: kerZ_to_Is ≫ inv_Is = e_Z ≫ πLHS
       -- inv_Is = Is_to_kerZ ≫ e_Z ≫ πLHS
       change kerZ_to_Is ≫ (Is_to_kerZ ≫ e_Z ≫ πLHS) = e_Z ≫ πLHS
@@ -849,10 +874,11 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
       -- Strategy: cancel_epi πRHS, then cancel_epi e_Fs, then algebraic manipulations.
       -- Step 1: cancel_epi πRHS
       apply (cancel_epi πRHS).mp
+      dsimp only [FilteredComplex.homologySSFiltration] at *
       rw [Category.comp_id, ← Category.assoc]
       -- Goal: (πRHS ≫ inv) ≫ fwd = πRHS
       have h_πRHS_inv' : πRHS ≫ inv = inv_Fs := cokernel.π_desc _ _ _
-      rw [h_πRHS_inv']
+      erw [h_πRHS_inv']
       -- Now: inv_Fs ≫ fwd = πRHS
       -- Step 2: cancel_epi e_Fs
       apply (cancel_epi e_Fs).mp
@@ -862,7 +888,7 @@ theorem FilteredComplex.weakConvergenceIso_nonempty (FC : FilteredComplex C)
       change (Is_to_kerZ ≫ e_Z ≫ πLHS) ≫ fwd = e_Fs ≫ πRHS
       rw [Category.assoc, Category.assoc]
       have h_πLHS_fwd' : πLHS ≫ fwd = fwd_Z := cokernel.π_desc _ _ _
-      rw [h_πLHS_fwd', h_fwd_Z]
+      erw [h_πLHS_fwd', h_fwd_Z]
       -- Now: Is_to_kerZ ≫ (φ_to_Fs ≫ πRHS) = e_Fs ≫ πRHS
       change Is_to_kerZ ≫ (φ_to_Fs ≫ πRHS) = e_Fs ≫ πRHS
       rw [← Category.assoc]
