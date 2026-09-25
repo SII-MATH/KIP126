@@ -1,12 +1,11 @@
 import KIP126.Def.AdamsE2.Lin
-import KIP126.Tactic.LinE2
 import Lean.Elab.Command
 
 namespace KIP126.Classical.Adams
 open KIP126.LinE2
 
 /-- Canonical version of PR #110's transfer example. The concrete data equality
-uses the existing e2_mul soundness placeholder and native-evaluation trust. -/
+follows directly from the first archived relation, without native evaluation. -/
 theorem data_h0_h1_page_product :
     linE2Presentation.product 1 1 1 2
       (linToSphereE2 1 1 (by decide) dataH0)
@@ -14,7 +13,7 @@ theorem data_h0_h1_page_product :
   apply linToSphere_product_eq_zero (s := 1) (t := 1) (s' := 1) (t' := 2)
     (by decide) dataH0 dataH1
   change h0 * h1 = 0
-  e2_mul
+  exact h0_mul_h1_eq_zero
 
 example (s t : ℕ) (ht : t ≤ 261) (a : sphereAdamsData.Page 2 ((s : ℤ), (t : ℤ))) :
     ∃ x : E2At s t, linToSphereE2 s t ht x = a :=
@@ -41,7 +40,8 @@ run_cmd do
   for declaration in [``KIP126.Classical.Adams.computedH6_mul_self,
       ``KIP126.Classical.Adams.linToSphere_exists_preimage,
       ``KIP126.Classical.Adams.linToSphere_eq_iff,
-      ``KIP126.Classical.Adams.linToSphere_product_eq_zero] do
+      ``KIP126.Classical.Adams.linToSphere_product_eq_zero,
+      ``KIP126.Classical.Adams.data_h0_h1_page_product] do
     for a in ← liftCoreM (collectAxioms declaration) do
       unless (allowed ++ [``KIP126.Classical.Adams.linE2Presentation,
           ``KIP126.Classical.Adams.sphereAdamsModel]).contains a do

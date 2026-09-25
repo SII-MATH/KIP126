@@ -1,4 +1,5 @@
 import KIP126.Def.AdamsE2.LinClasses.Data
+import KIP126.Def.AdamsE2.LinClasses.Proofs
 import KIP126.Def.AdamsE2.LinBasis.Proofs
 import KIP126.Def.AdamsE2.LinProduct.Data
 import KIP126.Def.AdamsE2.LinPresentation.Proofs

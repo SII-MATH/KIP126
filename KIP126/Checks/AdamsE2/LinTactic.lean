@@ -1,16 +1,18 @@
 import KIP126.Tactic.LinE2
-import KIP126.Def.AdamsE2.LinClasses.Data
+import KIP126.Def.AdamsE2.LinClasses.Proofs
+import Lean.Elab.Command
 
 /-!
-自动化证明示例。这里的等式证明依赖暂留 sorry 的 coordinateCheck_sound，
-并非已经完成形式化认证；具体坐标检查由 e2_mul 实际执行。
+前三个具名等式直接使用 CSV 定义关系，因此不依赖计算公理或 sorry。
+其余自动化证明示例仍依赖暂留 sorry 的 coordinateCheck_sound；
+具体坐标检查由 e2_mul 实际执行。
 失败回归确保不等坐标、错误类型、未知变量和超范围计算不会被 tactic 接受。
 -/
 namespace KIP126.LinE2
 
-theorem checked_h0_mul_h1 : h0 * h1 = 0 := by e2_mul
-theorem checked_h1_mul_h2 : h1 * h2 = 0 := by e2_mul
-theorem checked_h1_cube : h1 ^ 3 = h0 ^ 2 * h2 := by e2_mul
+theorem checked_h0_mul_h1 : h0 * h1 = 0 := h0_mul_h1_eq_zero
+theorem checked_h1_mul_h2 : h1 * h2 = 0 := h1_mul_h2_eq_zero
+theorem checked_h1_cube : h1 ^ 3 = h0 ^ 2 * h2 := h1_cube_eq_h0_sq_mul_h2
 example : (h0 + h1) * h1 = h1 ^ 2 := by e2_mul
 
 -- 两个因子都是总 E₂ 代数中的一般元素（非齐次的和），不是单个生成元。
@@ -51,6 +53,12 @@ example : (1 : E2) * h0 = h0 := by e2_mul
 example : h0 ^ 0 = 1 := by e2_mul
 example : h0 + h1 = h1 + h0 := by e2_mul
 
-#print axioms checked_h0_mul_h1
+open Lean Elab Command in
+run_cmd do
+  let allowed := [``propext, ``Classical.choice, ``Quot.sound]
+  for declaration in [``checked_h0_mul_h1, ``checked_h1_mul_h2, ``checked_h1_cube] do
+    for axiomName in ← liftCoreM (collectAxioms declaration) do
+      unless allowed.contains axiomName do
+        throwError "unexpected axiom in a direct CSV-relation proof: {declaration} → {axiomName}"
 
 end KIP126.LinE2
