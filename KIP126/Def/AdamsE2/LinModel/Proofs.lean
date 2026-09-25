@@ -39,18 +39,25 @@ theorem csv_relation_zero (code : String) (h : code ∈ RawData.relations) :
   apply (Ideal.Quotient.eq_zero_iff_mem).2
   exact Ideal.subset_span (Or.inl ⟨code, h, rfl⟩)
 
-set_option maxRecDepth 16384 in
-theorem h6Generator_degree : generatorDegree h6Generator = (1, 64) := by decide
+theorem h6Generator_degree : generatorDegree h6Generator = (1, 64) := by
+  simp [generatorDegree, RawData.generators, RawData.generatorRow,
+    RawData.generatorChunkIndex, RawData.generatorChunk2, RawData.generatorCount, h6Generator,
+    Array.getElem!_eq_getD, Array.getD_eq_getD_getElem?]
 
-set_option maxRecDepth 16384 in
-theorem h0Generator_degree : generatorDegree ⟨0, by decide⟩ = (1, 1) := by decide
+theorem h0Generator_degree : generatorDegree ⟨0, by decide⟩ = (1, 1) := by
+  simp [generatorDegree, RawData.generators, RawData.generatorRow,
+    RawData.generatorChunkIndex, RawData.generatorChunk0, RawData.generatorCount,
+    Array.getElem!_eq_getD]
 
-set_option maxRecDepth 16384 in
-theorem h1Generator_degree : generatorDegree ⟨1, by decide⟩ = (1, 2) := by decide
+theorem h1Generator_degree : generatorDegree ⟨1, by decide⟩ = (1, 2) := by
+  simp [generatorDegree, RawData.generators, RawData.generatorRow,
+    RawData.generatorChunkIndex, RawData.generatorChunk0, RawData.generatorCount,
+    Array.getElem!_eq_getD]
 
-set_option maxRecDepth 16384 in
 theorem h6Generator_name : (RawData.generators[h6Generator.val]!).1 = "h_6" := by
-  decide
+  simp [RawData.generators, RawData.generatorRow,
+    RawData.generatorChunkIndex, RawData.generatorChunk2, RawData.generatorCount, h6Generator,
+    Array.getElem!_eq_getD, Array.getD_eq_getD_getElem?]
 
 theorem generator_pow_mem (i : Generator) (n : ℕ) :
     generator i ^ n ∈ homogeneousPart

@@ -48,10 +48,20 @@ SHA-256 of the original CSV bytes:
 for k in ['generators','relations','basis']:
  p=src/f'S0_AdamsE2_{k}.csv'; header+=f'{p.name}: {hashlib.sha256(p.read_bytes()).hexdigest()}\n'
 header+='-/'
-parts=[header,'set_option maxRecDepth 16384','namespace KIP126.LinE2.RawData',f'def generatorCount : Nat := {len(gens)}',f'def relationCount : Nat := {len(rels)}',f'def basisCount : Nat := {len(basis)}',
-'''/-- (name, cohomological degree s, internal degree t), indexed by CSV id. -/
-def generators : Array (String × Nat × Nat) := #[
-'''+',\n'.join(f'  ({q(r["name"])}, {s}, {t})' for r,(s,t) in zip(gens,deg))+ '\n]',
+parts=[header,'namespace KIP126.LinE2.RawData',f'def generatorCount : Nat := {len(gens)}',f'def relationCount : Nat := {len(rels)}',f'def basisCount : Nat := {len(basis)}']
+generator_rows = list(zip(gens,deg))
+generator_chunks = [generator_rows[i:i+32] for i in range(0,len(generator_rows),32)]
+parts.append('/-- (name, cohomological degree s, internal degree t), indexed by CSV id. -/')
+for j, chunk in enumerate(generator_chunks):
+ parts.append(f'def generatorChunk{j} : Array (String × Nat × Nat) := #['+
+              ', '.join(f'({q(r["name"])}, {s}, {t})' for r,(s,t) in chunk)+']')
+parts.append('def generatorChunkIndex : Array (Array (String × Nat × Nat)) := #['+
+             ', '.join(f'generatorChunk{j}' for j in range(len(generator_chunks)))+']')
+parts.append('def generatorRow (i : Nat) : String × Nat × Nat :=\n'+
+             '  (generatorChunkIndex[i / 32]!)[i % 32]!')
+parts.append('def generators : Array (String × Nat × Nat) :=\n'+
+             '  Array.ofFn fun i : Fin generatorCount => generatorRow i.val')
+parts += [
 '''/-- First three CSV relations, kept separate for small kernel-checked examples. -/
 def firstRelations : List String := ["0,1,1,1", "1,1,2,1", "1,3;0,2,2,1"]''']
 # Chunks keep individual string literals modest. Newlines separate rows, never terms.
