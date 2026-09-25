@@ -6,7 +6,7 @@ namespace KIP126.Classical.Adams
 /-- Internal Adams interface. The spectrum and table identity are separate
 comparison obligations; this structure alone does not assert permanence. -/
 structure AdamsSSData where
-  sequence : KIP126.Core.SpectralSequence.SpectralSequence (ModuleCat.{0} ℤ) (ℤ × ℤ)
+  sequence : KIP126.Core.SpectralSequence (ModuleCat.{0} ℤ) (ℤ × ℤ)
   firstPage : sequence.r₀ = 2
   differentialDegree : ∀ r, sequence.diffDeg r = (r, r - 1)
 

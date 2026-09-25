@@ -11,8 +11,6 @@ open CategoryTheory
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- The categorical commutativity proof in `toSquare` is exactly the one

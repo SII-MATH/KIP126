@@ -13,8 +13,6 @@ open CategoryTheory CategoryTheory.Limits
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- Bottom-page boundaries lie in the cycles on every page. -/
@@ -46,7 +44,7 @@ theorem SSData.eq_of_page_isZero
     (by simp [Subobject.ofLE_arrow])
 
 /-- A spectral sequence with zero pages at one grading has zero infinity page there. -/
-theorem SpectralSequence.eInfty_isZero_of_page_isZero
+theorem eInfty_isZero_of_page_isZero
     {C : Type*} [Category C] [Abelian C]
     {α : Type*} [AddCommGroup α] [DecidableEq α]
     (E : SpectralSequence C α) (k : α)
