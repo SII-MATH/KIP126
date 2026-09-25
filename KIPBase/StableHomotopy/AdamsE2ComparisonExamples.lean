@@ -28,6 +28,12 @@ example : (Expression.mul x0 x1).data = 0 := by e2_mul
 
 universe u v
 variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
+  [BasisData 𝒮] [CoordinateData 𝒮]
+
+-- CSV 的计算结果直接是原有第二页配对的等式，不经过页转换。
+example : (sphereAdamsMultiplication (𝒮 := 𝒮)).ssPairing.pair 2 (1, 1) (1, 2)
+    (TensorProduct.tmul IntModuleRing (evaluate 𝒮 x0) (evaluate 𝒮 x1)) = 0 := by
+  exact evaluate_eq_zero 𝒮 2 3 (by decide) (.mul x0 x1) 1000000 (by native_decide)
 
 -- 逐位置明确列出的单项式是实际页上的加法基。
 example : LinearIndependent F2 (SphereAdamsE2.basisValue 𝒮 2 2) :=

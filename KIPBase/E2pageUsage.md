@@ -102,7 +102,8 @@ tactic 报错而不关闭目标。每次成功使用都会输出桥接尚未证�
 
 导入 `KIPBase.StableHomotopy.AdamsE2Comparison`，使用命名空间
 `KIPBase.StableHomotopy.SphereAdamsE2`。`Page 𝒮 s t` 是既有
-`AdamsSS 𝒮 SphereSpectrum` 的实际第二页分量。
+`sphereAdamsConvergingSS.E.Page 2` 的分量，即 `multiplicativeSS` 所用的
+同一个 ModuleCat 谱序列的第二页。
 
 按照逐位置列基的要求，已删除 `comparison`、`comparison_mul` 两个同构公理，
 以及依赖它们的旧搬运接口。原商环 `SphereE2.E2`、CSV、Gröbner 算法与
@@ -127,23 +128,45 @@ tactic 报错而不关闭目标。每次成功使用都会输出桥接尚未证�
 计算时还核实原始 CSV index 与有限索引一致；次数不匹配、未知索引、超范围、
 燃料耗尽都显式报错。这些是数据和算法检查，不是线性无关或张成性的证明。
 
-在实际第二页中，`pageGenerator i` 指定该编号的生成元，`pageOne` 指定空单项式
+在实际第二页中，`pageGenerator i` 指定该编号的生成元，`pageOne` 使用该谱序列原有单位作为空单项式
 的值。`evaluate` 用实际的加法和 `pageMul` 递归解释表达式。
 `basisValue 𝒮 s t i` 定义为该位置第 i 个 CSV 单项式的实际解释。
 因此基元素的数学含义由原始编号、指数和实际乘法明确指定。
+
+### 直接使用 multiplicativeSS 的页与乘法
+
+`Page` 直接使用 `sphereAdamsConvergingSS.E.Page 2`，
+`pagePair` 直接调用 `sphereAdamsMultiplication.ssPairing.pair 2`。
+`pageMul` 仅将这个张量积配对写成方便解释 CSV 的 F₂ 双线性函数；
+`pageMul_eq_pair` 的证明是 `rfl`。`pagePair` 中的 `eqToHom` 只处理
+`↑(s+s') = ↑s+↑s'` 的次数算术，不是两个谱序列之间的同构。
+`pageOne` 也直接使用 `sphereAdamsUnit.page 2`。
+
+已撤去上一步新增的 `AdamsPageTransport.lean`，所有实际页结论都不再需要
+`SphereAdamsPageTransport` 前提。没有先把元素搬到另一页、相乘后再搬回的
+过程。CSV 坐标定理直接陈述在既有乘法上，`h6Sq` 直接写成原接口的
+`pair 2 (1,64) (1,64)` 作用于 `h6 ⊗ h6`。
+
+微分和 `SSPairing.leibniz` 现在与上述乘法属于同一个谱序列，可以直接引用
+`(sphereAdamsMultiplication (𝒮 := 𝒮)).ssPairing.leibniz 2`。
+这不提供具体微分值，也不证明 h₆² 的存活性。
 
 ### 外部数学输入与可引用的定理
 
 | 名称 | 内容 |
 |---|---|
-| `pageModule`、`pageMul` | 沿用的实际页模结构及双线性乘法 |
-| `pageOne`、`pageGenerator` | 指定实际页的单位类及 CSV 生成元 |
-| `basis_linearIndependent` | 明确的 CSV 单项式族线性无关，要求 t ≤ 261 |
-| `basis_span` | 同一个元素族张成整个分量，要求 t ≤ 261 |
-| `coordinates_spec` | 成功计算的输出是实际表达式在上述基中的坐标，要求 t ≤ 261 |
+| `pageModule` | 沿用的实际页 F₂ 模结构 |
+| `pageGenerator` | 指定既有第二页中的 CSV 生成元 |
+| `BasisData 𝒮` | 既有第二页中的 CSV 单项式族线性无关且张成，要求 t ≤ 261 |
+| `CoordinateData 𝒮` | 针对这个乘法和基，成功计算给出实际坐标，要求 t ≤ 261 |
 
-以上七个声明是显式外部公理；基的数学正确性和实际乘法与计算的一致性没有被
-伪装成已经完成的形式化证明。`csvBasis` 则用 `Module.Basis.mk` 从线性无关与
+`pageModule`、`pageGenerator` 是保留的两个外部公理。
+`BasisData` 和 `CoordinateData` 改为显式的 Prop 类型类输入，没有默认实例。
+调用者必须提供关于这个既有乘法的
+基和坐标证据。原有名称 `basis_linearIndependent`、`basis_span`、
+`coordinates_spec` 现在是读取这些输入的定理，便于原有证明继续调用。
+基的数学正确性和实际乘法与计算的一致性没有被伪装成已完成的形式化证明。
+`csvBasis` 则用 `Module.Basis.mk` 从线性无关与
 张成性构造出来。它的每个向量就是 `basisValue`，不是额外选取的抽象基。
 
 `csvBasis.repr` 是这组明确基自带的坐标线性同构。这里允许从基构造坐标同构，
@@ -161,6 +184,9 @@ tactic 报错而不关闭目标。每次成功使用都会输出桥接尚未证�
 实际页的使用示意见 `AdamsE2ComparisonExamples.lean`：
 
 ```lean
+variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
+  [BasisData 𝒮] [CoordinateData 𝒮]
+
 -- x0 : Expression 1 1，x1 : Expression 1 2 是指定编号的生成元表达式。
 example : pageMul 𝒮 1 1 1 2 (evaluate 𝒮 x0) (evaluate 𝒮 x1) = 0 := by
   exact evaluate_eq_zero 𝒮 2 3 (by decide) (.mul x0 x1) 1000000 (by native_decide)
@@ -168,17 +194,20 @@ example : pageMul 𝒮 1 1 1 2 (evaluate 𝒮 x0) (evaluate 𝒮 x1) = 0 := by
 
 这里的 `native_decide` 只执行计算，实际页的数学等式通过 `coordinates_spec`
 得到。原来的 `by e2_mul` 仍服务于商环等式，并仍依赖 `coordinateCheck_sound`
-中的 `sorry`。新实际页搬运定理没有新增 `sorry`。
+中的 `sorry`。新实际页计算定理没有新增 `sorry`。
 
 `chanllege.lean` 中的 `h6` 现在直接使用指定的实际页生成元。
 `h6Sq_eq_basisValue` 明确说明 h₆² 是 (2,128) 位置的第 0 个 CSV 基元素
 （单项式 `69,2`），因此可以由基性质证明它在 E₂ 中非零。
-`h6_eq_hi` 在已有 `AdamsE2Data` 实例的前提下，将这里的 h₆ 与
-`multiplicativeSS/adamsdata/adamsE2.lean` 中的 `hi 6` 联系起来。
+`h6Sq_eq_pair` 用 `rfl` 确认该平方就是原接口的乘积。
+旧的 `h6_eq_hi` 已移除：`AdamsE2Data.hi` 仍位于原始 AddCommGrpCat 页，
+在不另建转换接口时不能把它与当前 ModuleCat 页中的元素直接写成等式。
 `h6_sq_survives_to_eInfty` 的证明仍按要求保留 `sorry`：E₂ 中非零不代表已经
-证明后续存活。此改动没有增加任何后续微分值或 Leibniz 法则。
+证明后续存活。`SurvivesToEInfty` 同步改为使用上述 ModuleCat 谱序列的
+Z∞ 和 E∞，保留“同一代表元、E∞ 中非零”的含义。
 
-已用 `#print axioms` 核查 `csvBasis`、`evaluate_eq_of_coordinates`、
-`h6Sq_eq_basisValue` 和 `h6_eq_hi`：它们依赖所列外部公理及
-`native_decide` 的编译器信任，但不依赖 `sorryAx`。
-存活主定理仍明确依赖 `sorryAx`。
+信任边界：CSV 基和坐标依赖上表的显式外部输入，数据检查依赖
+`native_decide` 的编译器信任。直接使用的乘法仍依赖原全页乘法公理及其既有
+`transfer`/收敛数据占位定义，因此不能沿用旧版“不依赖 sorryAx”的审计结论。
+本次没有新增转换公理、转换前提或 `sorry`；存活主定理仍保留
+原有 `sorry`。直接使用既有接口不会自动补齐其内部的未完成构造。
