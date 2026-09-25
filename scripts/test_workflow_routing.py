@@ -24,6 +24,17 @@ class WorkflowRoutingTests(unittest.TestCase):
             self.assertIn("paths-ignore:", workflow)
             self.assertIn('      - "blueprint/src/**"', workflow)
 
+    def test_pr_build_has_no_per_lean_file_length_cap(self):
+        workflow = self.read("pr-build.yml")
+        self.assertNotIn("New-file length guard", workflow)
+        self.assertNotIn("NEWFILE_TOO_LONG", workflow)
+
+    def test_pr_build_reports_classified_project_axiom_debt(self):
+        workflow = self.read("pr-build.yml")
+        self.assertIn("KIP126_PROJECT_AXIOM_AUDIT=1", workflow)
+        self.assertIn("BUILD_PROJECT_AXIOM_AUDIT=1", workflow)
+        self.assertIn("project axioms present — human review + merge required", workflow)
+
     def test_blueprint_pr_has_separate_gate_and_authorized_mixed_sync(self):
         blueprint = self.read("blueprint-pr.yml")
         lean = self.read("pr-build.yml")
