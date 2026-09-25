@@ -7,12 +7,16 @@ import Mathlib.CategoryTheory.Abelian.Exact
 import Mathlib.CategoryTheory.Monoidal.Braided.Basic
 import Mathlib.CategoryTheory.Triangulated.HomologicalFunctor
 import Mathlib.CategoryTheory.Triangulated.Pretriangulated
+import KIP126.Mathlib.SpectralSequence.FilteredComplex.Adapter.Proofs
+import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Proofs
+import KIP126.Mathlib.SpectralSequence.SSData.Assembly.Proofs
+import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Proofs
+import KIP126.Mathlib.SpectralSequence.Permanence.Data
 
 /-!
 # Mathlib dependencies
 
-This import-only module collects the upstream Mathlib modules needed by the
-canonical KIP126 entry point, including declarations referenced directly by
-Blueprint annotations. It introduces no project definition or additional
-mathematical assumption.
+This layer imports upstream Mathlib and houses checked adapters from KIP126's
+`SSData`-based presentation to Mathlib's spectral-sequence API. No upstream
+declaration is copied, and no mathematical assumption is added.
 -/

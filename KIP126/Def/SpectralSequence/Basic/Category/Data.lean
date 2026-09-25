@@ -10,8 +10,6 @@ open CategoryTheory
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- The category of graded `SSData` families and their underlying morphisms. -/
@@ -145,7 +143,7 @@ def SpectralSequenceMorphism.equivPreSSMorphism
   right_inv _ := rfl
 
 /-- Inclusion of spectral sequences into pre-spectral sequences. -/
-def SpectralSequence.inclusion
+def inclusion
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     SpectralSequence C ι ⥤ PreSS C ι where
   obj E := E.toPreSS
@@ -166,7 +164,7 @@ instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
       (SpectralSequenceMorphism.equivPreSSMorphism _ _).apply_symm_apply g⟩
 
 /-- The inclusion of spectral sequences is fully faithful. -/
-noncomputable def SpectralSequence.inclusionFullyFaithful
+noncomputable def inclusionFullyFaithful
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     (SpectralSequence.inclusion (C := C) (ι := ι)).FullyFaithful :=
   Functor.FullyFaithful.ofFullyFaithful _

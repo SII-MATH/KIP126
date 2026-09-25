@@ -121,7 +121,8 @@ page-extension、near-126 coherence 和几何端点的真实证明，同时为�
 3. **外部输入边界**：逐条确认文献定理、Lin 程序输出和附录数据被建模为显式、类型
    正确的条件输入；外部事实不得被提升为无条件内部定理。
 4. **架构与去重**：删除临时 compatibility shim、过渡 alias、重复模型和未使用
-   import；确认 Mathlib `CategoryTheory.SpectralSequence` 仍是唯一通用谱序列内核，
+   import；确认内部 `SSData`/`PreSS` 叙述与 `KIP126/Mathlib/` 中受检的
+   `CategoryTheory.SpectralSequence` 适配分层清晰、没有反向依赖，
    Classical、Synthetic、Comparison、External 与 Kervaire 边界清晰。
 5. **可复现构建**：在无缓存、干净检出的 Lean 4.32.2 / Mathlib v4.32.2 环境中运行
    完整 `lake build`、回归测试、Blueprint PDF/web 和声明检查；生成物必须可由工具

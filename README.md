@@ -96,19 +96,17 @@ The intended workflow is therefore:
 5. implement and verify the corresponding Lean declarations with Lake and the
    pinned Mathlib dependency.
 
-The executable Lean implementation is still at the first shared-Core
-milestone.  That Core is deliberately small: it imports Mathlib's
-`CategoryTheory.SpectralSequence` directly, without a competing wrapper or
-synonym, and adds only the category-level filtration data that Mathlib does not
-provide: decreasing filtrations of graded objects, associated graded quotients,
-filtered morphisms, and filtered chain complexes with their induced
-associated-graded differential.  The canonical filtered-complex layer also
-constructs homology filtrations, cycle/boundary subobjects, quotient pages, and
-finite-page differentials with their square-zero law.  It now also includes the generic
-homological-image bridge and the filtered-complex triangulated/abelian
-spectral-object adapter; endpoint and convergence data remain explicit
-Blueprint interfaces.  The toolchain and Mathlib dependency are pinned to
-matching `4.32.2` releases.
+The internal spectral-sequence presentation uses KIP126's `SSData`/`PreSS`
+cycle and boundary towers, including quotient pages and finite-page
+differentials. `KIP126/Mathlib/` hosts checked bridges to Mathlib's
+`CategoryTheory.SpectralSequence`; it does not copy Mathlib definitions or
+replace the internal representative language. The filtered-complex layer also
+constructs homology filtrations and associated-graded differentials. The
+generic homological-image and spectral-object bridges, endpoint data, and
+convergence interfaces remain distinct from the internal `Z/B` presentation.
+This separation is still being completed; see
+[`docs/SPECTRAL_SEQUENCE_STATUS.md`](docs/SPECTRAL_SEQUENCE_STATUS.md). The
+toolchain and Mathlib dependency are pinned to matching `4.32.2` releases.
 
 The Blueprint remains ahead of the theorem proofs, while the source catalogue
 interfaces now cover the completed migration slices.  Its entry

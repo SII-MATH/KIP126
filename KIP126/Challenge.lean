@@ -7,3 +7,4 @@ import KIP126.Challenge.Near126.only_d12_differential_reduction
 import KIP126.Challenge.Near126.c4_c5_choice_equivalence
 import KIP126.Challenge.Near126.c3_excludes_c5
 import KIP126.Challenge.Final.h6_sq_permanent
+import KIP126.Challenge.Final.h6_sq_permanent_computational

@@ -1,115 +1,187 @@
-import KIP126.Def.SpectralSequence.EndpointExtension.Data
-import KIP126.Def.Algebra.Completion.Data
+import KIP126.Def.SpectralSequence.Basic.Data
+import KIP126.Def.Algebra.Filtration.Data
 
-/-! Convergence and detection witnesses for an endpoint-extended spectral sequence. -/
+/-!
+# Internal convergence data for nested-subobject spectral sequences
+
+This file migrates the data declarations from
+`KIPBase/SpectralSequence/Convergence.lean`.  The historical field names are
+preserved.  Explicit conversions connect its filtration record to the existing
+`KIP126.Core.Algebra.Filtration` API.
+-/
+
 namespace KIP126.Core.SpectralSequence
 
 open CategoryTheory CategoryTheory.Limits
 
-universe u v
+universe u v w
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
-/-- Explicit input for comparing pointwise selected pages of an endpoint-extended
-spectral sequence with the associated graded of a complete, degreewise bounded
-endpoint abutment filtration.  The record is deliberately narrower than a
-strong convergence theorem: it stores one selected page for each bidegree, but
-does not claim the additional page-passage coherence needed to construct a
-canonical `E∞` object.
+/-- A decreasing filtration with the historical `mono` field name. -/
+structure Filtration {ω : Type w} (A : ω → C) where
+  /-- Filtration subobject at level `s` and grading `k`. -/
+  F : ℤ → (k : ω) → Subobject (A k)
+  /-- Successive levels form a decreasing family. -/
+  mono : ∀ (s : ℤ) (k : ω), F (s + 1) k ≤ F s k
 
-Completeness is proved from the canonical tower `Aᵢ / FˢAᵢ`, while the
-boundedness field proves degreewise eventual-top and eventual-bottom
-consequences.  These are stronger than ordinary exhaustiveness and
-separatedness.
-All of this remains explicit data for a concrete construction; it is not
-inferred from an arbitrary filtered complex. -/
-structure PageAbutmentComparisonWitness
-    {FC : FilteredComplex C} (P : EndpointExtension FC) (A : Type*) [Category A] [Abelian A]
-    (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
-    [F.ShiftSequence ℤ] [F.IsHomological] where
-  /-- The endpoint limit/colimit data for the diagram that produced the
-spectral sequence. -/
-  boundary : P.BoundaryWitness
-  /-- The chosen graded abutment. -/
-  abutment : CategoryTheory.GradedObject ℤ A
-  /-- The chosen abutment is explicitly the shifted homological image of the
-upper endpoint.  This keeps the associated-graded comparison connected to the
-same endpoint data that supplied the boundary witnesses. -/
-  endpointAbutmentIso : P.endpointAbutment A F ≅ abutment
-  /-- Its decreasing filtration.  This is separate data because the filtration
-on an abutment need not be definitionally the filtration on a chain complex. -/
-  filtration : Algebra.Filtration abutment
-  /-- Degreewise boundedness is the regularity hypothesis used here.  Its lower
-and upper components imply degreewise eventual-top, eventual-bottom, and
-canonical degreewise completion respectively. -/
-  bounded : Algebra.Filtration.IsBounded filtration
-  /-- Which abutment-filtration degree represents a page bidegree.  Keeping
-this translation explicit prevents a hidden sign or page-index convention. -/
-  filtrationDegree : ℤ × ℤ → ℤ
-  /-- The page selected by the concrete comparison at each bidegree.  It is
-intentionally bidegree-dependent; no uniform-page or page-passage coherence is
-claimed by this witness. -/
-  comparisonPage : ℤ × ℤ → ℤ
-  comparisonPage_ge_two : ∀ pq, 2 ≤ comparisonPage pq
-  /-- Each pointwise selected page is explicitly identified with the associated
-graded piece of the chosen endpoint abutment. -/
-  pageComparison : ∀ pq,
-    ((P.spectralSequence A F).page (comparisonPage pq)
-      (comparisonPage_ge_two pq)).X pq ≅
-        filtration.associatedGraded (filtrationDegree pq) (pq.1 + pq.2)
+/-- Convert the spectral-sequence filtration API to KIP126's algebra filtration API. -/
+def Filtration.toAlgebra {ω : Type w} {A : ω → C} (F : Filtration A) :
+    KIP126.Core.Algebra.Filtration A where
+  F := F.F
+  decreasing := F.mono
 
-/-- Coherent strong-convergence data built on a pointwise page/abutment
-comparison.  Mathlib deliberately has no distinguished `E∞` page, so the
-limiting page is explicit data.  Every sufficiently late page is identified
-with that object, the identifications commute with Mathlib's successor-page
-isomorphisms, and the limiting page is identified with the associated graded
-of the endpoint abutment filtration.
+/-- Convert KIP126's algebra filtration API to the spectral-sequence API. -/
+def _root_.KIP126.Core.Algebra.Filtration.toSpectralSequence
+    {ω : Type w} {A : ω → C} (F : KIP126.Core.Algebra.Filtration A) :
+    Filtration A where
+  F := F.F
+  mono := F.decreasing
 
-This interface adapts the convergence and detection proof pattern from
-`KIP/SpectralSequence/Convergence.lean` at commit
-`19a6a56c6c1e590dde850f33a18490b8f35e7d6e` to Mathlib's spectral-sequence
-kernel and KIP126's explicit endpoint witnesses. -/
-structure StrongConvergenceWitness
-    {FC : FilteredComplex C} (P : EndpointExtension FC)
-    (A : Type*) [Category A] [Abelian A]
-    (F : HomotopyCategory C (ComplexShape.up ℤ) ⥤ A)
-    [F.ShiftSequence ℤ] [F.IsHomological] where
-  /-- The selected-page comparison and bounded endpoint data on which strong
-  convergence is built. -/
-  comparison : PageAbutmentComparisonWitness P A F
-  /-- The coherent limiting page, indexed by spectral-sequence bidegree. -/
-  eInfinity : CategoryTheory.GradedObject (ℤ × ℤ) A
-  /-- Supplied identifications from stable-page homology to the stable-page
-  object at the selected bidegree. -/
-  pageHomologyIso : ∀ (pq : ℤ × ℤ) (r : ℤ)
-      (hr : comparison.comparisonPage pq ≤ r),
-    ((P.spectralSequence A F).page r
-      ((comparison.comparisonPage_ge_two pq).trans hr)).homology pq ≅
-        ((P.spectralSequence A F).page r
-          ((comparison.comparisonPage_ge_two pq).trans hr)).X pq
-  /-- Every page after the selected stable bound is identified with `E∞`. -/
-  pageIso : ∀ (pq : ℤ × ℤ) (r : ℤ)
-      (hr : comparison.comparisonPage pq ≤ r),
-    ((P.spectralSequence A F).page r
-      ((comparison.comparisonPage_ge_two pq).trans hr)).X pq ≅ eInfinity pq
-  /-- The stable-page identifications commute with Mathlib's page passage. -/
-  pagePassage_coherent : ∀ (pq : ℤ × ℤ) (r : ℤ)
-      (hr : comparison.comparisonPage pq ≤ r),
-    (pageHomologyIso pq r hr).inv ≫
-        ((P.spectralSequence A F).iso r (r + 1) pq rfl
-          ((comparison.comparisonPage_ge_two pq).trans hr)).hom ≫
-      (pageIso pq (r + 1) (hr.trans (by omega))).hom =
-        (pageIso pq r hr).hom
-  /-- The limiting page is the associated graded of the chosen endpoint
-  abutment filtration. -/
-  eInfinityComparison : ∀ pq,
-    eInfinity pq ≅ comparison.filtration.associatedGraded
-      (comparison.filtrationDegree pq) (pq.1 + pq.2)
-  /-- At the selected page, the coherent comparison recovers the original
-  pointwise comparison. -/
-  selectedPage_compat : ∀ pq,
-    (pageIso pq (comparison.comparisonPage pq) le_rfl).hom ≫
-        (eInfinityComparison pq).hom =
-      (comparison.pageComparison pq).hom
+/-- Associated graded piece `F^s A^k / F^(s+1) A^k`. -/
+noncomputable def Filtration.associatedGraded
+    {ω : Type w} {A : ω → C} (F : Filtration A) (s : ℤ) (k : ω) : C :=
+  cokernel (Subobject.ofLE (F.F (s + 1) k) (F.F s k) (F.mono s k))
+
+/-- Projection from a filtration level to its associated graded piece. -/
+noncomputable def Filtration.toAssociatedGraded
+    {ω : Type w} {A : ω → C} (F : Filtration A) (s : ℤ) (k : ω) :
+    Subobject.underlying.obj (F.F s k) ⟶ F.associatedGraded s k :=
+  cokernel.π (Subobject.ofLE (F.F (s + 1) k) (F.F s k) (F.mono s k))
+
+/-- Transport associated graded pieces along equality of their indices. -/
+noncomputable def Filtration.transportGraded
+    {ω' : Type w} {A : ω' → C} (F : Filtration A)
+    {r₁ r₂ : ℤ × ω'} (h : r₁ = r₂) :
+    F.associatedGraded r₁.1 r₁.2 ⟶ F.associatedGraded r₂.1 r₂.2 :=
+  eqToHom (by rw [h])
+
+/-- Weak convergence to a filtered graded object. -/
+structure Convergence
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+    (E : SpectralSequence C ω) {ω' : Type w} (A : ω' → C) (F : Filtration A) where
+  /-- Reindexing from spectral-sequence degrees to filtration/stem degrees. -/
+  reindex : ω → ℤ × ω'
+  /-- The reindexing is bijective. -/
+  reindex_bijective : Function.Bijective reindex
+  /-- Identification of the infinity page with the associated graded. -/
+  iso : ∀ (k : ω),
+    (E.ssData k).eInfty ≅ F.associatedGraded (reindex k).1 (reindex k).2
+
+/-- Filtration-degree component of the convergence reindexing. -/
+def Convergence.filtrationDegree
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+    {E : SpectralSequence C ω} {ω' : Type w} {A : ω' → C} {F : Filtration A}
+    (conv : Convergence E A F) (k : ω) : ℤ :=
+  (conv.reindex k).1
+
+/-- Stem-degree component of the convergence reindexing. -/
+def Convergence.stemDegree
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+    {E : SpectralSequence C ω} {ω' : Type w} {A : ω' → C} {F : Filtration A}
+    (conv : Convergence E A F) (k : ω) : ω' :=
+  (conv.reindex k).2
+
+/-- Map on associated graded pieces induced by filtration-compatible maps. -/
+noncomputable def Filtration.inducedAssocGradedMap
+    {ω' : Type w} {A₁ A₂ : ω' → C}
+    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    (aMap : ∀ k', A₁ k' ⟶ A₂ k')
+    (hcompat : ∀ (s : ℤ) (k' : ω'),
+      ∃ (φ : Subobject.underlying.obj (F₁.F s k') ⟶
+        Subobject.underlying.obj (F₂.F s k')),
+        φ ≫ (F₂.F s k').arrow = (F₁.F s k').arrow ≫ aMap k')
+    (s : ℤ) (k' : ω') : F₁.associatedGraded s k' ⟶ F₂.associatedGraded s k' :=
+  cokernel.map
+    (Subobject.ofLE (F₁.F (s + 1) k') (F₁.F s k') (F₁.mono s k'))
+    (Subobject.ofLE (F₂.F (s + 1) k') (F₂.F s k') (F₂.mono s k'))
+    (hcompat (s + 1) k').choose
+    (hcompat s k').choose
+    (by
+      apply (cancel_mono ((F₂.F s k').arrow)).mp
+      simp only [Category.assoc, Subobject.ofLE_arrow]
+      rw [(hcompat s k').choose_spec, (hcompat (s + 1) k').choose_spec,
+        ← Category.assoc, Subobject.ofLE_arrow])
+
+/-- Data part of a morphism between convergent spectral sequences. -/
+structure ConvergenceMorphismData
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
+    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    (conv₁ : Convergence E₁ A₁ F₁) (conv₂ : Convergence E₂ A₂ F₂) where
+  /-- Map on infinity pages. -/
+  eMap : ∀ (k : ω), (E₁.ssData k).eInfty ⟶ (E₂.ssData k).eInfty
+  /-- Map on the target graded objects. -/
+  aMap : ∀ (k' : ω'), A₁ k' ⟶ A₂ k'
+  /-- The target map preserves the filtrations. -/
+  filtration_compat : ∀ (s : ℤ) (k' : ω'),
+    ∃ (φ : Subobject.underlying.obj (F₁.F s k') ⟶
+      Subobject.underlying.obj (F₂.F s k')),
+      φ ≫ (F₂.F s k').arrow = (F₁.F s k').arrow ≫ aMap k'
+
+/-- A morphism between convergent spectral sequences. -/
+structure ConvergenceMorphism
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
+    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    (conv₁ : Convergence E₁ A₁ F₁) (conv₂ : Convergence E₂ A₂ F₂)
+    extends ConvergenceMorphismData conv₁ conv₂ where
+  /-- The two reindexings agree. -/
+  reindex_eq : conv₁.reindex = conv₂.reindex
+  /-- Compatibility with the convergence isomorphisms. -/
+  iso_compat : ∀ (k : ω),
+    eMap k ≫ (conv₂.iso k).hom ≫
+      F₂.transportGraded (congrFun reindex_eq k).symm =
+    (conv₁.iso k).hom ≫
+      Filtration.inducedAssocGradedMap aMap filtration_compat
+        (conv₁.reindex k).1 (conv₁.reindex k).2
+
+/-- A filtration-preserving degreewise map. -/
+structure FilteredMorphism
+    {ω : Type w} {A₁ A₂ : ω → C} (F₁ : Filtration A₁) (F₂ : Filtration A₂) where
+  /-- Degreewise map. -/
+  map : ∀ (k : ω), A₁ k ⟶ A₂ k
+  /-- Restriction to every filtration level. -/
+  compat : ∀ (s : ℤ) (k : ω),
+    ∃ (φ : Subobject.underlying.obj (F₁.F s k) ⟶
+      Subobject.underlying.obj (F₂.F s k)),
+      φ ≫ (F₂.F s k).arrow = (F₁.F s k).arrow ≫ map k
+
+/-- A filtered morphism induces a map of associated graded pieces. -/
+noncomputable def FilteredMorphism.inducedGrMap
+    {ω : Type w} {A₁ A₂ : ω → C}
+    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    (f : FilteredMorphism F₁ F₂) (s : ℤ) (k : ω) :
+    F₁.associatedGraded s k ⟶ F₂.associatedGraded s k :=
+  Filtration.inducedAssocGradedMap f.map f.compat s k
+
+/-- A spectral sequence packaged with its filtered target and convergence data. -/
+structure ConvergingSS
+    (C : Type u) [Category.{v} C] [Abelian C]
+    (ω : Type w) [AddCommGroup ω] [DecidableEq ω] (ω' : Type w) where
+  /-- Underlying spectral sequence. -/
+  E : SpectralSequence C ω
+  /-- Target graded object. -/
+  A : ω' → C
+  /-- Filtration on the target. -/
+  F : Filtration A
+  /-- Convergence identification. -/
+  conv : Convergence E A F
+
+/-- Associated-graded map with the restriction maps supplied explicitly. -/
+noncomputable def Filtration.inducedGradedMapOfMap
+    {ω' : Type w} {A₁ A₂ : ω' → C}
+    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    (φ : ∀ (s : ℤ) (k' : ω'), Subobject.underlying.obj (F₁.F s k') ⟶
+      Subobject.underlying.obj (F₂.F s k'))
+    (hw : ∀ (s : ℤ) (k' : ω'),
+      Subobject.ofLE (F₁.F (s + 1) k') (F₁.F s k') (F₁.mono s k') ≫ φ s k' =
+        φ (s + 1) k' ≫
+          Subobject.ofLE (F₂.F (s + 1) k') (F₂.F s k') (F₂.mono s k'))
+    (s : ℤ) (k' : ω') : F₁.associatedGraded s k' ⟶ F₂.associatedGraded s k' :=
+  cokernel.map
+    (Subobject.ofLE (F₁.F (s + 1) k') (F₁.F s k') (F₁.mono s k'))
+    (Subobject.ofLE (F₂.F (s + 1) k') (F₂.F s k') (F₂.mono s k'))
+    (φ (s + 1) k') (φ s k') (hw s k')
 
 end KIP126.Core.SpectralSequence

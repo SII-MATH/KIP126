@@ -10,7 +10,7 @@ These checks pin the public declaration names migrated from
 namespace KIP126.Checks.SpectralSequence.Basic
 
 open CategoryTheory
-open KIP126.Core.SpectralSequence
+open KIP126.Core KIP126.Core.SpectralSequence
 
 #check SSData
 #check SSData.Z
@@ -24,7 +24,7 @@ open KIP126.Core.SpectralSequence
 #check UnderlyingMorphism
 #check SSDataMorphism
 #check PreSSMorphism
-#check SpectralSequence
+#check KIP126.Core.SpectralSequence
 #check SpectralSequence.ofPreSS
 #check SpectralSequence.Page
 #check SpectralSequence.pageGraded

@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.Convergence.Proofs
+import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Proofs
 import Mathlib.Algebra.Category.ModuleCat.Abelian
 
 /-!

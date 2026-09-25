@@ -154,3 +154,9 @@ bash scripts/shared-main-cache.sh run lake build KIP126.Examples.AdamsE2Table
 
 样例末尾的 `#print axioms` 检查其关键证明是否只使用 Lean 的基础公理。
 真实大表的加载性能及完整数据集验证不属于这个小样例的验收范围。
+
+## 完整 Lin 数据接口
+
+PR #110 的 v126.3.cw49 完整数据（与本文的小表实例不同）现有加法基、
+乘法计算和内部 SSData 页接口，见 [LIN_E2_INTERFACES.md](LIN_E2_INTERFACES.md)。
+基表认证和归约器正确性仍是独立的待证定理，不能视作已认证 Ext 计算。

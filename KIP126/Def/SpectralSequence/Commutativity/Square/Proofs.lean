@@ -1,5 +1,5 @@
 import KIP126.Def.SpectralSequence.Commutativity.Square.Data
-import KIP126.Def.SpectralSequence.Convergence.SSData.Proofs
+import KIP126.Def.SpectralSequence.Convergence.Proofs
 
 /-!
 # Compatibility properties of commutative convergence squares
@@ -10,8 +10,6 @@ namespace KIP126.Core.SpectralSequence
 open CategoryTheory
 
 universe u v w
-
-set_option linter.dupNamespace false
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
 

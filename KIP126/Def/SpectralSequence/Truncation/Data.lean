@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.Convergence.SSData.Proofs
+import KIP126.Def.SpectralSequence.Convergence.Proofs
 import KIP126.Def.Algebra.Truncation.Data
 
 /-!

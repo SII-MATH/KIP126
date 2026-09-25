@@ -14,13 +14,12 @@ open PageHomology
 
 universe u v w
 
-set_option linter.dupNamespace false
 set_option backward.defeqAttrib.useBackward true
 set_option backward.isDefEq.respectTransparency false
 set_option maxSynthPendingDepth 3
 
 /-- The homology of page `r` at grading `k` is canonically isomorphic to page `r + 1`. -/
-noncomputable def SpectralSequence.pageHomologyIso
+noncomputable def pageHomologyIso
     {C : Type u} [Category.{v} C] [Abelian C]
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E : SpectralSequence C ι) (r : ℤ) (k : ι) (hr : E.r₀ ≤ r) :
