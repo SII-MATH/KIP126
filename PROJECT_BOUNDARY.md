@@ -81,6 +81,9 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    dependencies. Its presence is not evidence that the statement is proved.
    An unfinished theorem instead remains in `Proofs.lean` with `by sorry`;
    it must not be converted into an axiom merely to avoid `sorryAx`.
+   A development pull request may merge with `sorryAx` after the audit exposes
+   the debt and its downstream dependencies for human review; merging does not
+   claim that the affected theorem or the project is complete.
    Literature results and computational inputs remain explicit external
    premises as specified below, not project axioms. Individual audit makes
    development debt visible; it does not authorize retaining project axioms at
