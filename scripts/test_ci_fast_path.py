@@ -77,6 +77,24 @@ class FastPathTests(unittest.TestCase):
         waiter = (ROOT / "scripts/docs/wait_for_lean_cache.py").read_text()
         self.assertNotIn("pr-incremental", waiter)
 
+    def test_cache_publisher_explicitly_opts_in_and_verifies_actual_outputs(self):
+        workflow = yaml.safe_load((ROOT / ".github/workflows/pr-build.yml").read_text())
+        self.assertNotIn("cache-mode", workflow)
+        job = workflow["jobs"]["sandboxed-build"]
+        self.assertEqual(job["cache-mode"], "write")
+        steps = job["steps"]
+        confirm = next(s for s in steps if s["name"] == "Confirm exact candidate cache was actually published")
+        self.assertIn("steps.publish-inputs.outputs.matched == 'true'", confirm["if"])
+        for required in (".key == $key", ".ref == $ref", ".size_in_bytes > 0"):
+            self.assertIn(required, confirm["run"])
+        for step in steps:
+            if "/save@" in step.get("uses", ""):
+                self.assertTrue(step["with"]["key"].startswith("kip126-pr-"))
+            if step.get("id") in ("compile", "build"):
+                command = step["run"].split("landrun --rox", 1)[1].split("-- bash", 1)[0]
+                self.assertNotIn("--env GH_TOKEN", command)
+                self.assertNotIn("--env ACTIONS_RUNTIME_TOKEN", command)
+
     def test_preflight_is_unprivileged_and_bounded(self):
         workflow = yaml.safe_load((ROOT / ".github/workflows/automation-checks.yml").read_text())
         # PyYAML's YAML 1.1 loader parses the unquoted key 'on' as True.
