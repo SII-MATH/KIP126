@@ -2,11 +2,100 @@ import pathlib
 import shutil
 import subprocess
 import tempfile
+import textwrap
 import unittest
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 WORKFLOWS = ROOT / ".github" / "workflows"
+
+
+class HeartbeatBudgetGuardTests(unittest.TestCase):
+    """Execute the actual trusted workflow guard against temporary source trees."""
+
+    def run_guard(self, candidate, *, trusted="", path="KIP126/Test.lean"):
+        workflow = (WORKFLOWS / "pr-build.yml").read_text()
+        section = workflow.split(
+            "- name: Heartbeat budget guard (candidate uses only approved maxHeartbeats)", 1
+        )[1].split("\n      - name:", 1)[0]
+        script = textwrap.dedent(section.split("run: |\n", 1)[1])
+        with tempfile.TemporaryDirectory() as directory:
+            repo = pathlib.Path(directory)
+            for tree, content in (("base", trusted), ("pr", candidate)):
+                (repo / tree / "KIP126").mkdir(parents=True)
+                source = repo / tree / path
+                source.parent.mkdir(parents=True, exist_ok=True)
+                source.write_text(content)
+            return subprocess.run(
+                ["bash", "-c", script], cwd=repo, text=True, capture_output=True
+            )
+
+    def test_non_heartbeat_options_are_not_blocked(self):
+        result = self.run_guard(
+            "set_option maxRecDepth 100000\n"
+            "set_option backward.isDefEq.respectTransparency false\n"
+            "set_option backward.defeqAttrib.useBackward true\n"
+            "set_option Elab.async false\n"
+            "set_option linter.unusedSimpArgs false in\n"
+            "example : True := by trivial\n"
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_unapproved_global_local_and_unlimited_budgets_are_blocked(self):
+        for setting in (
+            "set_option maxHeartbeats 64000000",
+            "set_option maxHeartbeats 1000000 in",
+            "set_option maxHeartbeats 0",
+            "  set_option maxHeartbeats 1000000 in",
+        ):
+            with self.subTest(setting=setting):
+                result = self.run_guard(setting + "\n")
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("unapproved maxHeartbeats", result.stdout)
+
+    def test_reviewed_file_specific_budgets_remain_allowed(self):
+        for module, budgets in (
+            ("SquareZero", (800000,)),
+            ("Cycles", (6400000, 900000)),
+            ("Boundaries", (6400000, 400000)),
+        ):
+            for budget in budgets:
+                with self.subTest(module=module, budget=budget):
+                    result = self.run_guard(
+                        f"set_option maxHeartbeats {budget} in\n",
+                        path=f"KIP126/Def/SpectralSequence/FilteredDifferential/{module}.lean",
+                    )
+                    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_reviewed_value_is_not_allowed_in_other_files(self):
+        result = self.run_guard("set_option maxHeartbeats 800000 in\n")
+        self.assertNotEqual(result.returncode, 0)
+
+    def test_reviewed_file_does_not_allow_other_budgets(self):
+        result = self.run_guard(
+            "set_option maxHeartbeats 800001 in\n",
+            path="KIP126/Def/SpectralSequence/FilteredDifferential/SquareZero.lean",
+        )
+        self.assertNotEqual(result.returncode, 0)
+
+    def test_unchanged_or_removed_settings_are_not_new_budgets(self):
+        trusted = "set_option maxHeartbeats 1000000 in\n"
+        for candidate in (trusted, ""):
+            with self.subTest(candidate=candidate):
+                result = self.run_guard(candidate, trusted=trusted)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_changed_budget_is_blocked(self):
+        result = self.run_guard(
+            "set_option maxHeartbeats 2000000 in\n",
+            trusted="set_option maxHeartbeats 1000000 in\n",
+        )
+        self.assertNotEqual(result.returncode, 0)
+
+    def test_root_lean_file_is_also_checked(self):
+        result = self.run_guard("set_option maxHeartbeats 0\n", path="KIP126.lean")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("KIP126.lean adds an unapproved maxHeartbeats", result.stdout)
 
 
 class WorkflowRoutingTests(unittest.TestCase):
