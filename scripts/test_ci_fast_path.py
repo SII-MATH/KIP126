@@ -44,7 +44,8 @@ class FastPathTests(unittest.TestCase):
         self.assertNotIn("merge_group", identity["if"])
         cache = ids["candidate-build-cache"]
         self.assertNotIn("merge_group", cache["if"])
-        self.assertNotIn("restore-keys", cache["with"])
+        self.assertIn("env.BUILD_INPUT_DIGEST", cache["with"]["restore-keys"])
+        self.assertNotIn("env.BUILD_CONTRACT", cache["with"]["restore-keys"])
         self.assertIn("env.BUILD_INPUT_DIGEST", cache["with"]["key"])
         self.assertIn("env.BUILD_CONTRACT", cache["with"]["key"])
         self.assertLess(steps.index(identity), steps.index(cache))
@@ -52,6 +53,29 @@ class FastPathTests(unittest.TestCase):
         # Cache presence alone must never bypass the combined-tree build/audit.
         self.assertNotIn("cache", ids["build"]["if"])
         self.assertIn("sandbox-build.sh", ids["build"]["run"])
+
+    def test_incremental_seed_is_scoped_and_cannot_waive_build_or_audit(self):
+        workflow = yaml.safe_load((ROOT / ".github/workflows/pr-build.yml").read_text())
+        steps = workflow["jobs"]["sandboxed-build"]["steps"]
+        ids = {s["id"]: s for s in steps if "id" in s}
+        seed = ids["incremental-build-cache"]
+        self.assertIn("github.event_name != 'merge_group'", seed["if"])
+        self.assertIn("steps.candidate-build-cache.outputs.cache-matched-key == ''", seed["if"])
+        for key in ("key", "restore-keys"):
+            value = seed["with"][key]
+            self.assertIn("steps.pr.outputs.num", value)
+            for path in ("lakefile.lean", "lake-manifest.json", "lean-toolchain"):
+                self.assertIn("base/" + path, value)
+        self.assertLess(steps.index(seed), steps.index(ids["compile"]))
+        self.assertNotIn("cache", ids["compile"]["if"])
+        self.assertEqual(ids["build"]["if"], "${{ steps.compile.outcome == 'success' }}")
+        save = next(s for s in steps if s["name"] == "Save this PR's incremental compilation")
+        self.assertEqual(save["with"]["key"], seed["with"]["key"])
+        self.assertIn("steps.publish-inputs.outputs.matched == 'true'", save["if"])
+        self.assertLess(steps.index(ids["compile"]), steps.index(save))
+        self.assertLess(steps.index(save), steps.index(ids["build"]))
+        waiter = (ROOT / "scripts/docs/wait_for_lean_cache.py").read_text()
+        self.assertNotIn("pr-incremental", waiter)
 
     def test_preflight_is_unprivileged_and_bounded(self):
         workflow = yaml.safe_load((ROOT / ".github/workflows/automation-checks.yml").read_text())

@@ -626,7 +626,9 @@ jobs:
             kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
 
       # Reuse compilation, never a status: the combined queue tree is still built
-      # and audited under landrun. Only an exact input + trusted-contract key is used.
+      # and audited under landrun. Prefer the current trusted contract. An older
+      # contract with identical source/config inputs is only a compilation seed:
+      # the current build and audit still run and publish fresh evidence.
       - name: Restore exact candidate compilation for PRs and merge groups
         id: candidate-build-cache
         if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && env.BUILD_ATTESTATION != '' }}
@@ -635,6 +637,23 @@ jobs:
         with:
           path: base/.lake/build
           key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
+          restore-keys: |
+            kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-
+
+      # Keep the latest successful compilation of this PR across source edits.
+      # These outputs are never trusted status evidence or a docs input. Lake
+      # checks dependency traces and recompiles affected modules in the sandbox.
+      # Pin/config changes get a different prefix; merge groups use exact inputs.
+      - name: Restore this PR's incremental compilation
+        id: incremental-build-cache
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && github.event_name != 'merge_group' && env.BUILD_ATTESTATION != '' && steps.candidate-build-cache.outputs.cache-matched-key == '' }}
+        continue-on-error: true
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-incremental-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.pr.outputs.num }}-${{ hashFiles('base/lakefile.lean', 'base/lake-manifest.json', 'base/lean-toolchain') }}-${{ env.BUILD_INPUT_DIGEST }}
+          restore-keys: |
+            kip126-pr-incremental-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.pr.outputs.num }}-${{ hashFiles('base/lakefile.lean', 'base/lake-manifest.json', 'base/lean-toolchain') }}-
 
       # Enable Lake's built-in artifact cache for the build below ONLY when the public read
       # endpoints are configured (repo variables). Until then this is a no-op: LAKE_*
@@ -870,6 +889,14 @@ jobs:
           path: base/.lake/build
           key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
 
+      - name: Save this PR's incremental compilation
+        if: ${{ steps.publish-inputs.outputs.matched == 'true' && github.event_name != 'merge_group' }}
+        continue-on-error: true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-incremental-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.pr.outputs.num }}-${{ hashFiles('base/lakefile.lean', 'base/lake-manifest.json', 'base/lean-toolchain') }}-${{ env.BUILD_INPUT_DIGEST }}
+
       - name: Audit compiled candidate under landrun, offline
         id: build
         if: ${{ steps.compile.outcome == 'success' }}
@@ -1053,6 +1080,8 @@ jobs:
           CANDIDATE_SHA: ${{ steps.pr.outputs.sha }}
           BASE_CACHE: ${{ steps.main-build-cache.outputs.cache-matched-key }}
           CANDIDATE_CACHE_HIT: ${{ steps.candidate-build-cache.outputs.cache-hit }}
+          CANDIDATE_CACHE_KEY: ${{ steps.candidate-build-cache.outputs.cache-matched-key }}
+          INCREMENTAL_CACHE_KEY: ${{ steps.incremental-build-cache.outputs.cache-matched-key }}
           COMPILE_OUTCOME: ${{ steps.compile.outcome }}
           BUILD_OUTCOME: ${{ steps.build.outcome }}
           JOB_OUTCOME: ${{ job.status }}
@@ -1062,7 +1091,9 @@ jobs:
             echo "Event: $EVENT_KIND; candidate: $CANDIDATE_SHA"
             echo
             echo "- Main incremental baseline: ${BASE_CACHE:-miss}"
-            echo "- Exact candidate compilation cache: ${CANDIDATE_CACHE_HIT:-miss}"
+            echo "- Exact candidate contract cache hit: ${CANDIDATE_CACHE_HIT:-false}"
+            echo "- Candidate compilation seed: ${CANDIDATE_CACHE_KEY:-miss}"
+            echo "- Same-PR incremental seed: ${INCREMENTAL_CACHE_KEY:-miss}"
             echo "- Inherited build evidence: ${BUILD_REUSED_FROM:-none}"
             echo "- Sandboxed compilation: ${COMPILE_OUTCOME:-not reached}"
             echo "- Sandboxed audit: ${BUILD_OUTCOME:-not reached}"
