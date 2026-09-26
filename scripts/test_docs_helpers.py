@@ -28,7 +28,7 @@ class DocsHelpersTest(unittest.TestCase):
                     blueprint,
                     "Blueprint",
                     SHA,
-                    "surenny/KIP126",
+                    "SII-MATH/KIP126",
                 ],
                 check=True,
             )
@@ -39,7 +39,7 @@ class DocsHelpersTest(unittest.TestCase):
                     docs,
                     "doc-gen4",
                     SHA,
-                    "surenny/KIP126",
+                    "SII-MATH/KIP126",
                 ],
                 check=True,
             )
@@ -57,7 +57,7 @@ class DocsHelpersTest(unittest.TestCase):
                     "--sha",
                     SHA,
                     "--repository",
-                    "surenny/KIP126",
+                    "SII-MATH/KIP126",
                 ],
                 check=True,
             )
@@ -85,7 +85,7 @@ class DocsHelpersTest(unittest.TestCase):
                     component,
                     "Blueprint",
                     "main",
-                    "surenny/KIP126",
+                    "SII-MATH/KIP126",
                 ],
                 check=False,
                 capture_output=True,

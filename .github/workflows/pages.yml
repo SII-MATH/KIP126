@@ -232,7 +232,7 @@ jobs:
           test -s component/index.html
           test -s component/lean_decls
           test -s component/revision.json
-          grep -R -F 'https://surenny.github.io/KIP126/docs/find/#doc/' component --include='*.html' -m1
+          grep -R -F 'https://sii-math.github.io/KIP126/docs/find/#doc/' component --include='*.html' -m1
           grep -R -F '${{ needs.classify.outputs.checkout_ref }}' component --include='*.html' -m1 || \
             grep -F '"commit"' component/revision.json
 

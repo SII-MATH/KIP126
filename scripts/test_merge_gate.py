@@ -27,7 +27,7 @@ def pull_request(**overrides: object) -> dict:
         "base": {"ref": "main"},
         "head": {
             "sha": "1" * 40,
-            "repo": {"full_name": "surenny/KIP126"},
+            "repo": {"full_name": "SII-MATH/KIP126"},
         },
         "labels": [],
         "auto_merge": None,
@@ -46,7 +46,7 @@ class GhJsonTests(unittest.TestCase):
             mock.patch.object(merge_gate.subprocess, "run", side_effect=[failed, succeeded]) as run,
             mock.patch.object(merge_gate.time, "sleep") as sleep,
         ):
-            result = merge_gate.gh_json(["api", "repos/surenny/KIP126"], retry_transient=True)
+            result = merge_gate.gh_json(["api", "repos/SII-MATH/KIP126"], retry_transient=True)
         self.assertEqual(result, {"ok": True})
         self.assertEqual(run.call_count, 2)
         sleep.assert_called_once_with(1.0)
@@ -55,7 +55,7 @@ class GhJsonTests(unittest.TestCase):
         failed = mock.Mock(returncode=1, stderr="gh: HTTP 502", stdout="")
         with mock.patch.object(merge_gate.subprocess, "run", return_value=failed) as run:
             with self.assertRaises(merge_gate.GitHubCommandError) as raised:
-                merge_gate.gh_json(["api", "--method", "POST", "repos/surenny/KIP126/labels"])
+                merge_gate.gh_json(["api", "--method", "POST", "repos/SII-MATH/KIP126/labels"])
         self.assertTrue(raised.exception.transient)
         run.assert_called_once()
 
@@ -73,16 +73,16 @@ class EvaluateTests(unittest.TestCase):
     def evaluate(self, pull: dict, decision: dict, queued: set[int] | None = None) -> tuple[str, bool]:
         with (
             mock.patch.object(merge_gate, "pull_request_identity", return_value=pull),
-            mock.patch.object(merge_gate.projection, "fetch_facts", return_value={}),
+            mock.patch.object(merge_gate.status_cli, "fetch_facts", return_value={}),
             mock.patch.object(merge_gate.projection, "reduce_facts", return_value=decision),
         ):
-            return merge_gate.evaluate("surenny/KIP126", pull["number"], queued, False)
+            return merge_gate.evaluate("SII-MATH/KIP126", pull["number"], queued, False)
 
     def test_ready_pull_request_enables_native_auto_merge(self) -> None:
         with mock.patch.object(merge_gate, "enqueue", return_value="#17: native auto-merge enabled") as enqueue:
             message, changed = self.evaluate(
                 pull_request(mergeable_state="clean"),
-                {"target_label": "ready-to-merge", "reason": "fresh-exact-head-evidence-green"},
+                {"target_label": "ready-to-merge", "reason": "fresh-exact-head-scoreboard-green"},
             )
         self.assertTrue(changed)
         self.assertEqual(message, "#17: native auto-merge enabled")
@@ -99,7 +99,7 @@ class EvaluateTests(unittest.TestCase):
             message, changed = self.evaluate(pull, decision)
         self.assertTrue(changed)
         self.assertIn("updated behind branch", message)
-        update.assert_called_once_with("surenny/KIP126", pull, False)
+        update.assert_called_once_with("SII-MATH/KIP126", pull, False)
 
     def test_behind_pull_request_uses_queue_when_one_exists(self) -> None:
         decision = {"target_label": "awaiting-review", "reason": "mergeability-ambiguous:behind"}
@@ -117,9 +117,9 @@ class EvaluateTests(unittest.TestCase):
         pull = pull_request(labels=[{"name": "hold"}])
         with (
             mock.patch.object(merge_gate, "pull_request_identity", return_value=pull),
-            mock.patch.object(merge_gate.projection, "fetch_facts") as fetch,
+            mock.patch.object(merge_gate.status_cli, "fetch_facts") as fetch,
         ):
-            message, changed = merge_gate.evaluate("surenny/KIP126", 17, None, False)
+            message, changed = merge_gate.evaluate("SII-MATH/KIP126", 17, None, False)
         self.assertFalse(changed)
         self.assertEqual(message, "#17: skip hold label")
         fetch.assert_not_called()
@@ -137,8 +137,11 @@ class EnqueueTests(unittest.TestCase):
                 }
             }
         }
-        with mock.patch.object(merge_gate, "gh_json", return_value=result) as gh_json:
-            message = merge_gate.enqueue("surenny/KIP126", pull_request(), False, False)
+        with (
+            mock.patch.object(merge_gate, "pull_request_identity", return_value=pull_request()),
+            mock.patch.object(merge_gate, "gh_json", return_value=result) as gh_json,
+        ):
+            message = merge_gate.enqueue("SII-MATH/KIP126", pull_request(), False, False)
         self.assertEqual(message, "#17: native auto-merge enabled (SQUASH)")
         args = gh_json.call_args.args[0]
         self.assertIn("method=SQUASH", args)
@@ -147,12 +150,26 @@ class EnqueueTests(unittest.TestCase):
     def test_transient_auto_merge_error_is_reconciled_from_live_state(self) -> None:
         error = merge_gate.GitHubCommandError("gh: HTTP 504", transient=True)
         with (
+            mock.patch.object(merge_gate, "pull_request_identity", return_value=pull_request()),
             mock.patch.object(merge_gate, "gh_json", side_effect=error),
             mock.patch.object(merge_gate, "wait_for_auto_merge", return_value=True) as wait,
         ):
-            message = merge_gate.enqueue("surenny/KIP126", pull_request(), False, False)
+            message = merge_gate.enqueue("SII-MATH/KIP126", pull_request(), False, False)
         self.assertIn("confirmed after transient GitHub error", message)
-        wait.assert_called_once_with("surenny/KIP126", 17)
+        wait.assert_called_once_with("SII-MATH/KIP126", 17)
+
+    def test_native_auto_merge_stops_if_head_changed_before_mutation(self) -> None:
+        changed = pull_request(head={
+            "sha": "2" * 40,
+            "repo": {"full_name": "SII-MATH/KIP126"},
+        })
+        with (
+            mock.patch.object(merge_gate, "pull_request_identity", return_value=changed),
+            mock.patch.object(merge_gate, "gh_json") as gh_json,
+        ):
+            with self.assertRaisesRegex(RuntimeError, "head changed before auto-merge"):
+                merge_gate.enqueue("SII-MATH/KIP126", pull_request(), False, False)
+        gh_json.assert_not_called()
 
     def test_transient_queue_error_is_reconciled_from_live_state(self) -> None:
         error = merge_gate.GitHubCommandError("gh: HTTP 503", transient=True)
@@ -160,9 +177,9 @@ class EnqueueTests(unittest.TestCase):
             mock.patch.object(merge_gate, "gh_json", side_effect=error),
             mock.patch.object(merge_gate, "wait_for_queue_entry", return_value=True) as wait,
         ):
-            message = merge_gate.enqueue("surenny/KIP126", pull_request(), False, True)
+            message = merge_gate.enqueue("SII-MATH/KIP126", pull_request(), False, True)
         self.assertIn("confirmed after transient GitHub error", message)
-        wait.assert_called_once_with("surenny/KIP126", 17)
+        wait.assert_called_once_with("SII-MATH/KIP126", 17)
 
 
 class BranchUpdateTests(unittest.TestCase):
@@ -170,7 +187,7 @@ class BranchUpdateTests(unittest.TestCase):
         files = [[{"filename": "blueprint/src/content.tex"}]]
         with mock.patch.object(merge_gate, "gh_json", return_value=files):
             self.assertEqual(
-                merge_gate.recheck_workflows("surenny/KIP126", 17),
+                merge_gate.recheck_workflows("SII-MATH/KIP126", 17),
                 ("blueprint-pr.yml",),
             )
 
@@ -181,7 +198,7 @@ class BranchUpdateTests(unittest.TestCase):
         ]]
         with mock.patch.object(merge_gate, "gh_json", return_value=files):
             self.assertEqual(
-                merge_gate.recheck_workflows("surenny/KIP126", 17),
+                merge_gate.recheck_workflows("SII-MATH/KIP126", 17),
                 merge_gate.RECHECK_WORKFLOWS,
             )
 
@@ -198,7 +215,7 @@ class BranchUpdateTests(unittest.TestCase):
         with mock.patch.object(
             merge_gate, "gh_json", side_effect=[update_result, files, None, None]
         ) as gh_json:
-            message = merge_gate.update_behind_branch("surenny/KIP126", pull_request(), False)
+            message = merge_gate.update_behind_branch("SII-MATH/KIP126", pull_request(), False)
         self.assertIn("111111111111 -> 222222222222", message)
         self.assertIn("pr-build.yml, pr-profile.yml", message)
         self.assertEqual(gh_json.call_count, 4)
@@ -206,8 +223,8 @@ class BranchUpdateTests(unittest.TestCase):
         self.assertEqual(
             dispatched,
             [
-                "repos/surenny/KIP126/actions/workflows/pr-build.yml/dispatches",
-                "repos/surenny/KIP126/actions/workflows/pr-profile.yml/dispatches",
+                "repos/SII-MATH/KIP126/actions/workflows/pr-build.yml/dispatches",
+                "repos/SII-MATH/KIP126/actions/workflows/pr-profile.yml/dispatches",
             ],
         )
         self.assertIn("inputs[refresh_review]=true", gh_json.call_args_list[2].args[0])
@@ -231,8 +248,8 @@ class BranchUpdateTests(unittest.TestCase):
                 merge_gate, "wait_for_updated_head", return_value=new_head
             ) as wait,
         ):
-            message = merge_gate.update_behind_branch("surenny/KIP126", pull_request(), False)
-        wait.assert_called_once_with("surenny/KIP126", 17, "1" * 40)
+            message = merge_gate.update_behind_branch("SII-MATH/KIP126", pull_request(), False)
+        wait.assert_called_once_with("SII-MATH/KIP126", 17, "1" * 40)
         self.assertIn("111111111111 -> 222222222222", message)
 
     def test_transient_branch_update_error_reconciles_before_dispatch(self) -> None:
@@ -245,8 +262,8 @@ class BranchUpdateTests(unittest.TestCase):
                 merge_gate, "wait_for_updated_head", return_value=new_head
             ) as wait,
         ):
-            message = merge_gate.update_behind_branch("surenny/KIP126", pull_request(), False)
-        wait.assert_called_once_with("surenny/KIP126", 17, "1" * 40)
+            message = merge_gate.update_behind_branch("SII-MATH/KIP126", pull_request(), False)
+        wait.assert_called_once_with("SII-MATH/KIP126", 17, "1" * 40)
         self.assertIn("111111111111 -> 222222222222", message)
 
     def test_updated_head_poll_observes_eventual_consistency(self) -> None:
@@ -257,13 +274,13 @@ class BranchUpdateTests(unittest.TestCase):
             mock.patch.object(merge_gate, "pull_request_identity", side_effect=[old, new]),
             mock.patch.object(merge_gate.time, "sleep") as sleep,
         ):
-            observed = merge_gate.wait_for_updated_head("surenny/KIP126", 17, "1" * 40)
+            observed = merge_gate.wait_for_updated_head("SII-MATH/KIP126", 17, "1" * 40)
         self.assertEqual(observed, "2" * 40)
         sleep.assert_called_once_with(1.0)
 
     def test_dry_run_has_no_side_effects(self) -> None:
         with mock.patch.object(merge_gate, "gh_json") as gh_json:
-            message = merge_gate.update_behind_branch("surenny/KIP126", pull_request(), True)
+            message = merge_gate.update_behind_branch("SII-MATH/KIP126", pull_request(), True)
         self.assertIn("would update behind branch", message)
         gh_json.assert_not_called()
 
@@ -271,18 +288,18 @@ class BranchUpdateTests(unittest.TestCase):
         pull = pull_request()
         pull["head"]["repo"]["full_name"] = "contributor/KIP126"
         with mock.patch.object(merge_gate, "gh_json") as gh_json:
-            message = merge_gate.update_behind_branch("surenny/KIP126", pull, False)
+            message = merge_gate.update_behind_branch("SII-MATH/KIP126", pull, False)
         self.assertEqual(message, "#17: skip behind fork — author must update the branch")
         gh_json.assert_not_called()
 
     def test_graphql_failure_is_fail_closed(self) -> None:
         with mock.patch.object(merge_gate, "gh_json", return_value={"errors": [{"message": "stale head"}]}):
             with self.assertRaisesRegex(RuntimeError, "branch update failed"):
-                merge_gate.update_behind_branch("surenny/KIP126", pull_request(), False)
+                merge_gate.update_behind_branch("SII-MATH/KIP126", pull_request(), False)
 
 
 class MergeTrainTests(unittest.TestCase):
-    READY = {"target_label": "ready-to-merge", "reason": "fresh-exact-head-evidence-green"}
+    READY = {"target_label": "ready-to-merge", "reason": "fresh-exact-head-scoreboard-green"}
     BEHIND = {"target_label": "awaiting-review", "reason": "mergeability-ambiguous:behind"}
 
     def reconcile(
@@ -311,7 +328,7 @@ class MergeTrainTests(unittest.TestCase):
             mock.patch.object(merge_gate, "apply_decision", apply),
         ):
             messages = merge_gate.reconcile_train(
-                "surenny/KIP126",
+                "SII-MATH/KIP126",
                 [pull["number"] for pull in pulls],
                 requested,
                 dry_run,
@@ -325,8 +342,8 @@ class MergeTrainTests(unittest.TestCase):
             [behind, clean],
             {10: self.BEHIND, 11: self.READY},
         )
-        label.assert_called_once_with("surenny/KIP126", 11, True, False)
-        apply.assert_called_once_with("surenny/KIP126", clean, self.READY, None, False)
+        label.assert_called_once_with("SII-MATH/KIP126", 11, True, False)
+        apply.assert_called_once_with("SII-MATH/KIP126", clean, self.READY, None, False)
         self.assertEqual(messages, ["#11: claimed merge-train head", "#11: advanced"])
 
     def test_oldest_number_wins_within_the_same_readiness_class(self) -> None:
@@ -336,7 +353,7 @@ class MergeTrainTests(unittest.TestCase):
             [newer, older],
             {19: self.BEHIND, 12: self.BEHIND},
         )
-        label.assert_called_once_with("surenny/KIP126", 12, True, False)
+        label.assert_called_once_with("SII-MATH/KIP126", 12, True, False)
         self.assertEqual(apply.call_args.args[1]["number"], 12)
 
     def test_behind_fork_is_not_claimed_by_the_fallback_train(self) -> None:
@@ -358,7 +375,7 @@ class MergeTrainTests(unittest.TestCase):
             ),
             mock.patch.object(merge_gate, "pull_decision") as decision,
         ):
-            messages = merge_gate.reconcile_train("surenny/KIP126", [10, 11], 11, False)
+            messages = merge_gate.reconcile_train("SII-MATH/KIP126", [10, 11], 11, False)
         self.assertEqual(messages, ["#11: skip — merge train is occupied by #10"])
         decision.assert_not_called()
 
@@ -371,7 +388,7 @@ class MergeTrainTests(unittest.TestCase):
             side_effect=lambda _repo, number: {10: first, 11: second}[number],
         ):
             with self.assertRaisesRegex(RuntimeError, "multiple merge-train heads: #10, #11"):
-                merge_gate.reconcile_train("surenny/KIP126", [10, 11], None, False)
+                merge_gate.reconcile_train("SII-MATH/KIP126", [10, 11], None, False)
 
     def test_multiple_unmanaged_auto_merge_requests_fail_closed(self) -> None:
         first = pull_request(number=10, auto_merge={"merge_method": "squash"})
@@ -382,7 +399,7 @@ class MergeTrainTests(unittest.TestCase):
             side_effect=lambda _repo, number: {10: first, 11: second}[number],
         ):
             with self.assertRaisesRegex(RuntimeError, "multiple native auto-merge requests"):
-                merge_gate.reconcile_train("surenny/KIP126", [10, 11], None, False)
+                merge_gate.reconcile_train("SII-MATH/KIP126", [10, 11], None, False)
 
     def test_pending_head_waits_without_releasing_or_advancing_another_pr(self) -> None:
         head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
@@ -392,7 +409,7 @@ class MergeTrainTests(unittest.TestCase):
             mock.patch.object(merge_gate, "release_train_head") as release,
             mock.patch.object(merge_gate, "apply_decision") as apply,
         ):
-            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+            message = merge_gate.advance_train_head("SII-MATH/KIP126", head, False)
         self.assertIn("merge-train head waiting", message)
         release.assert_not_called()
         apply.assert_not_called()
@@ -406,7 +423,7 @@ class MergeTrainTests(unittest.TestCase):
             mock.patch.object(merge_gate, "recheck_workflows", return_value=merge_gate.RECHECK_WORKFLOWS),
             mock.patch.object(merge_gate, "dispatch_recheck") as dispatch,
         ):
-            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+            message = merge_gate.advance_train_head("SII-MATH/KIP126", head, False)
         self.assertEqual(dispatch.call_count, 2)
         self.assertEqual(
             [call.args[1] for call in dispatch.call_args_list],
@@ -427,7 +444,7 @@ class MergeTrainTests(unittest.TestCase):
             mock.patch.object(merge_gate, "recheck_workflows", return_value=merge_gate.RECHECK_WORKFLOWS),
             mock.patch.object(merge_gate, "dispatch_recheck") as dispatch,
         ):
-            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
+            message = merge_gate.advance_train_head("SII-MATH/KIP126", head, False)
         dispatch.assert_not_called()
         self.assertEqual(message, "#10: merge-train head waiting — exact-head build is active")
 
@@ -444,25 +461,25 @@ class MergeTrainTests(unittest.TestCase):
             ),
             mock.patch.object(merge_gate, "dispatch_recheck") as dispatch,
         ):
-            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
-        dispatch.assert_called_once_with("surenny/KIP126", "blueprint-pr.yml", 10)
+            message = merge_gate.advance_train_head("SII-MATH/KIP126", head, False)
+        dispatch.assert_called_once_with("SII-MATH/KIP126", "blueprint-pr.yml", 10)
         self.assertEqual(message, "#10: re-dispatched missing exact-head checks")
 
-    def test_missing_semantic_review_retries_only_the_reviewer(self) -> None:
+    def test_missing_scoreboard_retries_only_the_reviewer(self) -> None:
         head = pull_request(number=10, labels=[{"name": merge_gate.TRAIN_LABEL}])
         missing = {
             "target_label": "awaiting-review",
-            "reason": "semantic-unavailable:semantic-review:missing",
+            "reason": "scoreboard:absent",
         }
         with (
             mock.patch.object(merge_gate, "pull_decision", return_value=(missing, None)),
             mock.patch.object(merge_gate, "dispatch_review") as review,
             mock.patch.object(merge_gate, "dispatch_recheck") as recheck,
         ):
-            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
-        review.assert_called_once_with("surenny/KIP126", 10)
+            message = merge_gate.advance_train_head("SII-MATH/KIP126", head, False)
+        review.assert_called_once_with("SII-MATH/KIP126", 10)
         recheck.assert_not_called()
-        self.assertEqual(message, "#10: re-dispatched missing exact-head semantic review")
+        self.assertEqual(message, "#10: re-dispatched missing exact-head TauCeti scoreboard")
 
     def test_terminal_head_releases_label_and_native_auto_merge(self) -> None:
         head = pull_request(
@@ -470,21 +487,21 @@ class MergeTrainTests(unittest.TestCase):
             labels=[{"name": merge_gate.TRAIN_LABEL}],
             auto_merge={"merge_method": "squash"},
         )
-        terminal = {"target_label": "awaiting-author", "reason": "semantic-request-changes"}
+        terminal = {"target_label": "awaiting-author", "reason": "scoreboard:blocked"}
         with (
             mock.patch.object(merge_gate, "pull_decision", return_value=(terminal, None)),
             mock.patch.object(merge_gate, "disable_auto_merge") as disable,
             mock.patch.object(merge_gate, "set_train_label") as label,
         ):
-            message = merge_gate.advance_train_head("surenny/KIP126", head, False)
-        disable.assert_called_once_with("surenny/KIP126", head, False)
-        label.assert_called_once_with("surenny/KIP126", 10, False, False)
-        self.assertEqual(message, "#10: released merge-train head — semantic-request-changes")
+            message = merge_gate.advance_train_head("SII-MATH/KIP126", head, False)
+        disable.assert_called_once_with("SII-MATH/KIP126", head, False)
+        label.assert_called_once_with("SII-MATH/KIP126", 10, False, False)
+        self.assertEqual(message, "#10: released merge-train head — scoreboard:blocked")
 
     def test_dry_run_never_writes_the_train_label(self) -> None:
         with mock.patch.object(merge_gate, "gh_json") as gh_json:
-            merge_gate.set_train_label("surenny/KIP126", 17, True, True)
-            merge_gate.set_train_label("surenny/KIP126", 17, False, True)
+            merge_gate.set_train_label("SII-MATH/KIP126", 17, True, True)
+            merge_gate.set_train_label("SII-MATH/KIP126", 17, False, True)
         gh_json.assert_not_called()
 
     def test_closed_train_labels_are_cleared_without_touching_plain_issues(self) -> None:
@@ -496,8 +513,8 @@ class MergeTrainTests(unittest.TestCase):
             mock.patch.object(merge_gate, "gh_json", return_value=pages),
             mock.patch.object(merge_gate, "set_train_label") as label,
         ):
-            messages = merge_gate.cleanup_closed_train_heads("surenny/KIP126", False)
-        label.assert_called_once_with("surenny/KIP126", 10, False, False)
+            messages = merge_gate.cleanup_closed_train_heads("SII-MATH/KIP126", False)
+        label.assert_called_once_with("SII-MATH/KIP126", 10, False, False)
         self.assertEqual(messages, ["#10: cleared stale merge-train label"])
 
 
@@ -517,13 +534,24 @@ class WorkflowContractTests(unittest.TestCase):
             self.assertIn("issues: write", workflow)
         self.assertIn("push:\n    branches: [main]", sweep)
 
+    def test_auto_merge_waits_for_explicit_reviewer_handoff(self) -> None:
+        auto_merge = self.text(".github/workflows/auto-merge.yml")
+        self.assertIn("workflow_dispatch:", auto_merge)
+        self.assertIn("DISPATCH_PR", auto_merge)
+        self.assertNotIn("issue_comment:", auto_merge)
+        self.assertNotIn("github.event_name == 'issue_comment'", auto_merge)
+
     def test_dispatched_build_refreshes_review_and_labels(self) -> None:
         build = self.text(".github/workflows/pr-build.yml")
         review = self.text(".github/workflows/review.yml")
         self.assertIn("actions: write", build)
         self.assertIn("inputs.refresh_review", build)
         self.assertIn("review.yml", build)
+        self.assertIn("-f retry=true", build)
         self.assertIn("workflow_dispatch:", review)
+        self.assertIn("inputs.retry", review)
+        self.assertIn("DISPATCH_RETRY", review)
+        self.assertIn("RUN_ID", review)
         self.assertIn("actions: write", review)
         self.assertIn("pr-labels.yml", review)
 
@@ -534,10 +562,11 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("for CHECK in scope build bump-guard", review)
         for context in ("scope", "build", "bump-guard"):
             self.assertIn(f'evidence("{context}")', review)
-        self.assertIn("WEBHOOK_IDEMPOTENCY_KEY=\"euler-review-retry-$RETRY_KEY\"", review)
+        self.assertIn('RETRY_SEED="$RUN_ID"', review)
+        self.assertIn("WEBHOOK_IDEMPOTENCY_KEY=\"tauceti-review-retry-$RETRY_KEY\"", review)
 
     def test_perf_remains_advisory_to_merge_gate(self) -> None:
-        config = json.loads(self.text(".github/euler/status-labels.json"))
+        config = json.loads(self.text("scripts/pr_status/config.json"))
         self.assertNotIn("perf", config["mechanical_contexts"])
         self.assertIn("unstable", config["ready_mergeable_states"])
         self.assertIn("advisory", self.text(".github/workflows/pr-profile.yml").lower())

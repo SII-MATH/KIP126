@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 from collections.abc import Callable
-import importlib.util
 import json
 import pathlib
 import re
@@ -16,14 +15,12 @@ import urllib.parse
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-PROJECTION_PATH = ROOT / ".github" / "euler" / "status_projection.py"
-CONFIG_PATH = ROOT / ".github" / "euler" / "status-labels.json"
-SPEC = importlib.util.spec_from_file_location("status_projection", PROJECTION_PATH)
-if SPEC is None or SPEC.loader is None:
-    raise RuntimeError(f"cannot load {PROJECTION_PATH}")
-projection = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(projection)
-CONFIG = projection.validate_config(json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
+sys.path.insert(0, str(ROOT / "scripts"))
+from pr_status import cli as status_cli  # noqa: E402
+from pr_status import projection  # noqa: E402
+
+CONFIG_PATH = ROOT / "scripts" / "pr_status" / "config.json"
+CONFIG = projection.load_config(CONFIG_PATH)
 BRANCH_UPDATE_METHOD = "MERGE"
 AUTO_MERGE_METHOD = "SQUASH"
 RECHECK_WORKFLOWS = ("pr-build.yml", "pr-profile.yml")
@@ -158,9 +155,7 @@ def pull_decision(repository: str, pull: dict) -> tuple[dict | None, str | None]
     skip = eligibility_skip(pull)
     if skip:
         return None, skip
-    facts = retry_transient_read(
-        lambda: projection.fetch_facts(repository, pull["number"], CONFIG)
-    )
+    facts = retry_transient_read(lambda: status_cli.fetch_facts(repository, pull["number"], CONFIG, pull))
     return projection.reduce_facts(facts, CONFIG), None
 
 
@@ -208,6 +203,13 @@ def enqueue(repository: str, pull: dict, dry_run: bool, has_queue: bool) -> str:
         action = "enqueue" if has_queue else f"enable native auto-merge ({AUTO_MERGE_METHOD})"
         return f"#{number}: would {action} {head[:12]}"
     if not has_queue:
+        live = pull_request_identity(repository, number)
+        live_head = (live.get("head") or {}).get("sha")
+        if live_head != head:
+            raise RuntimeError(
+                f"#{number}: pull request head changed before auto-merge "
+                f"(expected {head}, found {live_head or 'missing'})"
+            )
         query = """
         mutation($prId: ID!, $method: PullRequestMergeMethod!) {
           enablePullRequestAutoMerge(input: { pullRequestId: $prId, mergeMethod: $method }) {
@@ -543,11 +545,11 @@ def advance_train_head(repository: str, pull: dict, dry_run: bool) -> str:
             return f"#{pull['number']}: merge-train head waiting — {reason}"
     if decision["target_label"] == "review-in-progress":
         return f"#{pull['number']}: merge-train head waiting — {reason}"
-    if reason == "semantic-unavailable:semantic-review:missing":
+    if reason in {"scoreboard:absent", "scoreboard:stale"}:
         if not dry_run:
             dispatch_review(repository, pull["number"])
         action = "would re-dispatch" if dry_run else "re-dispatched"
-        return f"#{pull['number']}: {action} missing exact-head semantic review"
+        return f"#{pull['number']}: {action} missing exact-head TauCeti scoreboard"
     return release_train_head(repository, pull, reason, dry_run)
 
 

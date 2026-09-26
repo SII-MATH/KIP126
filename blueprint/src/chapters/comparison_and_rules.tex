@@ -30,11 +30,10 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: AIM-7 concrete tracer bullet; aimpaper/main.tex:430-453.
 \begin{definition}[Concrete classical $\eta$-ESS tracer bullet]
   \label{def:classical-eta-ess-concrete}
-  \uses{def:classical-adams-ss,thm:external-adams-h4-d2-slice,prop:eta-ess-regression,def:catalogued-external-evidence}
+  \uses{def:classical-adams-ss,def:ess-complex-shape,thm:external-adams-h4-d2-slice,prop:eta-ess-regression,def:catalogued-external-evidence}
   \lean{KIP126.Classical.ExtensionSS.etaESS}
   \lean{KIP126.Classical.ExtensionSS.E₀}
   \lean{KIP126.Classical.ExtensionSS.abutment}
-  \lean{KIP126.Classical.ExtensionSS.etaESSShape}
   \lean{KIP126.Classical.ExtensionSS.ClassicalEtaESSAdapter}
   \notready
   On the AIM-5 concrete classical Adams data, the $\eta$ tracer bullet uses
@@ -76,8 +75,8 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 
 \begin{proof}
   Unpack the external theorem at the chosen spectra and representatives,
-  discharge its convergence and no-crossing hypotheses from the supplied
-  spectral-sequence data, and transport the detected class through the
+  discharge its convergence-and-detection witness and no-crossing hypotheses
+  from the supplied spectral-sequence data, and transport the detected class through the
   associated-graded isomorphism.  Keep the resulting Toda indeterminacy
   explicit rather than choosing a canonical element.
 \end{proof}
@@ -120,7 +119,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % not covered by aimpaper/main.tex:849-855.
 \begin{proposition}[$E_\infty$ at the first $\lambda$-quotient]
   \label{prop:synthetic-einfty-first-quotient}
-  \uses{thm:external-lambda-bockstein,thm:external-synthetic-rigidity,def:synthetic-lambda-quotient,def:synthetic-adams-ss,def:strong-convergence-detection,def:bhs-aim-regrading}
+  \uses{thm:external-lambda-bockstein,thm:external-synthetic-rigidity,def:synthetic-lambda-quotient,def:synthetic-adams-ss,def:ss-convergence-detection-witness,def:bhs-aim-regrading}
   \notready
   For every admissible $X$, the special-fiber edge map identifies the
   synthetic Adams abutment of $\nu X/\lambda$ with the classical initial page:
@@ -337,7 +336,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % system of abelian torsors, combined with BHS Proposition A.13.
 \begin{lemma}[Mittag--Leffler criterion for an inverse-limit ESS extension]
   \label{lem:synthetic-ess-coherent-tower-limit}
-  \uses{def:synthetic-ess-solution-tower,thm:external-synthetic-lambda-complete}
+  \uses{def:synthetic-ess-solution-tower,prop:lambda-quotient-restriction-coherence,thm:external-synthetic-lambda-complete}
   \notready
   In the setting of
   Definition~\ref{def:synthetic-ess-solution-tower}, suppose every finite
@@ -468,7 +467,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % VERIFIED-IN: the printed second case places y in E_infty(nu X); the finite target requires its rho-image.
 \begin{proposition}[Finite $\delta_{n,m}$-ESS formula]
   \label{prop:delta-ess-formula-finite}
-  \uses{prop:delta-ess-formula-infinite,cor:fess-composition,prop:lambda-rho-ess-only-d0}
+  \uses{prop:delta-ess-formula-infinite,cor:fess-composition,prop:lambda-rho-ess-only-d0,prop:lambda-quotient-restriction-coherence}
   \notready
   For finite $m>n$, compose the formulas of
   Proposition~\ref{prop:delta-ess-formula-infinite} with the reduction
@@ -547,7 +546,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: aimpaper/main.tex:1165-1173, Definition def:classicalcrossdiff.
 \begin{definition}[Classical crossing on an $E_{n+1}$ page]
   \label{def:classical-differential-crossing}
-  \uses{def:classical-adams-ss,def:ss-cycle-boundary-permanent}
+  \uses{def:classical-adams-ss,def:ss-permanent-einfty-class}
   \notready
   Let $r\ge n+1$ and $d_r(x)=y$, with $x$ in filtration $s$.  A crossing on
   the $E_{n+1}$ page is an essential differential
@@ -622,7 +621,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % deliberately stated without assuming that the E_infinity extension exists.
 \begin{proposition}[Hopf crossing-obstruction exclusion]
   \label{evidence:hopf-crossing-obstruction-exclusion}
-  \uses{def:page-extension-crossing,prop:page-extension-loss-certificate,thm:external-adams-one-line,def:chosen-page-presentation,def:ss-cycle-boundary-permanent,def:external-evidence,evidence:normalized-hopf-detection}
+  \uses{def:page-extension-crossing,prop:page-extension-loss-certificate,thm:external-adams-one-line,def:ss-elementwise-page-presentation,def:ss-cycle-boundary-survival,def:external-evidence,evidence:normalized-hopf-detection}
   \notready
   For the candidate Hopf relation of length two from
   $h_0h_4^2$ to $h_0p$, a finite evidence record enumerates every
@@ -877,6 +876,9 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{theorem}[Generalized Leibniz rule]
   \label{thm:generalized-leibniz}
   \uses{prop:delta-ess-formula-infinite,thm:delta-classical-equivalence,prop:classical-crossing-iff-delta-crossing,def:page-extension,prop:page-crossing-iff-synthetic-crossing,cor:fess-square-naturality}
+  \lean{KIP126.Challenge.Tools.Thm6_1Leibniz.Operations}
+  \lean{KIP126.Challenge.Tools.Thm6_1Leibniz.Input}
+  \lean{KIP126.Challenge.Tools.Thm6_1Leibniz.generalized_leibniz}
   \notready
   Let $f:X\to Y$, $2\le n\le r$,
   $e(f)\le m\le n-2+e(f)$, and $l\ge e(f)$.  Suppose
@@ -979,6 +981,8 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{definition}[Generalized Mahowald input package]
   \label{def:mahowald-input-data}
   \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing}
+  \lean{KIP126.Challenge.Tools.Thm6_12Mahowald.Operations}
+  \lean{KIP126.Challenge.Tools.Thm6_12Mahowald.Input}
   \notready
   A Mahowald input package consists of a distinguished triangle
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
@@ -1128,6 +1132,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{theorem}[Generalized Mahowald trick]
   \label{thm:generalized-mahowald}
   \uses{def:mahowald-input-data,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
+  \lean{KIP126.Challenge.Tools.Thm6_12Mahowald.generalized_mahowald}
   \notready
   Let
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ be distinguished
@@ -1196,7 +1201,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: aimpaper/main.tex:1981-2068, Proposition prop:dec738d3, first part.
 \begin{proposition}[Restriction of a page extension]
   \label{prop:page-extension-restrict}
-  \uses{def:page-extension,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0}
+  \uses{def:page-extension,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:lambda-quotient-restriction-coherence}
   \notready
   If $d_n^{f,E_r}(x)=y$ and $2\le r'<r$, reduction along
   \[
@@ -1220,7 +1225,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % lifting calculation needed for the later-page converse.
 \begin{lemma}[Exact obstruction for finite page-extension restriction]
   \label{lem:page-extension-restriction-exact-obstruction}
-  \uses{def:page-extension,def:page-extension-coset,def:page-extension-crossing,def:synthetic-ess-solution-tower,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:fextension-inessential-iff-higher}
+  \uses{def:page-extension,def:page-extension-coset,def:page-extension-crossing,def:synthetic-ess-solution-tower,prop:lambda-quotient-restriction-coherence,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:fextension-inessential-iff-higher}
   \notready
   Let $2\le r'<r<\infty$, let
   $e(f)\le n\le r'-2+e(f)$, and suppose
@@ -1374,6 +1379,8 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % inverse-limit obstruction hypothesis is a project correction for r=infinity.
 \begin{corollary}[Page-extension stretching]
   \label{cor:page-extension-stretch}
+  \lean{KIP126.Challenge.Tools.PagePropagation.Input}
+  \lean{KIP126.Challenge.Tools.PagePropagation.page_extension_stretch}
   \uses{prop:page-extension-loss-certificate,lem:page-extension-first-obstruction,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
   \notready
   Let $r'\le r\le\infty$, suppose

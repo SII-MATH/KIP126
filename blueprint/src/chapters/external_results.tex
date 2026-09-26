@@ -46,7 +46,7 @@ This flat chapter contains only precise published theorem statements that the pr
   For a chosen spectrum-bound sphere $E_2$ presentation with its lawful
   bilinear, unital, associative, Leibniz-compatible and nondegenerate
   internal multiplication, the located \texttt{adams\_one\_line} result is
-  consumed together with the strong-convergence witnesses and supplies the
+  consumed together with the convergence-and-detection witnesses and supplies the
   relation
   \[
     d_2(h_4)=h_0h_3^2.
@@ -59,7 +59,7 @@ This flat chapter contains only precise published theorem statements that the pr
 
 \begin{proof}
   The exact consumer extracts the located result, retains the chosen
-  spectrum's strong-convergence data, checks all lawful algebra fields, and
+  spectrum's convergence-and-detection data, checks all lawful algebra fields, and
   derives the displayed bidegrees from the actual Mathlib $E_2$ differential
   component and the supplied sphere product.
 \end{proof}
@@ -85,6 +85,31 @@ This flat chapter contains only precise published theorem statements that the pr
   the cited theorem and transport its grading to
   Definition~\ref{def:adams-bidegree}; no internal proof of the classical
   calculation is claimed.
+\end{proof}
+
+% SOURCE: aimpaper/main.tex:253-263; bibliography key Adams58.  The local
+% source inventory does not contain a checked copy of the original convergence
+% proof, so this remains a provenance-carrying input rather than a ready node.
+\begin{theorem}[Classical Adams convergence and detection input]
+  \label{thm:external-classical-adams-convergence}
+  \uses{def:admissible-spectrum,def:ss-convergence-detection-witness,def:external-result}
+  \notready
+  For a 2-complete connective spectrum of finite type, an explicit external
+  result supplies a convergence-and-detection witness for the mod--$2$ Adams
+  spectral sequence: its algebraic $E_\infty$ page is the associated graded of
+  the 2-complete stable homotopy filtration, and its nonzero permanent classes
+  detect the corresponding filtered homotopy elements.  The project records
+  this as the standing hypothesis used in
+  \texttt{aimpaper/main.tex:253--263}, with the classical source cited there
+  (bibliography key \texttt{Adams58}); it does not prove convergence for
+  arbitrary unbounded filtered complexes.
+\end{theorem}
+
+\begin{proof}
+  Instantiate the source-bearing external-result record at the admissible
+  spectrum and transport its page and filtration conventions to the concrete
+  classical Adams sequence.  The source locator and the witness remain part of
+  the hypothesis consumed by later definitions.
 \end{proof}
 
 % SOURCE: Ravenel, Complex Cobordism, Theorem 2.2.14; cited at aimpaper/main.tex:273-275.
@@ -258,7 +283,7 @@ This flat chapter contains only precise published theorem statements that the pr
 % SOURCE: BHS Corollary A.9; aimpaper/main.tex:841-847, Proposition prop:30e8b746.
 \begin{theorem}[$E_\infty$ of $\nu X$]
   \label{thm:external-synthetic-einfty-nu}
-  \uses{thm:external-synthetic-rigidity,def:chosen-page-presentation,def:external-result}
+  \uses{thm:external-synthetic-rigidity,def:ss-elementwise-page-presentation,def:ss-einfty-presentation,def:external-result}
   \notready
   In AIM grading,
   \[
@@ -281,7 +306,7 @@ This flat chapter contains only precise published theorem statements that the pr
 % SOURCE: BHS Corollary A.11; aimpaper/main.tex:849-855, Proposition prop:59f111f.
 \begin{theorem}[$E_\infty$ of a finite $\lambda$-quotient]
   \label{thm:external-synthetic-einfty-quotient}
-  \uses{thm:external-lambda-bockstein,def:chosen-page-presentation,def:external-result}
+  \uses{thm:external-lambda-bockstein,def:ss-elementwise-page-presentation,def:ss-einfty-presentation,def:external-result}
   \notready
   For $r\ge2$,
   \[
@@ -365,9 +390,16 @@ This flat chapter contains only precise published theorem statements that the pr
 
 \section{Published Kervaire and geometric results}
 
-% SOURCE: Barratt--Jones--Mahowald inductive method and Burklund--Xu Proposition 7.19; aimpaper/main.tex:2117-2125, whose quantifier is ``for some theta_5''.
+% SOURCE NOTE: Barratt--Jones--Mahowald inductive method and Burklund--Xu
+% Proposition 7.19; aimpaper/main.tex:2117--2125, whose quantifier is ``for
+% some theta_5''.  The Burklund--Xu proof internally uses the commutative
+% algebra tower of Construction 7.7, but that proof dependency is represented
+% only by this external-result source note and does not enter the project graph.
 \begin{theorem}[BJM/BX criterion for the source choice]
   \label{thm:external-bjm-bx-criterion}
+  % VERIFIED-IN: KIP126/External/Literature/Kervaire.lean,
+  % KIP126.Kervaire.cataloguedBJM_BXCriterion (interface; remains notready).
+  \lean{KIP126.Kervaire.cataloguedBJM_BXCriterion}
   \uses{def:synthetic-theta5-choice,def:external-result}
   \notready
   An explicit external-result record supplies a distinguished order-two class
@@ -394,6 +426,9 @@ This flat chapter contains only precise published theorem statements that the pr
 % SOURCE: aimpaper/main.tex:2127-2139, Remarks 7.4-7.5; Xu and IWX inputs.
 \begin{theorem}[External $\theta_5$ order and choice comparison]
   \label{thm:external-theta5-order-data}
+  % VERIFIED-IN: KIP126/External/Literature/Kervaire.lean,
+  % KIP126.Kervaire.cataloguedTheta5OrderData (interface; remains notready).
+  \lean{KIP126.Kervaire.cataloguedTheta5OrderData}
   \uses{def:synthetic-theta5-choice,def:external-result}
   \notready
   A named Xu/IWX external-result value supplies that every classical
@@ -448,32 +483,38 @@ This flat chapter contains only precise published theorem statements that the pr
   a comparison of independently chosen Moore extensions to B--X.
 \end{proof}
 
-% SOURCE: Burklund--Xu Proposition 7.19; aimpaper/main.tex:2117-2125, 2133-2139.
+% SOURCE: reference/BurklundXu/paper.txt:3475-3492, Proposition 7.19 in the
+% archived version; aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
+% The present Lean declaration TotalDifferentialIdentity quantifies over every
+% order-two choice and is therefore NOT a matching external-result interface.
 \begin{theorem}[Total differential identity for the source choice]
   \label{thm:external-total-differential-identity}
   \uses{def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
   \notready
-  The located quadratic-construction input supplies a distinguished order-two
-  source choice $\theta_5^{\mathrm{src}}$ and the identity
+  For the distinguished order-two source choice
+  $\theta_5^{\mathrm{src}}$ used in the located Burklund--Xu quadratic
+  construction, the input supplies the identity
   \[
     \delta_1(h_6^2)=\lambda\eta(\theta_5^{\mathrm{src}})^2
   \]
   in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem, with
-  the source representative and grading conventions.  No assertion for an
-  arbitrary order-two choice is part of this external input.
+  its source representative and grading conventions.  It does not quantify
+  over other choices of $\theta_5$.
 \end{theorem}
 
 \begin{proof}
-  This node records the source-choice comparison from Burklund--Xu
-  Proposition 7.19, with the AIM grading translation.  The extension from the
-  source choice to arbitrary order-two choices is an internal Section 7 proof
-  obligation and is not imported here.
+  Record the source bottom-cell class, the attaching-map calculation, and the
+  resulting naturality comparison from Burklund--Xu Proposition 7.19, with the
+  grading translation used by AIM.  The external input supplies no comparison
+  between independently chosen Moore extensions.  Extending the identity to
+  every order-two choice is a project obligation in
+  Proposition~\ref{prop:theta5-total-differential-any-choice}.
 \end{proof}
 
 % SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; aimpaper/main.tex:117-123, Theorem thm:browder.
 \begin{theorem}[Browder criterion]
   \label{thm:external-browder-criterion}
-  \uses{def:framed-kervaire-context,def:classical-adams-ss,def:adams-hj,def:ss-cycle-boundary-permanent,def:external-result}
+  \uses{def:framed-kervaire-context,def:classical-adams-ss,def:adams-hj,def:ss-permanent-einfty-class,def:external-result}
   \notready
   Fix a stable context $\mathcal C$, a framed Kervaire context over
   $\mathcal C$, and a chosen classical Adams spectral sequence

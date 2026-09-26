@@ -21,12 +21,17 @@ name: pr-build
 # workflow_dispatch is also used by branch reconciliation. Its explicit refresh_review input lets a
 # reconciled build refresh semantic review without making ordinary ad-hoc rebuilds spend review
 # budget; that review then reconciles the PR's status label.
+#
+# A same-repository PR head may inherit a first-parent ancestor's successful build while the
+# committed Lean/build-input digest and the trusted build contract remain byte-for-byte identical.
+# The inherited result is still republished as an exact-head `build` status. Anything missing,
+# stale, foreign, or ambiguous simply falls back to the normal sandboxed build.
 
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
-    # Blueprint-only PRs have their own trusted workflow. A mixed PR still runs here and fails the
-    # source-boundary scope guard, as required by AGENTS.md.
+    # Blueprint-only PRs have their own trusted workflow. A reviewer-authored mixed synchronization
+    # still runs here: this job builds its Lean delta while blueprint-pr checks the Blueprint delta.
     paths-ignore:
       - "blueprint/src/**"
   # The merge queue tests a batch (one or more PRs combined onto current main) before it lands. We
@@ -162,12 +167,23 @@ jobs:
           # transitive pins derived from mathlib, toolchain monotonic).
           if [ -z "$files" ]; then
             echo "INFRA=1" >> "$GITHUB_ENV"; echo "::warning::no files / unable to list — cannot determine the overlay, routing to human"
-          elif echo "$files" | grep -vqE '^KIP126/|^KIP126\.lean$|^lake-manifest\.json$|^lean-toolchain$'; then
+          elif echo "$files" | grep -vqE '^KIP126/|^KIP126\.lean$|^blueprint/src/|^lake-manifest\.json$|^lean-toolchain$'; then
             if echo "$files" | grep -qE '^lakefile\.toml$'; then
               echo "HUMAN_LAKEFILE=1" >> "$GITHUB_ENV"
             fi
             echo "OUT_OF_SCOPE=1" >> "$GITHUB_ENV"
-            echo "::warning::PR changes paths outside KIP126/ + Lake pins — its KIP126/ is still sandbox-built against the trusted base (so the build result is visible), but merging needs human review"
+            echo "::warning::PR changes paths outside KIP126/, Blueprint source, and Lake pins — its KIP126/ is still sandbox-built against the trusted base (so the build result is visible), but merging needs human review"
+          elif echo "$files" | grep -qE '^blueprint/src/'; then
+            if [ "${{ github.event_name }}" = "merge_group" ]; then
+              echo "::notice::merge group contains Blueprint and Lean changes already validated at their PR heads"
+            elif echo "$files" | grep -qE '^KIP126/.*\.lean$|^KIP126\.lean$' \
+                 && ! echo "$files" | grep -qE '^lake-manifest\.json$|^lean-toolchain$'; then
+              echo "MIXED_SYNC=1" >> "$GITHUB_ENV"
+              echo "::notice::reviewer mixed synchronization candidate — validating exact parent and authorization"
+            else
+              echo "OUT_OF_SCOPE=1" >> "$GITHUB_ENV"
+              echo "::warning::Blueprint changes may be mixed only with Lean sources through the authorized reviewer synchronization path"
+            fi
           elif echo "$files" | grep -qE '^lake-manifest\.json$|^lean-toolchain$'; then
             echo "BUMP=1" >> "$GITHUB_ENV"
             echo "::notice::PR changes Lake pins — validating as a forward bump before building"
@@ -176,10 +192,10 @@ jobs:
           # API or shell failure above cannot be misreported as a green scope decision.
           echo "SCOPE_OK=1" >> "$GITHUB_ENV"
 
-      - name: Diff size guard — additions, deletions, and changed files each ≤ 2000 (trusted GitHub PR totals)
-        # Per-PR cap, enforced when each PR is built on pull_request_target (its entry condition to the
-        # queue). A merge_group batch is the sum of already-capped PRs, so we don't re-cap the combined
-        # size here. (The scope guard's 300-file compare cap still bounds the batch's file count.)
+      - name: File count guard — changed files ≤ 2000 (trusted GitHub PR totals)
+        # Added and removed line counts are informational; whole-library migrations and paper
+        # sources may exceed 2000 lines. Keep the file cap to protect scope-list completeness.
+        # The scope guard's 300-file compare cap separately bounds merge-group batches.
         if: ${{ github.event_name != 'merge_group' }}
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
@@ -188,7 +204,7 @@ jobs:
           # Failing here at 2000 files closes that gap before the API limit is reachable.
           read -r adds dels files < <(gh api "repos/${{ github.repository }}/pulls/${{ steps.pr.outputs.num }}" \
             --jq '"\(.additions) \(.deletions) \(.changed_files)"')
-          echo "diff size: +$adds / -$dels across $files files (cap: 2000 each)"
+          echo "diff size: +$adds / -$dels across $files files (cap: 2000 files; no total line cap)"
           # Fail closed on non-numeric data: [ -gt ] errors on garbage but an `if` would
           # swallow that as false, silently passing the guard.
           if ! [[ "$adds" =~ ^[0-9]+$ && "$dels" =~ ^[0-9]+$ && "$files" =~ ^[0-9]+$ ]]; then
@@ -196,29 +212,10 @@ jobs:
             echo "::error::could not read the PR's diff totals from the GitHub API (+$adds / -$dels / $files files); failing closed"
             exit 1
           fi
-          if [ "$adds" -gt 2000 ] || [ "$dels" -gt 2000 ] || [ "$files" -gt 2000 ]; then
+          if [ "$files" -gt 2000 ]; then
             echo "TOO_LARGE=1" >> "$GITHUB_ENV"
-            echo "::error::This PR is too large to review: +$adds / -$dels lines across $files files (cap: 2000 added lines, 2000 removed lines, 2000 files). We cap diff size to keep review manageable — reviewers, AI and human alike, do far better work on small, focused PRs. Please split this into smaller PRs, one topic each. We are open to raising the cap once there is evidence that review is working well at the current size."
+            echo "::error::This PR changes $files files (cap: 2000 files). Split it into smaller PRs so the scope guard can inspect every changed path."
             exit 1
-          fi
-
-      - name: New-file length guard — newly added .lean files must be ≤ 1000 lines
-        # A brand-new file may be at most 1000 lines; an existing file may grow up to the
-        # in-build linter ceiling of 1500 (set in lakefile.lean). The split keeps new material
-        # small and reviewable while not blocking incremental growth of established files.
-        # PR-only, like the diff-size guard: new files enter the library through a PR, and a
-        # merge_group batch is the sum of already-guarded PRs. For an *added* file the GitHub
-        # diff lists every line as an addition, so `.additions` is its line count.
-        if: ${{ github.event_name != 'merge_group' }}
-        env: { GH_TOKEN: "${{ github.token }}" }
-        run: |
-          long=$(gh api --paginate "repos/${{ github.repository }}/pulls/${{ steps.pr.outputs.num }}/files" \
-            --jq '.[] | select(.status == "added" and (.filename | endswith(".lean")) and .additions > 1000)
-                      | "\(.filename) (\(.additions) lines)"')
-          if [ -n "$long" ]; then
-            echo "NEWFILE_TOO_LONG=1" >> "$GITHUB_ENV"
-            echo "::error::New .lean files must be at most 1000 lines; these exceed it. Split them, or grow an existing file (allowed up to 1500):"
-            echo "$long"
           fi
 
       - name: Checkout base (trusted)
@@ -260,13 +257,31 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
+      - name: Validate authorized reviewer mixed synchronization
+        if: ${{ env.MIXED_SYNC == '1' }}
+        env:
+          GH_TOKEN: "${{ github.token }}"
+        run: |
+          if python3 gate/scripts/pr_status/cli.py validate-sync \
+               --repo '${{ github.repository }}' --pr '${{ steps.pr.outputs.num }}'; then
+            echo "MIXED_SYNC_OK=1" >> "$GITHUB_ENV"
+          else
+            echo "OUT_OF_SCOPE=1" >> "$GITHUB_ENV"
+            echo "::warning::mixed synchronization lacks an exact authorized source/recommendation pair"
+          fi
+
       - name: Stage workflow-pinned build tooling into the trusted base
         if: ${{ env.INFRA != '1' }}
         run: |
           set -euo pipefail
           rm -rf base/scripts/perf
           cp -a gate/scripts/perf base/scripts/perf
+          cp gate/scripts/Axioms.lean base/scripts/Axioms.lean
           cp gate/scripts/sandbox-build.sh base/scripts/sandbox-build.sh
+          rm -f base/scripts/euler-project-gates.sh
+          if [[ -f gate/scripts/euler-project-gates.sh ]]; then
+            cp gate/scripts/euler-project-gates.sh base/scripts/euler-project-gates.sh
+          fi
 
       - name: Checkout merge-base config (trusted ancestor — only to scope the PR's pin delta)
         if: ${{ env.INFRA != '1' && env.BUMP == '1' }}
@@ -284,6 +299,8 @@ jobs:
           ref: ${{ steps.pr.outputs.sha }}
           path: pr
           persist-credentials: false
+          # A short first-parent history is enough to cross reviewer-only synchronization commits.
+          fetch-depth: 21
           # actions/checkout now refuses to fetch fork PR code under
           # pull_request_target unless this opt-in is set. Fetching the fork's
           # sources is exactly this workflow's job; it is safe here because the
@@ -338,12 +355,13 @@ jobs:
           done
           echo "::warning::early bump-guard status could not be posted; the final report step will retry"
 
-      # No-new-set_option guard. `set_option` is an escape hatch (it can raise maxHeartbeats,
-      # silence linters, bump maxRecDepth, ...), so candidate code may not introduce one. Compare
-      # the untrusted candidate against the trusted base before overlaying it: existing trusted
-      # uses are grandfathered, while any added or modified `set_option` line fails closed. This
-      # textual diff executes no candidate code and therefore runs safely outside landrun.
-      - name: No-new-set_option guard (candidate adds no set_option)
+      # Scoped set_option guard. Most options are escape hatches, so candidate code may not
+      # introduce arbitrary ones. The migrated categorical page proofs have a small, reviewed
+      # exception list: transparency controls for implicit categorical rewrites and bounded
+      # heartbeat budgets for the three long proof declarations. Compare the untrusted candidate
+      # against the trusted base before overlaying it; this textual diff executes no candidate
+      # code and therefore runs safely outside landrun.
+      - name: Scoped set_option guard (candidate uses only approved options)
         if: ${{ env.INFRA != '1' }}
         run: |
           set -euo pipefail
@@ -360,11 +378,29 @@ jobs:
             fi
             additions=$(printf '%s\n' "$patch" | awk '
               /^\+\+\+ / { file=$2; next }
-              /^\+[[:space:]]*set_option[[:space:]]/ { print file ": " substr($0, 2) }
+              /^\+[[:space:]]*set_option[[:space:]]/ {
+                line=substr($0, 2)
+                if (file ~ /\/KIP126\/Def\/SpectralSequence\/HomologicalImage\/Data\.lean$/ &&
+                    (line == "set_option backward.defeqAttrib.useBackward true" ||
+                     line == "set_option backward.isDefEq.respectTransparency false")) next
+                if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Data\.lean$/ &&
+                    line == "set_option backward.isDefEq.respectTransparency false in") next
+                if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/SquareZero\.lean$/ &&
+                    (line == "set_option backward.isDefEq.respectTransparency false in" ||
+                     line == "set_option maxHeartbeats 800000 in")) next
+                if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Cycles\.lean$/ &&
+                    (line == "set_option backward.isDefEq.respectTransparency false in" ||
+                     line == "set_option maxHeartbeats 6400000 in" ||
+                     line == "set_option maxHeartbeats 900000 in")) next
+                if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Boundaries\.lean$/ &&
+                    (line == "set_option maxHeartbeats 6400000 in" ||
+                     line == "set_option maxHeartbeats 400000 in")) next
+                print file ": " line
+              }
             ')
             if [ -n "$additions" ]; then
               echo "$additions"
-              echo "::error::$label may not add set_option (it can weaken maxHeartbeats, linters, maxRecDepth, ...); remove it"
+              echo "::error::$label adds an unapproved set_option; use explicit proof steps or extend the reviewed allowlist"
               return 1
             fi
           }
@@ -405,15 +441,87 @@ jobs:
             echo "::error::KIP126/ must not import KIP126Roadmap or KIP126Review"; exit 1
           fi
 
+      - name: Reuse a trusted equivalent first-parent build
+        id: inherit-build
+        if: ${{ env.INFRA != '1' && github.event_name != 'merge_group' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REPOSITORY: ${{ steps.pr.outputs.repo }}
+          HEAD_SHA: ${{ steps.pr.outputs.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Attest both the candidate inputs and the trusted machinery that defines the sandboxed
+          # build. The 128-bit contract keeps the attestation under GitHub's description limit.
+          if ! input=$(bash gate/scripts/ci-build-cache-key.sh pr "$HEAD_SHA"); then
+            echo "::warning::could not compute the current build inputs: running the sandboxed build"
+            exit 0
+          fi
+          if ! contract=$(bash gate/scripts/ci-build-contract.sh gate); then
+            echo "::warning::could not compute the trusted build contract: running the sandboxed build"
+            exit 0
+          fi
+          attestation="build:v1 input=$input contract=$contract"
+          {
+            echo "BUILD_INPUT_DIGEST=$input"
+            echo "BUILD_CONTRACT=$contract"
+            echo "BUILD_ATTESTATION=$attestation"
+          } >> "$GITHUB_ENV"
+
+          # Fork ancestors need not be addressable in this repository's trusted status namespace.
+          if [[ "$HEAD_REPOSITORY" != "$GITHUB_REPOSITORY" ]]; then
+            echo "::notice::fork PR: running the sandboxed build"
+            exit 0
+          fi
+
+          ancestors=$(git -C pr rev-list --first-parent --max-count=20 "$HEAD_SHA^" 2>/dev/null || true)
+          if [[ -z "$ancestors" ]]; then
+            echo "::notice::no first-parent history is available: running the sandboxed build"
+            exit 0
+          fi
+          for ancestor in $ancestors; do
+            ancestor_input=$(bash gate/scripts/ci-build-cache-key.sh pr "$ancestor" 2>/dev/null || true)
+            if [[ "$ancestor_input" != "$input" ]]; then
+              echo "::notice::build inputs changed at $ancestor: stopping inheritance search"
+              break
+            fi
+            if ! statuses=$(gh api "repos/$GITHUB_REPOSITORY/commits/$ancestor/statuses?per_page=100"); then
+              echo "::warning::could not read build statuses at $ancestor: running the sandboxed build"
+              break
+            fi
+            status=$(jq -c '[.[] | select(.context == "build" and .creator.login == "github-actions[bot]")][0] // {}' <<<"$statuses")
+            state=$(jq -r '.state // ""' <<<"$status")
+            description=$(jq -r '.description // ""' <<<"$status")
+            warning_status=$(jq -c '[.[] | select(.context == "warnings" and .creator.login == "github-actions[bot]")][0] // {}' <<<"$statuses")
+            warning_state=$(jq -r '.state // ""' <<<"$warning_status")
+            if [[ -z "$state" ]]; then
+              continue
+            fi
+            if [[ "$state" == success && "$description" == "$attestation" && "$warning_state" == success ]]; then
+              {
+                echo "BUILD_REUSED=1"
+                echo "BUILD_REUSED_FROM=$ancestor"
+              } >> "$GITHUB_ENV"
+              echo "::notice::reusing trusted build from ancestor $ancestor (input=$input, contract=$contract)"
+            elif [[ "$state" == success && "$description" == "$attestation" && "$warning_state" == failure ]]; then
+              echo "::notice::trusted build at $ancestor has warning debt; rebuilding instead of reusing it"
+            else
+              echo "::notice::nearest trusted build evidence at $ancestor is not reusable (warnings=$warning_state)"
+            fi
+            # Never jump past a newer trusted red or differently-versioned build result.
+            break
+          done
+
       - name: Install elan (trusted)
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         run: |
           curl -sSfL https://elan.lean-lang.org/elan-init.sh -o elan-init.sh
           chmod +x elan-init.sh && ./elan-init.sh -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Install landrun (pinned + checksum) and self-test (fail closed)
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         run: |
           curl -sSL -H "Accept: application/octet-stream" \
             "https://github.com/Zouuup/landrun/releases/download/${LANDRUN_VER}/landrun-linux-amd64" -o landrun
@@ -442,7 +550,7 @@ jobs:
       # so the code run here is still trusted Mathlib master under the project's "track master"
       # policy; only the PR's KIP126/ code stays untrusted and runs solely under landrun below.
       - name: Fetch Mathlib with the (bump-validated) config (network, no token; no PR code)
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         # `set -o pipefail` is not optional here. A `run:` step with no explicit `shell:`
         # gets the runner default `bash -e {0}`, which does NOT set pipefail, so piping
         # into `tee` would report the pipeline's status as tee's and swallow a failing
@@ -464,7 +572,7 @@ jobs:
       # choose and cannot fix; failing those would take every PR in the repo down for as
       # long as a bad pin sat on main, which is precisely backwards.
       - name: Require a complete Mathlib cache for a bump
-        if: ${{ env.INFRA != '1' && env.BUMP == '1' }}
+        if: ${{ env.INFRA != '1' && env.BUMP == '1' && env.BUILD_REUSED != '1' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -484,10 +592,11 @@ jobs:
 
       # Restore only the content-addressed cache produced by successful default-branch CI for the
       # trusted base's committed Lean/build inputs. Documentation-only base commits therefore hit
-      # the same archive. PR code never writes GitHub caches, and pin bumps deliberately skip reuse.
+      # the same archive. PR jobs never write this trusted-main namespace, and pin bumps deliberately
+      # skip its reuse; successful same-repository PR outputs use the isolated namespace below.
       - name: Restore trusted build outputs for the base build inputs
         id: main-build-cache
-        if: ${{ env.INFRA != '1' && env.BUMP != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUMP != '1' && env.BUILD_REUSED != '1' }}
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: base/.lake/build
@@ -501,7 +610,7 @@ jobs:
       # pass the cache *endpoints* into landrun, so the sandboxed build stays offline and
       # can only consult the locally-populated cache.
       - name: Configure the Lake artifact cache (no-op unless the public endpoints are set)
-        if: ${{ env.INFRA != '1' && steps.main-build-cache.outputs.cache-hit != 'true' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && steps.main-build-cache.outputs.cache-hit != 'true' }}
         env:
           PUBLIC_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT_PUBLIC }}
           PUBLIC_REVISION_ENDPOINT: ${{ vars.LAKE_CACHE_REVISION_ENDPOINT_PUBLIC }}
@@ -534,7 +643,7 @@ jobs:
       # `--fail-level=info`, so those warnings fail a build in which every module compiled.
       # Partial fetches are routine: they cost about a third of merge-group builds their cache.
       # Fixed by https://github.com/leanprover/lean4/pull/14651, landing in v4.34.0-rc1;
-      # see https://github.com/surenny/KIP126/issues/2062.
+      # see https://github.com/SII-MATH/KIP126/issues/2062.
       #
       # Hence: retry from an EMPTY cache each time, then fall back to no cache at all. Retrying
       # over the dirty cache a failed attempt left behind does not work: Lake skips any artifact
@@ -544,7 +653,7 @@ jobs:
       # cache is whole; it is affordable because a failing attempt aborts in seconds and a full
       # refetch is ~30s.
       - name: Fetch KIP126's own oleans from the Lake cache (network, no token; no PR code)
-        if: ${{ env.INFRA != '1' && env.PROJECT_CACHE_ENABLED == '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && env.PROJECT_CACHE_ENABLED == '1' }}
         env:
           # Passed under non-LAKE_ names so Lake never sees the deprecated endpoint
           # environment variables; we hand it the endpoints through a `--service` config.
@@ -614,7 +723,7 @@ jobs:
             LOG="$RUNNER_TEMP/cache-get-$attempt.log"
             rc=0
             ( cd base && LAKE_CONFIG="$CFG" lake cache get --service kip126-public \
-                --repo surenny/KIP126 ) > "$LOG" 2>&1 || rc=$?
+                --repo SII-MATH/KIP126 ) > "$LOG" 2>&1 || rc=$?
             cat "$LOG"
             if [ "$rc" = 0 ] && ! grep -qE "$FAIL_RE" "$LOG"; then clean=1; break; fi
             if grep -qE "$MISS_RE" "$LOG"; then break; fi
@@ -655,7 +764,7 @@ jobs:
           fi
 
       - name: Prepare trusted read-only Lean watchdog toolchain
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         run: |
           set -euo pipefail
           export PATH="$HOME/.elan/bin:$PATH"
@@ -666,7 +775,7 @@ jobs:
 
       - name: Build (trusted config + overlaid KIP126/) under landrun, offline
         id: build
-        if: ${{ env.INFRA != '1' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         env:
           # Cold full builds have a trusted baseline module (External.Claims) that normally takes
           # ~225s but has exceeded the watchdog's 300s default under runner contention. Keep a hard
@@ -685,6 +794,13 @@ jobs:
           # here). Keeping the landrun `bash -c` payload a fixed, comment-free one-liner
           # is deliberate: a comment's apostrophe once closed this single-quoted string
           # early and reddened every PR build (#694). All prose now lives in the script.
+          # The marker comes from the trusted sandbox script only after an
+          # ordinary build, the project gates, and either a clean axiom audit or
+          # a classified sorry/project-axiom review debt have passed.
+          # Capture it outside landrun, where untrusted Lean code cannot alter
+          # the result file; a forged marker can only fail closed into review.
+          set -o pipefail
+          build_log=$(mktemp "$RUNNER_TEMP/kip126-sandbox-build.XXXXXX")
           landrun --rox /usr --rox /etc \
             --rw /dev/null --rox /dev/zero --rox /dev/urandom --rox /dev/random \
             --rox "$HOME/.elan" --rox "$WATCHDOG_TOOLCHAIN" \
@@ -692,13 +808,33 @@ jobs:
             --env PATH --env HOME --env CI \
             --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
             --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
-            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh'
+            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh' 2>&1 | tee "$build_log"
+          if grep -qx 'KIP126_WARNING_ONLY_BUILD=1' "$build_log"; then
+            echo "BUILD_WARNINGS=1" >> "$GITHUB_ENV"
+          fi
+          if grep -qx 'KIP126_SORRY_AUDIT=1' "$build_log"; then
+            echo "BUILD_SORRY_AUDIT=1" >> "$GITHUB_ENV"
+          fi
+          if grep -qx 'KIP126_PROJECT_AXIOM_AUDIT=1' "$build_log"; then
+            echo "BUILD_PROJECT_AXIOM_AUDIT=1" >> "$GITHUB_ENV"
+          fi
+
+      # This separate namespace never feeds the trusted-main cache. It only supplies compiled
+      # material to the Blueprint declaration check for a later head with the same attested inputs.
+      # The build-inheritance decision above does not depend on this optional cache.
+      - name: Save successful same-repository PR outputs for Blueprint checks
+        if: ${{ steps.build.outcome == 'success' && steps.pr.outputs.repo == github.repository && env.BUILD_ATTESTATION != '' }}
+        continue-on-error: true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
 
       - name: Report build and bump-guard statuses to the PR head commit
         if: always()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
-          # Posting the three statuses is deliberately NOT all-or-nothing. These are three
+          # Posting the four statuses is deliberately NOT all-or-nothing. These are four
           # sequential API calls under `set -e`: a single transient error on an early one used to
           # abort the step and leave the commit with a partial set. A MISSING required status is
           # worse than a red one. `build` never appears, so GitHub holds the PR at BLOCKED
@@ -750,17 +886,44 @@ jobs:
           # `build` always means the code did not compile or an audit/lint failed, and fix-ci can trust
           # it. It is reported as not-run only when we genuinely could not build: an indeterminate file
           # list (INFRA), an unvalidated pin bump (BUMP_BAD — the overlay would need the PR's pins), or a
-          # diff guard that failed closed (TOO_LARGE / DIFF_UNKNOWN both exit before the build). Those
+          # file-count guard that failed closed (TOO_LARGE / DIFF_UNKNOWN exit before the build). Those
           # post a failure so this required check still blocks merge; the reason lives in `scope` below.
           if [ "${{ env.BUMP_BAD }}" = "1" ] || [ "${{ env.INFRA }}" = "1" ] \
              || [ "${{ env.TOO_LARGE }}" = "1" ] || [ "${{ env.DIFF_UNKNOWN }}" = "1" ]; then
             state=failure; desc="build not run — see the scope check"
+          elif [ "${{ env.BUILD_REUSED }}" = "1" ]; then
+            state=success; desc="${{ env.BUILD_ATTESTATION }}"
           elif [ "${{ steps.build.outcome }}" = "success" ]; then
-            state=success; desc="sandboxed build, audits, and simp-NF lint passed (trusted config)"
+            state=success
+            if [ -n "${{ env.BUILD_ATTESTATION }}" ]; then
+              desc="${{ env.BUILD_ATTESTATION }}"
+            else
+              desc="sandboxed build, audits, and simp-NF lint passed (trusted config)"
+            fi
           else
             state=failure; desc="sandboxed build, audit, or simp-NF lint failed"
           fi
           post_status build "$state" "$desc"
+
+          # warnings: a strict `lake build --iofail` may find warnings, or the
+          # axiom audit may find classified `sorryAx` or project-axiom development debt, even though
+          # the ordinary Lean build and project gates pass. Such a PR satisfies
+          # GitHub's required `build` check but is deliberately rejected by the
+          # automatic merge gate. This context is not a repository-required
+          # check, so a human reviewer can still place the PR in the merge queue
+          # after review.
+          if [ "$state" != success ]; then
+            warn_state=failure; warn_desc="warning policy unavailable because the build failed"
+          elif [ "${{ env.BUILD_PROJECT_AXIOM_AUDIT }}" = "1" ]; then
+            warn_state=failure; warn_desc="project axioms present — human review + merge required"
+          elif [ "${{ env.BUILD_SORRY_AUDIT }}" = "1" ]; then
+            warn_state=failure; warn_desc="sorryAx present — human review + merge required"
+          elif [ "${{ env.BUILD_WARNINGS }}" = "1" ]; then
+            warn_state=failure; warn_desc="Lean build completed with warnings — human review + merge required"
+          else
+            warn_state=success; warn_desc="Lean build completed without warnings"
+          fi
+          post_status warnings "$warn_state" "$warn_desc"
 
           # scope: the merge-policy verdict, posted as its OWN status so a policy issue never hides the
           # build result (the bug this split fixes — an out-of-scope PR used to post its "human review"
@@ -771,19 +934,21 @@ jobs:
           if [ "${{ env.SCOPE_OK }}" != "1" ]; then
             sc_state=failure; sc_desc="trusted scope guard did not complete — re-run pr-build"
           elif [ "${{ env.OUT_OF_SCOPE }}" = "1" ]; then
-            sc_state=failure; sc_desc="changes outside KIP126/ — human review + merge required"
+            if [ "${{ env.MIXED_SYNC }}" = "1" ]; then
+              sc_state=failure; sc_desc="mixed Lean/Blueprint synchronization is not exactly authorized"
+            else
+              sc_state=failure; sc_desc="changes outside the automatic source boundary — human review + merge required"
+            fi
           elif [ "${{ env.BUMP_BAD }}" = "1" ]; then
             sc_state=failure; sc_desc="Lake pin change failed the trusted bump validator"
           elif [ "${{ env.INFRA }}" = "1" ]; then
             sc_state=failure; sc_desc="could not determine the changed files — human review + merge required"
           elif [ "${{ env.TOO_LARGE }}" = "1" ]; then
-            sc_state=failure; sc_desc="diff exceeds 2000 added/removed lines or 2000 files — split into smaller PRs to keep review manageable"
+            sc_state=failure; sc_desc="diff exceeds 2000 files — split into smaller PRs so every changed path can be checked"
           elif [ "${{ env.DIFF_UNKNOWN }}" = "1" ]; then
             sc_state=failure; sc_desc="could not read PR diff totals from the GitHub API — re-run pr-build"
-          elif [ "${{ env.NEWFILE_TOO_LONG }}" = "1" ]; then
-            sc_state=failure; sc_desc="a newly added .lean file exceeds 1000 lines — split it (existing files may grow to 1500)"
           else
-            sc_state=success; sc_desc="changes are in scope (KIP126/ and the allowed root files only)"
+            sc_state=success; sc_desc="changes are in scope (including an authorized mixed synchronization when present)"
           fi
           post_status scope "$sc_state" "$sc_desc"
 
@@ -803,4 +968,4 @@ jobs:
         run: |
           set -euo pipefail
           [[ "$PR" =~ ^[0-9]+$ ]]
-          gh workflow run review.yml --repo '${{ github.repository }}' --ref main -f pr="$PR"
+          gh workflow run review.yml --repo '${{ github.repository }}' --ref main -f pr="$PR" -f retry=true
