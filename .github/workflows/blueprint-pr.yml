@@ -154,6 +154,17 @@ jobs:
           persist-credentials: false
           allow-unsafe-pr-checkout: true
 
+      # Checking out the candidate at the workspace root removes the earlier gate/
+      # checkout. Restore the workflow-pinned tooling before any later gate/ use.
+      - name: Restore workflow-pinned trusted projection tooling
+        if: steps.eligible.outputs.ok == 'true'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: gate
+          persist-credentials: false
+          fetch-depth: 1
+
       # The scope guard proved that the candidate changes only blueprint/src/, so these committed
       # Lean/build inputs are byte-identical to the trusted base and yield its published key.
       - name: Compute the trusted build-input cache key
