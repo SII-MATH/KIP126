@@ -66,6 +66,11 @@ jobs:
   # `build` commit STATUS posted in the final step, not this job's auto-created check-run.
   sandboxed-build:
     runs-on: ubuntu-24.04
+    # GitHub defaults pull_request_target caches to read-only. Only this trusted
+    # publisher opts in: candidate code runs offline with no cache/API tokens,
+    # and can write only base/.lake. Publication uses a separate PR namespace,
+    # verifies the actual overlay, and never writes the trusted-main namespace.
+    cache-mode: write
     env:
       LANDRUN_SHA256: 645178e3239cd33760560834e50efea0864183a2a8a82faf199760dffee6dd71
       LANDRUN_VER: v0.1.14
@@ -137,20 +142,22 @@ jobs:
           } >> "$GITHUB_OUTPUT"
           echo "Building PR #$NUM @ $SHA from $REPO on trusted base $BASE_SHA (author=${AUTHOR:-merge-group}, status -> $STATUS_SHA, bump delta vs merge-base $MB)"
 
+      - name: Checkout workflow-pinned trusted build tooling
+        if: ${{ env.INFRA != '1' }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: gate
+          persist-credentials: false
+          fetch-depth: 1
+
       - name: Scope guard — allow KIP126 sources and validated pins
         env:
           GH_TOKEN: "${{ github.token }}"
         run: |
           if [ "${{ github.event_name }}" = "merge_group" ]; then
-            # The whole batch's combined change set vs the trusted base (every batched PR).
-            files=$(gh api "repos/${{ github.repository }}/compare/${{ steps.pr.outputs.base_ref }}...${{ steps.pr.outputs.sha }}" --jq '.files[].filename')
-            # The compare endpoint caps `.files` at 300. If we hit that, the list may be truncated and
-            # could hide an out-of-scope path — fail closed (route to human); the queue then bisects the
-            # batch into smaller groups that fit under the cap. (Realistic batches are far under 300.)
-            if [ "$(printf '%s\n' "$files" | grep -c .)" -ge 300 ]; then
-              echo "INFRA=1" >> "$GITHUB_ENV"
-              echo "::warning::merge-group combined diff hit the compare 300-file cap — failing closed so the queue bisects"
-            fi
+            files=$(python3 gate/scripts/ci_merge_group_files.py "$GITHUB_REPOSITORY" \
+              '${{ steps.pr.outputs.base_sha }}' '${{ steps.pr.outputs.sha }}' --names)
           else
             files=$(gh api --paginate "repos/${{ github.repository }}/pulls/${{ steps.pr.outputs.num }}/files" --jq '.[].filename')
           fi
@@ -195,7 +202,7 @@ jobs:
       - name: File count guard — changed files ≤ 2000 (trusted GitHub PR totals)
         # Added and removed line counts are informational; whole-library migrations and paper
         # sources may exceed 2000 lines. Keep the file cap to protect scope-list completeness.
-        # The scope guard's 300-file compare cap separately bounds merge-group batches.
+        # Merge groups use complete Git trees, so the compare API's 300-file cap is irrelevant.
         if: ${{ github.event_name != 'merge_group' }}
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
@@ -248,14 +255,6 @@ jobs:
       # dispatches, where the PR's base predates those scripts. For normal
       # pull_request_target and merge_group events github.workflow_sha is the
       # trusted base-defined workflow commit, never the candidate checkout.
-      - name: Checkout workflow-pinned trusted build tooling
-        if: ${{ env.INFRA != '1' }}
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.workflow_sha }}
-          path: gate
-          persist-credentials: false
-          fetch-depth: 1
 
       - name: Validate authorized reviewer mixed synchronization
         if: ${{ env.MIXED_SYNC == '1' }}
@@ -632,7 +631,9 @@ jobs:
             kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
 
       # Reuse compilation, never a status: the combined queue tree is still built
-      # and audited under landrun. Only an exact input + trusted-contract key is used.
+      # and audited under landrun. Prefer the current trusted contract. An older
+      # contract with identical source/config inputs is only a compilation seed:
+      # the current build and audit still run and publish fresh evidence.
       - name: Restore exact candidate compilation for PRs and merge groups
         id: candidate-build-cache
         if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && env.BUILD_ATTESTATION != '' }}
@@ -641,6 +642,23 @@ jobs:
         with:
           path: base/.lake/build
           key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
+          restore-keys: |
+            kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-
+
+      # Keep the latest successful compilation of this PR across source edits.
+      # These outputs are never trusted status evidence or a docs input. Lake
+      # checks dependency traces and recompiles affected modules in the sandbox.
+      # Pin/config changes get a different prefix; merge groups use exact inputs.
+      - name: Restore this PR's incremental compilation
+        id: incremental-build-cache
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && github.event_name != 'merge_group' && env.BUILD_ATTESTATION != '' && steps.candidate-build-cache.outputs.cache-matched-key == '' }}
+        continue-on-error: true
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-incremental-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.pr.outputs.num }}-${{ hashFiles('base/lakefile.lean', 'base/lake-manifest.json', 'base/lean-toolchain') }}-${{ env.BUILD_INPUT_DIGEST }}
+          restore-keys: |
+            kip126-pr-incremental-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.pr.outputs.num }}-${{ hashFiles('base/lakefile.lean', 'base/lake-manifest.json', 'base/lean-toolchain') }}-
 
       # Enable Lake's built-in artifact cache for the build below ONLY when the public read
       # endpoints are configured (repo variables). Until then this is a no-op: LAKE_*
@@ -813,9 +831,105 @@ jobs:
           bash base/scripts/perf/prepare-watchdog-toolchain.sh "$watchdog" "$real_lean"
           echo "WATCHDOG_TOOLCHAIN=$watchdog" >> "$GITHUB_ENV"
 
-      - name: Build (trusted config + overlaid KIP126/) under landrun, offline
-        id: build
+      - name: Compile candidate under landrun, offline
+        id: compile
         if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
+        env:
+          # Cold full builds have a trusted baseline module (External.Claims) that normally takes
+          # ~225s but has exceeded the watchdog's 300s default under runner contention. Keep a hard
+          # per-process deadline, with enough headroom for the required build only; the performance
+          # workflow does not receive this override and retains its stricter 300s measurement cap.
+          EULER_LEAN_TIMEOUT_SECONDS: "600"
+          # The sandboxed build is always offline: never let Lake reach out to a remote
+          # cache from inside landrun. When the artifact cache is enabled above, it restores
+          # KIP126's oleans purely from the locally-populated $LAKE_CACHE_DIR; when it is
+          # not, this is a normal full build. Either way, no network from in here.
+          LAKE_NO_CACHE: "true"
+        run: |
+          export PATH="$HOME/.local/bin:$HOME/.elan/bin:$PATH"
+          # The sandboxed build/audit/lint body lives in the TRUSTED base script
+          # scripts/sandbox-build.sh (scripts/ routes to a human, so a PR cannot edit it
+          # here). Keeping the landrun `bash -c` payload a fixed, comment-free one-liner
+          # is deliberate: a comment's apostrophe once closed this single-quoted string
+          # early and reddened every PR build (#694). All prose now lives in the script.
+          set -o pipefail
+          build_log=$(mktemp "$RUNNER_TEMP/kip126-sandbox-build.XXXXXX")
+          landrun --rox /usr --rox /etc \
+            --rw /dev/null --rox /dev/zero --rox /dev/urandom --rox /dev/random \
+            --rox "$HOME/.elan" --rox "$WATCHDOG_TOOLCHAIN" \
+            --rox "$PWD/base" --rw "$PWD/base/.lake" \
+            --env PATH --env HOME --env CI \
+            --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
+            --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
+            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh compile' 2>&1 | tee "$build_log"
+
+      # This separate namespace never feeds the trusted-main cache. It only supplies compiled
+      # material to docs/declaration consumers with identical inputs and trusted machinery.
+      # Inheritance also requires available outputs so downstream consumers can reuse them.
+      - name: Verify the published cache matches the candidate inputs
+        id: publish-inputs
+        if: ${{ steps.compile.outcome == 'success' && env.BUILD_ATTESTATION != '' }}
+        run: |
+          # The build overlays only approved sources/pins. A candidate changing
+          # other build inputs must not receive a cache labelled as its full tree.
+          matched=true
+          for path in KIP126 KIP126.lean KIPBase KIPBase.lean lakefile.lean lake-manifest.json lean-toolchain; do
+            if [[ ! -e "base/$path" && ! -L "base/$path" && ! -e "pr/$path" && ! -L "pr/$path" ]]; then continue; fi
+            if [[ -L "pr/$path" ]] || [[ -n "$(find "pr/$path" -type l -print -quit 2>/dev/null)" ]]; then
+              matched=false
+              continue
+            fi
+            if ! diff -qr -- "base/$path" "pr/$path"; then matched=false; fi
+          done
+          echo "matched=$matched" >> "$GITHUB_OUTPUT"
+          if [[ "$matched" != true ]]; then
+            echo "::warning::candidate build inputs differ from the trusted overlay; not publishing mislabelled outputs"
+          fi
+
+      - name: Save successful PR outputs for docs and Blueprint checks
+        id: candidate-cache-save
+        if: ${{ steps.publish-inputs.outputs.matched == 'true' }}
+        continue-on-error: true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
+
+      - name: Save this PR's incremental compilation
+        if: ${{ steps.publish-inputs.outputs.matched == 'true' && github.event_name != 'merge_group' }}
+        continue-on-error: true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-incremental-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.pr.outputs.num }}-${{ hashFiles('base/lakefile.lean', 'base/lake-manifest.json', 'base/lean-toolchain') }}-${{ env.BUILD_INPUT_DIGEST }}
+
+      - name: Confirm exact candidate cache was actually published
+        if: ${{ steps.publish-inputs.outputs.matched == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CACHE_REF: ${{ github.ref }}
+          CACHE_KEY: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
+        run: |
+          published=0
+          for attempt in 1 2 3; do
+            if payload=$(gh api --method GET "repos/$GITHUB_REPOSITORY/actions/caches" \
+                -f key="$CACHE_KEY" -f ref="$CACHE_REF" -f per_page=100) &&
+               jq -e --arg key "$CACHE_KEY" --arg ref "$CACHE_REF" \
+                 '.actions_caches | any(.key == $key and .ref == $ref and .size_in_bytes > 0)' \
+                 <<<"$payload" >/dev/null; then
+              published=1
+              break
+            fi
+            if [[ "$attempt" != 3 ]]; then sleep 5; fi
+          done
+          echo "CANDIDATE_CACHE_PUBLISHED=$published" >> "$GITHUB_ENV"
+          if [[ "$published" != 1 ]]; then
+            echo "::warning::Compilation succeeded but exact outputs are unavailable. Inspect cache-save warnings and cache-mode; a green save step alone does not establish publication."
+          fi
+
+      - name: Audit compiled candidate under landrun, offline
+        id: build
+        if: ${{ steps.compile.outcome == 'success' }}
         env:
           # Cold full builds have a trusted baseline module (External.Claims) that normally takes
           # ~225s but has exceeded the watchdog's 300s default under runner contention. Keep a hard
@@ -848,7 +962,7 @@ jobs:
             --env PATH --env HOME --env CI \
             --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
             --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
-            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh' 2>&1 | tee "$build_log"
+            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh audit' 2>&1 | tee "$build_log"
           if grep -qx 'KIP126_WARNING_ONLY_BUILD=1' "$build_log"; then
             echo "BUILD_WARNINGS=1" >> "$GITHUB_ENV"
           fi
@@ -858,37 +972,6 @@ jobs:
           if grep -qx 'KIP126_PROJECT_AXIOM_AUDIT=1' "$build_log"; then
             echo "BUILD_PROJECT_AXIOM_AUDIT=1" >> "$GITHUB_ENV"
           fi
-
-      # This separate namespace never feeds the trusted-main cache. It only supplies compiled
-      # material to docs/declaration consumers with identical inputs and trusted machinery.
-      # Inheritance also requires available outputs so downstream consumers can reuse them.
-      - name: Verify the published cache matches the candidate inputs
-        id: publish-inputs
-        if: ${{ steps.build.outcome == 'success' && env.BUILD_ATTESTATION != '' }}
-        run: |
-          # The build overlays only approved sources/pins. A candidate changing
-          # other build inputs must not receive a cache labelled as its full tree.
-          matched=true
-          for path in KIP126 KIP126.lean KIPBase KIPBase.lean lakefile.lean lake-manifest.json lean-toolchain; do
-            if [[ ! -e "base/$path" && ! -L "base/$path" && ! -e "pr/$path" && ! -L "pr/$path" ]]; then continue; fi
-            if [[ -L "pr/$path" ]] || [[ -n "$(find "pr/$path" -type l -print -quit 2>/dev/null)" ]]; then
-              matched=false
-              continue
-            fi
-            if ! diff -qr -- "base/$path" "pr/$path"; then matched=false; fi
-          done
-          echo "matched=$matched" >> "$GITHUB_OUTPUT"
-          if [[ "$matched" != true ]]; then
-            echo "::warning::candidate build inputs differ from the trusted overlay; not publishing mislabelled outputs"
-          fi
-
-      - name: Save successful PR outputs for docs and Blueprint checks
-        if: ${{ steps.publish-inputs.outputs.matched == 'true' }}
-        continue-on-error: true
-        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
-        with:
-          path: base/.lake/build
-          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
 
       - name: Report build and bump-guard statuses to the PR head commit
         if: always()
@@ -1027,6 +1110,9 @@ jobs:
           CANDIDATE_SHA: ${{ steps.pr.outputs.sha }}
           BASE_CACHE: ${{ steps.main-build-cache.outputs.cache-matched-key }}
           CANDIDATE_CACHE_HIT: ${{ steps.candidate-build-cache.outputs.cache-hit }}
+          CANDIDATE_CACHE_KEY: ${{ steps.candidate-build-cache.outputs.cache-matched-key }}
+          INCREMENTAL_CACHE_KEY: ${{ steps.incremental-build-cache.outputs.cache-matched-key }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
           BUILD_OUTCOME: ${{ steps.build.outcome }}
           JOB_OUTCOME: ${{ job.status }}
         run: |
@@ -1035,14 +1121,20 @@ jobs:
             echo "Event: $EVENT_KIND; candidate: $CANDIDATE_SHA"
             echo
             echo "- Main incremental baseline: ${BASE_CACHE:-miss}"
-            echo "- Exact candidate compilation cache: ${CANDIDATE_CACHE_HIT:-miss}"
+            echo "- Exact candidate contract cache hit: ${CANDIDATE_CACHE_HIT:-false}"
+            echo "- Candidate compilation seed: ${CANDIDATE_CACHE_KEY:-miss}"
+            echo "- Same-PR incremental seed: ${INCREMENTAL_CACHE_KEY:-miss}"
             echo "- Inherited build evidence: ${BUILD_REUSED_FROM:-none}"
-            echo "- Sandboxed build and audit: ${BUILD_OUTCOME:-not reached}"
+            echo "- Confirmed candidate cache publication: ${CANDIDATE_CACHE_PUBLISHED:-not attempted}"
+            echo "- Sandboxed compilation: ${COMPILE_OUTCOME:-not reached}"
+            echo "- Sandboxed audit: ${BUILD_OUTCOME:-not reached}"
             echo "- Workflow result so far: $JOB_OUTCOME"
             echo "- Warning debt: ${BUILD_WARNINGS:-0}; sorry debt: ${BUILD_SORRY_AUDIT:-0}; project axioms: ${BUILD_PROJECT_AXIOM_AUDIT:-0}"
             echo
-            if [[ "$BUILD_OUTCOME" == failure ]]; then
-              echo 'Open the sandboxed build step for the compiler, watchdog, or audit error.'
+            if [[ "$COMPILE_OUTCOME" == failure ]]; then
+              echo 'Open the compilation step for the compiler or watchdog error.'
+            elif [[ "$BUILD_OUTCOME" == failure ]]; then
+              echo 'Compilation completed; open the audit step for the remaining error.'
             elif [[ "$BUILD_OUTCOME" != success && "${BUILD_REUSED:-0}" != 1 ]]; then
               echo 'The build was not reached: inspect the first failed setup or guard step.'
             fi

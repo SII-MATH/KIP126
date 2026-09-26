@@ -125,14 +125,15 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("BUILD_PROJECT_AXIOM_AUDIT=1", workflow)
         self.assertIn("project axioms present — human review + merge required", workflow)
 
-    def test_blueprint_pr_has_separate_gate_and_authorized_mixed_sync(self):
+    def test_blueprint_pr_has_independent_mechanics_and_review_sync(self):
         blueprint = self.read("blueprint-pr.yml")
         lean = self.read("pr-build.yml")
         review = self.read("review.yml")
-        self.assertIn("validate-sync", blueprint)
+        self.assertIn("stage-blueprint.py", blueprint)
+        self.assertNotIn("validate-sync", blueprint)
         self.assertIn("validate-sync", lean)
         self.assertIn("MIXED_SYNC=1", lean)
-        self.assertIn('if [[ "$MIXED" != true ]]', blueprint)
+        self.assertIn('if [[ "$MIXED" == false ]]', blueprint)
         for context in ("scope", "bump-guard", "blueprint", "build"):
             self.assertIn(f"post_status {context} ", blueprint)
         self.assertIn("workflows: [pr-build, blueprint-pr]", review)
@@ -175,7 +176,7 @@ class WorkflowRoutingTests(unittest.TestCase):
             "Install landrun (pinned + checksum) and self-test (fail closed)",
             "Fetch Mathlib with the (bump-validated) config (network, no token; no PR code)",
             "Prepare trusted read-only Lean watchdog toolchain",
-            "Build (trusted config + overlaid KIP126/) under landrun, offline",
+            "Compile candidate under landrun, offline",
         ):
             section = workflow.split(f"- name: {name}", 1)[1].split("\n      - name:", 1)[0]
             self.assertIn("env.BUILD_REUSED != '1'", section)
@@ -193,7 +194,8 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("scripts/ci-build-contract.sh", blueprint)
         self.assertIn("gate/scripts/docs/wait_for_lean_cache.py", blueprint)
         self.assertIn("fail-on-cache-miss: true", blueprint)
-        self.assertIn("lake build --no-build", blueprint)
+        self.assertIn("blueprint-sandbox.sh declarations", blueprint)
+        self.assertIn("lake build --no-build", (ROOT / "scripts/blueprint-sandbox.sh").read_text())
         self.assertNotIn("lake build\n", blueprint)
         self.assertNotIn("falling back to a local build", blueprint)
 
@@ -227,7 +229,9 @@ class WorkflowRoutingTests(unittest.TestCase):
         lean = self.read("pr-build.yml")
         self.assertIn("Verify the published cache matches the candidate inputs", lean)
         self.assertIn("steps.publish-inputs.outputs.matched == 'true'", lean)
-        self.assertIn("steps.build.outcome == 'success'", lean)
+        self.assertIn("steps.compile.outcome == 'success'", lean)
+        self.assertLess(lean.index("- name: Compile candidate"), lean.index("- name: Save successful PR outputs"))
+        self.assertLess(lean.index("- name: Save successful PR outputs"), lean.index("- name: Audit compiled candidate"))
         self.assertIn('diff -qr -- "base/$path" "pr/$path"', lean)
 
     def test_overlay_cache_publication_guard_rejects_mismatches_and_symlinks(self):
@@ -274,6 +278,16 @@ class WorkflowRoutingTests(unittest.TestCase):
         checkout = blueprint.index("repository: ${{ steps.pr.outputs.head_repo }}")
         self.assertLess(contract, checkout)
         self.assertIn("test -f gate/scripts/ci-build-contract.sh", blueprint)
+
+    def test_blueprint_preserves_trusted_tooling_with_separate_checkout_paths(self):
+        blueprint = self.read("blueprint-pr.yml")
+        checkouts = [section for section in blueprint.split("\n      - ")
+                     if "uses: actions/checkout@" in section]
+        self.assertEqual(len(checkouts), 3)
+        for section, path in zip(checkouts, ("gate", "candidate", "work")):
+            self.assertIn(f"path: {path}\n", section)
+            self.assertIn("persist-credentials: false", section)
+        self.assertIn("ref: ${{ github.workflow_sha }}", checkouts[0])
 
     def test_build_contract_changes_with_trusted_build_machinery(self):
         contract_script = ROOT / "scripts" / "ci-build-contract.sh"
