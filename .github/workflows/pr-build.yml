@@ -434,9 +434,9 @@ jobs:
             echo "::error::KIP126/ must not import KIP126Roadmap or KIP126Review"; exit 1
           fi
 
-      - name: Reuse a trusted equivalent first-parent build
-        id: inherit-build
-        if: ${{ env.INFRA != '1' && github.event_name != 'merge_group' }}
+      - name: Compute candidate build identity for PRs and merge groups
+        id: candidate-build-identity
+        if: ${{ env.INFRA != '1' }}
         env:
           GH_TOKEN: ${{ github.token }}
           HEAD_REPOSITORY: ${{ steps.pr.outputs.repo }}
@@ -461,6 +461,20 @@ jobs:
             echo "BUILD_CONTRACT=$contract"
             echo "BUILD_ATTESTATION=$attestation"
           } >> "$GITHUB_ENV"
+
+      - name: Reuse a trusted equivalent first-parent build
+        id: inherit-build
+        if: ${{ env.INFRA != '1' && github.event_name != 'merge_group' && env.BUILD_ATTESTATION != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REPOSITORY: ${{ steps.pr.outputs.repo }}
+          HEAD_SHA: ${{ steps.pr.outputs.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          input=$BUILD_INPUT_DIGEST
+          contract=$BUILD_CONTRACT
+          attestation=$BUILD_ATTESTATION
 
           # Fork ancestors need not be addressable in this repository's trusted status namespace.
           if [[ "$HEAD_REPOSITORY" != "$GITHUB_REPOSITORY" ]]; then
@@ -611,6 +625,21 @@ jobs:
         with:
           path: base/.lake/build
           key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.base-build-cache-key.outputs.digest }}
+          # A missing exact main cache should still permit an incremental build.
+          # Only trusted main publishers write this namespace; Lake validates traces.
+          restore-keys: |
+            kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
+
+      # Reuse compilation, never a status: the combined queue tree is still built
+      # and audited under landrun. Only an exact input + trusted-contract key is used.
+      - name: Restore exact candidate compilation for PRs and merge groups
+        id: candidate-build-cache
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && env.BUILD_ATTESTATION != '' }}
+        continue-on-error: true
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
 
       # Enable Lake's built-in artifact cache for the build below ONLY when the public read
       # endpoints are configured (repo variables). Until then this is a no-op: LAKE_*
@@ -620,7 +649,7 @@ jobs:
       # pass the cache *endpoints* into landrun, so the sandboxed build stays offline and
       # can only consult the locally-populated cache.
       - name: Configure the Lake artifact cache (no-op unless the public endpoints are set)
-        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && steps.main-build-cache.outputs.cache-hit != 'true' }}
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && steps.main-build-cache.outputs.cache-matched-key == '' && steps.candidate-build-cache.outputs.cache-hit != 'true' }}
         env:
           PUBLIC_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT_PUBLIC }}
           PUBLIC_REVISION_ENDPOINT: ${{ vars.LAKE_CACHE_REVISION_ENDPOINT_PUBLIC }}
@@ -989,6 +1018,35 @@ jobs:
             exit 1
           fi
           [ "$state" = "success" ]
+
+      - name: Summarize build path and failure location
+        if: always()
+        env:
+          EVENT_KIND: ${{ github.event_name }}
+          CANDIDATE_SHA: ${{ steps.pr.outputs.sha }}
+          BASE_CACHE: ${{ steps.main-build-cache.outputs.cache-matched-key }}
+          CANDIDATE_CACHE_HIT: ${{ steps.candidate-build-cache.outputs.cache-hit }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          JOB_OUTCOME: ${{ job.status }}
+        run: |
+          {
+            echo '## Required build'
+            echo "Event: $EVENT_KIND; candidate: $CANDIDATE_SHA"
+            echo
+            echo "- Main incremental baseline: ${BASE_CACHE:-miss}"
+            echo "- Exact candidate compilation cache: ${CANDIDATE_CACHE_HIT:-miss}"
+            echo "- Inherited build evidence: ${BUILD_REUSED_FROM:-none}"
+            echo "- Sandboxed build and audit: ${BUILD_OUTCOME:-not reached}"
+            echo "- Workflow result so far: $JOB_OUTCOME"
+            echo "- Warning debt: ${BUILD_WARNINGS:-0}; sorry debt: ${BUILD_SORRY_AUDIT:-0}; project axioms: ${BUILD_PROJECT_AXIOM_AUDIT:-0}"
+            echo
+            if [[ "$BUILD_OUTCOME" == failure ]]; then
+              echo 'Open the sandboxed build step for the compiler, watchdog, or audit error.'
+            elif [[ "$BUILD_OUTCOME" != success && "${BUILD_REUSED:-0}" != 1 ]]; then
+              echo 'The build was not reached: inspect the first failed setup or guard step.'
+            fi
+            echo 'Compilation caches do not waive guards or audits. Review debt is reported separately in warnings/scope.'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Refresh semantic review after a reconciled branch build
         if: ${{ success() && github.event_name == 'workflow_dispatch' && inputs.refresh_review }}
