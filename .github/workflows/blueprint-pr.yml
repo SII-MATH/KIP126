@@ -13,6 +13,10 @@ on:
   workflow_dispatch:
     inputs:
       pr: { description: "Blueprint PR number to check", required: true, type: string }
+      producer_run_id:
+        description: "Explicit pr-build dispatch run for diagnostic testing (optional)"
+        required: false
+        type: string
 
 permissions:
   actions: read
@@ -236,6 +240,8 @@ jobs:
           INPUT: ${{ steps.build-cache-key.outputs.digest }}
           CONTRACT: ${{ steps.build-contract.outputs.digest }}
           MIXED: ${{ steps.scope.outputs.mixed }}
+          PRODUCER_RUN_ID: ${{ inputs.producer_run_id || '' }}
+          WORKFLOW_REF: ${{ github.ref }}
         run: |
           workflow=ci.yml
           producer_sha=$BASE_SHA
@@ -243,7 +249,12 @@ jobs:
             workflow=pr-build.yml
             producer_sha=$HEAD_SHA
           fi
+          diagnostic=()
+          if [[ -n "$PRODUCER_RUN_ID" ]]; then
+            diagnostic=(--producer-run-id "$PRODUCER_RUN_ID" --cache-ref "$WORKFLOW_REF")
+          fi
           python3 gate/scripts/docs/wait_for_lean_cache.py --repo "$GITHUB_REPOSITORY" \
+            "${diagnostic[@]}" \
             --sha "$producer_sha" --workflow "$workflow" \
             --key "kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-$INPUT" \
             --key "kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-$INPUT-$CONTRACT"

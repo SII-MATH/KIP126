@@ -91,6 +91,40 @@ class CacheWaitTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "network unavailable"):
             wait_for_cache("SII-MATH/KIP126", [KEY], SHA, "ci.yml", api=api)
 
+    def test_diagnostic_dispatch_waits_for_explicit_run_and_exact_branch_cache(self):
+        now = [0]
+        ref = "refs/heads/ci/diagnostic"
+        calls = []
+
+        def api(repo, endpoint, **query):
+            calls.append(endpoint)
+            if endpoint == "actions/caches":
+                entries = [self.entry(ref=ref)] if now[0] >= 30 and query["ref"] == ref else []
+                return {"actions_caches": entries}
+            self.assertEqual(endpoint, "actions/runs/42")
+            return self.run_record(id=42, head_sha="c" * 40)
+
+        result = wait_for_cache("SII-MATH/KIP126", [KEY], SHA, "pr-build.yml",
+            producer_run_id=42, cache_ref=ref, api=api, clock=lambda: now[0],
+            sleep=lambda seconds: now.__setitem__(0, now[0] + seconds))
+        self.assertEqual(result, KEY)
+        self.assertEqual(now[0], 30)
+        self.assertIn("actions/runs/42", calls)
+
+    def test_diagnostic_cache_ref_cannot_change_normal_run_trust(self):
+        with self.assertRaises(ValueError):
+            wait_for_cache("SII-MATH/KIP126", [KEY], SHA, "pr-build.yml",
+                           cache_ref="refs/heads/untrusted")
+
+    def test_explicit_run_must_match_workflow(self):
+        def api(repo, endpoint, **query):
+            if endpoint == "actions/caches":
+                return {"actions_caches": []}
+            return self.run_record(id=42, path=".github/workflows/another.yml")
+        with self.assertRaisesRegex(RuntimeError, "does not match"):
+            wait_for_cache("SII-MATH/KIP126", [KEY], SHA, "pr-build.yml",
+                           producer_run_id=42, api=api)
+
 
 if __name__ == "__main__":
     unittest.main()
