@@ -65,6 +65,18 @@ def DifferentialTargets {R : Type u} [Ring R]
       ∃ yr : E.Page r (p + E.diffDeg r),
         RepresentsOnPage E r (p + E.diffDeg r) y yr ∧ E.d r p xr = yr
 
+/-- An equation for the existing differential between specified E₂ labels.
+Both labels must admit a common-cycle representative on page r. Zero targets
+are allowed; later-page nonvanishing is the stronger predicate below.
+Ported from the useful local-differential interface in KIPBase. -/
+def HasDifferential {R : Type u} [Ring R]
+    (E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ))
+    (r : ℤ) (p q : ℤ × ℤ) (x : E.Page 2 p) (y : E.Page 2 q) : Prop :=
+  ∃ h : p + E.diffDeg r = q,
+    ∃ (xr : E.Page r p) (yr : E.Page r q),
+      RepresentsOnPage E r p x xr ∧ RepresentsOnPage E r q y yr ∧
+        (E.d r p ≫ eqToHom (congrArg (E.Page r) h)) xr = yr
+
 /-- A nonzero differential between specified E₂ representatives, with both
 classes lifted to the actual r-th page and the degree transport made explicit. -/
 def HasNonzeroDifferential {R : Type u} [Ring R]

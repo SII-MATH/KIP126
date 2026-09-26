@@ -7,6 +7,40 @@ variable {R : Type u} [Ring R]
   {E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)}
   {r : ℤ} {p q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
 
+/-- At page two, the common representative identifies the same element. -/
+theorem RepresentsOnPage.eq_on_page_two {a b : E.Page 2 p}
+    (h : RepresentsOnPage E 2 p a b) : a = b := by
+  obtain ⟨_, z, ha, hb⟩ := h
+  simp only [Subobject.ofLE_refl, Category.id_comp] at ha
+  exact ha.symm.trans hb
+
+/-- Zero has a common zero representative on every allowed page. -/
+theorem RepresentsOnPage.zero (hr : 2 ≤ r) :
+    RepresentsOnPage E r p 0 0 := by
+  refine ⟨hr, 0, ?_, ?_⟩ <;> exact map_zero _
+
+theorem HasNonzeroDifferential.toHasDifferential
+    (h : HasNonzeroDifferential E r p q x y) : HasDifferential E r p q x y := by
+  obtain ⟨hdeg, xr, yr, hx, hy, hd, _⟩ := h
+  exact ⟨hdeg, xr, yr, hx, hy, hd⟩
+
+/-- No differential equation can have the wrong target degree. -/
+theorem HasDifferential.target_degree (h : HasDifferential E r p q x y) :
+    p + E.diffDeg r = q := h.choose
+
+/-- A page-two statement yields an equation on the named E₂ elements. -/
+theorem HasDifferential.eq_on_page_two {a : E.Page 2 p} {b : E.Page 2 q}
+    (h : HasDifferential E 2 p q a b) :
+    ∃ hdeg : p + E.diffDeg 2 = q,
+      (E.d 2 p ≫ eqToHom (congrArg (E.Page 2) hdeg)) a = b := by
+  obtain ⟨hdeg, xr, yr, hx, hy, hd⟩ := h
+  exact ⟨hdeg, hx.eq_on_page_two ▸ hy.eq_on_page_two ▸ hd⟩
+
+/-- A genuine zero differential, using linearity rather than database input. -/
+theorem hasDifferential_zero (hr : 2 ≤ r) (hdeg : p + E.diffDeg r = q) :
+    HasDifferential E r p q 0 0 :=
+  ⟨hdeg, 0, 0, RepresentsOnPage.zero hr, RepresentsOnPage.zero hr, map_zero _⟩
+
 theorem IsPageBoundary.zero : IsPageBoundary E r p 0 :=
   ⟨0, map_zero (E.d r p).hom⟩
 
