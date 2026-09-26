@@ -100,6 +100,9 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("scripts/ci-build-contract.sh", lean)
         self.assertIn("scripts/ci-build-contract.sh", blueprint)
         self.assertIn('if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]', blueprint)
+        fallback = blueprint.split('if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]', 1)[1].split("fi", 1)[0]
+        self.assertIn("lake build\n", fallback)
+        self.assertNotIn("lake build KIP126", fallback)
 
     def test_blueprint_contract_is_computed_before_candidate_checkout(self):
         blueprint = self.read("blueprint-pr.yml")

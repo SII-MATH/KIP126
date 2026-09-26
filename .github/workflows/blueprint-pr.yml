@@ -235,7 +235,8 @@ jobs:
           lake exe cache get
           if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]; then
             echo "::notice::no matching Lean outputs were available; falling back to a local build"
-            lake build KIP126
+            # checkdecls imports every root Lean library, including KIPBase.
+            lake build
           fi
           lake exe checkdecls blueprint/lean_decls
           test -s blueprint/web/index.html
