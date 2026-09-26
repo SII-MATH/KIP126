@@ -7,20 +7,31 @@ test -x "$WATCHDOG_TOOLCHAIN/bin/lean"
 export LAKE_OVERRIDE_LEAN=true
 export LEAN="$WATCHDOG_TOOLCHAIN/bin/lean"
 
-# `--iofail` promotes Lean warnings to target failures.  Keep that first pass as
-# a warning detector, but verify a nonzero result with an ordinary build: only a
-# genuine compiler failure stops the sandbox.  Warning-only builds finish the
-# remaining trusted audits and emit a marker that the outer workflow turns into
-# a non-required, human-review-only status.
+# Publish compiled outputs between phases; an audit failure must not throw away
+# a successful compilation. The default keeps local callers backward compatible.
+phase=${1:-all}
+case "$phase" in
+  all|compile) lake build ;;
+  audit) lake build --no-build ;;
+  *) echo "unknown build phase: $phase" >&2; exit 2 ;;
+esac
+if [[ "$phase" == compile ]]; then exit 0; fi
+
+# Replay the successful build's diagnostics without compiling anything again.
+# Exit 3 means Lake requested a rebuild: that is stale/missing output, not debt.
 set +e
-lake build --iofail
+lake build --no-build --iofail
 strict_build_status=$?
 set -e
 warning_only=0
 sorry_audit=0
 project_axiom_audit=0
 if [ "$strict_build_status" -ne 0 ]; then
-  lake build
+  if [ "$strict_build_status" -ne 1 ]; then
+    exit "$strict_build_status"
+  fi
+  # Confirm the same cached outputs are healthy without warning promotion.
+  lake build --no-build
   warning_only=1
 fi
 

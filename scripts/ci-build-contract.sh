@@ -25,11 +25,13 @@ done
     printf '%s\0' "$file"
     sha256sum "$root/$file" | cut -d' ' -f1
   done
+  # Interpreter outputs vary by Python version and by which tests ran first.
+  # They are not trusted source inputs and must not invalidate cache contracts.
   while IFS= read -r -d '' file; do
     relative=${file#"$root/"}
     printf '%s\0' "$relative"
     sha256sum "$file" | cut -d' ' -f1
-  done < <(find "$root/scripts/perf" -type f -print0 | sort -z)
+  done < <(find "$root/scripts/perf" -type f ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.pyo' -print0 | sort -z)
   if [[ -f "$root/scripts/euler-project-gates.sh" ]]; then
     printf '%s\0' 'scripts/euler-project-gates.sh'
     sha256sum "$root/scripts/euler-project-gates.sh" | cut -d' ' -f1
