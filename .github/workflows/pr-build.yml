@@ -614,13 +614,14 @@ jobs:
           fi
           echo "Mathlib cache is complete at the bump target."
 
-      # Restore only the content-addressed cache produced by successful default-branch CI for the
-      # trusted base's committed Lean/build inputs. Documentation-only base commits therefore hit
-      # the same archive. PR jobs never write this trusted-main namespace, and pin bumps deliberately
-      # skip its reuse; successful same-repository PR outputs use the isolated namespace below.
+      # Restore compilation produced on trusted main, preferring the exact base
+      # inputs and falling back to its latest incremental baseline. Later strict
+      # audit debt does not invalidate compilation. PRs never write this namespace;
+      # pin bumps skip it and may restore only their exact candidate cache below.
       - name: Restore trusted build outputs for the base build inputs
         id: main-build-cache
         if: ${{ env.INFRA != '1' && env.BUMP != '1' && env.BUILD_REUSED != '1' }}
+        continue-on-error: true
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: base/.lake/build

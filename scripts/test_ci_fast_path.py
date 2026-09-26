@@ -64,6 +64,11 @@ class FastPathTests(unittest.TestCase):
         self.assertLessEqual(job["timeout-minutes"], 10)
         self.assertFalse(job["steps"][0]["with"]["persist-credentials"])
 
+    def test_main_audit_does_not_collide_with_required_queue_status(self):
+        workflow = yaml.safe_load((ROOT / ".github/workflows/ci.yml").read_text())
+        for key, job in workflow["jobs"].items():
+            self.assertNotEqual(job.get("name", key), "build")
+
     def test_embedded_broken_shell_is_caught_without_execution(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp)

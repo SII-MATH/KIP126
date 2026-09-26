@@ -25,6 +25,8 @@ done
     printf '%s\0' "$file"
     sha256sum "$root/$file" | cut -d' ' -f1
   done
+  # Interpreter outputs vary by Python version and by which tests ran first.
+  # They are not trusted source inputs and must not invalidate cache contracts.
   while IFS= read -r -d '' file; do
     relative=${file#"$root/"}
     printf '%s\0' "$relative"
