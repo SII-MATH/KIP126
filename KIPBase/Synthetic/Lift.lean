@@ -29,14 +29,16 @@ If a map f : X → Y in the stable homotopy category has Adams filtration AF(f) 
 then ν(f) factors through λᵏ. That is, there exists a "synthetic lift"
 f̃ : Σ^{0,k}ν(X) → ν(Y) such that ν(f) = λᵏ ∘ f̃. -/
 
-/-- KIP §3.6, Lemma 9.15 (synthetic lift): If AF(f) = k, then ν(f) factors
-    through λᵏ. -/
-axiom synthetic_lift {X Y : 𝒮} (f : X ⟶ Y) (k : ℤ) :
-    ∃ (_f_tilde : (SyntheticCategory.biShift (Syn := Syn) (0, k)).obj ((nu 𝒮 Syn).obj X) ⟶
-        (nu 𝒮 Syn).obj Y),
-      True
-  -- Full statement: nu.map f = (λ^k component) ≫ f_tilde
-  -- Requires Adams filtration from StableHomotopy.Adams
+/-- KIP §3.6, Lemma 9.15 (synthetic lift), in the nonnegative range actually
+used by normalized maps: if `AF(f) ≥ k`, then `ν(f)` factors through the
+canonical positive-shift multiplication by `λ^k`. -/
+axiom synthetic_lift {X Y : 𝒮} (f : X ⟶ Y) (k : ℕ)
+    (hk : HasAF_ge f k) :
+    ∃ f_tilde :
+        (SyntheticCategory.biShift (Syn := Syn) (0, (k : ℤ))).obj
+            ((nu 𝒮 Syn).obj X) ⟶ (nu 𝒮 Syn).obj Y,
+      (lambdaToPositivePow k ((nu 𝒮 Syn).obj X)) ≫ f_tilde =
+        (nu 𝒮 Syn).map f
 
 /-! ### ê and f̂ notation -/
 
@@ -44,22 +46,50 @@ axiom synthetic_lift {X Y : 𝒮} (f : X ⟶ Y) (k : ℤ) :
     This is the "essential" Adams filtration, which only distinguishes
     between filtration 0 and positive filtration. -/
 noncomputable def eHat {X Y : 𝒮} (f : X ⟶ Y) : ℤ :=
-  if AF f = 0 then 0 else 1
+  if (adamsFiltration_exists f).val = 0 then 0 else 1
+
+theorem eHat_nonneg {X Y : 𝒮} (f : X ⟶ Y) : 0 ≤ eHat 𝒮 f := by
+  simp only [eHat]
+  split <;> omega
+
+theorem eHat_le_filtration_value {X Y : 𝒮} (f : X ⟶ Y) :
+    eHat 𝒮 f ≤ (adamsFiltration_exists f).val := by
+  have hAF : 0 ≤ (adamsFiltration_exists f).val :=
+    (adamsFiltration_exists f).property
+  simp only [eHat]
+  split
+  · omega
+  · omega
+
+@[simp] theorem eHat_toNat_coe {X Y : 𝒮} (f : X ⟶ Y) :
+    ((eHat 𝒮 f).toNat : ℤ) = eHat 𝒮 f :=
+  Int.toNat_of_nonneg (eHat_nonneg 𝒮 f)
+
+theorem eHat_hasAF_ge {X Y : 𝒮} (f : X ⟶ Y) :
+    HasAF_ge f (eHat 𝒮 f).toNat := by
+  unfold HasAF_ge
+  rw [eHat_toNat_coe 𝒮 f]
+  exact ⟨adamsFiltration_exists f, eHat_le_filtration_value 𝒮 f⟩
 
 /-- f̂ is the canonical synthetic lift of f divided by λ^{ê(f)}.
     That is, f̂ : Σ^{0, ê(f)} ν(X) → ν(Y) with ν(f) = λ^{ê(f)} ∘ f̂. -/
 noncomputable def fHat {X Y : 𝒮} (f : X ⟶ Y) :
     (SyntheticCategory.biShift (Syn := Syn) (0, eHat 𝒮 f)).obj ((nu 𝒮 Syn).obj X) ⟶
       (nu 𝒮 Syn).obj Y :=
-  (synthetic_lift 𝒮 Syn f (eHat 𝒮 f)).choose
+  eqToHom (by rw [eHat_toNat_coe 𝒮 f]) ≫
+    (synthetic_lift 𝒮 Syn f (eHat 𝒮 f).toNat
+      (eHat_hasAF_ge 𝒮 f)).choose
 
 /-- KIP §3.6, Lemma 9.15 (f̂ specification): The defining property of f̂:
     ν(f) factors as ι ≫ f̂ where ι : ν(X) → Σ^{0,ê(f)}(ν(X)) is the
     λ-power morphism. Concretely, ν(f) = λ^{ê(f)} ∘ f̂. -/
-axiom fHat_spec {X Y : 𝒮} (f : X ⟶ Y) :
-    ∃ (ι : (nu 𝒮 Syn).obj X ⟶
-        (SyntheticCategory.biShift (Syn := Syn) (0, eHat 𝒮 f)).obj ((nu 𝒮 Syn).obj X)),
-      (nu 𝒮 Syn).map f = ι ≫ fHat 𝒮 Syn f
+theorem fHat_spec {X Y : 𝒮} (f : X ⟶ Y) :
+    (lambdaToPositivePow (eHat 𝒮 f).toNat ((nu 𝒮 Syn).obj X)) ≫
+        eqToHom (by rw [eHat_toNat_coe 𝒮 f]) ≫ fHat 𝒮 Syn f =
+      (nu 𝒮 Syn).map f := by
+  simpa [fHat] using
+    (synthetic_lift 𝒮 Syn f (eHat 𝒮 f).toNat
+      (eHat_hasAF_ge 𝒮 f)).choose_spec
 
 /-! ### Distinguished triangles in synthetic spectra -/
 
@@ -105,18 +135,15 @@ axiom cofiber_fhat (T : StableHomotopy.HoCofiberSequence (𝒮 := 𝒮)) :
 /-! ### Adams filtration = λ-Bockstein filtration -/
 
 /-- KIP §3.16 (Adams filtration = λ-Bockstein filtration): If AF(f) ≥ k,
-    then ν(f) factors through Σ^{0,k} via a synthetic lift. Concretely,
-    ∃ f̃ : Σ^{0,k}ν(X) → ν(Y) and ι : ν(X) → Σ^{0,k}ν(X) (the λ^k power
-    map) such that ν(f) = ι ≫ f̃.
+    then ν(f) factors through the canonical positive-shift `λ^k` map.
 
     The converse (factorization implies AF ≥ k) together with this direction
     gives AF(f) = sup { k : ν(f) factors through λᵏ }. -/
-axiom af_eq_lambda_bockstein {X Y : 𝒮} (f : X ⟶ Y) (k : ℤ) :
+axiom af_eq_lambda_bockstein {X Y : 𝒮} (f : X ⟶ Y) (k : ℕ) :
     HasAF_ge f k →
-    ∃ (f_tilde : (SyntheticCategory.biShift (Syn := Syn) (0, k)).obj
-          ((nu 𝒮 Syn).obj X) ⟶ (nu 𝒮 Syn).obj Y)
-      (ι : (nu 𝒮 Syn).obj X ⟶
-          (SyntheticCategory.biShift (Syn := Syn) (0, k)).obj ((nu 𝒮 Syn).obj X)),
-      (nu 𝒮 Syn).map f = ι ≫ f_tilde
+    ∃ f_tilde : (SyntheticCategory.biShift (Syn := Syn) (0, (k : ℤ))).obj
+          ((nu 𝒮 Syn).obj X) ⟶ (nu 𝒮 Syn).obj Y,
+      lambdaToPositivePow k ((nu 𝒮 Syn).obj X) ≫ f_tilde =
+        (nu 𝒮 Syn).map f
 
 end KIPBase.Synthetic

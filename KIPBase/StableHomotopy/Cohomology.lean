@@ -46,7 +46,7 @@ axiom HF2_pi0 (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] :
 Eilenberg–MacLane spectrum: it has exactly one nonzero homotopy group. -/
 axiom HF2_pin_zero (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
     (n : ℤ) (hn : n ≠ 0) :
-    IsEmpty (HomotopyGroup (𝒮 := 𝒮) n (EilenbergMacLane 𝒮))
+    Subsingleton (HomotopyGroup (𝒮 := 𝒮) n (EilenbergMacLane 𝒮))
 
 /-! ## Steenrod Algebra
 
@@ -55,6 +55,7 @@ algebra of stable mod 2 cohomology operations. It is graded by ℤ,
 with the n-th graded component being πₙ(F(HF₂, HF₂)).
 -/
 
+/-
 /-- KIP §0.2.3, Definition `prereq:def:mapping-spectra` (applied to HF₂):
 The mod 2 Steenrod algebra A, defined as π_* of the endomorphism
 spectrum F(HF₂, HF₂). This is the algebra of stable cohomology
@@ -79,6 +80,17 @@ def SteenrodAlgebra.gradedComponent (𝒮 : Type u) [StableHomotopyCategory.{u, 
     (n : ℤ) : Type v :=
   HomotopyGroup (𝒮 := 𝒮) n (MappingSpectrum (EilenbergMacLane 𝒮) (EilenbergMacLane 𝒮))
 
+/-! The abstract Steenrod algebra is connected to its homotopy-theoretic
+grading by the following bridge.  Keeping this as an equivalence avoids
+pretending that an arbitrary carrier type is definitionally the mapping
+spectrum's homotopy group. -/
+
+axiom SteenrodAlgebra.gradedComponentIso
+    (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] (n : ℤ) :
+    SteenrodAlgebra.gradedComponent 𝒮 n ≃
+      HomotopyGroup (𝒮 := 𝒮) n
+        (MappingSpectrum (EilenbergMacLane 𝒮) (EilenbergMacLane 𝒮))
+
 /-- KIP §0.2.3, Definition `prereq:def:mapping-spectra`:
 Each graded component Aₙ of the Steenrod algebra is isomorphic to
 πₙ(F(HF₂, HF₂)), the n-th homotopy group of the endomorphism
@@ -88,6 +100,7 @@ noncomputable def SteenrodAlgebra.gradedIso (𝒮 : Type u) [StableHomotopyCateg
     SteenrodAlgebra.gradedComponent 𝒮 n ≃
       HomotopyGroup (𝒮 := 𝒮) n (MappingSpectrum (EilenbergMacLane 𝒮) (EilenbergMacLane 𝒮)) :=
   Equiv.refl _
+ -/
 
 /-! ## Mod 2 Cohomology
 
@@ -112,16 +125,17 @@ noncomputable instance instAddCommGroupMod2Cohomology (n : ℤ) (X : 𝒮) :
 noncomputable def Mod2CohomologyTotal (X : 𝒮) : ℤ → AddCommGrpCat :=
   fun n => AddCommGrpCat.mk (Mod2Cohomology n X)
 
+/-
 /-- KIP §0.2.3: The Steenrod algebra A acts on total cohomology H*(X; F₂),
 making it a left A-module. This action is realized through the
 identification H*(X; F₂) ≅ π₀(F(X, HF₂)) and the composition map
 A ⊗ F(X, HF₂) → F(X, HF₂). Axiomatized because `MappingSpectrum`
 construction is not available in Mathlib. -/
-axiom Mod2CohomologyTotal.steenrodModuleAction
+axiom Mod2Cohomology.steenrodModuleAction
     (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
-    (X : 𝒮) :
-    Module (SteenrodAlgebra 𝒮) (HomotopyGroup (𝒮 := 𝒮) 0
-      (MappingSpectrum X (EilenbergMacLane 𝒮)))
+    (X : 𝒮) (n : ℤ) :
+    Module (SteenrodAlgebra 𝒮) (Mod2Cohomology n X)
+-/
 
 /-! ## Mod 2 Homology
 
@@ -192,6 +206,6 @@ noncomputable def cohomologyRepresentable_neg (n : ℤ) (X : 𝒮) :
     as abelian groups. Uses `→+` (AddMonoidHom) since `Module (ZMod 2)`
     instance is not available on `Mod2Homology`. -/
 axiom universal_coefficient (n : ℤ) (X : 𝒮) :
-    Mod2Cohomology n X ≃+ (Mod2Homology n X →+ ZMod 2)
+    Mod2Cohomology n X ≃+ (Mod2Homology (-n) X →+ ZMod 2)
 
 end KIPBase.StableHomotopy
