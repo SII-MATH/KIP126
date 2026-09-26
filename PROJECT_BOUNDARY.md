@@ -118,6 +118,26 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 ## In-scope formalization
 
+### Fixed computation-database input (development-stage exception)
+
+By explicit user decision, Lin computation facts are to be imported in bulk
+from `proofs.db`, not introduced as one external axiom per row. The named
+`KIP126.Computation.LinProofs.sphereTable_sound` in
+`KIP126/External/Computation/LinProofs/Axiom.lean` is the initial single
+soundness assumption for the fixed exported table. It links literal CSV
+coordinates to the existing tower-derived `sphereAdamsData`; it is not a
+soundness assertion for arbitrary tables or arbitrary caller-supplied `Prop`s.
+The compiled audit inventories this exact exception and still rejects it at
+final acceptance. No `sorryAx` is authorized by the exception.
+
+The importer scans the entire pinned database, with per-category coverage
+counts. The currently interpreted fragment is **closed, finite-page sphere
+differential equations** within the existing E₂ comparison range. Other
+spectra, extension semantics, conditional branches, unknown values and
+permanence sentinels are not yet covered. Full raw JSONL export is supported
+without treating every log row as an unconditional mathematical assertion.
+See `docs/LIN_PROOFS_IMPORT.md` and the generated manifest for exact scope.
+
 ### 1. Algebraic and categorical foundations
 
 The project must formalize the interfaces and required laws for:

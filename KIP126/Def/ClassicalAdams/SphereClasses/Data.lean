@@ -1,4 +1,5 @@
 import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
+import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
 import KIP126.Def.Steenrod.MilnorCobar.Proofs
 import Mathlib.Algebra.Homology.ConcreteCategory
 

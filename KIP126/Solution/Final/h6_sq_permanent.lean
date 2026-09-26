@@ -1,5 +1,6 @@
 import KIP126.Solution.Final.h6_sq_permanent_computational
-import KIP126.Mathlib.ClassicalAdams.FinalComparison.Axiom
+import KIP126.Mathlib.ClassicalAdams.FinalComparison.Proofs
+import KIP126.Mathlib.ClassicalAdams.SurvivalComparison.Proofs
 
 /-!
 # The fixed standard permanent h₆² statement
@@ -7,7 +8,9 @@ import KIP126.Mathlib.ClassicalAdams.FinalComparison.Axiom
 All standard objects are fixed in the foundation layer. The statement has no
 category, coefficient-object, coordinate, table, or presentation parameters.
 The proof below transports the computational Solution. It has no local sorry,
-but still depends on that Solution's sorryAx and the named comparison axioms.
+but still depends on that Solution's sorryAx and the fixed foundation,
+Milnor-coordinate, and Lin-presentation assumptions. Both the specified-class
+comparison and the survival comparison are now proved.
 It is not a completed proof of permanence.
 -/
 namespace KIP126.Solution.Final.H6SquarePermanent

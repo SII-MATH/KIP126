@@ -1,5 +1,5 @@
 import KIP126.Def.ClassicalAdams.TowerDifferential.Cycles.Proofs
-import KIP126.Def.ClassicalAdams.Page.Data
+import KIP126.Def.ClassicalAdams.Grading.Data
 import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
 
 /-!

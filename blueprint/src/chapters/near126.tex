@@ -5,6 +5,45 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 \section{Assembly of explicit inputs}
 
+% SOURCE: aimpaper/main.tex:2156--2167, 2181--2204, 2357--2360.
+\begin{definition}[Fixed-sphere $C_3$ and the $d_{12}$ alternative]
+  \label{def:near126-fixed-page-conditions}
+  \lean{KIP126.Computation.Near126.Sphere.C3,KIP126.Computation.Near126.Sphere.D12}
+  \uses{def:near126-fixed-sphere-facts,def:h6-fixed-computation}
+  \notready
+  In the fixed tower-derived internal sphere sequence, let
+  $W=x_{126,8,4}+x_{126,8}$ and $T=h_1h_4x_{109,12}$ be the images of the
+  specified Lin classes.  The condition $C_3$ requires nonzero survival of
+  $W$ to $E_6$ and vanishing of $d_6$ on every continuation of this $E_2$
+  class.  The condition $D_{12}$ is the nonzero differential
+  $d_{12}(\mathtt{computedH6Square})=T$, with common representatives relating
+  both displayed classes to their actual $E_{12}$ classes.
+  Neither is a freely supplied proposition or an assertion that the
+  corresponding condition holds.  The synthetic conditions $C_4,C_5$ are
+  not implemented by this page-only slice.
+\end{definition}
+
+\begin{lemma}[Incoming alternatives on the fixed sphere under $C_3$]
+  \label{lem:near126-fixed-c3-incoming}
+  \lean{KIP126.Computation.Near126.SphereSurvivalFacts.c3_iff_not_d6,KIP126.Computation.Near126.SphereSurvivalFacts.hit_t_iff_d12}
+  \uses{def:near126-fixed-page-conditions,def:near126-fixed-sphere-facts}
+  \notready
+  Given the explicit sphere survival and exhaustion evidence,
+  $C_3$ is equivalent to the absence of a nonzero $d_6(W)=T$.
+  Under $C_3$, the class $T$ is hit on page $r$ if and only if
+  $r=12$ and $D_{12}$ holds.  This conditional deduction neither proves
+  $C_3$ nor excludes $D_{12}$; it does not prove the main dichotomy.
+\end{lemma}
+
+\begin{proof}
+  The survival evidence prevents vacuous $C_3$.  Exhaustion says every
+  differential on a continuation of $W$ is zero or represented by $T$.
+  A nonzero one gives precisely the excluded $d_6$.
+  Apply the complete incoming-exhaustion evidence for $T$ and discard that
+  branch under $C_3$; conversely the specified nonzero $d_{12}$ is an incoming
+  hit.  All differentials used here are those of the fixed SSData object.
+\end{proof}
+
 % SOURCE: PROJECT_BOUNDARY.md, External inputs and Axiom policy.
 \begin{definition}[Near-$126$ literature input]
   \label{def:near126-literature-input}
@@ -162,6 +201,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   identity and composition.  The required endpoint comparison remains open.
 \end{proof}
 
+% SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
 \begin{proposition}[Choice independence of the inductive expression]
   \label{prop:theta5-choice-independence}
   % VERIFIED-IN: KIP126/Def/Kervaire/Theta5/Proofs.lean,
