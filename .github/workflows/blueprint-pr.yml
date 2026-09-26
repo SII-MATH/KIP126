@@ -29,7 +29,7 @@ jobs:
   # posted below, so GitHub cannot confuse an automatic check-run with the merge-gate status.
   blueprint-check:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 90
     steps:
       - name: Resolve exact PR head
         id: pr
@@ -188,24 +188,39 @@ jobs:
           use-mathlib-cache: false
           use-github-cache: false
 
-      - name: Restore trusted Lean outputs for the base build inputs
+      - name: Wait for the shared Lean producer
+        id: outputs
+        if: steps.eligible.outputs.ok == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ steps.pr.outputs.head_sha }}
+          BASE_SHA: ${{ steps.pr.outputs.base_sha }}
+          INPUT: ${{ steps.build-cache-key.outputs.digest }}
+          CONTRACT: ${{ steps.build-contract.outputs.digest }}
+          MIXED: ${{ steps.scope.outputs.mixed }}
+        run: |
+          workflow=ci.yml
+          producer_sha=$BASE_SHA
+          if [[ "$MIXED" == true ]]; then
+            workflow=pr-build.yml
+            producer_sha=$HEAD_SHA
+          fi
+          python3 gate/scripts/docs/wait_for_lean_cache.py --repo "$GITHUB_REPOSITORY" \
+            --sha "$producer_sha" --workflow "$workflow" \
+            --key "kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-$INPUT" \
+            --key "kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-$INPUT-$CONTRACT"
+
+      - name: Restore exact-input producer outputs
         id: lean-cache
         if: steps.eligible.outputs.ok == 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: base/.lake/build
-          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}
-
-      - name: Restore successful PR outputs for the same attested build inputs
-        id: pr-lean-cache
-        if: steps.eligible.outputs.ok == 'true' && steps.lean-cache.outputs.cache-matched-key == '' && steps.pr.outputs.head_repo == github.repository
-        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: base/.lake/build
-          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}-${{ steps.build-contract.outputs.digest }}
+          key: ${{ steps.outputs.outputs.key }}
+          fail-on-cache-miss: true
 
       - name: Adopt restored Lean outputs
-        if: steps.eligible.outputs.ok == 'true' && (steps.lean-cache.outputs.cache-matched-key != '' || steps.pr-lean-cache.outputs.cache-matched-key != '')
+        if: steps.eligible.outputs.ok == 'true' && steps.lean-cache.outputs.cache-hit == 'true'
         shell: bash
         run: |
           mkdir -p .lake/build
@@ -228,16 +243,13 @@ jobs:
           GH_TOKEN: ""
           GITHUB_TOKEN: ""
           MIXED: ${{ steps.scope.outputs.mixed }}
-          LEAN_OUTPUTS_RESTORED: ${{ steps.lean-cache.outputs.cache-matched-key != '' || steps.pr-lean-cache.outputs.cache-matched-key != '' }}
         run: |
           set -euo pipefail
           "$RUNNER_TEMP/blueprint-venv/bin/leanblueprint" web
           lake exe cache get
-          if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]; then
-            echo "::notice::no matching Lean outputs were available; falling back to a local build"
-            # checkdecls imports every root Lean library, including KIPBase.
-            lake build
-          fi
+          # Check the restored root libraries, including KIPBase, without
+          # recompiling them. Missing/stale outputs fail closed.
+          lake build --no-build
           lake exe checkdecls blueprint/lean_decls
           test -s blueprint/web/index.html
           test -s blueprint/lean_decls
