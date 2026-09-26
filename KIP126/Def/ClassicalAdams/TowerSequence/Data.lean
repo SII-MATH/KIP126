@@ -1,4 +1,5 @@
 import KIP126.Def.ClassicalAdams.TowerSequence.PagePassage.Proofs
+import KIP126.Def.ClassicalAdams.Page.Data
 
 /-!
 # The spectral sequence assembled from the Adams tower

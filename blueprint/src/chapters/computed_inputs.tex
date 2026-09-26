@@ -3,6 +3,48 @@
 
 This chapter contains the concrete Lin outputs, appendix rows, and finite evidence certificates carried as external computation inputs.  Their schemas were defined earlier.
 
+\section{Bulk import from the Lin proof database}
+
+\begin{definition}[Pinned finite-page sphere differential table]
+  \label{def:lin-proofs-sphere-table}
+  \lean{KIP126.Computation.LinProofs.DifferentialRow,KIP126.Computation.LinProofs.RawData.lookup}
+  \uses{def:lin-e2-catalogue}
+  The importer scans all 2,672,275 rows of the \texttt{log} table of
+  \texttt{proofs.db}, Zenodo 14875701, version \texttt{v126.3.cw49}.
+  It exports 10,907 closed finite-page sphere differential records in
+  86 shards, preserving database IDs and local additive-basis coordinates.
+  Inverse records are normalized to source bidegrees.  A coverage manifest
+  accounts separately for every unexported row; branches, unknowns,
+  other spectra, extensions and sentinel pages are not silently asserted.
+\end{definition}
+
+\begin{definition}[Meaning on the fixed sphere sequence]
+  \label{def:lin-proofs-sphere-meaning}
+  \lean{KIP126.Computation.LinProofs.HasCoordinates,KIP126.Computation.LinProofs.DifferentialStatement}
+  \uses{def:lin-proofs-sphere-table,def:h6-fixed-computation}
+  Decode the two coordinate lists as sums of the literal CSV monomials,
+  transport their homogeneous classes to the fixed sphere $E_2$, and require
+  common-cycle representatives on $E_r$ satisfying the actual differential
+  equation.  No nonvanishing on $E_r$ follows merely from a nonempty
+  coordinate list.  The statement has no caller-supplied proposition field.
+\end{definition}
+
+\begin{theorem}[Uniform external soundness input for the sphere table]
+  \label{thm:lin-proofs-sphere-sound}
+  \lean{KIP126.Computation.LinProofs.sphereTable_sound,KIP126.Computation.LinProofs.differential_of_lookup,KIP126.Computation.LinProofs.row5541}
+  \uses{def:lin-proofs-sphere-table,def:lin-proofs-sphere-meaning}
+  \notready
+  For every successful lookup in this fixed table, its decoded differential
+  statement holds on the fixed sphere sequence.  This is one explicitly
+  authorized external axiom, not one axiom per record and not a verification
+  of the machine proof logs.  Database row 5541 is obtained by finite lookup
+  and this same assumption.  Source hashes, admission rules, unsupported
+  categories and reproduction commands are recorded in
+  \texttt{docs/LIN\_PROOFS\_IMPORT.md}.
+  Removing this axiom requires mathematical verification and comparison,
+  not merely validating hashes.  It does not assert $h_6^2$ permanence.
+\end{theorem}
+
 \section{A reproducible low-degree $E_2$ example}
 
 % SOURCE: Weinan Lin, Cohomology of the Mod 2 Steenrod algebra, t261.2,

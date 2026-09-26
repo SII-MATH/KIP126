@@ -334,3 +334,56 @@ This chapter defines the types used to state machine and appendix results.  It c
   parameter and prove all finite coverage and negative-search conclusions from
   its fields.
 \end{definition}
+
+\begin{definition}[Fixed internal sphere computation facts: implemented slice]
+  \label{def:near126-fixed-sphere-facts}
+  \lean{KIP126.Computation.Near126.SphereFacts,KIP126.Computation.Near126.HopfCofiberFacts}
+  \uses{def:near126-computation-input,def:h6-fixed-computation,def:external-evidence}
+  \notready
+  The current Lean slice constructs the Section~7 sphere expressions from
+  actual pinned CSV coordinates, with kernel-checked names and bidegrees,
+  and interprets them through the fixed Lin comparison in the internal
+  tower-derived sphere sequence.  Its explicit evidence fields state seven
+  sphere differential equalities, the nonzero two-target ambiguity for
+  $d_3(x_{126,6})$, selected survival, incoming-exclusion, product,
+  whole-component vanishing, and target-exhaustion facts.  Later-page
+  expressions require a common cycle representative with their $E_2$ names.
+  There is no assumption of $h_6^2$ permanence and no global package value.
+
+  The separate Hopf-cofiber slice states the $d_3$ and the exclusion of short
+  incoming differentials, but still takes its sequence and displayed classes
+  as parameters.  Definition~\ref{def:near126-sphere-hopf-input} specializes
+  it to a constructed cofiber, with bottom-cell classes defined by the actual
+  induced page map; the Hopf input and top-cell comparison remain unfinished.
+  This is not the complete input of Definition~\ref{def:near126-computation-input}.
+  Synthetic candidate exhaustion, torsion, crossing, indeterminacy, and
+  archive evidence instances remain open; the precise boundary and source
+  checklist are recorded in \texttt{docs/NEAR126\_COMPUTATION\_FACTS.md}.
+\end{definition}
+
+\begin{definition}[Sphere Hopf input and constructed cofiber pages]
+  \label{def:near126-sphere-hopf-input}
+  \lean{KIP126.Computation.Near126.SphereHopfInput,KIP126.Classical.Adams.SphereFiltrationOneRepresents,KIP126.Classical.Adams.sphereMapCofiberAdams,KIP126.Classical.Adams.sphereMapCofiberBottomE2,KIP126.Computation.Near126.SphereHopfInput.ComputationFacts}
+  \uses{def:near126-fixed-sphere-facts,def:cofiber-triangle,def:h6-fixed-computation}
+  \notready
+  An explicit input supplies a map $f:S^3\to S^0$ in the fixed foundation
+  and evidence for a lift $a:S^3\to F^1S^0$ whose composite to $S^0$ is $f$
+  and whose layer image represents the fixed Lin $h_2$ on the actual $E_2$
+  page.  This is a detection condition, not a claim that such an input has
+  been constructed or that it uniquely selects the geometric Hopf map.
+
+  The cofiber, its two cell maps, and its internal Adams sequence use this
+  very map and the same fixed $H\mathbb F_2$ unit as the sphere sequence.
+  Naturality of tower bonding maps and of the exact-couple maps gives maps
+  preserving $Z_r$ and $B_r$, hence maps of quotient pages.  In particular,
+  the bottom-cell classes $Y[0]$ and $T[0]$ are the images of the already fixed
+  sphere classes under this constructed $E_2$ map.  For a top-cell lift $u$,
+  the differential source is constructed as
+  $u+i_*(x_{126,8})+i_*(x_{126,8,2})$.
+
+  The actual top-cell map lands in the tower of $\Sigma S^3$; its suspension
+  comparison with the regraded sphere page, the equation identifying $u$
+  with $X[4]$, and the external differential/no-crossing evidence remain
+  outstanding.  No arbitrary auxiliary sequence or bottom-cell map is
+  supplied as a field of this construction.
+\end{definition}

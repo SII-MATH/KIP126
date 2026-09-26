@@ -30,11 +30,7 @@ run_cmd do
   let expected := [``propext, ``Classical.choice, ``Quot.sound, ``sorryAx,
     ``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.standardMilnorCooperations,
-    ``KIP126.Classical.Adams.sphereAdamsModel,
-    ``KIP126.Classical.Adams.linE2Presentation,
-    ``KIP126.Classical.Adams.sphereAdams_towerComparison,
-    ``KIP126.Classical.Adams.h6Square_comparison,
-    ``KIP126.Classical.Adams.survival_comparison]
+    ``KIP126.Classical.Adams.linE2Presentation]
   for a in axioms do
     unless expected.contains a do throwError "unexpected final dependency: {a}"
   for a in expected.drop 3 do

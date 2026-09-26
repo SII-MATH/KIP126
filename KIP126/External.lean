@@ -6,6 +6,8 @@ import KIP126.External.SourceInventory
 import KIP126.External.Computation.EtaRows.Data
 import KIP126.External.Computation.AppendixTable.Rows.Catalogue.Proofs
 import KIP126.External.Literature.Adams.OneLine
+import KIP126.External.Computation.Near126
+import KIP126.External.Computation.LinProofs
 
 /-!
 # External inputs

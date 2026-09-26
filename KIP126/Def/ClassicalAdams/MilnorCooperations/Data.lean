@@ -1,4 +1,5 @@
-import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
+import KIP126.Def.ClassicalAdams.TowerPageComplex.Data
+import KIP126.Def.StableHomotopy.Cohomology.Data
 import KIP126.Def.Steenrod.MilnorCobar.Data
 
 /-!
