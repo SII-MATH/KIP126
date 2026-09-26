@@ -278,14 +278,14 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("test -f gate/scripts/ci-build-contract.sh", blueprint)
 
     def test_blueprint_preserves_trusted_tooling_with_separate_checkout_paths(self):
-        import yaml
-        workflow = yaml.safe_load(self.read("blueprint-pr.yml"))
-        checkouts = [step for step in workflow["jobs"]["blueprint-check"]["steps"]
-                     if step.get("uses", "").startswith("actions/checkout@")]
-        self.assertEqual([step["with"]["path"] for step in checkouts],
-                         ["gate", "candidate", "work"])
-        self.assertEqual(checkouts[0]["with"]["ref"], "${{ github.workflow_sha }}")
-        self.assertTrue(all(step["with"]["persist-credentials"] is False for step in checkouts))
+        blueprint = self.read("blueprint-pr.yml")
+        checkouts = [section for section in blueprint.split("\n      - ")
+                     if "uses: actions/checkout@" in section]
+        self.assertEqual(len(checkouts), 3)
+        for section, path in zip(checkouts, ("gate", "candidate", "work")):
+            self.assertIn(f"path: {path}\n", section)
+            self.assertIn("persist-credentials: false", section)
+        self.assertIn("ref: ${{ github.workflow_sha }}", checkouts[0])
 
     def test_build_contract_changes_with_trusted_build_machinery(self):
         contract_script = ROOT / "scripts" / "ci-build-contract.sh"
