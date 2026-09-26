@@ -10,3 +10,5 @@ import KIP126.Examples.AdamsE2LowDegrees
 and the open Challenge statements.  The parallel `KIP126.Solution` proof track
 is built as its own package entry point for later comparison and is not part of
 the trusted root import graph. Regression modules live under `KIP126.Checks`. -/
+
+-- Temporary CI incremental-cache probe; removed before merge.
