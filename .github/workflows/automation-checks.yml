@@ -59,6 +59,7 @@ jobs:
           PYTHONDONTWRITEBYTECODE: '1'
         run: |
           python3 -m unittest -v \
+            scripts.test_development_gates \
             scripts.test_ci_fast_path \
             scripts.test_workflow_routing \
             scripts.test_merge_gate \
