@@ -34,6 +34,9 @@ concurrency:
 
 jobs:
   build:
+    # A queue commit can become main verbatim. Its strict post-merge audit
+    # must not create a second check named like the required `build` status.
+    name: main-validation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -163,9 +163,13 @@ they do not silently start a duplicate compilation. API docs then download
 the same run's `docs-lean-outputs` artifact from the declaration-check job.
 Keys cover the committed Lean sources, both root libraries, Lake configuration,
 dependency pins, toolchain, runner OS and architecture. Prefix-matched older
-outputs are only an incremental baseline for the primary main compiler, never
+outputs are only an incremental baseline for main and sandboxed PR/queue builds, never
 a substitute for exact-input outputs in declaration consumers.
 Mathlib files always come from `lake exe cache get`.
+
+For measured CI/merge-queue timings, candidate automation preflight, cache
+behavior, and failure recovery, see [CI operations](docs/CI_OPERATIONS.md).
+
 The large doc-gen cache has one immutable key per toolchain/manifest graph,
 rather than one key per commit. Blueprint and API docs are separate workflow
 artifacts; the deploy job assembles them as `_site/blueprint/` and
