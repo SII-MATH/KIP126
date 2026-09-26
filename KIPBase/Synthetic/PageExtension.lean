@@ -180,6 +180,19 @@ theorem target_index
 
 end PageExtensionRelation
 
+/-- 经典 Adams 环境整数模的底层阿贝尔群。
+页扩张的 synthetic ESS 在阿贝尔群范畴中，因此比较映射显式使用忘却函子。 -/
+noncomputable abbrev classicalAdamsAmbient (X : 𝒮) (k : ℤ × ℤ) : AddCommGrpCat.{0} :=
+  (forget₂ (ModuleCat.{0, 0} IntModuleRing.{0}) AddCommGrpCat.{0}).obj
+    ((AdamsSS 𝒮 X).ssData k).V
+
+/-- 经典 Adams 循环子模经同一个忘却函子得到的循环子群。 -/
+noncomputable def classicalAdamsCycles (X : 𝒮) (k : ℤ × ℤ) (r : WithTop ℕ) :
+    Subobject (classicalAdamsAmbient 𝒮 X k) :=
+  Subobject.mk
+    ((forget₂ (ModuleCat.{0, 0} IntModuleRing.{0}) AddCommGrpCat.{0}).map
+      (((AdamsSS 𝒮 X).ssData k).Z r).arrow)
+
 /-! ### Finite and infinite page extensions -/
 
 variable (Syn)
@@ -203,29 +216,29 @@ structure FinitePageExtension {X Y : 𝒮} (f : X ⟶ Y)
       ((s, 1) + ((family.finite r page_ge_two).ess
         (t - s, t + eHat 𝒮 f)).diffDeg n)
   classicalSource : extension.T ⟶
-    ((AdamsSS 𝒮 X).ssData (s, t)).V
+    (classicalAdamsAmbient 𝒮 X (s, t))
   classicalTarget : extension.T ⟶
-    ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V
+    (classicalAdamsAmbient 𝒮 Y (s + n, t + n))
   source_isCycle : Subobject.Factors
-    (((AdamsSS 𝒮 X).ssData (s, t)).Z (r - 1)) classicalSource
+    (classicalAdamsCycles 𝒮 X (s, t) (r - 1)) classicalSource
   target_isCycle : Subobject.Factors
-    (((AdamsSS 𝒮 Y).ssData (s + n, t + n)).Z
+    (classicalAdamsCycles 𝒮 Y (s + n, t + n)
       (↑(((r : ℤ) - 1 - n + eHat 𝒮 f).toNat) : WithTop ℕ)) classicalTarget
-  sourceComparison : ((AdamsSS 𝒮 X).ssData (s, t)).V ⟶
+  sourceComparison : (classicalAdamsAmbient 𝒮 X (s, t)) ⟶
     ((family.finite r page_ge_two).ess
       (t - s, t + eHat 𝒮 f)).ssData (s, 1) |>.V
-  targetComparison : ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V ⟶
+  targetComparison : (classicalAdamsAmbient 𝒮 Y (s + n, t + n)) ⟶
     ((family.finite r page_ge_two).ess
       (t - s, t + eHat 𝒮 f)).ssData
       ((s, 1) + ((family.finite r page_ge_two).ess
         (t - s, t + eHat 𝒮 f)).diffDeg n) |>.V
   source_transport : classicalSource ≫ sourceComparison = extension.source
   target_transport : classicalTarget ≫ targetComparison = extension.target
-  classicalBoundary : Subobject ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V
+  classicalBoundary : Subobject (classicalAdamsAmbient 𝒮 Y (s + n, t + n))
   shorterExtensionImages :
-    Subobject ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V
+    Subobject (classicalAdamsAmbient 𝒮 Y (s + n, t + n))
   ambiguity_compat : ∀ z : extension.T ⟶
-      ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V,
+      (classicalAdamsAmbient 𝒮 Y (s + n, t + n)),
     Subobject.Factors (classicalBoundary ⊔ shorterExtensionImages) z ↔
       Subobject.Factors
         ((((family.finite r page_ge_two).ess
@@ -251,26 +264,26 @@ structure InfinitePageExtension {X Y : 𝒮}
       ((s, 1) + (family.infinite.ess
         (t - s, t + eHat 𝒮 f)).diffDeg n)
   classicalSource : extension.T ⟶
-    ((AdamsSS 𝒮 X).ssData (s, t)).V
+    (classicalAdamsAmbient 𝒮 X (s, t))
   classicalTarget : extension.T ⟶
-    ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V
+    (classicalAdamsAmbient 𝒮 Y (s + n, t + n))
   source_isPermanent : Subobject.Factors
-    (((AdamsSS 𝒮 X).ssData (s, t)).Z ⊤) classicalSource
+    (classicalAdamsCycles 𝒮 X (s, t) ⊤) classicalSource
   target_isPermanent : Subobject.Factors
-    (((AdamsSS 𝒮 Y).ssData (s + n, t + n)).Z ⊤) classicalTarget
-  sourceComparison : ((AdamsSS 𝒮 X).ssData (s, t)).V ⟶
+    (classicalAdamsCycles 𝒮 Y (s + n, t + n) ⊤) classicalTarget
+  sourceComparison : (classicalAdamsAmbient 𝒮 X (s, t)) ⟶
     (family.infinite.ess (t - s, t + eHat 𝒮 f)).ssData (s, 1) |>.V
-  targetComparison : ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V ⟶
+  targetComparison : (classicalAdamsAmbient 𝒮 Y (s + n, t + n)) ⟶
     (family.infinite.ess (t - s, t + eHat 𝒮 f)).ssData
       ((s, 1) + (family.infinite.ess
         (t - s, t + eHat 𝒮 f)).diffDeg n) |>.V
   source_transport : classicalSource ≫ sourceComparison = extension.source
   target_transport : classicalTarget ≫ targetComparison = extension.target
-  classicalBoundary : Subobject ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V
+  classicalBoundary : Subobject (classicalAdamsAmbient 𝒮 Y (s + n, t + n))
   shorterExtensionImages :
-    Subobject ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V
+    Subobject (classicalAdamsAmbient 𝒮 Y (s + n, t + n))
   ambiguity_compat : ∀ z : extension.T ⟶
-      ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V,
+      (classicalAdamsAmbient 𝒮 Y (s + n, t + n)),
     Subobject.Factors (classicalBoundary ⊔ shorterExtensionImages) z ↔
       Subobject.Factors
         (((family.infinite.ess (t - s, t + eHat 𝒮 f)).ssData
@@ -311,7 +324,7 @@ def targetCoset (P : FinitePageExtension 𝒮 Syn f family r n s t) :=
 
 /-- The Blueprint target coset in the classical target ambient object. -/
 def classicalTargetCoset (P : FinitePageExtension 𝒮 Syn f family r n s t) :
-    Set (P.extension.T ⟶ ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V) :=
+    Set (P.extension.T ⟶ (classicalAdamsAmbient 𝒮 Y (s + n, t + n))) :=
   { z | Subobject.Factors (P.classicalBoundary ⊔ P.shorterExtensionImages)
       (P.classicalTarget - z) }
 
@@ -320,7 +333,7 @@ classical target coset. -/
 theorem essential_iff_zero_not_mem_classicalTargetCoset
     (P : FinitePageExtension 𝒮 Syn f family r n s t) :
     P.Essential ↔
-      (0 : P.extension.T ⟶ ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V) ∉
+      (0 : P.extension.T ⟶ (classicalAdamsAmbient 𝒮 Y (s + n, t + n))) ∉
         P.classicalTargetCoset := by
   change P.extension.Essential ↔ _
   rw [PageExtensionRelation.essential_iff_zero_not_mem_targetCoset]
@@ -344,14 +357,14 @@ def targetCoset (P : InfinitePageExtension 𝒮 Syn f family n s t) :=
   P.extension.targetCoset
 
 def classicalTargetCoset (P : InfinitePageExtension 𝒮 Syn f family n s t) :
-    Set (P.extension.T ⟶ ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V) :=
+    Set (P.extension.T ⟶ (classicalAdamsAmbient 𝒮 Y (s + n, t + n))) :=
   { z | Subobject.Factors (P.classicalBoundary ⊔ P.shorterExtensionImages)
       (P.classicalTarget - z) }
 
 theorem essential_iff_zero_not_mem_classicalTargetCoset
     (P : InfinitePageExtension 𝒮 Syn f family n s t) :
     P.Essential ↔
-      (0 : P.extension.T ⟶ ((AdamsSS 𝒮 Y).ssData (s + n, t + n)).V) ∉
+      (0 : P.extension.T ⟶ (classicalAdamsAmbient 𝒮 Y (s + n, t + n))) ∉
         P.classicalTargetCoset := by
   change P.extension.Essential ↔ _
   rw [PageExtensionRelation.essential_iff_zero_not_mem_targetCoset]
