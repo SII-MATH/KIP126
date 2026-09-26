@@ -136,11 +136,14 @@ Challenge proofs remain `sorry` by the rule above. A deliberately introduced
 project `axiom` instead belongs in that component's `Axiom.lean` and must be
 audited by name and by its downstream dependency cone, separately from
 `sorryAx`. Do not mark an unproved or axiom-dependent declaration or its
-Blueprint node as complete. A pull request is not mergeable while the required
-axiom audit still reports `sorryAx`; this layout policy does not waive any
-required check. Before introducing the first canonical `Axiom.lean`, update the
-compiled audit and CI to inventory its named axioms separately, reject project
-axioms declared elsewhere, and retain the final proof-completion gate.
+Blueprint node as complete. During development, a pull request may merge while
+the compiled audit still reports `sorryAx`, provided that debt and its downstream
+dependencies are visible for human review. This does not waive build, Blueprint
+declaration, or other required mechanical checks, and does not satisfy the final
+proof-completion criteria in `PROJECT_BOUNDARY.md`. Before introducing the first
+canonical `Axiom.lean`, update the compiled audit and CI to inventory its named
+axioms separately, reject project axioms declared elsewhere, and retain the
+final proof-completion gate.
 External hypotheses belong under `KIP126/External/` as provenance-carrying
 `ExternalResult` or `ExternalEvidence` inputs, and conclusions that use them
 must remain conditional statements taking those inputs explicitly.
