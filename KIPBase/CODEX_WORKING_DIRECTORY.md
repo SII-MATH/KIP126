@@ -18,7 +18,7 @@
 
 1. 所有命令的工作目录固定为 `/home/wang/KIP126/KIPBase`。
 2. 不搜索、不读取、不修改父目录 `/home/wang/KIP126` 中的文件。
-3. 构建时只使用 `KIPBase` 自己的 `lakefile.lean`、`lake-manifest.json` 和 `lean-toolchain`。
+3. 构建时只使用 `KIPBase` 自己的 `lakefile.toml`、`lake-manifest.json` 和 `lean-toolchain`。
 4. 如果任务必须依赖父目录文件，先停止并向用户说明，不擅自越界。
 5. 汇报编译结果时明确区分 `KIPBase` 自身问题和父项目问题，不再使用父项目结果代替本项目结果。
 
