@@ -10,7 +10,7 @@ import KIPBase.StableHomotopy.Cohomology
 
 namespace KIPBase.Synthetic
 
-open CategoryTheory CategoryTheory.Limits KIPBase.StableHomotopy
+open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated KIPBase.StableHomotopy
 
 attribute [local instance] HasZeroObject.zero'
 
@@ -102,39 +102,10 @@ axiom nu_cofiber_ses (T : Pretriangulated.Triangle 𝒮)
     (_hses : ∀ n : ℤ,
       Function.Exact (Mod2Homology.pushforward T.mor₁ n)
                      (Mod2Homology.pushforward T.mor₂ n)) :
-    ∃ (T' : Pretriangulated.Triangle Syn),
-      T' ∈ distTriang Syn ∧
-      T'.obj₁ = (nu 𝒮 Syn).obj T.obj₁ ∧
-      T'.obj₂ = (nu 𝒮 Syn).obj T.obj₂ ∧
-      T'.obj₃ = (nu 𝒮 Syn).obj T.obj₃
+    ∃ (h' : (nu 𝒮 Syn).obj T.obj₃ ⟶
+        (shiftFunctor Syn (1 : ℤ)).obj ((nu 𝒮 Syn).obj T.obj₁)),
+      Triangle.mk ((nu 𝒮 Syn).map T.mor₁) ((nu 𝒮 Syn).map T.mor₂) h'
+        ∈ distTriang Syn
 
-/-- KIP §0.2.3: Exactness of mod 2 cohomology implies exactness of mod 2
-    homology. This follows from naturality of the universal coefficient
-    theorem and the fact that Hom(−, F₂) reflects exactness for
-    F₂-vector spaces. -/
-axiom cohom_exact_implies_homol_exact {X Y Z : 𝒮} (f : X ⟶ Y) (g : Y ⟶ Z)
-    (n : ℤ)
-    (h : Function.Exact (Mod2Cohomology.pullback g n)
-                        (Mod2Cohomology.pullback f n)) :
-    Function.Exact (Mod2Homology.pushforward f n)
-                   (Mod2Homology.pushforward g n)
-
-omit [MonoidalCategory Syn] [SyntheticCategory Syn] in
-/-- Cohomological variant of `nu_cofiber_ses`: if the induced mod 2 cohomology
-    sequence is short exact, ν sends the cofiber sequence to a distinguished
-    triangle. Follows from `nu_cofiber_ses` + universal coefficients.
-    Blueprint: `prereq:rem:nu-cofiber-cohomological`. -/
-theorem nu_cofiber_ses_cohomological (T : Pretriangulated.Triangle 𝒮)
-    (hT : T ∈ distTriang 𝒮)
-    (_hses_cohom : ∀ n : ℤ,
-      Function.Exact (Mod2Cohomology.pullback T.mor₂ n)
-                     (Mod2Cohomology.pullback T.mor₁ n)) :
-    ∃ (T' : Pretriangulated.Triangle Syn),
-      T' ∈ distTriang Syn ∧
-      T'.obj₁ = (nu 𝒮 Syn).obj T.obj₁ ∧
-      T'.obj₂ = (nu 𝒮 Syn).obj T.obj₂ ∧
-      T'.obj₃ = (nu 𝒮 Syn).obj T.obj₃ :=
-  nu_cofiber_ses 𝒮 Syn T hT fun n =>
-    cohom_exact_implies_homol_exact (𝒮 := 𝒮) T.mor₁ T.mor₂ n (_hses_cohom n)
 
 end KIPBase.Synthetic

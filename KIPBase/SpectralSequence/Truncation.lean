@@ -43,6 +43,152 @@ noncomputable def Filtration.truncatedFiltration {ω : Type w} {A : ω → C}
       from by rw [← Category.assoc, Subobject.ofLE_arrow]]
     exact imageSubobject_comp_le _ _
 
+/-- 原过滤层到截断过滤层的规范满射。 -/
+noncomputable def Filtration.toTruncatedFiltration
+    {ω : Type w} {A : ω → C} (fil : Filtration A)
+    (s₀ s : ℤ) (k : ω) :
+    Subobject.underlying.obj (fil.F s k) ⟶
+      Subobject.underlying.obj ((fil.truncatedFiltration s₀).F s k) :=
+  factorThruImageSubobject ((fil.F s k).arrow ≫ fil.truncationProj s₀ k)
+
+/-- 原过滤层到截断过滤层的规范满射与环境对象中的箭头相容。 -/
+@[reassoc]
+theorem Filtration.toTruncatedFiltration_arrow
+    {ω : Type w} {A : ω → C} (fil : Filtration A)
+    (s₀ s : ℤ) (k : ω) :
+    fil.toTruncatedFiltration s₀ s k ≫
+        ((fil.truncatedFiltration s₀).F s k).arrow =
+      (fil.F s k).arrow ≫ fil.truncationProj s₀ k :=
+  imageSubobject_arrow_comp _
+
+/-- 截断投影在关联分次上诱导的规范映射。 -/
+noncomputable def Filtration.toTruncatedAssociatedGraded
+    {ω : Type w} {A : ω → C} (fil : Filtration A)
+    (s₀ s : ℤ) (k : ω) :
+    fil.associatedGraded s k ⟶ (fil.truncatedFiltration s₀).associatedGraded s k :=
+  cokernel.map
+    (Subobject.ofLE (fil.F (s + 1) k) (fil.F s k) (fil.mono s k))
+    (Subobject.ofLE ((fil.truncatedFiltration s₀).F (s + 1) k)
+      ((fil.truncatedFiltration s₀).F s k) ((fil.truncatedFiltration s₀).mono s k))
+    (fil.toTruncatedFiltration s₀ (s + 1) k)
+    (fil.toTruncatedFiltration s₀ s k)
+    (by
+      apply (cancel_mono ((fil.truncatedFiltration s₀).F s k).arrow).mp
+      simp only [Category.assoc, Subobject.ofLE_arrow,
+        Filtration.toTruncatedFiltration_arrow]
+      rw [← Category.assoc, Subobject.ofLE_arrow])
+
+/-- 截断层位于当前过滤次数之上时，截断不改变该关联分次。 -/
+noncomputable def Filtration.truncatedAssociatedGradedIso
+    {ω : Type w} {A : ω → C} (fil : Filtration A)
+    (s₀ s : ℤ) (k : ω) (hs : s ≤ s₀) :
+    fil.associatedGraded s k ≅ (fil.truncatedFiltration s₀).associatedGraded s k := by
+  let Fₛ := fil.F s k
+  let Fₛ₁ := fil.F (s + 1) k
+  let K := fil.F (s₀ + 1) k
+  let Iₛ := (fil.truncatedFiltration s₀).F s k
+  let Iₛ₁ := (fil.truncatedFiltration s₀).F (s + 1) k
+  let i := Subobject.ofLE Fₛ₁ Fₛ (fil.mono s k)
+  let j := Subobject.ofLE Iₛ₁ Iₛ ((fil.truncatedFiltration s₀).mono s k)
+  let p := fil.toTruncatedFiltration s₀ s k
+  let p₁ := fil.toTruncatedFiltration s₀ (s + 1) k
+  let π : Subobject.underlying.obj Fₛ ⟶ fil.associatedGraded s k :=
+    fil.toAssociatedGraded s k
+  let π' : Subobject.underlying.obj Iₛ ⟶
+      (fil.truncatedFiltration s₀).associatedGraded s k :=
+    (fil.truncatedFiltration s₀).toAssociatedGraded s k
+  have hp_arrow : p ≫ Iₛ.arrow = Fₛ.arrow ≫ fil.truncationProj s₀ k := by
+    exact fil.toTruncatedFiltration_arrow s₀ s k
+  have hp₁_arrow : p₁ ≫ Iₛ₁.arrow = Fₛ₁.arrow ≫ fil.truncationProj s₀ k := by
+    exact fil.toTruncatedFiltration_arrow s₀ (s + 1) k
+  have hsquare : p₁ ≫ j = i ≫ p := by
+    apply (cancel_mono Iₛ.arrow).mp
+    dsimp only [i, j]
+    simp only [Category.assoc, Subobject.ofLE_arrow]
+    rw [hp₁_arrow, hp_arrow]
+    rw [← Category.assoc, Subobject.ofLE_arrow]
+  have fil_anti_of_le : ∀ {a b : ℤ}, a ≤ b → fil.F b k ≤ fil.F a k := by
+    intro a b hab
+    have key : ∀ n : ℕ, fil.F (a + ↑n) k ≤ fil.F a k := by
+      intro n
+      induction n with
+      | zero => simp
+      | succ n ih =>
+          have hstep : fil.F (a + ↑(n + 1)) k ≤ fil.F (a + ↑n) k := by
+            have hidx : a + (↑(n + 1) : ℤ) = (a + ↑n) + 1 := by omega
+            rw [hidx]
+            exact fil.mono (a + ↑n) k
+          exact le_trans hstep ih
+    obtain ⟨n, rfl⟩ := Int.le.dest hab
+    exact key n
+  have hK : K ≤ Fₛ₁ := fil_anti_of_le (by omega)
+  have hker_zero : (kernel.ι p ≫ Fₛ.arrow) ≫ fil.truncationProj s₀ k = 0 := by
+    rw [Category.assoc, ← hp_arrow, ← Category.assoc, kernel.condition, zero_comp]
+  let liftK := Abelian.monoLift K.arrow (kernel.ι p ≫ Fₛ.arrow) hker_zero
+  have hliftK : liftK ≫ K.arrow = kernel.ι p ≫ Fₛ.arrow :=
+    Abelian.monoLift_comp _ _ _
+  have hker_factor : kernel.ι p = liftK ≫ Subobject.ofLE K Fₛ₁ hK ≫ i := by
+    apply (cancel_mono Fₛ.arrow).mp
+    rw [Category.assoc, Category.assoc, Subobject.ofLE_arrow,
+      Subobject.ofLE_arrow, hliftK]
+  have hiπ : i ≫ π = 0 := by
+    dsimp only [i, π, Fₛ, Fₛ₁, Filtration.toAssociatedGraded,
+      Filtration.associatedGraded]
+    exact cokernel.condition _
+  have hπ : kernel.ι p ≫ π = 0 := by
+    rw [hker_factor]
+    simp only [Category.assoc, hiπ, comp_zero]
+  haveI : Epi p := by
+    dsimp only [p, Filtration.toTruncatedFiltration]
+    infer_instance
+  haveI : Epi p₁ := by
+    dsimp only [p₁, Filtration.toTruncatedFiltration]
+    infer_instance
+  let q : Subobject.underlying.obj Iₛ ⟶ fil.associatedGraded s k :=
+    Abelian.epiDesc p π hπ
+  have hpq : p ≫ q = π := Abelian.comp_epiDesc _ _ _
+  have hjq : j ≫ q = 0 := by
+    apply (cancel_epi p₁).mp
+    rw [← Category.assoc, hsquare, Category.assoc, hpq]
+    simpa only [i, π, Filtration.toAssociatedGraded, comp_zero] using
+      cokernel.condition
+        (Subobject.ofLE (fil.F (s + 1) k) (fil.F s k) (fil.mono s k))
+  let invMap : (fil.truncatedFiltration s₀).associatedGraded s k ⟶
+      fil.associatedGraded s k := cokernel.desc j q hjq
+  let homMap := fil.toTruncatedAssociatedGraded s₀ s k
+  have hπ_hom : π ≫ homMap = p ≫ π' := by
+    exact cokernel.π_desc _ _ _
+  have hπ'_inv : π' ≫ invMap = q := cokernel.π_desc _ _ _
+  haveI : Epi π := by
+    dsimp only [π, Filtration.toAssociatedGraded]
+    infer_instance
+  haveI : Epi π' := by
+    dsimp only [π', Filtration.toAssociatedGraded]
+    infer_instance
+  refine
+    { hom := homMap
+      inv := invMap
+      hom_inv_id := ?_
+      inv_hom_id := ?_ }
+  · apply (cancel_epi π).mp
+    calc
+      π ≫ (homMap ≫ invMap) = (π ≫ homMap) ≫ invMap :=
+        (Category.assoc _ _ _).symm
+      _ = (p ≫ π') ≫ invMap := by rw [hπ_hom]
+      _ = p ≫ (π' ≫ invMap) := Category.assoc _ _ _
+      _ = p ≫ q := by rw [hπ'_inv]
+      _ = π := hpq
+      _ = π ≫ 𝟙 _ := (Category.comp_id _).symm
+  · apply (cancel_epi π').mp
+    calc
+      π' ≫ (invMap ≫ homMap) = (π' ≫ invMap) ≫ homMap :=
+        (Category.assoc _ _ _).symm
+      _ = q ≫ homMap := by rw [hπ'_inv]
+      _ = π' := by
+        apply (cancel_epi p).mp
+        rw [← Category.assoc, hpq, hπ_hom]
+      _ = π' ≫ 𝟙 _ := (Category.comp_id _).symm
+
 /-- The truncated filtration is bounded when the original is bounded below. -/
 noncomputable def Filtration.truncatedFiltration_isBounded {ω : Type w} {A : ω → C}
     {fil : Filtration A} (hbb : fil.IsBoundedBelow) (s₀ : ℤ) :

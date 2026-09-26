@@ -73,13 +73,11 @@ axiom rigidity_above_diag_vanishing (X : 𝒮) (r : ℤ) (hr : 2 ≤ r)
 
 The λ-Bockstein SS is obtained from the exact couple
   Σ^{0,1}(νX) →[λ] νX → νX/λ.
-The rigidity theorem implies it coincides with the synthetic Adams SS. -/
+The comparison with the synthetic Adams SS is not formalized in this file. -/
 
-/-- KIP Theorem A.1 (λ-Bockstein identification): The synthetic Adams SS
-    for νX coincides with the λ-Bockstein SS. The key consequence: both
-    start at page r₀ = 2 and have the same differential degrees. Full
-    E₂-level identification requires Z[λ]-module formalization. -/
-axiom lambda_bockstein_iso (X : 𝒮) :
+/-** Only the synthetic Adams page convention is recorded here; this does not
+    assert an identification with a λ-Bockstein spectral sequence. -/
+axiom lambda_bockstein_start_page (X : 𝒮) :
     (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).r₀ = 2
 
 /-! ### E∞ computations -/
@@ -122,14 +120,5 @@ axiom einfty_nuX_weight_map (X : 𝒮) (s t w₁ w₂ : ℤ)
 axiom einfty_nuX_weight_map_epi (X : 𝒮) (s t w₁ w₂ : ℤ)
     (hw : w₁ ≤ w₂) (hw₂ : w₂ ≤ t) :
     Epi (einfty_nuX_weight_map 𝒮 Syn X s t w₁ w₂ hw hw₂)
-
-/-- KIP Corollary A.11, Proposition 3.13: E∞ of ν(X)/λʳ vanishing.
-    E∞^{s,t,w}(νX/λʳ) = 0 outside the range 0 ≤ t - w < r.
-    The nonzero entries are isomorphic to Z_{r-t+w}/B_{1+t-w}
-    of the classical Adams SS. -/
-axiom einfty_nuX_mod_lambda (X : 𝒮) (r : ℕ) (hr : 0 < r)
-    (s t w : ℤ) (h : t - w < 0 ∨ (r : ℤ) ≤ t - w) :
-    IsZero ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) r)).Page 2
-      (s, t, w))
 
 end KIPBase.Synthetic

@@ -24,30 +24,10 @@ variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮]
 `ModuleCat ℤ ≌ AddCommGrpCat` 搬到 `ModuleCat` 值范畴，打包成
 `ConvergingSS`。谱序列本体与过滤、收敛同构逐项由等价函子
 `(forget₂ (ModuleCat ℤ) AddCommGrpCat).inverse` 传送，不新增任何
-数学假设；`finite_spectra_char` 保证映射谱有限，`adamsConvergence`
-的有限性前提因此成立。 -/
+数学假设；映射谱的有限性必须由调用者显式提供，`adamsConvergence`
+也只接受显式的 `IsFiniteSpectrum` 证明。 -/
 
-/-- 整数系数环的提升：把 `ℤ` 放到宇宙 `v`，供 `ModuleCat.{v}` 使用。 -/
-noncomputable def IntModuleRing : Type v := ULift.{v} ℤ
-
-instance : CommRing (IntModuleRing.{v}) :=
-  inferInstanceAs (CommRing (ULift.{v} ℤ))
-
-/-- 把 `AddCommGrpCat` 值谱序列沿整系数模范畴与 Abel 群范畴的等价传送。
-该等价对核、余核及子对象的逐层相容性尚未形式化，因此把它记为明示的范畴等价桥接公理。 -/
-axiom SpectralSequence.transfer {ι : Type w} [AddCommGroup ι]
-    [DecidableEq ι] (E : SpectralSequence AddCommGrpCat.{v} ι) :
-    SpectralSequence (ModuleCat.{v, v} IntModuleRing.{v}) ι
-
-/-- 范畴传送不改变起始页。 -/
-axiom SpectralSequence.transfer_r₀ {ι : Type w} [AddCommGroup ι]
-    [DecidableEq ι] (E : SpectralSequence AddCommGrpCat.{v} ι) :
-    (SpectralSequence.transfer E).r₀ = E.r₀
-
-/-- 范畴传送不改变微分次数。 -/
-axiom SpectralSequence.transfer_diffDeg {ι : Type w} [AddCommGroup ι]
-    [DecidableEq ι] (E : SpectralSequence AddCommGrpCat.{v} ι) :
-    (SpectralSequence.transfer E).diffDeg = E.diffDeg
+-- The Adams library now uses `ModuleCat` directly; no transfer bridge is needed.
 
 /-- 映射 Adams 谱序列的极限分次对象。 -/
 axiom adamsMappingAbutment (X Y : 𝒮)
@@ -63,8 +43,7 @@ axiom adamsMappingFiltration (X Y : 𝒮)
 axiom adamsMappingConvergence (X Y : 𝒮)
     (hX : IsFiniteSpectrum X) (hY : IsFiniteSpectrum Y) :
     Convergence
-      (SpectralSequence.transfer
-        (AdamsSS 𝒮 (MappingSpectrum X Y)))
+      (AdamsSS 𝒮 (MappingSpectrum X Y))
       (adamsMappingAbutment X Y hX hY)
       (adamsMappingFiltration X Y hX hY)
 
@@ -75,8 +54,7 @@ Adams 谱序列沿等价传送到 `ModuleCat`，极限为映射同伦群，
 noncomputable def adamsMappingConvergingSS (X Y : 𝒮)
     (hX : IsFiniteSpectrum X) (hY : IsFiniteSpectrum Y) :
     ConvergingSS (ModuleCat.{v, v} IntModuleRing.{v}) (ℤ × ℤ) ℤ where
-  E := SpectralSequence.transfer
-    (AdamsSS 𝒮 (MappingSpectrum X Y))
+  E := AdamsSS 𝒮 (MappingSpectrum X Y)
   A := adamsMappingAbutment X Y hX hY
   F := adamsMappingFiltration X Y hX hY
   conv := adamsMappingConvergence X Y hX hY
@@ -86,25 +64,22 @@ Adams 谱序列沿 `ModuleCat ℤ ≌ AddCommGrpCat` 等价传送到
 `ModuleCat` 值范畴。 -/
 noncomputable def adamsMappingSS (X Y : 𝒮) :
     SpectralSequence (ModuleCat.{v, v} IntModuleRing.{v}) (ℤ × ℤ) :=
-  SpectralSequence.transfer (AdamsSS 𝒮 (MappingSpectrum X Y))
+  AdamsSS 𝒮 (MappingSpectrum X Y)
 
 /-- 映射 Adams 谱序列从第 2 页开始。 -/
 theorem adamsMappingSS_r₀ (X Y : 𝒮) :
     (adamsMappingSS (𝒮 := 𝒮) X Y).r₀ = 2 := by
-  rw [adamsMappingSS, SpectralSequence.transfer_r₀, adamsSS_r₀]
+  rw [adamsMappingSS, adamsSS_r₀]
 
 /-- 映射 Adams 谱序列的微分次数与单谱 Adams 相同：`(r, r-1)`。 -/
 theorem adamsMappingSS_diffDeg (X Y : 𝒮) :
     (adamsMappingSS (𝒮 := 𝒮) X Y).diffDeg = adamsDiffDeg := by
-  rw [adamsMappingSS, SpectralSequence.transfer_diffDeg, adamsSS_diffDeg]
+  rw [adamsMappingSS, adamsSS_diffDeg]
 
-/-- 页元素传送：把 `AddCommGrpCat` 值谱序列第 `r` 页 `k` 处的元素
-映到 `SpectralSequence.transfer` 后的 `ModuleCat` 值谱序列同一页
-同一双次数处的元素。 -/
-axiom SpectralSequence.pageTransfer {ι : Type w}
-    [AddCommGroup ι] [DecidableEq ι]
-    (E : SpectralSequence AddCommGrpCat.{v} ι) (r : ℤ) (k : ι)
-    (x : ↑(E.Page r k)) : ↑((SpectralSequence.transfer E).Page r k)
+/-- 页元素在同一模块值谱序列中的恒等传递。 -/
+def SpectralSequence.pageTransfer {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence (ModuleCat.{v, v} IntModuleRing.{v}) ι)
+    (r : ℤ) (k : ι) (x : ↑(E.Page r k)) : ↑(E.Page r k) := x
 
 /-- 收敛重指标化：Adams 双次数 `(s, t)` 对应过滤次数 `s` 与杆数
 `t - s`。 -/
@@ -298,9 +273,8 @@ axiom adamsCompositionConvergingSSPairing_abutment_right_unital
 
 /-- 球谱的自映射谱在 Adams 谱序列上与球谱本身识别。 -/
 axiom sphereMappingAdamsSS :
-    SpectralSequence.transfer
-        (AdamsSS (𝒮 := 𝒮) (MappingSpectrum SphereSpectrum SphereSpectrum)) =
-      SpectralSequence.transfer (AdamsSS (𝒮 := 𝒮) SphereSpectrum)
+    AdamsSS (𝒮 := 𝒮) (MappingSpectrum SphereSpectrum SphereSpectrum) =
+      AdamsSS (𝒮 := 𝒮) SphereSpectrum
 
 /-- The converging mod-2 Adams spectral sequence of the sphere. -/
 noncomputable abbrev sphereAdamsConvergingSS :
@@ -312,8 +286,7 @@ noncomputable abbrev sphereAdamsConvergingSS :
 of the sphere. -/
 theorem sphereAdamsConvergingSS_ss :
     (sphereAdamsConvergingSS (𝒮 := 𝒮)).E =
-      SpectralSequence.transfer
-        (AdamsSS (𝒮 := 𝒮) SphereSpectrum) := by
+      AdamsSS (𝒮 := 𝒮) SphereSpectrum := by
   exact sphereMappingAdamsSS
 
 /-- 把球谱 Adams 页元先传送到整系数模范畴，再沿球谱自映射谱的识别搬到
