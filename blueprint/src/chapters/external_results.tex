@@ -463,8 +463,9 @@ This flat chapter contains only precise published theorem statements that the pr
     \item after reduction modulo $\lambda$, the top cell maps by
       $b\mapsto h_6$ and hence $Q_0(b)\mapsto h_6^2$; no comparison with a
       second Moore extension is included;
-    \item before applying $\operatorname{Sq}(\widehat\theta_5)$, the bottom
-      two-cell source has the attaching-map identity
+    \item after applying $\operatorname{Sq}(\widehat\theta_5^{\mathrm{src}})$,
+      the bottom two cells in the resulting quadratic-construction diagram
+      have the attaching-map identity
       \[
         \delta_1(Q_0(b))=\lambda\eta Q_0(a).
       \]
@@ -485,10 +486,11 @@ This flat chapter contains only precise published theorem statements that the pr
 
 % SOURCE: reference/BurklundXu/paper.txt:3475-3492, Proposition 7.19 in the
 % archived version; aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
-% The present Lean declaration TotalDifferentialIdentity quantifies over every
-% order-two choice and is therefore NOT a matching external-result interface.
+% The universal TotalDifferentialIdentity declaration is project transport and
+% is therefore not the external-result interface below.
 \begin{theorem}[Total differential identity for the source choice]
   \label{thm:external-total-differential-identity}
+  \lean{KIP126.Kervaire.cataloguedSourceTotalDifferentialIdentity}
   \uses{def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
   \notready
   For the distinguished order-two source choice

@@ -24,8 +24,11 @@ This chapter contains only the project deductions that assemble the setup, exter
   arbitrary-choice identity or choice-independence assumption.  The Xu/IWX
   order and choice-comparison facts are
   supplied specifically by \texttt{theta5OrderData}, whose proposition is
-  Theorem~\ref{thm:external-theta5-order-data}; finite torsion exclusions remain
-  in the computation package.  Its named \texttt{ExternalEvidence} field
+  Theorem~\ref{thm:external-theta5-order-data} and which supplies only order
+  and difference-filtration data; finite torsion exclusions remain in the
+  computation package.  The quadratic-construction fields supply the cited
+  cell-calculus input for the internal choice comparison.  Its named
+  \texttt{ExternalEvidence} field
   \texttt{normalizedHopfDetection} supplies the triangle-compatible identity
   $\widehat\nu=[h_2]$ from
   Proposition~\ref{evidence:normalized-hopf-detection}.  Every proposition is
@@ -135,16 +138,33 @@ This chapter contains only the project deductions that assemble the setup, exter
 \begin{proof}
   Instantiate the square-difference formula in the concrete synthetic model,
   then verify the required $\lambda\eta$-annihilation using its typed
-  filtration and product data.  The abstract Lean field
-  \texttt{correction\_vanishes} only makes this implication conditional;
-  constructing that field for the fixed model remains unfinished.
+  filtration and product data.  The resulting witness is passed explicitly
+  to the Lean transport theorem; it is not a field of
+  \texttt{AnyChoiceCriterion}.
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:1009-1021, the m=infinity quotient triangle;
 % its compatibility with the selected total differential is project transport.
+\begin{proposition}[Typed selected-product quotient compatibility]
+  \label{prop:theta5-selected-product-quotient-compatibility}
+  \uses{def:synthetic-catalogue-coherence,def:synthetic-lambda-quotient,def:lambda-rho-delta-triangle}
+  \notready
+  For the selected source product $\lambda\eta\theta_5^2$ in the fixed
+  synthetic sphere, the untruncated product and its quotient images are typed
+  through the same sphere, product, and quotient maps.  In particular, for
+  every finite $r\ge1$, the map $\rho_{r,\infty}$ is equipped with the
+  product-compatibility square needed to identify the image of the selected
+  product with its finite counterpart.
+\end{proposition}
+
+\begin{proof}
+  This is the concrete product/quotient coherence field of the selected
+  synthetic catalogue; it is not inferred from cofiber naturality alone.
+\end{proof}
+
 \begin{proposition}[Transport from the total expression to finite quotients]
   \label{prop:theta5-total-quotient-transport}
-  \uses{def:synthetic-lambda-quotient,def:lambda-rho-delta-triangle,prop:lambda-quotient-restriction-coherence}
+  \uses{def:synthetic-lambda-quotient,def:lambda-rho-delta-triangle,prop:lambda-quotient-restriction-coherence,prop:theta5-selected-product-quotient-compatibility}
   \notready
   For every finite $r\ge1$, the canonical map
   $\rho_{r,\infty}:S^{0,0}\to S^{0,0}/\lambda^r$ carries the selected
@@ -176,12 +196,16 @@ This chapter contains only the project deductions that assemble the setup, exter
 \end{proposition}
 
 \begin{proof}
-  Lift the classical order statement through the torsion-free synthetic group.
-  Expand the difference of the two squares and apply
-  Proposition~\ref{prop:theta5-choice-correction-vanishes} to show that its
-  $\lambda\eta$-image is zero.  The finite-quotient equalities follow from
+  Apply the explicit order-two witness from
+  Proposition~\ref{evidence:theta5-order-torsion}.  The current Lean
+  choice-transport theorem takes correction-vanishing as an explicit premise;
+  proving that premise for the fixed synthetic sphere remains the open
+  obligation of Proposition~\ref{prop:theta5-choice-correction-vanishes}.
+  Once supplied, expand the difference of the two squares to identify their
+  $\lambda\eta$-images.  The finite-quotient equalities follow from
   Proposition~\ref{prop:theta5-total-quotient-transport}.  This argument
-  does not assume the arbitrary-choice total differential identity.
+  does not assume the arbitrary-choice total differential identity; the
+  source-choice identity is used in the next proposition instead.
 \end{proof}
 
 % SOURCE: Burklund--Xu Proposition 7.19 in the archived version;

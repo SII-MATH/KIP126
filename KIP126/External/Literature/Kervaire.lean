@@ -21,7 +21,10 @@ class AnyChoiceCriterion where
   context : Theta5ChoiceContext (Carrier := Carrier)
   criterion : CataloguedExternalResult (BJM_BXCriterion context)
   order : CataloguedExternalResult (Theta5OrderData context)
+  sourceDifferential :
+    CataloguedExternalResult (SourceTotalDifferentialIdentity context)
 
+attribute [reducible] AnyChoiceCriterion.carrierAddCommGroup
 attribute [instance] AnyChoiceCriterion.carrierAddCommGroup
 
 section Theta5
@@ -62,10 +65,11 @@ def cataloguedTheta5OrderData (proof : Theta5OrderData C) :
       SourceId.aimPaper := by
   rfl
 
-/-- The total differential identity attached to the located Burklund--Xu
-construction. -/
-def cataloguedTotalDifferentialIdentity (proof : TotalDifferentialIdentity C) :
-    CataloguedExternalResult (TotalDifferentialIdentity C) :=
+ /-- The source-choice total differential identity attached to the located
+ Burklund--Xu construction. -/
+def cataloguedSourceTotalDifferentialIdentity
+    (proof : SourceTotalDifferentialIdentity C) :
+    CataloguedExternalResult (SourceTotalDifferentialIdentity C) :=
   { root := .totalDifferentialIdentity
     value :=
       { proof := proof
@@ -73,9 +77,9 @@ def cataloguedTotalDifferentialIdentity (proof : TotalDifferentialIdentity C) :
     ref_eq := rfl
     class_supported := by trivial }
 
-@[simp] theorem cataloguedTotalDifferentialIdentity_source
-    (proof : TotalDifferentialIdentity C) :
-    (cataloguedTotalDifferentialIdentity C proof).value.ref.source =
+@[simp] theorem cataloguedSourceTotalDifferentialIdentity_source
+    (proof : SourceTotalDifferentialIdentity C) :
+    (cataloguedSourceTotalDifferentialIdentity C proof).value.ref.source =
       SourceId.burklundXu := by
   rfl
 
