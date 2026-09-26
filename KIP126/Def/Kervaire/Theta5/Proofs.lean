@@ -91,16 +91,6 @@ theorem bjm_bx_criterion_any_choice_iff
         C.untruncatedZero (C.lambdaEta (C.square θ))) :=
   bjm_bx_criterion_any_choice C criterion order correctionVanishes hθ hθOrder
 
-/-- Project-internal correction-vanishing theorem used by choice transport. -/
-theorem theta5_choice_correction_vanishes
-    (correctionVanishes : ∀ {θ ψ},
-      C.highDifference (C.difference θ ψ) →
-        C.lambdaEta (C.correction θ ψ) = 0) :
-    ∀ {θ ψ}, C.highDifference (C.difference θ ψ) →
-      C.lambdaEta (C.correction θ ψ) = 0 := by
-  intro θ ψ hHigh
-  exact correctionVanishes hHigh
-
 end ChoiceTransport
 
 end KIP126.Kervaire

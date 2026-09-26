@@ -24,6 +24,7 @@ class AnyChoiceCriterion where
   sourceDifferential :
     CataloguedExternalResult (SourceTotalDifferentialIdentity context)
 
+attribute [reducible] AnyChoiceCriterion.carrierAddCommGroup
 attribute [instance] AnyChoiceCriterion.carrierAddCommGroup
 
 section Theta5

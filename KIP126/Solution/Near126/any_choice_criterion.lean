@@ -1,4 +1,5 @@
 import KIP126.Def.Kervaire.SphereAdams
+import KIP126.Def.Kervaire.Theta5.Proofs
 import KIP126.External.Literature.Kervaire
 
 /-!
@@ -30,7 +31,6 @@ theorem any_choice_criterion [I : AnyChoiceCriterion]
           (I.context.lambdaEta (I.context.square theta5))) := by
   intro theta5 hChoice hOrder
   exact bjm_bx_criterion_any_choice I.context I.criterion I.order
-    (theta5_choice_correction_vanishes I.context correctionVanishes)
-    hChoice hOrder
+    correctionVanishes hChoice hOrder
 
 end KIP126.Solution.Near126.Thm7_3BJMBX

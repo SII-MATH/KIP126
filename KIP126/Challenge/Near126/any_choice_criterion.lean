@@ -28,9 +28,6 @@ theorem any_choice_criterion [I : AnyChoiceCriterion]
       (I.context.is_permanent (I.context.lambdaEta (I.context.square theta5)) ↔
         I.context.untruncatedZero
           (I.context.lambdaEta (I.context.square theta5))) := by
-  intro theta5 hChoice hOrder
-  exact bjm_bx_criterion_any_choice I.context I.criterion I.order
-    (theta5_choice_correction_vanishes I.context correctionVanishes)
-    hChoice hOrder
+  sorry
 
 end KIP126.Challenge.Near126.Thm7_3BJMBX
