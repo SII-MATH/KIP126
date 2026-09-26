@@ -57,6 +57,21 @@ class HasFunctorialCofiber where
   cofibMap_δ : ∀ {X₁ Y₁ X₂ Y₂ : C} (f₁ : X₁ ⟶ Y₁) (f₂ : X₂ ⟶ Y₂)
     (α : X₁ ⟶ X₂) (β : Y₁ ⟶ Y₂) (h : α ≫ f₂ = f₁ ≫ β),
     cofibMap f₁ f₂ α β h ≫ cofibδ f₂ = cofibδ f₁ ≫ (shiftFunctor C (1 : ℤ)).map α
+  /-- The cofiber map of the identity square is the identity. -/
+  cofibMap_id : ∀ {X Y : C} (f : X ⟶ Y),
+    cofibMap f f (𝟙 X) (𝟙 Y) (by simp) = 𝟙 (cofib f)
+  /-- Cofiber maps respect vertical composition of commutative squares. -/
+  cofibMap_comp : ∀ {X₁ Y₁ X₂ Y₂ X₃ Y₃ : C}
+      (f₁ : X₁ ⟶ Y₁) (f₂ : X₂ ⟶ Y₂) (f₃ : X₃ ⟶ Y₃)
+      (α₁₂ : X₁ ⟶ X₂) (β₁₂ : Y₁ ⟶ Y₂)
+      (α₂₃ : X₂ ⟶ X₃) (β₂₃ : Y₂ ⟶ Y₃)
+      (h₁₂ : α₁₂ ≫ f₂ = f₁ ≫ β₁₂)
+      (h₂₃ : α₂₃ ≫ f₃ = f₂ ≫ β₂₃),
+    cofibMap f₁ f₂ α₁₂ β₁₂ h₁₂ ≫
+        cofibMap f₂ f₃ α₂₃ β₂₃ h₂₃ =
+      cofibMap f₁ f₃ (α₁₂ ≫ α₂₃) (β₁₂ ≫ β₂₃) (by
+        simp only [Category.assoc, h₂₃]
+        rw [← Category.assoc, h₁₂, Category.assoc])
 
 end FunctorialCofiber
 
