@@ -29,8 +29,7 @@ class SphereHopfData [AdamsE2Data.{u, v} 𝒮] where
   nv : (AdamsDetection.A (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))).A 3
   sigma : (AdamsDetection.A (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))).A 7
   two_detected : AdamsDetection.DetectsAbutment (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))
-    2 (1, 1) (SpectralSequence.pageTransfer
-      (AdamsSS 𝒮 SphereSpectrum) 2 (1, 1) (AdamsE2Data.hi 0)) (by
+    2 (1, 1) (sphereAdamsPageTransfer 2 (1, 1) (AdamsE2Data.hi 0)) (by
       rw [show ((AdamsDetection.A (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))).conv.reindex
         (1, 1)).2 = 0 from by
         have h := (adamsMappingConvergingSS_reindex (𝒮 := 𝒮)
@@ -39,8 +38,7 @@ class SphereHopfData [AdamsE2Data.{u, v} 𝒮] where
         simpa using h]
       exact sphereTwo)
   eta_detected : AdamsDetection.DetectsAbutment (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))
-    2 (1, 2) (SpectralSequence.pageTransfer
-      (AdamsSS 𝒮 SphereSpectrum) 2 (1, 2) (AdamsE2Data.hi 1)) (by
+    2 (1, 2) (sphereAdamsPageTransfer 2 (1, 2) (AdamsE2Data.hi 1)) (by
       rw [show ((AdamsDetection.A (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))).conv.reindex
         (1, 2)).2 = 1 from by
         have h := (adamsMappingConvergingSS_reindex (𝒮 := 𝒮)
@@ -49,8 +47,7 @@ class SphereHopfData [AdamsE2Data.{u, v} 𝒮] where
         simpa using h]
       exact eta)
   nv_detected : AdamsDetection.DetectsAbutment (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))
-    2 (1, 4) (SpectralSequence.pageTransfer
-      (AdamsSS 𝒮 SphereSpectrum) 2 (1, 4) (AdamsE2Data.hi 2)) (by
+    2 (1, 4) (sphereAdamsPageTransfer 2 (1, 4) (AdamsE2Data.hi 2)) (by
       rw [show ((AdamsDetection.A (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))).conv.reindex
         (1, 4)).2 = 3 from by
         have h := (adamsMappingConvergingSS_reindex (𝒮 := 𝒮)
@@ -59,8 +56,7 @@ class SphereHopfData [AdamsE2Data.{u, v} 𝒮] where
         simpa using h]
       exact nv)
   sigma_detected : AdamsDetection.DetectsAbutment (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))
-    2 (1, 8) (SpectralSequence.pageTransfer
-      (AdamsSS 𝒮 SphereSpectrum) 2 (1, 8) (AdamsE2Data.hi 3)) (by
+    2 (1, 8) (sphereAdamsPageTransfer 2 (1, 8) (AdamsE2Data.hi 3)) (by
       rw [show ((AdamsDetection.A (S (𝒮 := 𝒮)) (S (𝒮 := 𝒮))).conv.reindex
         (1, 8)).2 = 7 from by
         have h := (adamsMappingConvergingSS_reindex (𝒮 := 𝒮)
