@@ -522,14 +522,31 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: python3 gate/scripts/profile/render.py
 
-      - name: Post or update performance and heartbeat comments
-        if: ${{ always() && steps.pr.outputs.num != 'merge-group' }}
+      - name: Publish reports to the workflow summary
+        if: always()
+        run: |
+          for report in performance.md profile.md; do
+            if [ -r "$report" ]; then
+              cat "$report" >> "$GITHUB_STEP_SUMMARY"
+              printf '\n\n' >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+
+      # Automatic pushes report through the summary and perf status. Only an
+      # explicit /profile or manual dispatch requests a notification-producing comment.
+      - name: Post or update explicitly requested performance and heartbeat comments
+        if: ${{ always() && steps.pr.outputs.num != '' && steps.pr.outputs.num != 'merge-group' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
           NUM: ${{ steps.pr.outputs.num }}
+          REPORT_EVENT: ${{ github.event_name }}
         run: |
           set -euo pipefail
+          case "$REPORT_EVENT" in
+            issue_comment|workflow_dispatch) ;;
+            *) echo 'Automatic run: reports are available in the workflow summary.'; exit 0 ;;
+          esac
           update_comment() {
             local marker="$1" file="$2" existing
             [ -r "$file" ] || return 0

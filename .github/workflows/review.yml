@@ -25,7 +25,8 @@ permissions:
 
 concurrency:
   group: review-${{ github.event.issue.number || inputs.pr || github.event.workflow_run.pull_requests[0].number || github.event.workflow_run.id }}
-  cancel-in-progress: true
+  # A late completion/comment must not cancel an already authorized dispatch.
+  cancel-in-progress: false
 
 jobs:
   resolve:
@@ -61,6 +62,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          skip() {
+            echo "Review skipped: $*"
+            printf 'Review skipped: %s\n' "$*" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          }
           PR=''
           EVENT_HEAD=''
           RETRY_REQUESTED=false
@@ -101,16 +107,16 @@ jobs:
             fi
             PR=$(jq -r '.issue.number // empty' "$GITHUB_EVENT_PATH")
           fi
-          test -n "$PR"
+          [[ -n "$PR" ]] || skip 'no unique open, non-draft PR for this completed run'
           gh api "repos/$REPO/pulls/$PR" > pr.json
-          test "$(jq -r .state pr.json)" = open
-          test "$(jq -r .draft pr.json)" = false
+          [[ "$(jq -r .state pr.json)" == open ]] || skip 'PR is already closed or merged'
+          [[ "$(jq -r .draft pr.json)" == false ]] || skip 'PR is a draft'
           HEAD_SHA=$(jq -r .head.sha pr.json)
           BASE_SHA=$(jq -r .base.sha pr.json)
           HEAD_REF=$(jq -r .head.ref pr.json)
           BODY=$(jq -r '.body // ""' pr.json)
           if [[ -n "$EVENT_HEAD" ]]; then
-            test "$HEAD_SHA" = "$EVENT_HEAD"
+            [[ "$HEAD_SHA" == "$EVENT_HEAD" ]] || skip 'completed run belongs to an outdated PR head'
           fi
           printf 'pr=%s\nhead_sha=%s\n' "$PR" "$HEAD_SHA" >> "$GITHUB_OUTPUT"
 
@@ -140,25 +146,35 @@ jobs:
           fi
           echo "review_kind=$REVIEW_KIND" >> "$GITHUB_OUTPUT"
 
+          gh api "repos/$REPO/commits/$HEAD_SHA/status" > statuses.json
+          for CHECK in scope build bump-guard; do
+            if ! jq -e --arg name "$CHECK" '
+              [.statuses[] | select(.context == $name)] |
+              max_by(.updated_at // .created_at) | .state == "success"
+            ' statuses.json >/dev/null; then
+              skip "required $CHECK status is not successful; see the original check"
+            fi
+          done
+          if [[ "$REVIEW_KIND" == blueprint || "$REVIEW_KIND" == mixed ]]; then
+            if ! jq -e '
+              [.statuses[] | select(.context == "blueprint")] |
+              max_by(.updated_at // .created_at) | .state == "success"
+            ' statuses.json >/dev/null; then
+              skip 'required blueprint status is not successful; see the original check'
+            fi
+          fi
+          AIM_ISSUE=$(jq -r '[.title, (.body // ""), .head.ref] | join("\n")' pr.json | \
+            grep -m1 -Eo '[A-Z][A-Z0-9]*-[1-9][0-9]*' || true)
+          if [[ -z "$AIM_ISSUE" ]]; then
+            if [[ "$EVENT" == workflow_run ]]; then
+              skip 'PR has no AIM issue for the automated semantic-review service'
+            fi
+            echo '::error::Explicit semantic review requires an AIM issue in the PR title, body, or branch.'
+            exit 1
+          fi
           test -n "$RUBRIC_REVISION"
           MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
           test -n "$MERGE_BASE_SHA"
-          gh api "repos/$REPO/commits/$HEAD_SHA/status" > statuses.json
-          for CHECK in scope build bump-guard; do
-            jq -e --arg name "$CHECK" '
-              [.statuses[] | select(.context == $name)] |
-              max_by(.updated_at // .created_at) | .state == "success"
-            ' statuses.json >/dev/null
-          done
-          if [[ "$REVIEW_KIND" == blueprint || "$REVIEW_KIND" == mixed ]]; then
-            jq -e '
-              [.statuses[] | select(.context == "blueprint")] |
-              max_by(.updated_at // .created_at) | .state == "success"
-            ' statuses.json >/dev/null
-          fi
-          AIM_ISSUE=$(jq -r '[.title, (.body // ""), .head.ref] | join("\n")' pr.json | \
-            grep -m1 -Eo '[A-Z][A-Z0-9]*-[1-9][0-9]*')
-          test -n "$AIM_ISSUE"
           jq -n \
             --arg repository "$REPO" \
             --argjson pull_request "$PR" \
@@ -210,9 +226,10 @@ jobs:
           mv request-with-key.json request.json
           printf 'idempotency_key=%s\n' "$IDEMPOTENCY_KEY" >> "$GITHUB_OUTPUT"
           printf 'webhook_idempotency_key=%s\n' "$WEBHOOK_IDEMPOTENCY_KEY" >> "$GITHUB_OUTPUT"
+          echo 'ready=true' >> "$GITHUB_OUTPUT"
 
       - name: Dispatch the Multica Euler reviewer webhook
-        if: steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.pr != ''
+        if: steps.resolve.outputs.ready == 'true'
         shell: bash
         run: |
           set -euo pipefail

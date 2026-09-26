@@ -1,5 +1,7 @@
 import os
+import json
 import pathlib
+import re
 import shutil
 import subprocess
 import tempfile
@@ -9,6 +11,131 @@ import unittest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 WORKFLOWS = ROOT / ".github" / "workflows"
+
+
+def workflow_script(filename, step_name):
+    workflow = (WORKFLOWS / filename).read_text()
+    section = workflow.split(f"- name: {step_name}\n", 1)[1].split("\n      - name:", 1)[0]
+    script = textwrap.dedent(section.split("run: |\n", 1)[1])
+    return re.sub(r"\$\{\{.*?\}\}", "SII-MATH/KIP126", script)
+
+
+class NotificationNoiseTests(unittest.TestCase):
+    """Replay actual workflow shell with fixture APIs; no network or notifications."""
+
+    def run_review(self, *, state="open", draft=False, stale=False, statuses=None,
+                   aim=True, event="workflow_run", linked=True, api_failure=False,
+                   rubric="rubric-v1", comment="/review", permission="write"):
+        script = workflow_script("review.yml", "Resolve authorized trigger and current head")
+        head = "a" * 40
+        pr = {"state": state, "draft": draft, "title": "AIM-258: task" if aim else "ci: fix",
+              "body": "", "head": {"sha": head, "ref": "feature"}, "base": {"sha": "b" * 40}}
+        statuses = statuses if statuses is not None else [
+            {"context": c, "state": "success", "id": i, "updated_at": "2026-09-26T00:00:00Z"}
+            for i, c in enumerate(("scope", "build", "bump-guard"))]
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            (root / "fixture.json").write_text(json.dumps({"pr": pr, "statuses": statuses}))
+            (root / "event.json").write_text(json.dumps({
+                "workflow_run": {"head_sha": "c" * 40 if stale else head,
+                                 "pull_requests": [{"number": 1}] if linked else []},
+                "issue": {"number": 1}, "sender": {"login": "user"},
+                "comment": {"author_association": "NONE"}}))
+            gh = root / "gh"
+            gh.write_text("#!/usr/bin/env python3\n" + textwrap.dedent('''\
+                import json, os, sys
+                from pathlib import Path
+                if os.environ['API_FAILURE'] == '1': sys.exit(22)
+                fixture = json.loads(Path('fixture.json').read_text())
+                path = next(arg for arg in sys.argv if arg.startswith('repos/'))
+                if path.endswith('/permission'): print(os.environ['PERMISSION'])
+                elif path.endswith('/pulls/1'): print(json.dumps(fixture['pr']))
+                elif path.endswith('/pulls'): print('')
+                elif path.endswith('/files'): print('KIP126/Test.lean')
+                elif path.endswith('/status'): print(json.dumps({'statuses': fixture['statuses']}))
+                elif '/compare/' in path: print('d' * 40)
+                else: sys.exit('Unexpected gh request: ' + repr(sys.argv))
+                '''))
+            gh.chmod(0o755)
+            output, summary = root / "output", root / "summary"
+            env = {**os.environ, "PATH": str(root) + os.pathsep + os.environ["PATH"],
+                   "EVENT": event, "REPO": "SII-MATH/KIP126", "DISPATCH_PR": "1",
+                   "DISPATCH_RETRY": "false", "RUBRIC_REVISION": rubric,
+                   "COMMENT_BODY": comment, "PERMISSION": permission,
+                   "GITHUB_EVENT_PATH": str(root / "event.json"),
+                   "GITHUB_OUTPUT": str(output), "GITHUB_STEP_SUMMARY": str(summary),
+                   "API_FAILURE": "1" if api_failure else "0"}
+            result = subprocess.run(["bash", "-c", script], cwd=root, env=env,
+                                    text=True, capture_output=True)
+            return result, output.read_text() if output.exists() else ""
+
+    def test_inapplicable_reviews_skip_without_authorizing_webhook(self):
+        for kwargs in ({"state": "closed"}, {"draft": True}, {"stale": True},
+                       {"linked": False}, {"statuses": []}, {"aim": False}):
+            with self.subTest(kwargs=kwargs):
+                result, output = self.run_review(**kwargs)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertIn("Review skipped:", result.stdout)
+                self.assertNotIn("ready=true", output)
+
+    def test_newer_failed_status_blocks_dispatch_even_after_success(self):
+        statuses = [{"context": c, "state": "success", "updated_at": "2026-09-25"}
+                    for c in ("scope", "build", "bump-guard")]
+        statuses.append({"context": "build", "state": "failure", "updated_at": "2026-09-26"})
+        result, output = self.run_review(statuses=statuses)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("required build status is not successful", result.stdout)
+        self.assertNotIn("ready=true", output)
+
+    def test_ready_review_retains_exact_head_payload_and_dispatch_gate(self):
+        for event in ("workflow_run", "workflow_dispatch", "issue_comment"):
+            with self.subTest(event=event):
+                result, output = self.run_review(event=event)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertIn("ready=true", output)
+                self.assertIn("idempotency_key=tauceti-review-", output)
+        workflow = (WORKFLOWS / "review.yml").read_text()
+        self.assertIn("if: steps.resolve.outputs.ready == 'true'", workflow)
+
+    def test_real_api_and_configuration_errors_still_fail(self):
+        for kwargs in ({"api_failure": True}, {"rubric": ""},
+                       {"aim": False, "event": "workflow_dispatch"}):
+            with self.subTest(kwargs=kwargs):
+                result, output = self.run_review(**kwargs)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertNotIn("ready=true", output)
+
+    def test_unrelated_or_unauthorized_comments_cannot_dispatch(self):
+        for kwargs in ({"comment": "Thank you"}, {"permission": "read"}):
+            result, output = self.run_review(event="issue_comment", **kwargs)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertNotIn("ready=true", output)
+
+    def test_automatic_reports_never_call_comment_api_but_manual_reports_do(self):
+        script = workflow_script("pr-profile.yml",
+                                 "Post or update explicitly requested performance and heartbeat comments")
+        summary_script = workflow_script("pr-profile.yml", "Publish reports to the workflow summary")
+        for event in ("pull_request_target", "merge_group", "issue_comment", "workflow_dispatch"):
+            with self.subTest(event=event), tempfile.TemporaryDirectory() as directory:
+                root = pathlib.Path(directory)
+                gh = root / "gh"
+                gh.write_text('#!/bin/bash\nprintf "%s\\n" "$*" >> calls\n')
+                gh.chmod(0o755)
+                (root / "performance.md").write_text("Performance report\n")
+                (root / "profile.md").write_text("Heartbeat report\n")
+                env = {**os.environ, "PATH": str(root) + os.pathsep + os.environ["PATH"],
+                       "REPORT_EVENT": event, "NUM": "1", "GITHUB_STEP_SUMMARY": str(root / "summary")}
+                result = subprocess.run(["bash", "-c", script], cwd=root, env=env,
+                                        text=True, capture_output=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                calls = (root / "calls").read_text() if (root / "calls").exists() else ""
+                if event in ("issue_comment", "workflow_dispatch"):
+                    self.assertEqual(calls.count("pr comment"), 2)
+                else:
+                    self.assertEqual(calls, "")
+                subprocess.run(["bash", "-c", summary_script], cwd=root, env=env, check=True)
+                self.assertIn("Performance report", (root / "summary").read_text())
+                self.assertIn("Heartbeat report", (root / "summary").read_text())
 
 
 class HeartbeatBudgetGuardTests(unittest.TestCase):
