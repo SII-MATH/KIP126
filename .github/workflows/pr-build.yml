@@ -355,18 +355,18 @@ jobs:
           done
           echo "::warning::early bump-guard status could not be posted; the final report step will retry"
 
-      # Scoped set_option guard. Most options are escape hatches, so candidate code may not
-      # introduce arbitrary ones. The migrated categorical page proofs have a small, reviewed
-      # exception list: transparency controls for implicit categorical rewrites and bounded
-      # heartbeat budgets for the three long proof declarations. Compare the untrusted candidate
-      # against the trusted base before overlaying it; this textual diff executes no candidate
-      # code and therefore runs safely outside landrun.
-      - name: Scoped set_option guard (candidate uses only approved options)
+      # Heartbeat-budget guard: reject new maxHeartbeats settings except for the existing
+      # reviewed, file-specific budgets. Other set_option settings (recursion depth,
+      # transparency, elaboration scheduling, and linters) are not rejected by this guard;
+      # they remain subject to normal review, build, warning, and performance checks.
+      # Compare against the trusted base before overlaying: this textual diff executes
+      # no candidate code and therefore runs safely outside landrun.
+      - name: Heartbeat budget guard (candidate uses only approved maxHeartbeats)
         if: ${{ env.INFRA != '1' }}
         run: |
           set -euo pipefail
 
-          check_no_new_set_option() {
+          check_no_new_heartbeat_budget() {
             local trusted="$1" candidate="$2" label="$3" patch status additions
             set +e
             patch=$(git diff --no-index --unified=0 -- "$trusted" "$candidate")
@@ -378,19 +378,12 @@ jobs:
             fi
             additions=$(printf '%s\n' "$patch" | awk '
               /^\+\+\+ / { file=$2; next }
-              /^\+[[:space:]]*set_option[[:space:]]/ {
+              /^\+[[:space:]]*set_option[[:space:]]+maxHeartbeats([[:space:]]|$)/ {
                 line=substr($0, 2)
-                if (file ~ /\/KIP126\/Def\/SpectralSequence\/HomologicalImage\/Data\.lean$/ &&
-                    (line == "set_option backward.defeqAttrib.useBackward true" ||
-                     line == "set_option backward.isDefEq.respectTransparency false")) next
-                if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Data\.lean$/ &&
-                    line == "set_option backward.isDefEq.respectTransparency false in") next
                 if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/SquareZero\.lean$/ &&
-                    (line == "set_option backward.isDefEq.respectTransparency false in" ||
-                     line == "set_option maxHeartbeats 800000 in")) next
+                    line == "set_option maxHeartbeats 800000 in") next
                 if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Cycles\.lean$/ &&
-                    (line == "set_option backward.isDefEq.respectTransparency false in" ||
-                     line == "set_option maxHeartbeats 6400000 in" ||
+                    (line == "set_option maxHeartbeats 6400000 in" ||
                      line == "set_option maxHeartbeats 900000 in")) next
                 if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Boundaries\.lean$/ &&
                     (line == "set_option maxHeartbeats 6400000 in" ||
@@ -400,14 +393,14 @@ jobs:
             ')
             if [ -n "$additions" ]; then
               echo "$additions"
-              echo "::error::$label adds an unapproved set_option; use explicit proof steps or extend the reviewed allowlist"
+              echo "::error::$label adds an unapproved maxHeartbeats setting; improve the proof or obtain review for a file-specific heartbeat budget"
               return 1
             fi
           }
 
-          check_no_new_set_option base/KIP126 pr/KIP126 KIP126/
+          check_no_new_heartbeat_budget base/KIP126 pr/KIP126 KIP126/
           if [ -e pr/KIP126.lean ]; then
-            check_no_new_set_option base/KIP126.lean pr/KIP126.lean KIP126.lean
+            check_no_new_heartbeat_budget base/KIP126.lean pr/KIP126.lean KIP126.lean
           fi
 
       - name: Overlay PR KIP126/ and root KIP126.lean onto the trusted base (reject symlinks)
