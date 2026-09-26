@@ -50,6 +50,21 @@ clarified.
 
 ## Data, predicates, axioms, and proofs
 
+For spectral sequences, use KIP126's `SSData`/`PreSS` nested-subobject model
+for internal cycle, boundary, representative, and crossing arguments. Put
+bridges to Mathlib's `CategoryTheory.SpectralSequence` under `KIP126/Mathlib/`;
+that layer may import proved `Def` modules, but internal `SSData` reasoning
+must not import it back. Using Mathlib's categorical foundations does not by
+itself make a module an adapter. Preserve Mathlib-facing declarations until
+their replacement internal statements and checked adapters are available;
+do not treat a file move as a proof of semantic equivalence.
+
+`KIP126/Def/SpectralSequence/` is the internal spectral-sequence tree, not a
+container that needs another `SSData/` level for general results. Its
+`Convergence/` component owns convergence of the nested-subobject sequence.
+Endpoint/spectral-object constructions and claims stated directly for
+Mathlib's spectral sequence belong under `KIP126/Mathlib/SpectralSequence/`.
+
 - Organize each mathematical component under `KIP126/Def/` into separate
   `Data.lean`, `Predicates.lean`, `Axiom.lean`, and `Proofs.lean` modules as
   applicable. Do not mix these responsibilities in one implementation file or
@@ -101,9 +116,9 @@ branch, `origin/main`, is the source of truth; a previously fetched local
    fails, do not reset, overwrite, or silently work from a stale base. Preserve
    the existing work and report the condition or request the needed direction.
 
-This procedure applies only to the agent's task checkout. The persistent
-daemon-owned checkout described below remains read-only to agents and must never
-be synchronized or otherwise modified by them.
+This procedure applies to whichever checkout the agent uses for the task,
+including `/inspire/hdd/global_user/czxs25250150/KIP126`. Do not discard
+local work or switch branches over uncommitted changes.
 
 ## Readiness and trust boundary
 
@@ -121,11 +136,14 @@ Challenge proofs remain `sorry` by the rule above. A deliberately introduced
 project `axiom` instead belongs in that component's `Axiom.lean` and must be
 audited by name and by its downstream dependency cone, separately from
 `sorryAx`. Do not mark an unproved or axiom-dependent declaration or its
-Blueprint node as complete. A pull request is not mergeable while the required
-axiom audit still reports `sorryAx`; this layout policy does not waive any
-required check. Before introducing the first canonical `Axiom.lean`, update the
-compiled audit and CI to inventory its named axioms separately, reject project
-axioms declared elsewhere, and retain the final proof-completion gate.
+Blueprint node as complete. During development, a pull request may merge while
+the compiled audit still reports `sorryAx`, provided that debt and its downstream
+dependencies are visible for human review. This does not waive build, Blueprint
+declaration, or other required mechanical checks, and does not satisfy the final
+proof-completion criteria in `PROJECT_BOUNDARY.md`. Before introducing the first
+canonical `Axiom.lean`, update the compiled audit and CI to inventory its named
+axioms separately, reject project axioms declared elsewhere, and retain the
+final proof-completion gate.
 External hypotheses belong under `KIP126/External/` as provenance-carrying
 `ExternalResult` or `ExternalEvidence` inputs, and conclusions that use them
 must remain conditional statements taking those inputs explicitly.
@@ -159,21 +177,22 @@ latest successful `main` artifact cache from the single daemon's persistent chec
 requested command. Do not run `lake update` unless the task is specifically changing
 dependency pins.
 
-The persistent checkout `/inspire/hdd/global_user/czxs25250150/KIP126` and everything
-under its `.lake/` directory are daemon-owned. Agents must not edit files there, run Git
-or Lake write operations there, change permissions, retarget the `current` symlink, or
-set that shared path as a writable cache. In particular, never set
-`LAKE_ARTIFACT_CACHE=true` while using it and never run `lake cache clean` against it.
-Agents may only read it through `scripts/shared-main-cache.sh run`; branch-specific misses
-are built in the Agent's own checkout and do not enter the shared cache. If the wrapper
-reports no matching cache or a daemon failure, stop and report it instead of modifying the
-persistent checkout.
+Agents may work directly in `/inspire/hdd/global_user/czxs25250150/KIP126`,
+including editing source files and running ordinary Git and Lake commands,
+subject to the synchronization and review rules above. The shared cache under
+`.lake/shared-main-cache/` and its daemon state under
+`.lake/shared-main-cache-daemon/` remain infrastructure-owned: do not edit
+them, change their permissions, retarget the `current` symlink, set that cache
+as writable, or run `lake cache clean` against it. In particular, never set
+`LAKE_ARTIFACT_CACHE=true` while using the shared cache. Branch-specific
+builds may write to the checkout's ordinary `.lake/build/` but must not enter
+the shared cache. If the wrapper reports no matching cache or a daemon
+failure, report that condition instead of modifying the shared cache.
 
-The daemon is the sole writer. It polls `origin/main`, fast-forwards the clean persistent
-checkout, skips documentation-only changes using the committed build-input digest, pulls
-Mathlib from the official cache, builds changed KIP126 inputs, and atomically publishes a
-new immutable generation. Its lifecycle commands are reserved for daemon maintenance:
-`bash scripts/shared-main-cache.sh start`, `stop`, and `status`.
+If enabled, the cache daemon polls `origin/main` and fast-forwards this
+checkout only when it is clean and on `main`; it refuses to update a feature
+branch or a dirty checkout. The daemon alone publishes immutable shared-cache
+generations. Do not start or stop it as a side effect of ordinary feature work.
 
 GitHub Actions' `kip126-main-build-v2-*` cache contains trusted `.lake/build` output
 keyed by OS, architecture, and the committed Lean/build-input digest. Documentation-only

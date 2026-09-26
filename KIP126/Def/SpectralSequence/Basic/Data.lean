@@ -29,8 +29,6 @@ open CategoryTheory CategoryTheory.Limits
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 /-- Nested cycle and boundary subobjects at one grading of a spectral sequence. -/
 structure SSData (C : Type u) [Category.{v} C] [Abelian C] where
   /-- Ambient object. -/
@@ -176,9 +174,18 @@ def PreSSMorphism.ssDataMorphism
   preserves_Z := f.preserves_Z
   preserves_B := f.preserves_B
 
+end KIP126.Core.SpectralSequence
+
+namespace KIP126.Core
+
+open CategoryTheory CategoryTheory.Limits
+
+universe u v w
+
 /-- A nested-subobject spectral sequence. -/
 structure SpectralSequence (C : Type u) [Category.{v} C] [Abelian C]
-    (ι : Type w) [AddCommGroup ι] [DecidableEq ι] extends PreSS C ι where
+    (ι : Type w) [AddCommGroup ι] [DecidableEq ι]
+    extends SpectralSequence.PreSS C ι where
   /-- Every page differential squares to zero. -/
   d_comp_d : ∀ (r : ℤ) (k : ι), d r k ≫ d r (k + diffDeg r) = 0
   /-- The kernel of `d_r` is the image of `Z_(r+1)` on page `r`. -/
@@ -200,8 +207,18 @@ structure SpectralSequence (C : Type u) [Category.{v} C] [Abelian C]
           ((ssData (k + diffDeg r)).Z_anti (by exact_mod_cast Nat.le_succ n))) ≫
         (ssData (k + diffDeg r)).pageπ ↑n)
 
+end KIP126.Core
+
+namespace KIP126.Core.SpectralSequence
+
+open CategoryTheory CategoryTheory.Limits
+
+universe u v w
+
+variable {C : Type u} [Category.{v} C] [Abelian C]
+
 /-- Assemble a spectral sequence from its data and explicit compatibility proofs. -/
-noncomputable def SpectralSequence.ofPreSS
+noncomputable def ofPreSS
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (P : PreSS C ι)
     (d_comp_d : ∀ (r : ℤ) (k : ι),
@@ -229,13 +246,13 @@ noncomputable def SpectralSequence.ofPreSS
   B_succ := B_succ
 
 /-- The page object derived from a spectral sequence. -/
-@[reducible] noncomputable def SpectralSequence.Page
+@[reducible] noncomputable def Page
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E : SpectralSequence C ι) (r : ℤ) (k : ι) : C :=
   (E.ssData k).page ↑(r - E.r₀).toNat
 
 /-- A page as a graded object. -/
-noncomputable def SpectralSequence.pageGraded
+noncomputable def pageGraded
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E : SpectralSequence C ι) (r : ℤ) : GradedObject ι C :=
   E.Page r
@@ -296,7 +313,7 @@ noncomputable def Subobject.thirdIso {V : C}
         Subobject.cokernelDesc_ofLE, cokernel.π_desc] }
 
 /-- The short complex centered at grading `k + diffDeg r` on page `r`. -/
-noncomputable def SpectralSequence.pageShortComplex
+noncomputable def pageShortComplex
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E : SpectralSequence C ι) (r : ℤ) (k : ι) : ShortComplex C :=
   ShortComplex.mk (E.d r k) (E.d r (k + E.diffDeg r)) (E.d_comp_d r k)

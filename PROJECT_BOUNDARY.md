@@ -81,6 +81,9 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    dependencies. Its presence is not evidence that the statement is proved.
    An unfinished theorem instead remains in `Proofs.lean` with `by sorry`;
    it must not be converted into an axiom merely to avoid `sorryAx`.
+   A development pull request may merge with `sorryAx` after the audit exposes
+   the debt and its downstream dependencies for human review; merging does not
+   claim that the affected theorem or the project is complete.
    Literature results and computational inputs remain explicit external
    premises as specified below, not project axioms. Individual audit makes
    development debt visible; it does not authorize retaining project axioms at
@@ -93,6 +96,25 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
    The project must use the matching Lean/mathlib versions and must not depend
    on an unpinned `master` branch or a release candidate.
+
+8. **Fixed, parameter-free h₆² statements (development-stage exception).**
+   By explicit user decision, both the computational and standard h₆² targets
+   fix the stable foundation, H𝔽₂, Milnor coordinates, SSData model, and Lin
+   dataset once. The final signatures have no model or external-evidence
+   parameters. The standard sphere sequence and Milnor class still reuse the
+   existing tower construction; they are not supplied by the computation table.
+   Until the fixed foundations and comparisons are constructed, individually
+   named axioms may supply them. This includes the fixed Lin E₂ presentation
+   (Zenodo 14875701, v126.3.cw49, internal degree at most 261), as an explicitly
+   authorized exception to passing computation evidence as a final theorem
+   parameter. Source hashes remain attached to the actual imported data.
+   Adapter axioms live in component `Axiom.lean` files under `KIP126/Mathlib/`;
+   internal/foundation axioms live under `KIP126/Def/`. Both are inventoried by
+   the compiled audit, and both remain final-acceptance debt.
+   This does not postulate h₆² survival: the computational Solution remains
+   open, and the standard Solution reduces to it using the named comparisons.
+   A proof body without `sorry` is not a claim that its dependency cone is
+   free of `sorryAx`, project axioms, or external computation assumptions.
 
 ## In-scope formalization
 

@@ -1,6 +1,6 @@
 import KIP126.Def.SpectralSequence.BoundedExtension.BoundedComplex.Data
 import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Proofs
-import KIP126.Def.SpectralSequence.Convergence.SSData.Category.Data
+import KIP126.Def.SpectralSequence.Convergence.Category.Data
 
 /-!
 # The bounded self complex of a convergent spectral sequence

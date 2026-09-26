@@ -10,12 +10,10 @@ open CategoryTheory
 
 universe u v w
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- A square commutes exactly when its maps commute at every underlying grading. -/
-theorem SpectralSequence.commSq_iff_underlying
+theorem commSq_iff_underlying
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     {W X Y Z : SpectralSequence C ι}
     (f : W ⟶ X) (g : W ⟶ Y) (h : X ⟶ Z) (i : Y ⟶ Z) :

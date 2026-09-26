@@ -25,6 +25,8 @@
 该 head 的检查结果；不要根据旧交接记录切换分支或宣称 CI 已通过。
 
 当前目录映射和未完成分层见 `docs/DEF_CHALLENGE_LAYOUT_STATUS.md`；
+当前 KIPBase 源码中尚未进入规范库的数学内容和信任债务分区见
+`docs/KIPBASE_GAP_INVENTORY.md`；
 有限页构造和剩余数学缺口见 `docs/SPECTRAL_SEQUENCE_STATUS.md`。
 当前源码已直接构造 `pageHomologyIso`、`canonicalPageSpectralSequence`
 和 `PageView.canonical`，不再要求额外的 page-homology witness/factorization 输入。
@@ -106,17 +108,23 @@ KIP126 是新布局和主接口的权威来源。KIPBase 只有在提供独有�
 - `pageHomologyIso`；
 - `canonicalPageSpectralSequence`。
 
-旧 `SSData` / `PreSS` 及其装配函数只作迁移参考，不重新引入平行谱序列模型。
+已迁入的 `SSData` / `PreSS` 是 KIP126 内部循环、边界和代表元叙述的基础；
+`KIP126/Mathlib/` 负责与 Mathlib 谱序列 API 的受检适配，不在内部证明中
+另造平行的页面定义。
 
-以下四个 KIPBase 定理仍然是开放目标，不能作为现成证明迁移：
+以下历史 KIPBase 定理不能作为现成证明迁移：
 
 - `differentialRelation_of_lift`；
 - `lift_of_differentialRelation`；
 - `differentialRelation_crossed_of_two`；
 - `lift_rel_of_not_crossed`。
 
-它们是内部支持定理，位于 `Def/SpectralSequence/FilteredComplex/Relations/Proofs.lean`；
-开发期间可用 `by sorry`，完成前不能作为已证结论或 Blueprint 完成证据。
+两个 lift 对应和一个保留旧名称的 no-crossing 形式，现已针对
+`PageView.canonical` 在
+`KIP126/Mathlib/SpectralSequence/FilteredComplex/Relations/Proofs.lean`
+证明。后者在商页上只需目标唯一性，并不复现历史的代表元级结论。
+旧 competing-target crossing 陈述在商页关系下不成立，须先改为代表元关系；
+这些适配层定理不能充当历史代表元论证或 Blueprint 完成证据。
 
 旧 `weakConvergence` 中标注未完成的收敛同构，也不能作为证明来源。
 
@@ -140,6 +148,7 @@ KIP126/Def/<数学模块>/<概念>/
 
 - 候选数据放 `Data.lean`；
 - 独立性质的 Prop 放 `Predicates.lean`；
+- 开发期确需显式引入的内部公理只放同组件 `Axiom.lean`，注明来源、含义和引入原因，单独审计依赖锥；最终验收须清零；
 - 定理和证明放 `Proofs.lean`，开发中的未完成证明可显式使用 `by sorry`；
 - 一个文件只承担一个主要概念；
 - Data 中不放命名引理；构造需要的性质先在下层 Proofs 证明，再由后续 Data 使用；
@@ -166,7 +175,7 @@ KIP126/Solution/Final
 - Challenge 与 Solution 的相对路径和完整定理签名同步；
 - Challenge 定理始终保留 `by sorry`；证明只写在 Solution，开发中的 Solution 可暂用 `by sorry`；
 - Solution 及其证明依赖不得调用 Challenge 占位声明；
-- 禁止新增项目 axiom；
+- 不得把 Challenge/Solution 的未完成证明改写成项目 axiom；
 - 禁止任意选取对象、弱化命题或把占位证明当作完成证据；
 - Blueprint 中“目标命题可编译”不能标记为证明完成。
 
@@ -213,7 +222,7 @@ KIP126/Solution/Final
   - README 和 Roadmap；
   - 回归检查；
   - `scripts/Axioms.lean`；
-  - 规范库没有项目 axiom；已完成的 Solution/Def 证明及其依赖不含 sorryAx，
+  - 最终验收时规范库没有项目 axiom；已完成的 Solution/Def 证明及其依赖不含 sorryAx，
     Challenge 占位与开发中证明分别记录，不能冒充完成证据；
   - 尚未证明的主目标仍保持开放。
 

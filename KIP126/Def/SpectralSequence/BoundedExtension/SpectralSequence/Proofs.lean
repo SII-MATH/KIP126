@@ -1,5 +1,5 @@
 import KIP126.Def.SpectralSequence.BoundedExtension.SpectralSequence.Data
-import KIP126.Def.SpectralSequence.Convergence.SSData.Proofs
+import KIP126.Def.SpectralSequence.Convergence.Proofs
 
 /-!
 # Page-zero calculations for bounded extensions

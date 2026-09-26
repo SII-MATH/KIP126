@@ -10,12 +10,10 @@ universe u v w
 
 open CategoryTheory
 
-set_option linter.dupNamespace false
-
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- A spectral sequence degenerates at `N` when all differentials from page `N` vanish. -/
-def SpectralSequence.DegeneratesAt
+def DegeneratesAt
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E : SpectralSequence C ι) (N : ℤ) : Prop :=
   ∀ (r : ℤ), N ≤ r → ∀ (k : ι), E.d r k = 0
