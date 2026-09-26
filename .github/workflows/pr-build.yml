@@ -492,6 +492,23 @@ jobs:
               continue
             fi
             if [[ "$state" == success && "$description" == "$attestation" && "$warning_state" == success ]]; then
+              # A green status alone cannot feed docs/checkdecls after cache
+              # eviction. Rebuild once in the producer if its outputs are gone.
+              reusable_outputs=false
+              for key in \
+                "kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-$input" \
+                "kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-$input-$contract"; do
+                if caches=$(gh api --method GET "repos/$GITHUB_REPOSITORY/actions/caches" \
+                    -f key="$key" -f ref=refs/heads/main -f per_page=100) &&
+                    jq -e --arg key "$key" '.actions_caches | any(.key == $key and .ref == "refs/heads/main" and .size_in_bytes > 0)' <<<"$caches" >/dev/null; then
+                  reusable_outputs=true
+                  break
+                fi
+              done
+              if [[ "$reusable_outputs" != true ]]; then
+                echo "::notice::equivalent build outputs are unavailable; rebuilding once in the producer"
+                break
+              fi
               {
                 echo "BUILD_REUSED=1"
                 echo "BUILD_REUSED_FROM=$ancestor"
@@ -813,10 +830,30 @@ jobs:
           fi
 
       # This separate namespace never feeds the trusted-main cache. It only supplies compiled
-      # material to the Blueprint declaration check for a later head with the same attested inputs.
-      # The build-inheritance decision above does not depend on this optional cache.
-      - name: Save successful same-repository PR outputs for Blueprint checks
-        if: ${{ steps.build.outcome == 'success' && steps.pr.outputs.repo == github.repository && env.BUILD_ATTESTATION != '' }}
+      # material to docs/declaration consumers with identical inputs and trusted machinery.
+      # Inheritance also requires available outputs so downstream consumers can reuse them.
+      - name: Verify the published cache matches the candidate inputs
+        id: publish-inputs
+        if: ${{ steps.build.outcome == 'success' && env.BUILD_ATTESTATION != '' }}
+        run: |
+          # The build overlays only approved sources/pins. A candidate changing
+          # other build inputs must not receive a cache labelled as its full tree.
+          matched=true
+          for path in KIP126 KIP126.lean KIPBase KIPBase.lean lakefile.lean lake-manifest.json lean-toolchain; do
+            if [[ ! -e "base/$path" && ! -L "base/$path" && ! -e "pr/$path" && ! -L "pr/$path" ]]; then continue; fi
+            if [[ -L "pr/$path" ]] || [[ -n "$(find "pr/$path" -type l -print -quit 2>/dev/null)" ]]; then
+              matched=false
+              continue
+            fi
+            if ! diff -qr -- "base/$path" "pr/$path"; then matched=false; fi
+          done
+          echo "matched=$matched" >> "$GITHUB_OUTPUT"
+          if [[ "$matched" != true ]]; then
+            echo "::warning::candidate build inputs differ from the trusted overlay; not publishing mislabelled outputs"
+          fi
+
+      - name: Save successful PR outputs for docs and Blueprint checks
+        if: ${{ steps.publish-inputs.outputs.matched == 'true' }}
         continue-on-error: true
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
