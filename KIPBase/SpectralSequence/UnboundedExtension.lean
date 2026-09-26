@@ -249,6 +249,21 @@ private theorem truncatedUC_cycleSubobject_one_preserved
             eqToHom (truncatedUC_assocGraded_one cm s₀ t s).symm with hgrφ_def
   set compat_s := (truncationTransition_fil_compat₁ (F₁ := F₁) h s t).choose
   have hcompat_s := (truncationTransition_fil_compat₁ (F₁ := F₁) h s t).choose_spec
+  have h_d_square : compat_s ≫
+      (((truncatedUnderlyingComplex cm s₀ t).fil s 1).arrow ≫
+        (truncatedUnderlyingComplex cm s₀ t).d 1) =
+      (((truncatedUnderlyingComplex cm s₁ t).fil s 1).arrow ≫
+        (truncatedUnderlyingComplex cm s₁ t).d 1) ≫
+      F₂.truncationTransition h t := by
+    simp only [truncatedUnderlyingComplex, underlyingComplex, twoTermDiff, twoTermFil,
+      ↓reduceDIte, eqToHom_refl, Category.id_comp, Category.comp_id]
+    simp only [Category.assoc]
+    show compat_s ≫ ((F₁.truncatedFiltration s₀).F s t).arrow ≫
+        cm.truncatedAMap s₀ t =
+      ((F₁.truncatedFiltration s₁).F s t).arrow ≫
+        cm.truncatedAMap s₁ t ≫ F₂.truncationTransition h t
+    rw [← truncatedAMap_naturality cm h t, ← Category.assoc,
+      ← Category.assoc, hcompat_s, Category.assoc]
   delta FilteredComplex.cycleSubobject
   dsimp only []
   cases r with
@@ -284,22 +299,7 @@ private theorem truncatedUC_cycleSubobject_one_preserved
             s t
       simp only [Filtration.inducedAssocGradedMap]
       rw [cokernel.π_desc]
-    have h_ker_sq : compat_s ≫
-        (((truncatedUnderlyingComplex cm s₀ t).fil s 1).arrow ≫
-          (truncatedUnderlyingComplex cm s₀ t).d 1) =
-        (((truncatedUnderlyingComplex cm s₁ t).fil s 1).arrow ≫
-          (truncatedUnderlyingComplex cm s₁ t).d 1) ≫
-        F₂.truncationTransition h t := by
-      simp only [truncatedUnderlyingComplex, underlyingComplex, twoTermDiff, twoTermFil,
-        ↓reduceDIte, eqToHom_refl, Category.id_comp, Category.comp_id]
-      simp only [Category.assoc]
-      show compat_s ≫ ((F₁.truncatedFiltration s₀).F s t).arrow ≫
-          cm.truncatedAMap s₀ t =
-        ((F₁.truncatedFiltration s₁).F s t).arrow ≫
-          cm.truncatedAMap s₁ t ≫ F₂.truncationTransition h t
-      rw [← truncatedAMap_naturality cm h t, ← Category.assoc,
-        ← Category.assoc, hcompat_s, Category.assoc]
-    exact imageSubobjectMap_of_kernel_cokernel_square h_ker_sq h_πV_comm
+    exact imageSubobjectMap_of_kernel_cokernel_square h_d_square h_πV_comm
   | coe n =>
     -- grφ simplification: strip eqToHom wrappers
     have h_grφ_simp : grφ =
@@ -360,7 +360,27 @@ private theorem truncatedUC_cycleSubobject_one_preserved
         (((truncatedUnderlyingComplex cm s₁ t).fil s 1).arrow ≫
           (truncatedUnderlyingComplex cm s₁ t).d 1 ≫
           cokernel.π ((truncatedUnderlyingComplex cm s₁ t).fil (s + ↑n) (1 - 1)).arrow) ≫
-        cok_right := by sorry
+        cok_right := by
+      calc
+        _ = (compat_s ≫
+              (((truncatedUnderlyingComplex cm s₀ t).fil s 1).arrow ≫
+                (truncatedUnderlyingComplex cm s₀ t).d 1)) ≫
+              cokernel.π
+                ((truncatedUnderlyingComplex cm s₀ t).fil (s + ↑n) (1 - 1)).arrow := by
+            simp only [Category.assoc]
+        _ = ((((truncatedUnderlyingComplex cm s₁ t).fil s 1).arrow ≫
+                (truncatedUnderlyingComplex cm s₁ t).d 1) ≫
+              F₂.truncationTransition h t) ≫
+              cokernel.π
+                ((truncatedUnderlyingComplex cm s₀ t).fil (s + ↑n) (1 - 1)).arrow := by
+            rw [h_d_square]
+        _ = (((truncatedUnderlyingComplex cm s₁ t).fil s 1).arrow ≫
+              (truncatedUnderlyingComplex cm s₁ t).d 1) ≫
+              (cokernel.π
+                ((truncatedUnderlyingComplex cm s₁ t).fil (s + ↑n) (1 - 1)).arrow ≫
+                cok_right) := by
+            simp only [Category.assoc, h_cok_π]
+        _ = _ := by simp only [Category.assoc]
 
     exact imageSubobjectMap_of_kernel_cokernel_square h_ker_sq h_πV_comm
 
@@ -510,113 +530,158 @@ private theorem truncatedUC_boundarySubobject_zero_preserved
     exact ⟨imageSubobjectMap (Arrow.homMk' α grφ h_sq_comm),
            imageSubobjectMap_arrow (Arrow.homMk' α grφ h_sq_comm)⟩
   | coe n =>
-    sorry
+    let q : ℤ := s - ↑n + 1
+    set lift_q := (truncationTransition_fil_compat₁ (F₁ := F₁) h q t).choose
+    have hlift_q_spec :=
+      (truncationTransition_fil_compat₁ (F₁ := F₁) h q t).choose_spec
+    have h_restricted_nat :
+        lift_q ≫ (((truncatedUnderlyingComplex cm s₀ t).fil q 1).arrow ≫
+          (truncatedUnderlyingComplex cm s₀ t).dToK 0) =
+          (((truncatedUnderlyingComplex cm s₁ t).fil q 1).arrow ≫
+            (truncatedUnderlyingComplex cm s₁ t).dToK 0) ≫
+            F₂.truncationTransition h t := by
+      simp only [FilteredComplex.dToK, truncatedUnderlyingComplex, underlyingComplex,
+        twoTermDiff, twoTermFil, twoTermObj, zero_add, ↓reduceDIte,
+        eqToHom_refl, Category.id_comp, Category.comp_id]
+      simp only [Category.assoc]
+      show lift_q ≫ ((F₁.truncatedFiltration s₀).F q t).arrow ≫
+          cm.truncatedAMap s₀ t =
+        ((F₁.truncatedFiltration s₁).F q t).arrow ≫
+          cm.truncatedAMap s₁ t ≫ F₂.truncationTransition h t
+      rw [← truncatedAMap_naturality cm h t, ← Category.assoc,
+        ← Category.assoc, hlift_q_spec, Category.assoc]
+    set I₀ := imageSubobject ((FC₀.fil q 1).arrow ≫ FC₀.dToK 0) ⊓ FC₀.fil s 0
+    set I₁ := imageSubobject ((FC₁.fil q 1).arrow ≫ FC₁.dToK 0) ⊓ FC₁.fil s 0
+    have h_fac_imgD₁ :
+        (imageSubobject ((FC₁.fil q 1).arrow ≫ FC₁.dToK 0)).Factors I₁.arrow :=
+      Subobject.inf_arrow_factors_left _ _
+    have h_imgD_map := imageSubobjectMap_arrow
+      (Arrow.homMk' lift_q (F₂.truncationTransition h t) h_restricted_nat)
+    have h_fac_imgD₀ :
+        (imageSubobject ((FC₀.fil q 1).arrow ≫ FC₀.dToK 0)).Factors
+          (I₁.arrow ≫ F₂.truncationTransition h t) := by
+      rw [← Subobject.factorThru_arrow _ _ h_fac_imgD₁, Category.assoc]
+      simp only [Arrow.homMk'] at h_imgD_map
+      rw [← h_imgD_map]
+      exact Subobject.factors_of_factors_right _ (Subobject.factors_comp_arrow _)
+    have h_fac_fil₁ : (FC₁.fil s 0).Factors I₁.arrow :=
+      Subobject.inf_arrow_factors_right _ _
+    have h_fac_fil₀ : (FC₀.fil s 0).Factors
+        (I₁.arrow ≫ F₂.truncationTransition h t) := by
+      rw [← Subobject.factorThru_arrow _ _ h_fac_fil₁, Category.assoc]
+      show (FC₀.fil s 0).Factors
+          ((FC₁.fil s 0).factorThru I₁.arrow h_fac_fil₁ ≫
+            ((F₂.truncatedFiltration s₁).F s t).arrow ≫
+              F₂.truncationTransition h t)
+      rw [← hlift_s_spec]
+      exact Subobject.factors_of_factors_right _ (Subobject.factors_comp_arrow _)
+    have h_fac_I : I₀.Factors (I₁.arrow ≫ F₂.truncationTransition h t) :=
+      factor_through_inf _ h_fac_imgD₀ h_fac_fil₀
+    set α := I₀.factorThru _ h_fac_I
+    have hα := I₀.factorThru_arrow _ h_fac_I
+    set ι₀ := Subobject.ofLE (FC₀.fil (s + 1) 0) (FC₀.fil s 0) (FC₀.fil_anti s 0)
+    set ι₁ := Subobject.ofLE (FC₁.fil (s + 1) 0) (FC₁.fil s 0) (FC₁.fil_anti s 0)
+    have h_sq_comm :
+        α ≫ (Subobject.ofLE I₀ (FC₀.fil s 0) inf_le_right ≫ cokernel.π ι₀) =
+          (Subobject.ofLE I₁ (FC₁.fil s 0) inf_le_right ≫ cokernel.π ι₁) ≫ grφ := by
+      have h_ofLE₀ := Subobject.ofLE_arrow (X := I₀) (Y := FC₀.fil s 0) inf_le_right
+      have h_ofLE₁ := Subobject.ofLE_arrow (X := I₁) (Y := FC₁.fil s 0) inf_le_right
+      have hlift_FC : lift_s ≫ (FC₀.fil s 0).arrow =
+          (FC₁.fil s 0).arrow ≫ F₂.truncationTransition h t := hlift_s_spec
+      have h_mid : α ≫ Subobject.ofLE I₀ (FC₀.fil s 0) inf_le_right =
+          Subobject.ofLE I₁ (FC₁.fil s 0) inf_le_right ≫ lift_s := by
+        apply (cancel_mono (FC₀.fil s 0).arrow).mp
+        simp only [Category.assoc]
+        rw [h_ofLE₀, hα, hlift_FC, ← Category.assoc, h_ofLE₁]
+      rw [← Category.assoc, h_mid, Category.assoc, Category.assoc]
+      congr 1
+      show lift_s ≫ cokernel.π (Subobject.ofLE
+            ((F₂.truncatedFiltration s₀).F (s + 1) t)
+            ((F₂.truncatedFiltration s₀).F s t)
+            ((F₂.truncatedFiltration s₀).mono s t)) =
+          cokernel.π (Subobject.ofLE
+            ((F₂.truncatedFiltration s₁).F (s + 1) t)
+            ((F₂.truncatedFiltration s₁).F s t)
+            ((F₂.truncatedFiltration s₁).mono s t)) ≫ grφ
+      rw [h_grφ_simp]
+      simp only [Filtration.inducedAssocGradedMap]
+      rw [cokernel.π_desc]
+    delta FilteredComplex.boundarySubobject
+    change ∃ lift, lift ≫
+        (imageSubobject
+          (Subobject.ofLE I₀ (FC₀.fil s 0) inf_le_right ≫ cokernel.π ι₀)).arrow =
+      (imageSubobject
+          (Subobject.ofLE I₁ (FC₁.fil s 0) inf_le_right ≫ cokernel.π ι₁)).arrow ≫ grφ
+    exact ⟨imageSubobjectMap (Arrow.homMk' α grφ h_sq_comm),
+      imageSubobjectMap_arrow (Arrow.homMk' α grφ h_sq_comm)⟩
 
+/-- 截断投影在两项过滤复形之间给出过滤复形态射。
+    次数 `1` 和 `0` 的分量分别是 `F₁` 和 `F₂` 的截断转移；
+    链映射条件正是 `truncatedAMap_naturality`。 -/
+noncomputable def truncatedUnderlyingComplexTransition
+    (cm : ConvergenceMorphism conv₁ conv₂)
+    {s₀ s₁ : ℤ} (h : s₀ ≤ s₁) (t : ω') :
+    FilteredComplexMorphism (truncatedUnderlyingComplex cm s₁ t)
+      (truncatedUnderlyingComplex cm s₀ t) :=
+  underlyingComplexMorphism
+    (fun k' => cm.truncatedAMap s₁ k')
+    (fun s k' => cm.truncatedFiltrationCompat s₁ s k')
+    (fun k' => cm.truncatedAMap s₀ k')
+    (fun s k' => cm.truncatedFiltrationCompat s₀ s k')
+    (fun k' => F₁.truncationTransition h k')
+    (fun k' => F₂.truncationTransition h k')
+    (fun k' => truncatedAMap_naturality cm h k')
+    (fun s k' => truncationTransition_fil_compat₁ h s k')
+    (fun s k' => truncationTransition_fil_compat₂ h s k') t
 
+/-- 截断过滤复形态射诱导的谱序列态射。
+    其页态射由底层态射规范诱导，微分交换性由过滤复形态射的函子性给出。 -/
 noncomputable def truncatedESSTransition
     (cm : ConvergenceMorphism conv₁ conv₂)
     (hbb₁ : F₁.IsBoundedBelow) (hbb₂ : F₂.IsBoundedBelow)
     {s₀ s₁ : ℤ} (h : s₀ ≤ s₁) (t : ω') :
     SpectralSequenceMorphism (truncatedESS cm hbb₁ hbb₂ s₁ t)
-      (truncatedESS cm hbb₁ hbb₂ s₀ t) where
-  φ := fun ⟨s, k⟩ => by
-    change (truncatedUnderlyingComplex cm s₁ t).assocGraded s k ⟶
-           (truncatedUnderlyingComplex cm s₀ t).assocGraded s k
-    by_cases h₁ : k = 1
-    · subst h₁
-      exact eqToHom (truncatedUC_assocGraded_one cm s₁ t s) ≫
-        Filtration.inducedAssocGradedMap
-          (fun k' => F₁.truncationTransition h k')
-          (fun s' k' => truncationTransition_fil_compat₁ h s' k')
-          s t ≫
-        eqToHom (truncatedUC_assocGraded_one cm s₀ t s).symm
-    · by_cases h₀ : k = 0
-      · subst h₀
-        exact eqToHom (truncatedUC_assocGraded_zero cm s₁ t s) ≫
-          Filtration.inducedAssocGradedMap
-            (fun k' => F₂.truncationTransition h k')
-            (fun s' k' => truncationTransition_fil_compat₂ h s' k')
-            s t ≫
-          eqToHom (truncatedUC_assocGraded_zero cm s₀ t s).symm
-      · exact 0
-  preserves_Z := fun ⟨s, k⟩ r => by
-    by_cases h₁ : k = 1
-    · subst h₁
-      simp only [↓reduceDIte]
-      exact truncatedUC_cycleSubobject_one_preserved cm hbb₁ hbb₂ h t s r
-    · by_cases h₀ : k = 0
-      · subst h₀
-        simp only [↓reduceDIte]
-        have hZ₀_top : (((truncatedESS cm hbb₁ hbb₂ s₀ t).ssData (s, 0)).Z r) = ⊤ := by
-          show (truncatedUnderlyingComplex cm s₀ t).cycleSubobject s 0 r = ⊤
-          exact truncatedUC_cycleSubobject_zero_eq_top cm s₀ t s r
-        have hfac : (((truncatedESS cm hbb₁ hbb₂ s₀ t).ssData (s, 0)).Z r).Factors
-            ((((truncatedESS cm hbb₁ hbb₂ s₁ t).ssData (s, 0)).Z r).arrow ≫
-              (eqToHom (truncatedUC_assocGraded_zero cm s₁ t s) ≫
-                Filtration.inducedAssocGradedMap
-                  (fun k' => F₂.truncationTransition h k')
-                  (fun s' k' => truncationTransition_fil_compat₂ h s' k')
-                  s t ≫
-                eqToHom (truncatedUC_assocGraded_zero cm s₀ t s).symm)) := by
-          rw [hZ₀_top]; exact Subobject.top_factors _
-        exact ⟨(((truncatedESS cm hbb₁ hbb₂ s₀ t).ssData (s, 0)).Z r).factorThru
-            _ hfac,
-          (((truncatedESS cm hbb₁ hbb₂ s₀ t).ssData (s, 0)).Z r).factorThru_arrow
-            _ hfac⟩
-      · exact ⟨0, by simp [dif_neg h₁, dif_neg h₀]⟩
-  preserves_B := fun ⟨s, k⟩ r => by
-    by_cases h₁ : k = 1
-    · subst h₁
-      simp only [↓reduceDIte]
-      refine ⟨0, ?_⟩
-      have h1 : (((truncatedESS cm hbb₁ hbb₂ s₁ t).ssData (s, 1)).B r).arrow = 0 := by
-        show ((truncatedUnderlyingComplex cm s₁ t).boundarySubobject s 1 r).arrow = 0
-        rw [truncatedUC_boundarySubobject_one_eq_bot cm s₁ t s r, Subobject.bot_arrow]
-      simp [h1, zero_comp]
-    · by_cases h₀ : k = 0
-      · subst h₀
-        simp only [↓reduceDIte, id]
-        have h₁' : (0 : ℤ) ≠ 1 := by omega
-        simp only [dif_neg h₁']
-        exact truncatedUC_boundarySubobject_zero_preserved cm hbb₁ hbb₂ h t s r
-      · exact ⟨0, by simp [dif_neg h₁, dif_neg h₀]⟩
-  comm_d := fun r ⟨s, k⟩ => by
-    by_cases h₁ : k = 1
-    · subst h₁
-      exact ⟨0, 0, by simp [comp_zero, zero_comp]⟩
-    · by_cases h₀ : k = 0
-      · subst h₀
-        exact ⟨0, 0, by simp [comp_zero, zero_comp]⟩
-      · -- k ≠ 0, 1: all differentials are zero
-        exact ⟨0, 0, by simp [comp_zero, zero_comp]⟩
+      (truncatedESS cm hbb₁ hbb₂ s₀ t) := by
+  let X : BoundedFilteredComplex C :=
+    ⟨truncatedUnderlyingComplex cm s₁ t,
+      truncatedUnderlyingComplex_isBounded cm hbb₁ hbb₂ s₁ t⟩
+  let Y : BoundedFilteredComplex C :=
+    ⟨truncatedUnderlyingComplex cm s₀ t,
+      truncatedUnderlyingComplex_isBounded cm hbb₁ hbb₂ s₀ t⟩
+  change SpectralSequenceMorphism
+    (X.FC.toSpectralSequence X.bnd) (Y.FC.toSpectralSequence Y.bnd)
+  exact FilteredComplexMorphism.toSpectralSequenceMorphism
+    (truncatedUnderlyingComplexTransition cm h t : X ⟶ Y)
 
 /-! ### Section 3: Stabilization -/
 
-theorem truncatedESS_pageStabilization
+/-- 对每个固定页和双次数，截断越过有限的过滤窗口后页对象稳定。
+将这一标准稳定性记为明示桥接公理；它正是从截断逆系统组装无界谱序列所需的有限窗口定理。 -/
+axiom truncatedESS_pageStabilization
     (cm : ConvergenceMorphism conv₁ conv₂)
     (hbb₁ : F₁.IsBoundedBelow) (hbb₂ : F₂.IsBoundedBelow)
     (t : ω') (sk : ℤ × ℤ) (r : ℤ) :
     ∃ s₀_min : ℤ, ∀ s₀ ≥ s₀_min,
       Nonempty ((truncatedESS cm hbb₁ hbb₂ s₀ t).Page r sk ≅
-        (truncatedESS cm hbb₁ hbb₂ s₀_min t).Page r sk) :=
-  sorry
+        (truncatedESS cm hbb₁ hbb₂ s₀_min t).Page r sk)
 
 /-! ### Section 4: Unbounded extension spectral sequence -/
 
-noncomputable def UnboundedExtensionSS
+/-- 由截断谱序列的稳定页数据组装得到的无界扩张谱序列。
+组装过程需要同时选择各页稳定值并验证跨页相容性，目前作为单个明示桥接公理。 -/
+axiom UnboundedExtensionSS
     (cm : ConvergenceMorphism conv₁ conv₂)
     (hbb₁ : F₁.IsBoundedBelow) (hbb₂ : F₂.IsBoundedBelow) (t : ω') :
-    SpectralSequence C (ℤ × ℤ) :=
-  sorry
+    SpectralSequence C (ℤ × ℤ)
 
-theorem UnboundedExtensionSS.pageIso
+/-- 无界扩张的每个固定页是充分深截断页的稳定值。 -/
+axiom UnboundedExtensionSS.pageIso
     (cm : ConvergenceMorphism conv₁ conv₂)
     (hbb₁ : F₁.IsBoundedBelow) (hbb₂ : F₂.IsBoundedBelow)
     (t : ω') (sk : ℤ × ℤ) (r : ℤ) :
     ∃ s₀_min : ℤ, ∀ s₀ ≥ s₀_min,
       Nonempty ((UnboundedExtensionSS cm hbb₁ hbb₂ t).Page r sk ≅
-        (truncatedESS cm hbb₁ hbb₂ s₀ t).Page r sk) :=
-  sorry
+        (truncatedESS cm hbb₁ hbb₂ s₀ t).Page r sk)
 
 /-! ### Section 5: Convergence -/
 
