@@ -1,3 +1,4 @@
+import os
 import pathlib
 import shutil
 import subprocess
@@ -153,7 +154,7 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("scripts/ci-build-cache-key.sh", workflows["ci.yml"])
         self.assertIn("steps.base-build-cache-key.outputs.digest", workflows["pr-build.yml"])
         self.assertIn("steps.build-cache-key.outputs.digest", workflows["blueprint-pr.yml"])
-        self.assertIn("needs.classify.outputs.build_cache_digest", workflows["pages.yml"])
+        self.assertIn("Wait for exact-input producer outputs", workflows["pages.yml"])
 
     def test_pr_build_inherits_only_an_attested_equivalent_first_parent(self):
         workflow = self.read("pr-build.yml")
@@ -164,6 +165,8 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn('description" == "$attestation', workflow)
         self.assertIn('warning_state" == success', workflow)
         self.assertIn('warnings=$warning_state', workflow)
+        self.assertIn('if [[ "$reusable_outputs" != true ]]', workflow)
+        self.assertIn('equivalent build outputs are unavailable', workflow)
         self.assertIn("BUILD_REUSED=1", workflow)
         self.assertIn("github.event_name != 'merge_group'", workflow)
 
@@ -179,7 +182,7 @@ class WorkflowRoutingTests(unittest.TestCase):
 
         self.assertIn('state=success; desc="${{ env.BUILD_ATTESTATION }}"', workflow)
 
-    def test_blueprint_check_reuses_matching_pr_outputs_with_safe_fallback(self):
+    def test_blueprint_check_waits_for_matching_outputs_without_recompiling(self):
         lean = self.read("pr-build.yml")
         blueprint = self.read("blueprint-pr.yml")
         cache_prefix = "kip126-pr-build-v1-"
@@ -188,10 +191,82 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn(cache_prefix, blueprint)
         self.assertIn("scripts/ci-build-contract.sh", lean)
         self.assertIn("scripts/ci-build-contract.sh", blueprint)
-        self.assertIn('if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]', blueprint)
-        fallback = blueprint.split('if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]', 1)[1].split("fi", 1)[0]
-        self.assertIn("lake build\n", fallback)
-        self.assertNotIn("lake build KIP126", fallback)
+        self.assertIn("gate/scripts/docs/wait_for_lean_cache.py", blueprint)
+        self.assertIn("fail-on-cache-miss: true", blueprint)
+        self.assertIn("lake build --no-build", blueprint)
+        self.assertNotIn("lake build\n", blueprint)
+        self.assertNotIn("falling back to a local build", blueprint)
+
+    def test_docs_depend_on_and_reuse_links_outputs(self):
+        pages = self.read("pages.yml")
+        docs = pages.split("\n  docs:", 1)[1].split("\n  links:", 1)[0]
+        self.assertIn("needs: [classify, links]", docs)
+        self.assertIn("name: docs-lean-outputs", docs)
+        self.assertIn("path: .lake/build", docs)
+        self.assertIn("lake build --no-build", docs)
+        self.assertIn("(cd docbuild && lake build --no-build KIP126 KIPBase)", docs)
+        self.assertNotIn("Restore trusted main Lean outputs", docs)
+        links = pages.split("\n  links:", 1)[1].split("\n  deploy:", 1)[0]
+        self.assertIn("wait_for_lean_cache.py", links)
+        self.assertIn("name: docs-lean-outputs", links)
+        self.assertNotIn("restore-keys:", links)
+        self.assertIn("lake build --no-build", links)
+        self.assertIn('if [[ "$BUILD_MODE" == cold ]]', links)
+
+    def test_main_publishes_only_after_compilation_before_unchanged_gates(self):
+        ci = self.read("ci.yml")
+        compile_at = ci.index("- name: Compile all root libraries once")
+        save_at = ci.index("- name: Save trusted build outputs for pull requests")
+        gates_at = ci.index("- name: Run fixed core and project gates")
+        self.assertLess(compile_at, save_at)
+        self.assertLess(save_at, gates_at)
+        self.assertIn("run: bash scripts/euler-ci.sh", ci)
+        self.assertNotIn("continue-on-error: true", ci[compile_at:gates_at])
+
+    def test_pr_cache_requires_actual_overlay_to_match_candidate(self):
+        lean = self.read("pr-build.yml")
+        self.assertIn("Verify the published cache matches the candidate inputs", lean)
+        self.assertIn("steps.publish-inputs.outputs.matched == 'true'", lean)
+        self.assertIn("steps.build.outcome == 'success'", lean)
+        self.assertIn('diff -qr -- "base/$path" "pr/$path"', lean)
+
+    def test_overlay_cache_publication_guard_rejects_mismatches_and_symlinks(self):
+        workflow = self.read("pr-build.yml")
+        section = workflow.split(
+            "- name: Verify the published cache matches the candidate inputs", 1
+        )[1].split("\n      - name:", 1)[0]
+        script = textwrap.dedent(section.split("        run: |\n", 1)[1])
+        for case in ["equal", "source", "pins", "lakefile", "legacy", "symlink", "broken"]:
+            with self.subTest(case=case), tempfile.TemporaryDirectory() as directory:
+                root = pathlib.Path(directory)
+                for tree in ["base", "pr"]:
+                    for name in ["KIP126/A.lean", "KIPBase/A.lean", "KIP126.lean",
+                                 "KIPBase.lean", "lakefile.lean", "lake-manifest.json",
+                                 "lean-toolchain"]:
+                        path = root / tree / name
+                        path.parent.mkdir(parents=True, exist_ok=True)
+                        path.write_text("same")
+                changed = {"source": "KIP126/A.lean", "pins": "lean-toolchain",
+                           "lakefile": "lakefile.lean", "legacy": "KIPBase/A.lean"}
+                if case in changed:
+                    (root / "pr" / changed[case]).write_text("changed")
+                if case == "symlink":
+                    path = root / "pr" / "KIPBase/A.lean"
+                    path.unlink()
+                    path.symlink_to(root / "base" / "KIPBase/A.lean")
+                if case == "broken":
+                    (root / "base" / "KIPBase.lean").unlink()
+                    (root / "pr" / "KIPBase.lean").unlink()
+                    (root / "pr" / "KIPBase.lean").symlink_to(root / "missing")
+                output = root / "output"
+                result = subprocess.run(
+                    ["bash", "-euo", "pipefail", "-c", script], cwd=root,
+                    env={**os.environ, "GITHUB_OUTPUT": str(output)},
+                    capture_output=True, text=True, check=True,
+                )
+                self.assertEqual(output.read_text().strip(),
+                                 "matched=true" if case == "equal" else "matched=false",
+                                 result.stdout)
 
     def test_blueprint_contract_is_computed_before_candidate_checkout(self):
         blueprint = self.read("blueprint-pr.yml")

@@ -134,8 +134,8 @@ checks are maintained separately under `blueprint/` and `.agents/skills/`.
 The published Blueprint and API documentation are assembled by
 `.github/workflows/pages.yml` and served at
 <https://sii-math.github.io/KIP126/>. The workflow prunes work by changed path,
-restores only caches written by successful `main` builds, and falls back to a
-full component rebuild when a reusable artifact is unavailable. `checkdecls`
+waits for exact-input Lean outputs from the primary build, instead of compiling
+the project again in each documentation job. `checkdecls`
 is pinned in `lakefile.lean`; the nested `docbuild/` project pins doc-gen4 to
 the Lean 4.32.2-compatible commit `1d0643dd819f8ca71b1dd82cba6e3e3050f0a255`.
 
@@ -148,15 +148,36 @@ The Pages workflow uses the following change matrix:
 | Lake/toolchain, `docbuild/**`, docs workflow/helpers | rebuild | run | rebuild |
 | other paths | workflow skipped | workflow skipped | workflow skipped |
 
-Successful `main` runs are the only writers of the GitHub caches. PRs restore
-the trusted Lean baseline and the single doc-gen dependency baseline, but do
-not upload `.lake` state. Mathlib files always come from `lake exe cache get`.
+Only ordinary successful compilation on trusted `main` publishes the
+`kip126-main-build-v2-*` baseline. Its subsequent warning/axiom/project gates
+still run unchanged and may fail: cached compilation is not a proof-completion
+or audit certificate. The sandboxed PR build may publish a separate
+`kip126-pr-build-v1-*` cache after its checks succeed and the actual overlay
+matches the candidate inputs. This namespace includes the trusted build
+contract and never feeds the main baseline, including for fork candidates.
+
+Normal declaration checks wait for one of these exact-input caches, validate
+it with `lake build --no-build`, and run checkdecls. They fail explicitly if the
+producer fails, the cache is missing/expired, or the restored outputs are stale;
+they do not silently start a duplicate compilation. API docs then download
+the same run's `docs-lean-outputs` artifact from the declaration-check job.
+Keys cover the committed Lean sources, both root libraries, Lake configuration,
+dependency pins, toolchain, runner OS and architecture. Prefix-matched older
+outputs are only an incremental baseline for main and sandboxed PR/queue builds, never
+a substitute for exact-input outputs in declaration consumers.
+Mathlib files always come from `lake exe cache get`.
+
+For measured CI/merge-queue timings, candidate automation preflight, cache
+behavior, and failure recovery, see [CI operations](docs/CI_OPERATIONS.md).
+
 The large doc-gen cache has one immutable key per toolchain/manifest graph,
 rather than one key per commit. Blueprint and API docs are separate workflow
 artifacts; the deploy job assembles them as `_site/blueprint/` and
 `_site/docs/`, then uses the Actions Pages artifact flow without a `gh-pages`
-branch. A missing component artifact causes a safe rebuild. Weekly and manual
-runs skip GitHub caches and record cold plus immediate warm command timings;
+branch. A missing rendered component artifact causes a component rebuild,
+but still requires matching Lean outputs. Weekly and manual runs skip GitHub
+caches, compile Lean once in the declaration-check job, share those outputs
+with API docs, and record cold plus immediate warm command timings;
 normal runs report both elapsed times and cache-hit outcomes in the job summary.
 doc-gen equation pages are disabled because the site is used for declaration
 types, source links, and search; deriving equations for the full dependency
