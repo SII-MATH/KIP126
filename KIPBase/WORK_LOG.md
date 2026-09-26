@@ -33,4 +33,3 @@ fully reverted.  No change to that file remains.
   project.
 - Before reporting completion, check the touched files for `sorry`, `admit`,
   new axioms, heartbeat overrides, and whitespace errors.
-

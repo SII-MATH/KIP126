@@ -397,6 +397,9 @@ This flat chapter contains only precise published theorem statements that the pr
 % only by this external-result source note and does not enter the project graph.
 \begin{theorem}[BJM/BX criterion for the source choice]
   \label{thm:external-bjm-bx-criterion}
+  % VERIFIED-IN: KIP126/External/Literature/Kervaire.lean,
+  % KIP126.Kervaire.cataloguedBJM_BXCriterion (interface; remains notready).
+  \lean{KIP126.Kervaire.cataloguedBJM_BXCriterion}
   \uses{def:synthetic-theta5-choice,def:external-result}
   \notready
   An explicit external-result record supplies a distinguished order-two class
@@ -423,6 +426,9 @@ This flat chapter contains only precise published theorem statements that the pr
 % SOURCE: aimpaper/main.tex:2127-2139, Remarks 7.4-7.5; Xu and IWX inputs.
 \begin{theorem}[External $\theta_5$ order and choice comparison]
   \label{thm:external-theta5-order-data}
+  % VERIFIED-IN: KIP126/External/Literature/Kervaire.lean,
+  % KIP126.Kervaire.cataloguedTheta5OrderData (interface; remains notready).
+  \lean{KIP126.Kervaire.cataloguedTheta5OrderData}
   \uses{def:synthetic-theta5-choice,def:external-result}
   \notready
   A named Xu/IWX external-result value supplies that every classical
@@ -438,25 +444,73 @@ This flat chapter contains only precise published theorem statements that the pr
   from the near-$126$ tables.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:2133-2139, Remark rem:theta5choice, applying the construction in the proof of Burklund--Xu Proposition 7.19 to an order-two bottom-cell choice.
-\begin{theorem}[Total differential identity for an order-two choice]
-  \label{thm:external-total-differential-identity}
-  \uses{def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
+% SOURCE: Burklund--Xu Theorem 7.15, proof (the paragraph containing property
+% (*), the quadratic-construction diagram, and Q_0(a), Q_0(b)); Proposition
+% 7.19, proof (the attaching-map formula before naturality);
+% aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
+\begin{theorem}[B--X quadratic-construction cell calculus]
+  \label{thm:external-bx-quadratic-cell-calculus}
+  \uses{def:stable-context,def:synthetic-context,def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
   \notready
-  For every order-two synthetic choice $\theta_5$, the located quadratic-
-  construction input supplies the identity
-  \[
-    \delta_1(h_6^2)=\lambda\eta\theta_5^2
-  \]
-  in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem, with
-  its representative and grading conventions.
+  A located external-result record supplies the calculation for the
+  distinguished source map used in the published proof, translated to the AIM
+  grading convention.  Let $\theta_5^{\mathrm{src}}$ be the source class and
+  $\widehat\theta_5^{\mathrm{src}}$ its chosen Moore extension.  Write $a$ and
+  $b$ for the bottom and top cells.  In the quadratic construction:
+  \begin{enumerate}
+    \item the bottom quadratic cell maps by
+      $Q_0(a)\mapsto(\theta_5^{\mathrm{src}})^2$;
+    \item after reduction modulo $\lambda$, the top cell maps by
+      $b\mapsto h_6$ and hence $Q_0(b)\mapsto h_6^2$; no comparison with a
+      second Moore extension is included;
+    \item after applying $\operatorname{Sq}(\widehat\theta_5^{\mathrm{src}})$,
+      the bottom two cells in the resulting quadratic-construction diagram
+      have the attaching-map identity
+      \[
+        \delta_1(Q_0(b))=\lambda\eta Q_0(a).
+      \]
+  \end{enumerate}
+  The record contains only the source quadratic-construction map and its
+  attaching calculation.  It does not contain a comparison map for a second
+  choice or the pushed-forward identity for arbitrary $\theta_5$; both are
+  Section~7 project obligations.
 \end{theorem}
 
 \begin{proof}
-  This is the external total-differential comparison asserted in the cited AIM
-  remark: use the chosen order-two class as the bottom-cell restriction in the
-  quadratic construction, then translate the target suspension to $S^{1,-1}$.
-  The project does not reconstruct that construction internally.
+  The first two fields are the source-map statements in the proof of
+  Burklund--Xu Theorem~7.15.  The third is the source-cell attaching-map
+  calculation displayed in the proof of Proposition~7.19, before naturality is
+  applied.  Store these source maps and their exact locators; do not attribute
+  a comparison of independently chosen Moore extensions to B--X.
+\end{proof}
+
+% SOURCE: reference/BurklundXu/paper.txt:3475-3492, Proposition 7.19 in the
+% archived version; aimpaper/main.tex:2133-2139, Remark rem:theta5choice.
+% The universal TotalDifferentialIdentity declaration is project transport and
+% is therefore not the external-result interface below.
+\begin{theorem}[Total differential identity for the source choice]
+  \label{thm:external-total-differential-identity}
+  \lean{KIP126.Kervaire.cataloguedSourceTotalDifferentialIdentity}
+  \uses{def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
+  \notready
+  For the distinguished order-two source choice
+  $\theta_5^{\mathrm{src}}$ used in the located Burklund--Xu quadratic
+  construction, the input supplies the identity
+  \[
+    \delta_1(h_6^2)=\lambda\eta(\theta_5^{\mathrm{src}})^2
+  \]
+  in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem, with
+  its source representative and grading conventions.  It does not quantify
+  over other choices of $\theta_5$.
+\end{theorem}
+
+\begin{proof}
+  Record the source bottom-cell class, the attaching-map calculation, and the
+  resulting naturality comparison from Burklund--Xu Proposition 7.19, with the
+  grading translation used by AIM.  The external input supplies no comparison
+  between independently chosen Moore extensions.  Extending the identity to
+  every order-two choice is a project obligation in
+  Proposition~\ref{prop:theta5-total-differential-any-choice}.
 \end{proof}
 
 % SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; aimpaper/main.tex:117-123, Theorem thm:browder.

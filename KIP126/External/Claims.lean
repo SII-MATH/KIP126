@@ -853,7 +853,7 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
         (some "aimpaper/main.tex") [.xuTheta5Order, .iwxTheta5Filtration]
   | .totalDifferentialIdentity =>
       claim .totalDifferentialIdentity .literatureResult
-        `KIP126.Kervaire.TotalDifferentialIdentity
+        `KIP126.Kervaire.SourceTotalDifferentialIdentity
         "thm:external-total-differential-identity" .burklundXu
         "Burklund--Xu Proposition 7.19 construction, total differential identity for an order-two choice"
         (some "reference/BurklundXu/paper.pdf")

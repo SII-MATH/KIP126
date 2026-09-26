@@ -1,12 +1,102 @@
+import os
 import pathlib
 import shutil
 import subprocess
 import tempfile
+import textwrap
 import unittest
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 WORKFLOWS = ROOT / ".github" / "workflows"
+
+
+class HeartbeatBudgetGuardTests(unittest.TestCase):
+    """Execute the actual trusted workflow guard against temporary source trees."""
+
+    def run_guard(self, candidate, *, trusted="", path="KIP126/Test.lean"):
+        workflow = (WORKFLOWS / "pr-build.yml").read_text()
+        section = workflow.split(
+            "- name: Heartbeat budget guard (candidate uses only approved maxHeartbeats)", 1
+        )[1].split("\n      - name:", 1)[0]
+        script = textwrap.dedent(section.split("run: |\n", 1)[1])
+        with tempfile.TemporaryDirectory() as directory:
+            repo = pathlib.Path(directory)
+            for tree, content in (("base", trusted), ("pr", candidate)):
+                (repo / tree / "KIP126").mkdir(parents=True)
+                source = repo / tree / path
+                source.parent.mkdir(parents=True, exist_ok=True)
+                source.write_text(content)
+            return subprocess.run(
+                ["bash", "-c", script], cwd=repo, text=True, capture_output=True
+            )
+
+    def test_non_heartbeat_options_are_not_blocked(self):
+        result = self.run_guard(
+            "set_option maxRecDepth 100000\n"
+            "set_option backward.isDefEq.respectTransparency false\n"
+            "set_option backward.defeqAttrib.useBackward true\n"
+            "set_option Elab.async false\n"
+            "set_option linter.unusedSimpArgs false in\n"
+            "example : True := by trivial\n"
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_unapproved_global_local_and_unlimited_budgets_are_blocked(self):
+        for setting in (
+            "set_option maxHeartbeats 64000000",
+            "set_option maxHeartbeats 1000000 in",
+            "set_option maxHeartbeats 0",
+            "  set_option maxHeartbeats 1000000 in",
+        ):
+            with self.subTest(setting=setting):
+                result = self.run_guard(setting + "\n")
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("unapproved maxHeartbeats", result.stdout)
+
+    def test_reviewed_file_specific_budgets_remain_allowed(self):
+        for module, budgets in (
+            ("SquareZero", (800000,)),
+            ("Cycles", (6400000, 900000)),
+            ("Boundaries", (6400000, 400000)),
+        ):
+            for budget in budgets:
+                with self.subTest(module=module, budget=budget):
+                    result = self.run_guard(
+                        f"set_option maxHeartbeats {budget} in\n",
+                        path=f"KIP126/Def/SpectralSequence/FilteredDifferential/{module}.lean",
+                    )
+                    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_reviewed_value_is_not_allowed_in_other_files(self):
+        result = self.run_guard("set_option maxHeartbeats 800000 in\n")
+        self.assertNotEqual(result.returncode, 0)
+
+    def test_reviewed_file_does_not_allow_other_budgets(self):
+        result = self.run_guard(
+            "set_option maxHeartbeats 800001 in\n",
+            path="KIP126/Def/SpectralSequence/FilteredDifferential/SquareZero.lean",
+        )
+        self.assertNotEqual(result.returncode, 0)
+
+    def test_unchanged_or_removed_settings_are_not_new_budgets(self):
+        trusted = "set_option maxHeartbeats 1000000 in\n"
+        for candidate in (trusted, ""):
+            with self.subTest(candidate=candidate):
+                result = self.run_guard(candidate, trusted=trusted)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_changed_budget_is_blocked(self):
+        result = self.run_guard(
+            "set_option maxHeartbeats 2000000 in\n",
+            trusted="set_option maxHeartbeats 1000000 in\n",
+        )
+        self.assertNotEqual(result.returncode, 0)
+
+    def test_root_lean_file_is_also_checked(self):
+        result = self.run_guard("set_option maxHeartbeats 0\n", path="KIP126.lean")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("KIP126.lean adds an unapproved maxHeartbeats", result.stdout)
 
 
 class WorkflowRoutingTests(unittest.TestCase):
@@ -24,14 +114,26 @@ class WorkflowRoutingTests(unittest.TestCase):
             self.assertIn("paths-ignore:", workflow)
             self.assertIn('      - "blueprint/src/**"', workflow)
 
-    def test_blueprint_pr_has_separate_gate_and_authorized_mixed_sync(self):
+    def test_pr_build_has_no_per_lean_file_length_cap(self):
+        workflow = self.read("pr-build.yml")
+        self.assertNotIn("New-file length guard", workflow)
+        self.assertNotIn("NEWFILE_TOO_LONG", workflow)
+
+    def test_pr_build_reports_classified_project_axiom_debt(self):
+        workflow = self.read("pr-build.yml")
+        self.assertIn("KIP126_PROJECT_AXIOM_AUDIT=1", workflow)
+        self.assertIn("BUILD_PROJECT_AXIOM_AUDIT=1", workflow)
+        self.assertIn("project axioms present — human review + merge required", workflow)
+
+    def test_blueprint_pr_has_independent_mechanics_and_review_sync(self):
         blueprint = self.read("blueprint-pr.yml")
         lean = self.read("pr-build.yml")
         review = self.read("review.yml")
-        self.assertIn("validate-sync", blueprint)
+        self.assertIn("stage-blueprint.py", blueprint)
+        self.assertNotIn("validate-sync", blueprint)
         self.assertIn("validate-sync", lean)
         self.assertIn("MIXED_SYNC=1", lean)
-        self.assertIn('if [[ "$MIXED" != true ]]', blueprint)
+        self.assertIn('if [[ "$MIXED" == false ]]', blueprint)
         for context in ("scope", "bump-guard", "blueprint", "build"):
             self.assertIn(f"post_status {context} ", blueprint)
         self.assertIn("workflows: [pr-build, blueprint-pr]", review)
@@ -53,7 +155,7 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("scripts/ci-build-cache-key.sh", workflows["ci.yml"])
         self.assertIn("steps.base-build-cache-key.outputs.digest", workflows["pr-build.yml"])
         self.assertIn("steps.build-cache-key.outputs.digest", workflows["blueprint-pr.yml"])
-        self.assertIn("needs.classify.outputs.build_cache_digest", workflows["pages.yml"])
+        self.assertIn("Wait for exact-input producer outputs", workflows["pages.yml"])
 
     def test_pr_build_inherits_only_an_attested_equivalent_first_parent(self):
         workflow = self.read("pr-build.yml")
@@ -64,6 +166,8 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn('description" == "$attestation', workflow)
         self.assertIn('warning_state" == success', workflow)
         self.assertIn('warnings=$warning_state', workflow)
+        self.assertIn('if [[ "$reusable_outputs" != true ]]', workflow)
+        self.assertIn('equivalent build outputs are unavailable', workflow)
         self.assertIn("BUILD_REUSED=1", workflow)
         self.assertIn("github.event_name != 'merge_group'", workflow)
 
@@ -72,14 +176,14 @@ class WorkflowRoutingTests(unittest.TestCase):
             "Install landrun (pinned + checksum) and self-test (fail closed)",
             "Fetch Mathlib with the (bump-validated) config (network, no token; no PR code)",
             "Prepare trusted read-only Lean watchdog toolchain",
-            "Build (trusted config + overlaid KIP126/) under landrun, offline",
+            "Compile candidate under landrun, offline",
         ):
             section = workflow.split(f"- name: {name}", 1)[1].split("\n      - name:", 1)[0]
             self.assertIn("env.BUILD_REUSED != '1'", section)
 
         self.assertIn('state=success; desc="${{ env.BUILD_ATTESTATION }}"', workflow)
 
-    def test_blueprint_check_reuses_matching_pr_outputs_with_safe_fallback(self):
+    def test_blueprint_check_waits_for_matching_outputs_without_recompiling(self):
         lean = self.read("pr-build.yml")
         blueprint = self.read("blueprint-pr.yml")
         cache_prefix = "kip126-pr-build-v1-"
@@ -88,7 +192,85 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn(cache_prefix, blueprint)
         self.assertIn("scripts/ci-build-contract.sh", lean)
         self.assertIn("scripts/ci-build-contract.sh", blueprint)
-        self.assertIn('if [[ "$LEAN_OUTPUTS_RESTORED" != true ]]', blueprint)
+        self.assertIn("gate/scripts/docs/wait_for_lean_cache.py", blueprint)
+        self.assertIn("fail-on-cache-miss: true", blueprint)
+        self.assertIn("blueprint-sandbox.sh declarations", blueprint)
+        self.assertIn("lake build --no-build", (ROOT / "scripts/blueprint-sandbox.sh").read_text())
+        self.assertNotIn("lake build\n", blueprint)
+        self.assertNotIn("falling back to a local build", blueprint)
+
+    def test_docs_depend_on_and_reuse_links_outputs(self):
+        pages = self.read("pages.yml")
+        docs = pages.split("\n  docs:", 1)[1].split("\n  links:", 1)[0]
+        self.assertIn("needs: [classify, links]", docs)
+        self.assertIn("name: docs-lean-outputs", docs)
+        self.assertIn("path: .lake/build", docs)
+        self.assertIn("lake build --no-build", docs)
+        self.assertIn("(cd docbuild && lake build --no-build KIP126 KIPBase)", docs)
+        self.assertNotIn("Restore trusted main Lean outputs", docs)
+        links = pages.split("\n  links:", 1)[1].split("\n  deploy:", 1)[0]
+        self.assertIn("wait_for_lean_cache.py", links)
+        self.assertIn("name: docs-lean-outputs", links)
+        self.assertNotIn("restore-keys:", links)
+        self.assertIn("lake build --no-build", links)
+        self.assertIn('if [[ "$BUILD_MODE" == cold ]]', links)
+
+    def test_main_publishes_only_after_compilation_before_unchanged_gates(self):
+        ci = self.read("ci.yml")
+        compile_at = ci.index("- name: Compile all root libraries once")
+        save_at = ci.index("- name: Save trusted build outputs for pull requests")
+        gates_at = ci.index("- name: Run fixed core and project gates")
+        self.assertLess(compile_at, save_at)
+        self.assertLess(save_at, gates_at)
+        self.assertIn("run: bash scripts/euler-ci.sh", ci)
+        self.assertNotIn("continue-on-error: true", ci[compile_at:gates_at])
+
+    def test_pr_cache_requires_actual_overlay_to_match_candidate(self):
+        lean = self.read("pr-build.yml")
+        self.assertIn("Verify the published cache matches the candidate inputs", lean)
+        self.assertIn("steps.publish-inputs.outputs.matched == 'true'", lean)
+        self.assertIn("steps.compile.outcome == 'success'", lean)
+        self.assertLess(lean.index("- name: Compile candidate"), lean.index("- name: Save successful PR outputs"))
+        self.assertLess(lean.index("- name: Save successful PR outputs"), lean.index("- name: Audit compiled candidate"))
+        self.assertIn('diff -qr -- "base/$path" "pr/$path"', lean)
+
+    def test_overlay_cache_publication_guard_rejects_mismatches_and_symlinks(self):
+        workflow = self.read("pr-build.yml")
+        section = workflow.split(
+            "- name: Verify the published cache matches the candidate inputs", 1
+        )[1].split("\n      - name:", 1)[0]
+        script = textwrap.dedent(section.split("        run: |\n", 1)[1])
+        for case in ["equal", "source", "pins", "lakefile", "legacy", "symlink", "broken"]:
+            with self.subTest(case=case), tempfile.TemporaryDirectory() as directory:
+                root = pathlib.Path(directory)
+                for tree in ["base", "pr"]:
+                    for name in ["KIP126/A.lean", "KIPBase/A.lean", "KIP126.lean",
+                                 "KIPBase.lean", "lakefile.lean", "lake-manifest.json",
+                                 "lean-toolchain"]:
+                        path = root / tree / name
+                        path.parent.mkdir(parents=True, exist_ok=True)
+                        path.write_text("same")
+                changed = {"source": "KIP126/A.lean", "pins": "lean-toolchain",
+                           "lakefile": "lakefile.lean", "legacy": "KIPBase/A.lean"}
+                if case in changed:
+                    (root / "pr" / changed[case]).write_text("changed")
+                if case == "symlink":
+                    path = root / "pr" / "KIPBase/A.lean"
+                    path.unlink()
+                    path.symlink_to(root / "base" / "KIPBase/A.lean")
+                if case == "broken":
+                    (root / "base" / "KIPBase.lean").unlink()
+                    (root / "pr" / "KIPBase.lean").unlink()
+                    (root / "pr" / "KIPBase.lean").symlink_to(root / "missing")
+                output = root / "output"
+                result = subprocess.run(
+                    ["bash", "-euo", "pipefail", "-c", script], cwd=root,
+                    env={**os.environ, "GITHUB_OUTPUT": str(output)},
+                    capture_output=True, text=True, check=True,
+                )
+                self.assertEqual(output.read_text().strip(),
+                                 "matched=true" if case == "equal" else "matched=false",
+                                 result.stdout)
 
     def test_blueprint_contract_is_computed_before_candidate_checkout(self):
         blueprint = self.read("blueprint-pr.yml")
@@ -96,6 +278,16 @@ class WorkflowRoutingTests(unittest.TestCase):
         checkout = blueprint.index("repository: ${{ steps.pr.outputs.head_repo }}")
         self.assertLess(contract, checkout)
         self.assertIn("test -f gate/scripts/ci-build-contract.sh", blueprint)
+
+    def test_blueprint_preserves_trusted_tooling_with_separate_checkout_paths(self):
+        blueprint = self.read("blueprint-pr.yml")
+        checkouts = [section for section in blueprint.split("\n      - ")
+                     if "uses: actions/checkout@" in section]
+        self.assertEqual(len(checkouts), 3)
+        for section, path in zip(checkouts, ("gate", "candidate", "work")):
+            self.assertIn(f"path: {path}\n", section)
+            self.assertIn("persist-credentials: false", section)
+        self.assertIn("ref: ${{ github.workflow_sha }}", checkouts[0])
 
     def test_build_contract_changes_with_trusted_build_machinery(self):
         contract_script = ROOT / "scripts" / "ci-build-contract.sh"

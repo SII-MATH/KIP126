@@ -15,6 +15,7 @@ on:
       - "docbuild/**"
       - "scripts/docs/**"
       - "scripts/test_workflow_routing.py"
+      - "scripts/test_lean_cache_wait.py"
       - ".github/workflows/pages.yml"
   pull_request:
     types: [opened, synchronize, reopened]
@@ -30,6 +31,7 @@ on:
       - "docbuild/**"
       - "scripts/docs/**"
       - "scripts/test_workflow_routing.py"
+      - "scripts/test_lean_cache_wait.py"
       - ".github/workflows/pages.yml"
   schedule:
     - cron: "17 4 * * 1"
@@ -56,6 +58,7 @@ jobs:
       checkout_ref: ${{ steps.paths.outputs.checkout_ref }}
       base_sha: ${{ steps.paths.outputs.base_sha }}
       build_cache_digest: ${{ steps.paths.outputs.build_cache_digest }}
+      lean_producer: ${{ steps.paths.outputs.lean_producer }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -81,6 +84,7 @@ jobs:
           lean=false
           config=false
           cold=false
+          lean_producer=ci.yml
           checkout_ref=$CURRENT_SHA
           base_sha=$CURRENT_SHA
 
@@ -108,12 +112,17 @@ jobs:
           esac
 
           if [[ -f "$RUNNER_TEMP/changed-paths" ]]; then
+            # pr-build skips only Blueprint-source-only PRs. Even an
+            # infrastructure-only PR can produce the same-input cache.
+            if [[ "$EVENT_NAME" == pull_request ]] && grep -qv '^blueprint/src/' "$RUNNER_TEMP/changed-paths"; then
+              lean_producer=pr-build.yml
+            fi
             while IFS= read -r path; do
               case "$path" in
                 blueprint/src/*) blueprint=true ;;
                 KIP126.lean|KIP126/*.lean) lean=true ;;
                 requirements-blueprint.txt) blueprint=true ;;
-                lakefile.lean|lake-manifest.json|lean-toolchain|docbuild/*|scripts/docs/*|scripts/test_workflow_routing.py|.github/workflows/pages.yml)
+                lakefile.lean|lake-manifest.json|lean-toolchain|docbuild/*|scripts/docs/*|scripts/test_workflow_routing.py|scripts/test_lean_cache_wait.py|.github/workflows/pages.yml)
                   config=true
                   ;;
               esac
@@ -150,12 +159,13 @@ jobs:
             echo "checkout_ref=$checkout_ref"
             echo "base_sha=$base_sha"
             echo "build_cache_digest=$build_cache_digest"
+            echo "lean_producer=$lean_producer"
           } >> "$GITHUB_OUTPUT"
 
       - name: Test documentation helpers
         run: |
           python3 -m py_compile scripts/docs/*.py
-          python3 -m unittest scripts.test_docs_helpers scripts.test_workflow_routing -v
+          python3 -m unittest scripts.test_docs_helpers scripts.test_workflow_routing scripts.test_lean_cache_wait -v
 
   blueprint:
     needs: classify
@@ -256,7 +266,8 @@ jobs:
           retention-days: 30
 
   docs:
-    needs: classify
+    needs: [classify, links]
+    if: ${{ !cancelled() && needs.classify.result == 'success' && (needs.links.result == 'success' || needs.classify.outputs.links != 'true') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     env:
@@ -331,21 +342,14 @@ jobs:
             .lake/packages/leansqlite/.lake/build
           key: kip126-docgen-deps-v2-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'docbuild/lakefile.toml', 'docbuild/lake-manifest.json') }}
 
-      - name: Restore trusted main Lean outputs
-        id: lean-cache
-        if: (needs.classify.outputs.docs == 'true' || steps.reuse.outcome != 'success') && needs.classify.outputs.cold != 'true'
-        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      # The links job restored the producer's exact-input outputs (or performed
+      # the one explicitly requested cold build). Do not race another compilation.
+      - name: Reuse the declaration-check job's Lean outputs
+        if: needs.classify.outputs.docs == 'true' || steps.reuse.outcome != 'success'
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
-          path: base/.lake/build
-          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ needs.classify.outputs.build_cache_digest }}
-          restore-keys: |
-            kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
-
-      - name: Adopt restored Lean outputs
-        if: steps.lean-cache.outputs.cache-matched-key != ''
-        run: |
-          mkdir -p .lake/build
-          cp -a base/.lake/build/. .lake/build/
+          name: docs-lean-outputs
+          path: .lake/build
 
       - name: Fetch Mathlib cache
         if: needs.classify.outputs.docs == 'true' || steps.reuse.outcome != 'success'
@@ -365,6 +369,11 @@ jobs:
           BUILD_SHA: ${{ needs.classify.outputs.checkout_ref }}
           BUILD_MODE: ${{ needs.classify.outputs.cold == 'true' && 'cold' || 'incremental' }}
         run: |
+          # Fail on missing/stale project outputs instead of silently rebuilding.
+          lake build --no-build
+          # Check again in doc-gen4's nested workspace: its dependency setup
+          # must accept the same project artifacts before documentation starts.
+          (cd docbuild && lake build --no-build KIP126 KIPBase)
           bash scripts/docs/measure.sh "doc-gen4-$BUILD_MODE" metrics/docs.tsv \
             bash -c 'cd docbuild && lake build KIP126:docs'
           bash scripts/docs/verify_docgen_incremental.sh metrics/docs.tsv
@@ -418,7 +427,7 @@ jobs:
       - name: Record docs cache and reuse state
         run: |
           echo "doc-gen4 cache hit: ${{ steps.doc-cache.outputs.cache-hit || 'not restored' }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "Trusted Lean cache hit: ${{ steps.lean-cache.outputs.cache-hit || 'not restored' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Lean outputs: reused from this run's declaration-check job" >> "$GITHUB_STEP_SUMMARY"
           echo "API docs requested rebuild: ${{ needs.classify.outputs.docs }}" >> "$GITHUB_STEP_SUMMARY"
           echo "API docs artifact restore outcome: ${{ steps.reuse.outcome || 'not attempted' }}" >> "$GITHUB_STEP_SUMMARY"
 
@@ -440,7 +449,7 @@ jobs:
     needs: [classify, blueprint]
     if: needs.classify.outputs.links == 'true'
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -463,15 +472,43 @@ jobs:
           use-mathlib-cache: false
           use-github-cache: false
 
-      - name: Restore trusted main Lean outputs
+      - name: Checkout trusted producer contract
+        if: needs.classify.outputs.cold != 'true'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ needs.classify.outputs.base_sha }}
+          path: gate
+          persist-credentials: false
+
+      - name: Wait for exact-input producer outputs
+        id: outputs
+        if: needs.classify.outputs.cold != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PRODUCER: ${{ needs.classify.outputs.lean_producer }}
+          HEAD_SHA: ${{ needs.classify.outputs.checkout_ref }}
+          BASE_SHA: ${{ needs.classify.outputs.base_sha }}
+        run: |
+          input=$(bash gate/scripts/ci-build-cache-key.sh . "$HEAD_SHA")
+          contract=$(bash gate/scripts/ci-build-contract.sh gate)
+          workflow=$PRODUCER
+          producer_sha=$BASE_SHA
+          if [[ "$workflow" == pr-build.yml ]]; then
+            producer_sha=$HEAD_SHA
+          fi
+          python3 scripts/docs/wait_for_lean_cache.py --repo "$GITHUB_REPOSITORY" \
+            --sha "$producer_sha" --workflow "$workflow" \
+            --key "kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-$input" \
+            --key "kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-$input-$contract"
+
+      - name: Restore exact-input Lean outputs
         id: lean-cache
         if: needs.classify.outputs.cold != 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: base/.lake/build
-          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ needs.classify.outputs.build_cache_digest }}
-          restore-keys: |
-            kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
+          key: ${{ steps.outputs.outputs.key }}
+          fail-on-cache-miss: true
 
       - name: Adopt restored Lean outputs
         if: steps.lean-cache.outputs.cache-matched-key != ''
@@ -499,7 +536,11 @@ jobs:
           else
             echo "Mathlib cache result: downloaded or refreshed files" >> "$GITHUB_STEP_SUMMARY"
           fi
-          bash scripts/docs/measure.sh "lake-build-$BUILD_MODE" metrics/links.tsv lake build
+          if [[ "$BUILD_MODE" == cold ]]; then
+            bash scripts/docs/measure.sh lake-build-cold metrics/links.tsv lake build
+          else
+            bash scripts/docs/measure.sh lean-output-validation metrics/links.tsv lake build --no-build
+          fi
           bash scripts/docs/measure.sh "checkdecls-$BUILD_MODE" metrics/links.tsv \
             lake exe checkdecls blueprint-component/lean_decls
           if [[ "$BUILD_MODE" == cold ]]; then
@@ -507,6 +548,15 @@ jobs:
             bash scripts/docs/measure.sh checkdecls-hot metrics/links.tsv \
               lake exe checkdecls blueprint-component/lean_decls
           fi
+
+      - name: Share checked Lean outputs with API docs
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: docs-lean-outputs
+          path: .lake/build
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: error
 
       - name: Save main checkdecls build
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.classify.outputs.cold != 'true' && steps.checkdecls-cache.outputs.cache-hit != 'true'

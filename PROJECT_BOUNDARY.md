@@ -28,6 +28,29 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    high-stem values, computer output, and table entries are external inputs
    represented by `ExternalResult` or `ExternalEvidence`.
 
+   For the statement of the permanent `h_6^2` target, the confirmed abstract
+   foundation may include an explicit mod--2 Eilenberg--Mac Lane object and
+   Milnor cooperation coordinates. These coordinates identify the constructed
+   first Adams page with the explicitly defined normalized Milnor cobar
+   cochains and intertwine the constructed first differential with the Milnor
+   coproduct differential. This structural input is not inferred from the
+   homotopy groups of the Eilenberg--Mac Lane object alone. The Adams tower,
+   quotient pages, later differentials, page passage, standard `h_6`, its
+   concatenation square, and pagewise nonzero permanence must be defined from
+   these foundations; they must not be supplied as fields. Proof-route results
+   such as C3, C4, and C5 are not part of the statement's defining data. This
+   statement-only stage does not establish the conditional final theorem or
+   relax the project's proof-completion and axiom-audit acceptance criteria.
+
+   The next agreed stage retains the abstract background and moves the
+   comparison foundation below the Adams pages: an associative unital
+   structure on the specified `H`, its graded cooperations, and the tensor,
+   exactness, and Künneth compatibility needed to construct the comparison.
+   The first-page coordinates and their differential compatibility must be
+   derived from those foundations. Until that derivation is implemented,
+   the existing `MilnorCooperations` argument remains an explicit uneliminated
+   dependency; merely renaming or rebundling it does not complete this stage.
+
 3. **Appendix data.** Every entry in the Appendix tables is to be encoded,
    not only the entries used directly in the final proof. The encoding records
    the relevant stem, filtration, class names, differential length, target,
@@ -49,8 +72,23 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 6. **Axiom policy.** The project may use Lean's foundational axioms and the
    axioms already intrinsic to Lean's standard foundational mechanisms.
-   However, the project itself must not introduce additional axioms or
-   unresolved proof placeholders.
+   During development, including KIPBase integration, an internal statement
+   deliberately introduced with Lean's `axiom` command must be placed in the
+   relevant mathematical component's `Axiom.lean`, alongside its `Data.lean`,
+   `Predicates.lean`, and `Proofs.lean` where those layers are needed. Each such
+   statement must record its source, intended meaning, and reason for being
+   assumed, and must be audited individually together with its downstream
+   dependencies. Its presence is not evidence that the statement is proved.
+   An unfinished theorem instead remains in `Proofs.lean` with `by sorry`;
+   it must not be converted into an axiom merely to avoid `sorryAx`.
+   A development pull request may merge with `sorryAx` after the audit exposes
+   the debt and its downstream dependencies for human review; merging does not
+   claim that the affected theorem or the project is complete.
+   Literature results and computational inputs remain explicit external
+   premises as specified below, not project axioms. Individual audit makes
+   development debt visible; it does not authorize retaining project axioms at
+   final acceptance. Every such axiom declaration must be replaced by a proof
+   or removed before the final proof-completion criteria below can be met.
 
 7. **Pinned toolchain.**
    - Lean: `4.32.2`
@@ -58,6 +96,25 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
    The project must use the matching Lean/mathlib versions and must not depend
    on an unpinned `master` branch or a release candidate.
+
+8. **Fixed, parameter-free h₆² statements (development-stage exception).**
+   By explicit user decision, both the computational and standard h₆² targets
+   fix the stable foundation, H𝔽₂, Milnor coordinates, SSData model, and Lin
+   dataset once. The final signatures have no model or external-evidence
+   parameters. The standard sphere sequence and Milnor class still reuse the
+   existing tower construction; they are not supplied by the computation table.
+   Until the fixed foundations and comparisons are constructed, individually
+   named axioms may supply them. This includes the fixed Lin E₂ presentation
+   (Zenodo 14875701, v126.3.cw49, internal degree at most 261), as an explicitly
+   authorized exception to passing computation evidence as a final theorem
+   parameter. Source hashes remain attached to the actual imported data.
+   Adapter axioms live in component `Axiom.lean` files under `KIP126/Mathlib/`;
+   internal/foundation axioms live under `KIP126/Def/`. Both are inventoried by
+   the compiled audit, and both remain final-acceptance debt.
+   This does not postulate h₆² survival: the computational Solution remains
+   open, and the standard Solution reduces to it using the named comparisons.
+   A proof body without `sorry` is not a claim that its dependency cone is
+   free of `sorryAx`, project axioms, or external computation assumptions.
 
 ## In-scope formalization
 
@@ -233,8 +290,11 @@ not unconditional declarations of the external mathematics.
 The project is complete only when all of the following hold:
 
 - `lake build` succeeds with the pinned Lean/mathlib versions;
-- no Lean source file contains `sorry`, `admit`, or a project-declared
-  `axiom`;
+- all canonical KIP126 source outside the intentional Challenge statement
+  track contains no `sorry` or `admit`, and canonical KIP126 declares no project
+  `axiom`; Challenge statements retain their required `by sorry` bodies and
+  are excluded from proof-completion evidence, while the isolated historical
+  KIPBase component remains subject to its separate migration audit;
 - every external input is passed through `ExternalResult` or `ExternalEvidence`;
 - every Appendix table entry has a Lean encoding;
 - the two geometric conclusions are available as conditional theorems;

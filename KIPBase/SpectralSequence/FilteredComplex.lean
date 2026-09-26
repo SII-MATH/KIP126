@@ -1437,6 +1437,14 @@ noncomputable def FilteredComplex.finitePageDifferential (FC : FilteredComplex C
         _ = γ ≫ B_n_t.arrow := hγ_spec.symm
         _ = (γ ≫ Subobject.ofLE B_n_t Z_n_t hB_le_Z) ≫ Z_n_t.arrow := by
           rw [Category.assoc, Subobject.ofLE_arrow]
+    -- 在有限页核心中显式计算余核投影的复合，避免不必要的统一化。
+    have h_cok : Subobject.ofLE B_n_t Z_n_t hB_le_Z ≫
+        FC.finitePageπ (s + ↑n) (k - 1) n = 0 := by
+      change Subobject.ofLE B_n_t Z_n_t hB_le_Z ≫
+        cokernel.π (Subobject.ofLE (FC.boundarySubobject (s + ↑n) (k - 1) ↑n)
+          (FC.cycleSubobject (s + ↑n) (k - 1) ↑n)
+          (FC.B_le_Z_aux (s + ↑n) (k - 1) ↑n)) = 0
+      exact cokernel.condition _
     -- Final computation
     rw [hψ_def]
     calc kernel.ι p ≫ to_Z_n_t ≫ FC.finitePageπ (s + ↑n) (k - 1) n
@@ -1447,8 +1455,7 @@ noncomputable def FilteredComplex.finitePageDifferential (FC : FilteredComplex C
         rw [← h_factor_B]
       _ = γ ≫ (Subobject.ofLE B_n_t Z_n_t hB_le_Z ≫
             FC.finitePageπ (s + ↑n) (k - 1) n) := Category.assoc _ _ _
-      _ = γ ≫ 0 := by
-        rw [FilteredComplex.finitePageπ, cokernel.condition, comp_zero]
+      _ = γ ≫ 0 := by rw [h_cok]
       _ = 0 := comp_zero
   set h_on_Zn := Abelian.epiDesc p ψ h_ker_p_ψ with hh_on_Zn_def
   -- h_on_Zn : Z_n_s.underlying → target page, with p ≫ h_on_Zn = ψ

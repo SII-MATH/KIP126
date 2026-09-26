@@ -51,17 +51,29 @@ document:
   order: audit the earlier repositories and form KIP126's best-progress
   envelope, continue the chapter-level formalization, and finish with a
   repository-wide trust, provenance, completeness, and reproducibility audit.
+- [`docs/SPECTRAL_SEQUENCE_STATUS.md`](docs/SPECTRAL_SEQUENCE_STATUS.md) is the
+  concise current checkpoint for the canonical finite-page construction and
+  its remaining implementation gaps; implemented facts remain owned by Lean.
 - [`blueprint/src/content.tex`](blueprint/src/content.tex) and the chapters
   under [`blueprint/src/chapters`](blueprint/src/chapters) form the
   natural-language formalization sketch.  The Blueprint follows the paper's
   definitions and the roadmap's order, and refines each step into nodes whose
   mathematical statement, dependencies, sources, and intended Lean object can
-  be checked together.  In the usual layout, one chapter corresponds to one
-  Lean file; temporary shared facades are allowed during migration, but the
-  final implementation should expose chapter-level Lean entry points.
+  be checked together.  A chapter indexes several small Lean modules under
+  `KIP126/Def/`, `KIP126/External/`, and `KIP126/Challenge/`;
+  `KIP126/Def.lean`, `KIP126/Challenge.lean`, and `KIP126/Solution.lean`
+  are package entry points.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
-  well as their import graph.
+  well as their import graph.  `Def/` owns mathematical data and properties,
+  `External/` owns provenance-bearing inputs, `Challenge/` owns internal proof
+  targets, `Solution/` owns their matching proofs, and `Checks/` owns
+  compilation regressions.  The
+  [layout migration map](docs/DEF_CHALLENGE_LAYOUT_STATUS.md) records moved
+  source modules and remaining open milestones.
+  The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
+  small executable example connecting imported dimensions and multiplication
+  coefficients to an existing spectral sequence's page.
 - [`reference/source-inventory.json`](reference/source-inventory.json), the
   per-source status records under [`reference/`](reference/), and the Lean
   claim ledger own the catalogue and provenance of external inputs. They record
@@ -84,23 +96,25 @@ The intended workflow is therefore:
 5. implement and verify the corresponding Lean declarations with Lake and the
    pinned Mathlib dependency.
 
-The executable Lean implementation is still at the first shared-Core
-milestone.  That Core is deliberately small: it imports Mathlib's
-`CategoryTheory.SpectralSequence` directly, without a competing wrapper or
-synonym, and adds only the category-level filtration data that Mathlib does not
-provide: decreasing filtrations of graded objects, associated graded quotients,
-filtered morphisms, and filtered chain complexes with their induced
-associated-graded differential.  It now also includes the generic
-homological-image bridge and the filtered-complex triangulated/abelian
-spectral-object adapter; endpoint and convergence data remain explicit
-Blueprint interfaces.  The toolchain and Mathlib dependency are pinned to
-matching `4.32.2` releases.
+The internal spectral-sequence presentation uses KIP126's `SSData`/`PreSS`
+cycle and boundary towers, including quotient pages and finite-page
+differentials. `KIP126/Mathlib/` hosts checked bridges to Mathlib's
+`CategoryTheory.SpectralSequence`; it does not copy Mathlib definitions or
+replace the internal representative language. The filtered-complex layer also
+constructs homology filtrations and associated-graded differentials. The
+generic homological-image and spectral-object bridges, endpoint data, and
+convergence interfaces remain distinct from the internal `Z/B` presentation.
+This separation is still being completed; see
+[`docs/SPECTRAL_SEQUENCE_STATUS.md`](docs/SPECTRAL_SEQUENCE_STATUS.md). The
+toolchain and Mathlib dependency are pinned to matching `4.32.2` releases.
 
-The Blueprint is substantially ahead of the Lean implementation.  Its entry
+The Blueprint remains ahead of the theorem proofs, while the source catalogue
+interfaces now cover the completed migration slices.  Its entry
 point is [blueprint/src/content.tex](blueprint/src/content.tex), with the
 paper-specific chapters under [blueprint/src/chapters](blueprint/src/chapters).
 It covers the paper's Sections 1--7, all 401 nonempty appendix rows and nine
-zero bands, the stable/spectral-sequence/Steenrod/synthetic background absent
+zero bands (the rows are now typed AST input records with executable catalogue
+regressions), the stable/spectral-sequence/Steenrod/synthetic background absent
 from Mathlib, explicit literature and computation provenance, and the full
 dependency cone from the compiled Core to the conditional Kervaire endpoints.
 All unimplemented nodes are conservatively marked `notready`; the Blueprint
@@ -120,8 +134,8 @@ checks are maintained separately under `blueprint/` and `.agents/skills/`.
 The published Blueprint and API documentation are assembled by
 `.github/workflows/pages.yml` and served at
 <https://sii-math.github.io/KIP126/>. The workflow prunes work by changed path,
-restores only caches written by successful `main` builds, and falls back to a
-full component rebuild when a reusable artifact is unavailable. `checkdecls`
+waits for exact-input Lean outputs from the primary build, instead of compiling
+the project again in each documentation job. `checkdecls`
 is pinned in `lakefile.lean`; the nested `docbuild/` project pins doc-gen4 to
 the Lean 4.32.2-compatible commit `1d0643dd819f8ca71b1dd82cba6e3e3050f0a255`.
 
@@ -134,15 +148,36 @@ The Pages workflow uses the following change matrix:
 | Lake/toolchain, `docbuild/**`, docs workflow/helpers | rebuild | run | rebuild |
 | other paths | workflow skipped | workflow skipped | workflow skipped |
 
-Successful `main` runs are the only writers of the GitHub caches. PRs restore
-the trusted Lean baseline and the single doc-gen dependency baseline, but do
-not upload `.lake` state. Mathlib files always come from `lake exe cache get`.
+Only ordinary successful compilation on trusted `main` publishes the
+`kip126-main-build-v2-*` baseline. Its subsequent warning/axiom/project gates
+still run unchanged and may fail: cached compilation is not a proof-completion
+or audit certificate. The sandboxed PR build may publish a separate
+`kip126-pr-build-v1-*` cache after its checks succeed and the actual overlay
+matches the candidate inputs. This namespace includes the trusted build
+contract and never feeds the main baseline, including for fork candidates.
+
+Normal declaration checks wait for one of these exact-input caches, validate
+it with `lake build --no-build`, and run checkdecls. They fail explicitly if the
+producer fails, the cache is missing/expired, or the restored outputs are stale;
+they do not silently start a duplicate compilation. API docs then download
+the same run's `docs-lean-outputs` artifact from the declaration-check job.
+Keys cover the committed Lean sources, both root libraries, Lake configuration,
+dependency pins, toolchain, runner OS and architecture. Prefix-matched older
+outputs are only an incremental baseline for main and sandboxed PR/queue builds, never
+a substitute for exact-input outputs in declaration consumers.
+Mathlib files always come from `lake exe cache get`.
+
+For measured CI/merge-queue timings, candidate automation preflight, cache
+behavior, and failure recovery, see [CI operations](docs/CI_OPERATIONS.md).
+
 The large doc-gen cache has one immutable key per toolchain/manifest graph,
 rather than one key per commit. Blueprint and API docs are separate workflow
 artifacts; the deploy job assembles them as `_site/blueprint/` and
 `_site/docs/`, then uses the Actions Pages artifact flow without a `gh-pages`
-branch. A missing component artifact causes a safe rebuild. Weekly and manual
-runs skip GitHub caches and record cold plus immediate warm command timings;
+branch. A missing rendered component artifact causes a component rebuild,
+but still requires matching Lean outputs. Weekly and manual runs skip GitHub
+caches, compile Lean once in the declaration-check job, share those outputs
+with API docs, and record cold plus immediate warm command timings;
 normal runs report both elapsed times and cache-hit outcomes in the job summary.
 doc-gen equation pages are disabled because the site is used for declaration
 types, source links, and search; deriving equations for the full dependency
@@ -176,9 +211,9 @@ python3 scripts/check_source_inventory.py
 python3 -m unittest discover -s scripts -p 'test_check_source_inventory.py'  # unit tests
 python3 -m unittest discover -s scripts -p 'test_source_inventory_projection.py'  # Lean integration tests
 python3 -m unittest discover -s scripts -p 'test_*.py'  # all tests
-lake build KIP126.External.ProvenanceRegression \
-  KIP126.External.SourceInventoryRegression \
-  KIP126.External.ClaimsRegression
+bash scripts/shared-main-cache.sh run lake build KIP126.Checks.External.Provenance \
+  KIP126.Checks.External.SourceInventory \
+  KIP126.Checks.External.Claims
 ```
 
 On a slow or cold checkout, increase the two Lean subprocess timeouts with

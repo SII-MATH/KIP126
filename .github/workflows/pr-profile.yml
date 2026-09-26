@@ -138,6 +138,15 @@ jobs:
             -f description='measuring Lean wall time and module cost' \
             -f target_url='${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
 
+      - name: Checkout workflow-pinned trusted tooling
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: gate
+          persist-credentials: false
+          fetch-depth: 1
+
+
       - name: Fetch trusted changed-file metadata
         env:
           GH_TOKEN: ${{ github.token }}
@@ -147,25 +156,13 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$NUM" = merge-group ]; then
-            gh api "repos/${{ github.repository }}/compare/$BASE...$HEAD" --jq .files > "$RUNNER_TEMP/files.json"
-            count=$(jq length "$RUNNER_TEMP/files.json")
-            if [ "$count" -ge 300 ]; then
-              echo "::error::merge-group changed-file list hit GitHub's 300-file compare cap; failing closed"
-              exit 1
-            fi
+            python3 gate/scripts/ci_merge_group_files.py "$GITHUB_REPOSITORY" "$BASE" "$HEAD" > "$RUNNER_TEMP/files.json"
           else
             gh api --paginate --slurp \
               "repos/${{ github.repository }}/pulls/$NUM/files?per_page=100" > "$RUNNER_TEMP/file-pages.json"
             jq '[.[][]]' "$RUNNER_TEMP/file-pages.json" > "$RUNNER_TEMP/files.json"
           fi
 
-      - name: Checkout workflow-pinned trusted tooling
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.workflow_sha }}
-          path: gate
-          persist-credentials: false
-          fetch-depth: 1
 
       - name: Checkout immutable base (trusted)
         uses: actions/checkout@v4
