@@ -23,6 +23,9 @@ variable (C : Theta5ChoiceContext (Carrier := Carrier))
 /-- Equality of the inductive expression for any two admissible choices. -/
 theorem theta5_choice_independence
     (order : CataloguedExternalResult (Theta5OrderData C))
+    (correctionVanishes : ∀ {θ ψ},
+      C.highDifference (C.difference θ ψ) →
+        C.lambdaEta (C.correction θ ψ) = 0)
     {θ ψ : Carrier}
     (hθ : C.isChoice θ) (hψ : C.isChoice ψ)
     (_hθOrder : IsOrderTwo θ)
@@ -31,7 +34,7 @@ theorem theta5_choice_independence
   have hHigh : C.highDifference (C.difference θ ψ) :=
     order.value.proof.2 θ ψ hθ hψ
   have hCorrection : C.lambdaEta (C.correction θ ψ) = 0 :=
-    C.correction_vanishes hHigh
+    correctionVanishes hHigh
   have hSquare : C.square θ = C.square ψ + C.correction θ ψ := by
     calc
       C.square θ = C.square (ψ + C.difference θ ψ) := by
@@ -45,6 +48,9 @@ theorem theta5_choice_independence
 theorem bjm_bx_criterion_any_choice
     (criterion : CataloguedExternalResult (BJM_BXCriterion C))
     (order : CataloguedExternalResult (Theta5OrderData C))
+    (correctionVanishes : ∀ {θ ψ},
+      C.highDifference (C.difference θ ψ) →
+        C.lambdaEta (C.correction θ ψ) = 0)
     {θ : Carrier}
     (hθ : C.isChoice θ)
     (hθOrder : IsOrderTwo θ) :
@@ -57,7 +63,8 @@ theorem bjm_bx_criterion_any_choice
   have hSourceOrder : IsOrderTwo C.sourceChoice := criterion.value.proof.1
   have hEqual : C.lambdaEta (C.square θ) =
       C.lambdaEta (C.square C.sourceChoice) :=
-    theta5_choice_independence C order hθ hSourceChoice hθOrder hSourceOrder
+    theta5_choice_independence C order correctionVanishes hθ hSourceChoice
+      hθOrder hSourceOrder
   constructor
   · intro r hr
     simpa [Theta5ChoiceContext.sourceExpression, hEqual] using
@@ -71,6 +78,9 @@ one dependent record. -/
 theorem bjm_bx_criterion_any_choice_iff
     (criterion : CataloguedExternalResult (BJM_BXCriterion C))
     (order : CataloguedExternalResult (Theta5OrderData C))
+    (correctionVanishes : ∀ {θ ψ},
+      C.highDifference (C.difference θ ψ) →
+        C.lambdaEta (C.correction θ ψ) = 0)
     {θ : Carrier}
     (hθ : C.isChoice θ)
     (hθOrder : IsOrderTwo θ) :
@@ -79,7 +89,17 @@ theorem bjm_bx_criterion_any_choice_iff
         C.finiteZero (r + 1) (C.lambdaEta (C.square θ)))) ∧
       (C.is_permanent (C.lambdaEta (C.square θ)) ↔
         C.untruncatedZero (C.lambdaEta (C.square θ))) :=
-  bjm_bx_criterion_any_choice C criterion order hθ hθOrder
+  bjm_bx_criterion_any_choice C criterion order correctionVanishes hθ hθOrder
+
+/-- Project-internal correction-vanishing theorem used by choice transport. -/
+theorem theta5_choice_correction_vanishes
+    (correctionVanishes : ∀ {θ ψ},
+      C.highDifference (C.difference θ ψ) →
+        C.lambdaEta (C.correction θ ψ) = 0) :
+    ∀ {θ ψ}, C.highDifference (C.difference θ ψ) →
+      C.lambdaEta (C.correction θ ψ) = 0 := by
+  intro θ ψ hHigh
+  exact correctionVanishes hHigh
 
 end ChoiceTransport
 
