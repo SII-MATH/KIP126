@@ -72,7 +72,10 @@ review and automatic-merge policy still applies separately.
 
 The Lean producer first runs one ordinary build. If compilation fails or a
 watchdog expires, it reports that result without retrying the same expensive
-build. After successful compilation, `--no-build --iofail` replays diagnostics
+build. Successful compilation is published before auditing, so a later audit error does
+not discard the expensive outputs. The required build still waits for the audit;
+cache availability is not evidence that an audit passed. The separate audit
+phase validates `--no-build`, then `--no-build --iofail` replays diagnostics
 to classify warnings. A failed replay must also pass ordinary `--no-build`
 validation before it counts as warning debt. Missing/stale outputs and genuine
 audit errors remain failures. These options are tested with the pinned Lean

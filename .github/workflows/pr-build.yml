@@ -807,9 +807,72 @@ jobs:
           bash base/scripts/perf/prepare-watchdog-toolchain.sh "$watchdog" "$real_lean"
           echo "WATCHDOG_TOOLCHAIN=$watchdog" >> "$GITHUB_ENV"
 
-      - name: Build (trusted config + overlaid KIP126/) under landrun, offline
-        id: build
+      - name: Compile candidate under landrun, offline
+        id: compile
         if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
+        env:
+          # Cold full builds have a trusted baseline module (External.Claims) that normally takes
+          # ~225s but has exceeded the watchdog's 300s default under runner contention. Keep a hard
+          # per-process deadline, with enough headroom for the required build only; the performance
+          # workflow does not receive this override and retains its stricter 300s measurement cap.
+          EULER_LEAN_TIMEOUT_SECONDS: "600"
+          # The sandboxed build is always offline: never let Lake reach out to a remote
+          # cache from inside landrun. When the artifact cache is enabled above, it restores
+          # KIP126's oleans purely from the locally-populated $LAKE_CACHE_DIR; when it is
+          # not, this is a normal full build. Either way, no network from in here.
+          LAKE_NO_CACHE: "true"
+        run: |
+          export PATH="$HOME/.local/bin:$HOME/.elan/bin:$PATH"
+          # The sandboxed build/audit/lint body lives in the TRUSTED base script
+          # scripts/sandbox-build.sh (scripts/ routes to a human, so a PR cannot edit it
+          # here). Keeping the landrun `bash -c` payload a fixed, comment-free one-liner
+          # is deliberate: a comment's apostrophe once closed this single-quoted string
+          # early and reddened every PR build (#694). All prose now lives in the script.
+          set -o pipefail
+          build_log=$(mktemp "$RUNNER_TEMP/kip126-sandbox-build.XXXXXX")
+          landrun --rox /usr --rox /etc \
+            --rw /dev/null --rox /dev/zero --rox /dev/urandom --rox /dev/random \
+            --rox "$HOME/.elan" --rox "$WATCHDOG_TOOLCHAIN" \
+            --rox "$PWD/base" --rw "$PWD/base/.lake" \
+            --env PATH --env HOME --env CI \
+            --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
+            --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
+            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh compile' 2>&1 | tee "$build_log"
+
+      # This separate namespace never feeds the trusted-main cache. It only supplies compiled
+      # material to docs/declaration consumers with identical inputs and trusted machinery.
+      # Inheritance also requires available outputs so downstream consumers can reuse them.
+      - name: Verify the published cache matches the candidate inputs
+        id: publish-inputs
+        if: ${{ steps.compile.outcome == 'success' && env.BUILD_ATTESTATION != '' }}
+        run: |
+          # The build overlays only approved sources/pins. A candidate changing
+          # other build inputs must not receive a cache labelled as its full tree.
+          matched=true
+          for path in KIP126 KIP126.lean KIPBase KIPBase.lean lakefile.lean lake-manifest.json lean-toolchain; do
+            if [[ ! -e "base/$path" && ! -L "base/$path" && ! -e "pr/$path" && ! -L "pr/$path" ]]; then continue; fi
+            if [[ -L "pr/$path" ]] || [[ -n "$(find "pr/$path" -type l -print -quit 2>/dev/null)" ]]; then
+              matched=false
+              continue
+            fi
+            if ! diff -qr -- "base/$path" "pr/$path"; then matched=false; fi
+          done
+          echo "matched=$matched" >> "$GITHUB_OUTPUT"
+          if [[ "$matched" != true ]]; then
+            echo "::warning::candidate build inputs differ from the trusted overlay; not publishing mislabelled outputs"
+          fi
+
+      - name: Save successful PR outputs for docs and Blueprint checks
+        if: ${{ steps.publish-inputs.outputs.matched == 'true' }}
+        continue-on-error: true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: base/.lake/build
+          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
+
+      - name: Audit compiled candidate under landrun, offline
+        id: build
+        if: ${{ steps.compile.outcome == 'success' }}
         env:
           # Cold full builds have a trusted baseline module (External.Claims) that normally takes
           # ~225s but has exceeded the watchdog's 300s default under runner contention. Keep a hard
@@ -842,7 +905,7 @@ jobs:
             --env PATH --env HOME --env CI \
             --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
             --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
-            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh' 2>&1 | tee "$build_log"
+            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh audit' 2>&1 | tee "$build_log"
           if grep -qx 'KIP126_WARNING_ONLY_BUILD=1' "$build_log"; then
             echo "BUILD_WARNINGS=1" >> "$GITHUB_ENV"
           fi
@@ -852,37 +915,6 @@ jobs:
           if grep -qx 'KIP126_PROJECT_AXIOM_AUDIT=1' "$build_log"; then
             echo "BUILD_PROJECT_AXIOM_AUDIT=1" >> "$GITHUB_ENV"
           fi
-
-      # This separate namespace never feeds the trusted-main cache. It only supplies compiled
-      # material to docs/declaration consumers with identical inputs and trusted machinery.
-      # Inheritance also requires available outputs so downstream consumers can reuse them.
-      - name: Verify the published cache matches the candidate inputs
-        id: publish-inputs
-        if: ${{ steps.build.outcome == 'success' && env.BUILD_ATTESTATION != '' }}
-        run: |
-          # The build overlays only approved sources/pins. A candidate changing
-          # other build inputs must not receive a cache labelled as its full tree.
-          matched=true
-          for path in KIP126 KIP126.lean KIPBase KIPBase.lean lakefile.lean lake-manifest.json lean-toolchain; do
-            if [[ ! -e "base/$path" && ! -L "base/$path" && ! -e "pr/$path" && ! -L "pr/$path" ]]; then continue; fi
-            if [[ -L "pr/$path" ]] || [[ -n "$(find "pr/$path" -type l -print -quit 2>/dev/null)" ]]; then
-              matched=false
-              continue
-            fi
-            if ! diff -qr -- "base/$path" "pr/$path"; then matched=false; fi
-          done
-          echo "matched=$matched" >> "$GITHUB_OUTPUT"
-          if [[ "$matched" != true ]]; then
-            echo "::warning::candidate build inputs differ from the trusted overlay; not publishing mislabelled outputs"
-          fi
-
-      - name: Save successful PR outputs for docs and Blueprint checks
-        if: ${{ steps.publish-inputs.outputs.matched == 'true' }}
-        continue-on-error: true
-        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
-        with:
-          path: base/.lake/build
-          key: kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ env.BUILD_INPUT_DIGEST }}-${{ env.BUILD_CONTRACT }}
 
       - name: Report build and bump-guard statuses to the PR head commit
         if: always()
@@ -1021,6 +1053,7 @@ jobs:
           CANDIDATE_SHA: ${{ steps.pr.outputs.sha }}
           BASE_CACHE: ${{ steps.main-build-cache.outputs.cache-matched-key }}
           CANDIDATE_CACHE_HIT: ${{ steps.candidate-build-cache.outputs.cache-hit }}
+          COMPILE_OUTCOME: ${{ steps.compile.outcome }}
           BUILD_OUTCOME: ${{ steps.build.outcome }}
           JOB_OUTCOME: ${{ job.status }}
         run: |
@@ -1031,12 +1064,15 @@ jobs:
             echo "- Main incremental baseline: ${BASE_CACHE:-miss}"
             echo "- Exact candidate compilation cache: ${CANDIDATE_CACHE_HIT:-miss}"
             echo "- Inherited build evidence: ${BUILD_REUSED_FROM:-none}"
-            echo "- Sandboxed build and audit: ${BUILD_OUTCOME:-not reached}"
+            echo "- Sandboxed compilation: ${COMPILE_OUTCOME:-not reached}"
+            echo "- Sandboxed audit: ${BUILD_OUTCOME:-not reached}"
             echo "- Workflow result so far: $JOB_OUTCOME"
             echo "- Warning debt: ${BUILD_WARNINGS:-0}; sorry debt: ${BUILD_SORRY_AUDIT:-0}; project axioms: ${BUILD_PROJECT_AXIOM_AUDIT:-0}"
             echo
-            if [[ "$BUILD_OUTCOME" == failure ]]; then
-              echo 'Open the sandboxed build step for the compiler, watchdog, or audit error.'
+            if [[ "$COMPILE_OUTCOME" == failure ]]; then
+              echo 'Open the compilation step for the compiler or watchdog error.'
+            elif [[ "$BUILD_OUTCOME" == failure ]]; then
+              echo 'Compilation completed; open the audit step for the remaining error.'
             elif [[ "$BUILD_OUTCOME" != success && "${BUILD_REUSED:-0}" != 1 ]]; then
               echo 'The build was not reached: inspect the first failed setup or guard step.'
             fi

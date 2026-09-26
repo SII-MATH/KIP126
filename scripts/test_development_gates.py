@@ -136,7 +136,7 @@ class BlueprintStagingTests(unittest.TestCase):
 
 
 class BuildFailureTests(unittest.TestCase):
-    def run_build(self, build=0, strict=0, replay=0, audit=0, audit_log=""):
+    def run_build(self, build=0, strict=0, replay=0, audit=0, audit_log="", phase="all"):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / ".lake/tmp").mkdir(parents=True)
@@ -154,12 +154,26 @@ class BuildFailureTests(unittest.TestCase):
                             " *) exit 99;;\nesac\n")
             lake.chmod(0o755)
             subprocess.run(["git", "init", "-q", str(root)], check=True)
-            result = subprocess.run(["bash", ROOT / "scripts/sandbox-build.sh"], cwd=root,
+            result = subprocess.run(["bash", ROOT / "scripts/sandbox-build.sh", phase], cwd=root,
                 env={**os.environ, "PATH": f"{binpath}:{os.environ['PATH']}",
                      "WATCHDOG_TOOLCHAIN": str(root), "CALLS": str(root / "calls"),
                      "BUILD_EXIT": str(build), "STRICT_EXIT": str(strict), "REPLAY_EXIT": str(replay),
                      "AUDIT_EXIT": str(audit), "AUDIT_LOG": audit_log}, capture_output=True, text=True)
             return result, (root / "calls").read_text().splitlines()
+
+    def test_compile_can_be_published_before_a_failed_audit(self):
+        result, calls = self.run_build(phase="compile", audit=1)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(calls, ["build"])
+        result, calls = self.run_build(phase="audit", audit=1, audit_log="AXIOM_AUDIT_ERROR=1")
+        self.assertEqual(result.returncode, 1)
+        self.assertNotIn("build", calls)
+        self.assertEqual(calls[0], "build --no-build")
+
+    def test_audit_never_recompiles_missing_outputs(self):
+        result, calls = self.run_build(phase="audit", replay=3)
+        self.assertEqual(result.returncode, 3)
+        self.assertEqual(calls, ["build --no-build"])
 
     def test_real_failure_and_timeout_do_not_start_second_compilation(self):
         for code in (1, 124, 137):

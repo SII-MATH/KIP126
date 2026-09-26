@@ -176,7 +176,7 @@ class WorkflowRoutingTests(unittest.TestCase):
             "Install landrun (pinned + checksum) and self-test (fail closed)",
             "Fetch Mathlib with the (bump-validated) config (network, no token; no PR code)",
             "Prepare trusted read-only Lean watchdog toolchain",
-            "Build (trusted config + overlaid KIP126/) under landrun, offline",
+            "Compile candidate under landrun, offline",
         ):
             section = workflow.split(f"- name: {name}", 1)[1].split("\n      - name:", 1)[0]
             self.assertIn("env.BUILD_REUSED != '1'", section)
@@ -229,7 +229,9 @@ class WorkflowRoutingTests(unittest.TestCase):
         lean = self.read("pr-build.yml")
         self.assertIn("Verify the published cache matches the candidate inputs", lean)
         self.assertIn("steps.publish-inputs.outputs.matched == 'true'", lean)
-        self.assertIn("steps.build.outcome == 'success'", lean)
+        self.assertIn("steps.compile.outcome == 'success'", lean)
+        self.assertLess(lean.index("- name: Compile candidate"), lean.index("- name: Save successful PR outputs"))
+        self.assertLess(lean.index("- name: Save successful PR outputs"), lean.index("- name: Audit compiled candidate"))
         self.assertIn('diff -qr -- "base/$path" "pr/$path"', lean)
 
     def test_overlay_cache_publication_guard_rejects_mismatches_and_symlinks(self):

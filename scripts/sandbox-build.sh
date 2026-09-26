@@ -7,9 +7,15 @@ test -x "$WATCHDOG_TOOLCHAIN/bin/lean"
 export LAKE_OVERRIDE_LEAN=true
 export LEAN="$WATCHDOG_TOOLCHAIN/bin/lean"
 
-# Compile once. A real compiler error or watchdog timeout must stop here, not
-# start another expensive build in an attempt to distinguish it from warnings.
-lake build
+# Publish compiled outputs between phases; an audit failure must not throw away
+# a successful compilation. The default keeps local callers backward compatible.
+phase=${1:-all}
+case "$phase" in
+  all|compile) lake build ;;
+  audit) lake build --no-build ;;
+  *) echo "unknown build phase: $phase" >&2; exit 2 ;;
+esac
+if [[ "$phase" == compile ]]; then exit 0; fi
 
 # Replay the successful build's diagnostics without compiling anything again.
 # Exit 3 means Lake requested a rebuild: that is stale/missing output, not debt.
