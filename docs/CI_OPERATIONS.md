@@ -84,7 +84,18 @@ audit errors remain failures. These options are tested with the pinned Lean
 The main namespace is written only by main. The candidate namespace is separate,
 and its publisher checks that the actual sandbox overlay matches the candidate's
 build inputs. Python bytecode is excluded from the trusted-tooling contract;
-source changes still invalidate it. Cache eviction always remains possible.
+source changes still invalidate build-status evidence. Compilation may reuse an
+older contract's exact-input outputs, but the current sandboxed build and audit
+always run before publishing current evidence.
+
+Each PR also retains its latest successful compilation in a separate incremental
+namespace scoped by PR number and Lake configuration/pins. A source edit can
+therefore reuse unaffected modules from that PR rather than falling back only to
+main. Lake validates dependency traces and recompiles changed modules. These
+partial-match seeds are never accepted by documentation consumers or status
+inheritance; only newly validated, exact-input outputs are published for those
+consumers. Merge groups still build the combined candidate and use exact inputs.
+Cache eviction always remains possible.
 
 ## Diagnose a wait or failure
 
@@ -107,3 +118,20 @@ bypasses, or changes to proof/performance acceptance thresholds are introduced.
 Existing running jobs keep their original workflow. The new trusted PR/queue
 path takes effect after merge; one warm producer run is needed for its new
 contract before exact candidate reuse can be measured.
+
+## Cache publication permissions
+
+GitHub gives `pull_request_target` read-only cache tokens by default. A denied
+cache save logs a warning while the step remains green. The sandboxed producer
+therefore explicitly declares job-level `cache-mode: write`. It only publishes
+the PR namespaces after the trusted overlay comparison; candidate execution is
+still offline and receives neither cache runtime credentials nor GitHub tokens.
+The workflow also verifies an exact, nonempty cache entry at the run's ref and
+reports confirmed publication in its summary. A transient cache service failure
+does not invalidate a successfully checked proof, but must never be reported as
+a cache hit or successful publication.
+
+See [GitHub's cache-mode announcement](https://github.blog/changelog/2026-09-10-control-github-actions-cache-access-with-cache-mode/).
+The pinned actionlint schema predates this field; only its exact unknown-key
+message is suppressed, and the job's permission and cache boundaries have
+regression coverage.
