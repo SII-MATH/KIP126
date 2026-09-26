@@ -43,7 +43,6 @@ theorem adamsTowerPageComparison_passage_reindex
       ((adamsTowerSSDataPageIso unit X s t n).hom x)
       ((adamsTowerSSDataPageIso unit X s t (n + 1)).hom y) hx)
 
-set_option maxHeartbeats 1000000 in
 /-- The constructed all-page comparison respects the specified successor class. -/
 theorem adamsTowerPageComparison_passage (r : ℤ) (hr : 2 ≤ r) (p : ℤ × ℤ)
     (x : (adamsTowerInternalSpectralSequence unit X).Page r p)

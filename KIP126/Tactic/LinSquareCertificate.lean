@@ -58,4 +58,25 @@ elab_rules : tactic
     (← getMainGoal).assign proof
     replaceMainGoal []
 
+/-- Join already checked chunk certificates without rerunning their Boolean checks.
+Keeping each archived chunk in its own theorem bounds elaboration work per
+declaration at the ordinary heartbeat limit. -/
+syntax (name := linSquareCompose) "lin_square_compose " ident+ : tactic
+
+elab_rules : tactic
+  | `(tactic| lin_square_compose $names:ident*) => withMainContext do
+    let mut xs := mkApp (mkConst ``List.nil [Level.zero]) (mkConst ``String)
+    let mut proof := mkConst ``chunksCheck_nil
+    for id in names.reverse do
+      let name ← realizeGlobalConstNoOverloadWithInfo id
+      let type := (← getConstInfo name).type
+      let some (_, lhs, _) := type.eq? | throwError "expected a chunk certificate"
+      unless lhs.isAppOf ``chunksCheck do
+        throwError "expected a chunksCheck equality"
+      let ys := lhs.appArg!
+      proof := mkAppN (mkConst ``chunksCheck_append) #[ys, xs, mkConst name, proof]
+      xs := mkApp3 (mkConst ``List.append [Level.zero]) (mkConst ``String) ys xs
+    (← getMainGoal).assign proof
+    replaceMainGoal []
+
 end KIP126.LinE2.SquareDetection.Automation

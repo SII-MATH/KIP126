@@ -9,7 +9,9 @@ universe u v
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)] {H : C} (unit : 𝟙_ C ⟶ H) (X : C)
 
-set_option maxHeartbeats 1000000 in
+-- Assembly uses only the public SSData interface, not its submodule implementation.
+attribute [local irreducible] adamsTowerSSData
+
 /-- The internal Adams spectral sequence constructed from the tower itself.
 All pages, infinite cycles and boundaries, and differentials are specified
 by the tower; the successor axioms are proved, not additional inputs. -/

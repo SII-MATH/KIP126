@@ -82,7 +82,6 @@ theorem adamsTowerPreSS_Z_succ (r : ℤ) (p : ℤ × ℤ) (hr : 2 ≤ r) :
     ((kernelSubobject_comp_mono _ _).trans
       (adamsTowerInternalD_kernel unit X p.1 p.2 (r - 2).toNat))
 
-set_option maxHeartbeats 1000000 in
 /-- The integer-indexed image law is the proved tower next-boundary law. -/
 theorem adamsTowerPreSS_B_succ (r : ℤ) (p : ℤ × ℤ) (hr : 2 ≤ r) :
     let n := (r - 2).toNat
@@ -93,9 +92,10 @@ theorem adamsTowerPreSS_B_succ (r : ℤ) (p : ℤ × ℤ) (hr : 2 ≤ r) :
         (le_trans (D.B_le_Z ((n + 1 : ℕ) : WithTop ℕ))
           (D.Z_anti (by exact_mod_cast Nat.le_succ n))) ≫ D.pageπ (n : WithTop ℕ)) := by
   have hn : (((r - 2).toNat + 2 : ℕ) : ℤ) = r := by omega
-  exact (congrArg (fun f => imageSubobject f) (adamsTowerPreSS_d_eq unit X r p hr)).trans
-    (adamsTowerInternalD_image_reindex unit X (r - 2).toNat p.1 p.2
-      (p + (r, r - 1)).1 (p + (r, r - 1)).2 (by dsimp; omega) (by dsimp; omega))
+  have him := adamsTowerInternalD_image_reindex unit X (r - 2).toNat p.1 p.2
+    (p + (r, r - 1)).1 (p + (r, r - 1)).2
+    (by dsimp; omega) (by dsimp; omega)
+  simpa only [adamsTowerPreSS, dif_pos hr] using him
 
 end
 end KIP126.Classical.Adams
