@@ -197,14 +197,15 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 \begin{proof}
   Apply the explicit order-two witness from
-  Proposition~\ref{evidence:theta5-order-torsion}.  Then use the internal
-  correction-vanishing theorem and the source-choice total differential
-  identity to establish choice independence.
-  Expand the difference of the two squares and apply
-  Proposition~\ref{prop:theta5-choice-correction-vanishes} to show that its
-  $\lambda\eta$-image is zero.  The finite-quotient equalities follow from
+  Proposition~\ref{evidence:theta5-order-torsion}.  The current Lean
+  choice-transport theorem takes correction-vanishing as an explicit premise;
+  proving that premise for the fixed synthetic sphere remains the open
+  obligation of Proposition~\ref{prop:theta5-choice-correction-vanishes}.
+  Once supplied, expand the difference of the two squares to identify their
+  $\lambda\eta$-images.  The finite-quotient equalities follow from
   Proposition~\ref{prop:theta5-total-quotient-transport}.  This argument
-  does not assume the arbitrary-choice total differential identity.
+  does not assume the arbitrary-choice total differential identity; the
+  source-choice identity is used in the next proposition instead.
 \end{proof}
 
 % SOURCE: Burklund--Xu Proposition 7.19 in the archived version;
