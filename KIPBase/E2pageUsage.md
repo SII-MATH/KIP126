@@ -196,7 +196,9 @@ example : pageMul 𝒮 1 1 1 2 (evaluate 𝒮 x0) (evaluate 𝒮 x1) = 0 := by
 得到。原来的 `by e2_mul` 仍服务于商环等式，并仍依赖 `coordinateCheck_sound`
 中的 `sorry`。新实际页计算定理没有新增 `sorry`。
 
-`chanllege.lean` 中的 `h6` 现在直接使用指定的实际页生成元。
+`StableHomotopy/SphereAdamsElements.lean` 提供公共的 `SphereAdamsE2.h6`、
+`h6Sq`、CSV 表达式和基坐标定理。`chanllege.lean` 的旧名称现在只是这些
+公共元素的兼容别名；后续数据模块不需要导入含主定理占位的 `chanllege.lean`。
 `h6Sq_eq_basisValue` 明确说明 h₆² 是 (2,128) 位置的第 0 个 CSV 基元素
 （单项式 `69,2`），因此可以由基性质证明它在 E₂ 中非零。
 `h6Sq_eq_pair` 用 `rfl` 确认该平方就是原接口的乘积。
@@ -211,3 +213,49 @@ Z∞ 和 E∞，保留“同一代表元、E∞ 中非零”的含义。
 `transfer`/收敛数据占位定义，因此不能沿用旧版“不依赖 sorryAx”的审计结论。
 本次没有新增转换公理、转换前提或 `sorry`；存活主定理仍保留
 原有 `sorry`。直接使用既有接口不会自动补齐其内部的未完成构造。
+
+### 球谱局部微分统一入口
+
+后续球谱微分输入统一导入：
+
+```lean
+import KIPBase.StableHomotopy.SphereAdamsDifferentials
+```
+
+该模块仅定义陈述接口，不导入任何 `proofs.db` 结论，也不新增公理或 `sorry`。
+所有生成元和基元素继续用 `SphereAdamsE2.pageGenerator`、`basisValue`、
+`evaluate` 和公共命名元素表示；所有页和微分均属于
+`sphereAdamsConvergingSS`。暂不使用旧 `AdamsE2Data.hi` 的定理。
+
+命名空间 `SphereAdamsDifferentials` 提供：
+
+- `Page 𝒮 r s t`：同一球谱谱序列的第 r 页，第二页按定义就是 `SphereAdamsE2.Page`。
+- `Represents 𝒮 r hr x₂ x_r`：两个页上的元素由同一个 Z_r 循环代表。
+  它不保证 x_r 非零，也不提供整个 E₂ 到 E_r 的映射。
+- `DifferentialWitness`：包含起始页、微分次数、目标次数、源/目标页元素、
+  它们与 E₂ 标签的代表关系，以及既有微分上的等式。
+- `HasDifferential 𝒮 r x₂ y₂`：存在上述证据。
+- `HasNonzeroDifferential`：进一步要求证据中的目标在 E_r 非零。
+- `ExpressionDifferential`：先将带次数的 CSV 表达式解释到实际 E₂，再陈述微分。
+
+例如以 `h6SqExpression : Expression 2 128` 作源标签，r = 12 时目标表达式
+必须有次数 (14,139)。这个次数说明不是在断言 h₆² 有非零 d₁₂。
+`SphereAdamsDifferentialsExamples.lean` 检查错误次数不能满足接口、零微分可由
+零代表构造，以及公共名称与主命题原名称按定义一致。
+
+未来从数据库生成结论时，必须同时保留数据库版本、行标识和数学来源，
+并机械核对 r、(s,t)、基编号、表达式以及零/非零的语义。
+基编号只在所属双次数内有效。不要将 E₂ 中非零替代 E_r 中非零；
+也不要把未知微分或带未决项的数据库记录导入为精确等式。
+当前已实现首批局部结果的解析与机械声明生成：详见
+[SphereAdamsProofs.md](SphereAdamsProofs.md)。经范围确认，导入 6 条
+`proofs.db` 正式球谱日志，以及单独标注的 1 条球谱 E₂/SS 数据表结果。
+公共入口位于 `StableHomotopy/SphereAdamsProofs.lean`，7 条带注释的命名公理位于
+`StableHomotopy/SphereAdamsProofs/Axiom.lean`；表达式与来源数据位于
+`StableHomotopy/SphereAdamsProofsData.lean`。逐条原始记录和哈希位于
+`StableHomotopy/SphereAdamsProofs.records.json`，论文标签识别位于
+`StableHomotopy/SphereAdamsProofsLabels.lean`。
+按用户澄清，已撤销此前需要调用方传入 `_Input` 的实现，改为直接接受这些
+命名公理。导入后可以直接使用 `SphereAdamsProofs.d2_h6 𝒮` 等性质，
+其等式约束原有 `sphereAdamsConvergingSS` 的微分。这里不证明数据库计算结果。
+未决候选微分及 Cν 数据不在本批导入范围。
