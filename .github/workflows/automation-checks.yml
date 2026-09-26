@@ -48,9 +48,11 @@ jobs:
       - name: Validate workflow expressions and automation syntax
         run: |
           # Pinned checkout v4 supports this input; actionlint's bundled schema
-          # predates it. Suppress only this known schema mismatch.
+          # predates it and the September 2026 job-level cache-mode field.
+          # Suppress only these two documented schema mismatches.
           actionlint -shellcheck= -pyflakes= \
-            -ignore 'input "allow-unsafe-pr-checkout" is not defined in action'
+            -ignore 'input "allow-unsafe-pr-checkout" is not defined in action' \
+            -ignore 'unexpected key "cache-mode" for "job" section'
           python3 scripts/check_ci_syntax.py
 
       - name: Run automation regression tests without Lean

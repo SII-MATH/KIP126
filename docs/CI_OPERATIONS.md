@@ -118,3 +118,20 @@ bypasses, or changes to proof/performance acceptance thresholds are introduced.
 Existing running jobs keep their original workflow. The new trusted PR/queue
 path takes effect after merge; one warm producer run is needed for its new
 contract before exact candidate reuse can be measured.
+
+## Cache publication permissions
+
+GitHub gives `pull_request_target` read-only cache tokens by default. A denied
+cache save logs a warning while the step remains green. The sandboxed producer
+therefore explicitly declares job-level `cache-mode: write`. It only publishes
+the PR namespaces after the trusted overlay comparison; candidate execution is
+still offline and receives neither cache runtime credentials nor GitHub tokens.
+The workflow also verifies an exact, nonempty cache entry at the run's ref and
+reports confirmed publication in its summary. A transient cache service failure
+does not invalidate a successfully checked proof, but must never be reported as
+a cache hit or successful publication.
+
+See [GitHub's cache-mode announcement](https://github.blog/changelog/2026-09-10-control-github-actions-cache-access-with-cache-mode/).
+The pinned actionlint schema predates this field; only its exact unknown-key
+message is suppressed, and the job's permission and cache boundaries have
+regression coverage.
