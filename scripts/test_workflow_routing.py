@@ -125,14 +125,15 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("BUILD_PROJECT_AXIOM_AUDIT=1", workflow)
         self.assertIn("project axioms present — human review + merge required", workflow)
 
-    def test_blueprint_pr_has_separate_gate_and_authorized_mixed_sync(self):
+    def test_blueprint_pr_has_independent_mechanics_and_review_sync(self):
         blueprint = self.read("blueprint-pr.yml")
         lean = self.read("pr-build.yml")
         review = self.read("review.yml")
-        self.assertIn("validate-sync", blueprint)
+        self.assertIn("stage-blueprint.py", blueprint)
+        self.assertNotIn("validate-sync", blueprint)
         self.assertIn("validate-sync", lean)
         self.assertIn("MIXED_SYNC=1", lean)
-        self.assertIn('if [[ "$MIXED" != true ]]', blueprint)
+        self.assertIn('if [[ "$MIXED" == false ]]', blueprint)
         for context in ("scope", "bump-guard", "blueprint", "build"):
             self.assertIn(f"post_status {context} ", blueprint)
         self.assertIn("workflows: [pr-build, blueprint-pr]", review)
@@ -193,7 +194,8 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("scripts/ci-build-contract.sh", blueprint)
         self.assertIn("gate/scripts/docs/wait_for_lean_cache.py", blueprint)
         self.assertIn("fail-on-cache-miss: true", blueprint)
-        self.assertIn("lake build --no-build", blueprint)
+        self.assertIn("blueprint-sandbox.sh declarations", blueprint)
+        self.assertIn("lake build --no-build", (ROOT / "scripts/blueprint-sandbox.sh").read_text())
         self.assertNotIn("lake build\n", blueprint)
         self.assertNotIn("falling back to a local build", blueprint)
 
@@ -275,14 +277,15 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertLess(contract, checkout)
         self.assertIn("test -f gate/scripts/ci-build-contract.sh", blueprint)
 
-    def test_blueprint_restores_trusted_tooling_after_candidate_checkout(self):
-        blueprint = self.read("blueprint-pr.yml")
-        checkout = blueprint.index("repository: ${{ steps.pr.outputs.head_repo }}")
-        restore = blueprint.index("- name: Restore workflow-pinned trusted projection tooling")
-        wait = blueprint.index("python3 gate/scripts/docs/wait_for_lean_cache.py")
-        self.assertLess(checkout, restore)
-        self.assertLess(restore, wait)
-        self.assertIn("ref: ${{ github.workflow_sha }}", blueprint[restore:wait])
+    def test_blueprint_preserves_trusted_tooling_with_separate_checkout_paths(self):
+        import yaml
+        workflow = yaml.safe_load(self.read("blueprint-pr.yml"))
+        checkouts = [step for step in workflow["jobs"]["blueprint-check"]["steps"]
+                     if step.get("uses", "").startswith("actions/checkout@")]
+        self.assertEqual([step["with"]["path"] for step in checkouts],
+                         ["gate", "candidate", "work"])
+        self.assertEqual(checkouts[0]["with"]["ref"], "${{ github.workflow_sha }}")
+        self.assertTrue(all(step["with"]["persist-credentials"] is False for step in checkouts))
 
     def test_build_contract_changes_with_trusted_build_machinery(self):
         contract_script = ROOT / "scripts" / "ci-build-contract.sh"

@@ -35,6 +35,9 @@ Increasing queue concurrency would not remove the repeated compilation above.
    sandboxed audits and guards. Multiple PRs producing a different combined
    tree get a different identity. An existing green PR status does not by itself
    skip the queue build.
+   Scope and performance routing compare complete Git trees, including removals
+   and mode changes. They do not use the compare API's 300-file list. Truncated
+   tree responses still fail explicitly rather than hiding changes.
 4. **main-validation** compiles and publishes main artifacts before strict
    completion checks (introduced in [#121](https://github.com/SII-MATH/KIP126/pull/121)).
    Its check name is distinct from `build`, because a queue SHA can become main
@@ -43,6 +46,37 @@ Increasing queue concurrency would not remove the repeated compilation above.
 5. **Blueprint/API documentation** consumes the producer's exact outputs via
    the #121 handoff. It is not one of the two ruleset-required checks. Missing
    producer outputs are diagnosed instead of triggering another cold build.
+
+## Mixed development PRs and early feedback
+
+`blueprint-pr` mechanically validates Blueprint changes even when the PR also
+changes Lean, scripts, docs, or provenance files. Review-scope policy is separate
+from running the checks. The renderer and dependency installation come from
+trusted configuration; only `blueprint/src/` and the producer-supported Lean
+sources are staged from the candidate. Symlinks and mismatches with the producer's
+Lake/pin/KIPBase configuration fail with a specific error.
+
+Rendering runs in an offline sandbox before waiting for Lean outputs and reports
+`blueprint-render` immediately. Declaration validation then consumes exact
+producer outputs without rebuilding the root libraries. Candidate TeX cannot
+modify `.lake` during rendering, so it cannot poison the subsequent trusted
+dependency fetch. Candidate Lean/declaration loading also runs offline without
+credentials. Additional helper scripts or Markdown files in a PR do not become
+executable trusted tooling.
+
+Only a *pure* Blueprint PR publishes `build`, `scope`, and `bump-guard` from
+`blueprint-pr`. Every other PR leaves those contexts to `pr-build`, including
+failed/unknown Blueprint classifications. This prevents a render-policy result
+from racing with and overwriting a real Lean build result. The existing semantic
+review and automatic-merge policy still applies separately.
+
+The Lean producer first runs one ordinary build. If compilation fails or a
+watchdog expires, it reports that result without retrying the same expensive
+build. After successful compilation, `--no-build --iofail` replays diagnostics
+to classify warnings. A failed replay must also pass ordinary `--no-build`
+validation before it counts as warning debt. Missing/stale outputs and genuine
+audit errors remain failures. These options are tested with the pinned Lean
+4.32.2, not assumed from a newer Lake release.
 
 The main namespace is written only by main. The candidate namespace is separate,
 and its publisher checks that the actual sandbox overlay matches the candidate's

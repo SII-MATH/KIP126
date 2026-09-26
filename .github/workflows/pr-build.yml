@@ -137,20 +137,22 @@ jobs:
           } >> "$GITHUB_OUTPUT"
           echo "Building PR #$NUM @ $SHA from $REPO on trusted base $BASE_SHA (author=${AUTHOR:-merge-group}, status -> $STATUS_SHA, bump delta vs merge-base $MB)"
 
+      - name: Checkout workflow-pinned trusted build tooling
+        if: ${{ env.INFRA != '1' }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: gate
+          persist-credentials: false
+          fetch-depth: 1
+
       - name: Scope guard — allow KIP126 sources and validated pins
         env:
           GH_TOKEN: "${{ github.token }}"
         run: |
           if [ "${{ github.event_name }}" = "merge_group" ]; then
-            # The whole batch's combined change set vs the trusted base (every batched PR).
-            files=$(gh api "repos/${{ github.repository }}/compare/${{ steps.pr.outputs.base_ref }}...${{ steps.pr.outputs.sha }}" --jq '.files[].filename')
-            # The compare endpoint caps `.files` at 300. If we hit that, the list may be truncated and
-            # could hide an out-of-scope path — fail closed (route to human); the queue then bisects the
-            # batch into smaller groups that fit under the cap. (Realistic batches are far under 300.)
-            if [ "$(printf '%s\n' "$files" | grep -c .)" -ge 300 ]; then
-              echo "INFRA=1" >> "$GITHUB_ENV"
-              echo "::warning::merge-group combined diff hit the compare 300-file cap — failing closed so the queue bisects"
-            fi
+            files=$(python3 gate/scripts/ci_merge_group_files.py "$GITHUB_REPOSITORY" \
+              '${{ steps.pr.outputs.base_sha }}' '${{ steps.pr.outputs.sha }}' --names)
           else
             files=$(gh api --paginate "repos/${{ github.repository }}/pulls/${{ steps.pr.outputs.num }}/files" --jq '.[].filename')
           fi
@@ -195,7 +197,7 @@ jobs:
       - name: File count guard — changed files ≤ 2000 (trusted GitHub PR totals)
         # Added and removed line counts are informational; whole-library migrations and paper
         # sources may exceed 2000 lines. Keep the file cap to protect scope-list completeness.
-        # The scope guard's 300-file compare cap separately bounds merge-group batches.
+        # Merge groups use complete Git trees, so the compare API's 300-file cap is irrelevant.
         if: ${{ github.event_name != 'merge_group' }}
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
@@ -248,14 +250,6 @@ jobs:
       # dispatches, where the PR's base predates those scripts. For normal
       # pull_request_target and merge_group events github.workflow_sha is the
       # trusted base-defined workflow commit, never the candidate checkout.
-      - name: Checkout workflow-pinned trusted build tooling
-        if: ${{ env.INFRA != '1' }}
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.workflow_sha }}
-          path: gate
-          persist-credentials: false
-          fetch-depth: 1
 
       - name: Validate authorized reviewer mixed synchronization
         if: ${{ env.MIXED_SYNC == '1' }}
