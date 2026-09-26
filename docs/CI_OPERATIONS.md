@@ -84,7 +84,18 @@ audit errors remain failures. These options are tested with the pinned Lean
 The main namespace is written only by main. The candidate namespace is separate,
 and its publisher checks that the actual sandbox overlay matches the candidate's
 build inputs. Python bytecode is excluded from the trusted-tooling contract;
-source changes still invalidate it. Cache eviction always remains possible.
+source changes still invalidate build-status evidence. Compilation may reuse an
+older contract's exact-input outputs, but the current sandboxed build and audit
+always run before publishing current evidence.
+
+Each PR also retains its latest successful compilation in a separate incremental
+namespace scoped by PR number and Lake configuration/pins. A source edit can
+therefore reuse unaffected modules from that PR rather than falling back only to
+main. Lake validates dependency traces and recompiles changed modules. These
+partial-match seeds are never accepted by documentation consumers or status
+inheritance; only newly validated, exact-input outputs are published for those
+consumers. Merge groups still build the combined candidate and use exact inputs.
+Cache eviction always remains possible.
 
 ## Diagnose a wait or failure
 
