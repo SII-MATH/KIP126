@@ -275,6 +275,15 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertLess(contract, checkout)
         self.assertIn("test -f gate/scripts/ci-build-contract.sh", blueprint)
 
+    def test_blueprint_restores_trusted_tooling_after_candidate_checkout(self):
+        blueprint = self.read("blueprint-pr.yml")
+        checkout = blueprint.index("repository: ${{ steps.pr.outputs.head_repo }}")
+        restore = blueprint.index("- name: Restore workflow-pinned trusted projection tooling")
+        wait = blueprint.index("python3 gate/scripts/docs/wait_for_lean_cache.py")
+        self.assertLess(checkout, restore)
+        self.assertLess(restore, wait)
+        self.assertIn("ref: ${{ github.workflow_sha }}", blueprint[restore:wait])
+
     def test_build_contract_changes_with_trusted_build_machinery(self):
         contract_script = ROOT / "scripts" / "ci-build-contract.sh"
         with tempfile.TemporaryDirectory() as directory:
