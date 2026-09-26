@@ -1,4 +1,4 @@
-import KIPBase.StableHomotopy.AdamsE2Comparison
+import KIPBase.StableHomotopy.SphereAdamsElements
 
 /-!
 # h₆² 在球谱的经典模 2 Adams 谱序列中存活至 E∞
@@ -7,7 +7,10 @@ import KIPBase.StableHomotopy.AdamsE2Comparison
 On the Last Kervaire Invariant Problem, Theorem 1.4 (= Theorem 7.1).
 https://arxiv.org/html/2412.10879v2
 
-沿用本仓库外部给定的 `AdamsSS 𝒮 SphereSpectrum` 和 E₂ 比较公理。
+直接使用 `multiplicativeSS` 中的 `sphereAdamsConvergingSS` 及
+`sphereAdamsMultiplication`。元素、乘法、微分和 E∞ 均位于同一谱序列；
+不通过另外的页同构搬运。基和坐标性质分别由 `BasisData`、`CoordinateData`
+显式提供，本文件的计算结论以相应输入为前提。
 CSV 中编号 69 的生成元是 h₆，双次数为 (s,t) = (1,64)；
 其平方的双次数是 (2,128)，对应 stem t-s = 126。
 
@@ -29,62 +32,66 @@ open SphereE2
 
 universe u v
 
-/-- 原始 CSV 的生成元编号，采用从 0 开始的索引。 -/
-def h6Generator : Generator := ⟨69, by decide⟩
+-- 保留旧公开名称；它们按定义就是公共接口中的同一个元素。
+abbrev h6Generator := SphereAdamsE2.h6Generator
+abbrev h6Expression := SphereAdamsE2.h6Expression
+abbrev h6SqExpression := SphereAdamsE2.h6SqExpression
+noncomputable abbrev dataH6 := SphereAdamsE2.dataH6
+noncomputable abbrev dataH6Sq := SphereAdamsE2.dataH6Sq
+abbrev h6BasisIndex := SphereAdamsE2.h6BasisIndex
+abbrev h6SqBasisIndex := SphereAdamsE2.h6SqBasisIndex
 
-theorem h6Generator_name : generatorName h6Generator = "h_6" := by decide
+theorem h6Generator_name : generatorName h6Generator = "h_6" :=
+  SphereAdamsE2.h6Generator_name
 
-theorem h6Generator_degree : generatorDegree h6Generator = (1, 64) := by decide
+theorem h6Generator_degree : generatorDegree h6Generator = (1, 64) :=
+  SphereAdamsE2.h6Generator_degree
 
-private theorem generator_mem (i : Generator) :
-    generator i ∈ homogeneousPart (generatorDegree i).1 (generatorDegree i).2 := by
-  apply Submodule.subset_span
-  refine ⟨Finsupp.single i 1, ?_, ?_⟩
-  · simp [monomialDegree]
-  · rfl
-
-/-- 计算环 D 中的 h₆，附带其齐次次数。 -/
-noncomputable def dataH6 : E2At 1 64 :=
-  ⟨generator h6Generator, by
-    simpa only [h6Generator_degree] using generator_mem h6Generator⟩
-
-/-- 计算环 D 中的 h₆²；内部次数 128 仍在数据比较范围内。 -/
-noncomputable def dataH6Sq : E2At 2 128 :=
-  mulAt (s := 1) (t := 64) (s' := 1) (t' := 64) dataH6 dataH6
+theorem h6SqBasis_monomial :
+    (CSV.basisRow 2 128 h6SqBasisIndex).monomial = "69,2" :=
+  SphereAdamsE2.h6SqBasis_monomial
 
 variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
 
-/-- 通过已有比较同构得到的、实际球谱 Adams 第二页上的 h₆。 -/
-noncomputable def h6 : Page 𝒮 1 64 :=
-  comparison 𝒮 1 64 (by decide) dataH6
+noncomputable abbrev h6 : Page 𝒮 1 64 := SphereAdamsE2.h6 𝒮
+noncomputable abbrev h6Sq : Page 𝒮 2 128 := SphereAdamsE2.h6Sq 𝒮
 
-/-- 实际第二页上的乘积 h₆ · h₆，位于 E₂^{2,128}。 -/
-noncomputable def h6Sq : Page 𝒮 2 128 :=
-  pageMul 𝒮 1 64 1 64 (h6 𝒮) (h6 𝒮)
+theorem h6Sq_eq_pair :
+    h6Sq 𝒮 =
+      (sphereAdamsMultiplication (𝒮 := 𝒮)).ssPairing.pair 2 (1, 64) (1, 64)
+        (TensorProduct.tmul IntModuleRing (h6 𝒮) (h6 𝒮)) := rfl
 
-/-- 实际第二页的平方与计算环中的平方由既有乘法相容公理联系。 -/
-theorem h6Sq_eq_comparison :
-    h6Sq 𝒮 = comparison 𝒮 2 128 (by decide) dataH6Sq := by
-  exact (comparison_mul 𝒮 1 64 1 64 (by decide) dataH6 dataH6).symm
+variable [BasisData 𝒮] [CoordinateData 𝒮]
+
+theorem h6_eq_basisValue :
+    h6 𝒮 = SphereAdamsE2.basisValue 𝒮 1 64 h6BasisIndex :=
+  SphereAdamsE2.h6_eq_basisValue 𝒮
+
+theorem h6Sq_eq_basisValue :
+    h6Sq 𝒮 = SphereAdamsE2.basisValue 𝒮 2 128 h6SqBasisIndex :=
+  SphereAdamsE2.h6Sq_eq_basisValue 𝒮
+
+theorem h6Sq_ne_zero : h6Sq 𝒮 ≠ 0 := SphereAdamsE2.h6Sq_ne_zero 𝒮
 
 /-- 指定 E₂ 元素存活至 E∞ 并保持非零。
 
-`SSData` 使用相对页编号 n = (r-r₀).toNat；在 Adams 谱序列 r₀ = 2，
-因此实际 E₂ 对应 n = 0，而非 SSData 的 n = 2。
+`SSData` 使用相对页编号 n = (r-r₀).toNat。这里直接读取既有
+ModuleCat 谱序列的 r₀，不额外假定旧 transfer 占位实现保持起始页。
 使用 Z∞ ↪ Z_n → E₂ 和 Z∞ → E∞，确保两页上使用同一个代表元。
 Z∞ 排除支持非零微分，E∞ 中非零排除成为边缘。
 -/
 def SurvivesToEInfty (s t : ℕ) (x : Page 𝒮 s t) : Prop :=
-  let E := AdamsSS 𝒮 (SphereSpectrum : 𝒮)
+  let E := (sphereAdamsConvergingSS (𝒮 := 𝒮)).E
   let D := E.ssData ((s : ℤ), (t : ℤ))
   let n : WithTop ℕ := ↑(2 - E.r₀).toNat
-  ∃ z : (Subobject.underlying.obj (D.Z ⊤) : AddCommGrpCat.{v}),
+  ∃ z : (Subobject.underlying.obj (D.Z ⊤) : ModuleCat.{v, v} IntModuleRing.{v}),
     (Subobject.ofLE (D.Z ⊤) (D.Z n) (D.Z_anti le_top) ≫ D.pageπ n) z = x ∧
       (D.pageπ ⊤) z ≠ 0
 
 /-- Lin–Wang–Xu, Theorem 1.4 / 7.1：
 h₆² 在球谱的经典模 2 Adams 谱序列中存活至 E∞^{2,128}，且非零。
-谱序列和 E₂ 比较沿用已导入的外部公理；本结论的证明尚未形式化。 -/
+谱序列及乘法使用既有 multiplicativeSS 接口，E₂ 基/坐标数据作为显式输入；
+本结论的证明尚未形式化。 -/
 theorem h6_sq_survives_to_eInfty :
     SurvivesToEInfty 𝒮 2 128 (h6Sq 𝒮) := by
   sorry
