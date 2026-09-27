@@ -15,4 +15,11 @@ theorem representativeCalculus {R : Type u} [Ring R]
     Challenge2.RepresentativeCalculus E := by
   sorry
 
+theorem paperCycleCalculus {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    (H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C)) (X : C) :
+    Challenge2.PaperCycleCalculus H X := by
+  sorry
+
 end KIP126.Interface.Challenge

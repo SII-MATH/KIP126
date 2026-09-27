@@ -6,6 +6,10 @@ import KIP126.Interface.Solution.Cobar
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
 import KIP126.Def.Synthetic.QuotientTower.Proofs
+import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
+import KIP126.Def.Synthetic.PageExtension.Proofs
 import Lean.Elab.Command
 
 /-! These particular generic obligations are proved from explicit mathematical
@@ -21,6 +25,7 @@ run_cmd do
       ``KIP126.Def.Solution.todaInterface,
       ``KIP126.Interface.Solution.pageCalculus,
       ``KIP126.Interface.Solution.representativeCalculus,
+      ``KIP126.Interface.Solution.paperCycleCalculus,
       ``KIP126.Interface.Solution.internalNaturality,
       ``KIP126.Interface.Solution.cobarE2Comparison,
       ``KIP126.Interface.Solution.cobarCupCalculus,
@@ -29,6 +34,17 @@ run_cmd do
       ``KIP126.Synthetic.Context.lambdaPow_naturality,
       ``KIP126.Synthetic.Context.XModLambdaN.incl_naturality,
       ``KIP126.Synthetic.Context.XModLambdaN.proj_naturality,
+      ``KIP126.Synthetic.Context.lambdaPow_add,
+      ``KIP126.Synthetic.Context.XModLambdaN.incl_restriction,
+      ``KIP126.Synthetic.Context.XModLambdaN.restriction_proj,
+      ``KIP126.Classical.Adams.Moss.mappingSequence,
+      ``KIP126.Classical.Adams.Moss.mappingHomotopyEquiv,
+      ``KIP126.Classical.Adams.Moss.mappingFiltration_image,
+      ``KIP126.Classical.Adams.Moss.towerLift_of_detects,
+      ``KIP126.Classical.Adams.Moss.noMossCrossing_of_filtration_le,
+      ``KIP126.Synthetic.PageExtension.FiniteExtensionWitness.length_le_page,
+      ``KIP126.Synthetic.PageExtension.FiniteExtensionWitness.essential_iff_zero_not_mem_targetCoset,
+      ``KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.essential_iff_zero_not_mem_targetCoset,
       ``KIP126.Classical.Adams.Sphere.Internal.hi,
       ``KIP126.Classical.Adams.Sphere.Internal.hiSquare,
       ``KIP126.Classical.Adams.MilnorCohomology.boundaries_le_cycles,

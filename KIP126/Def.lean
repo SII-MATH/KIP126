@@ -92,3 +92,10 @@ import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Proofs
 import KIP126.Def.Synthetic.AdamsSequence.Proofs
 import KIP126.Def.Synthetic.QuotientTower.Proofs
 import KIP126.Def.SpectralSequence.Computation.Morphism.Proofs
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Mapping.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Convergence.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
+import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
+import KIP126.Def.Synthetic.PageExtension.Proofs

@@ -9,6 +9,7 @@ import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
 import KIP126.Interface.Axiom.StandardMilnor
 import KIP126.Def.Kervaire.Theta5.Predicates
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与完整待交付清单
@@ -33,6 +34,10 @@ import KIP126.Def.Kervaire.Theta5.Predicates
   E₂ 共同代表元、boundary⇒cycle 及非零微分两端存活条件。
   实现：`Interface/Solution/InternalPages.lean` 复用 Def 的实际定理完成上述
   派生交付；不用总包新增一份可独立选择的页面或证明假设。
+  `PaperCycleCalculus` 另明确论文 Z₁=E₂、B₁=0、Z_(r−1) 与实际 r 页代表元
+  的等价及 E₂ 无 crossing；其证明同在 `InternalPages.lean`。
+  `Def/ClassicalAdams/PageRepresentatives/` 通过实际初始商映射定义这些子模，
+  没有把第一微分 kernel 的 raw ambient 冒充 E₂。
   待补：其余 E∞ 代表与 NonzeroSurvival 的完整交付逐条接入，不能把这一组
   有限页定理误报为全部永久存活 calculus 已完成。
 
@@ -81,6 +86,15 @@ import KIP126.Def.Kervaire.Theta5.Predicates
   （同一历史目录）已有 `ESSSolutionWitness` 和 `FiniteESSSolutionSystem.CoherentTower`。
   接入：迁移这些具体接口并绑定当前内部对象、λ 商及同一收敛见证；核查其前提，
   补实际实例与 coherent limit 的存在性，不能把已定义的塔误作塔已有成员。
+  已核出的历史缺陷：λ 改变 weight，不能作为固定 weight 的 ESS ambient 自映射；
+  paper Z_(r−1) 对应 raw stage r−2 再取初始边界商，不能直接使用 raw Z_(r−1)。
+  `Def/Synthetic/{NormalizedMap,ExtensionSS,PageExtension}/` 已定义实际
+  normalized lift、同一映射的 ESS、固定比较家族及有限／无限 page extension。
+  λ-scaled target 通过真实较小商到较大商的 λ 映射定义；target coset 为实际
+  ESS boundary coset 的逆像。其 essential 判据不等于已经证明经典 boundary
+  加 shorter-image 公式；后者还缺比较图相容和 kernel 识别。
+  当前 ESS 构造要求逐次数滤过有界；“无限”只指未取有限 λ 商，不表示已处理
+  任意无界 Adams 滤过。一般情形还须接入 `UnboundedExtension/` 及其收敛条件。
 
 - `am7` 内部版 generalized Leibniz、Mahowald 与 page stretch。
   陈述：**待修正，不能把现有类型原样冻结入包**。#133 指出 Leibniz 的 `Input`
@@ -89,6 +103,10 @@ import KIP126.Def.Kervaire.Theta5.Predicates
   Solution 仍为 `sorry`；目前自由 `Operations` 未绑定内部 M，Main 尚未调用它们。
   TODO：按论文 Theorem 6.1、6.12 和 stretching 修正次数、crossing 及真实输入，
   绑定同一 extension/page/crossing 结构，再冻结签名并证明。
+  已补前置：`PageRepresentatives.DifferentialAt` 与 `NoCrossingOn` 使用实际
+  E₂ 标签、实际页面非零微分和论文的 crossing 范围。
+  尚缺：page extension 与同一 ν、δ、ρ、λ 的比较图；任意选定的一族页面
+  等价不足以推出这三条规则，不能仅修正算术后再次无条件断言。
 
 - `am8` Moss：Toda/Massey 到内部页面检测。
   陈述：`../KIPBase/multiplicativeSS/Moss.lean` 已有 `MappingAdamsTower`、
@@ -99,6 +117,12 @@ import KIP126.Def.Kervaire.Theta5.Predicates
   当前 Toda 关系在 `Def/StableHomotopy/Toda/`，来源在 `Main/Axiom/Literature/Claims.lean`。
   接入：以当前实际 Adams 对象及收敛数据替换历史全局选择，迁移这组签名并验证
   Moss crossing 方向、次数与文献条件；near-126 的具体推论仍留给 Main。
+  已补前置：`Def/ClassicalAdams/Moss/{Mapping,Convergence,Detection,Crossing}/`
+  绑定实际 ihom(X,Y) 的 Adams 塔、塔像滤过、共同 Z∞ 代表元及稳定映射检测；
+  检测给出实际塔提升的定理已证明，无历史全局 axiom。
+  仍缺真实复合的 tower/page pairing、Leibniz 与收敛复合相容，故完整 Massey
+  关系和 Moss 陈述尚未冻结。ihom(X,Y) 的塔与对 Y 的塔取映射也需比较，
+  不能默认为相同；Moss 原文的全部条件仍待源文核定。
 
 - `am9` Adams E₂＝cobar/Ext 及标准 hᵢ。
   陈述／实现：`MilnorCohomology` 已定义真正的 F₂ ker(d)/im(d)，包括 s=0
@@ -158,7 +182,10 @@ import KIP126.Def.Kervaire.Theta5.Predicates
   `br21TmfDifferential` 是来源条目，不是已构造的内部 theorem。
   TODO：把 Hurewicz 检测、θ₅ 的 tmf 像和 d₃(v₂¹⁶)=β⁵g 连接到同一内部对象与映射。
   前置缺口：当前通用 Adams 构造可作用于给定谱，但本项尚未指定 tmf 对象、
-  球面到 tmf 的实际映射及 v₂、β、g 的同一页面定义。只添加同名元素不能固定含义。
+  球面到 tmf 的实际映射，以及源 v₂¹⁶、靶 β⁵g 的同一页面代表元与符号含义。
+  MainPaper 明指普通 Adams SS；不能由名字猜作 Adams–Novikov，也不能仅由
+  符号 v₂¹⁶ 假设 E₂ 中存在一个 v₂ 元素并作第十六次幂。历史 KIPBase 未提供
+  可迁入的 tmf 构造；只添加同名元素不能固定含义。
 
 - `am15` Moss convergence 与 normalized Hopf detection。
   陈述／实现：`Main/Axiom/Literature/Near126/HopfCofiber/Fixed/Data.lean` 的
@@ -298,6 +325,24 @@ structure RepresentativeCalculus {R : Type u} [Ring R]
     HasNonzeroDifferential E r p q x y → SurvivesTo E r p x
   differential_target : ∀ r p q (x : E.Page 2 p) (y : E.Page 2 q),
     HasNonzeroDifferential E r p q x y → SurvivesTo E r q y
+
+/-- am1/am2/am7：论文的 Z_c、B_c 是实际 E₂ 内的子模，不能与尚未除去
+第一微分边界的 raw ambient 混同。这里集中列出页码、商映射和 crossing
+约定的派生交付；不新增可自由选择的 cycles、boundaries 或 differential。 -/
+structure PaperCycleCalculus {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    (H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C)) (X : C) : Prop where
+  first_cycles : ∀ p, PageRepresentatives.cycles H X 1 p = ⊤
+  first_boundaries : ∀ p, PageRepresentatives.boundaries H X 1 p = ⊥
+  represents : ∀ r, 2 ≤ r → ∀ p (x : PageRepresentatives.Ambient H X p),
+    PageRepresentatives.IsCycle H X (r - 1) p x ↔
+      ∃ xr : (adamsTowerInternalSpectralSequence H.unit X).Page r p,
+        RepresentsOnPage (adamsTowerInternalSpectralSequence H.unit X) r p x xr
+  degree : ∀ r p q (x : PageRepresentatives.Ambient H X p)
+    (y : PageRepresentatives.Ambient H X q),
+    PageRepresentatives.DifferentialAt H X r p q x y → p + (r, r - 1) = q
+  no_crossing_two : ∀ r, 2 ≤ r → ∀ p, PageRepresentatives.NoCrossingOn H X r 2 p
 
 /-- am3：同一内部谱序列态射的派生自然性。所有页面映射由 f 的环境映射
 诱导；不另选页面映射，也不把微分等式加强为非零结论。 -/

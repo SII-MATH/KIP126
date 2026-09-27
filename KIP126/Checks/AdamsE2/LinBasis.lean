@@ -2,7 +2,8 @@ import KIP126.Main.Axiom.LinProgram.E2
 import Lean.Elab.Command
 
 /-! Catalogue checks are executable regressions, not proofs of independence.
-All actual coordinate/basis theorems below retain the named certification debt. -/
+The basis certification is now supplied by the single Challenge1 stage
+witness. Its upstream Def/Solution construction remains a separate obligation. -/
 namespace KIP126.LinE2
 
 #eval show IO Unit from do
@@ -57,8 +58,12 @@ run_cmd do
     unless [``propext, ``Classical.choice, ``Quot.sound].contains a do
       throwError "homogeneous multiplication has proof debt: {a}"
   let basisAxs ← liftCoreM (collectAxioms ``KIP126.LinE2.dataBasis_val)
-  unless basisAxs.contains ``sorryAx do
-    throwError "update the audit: basis certification debt has changed"
+  for a in basisAxs do
+    unless [``propext, ``Classical.choice, ``Quot.sound,
+        ``KIP126.Interface.Axiom.challenge1].contains a do
+      throwError "unexpected basis certification dependency: {a}"
+  unless basisAxs.contains ``KIP126.Interface.Axiom.challenge1 do
+    throwError "missing disclosed Challenge1 basis certification dependency"
 
 #print axioms KIP126.LinE2.multiply_mem
 #print axioms KIP126.LinE2.dataBasis_val

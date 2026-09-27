@@ -127,8 +127,11 @@ a04/a06 的派生义务与 a07/a10/a11 的参数化接口也在本文件可查�
 - 前置缺口：尚未选定这些文献能力在抽象稳定背景中的准确消费接口。
   普通范畴的 presentability／lax monoidal 语言不能直接冒充原文的高阶相容性；
   需要说明所保留的结构及其足以支持哪些后续命题。
-  现有 `biShift_comp/zero/compat` 只给独立同构，尚未列出 action 的结合／单位
-  coherence 及 λ 与 shift/tensor 的相容律；它们不能由字段名称推断出来。
+  `Context/Coherence/Predicates.lean` 的 `BiShiftCoherence` 已明确现有
+  `biShift_comp/zero` 的结合／单位与 λ-shift 相容等式；在这些明确条件下，
+  `Coherence/Proofs.lean` 已证明既有 λ 幂的任意分解，不另选一套幂。
+  coherence 的实际见证、shift exactness 及 tensor 相容仍待交付，
+  不能仅凭 `biShift_comp/zero/compat` 字段的名称推断。
 - 定位：`Def/Synthetic/Context/Data.lean`；Blueprint `thm:external-synthetic-foundation`。
 
 ### a09 — S/λ 的 E∞ 结构与 λ 反演
@@ -181,8 +184,10 @@ a04/a06 的派生义务与 a07/a10/a11 的参数化接口也在本文件可查�
 - 前置缺口：尚无该 tower 的指定 coherent cone，也未定义
   所需 homotopy-limit 比较与 E-nilpotent-complete 条件。BHS Proposition A.13
   要求 X 的 E-nilpotent 完备性；不能对任意 X 无条件断言 νX 完备。
-  从 λ 幂递归定义得到自然性也不等于得到任意幂分解律；后者还依赖 a08 的
-  coherence 与 a01 所述 cofiber 映射恒等／复合律。
+  λ 幂的任意分解已在显式 `BiShiftCoherence` 下证明，
+  `QuotientRestrictions/` 已由同一 cofibMap 构造实际商限制映射及 inclusion、
+  boundary 方块。完整塔的恒等／复合律仍需 a01 的 cofiber 映射相容，
+  单条 restriction 的存在不等于 coherent tower 或其极限的存在。
 - 定位：Blueprint `thm:external-synthetic-lambda-complete`；Claims 中 BHS Proposition A.13。
 
 ### a13 — 纯稳定 Toda bracket 规律

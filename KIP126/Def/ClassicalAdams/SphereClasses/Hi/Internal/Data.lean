@@ -1,11 +1,10 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Data
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
 
 /-!
 # Standard `hᵢ` classes on the internal tower spectral sequence
 
-The existing quotient-page class is transported through the already constructed
-isomorphism from internal `SSData` pages to the same tower's actual quotients.
+The Milnor cocycle goes through the actual first-page homology quotient and
+the already constructed isomorphism to the same tower's internal `SSData` page.
 This does not introduce a comparison of independently chosen spectral sequences,
 and the Milnor input is the same one used to construct the representative.
 -/
@@ -26,15 +25,15 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 def hi (i : ℕ) :
     (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
       (1, ((2 ^ i : ℕ) : ℤ)) :=
-  (adamsTowerSSDataPageIso H.unit SphereSpectrum 1 ((2 ^ i : ℕ) : ℤ) 0).inv
-    (Sphere.hi H M i)
+  MilnorCohomology.internalClassOfCocycle H M (KIP126.Steenrod.Milnor.hiCochain i)
+    (KIP126.Steenrod.Milnor.hiCochain_isCycle i)
 
 /-- The actual Milnor concatenation square on the same internal second page. -/
 def hiSquare (i : ℕ) :
     (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
       (2, ((2 ^ (i + 1) : ℕ) : ℤ)) :=
-  (adamsTowerSSDataPageIso H.unit SphereSpectrum 2 ((2 ^ (i + 1) : ℕ) : ℤ) 0).inv
-    (Sphere.hiSquare H M i)
+  MilnorCohomology.internalClassOfCocycle H M (KIP126.Steenrod.Milnor.hiSquareCochain i)
+    (KIP126.Steenrod.Milnor.hiSquareCochain_isCycle i)
 
 end
 
