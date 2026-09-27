@@ -77,17 +77,17 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    relevant mathematical component's `Axiom.lean`, alongside its `Data.lean`,
    `Predicates.lean`, and `Proofs.lean` where those layers are needed. Each such
    statement must record its source, intended meaning, and reason for being
-   assumed, and must be audited individually together with its downstream
-   dependencies. Its presence is not evidence that the statement is proved.
+   assumed. At final proof-completion validation, audit each assumption
+   together with its downstream dependencies. Its presence is not evidence that the statement is proved.
    An unfinished theorem instead remains in `Proofs.lean` with `by sorry`;
    it must not be converted into an axiom merely to avoid `sorryAx`.
-   A development pull request may merge with `sorryAx` after the audit exposes
-   the debt and its downstream dependencies for human review; merging does not
-   claim that the affected theorem or the project is complete.
+   Development CI does not run proof-debt audits or publish debt reports, and
+   requires no debt-specific human approval for a compiling pull request.
+   Development merging does not claim that the affected theorem or the project
+   is complete; the final proof-completion checks below remain strict.
    Literature results and computational inputs remain explicit external
-   premises as specified below, not project axioms. Individual audit makes
-   development debt visible; it does not authorize retaining project axioms at
-   final acceptance. Every such axiom declaration must be replaced by a proof
+   premises as specified below, not project axioms. Development compilation
+   does not authorize retaining project axioms at final acceptance. Every such axiom declaration must be replaced by a proof
    or removed before the final proof-completion criteria below can be met.
 
 7. **Pinned toolchain.**
@@ -110,7 +110,7 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    parameter. Source hashes remain attached to the actual imported data.
    Adapter axioms live in component `Axiom.lean` files under `KIP126/Mathlib/`;
    internal/foundation axioms live under `KIP126/Def/`. Both are inventoried by
-   the compiled audit, and both remain final-acceptance debt.
+   the explicitly invoked completion audit, and both remain final-acceptance debt.
    This does not postulate h₆² survival: the computational Solution remains
    open, and the standard Solution reduces to it using the named comparisons.
    A proof body without `sorry` is not a claim that its dependency cone is
