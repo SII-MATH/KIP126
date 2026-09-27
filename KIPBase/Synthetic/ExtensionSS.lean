@@ -12,6 +12,7 @@
   the synthetic Adams convergence data needed to apply that construction.
 -/
 import KIPBase.Synthetic.Adams
+import KIPBase.Synthetic.QuotientTower
 import KIPBase.SpectralSequence.BoundedExtension
 
 namespace KIPBase.Synthetic
@@ -280,6 +281,58 @@ end SyntheticExtensionData
 multiplication by `λ^n : Σ^{0,-n}X ⟶ X`. -/
 abbrev LambdaExtensionData (X : Syn) (n : ℕ) :=
   SyntheticExtensionData (lambdaPow n X)
+
+/-! ### λ-Bockstein data
+
+The Blueprint treats the λ-extension spectral sequences as a compatible
+family, indexed by the power of λ.  The compatibility maps are supplied by
+the quotient tower; they are not consequences of choosing unrelated
+convergence witnesses. -/
+
+/-- Convergence data for all finite λ-powers of a fixed synthetic spectrum.
+The `tower` field supplies the ρ-maps and λ-ρ-δ triangles, while `essData`
+supplies the convergence witness for each λ-power extension. -/
+structure LambdaBocksteinData (X : Syn) where
+  tower : FiniteLambdaQuotientTower X
+  essData : ∀ n : ℕ, LambdaExtensionData X n
+
+/-- The λ-extension spectral sequence at a fixed stem and weight. -/
+noncomputable def lambdaESSAtWeight (X : Syn) (n : ℕ)
+    (data : LambdaExtensionData X n) (stem weight : ℤ) :
+    SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ) :=
+  data.ess (stem, weight)
+
+/-- The page differential of the λ-extension spectral sequence in fixed
+stem and weight.  Its internal degree is `(r,-1)`; after restoring the
+synthetic Adams coordinates this is `(r,r,0)`. -/
+noncomputable def lambdaESSDiffAtWeight (X : Syn) (n : ℕ)
+    (data : LambdaExtensionData X n) (stem weight r : ℤ) (k : ℤ × ℤ) :
+    (lambdaESSAtWeight X n data stem weight).Page r k ⟶
+      (lambdaESSAtWeight X n data stem weight).Page r
+        (k + (lambdaESSAtWeight X n data stem weight).diffDeg r) :=
+  data.extension.essDiff (stem, weight) r k
+
+@[simp] theorem lambdaESSAtWeight_diffDeg (X : Syn) (n : ℕ)
+    (data : LambdaExtensionData X n) (stem weight r : ℤ) :
+    (lambdaESSAtWeight X n data stem weight).diffDeg r = (r, -1) :=
+  data.ess_diffDeg (stem, weight) r
+
+/-! The following are the canonical source and target terms of the λ-ESS.
+They make the two-term extension interpretation explicit without asserting
+an E-page comparison with the classical Adams spectral sequence. -/
+
+noncomputable def lambdaESSSourceEInfty (X : Syn) (n : ℕ)
+    (data : LambdaExtensionData X n) (s stem weight : ℤ) : AddCommGrpCat.{0} :=
+  data.sourceEInfty s (stem, weight)
+
+noncomputable def lambdaESSTargetEInfty (X : Syn) (n : ℕ)
+    (data : LambdaExtensionData X n) (s stem weight : ℤ) : AddCommGrpCat.{0} :=
+  data.targetEInfty s (stem, weight)
+
+noncomputable def lambdaESSd0AtWeight (X : Syn) (n : ℕ)
+    (data : LambdaExtensionData X n) (s stem weight : ℤ) :
+    data.e0Source s (stem, weight) ⟶ data.e0Target s (stem, weight) :=
+  data.d0 s (stem, weight)
 
 /-- The synthetic `λ^n`-extension spectral sequence in bidegree
 `(stem, weight)`.  This is the first specialization of the general synthetic
