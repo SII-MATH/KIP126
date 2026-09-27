@@ -1,32 +1,14 @@
-# Challenge / Tools
+# Challenge / Tools：旧声明退休记录
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../README.md)；本次只迁移，未补证明或修改陈述。
+旧 `generalized_leibniz.lean`、`generalized_mahowald.lean` 与 `page_extension_stretch.lean` 已与 Solution 配对删除，并从阶段入口撤下。#133 发现 Leibniz 的次数条件使旧 `Input` 为空；#134 指出 Mahowald 的错误 crossing 分支；旧 stretching 只重述了不相关的 Leibniz 结论。删除依据是陈述错误，历史源码保留在 Git 中。
 
-## 1. 原先期望包含什么
+当前准确接口位于[根 Challenge2](../../../Challenge2.lean)：
 
-准确保留本阶段的目标陈述；证明正文固定为 `by sorry`，证明工作由同路径的 Solution 承担。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。
+- `GeneralizedLeibnizLaw` 使用实际 Adams 微分以及同一 normalized page family 的有限／无穷扩张与 crossing。
+- `GeneralizedMahowaldLaw` 使用同一实际 distinguished triangle 的三张映射，并通过[实际塔 suspension comparison](../../../Def/ClassicalAdams/Suspension/Data.lean)及其 raw-cycle 商代表元关系处理连接映射的悬移目标。
 
-## 2. 现在包含什么
+这些 law 是待交付命题，不是已证明的规则，也没有断言任意比较家族都满足它们。模型比较前置到位后再建立准确的 Challenge/Solution 配对目标。
 
-| 文件 | 已有对象或结论（选列） |
-| --- | --- |
-| [generalized_leibniz.lean](generalized_leibniz.lean) | `Degree`, `shift`, `targetDegree`, `Operations`, `Input` 等 7 个声明 |
-| [generalized_mahowald.lean](generalized_mahowald.lean) | `Operations`, `Input`, `generalized_mahowald` |
-| [page_extension_stretch.lean](page_extension_stretch.lean) | `Input`, `page_extension_stretch` |
+Stretching 尚需定义同一映射的实际代表元解族、限制映射与无穷相容条件，当前没有可链接的完整 Lean 声明。Blueprint 保留数学正文与 `notready`，不使用自由操作补位。
 
-## 3. 大概完成度
-
-**陈述轨已有 3 条 theorem/lemma 声明；配对迁移已完成。** 这里的 `sorry` 是陈述轨约定，不是这个目录要消除的证明义务。陈述是否准确、是否绑定正确对象须按领域审核；不能由占位正文推断数学进度。
-
-## 4. 接下来还需要完成什么
-
-- 核对现有目标的条件、次数及共享对象，并保持与 Solution 的完整类型一致。
-- 证明推进和未完成义务记录在同阶段 Solution；本目录继续保留陈述。
-
-## 5. 后续应该一步一步如何做
-
-1. 对照上面的声明及其直接 imports，确认本组件的数学条件和消费端，先处理已报告的陈述问题。
-2. 需要改公共定义或冻结陈述时交由整合者协调；同步目标、输入接口与对应证明，不单方扩大前提。
-3. 在对应 Solution 文件实现证明；本目录只同步目标陈述。
-4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
-5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
+整体阶段状态见[Interface](../../README.md)。

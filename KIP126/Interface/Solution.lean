@@ -15,13 +15,12 @@ import KIP126.Interface.Solution.LinProgram.SquareDetection.Parsing
 import KIP126.Interface.Solution.LinProgram.SquareDetection
 import KIP126.Interface.Solution.LinProgram.SquareDimension.Generators.Proofs
 import KIP126.Interface.Solution.LinProgram.SquareDimension.Proofs
-import KIP126.Interface.Solution.Tools.generalized_leibniz
-import KIP126.Interface.Solution.Tools.generalized_mahowald
-import KIP126.Interface.Solution.Tools.page_extension_stretch
 import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.InternalPages
 import KIP126.Interface.Solution.Cobar
 import KIP126.Interface.Solution.SyntheticEInfty
 import KIP126.Interface.Solution.PageExtensionAmbiguity
+import KIP126.Interface.Solution.PageExtensionKernel
+import KIP126.Interface.Solution.CanonicalPageExtension
 import KIP126.Interface.Solution.InternalNaturality
 import KIP126.Interface.Solution.LowDimensionalPermanence

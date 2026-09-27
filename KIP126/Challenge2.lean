@@ -13,6 +13,10 @@ import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
 import KIP126.Def.Synthetic.EInfty.Shift.Predicates
 import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Data
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Data
+import KIP126.Def.ClassicalAdams.Suspension.Predicates
+import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与完整待交付清单
@@ -98,22 +102,29 @@ import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
   未截断 crossing，同时要求较短扩张 essential 且不属于指定经典边界。
   `PageExtension/Ambiguity/` 从实际较短扩张目标生成 shorterImages，并在精确
   kernel 与 image 等式下证明 boundary 加 shorter-image 的完整陪集公式及
-  essential 判据；这两个模型比较义务集中于 `PageExtensionAmbiguityInterface`，
-  目前尚未构造其见证，不能把条件性公式写成无条件完成。
+  essential 判据；这些范围集中于 `PageExtensionAmbiguityInterface`。
+  现在已用实际 top-class 双射与同一 E∞/shift 比较构造规范目标比较，并证明其
+  kernel 恰为经典 boundaries；`PageExtensionTargetComparison` 精确记录原比较
+  与这些代表元的关系。规范目标版本的陪集公式只剩 shorter-image 比较输入。
+  全 weight presentation、实际映射相容与 shorter-image 见证仍待构造，
+  不能把条件性公式写成无条件完成。
   当前 ESS 构造要求逐次数滤过有界；“无限”只指未取有限 λ 商，不表示已处理
   任意无界 Adams 滤过。一般情形还须接入 `UnboundedExtension/` 及其收敛条件。
 
 - `am7` 内部版 generalized Leibniz、Mahowald 与 page stretch。
-  陈述：**待修正，不能把现有类型原样冻结入包**。#133 指出 Leibniz 的 `Input`
-  条件不可同时满足，#134 给出 Mahowald 陈述的反例；page stretch 受其上游影响。
-  实现：`Interface/Challenge/Tools/` 与 `Interface/Solution/Tools/` 有三对声明，
-  Solution 仍为 `sorry`；目前自由 `Operations` 未绑定内部 M，Main 尚未调用它们。
-  TODO：按论文 Theorem 6.1、6.12 和 stretching 修正次数、crossing 及真实输入，
-  绑定同一 extension/page/crossing 结构，再冻结签名并证明。
-  已补前置：`PageRepresentatives.DifferentialAt` 与 `NoCrossingOn` 使用实际
-  E₂ 标签、实际页面非零微分和论文的 crossing 范围。
-  尚缺：page extension 与同一 ν、δ、ρ、λ 的比较图；任意选定的一族页面
-  等价不足以推出这三条规则，不能仅修正算术后再次无条件断言。
+  陈述：本文件 `GeneralizedLeibnizLaw`、`GeneralizedMahowaldLaw` 已按论文
+  Theorem 6.1、6.12 写成实际内部微分、同一 normalized page extension、
+  crossing、三角与目标同余关系；修正了 Leibniz 的靶次数和 Mahowald 的第二
+  crossing 分支。两个 law 的证明与同一模型上的见证仍未构造。
+  `Def/ClassicalAdams/Suspension/` 将 Mahowald 的 h 靶连接到真实塔／层悬移
+  及 raw cycle 的商代表元；其比较图的存在、规范性和悬移实例尚待构造。
+  旧 `Interface/{Challenge,Solution}/Tools/` 的六个自由 Operations 声明已因
+  #133／#134 所指问题同步撤下，并移除入口导出及 Blueprint 的旧 Lean 引用；
+  Main 未消费它们。新 law 是准确待交付命题，尚无对应规则证明。
+  尚缺：δ 与同一 ν、ρ、λ 的 ESS 比较及 crossing 比较；任意 topweight
+  等价不足以推出这些 law。Stretching 还需真实代表元解族、restriction 的
+  first-obstruction 判据；无限版本保留 Blueprint 明列的 coherent tower／
+  torsor obstruction 条件，不能从各有限解非空直接推得相容无限解。
 
 - `am8` Moss：Toda/Massey 到内部页面检测。
   陈述：`../KIPBase/multiplicativeSS/Moss.lean` 已有 `MappingAdamsTower`、
@@ -127,11 +138,14 @@ import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
   已补前置：`Def/ClassicalAdams/Moss/{Mapping,Convergence,Detection,Crossing}/`
   绑定实际 ihom(X,Y) 的 Adams 塔、塔像滤过、共同 Z∞ 代表元及稳定映射检测；
   检测给出实际塔提升的定理已证明，无历史全局 axiom。
-  `Moss/Composition/` 已用实际内部复合构造各层复合并证明零层公式；
-  `TowerLongLayer/Pairing/Mixed/` 已提供三个不同谱的循环／页面配对下降及唯一性。
-  仍缺 mapping composition 的具体 first/long layer 配对、两侧塔过渡律、
-  Leibniz 与收敛复合相容，故完整 Massey 关系和 Moss 陈述尚未冻结。
-  右过渡的现有路线需 `UnitFiberInclusionCommutes` 或对应 connectivity 条件；
+  `Moss/Composition/` 已用实际内部复合构造各层及 first-layer 复合，证明零层、
+  层投影与两侧塔过渡公式；右过渡显式需要 `UnitFiberInclusionCommutes`。
+  `TowerLongLayer/Pairing/Mixed/` 已提供三个不同谱的循环／页面配对下降及唯一性，
+  长度一的实际复合配对已构造；它是第一商页，不能冒充内部 E₂。
+  长度二尚需把 actual longLayerCompositionBoundary 提升穿过下一塔过渡，
+  长度一般时也有精确的提升充要条件，但提升本身及两侧边界相容尚未构造。
+  Leibniz 与收敛复合相容仍缺，故完整 Massey 关系和 Moss 陈述尚未冻结。
+  右过渡的现有路线需上述条件或对应 connectivity 证明；
   braided successor 与 ordered successor 的边界也不能默认相同。
   ihom(X,Y) 的塔与对 Y 的塔取映射需比较，
   不能默认为相同；Moss 原文的全部条件仍待源文核定。
@@ -524,6 +538,159 @@ structure PageExtensionAmbiguityInterface (P : NormalizedPageFamily H N F f) : P
     W.ShorterImagesCompatible
 
 end PageExtensionAmbiguity
+
+section PageExtensionTargetComparison
+
+open StableHomotopy StableHomotopy.Cohomology Synthetic.Context Synthetic.SpectralSequence
+open Synthetic.PageExtension Classical.Adams.PageRepresentatives
+
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+  {Syn : Type w} [SyntheticCategory.{w, v} Syn]
+  [HasFunctorialCofiber (C := Syn)]
+  {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
+  {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
+
+/-- am6/am11：把同一 page-extension 家族已有的 top-weight 目标比较，
+绑定到全 weight E∞ presentation 的规范代表元。它只要求比较图交换，
+没有把待推出的 boundary kernel 等式放进输入。源比较、δ 和 shorter-image
+相容性仍是另行交付的义务。 -/
+structure PageExtensionTargetComparison
+    (P : NormalizedPageFamily H N F f) (R : SyntheticEInftyPresentation H N F)
+    (S : EInftyWeightShift F)
+    (T : ∀ X : C, FiniteLambdaQuotientTower (N.functor.obj X)) : Prop where
+  target_tower : P.targetTower = T Y
+  finite : ∀ (q k : ℕ) (hkq : k < q) (s t : ℤ)
+    (z : cycles H Y (q - k : ℕ) (s, t)),
+    R.finiteWindow Y (q - k) (by omega) (s, t) t (by constructor <;> simp <;> omega)
+        (S.lowerIso (XModLambdaN (N.functor.obj Y) (q - k)) k (s, t) t
+          (P.finiteTarget q k hkq s t z)) =
+      finiteTopClass H Y (q - k) (s, t) z
+  infinite : ∀ (k : ℕ) (s t : ℤ) (z : permanentCycles H Y (s, t)),
+    R.nuWindow Y (s, t) t le_rfl
+        (S.lowerIso (N.functor.obj Y) k (s, t) t (P.infiniteTarget k s t z)) =
+      permanentTopClass H Y (s, t) z
+
+namespace SyntheticEInftyPresentation
+
+/-- 用已给定的全 weight 比较、规范 top class 和 weight shift 直接构造
+有限目标比较；不选择新的 E₂ 标签或线性等价。 -/
+noncomputable def finiteCanonicalTarget (R : SyntheticEInftyPresentation H N F)
+    (S : EInftyWeightShift F) (Y : C) (q k : ℕ) (hkq : k < q) (p : ℤ × ℤ) :
+    cycles H Y (q - k : ℕ) p ≃ₗ[ℤ]
+      ((F.obj ((SyntheticCategory.biShift (0, -(k : ℤ))).obj
+        (XModLambdaN (N.functor.obj Y) (q - k)))).sequence.ssData
+          (p.1, p.2, p.2 - k)).eInfty :=
+  ((finiteTopEquiv H Y (q - k) p).trans
+    (R.finiteWindow Y (q - k) (by omega) p p.2
+      (by constructor <;> simp <;> omega)).symm).trans
+        (S.lowerIso (XModLambdaN (N.functor.obj Y) (q - k)) k p p.2).symm
+
+/-- 未截断目标比较使用同一个永久代表元的 top class。 -/
+noncomputable def infiniteCanonicalTarget (R : SyntheticEInftyPresentation H N F)
+    (S : EInftyWeightShift F) (Y : C) (k : ℕ) (p : ℤ × ℤ) :
+    permanentCycles H Y p ≃ₗ[ℤ]
+      ((F.obj ((SyntheticCategory.biShift (0, -(k : ℤ))).obj
+        (N.functor.obj Y))).sequence.ssData (p.1, p.2, p.2 - k)).eInfty :=
+  ((permanentTopEquiv H Y p).trans (R.nuWindow Y p p.2 le_rfl).symm).trans
+    (S.lowerIso (N.functor.obj Y) k p p.2).symm
+
+end SyntheticEInftyPresentation
+
+/-- 保留原 normalized map、ESS、源比较和实际商塔，只将目标比较装配为
+R 与 S 指定的规范比较。后续 witness 必须针对返回的同一家族重新使用，
+不能把旧家族中的 extension 关系默认为不变。 -/
+noncomputable def canonicalPageExtensionTargets (P : NormalizedPageFamily H N F f)
+    (R : SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F) :
+    NormalizedPageFamily H N F f :=
+  { P with
+    finiteTarget := fun q k hkq s t => R.finiteCanonicalTarget S Y q k hkq (s, t)
+    infiniteTarget := fun k s t => R.infiniteCanonicalTarget S Y k (s, t) }
+
+end PageExtensionTargetComparison
+
+section PageExtensionRules
+
+open StableHomotopy StableHomotopy.Cohomology Synthetic.Context Synthetic.SpectralSequence
+open Synthetic.PageExtension Classical.Adams.PageRepresentatives
+
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+  {Syn : Type w} [SyntheticCategory.{w, v} Syn]
+  [HasFunctorialCofiber (C := Syn)]
+  {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
+  {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
+
+/-- am7：MainPaper Theorem 6.1 (`thm:e73f481e`) 的准确交付命题。
+所有页面、微分、有限／无限 extension 和 crossing 均来自同一 H、P。
+末端次数是 (s+r+l,t+r+l-1)，l-extension 不额外减一次 t。
+本定义不是任意 NormalizedPageFamily 满足此 law 的定理；仍需模型比较及
+论文证明中的 δ／λ／ρ 相容性。不要求微分或 extension 非零。 -/
+def GeneralizedLeibnizLaw (P : NormalizedPageFamily H N F f) : Prop :=
+  ∀ (page : ℕ) (r m l s t : ℤ)
+    (x : Ambient H X (s, t)) (y : Ambient H Y (s + m, t + m))
+    (xInfinity : Ambient H X (s + r, t + r - 1))
+    (yInfinity : Ambient H Y (s + r + l, t + r - 1 + l)),
+    2 ≤ page → (page : ℤ) ≤ r →
+    (normalizedExponent H f : ℤ) ≤ m →
+    m ≤ (page : ℤ) - 2 + normalizedExponent H f →
+    (normalizedExponent H f : ℤ) ≤ l →
+    IsCycle H X (r - 1) (s, t) x →
+    IsCycle H Y (r - 1 - m + normalizedExponent H f) (s + m, t + m) y →
+    IsPermanent H X (s + r, t + r - 1) xInfinity →
+    IsPermanent H Y (s + r + l, t + r - 1 + l) yInfinity →
+    DifferentialAt H X r (s, t) (s + r, t + r - 1) x xInfinity →
+    FinitePageExtension P page m s t x y →
+    InfinitePageExtension P l (s + r) (t + r - 1) xInfinity yInfinity →
+    (NoCrossingOn H X r page (s, t) ∨
+      FinitePageExtension.NoCrossing P page m s t) →
+    InfinitePageExtension.NoCrossing P l (s + r) (t + r - 1) →
+    DifferentialAt H Y (r + l - m) (s + m, t + m)
+      (s + r + l, t + r - 1 + l) y yInfinity
+
+/-- am7：MainPaper Theorem 6.12 (`thm:158d451a`) 的实际三角版本。
+第二个 no-crossing 分支属于 Z 上的 d_r，在 E_r′ 页检查；不属于 g。
+h 的 target 位于 ΣX，其标签通过 S 的实际 tower/layer 图和 raw-cycle
+商代表元与 x 关联。S 的存在／规范性尚未构造，不能以任意 E₂ 等价代替。
+结论是存在同余于 y 的真实 f-extension target，模实际 B_r′；不是自由
+选取的 fTarget 操作。r′ 及结论页的正性由指数和与三个长度界保证。 -/
+def GeneralizedMahowaldLaw (T : HoCofiberSequence (C := C))
+    (Pf : NormalizedPageFamily H N F T.f)
+    (Pg : NormalizedPageFamily H N F T.g)
+    (Ph : NormalizedPageFamily H N F T.h)
+    (S : Classical.Adams.Suspension.TowerComparison H T.X) : Prop :=
+  (normalizedExponent H T.f : ℤ) + normalizedExponent H T.g +
+      normalizedExponent H T.h = 1 →
+  ∀ (n m l s t : ℤ),
+    let r := n + m + l
+    let n₁ := n - normalizedExponent H T.f
+    let m₁ := m - normalizedExponent H T.g
+    let l₁ := l - normalizedExponent H T.h
+    let r' := r - m₁
+    ∀ (x : Ambient H T.X (s + l, t + l - 1))
+      (y : Ambient H T.Y (s + l + n, t + l - 1 + n))
+      (xBar : Ambient H T.Z (s, t))
+      (yBar : Ambient H T.Z (s + l + n + m, t + l - 1 + n + m))
+      (suspendedX : Ambient H (T.X⟦(1 : ℤ)⟧) (s + l, t + l)),
+      1 ≤ n₁ → 0 ≤ m₁ → 0 ≤ l₁ →
+      IsCycle H T.X n₁ (s + l, t + l - 1) x →
+      IsCycle H T.Y (m₁ + 1) (s + l + n, t + l - 1 + n) y →
+      IsCycle H T.Z (r - 1) (s, t) xBar →
+      IsPermanent H T.Z (s + l + n + m, t + l - 1 + n + m) yBar →
+      S.DesuspendsClass (s + l) (t + l) suspendedX x →
+      FinitePageExtension Ph r'.toNat l s t xBar suspendedX →
+      DifferentialAt H T.Z r (s, t)
+        (s + l + n + m, t + l - 1 + n + m) xBar yBar →
+      (FinitePageExtension.NoCrossing Ph r'.toNat l s t ∨
+        NoCrossingOn H T.Z r r' (s, t)) →
+      FinitePageExtension Pg (m₁ + 2).toNat m (s + l + n) (t + l - 1 + n) y yBar →
+      IsCycle H T.X (n + m + normalizedExponent H T.h) (s + l, t + l - 1) x ∧
+        ∃ y' : Ambient H T.Y (s + l + n, t + l - 1 + n),
+          FinitePageExtension Pf (n + m + 1 + normalizedExponent H T.h).toNat
+            n (s + l) (t + l - 1) x y' ∧
+          Congruent H T.Y r' (s + l + n, t + l - 1 + n) y' y
+
+end PageExtensionRules
 
 /-- am9 的规范 E₂ 比较义务：每个 cocycle 都必须映到同一 Adams 塔中的
 实际类。这个公式排除只给出任意线性等价的接口；不声称已定义导出 Ext。 -/

@@ -49,7 +49,10 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 实现：整包构造仍为 `sorry`；新增字段没有构造固定基础的见证。
 - 依赖：按 PROJECT_BOUNDARY 的已确认方案使用抽象稳定同伦背景；所有
   后续边界公式都使用本包选择的同一 tensor/suspension 数据。
-- 待完善：`HasFunctorialCofiber` 的交换方块提升尚未显式要求恒等与复合律。
+- 待完善：最小 `HasFunctorialCofiber` 只提供两条交换方块，不含恒等／复合律。
+  `Context/CofiberCoherence/` 已精确定义这些额外等式并给出条件性后果，
+  尚未交付其模型见证；普通范畴所有交换方块的全局相容不能从高阶背景直接略去证明，
+  此强充分条件不加入既有 FoundationInput 总包。
 - 审核修正：不将旧 `ClosedSymmetricTensorTriangulated` 的“对任意 CommShift
   都精确”条件带入总包；精确性只相对于本包明确选择的悬移比较。
 - 定位：`Def/StableHomotopy/Context/Data.lean`；Blueprint `def:stable-context`。
@@ -197,8 +200,10 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
   要求 X 的 E-nilpotent 完备性；不能对任意 X 无条件断言 νX 完备。
   λ 幂的任意分解已在显式 `BiShiftCoherence` 下证明，
   `QuotientRestrictions/` 已由同一 cofibMap 构造实际商限制映射及 inclusion、
-  boundary 方块。完整塔的恒等／复合律仍需 a01 的 cofiber 映射相容，
-  单条 restriction 的存在不等于 coherent tower 或其极限的存在。
+  boundary 方块。在显式 `FunctorialCofiberCoherence` 下，商映射函子律、
+  restriction 恒等／复合／自然性已证明，`QuotientFunctor/` 构造实际商函子和
+  restriction 自然变换。该充分条件在实际模型中的见证仍待审核与构造；
+  完整三角塔还需 shift exactness、八面体和已选择商图的相容，极限也尚未构造。
 - 定位：Blueprint `thm:external-synthetic-lambda-complete`；Claims 中 BHS Proposition A.13。
 
 ### a13 — 纯稳定 Toda bracket 规律

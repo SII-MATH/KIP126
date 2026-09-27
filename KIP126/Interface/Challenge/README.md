@@ -1,6 +1,6 @@
 # Challenge
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../README.md)；本次只迁移，未补证明或修改陈述。
+本页记录本阶段的目标陈述。数学范围参见[所属阶段](../README.md)；旧 Tools 的错误声明已同步退休，准确 AM7 law 位于根 Challenge2。
 
 ## 1. 原先期望包含什么
 
@@ -11,18 +11,17 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Challenge2.lean](Challenge2.lean) | `Nonempty KIP126.Challenge2`，即本阶段向 Main 交付的完整包 |
-| [Tools/generalized_leibniz.lean](Tools/generalized_leibniz.lean) | `Degree`, `shift`, `targetDegree`, `Operations`, `Input` 等 7 个声明 |
-| [Tools/generalized_mahowald.lean](Tools/generalized_mahowald.lean) | `Operations`, `Input`, `generalized_mahowald` |
-| [Tools/page_extension_stretch.lean](Tools/page_extension_stretch.lean) | `Input`, `page_extension_stretch` |
+| [根 Challenge2.lean](../../Challenge2.lean) | `GeneralizedLeibnizLaw`、`GeneralizedMahowaldLaw` 的实际模型陈述；尚未构造 law 见证 |
 
 ## 3. 大概完成度
 
-**陈述轨已有 4 条主要 theorem 声明；配对文件均存在。** 这里的 `sorry` 是陈述轨约定，不是这个目录要消除的证明义务。陈述是否准确、是否绑定正确对象须按领域审核；不能由占位正文推断数学进度。
+本目录的阶段包目标与已有派生接口保留 Challenge/Solution 配对。旧三条 Tools theorem 因陈述错误而退休，不能继续计作当前接口；两个准确 law 只是精确待交付命题。这里保留的 `sorry` 是陈述轨约定，不能由占位正文推断数学进度。
 
 ## 4. 接下来还需要完成什么
 
 - 核对现有目标的条件、次数及共享对象，并保持与 Solution 的完整类型一致。
 - 证明推进和未完成义务记录在同阶段 Solution；本目录继续保留陈述。
+- AM7 待模型比较条件到位后建立准确配对目标；stretching 还须定义同一家族的实际解族、限制映射及无穷相容条件。
 
 ## 5. 后续应该一步一步如何做
 

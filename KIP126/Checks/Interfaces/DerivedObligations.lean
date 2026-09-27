@@ -17,6 +17,12 @@ import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
 import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
+import KIP126.Interface.Solution.CanonicalPageExtension
+import KIP126.Def.Synthetic.QuotientFunctor.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.One.Proofs
 import Lean.Elab.Command
 
 /-! These particular generic obligations are proved from explicit mathematical
@@ -48,6 +54,29 @@ run_cmd do
       ``KIP126.Interface.Solution.finitePageExtensionEssential,
       ``KIP126.Interface.Solution.infinitePageExtensionTargetCoset,
       ``KIP126.Interface.Solution.infinitePageExtensionEssential,
+      ``KIP126.Interface.Solution.finiteLambdaTarget_eq_zero_iff,
+      ``KIP126.Interface.Solution.infiniteLambdaTarget_eq_zero_iff,
+      ``KIP126.Interface.Solution.finitePageExtensionBoundaryKernel,
+      ``KIP126.Interface.Solution.infinitePageExtensionBoundaryKernel,
+      ``KIP126.Interface.Solution.canonicalPageExtensionTargets_comparison,
+      ``KIP126.Interface.Solution.canonicalFinitePageExtensionBoundaryKernel,
+      ``KIP126.Interface.Solution.canonicalInfinitePageExtensionBoundaryKernel,
+      ``KIP126.Interface.Solution.canonicalFinitePageExtensionTargetCoset,
+      ``KIP126.Interface.Solution.canonicalInfinitePageExtensionTargetCoset,
+      ``KIP126.Classical.Adams.PageRepresentatives.finiteTopEquiv,
+      ``KIP126.Classical.Adams.PageRepresentatives.permanentTopEquiv,
+      ``KIP126.Classical.Adams.Moss.layerComposition_ι,
+      ``KIP126.Classical.Adams.Moss.stageComposition_step_left,
+      ``KIP126.Classical.Adams.Moss.stageComposition_step_right,
+      ``KIP126.Classical.Adams.Moss.longLayerComposition_exists_iff_boundaryLift,
+      ``KIP126.Classical.Adams.Moss.firstQuotientPairing_exists,
+      ``KIP126.Synthetic.Context.XModLambdaN.map_id,
+      ``KIP126.Synthetic.Context.XModLambdaN.map_comp,
+      ``KIP126.Synthetic.Context.XModLambdaN.restriction_self,
+      ``KIP126.Synthetic.Context.XModLambdaN.restriction_comp,
+      ``KIP126.Synthetic.Context.XModLambdaN.restriction_naturality,
+      ``KIP126.Synthetic.Context.XModLambdaN.functor,
+      ``KIP126.Synthetic.Context.XModLambdaN.restrictionNatTrans_comp,
       ``KIP126.Classical.Adams.PageRepresentatives.cycles_antitone,
       ``KIP126.Classical.Adams.PageRepresentatives.boundaries_le_permanentCycles,
       ``KIP126.Classical.Adams.PageRepresentatives.quotientMap_boundary_surjective,

@@ -1,6 +1,6 @@
 # Solution
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../README.md)；本次只迁移，未补证明或修改陈述。
+本页记录本阶段的证明状态。数学范围参见[所属阶段](../README.md)；旧 Tools 的错误声明已同步退休，不能再按“只差证明”列为当前目标。
 
 ## 1. 原先期望包含什么
 
@@ -28,23 +28,18 @@
 | [LinProgram/SquareDetection/Parsing.lean](LinProgram/SquareDetection/Parsing.lean) | `splitOnAux_singleton`, `splitOn_singleton_eq_list`, `splitOn_comma`, `splitOn_semicolon`, `splitOn_newline` |
 | [LinProgram/SquareDimension/Generators/Proofs.lean](LinProgram/SquareDimension/Generators/Proofs.lean) | `generatorDegree_eq_row`, `generatorDegree_low_filtration` |
 | [LinProgram/SquareDimension/Proofs.lean](LinProgram/SquareDimension/Proofs.lean) | `squareDegree_support`, `monomialDegree_square_unique`, `homogeneousPart_square_eq_span`, `E2At_square_eq_zero_or` |
-| [Tools/generalized_leibniz.lean](Tools/generalized_leibniz.lean) | `Degree`, `shift`, `targetDegree`, `Operations`, `Input` 等 7 个声明 |
-| [Tools/generalized_mahowald.lean](Tools/generalized_mahowald.lean) | `Operations`, `Input`, `generalized_mahowald` |
-| [Tools/page_extension_stretch.lean](Tools/page_extension_stretch.lean) | `Input`, `page_extension_stretch` |
+| [根 Challenge2.lean](../../Challenge2.lean) | `GeneralizedLeibnizLaw`、`GeneralizedMahowaldLaw` 的准确类型；对应规则证明尚未完成 |
 
 ## 3. 大概完成度
 
-**现有实现保留原有 Lin 与 Tools 内容，并新增 Challenge 2 的统一交付 theorem。** 该 theorem 及原有 4 个声明正文仍有 `sorry`/`admit`，处于实现中；文件或声明数量不作为数学完成度。
-
-导入闭包有 4 个模块含显式占位正文（这是模块文本盘点，不是 Lean 声明级公理审计）。
+现有 Lin 与已证明的派生接口继续保留；Challenge 2 的完整构造与 `basisTable_correct` 仍待完成。旧三个 Tools 文件因陈述错误而删除，没有将“输入整个 law 后应用它”计作规则证明。根 Challenge2 的两个实际 law 仍需从模型相容图及相应数学结果证明。
 
 未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
 
 ## 4. 接下来还需要完成什么
 
-- [generalized_mahowald](Tools/generalized_mahowald.lean#L84)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
-- [generalized_leibniz](Tools/generalized_leibniz.lean#L92)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
-- [page_extension_stretch](Tools/page_extension_stretch.lean#L12)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
+- 从真实模型的比较图证明 `GeneralizedLeibnizLaw` 和 `GeneralizedMahowaldLaw`；后者还需构造塔 suspension comparison。
+- 构造 stretching 的实际代表元解族、限制映射及相容极限前置，再与 Challenge 同步建立准确目标。
 - [basisTable_correct](LinProgram/BasisTable.lean#L11)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
 
 ## 5. 后续应该一步一步如何做

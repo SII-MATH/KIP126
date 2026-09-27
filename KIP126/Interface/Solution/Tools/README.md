@@ -1,37 +1,9 @@
-# Solution / Tools
+# Solution / Tools：旧声明退休记录
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../README.md)；本次只迁移，未补证明或修改陈述。
+旧三个 Tools 文件已与 Challenge 配对删除，阶段入口不再导出这些错误声明；退休原因与范围见[Challenge 记录](../../Challenge/Tools/README.md)。没有将已有 Solution 的存在当作删除目标的理由，也没有以“把完整 law 作为假设再返回其结论”替代规则证明。
 
-## 1. 原先期望包含什么
+准确待证命题位于[根 Challenge2](../../../Challenge2.lean)：`GeneralizedLeibnizLaw` 与 `GeneralizedMahowaldLaw` 已绑定实际页面、微分、extensions 和 crossing。仍需从同一模型的 ν、δ、ρ、λ 相容图及相应数学结果构造 law 的证明；Mahowald 还需要实际塔 suspension comparison 的构造与规范性。
 
-完成本组件已有目标的证明，并清楚区分已用假设、辅助定义和仍待验证的结论。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。
+Stretching 的实际代表元解族、限制映射、有限 lifting obstruction 及无穷相容条件尚未全部构造。待这些前置到位后，再与 Challenge 同步建立准确接口并证明；现在不能发布不足条件的 theorem。
 
-## 2. 现在包含什么
-
-| 文件 | 已有对象或结论（选列） |
-| --- | --- |
-| [generalized_leibniz.lean](generalized_leibniz.lean) | `Degree`, `shift`, `targetDegree`, `Operations`, `Input` 等 7 个声明 |
-| [generalized_mahowald.lean](generalized_mahowald.lean) | `Operations`, `Input`, `generalized_mahowald` |
-| [page_extension_stretch.lean](page_extension_stretch.lean) | `Input`, `page_extension_stretch` |
-
-## 3. 大概完成度
-
-**现有内容：3 个 Lean 文件、约 12 个显式声明，其中 3 条 theorem/lemma。** 本组件 3 个声明正文仍有 `sorry`/`admit`，处于实现中。
-
-导入闭包有 3 个模块含显式占位正文（这是模块文本盘点，不是 Lean 声明级公理审计）。
-
-未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
-
-## 4. 接下来还需要完成什么
-
-- [generalized_mahowald](generalized_mahowald.lean#L84)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
-- [generalized_leibniz](generalized_leibniz.lean#L92)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
-- [page_extension_stretch](page_extension_stretch.lean#L12)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
-
-## 5. 后续应该一步一步如何做
-
-1. 对照上面的声明及其直接 imports，确认本组件的数学条件和消费端，先处理已报告的陈述问题。
-2. 需要改公共定义或冻结陈述时交由整合者协调；同步目标、输入接口与对应证明，不单方扩大前提。
-3. 按依赖顺序处理已列出的未完成内容；复用已有证明，保持数据、条件和结果职责清楚。
-4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
-5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
+这些剩余工作不影响已证明的页面、cobar 或条件性 kernel/coset 结果；具体进度见[Interface](../../README.md)与根 Challenge2 清单。

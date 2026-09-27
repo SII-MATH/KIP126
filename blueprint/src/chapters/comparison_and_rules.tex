@@ -878,9 +878,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{theorem}[Generalized Leibniz rule]
   \label{thm:generalized-leibniz}
   \uses{prop:delta-ess-formula-infinite,thm:delta-classical-equivalence,prop:classical-crossing-iff-delta-crossing,def:page-extension,prop:page-crossing-iff-synthetic-crossing,cor:fess-square-naturality}
-  \lean{KIP126.Challenge.Tools.Thm6_1Leibniz.Operations}
-  \lean{KIP126.Challenge.Tools.Thm6_1Leibniz.Input}
-  \lean{KIP126.Challenge.Tools.Thm6_1Leibniz.generalized_leibniz}
+  \lean{KIP126.Challenge2.GeneralizedLeibnizLaw}
   \notready
   Let $f:X\to Y$, $2\le n\le r$,
   $e(f)\le m\le n-2+e(f)$, and $l\ge e(f)$.  Suppose
@@ -902,6 +900,9 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
     \item the third page extension has no crossing.
   \end{enumerate}
   Then $d_{r+l-m}(y)=y_\infty$.
+  The linked Lean declaration specifies this law for a fixed actual
+  normalized page family; its validity is still a delivery obligation.
+  It does not assert that arbitrary comparison isomorphisms satisfy the law.
 \end{theorem}
 
 \begin{proof}
@@ -983,8 +984,6 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{definition}[Generalized Mahowald input package]
   \label{def:mahowald-input-data}
   \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing}
-  \lean{KIP126.Challenge.Tools.Thm6_12Mahowald.Operations}
-  \lean{KIP126.Challenge.Tools.Thm6_12Mahowald.Input}
   \notready
   A Mahowald input package consists of a distinguished triangle
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
@@ -1007,6 +1006,28 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   $d_m^{g,E_{m_1+2}}(y)=\bar y$, and a proof that either the first page
   extension has no crossing or the classical differential has no crossing on
   $E_{r'}$.
+  In the Lean statement these are arguments of
+  \texttt{KIP126.Challenge2.GeneralizedMahowaldLaw}, not freely chosen page
+  operations. The target of the $h$-extension is an actual $E_2(\Sigma X)$
+  label; the following comparison relates it to the displayed $X$ label.
+\end{definition}
+
+\begin{definition}[Actual tower suspension comparison]
+  \label{def:mahowald-tower-suspension-comparison}
+  \uses{def:hf2-adams-tower,def:ss-elementwise-page-presentation}
+  \lean{KIP126.Classical.Adams.Suspension.TowerComparison}
+  \lean{KIP126.Classical.Adams.Suspension.TowerComparison.DesuspendsClass}
+  \notready
+  A suspension comparison identifies every term of the actual Adams tower
+  of $\Sigma X$ with the suspension of the corresponding term for $X$,
+  is the identity at stage zero, and commutes with all tower maps. Its
+  layer isomorphisms commute with the actual cofiber inclusions and with
+  the connecting maps, including the suspension sign. Two $E_2$ labels
+  are related when they have raw second-cycle representatives whose
+  actual first-page maps agree after this desuspension and whose quotient
+  classes are the specified labels. Existence and independence of this
+  comparison have not been constructed; an arbitrary $E_2$ equivalence
+  is not a substitute for these diagrams.
 \end{definition}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1780-1917, representative choices in the proof of Theorem thm:158d451a.
@@ -1133,8 +1154,8 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1780-1917, Theorem thm:158d451a.
 \begin{theorem}[Generalized Mahowald trick]
   \label{thm:generalized-mahowald}
-  \uses{def:mahowald-input-data,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
-  \lean{KIP126.Challenge.Tools.Thm6_12Mahowald.generalized_mahowald}
+  \uses{def:mahowald-input-data,def:mahowald-tower-suspension-comparison,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
+  \lean{KIP126.Challenge2.GeneralizedMahowaldLaw}
   \notready
   Let
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ be distinguished
@@ -1162,6 +1183,10 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
     d_n^{f,E_{n+m+1+e(h)}}(x)
        \equiv y\quad\text{modulo }B_{r'}.
   \]
+  The linked Lean declaration is the parameterized law, using one actual
+  distinguished triangle, its three normalized page families, and the
+  tower suspension comparison above. A proof of this law remains to be
+  supplied; defining the predicate is not a proof of the theorem.
 \end{theorem}
 
 \begin{proof}
@@ -1381,8 +1406,6 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % inverse-limit obstruction hypothesis is a project correction for r=infinity.
 \begin{corollary}[Page-extension stretching]
   \label{cor:page-extension-stretch}
-  \lean{KIP126.Challenge.Tools.PagePropagation.Input}
-  \lean{KIP126.Challenge.Tools.PagePropagation.page_extension_stretch}
   \uses{prop:page-extension-loss-certificate,lem:page-extension-first-obstruction,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
   \notready
   Let $r'\le r\le\infty$, suppose
@@ -1402,6 +1425,10 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   solution tower, to prove every restriction on solution fibers surjective, or
   to verify the Mittag--Leffler condition of
   Lemma~\ref{lem:synthetic-ess-coherent-tower-limit}.
+  No accurate canonical Lean declaration is linked yet: the actual
+  representative-solution fibers, their restriction maps, and the
+  coherent-limit obstruction must first be bound to the same page family.
+  The retired free-operations statement did not express this conclusion.
 \end{corollary}
 
 \begin{proof}
