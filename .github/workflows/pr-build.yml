@@ -466,6 +466,24 @@ jobs:
             echo "BUILD_ATTESTATION=$attestation"
           } >> "$GITHUB_ENV"
 
+      - name: Reuse completed PR validation for an identical queue tree
+        id: queue-reuse
+        if: ${{ env.INFRA != '1' && github.event_name == 'merge_group' && env.BUILD_ATTESTATION != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          QUEUE_HEAD_REF: ${{ github.event.merge_group.head_ref }}
+          CACHE_PLATFORM: ${{ runner.os }}-${{ runner.arch }}
+        run: |
+          set -euo pipefail
+          # Identity must describe what the trusted overlay would actually compile.
+          # Changed root configuration, unsupported files or symlinks fall back to the build.
+          for path in KIP126 KIP126.lean KIPBase KIPBase.lean lakefile.lean lake-manifest.json lean-toolchain; do
+            if [[ ! -e "base/$path" && ! -L "base/$path" && ! -e "pr/$path" && ! -L "pr/$path" ]]; then continue; fi
+            if [[ -L "pr/$path" ]] || [[ -n "$(find "pr/$path" -type l -print -quit 2>/dev/null)" ]]; then exit 0; fi
+            if ! diff -qr -- "base/$path" "pr/$path"; then exit 0; fi
+          done
+          python3 gate/scripts/ci_queue_reuse.py
+
       - name: Reuse a trusted equivalent first-parent build
         id: inherit-build
         if: ${{ env.INFRA != '1' && github.event_name != 'merge_group' && env.BUILD_ATTESTATION != '' }}
@@ -573,6 +591,17 @@ jobs:
       # bump-guard proved is a *forward commit on Mathlib's own master* (same repo, never a fork),
       # so the code run here is still trusted Mathlib master under the project's "track master"
       # policy; only the PR's KIP126/ code stays untrusted and runs solely under landrun below.
+      - name: Restore pinned Lean and Mathlib environment
+        id: dependency-cache
+        continue-on-error: true
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: |
+            ~/.elan/toolchains
+            base/.lake/packages
+          key: kip126-pr-deps-v1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('base/lean-toolchain', 'base/lake-manifest.json', 'base/lakefile.lean') }}
+
       - name: Fetch Mathlib with the (bump-validated) config (network, no token; no PR code)
         if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         # `set -o pipefail` is not optional here. A `run:` step with no explicit `shell:`
@@ -583,7 +612,11 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          ( cd base && lake exe cache get ) 2>&1 | tee "$GITHUB_WORKSPACE/cache-get.log"
+          if [[ '${{ steps.dependency-cache.outcome == 'success' && steps.dependency-cache.outputs.cache-hit == 'true' }}' == true ]]; then
+            echo 'No files to download (exact pinned dependency environment restored)' | tee "$GITHUB_WORKSPACE/cache-get.log"
+          else
+            ( cd base && lake exe cache get ) 2>&1 | tee "$GITHUB_WORKSPACE/cache-get.log"
+          fi
           mkdir -p base/.lake/tmp
 
       # Backstop to bump-guard's step 2b, measuring the thing itself rather than a proxy.
@@ -613,6 +646,27 @@ jobs:
             exit 1
           fi
           echo "Mathlib cache is complete at the bump target."
+
+      - name: Check dependency environment is complete before publication
+        id: dependency-complete
+        if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && steps.dependency-cache.outputs.cache-hit != 'true' }}
+        run: |
+          if [[ -s cache-get.log ]] && ! grep -qF 'some files were not found in the cache' cache-get.log; then
+            echo 'complete=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      # Save BEFORE candidate Lean executes. The sandbox can write .lake/packages;
+      # saving after compilation would let candidate code poison shared dependencies.
+      # Queue refs consume main's cache but never duplicate it into transient scopes.
+      - name: Save trusted dependency environment before candidate execution
+        if: ${{ steps.dependency-complete.outputs.complete == 'true' && github.event_name != 'merge_group' }}
+        continue-on-error: true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: |
+            ~/.elan/toolchains
+            base/.lake/packages
+          key: ${{ steps.dependency-cache.outputs.cache-primary-key }}
 
       # Restore compilation produced on trusted main, preferring the exact base
       # inputs and falling back to its latest incremental baseline.
