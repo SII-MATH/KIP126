@@ -62,10 +62,55 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 
 \section{Moss convergence adapter}
 
+\begin{proposition}[Actual long-layer composition obstruction]
+  \label{prop:moss-long-layer-composition-obstruction}
+  \uses{def:hf2-adams-tower,def:h6-tower-long-layer,thm:stable-homotopy-long-exact}
+  \lean{KIP126.Classical.Adams.Moss.longLayerProjectedComposition_ι,KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_ι,KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_rightTower_factors,KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_leftTower_factors,KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction,KIP126.Classical.Adams.Moss.longLayerTwoComposition_exists_iff_obstruction_eq_zero,KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction_ι}
+  \leanok
+  Use the actual Adams towers of the three mapping objects, the specified
+  coefficient multiplication, and the selected triangulated left and right
+  tensor functors with their suspension comparisons.  For any length
+  $r\ge1$ and nonnegative tower levels $s,t$,
+  The fixed projected long-layer composition agrees on two tower images
+  with stage composition followed by the output layer inclusion.  Its
+  connecting map therefore vanishes on those two tower images.
+  With either input restricted to its tower, exactness factors this boundary
+  through the other input's actual long-cofiber connecting map, retaining
+  the tensor suspension comparison.
+
+  At length two, write $B$ for the fixed composition boundary and put
+  $O=(\Sigma\iota_{s+t+1})\circ B$, where $\iota_{s+t+1}$ is the actual
+  next tower-to-layer map.  A projection-compatible length-two composition
+  exists if and only if $O=0$.  The obstruction vanishes on two tower
+  images.  Global vanishing of $O$ remains a separate obligation: its
+  vanishing on two tower images does not suffice.
+  Nor do the two restricted factorizations supply a full two-term boundary
+  formula or the pagewise Leibniz and convergence compatibility needed by Moss.
+\end{proposition}
+\begin{proof}
+  \leanok
+  The coefficient-unit identity and the actual layer projection identify
+  the composite on the two tower images with stage composition followed by
+  the output inclusion.  Consecutive maps in its cofiber triangle compose
+  to zero, giving the restricted boundary vanishing.  Tensor the left
+  long-cofiber triangle with the right tower and apply Yoneda exactness to
+  factor the boundary restricted on the right.  Apply the same argument
+  to the right long-cofiber triangle tensored with the left tower for the
+  other factorization; keep both selected suspension comparisons.
+
+  Exactness for the output long-cofiber triangle first expresses a
+  projection-compatible composition as a lift of its fixed boundary.
+  At length two, apply exactness to the shifted next-layer triangle:
+  such a lift exists precisely when composition with the shifted inclusion
+  vanishes.  This composite is $O$; the shift signs are absorbed by negating
+  the chosen lift.  Its vanishing on two tower images follows by composing
+  the already proved restricted boundary equality with that same inclusion.
+\end{proof}
+
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2387-2477; external Moss convergence theorem is required.
 \begin{theorem}[Moss convergence adapter]
   \label{thm:moss-convergence-adapter}
-  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result}
+  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result,prop:moss-long-layer-composition-obstruction}
   \notready
   Given an explicit external result supplying the relevant Moss convergence
   theorem and hypotheses excluding crossings and indeterminacy, a Massey
@@ -1247,12 +1292,39 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   length-$n$ differential to its earlier-page version.
 \end{proof}
 
+\begin{lemma}[Cokernel criterion for a specified strict solution lift]
+  \label{lem:strict-solution-cokernel-obstruction}
+  \uses{def:strict-ess-representative-fiber,def:filtered-chain-map}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.liftingMap,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.LiftingObstruction,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.obstruction,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.obstruction_eq_zero_iff}
+  \leanok
+  Let $f:C\to D$ be a filtered chain map, $R_C,R_D$ the actual groups
+  of representative pairs, and $E_C$ the equation group of
+  Definition~\ref{def:strict-ess-representative-fiber}.
+  With $\rho_R:R_C\to R_D$ the induced representative map, set
+  \[
+    L(z)=(\Phi_C(z),\rho_R(z)),\qquad
+    \operatorname{Ob}(f)=\operatorname{coker}\bigl(L:R_C\to E_C\times R_D\bigr).
+  \]
+  For a specified earlier solution $a$ with the images of labels $(x,y)$,
+  its obstruction is the class of $((x,y,0),a)$.  That class is zero
+  exactly when there is a strict solution $b$ with labels $(x,y)$ and
+  $\rho_R(b)=a$.  No nonemptiness of the later fiber is assumed.
+  This criterion concerns that particular representative pair $a$; it is
+  not yet the paper's first-obstruction tuple or a no-crossing criterion.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Zero in the cokernel means that $((x,y,0),a)$ lies in the image of $L$.
+  Its two coordinates are exactly the later equation and the prescribed
+  restriction.  Conversely, any such solution supplies the required preimage.
+\end{proof}
+
 % PROOF-SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1981-2068, proof of Proposition
 % prop:dec738d3; project exact-obstruction reformulation of the representative
 % lifting calculation needed for the later-page converse.
 \begin{lemma}[Exact obstruction for finite page-extension restriction]
   \label{lem:page-extension-restriction-exact-obstruction}
-  \uses{def:page-extension,def:page-extension-coset,def:page-extension-crossing,def:synthetic-ess-solution-tower,prop:lambda-quotient-restriction-coherence,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:fextension-inessential-iff-higher}
+  \uses{def:page-extension,def:page-extension-coset,def:page-extension-crossing,def:synthetic-ess-solution-tower,lem:strict-solution-cokernel-obstruction,prop:lambda-quotient-restriction-coherence,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:fextension-inessential-iff-higher}
   \notready
   Let $2\le r'<r<\infty$, let
   $e(f)\le n\le r'-2+e(f)$, and suppose
@@ -1262,7 +1334,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   \]
   Write $\operatorname{Sol}_{r}^{n}(x,y)$ and
   $\operatorname{Sol}_{r'}^{n}(x,y)$ for the representative solution fibers
-  of Definition~\ref{def:synthetic-ess-solution-tower} for
+  of Proposition~\ref{prop:strict-ess-fiber-page-relation} for
   $\widehat f_{r-1}$ and $\widehat f_{r'-1}$.  Reduction defines a restriction
   map and a pointed obstruction sequence
   \[
@@ -1299,6 +1371,13 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   such tuple exists, $\rho_*$ is surjective.  This is a statement about lifting
   representative solutions, not merely naturality of their page-level
   differentials.
+
+  The canonical Lean development currently provides the strict-fiber
+  cokernel criterion of Lemma~\ref{lem:strict-solution-cokernel-obstruction}
+  and the actual $\rho$ restriction interfaces.  Identifying that cokernel
+  calculation with the complete target-coset presentation here, and producing
+  the displayed nonzero-obstruction tuple, remain unproved.  The generic
+  zero criterion alone does not establish this lemma.
 \end{lemma}
 
 \begin{proof}
@@ -1425,9 +1504,14 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   solution tower, to prove every restriction on solution fibers surjective, or
   to verify the Mittag--Leffler condition of
   Lemma~\ref{lem:synthetic-ess-coherent-tower-limit}.
-  No accurate canonical Lean declaration is linked yet: the actual
-  representative-solution fibers, their restriction maps, and the
-  coherent-limit obstruction must first be bound to the same page family.
+  No complete canonical Lean declaration for stretching is linked yet.
+  Actual strict solution fibers, their restrictions under the specified
+  filtration and label comparisons, and the generic cokernel lift criterion
+  are now defined.  The coherent-solution type for fixed permanent labels
+  and all quotients longer than $n-e(f)$ is also defined, without a chosen
+  member.  The first-obstruction tuple, the required model comparison
+  witnesses, existence of coherent solutions, and the coherent-limit
+  comparison still remain.
   The retired free-operations statement did not express this conclusion.
 \end{corollary}
 

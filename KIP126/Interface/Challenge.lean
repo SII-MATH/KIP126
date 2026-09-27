@@ -5,5 +5,6 @@ import KIP126.Interface.Challenge.SyntheticEInfty
 import KIP126.Interface.Challenge.PageExtensionAmbiguity
 import KIP126.Interface.Challenge.PageExtensionKernel
 import KIP126.Interface.Challenge.CanonicalPageExtension
+import KIP126.Interface.Challenge.PageExtensionSolutions
 import KIP126.Interface.Challenge.InternalNaturality
 import KIP126.Interface.Challenge.LowDimensionalPermanence

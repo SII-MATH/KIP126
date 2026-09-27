@@ -41,48 +41,154 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   additional reindexing occurs.  Reassemble the family over all weights.
 \end{proof}
 
+% PROJECT CONSTRUCTION: the actual equation fibers of a filtered complex,
+% used for the representative calculations in MainPaper/main.tex:1981-2081.
+\begin{definition}[Strict filtered representative fibers]
+  \label{def:strict-ess-representative-fiber}
+  \uses{def:core-filtered-chain-complex,def:fess-cycles-boundaries}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.equation,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.Fiber,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differences,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.coordinateEquiv}
+  \leanok
+  For a filtered complex $C$, a test object $T$, and integers $n,s,k$,
+  take pairs of actual morphisms
+  $a:T\to F^sC_k$ and $b:T\to F^{s+n}C_{k-1}$.
+  Their equation map is the additive homomorphism
+  \[
+    \Phi(a,b)=(\pi_s a,\pi_{s+n}b,d\iota_s a-\iota_{s+n}b).
+  \]
+  The strict fiber with labels $(x,y)$ is
+  $\Phi^{-1}(x,y,0)$, and its difference group is $\ker\Phi$.
+  These are actual representative pairs, without a further quotient of the
+  solution set.  Translation and subtraction give a free transitive action
+  on every nonempty fiber; a chosen point identifies that fiber with the
+  kernel.  This makes no nonemptiness assertion.
+\end{definition}
+
+\begin{proposition}[Strictification of an internal page relation]
+  \label{prop:strict-ess-fiber-page-relation}
+  \uses{def:strict-ess-representative-fiber,thm:filtered-complex-to-spectral-sequence,def:page-extension,def:filtered-chain-map}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_of_fiber,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_iff_nonempty_fiber,KIP126.Synthetic.PageExtension.finitePageExtension_iff_solutions,KIP126.Synthetic.PageExtension.infinitePageExtension_iff_solutions,KIP126.Synthetic.PageExtension.mem_targetCoset_iff_differentialRelation,KIP126.Synthetic.PageExtension.FiniteExtensionWitness.mem_targetCoset_iff_solutions,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.mem_targetCoset_iff_solutions,KIP126.Interface.Solution.finitePageExtension_restrict}
+  \leanok
+  Suppose the filtered complex is bounded and $n\ge0$.
+  A strict solution gives the canonical internal relation $d_n(x)=y$.
+  If $T$ is projective, the converse holds as well.
+  In particular this applies to the free rank-one test module
+  $\operatorname{ULift}(\mathbb Z)$ used for the actual synthetic ESS.
+  More precisely, fix one normalized page family $P$, including its actual
+  quotient maps, ESS and comparison maps.  For $r\ge2$, $n\ge e(f)$ and
+  $n-e(f)<r-1$, fix
+  \[
+    x\in Z_{r-1}^{s,t}(X),\qquad
+    y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y).
+  \]
+  The $(f,E_r)$-extension from $x$ to $y$ is equivalent to nonemptiness of
+  $P$'s strict solution fiber at quotient $r-1$, using those same source
+  and target labels and the actual $\lambda^{n-e(f)}$ target map.
+  For permanent representatives $x,y$ and $n\ge e(f)$, the analogous
+  equivalence holds for $P$'s untruncated ESS.
+
+  Moreover, suppose $P$ is equipped with the filtration-preservation and
+  label-comparison witnesses for its actual $\rho$ square.  For
+  $0<i\le j$ and $n-e(f)<i$, a fixed-label extension on page $j+1$
+  restricts to one on page $i+1$, provided the two chosen source labels
+  and the two target labels are respectively equal as elements of $E_2$.
+  These statements bind the fixed classical labels to the actual fibers.
+
+  For any given finite or untruncated extension witness $W$, its complete
+  actual target coset is also characterized by these fibers:
+  \[
+    z\in\operatorname{TargetCoset}(W)
+      \quad\Longleftrightarrow\quad
+    \operatorname{Sol}_P^n(x_W,z)\ne\varnothing.
+  \]
+  Here $z$ ranges over the target cycle subgroup displayed above (over
+  permanent representatives in the untruncated case), $x_W$ is the same
+  source representative as in $W$, and the coset is pulled back along
+  $P$'s actual $\lambda$ target map from the ESS boundary coset of $W$.
+  A single fixed-label fiber remains a set of representative pairs; the
+  coset is the set of labels indexing its nonempty fibers.  These claims
+  do not assert the existence of the comparison witnesses, restriction
+  surjectivity, or a coherent-tower comparison.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Projectivity lifts a cycle through its actual cycle-kernel image.
+  The discrepancy between its strict target and $y$ is an actual $B_n$
+  boundary.  Lift that boundary through the differential image and subtract
+  its primitive in $F^{s+1}C_k$ from the source lift.  This preserves $x$
+  and makes the target equation strict.  Thus strictness does not discard
+  the boundary ambiguity of the page relation.
+  Specialize to the actual ESS and its free rank-one test module.  Unfold
+  the fixed source and target comparisons to obtain the finite and
+  untruncated page-extension equivalences.  The actual filtered $\rho$
+  chain map sends strict solutions to strict solutions; the supplied label
+  comparisons preserve the stated labels, giving finite restriction.
+  Finally, subtract a representative of an actual ESS boundary to see that
+  every target in the boundary coset satisfies the same page relation.
+  The converse follows from equality on the page.  Pull this equivalence
+  back along the fixed $\lambda$ target map and apply strictification.
+\end{proof}
+
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1981-2081, representative equations used in the
 % page-restriction argument; project packaging of their inverse system.
 \begin{definition}[Finite ESS solution torsors and coherent towers]
   \label{def:synthetic-ess-solution-tower}
-  \uses{def:synthetic-extension-ss,def:fess-cycles-boundaries,cor:fess-map-of-stable-pages,prop:lambda-quotient-restriction-coherence}
-  \notready
-  Let $F_m:A_m\to B_m$, $m\ge m_0$, be compatible maps of finite
-  $\lambda$-quotients, with restriction maps from level $m+1$ to level $m$.
-  Fix a synthetic weight, an extension length $n$, and compatible source and
-  target classes $x_m,y_m$.  The \emph{solution fiber}
-  $\operatorname{Sol}_m^n(x_m,y_m)$ consists of representative-level
-  witnesses for
+  \uses{def:synthetic-extension-ss,def:strict-ess-representative-fiber,prop:strict-ess-fiber-page-relation,def:filtered-chain-map,def:synthetic-lambda-quotient}
+  \lean{KIP126.Synthetic.PageExtension.NormalizedPageFamily.FiniteSolutions,KIP126.Synthetic.PageExtension.NormalizedPageFamily.InfiniteSolutions,KIP126.Synthetic.PageExtension.NormalizedPageFamily.PermanentFiniteSolutions,KIP126.Challenge2.PageExtensionRestrictionFiltration,KIP126.Challenge2.PageExtensionRestrictionLabels,KIP126.Challenge2.restrictFiniteSolution,KIP126.Challenge2.restrictPermanentFiniteSolution,KIP126.Challenge2.CoherentPageExtensionSolutions,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.coordinateEquiv,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_translate}
+  \leanok
+  Fix one normalized page family $P$ for $f:X\to Y$, integers $n,s,t$
+  with $n\ge e(f)$, and permanent representatives
   \[
-    d_n^{F_m}(x_m)=y_m:
+    x\in Z_\infty^{s,t}(X),\qquad
+    y\in Z_\infty^{s+n,t+n}(Y).
   \]
-  a filtered representative of $x_m$, a representative of the prescribed
-  complete target coset of $y_m$, and a sum of shorter $F_m$-ESS images whose
-  representative equation realizes that coset.  Two witnesses are identified
-  exactly when their source representatives differ by a filtered boundary and
-  their target equations differ by the same shorter-image correction.
+  Put $k=n-e(f)\ge0$.  For every natural-number quotient length $q>k$, let
+  $x_q\in Z_q^{s,t}(X)$ and $y_q\in Z_{q-k}^{s+n,t+n}(Y)$ be the
+  actual inclusions of these fixed permanent representatives.  Define
+  $\operatorname{Sol}_q^n(x,y)$ to be the strict solution fiber of the
+  actual two-term complex for $\widehat f_q$, with source label $x_q$
+  and target label obtained from $y_q$ by the actual $\lambda^k$ map.
+  All fibers use $P$'s fixed comparisons and synthetic degree
+  $(t-s,t+e(f))$.  This is the type
+  \texttt{PermanentFiniteSolutions}; it has precisely the pairs of
+  Definition~\ref{def:strict-ess-representative-fiber}, with no further
+  quotient.  A fixed-label fiber is not itself the set of possible target
+  labels.
 
-  When nonempty, $\operatorname{Sol}_m^n(x_m,y_m)$ is a torsor under the
-  abelian \emph{difference group} $K_m$ of changes preserving the source class
-  and complete target coset.  Proposition~\ref{prop:lambda-quotient-restriction-coherence}
-  makes the finite restriction maps an inverse system; stable-page naturality
-  gives equivariant maps
+  Supply the filtration-preservation witness $I$ for $P$'s actual $\rho$
+  squares and the label-comparison witness $J$ for that same $I$.
+  When nonempty, each fiber is a torsor under its actual difference group
+  $K_q=\ker\Phi_q$, and a chosen solution identifies the fiber with $K_q$.
+  The filtered chain map supplied by the actual $\rho$ square and the two
+  label comparisons give the restrictions
   \[
-    \operatorname{res}_{m+1,m}:\operatorname{Sol}_{m+1}^n
-      \longrightarrow\operatorname{Sol}_m^n,
-    \qquad K_{m+1}\longrightarrow K_m.
+    \operatorname{res}_{q+1,q}:\operatorname{Sol}_{q+1}^n(x,y)
+      \longrightarrow\operatorname{Sol}_q^n(x,y),\qquad q>k.
   \]
-  A \emph{coherent solution tower} is a sequence
-  $u_m\in\operatorname{Sol}_m^n$ satisfying
-  $\operatorname{res}_{m+1,m}(u_{m+1})=u_m$ for every $m\ge m_0$.
+  At the level of actual representative pairs, these restrictions satisfy
+  the generic equivariance with respect to the induced difference-group map.
+  Define a \emph{coherent solution tower} to consist of a solution
+  $u_q\in\operatorname{Sol}_q^n(x,y)$ for every $q>k$, together with
+  the adjacent compatibility equations
+  $\operatorname{res}_{q+1,q}(u_{q+1})=u_q$.  Thus its first quotient
+  length is $m_0=k+1$.
+
+  This defines the type of coherent solutions from the specified $P,I,J$.
+  It neither constructs those comparison witnesses nor supplies a member
+  of the type.  Restriction surjectivity and comparison with an actual
+  untruncated solution or a homotopy limit remain separate obligations;
+  nonemptiness of every finite fiber alone does not establish them.
 \end{definition}
 
 \begin{proof}
+  \leanok
   Use the filtered two-term complex defining the synthetic ESS.  A choice of
-  filtered source lift and target correction is precisely a solution of its
+  filtered source lift and target lift is precisely a solution of its
   representative equation.  Subtracting two solutions gives the stated
   difference group, and addition acts freely and transitively.  The compatible
-  quotient squares induce the restriction maps and their equivariance.
+  quotient squares induce the restrictions, and the generic restriction
+  theorem gives equivariance on representative pairs.  Include the fixed
+  permanent labels into each finite cycle subgroup and collect the actual
+  adjacent compatibility equations in the coherent-solution structure.
 \end{proof}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1009--1021 defines the quotient triangles;

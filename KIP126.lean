@@ -9,6 +9,7 @@ import KIP126.Interface.Solution.LinProgram.SquareDetection.Certificate
 import KIP126.Interface.Solution.InternalPages
 import KIP126.Interface.Solution.InternalNaturality
 import KIP126.Interface.Solution.Cobar
+import KIP126.Interface.Solution.PageExtensionSolutions
 import KIP126.Interface.Solution.LowDimensionalPermanence
 import KIP126.Def
 import KIP126.Challenge1

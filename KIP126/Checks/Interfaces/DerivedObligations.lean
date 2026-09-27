@@ -23,6 +23,16 @@ import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.One.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Proofs
+import KIP126.Def.SpectralSequence.BoundedExtension.Square.Construction.Data
+import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Proofs
+import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Obstruction.Proofs
+import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
+import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
+import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
+import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
+import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
+import KIP126.Interface.Solution.PageExtensionSolutions
 import Lean.Elab.Command
 
 /-! These particular generic obligations are proved from explicit mathematical
@@ -70,6 +80,47 @@ run_cmd do
       ``KIP126.Classical.Adams.Moss.stageComposition_step_right,
       ``KIP126.Classical.Adams.Moss.longLayerComposition_exists_iff_boundaryLift,
       ``KIP126.Classical.Adams.Moss.firstQuotientPairing_exists,
+      ``KIP126.Classical.Adams.Moss.longLayerProjectedComposition_ι,
+      ``KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_ι,
+      ``KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_rightTower_factors,
+      ``KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_leftTower_factors,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoComposition_exists_iff_obstruction_eq_zero,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction_ι,
+      ``KIP126.Core.SpectralSequence.BoundedExtension.twoTermMap_comm,
+      ``KIP126.Core.SpectralSequence.underlyingComplexMap,
+      ``KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.FilteredSquare.homotopy_comm,
+      ``KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.FilteredSquare.complexMap,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.mem_fiber_iff,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.nonempty_fiber_iff,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.sub_mem_differences,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.add_mem_fiber,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.coordinateEquiv,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.equation_natural,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.representativesMap_id,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.representativesMap_comp,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_translate,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrictDifferences_id,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrictDifferences_comp,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.obstruction_eq_zero_iff,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.exists_strict_lifts_of_cycle,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.exists_lifts_of_boundary,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_of_fiber,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.nonempty_fiber_of_differentialRelation,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_iff_nonempty_fiber,
+      ``KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.differentialRelation_iff_solutions,
+      ``KIP126.Synthetic.PageExtension.finiteRelation_iff_solutions,
+      ``KIP126.Synthetic.PageExtension.infiniteRelation_iff_solutions,
+      ``KIP126.Synthetic.PageExtension.finitePageExtension_iff_solutions,
+      ``KIP126.Synthetic.PageExtension.infinitePageExtension_iff_solutions,
+      ``KIP126.Synthetic.PageExtension.mem_targetCoset_iff_differentialRelation,
+      ``KIP126.Synthetic.PageExtension.FiniteExtensionWitness.mem_targetCoset_iff_solutions,
+      ``KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.mem_targetCoset_iff_solutions,
+      ``KIP126.Interface.Solution.finitePageExtension_iff_solutions,
+      ``KIP126.Interface.Solution.infinitePageExtension_iff_solutions,
+      ``KIP126.Interface.Solution.finitePageExtension_restrict,
+      ``KIP126.Challenge2.restrictFiniteSolution,
+      ``KIP126.Challenge2.restrictPermanentFiniteSolution,
+      ``KIP126.Challenge2.CoherentPageExtensionSolutions,
       ``KIP126.Synthetic.Context.XModLambdaN.map_id,
       ``KIP126.Synthetic.Context.XModLambdaN.map_comp,
       ``KIP126.Synthetic.Context.XModLambdaN.restriction_self,

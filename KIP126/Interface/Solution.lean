@@ -22,5 +22,6 @@ import KIP126.Interface.Solution.SyntheticEInfty
 import KIP126.Interface.Solution.PageExtensionAmbiguity
 import KIP126.Interface.Solution.PageExtensionKernel
 import KIP126.Interface.Solution.CanonicalPageExtension
+import KIP126.Interface.Solution.PageExtensionSolutions
 import KIP126.Interface.Solution.InternalNaturality
 import KIP126.Interface.Solution.LowDimensionalPermanence

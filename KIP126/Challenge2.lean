@@ -17,6 +17,9 @@ import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Data
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Data
 import KIP126.Def.ClassicalAdams.Suspension.Predicates
 import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
+import KIP126.Def.Synthetic.PageExtension.Solutions.Data
+import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
+import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与完整待交付清单
@@ -108,6 +111,17 @@ import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
   与这些代表元的关系。规范目标版本的陪集公式只剩 shorter-image 比较输入。
   全 weight presentation、实际映射相容与 shorter-image 见证仍待构造，
   不能把条件性公式写成无条件完成。
+  `FilteredComplex/Solutions/` 已定义固定两端标签的严格代表元解纤维、真实差群、
+  仿射坐标及实际滤过链映射诱导的限制；在投射测试对象上，解纤维非空与原
+  differential relation 双向等价。`PageExtension/Solutions/` 已将该等价绑定
+  同一家族的有限商及未截断 ESS，因而解空间不再是自由指定的数据。
+  `Solutions/Coset/` 进一步证明完整 target coset 中的标签，恰是同一源标签
+  下解纤维非空的那些目标；固定标签解纤维与全部目标标签仍是不同对象。
+  `PageExtensionRestrictionFiltration`、`PageExtensionRestrictionLabels` 明列
+  实际 ρ 保滤过及经典标签的比较图，并由此构造 `restrictFiniteSolution`。
+  `CoherentPageExtensionSolutions` 固定同一永久标签在各有限商上的实际解和
+  相邻限制相容性。塔的类型已定义；这两个条件的模型见证、限制的满射性、
+  相容塔的存在性及 coherent limit 比较仍未交付。
   当前 ESS 构造要求逐次数滤过有界；“无限”只指未取有限 λ 商，不表示已处理
   任意无界 Adams 滤过。一般情形还须接入 `UnboundedExtension/` 及其收敛条件。
 
@@ -122,8 +136,10 @@ import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
   #133／#134 所指问题同步撤下，并移除入口导出及 Blueprint 的旧 Lean 引用；
   Main 未消费它们。新 law 是准确待交付命题，尚无对应规则证明。
   尚缺：δ 与同一 ν、ρ、λ 的 ESS 比较及 crossing 比较；任意 topweight
-  等价不足以推出这些 law。Stretching 还需真实代表元解族、restriction 的
-  first-obstruction 判据；无限版本保留 Blueprint 明列的 coherent tower／
+  等价不足以推出这些 law。Stretching 的真实代表元解族及限制已定义；
+  `Solutions/Obstruction/` 已证明实际余核类为零当且仅当指定的早期解可以提升。
+  仍需把这个一般判据识别为论文的 first-obstruction tuple，并证明与较短
+  extension 和 crossing 的对应；无限版本保留 Blueprint 明列的 coherent tower／
   torsor obstruction 条件，不能从各有限解非空直接推得相容无限解。
 
 - `am8` Moss：Toda/Massey 到内部页面检测。
@@ -142,8 +158,10 @@ import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
   层投影与两侧塔过渡公式；右过渡显式需要 `UnitFiberInclusionCommutes`。
   `TowerLongLayer/Pairing/Mixed/` 已提供三个不同谱的循环／页面配对下降及唯一性，
   长度一的实际复合配对已构造；它是第一商页，不能冒充内部 E₂。
-  长度二尚需把 actual longLayerCompositionBoundary 提升穿过下一塔过渡，
-  长度一般时也有精确的提升充要条件，但提升本身及两侧边界相容尚未构造。
+  `LongLayer/Boundary/` 已从实际 tensor triangle 的正合性证明两侧边界分解；
+  `LongLayer/Two/` 给出长度二提升的具体障碍，并证明提升存在当且仅当该障碍为零。
+  长度二的障碍恒为零尚未证明；长度一般时也有精确的提升充要条件，
+  但所需提升和完整两侧边界相容仍未构造。
   Leibniz 与收敛复合相容仍缺，故完整 Massey 关系和 Moss 陈述尚未冻结。
   右过渡的现有路线需上述条件或对应 connectivity 证明；
   braided successor 与 ordered successor 的边界也不能默认相同。
@@ -608,6 +626,128 @@ noncomputable def canonicalPageExtensionTargets (P : NormalizedPageFamily H N F 
     infiniteTarget := fun k s t => R.infiniteCanonicalTarget S Y k (s, t) }
 
 end PageExtensionTargetComparison
+
+
+section PageExtensionSolutions
+
+set_option maxHeartbeats 2000000
+set_option backward.isDefEq.respectTransparency false
+
+open StableHomotopy StableHomotopy.Cohomology Synthetic.Context Synthetic.SpectralSequence
+open Synthetic.PageExtension Classical.Adams.PageRepresentatives Core.SpectralSequence
+
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+  {Syn : Type w} [SyntheticCategory.{w, v} Syn]
+  [HasFunctorialCofiber (C := Syn)]
+  {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
+  {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
+
+/-- am6/am7：同一有限商塔的实际 ρ 同伦映射保持指定收敛滤过。
+交换方块由 P.towerMap 导出，不另假设，也不选择独立的 ESS 映射。 -/
+structure PageExtensionRestrictionFiltration (P : NormalizedPageFamily H N F f) : Prop where
+  source_preserves : ∀ (i j : ℕ) (hi : 0 < i) (hj : 0 < j) (hij : i ≤ j) s p,
+    ∃ φ : Subobject.underlying.obj ((P.finite j hj).source.filtration.F s p) ⟶
+        Subobject.underlying.obj ((P.finite i hi).source.filtration.F s p),
+      φ ≫ ((P.finite i hi).source.filtration.F s p).arrow =
+        ((P.finite j hj).source.filtration.F s p).arrow ≫
+          syntheticHomotopyMap (P.sourceTower.rho i j hij) p
+  target_preserves : ∀ (i j : ℕ) (hi : 0 < i) (hj : 0 < j) (hij : i ≤ j) s p,
+    ∃ φ : Subobject.underlying.obj ((P.finite j hj).target.filtration.F s p) ⟶
+        Subobject.underlying.obj ((P.finite i hi).target.filtration.F s p),
+      φ ≫ ((P.finite i hi).target.filtration.F s p).arrow =
+        ((P.finite j hj).target.filtration.F s p).arrow ≫
+          syntheticHomotopyMap (P.targetTower.rho i j hij) p
+
+set_option linter.defProp false in
+/-- 固定 normalized map 的实际商方块；comm 来自既有塔态射。 -/
+def PageExtensionRestrictionFiltration.square {P : NormalizedPageFamily H N F f}
+    (I : PageExtensionRestrictionFiltration P) (i j : ℕ)
+    (hi : 0 < i) (hj : 0 < j) (hij : i ≤ j) :
+    SyntheticExtensionData.FilteredSquare (P.finite j hj) (P.finite i hi)
+      (P.sourceTower.rho i j hij) (P.targetTower.rho i j hij) where
+  comm := P.towerMap.rho_naturality hij
+  source_preserves := I.source_preserves i j hi hj hij
+  target_preserves := I.target_preserves i j hi hj hij
+
+/-- 限制链映射由实际 ρ 方块构造，不由自由的页面操作指定。 -/
+noncomputable def PageExtensionRestrictionFiltration.complexMap
+    {P : NormalizedPageFamily H N F f} (I : PageExtensionRestrictionFiltration P)
+    (i j : ℕ) (hi : 0 < i) (hj : 0 < j) (hij : i ≤ j) (p : ℤ × ℤ) :
+    FilteredComplex.Morphism ((P.finite j hj).complex p) ((P.finite i hi).complex p) :=
+  (I.square i j hi hj hij).complexMap p
+
+/-- am6/am7：实际 ρ 限制保留同一个经典 E₂ 标签。只列出源／靶的比较图；
+解集、差群与限制函数随后由真实代表元方程构造。 -/
+structure PageExtensionRestrictionLabels (P : NormalizedPageFamily H N F f)
+    (I : PageExtensionRestrictionFiltration P) : Prop where
+  source : ∀ (i j : ℕ) (hi : 0 < i) (hj : 0 < j) (hij : i ≤ j) (s t : ℤ)
+    (xi : cycles H X i (s, t)) (xj : cycles H X j (s, t)), xi.val = xj.val →
+      elementMap (P.finiteSourceMap j hj s t xj) ≫
+          (I.complexMap i j hi hj hij (P.degree s t)).associatedGradedMap s 1 =
+        elementMap (P.finiteSourceMap i hi s t xi)
+  target : ∀ (i j : ℕ) (hi : 0 < i) (hj : 0 < j) (hij : i ≤ j) (n s t : ℤ)
+    (hn : (normalizedExponent H f : ℤ) ≤ n)
+    (hki : P.lambdaExponent n < i) (hkj : P.lambdaExponent n < j)
+    (yi : cycles H Y (i - P.lambdaExponent n : ℕ) (s + n, t + n))
+    (yj : cycles H Y (j - P.lambdaExponent n : ℕ) (s + n, t + n)), yi.val = yj.val →
+      P.finiteTargetClass j hj n s t hn hkj yj ≫
+          (I.complexMap i j hi hj hij (P.degree s t)).associatedGradedMap (s + n) 0 =
+        P.finiteTargetClass i hi n s t hn hki yi
+
+/-- 两个实际比较图给出经典标签固定后的解纤维限制。此定义不声称满射。 -/
+noncomputable def restrictFiniteSolution {P : NormalizedPageFamily H N F f}
+    (I : PageExtensionRestrictionFiltration P) (J : PageExtensionRestrictionLabels P I)
+    (i j : ℕ) (hi : 0 < i) (hj : 0 < j) (hij : i ≤ j) (n s t : ℤ)
+    (hn : (normalizedExponent H f : ℤ) ≤ n)
+    (hki : P.lambdaExponent n < i) (hkj : P.lambdaExponent n < j)
+    (xi : cycles H X i (s, t)) (xj : cycles H X j (s, t)) (hx : xi.val = xj.val)
+    (yi : cycles H Y (i - P.lambdaExponent n : ℕ) (s + n, t + n))
+    (yj : cycles H Y (j - P.lambdaExponent n : ℕ) (s + n, t + n)) (hy : yi.val = yj.val)
+    (a : P.FiniteSolutions j hj n s t hn hkj xj yj) :
+    P.FiniteSolutions i hi n s t hn hki xi yi := by
+  dsimp only [NormalizedPageFamily.FiniteSolutions] at a ⊢
+  have b := FilteredComplex.Solutions.restrict (I.complexMap i j hi hj hij (P.degree s t)) a
+  erw [J.source i j hi hj hij s t xi xj hx] at b
+  erw [J.target i j hi hj hij n s t hn hki hkj yi yj hy] at b
+  exact b
+
+set_option backward.isDefEq.respectTransparency true
+
+/-- 在同一永久标签上特化实际限制；只使用永久 cycle 的规范包含。 -/
+noncomputable def restrictPermanentFiniteSolution {P : NormalizedPageFamily H N F f}
+    (I : PageExtensionRestrictionFiltration P) (J : PageExtensionRestrictionLabels P I)
+    (i j : ℕ) (hij : i ≤ j) (n s t : ℤ)
+    (hn : (normalizedExponent H f : ℤ) ≤ n)
+    (hki : P.lambdaExponent n < i) (hkj : P.lambdaExponent n < j)
+    (x : permanentCycles H X (s, t)) (y : permanentCycles H Y (s + n, t + n))
+    (a : P.PermanentFiniteSolutions j n s t hn hkj x y) :
+    P.PermanentFiniteSolutions i n s t hn hki x y :=
+  restrictFiniteSolution (P := P) I J i j
+    (lt_of_le_of_lt (Nat.zero_le _) hki) (lt_of_le_of_lt (Nat.zero_le _) hkj)
+    hij n s t hn hki hkj
+    (Submodule.inclusion (permanentCycles_le_cycles H X (s, t) i) x)
+    (Submodule.inclusion (permanentCycles_le_cycles H X (s, t) j) x) rfl
+    (Submodule.inclusion (permanentCycles_le_cycles H Y (s + n, t + n)
+      (i - P.lambdaExponent n : ℕ)) y)
+    (Submodule.inclusion (permanentCycles_le_cycles H Y (s + n, t + n)
+      (j - P.lambdaExponent n : ℕ)) y) rfl a
+
+/-- am7：固定永久标签在所有允许的有限商上的实际相容解。
+每层必须提供真实方程的一个解，相邻层用同一实际 ρ 限制相容。
+此类型不选择成员，也不声称各层非空就足以得到相容塔或无穷解。 -/
+structure CoherentPageExtensionSolutions (P : NormalizedPageFamily H N F f)
+    (I : PageExtensionRestrictionFiltration P) (J : PageExtensionRestrictionLabels P I)
+    (n s t : ℤ) (hn : (normalizedExponent H f : ℤ) ≤ n)
+    (x : permanentCycles H X (s, t)) (y : permanentCycles H Y (s + n, t + n)) : Type v where
+  solution : ∀ (q : ℕ) (hkq : P.lambdaExponent n < q),
+    P.PermanentFiniteSolutions q n s t hn hkq x y
+  compatible : ∀ (q : ℕ) (hkq : P.lambdaExponent n < q),
+    restrictPermanentFiniteSolution I J q (q + 1) (Nat.le_succ q)
+      n s t hn hkq (lt_trans hkq (Nat.lt_succ_self q)) x y
+      (solution (q + 1) (lt_trans hkq (Nat.lt_succ_self q))) = solution q hkq
+
+end PageExtensionSolutions
 
 section PageExtensionRules
 
