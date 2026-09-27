@@ -18,7 +18,7 @@ on:
       - "scripts/test_lean_cache_wait.py"
       - ".github/workflows/pages.yml"
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
       - "blueprint/src/**"
       - "requirements-blueprint.txt"
@@ -267,7 +267,7 @@ jobs:
 
   docs:
     needs: [classify, links]
-    if: ${{ !cancelled() && needs.classify.result == 'success' && (needs.links.result == 'success' || needs.classify.outputs.links != 'true') }}
+    if: ${{ !cancelled() && (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'docs-preview')) && needs.classify.result == 'success' && (needs.links.result == 'success' || needs.classify.outputs.links != 'true') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     env:
