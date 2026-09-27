@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Expressions.Proofs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Expressions.Predicates
 import Lean.Elab.Command
@@ -41,7 +42,7 @@ run_cmd do
   let logical := [``propext, ``Classical.choice, ``Quot.sound]
   for decl in [``Expression.homogeneous, ``Expression.data_eq_interpret] do
     for a in (← liftCoreM (collectAxioms decl)) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected expression axiom: {decl}: {a}"
   let expected := logical ++ [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.linE2Presentation]
@@ -49,7 +50,7 @@ run_cmd do
       ``KIP126.Classical.Adams.expressionOnSphere_h6,
       ``KIP126.Classical.Adams.expressionOnSphere_h6_square] do
     for a in (← liftCoreM (collectAxioms decl)) do
-      unless expected.contains a do
+      unless KIP126.Checks.AxiomInputs.allows expected a do
         throwError "unexpected sphere expression axiom: {decl}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIPBase).isPrefixOf m || (`KIP126.Challenge).isPrefixOf m then

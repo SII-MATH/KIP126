@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Solution.Computation.Dimension
 import Lean.Elab.Command
 
@@ -15,7 +16,7 @@ run_cmd do
       ``KIP126.LinE2.homogeneousPart_square_eq_span,
       ``KIP126.LinE2.E2At_square_eq_zero_or] do
     for a in ← liftCoreM (collectAxioms declaration) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected square-dimension dependency: {declaration}: {a}"
   let inputs := [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.linE2Presentation]
@@ -23,10 +24,10 @@ run_cmd do
       ``KIP126.Classical.Adams.sphereAdamsData_eq_computedH6Square_of_ne_zero] do
     let axioms ← liftCoreM (collectAxioms declaration)
     for a in axioms do
-      unless (logical ++ inputs).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
         throwError "unexpected internal square-dimension dependency: {declaration}: {a}"
     for a in inputs do
-      unless axioms.contains a do
+      unless KIP126.Checks.AxiomInputs.uses axioms a do
         throwError "missing disclosed square-dimension input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

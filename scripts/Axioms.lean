@@ -2,7 +2,8 @@ import Lean
 
 /-!
 Compiled-environment audit of the canonical library's proof dependencies.
-Development-only project axioms are declared under `KIP126.Main.Axiom`
+Development-only project axioms are declared under `KIP126.Interface.Axiom`
+or `KIP126.Main.Axiom`
 (see PROJECT_BOUNDARY.md);
 they are inventoried separately from `sorryAx` and remain failures of this
 strict, final-acceptance audit. The initializer substitutes the source root.
@@ -104,11 +105,12 @@ def audit : CoreM AuditReport := do
       | continue
     -- Stage assumptions are centralized; registration still fails the strict
     -- completion audit below and never grants foundational trust.
-    if (`KIP126.Main.Axiom).isPrefixOf moduleName then
+    if (`KIP126.Interface.Axiom).isPrefixOf moduleName ||
+        (`KIP126.Main.Axiom).isPrefixOf moduleName then
       let line := s!"  {name} (declared in {moduleName})"
       report := { report with registered := report.registered.push line }
     else
-      let line := s!"project axiom {name} is declared in {moduleName}, outside KIP126.Main.Axiom"
+      let line := s!"project axiom {name} is declared in {moduleName}, outside the stage Axiom directories"
       report := { report with errors := report.errors.push line }
   let offenders : Array Name :=
     (candidates.filterM reachesDisallowedAxiom |>.run env).run' {}
@@ -145,7 +147,7 @@ def main : IO UInt32 := do
     return 1
   IO.println s!"axioms: audited {report.audited} {auditedRoot} declaration(s)."
   if !report.registered.isEmpty then
-    IO.println s!"project axioms in Axiom.lean ({report.registered.size}):"
+    IO.println s!"project axioms in stage Axiom directories ({report.registered.size}):"
     for line in report.registered do IO.println line
   if !report.projectDependents.isEmpty then
     IO.println s!"project-axiom dependency cone ({report.projectDependents.size} declarations):"

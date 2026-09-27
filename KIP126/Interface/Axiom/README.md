@@ -10,21 +10,23 @@
 
 | 文件 | 现有声明 | 归属理由 |
 | --- | --- | --- |
-| [StandardFoundation.lean](StandardFoundation.lean) | `standardFoundation : StandardAdamsFoundation` | 选择稳定谱范畴、函子性余纤维及指定 H𝔽₂，类型不使用内部谱序列 |
-| [StandardMilnor.lean](StandardMilnor.lean) | `standardMilnorCooperations : MilnorCooperations standardFoundation.hf2` | 为同一 H𝔽₂ 提供 Milnor 合作运算及坐标相容性，停在内部页面构造之前 |
+| [StandardFoundation.lean](StandardFoundation.lean) | 18 条 `StandardFoundationInputs.*`；`standardFoundation` 由 `def` 组装 | 选择稳定谱范畴、函子性余纤维及指定 H𝔽₂，类型不使用内部谱序列 |
+| [StandardMilnor.lean](StandardMilnor.lean) | 2 条 `StandardMilnorInputs.*`；`standardMilnorCooperations` 由 `def` 组装 | 为同一 H𝔽₂ 的已构造 Adams 塔第一页提供 Milnor 坐标及微分相容性；完整类型未使用内部 `SSData` 对象 |
 
-二者对应 [接口清单 #138](https://github.com/SII-MATH/KIP126/issues/138) 的基础与 Milnor 条目，从 Main 的 Literature 原样迁入；声明名称、类型和假设强度均未改变。Main 中的固定对象继续通过 import 使用同一份基础，不复制第二份公理。Lin 页面表示与微分表使用内部谱序列，继续由 Main/Axiom/LinProgram 持有。
+二者对应 [接口清单 #138](https://github.com/SII-MATH/KIP126/issues/138) 的基础与 Milnor 条目，先从 Main 的 Literature 原样迁入，再按用户确认在 Lean 源码中展开原结构字段。旧接口的名称和完整类型保留；字段均引用同一批对象与操作，未增删原结构条件。Main 中的固定对象继续通过 import 使用同一份基础，不复制第二份独立的对象选择。Lin 页面表示与微分表使用内部谱序列，继续由 Main/Axiom/LinProgram 持有。
 
-现有两个 axiom 都是结构类型的值，含有数学数据，不是单独的 Prop。其上游交付需要实际构造，不能直接把关键字换成 `theorem` 来制造同类型目标。冻结命题的 theorem/axiom 对齐原则仍适用，但这两个既有数据接口的构造目标尚待整合者明确。本次不改类型、不新增存在性命题或选择操作。
+审核直接从上述两个 Lean 文件开始：基础输入展开到本项目 `StableHomotopyCategory`、`HasFunctorialCofiber`、`Mod2EilenbergMacLane` 的字段；Mathlib 原生结构保留为标准单位。每条声明分别标明数据、结构或性质，末尾仅用 `def` 组装旧接口，不从一个隐藏的总公理取投影。
+
+这两组输入含数学数据，完整的上游交付仍需要实际构造。改成 `def` 组装不代表输入已经实现；其叶子声明仍是 axiom。本次没有补原结构中缺少的对称性、闭结构、余纤维映射的恒等／复合规律等条件。
 
 ## 3. 大概完成度
 
-**既有基础公理归位：2/2；相应完整构造替代：0/2。** 这只衡量这两个已有声明，不代表全部第 0 阶段接口的覆盖率。两条声明尚缺精确的文献定位或完整内部构造；其被命名和迁移不算证明完成。
+**既有两组输入已归位并在源码展开；相应完整构造替代仍为 0/2。** 当前是 18 + 2 条显式声明，不代表新增了 20 项数学假设或完成了证明；这些是原包字段的逐项呈现。精确文献定位和完整内部构造仍待完成。
 
 ## 4. 接下来还需要完成什么
 
 - 确认第一阶段实际消费的其余基础接口，按完整类型判断是否使用内部谱序列。
-- 为这两个既有数据接口明确第 0 阶段的构造目标和依赖，排除对本目录 admitted 值的循环依赖。
+- 为这两组既有数据接口明确第 0 阶段的构造目标和依赖，排除对本目录 admitted 值的循环依赖。
 - 文献输入逐条登记来源与精确定位；未写出的输入不在此次迁移中补造。
 - 建立基础接口的类型对齐检查，并与 Interface 输出到 Main 的对齐检查分别记录。
 - 第一阶段的下游证明可以使用本目录的冻结输入，但不以此宣称第 0 阶段已经完成。

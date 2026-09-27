@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.LinProgram.Differentials
 import Lean.Elab.Command
 
@@ -13,7 +14,7 @@ run_cmd do
     unless axioms.contains ``KIP126.Computation.LinProofs.sphereTable_sound do
       throwError "missing explicit database trust boundary: {decl}"
     for a in axioms do
-      unless expected.contains a do
+      unless KIP126.Checks.AxiomInputs.allows expected a do
         throwError "unexpected Lin proofs dependency: {decl}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

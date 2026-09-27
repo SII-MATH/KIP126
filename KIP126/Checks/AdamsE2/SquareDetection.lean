@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Solution.Computation.Reduction
 import KIP126.Interface.Solution.LinProgram.SquareDetection.Certificate
 import Lean.Elab.Command
@@ -30,7 +31,7 @@ run_cmd do
       ``KIP126.LinE2.SquareDetection.allRelationsCheck_eq_true,
       ``KIP126.LinE2.SquareDetection.dataH6Sq_ne_zero] do
     for a in ← liftCoreM (collectAxioms declaration) do
-      unless basic.contains a do
+      unless KIP126.Checks.AxiomInputs.allows basic a do
         throwError "unexpected detector dependency: {declaration}: {a}"
   let inputs := [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.linE2Presentation]
@@ -39,10 +40,10 @@ run_cmd do
       ``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff] do
     let axioms ← liftCoreM (collectAxioms declaration)
     for a in axioms do
-      unless (basic ++ inputs).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (basic ++ inputs) a do
         throwError "unexpected transferred nonvanishing dependency: {declaration}: {a}"
     for a in inputs do
-      unless axioms.contains a do throwError "missing disclosed input: {declaration}: {a}"
+      unless KIP126.Checks.AxiomInputs.uses axioms a do throwError "missing disclosed input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then

@@ -4,7 +4,7 @@
 
 **下层导航**
 
-- [Axiom](./Axiom/README.md)：第 0 阶段的产出，作为第 1 阶段的基础输入；目前有两条既有公理。
+- [Axiom](./Axiom/README.md)：第 0 阶段的产出，作为第 1 阶段的基础输入；目前有两组输入，已在 Lean 中逐字段展开。
 - [Challenge / Tools](./Challenge/Tools/README.md)：generalized Leibniz、generalized Mahowald 与 page stretch 的目标声明。
 - [Solution / Tools](./Solution/Tools/README.md)：上述三项接口的证明轨。
 - [Solution / LinProgram](./Solution/LinProgram/README.md)：basis、square detection 与 dimension 的复演/验证结果。
@@ -15,7 +15,7 @@ Interface 在共同数学对象和不使用内部 M 的基础输入 A₀ 上，�
 
 ## 2. 现有
 
-基础输入已有 `Axiom/StandardFoundation.lean` 和 `Axiom/StandardMilnor.lean`，保存两条从 Main 原样迁入的开发公理。它们的完整类型不使用内部 M；上游构造尚未完成。
+基础输入已有 `Axiom/StandardFoundation.lean` 和 `Axiom/StandardMilnor.lean`，保存从 Main 迁入的两组基础输入，现已拆为 20 条显式字段声明，并用 `def` 组装旧接口。它们的完整类型不使用内部 M；上游构造尚未完成。
 
 现有证明工作主要有两组。第一组是从 Def 迁来的 Lin 验证结果：基表正确性的冻结 theorem（证明仍有一个 `sorry`）及在该 theorem 条件下构造的实际 basis、`h₆²` 关系检测证书和 227 个归档 chunk、指定次数的维数/候选结果。后两类已有 kernel-checked 实质证明；它们使用 Def 中的 Lin 模型、解析器和 certificate 数据。第二组是 `generalized_leibniz`、`generalized_mahowald`、`page_extension_stretch` 三对 Challenge/Solution；按 issue #138，它们属于 AM7 的 Interface 目标，而不是 Main 的 near-126 结论。三项 Lean 目标声明已经写出，这部分陈述工作不能因为 Challenge 使用 `sorry` 而抹去；但 #133/#134 说明其中两项 statement 本身尚未通过数学验收，page stretch 也受其上游影响。
 
@@ -27,7 +27,7 @@ Interface 在共同数学对象和不使用内部 M 的基础输入 A₀ 上，�
 
 - **基础输入归位：2/2；对应完整构造替代：0/2。** 详见 [Axiom](Axiom/README.md)。其余规划基础接口仍待核对消费端与声明。
 - **输出陈述：三组 Tools 的 Challenge/Solution 已存在，另有 Lin basis/detection/dimension 的现有实现。** Challenge 声明按陈述成果计入；#133/#134 属于 statement 正确性缺口，不是因为证明体含 `sorry` 才被扣除。
-- **两条现有 Main axiom 的完整证明替代：0/2。** `linE2Presentation`、`sphereTable_sound` 尚无可直接替换的、类型严格一致的 Interface 交付。现有 square detection 与 dimension 是独立而有价值的支撑结果；basis 层仍受 `basisTable_correct` 的未完成证明阻断。`linE2Presentation` 也是含数据的结构值，最终需要相应构造，不能用非 Prop 类型的 Lean theorem 代替。
+- **两组现有 Main 输入的完整证明替代：0/2。** `linE2Presentation`、`sphereTable_sound` 尚无可直接替换的、类型严格一致的 Interface 交付。现有 square detection 与 dimension 是独立而有价值的支撑结果；basis 层仍受 `basisTable_correct` 的未完成证明阻断。`linE2Presentation` 现由三条字段输入组装；其叶子数据和性质仍需上游构造／证明，不能用非 Prop 类型的 Lean theorem 代替。
 - #133 已证明当前 generalized Leibniz 的 `Input` 为空；#134 已给出当前 generalized Mahowald 陈述的反例。修正后的 statement 仍是应交付的 Interface 成果，随后才单独评价证明是否完成。
 
 ## 4. 待做

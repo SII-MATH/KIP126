@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.Literature.StandardSphere.Proofs
 import Lean.Elab.Command
 
@@ -11,17 +12,17 @@ run_cmd do
   for declaration in [``KIP126.Classical.Adams.Sphere.classOfMilnorCocycle_eq_zero_iff,
       ``KIP126.Classical.Adams.Sphere.h6Square_ne_zero] do
     for a in ← liftCoreM (collectAxioms declaration) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected generic standard-square dependency: {declaration}: {a}"
   let fixed := ``KIP126.Classical.Adams.sphereH6Square_ne_zero
   let inputs := [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.standardMilnorCooperations]
   let axioms ← liftCoreM (collectAxioms fixed)
   for a in axioms do
-    unless (logical ++ inputs).contains a do
+    unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
       throwError "unexpected fixed standard-square dependency: {a}"
   for a in inputs do
-    unless axioms.contains a do
+    unless KIP126.Checks.AxiomInputs.uses axioms a do
       throwError "missing disclosed standard-square dependency: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

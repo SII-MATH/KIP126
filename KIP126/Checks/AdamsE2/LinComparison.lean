@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.LinProgram.E2
 import Lean.Elab.Command
 
@@ -43,8 +44,8 @@ run_cmd do
       ``KIP126.Classical.Adams.linToSphere_product_eq_zero,
       ``KIP126.Classical.Adams.data_h0_h1_page_product] do
     for a in ← liftCoreM (collectAxioms declaration) do
-      unless (allowed ++ [``KIP126.Classical.Adams.linE2Presentation,
-          ``KIP126.Classical.Adams.standardFoundation]).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (allowed ++ [``KIP126.Classical.Adams.linE2Presentation,
+          ``KIP126.Classical.Adams.standardFoundation]) a do
         throwError "new proof debt in transferred product: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

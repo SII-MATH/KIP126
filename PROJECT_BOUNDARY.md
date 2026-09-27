@@ -23,7 +23,8 @@ The canonical source has three mathematical layers:
    kind.
 2. `KIP126/Interface/` is the first proof stage. Its Challenge/Solution track
    states and eventually proves the stable mathematical and computation
-   interfaces that the main paper argument consumes.
+   interfaces that the main paper argument consumes. Its `Axiom/` contains
+   stage-zero outputs admitted as inputs to this first proof stage.
 3. `KIP126/Main/` is the second proof stage. Its Challenge/Solution track owns
    the near-126 argument and the final conclusions. Its `Axiom/` tree provides
    audited development assumptions so this work can proceed in parallel with
@@ -38,18 +39,23 @@ the architecture does not require empty placeholder directories. Retaining the
 historical Mathlib adapter does not add a project obligation to identify the
 internal spectral-sequence model with Mathlib's spectral sequence.
 
-Every Main stage axiom is intended to have an exactly matching theorem goal in
-the Interface Challenge/Solution track. The Interface proof is what eventually
-eliminates that assumption. Accepted external literature still enters through
+Every proposition-valued Main stage axiom is intended to have an exactly matching
+theorem goal in the Interface Challenge/Solution track; data-valued inputs need
+matching constructions. Stage-zero results likewise discharge the inputs in
+Interface/Axiom. These upstream results eventually eliminate the assumptions.
+Accepted external literature still enters through
 explicit `ExternalResult`/`ExternalEvidence` values, so statement alignment
 does not turn a cited theorem into an untracked global fact.
 
-The current reorganization is a layout migration, not a proof or dependency
-rewrite. It moves existing declarations and preserves their public statements;
-it does not manufacture missing Interface goals, fill proofs, replay a program,
-or establish a clean import boundary merely by changing paths. Missing mirrors,
-existing cross-layer dependencies, and automated type-alignment CI are explicit
-follow-up work until their implementations land and are validated.
+The initial reorganization moves existing declarations and preserves their
+public statements. The subsequent, explicitly authorized interface refinement
+exposes bundled assumptions as named fields and assembles the old public
+interfaces with definitions, preserving their original dependent choices and
+conditions. Neither step manufactures missing Interface goals, fills proofs,
+replays a program, or establishes a clean import boundary merely by changing
+paths. Missing mirrors, existing cross-layer dependencies, and automated
+type-alignment CI are explicit follow-up work until their implementations land
+and are validated.
 
 ## Confirmed design decisions
 
@@ -115,8 +121,10 @@ follow-up work until their implementations land and are validated.
 6. **Axiom policy.** The project may use Lean's foundational axioms and the
    axioms already intrinsic to Lean's standard foundational mechanisms.
    During staged development, an internal statement deliberately introduced
-   with Lean's `axiom` command belongs only under `KIP126/Main/Axiom/`. Each
-   such declaration must record its intended Interface theorem, its meaning,
+   with Lean's `axiom` command belongs under `KIP126/Interface/Axiom/` for
+   stage-zero outputs consumed by stage one, or `KIP126/Main/Axiom/` for
+   stage-one outputs consumed by Main. Each such declaration must record its
+   intended upstream construction or proof, its meaning,
    its provenance or generated input where applicable, and the reason it is
    being assumed. `Def/` and `Mathlib/` must not own project axioms; existing
    declarations there are migration debt to be relocated without silently
@@ -127,7 +135,13 @@ follow-up work until their implementations land and are validated.
    in the appropriate `Proofs.lean` or Solution file with `by sorry`; it must
    not be converted into an axiom merely to avoid `sorryAx`. At final
    proof-completion validation, every stage axiom and its downstream dependency
-   cone is rejected until the matching Interface proof has replaced it.
+   cone is rejected until the matching upstream result has replaced it.
+
+   By user decision, the original custom record inputs are exposed as named
+   data/structure choices and property axioms in Lean source. The old interfaces
+   are assembled with `def`; they are not extra bundle axioms. This refinement
+   preserves their original fields and dependent choices. It does not construct
+   the selected data, prove the assumed properties, or authorize stronger laws.
 
    Literature results and computational artifacts retain the explicit
    provenance mechanisms specified below. In particular, moving their catalogue
@@ -154,11 +168,12 @@ follow-up work until their implementations land and are validated.
    (Zenodo 14875701, v126.3.cw49, internal degree at most 261), as an explicitly
    authorized exception to passing computation evidence as a final theorem
    parameter. Source hashes remain attached to the actual imported data.
-   All such development assumptions, including existing internal-foundation and
-   adapter assumptions, are owned by `KIP126/Main/Axiom/` after migration.
+   Foundation and Milnor inputs are owned by `KIP126/Interface/Axiom/`;
+   the fixed Lin comparison and differential-table inputs are owned by
+   `KIP126/Main/Axiom/`.
    Their mathematical definitions and adapters remain in `Def/` and `Mathlib/`.
    Relocation does not remove their dependency cones or prove their statements;
-   each remains final-acceptance debt until discharged by its Interface proof.
+   each remains final-acceptance debt until discharged by its upstream result.
    This does not postulate h₆² survival: the computational Solution remains
    open, and the standard Solution reduces to it using the named comparisons.
    A proof body without `sorry` is not a claim that its dependency cone is

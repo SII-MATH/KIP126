@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Mathlib.ClassicalAdams.FinalComparison.Proofs
 import Lean.Elab.Command
 
@@ -15,10 +16,10 @@ run_cmd do
     ``KIP126.Classical.Adams.linE2Presentation]
   let axioms ← liftCoreM (collectAxioms declaration)
   for a in axioms do
-    unless (logical ++ inputs).contains a do
+    unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
       throwError "unexpected specified-class comparison dependency: {a}"
   for a in inputs do
-    unless axioms.contains a do
+    unless KIP126.Checks.AxiomInputs.uses axioms a do
       throwError "missing disclosed specified-class comparison input: {a}"
 
 #print axioms KIP126.Classical.Adams.h6Square_comparison

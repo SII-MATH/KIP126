@@ -161,6 +161,14 @@ and separately auditable; it is an admitted interface for parallel work, never
 proof-completion evidence. Do not turn an arbitrary unfinished theorem into an
 axiom merely to remove `sorryAx`.
 
+The user-authorized interface refinement exposes the original fields of custom
+bundled assumptions as individually named Lean inputs, marking selected data,
+structures, and unproved properties. Assemble the old public record interfaces
+with definitions from those same inputs; do not retain a hidden bundle axiom
+and merely expose its projections. Mathlib's standard structures remain valid
+units. Preserve the original dependent choices, types, ranges, and conditions;
+field counts do not measure proof progress or authorize additional assumptions.
+
 - `Main/Axiom/Literature/` owns the literature source catalogue, precise claim
   locators, the existing provenance-carrying wrappers, and any staged
   assumptions needed by Main. Retain `ExternalResult`, `ExternalEvidence`,

@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Challenge.Final.h6_sq_permanent
 import KIP126.Main.Challenge.Final.h6_sq_permanent_computational
 import KIP126.Main.Solution.Final.h6_sq_permanent
@@ -32,9 +33,9 @@ run_cmd do
     ``KIP126.Classical.Adams.standardMilnorCooperations,
     ``KIP126.Classical.Adams.linE2Presentation]
   for a in axioms do
-    unless expected.contains a do throwError "unexpected final dependency: {a}"
+    unless KIP126.Checks.AxiomInputs.allows expected a do throwError "unexpected final dependency: {a}"
   for a in expected.drop 3 do
-    unless axioms.contains a do throwError "missing disclosed dependency: {a}"
+    unless KIP126.Checks.AxiomInputs.uses axioms a do throwError "missing disclosed dependency: {a}"
 
 #print axioms KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent
 #print axioms KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent_computational

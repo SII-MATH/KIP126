@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
 import Lean.Elab.Command
 
@@ -17,7 +18,7 @@ run_cmd do
       ``KIP126.Classical.Adams.adamsTower_d_two_h6_value_exists,
       ``KIP126.Classical.Adams.adamsTower_d_two_h6_eq_zero_iff_lift] do
     for a in ← liftCoreM (collectAxioms declaration) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected representative-independence dependency: {declaration}: {a}"
   let inputs := [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.linE2Presentation]
@@ -32,10 +33,10 @@ run_cmd do
       ``KIP126.Classical.Adams.computedH6Square_double_lift_five_of_leibniz] do
     let axioms ← liftCoreM (collectAxioms declaration)
     for a in axioms do
-      unless (logical ++ inputs).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
         throwError "unexpected computational tower dependency: {declaration}: {a}"
     for a in inputs do
-      unless axioms.contains a do
+      unless KIP126.Checks.AxiomInputs.uses axioms a do
         throwError "missing disclosed computational tower input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

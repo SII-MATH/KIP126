@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.Literature.Near126
 import Lean.Elab.Command
 
@@ -21,7 +22,7 @@ run_cmd do
       ``KIP126.Core.SpectralSequence.differentialVanishesOn_iff_not_hasNonzeroDifferential,
       ``KIP126.Core.SpectralSequence.NeverHit.not_hit] do
     for a in ← liftCoreM (collectAxioms decl) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected computation predicate/coordinate dependency: {decl}: {a}"
   for decl in [``KIP126.Computation.Near126.SphereDifferentialFacts.d3_x126_6_ne_zero,
       ``KIP126.Computation.Near126.SphereSurvivalFacts.y_not_hit_on_page,
@@ -31,8 +32,8 @@ run_cmd do
       ``KIP126.Computation.Near126.SphereSurvivalFacts.c3_iff_not_d6,
       ``KIP126.Computation.Near126.SphereSurvivalFacts.hit_t_iff_d12] do
     for a in ← liftCoreM (collectAxioms decl) do
-      unless (logical ++ [``KIP126.Classical.Adams.standardFoundation,
-          ``KIP126.Classical.Adams.linE2Presentation]).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (logical ++ [``KIP126.Classical.Adams.standardFoundation,
+          ``KIP126.Classical.Adams.linE2Presentation]) a do
         throwError "unexpected fixed-sphere fact dependency: {decl}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

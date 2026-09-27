@@ -1,6 +1,6 @@
 # Def / Interface / Main 布局与迁移记录
 
-本次工作只整理已有内容、更新路径和补充模块说明；不补证明、不修数学陈述、不新增阶段公理或目标。接口范围沿用 [审核 issue #138](https://github.com/SII-MATH/KIP126/issues/138)，后续的陈述变更由整合者协调。
+首轮工作整理已有内容、更新路径和补充模块说明。随后按用户确认，把三条整包公理的原字段展开成逐项 Lean 输入，并用 `def` 组装原接口；微分表公理展开其结论。未补数学证明、未修论文陈述、未增删原结构条件。接口范围沿用 [审核 issue #138](https://github.com/SII-MATH/KIP126/issues/138)，后续的陈述变更由整合者协调。
 
 ## 从哪里开始读
 
@@ -66,7 +66,7 @@ KIP126/
 
 ## 本次没有补齐的边界
 
-- 现有四条项目 axiom 分属两道边界：两条基础输入在 `Interface/Axiom`，两条 Lin 页面／微分输入在 `Main/Axiom`。Def 不声明项目公理；当前 `Def` 和 `Interface.Solution` 聚合入口的 import 闭包仍不含项目 axiom，这是现有依赖状态，不是禁止 Interface 消费已冻结基础输入的规则。
+- 原四组项目输入分属两道边界：基础与 Milnor 两组在 `Interface/Axiom`，Lin 页面表示与微分表两组在 `Main/Axiom`。前三组已逐字段展开，当前为 18 + 2 + 3 + 1 = 24 条显式声明；三个旧整包名称均改为 `def` 组装。Def 不声明项目公理；当前 `Def` 和 `Interface.Solution` 聚合入口的 import 闭包仍不含项目 axiom，这是现有依赖状态，不是禁止 Interface 消费已冻结基础输入的规则。
 - `Def` 仍有六条向输入包的 import，引用的是 E₂ 字面数据、provenance 类型、显式输入 wrapper 或条件文献推论，均不导入项目 axiom。纯公共层的最终拆分仍需结合模型接口讨论，不在本次进行语义重写。
 - `Main` 的部分输入解释仍使用 Interface 中已有的基表证明；其中的 `basisTable_correct` 尚有 `sorry`。目录归位没有实现所有阶段的证明债务隔离。
 - 两道边界尚没有完整的上游构造／证明与消费端对应清单及完整类型对齐 CI；本次没有用新的 `sorry` 或 axiom 补造这套接口。部分既有 Lin 基础证明仍在 Interface/Solution，归属和阶段镜像需要后续逐项核对。
@@ -89,8 +89,10 @@ KIP126/
 - 从 `Main/Axiom/LinProgram/Raw/` 直接运行的三项本地检查通过：E₂ 的三个固定 CSV 重生成逐字一致，`proofs.db` 全量扫描后的 10,907 条微分一致，六条 selected 结果及一条独立 `basis.d2` 核验一致；转换器现有测试通过。五个原始输入的 Git LFS 对象均已上传，CI 重生成检查尚未接入。
 - 完整来源 checker 通过：18 个来源、88 个制品；所有迁移的论文原文制品保持原字节。
 - Blueprint web 构建、Python／shell／workflow 语法和模块文档相对链接检查通过。
-- 本次 Examples／基础输入归位另逐一核对当前 834 个 Lean 文件：除 import 外正文完全一致，四条项目公理的声明和类型均保留；导入无缺失或循环，文档链接检查通过。
+- 在 Examples／基础输入归位提交 `f0c160b` 中，曾逐一核对当时 834 个 Lean 文件：除 import 外正文完全一致，四条项目公理的声明和类型均保留；导入无缺失或循环，文档链接检查通过。
 - 对初次迁移前 829 个 canonical Lean 文件逐一核对：除 import、路径文字、注释及空聚合命名空间外，声明和证明正文保持一致；现有 `sorry` 未增减。
 - `import KIP126` 原先可达的 724 个本地模块，在新路径下全部仍可达；声明名称保持，调用者使用旧文件路径的 `import` 则须按映射更新。
+
+后续公理拆分增加精确字段清单与旧包声明种类的 Lean 回归，并将原依赖允许列表展开到已审核字段；严格最终审计仍拒绝所有项目 axiom 和 `sorryAx`。
 
 自动化 CI 此次增加了新路径的来源文件检查和转换器现有测试；完整的 JSON/Lean 来源投影在本地验证通过，尚未接成 CI 作业。Main axiom 与 Interface theorem 的类型对齐同样留待专门工作。

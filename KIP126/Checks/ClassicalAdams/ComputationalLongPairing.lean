@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.LongLayer.Proofs
 import Lean.Elab.Command
 
@@ -9,7 +10,7 @@ run_cmd do
   let foundation := ``KIP126.Classical.Adams.standardFoundation
   for a in ← liftCoreM (collectAxioms
       ``KIP126.Classical.Adams.LinE2Presentation.h6_cross_products_add_eq_zero) do
-    unless (logical ++ [foundation]).contains a do
+    unless KIP126.Checks.AxiomInputs.allows (logical ++ [foundation]) a do
       throwError "unexpected explicit-presentation cancellation dependency: {a}"
   let inputs := [foundation, ``KIP126.Classical.Adams.linE2Presentation]
   for declaration in [``KIP126.Classical.Adams.SphereH6LongLayerMaps.LinCompatible,
@@ -17,10 +18,10 @@ run_cmd do
       ``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_longLayer] do
     let axioms ← liftCoreM (collectAxioms declaration)
     for a in axioms do
-      unless (logical ++ inputs).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
         throwError "unexpected computational long-pairing dependency: {declaration}: {a}"
     for a in inputs do
-      unless axioms.contains a do
+      unless KIP126.Checks.AxiomInputs.uses axioms a do
         throwError "missing disclosed computational long-pairing input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

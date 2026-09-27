@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Selected.Proofs
 import KIP126.Checks.ClassicalAdams.LinProofs
 
@@ -10,7 +11,7 @@ run_cmd do
       ``KIP126.Core.SpectralSequence.HasDifferential.eq_on_page_two,
       ``KIP126.Core.SpectralSequence.hasDifferential_zero] do
     for a in (← liftCoreM (collectAxioms decl)) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected generic differential axiom: {decl}: {a}"
   let expected := [``propext, ``Classical.choice, ``Quot.sound,
     ``KIP126.Classical.Adams.standardFoundation,
@@ -26,7 +27,7 @@ run_cmd do
     unless axioms.contains ``KIP126.Computation.LinProofs.sphereTable_sound do
       throwError "missing existing database assumption: {decl}"
     for a in axioms do
-      unless expected.contains a do
+      unless KIP126.Checks.AxiomInputs.allows expected a do
         throwError "unexpected selected-result axiom: {decl}: {a}"
 
 open KIP126.Core KIP126.Core.SpectralSequence

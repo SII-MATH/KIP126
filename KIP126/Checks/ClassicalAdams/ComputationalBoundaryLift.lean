@@ -1,3 +1,4 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
 import Lean.Elab.Command
 
@@ -10,10 +11,10 @@ run_cmd do
       ``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_firstCycleProductRule] do
     let axioms ← liftCoreM (collectAxioms declaration)
     for a in axioms do
-      unless (logical ++ inputs).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
         throwError "unexpected fixed boundary-lift dependency: {declaration}: {a}"
     for a in inputs do
-      unless axioms.contains a do
+      unless KIP126.Checks.AxiomInputs.uses axioms a do
         throwError "missing disclosed fixed boundary-lift input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

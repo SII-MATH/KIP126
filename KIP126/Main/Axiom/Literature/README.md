@@ -26,7 +26,7 @@
 
 **陈述状态：来源框架已建立，逐条数学陈述仍是部分完成。** 已有稳定 source/claim ID 和若干精确 proposition wrapper；部分 claim owner 指向未来声明，部分 locator 仍是摘要说明，七个来源只有 metadata，不能据此确认原文结论的完整强度。
 
-**实现状态：文件与 provenance 基础已迁入新布局。** inventory 有 18 个来源，claim ledger 有 56 项，并已有完整性、唯一性和依赖无环结构。这个数字不是 56 条已经形式化并证明的外部 theorem。Standard foundation/Milnor 仍保持原 axiom 状态。
+**实现状态：文件与 provenance 基础已迁入新布局。** inventory 有 18 个来源，claim ledger 有 56 项，并已有完整性、唯一性和依赖无环结构。这个数字不是 56 条已经形式化并证明的外部 theorem。Standard foundation/Milnor 已在 Interface/Axiom 中按字段展开并组装；叶子输入仍是假设。
 
 这里没有可靠分母可报告百分比，也不按 `sorry` 比率判断。没有 `sorry` 的外部 wrapper 仍可能只携带调用者提供的 proof；文件迁移不增加数学证明进度。
 
