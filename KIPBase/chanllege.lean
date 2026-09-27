@@ -78,7 +78,7 @@ def SurvivesToEInfty (s t : ℕ) (x : Page 𝒮 s t) : Prop :=
   let E := AdamsSS 𝒮 (SphereSpectrum : 𝒮)
   let D := E.ssData ((s : ℤ), (t : ℤ))
   let n : WithTop ℕ := ↑(2 - E.r₀).toNat
-  ∃ z : (Subobject.underlying.obj (D.Z ⊤) : AddCommGrpCat.{v}),
+  ∃ z : (Subobject.underlying.obj (D.Z ⊤) : ModuleCat.{v, v} IntModuleRing.{v}),
     (Subobject.ofLE (D.Z ⊤) (D.Z n) (D.Z_anti le_top) ≫ D.pageπ n) z = x ∧
       (D.pageπ ⊤) z ≠ 0
 
