@@ -4,6 +4,7 @@ import importlib.util
 import json
 import os
 import re
+import shutil
 from pathlib import Path
 import subprocess
 import tempfile
@@ -101,12 +102,15 @@ class BlueprintStagingTests(unittest.TestCase):
                 path.write_text("trusted")
 
     def test_only_selected_source_inputs_are_overlaid(self):
-        for name in ("blueprint/src/content.tex", "KIP126/A.lean", "scripts/tool.py", "requirements-blueprint.txt"):
+        for name in ("blueprint/src/content.tex", "KIP126/A.lean", "KIPBase/A.lean",
+                     "KIPBase.lean", "scripts/tool.py", "requirements-blueprint.txt"):
             (self.candidate / name).write_text("candidate")
         stage.stage(self.trusted, self.candidate)
         stage.stage_lean(self.trusted, self.candidate)
         self.assertEqual((self.trusted / "blueprint/src/content.tex").read_text(), "candidate")
         self.assertEqual((self.trusted / "KIP126/A.lean").read_text(), "candidate")
+        self.assertEqual((self.trusted / "KIPBase/A.lean").read_text(), "candidate")
+        self.assertEqual((self.trusted / "KIPBase.lean").read_text(), "candidate")
         self.assertEqual((self.trusted / "scripts/tool.py").read_text(), "trusted")
         self.assertEqual((self.trusted / "requirements-blueprint.txt").read_text(), "trusted")
 
@@ -130,10 +134,110 @@ class BlueprintStagingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "symlink"):
             stage.stage(self.trusted, self.candidate)
 
-    def test_unbuilt_legacy_delta_is_rejected(self):
-        (self.candidate / "KIPBase/A.lean").write_text("different")
-        with self.assertRaisesRegex(ValueError, "producer inputs"):
-            stage.stage_lean(self.trusted, self.candidate)
+    def test_removed_kipbase_modules_do_not_survive_staging(self):
+        (self.candidate / "KIPBase/A.lean").unlink()
+        (self.candidate / "KIPBase/B.lean").write_text("new module")
+        stage.stage_lean(self.trusted, self.candidate)
+        self.assertFalse((self.trusted / "KIPBase/A.lean").exists())
+        self.assertEqual((self.trusted / "KIPBase/B.lean").read_text(), "new module")
+
+    def test_kipbase_symlinks_are_rejected_before_any_source_is_copied(self):
+        for name in ("KIPBase/A.lean", "KIPBase.lean"):
+            with self.subTest(name=name):
+                path = self.candidate / name
+                path.unlink()
+                path.symlink_to(self.trusted / "scripts/tool.py")
+                (self.candidate / "KIP126/A.lean").write_text("candidate")
+                with self.assertRaisesRegex(ValueError, "symlink"):
+                    stage.stage_lean(self.trusted, self.candidate)
+                self.assertEqual((self.trusted / "KIP126/A.lean").read_text(), "trusted")
+                path.unlink()
+                path.write_text("trusted")
+
+
+class CandidateLeanOverlayTests(unittest.TestCase):
+    """Run the producer's real shell overlay, not a reimplementation of its copy rules."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        self.base, self.pr = self.root / "base", self.root / "pr"
+        self.script = next(s["run"] for s in steps("pr-build.yml")
+                           if s.get("name", "").startswith("Overlay candidate"))
+        for root, content in ((self.base, "trusted"), (self.pr, "candidate")):
+            for name in ("KIP126/A.lean", "KIP126.lean", "KIPBase/A.lean", "KIPBase.lean",
+                         "lakefile.lean", "lake-manifest.json", "lean-toolchain", "scripts/tool.py"):
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(content)
+
+    def overlay(self):
+        return subprocess.run(["bash", "-euo", "pipefail", "-c", self.script], cwd=self.root,
+                              env={**os.environ, "BUMP": ""}, capture_output=True, text=True)
+
+    def test_candidate_libraries_replace_base_but_tooling_stays_trusted(self):
+        (self.base / "KIPBase/Deleted.lean").write_text("stale")
+        # In particular, a deleted nested Lake config must not be compiled from main.
+        (self.base / "KIPBase/lakefile.lean").write_text("old nested config")
+        (self.pr / "KIPBase/lakefile.toml").write_text('name = "KIPBase"\n')
+        result = self.overlay()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for name in ("KIP126/A.lean", "KIP126.lean", "KIPBase/A.lean", "KIPBase.lean"):
+            self.assertEqual((self.base / name).read_text(), "candidate")
+        for name in ("lakefile.lean", "lake-manifest.json", "lean-toolchain", "scripts/tool.py"):
+            self.assertEqual((self.base / name).read_text(), "trusted")
+        self.assertFalse((self.base / "KIPBase/Deleted.lean").exists())
+        self.assertFalse((self.base / "KIPBase/lakefile.lean").exists())
+        self.assertEqual((self.base / "KIPBase/lakefile.toml").read_text(), 'name = "KIPBase"\n')
+
+    def test_invalid_kipbase_source_rejects_overlay_before_mutating_base(self):
+        for name in ("KIPBase", "KIPBase/A.lean", "KIPBase.lean"):
+            with self.subTest(name=name):
+                source = self.pr / name
+                saved = self.pr / "saved"
+                source.rename(saved)
+                source.symlink_to(self.base / name)
+                result = self.overlay()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual((self.base / "KIP126/A.lean").read_text(), "trusted")
+                source.unlink()
+                # A missing library/root must fail too, instead of retaining stale base code.
+                result = self.overlay()
+                if name != "KIPBase/A.lean":
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertEqual((self.base / "KIP126/A.lean").read_text(), "trusted")
+                saved.rename(source)
+                # Reset candidate copies if the removed-module case succeeded.
+                for library in ("KIP126", "KIPBase"):
+                    for path in (self.base / library).rglob("*.lean"):
+                        path.write_text("trusted")
+
+    def test_candidate_compile_error_reaches_the_compiler(self):
+        # Resolve an already installed pinned compiler; never download dependencies.
+        lean = shutil.which("lean")
+        elan = shutil.which("elan")
+        if elan:
+            resolved = subprocess.run([elan, "which", "lean"], cwd=ROOT,
+                                      capture_output=True, text=True)
+            if resolved.returncode:
+                self.skipTest("Pinned Lean toolchain is not installed")
+            lean = resolved.stdout.strip()
+        if not lean:
+            self.skipTest("Lean toolchain is unavailable")
+        for source, succeeds in (("example : True := by trivial\n", True),
+                                 ("example : False := by trivial\n", False)):
+            with self.subTest(succeeds=succeeds):
+                (self.pr / "KIPBase/A.lean").write_text(source)
+                result = self.overlay()
+                self.assertEqual(result.returncode, 0, result.stderr)
+                compiled = subprocess.run([lean, "KIPBase/A.lean"], cwd=self.base,
+                                          capture_output=True, text=True, timeout=30)
+                if succeeds:
+                    self.assertEqual(compiled.returncode, 0, compiled.stdout + compiled.stderr)
+                else:
+                    self.assertNotEqual(compiled.returncode, 0)
+                    self.assertIn("error:", compiled.stdout + compiled.stderr)
 
 
 class BuildFailureTests(unittest.TestCase):

@@ -53,7 +53,12 @@ changes Lean, scripts, docs, or provenance files. Review-scope policy is separat
 from running the checks. The renderer and dependency installation come from
 trusted configuration; only `blueprint/src/` and the producer-supported Lean
 sources are staged from the candidate. Symlinks and mismatches with the producer's
-Lake/pin/KIPBase configuration fail with a specific error.
+Lake/pin configuration fail with a specific error. Both `KIP126` and `KIPBase`
+source trees and their root modules are replaced by the candidate versions,
+including deletions, just as in the PR/merge-group Lean producer. Candidate
+KIPBase changes still follow the existing human scope-review policy; this does
+not prevent their actual source from being compiled. Root Lake configuration
+and scripts remain trusted, and candidate Lean code runs only in the sandbox.
 
 Rendering runs in an offline sandbox before waiting for Lean outputs and reports
 `blueprint-render` immediately. Declaration validation then consumes exact
