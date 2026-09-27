@@ -10,6 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
+| [Challenge2.lean](Challenge2.lean) | 构造 `Nonempty KIP126.Challenge2` 的证明轨，当前仍为 `sorry` |
 | [LinProgram/Basis/Data.lean](LinProgram/Basis/Data.lean) | `dataBasis`, `dataCoordinates`, `basisByCSV?` |
 | [LinProgram/Basis/Proofs.lean](LinProgram/Basis/Proofs.lean) | `dataBasis_val`, `dataBasis_ne_zero`, `dataCoordinates_basis`, `dataCoordinates_reconstruct`, `data_finrank` |
 | [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | `basisTable_correct` |
@@ -33,7 +34,7 @@
 
 ## 3. 大概完成度
 
-**现有内容：20 个 Lean 文件、约 294 个显式声明，其中 282 条 theorem/lemma。** 本组件 4 个声明正文仍有 `sorry`/`admit`，处于实现中。
+**现有实现保留原有 Lin 与 Tools 内容，并新增 Challenge 2 的统一交付 theorem。** 该 theorem 及原有 4 个声明正文仍有 `sorry`/`admit`，处于实现中；文件或声明数量不作为数学完成度。
 
 导入闭包有 4 个模块含显式占位正文（这是模块文本盘点，不是 Lean 声明级公理审计）。
 

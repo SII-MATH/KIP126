@@ -3,8 +3,8 @@ import KIP126.Main.Solution.Computation.Dimension
 import Lean.Elab.Command
 
 /-! The small degree argument is kernel-checked, not an additive-basis
-certification axiom. The internal transfer uses only the existing foundation
-and Lin comparison, and must remain independent of the standard/Milnor layer. -/
+certification axiom. The internal transfer uses the foundation projection and
+Lin comparison, and does not project the Milnor coordinates from Challenge 1. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -32,8 +32,7 @@ run_cmd do
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.MilnorCooperations).isPrefixOf m then
+        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
       throwError "unexpected internal square-dimension import: {m}"
 
 #print axioms KIP126.LinE2.monomialDegree_square_unique

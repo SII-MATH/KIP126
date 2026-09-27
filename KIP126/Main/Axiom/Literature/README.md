@@ -20,13 +20,13 @@
 
 通用 `Provenance.lean`、`Evidence.lean`、`Results.lean` 位于上一层 `Main/Axiom/`，由 Literature 与 LinProgram 共用。详细关系见 [Provenance.md](Provenance.md)。
 
-`standardFoundation` 和 `standardMilnorCooperations` 的完整类型不使用内部谱序列，故由 `Interface/Axiom` 持有。它们仍缺完整内部构造和精确来源定位；迁移不为其补 proof，也不把它们当成已证明的文献结论。文献原文和来源清单仍集中在本目录，无须复制到各消费端。
+`standardFoundation` 和 `standardMilnorCooperations` 从 Interface 选定的同一个 Challenge 1 见证投影。Challenge 1 仍缺完整内部构造和精确来源定位；共享包不为其补 proof，也不把它们当成已证明的文献结论。文献原文和来源清单仍集中在本目录，无须复制到各消费端。
 
 ## 3. 大概完成度
 
 **陈述状态：来源框架已建立，逐条数学陈述仍是部分完成。** 已有稳定 source/claim ID 和若干精确 proposition wrapper；部分 claim owner 指向未来声明，部分 locator 仍是摘要说明，七个来源只有 metadata，不能据此确认原文结论的完整强度。
 
-**实现状态：文件与 provenance 基础已迁入新布局。** inventory 有 18 个来源，claim ledger 有 56 项，并已有完整性、唯一性和依赖无环结构。这个数字不是 56 条已经形式化并证明的外部 theorem。Standard foundation/Milnor 已在 Interface/Axiom 中按字段展开并组装；叶子输入仍是假设。
+**实现状态：文件与 provenance 基础已迁入新布局。** inventory 有 18 个来源，claim ledger 有 56 项，并已有完整性、唯一性和依赖无环结构。这个数字不是 56 条已经形式化并证明的外部 theorem。Standard foundation/Milnor 由 Challenge 1 的单一存在性输入提供，Def 的构造 theorem 仍未完成。
 
 这里没有可靠分母可报告百分比，也不按 `sorry` 比率判断。没有 `sorry` 的外部 wrapper 仍可能只携带调用者提供的 proof；文件迁移不增加数学证明进度。
 
@@ -35,7 +35,7 @@
 - 为 Main 实际使用的每个 literature axiom补齐精确 theorem/section/equation/page locator。
 - 获取或明确标记 metadata-only 来源，避免把二手转述当作已核对原文。
 - 审核 synthetic、Moss、BJM/BX、tmf、Browder 等输入的 proposition 强度。
-- 与 Interface/Axiom 的输入清单核对所需文献来源；两条基础输入的上游构造工作见该目录说明。
+- 与 Challenge 1 的字段核对所需文献来源；上游构造工作见 Interface/Axiom 的说明。
 - #134 的 Mahowald 反例问题解决前，不把相关 statement 标记为冻结可靠。
 
 ## 5. 后续应该一步一步如何做
@@ -44,4 +44,4 @@
 2. 对每项打开原文，核对条件、范围、结论和稳定 locator。
 3. 更新 source inventory 与 claim ledger，保持 primitive/composite 区别。
 4. 为无来源 axiom建立显式审计项；不要在本目录直接补成看似有来源的 theorem。
-5. 来源和 statement 审核完成后，再由整合者建立 Interface/Main 类型镜像。
+5. 来源和 statement 审核完成后，把相应证明接入共享 Challenge 包的生产 theorem。

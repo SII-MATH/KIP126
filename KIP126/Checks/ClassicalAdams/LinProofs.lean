@@ -11,8 +11,9 @@ run_cmd do
   for decl in [``KIP126.Computation.LinProofs.differential_of_lookup,
       ``KIP126.Computation.LinProofs.row5541] do
     let axioms ← liftCoreM (collectAxioms decl)
-    unless axioms.contains ``KIP126.Computation.LinProofs.sphereTable_sound do
-      throwError "missing explicit database trust boundary: {decl}"
+    unless KIP126.Checks.AxiomInputs.uses axioms
+        ``KIP126.Computation.LinProofs.sphereTable_sound do
+      throwError "missing explicit Challenge 2 database trust boundary: {decl}"
     for a in axioms do
       unless KIP126.Checks.AxiomInputs.allows expected a do
         throwError "unexpected Lin proofs dependency: {decl}: {a}"

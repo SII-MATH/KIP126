@@ -28,7 +28,7 @@
 
 **陈述覆盖：当前六类计划计算接口中有 2/6 已形成可用陈述。** 已接通的是固定 E₂ presentation，以及闭合球面有限页差分。条件/反证分支，其他谱与 map/extension，sentinel 状态，以及带范围的维数、消失和候选穷尽仍未形成同等完整的内部陈述。`2/6` 只表示类别覆盖，不表示完成了三分之一的数学工作。
 
-**实现状态：已完成当前支持切片的机械迁移和本地重生成检查。** 从 `Raw/` 的三个 E₂ CSV 可逐字重生成 `E2.lean`；`proofs.db` 的 2,672,275 行已全部扫描并分类，其中 10,907 条生成 86 个差分分片；六条 selected bulk 记录和一条 `basis.d2` 元数据已与两个真实数据库交叉核验。五个原始输入的 Git LFS 对象均已上传；CI 重生成检查尚待接入。数学可靠性仍由 `LinE2PresentationInputs` 的三条假设及 `sphereTable_sound` 承担，没有复演 Lin program 的证明证书。
+**实现状态：已完成当前支持切片的机械迁移和本地重生成检查。** 从 `Raw/` 的三个 E₂ CSV 可逐字重生成 `E2.lean`；`proofs.db` 的 2,672,275 行已全部扫描并分类，其中 10,907 条生成 86 个差分分片；六条 selected bulk 记录和一条 `basis.d2` 元数据已与两个真实数据库交叉核验。五个原始输入的 Git LFS 对象均已上传；CI 重生成检查尚待接入。数学可靠性由同一个 `Challenge2` 见证中的 Lin presentation 与 `sphereTable_sound` 字段共同承担；Interface 的存在性 theorem 尚未证明。
 
 可直接审核 `Presentation.lean` 中三条声明的完整类型，以及 `Interpretation/Differentials/Axiom.lean` 中展开的每行结论。前者仍只在总次数 ≤ 261 内要求乘法相容，未增加规范页面乘法识别；后者仍要求固定表 lookup 成功，未增加后页代表元非零性。
 
@@ -48,6 +48,6 @@
 1. 逐类确定原始 schema、允许推出的结论及明确禁止的加强。
 2. 先扩展无损转换和 generated manifest，再增加 Lean interpretation。
 3. 为每类真实记录加入正反例和失败关闭测试。
-4. 将 Interface desired theorem 与 Main axiom 做完整类型对齐检查。
+4. 完成 Interface 的 `Nonempty Challenge2` theorem，并以它替换 Main 的同型开发期 axiom。
 5. 实现证书复演；只有 soundness theorem 完成后才替换相应 axiom。
 6. 每次数据版本更新都重新核对 Raw manifest、输入摘要、行数、输出摘要和下游依赖。

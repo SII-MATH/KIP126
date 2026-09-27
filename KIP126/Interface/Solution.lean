@@ -18,3 +18,4 @@ import KIP126.Interface.Solution.LinProgram.SquareDimension.Proofs
 import KIP126.Interface.Solution.Tools.generalized_leibniz
 import KIP126.Interface.Solution.Tools.generalized_mahowald
 import KIP126.Interface.Solution.Tools.page_extension_stretch
+import KIP126.Interface.Solution.Challenge2

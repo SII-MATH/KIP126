@@ -26,8 +26,7 @@ run_cmd do
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.MilnorCooperations).isPrefixOf m then
+        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
       throwError "unexpected computational long-pairing import: {m}"
 
 #print axioms KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_longLayer

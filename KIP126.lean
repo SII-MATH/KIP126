@@ -7,6 +7,10 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Tower.SecondDifferential.Proo
 import KIP126.Main.Solution.Computation.Reduction
 import KIP126.Interface.Solution.LinProgram.SquareDetection.Certificate
 import KIP126.Def
+import KIP126.Challenge1
+import KIP126.Challenge2
+import KIP126.Def.Challenge
+import KIP126.Def.Solution
 import KIP126.Def.AdamsE2
 import KIP126.Interface
 import KIP126.Main

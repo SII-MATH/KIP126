@@ -1,40 +1,44 @@
-# Interface 的基础输入
+# Interface 的 Challenge 1 输入
 
-本目录保存第一阶段使用、由第 0 阶段最终交付的开发期接口。计划中的分类依据是完整类型是否使用内部谱序列对象；目录使用职责名称，不以计划代号命名。
+本目录保存第一阶段开发时暂时接受的第 0 阶段产出。唯一的项目输入是
+`challenge1 : Nonempty KIP126.Challenge1`；它与
+`Def/Challenge/Challenge1.lean`、`Def/Solution/Challenge1.lean` 中 theorem
+直接使用同一个共享类型，不维护另一份长陈述。
 
 ## 1. 原先期望包含什么
 
-让第一阶段可以在冻结的基础输入上证明供 Main 使用的数学与计算接口，而不要求同一 agent 同时完成这些基础输入。第 0 阶段负责相应构造和证明，本目录保存消费端的 axiom；Def 继续保存公共定义、构造与通用性质，不声明项目 axiom。
+让 Interface 在第 0 阶段尚未完成时使用冻结的稳定同伦基础和 Milnor
+坐标，同时保证所有数据和性质来自同一个见证。Def 负责最终构造这个见证，
+本目录不把它误记为已经完成。
 
 ## 2. 现在包含什么
 
-| 文件 | 现有声明 | 归属理由 |
-| --- | --- | --- |
-| [StandardFoundation.lean](StandardFoundation.lean) | 18 条 `StandardFoundationInputs.*`；`standardFoundation` 由 `def` 组装 | 选择稳定谱范畴、函子性余纤维及指定 H𝔽₂，类型不使用内部谱序列 |
-| [StandardMilnor.lean](StandardMilnor.lean) | 2 条 `StandardMilnorInputs.*`；`standardMilnorCooperations` 由 `def` 组装 | 为同一 H𝔽₂ 的已构造 Adams 塔第一页提供 Milnor 坐标及微分相容性；完整类型未使用内部 `SSData` 对象 |
+| 文件 | 内容 |
+| --- | --- |
+| `KIP126/Challenge1.lean` | 共享见证结构：`foundation` 与依赖同一个 `H𝔽₂` 的 `milnor` |
+| [Challenge1.lean](Challenge1.lean) | 唯一存在性 axiom，并以 `Classical.choice` 选出一个见证 |
+| [StandardFoundation.lean](StandardFoundation.lean) | 从该见证投影旧公开名称 `standardFoundation` |
+| [StandardMilnor.lean](StandardMilnor.lean) | 从同一个见证投影旧公开名称 `standardMilnorCooperations` |
 
-二者对应 [接口清单 #138](https://github.com/SII-MATH/KIP126/issues/138) 的基础与 Milnor 条目，先从 Main 的 Literature 原样迁入，再按用户确认在 Lean 源码中展开原结构字段。旧接口的名称和完整类型保留；字段均引用同一批对象与操作，未增删原结构条件。Main 中的固定对象继续通过 import 使用同一份基础，不复制第二份独立的对象选择。Lin 页面表示与微分表使用内部谱序列，继续由 Main/Axiom/LinProgram 持有。
-
-审核直接从上述两个 Lean 文件开始：基础输入展开到本项目 `StableHomotopyCategory`、`HasFunctorialCofiber`、`Mod2EilenbergMacLane` 的字段；Mathlib 原生结构保留为标准单位。每条声明分别标明数据、结构或性质，末尾仅用 `def` 组装旧接口，不从一个隐藏的总公理取投影。
-
-这两组输入含数学数据，完整的上游交付仍需要实际构造。改成 `def` 组装不代表输入已经实现；其叶子声明仍是 axiom。本次没有补原结构中缺少的对称性、闭结构、余纤维映射的恒等／复合规律等条件。
+基础、余纤维、H𝔽₂、Milnor 坐标和微分相容性的详细字段继续由
+`StandardAdamsFoundation`、`MilnorCooperations` 的 Lean 结构定义公开；这里不再
+把它们拆成能够各自选择不同对象的独立 axiom。
 
 ## 3. 大概完成度
 
-**既有两组输入已归位并在源码展开；相应完整构造替代仍为 0/2。** 当前是 18 + 2 条显式声明，不代表新增了 20 项数学假设或完成了证明；这些是原包字段的逐项呈现。精确文献定位和完整内部构造仍待完成。
+**跨阶段陈述和消费端已固定；实际构造仍未完成。** 当前只有一条项目 axiom。
+Def 的 Challenge/Solution 已有完全相同的 `Nonempty Challenge1` theorem，正文仍为
+`sorry`，因此数学完成度不能由编译成功推断。
 
 ## 4. 接下来还需要完成什么
 
-- 确认第一阶段实际消费的其余基础接口，按完整类型判断是否使用内部谱序列。
-- 为这两组既有数据接口明确第 0 阶段的构造目标和依赖，排除对本目录 admitted 值的循环依赖。
-- 文献输入逐条登记来源与精确定位；未写出的输入不在此次迁移中补造。
-- 建立基础接口的类型对齐检查，并与 Interface 输出到 Main 的对齐检查分别记录。
-- 第一阶段的下游证明可以使用本目录的冻结输入，但不以此宣称第 0 阶段已经完成。
+- 在 `Def/Solution/Challenge1.lean` 构造一个真实的 `Challenge1` 见证。
+- 确认 foundation 与 Milnor 坐标所需的精确 Mathlib／文献来源。
+- 完成后把消费端 axiom 改为引用 Def 的 theorem，并确认下游不再依赖该项目 axiom。
 
 ## 5. 后续应该一步一步如何做
 
-1. 从第一阶段实际证明的依赖出发，确定最小基础输入及完整类型。
-2. 由整合者协调各输入的上游构造／证明声明和消费端声明，保持对象选择与参数一致。
-3. 第 0 阶段使用公共定义和 Mathlib 完成构造／证明；第一阶段独立使用冻结输入推进。
-4. 上游结果就绪后核对完整类型及依赖，再以独立变更消除对应 axiom。
-5. 更新本页和两阶段的进度；构造完成、命题证明完成与编译成功分别记录。
+1. 分别构造稳定范畴、函子性余纤维和 H𝔽₂。
+2. 构造同一个 H𝔽₂ 的 Milnor 坐标并证明第一微分相容性。
+3. 将两部分装入一个 `Challenge1` 值，完成 Solution theorem。
+4. 用该 theorem 替换本目录的开发期 axiom，再运行下游公理审计。

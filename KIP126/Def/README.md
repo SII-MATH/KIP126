@@ -17,11 +17,11 @@
 
 ## 1. 预期
 
-`KIP126/Def/` 应保存三个阶段共同使用的数学对象 M，以及可以跨项目复用、无需借用 Main 假设的定义、构造和一般定理。它包括内部 `SSData → PreSS → SpectralSequence`、过滤与完备化、稳定同伦上下文、Adams 塔、Milnor cobar、synthetic 对象等。Def 不拥有项目 `axiom`，原则上也不应反向依赖 `Interface/` 或 `Main/`。Mathlib 的普通范畴与代数 API 可以直接使用；历史 Mathlib 谱序列适配层可以保留，但不产生“内部谱序列等于 Mathlib 谱序列”的新证明义务。
+`KIP126/Def/` 应保存三个阶段共同使用的数学对象 M，以及可以跨项目复用、无需借用 Main 假设的定义、构造和一般定理。它还作为第一个生产阶段，在 `Challenge/Challenge1.lean` 冻结 `Nonempty Challenge1`，并在 `Solution/Challenge1.lean` 构造该见证。Def 不拥有项目 `axiom`，原则上也不应反向依赖 `Interface/` 或 `Main/`。Mathlib 的普通范畴与代数 API 可以直接使用；历史 Mathlib 谱序列适配层可以保留，但不产生“内部谱序列等于 Mathlib 谱序列”的新证明义务。
 
 ## 2. 现有
 
-当前 Def 有十个一级数学组件，512 个 Lean 文件。内部谱序列、过滤复形有限页、Adams 塔与第一微分、Milnor 合作运算和 cobar、Lin 商代数工具、稳定同伦抽象上下文等已有大量可编译实现。原先的三条项目公理及其相关固定对象与条件推论文件已按新布局迁往 `Main/Axiom/` 或相应 `Main/Solution/`；基础结构如 `StandardAdamsFoundation`、`MilnorCooperations`、`AdamsSSData` 留在 Def。
+当前 Def 有十个一级数学组件。内部谱序列、过滤复形有限页、Adams 塔与第一微分、Milnor 合作运算和 cobar、Lin 商代数工具、稳定同伦抽象上下文等已有大量可编译实现。基础结构如 `StandardAdamsFoundation`、`MilnorCooperations`、`AdamsSSData` 留在 Def；新增的 Challenge/Solution 共享同一个 `Nonempty KIP126.Challenge1` 陈述，Solution 正文尚未完成。
 
 Def 根入口当前不递归依赖项目 axiom，但 import 方向尚未完全闭合：六条 `Def → Main` 直接边只读取生成数据、provenance、claim catalogue 或要求调用者显式提供证明的 wrapper，并没有把文献命题安装成全局事实；它们仍是需要下沉纯 schema 后消除的结构债务。`ClassicalAdams/Permanence` 还反向使用历史 Mathlib adapter。`LinAutomation/Proofs` 仍有一个可见 `sorry`。这些都必须登记，不能因换目录而宣称数学边界已经完成。
 
@@ -47,4 +47,4 @@ Def 根入口当前不递归依赖项目 axiom，但 import 方向尚未完全�
 2. 添加结构检查：禁止 Def 新增项目 `axiom`，并列出而非掩盖现有 `Def → Main`、`Def → KIP126.Mathlib` 反向边。
 3. 先把纯 schema 与固定实例分开，逐条消除上述反向 import；保持公开 declaration namespace 不变。
 4. 按 `SpectralSequence → StableHomotopy → ClassicalAdams → Synthetic/Comparison` 的依赖顺序修复 statement 和补基础能力。
-5. 每完成一条冻结接口，再建立其 Interface theorem 与 Main axiom 的类型一致性检查，最后按依赖锥替换 Main 假设。
+5. 完成 `Nonempty Challenge1` 后，用该 theorem 替换 Interface 的同型 axiom，并按依赖锥确认假设已经消除。

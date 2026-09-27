@@ -1,3 +1,4 @@
 import KIP126.Interface.Challenge.Tools.generalized_leibniz
 import KIP126.Interface.Challenge.Tools.generalized_mahowald
 import KIP126.Interface.Challenge.Tools.page_extension_stretch
+import KIP126.Interface.Challenge.Challenge2

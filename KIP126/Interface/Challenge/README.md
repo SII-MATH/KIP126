@@ -10,13 +10,14 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
+| [Challenge2.lean](Challenge2.lean) | `Nonempty KIP126.Challenge2`，即本阶段向 Main 交付的完整包 |
 | [Tools/generalized_leibniz.lean](Tools/generalized_leibniz.lean) | `Degree`, `shift`, `targetDegree`, `Operations`, `Input` 等 7 个声明 |
 | [Tools/generalized_mahowald.lean](Tools/generalized_mahowald.lean) | `Operations`, `Input`, `generalized_mahowald` |
 | [Tools/page_extension_stretch.lean](Tools/page_extension_stretch.lean) | `Input`, `page_extension_stretch` |
 
 ## 3. 大概完成度
 
-**陈述轨已有 3 条 theorem/lemma 声明；配对迁移已完成。** 这里的 `sorry` 是陈述轨约定，不是这个目录要消除的证明义务。陈述是否准确、是否绑定正确对象须按领域审核；不能由占位正文推断数学进度。
+**陈述轨已有 4 条主要 theorem 声明；配对文件均存在。** 这里的 `sorry` 是陈述轨约定，不是这个目录要消除的证明义务。陈述是否准确、是否绑定正确对象须按领域审核；不能由占位正文推断数学进度。
 
 ## 4. 接下来还需要完成什么
 

@@ -4,7 +4,7 @@ import Lean.Elab.Command
 
 /-! The no-incoming-differential argument is internal and independent of the Lin
 table and Milnor coordinates. Its generic form uses the Eilenberg--Mac Lane
-property; its fixed form requires only the existing foundation assumption. -/
+property; its fixed form projects only the foundation from Challenge 1. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -46,7 +46,6 @@ run_cmd do
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.MilnorCooperations).isPrefixOf m ||
         (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
       throwError "unexpected internal vanishing import: {m}"
 

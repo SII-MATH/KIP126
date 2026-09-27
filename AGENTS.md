@@ -31,8 +31,10 @@ clarified.
 
 The canonical mathematical source is divided into three top-level layers:
 
-- `KIP126/Def/` is the common mathematical base. It owns objects, predicates,
-  constructions, and reusable theorems. It must not declare project axioms.
+- `KIP126/Def/` is the common mathematical base and the first production stage.
+  It owns objects, predicates, constructions, reusable theorems, and the
+  Challenge/Solution pair which constructs `Challenge1`. It must not declare
+  project axioms.
 - `KIP126/Interface/` owns the first proof stage: statements and proofs which
   turn the common base into the stable mathematical and computation interfaces
   consumed by the main argument. Its `Axiom/` contains stage-zero outputs admitted as inputs to stage one,
@@ -42,9 +44,11 @@ The canonical mathematical source is divided into three top-level layers:
   development-only assumptions that let this stage proceed in parallel;
   `Challenge/` and `Solution/` contain the paper's main deductions and endpoint.
 
-The mathematical planning symbols used outside the repository are not source
-directory names or Lean declaration prefixes. Keep source paths named by their
-mathematical or provenance role. Preserve `KIP126/Mathlib/` as the optional
+`KIP126/Challenge1.lean` and `KIP126/Challenge2.lean` are the two shared,
+reviewable witness types crossing stage boundaries. They contain definitions
+only. Their producer theorems and consumer axioms stay in the adjacent stage
+trees. Other mathematical planning symbols used outside the repository are not
+source directory names or Lean declaration prefixes. Preserve `KIP126/Mathlib/` as the optional
 adapter layer and `KIP126/Checks/` as the regression/audit layer. Do not create
 empty directories or placeholder modules merely to display the architecture.
 
@@ -52,20 +56,20 @@ This layout is a target as well as an ownership rule. During the authorized
 migration, move existing declarations without silently changing their
 statements or proofs. Existing cross-layer imports are migration debt, not
 evidence that the final dependency isolation is already implemented. Record
-such debt and remove it in later semantic changes. Likewise, do not claim that
-automatic Interface-to-Main signature checking exists until its CI check has
-actually landed.
+such debt and remove it in later semantic changes. Both sides of a boundary
+state `Nonempty Challenge1` or `Nonempty Challenge2` directly, so there is no
+duplicated long signature or separate alignment table to synchronize.
 
 For the current milestone split, the former Challenge/Solution `Tools`
 modules for generalized Leibniz, generalized Mahowald, and page-extension
 stretching belong to `Interface`. The former `Near126` and `Final` modules
-belong to `Main`. This initial classification does not create missing stage
-mirrors or proofs.
+belong to `Main`. This initial classification does not populate every planned
+field of Challenge 2 or prove either producer theorem.
 
 ## Challenge, Solution, and stage-axiom synchronization
 
-- Every theorem under either `KIP126/Interface/Challenge/` or
-  `KIP126/Main/Challenge/` must have a corresponding theorem under the same
+- Every theorem under `KIP126/Def/Challenge/`, `KIP126/Interface/Challenge/`,
+  or `KIP126/Main/Challenge/` must have a corresponding theorem under the same
   relative path in that layer's `Solution/` tree. Preserve public declaration
   names during directory-only migration; a file move alone does not authorize a
   namespace or API change.
@@ -86,21 +90,17 @@ mirrors or proofs.
   proof dependencies instead. Audit Solution and its proof dependencies
   separately from the intentionally unproved Challenge statements; a Challenge
   placeholder is never evidence of proof completion.
-- Stage-zero interfaces whose full types do not use the internal spectral-
-  sequence object belong to `Interface/Axiom/` when admitted for stage one.
-  Their upstream constructions/proofs must not depend on these admitted copies.
-  They are not additional permanent assumptions and are never declared in `Def/`.
-  Preserve existing data-valued axioms during migration: a value of a structure
-  type ultimately needs a construction, not a Lean theorem with a non-Prop type.
-- Each proposition-valued stage-one axiom owned by `Main/Axiom/` is intended
-  to have a statement-identical theorem goal in `Interface/Challenge/` and
-  `Interface/Solution/`. Existing data-valued interfaces need corresponding
-  constructions; do not silently change their types to fit the theorem tracks.
-  The Interface result eventually discharges that stage assumption.
-  Compare complete Lean types, not names or prose descriptions.
-  The initial directory migration does not invent missing statements or proofs:
-  an absent mirror remains explicit follow-up work rather than an empty module or
-  a fabricated theorem.
+- The first boundary is exactly `Nonempty KIP126.Challenge1`: Def Challenge and
+  Solution state it as a theorem, while `Interface/Axiom` may temporarily state
+  it as an axiom. The second boundary is exactly
+  `Nonempty KIP126.Challenge2`: Interface Challenge and Solution state it as a
+  theorem, while `Main/Axiom` may temporarily state it as an axiom. Data and
+  property fields stay correlated inside one witness at each boundary.
+- Consumer code selects one witness with `Classical.choice` and projects every
+  compatibility name from it. Do not replace a Challenge package with
+  independent data axioms or allow dependent fields to choose different base
+  objects. Producer Solution proofs must not depend on the matching consumer
+  axiom.
 - A Solution proof that is meant to eliminate a stage axiom must not import or
   otherwise depend on that axiom. It may consume the pinned raw data, generated
   records, deterministic interpretation, explicit external-result parameters,
@@ -161,13 +161,12 @@ and separately auditable; it is an admitted interface for parallel work, never
 proof-completion evidence. Do not turn an arbitrary unfinished theorem into an
 axiom merely to remove `sorryAx`.
 
-The user-authorized interface refinement exposes the original fields of custom
-bundled assumptions as individually named Lean inputs, marking selected data,
-structures, and unproved properties. Assemble the old public record interfaces
-with definitions from those same inputs; do not retain a hidden bundle axiom
-and merely expose its projections. Mathlib's standard structures remain valid
-units. Preserve the original dependent choices, types, ranges, and conditions;
-field counts do not measure proof progress or authorize additional assumptions.
+The user-authorized interface refinement packages each boundary as a shared
+Lean witness structure. The only development axiom at each boundary is the
+existence proposition `Nonempty ChallengeN`; old public interfaces are
+definitions projected from the one selected witness. Keep every data choice
+and property visible in the witness structures, preserve dependent choices,
+types, ranges, and conditions, and do not treat packaging as proof progress.
 
 - `Main/Axiom/Literature/` owns the literature source catalogue, precise claim
   locators, the existing provenance-carrying wrappers, and any staged
@@ -305,11 +304,10 @@ results as evidence for read-only analysis.
   signatures and check both affected modules. Verify that Challenge still uses
   `by sorry` and that Solution does not use the Challenge placeholder as its
   proof.
-- Main stage-axiom statement change: compare its complete type with the intended
-  Interface Challenge/Solution goal, check its provenance or generated-data
-  record, and report a missing mirror explicitly. Until the repository has an
-  enforced type-alignment check, do not describe this comparison as automatic
-  CI coverage.
+- Stage-boundary change: both producer theorem and consumer axiom must state the
+  same shared `Nonempty ChallengeN` type directly. Review the witness fields,
+  provenance or generated data, and dependency on the preceding witness; do
+  not introduce a second handwritten copy of the full signature.
 - Definition-module reorganization: check the data/predicate/proof separation,
   absence of project axioms in `Def/`, import direction, and preservation of
   public declarations, then compile the smallest affected downstream target.

@@ -24,8 +24,9 @@ run_cmd do
       ``KIP126.Computation.LinProofs.Selected.d3_x126_4,
       ``KIP126.Computation.LinProofs.Selected.d7_x123_11_combination] do
     let axioms ← liftCoreM (collectAxioms decl)
-    unless axioms.contains ``KIP126.Computation.LinProofs.sphereTable_sound do
-      throwError "missing existing database assumption: {decl}"
+    unless KIP126.Checks.AxiomInputs.uses axioms
+        ``KIP126.Computation.LinProofs.sphereTable_sound do
+      throwError "missing Challenge 2 database assumption: {decl}"
     for a in axioms do
       unless KIP126.Checks.AxiomInputs.allows expected a do
         throwError "unexpected selected-result axiom: {decl}: {a}"

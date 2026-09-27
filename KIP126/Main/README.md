@@ -14,7 +14,7 @@ Main 应在冻结的 A(M) 与 C(M) 上完成论文第 7 节 near-126 推导，�
 
 ## 2. 现有
 
-当前 Main 已收纳 provenance/source inventory、401 行附录表、Lin E₂ 数据和 `proofs.db` 的生成微分表，以及固定 Lin presentation 和固定谱序列解释。Main 持有固定 Lin 表示和微分表两组输入：前者现拆为比较、乘法及相容性三条声明，再用 `def linE2Presentation` 组装；后者仍由一条展开结论的 `sphereTable_sound` 管理固定表。基础与 Milnor 两组输入在 `Interface/Axiom`，分别展开为 18 条和 2 条声明，Main 导入同一组装对象。全项目现有 24 条显式项目 axiom；数量增加来自原包字段拆开，不代表改变原数学条件。相关固定对象与条件推论保留原有依赖。
+当前 Main 已收纳 provenance/source inventory、401 行附录表、Lin E₂ 数据和 `proofs.db` 的生成微分表，以及固定谱序列解释。Main 只通过 `challenge2 : Nonempty KIP126.Challenge2` 接收阶段输出；从同一个见证投影 `linE2Presentation` 和 `sphereTable_sound`，保证微分解释使用见证内的同一比较映射。基础与 Milnor 输入同样来自 Interface 选定的一个 Challenge 1 见证。全项目当前只有两条阶段存在性 axiom；对应的 producer theorem 已陈述但尚未证明。
 
 论文推导已有五组 Near126 Challenge/Solution、两个 Final Challenge/Solution，以及 computation 的 dimension/nonvanishing/reduction/vanishing 模块。相应目标声明已经形式化；其中 computational `NonzeroSurvival` 是已冻结的内部最终目标。部分逻辑传输已有证明，而 only-d₁₂、C3/C4/C5、最终 eta 排除和两个 h₆² 目标的证明轨尚未完成。当前被解释的 Lin 数据主要是固定 E₂ 片段和 10,907 条 `depth=0, name=S0` 的闭合有限页球面微分；条件树、其他谱、extension、sentinel 与穷尽性仍未统一接通。
 
@@ -30,7 +30,7 @@ Main 应在冻结的 A(M) 与 C(M) 上完成论文第 7 节 near-126 推导，�
 
 ## 4. 待做
 
-1. 为每条 Main axiom 登记精确 Interface mirror、来源和下游依赖锥；当前目录迁移没有自动建立这种一一对应。
+1. 审核 `Challenge2` 的每个字段、来源和下游依赖锥；Interface theorem 与 Main axiom 已直接共享 `Nonempty Challenge2` 类型。
 2. 把 D/S/P/V 等手写消费者事实逐条追溯到 Lin 记录、文献或 Main 内部推论，不能整包冒充程序直接输出。
 3. 完成 only-d₁₂ reduction、C3/C4/C5 等价和排除、Toda/extension/Cν 链，再证明已约定的内部 computational 最终目标。历史 standard 包装保留，不新增比较义务。
 4. 修复或等待 Interface 修复 #133/#134；Main 不应依赖空的 Leibniz 输入或允许反例的 Mahowald statement。

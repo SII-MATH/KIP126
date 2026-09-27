@@ -16,11 +16,12 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 The canonical source has three mathematical layers:
 
-1. `KIP126/Def/` is the shared mathematical base. It contains definitions,
-   predicates, constructions, and reusable theorems. It contains no project
-   `axiom` declarations. An unfinished theorem may remain visibly unfinished
-   with `by sorry`; proof debt must not be hidden by changing its declaration
-   kind.
+1. `KIP126/Def/` is the shared mathematical base and the first production
+   stage. It contains definitions, predicates, constructions, reusable
+   theorems, and the Challenge/Solution pair for `Challenge1`. It contains no
+   project `axiom` declarations. An unfinished theorem may remain visibly
+   unfinished with `by sorry`; proof debt must not be hidden by changing its
+   declaration kind.
 2. `KIP126/Interface/` is the first proof stage. Its Challenge/Solution track
    states and eventually proves the stable mathematical and computation
    interfaces that the main paper argument consumes. Its `Axiom/` contains
@@ -39,23 +40,22 @@ the architecture does not require empty placeholder directories. Retaining the
 historical Mathlib adapter does not add a project obligation to identify the
 internal spectral-sequence model with Mathlib's spectral sequence.
 
-Every proposition-valued Main stage axiom is intended to have an exactly matching
-theorem goal in the Interface Challenge/Solution track; data-valued inputs need
-matching constructions. Stage-zero results likewise discharge the inputs in
-Interface/Axiom. These upstream results eventually eliminate the assumptions.
+The shared root structures `Challenge1` and `Challenge2` are the complete
+contracts for the two boundaries. Def and Interface prove respectively
+`Nonempty Challenge1` and `Nonempty Challenge2`; the next stage temporarily
+assumes that exact proposition and selects one witness. These upstream results
+eventually eliminate the assumptions without maintaining a duplicate signature.
 Accepted external literature still enters through
 explicit `ExternalResult`/`ExternalEvidence` values, so statement alignment
 does not turn a cited theorem into an untracked global fact.
 
 The initial reorganization moves existing declarations and preserves their
 public statements. The subsequent, explicitly authorized interface refinement
-exposes bundled assumptions as named fields and assembles the old public
-interfaces with definitions, preserving their original dependent choices and
-conditions. Neither step manufactures missing Interface goals, fills proofs,
-replays a program, or establishes a clean import boundary merely by changing
-paths. Missing mirrors, existing cross-layer dependencies, and automated
-type-alignment CI are explicit follow-up work until their implementations land
-and are validated.
+packages each boundary into one shared witness and projects the old public
+interfaces from it, preserving dependent choices and conditions. It adds the
+missing producer goals but does not fill their proofs, replay a program, or
+establish a clean import boundary merely by changing paths. Existing cross-layer
+dependencies and unfinished producer proofs remain explicit follow-up work.
 
 ## Confirmed design decisions
 
@@ -137,11 +137,14 @@ and are validated.
    proof-completion validation, every stage axiom and its downstream dependency
    cone is rejected until the matching upstream result has replaced it.
 
-   By user decision, the original custom record inputs are exposed as named
-   data/structure choices and property axioms in Lean source. The old interfaces
-   are assembled with `def`; they are not extra bundle axioms. This refinement
-   preserves their original fields and dependent choices. It does not construct
-   the selected data, prove the assumed properties, or authorize stronger laws.
+   By user decision, each stage boundary has one shared witness structure in
+   Lean source. `Challenge1` correlates the stable foundation with its Milnor
+   coordinates; `Challenge2` correlates the fixed Lin presentation with every
+   interpreted table row. The development axiom on each consuming side states
+   only `Nonempty ChallengeN`, exactly as the producing Challenge/Solution
+   theorem does. Compatibility names are projections from the selected witness.
+   This preserves dependent choices but does not construct the selected data,
+   prove the assumed properties, or authorize stronger laws.
 
    Literature results and computational artifacts retain the explicit
    provenance mechanisms specified below. In particular, moving their catalogue
@@ -163,14 +166,13 @@ and are validated.
    dataset once. The final signatures have no model or external-evidence
    parameters. The standard sphere sequence and Milnor class still reuse the
    existing tower construction; they are not supplied by the computation table.
-   Until the fixed foundations and comparisons are constructed, individually
-   named axioms may supply them. This includes the fixed Lin E₂ presentation
+   Until the fixed foundations and comparisons are constructed, the two named
+   Challenge existence axioms may supply them. This includes the fixed Lin E₂ presentation
    (Zenodo 14875701, v126.3.cw49, internal degree at most 261), as an explicitly
    authorized exception to passing computation evidence as a final theorem
    parameter. Source hashes remain attached to the actual imported data.
-   Foundation and Milnor inputs are owned by `KIP126/Interface/Axiom/`;
-   the fixed Lin comparison and differential-table inputs are owned by
-   `KIP126/Main/Axiom/`.
+   Challenge 1 is consumed under `KIP126/Interface/Axiom/`; Challenge 2 is
+   consumed under `KIP126/Main/Axiom/`.
    Their mathematical definitions and adapters remain in `Def/` and `Mathlib/`.
    Relocation does not remove their dependency cones or prove their statements;
    each remains final-acceptance debt until discharged by its upstream result.
@@ -305,7 +307,7 @@ and the final endpoint are Main goals. Accordingly, the former
 `Challenge/Tools` and `Solution/Tools` modules migrate to the Interface tracks,
 while the former `Challenge/Near126`, `Challenge/Final`, and matching Solution
 modules migrate to the Main tracks. This ownership classification does not
-assert that every intended Interface-to-Main mirror already exists.
+assert that every planned result is already represented by a `Challenge2` field.
 
 ## External inputs
 
@@ -316,13 +318,12 @@ claim wrappers; `KIP126/Main/Axiom/LinProgram/` owns the raw-to-interpreted
 program pipeline. Every accepted external input remains a value of an explicit
 structure carrying both the proposition and its provenance.
 
-A staged Main axiom may expose a frozen internal statement while Interface
-work is still proving it. That development device must point to its intended
-Interface theorem and to the source records used to formulate the statement;
-it does not turn arbitrary literature or program output into an unconditional
-fact. Claims selected for internal replay or verification are Interface proof
-obligations. Claims deliberately retained as external mathematical inputs stay
-explicit parameters of conditional theorems.
+The staged Main axiom states `Nonempty Challenge2` while Interface is still
+constructing that witness. Each field must point to the source records used to
+formulate it; the package does not turn arbitrary literature or program output
+into an unconditional fact. Claims selected for internal replay or verification
+are Interface proof obligations. Claims deliberately retained as external
+mathematical inputs stay explicit parameters of conditional theorems.
 
 The project will use the following conceptual interfaces (the exact field
 names may be refined during implementation):
@@ -379,9 +380,9 @@ digest shape; a catalogued wrapper also requires its path to equal the
 canonical claim locator.  Lean does not silently assert the file's actual
 digest, nor compare an arbitrary wrapper digest automatically.  Root coverage is relative
 to the explicitly closed, family-level `ExternalRootId` enum.  This describes
-the current inventory coverage, not a completed one-to-one pairing between
-Main stage axioms and Interface theorems; that pairing and its automatic check
-remain follow-up work.
+the current inventory coverage, not proof that every required result has been
+included in Challenge 2 or constructed by Interface. The boundary theorem and
+axiom already share one type; field coverage remains a mathematical review task.
 
 Examples of external inputs include:
 
@@ -435,9 +436,9 @@ The project is complete only when all of the following hold:
   required `by sorry` bodies and are excluded from proof-completion evidence,
   while the isolated historical KIPBase component remains subject to its
   separate migration audit;
-- every Main stage axiom has been eliminated by the matching proved Interface
-  theorem or removed as unnecessary; directory relocation and signature prose
-  alone do not satisfy this condition;
+- both Challenge existence axioms have been eliminated by the matching proved
+  producer theorem or removed as unnecessary; directory relocation and shared
+  signatures alone do not satisfy this condition;
 - every external input is passed through `ExternalResult` or `ExternalEvidence`;
 - every Appendix table entry has a Lean encoding;
 - the two geometric conclusions are available as conditional theorems;

@@ -9,3 +9,4 @@ import KIP126.Main.Axiom.Literature.Adams.OneLine
 import KIP126.Main.Axiom.Literature.Near126
 import KIP126.Main.Axiom.LinProgram.Differentials
 import KIP126.Main.Axiom.LinProgram.E2
+import KIP126.Main.Axiom.Challenge2

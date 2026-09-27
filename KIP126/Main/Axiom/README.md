@@ -10,19 +10,20 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
+| [Challenge2.lean](Challenge2.lean) | 唯一阶段输入 `challenge2 : Nonempty KIP126.Challenge2` 及选定见证 |
 | [Evidence.lean](Evidence.lean) | `sourceId`, `withArtifact`, `map_ref`, `map_sourceId`, `withArtifact_evidence` 等 12 个声明 |
 | [Provenance.lean](Provenance.lean) | `SourceId`, `code`, `ofCode`, `all`, `all_nodup` 等 78 个声明 |
 | [Results.lean](Results.lean) | `sourceId`, `sourceId_mk`, `map_ref`, `map_sourceId` |
 
 ## 3. 大概完成度
 
-**现有内容：3 个 Lean 文件、约 94 个显式声明，其中 57 条 theorem/lemma。** 本组件未扫描到显式占位正文，已有实现仍需结合依赖和语义审核判断是否完成。
+**阶段边界已收束为一条 Challenge 2 存在性 axiom。** Literature、LinProgram 的来源和数据声明继续按子目录管理；文件数不作为数学完成度。Interface 的同型 Solution theorem 仍未证明。
 
 未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
 
 ## 4. 接下来还需要完成什么
 
-- 结合消费端检查现有结果是否足以覆盖领域入口列出的预期；没有占位正文不代表全部所需结果已经写出。
+- 审核 Challenge 2 是否覆盖 Main 的最小实际输入，并完成 Interface 的同型 theorem。
 
 ## 5. 后续应该一步一步如何做
 
