@@ -115,6 +115,7 @@ class WorkflowBoundaryTests(unittest.TestCase):
         self.assertLess(steps.index(ids["dependency-complete"]), steps.index(save))
         self.assertIn("some files were not found in the cache", ids["dependency-complete"]["run"])
         self.assertEqual(ids["dependency-cache"]["with"]["path"], save["with"]["path"])
+        self.assertTrue(ids["dependency-cache"]["continue-on-error"])
         self.assertNotIn("restore-keys", ids["dependency-cache"]["with"])
         self.assertNotIn("base/.lake/build", save["with"]["path"])
         for path in ("lean-toolchain", "lake-manifest.json", "lakefile.lean"):

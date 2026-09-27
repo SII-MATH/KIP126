@@ -57,7 +57,7 @@ def main():
             head_ref=os.environ["QUEUE_HEAD_REF"], attestation=os.environ["BUILD_ATTESTATION"],
             input_digest=os.environ["BUILD_INPUT_DIGEST"], contract=os.environ["BUILD_CONTRACT"],
             platform=os.environ["CACHE_PLATFORM"])
-    except (KeyError, TypeError, ValueError, subprocess.CalledProcessError) as exc:
+    except (AttributeError, KeyError, TypeError, ValueError, subprocess.CalledProcessError) as exc:
         print(f"Queue evidence unavailable ({type(exc).__name__}); running normal compilation.")
         return
     if sha:

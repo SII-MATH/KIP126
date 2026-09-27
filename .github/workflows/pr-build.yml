@@ -593,6 +593,7 @@ jobs:
       # policy; only the PR's KIP126/ code stays untrusted and runs solely under landrun below.
       - name: Restore pinned Lean and Mathlib environment
         id: dependency-cache
+        continue-on-error: true
         if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' }}
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
@@ -611,7 +612,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          if [[ '${{ steps.dependency-cache.outputs.cache-hit }}' == true ]]; then
+          if [[ '${{ steps.dependency-cache.outcome == 'success' && steps.dependency-cache.outputs.cache-hit == 'true' }}' == true ]]; then
             echo 'No files to download (exact pinned dependency environment restored)' | tee "$GITHUB_WORKSPACE/cache-get.log"
           else
             ( cd base && lake exe cache get ) 2>&1 | tee "$GITHUB_WORKSPACE/cache-get.log"
