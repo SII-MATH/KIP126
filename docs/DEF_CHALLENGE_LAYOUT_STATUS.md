@@ -1,3 +1,5 @@
+> Historical layout record. The current layout is documented in [STAGE_LAYOUT.md](STAGE_LAYOUT.md); module ownership is Def / Interface / Main.
+
 # Def / Challenge migration status
 
 The source paths below describe the current branch. Public Lean declaration names
@@ -100,7 +102,7 @@ pages, spectra, stems, and filtration bands. `Rows/Catalogue/Data` contains the
 source-shaped 401-row input; `Rows/Predicates` defines schema validity and
 `Rows/Catalogue/Proofs` checks the transcription. The mathematical interpretation
 of the recorded differential and permanence statuses remains `\notready`.
-The complete paper-specific schema and catalogue are exported by `KIP126.External`,
+The complete paper-specific schema and catalogue are exported by `KIP126.Main.Axiom`,
 not `KIP126.Def`; public names in `KIP126.Computation` are preserved.
 
 The six former loose `ClassicalAdams` implementation files now live in

@@ -1,4 +1,4 @@
-import KIP126.External.Computation.LinProofs
+import KIP126.Main.Axiom.LinProgram.Differentials
 import Lean.Elab.Command
 
 open Lean Elab Command in

@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.StandardSphere.Proofs
+import KIP126.Main.Axiom.Literature.StandardSphere.Proofs
 import Lean.Elab.Command
 
 /-! The generic nonvanishing theorem is conditional on explicit Milnor

@@ -10,7 +10,6 @@ import KIP126.Def.ClassicalAdams.Convergence.Proofs
 import KIP126.Def.ClassicalAdams.SphereSequence.Data
 import KIP126.Def.ClassicalAdams.SphereClasses.Data
 import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
-import KIP126.Def.ClassicalAdams.StandardSphere.Proofs
 import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
 import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
 import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
@@ -19,7 +18,6 @@ import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Leibniz.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.One.Page.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Differential.Proofs
-import KIP126.Def.ClassicalAdams.ComputationalDifferential.LongLayer.Lifting.Proofs
 import KIP126.Def.ClassicalAdams.UnitFiber.Connectivity.Proofs
 import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Right.Proofs
 import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Boundary.Right.Proofs
@@ -49,12 +47,6 @@ import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.C
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Cobar.Reduced.Map.Proofs
 import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Proofs
 import KIP126.Def.ClassicalAdams.Coefficients.Proofs
-import KIP126.Def.ClassicalAdams.ComputationalVanishing.Proofs
-import KIP126.Def.ClassicalAdams.ComputationalNonvanishing.Proofs
-import KIP126.Def.ClassicalAdams.ComputationalDimension.Proofs
-import KIP126.Def.ClassicalAdams.ComputationalTower.SecondDifferential.Proofs
-import KIP126.Def.ClassicalAdams.ComputationalReduction.Proofs
-import KIP126.Def.AdamsE2.LinSquareDetection.Certificate.Proofs
 import KIP126.Def.ClassicalAdams.H4D2.Predicates
 import KIP126.Def.ClassicalESS.Eta.Proofs
 import KIP126.Def.Comparison.ClassicalSynthetic.Proofs

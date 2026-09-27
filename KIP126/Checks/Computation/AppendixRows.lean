@@ -1,4 +1,4 @@
-import KIP126.External.Computation.AppendixTable.Rows.Catalogue.Proofs
+import KIP126.Main.Axiom.Literature.AppendixTable.Rows.Catalogue.Proofs
 
 namespace KIP126.Checks.Computation
 

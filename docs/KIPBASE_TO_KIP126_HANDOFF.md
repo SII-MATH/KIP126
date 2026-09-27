@@ -160,12 +160,12 @@ KIP126/Def/<数学模块>/<概念>/
 建立并完成必要的：
 
 ```text
-KIP126/Challenge/Tools
-KIP126/Challenge/Near126
-KIP126/Challenge/Final
-KIP126/Solution/Tools
-KIP126/Solution/Near126
-KIP126/Solution/Final
+KIP126/Interface/Challenge/Tools
+KIP126/Main/Challenge/Near126
+KIP126/Main/Challenge/Final
+KIP126/Interface/Solution/Tools
+KIP126/Main/Solution/Near126
+KIP126/Main/Solution/Final
 ```
 
 要求：

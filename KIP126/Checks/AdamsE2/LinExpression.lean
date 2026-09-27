@@ -1,5 +1,5 @@
-import KIP126.Def.ClassicalAdams.ComputationalExpressions.Proofs
-import KIP126.Def.ClassicalAdams.ComputationalExpressions.Predicates
+import KIP126.Main.Axiom.LinProgram.Interpretation.Expressions.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Expressions.Predicates
 import Lean.Elab.Command
 
 /-! Executable migration regressions. Runtime checks are not proofs of the

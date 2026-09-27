@@ -1,5 +1,5 @@
 import KIP126.Def.Comparison.ClassicalSynthetic.Proofs
-import KIP126.External.Claims
+import KIP126.Main.Axiom.Literature.Claims
 
 /-!
 # AIM-6 classical--synthetic regression

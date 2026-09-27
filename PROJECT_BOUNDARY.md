@@ -6,11 +6,50 @@ This document records the agreed scope and acceptance criteria for the Lean
 formalization of:
 
 > Weinan Lin, Guozhen Wang, and Zhouli Xu, *On the Last Kervaire Invariant
-> Problem*, represented in this repository by `aimpaper/main.tex`,
-> `aimpaper/112.tex`, and `aimpaper/2412.10879.pdf`.
+> Problem*, represented in this repository by `KIP126/Main/Axiom/Literature/MainPaper/main.tex`,
+> `KIP126/Main/Axiom/Literature/MainPaper/112.tex`, and `KIP126/Main/Axiom/Literature/MainPaper/2412.10879.pdf`.
 
 The document is normative for the project. Any proposed extension or
 relaxation of this boundary must be agreed explicitly and recorded here.
+
+## Staged repository architecture
+
+The canonical source has three mathematical layers:
+
+1. `KIP126/Def/` is the shared mathematical base. It contains definitions,
+   predicates, constructions, and reusable theorems. It contains no project
+   `axiom` declarations. An unfinished theorem may remain visibly unfinished
+   with `by sorry`; proof debt must not be hidden by changing its declaration
+   kind.
+2. `KIP126/Interface/` is the first proof stage. Its Challenge/Solution track
+   states and eventually proves the stable mathematical and computation
+   interfaces that the main paper argument consumes.
+3. `KIP126/Main/` is the second proof stage. Its Challenge/Solution track owns
+   the near-126 argument and the final conclusions. Its `Axiom/` tree provides
+   audited development assumptions so this work can proceed in parallel with
+   Interface proofs.
+
+`KIP126/Main/Axiom/Literature/` manages literature sources, claim-level
+locators, provenance-carrying wrappers, and the staged assumptions that use
+them. `KIP126/Main/Axiom/LinProgram/` manages the program pipeline as distinct
+raw, deterministic translation, generated, and mathematical-interpretation
+layers. The Mathlib adapter and Checks trees retain their independent roles;
+the architecture does not require empty placeholder directories. Retaining the
+historical Mathlib adapter does not add a project obligation to identify the
+internal spectral-sequence model with Mathlib's spectral sequence.
+
+Every Main stage axiom is intended to have an exactly matching theorem goal in
+the Interface Challenge/Solution track. The Interface proof is what eventually
+eliminates that assumption. Accepted external literature still enters through
+explicit `ExternalResult`/`ExternalEvidence` values, so statement alignment
+does not turn a cited theorem into an untracked global fact.
+
+The current reorganization is a layout migration, not a proof or dependency
+rewrite. It moves existing declarations and preserves their public statements;
+it does not manufacture missing Interface goals, fill proofs, replay a program,
+or establish a clean import boundary merely by changing paths. Missing mirrors,
+existing cross-layer dependencies, and automated type-alignment CI are explicit
+follow-up work until their implementations land and are validated.
 
 ## Confirmed design decisions
 
@@ -23,10 +62,13 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 2. **Steenrod algebra and Ext.** We formalize the relevant algebraic
    interfaces and general theorems for the Steenrod algebra, graded objects,
-   filtered objects, and Ext/Adams pages. We do not reimplement the large
-   high-stem Ext calculations performed by Lin's programs. Concrete
-   high-stem values, computer output, and table entries are external inputs
-   represented by `ExternalResult` or `ExternalEvidence`.
+   filtered objects, and Ext/Adams pages. Pinned Lin-program output determines
+   the computation statements mechanically; it is not itself a Lean proof of
+   those statements. The Interface stage is intended to replay or verify the
+   required interpreted high-stem conclusions from the common base and the
+   pinned raw artifacts. Until those proofs exist, Main may consume the frozen
+   statements through disclosed stage axioms. Concrete raw output and table
+   entries retain `ExternalEvidence` provenance throughout this process.
 
    For the statement of the permanent `h_6^2` target, the confirmed abstract
    foundation may include an explicit mod--2 Eilenberg--Mac Lane object and
@@ -72,23 +114,27 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 6. **Axiom policy.** The project may use Lean's foundational axioms and the
    axioms already intrinsic to Lean's standard foundational mechanisms.
-   During development, including KIPBase integration, an internal statement
-   deliberately introduced with Lean's `axiom` command must be placed in the
-   relevant mathematical component's `Axiom.lean`, alongside its `Data.lean`,
-   `Predicates.lean`, and `Proofs.lean` where those layers are needed. Each such
-   statement must record its source, intended meaning, and reason for being
-   assumed. At final proof-completion validation, audit each assumption
-   together with its downstream dependencies. Its presence is not evidence that the statement is proved.
-   An unfinished theorem instead remains in `Proofs.lean` with `by sorry`;
-   it must not be converted into an axiom merely to avoid `sorryAx`.
-   Development CI does not run proof-debt audits or publish debt reports, and
-   requires no debt-specific human approval for a compiling pull request.
-   Development merging does not claim that the affected theorem or the project
-   is complete; the final proof-completion checks below remain strict.
-   Literature results and computational inputs remain explicit external
-   premises as specified below, not project axioms. Development compilation
-   does not authorize retaining project axioms at final acceptance. Every such axiom declaration must be replaced by a proof
-   or removed before the final proof-completion criteria below can be met.
+   During staged development, an internal statement deliberately introduced
+   with Lean's `axiom` command belongs only under `KIP126/Main/Axiom/`. Each
+   such declaration must record its intended Interface theorem, its meaning,
+   its provenance or generated input where applicable, and the reason it is
+   being assumed. `Def/` and `Mathlib/` must not own project axioms; existing
+   declarations there are migration debt to be relocated without silently
+   changing their types.
+
+   A Main stage axiom is a parallel-development device. Its presence is not
+   evidence that its Interface theorem is proved. An unfinished theorem remains
+   in the appropriate `Proofs.lean` or Solution file with `by sorry`; it must
+   not be converted into an axiom merely to avoid `sorryAx`. At final
+   proof-completion validation, every stage axiom and its downstream dependency
+   cone is rejected until the matching Interface proof has replaced it.
+
+   Literature results and computational artifacts retain the explicit
+   provenance mechanisms specified below. In particular, moving their catalogue
+   or wrappers under `Main/Axiom/` does not authorize replacing every
+   `ExternalResult` or `ExternalEvidence` parameter by an unconditional global
+   fact. Development compilation may tolerate disclosed stage assumptions but
+   does not authorize retaining project axioms at final acceptance.
 
 7. **Pinned toolchain.**
    - Lean: `4.32.2`
@@ -108,9 +154,11 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    (Zenodo 14875701, v126.3.cw49, internal degree at most 261), as an explicitly
    authorized exception to passing computation evidence as a final theorem
    parameter. Source hashes remain attached to the actual imported data.
-   Adapter axioms live in component `Axiom.lean` files under `KIP126/Mathlib/`;
-   internal/foundation axioms live under `KIP126/Def/`. Both are inventoried by
-   the explicitly invoked completion audit, and both remain final-acceptance debt.
+   All such development assumptions, including existing internal-foundation and
+   adapter assumptions, are owned by `KIP126/Main/Axiom/` after migration.
+   Their mathematical definitions and adapters remain in `Def/` and `Mathlib/`.
+   Relocation does not remove their dependency cones or prove their statements;
+   each remains final-acceptance debt until discharged by its Interface proof.
    This does not postulate h₆² survival: the computational Solution remains
    open, and the standard Solution reduces to it using the named comparisons.
    A proof body without `sorry` is not a claim that its dependency cone is
@@ -123,20 +171,40 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 By explicit user decision, Lin computation facts are to be imported in bulk
 from `proofs.db`, not introduced as one external axiom per row. The named
 `KIP126.Computation.LinProofs.sphereTable_sound` in
-`KIP126/External/Computation/LinProofs/Axiom.lean` is the initial single
-soundness assumption for the fixed exported table. It links literal CSV
-coordinates to the existing tower-derived `sphereAdamsData`; it is not a
-soundness assertion for arbitrary tables or arbitrary caller-supplied `Prop`s.
-The compiled audit inventories this exact exception and still rejects it at
-final acceptance. No `sorryAx` is authorized by the exception.
+the Lin-program portion of `KIP126/Main/Axiom/` is the initial single soundness
+assumption for the fixed exported table. It links literal CSV coordinates to
+the existing tower-derived `sphereAdamsData`; it is not a soundness assertion
+for arbitrary tables or arbitrary caller-supplied `Prop`s. The compiled audit
+must inventory this exact exception and still reject it at final acceptance.
+No `sorryAx` is authorized by the exception.
 
-The importer scans the entire pinned database, with per-category coverage
-counts. The currently interpreted fragment is **closed, finite-page sphere
-differential equations** within the existing E₂ comparison range. Other
-spectra, extension semantics, conditional branches, unknown values and
-permanence sentinels are not yet covered. Full raw JSONL export is supported
-without treating every log row as an unconditional mathematical assertion.
-See `docs/LIN_PROOFS_IMPORT.md` and the generated manifest for exact scope.
+The Lin-program tree separates four responsibilities. `Raw/` records the
+pinned archives, database/CSV schemas, versions, and hashes; `Translate/` owns
+the deterministic conversion from those formats; `Generated/` owns the typed
+records and coverage manifests; `Interpretation/` states what a generated row
+means for the internal mathematical model. The importer scans the entire
+pinned database, with per-category coverage counts. The currently interpreted
+fragment is **closed, finite-page sphere differential equations** within the
+existing E₂ comparison range. Other spectra, extension semantics,
+conditional branches, unknown values and permanence sentinels are not yet
+covered. Full raw JSONL export is supported without treating every log row as
+an unconditional mathematical assertion. See `docs/LIN_PROOFS_IMPORT.md` and
+the generated manifest for exact scope.
+
+Deterministic translation, a successful hash check, and a generated Lean row
+establish reproducible syntax and provenance, not the row's mathematical
+truth. Replaying or verifying the interpreted conclusions from `Def/` is an
+Interface Challenge/Solution obligation. The initial migration preserves the
+existing bulk assumption and generated declarations; it does not claim that
+this verification has already been implemented.
+
+The two current raw formats must remain distinguishable in that pipeline. The
+E₂ algebra data comes from the three UTF-16 generator, relation, and basis CSV
+files in the pinned `kervaire_csv` archive. Finite-page program conclusions
+come from the SQLite `proofs.db` `log` table. A generated Lean table is neither
+of these raw sources. If a raw binary is kept outside ordinary Git, its
+canonical download, archive digest, extracted-file digest, schema, and version
+must still be pinned so the conversion can be reproduced and checked.
 
 ### 1. Algebraic and categorical foundations
 
@@ -188,10 +256,13 @@ The abstract synthetic context must include:
 - the induced classical `(f, E_r)`-extensions;
 - synthetic/classical crossing equivalences.
 
-Foundational theorems imported from earlier papers (for example, the
-Pstrągowski and BHS results used to justify these interfaces) are not reproved
-here. Their statements are supplied through the external-result mechanism
-described below.
+Foundational theorems taken from earlier papers (for example, the
+Pstrągowski and BHS results used to justify these interfaces) must be stated
+with exact provenance through the external-result mechanism described below.
+The Interface track may also formalize or rederive the cited result when it is
+part of the frozen interface needed to eliminate a Main stage axiom. A theorem
+which remains an accepted literature input is kept as an explicit conditional
+premise; cataloguing a citation does not count as its proof.
 
 ### 4. The paper's new results
 
@@ -212,13 +283,31 @@ explicit external inputs:
 The proofs must preserve the degree conventions in the paper, including the
 third synthetic weight and the translation convention using `S^{1,0}`.
 
+In the staged layout, the Generalized Leibniz Rule, Generalized Mahowald Trick,
+and page-extension stretching are Interface goals because they form part of
+the reusable interface consumed by the second stage. The near-126 reductions
+and the final endpoint are Main goals. Accordingly, the former
+`Challenge/Tools` and `Solution/Tools` modules migrate to the Interface tracks,
+while the former `Challenge/Near126`, `Challenge/Final`, and matching Solution
+modules migrate to the Main tracks. This ownership classification does not
+assert that every intended Interface-to-Main mirror already exists.
+
 ## External inputs
 
 Results from earlier papers, published computations, Lin's program, and facts
-read from the Appendix tables are outside the proof-development boundary.
-They must not be introduced as Lean `axiom` declarations. Instead, each input
-is a value of an explicit structure carrying both the proposition and its
-provenance.
+read from the Appendix tables first enter the repository as audited source
+material. `KIP126/Main/Axiom/Literature/` owns the literature catalogue and
+claim wrappers; `KIP126/Main/Axiom/LinProgram/` owns the raw-to-interpreted
+program pipeline. Every accepted external input remains a value of an explicit
+structure carrying both the proposition and its provenance.
+
+A staged Main axiom may expose a frozen internal statement while Interface
+work is still proving it. That development device must point to its intended
+Interface theorem and to the source records used to formulate the statement;
+it does not turn arbitrary literature or program output into an unconditional
+fact. Claims selected for internal replay or verification are Interface proof
+obligations. Claims deliberately retained as external mathematical inputs stay
+explicit parameters of conditional theorems.
 
 The project will use the following conceptual interfaces (the exact field
 names may be refined during implementation):
@@ -248,7 +337,16 @@ structure ExternalEvidence (P : Prop) where
 `ExternalResult` is intended for a theorem imported from the literature.
 `ExternalEvidence` is intended for a computation, program output, table fact, or
 other finite evidence record. Both are hypotheses to conditional theorems;
-neither is a project-level axiom.
+neither structure silently installs a project-level axiom.
+
+Every literature claim used as a final premise or to formulate a staged
+assumption must have its own auditable claim entry. That entry identifies the
+source and a stable theorem, lemma, proposition, equation, table, section,
+page, or line locator. When the primary text is unavailable, the inventory
+must say so and give the exact secondary locator used. The claim's artifact
+path resolves through the source inventory to a required file and its pinned
+digest where such an artifact is available; composite claims list their
+component claim dependencies instead of hiding them in prose.
 
 The implementation deliberately separates structural and checkout-facing
 validity.  `InventoryValid` adds syntactically safe, source-relative locator
@@ -265,7 +363,10 @@ evidence artifact, Lean additionally checks a safe source-relative path and
 digest shape; a catalogued wrapper also requires its path to equal the
 canonical claim locator.  Lean does not silently assert the file's actual
 digest, nor compare an arbitrary wrapper digest automatically.  Root coverage is relative
-to the explicitly closed, family-level `ExternalRootId` enum.
+to the explicitly closed, family-level `ExternalRootId` enum.  This describes
+the current inventory coverage, not a completed one-to-one pairing between
+Main stage axioms and Interface theorems; that pairing and its automatic check
+remain follow-up work.
 
 Examples of external inputs include:
 
@@ -281,7 +382,10 @@ Examples of external inputs include:
 - cited `tmf` detection facts and other prior computational or geometric
   conclusions.
 
-The final proof must make the dependency on these values explicit.
+The final proof must make every retained dependency on these values explicit.
+For a claim whose Main stage axiom has instead been discharged by an Interface
+proof, the proof dependency replaces the axiom while the source and conversion
+records remain available for audit.
 
 ## Conditional final theorems
 
@@ -310,11 +414,15 @@ not unconditional declarations of the external mathematics.
 The project is complete only when all of the following hold:
 
 - `lake build` succeeds with the pinned Lean/mathlib versions;
-- all canonical KIP126 source outside the intentional Challenge statement
-  track contains no `sorry` or `admit`, and canonical KIP126 declares no project
-  `axiom`; Challenge statements retain their required `by sorry` bodies and
-  are excluded from proof-completion evidence, while the isolated historical
-  KIPBase component remains subject to its separate migration audit;
+- all canonical KIP126 source outside the intentional Interface and Main
+  Challenge statement tracks contains no `sorry` or `admit`, and canonical
+  KIP126 declares no project `axiom`; Challenge statements retain their
+  required `by sorry` bodies and are excluded from proof-completion evidence,
+  while the isolated historical KIPBase component remains subject to its
+  separate migration audit;
+- every Main stage axiom has been eliminated by the matching proved Interface
+  theorem or removed as unnecessary; directory relocation and signature prose
+  alone do not satisfy this condition;
 - every external input is passed through `ExternalResult` or `ExternalEvidence`;
 - every Appendix table entry has a Lean encoding;
 - the two geometric conclusions are available as conditional theorems;
@@ -332,8 +440,15 @@ documentation check.
 The project does not attempt to:
 
 - construct a complete model of stable infinity-categories;
-- independently reproduce Lin's high-stem computer calculations;
-- prove the cited prior-paper theorems;
+- reproduce Lin's implementation instruction-for-instruction or treat the
+  upstream executable as part of Lean's trusted kernel; the required
+  interpreted outputs are nevertheless replay/verification targets in the
+  Interface stage;
+- formalize every result in every cited paper; only the results selected for
+  the frozen project interface become internal proof targets, while the
+  remaining accepted results stay explicit provenance-bearing premises;
+- treat successful download, hashing, parsing, deterministic translation, or
+  generated Lean syntax as a proof of the interpreted mathematical claim;
 - treat table values as trusted constants without provenance;
 - turn the paper's open Questions into assumptions or claimed results;
 - hide external dependencies behind untracked global instances or axioms.

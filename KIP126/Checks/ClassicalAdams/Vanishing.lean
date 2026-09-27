@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.ComputationalVanishing.Proofs
+import KIP126.Main.Solution.Computation.Vanishing
 import Lean.Elab.Command
 
 /-! The no-incoming-differential argument is internal and independent of the Lin

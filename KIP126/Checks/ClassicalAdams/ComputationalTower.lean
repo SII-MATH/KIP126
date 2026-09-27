@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.ComputationalTower.SecondDifferential.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
 import Lean.Elab.Command
 
 /-! The actual tower representative is identified without a fixed Milnor

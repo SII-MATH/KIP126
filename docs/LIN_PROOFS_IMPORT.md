@@ -3,7 +3,7 @@
 ## 当前实现
 
 不再逐条增加计算公理。入口是
-`KIP126.External.Computation.LinProofs`，唯一新增的计算公理是
+`KIP126.Main.Axiom.LinProgram.Differentials`，唯一新增的计算公理是
 `KIP126.Computation.LinProofs.sphereTable_sound`：
 
 ```lean
@@ -42,10 +42,10 @@ theorem row5541 : DifferentialStatement ⟨5541, "d2", 1, 64, 2, [0], [0]⟩ :=
   `3a460683c023ee2d8f7e8f904ecef9044a474d88bb7184731e54978ba7dac248`。
 - 表：`log(id,depth,reason,name,stem,s,t,r,x,dx,info)`，其中 `stem=t-s`。
 - 全部 **2,672,275 行**均流式扫描；行号从 5432 到 2677718，不能假设连续。
-- 解释依据：`reference/LWXMachine/source/ms.tex` 的 Proofs 节（493–620 行）。
+- 解释依据：`KIP126/Main/Axiom/Literature/Sources/LWXMachine/source/ms.tex` 的 Proofs 节（493–620 行）。
   该文描述的一般表格式适用；其中旧版 2100 万行统计不是本次 cw49 的行数。
 
-导入器 `scripts/import-lin-proofs.py` 支持 `--raw-output` 输出全部原始字段，
+导入器 `KIP126/Main/Axiom/LinProgram/Translate/import-proofs.py` 支持 `--raw-output` 输出全部原始字段，
 包括 SQL NULL、多行 `info`、反证分支和其他谱。这份大型 JSONL 与数据库保留在
 本地缓存，不作为数百万行 Lean 声明提交。Git 中保留可复现导入器、哈希、覆盖清单
 和已解释片段的 Lean 分片。**全量读取/原始导出，不等于全部记录的数学语义已接入。**
@@ -79,7 +79,7 @@ theorem row5541 : DifferentialStatement ⟨5541, "d2", 1, 64, 2, [0], [0]⟩ :=
 下面路径是本次实际核验的缓存，可换成自行下载解压的同版本文件。
 
 ```bash
-python3 scripts/import-lin-proofs.py --self-test \
+python3 KIP126/Main/Axiom/LinProgram/Translate/import-proofs.py --self-test \
   /tmp/kip126-proofs-import.SSDXBe/proofs.db \
   --e2-archive /tmp/kervaire_csv_v3.rar --check
 ```

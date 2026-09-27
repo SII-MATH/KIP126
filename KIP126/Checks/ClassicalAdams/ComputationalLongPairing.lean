@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.ComputationalDifferential.LongLayer.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.LongLayer.Proofs
 import Lean.Elab.Command
 
 /-! The fixed computational corollary discloses exactly the existing fixed

@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.ComputationalDifferential.LongLayer.Lifting.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
 import Lean.Elab.Command
 
 open Lean Elab Command in

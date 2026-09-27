@@ -1,12 +1,20 @@
-import KIP126.Mathlib
+import KIP126.Main.Axiom.Literature.StandardSphere.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
+import KIP126.Main.Solution.Computation.Vanishing
+import KIP126.Main.Solution.Computation.Nonvanishing
+import KIP126.Main.Solution.Computation.Dimension
+import KIP126.Main.Axiom.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
+import KIP126.Main.Solution.Computation.Reduction
+import KIP126.Interface.Solution.LinProgram.SquareDetection.Certificate
 import KIP126.Def
 import KIP126.Def.AdamsE2
-import KIP126.External
-import KIP126.Challenge
+import KIP126.Interface
+import KIP126.Main
+import KIP126.Mathlib
 import KIP126.Examples.AdamsE2Table
 import KIP126.Examples.AdamsE2LowDegrees
 
-/-! Canonical library entry: mathematical definitions, explicit external inputs,
-and the open Challenge statements.  The parallel `KIP126.Solution` proof track
-is built as its own package entry point for later comparison and is not part of
-the trusted root import graph. Regression modules live under `KIP126.Checks`. -/
+/-! Library entry for shared definitions, stage inputs and open statements.
+The two Solution tracks also have separate entry modules. Previously exposed
+helper results remain re-exported here for compatibility. Importing a Challenge
+never establishes proof completion. Regression modules live in `KIP126.Checks`. -/

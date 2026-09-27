@@ -1,4 +1,4 @@
-import KIP126.External.Computation.Near126
+import KIP126.Main.Axiom.Literature.Near126
 import Lean.Elab.Command
 
 open Lean Elab Command in

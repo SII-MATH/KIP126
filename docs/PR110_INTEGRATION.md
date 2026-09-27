@@ -24,7 +24,7 @@ KIP126 不直接导入这些旧文件。
 | PR 原件（相对 KIPBase/） | KIP126 对应实现 / 处理 |
 |---|---|
 | `E2pageData.lean` | `External/Computation/LinE2/RawData.lean`，仅替换命名空间 |
-| `E2pageData.generate.py` | `External/Computation/LinE2/generate.py`，独立生成 KIP126 数据；`scripts/generate-lin-e2.py` 为检查入口 |
+| `E2pageData.generate.py` | `External/Computation/LinE2/generate.py`，独立生成 KIP126 数据；`KIP126/Main/Axiom/LinProgram/Translate/check-e2.py` 为检查入口 |
 | `E2page.lean` | `Def/AdamsE2/` 下的 `LinModel`、`LinProduct`、`LinClasses`、`LinBasisTable`、`LinComputedPolynomial`；三个关系的计算示例在 `Checks/AdamsE2/LinTactic.lean` |
 | `E2pageCompute.lean` | `Def/AdamsE2/LinCompute/Data.lean` |
 | `E2pageExamples.lean` | `Checks/AdamsE2/LinCompute.lean` |
@@ -68,13 +68,13 @@ KIP126 的独立生成器验证三份 UTF-16 CSV 的固定 SHA-256、次数、�
 默认只检查、不覆盖数据，整个流程无需 KIPBase：
 
 ```bash
-python3 scripts/generate-lin-e2.py /path/to/kervaire_csv
+python3 KIP126/Main/Axiom/LinProgram/Translate/check-e2.py /path/to/kervaire_csv
 ```
 
 显式指定输出时可以生成新文件用于对比：
 
 ```bash
-python3 scripts/generate-lin-e2.py /path/to/kervaire_csv --output /tmp/RawData.lean
+python3 KIP126/Main/Axiom/LinProgram/Translate/check-e2.py /path/to/kervaire_csv --output /tmp/RawData.lean
 ```
 
 本轮用哈希匹配的三份原始 CSV 完成重生成，结果与 canonical RawData 逐字一致。

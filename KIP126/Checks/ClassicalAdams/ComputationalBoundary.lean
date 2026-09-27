@@ -1,4 +1,4 @@
-import KIP126.Solution.Final.h6_sq_permanent_computational
+import KIP126.Main.Solution.Final.h6_sq_permanent_computational
 import Lean.Elab.Command
 
 /-! The internal calculation must not obtain its sequence from a Mathlib adapter

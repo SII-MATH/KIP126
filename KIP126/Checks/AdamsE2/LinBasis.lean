@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.Lin
+import KIP126.Main.Axiom.LinProgram.E2
 import Lean.Elab.Command
 
 /-! Catalogue checks are executable regressions, not proofs of independence.

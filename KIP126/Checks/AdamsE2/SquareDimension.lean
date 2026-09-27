@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.ComputationalDimension.Proofs
+import KIP126.Main.Solution.Computation.Dimension
 import Lean.Elab.Command
 
 /-! The small degree argument is kernel-checked, not an additive-basis

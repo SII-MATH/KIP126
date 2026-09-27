@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.ComputationalDifferential.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.Proofs
 import Lean.Elab.Command
 
 open Lean Elab Command in

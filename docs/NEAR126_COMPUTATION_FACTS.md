@@ -27,14 +27,14 @@
 [最终目标输入审计](H6_INPUT_DEPENDENCY_AUDIT.md)。它记录数学要求及其与
 现有实现的差异，不将“补 Hopf 实例”预设为唯一实现路线。
 
-本文件记录主证明当前需要的计算输入，数学来源是 `aimpaper/main.tex`
+本文件记录主证明当前需要的计算输入，数学来源是 `KIP126/Main/Axiom/Literature/MainPaper/main.tex`
 第 7 节及 Appendix；不是“最终结论已经可证”的报告。
 Blueprint 的完整计划仍在 `computation_schema.tex`、`computed_inputs.tex`
 和 `near126.tex`。本次实现的是其中可直接落到内部 SSData 的第一部分。
 
 ## 已落地的接口
 
-入口：`KIP126/External/Computation/Near126.lean`。
+入口：`KIP126/Main/Axiom/Literature/Near126.lean`。
 
 - `Names/Data.lean`：31 个原子表达式的 CSV 地址、归档名称、`(s,t)` 次数。
 - `Names/Proofs.lean`：逐个核对地址处的真实名称和次数，使用 Lean 内核证明，
@@ -108,7 +108,7 @@ Mahowald 定理的 crossing 条件是两个分支的析取；若使用零长度 
 
 ## D：图中的微分
 
-下表的页次数已经体现在 Lean 命题中。来源标签均在 `aimpaper/main.tex`。
+下表的页次数已经体现在 Lean 命题中。来源标签均在 `KIP126/Main/Axiom/Literature/MainPaper/main.tex`。
 
 | ID | 谱、微分 | 源 → 靶 `(s,t)` | 来源 / 状态 |
 | --- | --- | --- | --- |

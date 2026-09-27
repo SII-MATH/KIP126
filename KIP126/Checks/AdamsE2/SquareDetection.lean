@@ -1,5 +1,5 @@
-import KIP126.Def.ClassicalAdams.ComputationalReduction.Proofs
-import KIP126.Def.AdamsE2.LinSquareDetection.Certificate.Proofs
+import KIP126.Main.Solution.Computation.Reduction
+import KIP126.Interface.Solution.LinProgram.SquareDetection.Certificate
 import Lean.Elab.Command
 
 /-! Kernel-proved algebraic soundness, the full finite certificate, and the

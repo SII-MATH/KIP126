@@ -1,4 +1,4 @@
-import KIP126.External.Claims
+import KIP126.Main.Axiom.Literature.Claims
 
 /-!
 # Claim-ledger regression checks
@@ -77,7 +77,7 @@ private def malformedProjectionTargetClaim : ExternalClaimRecord :=
       "NOT_THE_TARGET" }
 
 private def mismatchedMachineArtifact : ArtifactRef :=
-  { path := "reference/LWXMachine/paper.pdf"
+  { path := "KIP126/Main/Axiom/Literature/Sources/LWXMachine/paper.pdf"
     sha256 := "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" }
 
 example :

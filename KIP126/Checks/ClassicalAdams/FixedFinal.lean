@@ -1,6 +1,6 @@
-import KIP126.Challenge.Final.h6_sq_permanent
-import KIP126.Challenge.Final.h6_sq_permanent_computational
-import KIP126.Solution.Final.h6_sq_permanent
+import KIP126.Main.Challenge.Final.h6_sq_permanent
+import KIP126.Main.Challenge.Final.h6_sq_permanent_computational
+import KIP126.Main.Solution.Final.h6_sq_permanent
 import Lean.Elab.Command
 
 /-! Guard the public signatures and disclose, rather than erase, proof debt. -/

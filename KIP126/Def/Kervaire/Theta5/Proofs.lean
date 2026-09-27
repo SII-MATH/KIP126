@@ -1,5 +1,5 @@
 import KIP126.Def.Kervaire.Theta5.Predicates
-import KIP126.External.Literature.Kervaire
+import KIP126.Main.Axiom.Literature.Kervaire
 
 /-!
 # Project transport for the BJM/BX criterion

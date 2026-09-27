@@ -27,37 +27,89 @@ If a worker task does not select exactly one mode, or requires a path outside th
 selected boundary, stop before editing and request that the task be split or
 clarified.
 
-## Challenge and Solution synchronization
+## Repository architecture
 
-- Every theorem under `KIP126/Challenge/` must have a corresponding theorem
-  under the same relative path in `KIP126/Solution/`, using the respective
-  `KIP126.Challenge` and `KIP126.Solution` namespaces.
-- Keep their statements synchronized: declaration name, universe parameters,
-  variables, typeclass assumptions, explicit and implicit hypotheses, and
-  conclusion must agree, apart from the namespace. Update both files in the
-  same change whenever a statement changes.
+The canonical mathematical source is divided into three top-level layers:
+
+- `KIP126/Def/` is the common mathematical base. It owns objects, predicates,
+  constructions, and reusable theorems. It must not declare project axioms.
+- `KIP126/Interface/` owns the first proof stage: statements and proofs which
+  turn the common base into the stable mathematical and computation interfaces
+  consumed by the main argument. Its `Challenge/` and `Solution/` trees are
+  parallel tracks.
+- `KIP126/Main/` owns the second proof stage. `Axiom/` contains audited,
+  development-only assumptions that let this stage proceed in parallel;
+  `Challenge/` and `Solution/` contain the paper's main deductions and endpoint.
+
+The mathematical planning symbols used outside the repository are not source
+directory names or Lean declaration prefixes. Keep source paths named by their
+mathematical or provenance role. Preserve `KIP126/Mathlib/` as the optional
+adapter layer and `KIP126/Checks/` as the regression/audit layer. Do not create
+empty directories or placeholder modules merely to display the architecture.
+
+This layout is a target as well as an ownership rule. During the authorized
+migration, move existing declarations without silently changing their
+statements or proofs. Existing cross-layer imports are migration debt, not
+evidence that the final dependency isolation is already implemented. Record
+such debt and remove it in later semantic changes. Likewise, do not claim that
+automatic Interface-to-Main signature checking exists until its CI check has
+actually landed.
+
+For the current milestone split, the former Challenge/Solution `Tools`
+modules for generalized Leibniz, generalized Mahowald, and page-extension
+stretching belong to `Interface`. The former `Near126` and `Final` modules
+belong to `Main`. This initial classification does not create missing stage
+mirrors or proofs.
+
+## Challenge, Solution, and stage-axiom synchronization
+
+- Every theorem under either `KIP126/Interface/Challenge/` or
+  `KIP126/Main/Challenge/` must have a corresponding theorem under the same
+  relative path in that layer's `Solution/` tree. Preserve public declaration
+  names during directory-only migration; a file move alone does not authorize a
+  namespace or API change.
+- Keep each Challenge/Solution pair synchronized: declaration name, universe
+  parameters, variables, typeclass assumptions, explicit and implicit
+  hypotheses, and conclusion must agree, apart from an intentional Challenge/
+  Solution namespace difference. Update both files in the same change whenever
+  a statement changes.
 - Challenge declarations are always `theorem ... := by sorry`. Never replace
   them with `def ... : Prop`, fill in their proofs, or remove their statements
   merely because Solution exists.
-- Write proofs of these Challenge statements only in Solution. Until a
-  solution proof is implemented, its matching theorem also uses `by sorry`;
-  an import or explanatory comment alone is not a corresponding Solution theorem.
-- Solution proofs must not discharge their goals by invoking the Challenge
+- Write proofs of Challenge statements only in the matching Solution tree.
+  Until a solution proof is implemented, its matching theorem also uses
+  `by sorry`; an import or explanatory comment alone is not a corresponding
+  Solution theorem.
+- Solution proofs must not discharge their goals by invoking Challenge
   placeholders, directly or indirectly. Import shared definitions and genuine
   proof dependencies instead. Audit Solution and its proof dependencies
   separately from the intentionally unproved Challenge statements; a Challenge
   placeholder is never evidence of proof completion.
+- Each development axiom consumed by `Main` is intended to have a statement-
+  identical theorem goal in `Interface/Challenge/` and `Interface/Solution/`.
+  The Interface Solution is the eventual proof which discharges that stage
+  assumption. Compare complete Lean types, not names or prose descriptions.
+  The initial directory migration does not invent missing statements or proofs:
+  an absent mirror remains explicit follow-up work rather than an empty module or
+  a fabricated theorem.
+- A Solution proof that is meant to eliminate a stage axiom must not import or
+  otherwise depend on that axiom. It may consume the pinned raw data, generated
+  records, deterministic interpretation, explicit external-result parameters,
+  and proved lower layers needed to establish the statement.
 
-## Data, predicates, axioms, and proofs
+## Data, predicates, assumptions, and proofs
 
 For spectral sequences, use KIP126's `SSData`/`PreSS` nested-subobject model
 for internal cycle, boundary, representative, and crossing arguments. Put
 bridges to Mathlib's `CategoryTheory.SpectralSequence` under `KIP126/Mathlib/`;
 that layer may import proved `Def` modules, but internal `SSData` reasoning
 must not import it back. Using Mathlib's categorical foundations does not by
-itself make a module an adapter. Preserve Mathlib-facing declarations until
-their replacement internal statements and checked adapters are available;
-do not treat a file move as a proof of semantic equivalence.
+itself make a module an adapter. The retained Mathlib-facing code is an
+optional/historical adapter layer; this architecture creates no obligation to
+prove that the internal spectral-sequence object is identical or equivalent to
+Mathlib's spectral sequence. Preserve existing public adapter declarations
+during layout-only migration, and do not treat a file move as a proof of any
+semantic comparison.
 
 `KIP126/Def/SpectralSequence/` is the internal spectral-sequence tree, not a
 container that needs another `SSData/` level for general results. Its
@@ -66,37 +118,56 @@ Endpoint/spectral-object constructions and claims stated directly for
 Mathlib's spectral sequence belong under `KIP126/Mathlib/SpectralSequence/`.
 
 - Organize each mathematical component under `KIP126/Def/` into separate
-  `Data.lean`, `Predicates.lean`, `Axiom.lean`, and `Proofs.lean` modules as
-  applicable. Do not mix these responsibilities in one implementation file or
-  create empty layers solely to satisfy the naming convention.
+  `Data.lean`, `Predicates.lean`, and `Proofs.lean` modules as applicable. Do
+  not mix these responsibilities in one implementation file or create empty
+  layers solely to satisfy the naming convention. `Def/` must not contain an
+  `Axiom.lean` layer or a project `axiom` declaration.
 - `Data.lean` owns concrete mathematical objects, structures, and operations.
   It must not contain named lemmas/theorems or unfinished property proofs, and
   must not hide `sorry` in data definitions. Required proof fields in a
   construction may use lower-layer property declarations.
 - `Predicates.lean` owns the definitions of mathematical conditions and
   relations on those objects. It states predicates, not proofs of them.
-- `Axiom.lean`, when needed, owns only statements deliberately introduced with
-  Lean's `axiom` command. Keep it beside the other layers of the relevant
-  mathematical component, and document each statement's source, intended
-  meaning, and reason it is being assumed. These are named project assumptions
-  for separate audit, not completed proofs. Do not move an unfinished theorem
-  here or turn `by sorry` into an `axiom` to hide proof debt. Literature and
-  computation inputs still belong under `KIP126/External/`.
 - `Proofs.lean` owns lemmas and theorems about the data and predicates,
   including theorem statements whose proofs temporarily use `by sorry` during
   development. It must not serve as the hidden home of new mathematical data
   definitions or explicit `axiom` declarations.
-- Follow the dependency order `Data → Predicates → Axiom → Proofs` where those
-  layers are present; a component without axioms may import its predicates
-  directly into proofs. Each later module imports only the earlier layers it
+- Follow the dependency order `Data → Predicates → Proofs` where those
+  layers are present. Each later module imports only the earlier layers it
   needs. When a further construction needs preservation or well-definedness
   theorems, put it in a subsequent component's `Data.lean` importing the lower
   component's `Proofs.lean`, then separate its predicates and proofs in turn.
-  Do not create cyclic imports or
-  turn these provable properties into new input hypotheses to avoid the split.
+  Do not create cyclic imports or turn provable properties into new input
+  hypotheses to avoid the split.
 - A public entry module may re-export these layers using imports only.
   Preserve public declaration names when reorganizing files unless the task
   requires an API change.
+
+`KIP126/Main/Axiom/` is the sole owner of development-stage project
+assumptions. Every actual `axiom` declaration there must be named, documented,
+and separately auditable; it is an admitted interface for parallel work, never
+proof-completion evidence. Do not turn an arbitrary unfinished theorem into an
+axiom merely to remove `sorryAx`.
+
+- `Main/Axiom/Literature/` owns the literature source catalogue, precise claim
+  locators, the existing provenance-carrying wrappers, and any staged
+  assumptions needed by Main. Retain `ExternalResult`, `ExternalEvidence`,
+  `CataloguedExternalResult`, and `CataloguedExternalEvidence`; do not replace
+  explicit external hypotheses wholesale with untracked global axioms. Each
+  cited claim must identify its paper and a stable theorem, proposition,
+  equation, table, section, page, or line locator, together with its catalogued
+  artifact where available.
+- `Main/Axiom/LinProgram/` owns the pinned program-input pipeline. Separate
+  `Raw/`, `Translate/`, `Generated/`, and `Interpretation/` responsibilities:
+  raw artifacts and schemas; deterministic conversion code; generated typed
+  records and manifests; and their mathematical meaning in the internal model.
+  Generated records and successful hash checks do not by themselves prove the
+  interpreted mathematical propositions. Existing computation axioms remain
+  disclosed stage debt until their Interface proofs replay or verify them.
+- Existing project axioms under `Def/`, `Mathlib/`, or the former `External/`
+  computation tree are migration inputs to `Main/Axiom/`. Moving them records
+  their proper ownership; it does not prove them, remove their dependency
+  cones, or authorize a statement change.
 
 ## Mandatory GitHub synchronization at task start
 
@@ -133,8 +204,9 @@ stale, or contradictory, stop and report the conflict instead of guessing.
 An unfinished Solution or definition-property proof may temporarily use `sorry`
 while it is being developed; the latter remains in its component's `Proofs.lean`.
 Challenge proofs remain `sorry` by the rule above. A deliberately introduced
-project `axiom` instead belongs in that component's `Axiom.lean`. Do not mark
-an unproved or axiom-dependent declaration or its Blueprint node as complete.
+stage `axiom` belongs under `KIP126/Main/Axiom/`, never under `Def/` or an
+adapter. Do not mark an unproved or axiom-dependent declaration or its Blueprint
+node as complete.
 Development CI checks compilation, configuration, and repository mechanics. It
 does not run proof-completion audits, publish proof-debt reports, or require
 human approval specifically for `sorryAx` or project-axiom debt. Such debt does
@@ -144,9 +216,12 @@ not satisfy the final proof-completion criteria in `PROJECT_BOUNDARY.md`.
 Run the strict compiled axiom audit only when explicitly checking proof
 completion; it inventories named axioms and their downstream dependencies and
 continues to reject incomplete proofs.
-External hypotheses belong under `KIP126/External/` as provenance-carrying
-`ExternalResult` or `ExternalEvidence` inputs, and conclusions that use them
-must remain conditional statements taking those inputs explicitly.
+External hypotheses are managed under `KIP126/Main/Axiom/Literature/` as
+provenance-carrying `ExternalResult` or `ExternalEvidence` inputs, and
+conclusions that use accepted external results must remain conditional
+statements taking those inputs explicitly. A temporary Main stage axiom may
+mirror a frozen Interface goal, but it must not erase the provenance of any
+literature or program material used to formulate that goal.
 
 ## Validation policy
 
@@ -205,12 +280,18 @@ results as evidence for read-only analysis.
 
 ## Check selection
 
-- Challenge/Solution statement change: compare both complete signatures and
-  check both affected modules. Verify that Challenge still uses `by sorry` and
-  that Solution does not use the Challenge placeholder as its proof.
+- Interface or Main Challenge/Solution statement change: compare both complete
+  signatures and check both affected modules. Verify that Challenge still uses
+  `by sorry` and that Solution does not use the Challenge placeholder as its
+  proof.
+- Main stage-axiom statement change: compare its complete type with the intended
+  Interface Challenge/Solution goal, check its provenance or generated-data
+  record, and report a missing mirror explicitly. Until the repository has an
+  enforced type-alignment check, do not describe this comparison as automatic
+  CI coverage.
 - Definition-module reorganization: check the data/predicate/proof separation,
-  import direction, and preservation of public declarations, then compile the
-  smallest affected downstream target.
+  absence of project axioms in `Def/`, import direction, and preservation of
+  public declarations, then compile the smallest affected downstream target.
 - Lean source change: use `scripts/shared-main-cache.sh run` to check the changed module
   or smallest relevant target first. Run a full local `lake build` only when the task
   explicitly requests it or an unresolved question requires it.
