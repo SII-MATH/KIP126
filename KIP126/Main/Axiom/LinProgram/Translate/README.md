@@ -15,11 +15,31 @@
 
 迁移后的 repo root、模块模板和输出路径已经修正。`import-proofs.py` 的 stale-output 检查只允许同目录额外存在 `README.md`，不会宽泛忽略其他文件。
 
+五个固定输入现在位于相邻的 `../Raw/`。从仓库根目录可以直接运行三条检查：
+
+```bash
+python3 KIP126/Main/Axiom/LinProgram/Translate/check-e2.py \
+  KIP126/Main/Axiom/LinProgram/Raw
+
+python3 KIP126/Main/Axiom/LinProgram/Translate/import-proofs.py \
+  KIP126/Main/Axiom/LinProgram/Raw/proofs.db \
+  --e2-basis-csv KIP126/Main/Axiom/LinProgram/Raw/S0_AdamsE2_basis.csv \
+  --check
+
+python3 KIP126/Main/Axiom/LinProgram/Translate/import-selected.py \
+  --proofs-db KIP126/Main/Axiom/LinProgram/Raw/proofs.db \
+  --sphere-db KIP126/Main/Axiom/LinProgram/Raw/S0_AdamsSS_t261.db \
+  --csv-dir KIP126/Main/Axiom/LinProgram/Raw \
+  --check
+```
+
+这些命令要求 Git LFS 已取回真实文件；pointer 文本不能作为转换输入。
+
 ## 3. 大概完成度
 
 **陈述覆盖：六类计划计算接口中，目前转换规则覆盖 2/6。** E₂ 数据和闭合球面有限页差分的规则明确；其余类别目前只有全库分类统计，尚无完整目标 schema。
 
-**实现状态：当前支持范围已完成真实数据复现。** E₂ 输出逐字一致；`proofs.db` 全量扫描保持 2,672,275 个源行、10,907 个导出行和 86 个 shards；row 5541 仍定位在 shard 0、offset 69；selected 导入器核对六条 bulk 结果和一条独立 `basis.d2`。单元测试、self-test、生成与 `--check` 均已通过。
+**实现状态：当前支持范围已从 Raw 完成真实数据本地复现。** 上述三条命令均已通过：E₂ 输出逐字一致；`proofs.db` 全量扫描保持 2,672,275 个源行、10,907 个导出行和 86 个 shards；row 5541 仍定位在 shard 0、offset 69；selected 导入器核对六条 bulk 结果和一条独立 `basis.d2`。单元测试与 self-test 也已通过；CI 尚未执行这组 LFS 输入检查。
 
 这些检查验证解析和生成规则，不验证生成命题的数学真实性。完成度不是 `sorry` 比率，本次路径修复没有补 proof。
 
@@ -28,7 +48,7 @@
 - 定义无损 `RawRecord`，保留全部 11 列、SQL `NULL`、多行 `info` 和原始 DI/GI 方向。
 - 将读取、规范化、选择支持类别和生成 Lean 拆成可分别测试的步骤。
 - 为条件树、反证、sentinel、其他谱、map 和 extension 增加显式 decoder。
-- 在能取得固定原始制品的自动环境中持续运行重生成检查。
+- 在 CI checkout Git LFS 后持续运行三条 Raw 重生成检查。
 
 ## 5. 后续应该一步一步如何做
 

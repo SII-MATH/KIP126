@@ -13,7 +13,7 @@
 
 | 位置 | 当前职责 |
 | --- | --- |
-| [Raw.md](Raw.md) | 上游版本、原始格式、下载位置、schema 与摘要；不提交大型原始包 |
+| [Raw](Raw/README.md) | 五个固定 DB/CSV 输入及 manifest；大文件通过 Git LFS 管理 |
 | [Translate](Translate/README.md) | 四个确定性转换与核对脚本 |
 | [Generated](Generated/README.md) | 三个 E₂ CSV 生成的 `E2.lean`，以及 10,907 条差分的 86 个分片、查找表和 manifest |
 | [Interpretation](Interpretation/README.md) | E₂ presentation、坐标解释、差分命题、统一可靠性 axiom 与 selected theorem |
@@ -21,13 +21,13 @@
 | [Presentation.lean](Presentation.lean) | 固定 Lin 商代数到内部球谱 E₂ 的开发期 axiom `linE2Presentation` |
 | [Differentials.lean](Differentials.lean) | 差分解释与 selected theorem 的汇总入口 |
 
-布局迁移已经完成，生成器中的模块路径也已切换到本目录。迁移保持公开数学对象和生成记录不变。
+布局迁移已经完成，五个原始输入已归入 `Raw/`，生成器中的模块路径也已切换到本目录。迁移保持公开数学对象、原始文件字节和生成记录不变。
 
 ## 3. 大概完成度
 
 **陈述覆盖：当前六类计划计算接口中有 2/6 已形成可用陈述。** 已接通的是固定 E₂ presentation，以及闭合球面有限页差分。条件/反证分支，其他谱与 map/extension，sentinel 状态，以及带范围的维数、消失和候选穷尽仍未形成同等完整的内部陈述。`2/6` 只表示类别覆盖，不表示完成了三分之一的数学工作。
 
-**实现状态：已完成当前支持切片的机械迁移和复现。** 三个 E₂ CSV 可逐字重生成 `E2.lean`；`proofs.db` 的 2,672,275 行已全部扫描并分类，其中 10,907 条生成 86 个差分分片；六条 selected bulk 记录和一条 `basis.d2` 元数据已与真实数据库交叉核验。数学可靠性仍由 `linE2Presentation`、`sphereTable_sound` 等显式假设承担，没有复演 Lin program 的证明证书。
+**实现状态：已完成当前支持切片的机械迁移和本地重生成检查。** 从 `Raw/` 的三个 E₂ CSV 可逐字重生成 `E2.lean`；`proofs.db` 的 2,672,275 行已全部扫描并分类，其中 10,907 条生成 86 个差分分片；六条 selected bulk 记录和一条 `basis.d2` 元数据已与两个真实数据库交叉核验。五个原始输入的 Git LFS 对象均已上传；CI 重生成检查尚待接入。数学可靠性仍由 `linE2Presentation`、`sphereTable_sound` 等显式假设承担，没有复演 Lin program 的证明证书。
 
 这里不使用 `sorry` 比率推断完成度。生成成功、文件迁移和编译成功都不等于数学证明完成；本次迁移没有补 proof。
 
@@ -36,7 +36,7 @@
 - 为剩余四类程序输出冻结精确且不过强的内部命题。
 - 保存或可恢复全字段记录，避免丢失 `depth`、`name`、`stem`、`info` 和原始方向。
 - 为条件树、反证、sentinel、其他谱和 extension 建立各自的解释器。
-- 在可用原始制品的环境中自动运行重生成检查。
+- 在 CI 中 checkout Raw 的 Git LFS 对象，并自动运行 hash、schema 和重生成检查。
 - 设计 proof-trace checker 和 soundness theorem，逐类缩小计算 axiom。
 - 等团队解决 [#132](https://github.com/SII-MATH/KIP126/issues/132)、[#133](https://github.com/SII-MATH/KIP126/issues/133)、[#134](https://github.com/SII-MATH/KIP126/issues/134)、[#135](https://github.com/SII-MATH/KIP126/issues/135) 后，重新审查受谱序列态射、Leibniz、Mahowald 和 UCD 次数约定影响的依赖。
 
@@ -47,4 +47,4 @@
 3. 为每类真实记录加入正反例和失败关闭测试。
 4. 将 Interface desired theorem 与 Main axiom 做完整类型对齐检查。
 5. 实现证书复演；只有 soundness theorem 完成后才替换相应 axiom。
-6. 每次数据版本更新都重新核对输入摘要、行数、输出摘要和下游依赖。
+6. 每次数据版本更新都重新核对 Raw manifest、输入摘要、行数、输出摘要和下游依赖。

@@ -26,7 +26,7 @@ KIP126/
 │   ├── Axiom/
 │   │   ├── Literature/     文献原文、主论文、清单、显式输入及历史基础假设
 │   │   └── LinProgram/
-│   │       ├── Raw.md      原始输入版本与位置；当前没有提交大 DB/CSV
+│   │       ├── Raw/        五个固定 DB/CSV 输入及 manifest；大文件由 Git LFS 管理
 │   │       ├── Translate/  确定性转换脚本
 │   │       ├── Generated/  固定 E₂ 和差分表
 │   │       └── Interpretation/  解释、现有假设和条件推论
@@ -36,7 +36,7 @@ KIP126/
 └── Checks/                 保留回归检查
 ```
 
-没有为尚不存在的证明、axiom 镜像或原始数据建立空目录。旧 `KIP126/External`、顶层 `Challenge/Solution`、`reference` 和 `aimpaper` 已迁走。公共 Lean 声明名保持原样；文件模块路径改变，因此原来的 `namespace KIP126.External` 或 `KIP126.Challenge` 仍可能出现在新位置，它们不是另一份代码。
+没有为尚不存在的证明或 axiom 镜像建立空目录。Lin program 的五个实际输入已经归入非空的 `Main/Axiom/LinProgram/Raw/`，不再依赖 `/tmp` 路径描述；大型 DB/CSV 使用 Git LFS。旧 `KIP126/External`、顶层 `Challenge/Solution`、`reference` 和 `aimpaper` 已迁走。公共 Lean 声明名保持原样；文件模块路径改变，因此原来的 `namespace KIP126.External` 或 `KIP126.Challenge` 仍可能出现在新位置，它们不是另一份代码。
 
 ## 主要迁移对应
 
@@ -79,7 +79,7 @@ KIP126/
 
 - `lake build KIP126 scripts.Axioms` 通过；未执行用于最终证明验收的严格公理审计。
 - 157 项既有自动化回归测试、3 项 Lean 来源投影集成测试通过。
-- E₂ 的三个固定 CSV 重生成逐字一致；`proofs.db` 全量扫描后的 10,907 条微分及六条 selected 结果重生成检查通过，转换器现有 11 项测试通过。
+- 从 `Main/Axiom/LinProgram/Raw/` 直接运行的三项本地检查通过：E₂ 的三个固定 CSV 重生成逐字一致，`proofs.db` 全量扫描后的 10,907 条微分一致，六条 selected 结果及一条独立 `basis.d2` 核验一致；转换器现有测试通过。五个原始输入的 Git LFS 对象均已上传，CI 重生成检查尚未接入。
 - 完整来源 checker 通过：18 个来源、88 个制品；所有迁移的论文原文制品保持原字节。
 - Blueprint web 构建、Python／shell／workflow 语法和模块文档相对链接检查通过。
 - 对迁移前 829 个 canonical Lean 文件逐一核对：除 import、路径文字、注释及空聚合命名空间外，声明和证明正文保持一致；现有 `sorry` 未增减。

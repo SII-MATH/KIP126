@@ -74,10 +74,13 @@ def classify(row):
         id=row["id"], reason=row["reason"], s=s, t=t, r=r, x=x, dx=dx)
 
 
-def read_basis(archive):
-    data = subprocess.run(["unrar", "p", "-inul", str(archive),
-                           "kervaire_csv/S0_AdamsE2_basis.csv"],
-                          check=True, stdout=subprocess.PIPE).stdout
+def read_basis(archive=None, *, basis_csv=None):
+    if basis_csv is not None:
+        data = basis_csv.read_bytes()
+    else:
+        data = subprocess.run(["unrar", "p", "-inul", str(archive),
+                               "kervaire_csv/S0_AdamsE2_basis.csv"],
+                              check=True, stdout=subprocess.PIPE).stdout
     if hashlib.sha256(data).hexdigest() != BASIS_SHA256:
         raise ValueError("basis CSV does not match the existing LinE2.RawData")
     result = set()
@@ -97,10 +100,11 @@ def lean_row(row):
             f'{nums(row["x"])}, {nums(row["dx"])}⟩')
 
 
-def export(db, archive, output, raw_output=None, check=False, query_ids=()):
+def export(db, archive, output, raw_output=None, check=False, query_ids=(), *,
+           basis_csv=None):
     if digest(db) != DB_SHA256:
         raise ValueError("proofs.db SHA-256 mismatch; review a new version explicitly")
-    basis = read_basis(archive)
+    basis = read_basis(archive, basis_csv=basis_csv)
     # mode=ro prevents accidental creation or modification of the source database.
     con = sqlite3.connect(db.resolve().as_uri() + "?mode=ro", uri=True)
     if [r[1] for r in con.execute("pragma table_xinfo(log)")] != list(COLUMNS):
@@ -223,11 +227,20 @@ class DecoderTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
                 export(db, Path(tmp), Path(tmp) / "out")
 
+    def test_bad_direct_basis_csv_hash(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            basis_csv = Path(tmp) / "S0_AdamsE2_basis.csv"
+            basis_csv.write_bytes(b"not the pinned basis CSV")
+            with self.assertRaisesRegex(ValueError, "basis CSV does not match"):
+                read_basis(basis_csv=basis_csv)
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("database", nargs="?", type=Path)
-    parser.add_argument("--e2-archive", type=Path)
+    basis_source = parser.add_mutually_exclusive_group()
+    basis_source.add_argument("--e2-archive", type=Path)
+    basis_source.add_argument("--e2-basis-csv", type=Path)
     parser.add_argument("--output-dir", type=Path,
                         default=Path(__file__).resolve().parents[5] /
                         "KIP126/Main/Axiom/LinProgram/Generated/Differentials")
@@ -242,10 +255,10 @@ def main():
         if not unittest.TextTestRunner().run(suite).wasSuccessful():
             raise SystemExit(1)
     if args.database:
-        if not args.e2_archive:
-            parser.error("--e2-archive is required with database")
+        if not args.e2_archive and not args.e2_basis_csv:
+            parser.error("--e2-archive or --e2-basis-csv is required with database")
         export(args.database, args.e2_archive, args.output_dir, args.raw_output, args.check,
-               args.query_id)
+               args.query_id, basis_csv=args.e2_basis_csv)
     elif not args.self_test:
         parser.error("supply database or --self-test")
 
