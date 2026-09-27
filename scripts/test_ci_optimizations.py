@@ -111,6 +111,7 @@ class WorkflowBoundaryTests(unittest.TestCase):
         steps = workflow("pr-build.yml")["jobs"]["sandboxed-build"]["steps"]
         ids = {s["id"]: s for s in steps if "id" in s}
         save = next(s for s in steps if s.get("name") == "Save trusted dependency environment before candidate execution")
+        self.assertIn("github.event_name != 'merge_group'", save["if"])
         self.assertLess(steps.index(save), steps.index(ids["compile"]))
         self.assertLess(steps.index(ids["dependency-complete"]), steps.index(save))
         self.assertIn("some files were not found in the cache", ids["dependency-complete"]["run"])

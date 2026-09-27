@@ -657,8 +657,9 @@ jobs:
 
       # Save BEFORE candidate Lean executes. The sandbox can write .lake/packages;
       # saving after compilation would let candidate code poison shared dependencies.
+      # Queue refs consume main's cache but never duplicate it into transient scopes.
       - name: Save trusted dependency environment before candidate execution
-        if: ${{ steps.dependency-complete.outputs.complete == 'true' }}
+        if: ${{ steps.dependency-complete.outputs.complete == 'true' && github.event_name != 'merge_group' }}
         continue-on-error: true
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
         with:

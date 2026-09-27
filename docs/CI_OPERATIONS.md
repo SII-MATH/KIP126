@@ -151,7 +151,9 @@ PR and queue builds restore Lean toolchains and Mathlib packages using an exact 
 covering OS, architecture, toolchain, manifest, and root Lake configuration. Cache
 misses use the normal trusted dependency fetch. Only complete dependency downloads
 are saved, before any candidate Lean executes; candidate outputs never enter this
-dependency cache. Save failures do not turn a successful fetch into a failed build.
+dependency cache. Queue refs read the shared cache without publishing duplicate
+multi-gigabyte entries in transient scopes. Cache-service failures fall back to
+normal dependency fetching and do not turn a successful fetch into a failed build.
 
 PRs keep Blueprint rendering and declaration/link checks, but full API generation
 requires the `docs-preview` label. Adding the label starts a preview; removing it
@@ -163,3 +165,9 @@ scope, waiting for prerequisite checks, or unrelated to an Euler task skip witho
 dispatching a reviewer. Explicit ineligible review requests and actual API/configuration
 errors still fail with a reason. This does not publish a proof-debt report or change
 required build/merge checks.
+
+Initial rollout measurements (2026-09-27): the [cold dependency fetch](https://github.com/SII-MATH/KIP126/actions/runs/36316934264)
+took 101 seconds, with a one-time 31-second cache save. The [warm run](https://github.com/SII-MATH/KIP126/actions/runs/36317133446)
+restored dependencies in 38 seconds and spent 1 second in the fetch step. These
+are observed setup times for identical dependency pins, not guarantees for every
+runner or a claim that changed mathematical sources compile faster.
