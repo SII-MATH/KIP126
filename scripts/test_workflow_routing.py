@@ -119,11 +119,17 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertNotIn("New-file length guard", workflow)
         self.assertNotIn("NEWFILE_TOO_LONG", workflow)
 
-    def test_pr_build_reports_classified_project_axiom_debt(self):
+    def test_development_does_not_publish_proof_debt_or_require_it_for_inheritance(self):
         workflow = self.read("pr-build.yml")
-        self.assertIn("KIP126_PROJECT_AXIOM_AUDIT=1", workflow)
-        self.assertIn("BUILD_PROJECT_AXIOM_AUDIT=1", workflow)
-        self.assertIn("project axioms present — human review + merge required", workflow)
+        self.assertNotIn("AXIOM_AUDIT", workflow)
+        self.assertNotIn("post_status warnings", workflow)
+        self.assertNotIn("warning_state", workflow)
+        main = (ROOT / "scripts/euler-ci.sh").read_text()
+        self.assertNotIn("lake env lean --run scripts/Axioms.lean", main)
+        self.assertNotIn("--iofail", main)
+        self.assertNotIn("lake exe kipbaseAudit", main)
+        self.assertIn("kipbase-migration.py --archive-only", main)
+        self.assertTrue((ROOT / "scripts/Axioms.lean").is_file())
 
     def test_blueprint_pr_has_independent_mechanics_and_review_sync(self):
         blueprint = self.read("blueprint-pr.yml")
@@ -164,8 +170,6 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn('ancestor_input" != "$input', workflow)
         self.assertIn('.creator.login == "github-actions[bot]"', workflow)
         self.assertIn('description" == "$attestation', workflow)
-        self.assertIn('warning_state" == success', workflow)
-        self.assertIn('warnings=$warning_state', workflow)
         self.assertIn('if [[ "$reusable_outputs" != true ]]', workflow)
         self.assertIn('equivalent build outputs are unavailable', workflow)
         self.assertIn("BUILD_REUSED=1", workflow)
@@ -231,7 +235,7 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn("steps.publish-inputs.outputs.matched == 'true'", lean)
         self.assertIn("steps.compile.outcome == 'success'", lean)
         self.assertLess(lean.index("- name: Compile candidate"), lean.index("- name: Save successful PR outputs"))
-        self.assertLess(lean.index("- name: Save successful PR outputs"), lean.index("- name: Audit compiled candidate"))
+        self.assertLess(lean.index("- name: Save successful PR outputs"), lean.index("- name: Validate compiled candidate"))
         self.assertIn('diff -qr -- "base/$path" "pr/$path"', lean)
 
     def test_overlay_cache_publication_guard_rejects_mismatches_and_symlinks(self):
@@ -298,7 +302,6 @@ class WorkflowRoutingTests(unittest.TestCase):
                 "scripts/ci-build-cache-key.sh",
                 "scripts/ci-build-contract.sh",
                 "scripts/sandbox-build.sh",
-                "scripts/Axioms.lean",
                 "scripts/perf/watchdog.sh",
             )
             for relative in required:

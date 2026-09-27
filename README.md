@@ -149,9 +149,8 @@ The Pages workflow uses the following change matrix:
 | other paths | workflow skipped | workflow skipped | workflow skipped |
 
 Only ordinary successful compilation on trusted `main` publishes the
-`kip126-main-build-v2-*` baseline. Its subsequent warning/axiom/project gates
-still run unchanged and may fail: cached compilation is not a proof-completion
-or audit certificate. The sandboxed PR build may publish a separate
+`kip126-main-build-v2-*` baseline. Development CI checks compilation and repository mechanics, without
+proof-debt auditing or reports. Cached compilation does not certify proof completion. The sandboxed PR build may publish a separate
 `kip126-pr-build-v1-*` cache after its checks succeed and the actual overlay
 matches the candidate inputs. This namespace includes the trusted build
 contract and never feeds the main baseline, including for fork candidates.

@@ -1,7 +1,7 @@
 name: pr-build
 
 # Builds untrusted PR code in a TRUSTED, base-branch-defined workflow. A PR cannot change what
-# runs here (pull_request_target uses the base definition). The build/audit configuration
+# runs here (pull_request_target uses the base definition). The build/check configuration
 # (lakefile, scripts/, manifest, toolchain) is the TRUSTED base's: we overlay only the PR's
 # `KIP126/` sources and validated Lake pins onto a base checkout. Lakefiles remain entirely
 # base-trusted; dependency repair PRs carry exact first-known-bad commits only in the manifest.
@@ -275,7 +275,6 @@ jobs:
           set -euo pipefail
           rm -rf base/scripts/perf
           cp -a gate/scripts/perf base/scripts/perf
-          cp gate/scripts/Axioms.lean base/scripts/Axioms.lean
           cp gate/scripts/sandbox-build.sh base/scripts/sandbox-build.sh
           rm -f base/scripts/euler-project-gates.sh
           if [[ -f gate/scripts/euler-project-gates.sh ]]; then
@@ -499,12 +498,10 @@ jobs:
             status=$(jq -c '[.[] | select(.context == "build" and .creator.login == "github-actions[bot]")][0] // {}' <<<"$statuses")
             state=$(jq -r '.state // ""' <<<"$status")
             description=$(jq -r '.description // ""' <<<"$status")
-            warning_status=$(jq -c '[.[] | select(.context == "warnings" and .creator.login == "github-actions[bot]")][0] // {}' <<<"$statuses")
-            warning_state=$(jq -r '.state // ""' <<<"$warning_status")
             if [[ -z "$state" ]]; then
               continue
             fi
-            if [[ "$state" == success && "$description" == "$attestation" && "$warning_state" == success ]]; then
+            if [[ "$state" == success && "$description" == "$attestation" ]]; then
               # A green status alone cannot feed docs/checkdecls after cache
               # eviction. Rebuild once in the producer if its outputs are gone.
               reusable_outputs=false
@@ -527,10 +524,8 @@ jobs:
                 echo "BUILD_REUSED_FROM=$ancestor"
               } >> "$GITHUB_ENV"
               echo "::notice::reusing trusted build from ancestor $ancestor (input=$input, contract=$contract)"
-            elif [[ "$state" == success && "$description" == "$attestation" && "$warning_state" == failure ]]; then
-              echo "::notice::trusted build at $ancestor has warning debt; rebuilding instead of reusing it"
             else
-              echo "::notice::nearest trusted build evidence at $ancestor is not reusable (warnings=$warning_state)"
+              echo "::notice::nearest trusted build evidence at $ancestor is not reusable"
             fi
             # Never jump past a newer trusted red or differently-versioned build result.
             break
@@ -614,8 +609,8 @@ jobs:
           echo "Mathlib cache is complete at the bump target."
 
       # Restore compilation produced on trusted main, preferring the exact base
-      # inputs and falling back to its latest incremental baseline. Later strict
-      # audit debt does not invalidate compilation. PRs never write this namespace;
+      # inputs and falling back to its latest incremental baseline.
+      # PRs never write this namespace;
       # pin bumps skip it and may restore only their exact candidate cache below.
       - name: Restore trusted build outputs for the base build inputs
         id: main-build-cache
@@ -631,9 +626,9 @@ jobs:
             kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
 
       # Reuse compilation, never a status: the combined queue tree is still built
-      # and audited under landrun. Prefer the current trusted contract. An older
+      # and validated under landrun. Prefer the current trusted contract. An older
       # contract with identical source/config inputs is only a compilation seed:
-      # the current build and audit still run and publish fresh evidence.
+      # the current build and checks still run and publish fresh evidence.
       - name: Restore exact candidate compilation for PRs and merge groups
         id: candidate-build-cache
         if: ${{ env.INFRA != '1' && env.BUILD_REUSED != '1' && env.BUILD_ATTESTATION != '' }}
@@ -696,10 +691,8 @@ jobs:
       # cache is off. A PARTIAL fetch is a different matter. `lake cache get` continues past a
       # failed download and exits nonzero (see `lake cache help get`), leaving input-to-output
       # mappings whose artifacts never arrived. The landrun build below is offline and has no
-      # cache service configured, so it cannot fetch them: Lake logs a warning per affected
-      # module and correctly rebuilds it from source, but `lake build --iofail` is
-      # `--fail-level=info`, so those warnings fail a build in which every module compiled.
-      # Partial fetches are routine: they cost about a third of merge-group builds their cache.
+      # cache service configured, so it cannot fetch missing artifacts. Discard partial
+      # downloads and stale mappings before the offline build consumes the cache.
       # Fixed by https://github.com/leanprover/lean4/pull/14651, landing in v4.34.0-rc1;
       # see https://github.com/SII-MATH/KIP126/issues/2062.
       #
@@ -847,7 +840,7 @@ jobs:
           LAKE_NO_CACHE: "true"
         run: |
           export PATH="$HOME/.local/bin:$HOME/.elan/bin:$PATH"
-          # The sandboxed build/audit/lint body lives in the TRUSTED base script
+          # The sandboxed build/check/lint body lives in the TRUSTED base script
           # scripts/sandbox-build.sh (scripts/ routes to a human, so a PR cannot edit it
           # here). Keeping the landrun `bash -c` payload a fixed, comment-free one-liner
           # is deliberate: a comment's apostrophe once closed this single-quoted string
@@ -927,7 +920,7 @@ jobs:
             echo "::warning::Compilation succeeded but exact outputs are unavailable. Inspect cache-save warnings and cache-mode; a green save step alone does not establish publication."
           fi
 
-      - name: Audit compiled candidate under landrun, offline
+      - name: Validate compiled candidate under landrun, offline
         id: build
         if: ${{ steps.compile.outcome == 'success' }}
         env:
@@ -943,16 +936,11 @@ jobs:
           LAKE_NO_CACHE: "true"
         run: |
           export PATH="$HOME/.local/bin:$HOME/.elan/bin:$PATH"
-          # The sandboxed build/audit/lint body lives in the TRUSTED base script
+          # The sandboxed build/check/lint body lives in the TRUSTED base script
           # scripts/sandbox-build.sh (scripts/ routes to a human, so a PR cannot edit it
           # here). Keeping the landrun `bash -c` payload a fixed, comment-free one-liner
           # is deliberate: a comment's apostrophe once closed this single-quoted string
           # early and reddened every PR build (#694). All prose now lives in the script.
-          # The marker comes from the trusted sandbox script only after an
-          # ordinary build, the project gates, and either a clean axiom audit or
-          # a classified sorry/project-axiom review debt have passed.
-          # Capture it outside landrun, where untrusted Lean code cannot alter
-          # the result file; a forged marker can only fail closed into review.
           set -o pipefail
           build_log=$(mktemp "$RUNNER_TEMP/kip126-sandbox-build.XXXXXX")
           landrun --rox /usr --rox /etc \
@@ -962,22 +950,13 @@ jobs:
             --env PATH --env HOME --env CI \
             --env LAKE_NO_CACHE --env LAKE_ARTIFACT_CACHE --env LAKE_RESTORE_ARTIFACTS --env LAKE_CACHE_DIR \
             --env WATCHDOG_TOOLCHAIN --env EULER_LEAN_TIMEOUT_SECONDS \
-            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh audit' 2>&1 | tee "$build_log"
-          if grep -qx 'KIP126_WARNING_ONLY_BUILD=1' "$build_log"; then
-            echo "BUILD_WARNINGS=1" >> "$GITHUB_ENV"
-          fi
-          if grep -qx 'KIP126_SORRY_AUDIT=1' "$build_log"; then
-            echo "BUILD_SORRY_AUDIT=1" >> "$GITHUB_ENV"
-          fi
-          if grep -qx 'KIP126_PROJECT_AXIOM_AUDIT=1' "$build_log"; then
-            echo "BUILD_PROJECT_AXIOM_AUDIT=1" >> "$GITHUB_ENV"
-          fi
+            -- bash -euxo pipefail -c 'cd base && exec bash scripts/sandbox-build.sh checks' 2>&1 | tee "$build_log"
 
       - name: Report build and bump-guard statuses to the PR head commit
         if: always()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
-          # Posting the four statuses is deliberately NOT all-or-nothing. These are four
+          # Posting the three statuses is deliberately NOT all-or-nothing. These are three
           # sequential API calls under `set -e`: a single transient error on an early one used to
           # abort the step and leave the commit with a partial set. A MISSING required status is
           # worse than a red one. `build` never appears, so GitHub holds the PR at BLOCKED
@@ -1026,7 +1005,7 @@ jobs:
 
           # build: the real sandboxed-build result ONLY — never a policy verdict. The build now runs even
           # for an out-of-scope PR (its KIP126/ is overlaid onto the trusted base and built), so a red
-          # `build` always means the code did not compile or an audit/lint failed, and fix-ci can trust
+          # `build` always means the code did not compile or a repository check failed, and fix-ci can trust
           # it. It is reported as not-run only when we genuinely could not build: an indeterminate file
           # list (INFRA), an unvalidated pin bump (BUMP_BAD — the overlay would need the PR's pins), or a
           # file-count guard that failed closed (TOO_LARGE / DIFF_UNKNOWN exit before the build). Those
@@ -1041,32 +1020,12 @@ jobs:
             if [ -n "${{ env.BUILD_ATTESTATION }}" ]; then
               desc="${{ env.BUILD_ATTESTATION }}"
             else
-              desc="sandboxed build, audits, and simp-NF lint passed (trusted config)"
+              desc="sandboxed build, repository checks passed (trusted config)"
             fi
           else
-            state=failure; desc="sandboxed build, audit, or simp-NF lint failed"
+            state=failure; desc="sandboxed compilation or repository checks failed"
           fi
           post_status build "$state" "$desc"
-
-          # warnings: a strict `lake build --iofail` may find warnings, or the
-          # axiom audit may find classified `sorryAx` or project-axiom development debt, even though
-          # the ordinary Lean build and project gates pass. Such a PR satisfies
-          # GitHub's required `build` check but is deliberately rejected by the
-          # automatic merge gate. This context is not a repository-required
-          # check, so a human reviewer can still place the PR in the merge queue
-          # after review.
-          if [ "$state" != success ]; then
-            warn_state=failure; warn_desc="warning policy unavailable because the build failed"
-          elif [ "${{ env.BUILD_PROJECT_AXIOM_AUDIT }}" = "1" ]; then
-            warn_state=failure; warn_desc="project axioms present — human review + merge required"
-          elif [ "${{ env.BUILD_SORRY_AUDIT }}" = "1" ]; then
-            warn_state=failure; warn_desc="sorryAx present — human review + merge required"
-          elif [ "${{ env.BUILD_WARNINGS }}" = "1" ]; then
-            warn_state=failure; warn_desc="Lean build completed with warnings — human review + merge required"
-          else
-            warn_state=success; warn_desc="Lean build completed without warnings"
-          fi
-          post_status warnings "$warn_state" "$warn_desc"
 
           # scope: the merge-policy verdict, posted as its OWN status so a policy issue never hides the
           # build result (the bug this split fixes — an out-of-scope PR used to post its "human review"
@@ -1127,18 +1086,17 @@ jobs:
             echo "- Inherited build evidence: ${BUILD_REUSED_FROM:-none}"
             echo "- Confirmed candidate cache publication: ${CANDIDATE_CACHE_PUBLISHED:-not attempted}"
             echo "- Sandboxed compilation: ${COMPILE_OUTCOME:-not reached}"
-            echo "- Sandboxed audit: ${BUILD_OUTCOME:-not reached}"
+            echo "- Repository checks: ${BUILD_OUTCOME:-not reached}"
             echo "- Workflow result so far: $JOB_OUTCOME"
-            echo "- Warning debt: ${BUILD_WARNINGS:-0}; sorry debt: ${BUILD_SORRY_AUDIT:-0}; project axioms: ${BUILD_PROJECT_AXIOM_AUDIT:-0}"
             echo
             if [[ "$COMPILE_OUTCOME" == failure ]]; then
               echo 'Open the compilation step for the compiler or watchdog error.'
             elif [[ "$BUILD_OUTCOME" == failure ]]; then
-              echo 'Compilation completed; open the audit step for the remaining error.'
+              echo 'Compilation completed; open the repository-check step for the remaining error.'
             elif [[ "$BUILD_OUTCOME" != success && "${BUILD_REUSED:-0}" != 1 ]]; then
               echo 'The build was not reached: inspect the first failed setup or guard step.'
             fi
-            echo 'Compilation caches do not waive guards or audits. Review debt is reported separately in warnings/scope.'
+            echo 'Compilation caches do not waive compilation or configuration guards.'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Refresh semantic review after a reconciled branch build
