@@ -11,6 +11,7 @@ import KIP126.Def.ClassicalAdams.SphereSequence.Data
 import KIP126.Def.ClassicalAdams.SphereClasses.Data
 import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
 import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
 import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
 import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs

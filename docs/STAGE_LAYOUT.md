@@ -13,9 +13,11 @@
 
 局部文件／声明盘点不等于数学完成度，不能把无 `sorry` 或编译成功换算成整个数学目标已完成。文档对未冻结的任务总量不提供伪精确百分比。
 
-两个 Challenge 文件在同文件内分组展开项目交付字段、范围及相容性条件，通用数学类型仍由 Def 定义。每项分别记录陈述状态、实现状态和依赖关系；尚无准确 Lean 陈述的内容保留为明确的 TODO 注释，不以空泛的 `Prop` 或 `True` 充当字段。已有构造或可从前项推出的结果列为派生交付，避免重新选择不相关的对象。详细清单只维护在这两个文件中。
+两个 Challenge 文件在同文件内分组展开项目交付字段、范围及相容性条件，通用数学类型仍由 Def 定义。审核时结合现有 Def、Blueprint、论文来源及 KIPBase 的具体历史接口，分别记录陈述、模型接入、证明与依赖状态。当前目录缺少声明，不等于无法准确陈述；已有对象足以支持的参数化接口应直接写出，剩余迁移、对象绑定或证明义务单独列明。只有确实缺少表达所需类型的部分保留具体 TODO，不以空泛的 `Prop` 或 `True` 充当字段，也不把历史 axiom 当作当前证明。已有构造或可从前项推出的结果列为派生交付，详细清单只维护在这两个文件中。
 
 Challenge 1 通过 `FoundationInput`、`MilnorInput` 展示现有基础条件，再以 `foundation`、`milnor` 适配定义组装原通用记录；消费端仍只选择一次见证。Challenge 2 在同文件中定义 `LinE2Presentation`、坐标和微分解释；旧 presentation 模块作为兼容导入入口。生产／消费端继续直接使用相同的 `Nonempty ChallengeN`。
+
+`a10` 的 ν-cofiber 判据和 `a11` 的 synthetic lift／三角提升已在根 Challenge1 中定义为精确的参数化 `SyntheticInterface`；[Synthetic 文献入口](../KIP126/Main/Axiom/Literature/Synthetic.lean) 通过显式来源输入组装该接口。它尚未加入 `Nonempty Challenge1` 的原见证字段，没有选择固定 synthetic 模型，也没有完成所引文献结果的证明。
 
 这次清单整理保持现有数学承诺。Challenge 2 对开发期选定的 Challenge 1 仍有隐式依赖，Main 对 Interface/Solution 的直接导入也尚未消除；两个文件会显式记录这些边界债务。完整清单不等于所有条目已经冻结或装入见证包。
 
@@ -109,5 +111,7 @@ KIP126/
 后续边界整理增加共享 Challenge 包、生产端 theorem 和消费端单一存在性 axiom；严格最终审计仍拒绝所有项目 axiom 和 `sorryAx`。
 
 接口清单整理后，通过共享缓存包装器验证了 8 个定向 Lean 目标：两道边界的 Challenge/Solution、`StageInputDeclarations`、`FixedFinal`、`LinProofs`、`LinComparison`。Challenge 1 新旧记录的三条 kernel 往返等式通过，Challenge 2 原谓词／总包及迁入的 presentation 字段逐字保留。36 个清单编号、Blueprint 定位和修改文档的链接检查通过；845 个本地模块没有缺失导入或循环。此处验证接口重组的兼容性，没有消除原有证明占位。
+
+补充 synthetic 接口后，重新验证两道边界的 Challenge/Solution、`StageInputDeclarations`，并通过新增的 `Synthetic.Interfaces`，合计 6 个受影响目标。新检查覆盖实际塔 filtration、cofiber 判据双向、λ 分解、三角条件和显式来源消费，且相关接口不依赖历史或阶段 axioms。Challenge 2 本次仅修改清单注释；包含根入口的 849 个本地模块没有缺失导入或循环。新接口没有增加 `sorry` 或 `axiom`，这不代表其文献证明或固定模型已完成。
 
 自动化 CI 此次增加了新路径的来源文件检查和转换器现有测试；完整的 JSON/Lean 来源投影在本地验证通过，尚未接成 CI 作业。边界两侧直接引用同一个 `Nonempty ChallengeN` 类型，不再建立重复签名的对齐 CI。

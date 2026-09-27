@@ -89,4 +89,32 @@ structure NuFunctorData (Stable : Type u) [StableHomotopyCategory.{u, v} Stable]
     functor.obj ((shiftFunctor Stable (1 : ℤ)).obj X) ≅
       (SyntheticCategory.biShift (1, 1)).obj (functor.obj X)
 
+/-- The landing of a normalized synthetic connecting map:
+`Σ^(0,-1) ν(ΣX) ≅ Σ^(1,0) νX ≅ (νX)[1]`.
+Every comparison is supplied by the same ν datum and synthetic grading. -/
+noncomputable def NuFunctorData.boundaryLandingIso
+    {Stable : Type u} [StableHomotopyCategory.{u, v} Stable]
+    {Syn : Type u'} [SyntheticCategory.{u', v'} Syn]
+    (N : NuFunctorData Stable Syn) (X : Stable) :
+    (SyntheticCategory.biShift (0, -1)).obj
+        (N.functor.obj ((shiftFunctor Stable (1 : ℤ)).obj X)) ≅
+      (shiftFunctor Syn (1 : ℤ)).obj (N.functor.obj X) :=
+  (SyntheticCategory.biShift (0, -1)).mapIso (N.suspensionIso X) ≪≫
+    (SyntheticCategory.biShift_comp (1, 1) (0, -1)).app (N.functor.obj X) ≪≫
+    (SyntheticCategory.biShift_compat (Syn := Syn) 1).app (N.functor.obj X)
+
+/-- Multiplication by `λ^(k-1)` from `Σ^(0,-k) B` to `Σ^(0,-1) B`.
+This operation weakens a full lift to one λ division. It does not assert
+that the resulting map is a component of a distinguished triangle. -/
+noncomputable def lowerFullLiftTarget (B : Syn) (k : ℕ) (hk : 1 ≤ k) :
+    (SyntheticCategory.biShift (0, -(k : ℤ))).obj B ⟶
+      (SyntheticCategory.biShift (0, -1)).obj B := by
+  have hdegree : ((0 : ℤ), -(k : ℤ)) =
+      ((0 : ℤ), -1) + ((0 : ℤ), -((k - 1 : ℕ) : ℤ)) := by
+    ext <;> simp
+    omega
+  exact eqToHom (congrArg (fun p : ℤ × ℤ => (SyntheticCategory.biShift p).obj B) hdegree) ≫
+    (SyntheticCategory.biShift_comp (0, -1) (0, -((k - 1 : ℕ) : ℤ))).inv.app B ≫
+    lambdaPow (k - 1) ((SyntheticCategory.biShift (0, -1)).obj B)
+
 end KIP126.Synthetic.Context

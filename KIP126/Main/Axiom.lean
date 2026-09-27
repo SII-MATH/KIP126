@@ -1,5 +1,6 @@
 import KIP126.Main.Axiom.Provenance
 import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Main.Axiom.Literature.Synthetic
 import KIP126.Main.Axiom.Evidence
 import KIP126.Main.Axiom.Results
 import KIP126.Main.Axiom.Literature.SourceInventory

@@ -1,6 +1,6 @@
 # Synthetic / Context
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../README.md)；本次只迁移，未补证明或修改陈述。
+本页记录本组件的共享对象和构造。数学范围参见[所属阶段](../../README.md)；项目交付条件定义在 [Challenge1](../../../Challenge1.lean)。
 
 ## 1. 原先期望包含什么
 
@@ -10,12 +10,12 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](Data.lean) | `lambdaPow`, `XModLambda`, `XModLambdaN`, `NuFunctorData` |
+| [Data.lean](Data.lean) | `lambdaPow`, `XModLambda`, `XModLambdaN`, `NuFunctorData`、连接映射落点 `NuFunctorData.boundaryLandingIso`、降低 full lift 次数的 `lowerFullLiftTarget` |
 | [Proofs.lean](Proofs.lean) | `NuFunctorData.shiftBiShift`, `XModLambda.incl`, `XModLambda.proj`, `XModLambda.triangle_distinguished`, `XModLambda.lam_comp_incl` 等 6 个声明 |
 
 ## 3. 大概完成度
 
-**现有内容：2 个 Lean 文件、约 10 个显式声明，其中 3 条 theorem/lemma。** 本组件未扫描到显式占位正文，已有实现仍需结合依赖和语义审核判断是否完成。
+**现有内容：共享 synthetic 背景及 shift/cofiber 构造。** `boundaryLandingIso` 和 `lowerFullLiftTarget` 由现有结构构造，不假定 ν 保持所有 cofiber，也不承诺任意 full lift 都是三角分量。项目文献命题的证明仍通过显式输入提供。
 
 未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
 

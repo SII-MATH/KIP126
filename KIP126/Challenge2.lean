@@ -13,24 +13,33 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
 清单中的“未入包”不是额外假设，也不表示相应领域完全没有已有证明。
 
 阅读规则：**陈述状态**与**实现状态**分开记录。已有精确 Lean 类型可以尚未证明；
-有局部证明也不等于完整接口已冻结。尚未冻结或已知错误的项目只保留具体 TODO，
-不以任意 `Prop`、`True` 或自由选择的操作补齐字段。本文路径均相对于 `KIP126/`。
+有局部证明也不等于完整接口已冻结。已有对象足以表达的命题应直接写成准确接口，
+不以缺少现成 theorem 为由推迟陈述，也不以任意 `Prop`、`True` 或自由选择的操作
+补齐字段。本文路径均相对于 `KIP126/`；`../KIPBase/` 指历史实现，其具体接口
+可作为迁移依据，但不能直接导入其中的全局 axioms 作为当前阶段的证明。
 共同数学对象仍在 `Def/`；本文件集中项目交付结构与谓词，不复制一般数学定义、
 生成数据或证明。每个已入包字段都必须使用同一个 presentation。
 
 ## A(M)：使用内部 M 的非程序接口
 
 - `am1` 内部页面、代表元与永久存活 calculus。
-  陈述：已有局部精确声明，完整交付类型未冻结、未入包。
-  实现：`Def/SpectralSequence/Basic/PageHomology/`、`Def/SpectralSequence/Representatives/`、
-  `Def/SpectralSequence/Permanence/` 已有定义与证明。TODO：汇总相邻页同调、共同代表元、cycle/boundary
-  传递、d²=0、E∞ 及 `NonzeroSurvival` 的具体必需结论，逐条审计证明依赖。
+  陈述／实现：相邻页同调已有 `Basic/PageHomology/Data.lean` 的 `pageHomologyIso`；
+  `Computation/Proofs.lean` 已证明 `IsPageBoundary.isCycle`、
+  `HasNonzeroDifferential.source_survives` 和 `target_survives`；
+  `Representatives/Proofs.lean` 已有微分与代表元的等价及自然性。
+  以上路径均在 `Def/SpectralSequence/` 下；永久存活类型见 `Permanence/Predicates.lean`。
+  接入：在本文件逐条公开所需派生交付并复用现有证明；剩余通用性质按具体签名补齐，
+  不把已有 calculus 整体视为等待首次设计，也不重新假设可由 Def 推出的结论。
 
 - `am2` Adams 塔页面、微分与存活语义。
-  陈述：已有局部精确声明，完整交付类型未冻结、未入包。
-  实现：`Def/ClassicalAdams/TowerSSData/` 与 `SphereVanishing/` 提供内部塔路线；
-  `Main/Solution/Computation/Vanishing.lean` 有固定对象的 survival/liftability 归约。
-  TODO：统一 Z/B 页面、连接微分、下一页传递与同一代表元的全部提升条件。
+  陈述／实现：`Def/ClassicalAdams/TowerSSData/` 下已有页面同构
+  `Page/Data.lean` 的 `adamsTowerSSDataPageIso`、微分比较
+  `Differential/Proofs.lean` 的 `adamsTowerInternalD_comparison`、下一页关系
+  `PagePassage/Proofs.lean` 的 `adamsTowerSSData_next_relation`，以及
+  `Permanence/Proofs.lean` 的 `adamsTower_nonzeroSurvival_iff` 和
+  `adamsTower_nonzeroSurvival_iff_compatible`。这些定理已经使用同一实际塔。
+  接入：将这些完整签名列为派生交付；固定球面特化见
+  `Main/Solution/Computation/Vanishing.lean`，无需另选一套页面或存活代表元。
 
 - `am3` 内部谱序列映射与 Adams 自然性。
   陈述：完整交付类型未冻结、未入包；既有态射还需按 #132 审核。
@@ -39,23 +48,33 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   映射，并给出微分、复合、代表元及页面传递相容性。
 
 - `am4` 内部乘法、配对、作用与 Leibniz。
-  陈述：完整交付类型未冻结、未入包；本文件的 `comparison_mul` 不提供微分 Leibniz。
-  实现：`Def/ClassicalAdams/TowerLongLayer/Pairing/` 有局部配对及条件证明；
-  `Main/Axiom/LinProgram/Interpretation/Differential/Predicates.lean` 定义尚待满足的
-  `SecondDifferentialLeibniz`。TODO：补所需页面乘法、external pairing、module action
-  的双线性、结合、单位、自然性及 dᵣ Leibniz，不把条件证明误作条件已成立。
+  陈述：同一 presentation 上的 `LinE2Presentation.SecondDifferentialLeibniz`
+  已有精确类型，见 `Main/Axiom/LinProgram/Interpretation/Differential/Predicates.lean`；
+  本文件的 `comparison_mul` 不提供这个额外条件。
+  实现：`Def/ClassicalAdams/TowerLongLayer/Pairing/Leibniz/` 已定义
+  `RelativeBoundaryFormula` 并证明 `relativeBoundary_iff_leibniz`；
+  `Pairing/Internal/Leibniz/Proofs.lean` 的 `internalD_of_relativeBoundary`
+  已把该条件连接到实际内部微分。
+  接入：先将这些依赖同一配对／presentation 的准确条件公开，调整定义归属以避免
+  Challenge2 自引用；证明所需相容条件，并逐项补各页乘法、作用、结合、单位与自然性。
 
 - `am5` 收敛、E∞ 检测和 λⁿ 截断传递。
-  陈述：完整交付类型未冻结、未入包。
-  实现：`Def/SpectralSequence/Convergence/`、`Def/SpectralSequence/Completion/`、`Def/SpectralSequence/Truncation/`
-  已有公共基础。TODO：为同一 sphere、Cν 和内部 synthetic 实例补有限/强收敛、
-  检测、完备分离及有限 λ 商之间和向未截断对象的传递。
+  陈述／实现：`Def/SpectralSequence/Convergence/` 已提供 `Convergence`、`Detects`、
+  `ConvergenceMorphism` 的精确内部接口及检测性质；`Completion/`、`Truncation/`
+  （同在 `Def/SpectralSequence/` 下）已有完备化与截断基础。
+  接入：用这些现有类型表述固定 sphere、Cν 和内部 synthetic 对象所需的实例，
+  保持滤过及 E∞ 比较相关；待完成的是实际收敛、完备分离和 λ 商传递的见证与证明。
 
 - `am6` extension SS、page extension 与 crossing calculus。
-  陈述：已有局部精确声明，完整交付类型未冻结、未入包。
-  实现：`Def/SpectralSequence/BoundedExtension/`、`Def/SpectralSequence/UnboundedExtension/`、
-  `Def/SpectralSequence/Crossing/`、`Def/SpectralSequence/Commutativity/` 是现有落点。TODO：逐项绑定内部 M，汇总 E₀/abutment、
-  inessentiality、square naturality、exactness、完整 target coset、crossing 与 coherent limit。
+  陈述／实现：`Def/SpectralSequence/BoundedExtension/SpectralSequence/` 已有
+  E₀ 同构与 `d0_eq_inducedAssocGradedMap`；内部 crossing 与 square compatibility
+  已在 `Def/SpectralSequence/{Crossing,Commutativity}/` 中定义并有局部证明。
+  历史接口：`../KIPBase/Synthetic/PageExtension.lean` 已定义
+  `FinitePageExtension`、`InfinitePageExtension`、完整 target coset 与 crossing，
+  并证明 `essential_iff_zero_not_mem_classicalTargetCoset`；`SolutionTower.lean`
+  （同一历史目录）已有 `ESSSolutionWitness` 和 `FiniteESSSolutionSystem.CoherentTower`。
+  接入：迁移这些具体接口并绑定当前内部对象、λ 商及同一收敛见证；核查其前提，
+  补实际实例与 coherent limit 的存在性，不能把已定义的塔误作塔已有成员。
 
 - `am7` 内部版 generalized Leibniz、Mahowald 与 page stretch。
   陈述：**待修正，不能把现有类型原样冻结入包**。#133 指出 Leibniz 的 `Input`
@@ -66,10 +85,14 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   绑定同一 extension/page/crossing 结构，再冻结签名并证明。
 
 - `am8` Moss：Toda/Massey 到内部页面检测。
-  陈述：内部 M 交付类型未冻结、未入包。
-  实现：`Def/StableHomotopy/Toda/` 只提供底层支撑；
-  `Main/Axiom/Literature/Claims.lean` 记录来源。TODO：连接 Toda/Massey 与内部微分、
-  检测、不定性及 Moss crossing；near-126 的具体 Toda 推论留给 Main。
+  陈述：`../KIPBase/multiplicativeSS/Moss.lean` 已有 `MappingAdamsTower`、
+  `Moss.Statement` 和 `Moss.SphereStatement`，精确联系历史内部页面的 Massey、
+  永久性、检测与 Toda；这是待证命题，不是 Moss 的证明。
+  实现：同一历史目录的 `AdamsMasseyProduct.lean`、`AdamsDetection.lean`、
+  `MossCrossing.lean` 已分别定义 `Relation`、`DetectsAbutment`、`ForProducts`；
+  当前 Toda 关系在 `Def/StableHomotopy/Toda/`，来源在 `Main/Axiom/Literature/Claims.lean`。
+  接入：以当前实际 Adams 对象及收敛数据替换历史全局选择，迁移这组签名并验证
+  Moss crossing 方向、次数与文献条件；near-126 的具体推论仍留给 Main。
 
 - `am9` Adams E₂＝cobar/Ext 及标准 hᵢ。
   陈述：已有局部精确声明，完整交付类型未冻结、未入包。
@@ -78,28 +101,40 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   内部 E₂ 的 Ext 识别以及标准 hᵢ、h₆² 的识别；Lin 比较留在 `cm1`。
 
 - `am10` 内部 classical–synthetic catalogue coherence。
-  陈述：内部 M 交付类型未冻结、未入包。
-  实现：`Def/Comparison/ClassicalSynthetic/` 及 `Def/Synthetic/AdamsSequence/`
-  仍使用 Mathlib 谱序列。TODO：改写成内部 classical、synthetic、λ-quotient M 的
-  重分次和对象/映射识别，证明页面、微分、乘法、检测及截断相容；不新增 Mathlib 比较义务。
+  陈述／实现：当前 `Def/Comparison/ClassicalSynthetic/` 与
+  `Def/Synthetic/AdamsSequence/` 仍使用 Mathlib 谱序列；历史
+  `../KIPBase/Synthetic/Adams.lean` 的 `SynAdamsSS` 已采用内部三分次类型，
+  `ExtensionSS.lean` 有具体重分次与 `SyntheticExtensionData`，
+  `PageExtension.lean` 有 classical/synthetic 代表元绑定接口。
+  接入：以这些具体类型为迁移起点，替换历史 axioms 选定的对象，绑定同一当前
+  classical、synthetic、λ-quotient 实例，再补页面、微分、乘法、检测和截断相容。
+  不新增内部 M 与 Mathlib 谱序列的比较义务。
 
 - `am11` synthetic rigidity、E∞ 公式与 λ-Bockstein。
-  陈述：内部 M 交付类型未冻结、未入包。
-  实现：`Main/Axiom/Literature/Claims.lean` 有 synthetic rigidity、λ-Bockstein
-  等来源条目，`Def/Synthetic/` 有旧对象。TODO：在内部 M 上陈述 νX、νX/λⁿ 的 E∞
-  公式、rigidity、λ-Bockstein、triangle lift 与 ν-cofiber 结果，并保留来源条件。
+  陈述：`../KIPBase/Synthetic/Rigidity.lean` 已有若干内部 E∞／消失候选陈述，
+  `ExtensionSS.lean` 有 `LambdaBocksteinData`，不是只有来源条目。
+  限制：历史 `lambda_bockstein_start_page` 仅断言 r₀=2，不是 Bockstein comparison；
+  旧 rigidity 的 weight 范围须按当前 λ 降 weight 约定及论文核对，不能直接冻结。
+  接入：保留 `Main/Axiom/Literature/Claims.lean` 的文献依据，将经校正的 rigidity、
+  νX／νX/λⁿ 的 E∞ 公式及真正的 Bockstein comparison 绑定当前内部 M；
+  a10/a11 的 ν-cofiber／triangle lift 参数化输入在此补其内部页面版本及证明。
 
 - `am12` Adams one-line 与低维永久性输入。
-  陈述：现有文献 wrapper 尚非完整的内部 M 交付，未冻结、未入包。
-  实现：`Main/Axiom/Literature/Adams/OneLine.lean` 和 `Claims.lean`。
-  TODO：把主链消费的 one-line 微分、May 低页存活及 h₄²、h₅² 永久性/检测
-  精确重述到固定内部 Adams M，保留文献定位与显式输入。
+  陈述／实现：`Def/ClassicalAdams/H4D2/` 与
+  `Main/Axiom/Literature/Adams/OneLine.lean` 已有 h₄ d₂ 的准确 tracer 声明、
+  `cataloguedAdamsOneLine` 及其消费定理，但当前页面类型仍走旧接口。
+  接入：以内部 `HasDifferential` 和同一 presentation 下的 h₄、h₀h₃² 重述该切片，
+  保留文献定位与显式证明输入；这是页面绑定工作，无需等待整个 one-line 家族。
+  May 低页存活、h₄²／h₅² 永久性和检测的其余准确陈述与证据逐条补齐。
 
 - `am13` BJM/BX、θ₅ 与总微分输入。
-  陈述：现有语义输入不等于完整的内部 M 交付，未冻结、未入包。
-  实现：`Main/Axiom/Literature/Kervaire.lean`、`Def/Kervaire/Theta5/`。
-  TODO：绑定 θ₅ 的 h₅² 检测、阶二、BJM/BX 判据、quadratic-cell calculus 及
-  δ₁(h₆²)=ληθ₅²；Main 的 choice/near-126 推论不提前变为此项输入。
+  陈述／实现：`Def/Kervaire/Theta5/` 已有 `Theta5ChoiceContext`、
+  `Theta5OrderData`、`BJM_BXCriterion`、`SourceTotalDifferentialIdentity` 的
+  精确参数化类型及 choice transport 证明；`Main/Axiom/Literature/Kervaire.lean`
+  已有对应 provenance wrappers。
+  接入：保留这些已有类型，将 context 的检测、存活、有限商零关系和 δ₁ 运算
+  绑定实际内部对象，补 quadratic-cell calculus；不能把自由语义参数视为绑定已完成，
+  也不把 Main 的 choice/near-126 推论提前变为输入。
 
 - `am14` tmf 检测与 BR21 微分。
   陈述：内部 M 交付类型未冻结、未入包。
@@ -108,16 +143,20 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   TODO：把 Hurewicz 检测、θ₅ 的 tmf 像和 d₃(v₂¹⁶)=β⁵g 连接到同一内部对象与映射。
 
 - `am15` Moss convergence 与 normalized Hopf detection。
-  陈述：内部交付尚不完整、未入包；`SphereHopfInput` 是明确的待提供输入。
-  实现：`Main/Axiom/Literature/Claims.lean`、`Main/Axiom/Literature/Near126/HopfCofiber/Fixed/Data.lean`。
-  TODO：在同一球面 ν 上补 h₂ 的 normalized detection、Moss no-crossing/Toda
-  判据及实际 cofiber 的必要比较，保留几何选取与文献证据的关联。
+  陈述／实现：`Main/Axiom/Literature/Near126/HopfCofiber/Fixed/Data.lean` 的
+  `SphereHopfInput` 已将实际球面映射与 h₂ 的 filtration-one 表示条件一起打包，
+  表示条件带 `ExternalEvidence`；历史 `../KIPBase/multiplicativeSS/Moss.lean`
+  的 `SphereStatement` 已准确表达球面 Moss 判据。
+  接入：保留现有 Hopf 选择及证据关联，迁移 am8 的检测/crossing 签名并绑定同一
+  球面、ν 与 cofiber；待提供的是实际输入、top-cell 等必要比较和 Moss 证明。
 
 - `am16` Browder 的 Kervaire 判据。
-  陈述：已有 provenance wrapper，绑定内部 M 的完整交付未冻结、未入包。
-  实现：`Main/Axiom/Literature/Kervaire.lean` 的 `cataloguedBrowderCriterion`
-  与 `Claims.lean`。TODO：把 Kervaire invariant one 与内部球谱标准 hⱼ² 的
-  非零永久存活精确关联，作为内部目标之后的几何接口，不弱化为任意永久性谓词。
+  陈述／实现：`Def/Kervaire/Theta5/Predicates.lean` 的 `BrowderCriterionStatement`
+  已精确表达维数与 Kervaire 存在性判据；`Main/Axiom/Literature/Kervaire.lean`
+  的 `cataloguedBrowderCriterion` 保留来源与显式 proof 参数。
+  接入：公开该条件接口，并将其 `permanent` 参数实例化为同一内部球谱标准 hⱼ²
+  的 `NonzeroSurvival`。尚待固定的几何解释与标准类关联是具体绑定义务，
+  不妨碍先陈述参数化结果，也不能把任意永久性谓词当作关联已经成立。
 
 ## C(M)：Lin 直接输出的确定性解释
 

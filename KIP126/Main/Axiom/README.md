@@ -1,6 +1,6 @@
 # Axiom
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../README.md)；本次只迁移，未补证明或修改陈述。
+本页记录阶段输入及带来源的文献输入。数学范围参见[所属阶段](../README.md)；来源记录不代表已完成数学证明。
 
 ## 1. 原先期望包含什么
 
@@ -14,6 +14,7 @@
 | [Evidence.lean](Evidence.lean) | `sourceId`, `withArtifact`, `map_ref`, `map_sourceId`, `withArtifact_evidence` 等 12 个声明 |
 | [Provenance.lean](Provenance.lean) | `SourceId`, `code`, `ofCode`, `all`, `all_nodup` 等 78 个声明 |
 | [Results.lean](Results.lean) | `sourceId`, `sourceId_mk`, `map_ref`, `map_sourceId` |
+| [Literature/Synthetic.lean](Literature/Synthetic.lean) | `SyntheticLiteratureInput`：同一 H𝔽₂/ν 上的 cofiber、full lift、三角提升显式证明及固定来源；接口定义位于根 Challenge1 |
 
 ## 3. 大概完成度
 

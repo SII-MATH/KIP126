@@ -60,15 +60,24 @@ mathematical types remain in `Def`; generated tables and proofs remain in their
 own modules. Compatibility definitions may assemble the existing generic
 records from the visible fields, but must not make fresh data choices.
 
-For every checklist item, distinguish statement status (precise current
-statement, needs correction, or not yet frozen), implementation status, and
-whether it is new delivered data or a consequence of earlier fields. A precise
-current statement is not evidence of mathematical review. Keep missing
-statements as explicit, scoped TODO comments in the same file until their
-mathematical types are agreed; never stand them in with `True`, an unconstrained
+For every checklist item, distinguish its precise statement, binding to the
+chosen model, and proof status, as well as whether it delivers new data or a
+consequence of earlier fields. Before leaving a statement as TODO, inspect the
+existing `Def` types, Blueprint, paper sources, and concrete historical
+`KIPBase` interfaces. Absence of a declaration in the canonical tree does not
+mean the statement cannot be written: define a precise parameterized interface
+when the available objects support it, and identify the remaining migration,
+model-binding, or proof obligation. Historical declarations require review;
+do not import their global axioms as current proofs. Keep genuinely missing
+types as scoped TODO comments; never substitute `True`, an unconstrained
 `Prop`, arbitrary operations, or additional axioms. Preserve provenance and
-explicit external hypotheses. Checklist coverage does not mean every planned
-item is already a field or that either package has been constructed.
+explicit external hypotheses. A precise statement is not proof of mathematical
+correctness, and checklist coverage does not mean either package is constructed.
+
+The `a10`/`a11` group `SyntheticInterface` is defined parametrically in root
+`Challenge1.lean`; `Main/Axiom/Literature/Synthetic.lean` supplies the explicit
+source-bearing input wrapper. This group does not extend the current
+`Nonempty Challenge1` witness, select a synthetic model, or prove the cited results.
 
 This layout is a target as well as an ownership rule. During the authorized
 migration, move existing declarations without silently changing their
