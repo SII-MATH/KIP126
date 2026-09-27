@@ -12,7 +12,6 @@ files=(
   scripts/ci-build-cache-key.sh
   scripts/ci-build-contract.sh
   scripts/sandbox-build.sh
-  scripts/Axioms.lean
 )
 
 for file in "${files[@]}"; do

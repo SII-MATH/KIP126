@@ -3,6 +3,7 @@
 import importlib.util
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import tempfile
@@ -161,19 +162,19 @@ class BuildFailureTests(unittest.TestCase):
                      "AUDIT_EXIT": str(audit), "AUDIT_LOG": audit_log}, capture_output=True, text=True)
             return result, (root / "calls").read_text().splitlines()
 
-    def test_compile_can_be_published_before_a_failed_audit(self):
+    def test_compile_can_be_published_before_repository_checks(self):
         result, calls = self.run_build(phase="compile", audit=1)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(calls, ["build"])
-        result, calls = self.run_build(phase="audit", audit=1, audit_log="AXIOM_AUDIT_ERROR=1")
-        self.assertEqual(result.returncode, 1)
-        self.assertNotIn("build", calls)
-        self.assertEqual(calls[0], "build --no-build")
-
-    def test_audit_never_recompiles_missing_outputs(self):
-        result, calls = self.run_build(phase="audit", replay=3)
-        self.assertEqual(result.returncode, 3)
+        result, calls = self.run_build(phase="checks", audit=1)
+        self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(calls, ["build --no-build"])
+
+    def test_checks_reject_missing_outputs_without_recompiling(self):
+        for code in (1, 3, 124):
+            result, calls = self.run_build(phase="checks", replay=code)
+            self.assertEqual(result.returncode, code)
+            self.assertEqual(calls, ["build --no-build"])
 
     def test_real_failure_and_timeout_do_not_start_second_compilation(self):
         for code in (1, 124, 137):
@@ -181,24 +182,48 @@ class BuildFailureTests(unittest.TestCase):
             self.assertEqual(result.returncode, code)
             self.assertEqual(calls, ["build"])
 
-    def test_warnings_are_replayed_without_recompilation(self):
-        result, calls = self.run_build(strict=1)
-        self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("KIP126_WARNING_ONLY_BUILD=1", result.stdout)
-        self.assertEqual(calls[:3], ["build", "build --no-build --iofail", "build --no-build"])
-
-    def test_stale_outputs_and_replay_errors_are_not_warning_debt(self):
-        for strict, replay, expected in ((3, 0, 3), (1, 1, 1), (137, 0, 137)):
-            result, _ = self.run_build(strict=strict, replay=replay)
-            self.assertEqual(result.returncode, expected)
+    def test_development_never_invokes_or_reports_proof_debt_audits(self):
+        for phase in ("all", "checks"):
+            result, calls = self.run_build(phase=phase, strict=1, audit=1,
+                                          audit_log="AXIOM_AUDIT_ERROR=1")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertFalse(any("Axioms.lean" in call or "--iofail" in call for call in calls))
             self.assertNotIn("KIP126_WARNING_ONLY_BUILD=1", result.stdout)
+            self.assertNotIn("AXIOM_AUDIT", result.stdout)
 
-    def test_audit_errors_fail_and_classified_debt_remains_visible(self):
-        result, _ = self.run_build(audit=1, audit_log="AXIOM_AUDIT_ERROR=1")
-        self.assertEqual(result.returncode, 1)
-        result, _ = self.run_build(audit=1, audit_log="AXIOM_AUDIT_DEBT=1\nAXIOM_AUDIT_SORRY=1")
-        self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("KIP126_SORRY_AUDIT=1", result.stdout)
+
+class EmbeddedLakeConfigTests(unittest.TestCase):
+    def test_standalone_configuration_retains_all_roots_and_options(self):
+        config = (ROOT / "KIPBase/lakefile.toml").read_text()
+        self.assertIn('srcDir = ".."', config)
+        self.assertIn('defaultTargets = ["KIPBase"]', config)
+        roots = re.findall(r'^  "(KIPBase\.[^"]+)"', config, re.M)
+        imports = re.findall(r"^import (KIPBase\.\S+)",
+                             (ROOT / "KIPBase/Standalone.lean").read_text(), re.M)
+        self.assertTrue(set(imports).issubset(roots))
+        self.assertIn('"maxSynthPendingDepth" = 3', config)
+        self.assertFalse((ROOT / "KIPBase/lakefile.lean").exists())
+
+    def test_old_base_compiles_unimported_sources_but_not_embedded_configuration(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "bin").mkdir()
+            for name in ("KIP126.lean", "KIPBase.lean", "KIP126/Unused.lean",
+                         "KIPBase/Nested/Unused.lean", "KIPBase/lakefile.lean"):
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.touch()
+            for name in ("lean", "lake"):
+                path = root / "bin" / name
+                path.write_text('#!/bin/bash\nprintf "%s\\n" "$@"\n')
+                path.chmod(0o755)
+            env = {**os.environ, "PATH": f"{root}/bin:{os.environ['PATH']}",
+                   "WATCHDOG_TOOLCHAIN": str(root)}
+            result = subprocess.run(["bash", ROOT / "scripts/sandbox-build.sh", "compile"],
+                                    cwd=root, env=env, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(result.stdout.splitlines(), ["build", "+KIP126", "+KIPBase",
+                             "+KIP126.Unused", "+KIPBase.Nested.Unused"])
 
 
 class CompleteTreeDiffTests(unittest.TestCase):

@@ -89,7 +89,9 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def verify(audit_report=None, full_snapshot=False, write_port_diff=False):
+def verify(audit_report=None, full_snapshot=False, write_port_diff=False, archive_only=False):
+    if archive_only and (audit_report or full_snapshot or write_port_diff):
+        raise ValueError("archive-only cannot be combined with migration/audit options")
     source = json.loads((ARCHIVE / "source-manifest.json").read_text())
     snapshot = [{"path": f["source"], "bytes": f["bytes"], "sha256": f["sha256"]}
                 for f in source["files"]]
@@ -107,6 +109,9 @@ def verify(audit_report=None, full_snapshot=False, write_port_diff=False):
                 member.name == "KIPBase.lean" or member.name.startswith("KIPBase/")
             ):
                 original[member.name] = data.decode()
+    if archive_only:
+        print(f"KIP-base archive integrity: {len(snapshot)} files verified")
+        return
     counts = collections.Counter()
     ledger = {}
     port_diff = []
@@ -172,5 +177,7 @@ if __name__ == "__main__":
                         help="also verify the local backup of ignored/private working files")
     parser.add_argument("--write-port-diff", action="store_true",
                         help="refresh the reviewable diff against the original Lean sources")
+    parser.add_argument("--archive-only", action="store_true",
+                        help="verify archived source integrity without migration or proof-debt audits")
     args = parser.parse_args()
-    verify(args.audit_report, args.full_snapshot, args.write_port_diff)
+    verify(args.audit_report, args.full_snapshot, args.write_port_diff, args.archive_only)

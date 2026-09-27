@@ -50,11 +50,11 @@ class FastPathTests(unittest.TestCase):
         self.assertIn("env.BUILD_CONTRACT", cache["with"]["key"])
         self.assertLess(steps.index(identity), steps.index(cache))
         self.assertLess(steps.index(cache), steps.index(ids["build"]))
-        # Cache presence alone must never bypass the combined-tree build/audit.
+        # Cache presence alone must never bypass the combined-tree build/checks.
         self.assertNotIn("cache", ids["build"]["if"])
         self.assertIn("sandbox-build.sh", ids["build"]["run"])
 
-    def test_incremental_seed_is_scoped_and_cannot_waive_build_or_audit(self):
+    def test_incremental_seed_is_scoped_and_cannot_waive_build_or_checks(self):
         workflow = yaml.safe_load((ROOT / ".github/workflows/pr-build.yml").read_text())
         steps = workflow["jobs"]["sandboxed-build"]["steps"]
         ids = {s["id"]: s for s in steps if "id" in s}
