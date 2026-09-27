@@ -3,6 +3,7 @@
 import importlib.util
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import tempfile
@@ -189,6 +190,40 @@ class BuildFailureTests(unittest.TestCase):
             self.assertFalse(any("Axioms.lean" in call or "--iofail" in call for call in calls))
             self.assertNotIn("KIP126_WARNING_ONLY_BUILD=1", result.stdout)
             self.assertNotIn("AXIOM_AUDIT", result.stdout)
+
+
+class EmbeddedLakeConfigTests(unittest.TestCase):
+    def test_standalone_configuration_retains_all_roots_and_options(self):
+        config = (ROOT / "KIPBase/lakefile.toml").read_text()
+        self.assertIn('srcDir = ".."', config)
+        self.assertIn('defaultTargets = ["KIPBase"]', config)
+        roots = re.findall(r'^  "(KIPBase\.[^"]+)"', config, re.M)
+        imports = re.findall(r"^import (KIPBase\.\S+)",
+                             (ROOT / "KIPBase/Standalone.lean").read_text(), re.M)
+        self.assertTrue(set(imports).issubset(roots))
+        self.assertIn('"maxSynthPendingDepth" = 3', config)
+        self.assertFalse((ROOT / "KIPBase/lakefile.lean").exists())
+
+    def test_old_base_compiles_unimported_sources_but_not_embedded_configuration(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "bin").mkdir()
+            for name in ("KIP126.lean", "KIPBase.lean", "KIP126/Unused.lean",
+                         "KIPBase/Nested/Unused.lean", "KIPBase/lakefile.lean"):
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.touch()
+            for name in ("lean", "lake"):
+                path = root / "bin" / name
+                path.write_text('#!/bin/bash\nprintf "%s\\n" "$@"\n')
+                path.chmod(0o755)
+            env = {**os.environ, "PATH": f"{root}/bin:{os.environ['PATH']}",
+                   "WATCHDOG_TOOLCHAIN": str(root)}
+            result = subprocess.run(["bash", ROOT / "scripts/sandbox-build.sh", "compile"],
+                                    cwd=root, env=env, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(result.stdout.splitlines(), ["build", "+KIP126", "+KIPBase",
+                             "+KIP126.Unused", "+KIPBase.Nested.Unused"])
 
 
 class CompleteTreeDiffTests(unittest.TestCase):
