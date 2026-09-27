@@ -35,9 +35,10 @@ The canonical mathematical source is divided into three top-level layers:
   constructions, and reusable theorems. It must not declare project axioms.
 - `KIP126/Interface/` owns the first proof stage: statements and proofs which
   turn the common base into the stable mathematical and computation interfaces
-  consumed by the main argument. Its `Challenge/` and `Solution/` trees are
-  parallel tracks.
-- `KIP126/Main/` owns the second proof stage. `Axiom/` contains audited,
+  consumed by the main argument. Its `Axiom/` contains stage-zero outputs admitted as inputs to stage one,
+  while their upstream constructions and proofs remain separate.
+  Its `Challenge/` and `Solution/` trees are parallel tracks for stage-one outputs.
+- `KIP126/Main/` owns the second proof stage. `Axiom/` contains documented,
   development-only assumptions that let this stage proceed in parallel;
   `Challenge/` and `Solution/` contain the paper's main deductions and endpoint.
 
@@ -85,10 +86,18 @@ mirrors or proofs.
   proof dependencies instead. Audit Solution and its proof dependencies
   separately from the intentionally unproved Challenge statements; a Challenge
   placeholder is never evidence of proof completion.
-- Each development axiom consumed by `Main` is intended to have a statement-
-  identical theorem goal in `Interface/Challenge/` and `Interface/Solution/`.
-  The Interface Solution is the eventual proof which discharges that stage
-  assumption. Compare complete Lean types, not names or prose descriptions.
+- Stage-zero interfaces whose full types do not use the internal spectral-
+  sequence object belong to `Interface/Axiom/` when admitted for stage one.
+  Their upstream constructions/proofs must not depend on these admitted copies.
+  They are not additional permanent assumptions and are never declared in `Def/`.
+  Preserve existing data-valued axioms during migration: a value of a structure
+  type ultimately needs a construction, not a Lean theorem with a non-Prop type.
+- Each proposition-valued stage-one axiom owned by `Main/Axiom/` is intended
+  to have a statement-identical theorem goal in `Interface/Challenge/` and
+  `Interface/Solution/`. Existing data-valued interfaces need corresponding
+  constructions; do not silently change their types to fit the theorem tracks.
+  The Interface result eventually discharges that stage assumption.
+  Compare complete Lean types, not names or prose descriptions.
   The initial directory migration does not invent missing statements or proofs:
   an absent mirror remains explicit follow-up work rather than an empty module or
   a fabricated theorem.
@@ -143,8 +152,11 @@ Mathlib's spectral sequence belong under `KIP126/Mathlib/SpectralSequence/`.
   Preserve public declaration names when reorganizing files unless the task
   requires an API change.
 
-`KIP126/Main/Axiom/` is the sole owner of development-stage project
-assumptions. Every actual `axiom` declaration there must be named, documented,
+Development-stage project assumptions are owned by `KIP126/Interface/Axiom/`
+for stage-zero outputs admitted by stage one, and `KIP126/Main/Axiom/` for stage-one outputs admitted by
+the main argument. Classify the former by whether their full types use the
+internal spectral-sequence object, not by difficulty or proof status.
+Every actual `axiom` declaration must be named, documented,
 and separately auditable; it is an admitted interface for parallel work, never
 proof-completion evidence. Do not turn an arbitrary unfinished theorem into an
 axiom merely to remove `sorryAx`.
@@ -165,7 +177,7 @@ axiom merely to remove `sorryAx`.
   interpreted mathematical propositions. Existing computation axioms remain
   disclosed stage debt until their Interface proofs replay or verify them.
 - Existing project axioms under `Def/`, `Mathlib/`, or the former `External/`
-  computation tree are migration inputs to `Main/Axiom/`. Moving them records
+  computation tree move to the appropriate stage's `Axiom/`. Moving them records
   their proper ownership; it does not prove them, remove their dependency
   cones, or authorize a statement change.
 
@@ -204,7 +216,8 @@ stale, or contradictory, stop and report the conflict instead of guessing.
 An unfinished Solution or definition-property proof may temporarily use `sorry`
 while it is being developed; the latter remains in its component's `Proofs.lean`.
 Challenge proofs remain `sorry` by the rule above. A deliberately introduced
-stage `axiom` belongs under `KIP126/Main/Axiom/`, never under `Def/` or an
+stage `axiom` belongs under `KIP126/Interface/Axiom/` or `KIP126/Main/Axiom/`
+according to the consuming stage, never under `Def/` or an
 adapter. Do not mark an unproved or axiom-dependent declaration or its Blueprint
 node as complete.
 Development CI checks compilation, configuration, and repository mechanics. It

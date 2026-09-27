@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.StandardMilnor
+import KIP126.Interface.Axiom.StandardMilnor
 import KIP126.Def.ClassicalAdams.SphereClasses.Data
 
 namespace KIP126.Classical.Adams

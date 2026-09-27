@@ -17,6 +17,7 @@
 | [Translate](Translate/README.md) | 四个确定性转换与核对脚本 |
 | [Generated](Generated/README.md) | 三个 E₂ CSV 生成的 `E2.lean`，以及 10,907 条差分的 86 个分片、查找表和 manifest |
 | [Interpretation](Interpretation/README.md) | E₂ presentation、坐标解释、差分命题、统一可靠性 axiom 与 selected theorem |
+| [Examples](Examples/README.md) | 最小人工表、已发布低次表样本及使用示例；演示输入解释，不计作计算真实性的完整验证 |
 | [E2.lean](E2.lean) | E₂ 数据和解释层的汇总入口 |
 | [Presentation.lean](Presentation.lean) | 固定 Lin 商代数到内部球谱 E₂ 的开发期 axiom `linE2Presentation` |
 | [Differentials.lean](Differentials.lean) | 差分解释与 selected theorem 的汇总入口 |

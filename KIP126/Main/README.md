@@ -14,7 +14,7 @@ Main 应在冻结的 A(M) 与 C(M) 上完成论文第 7 节 near-126 推导，�
 
 ## 2. 现有
 
-当前 Main 已收纳 provenance/source inventory、401 行附录表、Lin E₂ 数据和 `proofs.db` 的生成微分表，以及从 Def 迁出的固定基础、固定 Milnor、固定 Lin presentation 和固定谱序列解释。四条显式项目 axiom 目前包括三条原 Def 假设及批量微分表 soundness 假设。原 axiom 的相关固定对象与条件推论文件已移到 `Main/Axiom` 或 `Main/Solution`，保留了其真实依赖。
+当前 Main 已收纳 provenance/source inventory、401 行附录表、Lin E₂ 数据和 `proofs.db` 的生成微分表，以及固定 Lin presentation 和固定谱序列解释。Main 持有 `linE2Presentation`、`sphereTable_sound` 两条显式项目 axiom；不使用内部谱序列的 `standardFoundation`、`standardMilnorCooperations` 已归 `Interface/Axiom`，由 Main 的固定对象继续导入同一份声明。全项目仍是原来的四条公理，没有新增或改变类型。相关固定对象与条件推论保留原有依赖。
 
 论文推导已有五组 Near126 Challenge/Solution、两个 Final Challenge/Solution，以及 computation 的 dimension/nonvanishing/reduction/vanishing 模块。相应目标声明已经形式化；其中 computational `NonzeroSurvival` 是已冻结的内部最终目标。部分逻辑传输已有证明，而 only-d₁₂、C3/C4/C5、最终 eta 排除和两个 h₆² 目标的证明轨尚未完成。当前被解释的 Lin 数据主要是固定 E₂ 片段和 10,907 条 `depth=0, name=S0` 的闭合有限页球面微分；条件树、其他谱、extension、sentinel 与穷尽性仍未统一接通。
 

@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.StandardFoundation
+import KIP126.Interface.Axiom.StandardFoundation
 import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
 
 namespace KIP126.Classical.Adams

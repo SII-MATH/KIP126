@@ -1,5 +1,5 @@
 import KIP126.Def.ClassicalAdams.TowerResolution.Sphere.Proofs
-import KIP126.Main.Axiom.Literature.StandardFoundation
+import KIP126.Interface.Axiom.StandardFoundation
 import Lean.Elab.Command
 
 /-! The first differential must be proved from the tower, not assumed through

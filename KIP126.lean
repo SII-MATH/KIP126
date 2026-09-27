@@ -11,8 +11,8 @@ import KIP126.Def.AdamsE2
 import KIP126.Interface
 import KIP126.Main
 import KIP126.Mathlib
-import KIP126.Examples.AdamsE2Table
-import KIP126.Examples.AdamsE2LowDegrees
+import KIP126.Main.Axiom.LinProgram.Examples.AdamsE2Table
+import KIP126.Main.Axiom.LinProgram.Examples.AdamsE2LowDegrees
 
 /-! Library entry for shared definitions, stage inputs and open statements.
 The two Solution tracks also have separate entry modules. Previously exposed

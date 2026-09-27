@@ -1,4 +1,4 @@
-import KIP126.Examples.AdamsE2LowDegrees.Data
+import KIP126.Main.Axiom.LinProgram.Examples.AdamsE2LowDegrees.Data
 import Mathlib.Tactic.Ring
 
 /-!

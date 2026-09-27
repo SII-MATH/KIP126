@@ -1,5 +1,5 @@
 import KIP126.Def.ClassicalAdams.SSDataModel.Data
-import KIP126.Main.Axiom.Literature.StandardFoundation
+import KIP126.Interface.Axiom.StandardFoundation
 import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
 
 namespace KIP126.Classical.Adams

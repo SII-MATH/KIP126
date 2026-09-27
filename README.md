@@ -66,7 +66,8 @@ document:
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
   well as their import graph.  `Def/` owns mathematical data and properties,
-  `Interface/` owns reusable interface goals and their proofs, and `Main/`
+  `Interface/` owns stage-zero outputs admitted as stage-one inputs in `Axiom/`, plus reusable
+  stage-one interface goals and their proofs, and `Main/`
   owns input assumptions plus the near-126 argument. Both proof stages have
   matching `Challenge/` and `Solution/` tracks. `Checks/` owns regressions.
   Start with the module guides in [Def](KIP126/Def/README.md),

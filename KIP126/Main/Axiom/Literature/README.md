@@ -16,11 +16,11 @@
 - `source-inventory.json` 与 `SourceInventory.lean`：18 个来源的文件系统清单和 typed projection。
 - `Claims.lean`：56 个 primitive、composite 或 evidence claim，记录 owner、Blueprint target、locator 与依赖。
 - `Adams/`、`Kervaire.lean`、`AppendixTable/`、`EtaRows/`、`HopfCofiber/`、`Near126/`：迁入的现有文献或表格输入及其消费接口。
-- `StandardFoundation.lean` 与 `StandardMilnor.lean`：历史基础假设归档。
+- `StandardSphere/` 与 `FixedSSData.lean`：在基础输入上固定的谱序列及其解释；基础输入本身已迁至 [Interface/Axiom](../../../Interface/Axiom/README.md)。
 
 通用 `Provenance.lean`、`Evidence.lean`、`Results.lean` 位于上一层 `Main/Axiom/`，由 Literature 与 LinProgram 共用。详细关系见 [Provenance.md](Provenance.md)。
 
-`standardFoundation` 和 `standardMilnorCooperations` 当前只是历史开发假设，尚未获得“某篇文献的某条定理”级精确来源。本次仅归档既有 axiom，没有填写 proof，也没有为它们新增 Interface 镜像。
+`standardFoundation` 和 `standardMilnorCooperations` 的完整类型不使用内部谱序列，故由 `Interface/Axiom` 持有。它们仍缺完整内部构造和精确来源定位；迁移不为其补 proof，也不把它们当成已证明的文献结论。文献原文和来源清单仍集中在本目录，无须复制到各消费端。
 
 ## 3. 大概完成度
 
@@ -35,7 +35,7 @@
 - 为 Main 实际使用的每个 literature axiom补齐精确 theorem/section/equation/page locator。
 - 获取或明确标记 metadata-only 来源，避免把二手转述当作已核对原文。
 - 审核 synthetic、Moss、BJM/BX、tmf、Browder 等输入的 proposition 强度。
-- 单独决定 `standardFoundation` 和 `standardMilnorCooperations` 的证明路线或正式来源，再设计相应 Interface 目标。
+- 与 Interface/Axiom 的输入清单核对所需文献来源；两条基础输入的上游构造工作见该目录说明。
 - #134 的 Mahowald 反例问题解决前，不把相关 statement 标记为冻结可靠。
 
 ## 5. 后续应该一步一步如何做
