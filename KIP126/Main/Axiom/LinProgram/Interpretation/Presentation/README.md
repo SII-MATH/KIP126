@@ -10,12 +10,12 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](Data.lean) | `LinE2Presentation` |
+| [Data.lean](Data.lean) | 兼容导入入口；`LinE2Presentation` 的唯一结构定义位于[根 Challenge2](../../../../../Challenge2.lean) |
 | [Proofs.lean](Proofs.lean) | `linToSphere_exists_preimage`, `linToSphere_eq_iff`, `linToSphere_ne_zero_iff`, `linToSphere_mul`, `linToSphere_product_eq` 等 6 个声明 |
 
 ## 3. 大概完成度
 
-**现有内容：2 个 Lean 文件、约 7 个显式声明，其中 6 条 theorem/lemma。** 本组件未扫描到显式占位正文，已有实现仍需结合依赖和语义审核判断是否完成。
+**现有内容：兼容导入入口及 6 条 theorem/lemma。** presentation 的比较映射、乘法与保乘法条件现在在根 Challenge2 中逐项展示，本目录保留消费端推论；没有补齐其上游见证构造。
 
 导入闭包仍涉及项目假设：`linE2Presentation`, `standardFoundation`。
 

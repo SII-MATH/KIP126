@@ -4,7 +4,7 @@
 
 ## 从哪里开始读
 
-- [Challenge1](../KIP126/Challenge1.lean)、[Challenge2](../KIP126/Challenge2.lean)：两道边界共享的见证类型。
+- [Challenge1](../KIP126/Challenge1.lean)、[Challenge2](../KIP126/Challenge2.lean)：两道边界共享的见证类型及逐项交付清单。第一份覆盖 `a01`–`a14`，第二份覆盖 `am1`–`am16`、`cm1`–`cm6`；条目沿用 #138 的编号。
 - [Def](../KIP126/Def/README.md)：公共数学对象、谓词、构造器、通用性质及 Challenge 1 的生产轨。
 - [Interface](../KIP126/Interface/README.md)：第 0 阶段产出的消费接口，以及第一阶段验证与工具定理的目标／证明。
 - [Main](../KIP126/Main/README.md)：输入包和 near-126 至最终目标的推导。
@@ -12,6 +12,12 @@
 本次归整的 Def / Interface / Main 组件以 `README.md` 按“期望内容、现有内容、完成度、待做事项、执行步骤”记录。领域入口解释数学范围；下层文档列现有声明、占位及上游依赖。保留的 Mathlib、Tactic 等辅助目录说明尚未完整覆盖。Challenge 的 `sorry` 是目标陈述的约定，不计作该目录待补的证明。
 
 局部文件／声明盘点不等于数学完成度，不能把无 `sorry` 或编译成功换算成整个数学目标已完成。文档对未冻结的任务总量不提供伪精确百分比。
+
+两个 Challenge 文件在同文件内分组展开项目交付字段、范围及相容性条件，通用数学类型仍由 Def 定义。每项分别记录陈述状态、实现状态和依赖关系；尚无准确 Lean 陈述的内容保留为明确的 TODO 注释，不以空泛的 `Prop` 或 `True` 充当字段。已有构造或可从前项推出的结果列为派生交付，避免重新选择不相关的对象。详细清单只维护在这两个文件中。
+
+Challenge 1 通过 `FoundationInput`、`MilnorInput` 展示现有基础条件，再以 `foundation`、`milnor` 适配定义组装原通用记录；消费端仍只选择一次见证。Challenge 2 在同文件中定义 `LinE2Presentation`、坐标和微分解释；旧 presentation 模块作为兼容导入入口。生产／消费端继续直接使用相同的 `Nonempty ChallengeN`。
+
+这次清单整理保持现有数学承诺。Challenge 2 对开发期选定的 Challenge 1 仍有隐式依赖，Main 对 Interface/Solution 的直接导入也尚未消除；两个文件会显式记录这些边界债务。完整清单不等于所有条目已经冻结或装入见证包。
 
 ## 目录及职责
 
@@ -101,5 +107,7 @@ KIP126/
 - `import KIP126` 原先可达的 724 个本地模块，在新路径下全部仍可达；声明名称保持，调用者使用旧文件路径的 `import` 则须按映射更新。
 
 后续边界整理增加共享 Challenge 包、生产端 theorem 和消费端单一存在性 axiom；严格最终审计仍拒绝所有项目 axiom 和 `sorryAx`。
+
+接口清单整理后，通过共享缓存包装器验证了 8 个定向 Lean 目标：两道边界的 Challenge/Solution、`StageInputDeclarations`、`FixedFinal`、`LinProofs`、`LinComparison`。Challenge 1 新旧记录的三条 kernel 往返等式通过，Challenge 2 原谓词／总包及迁入的 presentation 字段逐字保留。36 个清单编号、Blueprint 定位和修改文档的链接检查通过；845 个本地模块没有缺失导入或循环。此处验证接口重组的兼容性，没有消除原有证明占位。
 
 自动化 CI 此次增加了新路径的来源文件检查和转换器现有测试；完整的 JSON/Lean 来源投影在本地验证通过，尚未接成 CI 作业。边界两侧直接引用同一个 `Nonempty ChallengeN` 类型，不再建立重复签名的对齐 CI。

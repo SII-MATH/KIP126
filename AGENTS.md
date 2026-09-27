@@ -52,6 +52,24 @@ source directory names or Lean declaration prefixes. Preserve `KIP126/Mathlib/` 
 adapter layer and `KIP126/Checks/` as the regression/audit layer. Do not create
 empty directories or placeholder modules merely to display the architecture.
 
+The two root Challenge files also own the stage-delivery checklists: Challenge 1
+tracks issue #138's `a01`–`a14`, and Challenge 2 tracks `am1`–`am16` and
+`cm1`–`cm6`. Define project-specific interface groups, their fields, ranges, and
+compatibility conditions in the corresponding Challenge file. Reusable
+mathematical types remain in `Def`; generated tables and proofs remain in their
+own modules. Compatibility definitions may assemble the existing generic
+records from the visible fields, but must not make fresh data choices.
+
+For every checklist item, distinguish statement status (precise current
+statement, needs correction, or not yet frozen), implementation status, and
+whether it is new delivered data or a consequence of earlier fields. A precise
+current statement is not evidence of mathematical review. Keep missing
+statements as explicit, scoped TODO comments in the same file until their
+mathematical types are agreed; never stand them in with `True`, an unconstrained
+`Prop`, arbitrary operations, or additional axioms. Preserve provenance and
+explicit external hypotheses. Checklist coverage does not mean every planned
+item is already a field or that either package has been constructed.
+
 This layout is a target as well as an ownership rule. During the authorized
 migration, move existing declarations without silently changing their
 statements or proofs. Existing cross-layer imports are migration debt, not

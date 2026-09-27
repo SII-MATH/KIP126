@@ -15,14 +15,15 @@
 
 | 文件 | 内容 |
 | --- | --- |
-| `KIP126/Challenge1.lean` | 共享见证结构：`foundation` 与依赖同一个 `H𝔽₂` 的 `milnor` |
+| [根 Challenge1](../../Challenge1.lean) | 同文件定义 `FoundationInput`、`MilnorInput`，列出 `a01`–`a14` 清单；`foundation`、`milnor` 是旧通用记录的适配定义 |
 | [Challenge1.lean](Challenge1.lean) | 唯一存在性 axiom，并以 `Classical.choice` 选出一个见证 |
 | [StandardFoundation.lean](StandardFoundation.lean) | 从该见证投影旧公开名称 `standardFoundation` |
 | [StandardMilnor.lean](StandardMilnor.lean) | 从同一个见证投影旧公开名称 `standardMilnorCooperations` |
 
-基础、余纤维、H𝔽₂、Milnor 坐标和微分相容性的详细字段继续由
-`StandardAdamsFoundation`、`MilnorCooperations` 的 Lean 结构定义公开；这里不再
-把它们拆成能够各自选择不同对象的独立 axiom。
+基础选择、H𝔽₂ 的同伦群条件、Milnor 坐标和微分相容性的交付字段集中在根
+`Challenge1.lean`。Def 中的 `StandardAdamsFoundation`、`MilnorCooperations`
+保留为通用数学记录，由同一个见证的字段组装；这里不把它们拆成能够各自选择
+不同对象的独立 axiom。清单另行标明尚未冻结的规划项和可从前项导出的结果。
 
 ## 3. 大概完成度
 

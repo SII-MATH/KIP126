@@ -9,7 +9,28 @@ public data names remain definitions, and that the differential result is a
 theorem projected from Challenge 2.  The producer and consumer declarations
 state the same `Nonempty ChallengeN` type directly, so no duplicated signature
 or separate type-alignment table is maintained here.
+
+The visible Challenge 1 input groups must retain exactly the data in the old
+generic records. Kernel-checked round trips below guard against strengthening
+the package or losing a dependent choice during interface expansion.
 -/
+
+open KIP126 KIP126.Classical.Adams in
+example (F : StandardAdamsFoundation)
+    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2) :
+    (Challenge1.ofFoundationMilnor F M).foundation = F := by
+  rfl
+
+open KIP126 KIP126.Classical.Adams in
+example (F : StandardAdamsFoundation)
+    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2) :
+    (Challenge1.ofFoundationMilnor F M).milnor = M := by
+  rfl
+
+open KIP126 in
+example (c : Challenge1) : Challenge1.ofFoundationMilnor c.foundation c.milnor = c := by
+  rfl
+
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
