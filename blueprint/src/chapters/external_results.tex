@@ -1,9 +1,34 @@
 \chapter{External literature results}
 \label{chap:external-results}
 
-This flat chapter contains only precise published theorem statements that the project consumes without reproving.  Every node is stated using objects already introduced above and retains its source and locator.
+This chapter records precise published inputs and the specializations now proved internally. Every node retains its source and locator; the text distinguishes an explicit external hypothesis from an internal proof.
 
 \section{Published differentials, extensions, and stable-operation results}
+
+\begin{proposition}[Generic Toda cosets and juggling]
+  \label{prop:generic-toda-coset-juggling}
+  \lean{KIP126.Challenge1.TodaInterface,KIP126.StableHomotopy.Toda.indeterminacy_complete,KIP126.StableHomotopy.Toda.relation_iff_indeterminacy,KIP126.StableHomotopy.Toda.juggling,KIP126.Def.Solution.todaInterface}
+  \uses{def:toda-bracket}
+  \leanok
+  For the cone-defined Toda relation in a triangulated category, a bracket
+  exists exactly when the two successive composites vanish. Given a member
+  $x_0\in\langle f,g,h\rangle$, its entire indeterminacy is
+  \[
+    x\in\langle f,g,h\rangle\quad\Longleftrightarrow\quad
+    x-x_0=(\Sigma f)y+zh
+  \]
+  for suitable $y:\Sigma Y\to W$ and $z:\Sigma X\to Z$.
+  If $hd=0$, there is $y\in\langle g,h,d\rangle$ with
+  $xd=-(\Sigma f)y$. The additional triangulated hypothesis and sign are
+  explicit; this does not calculate the named brackets below.
+\end{proposition}
+\begin{proof}
+  The migrated proofs use exactness of distinguished triangles, completion
+  of triangle morphisms and the octahedral axiom. The reverse coset inclusion
+  follows from the two already proved indeterminacy actions. No historical
+  global axiom is imported.
+  \leanok
+\end{proof}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2493-2567 and cited Toda/Moss identities; explicit load-bearing identities.
 \begin{theorem}[Toda product and shuffle identities]
@@ -115,38 +140,62 @@ This flat chapter contains only precise published theorem statements that the pr
 % SOURCE: Ravenel, Complex Cobordism, Theorem 2.2.14; cited at KIP126/Main/Axiom/Literature/MainPaper/main.tex:273-275.
 \begin{theorem}[Factorization criterion for map filtration]
   \label{thm:external-map-filtration-factorization}
-  \uses{def:adams-filtration,def:hf2-homology,def:external-result}
-  \notready
-  An explicit literature result supplies the implication used by the paper:
-  if $\operatorname{AF}(f)\ge k$, then $f$ is represented by a composite of
-  $k$ maps, each inducing zero on $H\mathbb F_2$-homology.  The converse is
-  included only to the extent stated by the cited theorem and the chosen
-  Adams-tower model.
+  \uses{def:adams-filtration,def:hf2-homology}
+  \lean{KIP126.Classical.Adams.AdamsFiltrationAtLeast.hasMod2ZeroFactorization}
+  \leanok
+  Fix the actual Adams tower of a specified mod-two Eilenberg--Mac Lane
+  object $H$, an associative multiplication with the same unit, and
+  preservation of zero morphisms by $H\wedge-$.  For every positive integer
+  $k$, if $\operatorname{AF}(f)\ge k$, then $f$ is a composite of exactly
+  $k$ composable maps, each inducing zero on $H$-homology in every degree.
+  The finite chain records its actual intermediate objects and arrows.
+  The restriction $k>0$ is explicit: an empty chain represents an identity,
+  whereas every map has Adams filtration at least zero.
+  This forward implication is established from the constructed tower;
+  Ravenel Theorem 2.2.14 remains the published source, not an additional
+  hypothesis of this proof.  No converse is asserted here.
 \end{theorem}
 
 \begin{proof}
-  Instantiate the source-bearing external result at the chosen Adams tower and
-  transport its filtration convention to Definition~\ref{def:adams-filtration}.
-  No factorization theorem is postulated globally without this parameter.
+  \leanok
+  The specified multiplication splits the $H$-smash of each Adams unit.
+  Consequently every successor map in the actual Adams tower induces zero
+  on $H$-homology.  Compose the lift witnessing
+  $\operatorname{AF}(f)\ge k$ with the first of the $k$ successor maps;
+  this composite still induces zero on homology.  The remaining $k-1$
+  successor maps give the required chain, whose composite is $f$ by the
+  tower composition law.  No literature proof or project axiom is used
+  in this implication.
 \end{proof}
 
 % SOURCE: May, The Additivity of Traces in Triangulated Categories, Lemma 4.6 and TC3; KIP126/Main/Axiom/Literature/MainPaper/main.tex:1755-1778.
 \begin{theorem}[May's smash-boundary lemma]
   \label{thm:external-may-smash-boundary}
   \uses{def:smash-triangle,def:external-result}
+  \lean{KIP126.Stable.MaySmashBoundary,KIP126.Stable.MayLiteratureInput,KIP126.Stable.cataloguedMaySmashBoundary}
   \notready
+  Fix the tensor functors' suspension comparisons and exactness witnesses.
   Given two distinguished triangles, form their $3\times3$ smash diagram.  If
   $a\in\pi_n(X\wedge Z')$ and $b\in\pi_n(Y\wedge Y')$ have the same image in
   $\pi_n(Y\wedge Z')$, then there is
   $c\in\pi_n(Z\wedge X')$ whose image agrees with $b$ in
   $\pi_n(Z\wedge Y')$ and whose boundary agrees with the boundary of $a$ in
   $\pi_{n-1}(X\wedge X')$.
+  The Lean predicate uses the actual tensor arrows and connecting
+  homomorphisms of these two mapped triangles.  Its source-bearing wrapper
+  requires a proof of that predicate and locks its claim root to
+  \texttt{maySmashBoundary}; the predicate and wrapper do not construct a
+  proof or select a stable model.
 \end{theorem}
 
 \begin{proof}
-  This is supplied as an external result located at May's Lemma 4.6 and axiom
-  TC3.  The cited pullback object lifts the compatible pair $(a,b)$; its third
+  The proof remains an explicit external input, located at May's Lemma 4.6
+  and axiom TC3 via the main paper's Lemma \texttt{lem:452d218c}, lines
+  1755--1778; the May primary text is not in the local source catalogue.
+  The cited pullback object lifts the compatible pair $(a,b)$; its third
   structure map gives $c$, and commutativity supplies the two equalities.
+  Ordinary tensor exactness alone does not supply this TC3 compatibility
+  for arbitrary choices of suspension comparisons.
 \end{proof}
 
 \section{Published synthetic and comparison results}
@@ -375,17 +424,24 @@ This flat chapter contains only precise published theorem statements that the pr
   \label{thm:external-synthetic-lambda-complete}
   \uses{def:lambda-rho-delta-triangle,def:external-result}
   \notready
-  An explicit BHS external result supplies a natural equivalence
+  For an $H\mathbb F_2$-nilpotent-complete spectrum $X$, an explicit BHS
+  external result supplies a natural equivalence
   \[
     \nu X\simeq\varprojlim_m\nu X/\lambda^m
   \]
   compatible with the quotient maps and the finite
   $\lambda$--$\rho$--$\delta$ triangles.
+  The completeness condition on $X$ is essential. The current individual
+  cofiber objects do not yet supply the coherent inverse system, its
+  homotopy-limit comparison or this condition's fixed-model interpretation.
 \end{theorem}
 
 \begin{proof}
   Instantiate BHS Proposition A.13 and transport its grading and inverse-system
   maps to the conventions of Definition~\ref{def:lambda-rho-delta-triangle}.
+  The archived \texttt{Sources/BHS/source/SynRevAdams.tex:137--148} identifies
+  $E$-nilpotent completeness of $X$ with $\tau$-completeness of $\nu X$;
+  it does not assert completeness for arbitrary $X$.
 \end{proof}
 
 \section{Published Kervaire and geometric results}
@@ -516,6 +572,7 @@ This flat chapter contains only precise published theorem statements that the pr
 % SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; KIP126/Main/Axiom/Literature/MainPaper/main.tex:117-123, Theorem thm:browder.
 \begin{theorem}[Browder criterion]
   \label{thm:external-browder-criterion}
+  \lean{KIP126.Challenge2.BrowderInterface,KIP126.Kervaire.InternalBrowderLiteratureInput}
   \uses{def:framed-kervaire-context,def:classical-adams-ss,def:adams-hj,def:ss-permanent-einfty-class,def:external-result}
   \notready
   Fix a stable context $\mathcal C$, a framed Kervaire context over
@@ -523,7 +580,10 @@ This flat chapter contains only precise published theorem statements that the pr
   $A_{\mathrm{cl}}$ of $S^0_{\mathcal C}$.  An explicit Browder external result
   supplies that a framed manifold with Kervaire invariant one exists in
   dimension $n$ if and only if $n=2^{j+1}-2$ for some $j\ge1$ and the class
-  $h_j^2$ is a permanent cycle in this same $A_{\mathrm{cl}}$.  The record must
+  $h_j^2$ has nonzero permanent survival in this same $A_{\mathrm{cl}}$.
+  The root interface now uses the actual Milnor representatives on the fixed
+  internal sphere tower. The geometric model and the proof of the literature
+  result remain explicit inputs. The record must
   carry the precise theorem or page locator in Browder's paper and the
   Pontryagin--Thom convention; it cannot quantify over or silently select a
   second sphere Adams spectral sequence.
@@ -539,6 +599,7 @@ This flat chapter contains only precise published theorem statements that the pr
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:151-162 and cited classical Kervaire literature.
 \begin{theorem}[Prior low-dimensional Kervaire existence]
   \label{thm:external-low-kervaire-existence}
+  \lean{KIP126.Challenge1.GeometryInterface,KIP126.Kervaire.cataloguedLowKervaireDimensions,KIP126.Kervaire.GeometryLiteratureInput}
   \uses{def:framed-kervaire-context,def:external-result}
   \notready
   Explicit literature results supply framed Kervaire-invariant-one manifolds
@@ -555,6 +616,7 @@ This flat chapter contains only precise published theorem statements that the pr
 % SOURCE: Hill--Hopkins--Ravenel; cited at KIP126/Main/Axiom/Literature/MainPaper/main.tex:86-92 and 151-160.
 \begin{theorem}[HHR nonexistence beyond dimension $126$]
   \label{thm:external-hhr-nonexistence}
+  \lean{KIP126.Kervaire.cataloguedHighKervaireNonexistence}
   \uses{def:framed-kervaire-context,def:external-result}
   \notready
   An explicit Hill--Hopkins--Ravenel result supplies nonexistence of
@@ -565,6 +627,23 @@ This flat chapter contains only precise published theorem statements that the pr
 \begin{proof}
   Import the located HHR statement as an external-result parameter and align
   its dimension indexing and geometric conventions with the project context.
+\end{proof}
+
+% SOURCE: Barratt--Jones--Mahowald induction; KIP126/Main/Axiom/Literature/MainPaper/main.tex:162.
+\begin{proposition}[Low-dimensional permanence from explicit geometric inputs]
+  \label{prop:internal-low-dimensional-permanence}
+  \lean{KIP126.Challenge2.LowDimensionalSquarePermanence,KIP126.Interface.Solution.lowDimensionalSquarePermanence}
+  \uses{thm:external-browder-criterion,thm:external-low-kervaire-existence,def:milnor-internal-hi-family}
+  \notready
+  Given the same geometric existence and Browder inputs, the actual internal
+  classes $h_4^2$ and $h_5^2$ have nonzero permanent survival. This implication
+  has a Lean proof. Its fixed sphere classes still use the admitted Challenge1
+  witness, and the geometric inputs themselves have not been constructed.
+\end{proposition}
+\begin{proof}
+  Apply Browder to the supplied manifold of dimension $2^{j+1}-2$ for
+  $j=4,5$. Injectivity of powers of two identifies Browder's returned index
+  with $j$, giving survival of precisely the same named class.
 \end{proof}
 
 % SOURCE: Barratt--Jones--Mahowald induction; KIP126/Main/Axiom/Literature/MainPaper/main.tex:162.

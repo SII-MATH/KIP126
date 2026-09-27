@@ -2,6 +2,16 @@ import KIP126.Def.ClassicalAdams.StandardFoundation.Data
 import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
 import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
 import KIP126.Def.Synthetic.Context.Data
+import KIP126.Def.Synthetic.QuotientTower.Predicates
+import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Data
+import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Predicates
+import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Predicates
+import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Predicates
+import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Predicates
+import KIP126.Def.AdamsE2.LinBasisTable.Predicates
+import KIP126.Def.StableHomotopy.Context.Mapping.Data
+import KIP126.Def.StableHomotopy.Context.Proofs
+import KIP126.Def.StableHomotopy.Toda.Predicates
 import Mathlib.Algebra.Exact.Basic
 
 /-!
@@ -18,9 +28,10 @@ import Mathlib.Algebra.Exact.Basic
 
 编号沿用 https://github.com/SII-MATH/KIP126/issues/138 的 A₀ 清单。
 「已有精确陈述」只表示现有 Lean 类型可供审核，不表示整个规划项已通过数学
-验收；陈述状态、实现状态和依赖关系分别记录。总见证 `Challenge1` 的字段覆盖
-a01 的部分基础，以及 a02/a03 的球面 Milnor 坐标与 d₁ 相容性；a10/a11 的
-参数化接口另在本文件中定义，固定模型与证明待接入，不能代表全部 14 项已交付。
+验收；陈述状态、实现状态和依赖关系分别记录。总见证 `Challenge1` 已明列 a01 的基础和 tensor 条件、a02 的 cooperation
+数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性，以及 a05 的基表认证。
+a04/a06 的派生义务与 a07/a10/a11 的参数化接口也在本文件可查；整包构造
+及其余条目仍未完成，不能把字段存在视作全部 14 项已证明。
 未冻结的条目以 TODO 保留，补成正式字段前须审核数学类型、范围和消费端。
 不用 `True`、任意 `Prop` 或新的 axiom 代替缺失陈述。
 
@@ -31,30 +42,27 @@ a01 的部分基础，以及 a02/a03 的球面 Milnor 坐标与 d₁ 相容性�
 
 ### a01 — 固定的稳定模 2 基础
 
-- 陈述：`FoundationInput` 明列当前基础；#138 的完整基础范围尚未冻结。
-- 实现：`Def/Solution/Challenge1.lean` 的整包构造仍为 `sorry`。
-- 依赖：选择一次范畴、cofiber、HF₂，后续所有数据使用同一选择。
-- TODO：审核与实际稳定同伦模型的联系及所需的对称幺半等条件。当前
-  `StableHomotopyCategory` 不含对称、closed 或 tensor exactness；独立的
-  `ClosedSymmetricTensorTriangulated` 未入包。`HasFunctorialCofiber` 当前提供
-  交换方块的兼容提升，未显式要求提升保持恒等和复合，不从名称推断更强性质。
-- 定位：`Def/StableHomotopy/Context/Data.lean`、
-  `Def/StableHomotopy/Cohomology/Data.lean`；Blueprint `def:stable-context`、
-  `def:hf2-homology`。
+- 陈述：`FoundationInput` 列出基础；`TensorInput` 列出对称、closed、
+  三角公理、左右 tensor 及 ihom 的选定 CommShift/IsTriangulated、
+  幺半加性和 HF₂ unit 悬移条件。
+- 实现：整包构造仍为 `sorry`；新增字段没有构造固定基础的见证。
+- 依赖：按 PROJECT_BOUNDARY 的已确认方案使用抽象稳定同伦背景；所有
+  后续边界公式都使用本包选择的同一 tensor/suspension 数据。
+- 待完善：`HasFunctorialCofiber` 的交换方块提升尚未显式要求恒等与复合律。
+- 审核修正：不将旧 `ClosedSymmetricTensorTriangulated` 的“对任意 CommShift
+  都精确”条件带入总包；精确性只相对于本包明确选择的悬移比较。
+- 定位：`Def/StableHomotopy/Context/Data.lean`；Blueprint `def:stable-context`。
 
 ### a02 — H𝔽₂ 乘法、Künneth 与 Milnor 合作运算
 
-- 陈述：乘法、Künneth、reduced Milnor basis 及主要相容条件已有精确类型；
-  固定见证尚未接入当前包，不是缺少表述这些条件的语言。
-- 实现：`Mod2RingStructure`、`Mod2CooperationKunneth`、`Mod2ReducedMilnorBasis`
-  及若干条件性相容结果已有；本包没有选择这些固定实例。
-- 依赖：全部必须绑定 a01 的同一个 H𝔽₂。下方 `MilnorInput` 仅给坐标及 d₁
-  公式，不能视为本项完整交付，也没有额外承诺坐标保乘法。
-- TODO：接入现成的 `Mod2KunnethSuspensionCompatible`、`Mod2KunnethDiagonalCompatible`、
-  `Mod2KunnethUnitCompatible`、`Mod2MilnorCoproductCompatible`，以及次数 64
-  cooperation，保持同一 H𝔽₂/R/K/basis 的依赖。现有 UCT 的 #135 问题另行处理。
-- 定位：`Def/StableHomotopy/Cohomology/Multiplication/Data.lean`、
-  `Def/StableHomotopy/Cohomology/Cooperations/{Kunneth,MilnorBasis}/Data.lean`。
+- 陈述：`CooperationInput` 已入总包：同一个 H 的 ring、Künneth、reduced basis、
+  suspension/diagonal/unit/coproduct 相容性及与 `MilnorInput` 的坐标一致性。
+- 实现：固定输入的构造待证；不是任意独立选择的第二套页面坐标。
+- 派生交付：次数 64 cooperation 的存在唯一性由已有
+  `cooperationMilnorPolynomial_h6_existsUnique` 给出；不重复新增数据字段。
+- 依赖：a01 的同一 tensor 和 HF₂；现有 UCT 的 #135 问题不因打包而解决。
+- 定位：`Def/StableHomotopy/Cohomology/Cooperations/`；
+  Blueprint `def:h6-reduced-milnor-basis-input`、`def:h6-milnor-coproduct-input`。
 
 ### a03 — Adams 塔及页面以下性质
 
@@ -71,54 +79,56 @@ a01 的部分基础，以及 a02/a03 的球面 Milnor 坐标与 d₁ 相容性�
 
 ### a04 — 纯 Milnor cobar 与 h₆² 非边界
 
-- 陈述：cycle、Leibniz、指定非边界结论已有；一般 d²=0 也已可精确表述为
-  `∀ s t (x : cochains s t), differential (s + 1) t (differential s t x) = 0`。
-- 实现：`differential_cup`、`h6Cochain_isCycle`、`h6SquareCochain_isCycle`、
-  `h6SquareCochain_not_boundary` 已有证明正文；后者排除所有
-  `b : cochains 1 128` 满足 `differential 1 128 b = h6SquareCochain`。
-- 依赖：纯代数派生结果直接复用 Def，不重新假设为自由性质。
-- TODO：接入并证明一般 cobar d²=0 的交付，不需等待新对象才能写陈述；
-  内部 Adams 页面上的标准类识别归 am9。
-- 定位：`Def/Steenrod/MilnorCobar/Proofs.lean`、`Multiplication/Proofs.lean`、
-  `Polynomial/Detection/Boundary/Proofs.lean`（后两路径相对 MilnorCobar）。
+- 陈述：`MilnorCobarSquareZero` 明列一般 d²=0；cycle、Leibniz 和指定非边界
+  结论使用已有 Def 类型，不额外假设自由性质。
+- 实现：`Def/Solution/FoundationConsequences.cobar_square_zero` 从本包的
+  实际 first-page complex 及坐标相容性推出 d²=0；这不是独立的 polynomial 证明。
+  `differential_cup`、两个 cocycle 和 `h6SquareCochain_not_boundary` 已有证明。
+- 依赖：d²=0 当前派生路线使用 a03；内部标准类识别属于 am9。
+- 定位：`Def/ClassicalAdams/MilnorCooperations/Proofs.lean`、
+  `Def/Steenrod/MilnorCobar/`。
 
 ### a05 — Lin 加法基表的完整正确性
 
-- 陈述：`basisTable_correct (s t : ℕ) (ht : t ≤ 261) : BasisTableCorrect s t`
-  已有精确类型，要求固定 v126.3.cw49 CSV 单项式构成 `Module.Basis`。
-- 实现：证明仍为 `sorry`；当前位于 Interface/Solution，尚未接入本边界。
-- 依赖：这是纯 Lin 商代数的认证，独立于球面页面 comparison；行合法性或
-  hash 核验不能代替线性无关与生成性。
-- TODO：按 A₀ 归属接入生产／消费路线；保留固定数据版本和 t ≤ 261 的范围。
-- 定位：`Def/AdamsE2/LinBasisTable/Predicates.lean`、
-  `Interface/Solution/LinProgram/BasisTable.lean`；Blueprint `thm:lin-e2-basis-certification`。
+- 陈述：`LinBasisInterface.correct` 已入总包，范围为所有 s,t : ℕ 且 t ≤ 261，
+  要求固定 v126.3.cw49 CSV 单项式构成 `Module.Basis`。
+- 实现：生产义务迁至 `Def/{Challenge,Solution}/LinProgram/BasisTable.lean`，
+  Solution 仍为 `sorry`。`Interface/Axiom/LinBasisTable.lean` 从同一个
+  Challenge1 见证投影，未增加单独 axiom。
+- 依赖：纯 Lin 商代数认证；hash、行合法性不能替代线性无关与生成性。
+- 定位：`Def/AdamsE2/LinBasisTable/Predicates.lean`；Blueprint `thm:lin-e2-basis-certification`。
 
 ### a06 — Ravenel 的 Adams 滤过分解准则
 
-- 陈述：现有塔、同调和 Blueprint 已足够表述正向分解准则；当前尚未接入。
-- 实现／依赖：`AdamsFiltrationAtLeast` 已绑定实际目标塔；历史
-  `KIPBase/StableHomotopy/Adams.lean` 有 `IsZeroOnMod2Homology` 接口。
-- TODO：补有限映射链及其复合（含 k=0 的约定），接入 filtration ≥ k 到
-  k 个同调零映射复合的正向蕴含、范围和来源；
-  不额外加入未使用的逆命题。
-- 定位：Blueprint `thm:external-map-filtration-factorization`；
-  `Main/Axiom/Literature/Claims.lean` 的 `mapFiltrationFactorization` 是来源目录项。
+- 陈述：`AdamsFiltrationDecomposition` 使用实际 Adams 塔，要求正整数 k 个
+  同调零因子的复合等于原映射；不加入逆命题。k=0 不误写为空复合。
+- 实现：`AdamsFiltrationAtLeast.hasMod2ZeroFactorization` 从实际塔步映射的
+  同调零性质证明，`Def/Solution/FoundationConsequences` 绑定当前同一 ring。
+- 依赖：a01/a02；此正向结果已有内部证明路线，无需新增文献假设。
+- 定位：`Def/ClassicalAdams/MapFiltration/{Data,Predicates,Proofs}.lean`；
+  MainPaper 引用 Ravenel Theorem 2.2.14。
 
 ### a07 — May 的 smash-boundary 引理
 
-- 陈述：完整 3×3 smash 命题未冻结；普通 cofiber lifting 定理不能替代本项。
-- 实现／依赖：已有 `Def/StableHomotopy/Context/CofiberFactorization/Lifting/Proofs.lean`
-  的低层工具；所需文献命题及固定 smash 相容结构尚待交付。
-- TODO：明确两个三角、共同像、输出类及两个像／边界等式、符号和文献依据。
-- 定位：Blueprint `thm:external-may-smash-boundary`；Claims 的 `maySmashBoundary`。
+- 陈述：本文件 `Stable.MaySmashBoundary` 精确使用两个实际三角、smash 箭头
+  及其边界；同一个 c 同时满足像和边界等式。
+- 实现：`Main/Axiom/Literature/May.lean` 以显式 proof 包装 May Lemma 4.6 / TC3；
+  没有从普通 tensor exactness 声称该定理自动成立，固定文献输入仍待提供。
+- 依赖：同一左右 tensor CommShift/IsTriangulated 结构及其正确的符号相容性。
+- 定位：MainPaper `lem:452d218c`；Blueprint `thm:external-may-smash-boundary`。
 
 ### a08 — Pstrągowski synthetic 基础
 
 - 陈述：`SyntheticCategory`、`NuFunctorData` 骨架已有；完整文献输入未冻结。
-- 实现：现有 ν record 含 functor、additive、zeroIso、suspensionIso，未交付完整
+- 实现：现有 ν record 含 functor、additive、zeroIso、unitIso、suspensionIso，未交付完整
   presentable、lax symmetric monoidal 及 filtered-colimit 保持条件。
 - 依赖：固定的 synthetic/classical 对象与 a01 关联；此项不涉及内部谱序列。
 - TODO：精确表述这些额外能力及来源；不扩大成 ν 保持所有 cofiber sequence。
+- 前置缺口：尚未选定这些文献能力在抽象稳定背景中的准确消费接口。
+  普通范畴的 presentability／lax monoidal 语言不能直接冒充原文的高阶相容性；
+  需要说明所保留的结构及其足以支持哪些后续命题。
+  现有 `biShift_comp/zero/compat` 只给独立同构，尚未列出 action 的结合／单位
+  coherence 及 λ 与 shift/tensor 的相容律；它们不能由字段名称推断出来。
 - 定位：`Def/Synthetic/Context/Data.lean`；Blueprint `thm:external-synthetic-foundation`。
 
 ### a09 — S/λ 的 E∞ 结构与 λ 反演
@@ -127,6 +137,8 @@ a01 的部分基础，以及 a02/a03 的球面 Milnor 坐标与 d₁ 相容性�
 - 实现／依赖：a08 背景下 `XModLambda`、`XModLambdaN` 等商对象已有定义。
 - TODO：陈述与商映射相容的 S/λ 唯一 commutative／E∞ algebra 结构，以及
   λ-invertible synthetic spectra 到 classical spectra 的对称幺半等价、λ⁻¹νX≃X。
+- 前置缺口：λ 局部化函子、泛性质及其幺半比较尚未定义；商对象本身不提供
+  这些结构。完整 E∞ 结构及唯一性也不能以普通 `CommMon` 同名替代。
 - 定位：`Def/Synthetic/Context/Data.lean`；Blueprint
   `thm:external-lambda-quotient-ring`、`thm:external-lambda-inversion`。
 
@@ -158,35 +170,44 @@ a01 的部分基础，以及 a02/a03 的球面 Milnor 坐标与 d₁ 相容性�
 
 ### a12 — λ-adic 完备性
 
-- 陈述：历史 `KIPBase/Synthetic/QuotientTower.lean` 已有 `LambdaRhoDeltaTriangle`、
-  `FiniteLambdaQuotientTower` 及其 `Hom`；固定模型的极限比较尚未接入。
-- 实现／依赖：当前有限 λ 商对象已定义；历史 coherent tower 可作为迁移依据，
-  一般代数 completion API 不提供固定 synthetic 实例的完备性。
-- TODO：将现成 tower 数据绑定当前 λ 商，接入 νX≃limₘ νX/λᵐ 及其与商映射、
-  λ–ρ–δ triangles 的相容性，不从头另设计一个无关联的 inverse system。
+- 陈述：`FiniteQuotientTowerInterface` 明列同一 ν 家族上的有限 coherent tower
+  及映射自然性。历史 `LambdaRhoDeltaTriangle`、`FiniteLambdaQuotientTower`
+  及其 `Hom` 已审核迁至 `Def/Synthetic/QuotientTower/`。
+- 实现：实际 λ 幂自然性、商映射及其三角相容等已证明；新 tower 见证的每个
+  对象固定为现有 `XModLambdaN`，ρ 与 λ 箭头还须满足实际商入射的等式。
+  tower 类型已经定义，但尚未构造其成员。
+- TODO：构造这些相容资料，接入 νX≃limₘ νX/λᵐ 及其与商映射、
+  λ–ρ–δ triangles 的相容性；一般代数 completion 不自动给出此实例。
+- 前置缺口：尚无该 tower 的指定 coherent cone，也未定义
+  所需 homotopy-limit 比较与 E-nilpotent-complete 条件。BHS Proposition A.13
+  要求 X 的 E-nilpotent 完备性；不能对任意 X 无条件断言 νX 完备。
+  从 λ 幂递归定义得到自然性也不等于得到任意幂分解律；后者还依赖 a08 的
+  coherence 与 a01 所述 cofiber 映射恒等／复合律。
 - 定位：Blueprint `thm:external-synthetic-lambda-complete`；Claims 中 BHS Proposition A.13。
 
 ### a13 — 纯稳定 Toda bracket 规律
 
-- 陈述：`Relation` 及基本存在性／不定性陈述已有；完整交付未冻结。
-- 实现：`composable`、`exists_relation`、左右 indeterminacy 保持性已有证明；
-  历史 `KIPBase/multiplicativeSS/TriangulatedTodaBracket.lean` 还已有
-  `indeterminacy_complete`、`juggling` 的陈述和证明，尚未迁入当前组件。
+- 陈述：`TodaInterface` 明列同一 `Relation` 的可复合条件、存在性、完整
+  不定性 coset 的充要条件与带负号的 juggling。
+- 实现：`Def/{Challenge,Solution}/Toda.lean` 中的 Solution 已由真实定理组装；
+  历史 `indeterminacy_complete`、`juggling` 的证明经审核迁至
+  `Def/StableHomotopy/Toda/{Coset,Juggling}/Proofs.lean`，无历史全局 axiom。
 - 依赖：纯稳定同伦结果；连接内部页面检测的 Massey／Moss 桥留在 am8/am15。
-- TODO：将历史 coset／juggling 结果迁到同一 `Relation`，保留后者要求的
-  `IsTriangulated`；其余自然性、悬移等逐条审核，不把历史已有部分记为从未实现。
+- 依赖绑定：`TensorInput.triangulated` 明确要求选定基础的三角公理，
+  不能从最小 `StableHomotopyCategory` 的预三角结构静默推出。
+- 待补：其余自然性、悬移及具体 Toda 积值逐条审核。
+  这些不由已证通用 coset／juggling 自动推出。
 - 定位：`Def/StableHomotopy/Toda/{Predicates,Proofs}.lean`；Blueprint `thm:toda-product-identities`。
 
 ### a14 — 内部目标之后的纯几何外部事实
 
-- 陈述：`HHRNonexistenceStatement` 的参数化类型已有；真实几何模型、低维存在
-  及整组交付未冻结。Browder 与内部存活的桥归 am16。
-- 实现：`cataloguedHHRNonexistence` 需要调用者传入 proof，不提供 HHR 的证明；
-  低维存在目前有 Blueprint／来源定位。
-- 依赖：最终显式几何文献输入；自由的 `Manifold`／predicate 参数不等于已选定模型。
-- TODO：明确几何对象、维数范围、来源和证明参数，保持最终结论的条件性。
-- 定位：`Def/Kervaire/Theta5/Predicates.lean`、`Main/Axiom/Literature/Kervaire.lean`；
-  Blueprint `thm:external-low-kervaire-existence`、`thm:external-hhr-nonexistence`。
+- 陈述：`GeometryInterface` 明列 j=1,…,5 的存在性与 j≥7 的不存在性，
+  几何对象、维数函数和 Kervaire 谓词是同一组显式参数；不使用内部 M。
+- 实现：`Main/Axiom/Literature/InternalGeometry.lean` 分别锁定低维来源与 HHR
+  目录项，并要求显式 proof；没有构造实际 framed-manifold 模型或证明 HHR。
+- 依赖：am16 的内部 Browder 桥现在使用实际标准 hⱼ²；二者推出低维永久性，
+  但真实几何解释与所引文献适用于该解释仍须提供相应见证。
+- 定位：Blueprint `thm:external-low-kervaire-existence`、`thm:external-hhr-nonexistence`。
 
 ## 生产与消费
 
@@ -201,10 +222,12 @@ open StableHomotopy StableHomotopy.Cohomology Classical.Adams
 
 namespace Challenge1
 
+open CategoryTheory MonoidalCategory
+
 /-- 基础对象及其条件。
 
 `stable` 使用 Def 的通用稳定范畴接口：小 Hom、加性、整数平移、幺半结构、
-零对象及预三角结构；本字段不额外要求对称性、闭性或 tensor exactness。
+零对象及预三角结构；这些额外条件由同文件 `TensorInput` 明列。
 `cofiber` 使用 Def 的通用 cofiber 接口，包括选定三角及交换方块的兼容提升。
 HF₂ 的对象、零次同伦群与非零次数消失条件在此逐项列出。 -/
 structure FoundationInput where
@@ -254,12 +277,106 @@ structure MilnorInput (F : FoundationInput) where
     coordinates (s + 1) t (sphereFirstDifferential F.hf2 s t x) =
       Steenrod.Milnor.differential s t (coordinates s t x)
 
+/-- a01/a03：同一基础的 tensor、悬移与三角条件。所有后续 Künneth 和
+边界公式使用这里选出的 CommShift，不重新选择 suspension comparison。 -/
+class TensorInput (F : FoundationInput) where
+  [triangulated : IsTriangulated F.Spectrum]
+  [monoidalPreadditive : MonoidalPreadditive F.Spectrum]
+  [symmetric : SymmetricCategory F.Spectrum]
+  [closed : MonoidalClosed F.Spectrum]
+  [leftShift : ∀ X : F.Spectrum, (tensorLeft X).CommShift ℤ]
+  [rightShift : ∀ X : F.Spectrum, (tensorRight X).CommShift ℤ]
+  [ihomShift : ∀ X : F.Spectrum, (ihom X).CommShift ℤ]
+  [leftExact : ∀ X : F.Spectrum, (tensorLeft X).IsTriangulated]
+  [rightExact : ∀ X : F.Spectrum, (tensorRight X).IsTriangulated]
+  [ihomExact : ∀ X : F.Spectrum, (ihom X).IsTriangulated]
+  [unitShift : (mod2UnitNatTrans F.hf2).CommShift ℤ]
+
+attribute [reducible] TensorInput.symmetric TensorInput.closed
+  TensorInput.leftShift TensorInput.rightShift TensorInput.ihomShift
+attribute [instance] TensorInput.triangulated TensorInput.monoidalPreadditive
+  TensorInput.symmetric TensorInput.closed
+  TensorInput.leftShift TensorInput.rightShift TensorInput.leftExact TensorInput.rightExact
+  TensorInput.ihomShift TensorInput.ihomExact TensorInput.unitShift
+
+/-- a02 与 a03 的同一组页面以下输入。最后一条等式把已经公开的页面坐标
+锁定为这些 cooperation 数据导出的坐标；没有额外选择第二套基。 -/
+structure CooperationInput (F : FoundationInput) [TensorInput F] (M : MilnorInput F) where
+  ring : Mod2RingStructure F.hf2
+  kunneth : Mod2CooperationKunneth F.hf2 ring
+  basis : Mod2ReducedMilnorBasis F.hf2 ring
+  suspension : Mod2KunnethSuspensionCompatible F.hf2 ring kunneth
+  diagonal : Mod2KunnethDiagonalCompatible F.hf2 ring kunneth
+  unit : Mod2KunnethUnitCompatible F.hf2 ring kunneth
+  coproduct : Mod2MilnorCoproductCompatible F.hf2 ring kunneth basis
+  coordinates_eq : ∀ (s t : ℕ)
+      (x : adamsPage F.hf2.unit (SphereSpectrum (C := F.Spectrum)) 1 (by decide) s t),
+    M.coordinates s t x = sphereFirstPageMilnorEquiv F.hf2 ring kunneth basis s t x
+
+/-- a05：固定 v126.3.cw49 单项式的完整基认证，包括线性无关与生成性。
+保留全部非负 filtration 和 t ≤ 261 的准确范围。 -/
+structure LinBasisInterface : Prop where
+  correct : ∀ (s t : ℕ), t ≤ 261 → LinE2.BasisTableCorrect s t
+
+/-- a04 的一般平方零义务；可从 a03 的实际 first-page complex 与坐标相容性
+推出，不作为总包里另一项独立假设。 -/
+def MilnorCobarSquareZero : Prop :=
+  ∀ (s t : ℕ) (x : Steenrod.Milnor.cochains s t),
+    Steenrod.Milnor.differential (s + 1) t
+      (Steenrod.Milnor.differential s t x) = 0
+
+/-- a06 的正向分解准则。k 必须为正；任意 filtration-zero 映射不能
+被错误地认作恒等映射的空复合。 -/
+def AdamsFiltrationDecomposition (F : FoundationInput) : Prop :=
+  ∀ {X Y : F.Spectrum} (f : X ⟶ Y) (k : ℕ), 0 < k →
+    AdamsFiltrationAtLeast F.hf2 f k → HasMod2ZeroFactorization F.hf2 f k
+
+/-- a14 的纯几何交付。参数明确指定所谈的几何对象与 Kervaire 谓词；
+该类型本身不声称已经构造实际 framed-manifold 模型或证明文献结果。 -/
+structure GeometryInterface {Manifold : Type} (dimension : Manifold → ℕ)
+    (kervaireOne : Manifold → Prop) : Prop where
+  low_dimensions : ∀ j : ℕ, 1 ≤ j → j ≤ 5 →
+    ∃ M, dimension M = 2 ^ (j + 1) - 2 ∧ kervaireOne M
+  high_nonexistence : ∀ j : ℕ, 7 ≤ j →
+    ¬ ∃ M, dimension M = 2 ^ (j + 1) - 2 ∧ kervaireOne M
+
+open CategoryTheory.Limits
+
+universe u v
+
+/-- a13 的通用已证切片。juggling 明确保留三角公理及悬移后的负号；
+不额外选择 bracket 运算，也不提供具体 Toda 积值或 Moss 比较。 -/
+structure TodaInterface (C : Type u) [Category.{v} C] [Preadditive C]
+    [HasZeroObject C] [HasShift C ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor C n)] [Pretriangulated C]
+    [IsTriangulated C] : Prop where
+  composable : ∀ {X Y Z W : C} {x : X⟦(1 : ℤ)⟧ ⟶ W}
+    {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W},
+    StableHomotopy.Toda.Relation x f g h → f ≫ g = 0 ∧ g ≫ h = 0
+  exists_relation : ∀ {X Y Z W : C} (f : X ⟶ Y) (g : Y ⟶ Z) (h : Z ⟶ W),
+    f ≫ g = 0 → g ≫ h = 0 → ∃ x : X⟦(1 : ℤ)⟧ ⟶ W,
+      StableHomotopy.Toda.Relation x f g h
+  coset : ∀ {X Y Z W : C} {x₀ x : X⟦(1 : ℤ)⟧ ⟶ W}
+    {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W},
+    StableHomotopy.Toda.Relation x₀ f g h →
+      (StableHomotopy.Toda.Relation x f g h ↔
+        ∃ (y : Y⟦(1 : ℤ)⟧ ⟶ W) (z : X⟦(1 : ℤ)⟧ ⟶ Z),
+          x - x₀ = f⟦(1 : ℤ)⟧' ≫ y + z ≫ h)
+  juggling : ∀ {X Y Z W V : C} {x : X⟦(1 : ℤ)⟧ ⟶ W}
+    {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W} {d : W ⟶ V},
+    StableHomotopy.Toda.Relation x f g h → h ≫ d = 0 →
+      ∃ y : Y⟦(1 : ℤ)⟧ ⟶ V,
+        StableHomotopy.Toda.Relation y g h d ∧ x ≫ d = (-f⟦(1 : ℤ)⟧') ≫ y
+
 end Challenge1
 
 /-- 第一阶段边界的唯一见证类型。Milnor 条件依赖本见证选定的基础。 -/
 structure Challenge1 where
   foundationInput : Challenge1.FoundationInput
   milnorInput : Challenge1.MilnorInput foundationInput
+  tensorInput : Challenge1.TensorInput foundationInput
+  cooperationInput : @Challenge1.CooperationInput foundationInput tensorInput milnorInput
+  linBasis : Challenge1.LinBasisInterface
 
 namespace Challenge1
 
@@ -274,16 +391,51 @@ def milnor (c : KIP126.Challenge1) :
   coordinates := c.milnorInput.coordinates
   differential_coordinates := c.milnorInput.differential_coordinates
 
-/-- 已有基础与 Milnor 见证可逐字段组装成边界包；不增加待证明条件。 -/
+/-- 已有基础与 Milnor 见证连同 tensor、cooperation 和基表交付逐字段组装成边界包。 -/
 def ofFoundationMilnor (F : StandardAdamsFoundation)
-    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2) :
+    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
+    (T : TensorInput (FoundationInput.ofStandard F))
+    (A : @CooperationInput (FoundationInput.ofStandard F) T
+      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
+    (B : LinBasisInterface) :
     KIP126.Challenge1 where
   foundationInput := FoundationInput.ofStandard F
   milnorInput :=
     { coordinates := M.coordinates
       differential_coordinates := M.differential_coordinates }
+  tensorInput := T
+  cooperationInput := A
+  linBasis := B
 
 end Challenge1
+
+namespace Stable
+
+open CategoryTheory MonoidalCategory
+open KIP126.StableHomotopy
+
+universe u v
+
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [∀ W : C, (tensorLeft W).CommShift ℤ]
+  [∀ W : C, (tensorRight W).CommShift ℤ]
+  [∀ W : C, (tensorLeft W).IsTriangulated]
+  [∀ W : C, (tensorRight W).IsTriangulated]
+
+/-- May's smash-boundary lifting property for the actual arrows of two
+specified distinguished triangles. Both equalities identify classes in the
+same group; in particular, the last equality uses their actual boundary maps. -/
+def MaySmashBoundary : Prop :=
+  ∀ (T U : HoCofiberSequence (C := C)) (n : ℤ)
+    (a : HomotopyGroup n (T.X ⊗ U.Z))
+    (b : HomotopyGroup n (T.Y ⊗ U.Y)),
+    inducedMap (T.f ▷ U.Z) n a = inducedMap (T.Y ◁ U.g) n b →
+    ∃ c : HomotopyGroup n (T.Z ⊗ U.X),
+      inducedMap (T.g ▷ U.Y) n b = inducedMap (T.Z ◁ U.f) n c ∧
+      connectingHomomorphism (U.map (tensorLeft T.X)) n a =
+        connectingHomomorphism (T.map (tensorRight U.X)) n c
+
+end Stable
 
 namespace Synthetic
 
@@ -394,6 +546,15 @@ structure SyntheticInterface (H : Mod2EilenbergMacLane (C := C))
   nu_cofiber : NuCofiberCriterion H N
   lift : SyntheticLiftComparison H N
   triangle_lift : SyntheticTriangleLiftComparison H N
+
+/-- a12 的有限塔前置交付，所有对象都是同一 νX 的既有 λ 幂商，
+所有映射分量都是同一 cofiber construction 给出的实际商映射。
+此组既不提供 homotopy limit，也不无条件断言 λ-adic 完备性。 -/
+structure FiniteQuotientTowerInterface [HasFunctorialCofiber (C := Syn)]
+    (N : NuFunctorData C Syn) where
+  tower : ∀ X : C, FiniteLambdaQuotientTower (N.functor.obj X)
+  naturality : ∀ {X Y : C} (f : X ⟶ Y),
+    FiniteLambdaQuotientTower.Hom (tower X) (tower Y) (N.functor.map f)
 
 end Synthetic
 

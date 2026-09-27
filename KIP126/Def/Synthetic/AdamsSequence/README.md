@@ -1,31 +1,9 @@
 # Synthetic / AdamsSequence
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../README.md)；本次只迁移，未补证明或修改陈述。
+[Data.lean](Data.lean) 直接使用内部 `SSData/SpectralSequence` 和 ℤ-module，固定首显示页 E₂、微分次数 `(r,r−1,0)`。`SyntheticAdamsFamily` 是同一个 synthetic category 上的显式 functor 数据；sphere、νX、X/λⁿ 和 νX/λⁿ 都由该家族在实际对象上取值，商投影和 λ 映射来自实际 cofiber inclusion 与 deformation map。`nuSphereIso` 通过同一个 ν datum 的单位同构和同一个 family 识别 ν-sphere 与 synthetic unit。没有选择全局 synthetic 模型或声明该家族已经构造。
 
-## 1. 原先期望包含什么
+`SyntheticLambdaAction` 要求 ambient map 保持实际 cycle/boundary，所有有限页和 E∞ 映射由同一 ambient map 诱导。把它识别为 `deformationMap` 的重分次仍是待证兼容义务。`SyntheticAdamsConvergence` 使用指定对象的实际 `BiHom` 和 Adams 滤过商，不自动宣称每个 synthetic 对象收敛。
 
-共享数学对象、条件和构造所需的性质。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。
+[Proofs.lean](Proofs.lean) 证明次数公式、weight 保持以及从 action 字段导出的微分交换。原 Mathlib synthetic sequence、独立选择的标准类和额外的 weight-preserving 字段已经移除；没有新增 Mathlib 比较义务。
 
-## 2. 现在包含什么
-
-| 文件 | 已有对象或结论（选列） |
-| --- | --- |
-| [Data.lean](Data.lean) | `Tridegree`, `syntheticAdamsShift`, `syntheticAdamsTarget`, `syntheticAdamsPageLevel`, `syntheticAdamsShape` 等 28 个声明 |
-
-## 3. 大概完成度
-
-**现有内容：1 个 Lean 文件、约 28 个显式声明，其中 8 条 theorem/lemma。** 本组件未扫描到显式占位正文，已有实现仍需结合依赖和语义审核判断是否完成。
-
-未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
-
-## 4. 接下来还需要完成什么
-
-- 结合消费端检查现有结果是否足以覆盖领域入口列出的预期；没有占位正文不代表全部所需结果已经写出。
-
-## 5. 后续应该一步一步如何做
-
-1. 对照上面的声明及其直接 imports，确认本组件的数学条件和消费端，先处理已报告的陈述问题。
-2. 需要改公共定义或冻结陈述时交由整合者协调；同步目标、输入接口与对应证明，不单方扩大前提。
-3. 按依赖顺序处理已列出的未完成内容；复用已有证明，保持数据、条件和结果职责清楚。
-4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
-5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
+下一步是构造此家族、证明它与选定 ν、λ 商的重分次和乘法/检测兼容，并为适用对象提供 convergence、rigidity、λ-Bockstein 等带来源的输入。类型可用不意味着这些数学证明已经完成。

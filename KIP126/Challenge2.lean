@@ -3,6 +3,12 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Sphere
 import KIP126.Def.AdamsE2.LinClasses.Data
 import KIP126.Def.AdamsE2.LinBasisTable.Data
 import KIP126.Def.SpectralSequence.Computation.Predicates
+import KIP126.Def.Comparison.ClassicalSynthetic.Data
+import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
+import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+import KIP126.Interface.Axiom.StandardMilnor
+import KIP126.Def.Kervaire.Theta5.Predicates
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与完整待交付清单
@@ -23,13 +29,12 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
 ## A(M)：使用内部 M 的非程序接口
 
 - `am1` 内部页面、代表元与永久存活 calculus。
-  陈述／实现：相邻页同调已有 `Basic/PageHomology/Data.lean` 的 `pageHomologyIso`；
-  `Computation/Proofs.lean` 已证明 `IsPageBoundary.isCycle`、
-  `HasNonzeroDifferential.source_survives` 和 `target_survives`；
-  `Representatives/Proofs.lean` 已有微分与代表元的等价及自然性。
-  以上路径均在 `Def/SpectralSequence/` 下；永久存活类型见 `Permanence/Predicates.lean`。
-  接入：在本文件逐条公开所需派生交付并复用现有证明；剩余通用性质按具体签名补齐，
-  不把已有 calculus 整体视为等待首次设计，也不重新假设可由 Def 推出的结论。
+  陈述：本文件 `PageCalculus`、`RepresentativeCalculus` 明列相邻页同调、d²=0、
+  E₂ 共同代表元、boundary⇒cycle 及非零微分两端存活条件。
+  实现：`Interface/Solution/InternalPages.lean` 复用 Def 的实际定理完成上述
+  派生交付；不用总包新增一份可独立选择的页面或证明假设。
+  待补：其余 E∞ 代表与 NonzeroSurvival 的完整交付逐条接入，不能把这一组
+  有限页定理误报为全部永久存活 calculus 已完成。
 
 - `am2` Adams 塔页面、微分与存活语义。
   陈述／实现：`Def/ClassicalAdams/TowerSSData/` 下已有页面同构
@@ -42,10 +47,11 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   `Main/Solution/Computation/Vanishing.lean`，无需另选一套页面或存活代表元。
 
 - `am3` 内部谱序列映射与 Adams 自然性。
-  陈述：完整交付类型未冻结、未入包；既有态射还需按 #132 审核。
-  实现：见 `Def/SpectralSequence/Basic/`、`Def/SpectralSequence/BoundedExtension/Morphism/` 和
-  `Main/Axiom/Literature/HopfCofiber/`。TODO：在所需各页固定 i、q、tmf 与 cofiber
-  映射，并给出微分、复合、代表元及页面传递相容性。
+  陈述：`MorphismCalculus` 明列由同一环境映射诱导的页面／E∞ 恒等、复合、
+  微分相容、共同代表元与微分等式的传递。
+  实现：#132 的任意页面映射漏洞已修复，`Interface/Solution/InternalNaturality`
+  从 canonical quotient map 的真实定理组装；普通映射不因此保持非零。
+  待补：固定 i、q、tmf 与 cofiber 的实际态射、Adams 自然性和各项具体绑定。
 
 - `am4` 内部乘法、配对、作用与 Leibniz。
   陈述：同一 presentation 上的 `LinE2Presentation.SecondDifferentialLeibniz`
@@ -95,20 +101,28 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   Moss crossing 方向、次数与文献条件；near-126 的具体推论仍留给 Main。
 
 - `am9` Adams E₂＝cobar/Ext 及标准 hᵢ。
-  陈述：已有局部精确声明，完整交付类型未冻结、未入包。
-  实现：`Def/ClassicalAdams/MilnorCooperations/Data.lean`、`Def/ClassicalAdams/SphereClasses/`
-  与 `Def/Steenrod/MilnorCobar/` 是现有支撑。TODO：由同一基础证明 E₁ cobar 公式、
-  内部 E₂ 的 Ext 识别以及标准 hᵢ、h₆² 的识别；Lin 比较留在 `cm1`。
+  陈述／实现：`MilnorCohomology` 已定义真正的 F₂ ker(d)/im(d)，包括 s=0
+  的零入射边界、代表元零与相等的充要条件及 h₆² 的非零证明。
+  本文件 `standardHi`、`standardHiSquare` 由同一 Milnor cocycle 和实际塔商
+  构造完整内部标准族，不是任意命名元素；i=6 与原指定类相容。
+  `CobarE2Comparison` 要求比较逐一保留实际 cocycle 的内部类。
+  `CobarCupCalculus` 明列实际下降 cup 的代表元公式与标准平方等式；
+  cup 的双线性构造和这两条公式已由 Leibniz 与商的泛性质证明。
+  实际 E₂ 比较及规范 cocycle 公式已证明，包含 s=0；派生交付位于
+  `Interface/Solution/Cobar.lean`。待补的是与内部页面乘法的相容性及 Steenrod Ext 识别。
+  一般 cobar d²=0 当前使用 a03 的坐标相容性派生，Lin 比较留在 cm1。
+  前置缺口仅针对 Ext 端：尚未固定 graded Steenrod comodule 范畴、平凡对象、
+  内部次数平移及导出 Ext 模型；也可明确选择 cobar 为计算模型并补比较定理。
+  当前已有的 cobar 同调及内部 E₂ 足够先准确陈述二者比较，不能把两件事混为一谈。
 
 - `am10` 内部 classical–synthetic catalogue coherence。
-  陈述／实现：当前 `Def/Comparison/ClassicalSynthetic/` 与
-  `Def/Synthetic/AdamsSequence/` 仍使用 Mathlib 谱序列；历史
-  `../KIPBase/Synthetic/Adams.lean` 的 `SynAdamsSS` 已采用内部三分次类型，
-  `ExtensionSS.lean` 有具体重分次与 `SyntheticExtensionData`，
-  `PageExtension.lean` 有 classical/synthetic 代表元绑定接口。
-  接入：以这些具体类型为迁移起点，替换历史 axioms 选定的对象，绑定同一当前
-  classical、synthetic、λ-quotient 实例，再补页面、微分、乘法、检测和截断相容。
-  不新增内部 M 与 Mathlib 谱序列的比较义务。
+  陈述／实现：`Def/Synthetic/AdamsSequence` 与 `Def/Comparison/ClassicalSynthetic`
+  已改为内部 M。`SyntheticAdamsFamily` 的 νX、λⁿ 商和商投影是同一家族在实际
+  对象／映射上的取值；ν 的 unitIso 给出相同家族中的球面同构。
+  本文件 `NuComparison` 将 comparison 的 classical 端锁定为实际 Adams 塔。
+  有限页与 E∞ 比较图都由同一循环／边界环境映射诱导。
+  待补：构造该 family 及比较、λ 的重分次识别、乘法、检测和截断相容。
+  尚无这些见证的存在性证明；不新增内部 M 与 Mathlib 谱序列比较义务。
 
 - `am11` synthetic rigidity、E∞ 公式与 λ-Bockstein。
   陈述：`../KIPBase/Synthetic/Rigidity.lean` 已有若干内部 E∞／消失候选陈述，
@@ -125,7 +139,9 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   `cataloguedAdamsOneLine` 及其消费定理，但当前页面类型仍走旧接口。
   接入：以内部 `HasDifferential` 和同一 presentation 下的 h₄、h₀h₃² 重述该切片，
   保留文献定位与显式证明输入；这是页面绑定工作，无需等待整个 one-line 家族。
-  May 低页存活、h₄²／h₅² 永久性和检测的其余准确陈述与证据逐条补齐。
+  本文件 `LowDimensionalSquarePermanence` 精确使用内部 h₄²／h₅²；
+  `Interface/Solution/LowDimensionalPermanence` 已从显式 a14 与 Browder 输入推出它。
+  May 低页存活、one-line 全族及实际同伦检测仍待接入。
 
 - `am13` BJM/BX、θ₅ 与总微分输入。
   陈述／实现：`Def/Kervaire/Theta5/` 已有 `Theta5ChoiceContext`、
@@ -141,6 +157,8 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   实现：`Main/Axiom/Literature/Claims.lean` 的 `tmfDetection`、
   `br21TmfDifferential` 是来源条目，不是已构造的内部 theorem。
   TODO：把 Hurewicz 检测、θ₅ 的 tmf 像和 d₃(v₂¹⁶)=β⁵g 连接到同一内部对象与映射。
+  前置缺口：当前通用 Adams 构造可作用于给定谱，但本项尚未指定 tmf 对象、
+  球面到 tmf 的实际映射及 v₂、β、g 的同一页面定义。只添加同名元素不能固定含义。
 
 - `am15` Moss convergence 与 normalized Hopf detection。
   陈述／实现：`Main/Axiom/Literature/Near126/HopfCofiber/Fixed/Data.lean` 的
@@ -151,12 +169,10 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   球面、ν 与 cofiber；待提供的是实际输入、top-cell 等必要比较和 Moss 证明。
 
 - `am16` Browder 的 Kervaire 判据。
-  陈述／实现：`Def/Kervaire/Theta5/Predicates.lean` 的 `BrowderCriterionStatement`
-  已精确表达维数与 Kervaire 存在性判据；`Main/Axiom/Literature/Kervaire.lean`
-  的 `cataloguedBrowderCriterion` 保留来源与显式 proof 参数。
-  接入：公开该条件接口，并将其 `permanent` 参数实例化为同一内部球谱标准 hⱼ²
-  的 `NonzeroSurvival`。尚待固定的几何解释与标准类关联是具体绑定义务，
-  不妨碍先陈述参数化结果，也不能把任意永久性谓词当作关联已经成立。
+  陈述：本文件 `BrowderInterface` 将几何存在性对应到同一内部球谱标准 hⱼ²
+  的 `NonzeroSurvival`，不再将永久性端留作任意谓词。
+  实现：`Main/Axiom/Literature/InternalGeometry` 保留来源锁定和显式证明输入。
+  几何对象及 Kervaire 谓词仍为参数；固定其真实解释并提供适用的文献见证待完成。
 
 ## C(M)：Lin 直接输出的确定性解释
 
@@ -165,8 +181,8 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   #138 所需完整加法基与全部直接乘法输出的交付尚未闭合。
   实现：`Main/Axiom/LinProgram/Generated/E2.lean`、`Def/AdamsE2/LinModel/`
   保留 v126.3.cw49 数据；本包的 existence Solution 尚为 `sorry`。
-  TODO：接入 Challenge1 清单 `a05` 的基表正确性（现 `Interface/Solution/LinProgram/BasisTable.lean`
-  仍为 `sorry`），审计范围 `t ≤ 261` 和同一 comparison。`computedH6`、
+  a05 基表认证已进入 Challenge1，消费者从同一见证投影；生产证明在
+  `Def/Solution/LinProgram/BasisTable.lean` 仍为 `sorry`。范围为 `t ≤ 261`，必须使用同一 comparison。`computedH6`、
   `computedH6Square` 在 `Main/Axiom/LinProgram/Interpretation/Classes/Data.lean`
   由比较机械定义，不新增任意同名元素。
 
@@ -182,6 +198,8 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
   实现：`Main/Axiom/LinProgram/Raw/`、`Main/Axiom/LinProgram/Translate/` 保留/分类原记录，
   尚未接通数学解释。TODO：保留 `depth>0` 条件树、析取、disproof 与依赖逻辑，
   不将有条件记录展开为无条件微分。
+  前置缺口是 raw schema 到逻辑命题的确定性解释及其依赖语义；
+  内部微分关系已定义，不能把“解释器未写”记为“谱序列对象不存在”。
 
 - `cm4` Cν、tmf、λ 商及 map/extension 输出。
   陈述：确定性内部 M 解释尚未冻结、未入包。
@@ -212,7 +230,8 @@ import KIP126.Def.SpectralSequence.Computation.Predicates
 - Main 仍有五条直接 import Interface/Solution 的边：
   `Main/Solution/Computation/{Dimension,Nonvanishing}.lean`、
   `Main/Axiom/LinProgram/E2.lean`、`Main/Axiom/LinProgram/Interpretation/Basis/{Data,Proofs}.lean`。
-  其中 basis 链含 `basisTable_correct` 占位；square detection/dimension 有已有证明。
+  其中 basis 链消费同一 Challenge1 的认证投影，生产证明在 Def/Solution 仍为 `sorry`；
+  square detection/dimension 有已有证明。
   需要分别安排 `a05` 上游基础和第二道边界交付，不能因当前两条总包字段就声称完全隔离。
 - 文献仍由 `Main/Axiom/Literature/` 的 `ExternalResult`、`ExternalEvidence` 及
   catalogued wrappers 显式携带；清单不是把它们变成无条件字段的授权。
@@ -253,9 +272,123 @@ namespace KIP126
 
 namespace Challenge2
 
-open CategoryTheory
+open CategoryTheory CategoryTheory.MonoidalCategory
 open Classical.Adams LinE2
 open Core.SpectralSequence
+
+universe u v w
+
+/-- am1：一般内部页面 calculus 的派生交付。页面与微分均来自同一个 E；
+同调同构来自 nested Z/B 模型，不另选一套谱序列。 -/
+structure PageCalculus {C : Type u} [Category.{v} C] [Abelian C]
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    (E : Core.SpectralSequence C ι) : Prop where
+  homology : ∀ (r : ℤ) (k : ι), E.r₀ ≤ r →
+    Nonempty (E.Page (r + 1) k ≅ (E.pageShortComplex r (k - E.diffDeg r)).homology)
+  square_zero : ∀ (r : ℤ) (k : ι), E.d r k ≫ E.d r (k + E.diffDeg r) = 0
+
+/-- am1：模页面的代表元、边界及非零微分条件。普通微分等式不能提供
+非零存活；后两个字段明确保留 `HasNonzeroDifferential` 的非零前提。 -/
+structure RepresentativeCalculus {R : Type u} [Ring R]
+    (E : Core.SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)) : Prop where
+  page_two : ∀ p (a b : E.Page 2 p), RepresentsOnPage E 2 p a b → a = b
+  boundary_cycle : ∀ r p (a : E.Page r (p + E.diffDeg r)),
+    IsPageBoundary E r p a → IsPageCycle E r (p + E.diffDeg r) a
+  differential_source : ∀ r p q (x : E.Page 2 p) (y : E.Page 2 q),
+    HasNonzeroDifferential E r p q x y → SurvivesTo E r p x
+  differential_target : ∀ r p q (x : E.Page 2 p) (y : E.Page 2 q),
+    HasNonzeroDifferential E r p q x y → SurvivesTo E r q y
+
+/-- am3：同一内部谱序列态射的派生自然性。所有页面映射由 f 的环境映射
+诱导；不另选页面映射，也不把微分等式加强为非零结论。 -/
+structure MorphismCalculus {R : Type u} [Ring R]
+    (E E' : Core.SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ))
+    (f : SpectralSequenceMorphism E E') : Prop where
+  differential_comm : ∀ (r : ℤ) (p : ℤ × ℤ),
+    f.pageMap r p ≫ E'.d r p =
+      E.d r p ≫ f.pageMap r (p + E.diffDeg r) ≫
+        eqToHom (by rw [f.diffDeg_eq])
+  page_identity : ∀ (r : ℤ) (p : ℤ × ℤ),
+    (𝟙 E : E ⟶ E).pageMap r p = 𝟙 _
+  page_composition : ∀ (E'' : Core.SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ))
+    (g : SpectralSequenceMorphism E' E'') (r : ℤ) (p : ℤ × ℤ),
+    (CategoryStruct.comp (X := E) (Y := E') (Z := E'') f g).pageMap r p = f.pageMap r p ≫ g.pageMap r p
+  infinity_identity : ∀ (p : ℤ × ℤ), (𝟙 E : E ⟶ E).eInftyMap p = 𝟙 _
+  infinity_composition : ∀ (E'' : Core.SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ))
+    (g : SpectralSequenceMorphism E' E'') (p : ℤ × ℤ),
+    (CategoryStruct.comp (X := E) (Y := E') (Z := E'') f g).eInftyMap p = f.eInftyMap p ≫ g.eInftyMap p
+  representatives : ∀ (r : ℤ) (p : ℤ × ℤ) (x : E.Page 2 p) (y : E.Page r p),
+    RepresentsOnPage E r p x y →
+      RepresentsOnPage E' r p (f.pageMap 2 p x) (f.pageMap r p y)
+  differential : ∀ (r : ℤ) (p q : ℤ × ℤ) (x : E.Page 2 p) (y : E.Page 2 q),
+    HasDifferential E r p q x y →
+      HasDifferential E' r p q (f.pageMap 2 p x) (f.pageMap 2 q y)
+
+/-- am10 的对象绑定：classic 页面是实际 unit 塔的内部构造，synthetic
+页面是同一 family 在 νX 的取值。该类型不声称比较已经构造或为同构。 -/
+abbrev NuComparison {C : Type u} [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    {Syn : Type w} [Synthetic.Context.SyntheticCategory.{w, v} Syn]
+    {H : C} (unit : 𝟙_ C ⟶ H) (N : Synthetic.Context.NuFunctorData C Syn)
+    (F : Synthetic.SpectralSequence.SyntheticAdamsFamily Syn) (X : C) :=
+  Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap
+    (adamsTowerInternalSpectralSequence unit X) (F.nu N X)
+
+/-- am9 的规范 E₂ 比较义务：每个 cocycle 都必须映到同一 Adams 塔中的
+实际类。这个公式排除只给出任意线性等价的接口；不声称已定义导出 Ext。 -/
+def CobarE2Comparison {C : Type u} [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    (H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C))
+    (M : MilnorCooperations H) : Prop :=
+  ∀ s t : ℕ, ∃ e : MilnorCohomology.Cohomology H M s t ≃ₗ[ℤ]
+      (adamsTowerInternalSpectralSequence H.unit StableHomotopy.SphereSpectrum).Page 2
+        ((s : ℤ), (t : ℤ)),
+    ∀ (x : Steenrod.Milnor.cochains s t) (hx : Steenrod.Milnor.differential s t x = 0),
+      e (MilnorCohomology.ofCocycle H M x hx) =
+        MilnorCohomology.internalClassOfCocycle H M x hx
+
+/-- am9 的 cobar 乘法切片；使用从 cochain concatenation 真正下降的 cup，
+不另选乘法。与内部 Adams 高页配对的相容性是另一个义务。 -/
+structure CobarCupCalculus {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    (H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C))
+    (M : MilnorCooperations H) : Prop where
+  representatives : ∀ {s t s' t' : ℕ} (x : Steenrod.Milnor.cochains s t)
+    (y : Steenrod.Milnor.cochains s' t')
+    (hx : Steenrod.Milnor.IsCycle x) (hy : Steenrod.Milnor.IsCycle y),
+    MilnorCohomology.cup H M (MilnorCohomology.ofCocycle H M x hx)
+      (MilnorCohomology.ofCocycle H M y hy) =
+        MilnorCohomology.ofCocycle H M (Steenrod.Milnor.cup x y)
+          (Steenrod.Milnor.cup_isCycle x y hx hy)
+  standard_squares : ∀ i : ℕ, MilnorCohomology.hiSquare H M i =
+    MilnorCohomology.cohomologyReindex H M rfl (Steenrod.Milnor.hiSquare_internalDegree i)
+      (MilnorCohomology.cup H M (MilnorCohomology.hi H M i) (MilnorCohomology.hi H M i))
+
+/-- am9：由同一固定塔及 Milnor cocycle 构造的标准族；没有新的类选择。 -/
+noncomputable def standardHi (i : ℕ) :
+    sphereAdamsData.Page 2 (1, ((2 ^ i : ℕ) : ℤ)) :=
+  Sphere.Internal.hi standardFoundation.hf2 standardMilnorCooperations i
+
+/-- 标准平方是同一 Milnor cocycle 的 concatenation square 的内部 E₂ 类。
+与固定 Lin 计算类的识别仍是另一个比较义务。 -/
+noncomputable def standardHiSquare (i : ℕ) :
+    sphereAdamsData.Page 2 (2, ((2 ^ (i + 1) : ℕ) : ℤ)) :=
+  Sphere.Internal.hiSquare standardFoundation.hf2 standardMilnorCooperations i
+
+/-- am12 的低维永久性切片，使用实际标准类和非零永久存活。
+不把结论降为自由 permanence 谓词或零类的循环性。 -/
+def LowDimensionalSquarePermanence : Prop :=
+  NonzeroSurvival sphereAdamsData (2, 32) (standardHiSquare 4) ∧
+    NonzeroSurvival sphereAdamsData (2, 64) (standardHiSquare 5)
+
+/-- am16：Browder 的准确内部页面端。几何解释仍由显式参数指定并需要
+相应文献证明，永久性端则固定为本项目同一内部球谱上的标准 hⱼ²。 -/
+def BrowderInterface {Manifold : Type} (dimension : Manifold → ℕ)
+    (kervaireOne : Manifold → Prop) : Prop :=
+  Kervaire.BrowderCriterionStatement dimension kervaireOne
+    (fun j => NonzeroSurvival sphereAdamsData
+      (2, ((2 ^ (j + 1) : ℕ) : ℤ)) (standardHiSquare j))
 
 /-- Literal CSV coordinates, independent of any choice of comparison map. -/
 def HasCoordinates {s t : Nat} (x : E2At s t) (indices : List Nat) : Prop :=

@@ -152,6 +152,44 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 
 \section{The elementary lambda and rho extensions}
 
+\begin{definition}[Finite quotient-tower witness on the specified cofibers]
+  \label{def:finite-lambda-quotient-witness}
+  \lean{KIP126.Synthetic.Context.LambdaRhoDeltaTriangle,KIP126.Synthetic.Context.FiniteLambdaQuotientTower,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.Hom,KIP126.Synthetic.FiniteQuotientTowerInterface}
+  \uses{def:synthetic-lambda-quotient,def:cofiber-triangle}
+  \leanok
+  Every level of this witness is the already chosen cofiber $X/\lambda^n$.
+  It supplies restrictions $\rho_{i,j}$ with identity and composition laws,
+  compatibility with the actual quotient inclusions, and the finite
+  $\lambda$--$\rho$--$\delta$ triangles. The first arrow in each triangle
+  is also required to agree with the actual $\lambda^i$ on quotient
+  inclusions. A map of witnesses uses precisely the cofiber maps induced
+  by the original map $f$, with all three triangle squares specified.
+  The root interface requests these witnesses naturally for the same
+  family $\nu X$. It does not construct an inhabitant or a homotopy limit.
+\end{definition}
+
+\begin{proposition}[Naturality of the actual powers and finite quotient maps]
+  \label{prop:finite-lambda-quotient-local-laws}
+  \lean{KIP126.Synthetic.Context.lambdaPow_naturality,KIP126.Synthetic.Context.XModLambdaN.map,KIP126.Synthetic.Context.XModLambdaN.incl_naturality,KIP126.Synthetic.Context.XModLambdaN.proj_naturality,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.lambda_comp_rho,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.rho_comp_delta}
+  \uses{def:finite-lambda-quotient-witness}
+  \leanok
+  The existing recursively defined $\lambda^n$ is natural. Its chosen
+  cofiber maps commute with inclusion and boundary. In a supplied finite
+  tower, consecutive arrows in each specified quotient triangle compose
+  to zero. These facts do not provide the missing shift-action coherence,
+  arbitrary power factorization, exactness of bigraded shifts, or identity
+  and composition laws for the chosen cofiber maps; a construction of
+  Proposition~\ref{prop:lambda-quotient-restriction-coherence} still needs
+  those compatible data.
+\end{proposition}
+\begin{proof}
+  Express the same recursive powers as natural transformations and prove
+  equality of their components with the original powers. Apply the chosen
+  cofiber's inclusion and boundary squares. The final zero composites are
+  the axioms of the displayed distinguished triangles.
+  \leanok
+\end{proof}
+
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1009-1021, Notation not:deltaandrho.
 \begin{definition}[$\lambda$--$\rho$--$\delta$ quotient triangle]
   \label{def:lambda-rho-delta-triangle}

@@ -53,7 +53,7 @@ structure SyntheticDetectedClass
     {C : StableHomotopyContext} {S : SyntheticHomotopyContext C}
     (A : SyntheticAdamsSS) where
   degree : Tridegree
-  representative : (A.E₂).X degree
+  representative : A.E₂ degree
   abutment : S.homotopy (degree.1, degree.2.2) S.sphere
 
 /-- The chosen $θ_5$ and $η$ data used by the near-126 conditions. -/
@@ -74,11 +74,11 @@ conditions.  Every operation is supplied with its typing data. -/
 structure Near126Input
     {C : StableHomotopyContext} (S : SyntheticHomotopyContext C)
     (A : SyntheticAdamsSS) where
-  x12684 : (A.E₂).X (8, 16, 4)
-  x1268 : (A.E₂).X (8, 16, 4)
-  d6 : (A.E₂).X (8, 16, 4) →ₗ[F2] (A.E₂).X (14, 21, 4)
-  x1248 : (A.E₂).X (8, 16, 8)
-  x10912 : (A.E₂).X (12, 24, 12)
+  x12684 : A.E₂ (8, 16, 4)
+  x1268 : A.E₂ (8, 16, 4)
+  d6 : A.E₂ (8, 16, 4) →ₗ[ℤ] A.E₂ (14, 21, 4)
+  x1248 : A.E₂ (8, 16, 8)
+  x10912 : A.E₂ (12, 24, 12)
   h0SquaredX1248 : S.homotopy (124, 128) S.sphere
   h1h4X10912 : S.homotopy (125, 133) S.sphere
   etaAction : S.homotopy (124, 128) S.sphere → S.homotopy (125, 133) S.sphere

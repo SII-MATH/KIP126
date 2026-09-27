@@ -78,6 +78,14 @@ coherences remain outside the Project Boundary.
 \begin{definition}[Synthetic Adams spectral sequence]
   \label{def:synthetic-adams-ss}
   \uses{def:synthetic-context,def:synthetic-tridegree,def:ss-elementwise-page-presentation,def:ss-einfty-presentation,def:multiplicative-ss,def:ss-convergence-detection-witness,def:unital-multiplication-data}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.nu}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.nuQuotient}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.nuSphereIso}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.quotientProjection}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.deformationMap}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsConvergence}
   \notready
   For a synthetic spectrum in scope, its synthetic Adams spectral sequence is
   a trigraded spectral sequence
@@ -93,6 +101,18 @@ coherences remain outside the Project Boundary.
   generally, an internal multiplicative spectral sequence is obtained only
   for a synthetic spectrum equipped with chosen unital multiplication data;
   no internal product is asserted for an arbitrary synthetic spectrum.
+
+  The internal family interface and its actual object bindings are defined:
+  a single functor on the chosen synthetic category is evaluated at the
+  chosen $\nu X$ and at the cofiber of the same $\lambda^n$ map.  Quotient
+  projections and deformation maps are images of those actual morphisms.
+  The explicit unit isomorphism of the same $\nu$ datum identifies its
+  sphere image with the synthetic unit; the family transports this
+  isomorphism to the internal sequences.
+  The convergence datum uses the actual bigraded homotopy groups of that
+  object.  Constructing the family, its pairings, and the needed convergence
+  witnesses remains unfinished; these declarations do not choose a model or
+  provide the literature results.
 \end{definition}
 
 \section{Normalized synthetic map data}

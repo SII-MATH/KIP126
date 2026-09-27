@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.BasisTable
+import KIP126.Interface.Axiom.LinBasisTable
 
 namespace KIP126.LinE2
 open KIP126.Core.Algebra

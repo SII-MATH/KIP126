@@ -6,17 +6,17 @@
 
 ## 2. 现有
 
-当前仅有 `ClassicalSynthetic/{Data,Proofs}` 两个文件。它定义 fixed-weight 重分次映射、若干 h₄ 次数常量，并证明给定 chain map 的微分自然性与次数遗忘公式。现有对象直接建立在 Mathlib 谱序列页面上，而且比较映射本身作为结构字段提供；它尚未连接到项目选定的内部三分次 M，也没有证明 h₄ 对应、λ-Bockstein、检测或收敛相容。
+当前 `ClassicalSynthetic/{Data,Proofs}` 使用内部 M，定义 fixed-weight 重分次环境映射；所有有限页和 E∞ 映射由同一 cycle/boundary 商构造诱导，并证明微分自然性与次数遗忘公式。`Challenge2.NuComparison` 将 classical 端固定为实际 Adams 塔，synthetic 端为同一家族在 νX 上的取值。这给出了精确的比较类型，比较见证本身仍待构造；h₄ 对应、λ-Bockstein、乘法、检测及收敛相容尚未证明。
 
 ## 3. 粗略完成度
 
 > 本节比例只是根据当前路线图、已有构造和已知数学缺口给出的主观规划估算，不是由文件数、声明数或 `sorry` 数计算出的可验证统计。
 
-**约 10%–20%。** 当前代码验证了重分次算术和一个结构性 chain-map 事实，是后续实现线索；距离 AM10 的完整 catalogue coherence 仍很远。两文件无 `sorry` 不能改变这一语义差距。
+当前已交付内部重分次映射的定义、规范商映射及其微分自然性，尚未交付固定 classical–synthetic 比较的存在性。定义和结构定理的完成不等于 AM10 的 catalogue coherence 已完成。
 
 ## 4. 待做
 
-- 将 classical/synthetic 两端改写到内部 M；现有 Mathlib 版本只隔离保留为历史兼容记录，不扩展它，也不新增任何两套谱序列的比较证明义务。
+- classical/synthetic 两端已经使用内部 M；不新增与 Mathlib 谱序列等价的证明义务。
 - 从底层 ν、λ、quotient 和 tower/map 数据构造 comparison，而不是把关键相容性全部作为字段。
 - 补页面传递、乘法、微分、检测、有限 λⁿ 截断和极限相容。
 - 核对三分次与 `S^{1,0}` 约定，给关键类和目标次数写可执行回归。

@@ -1,26 +1,35 @@
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
+import KIP126.Def.ClassicalAdams.Grading.Data
 import KIP126.Def.SpectralSequence.PageLevel.Data
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
+import KIP126.Def.SpectralSequence.Basic.Category.Data
+import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+import KIP126.Def.SpectralSequence.Convergence.Data
+import KIP126.Def.Synthetic.Sphere.Data
+import Mathlib.Algebra.Category.ModuleCat.Abelian
 
 /-!
-# Synthetic spectral-sequence basics
+# Internal synthetic Adams objects
 
-This is the concrete three-graded slice used by the first classical--synthetic
-comparison.  The spectral-sequence object remains Mathlib's object; this file
-only supplies the synthetic index and the weight-preserving degree interface.
+All spectral sequences here use the internal nested-subobject model. A family
+is explicit functor data on one synthetic category; evaluating it on νX or a
+λ-power cofiber makes the object binding definitional. No family or convergence
+witness is chosen globally, and no Mathlib spectral-sequence comparison is
+required. Construction of the family and its literature properties remain
+separate obligations.
 -/
 
 namespace KIP126.Synthetic.SpectralSequence
 
-open CategoryTheory
-open KIP126.Core.Algebra
-open KIP126.Core.SpectralSequence
+open CategoryTheory CategoryTheory.Limits
+open KIP126.Core.SpectralSequence KIP126.Synthetic.Context KIP126.StableHomotopy
+
+universe u v u' v'
+noncomputable section
 
 abbrev Tridegree := ℤ × ℤ × ℤ
 
-def syntheticAdamsShift (r : ℕ) : Tridegree := (r, (r : ℤ) - 1, 0)
+def syntheticAdamsShift (r : ℤ) : Tridegree := (r, r - 1, 0)
 
-def syntheticAdamsTarget (r : ℕ) (i : Tridegree) : Tridegree :=
+def syntheticAdamsTarget (r : ℤ) (i : Tridegree) : Tridegree :=
   i + syntheticAdamsShift r
 
 def syntheticAdamsPageLevel : PageLevelConvention where
@@ -35,102 +44,73 @@ def syntheticAdamsPageLevel : PageLevelConvention where
   quotient_succ := by intro r; omega
   cycleLevel_eq_quotientExponent := by intro r; rfl
 
+/-- A grading shape, not a Mathlib spectral-sequence object. -/
 def syntheticAdamsShape (r : ℤ) : ComplexShape Tridegree :=
-  ComplexShape.up' (r, r - 1, 0)
+  ComplexShape.up' (syntheticAdamsShift r)
 
 def lambdaDegree : Tridegree := (0, 0, -1)
 
 def lambdaTarget (i : Tridegree) : Tridegree := i + lambdaDegree
 
 abbrev SyntheticAdamsSpectralSequence :=
-  CategoryTheory.SpectralSequence F2ModuleCat syntheticAdamsShape 2
+  KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) Tridegree
 
-def lambdaPage (E : SyntheticAdamsSpectralSequence) (r : ℤ)
-    (hr : 2 ≤ r) : HomologicalComplex F2ModuleCat (syntheticAdamsShape r) where
-  X i := (E.page r hr).X (lambdaTarget i)
-  d i j := (E.page r hr).d (lambdaTarget i) (lambdaTarget j)
-  shape i j hij := by
-    apply (E.page r hr).shape _ _
-    intro h
-    apply hij
-    rcases i with ⟨s, t, w⟩
-    rcases j with ⟨s', t', w'⟩
-    dsimp [syntheticAdamsShape, lambdaTarget, lambdaDegree] at h ⊢
-    apply add_right_cancel (b := (0, 0, -1))
-    simpa [add_assoc, add_comm, add_left_comm] using h
-  d_comp_d' i j k hij hjk := by
-    rcases i with ⟨s, t, w⟩
-    rcases j with ⟨s', t', w'⟩
-    rcases k with ⟨s'', t'', w''⟩
-    dsimp [syntheticAdamsShape, lambdaTarget, lambdaDegree] at hij hjk ⊢
-    exact (E.page r hr).d_comp_d' _ _ _
-      (by
-        apply add_right_cancel (b := (0, 0, -1))
-        simpa [add_assoc, add_comm, add_left_comm] using hij)
-      (by
-        apply add_right_cancel (b := (0, 0, -1))
-        simpa [add_assoc, add_comm, add_left_comm] using hjk)
-
-structure SyntheticLambdaAction (E : SyntheticAdamsSpectralSequence) where
-  map : ∀ (r : ℤ) (hr : 2 ≤ r), E.page r hr ⟶ lambdaPage E r hr
-  pagePassage : ∀ (r : ℤ) (hr : 2 ≤ r) (i : Tridegree),
-    (lambdaPage E r hr).homology i ≅
-      (E.page (r + 1) (by omega)).X (lambdaTarget i)
-  page_passage_comm : ∀ (r : ℤ) (hr : 2 ≤ r) (i : Tridegree),
-    HomologicalComplex.homologyMap (map r hr) i ≫ (pagePassage r hr i).hom =
-      (E.iso r (r + 1) i rfl hr).hom ≫ (map (r + 1) (by omega)).f i
-
-def lambdaMapFromAction {E : SyntheticAdamsSpectralSequence}
-    (action : SyntheticLambdaAction E) (i : Tridegree) :
-    (E.page 2).X i ⟶ (E.page 2).X (lambdaTarget i) :=
-  (action.map 2 (by norm_num)).f i
-
+/-- An internal sequence with exactly the synthetic Adams page convention.
+Standard classes and a λ action are not chosen independently in this record. -/
 structure SyntheticAdamsSS where
-  sequence : SyntheticAdamsSpectralSequence
-  lambdaAction : SyntheticLambdaAction sequence
-  h₄ : (sequence.page 2).X (1, 16, 16)
-  h₀h₃Squared : (sequence.page 2).X (3, 17, 17)
-  weightPreserving : ∀ (r : ℤ) (hr : 2 ≤ r) (i j : Tridegree),
-    (syntheticAdamsShape r).Rel i j →
-      (sequence.page r).d i j ≠ 0 → i.2.2 = j.2.2
+  sequence : SyntheticAdamsSpectralSequence.{v}
+  firstPage : sequence.r₀ = 2
+  differentialDegree : ∀ r : ℤ, sequence.diffDeg r = syntheticAdamsShift r
 
 namespace SyntheticAdamsSS
 
-def E₂ (A : SyntheticAdamsSS) := A.sequence.page 2
-def E₃ (A : SyntheticAdamsSS) := A.sequence.page 3
+/-- Normalized page accessor; its cycle level is always `(r - 2).toNat`. -/
+def Page (A : SyntheticAdamsSS.{v}) (r : ℤ) (i : Tridegree) : ModuleCat.{v} ℤ :=
+  (A.sequence.ssData i).page (↑(r - 2).toNat : WithTop ℕ)
 
-def e₂ToE₃ (A : SyntheticAdamsSS) (i : Tridegree) :
-    (A.E₂).homology i ≅ (A.E₃).X i :=
-  A.sequence.iso 2 3 i rfl (by norm_num)
+def E₂ (A : SyntheticAdamsSS.{v}) := A.Page 2
 
-def d₂ (A : SyntheticAdamsSS) (i : Tridegree) :
-    (A.E₂).X i ⟶ (A.E₂).X (syntheticAdamsTarget 2 i) :=
-  (A.E₂).d i (syntheticAdamsTarget 2 i)
+def E₃ (A : SyntheticAdamsSS.{v}) := A.Page 3
 
-def lambdaMap (A : SyntheticAdamsSS) (i : Tridegree) :
-    A.E₂.X i ⟶ A.E₂.X (lambdaTarget i) :=
-  lambdaMapFromAction A.lambdaAction i
+/-- The actual internal differential, with only its proven degree transported. -/
+def d (A : SyntheticAdamsSS.{v}) (r : ℤ) (i : Tridegree) :
+    A.Page r i ⟶ A.Page r (syntheticAdamsTarget r i) :=
+  eqToHom (by simp only [Page, A.firstPage]) ≫
+    A.sequence.d r i ≫ eqToHom (by
+      simp only [Page, A.firstPage, A.differentialDegree, syntheticAdamsTarget])
 
-theorem lambdaMap_comm (A : SyntheticAdamsSS) (i j : Tridegree) :
-    A.lambdaMap i ≫ A.E₂.d (lambdaTarget i) (lambdaTarget j) =
-      A.E₂.d i j ≫ A.lambdaMap j := by
-  exact (A.lambdaAction.map 2 (by norm_num)).comm i j
+/-- Successor-page homology, derived from the internal cycle/boundary axioms. -/
+def e₂ToE₃ (A : SyntheticAdamsSS.{v}) (i : Tridegree) :
+    (A.sequence.pageShortComplex 2 (i - A.sequence.diffDeg 2)).homology ≅ A.E₃ i :=
+  (pageHomologyIso A.sequence 2 i (by simp [A.firstPage])).symm ≪≫
+    eqToIso (by norm_num [E₃, Page, KIP126.Core.SpectralSequence.Page, A.firstPage])
+
+def d₂ (A : SyntheticAdamsSS.{v}) (i : Tridegree) :
+    A.E₂ i ⟶ A.E₂ (syntheticAdamsTarget 2 i) := A.d 2 i
 
 end SyntheticAdamsSS
 
-@[simp] theorem syntheticAdamsShift_two :
-    syntheticAdamsShift 2 = (2, 1, 0) := by
-  norm_num [syntheticAdamsShift]
+/-- A λ action on the internal cycle and boundary towers. Each page map is the
+canonical quotient map of `ambient`; there are no independently chosen page
+maps. Binding this action to the synthetic deformation map is an additional
+compatibility obligation, not an automatic property of an arbitrary action. -/
+structure SyntheticLambdaAction (A : SyntheticAdamsSS.{v}) where
+  ambient : SSDataMorphism Tridegree A.sequence.ssData
+    (fun i => A.sequence.ssData (lambdaTarget i))
+  comm_d : ∀ (r : ℤ) (i : Tridegree),
+    ambient.pageMap i (↑(r - 2).toNat : WithTop ℕ) ≫
+        A.d r (lambdaTarget i) ≫
+        eqToHom (congrArg (A.Page r) (show
+          syntheticAdamsTarget r (lambdaTarget i) =
+            lambdaTarget (syntheticAdamsTarget r i) by
+          simp only [syntheticAdamsTarget, lambdaTarget]; abel)) =
+      A.d r i ≫ ambient.pageMap (syntheticAdamsTarget r i)
+        (↑(r - 2).toNat : WithTop ℕ)
 
-@[simp] theorem syntheticAdamsTarget_two (i : Tridegree) :
-    syntheticAdamsTarget 2 i = (i.1 + 2, i.2.1 + 1, i.2.2) := by
-  apply Prod.ext
-  · simp [syntheticAdamsTarget, syntheticAdamsShift]
-  · apply Prod.ext <;> simp [syntheticAdamsTarget, syntheticAdamsShift]
-
-@[simp] theorem syntheticAdamsShape_rel (r : ℕ) (i : Tridegree) :
-    (syntheticAdamsShape r).Rel i (syntheticAdamsTarget r i) := by
-  simp [syntheticAdamsShape, syntheticAdamsTarget, syntheticAdamsShift]
+def lambdaMapFromAction {A : SyntheticAdamsSS.{v}}
+    (action : SyntheticLambdaAction A) (i : Tridegree) :
+    A.E₂ i ⟶ A.E₂ (lambdaTarget i) :=
+  action.ambient.pageMap i 0
 
 def forgetWeight (i : Tridegree) : KIP126.Classical.Adams.Bidegree :=
   (i.1, i.2.1)
@@ -138,61 +118,110 @@ def forgetWeight (i : Tridegree) : KIP126.Classical.Adams.Bidegree :=
 def nuDegree (b : KIP126.Classical.Adams.Bidegree) : Tridegree :=
   (b.1, b.2, b.2)
 
-def fixedWeightPage (E : SyntheticAdamsSpectralSequence) (w : ℤ)
-    (r : ℤ) (hr : 2 ≤ r) :
-    HomologicalComplex F2ModuleCat
-      (KIP126.Classical.Adams.classicalAdamsShape r) where
-  X b := (E.page r hr).X (b.1, b.2, w)
-  d a b := (E.page r hr).d (a.1, a.2, w) (b.1, b.2, w)
-  shape a b hab := by
-    apply (E.page r hr).shape _ _
-    intro h
-    apply hab
-    rcases a with ⟨s, t⟩
-    rcases b with ⟨s', t'⟩
-    dsimp [KIP126.Classical.Adams.classicalAdamsShape,
-      syntheticAdamsShape] at h ⊢
-    exact congrArg (fun x : Tridegree => (x.1, x.2.1)) h
-  d_comp_d' a b c hab hbc := by
-    exact (E.page r hr).d_comp_d' (a.1, a.2, w) (b.1, b.2, w) (c.1, c.2, w)
-      (by
-        dsimp [KIP126.Classical.Adams.classicalAdamsShape,
-          syntheticAdamsShape] at hab ⊢
-        exact by simpa [ComplexShape.up'] using
-          (show a.1 + r = b.1 ∧ a.2 + (r - 1) = b.2 by
-            exact ⟨congrArg Prod.fst hab, congrArg Prod.snd hab⟩))
-      (by
-        dsimp [KIP126.Classical.Adams.classicalAdamsShape,
-          syntheticAdamsShape] at hbc ⊢
-        exact by simpa [ComplexShape.up'] using
-          (show b.1 + r = c.1 ∧ b.2 + (r - 1) = c.2 by
-            exact ⟨congrArg Prod.fst hbc, congrArg Prod.snd hbc⟩))
+/-- The fixed-weight graded page of the same internal sequence. -/
+def fixedWeightPage (A : SyntheticAdamsSS.{v}) (w r : ℤ)
+    (b : KIP126.Classical.Adams.Bidegree) : ModuleCat.{v} ℤ :=
+  A.Page r (b.1, b.2, w)
 
-@[simp] theorem forgetWeight_nuDegree
+/-- The same internal differential restricted to a fixed weight. -/
+def fixedWeightDifferential (A : SyntheticAdamsSS.{v}) (w r : ℤ)
     (b : KIP126.Classical.Adams.Bidegree) :
-    forgetWeight (nuDegree b) = b := by
-  cases b
-  rfl
+    fixedWeightPage A w r b ⟶ fixedWeightPage A w r (b + (r, r - 1)) :=
+  A.d r (b.1, b.2, w) ≫ eqToHom (by
+    unfold fixedWeightPage syntheticAdamsTarget syntheticAdamsShift
+    congr 1
+    apply Prod.ext
+    · rfl
+    · apply Prod.ext
+      · rfl
+      · exact add_zero w)
 
-@[simp] theorem lambdaTarget_weight (i : Tridegree) :
-    (lambdaTarget i).2.2 = i.2.2 - 1 := by
-  rcases i with ⟨s, t, w⟩
-  simp [lambdaTarget, lambdaDegree, sub_eq_add_neg]
+/-- A single functor on the chosen synthetic category, with the Adams grading
+fixed on every object. Its existence and construction are not postulated. -/
+structure SyntheticAdamsFamily (Syn : Type u) [SyntheticCategory.{u, v} Syn] where
+  functor : Syn ⥤ KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) Tridegree
+  firstPage : ∀ X, (functor.obj X).r₀ = 2
+  differentialDegree : ∀ X r, (functor.obj X).diffDeg r = syntheticAdamsShift r
 
-@[simp] theorem forgetWeight_add_shift (r : ℕ) (i : Tridegree) :
-    forgetWeight (syntheticAdamsTarget r i) =
-      KIP126.Classical.Adams.classicalAdamsTarget r (forgetWeight i) := by
-  apply Prod.ext <;>
-    simp [forgetWeight, syntheticAdamsTarget, syntheticAdamsShift,
-      KIP126.Classical.Adams.classicalAdamsTarget,
-      KIP126.Classical.Adams.classicalAdamsShift]
+namespace SyntheticAdamsFamily
 
-theorem weightPreserving_differential (A : SyntheticAdamsSS) (r : ℕ)
-    (hr : 2 ≤ r)
-    (i : Tridegree)
-    (h : (A.sequence.page (r : ℤ)).d i (syntheticAdamsTarget r i) ≠ 0) :
-    i.2.2 = (syntheticAdamsTarget r i).2.2 := by
-  exact A.weightPreserving (r : ℤ) (by omega) i
-    (syntheticAdamsTarget r i) (syntheticAdamsShape_rel r i) h
+variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
 
+def obj (F : SyntheticAdamsFamily Syn) (X : Syn) : SyntheticAdamsSS.{v} where
+  sequence := F.functor.obj X
+  firstPage := F.firstPage X
+  differentialDegree := F.differentialDegree X
+
+/-- The same family on the synthetic sphere; no independently chosen sequence. -/
+def sphere (F : SyntheticAdamsFamily Syn) : SyntheticAdamsSS.{v} :=
+  F.obj S00
+
+/-- Evaluate the family on the actual ν-image. -/
+def nu {Stable : Type u'} [StableHomotopyCategory.{u', v'} Stable]
+    (F : SyntheticAdamsFamily Syn) (N : NuFunctorData Stable Syn) (X : Stable) :
+    SyntheticAdamsSS.{v} := F.obj (N.functor.obj X)
+
+/-- The ν-sphere and synthetic unit use the unit identification from the same
+ν datum, transported by the same internal spectral-sequence functor. -/
+def nuSphereIso {Stable : Type u'} [StableHomotopyCategory.{u', v'} Stable]
+    (F : SyntheticAdamsFamily Syn) (N : NuFunctorData Stable Syn) :
+    (F.nu N (SphereSpectrum (C := Stable))).sequence ≅ F.sphere.sequence :=
+  F.functor.mapIso N.unitIso
+
+/-- Evaluate the family on the chosen cofiber of the same λ power. -/
+def quotient [HasFunctorialCofiber (C := Syn)]
+    (F : SyntheticAdamsFamily Syn) (X : Syn) (n : ℕ) : SyntheticAdamsSS.{v} :=
+  F.obj (XModLambdaN X n)
+
+def nuQuotient {Stable : Type u'} [StableHomotopyCategory.{u', v'} Stable]
+    [HasFunctorialCofiber (C := Syn)] (F : SyntheticAdamsFamily Syn)
+    (N : NuFunctorData Stable Syn) (X : Stable) (n : ℕ) : SyntheticAdamsSS.{v} :=
+  F.quotient (N.functor.obj X) n
+
+/-- The quotient projection is the image of the actual cofiber inclusion. -/
+def quotientProjection [HasFunctorialCofiber (C := Syn)]
+    (F : SyntheticAdamsFamily Syn) (X : Syn) (n : ℕ) :
+    (F.obj X).sequence ⟶ (F.quotient X n).sequence :=
+  F.functor.map (HasFunctorialCofiber.cofibι (lambdaPow n X))
+
+/-- The family map of λ has its actual shifted object as source. A regrading
+identification is still required to turn this into `SyntheticLambdaAction`. -/
+def deformationMap (F : SyntheticAdamsFamily Syn) (X : Syn) :
+    (F.obj ((SyntheticCategory.biShift (0, -1)).obj X)).sequence ⟶
+      (F.obj X).sequence :=
+  F.functor.map (SyntheticCategory.lam.app X)
+
+end SyntheticAdamsFamily
+
+/-- The abutment is the actual bigraded homotopy of the given object. -/
+def syntheticHomotopy {Syn : Type u} [SyntheticCategory.{u, v} Syn]
+    (X : Syn) (p : ℤ × ℤ) : ModuleCat.{v} ℤ :=
+  ModuleCat.of ℤ (BiHom p.1 p.2 X)
+
+/-- A convergence witness for a particular object in the same family. This is
+supplied only where justified; arbitrary synthetic objects are not assumed to
+converge. The grading is fixed to `E∞^(s,t,w) ≅ gr^s π_(t-s,w) X`. -/
+structure SyntheticAdamsConvergence {Syn : Type u} [SyntheticCategory.{u, v} Syn]
+    (F : SyntheticAdamsFamily Syn) (X : Syn) where
+  filtration : Filtration (syntheticHomotopy X)
+  identification : ∀ i : Tridegree,
+    ((F.obj X).sequence.ssData i).eInfty ≅
+      filtration.associatedGraded i.1 (i.2.1 - i.1, i.2.2)
+
+/-- Convert the object-bound convergence witness to the generic internal API. -/
+def SyntheticAdamsConvergence.toConvergence
+    {Syn : Type u} [SyntheticCategory.{u, v} Syn]
+    {F : SyntheticAdamsFamily Syn} {X : Syn} (c : SyntheticAdamsConvergence F X) :
+    Convergence (F.obj X).sequence (syntheticHomotopy X) c.filtration where
+  reindex i := (i.1, i.2.1 - i.1, i.2.2)
+  reindex_bijective := by
+    constructor
+    · rintro ⟨s, t, w⟩ ⟨s', t', w'⟩ h
+      simp only [Prod.mk.injEq] at h ⊢
+      exact ⟨h.1, by omega, h.2.2⟩
+    · rintro ⟨s, m, w⟩
+      exact ⟨(s, m + s, w), by simp⟩
+  iso := c.identification
+
+end
 end KIP126.Synthetic.SpectralSequence

@@ -1,14 +1,6 @@
-import KIP126.Def.AdamsE2.LinBasisTable.Predicates
+import KIP126.Interface.Axiom.LinBasisTable
 
-namespace KIP126.LinE2
-
-/-- Unfinished certification of the archived additive basis, in t ≤ 261.
-Source: Zenodo 14875701 v126.3.cw49, PR #110 ff39e951; byte hashes are in
-RawData. The executable loader checks degrees, distinct coordinates and
-irreducibility, but those checks alone do not prove independence or spanning.
-This proof debt is separate from both normalization soundness and the
-comparison with the actual sphere Adams E₂. -/
-theorem basisTable_correct (s t : ℕ) (ht : t ≤ 261) : BasisTableCorrect s t := by
-  sorry
-
-end KIP126.LinE2
+/-! Compatibility import for the former stage-one entry. The public
+`KIP126.LinE2.basisTable_correct` is now a projection of Challenge1.
+Its producer is Def/Solution/LinProgram/BasisTable and does not import this
+consumer entry. This module defines no solution proof of the stage-zero goal. -/

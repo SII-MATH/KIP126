@@ -87,24 +87,26 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{proposition}[The $h_4$ classical--synthetic $d_2$ comparison]
   \label{prop:aim6-h4-comparison}
   \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism,def:external-result}
-  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.h₄}
-  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.h₀h₃Squared}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction}
-  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.lambdaMap}
-  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.lambdaMap_comm}
-  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.weightPreserving}
+  \lean{KIP126.Synthetic.SpectralSequence.lambdaMapFromAction}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction.lambdaMap_comm}
+  \lean{KIP126.Synthetic.SpectralSequence.weightPreserving_differential}
   \lean{KIP126.Comparison.ClassicalSynthetic.sourcePageMap}
   \lean{KIP126.Comparison.ClassicalSynthetic.sourcePageMap_differential_naturality}
   \notready
-  The upstream data layer now attaches multiplication by $\lambda$ to each
-  Mathlib page through \texttt{SyntheticLambdaAction}; its page maps are
-  morphisms of homological complexes, so \texttt{lambdaMap\_comm} follows from
-  chain-map commutativity.  The concrete \texttt{fixedWeightPage} and
-  \texttt{ReindexedSpectralSequenceMap.differential\_comm} similarly derive
-  differential naturality for fixed-weight comparison maps.  The final $h_4$
-  correspondence remains `notready`: the project still lacks
-  representative-level comparison across the two weights and compatibility
-  of that comparison with the typed action.
+  The internal \texttt{SyntheticLambdaAction} preserves the actual cycle
+  and boundary towers.  Its page maps are induced quotient maps of the same
+  ambient map; differential commutation is an explicit compatibility field.
+  Fixed-weight classical--synthetic comparison uses the same internal model
+  and the same requirement.  Weight preservation follows from the fixed
+  differential degree, without an independently supplied field.
+
+  The $h_4$ correspondence remains \texttt{notready}: the named standard
+  classes must be identified on the selected objects, the action must be
+  identified with the regraded image of the actual synthetic deformation map,
+  and the representative comparison across weights must respect that action.
+  Generic synthetic sequences no longer carry arbitrary independently chosen
+  $h_4$ and $h_0h_3^2$ elements.
 \end{proposition}
 
 \begin{proof}

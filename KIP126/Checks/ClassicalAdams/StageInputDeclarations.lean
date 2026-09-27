@@ -10,25 +10,35 @@ theorem projected from Challenge 2.  The producer and consumer declarations
 state the same `Nonempty ChallengeN` type directly, so no duplicated signature
 or separate type-alignment table is maintained here.
 
-The visible Challenge 1 input groups must retain exactly the data in the old
-generic records. Kernel-checked round trips below guard against strengthening
-the package or losing a dependent choice during interface expansion.
+Challenge 1 now also delivers correlated cooperation data, tensor witnesses
+and basis certification. The round trips retain every chosen datum; no
+compatibility constructor may silently select fresh coordinates or a new base.
 -/
 
 open KIP126 KIP126.Classical.Adams in
 example (F : StandardAdamsFoundation)
-    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2) :
-    (Challenge1.ofFoundationMilnor F M).foundation = F := by
+    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
+    (T : Challenge1.TensorInput (Challenge1.FoundationInput.ofStandard F))
+    (A : @Challenge1.CooperationInput (Challenge1.FoundationInput.ofStandard F) T
+      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
+    (B : Challenge1.LinBasisInterface) :
+    (Challenge1.ofFoundationMilnor F M T A B).foundation = F := by
   rfl
 
 open KIP126 KIP126.Classical.Adams in
 example (F : StandardAdamsFoundation)
-    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2) :
-    (Challenge1.ofFoundationMilnor F M).milnor = M := by
+    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
+    (T : Challenge1.TensorInput (Challenge1.FoundationInput.ofStandard F))
+    (A : @Challenge1.CooperationInput (Challenge1.FoundationInput.ofStandard F) T
+      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
+    (B : Challenge1.LinBasisInterface) :
+    (Challenge1.ofFoundationMilnor F M T A B).milnor = M := by
   rfl
 
 open KIP126 in
-example (c : Challenge1) : Challenge1.ofFoundationMilnor c.foundation c.milnor = c := by
+example (c : Challenge1) :
+    Challenge1.ofFoundationMilnor c.foundation c.milnor
+      c.tensorInput c.cooperationInput c.linBasis = c := by
   rfl
 
 open Lean Elab Command in
