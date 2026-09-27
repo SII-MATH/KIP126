@@ -41,20 +41,12 @@ def stage_lean(trusted: Path, candidate: Path) -> None:
         source_path(candidate, name)
         if (trusted / name).read_bytes() != (candidate / name).read_bytes():
             raise ValueError(f"candidate {name} differs from trusted producer configuration")
-    for name in ("KIP126", "KIP126.lean", "KIPBase", "KIPBase.lean"):
-        source = source_path(candidate, name)
+    names = ("KIP126", "KIP126.lean", "KIPBase", "KIPBase.lean")
+    # Match the PR producer, including changed and deleted historical modules.
+    # Validate all source trees before mutating the trusted checkout.
+    sources = [(name, source_path(candidate, name)) for name in names]
+    for name, source in sources:
         destination = trusted / name
-        if name.startswith("KIPBase"):
-            # pr-build deliberately retains trusted KIPBase. Reject a different
-            # candidate rather than label the base's outputs as candidate outputs.
-            if source.is_dir():
-                left = {p.relative_to(source): p.read_bytes() for p in source.rglob("*") if p.is_file()}
-                right = {p.relative_to(destination): p.read_bytes() for p in destination.rglob("*") if p.is_file()}
-                if left != right:
-                    raise ValueError("candidate KIPBase differs from trusted producer inputs")
-            elif source.read_bytes() != destination.read_bytes():
-                raise ValueError("candidate KIPBase.lean differs from trusted producer inputs")
-            continue
         if destination.is_dir():
             shutil.rmtree(destination)
             shutil.copytree(source, destination)

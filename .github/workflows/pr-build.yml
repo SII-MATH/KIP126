@@ -3,9 +3,9 @@ name: pr-build
 # Builds untrusted PR code in a TRUSTED, base-branch-defined workflow. A PR cannot change what
 # runs here (pull_request_target uses the base definition). The build/audit configuration
 # (lakefile, scripts/, manifest, toolchain) is the TRUSTED base's: we overlay only the PR's
-# `KIP126/` sources and validated Lake pins onto a base checkout. Lakefiles remain entirely
-# base-trusted; dependency repair PRs carry exact first-known-bad commits only in the manifest.
-# Any PR touching anything outside the allowed paths is routed to a human. PR `KIP126/` code
+# `KIP126/` and `KIPBase/` sources and validated Lake pins onto a base checkout. Root Lakefiles
+# remain base-trusted; dependency repair PRs carry exact first-known-bad commits only in the manifest.
+# Any PR touching anything outside the allowed paths is routed to a human. Candidate Lean code
 # compiles only under landrun (offline; writes confined to base/.lake; no secrets or token in
 # reach). The `build` commit status on the PR head SHA is the required merge check.
 #
@@ -36,9 +36,9 @@ on:
       - "blueprint/src/**"
   # The merge queue tests a batch (one or more PRs combined onto current main) before it lands. We
   # build the COMBINED merge-group commit and post the `build` status on it so the queue's required
-  # check is satisfied. The merge-group commit's KIP126/ (all batched PRs) is overlaid onto a
+  # check is satisfied. Both source libraries from the merge-group commit are overlaid onto a
   # freshly-checked-out TRUSTED base — exactly as for a single PR — so the build config stays
-  # base-trusted and only KIP126/ code is untrusted, regardless of batch size. A combined diff that
+  # base-trusted and both source libraries are untrusted, regardless of batch size. A combined diff that
   # reaches outside KIP126/ fails the group (the queue then bisects it); see the scope guard.
   merge_group:
     types: [checks_requested]
@@ -164,9 +164,10 @@ jobs:
           echo "changed files:"; echo "$files"
           # The root KIP126.lean is allowed alongside KIP126/: it is the (intentionally
           # empty) library root, normally untouched, but a PR may edit it. It is overlaid
-          # into the sandbox below and the import-boundary guard covers it. Everything else
-          # outside KIP126/ (scripts/, .github/, arbitrary Lake config) stays trusted-base-only and
-          # routes to a human. The lakefiles are always human-owned and never overlaid automatically.
+          # into the sandbox below and the import-boundary guard covers it.
+          # KIPBase is also overlaid and compiled, but still routes to human scope review.
+          # Scripts, workflows, and root Lake config stay trusted-base-only.
+          # Root lakefiles are human-owned and never overlaid automatically.
           # lake-manifest.json and lean-toolchain are also permitted, but ONLY as a
           # machine-validated forward bump: the "Validate the Lake-pin bump" step below
           # runs the trusted base scripts/check-bump.sh and routes to a human if it is
@@ -179,7 +180,7 @@ jobs:
               echo "HUMAN_LAKEFILE=1" >> "$GITHUB_ENV"
             fi
             echo "OUT_OF_SCOPE=1" >> "$GITHUB_ENV"
-            echo "::warning::PR changes paths outside KIP126/, Blueprint source, and Lake pins — its KIP126/ is still sandbox-built against the trusted base (so the build result is visible), but merging needs human review"
+            echo "::warning::PR changes paths outside KIP126/, Blueprint source, and Lake pins — its KIP126/ and KIPBase/ are still sandbox-built against the trusted base (so the build result is visible), but merging needs human review"
           elif echo "$files" | grep -qE '^blueprint/src/'; then
             if [ "${{ github.event_name }}" = "merge_group" ]; then
               echo "::notice::merge group contains Blueprint and Lean changes already validated at their PR heads"
@@ -397,27 +398,32 @@ jobs:
             fi
           }
 
-          check_no_new_heartbeat_budget base/KIP126 pr/KIP126 KIP126/
-          if [ -e pr/KIP126.lean ]; then
-            check_no_new_heartbeat_budget base/KIP126.lean pr/KIP126.lean KIP126.lean
-          fi
+          for library in KIP126 KIPBase; do
+            check_no_new_heartbeat_budget "base/$library" "pr/$library" "$library/"
+            check_no_new_heartbeat_budget "base/$library.lean" "pr/$library.lean" "$library.lean"
+          done
 
-      - name: Overlay PR KIP126/ and root KIP126.lean onto the trusted base (reject symlinks)
+      - name: Overlay candidate KIP126 and KIPBase sources onto the trusted base
         if: ${{ env.INFRA != '1' }}
         run: |
-          # No symlinks in the untrusted sources (avoid read/write escapes via the build tree).
-          if find pr/KIP126 -type l -print | grep -q .; then
-            echo "::error::symlinks are not allowed under KIP126/"; exit 1
-          fi
-          test -d pr/KIP126 && test ! -L pr/KIP126
-          rm -rf base/KIP126
-          cp -a pr/KIP126 base/KIP126
-          # Overlay the root KIP126.lean too (a regular file, never a symlink). Only if
-          # the PR actually ships one; otherwise keep the base copy.
-          if [ -e pr/KIP126.lean ]; then
-            test ! -L pr/KIP126.lean || { echo "::error::KIP126.lean must not be a symlink"; exit 1; }
-            cp -a pr/KIP126.lean base/KIP126.lean
-          fi
+          set -euo pipefail
+          # Validate BOTH libraries before changing the base. Candidate sources are
+          # compiled only later in landrun; the root Lake config and scripts stay trusted.
+          for library in KIP126 KIPBase; do
+            test -d "pr/$library"
+            test ! -L "pr/$library"
+            test -f "pr/$library.lean"
+            test ! -L "pr/$library.lean"
+            if [ -n "$(find "pr/$library" -type l -print -quit)" ]; then
+              echo "::error::symlinks are not allowed under $library/"; exit 1
+            fi
+          done
+          for library in KIP126 KIPBase; do
+            # Replace the whole tree so renamed/deleted modules cannot survive from main.
+            rm -rf "base/$library"
+            cp -a "pr/$library" "base/$library"
+            cp "pr/$library.lean" "base/$library.lean"
+          done
           # For a validated forward bump, overlay the PR's Lake pins too, so the build
           # below actually exercises the new mathlib/toolchain.
           if [ "${BUMP:-}" = "1" ]; then
@@ -1025,7 +1031,7 @@ jobs:
           post_status bump-guard "$bg_state" "$bg_desc"
 
           # build: the real sandboxed-build result ONLY — never a policy verdict. The build now runs even
-          # for an out-of-scope PR (its KIP126/ is overlaid onto the trusted base and built), so a red
+          # for an out-of-scope PR (its KIP126/ and KIPBase/ are overlaid onto the trusted base and built), so a red
           # `build` always means the code did not compile or an audit/lint failed, and fix-ci can trust
           # it. It is reported as not-run only when we genuinely could not build: an indeterminate file
           # list (INFRA), an unvalidated pin bump (BUMP_BAD — the overlay would need the PR's pins), or a

@@ -23,7 +23,9 @@ class HeartbeatBudgetGuardTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             repo = pathlib.Path(directory)
             for tree, content in (("base", trusted), ("pr", candidate)):
-                (repo / tree / "KIP126").mkdir(parents=True)
+                for library in ("KIP126", "KIPBase"):
+                    (repo / tree / library).mkdir(parents=True)
+                    (repo / tree / f"{library}.lean").write_text("")
                 source = repo / tree / path
                 source.parent.mkdir(parents=True, exist_ok=True)
                 source.write_text(content)
@@ -97,6 +99,17 @@ class HeartbeatBudgetGuardTests(unittest.TestCase):
         result = self.run_guard("set_option maxHeartbeats 0\n", path="KIP126.lean")
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("KIP126.lean adds an unapproved maxHeartbeats", result.stdout)
+
+    def test_candidate_kipbase_budgets_are_checked(self):
+        for path in ("KIPBase/Test.lean", "KIPBase.lean"):
+            with self.subTest(path=path):
+                result = self.run_guard("set_option maxHeartbeats 0\n", path=path)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("unapproved maxHeartbeats", result.stdout)
+                unchanged = self.run_guard("set_option maxHeartbeats 0\n",
+                                           trusted="set_option maxHeartbeats 0\n", path=path)
+                self.assertEqual(unchanged.returncode, 0, unchanged.stderr)
+
 
 
 class WorkflowRoutingTests(unittest.TestCase):
