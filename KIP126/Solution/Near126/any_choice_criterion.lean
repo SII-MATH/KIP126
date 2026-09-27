@@ -1,4 +1,5 @@
 import KIP126.Def.Kervaire.SphereAdams
+import KIP126.Def.Kervaire.Theta5.Proofs
 import KIP126.External.Literature.Kervaire
 
 /-!
@@ -15,7 +16,10 @@ open KIP126.Kervaire
 /-- For every admissible order-two synthetic choice `theta5`, `h₆²` survives
 exactly when the displayed `lambda eta` square vanishes, and permanence is
 equivalent to vanishing in the untruncated sphere. -/
-theorem any_choice_criterion [I : AnyChoiceCriterion] :
+theorem any_choice_criterion [I : AnyChoiceCriterion]
+    (correctionVanishes : ∀ {θ ψ},
+      I.context.highDifference (I.context.difference θ ψ) →
+        I.context.lambdaEta (I.context.correction θ ψ) = 0) :
   ∀ (theta5 : I.Carrier), I.context.isChoice theta5 →
     IsOrderTwo theta5 →
       (∀ (r : ℕ), 1 ≤ r →
@@ -25,6 +29,8 @@ theorem any_choice_criterion [I : AnyChoiceCriterion] :
       (I.context.is_permanent (I.context.lambdaEta (I.context.square theta5)) ↔
         I.context.untruncatedZero
           (I.context.lambdaEta (I.context.square theta5))) := by
-  sorry
+  intro theta5 hChoice hOrder
+  exact bjm_bx_criterion_any_choice I.context I.criterion I.order
+    correctionVanishes hChoice hOrder
 
 end KIP126.Solution.Near126.Thm7_3BJMBX

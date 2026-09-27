@@ -14,6 +14,11 @@ import KIPBase.StableHomotopy.TensorTriangulatedCategory
 import KIPBase.Synthetic.Basic
 import KIPBase.Synthetic.Sphere
 import KIPBase.Synthetic.Adams
+import KIPBase.Synthetic.ExtensionSS
+import KIPBase.Synthetic.QuotientTower
+import KIPBase.Synthetic.SolutionTower
+import KIPBase.Synthetic.QuotientExtensionSS
+import KIPBase.Synthetic.PageExtension
 import KIPBase.Synthetic.Nu
 import KIPBase.Synthetic.Rigidity
 import KIPBase.Synthetic.Lift

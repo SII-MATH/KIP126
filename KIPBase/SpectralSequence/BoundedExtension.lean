@@ -448,11 +448,10 @@ noncomputable def ThreeSpectraChain.boundedEssG
 
 /-! ### Abstract ESS accessors and detection set
 
-These accessors expose the ESS differential and boundary as objects indexed
-by abstract `ω`-bidegrees, anchored to the bounded model. The concrete
-computation through `(ext.ess t).pageGraded` is left as a follow-up; for now
-the bodies are `sorry` so downstream consumers (e.g. `Commutativity.lean`)
-can refer to them at the type level. -/
+The ESS itself is indexed by `(filtration, complex degree) : ℤ × ℤ` at a
+fixed abutment degree `t : ω'`.  The following accessors therefore use that
+concrete index rather than pretending that an arbitrary input grading `ω`
+canonically identifies with the ESS grading. -/
 
 /-- The subtype of abutment elements detected by an E∞ class `y` at bidegree
     `k`. An element `x : T ⟶ F^s A^{k'}` belongs to the detection set of `y`
@@ -464,31 +463,34 @@ def DetectionSet
   { x : T ⟶ Subobject.underlying.obj (F.F (conv.reindex k).1 (conv.reindex k).2) //
     Detects conv y x }
 
-/-- The ESS differential at page `n` from `ω`-bidegree `k₁` to `k₂`, viewed as
-    a target object in `C`. -/
+/-- The page-`r` differential of the extension spectral sequence at fixed
+abutment degree `t` and ESS bidegree `k = (filtration, complex degree)`. -/
 noncomputable def BoundedExtensionSS.essDiff
     {E₁ E₂ : SpectralSequence C ω}
     {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
     {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
     {cm : ConvergenceMorphism conv₁ conv₂}
     {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
-    (_ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
-    (_n : ℤ) (_k₁ _k₂ : ω) : C :=
-  sorry
+    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
+    (t : ω') (r : ℤ) (k : ℤ × ℤ) :
+    (ext.ess t).Page r k ⟶
+      (ext.ess t).Page r (k + (ext.ess t).diffDeg r) :=
+  (ext.ess t).d r k
 
-/-- The ESS boundary at page `n`, bidegree `k`, viewed as an object in `C`. -/
+/-- The image object of an ESS differential.  This is the categorical version
+of the subgroup of page-`r` boundaries contributed by that differential. -/
 noncomputable def BoundedExtensionSS.essBoundary
     {E₁ E₂ : SpectralSequence C ω}
     {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
     {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
     {cm : ConvergenceMorphism conv₁ conv₂}
     {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
-    (_ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
-    (_n : ℤ) (_k : ω) : C :=
-  sorry
+    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
+    (t : ω') (r : ℤ) (k : ℤ × ℤ) : C :=
+  Subobject.underlying.obj (imageSubobject (ext.essDiff t r k))
 
-/-- An **$f$-extension** from index `k₁` to `k₂` on page `n`: the ESS
-    differential target is nonzero. -/
+/-- An essential `f`-extension at `(t,r,k)` means that the corresponding ESS
+differential is nonzero. -/
 abbrev HasFExtension
     {E₁ E₂ : SpectralSequence C ω}
     {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
@@ -496,8 +498,8 @@ abbrev HasFExtension
     {cm : ConvergenceMorphism conv₁ conv₂}
     {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
     (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
-    (n : ℤ) (k₁ k₂ : ω) : Prop :=
-  ¬IsZero (ext.essDiff n k₁ k₂)
+    (t : ω') (r : ℤ) (k : ℤ × ℤ) : Prop :=
+  ext.essDiff t r k ≠ 0
 
 /-- **ESS 的 non-crossing 唯一性引理**：
     设 ESS（由过滤复形 `ext.complex` 给出的谱序列）中有一条
@@ -550,6 +552,55 @@ structure FilteredComplexMorphism (FC₁ FC₂ : FilteredComplex C) where
            Subobject.underlying.obj (FC₂.fil s k)),
       φ ≫ (FC₂.fil s k).arrow = (FC₁.fil s k).arrow ≫ f k
 
+/-- 两项过滤复形的标准态射构造。给定两个链复形分量上的映射、
+    链映射方块和两个过滤相容性，在次数 `1` 和 `0` 取这两个映射，
+    其余次数取零态射。 -/
+noncomputable def underlyingComplexMorphism
+    {τ : Type w}
+    {A₁ A₂ B₁ B₂ : τ → C}
+    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    {G₁ : Filtration B₁} {G₂ : Filtration B₂}
+    (aMap : ∀ t, A₁ t ⟶ A₂ t)
+    (aCompat : ∀ (s : ℤ) (t : τ),
+      ∃ φ, φ ≫ (F₂.F s t).arrow = (F₁.F s t).arrow ≫ aMap t)
+    (bMap : ∀ t, B₁ t ⟶ B₂ t)
+    (bCompat : ∀ (s : ℤ) (t : τ),
+      ∃ φ, φ ≫ (G₂.F s t).arrow = (G₁.F s t).arrow ≫ bMap t)
+    (u₁ : ∀ t, A₁ t ⟶ B₁ t) (u₂ : ∀ t, A₂ t ⟶ B₂ t)
+    (comm : ∀ t, u₁ t ≫ bMap t = aMap t ≫ u₂ t)
+    (compat₁ : ∀ (s : ℤ) (t : τ),
+      ∃ φ, φ ≫ (G₁.F s t).arrow = (F₁.F s t).arrow ≫ u₁ t)
+    (compat₂ : ∀ (s : ℤ) (t : τ),
+      ∃ φ, φ ≫ (G₂.F s t).arrow = (F₂.F s t).arrow ≫ u₂ t)
+    (t : τ) :
+    FilteredComplexMorphism
+      (underlyingComplex aMap aCompat t) (underlyingComplex bMap bCompat t) := by
+  let component : ∀ k : ℤ,
+      (underlyingComplex aMap aCompat t).A k ⟶
+        (underlyingComplex bMap bCompat t).A k := fun k =>
+    if h₁ : k = 1 then
+      eqToHom (by simp [underlyingComplex, twoTermObj, h₁]) ≫ u₁ t ≫
+        eqToHom (by simp [underlyingComplex, twoTermObj, h₁])
+    else if h₀ : k = 0 then
+      eqToHom (by simp [underlyingComplex, twoTermObj, h₀]) ≫ u₂ t ≫
+        eqToHom (by simp [underlyingComplex, twoTermObj, h₀])
+    else 0
+  refine { f := component, comm_d := ?_, filt_compat := ?_ }
+  · intro k
+    by_cases h₁ : k = 1
+    · subst k
+      simpa [component, underlyingComplex, twoTermDiff, twoTermObj] using comm t
+    · simp [component, underlyingComplex, twoTermDiff, twoTermObj, h₁]
+  · intro s k
+    by_cases h₁ : k = 1
+    · subst k
+      simpa [component, underlyingComplex, twoTermFil, twoTermObj] using compat₁ s t
+    · by_cases h₀ : k = 0
+      · subst k
+        simpa [component, underlyingComplex, twoTermFil, twoTermObj] using compat₂ s t
+      · refine ⟨0, ?_⟩
+        simp [component, underlyingComplex, twoTermFil, twoTermObj, h₁, h₀]
+
 /-- 过滤复形态射在关联分次 `gr^s A^k` 上诱导的映射：
     由保过滤提升经 `cokernel.map` 构造（同 `Filtration.inducedAssocGradedMap` 的模式）。 -/
 noncomputable def FilteredComplexMorphism.assocGradedMap
@@ -566,6 +617,148 @@ noncomputable def FilteredComplexMorphism.assocGradedMap
       rw [(g.filt_compat s k).choose_spec, (g.filt_compat (s + 1) k).choose_spec,
         ← Category.assoc, Subobject.ofLE_arrow])
 
+/-- 广义关联分次映射（显式提升族版本）：把 `filt_compat` 的提升族
+    换成显式参数 `φ`，避免 `.choose` 在 rw 时产生 motive 障碍。
+    与 `assocGradedMap` 在 `φ := (g.filt_compat _ _).choose` 处定义相等。 -/
+noncomputable def FilteredComplexMorphism.assocGradedMapOfMap
+    {FC₁ FC₂ : FilteredComplex C}
+    (φ : ∀ (s k : ℤ), Subobject.underlying.obj (FC₁.fil s k) ⟶
+      Subobject.underlying.obj (FC₂.fil s k))
+    (hw : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₁.fil (s + 1) k) (FC₁.fil s k) (FC₁.fil_anti s k) ≫ φ s k =
+        φ (s + 1) k ≫ Subobject.ofLE (FC₂.fil (s + 1) k) (FC₂.fil s k) (FC₂.fil_anti s k))
+    (s k : ℤ) : FC₁.assocGraded s k ⟶ FC₂.assocGraded s k :=
+  cokernel.map
+    (Subobject.ofLE (FC₁.fil (s + 1) k) (FC₁.fil s k) (FC₁.fil_anti s k))
+    (Subobject.ofLE (FC₂.fil (s + 1) k) (FC₂.fil s k) (FC₂.fil_anti s k))
+    (φ (s + 1) k) (φ s k) (hw s k)
+
+/-- 广义关联分次映射的同余性：提升族相等则诱导映射相等。 -/
+theorem FilteredComplexMorphism.assocGradedMapOfMap_congr
+    {FC₁ FC₂ : FilteredComplex C}
+    {φ ψ : ∀ (s k : ℤ), Subobject.underlying.obj (FC₁.fil s k) ⟶
+      Subobject.underlying.obj (FC₂.fil s k)}
+    (hwφ : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₁.fil (s + 1) k) (FC₁.fil s k) (FC₁.fil_anti s k) ≫ φ s k =
+        φ (s + 1) k ≫ Subobject.ofLE (FC₂.fil (s + 1) k) (FC₂.fil s k) (FC₂.fil_anti s k))
+    (hwψ : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₁.fil (s + 1) k) (FC₁.fil s k) (FC₁.fil_anti s k) ≫ ψ s k =
+        ψ (s + 1) k ≫ Subobject.ofLE (FC₂.fil (s + 1) k) (FC₂.fil s k) (FC₂.fil_anti s k))
+    (h : φ = ψ) (s k : ℤ) :
+    FilteredComplexMorphism.assocGradedMapOfMap φ hwφ s k =
+      FilteredComplexMorphism.assocGradedMapOfMap ψ hwψ s k := by
+  subst h
+  rfl
+
+/-- 广义关联分次映射的恒等性：恒等提升诱导恒等映射。
+    用 `cokernel.π` 的外满性消去后直接化简。 -/
+theorem FilteredComplexMorphism.assocGradedMapOfMap_id
+    (FC : FilteredComplex C) (s k : ℤ) :
+    FilteredComplexMorphism.assocGradedMapOfMap
+      (fun _ _ => 𝟙 _) (fun s k => by simp) s k = 𝟙 (FC.assocGraded s k) := by
+  apply (cancel_epi (cokernel.π _)).mp
+  simp only [FilteredComplexMorphism.assocGradedMapOfMap, cokernel.map, cokernel.π_desc,
+    Category.id_comp]
+  show cokernel.π _ = cokernel.π _ ≫ 𝟙 (cokernel _)
+  simp only [Category.comp_id]
+
+/-- 广义关联分次映射的复合性：复合提升诱导复合映射。 -/
+theorem FilteredComplexMorphism.assocGradedMapOfMap_comp
+    {FC₁ FC₂ FC₃ : FilteredComplex C}
+    (φ : ∀ (s k : ℤ), Subobject.underlying.obj (FC₁.fil s k) ⟶
+      Subobject.underlying.obj (FC₂.fil s k))
+    (ψ : ∀ (s k : ℤ), Subobject.underlying.obj (FC₂.fil s k) ⟶
+      Subobject.underlying.obj (FC₃.fil s k))
+    (hwφ : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₁.fil (s + 1) k) (FC₁.fil s k) (FC₁.fil_anti s k) ≫ φ s k =
+        φ (s + 1) k ≫ Subobject.ofLE (FC₂.fil (s + 1) k) (FC₂.fil s k) (FC₂.fil_anti s k))
+    (hwψ : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₂.fil (s + 1) k) (FC₂.fil s k) (FC₂.fil_anti s k) ≫ ψ s k =
+        ψ (s + 1) k ≫ Subobject.ofLE (FC₃.fil (s + 1) k) (FC₃.fil s k) (FC₃.fil_anti s k))
+    (hwφψ : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₁.fil (s + 1) k) (FC₁.fil s k) (FC₁.fil_anti s k) ≫ (φ s k ≫ ψ s k) =
+        (φ (s + 1) k ≫ ψ (s + 1) k) ≫
+          Subobject.ofLE (FC₃.fil (s + 1) k) (FC₃.fil s k) (FC₃.fil_anti s k))
+    (s k : ℤ) :
+    FilteredComplexMorphism.assocGradedMapOfMap
+        (fun s k => φ s k ≫ ψ s k) hwφψ s k =
+      FilteredComplexMorphism.assocGradedMapOfMap φ hwφ s k ≫
+        FilteredComplexMorphism.assocGradedMapOfMap ψ hwψ s k := by
+  apply (cancel_epi (cokernel.π _)).mp
+  simp only [FilteredComplexMorphism.assocGradedMapOfMap, cokernel.map, cokernel.π_desc_assoc,
+    cokernel.π_desc, Category.assoc]
+
+/-- 恒等过滤复形态射：逐次数取恒等映射。
+    显式命名以避免 `𝟙` 在 `Category (FilteredComplex C)` 实例
+    声明之前不可用的问题。 -/
+def FilteredComplexMorphism.id (FC : FilteredComplex C) :
+    FilteredComplexMorphism FC FC where
+  f := fun _ => 𝟙 _
+  comm_d := fun _ => by simp
+  filt_compat := fun s k => ⟨𝟙 _, by simp⟩
+
+/-- 复合过滤复形态射：逐次数取复合，微分交换与保过滤提升
+    取两次的复合（与 `Category (FilteredComplex C)` 实例中的 `comp`
+    定义一致；显式命名以避免实例声明顺序问题）。 -/
+def FilteredComplexMorphism.comp {FC₁ FC₂ FC₃ : FilteredComplex C}
+    (g : FilteredComplexMorphism FC₁ FC₂) (h : FilteredComplexMorphism FC₂ FC₃) :
+    FilteredComplexMorphism FC₁ FC₃ where
+  f := fun k => g.f k ≫ h.f k
+  comm_d := fun k => by
+    rw [Category.assoc, h.comm_d, ← Category.assoc, g.comm_d, Category.assoc]
+  filt_compat := fun s k =>
+    ⟨(g.filt_compat s k).choose ≫ (h.filt_compat s k).choose, by
+      rw [Category.assoc, (h.filt_compat s k).choose_spec,
+        ← Category.assoc, (g.filt_compat s k).choose_spec, Category.assoc]⟩
+
+/-- 桥接引理：`assocGradedMap` 等于显式参数版本在 choose 提升处的取值
+    （两边同为 `cokernel.map` 同一组参数），由 `rfl` 即得；
+    价值在于把 `.choose` 从 rw 目标中剥离到等式右端。 -/
+theorem FilteredComplexMorphism.assocGradedMap_eq
+    {FC₁ FC₂ : FilteredComplex C} (g : FilteredComplexMorphism FC₁ FC₂) (s k : ℤ) :
+    g.assocGradedMap s k =
+      FilteredComplexMorphism.assocGradedMapOfMap
+        (fun s k => (g.filt_compat s k).choose)
+        (fun s k => by
+          apply (cancel_mono ((FC₂.fil s k).arrow)).mp
+          simp only [Category.assoc, Subobject.ofLE_arrow]
+          rw [(g.filt_compat s k).choose_spec, (g.filt_compat (s + 1) k).choose_spec,
+            ← Category.assoc, Subobject.ofLE_arrow]) s k :=
+  rfl
+
+/-- 过滤复形态射在关联分次上映射的恒等性：
+    恒等态射的 `assocGradedMap` 等于恒等映射。
+    先经桥接引理转成广义版本，再把 `filt_compat` 的 choose 提升
+    （恒等态射下其见证即 `𝟙`，由 `cancel_mono arrow` 论证）替换为恒等提升，
+    最后调用广义恒等引理。 -/
+theorem FilteredComplexMorphism.assocGradedMap_id
+    (FC : FilteredComplex C) (s k : ℤ) :
+    FilteredComplexMorphism.assocGradedMap
+      (FilteredComplexMorphism.id FC : FilteredComplexMorphism FC FC) s k =
+      𝟙 (FC.assocGraded s k) := by
+  rw [FilteredComplexMorphism.assocGradedMap_eq
+    (FilteredComplexMorphism.id FC : FilteredComplexMorphism FC FC)]
+  have h : (fun s k : ℤ =>
+        ((FilteredComplexMorphism.id FC :
+          FilteredComplexMorphism FC FC).filt_compat s k).choose) =
+      fun _ _ => 𝟙 _ := by
+    funext s k
+    apply (cancel_mono ((FC.fil s k).arrow)).mp
+    rw [((FilteredComplexMorphism.id FC :
+      FilteredComplexMorphism FC FC).filt_compat s k).choose_spec]
+    simp only [FilteredComplexMorphism.id, Category.comp_id, Category.id_comp]
+  rw [FilteredComplexMorphism.assocGradedMapOfMap_congr
+    (fun s k => by
+      apply (cancel_mono ((FC.fil s k).arrow)).mp
+      simp only [Category.assoc, Subobject.ofLE_arrow]
+      rw [((FilteredComplexMorphism.id FC :
+        FilteredComplexMorphism FC FC).filt_compat s k).choose_spec,
+        ((FilteredComplexMorphism.id FC :
+          FilteredComplexMorphism FC FC).filt_compat (s + 1) k).choose_spec,
+        ← Category.assoc, Subobject.ofLE_arrow])
+    (fun s k => by simp) h s k]
+  exact FilteredComplexMorphism.assocGradedMapOfMap_id FC s k
+
 /-- 过滤复形态射的外延性：两态射的 `f` 分量相同则相等
     （其余字段都是 Prop，proof irrelevance）。 -/
 theorem FilteredComplexMorphism.ext {FC₁ FC₂ : FilteredComplex C}
@@ -578,13 +771,8 @@ theorem FilteredComplexMorphism.ext {FC₁ FC₂ : FilteredComplex C}
     范畴公理由 `FilteredComplexMorphism.ext` 归约到 `f` 分量。 -/
 noncomputable instance : Category (FilteredComplex C) where
   Hom FC₁ FC₂ := FilteredComplexMorphism FC₁ FC₂
-  id FC := ⟨fun _ => 𝟙 _, fun _ => by simp, fun _ _ => ⟨𝟙 _, by simp⟩⟩
-  comp g h := ⟨fun k => g.f k ≫ h.f k, fun k => by
-      rw [Category.assoc, h.comm_d, ← Category.assoc, g.comm_d, Category.assoc],
-    fun s k =>
-      ⟨(g.filt_compat s k).choose ≫ (h.filt_compat s k).choose, by
-        rw [Category.assoc, (h.filt_compat s k).choose_spec,
-          ← Category.assoc, (g.filt_compat s k).choose_spec, Category.assoc]⟩⟩
+  id FC := FilteredComplexMorphism.id FC
+  comp g h := FilteredComplexMorphism.comp g h
   id_comp g := FilteredComplexMorphism.ext (funext fun k => Category.id_comp (g.f k))
   comp_id g := FilteredComplexMorphism.ext (funext fun k => Category.comp_id (g.f k))
   assoc g h l :=
@@ -620,25 +808,756 @@ noncomputable instance : Category (BoundedFilteredComplex C) where
 
 /-! ### toSS 函子：有界过滤复形 ⥤ 谱序列 -/
 
+/-- 通用提升引理：给定核层交换方块 `left ≫ f₂ = f₁ ≫ right`
+    与 cokernel 投影层交换方块 `left ≫ πV₂ = πV₁ ≫ φ`，
+    `imageSubobjectMap` 给出 `image(ker f₁ ≫ πV₁) → image(ker f₂ ≫ πV₂)`
+    的提升使提升方块交换。 -/
+private lemma imageSubobjectMap_of_kernel_cokernel_square
+    {X₁ Y₁ X₂ Y₂ V₁ V₂ : C}
+    {f₁ : X₁ ⟶ Y₁} {f₂ : X₂ ⟶ Y₂}
+    {left : X₁ ⟶ X₂} {right : Y₁ ⟶ Y₂}
+    (sq_ker : left ≫ f₂ = f₁ ≫ right)
+    {πV₁ : X₁ ⟶ V₁} {πV₂ : X₂ ⟶ V₂}
+    {φ : V₁ ⟶ V₂}
+    (h_πV : left ≫ πV₂ = πV₁ ≫ φ) :
+    ∃ (lift : Subobject.underlying.obj (imageSubobject ((kernelSubobject f₁).arrow ≫ πV₁)) ⟶
+              Subobject.underlying.obj (imageSubobject ((kernelSubobject f₂).arrow ≫ πV₂))),
+      lift ≫ (imageSubobject ((kernelSubobject f₂).arrow ≫ πV₂)).arrow =
+        (imageSubobject ((kernelSubobject f₁).arrow ≫ πV₁)).arrow ≫ φ := by
+  let sq := Arrow.homMk (f := Arrow.mk f₁) (g := Arrow.mk f₂) left right sq_ker
+  let ker_lift := kernelSubobjectMap sq
+  have hker := kernelSubobjectMap_arrow sq
+  have h_sq_left : sq.left = left := rfl
+  have img_sq_comm : ker_lift ≫ ((kernelSubobject f₂).arrow ≫ πV₂) =
+      ((kernelSubobject f₁).arrow ≫ πV₁) ≫ φ := by
+    rw [Category.assoc, ← h_πV, ← Category.assoc, hker, h_sq_left, Category.assoc]
+  let sq_img := Arrow.homMk
+    (f := Arrow.mk ((kernelSubobject f₁).arrow ≫ πV₁))
+    (g := Arrow.mk ((kernelSubobject f₂).arrow ≫ πV₂))
+    ker_lift φ img_sq_comm
+  exact ⟨imageSubobjectMap sq_img, imageSubobjectMap_arrow sq_img⟩
+
+/-- 辅助引理（保 Z 塔字段）：过滤复形态射诱导的关联分次映射
+    把每个双次数 `(s, k)` 上的循环子对象 `Z_r` 映入目标谱序列的对应
+    循环子对象（以 `∃` 提升使提升方块交换表述）。
+    陈述为全真；证明体已清理。 -/
+private theorem FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_Z
+    {X Y : BoundedFilteredComplex C} (g : X ⟶ Y) :
+    ∀ (k : ℤ × ℤ) (r : WithTop ℕ),
+    ∃ (lift : Subobject.underlying.obj
+          (((X.FC.toSpectralSequence X.bnd).ssData k).Z r) ⟶
+        Subobject.underlying.obj
+          (((Y.FC.toSpectralSequence Y.bnd).ssData k).Z r)),
+      lift ≫ (((Y.FC.toSpectralSequence Y.bnd).ssData k).Z r).arrow =
+        (((X.FC.toSpectralSequence X.bnd).ssData k).Z r).arrow ≫
+          FilteredComplexMorphism.assocGradedMap
+            (g : FilteredComplexMorphism X.FC Y.FC) k.1 k.2 := by
+  rintro ⟨s, k⟩ r
+  -- 两边的谱序列都取自 toPreSS，ssData 即 toSSData，Z 即 cycleSubobject。
+  dsimp only [FilteredComplex.toSpectralSequence, FilteredComplex.toPreSS]
+  -- 提升族：源/目标在 s 与 s+1 层上的保过滤提升（.choose）。
+  set u := (g.filt_compat s k).choose with hu
+  set v := (g.filt_compat (s + 1) k).choose with hv
+  set hu_spec := (g.filt_compat s k).choose_spec with hu_spec_def
+  set hv_spec := (g.filt_compat (s + 1) k).choose_spec with hv_spec_def
+  -- π₁：源关联分次层的 cokernel 投影。
+  set π₁ := X.FC.filToAssocGraded s k with hπ₁
+  -- π₂：目标关联分次层的 cokernel 投影。
+  set π₂ := Y.FC.filToAssocGraded s k with hπ₂
+  -- φ 的 π-性质：π₁ ≫ φ = u ≫ π₂。
+  -- 这是 `assocGradedMap = cokernel.map ι₁ ι₂ v u w` 的定义性质
+  -- （cokernel.map 是 cokernel.desc，π ≫ desc = 命名的映射）。
+  have hφπ : π₁ ≫ FilteredComplexMorphism.assocGradedMap
+      (g : FilteredComplexMorphism X.FC Y.FC) s k = u ≫ π₂ := by
+    unfold FilteredComplexMorphism.assocGradedMap π₁ π₂
+      FilteredComplex.filToAssocGraded
+    exact cokernel.π_desc _ (u ≫ cokernel.π _) _
+  -- f_r 依 r 分类：⊤ 时 f = F^s.arrow ≫ d（无第三分量），
+  -- ↑n 时 f = F^s.arrow ≫ d ≫ cokernel.π (F^{s+n}(k-1)).arrow。
+  -- 核心交换性：u ≫ f₂_基 = f₁_基 ≫ g.f (k-1)（f 基 = F^s.arrow ≫ d）。
+  have key : u ≫ ((Y.FC.fil s k).arrow ≫ Y.FC.d k) =
+      ((X.FC.fil s k).arrow ≫ X.FC.d k) ≫ g.f (k - 1) := by
+    rw [← Category.assoc,
+      show u ≫ (Y.FC.fil s k).arrow = (X.FC.fil s k).arrow ≫ g.f k by exact hu_spec,
+      Category.assoc, g.comm_d]
+    exact (Category.assoc _ _ _).symm
+  -- r 分类：⊤ 时 f_r = F^s.arrow ≫ d（核层交换即 key）；
+  -- ↑n 时 f_r = F^s.arrow ≫ d ≫ cokernel.π (F^{s+n}(k-1)).arrow，
+  -- 右翼取 cokernel 层上由保过滤提升 w 诱导的 cokernel.map。
+  rcases r with (_ | n)
+  · dsimp only [FilteredComplex.toSSData, FilteredComplex.cycleSubobject]
+    exact imageSubobjectMap_of_kernel_cokernel_square
+      (left := u) (right := g.f (k - 1)) key hφπ.symm
+  · dsimp only [FilteredComplex.toSSData, FilteredComplex.cycleSubobject]
+    -- w：目标在 s+n 层（k-1 处）的保过滤提升。
+    set w := (g.filt_compat (s + ↑n) (k - 1)).choose with hw
+    have hwspec := (g.filt_compat (s + ↑n) (k - 1)).choose_spec
+    -- cokernel 层诱导映射：coker(F_X^{s+n}) → coker(F_Y^{s+n})。
+    set cok_right := cokernel.map ((X.FC.fil (s + ↑n) (k - 1)).arrow)
+      ((Y.FC.fil (s + ↑n) (k - 1)).arrow) w (g.f (k - 1)) hwspec.symm with hcok
+    have hπcok : cokernel.π ((X.FC.fil (s + ↑n) (k - 1)).arrow) ≫ cok_right =
+        g.f (k - 1) ≫ cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow) := by
+      unfold cok_right at *
+      exact cokernel.π_desc _ _ _
+    -- 核层交换方块：u ≫ f₂_r = f₁_r ≫ cok_right。
+    have hsq : u ≫ ((Y.FC.fil s k).arrow ≫ Y.FC.d k ≫
+        cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow)) =
+      ((X.FC.fil s k).arrow ≫ X.FC.d k ≫
+        cokernel.π ((X.FC.fil (s + ↑n) (k - 1)).arrow)) ≫ cok_right := by
+      have e1 : u ≫ (Y.FC.fil s k).arrow = (X.FC.fil s k).arrow ≫ g.f k :=
+        hu_spec
+      have e2 : X.FC.d k ≫ g.f (k - 1) = g.f k ≫ Y.FC.d k := (g.comm_d k).symm
+      -- e4：d ≫ (f ≫ π_Y) = d ≫ (π_X ≫ cok_right)（由 hπcok）。
+      have e4 : X.FC.d k ≫ (g.f (k - 1) ≫
+          cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow)) =
+          X.FC.d k ≫ (cokernel.π ((X.FC.fil (s + ↑n) (k - 1)).arrow) ≫ cok_right) := by
+        rw [hπcok]
+      calc u ≫ (Y.FC.fil s k).arrow ≫ Y.FC.d k ≫
+          cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow)
+          = (u ≫ (Y.FC.fil s k).arrow) ≫ Y.FC.d k ≫
+              cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow) :=
+            (Category.assoc _ _ _).symm
+        _ = (X.FC.fil s k).arrow ≫ g.f k ≫ Y.FC.d k ≫
+              cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow) := by
+            rw [← Category.assoc, e1, Category.assoc, Category.assoc]
+        _ = (X.FC.fil s k).arrow ≫ X.FC.d k ≫ g.f (k - 1) ≫
+              cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow) := by
+            -- hs：e2（d ≫ f = f ≫ d'）两侧各后接 π（显式用 assoc 抵消括号差）。
+            have hs : (X.FC.fil s k).arrow ≫ g.f k ≫ Y.FC.d k ≫
+                cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow) =
+                (X.FC.fil s k).arrow ≫ X.FC.d k ≫ g.f (k - 1) ≫
+                  cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow) := by
+              have h : (g.f k ≫ Y.FC.d k) ≫ cokernel.π
+                  ((Y.FC.fil (s + ↑n) (k - 1)).arrow) =
+                  (X.FC.d k ≫ g.f (k - 1)) ≫ cokernel.π
+                    ((Y.FC.fil (s + ↑n) (k - 1)).arrow) :=
+                congrArg (fun x ↦ x ≫ cokernel.π
+                  ((Y.FC.fil (s + ↑n) (k - 1)).arrow)) e2.symm
+              calc (X.FC.fil s k).arrow ≫ g.f k ≫ Y.FC.d k ≫
+                  cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow)
+                  = (X.FC.fil s k).arrow ≫ (g.f k ≫ Y.FC.d k) ≫ cokernel.π
+                    ((Y.FC.fil (s + ↑n) (k - 1)).arrow) := by
+                    rw [Category.assoc]
+                _ = (X.FC.fil s k).arrow ≫ (X.FC.d k ≫ g.f (k - 1)) ≫
+                    cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow) := by
+                  rw [h]
+                _ = (X.FC.fil s k).arrow ≫ X.FC.d k ≫ g.f (k - 1) ≫
+                    cokernel.π ((Y.FC.fil (s + ↑n) (k - 1)).arrow) := by
+                  rw [Category.assoc]
+            exact hs
+        _ = (X.FC.fil s k).arrow ≫ X.FC.d k ≫ (cokernel.π
+              ((X.FC.fil (s + ↑n) (k - 1)).arrow) ≫ cok_right) := by
+            rw [e4]
+        _ = ((X.FC.fil s k).arrow ≫ X.FC.d k ≫
+              cokernel.π ((X.FC.fil (s + ↑n) (k - 1)).arrow)) ≫ cok_right := by
+            rw [Category.assoc, Category.assoc, ← Category.assoc]
+    exact imageSubobjectMap_of_kernel_cokernel_square
+      (left := u) (right := cok_right) hsq hφπ.symm
+
+/-- 辅助引理（保 B 塔字段）：过滤复形态射诱导的关联分次映射
+    把每个双次数 `(s, k)` 上的边缘子对象 `B_r` 映入目标谱序列的对应
+    边缘子对象（以 `∃` 提升使提升方块交换表述）。
+    陈述为全真；证明体已清理。 -/
+private theorem FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_B
+    {X Y : BoundedFilteredComplex C} (g : X ⟶ Y) :
+    ∀ (k : ℤ × ℤ) (r : WithTop ℕ),
+    ∃ (lift : Subobject.underlying.obj
+          (((X.FC.toSpectralSequence X.bnd).ssData k).B r) ⟶
+        Subobject.underlying.obj
+          (((Y.FC.toSpectralSequence Y.bnd).ssData k).B r)),
+      lift ≫ (((Y.FC.toSpectralSequence Y.bnd).ssData k).B r).arrow =
+        (((X.FC.toSpectralSequence X.bnd).ssData k).B r).arrow ≫
+          FilteredComplexMorphism.assocGradedMap
+            (g : FilteredComplexMorphism X.FC Y.FC) k.1 k.2 := by
+  rintro ⟨s, k⟩ r
+  -- 两边的谱序列都取自 toPreSS，ssData 即 toSSData，B 即 boundarySubobject。
+  dsimp only [FilteredComplex.toSpectralSequence, FilteredComplex.toPreSS]
+  -- 提升族：s 层保过滤提升 u（源 F^s → 目标 F^s）。
+  set u := (g.filt_compat s k).choose with hu
+  set hu_spec := (g.filt_compat s k).choose_spec with hu_spec_def
+  -- π₁/π₂：源/目标关联分次层的 cokernel 投影。
+  set π₁ := X.FC.filToAssocGraded s k with hπ₁
+  set π₂ := Y.FC.filToAssocGraded s k with hπ₂
+  -- φ 的 π-性质：π₁ ≫ φ = u ≫ π₂（同 preserves_Z 的 hφπ）。
+  have hφπ : π₁ ≫ FilteredComplexMorphism.assocGradedMap
+      (g : FilteredComplexMorphism X.FC Y.FC) s k = u ≫ π₂ := by
+    unfold FilteredComplexMorphism.assocGradedMap π₁ π₂
+      FilteredComplex.filToAssocGraded
+    exact cokernel.π_desc _ (u ≫ cokernel.π _) _
+  -- s-n 层（k+1 处）源/目标的保过滤提升（imgD 层交换用）。
+  -- B_r = imageSubobject(ofLE(I, F^s) ≫ πV)，其中 I = imgD ⊓ F^s，
+  -- imgD = imageSubobject(F^{s-n+1}(k+1).arrow ≫ dToK k)（r=↑n）
+  --   或 imageSubobject(dToK k)（r=⊤）。
+  have hdToK : g.f (k + 1) ≫ Y.FC.dToK k = X.FC.dToK k ≫ g.f k := by
+    let e : k + 1 - 1 = k := by omega
+    have htr : g.f (k + 1 - 1) ≫ eqToHom (congrArg Y.FC.A e) =
+        eqToHom (congrArg X.FC.A e) ≫ g.f k :=
+      eqToHom_naturality (fun j => g.f j) e
+    unfold FilteredComplex.dToK
+    rw [← Category.assoc, g.comm_d (k + 1), Category.assoc, htr]
+    simp only [Category.assoc]
+  rcases r with (_ | n)
+  · dsimp only [FilteredComplex.toSSData, FilteredComplex.boundarySubobject]
+    let imgX := imageSubobject (X.FC.dToK k)
+    let imgY := imageSubobject (Y.FC.dToK k)
+    let IX := imgX ⊓ X.FC.fil s k
+    let IY := imgY ⊓ Y.FC.fil s k
+    let imgMap := imageSubobjectMap
+      (Arrow.homMk' (g.f (k + 1)) (g.f k) hdToK)
+    have himg : imgMap ≫ imgY.arrow = imgX.arrow ≫ g.f k := by
+      exact imageSubobjectMap_arrow _
+    have hIXimg : imgX.Factors IX.arrow :=
+      Subobject.inf_arrow_factors_left _ _
+    have hIXfil : (X.FC.fil s k).Factors IX.arrow :=
+      Subobject.inf_arrow_factors_right _ _
+    have hfacImg : imgY.Factors (IX.arrow ≫ g.f k) := by
+      rw [← Subobject.factorThru_arrow _ _ hIXimg, Category.assoc, ← himg]
+      exact Subobject.factors_of_factors_right _ (Subobject.factors_comp_arrow _)
+    have hfacFil : (Y.FC.fil s k).Factors (IX.arrow ≫ g.f k) := by
+      rw [← Subobject.factorThru_arrow _ _ hIXfil, Category.assoc, ← hu_spec]
+      exact Subobject.factors_of_factors_right _ (Subobject.factors_comp_arrow _)
+    have hfacI : IY.Factors (IX.arrow ≫ g.f k) := by
+      rw [show IY = imgY ⊓ Y.FC.fil s k from rfl,
+        Subobject.inf_factors]
+      exact ⟨hfacImg, hfacFil⟩
+    let α := IY.factorThru (IX.arrow ≫ g.f k) hfacI
+    have hα : α ≫ IY.arrow = IX.arrow ≫ g.f k :=
+      IY.factorThru_arrow _ hfacI
+    have hmid : α ≫ Subobject.ofLE IY (Y.FC.fil s k) inf_le_right =
+        Subobject.ofLE IX (X.FC.fil s k) inf_le_right ≫ u := by
+      apply (cancel_mono (Y.FC.fil s k).arrow).mp
+      calc
+        (α ≫ Subobject.ofLE IY (Y.FC.fil s k) inf_le_right) ≫
+            (Y.FC.fil s k).arrow = α ≫ IY.arrow := by
+              rw [Category.assoc, Subobject.ofLE_arrow]
+        _ = IX.arrow ≫ g.f k := hα
+        _ = (Subobject.ofLE IX (X.FC.fil s k) inf_le_right ≫ u) ≫
+            (Y.FC.fil s k).arrow := by
+              rw [Category.assoc, hu_spec, ← Category.assoc, Subobject.ofLE_arrow]
+    have hsq : α ≫ (Subobject.ofLE IY (Y.FC.fil s k) inf_le_right ≫ π₂) =
+        (Subobject.ofLE IX (X.FC.fil s k) inf_le_right ≫ π₁) ≫
+          FilteredComplexMorphism.assocGradedMap
+            (g : FilteredComplexMorphism X.FC Y.FC) s k := by
+      rw [← Category.assoc, hmid, Category.assoc, ← hφπ]
+      simp only [Category.assoc]
+    exact ⟨imageSubobjectMap (Arrow.homMk' α
+      (FilteredComplexMorphism.assocGradedMap
+        (g : FilteredComplexMorphism X.FC Y.FC) s k) hsq),
+      imageSubobjectMap_arrow _⟩
+  · dsimp only [FilteredComplex.toSSData, FilteredComplex.boundarySubobject]
+    let a : ℤ := s - (n : ℤ) + 1
+    let q := (g.filt_compat a (k + 1)).choose
+    have hqspec : q ≫ (Y.FC.fil a (k + 1)).arrow =
+        (X.FC.fil a (k + 1)).arrow ≫ g.f (k + 1) :=
+      (g.filt_compat a (k + 1)).choose_spec
+    have hgen : q ≫ ((Y.FC.fil a (k + 1)).arrow ≫ Y.FC.dToK k) =
+        ((X.FC.fil a (k + 1)).arrow ≫ X.FC.dToK k) ≫ g.f k := by
+      rw [← Category.assoc, hqspec, Category.assoc, hdToK]
+      simp only [Category.assoc]
+    let imgX := imageSubobject
+      ((X.FC.fil a (k + 1)).arrow ≫ X.FC.dToK k)
+    let imgY := imageSubobject
+      ((Y.FC.fil a (k + 1)).arrow ≫ Y.FC.dToK k)
+    let IX := imgX ⊓ X.FC.fil s k
+    let IY := imgY ⊓ Y.FC.fil s k
+    let imgMap := imageSubobjectMap (Arrow.homMk' q (g.f k) hgen)
+    have himg : imgMap ≫ imgY.arrow = imgX.arrow ≫ g.f k := by
+      exact imageSubobjectMap_arrow _
+    have hIXimg : imgX.Factors IX.arrow :=
+      Subobject.inf_arrow_factors_left _ _
+    have hIXfil : (X.FC.fil s k).Factors IX.arrow :=
+      Subobject.inf_arrow_factors_right _ _
+    have hfacImg : imgY.Factors (IX.arrow ≫ g.f k) := by
+      rw [← Subobject.factorThru_arrow _ _ hIXimg, Category.assoc, ← himg]
+      exact Subobject.factors_of_factors_right _ (Subobject.factors_comp_arrow _)
+    have hfacFil : (Y.FC.fil s k).Factors (IX.arrow ≫ g.f k) := by
+      rw [← Subobject.factorThru_arrow _ _ hIXfil, Category.assoc, ← hu_spec]
+      exact Subobject.factors_of_factors_right _ (Subobject.factors_comp_arrow _)
+    have hfacI : IY.Factors (IX.arrow ≫ g.f k) := by
+      rw [show IY = imgY ⊓ Y.FC.fil s k from rfl,
+        Subobject.inf_factors]
+      exact ⟨hfacImg, hfacFil⟩
+    let α := IY.factorThru (IX.arrow ≫ g.f k) hfacI
+    have hα : α ≫ IY.arrow = IX.arrow ≫ g.f k :=
+      IY.factorThru_arrow _ hfacI
+    have hmid : α ≫ Subobject.ofLE IY (Y.FC.fil s k) inf_le_right =
+        Subobject.ofLE IX (X.FC.fil s k) inf_le_right ≫ u := by
+      apply (cancel_mono (Y.FC.fil s k).arrow).mp
+      calc
+        (α ≫ Subobject.ofLE IY (Y.FC.fil s k) inf_le_right) ≫
+            (Y.FC.fil s k).arrow = α ≫ IY.arrow := by
+              rw [Category.assoc, Subobject.ofLE_arrow]
+        _ = IX.arrow ≫ g.f k := hα
+        _ = (Subobject.ofLE IX (X.FC.fil s k) inf_le_right ≫ u) ≫
+            (Y.FC.fil s k).arrow := by
+              rw [Category.assoc, hu_spec, ← Category.assoc, Subobject.ofLE_arrow]
+    have hsq : α ≫ (Subobject.ofLE IY (Y.FC.fil s k) inf_le_right ≫ π₂) =
+        (Subobject.ofLE IX (X.FC.fil s k) inf_le_right ≫ π₁) ≫
+          FilteredComplexMorphism.assocGradedMap
+            (g : FilteredComplexMorphism X.FC Y.FC) s k := by
+      rw [← Category.assoc, hmid, Category.assoc, ← hφπ]
+      simp only [Category.assoc]
+    exact ⟨imageSubobjectMap (Arrow.homMk' α
+      (FilteredComplexMorphism.assocGradedMap
+        (g : FilteredComplexMorphism X.FC Y.FC) s k) hsq),
+      imageSubobjectMap_arrow _⟩
+
+/-- 过滤复形态射在第 `n` 页诱导的真实页映射。它同时使用已经证明的
+    `Z_n` 与 `B_n` 提升，并由 cokernel 的函子性下降到 `Z_n/B_n`。 -/
+noncomputable def FilteredComplexMorphism.inducedPageMap
+    {X Y : BoundedFilteredComplex C} (g : X ⟶ Y)
+    (n : ℕ) (s k : ℤ) :
+    (X.FC.toSSData X.bnd s k).page (↑n) ⟶
+      (Y.FC.toSSData Y.bnd s k).page (↑n) := by
+  let hB := FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_B
+    g (s, k) (↑n)
+  let hZ := FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_Z
+    g (s, k) (↑n)
+  have hBspec := hB.choose_spec
+  have hZspec := hZ.choose_spec
+  change hB.choose ≫ ((Y.FC.toSSData Y.bnd s k).B (↑n)).arrow =
+    ((X.FC.toSSData X.bnd s k).B (↑n)).arrow ≫
+      FilteredComplexMorphism.assocGradedMap
+        (g : FilteredComplexMorphism X.FC Y.FC) s k at hBspec
+  change hZ.choose ≫ ((Y.FC.toSSData Y.bnd s k).Z (↑n)).arrow =
+    ((X.FC.toSSData X.bnd s k).Z (↑n)).arrow ≫
+      FilteredComplexMorphism.assocGradedMap
+        (g : FilteredComplexMorphism X.FC Y.FC) s k at hZspec
+  exact cokernel.map
+    (Subobject.ofLE ((X.FC.toSSData X.bnd s k).B (↑n))
+      ((X.FC.toSSData X.bnd s k).Z (↑n))
+      ((X.FC.toSSData X.bnd s k).B_le_Z (↑n)))
+    (Subobject.ofLE ((Y.FC.toSSData Y.bnd s k).B (↑n))
+      ((Y.FC.toSSData Y.bnd s k).Z (↑n))
+      ((Y.FC.toSSData Y.bnd s k).B_le_Z (↑n)))
+    hB.choose hZ.choose (by
+      apply (cancel_mono (((Y.FC.toSSData Y.bnd s k).Z (↑n)).arrow)).mp
+      simp only [Category.assoc, Subobject.ofLE_arrow]
+      rw [hZspec, ← Category.assoc, hBspec,
+        Subobject.ofLE_arrow])
+
+/-- 诱导页映射与页投影相容。 -/
+theorem FilteredComplexMorphism.pageπ_inducedPageMap
+    {X Y : BoundedFilteredComplex C} (g : X ⟶ Y)
+    (n : ℕ) (s k : ℤ) :
+    (X.FC.toSSData X.bnd s k).pageπ (↑n) ≫
+        FilteredComplexMorphism.inducedPageMap g n s k =
+      (FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_Z
+        g (s, k) (↑n)).choose ≫
+        (Y.FC.toSSData Y.bnd s k).pageπ (↑n) := by
+  unfold FilteredComplexMorphism.inducedPageMap SSData.pageπ
+  exact cokernel.π_desc _ _ _
+
+/-- 诱导页映射与过滤复形谱序列的第 `n` 页微分交换。证明在源循环的
+    核代表元上比较两条路径，再依次消去像分解与页投影两个满态射。 -/
+theorem FilteredComplexMorphism.inducedPageMap_comm_pageDifferential
+    {X Y : BoundedFilteredComplex C} (g : X ⟶ Y)
+    (n : ℕ) (s k : ℤ) :
+    FilteredComplexMorphism.inducedPageMap g n s k ≫
+        Y.FC.pageDifferential Y.bnd s k n =
+      X.FC.pageDifferential X.bnd s k n ≫
+        FilteredComplexMorphism.inducedPageMap g n (s + (n : ℤ)) (k - 1) := by
+  classical
+  let fX := (X.FC.fil s k).arrow ≫ X.FC.d k ≫
+    cokernel.π ((X.FC.fil (s + (n : ℤ)) (k - 1)).arrow)
+  let fY := (Y.FC.fil s k).arrow ≫ Y.FC.d k ≫
+    cokernel.π ((Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow)
+  let KX := kernelSubobject fX
+  let KY := kernelSubobject fY
+  let πX := X.FC.filToAssocGraded s k
+  let πY := Y.FC.filToAssocGraded s k
+  let ZX := imageSubobject (KX.arrow ≫ πX)
+  let ZY := imageSubobject (KY.arrow ≫ πY)
+  let qX := factorThruImageSubobject (KX.arrow ≫ πX)
+  let u := (g.filt_compat s k).choose
+  have huspec : u ≫ (Y.FC.fil s k).arrow =
+      (X.FC.fil s k).arrow ≫ g.f k :=
+    (g.filt_compat s k).choose_spec
+  let w := (g.filt_compat (s + (n : ℤ)) (k - 1)).choose
+  have hwspec : w ≫ (Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow =
+      (X.FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫ g.f (k - 1) :=
+    (g.filt_compat (s + (n : ℤ)) (k - 1)).choose_spec
+  have hφs : πX ≫ FilteredComplexMorphism.assocGradedMap
+      (g : FilteredComplexMorphism X.FC Y.FC) s k = u ≫ πY := by
+    unfold FilteredComplexMorphism.assocGradedMap πX πY
+      FilteredComplex.filToAssocGraded
+    exact cokernel.π_desc _ _ _
+  let cokT := cokernel.map
+    ((X.FC.fil (s + (n : ℤ)) (k - 1)).arrow)
+    ((Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow)
+    w (g.f (k - 1)) hwspec.symm
+  have hcokT : cokernel.π ((X.FC.fil (s + (n : ℤ)) (k - 1)).arrow) ≫ cokT =
+      g.f (k - 1) ≫
+        cokernel.π ((Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow) := by
+    unfold cokT
+    exact cokernel.π_desc _ _ _
+  have hkernel : u ≫ fY = fX ≫ cokT := by
+    dsimp only [fX, fY]
+    calc
+      u ≫ (Y.FC.fil s k).arrow ≫ Y.FC.d k ≫
+          cokernel.π ((Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow) =
+        (X.FC.fil s k).arrow ≫ g.f k ≫ Y.FC.d k ≫
+          cokernel.π ((Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow) := by
+            rw [← Category.assoc, huspec]
+            simp only [Category.assoc]
+      _ = (X.FC.fil s k).arrow ≫ X.FC.d k ≫ g.f (k - 1) ≫
+          cokernel.π ((Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow) := by
+            simpa only [Category.assoc] using congrArg
+              (fun h => (X.FC.fil s k).arrow ≫ h ≫
+                cokernel.π ((Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow))
+              (g.comm_d k)
+      _ = (X.FC.fil s k).arrow ≫ X.FC.d k ≫
+          cokernel.π ((X.FC.fil (s + (n : ℤ)) (k - 1)).arrow) ≫ cokT := by
+            rw [hcokT]
+      _ = ((X.FC.fil s k).arrow ≫ X.FC.d k ≫
+          cokernel.π ((X.FC.fil (s + (n : ℤ)) (k - 1)).arrow)) ≫ cokT := by
+            simp only [Category.assoc]
+  let kerMap := kernelSubobjectMap
+    (Arrow.homMk (f := Arrow.mk fX) (g := Arrow.mk fY) u cokT hkernel)
+  have hkerMap : kerMap ≫ KY.arrow = KX.arrow ≫ u := by
+    exact kernelSubobjectMap_arrow _
+  let qY := kerMap ≫ factorThruImageSubobject (KY.arrow ≫ πY)
+  let zmapS := (FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_Z
+    g (s, k) (↑n)).choose
+  have hqX : qX ≫ ZX.arrow = KX.arrow ≫ πX := by
+    simp only [qX, ZX, imageSubobject_arrow_comp]
+  have hqY : qY ≫ ZY.arrow = KX.arrow ≫ u ≫ πY := by
+    calc
+      qY ≫ ZY.arrow = (kerMap ≫ KY.arrow) ≫ πY := by
+        simp only [qY, ZY, Category.assoc, imageSubobject_arrow_comp]
+      _ = (KX.arrow ≫ u) ≫ πY := by rw [hkerMap]
+      _ = KX.arrow ≫ u ≫ πY := by simp only [Category.assoc]
+  have hzmapS : qX ≫ zmapS = qY := by
+    apply (cancel_mono ZY.arrow).mp
+    have hzspec := (FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_Z
+      g (s, k) (↑n)).choose_spec
+    change zmapS ≫ ZY.arrow = ZX.arrow ≫
+      FilteredComplexMorphism.assocGradedMap
+        (g : FilteredComplexMorphism X.FC Y.FC) s k at hzspec
+    calc
+      (qX ≫ zmapS) ≫ ZY.arrow = qX ≫ ZX.arrow ≫
+          FilteredComplexMorphism.assocGradedMap
+            (g : FilteredComplexMorphism X.FC Y.FC) s k := by
+              rw [Category.assoc, hzspec]
+      _ = KX.arrow ≫ πX ≫
+          FilteredComplexMorphism.assocGradedMap
+            (g : FilteredComplexMorphism X.FC Y.FC) s k := by
+              simpa only [Category.assoc] using congrArg
+                (fun h => h ≫ FilteredComplexMorphism.assocGradedMap
+                  (g : FilteredComplexMorphism X.FC Y.FC) s k) hqX
+      _ = KX.arrow ≫ u ≫ πY := by rw [hφs]
+      _ = qY ≫ ZY.arrow := hqY.symm
+  let vX := Abelian.monoLift (X.FC.fil (s + (n : ℤ)) (k - 1)).arrow
+    (KX.arrow ≫ (X.FC.fil s k).arrow ≫ X.FC.d k)
+    (by simpa only [fX, Category.assoc] using kernelSubobject_arrow_comp fX)
+  have hvX : vX ≫ (X.FC.fil (s + (n : ℤ)) (k - 1)).arrow =
+      KX.arrow ≫ (X.FC.fil s k).arrow ≫ X.FC.d k :=
+    Abelian.monoLift_comp _ _ _
+  let vY := vX ≫ w
+  have hvY : kerMap ≫ KY.arrow ≫ (Y.FC.fil s k).arrow ≫ Y.FC.d k =
+      vY ≫ (Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow := by
+    calc
+      kerMap ≫ KY.arrow ≫ (Y.FC.fil s k).arrow ≫ Y.FC.d k =
+          KX.arrow ≫ u ≫ (Y.FC.fil s k).arrow ≫ Y.FC.d k := by
+            simpa only [Category.assoc] using congrArg
+              (fun h => h ≫ (Y.FC.fil s k).arrow ≫ Y.FC.d k) hkerMap
+      _ = KX.arrow ≫ (X.FC.fil s k).arrow ≫ g.f k ≫ Y.FC.d k := by
+            simpa only [Category.assoc] using congrArg
+              (fun h => KX.arrow ≫ h ≫ Y.FC.d k) huspec
+      _ = KX.arrow ≫ (X.FC.fil s k).arrow ≫ X.FC.d k ≫ g.f (k - 1) := by
+            simpa only [Category.assoc] using congrArg
+              (fun h => KX.arrow ≫ (X.FC.fil s k).arrow ≫ h) (g.comm_d k)
+      _ = vX ≫ (X.FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫ g.f (k - 1) := by
+            simpa only [Category.assoc] using congrArg
+              (fun h => h ≫ g.f (k - 1)) hvX.symm
+      _ = vX ≫ w ≫ (Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow := by
+            simpa only [Category.assoc] using congrArg (fun h => vX ≫ h) hwspec.symm
+      _ = vY ≫ (Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow := by
+            simp only [vY, Category.assoc]
+  let gX := (X.FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫ X.FC.d (k - 1) ≫
+    cokernel.π ((X.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow)
+  let gY := (Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫ Y.FC.d (k - 1) ≫
+    cokernel.π ((Y.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow)
+  have hvgX : vX ≫ gX = 0 := by
+    dsimp only [gX]
+    calc
+      vX ≫ (X.FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫ X.FC.d (k - 1) ≫
+          cokernel.π ((X.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow) =
+        (KX.arrow ≫ (X.FC.fil s k).arrow ≫ X.FC.d k) ≫ X.FC.d (k - 1) ≫
+          cokernel.π ((X.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow) := by
+            simpa only [Category.assoc] using congrArg
+              (fun h => h ≫ X.FC.d (k - 1) ≫
+                cokernel.π
+                  ((X.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow)) hvX
+      _ = 0 := by
+        simpa only [Category.assoc, comp_zero, zero_comp] using congrArg
+          (fun h => KX.arrow ≫ (X.FC.fil s k).arrow ≫ h ≫
+            cokernel.π
+              ((X.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow))
+          (X.FC.d_comp_d k)
+  have hvgY : vY ≫ gY = 0 := by
+    dsimp only [gY]
+    calc
+      vY ≫ (Y.FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫ Y.FC.d (k - 1) ≫
+          cokernel.π ((Y.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow) =
+        (kerMap ≫ KY.arrow ≫ (Y.FC.fil s k).arrow ≫ Y.FC.d k) ≫
+          Y.FC.d (k - 1) ≫
+          cokernel.π ((Y.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow) := by
+            simpa only [Category.assoc] using congrArg
+              (fun h => h ≫ Y.FC.d (k - 1) ≫
+                cokernel.π
+                  ((Y.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow)) hvY.symm
+      _ = 0 := by
+        simpa only [Category.assoc, comp_zero, zero_comp] using congrArg
+          (fun h => kerMap ≫ KY.arrow ≫ (Y.FC.fil s k).arrow ≫ h ≫
+            cokernel.π
+              ((Y.FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow))
+          (Y.FC.d_comp_d k)
+  let KX' := kernelSubobject gX
+  let KY' := kernelSubobject gY
+  let πX' := X.FC.filToAssocGraded (s + (n : ℤ)) (k - 1)
+  let πY' := Y.FC.filToAssocGraded (s + (n : ℤ)) (k - 1)
+  let qX' := factorThruKernelSubobject gX vX hvgX ≫
+    factorThruImageSubobject (KX'.arrow ≫ πX')
+  let qY' := factorThruKernelSubobject gY vY hvgY ≫
+    factorThruImageSubobject (KY'.arrow ≫ πY')
+  let ZX' := imageSubobject (KX'.arrow ≫ πX')
+  let ZY' := imageSubobject (KY'.arrow ≫ πY')
+  let zmapT := (FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_Z
+    g (s + (n : ℤ), k - 1) (↑n)).choose
+  have hqX' : qX' ≫ ZX'.arrow = vX ≫ πX' := by
+    dsimp only [qX', ZX']
+    rw [Category.assoc, imageSubobject_arrow_comp, ← Category.assoc,
+      factorThruKernelSubobject_comp_arrow]
+  have hqY' : qY' ≫ ZY'.arrow = vX ≫ w ≫ πY' := by
+    dsimp only [qY', ZY']
+    rw [Category.assoc, imageSubobject_arrow_comp, ← Category.assoc,
+      factorThruKernelSubobject_comp_arrow]
+    simp only [vY, Category.assoc]
+  have hzmapT : qX' ≫ zmapT = qY' := by
+    apply (cancel_mono ZY'.arrow).mp
+    have hzspec := (FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_Z
+      g (s + (n : ℤ), k - 1) (↑n)).choose_spec
+    change zmapT ≫ ZY'.arrow = ZX'.arrow ≫
+        FilteredComplexMorphism.assocGradedMap
+          (g : FilteredComplexMorphism X.FC Y.FC) (s + (n : ℤ)) (k - 1) at hzspec
+    have hφt : πX' ≫ FilteredComplexMorphism.assocGradedMap
+        (g : FilteredComplexMorphism X.FC Y.FC) (s + (n : ℤ)) (k - 1) =
+        w ≫ πY' := by
+      unfold FilteredComplexMorphism.assocGradedMap πX' πY'
+        FilteredComplex.filToAssocGraded
+      exact cokernel.π_desc _ _ _
+    calc
+      (qX' ≫ zmapT) ≫
+          ZY'.arrow =
+        qX' ≫ ZX'.arrow ≫
+          FilteredComplexMorphism.assocGradedMap
+            (g : FilteredComplexMorphism X.FC Y.FC) (s + (n : ℤ)) (k - 1) := by
+              rw [Category.assoc, hzspec]
+      _ = vX ≫ πX' ≫ FilteredComplexMorphism.assocGradedMap
+          (g : FilteredComplexMorphism X.FC Y.FC) (s + (n : ℤ)) (k - 1) := by
+            simpa only [Category.assoc] using congrArg
+              (fun h => h ≫ FilteredComplexMorphism.assocGradedMap
+                (g : FilteredComplexMorphism X.FC Y.FC)
+                (s + (n : ℤ)) (k - 1)) hqX'
+      _ = vX ≫ w ≫ πY' := by rw [hφt]
+      _ = qY' ≫ ZY'.arrow := hqY'.symm
+  haveI : Epi ((X.FC.toSSData X.bnd s k).pageπ (↑n)) := by
+    unfold SSData.pageπ
+    infer_instance
+  apply (cancel_epi ((X.FC.toSSData X.bnd s k).pageπ (↑n))).mp
+  apply (cancel_epi qX).mp
+  have hY := Y.FC.pageDifferential_on_kernel Y.bnd s k n kerMap vY hvY hvgY
+  have hX := X.FC.pageDifferential_on_kernel X.bnd s k n
+    (𝟙 (Subobject.underlying.obj KX)) vX
+    (by simpa only [Category.id_comp] using hvX.symm) hvgX
+  change qY ≫ (Y.FC.toSSData Y.bnd s k).pageπ (↑n) ≫
+      Y.FC.pageDifferential Y.bnd s k n =
+    qY' ≫ (Y.FC.toSSData Y.bnd (s + (n : ℤ)) (k - 1)).pageπ (↑n) at hY
+  change ((𝟙 (Subobject.underlying.obj KX)) ≫ qX) ≫
+      (X.FC.toSSData X.bnd s k).pageπ (↑n) ≫
+      X.FC.pageDifferential X.bnd s k n =
+    qX' ≫ (X.FC.toSSData X.bnd (s + (n : ℤ)) (k - 1)).pageπ (↑n) at hX
+  simp only [Category.id_comp] at hX
+  have hPageS := FilteredComplexMorphism.pageπ_inducedPageMap g n s k
+  have hPageT := FilteredComplexMorphism.pageπ_inducedPageMap
+    g n (s + (n : ℤ)) (k - 1)
+  calc
+    qX ≫ (X.FC.toSSData X.bnd s k).pageπ (↑n) ≫
+        FilteredComplexMorphism.inducedPageMap g n s k ≫
+        Y.FC.pageDifferential Y.bnd s k n =
+      qX ≫ zmapS ≫ (Y.FC.toSSData Y.bnd s k).pageπ (↑n) ≫
+        Y.FC.pageDifferential Y.bnd s k n := by
+          simpa only [Category.assoc] using congrArg
+            (fun h => qX ≫ h ≫ Y.FC.pageDifferential Y.bnd s k n) hPageS
+    _ = qY ≫ (Y.FC.toSSData Y.bnd s k).pageπ (↑n) ≫
+        Y.FC.pageDifferential Y.bnd s k n := by
+          simpa only [Category.assoc] using congrArg
+            (fun h => h ≫ (Y.FC.toSSData Y.bnd s k).pageπ (↑n) ≫
+              Y.FC.pageDifferential Y.bnd s k n) hzmapS
+    _ = qY' ≫ (Y.FC.toSSData Y.bnd (s + (n : ℤ)) (k - 1)).pageπ (↑n) := by
+          simpa only [Category.assoc] using hY
+    _ = qX' ≫ zmapT ≫
+        (Y.FC.toSSData Y.bnd (s + (n : ℤ)) (k - 1)).pageπ (↑n) := by
+          simpa only [Category.assoc] using congrArg
+            (fun h => h ≫
+              (Y.FC.toSSData Y.bnd (s + (n : ℤ)) (k - 1)).pageπ (↑n))
+            hzmapT.symm
+    _ = qX' ≫ (X.FC.toSSData X.bnd (s + (n : ℤ)) (k - 1)).pageπ (↑n) ≫
+        FilteredComplexMorphism.inducedPageMap g n (s + (n : ℤ)) (k - 1) := by
+          simpa only [Category.assoc] using congrArg (fun h => qX' ≫ h) hPageT.symm
+    _ = qX ≫ (X.FC.toSSData X.bnd s k).pageπ (↑n) ≫
+        X.FC.pageDifferential X.bnd s k n ≫
+        FilteredComplexMorphism.inducedPageMap g n (s + (n : ℤ)) (k - 1) := by
+          simpa only [Category.assoc] using congrArg
+            (fun h => h ≫
+              FilteredComplexMorphism.inducedPageMap g n (s + (n : ℤ)) (k - 1))
+            hX.symm
+
+/-- 有界过滤复形态射在底层 `SSData` 族上诱导的态射。 -/
+private noncomputable def FilteredComplexMorphism.toSSDataMorphism
+    {X Y : BoundedFilteredComplex C} (g : X ⟶ Y) :
+    SSDataMorphism (ℤ × ℤ)
+      (X.FC.toSpectralSequence X.bnd).ssData
+      (Y.FC.toSpectralSequence Y.bnd).ssData where
+  φ := fun ⟨s, k⟩ => FilteredComplexMorphism.assocGradedMap
+    (g : FilteredComplexMorphism X.FC Y.FC) s k
+  preserves_Z := FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_Z g
+  preserves_B := FilteredComplexMorphism.toSpectralSequenceMorphism_preserves_B g
+
+/-- `SSDataMorphism` 给出的规范页态射等于此前构造的第 `n` 页态射。 -/
+private theorem FilteredComplexMorphism.pageMap_eq_inducedPageMap
+    {X Y : BoundedFilteredComplex C} (g : X ⟶ Y)
+    (n : ℕ) (s k : ℤ) :
+    (FilteredComplexMorphism.toSSDataMorphism g).pageMap (s, k) (↑n) =
+      FilteredComplexMorphism.inducedPageMap g n s k := by
+  rfl
+
+/-- 辅助引理（微分交换字段）：由底层映射规范诱导出的页态射与页微分
+    交换。非负页使用诱导页映射自然性；负页的微分按定义为零。 -/
+private theorem FilteredComplexMorphism.toSpectralSequenceMorphism_comm_d
+    {X Y : BoundedFilteredComplex C} (g : X ⟶ Y) :
+    ∀ (r : ℤ) (k : ℤ × ℤ),
+      let n : WithTop ℕ :=
+        ↑(r - (X.FC.toSpectralSequence X.bnd).r₀).toNat
+      (FilteredComplexMorphism.toSSDataMorphism g).pageMap k n ≫
+          (Y.FC.toSpectralSequence Y.bnd).d r k =
+        (X.FC.toSpectralSequence X.bnd).d r k ≫
+          (FilteredComplexMorphism.toSSDataMorphism g).pageMap
+            (k + (X.FC.toSpectralSequence X.bnd).diffDeg r) n := by
+  intro r ⟨s, k⟩
+  dsimp only
+  by_cases hr : 0 ≤ r
+  · obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hr
+    change (FilteredComplexMorphism.toSSDataMorphism g).pageMap
+          (s, k) (↑n) ≫ (Y.FC.toPreSS Y.bnd).d (↑n) (s, k) =
+      (X.FC.toPreSS X.bnd).d (↑n) (s, k) ≫
+        (FilteredComplexMorphism.toSSDataMorphism g).pageMap
+          (s + (n : ℤ), k - 1) (↑n)
+    rw [FilteredComplexMorphism.pageMap_eq_inducedPageMap g n s k,
+      FilteredComplexMorphism.pageMap_eq_inducedPageMap g n
+        (s + (n : ℤ)) (k - 1)]
+    change FilteredComplexMorphism.inducedPageMap g n s k ≫
+        (Y.FC.toPreSS Y.bnd).d (↑n) (s, k) =
+      (X.FC.toPreSS X.bnd).d (↑n) (s, k) ≫
+        FilteredComplexMorphism.inducedPageMap g n (s + (n : ℤ)) (k - 1)
+    simpa [FilteredComplex.toPreSS] using
+      FilteredComplexMorphism.inducedPageMap_comm_pageDifferential g n s k
+  · change _ ≫ (Y.FC.toPreSS Y.bnd).d r (s, k) =
+      (X.FC.toPreSS X.bnd).d r (s, k) ≫ _
+    dsimp only [FilteredComplex.toPreSS]
+    simp only [dif_neg hr, comp_zero, zero_comp]
+
 /-- 过滤复形态射在有界性下诱导的**谱序列态射**。
     `φ k := assocGradedMap`（关联分次上映射，经由 `filt_compat` 提升由
-    `cokernel.map` 构造）；保 Z / 保 B / 与 d 交换的证明后续补全（sorry）。 -/
+    `cokernel.map` 构造）；保 Z / 保 B / 与 d 交换分别引用上方辅助引理。 -/
 noncomputable def FilteredComplexMorphism.toSpectralSequenceMorphism
     {X Y : BoundedFilteredComplex C} (g : X ⟶ Y) :
     X.FC.toSpectralSequence X.bnd ⟶ Y.FC.toSpectralSequence Y.bnd where
-  φ := fun ⟨s, k⟩ =>
-    FilteredComplexMorphism.assocGradedMap
-      (g : FilteredComplexMorphism X.FC Y.FC) s k
-  preserves_Z := by sorry
-  preserves_B := by sorry
-  comm_d := by sorry
+  toSSDataMorphism := FilteredComplexMorphism.toSSDataMorphism g
+  r₀_eq := rfl
+  diffDeg_eq := rfl
+  comm_d := by
+    intro r k
+    dsimp only
+    simp only [SSDataMorphism.pageMapOfEq, eqToHom_refl, Category.comp_id]
+    exact FilteredComplexMorphism.toSpectralSequenceMorphism_comm_d g r k
 
 /-- 恒等过滤复形态射诱导恒等谱序列态射（φ 分量为关联分次上的恒等）。 -/
 theorem FilteredComplexMorphism.toSpectralSequenceMorphism_id
     (X : BoundedFilteredComplex C) :
     (FilteredComplexMorphism.toSpectralSequenceMorphism (𝟙 X)).φ =
       fun _ => 𝟙 _ := by
-  sorry
+  funext ⟨s, k⟩
+  exact FilteredComplexMorphism.assocGradedMap_id X.FC s k
+
+/-- 复合过滤复形态射在关联分次上映射的复合性：
+    复合态射的 `assocGradedMap` 等于两次 `assocGradedMap` 的复合。
+    先经桥接引理转成广义版本，再把复合态射的 choose 提升
+    （等于两次提升的复合，由 `cancel_mono arrow` 论证）替换为复合提升，
+    最后调用广义复合引理。 -/
+theorem FilteredComplexMorphism.assocGradedMap_comp
+    {FC₁ FC₂ FC₃ : FilteredComplex C}
+    (g : FilteredComplexMorphism FC₁ FC₂) (h : FilteredComplexMorphism FC₂ FC₃)
+    (s k : ℤ) :
+    (FilteredComplexMorphism.comp g h).assocGradedMap s k =
+      g.assocGradedMap s k ≫ h.assocGradedMap s k := by
+  rw [FilteredComplexMorphism.assocGradedMap_eq (FilteredComplexMorphism.comp g h),
+    g.assocGradedMap_eq, h.assocGradedMap_eq]
+  have hlift : (fun s k : ℤ =>
+        ((FilteredComplexMorphism.comp g h).filt_compat s k).choose) =
+      fun s k => (g.filt_compat s k).choose ≫ (h.filt_compat s k).choose := by
+    funext s k
+    apply (cancel_mono ((FC₃.fil s k).arrow)).mp
+    rw [Category.assoc _ _ ((FC₃.fil s k).arrow),
+      ((FilteredComplexMorphism.comp g h).filt_compat s k).choose_spec,
+      (h.filt_compat s k).choose_spec]
+    conv_rhs =>
+      rw [← Category.assoc _ _ (h.f k), (g.filt_compat s k).choose_spec]
+    exact (Category.assoc _ _ _).symm
+  -- g 与 h 各自的提升方块（形如 `assocGradedMap_eq` 中的 hw 证明）。
+  have hwg : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₁.fil (s + 1) k) (FC₁.fil s k) (FC₁.fil_anti s k) ≫
+          (g.filt_compat s k).choose =
+        (g.filt_compat (s + 1) k).choose ≫
+          Subobject.ofLE (FC₂.fil (s + 1) k) (FC₂.fil s k) (FC₂.fil_anti s k) := by
+    intro s k
+    apply (cancel_mono ((FC₂.fil s k).arrow)).mp
+    simp only [Category.assoc, Subobject.ofLE_arrow]
+    rw [(g.filt_compat s k).choose_spec, (g.filt_compat (s + 1) k).choose_spec,
+      ← Category.assoc, Subobject.ofLE_arrow]
+  have hwh : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₂.fil (s + 1) k) (FC₂.fil s k) (FC₂.fil_anti s k) ≫
+          (h.filt_compat s k).choose =
+        (h.filt_compat (s + 1) k).choose ≫
+          Subobject.ofLE (FC₃.fil (s + 1) k) (FC₃.fil s k) (FC₃.fil_anti s k) := by
+    intro s k
+    apply (cancel_mono ((FC₃.fil s k).arrow)).mp
+    simp only [Category.assoc, Subobject.ofLE_arrow]
+    rw [(h.filt_compat s k).choose_spec, (h.filt_compat (s + 1) k).choose_spec,
+      ← Category.assoc, Subobject.ofLE_arrow]
+  -- 复合提升方块：g、h 的两个方块沿中间层的 ofLE₂ 拼接而成。
+  have hwφ : ∀ (s k : ℤ),
+      Subobject.ofLE (FC₁.fil (s + 1) k) (FC₁.fil s k) (FC₁.fil_anti s k) ≫
+          ((g.filt_compat s k).choose ≫ (h.filt_compat s k).choose) =
+        ((g.filt_compat (s + 1) k).choose ≫ (h.filt_compat (s + 1) k).choose) ≫
+          Subobject.ofLE (FC₃.fil (s + 1) k) (FC₃.fil s k) (FC₃.fil_anti s k) := by
+    intro s k
+    rw [← Category.assoc, hwg s k, Category.assoc, hwh s k]
+    exact (Category.assoc _ _ _).symm
+  -- 把左端的提升族（`(comp g h).filt_compat` 的 choose）经 hlift 换成显式复合提升，
+  -- 目标即化为广义复合引理的输出形状。
+  rw [FilteredComplexMorphism.assocGradedMapOfMap_congr
+    (fun s k => by
+      apply (cancel_mono ((FC₃.fil s k).arrow)).mp
+      simp only [Category.assoc, Subobject.ofLE_arrow]
+      rw [((FilteredComplexMorphism.comp g h).filt_compat s k).choose_spec,
+        ((FilteredComplexMorphism.comp g h).filt_compat (s + 1) k).choose_spec,
+        ← Category.assoc, Subobject.ofLE_arrow])
+    hwφ hlift s k]
+  exact FilteredComplexMorphism.assocGradedMapOfMap_comp
+    (fun s k => (g.filt_compat s k).choose) (fun s k => (h.filt_compat s k).choose)
+    hwg hwh hwφ s k
 
 /-- 复合过滤复形态射诱导复合谱序列态射（φ 分量为关联分次上映射的复合）。 -/
 theorem FilteredComplexMorphism.toSpectralSequenceMorphism_comp
@@ -646,7 +1565,8 @@ theorem FilteredComplexMorphism.toSpectralSequenceMorphism_comp
     (FilteredComplexMorphism.toSpectralSequenceMorphism (g ≫ h)).φ =
       fun k => (FilteredComplexMorphism.toSpectralSequenceMorphism g).φ k ≫
         (FilteredComplexMorphism.toSpectralSequenceMorphism h).φ k := by
-  sorry
+  funext ⟨s, k⟩
+  exact FilteredComplexMorphism.assocGradedMap_comp g h s k
 
 /-- **toSS 函子**：有界过滤复形范畴到谱序列范畴，
     对象送至 `toSpectralSequence`，态射送至诱导的谱序列态射。 -/
@@ -712,17 +1632,180 @@ noncomputable def toFCMorphism
       · refine ⟨0, ?_⟩
         simp [component, selfComplex, underlyingComplex, twoTermFil, twoTermObj, h₁, h₀]
 
+/-- 辅助引理：恒等收敛态射经 `toFCMorphism` 得到的 `f` 分量
+    逐次数等于有界过滤复形范畴恒等态射的 `f` 分量。
+    次数 `1` / `0` 处两边都是 `eqToHom ≫ 𝟙 ≫ eqToHom`（`aMap` 在
+    恒等态射下为 `𝟙`），其余次数两边都是 `0`。 -/
+private theorem toFCMorphism_id_f (X : ConvergingSS C ω ω')
+    (hb : X.F.IsBounded) (t : ω') (k : ℤ) :
+    (toFCMorphism (𝟙 X) hb hb t).f k =
+      (𝟙 (selfComplex X hb t) : FilteredComplexMorphism
+        (selfComplex X hb t).FC (selfComplex X hb t).FC).f k := by
+  unfold toFCMorphism
+  have ha : (𝟙 X : ConvergenceMorphism X.conv X.conv).aMap t = 𝟙 (X.A t) := rfl
+  show (fun k : ℤ =>
+      if h₁ : k = 1 then
+        eqToHom (by simp [underlyingComplex, twoTermObj, h₁]) ≫ (𝟙 (X.A t)) ≫
+          eqToHom (by simp [underlyingComplex, twoTermObj, h₁])
+      else if h₀ : k = 0 then
+        eqToHom (by simp [underlyingComplex, twoTermObj, h₀]) ≫ (𝟙 (X.A t)) ≫
+          eqToHom (by simp [underlyingComplex, twoTermObj, h₀])
+      else 0) k =
+    (FilteredComplexMorphism.f
+      (𝟙 (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+        (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t) :
+        FilteredComplexMorphism
+          (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+            (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t)
+          (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+            (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t))) k
+  by_cases h₁ : k = 1
+  · subst k
+    show (eqToHom (show twoTermObj (X.A t) (X.A t) 1 = X.A t by
+            simp [twoTermObj]) ≫ 𝟙 (X.A t) ≫
+          eqToHom (show (X.A t) = twoTermObj (X.A t) (X.A t) (1 - 1) by
+            simp [twoTermObj])) =
+      (FilteredComplexMorphism.f
+        (𝟙 (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+          (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t) :
+          FilteredComplexMorphism
+            (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+              (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t)
+            (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+              (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t))) 1
+    simp only [eqToHom_refl, Category.id_comp, Category.comp_id]
+    rfl
+  · by_cases h₀ : k = 0
+    · subst k
+      show (fun k : ℤ =>
+        if h₁ : k = 1 then
+          eqToHom (show twoTermObj (X.A t) (X.A t) 1 = X.A t by
+            simp [twoTermObj]) ≫ (𝟙 (X.A t)) ≫
+          eqToHom (show twoTermObj (X.A t) (X.A t) 1 = X.A t by
+            simp [twoTermObj])
+        else if h₀ : k = 0 then
+          eqToHom (show twoTermObj (X.A t) (X.A t) 0 = X.A t by
+            simp [twoTermObj]) ≫ (𝟙 (X.A t)) ≫
+          eqToHom (show twoTermObj (X.A t) (X.A t) 0 = X.A t by
+            simp [twoTermObj])
+        else 0) 0 =
+        (FilteredComplexMorphism.f
+          (𝟙 (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+            (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t) :
+            FilteredComplexMorphism
+              (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+                (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t)
+              (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+                (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t))) 0
+      simp only [dif_pos, eqToHom_refl, Category.id_comp, Category.comp_id]
+      rfl
+    · -- 其余次数：两侧都是零映射（左侧 `dite` 落到 `else 0` 分支，
+      -- 右侧 `𝟙` 的 `f` 分量在 `⊥_ C` 与 `⊥_ C` 之间也是零）。
+      dsimp only
+      rw [dif_neg h₁, dif_neg h₀]
+      -- 右侧 `𝟙` 的 `f` 分量两侧都是 `twoTermObj … k = ⊥_ C`，零对象上恒等映射为零。
+      have hZ : IsZero (twoTermObj (X.A t) (X.A t) k) := by
+        rw [twoTermObj_other (X.A t) (X.A t) k h₁ h₀]
+        exact (initialIsInitial (C := C)).isZero
+      have hid := hZ.eq_of_src (𝟙 (twoTermObj (X.A t) (X.A t) k))
+        (0 : twoTermObj (X.A t) (X.A t) k ⟶ twoTermObj (X.A t) (X.A t) k)
+      -- 逐步把两侧换到同一形状：先证右侧的 `f k` 就是 `𝟙 (twoTermObj … k)`。
+      show 0 = (FilteredComplexMorphism.f
+        (𝟙 (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+          (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t) :
+          FilteredComplexMorphism
+            (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+              (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t)
+            (underlyingComplex (fun (k' : ω') => 𝟙 (X.A k'))
+              (fun (s : ℤ) (k' : ω') => X.F.fcId s k') t))) k
+      rw [← hid]
+      rfl
+
+/-- 辅助引理：复合收敛态射经 `toFCMorphism` 得到的 `f` 分量
+    逐次数等于两次 `toFCMorphism` 的 `f` 分量的复合。
+    次数 `1` / `0` 处两边都是 `eqToHom ≫ (aMap f ≫ aMap g) ≫ eqToHom`，
+    其余次数两边都是 `0`。 -/
+private theorem toFCMorphism_comp_f {X Y Z : ConvergingSS C ω ω'}
+    (hbX : X.F.IsBounded) (hbY : Y.F.IsBounded) (hbZ : Z.F.IsBounded)
+    (f : X ⟶ Y) (g : Y ⟶ Z) (t : ω') (k : ℤ) :
+    (toFCMorphism (f ≫ g) hbX hbZ t).f k =
+      (CategoryStruct.comp
+        (toFCMorphism f hbX hbY t : FilteredComplexMorphism
+          (selfComplex X hbX t).FC (selfComplex Y hbY t).FC)
+        (toFCMorphism g hbY hbZ t : FilteredComplexMorphism
+          (selfComplex Y hbY t).FC (selfComplex Z hbZ t).FC)).f k := by
+  -- 先固定复形次数，再化简选中的分支。不能在这里先对
+  -- `(f ≫ g).aMap` 做全局 `rw`：未化简的两个依赖 `if` 分支同时
+  -- 含有 `eqToHom`，会让 `isDefEq` 反复展开巨大的源、目标类型。
+  by_cases h₁ : k = 1
+  · subst k
+    unfold toFCMorphism
+    simp only [dif_pos, Category.assoc, CategoryStruct.comp]
+    show (eqToHom (show twoTermObj (X.A t) (X.A t) 1 = X.A t by
+            simp [twoTermObj]) ≫ f.aMap t ≫ g.aMap t ≫
+          eqToHom (show (Z.A t) = twoTermObj (Z.A t) (Z.A t) (1 - 1) by
+            simp [twoTermObj])) =
+      eqToHom (show twoTermObj (X.A t) (X.A t) 1 = X.A t by
+            simp [twoTermObj]) ≫ f.aMap t ≫
+        eqToHom (show (Y.A t) = twoTermObj (Y.A t) (Y.A t) (1 - 1) by
+            simp [twoTermObj]) ≫
+        (eqToHom (show twoTermObj (Y.A t) (Y.A t) 1 = Y.A t by
+            simp [twoTermObj]) ≫ g.aMap t ≫
+          eqToHom (show (Z.A t) = twoTermObj (Z.A t) (Z.A t) (1 - 1) by
+            simp [twoTermObj]))
+    rw [← Category.assoc, ← Category.assoc, ← Category.assoc, ← Category.assoc]
+    simp only [eqToHom_refl, Category.id_comp, Category.comp_id]
+  · by_cases h₀ : k = 0
+    · subst k
+      unfold toFCMorphism
+      simp only [dif_neg (by omega), dif_pos, Category.assoc, CategoryStruct.comp]
+      show (eqToHom (show twoTermObj (X.A t) (X.A t) 0 = X.A t by
+              simp [twoTermObj]) ≫ f.aMap t ≫ g.aMap t ≫
+            eqToHom (show (Z.A t) = twoTermObj (Z.A t) (Z.A t) 0 by
+              simp [twoTermObj])) =
+        eqToHom (show twoTermObj (X.A t) (X.A t) 0 = X.A t by
+              simp [twoTermObj]) ≫ f.aMap t ≫
+          eqToHom (show (Y.A t) = twoTermObj (Y.A t) (Y.A t) 0 by
+              simp [twoTermObj]) ≫
+          (eqToHom (show twoTermObj (Y.A t) (Y.A t) 0 = Y.A t by
+              simp [twoTermObj]) ≫ g.aMap t ≫
+            eqToHom (show (Z.A t) = twoTermObj (Z.A t) (Z.A t) 0 by
+              simp [twoTermObj]))
+      rw [← Category.assoc, ← Category.assoc, ← Category.assoc, ← Category.assoc]
+      simp only [eqToHom_refl, Category.id_comp, Category.comp_id]
+    · -- 三个分量分别化简，避免一次 `unfold` 同时展开
+      -- 复合态射两边的全部依赖分支。
+      have hfg : (toFCMorphism (f ≫ g) hbX hbZ t).f k = 0 := by
+        unfold toFCMorphism
+        dsimp only
+        rw [dif_neg h₁, dif_neg h₀]
+      have hf : (toFCMorphism f hbX hbY t).f k = 0 := by
+        unfold toFCMorphism
+        dsimp only
+        rw [dif_neg h₁, dif_neg h₀]
+      have hg : (toFCMorphism g hbY hbZ t).f k = 0 := by
+        unfold toFCMorphism
+        dsimp only
+        rw [dif_neg h₁, dif_neg h₀]
+      rw [hfg]
+      change 0 = (toFCMorphism f hbX hbY t).f k ≫
+        (toFCMorphism g hbY hbZ t).f k
+      rw [hf, hg, zero_comp]
+
 /-- **convSS ⥤ 有界过滤复形函子**：收敛谱序列 `X` 在每个茎次数 `t` 处
     送至其自身的两项复形 `A(t) ⟶[𝟙] A(t)`；
     态射 `cm : X ⟶ Y` 送至 `toFCMorphism cm t`。
-    函子性的证明后续补全（sorry）。 -/
+    函子性（map_id / map_comp）由 `FilteredComplexMorphism.ext`
+    归约到 `f` 分量后引用上面两条辅助引理。 -/
 noncomputable def convSSToFC
     (hb : ∀ X : ConvergingSS C ω ω', X.F.IsBounded) (t : ω') :
     ConvergingSS C ω ω' ⥤ BoundedFilteredComplex C where
   obj X := selfComplex X (hb X) t
   map cm := toFCMorphism cm (hb _) (hb _) t
-  map_id := by sorry
-  map_comp := by sorry
+  map_id X := FilteredComplexMorphism.ext
+    (funext fun k => toFCMorphism_id_f X (hb X) t k)
+  map_comp f g := FilteredComplexMorphism.ext
+    (funext fun k => toFCMorphism_comp_f (hb _) (hb _) (hb _) f g t k)
 
 /-! ### ESS 函子：两个函子的复合 -/
 

@@ -1447,7 +1447,7 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
 
 /-- 页微分在一个核代表元上的计算式：若过滤层中的微分由 `v` 表示，
 则源页代表元的微分等于 `v` 的目标页类。 -/
-private theorem FilteredComplex.pageDifferential_on_kernel (FC : FilteredComplex C)
+theorem FilteredComplex.pageDifferential_on_kernel (FC : FilteredComplex C)
     (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
     let f := (FC.fil s k).arrow ≫ FC.d k ≫
       cokernel.π ((FC.fil (s + ↑n) (k - 1)).arrow)

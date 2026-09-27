@@ -51,7 +51,7 @@ noncomputable def Filtration.completionFunctor {ω : Type w} {A : ω → C}
   map_comp {l m n} f g := (fil.truncationTransition_comp _ _ k).symm
 
 -- Abelian categories lack countable limits in general; this instance is the
--- sole structural sorry for the completion construction.
+-- 这是完备化构造所需的唯一结构性极限实例。
 noncomputable instance Filtration.hasLimitCompletionFunctor {ω : Type w} {A : ω → C}
     (fil : Filtration A) (hbb : fil.IsBoundedBelow) (k : ω) :
     HasLimit (fil.completionFunctor hbb k) := inferInstance

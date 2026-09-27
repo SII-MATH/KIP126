@@ -31,7 +31,11 @@ def BJM_BXCriterion : Prop :=
         C.finiteZero (r + 1) C.sourceExpression)) ∧
     (C.is_permanent C.sourceExpression ↔ C.untruncatedZero C.sourceExpression)
 
-/-- The located total-differential identity for every order-two choice. -/
+/-- The located total-differential identity for the distinguished source choice. -/
+def SourceTotalDifferentialIdentity : Prop :=
+  C.deltaH6 = C.lambdaEta (C.square C.sourceChoice)
+
+/-- The universal choice transport is a project theorem, not a literature input. -/
 def TotalDifferentialIdentity : Prop :=
   ∀ θ, C.isChoice θ → IsOrderTwo θ →
     C.deltaH6 = C.lambdaEta (C.square θ)

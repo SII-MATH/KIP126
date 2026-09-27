@@ -199,6 +199,142 @@ def SSDataMorphism.toUnderlying
     UnderlyingMorphism ι D D' where
   φ := f.φ
 
+/-- `SSDataMorphism` 在第 `r` 页诱导的规范态射。
+
+    该映射不是额外选择的页态射：它由 `preserves_B` 与 `preserves_Z`
+    给出的提升通过 `cokernel.map` 构造，因此确实是底层映射 `φ` 在商
+    `Z r / B r` 上诱导的映射。 -/
+noncomputable def SSDataMorphism.pageMap
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} (f : SSDataMorphism ι D D')
+    (k : ι) (r : WithTop ℕ) :
+    (D k).page r ⟶ (D' k).page r :=
+  cokernel.map
+    (Subobject.ofLE ((D k).B r) ((D k).Z r) ((D k).B_le_Z r))
+    (Subobject.ofLE ((D' k).B r) ((D' k).Z r) ((D' k).B_le_Z r))
+    (f.preserves_B k r).choose
+    (f.preserves_Z k r).choose
+    (by
+      have hB := (f.preserves_B k r).choose_spec
+      have hZ := (f.preserves_Z k r).choose_spec
+      apply (cancel_mono ((D' k).Z r).arrow).mp
+      simp only [Category.assoc, hZ, Subobject.ofLE_arrow, hB,
+        Subobject.ofLE_arrow_assoc])
+
+/-- 规范页态射与 `Z r → Z r / B r` 的商投影相容。 -/
+theorem SSDataMorphism.pageπ_pageMap
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} (f : SSDataMorphism ι D D')
+    (k : ι) (r : WithTop ℕ) :
+    (D k).pageπ r ≫ f.pageMap k r =
+      (f.preserves_Z k r).choose ≫ (D' k).pageπ r := by
+  simp [SSDataMorphism.pageMap, SSData.pageπ]
+
+/-- 规范页态射只由底层映射 `φ` 决定，与保 `B/Z` 的存在见证选择无关。 -/
+theorem SSDataMorphism.pageMap_eq_of_φ_eq
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} (f g : SSDataMorphism ι D D')
+    (k : ι) (r : WithTop ℕ) (hφ : f.φ k = g.φ k) :
+    f.pageMap k r = g.pageMap k r := by
+  haveI : Epi ((D k).pageπ r) := by
+    dsimp only [SSData.pageπ]
+    infer_instance
+  apply (cancel_epi ((D k).pageπ r)).mp
+  rw [f.pageπ_pageMap, g.pageπ_pageMap]
+  congr 1
+  apply (cancel_mono ((D' k).Z r).arrow).mp
+  rw [(f.preserves_Z k r).choose_spec, (g.preserves_Z k r).choose_spec, hφ]
+
+/-- 底层映射为恒等时，规范页态射也是恒等。 -/
+theorem SSDataMorphism.pageMap_eq_id
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D : ι → SSData C} (f : SSDataMorphism ι D D)
+    (k : ι) (r : WithTop ℕ) (hφ : f.φ k = 𝟙 _) :
+    f.pageMap k r = 𝟙 _ := by
+  haveI : Epi ((D k).pageπ r) := by
+    dsimp only [SSData.pageπ]
+    infer_instance
+  apply (cancel_epi ((D k).pageπ r)).mp
+  rw [f.pageπ_pageMap, Category.comp_id]
+  have hlift : (f.preserves_Z k r).choose = 𝟙 _ := by
+    apply (cancel_mono ((D k).Z r).arrow).mp
+    rw [(f.preserves_Z k r).choose_spec, hφ]
+    simp
+  rw [hlift, Category.id_comp]
+
+/-- 底层映射为复合时，规范页态射等于两个规范页态射的复合。 -/
+theorem SSDataMorphism.pageMap_eq_comp
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D₁ D₂ D₃ : ι → SSData C}
+    (f : SSDataMorphism ι D₁ D₂) (g : SSDataMorphism ι D₂ D₃)
+    (h : SSDataMorphism ι D₁ D₃) (k : ι) (r : WithTop ℕ)
+    (hφ : h.φ k = f.φ k ≫ g.φ k) :
+    h.pageMap k r = f.pageMap k r ≫ g.pageMap k r := by
+  haveI : Epi ((D₁ k).pageπ r) := by
+    dsimp only [SSData.pageπ]
+    infer_instance
+  apply (cancel_epi ((D₁ k).pageπ r)).mp
+  rw [h.pageπ_pageMap]
+  have hlift : (h.preserves_Z k r).choose =
+      (f.preserves_Z k r).choose ≫ (g.preserves_Z k r).choose := by
+    apply (cancel_mono ((D₃ k).Z r).arrow).mp
+    rw [(h.preserves_Z k r).choose_spec, Category.assoc,
+      (g.preserves_Z k r).choose_spec, ← Category.assoc,
+      (f.preserves_Z k r).choose_spec, Category.assoc, hφ]
+  calc
+    (h.preserves_Z k r).choose ≫ (D₃ k).pageπ r =
+        ((f.preserves_Z k r).choose ≫ (g.preserves_Z k r).choose) ≫
+          (D₃ k).pageπ r := by rw [hlift]
+    _ = (f.preserves_Z k r).choose ≫
+          ((g.preserves_Z k r).choose ≫ (D₃ k).pageπ r) :=
+      Category.assoc _ _ _
+    _ = (f.preserves_Z k r).choose ≫
+          ((D₂ k).pageπ r ≫ g.pageMap k r) := by
+      rw [g.pageπ_pageMap]
+    _ = ((f.preserves_Z k r).choose ≫ (D₂ k).pageπ r) ≫
+          g.pageMap k r := (Category.assoc _ _ _).symm
+    _ = ((D₁ k).pageπ r ≫ f.pageMap k r) ≫ g.pageMap k r := by
+      rw [f.pageπ_pageMap]
+    _ = (D₁ k).pageπ r ≫ (f.pageMap k r ≫ g.pageMap k r) :=
+      Category.assoc _ _ _
+
+/-- 当分次指标和页层指标分别由等式识别时，对规范页态射作相应搬运。
+    所有 `PreSS` 页态射都通过这一函数构造，避免把 `eqToHom` 散落在定义中。 -/
+noncomputable def SSDataMorphism.pageMapOfEq
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} (f : SSDataMorphism ι D D')
+    (k k' : ι) (hk : k = k') (r r' : WithTop ℕ) (hr : r = r') :
+    (D k).page r ⟶ (D' k').page r' :=
+  f.pageMap k r ≫ eqToHom (by rw [hk, hr])
+
+@[simp]
+theorem SSDataMorphism.pageMapOfEq_rfl
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} (f : SSDataMorphism ι D D')
+    (k : ι) (r : WithTop ℕ) :
+    f.pageMapOfEq k k rfl r r rfl = f.pageMap k r := by
+  simp [SSDataMorphism.pageMapOfEq]
+
+/-- 带指标搬运的规范页态射保持复合。 -/
+theorem SSDataMorphism.pageMapOfEq_comp
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D₁ D₂ D₃ : ι → SSData C}
+    (f : SSDataMorphism ι D₁ D₂) (g : SSDataMorphism ι D₂ D₃)
+    (h : SSDataMorphism ι D₁ D₃)
+    (k₁ k₂ k₃ : ι) (hk₁₂ : k₁ = k₂) (hk₂₃ : k₂ = k₃)
+    (r₁ r₂ r₃ : WithTop ℕ) (hr₁₂ : r₁ = r₂) (hr₂₃ : r₂ = r₃)
+    (hφ : h.φ k₁ = f.φ k₁ ≫ g.φ k₁) :
+    h.pageMapOfEq k₁ k₃ (hk₁₂.trans hk₂₃)
+        r₁ r₃ (hr₁₂.trans hr₂₃) =
+      f.pageMapOfEq k₁ k₂ hk₁₂ r₁ r₂ hr₁₂ ≫
+        g.pageMapOfEq k₂ k₃ hk₂₃ r₂ r₃ hr₂₃ := by
+  subst k₂
+  subst k₃
+  subst r₂
+  subst r₃
+  simp only [SSDataMorphism.pageMapOfEq_rfl]
+  exact SSDataMorphism.pageMap_eq_comp f g h k₁ r₁ hφ
+
 /-- 预谱序列的态射（PreSSMorphism）：SSData 的态射加保微分条件。
   `toSSDataMorphism` 把 PreSS 的 ssData 函数送到 SSDataMorphism
   （φ 与 preserves_Z / preserves_B 逐字继承），
@@ -207,11 +343,23 @@ def SSDataMorphism.toUnderlying
 structure PreSSMorphism
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E E' : PreSS C ι) extends SSDataMorphism ι E.ssData E'.ssData where
+  /-- 谱序列态射保持起始页。这个条件保证同一个整数页在源、目标中
+      对应同一个 `SSData` 层。 -/
+  r₀_eq : E.r₀ = E'.r₀
+  /-- 谱序列态射保持微分的次数。 -/
+  diffDeg_eq : E.diffDeg = E'.diffDeg
   /-- φ 与微分交换：页上诱导的映射与微分 d_r 交换。 -/
   comm_d : ∀ (r : ℤ) (k : ι),
-    ∃ (f_page_k : E.Page r k ⟶ E'.Page r k)
-      (f_page_kd : E.Page r (k + E.diffDeg r) ⟶ E'.Page r (k + E'.diffDeg r)),
-      f_page_k ≫ E'.d r k = E.d r k ≫ f_page_kd
+    let n : WithTop ℕ := ↑(r - E.r₀).toNat
+    let n' : WithTop ℕ := ↑(r - E'.r₀).toNat
+    let hn : n = n' := congrArg
+      (fun r₀ => (↑(r - r₀).toNat : WithTop ℕ)) r₀_eq
+    let hk : k + E.diffDeg r = k + E'.diffDeg r :=
+      congrArg (fun d => k + d) (congrFun diffDeg_eq r)
+    let f_page_k := toSSDataMorphism.pageMapOfEq k k rfl n n' hn
+    let f_page_kd := toSSDataMorphism.pageMapOfEq
+      (k + E.diffDeg r) (k + E'.diffDeg r) hk n n' hn
+    f_page_k ≫ E'.d r k = E.d r k ≫ f_page_kd
 
 /-- 从 PreSSMorphism 遗忘微分交换条件得到 SSDataMorphism。
     因 `PreSSMorphism extends SSDataMorphism`，此即父结构的强制上行转换。 -/
@@ -663,24 +811,8 @@ def SpectralSequence.DegeneratesAt
     保持循环 `Z_r`、边缘 `B_r`，并与微分交换。 -/
 structure SpectralSequenceMorphism
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
-    (E E' : SpectralSequence C ι) where
-  /-- 每个双次数上底层对象之间的映射 -/
-  φ : ∀ (k : ι), (E.ssData k).V ⟶ (E'.ssData k).V
-  /-- φ 保持 Z_r：把 Z_r(E) 映入 Z_r(E') -/
-  preserves_Z : ∀ (k : ι) (r : WithTop ℕ),
-    ∃ (lift : Subobject.underlying.obj ((E.ssData k).Z r) ⟶
-              Subobject.underlying.obj ((E'.ssData k).Z r)),
-      lift ≫ ((E'.ssData k).Z r).arrow = ((E.ssData k).Z r).arrow ≫ φ k
-  /-- φ 保持 B_r：把 B_r(E) 映入 B_r(E') -/
-  preserves_B : ∀ (k : ι) (r : WithTop ℕ),
-    ∃ (lift : Subobject.underlying.obj ((E.ssData k).B r) ⟶
-              Subobject.underlying.obj ((E'.ssData k).B r)),
-      lift ≫ ((E'.ssData k).B r).arrow = ((E.ssData k).B r).arrow ≫ φ k
-  /-- φ 与微分交换：页上诱导的映射与微分 d_r 交换。 -/
-  comm_d : ∀ (r : ℤ) (k : ι),
-    ∃ (f_page_k : E.Page r k ⟶ E'.Page r k)
-      (f_page_kd : E.Page r (k + E.diffDeg r) ⟶ E'.Page r (k + E'.diffDeg r)),
-      f_page_k ≫ E'.d r k = E.d r k ≫ f_page_kd
+    (E E' : SpectralSequence C ι)
+    extends PreSSMorphism E.toPreSS E'.toPreSS
 
 /-- 谱序列态射经 `cokernel.map` 诱导 E∞ 页上的映射。 -/
 noncomputable def SpectralSequenceMorphism.eInftyMap
@@ -728,6 +860,18 @@ theorem UnderlyingMorphism.ext
   rcases g with ⟨g_φ⟩
   congr!
 
+/-- `SSDataMorphism` 由底层映射族唯一决定；保 `B/Z` 字段都是命题。 -/
+@[ext]
+theorem SSDataMorphism.ext
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} {f g : SSDataMorphism ι D D'}
+    (h : f.φ = g.φ) : f = g := by
+  rcases f with ⟨⟨fφ⟩, _, _⟩
+  rcases g with ⟨⟨gφ⟩, _, _⟩
+  dsimp only at h
+  subst h
+  rfl
+
 /-- 预谱序列态射的外延性：两态射 φ 分量相同则相等。
     preserves_Z / preserves_B / comm_d 都是 ∃ 命题（Prop），
     由 proof irrelevance 自动相等；用 cases 沿 extends 链逐层消去构造子
@@ -737,13 +881,10 @@ theorem PreSSMorphism.ext
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     {E E' : PreSS C ι} {f g : PreSSMorphism E E'}
     (h : f.φ = g.φ) : f = g := by
-  cases f with | mk f_sd _ => ?_
-  cases f_sd with | mk f_u _ _ => ?_
-  cases f_u with | mk f_φ => ?_
-  cases g with | mk g_sd _ => ?_
-  cases g_sd with | mk g_u _ _ => ?_
-  cases g_u with | mk g_φ => ?_
-  subst h
+  rcases f with ⟨f_sd, _, _, _⟩
+  rcases g with ⟨g_sd, _, _, _⟩
+  have hsd : f_sd = g_sd := SSDataMorphism.ext h
+  subst hsd
   rfl
 
 /-- 谱序列态射的外延性：两态射 φ 分量相同则相等（其余字段都是 Prop）。
@@ -753,9 +894,10 @@ theorem SpectralSequenceMorphism.ext
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     {E E' : SpectralSequence C ι} {f g : SpectralSequenceMorphism E E'}
     (h : f.φ = g.φ) : f = g := by
-  rcases f with ⟨f_φ, _, _, _⟩
-  rcases g with ⟨g_φ, _, _, _⟩
-  congr!
+  rcases f with ⟨f_pre⟩
+  rcases g with ⟨g_pre⟩
+  congr 1
+  exact PreSSMorphism.ext h
 
 /-- SSData 分次族的打包：忘形函子的目标范畴的对象，
     即一个 `ι → SSData C` 族（忘掉 r₀、diffDeg、d 之后剩下的东西）。 -/
@@ -783,38 +925,55 @@ instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
 instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     Category.{max w v} (PreSS C ι) where
   Hom E E' := PreSSMorphism E E'
-  id E := {
-    φ := fun k => 𝟙 _
-    preserves_Z := fun k r => ⟨𝟙 _, by simp⟩
-    preserves_B := fun k r => ⟨𝟙 _, by simp⟩
-    comm_d := fun r k => ⟨𝟙 _, 𝟙 _, by simp⟩ }
-  comp f g := {
-    φ := fun k => f.φ k ≫ g.φ k
-    preserves_Z := fun k r =>
-      ⟨(f.preserves_Z k r).choose ≫ (g.preserves_Z k r).choose, by
-        -- (l_f ≫ l_g) ≫ arrow' = l_f ≫ (l_g ≫ arrow') = l_f ≫ (arrow ≫ g.φ) = (l_f ≫ arrow) ≫ g.φ = (arrow ≫ f.φ) ≫ g.φ
-        rw [Category.assoc, (g.preserves_Z k r).choose_spec,
-          ← Category.assoc, (f.preserves_Z k r).choose_spec, Category.assoc]⟩
-    preserves_B := fun k r =>
-      ⟨(f.preserves_B k r).choose ≫ (g.preserves_B k r).choose, by
-        rw [Category.assoc, (g.preserves_B k r).choose_spec,
-          ← Category.assoc, (f.preserves_B k r).choose_spec, Category.assoc]⟩
-    comm_d := fun r k =>
-      ⟨(f.comm_d r k).choose ≫ (g.comm_d r k).choose,
-       (f.comm_d r k).choose_spec.choose ≫ (g.comm_d r k).choose_spec.choose, by
-        -- 页映射的复合交换性：rcases 拆出等式后 calc 传递，rw 用 conv_lhs 限定到左边
-        rcases (f.comm_d r k).choose_spec.choose_spec with h₁
-        rcases (g.comm_d r k).choose_spec.choose_spec with h₂
-        calc ((f.comm_d r k).choose ≫ (g.comm_d r k).choose) ≫ _
-            = (f.comm_d r k).choose ≫ ((g.comm_d r k).choose ≫ _) := Category.assoc _ _ _
-          _ = (f.comm_d r k).choose ≫ (_ ≫ (g.comm_d r k).choose_spec.choose) := by
-                conv_lhs => rw [h₂]
-          _ = ((f.comm_d r k).choose ≫ _) ≫ (g.comm_d r k).choose_spec.choose :=
-                (Category.assoc _ _ _).symm
-          _ = (_ ≫ (f.comm_d r k).choose_spec.choose) ≫ (g.comm_d r k).choose_spec.choose := by
-                conv_lhs => rw [h₁]
-          _ = _ ≫ ((f.comm_d r k).choose_spec.choose ≫ (g.comm_d r k).choose_spec.choose) :=
-                Category.assoc _ _ _⟩ }
+  id X := by
+    let f : SSDataMorphism ι X.ssData X.ssData := {
+      φ := fun _ => 𝟙 _
+      preserves_Z := fun _ _ => ⟨𝟙 _, by simp⟩
+      preserves_B := fun _ _ => ⟨𝟙 _, by simp⟩ }
+    refine { toSSDataMorphism := f, r₀_eq := rfl, diffDeg_eq := rfl, comm_d := ?_ }
+    intro r k
+    dsimp only
+    simp only [SSDataMorphism.pageMapOfEq]
+    rw [f.pageMap_eq_id k _ rfl, f.pageMap_eq_id (k + X.diffDeg r) _ rfl]
+    simp
+  comp {X Y Z} f g := by
+    let h : SSDataMorphism ι _ _ := {
+      φ := fun k => f.φ k ≫ g.φ k
+      preserves_Z := fun k r =>
+        ⟨(f.preserves_Z k r).choose ≫ (g.preserves_Z k r).choose, by
+          rw [Category.assoc, (g.preserves_Z k r).choose_spec,
+            ← Category.assoc, (f.preserves_Z k r).choose_spec, Category.assoc]⟩
+      preserves_B := fun k r =>
+        ⟨(f.preserves_B k r).choose ≫ (g.preserves_B k r).choose, by
+          rw [Category.assoc, (g.preserves_B k r).choose_spec,
+            ← Category.assoc, (f.preserves_B k r).choose_spec, Category.assoc]⟩ }
+    refine ⟨h, Eq.trans f.r₀_eq g.r₀_eq,
+      Eq.trans f.diffDeg_eq g.diffDeg_eq, ?_⟩
+    intro r k
+    have hf := f.comm_d r k
+    have hg := g.comm_d r k
+    dsimp only at hf hg ⊢
+    let nX : WithTop ℕ := ↑(r - X.r₀).toNat
+    let nY : WithTop ℕ := ↑(r - Y.r₀).toNat
+    let nZ : WithTop ℕ := ↑(r - Z.r₀).toNat
+    let hnXY : nX = nY := congrArg
+      (fun r₀ => (↑(r - r₀).toNat : WithTop ℕ)) f.r₀_eq
+    let hnYZ : nY = nZ := congrArg
+      (fun r₀ => (↑(r - r₀).toNat : WithTop ℕ)) g.r₀_eq
+    let hkXY : k + X.diffDeg r = k + Y.diffDeg r :=
+      congrArg (fun d => k + d) (congrFun f.diffDeg_eq r)
+    let hkYZ : k + Y.diffDeg r = k + Z.diffDeg r :=
+      congrArg (fun d => k + d) (congrFun g.diffDeg_eq r)
+    have hpage := SSDataMorphism.pageMapOfEq_comp
+      f.toSSDataMorphism g.toSSDataMorphism h
+      k k k rfl rfl nX nY nZ hnXY hnYZ rfl
+    have hpageShift := SSDataMorphism.pageMapOfEq_comp
+      f.toSSDataMorphism g.toSSDataMorphism h
+      (k + X.diffDeg r) (k + Y.diffDeg r) (k + Z.diffDeg r)
+      hkXY hkYZ nX nY nZ hnXY hnYZ rfl
+    rw [hpage, hpageShift]
+    simp only [Category.assoc]
+    rw [hg, ← Category.assoc, hf, Category.assoc]
   id_comp f := PreSSMorphism.ext (funext fun k => Category.id_comp (f.φ k))
   comp_id f := PreSSMorphism.ext (funext fun k => Category.comp_id (f.φ k))
   assoc f g h :=
@@ -826,7 +985,7 @@ instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
 def PreSS.forget {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     PreSS C ι ⥤ GradedSSData C ι where
   obj E := ⟨E.ssData⟩
-  map f := ⟨f.φ⟩
+  map f := ⟨(f : PreSSMorphism _ _).φ⟩
   map_id _ := rfl
   map_comp _ _ := rfl
 
@@ -834,9 +993,28 @@ def PreSS.forget {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     因为其余字段都是 Prop（proof irrelevance）。 -/
 instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     Functor.Faithful (PreSS.forget (C := C) (ι := ι)) where
-  map_injective h := PreSSMorphism.ext (congrArg UnderlyingMorphism.φ h)
+  map_injective h := PreSSMorphism.ext
+    (congrArg (fun m : UnderlyingMorphism _ _ _ => m.φ) h)
 
 /-! ### 谱序列的范畴与全子范畴 -/
+
+/-- 谱序列态射的恒等态射，由预谱序列的恒等态射提升。 -/
+def SpectralSequenceMorphism.id
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence C ι) : SpectralSequenceMorphism E E :=
+  ⟨(𝟙 E.toPreSS : PreSSMorphism E.toPreSS E.toPreSS)⟩
+
+/-- 谱序列态射的复合，由预谱序列态射的复合提升。 -/
+def SpectralSequenceMorphism.comp
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E₁ E₂ E₃ : SpectralSequence C ι}
+    (f : SpectralSequenceMorphism E₁ E₂)
+    (g : SpectralSequenceMorphism E₂ E₃) :
+    SpectralSequenceMorphism E₁ E₃ :=
+  ⟨@CategoryStruct.comp (PreSS C ι)
+    (instCategoryPreSS (C := C) (ι := ι)).toCategoryStruct
+    E₁.toPreSS E₂.toPreSS E₃.toPreSS
+    f.toPreSSMorphism g.toPreSSMorphism⟩
 
 /-- 谱序列的范畴结构：态射为 SpectralSequenceMorphism。
     恒等与复合的 φ 逐分量给出；保 Z/B 的提升取两次见证提升的复合，
@@ -844,39 +1022,22 @@ instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
 instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     Category.{max w v} (SpectralSequence C ι) where
   Hom E E' := SpectralSequenceMorphism E E'
-  id E := {
-    φ := fun k => 𝟙 _
-    preserves_Z := fun k r => ⟨𝟙 _, by simp⟩
-    preserves_B := fun k r => ⟨𝟙 _, by simp⟩
-    comm_d := fun r k => ⟨𝟙 _, 𝟙 _, by simp⟩ }
-  comp f g := {
-    φ := fun k => f.φ k ≫ g.φ k
-    preserves_Z := fun k r =>
-      ⟨(f.preserves_Z k r).choose ≫ (g.preserves_Z k r).choose, by
-        rw [Category.assoc, (g.preserves_Z k r).choose_spec,
-          ← Category.assoc, (f.preserves_Z k r).choose_spec, Category.assoc]⟩
-    preserves_B := fun k r =>
-      ⟨(f.preserves_B k r).choose ≫ (g.preserves_B k r).choose, by
-        rw [Category.assoc, (g.preserves_B k r).choose_spec,
-          ← Category.assoc, (f.preserves_B k r).choose_spec, Category.assoc]⟩
-    comm_d := fun r k =>
-      ⟨(f.comm_d r k).choose ≫ (g.comm_d r k).choose,
-       (f.comm_d r k).choose_spec.choose ≫ (g.comm_d r k).choose_spec.choose, by
-        -- 页映射的复合交换性：calc 传递，rw 用 occs 限定到 LHS
-        rcases (f.comm_d r k).choose_spec.choose_spec with h₁
-        rcases (g.comm_d r k).choose_spec.choose_spec with h₂
-        calc ((f.comm_d r k).choose ≫ (g.comm_d r k).choose) ≫ _
-            = (f.comm_d r k).choose ≫ ((g.comm_d r k).choose ≫ _) := Category.assoc _ _ _
-          _ = (f.comm_d r k).choose ≫ (_ ≫ (g.comm_d r k).choose_spec.choose) := by
-                conv_lhs => rw [h₂]
-          _ = ((f.comm_d r k).choose ≫ _) ≫ (g.comm_d r k).choose_spec.choose := (Category.assoc _ _ _).symm
-          _ = (_ ≫ (f.comm_d r k).choose_spec.choose) ≫ (g.comm_d r k).choose_spec.choose := by
-                conv_lhs => rw [h₁]
-          _ = _ ≫ ((f.comm_d r k).choose_spec.choose ≫ (g.comm_d r k).choose_spec.choose) := Category.assoc _ _ _⟩ }
-  id_comp f := SpectralSequenceMorphism.ext (funext fun k => Category.id_comp (f.φ k))
-  comp_id f := SpectralSequenceMorphism.ext (funext fun k => Category.comp_id (f.φ k))
-  assoc f g h :=
-    SpectralSequenceMorphism.ext (funext fun k => Category.assoc (f.φ k) (g.φ k) (h.φ k))
+  id E := SpectralSequenceMorphism.id E
+  comp f g := SpectralSequenceMorphism.comp f g
+  id_comp f := SpectralSequenceMorphism.ext (funext fun k => by
+    simp [SpectralSequenceMorphism.id, SpectralSequenceMorphism.comp])
+  comp_id f := SpectralSequenceMorphism.ext (funext fun k => by
+    simp [SpectralSequenceMorphism.id, SpectralSequenceMorphism.comp])
+  assoc f g h := SpectralSequenceMorphism.ext (funext fun k => by
+    simp [SpectralSequenceMorphism.comp, Category.assoc])
+
+@[simp]
+theorem SpectralSequence.comp_φ
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E₁ E₂ E₃ : SpectralSequence C ι}
+    (f : E₁ ⟶ E₂) (g : E₂ ⟶ E₃) (k : ι) :
+    (f ≫ g).φ k = f.φ k ≫ g.φ k :=
+  rfl
 
 /-- 谱序列态射与（经 toPreSS 遗忘证明条件后的）预谱序列态射之间的等价：
     两边字段逐字相同（φ、preserves_Z、preserves_B、comm_d，
@@ -888,10 +1049,8 @@ def SpectralSequenceMorphism.equivPreSSMorphism
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E E' : SpectralSequence C ι) :
     SpectralSequenceMorphism E E' ≃ PreSSMorphism E.toPreSS E'.toPreSS where
-  toFun f := { φ := f.φ, preserves_Z := f.preserves_Z,
-               preserves_B := f.preserves_B, comm_d := f.comm_d }
-  invFun g := { φ := g.φ, preserves_Z := g.preserves_Z,
-                preserves_B := g.preserves_B, comm_d := g.comm_d }
+  toFun f := f.toPreSSMorphism
+  invFun g := ⟨g⟩
   left_inv _ := rfl
   right_inv _ := rfl
 
@@ -901,22 +1060,31 @@ def SpectralSequenceMorphism.equivPreSSMorphism
 def SpectralSequence.inclusion {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     SpectralSequence C ι ⥤ PreSS C ι where
   obj E := E.toPreSS
-  map f := SpectralSequenceMorphism.equivPreSSMorphism _ _ f
+  map := by
+    intro E E' f
+    change SpectralSequenceMorphism E E' at f
+    exact f.toPreSSMorphism
   map_id _ := PreSSMorphism.ext rfl
-  map_comp _ _ := PreSSMorphism.ext rfl
+  map_comp _ _ := PreSSMorphism.ext (by funext k; rfl)
 
 /-- 包含函子忠实：谱序列态射由其 φ 唯一决定。 -/
 instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     Functor.Faithful (SpectralSequence.inclusion (C := C) (ι := ι)) where
-  map_injective h := SpectralSequenceMorphism.ext (congrArg (fun m => m.φ) h)
+  map_injective := by
+    intro E E' f g h
+    change SpectralSequenceMorphism E E' at f g
+    change f.toPreSSMorphism = g.toPreSSMorphism at h
+    exact SpectralSequenceMorphism.ext
+      (congrArg (fun m : PreSSMorphism _ _ => m.φ) h)
 
 /-- 包含函子满（full）：任意预谱序列态射可经等价的逆映射
     拉回为谱序列态射（字段逐字搬运）。 -/
 instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     Functor.Full (SpectralSequence.inclusion (C := C) (ι := ι)) where
-  map_surjective g :=
-    ⟨(SpectralSequenceMorphism.equivPreSSMorphism _ _).symm g,
-      (SpectralSequenceMorphism.equivPreSSMorphism _ _).apply_symm_apply g⟩
+  map_surjective := by
+    intro E E' g
+    change PreSSMorphism E.toPreSS E'.toPreSS at g
+    exact ⟨⟨g⟩, rfl⟩
 
 /-- 结论：谱序列是预谱序列的全子范畴——
     包含函子既忠实（faithful）又满（full），故全忠实（fully faithful）。 -/
@@ -951,11 +1119,14 @@ theorem SpectralSequence.commSq_iff_underlying
   constructor
   · intro hsq k
     -- 底层交换性：从谱序列态射等式取 φ 分量后逐点取值
-    exact congrFun (congrArg SpectralSequenceMorphism.φ hsq.w) k
+    simpa only [SpectralSequence.comp_φ] using congrFun
+      (congrArg (fun m : SpectralSequenceMorphism W Z => m.φ) hsq.w) k
   · intro hsq
     constructor
     -- 由 underlying 层逐点交换性经 ext 反推谱序列态射相等
-    exact SpectralSequenceMorphism.ext (funext hsq)
+    apply SpectralSequenceMorphism.ext
+    funext k
+    simpa only [SpectralSequence.comp_φ] using hsq k
 
 /-- 若底层 SS 在双次数 `k` 处每一页都为零，则 E∞ 为零。 -/
 noncomputable def EInftyData.eInfty_isZero_of_page_isZero

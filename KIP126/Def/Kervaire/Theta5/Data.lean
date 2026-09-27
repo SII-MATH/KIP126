@@ -41,9 +41,6 @@ structure Theta5ChoiceContext where
   correction : Carrier → Carrier → Carrier
   square_difference : ∀ θ ψ,
     square θ = square ψ + correction θ ψ
-  correction_vanishes : ∀ {θ ψ},
-    highDifference (difference θ ψ) →
-      lambdaEta (correction θ ψ) = 0
   finiteZero : ℕ → Carrier → Prop
   untruncatedZero : Carrier → Prop
   h6Survives : ℕ → Prop
