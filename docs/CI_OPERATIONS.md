@@ -31,10 +31,12 @@ Increasing queue concurrency would not remove the repeated compilation above.
    build contract. Cache service failures fall back to compilation. Lake's
    dependency traces decide what must be rebuilt.
 3. **merge_group** computes the same candidate identity and restores the same
-   exact candidate cache. It still builds the combined queue tree and runs the
-   sandboxed repository checks and guards. Multiple PRs producing a different combined
-   tree get a different identity. An existing green PR status does not by itself
-   skip the queue build.
+   exact candidate cache. After its guards and overlay verification, it may reuse a
+   completed PR build whose full combined-input digest and trusted build contract
+   match, provided exact outputs still exist on main's cache scope. The status must
+   come from GitHub Actions and link to a successful pr-build run on that PR head.
+   Different combined inputs, changed contracts, newer failures, unavailable API
+   evidence, forks, or evicted outputs all fall back to the normal sandbox build.
    Scope and performance routing compare complete Git trees, including removals
    and mode changes. They do not use the compare API's 300-file list. Truncated
    tree responses still fail explicitly rather than hiding changes.
@@ -102,8 +104,8 @@ therefore reuse unaffected modules from that PR rather than falling back only to
 main. Lake validates dependency traces and recompiles changed modules. These
 partial-match seeds are never accepted by documentation consumers or status
 inheritance; only newly validated, exact-input outputs are published for those
-consumers. Merge groups still build the combined candidate and use exact inputs.
-Cache eviction always remains possible.
+consumers. Merge groups validate the combined candidate's identity before reusing
+any evidence. Cache eviction always remains possible.
 
 ## Diagnose a wait or failure
 
@@ -142,3 +144,22 @@ See [GitHub's cache-mode announcement](https://github.blog/changelog/2026-09-10-
 The pinned actionlint schema predates this field; only its exact unknown-key
 message is suppressed, and the job's permission and cache boundaries have
 regression coverage.
+
+## Dependency setup, documentation previews, and routine review events
+
+PR and queue builds restore Lean toolchains and Mathlib packages using an exact key
+covering OS, architecture, toolchain, manifest, and root Lake configuration. Cache
+misses use the normal trusted dependency fetch. Only complete dependency downloads
+are saved, before any candidate Lean executes; candidate outputs never enter this
+dependency cache. Save failures do not turn a successful fetch into a failed build.
+
+PRs keep Blueprint rendering and declaration/link checks, but full API generation
+requires the `docs-preview` label. Adding the label starts a preview; removing it
+cancels the previous run through the existing concurrency group. Main pushes and
+manual/scheduled runs retain full site generation.
+
+Automatic Review events that are stale, closed, draft, outside the supported source
+scope, waiting for prerequisite checks, or unrelated to an Euler task skip without
+dispatching a reviewer. Explicit ineligible review requests and actual API/configuration
+errors still fail with a reason. This does not publish a proof-debt report or change
+required build/merge checks.
