@@ -10,6 +10,9 @@ import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
 import KIP126.Interface.Axiom.StandardMilnor
 import KIP126.Def.Kervaire.Theta5.Predicates
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
+import KIP126.Def.Synthetic.EInfty.Shift.Predicates
+import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与完整待交付清单
@@ -91,8 +94,12 @@ import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
   `Def/Synthetic/{NormalizedMap,ExtensionSS,PageExtension}/` 已定义实际
   normalized lift、同一映射的 ESS、固定比较家族及有限／无限 page extension。
   λ-scaled target 通过真实较小商到较大商的 λ 映射定义；target coset 为实际
-  ESS boundary coset 的逆像。其 essential 判据不等于已经证明经典 boundary
-  加 shorter-image 公式；后者还缺比较图相容和 kernel 识别。
+  ESS boundary coset 的逆像。`PageExtension/Crossing/` 已定义同一家族的有限／
+  未截断 crossing，同时要求较短扩张 essential 且不属于指定经典边界。
+  `PageExtension/Ambiguity/` 从实际较短扩张目标生成 shorterImages，并在精确
+  kernel 与 image 等式下证明 boundary 加 shorter-image 的完整陪集公式及
+  essential 判据；这两个模型比较义务集中于 `PageExtensionAmbiguityInterface`，
+  目前尚未构造其见证，不能把条件性公式写成无条件完成。
   当前 ESS 构造要求逐次数滤过有界；“无限”只指未取有限 λ 商，不表示已处理
   任意无界 Adams 滤过。一般情形还须接入 `UnboundedExtension/` 及其收敛条件。
 
@@ -120,8 +127,13 @@ import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
   已补前置：`Def/ClassicalAdams/Moss/{Mapping,Convergence,Detection,Crossing}/`
   绑定实际 ihom(X,Y) 的 Adams 塔、塔像滤过、共同 Z∞ 代表元及稳定映射检测；
   检测给出实际塔提升的定理已证明，无历史全局 axiom。
-  仍缺真实复合的 tower/page pairing、Leibniz 与收敛复合相容，故完整 Massey
-  关系和 Moss 陈述尚未冻结。ihom(X,Y) 的塔与对 Y 的塔取映射也需比较，
+  `Moss/Composition/` 已用实际内部复合构造各层复合并证明零层公式；
+  `TowerLongLayer/Pairing/Mixed/` 已提供三个不同谱的循环／页面配对下降及唯一性。
+  仍缺 mapping composition 的具体 first/long layer 配对、两侧塔过渡律、
+  Leibniz 与收敛复合相容，故完整 Massey 关系和 Moss 陈述尚未冻结。
+  右过渡的现有路线需 `UnitFiberInclusionCommutes` 或对应 connectivity 条件；
+  braided successor 与 ordered successor 的边界也不能默认相同。
+  ihom(X,Y) 的塔与对 Y 的塔取映射需比较，
   不能默认为相同；Moss 原文的全部条件仍待源文核定。
 
 - `am9` Adams E₂＝cobar/Ext 及标准 hᵢ。
@@ -149,13 +161,18 @@ import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
   尚无这些见证的存在性证明；不新增内部 M 与 Mathlib 谱序列比较义务。
 
 - `am11` synthetic rigidity、E∞ 公式与 λ-Bockstein。
-  陈述：`../KIPBase/Synthetic/Rigidity.lean` 已有若干内部 E∞／消失候选陈述，
-  `ExtensionSS.lean` 有 `LambdaBocksteinData`，不是只有来源条目。
-  限制：历史 `lambda_bockstein_start_page` 仅断言 r₀=2，不是 Bockstein comparison；
-  旧 rigidity 的 weight 范围须按当前 λ 降 weight 约定及论文核对，不能直接冻结。
-  接入：保留 `Main/Axiom/Literature/Claims.lean` 的文献依据，将经校正的 rigidity、
-  νX／νX/λⁿ 的 E∞ 公式及真正的 Bockstein comparison 绑定当前内部 M；
-  a10/a11 的 ν-cofiber／triangle lift 参数化输入在此补其内部页面版本及证明。
+  陈述：本文件 `SyntheticEInftyPresentation` 使用同一内部 F，明确 νX 的
+  Z∞/B_(1+t−w) 与有限商的 Z_(q−t+w)/B_(1+t−w)，范围外为零。
+  A.11 的 q≥2 与 q=1 special fiber 分开交付；来源 wrapper 位于
+  `Main/Axiom/Literature/SyntheticEInfty.lean`，仍需显式提供比较数据。
+  `SyntheticEInftyMapCompatibility` 固定真实 λ、ρ、商投影与规范子商映射的
+  交换等式，λ 降低 weight、增加 boundary cutoff，ρ 保持 weight、包含 cycles。
+  规范子商映射的单满射已证明；由模型相容性推出实际映射的单满射属派生交付。
+  未完成：presentation、shift comparison 及其相容性见证，真正的
+  λ-Bockstein exact-couple comparison，以及 rigidity 的有限页微分公式。
+  历史 `lambda_bockstein_start_page` 仅断言 r₀=2，不能代替 comparison；
+  `KIPBase/Synthetic/Rigidity.lean` 的所有负 weight 消失与反向 weight 商映射
+  不沿用。a10/a11 的已有 cofiber／triangle lift 还需接到同一内部页面。
 
 - `am12` Adams one-line 与低维永久性输入。
   陈述／实现：`Def/ClassicalAdams/H4D2/` 与
@@ -378,6 +395,135 @@ abbrev NuComparison {C : Type u} [StableHomotopy.StableHomotopyCategory.{u, v} C
     (F : Synthetic.SpectralSequence.SyntheticAdamsFamily Syn) (X : C) :=
   Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap
     (adamsTowerInternalSpectralSequence unit X) (F.nu N X)
+
+section SyntheticEInfty
+
+open StableHomotopy StableHomotopy.Cohomology Synthetic.Context Synthetic.SpectralSequence
+open Classical.Adams.PageRepresentatives
+
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+  {Syn : Type w} [SyntheticCategory.{w, v} Syn]
+  [HasFunctorialCofiber (C := Syn)]
+  (H : Mod2EilenbergMacLane (C := C)) (N : NuFunctorData C Syn)
+  (F : SyntheticAdamsFamily Syn)
+
+/-- BHS A.9 的准确内部公式类型；存在性及文献输入另行处理。 -/
+abbrev NuEInftyFormula := ∀ (X : C) (p : ℤ × ℤ) (w : ℤ),
+  ((F.nu N X).sequence.ssData (p.1, p.2, w)).eInfty ≃ₗ[ℤ]
+    nuEInftyModel H X p w
+
+/-- BHS A.11 的准确指数范围，不包含 q=1。 -/
+abbrev FiniteEInftyFormula := ∀ (X : C) (q : ℕ), 2 ≤ q → ∀ (p : ℤ × ℤ) (w : ℤ),
+  ((F.nuQuotient N X q).sequence.ssData (p.1, p.2, w)).eInfty ≃ₗ[ℤ]
+    finiteEInftyModel H X q p w
+
+/-- am11：同一模型的全 weight E∞ 公式。`nu` 对应 BHS Corollary A.9，
+`quotient` 只在 A.11 的 q≥2 范围使用；q=1 的 special-fiber 结论独立交付。
+比较靶由实际 classical E₂ 子模定义，范围外严格为零。该数据不自动满足
+λ、ρ 相容性；下面的独立谓词固定这些数学义务。 -/
+structure SyntheticEInftyPresentation where
+  nu : NuEInftyFormula H N F
+  quotient : FiniteEInftyFormula H N F
+  specialFiber : ∀ (X : C) (p : ℤ × ℤ) (w : ℤ),
+    ((F.nuQuotient N X 1).sequence.ssData (p.1, p.2, w)).eInfty ≃ₗ[ℤ]
+      finiteEInftyModel H X 1 p w
+
+namespace SyntheticEInftyPresentation
+variable {H N F}
+
+/-- 仅使用已有两个指数范围的比较；不在每次使用时重新选择同构。 -/
+noncomputable def finite (P : SyntheticEInftyPresentation H N F)
+    (X : C) (q : ℕ) (hq : 0 < q) (p : ℤ × ℤ) (w : ℤ) :
+    ((F.nuQuotient N X q).sequence.ssData (p.1, p.2, w)).eInfty ≃ₗ[ℤ]
+      finiteEInftyModel H X q p w := by
+  by_cases hq1 : q = 1
+  · subst q
+    exact P.specialFiber X p w
+  · exact P.quotient X q (by omega) p w
+
+noncomputable def nuWindow (P : SyntheticEInftyPresentation H N F)
+    (X : C) (p : ℤ × ℤ) (w : ℤ) (hw : w ≤ p.2) :
+    ((F.nu N X).sequence.ssData (p.1, p.2, w)).eInfty ≃ₗ[ℤ]
+      PermanentQuotient H X (1 + p.2 - w) p :=
+  (P.nu X p w).trans (nuEInftyWindow H X p w hw)
+
+noncomputable def finiteWindow (P : SyntheticEInftyPresentation H N F)
+    (X : C) (q : ℕ) (hq : 0 < q) (p : ℤ × ℤ) (w : ℤ)
+    (hw : 0 ≤ p.2 - w ∧ p.2 - w < q) :
+    ((F.nuQuotient N X q).sequence.ssData (p.1, p.2, w)).eInfty ≃ₗ[ℤ]
+      CycleQuotient H X (q - p.2 + w) (1 + p.2 - w) p :=
+  (P.finite X q hq p w).trans (finiteEInftyWindow H X q p w hw)
+
+end SyntheticEInftyPresentation
+
+/-- am11 的实际映射相容性，明确比较同一 F 的 λ 与 ρ 映射和保持 E₂
+代表元标签的规范商映射／包含映射。这里只在相应非零窗口写公式；窗口外
+的零性由全 weight presentation 本身决定，不用错误的“负 weight 全消失”。
+它没有声称由任意一族线性等价就能推出这些公式。 -/
+structure SyntheticEInftyMapCompatibility
+    (P : SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
+    (T : ∀ X : C, FiniteLambdaQuotientTower (N.functor.obj X)) : Prop where
+  shift_natural : S.Natural
+  lambda_nu : ∀ (X : C) (k : ℕ) (p : ℤ × ℤ) (w : ℤ) (hw : w ≤ p.2)
+    (x : ((F.nu N X).sequence.ssData (p.1, p.2, w)).eInfty),
+    P.nuWindow X p (w - k) (by omega) (S.lambdaMap (N.functor.obj X) k p w x) =
+      permanentQuotientMap H X (by omega) p (P.nuWindow X p w hw x)
+  lambda_finite : ∀ (X : C) (q k : ℕ) (hkq : k < q) (p : ℤ × ℤ) (w : ℤ)
+    (hw : 0 ≤ p.2 - w ∧ p.2 - w < (q - k : ℕ))
+    (x : ((F.nuQuotient N X (q - k)).sequence.ssData (p.1, p.2, w)).eInfty),
+    P.finiteWindow X q (by omega) p (w - k) (by constructor <;> omega)
+        (S.finiteLambdaMap (T X) q k hkq p w x) =
+      quotientMap H X (by omega) (by omega) p
+        (P.finiteWindow X (q - k) (by omega) p w hw x)
+  rho_finite : ∀ (X : C) (i j : ℕ) (hi : 0 < i) (hij : i ≤ j)
+    (p : ℤ × ℤ) (w : ℤ) (hw : 0 ≤ p.2 - w ∧ p.2 - w < i)
+    (x : ((F.nuQuotient N X j).sequence.ssData (p.1, p.2, w)).eInfty),
+    P.finiteWindow X i hi p w hw
+        (((F.functor.map ((T X).rho i j hij)).eInftyMap (p.1, p.2, w)).hom x) =
+      quotientMap H X (by omega) (le_refl (1 + p.2 - w)) p
+        (P.finiteWindow X j (by omega) p w (by constructor <;> omega) x)
+  rho_nu : ∀ (X : C) (q : ℕ) (hq : 0 < q) (p : ℤ × ℤ) (w : ℤ)
+    (hw : 0 ≤ p.2 - w ∧ p.2 - w < q)
+    (x : ((F.nu N X).sequence.ssData (p.1, p.2, w)).eInfty),
+    P.finiteWindow X q hq p w hw
+        (((F.quotientProjection (N.functor.obj X) q).eInftyMap (p.1, p.2, w)).hom x) =
+      permanentToFinite H X (q - p.2 + w) (1 + p.2 - w) p
+        (P.nuWindow X p w (by omega) x)
+
+end SyntheticEInfty
+
+section PageExtensionAmbiguity
+
+open StableHomotopy StableHomotopy.Cohomology Synthetic.Context Synthetic.SpectralSequence
+open Synthetic.PageExtension Classical.Adams.PageRepresentatives
+
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+  {Syn : Type w} [SyntheticCategory.{w, v} Syn]
+  [HasFunctorialCofiber (C := Syn)]
+  {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
+  {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
+
+/-- am6 的剩余模型绑定义务，逐一量化同一比较家族中的实际 extension。
+kernel 是经典 Adams boundaries；shorterImages 是同一映射实际较短扩张目标
+的 span。两条等式足以派生经典 target coset 与 essential 判据，但尚未由
+任意 NormalizedPageFamily 自动构造。infinite 仍保留该家族的有界收敛前提。 -/
+structure PageExtensionAmbiguityInterface (P : NormalizedPageFamily H N F f) : Prop where
+  finite_kernel : ∀ {r : ℕ} {n s t : ℤ} {x : Ambient H X (s, t)}
+    {y : Ambient H Y (s + n, t + n)} (W : FiniteExtensionWitness P r n s t x y),
+    W.ClassicalBoundaryKernel
+  finite_shorter : ∀ {r : ℕ} {n s t : ℤ} {x : Ambient H X (s, t)}
+    {y : Ambient H Y (s + n, t + n)} (W : FiniteExtensionWitness P r n s t x y),
+    W.ShorterImagesCompatible
+  infinite_kernel : ∀ {n s t : ℤ} {x : Ambient H X (s, t)}
+    {y : Ambient H Y (s + n, t + n)} (W : InfiniteExtensionWitness P n s t x y),
+    W.ClassicalBoundaryKernel
+  infinite_shorter : ∀ {n s t : ℤ} {x : Ambient H X (s, t)}
+    {y : Ambient H Y (s + n, t + n)} (W : InfiniteExtensionWitness P n s t x y),
+    W.ShorterImagesCompatible
+
+end PageExtensionAmbiguity
 
 /-- am9 的规范 E₂ 比较义务：每个 cocycle 都必须映到同一 Adams 塔中的
 实际类。这个公式排除只给出任意线性等价的接口；不声称已定义导出 Ext。 -/

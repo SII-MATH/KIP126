@@ -21,5 +21,7 @@ import KIP126.Interface.Solution.Tools.page_extension_stretch
 import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.InternalPages
 import KIP126.Interface.Solution.Cobar
+import KIP126.Interface.Solution.SyntheticEInfty
+import KIP126.Interface.Solution.PageExtensionAmbiguity
 import KIP126.Interface.Solution.InternalNaturality
 import KIP126.Interface.Solution.LowDimensionalPermanence

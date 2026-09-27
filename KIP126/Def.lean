@@ -99,3 +99,10 @@ import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
 import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Proofs
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
+import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
+import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
+import KIP126.Def.Synthetic.Localization.Recovery.Proofs
+import KIP126.Def.Synthetic.EInfty.Shift.Predicates
+import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
+import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs

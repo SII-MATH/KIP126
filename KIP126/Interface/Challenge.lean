@@ -4,5 +4,7 @@ import KIP126.Interface.Challenge.Tools.page_extension_stretch
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Interface.Challenge.InternalPages
 import KIP126.Interface.Challenge.Cobar
+import KIP126.Interface.Challenge.SyntheticEInfty
+import KIP126.Interface.Challenge.PageExtensionAmbiguity
 import KIP126.Interface.Challenge.InternalNaturality
 import KIP126.Interface.Challenge.LowDimensionalPermanence

@@ -2,6 +2,7 @@ import KIP126.Def.ClassicalAdams.StandardFoundation.Data
 import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
 import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
 import KIP126.Def.Synthetic.Context.Data
+import KIP126.Def.Synthetic.Localization.Recovery.Data
 import KIP126.Def.Synthetic.QuotientTower.Predicates
 import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Data
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Predicates
@@ -30,7 +31,7 @@ import Mathlib.Algebra.Exact.Basic
 「已有精确陈述」只表示现有 Lean 类型可供审核，不表示整个规划项已通过数学
 验收；陈述状态、实现状态和依赖关系分别记录。总见证 `Challenge1` 已明列 a01 的基础和 tensor 条件、a02 的 cooperation
 数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性，以及 a05 的基表认证。
-a04/a06 的派生义务与 a07/a10/a11 的参数化接口也在本文件可查；整包构造
+a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可查；整包构造
 及其余条目仍未完成，不能把字段存在视作全部 14 项已证明。
 未冻结的条目以 TODO 保留，补成正式字段前须审核数学类型、范围和消费端。
 不用 `True`、任意 `Prop` 或新的 axiom 代替缺失陈述。
@@ -136,13 +137,23 @@ a04/a06 的派生义务与 a07/a10/a11 的参数化接口也在本文件可查�
 
 ### a09 — S/λ 的 E∞ 结构与 λ 反演
 
-- 陈述：两条目标结果尚未形成完整 Lean 陈述，未冻结。
-- 实现／依赖：a08 背景下 `XModLambda`、`XModLambdaN` 等商对象已有定义。
-- TODO：陈述与商映射相容的 S/λ 唯一 commutative／E∞ algebra 结构，以及
-  λ-invertible synthetic spectra 到 classical spectra 的对称幺半等价、λ⁻¹νX≃X。
-- 前置缺口：λ 局部化函子、泛性质及其幺半比较尚未定义；商对象本身不提供
-  这些结构。完整 E∞ 结构及唯一性也不能以普通 `CommMon` 同名替代。
-- 定位：`Def/Synthetic/Context/Data.lean`；Blueprint
+- 陈述：`Synthetic.LambdaInversionInterface` 已明确实际 λ 可逆对象的满子范畴、
+  reflector、包含函子的左伴随、与同一 classical 背景的等价，以及 ν 的自然比较。
+  独立 `SymmetricMonoidal` 子组要求同一个 realization 的对称幺半结构。
+- 实现：`Def/Synthetic/Localization/` 已从这些显式数据证明单位的唯一分解、
+  reflector 反演现有 λ、完全忠实的 spectral Yoneda，以及 λ⁻¹ν≅Id。
+  `Def/{Challenge,Solution}/Synthetic/Localization.lean` 配对交付单位泛性质与
+  自然恢复同构；Solution 使用真实通用证明。局部化及等价的模型见证尚未构造，
+  这个参数化组也尚未加入当前 `Nonempty Challenge1` 总见证。
+- 范围：遵循 PROJECT_BOUNDARY 的抽象稳定背景，以上记录明确普通范畴层的
+  消费数据；不声称构造原文的 ∞ 范畴、smashing localization 或高阶幺半相容性。
+  realization 的右伴随是 spectral Yoneda；不把 ν 改写成这个右伴随。
+- TODO／前置缺口：a08 背景下 `XModLambda`、`XModLambdaN` 已有定义，但完整
+  E∞ algebra 结构、与实际商映射的相容性及唯一性仍需准确的高阶语义前置。
+  不能用普通 `CommMon` 替代，也不能从商对象存在推得这部分文献结论。
+- 定位：`Def/Synthetic/Localization/`；Pst 原文
+  `prop:tau_inversion_functor_exists`、
+  `prop:tau_inversion_cocontinuous_symmetric_monoidal_left_inverse_to_synthetic_analogue`；Blueprint
   `thm:external-lambda-quotient-ring`、`thm:external-lambda-inversion`。
 
 ### a10 — ν 的 cofiber 判据
@@ -452,6 +463,50 @@ universe u v u' v'
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)]
   {Syn : Type u'} [SyntheticCategory.{u', v'} Syn]
+
+/-! ## a09：同一 λ 与 ν 上的反演接口
+
+以下字段只交付指定抽象背景中的范畴数据，不为任意 synthetic 背景构造它们。
+局部对象由既有 `lam.app` 为同构定义；满子范畴及其包含函子不是新的选择。
+来源：Pstrągowski 的 `prop:tau_inversion_functor_exists`、
+`thm:tau_invertible_synthetic_spectra_are_just_spectra`，以及
+`prop:spectral_yoneda_embedding_the_tau_inversion_of_the_synthetic_analogue`。
+-/
+
+/-- a09 的 λ 反演交付：所有字段绑定同一 reflector、实际局部对象及 ν。
+单位与其唯一分解性质从此伴随导出，不再作为独立假设。 -/
+structure LambdaInversionInterface (N : NuFunctorData C Syn) where
+  reflector : Syn ⥤ LambdaInvertibleObjects Syn
+  adjunction : reflector ⊣ lambdaInclusion Syn
+  equivalence : LambdaInvertibleObjects Syn ≌ C
+  nuLocalization : N.functor ⋙ reflector ≅ equivalence.inverse
+
+/-- 将已展示的反射数据组装成通用记录，不作额外选择。 -/
+def LambdaInversionInterface.localization {N : NuFunctorData C Syn}
+    (I : LambdaInversionInterface N) : LambdaLocalization Syn where
+  reflector := I.reflector
+  adjunction := I.adjunction
+
+/-- 将同一局部化、等价和 ν 比较组装成恢复数据。 -/
+def LambdaInversionInterface.recovery {N : NuFunctorData C Syn}
+    (I : LambdaInversionInterface N) : LambdaRecovery N where
+  localization := I.localization
+  equivalence := I.equivalence
+  nuLocalization := I.nuLocalization
+
+/-- a09 的独立对称幺半条件，直接约束实际 realization。
+来源：Pstrągowski
+`prop:tau_inversion_cocontinuous_symmetric_monoidal_left_inverse_to_synthetic_analogue`。
+局部单位不必是 ambient unit，因此不要求包含函子为 strong monoidal。 -/
+structure LambdaInversionInterface.SymmetricMonoidal {N : NuFunctorData C Syn}
+    (I : LambdaInversionInterface N) [SymmetricCategory C] [SymmetricCategory Syn] where
+  realization : (I.reflector ⋙ I.equivalence.functor).Braided
+
+/-- 此适配保留子组中指定的同一个 realization 幺半结构。 -/
+def LambdaInversionInterface.symmetricMonoidal {N : NuFunctorData C Syn}
+    (I : LambdaInversionInterface N) [SymmetricCategory C] [SymmetricCategory Syn]
+    (M : I.SymmetricMonoidal) : I.recovery.SymmetricMonoidal where
+  realization := M.realization
 
 /-! ## a10/a11：已可精确陈述的 synthetic 文献接口
 

@@ -802,12 +802,12 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
         "Burklund--Hahn--Senger, Theorem A.1, lambda-Bockstein comparison"
         (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
   | .syntheticEinfNu =>
-      claim .syntheticEinfNu .literatureResult `KIP126.Synthetic.SyntheticEinfNu
+      claim .syntheticEinfNu .literatureResult `KIP126.Challenge2.NuEInftyFormula
         "thm:external-synthetic-einfty-nu" .bhs
         "Burklund--Hahn--Senger, Corollary A.9, E_infinity of nu X"
         (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
   | .syntheticEinfQuotient =>
-      claim .syntheticEinfQuotient .literatureResult `KIP126.Synthetic.SyntheticEinfQuotient
+      claim .syntheticEinfQuotient .literatureResult `KIP126.Challenge2.FiniteEInftyFormula
         "thm:external-synthetic-einfty-quotient" .bhs
         "Burklund--Hahn--Senger, Corollary A.11, E_infinity of a finite lambda quotient"
         (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
