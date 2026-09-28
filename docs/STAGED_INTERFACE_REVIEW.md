@@ -61,7 +61,7 @@
 
 `scripts/check_route_literature.py` 检查 10 个输入字段、28 个来源组、41 个声明和
 17 个本地源文件哈希。它验证清单覆盖和文件身份，不证明文献真值、模型存在性
-或计算认证。具体编译和 Blueprint 验证结果在本次 PR 更新评论中记录。
+或计算认证。具体编译和 Blueprint 验证结果在本次 PR 说明中记录。
 
 既有 `sorry`、Challenge1/Challenge2 开发公理、尚未完成的计算认证和最终证明
 仍是显式债务。M/A 的历史冻结文档记录各自批次；本记录补充合并后的联合验收范围，
@@ -71,3 +71,12 @@
 CSV/标准类比较的传递依赖也包含该既有证明债。FixedFinal 回归改为与实际阶段
 边界的公理依赖闭包比较，并继续拒绝比较定理本身直接使用 `sorry`；这不是
 消除了 `sorryAx`，也不是数学认证已经通过。标准 Final 的类型隔离检查保持不变。
+
+### 本次最终整合验证
+
+- 当前 `KIP126` 入口与所选回归的定向构建通过（3986 jobs）：LiteratureBoundary、RouteBoundary、RouteFixedFinal、ChoiceBoundary、FoundationAndPaperTools、FixedFinal、StandardFinalBoundary、ComputationalBoundary、StageInputDeclarations、LinBasis。
+- 来源检查通过：10 个总包字段、28 个来源组、41 个声明引用、17 个文件哈希；生成的 Lean 声明存在性检查也通过。这些不是已证明定理数量。
+- `leanblueprint web` 通过；1517 个 Blueprint 声明引用在当前 `import KIP126` 环境中全部存在，只导出一个 Final 的 Challenge/Solution 对。采用直接环境核对，没有为通用 checkdecls 构建历史 KIPBase。
+- 当前环境缺少 pdflatex/dvisvgm 等渲染工具，因此不声称 PDF 或矢量图验证通过。
+- 相对目标分支的 `git diff --check` 通过。未更新项目依赖版本或共享缓存。
+- 以上是本次最终整合代码的本地检查，远程 CI 状态需以新 PR 实际 head 为准。
