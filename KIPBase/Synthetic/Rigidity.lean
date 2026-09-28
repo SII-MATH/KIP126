@@ -6,6 +6,7 @@
 -/
 import KIPBase.Mathlib
 import KIPBase.Synthetic.Adams
+import KIPBase.Synthetic.ExtensionSS
 import KIPBase.Synthetic.Nu
 import KIPBase.StableHomotopy.Adams
 
@@ -14,6 +15,35 @@ namespace KIPBase.Synthetic
 open CategoryTheory CategoryTheory.Limits KIPBase.SpectralSequence
 
 universe u v u' v'
+
+/-! ### E₂ comparison input
+
+The two comparison statements below are the Blueprint's E₂ identifications.
+They are deliberately stated at one common universe so that both sides live
+in the same category of integer modules.  The page-by-page comparison after
+these identifications is formal and does not require boundedness. -/
+
+axiom lambdaESS_E2_classical_iso
+    (𝒮 : Type u) [StableHomotopy.StableHomotopyCategory.{u, v} 𝒮]
+    (Syn : Type u') [Category.{v} Syn] [Preadditive Syn]
+    [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (X : 𝒮)
+    (data : LambdaExtensionData ((nu 𝒮 Syn).obj X) 1)
+    (s t : ℤ) :
+    (lambdaESS ((nu 𝒮 Syn).obj X) 1 data (t - s, 0)).Page 2 (s, 1) ≅
+      (StableHomotopy.AdamsSS 𝒮 X).Page 2 (s, t)
+
+axiom syntheticAdams_E2_weight_zero_iso
+    (𝒮 : Type u) [StableHomotopy.StableHomotopyCategory.{u, v} 𝒮]
+    (Syn : Type u') [Category.{v} Syn] [Preadditive Syn]
+    [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (X : 𝒮) (s t : ℤ) :
+    (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page 2 (s, t, 0) ≅
+      (StableHomotopy.AdamsSS 𝒮 X).Page 2 (s, t)
 
 variable (𝒮 : Type u) [StableHomotopy.StableHomotopyCategory.{u, v} 𝒮]
 variable (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
