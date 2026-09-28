@@ -1,8 +1,10 @@
+import KIP126.Checks.AxiomInputs
 import KIP126.Mathlib.ClassicalAdams.FinalComparison.Proofs
 import Lean.Elab.Command
 
-/-! Guard the elimination of the named class-comparison axiom. The proof
-must be complete and disclose exactly the three remaining fixed inputs. -/
+/-! Guard the theorem form and the three disclosed fixed inputs. Development
+checks report inherited Challenge2 type debt; strict proof completion remains
+an explicit `kip126.checks.strictStageConsumerAudit` obligation. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -13,12 +15,10 @@ run_cmd do
   let inputs := [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.standardMilnorCooperations,
     ``KIP126.Classical.Adams.linE2Presentation]
-  let axioms ← liftCoreM (collectAxioms declaration)
-  for a in axioms do
-    unless (logical ++ inputs).contains a do
-      throwError "unexpected specified-class comparison dependency: {a}"
+  let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer (logical ++ inputs)
+    declaration "unexpected specified-class comparison dependency"
   for a in inputs do
-    unless axioms.contains a do
+    unless KIP126.Checks.AxiomInputs.uses axioms a do
       throwError "missing disclosed specified-class comparison input: {a}"
 
 #print axioms KIP126.Classical.Adams.h6Square_comparison

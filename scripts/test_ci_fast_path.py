@@ -89,7 +89,8 @@ class FastPathTests(unittest.TestCase):
             self.assertIn(required, confirm["run"])
         for step in steps:
             if "/save@" in step.get("uses", ""):
-                self.assertTrue(step["with"]["key"].startswith("kip126-pr-"))
+                self.assertTrue(step["with"]["key"].startswith("kip126-pr-") or
+                                step["with"]["key"] == "${{ steps.dependency-cache.outputs.cache-primary-key }}")
             if step.get("id") in ("compile", "build"):
                 command = step["run"].split("landrun --rox", 1)[1].split("-- bash", 1)[0]
                 self.assertNotIn("--env GH_TOKEN", command)

@@ -78,16 +78,131 @@ theorem UnderlyingMorphism.ext
   rcases g with ⟨g_φ⟩
   congr!
 
+/-- Preservation witnesses do not add choices to an ambient tower morphism. -/
+@[ext]
+theorem SSDataMorphism.ext
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} {f g : SSDataMorphism ι D D'}
+    (h : f.φ = g.φ) : f = g := by
+  cases f
+  cases g
+  congr 1
+  exact UnderlyingMorphism.ext h
+
+namespace SSDataMorphism
+
+variable {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+variable {D D' D'' : ι → SSData C}
+
+@[reassoc (attr := simp)]
+theorem cycleMap_arrow (f : SSDataMorphism ι D D') (k : ι) (r : WithTop ℕ) :
+    f.cycleMap k r ≫ ((D' k).Z r).arrow = ((D k).Z r).arrow ≫ f.φ k :=
+  (f.preserves_Z k r).choose_spec
+
+/-- The cycle restriction is uniquely determined by the ambient square. -/
+theorem cycleMap_unique (f : SSDataMorphism ι D D') (k : ι) (r : WithTop ℕ)
+    (m : Subobject.underlying.obj ((D k).Z r) ⟶
+      Subobject.underlying.obj ((D' k).Z r))
+    (hm : m ≫ ((D' k).Z r).arrow = ((D k).Z r).arrow ≫ f.φ k) :
+    m = f.cycleMap k r := by
+  apply (cancel_mono ((D' k).Z r).arrow).1
+  rw [hm, cycleMap_arrow]
+
+@[simp]
+theorem cycleMap_id (D : ι → SSData C) (k : ι) (r : WithTop ℕ) :
+    (id D).cycleMap k r = 𝟙 _ := by
+  symm
+  apply cycleMap_unique
+  simp [id]
+
+@[simp]
+theorem cycleMap_comp (f : SSDataMorphism ι D D') (g : SSDataMorphism ι D' D'')
+    (k : ι) (r : WithTop ℕ) :
+    (f.comp g).cycleMap k r = f.cycleMap k r ≫ g.cycleMap k r := by
+  symm
+  apply cycleMap_unique
+  simp [comp, Category.assoc]
+
+/-- Cycle restrictions commute with inclusions between different pages. -/
+@[reassoc]
+theorem cycleMap_ofLE (f : SSDataMorphism ι D D') (k : ι)
+    {r s : WithTop ℕ} (h : r ≤ s) :
+    Subobject.ofLE ((D k).Z s) ((D k).Z r) ((D k).Z_anti h) ≫ f.cycleMap k r =
+      f.cycleMap k s ≫
+        Subobject.ofLE ((D' k).Z s) ((D' k).Z r) ((D' k).Z_anti h) := by
+  apply (cancel_mono ((D' k).Z r).arrow).1
+  simp [Category.assoc, Subobject.ofLE_arrow_assoc]
+
+/-- The canonical page map sends a cycle representative to its ambient image. -/
+@[reassoc (attr := simp)]
+theorem pageπ_pageMap (f : SSDataMorphism ι D D') (k : ι) (r : WithTop ℕ) :
+    (D k).pageπ r ≫ f.pageMap k r = f.cycleMap k r ≫ (D' k).pageπ r := by
+  exact cokernel.π_desc _ _ _
+
+/-- This representative identity uniquely determines the map of quotient pages. -/
+theorem pageMap_unique (f : SSDataMorphism ι D D') (k : ι) (r : WithTop ℕ)
+    (m : (D k).page r ⟶ (D' k).page r)
+    (hm : (D k).pageπ r ≫ m = f.cycleMap k r ≫ (D' k).pageπ r) :
+    m = f.pageMap k r := by
+  apply (cancel_epi (cokernel.π
+    (Subobject.ofLE ((D k).B r) ((D k).Z r) ((D k).B_le_Z r)))).1
+  exact hm.trans (f.pageπ_pageMap k r).symm
+
+@[simp]
+theorem pageMap_id (D : ι → SSData C) (k : ι) (r : WithTop ℕ) :
+    (id D).pageMap k r = 𝟙 _ := by
+  symm
+  apply pageMap_unique
+  simp
+
+@[simp]
+theorem pageMap_comp (f : SSDataMorphism ι D D') (g : SSDataMorphism ι D' D'')
+    (k : ι) (r : WithTop ℕ) :
+    (f.comp g).pageMap k r = f.pageMap k r ≫ g.pageMap k r := by
+  symm
+  apply pageMap_unique
+  simp [Category.assoc]
+
+/-- Naturality for generalized cycle representatives, without projectivity
+assumptions or a choice of a lift of an arbitrary quotient class. -/
+@[reassoc]
+theorem representative_naturality (f : SSDataMorphism ι D D') (k : ι)
+    (r : WithTop ℕ) {T : C} (x : T ⟶ Subobject.underlying.obj ((D k).Z r)) :
+    (x ≫ (D k).pageπ r) ≫ f.pageMap k r =
+      (x ≫ f.cycleMap k r) ≫ (D' k).pageπ r := by
+  simp [Category.assoc]
+
+@[simp]
+theorem pageMapAt_id (E : PreSS C ι) (r : ℤ) (k : ι) :
+    (id E.ssData).pageMapAt (E := E) (E' := E) rfl r k = 𝟙 _ := by
+  simp [pageMapAt]
+
+theorem pageMapAt_comp {E E' E'' : PreSS C ι}
+    (f : SSDataMorphism ι E.ssData E'.ssData)
+    (g : SSDataMorphism ι E'.ssData E''.ssData)
+    (hf : E.r₀ = E'.r₀) (hg : E'.r₀ = E''.r₀) (r : ℤ) (k : ι) :
+    (f.comp g).pageMapAt (hf.trans hg) r k =
+      f.pageMapAt hf r k ≫ g.pageMapAt hg r k := by
+  rcases E with ⟨r₀, D, δ, d⟩
+  rcases E' with ⟨r₀', D', δ', d'⟩
+  rcases E'' with ⟨r₀'', D'', δ'', d''⟩
+  dsimp at hf hg
+  subst r₀'
+  subst r₀''
+  simp [pageMapAt]
+
+end SSDataMorphism
+
 /-- Extensionality for pre-spectral-sequence morphisms. -/
 @[ext]
 theorem PreSSMorphism.ext
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     {E E' : PreSS C ι} {f g : PreSSMorphism E E'}
     (h : f.φ = g.φ) : f = g := by
-  cases f with | mk f_sd _ => ?_
+  cases f with | mk f_sd _ _ _ => ?_
   cases f_sd with | mk f_u _ _ => ?_
   cases f_u with | mk f_φ => ?_
-  cases g with | mk g_sd _ => ?_
+  cases g with | mk g_sd _ _ _ => ?_
   cases g_sd with | mk g_u _ _ => ?_
   cases g_u with | mk g_φ => ?_
   subst h
@@ -99,9 +214,63 @@ theorem SpectralSequenceMorphism.ext
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     {E E' : SpectralSequence C ι} {f g : SpectralSequenceMorphism E E'}
     (h : f.φ = g.φ) : f = g := by
-  rcases f with ⟨f_φ, _, _, _⟩
-  rcases g with ⟨g_φ, _, _, _⟩
+  rcases f with ⟨f_φ, _, _, _, _, _⟩
+  rcases g with ⟨g_φ, _, _, _, _, _⟩
   congr!
+
+/-- Differential naturality refers to the page map induced by the ambient map. -/
+@[reassoc]
+theorem PreSSMorphism.pageMap_comm_d
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E E' : PreSS C ι} (f : PreSSMorphism E E') (r : ℤ) (k : ι) :
+    f.pageMap r k ≫ E'.d r k =
+      E.d r k ≫ f.pageMap r (k + E.diffDeg r) ≫
+        eqToHom (by rw [f.diffDeg_eq]) :=
+  f.comm_d r k
+
+/-- Differential naturality for the underlying canonical maps of spectral sequences. -/
+@[reassoc]
+theorem SpectralSequenceMorphism.pageMap_comm_d
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E E' : SpectralSequence C ι} (f : SpectralSequenceMorphism E E')
+    (r : ℤ) (k : ι) :
+    f.pageMap r k ≫ E'.d r k =
+      E.d r k ≫ f.pageMap r (k + E.diffDeg r) ≫
+        eqToHom (by rw [f.diffDeg_eq]) :=
+  f.comm_d r k
+
+/-- Identity quotient maps commute with every page differential. -/
+theorem PreSSMorphism.id_comm_d
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    (E : PreSS C ι) (r : ℤ) (k : ι) :
+    (SSDataMorphism.id E.ssData).pageMapAt (E := E) (E' := E) rfl r k ≫ E.d r k =
+      E.d r k ≫ (SSDataMorphism.id E.ssData).pageMapAt
+        (E := E) (E' := E) rfl r (k + E.diffDeg r) ≫ eqToHom rfl := by
+  simp
+
+/-- The composite of the canonical quotient maps commutes with differentials. -/
+theorem PreSSMorphism.comp_comm_d
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E E' E'' : PreSS C ι} (f : PreSSMorphism E E') (g : PreSSMorphism E' E'')
+    (r : ℤ) (k : ι) :
+    (f.toSSDataMorphism.comp g.toSSDataMorphism).pageMapAt
+        (f.r₀_eq.trans g.r₀_eq) r k ≫ E''.d r k =
+      E.d r k ≫ (f.toSSDataMorphism.comp g.toSSDataMorphism).pageMapAt
+        (f.r₀_eq.trans g.r₀_eq) r (k + E.diffDeg r) ≫
+          eqToHom (by rw [f.diffDeg_eq, g.diffDeg_eq]) := by
+  rcases E with ⟨r₀, D, δ, d⟩
+  rcases E' with ⟨r₀', D', δ', d'⟩
+  rcases E'' with ⟨r₀'', D'', δ'', d''⟩
+  rcases f with ⟨f, hf, hδf, hdf⟩
+  rcases g with ⟨g, hg, hδg, hdg⟩
+  dsimp at hf hg hδf hδg
+  subst r₀'
+  subst r₀''
+  subst δ'
+  subst δ''
+  simp only [SSDataMorphism.pageMapAt, eqToHom_refl, Category.comp_id,
+    SSDataMorphism.pageMap_comp] at hdf hdg ⊢
+  rw [Category.assoc, hdg, ← Category.assoc, hdf, Category.assoc]
 
 /-! The following reusable lemmas support the page-homology construction. -/
 

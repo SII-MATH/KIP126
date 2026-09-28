@@ -11,6 +11,7 @@ files=(
   .github/workflows/pr-build.yml
   scripts/ci-build-cache-key.sh
   scripts/ci-build-contract.sh
+  scripts/ci_queue_reuse.py
   scripts/sandbox-build.sh
 )
 

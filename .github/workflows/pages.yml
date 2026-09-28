@@ -18,7 +18,7 @@ on:
       - "scripts/test_lean_cache_wait.py"
       - ".github/workflows/pages.yml"
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
       - "blueprint/src/**"
       - "requirements-blueprint.txt"
@@ -267,7 +267,7 @@ jobs:
 
   docs:
     needs: [classify, links]
-    if: ${{ !cancelled() && needs.classify.result == 'success' && (needs.links.result == 'success' || needs.classify.outputs.links != 'true') }}
+    if: ${{ !cancelled() && (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'docs-preview')) && needs.classify.result == 'success' && (needs.links.result == 'success' || needs.classify.outputs.links != 'true') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     env:
@@ -472,11 +472,25 @@ jobs:
           use-mathlib-cache: false
           use-github-cache: false
 
+      # pull_request uses a different workflow commit from pull_request_target.
+      # The trusted producer must publish this record on the default branch
+      # before this consumer can work; an old run cannot acquire it by rerunning.
+      - name: Resolve trusted producer tooling
+        id: producer-tooling
+        if: needs.classify.outputs.cold != 'true' && needs.classify.outputs.lean_producer == 'pr-build.yml'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ needs.classify.outputs.checkout_ref }}
+        run: |
+          python3 scripts/docs/wait_for_lean_cache.py --resolve-tooling \
+            --repo "$GITHUB_REPOSITORY" --sha "$HEAD_SHA" --workflow pr-build.yml
+
       - name: Checkout trusted producer contract
         if: needs.classify.outputs.cold != 'true'
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          ref: ${{ needs.classify.outputs.base_sha }}
+          repository: ${{ github.repository }}
+          ref: ${{ steps.producer-tooling.outputs.tooling_sha || needs.classify.outputs.base_sha }}
           path: gate
           persist-credentials: false
 
@@ -488,16 +502,22 @@ jobs:
           PRODUCER: ${{ needs.classify.outputs.lean_producer }}
           HEAD_SHA: ${{ needs.classify.outputs.checkout_ref }}
           BASE_SHA: ${{ needs.classify.outputs.base_sha }}
+          PRODUCER_RUN_ID: ${{ steps.producer-tooling.outputs.run_id }}
+          PRODUCER_RUN_ATTEMPT: ${{ steps.producer-tooling.outputs.run_attempt }}
         run: |
           input=$(bash gate/scripts/ci-build-cache-key.sh . "$HEAD_SHA")
           contract=$(bash gate/scripts/ci-build-contract.sh gate)
           workflow=$PRODUCER
           producer_sha=$BASE_SHA
+          producer_args=()
           if [[ "$workflow" == pr-build.yml ]]; then
             producer_sha=$HEAD_SHA
+            test -n "$PRODUCER_RUN_ID"
+            test -n "$PRODUCER_RUN_ATTEMPT"
+            producer_args=(--producer-run-id "$PRODUCER_RUN_ID" --producer-run-attempt "$PRODUCER_RUN_ATTEMPT")
           fi
           python3 scripts/docs/wait_for_lean_cache.py --repo "$GITHUB_REPOSITORY" \
-            --sha "$producer_sha" --workflow "$workflow" \
+            --sha "$producer_sha" --workflow "$workflow" "${producer_args[@]}" \
             --key "kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-$input" \
             --key "kip126-pr-build-v1-${{ runner.os }}-${{ runner.arch }}-$input-$contract"
 

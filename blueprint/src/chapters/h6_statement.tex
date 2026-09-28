@@ -46,7 +46,7 @@ that derivation is not yet implemented.
 \end{definition}
 
 % SOURCE: the Adams resolution in def:hf2-adams-tower, made explicit by
-% iterating the unit and its fiber; aimpaper/main.tex:253-263.
+% iterating the unit and its fiber; KIP126/Main/Axiom/Literature/MainPaper/main.tex:253-263.
 \begin{definition}[Iterated-fiber Adams tower]
   \label{def:h6-fiber-tower}
   \lean{KIP126.Classical.Adams.fiber}
@@ -3701,6 +3701,21 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   and homology quotients and makes no claim of convergence to an abutment.
 \end{definition}
 
+\begin{definition}[Standard target on the internal sphere sequence]
+  \label{def:h6-standard-internal-target}
+  \lean{KIP126.Classical.Adams.standardH6,KIP126.Classical.Adams.standardH6Square,KIP126.Classical.Adams.sphereAdamsData,KIP126.Core.SpectralSequence.NonzeroSurvival}
+  \uses{def:h6-constructed-square,def:h6-tower-internal-sequence}
+  \notready
+  Specialize the existing internal tower construction and Milnor cocycle map
+  to the same foundation witness. The standard class is the image of
+  $[\xi_1^{64}\mid\xi_1^{64}]$ in the internal $E_2^{2,128}$.
+  Neither its definition nor the standard target uses CSV data or $C(M)$.
+  The target asks for a common $Z_\infty$ representative projecting to this
+  class, with nonzero $E_\infty$ image. The fixed foundation and Milnor
+  coordinates are still supplied by the single Challenge~1 witness;
+  no concrete realization or permanence proof is claimed here.
+\end{definition}
+
 \begin{definition}[Fixed standard and computational sphere objects]
   \label{def:h6-fixed-computation}
   \lean{KIP126.Classical.Adams.sphereAdams,KIP126.Classical.Adams.sphereH6Square,KIP126.Classical.Adams.sphereAdamsModel,KIP126.Classical.Adams.sphereAdamsData,KIP126.Classical.Adams.sphereAdams_towerComparison,KIP126.Classical.Adams.survival_comparison,KIP126.Classical.Adams.computedH6Square,KIP126.Core.SpectralSequence.NonzeroSurvival}
@@ -4013,6 +4028,24 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   three-product vanishing theorem with the remaining hypotheses.
 \end{proof}
 
+\begin{proposition}[CSV and standard labels agree on the internal page]
+  \label{prop:h6-internal-standard-comparison}
+  \lean{KIP126.Classical.Adams.standardH6Square_ne_zero,KIP126.Classical.Adams.computedH6Square_eq_standardH6Square,KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_standard}
+  \uses{def:h6-standard-internal-target,prop:h6-internal-square-unique,prop:h6-standard-square-nonzero}
+  \notready
+  On the same internal $E_2$ page,
+  \texttt{computedH6Square} equals \texttt{standardH6Square}.
+  Consequently their internal nonzero-survival assertions are equivalent.
+  The comparison uses the staged Lin presentation and standard foundation;
+  it neither assumes permanence nor adds a class-identification axiom.
+\end{proposition}
+\begin{proof}
+  Standard cobar nonvanishing passes through the actual quotient-page
+  isomorphism to the internal standard class. The exhaustive two-element
+  description in bidegree $(2,128)$ then identifies it with the CSV class.
+  Rewrite the class in the nonzero-survival predicate on the same sequence.
+\end{proof}
+
 \begin{proposition}[The specified-class comparison is a theorem]
   \label{prop:h6-fixed-class-comparison}
   \lean{KIP126.Classical.Adams.h6Square_comparison}
@@ -4155,20 +4188,182 @@ separately. Its additional runtime test is not used as a proof. Initial
 nonvanishing neither removes the Lin comparison axiom nor proves higher-page
 survival; the computational final Solution remains open.
 
+\begin{definition}[Correlated stage-zero cooperation contract]
+  \label{def:stage-zero-cooperation-contract}
+  \lean{KIP126.Challenge1.TensorInput,KIP126.Challenge1.CooperationInput}
+  \uses{def:h6-reduced-milnor-basis-input,def:h6-milnor-coproduct-input,prop:h6-derived-milnor-coordinates,def:h6-milnor-cooperations}
+  \leanok
+  The first Challenge witness specifies one tensor suspension/exactness
+  structure, one multiplication on its chosen $H\mathbb F_2$, one K\"unneth
+  comparison, and one reduced Milnor basis. It requires suspension,
+  diagonal, unit and Milnor coproduct compatibility. Its published first-page
+  coordinates agree with those derived from exactly these choices.
+  Construction of the fixed witness remains unfinished; the contract does
+  not identify unrelated choices merely because they share a type.
+\end{definition}
+
+\begin{proposition}[Cobar square-zero law from the first-page comparison]
+  \label{prop:cobar-square-zero-from-comparison}
+  \lean{KIP126.Classical.Adams.sphereFirstDifferential_squared,KIP126.Classical.Adams.milnor_differential_squared,KIP126.Def.Solution.cobar_square_zero}
+  \uses{def:h6-milnor-cooperations,def:h6-tower-differential}
+  \leanok
+  Given the explicit Milnor comparison for the actual Adams first page,
+  $d_{s+1,t}d_{s,t}=0$ on every normalized Milnor cochain group.
+  This is conditional on that comparison, whose construction is still a
+  separate obligation; it does not assert an independent polynomial proof.
+\end{proposition}
+\begin{proof}
+  Lift a cochain along the first-page coordinate equivalence. Apply the
+  coordinate compatibility twice and the square-zero law of the constructed
+  first-page homological complex, then use preservation of zero.
+  \leanok
+\end{proof}
+
+\begin{definition}[Normalized Milnor cobar cohomology]
+  \label{def:milnor-cobar-cohomology}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cycles,KIP126.Classical.Adams.MilnorCohomology.boundaries,KIP126.Classical.Adams.MilnorCohomology.Cohomology,KIP126.Classical.Adams.MilnorCohomology.ofCocycle}
+  \uses{prop:cobar-square-zero-from-comparison}
+  \leanok
+  Given the same explicit $H\mathbb F_2$ and Milnor comparison, define
+  $H^{s,t}_{\mathrm{cobar}}=\ker(d_{s,t})/\operatorname{im}(d_{s-1,t})$
+  as an actual $\mathbb F_2$-module quotient; the incoming boundary module
+  at $s=0$ is zero. The proved square-zero law supplies its inclusion into
+  cycles. This construction alone does not identify the quotient with
+  derived Steenrod Ext.
+\end{definition}
+
+\begin{proposition}[Cobar class criteria and the specified nonzero square]
+  \label{prop:milnor-cobar-class-criteria}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.classOf_eq_iff,KIP126.Classical.Adams.MilnorCohomology.hiSquare_six_ne_zero}
+  \uses{def:milnor-cobar-cohomology}
+  \leanok
+  Two cycles define equal classes precisely when their difference belongs
+  to the actual incoming boundary module. The class of
+  $[\xi_1^{64}\mid\xi_1^{64}]$ is nonzero.
+\end{proposition}
+\begin{proof}
+  The quotient criterion gives the first statement; the existing concrete
+  nonboundary detector gives the second.
+  \leanok
+\end{proof}
+
+\begin{definition}[The full internal Milnor $h_i$ family]
+  \label{def:milnor-internal-hi-family}
+  \lean{KIP126.Steenrod.Milnor.hiCochain,KIP126.Steenrod.Milnor.hiSquareCochain,KIP126.Classical.Adams.Sphere.Internal.hi,KIP126.Classical.Adams.Sphere.Internal.hiSquare}
+  \uses{def:h6-milnor-cooperations,def:h6-tower-internal-sequence}
+  \leanok
+  For every $i\in\mathbb N$, the cocycles $[\xi_1^{2^i}]$ and their
+  concatenation squares define actual classes of bidegree $(1,2^i)$ and
+  $(2,2^{i+1})$ on the internal second page of the same sphere Adams tower.
+  They are obtained through its constructed quotient-page isomorphism,
+  rather than chosen independently.
+\end{definition}
+
+\begin{proposition}[Cobar multiplication descends to cohomology]
+  \label{prop:milnor-cobar-cup-descent}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Challenge2.CobarCupCalculus}
+  \uses{def:milnor-cobar-cohomology,def:milnor-internal-hi-family}
+  \leanok
+  Cobar concatenation induces an actual $\mathbb F_2$-bilinear product
+  $H^{s,t}_{\mathrm{cobar}}\otimes H^{s',t'}_{\mathrm{cobar}}
+  \to H^{s+s',t+t'}_{\mathrm{cobar}}$.
+  Products of cocycle classes are the classes of their concatenations.
+  The specified $h_i^2$ is the cup square of $h_i$, transported along
+  $2^i+2^i=2^{i+1}$. This does not yet assert multiplicativity of the
+  comparison with the Adams page pairing.
+\end{proposition}
+\begin{proof}
+  The actual Leibniz identity makes cycles closed under concatenation and
+  incoming boundaries an ideal on either side; degree-zero boundaries
+  are handled as the zero submodule. Descend the bilinear map through both
+  quotient maps and evaluate it on the specified cocycles.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Canonical cobar comparison with the internal second page]
+  \label{prop:milnor-cobar-internal-e2}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.comparison,KIP126.Classical.Adams.MilnorCohomology.comparison_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.comparison_hi,KIP126.Classical.Adams.MilnorCohomology.comparison_hiSquare,KIP126.Challenge2.CobarE2Comparison,KIP126.Interface.Solution.cobarE2Comparison}
+  \uses{def:milnor-cobar-cohomology,def:h6-tower-internal-sequence}
+  \leanok
+  For the same explicit Milnor coordinate comparison and all $s,t\ge0$,
+  there is a canonical $\mathbb Z$-linear equivalence
+  $H^{s,t}_{\mathrm{cobar}}\cong E_2^{s,t}$ of the actual internal sphere
+  Adams tower. It takes every cocycle class to the class constructed from
+  that cocycle in this tower. This identifies the actual two quotients,
+  and in particular preserves the full specified $h_i$ and $h_i^2$ families,
+  without introducing a derived Ext model or comparing spectral sequences
+  with the optional Mathlib adapter.
+\end{proposition}
+\begin{proof}
+  Send cobar cycles through the inverse Milnor coordinates into first-page
+  cycles, then through their homology quotient and the same tower's
+  internal quotient-page isomorphism. The map is surjective with kernel
+  exactly the incoming boundaries. In filtration zero, use vanishing of
+  the negative-filtration first page. The quotient first-isomorphism
+  theorem gives the stated equivalence and its cocycle formula.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Closedness and quotient-page compatibility of $h_i$]
+  \label{prop:milnor-internal-hi-family}
+  \lean{KIP126.Steenrod.Milnor.hiCochain_isCycle,KIP126.Steenrod.Milnor.hiSquareCochain_isCycle,KIP126.Classical.Adams.Sphere.Internal.hi_pageIso,KIP126.Classical.Adams.Sphere.Internal.hiSquare_pageIso,KIP126.Classical.Adams.Sphere.Internal.hi_six,KIP126.Classical.Adams.Sphere.Internal.hiSquare_six}
+  \uses{def:milnor-internal-hi-family}
+  \leanok
+  These representatives are closed and the quotient-page isomorphism sends
+  them to the corresponding tower classes. At $i=6$ they agree with the
+  previously specified $h_6$ and square. No higher-page permanence follows
+  from this construction.
+\end{proposition}
+\begin{proof}
+  Characteristic-two Frobenius proves closedness of the one-letter
+  representative; the cobar Leibniz identity proves closedness of its square.
+  The remaining equalities use the inverse quotient-page isomorphism and
+  the definitions of the specified degree-six representatives.
+  \leanok
+\end{proof}
+
 \begin{theorem}[Additive catalogue certification, pending]
   \label{thm:lin-e2-basis-certification}
-  \lean{KIP126.LinE2.basisTable_correct}
+  \lean{KIP126.Interface.Solution.LinE2.basisTable_correct}
   \uses{def:lin-e2-catalogue}
   \notready
-  For $t\le261$, the actual listed monomial values of degree $(s,t)$ form an
-  $\mathbb F_2$-basis of the specified quotient component. This asserts both
+  For all $s,t\in\mathbb N$ with $t\le261$, the listed monomial values of
+  degree $(s,t)$ in the fixed v126.3.cw49 catalogue form an
+  $\mathbb F_2$-basis of its quotient-algebra component. This asserts both
   linear independence and spanning, not merely that the list has the right
-  length. The Lean proof remains admitted; executable checks of degrees,
-  distinct coordinates and irreducibility do not discharge it.
+  length. This auxiliary certification is produced in Interface; its
+  proof remains admitted. It is distinct from delivery of coordinates on
+  the actual sphere $E_2$ page and is no longer a Challenge1 field.
+  Artifact hashes and executable checks of degrees, distinct coordinates
+  and irreducibility do not discharge it.
 \end{theorem}
+
+\begin{theorem}[Fixed sphere additive-coordinate delivery, pending]
+  \label{thm:lin-sphere-basis-interface}
+  \lean{KIP126.Challenge2.SphereBasisInterface,KIP126.Interface.Solution.sphereBasis}
+  \uses{def:lin-e2-catalogue,def:h6-fixed-computation}
+  \notready
+  For the same range-limited Lin presentation $P$, deliver unique
+  finite-support $\mathbb F_2$ coordinates on the actual internal sphere
+  $E_2^{s,t}$ for every $s,t\in\mathbb N$ with $t\le261$.
+  The coordinate equivalences are integer-linear, preserving the existing
+  page additive structure without choosing another $\mathbb F_2$ action.
+  Pulling the inverse image of each standard coordinate vector back
+  through $P$ gives exactly the specified CSV monomial value.
+  The \texttt{sphereBasis} field of Challenge2 carries this interface for
+  that witness's own presentation.
+\end{theorem}
+\begin{proof}
+  \uses{thm:lin-e2-basis-certification}
+  Transport the certified quotient-algebra basis through $P$.
+  The producer implements this conditional construction, but depends on
+  the admitted catalogue certification; the delivery is not proved
+  unconditionally.
+\end{proof}
 
 \begin{definition}[Data and internal Adams additive coordinates]
   \label{def:lin-e2-coordinates}
+  \lean{KIP126.LinE2.basisTable_correct}
   \lean{KIP126.LinE2.dataBasis}
   \lean{KIP126.LinE2.dataCoordinates}
   \lean{KIP126.Classical.Adams.sphereE2BasisByCSV?}
@@ -4177,12 +4372,16 @@ survival; the computational final Solution remains open.
   \lean{KIP126.Classical.Adams.linToSphere_exists_preimage}
   \lean{KIP126.Classical.Adams.linToSphere_eq_iff}
   \lean{KIP126.Classical.Adams.linToSphere_product_eq_zero}
-  \uses{thm:lin-e2-basis-certification,def:h6-fixed-computation}
+  \uses{thm:lin-sphere-basis-interface,def:h6-fixed-computation}
   \notready
-  Under the pending basis certification, obtain unique finite-support
-  $\mathbb F_2$ coordinates on each covered component. Transport them through
-  the fixed Lin comparison to the internal SSData $E_2$ page, using an
-  integer-linear equivalence to retain its existing additive structure.
+  Main obtains its public data basis, data coordinates, basis-certification
+  compatibility theorem, and internal sphere coordinates from the unique
+  Challenge2 witness and its \texttt{sphereBasis} field, using the same
+  presentation throughout. The data-side compatibility interfaces are
+  recovered from this delivery; they do not select a Challenge1 basis.
+  Each covered component has unique finite-support $\mathbb F_2$
+  coordinates, with an integer-linear equivalence retaining the internal
+  SSData $E_2$ page's existing additive structure.
   Basis vectors have the specified CSV values and are nonzero; coordinates
   reconstruct any element. Product equalities in the data quotient transfer
   to the internal page, including zero products. Every covered page element

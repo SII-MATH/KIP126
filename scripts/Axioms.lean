@@ -2,9 +2,9 @@ import Lean
 
 /-!
 Compiled-environment audit of the canonical library's proof dependencies.
-Development-only project axioms must be declared in a Def or Mathlib adapter
-component's `Axiom.lean`, or the exact authorized LinProofs database component
-(see PROJECT_BOUNDARY.md, fixed h₆² and database exceptions);
+Development-only project axioms are declared under `KIP126.Interface.Axiom`
+or `KIP126.Main.Axiom`
+(see PROJECT_BOUNDARY.md);
 they are inventoried separately from `sorryAx` and remain failures of this
 strict, final-acceptance audit. The initializer substitutes the source root.
 -/
@@ -103,18 +103,14 @@ def audit : CoreM AuditReport := do
   for name in projectAxioms do
     let some moduleName := owningModule? env moduleNames name
       | continue
-    -- Explicit user-authorized fixed database exception. Still inventoried and
-    -- rejected by final acceptance; this is NOT an allowed foundational axiom.
-    let fixedDatabaseException :=
-      moduleName == `KIP126.External.Computation.LinProofs.Axiom &&
-      name == `KIP126.Computation.LinProofs.sphereTable_sound
-    if ((`KIP126.Def).isPrefixOf moduleName || (`KIP126.Mathlib).isPrefixOf moduleName ||
-        fixedDatabaseException) &&
-        moduleName.toString.endsWith ".Axiom" then
+    -- Stage assumptions are centralized; registration still fails the strict
+    -- completion audit below and never grants foundational trust.
+    if (`KIP126.Interface.Axiom).isPrefixOf moduleName ||
+        (`KIP126.Main.Axiom).isPrefixOf moduleName then
       let line := s!"  {name} (declared in {moduleName})"
       report := { report with registered := report.registered.push line }
     else
-      let line := s!"project axiom {name} is declared in {moduleName}, not a component Axiom.lean"
+      let line := s!"project axiom {name} is declared in {moduleName}, outside the stage Axiom directories"
       report := { report with errors := report.errors.push line }
   let offenders : Array Name :=
     (candidates.filterM reachesDisallowedAxiom |>.run env).run' {}
@@ -151,7 +147,7 @@ def main : IO UInt32 := do
     return 1
   IO.println s!"axioms: audited {report.audited} {auditedRoot} declaration(s)."
   if !report.registered.isEmpty then
-    IO.println s!"project axioms in Axiom.lean ({report.registered.size}):"
+    IO.println s!"project axioms in stage Axiom directories ({report.registered.size}):"
     for line in report.registered do IO.println line
   if !report.projectDependents.isEmpty then
     IO.println s!"project-axiom dependency cone ({report.projectDependents.size} declarations):"

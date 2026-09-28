@@ -1,9 +1,10 @@
-import KIP126.Def.ClassicalAdams.ComputationalVanishing.Proofs
+import KIP126.Checks.AxiomInputs
+import KIP126.Main.Solution.Computation.Vanishing
 import Lean.Elab.Command
 
 /-! The no-incoming-differential argument is internal and independent of the Lin
 table and Milnor coordinates. Its generic form uses the Eilenberg--Mac Lane
-property; its fixed form requires only the existing foundation assumption. -/
+property; its fixed form projects only the foundation from Challenge 1. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -26,7 +27,7 @@ run_cmd do
       ``KIP126.Classical.Adams.sphereAdams_h6_boundaries_eq_two,
       ``KIP126.Classical.Adams.sphereAdams_h6_nonzeroSurvival_iff] do
     for a in ← liftCoreM (collectAxioms declaration) do
-      unless basic.contains a do
+      unless KIP126.Checks.AxiomInputs.allows basic a do
         throwError "unexpected generic vanishing dependency: {declaration}: {a}"
   let inputs := [``KIP126.Classical.Adams.standardFoundation]
   for declaration in [
@@ -37,15 +38,14 @@ run_cmd do
       | throwError "vanishing must be a theorem, not an axiom: {declaration}"
     let axioms ← liftCoreM (collectAxioms declaration)
     for a in axioms do
-      unless (basic ++ inputs).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (basic ++ inputs) a do
         throwError "unexpected fixed vanishing dependency: {declaration}: {a}"
     for a in inputs do
-      unless axioms.contains a do
+      unless KIP126.Checks.AxiomInputs.uses axioms a do
         throwError "missing disclosed vanishing input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.MilnorCooperations).isPrefixOf m ||
         (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
       throwError "unexpected internal vanishing import: {m}"
 

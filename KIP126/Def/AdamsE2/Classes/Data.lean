@@ -1,4 +1,4 @@
-import KIP126.External.AdamsE2
+import KIP126.Main.Axiom.LinProgram.Interpretation.AdamsE2
 
 namespace KIP126.AdamsE2.Input
 

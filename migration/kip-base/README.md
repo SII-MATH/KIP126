@@ -84,7 +84,7 @@ The migration does not silently rewrite
 their mathematical statements or replace the old ESS commutativity axioms by
 the newer relation vocabulary.
 
-## Mapping to aimpaper
+## Mapping to KIP126/Main/Axiom/Literature/MainPaper
 
 | Historical modules | Intended paper role | Canonical destination / remaining work |
 | --- | --- | --- |
@@ -102,7 +102,7 @@ the newer relation vocabulary.
 
 The retained material supplies foundations and draft statements for the paper;
 it does not already contain proofs of all Sections 4–7 or the Appendix. The
-existing `aimpaper/`, canonical Blueprint, and Appendix inventory remain the
+existing `KIP126/Main/Axiom/Literature/MainPaper/`, canonical Blueprint, and Appendix inventory remain the
 authoritative project sources. Historical Blueprint annotations under
 `original/` are retained as evidence of past intent, not current completion flags.
 

@@ -1,3 +1,7 @@
+> 后续布局更新：Main 的 Near126 中间命题已合并到 Solution 的 ChoiceIndependence、DifferentialReduction、ExtensionObstruction；Main/Challenge 只保留 Final。下文旧路径为历史记录，现行位置见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md#后续调整中间推导不再设-challenge-镜像)。
+
+> Historical layout record. The current layout is documented in [STAGE_LAYOUT.md](STAGE_LAYOUT.md); module ownership is Def / Interface / Main.
+
 # Def / Challenge migration status
 
 The source paths below describe the current branch. Public Lean declaration names
@@ -100,7 +104,7 @@ pages, spectra, stems, and filtration bands. `Rows/Catalogue/Data` contains the
 source-shaped 401-row input; `Rows/Predicates` defines schema validity and
 `Rows/Catalogue/Proofs` checks the transcription. The mathematical interpretation
 of the recorded differential and permanence statuses remains `\notready`.
-The complete paper-specific schema and catalogue are exported by `KIP126.External`,
+The complete paper-specific schema and catalogue are exported by `KIP126.Main.Axiom`,
 not `KIP126.Def`; public names in `KIP126.Computation` are preserved.
 
 The six former loose `ClassicalAdams` implementation files now live in

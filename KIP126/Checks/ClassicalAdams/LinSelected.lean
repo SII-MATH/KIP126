@@ -1,4 +1,5 @@
-import KIP126.External.Computation.LinProofs.Selected.Proofs
+import KIP126.Checks.AxiomInputs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Selected.Proofs
 import KIP126.Checks.ClassicalAdams.LinProofs
 
 open Lean Elab Command in
@@ -10,7 +11,7 @@ run_cmd do
       ``KIP126.Core.SpectralSequence.HasDifferential.eq_on_page_two,
       ``KIP126.Core.SpectralSequence.hasDifferential_zero] do
     for a in (← liftCoreM (collectAxioms decl)) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected generic differential axiom: {decl}: {a}"
   let expected := [``propext, ``Classical.choice, ``Quot.sound,
     ``KIP126.Classical.Adams.standardFoundation,
@@ -22,12 +23,11 @@ run_cmd do
       ``KIP126.Computation.LinProofs.Selected.d3_h0Sq_x123_13_2,
       ``KIP126.Computation.LinProofs.Selected.d3_x126_4,
       ``KIP126.Computation.LinProofs.Selected.d7_x123_11_combination] do
-    let axioms ← liftCoreM (collectAxioms decl)
-    unless axioms.contains ``KIP126.Computation.LinProofs.sphereTable_sound do
-      throwError "missing existing database assumption: {decl}"
-    for a in axioms do
-      unless expected.contains a do
-        throwError "unexpected selected-result axiom: {decl}: {a}"
+    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer expected decl
+      "selected-result dependency audit"
+    unless KIP126.Checks.AxiomInputs.uses axioms
+        ``KIP126.Computation.LinProofs.sphereTable_sound do
+      throwError "missing Challenge 2 database assumption: {decl}"
 
 open KIP126.Core KIP126.Core.SpectralSequence
 open CategoryTheory

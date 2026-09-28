@@ -61,6 +61,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Routine ineligible/stale events are normal skips; explicit requests get a reason.
+          not_ready() {
+            if [[ "$EVENT" == workflow_run ]]; then
+              echo "Review skipped: $1"
+              exit 0
+            fi
+            echo "::error::Review cannot start: $1"
+            exit 1
+          }
           PR=''
           EVENT_HEAD=''
           RETRY_REQUESTED=false
@@ -101,16 +110,16 @@ jobs:
             fi
             PR=$(jq -r '.issue.number // empty' "$GITHUB_EVENT_PATH")
           fi
-          test -n "$PR"
+          [[ -n "$PR" ]] || not_ready "no unique open PR for this event"
           gh api "repos/$REPO/pulls/$PR" > pr.json
-          test "$(jq -r .state pr.json)" = open
-          test "$(jq -r .draft pr.json)" = false
+          [[ "$(jq -r .state pr.json)" == open ]] || not_ready "PR is closed"
+          [[ "$(jq -r .draft pr.json)" == false ]] || not_ready "PR is a draft"
           HEAD_SHA=$(jq -r .head.sha pr.json)
           BASE_SHA=$(jq -r .base.sha pr.json)
           HEAD_REF=$(jq -r .head.ref pr.json)
           BODY=$(jq -r '.body // ""' pr.json)
           if [[ -n "$EVENT_HEAD" ]]; then
-            test "$HEAD_SHA" = "$EVENT_HEAD"
+            [[ "$HEAD_SHA" == "$EVENT_HEAD" ]] || not_ready "a newer PR commit superseded this event"
           fi
           printf 'pr=%s\nhead_sha=%s\n' "$PR" "$HEAD_SHA" >> "$GITHUB_OUTPUT"
 
@@ -140,6 +149,9 @@ jobs:
           fi
           echo "review_kind=$REVIEW_KIND" >> "$GITHUB_OUTPUT"
 
+          if [[ "$blueprint" != true && "$lean" != true ]]; then
+            not_ready "no supported Lean or Blueprint changes"
+          fi
           test -n "$RUBRIC_REVISION"
           MERGE_BASE_SHA=$(gh api "repos/$REPO/compare/$BASE_SHA...$HEAD_SHA" --jq .merge_base_commit.sha)
           test -n "$MERGE_BASE_SHA"
@@ -148,17 +160,17 @@ jobs:
             jq -e --arg name "$CHECK" '
               [.statuses[] | select(.context == $name)] |
               max_by(.updated_at // .created_at) | .state == "success"
-            ' statuses.json >/dev/null
+            ' statuses.json >/dev/null || not_ready "$CHECK has not passed"
           done
           if [[ "$REVIEW_KIND" == blueprint || "$REVIEW_KIND" == mixed ]]; then
             jq -e '
               [.statuses[] | select(.context == "blueprint")] |
               max_by(.updated_at // .created_at) | .state == "success"
-            ' statuses.json >/dev/null
+            ' statuses.json >/dev/null || not_ready "Blueprint has not passed"
           fi
           AIM_ISSUE=$(jq -r '[.title, (.body // ""), .head.ref] | join("\n")' pr.json | \
-            grep -m1 -Eo '[A-Z][A-Z0-9]*-[1-9][0-9]*')
-          test -n "$AIM_ISSUE"
+            grep -m1 -Eo '[A-Z][A-Z0-9]*-[1-9][0-9]*' || true)
+          [[ -n "$AIM_ISSUE" ]] || not_ready "PR is not associated with an Euler task"
           jq -n \
             --arg repository "$REPO" \
             --argjson pull_request "$PR" \
@@ -212,7 +224,7 @@ jobs:
           printf 'webhook_idempotency_key=%s\n' "$WEBHOOK_IDEMPOTENCY_KEY" >> "$GITHUB_OUTPUT"
 
       - name: Dispatch the Multica Euler reviewer webhook
-        if: steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.pr != ''
+        if: steps.resolve.outputs.idempotency_key != '' && steps.resolve.outputs.initializer != 'true' && steps.resolve.outputs.pr != ''
         shell: bash
         run: |
           set -euo pipefail

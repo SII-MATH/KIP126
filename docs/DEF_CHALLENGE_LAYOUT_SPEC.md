@@ -1,3 +1,5 @@
+> Historical layout record. The current layout is documented in [STAGE_LAYOUT.md](STAGE_LAYOUT.md); module ownership is Def / Interface / Main.
+
 # Def / Challenge / Solution layout specification
 
 Status: layout contract for the migration branch; implementation is incomplete.
@@ -46,10 +48,10 @@ Paper milestones belong to Challenge/Solution; supporting lemmas belong to Def.
 
 ## Challenge / Solution contract
 
-KIP126/Challenge/ and KIP126/Solution/ have matching relative paths and entry
+KIP126/Main/Challenge/ and KIP126/Main/Solution/ have matching relative paths and entry
 modules. Theorems have the same names, universe parameters, variables,
 typeclass assumptions, hypotheses, and conclusions, modulo the respective
-KIP126.Challenge and KIP126.Solution namespace prefixes. Public structures
+KIP126.Main.Challenge and KIP126.Main.Solution namespace prefixes. Public structures
 and fields must also remain synchronized where mirrored.
 
 Challenge theorems always have `:= by sorry`; they remain statement
@@ -87,7 +89,7 @@ They do not require empty directories for planned mathematics.
 | Milestone statements and proofs | Challenge/, Solution/ |
 | Compilation and statement-shape regressions | Checks/ |
 
-The appendix schema and catalogue are exported by KIP126.External, not
+The appendix schema and catalogue are exported by KIP126.Main.Axiom, not
 KIP126.Def; public names in KIP126.Computation are preserved. Encoded rows and
 metadata checks do not establish mathematical truth.
 

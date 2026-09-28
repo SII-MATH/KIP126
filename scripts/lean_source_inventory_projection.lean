@@ -1,8 +1,8 @@
-import KIP126.External.Claims
+import KIP126.Main.Axiom.Literature.Claims
 
 /-!
 This tiny executable-facing module exports the projection which is shared by
-the Lean catalogue and `reference/source-inventory.json`.  It is intentionally
+the Lean catalogue and `KIP126/Main/Axiom/Literature/source-inventory.json`.  It is intentionally
 kept outside the library namespace so the Python checker can invoke it with
 `lake env lean` without adding an I/O dependency to the formalization.
 -/

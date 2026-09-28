@@ -1,6 +1,6 @@
 import KIP126.Mathlib.ClassicalAdams.StandardPage.Data
-import KIP126.Def.ClassicalAdams.ComputationalDimension.Proofs
-import KIP126.Def.ClassicalAdams.StandardSphere.Proofs
+import KIP126.Main.Solution.Computation.Dimension
+import KIP126.Main.Axiom.Literature.StandardSphere.Proofs
 
 namespace KIP126.Classical.Adams
 

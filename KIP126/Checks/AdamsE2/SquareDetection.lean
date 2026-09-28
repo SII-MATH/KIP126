@@ -1,10 +1,13 @@
-import KIP126.Def.ClassicalAdams.ComputationalReduction.Proofs
-import KIP126.Def.AdamsE2.LinSquareDetection.Certificate.Proofs
+import KIP126.Checks.AxiomInputs
+import KIP126.Main.Solution.Computation.Reduction
+import KIP126.Interface.Solution.LinProgram.SquareDetection.Certificate
 import Lean.Elab.Command
 
 /-! Kernel-proved algebraic soundness, the full finite certificate, and the
 fixed E₂ nonvanishing/reduction interfaces. No native evaluation axiom is allowed.
-The additional executable diagnostic is not used as a proof. -/
+The additional executable diagnostic is not used as a proof. Fixed-model
+consumers report admitted package-type debt during development; their strict
+completion audit is enabled by `kip126.checks.strictStageConsumerAudit`. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -30,19 +33,17 @@ run_cmd do
       ``KIP126.LinE2.SquareDetection.allRelationsCheck_eq_true,
       ``KIP126.LinE2.SquareDetection.dataH6Sq_ne_zero] do
     for a in ← liftCoreM (collectAxioms declaration) do
-      unless basic.contains a do
+      unless KIP126.Checks.AxiomInputs.allows basic a do
         throwError "unexpected detector dependency: {declaration}: {a}"
   let inputs := [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.linE2Presentation]
   for declaration in [``KIP126.Classical.Adams.computedH6Square_ne_zero_of_check,
       ``KIP126.Classical.Adams.computedH6Square_ne_zero,
       ``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff] do
-    let axioms ← liftCoreM (collectAxioms declaration)
-    for a in axioms do
-      unless (basic ++ inputs).contains a do
-        throwError "unexpected transferred nonvanishing dependency: {declaration}: {a}"
+    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer (basic ++ inputs)
+      declaration "unexpected transferred nonvanishing dependency"
     for a in inputs do
-      unless axioms.contains a do throwError "missing disclosed input: {declaration}: {a}"
+      unless KIP126.Checks.AxiomInputs.uses axioms a do throwError "missing disclosed input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then

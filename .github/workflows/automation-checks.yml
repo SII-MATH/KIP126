@@ -8,14 +8,16 @@ on:
       - '.github/**'
       - 'scripts/**'
       - 'migration/kip-base/**'
-      - 'reference/**'
+      - 'KIP126/Main/Axiom/Literature/**'
+      - 'KIP126/Main/Axiom/LinProgram/**'
   push:
     branches: [main]
     paths:
       - '.github/**'
       - 'scripts/**'
       - 'migration/kip-base/**'
-      - 'reference/**'
+      - 'KIP126/Main/Axiom/Literature/**'
+      - 'KIP126/Main/Axiom/LinProgram/**'
   workflow_dispatch:
 
 permissions:
@@ -63,6 +65,7 @@ jobs:
           python3 -m unittest -v \
             scripts.test_development_gates \
             scripts.test_ci_fast_path \
+            scripts.test_ci_optimizations \
             scripts.test_workflow_routing \
             scripts.test_merge_gate \
             scripts.test_docs_helpers \
@@ -73,3 +76,9 @@ jobs:
           if [[ -f scripts/test_lean_cache_wait.py ]]; then
             python3 -m unittest scripts.test_lean_cache_wait -v
           fi
+
+      - name: Check migrated source inventory and Lin translators
+        run: |
+          python3 scripts/check_source_inventory.py --skip-lean-projection
+          python3 scripts/test-import-lin-selected.py
+          python3 KIP126/Main/Axiom/LinProgram/Translate/import-proofs.py --self-test

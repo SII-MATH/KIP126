@@ -28,7 +28,7 @@ the complete backup are under the ignored `local/` directory. Reproduce checks
 using the cache-wrapper commands in [README.md](README.md).
 
 Compilation is compatibility evidence. The historical library's unproved and
-axiomatized statements remain historical obligations, not completed aimpaper
+axiomatized statements remain historical obligations, not completed KIP126/Main/Axiom/Literature/MainPaper
 results. No canonical Blueprint completion flag was advanced by this migration.
 The PR changes package layout and trusted validation machinery, so the existing
 human-review gate applies; these local checks do not replace exact-head PR checks.

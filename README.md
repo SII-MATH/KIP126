@@ -37,11 +37,13 @@ are isolated from `KIP126` and do not count as completed paper proofs. See the
 
 ## Project documents and workflow
 
+- [M / C(M) / A(M) / T(M) boundary audit](docs/MAC_T_INPUT_AUDIT.md): mathematical objects versus delivery interfaces, source classification, and remaining model bindings.
+
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
 document:
 
-- [`aimpaper/`](aimpaper/) contains the target paper and its source material.
+- [`KIP126/Main/Axiom/Literature/MainPaper/`](KIP126/Main/Axiom/Literature/MainPaper/) contains the target paper and its source material.
   It is the mathematical document to be formalized; its claims are not, by
   themselves, Lean proofs or project theorems.
 - [`PROJECT_BOUNDARY.md`](PROJECT_BOUNDARY.md) defines what this project does
@@ -60,22 +62,27 @@ document:
   definitions and the roadmap's order, and refines each step into nodes whose
   mathematical statement, dependencies, sources, and intended Lean object can
   be checked together.  A chapter indexes several small Lean modules under
-  `KIP126/Def/`, `KIP126/External/`, and `KIP126/Challenge/`;
-  `KIP126/Def.lean`, `KIP126/Challenge.lean`, and `KIP126/Solution.lean`
+  `KIP126/Def/`, `KIP126/Interface/`, and `KIP126/Main/`;
+  `KIP126/Def.lean`, `KIP126/Main/Challenge.lean`, and `KIP126/Main/Solution.lean`
   are package entry points.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
   well as their import graph.  `Def/` owns mathematical data and properties,
-  `External/` owns provenance-bearing inputs, `Challenge/` owns internal proof
-  targets, `Solution/` owns their matching proofs, and `Checks/` owns
-  compilation regressions.  The
-  [layout migration map](docs/DEF_CHALLENGE_LAYOUT_STATUS.md) records moved
-  source modules and remaining open milestones.
+  `Interface/` owns stage-zero outputs admitted as stage-one inputs in `Axiom/`, plus reusable
+  stage-one interface goals and their proofs, and `Main/`
+  owns input assumptions plus the paper's argument. Main keeps only final goals
+  in `Challenge/Final/`, paired with `Solution/Final/`; intermediate deductions
+  live directly in `Solution/ChoiceIndependence`, `Solution/DifferentialReduction`,
+  and `Solution/ExtensionObstruction`. `Checks/` owns regressions.
+  Start with the module guides in [Def](KIP126/Def/README.md),
+  [Interface](KIP126/Interface/README.md), and [Main](KIP126/Main/README.md).
+  The [current layout and migration record](docs/STAGE_LAYOUT.md) explains
+  ownership, preserved proof debt, and the old-to-new path map.
   The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
   small executable example connecting imported dimensions and multiplication
   coefficients to an existing spectral sequence's page.
-- [`reference/source-inventory.json`](reference/source-inventory.json), the
-  per-source status records under [`reference/`](reference/), and the Lean
+- [`KIP126/Main/Axiom/Literature/source-inventory.json`](KIP126/Main/Axiom/Literature/source-inventory.json), the
+  per-source status records under [`KIP126/Main/Axiom/Literature/Sources/`](KIP126/Main/Axiom/Literature/Sources/), and the Lean
   claim ledger own the catalogue and provenance of external inputs. They record
   evidence and assumptions; they do not turn those inputs into unconditional
   project theorems.
@@ -88,7 +95,7 @@ records through the source inventory and claim ledger.
 
 The intended workflow is therefore:
 
-1. use `aimpaper/` to identify the mathematical target;
+1. use `KIP126/Main/Axiom/Literature/MainPaper/` to identify the mathematical target;
 2. use `PROJECT_BOUNDARY.md` to decide which claims and inputs are in scope;
 3. use `docs/ROADMAP.md` to choose the next implementation slice;
 4. record its node-level natural-language statement and Lean correspondence
@@ -197,12 +204,12 @@ the generated list is not committed.
 
 ## Provenance and source inventory
 
-`KIP126.External.Provenance` defines the explicit `SourceId`, `SourceRef`,
+`KIP126.Main.Axiom.Provenance` defines the explicit `SourceId`, `SourceRef`,
 `ExternalResult`, and `ExternalEvidence` records.  The typed Lean projection
-of the finite catalogue is in `KIP126.External.SourceInventory`, and the
-claim-level root/owner/dependency ledger is in `KIP126.External.Claims`.
+of the finite catalogue is in `KIP126.Main.Axiom.Literature.SourceInventory`, and the
+claim-level root/owner/dependency ledger is in `KIP126.Main.Axiom.Literature.Claims`.
 Citation metadata, acquisition state, artifact paths, and SHA-256 digests are kept in
-[`reference/source-inventory.json`](reference/source-inventory.json).  Check
+[`KIP126/Main/Axiom/Literature/source-inventory.json`](KIP126/Main/Axiom/Literature/source-inventory.json).  Check
 the filesystem ledger and its regression tests with:
 
 ```sh
@@ -254,3 +261,7 @@ The reusable Blueprint workflow lives under
 
 They complement the global `leanblueprint` environment skill. The maintenance
 tools are read-only by default; marker changes require an explicit `--write`.
+
+所选 §7 证明路线的 M 接口及其全部依赖清单见 [M_INPUT_FREEZE.md](docs/M_INPUT_FREEZE.md)。该接口冻结不表示模型见证、计算认证、前人输入或最终证明已经完成。
+
+该路线的 A(M) 已以同一模型上的显式输入包实现，见 [A_INPUT_FREEZE.md](docs/A_INPUT_FREEZE.md) 和 [Literature/Route](KIP126/Main/Axiom/Literature/Route/README.md)。来源、条件与模型运输分开记录；没有新增全局公理，也未证明这些外部结果。

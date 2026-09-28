@@ -1,0 +1,70 @@
+import KIP126.Main.Axiom.Literature.Route.Classical
+import Mathlib.CategoryTheory.Monoidal.Mon
+
+/-! The ordinary homotopy-category consequences of the external symmetric
+monoidal and λ-quotient algebra theorems. A commutative monoid object here
+is NOT advertised as a construction of an E∞ algebra. These explicit
+consequences are exactly the algebraic operations the selected route uses. -/
+namespace KIP126.Literature.Route
+open CategoryTheory CategoryTheory.MonoidalCategory
+open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology KIP126.Classical.Adams
+open KIP126.Synthetic.Context KIP126.Kervaire.Route
+universe u v w
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+  {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
+  {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
+
+/-- Multiplication of homotopy classes induced by an ACTUAL monoid object.
+The order y ⊗ x matches the existing `sphereAction x y` convention. -/
+noncomputable def algebraProduct {A : Syn} (Q : MonObj A) {m n k l : ℤ}
+    (x : BiHom m n A) (y : BiHom k l A) : BiHom (m+k) (n+l) A :=
+  (SyntheticCategory.biShift_comp (m,n) (k,l)).inv.app S00 ≫
+    (biShift_eq_tensor_Smn k l (Smn m n)).hom ≫ (y ⊗ₘ x) ≫ Q.mul
+
+/-- BHSmot Appendices B/C, as invoked in LWX §3: compatible algebra
+structures on the ACTUAL S/λ^q. The unit and restriction are fixed maps
+from M; their algebra structures cannot be supplied on unrelated objects. -/
+structure QuotientAlgebras [BraidedCategory Syn] where
+  algebra : ∀ q : ℕ, 0 < q → MonObj (XModLambdaN (S00 : Syn) q)
+  commutative : ∀ (q : ℕ) (hq : 0 < q),
+    letI := algebra q hq; IsCommMonObj (XModLambdaN (S00 : Syn) q)
+  unit : ∀ (q : ℕ) (hq : 0 < q), (algebra q hq).one = XModLambdaN.incl S00 q
+  /-- The algebra product extends the already fixed sphere action. -/
+  sphere_action : ∀ (q : ℕ) (hq : 0 < q) (m n k l : ℤ)
+      (x : BiHom m n (S00 : Syn)) (y : BiHom k l (XModLambdaN S00 q)),
+    algebraProduct (algebra q hq) (quotientClass q x) y = sphereAction x y
+  restriction : ∀ (i j : ℕ) (hi : 0 < i) (hij : i ≤ j),
+    ((D.quotientTower (S00 : Syn)).rho i j hij ⊗ₘ
+        (D.quotientTower (S00 : Syn)).rho i j hij) ≫ (algebra i hi).mul =
+      (algebra j (hi.trans_le hij)).mul ≫ (D.quotientTower (S00 : Syn)).rho i j hij
+
+/-- The ring structure of the SAME detector and its synthetic analogue.
+The units are fixed to D's actual Hurewicz maps. This is the ordinary
+homotopy-category consequence of tmf being a commutative ring spectrum
+and the synthetic analogue being lax monoidal. -/
+structure DetectorAlgebra [BraidedCategory C] [BraidedCategory Syn] where
+  classical : MonObj D.auxiliary.detector
+  classical_commutative : letI := classical; IsCommMonObj D.auxiliary.detector
+  classical_unit : classical.one = D.auxiliary.detectorUnit
+  synthetic : MonObj (D.nu.functor.obj D.auxiliary.detector)
+  synthetic_commutative : letI := synthetic
+    IsCommMonObj (D.nu.functor.obj D.auxiliary.detector)
+  synthetic_unit : synthetic.one = KIP126.Main.Solution.Route.detectorMap D
+  sphere_action : ∀ (m n k l : ℤ) (x : BiHom m n (S00 : Syn))
+      (y : BiHom k l (D.nu.functor.obj D.auxiliary.detector)),
+    algebraProduct synthetic (x ≫ KIP126.Main.Solution.Route.detectorMap D) y =
+      sphereAction x y
+
+/-- Existence witnesses for source algebra consequences, on the same
+tensor products and realization. Providing these fields is an explicit
+application of the external source to this model; no instance is installed.
+Pstrągowski's λ-inversion is symmetric monoidal. -/
+structure AlgebraInput where
+  classicalSymmetric : SymmetricCategory C
+  syntheticSymmetric : SymmetricCategory Syn
+  realizationMonoidal : letI := classicalSymmetric; letI := syntheticSymmetric
+    D.recovery.SymmetricMonoidal
+  quotients : letI := syntheticSymmetric; QuotientAlgebras D
+  detector : letI := classicalSymmetric; letI := syntheticSymmetric; DetectorAlgebra D
+end KIP126.Literature.Route

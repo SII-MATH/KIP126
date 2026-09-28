@@ -7,7 +7,8 @@ import tempfile
 import unittest
 
 spec = importlib.util.spec_from_file_location(
-    "importer", Path(__file__).with_name("import-lin-selected.py"))
+    "importer", Path(__file__).resolve().parents[1] /
+    "KIP126/Main/Axiom/LinProgram/Translate/import-selected.py")
 importer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(importer)
 
@@ -52,7 +53,7 @@ class ImportBoundaryTests(unittest.TestCase):
             source_degree=[1, 64], target_degree=[3, 65])
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            directory = root / "KIP126/External/Computation/LinProofs/Generated"
+            directory = root / "KIP126/Main/Axiom/LinProgram/Generated/Differentials"
             directory.mkdir(parents=True)
             with self.assertRaisesRegex(ValueError, "absent"):
                 importer.generate({}, [dict(entry)], root)

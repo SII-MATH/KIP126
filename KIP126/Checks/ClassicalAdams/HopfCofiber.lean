@@ -1,4 +1,5 @@
-import KIP126.External.Computation.Near126.HopfCofiber.Fixed.Data
+import KIP126.Checks.AxiomInputs
+import KIP126.Main.Axiom.Literature.Near126.HopfCofiber.Fixed.Data
 import Lean.Elab.Command
 
 open Lean Elab Command in
@@ -13,7 +14,7 @@ run_cmd do
       ``KIP126.Classical.Adams.adamsPageInduced_mkQ,
       ``KIP126.Classical.Adams.adamsInternalE2Induced_coordinates] do
     for a in ← liftCoreM (collectAxioms decl) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected tower naturality assumption: {decl}: {a}"
   for decl in [``KIP126.Classical.Adams.sphereMapCofiberAdams,
       ``KIP126.Classical.Adams.sphereFiltrationOneClass,
@@ -23,7 +24,7 @@ run_cmd do
       ``KIP126.Classical.Adams.sphereMapCofiberTopE2,
       ``KIP126.Classical.Adams.sphereMapCofiberInclusionTower_step] do
     for a in ← liftCoreM (collectAxioms decl) do
-      unless (logical ++ [``KIP126.Classical.Adams.standardFoundation]).contains a do
+      unless KIP126.Checks.AxiomInputs.allows (logical ++ [``KIP126.Classical.Adams.standardFoundation]) a do
         throwError "unexpected sphere cofiber assumption: {decl}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

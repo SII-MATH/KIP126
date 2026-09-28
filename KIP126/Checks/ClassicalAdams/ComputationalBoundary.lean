@@ -1,4 +1,5 @@
-import KIP126.Solution.Final.h6_sq_permanent_computational
+import KIP126.Checks.AxiomInputs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
 import Lean.Elab.Command
 
 /-! The internal calculation must not obtain its sequence from a Mathlib adapter
@@ -14,8 +15,8 @@ run_cmd do
   let some (.defnInfo _) := env.find? model
     | throwError "the fixed sphere model must be a construction, not an axiom"
   for a in ← liftCoreM (collectAxioms model) do
-    unless [``propext, ``Classical.choice, ``Quot.sound,
-        ``KIP126.Classical.Adams.standardFoundation].contains a do
+    unless KIP126.Checks.AxiomInputs.allows [``propext, ``Classical.choice, ``Quot.sound,
+        ``KIP126.Classical.Adams.standardFoundation] a do
       throwError "unexpected fixed sphere construction dependency: {a}"
 
 example : KIP126.Classical.Adams.sphereAdamsData.r₀ = 2 :=

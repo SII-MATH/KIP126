@@ -18,7 +18,7 @@
 | `AdamsE2Comparison.evaluate`、`SphereAdamsElements` | `sphereAdamsData`、`linToSphereE2`、`computedH6`、`computedH6Square` | 新增 `Def/ClassicalAdams/ComputationalExpressions/{Data,Predicates,Proofs}`；证明加法、乘法兼容及 h₆、h₆² 与现有类一致 |
 | `SphereAdamsDifferentials` | `Def/SpectralSequence/Computation` 的 `RepresentsOnPage` 和 `HasNonzeroDifferential` | 补入普通 `HasDifferential`、第二页代表相等、零代表、零微分、目标次数以及非零微分到普通等式的引理；使用原 `E.d` |
 | 六条 `SphereAdamsProofs` 日志输入 | `External/Computation/LinProofs.sphereTable_sound` 和已生成的 86 个分片 | 新增 `LinProofs/Selected/Proofs`，由实际 lookup 证明六条 `DifferentialStatement`；不新增六个公理 |
-| `SphereAdamsProofs.generate.py` 的跨文件校验 | #119 的批量导入表及 `Near126.SphereDifferentialFacts` | 新增 `scripts/import-lin-selected.py`：核对五个文件的 SHA-256、schema、生成元/关系/逐次数基、d₂ 列、最终 SS 表双向记录，再匹配现有分片；保存完整 `Selected/records.json` |
+| `SphereAdamsProofs.generate.py` 的跨文件校验 | #119 的批量导入表及 `Near126.SphereDifferentialFacts` | 新增 `KIP126/Main/Axiom/LinProgram/Translate/import-selected.py`：核对五个文件的 SHA-256、schema、生成元/关系/逐次数基、d₂ 列、最终 SS 表双向记录，再匹配现有分片；保存完整 `Selected/records.json` |
 | 第七条 basis.d₂ 结果、非零性和论文标签 | `Near126.SphereDifferentialFacts` | 保留来源和现有显式输入；不冒充 `proofs.db` 独立日志，不把非空 E₂ 坐标当成 Eᵣ 非零 |
 
 新增 `DifferentialStatement.hasDifferential` 将数据库结论直接交给上述通用微分
@@ -44,7 +44,7 @@ log 行或 Selected 定理。论文的 `h₀B` 与 CSV 正规形的识别及该�
 仍由已有 `SphereDifferentialFacts.d2_h0Six_h6` 显式提供。
 `d₃(x₁₂₆,₆)` 的两候选约束没有被选成一个精确等式。
 
-论文对应位置重新查看了本仓库 `aimpaper/main.tex` 的 Fact `fact:x1239`
+论文对应位置重新查看了本仓库 `KIP126/Main/Axiom/Literature/MainPaper/main.tex` 的 Fact `fact:x1239`
 及 Lemma `lem:x1239`、`lem:toda2ext` 的证明（约 2377–2544 行）。其中部分
 公式在合成谱序列中带 λ 幂；这里只导出经 S0 数据库核实的经典微分，未据此
 证明经典与合成谱序列的比较。`summary.md` 不是导入依据。
@@ -89,7 +89,7 @@ log 行或 Selected 定理。论文的 `h₀B` 与 CSV 正规形的识别及该�
 ```sh
 lake build KIP126.Checks.AdamsE2.LinExpression KIP126.Checks.ClassicalAdams.LinSelected
 python3 scripts/test-import-lin-selected.py
-python3 scripts/import-lin-selected.py --proofs-db /path/to/proofs.db \
+python3 KIP126/Main/Axiom/LinProgram/Translate/import-selected.py --proofs-db /path/to/proofs.db \
   --sphere-db /path/to/S0_AdamsSS_t261.db --csv-dir /path/to/kervaire_csv --check
 git diff --check
 ```

@@ -1,40 +1,64 @@
-import KIP126.Challenge.Final.h6_sq_permanent
-import KIP126.Challenge.Final.h6_sq_permanent_computational
-import KIP126.Solution.Final.h6_sq_permanent
+import KIP126.Checks.AxiomInputs
+import KIP126.Main.Challenge.Final.h6_sq_permanent
+import KIP126.Main.Solution.Final.h6_sq_permanent
+import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Comparison.Proofs
 import Lean.Elab.Command
 
-/-! Guard the public signatures and disclose, rather than erase, proof debt. -/
+/-! Exactly one final target, paired with one proof obligation. The comparison
+lemmas may use C(M), but must not introduce a second final theorem. -/
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  let formal := ``KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent
-  let computational :=
-    ``KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent_computational
-  let some (.thmInfo formalInfo) := env.find? formal
-    | throwError "missing standard theorem"
-  if formalInfo.value.getUsedConstants.contains ``sorryAx then
-    throwError "standard theorem has a direct sorry placeholder"
-  for (challenge, solution) in [
-      (``KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent, formal),
-      (``KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent_computational,
-        computational)] do
-    let some ci := env.find? challenge | throwError "missing {challenge}"
-    let some si := env.find? solution | throwError "missing {solution}"
-    unless ci.type == si.type do
-      throwError "Challenge/Solution statement mismatch: {challenge}"
-    unless si.levelParams.isEmpty do
-      throwError "unexpected universe parameters: {solution}"
-    if si.type.isForall then
-      throwError "unexpected public parameter: {solution}"
-  let axioms ← liftCoreM (collectAxioms formal)
-  let expected := [``propext, ``Classical.choice, ``Quot.sound, ``sorryAx,
-    ``KIP126.Classical.Adams.standardFoundation,
-    ``KIP126.Classical.Adams.standardMilnorCooperations,
-    ``KIP126.Classical.Adams.linE2Presentation]
+  let challenge := ``KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent
+  let solution := ``KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent
+  let some (.thmInfo ci) := env.find? challenge | throwError "missing final target"
+  let some (.thmInfo si) := env.find? solution | throwError "missing final proof obligation"
+  unless ci.type == si.type do
+    throwError "Challenge/Solution statement mismatch"
+  unless si.levelParams.isEmpty do
+    throwError "unexpected universe parameters"
+  if si.type.isForall then throwError "unexpected public parameter"
+  unless ci.value.getUsedConstants.contains ``sorryAx do
+    throwError "Challenge must remain a statement placeholder"
+  for (name, info) in env.constants.toList do
+    if (`KIP126.Challenge.Final).isPrefixOf name ||
+        (`KIP126.Solution.Final).isPrefixOf name then
+      if let .thmInfo _ := info then
+        unless name == challenge || name == solution do
+          throwError "extra final theorem: {name}"
+  let logical := [``propext, ``Classical.choice, ``Quot.sound]
+  let foundation := ``KIP126.Classical.Adams.standardFoundation
+  let inputs := [foundation, ``KIP126.Classical.Adams.linE2Presentation]
+  -- The unfinished Solution exposes its own proof debt. Its current placeholder
+  -- does not establish an actual use of C(M) in a mathematical proof.
+  let axioms ← liftCoreM (collectAxioms solution)
   for a in axioms do
-    unless expected.contains a do throwError "unexpected final dependency: {a}"
-  for a in expected.drop 3 do
-    unless axioms.contains a do throwError "missing disclosed dependency: {a}"
+    unless KIP126.Checks.AxiomInputs.allows (logical ++ [``sorryAx] ++ inputs) a do
+      throwError "unexpected final dependency: {a}"
+  unless axioms.contains ``sorryAx do
+    throwError "update the proof-status audit when the final proof is completed"
+  unless KIP126.Checks.AxiomInputs.uses axioms foundation do
+    throwError "missing fixed foundation dependency"
+  -- The merged Challenge2 type contains unfinished structural comparisons.
+  -- As in Checks.AdamsE2.LinBasis, disclose its existing dependency closure;
+  -- this is a boundary check, not a claim of axiom-free certification.
+  let boundaryAxs ← liftCoreM (collectAxioms ``KIP126.Main.Axiom.challenge2)
+  let comparison := ``KIP126.Classical.Adams.computedH6Square_eq_standardH6Square
+  let some (.thmInfo comparisonInfo) := env.find? comparison
+    | throwError "missing CSV/standard comparison proof"
+  if comparisonInfo.value.getUsedConstants.contains ``sorryAx then
+    throwError "CSV/standard comparison must retain its actual conditional proof"
+  for a in ← liftCoreM (collectAxioms comparison) do
+    unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a || boundaryAxs.contains a do
+      throwError "CSV/standard comparison acquired a dependency outside its stage inputs: {a}"
+
+open KIP126.Classical.Adams KIP126.Core.SpectralSequence in
+example : NonzeroSurvival sphereAdamsData (2, 128) standardH6Square :=
+  KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent
+
+open KIP126.Classical.Adams KIP126.Core.SpectralSequence in
+example : NonzeroSurvival sphereAdamsData (2, 128) computedH6Square ↔
+    NonzeroSurvival sphereAdamsData (2, 128) standardH6Square :=
+  computedH6Square_nonzeroSurvival_iff_standard
 
 #print axioms KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent
-#print axioms KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent_computational

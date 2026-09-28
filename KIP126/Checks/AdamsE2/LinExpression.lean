@@ -1,5 +1,6 @@
-import KIP126.Def.ClassicalAdams.ComputationalExpressions.Proofs
-import KIP126.Def.ClassicalAdams.ComputationalExpressions.Predicates
+import KIP126.Checks.AxiomInputs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Expressions.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Expressions.Predicates
 import Lean.Elab.Command
 
 /-! Executable migration regressions. Runtime checks are not proofs of the
@@ -41,16 +42,15 @@ run_cmd do
   let logical := [``propext, ``Classical.choice, ``Quot.sound]
   for decl in [``Expression.homogeneous, ``Expression.data_eq_interpret] do
     for a in (← liftCoreM (collectAxioms decl)) do
-      unless logical.contains a do
+      unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected expression axiom: {decl}: {a}"
   let expected := logical ++ [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.linE2Presentation]
   for decl in [``KIP126.Classical.Adams.expressionOnSphere_mul,
       ``KIP126.Classical.Adams.expressionOnSphere_h6,
       ``KIP126.Classical.Adams.expressionOnSphere_h6_square] do
-    for a in (← liftCoreM (collectAxioms decl)) do
-      unless expected.contains a do
-        throwError "unexpected sphere expression axiom: {decl}: {a}"
+    discard <| KIP126.Checks.AxiomInputs.checkStageConsumer expected decl
+      "unexpected sphere expression axiom"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIPBase).isPrefixOf m || (`KIP126.Challenge).isPrefixOf m then
       throwError "retired or placeholder import: {m}"
