@@ -7,6 +7,7 @@ import re
 import shutil
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -25,25 +26,68 @@ def steps(name="blueprint-pr.yml"):
     return next(iter(workflow["jobs"].values()))["steps"]
 
 
+TREE_BASE = "b" * 40
+TREE_HEAD = "a" * 40
+TREE_MERGE_BASE = "c" * 40
+
+
+def complete_tree(paths=(), *, truncated=False):
+    return {"truncated": truncated, "tree": [
+        {"path": path, "mode": "100644", "type": "blob", "sha": "d" * 40}
+        for path in paths]}
+
+
+def tree_api_fixture(root, paths=(), *, head_repository="test/repo", overrides=None):
+    """Run the real tree-diff helper against explicit, complete GitHub responses."""
+    owner = head_repository.split("/")[0]
+    responses = {
+        f"repos/test/repo/compare/{TREE_BASE}...{owner}:{TREE_HEAD}": TREE_MERGE_BASE,
+        f"repos/test/repo/git/trees/{TREE_MERGE_BASE}?recursive=1": complete_tree(),
+        f"repos/test/repo/git/trees/{TREE_BASE}?recursive=1":
+            complete_tree(["base-tip-only.txt"]),
+        f"repos/{head_repository}/git/trees/{TREE_HEAD}?recursive=1": complete_tree(paths),
+    }
+    responses.update(overrides or {})
+    fixture = root / "api.json"
+    fixture.write_text(json.dumps(responses))
+    gh = root / "gh"
+    gh.write_text(f"#!{sys.executable}\n" + '''import json, os, sys
+args = sys.argv[1:]
+with open(os.environ["CALLS"], "a") as stream:
+    stream.write(" ".join(args) + "\\n")
+if "--method" in args and args[args.index("--method") + 1] == "POST":
+    raise SystemExit(0)
+with open(os.environ["API_FIXTURE"]) as stream:
+    responses = json.load(stream)
+if len(args) < 2 or args[0] != "api" or args[1] not in responses:
+    raise SystemExit("unexpected API request: " + " ".join(args))
+response = responses[args[1]]
+if response is None:
+    raise SystemExit("fixture API failure")
+print(response if isinstance(response, str) else json.dumps(response))
+''')
+    gh.chmod(0o755)
+    gate_scripts = root / "gate/scripts"
+    gate_scripts.mkdir(parents=True)
+    shutil.copyfile(ROOT / "scripts/ci_merge_group_files.py",
+                    gate_scripts / "ci_merge_group_files.py")
+    return {**os.environ, "PATH": f"{root}:{os.environ['PATH']}",
+            "API_FIXTURE": str(fixture), "CALLS": str(root / "calls"),
+            "GITHUB_OUTPUT": str(root / "output"), "GITHUB_ENV": str(root / "environment"),
+            "GITHUB_REPOSITORY": "test/repo", "PR": "119",
+            "GITHUB_SERVER_URL": "https://github.com", "GITHUB_RUN_ID": "1",
+            "BASE_SHA": TREE_BASE, "HEAD_SHA": TREE_HEAD, "HEAD_REPO": head_repository,
+            "EVENT_NAME": "pull_request_target"}
+
+
 class BlueprintRoutingTests(unittest.TestCase):
-    def run_step(self, name, *, paths=(), **extra):
+    def run_step(self, name, *, paths=(), overrides=None, **extra):
         script = next(s["run"] for s in steps() if s.get("name") == name)
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            gh = root / "gh"
-            gh.write_text("#!/bin/bash\n"
-                          "printf '%s\\n' \"$*\" >> \"$CALLS\"\n"
-                          "if [[ $* == *'/files'* ]]; then printf '%s\\n' \"$FILES\"; "
-                          "elif [[ $* != *'POST'* ]]; then echo \"0 0 $COUNT\"; fi\n")
-            gh.chmod(0o755)
-            env = {**os.environ, "PATH": f"{root}:{os.environ['PATH']}",
-                   "FILES": "\n".join(paths), "COUNT": str(len(paths)),
-                   "CALLS": str(root / "calls"), "GITHUB_OUTPUT": str(root / "output"),
-                   "GITHUB_REPOSITORY": "test/repo", "PR": "119",
-                   "GITHUB_SERVER_URL": "https://github.com", "GITHUB_RUN_ID": "1",
-                   "HEAD_SHA": "a" * 40, **extra}
+            env = {**tree_api_fixture(root, paths, overrides=overrides), **extra}
             result = subprocess.run(["bash", "-euo", "pipefail", "-c", script], env=env,
-                                    capture_output=True, text=True)
+                                    cwd=root, capture_output=True, text=True)
             output = (root / "output").read_text() if (root / "output").exists() else ""
             calls = (root / "calls").read_text() if (root / "calls").exists() else ""
             return result, output, calls
@@ -85,6 +129,95 @@ class BlueprintRoutingTests(unittest.TestCase):
                         names.index("Wait for the shared Lean producer"))
         install = next(s for s in steps() if s.get("name") == "Set up the pinned Blueprint renderer")
         self.assertIn("gate/requirements-blueprint.txt", install["run"])
+
+    def test_more_than_3000_files_remain_eligible_and_include_the_last_path(self):
+        sources = [f"blueprint/src/section{i:04}.tex" for i in range(3001)]
+        for paths, mixed in ((sources, "false"), (sources + ["scripts/tool.py"], "true")):
+            with self.subTest(mixed=mixed):
+                result, output, calls = self.run_step(
+                    "Classify the source boundary and diff size", paths=paths)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertIn("ok=true", output)
+                self.assertIn(f"mixed={mixed}", output)
+                self.assertIn(paths[-1], result.stdout)
+                self.assertNotIn("/pulls/", calls)
+
+    def test_scope_binds_exact_resolved_commits_and_repository(self):
+        scope = next(s for s in steps() if s.get("id") == "scope")
+        for variable, output in (("BASE_SHA", "base_sha"), ("HEAD_SHA", "head_sha"),
+                                 ("HEAD_REPO", "head_repo")):
+            self.assertEqual(scope["env"][variable], f"${{{{ steps.pr.outputs.{output} }}}}")
+        self.assertNotIn("changed_files", scope["run"])
+
+    def test_truncated_tree_cannot_authorize_blueprint_execution(self):
+        result, output, _ = self.run_step(
+            "Classify the source boundary and diff size",
+            overrides={f"repos/test/repo/git/trees/{TREE_HEAD}?recursive=1":
+                       complete_tree(["blueprint/src/content.tex"], truncated=True)})
+        self.assertNotEqual(result.returncode, 0)
+        self.assertNotIn("ok=true", output)
+        self.assertIn("incomplete", result.stderr)
+
+
+class PRScopeTreeTests(unittest.TestCase):
+    def run_scope(self, paths, *, event="pull_request_target", overrides=None):
+        scope = next(s for s in steps("pr-build.yml")
+                     if s.get("name") == "Scope guard — allow KIP126 sources and validated pins")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            env = tree_api_fixture(root, paths, overrides=overrides)
+            env["EVENT_NAME"] = event
+            result = subprocess.run(["bash", "-euo", "pipefail", "-c", scope["run"]],
+                                    cwd=root, env=env, capture_output=True, text=True)
+            output = (root / "environment").read_text() if (root / "environment").exists() else ""
+            calls = (root / "calls").read_text() if (root / "calls").exists() else ""
+            return result, output, calls
+
+    def test_large_diff_classifies_the_last_path_without_blocking_compilation(self):
+        sources = [f"KIP126/M{i:04}.lean" for i in range(3001)]
+        for paths, outside in ((sources, False), (sources + ["scripts/tool.py"], True)):
+            with self.subTest(outside=outside):
+                result, output, calls = self.run_scope(paths)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertIn("SCOPE_OK=1", output)
+                self.assertEqual("OUT_OF_SCOPE=1" in output, outside)
+                self.assertNotIn("INFRA=1", output)
+                self.assertNotIn("TOO_LARGE", output)
+                self.assertIn(paths[-1], result.stdout)
+                self.assertNotIn("/pulls/", calls)
+        compile_step = next(s for s in steps("pr-build.yml") if s.get("id") == "compile")
+        self.assertNotIn("OUT_OF_SCOPE", compile_step.get("if", ""))
+        self.assertFalse(any("File count guard" in s.get("name", "")
+                             for s in steps("pr-build.yml")))
+
+    def test_scope_binds_exact_snapshot_and_event(self):
+        scope = next(s for s in steps("pr-build.yml")
+                     if s.get("name") == "Scope guard — allow KIP126 sources and validated pins")
+        self.assertEqual(scope["env"]["EVENT_NAME"], "${{ github.event_name }}")
+        for variable, output in (("BASE_SHA", "base_sha"), ("HEAD_SHA", "sha"),
+                                 ("HEAD_REPO", "repo")):
+            self.assertEqual(scope["env"][variable], f"${{{{ steps.pr.outputs.{output} }}}}")
+
+    def test_merge_group_diffs_exact_combined_commits_without_merge_base(self):
+        result, output, calls = self.run_scope(["KIP126/Added.lean"], event="merge_group")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("SCOPE_OK=1", output)
+        self.assertNotIn("/compare/", calls)
+        self.assertIn(f"/git/trees/{TREE_BASE}?recursive=1", calls)
+        self.assertIn(f"/git/trees/{TREE_HEAD}?recursive=1", calls)
+
+    def test_incomplete_evidence_cannot_report_successful_scope(self):
+        failures = (
+            {f"repos/test/repo/compare/{TREE_BASE}...test:{TREE_HEAD}": None},
+            {f"repos/test/repo/git/trees/{TREE_HEAD}?recursive=1":
+             complete_tree(["KIP126/Added.lean"], truncated=True)},
+        )
+        for overrides in failures:
+            with self.subTest(endpoint=next(iter(overrides))):
+                result, output, _ = self.run_scope(["KIP126/Added.lean"], overrides=overrides)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("INFRA=1", output)
+                self.assertNotIn("SCOPE_OK=1", output)
 
 
 class BlueprintStagingTests(unittest.TestCase):
@@ -437,16 +570,60 @@ class EmbeddedLakeConfigTests(unittest.TestCase):
                              "+KIP126.Unused", "+KIPBase.Nested.Unused"])
 
 
+class CompleteTreeDiffCommandTests(unittest.TestCase):
+    def run_helper(self, *, overrides=None):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            env = tree_api_fixture(root, ["KIP126/Added.lean"],
+                                   head_repository="contributor/fork", overrides=overrides)
+            result = subprocess.run(
+                [sys.executable, ROOT / "scripts/ci_merge_group_files.py", "test/repo",
+                 TREE_BASE, TREE_HEAD, "--head-repository", "contributor/fork",
+                 "--merge-base", "--names"],
+                cwd=root, env=env, capture_output=True, text=True,
+            )
+            calls = (root / "calls").read_text() if (root / "calls").exists() else ""
+            return result, calls
+
+    def test_fork_uses_exact_merge_base_and_head_repository(self):
+        result, calls = self.run_helper()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.splitlines(), ["KIP126/Added.lean"])
+        self.assertEqual(calls.splitlines(), [
+            f"api repos/test/repo/compare/{TREE_BASE}...contributor:{TREE_HEAD} --jq .merge_base_commit.sha",
+            f"api repos/test/repo/git/trees/{TREE_MERGE_BASE}?recursive=1",
+            f"api repos/contributor/fork/git/trees/{TREE_HEAD}?recursive=1",
+        ])
+
+    def test_missing_or_invalid_merge_base_never_falls_back(self):
+        endpoint = f"repos/test/repo/compare/{TREE_BASE}...contributor:{TREE_HEAD}"
+        for response in (None, "", "main", "c" * 39):
+            with self.subTest(response=response):
+                result, calls = self.run_helper(overrides={endpoint: response})
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(result.stdout, "")
+                self.assertNotIn("/git/trees/", calls)
+
+    def test_truncated_base_or_fork_head_never_emits_partial_paths(self):
+        for endpoint in (f"repos/test/repo/git/trees/{TREE_MERGE_BASE}?recursive=1",
+                         f"repos/contributor/fork/git/trees/{TREE_HEAD}?recursive=1"):
+            with self.subTest(endpoint=endpoint):
+                result, _ = self.run_helper(overrides={endpoint: complete_tree(truncated=True)})
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(result.stdout, "")
+                self.assertIn("incomplete", result.stderr)
+
+
 class CompleteTreeDiffTests(unittest.TestCase):
     def tree(self, entries=(), truncated=False):
         return {"truncated": truncated, "tree": [
             {"path": path, "mode": "100644", "type": "blob", "sha": sha}
             for path, sha in entries]}
 
-    def test_more_than_300_files_preserves_out_of_scope_paths(self):
-        paths = [(f"KIP126/M{i}.lean", "a") for i in range(539)] + [("scripts/tool.py", "b")]
+    def test_more_than_3000_files_preserves_out_of_scope_paths(self):
+        paths = [(f"KIP126/M{i}.lean", "a") for i in range(3001)] + [("scripts/tool.py", "b")]
         changed = changed_files(self.tree(), self.tree(paths))
-        self.assertEqual(len(changed), 540)
+        self.assertEqual(len(changed), 3002)
         self.assertIn({"filename": "scripts/tool.py", "status": "added"}, changed)
 
     def test_add_remove_modify_and_mode_changes(self):
