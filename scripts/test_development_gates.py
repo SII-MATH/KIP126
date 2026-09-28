@@ -296,6 +296,113 @@ class BuildFailureTests(unittest.TestCase):
             self.assertNotIn("AXIOM_AUDIT", result.stdout)
 
 
+class LfsReadOnlyGitTests(unittest.TestCase):
+    def test_checks_keep_lfs_writes_outside_read_only_git(self):
+        git, lfs = shutil.which("git"), shutil.which("git-lfs")
+        if os.name != "posix" or not git or not lfs:
+            self.skipTest("POSIX permissions, Git and Git LFS are required")
+        available = subprocess.run([lfs, "version"], capture_output=True, timeout=10)
+        if available.returncode:
+            self.skipTest("Git LFS is unavailable")
+
+        identity = {}
+        if os.geteuid() == 0:
+            import pwd
+            try:
+                nobody = pwd.getpwnam("nobody")
+            except KeyError:
+                self.skipTest("Root requires an unprivileged nobody account")
+            identity = {"user": nobody.pw_uid, "group": nobody.pw_gid, "extra_groups": []}
+
+        # An inherited TMPDIR may be inside a private home/workspace that the
+        # dropped user cannot traverse, regardless of fixture ownership.
+        tmp = tempfile.TemporaryDirectory(prefix="kip126-lfs-gate-", dir="/tmp")
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+
+        def restore_permissions():
+            # Only fixture directories were made read-only; restore them before
+            # TemporaryDirectory removes files, including when an assertion fails.
+            for directory, _, _ in os.walk(root):
+                Path(directory).chmod(0o700)
+
+        self.addCleanup(restore_permissions)
+        repo, binpath = root / "repo", root / "bin"
+        repo.mkdir()
+        binpath.mkdir()
+        (repo / ".lake/tmp").mkdir(parents=True)
+        # A root installation may live below /root, which nobody cannot traverse.
+        shutil.copyfile(lfs, binpath / "git-lfs")
+        (binpath / "git-lfs").chmod(0o755)
+        script = root / "sandbox-build.sh"
+        shutil.copyfile(ROOT / "scripts/sandbox-build.sh", script)
+        (binpath / "lean").write_text("#!/bin/sh\nexit 99\n")
+        (binpath / "lean").chmod(0o755)
+        (binpath / "lake").write_text(
+            '#!/bin/sh\n[ "$*" = "build --no-build" ] || exit 99\n'
+            'printf "%s\\n" "$*" >> "$CALLS"\n')
+        (binpath / "lake").chmod(0o755)
+        calls = repo / ".lake/tmp/lake.calls"
+        env = {key: value for key, value in os.environ.items()
+               if not key.startswith("GIT_") and key not in ("BASH_ENV", "ENV")}
+        env.update(PATH=f"{binpath}:{os.environ['PATH']}", LC_ALL="C",
+                   GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull,
+                   XDG_CONFIG_HOME=str(root / "config"), TMPDIR=str(repo / ".lake/tmp"),
+                   WATCHDOG_TOOLCHAIN=str(root), CALLS=str(calls))
+
+        def run(*command, unprivileged=False):
+            return subprocess.run(command, cwd=repo, env=env, capture_output=True,
+                                  text=True, timeout=30,
+                                  **(identity if unprivileged else {}))
+
+        def setup_git(*args):
+            result = run(git, *args)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            return result.stdout
+
+        setup_git("init", "-q")
+        for key, value in (("filter.lfs.clean", "git-lfs clean -- %f"),
+                           ("filter.lfs.smudge", "git-lfs smudge -- %f"),
+                           ("filter.lfs.process", "git-lfs filter-process"),
+                           ("filter.lfs.required", "true")):
+            setup_git("config", key, value)
+        (repo / ".gitattributes").write_text("*.bin filter=lfs diff=lfs merge=lfs -text\n")
+        (repo / "fixture.bin").write_bytes(b"initial LFS payload\n")
+        source = repo / "Source.lean"
+        source.write_text("def ordinary_source := 1\n")
+        setup_git("add", ".gitattributes", "fixture.bin", "Source.lean")
+        self.assertTrue(setup_git("show", ":fixture.bin").startswith(
+            "version https://git-lfs.github.com/spec/v1\n"))
+        setup_git("-c", "user.name=LFS regression", "-c", "user.email=test@example.invalid",
+                  "commit", "-qm", "fixture")
+        # Changed content forces the real clean filter to write a temporary object.
+        (repo / "fixture.bin").write_bytes(b"changed LFS payload\n")
+        if identity:
+            try:
+                for path in [root, *root.rglob("*")]:
+                    os.chown(path, identity["user"], identity["group"])
+                probe = run(git, "rev-parse", "--git-dir", unprivileged=True)
+            except PermissionError:
+                self.skipTest("This root environment cannot drop fixture ownership/privileges")
+            self.assertEqual(probe.returncode, 0, probe.stdout + probe.stderr)
+        gitdir = repo / ".git"
+        for path in [gitdir, *gitdir.rglob("*")]:
+            path.chmod(path.stat().st_mode & ~0o222)
+
+        old = run(git, "diff", "--check", unprivileged=True)
+        self.assertNotEqual(old.returncode, 0)
+        self.assertIn(str(gitdir / "lfs/tmp"), old.stderr)
+        self.assertIn("permission denied", old.stderr.lower())
+        fixed = run("bash", str(script), "checks", unprivileged=True)
+        self.assertEqual(fixed.returncode, 0, fixed.stdout + fixed.stderr)
+        self.assertTrue((repo / ".lake/tmp/git-lfs/tmp").is_dir())
+        source.write_text("def ordinary_source := 1  \n")
+        whitespace = run("bash", str(script), "checks", unprivileged=True)
+        self.assertNotEqual(whitespace.returncode, 0)
+        self.assertIn("Source.lean:1: trailing whitespace.", whitespace.stdout + whitespace.stderr)
+        self.assertEqual(calls.read_text().splitlines(), ["build --no-build"] * 2)
+
+
 class EmbeddedLakeConfigTests(unittest.TestCase):
     def test_standalone_configuration_retains_all_roots_and_options(self):
         config = (ROOT / "KIPBase/lakefile.toml").read_text()
