@@ -15,6 +15,9 @@ This chapter defines the Steenrod, Ext, tower, convergence, product, and named-c
   and the graded-dual relation with the mod--$2$ Steenrod algebra $\mathcal A$.
   Mathlib v4.32.2 has no Steenrod-algebra implementation that supplies this
   structure.
+  The explicit Milnor coalgebra below supplies the algebraic coproduct
+  slice; its construction does not complete the Hopf structure or identify
+  it with the homology of $H\mathbb F_2$.
 \end{definition}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:126-150 and every Adams E_2-page computation.
@@ -46,6 +49,138 @@ This chapter defines the Steenrod, Ext, tower, convergence, product, and named-c
   an arbitrary $M$.  Mathlib's singly graded derived Ext alone does not provide
   these bigraded structures.
 \end{definition}
+
+\begin{definition}[Graded vector spaces with Cauchy tensor]
+  \label{def:graded-vector-space-cauchy}
+  \lean{KIP126.Algebra.GradedVectorSpace.GrVect,KIP126.Algebra.GradedVectorSpace.tensorInclusion,KIP126.Algebra.GradedVectorSpace.discreteEquivalence}
+  \uses{def:mathlib-f2,def:mathlib-abelian}
+  \leanok
+  For a field $K$, let $\operatorname{GrVect}_K$ be the category of
+  integer-graded $K$-vector spaces and degree-preserving linear maps.
+  Its tensor is the Cauchy tensor
+  $(V\otimes W)_n=\bigoplus_{i+j=n}V_i\otimes_K W_j$, with the actual
+  coproduct inclusions. Its linear operations are pointwise on morphisms;
+  the abelian structure is transported along the equivalence with functors
+  from the discrete category of integers. This does not use a pointwise
+  tensor product.
+\end{definition}
+
+\begin{definition}[The fixed coaugmented Milnor coalgebra]
+  \label{def:fixed-milnor-graded-coalgebra}
+  \lean{KIP126.Steenrod.Milnor.Coalgebra.dualSteenrodGraded,KIP126.Steenrod.Milnor.Coalgebra.comultiplication,KIP126.Steenrod.Milnor.Coalgebra.counit,KIP126.Steenrod.Milnor.Coalgebra.dualSteenrod,KIP126.Steenrod.Milnor.Coalgebra.coaugmentation}
+  \uses{def:graded-vector-space-cauchy}
+  The degree-$n$ carrier has the full Milnor monomials of weight $n$ as
+  its basis, including the constant monomial in degree zero; negative
+  degrees have empty monomial bases. In polynomial coordinates its maps are
+  \[
+    \Delta(\xi_k)=\sum_{i=0}^{k}\xi_{k-i}^{2^i}\otimes\xi_i,
+    \qquad \xi_0=1,\qquad |\xi_k|=2^k-1.
+  \]
+  The counit takes the constant coefficient, and the coaugmentation is
+  the constant polynomial. The coproduct is constructed from the existing
+  polynomial slot-splitting operation and the corresponding Cauchy
+  summands. Counitality, coassociativity and coaugmentation compatibility
+  remain property proof obligations. No unrelated coalgebra maps are
+  selected, and no full Hopf or topological identification follows here.
+\end{definition}
+
+\begin{definition}[Actual graded right comodules and internal shifts]
+  \label{def:actual-graded-right-comodules}
+  \lean{KIP126.Algebra.GradedComodule.rightTensorComonad,KIP126.Algebra.GradedComodule.RightComodule,KIP126.Algebra.GradedComodule.forget}
+  \lean{KIP126.Algebra.GradedComodule.linear,KIP126.Algebra.GradedComodule.abelian,KIP126.Algebra.GradedComodule.internalShift,KIP126.Algebra.GradedComodule.trivialAt}
+  \uses{def:graded-vector-space-cauchy,def:fixed-milnor-graded-coalgebra}
+  For a graded coalgebra $C$, right comodules are the Eilenberg--Moore
+  coalgebras of the actual comonad $V\mapsto V\otimes C$.
+  Addition is the existing coalgebra-morphism addition and scalar
+  multiplication is that of the underlying graded linear maps.
+  Finite limits and colimits use the forgetful functor's creation
+  constructions; the abelian structure is assembled from these and the
+  coimage-to-image isomorphism property. The Cauchy tensor's additivity,
+  linearity and finite-limit preservation, and the comparison-isomorphism
+  property, are stated but not yet proved.
+  Left tensoring by $K[t]$ defines the internal shift, with old degree
+  $n-t$ contributing to degree $n$. A specified coaugmentation defines
+  the trivial comodule $K[t]$ in every integer degree. This left tensor
+  uses a graded vector space; a tensor product of two arbitrary
+  $C$-comodules would additionally require suitable multiplication on $C$.
+  General spectrum-homology coactions are not constructed by this node.
+\end{definition}
+
+\begin{definition}[Derived Ext in the fixed comodule category]
+  \label{def:milnor-derived-ext}
+  \lean{KIP126.Algebra.GradedComodule.BigradedExt,KIP126.Algebra.GradedComodule.CoefficientExt}
+  \lean{KIP126.Steenrod.Milnor.Ext.RightComodule,KIP126.Steenrod.Milnor.Ext.trivialAt,KIP126.Steenrod.Milnor.Ext.SphereExt,KIP126.Steenrod.Milnor.Ext.unit}
+  \uses{def:actual-graded-right-comodules,def:mathlib-derived-ext}
+  In the actual graded-comodule category define
+  $\operatorname{Ext}^{s,t}(M,N)=\operatorname{Ext}^s(M[t],N)$ using
+  Mathlib's derived category, localized at quasi-isomorphisms.
+  For the fixed Milnor coalgebra the sphere convention is
+  $\operatorname{SphereExt}^{s,t}=\operatorname{Ext}^s(\mathbb F_2[t],\mathbb F_2)$,
+  with $s\in\mathbb N$ and $t\in\mathbb Z$; its $(0,0)$ unit is the
+  identity Ext class. This is derived Ext, not a renamed cobar quotient.
+  The abelian-category property debt persists, and comparisons with cobar
+  cohomology and the paper's left-module convention are separate claims.
+\end{definition}
+
+\begin{definition}[Prescribed normalized cofree resolution]
+  \label{def:milnor-cofree-resolution}
+  \lean{KIP126.Steenrod.Milnor.Ext.Cofree.wordSpace,KIP126.Steenrod.Milnor.Ext.Cofree.term,KIP126.Steenrod.Milnor.Ext.Cofree.termPolynomial,KIP126.Steenrod.Milnor.Ext.Cofree.rawDifferential}
+  \lean{KIP126.Steenrod.Milnor.Ext.Cofree.termPolynomial_injective}
+  \lean{KIP126.Steenrod.Milnor.Ext.CobarResolution,KIP126.Steenrod.Milnor.Ext.CobarResolution.representativePolynomial}
+  \uses{def:actual-graded-right-comodules,def:milnor-derived-ext}
+  Write $W_s$ for the graded vector space on normalized Milnor words of
+  length $s$. The prescribed term is the actual cofree right comodule
+  $W_s\otimes C$, with the last, full coalgebra factor retaining constants.
+  Polynomial coordinates concatenate the normalized word with this final
+  factor, degree by degree across the Cauchy direct sum.
+  Injectivity of these polynomial coordinates is a separate, currently
+  unproved statement.
+  A cobar resolution is an injective resolution of $\mathbb F_2[0]$ with
+  comodule isomorphisms from its terms to these specified cofree terms.
+  In these coordinates its differential is
+  \[
+    d_{\mathrm{cofree}}^s=\operatorname{insertLeft}_{s+1}
+       +\sum_{j=0}^{s}\operatorname{splitSlot}_j.
+  \]
+  There is no right-insertion term in this resolution differential.
+  The augmentation takes the actual generator $1$ to the constant
+  polynomial $1$. Evaluating a map out of $\mathbb F_2[t]$ on its
+  degree-$t$ generator defines its representative polynomial.
+  Existence, injectivity of the terms, and the resolution comparison
+  remain obligations; declaring this presentation does not prove them.
+\end{definition}
+
+\begin{theorem}[Cobar comparison with actual derived comodule Ext]
+  \label{thm:cobar-derived-comodule-ext-comparison}
+  \lean{KIP126.Challenge2.CobarDerivedExtComparison,KIP126.Challenge2.CobarDerivedExtComparison.internalEquiv}
+  \lean{KIP126.Interface.Challenge.cobarDerivedExtComparison,KIP126.Interface.Solution.cobarDerivedExtComparison}
+  \uses{def:milnor-cofree-resolution,def:milnor-derived-ext,def:milnor-cobar-cohomology}
+  For the fixed $H\mathbb F_2$ input and Milnor cooperation comparison,
+  there exist one prescribed cobar resolution $R$ and $\mathbb F_2$-linear
+  equivalences
+  \[
+    e_{s,t}:H^{s,t}_{\mathrm{cobar}}\cong
+       \operatorname{SphereExt}^{s,t}\qquad(s,t\in\mathbb N).
+  \]
+  For every normalized cocycle $x$ of bidegree $(s,t)$, require a comodule
+  map $f:\mathbb F_2[t]\to R^s$ with $fd=0$ such that
+  \[
+    \operatorname{representativePolynomial}_R(f)
+       =\operatorname{insertRight}_s(x),\qquad
+    e_{s,t}([x])=R.\operatorname{extMk}(f).
+  \]
+  Right insertion appends the constant final coalgebra factor. These
+  representative equations bind the equivalence to the specified
+  resolution in every degree. Composing with the existing cobar-to-internal
+  $E_2$ comparison yields the displayed internal $E_2$-to-derived-Ext
+  equivalence without choosing new coordinates.
+  The target Ext is defined in all integer internal degrees, whereas this
+  comparison currently quantifies nonnegative internal degrees.
+  Both producer statements remain unproved. The field is correlated with
+  the same foundation and Milnor input in Challenge~2; neither the
+  left Steenrod-module comparison nor compatibility with Yoneda products
+  follows from this additive comparison.
+\end{theorem}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:126-150; finite-type standing assumption at lines 253-263.
 \begin{proposition}[Module--comodule Adams Ext comparison]

@@ -1,3 +1,6 @@
+import KIP126.Def.Algebra.GradedComodule.Ext.Data
+import KIP126.Def.Steenrod.MilnorExt.Cofree.Proofs
+import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
 import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
 import KIP126.Def.HigherAlgebra.Operad.Algebra.Data
 import KIP126.Def.HigherAlgebra.EnrichedTensor.Predicates

@@ -28,6 +28,7 @@ import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
 import KIP126.Def.ClassicalAdams.Tmf.Model.Data
 import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
 import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
+import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
 import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 
 /-!
@@ -40,6 +41,8 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 `am14` 的 tmf 微分/单位/乘法切片，以及 `cm5` 的固定球面 staircase 状态。
 `cm1/am4` 的 `SphereMultiplicativeInterface` 另将有界球面 product 与单位
 绑定到实际 Adams 层乘法和同一 presentation。
+`am9` 的 `CobarDerivedExtComparison` 固定实际分次右余模的导出 Ext 端、
+规范 cofree 分解公式及每个 cocycle 的 `extMk` 比较。
 清单中的“未入包”不是额外假设，也不表示相应领域完全没有已有证明。
 
 阅读规则：**陈述状态**与**实现状态**分开记录。已有精确 Lean 类型可以尚未证明；
@@ -222,11 +225,17 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   `CobarCupCalculus` 明列实际下降 cup 的代表元公式与标准平方等式；
   cup 的双线性构造和这两条公式已由 Leibniz 与商的泛性质证明。
   实际 E₂ 比较及规范 cocycle 公式已证明，包含 s=0；派生交付位于
-  `Interface/Solution/Cobar.lean`。待补的是与内部页面乘法的相容性及 Steenrod Ext 识别。
+  `Interface/Solution/Cobar.lean`。
   一般 cobar d²=0 当前使用 a03 的坐标相容性派生，Lin 比较留在 cm1。
-  前置缺口仅针对 Ext 端：尚未固定 graded Steenrod comodule 范畴、平凡对象、
-  内部次数平移及导出 Ext 模型；也可明确选择 cobar 为计算模型并补比较定理。
-  当前已有的 cobar 同调及内部 E₂ 足够先准确陈述二者比较，不能把两件事混为一谈。
+  Ext 端前置已补：固定 Milnor 多项式余代数、真实整数分次右余模范畴、
+  Cauchy 张量平移、平凡对象及 Mathlib 导出局部化的 `Ext^s(k[t],k)`。
+  Abelian／线性结构由实际余模和 (co)limit 构造组装，必要性质证明可暂留 sorry。
+  已入包 `CobarDerivedExtComparison`：同一个 cofree 分解的项、微分、增广
+  都有实际多项式公式，每个 cocycle 的像必须等于其固定代表的 `extMk` 类。
+  `internalEquiv` 只复合既有 cobar/E₂ 比较，不另选页面等价；生产证明未完成。
+  仍需固定左 Steenrod-module 约定及其与右余模 Ext 的比较、Yoneda 乘法及
+  内部页面乘法相容性、一般谱的实际 homology coaction。不能把右余模 Ext
+  直接改名为这些尚未交付的结论；同次数有限对偶还须处理左右作用的转换。
 
 - `am10` 内部 classical–synthetic catalogue coherence。
   陈述／实现：`Def/Synthetic/AdamsSequence` 与 `Def/Comparison/ClassicalSynthetic`
@@ -1069,6 +1078,39 @@ def CobarE2Comparison {C : Type u} [StableHomotopy.StableHomotopyCategory.{u, v}
       e (MilnorCohomology.ofCocycle H M x hx) =
         MilnorCohomology.internalClassOfCocycle H M x hx
 
+/-- am9 的独立导出 Ext 比较。分解的逐项 comodule、微分和增广都由实际
+Milnor 多项式公式固定；每个 cocycle 的像必须是该分解中的 `extMk` 类。
+因此不能用另一份任意线性等价替代。左 Steenrod-module 约定及 Yoneda
+乘法相容性仍是单独义务，本组不从加法比较自动推出它们。 -/
+structure CobarDerivedExtComparison {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    (H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C))
+    (M : MilnorCooperations H) where
+  cobarResolution : Steenrod.Milnor.Ext.CobarResolution
+  comparison : ∀ (s t : ℕ), MilnorCohomology.Cohomology H M s t ≃ₗ[Core.Algebra.F2]
+    Steenrod.Milnor.Ext.SphereExt s (t : ℤ)
+  representatives : ∀ (s t : ℕ) (x : Steenrod.Milnor.cochains s t)
+      (hx : Steenrod.Milnor.differential s t x = 0),
+    ∃ (f : Steenrod.Milnor.Ext.trivialAt (t : ℤ) ⟶
+        cobarResolution.resolution.cocomplex.X s)
+      (hf : f ≫ cobarResolution.resolution.cocomplex.d s (s + 1) = 0),
+      cobarResolution.representativePolynomial f = Steenrod.Milnor.insertRight s x.val ∧
+        comparison s t (MilnorCohomology.ofCocycle H M x hx) =
+          cobarResolution.resolution.extMk f (s + 1) rfl hf
+
+/-- 同一比较在内部 Adams E₂ 上的形式：只复合已固定的 cobar/E₂ 比较，
+不重新选择页面坐标或另一份 Ext 等价。 -/
+noncomputable def CobarDerivedExtComparison.internalEquiv {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    {H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C)}
+    {M : MilnorCooperations H} (E : CobarDerivedExtComparison H M) (s t : ℕ) :
+    (adamsTowerInternalSpectralSequence H.unit StableHomotopy.SphereSpectrum).Page 2
+      ((s : ℤ), (t : ℤ)) ≃ₗ[ℤ] Steenrod.Milnor.Ext.SphereExt s (t : ℤ) :=
+  (MilnorCohomology.comparison H M s t).symm.trans
+    ((E.comparison s t).restrictScalars ℤ)
+
 /-- am9 的 cobar 乘法切片；使用从 cochain concatenation 真正下降的 cup，
 不另选乘法。与内部 Adams 高页配对的相容性是另一个义务。 -/
 structure CobarCupCalculus {C : Type u}
@@ -1221,6 +1263,8 @@ about the exact presentation stored in the same witness. -/
 structure Challenge2 where
   presentation : Classical.Adams.LinE2Presentation
   sphereMultiplicative : Challenge2.SphereMultiplicativeInterface presentation
+  cobarDerivedExt : Challenge2.CobarDerivedExtComparison
+    Classical.Adams.standardFoundation.hf2 Classical.Adams.standardMilnorCooperations
   adamsOneLine : Challenge2.AdamsOneLineInterface
   moss : Challenge2.StandardSphereMossInterface
   tmfDifferential : Challenge2.TmfDifferentialInterface Classical.Adams.standardFoundation.hf2
