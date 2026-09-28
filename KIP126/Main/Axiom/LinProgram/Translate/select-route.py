@@ -219,7 +219,7 @@ def main():
  '  {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]',
  '  {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}',
  '  {D : Model H M Syn} {L : Labels H} {G : KIP126.Literature.Route.TmfLabels H}',
- 'set_option maxRecDepth 10000', 'set_option maxHeartbeats 2000000', '']
+ 'set_option maxRecDepth 10000', '']
  for offset,c in enumerate(claims):
   key=(c['origin'],c['record']['id'])
   if key in NAMES:

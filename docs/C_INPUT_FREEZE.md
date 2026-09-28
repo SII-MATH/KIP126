@@ -166,3 +166,14 @@ Lean 回归同时检查全部记录的次数/编号，及缺失、重复、乱�
 这不额外声称已经验证原始分发压缩包的真实性。所有 8 个摘要均列在 `Route/selected.json`。
 计算认证还必须证明源数据与实际数学对象的比较、各条结果及反证的可靠性。
 若重放使用本文新工具，先独立证明工具，再用于认证；不准调用最终定理反过来认证 C。
+
+## 7. 本批提交前验证
+
+- `select-route.py --check` 通过，检查 8 个固定输入及所有机械生成文件。
+- `lake build KIP126.Main.Axiom.LinProgram.Route.Records KIP126.Checks.Computation.Route`
+  定向编译通过（2721 jobs），记录次数/坐标和解码边界回归通过。
+- 移除新增 Records/Checks 中的额外 `maxHeartbeats` 设置，并同步生成器；
+  按默认 heartbeat 预算验证，不调整 CI 的预算规则。
+- `git diff --check` 通过；未修改依赖版本、共享缓存或既有数据库。
+
+这些验证不构造 `Inputs` 的数学见证，也不证明有限数据足以推出最终结论。

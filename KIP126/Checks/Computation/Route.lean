@@ -14,7 +14,6 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {D : Model H M Syn} (R : Realization D)
 
 set_option maxRecDepth 10000
-set_option maxHeartbeats 1000000
 
 -- Missing and invalid indices cannot turn into a zero mathematical label.
 example : R.decode .sphere 999 999 [] = none := by rfl

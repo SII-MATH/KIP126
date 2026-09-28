@@ -12,7 +12,6 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
   {D : Model H M Syn} {L : Labels H} {G : KIP126.Literature.Route.TmfLabels H}
 set_option maxRecDepth 10000
-set_option maxHeartbeats 2000000
 
 /-- Cnu_AdamsE2_ss row 3872; equation. Coordinates are degree-local. -/
 def record_d3_cnu_bottom_x126_8 : Raw.Claim := ⟨.nuCofiber, .equation, 3, 8, 134, [4], 11, 136, [1], "Cnu_AdamsE2_ss", 3872⟩
