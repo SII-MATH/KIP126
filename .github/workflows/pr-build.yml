@@ -151,6 +151,54 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
+      # This provenance record is written by the trusted workflow before any
+      # candidate code runs. Docs must use this immutable tooling commit, not
+      # the PR base or their own pull_request workflow commit, for the contract.
+      - name: Record trusted producer tooling
+        if: github.event_name == 'pull_request_target'
+        env:
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ steps.pr.outputs.sha }}
+          TOOLING_SHA: ${{ github.workflow_sha }}
+          WORKFLOW_REF: ${{ github.workflow_ref }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import pathlib
+          import subprocess
+
+          tooling = subprocess.check_output(
+              ["git", "-C", "gate", "rev-parse", "HEAD"], text=True).strip()
+          if tooling != os.environ["TOOLING_SHA"]:
+              raise SystemExit("trusted tooling checkout differs from the workflow commit")
+          directory = pathlib.Path(os.environ["RUNNER_TEMP"]) / "lean-producer-tooling"
+          directory.mkdir(parents=True, exist_ok=True)
+          metadata = {
+              "schema": 1,
+              "repository": os.environ["REPOSITORY"],
+              "head_sha": os.environ["HEAD_SHA"],
+              "tooling_sha": tooling,
+              "workflow_path": ".github/workflows/pr-build.yml",
+              "workflow_ref": os.environ["WORKFLOW_REF"],
+              "event": "pull_request_target",
+              "run_id": int(os.environ["RUN_ID"]),
+              "run_attempt": int(os.environ["RUN_ATTEMPT"]),
+          }
+          (directory / "tooling.json").write_text(json.dumps(metadata) + "\n")
+          PY
+
+      - name: Publish trusted producer tooling
+        if: github.event_name == 'pull_request_target'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: lean-producer-tooling-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lean-producer-tooling/tooling.json
+          retention-days: 7
+          if-no-files-found: error
+
       - name: Scope guard — allow KIP126 sources and validated pins
         env:
           GH_TOKEN: "${{ github.token }}"
