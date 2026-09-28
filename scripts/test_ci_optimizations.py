@@ -106,6 +106,107 @@ class QueueEvidenceTests(unittest.TestCase):
             self.assertFalse((root / "env").exists())
 
 
+class ProducerToolingMetadataTests(unittest.TestCase):
+    """Execute the trusted producer's actual metadata script without Lean."""
+
+    def steps(self):
+        return workflow("pr-build.yml")["jobs"]["sandboxed-build"]["steps"]
+
+    def test_metadata_precedes_candidate_checkout_and_execution(self):
+        steps = self.steps()
+        names = (
+            "Checkout workflow-pinned trusted build tooling",
+            "Record trusted producer tooling",
+            "Publish trusted producer tooling",
+            "Scope guard — allow KIP126 sources and validated pins",
+            "Checkout PR head (untrusted, no credentials)",
+        )
+        positions = [next(i for i, step in enumerate(steps) if step.get("name") == name)
+                     for name in names]
+        self.assertEqual(positions, sorted(positions))
+        self.assertLess(positions[-1], next(i for i, step in enumerate(steps)
+                                           if step.get("id") == "compile"))
+        checkout, record, publish = (steps[index] for index in positions[:3])
+        self.assertEqual(checkout["with"]["ref"], "${{ github.workflow_sha }}")
+        self.assertEqual(record["env"], {
+            "REPOSITORY": "${{ github.repository }}",
+            "HEAD_SHA": "${{ steps.pr.outputs.sha }}",
+            "TOOLING_SHA": "${{ github.workflow_sha }}",
+            "WORKFLOW_REF": "${{ github.workflow_ref }}",
+            "RUN_ID": "${{ github.run_id }}",
+            "RUN_ATTEMPT": "${{ github.run_attempt }}",
+        })
+        for step in (record, publish):
+            self.assertEqual(step["if"], "github.event_name == 'pull_request_target'")
+        self.assertEqual(publish["uses"],
+                         "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02")
+        self.assertEqual(publish["with"], {
+            "name": "lean-producer-tooling-${{ github.run_id }}-${{ github.run_attempt }}",
+            "path": "${{ runner.temp }}/lean-producer-tooling/tooling.json",
+            "retention-days": 7,
+            "if-no-files-found": "error",
+        })
+
+    def run_metadata(self, *, mismatch=False):
+        script = next(step["run"] for step in self.steps()
+                      if step.get("name") == "Record trusted producer tooling")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            gate = root / "gate"
+            subprocess.run(["git", "init", "--quiet", str(gate)], check=True,
+                           capture_output=True)
+            subprocess.run(
+                ["git", "-C", str(gate), "-c", "user.name=Workflow Test",
+                 "-c", "user.email=workflow-test@example.invalid",
+                 "-c", "commit.gpgsign=false", "-c", "core.hooksPath=/dev/null",
+                 "commit", "--quiet", "--allow-empty", "-m", "trusted tooling"],
+                check=True, capture_output=True,
+            )
+            tooling_sha = subprocess.check_output(
+                ["git", "-C", str(gate), "rev-parse", "HEAD"], text=True,
+            ).strip()
+            expected = {
+                "schema": 1,
+                "repository": "SII-MATH/KIP126",
+                "head_sha": "b" * 40,
+                "tooling_sha": tooling_sha,
+                "workflow_path": ".github/workflows/pr-build.yml",
+                "workflow_ref":
+                    "SII-MATH/KIP126/.github/workflows/pr-build.yml@refs/heads/main",
+                "event": "pull_request_target",
+                "run_id": 734123,
+                "run_attempt": 2,
+            }
+            environment = {
+                **os.environ,
+                "RUNNER_TEMP": str(root / "runner-temp"),
+                "REPOSITORY": expected["repository"],
+                "HEAD_SHA": expected["head_sha"],
+                "TOOLING_SHA": "0" * 40 if mismatch else tooling_sha,
+                "WORKFLOW_REF": expected["workflow_ref"],
+                "RUN_ID": str(expected["run_id"]),
+                "RUN_ATTEMPT": str(expected["run_attempt"]),
+            }
+            result = subprocess.run(
+                ["bash", "-euo", "pipefail", "-c", script], cwd=root,
+                env=environment, capture_output=True, text=True,
+            )
+            path = root / "runner-temp" / "lean-producer-tooling" / "tooling.json"
+            metadata = json.loads(path.read_text()) if path.exists() else None
+            return result, metadata, expected
+
+    def test_actual_checkout_generates_run_bound_metadata(self):
+        result, metadata, expected = self.run_metadata()
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(metadata, expected)
+
+    def test_mismatched_tooling_sha_rejects_before_creating_metadata(self):
+        result, metadata, _ = self.run_metadata(mismatch=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("trusted tooling checkout differs from the workflow commit", result.stderr)
+        self.assertIsNone(metadata)
+
+
 class WorkflowBoundaryTests(unittest.TestCase):
     def test_dependency_environment_saved_only_before_candidate_execution(self):
         steps = workflow("pr-build.yml")["jobs"]["sandboxed-build"]["steps"]
