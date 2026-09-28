@@ -49,6 +49,8 @@ document:
 - [`PROJECT_BOUNDARY.md`](PROJECT_BOUNDARY.md) defines what this project does
   and does not formalize, together with its source, trust, and acceptance
   boundaries.
+  [The h₆² statement freeze](docs/H6_STATEMENT_FREEZE.md) records the accepted
+  Challenge1 foundation assumption, the fixed target, and interface revision rules.
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) owns the long-term stages and dependency
   order: audit the earlier repositories and form KIP126's best-progress
   envelope, continue the chapter-level formalization, and finish with a

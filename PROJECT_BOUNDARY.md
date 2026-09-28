@@ -224,6 +224,16 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    slice, including CSV basis certification, presentation and closed sphere
    differential equations. Both stage assumptions must eventually be discharged.
 
+   The user-approved v1 statement freeze accepts the existing
+   `Nonempty Challenge1` stage axiom as the foundation of this fixed target.
+   Removing that axiom or constructing a concrete spectrum model is not a
+   prerequisite for freezing the statement. The four Challenge1 field groups,
+   the single witness selection, and the target's mathematical meaning are
+   recorded in [H6_STATEMENT_FREEZE.md](docs/H6_STATEMENT_FREEZE.md).
+   Changes to this contract require an explicit interface revision and
+   synchronized consumers. This freeze does not waive the final proof-completion
+   requirement to discharge stage axioms or establish the intended model.
+
 ## In-scope formalization
 
 ### Fixed computation-database input (development-stage exception)

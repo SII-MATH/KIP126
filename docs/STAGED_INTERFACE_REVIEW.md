@@ -3,6 +3,12 @@
 本记录针对本地路线改动与远程 `dcd38bd` 整合后的代码。冻结指类型、数学含义、
 范围、对象绑定和证明责任确定，不代表证明已完成。所有阶段必须使用同一个 M。
 
+**后续状态更新（2026-09-28）：** 以下清单保留整合时的审查记录。当前目标与所接受的
+Challenge1 基础假设已冻结为 [h₆² statement v1](H6_STATEMENT_FREEZE.md)。
+所选 §7 路线的有限 C(M) 输入陈述已在 [C_INPUT_FREEZE.md](C_INPUT_FREEZE.md) 落实，
+包括标准乘法、具名标签和实际 Cν 映射；不要继续把下文对应项目当作缺少陈述。
+计算真实性、消费链的充分性及与旧 Challenge2 的接线仍待完成，且不阻塞上述目标冻结。
+
 ## 本次修改
 
 - 为所选 LWX v2 §7 路线定义 `Kervaire.Route.Model`，把实际 classical/synthetic
