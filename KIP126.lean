@@ -1,3 +1,4 @@
+import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Interface.Solution.CoherentPageExtension
 import KIP126.Main.Axiom.Literature.StandardSphere.Proofs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs

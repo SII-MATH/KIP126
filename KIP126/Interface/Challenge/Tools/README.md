@@ -18,6 +18,12 @@ Stretching 的实际前置已有进展：[严格代表元解纤维](../../../Def
 
 同一接口还将上述仿射判据绑定实际 `restrictPermanentFiniteSolution`：给定后期解，满射性等价于同一 filtered ρ 链映射诱导的差群映射满射。因而“每个有限纤维非空 + 每个相邻真实差群映射满射”也可构造保持指定首层解的相容塔；这里的差群满射仍是需要单独验证的条件。
 
+[有限纤维的相容选择](../FiniteCoherentPageExtension.lean)已给出另一条已证明路线：同一 `P,I,J` 下，每层实际严格解纤维若有限且非空，就存在某个相容塔；不要求限制满射，也不保证保留任意指定首层解。这里的“有限”是代表元对集合的基数有限，不能由有限 λ 指数或 bounded filtration 直接替代。
+
 [余核障碍](../../../Def/SpectralSequence/FilteredComplex/Solutions/Obstruction/Proofs.lean)的零判据判断一个指定早期代表元解能否提升。论文 Proposition `prop:dec738d3` 与 Corollary `cor:dfc6043e` 讨论页面关系及其存在性，没有证明每个指定严格解都可提升。因此 Blueprint 已撤下“余核非零必产生论文 crossing 元组／无元组则严格限制满射”的加强；满射必须另行证明。有限 stretching law 的模型证明、实际比较见证、以及相容解与未截断解／同伦极限的比较仍待完成。Blueprint 将已证明的局部节点及已定义的接口标为 `leanok`，完整 stretching 仍为 `notready`。
 
 整体阶段状态见[Interface](../../README.md)。
+
+有限性路线现在已证明到条件性的相容塔：严格解由其实际源代表元唯一确定，所以只需源同伦群有限；实际 λ–ρ–δ 三角又将 first-quotient 群的有限性传到任意正有限商。[根 Challenge2](../../../Challenge2.lean) 的 `FirstQuotientHomotopyComparison` 已准确要求移位后实际首商的同伦群与经典 E₂ 的同构。供给这个见证、经典 E₂ 对角线上各群有限、同一 `P,I,J` 和各实际纤维非空后，`FiniteCoherentPageExtension` 的对应 Solution 已证明存在某个相容塔。实际模型上的比较见证及 finite-type 到 E₂ 有限的绑定仍缺；不能由 bounded convergence 推出这些条件，也未恢复未截断解。
+
+论文假设 connective、2-completed、finite type；未截断或 2-adic 同伦群未必有限。历史 `KIPBase/StableHomotopy/Adams.lean` 的 `finiteSpectrum_homology_finiteDim` 依赖把有限集合基数上界相加的 `mod2Homology_cofiber_bound` 公理；该界一般错误，不能迁移为当前证明。本轮有限商证明使用实际 Hom 正合性及有限 kernel/image，不使用该历史公理。

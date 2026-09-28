@@ -123,6 +123,13 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   相邻限制相容性。`Interface/Solution/CoherentPageExtension` 已从指定初解及
   相邻实际限制的满射性构造保留初值的相容塔。`Solutions/AffineRestriction/`
   已证明：给定后期基点，严格解限制满射等价于实际齐次差群映射满射。
+  `Interface/Solution/FiniteCoherentPageExtension` 另从各层真实解纤维有限且非空
+  构造某个相容塔；这一分支无需限制满射，但不保留任意指定的初解。
+  `Solutions/Finiteness/` 证明严格解由源代表元决定，从而实际源同伦群有限
+  已足够保证纤维有限；滤过有界不能替代该基数有限性。
+  实际 λ–ρ–δ 三角进一步将有限商同伦的有限性归约到一阶商的有限个 weight。
+  给定 `FirstQuotientHomotopyComparison`、经典 E₂ 对角线有限及各层有解，
+  可由此构造相容塔；该比较、E₂ 有限性的模型证明与未截断恢复仍须提供。
   两个比较条件的模型见证、所需满射性和 coherent limit 比较仍未交付。
   当前 ESS 构造要求逐次数滤过有界；“无限”只指未取有限 λ 商，不表示已处理
   任意无界 Adams 滤过。一般情形还须接入 `UnboundedExtension/` 及其收敛条件。
@@ -170,8 +177,15 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   恰是两个单位插入的等化子，且指定系数乘法保持该核。这对任意测试对象成立。
   `LongLayer/Two/Vanishing/` 据此证明长度二障碍全局为零并构造实际提升；
   显式保留 tensorLeft H 的 exact／shift 结构及单位自然变换的 shift 相容。
+  `LongLayer/Two/Pairing/` 将提升接到指定 firstComposition，并证明长度二
+  cycle 闭合；`Two/Cycles/` 给出这些循环上的实际双线性复合。
+  `Layer/Boundary/` 已证明右输入来自 tower 时的实际左 δ 公式；
+  一般 cycle 不必来自 tower，不能据此断言已经下降到 E₂ 的边界商。
   长度一般时仍只有精确的提升充要条件；所需提升及完整两侧边界相容尚未构造。
-  Leibniz 与收敛复合相容仍缺，故完整 Massey 关系和 Moss 陈述尚未冻结。
+  现有 `ProjectionCompatible`、`BoundaryCompatible` 已足够陈述参数化的
+  真实配对交付；完整 Massey defining-system 关系及 Moss 接口还需组合这些
+  定义并核定文献条件，不能以配对尚未证明为由推迟全部陈述。
+  Leibniz、收敛复合相容与配对见证的构造仍是独立证明义务。
   右过渡的现有路线需上述条件或对应 connectivity 证明；
   braided successor 与 ordered successor 的边界也不能默认相同。
   ihom(X,Y) 的塔与对 Y 的塔取映射需比较，
@@ -209,6 +223,10 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   `SyntheticEInftyMapCompatibility` 固定真实 λ、ρ、商投影与规范子商映射的
   交换等式，λ 降低 weight、增加 boundary cutoff，ρ 保持 weight、包含 cycles。
   规范子商映射的单满射已证明；由模型相容性推出实际映射的单满射属派生交付。
+  `FirstQuotientHomotopyComparison` 另明确实际一阶 λ 商的全部双分次同伦
+  与同一经典 E₂ 的比较，保留 normalized source 所需 weight shift。
+  两端对象均已定义；缺口是该同构的模型见证及其与 λ、shift、商映射的相容证明，
+  不能把已有 `specialFiber` 的 E∞ 比较当作此同伦群比较。
   未完成：presentation、shift comparison 及其相容性见证，真正的
   λ-Bockstein exact-couple comparison，以及 rigidity 的有限页微分公式。
   历史 `lambda_bockstein_start_page` 仅断言 r₀=2，不能代替 comparison；
@@ -448,6 +466,15 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := Syn)]
   (H : Mod2EilenbergMacLane (C := C)) (N : NuFunctorData C Syn)
   (F : SyntheticAdamsFamily Syn)
+
+/-- am11：指定 X 的一阶 λ 商实际同伦群与经典 E₂ 的比较。
+`a = 0` 对应 MainPaper `thm:17e90ac0`(1) / BHS `lemm:ctauE2`；
+任意 a 的版本还需实际 shift 与 λ 商的比较。这个参数化交付使用已定义的
+两端，不声称已构造模型见证，也不由 E∞ 的 specialFiber 字段直接推出。 -/
+abbrev FirstQuotientHomotopyComparison (X : C) := ∀ (a s t : ℤ),
+  BiHom (t - s) (t + a)
+    (XModLambdaN ((SyntheticCategory.biShift (0, a)).obj (N.functor.obj X)) 1) ≃+
+      Ambient H X (s, t)
 
 /-- BHS A.9 的准确内部公式类型；存在性及文献输入另行处理。 -/
 abbrev NuEInftyFormula := ∀ (X : C) (p : ℤ × ℤ) (w : ℤ),

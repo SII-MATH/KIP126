@@ -1,3 +1,4 @@
+import KIP126.Interface.Challenge.FiniteCoherentPageExtension
 import KIP126.Interface.Challenge.CoherentPageExtension
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Interface.Challenge.InternalPages

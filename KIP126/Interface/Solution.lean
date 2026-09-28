@@ -1,3 +1,4 @@
+import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Interface.Solution.CoherentPageExtension
 import KIP126.Interface.Solution.LinProgram.Basis.Data
 import KIP126.Interface.Solution.LinProgram.Basis.Proofs

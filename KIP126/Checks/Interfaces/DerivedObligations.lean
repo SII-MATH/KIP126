@@ -1,3 +1,6 @@
+import KIP126.Interface.Solution.FiniteCoherentPageExtension
+import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Cycles.Data
+import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Boundary.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
 import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
@@ -46,7 +49,31 @@ a claim that the whole Challenge package has been constructed. -/
 
 open Lean Elab Command in
 run_cmd do
-  for name in [``KIP126.Classical.Adams.Moss.stageComposition_succ_comparison,
+  for name in [``KIP126.Core.InverseSequence.exists_compatible_of_finite,
+      ``KIP126.Core.ModuleCat.freeRankOne_eval_one_injective,
+      ``KIP126.Core.ModuleCat.finite_freeRankOne_hom,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.source_ambient_injective,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.finite_of_finite_source_hom,
+      ``KIP126.StableHomotopy.finite_hom_middle_of_distinguished,
+      ``KIP126.Synthetic.Context.FiniteLambdaQuotientTower.finite_biHom,
+      ``KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.finite_solutions_of_finite_source,
+      ``KIP126.Synthetic.PageExtension.NormalizedPageFamily.finite_finiteSolutions_of_finite_source,
+      ``KIP126.Synthetic.PageExtension.NormalizedPageFamily.finite_permanentFiniteSolutions_of_finite_source,
+      ``KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite,
+      ``KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite_source,
+      ``KIP126.Interface.Solution.finite_normalizedSourceHomotopy_of_firstQuotientComparison,
+      ``KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite_e2,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoComposition,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoPairing,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoComposition_projection,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoPairing_projection,
+      ``KIP126.Classical.Adams.Moss.firstComposition_mem_cycles_two,
+      ``KIP126.Classical.Adams.Moss.twoCycleComposition,
+      ``KIP126.Classical.Adams.Moss.stageComposition_δ_left,
+      ``KIP126.Classical.Adams.Moss.layerComposition_ι_right_comparison,
+      ``KIP126.Classical.Adams.Moss.layerComposition_ι_right_δ_comparison,
+      ``KIP126.Classical.Adams.Moss.layerComposition_ι_right_δ,
+      ``KIP126.Classical.Adams.Moss.stageComposition_succ_comparison,
       ``KIP126.Interface.Solution.restrictPermanentFiniteSolution_surjective_iff_differences_surjective,
       ``KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_differences_surjective,
       ``KIP126.Classical.Adams.Moss.coefficientPairing_precomp,

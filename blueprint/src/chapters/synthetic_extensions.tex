@@ -249,6 +249,129 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   the specified initial solution.
 \end{proof}
 
+\begin{lemma}[Finite strict fibers from the source homotopy group]
+  \label{lem:strict-fiber-finite-of-source}
+  \uses{def:strict-ess-representative-fiber,def:synthetic-ess-solution-tower}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.source_ambient_injective,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.finite_of_finite_source_hom,KIP126.Core.ModuleCat.freeRankOne_eval_one_injective,KIP126.Core.ModuleCat.finite_freeRankOne_hom,KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.finite_solutions_of_finite_source,KIP126.Synthetic.PageExtension.NormalizedPageFamily.finite_finiteSolutions_of_finite_source,KIP126.Synthetic.PageExtension.NormalizedPageFamily.finite_permanentFiniteSolutions_of_finite_source}
+  \leanok
+  For a strict fiber of a filtered complex, sending a solution to its
+  source representative in $\operatorname{Hom}(T,C_k)$ is injective.
+  Hence finiteness of that source Hom set implies finiteness of the fiber.
+  For the actual synthetic ESS, $T=\operatorname{ULift}(\mathbb Z)$;
+  a morphism from this free rank-one module is determined by its value at
+  $1$.  Thus finiteness of the actual source bigraded homotopy group
+  suffices for finiteness of the corresponding strict fibers, including
+  \texttt{FiniteSolutions} and \texttt{PermanentFiniteSolutions}.
+  No finiteness of the target group or nonemptiness of the fiber is needed.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Monicity of the source filtration inclusion determines the filtered
+  source lift from its ambient representative.  The strict equation
+  determines the ambient target lift as the differential of that source;
+  monicity of the target inclusion then determines the target lift itself.
+  This proves injectivity.  Evaluation at $1$ is injective for homomorphisms
+  from the lifted rank-one free module, so a finite source homotopy group
+  gives the needed finite Hom set and then a finite solution subtype.
+\end{proof}
+
+\begin{proposition}[Coherent choices in finite nonempty strict fibers]
+  \label{prop:synthetic-ess-coherent-tower-of-finite}
+  \uses{def:synthetic-ess-solution-tower}
+  \lean{KIP126.Core.InverseSequence.exists_compatible_of_finite,KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite}
+  \leanok
+  Fix the same $P,I,J$ and permanent labels as above.  Suppose every actual
+  strict fiber $\operatorname{Sol}_q^n(x,y)$ for $q>k$ is a finite nonempty
+  set.  Then there exists a coherent solution tower for the actual adjacent
+  restrictions.  These restrictions need not be surjective.  The theorem
+  produces some coherent choice and does not prescribe its value at the
+  first quotient.
+
+  Here finiteness concerns the set of actual representative pairs.
+  A finite quotient length, a bounded Adams filtration, or finitely many
+  possible page labels does not alone establish this hypothesis.  No
+  untruncated solution is recovered by this proposition.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Compose the adjacent restrictions to obtain projections between any two
+  indices.  The inverse system of nonempty finite sets admits a compatible
+  sequence by the finite inverse-system form of K\"onig's lemma.  Apply
+  this result to the actual permanent-label fibers and retain its adjacent
+  projection equations.  An arbitrarily specified initial point need not
+  lie in the stable image of the later restrictions.
+\end{proof}
+
+\begin{lemma}[Finiteness along actual finite $\lambda$ quotients]
+  \label{lem:synthetic-finite-quotient-homotopy}
+  \uses{def:synthetic-lambda-quotient,def:lambda-rho-delta-triangle,def:synthetic-sphere,thm:stable-homotopy-long-exact}
+  \lean{KIP126.StableHomotopy.finite_hom_middle_of_distinguished,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.finite_biHom}
+  \leanok
+  For a distinguished triangle $A\to B\to C$ and a test object $W$,
+  finiteness of $\operatorname{Hom}(W,A)$ and $\operatorname{Hom}(W,C)$
+  implies finiteness of $\operatorname{Hom}(W,B)$.
+  Consequently, fix an actual finite quotient tower on a synthetic object
+  $A$.  If $q>0$ and all the groups
+  \[
+    \pi_{m,w+j}(A/\lambda),\qquad 0\le j<q,
+  \]
+  are finite, then $\pi_{m,w}(A/\lambda^q)$ is finite.
+  The hypothesis involves only this finite list of first-quotient groups.
+\end{lemma}
+\begin{proof}
+  \leanok
+  For the first assertion, Hom exactness identifies the kernel of the
+  second map with the image of the first.  Its kernel and image are finite,
+  so the middle group is finite.  For the second assertion, induct on $q$
+  using the tower's actual triangle
+  \[
+    \Sigma^{0,-1}(A/\lambda^q)\longrightarrow A/\lambda^{q+1}
+      \longrightarrow A/\lambda.
+  \]
+  The existing suspension equivalence identifies the left Hom group in
+  degree $(m,w)$ with $\pi_{m,w+1}(A/\lambda^q)$.  Apply the induction
+  hypothesis and the first assertion.  No splitting of the resulting
+  finite group extension is required.
+\end{proof}
+
+\begin{proposition}[A finite classical diagonal supplies coherent strict solutions]
+  \label{prop:synthetic-coherent-tower-of-finite-e2}
+  \uses{def:synthetic-first-quotient-homotopy-comparison,lem:synthetic-finite-quotient-homotopy,lem:strict-fiber-finite-of-source,prop:synthetic-ess-coherent-tower-of-finite}
+  \lean{KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite_source,KIP126.Interface.Solution.finite_normalizedSourceHomotopy_of_firstQuotientComparison,KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite_e2}
+  \leanok
+  Fix $P,I,J$, permanent labels $x,y$, and $n\ge e(f)$ as above.
+  Supply a first-quotient homotopy comparison for $X$.  For each $q>0$,
+  finiteness of
+  \[
+    E_2^{s+j,t+j}(X),\qquad 0\le j<q,
+  \]
+  implies finiteness of the actual normalized-source group
+  \[
+    \pi_{t-s,t+e(f)}\bigl((\Sigma^{0,e(f)}\nu X)/\lambda^q\bigr).
+  \]
+  Therefore, if every $E_2^{s+j,t+j}(X)$ for $j\ge0$ is finite and
+  every required permanent-label strict fiber is nonempty, there is some
+  coherent solution tower.  More generally, direct finiteness of the
+  displayed source groups and nonemptiness of the fibers suffice.
+
+  The first-quotient comparison, classical finiteness, and $I,J$ are
+  explicit hypotheses.  The chosen model must still supply them; this
+  proposition does not deduce finite type from bounded convergence or
+  recover an untruncated solution.  In the paper's connective finite-type
+  setting, the missing classical finiteness proof is the degreewise finite
+  Steenrod-cobar argument.  The homotopy comparison also requires its
+  actual normalized-source shift and quotient compatibility.
+\end{proposition}
+\begin{proof}
+  \leanok
+  In the first-quotient comparison take $a=e(f)$ and replace $(s,t)$ by
+  $(s+j,t+j)$.  The corresponding source groups have degrees
+  $(t-s,t+e(f)+j)$, exactly those needed by the preceding finite-quotient
+  lemma.  Finite source homotopy makes each strict fiber finite.  Apply
+  the finite nonempty inverse-system criterion to construct the coherent
+  tower.
+\end{proof}
+
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1009--1021 defines the quotient triangles;
 % Burklund--Xu Construction 7.7, KIP126/Main/Axiom/Literature/Sources/BurklundXu/paper.txt:3022--3035,
 % supplies the finite tower and its cofiber sequences.  Naturality and the
