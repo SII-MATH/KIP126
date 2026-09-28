@@ -139,10 +139,12 @@ noncomputable def Filtration.truncatedAssociatedGradedIso
     rw [hker_factor]
     simp only [Category.assoc, hiπ, comp_zero]
   haveI : Epi p := by
-    dsimp only [p, Filtration.toTruncatedFiltration]
+    dsimp only [p, Filtration.toTruncatedFiltration,
+      Filtration.truncatedFiltration]
     infer_instance
   haveI : Epi p₁ := by
-    dsimp only [p₁, Filtration.toTruncatedFiltration]
+    dsimp only [p₁, Filtration.toTruncatedFiltration,
+      Filtration.truncatedFiltration]
     infer_instance
   let q : Subobject.underlying.obj Iₛ ⟶ fil.associatedGraded s k :=
     Abelian.epiDesc p π hπ
@@ -257,7 +259,9 @@ noncomputable def Filtration.truncationTransition {ω : Type w} {A : ω → C}
     fil.truncatedObj s₁ k ⟶ fil.truncatedObj s₀ k :=
   cokernel.desc ((fil.F (s₁ + 1) k).arrow)
     (cokernel.π ((fil.F (s₀ + 1) k).arrow))
-    (by have hmono := fil.mono_of_le (show s₀ + 1 ≤ s₁ + 1 by omega) k
+    (by
+        dsimp only [Filtration.truncationProj, Filtration.truncatedObj]
+        have hmono := fil.mono_of_le (show s₀ + 1 ≤ s₁ + 1 by omega) k
         rw [show (fil.F (s₁ + 1) k).arrow =
           Subobject.ofLE _ _ hmono ≫ (fil.F (s₀ + 1) k).arrow
           from by rw [Subobject.ofLE_arrow],
@@ -269,9 +273,7 @@ theorem Filtration.truncationTransition_comp {ω : Type w} {A : ω → C}
     fil.truncationTransition h₁₂ k ≫ fil.truncationTransition h₀₁ k =
     fil.truncationTransition (le_trans h₀₁ h₁₂) k := by
   apply (cancel_epi (cokernel.π ((fil.F (s₂ + 1) k).arrow))).mp
-  change cokernel.π _ ≫ fil.truncationTransition h₁₂ k ≫ fil.truncationTransition h₀₁ k =
-    cokernel.π _ ≫ fil.truncationTransition (le_trans h₀₁ h₁₂) k
-  simp only [Filtration.truncationTransition]
+  dsimp only [Filtration.truncationTransition, Filtration.truncatedObj]
   rw [← Category.assoc, cokernel.π_desc, cokernel.π_desc, cokernel.π_desc]
 
 /-- Projection is compatible with transition: `proj s₁ ≫ transition = proj s₀`. -/
@@ -296,7 +298,9 @@ noncomputable def ConvergenceMorphism.truncatedAMap
     F₁.truncatedObj s₀ k' ⟶ F₂.truncatedObj s₀ k' :=
   cokernel.desc ((F₁.F (s₀ + 1) k').arrow)
     (cm.aMap k' ≫ cokernel.π ((F₂.F (s₀ + 1) k').arrow))
-    (by obtain ⟨φ, hφ⟩ := cm.filtration_compat (s₀ + 1) k'
+    (by
+        dsimp only [Filtration.truncatedObj]
+        obtain ⟨φ, hφ⟩ := cm.filtration_compat (s₀ + 1) k'
         rw [← Category.assoc, ← hφ, Category.assoc, cokernel.condition, comp_zero])
 
 /-- The truncated aMap preserves truncated filtrations. -/
@@ -313,9 +317,12 @@ theorem ConvergenceMorphism.truncatedFiltrationCompat
   obtain ⟨φ_s, hφ_s⟩ := cm.filtration_compat s k'
   have sq_comm : φ_s ≫ ((F₂.F s k').arrow ≫ F₂.truncationProj s₀ k') =
       ((F₁.F s k').arrow ≫ F₁.truncationProj s₀ k') ≫ cm.truncatedAMap s₀ k' := by
-    rw [Category.assoc, show F₁.truncationProj s₀ k' ≫ cm.truncatedAMap s₀ k' =
-      cm.aMap k' ≫ F₂.truncationProj s₀ k' from by
-        simp only [Filtration.truncationProj, ConvergenceMorphism.truncatedAMap, cokernel.π_desc]]
+    have hproj : F₁.truncationProj s₀ k' ≫ cm.truncatedAMap s₀ k' =
+        cm.aMap k' ≫ F₂.truncationProj s₀ k' := by
+      dsimp only [Filtration.truncationProj, Filtration.truncatedObj,
+        ConvergenceMorphism.truncatedAMap]
+      exact cokernel.π_desc _ _ _
+    rw [Category.assoc, hproj]
     rw [← Category.assoc (F₁.F s k').arrow, ← hφ_s, Category.assoc]
   let sq : Arrow.mk ((F₁.F s k').arrow ≫ F₁.truncationProj s₀ k') ⟶
            Arrow.mk ((F₂.F s k').arrow ≫ F₂.truncationProj s₀ k') :=

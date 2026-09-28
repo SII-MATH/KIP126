@@ -60,12 +60,12 @@ inclusion `F^{s+1} ↪ F^s` obtained from monotonicity. -/
 
 /-- The associated graded `gr^s A^k = F^s A^k / F^{s+1} A^k`, defined as
     the cokernel of the inclusion `F^{s+1} ↪ F^s`. -/
-noncomputable def Filtration.associatedGraded {ω : Type w} {A : ω → C}
+@[reducible] noncomputable def Filtration.associatedGraded {ω : Type w} {A : ω → C}
     (fil : Filtration A) (s : ℤ) (k : ω) : C :=
   cokernel (Subobject.ofLE (fil.F (s + 1) k) (fil.F s k) (fil.mono s k))
 
 /-- The projection morphism `F^s A^k ⟶ gr^s A^k = F^s / F^{s+1}`. -/
-noncomputable def Filtration.toAssociatedGraded {ω : Type w} {A : ω → C}
+@[reducible] noncomputable def Filtration.toAssociatedGraded {ω : Type w} {A : ω → C}
     (fil : Filtration A) (s : ℤ) (k : ω) :
     Subobject.underlying.obj (fil.F s k) ⟶ fil.associatedGraded s k :=
   cokernel.π (Subobject.ofLE (fil.F (s + 1) k) (fil.F s k) (fil.mono s k))

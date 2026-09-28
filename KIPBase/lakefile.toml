@@ -1,7 +1,7 @@
 name = "KIPBase"
 srcDir = ".."
 version = "0.1.0"
-defaultTargets = ["KIPBase"]
+defaultTargets = ["KIPBase", "KIPBaseSpectralSequence"]
 
 [[require]]
 name = "mathlib"
@@ -10,17 +10,14 @@ rev = "v4.32.2"
 
 [[lean_lib]]
 name = "KIPBase"
+moreLeanArgs = [
+  "-Dpp.unicode.fun=true",
+  "-DrelaxedAutoImplicit=false",
+  "-Dweak.linter.mathlibStandardSet=true",
+  "-DmaxSynthPendingDepth=3",
+]
 roots = [
   "KIPBase.Mathlib",
-  "KIPBase.SpectralSequence.Basic",
-  "KIPBase.SpectralSequence.BoundedExtension",
-  "KIPBase.SpectralSequence.Commutativity",
-  "KIPBase.SpectralSequence.Completion",
-  "KIPBase.SpectralSequence.Convergence",
-  "KIPBase.SpectralSequence.Crossing",
-  "KIPBase.SpectralSequence.FilteredComplex",
-  "KIPBase.SpectralSequence.Truncation",
-  "KIPBase.SpectralSequence.UnboundedExtension",
   "KIPBase.StableHomotopy.Adams",
   "KIPBase.StableHomotopy.Basic",
   "KIPBase.StableHomotopy.Cohomology",
@@ -55,10 +52,26 @@ roots = [
   "KIPBase.Basic",
   "KIPBase.Standalone",
 ]
-[lean_lib.leanOptions]
-"pp.unicode.fun" = true
-"relaxedAutoImplicit" = false
-"weak.linter.mathlibStandardSet" = true
-"backward.defeqAttrib.useBackward" = true
-"backward.isDefEq.respectTransparency" = false
-"maxSynthPendingDepth" = 3
+[[lean_lib]]
+name = "KIPBaseSpectralSequence"
+moreLeanArgs = [
+  "-Dpp.unicode.fun=true",
+  "-DrelaxedAutoImplicit=false",
+  "-Dweak.linter.mathlibStandardSet=true",
+  "-Dbackward.defeqAttrib.useBackward=true",
+  "-Dbackward.isDefEq.respectTransparency=false",
+  "-DmaxSynthPendingDepth=3",
+]
+roots = [
+  "KIPBase.SpectralSequence.Basic",
+  "KIPBase.SpectralSequence.BoundedExtension",
+  "KIPBase.SpectralSequence.Commutativity",
+  "KIPBase.SpectralSequence.Completion",
+  "KIPBase.SpectralSequence.Convergence",
+  "KIPBase.SpectralSequence.Crossing",
+  "KIPBase.SpectralSequence.FilteredComplex",
+  "KIPBase.SpectralSequence.Truncation",
+  "KIPBase.SpectralSequence.UnboundedExtension",
+  "KIPBase.SpectralSequence.PageComparison",
+  "KIPBase.SpectralSequence.UnboundedCommutativity",
+]
