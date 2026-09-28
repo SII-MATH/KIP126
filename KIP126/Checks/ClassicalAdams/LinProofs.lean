@@ -10,13 +10,11 @@ run_cmd do
     ``KIP126.Computation.LinProofs.sphereTable_sound]
   for decl in [``KIP126.Computation.LinProofs.differential_of_lookup,
       ``KIP126.Computation.LinProofs.row5541] do
-    let axioms ← liftCoreM (collectAxioms decl)
+    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer expected decl
+      "unexpected Lin proofs dependency"
     unless KIP126.Checks.AxiomInputs.uses axioms
         ``KIP126.Computation.LinProofs.sphereTable_sound do
       throwError "missing explicit Challenge 2 database trust boundary: {decl}"
-    for a in axioms do
-      unless KIP126.Checks.AxiomInputs.allows expected a do
-        throwError "unexpected Lin proofs dependency: {decl}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||

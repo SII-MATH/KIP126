@@ -5,7 +5,9 @@ import Lean.Elab.Command
 
 /-! Kernel-proved algebraic soundness, the full finite certificate, and the
 fixed E₂ nonvanishing/reduction interfaces. No native evaluation axiom is allowed.
-The additional executable diagnostic is not used as a proof. -/
+The additional executable diagnostic is not used as a proof. Fixed-model
+consumers report admitted package-type debt during development; their strict
+completion audit is enabled by `kip126.checks.strictStageConsumerAudit`. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -38,10 +40,8 @@ run_cmd do
   for declaration in [``KIP126.Classical.Adams.computedH6Square_ne_zero_of_check,
       ``KIP126.Classical.Adams.computedH6Square_ne_zero,
       ``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff] do
-    let axioms ← liftCoreM (collectAxioms declaration)
-    for a in axioms do
-      unless KIP126.Checks.AxiomInputs.allows (basic ++ inputs) a do
-        throwError "unexpected transferred nonvanishing dependency: {declaration}: {a}"
+    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer (basic ++ inputs)
+      declaration "unexpected transferred nonvanishing dependency"
     for a in inputs do
       unless KIP126.Checks.AxiomInputs.uses axioms a do throwError "missing disclosed input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do

@@ -1,3 +1,4 @@
+import KIP126.Interface.Challenge.LinProgram.Staircase
 import KIP126.Interface.Challenge.Tmf
 import KIP126.Interface.Challenge.AdamsOneLine
 import KIP126.Interface.Challenge.Moss

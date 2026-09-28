@@ -15,12 +15,10 @@ run_cmd do
       unless KIP126.Checks.AxiomInputs.allows (logical ++ [``KIP126.Classical.Adams.standardFoundation]) a do
         throwError "unexpected coordinate differential dependency: {declaration}: {a}"
   let declaration := ``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_leibniz
-  let axioms ← liftCoreM (collectAxioms declaration)
   let inputs := [``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.linE2Presentation]
-  for a in axioms do
-    unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
-      throwError "unexpected conditional square differential dependency: {a}"
+  let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer (logical ++ inputs)
+    declaration "unexpected conditional square differential dependency"
   for a in inputs do
     unless KIP126.Checks.AxiomInputs.uses axioms a do
       throwError "missing disclosed conditional square input: {a}"

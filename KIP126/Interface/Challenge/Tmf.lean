@@ -10,4 +10,12 @@ theorem tmfDifferentialInterface :
       KIP126.Classical.Adams.standardFoundation.hf2) := by
   sorry
 
+/-- The same BR21 realization and comparison preserve the actual
+algebra-object unit and the actual Adams second-cycle product. -/
+theorem tmfMultiplicativeInterface :
+    ∃ T : KIP126.Challenge2.TmfDifferentialInterface
+      KIP126.Classical.Adams.standardFoundation.hf2,
+      KIP126.Challenge2.StandardTmfMultiplicativeInterface T := by
+  sorry
+
 end KIP126.Interface.Challenge

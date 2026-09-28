@@ -1,4 +1,7 @@
 import KIP126.Main.Axiom.LinProgram.Generated.Differentials.Table
+import KIP126.Main.Axiom.LinProgram.Generated.Staircase.Table
+import KIP126.Main.Axiom.LinProgram.Interpretation.State.Data
+import KIP126.Def.SpectralSequence.Computation.State.Predicates
 import KIP126.Main.Axiom.LinProgram.Interpretation.Sphere
 import KIP126.Def.AdamsE2.LinClasses.Data
 import KIP126.Def.AdamsE2.LinBasisTable.Data
@@ -23,6 +26,8 @@ import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
 import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
 import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
 import KIP126.Def.ClassicalAdams.Tmf.Model.Data
+import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
+import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与完整待交付清单
@@ -30,7 +35,8 @@ import KIP126.Def.ClassicalAdams.Tmf.Model.Data
 范围依据：[接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138)，
 2026-09-27 的 `am1`–`am16`、`cm1`–`cm6`。下面按该编号列出全部预期交付；
 当前 Lean 总包包括 `cm1` 的有界 presentation、`cm2` 的表真实性陈述、
-`am12` 的一线／May 陈述，以及同一基础上 `am8/am15` 的球面 Moss 交付组。
+`am12` 的一线／May 陈述、同一基础上 `am8/am15` 的球面 Moss 交付组、
+`am14` 的 tmf 微分/单位/乘法切片，以及 `cm5` 的固定球面 staircase 状态。
 清单中的“未入包”不是额外假设，也不表示相应领域完全没有已有证明。
 
 阅读规则：**陈述状态**与**实现状态**分开记录。已有精确 Lean 类型可以尚未证明；
@@ -268,7 +274,10 @@ import KIP126.Def.ClassicalAdams.Tmf.Model.Data
   `Tmf/Model/` 的 classical/E₂/synthetic Hurewicz 均由同一实际单位诱导。
   实现：固定 13 个生成元和 72 条关系已定义；w₂² 表示 v₂¹⁶，β⁵g 是
   固定商内的实际乘积，没有另设 v₂。目标对象与坐标比较仍需构造，
-  与实际页面乘法的比较、θ₅ 的 tmf 像以及 125-stem 检测仍未完成。
+  `StandardTmfMultiplicativeInterface` 已将单位与乘法比较加入同一总见证：
+  单位为 target.one 的实际 E₂ 类，乘法为 target.mul 诱导的实际层配对，
+  条件量化全部 second-cycle 代表元。该比较的证明、θ₅ 的 tmf 像以及
+  125-stem 检测仍未完成。
   `Main/Axiom/Literature/Claims.lean` 的 `tmfDetection`、
   `br21TmfDifferential` 是来源条目，不是已构造的内部 theorem。
   TODO：把 Hurewicz 检测、θ₅ 的 tmf 像和 d₃(v₂¹⁶)=β⁵g 连接到同一内部对象与映射。
@@ -314,12 +323,15 @@ import KIP126.Def.ClassicalAdams.Tmf.Model.Data
   保持源、靶及微分始终使用同一 presentation。
 
 - `cm3` 条件、分支与反证记录。
-  陈述：确定性内部 M 解释尚未冻结、未入包。
-  实现：`Main/Axiom/LinProgram/Raw/`、`Main/Axiom/LinProgram/Translate/` 保留/分类原记录，
-  尚未接通数学解释。TODO：保留 `depth>0` 条件树、析取、disproof 与依赖逻辑，
-  不将有条件记录展开为无条件微分。
-  前置缺口是 raw schema 到逻辑命题的确定性解释及其依赖语义；
-  内部微分关系已定义，不能把“解释器未写”记为“谱序列对象不存在”。
+  陈述：参数化 `LinBranchInterface` 明确保留 T/TI 的条件反驳与 D/DI 的条件事实；
+  实际等式使用内部微分，全部祖先假设必须一起解释。
+  实现：`Interpretation/Branch` 按 id/depth 恢复 retained trial stack，保留完整
+  raw/info；TI 的数据库度数是靶度数，缺祖先、未知坐标和 sentinel 不会静默转零。
+  `CandidateCoverage/Elimination/Exhaustion` 精确量化窗口内所有二元线性组合，
+  包括零；父 info 为空也可以通过对子候选的条件反驳表达推理。
+  TODO：固定对象/坐标字典、全部日志导入与 candidate snapshot/search-window 绑定。
+  这些参数化陈述尚未冒充固定数据库的总包交付；原始程序删除不矛盾的试探，
+  因而 retained rows 的计数不能证明候选覆盖，也不由非空 info 推出矛盾。
 
 - `cm4` Cν、tmf、λ 商及 map/extension 输出。
   陈述：确定性内部 M 解释尚未冻结、未入包。
@@ -328,16 +340,23 @@ import KIP126.Def.ClassicalAdams.Tmf.Model.Data
   连接到同一固定谱与映射，包括 D8、Cν 短入射排除的确切记录。
 
 - `cm5` 程序 sentinel 与状态结论。
-  陈述：确定性内部 M 解释尚未冻结、未入包。
-  实现：`Main/Axiom/LinProgram/Raw/`、`Main/Axiom/LinProgram/Translate/` 是原始 schema/记录落点。
-  TODO：分别解释明确编码的 nonzero、survival、permanent、hit/no-hit、
-  incoming/outgoing；普通微分等式、未找到记录和空记录均不自动产生这些结论。
-
-  前置已补：`LinProgram/Raw/Data.lean` 无损保留全部 11 列和 NULL，
+  陈述：`SphereStaircaseInterface` 已进入总包，使用同一 presentation 解释
+  固定 `S0_AdamsE2_ss` 的全部 23,822 行；同时要求成功解码与数学真实性，
+  不是只对成功解码者条件化。明确出射与入射各 7,893 条解释为实际微分等式；
+  6,279 个未定出射记录解释为页提升，136 个未定入射记录解释为累计边界；
+  1,621 个 level=9000 记录保留到 E₁₀₀₀ 的提升界限。
+  这些状态本身不追加非零、精确 hit 或 E∞ 存活。后续若从页界限推全局永久性，
+  必须另用实际谱序列的次数消失与收敛性质，不能仅用程序常数。
+  实现：`Raw/Staircase`、`Generated/Staircase`、`Interpretation/State` 和
+  `Translate/import-staircase.py` 已连通全部固定球面 snapshot；原始 NULL 保留，
+  哈希、schema、全部坐标和范围检查不等于数学真实性证明。
+  `Interface/{Challenge,Solution}/LinProgram/Staircase` 陈述同步，证明暂为 `sorry`。
+  `LinProgram/Raw/Data.lean` 另无损保留全部 log 11 列和 NULL，
   reason 解析保留 D/DI 的多来源，999/1000/1001 分开；
   `Computation/State/Predicates.lean` 明确永久循环、最终边界与有界窗口状态。
   固定源码 `cofseq.cpp:885–914` 对 boundary 或 zero 也返回 999/空向量，
-  因而不能从此编码推出非零存活。raw 到这些谓词的确定性解释仍未完成。
+  因而不能从此编码推出非零存活。其他谱/extension 的状态、log sentinel 的
+  上下文解释，以及确有来源的非零/no-hit 陈述仍须逐项接入；不虚构这些输出。
 
 - `cm6` 带范围的消失、维数与候选穷尽。
   陈述：程序直接输出的完整解释未冻结、未入包。
@@ -465,6 +484,16 @@ structure TmfDifferentialInterface {C : Type u}
   coordinates : Tmf.E2Presentation H target
   br21 : HasDifferential (adamsTowerInternalSpectralSequence H.unit target.X) 3
     (16, 112) (19, 114) coordinates.v2Sixteen coordinates.betaFiveG
+
+/-- am14 的单位与乘法比较义务，约束已选的同一个 target/coordinates。
+乘法使用实际 Adams 层配对及 target.mul；不再容许独立选择一个页面乘法。
+所有张量、HF₂ ring 和相容结构来自同一个 Challenge1 见证。 -/
+def StandardTmfMultiplicativeInterface
+    (T : TmfDifferentialInterface standardFoundation.hf2) : Prop :=
+  let c := KIP126.Interface.Axiom.challenge1Witness
+  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  T.coordinates.RespectsUnit ∧
+    Tmf.E2Presentation.RespectsMultiplication c.cooperationInput.ring T.coordinates
 
 /-- am1：一般内部页面 calculus 的派生交付。页面与微分均来自同一个 E；
 同调同构来自 nested Z/B 模型，不另选一套谱序列。 -/
@@ -1101,6 +1130,51 @@ def DifferentialStatement (presentation : Classical.Adams.LinE2Presentation)
         (Classical.Adams.sphereAdamsData.d row.r _ ≫
           eqToHom (congrArg (Classical.Adams.sphereAdamsData.Page row.r) h)) xr = yr
 
+/-- cm5：固定 staircase 解码所得结论。全部坐标经同一实际球面 E₂
+比较解释；unknown incoming 仅给累计边界，unknown outgoing 仅给提升。
+9000 层仅记录到 E₁₀₀₀ 的提升，不能仅凭程序阈值追加非零 E∞ 存活。 -/
+def StaircaseClaimStatement (presentation : Classical.Adams.LinE2Presentation) :
+    Computation.LinProofs.State.Claim → Prop
+  | .equation r s t indices target =>
+      ∃ (hx : t ≤ 261) (hy : t + r - 1 ≤ 261)
+        (x : E2At s t) (y : E2At (s + r) (t + r - 1)),
+        HasCoordinates x indices ∧ HasCoordinates y target ∧
+          HasDifferential sphereAdamsData r
+            ((s : ℤ), (t : ℤ)) (((s + r : ℕ) : ℤ), ((t + r - 1 : ℕ) : ℤ))
+            (presentation.comparison s t hx x)
+            (presentation.comparison (s + r) (t + r - 1) hy y)
+  | .reaches r s t indices =>
+      ∃ (ht : t ≤ 261) (x : E2At s t), HasCoordinates x indices ∧
+        ReachesPage sphereAdamsData r ((s : ℤ), (t : ℤ))
+          (presentation.comparison s t ht x)
+  | .boundaryBy r s t indices =>
+      ∃ (ht : t ≤ 261) (x : E2At s t), HasCoordinates x indices ∧
+        IsBoundaryBy sphereAdamsData r ((s : ℤ), (t : ℤ))
+          (presentation.comparison s t ht x)
+
+/-- cm5 固定球面 snapshot 的逐行交付，同时要求解码成功和数学真实性。
+记录缺失不会推出命题；解码失败也不能使这一义务空泛成立。
+不是任意同名表，更不是从数据库哈希推出内部谱序列事实。 -/
+structure SphereStaircaseInterface (presentation : Classical.Adams.LinE2Presentation) : Prop where
+  rows_sound : ∀ (shard offset : Nat) (row : Computation.LinProofs.Raw.StaircaseRow),
+    Computation.LinProofs.StaircaseData.lookup shard offset = some row →
+      ∃ claim, Computation.LinProofs.State.decode row = some claim ∧
+        StaircaseClaimStatement presentation claim
+
+/-- cm3：实际内部对象、坐标字典与原始条件日志之间的参数化交付。
+每条已解释的 trial 是相对于完整祖先上下文的反驳；D/DI 才是条件结论。
+这一结构没有选择项目对象或字典，也没有将未解释记录当作已覆盖。
+固定全日志与各谱的实际坐标绑定是进入 Challenge2 总见证前的独立义务。 -/
+structure LinBranchInterface {R : Type u} [Ring R] {ι : Type w}
+    (E : ι → Core.SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ))
+    (lookup : String → Option ι)
+    (coordinates : Computation.LinProofs.Branch.CoordinateDictionary E)
+    (rows : List Computation.LinProofs.Raw.LogRow) : Prop where
+  trial_refutations :
+    Computation.LinProofs.Branch.RetainedTrialRefutations lookup coordinates rows
+  conditional_facts :
+    Computation.LinProofs.Branch.RetainedConditionalFacts lookup coordinates rows
+
 end Challenge2
 
 /-- The interpreted outputs required by Main.  The table soundness field is
@@ -1110,6 +1184,8 @@ structure Challenge2 where
   adamsOneLine : Challenge2.AdamsOneLineInterface
   moss : Challenge2.StandardSphereMossInterface
   tmfDifferential : Challenge2.TmfDifferentialInterface Classical.Adams.standardFoundation.hf2
+  tmfMultiplicative : Challenge2.StandardTmfMultiplicativeInterface tmfDifferential
+  sphereStaircase : Challenge2.SphereStaircaseInterface presentation
   sphereTable_sound : ∀ (shard offset : Nat)
     (row : Computation.LinProofs.DifferentialRow),
     Computation.LinProofs.RawData.lookup shard offset = some row →

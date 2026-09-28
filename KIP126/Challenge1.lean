@@ -156,6 +156,10 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - TODO／前置缺口：a08 背景下 `XModLambda`、`XModLambdaN` 已有定义，但完整
   E∞ algebra 结构、与实际商映射的相容性及唯一性仍需准确的高阶语义前置。
   不能用普通 `CommMon` 替代，也不能从商对象存在推得这部分文献结论。
+  前置已补：`Def/HigherAlgebra/Operad/` 定义真实拓扑对称 operad 的连续代入、
+  全部单位/结合/置换律，以及操作空间可缩和置换自由的 E∞ 条件；也有空间上的
+  cartesian algebra。后者仍不是 synthetic 谱上的代数，富集张量、模型适用性、
+  弱等价代数空间和固定商单位的派生纤维仍待定义。
 - 定位：`Def/Synthetic/Localization/`；Pst 原文
   `prop:tau_inversion_functor_exists`、
   `prop:tau_inversion_cocontinuous_symmetric_monoidal_left_inverse_to_synthetic_analogue`；Blueprint

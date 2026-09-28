@@ -22,10 +22,8 @@ run_cmd do
     ``KIP126.Classical.Adams.linE2Presentation]
   for declaration in [``KIP126.Classical.Adams.sphereAdamsData_square_eq_zero_or,
       ``KIP126.Classical.Adams.sphereAdamsData_eq_computedH6Square_of_ne_zero] do
-    let axioms ← liftCoreM (collectAxioms declaration)
-    for a in axioms do
-      unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
-        throwError "unexpected internal square-dimension dependency: {declaration}: {a}"
+    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer (logical ++ inputs)
+      declaration "unexpected internal square-dimension dependency"
     for a in inputs do
       unless KIP126.Checks.AxiomInputs.uses axioms a do
         throwError "missing disclosed square-dimension input: {declaration}: {a}"

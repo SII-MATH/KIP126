@@ -1,4 +1,6 @@
-import KIP126.Def.ClassicalAdams.Tmf.Model.Data
+import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
+import KIP126.Def.HigherAlgebra.Operad.Algebra.Data
+import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
 import KIP126.Def.SpectralSequence.Computation.State.Predicates
 import KIP126.Def.StableHomotopy.InverseSequence.Proofs
 import KIP126.Def.ClassicalAdams.Completion.Predicates

@@ -3,6 +3,58 @@
 
 This chapter introduces the synthetic objects and the language in which the imported Pstragowski and BHS statements can later be written.
 
+\section{Topological operad language}
+
+% SOURCE: Def/HigherAlgebra/Operad/{Arity,Topological,Algebra}; May,
+% The Geometry of Iterated Loop Spaces, Definitions 1.1--1.2 and Lemma 1.4;
+% What precisely are E-infinity ring spaces and E-infinity ring spectra?,
+% Section 1, pp. 224--225. The ambient spaces here are all TopCat spaces.
+\begin{definition}[Topological operads and Cartesian algebras]
+  \label{def:topological-operad-foundation}
+  \lean{KIP126.HigherAlgebra.Operad.TopologicalOperad,KIP126.HigherAlgebra.Operad.TopologicalOperad.Hom}
+  \lean{KIP126.HigherAlgebra.Operad.TopologicalOperad.SigmaFree,KIP126.HigherAlgebra.Operad.TopologicalOperad.IsEInfinity,KIP126.HigherAlgebra.Operad.TopologicalOperad.IsReduced}
+  \lean{KIP126.HigherAlgebra.Operad.TopologicalOperad.Algebra,KIP126.HigherAlgebra.Operad.TopologicalOperad.Algebra.Hom,KIP126.HigherAlgebra.Operad.TopologicalOperad.BundledAlgebra}
+  \leanok
+  A topological operad assigns a space $\mathcal O(I)$ to each finite
+  labelled set $I$, a homeomorphism $e_*$ to each bijection of input sets,
+  an identity $1\in\mathcal O(\{*\})$, and jointly continuous substitutions
+  \[
+    \gamma:\mathcal O(I)\times\prod_{i\in I}\mathcal O(J_i)
+       \longrightarrow\mathcal O\Bigl(\coprod_{i\in I}J_i\Bigr).
+  \]
+  Relabelling preserves identities and composition. Left and right unit
+  substitution are identities after the canonical singleton relabellings.
+  Substitution is associative after the canonical bijection between the
+  two dependent-sum label sets. Both equivariance laws are required: for
+  $e:I\simeq I'$ and $e_i:J_i\simeq J'_i$,
+  \[
+    (\coprod e)_*\gamma(x,(y_{e(i)})_i)
+       =\gamma(e_*x,(y_{i'})_{i'}),\qquad
+    (\coprod_i e_i)_*\gamma(x,(y_i)_i)
+       =\gamma(x,((e_i)_*y_i)_i).
+  \]
+  All laws include empty input sets. An operad morphism is continuous in
+  every arity and preserves relabelling, identity, and substitution.
+
+  In the chosen topological convention, $\mathcal O$ is $E_\infty$ when
+  every $\mathcal O(I)$ is contractible and its permutation action is free.
+  Contractibility means homotopy equivalence to a point. The separate
+  reduced condition requires exactly one nullary operation; it is not
+  imposed on every operad. A Cartesian $\mathcal O$-algebra on a space $X$
+  has jointly continuous actions $\mathcal O(I)\times X^I\to X$ preserving
+  the identity, substitution, and relabelling. Algebra morphisms preserve
+  every such action, including the nullary ones.
+\end{definition}
+
+This definition supplies the topological operad language only. Its ambient
+category is all topological spaces with ordinary finite products, without
+May's additional compactly generated Hausdorff convention. Applying it to
+synthetic spectra still needs enriched tensor actions, an applicable model
+and its comparison with the chosen synthetic context, and derived mapping
+spaces for the unit-preserving algebra structures. Those missing interfaces
+include the meaning of the required uniqueness statement; the Cartesian
+space-valued algebra definition does not complete checklist item a09.
+
 \section{The category, spheres, and deformation element}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:755-758; Pstragowski, construction of Syn_E.

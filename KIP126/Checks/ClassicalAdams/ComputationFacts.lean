@@ -31,10 +31,10 @@ run_cmd do
       ``KIP126.Computation.Near126.Sphere.d12_iff_differential,
       ``KIP126.Computation.Near126.SphereSurvivalFacts.c3_iff_not_d6,
       ``KIP126.Computation.Near126.SphereSurvivalFacts.hit_t_iff_d12] do
-    for a in ← liftCoreM (collectAxioms decl) do
-      unless KIP126.Checks.AxiomInputs.allows (logical ++ [``KIP126.Classical.Adams.standardFoundation,
-          ``KIP126.Classical.Adams.linE2Presentation]) a do
-        throwError "unexpected fixed-sphere fact dependency: {decl}: {a}"
+    discard <| KIP126.Checks.AxiomInputs.checkStageConsumer
+      (logical ++ [``KIP126.Classical.Adams.standardFoundation,
+        ``KIP126.Classical.Adams.linE2Presentation]) decl
+      "unexpected fixed-sphere fact dependency"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||

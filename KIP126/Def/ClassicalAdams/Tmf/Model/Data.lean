@@ -13,8 +13,9 @@ The comparison realizes the one fixed CSV algebra in the actual HF₂-Adams
 tower of T. This file neither constructs topological modular forms nor
 asserts that an arbitrary algebra object is tmf. A producer must supply the
 chosen tmf realization and prove its coordinate comparison. The bounded
-comparison does not assert a global Ext calculation or a multiplicative
-comparison with higher Adams pages.
+comparison does not assert a global Ext calculation. Compatibility with the
+actual first-layer product and unit is stated separately in
+`Model/Predicates.lean`; neither file asserts compatibility with higher pages.
 -/
 
 namespace KIP126.Classical.Adams.Tmf

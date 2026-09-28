@@ -114,10 +114,12 @@ This chapter records precise published inputs and the specializations now proved
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2791, citing Bruner--Rognes (BR21).
 % COORDINATES: Zenodo record 14875701, v126.3.cw49, kervaire_csv.rar;
 % tmf_AdamsE2_generators.csv and tmf_AdamsE2_relations.csv (13 generators, 72 relations).
-\begin{theorem}[tmf BR21 differential slice (am14)]
+\begin{theorem}[tmf BR21 differential and coordinate compatibility (am14)]
   \label{thm:external-tmf-br21-d3-slice}
-  \uses{def:hf2-adams-tower,def:adams-bidegree,def:external-result}
+  \uses{def:hf2-adams-tower,def:adams-bidegree,def:unital-multiplication-data,def:external-result}
   \lean{KIP126.Classical.Adams.Tmf.CsvE2.v2Sixteen,KIP126.Classical.Adams.Tmf.CsvE2.betaFiveG,KIP126.Challenge2.TmfDifferentialInterface,KIP126.Interface.Challenge.tmfDifferentialInterface}
+  \lean{KIP126.Classical.Adams.Tmf.CsvE2.one,KIP126.Classical.Adams.Tmf.CsvE2.mul,KIP126.Classical.Adams.Tmf.firstMultiplication,KIP126.Classical.Adams.Tmf.unitSecondCycle}
+  \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Challenge2.StandardTmfMultiplicativeInterface,KIP126.Interface.Challenge.tmfMultiplicativeInterface}
   \notready
   This delivery slice asks for an algebra object $T$ and an additive
   coordinate comparison, for $t\le261$, from the fixed polynomial quotient
@@ -133,10 +135,27 @@ This chapter records precise published inputs and the specializations now proved
   \]
   The algebra object's actual unit $S\to T$ fixes its classical, Adams-page
   and synthetic Hurewicz maps; these are not independently chosen maps.
-  The Lean statement uses common-cycle representatives on $E_3$ and asserts
+  The strengthened delivery requires the same comparison $\phi$ to preserve
+  that unit and the actual first-layer multiplication. The latter is formed
+  from $T\wedge T\to T$, multiplication of the same $H\mathbb F_2$
+  coefficients, and the fixed smash-stage and cofiber-layer comparisons,
+  under the chosen tensor exactness and shift compatibilities. For every
+  pair of second-cycle representatives $a,b$ with
+  $[a]=\phi_{s,t}(x)$ and $[b]=\phi_{s',t'}(y)$, it requires
+  \[
+    [\mu_1(a,b)]=\phi_{s+s',t+t'}(xy)
+       \quad\text{when }t+t'\le261.
+  \]
+  Here $xy$ is multiplication in the fixed CSV quotient, restricted to its
+  homogeneous parts; no independent page product is supplied. The image
+  of its unit is the second-page class obtained by projecting the actual
+  unit $S\to T$ from Adams stage zero.
+  The differential field uses common-cycle representatives on $E_3$ and asserts
   only this differential equality, without nonzero survival or detection.
-  The geometric identification of $T$ with tmf, multiplicative compatibility
-  of the coordinate comparison, the vanishing of the image of $\theta_5$,
+  Multiplicative compatibility is now a precise condition, not a proved
+  comparison. The preservation of homogeneous parts and of second cycles
+  also retains explicit proof placeholders in the lower property modules.
+  The geometric identification of $T$ with tmf, the vanishing of the image of $\theta_5$,
   and the required 125-stem detection remain separate obligations.
   MainPaper:2791 attributes the equation to power operations in BR21;
   neither that attribution nor the fixed CSV quotient proves it internally.
