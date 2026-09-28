@@ -28,7 +28,8 @@ synthetic stem and weight. -/
 noncomputable def rhoESS {X : Syn} (T : FiniteLambdaQuotientTower X)
     (i j : ℕ) (hij : i ≤ j) (data : RhoExtensionData T i j hij)
     (degree : ℤ × ℤ) :
-    SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ) :=
+    SpectralSequence
+      (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}) (ℤ × ℤ) :=
   data.ess degree
 
 /-- The `d₀` component in the elementary `ρ_{i,j}`-ESS. -/

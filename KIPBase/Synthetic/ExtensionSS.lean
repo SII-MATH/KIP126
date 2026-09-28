@@ -68,8 +68,8 @@ A morphism in `Syn` has bidegree `(0,0)`, so its induced map is
 weight-preserving.  The `source_reindex` and `target_reindex` fields record
 that neither convergence witness changes the weight coordinate. -/
 structure SyntheticExtensionData {X Y : Syn} (f : X ⟶ Y) where
-  sourceAbutment : ℤ × ℤ → AddCommGrpCat.{0}
-  targetAbutment : ℤ × ℤ → AddCommGrpCat.{0}
+  sourceAbutment : ℤ × ℤ → ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}
+  targetAbutment : ℤ × ℤ → ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}
   sourceFiltration : Filtration sourceAbutment
   targetFiltration : Filtration targetAbutment
   sourceConvergence :
@@ -122,12 +122,14 @@ bidegree `(stem, weight)`.  Its internal bidegree is `(s,k)`, where `s` is
 Adams filtration and `k = 1,0` denotes respectively the source and target of
 the two-term complex. -/
 noncomputable def ess (data : SyntheticExtensionData f) (degree : ℤ × ℤ) :
-    SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ) :=
+    SpectralSequence
+      (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}) (ℤ × ℤ) :=
   data.extension.ess degree
 
 /-- The synthetic `f`-ESS in a fixed weight. -/
 noncomputable def essAtWeight (data : SyntheticExtensionData f)
-    (weight stem : ℤ) : SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ) :=
+    (weight stem : ℤ) : SpectralSequence
+      (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}) (ℤ × ℤ) :=
   data.ess (stem, weight)
 
 /-- A page differential in the fixed-weight synthetic ESS. -/
@@ -140,7 +142,7 @@ noncomputable def essDiffAtWeight (data : SyntheticExtensionData f)
 
 /-- The image object of a fixed-weight synthetic ESS differential. -/
 noncomputable def essBoundaryAtWeight (data : SyntheticExtensionData f)
-    (weight stem r : ℤ) (k : ℤ × ℤ) : AddCommGrpCat.{0} :=
+    (weight stem r : ℤ) (k : ℤ × ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   data.extension.essBoundary (stem, weight) r k
 
 /-- Essentiality of a fixed-weight synthetic extension. -/
@@ -151,29 +153,29 @@ abbrev HasExtensionAtWeight (data : SyntheticExtensionData f)
 /-- The underlying filtered two-term complex
 `π_{*,*}X →[f] π_{*,*}Y` in a fixed homotopy bidegree. -/
 noncomputable def complex (data : SyntheticExtensionData f) (degree : ℤ × ℤ) :
-    FilteredComplex (AddCommGrpCat.{0}) :=
+    FilteredComplex (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}) :=
   data.extension.complex degree
 
 /-- The `E₀` source term of the synthetic `f`-ESS. -/
 noncomputable def e0Source (data : SyntheticExtensionData f)
-    (s : ℤ) (degree : ℤ × ℤ) : AddCommGrpCat.{0} :=
+    (s : ℤ) (degree : ℤ × ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   data.extension.e0PageAtOne degree s
 
 /-- The `E₀` target term of the synthetic `f`-ESS. -/
 noncomputable def e0Target (data : SyntheticExtensionData f)
-    (s : ℤ) (degree : ℤ × ℤ) : AddCommGrpCat.{0} :=
+    (s : ℤ) (degree : ℤ × ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   data.extension.e0PageAtZero degree s
 
 /-- The source synthetic Adams `E∞`-term corresponding to filtration `s` and
 the fixed homotopy bidegree `degree = (stem, weight)`. -/
 noncomputable def sourceEInfty (data : SyntheticExtensionData f)
-    (s : ℤ) (degree : ℤ × ℤ) : AddCommGrpCat.{0} :=
+    (s : ℤ) (degree : ℤ × ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   ((SynAdamsSS Syn X).ssData (syntheticAdamsIndex s degree)).eInfty
 
 /-- The target synthetic Adams `E∞`-term corresponding to filtration `s` and
 the fixed homotopy bidegree `degree = (stem, weight)`. -/
 noncomputable def targetEInfty (data : SyntheticExtensionData f)
-    (s : ℤ) (degree : ℤ × ℤ) : AddCommGrpCat.{0} :=
+    (s : ℤ) (degree : ℤ × ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   ((SynAdamsSS Syn Y).ssData (syntheticAdamsIndex s degree)).eInfty
 
 /-- The source summand of the synthetic `f`-ESS `E₀`-page is the source
@@ -215,12 +217,12 @@ noncomputable def e0TargetIso (data : SyntheticExtensionData f)
 /-- The total `E₀` object of the synthetic `f`-ESS, obtained by combining the
 source complex degree `1` and target complex degree `0`. -/
 noncomputable def e0Page (data : SyntheticExtensionData f)
-    (s : ℤ) (degree : ℤ × ℤ) : AddCommGrpCat.{0} :=
+    (s : ℤ) (degree : ℤ × ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   data.e0Source s degree ⊞ data.e0Target s degree
 
 /-- The direct sum of the source and target synthetic Adams `E∞`-terms. -/
 noncomputable def eInftySum (data : SyntheticExtensionData f)
-    (s : ℤ) (degree : ℤ × ℤ) : AddCommGrpCat.{0} :=
+    (s : ℤ) (degree : ℤ × ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   data.sourceEInfty s degree ⊞ data.targetEInfty s degree
 
 /-- Blueprint §4, `def:synthetic-extension-ss`:
@@ -299,7 +301,8 @@ structure LambdaBocksteinData (X : Syn) where
 /-- The λ-extension spectral sequence at a fixed stem and weight. -/
 noncomputable def lambdaESSAtWeight (X : Syn) (n : ℕ)
     (data : LambdaExtensionData X n) (stem weight : ℤ) :
-    SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ) :=
+    SpectralSequence
+      (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}) (ℤ × ℤ) :=
   data.ess (stem, weight)
 
 /-- The page differential of the λ-extension spectral sequence in fixed
@@ -322,11 +325,11 @@ They make the two-term extension interpretation explicit without asserting
 an E-page comparison with the classical Adams spectral sequence. -/
 
 noncomputable def lambdaESSSourceEInfty (X : Syn) (n : ℕ)
-    (data : LambdaExtensionData X n) (s stem weight : ℤ) : AddCommGrpCat.{0} :=
+    (data : LambdaExtensionData X n) (s stem weight : ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   data.sourceEInfty s (stem, weight)
 
 noncomputable def lambdaESSTargetEInfty (X : Syn) (n : ℕ)
-    (data : LambdaExtensionData X n) (s stem weight : ℤ) : AddCommGrpCat.{0} :=
+    (data : LambdaExtensionData X n) (s stem weight : ℤ) : ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   data.targetEInfty s (stem, weight)
 
 noncomputable def lambdaESSd0AtWeight (X : Syn) (n : ℕ)
@@ -339,7 +342,8 @@ noncomputable def lambdaESSd0AtWeight (X : Syn) (n : ℕ)
 `f`-ESS requested in Blueprint §4. -/
 noncomputable def lambdaESS (X : Syn) (n : ℕ)
     (data : LambdaExtensionData X n) (degree : ℤ × ℤ) :
-    SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ) :=
+    SpectralSequence
+      (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}) (ℤ × ℤ) :=
   data.ess degree
 
 /-- The `d₀` component of the `λ^n`-ESS.  By construction it is the map
@@ -364,7 +368,7 @@ theorem lambdaESSd0_eq_inducedAssocGradedMap (X : Syn) (n : ℕ)
 /-- The total `E₀` object of the synthetic `λ^n`-ESS. -/
 noncomputable def lambdaESSE0 (X : Syn) (n : ℕ)
     (data : LambdaExtensionData X n) (s : ℤ) (degree : ℤ × ℤ) :
-    AddCommGrpCat.{0} :=
+    ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v} :=
   data.e0Page s degree
 
 /-- The Blueprint `E₀` identification specialized to multiplication by

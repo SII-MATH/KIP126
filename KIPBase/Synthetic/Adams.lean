@@ -13,6 +13,7 @@
 import KIPBase.Mathlib
 import KIPBase.Synthetic.Sphere
 import KIPBase.SpectralSequence.Convergence
+import KIPBase.StableHomotopy.Adams
 
 namespace KIPBase.Synthetic
 
@@ -43,7 +44,8 @@ axiom SynAdamsSS (Syn : Type u) [Category.{v} Syn] [Preadditive Syn]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn]
     [Pretriangulated Syn] [SyntheticCategory Syn] (X : Syn) :
-    SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ × ℤ)
+    SpectralSequence (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v})
+      (ℤ × ℤ × ℤ)
 
 /-- KIP Appendix A (Axiom `prereq:ax:syn-adams-ss`), cf. `synthetic-spectra.tex` §3:
     The differential degree for the synthetic Adams SS:
@@ -107,9 +109,10 @@ axiom synAdamsConvergence (Syn : Type u) [Category.{v} Syn] [Preadditive Syn]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn]
     [Pretriangulated Syn] [SyntheticCategory Syn] (X : Syn) :
-  ∃ (eData : EInftyData (AddCommGrpCat.{0}) (ℤ × ℤ × ℤ))
+  ∃ (eData : EInftyData
+      (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}) (ℤ × ℤ × ℤ))
     (_ : eData.ss = SynAdamsSS Syn X)
-    (A : ℤ × ℤ → AddCommGrpCat.{0})
+    (A : ℤ × ℤ → ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v})
     (F : Filtration A)
     (conv : Convergence eData.ss A F),
     conv.reindex = fun ⟨s, t, w⟩ => (s, (t - s, w))

@@ -15,7 +15,7 @@ universe u u' v'
 
 noncomputable section
 
-variable (𝒮 : Type u) [StableHomotopyCategory.{u, 0} 𝒮]
+variable (𝒮 : Type u) [StableHomotopyCategory.{u, v'} 𝒮]
 variable (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
@@ -45,7 +45,7 @@ noncomputable def fHatInfinitePage {X Y : 𝒮} (f : X ⟶ Y) :
   fHat 𝒮 Syn f
 
 /-- A coherent action of all nonnegative powers of `λ` on an ESS object. -/
-structure LambdaPowerAction (A : AddCommGrpCat.{0}) where
+structure LambdaPowerAction (A : ModuleCat.{v', v'} StableHomotopy.IntModuleRing.{v'}) where
   pow : ℕ → (A ⟶ A)
   pow_zero : pow 0 = 𝟙 A
   pow_add : ∀ i j, pow (i + j) = pow i ≫ pow j
@@ -88,7 +88,7 @@ allows the later rigidity/comparison layer to provide its concrete formula. -/
 structure PageExtensionRelation {A B : Syn} {g : A ⟶ B}
     (data : SyntheticExtensionData g) (degree : ℤ × ℤ)
     (lambdaExponent : ℕ) (n s : ℤ) where
-  T : AddCommGrpCat.{0}
+  T : ModuleCat.{v', v'} StableHomotopy.IntModuleRing.{v'}
   [projective : Projective T]
   source : T ⟶ (data.ess degree).ssData (s, 1) |>.V
   target : T ⟶

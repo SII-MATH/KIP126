@@ -32,7 +32,9 @@ axiom SynAdamsEInfty (𝒮 : Type u) [StableHomotopy.StableHomotopyCategory.{u, 
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn]
     [Pretriangulated Syn] [SyntheticCategory Syn]
-    (X : 𝒮) : EInftyData AddCommGrpCat.{0} (ℤ × ℤ × ℤ)
+    (X : 𝒮) :
+    EInftyData (ModuleCat.{v', v'} StableHomotopy.IntModuleRing.{v'})
+      (ℤ × ℤ × ℤ)
 
 /-- Formalization bridge: The E∞-data is associated with the synthetic Adams
     SS for ν(X). Links `SynAdamsEInfty` to `SynAdamsSS`. -/
