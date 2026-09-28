@@ -1,4 +1,7 @@
 import KIP126.Def.Algebra.GradedComodule.Ext.Data
+import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Proofs
+import KIP126.Def.Algebra.GradedDual.Data
+import KIP126.Def.Steenrod.MilnorExt.Multiplication.Data
 import KIP126.Def.Steenrod.MilnorExt.Cofree.Proofs
 import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
 import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
