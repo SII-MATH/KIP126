@@ -72,11 +72,14 @@ jobs:
         id: scope
         env:
           GH_TOKEN: ${{ github.token }}
-          PR: ${{ steps.pr.outputs.number }}
+          BASE_SHA: ${{ steps.pr.outputs.base_sha }}
+          HEAD_SHA: ${{ steps.pr.outputs.head_sha }}
+          HEAD_REPO: ${{ steps.pr.outputs.head_repo }}
         shell: bash
         run: |
           set -euo pipefail
-          files=$(gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$PR/files" --jq '.[].filename')
+          files=$(python3 gate/scripts/ci_merge_group_files.py "$GITHUB_REPOSITORY" \
+            "$BASE_SHA" "$HEAD_SHA" --head-repository "$HEAD_REPO" --merge-base --names)
           printf '%s\n' "$files"
           scope_ok=true
           mixed=false
@@ -91,20 +94,6 @@ jobs:
             reason='mixed development PR; using trusted render configuration'
           fi
 
-          read -r _additions _deletions changed_files < <(
-            gh api "repos/$GITHUB_REPOSITORY/pulls/$PR" \
-              --jq '"\(.additions) \(.deletions) \(.changed_files)"'
-          )
-          # Blueprint source may be a large paper-sized change. Keep the file-count
-          # cap so the GitHub file listing remains complete, but do not reject a
-          # reviewable Blueprint/Lean synchronization solely for its line count.
-          if ! [[ "$changed_files" =~ ^[0-9]+$ ]]; then
-            scope_ok=false
-            reason='could not read trusted PR changed-file count'
-          elif (( changed_files > 2000 )); then
-            scope_ok=false
-            reason='diff exceeds the 2000-file review cap'
-          fi
           {
             echo "ok=$scope_ok"
             echo "mixed=$mixed"

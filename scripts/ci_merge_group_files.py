@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Diff complete Git trees instead of GitHub compare's capped 300-file list."""
+"""Diff complete Git trees without GitHub's capped PR/compare file lists."""
 
 import argparse
 import json
@@ -41,17 +41,31 @@ def main():
     parser.add_argument("repository")
     parser.add_argument("base")
     parser.add_argument("head")
+    parser.add_argument("--head-repository", help="head repository, defaulting to repository")
+    parser.add_argument("--merge-base", action="store_true",
+                        help="compare the exact head to its merge base with the exact base")
     parser.add_argument("--names", action="store_true")
     args = parser.parse_args()
-    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.repository):
-        parser.error("invalid repository")
+    head_repository = args.repository if args.head_repository is None else args.head_repository
+    for repository in (args.repository, head_repository):
+        if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
+            parser.error("invalid repository")
     for sha in (args.base, args.head):
         if not re.fullmatch(r"[0-9a-f]{40}", sha):
             parser.error("base and head must be exact commit SHAs")
+    base = args.base
+    if args.merge_base:
+        head_owner = head_repository.split("/", 1)[0]
+        base = subprocess.check_output([
+            "gh", "api", f"repos/{args.repository}/compare/{args.base}...{head_owner}:{args.head}",
+            "--jq", ".merge_base_commit.sha",
+        ], text=True, timeout=60).strip()
+        if not re.fullmatch(r"[0-9a-f]{40}", base):
+            parser.error("compare response must contain an exact merge-base commit SHA")
     trees = []
-    for sha in (args.base, args.head):
+    for repository, sha in ((args.repository, base), (head_repository, args.head)):
         trees.append(json.loads(subprocess.check_output([
-            "gh", "api", f"repos/{args.repository}/git/trees/{sha}?recursive=1",
+            "gh", "api", f"repos/{repository}/git/trees/{sha}?recursive=1",
         ], text=True, timeout=60)))
     result = changed_files(*trees)
     if args.names:
