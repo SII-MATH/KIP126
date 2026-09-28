@@ -3,6 +3,65 @@
 
 This chapter records precise published inputs and the specializations now proved internally. Every node retains its source and locator; the text distinguishes an explicit external hypothesis from an internal proof.
 
+\section{Explicit inputs for the frozen Section 7 model}
+
+% SOURCE: docs/A_INPUT_FREEZE.md and Literature/Route/sources.json.
+% The declarations below are INPUT TYPES, not proofs of the source results.
+\begin{definition}[$A(M)$ on one selected model]
+  \label{def:route-literature-inputs}
+  \lean{KIP126.Literature.Route.Inputs,KIP126.Literature.Route.A}
+  \leanok
+  For the fixed model $D$, the same synthetic $\eta$, and two classical tmf
+  labels, $A(M)$ is inhabitance of an explicit literature-input record.
+  It contains the source results below and their model applicability data.
+  It has no computation table, generalized Leibniz or Mahowald conclusion,
+  $C_3/C_4/C_5$, Proposition 7.8/7.9, or final-survival field.
+  Defining the record does not supply an inhabitant. No default instance or
+  global axiom asserts its contents.
+\end{definition}
+
+\begin{definition}[Classical and original BX inputs]
+  \label{def:route-classical-bx-inputs}
+  \lean{KIP126.Literature.Route.ClassicalInputs,KIP126.Literature.Route.BXDistinguishedInput}
+  \leanok
+  Classical inputs provide an order-two class detected by the standard
+  $h_5^2$, exponent two in the classical $62$-stem, its filtration gap, and
+  detection of the actual maps $2$, $\eta$ and $\nu$.
+  BX Proposition 7.19 and its proof are stated at one common distinguished
+  $\theta_5$: the original finite criterion, the actual total-boundary
+  formula, and the untruncated criterion. The LWX normalization and
+  arbitrary-choice upgrade remain paper deductions.
+\end{definition}
+
+\begin{definition}[Synthetic literature and model comparisons]
+  \label{def:route-synthetic-inputs}
+  \lean{KIP126.Literature.Route.SyntheticInputs,KIP126.Literature.Route.RealizationInput,KIP126.Literature.Route.AlgebraInput,KIP126.Literature.Route.Applicability}
+  \leanok
+  The Pstragowski/BHS inputs bind lifting, Bockstein maps, rigidity,
+  $E_\infty$ formulas, realization and filtration to $D$'s actual objects.
+  They retain the first-quotient labels and compatibility with $\lambda$
+  and restriction maps. Algebra witnesses use the existing tensor products,
+  actual quotient inclusions and detector unit. Applicability separately
+  requires the selected normalized $C\nu$ triangle to be distinguished and
+  the classical tower condition used by Moss. These are explicit source
+  application obligations, not consequences for arbitrary lift choices.
+\end{definition}
+
+\begin{definition}[May, Moss, low Toda and tmf inputs]
+  \label{def:route-tools-tmf-inputs}
+  \lean{KIP126.Literature.Route.MayInput,KIP126.Literature.Route.MossInput,KIP126.Literature.Route.TodaInputs,KIP126.Literature.Route.TmfInputs}
+  \leanok
+  May supplies the actual smash-boundary law. Moss supplies a conditional
+  existence statement for a detected Toda member, with defining systems,
+  null products and no-crossing hypotheses retained. The low Toda inputs
+  include $\lambda[h_0]=2$, $\eta^2\in\langle[h_0],\eta,[h_0]\rangle$ and
+  $\lambda^2\eta\theta\in\langle2,\theta,2\rangle$ when $2\theta=0$.
+  They do not discard the high-stem indeterminacy. The tmf fields are
+  classical Hurewicz results and a small low-filtration vanishing region;
+  the synthetic local injectivity used in Proposition 7.8 is still derived
+  from these inputs and the computation tables.
+\end{definition}
+
 \section{Published differentials, extensions, and stable-operation results}
 
 \begin{proposition}[Generic Toda cosets and juggling]
@@ -571,53 +630,31 @@ This chapter records precise published inputs and the specializations now proved
 % some theta_5''.  The Burklund--Xu proof internally uses the commutative
 % algebra tower of Construction 7.7, but that proof dependency is represented
 % only by this external-result source note and does not enter the project graph.
-\begin{theorem}[BJM/BX criterion for the source choice]
+\begin{theorem}[Original BJM/BX criterion for the source choice]
   \label{thm:external-bjm-bx-criterion}
-  % VERIFIED-IN: KIP126/Main/Axiom/Literature/Kervaire.lean,
-  % KIP126.Kervaire.cataloguedBJM_BXCriterion (interface; remains notready).
-  \lean{KIP126.Kervaire.cataloguedBJM_BXCriterion}
+  \lean{KIP126.Kervaire.BJMOriginalCriterion,KIP126.Kervaire.cataloguedBJMOriginalCriterion}
+  \lean{KIP126.Kervaire.BJMUntruncatedCriterion}
   \uses{def:synthetic-theta5-choice,def:external-result}
   \notready
-  An explicit external-result record supplies a distinguished order-two class
-  $\theta_5^{\mathrm{src}}$ detected by $h_5^2$ for which:
-  \begin{enumerate}
-    \item for every integer $r\ge1$, $h_6^2$ survives to $E_{r+3}$ if and
-      only if $\lambda\eta(\theta_5^{\mathrm{src}})^2=0$ in
-      $\pi_{125,129}(S^{0,0}/\lambda^{r+1})$;
-    \item $h_6^2$ is permanent if and only if
-      $\lambda\eta(\theta_5^{\mathrm{src}})^2=0$ in
-      $\pi_{125,129}S^{0,0}$.
-  \end{enumerate}
-  The witness and the two equivalences belong to the same source-bearing
-  record, which also includes the grading translation from Burklund--Xu to AIM.
+  Burklund--Xu Proposition 7.19 states the finite criterion using
+  $\eta(\theta_5^{\mathrm{src}})^2=0$ modulo $\lambda^r$ for survival of
+  $h_6^2$ to $E_{r+3}$. In the paper's grading this lies in
+  $\pi_{125,130}(S^{0,0}/\lambda^r)$.
+  The proof also identifies $\delta_1(h_6^2)=\lambda\eta(\theta_5^{\mathrm{src}})^2$
+  and gives the untruncated permanence criterion.
+  The finite predicate now uses the actual internal tower and standard Milnor
+  class, the first-quotient detection of the specified eta and theta choices,
+  and the actual quotient map. Its source wrapper requires an explicit proof.
+  Canonical comparison, geometric identification and the cited theorem's
+  model-specific witness remain pending. The separate untruncated predicate
+  uses the same standard nonzero-survival target; it is not a proved theorem.
 \end{theorem}
 
 \begin{proof}
-  This node is the located external input, not a project proof.  Retain the
-  distinguished class used by the BJM/BX construction, and apply the explicit
-  suspension and grading adapter to its finite and infinite statements.  No
-  assertion for an arbitrary choice of $\theta_5$ is included here.
-\end{proof}
-
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2127-2139, Remarks 7.4-7.5; Xu and IWX inputs.
-\begin{theorem}[External $\theta_5$ order and choice comparison]
-  \label{thm:external-theta5-order-data}
-  % VERIFIED-IN: KIP126/Main/Axiom/Literature/Kervaire.lean,
-  % KIP126.Kervaire.cataloguedTheta5OrderData (interface; remains notready).
-  \lean{KIP126.Kervaire.cataloguedTheta5OrderData}
-  \uses{def:synthetic-theta5-choice,def:external-result}
-  \notready
-  A named Xu/IWX external-result value supplies that every classical
-  $\theta_5$ detected by $h_5^2$ has order two and that the difference of any
-  two choices has Adams filtration at least six.  The value carries exact
-  theorem locators and the comparison from the source's classical convention
-  to Definition~\ref{def:synthetic-theta5-choice}.
-\end{theorem}
-
-\begin{proof}
-  This is a pure literature input.  Store the two quantified conclusions and
-  their grading adapter in one named field; do not derive either conclusion
-  from the near-$126$ tables.
+  Source: Burklund--Xu, \texttt{kervairev2.tex}, lines 587--600.
+  The finite $\lambda\eta/\lambda^{r+1}$ formulation is a separate paper
+  deduction, Proposition~\ref{prop:bjm-bx-normalized-criterion}; it must not
+  be supplied by labelling that strengthened interface as this external input.
 \end{proof}
 
 % SOURCE: Burklund--Xu Theorem 7.15, proof (the paragraph containing property
@@ -666,6 +703,7 @@ This chapter records precise published inputs and the specializations now proved
 % is therefore not the external-result interface below.
 \begin{theorem}[Total differential identity for the source choice]
   \label{thm:external-total-differential-identity}
+  \lean{KIP126.Kervaire.BJMSourceTotalBoundaryIdentity}
   \lean{KIP126.Kervaire.cataloguedSourceTotalDifferentialIdentity}
   \uses{def:synthetic-theta5-choice,def:lambda-rho-delta-triangle,def:external-result}
   \notready

@@ -1,22 +1,21 @@
-import KIP126.Main.Axiom.Literature.StandardSphere.Data
-import KIP126.Mathlib.SpectralSequence.Permanence.Data
+import KIP126.Interface.Axiom.StandardSphere.Classes.Data
+import KIP126.Def.SpectralSequence.Permanence.Predicates
 
-/-!
-# The fixed standard permanent h₆² statement
-
-All standard objects are fixed in the foundation layer. The statement has no
-category, coefficient-object, coordinate, table, or presentation parameters.
-This Challenge deliberately remains open. See the paired Solution for the
-conditional-on-named-axioms reduction to the computational target.
+/-! T(M): the standard h₆² survives on M's internal sphere Adams sequence.
+Source: Lin–Wang–Xu, Theorem 1.4 / 7.1 (local main.tex labels thm:h62 and
+thm:126survives). Both the sequence and the specified Milnor class come from
+the same foundation. The statement imports no C(M), Lin data, or SS adapter.
+The selected foundation/Milnor data still use the Challenge1 stage input;
+independence of C(M) is not a claim that this fixed specialization is axiom-free.
 -/
 namespace KIP126.Challenge.Final.H6SquarePermanent
 
 open KIP126.Classical.Adams KIP126.Core.SpectralSequence
 
-/-- The standard h₆² ∈ E₂^(2,128)(S⁰) has compatible nonzero descendants on
-all later pages of the fixed tower-constructed sphere Adams sequence. -/
+/-- The standard h₆² has a common Z∞ representative projecting to it on E₂,
+whose E∞ image is nonzero, in bidegree (s,t) = (2,128). -/
 theorem h6_sq_permanent :
-    IsPermanent sphereAdams 2 (by decide) (2, 128) sphereH6Square := by
+    NonzeroSurvival sphereAdamsData (2, 128) standardH6Square := by
   sorry
 
 end KIP126.Challenge.Final.H6SquarePermanent

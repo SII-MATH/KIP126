@@ -1,5 +1,7 @@
 import KIP126.Main.Axiom.Provenance
 import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Main.Axiom.Literature.Kervaire
+import KIP126.Main.Axiom.Literature.BJMOriginal
 import KIP126.Main.Axiom.Literature.Synthetic
 import KIP126.Main.Axiom.Literature.SyntheticEInfty
 import KIP126.Main.Axiom.Literature.SyntheticBockstein
@@ -15,3 +17,4 @@ import KIP126.Main.Axiom.LinProgram.E2
 import KIP126.Main.Axiom.Challenge2
 import KIP126.Main.Axiom.Literature.May
 import KIP126.Main.Axiom.Literature.InternalGeometry
+import KIP126.Main.Axiom.Literature.Route

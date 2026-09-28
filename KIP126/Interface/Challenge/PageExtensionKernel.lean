@@ -16,9 +16,9 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
   {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
   (P : NormalizedPageFamily H N F f)
-  (R : SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
+  (R : KIP126.Challenge2.SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
   (T : ∀ X : C, FiniteLambdaQuotientTower (N.functor.obj X))
-  (K : SyntheticEInftyMapCompatibility H N F R S T)
+  (K : KIP126.Challenge2.SyntheticEInftyMapCompatibility H N F R S T)
   (J : PageExtensionTargetComparison P R S T)
 
 include K J

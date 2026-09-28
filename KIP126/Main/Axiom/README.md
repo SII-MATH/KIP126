@@ -2,6 +2,11 @@
 
 本页记录阶段输入及带来源的文献输入。数学范围参见[所属阶段](../README.md)；来源记录不代表已完成数学证明。
 
+当前冻结 §7 路线使用 [Literature/Route](Literature/Route/README.md) 的
+`Inputs D η L` 作为 A(M)，与 C(M) 分开显式传入。该包不是下面历史
+Challenge2 存在性输入的自动附加字段；详细清单见
+[A_INPUT_FREEZE.md](../../../docs/A_INPUT_FREEZE.md)。
+
 ## 1. 原先期望包含什么
 
 保存输入及其解释、来源和依赖；给出供 Main 使用的条件，不把引用或生成数据计作独立证明。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。

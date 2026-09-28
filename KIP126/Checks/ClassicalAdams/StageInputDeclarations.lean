@@ -1,5 +1,8 @@
 import KIP126.Def.Solution.Challenge1
 import KIP126.Interface.Solution.Challenge2
+import KIP126.Interface.Solution.LinProgram.BasisTable
+import KIP126.Interface.Challenge.LinProgram.BasisTable
+import KIP126.Main.Axiom.LinProgram.Interpretation.BasisTable
 import KIP126.Interface.Axiom.StandardMilnor
 import KIP126.Main.Axiom.LinProgram.Interpretation.Differentials.Axiom
 
@@ -62,3 +65,30 @@ open KIP126.Computation.LinProofs in
 example : ∀ (shard offset : Nat) (row : DifferentialRow),
     RawData.lookup shard offset = some row → DifferentialStatement row :=
   sphereTable_sound
+
+-- The stage-one producer and its target retain precisely the same certificate.
+open Lean Elab Command in
+run_cmd do
+  let env ← getEnv
+  for removed in [`KIP126.Challenge1.LinBasisInterface, `KIP126.Challenge1.linBasis,
+      `KIP126.Challenge2.GeneralizedLeibnizLaw,
+      `KIP126.Challenge2.GeneralizedMahowaldLaw,
+      `KIP126.Challenge2.FinitePageExtensionStretchingLaw] do
+    if env.contains removed then
+      throwError "obsolete foundation/computation classification: {removed}"
+  let some ci := env.find? ``KIP126.Interface.Challenge.LinE2.basisTable_correct
+    | throwError "missing basis certification target"
+  let some si := env.find? ``KIP126.Interface.Solution.LinE2.basisTable_correct
+    | throwError "missing independent basis certification producer"
+  unless ci.type == si.type do
+    throwError "basis certification producer/target mismatch"
+  let axs ← liftCoreM (collectAxioms ``KIP126.Interface.Solution.LinE2.basisTable_correct)
+  if axs.contains ``KIP126.Main.Axiom.challenge2 then
+    throwError "basis producer depends on its own stage consumer axiom"
+
+example (c : KIP126.Challenge2) (s t : ℕ) (ht : t ≤ 261)
+    (i : KIP126.LinE2.BasisIndex s t) :
+    ((c.presentation.comparison s t ht).symm
+      ((c.sphereBasis.coordinates s t ht).symm (Finsupp.single i 1))).val =
+        KIP126.LinE2.basisValue (KIP126.LinE2.basisRowAt s t i) :=
+  c.sphereBasis.csv_values s t ht i

@@ -18,9 +18,9 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
   {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
   (P : NormalizedPageFamily H N F f)
-  (R : SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
+  (R : KIP126.Challenge2.SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
   (T : ∀ X : C, FiniteLambdaQuotientTower (N.functor.obj X))
-  (K : SyntheticEInftyMapCompatibility H N F R S T)
+  (K : KIP126.Challenge2.SyntheticEInftyMapCompatibility H N F R S T)
   (J : PageExtensionTargetComparison P R S T)
 
 include K J
@@ -36,7 +36,7 @@ theorem finiteLambdaTarget_eq_zero_iff (q k : ℕ) (hkq : k < q) (s t : ℤ)
     (P.finiteTarget q k hkq s t z)
   have he := K.lambda_finite Y q k hkq (s, t) t
     (by constructor <;> simp <;> omega) a
-  rw [show R.finiteWindow Y (q - k) (by omega) (s, t) t
+  erw [show R.finiteWindow Y (q - k) (by omega) (s, t) t
       (by constructor <;> simp <;> omega) a = finiteTopClass H Y (q - k) (s, t) z
         from J.finite q k hkq s t z] at he
   change R.finiteWindow Y q (by omega) (s, t) (t - k)
@@ -63,7 +63,7 @@ theorem infiniteLambdaTarget_eq_zero_iff (k : ℕ) (s t : ℤ)
         z.val ∈ boundaries H Y (1 + k) (s, t) := by
   let a := S.lowerIso (N.functor.obj Y) k (s, t) t (P.infiniteTarget k s t z)
   have he := K.lambda_nu Y k (s, t) t le_rfl a
-  rw [show R.nuWindow Y (s, t) t le_rfl a = permanentTopClass H Y (s, t) z
+  erw [show R.nuWindow Y (s, t) t le_rfl a = permanentTopClass H Y (s, t) z
     from J.infinite k s t z] at he
   change R.nuWindow Y (s, t) (t - k) (by omega)
       (((F.functor.map (lambdaPow k (N.functor.obj Y))).eInftyMap (s, t, t - k)).hom

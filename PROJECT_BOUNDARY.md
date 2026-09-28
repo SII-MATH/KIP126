@@ -14,6 +14,12 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 ## Staged repository architecture
 
+M is the collection of mathematical objects, operations, structural conditions,
+and predicates defined in `KIP126/Def/`. Challenge files are interfaces for
+stage deliveries or goals. They are not M itself. Def may also prove general
+lemmas; proving a paper-derived predicate is Main work, regardless of where
+that predicate is defined. See `docs/MAC_T_INPUT_AUDIT.md` for current boundaries.
+
 The canonical source has three mathematical layers:
 
 1. `KIP126/Def/` is the shared mathematical base and the first production
@@ -26,9 +32,8 @@ The canonical source has three mathematical layers:
    proves fixed program outputs after deterministic interpretation as `C(M)`,
    their comparisons and the necessary internal helper results. Its `Axiom/` contains
    stage-zero outputs admitted as inputs to this first proof stage.
-3. `KIP126/Main/` is the second proof stage. Its Challenge/Solution track uses
-   accurate external results `A(M)` and delivered `C(M)` for the paper's
-   intermediate deductions, near-126 argument and final conclusions. Its `Axiom/` tree provides
+3. `KIP126/Main/` is the second proof stage. Its Challenge/Final track owns
+   the single final goal; Solution owns the paper deductions and final proof. Its `Axiom/` tree provides
    audited development assumptions so this work can proceed in parallel with
    Interface proofs.
 
@@ -83,8 +88,8 @@ the two fixed-witness production obligations; it neither makes the final
 theorems permanently parameterized nor expands the task to constructing a
 complete model of stable infinity-categories.
 
-The shared root structures `Challenge1` and `Challenge2` are the complete
-contracts for the two boundaries. Def and Interface prove respectively
+The shared root structures `Challenge1` and `Challenge2` describe the current
+delivery contracts, not the complete input inventory for the paper. Def and Interface prove respectively
 `Nonempty Challenge1` and `Nonempty Challenge2`; the next stage temporarily
 assumes that exact proposition and selects one witness. These upstream results
 eventually eliminate the assumptions without maintaining a duplicate signature.
@@ -203,26 +208,21 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    The project must use the matching Lean/mathlib versions and must not depend
    on an unpinned `master` branch or a release candidate.
 
-8. **Fixed, parameter-free h₆² statements (development-stage exception).**
-   By explicit user decision, both the computational and standard h₆² targets
-   fix the stable foundation, H𝔽₂, Milnor coordinates, SSData model, and Lin
-   dataset once. The final signatures have no model or external-evidence
-   parameters. The standard sphere sequence and Milnor class still reuse the
-   existing tower construction; they are not supplied by the computation table.
-   Until the fixed foundations and comparisons are constructed, the two named
-   Challenge existence axioms may supply them. This includes the fixed Lin E₂ presentation
-   (Zenodo 14875701, v126.3.cw49, internal degree at most 261), as an explicitly
-   authorized exception to passing computation evidence as a final theorem
-   parameter. Source hashes remain attached to the actual imported data.
-   Challenge 1 is consumed under `KIP126/Interface/Axiom/`; Challenge 2 is
-   consumed under `KIP126/Main/Axiom/`.
-   Their mathematical definitions and adapters remain in `Def/` and `Mathlib/`.
-   Relocation does not remove their dependency cones or prove their statements;
-   each remains final-acceptance debt until discharged by its upstream result.
-   This does not postulate h₆² survival: the computational Solution remains
-   open, and the standard Solution reduces to it using the named comparisons.
-   A proof body without `sorry` is not a claim that its dependency cone is
-   free of `sorryAx`, project axioms, or external computation assumptions.
+8. **One fixed standard h₆² statement.**
+   T(M) is `NonzeroSurvival sphereAdamsData (2, 128) standardH6Square`.
+   The internal sphere sequence and standard class are Def constructions,
+   specialized from the same Challenge1 witness in
+   `Interface/Axiom/StandardSphere`. They do not require C(M).
+   `Main/Challenge/Final/h6_sq_permanent.lean` is the sole final target and
+   `Main/Solution/Final/h6_sq_permanent.lean` is its still-unproved solution.
+   The duplicate computational final target has been removed. CSV/standard
+   identifications remain comparison lemmas and may be used in the eventual
+   proof; they are not part of the final statement's definition.
+   The fixed foundation is still admitted through the Challenge1 existence
+   axiom. Thus independence from C(M) does not mean independence from all
+   development assumptions. Challenge2 supplies the currently admitted C(M)
+   slice, including CSV basis certification, presentation and closed sphere
+   differential equations. Both stage assumptions must eventually be discharged.
 
 ## In-scope formalization
 
@@ -231,8 +231,8 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
 By explicit user decision, Lin computation facts are to be imported in bulk
 from `proofs.db`, not introduced as one external axiom per row. The named
 `KIP126.Computation.LinProofs.sphereTable_sound` in
-the Lin-program portion of `KIP126/Main/Axiom/` is the initial single soundness
-assumption for the fixed exported table. It links literal CSV coordinates to
+the Lin-program portion of `KIP126/Main/Axiom/` is a projection of the selected
+Challenge2 witness, not an additional standalone axiom. It links literal CSV coordinates to
 the existing tower-derived `sphereAdamsData`; it is not a soundness assertion
 for arbitrary tables or arbitrary caller-supplied `Prop`s. The compiled audit
 must inventory this exact exception and still reject it at final acceptance.
@@ -344,14 +344,22 @@ The proofs must preserve the degree conventions in the paper, including the
 third synthetic weight and the translation convention using `S^{1,0}`.
 
 The Generalized Leibniz Rule, Generalized Mahowald Trick and page-extension
-stretching (historical `am7`) are this paper's intermediate results, not
-external `A(M)` inputs. Both Interface validation and Main deductions may use
-them, and both stages may develop the necessary generic mathematics in Def.
-The present interface-confirmation phase does not decide these intermediate
-proofs' final directories or require complete reuse/deduplication. Existing
-Tools paths record earlier placement; they do not require new boundary
-assumptions. Preserve the definitions and proofs while reclassifying their
-role. Near-126 reductions and the final endpoint remain Main goals.
+stretching are new deductions of the main paper. Their current proposition
+definitions live in `Main/Solution/Tools`, not in the external A(M) checklist
+or the Challenge2 witness. They still require model compatibility and proofs.
+Object-level extension/crossing language remains in Def. A computation verifier
+using these rules must consume independently proved rules without a circular
+dependency on the very computation facts it certifies.
+
+The near-126 reductions also belong to Main/Solution, grouped into
+ChoiceIndependence, DifferentialReduction and ExtensionObstruction. Only the
+final endpoint retains Main Challenge/Solution mirrors. The layout does not
+repair the historical free-predicate statements.
+
+Fixed CSV basis independence and spanning is a computation certification:
+Interface produces it and Main consumes actual E2 coordinates and CSV values through
+`Challenge2.sphereBasis` in the same witness as the presentation and differential table. Challenge1 no
+longer assumes that certificate. Its proof remains unfinished.
 
 ## External inputs
 

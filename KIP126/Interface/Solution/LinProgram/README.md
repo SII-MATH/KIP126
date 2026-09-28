@@ -1,10 +1,12 @@
-# Solution / LinProgram
+# LinProgram：计算认证证明
 
 本组件证明固定程序输出的解释，并提供所需认证辅助结论。a05 的 CSV 基认证已从 Def／Challenge1 迁入本阶段。
 
-## 1. 原先期望包含什么
+- [BasisTable.lean](BasisTable.lean)：认证 v126.3.cw49 在 `t ≤ 261` 的指定加法基；证明仍为 `sorry`，不导入 Challenge2 消费公理或 Challenge 占位。
+- [SquareDetection](SquareDetection/README.md)：已有关系检测和归档证书。
+- [SquareDimension](SquareDimension/README.md)：已有指定次数的维数与候选计算。
 
-完成本组件已有目标的证明，并清楚区分已用假设、辅助定义和仍待验证的结论。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。
+固定 CSV 认证是本阶段辅助义务；`Challenge2.sphereBasis` 交付同一 presentation 上的实际 E₂ 坐标与 CSV 值相容性。Main 从此见证恢复基与坐标，兼容入口保留在解释层。
 
 ## 2. 现在包含什么
 

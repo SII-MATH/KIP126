@@ -26,6 +26,9 @@ import Mathlib.Algebra.Exact.Basic
 /-!
 # Challenge 1：Def 向 Interface 交付的共享见证
 
+M 指 `Def/` 定义的数学对象、操作和结构条件；本文件只是阶段交付接口，
+既不替代 M，也不声称已列全论文所需的全部基础。
+
 本文件按主题直接列出阶段边界的数据选择与数学条件。Def 需要构造这个
 见证；构造尚未完成时，Interface 仅假设同一个类型非空。
 
@@ -112,7 +115,7 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 定位：`Def/ClassicalAdams/MilnorCooperations/Proofs.lean`、
   `Def/Steenrod/MilnorCobar/`。
 
-### a05 — Lin 加法基表的完整正确性
+### a05 — 已迁出：固定 Lin 加法基表认证
 
 - 角色：固定计算认证，已撤出 A₀／Challenge1 必交范围；编号仅用于追踪迁移。
 - 实现：已删除本包的 `LinBasisInterface`／`linBasis`；固定认证生产义务在

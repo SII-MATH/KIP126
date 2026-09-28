@@ -7,7 +7,9 @@ import KIP126.Main.Axiom.Literature.SourceInventory
 This module records the finer-grained claims which may cross the formalisation
 boundary.  A claim row names its intended owning Lean declaration and Blueprint
 target, classifies the trust boundary, supplies an exact `SourceRef`, and lists
-other claim rows used to assemble a composite input.
+other claim rows used to assemble a composite input. Historical rows reclassified
+as `projectDerivation` remain for audit, but support neither result nor evidence
+wrappers: this ledger is not itself a frozen A(M) or C(M) package.
 
 The owner names are stable declaration names from the formalisation plan in the
 Blueprint.  Some owners live in later, currently unimplemented layers; the
@@ -326,6 +328,8 @@ inductive ExternalClaimClass
   | tableEvidence
   | transcribedEvidence
   | compositeResult
+  /-- Paper deductions tracked for audit, never accepted as A(M) or raw C(M). -/
+  | projectDerivation
   deriving DecidableEq, Repr, Inhabited
 
 namespace ExternalClaimClass
@@ -336,6 +340,7 @@ def code : ExternalClaimClass → String
   | .tableEvidence => "table_evidence"
   | .transcribedEvidence => "transcribed_evidence"
   | .compositeResult => "composite_result"
+  | .projectDerivation => "project_derivation"
 
 def ofCode : String → Option ExternalClaimClass
   | "literature_result" => some .literatureResult
@@ -343,11 +348,12 @@ def ofCode : String → Option ExternalClaimClass
   | "table_evidence" => some .tableEvidence
   | "transcribed_evidence" => some .transcribedEvidence
   | "composite_result" => some .compositeResult
+  | "project_derivation" => some .projectDerivation
   | _ => none
 
 def all : List ExternalClaimClass :=
   [.literatureResult, .machineEvidence, .tableEvidence,
-    .transcribedEvidence, .compositeResult]
+    .transcribedEvidence, .compositeResult, .projectDerivation]
 
 def SupportsResult : ExternalClaimClass → Prop
   | .literatureResult | .compositeResult => True
@@ -360,7 +366,7 @@ def SupportsEvidence : ExternalClaimClass → Prop
 theorem all_nodup : all.Nodup := by
   decide
 
-theorem all_length : all.length = 5 := by
+theorem all_length : all.length = 6 := by
   decide
 
 theorem mem_all (classification : ExternalClaimClass) : classification ∈ all := by
@@ -524,6 +530,7 @@ def ClassificationConsistent (record : ExternalClaimRecord) : Prop :=
   | .tableEvidence => record.ref.source = .aimPaper
   | .transcribedEvidence => record.ref.source = .aimPaper
   | .compositeResult => record.dependencies ≠ []
+  | .projectDerivation => record.ref.source = .aimPaper
 
 private def charsPrefix : List Char → List Char → Bool
   | [], _ => true
@@ -842,12 +849,12 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
         "AIM paper, lines 2493--2567, load-bearing Toda product and shuffle identities"
         (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.mossConvergence]
   | .bjmBxCriterion =>
-      claim .bjmBxCriterion .literatureResult `KIP126.Kervaire.BJM_BXCriterion
+      claim .bjmBxCriterion .literatureResult `KIP126.Kervaire.BJMOriginalCriterion
         "thm:external-bjm-bx-criterion" .burklundXu
-        "Burklund--Xu, Proposition 7.19, synthetic BJM criterion"
+        "Burklund--Xu Proposition 7.19, original eta / lambda^r finite criterion"
         (some "KIP126/Main/Axiom/Literature/Sources/BurklundXu/paper.pdf") [.bjmInduction]
   | .theta5OrderData =>
-      claim .theta5OrderData .compositeResult `KIP126.Kervaire.Theta5OrderData
+      claim .theta5OrderData .projectDerivation `KIP126.Kervaire.Theta5OrderData
         "thm:external-theta5-order-data" .aimPaper
         "AIM paper, Remarks 7.4--7.5, Xu/IWX order and choice-filtration synthesis"
         (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.xuTheta5Order, .iwxTheta5Filtration]
@@ -962,9 +969,9 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
         "AIM Example 5.7, page-crossing regressions"
         (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.hopfCrossingExclusion]
   | .theta5OrderTorsion =>
-      claim .theta5OrderTorsion .tableEvidence `KIP126.Kervaire.Theta5OrderTorsion
+      claim .theta5OrderTorsion .projectDerivation `KIP126.Kervaire.Theta5OrderTorsionEvidence
         "evidence:theta5-order-torsion" .aimPaper
-        "AIM Remarks 7.4--7.5 and Appendix tables, finite theta_5 torsion exclusions"
+        "AIM Remarks 7.4--7.5: derived order/choice and torsion bundle, not raw program output"
         (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.theta5OrderData, .appendixTables]
   | .theta5SquareTmf =>
       claim .theta5SquareTmf .tableEvidence `KIP126.Kervaire.Theta5SquareTmfEvidence
@@ -1110,6 +1117,7 @@ theorem externalClaimLedger_targets_nodup :
     externalClaimLedger.targets.Nodup := by
   decide
 
+set_option maxRecDepth 2048 in
 /-- Exact source references are unique across the canonical roots, so a
 catalogued wrapper's `ref_eq` cannot also select a different canonical row. -/
 theorem externalClaimLedger_refs_nodup :

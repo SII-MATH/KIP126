@@ -1,11 +1,12 @@
 import KIP126.Def.Kervaire.Theta5.Data
 
 /-!
-# Predicates for the `theta_5` external boundary
+# Mathematical predicates for the `theta_5` choice prototype
 
-The propositions in this file are interfaces.  Their proofs are supplied by a
-located literature result or a checked finite computation; the definitions do
-not assert any of the Kervaire conclusions themselves.
+These definitions assert no conclusions. A predicate living in Def is part of
+the mathematical language M; this does not make a proof of it an external input.
+Some predicates below describe paper-derived conditions. The abstract context
+still needs binding to the actual synthetic objects and internal Adams sequence.
 -/
 
 namespace KIP126.Kervaire
@@ -15,15 +16,19 @@ section Statements
 variable {Carrier : Type} [AddCommGroup Carrier]
 variable (C : Theta5ChoiceContext (Carrier := Carrier))
 
-/-- The Xu/IWX order and choice-filtration input used by the project proof. -/
+/-- Order and choice-filtration conditions. In a synthetic model these require
+project deductions from classical Xu/IWX inputs and comparison/torsion results;
+they must not be catalogued wholesale as a prior literature theorem. -/
 def Theta5OrderData : Prop :=
   (∀ θ, C.isChoice θ → IsOrderTwo θ) ∧
     (∀ θ ψ, C.isChoice θ → C.isChoice ψ →
       C.highDifference (C.difference θ ψ))
 
-/-- The source-specific BJM/BX criterion.  This proposition is deliberately
-quantified only at the distinguished source choice; the project transport
-theorem in `Proofs.lean` supplies the arbitrary-choice form. -/
+/-- Paper-normalized source criterion (historical name retained). Its finite
+clause uses λη and exponent r+1. Burklund--Xu Proposition 7.19 instead uses η
+and exponent r; LWX Remark 7.4 needs a no-λ-torsion argument to pass between them.
+This predicate is not itself the original A(M) input. Generic choice transport
+is proved conditionally in `Proofs.lean`; actual model binding remains pending. -/
 def BJM_BXCriterion : Prop :=
   IsOrderTwo C.sourceChoice ∧
     (∀ r : ℕ, 1 ≤ r →
@@ -40,9 +45,9 @@ def TotalDifferentialIdentity : Prop :=
   ∀ θ, C.isChoice θ → IsOrderTwo θ →
     C.deltaH6 = C.lambdaEta (C.square θ)
 
-/-- The finite torsion/filtration evidence consumed by the near-126 layer.
-The first clause records order two and the second records the filtration bound
-on a difference of choices. -/
+/-- Mixed intermediate conditions: derived order/choice comparison together
+with two torsion conditions. This bundle is not a raw C(M) output; individual
+source inputs and their project deductions must be separated before use. -/
 def Theta5OrderTorsionEvidence : Prop :=
   Theta5OrderData C ∧ C.noLambdaTorsion62 ∧ C.noLambdaTorsion125
 

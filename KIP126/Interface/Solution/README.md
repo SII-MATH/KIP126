@@ -27,11 +27,11 @@
 | [LinProgram/SquareDetection/Parsing.lean](LinProgram/SquareDetection/Parsing.lean) | `splitOnAux_singleton`, `splitOn_singleton_eq_list`, `splitOn_comma`, `splitOn_semicolon`, `splitOn_newline` |
 | [LinProgram/SquareDimension/Generators/Proofs.lean](LinProgram/SquareDimension/Generators/Proofs.lean) | `generatorDegree_eq_row`, `generatorDegree_low_filtration` |
 | [LinProgram/SquareDimension/Proofs.lean](LinProgram/SquareDimension/Proofs.lean) | `squareDegree_support`, `monomialDegree_square_unique`, `homogeneousPart_square_eq_span`, `E2At_square_eq_zero_or` |
-| [根 Challenge2.lean](../../Challenge2.lean) | `GeneralizedLeibnizLaw`、`GeneralizedMahowaldLaw` 的准确类型；对应规则证明尚未完成 |
+| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | 独立生产固定 CSV 基认证，供 `Challenge2.sphereBasis` 交付；仍为 `sorry` |
 
 ## 3. 大概完成度
 
-现有 Lin 与已证明的派生接口继续保留；Challenge 2 的完整构造与 `basisTable_correct` 仍待完成。旧三个 Tools 文件因陈述错误而删除，没有将“输入整个 law 后应用它”计作规则证明。根 Challenge2 的两个实际 law 仍需从模型相容图及相应数学结果证明。
+现有 Lin 与已证明的派生接口继续保留；Challenge 2 的完整构造与 `basisTable_correct` 仍待完成。旧三个 Tools 文件因陈述错误而删除，没有将“输入整个 law 后应用它”计作规则证明。三个工具命题已移至 Main/Solution/Tools，不属于本阶段的前人 A(M) 输入。固定基及坐标消费构造已移至 Main/Axiom/LinProgram/Interpretation/Basis/Algebra。
 
 未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
 

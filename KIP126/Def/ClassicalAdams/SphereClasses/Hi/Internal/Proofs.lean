@@ -1,5 +1,6 @@
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Proofs
+import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
 
 /-! The internal classes preserve the actual Milnor quotient representatives. -/
 
@@ -41,6 +42,15 @@ theorem hiSquare_pageIso (i : ℕ) :
 /-- The sixth internal square is the image of the previously fixed standard square. -/
 @[simp] theorem hiSquare_six : hiSquare H M 6 =
     (adamsTowerSSDataPageIso H.unit SphereSpectrum 2 128 0).inv (Sphere.h6Square H M) := rfl
+
+/-- The specified internal square is nonzero by the standard cobar calculation.
+No Lin data, basis certificate, or computed differential is used. -/
+theorem hiSquare_six_ne_zero : hiSquare H M 6 ≠ 0 := by
+  intro h
+  apply Sphere.h6Square_ne_zero H M
+  exact (hiSquare_pageIso H M 6).symm.trans
+    ((congrArg (adamsTowerSSDataPageIso H.unit SphereSpectrum 2 128 0).hom.hom h).trans
+      (map_zero _))
 
 end
 

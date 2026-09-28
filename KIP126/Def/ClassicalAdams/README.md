@@ -6,7 +6,7 @@
 
 ## 2. 现有
 
-这是 Def 最大且最成熟的组件：约 222 个文件。已有 Adams tower、tower layer/resolution、page quotient、内部 `SSData`/`PreSS`/`SpectralSequence` 装配、有限页微分、代表元和永久存活语义、smash tower 与层配对、H𝔽₂ coaction/Künneth/Milnor 坐标、第一微分 cobar 公式，以及内部 E₂ 上 `h₆`、`h₆²` 非零的长证明链。固定 `standardFoundation`、`standardMilnorCooperations`、`sphereAdamsModel`、StandardSphere、HopfCofiber 和计算解释闭包已迁到 Main。
+这是 Def 最大且最成熟的组件：约 222 个文件。已有 Adams tower、tower layer/resolution、page quotient、内部 `SSData`/`PreSS`/`SpectralSequence` 装配、有限页微分、代表元和永久存活语义、smash tower 与层配对、H𝔽₂ coaction/Künneth/Milnor 坐标、第一微分 cobar 公式，以及内部 E₂ 上 `h₆`、`h₆²` 非零的长证明链。固定 `standardFoundation`、`standardMilnorCooperations` 和内部球谱及标准元素由 `Interface/Axiom` 从同一个 Challenge1 见证特化；HopfCofiber、旧页表示下的 StandardSphere 兼容接口及计算解释闭包仍在 Main。
 
 这次迁移没有证明这些固定实例。Def 中保留的是参数化构造与条件定理；许多乘法结果仍要求 `UnitFiberInclusionCommutes`、t-structure/connectivity 或 Künneth 等显式条件。
 

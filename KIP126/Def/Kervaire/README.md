@@ -6,7 +6,9 @@
 
 ## 2. 现有
 
-已有 `StableHomotopyData`、`SyntheticHomotopyContext`、`Near126Input/Conditions`、`SphereAdamsCoherence`、θ₅ choice context、order/torsion/total-differential/Browder/HHR/BJM statement，以及 choice-independence 和 criterion transport 的若干证明。`SphereAdams.lean` 还提供旧式 `Near126Adams`/permanence 包装。`Theta5/Proofs` 当前反向 import `Main/Axiom/Literature/Kervaire` 以取得 catalogue/wrapper 类型；定理仍把 `CataloguedExternalResult` 当作显式参数，并未取得无条件文献公理，但目录依赖方向仍待整理。
+已有 `StableHomotopyData`、`SyntheticHomotopyContext`、`Near126Input/Conditions`、`SphereAdamsCoherence`、θ₅ choice context、order/torsion/total-differential/Browder/HHR/BJM statement，以及 choice-independence 和 criterion transport 的若干证明。`SphereAdams.lean` 还提供旧式 `Near126Adams`/permanence 包装。`Theta5/Proofs` 已改用普通数学前提，不再反向导入 Main。
+
+[Theta5/Synthetic](Theta5/Synthetic/README.md) 另提供实际多次数对象上的 θ₅/η 检测、平方、λ 作用、总边界及原始/规范化 BX 条件。它们使用同一内部标准类，不使用 CSV；canonical 比较及文献见证尚待完成。
 
 ## 3. 粗略完成度
 
@@ -17,7 +19,7 @@
 
 ## 4. 待做
 
-- 将 `Theta5/Proofs` 所需的中性 wrapper 类型下沉，或把来源绑定层移出 Def；保留其现有显式参数定理语义并消除 `Def → Main`。
+- 构造实际第一 λ 商比较，审核悬移、乘法与边界相容性，并把已有 choice transport 接入多次数对象。
 - 去除/整合与最终内部 `NonzeroSurvival` 重复的旧 `Near126Adams` 包装。
 - 确定每个 C3/C4/C5 字段的来源：C(M)、A(M)、文献输入或 Main 内部推论。
 - 补 Browder/HHR 的条件性几何终点，但不把外部结果变为无条件全局 theorem。
@@ -26,5 +28,7 @@
 
 1. 先做 Kervaire statement inventory，给每个字段标 owner 和来源。
 2. 把纯 predicate 留 Def，把 fixed literature witness 留 Main/Axiom。
-3. 让 Main near-126 Challenge 直接引用这些唯一 predicate。
+3. 让 Main/Solution 的中间推导引用实际对象上的 predicate；Main/Challenge 只保留 Final。
 4. 最终目标只保留内部 `NonzeroSurvival`，几何结论作为后续显式条件定理。
+
+当前 §7 路线的共同模型、条件和依赖语言位于 `Route/`。旧 `Near126Adams`/`ChoiceConditions` 已删除；`SphereAdams.lean` 现在只重导出实际模型接口。详见 [M 冻结清单](../../../docs/M_INPUT_FREEZE.md)。

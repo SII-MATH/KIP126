@@ -19,6 +19,7 @@
 | [Challenge1.lean](Challenge1.lean) | 唯一存在性 axiom，并以 `Classical.choice` 选出一个见证 |
 | [StandardFoundation.lean](StandardFoundation.lean) | 从该见证投影旧公开名称 `standardFoundation` |
 | [StandardMilnor.lean](StandardMilnor.lean) | 从同一个见证投影旧公开名称 `standardMilnorCooperations` |
+| [StandardSphere](StandardSphere/README.md) | 同一基础生成的内部球谱、标准 `h₆` 与 `h₆²`；不依赖 C(M) |
 
 基础选择、H𝔽₂ 的同伦群条件、Milnor 坐标和微分相容性的交付字段集中在根
 `Challenge1.lean`。Def 中的 `StandardAdamsFoundation`、`MilnorCooperations`
@@ -43,3 +44,5 @@ Def 的 Challenge/Solution 已有完全相同的 `Nonempty Challenge1` theorem�
 2. 构造同一个 H𝔽₂ 的 Milnor 坐标并证明第一微分相容性。
 3. 将两部分装入一个 `Challenge1` 值，完成 Solution theorem。
 4. 用该 theorem 替换本目录的开发期 axiom，再运行下游公理审计。
+
+固定 CSV 基正确性不再属于本目录的基础输入。其认证由 Interface 生产，Main 从 `Challenge2.sphereBasis` 消费；旧 `LinBasisTable.lean` 已迁走。
