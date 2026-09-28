@@ -253,6 +253,78 @@ coherences remain outside the Project Boundary.
 
 \section{Synthetic Adams objects}
 
+% SOURCE: BHS SynRevBigraded.tex:149--159, thm:synthetic-Adams (1b)--(1c);
+% MainPaper/main.tex:813--823. The arrows use the project's chosen cofibers.
+\begin{definition}[Actual finite $\lambda$-Bockstein maps]
+  \label{def:finite-lambda-bockstein-maps}
+  \lean{KIP126.Synthetic.Bockstein.beta,KIP126.Synthetic.Bockstein.betaPostcompose,KIP126.Synthetic.Bockstein.betaHom,KIP126.Synthetic.Bockstein.inclHom,KIP126.Synthetic.Bockstein.restrictionHom,KIP126.Synthetic.Bockstein.firstRestrictionHom,KIP126.Synthetic.Context.biSuspensionHomEquiv,KIP126.Synthetic.Context.lambdaResidualSequence}
+  \uses{def:synthetic-lambda-quotient,def:synthetic-sphere,def:cofiber-triangle}
+  \notready
+  Write $\iota_q:A\to A/\lambda^q$ and $\partial_q$ for the inclusion and
+  boundary of the actual $\lambda^q$ cofiber triangle. Define
+  \[
+    \beta_q:\ A/\lambda^q\xrightarrow{\partial_q}
+       (\Sigma^{0,-q}A)[1]
+       \xrightarrow{(\Sigma^{0,-q}\iota_1)[1]}
+       (\Sigma^{0,-q}(A/\lambda))[1].
+  \]
+  Postcomposition followed by the specified additive suspension equivalence
+  gives
+  $\beta_{q,*}:\pi_{n,w}(A/\lambda^q)\to
+    \pi_{n-1,w+q}(A/\lambda)$.
+  The maps $\rho_{i,j}:A/\lambda^j\to A/\lambda^i$ are the cofiber maps
+  of the actual $\lambda$-power factorization squares. Their maps on homotopy,
+  including restriction to the first quotient, are postcomposition with
+  these same arrows. Identity and composition retain the specified cofiber
+  coherence hypotheses.
+  The residual tower $\Sigma^{0,-q}A$ and these finite arrows are defined;
+  suspension and naturality properties still carry proof obligations.
+  No $E_1$-based Bockstein SSData object is constructed by these definitions.
+\end{definition}
+
+% SOURCE: BHS SynRevBigraded.tex:123--136, dfn:E-complete and dfn:strong-conv.
+\begin{definition}[Completeness and strong convergence of the actual Adams tower]
+  \label{def:actual-adams-strong-convergence}
+  \lean{KIP126.Classical.Adams.towerAbutment,KIP126.Classical.Adams.adamsTowerToSpectrum,KIP126.Classical.Adams.adamsHomotopyFiltrationSubmodule,KIP126.Classical.Adams.adamsHomotopyFiltration,KIP126.Classical.Adams.IsENilpotentComplete,KIP126.Classical.Adams.IsAdamsTowerStronglyConvergent}
+  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss,def:core-filtration}
+  \notready
+  For the same unit and spectrum $X$, use the actual tower-image filtration
+  $F^s\pi_nX=\operatorname{im}(\pi_nX_s\to\pi_nX)$, with its constant
+  extension at nonpositive levels. Strong convergence requires this
+  filtration to be complete and Hausdorff and the same constructed
+  sequence's $E_\infty^{s,t}$ to identify with
+  $F^s\pi_{t-s}X/F^{s+1}\pi_{t-s}X$.
+  Completeness uses the canonical cone to these filtration quotients;
+  no replacement abutment or filtration is chosen. The decreasing-filtration
+  property remains a proof obligation.
+  Separately, $E$-nilpotent completeness requires the actual residual Adams
+  tower to be acyclic. The finite Bockstein literature input below retains
+  both conditions; neither is replaced by eventual page stabilization.
+\end{definition}
+
+% SOURCE: BHS SynRevBigraded.tex:59--62, lemm:ctauE2 (Pstragowski Lemma 4.56);
+% MainPaper/main.tex:813--823, thm:17e90ac0 (1).
+\begin{definition}[Specified first-quotient comparison and Bockstein target]
+  \label{def:first-lambda-quotient-comparison}
+  \lean{KIP126.Challenge2.FirstQuotientHomotopyComparison,KIP126.Challenge2.FirstQuotientHomotopyComparison.unshifted,KIP126.Challenge2.FirstQuotientHomotopyComparison.bocksteinTargetClass}
+  \uses{def:finite-lambda-bockstein-maps,def:classical-adams-ss}
+  \notready
+  Given the specified first-quotient comparison $Q$, its zero-weight-shift
+  component and the actual quotient functor applied to the zero-shift
+  isomorphism give
+  $e_{s,t}:\pi_{t-s,t}(\nu X/\lambda)\cong E_2^{s,t}(X)$.
+  This uses the same comparison, rather than selecting another edge map.
+  For $z\in\pi_{t-s,t}(\nu X/\lambda^q)$ define
+  \[
+    b_q(z)=e_{s+q+1,t+q}(\beta_{q,*}z)
+      \in E_2^{s+q+1,t+q}(X),
+  \]
+  using $t-s-1=(t+q)-(s+q+1)$.
+  The first-quotient source statement itself holds for every spectrum in
+  the cited model. Realizing $Q$ in the chosen abstract model and its
+  additional shifted components remains separate from this adapter.
+\end{definition}
+
 % SOURCE: BHS Appendix A grading; KIP126/Main/Axiom/Literature/MainPaper/main.tex:799-811.
 \begin{definition}[BHS-to-AIM regrading]
   \label{def:bhs-aim-regrading}

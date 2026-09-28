@@ -364,24 +364,75 @@ This chapter records precise published inputs and the specializations now proved
   correspondence remain an explicit external-result parameter.
 \end{proof}
 
-% SOURCE: BHS Theorem A.1; KIP126/Main/Axiom/Literature/MainPaper/main.tex:813-823, Theorem thm:17e90ac0.
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/MainPaper/main.tex:819 says tau-Bockstein; in the HF2-synthetic notation it is lambda-Bockstein.
+% SOURCE: BHS SynRevBigraded.tex:149--159, thm:synthetic-Adams (1a)--(1c),
+% retaining dfn:E-complete and dfn:strong-conv at 123--136;
+% MainPaper/main.tex:813--823, thm:17e90ac0.
+\begin{theorem}[Finite $\lambda$-Bockstein lifting and differential input]
+  \label{thm:external-finite-lambda-bockstein}
+  \lean{KIP126.Challenge2.FiniteLambdaBocksteinInterface,KIP126.Synthetic.cataloguedFiniteLambdaBockstein}
+  \uses{def:first-lambda-quotient-comparison,def:finite-lambda-bockstein-maps,def:actual-adams-strong-convergence,def:external-result}
+  \notready
+  Fix the same $H\mathbb F_2$ unit, $\nu$, first-quotient comparison $Q$,
+  and suspension/cofiber coherence. Assume that $X$ is $H\mathbb F_2$-nilpotent
+  complete and that its actual Adams tower is strongly convergent in the
+  sense of Definition~\ref{def:actual-adams-strong-convergence}.
+  For every $q\ge1$ and $x\in E_2^{s,t}(X)$, the finite part of BHS
+  Theorem A.1 asserts
+  \[
+    x\in Z_q^{s,t}(X)\quad\Longleftrightarrow\quad
+    \exists z\in\pi_{t-s,t}(\nu X/\lambda^q),\qquad
+      \rho_{1,q,*}z=e_{s,t}^{-1}(x).
+  \]
+  Here $Z_q$ is the paper cycle level: it means that $x$ represents a class
+  on $E_{q+1}$. Thus $q=1$ imposes no earlier differential condition, while
+  $q=2$ means $d_2x=0$.
+  For such an $x$ there is a suitable lift $z$ satisfying the same restriction
+  equation and the actual page relation
+  \[
+    d_{q+1}([x])=[-b_q(z)]
+      \in E_{q+1}^{s+q+1,t+q}(X).
+  \]
+  The Lean statement uses \texttt{DifferentialAt}; it retains the
+  $B_q$ representative indeterminacy rather than asserting a strict,
+  lift-independent equality in $E_2$. The negative sign is the source's
+  sign. Removing it requires the mod-two property on the compared first
+  quotient, not an exponent-two assertion about all synthetic homotopy groups.
+\end{theorem}
+\begin{proof}
+  Supply the source-bearing finite input for this same model and comparison.
+  The catalogue wrapper records its provenance and retains the input as an
+  explicit parameter. It proves neither that parameter nor the full
+  Bockstein spectral-sequence comparison.
+\end{proof}
+
+% SOURCE: BHS SynRevAdams.tex:300--304, the displayed beta_r/E_(r+1)
+% identification; BHS Theorem A.1; MainPaper/main.tex:813--823.
+% MainPaper line 819's tau denotes the deformation map called lambda here.
 \begin{theorem}[$\lambda$-Bockstein comparison]
   \label{thm:external-lambda-bockstein}
-  \uses{thm:external-synthetic-rigidity,def:synthetic-lambda-quotient,def:external-result}
+  \uses{thm:external-synthetic-rigidity,thm:external-finite-lambda-bockstein,def:bhs-aim-regrading,def:synthetic-lambda-quotient,def:external-result}
   \notready
-  The synthetic Adams spectral sequence of $\nu X$ is isomorphic to the
-  $\lambda$-Bockstein spectral sequence.  In particular,
-  $E_2^{s,t}(X)\cong\pi_{t-s,t}(\nu X/\lambda)$, and a classical
-  $d_r(x)=y$ is represented by a lift of $x$ to
-  $\nu X/\lambda^{r-1}$ whose Bockstein boundary is $y$.  The ``$\tau$'' in
+  Under the preceding source hypotheses, for $q\ge1$ the intrinsic $\lambda$-Bockstein
+  page $q$ corresponds to synthetic Adams page $q+1$, compatibly with
+  differentials and passage to the next page. In tower indices $(a,n,w)$,
+  the AIM regrading is $(s,t,w)=(w+a-n,w+a,w)$.
+  In particular the intrinsic first differential corresponds to synthetic
+  $d_2$; merely setting an initial-page label to $2$ does not construct this
+  comparison. The first-quotient and suitable finite-lift parts are stated
+  separately above. The ``$\tau$'' in
   \texttt{KIP126/Main/Axiom/Literature/MainPaper/main.tex:819} is corrected to $\lambda$ in this context.
+  The actual $E_1$-based Bockstein SSData construction, the full compatible
+  page comparison, and the finite rigidity model comparison remain
+  unfinished. The finite interface does not identify arbitrary raw ambient
+  SSData objects or prove the polynomial rigidity theorem.
 \end{theorem}
 
 \begin{proof}
-  Apply BHS Theorem A.1 over $\mathbb F_2$, where the sign ambiguity vanishes,
-  and transport the grading through the AIM adapter.  Match the cofiber
-  boundary with the project's $\lambda$-quotient convention.
+  Construct pages from the actual residual tower, retaining its first
+  differential, and transport the located BHS page comparison through the
+  displayed degree and page shifts. Check the initial map against the
+  specified first-quotient comparison and the actual cofiber boundary.
+  This assembly remains a separate obligation from the finite input.
 \end{proof}
 
 % SOURCE: BHS Corollary A.9; KIP126/Main/Axiom/Literature/MainPaper/main.tex:841-847, Proposition prop:30e8b746.

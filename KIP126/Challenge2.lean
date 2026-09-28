@@ -29,6 +29,10 @@ import KIP126.Def.ClassicalAdams.Tmf.Model.Data
 import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
 import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
 import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
+import KIP126.Def.Synthetic.Bockstein.Hom.Data
+import KIP126.Def.Synthetic.QuotientFunctor.Data
+import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
+import KIP126.Def.ClassicalAdams.Completion.Predicates
 import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 
 /-!
@@ -289,8 +293,15 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   两端对象均已定义；缺口是该同构的模型见证及其与 λ、shift、商映射的相容证明，
   不能把已有 `specialFiber` 的 E∞ 比较当作此同伦群比较。
   绑定／证明缺口：presentation、shift comparison 及其相容性见证。
-  前置定义缺口：实际 λ 塔的 Bockstein 构造与 exact-couple comparison，
-  以及 rigidity 有限页微分公式所需的 weight 重分次；现有 E∞ shift 不替代它们。
+  有限部分已有实际 β_q、ρ 和同伦映射：`FiniteLambdaBocksteinInterface`
+  以同一一阶商比较陈述 Z_q 的 λ^q 商提升及 β_q 对应 d_(q+1)，
+  保留 BHS A.1 的 E-nilpotent completeness、实际 Adams 塔强收敛、
+  负号及合适提升的存在量词；来源 wrapper 为 `SyntheticBockstein.lean`。
+  强收敛使用实际 πX 上塔映射像的完备、Hausdorff 过滤及其 associated graded，
+  不以 eventual-page stabilization 加强原文前提；这些性质仍待证。
+  前置定义缺口：现有 λ residual tower 的完整 E₁-based Bockstein SSData
+  与 exact-couple comparison，以及 rigidity 有限页微分公式的 weight 重分次。
+  有限提升接口与现有 E∞ shift 均不替代上述完整构造；未新增总包字段。
   历史 `lambda_bockstein_start_page` 仅断言 r₀=2，不能代替 comparison；
   `KIPBase/Synthetic/Rigidity.lean` 的所有负 weight 消失与反向 weight 商映射
   不沿用。a10/a11 的已有 cofiber／triangle lift 还需接到同一内部页面。
@@ -693,6 +704,71 @@ abbrev FirstQuotientHomotopyComparison (X : C) := ∀ (a s t : ℤ),
   BiHom (t - s) (t + a)
     (XModLambdaN ((SyntheticCategory.biShift (0, a)).obj (N.functor.obj X)) 1) ≃+
       Ambient H X (s, t)
+
+/-- 只用同一比较的 a=0 分量及实际商函子的零移位同构，恢复 νX 本身的
+一阶商比较；不选择另一份边缘同构。 -/
+noncomputable def FirstQuotientHomotopyComparison.unshifted {X : C}
+    (Q : FirstQuotientHomotopyComparison H N X)
+    (cofib : FunctorialCofiberCoherence Syn) (s t : ℤ) :
+    BiHom (t - s) t (XModLambdaN (N.functor.obj X) 1) ≃+ Ambient H X (s, t) := by
+  let e := (XModLambdaN.functor cofib 1).mapIso
+    (SyntheticCategory.biShift_zero.app (N.functor.obj X))
+  let transport : BiHom (t - s) t (XModLambdaN (N.functor.obj X) 1) ≃+
+      BiHom (t - s) t
+        (XModLambdaN ((SyntheticCategory.biShift (0, 0)).obj (N.functor.obj X)) 1) :=
+    { toFun := fun f => f ≫ e.inv
+      invFun := fun f => f ≫ e.hom
+      left_inv := by intro f; simp
+      right_inv := by intro f; simp
+      map_add' := by intro f g; simp only [Preadditive.add_comp] }
+  exact transport.trans
+    (Eq.mp (congrArg (fun weight : ℤ =>
+      BiHom (t - s) weight
+        (XModLambdaN ((SyntheticCategory.biShift (0, 0)).obj (N.functor.obj X)) 1) ≃+
+          Ambient H X (s, t)) (Int.add_zero t)) (Q 0 s t))
+
+/-- 把实际 β_q 的像放进同一经典 E₂ 的目标次数。β_q 降低 stem 一次、
+增加 weight q，因此对应 d_(q+1) 的 (s+q+1,t+q)，不是 d_q。 -/
+noncomputable def FirstQuotientHomotopyComparison.bocksteinTargetClass {X : C}
+    (Q : FirstQuotientHomotopyComparison H N X)
+    (cofib : FunctorialCofiberCoherence Syn) (q : ℕ) (s t : ℤ)
+    (z : BiHom (t - s) t (XModLambdaN (N.functor.obj X) q)) :
+    Ambient H X (s + (q : ℤ) + 1, t + (q : ℤ)) :=
+  FirstQuotientHomotopyComparison.unshifted H N Q cofib
+    (s + (q : ℤ) + 1) (t + (q : ℤ))
+    (Eq.mp (congrArg (fun n => BiHom n (t + (q : ℤ))
+      (XModLambdaN (N.functor.obj X) 1))
+      (by omega : t - s - 1 = (t + (q : ℤ)) - (s + (q : ℤ) + 1)))
+      (Synthetic.Bockstein.betaHom (N.functor.obj X) q (t - s) t z))
+
+section FiniteBockstein
+variable [CategoryTheory.Limits.HasProductsOfShape ℕ C]
+
+/-- BHS A.1 的有限提升／微分部分，绑定同一一阶商比较及实际 λ 商映射。
+同时保留原文的 E-nilpotent completeness 和同一实际 Adams 塔的强收敛。
+q=1 对应无先行微分，q=2 对应 d₂=0；β_q 对应 d_(q+1)。
+负号来自原文，消去它只需已比较 E₂ 的模二性质，不对所有 synthetic
+同伦群假设 2=0。这里只断言存在合适的 lift，并按实际页上的关系比较像，
+不把它加强成任意 lift 在 E₂ 上有唯一相同代表。该参数化文献接口不扩充总包。 -/
+structure FiniteLambdaBocksteinInterface (coh : BiShiftCoherence Syn)
+    (cofib : FunctorialCofiberCoherence Syn) (X : C)
+    (Q : FirstQuotientHomotopyComparison H N X) : Prop where
+  lifting : IsENilpotentComplete H.unit X → IsAdamsTowerStronglyConvergent H.unit X →
+    ∀ (q : ℕ) (hq : 1 ≤ q) (s t : ℤ) (x : Ambient H X (s, t)),
+      IsCycle H X (q : ℤ) (s, t) x ↔
+        ∃ z : BiHom (t - s) t (XModLambdaN (N.functor.obj X) q),
+          Synthetic.Bockstein.firstRestrictionHom coh (N.functor.obj X) q hq (t - s) t z =
+            (FirstQuotientHomotopyComparison.unshifted H N Q cofib s t).symm x
+  differential : IsENilpotentComplete H.unit X → IsAdamsTowerStronglyConvergent H.unit X →
+    ∀ (q : ℕ) (hq : 1 ≤ q) (s t : ℤ) (x : Ambient H X (s, t)),
+      IsCycle H X (q : ℤ) (s, t) x →
+        ∃ z : BiHom (t - s) t (XModLambdaN (N.functor.obj X) q),
+          Synthetic.Bockstein.firstRestrictionHom coh (N.functor.obj X) q hq (t - s) t z =
+            (FirstQuotientHomotopyComparison.unshifted H N Q cofib s t).symm x ∧
+          DifferentialAt H X ((q : ℤ) + 1) (s, t) (s + (q : ℤ) + 1, t + (q : ℤ)) x
+            (-(FirstQuotientHomotopyComparison.bocksteinTargetClass H N Q cofib q s t z))
+
+end FiniteBockstein
 
 /-- BHS A.9 的准确内部公式类型；存在性及文献输入另行处理。 -/
 abbrev NuEInftyFormula := ∀ (X : C) (p : ℤ × ℤ) (w : ℤ),
