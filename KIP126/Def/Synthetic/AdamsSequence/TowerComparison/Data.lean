@@ -18,26 +18,31 @@ variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
 
 attribute [local irreducible] adamsTowerSSData
 
-def weightTower (X : Syn) (w : ℤ) :=
+def weightTower (X : Syn) (w : ℤ) :
+    KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ) :=
   adamsTowerInternalSpectralSequence unit ((SyntheticCategory.biShift (0, -w)).obj X)
 
 def weightTowerE2Map {X Y : Syn} (f : X ⟶ Y) (w : ℤ) (p : ℤ × ℤ) :
     ((weightTower unit X w).ssData p).page 0 ⟶ ((weightTower unit Y w).ssData p).page 0 :=
   ModuleCat.ofHom (adamsInternalE2Induced unit ((SyntheticCategory.biShift (0, -w)).map f) p)
 
-attribute [local irreducible] weightTowerE2Map
+-- These are already typed maps.  Checking the comparison fields only needs
+-- their endpoints, not their cokernel-map or differential implementations.
+attribute [local irreducible] weightTowerE2Map SSData.page SSDataMorphism.pageMap
+  classicalDifferential fixedWeightDifferential
 
-set_option maxHeartbeats 1600000 in
 /-- Structural realization, not BHS's comparison to the *classical* tower.
 Both sides here are synthetic νHF₂-based Adams towers. -/
 structure TowerPresentation (F : SyntheticAdamsFamily Syn) where
-  forward : ∀ X w, SSDataMorphism (ℤ × ℤ)
+  forward : ∀ (X : Syn) (w : ℤ), SSDataMorphism (ℤ × ℤ)
     (fun p => (F.obj X).sequence.ssData (p.1, p.2, w)) (weightTower unit X w).ssData
-  inverse : ∀ X w, SSDataMorphism (ℤ × ℤ) (weightTower unit X w).ssData
+  inverse : ∀ (X : Syn) (w : ℤ), SSDataMorphism (ℤ × ℤ) (weightTower unit X w).ssData
     (fun p => (F.obj X).sequence.ssData (p.1, p.2, w))
-  left_inv : ∀ X w p, (forward X w).φ p ≫ (inverse X w).φ p = 𝟙 _
-  right_inv : ∀ X w p, (inverse X w).φ p ≫ (forward X w).φ p = 𝟙 _
-  comm_d : ∀ X w r p,
+  left_inv : ∀ (X : Syn) (w : ℤ) (p : ℤ × ℤ),
+    (forward X w).φ p ≫ (inverse X w).φ p = 𝟙 _
+  right_inv : ∀ (X : Syn) (w : ℤ) (p : ℤ × ℤ),
+    (inverse X w).φ p ≫ (forward X w).φ p = 𝟙 _
+  comm_d : ∀ (X : Syn) (w r : ℤ) (p : ℤ × ℤ),
     (forward X w).pageMap p (↑(r - 2).toNat : WithTop ℕ) ≫
       classicalDifferential (weightTower unit X w) rfl (fun _ => rfl) r p =
     fixedWeightDifferential (F.obj X) w r p ≫

@@ -17,7 +17,8 @@
   上的 `SphereBasisInterface` / `sphereBasis`，由实际 E₂ 坐标与指定 CSV 值恢复
   原有基 API；不重复添加 `linBasis` 假设。
 - 保留远程新增的 Ext、λ 塔、有限 Bockstein、乘法、分支及 staircase 接口。
-  原有工作区对 `AGENTS.md` 和 `.agents/skills` 的删除一并保留。
+- 保留目标分支的 `AGENTS.md` 与四组仓库 Blueprint 技能；它们的删除已从
+  本次接口增量撤回，README 中的指引链接继续有效。
 
 ## 冻结检查结论
 
