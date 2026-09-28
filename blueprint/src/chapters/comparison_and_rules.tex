@@ -62,6 +62,42 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 
 \section{Moss convergence adapter}
 
+\begin{proposition}[Mapping-stage composition at a left successor]
+  \label{prop:moss-stage-composition-successor}
+  \uses{def:hf2-adams-tower,prop:h6-fiber-smash-step,prop:h6-tower-smash-comparison,prop:h6-smash-pairing-left-transition}
+  \lean{KIP126.Classical.Adams.Moss.stageComposition_succ_comparison}
+  \leanok
+  Fix an arbitrary unit $u:\mathbb 1\to H$ in a braided monoidal closed
+  stable category.  Assume every right tensor functor is triangulated with
+  its chosen suspension comparison.  Write $T_s[X,Y]$ for the actual
+  mapping-object Adams stage, $\overline H=\operatorname{fib}(u)$, and
+  \[
+    \chi_s:T_{s+1}[X,Y]\xrightarrow{\ \cong\ }
+      \overline H\otimes T_s[X,Y]
+  \]
+  for the existing fiber comparison.  If $c_{s,t}$ denotes the fixed
+  stage composition with output $T_{t+s}[X,Z]$, then
+  \[
+    \chi_{t+s}\circ c_{s+1,t}
+      =(1_{\overline H}\otimes c_{s,t})\circ\alpha
+        \circ(\chi_s\otimes1_{T_t[Y,Z]}).
+  \]
+  This identifies the actual successor map before any fiber inclusion is
+  applied.  It requires no coefficient multiplication or boundary input.
+  It does not prove that an ordered right-boundary defect vanishes, nor
+  provide higher-page Leibniz or boundary compatibility.
+\end{proposition}
+\begin{proof}
+  \leanok
+  In the iterated-smash coordinates, separate the additional left factor
+  $\overline H$.  Associator naturality and the braided interchange
+  identity express successor composition as
+  $\overline H\otimes c_{s,t}$ after reassociation.  Transport this
+  equality through the actual tower-smash comparisons and cancel the
+  output comparison isomorphism.  The successor definition of the fiber
+  comparison gives exactly the displayed equality.
+\end{proof}
+
 \begin{proposition}[Actual long-layer composition obstruction]
   \label{prop:moss-long-layer-composition-obstruction}
   \uses{def:hf2-adams-tower,def:h6-tower-long-layer,thm:stable-homotopy-long-exact}
@@ -71,7 +107,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   coefficient multiplication, and the selected triangulated left and right
   tensor functors with their suspension comparisons.  For any length
   $r\ge1$ and nonnegative tower levels $s,t$,
-  The fixed projected long-layer composition agrees on two tower images
+  the fixed projected long-layer composition agrees on two tower images
   with stage composition followed by the output layer inclusion.  Its
   connecting map therefore vanishes on those two tower images.
   With either input restricted to its tower, exactness factors this boundary
@@ -82,9 +118,10 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   $O=(\Sigma\iota_{s+t+1})\circ B$, where $\iota_{s+t+1}$ is the actual
   next tower-to-layer map.  A projection-compatible length-two composition
   exists if and only if $O=0$.  The obstruction vanishes on two tower
-  images.  Global vanishing of $O$ remains a separate obligation: its
-  vanishing on two tower images does not suffice.
-  Nor do the two restricted factorizations supply a full two-term boundary
+  images.  This restricted vanishing alone does not establish $O=0$ on
+  the entire tensor of long layers.  Global length-two vanishing under
+  the additional coefficient-unit compatibility hypotheses is proved below.
+  The two restricted factorizations do not supply a full two-term boundary
   formula or the pagewise Leibniz and convergence compatibility needed by Moss.
 \end{proposition}
 \begin{proof}
@@ -107,10 +144,89 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   the already proved restricted boundary equality with that same inclusion.
 \end{proof}
 
+\begin{proposition}[First-boundary cycles as a unit equalizer]
+  \label{prop:moss-first-boundary-unit-equalizer}
+  \uses{def:hf2-adams-tower,def:h6-ring-cooperations,def:h6-coefficient-layer-product,thm:stable-homotopy-long-exact}
+  \lean{KIP126.Classical.Adams.Moss.coefficientPairing_precomp,KIP126.Classical.Adams.Moss.coefficientPairing_postcomp,KIP126.Classical.Adams.Moss.coefficientPairing_innerUnit,KIP126.Classical.Adams.Moss.coefficientPairing_preserves_unit_equalizer,KIP126.Classical.Adams.Moss.firstBoundary_eq_zero_iff_unit_equalizer,KIP126.Classical.Adams.Moss.coefficientPairing_firstBoundary_eq_zero,KIP126.Classical.Adams.Moss.layerFirstBoundary_comparison,KIP126.Classical.Adams.Moss.layerFirstBoundary_eq_zero_iff_unit_equalizer,KIP126.Classical.Adams.Moss.layerComposition_firstBoundary_eq_zero}
+  \leanok
+  Fix the actual coefficient object $H$, its unit $\eta$, and a specified
+  coefficient ring structure.  Assume $H\otimes-$ is triangulated with
+  its chosen suspension comparison, and the natural transformation
+  $\eta:\operatorname{Id}\to H\otimes-$ commutes with suspension.
+  Write $I A=\operatorname{fib}(\eta_A)$ and let
+  \[
+    \partial_A:H\otimes A\xrightarrow{\delta_A}\Sigma I A
+      \xrightarrow{\Sigma\eta_{IA}}\Sigma(H\otimes I A)
+  \]
+  be the actual first resolution boundary.  For every test object $U$ and
+  every morphism $a:U\to H\otimes A$,
+  \[
+    \partial_A a=0\quad\Longleftrightarrow\quad
+    \eta_{H\otimes A}a=(1_H\otimes\eta_A)a.
+  \]
+  In a braided category, the specified coefficient pairing associated to
+  any $f:A\otimes B\to D$ preserves this equalizer, hence sends two
+  first-boundary cycles to a first-boundary cycle.
+
+  The actual Adams layer comparisons transport the same criterion to
+  each nonnegative tower level.  For mapping objects, additionally assume
+  the category is monoidal closed and every right tensor functor is
+  triangulated with its chosen suspension comparison.  Then the fixed
+  layer composition preserves these kernels on morphisms from arbitrary
+  test objects; no assertion that homotopy groups detect maps is required.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Unit naturality identifies the first boundary with the connecting map
+  in the triangle obtained by tensoring the unit fiber triangle with $H$.
+  Exactness factors a zero-boundary morphism through the inner unit
+  insertion.  The coefficient action retracts both inner and outer unit
+  insertion, forcing the factor to be the original morphism $a$.
+  Conversely, the equalizer identity reduces the boundary to a composite
+  of consecutive maps in that distinguished triangle.
+  Naturality of the actual coefficient pairing and its two unit identities
+  preserve the equalizer.  Finally, use the specified layer isomorphisms
+  and the comparison of their connecting maps to transport this result
+  to the actual layer composition, retaining the shift signs.
+\end{proof}
+
+\begin{proposition}[Actual composition on length-two long layers]
+  \label{prop:moss-long-layer-two-composition}
+  \uses{prop:moss-long-layer-composition-obstruction,prop:moss-first-boundary-unit-equalizer}
+  \lean{KIP126.Classical.Adams.Moss.longLayerTwoProjection_firstBoundary_eq_zero,KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction_eq_zero,KIP126.Classical.Adams.Moss.longLayerTwoComposition_exists}
+  \leanok
+  In a braided monoidal closed stable category, fix the actual coefficient
+  ring structure, triangulated right tensor functors with suspension
+  comparisons, a triangulated $H\otimes-$ with its suspension comparison,
+  and suspension compatibility of the coefficient-unit natural
+  transformation.  For any mapping objects $[X,Y],[Y,Z],[X,Z]$ and
+  nonnegative levels $s,t$, the actual obstruction $O$ from
+  Proposition~\ref{prop:moss-long-layer-composition-obstruction} vanishes
+  on the entire tensor of length-two long layers.  Consequently, writing
+  $L_2^s$ for those long layers, there is a morphism
+  \[
+    \mu:L_2^s[X,Y]\otimes L_2^t[Y,Z]\longrightarrow L_2^{s+t}[X,Z]
+  \]
+  whose composite with the output layer projection is exactly the fixed
+  projected composition.
+  This proves existence at length two under the stated coherence
+  hypotheses.  It does not choose compatible compositions for every
+  length, prove a pagewise Leibniz rule, or establish Moss convergence.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Each length-two projection is an actual first-boundary cycle, by its
+  cofiber-factorization diagram and the zero composite of consecutive
+  triangle maps.  The unit-equalizer result shows that their layer product
+  is also a first-boundary cycle.  Its first boundary, after the actual
+  level reindexing, is exactly $O$, so $O=0$ globally.  Apply the proved
+  length-two obstruction criterion to obtain the required lift.
+\end{proof}
+
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2387-2477; external Moss convergence theorem is required.
 \begin{theorem}[Moss convergence adapter]
   \label{thm:moss-convergence-adapter}
-  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result,prop:moss-long-layer-composition-obstruction}
+  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result,prop:moss-long-layer-composition-obstruction,prop:moss-long-layer-two-composition}
   \notready
   Given an explicit external result supplying the relevant Moss convergence
   theorem and hypotheses excluding crossings and indeterminacy, a Massey
@@ -383,13 +499,11 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % system of abelian torsors, combined with BHS Proposition A.13.
 \begin{lemma}[Mittag--Leffler criterion for an inverse-limit ESS extension]
   \label{lem:synthetic-ess-coherent-tower-limit}
-  \uses{def:synthetic-ess-solution-tower,prop:lambda-quotient-restriction-coherence,thm:external-synthetic-lambda-complete}
+  \uses{def:synthetic-ess-solution-tower,prop:synthetic-ess-coherent-tower-of-surjective,prop:lambda-quotient-restriction-coherence,thm:external-synthetic-lambda-complete}
   \notready
   In the setting of
   Definition~\ref{def:synthetic-ess-solution-tower}, suppose every finite
-  solution fiber is nonempty and that the compatible maps $F_m$ are the
-  reductions of a map $F_\infty$ between $\lambda$-complete synthetic spectra.
-  There is a canonical torsor obstruction
+  solution fiber is nonempty.  There is a canonical torsor obstruction
   \[
     \omega(\operatorname{Sol}_\bullet)
       \in \varprojlim^{1}_{m} K_m
@@ -404,12 +518,32 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
       transition maps are a sufficient special case.  Then
       $\varprojlim^1_m K_m=0$.
   \end{enumerate}
-  A coherent solution tower determines the untruncated relation
+  For an untruncated conclusion, additionally require the following actual
+  representative comparison.  Let the maps $F_m$ be reductions of a map
+  $F_\infty$ between $\lambda$-complete synthetic spectra, and let
+  $R_m,E_m,\Phi_m$ be the representative groups, equation groups, and
+  equation maps defining their strict fibers.  Require the canonical
+  restriction maps to induce isomorphisms
+  \[
+    c_R:R_\infty\xrightarrow{\ \cong\ }\varprojlim_m R_m,
+    \qquad
+    c_E:E_\infty\xrightarrow{\ \cong\ }\varprojlim_m E_m,
+    \qquad
+    c_E\Phi_\infty=(\varprojlim_m\Phi_m)c_R,
+  \]
+  carrying the actual untruncated equation-label triple to the compatible
+  finite equation-label triples.  These are comparisons of the actual
+  filtered source, target, and map, including their fixed cycle labels.
+  Under these additional hypotheses, a coherent solution tower determines
+  the untruncated relation
   \[
     d_n^{F_\infty}(x_\infty)=y_\infty
   \]
-  in the complete target coset.  Conversely, every untruncated representative
-  solution restricts to a coherent finite tower.
+  in the complete target coset, and every untruncated representative
+  solution restricts to a coherent finite tower.  Constructing these
+  comparisons from the actual $\lambda$-complete synthetic model remains
+  a separate open obligation; $\lambda$-completeness alone is not asserted
+  here to provide them.
 \end{lemma}
 
 \begin{proof}
@@ -417,16 +551,26 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   chosen point and the restriction of the next one form the usual cocycle for
   the inverse system $(K_m)$; changing the choices changes it by a coboundary.
   Its class is $\omega$, and a coboundary correction makes the chosen points
-  coherent exactly when $\omega=0$.  Surjective lifting constructs such a
-  tower recursively.  The Mittag--Leffler hypothesis gives
+  coherent exactly when $\omega=0$.  Under explicit surjectivity,
+  Proposition~\ref{prop:synthetic-ess-coherent-tower-of-surjective}
+  constructs such a tower from one initial solution.  The
+  Mittag--Leffler hypothesis gives
   $\varprojlim^1K_m=0$ and hence the same conclusion.
 
-  At the representative-space level, the solution equation is a homotopy fiber
-  of the filtered two-term-complex map, and homotopy limits preserve that
-  fiber.  The $\lambda$-adic equivalences identify the limit source, target,
-  map, and shorter-image corrections with their untruncated counterparts.
-  Thus a coherent finite solution is exactly an $F_\infty$ solution; restriction
-  proves the converse.
+  Given the stated comparisons, apply $c_R^{-1}$ to the compatible
+  representative sequence.  The commuting equation diagram and the
+  injectivity of $c_E$ imply that this representative has exactly the
+  untruncated equation-label triple.  Conversely, the canonical
+  restrictions carry an untruncated solution to a coherent tower.
+
+  The present Lean fibers are sets of pairs in abelian groups; they have
+  not been identified with homotopy fibers of mapping spaces.  Preservation
+  of homotopy fibers by homotopy limits therefore does not construct the
+  required comparisons for these definitions.  Deriving the displayed
+  isomorphisms, their equation diagram, and their label compatibility from
+  the actual $\lambda$-adic completeness equivalences remains open.
+  The torsor calculation alone does not prove that model comparison or
+  the untruncated extension.
 \end{proof}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1025-1048, Proposition prop:9770ae6e.
@@ -668,12 +812,14 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % deliberately stated without assuming that the E_infinity extension exists.
 \begin{proposition}[Hopf crossing-obstruction exclusion]
   \label{evidence:hopf-crossing-obstruction-exclusion}
-  \uses{def:page-extension-crossing,prop:page-extension-loss-certificate,thm:external-adams-one-line,def:ss-elementwise-page-presentation,def:ss-cycle-boundary-survival,def:external-evidence,evidence:normalized-hopf-detection}
+  \uses{def:page-extension-crossing,def:finite-page-extension-nonliftable-crossing,thm:external-adams-one-line,def:ss-elementwise-page-presentation,def:ss-cycle-boundary-survival,def:external-evidence,evidence:normalized-hopf-detection}
   \notready
   For the candidate Hopf relation of length two from
   $h_0h_4^2$ to $h_0p$, a finite evidence record enumerates every
   degree-allowed crossing tuple and every tuple satisfying the
-  page-loss-certificate bounds between $E_3$ and any finite page.  The list is
+  nonliftable-crossing bounds of
+  Definition~\ref{def:finite-page-extension-nonliftable-crossing} between
+  $E_3$ and any finite page.  The list is
   empty.  A separate part enumerates every permanent source and target in the
   same forced bidegrees and excludes every actual shorter
   $(\nu_{\mathrm{Hopf}},E_\infty)$-extension; this is not inferred from the
@@ -705,7 +851,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 
 \begin{proof}
   Enumerate the finitely many integers $a,a',b$ allowed by the crossing and
-  loss-certificate inequalities and then enumerate the Ext groups in their
+  nonliftable-crossing inequalities and then enumerate the Ext groups in their
   forced source and target bidegrees.  Intersect the same finite bidegree lists
   with $Z_\infty$ to obtain the independent untruncated-candidate list.  The
   stored equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$ identifies, on every
@@ -821,9 +967,9 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \end{proposition}
 
 \begin{proof}
-  This is the essential untruncated relation proved by the page-stretch
-  regression.  Its coherent inverse-limit construction supplies the relation,
-  and the independent nonzero target-coset clause supplies essentiality.
+  This is the intended conclusion of the page-stretch regression.
+  Its untruncated lifting argument remains to be completed; after existence
+  is proved, the independent nonzero target-coset clause gives essentiality.
 \end{proof}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1391-1433, Example exam:extonEn(4).
@@ -1309,8 +1455,9 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   its obstruction is the class of $((x,y,0),a)$.  That class is zero
   exactly when there is a strict solution $b$ with labels $(x,y)$ and
   $\rho_R(b)=a$.  No nonemptiness of the later fiber is assumed.
-  This criterion concerns that particular representative pair $a$; it is
-  not yet the paper's first-obstruction tuple or a no-crossing criterion.
+  This criterion concerns that particular representative pair $a$.
+  The paper's later-relation conclusion has a different quantifier; this
+  cokernel criterion does not imply a no-crossing criterion.
 \end{lemma}
 \begin{proof}
   \leanok
@@ -1319,240 +1466,230 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   restriction.  Conversely, any such solution supplies the required preimage.
 \end{proof}
 
-% PROOF-SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1981-2068, proof of Proposition
-% prop:dec738d3; project exact-obstruction reformulation of the representative
-% lifting calculation needed for the later-page converse.
-\begin{lemma}[Exact obstruction for finite page-extension restriction]
-  \label{lem:page-extension-restriction-exact-obstruction}
-  \uses{def:page-extension,def:page-extension-coset,def:page-extension-crossing,def:synthetic-ess-solution-tower,lem:strict-solution-cokernel-obstruction,prop:lambda-quotient-restriction-coherence,cor:fess-map-of-stable-pages,prop:lambda-rho-ess-only-d0,prop:fextension-inessential-iff-higher}
-  \notready
-  Let $2\le r'<r<\infty$, let
-  $e(f)\le n\le r'-2+e(f)$, and suppose
-  \[
-    x\in Z_{r-1}^{s,t}(X),\qquad
-    y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y).
-  \]
-  Write $\operatorname{Sol}_{r}^{n}(x,y)$ and
-  $\operatorname{Sol}_{r'}^{n}(x,y)$ for the representative solution fibers
-  of Proposition~\ref{prop:strict-ess-fiber-page-relation} for
-  $\widehat f_{r-1}$ and $\widehat f_{r'-1}$.  Reduction defines a restriction
-  map and a pointed obstruction sequence
-  \[
-    \operatorname{Sol}_{r}^{n}(x,y)
-      \xrightarrow{\ \rho_*\ }
-    \operatorname{Sol}_{r'}^{n}(x,y)
-      \xrightarrow{\ \operatorname{ob}_{r,r'}\ }
-    \operatorname{Ob}_{r,r'}^{n}(x,y).
-  \]
-  Here $\operatorname{Ob}_{r,r'}^{n}(x,y)$ is the cokernel of restriction on
-  the groups of representative equations after the target is divided by its
-  complete shorter-image coset.  The sequence is exact in the pointed sense:
-  for every earlier-page solution $u$, the equality
-  \[
-    \operatorname{ob}_{r,r'}(u)=0
-  \]
-  holds exactly when $u\in\operatorname{im}(\rho_*)$.
+\begin{lemma}[Surjectivity on strict fibers and their difference groups]
+  \label{lem:strict-solution-restriction-surjectivity}
+  \uses{def:strict-ess-representative-fiber,def:filtered-chain-map,lem:strict-solution-cokernel-obstruction}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_displacement,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_surjective_iff_differences_surjective,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.forall_obstruction_eq_zero_iff_surjective,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.forall_obstruction_eq_zero_iff_differences_surjective}
+  \leanok
+  Let $f:C\to D$ be a filtered chain map and fix source and target
+  labels for its actual strict solution fibers.  Restriction is surjective
+  on these fibers if and only if the specified lifting obstruction vanishes
+  for every earlier solution.  This equivalence needs no nonemptiness
+  assumption.
 
-  Every nonzero obstruction has a representative with
-  $0<a'\le n-e(f)$, $0\le b\le n-a'-e(f)$, and classes
+  If a later solution $a$ is specified, surjectivity on the strict fibers is
+  also equivalent to surjectivity of the actual induced homomorphism
   \[
-    x'\in Z_{r'-1-a'}^{s+a',t+a'}(X)
-       \setminus Z_{r-1-a'}^{s+a',t+a'}(X),
-    \qquad
+    K_C=\ker\Phi_C\longrightarrow K_D=\ker\Phi_D.
+  \]
+  In particular, existence of one later solution does not establish either
+  surjectivity claim.  The theorem reduces the remaining lifting obligation
+  to a concrete homomorphism on the homogeneous solution groups.
+\end{lemma}
+\begin{proof}
+  \leanok
+  The first equivalence is the cokernel zero criterion applied to every
+  earlier solution.  Relative to $a$ and its restriction, the coordinate
+  equivalences identify a solution with its displacement from the chosen
+  basepoint.  Restriction preserves displacements and translations, so
+  lifting all solutions is equivalent to lifting all displacements.
+\end{proof}
+
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1437-1441,
+% Definition def:41d51149; 1515-1536, Proposition prop:cross-f-Er; and
+% 1981-2081, Proposition prop:dec738d3 and Corollary cor:dfc6043e.
+% This definition includes b=0 and uses the larger ordinary boundary cutoff.
+\begin{definition}[Finite nonliftable crossing candidate]
+  \label{def:finite-page-extension-nonliftable-crossing}
+  \uses{def:page-extension,def:page-extension-crossing,def:page-extension-coset}
+  \lean{KIP126.Challenge2.FinitePageExtensionNonliftableCrossing}
+  \leanok
+  Fix a normalized family $P$, finite pages $r',r$, and integers $n,s,t$.
+  A nonliftable crossing candidate consists of natural numbers $a,b$ with
+  \[
+    0<a\le r'-2,\qquad 0\le b\le n-a-e(f),
+  \]
+  classes
+  \[
+    x'\in Z_{r'-1-a}^{s+a,t+a}(X)
+       \setminus Z_{r-1-a}^{s+a,t+a}(X),\qquad
     y'\in Z_{r'-1-n+b+e(f)}^{s+n-b,t+n-b}(Y),
   \]
-  for which
+  and an actual essential shorter extension in the same family,
   \[
-    d_{n-a'-b}^{\widehat f_{r'-1}}(\lambda^{a'}x')
-       =\lambda^{n-b-e(f)}y'.
+    d_{n-a-b}^{f,E_{r'-a}}(x')=y',\qquad
+    y'\notin B_{1+n-b-e(f)}^{s+n-b,t+n-b}(Y).
   \]
-  This is a shorter essential contributor, and its target class is nonzero in
-  the complete target coset measuring the discrepancy.  Consequently, if no
-  such tuple exists, $\rho_*$ is surjective.  This is a statement about lifting
-  representative solutions, not merely naturality of their page-level
-  differentials.
+  The last exclusion is the larger ordinary boundary cutoff from the
+  crossing definition; essentiality alone does not supply it.
+  The source and target cycle conditions are those of the actual shorter
+  extension witness.  The bound on $b$ also gives $a\le n-e(f)$.
 
-  The canonical Lean development currently provides the strict-fiber
-  cokernel criterion of Lemma~\ref{lem:strict-solution-cokernel-obstruction}
-  and the actual $\rho$ restriction interfaces.  Identifying that cokernel
-  calculation with the complete target-coset presentation here, and producing
-  the displayed nonzero-obstruction tuple, remain unproved.  The generic
-  zero criterion alone does not establish this lemma.
-\end{lemma}
+  This predicate does not relate $y'$ to a chosen original target $y$.
+  It enumerates all candidates in these degrees and is used only through
+  their exclusion.  It is not an equivalence characterizing loss of
+  essentiality, and does not describe the cokernel of a raw strict-solution
+  restriction.  The project includes $b=0$ as well as $b>0$: the first
+  branch of the printed proposition allows $b=0$, whereas the printed
+  corollary excludes only $b>0$.
+\end{definition}
 
-\begin{proof}
-  Represent an earlier solution by a filtered source lift together with its
-  equality in the complete target coset.  Restrict the two-term filtered
-  complexes for $\widehat f_{r-1}$ and $\widehat f_{r'-1}$.  Since the vertical
-  $\rho$-ESS has only $d_0$, failure to lift this representative equation is
-  exactly a class in the displayed cokernel; this defines
-  $\operatorname{ob}_{r,r'}$.
-  If that class is zero, alter the chosen equation by a restricted shorter
-  correction and lift both sides, producing an element of
-  $\operatorname{Sol}_{r}^{n}(x,y)$.  Restriction proves the reverse
-  implication, and hence pointed exactness.
-
-  For a nonzero obstruction, expand its target correction as a finite sum of
-  shorter ESS images and choose a summand of least extension length that does
-  not lift.  Replace an inessential summand by the higher-filtration essential
-  contributor supplied by
-  Proposition~\ref{prop:fextension-inessential-iff-higher}.  Length strictly
-  decreases, so this process terminates.  The terminal source lifts at page
-  $r'$ but not at page $r$, giving the displayed cycle-set difference.
-  Filtration and weight preservation give the bounds on $a',b$ and the type of
-  $y'$; minimality makes its target nonzero in the complete discrepancy coset.
-\end{proof}
-
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1981-2068, Proposition prop:dec738d3, corrected second part.
-\begin{proposition}[Certificate for loss of essentiality on an earlier page]
-  \label{prop:page-extension-loss-certificate}
-  \uses{prop:page-extension-restrict,def:page-extension-crossing,def:page-extension-coset}
-  \notready
-  Suppose an essential $(f,E_r)$ extension of length $n$ becomes inessential
-  on $E_{r'}$, where $2\le r'<r$ and
-  $e(f)\le n\le r'-2+e(f)$.  Then there exist
-  $0<a'\le n-e(f)$ and
-  $0\le b\le n-a'-e(f)$, a source
+\begin{definition}[Finite page-extension stretching law]
+  \label{def:finite-page-extension-stretching-law}
+  \uses{def:finite-page-extension-nonliftable-crossing,def:page-extension}
+  \lean{KIP126.Challenge2.FinitePageExtensionStretchingLaw}
+  \leanok
+  A normalized family $P$ satisfies the finite stretching law if, for every
   \[
-    x'\in Z_{r'-1-a'}^{s+a',t+a'}(X)
-      \setminus Z_{r-1-a'}^{s+a',t+a'}(X),
+    2\le r'\le r<\infty,\qquad e(f)\le n\le r'-2+e(f),
   \]
-  and a typed target
-  $y'\in Z_{r'-1-n+b+e(f)}^{s+n-b,t+n-b}(Y)$, nonzero in the complete target
-  coset, such that
-  \[
-    d_{n-a'-b}^{\widehat f_{r'-1}}(\lambda^{a'}x')
-       =\lambda^{n-b-e(f)}y'.
-  \]
-  Its target coset is one of the shorter images making the restricted target
-  inessential.  This formulation supplies the ranges and target type omitted
-  in the printed Proposition 6.20.
-\end{proposition}
-
-\begin{proof}
-  Expand inessentiality in the earlier $\widehat f$-ESS and choose a shortest
-  essential contributor.  If its source does not lift under $\rho$, it has the
-  displayed cycle-set difference.  Otherwise lift it and replace it by the
-  strictly shorter essential contributor responsible for the discrepancy.
-  Finite descent reaches a nonliftable source.  Degree preservation fixes the
-  target group and bounds $b$; essentiality puts $y'$ outside the complete
-  target indeterminacy.
-\end{proof}
-
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1981-2081, the first-obstruction implication used to pass from Proposition prop:dec738d3 to Corollary cor:dfc6043e.
-\begin{lemma}[First obstruction to lifting a page extension]
-  \label{lem:page-extension-first-obstruction}
-  \uses{def:page-extension,def:page-extension-coset,def:synthetic-ess-solution-tower,lem:page-extension-restriction-exact-obstruction}
-  \notready
-  Let $2\le r'<r<\infty$ and
-  $e(f)\le n\le r'-2+e(f)$.  Suppose
-
-  \[
-    x\in Z_{r-1}^{s,t}(X),\qquad
-    y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y),\qquad
-    d_n^{f,E_{r'}}(x)=y.
-  \]
-  If the same relation $d_n^{f,E_r}(x)=y$ does not hold, then there are
-  $0<a'\le n-e(f)$, $0\le b\le n-a'-e(f)$, and
-  \[
-    x'\in Z_{r'-1-a'}^{s+a',t+a'}(X)
-       \setminus Z_{r-1-a'}^{s+a',t+a'}(X),
-    \qquad
-    y'\in Z_{r'-1-n+b+e(f)}^{s+n-b,t+n-b}(Y),
-  \]
-  such that
-  \[
-    d_{n-a'-b}^{\widehat f_{r'-1}}(\lambda^{a'}x')
-       =\lambda^{n-b-e(f)}y'.
-  \]
-  The shorter contributor is essential and its target is nonzero in the
-  complete target coset.  Thus failure of a finite lift produces the full
-  obstruction tuple directly from the representative-restriction sequence.
-\end{lemma}
-
-\begin{proof}
-  The $E_{r'}$ relation makes
-  $\operatorname{Sol}_{r'}^n(x,y)$ nonempty; choose a solution $u$.  If $u$
-  lay in the image of
-  $\operatorname{Sol}_{r}^n(x,y)\to
-  \operatorname{Sol}_{r'}^n(x,y)$, its lift would witness the asserted
-  $E_r$ relation.  Hence its exact obstruction is nonzero.  Apply
-  Lemma~\ref{lem:page-extension-restriction-exact-obstruction}; its nonzero
-  obstruction representative is precisely the displayed tuple.
-\end{proof}
-
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2074-2081, Corollary cor:dfc6043e; the explicit
-% inverse-limit obstruction hypothesis is a project correction for r=infinity.
-\begin{corollary}[Page-extension stretching]
-  \label{cor:page-extension-stretch}
-  \uses{prop:page-extension-loss-certificate,lem:page-extension-first-obstruction,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
-  \notready
-  Let $r'\le r\le\infty$, suppose
-  $e(f)\le n\le r'-2+e(f)$ and $d_n^{f,E_{r'}}(x)=y$, and suppose $x$
-  and $y$ have the later-page types required by
-  Definition~\ref{def:page-extension}: for finite $r$,
+  and actual later-page labels
   \[
     x\in Z_{r-1}^{s,t}(X),\qquad
     y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y),
   \]
-  while for $r=\infty$ both are permanent representatives.  If no tuple satisfying the loss-certificate conditions of
-  Proposition~\ref{prop:page-extension-loss-certificate} exists between
-  $r'$ and any finite page $q\le r$, then $d_n^{f,E_r}(x)=y$.
-  When $r=\infty$, additionally assume that the finite representative-solution
-  tower has vanishing torsor obstruction
-  $\omega(\operatorname{Sol}_\bullet)$.  It is enough to supply a coherent
-  solution tower, to prove every restriction on solution fibers surjective, or
-  to verify the Mittag--Leffler condition of
-  Lemma~\ref{lem:synthetic-ess-coherent-tower-limit}.
-  No complete canonical Lean declaration for stretching is linked yet.
-  Actual strict solution fibers, their restrictions under the specified
-  filtration and label comparisons, and the generic cokernel lift criterion
-  are now defined.  The coherent-solution type for fixed permanent labels
-  and all quotients longer than $n-e(f)$ is also defined, without a chosen
-  member.  The first-obstruction tuple, the required model comparison
-  witnesses, existence of coherent solutions, and the coherent-limit
-  comparison still remain.
-  The retired free-operations statement did not express this conclusion.
-\end{corollary}
+  the earlier relation $d_n^{f,E_{r'}}(x)=y$ and the absence of a candidate
+  from Definition~\ref{def:finite-page-extension-nonliftable-crossing}
+  imply $d_n^{f,E_r}(x)=y$.
+  This is the precise proposition to deliver for the chosen model; defining
+  it does not prove that an arbitrary normalized family satisfies it.
+  Its later-page target hypothesis and its exclusion of $b=0$ candidates
+  make the project statement more restrictive than printed Corollary 6.21.
+  The conclusion asserts existence of a later relation, without prescribing
+  the reduction of every later representative to a specified earlier pair.
+\end{definition}
 
-\begin{proof}
-  For finite $r$, this is the contrapositive of the first-obstruction lemma.
-  For $r=\infty$, the finite result makes every finite solution fiber
-  nonempty.  The additional hypothesis and
-  Lemma~\ref{lem:synthetic-ess-coherent-tower-limit} replace these unrelated
-  choices by a coherent representative tower and identify its limit with a
-  solution for $\widehat f$.  That solution is exactly
-  $d_n^{f,E_\infty}(x)=y$ in the complete target coset.
-\end{proof}
-
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2084-2099, Example exam:stretchext; the solution-
-% tower assertion makes explicit the representative compatibility used there.
-\begin{proposition}[Stretching the Hopf-map extension to $E_\infty$]
-  \label{prop:page-stretch-regression}
-  \uses{prop:hopf-e3-page-extension,evidence:hopf-crossing-obstruction-exclusion,cor:page-extension-stretch,def:synthetic-ess-solution-tower,lem:page-extension-restriction-exact-obstruction,lem:synthetic-ess-coherent-tower-limit}
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1981-2068,
+% Proposition prop:dec738d3; necessary-candidate direction only, with the
+% shorter-page interpretation from Proposition prop:cross-f-Er.
+\begin{proposition}[Certificate for loss of essentiality on an earlier page]
+  \label{prop:page-extension-loss-certificate}
+  \uses{prop:page-extension-restrict,def:finite-page-extension-nonliftable-crossing,prop:page-crossing-iff-synthetic-crossing}
   \notready
-  The $E_3$ extension
-  $d_2^{\nu_{\mathrm{Hopf}},E_3}(h_0h_4^2)=h_0p$ has no loss certificate.
-  Its finite representative-solution tower has surjective restriction maps,
-  and therefore vanishing torsor obstruction.  Consequently it stretches to
-  the essential extension
-  $d_2^{\nu_{\mathrm{Hopf}},E_\infty}(h_0h_4^2)=h_0p$.
+  For the normalized family of the chosen synthetic model, suppose an
+  essential $(f,E_r)$ extension of length $n$, with source degree $(s,t)$,
+  becomes inessential on $E_{r'}$, where
+  \[
+    2\le r'<r<\infty,\qquad e(f)\le n\le r'-2+e(f).
+  \]
+  Then there is a nonliftable crossing candidate from
+  Definition~\ref{def:finite-page-extension-nonliftable-crossing}.
+  This is only a necessary-candidate conclusion.  An arbitrary candidate
+  in those degrees is not asserted to cause loss of essentiality of the
+  chosen original extension.
 \end{proposition}
 
 \begin{proof}
-  The independent finite Hopf obstruction certificate exhausts the only
-  degree-allowed shorter extension and excludes it by the Ext product relation
-  at every finite quotient; its statement does not presuppose an
-  $E_\infty$ relation.  It also supplies independently that
-  $h_0h_4^2$ and $h_0p$ are permanent representatives, so both sides have the
-  later-page types required by the stretching corollary.  Apply the finite
-  exact-obstruction lemma to each adjacent pair:
-  every representative solution lifts, so the solution-fiber restriction maps
-  are surjective and the inverse-limit obstruction vanishes.  The source is a
-  permanent cycle in the required range.  Apply page-extension stretching and
-  the coherent-tower limit criterion.  Finally, the certificate's nonzero
-  complete target-coset clause shows that the resulting length-two relation is
-  essential.
+  The planned proof follows the printed finite descent through essential
+  shorter extensions.  The first branch gives a nonliftable source with
+  $b=0$; later branches may give $b>0$.  The $\lambda$ comparison converts
+  the essential contribution in the fixed quotient to an actual extension
+  on page $r'-a$.  This conversion must retain the larger ordinary
+  boundary exclusion in
+  Proposition~\ref{prop:page-crossing-iff-synthetic-crossing}.
+  The model comparisons and finite descent still require canonical Lean
+  proofs.  No condition identifying the arbitrary candidate target with
+  the original target has been added to the candidate definition.
+\end{proof}
+
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1981-2081,
+% Proposition prop:dec738d3 and Corollary cor:dfc6043e; project finite,
+% later-typed formulation with the stronger b>=0 crossing exclusion.
+\begin{lemma}[First obstruction to a later page relation]
+  \label{lem:page-extension-first-obstruction}
+  \uses{def:finite-page-extension-nonliftable-crossing,def:finite-page-extension-stretching-law,prop:page-extension-loss-certificate,prop:page-crossing-iff-synthetic-crossing}
+  \notready
+  For the normalized family of the chosen synthetic model, take the ranges
+  and later-page labels of
+  Definition~\ref{def:finite-page-extension-stretching-law}.  If
+  $d_n^{f,E_{r'}}(x)=y$ holds but $d_n^{f,E_r}(x)=y$ does not, then there
+  is a candidate from
+  Definition~\ref{def:finite-page-extension-nonliftable-crossing}.
+  This is a relation-level claim.  It neither asserts that every failure
+  to lift a specified strict solution produces such a candidate nor
+  identifies the strict-solution cokernel with the candidate list.
+\end{lemma}
+
+\begin{proof}
+  The required argument is the finite descent through shorter essential
+  extensions in the actual $\widehat f$-ESS, using the $\rho$ and
+  $\lambda$ comparison maps.  The comparison with a shorter page must
+  preserve the larger ordinary boundary exclusion, as in
+  Proposition~\ref{prop:page-crossing-iff-synthetic-crossing}.
+  The canonical proof of this relation-level implication remains to be
+  supplied.  Proposition 6.20 discusses loss of essentiality of a known
+  later relation, and the printed Corollary 6.21 states existence of a
+  later relation; their passage must be checked with the stated ranges.
+  The generic cokernel criterion does not prove this step, and no
+  surjectivity assertion about raw strict representatives is used here.
+\end{proof}
+
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2074-2081,
+% Corollary cor:dfc6043e.  The infinite case additionally requires the
+% project coherent-tower and untruncated comparison obligations below.
+\begin{corollary}[Page-extension stretching]
+  \label{cor:page-extension-stretch}
+  \uses{def:finite-page-extension-stretching-law,lem:page-extension-first-obstruction,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
+  \notready
+  The normalized family of the chosen synthetic model satisfies the finite
+  stretching law of
+  Definition~\ref{def:finite-page-extension-stretching-law}.
+  For permanent labels $x,y$, an earlier extension in the same range
+  therefore yields the corresponding relation on every later finite page
+  if all the nonliftable crossing candidates are excluded.
+
+  For the untruncated conclusion $d_n^{f,E_\infty}(x)=y$, the finite
+  strict solutions must additionally admit a coherent tower and the
+  actual untruncated comparison of
+  Lemma~\ref{lem:synthetic-ess-coherent-tower-limit} must be established
+  for the model.  Explicit surjectivity of the actual adjacent restriction
+  maps is one sufficient condition for constructing such a tower from an
+  initial solution.  Exclusion of the finite candidates is not asserted
+  to imply this surjectivity.
+
+  The two root predicates now fix the finite candidate list and the
+  finite law, but the law's proof and its model comparison witnesses
+  remain outstanding.  The untruncated comparison is a further proof
+  obligation.  The retired free-operations statement expressed none of
+  these conclusions.
+\end{corollary}
+
+\begin{proof}
+  The finite law is the contrapositive of the first-obstruction lemma,
+  whose model proof remains open.  The resulting finite relations give
+  nonempty strict solution fibers.  To pass to $E_\infty$, construct a
+  coherent tower using a separately justified compatibility argument and
+  then prove that its limit gives an untruncated solution for $\widehat f$.
+  Nonemptiness of each finite fiber alone completes neither step.
+\end{proof}
+
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2084-2099,
+% Example exam:stretchext.  The printed example does not assert
+% surjectivity of restrictions on all raw strict representative pairs.
+\begin{proposition}[Stretching the Hopf-map extension to $E_\infty$]
+  \label{prop:page-stretch-regression}
+  \uses{prop:hopf-e3-page-extension,evidence:hopf-crossing-obstruction-exclusion,cor:page-extension-stretch,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
+  \notready
+  The $E_3$ extension
+  $d_2^{\nu_{\mathrm{Hopf}},E_3}(h_0h_4^2)=h_0p$ stretches to the
+  essential extension
+  $d_2^{\nu_{\mathrm{Hopf}},E_\infty}(h_0h_4^2)=h_0p$.
+  Its finite crossing exclusion supplies no assertion that every specified
+  strict representative pair lifts between adjacent quotients.
+\end{proposition}
+
+\begin{proof}
+  The independent finite Hopf certificate excludes the degree-allowed
+  crossing candidates.  It also supplies that $h_0h_4^2$ and $h_0p$ are
+  permanent representatives, giving both later-page label types.
+  Once the finite stretching law is proved, these facts give an extension
+  on every finite page.  To obtain the displayed untruncated conclusion,
+  a coherent tower must still be constructed and compared to an actual
+  untruncated solution, or an independent untruncated lifting argument
+  must be supplied.  The finite candidate exclusion alone does not fill
+  this gap.  Finally, the certificate's nonzero complete target-coset
+  clause makes the resulting length-two relation essential, once its
+  existence is established.
 \end{proof}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1398-1405 and 929-961; project packaging of the

@@ -7,7 +7,6 @@ universe u v
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
   {F : SyntheticAdamsFamily Syn} {X Y : Syn} {g : X ⟶ Y}
 
-set_option maxHeartbeats 2000000
 set_option backward.isDefEq.respectTransparency false
 
 /-- The actual synthetic ESS relation is exactly a nonempty fiber of its

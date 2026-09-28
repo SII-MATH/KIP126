@@ -1,3 +1,7 @@
+import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
+import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
+import KIP126.Def.Algebra.InverseSequence.Proofs
 import KIP126.Def.Algebra.Coefficients.Data
 import KIP126.Def.Algebra.Completion.Proofs
 import KIP126.Def.Algebra.Truncation.Proofs

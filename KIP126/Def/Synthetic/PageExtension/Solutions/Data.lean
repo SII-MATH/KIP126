@@ -1,13 +1,13 @@
 import KIP126.Def.Synthetic.PageExtension.Family.Data
 import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Data
 import KIP126.Def.Synthetic.PageExtension.Relation.Data
+import KIP126.Def.Synthetic.ExtensionSS.Solutions.Data
 
 /-! Representative fibers for the same actual normalized ESS and its fixed
 classical labels. These are concrete subtypes of pairs of homotopy lifts. -/
 
 namespace KIP126.Synthetic.PageExtension
 
-set_option maxHeartbeats 2000000
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
 open KIP126.Synthetic.Context KIP126.Synthetic.SpectralSequence
@@ -29,9 +29,8 @@ noncomputable def finiteTargetClass (P : NormalizedPageFamily H N F f)
     (y : PageRepresentatives.cycles H Y (q - P.lambdaExponent n : ℕ) (s + n, t + n)) :
     ModuleCat.of ℤ (ULift.{v} ℤ) ⟶
       ((P.finite q hq).complex (P.degree s t)).assocGraded (s + n) 0 :=
-  elementMap (P.finiteTargetMap q hq n s t hn hkq y) ≫
-    eqToHom (congrArg (fun p => (((P.finite q hq).ess (P.degree s t)).ssData p).V)
-      ((P.finite q hq).target_index (P.degree s t) n s))
+  (P.finite q hq).targetClass (P.degree s t) n s
+    (elementMap (P.finiteTargetMap q hq n s t hn hkq y))
 
 /-- Actual finite representative solutions with both classical labels fixed. -/
 def FiniteSolutions (P : NormalizedPageFamily H N F f)
@@ -48,9 +47,8 @@ noncomputable def infiniteTargetClass (P : NormalizedPageFamily H N F f)
     (y : PageRepresentatives.permanentCycles H Y (s + n, t + n)) :
     ModuleCat.of ℤ (ULift.{v} ℤ) ⟶
       (P.infinite.complex (P.degree s t)).assocGraded (s + n) 0 :=
-  elementMap (P.infiniteTargetMap n s t hn y) ≫
-    eqToHom (congrArg (fun p => ((P.infinite.ess (P.degree s t)).ssData p).V)
-      (P.infinite.target_index (P.degree s t) n s))
+  P.infinite.targetClass (P.degree s t) n s
+    (elementMap (P.infiniteTargetMap n s t hn y))
 
 /-- Actual solutions in the untruncated normalized-map ESS. Existence is
 not inferred merely from nonemptiness of all the finite fibers. -/

@@ -6,7 +6,6 @@ import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
 
 namespace KIP126.Interface.Solution
 
-set_option maxHeartbeats 2000000
 set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

@@ -191,6 +191,64 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   adjacent compatibility equations in the coherent-solution structure.
 \end{proof}
 
+\begin{proposition}[Coherent finite solutions from surjective restrictions]
+  \label{prop:synthetic-ess-coherent-tower-of-surjective}
+  \uses{def:synthetic-ess-solution-tower}
+  \lean{KIP126.Core.InverseSequence.exists_compatible_of_surjective,KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_surjective,KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_surjective}
+  \leanok
+  Use one fixed $P,I,J$, permanent labels $x,y$, and $k=n-e(f)$ as in
+  Definition~\ref{def:synthetic-ess-solution-tower}.  Specify an actual
+  initial solution $a_0\in\operatorname{Sol}_{k+1}^n(x,y)$ and assume
+  that every actual adjacent restriction
+  \[
+    \operatorname{res}_{q+1,q}:\operatorname{Sol}_{q+1}^n(x,y)
+      \longrightarrow\operatorname{Sol}_q^n(x,y),\qquad q>k,
+  \]
+  is surjective.  Then there is a coherent solution tower whose solution
+  at $q=k+1$ is exactly $a_0$.
+  The statement does not assert those restrictions are surjective for the
+  chosen model, or recover an untruncated ESS relation.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Starting with $a_0$, recursively choose a preimage of the current solution
+  under the next surjective restriction.  The generic dependent inverse
+  sequence theorem gives both the initial-value equality and every adjacent
+  compatibility equation.  Applying it to the actual permanent-label
+  solution fibers constructs the stated coherent solution.
+\end{proof}
+
+\begin{proposition}[Actual difference-group criterion for coherent finite solutions]
+  \label{prop:synthetic-ess-coherent-tower-of-differences}
+  \uses{def:synthetic-ess-solution-tower,lem:strict-solution-restriction-surjectivity,prop:synthetic-ess-coherent-tower-of-surjective}
+  \lean{KIP126.Interface.Solution.restrictPermanentFiniteSolution_surjective_iff_differences_surjective,KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_differences_surjective}
+  \leanok
+  Keep the same $P,I,J$, permanent labels, and actual difference groups
+  $K_q=\ker\Phi_q$.  For $k<i\le j$, specify a solution in
+  $\operatorname{Sol}_j^n(x,y)$.  The actual restriction
+  $\operatorname{Sol}_j^n(x,y)\to\operatorname{Sol}_i^n(x,y)$ is
+  surjective if and only if the homogeneous restriction $K_j\to K_i$
+  induced by the same filtered $\rho$ square is surjective.  The two
+  label diagrams in $J$ identify its target labels with the fixed
+  permanent-label inclusions.
+
+  Consequently, given a specified initial solution $a_0$, nonemptiness
+  of every finite solution fiber, and surjectivity of each actual adjacent
+  homogeneous restriction $K_{q+1}\to K_q$ for $q>k$, there exists a
+  coherent tower extending $a_0$.  This supplies a concrete additional
+  condition beyond finite relation existence; no no-crossing hypothesis
+  has been used to prove homogeneous surjectivity.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Transport the generic affine restriction criterion through the actual
+  source and target label diagrams.  For each adjacent restriction, use
+  an element of the later nonempty fiber as its basepoint.  Homogeneous
+  surjectivity then implies surjectivity on the strict solution fibers.
+  The preceding proposition constructs the coherent tower while preserving
+  the specified initial solution.
+\end{proof}
+
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1009--1021 defines the quotient triangles;
 % Burklund--Xu Construction 7.7, KIP126/Main/Axiom/Literature/Sources/BurklundXu/paper.txt:3022--3035,
 % supplies the finite tower and its cofiber sequences.  Naturality and the

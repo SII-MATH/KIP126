@@ -120,8 +120,10 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   `PageExtensionRestrictionFiltration`、`PageExtensionRestrictionLabels` 明列
   实际 ρ 保滤过及经典标签的比较图，并由此构造 `restrictFiniteSolution`。
   `CoherentPageExtensionSolutions` 固定同一永久标签在各有限商上的实际解和
-  相邻限制相容性。塔的类型已定义；这两个条件的模型见证、限制的满射性、
-  相容塔的存在性及 coherent limit 比较仍未交付。
+  相邻限制相容性。`Interface/Solution/CoherentPageExtension` 已从指定初解及
+  相邻实际限制的满射性构造保留初值的相容塔。`Solutions/AffineRestriction/`
+  已证明：给定后期基点，严格解限制满射等价于实际齐次差群映射满射。
+  两个比较条件的模型见证、所需满射性和 coherent limit 比较仍未交付。
   当前 ESS 构造要求逐次数滤过有界；“无限”只指未取有限 λ 商，不表示已处理
   任意无界 Adams 滤过。一般情形还须接入 `UnboundedExtension/` 及其收敛条件。
 
@@ -138,9 +140,13 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   尚缺：δ 与同一 ν、ρ、λ 的 ESS 比较及 crossing 比较；任意 topweight
   等价不足以推出这些 law。Stretching 的真实代表元解族及限制已定义；
   `Solutions/Obstruction/` 已证明实际余核类为零当且仅当指定的早期解可以提升。
-  仍需把这个一般判据识别为论文的 first-obstruction tuple，并证明与较短
-  extension 和 crossing 的对应；无限版本保留 Blueprint 明列的 coherent tower／
-  torsor obstruction 条件，不能从各有限解非空直接推得相容无限解。
+  这个判据不等同于论文的较短 extension 障碍：论文的有限 stretching 只给出
+  后页 relation 存在，不能据此断言每个指定的早期严格解都可提升。
+  `FinitePageExtensionNonliftableCrossing` 与 `FinitePageExtensionStretchingLaw`
+  明列同一家族、两个有限页面、较短 essential extension、较大边界排除及后页
+  cycle 条件；允许 b=0 是比论文印出的 corollary 更强的排除前提。
+  该 law 的模型证明仍待完成。无限版本另需 Blueprint 明列的实际限制满射／
+  coherent tower 与 limit 比较，不能从各有限解非空直接推得相容无限解。
 
 - `am8` Moss：Toda/Massey 到内部页面检测。
   陈述：`../KIPBase/multiplicativeSS/Moss.lean` 已有 `MappingAdamsTower`、
@@ -160,8 +166,11 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   长度一的实际复合配对已构造；它是第一商页，不能冒充内部 E₂。
   `LongLayer/Boundary/` 已从实际 tensor triangle 的正合性证明两侧边界分解；
   `LongLayer/Two/` 给出长度二提升的具体障碍，并证明提升存在当且仅当该障碍为零。
-  长度二的障碍恒为零尚未证明；长度一般时也有精确的提升充要条件，
-  但所需提升和完整两侧边界相容仍未构造。
+  `CoefficientCycles/` 用实际单位三角和环的单位分裂证明：第一层边界的核
+  恰是两个单位插入的等化子，且指定系数乘法保持该核。这对任意测试对象成立。
+  `LongLayer/Two/Vanishing/` 据此证明长度二障碍全局为零并构造实际提升；
+  显式保留 tensorLeft H 的 exact／shift 结构及单位自然变换的 shift 相容。
+  长度一般时仍只有精确的提升充要条件；所需提升及完整两侧边界相容尚未构造。
   Leibniz 与收敛复合相容仍缺，故完整 Massey 关系和 Moss 陈述尚未冻结。
   右过渡的现有路线需上述条件或对应 connectivity 证明；
   braided successor 与 ordered successor 的边界也不能默认相同。
@@ -630,7 +639,6 @@ end PageExtensionTargetComparison
 
 section PageExtensionSolutions
 
-set_option maxHeartbeats 2000000
 set_option backward.isDefEq.respectTransparency false
 
 open StableHomotopy StableHomotopy.Cohomology Synthetic.Context Synthetic.SpectralSequence
@@ -760,6 +768,42 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
   {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
+
+/-- am7：有限 stretching 的较短 extension 障碍候选。
+所有标签、essential 性及较大的普通 Adams 边界来自同一个 P。
+额外要求较短源不能存活到后页所需的 cycle 层；这不是给定严格代表元
+无法提升的充要条件。这里 b 允许为零，故排除这些候选比论文
+Corollary `cor:dfc6043e` 印出的 b>0 条件更强。 -/
+def FinitePageExtensionNonliftableCrossing (P : NormalizedPageFamily H N F f)
+    (rEarlier rLater : ℕ) (n s t : ℤ) : Prop :=
+  ∃ a b : ℕ, 0 < a ∧ a ≤ rEarlier - 2 ∧
+    (b : ℤ) ≤ n - a - normalizedExponent H f ∧
+    ∃ (x' : Ambient H X (s + a, t + a))
+      (y' : Ambient H Y (s + a + (n - a - b), t + a + (n - a - b))),
+      x' ∉ cycles H X ((rLater : ℤ) - 1 - a) (s + a, t + a) ∧
+      ∃ W' : FiniteExtensionWitness P (rEarlier - a) (n - a - b)
+          (s + a) (t + a) x' y',
+        W'.Essential ∧ y' ∉ boundaries H Y
+          (1 + n - b - normalizedExponent H f)
+          (s + a + (n - a - b), t + a + (n - a - b))
+
+/-- am7：有限页 relation 的 stretching 交付命题。
+参考 MainPaper Proposition `prop:dec738d3` 及 Corollary `cor:dfc6043e`。
+本项目要求源、靶都已属于后页所需的 cycle 层，并排除上述含 b=0 的
+障碍候选；这是明确的充分条件版本，尚待模型比较及证明。
+结论只给出后页 extension 的存在，不声称任意指定的早期严格解可提升，
+也不蕴含相容解塔或未截断 extension 的存在。 -/
+def FinitePageExtensionStretchingLaw (P : NormalizedPageFamily H N F f) : Prop :=
+  ∀ (rEarlier rLater : ℕ) (n s t : ℤ)
+    (x : Ambient H X (s, t)) (y : Ambient H Y (s + n, t + n)),
+    2 ≤ rEarlier → rEarlier ≤ rLater →
+    (normalizedExponent H f : ℤ) ≤ n →
+    n ≤ (rEarlier : ℤ) - 2 + normalizedExponent H f →
+    IsCycle H X ((rLater : ℤ) - 1) (s, t) x →
+    IsCycle H Y ((rLater : ℤ) - 1 - n + normalizedExponent H f) (s + n, t + n) y →
+    FinitePageExtension P rEarlier n s t x y →
+    ¬ FinitePageExtensionNonliftableCrossing P rEarlier rLater n s t →
+    FinitePageExtension P rLater n s t x y
 
 /-- am7：MainPaper Theorem 6.1 (`thm:e73f481e`) 的准确交付命题。
 所有页面、微分、有限／无限 extension 和 crossing 均来自同一 H、P。

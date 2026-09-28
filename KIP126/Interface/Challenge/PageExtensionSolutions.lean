@@ -5,7 +5,6 @@ import KIP126.Challenge2
 
 namespace KIP126.Interface.Challenge
 
-set_option maxHeartbeats 2000000
 set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

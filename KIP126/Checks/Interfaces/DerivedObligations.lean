@@ -1,3 +1,7 @@
+import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
+import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
+import KIP126.Interface.Solution.CoherentPageExtension
 import KIP126.Def.Solution.FoundationConsequences
 import KIP126.Def.Solution.Toda
 import KIP126.Interface.Solution.InternalPages
@@ -42,7 +46,29 @@ a claim that the whole Challenge package has been constructed. -/
 
 open Lean Elab Command in
 run_cmd do
-  for name in [``KIP126.Classical.Adams.AdamsFiltrationAtLeast.hasMod2ZeroFactorization,
+  for name in [``KIP126.Classical.Adams.Moss.stageComposition_succ_comparison,
+      ``KIP126.Interface.Solution.restrictPermanentFiniteSolution_surjective_iff_differences_surjective,
+      ``KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_differences_surjective,
+      ``KIP126.Classical.Adams.Moss.coefficientPairing_precomp,
+      ``KIP126.Classical.Adams.Moss.coefficientPairing_postcomp,
+      ``KIP126.Classical.Adams.Moss.coefficientPairing_innerUnit,
+      ``KIP126.Classical.Adams.Moss.coefficientPairing_preserves_unit_equalizer,
+      ``KIP126.Classical.Adams.Moss.firstBoundary_eq_zero_iff_unit_equalizer,
+      ``KIP126.Classical.Adams.Moss.coefficientPairing_firstBoundary_eq_zero,
+      ``KIP126.Classical.Adams.Moss.layerFirstBoundary_comparison,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoProjection_firstBoundary_eq_zero,
+      ``KIP126.Classical.Adams.Moss.layerFirstBoundary_eq_zero_iff_unit_equalizer,
+      ``KIP126.Classical.Adams.Moss.layerComposition_firstBoundary_eq_zero,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction_eq_zero,
+      ``KIP126.Classical.Adams.Moss.longLayerTwoComposition_exists,
+      ``KIP126.Core.InverseSequence.exists_compatible_of_surjective,
+      ``KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_surjective,
+      ``KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_surjective,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_displacement,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_surjective_iff_differences_surjective,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.forall_obstruction_eq_zero_iff_surjective,
+      ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.forall_obstruction_eq_zero_iff_differences_surjective,
+      ``KIP126.Classical.Adams.AdamsFiltrationAtLeast.hasMod2ZeroFactorization,
       ``KIP126.Def.Solution.cobar_square_zero,
       ``KIP126.Def.Solution.adams_filtration_decomposition,
       ``KIP126.Def.Solution.todaInterface,

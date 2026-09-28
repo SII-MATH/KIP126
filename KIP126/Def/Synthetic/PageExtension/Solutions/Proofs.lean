@@ -15,7 +15,6 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
   {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
 
-set_option maxHeartbeats 2000000
 set_option backward.isDefEq.respectTransparency false
 
 theorem finiteRelation_iff_solutions (P : NormalizedPageFamily H N F f)
@@ -30,7 +29,7 @@ theorem finiteRelation_iff_solutions (P : NormalizedPageFamily H N F f)
   have hn0 : 0 ≤ n := le_trans (Int.natCast_nonneg _) hn
   obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hn0
   simpa only [NormalizedPageFamily.FiniteSolutions, NormalizedPageFamily.finiteTargetClass,
-    eqToHom_refl, Category.comp_id] using
+    SyntheticExtensionData.targetClass, eqToHom_refl, Category.comp_id, id_eq] using
     (P.finite q hq).differentialRelation_iff_solutions (P.degree s t) n s
       (elementMap (P.finiteSourceMap q hq s t x))
       (P.finiteTargetClass q hq n s t hn hkq y)
@@ -45,7 +44,7 @@ theorem infiniteRelation_iff_solutions (P : NormalizedPageFamily H N F f)
   have hn0 : 0 ≤ n := le_trans (Int.natCast_nonneg _) hn
   obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hn0
   simpa only [NormalizedPageFamily.InfiniteSolutions, NormalizedPageFamily.infiniteTargetClass,
-    eqToHom_refl, Category.comp_id] using
+    SyntheticExtensionData.targetClass, eqToHom_refl, Category.comp_id, id_eq] using
     P.infinite.differentialRelation_iff_solutions (P.degree s t) n s
       (elementMap (P.infiniteSourceMap s t x)) (P.infiniteTargetClass n s t hn y)
 
