@@ -1,3 +1,6 @@
+import KIP126.Interface.Challenge.Tmf
+import KIP126.Interface.Challenge.AdamsOneLine
+import KIP126.Interface.Challenge.Moss
 import KIP126.Interface.Challenge.FiniteCoherentPageExtension
 import KIP126.Interface.Challenge.CoherentPageExtension
 import KIP126.Interface.Challenge.Challenge2

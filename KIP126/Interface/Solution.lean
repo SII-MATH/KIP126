@@ -1,3 +1,6 @@
+import KIP126.Interface.Solution.Tmf
+import KIP126.Interface.Solution.AdamsOneLine
+import KIP126.Interface.Solution.Moss
 import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Interface.Solution.CoherentPageExtension
 import KIP126.Interface.Solution.LinProgram.Basis.Data

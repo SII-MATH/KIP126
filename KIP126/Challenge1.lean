@@ -4,6 +4,8 @@ import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
 import KIP126.Def.Synthetic.Context.Data
 import KIP126.Def.Synthetic.Localization.Recovery.Data
 import KIP126.Def.Synthetic.QuotientTower.Predicates
+import KIP126.Def.Synthetic.Completion.Predicates
+import KIP126.Def.ClassicalAdams.Completion.Predicates
 import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Data
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Predicates
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Predicates
@@ -195,8 +197,11 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
   tower 类型已经定义，但尚未构造其成员。
 - TODO：构造这些相容资料，接入 νX≃limₘ νX/λᵐ 及其与商映射、
   λ–ρ–δ triangles 的相容性；一般代数 completion 不自动给出此实例。
-- 前置缺口：尚无该 tower 的指定 coherent cone，也未定义
-  所需 homotopy-limit 比较与 E-nilpotent-complete 条件。BHS Proposition A.13
+- 陈述前置现已补齐：`SequentialHomotopyLimit` 用实际可数乘积上
+  `1-shift` 的 Milnor 三角定义序列同伦极限；`IsENilpotentComplete` 与
+  `IsLambdaComplete` 分别使用实际 Adams／λ 残余塔。
+  `LambdaAdicCompletenessInterface` 要求同一有限商塔的边界相容与实际商入射
+  构成上述同伦极限的投影；其模型见证和性质证明仍未提供。BHS Proposition A.13
   要求 X 的 E-nilpotent 完备性；不能对任意 X 无条件断言 νX 完备。
   λ 幂的任意分解已在显式 `BiShiftCoherence` 下证明，
   `QuotientRestrictions/` 已由同一 cofibMap 构造实际商限制映射及 inclusion、
@@ -216,8 +221,11 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 依赖：纯稳定同伦结果；连接内部页面检测的 Massey／Moss 桥留在 am8/am15。
 - 依赖绑定：`TensorInput.triangulated` 明确要求选定基础的三角公理，
   不能从最小 `StableHomotopyCategory` 的预三角结构静默推出。
-- 待补：其余自然性、悬移及具体 Toda 积值逐条审核。
-  这些不由已证通用 coset／juggling 自动推出。
+- 陈述补齐：`TodaNaturalityInterface` 列出前后复合、两种 absorption、
+  带符号的悬移等价和完整 shuffle；`TodaFunctorInterface` 与
+  `TodaTensorInterface` 列出 exact functor 及左右 tensor 的包含。
+  `Def/{Challenge,Solution}/Toda.lean` 已有三个同签名交付，证明暂留 `sorry`。
+  第 7 节具体 Toda 积值与不定性消失仍是 Main 推导，不加入 a13。
 - 定位：`Def/StableHomotopy/Toda/{Predicates,Proofs}.lean`；Blueprint `thm:toda-product-identities`。
 
 ### a14 — 内部目标之后的纯几何外部事实
@@ -388,6 +396,79 @@ structure TodaInterface (C : Type u) [Category.{v} C] [Preadditive C]
     StableHomotopy.Toda.Relation x f g h → h ≫ d = 0 →
       ∃ y : Y⟦(1 : ℤ)⟧ ⟶ V,
         StableHomotopy.Toda.Relation y g h d ∧ x ≫ d = (-f⟦(1 : ℤ)⟧') ≫ y
+
+
+/-- a13：自然性、suspension 和完整 shuffle 的陈述组。结论都是同一
+cone-based Toda relation 的包含或等价；不假定不定性为零。 -/
+structure TodaNaturalityInterface (C : Type u) [Category.{v} C] [Preadditive C]
+    [HasZeroObject C] [HasShift C ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor C n)] [Pretriangulated C] : Prop where
+  precompose {A X Y Z W : C} {x : X⟦(1 : ℤ)⟧ ⟶ W}
+      {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W}
+      (hx : StableHomotopy.Toda.Relation x f g h) (a : A ⟶ X) :
+      StableHomotopy.Toda.Relation (a⟦(1 : ℤ)⟧' ≫ x) (a ≫ f) g h
+  postcompose {X Y Z W V : C} {x : X⟦(1 : ℤ)⟧ ⟶ W}
+      {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W}
+      (hx : StableHomotopy.Toda.Relation x f g h) (d : W ⟶ V) :
+      StableHomotopy.Toda.Relation (x ≫ d) f g (h ≫ d)
+  absorb_first {X Y Z W V : C} {x : X⟦(1 : ℤ)⟧ ⟶ V}
+      {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W} {d : W ⟶ V}
+      (hx : StableHomotopy.Toda.Relation x (f ≫ g) h d) :
+      StableHomotopy.Toda.Relation x f (g ≫ h) d
+  absorb_last {X Y Z W V : C} {x : X⟦(1 : ℤ)⟧ ⟶ V}
+      {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W} {d : W ⟶ V}
+      (hx : StableHomotopy.Toda.Relation x f g (h ≫ d)) :
+      StableHomotopy.Toda.Relation x f (g ≫ h) d
+  shuffle_iff [IsTriangulated C] {X Y Z W V : C}
+      (f : X ⟶ Y) (g : Y ⟶ Z) (h : Z ⟶ W) (d : W ⟶ V)
+      (hfg : f ≫ g = 0) (hgh : g ≫ h = 0) (hhd : h ≫ d = 0)
+      (z : X⟦(1 : ℤ)⟧ ⟶ V) :
+      (∃ x : X⟦(1 : ℤ)⟧ ⟶ W, StableHomotopy.Toda.Relation x f g h ∧ x ≫ d = z) ↔
+        ∃ y : Y⟦(1 : ℤ)⟧ ⟶ V,
+          StableHomotopy.Toda.Relation y g h d ∧ (-f⟦(1 : ℤ)⟧') ≫ y = z
+  suspension_iff (n : ℤ) {X Y Z W : C}
+      {x : X⟦(1 : ℤ)⟧ ⟶ W} {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W} :
+      StableHomotopy.Toda.Relation
+        (n.negOnePow • ((shiftFunctorComm C (1 : ℤ) n).inv.app X ≫ x⟦n⟧'))
+        (f⟦n⟧') (g⟦n⟧') (h⟦n⟧') ↔ StableHomotopy.Toda.Relation x f g h
+
+universe u' v'
+
+/-- a13：任意指定 exact functor 的 Toda 自然性。其 CommShift 与 exactness
+相对同一个 F；没有声称任意函子精确，也不将包含加强为等式。 -/
+structure TodaFunctorInterface {C : Type u} [Category.{v} C] [Preadditive C]
+    [HasZeroObject C] [HasShift C ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor C n)] [Pretriangulated C]
+    {D : Type u'} [Category.{v'} D] [Preadditive D]
+    [HasZeroObject D] [HasShift D ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor D n)] [Pretriangulated D]
+    (F : C ⥤ D) [F.CommShift ℤ] [F.IsTriangulated] : Prop where
+  map
+      {X Y Z W : C} {x : X⟦(1 : ℤ)⟧ ⟶ W}
+      {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W}
+      (hx : StableHomotopy.Toda.Relation x f g h) :
+      StableHomotopy.Toda.Relation ((F.commShiftIso (1 : ℤ)).inv.app X ≫ F.map x)
+        (F.map f) (F.map g) (F.map h)
+
+/-- a13：左右 tensor 的 Toda 乘积包含，使用实际 tensor 的悬移比较。
+三相邻复合的 shuffle 已在 TodaNaturalityInterface 独立列出。 -/
+structure TodaTensorInterface (C : Type u) [Category.{v} C] [Preadditive C]
+    [HasZeroObject C] [HasShift C ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor C n)] [Pretriangulated C] [MonoidalCategory C] : Prop where
+  tensor_right (V : C) [(tensorRight V).CommShift ℤ]
+      [(tensorRight V).IsTriangulated]
+      {X Y Z W : C} {x : X⟦(1 : ℤ)⟧ ⟶ W}
+      {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W}
+      (hx : StableHomotopy.Toda.Relation x f g h) :
+      StableHomotopy.Toda.Relation (((tensorRight V).commShiftIso (1 : ℤ)).inv.app X ≫ (x ▷ V))
+        (f ▷ V) (g ▷ V) (h ▷ V)
+  tensor_left (V : C) [(tensorLeft V).CommShift ℤ]
+      [(tensorLeft V).IsTriangulated]
+      {X Y Z W : C} {x : X⟦(1 : ℤ)⟧ ⟶ W}
+      {f : X ⟶ Y} {g : Y ⟶ Z} {h : Z ⟶ W}
+      (hx : StableHomotopy.Toda.Relation x f g h) :
+      StableHomotopy.Toda.Relation (((tensorLeft V).commShiftIso (1 : ℤ)).inv.app X ≫ (V ◁ x))
+        (V ◁ f) (V ◁ g) (V ◁ h)
 
 end Challenge1
 
@@ -620,6 +701,22 @@ structure FiniteQuotientTowerInterface [HasFunctorialCofiber (C := Syn)]
   tower : ∀ X : C, FiniteLambdaQuotientTower (N.functor.obj X)
   naturality : ∀ {X Y : C} (f : X ⟶ Y),
     FiniteLambdaQuotientTower.Hom (tower X) (tower Y) (N.functor.map f)
+
+/-- a12：BHS Proposition A.13 (`lemm:easy-e-compton`) 的完备性交付。
+选定的同一 λ–ρ–δ 塔既满足映射自然性，也满足实际 cofiber boundary 方块。
+`completion` 的各投影固定为商映射，Milnor 三角保留 derived-limit 信息；
+没有把同伦极限改成 Ho 范畴的普通极限，也不对任意 X 无条件断言完备。
+这里只陈述所需交付，所有模型构造及性质证明均是待完成义务。 -/
+structure LambdaAdicCompletenessInterface [HasFunctorialCofiber (C := Syn)]
+    [CategoryTheory.Limits.HasProductsOfShape ℕ C]
+    [CategoryTheory.Limits.HasProductsOfShape ℕ Syn]
+    (H : Mod2EilenbergMacLane (C := C)) (N : NuFunctorData C Syn)
+    extends FiniteQuotientTowerInterface N where
+  residual_compatible : ∀ X : C, (tower X).ResidualCompatible
+  complete_iff : ∀ X : C,
+    Classical.Adams.IsENilpotentComplete H.unit X ↔ IsLambdaComplete (N.functor.obj X)
+  completion : ∀ X : C,
+    Classical.Adams.IsENilpotentComplete H.unit X → LambdaAdicCompletion (tower X)
 
 end Synthetic
 

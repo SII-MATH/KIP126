@@ -1,3 +1,11 @@
+import KIP126.Def.ClassicalAdams.Tmf.Model.Data
+import KIP126.Def.SpectralSequence.Computation.State.Predicates
+import KIP126.Def.StableHomotopy.InverseSequence.Proofs
+import KIP126.Def.ClassicalAdams.Completion.Predicates
+import KIP126.Def.Synthetic.Completion.Proofs
+import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
+import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
+import KIP126.Def.StableHomotopy.Toda.Law.Proofs
 import KIP126.Def.Algebra.InverseSequence.Finite.Proofs
 import KIP126.Def.Algebra.ModuleCat.FreeRankOne.Proofs
 import KIP126.Def.StableHomotopy.Context.Finiteness.Proofs

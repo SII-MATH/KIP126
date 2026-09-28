@@ -5,6 +5,7 @@ import KIP126.Def.AdamsE2.LinBasisTable.Data
 import KIP126.Def.SpectralSequence.Computation.Predicates
 import KIP126.Def.Comparison.ClassicalSynthetic.Data
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
 import KIP126.Interface.Axiom.StandardMilnor
@@ -20,13 +21,16 @@ import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
 import KIP126.Def.Synthetic.PageExtension.Solutions.Data
 import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
 import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
+import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
+import KIP126.Def.ClassicalAdams.Tmf.Model.Data
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与完整待交付清单
 
 范围依据：[接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138)，
 2026-09-27 的 `am1`–`am16`、`cm1`–`cm6`。下面按该编号列出全部预期交付；
-当前 Lean 总包只实现 `cm1` 的有界 presentation 与 `cm2` 的表真实性陈述。
+当前 Lean 总包包括 `cm1` 的有界 presentation、`cm2` 的表真实性陈述、
+`am12` 的一线／May 陈述，以及同一基础上 `am8/am15` 的球面 Moss 交付组。
 清单中的“未入包”不是额外假设，也不表示相应领域完全没有已有证明。
 
 阅读规则：**陈述状态**与**实现状态**分开记录。已有精确 Lean 类型可以尚未证明；
@@ -182,14 +186,19 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   `Layer/Boundary/` 已证明右输入来自 tower 时的实际左 δ 公式；
   一般 cycle 不必来自 tower，不能据此断言已经下降到 E₂ 的边界商。
   长度一般时仍只有精确的提升充要条件；所需提升及完整两侧边界相容尚未构造。
-  现有 `ProjectionCompatible`、`BoundaryCompatible` 已足够陈述参数化的
-  真实配对交付；完整 Massey defining-system 关系及 Moss 接口还需组合这些
-  定义并核定文献条件，不能以配对尚未证明为由推迟全部陈述。
+  `MossInterface` 现已列出受实际长层代表元约束的配对、Leibniz、
+  相邻页和结合律、同一塔像滤过的收敛与检测、完整 Massey 不定性 coset，
+  以及两个 product 谱上的 weak convergence／Moss no-crossing 判据。
+  `PageMassey.Relation` 使用 E_(r−1) 的 defining system，范围 r≥3；
+  不冒充 E₂ cobar Massey。`StandardSphereMossInterface` 的存在性已在
+  Interface 两条轨道陈述，基础和 ring 固定为同一 Challenge1。
   Leibniz、收敛复合相容与配对见证的构造仍是独立证明义务。
   右过渡的现有路线需上述条件或对应 connectivity 证明；
   braided successor 与 ordered successor 的边界也不能默认相同。
   ihom(X,Y) 的塔与对 Y 的塔取映射需比较，
-  不能默认为相同；Moss 原文的全部条件仍待源文核定。
+  不能默认为相同。原始 Moss 全文仍缺；weak convergence 与 crossing 范围
+  已对照 Belmont–Kong arXiv:2112.08689v2 Definitions 2.3–2.4。
+  映射球面与既有 sphereAdamsData 的实际比较及整组构造／证明仍需完成。
 
 - `am9` Adams E₂＝cobar/Ext 及标准 hᵢ。
   陈述／实现：`MilnorCohomology` 已定义真正的 F₂ ker(d)/im(d)，包括 s=0
@@ -234,14 +243,15 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   不沿用。a10/a11 的已有 cofiber／triangle lift 还需接到同一内部页面。
 
 - `am12` Adams one-line 与低维永久性输入。
-  陈述／实现：`Def/ClassicalAdams/H4D2/` 与
-  `Main/Axiom/Literature/Adams/OneLine.lean` 已有 h₄ d₂ 的准确 tracer 声明、
-  `cataloguedAdamsOneLine` 及其消费定理，但当前页面类型仍走旧接口。
-  接入：以内部 `HasDifferential` 和同一 presentation 下的 h₄、h₀h₃² 重述该切片，
-  保留文献定位与显式证明输入；这是页面绑定工作，无需等待整个 one-line 家族。
-  本文件 `LowDimensionalSquarePermanence` 精确使用内部 h₄²／h₅²；
+  陈述：`AdamsOneLineInterface` 已入总包，明确全部一线次数、唯一非零 hⱼ、
+  j≤3 的非零永久存活与 j≥4 的非零 d₂(hⱼ)=h₀hⱼ₋₁²。
+  May 的 h₀h₂、h₀h₃、h₂h₄ 及 j≤3 的 hⱼ² 非零永久性也分别列出。
+  所有类由同一 Milnor cocycle、实际 cup 与实际内部 E₂ 比较构造。
+  `Interface/{Challenge,Solution}/AdamsOneLine.lean` 七个交付签名同步，
+  新增证明均暂留 `sorry`；MainPaper:146 的方向笔误修正为 j≤3。
+  `LowDimensionalSquarePermanence` 另使用内部 h₄²／h₅²；
   `Interface/Solution/LowDimensionalPermanence` 已从显式 a14 与 Browder 输入推出它。
-  May 低页存活、one-line 全族及实际同伦检测仍待接入。
+  May 原始全文尚未取得，目前范围定位为 MainPaper:157–159；实际同伦检测仍需接入。
 
 - `am13` BJM/BX、θ₅ 与总微分输入。
   陈述／实现：`Def/Kervaire/Theta5/` 已有 `Theta5ChoiceContext`、
@@ -253,12 +263,18 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   也不把 Main 的 choice/near-126 推论提前变为输入。
 
 - `am14` tmf 检测与 BR21 微分。
-  陈述：内部 M 交付类型未冻结、未入包。
-  实现：`Main/Axiom/Literature/Claims.lean` 的 `tmfDetection`、
+  陈述：`TmfDifferentialInterface` 已入总包，BR21 的等式精确使用同一代数
+  对象实际 Adams 塔的 (16,112)→(19,114) 微分；两个类由固定 CSV 商定义。
+  `Tmf/Model/` 的 classical/E₂/synthetic Hurewicz 均由同一实际单位诱导。
+  实现：固定 13 个生成元和 72 条关系已定义；w₂² 表示 v₂¹⁶，β⁵g 是
+  固定商内的实际乘积，没有另设 v₂。目标对象与坐标比较仍需构造，
+  与实际页面乘法的比较、θ₅ 的 tmf 像以及 125-stem 检测仍未完成。
+  `Main/Axiom/Literature/Claims.lean` 的 `tmfDetection`、
   `br21TmfDifferential` 是来源条目，不是已构造的内部 theorem。
   TODO：把 Hurewicz 检测、θ₅ 的 tmf 像和 d₃(v₂¹⁶)=β⁵g 连接到同一内部对象与映射。
-  前置缺口：当前通用 Adams 构造可作用于给定谱，但本项尚未指定 tmf 对象、
-  球面到 tmf 的实际映射，以及源 v₂¹⁶、靶 β⁵g 的同一页面代表元与符号含义。
+  后续模型义务：上述输入是参数化坐标实现，并非 tmf 的几何构造；不能把
+  任意代数对象称作 tmf，来源的实际对象及其比较必须由生产端提供。
+  固定档案中的 tmf basis.csv 为空，此定义不声明已有完整基认证。
   MainPaper 明指普通 Adams SS；不能由名字猜作 Adams–Novikov，也不能仅由
   符号 v₂¹⁶ 假设 E₂ 中存在一个 v₂ 元素并作第十六次幂。历史 KIPBase 未提供
   可迁入的 tmf 构造；只添加同名元素不能固定含义。
@@ -267,7 +283,8 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   陈述／实现：`Main/Axiom/Literature/Near126/HopfCofiber/Fixed/Data.lean` 的
   `SphereHopfInput` 已将实际球面映射与 h₂ 的 filtration-one 表示条件一起打包，
   表示条件带 `ExternalEvidence`；历史 `../KIPBase/multiplicativeSS/Moss.lean`
-  的 `SphereStatement` 已准确表达球面 Moss 判据。
+  的 `SphereStatement` 是迁移的历史参考。当前 `MossInterface` 和
+  `StandardSphereMossInterface` 已将相应陈述约束到实际内部塔、配对和滤过。
   接入：保留现有 Hopf 选择及证据关联，迁移 am8 的检测/crossing 签名并绑定同一
   球面、ν 与 cofiber；待提供的是实际输入、top-cell 等必要比较和 Moss 证明。
 
@@ -315,6 +332,12 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
   实现：`Main/Axiom/LinProgram/Raw/`、`Main/Axiom/LinProgram/Translate/` 是原始 schema/记录落点。
   TODO：分别解释明确编码的 nonzero、survival、permanent、hit/no-hit、
   incoming/outgoing；普通微分等式、未找到记录和空记录均不自动产生这些结论。
+
+  前置已补：`LinProgram/Raw/Data.lean` 无损保留全部 11 列和 NULL，
+  reason 解析保留 D/DI 的多来源，999/1000/1001 分开；
+  `Computation/State/Predicates.lean` 明确永久循环、最终边界与有界窗口状态。
+  固定源码 `cofseq.cpp:885–914` 对 boundary 或 zero 也返回 999/空向量，
+  因而不能从此编码推出非零存活。raw 到这些谓词的确定性解释仍未完成。
 
 - `cm6` 带范围的消失、维数与候选穷尽。
   陈述：程序直接输出的完整解释未冻结、未入包。
@@ -380,6 +403,68 @@ open Classical.Adams LinE2
 open Core.SpectralSequence
 
 universe u v w
+
+section Moss
+
+open StableHomotopy StableHomotopy.Cohomology Classical.Adams.Moss
+
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)] [MonoidalClosed C] [BraidedCategory C]
+  (H : Mod2EilenbergMacLane (C := C)) (R : Mod2RingStructure H)
+  [∀ A : C, (tensorRight A).CommShift ℤ]
+  [∀ A : C, (tensorRight A).IsTriangulated] [MonoidalPreadditive C]
+  [∀ A : C, (tensorLeft A).CommShift ℤ]
+
+/-- am8/am15：同一映射 Adams 塔上的配对、检测、不定性和 Moss 交付。
+`objects` 指定应用范围；不要求任意谱的 Adams SS 收敛到未完备同伦群。
+配对的每个值由实际长层代表元约束，收敛端使用实际塔像滤过。
+Massey 关系使用 E_(r−1) 的 defining system，因此范围是 r ≥ 3。
+来源：MainPaper:2537–2545；Moss Theorem 1.2。现代 crossing/weak-convergence
+表述另见 Belmont–Kong, arXiv:2112.08689v2, Definitions 2.3–2.4。
+此类型提出模型交付义务，不是对任意背景都已有该结构的证明。 -/
+structure MossInterface {ι : Type w} (objects : ι → C) where
+  composition : CompositionPairing H R
+  coherent : composition.Coherent H R
+  convergence : ∀ X Y : ι, MappingAdamsConvergence H.unit (objects X) (objects Y)
+  weak_convergence : ∀ X Y : ι, MappingAdamsTower H.unit (objects X) (objects Y)
+  detection : ∀ X Y Z : ι,
+    composition.DetectionCompatible H R (objects X) (objects Y) (objects Z)
+      (convergence X Y) (convergence Y Z) (convergence X Z)
+  indeterminacy : ∀ (r : ℤ) (hr : 3 ≤ r) (W X Y Z : ι) (i j k : ℤ × ℤ)
+    (a : (mappingSequence H.unit (objects W) (objects X)).Page r i)
+    (b : (mappingSequence H.unit (objects X) (objects Y)).Page r j)
+    (c : (mappingSequence H.unit (objects Y) (objects Z)).Page r k)
+    (x₀ x : (mappingSequence H.unit (objects W) (objects Z)).Page r
+      (PageMassey.degree r i j k)),
+    PageMassey.Relation H R composition r hr x₀ a b c →
+      (PageMassey.Relation H R composition r hr x a b c ↔
+        PageMassey.Indeterminacy H R composition r (j := j) a c (x - x₀))
+  moss : Classical.Adams.Moss.Statement H R composition objects convergence
+
+end Moss
+
+/-- am8/am15 的固定球面交付；基础、HF₂、ring 与所有 tensor 选择
+均来自同一个 Challenge1 见证，没有增加另一个可独立选择的模型。
+这里的球面映射谱仍需通过实际 ihom(unit,unit) 同构与 sphereAdamsData 比较。 -/
+def StandardSphereMossInterface : Type 1 :=
+  let c := KIP126.Interface.Axiom.challenge1Witness
+  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  MossInterface c.foundationInput.hf2 c.cooperationInput.ring
+    (fun _ : Unit => StableHomotopy.SphereSpectrum (C := c.foundationInput.Spectrum))
+
+/-- am14 的 BR21 微分切片。同一代数对象的单位定义实际 Hurewicz，
+固定 CSV 商中的 w₂² 与 β⁵g 经同一个坐标比较进入该对象的实际 Adams 塔。
+这项只交付微分等式，不从它增加非零或存活。
+来源：MainPaper:2791 对 BR21 的明确引用；固定坐标源为 v126.3.cw49。
+本组尚不包含 tmf 的几何构造、乘法比较、θ₅ 像零或 125-stem 检测。 -/
+structure TmfDifferentialInterface {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    (H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C)) where
+  target : Mon C
+  coordinates : Tmf.E2Presentation H target
+  br21 : HasDifferential (adamsTowerInternalSpectralSequence H.unit target.X) 3
+    (16, 112) (19, 114) coordinates.v2Sixteen coordinates.betaFiveG
 
 /-- am1：一般内部页面 calculus 的派生交付。页面与微分均来自同一个 E；
 同调同构来自 nested Z/B 模型，不另选一套谱序列。 -/
@@ -945,6 +1030,37 @@ noncomputable def standardHiSquare (i : ℕ) :
     sphereAdamsData.Page 2 (2, ((2 ^ (i + 1) : ℕ) : ℤ)) :=
   Sphere.Internal.hiSquare standardFoundation.hf2 standardMilnorCooperations i
 
+/-- am12：Adams 一线、非零 d₂ 及 May 低维永久存活的完整交付。
+所有类来自固定 Milnor cocycle 的实际 cup 与同一内部 E₂ 比较。
+MainPaper 一线存活范围的 `j ≥ 3` 与下一行 d₂ 相矛盾，这里采用 j ≤ 3。
+本组只陈述文献结论；证明可以暂留 sorry，不把已有 h₄ 单点包装当作全族。 -/
+structure AdamsOneLineInterface : Prop where
+  adamsOneLine_at_power (j : ℕ) :
+      Sphere.Internal.hi standardFoundation.hf2 standardMilnorCooperations j ≠ 0 ∧
+        ∀ x : sphereAdamsData.Page 2 (1, ((2 ^ j : ℕ) : ℤ)),
+          x = 0 ∨ x = Sphere.Internal.hi standardFoundation.hf2 standardMilnorCooperations j
+  adamsOneLine_other_degree (t : ℤ)
+      (ht : ∀ j : ℕ, t ≠ ((2 ^ j : ℕ) : ℤ)) :
+      ∀ x : sphereAdamsData.Page 2 (1, t), x = 0
+  adamsHi_nonzeroSurvival_iff (j : ℕ) :
+      NonzeroSurvival sphereAdamsData (1, ((2 ^ j : ℕ) : ℤ))
+        (Sphere.Internal.hi standardFoundation.hf2 standardMilnorCooperations j) ↔ j ≤ 3
+  adamsOneLine_d2 (j : ℕ) (hj : 4 ≤ j) :
+      HasNonzeroDifferential sphereAdamsData 2
+        (1, ((2 ^ j : ℕ) : ℤ)) (3, ((1 + 2 ^ (j - 1 + 1) : ℕ) : ℤ))
+        (Sphere.Internal.hi standardFoundation.hf2 standardMilnorCooperations j)
+        (Sphere.Internal.h0HiSquare standardFoundation.hf2 standardMilnorCooperations (j - 1))
+  may_lowDimensionalProducts_permanent :
+      NonzeroSurvival sphereAdamsData (2, ((2 ^ 0 + 2 ^ 2 : ℕ) : ℤ))
+        (Sphere.Internal.hiProduct standardFoundation.hf2 standardMilnorCooperations 0 2) ∧
+      NonzeroSurvival sphereAdamsData (2, ((2 ^ 0 + 2 ^ 3 : ℕ) : ℤ))
+        (Sphere.Internal.hiProduct standardFoundation.hf2 standardMilnorCooperations 0 3) ∧
+      NonzeroSurvival sphereAdamsData (2, ((2 ^ 2 + 2 ^ 4 : ℕ) : ℤ))
+        (Sphere.Internal.hiProduct standardFoundation.hf2 standardMilnorCooperations 2 4)
+  may_lowDimensionalSquares_permanent (j : ℕ) (hj : j ≤ 3) :
+      NonzeroSurvival sphereAdamsData (2, ((2 ^ (j + 1) : ℕ) : ℤ))
+        (Sphere.Internal.hiSquare standardFoundation.hf2 standardMilnorCooperations j)
+
 /-- am12 的低维永久性切片，使用实际标准类和非零永久存活。
 不把结论降为自由 permanence 谓词或零类的循环性。 -/
 def LowDimensionalSquarePermanence : Prop :=
@@ -991,6 +1107,9 @@ end Challenge2
 about the exact presentation stored in the same witness. -/
 structure Challenge2 where
   presentation : Classical.Adams.LinE2Presentation
+  adamsOneLine : Challenge2.AdamsOneLineInterface
+  moss : Challenge2.StandardSphereMossInterface
+  tmfDifferential : Challenge2.TmfDifferentialInterface Classical.Adams.standardFoundation.hf2
   sphereTable_sound : ∀ (shard offset : Nat)
     (row : Computation.LinProofs.DifferentialRow),
     Computation.LinProofs.RawData.lookup shard offset = some row →
