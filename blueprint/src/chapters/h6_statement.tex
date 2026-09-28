@@ -4291,20 +4291,46 @@ survival; the computational final Solution remains open.
 
 \begin{theorem}[Additive catalogue certification, pending]
   \label{thm:lin-e2-basis-certification}
-  \lean{KIP126.Challenge1.LinBasisInterface,KIP126.Def.Solution.LinE2.basisTable_correct,KIP126.LinE2.basisTable_correct}
+  \lean{KIP126.Interface.Solution.LinE2.basisTable_correct}
   \uses{def:lin-e2-catalogue}
   \notready
-  For $t\le261$, the actual listed monomial values of degree $(s,t)$ form an
-  $\mathbb F_2$-basis of the specified quotient component. This asserts both
+  For all $s,t\in\mathbb N$ with $t\le261$, the listed monomial values of
+  degree $(s,t)$ in the fixed v126.3.cw49 catalogue form an
+  $\mathbb F_2$-basis of its quotient-algebra component. This asserts both
   linear independence and spanning, not merely that the list has the right
-  length. The Def-stage producer remains admitted. The stage-one compatibility name
-  projects this condition from the same Challenge1 witness; it is not a new
-  independent axiom. Executable checks of degrees,
-  distinct coordinates and irreducibility do not discharge it.
+  length. This auxiliary certification is produced in Interface; its
+  proof remains admitted. It is distinct from delivery of coordinates on
+  the actual sphere $E_2$ page and is no longer a Challenge1 field.
+  Artifact hashes and executable checks of degrees, distinct coordinates
+  and irreducibility do not discharge it.
 \end{theorem}
+
+\begin{theorem}[Fixed sphere additive-coordinate delivery, pending]
+  \label{thm:lin-sphere-basis-interface}
+  \lean{KIP126.Challenge2.SphereBasisInterface,KIP126.Interface.Solution.sphereBasis}
+  \uses{def:lin-e2-catalogue,def:h6-fixed-computation}
+  \notready
+  For the same range-limited Lin presentation $P$, deliver unique
+  finite-support $\mathbb F_2$ coordinates on the actual internal sphere
+  $E_2^{s,t}$ for every $s,t\in\mathbb N$ with $t\le261$.
+  The coordinate equivalences are integer-linear, preserving the existing
+  page additive structure without choosing another $\mathbb F_2$ action.
+  Pulling the inverse image of each standard coordinate vector back
+  through $P$ gives exactly the specified CSV monomial value.
+  The \texttt{sphereBasis} field of Challenge2 carries this interface for
+  that witness's own presentation.
+\end{theorem}
+\begin{proof}
+  \uses{thm:lin-e2-basis-certification}
+  Transport the certified quotient-algebra basis through $P$.
+  The producer implements this conditional construction, but depends on
+  the admitted catalogue certification; the delivery is not proved
+  unconditionally.
+\end{proof}
 
 \begin{definition}[Data and internal Adams additive coordinates]
   \label{def:lin-e2-coordinates}
+  \lean{KIP126.LinE2.basisTable_correct}
   \lean{KIP126.LinE2.dataBasis}
   \lean{KIP126.LinE2.dataCoordinates}
   \lean{KIP126.Classical.Adams.sphereE2BasisByCSV?}
@@ -4313,12 +4339,16 @@ survival; the computational final Solution remains open.
   \lean{KIP126.Classical.Adams.linToSphere_exists_preimage}
   \lean{KIP126.Classical.Adams.linToSphere_eq_iff}
   \lean{KIP126.Classical.Adams.linToSphere_product_eq_zero}
-  \uses{thm:lin-e2-basis-certification,def:h6-fixed-computation}
+  \uses{thm:lin-sphere-basis-interface,def:h6-fixed-computation}
   \notready
-  Under the pending basis certification, obtain unique finite-support
-  $\mathbb F_2$ coordinates on each covered component. Transport them through
-  the fixed Lin comparison to the internal SSData $E_2$ page, using an
-  integer-linear equivalence to retain its existing additive structure.
+  Main obtains its public data basis, data coordinates, basis-certification
+  compatibility theorem, and internal sphere coordinates from the unique
+  Challenge2 witness and its \texttt{sphereBasis} field, using the same
+  presentation throughout. The data-side compatibility interfaces are
+  recovered from this delivery; they do not select a Challenge1 basis.
+  Each covered component has unique finite-support $\mathbb F_2$
+  coordinates, with an integer-linear equivalence retaining the internal
+  SSData $E_2$ page's existing additive structure.
   Basis vectors have the specified CSV values and are nonzero; coordinates
   reconstruct any element. Product equalities in the data quotient transfer
   to the internal page, including zero products. Every covered page element

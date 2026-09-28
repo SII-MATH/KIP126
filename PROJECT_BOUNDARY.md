@@ -53,14 +53,18 @@ the complete statement uses `M`. Historical checklist IDs remain progress
 indices, not instructions to add every item to a Challenge witness.
 
 The fixed CSV basis certification `a05` is withdrawn from `A₀` and the
-required Challenge1 scope. The current `linBasis` field is migration debt.
+required Challenge1 scope; the `linBasis` field has been removed.
 Certification of the fixed CSV monomials is an Interface helper obligation;
 the comparison to actual E₂ delivers the required basis, coordinate, dimension
 and exhaustion properties to Main. A helper that does not use `M` need not be
 called `C(M)`. Preserve fixed versions, ranges, provenance and existing proofs,
 and migrate producers and consumers together without adding an independent
-axiom. Def retains generic graded-algebra and basis definitions, certification
-tools and their soundness theorems.
+axiom. The fixed certification producer now belongs to Interface;
+`Challenge2.SphereBasisInterface` delivers actual E₂ coordinate equivalences
+whose inverse basis vectors recover the specified CSV values through the same
+presentation. Main projects those coordinates from the single Challenge2
+witness. Def retains generic graded-algebra and basis definitions, explicit
+certificate constructions and their soundness theorems.
 
 As clarified in issue #138, `Def` owns reusable mathematical
 objects, structures, predicates, constructions and theorems. The root Challenge

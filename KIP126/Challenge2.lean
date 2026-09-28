@@ -37,7 +37,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 范围依据：[接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138)，
 2026-09-28 修订正文优先于历史清单；保留 `am1`–`am16`、`cm1`–`cm6`
 编号追踪数学工作，不要求各项都成为总包字段或外部 A(M)。
-当前 Lean 总包包括 `cm1` 的有界 presentation、`cm2` 的表真实性陈述、
+当前 Lean 总包包括 `cm1` 的有界 presentation 与实际 E₂ 基坐标、`cm2` 的表真实性陈述、
 `am12` 的一线／May 陈述、同一基础上 `am8/am15` 的球面 Moss 交付组、
 `am14` 的 tmf 微分/单位/乘法切片，以及 `cm5` 的固定球面 staircase 状态。
 `cm1/am4` 的 `SphereMultiplicativeInterface` 另将有界球面 product 与单位
@@ -354,13 +354,16 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
 - `cm1` 固定 Lin E₂ presentation。
   陈述：下面 `LinE2Presentation` 的三个字段精确保留；同一总见证另以
   `sphereMultiplicative` 将有界 product 与单位绑定实际球面塔／层代表元。
-  #138 所需完整加法基与全部直接乘法输出的交付尚未闭合；新绑定不是其证明。
+  `SphereBasisInterface` 交付全部 s,t : ℕ、t ≤ 261 的实际 E₂ 坐标等价，
+  逆像的单位向量经同一 presentation 拉回后等于固定 CSV 单项式。
+  这精确陈述完整加法基、坐标与穷尽性；固定认证证明及全部直接乘法输出仍未闭合。
   实现：`Main/Axiom/LinProgram/Generated/E2.lean`、`Def/AdamsE2/LinModel/`
   保留 v126.3.cw49 数据；本包的 existence Solution 尚为 `sorry`。
-  a05 已撤出 A₀ 必交范围，固定 CSV 认证应迁作 Interface 辅助证明。
-  当前代码仍从 Challenge1 投影，生产证明暂在
-  `Def/Solution/LinProgram/BasisTable.lean` 且为 `sorry`，这是待迁移状态。
-  范围为 `t ≤ 261`，下游交付必须使用同一实际 E₂ comparison。`computedH6`、
+  a05 已迁出 Challenge1；固定 CSV 认证在
+  `Interface/{Challenge,Solution}/LinProgram/BasisTable.lean`，Solution 仍为 `sorry`。
+  `Interface/Solution/LinProgram/SphereBasis.lean` 从该辅助认证及显式 P 构造
+  实际交付；Main 从同一个 Challenge2 见证取得坐标，恢复兼容的 Lin 基与维数。
+  没有新增独立 axiom，也不直接消费 Interface 的认证证明。`computedH6`、
   `computedH6Square` 在 `Main/Axiom/LinProgram/Interpretation/Classes/Data.lean`
   由比较机械定义，不新增任意同名元素。
 
@@ -424,13 +427,11 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   `Interpretation/Sphere → Literature/FixedSSData → Interface/Axiom/StandardFoundation`。
   因而 import 本文件仍会引入 Challenge1 开发 axiom。未来显式参数化必须连同 sphere、
   presentation、微分谓词一起设计；本次不把固定见证命题加强为任意 `c1` 上的命题。
-- Main 仍有五条直接 import Interface/Solution 的边：
-  `Main/Solution/Computation/{Dimension,Nonvanishing}.lean`、
-  `Main/Axiom/LinProgram/E2.lean`、`Main/Axiom/LinProgram/Interpretation/Basis/{Data,Proofs}.lean`。
-  其中 basis 链消费同一 Challenge1 的认证投影，生产证明在 Def/Solution 仍为 `sorry`；
-  square detection/dimension 有已有证明。
-  a05 的固定数据认证须迁作 Interface 辅助义务，再经第二道边界交付 Main
-  所需性质；不能因当前总包字段存在就声称完全隔离。
+- a05 的 basis 消费链已移除 Main → Interface/Solution 导入，纯 CSV 认证留在
+  Interface，Main 的实际坐标及兼容基 API 使用同一 Challenge2 见证。
+  `Main/Solution/Computation/{Dimension,Nonvanishing}.lean` 仍直接消费已证明的
+  Interface square dimension/detection 工具；本次不调整这些中间证明的复用位置，
+  也不据 a05 迁移声称所有跨层依赖都已隔离。
 - 文献仍由 `Main/Axiom/Literature/` 的 `ExternalResult`、`ExternalEvidence` 及
   catalogued wrappers 显式携带；清单不是把它们变成无条件字段的授权。
 - Blueprint 依据：`h6_statement.tex` 的 `thm:lin-e2-basis-certification`、
@@ -475,6 +476,19 @@ open Classical.Adams LinE2
 open Core.SpectralSequence
 
 universe u v w
+
+/-- cm1：同一实际球面 E₂ 的完整 CSV 坐标，范围为 t ≤ 261。
+坐标逆像的每个单位向量，经同一 presentation 拉回后必须是指定 CSV 单项式。
+等价同时保证线性无关与生成性，不将固定 CSV 认证放回 Challenge1，
+也不为内部页面另选一个 F₂ 作用。 -/
+structure SphereBasisInterface (P : LinE2Presentation) where
+  coordinates : ∀ (s t : ℕ), t ≤ 261 →
+    sphereAdamsData.Page 2 ((s : ℤ), (t : ℤ)) ≃ₗ[ℤ]
+      (BasisIndex s t →₀ Core.Algebra.F2)
+  csv_values : ∀ (s t : ℕ) (ht : t ≤ 261) (i : BasisIndex s t),
+    ((P.comparison s t ht).symm
+      ((coordinates s t ht).symm (Finsupp.single i 1))).val =
+        basisValue (basisRowAt s t i)
 
 section Moss
 
@@ -1298,6 +1312,7 @@ end Challenge2
 about the exact presentation stored in the same witness. -/
 structure Challenge2 where
   presentation : Classical.Adams.LinE2Presentation
+  sphereBasis : Challenge2.SphereBasisInterface presentation
   sphereMultiplicative : Challenge2.SphereMultiplicativeInterface presentation
   cobarDerivedExt : Challenge2.CobarDerivedExtComparison
     Classical.Adams.standardFoundation.hf2 Classical.Adams.standardMilnorCooperations

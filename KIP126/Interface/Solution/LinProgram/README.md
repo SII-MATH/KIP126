@@ -1,6 +1,6 @@
 # Solution / LinProgram
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../README.md)；本次只迁移，未补证明或修改陈述。
+本组件证明固定程序输出的解释，并提供所需认证辅助结论。a05 的 CSV 基认证已从 Def／Challenge1 迁入本阶段。
 
 ## 1. 原先期望包含什么
 
@@ -11,19 +11,18 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [BasisTable.lean](BasisTable.lean) | `basisTable_correct` |
+| [SphereBasis.lean](SphereBasis.lean) | 同一 presentation 上的实际 E₂ 坐标及 CSV 值相容性 |
 | [SquareDetection.lean](SquareDetection.lean) | `u_cube`, `u_square_ne_zero`, `u_pow_cap`, `evaluate_X`, `evaluate_polynomialOfPowers` 等 11 个声明 |
 
 ## 3. 大概完成度
 
-**现有内容：2 个 Lean 文件、约 12 个显式声明，其中 12 条 theorem/lemma。** 本组件 1 个声明正文仍有 `sorry`/`admit`，处于实现中。
-
-导入闭包有 1 个模块含显式占位正文（这是模块文本盘点，不是 Lean 声明级公理审计）。
+固定基认证仍为 `sorry`；`sphereBasis` 的运输构造已有证明，但依赖该辅助认证。Main 通过 Challenge2 消费实际坐标，不直接导入此证明。
 
 未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
 
 ## 4. 接下来还需要完成什么
 
-- [basisTable_correct](BasisTable.lean#L11)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
+- [basisTable_correct](BasisTable.lean)：仍需证明固定单项式线性无关且生成，范围保持全部非负 s,t 且 t ≤ 261。
 
 ## 5. 后续应该一步一步如何做
 
@@ -33,4 +32,4 @@
 4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
 5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
 
-相关子组件：[Basis](Basis/README.md), [SquareDetection](SquareDetection/README.md), [SquareDimension](SquareDimension/README.md)。
+显式接受认证的通用基构造位于 [Def](../../../Def/AdamsE2/LinBasisTable/Certification/Data.lean)；相关验证：[SquareDetection](SquareDetection/README.md)、[SquareDimension](SquareDimension/README.md)。

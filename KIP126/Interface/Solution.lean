@@ -5,9 +5,8 @@ import KIP126.Interface.Solution.AdamsOneLine
 import KIP126.Interface.Solution.Moss
 import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Interface.Solution.CoherentPageExtension
-import KIP126.Interface.Solution.LinProgram.Basis.Data
-import KIP126.Interface.Solution.LinProgram.Basis.Proofs
 import KIP126.Interface.Solution.LinProgram.BasisTable
+import KIP126.Interface.Solution.LinProgram.SphereBasis
 import KIP126.Interface.Solution.LinProgram.SquareDetection.Archive.Batch0
 import KIP126.Interface.Solution.LinProgram.SquareDetection.Archive.Batch1
 import KIP126.Interface.Solution.LinProgram.SquareDetection.Archive.Batch2

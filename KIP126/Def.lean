@@ -1,4 +1,5 @@
 import KIP126.Def.Algebra.GradedComodule.Ext.Data
+import KIP126.Def.AdamsE2.LinBasisTable.Certification.Proofs
 import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Proofs
 import KIP126.Def.Algebra.GradedDual.Data
 import KIP126.Def.Steenrod.MilnorExt.Multiplication.Data

@@ -74,10 +74,12 @@ Classify by mathematical role, consumers and proof responsibility first.
 In particular, `a05` is withdrawn from the required `Challenge1`/`A₀` scope.
 The fixed CSV monomial-basis certification is an Interface helper obligation;
 after comparison with actual E₂ it supports the basis, coordinate, dimension
-and exhaustion statements delivered to Main. Preserve its dataset, range,
-sources and existing proofs during migration. Remove its old Challenge1 field
-consumer-aware, without replacing it with an independent axiom. Generic basis
-definitions and certification tools may remain in Def.
+and exhaustion statements delivered to Main. Its old Challenge1 field has
+been removed. `Challenge2.SphereBasisInterface` supplies actual E₂ coordinates
+and their values in the same CSV presentation; Main uses that witness rather
+than importing the certification Solution. Preserve the dataset, range,
+sources and proofs, without adding an independent axiom. Generic basis
+definitions and explicit-certificate constructions remain in Def.
 
 The revised decisions preserve both boundaries. `Def` owns
 reusable mathematical structures as well as definitions and theorems; it must

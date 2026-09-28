@@ -11,7 +11,6 @@ import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Pred
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Predicates
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Predicates
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Predicates
-import KIP126.Def.AdamsE2.LinBasisTable.Predicates
 import KIP126.Def.StableHomotopy.Context.Mapping.Data
 import KIP126.Def.StableHomotopy.Context.Proofs
 import KIP126.Def.StableHomotopy.Toda.Predicates
@@ -40,8 +39,8 @@ import Mathlib.Algebra.Exact.Basic
 2026-09-28 修订正文为准，编号不表示各项都必须成为 A₀ 或总包字段。
 「已有精确陈述」只表示现有 Lean 类型可供审核，不表示整个规划项已通过数学
 验收；陈述状态、实现状态和依赖关系分别记录。总见证 `Challenge1` 已明列 a01 的基础和 tensor 条件、a02 的 cooperation
-数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性。a05 的基表认证字段
-目前仍在总包，但已撤出 A₀ 必交范围，须连同生产／消费端迁至 Interface。
+数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性。a05 的固定 CSV 认证
+已迁出本包，由 Interface 辅助证明及 Challenge2 的实际 E₂ 坐标交付承担。
 a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可查；整包构造
 及其余条目仍未完成，不能把字段存在视作全部 14 项已证明。
 未冻结的条目以 TODO 保留，补成正式字段前须审核数学类型、范围和消费端。
@@ -116,14 +115,12 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 ### a05 — Lin 加法基表的完整正确性
 
 - 角色：固定计算认证，已撤出 A₀／Challenge1 必交范围；编号仅用于追踪迁移。
-- 迁移：固定 CSV 单项式的认证是 Interface 辅助证明义务；结合实际 E₂ 比较
-  后向 Main 交付所需基、坐标、维数与穷尽性。保留范围及来源，不另设独立 axiom。
-
-- 当前代码：`LinBasisInterface.correct` 仍在总包，范围为所有 s,t : ℕ 且 t ≤ 261，
-  要求固定 v126.3.cw49 CSV 单项式构成 `Module.Basis`。
-- 迁移前实现：生产义务在 `Def/{Challenge,Solution}/LinProgram/BasisTable.lean`，
-  Solution 仍为 `sorry`。`Interface/Axiom/LinBasisTable.lean` 从同一个
-  Challenge1 见证投影，未增加单独 axiom。
+- 实现：已删除本包的 `LinBasisInterface`／`linBasis`；固定认证生产义务在
+  `Interface/{Challenge,Solution}/LinProgram/BasisTable.lean`，Solution 仍为 `sorry`。
+  范围保持所有 s,t : ℕ 且 t ≤ 261，要求 v126.3.cw49 CSV 单项式构成 `Module.Basis`。
+- 下游：`Challenge2.SphereBasisInterface` 以同一 presentation 的实际 E₂
+  坐标等价及 CSV 值相容条件交付基与穷尽性；Main 从第二道边界消费，
+  不再从 Challenge1 取得 CSV 正确性，也没有新增独立 axiom。
 - 依赖：纯 Lin 商代数认证；hash、行合法性不能替代线性无关与生成性。
 - 定位：`Def/AdamsE2/LinBasisTable/Predicates.lean`；Blueprint `thm:lin-e2-basis-certification`。
 
@@ -385,11 +382,6 @@ structure CooperationInput (F : FoundationInput) [TensorInput F] (M : MilnorInpu
       (x : adamsPage F.hf2.unit (SphereSpectrum (C := F.Spectrum)) 1 (by decide) s t),
     M.coordinates s t x = sphereFirstPageMilnorEquiv F.hf2 ring kunneth basis s t x
 
-/-- a05：固定 v126.3.cw49 单项式的完整基认证，包括线性无关与生成性。
-保留全部非负 filtration 和 t ≤ 261 的准确范围。 -/
-structure LinBasisInterface : Prop where
-  correct : ∀ (s t : ℕ), t ≤ 261 → LinE2.BasisTableCorrect s t
-
 /-- a04 的一般平方零义务；可从 a03 的实际 first-page complex 与坐标相容性
 推出，不作为总包里另一项独立假设。 -/
 def MilnorCobarSquareZero : Prop :=
@@ -521,7 +513,6 @@ structure Challenge1 where
   milnorInput : Challenge1.MilnorInput foundationInput
   tensorInput : Challenge1.TensorInput foundationInput
   cooperationInput : @Challenge1.CooperationInput foundationInput tensorInput milnorInput
-  linBasis : Challenge1.LinBasisInterface
 
 namespace Challenge1
 
@@ -536,13 +527,12 @@ def milnor (c : KIP126.Challenge1) :
   coordinates := c.milnorInput.coordinates
   differential_coordinates := c.milnorInput.differential_coordinates
 
-/-- 已有基础与 Milnor 见证连同 tensor、cooperation 和基表交付逐字段组装成边界包。 -/
+/-- 已有基础与 Milnor 见证连同 tensor、cooperation 逐字段组装成边界包。 -/
 def ofFoundationMilnor (F : StandardAdamsFoundation)
     (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
     (T : TensorInput (FoundationInput.ofStandard F))
     (A : @CooperationInput (FoundationInput.ofStandard F) T
-      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
-    (B : LinBasisInterface) :
+      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates }) :
     KIP126.Challenge1 where
   foundationInput := FoundationInput.ofStandard F
   milnorInput :=
@@ -550,7 +540,6 @@ def ofFoundationMilnor (F : StandardAdamsFoundation)
       differential_coordinates := M.differential_coordinates }
   tensorInput := T
   cooperationInput := A
-  linBasis := B
 
 end Challenge1
 
