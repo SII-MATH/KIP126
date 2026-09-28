@@ -35,12 +35,14 @@ The canonical mathematical source is divided into three top-level layers:
   It owns objects, predicates, constructions, reusable theorems, and the
   Challenge/Solution pair which constructs `Challenge1`. It must not declare
   project axioms.
-- `KIP126/Interface/` owns the first proof stage: statements and proofs which
-  turn the common base into the stable mathematical and computation interfaces
-  consumed by the main argument. Its `Axiom/` contains stage-zero outputs admitted as inputs to stage one,
+- `KIP126/Interface/` owns the first proof stage: proofs of fixed program
+  outputs after deterministic interpretation as `C(M)`, their comparisons,
+  and the necessary internal helper results. Its `Axiom/` contains stage-zero outputs admitted as inputs to stage one,
   while their upstream constructions and proofs remain separate.
   Its `Challenge/` and `Solution/` trees are parallel tracks for stage-one outputs.
-- `KIP126/Main/` owns the second proof stage. `Axiom/` contains documented,
+- `KIP126/Main/` owns the second proof stage: it uses accurate external
+  results `A(M)` and delivered `C(M)` to prove the paper's intermediate results
+  and final target. `Axiom/` contains documented,
   development-only assumptions that let this stage proceed in parallel;
   `Challenge/` and `Solution/` contain the paper's main deductions and endpoint.
 
@@ -52,15 +54,32 @@ source directory names or Lean declaration prefixes. Preserve `KIP126/Mathlib/` 
 adapter layer and `KIP126/Checks/` as the regression/audit layer. Do not create
 empty directories or placeholder modules merely to display the architecture.
 
-The two root Challenge files also own the stage-delivery checklists: Challenge 1
+The two root Challenge files also own the mathematical progress checklists: Challenge 1
 tracks issue #138's `a01`–`a14`, and Challenge 2 tracks `am1`–`am16` and
-`cm1`–`cm6`. Define project-specific interface groups, their fields, ranges, and
+`cm1`–`cm6`. These historical IDs do not prescribe current classification or
+require every item to become a boundary field. Define project-specific interface groups, their fields, ranges, and
 compatibility conditions in the corresponding Challenge file. Reusable
 mathematical types remain in `Def`; generated tables and proofs remain in their
 own modules. Compatibility definitions may assemble the existing generic
 records from the visible fields, but must not make fresh data choices.
 
-Issue #138's 2026-09-28 clarification preserves both boundaries. `Def` owns
+Issue #138's revised 2026-09-28 decisions supersede the historical checklist's
+classification. `A(M)` means only external theorems from other papers, restated
+on the same internal model with sources, hypotheses, scope and evidence.
+Generic properties, project comparisons and this paper's intermediate results
+are not external inputs merely because they use `M`. `A₀` means foundations
+actually consumed and expressible without `M`, not every statement omitting it.
+Classify by mathematical role, consumers and proof responsibility first.
+
+In particular, `a05` is withdrawn from the required `Challenge1`/`A₀` scope.
+The fixed CSV monomial-basis certification is an Interface helper obligation;
+after comparison with actual E₂ it supports the basis, coordinate, dimension
+and exhaustion statements delivered to Main. Preserve its dataset, range,
+sources and existing proofs during migration. Remove its old Challenge1 field
+consumer-aware, without replacing it with an independent axiom. Generic basis
+definitions and certification tools may remain in Def.
+
+The revised decisions preserve both boundaries. `Def` owns
 reusable mathematical structures as well as definitions and theorems; it must
 not maintain a duplicate project-specific delivery package. Such combinations
 belong in the root Challenge files. Before migrating an existing wrapper such
@@ -102,11 +121,15 @@ such debt and remove it in later semantic changes. Both sides of a boundary
 state `Nonempty Challenge1` or `Nonempty Challenge2` directly, so there is no
 duplicated long signature or separate alignment table to synchronize.
 
-For the current milestone split, the former Challenge/Solution `Tools`
-modules for generalized Leibniz, generalized Mahowald, and page-extension
-stretching belong to `Interface`. The former `Near126` and `Final` modules
-belong to `Main`. This initial classification does not populate every planned
-field of Challenge 2 or prove either producer theorem.
+Generalized Leibniz, generalized Mahowald and page-extension stretching
+(`am7`) are this paper's intermediate results, not `A(M)` external inputs.
+Interface and Main may need them; shared generic mathematics belongs in Def.
+This interface-confirmation phase does not decide their final proof directories
+or require complete deduplication. Existing Tools paths are historical placement,
+not a mandate to add boundary assumptions. Retain the mathematics and its real
+proof status while reclassifying it. Near-126 and final deductions remain Main
+work. Synchronize these conventions and the root checklist comments before
+semantic migration of wrappers and `a05`.
 
 ## Challenge, Solution, and stage-axiom synchronization
 
@@ -196,8 +219,9 @@ Mathlib's spectral sequence belong under `KIP126/Mathlib/SpectralSequence/`.
 
 Development-stage project assumptions are owned by `KIP126/Interface/Axiom/`
 for stage-zero outputs admitted by stage one, and `KIP126/Main/Axiom/` for stage-one outputs admitted by
-the main argument. Classify the former by whether their full types use the
-internal spectral-sequence object, not by difficulty or proof status.
+the main argument. Classify them by mathematical role, actual consumers and
+proof responsibility; merely omitting the internal spectral-sequence object
+does not make a fixed computation certificate a stage-zero obligation.
 Every actual `axiom` declaration must be named, documented,
 and separately auditable; it is an admitted interface for parallel work, never
 proof-completion evidence. Do not turn an arbitrary unfinished theorem into an

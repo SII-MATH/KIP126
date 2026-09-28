@@ -32,10 +32,11 @@ import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
 import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 
 /-!
-# Challenge 2：Interface → Main 的接口定义与完整待交付清单
+# Challenge 2：Interface → Main 的接口定义与数学进度清单
 
 范围依据：[接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138)，
-2026-09-27 的 `am1`–`am16`、`cm1`–`cm6`。下面按该编号列出全部预期交付；
+2026-09-28 修订正文优先于历史清单；保留 `am1`–`am16`、`cm1`–`cm6`
+编号追踪数学工作，不要求各项都成为总包字段或外部 A(M)。
 当前 Lean 总包包括 `cm1` 的有界 presentation、`cm2` 的表真实性陈述、
 `am12` 的一线／May 陈述、同一基础上 `am8/am15` 的球面 Moss 交付组、
 `am14` 的 tmf 微分/单位/乘法切片，以及 `cm5` 的固定球面 staircase 状态。
@@ -50,12 +51,19 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 不以缺少现成 theorem 为由推迟陈述，也不以任意 `Prop`、`True` 或自由选择的操作
 补齐字段。本文路径均相对于 `KIP126/`；`../KIPBase/` 指历史实现，其具体接口
 可作为迁移依据，但不能直接导入其中的全局 axioms 作为当前阶段的证明。
-共同数学对象仍在 `Def/`；本文件集中项目交付结构与谓词，不复制一般数学定义、
+TODO 须区分前置定义缺失、已有类型尚缺模型绑定、陈述完整但证明未完成。
+条件性接口已经可写不等于固定实例已交付；允许性质证明暂留 sorry，不能以
+未约束的对象或操作代替尚缺的实际定义。共同数学对象仍在 `Def/`；本文件集中项目交付结构与谓词，不复制一般数学定义、
 生成数据或证明。每个已入包字段都必须使用同一个 presentation。
 
-## A(M)：使用内部 M 的非程序接口
+## 历史 am 索引：通用数学、项目比较、本文中间结论与外部定理
+
+A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据。下面逐项标注
+数学角色；不因使用内部 M 且不是程序输出，就把通用性质或本文工具列为外部
+输入。现有总包字段按消费者逐步审核，不能仅按旧编号继续扩包。
 
 - `am1` 内部页面、代表元与永久存活 calculus。
+  角色：通用内部页面与代表元性质，不属外部 A(M)。
   陈述：本文件 `PageCalculus`、`RepresentativeCalculus` 明列相邻页同调、d²=0、
   E₂ 共同代表元、boundary⇒cycle 及非零微分两端存活条件。
   实现：`Interface/Solution/InternalPages.lean` 复用 Def 的实际定理完成上述
@@ -68,6 +76,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   有限页定理误报为全部永久存活 calculus 已完成。
 
 - `am2` Adams 塔页面、微分与存活语义。
+  角色：实际 Adams 塔与内部页面的项目比较，不属外部 A(M)。
   陈述／实现：`Def/ClassicalAdams/TowerSSData/` 下已有页面同构
   `Page/Data.lean` 的 `adamsTowerSSDataPageIso`、微分比较
   `Differential/Proofs.lean` 的 `adamsTowerInternalD_comparison`、下一页关系
@@ -78,6 +87,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   `Main/Solution/Computation/Vanishing.lean`，无需另选一套页面或存活代表元。
 
 - `am3` 内部谱序列映射与 Adams 自然性。
+  角色：通用自然性与固定映射绑定，不属外部 A(M)。
   陈述：`MorphismCalculus` 明列由同一环境映射诱导的页面／E∞ 恒等、复合、
   微分相容、共同代表元与微分等式的传递。
   实现：#132 的任意页面映射漏洞已修复，`Interface/Solution/InternalNaturality`
@@ -85,6 +95,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   待补：固定 i、q、tmf 与 cofiber 的实际态射、Adams 自然性和各项具体绑定。
 
 - `am4` 内部乘法、配对、作用与 Leibniz。
+  角色：通用配对性质及计算坐标与实际乘法的比较，不能统称外部 A(M)。
   已入包切片：`SphereMultiplicativeInterface` 在 t+t′≤261 范围量化全部
   actual second-cycle 代表元，要求 product 等于实际 sphere-layer 配对的商类。
   输出 cycle 的底层由 `adamsSphereE1Product` 固定；存在量词只承载 cycle
@@ -100,6 +111,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   Challenge2 自引用；证明所需相容条件，并逐项补各页乘法、作用、结合、单位与自然性。
 
 - `am5` 收敛、E∞ 检测和 λⁿ 截断传递。
+  角色：通用收敛语言与模型保证；引用的外部收敛定理须单独标明。
   陈述／实现：`Def/SpectralSequence/Convergence/` 已提供 `Convergence`、`Detects`、
   `ConvergenceMorphism` 的精确内部接口及检测性质；`Completion/`、`Truncation/`
   （同在 `Def/SpectralSequence/` 下）已有完备化与截断基础。
@@ -107,6 +119,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   保持滤过及 E∞ 比较相关；待完成的是实际收敛、完备分离和 λ 商传递的见证与证明。
 
 - `am6` extension SS、page extension 与 crossing calculus。
+  角色：通用 ESS／extension 定义与内部 calculus，不属外部 A(M)。
   陈述／实现：`Def/SpectralSequence/BoundedExtension/SpectralSequence/` 已有
   E₀ 同构与 `d0_eq_inducedAssocGradedMap`；内部 crossing 与 square compatibility
   已在 `Def/SpectralSequence/{Crossing,Commutativity}/` 中定义并有局部证明。
@@ -155,6 +168,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   任意无界 Adams 滤过。一般情形还须接入 `UnboundedExtension/` 及其收敛条件。
 
 - `am7` 内部版 generalized Leibniz、Mahowald 与 page stretch。
+  角色：本文中间结论，已移出外部 A(M)；本轮不决定最终证明目录或两阶段去重。
   陈述：本文件 `GeneralizedLeibnizLaw`、`GeneralizedMahowaldLaw` 已按论文
   Theorem 6.1、6.12 写成实际内部微分、同一 normalized page extension、
   crossing、三角与目标同余关系；修正了 Leibniz 的靶次数和 Mahowald 的第二
@@ -163,7 +177,8 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   及 raw cycle 的商代表元；其比较图的存在、规范性和悬移实例尚待构造。
   旧 `Interface/{Challenge,Solution}/Tools/` 的六个自由 Operations 声明已因
   #133／#134 所指问题同步撤下，并移除入口导出及 Blueprint 的旧 Lean 引用；
-  Main 未消费它们。新 law 是准确待交付命题，尚无对应规则证明。
+  Main 未消费它们。新 law 是准确的本文中间命题，尚无对应规则证明；
+  两阶段可按需使用，但不因共同需要而新增边界假设。
   尚缺：δ 与同一 ν、ρ、λ 的 ESS 比较及 crossing 比较；任意 topweight
   等价不足以推出这些 law。Stretching 的真实代表元解族及限制已定义；
   `Solutions/Obstruction/` 已证明实际余核类为零当且仅当指定的早期解可以提升。
@@ -176,6 +191,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   coherent tower 与 limit 比较，不能从各有限解非空直接推得相容无限解。
 
 - `am8` Moss：Toda/Massey 到内部页面检测。
+  角色：外部 Moss 定理与项目内部配对、检测比较须分开记录。
   陈述：`../KIPBase/multiplicativeSS/Moss.lean` 已有 `MappingAdamsTower`、
   `Moss.Statement` 和 `Moss.SphereStatement`，精确联系历史内部页面的 Massey、
   永久性、检测与 Toda；这是待证命题，不是 Moss 的证明。
@@ -217,6 +233,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   映射球面与既有 sphereAdamsData 的实际比较及整组构造／证明仍需完成。
 
 - `am9` Adams E₂＝cobar/Ext 及标准 hᵢ。
+  角色：cobar／Ext／内部 E₂ 的项目比较和通用代数，不属外部 A(M)。
   陈述／实现：`MilnorCohomology` 已定义真正的 F₂ ker(d)/im(d)，包括 s=0
   的零入射边界、代表元零与相等的充要条件及 h₆² 的非零证明。
   本文件 `standardHi`、`standardHiSquare` 由同一 Milnor cocycle 和实际塔商
@@ -233,11 +250,17 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   已入包 `CobarDerivedExtComparison`：同一个 cofree 分解的项、微分、增广
   都有实际多项式公式，每个 cocycle 的像必须等于其固定代表的 `extMk` 类。
   `internalEquiv` 只复合既有 cobar/E₂ 比较，不另选页面等价；生产证明未完成。
-  仍需固定左 Steenrod-module 约定及其与右余模 Ext 的比较、Yoneda 乘法及
-  内部页面乘法相容性、一般谱的实际 homology coaction。不能把右余模 Ext
-  直接改名为这些尚未交付的结论；同次数有限对偶还须处理左右作用的转换。
+  实际 Yoneda 乘法现已在 `GradedComodule/Ext/Multiplication/` 构造，固定
+  Milnor 特化位于 `MilnorExt/Multiplication/`；它由平移后 Ext 类的实际复合
+  定义，所依赖的平移性质仍待证明。`GradedDual/` 已定义同次数对偶的卷积代数。
+  仍需固定左 Steenrod-module、平凡模与 Ext 端，以及右余模 Ext 到该端的
+  比较和实际内部页面乘法相容性；同次数对偶还须处理左右作用的转换。
+  一般谱的 unit-insertion coaction、参数化 Künneth 及其条件性余结合已有；
+  缺的是到固定 MilnorCoalgebra/Cauchy 右余模的桥及同一模型上的见证，
+  不能把这些已有定义再次记作完全缺失。
 
 - `am10` 内部 classical–synthetic catalogue coherence。
+  角色：项目 classical–synthetic 比较，不属外部 A(M)。
   陈述／实现：`Def/Synthetic/AdamsSequence` 与 `Def/Comparison/ClassicalSynthetic`
   已改为内部 M。`SyntheticAdamsFamily` 的 νX、λⁿ 商和商投影是同一家族在实际
   对象／映射上的取值；ν 的 unitIso 给出相同家族中的球面同构。
@@ -247,6 +270,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   尚无这些见证的存在性证明；不新增内部 M 与 Mathlib 谱序列比较义务。
 
 - `am11` synthetic rigidity、E∞ 公式与 λ-Bockstein。
+  角色：外部 BHS 公式与项目模型比较须分开，本文加强不冒充外部结果。
   陈述：本文件 `SyntheticEInftyPresentation` 使用同一内部 F，明确 νX 的
   Z∞/B_(1+t−w) 与有限商的 Z_(q−t+w)/B_(1+t−w)，范围外为零。
   A.11 的 q≥2 与 q=1 special fiber 分开交付；来源 wrapper 位于
@@ -258,13 +282,15 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   与同一经典 E₂ 的比较，保留 normalized source 所需 weight shift。
   两端对象均已定义；缺口是该同构的模型见证及其与 λ、shift、商映射的相容证明，
   不能把已有 `specialFiber` 的 E∞ 比较当作此同伦群比较。
-  未完成：presentation、shift comparison 及其相容性见证，真正的
-  λ-Bockstein exact-couple comparison，以及 rigidity 的有限页微分公式。
+  绑定／证明缺口：presentation、shift comparison 及其相容性见证。
+  前置定义缺口：实际 λ 塔的 Bockstein 构造与 exact-couple comparison，
+  以及 rigidity 有限页微分公式所需的 weight 重分次；现有 E∞ shift 不替代它们。
   历史 `lambda_bockstein_start_page` 仅断言 r₀=2，不能代替 comparison；
   `KIPBase/Synthetic/Rigidity.lean` 的所有负 weight 消失与反向 weight 商映射
   不沿用。a10/a11 的已有 cofiber／triangle lift 还需接到同一内部页面。
 
 - `am12` Adams one-line 与低维永久性输入。
+  角色：外部 Adams／May 结果及低维永久性的内部推论须分开。
   陈述：`AdamsOneLineInterface` 已入总包，明确全部一线次数、唯一非零 hⱼ、
   j≤3 的非零永久存活与 j≥4 的非零 d₂(hⱼ)=h₀hⱼ₋₁²。
   May 的 h₀h₂、h₀h₃、h₂h₄ 及 j≤3 的 hⱼ² 非零永久性也分别列出。
@@ -276,6 +302,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   May 原始全文尚未取得，目前范围定位为 MainPaper:157–159；实际同伦检测仍需接入。
 
 - `am13` BJM/BX、θ₅ 与总微分输入。
+  角色：外部 BJM／BX 结果与项目 quadratic-cell／检测绑定须分开。
   陈述／实现：`Def/Kervaire/Theta5/` 已有 `Theta5ChoiceContext`、
   `Theta5OrderData`、`BJM_BXCriterion`、`SourceTotalDifferentialIdentity` 的
   精确参数化类型及 choice transport 证明；`Main/Axiom/Literature/Kervaire.lean`
@@ -285,6 +312,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   也不把 Main 的 choice/near-126 推论提前变为输入。
 
 - `am14` tmf 检测与 BR21 微分。
+  角色：外部 BR21 等结果及 tmf 模型、坐标与单位的项目比较。
   陈述：`TmfDifferentialInterface` 已入总包，BR21 的等式精确使用同一代数
   对象实际 Adams 塔的 (16,112)→(19,114) 微分；两个类由固定 CSV 商定义。
   `Tmf/Model/` 的 classical/E₂/synthetic Hurewicz 均由同一实际单位诱导。
@@ -305,6 +333,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   可迁入的 tmf 构造；只添加同名元素不能固定含义。
 
 - `am15` Moss convergence 与 normalized Hopf detection。
+  角色：外部 Moss／Hopf 检测结果与项目 normalization 比较须分开。
   陈述／实现：`Main/Axiom/Literature/Near126/HopfCofiber/Fixed/Data.lean` 的
   `SphereHopfInput` 已将实际球面映射与 h₂ 的 filtration-one 表示条件一起打包，
   表示条件带 `ExternalEvidence`；历史 `../KIPBase/multiplicativeSS/Moss.lean`
@@ -314,6 +343,7 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   球面、ν 与 cofiber；待提供的是实际输入、top-cell 等必要比较和 Moss 证明。
 
 - `am16` Browder 的 Kervaire 判据。
+  角色：外部 Browder 定理及实际几何／内部页面的项目绑定。
   陈述：本文件 `BrowderInterface` 将几何存在性对应到同一内部球谱标准 hⱼ²
   的 `NonzeroSurvival`，不再将永久性端留作任意谓词。
   实现：`Main/Axiom/Literature/InternalGeometry` 保留来源锁定和显式证明输入。
@@ -327,8 +357,10 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   #138 所需完整加法基与全部直接乘法输出的交付尚未闭合；新绑定不是其证明。
   实现：`Main/Axiom/LinProgram/Generated/E2.lean`、`Def/AdamsE2/LinModel/`
   保留 v126.3.cw49 数据；本包的 existence Solution 尚为 `sorry`。
-  a05 基表认证已进入 Challenge1，消费者从同一见证投影；生产证明在
-  `Def/Solution/LinProgram/BasisTable.lean` 仍为 `sorry`。范围为 `t ≤ 261`，必须使用同一 comparison。`computedH6`、
+  a05 已撤出 A₀ 必交范围，固定 CSV 认证应迁作 Interface 辅助证明。
+  当前代码仍从 Challenge1 投影，生产证明暂在
+  `Def/Solution/LinProgram/BasisTable.lean` 且为 `sorry`，这是待迁移状态。
+  范围为 `t ≤ 261`，下游交付必须使用同一实际 E₂ comparison。`computedH6`、
   `computedH6Square` 在 `Main/Axiom/LinProgram/Interpretation/Classes/Data.lean`
   由比较机械定义，不新增任意同名元素。
 
@@ -346,14 +378,16 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   raw/info；TI 的数据库度数是靶度数，缺祖先、未知坐标和 sentinel 不会静默转零。
   `CandidateCoverage/Elimination/Exhaustion` 精确量化窗口内所有二元线性组合，
   包括零；父 info 为空也可以通过对子候选的条件反驳表达推理。
-  TODO：固定对象/坐标字典、全部日志导入与 candidate snapshot/search-window 绑定。
+  语义绑定缺口：固定对象/坐标字典、全部日志导入与 candidate snapshot/search-window。
+  祖先条件、微分等式、候选覆盖与排除的参数化谓词已经定义。
   这些参数化陈述尚未冒充固定数据库的总包交付；原始程序删除不矛盾的试探，
   因而 retained rows 的计数不能证明候选覆盖，也不由非空 info 推出矛盾。
 
 - `cm4` Cν、tmf、λ 商及 map/extension 输出。
   陈述：确定性内部 M 解释尚未冻结、未入包。
   实现：`Main/Axiom/Literature/Near126/HopfCofiber/` 是手写消费需求，
-  不能算作 Lin 输出。TODO：扩展 `Main/Axiom/LinProgram/Translate/`，将每条直接输出
+  不能算作 Lin 输出。前置解释缺口：现有 `Translate/import-proofs.py` 明确排除
+  非 S0／extension 行；须扩展 `Main/Axiom/LinProgram/Translate/`，将每条直接输出
   连接到同一固定谱与映射，包括 D8、Cν 短入射排除的确切记录。
 
 - `cm5` 程序 sentinel 与状态结论。
@@ -380,7 +414,8 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   实现：`Interface/Solution/LinProgram/SquareDimension/`、`Interface/Solution/LinProgram/SquareDetection/`
   已有局部实质证明，但它们是数据模型上的派生结果，不因此成为新程序输入；
   `Main/Axiom/Literature/Near126/Sphere/Data.lean` 的事实包也是消费需求。
-  TODO：解释原始程序给出的全线性组合、谱、页、次数、搜索上界与穷尽性；
+  语义绑定缺口：`CandidateWindow` 及覆盖／排除／穷尽谓词已定义，仍须绑定
+  实际搜索时的基、first/count 窗口及全线性组合、谱、页、次数和搜索上界；
   有限窗口不外推到全局，缺失记录不解释为零。
 
 ## 已知依赖债务与检查口径
@@ -394,7 +429,8 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   `Main/Axiom/LinProgram/E2.lean`、`Main/Axiom/LinProgram/Interpretation/Basis/{Data,Proofs}.lean`。
   其中 basis 链消费同一 Challenge1 的认证投影，生产证明在 Def/Solution 仍为 `sorry`；
   square detection/dimension 有已有证明。
-  需要分别安排 `a05` 上游基础和第二道边界交付，不能因当前两条总包字段就声称完全隔离。
+  a05 的固定数据认证须迁作 Interface 辅助义务，再经第二道边界交付 Main
+  所需性质；不能因当前总包字段存在就声称完全隔离。
 - 文献仍由 `Main/Axiom/Literature/` 的 `ExternalResult`、`ExternalEvidence` 及
   catalogued wrappers 显式携带；清单不是把它们变成无条件字段的授权。
 - Blueprint 依据：`h6_statement.tex` 的 `thm:lin-e2-basis-certification`、

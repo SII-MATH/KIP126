@@ -23,11 +23,12 @@ The canonical source has three mathematical layers:
    unfinished with `by sorry`; proof debt must not be hidden by changing its
    declaration kind.
 2. `KIP126/Interface/` is the first proof stage. Its Challenge/Solution track
-   states and eventually proves the stable mathematical and computation
-   interfaces that the main paper argument consumes. Its `Axiom/` contains
+   proves fixed program outputs after deterministic interpretation as `C(M)`,
+   their comparisons and the necessary internal helper results. Its `Axiom/` contains
    stage-zero outputs admitted as inputs to this first proof stage.
-3. `KIP126/Main/` is the second proof stage. Its Challenge/Solution track owns
-   the near-126 argument and the final conclusions. Its `Axiom/` tree provides
+3. `KIP126/Main/` is the second proof stage. Its Challenge/Solution track uses
+   accurate external results `A(M)` and delivered `C(M)` for the paper's
+   intermediate deductions, near-126 argument and final conclusions. Its `Axiom/` tree provides
    audited development assumptions so this work can proceed in parallel with
    Interface proofs.
 
@@ -40,7 +41,28 @@ the architecture does not require empty placeholder directories. Retaining the
 historical Mathlib adapter does not add a project obligation to identify the
 internal spectral-sequence model with Mathlib's spectral sequence.
 
-As clarified in issue #138 on 2026-09-28, `Def` owns reusable mathematical
+The revised current decisions in issue #138 (2026-09-28) supersede the
+historical checklist's classification. `A(M)` contains only external theorems
+from other papers accurately restated on the same internal model, with sources,
+hypotheses, scope and evidence. Generic properties of `M`, project comparisons
+and this paper's intermediate results remain mathematical work; using `M`
+does not turn them into external inputs. `A₀` contains foundations actually
+consumed and expressible outside `M`, not every non-`M` statement. Classify by
+mathematical role, consumers and proof responsibility before checking whether
+the complete statement uses `M`. Historical checklist IDs remain progress
+indices, not instructions to add every item to a Challenge witness.
+
+The fixed CSV basis certification `a05` is withdrawn from `A₀` and the
+required Challenge1 scope. The current `linBasis` field is migration debt.
+Certification of the fixed CSV monomials is an Interface helper obligation;
+the comparison to actual E₂ delivers the required basis, coordinate, dimension
+and exhaustion properties to Main. A helper that does not use `M` need not be
+called `C(M)`. Preserve fixed versions, ranges, provenance and existing proofs,
+and migrate producers and consumers together without adding an independent
+axiom. Def retains generic graded-algebra and basis definitions, certification
+tools and their soundness theorems.
+
+As clarified in issue #138, `Def` owns reusable mathematical
 objects, structures, predicates, constructions and theorems. The root Challenge
 files own the project's combinations of backgrounds, data, ranges and
 compatibility conditions. Do not duplicate those project combinations as a
@@ -316,14 +338,15 @@ explicit external inputs:
 The proofs must preserve the degree conventions in the paper, including the
 third synthetic weight and the translation convention using `S^{1,0}`.
 
-In the staged layout, the Generalized Leibniz Rule, Generalized Mahowald Trick,
-and page-extension stretching are Interface goals because they form part of
-the reusable interface consumed by the second stage. The near-126 reductions
-and the final endpoint are Main goals. Accordingly, the former
-`Challenge/Tools` and `Solution/Tools` modules migrate to the Interface tracks,
-while the former `Challenge/Near126`, `Challenge/Final`, and matching Solution
-modules migrate to the Main tracks. This ownership classification does not
-assert that every planned result is already represented by a `Challenge2` field.
+The Generalized Leibniz Rule, Generalized Mahowald Trick and page-extension
+stretching (historical `am7`) are this paper's intermediate results, not
+external `A(M)` inputs. Both Interface validation and Main deductions may use
+them, and both stages may develop the necessary generic mathematics in Def.
+The present interface-confirmation phase does not decide these intermediate
+proofs' final directories or require complete reuse/deduplication. Existing
+Tools paths record earlier placement; they do not require new boundary
+assumptions. Preserve the definitions and proofs while reclassifying their
+role. Near-126 reductions and the final endpoint remain Main goals.
 
 ## External inputs
 

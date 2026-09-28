@@ -36,21 +36,27 @@ import Mathlib.Algebra.Exact.Basic
 
 ## 清单口径与交付范围
 
-编号沿用 https://github.com/SII-MATH/KIP126/issues/138 的 A₀ 清单。
+编号沿用 https://github.com/SII-MATH/KIP126/issues/138 的历史清单；分类以
+2026-09-28 修订正文为准，编号不表示各项都必须成为 A₀ 或总包字段。
 「已有精确陈述」只表示现有 Lean 类型可供审核，不表示整个规划项已通过数学
 验收；陈述状态、实现状态和依赖关系分别记录。总见证 `Challenge1` 已明列 a01 的基础和 tensor 条件、a02 的 cooperation
-数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性，以及 a05 的基表认证。
+数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性。a05 的基表认证字段
+目前仍在总包，但已撤出 A₀ 必交范围，须连同生产／消费端迁至 Interface。
 a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可查；整包构造
 及其余条目仍未完成，不能把字段存在视作全部 14 项已证明。
 未冻结的条目以 TODO 保留，补成正式字段前须审核数学类型、范围和消费端。
 不用 `True`、任意 `Prop` 或新的 axiom 代替缺失陈述。
 
 通用构造与已证结果可直接由 Def 提供；清单列出这些派生交付，不把它们重新
-变成独立输入。A₀ 的完整声明不使用内部 SSData／SpectralSequence；涉及内部
-页面、检测或存活的结果归 Challenge 2。文献项须保留来源、精确 claim locator
+变成独立输入。先判断数学角色、消费者和证明责任：A₀ 是后续实际需要且可在
+内部 M 外陈述的基础；不出现 M 不足以将固定计算认证归入 A₀。
+使用内部页面的通用性质和本文推导也不自动成为 Challenge2 输入；A(M) 只指
+其他论文的外部定理。文献项须保留来源、精确 claim locator
 和显式证明／外部输入参数，不能借清单整理变成无条件的已证事实。
 
 ### a01 — 固定的稳定模 2 基础
+
+- 角色：基础选择与保证；通用范畴定义留在 Def。
 
 - 陈述：`FoundationInput` 列出基础；`TensorInput` 列出对称、closed、
   三角公理、左右 tensor 及 ihom 的选定 CommShift/IsTriangulated、
@@ -68,6 +74,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 ### a02 — H𝔽₂ 乘法、Künneth 与 Milnor 合作运算
 
+- 角色：基础数据及相容性保证。
+
 - 陈述：`CooperationInput` 已入总包：同一个 H 的 ring、Künneth、reduced basis、
   suspension/diagonal/unit/coproduct 相容性及与 `MilnorInput` 的坐标一致性。
 - 实现：固定输入的构造待证；不是任意独立选择的第二套页面坐标。
@@ -78,6 +86,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
   Blueprint `def:h6-reduced-milnor-basis-input`、`def:h6-milnor-coproduct-input`。
 
 ### a03 — Adams 塔及页面以下性质
+
+- 角色：通用塔构造与所选基础上的坐标保证。
 
 - 陈述：塔及大量参数化性质已有；本包精确列出球面 E₁ 坐标和第一微分相容性。
 - 实现：`adamsTower` 由 unit 反复取 fiber 构造；第一页面同调及 word 坐标等
@@ -92,6 +102,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 ### a04 — 纯 Milnor cobar 与 h₆² 非边界
 
+- 角色：通用代数性质及指定类的内部推论，不是独立外部输入。
+
 - 陈述：`MilnorCobarSquareZero` 明列一般 d²=0；cycle、Leibniz 和指定非边界
   结论使用已有 Def 类型，不额外假设自由性质。
 - 实现：`Def/Solution/FoundationConsequences.cobar_square_zero` 从本包的
@@ -103,15 +115,21 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 ### a05 — Lin 加法基表的完整正确性
 
-- 陈述：`LinBasisInterface.correct` 已入总包，范围为所有 s,t : ℕ 且 t ≤ 261，
+- 角色：固定计算认证，已撤出 A₀／Challenge1 必交范围；编号仅用于追踪迁移。
+- 迁移：固定 CSV 单项式的认证是 Interface 辅助证明义务；结合实际 E₂ 比较
+  后向 Main 交付所需基、坐标、维数与穷尽性。保留范围及来源，不另设独立 axiom。
+
+- 当前代码：`LinBasisInterface.correct` 仍在总包，范围为所有 s,t : ℕ 且 t ≤ 261，
   要求固定 v126.3.cw49 CSV 单项式构成 `Module.Basis`。
-- 实现：生产义务迁至 `Def/{Challenge,Solution}/LinProgram/BasisTable.lean`，
+- 迁移前实现：生产义务在 `Def/{Challenge,Solution}/LinProgram/BasisTable.lean`，
   Solution 仍为 `sorry`。`Interface/Axiom/LinBasisTable.lean` 从同一个
   Challenge1 见证投影，未增加单独 axiom。
 - 依赖：纯 Lin 商代数认证；hash、行合法性不能替代线性无关与生成性。
 - 定位：`Def/AdamsE2/LinBasisTable/Predicates.lean`；Blueprint `thm:lin-e2-basis-certification`。
 
 ### a06 — Ravenel 的 Adams 滤过分解准则
+
+- 角色：有文献来源的通用定理，当前已有内部证明路线。
 
 - 陈述：`AdamsFiltrationDecomposition` 使用实际 Adams 塔，要求正整数 k 个
   同调零因子的复合等于原映射；不加入逆命题。k=0 不误写为空复合。
@@ -123,6 +141,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 ### a07 — May 的 smash-boundary 引理
 
+- 角色：外部定理及其在同一基础上的精确适用条件。
+
 - 陈述：本文件 `Stable.MaySmashBoundary` 精确使用两个实际三角、smash 箭头
   及其边界；同一个 c 同时满足像和边界等式。
 - 实现：`Main/Axiom/Literature/May.lean` 以显式 proof 包装 May Lemma 4.6 / TC3；
@@ -131,6 +151,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 定位：MainPaper `lem:452d218c`；Blueprint `thm:external-may-smash-boundary`。
 
 ### a08 — Pstrągowski synthetic 基础
+
+- 角色：synthetic 通用定义与外部基础保证，须分别记录模型绑定。
 
 - 陈述：`SyntheticCategory`、`NuFunctorData` 骨架已有；完整文献输入未冻结。
 - 实现：现有 ν record 含 functor、additive、zeroIso、unitIso、suspensionIso，未交付完整
@@ -148,6 +170,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 定位：`Def/Synthetic/Context/Data.lean`；Blueprint `thm:external-synthetic-foundation`。
 
 ### a09 — S/λ 的 E∞ 结构与 λ 反演
+
+- 角色：外部局部化／商代数结果及项目模型比较。
 
 - 陈述：`Synthetic.LambdaInversionInterface` 已明确实际 λ 可逆对象的满子范畴、
   reflector、包含函子的左伴随、与同一 classical 背景的等价，以及 ν 的自然比较。
@@ -178,6 +202,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 ### a10 — ν 的 cofiber 判据
 
+- 角色：外部 ν 判据；参数化陈述已具备，模型见证与证明另计。
+
 - 陈述：本文件 `Synthetic.NuCofiberCriterion` 已给出完整双向判据，
   `HomologyShortExact` 同时要求单射、中间正合和满射，`NuImageIsCofiber` 固定 νf、νg。
 - 实现／依赖：当前 Def 已有 ν、同调与三角；历史 `KIPBase/Synthetic/Nu.lean`
@@ -188,6 +214,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 定位：Blueprint `thm:external-nu-cofiber-criterion`；Claims 的 `nuCofiberCriterion`。
 
 ### a11 — BHS synthetic lift 与三角提升
+
+- 角色：外部 BHS 提升结果及项目模型绑定。
 
 - 陈述：本文件 `SyntheticLiftComparison`、`SyntheticTriangleLiftComparison`
   及其 witness records 已明确 λᵏ 因子分解、三角的三条映射及模 λ-torsion 的比较。
@@ -203,6 +231,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
   `Main/Axiom/Literature/Claims.lean` 中 BHS Lemma 9.15 的来源定位。
 
 ### a12 — λ-adic 完备性
+
+- 角色：外部完备性结果、通用极限定义及项目模型绑定。
 
 - 陈述：`FiniteQuotientTowerInterface` 明列同一 ν 家族上的有限 coherent tower
   及映射自然性。历史 `LambdaRhoDeltaTriangle`、`FiniteLambdaQuotientTower`
@@ -228,6 +258,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 ### a13 — 纯稳定 Toda bracket 规律
 
+- 角色：通用稳定 Toda 定理与内部推论。
+
 - 陈述：`TodaInterface` 明列同一 `Relation` 的可复合条件、存在性、完整
   不定性 coset 的充要条件与带负号的 juggling。
 - 实现：`Def/{Challenge,Solution}/Toda.lean` 中的 Solution 已由真实定理组装；
@@ -244,6 +276,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 定位：`Def/StableHomotopy/Toda/{Predicates,Proofs}.lean`；Blueprint `thm:toda-product-identities`。
 
 ### a14 — 内部目标之后的纯几何外部事实
+
+- 角色：外部几何定理；参数化类型与真实几何解释分别验收。
 
 - 陈述：`GeometryInterface` 明列 j=1,…,5 的存在性与 j≥7 的不存在性，
   几何对象、维数函数和 Kervaire 谓词是同一组显式参数；不使用内部 M。
