@@ -431,5 +431,29 @@
     "scripts/generate-lin-e2.py": "KIP126/Main/Axiom/LinProgram/Translate/check-e2.py",
     "scripts/import-lin-proofs.py": "KIP126/Main/Axiom/LinProgram/Translate/import-proofs.py",
     "scripts/import-lin-selected.py": "KIP126/Main/Axiom/LinProgram/Translate/import-selected.py"
+  },
+  "near126_followup": {
+    "base_commit": "54dca413fa19f1421518e3b2cf5870bf4c373262",
+    "description": "User-authorized consolidation: remove intermediate Main Challenge mirrors; retain existing Solution signatures, proof bodies and public names under mathematical topics. The original moves above remain a historical record.",
+    "solution_moves": {
+      "KIP126/Main/Solution/Near126/any_choice_criterion.lean": "KIP126/Main/Solution/ChoiceIndependence/any_choice_criterion.lean",
+      "KIP126/Main/Solution/Near126/c4_c5_choice_equivalence.lean": "KIP126/Main/Solution/ChoiceIndependence/c4_c5_choice_equivalence.lean",
+      "KIP126/Main/Solution/Near126/only_d12_differential_reduction.lean": "KIP126/Main/Solution/DifferentialReduction/only_d12_differential_reduction.lean",
+      "KIP126/Main/Solution/Near126/d12_dichotomy_and_condition_equivalence.lean": "KIP126/Main/Solution/DifferentialReduction/d12_dichotomy_and_condition_equivalence.lean",
+      "KIP126/Main/Solution/Near126/c3_excludes_c5.lean": "KIP126/Main/Solution/ExtensionObstruction/c3_excludes_c5.lean"
+    },
+    "removed_challenge_mirrors": {
+      "KIP126/Main/Challenge/Near126/any_choice_criterion.lean": "KIP126/Main/Solution/ChoiceIndependence/any_choice_criterion.lean",
+      "KIP126/Main/Challenge/Near126/c4_c5_choice_equivalence.lean": "KIP126/Main/Solution/ChoiceIndependence/c4_c5_choice_equivalence.lean",
+      "KIP126/Main/Challenge/Near126/only_d12_differential_reduction.lean": "KIP126/Main/Solution/DifferentialReduction/only_d12_differential_reduction.lean",
+      "KIP126/Main/Challenge/Near126/d12_dichotomy_and_condition_equivalence.lean": "KIP126/Main/Solution/DifferentialReduction/d12_dichotomy_and_condition_equivalence.lean",
+      "KIP126/Main/Challenge/Near126/c3_excludes_c5.lean": "KIP126/Main/Solution/ExtensionObstruction/c3_excludes_c5.lean"
+    }
+  },
+  "classification_followup": {
+    "basis_certificate": "Challenge1.linBasis -> Challenge2.linBasis; producer Def -> Interface; consumer Interface/Axiom -> Main/Axiom/LinProgram/Interpretation/BasisTable",
+    "basis_selection": "Interface/Solution/LinProgram/Basis -> Main/Axiom/LinProgram/Interpretation/Basis/Algebra",
+    "paper_rules": "Challenge2 PageExtensionRules -> Main/Solution/Tools; crossing predicate -> Def/Synthetic/PageExtension/Stretching/Predicates",
+    "proof_status": "No basis certification or paper-rule proof is completed by this reclassification."
   }
 }

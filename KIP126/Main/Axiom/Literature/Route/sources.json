@@ -1,0 +1,789 @@
+{
+  "schema_version": 1,
+  "scope": "LWX v2 Section 7 route frozen in docs/M_INPUT_FREEZE.md; input statements only",
+  "entry": "KIP126.Literature.Route.Inputs",
+  "frozen_model": "KIP126.Kervaire.Route.Model",
+  "sources": [
+    {
+      "id": "lwx-v2",
+      "role": "consumer-only",
+      "url": "https://arxiv.org/html/2412.10879v2",
+      "status": "local-source-and-online-checked",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/MainPaper/main.tex",
+          "sha256": "1125462bcae4a4ec56e3bfcaad15df4febf98757dfb83462b155af162c99c9e0"
+        }
+      ]
+    },
+    {
+      "id": "xu",
+      "role": "prior-result",
+      "url": "https://doi.org/10.2140/gt.2016.20.1611",
+      "status": "local-primary-source-checked",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/Xu/source/theta5_arxiv.tex",
+          "sha256": "ee83a8162dfedd7a8cc07d117ffc025e0999387644017d6c03e4e701265f4b89"
+        }
+      ],
+      "locators": [
+        "Corollary 1.3"
+      ]
+    },
+    {
+      "id": "iwx",
+      "role": "prior-result",
+      "url": "https://doi.org/10.1007/s10240-023-00139-1",
+      "status": "local-primary-source-checked",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/IWX/source/more-stable-stems-intro.tex",
+          "sha256": "c690105bd338fd1e5ff045ea54d5aa05e89d440e070c92c82842221ae3720d63"
+        },
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/IWX/source/more-stable-stems-tables.tex",
+          "sha256": "c606709433ccd65fee9fb7ad3d519279df5469c22979ee8fcffe57e037d6e379"
+        },
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/IWX/source/more-stable-stems-background.tex",
+          "sha256": "a96b762ab110325b0395ccce5ef74331b2634c1853ea0329c7a26f69ce0797b6"
+        },
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/IWX/source/more-stable-stems-Toda.tex",
+          "sha256": "8bcdca77a8c459b78815e0f080c29ae2f1e7f5d54043fdcd3a4cf2fa284bc060"
+        }
+      ],
+      "locators": [
+        "classical 62-stem table",
+        "defn:crossing-diff",
+        "thm:Moss",
+        "cor:2-symmetric"
+      ]
+    },
+    {
+      "id": "bx",
+      "role": "prior-result",
+      "url": "https://doi.org/10.1007/s00222-024-01298-6",
+      "status": "local-primary-source-checked",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/BurklundXu/source/kervairev2.tex",
+          "sha256": "34cdb9d20d21eafb3d502418b535b6517337a11a985487497003832de888491a"
+        }
+      ],
+      "locators": [
+        "Proposition 7.19 and proof",
+        "cnstr:bock-maps"
+      ]
+    },
+    {
+      "id": "bhs",
+      "role": "prior-result",
+      "url": "https://doi.org/10.4310/acta.2023.v231.n2.a1",
+      "status": "local-primary-source-checked",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/BHS/source/SynRevBigraded.tex",
+          "sha256": "3b9394fbf7b40946bd19fb85563e72b7177d50096934240af2db185682a54231"
+        },
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/BHS/source/SynRevAdams.tex",
+          "sha256": "22e5f3c7c8b734f2611b812ee50f4de48c3ce2a2cf123615f3ded88613dc0943"
+        },
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/BHS/source/SyntheticTodaRange.tex",
+          "sha256": "d1ab0ecaddde05a9f4ba038c2cb0ccb16e885e958b1880688a4f3ce81570c29e"
+        }
+      ],
+      "locators": [
+        "lemm:adams-fil1",
+        "thm:synthetic-Adams",
+        "thm:synth-ASS",
+        "cor:synth-ASS",
+        "cor:synth-ctau-ASS",
+        "cor:tau-surj",
+        "prop:syn-toda-range"
+      ]
+    },
+    {
+      "id": "pst",
+      "role": "prior-result",
+      "url": "https://doi.org/10.1007/s00222-022-01173-2",
+      "status": "local-primary-source-checked",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/Pst/source/synthetic_spectra.tex",
+          "sha256": "8cf4dea5a56c89ed6d7adf6e8774a7c4be31a5da447b91c8c6c9061f292cd890"
+        }
+      ],
+      "locators": [
+        "Lemma 4.23",
+        "prop:tau_inversion_functor_exists",
+        "prop:tau_inversion_cocontinuous_symmetric_monoidal_left_inverse_to_synthetic_analogue",
+        "lemma:synthetic_analogue_construction_preserves_filtered_colimits_and_is_lax_symmetric_monoidal"
+      ]
+    },
+    {
+      "id": "bhsmot",
+      "role": "prior-result",
+      "url": "https://arxiv.org/abs/2010.10325",
+      "status": "local-primary-source-checked",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/BHSmot/source/Filtered.tex",
+          "sha256": "e24f321a6c2217a79842a951ffc90a43c231a994e42afb9fb91720f18fc435cc"
+        },
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/BHSmot/source/Deformation.tex",
+          "sha256": "614d8c7ebf1707861e9b32b7699eca97e037ea99432739d8e9825981442fbc74"
+        }
+      ],
+      "locators": [
+        "Appendices B/C",
+        "Example C.15; also BX cnstr:bock-maps"
+      ]
+    },
+    {
+      "id": "tmf",
+      "role": "prior-result",
+      "url": "https://arxiv.org/abs/2011.08956v4",
+      "status": "local-primary-source-and-figure-checked",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/tmf/source/tmfhi9.tex",
+          "sha256": "0509d24b10bb9563e23302e37dac800e73e8fcd7dd70c54b3411a6c3c39d6381"
+        },
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/tmf/source/tmf2.pdf",
+          "sha256": "e0d37d1d51d5bf959408bf009c5528c1a7c3cb419de8e1405177d4ed46aff98c"
+        }
+      ],
+      "locators": [
+        "thm:main (Theorem 1.2)",
+        "fig:tmf2 (Figure 1.1)",
+        "Section 2 H_*tmf and change of rings",
+        "Section 7: kappa-bar^4 w; Lem:Eoo"
+      ]
+    },
+    {
+      "id": "may",
+      "role": "prior-result",
+      "url": "https://math.uchicago.edu/~may/PAPERS/AddJan01.pdf",
+      "status": "author-pdf-checked-online",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/May01/citation.bib",
+          "sha256": "30765408084974b75e03b0e7e97ce6d4511119f3b99c80b39085a52ee8a94d04"
+        }
+      ],
+      "locators": [
+        "TC3",
+        "Lemma 4.6, PDF p.14"
+      ],
+      "note": "Local file is citation metadata, not the original proof."
+    },
+    {
+      "id": "moss",
+      "role": "prior-result",
+      "url": "https://doi.org/10.1007/BF01129978",
+      "status": "original-scan-unavailable",
+      "files": [
+        {
+          "path": "KIP126/Main/Axiom/Literature/Sources/Moss/citation.bib",
+          "sha256": "24755b33ce39a3bdfca49af7ccb065256050c541c77e46ef952b3bec98c41dfd"
+        }
+      ],
+      "locators": [
+        "Theorem 1.2"
+      ],
+      "note": "Statement checked using Belmont-Kong v1 and IWX; original Moss scan was NOT independently read."
+    },
+    {
+      "id": "belmont-kong",
+      "role": "prior-result-crosscheck",
+      "url": "https://arxiv.org/pdf/2112.08689v1",
+      "status": "primary-pdf-checked-online",
+      "files": [],
+      "locators": [
+        "Theorem 1.1 / 4.11",
+        "Definition 2.10",
+        "Proposition 2.12"
+      ],
+      "note": "December 2021 version predates LWX; used to check the Moss statement and crossing directions, not its 2025 revision."
+    },
+    {
+      "id": "toda",
+      "role": "prior-result",
+      "url": "https://doi.org/10.1515/9781400882625",
+      "status": "original-book-not-independently-read",
+      "files": [],
+      "locators": [
+        "Theorem 3.6",
+        "low bracket <2,eta,2>"
+      ],
+      "note": "Symmetric membership checked through IWX chapter 6; synthetic transport is an explicit unproved input, not a verbatim classical or motivic statement."
+    }
+  ],
+  "claims": [
+    {
+      "id": "AM01",
+      "input_field": "classical",
+      "module": "KIP126/Main/Axiom/Literature/Route/Classical.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Theta5Existence",
+        "KIP126.Literature.Route.ClassicalTheta"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "xu"
+      ],
+      "locator": "Corollary 1.3",
+      "lwx_consumers": [
+        "thm:bjmbx",
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Alternative source: BJM84. Includes nonzero survival and an order-two choice."
+    },
+    {
+      "id": "AM02",
+      "input_field": "classical",
+      "module": "KIP126/Main/Axiom/Literature/Route/Classical.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Stem62ExponentTwo"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "iwx"
+      ],
+      "locator": "classical 62-stem group table",
+      "lwx_consumers": [
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Exponent two of the whole group, not merely one theta."
+    },
+    {
+      "id": "AM03",
+      "input_field": "classical",
+      "module": "KIP126/Main/Axiom/Literature/Route/Classical.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Theta5FiltrationGap"
+      ],
+      "kind": "prior-result-consequence",
+      "sources": [
+        "iwx"
+      ],
+      "locator": "classical 62-stem Adams filtrations 2,6,8,10",
+      "lwx_consumers": [
+        "lem:equistate4"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Classical difference filtration only; synthetic choice-independence remains Main."
+    },
+    {
+      "id": "AM04",
+      "input_field": "classical",
+      "module": "KIP126/Main/Axiom/Literature/Route/Classical.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TwoDetection",
+        "KIP126.Literature.Route.HopfInput"
+      ],
+      "kind": "source-specialization-and-transport",
+      "sources": [
+        "bhs",
+        "iwx"
+      ],
+      "locator": "low classical stems and prop:syn-toda-range",
+      "lwx_consumers": [
+        "lem:toda2ext",
+        "lem:x1239",
+        "lem:nuext125"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Binds selected eta/nu maps to standard h_1/h_2 and the chosen synthetic eta."
+    },
+    {
+      "id": "AM05",
+      "input_field": "bx",
+      "module": "KIP126/Main/Axiom/Literature/Route/BX.lean",
+      "declarations": [
+        "KIP126.Literature.Route.BXDistinguishedInput"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bx"
+      ],
+      "locator": "Proposition 7.19 AND its proof",
+      "lwx_consumers": [
+        "thm:bjmbx",
+        "rem:theta5choice"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "All clauses for one theta; finite normalization and arbitrary-choice upgrade remain Main."
+    },
+    {
+      "id": "AM06",
+      "input_field": "synthetic",
+      "module": "KIP126/Main/Axiom/Literature/Route/Synthetic.lean",
+      "declarations": [
+        "KIP126.Literature.Route.SyntheticInputs.lifts"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "pst",
+        "bhs"
+      ],
+      "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
+      "lwx_consumers": [
+        "prop:1f7950df",
+        "prop:ef21f9bc",
+        "prop:41561db2"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Uses existing SyntheticInterface H D.nu; does not identify arbitrary selected lifts."
+    },
+    {
+      "id": "AM07",
+      "input_field": "synthetic",
+      "module": "KIP126/Main/Axiom/Literature/Route/Synthetic.lean",
+      "declarations": [
+        "KIP126.Literature.Route.FiniteLiftCriterion",
+        "KIP126.Literature.Route.BocksteinDifferential"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "thm:synthetic-Adams (A.1), clauses (1a-c)",
+      "lwx_consumers": [
+        "thm:17e90ac0"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Actual rho and delta; d_(q+1) after lift to quotient q."
+    },
+    {
+      "id": "AM08",
+      "input_field": "synthetic",
+      "module": "KIP126/Main/Axiom/Literature/Route/Synthetic.lean",
+      "declarations": [
+        "KIP126.Literature.Route.PermanentLiftCriterion"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "thm:synthetic-Adams (A.1), clause (2)",
+      "lwx_consumers": [
+        "thm:17e90ac0"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Permanent cycle may be zero or a boundary."
+    },
+    {
+      "id": "AM09",
+      "input_field": "synthetic",
+      "module": "KIP126/Main/Axiom/Literature/Route/Synthetic.lean",
+      "declarations": [
+        "KIP126.Literature.Route.DifferentialRigidity",
+        "KIP126.Literature.Route.E2WeightVanishing"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "thm:synth-ASS (A.8)",
+      "lwx_consumers": [
+        "thm:rigid"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Same classical and synthetic sequences; lambda exponent r-1, not a replacement map."
+    },
+    {
+      "id": "AM10",
+      "input_field": "synthetic",
+      "module": "KIP126/Main/Axiom/Literature/Route/Synthetic.lean",
+      "declarations": [
+        "KIP126.Literature.Route.EInftyInput"
+      ],
+      "kind": "source-specialization-and-transport",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "cor:synth-ASS and finite-quotient corollary (A.9/A.11)",
+      "lwx_consumers": [
+        "prop:6de7d130"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Includes actual lambda/rho compatibility and common-label agreement."
+    },
+    {
+      "id": "AM11",
+      "input_field": "synthetic",
+      "module": "KIP126/Main/Axiom/Literature/Route/Synthetic.lean",
+      "declarations": [
+        "KIP126.Literature.Route.RealizationKernel"
+      ],
+      "kind": "prior-result-consequence",
+      "sources": [
+        "pst"
+      ],
+      "locator": "tau inversion as filtered colimit; compact synthetic spheres",
+      "lwx_consumers": [
+        "prop:possibleh62",
+        "lem:equistate4"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Only selected objects; no degree-specific torsion-freeness assertion."
+    },
+    {
+      "id": "AM12",
+      "input_field": "synthetic",
+      "module": "KIP126/Main/Axiom/Literature/Route/Synthetic.lean",
+      "declarations": [
+        "KIP126.Literature.Route.FiltrationLambda"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "cor:tau-surj",
+      "lwx_consumers": [
+        "prop:possibleh62",
+        "lem:x1239"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Nonnegative exponent condition explicit."
+    },
+    {
+      "id": "AM13",
+      "input_field": "realization",
+      "module": "KIP126/Main/Axiom/Literature/Route/Realization.lean",
+      "declarations": [
+        "KIP126.Literature.Route.RealizationCoordinates",
+        "KIP126.Literature.Route.RealizationInput"
+      ],
+      "kind": "source-transport",
+      "sources": [
+        "pst",
+        "bhs"
+      ],
+      "locator": "lambda-inversion, nuRealization and bigraded sphere comparisons",
+      "lwx_consumers": [
+        "prop:possibleh62",
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Same actual realization, normalized unit and lambda actions."
+    },
+    {
+      "id": "AM14",
+      "input_field": "realization",
+      "module": "KIP126/Main/Axiom/Literature/Route/Realization.lean",
+      "declarations": [
+        "KIP126.Literature.Route.RealizationDetection.lifetime"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "A.1(2a)",
+      "lwx_consumers": [
+        "prop:possibleh62",
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Every lift; E_(r+1) nonzero survival gives lambda^(r-1) nonzero."
+    },
+    {
+      "id": "AM15",
+      "input_field": "realization",
+      "module": "KIP126/Main/Axiom/Literature/Route/Realization.lean",
+      "declarations": [
+        "KIP126.Literature.Route.RealizationDetection.detection",
+        "KIP126.Literature.Route.RealizationDetection.prescribed_lift"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "A.1(2b),(3b)",
+      "lwx_consumers": [
+        "lem:equistate4",
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Same E2 class in actual convergence detection."
+    },
+    {
+      "id": "AM16",
+      "input_field": "realization",
+      "module": "KIP126/Main/Axiom/Literature/Route/Realization.lean",
+      "declarations": [
+        "KIP126.Literature.Route.RealizationDetection.boundary_lift"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "A.1(3a)",
+      "lwx_consumers": [
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Some lift, NOT every lift, killed by the required lambda power."
+    },
+    {
+      "id": "AM17",
+      "input_field": "algebra",
+      "module": "KIP126/Main/Axiom/Literature/Route/Algebra.lean",
+      "declarations": [
+        "KIP126.Literature.Route.AlgebraInput",
+        "KIP126.Literature.Route.QuotientAlgebras"
+      ],
+      "kind": "source-specialization-and-transport",
+      "sources": [
+        "pst",
+        "bhsmot",
+        "bx"
+      ],
+      "locator": "lambda-inversion symmetric monoidal; BHSmot B/C; BX cnstr:bock-maps",
+      "lwx_consumers": [
+        "lem:x1239",
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Ordinary homotopy-category consequences on actual quotient objects, units and restrictions."
+    },
+    {
+      "id": "AM18",
+      "input_field": "algebra",
+      "module": "KIP126/Main/Axiom/Literature/Route/Algebra.lean",
+      "declarations": [
+        "KIP126.Literature.Route.DetectorAlgebra"
+      ],
+      "kind": "source-specialization-and-transport",
+      "sources": [
+        "pst",
+        "tmf"
+      ],
+      "locator": "nu lax symmetric monoidal; tmf commutative ring structure",
+      "lwx_consumers": [
+        "prop:possibleh62"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Selected detector and synthetic detector units are fixed to actual Hurewicz maps."
+    },
+    {
+      "id": "AM19",
+      "input_field": "may",
+      "module": "KIP126/Main/Axiom/Literature/Route/May.lean",
+      "declarations": [
+        "KIP126.Literature.Route.MayInput"
+      ],
+      "kind": "source-specialization-and-transport",
+      "sources": [
+        "may"
+      ],
+      "locator": "TC3 and Lemma 4.6",
+      "lwx_consumers": [
+        "lem:452d218c"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Exact tensor witnesses and the boundary equality; not generalized Mahowald itself."
+    },
+    {
+      "id": "AM20",
+      "input_field": "moss",
+      "module": "KIP126/Main/Axiom/Literature/Route/Moss.lean",
+      "declarations": [
+        "KIP126.Literature.Route.MossInput"
+      ],
+      "kind": "source-specialization-and-transport",
+      "sources": [
+        "moss",
+        "belmont-kong",
+        "iwx"
+      ],
+      "locator": "Moss 1.2; BK 1.1/4.11, 2.10; IWX defn:crossing-diff and thm:Moss",
+      "lwx_consumers": [
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Original Moss scan unavailable. All null products, crossings and residual conditions remain premises."
+    },
+    {
+      "id": "AM21",
+      "input_field": "toda",
+      "module": "KIP126/Main/Axiom/Literature/Route/Toda.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TodaInputs.h0",
+        "KIP126.Literature.Route.TodaInputs.h0_label",
+        "KIP126.Literature.Route.TodaInputs.lambda_h0",
+        "KIP126.Literature.Route.TodaInputs.h0_eta",
+        "KIP126.Literature.Route.TodaInputs.low_indeterminacy"
+      ],
+      "kind": "prior-result-consequence-and-transport",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "prop:syn-toda-range, relations (0),(9), and degree (2,3)",
+      "lwx_consumers": [
+        "lem:x1239",
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Low indeterminacy only; actual first quotient standard h0 label."
+    },
+    {
+      "id": "AM22",
+      "input_field": "toda",
+      "module": "KIP126/Main/Axiom/Literature/Route/Toda.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TodaInputs.eta_squared"
+      ],
+      "kind": "prior-result-consequence-and-transport",
+      "sources": [
+        "toda",
+        "bhs",
+        "iwx"
+      ],
+      "locator": "low classical bracket <2,eta,2>; BHS low groups; IWX tables",
+      "lwx_consumers": [
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Synthetic membership in the actual Toda.Relation; no high-stem equality."
+    },
+    {
+      "id": "AM23",
+      "input_field": "toda",
+      "module": "KIP126/Main/Axiom/Literature/Route/Toda.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TodaInputs.symmetric_two"
+      ],
+      "kind": "source-transport",
+      "sources": [
+        "toda",
+        "iwx",
+        "bhs"
+      ],
+      "locator": "Toda Theorem 3.6; IWX thm:Toda-symmetric/cor:2-symmetric",
+      "lwx_consumers": [
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Synthetic lambda^2 eta theta membership; source transport not yet proved; zero indeterminacy is NOT assumed."
+    },
+    {
+      "id": "AM24",
+      "input_field": "tmf",
+      "module": "KIP126/Main/Axiom/Literature/Route/Tmf.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TmfTheta5Vanishing"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "tmf"
+      ],
+      "locator": "Theorem 1.2 and Figure 1.1, stem 62",
+      "lwx_consumers": [
+        "prop:possibleh62"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Classical vanishing only, not synthetic detector injectivity."
+    },
+    {
+      "id": "AM25",
+      "input_field": "tmf",
+      "module": "KIP126/Main/Axiom/Literature/Route/Tmf.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TmfHigh125Detection",
+        "KIP126.Literature.Route.TmfLabels.high125"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "tmf"
+      ],
+      "locator": "Section 7 Hurewicz image, kappa-bar^4 w in stem 125",
+      "lwx_consumers": [
+        "prop:possibleh62"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Sphere high label is the actual product of two supplied labels; CSV identification stays C(M)."
+    },
+    {
+      "id": "AM26",
+      "input_field": "tmf",
+      "module": "KIP126/Main/Axiom/Literature/Route/Tmf.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TmfLowFiltration63"
+      ],
+      "kind": "prior-result-consequence",
+      "sources": [
+        "tmf"
+      ],
+      "locator": "Section 2 H_*tmf and change of rings",
+      "lwx_consumers": [
+        "prop:possibleh62"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "A previously published tmf low-line fact, not a Lin sphere computation."
+    },
+    {
+      "id": "AM27",
+      "input_field": "applicability",
+      "module": "KIP126/Main/Axiom/Literature/Route/Applicability.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Applicability",
+        "KIP126.Literature.Route.NuCofiberApplicability"
+      ],
+      "kind": "model-applicability",
+      "sources": [
+        "bhs",
+        "pst"
+      ],
+      "locator": "geometric triangle construction and chosen normalized lifts",
+      "lwx_consumers": [
+        "prop:41561db2",
+        "lem:nuext125",
+        "prop:state5false"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "Requires compatibility of the fixed choices, not a theorem for arbitrary normalized lifts."
+    },
+    {
+      "id": "AM28",
+      "input_field": "applicability",
+      "module": "KIP126/Main/Axiom/Literature/Route/Moss.lean",
+      "declarations": [
+        "KIP126.Literature.Route.MossTowerApplicability"
+      ],
+      "kind": "model-applicability",
+      "sources": [
+        "moss",
+        "belmont-kong"
+      ],
+      "locator": "actual tower residual/strong convergence applicability",
+      "lwx_consumers": [
+        "lem:toda2ext"
+      ],
+      "proof_status": "explicit-input-unproved",
+      "note": "No local no-crossing, computation or Massey-value assertion."
+    }
+  ],
+  "excluded": [
+    "C(M) CSV/relations/basis and proofs.db certification",
+    "LWX generalized Leibniz/Mahowald/stretching",
+    "LWX Propositions 7.8/7.9 and C3/C4/C5",
+    "synthetic detector injectivity derived from tables",
+    "geometric corollaries requiring Browder/HHR",
+    "full C(M) machine-proof replay inputs"
+  ],
+  "source_caveats": [
+    "Moss original scan unavailable; checked prior Belmont-Kong v1 theorem instead.",
+    "Toda original book not independently read; IWX/BHS comparison and synthetic transport explicitly distinguished.",
+    "LWX final cofiber formula with lambda[h2] is not adopted; actual normalized Cnu triangle is used."
+  ]
+}

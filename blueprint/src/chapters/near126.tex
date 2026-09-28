@@ -1,3 +1,6 @@
+% Route-model refinement, 2026-09-28: the intermediate Lean declarations
+% are pending propositions on Kervaire.Route.Model. They do not assume
+% arbitrary permanence/detection predicates; A(M)/C(M) are still separate.
 \chapter{The near-$126$ reduction and permanent cycle}
 \label{chap:near126}
 
@@ -47,7 +50,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: PROJECT_BOUNDARY.md, External inputs and Axiom policy.
 \begin{definition}[Near-$126$ literature input]
   \label{def:near126-literature-input}
-  \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-theta5-order-data,thm:external-bx-quadratic-cell-calculus,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
+  \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-bx-quadratic-cell-calculus,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
   \notready
   For fixed $\mathcal C$, $\mathcal S$, $A_{\mathrm{cl}}$,
   $A_{\mathrm{syn}}$, and their sphere coherence datum, a near-$126$
@@ -57,15 +60,14 @@ This chapter contains only the project deductions that assemble the setup, exter
   \texttt{lambdaBockstein}, \texttt{syntheticLift},
   \texttt{syntheticTriangleLift}, \texttt{nuCofiberCriterion},
   \texttt{maySmashBoundary}, \texttt{mossConvergence},
-  \texttt{todaProducts}, \texttt{bjmBx}, \texttt{theta5OrderData},
+  \texttt{todaProducts}, \texttt{bjmBx},
   \texttt{quadraticCells}, and \texttt{totalDifferential}.  The last two
   fields describe only the distinguished source choice; neither contains an
-  arbitrary-choice identity or choice-independence assumption.  The Xu/IWX
-  order and choice-comparison facts are
-  supplied specifically by \texttt{theta5OrderData}, whose proposition is
-  Theorem~\ref{thm:external-theta5-order-data} and which supplies only order
-  and difference-filtration data; finite torsion exclusions remain in the
-  computation package.  The quadratic-construction fields supply the cited
+  arbitrary-choice identity or choice-independence assumption. Original classical
+  Xu/IWX inputs require precise source and model bindings; the synthetic
+  order/choice predicate below is a paper deduction, not an extra literature
+  field. The finite normalized BJM/BX statement likewise requires a project
+  proof. The quadratic-construction fields supply the cited
   cell-calculus input for the internal choice comparison.  Its named
   \texttt{ExternalEvidence} field
   \texttt{normalizedHopfDetection} supplies the triangle-compatible identity
@@ -179,7 +181,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   then verify the required $\lambda\eta$-annihilation using its typed
   filtration and product data.  The resulting witness is passed explicitly
   to the Lean transport theorem; it is not a field of
-  \texttt{AnyChoiceCriterion}.
+  \texttt{Route.ThetaChoice}.
 \end{proof}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1009-1021, the m=infinity quotient triangle;
@@ -276,14 +278,54 @@ This chapter contains only the project deductions that assemble the setup, exter
   restriction is a new literature input.
 \end{proof}
 
+% Historical labels retained for stable graph references; these are project deductions.
+\begin{proposition}[Derived synthetic $\theta_5$ order and choice conditions]
+  \label{thm:external-theta5-order-data}
+  \lean{KIP126.Kervaire.Theta5OrderData}
+  \uses{def:synthetic-theta5-choice,thm:external-synthetic-einfty-nu}
+  \notready
+  The predicate records order two and a bound on differences of choices.
+  Its intended synthetic interpretation requires classical Xu/IWX inputs,
+  comparison, and the paper's no-$\lambda$-torsion analysis in Remark 7.5.
+  It is not directly supplied by a prior literature theorem.
+  Precise source bindings and a proof on the fixed model are pending.
+\end{proposition}
+
+\begin{proposition}[Derived order and torsion bundle]
+  \label{evidence:theta5-order-torsion}
+  \lean{KIP126.Kervaire.Theta5OrderTorsionEvidence}
+  \uses{def:synthetic-theta5-choice,thm:external-theta5-order-data,thm:external-synthetic-einfty-nu,data:table-s123,data:table-s124-low}
+  \notready
+  This bundle combines derived order/choice conditions with absence of
+  $\lambda$-torsion in $\pi_{62,64}S^{0,0}$ and $\pi_{125,130}S^{0,0}$.
+  It is not a direct program output. Its raw computation prerequisites,
+  exact coverage, comparison maps, and intervening deductions must still be
+  separated and proved. The historical label does not classify the bundle as C(M).
+\end{proposition}
+
+\begin{proposition}[Paper-normalized BJM/BX criterion]
+  \label{prop:bjm-bx-normalized-criterion}
+  \lean{KIP126.Kervaire.BJM_BXCriterion,KIP126.Kervaire.BJMNormalizedFiniteCriterion}
+  \uses{thm:external-bjm-bx-criterion,evidence:theta5-order-torsion}
+  \notready
+  LWX Remark 7.4 uses absence of $\lambda$-torsion to replace the original
+  finite $\eta\theta_5^2$ condition modulo $\lambda^r$ by
+  $\lambda\eta\theta_5^2$ modulo $\lambda^{r+1}$.
+  The Lean predicate retains the latter formula under its historical name.
+  The separate actual-object predicate uses the same internal standard class
+  and actual quotient maps. Its conversion proof remains Main work; defining
+  the predicate does not prove the conversion, nor identify the old
+  single-carrier prototype with the new bigraded objects.
+\end{proposition}
+
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2117-2139, Theorem thm:bjmbx and Remark rem:theta5choice; project transport from the distinguished source choice.
 \begin{theorem}[BJM/BX criterion for any order-two choice]
   \label{thm:bjm-bx-criterion-any-choice}
   % VERIFIED-IN: KIP126/Def/Kervaire/Theta5/Proofs.lean,
   % KIP126.Kervaire.bjm_bx_criterion_any_choice (project transport; remains notready).
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,thm:external-bjm-bx-criterion,prop:theta5-choice-independence,prop:theta5-total-quotient-transport}
-  \lean{KIP126.Kervaire.AnyChoiceCriterion}
-  \lean{KIP126.Challenge.Near126.Thm7_3BJMBX.any_choice_criterion}
+  \uses{def:near126-computation-input,def:synthetic-theta5-choice,prop:bjm-bx-normalized-criterion,prop:theta5-choice-independence,prop:theta5-total-quotient-transport}
+  \lean{KIP126.Kervaire.Route.ThetaChoice}
+  \lean{KIP126.Solution.Near126.Thm7_3BJMBX.any_choice_criterion}
   \notready
   For a near-$126$ computation input $D$, every synthetic choice $\theta_5$
   detected by $h_5^2$ has order two.  For each such choice:
@@ -300,19 +342,22 @@ This chapter contains only the project deductions that assemble the setup, exter
   The order-two conclusion is the explicit content of
   Proposition~\ref{evidence:theta5-order-torsion}; it is not inferred from the
   BJM/BX criterion.  Choose the distinguished $\theta_5^{\mathrm{src}}$ carried by the external
-  criterion.  Fix an integer $r\ge1$.  Choice independence identifies its
+  criterion. First derive the normalized criterion using
+  Proposition~\ref{prop:bjm-bx-normalized-criterion}. Fix an integer $r\ge1$.  Choice independence identifies its
   product with the product for the given $\theta_5$ in the untruncated sphere.
   Proposition~\ref{prop:theta5-total-quotient-transport} transports the
   same equality to the quotient $S/\lambda^{r+1}$.  Substitute these equalities into the two source
   equivalences.  This transport is a project proof and does not strengthen the
-  external source record.
+  external source record. The current Lean declaration specifies this obligation on one coherent
+  classical/synthetic model. It is a proposition definition, not a proof of
+  the criterion. The source inputs and the paper deductions remain to be supplied.
 \end{proof}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2221-2241, Lemma lem:equistate4.
 \begin{lemma}[Existential and universal forms of $C_4$]
   \label{lem:near126-equiv-c4}
-  \lean{KIP126.Kervaire.ChoiceConditions}
-  \lean{KIP126.Challenge.Near126.Conditions.c4_c5_choice_equivalence}
+  \lean{KIP126.Kervaire.Route.C4}
+  \lean{KIP126.Solution.Near126.Conditions.c4_c5_choice_equivalence}
   \uses{def:near126-computation-input,def:near126-conditions,evidence:theta5-order-torsion}
   \notready
   For a near-$126$ computation input $D$, condition $C_4$ is equivalent to the
@@ -329,7 +374,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2244-2258, Lemma lem:equistate5.
 \begin{lemma}[Existential and universal forms of $C_5$]
   \label{lem:near126-equiv-c5}
-  \lean{KIP126.Challenge.Near126.Conditions.c4_c5_choice_equivalence}
+  \lean{KIP126.Solution.Near126.Conditions.c4_c5_choice_equivalence}
   \uses{def:near126-computation-input,def:near126-conditions,evidence:near126-indeterminacy}
   \notready
   For a near-$126$ computation input $D$, condition $C_5$ is equivalent to the
@@ -347,10 +392,10 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possibleh62.
 \begin{proposition}[Only possible differential on $h_6^2$]
   \label{prop:possible-h62}
-  \lean{KIP126.Kervaire.Near126Adams}
-  \lean{KIP126.Challenge.Near126.CandidateReduction.only_d12_differential_reduction}
-  \lean{KIP126.Kervaire.Near126Adams}
-  \lean{KIP126.Challenge.Near126.OnlyD12.d12_dichotomy_and_condition_equivalence}
+  \lean{KIP126.Kervaire.Route.Model}
+  \lean{KIP126.Solution.Near126.CandidateReduction.only_d12_differential_reduction}
+  \lean{KIP126.Kervaire.Route.Model}
+  \lean{KIP126.Solution.Near126.OnlyD12.d12_dichotomy_and_condition_equivalence}
   \uses{def:near126-computation-input,def:near126-conditions,thm:bjm-bx-criterion-any-choice,prop:theta5-total-differential-any-choice,thm:delta-classical-equivalence,evidence:near126-core,evidence:theta5-square-tmf,lem:near126-equiv-c4,lem:near126-equiv-c5}
   \notready
   For a near-$126$ computation input $D$, exactly one of the following holds:
@@ -621,8 +666,8 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.
 \begin{proposition}[$C_3$ excludes $C_5$]
   \label{prop:near126-c3-not-c5}
-  \lean{KIP126.Challenge.Near126.ExcludeEta.c3_excludes_c5}
-  \lean{KIP126.Challenge.Near126.C3NotC5.c3_excludes_c5}
+  \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
+  \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
   \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion,def:external-evidence}
   \notready
   For a near-$126$ computation input $D$, if $C_3$ holds, then $C_5$ is false.
@@ -643,38 +688,31 @@ This chapter contains only the project deductions that assemble the setup, exter
   contradicts this.  Hence $C_5$ cannot hold.
 \end{proof}
 
-\begin{theorem}[Computational nonzero survival of $h_6^2$]
-  \label{thm:h6-square-computational}
-  \lean{KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent_computational}
-  \uses{def:h6-fixed-computation}
-  \notready
-  The fixed Lin-data square, mapped into the internal sphere Adams $E_2$,
-  has a common $Z_\infty$ representative with nonzero $E_\infty$ image.
-  Both its Challenge and Solution currently retain \texttt{sorry}.
-  The multiplication table alone does not prove this survival assertion.
-\end{theorem}
+
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:128-130 and 2106-2214, Theorems thm:h62 and thm:126survives.
 \begin{theorem}[$h_6^2$ is a permanent cycle]
   \label{thm:h6-square-permanent}
   \lean{KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent}
-  \uses{def:h6-fixed-computation,def:h6-pagewise-permanence}
+  \uses{def:h6-standard-internal-target}
   \notready
   The standard class $h_6^2\in E_2^{2,128}(S^0)$ is nonzero permanent
   in the classical mod--$2$ Adams spectral sequence of the sphere.
-  The Lean statement has no foundation or computation parameters: its objects
-  are fixed once. The Challenge remains \texttt{sorry}; the Solution reduces
-  to the computational Solution using named class and survival comparisons.
-  Its proof body has no \texttt{sorry}, but its dependencies retain
-  \texttt{sorryAx} and seven named project axioms. No completed proof is claimed.
+  The Lean statement uses \texttt{standardH6Square} and
+  \texttt{NonzeroSurvival} on the same internal \texttt{sphereAdamsData}
+  used by the computation interfaces. Its type and statement module do not
+  depend on $C(M)$ or CSV data. The fixed objects still use Challenge~1.
+  This is the only final target. Its paired Challenge and Solution both retain
+  \texttt{sorry}; the duplicated computational final theorem has been removed.
+  CSV class equalities remain reusable comparison lemmas for the proof,
+  not an additional final statement. No completed proof is claimed.
 \end{theorem}
 
 \begin{proof}
-  \uses{thm:h6-square-computational,def:kervaire-main-input,prop:possible-h62,prop:near126-c3-not-c5}
-  The implemented standard-to-computational reduction transports the common
-  representative survival assertion and then rewrites the data square to the
-  standard Milnor class. The following is the still-unimplemented proof route
-  for the computational assertion, not a completed Lean argument.
+  \uses{prop:h6-internal-standard-comparison,def:kervaire-main-input,prop:possible-h62,prop:near126-c3-not-c5}
+  The proved label equality allows the proof to use CSV coordinates on the
+  same internal sequence. The following is the still-unimplemented proof route
+  for the unique standard target, not a completed Lean argument.
   Take a main input $I$ whose classical sphere sequence and named classes
   are identified with the constructions above through its coherence data.
   Put $D=I.\mathrm{computation}$.  Instantiate every literature leaf with its

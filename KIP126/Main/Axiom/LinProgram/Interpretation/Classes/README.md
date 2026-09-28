@@ -1,35 +1,11 @@
-# Axiom / LinProgram / Interpretation / Classes
+# 计算标签与标准元素的比较
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../../../README.md)；本次只迁移，未补证明或修改陈述。
-
-## 1. 原先期望包含什么
-
-保存输入及其解释、来源和依赖；给出供 Main 使用的条件，不把引用或生成数据计作独立证明。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。
-
-## 2. 现在包含什么
-
-| 文件 | 已有对象或结论（选列） |
+| 文件 | 职责 |
 | --- | --- |
-| [Data.lean](Data.lean) | `linToSphereE2`, `computedH6`, `computedH6Square` |
-| [Proofs.lean](Proofs.lean) | `computedH6_mul_self` |
+| [Data.lean](Data.lean) | `linToSphereE2`、`computedH6`、`computedH6Square`，通过 C(M) 的 presentation 解释 CSV 标签。 |
+| [Proofs.lean](Proofs.lean) | `computedH6_mul_self`，计算标签的乘法等式。 |
+| [Comparison/Proofs.lean](Comparison/Proofs.lean) | `computedH6Square_eq_standardH6Square`，在同一个内部 E₂ 上识别 CSV 平方与标准 Milnor 平方；以及对应非零存活谓词的等价。 |
 
-## 3. 大概完成度
+标准元素定义在 [Interface 的基础特化](../../../../../Interface/Axiom/StandardSphere/Classes/Data.lean)，不依赖本目录或 CSV 基正确性。比较引理使用固定 Lin presentation、已有的该次数穷尽描述和标准非零性，并不使用最终存活定理。
 
-**现有内容：2 个 Lean 文件、约 4 个显式声明，其中 1 条 theorem/lemma。** 本组件未扫描到显式占位正文，已有实现仍需结合依赖和语义审核判断是否完成。
-
-导入闭包仍涉及项目假设：`linE2Presentation`, `standardFoundation`。
-
-未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
-
-## 4. 接下来还需要完成什么
-
-- 结合消费端检查现有结果是否足以覆盖领域入口列出的预期；没有占位正文不代表全部所需结果已经写出。
-- 后续由 Interface 的相应证明解除上述阶段假设；调用这些假设得到的条件推论不能用来证明假设自身。
-
-## 5. 后续应该一步一步如何做
-
-1. 对照上面的声明及其直接 imports，确认本组件的数学条件和消费端，先处理已报告的陈述问题。
-2. 需要改公共定义或冻结陈述时交由整合者协调；同步目标、输入接口与对应证明，不单方扩大前提。
-3. 按依赖顺序处理已列出的未完成内容；复用已有证明，保持数据、条件和结果职责清楚。
-4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
-5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
+本目录没有新增公理或 `sorry`。结果仍在阶段输入下成立：基础来自 `Challenge1`，presentation 来自 `Challenge2`。比较成立不等于最终永久存活证明完成。

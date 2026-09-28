@@ -18,7 +18,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
   {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
   (P : NormalizedPageFamily H N F f)
-  (R : SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
+  (R : KIP126.Challenge2.SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
   (T : ∀ X : C, FiniteLambdaQuotientTower (N.functor.obj X))
 
 /-- The constructed target comparisons satisfy the representative diagrams
@@ -26,7 +26,7 @@ by construction; this does not assume the diagrams as an extra hypothesis. -/
 theorem canonicalPageExtensionTargets_comparison (hT : P.targetTower = T Y) :
     PageExtensionTargetComparison (canonicalPageExtensionTargets P R S) R S T := by sorry
 
-variable (K : SyntheticEInftyMapCompatibility H N F R S T) (hT : P.targetTower = T Y)
+variable (K : KIP126.Challenge2.SyntheticEInftyMapCompatibility H N F R S T) (hT : P.targetTower = T Y)
 
 include K hT
 

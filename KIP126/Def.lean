@@ -136,3 +136,7 @@ import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
+import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
+import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
+import KIP126.Def.Kervaire.Route.Massey.Predicates
+import KIP126.Def.Kervaire.Route.Toda.Predicates

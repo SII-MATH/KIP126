@@ -111,7 +111,7 @@ example : ExternalRootId.all.length = 56 := ExternalRootId.all_length
 example : ExternalClaimRecord.sourceTargets.length = 9 :=
   ExternalClaimRecord.sourceTargets_length
 
-example : ExternalClaimClass.all.length = 5 := ExternalClaimClass.all_length
+example : ExternalClaimClass.all.length = 6 := ExternalClaimClass.all_length
 
 example : ExternalRootId.ofCode "not_a_claim" = none := by
   rfl
@@ -251,3 +251,17 @@ example : ¬malformedDuplicateDependencyClaim.Valid := by
   exact hRejected hNodup
 
 end KIP126.External.ClaimsRegression
+
+-- Paper-derived bundles cannot be packaged as literature or raw computation.
+example : ¬ (KIP126.External.externalClaimLedger.lookup .theta5OrderData).classification.SupportsResult := by
+  change ¬ False
+  simp
+example : ¬ (KIP126.External.externalClaimLedger.lookup .theta5OrderData).classification.SupportsEvidence := by
+  change ¬ False
+  simp
+example : ¬ (KIP126.External.externalClaimLedger.lookup .theta5OrderTorsion).classification.SupportsResult := by
+  change ¬ False
+  simp
+example : ¬ (KIP126.External.externalClaimLedger.lookup .theta5OrderTorsion).classification.SupportsEvidence := by
+  change ¬ False
+  simp

@@ -37,6 +37,8 @@ are isolated from `KIP126` and do not count as completed paper proofs. See the
 
 ## Project documents and workflow
 
+- [M / C(M) / A(M) / T(M) boundary audit](docs/MAC_T_INPUT_AUDIT.md): mathematical objects versus delivery interfaces, source classification, and remaining model bindings.
+
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
 document:
@@ -68,8 +70,10 @@ document:
   well as their import graph.  `Def/` owns mathematical data and properties,
   `Interface/` owns stage-zero outputs admitted as stage-one inputs in `Axiom/`, plus reusable
   stage-one interface goals and their proofs, and `Main/`
-  owns input assumptions plus the near-126 argument. Both proof stages have
-  matching `Challenge/` and `Solution/` tracks. `Checks/` owns regressions.
+  owns input assumptions plus the paper's argument. Main keeps only final goals
+  in `Challenge/Final/`, paired with `Solution/Final/`; intermediate deductions
+  live directly in `Solution/ChoiceIndependence`, `Solution/DifferentialReduction`,
+  and `Solution/ExtensionObstruction`. `Checks/` owns regressions.
   Start with the module guides in [Def](KIP126/Def/README.md),
   [Interface](KIP126/Interface/README.md), and [Main](KIP126/Main/README.md).
   The [current layout and migration record](docs/STAGE_LAYOUT.md) explains
@@ -257,3 +261,7 @@ The reusable Blueprint workflow lives under
 
 They complement the global `leanblueprint` environment skill. The maintenance
 tools are read-only by default; marker changes require an explicit `--write`.
+
+所选 §7 证明路线的 M 接口及其全部依赖清单见 [M_INPUT_FREEZE.md](docs/M_INPUT_FREEZE.md)。该接口冻结不表示模型见证、计算认证、前人输入或最终证明已经完成。
+
+该路线的 A(M) 已以同一模型上的显式输入包实现，见 [A_INPUT_FREEZE.md](docs/A_INPUT_FREEZE.md) 和 [Literature/Route](KIP126/Main/Axiom/Literature/Route/README.md)。来源、条件与模型运输分开记录；没有新增全局公理，也未证明这些外部结果。

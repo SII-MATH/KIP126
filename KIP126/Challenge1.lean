@@ -9,7 +9,6 @@ import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Pred
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Predicates
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Predicates
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Predicates
-import KIP126.Def.AdamsE2.LinBasisTable.Predicates
 import KIP126.Def.StableHomotopy.Context.Mapping.Data
 import KIP126.Def.StableHomotopy.Context.Proofs
 import KIP126.Def.StableHomotopy.Toda.Predicates
@@ -17,6 +16,9 @@ import Mathlib.Algebra.Exact.Basic
 
 /-!
 # Challenge 1：Def 向 Interface 交付的共享见证
+
+M 指 `Def/` 定义的数学对象、操作和结构条件；本文件只是阶段交付接口，
+既不替代 M，也不声称已列全论文所需的全部基础。
 
 本文件按主题直接列出阶段边界的数据选择与数学条件。Def 需要构造这个
 见证；构造尚未完成时，Interface 仅假设同一个类型非空。
@@ -30,15 +32,16 @@ import Mathlib.Algebra.Exact.Basic
 编号沿用 https://github.com/SII-MATH/KIP126/issues/138 的 A₀ 清单。
 「已有精确陈述」只表示现有 Lean 类型可供审核，不表示整个规划项已通过数学
 验收；陈述状态、实现状态和依赖关系分别记录。总见证 `Challenge1` 已明列 a01 的基础和 tensor 条件、a02 的 cooperation
-数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性，以及 a05 的基表认证。
+数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性。固定 CSV 基认证已移至
+Challenge2 的 cm1，不再参与基础模型的选择。
 a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可查；整包构造
 及其余条目仍未完成，不能把字段存在视作全部 14 项已证明。
 未冻结的条目以 TODO 保留，补成正式字段前须审核数学类型、范围和消费端。
 不用 `True`、任意 `Prop` 或新的 axiom 代替缺失陈述。
 
 通用构造与已证结果可直接由 Def 提供；清单列出这些派生交付，不把它们重新
-变成独立输入。A₀ 的完整声明不使用内部 SSData／SpectralSequence；涉及内部
-页面、检测或存活的结果归 Challenge 2。文献项须保留来源、精确 claim locator
+变成独立输入。A₀ 保留为基础工作的组织标签；“不使用内部谱序列”不是
+决定阶段归属的充分标准，固定计算表的认证属于 C(M)，本文新推导属于 Main。文献项须保留来源、精确 claim locator
 和显式证明／外部输入参数，不能借清单整理变成无条件的已证事实。
 
 ### a01 — 固定的稳定模 2 基础
@@ -92,15 +95,12 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 定位：`Def/ClassicalAdams/MilnorCooperations/Proofs.lean`、
   `Def/Steenrod/MilnorCobar/`。
 
-### a05 — Lin 加法基表的完整正确性
+### a05 — 已迁出：固定 Lin 加法基表认证
 
-- 陈述：`LinBasisInterface.correct` 已入总包，范围为所有 s,t : ℕ 且 t ≤ 261，
-  要求固定 v126.3.cw49 CSV 单项式构成 `Module.Basis`。
-- 实现：生产义务迁至 `Def/{Challenge,Solution}/LinProgram/BasisTable.lean`，
-  Solution 仍为 `sorry`。`Interface/Axiom/LinBasisTable.lean` 从同一个
-  Challenge1 见证投影，未增加单独 axiom。
-- 依赖：纯 Lin 商代数认证；hash、行合法性不能替代线性无关与生成性。
-- 定位：`Def/AdamsE2/LinBasisTable/Predicates.lean`；Blueprint `thm:lin-e2-basis-certification`。
+此项按来源与证明责任归入计算认证 C(M)，不属于基础 M/A₀。
+精确类型为 `Challenge2.LinBasisInterface`，作为 `Challenge2.linBasis` 交付。
+生产任务位于 `Interface/{Challenge,Solution}/LinProgram/BasisTable.lean`；
+Main 从同一个 Challenge2 见证消费。基础构造不再要求提供 CSV 基正确性。
 
 ### a06 — Ravenel 的 Adams 滤过分解准则
 
@@ -334,11 +334,6 @@ structure CooperationInput (F : FoundationInput) [TensorInput F] (M : MilnorInpu
       (x : adamsPage F.hf2.unit (SphereSpectrum (C := F.Spectrum)) 1 (by decide) s t),
     M.coordinates s t x = sphereFirstPageMilnorEquiv F.hf2 ring kunneth basis s t x
 
-/-- a05：固定 v126.3.cw49 单项式的完整基认证，包括线性无关与生成性。
-保留全部非负 filtration 和 t ≤ 261 的准确范围。 -/
-structure LinBasisInterface : Prop where
-  correct : ∀ (s t : ℕ), t ≤ 261 → LinE2.BasisTableCorrect s t
-
 /-- a04 的一般平方零义务；可从 a03 的实际 first-page complex 与坐标相容性
 推出，不作为总包里另一项独立假设。 -/
 def MilnorCobarSquareZero : Prop :=
@@ -397,7 +392,6 @@ structure Challenge1 where
   milnorInput : Challenge1.MilnorInput foundationInput
   tensorInput : Challenge1.TensorInput foundationInput
   cooperationInput : @Challenge1.CooperationInput foundationInput tensorInput milnorInput
-  linBasis : Challenge1.LinBasisInterface
 
 namespace Challenge1
 
@@ -412,13 +406,12 @@ def milnor (c : KIP126.Challenge1) :
   coordinates := c.milnorInput.coordinates
   differential_coordinates := c.milnorInput.differential_coordinates
 
-/-- 已有基础与 Milnor 见证连同 tensor、cooperation 和基表交付逐字段组装成边界包。 -/
+/-- 已有基础与 Milnor 见证连同 tensor、cooperation 交付逐字段组装成边界包。 -/
 def ofFoundationMilnor (F : StandardAdamsFoundation)
     (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
     (T : TensorInput (FoundationInput.ofStandard F))
     (A : @CooperationInput (FoundationInput.ofStandard F) T
-      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
-    (B : LinBasisInterface) :
+      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates }) :
     KIP126.Challenge1 where
   foundationInput := FoundationInput.ofStandard F
   milnorInput :=
@@ -426,7 +419,6 @@ def ofFoundationMilnor (F : StandardAdamsFoundation)
       differential_coordinates := M.differential_coordinates }
   tensorInput := T
   cooperationInput := A
-  linBasis := B
 
 end Challenge1
 

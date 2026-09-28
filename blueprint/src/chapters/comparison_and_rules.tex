@@ -1147,7 +1147,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{theorem}[Generalized Leibniz rule]
   \label{thm:generalized-leibniz}
   \uses{prop:delta-ess-formula-infinite,thm:delta-classical-equivalence,prop:classical-crossing-iff-delta-crossing,def:page-extension,prop:page-crossing-iff-synthetic-crossing,cor:fess-square-naturality}
-  \lean{KIP126.Challenge2.GeneralizedLeibnizLaw}
+  \lean{KIP126.Main.Solution.Tools.GeneralizedLeibnizLaw}
   \notready
   Let $f:X\to Y$, $2\le n\le r$,
   $e(f)\le m\le n-2+e(f)$, and $l\ge e(f)$.  Suppose
@@ -1276,7 +1276,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   extension has no crossing or the classical differential has no crossing on
   $E_{r'}$.
   In the Lean statement these are arguments of
-  \texttt{KIP126.Challenge2.GeneralizedMahowaldLaw}, not freely chosen page
+  \texttt{KIP126.Main.Solution.Tools.GeneralizedMahowaldLaw}, not freely chosen page
   operations. The target of the $h$-extension is an actual $E_2(\Sigma X)$
   label; the following comparison relates it to the displayed $X$ label.
 \end{definition}
@@ -1424,7 +1424,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{theorem}[Generalized Mahowald trick]
   \label{thm:generalized-mahowald}
   \uses{def:mahowald-input-data,def:mahowald-tower-suspension-comparison,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
-  \lean{KIP126.Challenge2.GeneralizedMahowaldLaw}
+  \lean{KIP126.Main.Solution.Tools.GeneralizedMahowaldLaw}
   \notready
   Let
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ be distinguished
@@ -1580,7 +1580,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{definition}[Finite nonliftable crossing candidate]
   \label{def:finite-page-extension-nonliftable-crossing}
   \uses{def:page-extension,def:page-extension-crossing,def:page-extension-coset}
-  \lean{KIP126.Challenge2.FinitePageExtensionNonliftableCrossing}
+  \lean{KIP126.Kervaire.Route.FiniteExtensionNonliftableCrossing}
   \leanok
   Fix a normalized family $P$, finite pages $r',r$, and integers $n,s,t$.
   A nonliftable crossing candidate consists of natural numbers $a,b$ with
@@ -1615,7 +1615,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{definition}[Finite page-extension stretching law]
   \label{def:finite-page-extension-stretching-law}
   \uses{def:finite-page-extension-nonliftable-crossing,def:page-extension}
-  \lean{KIP126.Challenge2.FinitePageExtensionStretchingLaw}
+  \lean{KIP126.Main.Solution.Tools.FinitePageExtensionStretchingLaw}
   \leanok
   A normalized family $P$ satisfies the finite stretching law if, for every
   \[

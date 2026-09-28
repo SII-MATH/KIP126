@@ -1,6 +1,6 @@
 import KIP126.Def.AdamsE2.LinClasses.Data
 import KIP126.Def.AdamsE2.LinClasses.Proofs
-import KIP126.Interface.Solution.LinProgram.Basis.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Basis.Algebra.Proofs
 import KIP126.Def.AdamsE2.LinProduct.Data
 import KIP126.Main.Axiom.LinProgram.Interpretation.Presentation.Proofs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Basis.Proofs

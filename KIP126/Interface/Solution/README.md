@@ -11,9 +11,6 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Challenge2.lean](Challenge2.lean) | 构造 `Nonempty KIP126.Challenge2` 的证明轨，当前仍为 `sorry` |
-| [LinProgram/Basis/Data.lean](LinProgram/Basis/Data.lean) | `dataBasis`, `dataCoordinates`, `basisByCSV?` |
-| [LinProgram/Basis/Proofs.lean](LinProgram/Basis/Proofs.lean) | `dataBasis_val`, `dataBasis_ne_zero`, `dataCoordinates_basis`, `dataCoordinates_reconstruct`, `data_finrank` |
-| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | `basisTable_correct` |
 | [LinProgram/SquareDetection.lean](LinProgram/SquareDetection.lean) | `u_cube`, `u_square_ne_zero`, `u_pow_cap`, `evaluate_X`, `evaluate_polynomialOfPowers` 等 11 个声明 |
 | [LinProgram/SquareDetection/Archive/Batch0.lean](LinProgram/SquareDetection/Archive/Batch0.lean) | `archivedChunk0`, `archivedChunk1`, `archivedChunk2`, `archivedChunk3`, `archivedChunk4` 等 33 个声明 |
 | [LinProgram/SquareDetection/Archive/Batch1.lean](LinProgram/SquareDetection/Archive/Batch1.lean) | `archivedChunk32`, `archivedChunk33`, `archivedChunk34`, `archivedChunk35`, `archivedChunk36` 等 33 个声明 |
@@ -28,18 +25,17 @@
 | [LinProgram/SquareDetection/Parsing.lean](LinProgram/SquareDetection/Parsing.lean) | `splitOnAux_singleton`, `splitOn_singleton_eq_list`, `splitOn_comma`, `splitOn_semicolon`, `splitOn_newline` |
 | [LinProgram/SquareDimension/Generators/Proofs.lean](LinProgram/SquareDimension/Generators/Proofs.lean) | `generatorDegree_eq_row`, `generatorDegree_low_filtration` |
 | [LinProgram/SquareDimension/Proofs.lean](LinProgram/SquareDimension/Proofs.lean) | `squareDegree_support`, `monomialDegree_square_unique`, `homogeneousPart_square_eq_span`, `E2At_square_eq_zero_or` |
-| [根 Challenge2.lean](../../Challenge2.lean) | `GeneralizedLeibnizLaw`、`GeneralizedMahowaldLaw` 的准确类型；对应规则证明尚未完成 |
+| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | 独立生产固定 CSV 基认证，供 `Challenge2.linBasis` 交付；仍为 `sorry` |
 
 ## 3. 大概完成度
 
-现有 Lin 与已证明的派生接口继续保留；Challenge 2 的完整构造与 `basisTable_correct` 仍待完成。旧三个 Tools 文件因陈述错误而删除，没有将“输入整个 law 后应用它”计作规则证明。根 Challenge2 的两个实际 law 仍需从模型相容图及相应数学结果证明。
+现有 Lin 与已证明的派生接口继续保留；Challenge 2 的完整构造与 `basisTable_correct` 仍待完成。旧三个 Tools 文件因陈述错误而删除，没有将“输入整个 law 后应用它”计作规则证明。三个工具命题已移至 Main/Solution/Tools，不属于本阶段的前人 A(M) 输入。固定基及坐标消费构造已移至 Main/Axiom/LinProgram/Interpretation/Basis/Algebra。
 
 未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
 
 ## 4. 接下来还需要完成什么
 
-- 从真实模型的比较图证明 `GeneralizedLeibnizLaw` 和 `GeneralizedMahowaldLaw`；后者还需构造塔 suspension comparison。
-- 构造 stretching 的实际代表元解族、限制映射及相容极限前置，再与 Challenge 同步建立准确目标。
+- 计算验证若消费 Main 的论文工具，须使用独立完成的规则证明并核对依赖无环。
 - [basisTable_correct](LinProgram/BasisTable.lean#L11)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
 
 ## 5. 后续应该一步一步如何做

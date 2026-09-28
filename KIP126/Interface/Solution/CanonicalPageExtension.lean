@@ -18,7 +18,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {N : NuFunctorData C Syn}
   {F : SyntheticAdamsFamily Syn} {X Y : C} {f : X ⟶ Y}
   (P : NormalizedPageFamily H N F f)
-  (R : SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
+  (R : KIP126.Challenge2.SyntheticEInftyPresentation H N F) (S : EInftyWeightShift F)
   (T : ∀ X : C, FiniteLambdaQuotientTower (N.functor.obj X))
 
 /-- The constructed target comparisons satisfy the representative diagrams
@@ -28,17 +28,17 @@ theorem canonicalPageExtensionTargets_comparison (hT : P.targetTower = T Y) :
   constructor
   · exact hT
   · intro q k hkq s t z
-    simp only [canonicalPageExtensionTargets, SyntheticEInftyPresentation.finiteCanonicalTarget,
+    simp only [canonicalPageExtensionTargets, KIP126.Challenge2.SyntheticEInftyPresentation.finiteCanonicalTarget,
       LinearEquiv.trans_apply]
     erw [LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply]
     rfl
   · intro k s t z
-    simp only [canonicalPageExtensionTargets, SyntheticEInftyPresentation.infiniteCanonicalTarget,
+    simp only [canonicalPageExtensionTargets, KIP126.Challenge2.SyntheticEInftyPresentation.infiniteCanonicalTarget,
       LinearEquiv.trans_apply]
     erw [LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply]
     rfl
 
-variable (K : SyntheticEInftyMapCompatibility H N F R S T) (hT : P.targetTower = T Y)
+variable (K : KIP126.Challenge2.SyntheticEInftyMapCompatibility H N F R S T) (hT : P.targetTower = T Y)
 
 include K hT
 

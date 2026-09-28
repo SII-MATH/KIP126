@@ -3701,6 +3701,21 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   and homology quotients and makes no claim of convergence to an abutment.
 \end{definition}
 
+\begin{definition}[Standard target on the internal sphere sequence]
+  \label{def:h6-standard-internal-target}
+  \lean{KIP126.Classical.Adams.standardH6,KIP126.Classical.Adams.standardH6Square,KIP126.Classical.Adams.sphereAdamsData,KIP126.Core.SpectralSequence.NonzeroSurvival}
+  \uses{def:h6-constructed-square,def:h6-tower-internal-sequence}
+  \notready
+  Specialize the existing internal tower construction and Milnor cocycle map
+  to the same foundation witness. The standard class is the image of
+  $[\xi_1^{64}\mid\xi_1^{64}]$ in the internal $E_2^{2,128}$.
+  Neither its definition nor the standard target uses CSV data or $C(M)$.
+  The target asks for a common $Z_\infty$ representative projecting to this
+  class, with nonzero $E_\infty$ image. The fixed foundation and Milnor
+  coordinates are still supplied by the single Challenge~1 witness;
+  no concrete realization or permanence proof is claimed here.
+\end{definition}
+
 \begin{definition}[Fixed standard and computational sphere objects]
   \label{def:h6-fixed-computation}
   \lean{KIP126.Classical.Adams.sphereAdams,KIP126.Classical.Adams.sphereH6Square,KIP126.Classical.Adams.sphereAdamsModel,KIP126.Classical.Adams.sphereAdamsData,KIP126.Classical.Adams.sphereAdams_towerComparison,KIP126.Classical.Adams.survival_comparison,KIP126.Classical.Adams.computedH6Square,KIP126.Core.SpectralSequence.NonzeroSurvival}
@@ -4013,6 +4028,24 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   three-product vanishing theorem with the remaining hypotheses.
 \end{proof}
 
+\begin{proposition}[CSV and standard labels agree on the internal page]
+  \label{prop:h6-internal-standard-comparison}
+  \lean{KIP126.Classical.Adams.standardH6Square_ne_zero,KIP126.Classical.Adams.computedH6Square_eq_standardH6Square,KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_standard}
+  \uses{def:h6-standard-internal-target,prop:h6-internal-square-unique,prop:h6-standard-square-nonzero}
+  \notready
+  On the same internal $E_2$ page,
+  \texttt{computedH6Square} equals \texttt{standardH6Square}.
+  Consequently their internal nonzero-survival assertions are equivalent.
+  The comparison uses the staged Lin presentation and standard foundation;
+  it neither assumes permanence nor adds a class-identification axiom.
+\end{proposition}
+\begin{proof}
+  Standard cobar nonvanishing passes through the actual quotient-page
+  isomorphism to the internal standard class. The exhaustive two-element
+  description in bidegree $(2,128)$ then identifies it with the CSV class.
+  Rewrite the class in the nonzero-survival predicate on the same sequence.
+\end{proof}
+
 \begin{proposition}[The specified-class comparison is a theorem]
   \label{prop:h6-fixed-class-comparison}
   \lean{KIP126.Classical.Adams.h6Square_comparison}
@@ -4291,14 +4324,14 @@ survival; the computational final Solution remains open.
 
 \begin{theorem}[Additive catalogue certification, pending]
   \label{thm:lin-e2-basis-certification}
-  \lean{KIP126.Challenge1.LinBasisInterface,KIP126.Def.Solution.LinE2.basisTable_correct,KIP126.LinE2.basisTable_correct}
+  \lean{KIP126.Challenge2.LinBasisInterface,KIP126.Interface.Solution.LinE2.basisTable_correct,KIP126.LinE2.basisTable_correct}
   \uses{def:lin-e2-catalogue}
   \notready
   For $t\le261$, the actual listed monomial values of degree $(s,t)$ form an
   $\mathbb F_2$-basis of the specified quotient component. This asserts both
   linear independence and spanning, not merely that the list has the right
-  length. The Def-stage producer remains admitted. The stage-one compatibility name
-  projects this condition from the same Challenge1 witness; it is not a new
+  length. The Interface-stage producer remains admitted. The Main compatibility name
+  projects this condition from the same Challenge2 witness; it is not a new
   independent axiom. Executable checks of degrees,
   distinct coordinates and irreducibility do not discharge it.
 \end{theorem}

@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.Basis.Data
+import KIP126.Main.Axiom.LinProgram.Interpretation.Basis.Algebra.Data
 import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
 
 namespace KIP126.Classical.Adams

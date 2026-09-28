@@ -10,3 +10,4 @@ import KIP126.Interface.Challenge.CanonicalPageExtension
 import KIP126.Interface.Challenge.PageExtensionSolutions
 import KIP126.Interface.Challenge.InternalNaturality
 import KIP126.Interface.Challenge.LowDimensionalPermanence
+import KIP126.Interface.Challenge.LinProgram.BasisTable

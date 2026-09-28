@@ -1,6 +1,6 @@
 # Challenge
 
-本页记录本阶段的目标陈述。数学范围参见[所属阶段](../README.md)；旧 Tools 的错误声明已同步退休，准确 AM7 law 位于根 Challenge2。
+本页记录本阶段的目标陈述。数学范围参见[所属阶段](../README.md)；旧 Tools 的错误声明已同步退休，原 am7 的工具命题已移至 Main/Solution/Tools，不作为前人 A(M)。
 
 ## 1. 原先期望包含什么
 
@@ -11,17 +11,17 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Challenge2.lean](Challenge2.lean) | `Nonempty KIP126.Challenge2`，即本阶段向 Main 交付的完整包 |
-| [根 Challenge2.lean](../../Challenge2.lean) | `GeneralizedLeibnizLaw`、`GeneralizedMahowaldLaw` 的实际模型陈述；尚未构造 law 见证 |
+| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | `t ≤ 261` 的完整 CSV 加法基认证；交付 `Challenge2.linBasis` |
 
 ## 3. 大概完成度
 
-本目录的阶段包目标与已有派生接口保留 Challenge/Solution 配对。旧三条 Tools theorem 因陈述错误而退休，不能继续计作当前接口；两个准确 law 只是精确待交付命题。这里保留的 `sorry` 是陈述轨约定，不能由占位正文推断数学进度。
+本目录的阶段包目标与已有派生接口保留 Challenge/Solution 配对。旧三条 Tools theorem 因陈述错误而退休，不能继续计作当前接口；其替代命题是 Main 的论文推导任务。这里保留的 `sorry` 是陈述轨约定，不能由占位正文推断数学进度。
 
 ## 4. 接下来还需要完成什么
 
 - 核对现有目标的条件、次数及共享对象，并保持与 Solution 的完整类型一致。
 - 证明推进和未完成义务记录在同阶段 Solution；本目录继续保留陈述。
-- AM7 待模型比较条件到位后建立准确配对目标；stretching 还须定义同一家族的实际解族、限制映射及无穷相容条件。
+- 完成原 a05 的基表认证；不能由 Main 的 Challenge2 消费假设反向证明。
 
 ## 5. 后续应该一步一步如何做
 
@@ -31,4 +31,4 @@
 4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
 5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
 
-相关子组件：[Tools](Tools/README.md)。
+相关子组件：[LinProgram](LinProgram/README.md)、[旧 Tools 退休记录](Tools/README.md)。

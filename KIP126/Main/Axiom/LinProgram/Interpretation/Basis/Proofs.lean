@@ -1,5 +1,5 @@
 import KIP126.Main.Axiom.LinProgram.Interpretation.Basis.Data
-import KIP126.Interface.Solution.LinProgram.Basis.Proofs
+import KIP126.Main.Axiom.LinProgram.Interpretation.Basis.Algebra.Proofs
 
 namespace KIP126.Classical.Adams
 open KIP126.LinE2

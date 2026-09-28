@@ -2,8 +2,8 @@ import KIP126.Main.Axiom.LinProgram.E2
 import Lean.Elab.Command
 
 /-! Catalogue checks are executable regressions, not proofs of independence.
-The basis certification is now supplied by the single Challenge1 stage
-witness. Its upstream Def/Solution construction remains a separate obligation. -/
+The basis certification is now supplied by the single Challenge2 stage
+witness. Its upstream Interface/Solution construction remains a separate obligation. -/
 namespace KIP126.LinE2
 
 #eval show IO Unit from do
@@ -60,10 +60,10 @@ run_cmd do
   let basisAxs ← liftCoreM (collectAxioms ``KIP126.LinE2.dataBasis_val)
   for a in basisAxs do
     unless [``propext, ``Classical.choice, ``Quot.sound,
-        ``KIP126.Interface.Axiom.challenge1].contains a do
+        ``KIP126.Interface.Axiom.challenge1, ``KIP126.Main.Axiom.challenge2].contains a do
       throwError "unexpected basis certification dependency: {a}"
-  unless basisAxs.contains ``KIP126.Interface.Axiom.challenge1 do
-    throwError "missing disclosed Challenge1 basis certification dependency"
+  unless basisAxs.contains ``KIP126.Main.Axiom.challenge2 do
+    throwError "missing disclosed Challenge2 basis certification dependency"
 
 #print axioms KIP126.LinE2.multiply_mem
 #print axioms KIP126.LinE2.dataBasis_val
