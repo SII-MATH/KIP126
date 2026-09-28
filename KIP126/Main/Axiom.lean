@@ -4,6 +4,7 @@ import KIP126.Main.Axiom.Literature.Kervaire
 import KIP126.Main.Axiom.Literature.BJMOriginal
 import KIP126.Main.Axiom.Literature.Synthetic
 import KIP126.Main.Axiom.Literature.SyntheticEInfty
+import KIP126.Main.Axiom.Literature.SyntheticBockstein
 import KIP126.Main.Axiom.Evidence
 import KIP126.Main.Axiom.Results
 import KIP126.Main.Axiom.Literature.SourceInventory

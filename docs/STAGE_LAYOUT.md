@@ -104,7 +104,7 @@ KIP126/
 ## 后续调整：CSV 认证与本文工具的归属
 
 - `Challenge1` 不再含 `LinBasisInterface` 或 `linBasis`；`ofFoundationMilnor` 也不再接受基认证参数。基础模块的导入闭包不含固定 Lin 数据。
-- `Challenge2` 新增 `LinBasisInterface` 及 `linBasis` 字段，范围仍为 v126.3.cw49、所有自然数 s,t 且 t ≤ 261，要求指定单项式线性无关并张成。
+- `Challenge2` 通过依赖同一 presentation 的 `SphereBasisInterface` / `sphereBasis` 交付实际 E₂ 坐标和固定 CSV 基向量值，范围为 v126.3.cw49、所有自然数 s,t 且 t ≤ 261。Main 从这些坐标恢复 CSV 基认证兼容接口；没有保留重复的 `linBasis` 字段。
 - 基认证生产目标／证明移至 `Interface/{Challenge,Solution}/LinProgram/BasisTable.lean`。Main 的 `Interpretation/BasisTable.lean` 从同一个 Challenge2 见证投影认证，指定基和坐标移至 `Interpretation/Basis/Algebra/`。生产者不导入自己的消费假设，证明仍为 `sorry`。
 - 原 am7 的三条 law 从 Challenge2 移至 `Main/Solution/Tools`；它们属于本文推导，不是前人 A(M)，也没有新增公理字段。工具仍是待证 Prop 定义，所需模型比较与规则证明未完成。
 - 较短 extension 障碍谓词移至 `Def/Synthetic/PageExtension/Stretching/Predicates.lean`，保留为 M 的数学语言。通用解纤维与相容塔结果继续复用，计算认证使用规则时必须检查依赖无环。

@@ -18,14 +18,14 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 /-- The class of `[ξ₁^(2^i)]`, using the specified Milnor coordinates and the
 actual first-page homology quotient of the sphere's Adams tower. -/
 def hi (i : ℕ) :
-    ((mod2SphereAdams H).page 2 (by decide)).X (1, ((2 ^ i : ℕ) : ℤ)) :=
+    adamsPage H.unit SphereSpectrum 2 (by decide) 1 ((2 ^ i : ℕ) : ℤ) :=
   classOfMilnorCocycle H M 1 (2 ^ i) (KIP126.Steenrod.Milnor.hiCochain i)
     (KIP126.Steenrod.Milnor.hiCochain_isCycle i)
 
 /-- The class of the concatenation square `[ξ₁^(2^i) | ξ₁^(2^i)]`, with
 the same Milnor coordinates as `hi` and internal degree `2^(i+1)`. -/
 def hiSquare (i : ℕ) :
-    ((mod2SphereAdams H).page 2 (by decide)).X (2, ((2 ^ (i + 1) : ℕ) : ℤ)) :=
+    adamsPage H.unit SphereSpectrum 2 (by decide) 2 ((2 ^ (i + 1) : ℕ) : ℤ) :=
   classOfMilnorCocycle H M 2 (2 ^ (i + 1)) (KIP126.Steenrod.Milnor.hiSquareCochain i)
     (KIP126.Steenrod.Milnor.hiSquareCochain_isCycle i)
 

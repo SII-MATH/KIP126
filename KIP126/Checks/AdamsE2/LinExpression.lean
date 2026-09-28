@@ -49,9 +49,8 @@ run_cmd do
   for decl in [``KIP126.Classical.Adams.expressionOnSphere_mul,
       ``KIP126.Classical.Adams.expressionOnSphere_h6,
       ``KIP126.Classical.Adams.expressionOnSphere_h6_square] do
-    for a in (← liftCoreM (collectAxioms decl)) do
-      unless KIP126.Checks.AxiomInputs.allows expected a do
-        throwError "unexpected sphere expression axiom: {decl}: {a}"
+    discard <| KIP126.Checks.AxiomInputs.checkStageConsumer expected decl
+      "unexpected sphere expression axiom"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIPBase).isPrefixOf m || (`KIP126.Challenge).isPrefixOf m then
       throwError "retired or placeholder import: {m}"

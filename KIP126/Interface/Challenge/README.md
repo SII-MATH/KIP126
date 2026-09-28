@@ -11,7 +11,7 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Challenge2.lean](Challenge2.lean) | `Nonempty KIP126.Challenge2`，即本阶段向 Main 交付的完整包 |
-| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | `t ≤ 261` 的完整 CSV 加法基认证；交付 `Challenge2.linBasis` |
+| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | `t ≤ 261` 的完整 CSV 加法基认证；交付 `Challenge2.sphereBasis` |
 
 ## 3. 大概完成度
 

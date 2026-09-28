@@ -1,3 +1,10 @@
+import KIP126.Interface.Challenge.LinProgram.Staircase
+import KIP126.Interface.Challenge.LinProgram.BasisTable
+import KIP126.Interface.Challenge.LinProgram.SphereBasis
+import KIP126.Interface.Challenge.LinProgram.Multiplication
+import KIP126.Interface.Challenge.Tmf
+import KIP126.Interface.Challenge.AdamsOneLine
+import KIP126.Interface.Challenge.Moss
 import KIP126.Interface.Challenge.FiniteCoherentPageExtension
 import KIP126.Interface.Challenge.CoherentPageExtension
 import KIP126.Interface.Challenge.Challenge2

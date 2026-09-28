@@ -13,8 +13,8 @@ theorem projected from Challenge 2.  The producer and consumer declarations
 state the same `Nonempty ChallengeN` type directly, so no duplicated signature
 or separate type-alignment table is maintained here.
 
-Challenge 1 now also delivers correlated cooperation data, tensor witnesses
-without CSV basis certification; the latter is a Challenge2 field. The round trips retain every chosen datum; no
+Challenge 1 delivers correlated cooperation data and tensor witnesses;
+fixed CSV basis certification no longer belongs to this foundation. The round trips retain every chosen datum; no
 compatibility constructor may silently select fresh coordinates or a new base.
 -/
 
@@ -86,5 +86,9 @@ run_cmd do
   if axs.contains ``KIP126.Main.Axiom.challenge2 then
     throwError "basis producer depends on its own stage consumer axiom"
 
-example (c : KIP126.Challenge2) (s t : ℕ) (ht : t ≤ 261) :
-    KIP126.LinE2.BasisTableCorrect s t := c.linBasis.correct s t ht
+example (c : KIP126.Challenge2) (s t : ℕ) (ht : t ≤ 261)
+    (i : KIP126.LinE2.BasisIndex s t) :
+    ((c.presentation.comparison s t ht).symm
+      ((c.sphereBasis.coordinates s t ht).symm (Finsupp.single i 1))).val =
+        KIP126.LinE2.basisValue (KIP126.LinE2.basisRowAt s t i) :=
+  c.sphereBasis.csv_values s t ht i

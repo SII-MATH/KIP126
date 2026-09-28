@@ -31,10 +31,8 @@ run_cmd do
       ``KIP126.Classical.Adams.computedH6Square_d_two_double_value_exists,
       ``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_iff_double_lift,
       ``KIP126.Classical.Adams.computedH6Square_double_lift_five_of_leibniz] do
-    let axioms ← liftCoreM (collectAxioms declaration)
-    for a in axioms do
-      unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
-        throwError "unexpected computational tower dependency: {declaration}: {a}"
+    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer (logical ++ inputs)
+      declaration "unexpected computational tower dependency"
     for a in inputs do
       unless KIP126.Checks.AxiomInputs.uses axioms a do
         throwError "missing disclosed computational tower input: {declaration}: {a}"

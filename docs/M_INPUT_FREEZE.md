@@ -1,5 +1,7 @@
 # 所选 §7 证明路线的 M 接口冻结记录
 
+合并 PR #139 远程更新后的联合审查见 [STAGED_INTERFACE_REVIEW.md](STAGED_INTERFACE_REVIEW.md)。本文件保留各自批次的范围和验证记录，不能据此宣称 M/A/C/T 已全部冻结。
+
 本次冻结的是 **数学接口及其解释**，不是模型构造、A(M)/C(M) 的真实性或最终证明。
 后续 A(M) 的输入陈述已补齐，见 [A_INPUT_FREEZE.md](A_INPUT_FREEZE.md)；
 本文件末尾保留 M 冻结时的验证记录，不能据此推断后续 A/C 的证明完成度。

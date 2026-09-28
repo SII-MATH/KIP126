@@ -11,6 +11,8 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Challenge2.lean](Challenge2.lean) | 构造 `Nonempty KIP126.Challenge2` 的证明轨，当前仍为 `sorry` |
+| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | 固定 CSV 的辅助认证 `Interface.Solution.LinE2.basisTable_correct`，仍待证 |
+| [LinProgram/SphereBasis.lean](LinProgram/SphereBasis.lean) | 从辅助认证和同一个 presentation 构造实际 E₂ 坐标交付 `sphereBasis` |
 | [LinProgram/SquareDetection.lean](LinProgram/SquareDetection.lean) | `u_cube`, `u_square_ne_zero`, `u_pow_cap`, `evaluate_X`, `evaluate_polynomialOfPowers` 等 11 个声明 |
 | [LinProgram/SquareDetection/Archive/Batch0.lean](LinProgram/SquareDetection/Archive/Batch0.lean) | `archivedChunk0`, `archivedChunk1`, `archivedChunk2`, `archivedChunk3`, `archivedChunk4` 等 33 个声明 |
 | [LinProgram/SquareDetection/Archive/Batch1.lean](LinProgram/SquareDetection/Archive/Batch1.lean) | `archivedChunk32`, `archivedChunk33`, `archivedChunk34`, `archivedChunk35`, `archivedChunk36` 等 33 个声明 |
@@ -25,7 +27,7 @@
 | [LinProgram/SquareDetection/Parsing.lean](LinProgram/SquareDetection/Parsing.lean) | `splitOnAux_singleton`, `splitOn_singleton_eq_list`, `splitOn_comma`, `splitOn_semicolon`, `splitOn_newline` |
 | [LinProgram/SquareDimension/Generators/Proofs.lean](LinProgram/SquareDimension/Generators/Proofs.lean) | `generatorDegree_eq_row`, `generatorDegree_low_filtration` |
 | [LinProgram/SquareDimension/Proofs.lean](LinProgram/SquareDimension/Proofs.lean) | `squareDegree_support`, `monomialDegree_square_unique`, `homogeneousPart_square_eq_span`, `E2At_square_eq_zero_or` |
-| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | 独立生产固定 CSV 基认证，供 `Challenge2.linBasis` 交付；仍为 `sorry` |
+| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | 独立生产固定 CSV 基认证，供 `Challenge2.sphereBasis` 交付；仍为 `sorry` |
 
 ## 3. 大概完成度
 
@@ -35,8 +37,8 @@
 
 ## 4. 接下来还需要完成什么
 
-- 计算验证若消费 Main 的论文工具，须使用独立完成的规则证明并核对依赖无环。
-- [basisTable_correct](LinProgram/BasisTable.lean#L11)：现有 `theorem` 正文中的占位仍待处理；本次原样保留。
+- [basisTable_correct](LinProgram/BasisTable.lean)：完成固定 CSV 的线性无关与生成性证明；实际 E₂ 的坐标交付已能从此辅助定理构造。
+- 广义规则与 stretching 是本文中间结论，Interface 可按需使用；本轮不决定其最终证明位置或两阶段复用方式。数学进度以根 Challenge2 的相应条目为准。
 
 ## 5. 后续应该一步一步如何做
 

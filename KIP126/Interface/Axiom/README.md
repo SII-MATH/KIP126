@@ -45,4 +45,4 @@ Def 的 Challenge/Solution 已有完全相同的 `Nonempty Challenge1` theorem�
 3. 将两部分装入一个 `Challenge1` 值，完成 Solution theorem。
 4. 用该 theorem 替换本目录的开发期 axiom，再运行下游公理审计。
 
-固定 CSV 基正确性不再属于本目录的基础输入。其认证由 Interface 生产，Main 从 `Challenge2.linBasis` 消费；旧 `LinBasisTable.lean` 已迁走。
+固定 CSV 基正确性不再属于本目录的基础输入。其认证由 Interface 生产，Main 从 `Challenge2.sphereBasis` 消费；旧 `LinBasisTable.lean` 已迁走。

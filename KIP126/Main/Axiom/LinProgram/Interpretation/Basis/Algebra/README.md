@@ -1,7 +1,6 @@
-# Algebra：计算见证提供的指定加法基
+# Algebra：指定加法基的兼容入口
 
-[Data.lean](Data.lean) 从同一个 Challenge2 见证的 CSV 基认证构造 `dataBasis`、`dataCoordinates` 和 `basisByCSV?`；[Proofs.lean](Proofs.lean) 给出基值、非零、坐标重构与维数的条件性结论。
+[Data.lean](Data.lean) 和 [Proofs.lean](Proofs.lean) 重新导出 `Main/Axiom/LinProgram/Basis`。
+该组件从同一个 Challenge2 见证的实际 E₂ 坐标与 CSV 值相容性构造 `dataBasis`、`dataCoordinates` 和 `basisByCSV?`，并恢复基值、非零、坐标重构与维数 API。
 
-认证投影位于 [BasisTable.lean](../../BasisTable.lean)，实际认证生产任务位于 [Interface/Solution/LinProgram/BasisTable.lean](../../../../../../Interface/Solution/LinProgram/BasisTable.lean)。消费者依赖 Main 的 Challenge2 开发期假设；这不是对认证任务的证明。
-
-这些声明由原 Interface/Solution/LinProgram/Basis 移入，保留 `KIP126.LinE2` 下的公开名称和数学内容。固定实际 Adams 页基继续由上层 [Basis](../README.md) 使用同一 presentation 构造。
+`basisTable_correct` 是这些交付的推论；独立固定 CSV 认证仍由 Interface/Solution/LinProgram/BasisTable 负责，证明未完成。Main 没有导入该生产占位作为证明，也没有另选一份基。

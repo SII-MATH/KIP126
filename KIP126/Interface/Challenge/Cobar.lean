@@ -14,6 +14,12 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 theorem cobarE2Comparison : KIP126.Challenge2.CobarE2Comparison H M := by
   sorry
 
+/-- am9: independent derived comodule Ext, preserving every actual cocycle
+through the fixed polynomial cofree resolution and Mathlib's `extMk`. -/
+theorem cobarDerivedExtComparison :
+    Nonempty (KIP126.Challenge2.CobarDerivedExtComparison H M) := by
+  sorry
+
 /-- am9: the descended cup product and the standard concatenation squares. -/
 theorem cobarCupCalculus : KIP126.Challenge2.CobarCupCalculus H M := by
   sorry

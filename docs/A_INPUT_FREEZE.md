@@ -1,5 +1,7 @@
 # 所选 §7 路线的 A(M) 陈述清单
 
+合并 PR #139 远程更新后的联合审查见 [STAGED_INTERFACE_REVIEW.md](STAGED_INTERFACE_REVIEW.md)。本文件保留各自批次的范围和验证记录，不能据此宣称 M/A/C/T 已全部冻结。
+
 本清单与 [M 的冻结范围](M_INPUT_FREEZE.md) 相同：LWX v2 Theorem 7.1，经
 Proposition 7.8、7.9 及其实际调用的工具、Toda/Moss、Cν、tmf 路线。
 **冻结的是输入的类型、数学含义、来源和适用条件；没有证明这些输入成立，

@@ -1,6 +1,12 @@
+import KIP126.Interface.Solution.LinProgram.Staircase
+import KIP126.Interface.Solution.LinProgram.Multiplication
+import KIP126.Interface.Solution.Tmf
+import KIP126.Interface.Solution.AdamsOneLine
+import KIP126.Interface.Solution.Moss
 import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Interface.Solution.CoherentPageExtension
 import KIP126.Interface.Solution.LinProgram.BasisTable
+import KIP126.Interface.Solution.LinProgram.SphereBasis
 import KIP126.Interface.Solution.LinProgram.SquareDetection.Archive.Batch0
 import KIP126.Interface.Solution.LinProgram.SquareDetection.Archive.Batch1
 import KIP126.Interface.Solution.LinProgram.SquareDetection.Archive.Batch2

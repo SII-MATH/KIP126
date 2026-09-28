@@ -18,6 +18,12 @@ theorem cobarE2Comparison : KIP126.Challenge2.CobarE2Comparison H M := by
   exact ⟨MilnorCohomology.comparison H M s t,
     fun x hx => MilnorCohomology.comparison_ofCocycle H M x hx⟩
 
+/-- am9: independent derived comodule Ext, preserving every actual cocycle
+through the fixed polynomial cofree resolution and Mathlib's `extMk`. -/
+theorem cobarDerivedExtComparison :
+    Nonempty (KIP126.Challenge2.CobarDerivedExtComparison H M) := by
+  sorry
+
 /-- am9: the descended cup product and the standard concatenation squares. -/
 theorem cobarCupCalculus : KIP126.Challenge2.CobarCupCalculus H M where
   representatives := MilnorCohomology.cup_ofCocycle H M

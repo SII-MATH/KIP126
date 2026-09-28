@@ -29,8 +29,8 @@ The canonical source has three mathematical layers:
    unfinished with `by sorry`; proof debt must not be hidden by changing its
    declaration kind.
 2. `KIP126/Interface/` is the first proof stage. Its Challenge/Solution track
-   states and eventually proves the stable mathematical and computation
-   interfaces that the main paper argument consumes. Its `Axiom/` contains
+   proves fixed program outputs after deterministic interpretation as `C(M)`,
+   their comparisons and the necessary internal helper results. Its `Axiom/` contains
    stage-zero outputs admitted as inputs to this first proof stage.
 3. `KIP126/Main/` is the second proof stage. Its Challenge/Final track owns
    the single final goal; Solution owns the paper deductions and final proof. Its `Axiom/` tree provides
@@ -46,9 +46,50 @@ the architecture does not require empty placeholder directories. Retaining the
 historical Mathlib adapter does not add a project obligation to identify the
 internal spectral-sequence model with Mathlib's spectral sequence.
 
+The revised current decisions in issue #138 (2026-09-28) supersede the
+historical checklist's classification. `A(M)` contains only external theorems
+from other papers accurately restated on the same internal model, with sources,
+hypotheses, scope and evidence. Generic properties of `M`, project comparisons
+and this paper's intermediate results remain mathematical work; using `M`
+does not turn them into external inputs. `A₀` contains foundations actually
+consumed and expressible outside `M`, not every non-`M` statement. Classify by
+mathematical role, consumers and proof responsibility before checking whether
+the complete statement uses `M`. Historical checklist IDs remain progress
+indices, not instructions to add every item to a Challenge witness.
+
+The fixed CSV basis certification `a05` is withdrawn from `A₀` and the
+required Challenge1 scope; the `linBasis` field has been removed.
+Certification of the fixed CSV monomials is an Interface helper obligation;
+the comparison to actual E₂ delivers the required basis, coordinate, dimension
+and exhaustion properties to Main. A helper that does not use `M` need not be
+called `C(M)`. Preserve fixed versions, ranges, provenance and existing proofs,
+and migrate producers and consumers together without adding an independent
+axiom. The fixed certification producer now belongs to Interface;
+`Challenge2.SphereBasisInterface` delivers actual E₂ coordinate equivalences
+whose inverse basis vectors recover the specified CSV values through the same
+presentation. Main projects those coordinates from the single Challenge2
+witness. Def retains generic graded-algebra and basis definitions, explicit
+certificate constructions and their soundness theorems.
+
+As clarified in issue #138, `Def` owns reusable mathematical
+objects, structures, predicates, constructions and theorems. The root Challenge
+files own the project's combinations of backgrounds, data, ranges and
+compatibility conditions. Do not duplicate those project combinations as a
+second delivery package inside `Def`. `StandardAdamsFoundation` is now the
+compatibility alias for the root `Challenge1.FoundationInput`; its old Def
+record has been removed. Any remaining wrappers require consumer-aware
+migration, preserving generic parameters and necessary adapters without reverse imports from the
+common mathematical base to a root Challenge or consumer axiom.
+
+Background specifications, theorems for a given background, and existence of
+the chosen background are distinct obligations. A record definition or adapter
+does not establish existence. The abstract-foundation choice below preserves
+the two fixed-witness production obligations; it neither makes the final
+theorems permanently parameterized nor expands the task to constructing a
+complete model of stable infinity-categories.
+
 The shared root structures `Challenge1` and `Challenge2` describe the current
-delivery contracts at the two boundaries, not a complete inventory of all
-mathematical prerequisites of the paper. Def and Interface prove respectively
+delivery contracts, not the complete input inventory for the paper. Def and Interface prove respectively
 `Nonempty Challenge1` and `Nonempty Challenge2`; the next stage temporarily
 assumes that exact proposition and selects one witness. These upstream results
 eventually eliminate the assumptions without maintaining a duplicate signature.
@@ -316,8 +357,8 @@ final endpoint retains Main Challenge/Solution mirrors. The layout does not
 repair the historical free-predicate statements.
 
 Fixed CSV basis independence and spanning is a computation certification:
-Interface produces it and Main consumes `Challenge2.linBasis` from the same
-witness as the E2 presentation and sphere differential table. Challenge1 no
+Interface produces it and Main consumes actual E2 coordinates and CSV values through
+`Challenge2.sphereBasis` in the same witness as the presentation and differential table. Challenge1 no
 longer assumes that certificate. Its proof remains unfinished.
 
 ## External inputs

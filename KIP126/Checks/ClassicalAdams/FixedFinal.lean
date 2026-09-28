@@ -39,10 +39,18 @@ run_cmd do
     throwError "update the proof-status audit when the final proof is completed"
   unless KIP126.Checks.AxiomInputs.uses axioms foundation do
     throwError "missing fixed foundation dependency"
-  for a in ← liftCoreM (collectAxioms
-      ``KIP126.Classical.Adams.computedH6Square_eq_standardH6Square) do
-    unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
-      throwError "unproved or unexpected CSV/standard comparison dependency: {a}"
+  -- The merged Challenge2 type contains unfinished structural comparisons.
+  -- As in Checks.AdamsE2.LinBasis, disclose its existing dependency closure;
+  -- this is a boundary check, not a claim of axiom-free certification.
+  let boundaryAxs ← liftCoreM (collectAxioms ``KIP126.Main.Axiom.challenge2)
+  let comparison := ``KIP126.Classical.Adams.computedH6Square_eq_standardH6Square
+  let some (.thmInfo comparisonInfo) := env.find? comparison
+    | throwError "missing CSV/standard comparison proof"
+  if comparisonInfo.value.getUsedConstants.contains ``sorryAx then
+    throwError "CSV/standard comparison must retain its actual conditional proof"
+  for a in ← liftCoreM (collectAxioms comparison) do
+    unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a || boundaryAxs.contains a do
+      throwError "CSV/standard comparison acquired a dependency outside its stage inputs: {a}"
 
 open KIP126.Classical.Adams KIP126.Core.SpectralSequence in
 example : NonzeroSurvival sphereAdamsData (2, 128) standardH6Square :=

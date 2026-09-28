@@ -804,9 +804,9 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
         "Burklund--Hahn--Senger, Theorem A.8, synthetic Adams rigidity"
         (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
   | .lambdaBockstein =>
-      claim .lambdaBockstein .literatureResult `KIP126.Synthetic.LambdaBockstein
-        "thm:external-lambda-bockstein" .bhs
-        "Burklund--Hahn--Senger, Theorem A.1, lambda-Bockstein comparison"
+      claim .lambdaBockstein .literatureResult `KIP126.Challenge2.FiniteLambdaBocksteinInterface
+        "thm:external-finite-lambda-bockstein" .bhs
+        "Burklund--Hahn--Senger, Theorem A.1 (1a)--(1c), finite Bockstein lifting/differential"
         (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
   | .syntheticEinfNu =>
       claim .syntheticEinfNu .literatureResult `KIP126.Challenge2.NuEInftyFormula

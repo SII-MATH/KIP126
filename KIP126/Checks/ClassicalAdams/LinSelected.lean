@@ -23,13 +23,11 @@ run_cmd do
       ``KIP126.Computation.LinProofs.Selected.d3_h0Sq_x123_13_2,
       ``KIP126.Computation.LinProofs.Selected.d3_x126_4,
       ``KIP126.Computation.LinProofs.Selected.d7_x123_11_combination] do
-    let axioms ← liftCoreM (collectAxioms decl)
+    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer expected decl
+      "selected-result dependency audit"
     unless KIP126.Checks.AxiomInputs.uses axioms
         ``KIP126.Computation.LinProofs.sphereTable_sound do
       throwError "missing Challenge 2 database assumption: {decl}"
-    for a in axioms do
-      unless KIP126.Checks.AxiomInputs.allows expected a do
-        throwError "unexpected selected-result axiom: {decl}: {a}"
 
 open KIP126.Core KIP126.Core.SpectralSequence
 open CategoryTheory

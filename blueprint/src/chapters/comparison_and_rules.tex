@@ -266,24 +266,36 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   projections then supplies cycle preservation and the bilinear restriction.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2387-2477; external Moss convergence theorem is required.
+% SOURCE: MainPaper/main.tex:2537--2545; Moss Theorem 1.2.
+% The crossing and weak-convergence conventions have also been checked against
+% Belmont--Kong, arXiv:2112.08689v2, Definitions 2.3--2.4.
 \begin{theorem}[Moss convergence adapter]
   \label{thm:moss-convergence-adapter}
-  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result,prop:moss-long-layer-composition-obstruction,prop:moss-long-layer-two-composition,prop:moss-boundary-and-two-cycles}
+  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result,prop:moss-long-layer-composition-obstruction}
+  \lean{KIP126.Classical.Adams.Moss.PageMassey.Relation,KIP126.Classical.Adams.Moss.PageMassey.Indeterminacy,KIP126.Classical.Adams.Moss.StatementAt,KIP126.Challenge2.MossInterface,KIP126.Challenge2.StandardSphereMossInterface,KIP126.Interface.Challenge.sphereMossInterface}
   \notready
-  Given an explicit external result supplying the relevant Moss convergence
-  theorem and hypotheses excluding crossings and indeterminacy, a Massey
-  product in the Adams $E_r$-page detecting a permanent class yields a
-  corresponding element of the stated Toda bracket in stable homotopy.
-\end{theorem}
+  Fix one composition system whose page values are constrained by the actual
+  long-layer representatives, with Leibniz, associativity and next-page
+  compatibility, and compatible detection in the actual tower-image filtration.
+  For $r\ge3$, the Massey relation on $E_r$ uses a defining system on
+  $E_{r-1}$: $dy=ab$, $dz=bc$, and the class of
+  $yc-(-1)^{|a|}az$. Its indeterminacy is the sum of the two corresponding
+  composition images on $E_r$.
 
-\begin{proof}
-  Unpack the external theorem at the chosen spectra and representatives,
-  discharge its convergence-and-detection witness and no-crossing hypotheses
-  from the supplied spectral-sequence data, and transport the detected class through the
-  associated-graded isomorphism.  Keep the resulting Toda indeterminacy
-  explicit rather than choosing a canonical element.
-\end{proof}
+  Suppose $a,b,c$ detect specified stable maps, both products vanish on the
+  page and as stable composites, and the two product mapping towers satisfy
+  weak convergence and the Moss-direction noncrossing conditions. Then some
+  Massey class is permanent and detects an element of the Toda bracket.
+  Neither zero indeterminacy nor survival of every Massey class is assumed.
+  The chosen family controls the convergence range; no convergence of every
+  ambient object is asserted.
+
+  The precise interface and its existence obligation for the fixed sphere
+  mapping model are now written. The mapping-sphere comparison with the
+  previously fixed sphere Adams object, the model data, and the convergence
+  proof remain unfinished. This preceding-page definition does not claim to
+  define the separate cobar Massey product on $E_2$.
+\end{theorem}
 
 \section{Synthetic comparison and normalized lifts}
 
