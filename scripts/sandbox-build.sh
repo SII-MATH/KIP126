@@ -35,4 +35,6 @@ if [[ -x scripts/euler-project-gates.sh ]]; then
   bash scripts/euler-project-gates.sh
 fi
 
-git diff --check
+# LFS clean filters create temporary objects even for a read-only diff. Keep
+# those writes inside the existing writable temporary directory, not .git.
+git -c lfs.storage="$TMPDIR/git-lfs" diff --check
