@@ -814,6 +814,27 @@ structure SpectralSequenceMorphism
     (E E' : SpectralSequence C ι)
     extends PreSSMorphism E.toPreSS E'.toPreSS
 
+/-! 同构的短复形诱导同构的中间同调。这个引理把逐页归纳中
+    “短复形层面的同构性”与 mathlib 的左同调接口接起来。 -/
+theorem ShortComplex.isIso_leftHomologyMap_of_iso
+    {C : Type u} [Category.{v} C] [Abelian C]
+    {S₁ S₂ : ShortComplex C} (e : S₁ ≅ S₂) [S₁.HasLeftHomology]
+    [S₂.HasLeftHomology] : IsIso (S₁.leftHomologyMap e.hom) := by
+  infer_instance
+
+/-! 交换的同调比较方块把同调层面的同构传回页面。 -/
+theorem isIso_of_pageHomologyIso_square
+    {C : Type u} [Category.{v} C]
+    {A B H K : C} (eA : A ≅ H) (eB : B ≅ K)
+    (f : A ⟶ B) (g : H ⟶ K) [IsIso g]
+    (h : eA.hom ≫ g = f ≫ eB.hom) : IsIso f := by
+  have hf : f = eA.hom ≫ g ≫ eB.inv := by
+    apply (cancel_mono eB.hom).1
+    rw [← h]
+    simp only [Category.assoc, eB.inv_hom_id, Category.comp_id]
+  rw [hf]
+  infer_instance
+
 /-- 谱序列态射经 `cokernel.map` 诱导 E∞ 页上的映射。 -/
 noncomputable def SpectralSequenceMorphism.eInftyMap
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]

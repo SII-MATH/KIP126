@@ -374,12 +374,9 @@ jobs:
           done
           echo "::warning::early bump-guard status could not be posted; the final report step will retry"
 
-      # Scoped set_option guard. Most options are escape hatches, so candidate code may not
-      # introduce arbitrary ones. The migrated categorical page proofs have a small, reviewed
-      # exception list: transparency controls for implicit categorical rewrites and bounded
-      # heartbeat budgets for the three long proof declarations. Compare the untrusted candidate
-      # against the trusted base before overlaying it; this textual diff executes no candidate
-      # code and therefore runs safely outside landrun.
+      # 限制 set_option：候选源码只能使用经审查的透明度兼容选项。
+      # heartbeat 上限不得设置例外；覆盖后的全树检查由项目 gate 再次保证。
+      # 此处在覆盖前只比较文本差异，不执行候选代码。
       - name: Scoped set_option guard (candidate uses only approved options)
         if: ${{ env.INFRA != '1' }}
         run: |
@@ -405,15 +402,9 @@ jobs:
                 if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Data\.lean$/ &&
                     line == "set_option backward.isDefEq.respectTransparency false in") next
                 if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/SquareZero\.lean$/ &&
-                    (line == "set_option backward.isDefEq.respectTransparency false in" ||
-                     line == "set_option maxHeartbeats 800000 in")) next
+                    line == "set_option backward.isDefEq.respectTransparency false in") next
                 if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Cycles\.lean$/ &&
-                    (line == "set_option backward.isDefEq.respectTransparency false in" ||
-                     line == "set_option maxHeartbeats 6400000 in" ||
-                     line == "set_option maxHeartbeats 900000 in")) next
-                if (file ~ /\/KIP126\/Def\/SpectralSequence\/FilteredDifferential\/Boundaries\.lean$/ &&
-                    (line == "set_option maxHeartbeats 6400000 in" ||
-                     line == "set_option maxHeartbeats 400000 in")) next
+                    line == "set_option backward.isDefEq.respectTransparency false in") next
                 print file ": " line
               }
             ')

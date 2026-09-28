@@ -68,6 +68,13 @@ that use them must remain conditional statements taking those inputs explicitly.
 
 ## Validation policy
 
+### Heartbeat 政策
+
+禁止在 `KIP126/`、`KIPBase/`、根聚合 Lean 文件或 Lake 配置中设置、
+提高或取消 `maxHeartbeats` 上限。遇到 heartbeat 超限必须修正证明结构，
+例如拆分依赖分支、限制化简规则或引入类型已固定的局部引理。
+`scripts/check-no-heartbeat-overrides.sh` 会在项目 gate 中强制此规则。
+
 Use the cheapest evidence that answers the task. Do not start with a full build.
 
 1. Inspect the requested change, the relevant diff, and existing validation evidence.

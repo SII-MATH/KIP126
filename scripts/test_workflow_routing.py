@@ -42,6 +42,47 @@ class WorkflowRoutingTests(unittest.TestCase):
         self.assertIn('pip" install -r requirements-blueprint.txt', pages)
         self.assertNotIn('leanblueprint==0.0.20', pages)
 
+    def test_project_gate_rejects_heartbeat_overrides(self):
+        checker = ROOT / "scripts" / "check-no-heartbeat-overrides.sh"
+        with tempfile.TemporaryDirectory() as directory:
+            repo = pathlib.Path(directory)
+            (repo / "KIP126").mkdir()
+            source = repo / "KIP126" / "Example.lean"
+            source.write_text("theorem example : True := trivial\n")
+            accepted = subprocess.run(
+                ["bash", str(checker), str(repo)],
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            self.assertEqual(accepted.returncode, 0, accepted.stderr)
+
+            source.write_text(
+                "set_option " + "maxHeartbeats 400000 in\ntheorem example : True := trivial\n"
+            )
+            rejected = subprocess.run(
+                ["bash", str(checker), str(repo)],
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            self.assertNotEqual(rejected.returncode, 0)
+            self.assertIn("Example.lean", rejected.stdout)
+
+            source.write_text("theorem example : True := trivial\n")
+            scripts = repo / "scripts"
+            scripts.mkdir()
+            command = scripts / "build.sh"
+            command.write_text("lake env lean " + "-D" + "maxHeartbeats=0 Example.lean\n")
+            rejected_command = subprocess.run(
+                ["bash", str(checker), str(repo)],
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+            self.assertNotEqual(rejected_command.returncode, 0)
+            self.assertIn("build.sh", rejected_command.stdout)
+
     def test_trusted_build_cache_uses_the_shared_v2_content_key(self):
         workflows = {
             name: self.read(name)

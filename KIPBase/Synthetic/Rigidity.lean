@@ -23,27 +23,42 @@ They are deliberately stated at one common universe so that both sides live
 in the same category of integer modules.  The page-by-page comparison after
 these identifications is formal and does not require boundedness. -/
 
-axiom lambdaESS_E2_classical_iso
+axiom lambdaBockstein_E2_classical_iso
     (𝒮 : Type u) [StableHomotopy.StableHomotopyCategory.{u, v} 𝒮]
     (Syn : Type u') [Category.{v} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
     (X : 𝒮)
-    (data : LambdaExtensionData ((nu 𝒮 Syn).obj X) 1)
+    (data : LambdaBocksteinData ((nu 𝒮 Syn).obj X))
     (s t : ℤ) :
-    (lambdaESS ((nu 𝒮 Syn).obj X) 1 data (t - s, 0)).Page 2 (s, 1) ≅
+    (lambdaBocksteinESS ((nu 𝒮 Syn).obj X) data (t - s, t)).Page 2 (s, 1) ≅
       (StableHomotopy.AdamsSS 𝒮 X).Page 2 (s, t)
 
-axiom syntheticAdams_E2_weight_zero_iso
+axiom syntheticAdams_E2_diagonal_iso
     (𝒮 : Type u) [StableHomotopy.StableHomotopyCategory.{u, v} 𝒮]
     (Syn : Type u') [Category.{v} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
     (X : 𝒮) (s t : ℤ) :
-    (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page 2 (s, t, 0) ≅
+    (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page 2 (s, t, t) ≅
       (StableHomotopy.AdamsSS 𝒮 X).Page 2 (s, t)
+
+/-- The two E₂ identifications compose to the comparison used as the
+    induction base for the page-by-page argument. -/
+noncomputable def lambdaBockstein_E2_synthetic_iso
+    (𝒮 : Type u) [StableHomotopy.StableHomotopyCategory.{u, v} 𝒮]
+    (Syn : Type u') [Category.{v} Syn] [Preadditive Syn]
+    [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (X : 𝒮) (data : LambdaBocksteinData ((nu 𝒮 Syn).obj X))
+    (s t : ℤ) :
+    (lambdaBocksteinESS ((nu 𝒮 Syn).obj X) data (t - s, t)).Page 2 (s, 1) ≅
+      (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page 2 (s, t, t) :=
+  (lambdaBockstein_E2_classical_iso 𝒮 Syn X data s t) ≪≫
+    (syntheticAdams_E2_diagonal_iso 𝒮 Syn X s t).symm
 
 variable (𝒮 : Type u) [StableHomotopy.StableHomotopyCategory.{u, v} 𝒮]
 variable (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]

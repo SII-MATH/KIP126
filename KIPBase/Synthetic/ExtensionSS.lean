@@ -284,17 +284,12 @@ multiplication by `λ^n : Σ^{0,-n}X ⟶ X`. -/
 abbrev LambdaExtensionData (X : Syn) (n : ℕ) :=
   SyntheticExtensionData (lambdaPow n X)
 
-/-! ### λ-Bockstein data
-
-The Blueprint treats the λ-extension spectral sequences as a compatible
-family, indexed by the power of λ.  The compatibility maps are supplied by
-the quotient tower; they are not consequences of choosing unrelated
-convergence witnesses. -/
+/-! ### Families of multiplication-by-λ extension data -/
 
 /-- Convergence data for all finite λ-powers of a fixed synthetic spectrum.
 The `tower` field supplies the ρ-maps and λ-ρ-δ triangles, while `essData`
 supplies the convergence witness for each λ-power extension. -/
-structure LambdaBocksteinData (X : Syn) where
+structure LambdaExtensionFamily (X : Syn) where
   tower : FiniteLambdaQuotientTower X
   essData : ∀ n : ℕ, LambdaExtensionData X n
 
@@ -381,6 +376,50 @@ noncomputable def lambdaESSE0Iso (X : Syn) (n : ℕ)
 theorem lambdaESS_diffDeg (X : Syn) (n : ℕ)
     (data : LambdaExtensionData X n) (degree : ℤ × ℤ) (r : ℤ) :
     (lambdaESS X n data degree).diffDeg r = (r, -1) :=
+  rfl
+
+/-! ### The λ-Bockstein extension spectral sequence
+
+The λ-Bockstein ESS is the extension spectral sequence of the connecting map
+in the cofiber triangle for multiplication by λ,
+
+`Σ^{0,-1}X →[λ] X → X/λ → Σ^{1,-1}X`.
+
+It is different from the extension spectral sequence of the first map λ. -/
+
+/-- The connecting map associated to multiplication by λ. -/
+noncomputable def lambdaBocksteinConnecting (X : Syn) :
+    XModLambdaN X 1 ⟶
+      ((SyntheticCategory.biShift (0, (-1 : ℤ))).obj X)⟦(1 : ℤ)⟧ :=
+  (infiniteLambdaRhoDeltaTriangle X 1 Nat.zero_lt_one).mor₃
+
+/-- The λ-Bockstein connecting map is natural in the synthetic spectrum.
+This is the third square in the functorial cofiber triangle of multiplication
+by λ; its commutativity follows from the naturality of `lambdaPow 1`. -/
+theorem lambdaBocksteinConnecting_naturality {X Y : Syn} (f : X ⟶ Y) :
+    XModLambdaN.map f 1 ≫ lambdaBocksteinConnecting Y =
+      lambdaBocksteinConnecting X ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, (-1 : ℤ))).map f) := by
+  simpa [lambdaBocksteinConnecting, infiniteLambdaRhoDeltaTriangle] using
+    XModLambdaN.proj_naturality f 1
+
+/-- Convergence data needed for the extension spectral sequence induced by
+the λ-Bockstein connecting map. -/
+abbrev LambdaBocksteinData (X : Syn) :=
+  SyntheticExtensionData (lambdaBocksteinConnecting X)
+
+/-- The λ-Bockstein spectral sequence at a fixed homotopy bidegree. -/
+noncomputable def lambdaBocksteinESS (X : Syn)
+    (data : LambdaBocksteinData X) (degree : ℤ × ℤ) :
+    SpectralSequence
+      (ModuleCat.{v, v} StableHomotopy.IntModuleRing.{v}) (ℤ × ℤ) :=
+  data.ess degree
+
+/-- A λ-Bockstein differential has extension degree `(r,-1)`. -/
+@[simp] theorem lambdaBocksteinESS_diffDeg (X : Syn)
+    (data : LambdaBocksteinData X) (degree : ℤ × ℤ) (r : ℤ) :
+    (lambdaBocksteinESS X data degree).diffDeg r = (r, -1) :=
   rfl
 
 end KIPBase.Synthetic
