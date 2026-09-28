@@ -2,6 +2,13 @@
 
 本目录集中管理 Main 阶段使用的 Lin program 输入：固定版本信息、确定性转换程序、生成的 Lean 数据，以及这些数据在 KIP126 内部数学对象上的解释。目录名描述工程职责；计划中的接口代号不进入源码路径。
 
+**当前三阶段路线的 C(M) 入口是 [Route/Data.lean](Route/Data.lean)。**
+它按论文第 7 节筛选球谱/Cν 的基、微分、候选排除和胞腔映射，显式接受同一个
+`Model`、球谱标签及 tmf 标签，不导入旧的整个 `Challenge2` 见证。
+完整选择依据、逐项消费点及证明边界见 [C_INPUT_FREEZE.md](../../../../docs/C_INPUT_FREEZE.md)。
+机械来源清单见 [Route/selected.json](Route/selected.json)，具名的条件投影见
+[Route/Records.lean](Route/Records.lean)。下面的 bulk/旧接口进度叙述不作为新 C(M) 的冻结清单。
+
 ## 1. 原先期望包含什么
 
 - 保存能够定位到固定发布版本的计算输入，不依靠 agent 逐条转录。

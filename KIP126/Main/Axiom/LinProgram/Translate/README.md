@@ -12,6 +12,18 @@
 | `check-e2.py` | 在临时目录重生成 E₂ 数据并与 committed 文件逐字比较 |
 | `import-proofs.py` | 只读扫描 `proofs.db`，联合 basis CSV 生成 86 个差分分片、`Table.lean` 和 manifest |
 | `import-selected.py` | 联合两个 SQLite、三个 CSV 和 bulk shards，生成 `Interpretation/Selected/{Proofs.lean,records.json}` |
+| `select-route.py` | 为三阶段路线筛选球谱/Cν 的局部基、状态、正式日志和根层排除，生成 `Route/{Selected.lean,Records.lean,selected.json}`；`--check` 逐字核对 |
+
+新 C(M) 的入口为 `Route/Data.lean`，筛选依据见
+[C_INPUT_FREEZE.md](../../../../../docs/C_INPUT_FREEZE.md)。它不消费旧 bulk 正确性公理。
+从仓库根目录运行：
+
+```bash
+python3 KIP126/Main/Axiom/LinProgram/Translate/select-route.py --check
+lake build KIP126.Main.Axiom.LinProgram.Route.Records KIP126.Checks.Computation.Route
+```
+
+此命令检查固定字节和转换结果，不完成数学认证。
 
 迁移后的 repo root、模块模板和输出路径已经修正。`import-proofs.py` 的 stale-output 检查只允许同目录额外存在 `README.md`，不会宽泛忽略其他文件。
 

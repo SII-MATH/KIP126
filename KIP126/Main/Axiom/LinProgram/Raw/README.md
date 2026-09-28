@@ -1,6 +1,14 @@
 # Lin 原始制品与版本锁定
 
-本目录保存转换器实际读取的五个上游制品。数据库和 CSV 保持原字节，通过 Git LFS 规则管理；`manifest.json` 登记来源、大小、格式和 SHA-256。把文件放入仓库只固定了输入，并不验证其中的数学结论。
+本目录保存转换器实际读取的上游制品。数据库和 CSV 保持原字节，通过 Git LFS 规则管理。
+`manifest.json` 登记下面五个既有制品；新的局部 C(M) 清单在
+[`../Route/selected.json`](../Route/selected.json) 中同时固定这五个和三个 Cν 配套制品。
+把文件放入仓库只固定了输入，并不验证其中的数学结论。
+
+新增的 `Cnu_AdamsSS_t200.db`、`map_AdamsSS_Cnu_to_S0_t200.db` 和 `ss.json`
+供 `select-route.py` 使用；来源是本地 `Lin-program/program/upstream/kervaire-49`。
+它们仅在本地加入，未上传。精确摘要、用途及分发来源的信任边界见
+[C(M) 文档](../../../../../docs/C_INPUT_FREEZE.md)。下文关于已上传五个 LFS 对象的描述仅针对既有文件。
 
 ## 1. 原先期望包含什么
 
