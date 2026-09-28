@@ -122,6 +122,50 @@ This chapter defines the Steenrod, Ext, tower, convergence, product, and named-c
   cohomology and the paper's left-module convention are separate claims.
 \end{definition}
 
+\begin{definition}[Convolution augmentation and left-module Ext]
+  \label{def:milnor-left-module-ext}
+  \lean{KIP126.Algebra.GradedDual.convolutionAlgebra,KIP126.Algebra.GradedDual.convolutionAugmentation}
+  \lean{KIP126.Algebra.GradedModule.leftTensorMonad,KIP126.Algebra.GradedModule.LeftModule,KIP126.Algebra.GradedModule.abelian,KIP126.Algebra.GradedModule.CoefficientExt}
+  \lean{KIP126.Steenrod.Milnor.Module.steenrod,KIP126.Steenrod.Milnor.Module.augmentation,KIP126.Steenrod.Milnor.Module.trivialAt,KIP126.Steenrod.Milnor.Module.SphereExt}
+  \uses{def:fixed-milnor-graded-coalgebra,def:graded-vector-space-cauchy,def:mathlib-derived-ext}
+  Let $A_n=\operatorname{Hom}_{\mathbb F_2}(C_n,\mathbb F_2)$ for the
+  fixed Milnor coalgebra $C$. The convolution product transposes the
+  ordered component $C_{i+j}\to C_i\otimes C_j$; its unit transposes the
+  counit. The augmentation evaluates a degree-zero functional on the
+  specified coaugmentation's value at $1$, and is zero in other degrees.
+  Left modules are algebras of the actual monad $V\mapsto A\otimes V$.
+  Their linear and abelian structures use the underlying maps and the
+  Eilenberg--Moore creation of finite limits and colimits. Restriction along
+  the augmentation gives the actual trivial degree line $k[t]$. Define
+  the left-module sphere groups as $\operatorname{Ext}_A^s(k,k[t])$ in
+  Mathlib's derived category. The monad, algebra and abelian structure
+  property proofs remain obligations; these objects are not additional
+  external inputs or new stage-boundary fields.
+\end{definition}
+
+\begin{definition}[Recursive conjugation and same-degree dualization]
+  \label{def:milnor-contravariant-dualization}
+  \lean{KIP126.Steenrod.Milnor.Coalgebra.Antipode.generatorImage,KIP126.Steenrod.Milnor.Coalgebra.Antipode.polynomialMap,KIP126.Steenrod.Milnor.Coalgebra.Antipode.map}
+  \lean{KIP126.Steenrod.Milnor.Module.conjugation,KIP126.Steenrod.Milnor.Module.dualToLeftModule,KIP126.Steenrod.Milnor.Module.trivialDualIso}
+  \uses{def:milnor-left-module-ext,def:actual-graded-right-comodules}
+  For the fixed coproduct convention, construct the polynomial antipode by
+  \[
+    S_0=1,\qquad
+    S_n=\xi_n+\sum_{1\leq i<n}\xi_{n-i}^{2^i}S_i\quad(n>0).
+  \]
+  Polynomial substitution extends this to all monomials, and its finite
+  support restricts it to the same homogeneous carriers. Transpose this
+  map to obtain $\chi:A\to A$. For a right comodule $M$, evaluation on
+  its coaction first defines the right action $\varphi\cdot a$ on its
+  same-degree dual. Use $a\cdot\varphi=\varphi\cdot\chi(a)$ to define
+  the left action. Degreewise transpose on maps gives the actual functor
+  $D:(\operatorname{Comod}_C)^{\mathrm{op}}\to\operatorname{Mod}_A$.
+  Evaluation on the specified generator identifies $D(k[t])$ with $k[t]$;
+  the degree is not negated. Antipode and action properties are stated but
+  unproved. No equivalence of unrestricted module and comodule categories
+  is asserted.
+\end{definition}
+
 \begin{definition}[Prescribed normalized cofree resolution]
   \label{def:milnor-cofree-resolution}
   \lean{KIP126.Steenrod.Milnor.Ext.Cofree.wordSpace,KIP126.Steenrod.Milnor.Ext.Cofree.term,KIP126.Steenrod.Milnor.Ext.Cofree.termPolynomial,KIP126.Steenrod.Milnor.Ext.Cofree.rawDifferential}
@@ -180,6 +224,34 @@ This chapter defines the Steenrod, Ext, tower, convergence, product, and named-c
   the same foundation and Milnor input in Challenge~2; neither the
   left Steenrod-module comparison nor compatibility with Yoneda products
   follows from this additive comparison.
+\end{theorem}
+
+\begin{theorem}[Coefficient Ext comparison with prescribed representatives]
+  \label{thm:milnor-coefficient-module-comparison}
+  \lean{KIP126.Steenrod.Milnor.Module.dualCobarResolution}
+  \lean{KIP126.Steenrod.Milnor.Module.PreservesDualCobarRepresentatives,KIP126.Steenrod.Milnor.Module.exists_dualCobarComparison}
+  \uses{def:milnor-cofree-resolution,def:milnor-derived-ext,def:milnor-contravariant-dualization}
+  Given a prescribed cofree resolution $R$, form the actual chain complex
+  $P_s=D(R^s)$ with differential $D(d_R)$ and augmentation $D(\iota_R)$
+  followed by $D(k[0])\cong k[0]$. Its projectivity and resolution
+  properties remain proof obligations for these specified terms and maps.
+  There exists a family of linear equivalences
+  \[
+    e_{s,t}:\operatorname{Ext}_C^s(k[t],k)
+       \cong\operatorname{Ext}_A^s(k,k[t]),
+    \qquad s\in\mathbb N,\quad t\in\mathbb Z,
+  \]
+  such that, for every $f:k[t]\to R^s$ with $fd_R=0$,
+  \[
+    e_{s,t}\bigl(R.\operatorname{extMk}(f)\bigr)
+      =P.\operatorname{extMk}\bigl(D(f)\,;\,(D(k[t])\cong k[t])\bigr).
+  \]
+  The target map must be a cocycle for this actual dual differential.
+  The all-representatives condition determines the comparison; its
+  existence is stated but not proved. This is a fixed algebraic coefficient
+  comparison in Def, not an external result or an additional Challenge
+  field. It does not supply the general-spectrum coaction bridge or
+  multiplication compatibility.
 \end{theorem}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:126-150; finite-type standing assumption at lines 253-263.

@@ -253,8 +253,14 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   实际 Yoneda 乘法现已在 `GradedComodule/Ext/Multiplication/` 构造，固定
   Milnor 特化位于 `MilnorExt/Multiplication/`；它由平移后 Ext 类的实际复合
   定义，所依赖的平移性质仍待证明。`GradedDual/` 已定义同次数对偶的卷积代数。
-  仍需固定左 Steenrod-module、平凡模与 Ext 端，以及右余模 Ext 到该端的
-  比较和实际内部页面乘法相容性；同次数对偶还须处理左右作用的转换。
+  左模端现已在 `MilnorModule/` 固定：同一卷积代数、coaugmentation 上求值
+  的增广、实际平凡左模及 `Ext^s(k,k[t])`。`Antipode/` 递归构造 Milnor
+  共轭；右余模的同次数对偶先给右作用，再由该共轭转为左作用，构成实际
+  反变函子。系数识别在相同 t 次数上求值，不把 t 改成 −t。
+  `MilnorModule/Resolution` 对既定 cofree 分解逐项对偶；
+  `Comparison` 要求比较保留全部 cocycle 的实际 `extMk` 代表，存在性待证。
+  这些通用陈述留在 Def，不按历史 am9 编号新增 A(M) 或总包字段。
+  余下包括实际内部页面乘法相容性及左模 Yoneda 相容；加法比较不替代它们。
   一般谱的 unit-insertion coaction、参数化 Künneth 及其条件性余结合已有；
   缺的是到固定 MilnorCoalgebra/Cauchy 右余模的桥及同一模型上的见证，
   不能把这些已有定义再次记作完全缺失。
