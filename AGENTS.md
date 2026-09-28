@@ -82,9 +82,10 @@ definitions and certification tools may remain in Def.
 The revised decisions preserve both boundaries. `Def` owns
 reusable mathematical structures as well as definitions and theorems; it must
 not maintain a duplicate project-specific delivery package. Such combinations
-belong in the root Challenge files. Before migrating an existing wrapper such
-as `StandardAdamsFoundation`, inspect its consumers and preserve the required
-generic parameters and compatibility adapters; never make a generic Def module
+belong in the root Challenge files. `StandardAdamsFoundation` is now a
+compatibility alias for `Challenge1.FoundationInput`, not a second Def record.
+Before migrating any remaining wrapper, inspect its consumers and preserve the
+required generic parameters and compatibility adapters; never make a generic Def module
 import a root Challenge or a consumer axiom to remove duplication.
 
 Distinguish background specifications, consequences for a given background,

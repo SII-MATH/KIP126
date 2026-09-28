@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.StandardFoundation.Data
+import KIP126.Def.StableHomotopy.Cohomology.Data
 import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
 import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
 import KIP126.Def.Synthetic.Context.Data
@@ -326,21 +326,15 @@ def FoundationInput.hf2 (F : FoundationInput) :
   pi0Equiv := F.pi0Equiv
   homotopy_vanishes := F.homotopy_vanishes
 
-/-- 兼容现有基础记录；没有重新选择任何数据。 -/
-def FoundationInput.toStandard (F : FoundationInput) : StandardAdamsFoundation where
-  Spectrum := F.Spectrum
-  stable := F.stable
-  cofiber := F.cofiber
-  hf2 := F.hf2
+/-- 原基础类型名的兼容别名；唯一结构及其字段由当前边界的
+`FoundationInput` 定义，不在 Def 中另设项目包装。 -/
+abbrev _root_.KIP126.Classical.Adams.StandardAdamsFoundation := FoundationInput
 
-/-- 将已有的通用基础记录逐字段放入边界记录。 -/
-def FoundationInput.ofStandard (F : StandardAdamsFoundation) : FoundationInput where
-  Spectrum := F.Spectrum
-  stable := F.stable
-  cofiber := F.cofiber
-  HF2 := F.hf2.HF2
-  pi0Equiv := F.hf2.pi0Equiv
-  homotopy_vanishes := F.hf2.homotopy_vanishes
+/-- 兼容旧基础名称的恒等适配，不重新包装或选择任何数据。 -/
+def FoundationInput.toStandard (F : FoundationInput) : StandardAdamsFoundation := F
+
+/-- 兼容旧调用端的恒等适配；两个名称表示同一个边界结构。 -/
+def FoundationInput.ofStandard (F : StandardAdamsFoundation) : FoundationInput := F
 
 /-- 同一基础上的 Milnor 坐标与第一微分相容性。
 

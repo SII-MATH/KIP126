@@ -66,9 +66,10 @@ As clarified in issue #138, `Def` owns reusable mathematical
 objects, structures, predicates, constructions and theorems. The root Challenge
 files own the project's combinations of backgrounds, data, ranges and
 compatibility conditions. Do not duplicate those project combinations as a
-second delivery package inside `Def`. Existing wrappers such as
-`StandardAdamsFoundation` require a consumer-aware migration, preserving
-generic parameters and necessary adapters without reverse imports from the
+second delivery package inside `Def`. `StandardAdamsFoundation` is now the
+compatibility alias for the root `Challenge1.FoundationInput`; its old Def
+record has been removed. Any remaining wrappers require consumer-aware
+migration, preserving generic parameters and necessary adapters without reverse imports from the
 common mathematical base to a root Challenge or consumer axiom.
 
 Background specifications, theorems for a given background, and existence of
