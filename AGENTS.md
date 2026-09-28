@@ -60,6 +60,21 @@ mathematical types remain in `Def`; generated tables and proofs remain in their
 own modules. Compatibility definitions may assemble the existing generic
 records from the visible fields, but must not make fresh data choices.
 
+Issue #138's 2026-09-28 clarification preserves both boundaries. `Def` owns
+reusable mathematical structures as well as definitions and theorems; it must
+not maintain a duplicate project-specific delivery package. Such combinations
+belong in the root Challenge files. Before migrating an existing wrapper such
+as `StandardAdamsFoundation`, inspect its consumers and preserve the required
+generic parameters and compatibility adapters; never make a generic Def module
+import a root Challenge or a consumer axiom to remove duplication.
+
+Distinguish background specifications, consequences for a given background,
+and existence of a chosen background or extra data. Defining a record or an
+adapter proves none of its existence obligations. The abstract-foundation
+boundary does not eliminate the fixed witness's production obligation, nor
+does this clarification require a complete construction of stable infinity
+categories or authorize changing the final hypotheses.
+
 For every checklist item, distinguish its precise statement, binding to the
 chosen model, and proof status, as well as whether it delivers new data or a
 consequence of earlier fields. Before leaving a statement as TODO, inspect the

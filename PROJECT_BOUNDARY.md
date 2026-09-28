@@ -40,6 +40,22 @@ the architecture does not require empty placeholder directories. Retaining the
 historical Mathlib adapter does not add a project obligation to identify the
 internal spectral-sequence model with Mathlib's spectral sequence.
 
+As clarified in issue #138 on 2026-09-28, `Def` owns reusable mathematical
+objects, structures, predicates, constructions and theorems. The root Challenge
+files own the project's combinations of backgrounds, data, ranges and
+compatibility conditions. Do not duplicate those project combinations as a
+second delivery package inside `Def`. Existing wrappers such as
+`StandardAdamsFoundation` require a consumer-aware migration, preserving
+generic parameters and necessary adapters without reverse imports from the
+common mathematical base to a root Challenge or consumer axiom.
+
+Background specifications, theorems for a given background, and existence of
+the chosen background are distinct obligations. A record definition or adapter
+does not establish existence. The abstract-foundation choice below preserves
+the two fixed-witness production obligations; it neither makes the final
+theorems permanently parameterized nor expands the task to constructing a
+complete model of stable infinity-categories.
+
 The shared root structures `Challenge1` and `Challenge2` are the complete
 contracts for the two boundaries. Def and Interface prove respectively
 `Nonempty Challenge1` and `Nonempty Challenge2`; the next stage temporarily

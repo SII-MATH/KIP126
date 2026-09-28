@@ -1,5 +1,16 @@
 import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
 import KIP126.Def.HigherAlgebra.Operad.Algebra.Data
+import KIP126.Def.HigherAlgebra.EnrichedTensor.Predicates
+import KIP126.Def.HigherAlgebra.Operad.Endomorphism.Data
+import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Category.Data
+import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.StructureSpace.Data
+import KIP126.Def.HigherAlgebra.Operad.Model.Data
+import KIP126.Def.HigherAlgebra.Operad.Moduli.Data
+import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Predicates
+import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Proofs
+import KIP126.Def.Topology.HomotopyFiber.Proofs
+import KIP126.Def.Topology.WeakContractibility.Predicates
+import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
 import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
 import KIP126.Def.SpectralSequence.Computation.State.Predicates
 import KIP126.Def.StableHomotopy.InverseSequence.Proofs

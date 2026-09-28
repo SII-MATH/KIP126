@@ -90,6 +90,32 @@ This chapter defines the types used to state machine and appendix results.  It c
 
 \section{Typed catalogue schemas}
 
+\begin{theorem}[Bounded actual sphere multiplication comparison]
+  \label{thm:bounded-sphere-multiplication}
+  \lean{KIP126.Challenge2.SphereMultiplicativeInterface}
+  \lean{KIP126.Classical.Adams.Sphere.Multiplication.unitSecondCycle,KIP126.Classical.Adams.Sphere.Multiplication.firstProduct}
+  \lean{KIP126.Interface.Challenge.sphereMultiplicativeInterface,KIP126.Interface.Solution.sphereMultiplicativeInterface}
+  \uses{def:hf2-adams-tower,def:lin-e2-catalogue}
+  There is a bounded Lin presentation $P$ on the fixed sphere Adams
+  sequence whose coordinate unit maps to the second-cycle class of the
+  actual sphere identity. For all $s,t,s',t'\in\mathbb N$ with
+  $t+t'\leq261$ and all actual second-cycle representatives $a,b$ in the
+  two input bidegrees, there is a second cycle $z$ in their sum degree with
+  \[
+    z_{\mathrm{underlying}}=\mu_1(a,b),\qquad
+    [z]=P.\operatorname{product}([a],[b]).
+  \]
+  Here $\mu_1$ is the existing sphere Adams first-layer product, formed
+  from the same tower pairing and $H\mathbb F_2$ multiplication.
+  The existential $z$ asserts closure of this prescribed product in
+  cycles; it cannot select a different operation. Quantifying over all
+  representatives binds the page product to that actual layer product.
+  Challenge~2 couples this condition to the same presentation as its
+  coordinate and differential fields. Both producer statements remain
+  unproved. No higher-page Leibniz rule, product outside the stated bound,
+  or comparison with the cobar cup product is supplied here.
+\end{theorem}
+
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1930-1977, Example exam:Mahowald.
 \begin{definition}[Atiyah--Hirzebruch cell notation for $S^0/\nu_{\mathrm{Hopf}}$]
   \label{def:hopf-cofiber-cell-notation}

@@ -27,6 +27,7 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
 import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
 import KIP126.Def.ClassicalAdams.Tmf.Model.Data
 import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
+import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
 import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 
 /-!
@@ -37,6 +38,8 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 当前 Lean 总包包括 `cm1` 的有界 presentation、`cm2` 的表真实性陈述、
 `am12` 的一线／May 陈述、同一基础上 `am8/am15` 的球面 Moss 交付组、
 `am14` 的 tmf 微分/单位/乘法切片，以及 `cm5` 的固定球面 staircase 状态。
+`cm1/am4` 的 `SphereMultiplicativeInterface` 另将有界球面 product 与单位
+绑定到实际 Adams 层乘法和同一 presentation。
 清单中的“未入包”不是额外假设，也不表示相应领域完全没有已有证明。
 
 阅读规则：**陈述状态**与**实现状态**分开记录。已有精确 Lean 类型可以尚未证明；
@@ -79,6 +82,10 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
   待补：固定 i、q、tmf 与 cofiber 的实际态射、Adams 自然性和各项具体绑定。
 
 - `am4` 内部乘法、配对、作用与 Leibniz。
+  已入包切片：`SphereMultiplicativeInterface` 在 t+t′≤261 范围量化全部
+  actual second-cycle 代表元，要求 product 等于实际 sphere-layer 配对的商类。
+  输出 cycle 的底层由 `adamsSphereE1Product` 固定；存在量词只承载 cycle
+  闭合性，不另选运算。坐标单位同时绑定到球面恒等的实际 E₂ 类。
   陈述：同一 presentation 上的 `LinE2Presentation.SecondDifferentialLeibniz`
   已有精确类型，见 `Main/Axiom/LinProgram/Interpretation/Differential/Predicates.lean`；
   本文件的 `comparison_mul` 不提供这个额外条件。
@@ -306,8 +313,9 @@ import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
 ## C(M)：Lin 直接输出的确定性解释
 
 - `cm1` 固定 Lin E₂ presentation。
-  陈述：下面 `LinE2Presentation` 的三个字段精确保留；**仅该切片入包**，
-  #138 所需完整加法基与全部直接乘法输出的交付尚未闭合。
+  陈述：下面 `LinE2Presentation` 的三个字段精确保留；同一总见证另以
+  `sphereMultiplicative` 将有界 product 与单位绑定实际球面塔／层代表元。
+  #138 所需完整加法基与全部直接乘法输出的交付尚未闭合；新绑定不是其证明。
   实现：`Main/Axiom/LinProgram/Generated/E2.lean`、`Def/AdamsE2/LinModel/`
   保留 v126.3.cw49 数据；本包的 existence Solution 尚为 `sorry`。
   a05 基表认证已进入 Challenge1，消费者从同一见证投影；生产证明在
@@ -494,6 +502,37 @@ def StandardTmfMultiplicativeInterface
   letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
   T.coordinates.RespectsUnit ∧
     Tmf.E2Presentation.RespectsMultiplication c.cooperationInput.ring T.coordinates
+
+/-- cm1/am4：同一 Lin presentation 的有界实际球面乘法与单位。
+输出 second cycle 的底层严格等于已构造的 first-layer product；存在量词
+只表达该实际乘积闭合于 cycles，不选择另一个运算。对所有输入代表元的
+商类等式同时要求其值与 presentation.product 相符。范围是 t+t′≤261，
+不由此宣称高页 Leibniz、全局乘法或与 cobar cup 的比较已经完成。 -/
+def SphereMultiplicativeInterface (P : LinE2Presentation) : Prop :=
+  let c := KIP126.Interface.Axiom.challenge1Witness
+  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  (∃ x : LinE2.E2At 0 0, x.val = 1 ∧
+    P.comparison 0 0 (by decide) x =
+      Suspension.classOfSecondCycle c.foundationInput.hf2
+        StableHomotopy.SphereSpectrum 0 0
+        (Sphere.Multiplication.unitSecondCycle c.foundationInput.hf2)) ∧
+  ∀ (s t s' t' : ℕ), t + t' ≤ 261 →
+    ∀ (a : adamsCycles c.foundationInput.hf2.unit StableHomotopy.SphereSpectrum
+          2 (by decide) s t)
+      (b : adamsCycles c.foundationInput.hf2.unit StableHomotopy.SphereSpectrum
+          2 (by decide) s' t'),
+      ∃ z : adamsCycles c.foundationInput.hf2.unit StableHomotopy.SphereSpectrum
+          2 (by decide) ((s + s' : ℕ) : ℤ) ((t + t' : ℕ) : ℤ),
+        z.val = Sphere.Multiplication.firstProduct c.foundationInput.hf2
+          c.cooperationInput.ring s t s' t' a.val b.val ∧
+        P.product s t s' t'
+          (Suspension.classOfSecondCycle c.foundationInput.hf2
+            StableHomotopy.SphereSpectrum s t a)
+          (Suspension.classOfSecondCycle c.foundationInput.hf2
+            StableHomotopy.SphereSpectrum s' t' b) =
+          Suspension.classOfSecondCycle c.foundationInput.hf2
+            StableHomotopy.SphereSpectrum
+            ((s + s' : ℕ) : ℤ) ((t + t' : ℕ) : ℤ) z
 
 /-- am1：一般内部页面 calculus 的派生交付。页面与微分均来自同一个 E；
 同调同构来自 nested Z/B 模型，不另选一套谱序列。 -/
@@ -1181,6 +1220,7 @@ end Challenge2
 about the exact presentation stored in the same witness. -/
 structure Challenge2 where
   presentation : Classical.Adams.LinE2Presentation
+  sphereMultiplicative : Challenge2.SphereMultiplicativeInterface presentation
   adamsOneLine : Challenge2.AdamsOneLineInterface
   moss : Challenge2.StandardSphereMossInterface
   tmfDifferential : Challenge2.TmfDifferentialInterface Classical.Adams.standardFoundation.hf2

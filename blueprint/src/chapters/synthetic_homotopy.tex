@@ -46,14 +46,124 @@ This chapter introduces the synthetic objects and the language in which the impo
   every such action, including the nullary ones.
 \end{definition}
 
-This definition supplies the topological operad language only. Its ambient
-category is all topological spaces with ordinary finite products, without
-May's additional compactly generated Hausdorff convention. Applying it to
-synthetic spectra still needs enriched tensor actions, an applicable model
-and its comparison with the chosen synthetic context, and derived mapping
-spaces for the unit-preserving algebra structures. Those missing interfaces
-include the meaning of the required uniqueness statement; the Cartesian
-space-valued algebra definition does not complete checklist item a09.
+The ambient spaces here have ordinary product topologies, without May's
+additional compactly generated Hausdorff convention. The following
+definitions supply tensor-valued actions and actual spaces in which to state
+uniqueness. Applying them to synthetic spectra still requires the model and
+under-unit comparisons described below; these definitions alone do not
+complete checklist item a09.
+
+\begin{definition}[Enriched finite tensor presentation]
+  \label{def:enriched-finite-tensor}
+  \lean{KIP126.HigherAlgebra.EnrichedTensor.Presentation,KIP126.HigherAlgebra.EnrichedTensor.TensorLaws,KIP126.HigherAlgebra.EnrichedTensor.SymmetricTensorLaws}
+  \uses{def:topological-operad-foundation}
+  \leanok
+  Fix a monoidal category $M$ with its actual topological enrichment.
+  A finite tensor presentation chooses objects $T_I(A_i)$ and jointly
+  continuous tensor maps on the enriched mapping spaces, together with
+  empty, singleton, binary, relabelling and flattening isomorphisms.
+  The tensor laws impose functoriality, naturality, and the unit,
+  associativity and two permutation diagrams for coloured substitutions.
+  The symmetric tensor laws additionally identify the binary permutation,
+  the empty-input comparisons and the three-input comparison with the
+  existing braiding, unitors and associator of $M$.
+  Thus the tensor is the specified monoidal tensor of $M$; ordinary
+  Cartesian products occur in the enrichment base. Existence of such a
+  presentation on a synthetic model is a separate obligation.
+\end{definition}
+
+\begin{definition}[Endomorphism operads and tensor-valued algebras]
+  \label{def:enriched-operadic-algebra}
+  \lean{KIP126.HigherAlgebra.Operad.Endomorphism.operad,KIP126.HigherAlgebra.Operad.Endomorphism.nullaryHomeomorph}
+  \lean{KIP126.HigherAlgebra.Operad.AlgebraOn,KIP126.HigherAlgebra.Operad.EnrichedAlgebra,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.Hom}
+  \lean{KIP126.HigherAlgebra.Operad.EnrichedAlgebra.unit,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.forget,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.unitForget}
+  \uses{def:enriched-finite-tensor}
+  The endomorphism operations of $X\in M$ are
+  $\operatorname{End}_P(X)(I)=\operatorname{Map}_M(T_I(X),X)$.
+  Substitution first flattens the inputs, then tensors the inner maps and
+  composes with the outer map. A structure on $X$ is a continuous operad
+  map $\mathcal O\to\operatorname{End}_P(X)$.
+  Algebra morphisms commute with every operation, including empty inputs,
+  and compose by their underlying morphisms in $M$.
+  A fixed $o\in\mathcal O(\varnothing)$ determines the actual unit
+  $\mathbf1_M\to X$ through the empty tensor isomorphism. Hence forgetting
+  the action gives a functor to $\mathbf1_M\downarrow M$.
+  These definitions depend on the stated, currently unproved, consequences
+  of the tensor laws and on the algebra-morphism identity, composition and
+  unit-naturality lemmas. Their compilation does not discharge those proofs.
+\end{definition}
+
+\begin{definition}[Strict operad-map spaces and path fibers]
+  \label{def:strict-operadic-structure-space}
+  \lean{KIP126.HigherAlgebra.Operad.TopologicalOperad.homSpace,KIP126.HigherAlgebra.Operad.TopologicalOperad.evaluation,KIP126.HigherAlgebra.Operad.TopologicalOperad.nullaryEvaluation,KIP126.HigherAlgebra.Operad.TopologicalOperad.NullaryStructureFiber}
+  \lean{KIP126.Topology.PathHomotopyFiber,KIP126.Topology.PathHomotopyFiber.space}
+  \uses{def:topological-operad-foundation}
+  \leanok
+  Give the strict operad maps $\operatorname{Hom}(\mathcal O,\mathcal P)$
+  the topology induced by their components in
+  $\prod_I C(\mathcal O(I),\mathcal P(I))$, with compact-open topologies.
+  Evaluation at a fixed operation is continuous. For any continuous
+  $f:X\to Y$ and $q\in Y$, define its path homotopy fiber as
+  \[
+    \{(x,\gamma)\in X\times C([0,1],Y):
+       \gamma(0)=f(x),\ \gamma(1)=q\},
+  \]
+  with the product subspace topology. In particular this defines the
+  fiber of nullary evaluation. It retains a path to the fixed value and
+  does not make the space of structures discrete.
+\end{definition}
+
+\begin{definition}[Strict unit fibers and relative unit moduli]
+  \label{def:operadic-unit-spaces}
+  \lean{KIP126.HigherAlgebra.Operad.EnrichedAlgebra.unitEvaluation,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.strictUnitFiber}
+  \lean{KIP126.HigherAlgebra.ClassifyingSpace.space,KIP126.HigherAlgebra.ClassifyingSpace.relativeModuli,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.unitModuli}
+  \uses{def:enriched-operadic-algebra,def:strict-operadic-structure-space}
+  For a fixed arrow $q:\mathbf1_M\to X$, the strict unit fiber is the
+  path fiber of evaluation into the actual enriched space
+  $\operatorname{Map}_M(\mathbf1_M,X)$, transported through the empty
+  tensor comparison.
+  Separately, choose a multiplicative morphism property $W$ on $M$.
+  In both the algebra category and the unit under-category retain exactly
+  the morphisms whose underlying maps belong to $W$. Write $B$ for the
+  geometric realization of the ordinary nerve. The relative unit moduli is
+  \[
+    \operatorname{hofib}_{q}\bigl(
+      B\operatorname{Alg}_{\mathcal O}(M)^W\longrightarrow
+      B(\mathbf1_M\downarrow M)^W\bigr).
+  \]
+  Both constructions are explicit spaces. No equivalence between them is
+  asserted. To interpret the second as synthetic commutative-algebra
+  structures requires the actual model weak equivalences, an applicable
+  operadic algebra model, and comparison of the fixed-unit under-category.
+  Multiplicativity of $W$ or an equivalence of homotopy categories alone
+  does not provide these comparisons. The algebra-category proof
+  obligations of Definition~\ref{def:enriched-operadic-algebra} persist.
+\end{definition}
+
+\begin{definition}[Weak contractibility]
+  \label{def:weak-contractible-space}
+  \lean{KIP126.Topology.WeaklyContractibleSpace}
+  \leanok
+  A space $X$ is weakly contractible if it is nonempty and
+  $\pi_n(X,x)$ is a singleton for every $x\in X$ and every $n\geq0$.
+  At $n=0$ this means that the set of path components is a singleton.
+  This condition does not assert an actual homotopy equivalence to a point;
+  such an upgrade requires additional hypotheses or a separate comparison.
+\end{definition}
+
+\begin{definition}[Transferred algebra model structure]
+  \label{def:transferred-operadic-model}
+  \lean{KIP126.HigherAlgebra.Operad.TransferredModelStructure}
+  \uses{def:enriched-operadic-algebra}
+  For a model category $M$, specify a model structure on the actual
+  category $\operatorname{Alg}_{\mathcal O}(M)$. Require its weak
+  equivalences and fibrations to be exactly the inverse images of those
+  of $M$ under the same forgetful functor. The specified model structure
+  includes its lifting and factorization axioms; no independent class of
+  cofibrations is substituted. This record neither constructs a model
+  structure nor asserts enriched model axioms or comparison with synthetic
+  commutative algebras.
+\end{definition}
 
 \section{The category, spheres, and deformation element}
 
@@ -93,6 +203,38 @@ space-valued algebra definition does not complete checklist item a09.
   by $\lambda^n$ is a natural map
   $\Sigma^{0,-n}X\to X$, and $X/\lambda^n$ is its cofiber.  In particular,
   $X/\lambda\simeq(S^{0,0}/\lambda)\mathbin{\wedge}X$.
+\end{definition}
+
+\begin{definition}[Realizing the fixed first quotient arrow]
+  \label{def:lambda-quotient-realization}
+  \lean{KIP126.Synthetic.LambdaQuotientRealization}
+  \uses{def:synthetic-lambda-quotient,def:operadic-unit-spaces}
+  For a specified functor $L:M\to\operatorname{Syn}$, choose $Q\in M$,
+  $q:\mathbf1_M\to Q$, and isomorphisms
+  $L\mathbf1_M\cong S^{0,0}$ and $LQ\cong S^{0,0}/\lambda$.
+  Require the resulting square to identify $Lq$ with the existing first
+  quotient inclusion. The quotient object and its unit are thus bound
+  together. This square supplies no localization, derived tensor, or
+  algebra-model comparison for $L$.
+\end{definition}
+
+\begin{definition}[Fixed operadic quotient input and uniqueness target]
+  \label{def:lambda-quotient-operadic-target}
+  \lean{KIP126.Synthetic.LambdaQuotientOperadicInput,KIP126.Synthetic.LambdaQuotientOperadicInput.moduli,KIP126.Synthetic.LambdaQuotientOperadicInput.uniqueness}
+  \uses{def:lambda-quotient-realization,def:transferred-operadic-model,def:enriched-finite-tensor,def:operadic-unit-spaces,def:weak-contractible-space}
+  In one fixed enriched symmetric monoidal model $M$, require a
+  localization functor $L$ at its actual weak equivalences and a cofibrant
+  monoidal unit. Specify one symmetric finite tensor presentation, one
+  reduced $E_\infty$ operad with its nullary operation, its transferred
+  algebra model structure, and the first quotient realization above.
+  Use the actual model weak equivalences and the specified quotient
+  arrow to form the relative unit moduli. The model-level uniqueness
+  target is weak contractibility of this particular space, including
+  nonemptiness and the degree-zero condition.
+  This defines a concrete target, not a theorem for every such input.
+  Constructing the input and identifying its higher algebra model with
+  synthetic commutative algebras remain obligations. A localization of
+  ordinary homotopy categories alone does not give that identification.
 \end{definition}
 
 % SOURCE NOTE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:784--786; Burklund--Xu Construction 7.7

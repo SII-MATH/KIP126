@@ -15,6 +15,13 @@ import KIP126.Def.AdamsE2.LinBasisTable.Predicates
 import KIP126.Def.StableHomotopy.Context.Mapping.Data
 import KIP126.Def.StableHomotopy.Context.Proofs
 import KIP126.Def.StableHomotopy.Toda.Predicates
+import KIP126.Def.HigherAlgebra.Operad.Moduli.Data
+import KIP126.Def.HigherAlgebra.Operad.Model.Data
+import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
+import KIP126.Def.Topology.WeakContractibility.Predicates
+import Mathlib.AlgebraicTopology.ModelCategory.Instances
+import Mathlib.AlgebraicTopology.ModelCategory.IsCofibrant
+import Mathlib.CategoryTheory.Localization.Predicate
 import Mathlib.Algebra.Exact.Basic
 
 /-!
@@ -156,10 +163,14 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - TODO／前置缺口：a08 背景下 `XModLambda`、`XModLambdaN` 已有定义，但完整
   E∞ algebra 结构、与实际商映射的相容性及唯一性仍需准确的高阶语义前置。
   不能用普通 `CommMon` 替代，也不能从商对象存在推得这部分文献结论。
-  前置已补：`Def/HigherAlgebra/Operad/` 定义真实拓扑对称 operad 的连续代入、
-  全部单位/结合/置换律，以及操作空间可缩和置换自由的 E∞ 条件；也有空间上的
-  cartesian algebra。后者仍不是 synthetic 谱上的代数，富集张量、模型适用性、
-  弱等价代数空间和固定商单位的派生纤维仍待定义。
+  前置已补：`Def/HigherAlgebra/` 有真实拓扑 operad、绑定既有 α/λ/ρ/β 的
+  富集有限张量、实际 Map(⊗ᵢX,X) 的 End，以及其代数和保单位忘却函子。
+  严格 action-space 的路径纤维与弱等价子范畴 nerve 的相对模空间分别定义；
+  后者固定实际单位箭头。弱可缩要求非空及包含 π₀ 的全部同伦群平凡。
+  本文件 `LambdaQuotientOperadicInput` 固定同一模型、operad、transferred
+  algebra model 与实际 λ 商箭头，`uniqueness` 已有具体模空间目标。
+  尚未构造这些输入，亦未定义／证明其高阶模型确实表示 synthetic CAlg 的比较。
+  普通 Ho 局部化与 transferred model 的字段不能独自给出该比较；本组尚未入总包。
 - 定位：`Def/Synthetic/Localization/`；Pst 原文
   `prop:tau_inversion_functor_exists`、
   `prop:tau_inversion_cocontinuous_symmetric_monoidal_left_inverse_to_synthetic_analogue`；Blueprint
@@ -545,7 +556,7 @@ end Stable
 
 namespace Synthetic
 
-open CategoryTheory CategoryTheory.Pretriangulated
+open CategoryTheory CategoryTheory.Pretriangulated MonoidalCategory
 open Context
 
 universe u v u' v'
@@ -553,6 +564,60 @@ universe u v u' v'
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)]
   {Syn : Type u'} [SyntheticCategory.{u', v'} Syn]
+
+/-- a09 的点集模型绑定：固定实际一阶 λ 商和同一个商映射。
+此类型只记录箭头的实现；L 的局部化性质、derived tensor 及代数模型比较
+仍是独立义务，不能由这一交换方块推出。项目组合集中于本文件。 -/
+structure LambdaQuotientRealization {M : Type u} [Category.{v} M] [MonoidalCategory M]
+    [HasFunctorialCofiber (C := Syn)] (L : M ⥤ Syn) where
+  object : M
+  unit : 𝟙_ M ⟶ object
+  unitIso : L.obj (𝟙_ M) ≅ (S00 : Syn)
+  quotientIso : L.obj object ≅ XModLambdaN (S00 : Syn) 1
+  unit_binding : L.map unit ≫ quotientIso.hom =
+    unitIso.hom ≫ XModLambdaN.incl (S00 : Syn) 1
+
+/-- a09 的相关点集输入：所有张量、operad、代数模型与商单位都来自同一组数据。
+普通 Ho 局部化只固定底层同伦范畴；仍须接入该模型与 synthetic CAlg 的高阶
+比较，不能把此记录的定义或字段当成该比较的证明。单位 cofibrant 显式列出，
+避免把任意严格 Under(unit) 都直接当成正确的派生单位箭头模型。 -/
+structure LambdaQuotientOperadicInput {M : Type (u + 1)} [Category.{u + 1} M]
+    [MonoidalCategory M] [SymmetricCategory M]
+    [EnrichedOrdinaryCategory TopCat.{u + 1} M]
+    [HomotopicalAlgebra.ModelCategory M] [HasFunctorialCofiber (C := Syn)]
+    (L : M ⥤ Syn) where
+  localization : L.IsLocalization (HomotopicalAlgebra.weakEquivalences M)
+  unit_cofibrant : HomotopicalAlgebra.IsCofibrant (𝟙_ M)
+  tensor : HigherAlgebra.EnrichedTensor.Presentation M
+  tensor_laws : HigherAlgebra.EnrichedTensor.SymmetricTensorLaws tensor
+  operad : HigherAlgebra.Operad.TopologicalOperad.{u + 1}
+  eInfinity : operad.IsEInfinity
+  reduced : operad.IsReduced
+  nullary : operad.Op HigherAlgebra.EnrichedTensor.empty
+  algebraModel : HigherAlgebra.Operad.TransferredModelStructure
+    tensor tensor_laws.toTensorLaws operad
+  quotient : LambdaQuotientRealization L
+
+/-- a09 的具体模空间候选：以同一模型的实际弱等价取 nerve，实现后沿保单位
+忘却函子取路径纤维；基点是所选商箭头，且它由 `unit_binding` 固定到原来的
+一阶 λ 商映射。不是自由指定的空间，也不是严格 action 集合的 Subsingleton。 -/
+noncomputable def LambdaQuotientOperadicInput.moduli
+    {M : Type (u + 1)} [Category.{u + 1} M] [MonoidalCategory M] [SymmetricCategory M]
+    [EnrichedOrdinaryCategory TopCat.{u + 1} M]
+    [HomotopicalAlgebra.ModelCategory M] [HasFunctorialCofiber (C := Syn)]
+    {L : M ⥤ Syn} (I : LambdaQuotientOperadicInput L) : TopCat.{u + 1} :=
+  HigherAlgebra.Operad.EnrichedAlgebra.unitModuli I.tensor I.tensor_laws.toTensorLaws
+    I.operad I.nullary (HomotopicalAlgebra.weakEquivalences M) I.quotient.unit
+
+/-- a09 的模型内唯一性目标，含非空性。来源目标为 Pstrągowski
+`cor:ctau_is_an_algebra`；把本文献结果传到这里仍需上述高阶模型比较。
+仅定义准确目标，不为任意上述输入无条件断言它成立。 -/
+def LambdaQuotientOperadicInput.uniqueness
+    {M : Type (u + 1)} [Category.{u + 1} M] [MonoidalCategory M] [SymmetricCategory M]
+    [EnrichedOrdinaryCategory TopCat.{u + 1} M]
+    [HomotopicalAlgebra.ModelCategory M] [HasFunctorialCofiber (C := Syn)]
+    {L : M ⥤ Syn} (I : LambdaQuotientOperadicInput L) : Prop :=
+  KIP126.Topology.WeaklyContractibleSpace I.moduli
 
 /-! ## a09：同一 λ 与 ν 上的反演接口
 
