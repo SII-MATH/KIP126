@@ -29,6 +29,11 @@ import KIP126.Def.StableHomotopy.InverseSequence.Proofs
 import KIP126.Def.ClassicalAdams.Completion.Predicates
 import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
 import KIP126.Def.Synthetic.Bockstein.Hom.Proofs
+import KIP126.Def.StableHomotopy.DescendingTower.Layer.Proofs
+import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Proofs
+import KIP126.Def.StableHomotopy.TowerSpectralSequence.FirstPage.Proofs
+import KIP126.Def.SpectralSequence.PageComparison.Predicates
+import KIP126.Def.Synthetic.Bockstein.Regrading.Sequence.Data
 import KIP126.Def.Synthetic.Completion.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
 import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data

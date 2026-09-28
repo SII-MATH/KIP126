@@ -299,9 +299,14 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   负号及合适提升的存在量词；来源 wrapper 为 `SyntheticBockstein.lean`。
   强收敛使用实际 πX 上塔映射像的完备、Hausdorff 过滤及其 associated graded，
   不以 eventual-page stabilization 加强原文前提；这些性质仍待证。
-  前置定义缺口：现有 λ residual tower 的完整 E₁-based Bockstein SSData
-  与 exact-couple comparison，以及 rigidity 有限页微分公式的 weight 重分次。
-  有限提升接口与现有 E∞ shift 均不替代上述完整构造；未新增总包字段。
+  实际 λ residual tower 已经由通用 `TowerSpectralSequence.sequence` 构造
+  E₁-based SSData、核像商页面及 J(lift K) 微分，再由
+  `Synthetic.Bockstein.normalizedAdamsSS` 重标为 E₂ 起始、微分次数 (r,r−1,0)。
+  所用三重次数关系为 (k,n,w)↔(w+k−n,w+k,w)，保留第一个微分与负次数常值尾。
+  定义性质仍待证；没有把现有 classical Z₂ ambient 构造直接改标签使用。
+  前置／绑定缺口：实际 tower layer 与移位一阶 λ 商的相容识别、同一 Q 的
+  初页代表图、与既定 synthetic family 的逐页及后继同调比较，及 finite rigidity。
+  有限提升接口与现有 E∞ shift 均不替代这些比较；未新增总包字段。
   历史 `lambda_bockstein_start_page` 仅断言 r₀=2，不能代替 comparison；
   `KIPBase/Synthetic/Rigidity.lean` 的所有负 weight 消失与反向 weight 商映射
   不沿用。a10/a11 的已有 cofiber／triangle lift 还需接到同一内部页面。

@@ -279,7 +279,61 @@ coherences remain outside the Project Boundary.
   coherence hypotheses.
   The residual tower $\Sigma^{0,-q}A$ and these finite arrows are defined;
   suspension and naturality properties still carry proof obligations.
-  No $E_1$-based Bockstein SSData object is constructed by these definitions.
+  Its $E_1$-based tower construction is defined separately in
+  Definition~\ref{def:lambda-weightwise-sequence}.
+\end{definition}
+
+\begin{definition}[The represented spectral sequence of an actual descending tower]
+  \label{def:represented-tower-sequence}
+  \lean{KIP126.StableHomotopy.DescendingTower,KIP126.StableHomotopy.DescendingTower.map,KIP126.StableHomotopy.DescendingTower.layer,KIP126.StableHomotopy.ShiftedHom,KIP126.StableHomotopy.connectingHom,KIP126.StableHomotopy.TowerSpectralSequence.cycles,KIP126.StableHomotopy.TowerSpectralSequence.boundaries,KIP126.StableHomotopy.TowerSpectralSequence.differential,KIP126.StableHomotopy.TowerSpectralSequence.ssData,KIP126.StableHomotopy.TowerSpectralSequence.sequence,KIP126.StableHomotopy.TowerSpectralSequence.firstPageIso,KIP126.StableHomotopy.TowerSpectralSequence.firstPageProjection}
+  \uses{def:cofiber-triangle,def:ss-elementwise-page-presentation}
+  \notready
+  A descending tower specifies objects $T_k$ and adjacent arrows
+  $T_{k+1}\to T_k$; all ordered maps are their finite composites.
+  For a fixed representing object $P$, put
+  $D_{k,n}=\operatorname{Hom}(P[n],T_k)$ and
+  $E_1^{k,n}=\operatorname{Hom}(P[n],\operatorname{cofib}(T_{k+1}\to T_k))$.
+  The maps $I,J,K$ are the actual tower map, cofiber inclusion, and boundary
+  with its specified suspension transport. For $q\ge1$ use
+  \[
+    Z_q^{k,n}=K^{-1}\operatorname{im}(D_{k+q,n-1}\to D_{k+1,n-1}),
+    \qquad
+    B_q^{k,n}=J\ker(D_{k,n}\to D_{k-q+1,n}).
+  \]
+  The page is $Z_q/B_q$, and its differential is the quotient class of
+  $J$ applied to a lift of $K(x)$, in degree $(k+q,n-1)$.
+  The lift is selected from cycle membership; independence of that selection,
+  descent, square-zero and successor-page laws are explicit proof obligations.
+  The constructed nested-subobject sequence has initial page $1$ and internal
+  stage $m$ equal to raw page $m+1$. At stage zero, the actual top cycle
+  submodule and zero boundary submodule give a specified isomorphism with
+  $E_1^{k,n}$. The representative projection uses the cycle inclusion,
+  the actual quotient map \texttt{mkQ}, and the inverse of the categorical
+  quotient comparison. Its inverse and representative identities remain
+  property obligations; this is not yet the first-quotient model comparison.
+  Its infinite cycles and boundaries are
+  the actual intersection and union of the finite stages. The assembled
+  sequence depends on the pending laws; its definition proves no convergence.
+\end{definition}
+
+\begin{definition}[The actual weightwise $\lambda$-tower sequence]
+  \label{def:lambda-weightwise-sequence}
+  \lean{KIP126.Synthetic.Bockstein.lambdaTower,KIP126.Synthetic.Bockstein.representedSphereIso,KIP126.Synthetic.Bockstein.representedHomEquiv,KIP126.Synthetic.Bockstein.weightwiseSequence}
+  \uses{def:represented-tower-sequence,def:finite-lambda-bockstein-maps,def:synthetic-lambda-quotient,def:synthetic-sphere}
+  \notready
+  Extend the existing residual $\lambda$ tower constantly to nonpositive
+  indices from its actual zeroth object $\Sigma^{0,0}A$. Its negative tail
+  is not a family of positive-weight shifts. At weight $w$, apply
+  Definition~\ref{def:represented-tower-sequence} with $P=S^{0,w}$.
+  The specified isomorphism $S^{0,w}[n]\cong S^{n,w}$ identifies the
+  represented groups with $\pi_{n,w}$.
+  This gives an actual $E_1$-based internal sequence, retaining $d_1$;
+  the page-$q$ differential has degree $(q,-1)$. Its first layer remains the chosen cofiber
+  of the actual tower arrow. Identifying that layer with
+  $\Sigma^{0,-k}(A/\lambda)$ at $k\ge0$ requires the relevant exact shift and
+  $\lambda$ coherence comparisons; those are not supplied by this definition.
+  The construction imposes no completeness or convergence hypothesis, and
+  its underlying tower-sequence property proofs remain unfinished.
 \end{definition}
 
 % SOURCE: BHS SynRevBigraded.tex:123--136, dfn:E-complete and dfn:strong-conv.
@@ -338,6 +392,58 @@ coherences remain outside the Project Boundary.
   $(s,t,t)$, $\lambda$ has degree $(0,0,-1)$, and differentials preserve the
   third coordinate.  The adapter includes proofs that page shapes and all
   displayed source and target degrees agree.
+\end{definition}
+
+% SOURCE: BHS SynRevAdams.tex:300--304, intrinsic page q versus synthetic page q+1.
+\begin{definition}[The constructed sequence in synthetic Adams degrees]
+  \label{def:lambda-normalized-sequence}
+  \lean{KIP126.Synthetic.Bockstein.gradingEquiv,KIP126.Synthetic.Bockstein.normalizedSSData,KIP126.Synthetic.Bockstein.normalizedPreSS,KIP126.Synthetic.Bockstein.normalizedSequence,KIP126.Synthetic.Bockstein.normalizedAdamsSS}
+  \uses{def:lambda-weightwise-sequence,def:bhs-aim-regrading,def:synthetic-tridegree}
+  \notready
+  The additive grading equivalence and its inverse are
+  \[
+    (k,n,w)\longmapsto(w+k-n,w+k,w),\qquad
+    (s,t,w)\longmapsto(t-w,t-s,w).
+  \]
+  At synthetic page $r\ge2$, use the actual weightwise page $r-1$ and
+  differential $d_{r-1}$, with explicit target transports. Thus
+  $E_1,d_1$ become $E_2,d_2$, and the differential degree becomes
+  $(r,r-1,0)$. Internal stage $r-2$ and its nested cycle and boundary
+  subobjects are unchanged. This is more than assigning a different
+  initial-page number: the differential is the earlier constructed map
+  at that stage.
+  The resulting \texttt{normalizedAdamsSS} bundles this same sequence;
+  it does not select another sequence. Its ambient still consists of raw
+  first-layer representatives. The construction depends on unfinished
+  spectral-sequence laws and is not a comparison with a separately supplied
+  synthetic Adams family, a rigidity theorem, or a convergence result.
+\end{definition}
+
+\begin{definition}[Pagewise comparison with the induced successor map]
+  \label{def:pagewise-sequence-comparison}
+  \lean{KIP126.Core.SpectralSequence.PagewiseIso,KIP126.Core.SpectralSequence.PagewiseIso.shortComplexIso,KIP126.Core.SpectralSequence.PagewiseIso.homologyIso,KIP126.Core.SpectralSequence.PagewiseIso.RespectsSuccessor}
+  \uses{def:internal-nested-spectral-sequence}
+  \notready
+  For two internal sequences $E,F$ in the same abelian category and grading
+  group, specify equal initial pages and differential degrees, together with
+  isomorphisms $\phi_{r,k}:E_r^k\cong F_r^k$ on every admissible page.
+  They commute with the actual differentials, including the displayed
+  degree transports. The same maps at $k-d_r,k,k+d_r$ assemble an
+  isomorphism of the centered short complexes. Applying the homology
+  functor to this isomorphism defines $H(\phi_r)$; no separate homology
+  isomorphism is chosen.
+  With the canonical next-page identifications
+  $h_E:E_{r+1}^k\cong H(E_r)^k$ and
+  $h_F:F_{r+1}^k\cong H(F_r)^k$, the additional successor condition is
+  \[
+    H(\phi_r)\circ h_E=h_F\circ\phi_{r+1,k}.
+  \]
+  The constructions retain unfinished short-complex compatibility proofs.
+  They require no isomorphism of the two raw ambient objects or their cycle
+  subobjects. Applying this interface to the constructed Bockstein sequence
+  and a specified synthetic Adams family still requires its page maps and
+  the initial representative diagram for the same first-quotient comparison
+  and $\nu$ datum; those bindings are not supplied by this definition.
 \end{definition}
 
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:799-807, definition implicit in Theorem thm:rigid.

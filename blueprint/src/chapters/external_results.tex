@@ -410,29 +410,37 @@ This chapter records precise published inputs and the specializations now proved
 % MainPaper line 819's tau denotes the deformation map called lambda here.
 \begin{theorem}[$\lambda$-Bockstein comparison]
   \label{thm:external-lambda-bockstein}
-  \uses{thm:external-synthetic-rigidity,thm:external-finite-lambda-bockstein,def:bhs-aim-regrading,def:synthetic-lambda-quotient,def:external-result}
+  \uses{thm:external-synthetic-rigidity,thm:external-finite-lambda-bockstein,def:lambda-normalized-sequence,def:pagewise-sequence-comparison,def:bhs-aim-regrading,def:synthetic-lambda-quotient,def:external-result}
   \notready
   Under the preceding source hypotheses, for $q\ge1$ the intrinsic $\lambda$-Bockstein
   page $q$ corresponds to synthetic Adams page $q+1$, compatibly with
   differentials and passage to the next page. In tower indices $(a,n,w)$,
   the AIM regrading is $(s,t,w)=(w+a-n,w+a,w)$.
   In particular the intrinsic first differential corresponds to synthetic
-  $d_2$; merely setting an initial-page label to $2$ does not construct this
-  comparison. The first-quotient and suitable finite-lift parts are stated
+  $d_2$. Definition~\ref{def:lambda-normalized-sequence} now constructs this
+  degree and page reindexing using the actual $E_1$-based tower sequence.
+  The first-quotient and suitable finite-lift parts are stated
   separately above. The ``$\tau$'' in
   \texttt{KIP126/Main/Axiom/Literature/MainPaper/main.tex:819} is corrected to $\lambda$ in this context.
-  The actual $E_1$-based Bockstein SSData construction, the full compatible
-  page comparison, and the finite rigidity model comparison remain
-  unfinished. The finite interface does not identify arbitrary raw ambient
-  SSData objects or prove the polynomial rigidity theorem.
+  The raw and regraded sequences are defined using pending property proofs.
+  Their comparison with the specified synthetic Adams family, the initial
+  page and shifted quotient-layer identifications, and the finite rigidity
+  model comparison remain unfinished. The required comparison must commute
+  with differentials and successor homology maps; agreement of displayed
+  pages does not identify arbitrary raw ambient SSData objects.
+  Definition~\ref{def:pagewise-sequence-comparison} now supplies this generic
+  comparison language, but not its first-quotient and $\nu$ representative
+  bindings in the specified model.
 \end{theorem}
 
 \begin{proof}
-  Construct pages from the actual residual tower, retaining its first
-  differential, and transport the located BHS page comparison through the
-  displayed degree and page shifts. Check the initial map against the
+  Use the constructed residual-tower pages, retaining the first differential,
+  and establish their pending laws. Transport the located BHS comparison
+  to the same synthetic model through the displayed degree and page shifts.
+  Check the initial map against the
   specified first-quotient comparison and the actual cofiber boundary.
-  This assembly remains a separate obligation from the finite input.
+  These model comparisons remain separate obligations from the finite input
+  and from defining the regraded sequence.
 \end{proof}
 
 % SOURCE: BHS Corollary A.9; KIP126/Main/Axiom/Literature/MainPaper/main.tex:841-847, Proposition prop:30e8b746.
