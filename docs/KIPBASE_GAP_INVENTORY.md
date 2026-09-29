@@ -1,52 +1,42 @@
-# Current KIPBase → KIP126 gap inventory
+# KIPBase 与 KIP126：复用范围和核对入口
 
-This is a source-level migration inventory at `origin/main` commit `110f643`
-plus the changes in PR #113. It is not a claim that historical declarations are
-proved or that the Blueprint nodes are complete. The old snapshot ledger is
-not a current-source inventory: the active `KIPBase/` tree has changed since
-that snapshot, especially in commutativity and bounded extension.
+2026-09-29 清理：原文件记录 `110f643` / PR #113 时的迁移缺口，已经过时。
+旧模块总数、`axiom` / `sorry` 数量、未完成清单及迁移顺序已移除。
+保留此文件路径供现有引用使用；本文不宣称完成了两个库的逐声明差异审计。
 
-The repository's `scripts/kipbase-migration.py` parser finds **38 historical
-Lean modules, 87 explicit `axiom` declarations, and 35 `sorry` occurrences**
-in the current `KIPBase/` tree (excluding the root `KIPBase.lean`). These are
-historical-source counts, not the number of axioms or sorry dependencies in
-canonical KIP126. The current canonical library still has no `KIPBase` import.
+## 当前源码能确认的内容
 
-| Historical area | Canonical coverage | Still missing or deliberately not copied |
+| 部分 | 已确认内容 | 复用时需要核对 |
 | --- | --- | --- |
-| `SpectralSequence/{Basic,FilteredComplex,Convergence,Crossing,Truncation,Completion}` | Mathlib spectral sequences, the canonical filtered-complex quotient pages, finite-page assembly, filtration and completion interfaces, and some crossing/detection laws are in `KIP126/Def`. | Four representative/lift relation proofs, canonical page functoriality and reindexing, coherent `E∞`/abutment comparison, and the historical representative-coset comparison. The old `SSData`/`PreSS` are not a second authority. |
-| `SpectralSequence/{BoundedExtension,UnboundedExtension,Commutativity}` | Two-term extension objects, bounded-extension helpers, and the axiom-free square/detection fragment have canonical ports. | Full ESS differential and convergence construction, unbounded stabilization, and Section 2.12–2.19 consequences on the canonical model. Current historical sources contain 9, 5, and 12 `sorry` occurrences respectively; unbounded extension also has one explicit axiom. The historical `ConvergenceMorphism`/`PreSS` statements cannot be pasted into the Mathlib-based API. |
-| `StableHomotopy/{Basic,TensorTriangulatedCategory,Cohomology,Adams}` | Category, cofiber, mapping-spectrum, cohomology, Adams tower/page and convergence witness interfaces exist in KIP126. | Concrete model construction, some exactness and sign laws, Adams mapping/composition and convergence results. The 40 explicit axioms in these historical files are not automatically valid as global assertions on every abstract stable category. |
-| `Synthetic/{Basic,Sphere,Nu,Adams,Lift,Rigidity}` | Bigraded suspension, λ-cofibers, spheres, ν witness data, synthetic page and classical/synthetic comparison interfaces are partly present. | Concrete ν/cofiber/enrichment instances, normalized lifts, λ-Bockstein and rigidity, and synthetic convergence. The 32 historical explicit axioms must be separated into model data, sourced external inputs, and internal proof obligations before any canonical port. |
-| `multiplicativeSS/{DGA,MasseyProduct,TodaBracket,CategoricalTodaBracket,TriangulatedTodaBracket}` | PR #113 starts the cone-based shifted Toda relation and four proved basic laws under `Def/StableHomotopy/Toda/`. | Most of the axiom-free DGA/homology product and Massey-product development; full Toda indeterminacy, juggling and canonical construction. The new Toda fragment does not complete the Blueprint Toda node. |
-| `multiplicativeSS/{Basic,Monoidal,ModuleCat,Adams,AdamsDetection,AdamsEnriched,AdamsMasseyProduct,Moss,MossCrossing,adamsdata/*}` | KIP126 has some Adams E₂ algebra/table and permanence interfaces, but no general multiplicative spectral-sequence or Moss implementation. | Page pairings and Leibniz law on Mathlib spectral sequences, multiplicative convergence, Adams comparison, Massey/Toda detection and Moss crossing. The old `Adams` and `AdamsEnriched` files have 14 explicit axioms and 9 `sorry` occurrences, and still depend on the retired historical convergence model. Open PR #110 is not part of `main` and must be assessed separately. |
-| `Basic`, `Mathlib`, `Compatibility/FilteredComplex` | Historical aggregate/import wrappers and the isolated compatibility bridge remain available as migration evidence. | No direct canonical import is intended; preserve the no-`KIPBase` dependency boundary. |
+| `KIPBase/SpectralSequence/` | 已有 SSData、谱序列、过滤复形构造、有界及无界扩张谱序列和相应证明；本次源码扫描未发现 `axiom`、`sorry` 或 `admit` 声明／占位 | 具体定理的参数、范围、代表元与收敛含义，以及到 KIP126 类型的适配；无占位不意味着已迁入 KIP126 |
+| `KIPBase/StableHomotopy/` | 提供稳定同伦语言及相关推导；`AdamsSS` 等具体输入仍为显式公理 | 区分已证明的通用结论、模型数据及需要交付的具体 Adams 构造 |
+| `KIPBase/Synthetic/` | 提供 synthetic 对象、λ 商、比较语言和相关推导；`SynAdamsSS`、ν 等仍有显式公理输入 | 核对同一模型、文献适用条件和比较相容性，不能由 SpectralSequence 子目录的完成度推断这里已经无假设 |
+| `KIPBase/multiplicativeSS/` | 提供乘法、Massey、Toda、Moss 等候选复用内容 | 逐项检查当前声明；本次未重新审计全部证明或与 KIP126 的覆盖差异 |
+| `KIPBase/Compatibility/FilteredComplex.lean` | 已有过滤、过滤复形、associated graded 及部分操作的对应 | 该桥接不声明两套谱序列全部页与 abutment 已经等价 |
 
-## Axiom placement decision
+本次仅核对源码，未重新编译，也未执行完整的 Lean 公理依赖审计。
 
-`Axiom.lean` is for a deliberately assumed **internal statement on the chosen
-canonical objects**, with source and mathematical meaning recorded. It is not
-a license to copy all 87 historical axioms. For example, a globally selected
-synthetic `ν` or cofiber structure on every abstract category is better kept
-as explicit model data; literature rigidity or computation inputs belong in
-`External/`; unfinished proofs remain theorems with `by sorry` in `Proofs.lean`.
-The first canonical axiom, if one is justified by a statement-level comparison,
-must be audited by name and downstream cone, and every project axiom must be
-eliminated for final acceptance.
+## 固定 M 时的具体入口
 
-## Next dependency order
+通用谱序列理论已有实现。KIP126 的 classical 对象也已有明确构造：
+[adamsTowerInternalSpectralSequence](../KIP126/Def/ClassicalAdams/TowerSSData/Sequence/Data.lean)
+从给定单位映射及对象的 Adams 塔构造谱序列；
+[球谱特化](../KIP126/Interface/Axiom/StandardSphere/Sequence/Data.lean)
+使用同一个 `standardFoundation`。
 
-1. Finish and review the PR #113 audit gate and the small proved Toda fragment.
-2. Port the historical axiom-free DGA and Massey core into concept-specific
-   `Data`/`Predicates`/`Proofs` layers without introducing a parallel
-   spectral-sequence type.
-3. Build page pairings and Leibniz compatibility on Mathlib's canonical
-   `SpectralSequence`; only then translate Adams and Moss statements from the
-   historical convergence model.
-4. Audit each remaining old axiom against the target paper and canonical
-   interface. Put only genuine development-stage internal assumptions in a
-   component `Axiom.lean`; keep external and model-data boundaries explicit.
+完整路线所需的模型数据及相容条件见
+[Route.Model](../KIP126/Def/Kervaire/Route/Model/Coherent/Data.lean)。
+这些结构的定义、实际见证的构造、表格解释的认证是不同任务；
+不能把未完成的模型绑定重新描述成“通用谱序列理论尚未实现”。
+计算交付与模型绑定的关系见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
 
-The relevant Blueprint nodes (`def:multiplicative-ss`, `def:toda-bracket`,
-`def:massey-product`) remain `\notready` until their full stated interfaces
-and proofs are implemented.
+## 继续复用的方式
+
+以当前 Lean 声明为准，按一个具体消费需求核对 KIPBase 定理与 KIP126 类型。
+保留适用条件，复用已完成证明，并检查模型、页号、次数与乘法的对应。
+KIP126 的内部 SSData/PreSS 模型与 Mathlib 适配层职责以
+[AGENTS.md](../AGENTS.md) 为准；不沿用旧清单中将 Mathlib 谱序列作为唯一内部模型的安排。
+
+组件构建入口见 [KIPBase README](../KIPBase/README.md)。
+原始来源与快照检查见 [迁移档案](../migration/kip-base/README.md)，
+其中的旧统计不用于判断当前证明完成度。

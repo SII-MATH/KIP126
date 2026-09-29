@@ -1,4 +1,9 @@
-# PR #110 完整整合记录
+# PR #110 完整整合记录（历史）
+
+本文记录 2026-09-24 的整合过程。下文的分支、PR/CI 状态、路径和证明状态
+仅适用于当时，不是当前操作指引或完成度清单。当前入口见
+[KIPBase 与 KIP126](KIPBASE_GAP_INVENTORY.md) 和
+[C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
 
 ## KIP126 下游入口
 

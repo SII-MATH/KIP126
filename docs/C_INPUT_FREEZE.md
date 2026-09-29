@@ -5,6 +5,10 @@
 阶段二可显式接受 `I : Inputs D L G`；阶段一的任务是构造这样的值。
 本次完成接口定义和来源筛选，不宣称已证明 C(M)，也不宣称已证明其蕴涵主定理。
 
+这里的路线 `CInput` 当前尚未接入根 `Challenge2.ComputationInterface`，二者不能互换。
+它是待整合的路线交付规格，不是第二套全局阶段公理。统一接口的目标、当前差异与
+Main/Axiom 中剩余解释代码的归属见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
+
 依据是仓库保存的论文 v2 `Main/Axiom/Literature/MainPaper/main.tex` 第 7 节及附录，
 逐段重新核对；历史 `Lin-program/summary.md` 不作为权威清单。
 论文中一般工具的证明和示例不需要额外固定数值数据；第 7 节消费的数值数据来自球谱和 Cν。

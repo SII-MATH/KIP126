@@ -33,11 +33,13 @@ formalization.
 The complete historical KIP-base library is retained as the separately compiled
 `KIPBase` component on the same Lean/mathlib 4.32.2 pins. Its original assumptions
 are isolated from `KIP126` and do not count as completed paper proofs. See the
-[migration inventory, paper mapping, and validation commands](migration/kip-base/README.md).
+[component guide](KIPBase/README.md), [reuse boundaries](docs/KIPBASE_GAP_INVENTORY.md),
+and [original migration archive](migration/kip-base/README.md).
 
 ## Project documents and workflow
 
 - [M / C(M) / A(M) / T(M) boundary audit](docs/MAC_T_INPUT_AUDIT.md): mathematical objects versus delivery interfaces, source classification, and remaining model bindings.
+- [C(M) delivery specification](docs/COMPUTATION_DELIVERY_SPEC.md): mathematical conclusions delivered to Main, table interpretation and certification responsibilities, and the remaining gap between Challenge2 and the selected route interface.
 
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other

@@ -1,3 +1,6 @@
+> 历史布局记录：下文按迁移批次记录路径和当时的缺口，不是当前 KIPBase 证明状态清单。
+> 当前复用范围见 [KIPBase 与 KIP126](KIPBASE_GAP_INVENTORY.md)，目录职责以根 AGENTS.md 为准。
+
 > 后续布局更新：Main 的 Near126 中间命题已合并到 Solution 的 ChoiceIndependence、DifferentialReduction、ExtensionObstruction；Main/Challenge 只保留 Final。下文旧路径为历史记录，现行位置见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md#后续调整中间推导不再设-challenge-镜像)。
 
 > Historical layout record. The current layout is documented in [STAGE_LAYOUT.md](STAGE_LAYOUT.md); module ownership is Def / Interface / Main.
@@ -238,10 +241,9 @@ synthetic cofiber, enrichment, ν-cofiber preservation, λ-Bockstein, rigidity,
 or normalized-lift axioms; those remain explicit model inputs or open internal
 proof obligations.
 
-The preservation checker for the isolated historical component is currently
-blocked by source drift on `origin/main`: the immutable
-`migration/kip-base/source-4.28.tar.gz` snapshot predates later `KIPBase`
-changes in the bounded-extension and commutativity files, so
-`scripts/kipbase-migration.py` stops at its trust-debt comparison.  The archive
-and ledger are left unchanged; refreshing that archival baseline is a separate
-repository-maintenance decision.
+The original preservation mode compares the live tree with the immutable
+4.28 snapshot, so it is not a current development-status check. The development
+script now uses `scripts/kipbase-migration.py --archive-only` to check archive
+integrity independently of later source changes. See the
+[archive guide](../migration/kip-base/README.md); the original ledger remains
+historical evidence and is not refreshed to describe current proof progress.

@@ -4,6 +4,10 @@
 目录及其聚合入口不再导入 Main 推导、Interface 生产证明或 Checks，也不再设置
 `Proofs.lean`。来源元数据校验和已有证据的透明提取不构成数学输入的生产证明。
 
+这是已完成的证明文件与导入边界整理记录，不代表剩余解释定义都已归位。
+`Main/Axiom/LinProgram` 仍有基构造、参数化解释和独立路线交付类型；
+它们与根 computation 接口的关系及后续归属见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
+
 ## 归位结果
 
 | 原内容 | 当前归属 |
