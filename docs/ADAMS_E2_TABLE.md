@@ -1,7 +1,7 @@
 # 将 E₂ 维数和乘法表接入已有谱序列
 
-现在先读 `KIP126/Main/Axiom/LinProgram/Examples/AdamsE2LowDegrees/Data.lean` 中的两张数据列表，
-再读 `KIP126/Main/Axiom/LinProgram/Examples/AdamsE2LowDegrees.lean` 中的使用示例。
+现在先读 `KIP126/LinProgram/Examples/AdamsE2LowDegrees/Data.lean` 中的两张数据列表，
+再读 `KIP126/LinProgram/Examples/AdamsE2LowDegrees.lean` 中的使用示例。
 原来只有三个格点的 `AdamsE2Table.lean` 保留作最小回归测试。
 
 ## 林氏数据的低次数示例
@@ -65,7 +65,7 @@ Lean 验证了 `h₀h₁=0`、`h₁h₂=0`、`h₀c₀=0`、`h₁³=h₀²h₂`�
 ```sh
 python3 scripts/extract_adams_e2_low.py /path/to/S0_AdamsE2_csv.zip \
   --include-two-dimensional-cell \
-  --check KIP126/Main/Axiom/LinProgram/Examples/AdamsE2LowDegrees/Data.lean
+  --check KIP126/LinProgram/Examples/AdamsE2LowDegrees/Data.lean
 bash scripts/shared-main-cache.sh run lake build KIP126.Main.Axiom.LinProgram.Examples.AdamsE2LowDegrees
 ```
 

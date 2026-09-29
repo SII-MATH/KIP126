@@ -3,6 +3,16 @@
 
 This chapter defines the types used to state machine and appendix results.  It contains no Lin output, table row, or other computed value.
 
+The independent \texttt{KIP126/LinProgram} pipeline owns pinned inputs,
+translation, generated records, deterministic decoding, and local certificates.
+Its artifacts fix the statements to be interpreted; successful conversion
+alone does not prove them. The shared \texttt{Challenge2} witness separates
+\texttt{LiteratureInterface} from \texttt{ComputationInterface}; only the latter
+is $C(M)$. Both use the fixed Challenge~1 model. Shared model bindings keep
+project comparisons and applicability data distinct from external theorems.
+Interface produces the model-bound conclusions, and Main consumes the one
+stage witness instead of importing their Interface proof implementations.
+
 \section{Finite presentations of an existing Adams page}
 
 % SOURCE: project interface design; this does not assert any real computed value.

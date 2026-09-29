@@ -29,7 +29,8 @@ clarified.
 
 ## Repository architecture
 
-The canonical mathematical source is divided into three top-level layers:
+The canonical mathematical source has three proof layers and an independent
+fixed-data pipeline:
 
 - `KIP126/Def/` is the common mathematical base and the first production stage.
   It owns objects, predicates, constructions, reusable theorems, and the
@@ -46,11 +47,20 @@ The canonical mathematical source is divided into three top-level layers:
   development-only assumptions that let this stage proceed in parallel;
   `Challenge/` and `Solution/` contain the paper's main deductions and endpoint.
 
+- `KIP126/LinProgram/` owns pinned raw program artifacts, deterministic
+  converters, generated Lean data, parameterized row semantics, and local
+  certificates about those fixed data. It does not own a stage axiom or assume
+  that the data have been identified with the chosen mathematical model.
+
 `KIP126/Challenge1.lean` and `KIP126/Challenge2.lean` are the two shared,
 reviewable witness types crossing stage boundaries. They contain definitions
-only. Their producer theorems and consumer axioms stay in the adjacent stage
-trees. Other mathematical planning symbols used outside the repository are not
-source directory names or Lean declaration prefixes. Preserve `KIP126/Mathlib/` as the optional
+only. Challenge 2 separates `LiteratureInterface` and
+`ComputationInterface`: only the latter is `C(M)`. Shared model bindings and
+comparisons remain explicit, and both parts use the same Challenge 1 model.
+Generic model comparisons are not literature results. Their producer theorems
+and consumer axioms stay in the adjacent stage trees. Other mathematical
+planning symbols used outside the repository are not source directory names or
+Lean declaration prefixes. Preserve `KIP126/Mathlib/` as the optional
 adapter layer and `KIP126/Checks/` as the regression/audit layer. Do not create
 empty directories or placeholder modules merely to display the architecture.
 
@@ -75,7 +85,8 @@ In particular, `a05` is withdrawn from the required `Challenge1`/`A₀` scope.
 The fixed CSV monomial-basis certification is an Interface helper obligation;
 after comparison with actual E₂ it supports the basis, coordinate, dimension
 and exhaustion statements delivered to Main. Its old Challenge1 field has
-been removed. `Challenge2.SphereBasisInterface` supplies actual E₂ coordinates
+been removed. `Challenge2.ComputationInterface` includes
+`SphereBasisInterface`, which supplies actual E₂ coordinates
 and their values in the same CSV presentation; Main uses that witness rather
 than importing the certification Solution. Preserve the dataset, range,
 sources and proofs, without adding an independent axiom. Generic basis
@@ -245,13 +256,22 @@ types, ranges, and conditions, and do not treat packaging as proof progress.
   cited claim must identify its paper and a stable theorem, proposition,
   equation, table, section, page, or line locator, together with its catalogued
   artifact where available.
-- `Main/Axiom/LinProgram/` owns the pinned program-input pipeline. Separate
-  `Raw/`, `Translate/`, `Generated/`, and `Interpretation/` responsibilities:
-  raw artifacts and schemas; deterministic conversion code; generated typed
-  records and manifests; and their mathematical meaning in the internal model.
-  Generated records and successful hash checks do not by themselves prove the
-  interpreted mathematical propositions. Existing computation axioms remain
-  disclosed stage debt until their Interface proofs replay or verify them.
+- `LinProgram/` owns the pinned program-input pipeline. Separate `Raw/`,
+  `Translate/`, `Generated/`, `Interpretation/`, and `Certificates/`:
+  raw artifacts and schemas; deterministic conversion code; typed records and
+  manifests; parameterized meanings; and local proofs about the fixed data.
+  Generated records and successful hash checks do not prove the interpreted
+  propositions. `Interface/{Challenge,Solution}/LinProgram/` owns the goals
+  and proofs identifying these artifacts with `C(M)` on the chosen model.
+  `Main/Axiom/LinProgram/` projects the computation part of the one Challenge 2
+  witness and supplies its consumer adapters. Main deductions consume that
+  interface rather than importing its Interface/Solution producer proofs.
+  The `Main/Solution/Computation` dependency chain now respects this boundary;
+  other legacy Main imports still need separate migration. Examples that use
+  Main consumer adapters and explicit provenance remain in
+  `Main/Axiom/LinProgram/Examples/`, outside the independent data pipeline.
+  Existing stage assumptions remain disclosed debt until the producer proofs
+  are completed; moving local certificates is not additional proof progress.
 - Existing project axioms under `Def/`, `Mathlib/`, or the former `External/`
   computation tree move to the appropriate stage's `Axiom/`. Moving them records
   their proper ownership; it does not prove them, remove their dependency

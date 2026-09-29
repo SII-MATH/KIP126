@@ -1,4 +1,5 @@
 import KIP126.Interface.Challenge.LinProgram.Staircase
+import KIP126.Interface.Challenge.LinProgram.Square
 import KIP126.Interface.Challenge.LinProgram.BasisTable
 import KIP126.Interface.Challenge.LinProgram.SphereBasis
 import KIP126.Interface.Challenge.LinProgram.Multiplication

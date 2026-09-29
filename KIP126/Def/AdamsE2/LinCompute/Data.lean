@@ -1,5 +1,5 @@
 import Std
-import KIP126.Main.Axiom.LinProgram.Generated.E2
+import KIP126.LinProgram.Generated.E2
 
 /-!
 Ported from PR #110 commit ff39e95147712fc00cd3f700e0dd1f490d16b863,

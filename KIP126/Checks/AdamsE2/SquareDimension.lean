@@ -1,4 +1,5 @@
 import KIP126.Checks.AxiomInputs
+import KIP126.LinProgram.Certificates.SquareDimension.Proofs
 import KIP126.Main.Solution.Computation.Dimension
 import Lean.Elab.Command
 

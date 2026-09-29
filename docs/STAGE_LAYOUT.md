@@ -1,10 +1,32 @@
-# Def / Interface / Main 布局与迁移记录
+# LinProgram / Def / Interface / Main 布局与迁移记录
 
 首轮工作整理已有内容、更新路径和补充模块说明。随后按用户确认，将两道跨阶段边界定义为根目录共享的 `Challenge1`、`Challenge2` 见证结构。上一阶段以 theorem 证明 `Nonempty ChallengeN`，下一阶段开发时以 axiom 暂时接受完全相同的命题；旧公开接口从同一个见证投影。未补数学证明、未修论文陈述、未增删原结构条件。接口范围沿用 [审核 issue #138](https://github.com/SII-MATH/KIP126/issues/138)。
+
+## 2026-09-29：独立工件与分组交付
+
+固定程序工件移入 `KIP126/LinProgram/`：Raw、Translate、Generated、
+不依赖消费公理的 Branch/State/Differentials 数据解释，以及 Route 的原始和选取记录。
+Examples 使用实际 Main 消费适配和显式来源证据，继续留在
+`Main/Axiom/LinProgram/Examples/`，不属于独立数据管线。
+原 `Interface/Solution/LinProgram` 中纯数据的 SquareDetection、SquareDimension
+证明移入 `LinProgram/Certificates/`，保留原公开声明与证明。Interface 的基认证、
+实际 E₂ 坐标、乘法和 staircase 生产端继续留在原层；新增 Square 生产端将已有局部
+证书运输为模型上的 `SphereSquareInterface`。
+
+根 `Challenge2` 将 `LiteratureInterface` 与 `ComputationInterface` 分开，只有后者
+称为 C(M)。`ModelBindings` 保存共享 Moss/tmf 模型与通用比较，两个交付部分共同
+使用同一个 Challenge1 模型。Main 仍从单一 `Nonempty Challenge2` 假设选取见证，
+平方非零和候选穷尽均从其计算字段消费，`Main/Solution/Computation` 的依赖链
+不再导入 Interface/Solution。Main 其他历史消费链的直接导入仍是迁移债务。
+没有为文献、计算或平方结果新增独立公理，也没有完成原有 `sorry`。
+
+下文的带日期、提交号和测试数量的验证记录属于相应历史批次；它们不证明本次修改
+已经通过同样检查，也不表示完整交付已构造。
 
 ## 从哪里开始读
 
 - [Challenge1](../KIP126/Challenge1.lean)、[Challenge2](../KIP126/Challenge2.lean)：两道边界共享的见证类型及逐项交付清单。第一份覆盖 `a01`–`a14`，第二份覆盖 `am1`–`am16`、`cm1`–`cm6`；条目沿用 #138 的编号。
+- [LinProgram](../KIP126/LinProgram/README.md)：独立的固定数据管线、参数化解释和局部证书。
 - [Def](../KIP126/Def/README.md)：公共数学对象、谓词、构造器、通用性质及 Challenge 1 的生产轨。
 - [Interface](../KIP126/Interface/README.md)：第 0 阶段产出的消费接口，以及计算认证和通用接口的目标／证明。
 - [Main](../KIP126/Main/README.md)：输入包和 near-126 至最终目标的推导。
@@ -15,11 +37,11 @@
 
 两个 Challenge 文件在同文件内分组展开项目交付字段、范围及相容性条件，通用数学类型仍由 Def 定义。审核时结合现有 Def、Blueprint、论文来源及 KIPBase 的具体历史接口，分别记录陈述、模型接入、证明与依赖状态。当前目录缺少声明，不等于无法准确陈述；已有对象足以支持的参数化接口应直接写出，剩余迁移、对象绑定或证明义务单独列明。只有确实缺少表达所需类型的部分保留具体 TODO，不以空泛的 `Prop` 或 `True` 充当字段，也不把历史 axiom 当作当前证明。已有构造或可从前项推出的结果列为派生交付，详细清单只维护在这两个文件中。
 
-Challenge 1 通过 `FoundationInput`、`MilnorInput` 展示现有基础条件，再以 `foundation`、`milnor` 适配定义组装原通用记录；消费端仍只选择一次见证。Challenge 2 在同文件中定义 `LinE2Presentation`、坐标和微分解释；旧 presentation 模块作为兼容导入入口。生产／消费端继续直接使用相同的 `Nonempty ChallengeN`。
+Challenge 1 通过 `FoundationInput`、`MilnorInput` 展示现有基础条件，再以 `foundation`、`milnor` 适配定义组装原通用记录；消费端仍只选择一次见证。Challenge 2 在同文件中定义 `LinE2Presentation`、坐标和微分解释，并将文献与计算交付拆为独立 structure；共享模型绑定和兼容投影保留原数据关联。旧 presentation 模块作为兼容导入入口。生产／消费端继续直接使用相同的 `Nonempty ChallengeN`。
 
 `a10` 的 ν-cofiber 判据和 `a11` 的 synthetic lift／三角提升已在根 Challenge1 中定义为精确的参数化 `SyntheticInterface`；[Synthetic 文献入口](../KIP126/Main/Axiom/Literature/Synthetic.lean) 通过显式来源输入组装该接口。它尚未加入 `Nonempty Challenge1` 的原见证字段，没有选择固定 synthetic 模型，也没有完成所引文献结果的证明。
 
-这次清单整理保持现有数学承诺。Challenge 2 对开发期选定的 Challenge 1 仍有隐式依赖，Main 对 Interface/Solution 的直接导入也尚未消除；两个文件会显式记录这些边界债务。完整清单不等于所有条目已经冻结或装入见证包。
+这次整理保持现有数学承诺。Challenge 2 仍使用开发期选定的 Challenge 1 模型；Main 的平方消费已改为计算接口投影，消除了对应的 Interface/Solution 直接导入。固定模型构造和完整阶段证明仍是边界债务。完整清单不等于所有条目已经冻结或装入见证包。
 
 ## 目录及职责
 
@@ -27,6 +49,13 @@ Challenge 1 通过 `FoundationInput`、`MilnorInput` 展示现有基础条件，
 KIP126/
 ├── Challenge1.lean         Def → Interface 的共享见证类型
 ├── Challenge2.lean         Interface → Main 的共享见证类型
+├── LinProgram/             独立的固定数据管线
+│   ├── Raw/                固定 DB/CSV 与 manifest；大文件由 Git LFS 管理
+│   ├── Translate/          确定性转换脚本
+│   ├── Generated/          固定 E₂、微分与 staircase 表
+│   ├── Interpretation/     不依赖消费公理的参数化行解释
+│   ├── Route/              §7 原始/选取记录与来源清单
+│   └── Certificates/       固定数据上的平方检测与维数证明
 ├── Def/                    公共对象、谓词、构造与性质
 │   ├── Challenge/          Nonempty Challenge1 的冻结目标
 │   └── Solution/           Nonempty Challenge1 的构造／证明轨
@@ -36,17 +65,13 @@ KIP126/
 │   └── Solution/
 │       ├── Challenge2.lean 第二道边界的构造／证明轨
 │       ├── Tools/          旧错误工具声明的退休记录；本文工具现归 Main
-│       └── LinProgram/     基表认证、平方检测与维数的现有验证
+│       └── LinProgram/     基、乘法、staircase、平方等模型交付的生产证明
 ├── Main/
 │   ├── Axiom/
 │   │   ├── Challenge2.lean 同型的 Nonempty Challenge2 开发期输入
 │   │   ├── Literature/     文献原文、主论文、清单与显式输入
-│   │   └── LinProgram/
-│   │       ├── Raw/        五个固定 DB/CSV 输入及 manifest；大文件由 Git LFS 管理
-│   │       ├── Translate/  确定性转换脚本
-│   │       ├── Generated/  固定 E₂ 和差分表
-│   │       ├── Interpretation/  解释、现有假设和条件推论
-│   │       └── Examples/   输入数据表与解释接口的使用示例
+│   │   └── LinProgram/     计算交付投影、固定模型消费适配和路线需求
+│   │       └── Examples/   消费接口及显式来源证据示例
 │   ├── Challenge/Final/    最终目标；中间命题不再复制到 Challenge
 │   └── Solution/           按数学主题组织现有推导
 │       ├── Tools/                本文新工具的待证命题
@@ -60,7 +85,7 @@ KIP126/
 └── Checks/                 保留回归检查
 ```
 
-没有为尚不存在的证明或 axiom 镜像建立空目录。Lin program 的五个实际输入已经归入非空的 `Main/Axiom/LinProgram/Raw/`，不再依赖 `/tmp` 路径描述；大型 DB/CSV 使用 Git LFS。旧 `KIP126/External`、顶层 `Challenge/Solution`、`reference` 和 `aimpaper` 已迁走。公共 Lean 声明名保持原样；文件模块路径改变，因此原来的 `namespace KIP126.External` 或 `KIP126.Challenge` 仍可能出现在新位置，它们不是另一份代码。
+没有为尚不存在的证明或 axiom 镜像建立空目录。Lin program 的五个实际输入已经归入独立的 `LinProgram/Raw/`，不再依赖 `/tmp` 路径描述；大型 DB/CSV 使用 Git LFS。旧 `KIP126/External`、顶层 `Challenge/Solution`、`reference` 和 `aimpaper` 已迁走。公共 Lean 声明名保持原样；文件模块路径改变，因此原来的 `namespace KIP126.External` 或 `KIP126.Challenge` 仍可能出现在新位置，它们不是另一份代码。
 
 阶段间有两道消费边界：Def Challenge/Solution 生产 `Nonempty Challenge1`，Interface/Axiom 消费它；Interface Challenge/Solution 生产 `Nonempty Challenge2`，Main/Axiom 消费它。包内的数据由 structure 记录，跨阶段陈述是存在性命题，因此 theorem 与 axiom 类型完全相同。第一阶段可以使用 Challenge 1 axiom，但不能用自己要解除的 Challenge 2 axiom证明其 Solution。Def 不声明项目 axiom。
 
@@ -72,14 +97,15 @@ KIP126/
 | `Challenge/{Near126,Final}`, `Solution/{Near126,Final}` | `Main` 下对应轨道 |
 | `External/{Provenance,Evidence,Results}` | `Main/Axiom` 共用来源类型及操作 |
 | `External/{SourceInventory,Claims}` | `Main/Axiom/Literature` |
-| `External/Computation/LinE2/RawData` | `Main/Axiom/LinProgram/Generated/E2` |
+| `External/Computation/LinE2/RawData` | `LinProgram/Generated/E2` |
 | `External/Computation/LinProofs` | LinProgram 的 `Generated`、`Interpretation` 和入口 |
-| E₂、DB、selected 转换脚本 | `Main/Axiom/LinProgram/Translate` |
+| E₂、DB、selected 转换脚本 | `LinProgram/Translate` |
 | `External/Computation/{Near126,AppendixTable,EtaRows}` | `Main/Axiom/Literature`：保留论文／手写需求接口来源，不冒称机器直接输出 |
-| Lin 基表认证、平方检测与维数证明 | `Interface/Solution/LinProgram`；固定基和坐标消费构造现归 Main 解释层 |
+| Lin 基表认证与模型比较 | `Interface/Solution/LinProgram`；固定基和坐标消费构造归 Main 解释层 |
+| 纯数据平方检测与维数证明 | `LinProgram/Certificates`；Interface 的 Square 生产端完成模型运输 |
 | 固定 foundation、Milnor 的原输入 | `Challenge1` 包；`Interface/Axiom/Challenge1.lean` 暂时承认其存在 |
 | 固定 Lin presentation 与微分表输入 | `Challenge2` 包；`Main/Axiom/Challenge2.lean` 暂时承认其存在 |
-| `Examples/` | `Main/Axiom/LinProgram/Examples/`，保留原声明名 |
+| `Examples/` | `Main/Axiom/LinProgram/Examples/`，依赖实际消费适配，保留原声明名 |
 | 依赖这些 axiom 的固定对象及条件推论 | `Main/Axiom` 解释层；论文所需计算推论归 `Main/Solution/Computation` |
 | `reference/`, `aimpaper/` | `Main/Axiom/Literature/{Sources,MainPaper}` |
 
@@ -111,10 +137,10 @@ KIP126/
 
 ## 本次没有补齐的边界
 
-- 原四组项目输入已收束为两道边界：`Challenge1` 关联 foundation 与同一 H𝔽₂ 的 Milnor 坐标，`Challenge2` 关联 Lin presentation 与使用该 presentation 的全部微分表解释。消费端当前各有一条 `Nonempty ChallengeN` axiom；旧公开名称均为见证投影。Def 不声明项目公理。
-- `Def` 仍有六条向输入包的 import，引用的是 E₂ 字面数据、provenance 类型、显式输入 wrapper 或条件文献推论，均不导入项目 axiom。纯公共层的最终拆分仍需结合模型接口讨论，不在本次进行语义重写。
+- 原四组项目输入已收束为两道边界：`Challenge1` 关联 foundation 与同一 H𝔽₂ 的 Milnor 坐标，`Challenge2` 分开文献和计算部分，并关联共享模型、Lin presentation 与使用该 presentation 的全部解释。消费端当前各有一条 `Nonempty ChallengeN` axiom；旧公开名称均为见证投影。Def 不声明项目公理。
+- `Def` 对固定 E₂ 字面数据的引用已改为独立 LinProgram 路径；provenance 类型、显式输入 wrapper 和条件文献推论仍须结合实际模型接口逐项审核。路径整理不自动消除这些分类与复用边界。
 - 固定基表的生产证明仍有 `sorry`；消费端已改为从 Challenge2 投影，完整认证尚未完成。
-- 两道边界的生产端 theorem、消费端 axiom 和共享类型已经建立，无需维护另一个类型对齐表。两个 Solution theorem 的正文仍为 `sorry`，只完成了陈述冻结，没有完成数学构造。部分既有 Lin 基础证明仍需逐项接入 Challenge 2。
+- 两道边界的生产端 theorem、消费端 axiom 和共享类型已经建立，无需维护另一个类型对齐表。两个 Solution theorem 的正文仍为 `sorry`，尚未完成数学构造。平方局部证书已通过计算字段接入，其他 Lin 基础证明仍需逐项审核。
 - `standardFoundation` 与 `standardMilnorCooperations` 已按不使用内部谱序列的类型归到 Interface/Axiom；尚未提供完整构造或逐条精确文献依据，不代表第 0 阶段完成。
 - [#132](https://github.com/SII-MATH/KIP126/issues/132)、[#133](https://github.com/SII-MATH/KIP126/issues/133)、[#134](https://github.com/SII-MATH/KIP126/issues/134)、[#135](https://github.com/SII-MATH/KIP126/issues/135) 的陈述问题原样保留；Synthetic、ESS 等内部对象统一工作尚未开展。
 - Mathlib 适配层和 KIPBase 历史组件保留；此次没有新增两种谱序列等价的证明义务，也没有迁移 KIPBase 的新数学内容。

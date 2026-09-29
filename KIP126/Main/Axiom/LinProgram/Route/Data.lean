@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.LinProgram.Route.Selected
+import KIP126.LinProgram.Route.Selected
 import KIP126.Main.Axiom.Literature.Near126.Classes.Data
 import KIP126.Main.Axiom.Literature.Route.Tmf
 import KIP126.Def.AdamsE2.LinBasisTable.Data

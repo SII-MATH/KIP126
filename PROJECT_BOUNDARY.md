@@ -20,7 +20,8 @@ stage deliveries or goals. They are not M itself. Def may also prove general
 lemmas; proving a paper-derived predicate is Main work, regardless of where
 that predicate is defined. See `docs/MAC_T_INPUT_AUDIT.md` for current boundaries.
 
-The canonical source has three mathematical layers:
+The canonical source has three mathematical proof layers and an independent
+fixed-data pipeline:
 
 1. `KIP126/Def/` is the shared mathematical base and the first production
    stage. It contains definitions, predicates, constructions, reusable
@@ -39,9 +40,12 @@ The canonical source has three mathematical layers:
 
 `KIP126/Main/Axiom/Literature/` manages literature sources, claim-level
 locators, provenance-carrying wrappers, and the staged assumptions that use
-them. `KIP126/Main/Axiom/LinProgram/` manages the program pipeline as distinct
-raw, deterministic translation, generated, and mathematical-interpretation
-layers. The Mathlib adapter and Checks trees retain their independent roles;
+them. `KIP126/LinProgram/` manages raw artifacts, deterministic translation,
+generated records, parameterized interpretations, and local certificates.
+`Interface/{Challenge,Solution}/LinProgram/` produces the resulting claims on
+the chosen model; `Main/Axiom/LinProgram/` supplies consumer projections and
+adapters for those claims. The Mathlib adapter and Checks trees retain their
+independent roles;
 the architecture does not require empty placeholder directories. Retaining the
 historical Mathlib adapter does not add a project obligation to identify the
 internal spectral-sequence model with Mathlib's spectral sequence.
@@ -65,7 +69,8 @@ and exhaustion properties to Main. A helper that does not use `M` need not be
 called `C(M)`. Preserve fixed versions, ranges, provenance and existing proofs,
 and migrate producers and consumers together without adding an independent
 axiom. The fixed certification producer now belongs to Interface;
-`Challenge2.SphereBasisInterface` delivers actual E₂ coordinate equivalences
+`Challenge2.ComputationInterface` includes `SphereBasisInterface`, which
+delivers actual E₂ coordinate equivalences
 whose inverse basis vectors recover the specified CSV values through the same
 presentation. Main projects those coordinates from the single Challenge2
 witness. Def retains generic graded-algebra and basis definitions, explicit
@@ -89,7 +94,12 @@ theorems permanently parameterized nor expands the task to constructing a
 complete model of stable infinity-categories.
 
 The shared root structures `Challenge1` and `Challenge2` describe the current
-delivery contracts, not the complete input inventory for the paper. Def and Interface prove respectively
+delivery contracts, not the complete input inventory for the paper.
+`Challenge2` separates `LiteratureInterface` from `ComputationInterface`;
+`C(M)` denotes only the computation part. Shared model bindings retain the
+chosen Moss/tmf contexts and generic comparisons without reclassifying them
+as literature. Both parts refer to the same Challenge 1 witness. Def and
+Interface prove respectively
 `Nonempty Challenge1` and `Nonempty Challenge2`; the next stage temporarily
 assumes that exact proposition and selects one witness. These upstream results
 eventually eliminate the assumptions without maintaining a duplicate signature.
@@ -187,8 +197,11 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
 
    By user decision, each stage boundary has one shared witness structure in
    Lean source. `Challenge1` correlates the stable foundation with its Milnor
-   coordinates; `Challenge2` correlates the fixed Lin presentation with every
-   interpreted table row. The development axiom on each consuming side states
+   coordinates; `Challenge2` keeps literature and computation interfaces
+   separate while correlating their shared model bindings, the fixed Lin
+   presentation, and its interpreted table rows. Local fixed-data certificates
+   live outside both proof stages and are transported into the computation
+   delivery by Interface. The development axiom on each consuming side states
    only `Nonempty ChallengeN`, exactly as the producing Challenge/Solution
    theorem does. Compatibility names are projections from the selected witness.
    This preserves dependent choices but does not construct the selected data,
@@ -220,9 +233,10 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    proof; they are not part of the final statement's definition.
    The fixed foundation is still admitted through the Challenge1 existence
    axiom. Thus independence from C(M) does not mean independence from all
-   development assumptions. Challenge2 supplies the currently admitted C(M)
-   slice, including CSV basis certification, presentation and closed sphere
-   differential equations. Both stage assumptions must eventually be discharged.
+   development assumptions. The computation part of Challenge2 supplies the
+   currently admitted C(M) slice, including actual E₂ coordinates, presentation,
+   square results and closed sphere differential equations. Both stage
+   assumptions must eventually be discharged.
 
 ## In-scope formalization
 
@@ -238,11 +252,19 @@ for arbitrary tables or arbitrary caller-supplied `Prop`s. The compiled audit
 must inventory this exact exception and still reject it at final acceptance.
 No `sorryAx` is authorized by the exception.
 
-The Lin-program tree separates four responsibilities. `Raw/` records the
+The independent `KIP126/LinProgram/` tree separates the data responsibilities.
+`Raw/` records the
 pinned archives, database/CSV schemas, versions, and hashes; `Translate/` owns
 the deterministic conversion from those formats; `Generated/` owns the typed
 records and coverage manifests; `Interpretation/` states what a generated row
-means for the internal mathematical model. The importer scans the entire
+means for a supplied mathematical model. `Certificates/` contains local
+kernel-checked results about the fixed algebraic data; transporting them to the
+chosen model remains an Interface obligation. Main consumes the corresponding
+Challenge 2 computation delivery rather than its Interface producer proofs.
+This import separation is implemented for `Main/Solution/Computation`; other
+legacy Main imports remain migration debt. Examples using Main consumer
+adapters and explicit provenance stay in `Main/Axiom/LinProgram/Examples/`.
+The importer scans the entire
 pinned database, with per-category coverage counts. The currently interpreted
 fragment is **closed, finite-page sphere differential equations** within the
 existing E₂ comparison range. Other spectra, extension semantics,
@@ -358,7 +380,8 @@ repair the historical free-predicate statements.
 
 Fixed CSV basis independence and spanning is a computation certification:
 Interface produces it and Main consumes actual E2 coordinates and CSV values through
-`Challenge2.sphereBasis` in the same witness as the presentation and differential table. Challenge1 no
+the `sphereBasis` field of `Challenge2.ComputationInterface`, in the same witness
+as the presentation and differential table. Challenge1 no
 longer assumes that certificate. Its proof remains unfinished.
 
 ## External inputs
@@ -366,9 +389,10 @@ longer assumes that certificate. Its proof remains unfinished.
 Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables first enter the repository as audited source
 material. `KIP126/Main/Axiom/Literature/` owns the literature catalogue and
-claim wrappers; `KIP126/Main/Axiom/LinProgram/` owns the raw-to-interpreted
-program pipeline. Every accepted external input remains a value of an explicit
-structure carrying both the proposition and its provenance.
+claim wrappers; the independent `KIP126/LinProgram/` owns the raw-to-interpreted
+program pipeline and local certificates. `KIP126/Main/Axiom/LinProgram/` owns
+the computation consumer adapters. Every accepted external input remains a
+value of an explicit structure carrying both the proposition and its provenance.
 
 The staged Main axiom states `Nonempty Challenge2` while Interface is still
 constructing that witness. Each field must point to the source records used to

@@ -1,37 +1,15 @@
-# LinProgram：计算认证证明
+# LinProgram：计算交付证明
 
-本组件证明固定程序输出的解释，并提供所需认证辅助结论。a05 的 CSV 基认证已从 Def／Challenge1 迁入本阶段。
+本目录把固定程序工件及局部证书与选定模型相联系，生产 `Challenge2.ComputationInterface` 的 C(M) 结论。原始数据、转换程序、生成记录、参数化解释及纯数据证书位于独立 [LinProgram](../../../LinProgram/README.md)。
 
-- [BasisTable.lean](BasisTable.lean)：认证 v126.3.cw49 在 `t ≤ 261` 的指定加法基；证明仍为 `sorry`，不导入 Challenge2 消费公理或 Challenge 占位。
-- [SquareDetection](SquareDetection/README.md)：已有关系检测和归档证书。
-- [SquareDimension](SquareDimension/README.md)：已有指定次数的维数与候选计算。
-
-固定 CSV 认证是本阶段辅助义务；`Challenge2.sphereBasis` 交付同一 presentation 上的实际 E₂ 坐标与 CSV 值相容性。Main 从此见证恢复基与坐标，兼容入口保留在解释层。
-
-## 2. 现在包含什么
-
-| 文件 | 已有对象或结论（选列） |
+| 文件 | 职责与状态 |
 | --- | --- |
-| [BasisTable.lean](BasisTable.lean) | `basisTable_correct` |
-| [SphereBasis.lean](SphereBasis.lean) | 同一 presentation 上的实际 E₂ 坐标及 CSV 值相容性 |
-| [SquareDetection.lean](SquareDetection.lean) | `u_cube`, `u_square_ne_zero`, `u_pow_cap`, `evaluate_X`, `evaluate_polynomialOfPowers` 等 11 个声明 |
+| [BasisTable.lean](BasisTable.lean) | 认证 v126.3.cw49、所有自然数 s,t 且 t ≤ 261 的固定加法基；仍为 `sorry` |
+| [SphereBasis.lean](SphereBasis.lean) | 经同一个 presentation 将基认证运输为实际 E₂ 坐标；已实现运输，依赖待证基认证 |
+| [Multiplication.lean](Multiplication.lean) | Lin 表示中的乘法、单位与实际球谱 E₂ 相容；仍为 `sorry` |
+| [Staircase.lean](Staircase.lean) | 固定 staircase 快照的数学语义；仍为 `sorry` |
+| [Square.lean](Square.lean) | 使用外部 `Certificates/SquareDetection` 和 `Certificates/SquareDimension` 的局部证明，构造 `SphereSquareInterface` |
 
-## 3. 大概完成度
+`SphereSquareInterface` 交付实际 E₂ 上的平方非零性，以及该次数每个元素为零或该平方。Main 从同一个 Challenge2 见证的计算部分消费这些结论，不直接导入这里的生产证明。
 
-固定基认证仍为 `sorry`；`sphereBasis` 的运输构造已有证明，但依赖该辅助认证。Main 通过 Challenge2 消费实际坐标，不直接导入此证明。
-
-未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
-
-## 4. 接下来还需要完成什么
-
-- [basisTable_correct](BasisTable.lean)：仍需证明固定单项式线性无关且生成，范围保持全部非负 s,t 且 t ≤ 261。
-
-## 5. 后续应该一步一步如何做
-
-1. 对照上面的声明及其直接 imports，确认本组件的数学条件和消费端，先处理已报告的陈述问题。
-2. 需要改公共定义或冻结陈述时交由整合者协调；同步目标、输入接口与对应证明，不单方扩大前提。
-3. 按依赖顺序处理已列出的未完成内容；复用已有证明，保持数据、条件和结果职责清楚。
-4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
-5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
-
-显式接受认证的通用基构造位于 [Def](../../../Def/AdamsE2/LinBasisTable/Certification/Data.lean)；相关验证：[SquareDetection](SquareDetection/README.md)、[SquareDimension](SquareDimension/README.md)。
+这里的生产 theorem 不得使用 Main 的 Challenge2 消费公理。固定证书已有证明不等于整个数据解释均已认证；基、乘法、staircase 和完整 Challenge2 构造的证明债务仍保留。通用的显式认证基构造继续位于 [Def](../../../Def/AdamsE2/LinBasisTable/Certification/Data.lean)。

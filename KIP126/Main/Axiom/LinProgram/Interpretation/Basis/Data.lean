@@ -7,7 +7,7 @@ open KIP126.LinE2 KIP126.Core.Algebra
 witness as `linE2Presentation`. No scalar-action instance is added to SSData. -/
 noncomputable def sphereE2Coordinates (s t : ℕ) (ht : t ≤ 261) :
     sphereAdamsData.Page 2 ((s : ℤ), (t : ℤ)) ≃ₗ[ℤ] (BasisIndex s t →₀ F2) :=
-  KIP126.Main.Axiom.challenge2Witness.sphereBasis.coordinates s t ht
+  KIP126.Main.Axiom.computationInterface.sphereBasis.coordinates s t ht
 
 /-- The delivered basis vector with the specified CSV position. -/
 noncomputable def sphereE2Basis (s t : ℕ) (ht : t ≤ 261) (i : BasisIndex s t) :

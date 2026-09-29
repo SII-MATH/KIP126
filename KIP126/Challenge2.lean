@@ -1,9 +1,9 @@
 import KIP126.Def.Synthetic.EInfty.Presentation.Predicates
-import KIP126.Main.Axiom.LinProgram.Generated.Differentials.Table
-import KIP126.Main.Axiom.LinProgram.Generated.Staircase.Table
-import KIP126.Main.Axiom.LinProgram.Interpretation.State.Data
+import KIP126.LinProgram.Generated.Differentials.Table
+import KIP126.LinProgram.Generated.Staircase.Table
+import KIP126.LinProgram.Interpretation.State.Data
 import KIP126.Def.SpectralSequence.Computation.State.Predicates
-import KIP126.Main.Axiom.LinProgram.Interpretation.Sphere
+import KIP126.Interface.Axiom.StandardSphere.Sequence.Data
 import KIP126.Def.AdamsE2.LinClasses.Data
 import KIP126.Def.AdamsE2.LinBasisTable.Predicates
 import KIP126.Def.SpectralSequence.Computation.Predicates
@@ -35,13 +35,15 @@ import KIP126.Def.Synthetic.Bockstein.Hom.Data
 import KIP126.Def.Synthetic.QuotientFunctor.Data
 import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
 import KIP126.Def.ClassicalAdams.Completion.Predicates
-import KIP126.Main.Axiom.LinProgram.Interpretation.Branch.Predicates
+import KIP126.LinProgram.Interpretation.Branch.Predicates
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与数学进度清单
 
-M 是 Def 中的数学对象。本文件组织现有阶段交付，仍混合计算、文献及比较义务；
-不能整体等同于纯 C(M)，也不表示 M/A/C/T 已联合冻结。
+M 是 Def 中的数学对象，本文件仍绑定同一个 Challenge1 固定见证。
+`LiteratureInterface` 汇集文献结论，`ComputationInterface` 才是 C(M)；
+`ModelBindings` 单列共同模型上的项目比较，不能把这些比较归为外部 A(M)。
+两组由同一个 Challenge2 见证交付，不表示全部数学义务已经证明或冻结。
 
 范围依据：[接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138)，
 2026-09-28 修订正文优先于历史清单；保留 `am1`–`am16`、`cm1`–`cm6`
@@ -371,7 +373,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   `SphereBasisInterface` 交付全部 s,t : ℕ、t ≤ 261 的实际 E₂ 坐标等价，
   逆像的单位向量经同一 presentation 拉回后等于固定 CSV 单项式。
   这精确陈述完整加法基、坐标与穷尽性；固定认证证明及全部直接乘法输出仍未闭合。
-  实现：`Main/Axiom/LinProgram/Generated/E2.lean`、`Def/AdamsE2/LinModel/`
+  实现：`LinProgram/Generated/E2.lean`、`Def/AdamsE2/LinModel/`
   保留 v126.3.cw49 数据；本包的 existence Solution 尚为 `sorry`。
   a05 已迁出 Challenge1；固定 CSV 认证在
   `Interface/{Challenge,Solution}/LinProgram/BasisTable.lean`，Solution 仍为 `sorry`。
@@ -384,7 +386,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
 - `cm2` 闭合球面有限页微分表。
   陈述：`HasCoordinates`、`DifferentialStatement` 与 `sphereTable_sound` 已精确入包；
   覆盖固定 `proofs.db` 的 10,907 条 `depth=0, name=S0` 闭合等式，不附加非零或存活。
-  实现：`Main/Axiom/LinProgram/Generated/Differentials/` 与 `Main/Axiom/LinProgram/Translate/` 已接通
+  实现：`LinProgram/Generated/Differentials/` 与 `LinProgram/Translate/` 已接通
   记录到陈述；Interface 的数学真实性证明仍为 `sorry`。TODO：复演或验证全部已解释行，
   保持源、靶及微分始终使用同一 presentation。
 
@@ -404,7 +406,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   陈述：确定性内部 M 解释尚未冻结、未入包。
   实现：`Main/Axiom/Literature/Near126/HopfCofiber/` 是手写消费需求，
   不能算作 Lin 输出。前置解释缺口：现有 `Translate/import-proofs.py` 明确排除
-  非 S0／extension 行；须扩展 `Main/Axiom/LinProgram/Translate/`，将每条直接输出
+  非 S0／extension 行；须扩展 `LinProgram/Translate/`，将每条直接输出
   连接到同一固定谱与映射，包括 D8、Cν 短入射排除的确切记录。
 
 - `cm5` 程序 sentinel 与状态结论。
@@ -428,7 +430,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
 
 - `cm6` 带范围的消失、维数与候选穷尽。
   陈述：程序直接输出的完整解释未冻结、未入包。
-  实现：`Interface/Solution/LinProgram/SquareDimension/`、`Interface/Solution/LinProgram/SquareDetection/`
+  实现：`LinProgram/Certificates/SquareDimension/`、`LinProgram/Certificates/SquareDetection/`
   已有局部实质证明，但它们是数据模型上的派生结果，不因此成为新程序输入；
   `Main/Axiom/Literature/Near126/Sphere/Data.lean` 的事实包也是消费需求。
   语义绑定缺口：`CandidateWindow` 及覆盖／排除／穷尽谓词已定义，仍须绑定
@@ -515,13 +517,34 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [∀ A : C, (tensorRight A).IsTriangulated] [MonoidalPreadditive C]
   [∀ A : C, (tensorLeft A).CommShift ℤ]
 
-/-- am8/am15：同一映射 Adams 塔上的配对、检测、不定性和 Moss 交付。
+/-- am8/am15：同一映射 Adams 塔上的配对、检测、收敛和不定性上下文。
+这些项目构造与性质不归为外部 Moss 定理；定理结论由 LiteratureInterface 单列。
 `objects` 指定应用范围；不要求任意谱的 Adams SS 收敛到未完备同伦群。
 配对的每个值由实际长层代表元约束，收敛端使用实际塔像滤过。
 Massey 关系使用 E_(r−1) 的 defining system，因此范围是 r ≥ 3。
 来源：MainPaper:2537–2545；Moss Theorem 1.2。现代 crossing/weak-convergence
 表述另见 Belmont–Kong, arXiv:2112.08689v2, Definitions 2.3–2.4。
 此类型提出模型交付义务，不是对任意背景都已有该结构的证明。 -/
+structure MossContext {ι : Type w} (objects : ι → C) where
+  composition : CompositionPairing H R
+  coherent : composition.Coherent H R
+  convergence : ∀ X Y : ι, MappingAdamsConvergence H.unit (objects X) (objects Y)
+  weak_convergence : ∀ X Y : ι, MappingAdamsTower H.unit (objects X) (objects Y)
+  detection : ∀ X Y Z : ι,
+    composition.DetectionCompatible H R (objects X) (objects Y) (objects Z)
+      (convergence X Y) (convergence Y Z) (convergence X Z)
+  indeterminacy : ∀ (r : ℤ) (hr : 3 ≤ r) (W X Y Z : ι) (i j k : ℤ × ℤ)
+    (a : (mappingSequence H.unit (objects W) (objects X)).Page r i)
+    (b : (mappingSequence H.unit (objects X) (objects Y)).Page r j)
+    (c : (mappingSequence H.unit (objects Y) (objects Z)).Page r k)
+    (x₀ x : (mappingSequence H.unit (objects W) (objects Z)).Page r
+      (PageMassey.degree r i j k)),
+    PageMassey.Relation H R composition r hr x₀ a b c →
+      (PageMassey.Relation H R composition r hr x a b c ↔
+        PageMassey.Indeterminacy H R composition r (j := j) a c (x - x₀))
+
+/-- Compatibility package retaining its original fields and constructor.
+The source-bearing Moss conclusion is separated from this context in Challenge2. -/
 structure MossInterface {ι : Type w} (objects : ι → C) where
   composition : CompositionPairing H R
   coherent : composition.Coherent H R
@@ -541,16 +564,72 @@ structure MossInterface {ι : Type w} (objects : ι → C) where
         PageMassey.Indeterminacy H R composition r (j := j) a c (x - x₀))
   moss : Classical.Adams.Moss.Statement H R composition objects convergence
 
+
+/-- Forget only the external Moss conclusion, retaining every actual choice. -/
+def MossInterface.toContext {ι : Type w} {objects : ι → C}
+    (input : MossInterface H R objects) : MossContext H R objects where
+  composition := input.composition
+  coherent := input.coherent
+  convergence := input.convergence
+  weak_convergence := input.weak_convergence
+  detection := input.detection
+  indeterminacy := input.indeterminacy
+
+/-- Reassemble the old interface on exactly the supplied context. -/
+def MossContext.withStatement {ι : Type w} {objects : ι → C}
+    (context : MossContext H R objects)
+    (proof : Classical.Adams.Moss.Statement H R context.composition objects
+      context.convergence) : MossInterface H R objects where
+  composition := context.composition
+  coherent := context.coherent
+  convergence := context.convergence
+  weak_convergence := context.weak_convergence
+  detection := context.detection
+  indeterminacy := context.indeterminacy
+  moss := proof
+
 end Moss
 
 /-- am8/am15 的固定球面交付；基础、HF₂、ring 与所有 tensor 选择
 均来自同一个 Challenge1 见证，没有增加另一个可独立选择的模型。
-这里的球面映射谱仍需通过实际 ihom(unit,unit) 同构与 sphereAdamsData 比较。 -/
+这里的球面映射谱仍需通过实际 ihom(unit,unit) 同构与 sphereAdamsData 比较。
+保留原兼容接口；总包分别存放 context 与文献结论。 -/
 def StandardSphereMossInterface : Type 1 :=
   let c := KIP126.Interface.Axiom.challenge1Witness
   letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
   MossInterface c.foundationInput.hf2 c.cooperationInput.ring
     (fun _ : Unit => StableHomotopy.SphereSpectrum (C := c.foundationInput.Spectrum))
+
+/-- The same fixed sphere context, without assuming the external Moss statement. -/
+def StandardSphereMossContext : Type 1 :=
+  let c := KIP126.Interface.Axiom.challenge1Witness
+  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  MossContext c.foundationInput.hf2 c.cooperationInput.ring
+    (fun _ : Unit => StableHomotopy.SphereSpectrum (C := c.foundationInput.Spectrum))
+
+/-- Moss's conclusion on the selected composition and convergence data. -/
+def StandardSphereMossStatement (context : StandardSphereMossContext) : Prop :=
+  let c := KIP126.Interface.Axiom.challenge1Witness
+  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  Classical.Adams.Moss.Statement c.foundationInput.hf2 c.cooperationInput.ring
+    context.composition
+    (fun _ : Unit => StableHomotopy.SphereSpectrum (C := c.foundationInput.Spectrum))
+    context.convergence
+
+/-- Compatibility assembly never chooses a second sphere context. -/
+noncomputable def StandardSphereMossContext.withStatement (context : StandardSphereMossContext)
+    (proof : StandardSphereMossStatement context) : StandardSphereMossInterface :=
+  let c := KIP126.Interface.Axiom.challenge1Witness
+  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  MossContext.withStatement c.foundationInput.hf2 c.cooperationInput.ring context proof
+
+/-- The chosen algebra object and fixed tmf coordinates, before the BR21 claim. -/
+structure TmfModel {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    (H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C)) where
+  target : Mon C
+  coordinates : Tmf.E2Presentation H target
 
 /-- am14 的 BR21 微分切片。同一代数对象的单位定义实际 Hurewicz，
 固定 CSV 商中的 w₂² 与 β⁵g 经同一个坐标比较进入该对象的实际 Adams 塔。
@@ -566,15 +645,48 @@ structure TmfDifferentialInterface {C : Type u}
   br21 : HasDifferential (adamsTowerInternalSpectralSequence H.unit target.X) 3
     (16, 112) (19, 114) coordinates.v2Sixteen coordinates.betaFiveG
 
+/-- Project the same target and coordinates from the compatibility interface. -/
+def TmfDifferentialInterface.toModel {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    {H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C)}
+    (input : TmfDifferentialInterface H) : TmfModel H where
+  target := input.target
+  coordinates := input.coordinates
+
+/-- BR21's differential on this exact algebra object and coordinate comparison. -/
+def TmfModel.Br21Statement {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    {H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C)}
+    (model : TmfModel H) : Prop :=
+  HasDifferential (adamsTowerInternalSpectralSequence H.unit model.target.X) 3
+    (16, 112) (19, 114) model.coordinates.v2Sixteen model.coordinates.betaFiveG
+
+/-- Reassemble the original tmf interface without a fresh choice. -/
+def TmfModel.withDifferential {C : Type u}
+    [StableHomotopy.StableHomotopyCategory.{u, v} C]
+    [StableHomotopy.HasFunctorialCofiber (C := C)]
+    {H : StableHomotopy.Cohomology.Mod2EilenbergMacLane (C := C)}
+    (model : TmfModel H) (proof : model.Br21Statement) : TmfDifferentialInterface H where
+  target := model.target
+  coordinates := model.coordinates
+  br21 := proof
+
 /-- am14 的单位与乘法比较义务，约束已选的同一个 target/coordinates。
 乘法使用实际 Adams 层配对及 target.mul；不再容许独立选择一个页面乘法。
 所有张量、HF₂ ring 和相容结构来自同一个 Challenge1 见证。 -/
-def StandardTmfMultiplicativeInterface
-    (T : TmfDifferentialInterface standardFoundation.hf2) : Prop :=
+def StandardTmfModelMultiplicativeInterface
+    (T : TmfModel standardFoundation.hf2) : Prop :=
   let c := KIP126.Interface.Axiom.challenge1Witness
   letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
   T.coordinates.RespectsUnit ∧
     Tmf.E2Presentation.RespectsMultiplication c.cooperationInput.ring T.coordinates
+
+/-- Original comparison API, definitionally the property of the same tmf model. -/
+def StandardTmfMultiplicativeInterface
+    (T : TmfDifferentialInterface standardFoundation.hf2) : Prop :=
+  StandardTmfModelMultiplicativeInterface T.toModel
 
 /-- cm1/am4：同一 Lin presentation 的有界实际球面乘法与单位。
 输出 second cycle 的底层严格等于已构造的 first-layer product；存在量词
@@ -1220,24 +1332,103 @@ structure LinBranchInterface {R : Type u} [Ring R] {ι : Type w}
   conditional_facts :
     Computation.LinProofs.Branch.RetainedConditionalFacts lookup coordinates rows
 
-end Challenge2
-
-/-- The interpreted outputs required by Main.  The table soundness field is
-about the exact presentation stored in the same witness. -/
-structure Challenge2 where
-  presentation : Classical.Adams.LinE2Presentation
-  sphereBasis : Challenge2.SphereBasisInterface presentation
-  sphereMultiplicative : Challenge2.SphereMultiplicativeInterface presentation
-  cobarDerivedExt : Challenge2.CobarDerivedExtComparison
+/-- Shared project comparisons and model data. These are not external literature
+claims and not extra program outputs. The underlying model remains the fixed
+Challenge1 witness used by all types above; no quantification over a new M is added. -/
+structure ModelBindings where
+  cobarDerivedExt : CobarDerivedExtComparison
     Classical.Adams.standardFoundation.hf2 Classical.Adams.standardMilnorCooperations
-  adamsOneLine : Challenge2.AdamsOneLineInterface
-  moss : Challenge2.StandardSphereMossInterface
-  tmfDifferential : Challenge2.TmfDifferentialInterface Classical.Adams.standardFoundation.hf2
-  tmfMultiplicative : Challenge2.StandardTmfMultiplicativeInterface tmfDifferential
-  sphereStaircase : Challenge2.SphereStaircaseInterface presentation
+  moss : StandardSphereMossContext
+  tmf : TmfModel Classical.Adams.standardFoundation.hf2
+  tmfMultiplicative : StandardTmfModelMultiplicativeInterface tmf
+
+/-- Literature conclusions on the same selected model data. Sources and exact
+ranges remain those documented by AdamsOneLineInterface (Adams/May),
+StandardSphereMossStatement (Moss), and TmfModel.Br21Statement (BR21).
+The source-carrying external wrappers remain explicit inputs where used; this
+structure does not assert that citing a source constructs any of these proofs. -/
+structure LiteratureInterface (modelBindings : ModelBindings) : Prop where
+  adamsOneLine : AdamsOneLineInterface
+  moss : StandardSphereMossStatement modelBindings.moss
+  br21 : modelBindings.tmf.Br21Statement
+
+/-- The certified square facts transported to the actual sphere page through
+the specified comparison. Both facts have fixed-data certificate producers;
+this structure lets Main consume their model-bound statements through C(M). -/
+structure SphereSquareInterface (presentation : Classical.Adams.LinE2Presentation) : Prop where
+  nonzero : presentation.comparison 2 128 (by decide) LinE2.dataH6Sq ≠ 0
+  exhaustive : ∀ x : Classical.Adams.sphereAdamsData.Page 2 (2, 128),
+    x = 0 ∨ x = presentation.comparison 2 128 (by decide) LinE2.dataH6Sq
+
+/-- C(M): interpreted computation conclusions, all using one fixed presentation.
+The generated data and local certificates are separate from this model-bound
+mathematical delivery. -/
+structure ComputationInterface (presentation : Classical.Adams.LinE2Presentation) where
+  sphereBasis : SphereBasisInterface presentation
+  sphereMultiplicative : SphereMultiplicativeInterface presentation
+  sphereStaircase : SphereStaircaseInterface presentation
+  sphereSquare : SphereSquareInterface presentation
   sphereTable_sound : ∀ (shard offset : Nat)
     (row : Computation.LinProofs.DifferentialRow),
     Computation.LinProofs.RawData.lookup shard offset = some row →
-      Challenge2.DifferentialStatement presentation row
+      DifferentialStatement presentation row
+
+end Challenge2
+
+/-- One correlated stage witness: shared project bindings, literature conclusions,
+and C(M). Both groups refer to the same fixed Challenge1 model, and every sphere
+computation uses the one presentation stored here. -/
+structure Challenge2 where
+  modelBindings : Challenge2.ModelBindings
+  presentation : Classical.Adams.LinE2Presentation
+  literature : Challenge2.LiteratureInterface modelBindings
+  computation : Challenge2.ComputationInterface presentation
+
+namespace Challenge2
+
+/-- Compatibility projection; no new model, coordinates, or evidence is chosen. -/
+def sphereBasis (input : KIP126.Challenge2) : SphereBasisInterface input.presentation :=
+  input.computation.sphereBasis
+
+set_option linter.defProp false in
+def sphereMultiplicative (input : KIP126.Challenge2) :
+    SphereMultiplicativeInterface input.presentation :=
+  input.computation.sphereMultiplicative
+
+def cobarDerivedExt (input : KIP126.Challenge2) : CobarDerivedExtComparison
+    Classical.Adams.standardFoundation.hf2 Classical.Adams.standardMilnorCooperations :=
+  input.modelBindings.cobarDerivedExt
+
+set_option linter.defProp false in
+def adamsOneLine (input : KIP126.Challenge2) : AdamsOneLineInterface :=
+  input.literature.adamsOneLine
+
+/-- The previous mixed Moss interface, assembled from the same bindings and claim. -/
+noncomputable def moss (input : KIP126.Challenge2) : StandardSphereMossInterface :=
+  input.modelBindings.moss.withStatement input.literature.moss
+
+/-- The previous mixed tmf interface, assembled from the same bindings and claim. -/
+noncomputable def tmfDifferential (input : KIP126.Challenge2) :
+    TmfDifferentialInterface Classical.Adams.standardFoundation.hf2 :=
+  input.modelBindings.tmf.withDifferential input.literature.br21
+
+set_option linter.defProp false in
+def tmfMultiplicative (input : KIP126.Challenge2) :
+    StandardTmfMultiplicativeInterface input.tmfDifferential :=
+  input.modelBindings.tmfMultiplicative
+
+set_option linter.defProp false in
+def sphereStaircase (input : KIP126.Challenge2) :
+    SphereStaircaseInterface input.presentation :=
+  input.computation.sphereStaircase
+
+set_option linter.defProp false in
+def sphereTable_sound (input : KIP126.Challenge2) (shard offset : Nat)
+    (row : Computation.LinProofs.DifferentialRow)
+    (h : Computation.LinProofs.RawData.lookup shard offset = some row) :
+    DifferentialStatement input.presentation row :=
+  input.computation.sphereTable_sound shard offset row h
+
+end Challenge2
 
 end KIP126

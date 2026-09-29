@@ -11,7 +11,7 @@ open KIP126.Core.Algebra
 
 theorem dataBasis_val (s t : ℕ) (ht : t ≤ 261) (i : BasisIndex s t) :
     (dataBasis s t ht i).val = basisValue (basisRowAt s t i) :=
-  KIP126.Main.Axiom.challenge2Witness.sphereBasis.csv_values s t ht i
+  KIP126.Main.Axiom.computationInterface.sphereBasis.csv_values s t ht i
 
 /-- Compatibility certification derived from the actual E₂ basis delivery.
 The independent fixed-CSV certification remains an Interface helper. -/

@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.LinProgram.SquareDetection.Certificate
+import KIP126.LinProgram.Certificates.SquareDetection.Certificate
 import Lean
 
 /-! Kernel-checked certificates for the archived nonzero-square detector.

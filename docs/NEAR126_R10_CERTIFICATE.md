@@ -24,7 +24,7 @@ d_2(x_{126,11}+h_0x_{126,10})=Q h_2.
 
 使用本地 `/tmp/kervaire_csv_v3.rar` 中的三个成员，不使用 SQLite 的全局行号
 作为 CSV 的局部基索引。三个成员的 SHA-256 与
-`KIP126/Main/Axiom/LinProgram/Generated/E2.lean` 中固定的原始文件完全一致：
+`KIP126/LinProgram/Generated/E2.lean` 中固定的原始文件完全一致：
 
 | 文件 `S0_AdamsE2_*.csv` | SHA-256 |
 | --- | --- |

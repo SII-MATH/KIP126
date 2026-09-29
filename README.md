@@ -67,7 +67,8 @@ document:
   are package entry points.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
-  well as their import graph.  `Def/` owns mathematical data and properties,
+  well as their import graph. `LinProgram/` owns the independent fixed-data
+  pipeline and its local certificates. `Def/` owns mathematical data and properties,
   `Interface/` owns stage-zero outputs admitted as stage-one inputs in `Axiom/`, plus reusable
   stage-one interface goals and their proofs, and `Main/`
   owns input assumptions plus the paper's argument. Main keeps only final goals
@@ -75,7 +76,11 @@ document:
   live directly in `Solution/ChoiceIndependence`, `Solution/DifferentialReduction`,
   and `Solution/ExtensionObstruction`. `Checks/` owns regressions.
   Start with the module guides in [Def](KIP126/Def/README.md),
-  [Interface](KIP126/Interface/README.md), and [Main](KIP126/Main/README.md).
+  [Interface](KIP126/Interface/README.md), [Main](KIP126/Main/README.md), and
+  [LinProgram](KIP126/LinProgram/README.md). `Challenge2` separates literature
+  and computation structures on the same model; only its computation part is
+  `C(M)`. Main consumes their single stage witness, while Interface owns its
+  producer proofs.
   The [current layout and migration record](docs/STAGE_LAYOUT.md) explains
   ownership, preserved proof debt, and the old-to-new path map.
   The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the

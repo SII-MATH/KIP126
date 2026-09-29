@@ -8,7 +8,7 @@ import KIP126.Main.Solution.Computation.Dimension
 import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Comparison.Proofs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
 import KIP126.Main.Solution.Computation.Reduction
-import KIP126.Interface.Solution.LinProgram.SquareDetection.Certificate
+import KIP126.LinProgram.Certificates.SquareDetection.Certificate
 import KIP126.Interface.Solution.LinProgram.BasisTable
 import KIP126.Interface.Solution.InternalPages
 import KIP126.Interface.Solution.InternalNaturality

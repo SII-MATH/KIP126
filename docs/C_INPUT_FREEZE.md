@@ -147,7 +147,7 @@ Cν 的其余局部基值是同一个 `realization` 中明确的基标签；这�
 ## 6. 重生成与信任边界
 
 ```bash
-python3 KIP126/Main/Axiom/LinProgram/Translate/select-route.py --check
+python3 KIP126/LinProgram/Translate/select-route.py --check
 lake build KIP126.Checks.Computation.Route
 ```
 

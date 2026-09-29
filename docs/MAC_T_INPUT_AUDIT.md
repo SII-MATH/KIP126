@@ -4,6 +4,14 @@
 
 2026-09-28 更新：下文保留此前审查轨迹，其中关于 Near126 自由谓词和 M 缺口的描述已由后续改动取代。当前所选路线的 M 接口以 [M_INPUT_FREEZE.md](M_INPUT_FREEZE.md) 为准；A(M) 的完整输入陈述和来源见 [A_INPUT_FREEZE.md](A_INPUT_FREEZE.md)。A(M) 已有统一显式输入类型，未证明或构造见证；C(M) 完整清单和认证仍未冻结。
 
+2026-09-29 布局更新：固定程序工件与局部证书独立放在 `KIP126/LinProgram/`。
+根 `Challenge2` 将 `LiteratureInterface` 与 `ComputationInterface` 分开，只有后者称为
+C(M)；两者共享同一 Challenge1 模型，通用比较保留为显式模型绑定。Interface 生产这些
+交付，Main 从同一 `Nonempty Challenge2` 阶段假设消费；没有因拆分新增独立公理。
+平方检测和维数的局部证书由 Interface 运输到计算交付，`Main/Solution/Computation`
+的依赖链不再导入 Interface/Solution；其他 Main 历史消费链仍有待整理。
+这次调整不完成基认证、乘法、staircase 或完整 Challenge2 的待证义务。
+
 本表是本地代码的分类审查记录，不是全部输入已经冻结或证明完成的声明。
 
 ## 口径
@@ -21,8 +29,8 @@
 | --- | --- | --- | --- |
 | M：内部页面与标准类 | `Def/ClassicalAdams/TowerSSData`、`SphereClasses/Hi/Internal`、`Def/SpectralSequence/Computation` | 实际塔导出的 SSData、Milnor 标准类、非零存活 | T 所用构造已有；固定基础见证仍依赖 Challenge1 开发公理，不表示整个 M 已冻结 |
 | M：synthetic 对象 | `Def/Synthetic/Sphere`、`Context/LambdaPowers`、`Def/Comparison` | BiHom、λ、商对象、classical/synthetic 比较 | 实际 BiHom 上的 θ₅/η 候选、次数、乘积、商映射及 cofiber δ₁ 已定义；canonical 比较与几何识别仍待证明 |
-| C：cm1 | `Challenge2.sphereBasis` 与有界 `LinE2Presentation` | v126.3.cw49 的明确基与 presentation，内部次数 t ≤ 261 | 类型已列入当前交付包，认证证明待完成；不能外推范围或自动补乘法比较 |
-| C：cm2 | `Challenge2` 的闭合球谱微分表真实性 | proofs.db 中 10,907 条 depth=0、S0 闭合等式 | 机械解释已有，数学真实性待证；等式本身不额外保证非零/存活 |
+| C：cm1 | `Challenge2.ComputationInterface` 中的 `sphereBasis` 与有界 `LinE2Presentation` | v126.3.cw49 的明确基与 presentation，内部次数 t ≤ 261 | 类型已列入当前交付包，认证证明待完成；不能外推范围或自动补乘法比较 |
+| C：cm2 | `Challenge2.ComputationInterface` 的闭合球谱微分表真实性 | proofs.db 中 10,907 条 depth=0、S0 闭合等式 | 机械解释已有，数学真实性待证；等式本身不额外保证非零/存活 |
 | C：cm3–cm6 | `Challenge2` 清单及 LinProgram Raw/Translate | 条件分支、辅助谱、页面状态、穷尽性 | 未全部绑定/冻结；未知不当零，条件记录不升级为无条件等式 |
 | A：原始 BX 判据 | ledger `.bjmBxCriterion` | Burklund–Xu Proposition 7.19：ηθ₅² 在 S/λ^r 中为零 | 原始文本已核对；`Def/Kervaire/Theta5/Synthetic/Predicates` 已定义该声明；`Main/Axiom/Literature/BJMOriginal` 接受显式 proof，未提供见证或公理 |
 | A：总微分公式 | `SourceTotalDifferentialIdentity` 的 provenance wrapper | 同一 Proposition 的证明中 δ₁(h₆²)=ληΘ₅² | 旧原型保留；新的 `BJMSourceTotalBoundaryIdentity` 已用实际 first-quotient 逆比较和 cofiber boundary 定义，等式待证 |

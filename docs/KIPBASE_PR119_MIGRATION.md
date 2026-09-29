@@ -18,7 +18,7 @@
 | `AdamsE2Comparison.evaluate`、`SphereAdamsElements` | `sphereAdamsData`、`linToSphereE2`、`computedH6`、`computedH6Square` | 新增 `Def/ClassicalAdams/ComputationalExpressions/{Data,Predicates,Proofs}`；证明加法、乘法兼容及 h₆、h₆² 与现有类一致 |
 | `SphereAdamsDifferentials` | `Def/SpectralSequence/Computation` 的 `RepresentsOnPage` 和 `HasNonzeroDifferential` | 补入普通 `HasDifferential`、第二页代表相等、零代表、零微分、目标次数以及非零微分到普通等式的引理；使用原 `E.d` |
 | 六条 `SphereAdamsProofs` 日志输入 | `External/Computation/LinProofs.sphereTable_sound` 和已生成的 86 个分片 | 新增 `LinProofs/Selected/Proofs`，由实际 lookup 证明六条 `DifferentialStatement`；不新增六个公理 |
-| `SphereAdamsProofs.generate.py` 的跨文件校验 | #119 的批量导入表及 `Near126.SphereDifferentialFacts` | 新增 `KIP126/Main/Axiom/LinProgram/Translate/import-selected.py`：核对五个文件的 SHA-256、schema、生成元/关系/逐次数基、d₂ 列、最终 SS 表双向记录，再匹配现有分片；保存完整 `Selected/records.json` |
+| `SphereAdamsProofs.generate.py` 的跨文件校验 | #119 的批量导入表及 `Near126.SphereDifferentialFacts` | 新增 `KIP126/LinProgram/Translate/import-selected.py`：核对五个文件的 SHA-256、schema、生成元/关系/逐次数基、d₂ 列、最终 SS 表双向记录，再匹配现有分片；保存完整 `Selected/records.json` |
 | 第七条 basis.d₂ 结果、非零性和论文标签 | `Near126.SphereDifferentialFacts` | 保留来源和现有显式输入；不冒充 `proofs.db` 独立日志，不把非空 E₂ 坐标当成 Eᵣ 非零 |
 
 新增 `DifferentialStatement.hasDifferential` 将数据库结论直接交给上述通用微分
@@ -89,7 +89,7 @@ log 行或 Selected 定理。论文的 `h₀B` 与 CSV 正规形的识别及该�
 ```sh
 lake build KIP126.Checks.AdamsE2.LinExpression KIP126.Checks.ClassicalAdams.LinSelected
 python3 scripts/test-import-lin-selected.py
-python3 KIP126/Main/Axiom/LinProgram/Translate/import-selected.py --proofs-db /path/to/proofs.db \
+python3 KIP126/LinProgram/Translate/import-selected.py --proofs-db /path/to/proofs.db \
   --sphere-db /path/to/S0_AdamsSS_t261.db --csv-dir /path/to/kervaire_csv --check
 git diff --check
 ```

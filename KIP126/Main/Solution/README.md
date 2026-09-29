@@ -15,4 +15,4 @@
 
 此处五个中间声明正文仍含 `sorry`，且其中部分 statement 有已知语义缺口；目录名 Solution 不代表证明完成。下一步先修正实际微分、检测与选择条件的绑定，显式列出来源经过核对的输入，再实现论文推导。不能把这些待证结论追加为 A(M)/C(M) 的假设。
 
-当前阶段输入仍来自 Challenge1/Challenge2 的开发期存在性公理，相关上游证明债务没有因本次归位而消除。
+当前阶段输入仍来自 Challenge1/Challenge2 的开发期存在性公理。Challenge2 将文献与计算分成两个 structure，共享同一个模型，C(M) 只指计算部分。Computation 的平方非零与穷尽推论通过这一接口消费；固定数据证书在独立 LinProgram，模型运输在 Interface/Solution，Computation 的依赖链不再导入 Interface/Solution。其他 Main 历史消费链的直接导入仍待整理。相关上游证明债务没有因本次拆分而消除。

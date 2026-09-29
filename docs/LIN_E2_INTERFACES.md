@@ -117,11 +117,11 @@ example : (h0 + h1) * h1 = h1 ^ 2 := by e2_mul
 
 ## 回归检查
 
-独立生成器位于 `KIP126/Main/Axiom/LinProgram/Translate/generate-e2.py`。
+独立生成器位于 `KIP126/LinProgram/Translate/generate-e2.py`。
 用原始 CSV 核对全部数据（默认不写文件）：
 
 ```bash
-python3 KIP126/Main/Axiom/LinProgram/Translate/check-e2.py /path/to/kervaire_csv
+python3 KIP126/LinProgram/Translate/check-e2.py /path/to/kervaire_csv
 ```
 
 通过项目缓存包装器构建：
