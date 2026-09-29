@@ -220,13 +220,17 @@ X⟦1⟧⟦-1⟧ →[shift comp iso] X. -/
 noncomputable def connectingHomomorphism (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) :
     HomotopyGroup n T.Z →+ HomotopyGroup (n - 1) T.X where
   toFun α :=
-    (shiftFunctorAdd 𝒮 n (-1)).hom.app SphereSpectrum ≫
+    (shiftFunctorAdd' 𝒮 n (-1) (n - 1) (by omega)).hom.app SphereSpectrum ≫
       (shiftFunctor 𝒮 (-1)).map (α ≫ T.h) ≫
         (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X
-  map_zero' := by simp [Limits.zero_comp, Functor.map_zero]
+  map_zero' := by
+    simp only [Limits.zero_comp, Functor.map_zero]
+    erw [Limits.zero_comp, Limits.comp_zero]
   map_add' := by
     intro a b
-    simp [Preadditive.add_comp, Functor.map_add, Preadditive.comp_add]
+    simp only [Preadditive.add_comp, Functor.map_add]
+    erw [Preadditive.comp_add_assoc, Preadditive.add_comp]
+    simp only [Category.assoc]
 
 /-! ## Properties derived from the distinguished triangle -/
 
@@ -262,16 +266,15 @@ private theorem comp_h_zero_of_connectingHom_zero
     (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) (z : HomotopyGroup n T.Z)
     (hz : connectingHomomorphism T n z = 0) : z ≫ T.h = 0 := by
   simp only [connectingHomomorphism, AddMonoidHom.coe_mk, ZeroHom.coe_mk] at hz
-  set a := (shiftFunctorAdd 𝒮 n (-1)).hom.app SphereSpectrum
+  set a := (shiftFunctorAdd' 𝒮 n (-1) (n - 1) (by omega)).hom.app SphereSpectrum
   set b := (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X
   set m := (shiftFunctor 𝒮 (-1)).map (z ≫ T.h)
-  have ha : IsIso a := inferInstance
-  have hb : IsIso b := inferInstance
   have hm : m = 0 := by
-    have h1 : inv a ≫ (a ≫ m ≫ b) = 0 := by rw [hz]; simp
-    rw [IsIso.inv_hom_id_assoc] at h1
-    have h2 : (m ≫ b) ≫ inv b = 0 := by rw [h1]; simp
-    rwa [Category.assoc, IsIso.hom_inv_id, Category.comp_id] at h2
+    have h1 : inv a ≫ (a ≫ m ≫ b) = 0 := by erw [hz, Limits.comp_zero]
+    erw [IsIso.inv_hom_id_assoc] at h1
+    have h2 : (m ≫ b) ≫ inv b = 0 := by erw [h1, Limits.zero_comp]
+    erw [Category.assoc, IsIso.hom_inv_id, Category.comp_id] at h2
+    exact h2
   exact shiftFunctor_map_eq_zero hm
 
 /-- The connecting homomorphism composed with f is zero:
@@ -284,10 +287,31 @@ private theorem connectingHom_comp_f_zero (T : HoCofiberSequence (𝒮 := 𝒮))
     Category.assoc]
   have nat := (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.naturality T.f
   simp only [Functor.id_map, Functor.comp_map] at nat
-  rw [← nat, ← Category.assoc ((shiftFunctor 𝒮 (-1)).map (z ≫ T.h)) _ _,
-      ← Functor.map_comp (shiftFunctor 𝒮 (-1)),
-      Category.assoc, T.hf_shift_zero, Limits.comp_zero,
-      Functor.map_zero, Limits.zero_comp, Limits.comp_zero]
+  have hinner :
+      (shiftFunctor 𝒮 (-1)).map (z ≫ T.h) ≫
+          (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X ≫ T.f = 0 := by
+    have hnat := congrArg
+      (fun q => (shiftFunctor 𝒮 (-1)).map (z ≫ T.h) ≫ q) nat
+    apply hnat.symm.trans
+    calc
+      _ = (shiftFunctor 𝒮 (-1)).map
+          ((z ≫ T.h) ≫ (shiftFunctor 𝒮 1).map T.f) ≫
+            (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.Y :=
+        (Functor.map_comp_assoc (shiftFunctor 𝒮 (-1)) _ _ _).symm
+      _ = 0 := by
+        rw [Category.assoc, T.hf_shift_zero, Limits.comp_zero,
+          Functor.map_zero, Limits.zero_comp]
+  have hout := congrArg
+    (fun q => (shiftFunctorAdd' 𝒮 n (-1) (n - 1) (by omega)).hom.app
+      SphereSpectrum ≫ q) hinner
+  erw [Limits.comp_zero] at hout
+  change ((shiftFunctorAdd' 𝒮 n (-1) (n - 1) (by omega)).hom.app
+      SphereSpectrum ≫ (shiftFunctor 𝒮 (-1)).map (z ≫ T.h) ≫
+      (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X ≫
+      T.f) =
+    (0 : (shiftFunctor 𝒮 (n - 1)).obj SphereSpectrum ⟶ T.Y)
+  convert hout using 1
+  rfl
 
 /-! ## Long Exact Sequence on Homotopy Groups
 
@@ -333,9 +357,10 @@ theorem les_homotopy_exact_g (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) :
     obtain ⟨y, hy⟩ := Triangle.coyoneda_exact₃ _ T.distinguished z hz'
     exact ⟨y, hy.symm⟩
   · rintro ⟨y, rfl⟩
-    simp only [connectingHomomorphism, AddMonoidHom.coe_mk, ZeroHom.coe_mk,
-      Category.assoc, T.gh_zero, Limits.comp_zero, Functor.map_zero,
+    simp only [connectingHomomorphism, AddMonoidHom.coe_mk, ZeroHom.coe_mk]
+    erw [Category.assoc y, T.gh_zero, Limits.comp_zero, Functor.map_zero,
       Limits.zero_comp]
+    erw [Limits.comp_zero]
 
 /-- Long exact sequence on homotopy groups: exactness at X (shifted).
   x ∈ ker(f_*) ↔ x ∈ im(∂)
@@ -368,8 +393,29 @@ theorem les_homotopy_exact_h (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) :
         (shiftFunctor 𝒮 (1 : ℤ)).map x
     -- x' ≫ shift(1)(T.f) = 0 because x ≫ T.f = 0
     have hx' : x' ≫ (shiftFunctor 𝒮 (1 : ℤ)).map T.f = 0 := by
-      simp only [x', Category.assoc, ← Functor.map_comp, hx, Functor.map_zero,
-        Limits.comp_zero]
+      dsimp only [x']
+      have hmap : (shiftFunctor 𝒮 (1 : ℤ)).map x ≫
+          (shiftFunctor 𝒮 (1 : ℤ)).map T.f = 0 := by
+        rw [← Functor.map_comp, hx, Functor.map_zero]
+      calc
+        _ = (eqToHom (by
+              change (shiftFunctor 𝒮 n).obj SphereSpectrum =
+                (shiftFunctor 𝒮 (n - 1 + (1 : ℤ))).obj SphereSpectrum
+              congr 2; omega) ≫
+            (shiftFunctorAdd 𝒮 (n - 1) (1 : ℤ)).hom.app SphereSpectrum) ≫
+            ((shiftFunctor 𝒮 (1 : ℤ)).map x ≫
+              (shiftFunctor 𝒮 (1 : ℤ)).map T.f) := by
+                simp only [Category.assoc]
+        _ = 0 := by
+          have hp := congrArg (fun q =>
+            (eqToHom (by
+                change (shiftFunctor 𝒮 n).obj SphereSpectrum =
+                  (shiftFunctor 𝒮 (n - 1 + (1 : ℤ))).obj SphereSpectrum
+                congr 2; omega) ≫
+              (shiftFunctorAdd 𝒮 (n - 1) (1 : ℤ)).hom.app SphereSpectrum) ≫ q)
+            hmap
+          erw [Limits.comp_zero] at hp
+          exact hp
     -- Apply coyoneda_exact₁ to get z : S^n → T.Z with x' = z ≫ T.h
     obtain ⟨z, hz⟩ := Triangle.coyoneda_exact₁ _ T.distinguished x' hx'
     -- Show connectingHomomorphism T n z = x
@@ -384,11 +430,15 @@ theorem les_homotopy_exact_h (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) :
       -- hz : x' = z ≫ T.h (since Triangle.mk.mor₃ = T.h)
       -- Substitute z ≫ T.h = x' in the goal
       have hz' : z ≫ T.h = x' := hz.symm
-      rw [hz']
+      have hzmap := congrArg (fun q => (shiftFunctor 𝒮 (-1 : ℤ)).map q) hz'
+      refine (congrArg (fun q =>
+        (shiftFunctorAdd' 𝒮 n (-1) (n - 1) (by omega)).hom.app SphereSpectrum ≫ q ≫
+          (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X)
+        hzmap).trans ?_
       -- Goal: shiftFunctorAdd(n,-1).hom.app S ≫ F(-1)(x') ≫
       --        shiftFunctorCompIsoId(1,-1).hom.app T.X = x
       -- Step 1: Unfold x' and distribute F(-1).map, simplify eqToHom
-      simp only [x', Functor.map_comp, eqToHom_map, Category.assoc]
+      simp only [x', Functor.map_comp, eqToHom_map]
       -- Step 2: Fold eqToHom back under F(-1) and combine with shiftFunctorAdd(n-1,1)
       rw [← eqToHom_map (shiftFunctor 𝒮 (-1 : ℤ)),
           ← Functor.map_comp_assoc (shiftFunctor 𝒮 (-1 : ℤ))]
@@ -404,12 +454,14 @@ theorem les_homotopy_exact_h (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) :
                     SphereSpectrum) := by
             intro e; congr 1; simp [shiftFunctorAdd']
         rw [heq]
-        -- Step 4: Rewrite shiftFunctorAdd as shiftFunctorAdd'
-        rw [← shiftFunctorAdd'_eq_shiftFunctorAdd 𝒮 n (-1 : ℤ)]
-        -- Step 5: Apply shiftFunctorAdd'_assoc_hom_app_assoc
-        rw [shiftFunctorAdd'_assoc_hom_app_assoc (n - 1) 1 (-1) n 0 (n + (-1))
+        -- Step 4: Apply shiftFunctorAdd'_assoc_hom_app_assoc
+        erw [Category.assoc
+          ((shiftFunctor 𝒮 (-1)).map
+            ((shiftFunctorAdd' 𝒮 (n - 1) 1 n (by omega)).hom.app SphereSpectrum))
+          ((shiftFunctor 𝒮 (-1)).map ((shiftFunctor 𝒮 1).map x))]
+        erw [shiftFunctorAdd'_assoc_hom_app_assoc (n - 1) 1 (-1) n 0 (n - 1)
             (by omega) one_plus_neg_one (by omega) SphereSpectrum]
-        -- Step 6: Use shiftFunctorAdd'_add_zero_hom_app to simplify first term
+        -- Step 5: Use shiftFunctorAdd'_add_zero_hom_app to simplify first term
         -- The third arg of shiftFunctorAdd' is (n + -1) but we need (n - 1);
         -- these are defeq, so use show/change to normalize
         change (shiftFunctorAdd' 𝒮 (n - 1) 0 (n - 1) _).hom.app SphereSpectrum ≫ _ = _
@@ -431,22 +483,31 @@ theorem les_homotopy_exact_h (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) :
         -- .hom.app(Sphere(n-1)) ≫ F(-1)(F(1)(x)) = F(0)(x) ≫ .hom.app T.X
         have nat_hom := (shiftFunctorAdd' 𝒮 1 (-1) 0 one_plus_neg_one).hom.naturality x
         simp only [Functor.comp_map] at nat_hom
-        -- Left-associate to expose the pattern, then rewrite, then clean up
-        rw [← Category.assoc
+        -- Replace the naturality square inside the surrounding isomorphisms.
+        have hcontext := congrArg (fun q =>
+          (shiftFunctorZero 𝒮 ℤ).inv.app (Sphere (n - 1)) ≫ q ≫
+            (shiftFunctorAdd' 𝒮 1 (-1) 0 one_plus_neg_one).inv.app T.X ≫
+            (shiftFunctorZero 𝒮 ℤ).hom.app T.X) nat_hom.symm
+        calc
+          _ = (shiftFunctorZero 𝒮 ℤ).inv.app (Sphere (n - 1)) ≫
               ((shiftFunctorAdd' 𝒮 1 (-1) 0 one_plus_neg_one).hom.app
-                (Sphere (n - 1)))
-              ((shiftFunctor 𝒮 (-1)).map ((shiftFunctor 𝒮 1).map x)),
-            ← nat_hom]
-        -- Right-associate, then cancel .hom ≫ .inv
-        simp only [Category.assoc]
-        rw [← Category.assoc ((shiftFunctorAdd' 𝒮 1 (-1) 0 one_plus_neg_one).hom.app T.X)
-              ((shiftFunctorAdd' 𝒮 1 (-1) 0 one_plus_neg_one).inv.app T.X),
-            Iso.hom_inv_id_app, Category.id_comp]
-        -- Goal: shiftFunctorZero.inv.app(Sphere(n-1)) ≫ F(0)(x) ≫ shiftFunctorZero.hom.app(T.X) = x
-        -- Step 9: Use naturality of shiftFunctorZero and cancel inv ≫ hom
-        have nat_zero := (shiftFunctorZero 𝒮 ℤ).hom.naturality x
-        simp only [Functor.id_map] at nat_zero
-        rw [nat_zero, ← Category.assoc, Iso.inv_hom_id_app, Category.id_comp]
+                  (Sphere (n - 1)) ≫
+                (shiftFunctor 𝒮 (-1)).map ((shiftFunctor 𝒮 1).map x)) ≫
+              (shiftFunctorAdd' 𝒮 1 (-1) 0 one_plus_neg_one).inv.app T.X ≫
+              (shiftFunctorZero 𝒮 ℤ).hom.app T.X := by
+                simp only [Category.assoc]
+          _ = _ := hcontext
+          _ = x := by
+            -- Right-associate, then cancel .hom ≫ .inv
+            simp only [Category.assoc]
+            rw [← Category.assoc
+                  ((shiftFunctorAdd' 𝒮 1 (-1) 0 one_plus_neg_one).hom.app T.X)
+                  ((shiftFunctorAdd' 𝒮 1 (-1) 0 one_plus_neg_one).inv.app T.X),
+                Iso.hom_inv_id_app, Category.id_comp]
+            -- Use naturality of shiftFunctorZero and cancel inv ≫ hom.
+            have nat_zero := (shiftFunctorZero 𝒮 ℤ).hom.naturality x
+            simp only [Functor.id_map] at nat_zero
+            rw [nat_zero, ← Category.assoc, Iso.inv_hom_id_app, Category.id_comp]
       · congr 2; omega⟩
   · -- Backward: ∃ z, connectingHomomorphism T n z = x → x ≫ T.f = 0
     rintro ⟨z, rfl⟩

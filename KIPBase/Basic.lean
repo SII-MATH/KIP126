@@ -8,6 +8,8 @@ import KIPBase.SpectralSequence.Completion
 import KIPBase.SpectralSequence.BoundedExtension
 import KIPBase.SpectralSequence.UnboundedExtension
 import KIPBase.SpectralSequence.UnboundedCommutativity
+import KIPBase.SpectralSequence.Exactness
+import KIPBase.SpectralSequence.Blueprint
 import KIPBase.StableHomotopy.Basic
 import KIPBase.StableHomotopy.Cohomology
 import KIPBase.StableHomotopy.Adams

@@ -1,7 +1,7 @@
 name = "KIPBase"
 srcDir = ".."
 version = "0.1.0"
-defaultTargets = ["KIPBase", "KIPBaseSpectralSequence"]
+defaultTargets = ["KIPBase", "KIPBaseDefEqCompat"]
 
 [[require]]
 name = "mathlib"
@@ -23,9 +23,11 @@ roots = [
   "KIPBase.StableHomotopy.Cohomology",
   "KIPBase.StableHomotopy.TensorTriangulatedCategory",
   "KIPBase.Synthetic.Adams",
+  "KIPBase.Synthetic.AdamsVanishing",
   "KIPBase.Synthetic.Basic",
+  "KIPBase.Synthetic.LambdaBoundary",
+  "KIPBase.Synthetic.LambdaE2",
   "KIPBase.Synthetic.ExtensionSS",
-  "KIPBase.Synthetic.QuotientTower",
   "KIPBase.Synthetic.SolutionTower",
   "KIPBase.Synthetic.QuotientExtensionSS",
   "KIPBase.Synthetic.PageExtension",
@@ -52,8 +54,9 @@ roots = [
   "KIPBase.Basic",
   "KIPBase.Standalone",
 ]
+
 [[lean_lib]]
-name = "KIPBaseSpectralSequence"
+name = "KIPBaseDefEqCompat"
 moreLeanArgs = [
   "-Dpp.unicode.fun=true",
   "-DrelaxedAutoImplicit=false",
@@ -64,6 +67,7 @@ moreLeanArgs = [
 ]
 roots = [
   "KIPBase.SpectralSequence.Basic",
+  "KIPBase.SpectralSequence.PageComparison",
   "KIPBase.SpectralSequence.BoundedExtension",
   "KIPBase.SpectralSequence.Commutativity",
   "KIPBase.SpectralSequence.Completion",
@@ -72,6 +76,8 @@ roots = [
   "KIPBase.SpectralSequence.FilteredComplex",
   "KIPBase.SpectralSequence.Truncation",
   "KIPBase.SpectralSequence.UnboundedExtension",
-  "KIPBase.SpectralSequence.PageComparison",
   "KIPBase.SpectralSequence.UnboundedCommutativity",
+  "KIPBase.SpectralSequence.Exactness",
+  "KIPBase.SpectralSequence.Blueprint",
+  "KIPBase.Synthetic.QuotientTower",
 ]
