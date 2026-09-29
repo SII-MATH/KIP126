@@ -60,12 +60,12 @@ inclusion `F^{s+1} ↪ F^s` obtained from monotonicity. -/
 
 /-- The associated graded `gr^s A^k = F^s A^k / F^{s+1} A^k`, defined as
     the cokernel of the inclusion `F^{s+1} ↪ F^s`. -/
-noncomputable def Filtration.associatedGraded {ω : Type w} {A : ω → C}
+@[reducible] noncomputable def Filtration.associatedGraded {ω : Type w} {A : ω → C}
     (fil : Filtration A) (s : ℤ) (k : ω) : C :=
   cokernel (Subobject.ofLE (fil.F (s + 1) k) (fil.F s k) (fil.mono s k))
 
 /-- The projection morphism `F^s A^k ⟶ gr^s A^k = F^s / F^{s+1}`. -/
-noncomputable def Filtration.toAssociatedGraded {ω : Type w} {A : ω → C}
+@[reducible] noncomputable def Filtration.toAssociatedGraded {ω : Type w} {A : ω → C}
     (fil : Filtration A) (s : ℤ) (k : ω) :
     Subobject.underlying.obj (fil.F s k) ⟶ fil.associatedGraded s k :=
   cokernel.π (Subobject.ofLE (fil.F (s + 1) k) (fil.F s k) (fil.mono s k))
@@ -349,34 +349,51 @@ def Filtration.IsBounded.toIsBoundedAbove {ω : Type w} {A : ω → C}
   hi := hb.hi
   boundedAbove := hb.boundedAbove
 
-/-! ### True exhaustive and Hausdorff conditions
+/-! ### 真正的穷尽与 Hausdorff 条件
 
-These are the standard mathematical definitions, weaker than bounded below/above. -/
+这里用上下界的泛性质表达过滤层的并与交，因此不需要预先选择子对象格中的
+无穷上确界或下确界。它们严格弱于逐次数的有界下或有界上条件。 -/
 
-/-- A filtration is **exhaustive** if for each `k`, every element eventually lies
-    in some filtration level: `∀ k, ∃ s, F^s A^k = ⊤`.
-    This is weaker than `IsBoundedBelow` (which gives a uniform bound). -/
+/-- 固定次数 `k` 上的过滤是穷尽的：包含所有过滤层的子对象只能是整个对象。
+在子对象格存在相应上确界时，这等价于 `⨆ s, F^s A^k = ⊤`。 -/
+def Filtration.IsExhaustiveAt {ω : Type w} {A : ω → C}
+    (fil : Filtration A) (k : ω) : Prop :=
+  ∀ S : Subobject (A k), (∀ s : ℤ, fil.F s k ≤ S) → S = ⊤
+
+/-- 过滤是穷尽的，是指它在每个次数上都穷尽。 -/
 def Filtration.IsExhaustive {ω : Type w} {A : ω → C}
     (fil : Filtration A) : Prop :=
-  ∀ (k : ω), ∃ (s : ℤ), fil.F s k = ⊤
+  ∀ k : ω, fil.IsExhaustiveAt k
 
-/-- A filtration is **Hausdorff** (separated) if for each `k`, the filtration
-    eventually becomes trivial: `∀ k, ∃ s, F^s A^k = ⊥`.
-    This is weaker than `IsBoundedAbove` (which gives a uniform bound). -/
+/-- 固定次数 `k` 上的过滤是 Hausdorff 的：同时包含于所有过滤层的子对象
+只能是零子对象。在子对象格存在相应下确界时，这等价于
+`⨅ s, F^s A^k = ⊥`。特别地，它不要求任何单个过滤层已经等于零。 -/
+def Filtration.IsHausdorffAt {ω : Type w} {A : ω → C}
+    (fil : Filtration A) (k : ω) : Prop :=
+  ∀ S : Subobject (A k), (∀ s : ℤ, S ≤ fil.F s k) → S = ⊥
+
+/-- 过滤是 Hausdorff 的，是指它在每个次数上都 Hausdorff。 -/
 def Filtration.IsHausdorff {ω : Type w} {A : ω → C}
     (fil : Filtration A) : Prop :=
-  ∀ (k : ω), ∃ (s : ℤ), fil.F s k = ⊥
+  ∀ k : ω, fil.IsHausdorffAt k
 
 omit [Abelian C] in
 /-- A filtration bounded below is exhaustive. -/
 theorem Filtration.IsBoundedBelow.toIsExhaustive {ω : Type w} {A : ω → C}
     {fil : Filtration A} (hb : fil.IsBoundedBelow) : fil.IsExhaustive := by
-  intro k; exact ⟨hb.lo k, hb.boundedBelow k (hb.lo k) le_rfl⟩
+  intro k S hS
+  apply top_unique
+  rw [← hb.boundedBelow k (hb.lo k) le_rfl]
+  exact hS (hb.lo k)
 
 /-- A filtration bounded above is Hausdorff. -/
 theorem Filtration.IsBoundedAbove.toIsHausdorff {ω : Type w} {A : ω → C}
     {fil : Filtration A} (hb : fil.IsBoundedAbove) : fil.IsHausdorff := by
-  intro k; exact ⟨hb.hi k, hb.boundedAbove k (hb.hi k) le_rfl⟩
+  intro k S hS
+  apply le_antisymm
+  · rw [← hb.boundedAbove k (hb.hi k) le_rfl]
+    exact hS (hb.hi k)
+  · exact bot_le
 
 /-! ### Filtered morphisms
 

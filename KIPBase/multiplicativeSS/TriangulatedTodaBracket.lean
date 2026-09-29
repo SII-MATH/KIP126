@@ -63,9 +63,13 @@ theorem composable {X Y Z W : C} {x : X⟦(1 : ℤ)⟧ ⟶ W}
   rcases hx with ⟨Q, i, p, hT, gbar, hg, hx⟩
   let T := Triangle.mk f i p
   have hfi : f ≫ i = 0 := by
-    simpa [T] using comp_distTriang_mor_zero₁₂ T hT
+    have h := comp_distTriang_mor_zero₁₂ (Triangle.mk f i p) hT
+    dsimp only [Triangle.mk] at h
+    exact h
   have hip : i ≫ p = 0 := by
-    simpa [T] using comp_distTriang_mor_zero₂₃ T hT
+    have h := comp_distTriang_mor_zero₂₃ (Triangle.mk f i p) hT
+    dsimp only [Triangle.mk] at h
+    exact h
   constructor
   · calc
       f ≫ g = (f ≫ i) ≫ gbar := by rw [← hg, Category.assoc]
@@ -81,10 +85,11 @@ theorem exists_relation {X Y Z W : C} (f : X ⟶ Y) (g : Y ⟶ Z)
   obtain ⟨Q, i, p, hT⟩ := distinguished_cocone_triangle f
   let T := Triangle.mk f i p
   obtain ⟨gbar, hgbar⟩ := T.yoneda_exact₂ hT g hfg
+  dsimp only [T, Triangle.mk] at hgbar
   have hzero : i ≫ (gbar ≫ h) = 0 := by
     calc
       i ≫ (gbar ≫ h) = (i ≫ gbar) ≫ h := by simp only [Category.assoc]
-      _ = g ≫ h := by simpa [T] using congrArg (fun t => t ≫ h) hgbar.symm
+      _ = g ≫ h := congrArg (fun t => t ≫ h) hgbar.symm
       _ = 0 := hgh
   obtain ⟨x, hx⟩ := T.yoneda_exact₃ hT (gbar ≫ h) hzero
   exact ⟨x, Q, i, p, hT, gbar, hgbar.symm, hx.symm⟩
@@ -130,9 +135,13 @@ theorem indeterminacy_complete {X Y Z W : C}
       x₁ - x₂ = f⟦(1 : ℤ)⟧' ≫ y + z ≫ h := by
   rcases hx₁ with ⟨Q₁, i₁, p₁, hT₁, g₁, hg₁, hx₁⟩
   rcases hx₂ with ⟨Q₂, i₂, p₂, hT₂, g₂, hg₂, hx₂⟩
+  have hcomm : (Triangle.mk f i₁ p₁).mor₁ ≫ (𝟙 Y) =
+      (𝟙 X) ≫ (Triangle.mk f i₂ p₂).mor₁ := by
+    dsimp only [Triangle.mk]
+    rw [Category.comp_id, Category.id_comp]
   obtain ⟨c, hc₁, hc₂⟩ := complete_distinguished_triangle_morphism
     (Triangle.mk f i₁ p₁) (Triangle.mk f i₂ p₂) hT₁ hT₂
-    (𝟙 X) (𝟙 Y) (by simp)
+    (𝟙 X) (𝟙 Y) hcomm
   dsimp only [Triangle.mk] at c hc₁ hc₂
   have hi : i₁ ≫ c = i₂ := by simpa using hc₁
   have hp : p₁ = c ≫ p₂ := by simpa using hc₂
@@ -182,7 +191,7 @@ theorem juggling [IsTriangulated C]
   have hpm : p ≫ O.m₁ = gbar ≫ j := by
     simpa [Tf, Tbar, Tg, O] using O.comm₁
   have hmq : O.m₁ ≫ q = -f⟦(1 : ℤ)⟧' := by
-    simpa [Tf, Tbar, Tg, O, Triangle.rotate] using O.comm₂
+    convert O.comm₂ using 1 <;> rfl
   have hgh : g ≫ h = 0 := (composable ⟨Q, i, p, hTf, gbar, hg, hx⟩).2
   obtain ⟨hbar₀, hhbar₀⟩ := Tg.yoneda_exact₂ hTg h hgh
   dsimp only [Tg, Triangle.mk] at hbar₀ hhbar₀
@@ -196,7 +205,9 @@ theorem juggling [IsTriangulated C]
   let hbar : Qg ⟶ W := hbar₀ + q ≫ a
   have hjhbar : j ≫ hbar = h := by
     have hjq : j ≫ q = 0 := by
-      simpa [Tg] using comp_distTriang_mor_zero₂₃ Tg hTg
+      have hzero := comp_distTriang_mor_zero₂₃ (Triangle.mk g j q) hTg
+      dsimp only [Triangle.mk] at hzero
+      exact hzero
     dsimp [hbar]
     rw [Preadditive.comp_add, ← hhbar₀, ← Category.assoc, hjq, zero_comp, add_zero]
   have hmx : O.m₁ ≫ hbar = x := by

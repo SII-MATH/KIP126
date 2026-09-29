@@ -127,21 +127,155 @@ axiom synAdamsSS_functorial (Syn : Type u) [Category.{v} Syn] [Preadditive Syn]
     [Pretriangulated Syn] [SyntheticCategory Syn] {X Y : Syn} (f : X ⟶ Y) :
     SpectralSequenceMorphism (SynAdamsSS Syn X) (SynAdamsSS Syn Y)
 
-/-! ### Z[λ]-module structure -/
+/-- The map on the `r`-page induced by a map of synthetic spectra.  The
+page index is written using the common starting page `2`, so the source and
+target are compared without exposing the transports stored in
+`SpectralSequenceMorphism.comm_d`. -/
+noncomputable def synAdamsPageMap {X Y : Syn} (f : X ⟶ Y) (r : ℤ)
+    (k : ℤ × ℤ × ℤ) :
+    (SynAdamsSS Syn X).Page r k ⟶ (SynAdamsSS Syn Y).Page r k := by
+  let F := synAdamsSS_functorial Syn f
+  let nX : WithTop ℕ := ↑(r - (SynAdamsSS Syn X).r₀).toNat
+  let nY : WithTop ℕ := ↑(r - (SynAdamsSS Syn Y).r₀).toNat
+  let hn : nX = nY := congrArg
+    (fun r₀ => (↑(r - r₀).toNat : WithTop ℕ)) F.r₀_eq
+  exact F.toSSDataMorphism.pageMapOfEq k k rfl nX nY hn
 
-/-- KIP §3 (`synthetic-spectra.tex` Remark after Axiom `prereq:ax:syn-adams-ss`):
-    The synthetic Adams SS lives in the category of Z[λ]-modules.
-    This means each page E_r^{*,*,*} carries a Z[λ]-module structure
-    compatible with the differentials, where λ acts in tridegree (0,0,-1).
-    Cf. `synthetic-extensions.tex` §4 for applications to extension SS. -/
+/-- The map on the target of a page differential.  Its grading transport is
+the one supplied by functoriality of the two spectral sequences. -/
+noncomputable def synAdamsDifferentialTargetMap {X Y : Syn} (f : X ⟶ Y)
+    (r : ℤ) (k : ℤ × ℤ × ℤ) :
+    (SynAdamsSS Syn X).Page r (k + (SynAdamsSS Syn X).diffDeg r) ⟶
+      (SynAdamsSS Syn Y).Page r (k + (SynAdamsSS Syn Y).diffDeg r) := by
+  let F := synAdamsSS_functorial Syn f
+  let nX : WithTop ℕ := ↑(r - (SynAdamsSS Syn X).r₀).toNat
+  let nY : WithTop ℕ := ↑(r - (SynAdamsSS Syn Y).r₀).toNat
+  let hn : nX = nY := congrArg
+    (fun r₀ => (↑(r - r₀).toNat : WithTop ℕ)) F.r₀_eq
+  let hk : k + (SynAdamsSS Syn X).diffDeg r =
+      k + (SynAdamsSS Syn Y).diffDeg r :=
+    congrArg (fun d => k + d) (congrFun F.diffDeg_eq r)
+  exact F.toSSDataMorphism.pageMapOfEq _ _ hk nX nY hn
+
+/-- The page differential is natural under every map of synthetic spectra. -/
+theorem synAdamsPageMap_comm_d {X Y : Syn} (f : X ⟶ Y)
+    (r : ℤ) (k : ℤ × ℤ × ℤ) :
+    synAdamsPageMap (Syn := Syn) f r k ≫ (SynAdamsSS Syn Y).d r k =
+      (SynAdamsSS Syn X).d r k ≫
+        synAdamsDifferentialTargetMap (Syn := Syn) f r k := by
+  exact (synAdamsSS_functorial Syn f).comm_d r k
+
+/-! ### Graded λ-module structure -/
+
+/-- A λ-action on a trigraded spectral sequence.  Unlike an ordinary module
+structure on one fixed component, λ moves the grading by `(0,0,-1)`.
+Compatibility says that applying λ commutes with the page differential; the
+final `eqToHom` only exchanges the order of the two degree shifts. -/
+structure SynAdamsLambdaModule
+    (E : SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ × ℤ)) where
+  lambda : ∀ (r : ℤ) (k : ℤ × ℤ × ℤ),
+    E.Page r k ⟶ E.Page r (k + (0, 0, -1))
+  comm_d : ∀ (r : ℤ) (k : ℤ × ℤ × ℤ),
+    lambda r k ≫ E.d r (k + (0, 0, -1)) ≫
+        eqToHom (congrArg (fun j => E.Page r j) (by
+          abel)) =
+      E.d r k ≫ lambda r (k + E.diffDeg r)
+
+/-- A free λ-step between two adjacent weight components of one page.
+The chosen isomorphism is required to be the actual λ action. -/
+structure FreeLambdaPageStep
+    {E : SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ × ℤ)}
+    (L : SynAdamsLambdaModule E) (r : ℤ) (k : ℤ × ℤ × ℤ) where
+  iso : E.Page r k ≅ E.Page r (k + (0, 0, -1))
+  lambda_eq : L.lambda r k = iso.hom
+
+namespace FreeLambdaPageStep
+
+variable {E : SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ × ℤ)}
+  {L : SynAdamsLambdaModule E} {r : ℤ} {k : ℤ × ℤ × ℤ}
+
+/-- Multiplication by λ is injective on a free λ-step. -/
+theorem lambda_injective (F : FreeLambdaPageStep L r k) :
+    Function.Injective (L.lambda r k).hom := by
+  rw [F.lambda_eq]
+  intro x y hxy
+  have h := congrArg (fun z => F.iso.inv.hom z) hxy
+  simpa using h
+
+end FreeLambdaPageStep
+
+/-- An element-level page differential `d(x)=y` is essential when its
+target class is nonzero on that page. -/
+def PageDifferentialEssential
+    (E : SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ × ℤ))
+    (r : ℤ) (k : ℤ × ℤ × ℤ) (x : E.Page r k)
+    (y : E.Page r (k + E.diffDeg r)) : Prop :=
+  E.d r k x = y ∧ y ≠ 0
+
+namespace SynAdamsLambdaModule
+
+variable {E : SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ × ℤ)}
+
+/-- The differential after lowering source weight by one, transported to
+the same target grading as λ applied after the original differential. -/
+noncomputable def lambdaShiftedDifferential (L : SynAdamsLambdaModule E)
+    (r : ℤ) (k : ℤ × ℤ × ℤ) :
+    E.Page r (k + (0, 0, -1)) ⟶
+      E.Page r ((k + E.diffDeg r) + (0, 0, -1)) :=
+  E.d r (k + (0, 0, -1)) ≫
+    eqToHom (congrArg (fun j => E.Page r j) (by abel))
+
+/-- Naturality of the Adams differential under λ. -/
+theorem lambdaShiftedDifferential_naturality (L : SynAdamsLambdaModule E)
+    (r : ℤ) (k : ℤ × ℤ × ℤ) :
+    L.lambda r k ≫ L.lambdaShiftedDifferential r k =
+      E.d r k ≫ L.lambda r (k + E.diffDeg r) :=
+  L.comm_d r k
+
+/-- On a free λ-step at the target, Adams naturality gives
+`d(x)=y` essential iff `d(λx)=λy` essential. -/
+theorem pageDifferentialEssential_lambda_iff
+    (L : SynAdamsLambdaModule E) (r : ℤ) (k : ℤ × ℤ × ℤ)
+    (x : E.Page r k) (y : E.Page r (k + E.diffDeg r))
+    (F : FreeLambdaPageStep L r (k + E.diffDeg r)) :
+    PageDifferentialEssential E r k x y ↔
+      ((L.lambdaShiftedDifferential r k).hom
+          ((L.lambda r k).hom x) =
+        (L.lambda r (k + E.diffDeg r)).hom y ∧
+      (L.lambda r (k + E.diffDeg r)).hom y ≠ 0) := by
+  have hinj := F.lambda_injective
+  have hcomm := congrArg (fun f => f.hom x)
+    (L.lambdaShiftedDifferential_naturality r k)
+  change (L.lambdaShiftedDifferential r k).hom
+      ((L.lambda r k).hom x) =
+    (L.lambda r (k + E.diffDeg r)).hom ((E.d r k).hom x) at hcomm
+  constructor
+  · rintro ⟨hxy, hy⟩
+    constructor
+    · rw [hcomm, hxy]
+    · intro hzero
+      apply hy
+      apply hinj
+      simpa using hzero
+  · rintro ⟨hxy, hly⟩
+    constructor
+    · apply hinj
+      rw [← hcomm, hxy]
+    · intro hy
+      apply hly
+      simp [hy]
+
+end SynAdamsLambdaModule
+
+/-- KIP §3: every page of the synthetic Adams spectral sequence has its
+graded λ-action, and that action commutes with the differential.  This
+replaces the former componentwise `Module (Polynomial ℤ)` statement, which
+could not express the change in weight. -/
 axiom synAdamsSS_zlambda_module (Syn : Type u) [Category.{v} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn]
     [Pretriangulated Syn] [SyntheticCategory Syn] (X : Syn) :
-  ∀ (r : ℤ) (k : ℤ × ℤ × ℤ),
-    Module (Polynomial ℤ) ↑((SynAdamsSS Syn X).Page r k)
-  -- Each page of the synthetic Adams SS carries a Z[λ]-module structure,
-  -- where λ acts by Polynomial.X ∈ Polynomial ℤ.
+    SynAdamsLambdaModule (SynAdamsSS Syn X)
 
 end KIPBase.Synthetic
