@@ -176,7 +176,10 @@ theorem synAdams_pageDifferentialEssential_lambda_iff (X : 𝒮)
         (L.lambda r ((s, t, w) + E.diffDeg r)).hom y =
             (L.lambdaShiftedDifferential r (s, t, w)).hom
               ((L.lambda r (s, t, w)).hom x) := hxy.symm
-        _ = 0 := by simp [hx]
+        _ = 0 := by
+          rw [hx]
+          exact ((L.lambdaShiftedDifferential r (s, t, w)).hom.comp
+            (L.lambda r (s, t, w)).hom).map_zero
 
 /-! ### λ-Bockstein spectral sequence
 
