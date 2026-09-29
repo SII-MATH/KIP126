@@ -8,16 +8,22 @@
       π_{*,*} X →[f] π_{*,*} Y,
 
   where both terms carry their synthetic Adams filtrations.  The actual
-  spectral sequence is supplied by `BoundedExtensionSS`; this file packages
-  the synthetic Adams convergence data needed to apply that construction.
+  spectral sequence is supplied by `ExtensionSpectralSequence`; the bounded
+  API is retained separately. This file packages the synthetic Adams
+  convergence data needed to apply these constructions.
 -/
 import KIPBase.Synthetic.Adams
 import KIPBase.Synthetic.QuotientTower
+import KIPBase.Synthetic.LambdaBoundary
+import KIPBase.Synthetic.Rigidity
 import KIPBase.SpectralSequence.BoundedExtension
+import KIPBase.SpectralSequence.UnboundedExtension
+import Mathlib.Algebra.Category.Grp.Subobject
 
 namespace KIPBase.Synthetic
 
-open CategoryTheory CategoryTheory.Limits KIPBase.SpectralSequence
+open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated
+  KIPBase.SpectralSequence
 
 universe u v
 
@@ -55,19 +61,18 @@ theorem syntheticAdamsIndex_add (s r : ℤ) (degree : ℤ × ℤ) :
   simp [syntheticAdamsIndex, syntheticESSDiffDegree, add_assoc, add_left_comm]
 
 /-- Data required to form the synthetic extension spectral sequence of a
-weight-preserving map `f : X ⟶ Y`.
+weight-preserving map `f : X ⟶ Y`, before imposing boundedness.
 
 The two convergence structures identify the synthetic Adams `E∞`-pages
 with the associated gradeds of the Adams filtrations.  The convergence
 morphism says that the map on bigraded homotopy groups preserves those
 filtrations and agrees on associated gradeds with the map induced by `f` on
-synthetic Adams spectral sequences.  Boundedness is kept explicit because it
-is the finiteness input used by `BoundedExtensionSS`.
+synthetic Adams spectral sequences.
 
 A morphism in `Syn` has bidegree `(0,0)`, so its induced map is
 weight-preserving.  The `source_reindex` and `target_reindex` fields record
 that neither convergence witness changes the weight coordinate. -/
-structure SyntheticExtensionData {X Y : Syn} (f : X ⟶ Y) where
+structure SyntheticExtensionCoreData {X Y : Syn} (f : X ⟶ Y) where
   sourceAbutment : ℤ × ℤ → AddCommGrpCat.{0}
   targetAbutment : ℤ × ℤ → AddCommGrpCat.{0}
   sourceFiltration : Filtration sourceAbutment
@@ -81,8 +86,106 @@ structure SyntheticExtensionData {X Y : Syn} (f : X ⟶ Y) where
   convergenceMap : ConvergenceMorphism sourceConvergence targetConvergence
   eMap_eq : convergenceMap.eMap =
     (synAdamsSS_functorial Syn f).eInftyMap
+
+/-- Data for the older bounded construction.  These two bounds are not used
+by the unbounded extension spectral sequence. -/
+structure SyntheticExtensionData {X Y : Syn} (f : X ⟶ Y)
+    extends SyntheticExtensionCoreData f where
   source_bounded : sourceFiltration.IsBounded
   target_bounded : targetFiltration.IsBounded
+
+namespace SyntheticExtensionCoreData
+
+variable {X Y : Syn} {f : X ⟶ Y}
+
+/-- The unbounded synthetic extension spectral sequence. -/
+noncomputable def ess (data : SyntheticExtensionCoreData f)
+    (degree : ℤ × ℤ) : SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ) :=
+  ExtensionSpectralSequence.{1, 0, 0, 0} data.convergenceMap degree
+
+@[simp]
+theorem ess_r₀ (data : SyntheticExtensionCoreData f) (degree : ℤ × ℤ) :
+    (data.ess degree).r₀ = 0 :=
+  rfl
+
+@[simp]
+theorem ess_diffDeg (data : SyntheticExtensionCoreData f)
+    (degree : ℤ × ℤ) (r : ℤ) :
+    (data.ess degree).diffDeg r = (r, -1) :=
+  rfl
+
+/-- With no initial boundaries, the initial subquotient is the ambient
+object. The map is the cokernel identification followed by the top arrow. -/
+private noncomputable def initialPageIsoOfNoBoundaries
+    (D : SSData AddCommGrpCat.{0}) (hB : D.B 0 = ⊥) : D.page 0 ≅ D.V := by
+  have hf : Subobject.ofLE (D.B 0) (D.Z 0) (D.B_le_Z 0) = 0 := by
+    apply (cancel_mono (D.Z 0).arrow).mp
+    rw [Subobject.ofLE_arrow, hB, Subobject.bot_arrow, zero_comp]
+  haveI : IsIso (D.Z 0).arrow :=
+    (Subobject.isIso_arrow_iff_eq_top _).mpr D.Z_zero
+  exact cokernelIsoOfEq hf ≪≫ cokernelZeroIsoTarget ≪≫ asIso (D.Z 0).arrow
+
+/-- The source column of the two-term complex has no incoming differential,
+so its initial boundary subobject is zero. -/
+private theorem source_initial_boundaries (data : SyntheticExtensionCoreData f)
+    (degree : ℤ × ℤ) (s : ℤ) :
+    (unboundedComplexSSDataFamily.{1, 0, 0, 0}
+      data.convergenceMap degree (s, 1)).B 0 = ⊥ := by
+  let FC := unboundedUnderlyingComplex data.convergenceMap degree
+  have hd : FC.dToK 1 = 0 := by
+    simp [FC, FilteredComplex.dToK, unboundedUnderlyingComplex,
+      underlyingComplex, twoTermDiff] <;> rfl
+  let I := imageSubobject
+    ((FC.fil (s - (0 : ℕ) + 1) (1 + 1)).arrow ≫ FC.dToK 1) ⊓ FC.fil s 1
+  have hI : I = ⊥ := by
+    dsimp only [I]
+    rw [hd, comp_zero, imageSubobject_zero, bot_inf_eq]
+  have ha : I.arrow = 0 := by rw [hI, Subobject.bot_arrow]
+  let i := Subobject.ofLE I (FC.fil s 1) inf_le_right
+  have hi : i = 0 := by
+    apply (cancel_mono (FC.fil s 1).arrow).mp
+    exact (Subobject.ofLE_arrow inf_le_right).trans (ha.trans zero_comp.symm)
+  have hg : i ≫ FC.filToAssocGraded s 1 = 0 := by rw [hi, zero_comp]
+  change imageSubobject (i ≫ FC.filToAssocGraded s 1) = ⊥
+  apply le_antisymm
+  · exact imageSubobject_le (X := ⊥) (i ≫ FC.filToAssocGraded s 1)
+      (0 : Subobject.underlying.obj I ⟶
+        Subobject.underlying.obj (⊥ : Subobject (FC.assocGraded s 1)))
+      (by simpa using hg.symm)
+  · exact bot_le
+
+/-- The actual zeroth page in the source column of the unbounded ESS is
+the source associated graded. No bounded extension data is used. -/
+noncomputable def e0SourceIsoAssociatedGraded (data : SyntheticExtensionCoreData f)
+    (s : ℤ) (degree : ℤ × ℤ) :
+    (data.ess degree).Page 0 (s, 1) ≅
+      data.sourceFiltration.associatedGraded s degree := by
+  let D := unboundedComplexSSDataFamily.{1, 0, 0, 0}
+    data.convergenceMap degree (s, 1)
+  have e : (data.ess degree).Page 0 (s, 1) ≅ D.page 0 :=
+    unboundedExtensionPageIso.{1, 0, 0, 0} data.convergenceMap degree (s, 1) 0
+  have hV : D.V = data.sourceFiltration.associatedGraded s degree := by
+    change (unboundedUnderlyingComplex data.convergenceMap degree).assocGraded s 1 = _
+    simp only [unboundedUnderlyingComplex, underlyingComplex,
+      FilteredComplex.assocGraded, Filtration.associatedGraded, twoTermFil]
+    congr 1
+  exact e ≪≫ initialPageIsoOfNoBoundaries D
+    (source_initial_boundaries data degree s) ≪≫ eqToIso hV
+
+/-- The source column of the unbounded ESS starts with the source Adams
+limiting page, at the standard Adams tridegree. -/
+noncomputable def e0SourceIso (data : SyntheticExtensionCoreData f)
+    (s : ℤ) (degree : ℤ × ℤ) :
+    (data.ess degree).Page 0 (s, 1) ≅
+      ((SynAdamsSS Syn X).ssData (syntheticAdamsIndex s degree)).eInfty := by
+  have hindex : data.sourceConvergence.reindex (syntheticAdamsIndex s degree) =
+      (s, degree) := by
+    rw [data.source_reindex, syntheticAdamsReindex_index]
+  let e := data.sourceConvergence.iso (syntheticAdamsIndex s degree)
+  rw [hindex] at e
+  exact data.e0SourceIsoAssociatedGraded s degree ≪≫ e.symm
+
+end SyntheticExtensionCoreData
 
 namespace SyntheticExtensionData
 
@@ -378,5 +481,69 @@ theorem lambdaESS_diffDeg (X : Syn) (n : ℕ)
     (data : LambdaExtensionData X n) (degree : ℤ × ℤ) (r : ℤ) :
     (lambdaESS X n data degree).diffDeg r = (r, -1) :=
   rfl
+
+/-! ### The λ-Bockstein spectral sequence -/
+
+/-- Convergence data for the extension spectral sequence induced by the
+λ-boundary map.  No boundedness field occurs in this structure. -/
+abbrev LambdaBoundaryESSData (X : Syn) :=
+  SyntheticExtensionCoreData (lambdaBocksteinConnecting X)
+
+/-- The raw extension spectral sequence of the λ-boundary
+`X/λ ⟶ Σ^{1,-1}X`, with the ESS's original numbering starting at zero.
+Identifying its pages with synthetic Adams pages requires a comparison of
+the initial terms and the induced differentials; no renumbering is applied
+by this definition. -/
+noncomputable def lambdaBocksteinESS (X : Syn)
+    (data : LambdaBoundaryESSData X) (degree : ℤ × ℤ) :
+    SpectralSequence (AddCommGrpCat.{0}) (ℤ × ℤ) :=
+  data.ess degree
+
+@[simp]
+theorem lambdaBocksteinESS_r₀ (X : Syn)
+    (data : LambdaBoundaryESSData X) (degree : ℤ × ℤ) :
+    (lambdaBocksteinESS X data degree).r₀ = 0 :=
+  rfl
+
+@[simp]
+theorem lambdaBocksteinESS_diffDeg (X : Syn)
+    (data : LambdaBoundaryESSData X) (degree : ℤ × ℤ) (r : ℤ) :
+    (lambdaBocksteinESS X data degree).diffDeg r = (r, -1) :=
+  rfl
+
+/-- The source column on the raw zeroth λ-boundary ESS page identifies
+with E₂ of `νX/λ`, by the proved degeneration of the quotient Adams SS.
+This does not yet compare the target column or the later ESS differentials. -/
+noncomputable def lambdaBocksteinESSSourceE0Iso
+    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮] (X : 𝒮)
+    (data : LambdaBoundaryESSData ((nu 𝒮 Syn).obj X))
+    (s : ℤ) (degree : ℤ × ℤ) :
+    (lambdaBocksteinESS ((nu 𝒮 Syn).obj X) data degree).Page 0 (s, 1) ≅
+      (SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) 1)).Page 2
+        (syntheticAdamsIndex s degree) :=
+  data.e0SourceIso s degree ≪≫
+    synAdams_mod_lambda_one_eInftyIso 𝒮 Syn X (syntheticAdamsIndex s degree)
+
+/-- An affine index matching the formal differential degrees of the boundary
+ESS and synthetic Adams at the same integer page. This arithmetic map alone
+does not identify their page objects or the shifted abutment degrees. -/
+def lambdaBocksteinAdamsIndex (degree : ℤ × ℤ) (sk : ℤ × ℤ) :
+    ℤ × ℤ × ℤ :=
+  (sk.1, degree.1 + sk.1 + sk.2 - 1, degree.2)
+
+/-- The affine index sends a Bockstein differential of degree `(r,-1)` to
+a synthetic Adams differential of degree `(r,r-1,0)`. -/
+theorem lambdaBocksteinAdamsIndex_add_diff (degree : ℤ × ℤ)
+    (sk : ℤ × ℤ) (r : ℤ) :
+    lambdaBocksteinAdamsIndex degree (sk + (r, -1)) =
+      lambdaBocksteinAdamsIndex degree sk + (r, r - 1, 0) := by
+  rcases degree with ⟨stem, weight⟩
+  rcases sk with ⟨s, k⟩
+  apply Prod.ext
+  · rfl
+  · apply Prod.ext
+    · dsimp [lambdaBocksteinAdamsIndex]
+      omega
+    · simp [lambdaBocksteinAdamsIndex]
 
 end KIPBase.Synthetic
