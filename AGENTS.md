@@ -98,12 +98,28 @@ Mathlib's spectral sequence belong under `KIP126/Mathlib/SpectralSequence/`.
   Preserve public declaration names when reorganizing files unless the task
   requires an API change.
 
-## Mandatory GitHub synchronization at task start
+## User authorization required for all Git operations
 
-Before investigating, planning, editing, or validating any task, synchronize the
-agent's own checkout with the canonical GitHub repository. The remote default
-branch, `origin/main`, is the source of truth; a previously fetched local
-`origin/main` ref is not sufficient.
+- Unless the user explicitly commands a Git operation in the current request,
+  do not run any Git command.  This prohibition includes read-only inspection
+  such as `git status`, `git log`, and `git diff`, as well as network or
+  mutating operations such as `git fetch`, `git pull`, branch creation or
+  switching, commits, rebases, merges, resets, and pushes.
+- A prior Git instruction does not grant standing authorization for later
+  requests.  Authorization must be explicit for the current task and is
+  limited to the operation and scope requested by the user.
+- When Git operations are not authorized, continue the mathematical or code
+  task using ordinary filesystem inspection and focused build commands.  Do
+  not treat the lack of Git synchronization as a blocker and do not perform a
+  Git preflight implicitly.
+
+## Mandatory GitHub synchronization when explicitly requested
+
+When the user explicitly requests Git synchronization, synchronize the agent's
+own checkout with the canonical GitHub repository before investigating,
+planning, editing, or validating the Git-scoped task. The remote default branch,
+`origin/main`, is the source of truth; a previously fetched local `origin/main`
+ref is not sufficient.
 
 1. Run `git fetch --prune origin`, then inspect `git status` and compare `HEAD`
    and local `main` with `origin/main` (for example with `git rev-list
@@ -124,11 +140,15 @@ local work or switch branches over uncommitted changes.
 
 Use the `Project documents and workflow` section of `README.md` as the single map
 of which project source answers each kind of question; do not duplicate that map
-here. Before editing, base the work on the exact current default-branch head and
-check the relevant Blueprint node, its status and dependencies against the actual
-Lean declarations and import graph. Also check current issue, pull-request, CI,
-and review evidence when they affect readiness. If those sources are missing,
-stale, or contradictory, stop and report the conflict instead of guessing.
+here. When the current request explicitly authorizes Git synchronization, base
+the work on the exact current default-branch head before editing. Otherwise,
+inspect the working tree only through ordinary filesystem tools and do not run a
+Git preflight. Check the relevant Blueprint node, its status and dependencies
+against the actual Lean declarations and import graph. Also check current issue,
+pull-request, CI, and review evidence when they affect readiness and when the
+current request authorizes the access needed to inspect them. If the available
+sources are missing, stale, or contradictory, report the conflict instead of
+guessing.
 
 An unfinished Solution or definition-property proof may temporarily use `sorry`
 while it is being developed; the latter remains in its component's `Proofs.lean`.

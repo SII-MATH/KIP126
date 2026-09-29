@@ -198,24 +198,41 @@ This chapter develops the general extension-spectral-sequence construction and i
 \end{proof}
 
 % SOURCE: aimpaper/main.tex:648-664, Proposition prop:cfe810af.
-% VERIFIED-IN: only exactness at pi_*Y is used; the zeros printed at both ends are not assumptions.
+% VERIFIED-IN: only exactness at the middle abutment object in the fixed degree tau is used.
 \begin{proposition}[Exactness at the middle makes every permanent cycle a boundary]
   \label{prop:fess-exact-middle-boundary}
   \uses{def:f-extension-ss,prop:fextension-iff-detected,cor:fess-zero-composite-permanent}
-  \notready
-  If $X\xrightarrow fY\xrightarrow gZ$ induces a sequence exact at
-  $\pi_*Y$, then every permanent $g$-ESS cycle in $E_\infty(Y)$ is hit by an
-  $f$-ESS differential.  No injectivity of $f$ or surjectivity of $g$ is
-  assumed.
+  \lean{KIPBase.SpectralSequence.AbutmentExactAt}
+  \lean{KIPBase.SpectralSequence.ESSPermanentCycle}
+  \lean{KIPBase.SpectralSequence.ess_boundary_of_exact_at_abutment}
+  Let $V_1\xrightarrow{f}V_2\xrightarrow{g}V_3$ be two composable morphisms of
+  converging spectral sequences, and fix one abutment degree $\tau$.  Suppose
+  that
+  \[
+    V_1.A(\tau)\xrightarrow{f_A}V_2.A(\tau)
+      \xrightarrow{g_A}V_3.A(\tau)
+  \]
+  is exact at the middle term.  Assume at this same degree that the source
+  filtration has a layer equal to the whole abutment object, and that the
+  target filtration is Hausdorff, i.e.
+  $\bigcap_v F^vV_3.A(\tau)=0$.  Then every projective generalized element of
+  $E_\infty(V_2)$ represented by a fixed class whose image lies in every
+  target filtration layer (a compatible permanent cycle in the $g$-ESS) is
+  hit by an $f$-ESS differential.  No exactness in any other abutment degree,
+  injectivity of $f_A$, surjectivity of $g_A$, or finite zero filtration layer
+  is assumed.
 \end{proposition}
 
 \begin{proof}
-  A permanent $g$-ESS cycle has a detected representative $[y]$ with
-  $g[y]=0$.  Exactness at the middle supplies $[x]$ with $f[x]=[y]$.
-  Choose the leading Adams class $x$ detecting $[x]$ and apply the
-  representative characterization of $f$-extensions.  This avoids the
-  stronger short-exact sequence accidentally displayed in the paper's first
-  proof.
+  Let $[y]$ be the fixed representative.  The image subobject of $g_A[y]$ is
+  contained in every target filtration layer, hence Hausdorffness makes that
+  image subobject zero and therefore $g_A[y]=0$.  Exactness at the fixed degree
+  $\tau$ supplies an abutment preimage $[x]$ with $f_A[x]=[y]$.  The full
+  source filtration layer contains $[x]$; comparing its filtration with that
+  of $y$ gives a nonnegative length.  Projectivity lifts through the
+  categorical image of $f_A$, and the representative characterization
+  produces the required $f$-ESS differential.  The argument never refers to
+  another abutment degree.
 \end{proof}
 
 \section{Representatives, essentiality, and crossings}

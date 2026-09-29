@@ -120,25 +120,39 @@ constructed by induction using `biShift_comp` and `lam`. -/
 
 /-- Multiplication by `λ^n` as a natural transformation
 `Σ^{0,-n} ⟶ Id`.  Defining the power before taking components keeps its
-naturality available definitionally. -/
+naturality available definitionally.  The first power is the given `lam`:
+the current `biShift_comp` and `biShift_zero` interface does not impose the
+unit coherence needed to derive this from the zero-power recursion. -/
 noncomputable def lambdaPowNatTrans : (n : ℕ) →
     SyntheticCategory.biShift (0, -(n : ℤ)) ⟶ 𝟭 Syn
   | 0 => SyntheticCategory.biShift_zero.hom
-  | n + 1 => by
+  | 1 => SyntheticCategory.lam
+  | n + 2 => by
     have step : SyntheticCategory.biShift ((0 : ℤ), -1) ⋙
-        SyntheticCategory.biShift ((0 : ℤ), -(n : ℤ)) ⟶ 𝟭 Syn :=
+        SyntheticCategory.biShift ((0 : ℤ), -((n + 1 : ℕ) : ℤ)) ⟶ 𝟭 Syn :=
       Functor.whiskerRight SyntheticCategory.lam
-          (SyntheticCategory.biShift ((0 : ℤ), -(n : ℤ))) ≫
-        lambdaPowNatTrans n
+          (SyntheticCategory.biShift ((0 : ℤ), -((n + 1 : ℕ) : ℤ))) ≫
+        lambdaPowNatTrans (n + 1)
     have result : SyntheticCategory.biShift
-        (((0 : ℤ), -1) + (0, -(n : ℤ))) ⟶ 𝟭 Syn :=
-      (SyntheticCategory.biShift_comp (0, -1) (0, -(n : ℤ))).inv ≫ step
-    simpa using result
+        (((0 : ℤ), -1) + (0, -((n + 1 : ℕ) : ℤ))) ⟶ 𝟭 Syn :=
+      (SyntheticCategory.biShift_comp
+        (0, -1) (0, -((n + 1 : ℕ) : ℤ))).inv ≫ step
+    have hdegree : (((0 : ℤ), -1) + (0, -((n + 1 : ℕ) : ℤ))) =
+        (0, -((n + 2 : ℕ) : ℤ)) := by
+      apply Prod.ext
+      · rfl
+      · change (-1 : ℤ) + -((n + 1 : ℕ) : ℤ) = -((n + 2 : ℕ) : ℤ)
+        omega
+    exact hdegree ▸ result
 
 /-- The `X`-component of multiplication by `λ^n : Σ^{0,-n} ⟶ Id`. -/
 noncomputable def lambdaPow (n : ℕ) (X : Syn) :
     (SyntheticCategory.biShift (0, -(n : ℤ))).obj X ⟶ X :=
   (lambdaPowNatTrans n).app X
+
+@[simp] theorem lambdaPow_one (X : Syn) :
+    lambdaPow 1 X = SyntheticCategory.lam.app X :=
+  rfl
 
 /-- Multiplication by `λ^n` is natural in the synthetic spectrum. -/
 theorem lambdaPow_naturality (n : ℕ) {X Y : Syn} (f : X ⟶ Y) :
@@ -163,12 +177,48 @@ noncomputable def lambdaToPositivePow (n : ℕ) (X : Syn) :
 noncomputable def XModLambdaN (X : Syn) (n : ℕ) : Syn :=
   syn_functorial_cofiber.cofib (lambdaPow n X)
 
+/-- The two notations for the quotient by λ agree by definition. -/
+@[simp] theorem XModLambdaN_one (X : Syn) :
+    XModLambdaN X 1 = XModLambda X :=
+  rfl
+
 /-- A map of synthetic spectra induces a map on every finite `λ`-quotient. -/
 noncomputable def XModLambdaN.map {X Y : Syn} (f : X ⟶ Y) (n : ℕ) :
     XModLambdaN X n ⟶ XModLambdaN Y n :=
   let shiftedF := (SyntheticCategory.biShift (0, -(n : ℤ))).map f
   syn_functorial_cofiber.cofibMap (lambdaPow n X) (lambdaPow n Y)
     shiftedF f (lambdaPow_naturality n f)
+
+/-- Quotient maps preserve identities by the cofiber identity law. -/
+@[simp] theorem XModLambdaN.map_id (X : Syn) (n : ℕ) :
+    XModLambdaN.map (𝟙 X) n = 𝟙 (XModLambdaN X n) := by
+  dsimp only [XModLambdaN.map, XModLambdaN]
+  calc
+    _ = syn_functorial_cofiber.cofibMap (lambdaPow n X) (lambdaPow n X)
+        (𝟙 _) (𝟙 X) (by simp) := by
+      congr 1
+      exact (SyntheticCategory.biShift (Syn := Syn) (0, -(n : ℤ))).map_id X
+    _ = _ := syn_functorial_cofiber.cofibMap_id (lambdaPow n X)
+
+/-- Quotient maps preserve composition by the cofiber composition law. -/
+@[simp] theorem XModLambdaN.map_comp {X Y Z : Syn}
+    (f : X ⟶ Y) (g : Y ⟶ Z) (n : ℕ) :
+    XModLambdaN.map (f ≫ g) n =
+      XModLambdaN.map f n ≫ XModLambdaN.map g n := by
+  dsimp only [XModLambdaN.map, XModLambdaN]
+  simpa only [Functor.map_comp] using
+    (syn_functorial_cofiber.cofibMap_comp
+      (lambdaPow n X) (lambdaPow n Y) (lambdaPow n Z)
+      ((SyntheticCategory.biShift (0, -(n : ℤ))).map f) f
+      ((SyntheticCategory.biShift (0, -(n : ℤ))).map g) g
+      (lambdaPow_naturality n f) (lambdaPow_naturality n g)).symm
+
+/-- Taking the quotient by a fixed power of λ is a functor. -/
+noncomputable def XModLambdaN.functor (n : ℕ) : Syn ⥤ Syn where
+  obj X := XModLambdaN X n
+  map f := XModLambdaN.map f n
+  map_id X := XModLambdaN.map_id X n
+  map_comp f g := XModLambdaN.map_comp f g n
 
 /-- Naturality of the inclusion into a finite `λ`-quotient. -/
 theorem XModLambdaN.incl_naturality {X Y : Syn} (f : X ⟶ Y) (n : ℕ) :
@@ -189,6 +239,23 @@ theorem XModLambdaN.proj_naturality {X Y : Syn} (f : X ⟶ Y) (n : ℕ) :
     let shiftedF := (SyntheticCategory.biShift (0, -(n : ℤ))).map f
     exact syn_functorial_cofiber.cofibMap_δ (lambdaPow n X) (lambdaPow n Y)
       shiftedF f (lambdaPow_naturality n f)
+
+/-- The quotient inclusion, packaged with its proved naturality. -/
+noncomputable def XModLambdaN.inclNatTrans (n : ℕ) :
+    𝟭 Syn ⟶ XModLambdaN.functor (Syn := Syn) n where
+  app X := syn_functorial_cofiber.cofibι (lambdaPow n X)
+  naturality := by
+    intro X Y f
+    exact XModLambdaN.incl_naturality f n
+
+/-- The boundary map, packaged with its proved naturality. -/
+noncomputable def XModLambdaN.projNatTrans (n : ℕ) :
+    XModLambdaN.functor (Syn := Syn) n ⟶
+      SyntheticCategory.biShift (0, -(n : ℤ)) ⋙ shiftFunctor Syn (1 : ℤ) where
+  app X := syn_functorial_cofiber.cofibδ (lambdaPow n X)
+  naturality := by
+    intro X Y f
+    exact XModLambdaN.proj_naturality f n
 
 /-- The cofiber triangle for λⁿ is distinguished. -/
 theorem XModLambdaN.triangle_distinguished (X : Syn) (n : ℕ) :
