@@ -191,8 +191,7 @@ theorem juggling [IsTriangulated C]
   have hpm : p ≫ O.m₁ = gbar ≫ j := by
     simpa [Tf, Tbar, Tg, O] using O.comm₁
   have hmq : O.m₁ ≫ q = -f⟦(1 : ℤ)⟧' := by
-    convert O.comm₂ using 1
-    rfl
+    convert O.comm₂ using 1 <;> rfl
   have hgh : g ≫ h = 0 := (composable ⟨Q, i, p, hTf, gbar, hg, hx⟩).2
   obtain ⟨hbar₀, hhbar₀⟩ := Tg.yoneda_exact₂ hTg h hgh
   dsimp only [Tg, Triangle.mk] at hbar₀ hhbar₀
