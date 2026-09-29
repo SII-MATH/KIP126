@@ -1,5 +1,5 @@
 import KIP126.LinProgram.Route.Selected
-import KIP126.Main.Axiom.Literature.Near126.Classes.Data
+import KIP126.LinProgram.Interpretation.Near126.Classes.Data
 import KIP126.Main.Axiom.Literature.Route.Tmf
 import KIP126.Def.AdamsE2.LinBasisTable.Data
 import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data

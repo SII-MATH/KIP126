@@ -4,11 +4,16 @@
 
 本目录说明一条生成记录对 KIP126 的固定内部对象究竟声称什么。解释必须保留谱名、页面、次数、坐标、条件和搜索范围，不能把记录缺失、空坐标或 E₂ 非零擅自加强为永久存活。
 
+当前目录只保留消费端的定义、谓词和输入投影。下表涉及的比较定理、lookup 推论、
+长层和 Tower 推导已迁至 [Main/Solution/Computation/LinProgram/Interpretation](../../../Solution/Computation/LinProgram/Interpretation/)，
+并有对应 Challenge 声明；旧组件 README 的链接指向实际证明位置。
+平方标签的认证由 Interface 生产，通过共享输入交付，Main 不在假设目录中重新认证。
+
 ## 2. 现在包含什么
 
 | 组件 | 当前职责 |
 | --- | --- |
-| [BasisTable.lean](BasisTable.lean)、[Basis/Algebra](Basis/Algebra/README.md) | 从同一个 Challenge2 见证取得 CSV 基认证，构造指定基与坐标；认证生产者在 Interface |
+| [BasisTable.lean](../../../Solution/Computation/LinProgram/Interpretation/BasisTable.lean)、[Basis/Algebra](Basis/Algebra/README.md) | 从同一个 Challenge2 见证取得 CSV 基认证，构造指定基与坐标；认证生产者在 Interface |
 | `Presentation/` | `LinE2Presentation` 的数据和消费定理；对应开发 axiom 在上层 `Presentation.lean` |
 | `Basis/`、`Classes/`、`Expressions/`、`Tower/`、`Sphere.lean` | 把 Lin E₂ 数据连接到固定球谱 Adams 对象的现有解释层 |
 | `Differential/` | 基于 presentation 的一般计算差分与长层推导 |

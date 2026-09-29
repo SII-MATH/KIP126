@@ -1,4 +1,4 @@
-import KIP126.Main.Solution.Route.DependencyTypes
+import KIP126.Main.Axiom.Literature.Route.DependencyTypes
 import KIP126.Main.Solution.Tools.GeneralizedLeibniz
 import KIP126.Main.Solution.Tools.GeneralizedMahowald
 import KIP126.Main.Solution.Tools.PageExtensionStretching

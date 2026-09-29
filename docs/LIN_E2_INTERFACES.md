@@ -61,7 +61,7 @@ Mathlib 谱序列适配层。坐标使用整数线性同构，避免对现有页
 
 ```lean
 import KIP126.Def.AdamsE2.Lin
-import KIP126.Tactic.LinE2
+import KIP126.LinProgram.Tactic.LinE2
 
 open KIP126.LinE2
 

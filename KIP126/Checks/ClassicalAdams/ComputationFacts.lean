@@ -1,5 +1,5 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Axiom.Literature.Near126
+import KIP126.Main.Solution.Literature.Near126
 import Lean.Elab.Command
 
 open Lean Elab Command in

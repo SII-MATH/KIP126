@@ -1,5 +1,5 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Axiom.LinProgram.E2
+import KIP126.Main.Solution.Computation.LinProgram.E2
 import Lean.Elab.Command
 
 namespace KIP126.Classical.Adams

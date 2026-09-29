@@ -77,7 +77,7 @@
 | `fact:h1x1217`、`lem:nuext125` | actual Cν triangle、顶/底胞腔 E₂ map、悬移、Cν d₃、Mahowald/stretching | Cν 计算和标签对应为 C，ν-extension 为 Main |
 | `fact:stem122`、Table `Table:Cnu126`、Prop. 7.9 最后反证 | same Cν Eᵣ 中的 nonzero target 与全部潜在 incoming sources/页数 | C 的有限穷尽性义务；未知不能当零，未导入 49 个辅助谱也不宣称已经认证 |
 
-`Main/Solution/Route/DependencyTypes.lean` 是这些输入的**类型绑定样例/入口**，
+`Main/Axiom/Literature/Route/DependencyTypes.lean` 是这些输入的**类型绑定样例/入口**，
 不是新增的全部 A/C 假设包。其每个谓词都有具体定义，无自由 `Prop` 字段。
 `HopfBindings` 还明确地把经典 η、ν 的 h₁/h₂ 检测与工具所用的 normalized η
 连接到 C₅ 中的同一个 synthetic η；名称相同不构成识别。

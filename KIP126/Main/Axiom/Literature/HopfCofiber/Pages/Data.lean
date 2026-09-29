@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.HopfCofiber.Proofs
+import KIP126.Main.Axiom.Literature.HopfCofiber.Predicates
 import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
 import KIP126.Main.Axiom.LinProgram.Interpretation.Sphere
 

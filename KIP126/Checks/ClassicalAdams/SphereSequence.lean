@@ -1,7 +1,7 @@
 import KIP126.Def.ClassicalAdams.Convergence.Proofs
 import KIP126.Def.SpectralSequence.PageLevel.Proofs
 import KIP126.Def.ClassicalAdams.SphereSequence.Data
-import KIP126.Main.Axiom.Literature.Adams.OneLine
+import KIP126.Main.Solution.Literature.Adams.OneLine
 
 /-!
 # Regression checks for the first classical Adams slice

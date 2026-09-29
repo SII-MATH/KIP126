@@ -12,7 +12,7 @@
 | --- | --- |
 | [Data.lean](Data.lean) | `SphereThreeMap`, `sphereMapCofiber`, `sphereMapCofiberInclusion`, `sphereMapCofiberProjection`, `sphereMapCofiberTriangle` 等 9 个声明 |
 | [Predicates.lean](Predicates.lean) | `SphereFiltrationOneRepresents` |
-| [Proofs.lean](Proofs.lean) | `sphereMapCofiber_first_zero`, `sphereMapCofiber_cells_zero`, `sphereMapCofiberInclusionTower_step` |
+| [Proofs.lean](../../../Solution/Literature/HopfCofiber/Proofs.lean) | `sphereMapCofiber_first_zero`, `sphereMapCofiber_cells_zero`, `sphereMapCofiberInclusionTower_step` |
 
 ## 3. 大概完成度
 

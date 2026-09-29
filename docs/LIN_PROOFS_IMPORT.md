@@ -3,7 +3,7 @@
 ## 当前实现
 
 不再逐条增加计算公理。入口是
-`KIP126.Main.Axiom.LinProgram.Differentials`。第二阶段仅从共享包的存在假设
+`KIP126.Main.Solution.Computation.LinProgram.Differentials`。第二阶段仅从共享包的存在假设
 取得一个见证；公开的 `sphereTable_sound` 已是该见证的投影定理，
 不再是独立公理：
 

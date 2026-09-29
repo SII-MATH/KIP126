@@ -11,7 +11,7 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Data.lean](Data.lean) | `sphereAdams`, `sphereH6Square` |
-| [Proofs.lean](Proofs.lean) | `sphereH6Square_ne_zero` |
+| [Proofs.lean](../../../Solution/Literature/StandardSphere/Proofs.lean) | `sphereH6Square_ne_zero` |
 
 ## 3. 大概完成度
 

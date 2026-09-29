@@ -7,11 +7,11 @@
 | 位置 | 当前职责 |
 | --- | --- |
 | [Presentation.lean](Presentation.lean) | 从同一计算见证提供 Lin presentation 及兼容名称 |
-| [Interpretation](Interpretation/README.md) | 固定模型上的坐标、类、表真实性投影与条件推论 |
+| [Interpretation](Interpretation/README.md) | 固定模型上的坐标、类和表真实性投影；条件推论归 Main/Solution |
 | [Route/Data.lean](Route/Data.lean) | §7 所选路线在指定 Model、球谱和 tmf 标签上的 C(M) 需求 |
-| [Route/Records.lean](Route/Records.lean) | 带具名条件的路线投影 |
-| [E2.lean](E2.lean)、[Differentials.lean](Differentials.lean) | 兼容导入入口 |
-| [Examples](Examples/README.md) | 使用实际消费适配和显式来源证据的最小表及接口示例；不是数据真实性的完整认证 |
+| [Route/Records.lean](../../Solution/Computation/LinProgram/Route/Records.lean) | 带具名条件的路线投影 |
+| [E2.lean](../../Solution/Computation/LinProgram/E2.lean)、[Differentials.lean](../../Solution/Computation/LinProgram/Differentials.lean) | 兼容导入入口 |
+| [Examples](../../Examples/LinProgram/README.md) | 使用实际消费适配和显式来源证据的最小表及接口示例；不是数据真实性的完整认证 |
 
 路线的机械来源清单位于 [LinProgram/Route/selected.json](../../../LinProgram/Route/selected.json)，选择依据见 [C_INPUT_FREEZE.md](../../../../docs/C_INPUT_FREEZE.md)。路线清单、bulk 表解释和完整阶段见证是不同层次，不据此声称全部程序语义已经验证。
 

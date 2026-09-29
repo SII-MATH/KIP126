@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Proofs.lean](Proofs.lean) | `LinE2Presentation.h6_cross_products_add_eq_zero` |
+| [Proofs.lean](../../../../../../Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/Cancellation/Proofs.lean) | `LinE2Presentation.h6_cross_products_add_eq_zero` |
 
 ## 3. 大概完成度
 

@@ -62,16 +62,6 @@ structure NuCofiberApplicability : Prop where
         normalizedExponent H D.auxiliary.nuRouteTriangle.h = 1,
     NormalizedTriangleCompatible D.toModelData D.auxiliary.nuRouteTriangle he
 
-/-- The compatibility premise is applicable: its exponent equation is
-proved from the three source-bound exponents, not left as a vacuous ∀. -/
-theorem NuCofiberApplicability.exponent_sum (P : NuCofiberApplicability D) :
-    (normalizedExponent H D.auxiliary.nuRouteTriangle.f : ℤ) +
-      normalizedExponent H D.auxiliary.nuRouteTriangle.g +
-      normalizedExponent H D.auxiliary.nuRouteTriangle.h = 1 := by
-  change (normalizedExponent H D.auxiliary.nuMap : ℤ) + _ + _ = 1
-  rw [P.nu_exponent, P.bottom_exponent, P.top_exponent]
-  norm_num
-
 /-- These are model applicability obligations, recorded separately from
 the source statements. They neither assert no-crossing computations nor
 the ν-extension constructed in LWX Lemma 7.19. -/

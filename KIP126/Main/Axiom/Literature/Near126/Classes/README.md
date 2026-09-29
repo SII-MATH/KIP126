@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](Data.lean) | `atom`, `h0Sq`, `h0Six`, `h5Sq`, `B` 等 18 个声明 |
+| [Data.lean](../../../../../LinProgram/Interpretation/Near126/Classes/Data.lean) | `atom`, `h0Sq`, `h0Six`, `h5Sq`, `B` 等 18 个声明 |
 
 ## 3. 大概完成度
 

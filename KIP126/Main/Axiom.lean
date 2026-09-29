@@ -8,13 +8,10 @@ import KIP126.Main.Axiom.Literature.SyntheticBockstein
 import KIP126.Main.Axiom.Evidence
 import KIP126.Main.Axiom.Results
 import KIP126.Main.Axiom.Literature.SourceInventory
-import KIP126.Main.Axiom.Literature.EtaRows.Data
-import KIP126.Main.Axiom.Literature.AppendixTable.Rows.Catalogue.Proofs
-import KIP126.Main.Axiom.Literature.Adams.OneLine
-import KIP126.Main.Axiom.Literature.Near126
-import KIP126.Main.Axiom.LinProgram.Differentials
-import KIP126.Main.Axiom.LinProgram.E2
 import KIP126.Main.Axiom.Challenge2
 import KIP126.Main.Axiom.Literature.May
 import KIP126.Main.Axiom.Literature.InternalGeometry
 import KIP126.Main.Axiom.Literature.Route
+import KIP126.Main.Axiom.Literature.EtaRows.Data
+import KIP126.Main.Axiom.Literature.Adams.OneLine
+import KIP126.Main.Axiom.Literature.AppendixTable.Rows.Catalogue.Data

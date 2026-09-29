@@ -13,7 +13,7 @@
 | [Axiom.lean](Axiom.lean) | `sphereTable_sound` |
 | [Data.lean](Data.lean) | `DifferentialRow` |
 | [Predicates.lean](Predicates.lean) | `HasCoordinates`, `DifferentialStatement` |
-| [Proofs.lean](Proofs.lean) | `differential_of_lookup`, `DifferentialStatement.hasDifferential`, `row5541` |
+| [Proofs.lean](../../../../Solution/Computation/LinProgram/Interpretation/Differentials/Proofs.lean) | `differential_of_lookup`, `DifferentialStatement.hasDifferential`, `row5541` |
 
 ## 3. 大概完成度
 

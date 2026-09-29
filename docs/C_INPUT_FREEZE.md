@@ -170,7 +170,7 @@ Lean 回归同时检查全部记录的次数/编号，及缺失、重复、乱�
 ## 7. 本批提交前验证
 
 - `select-route.py --check` 通过，检查 8 个固定输入及所有机械生成文件。
-- `lake build KIP126.Main.Axiom.LinProgram.Route.Records KIP126.Checks.Computation.Route`
+- `lake build KIP126.Main.Solution.Computation.LinProgram.Route.Records KIP126.Checks.Computation.Route`
   定向编译通过（2721 jobs），记录次数/坐标和解码边界回归通过。
 - 移除新增 Records/Checks 中的额外 `maxHeartbeats` 设置，并同步生成器；
   按默认 heartbeat 预算验证，不调整 CI 的预算规则。

@@ -2,6 +2,13 @@
 
 本页记录阶段输入及带来源的文献输入。数学范围参见[所属阶段](../README.md)；来源记录不代表已完成数学证明。
 
+本目录只承担输入边界：阶段存在性假设、同一见证的投影、显式输入类型和来源信息。
+不再设置 `Proofs.lean`，入口也不再导入 Main 推导、Interface 生产证明或 Checks。
+原数学推导迁至 [Main/Solution](../Solution.lean) 的配对证明轨道；固定平方与标准
+cobar 类的识别由 [Interface](../../Interface/Solution/LinProgram/Square.lean) 生产，
+通过 `Challenge2.ComputationInterface.sphereSquare.standard_class` 交付。
+来源目录的结构校验辅助与已提供证据的透明投影仍保留，它们不证明所引用的数学结论。
+
 当前冻结 §7 路线使用 [Literature/Route](Literature/Route/README.md) 的
 `Inputs D η L` 作为 A(M)，与 C(M) 分开显式传入。该包不是下面历史
 Challenge2 存在性输入的自动附加字段；详细清单见

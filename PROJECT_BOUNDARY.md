@@ -261,9 +261,20 @@ means for a supplied mathematical model. `Certificates/` contains local
 kernel-checked results about the fixed algebraic data; transporting them to the
 chosen model remains an Interface obligation. Main consumes the corresponding
 Challenge 2 computation delivery rather than its Interface producer proofs.
+`Main/Axiom/` contains input types, the one witness and its projections, and
+source metadata. Mathematical deductions and their imports are owned by the
+paired Main proof tracks, not by `Proofs.lean` files in the input directory.
+The input entry module must not import Main proofs, Interface producers or
+Checks. Source metadata helpers and transparent evidence extraction remain
+distinct from proving the mathematical claims carried by those inputs.
+Interface's square producer supplies `SphereSquareInterface.standard_class`
+from an explicit presentation, fixed-data exhaustion and independent standard
+nonvanishing. Main only projects that identification. This does not establish
+the full cobar/actual-product compatibility, which remains an Interface
+obligation supported by generic Def mathematics.
 This import separation is implemented for `Main/Solution/Computation`; other
 legacy Main imports remain migration debt. Examples using Main consumer
-adapters and explicit provenance stay in `Main/Axiom/LinProgram/Examples/`.
+adapters and explicit provenance stay in `Main/Examples/LinProgram/`.
 The importer scans the entire
 pinned database, with per-category coverage counts. The currently interpreted
 fragment is **closed, finite-page sphere differential equations** within the

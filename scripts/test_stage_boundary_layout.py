@@ -14,7 +14,7 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         cls.graph = {
             ".".join(path.relative_to(ROOT).with_suffix("").parts):
                 re.findall(r"^import\s+(KIP126\.[\w.]+)", path.read_text(), re.M)
-            for path in (ROOT / "KIP126").rglob("*.lean")
+            for path in [ROOT / "KIP126.lean", *(ROOT / "KIP126").rglob("*.lean")]
         }
 
     def dependencies(self, module):
@@ -71,6 +71,39 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                     forbidden = [name for name in self.dependencies(module)
                                  if name.startswith("KIP126.Interface.Solution.")]
                     self.assertEqual(forbidden, [])
+
+    def test_main_inputs_do_not_import_deductions_or_checks(self):
+        for module in self.graph:
+            if module == "KIP126.Main.Axiom" or module.startswith("KIP126.Main.Axiom."):
+                with self.subTest(module=module):
+                    forbidden = [name for name in self.dependencies(module)
+                                 if name.startswith(("KIP126.Main.Solution.",
+                                                     "KIP126.Main.Challenge.",
+                                                     "KIP126.Interface.Solution.",
+                                                     "KIP126.Interface.Challenge.",
+                                                     "KIP126.Checks."))]
+                    self.assertEqual(forbidden, [])
+
+    def test_main_inputs_have_no_proof_modules(self):
+        self.assertEqual(list((ROOT / "KIP126/Main/Axiom").rglob("Proofs.lean")), [])
+
+    def test_square_identification_is_delivered_by_the_same_interface(self):
+        package = (ROOT / "KIP126/Challenge2.lean").read_text()
+        self.assertIn("standard_class : presentation.comparison 2 128", package)
+        consumer = (ROOT / "KIP126/Main/Solution/Computation/LinProgram/Interpretation/"
+                    "Classes/Comparison/Proofs.lean").read_text()
+        self.assertIn("computationInterface.sphereSquare.standard_class", consumer)
+        self.assertNotIn("sphereAdamsData_eq_computedH6Square_of_ne_zero", consumer)
+
+    def test_new_consumer_proofs_have_statement_tracks(self):
+        for directory in ("Computation/LinProgram", "Literature"):
+            for path in (ROOT / "KIP126/Main/Solution" / directory).rglob("*.lean"):
+                if not re.search(r"\btheorem\s+", path.read_text()):
+                    continue
+                paired = ROOT / "KIP126/Main/Challenge" / path.relative_to(
+                    ROOT / "KIP126/Main/Solution")
+                self.assertTrue(paired.exists(), f"missing statement track: {paired}")
+                self.assertIn("sorry", paired.read_text())
 
 
 if __name__ == "__main__":

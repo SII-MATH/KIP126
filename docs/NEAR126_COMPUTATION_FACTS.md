@@ -39,7 +39,7 @@ Blueprint 的完整计划仍在 `computation_schema.tex`、`computed_inputs.tex`
 
 ## 已落地的接口
 
-入口：`KIP126/Main/Axiom/Literature/Near126.lean`。
+入口：`KIP126/Main/Solution/Literature/Near126.lean`。
 
 - `Names/Data.lean`：31 个原子表达式的 CSV 地址、归档名称、`(s,t)` 次数。
 - `Names/Proofs.lean`：逐个核对地址处的真实名称和次数，使用 Lean 内核证明，

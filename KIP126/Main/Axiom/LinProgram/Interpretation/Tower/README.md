@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Proofs.lean](Proofs.lean) | `sphereH6DoubleInternalE2_eq_computedH6Square`, `computedH6Square_double_representative`, `computedH6Square_of_double_representative`, `computedH6Square_nonzeroSurvival_iff_double_lifts`, `computedH6Square_nonzeroSurvival_iff_double_connecting_lifts` |
+| [Proofs.lean](../../../../Solution/Computation/LinProgram/Interpretation/Tower/Proofs.lean) | `sphereH6DoubleInternalE2_eq_computedH6Square`, `computedH6Square_double_representative`, `computedH6Square_of_double_representative`, `computedH6Square_nonzeroSurvival_iff_double_lifts`, `computedH6Square_nonzeroSurvival_iff_double_connecting_lifts` |
 
 ## 3. 大概完成度
 

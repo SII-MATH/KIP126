@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Proofs.lean](Proofs.lean) | `computedH6Square_d_two_eq_zero_of_boundaryLifts`, `computedH6Square_d_two_eq_zero_of_firstCycleProductRule` |
+| [Proofs.lean](../../../../../../Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/Lifting/Proofs.lean) | `computedH6Square_d_two_eq_zero_of_boundaryLifts`, `computedH6Square_d_two_eq_zero_of_firstCycleProductRule` |
 
 ## 3. 大概完成度
 

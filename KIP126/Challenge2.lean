@@ -4,6 +4,7 @@ import KIP126.LinProgram.Generated.Staircase.Table
 import KIP126.LinProgram.Interpretation.State.Data
 import KIP126.Def.SpectralSequence.Computation.State.Predicates
 import KIP126.Interface.Axiom.StandardSphere.Sequence.Data
+import KIP126.Interface.Axiom.StandardSphere.Classes.Data
 import KIP126.Def.AdamsE2.LinClasses.Data
 import KIP126.Def.AdamsE2.LinBasisTable.Predicates
 import KIP126.Def.SpectralSequence.Computation.Predicates
@@ -1352,13 +1353,17 @@ structure LiteratureInterface (modelBindings : ModelBindings) : Prop where
   moss : StandardSphereMossStatement modelBindings.moss
   br21 : modelBindings.tmf.Br21Statement
 
-/-- The certified square facts transported to the actual sphere page through
-the specified comparison. Both facts have fixed-data certificate producers;
-this structure lets Main consume their model-bound statements through C(M). -/
+/-- The certified square facts and its standard label on the actual sphere
+page, through the specified comparison. Interface proves the identification
+using the fixed-data exhaustion certificate and independent cobar nonvanishing;
+Main does not reconstruct this certification from its own stage assumption.
+This particular equality does not assert a general cobar/product comparison. -/
 structure SphereSquareInterface (presentation : Classical.Adams.LinE2Presentation) : Prop where
   nonzero : presentation.comparison 2 128 (by decide) LinE2.dataH6Sq ≠ 0
   exhaustive : ∀ x : Classical.Adams.sphereAdamsData.Page 2 (2, 128),
     x = 0 ∨ x = presentation.comparison 2 128 (by decide) LinE2.dataH6Sq
+  standard_class : presentation.comparison 2 128 (by decide) LinE2.dataH6Sq =
+    Classical.Adams.standardH6Square
 
 /-- C(M): interpreted computation conclusions, all using one fixed presentation.
 The generated data and local certificates are separate from this model-bound

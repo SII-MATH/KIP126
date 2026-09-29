@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Near126.Classes.Data
+import KIP126.LinProgram.Interpretation.Near126.Classes.Data
 import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
 import KIP126.Def.SpectralSequence.Computation.Predicates
 

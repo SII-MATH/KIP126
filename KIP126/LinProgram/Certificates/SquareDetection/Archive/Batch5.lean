@@ -1,4 +1,4 @@
-import KIP126.Tactic.LinSquareCertificate
+import KIP126.LinProgram.Tactic.LinSquareCertificate
 
 /-! Kernel certificates for archived chunks 160 through 191.
 The original strings and their order are unchanged. -/

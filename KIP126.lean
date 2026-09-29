@@ -1,12 +1,12 @@
 import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Interface.Solution.CoherentPageExtension
-import KIP126.Main.Axiom.Literature.StandardSphere.Proofs
-import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
+import KIP126.Main.Solution.Literature.StandardSphere.Proofs
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
 import KIP126.Main.Solution.Computation.Vanishing
 import KIP126.Main.Solution.Computation.Nonvanishing
 import KIP126.Main.Solution.Computation.Dimension
-import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Comparison.Proofs
-import KIP126.Main.Axiom.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Comparison.Proofs
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
 import KIP126.Main.Solution.Computation.Reduction
 import KIP126.LinProgram.Certificates.SquareDetection.Certificate
 import KIP126.Interface.Solution.LinProgram.BasisTable
@@ -26,8 +26,9 @@ import KIP126.Interface
 import KIP126.Main
 import KIP126.Main.Solution
 import KIP126.Mathlib
-import KIP126.Main.Axiom.LinProgram.Examples.AdamsE2Table
-import KIP126.Main.Axiom.LinProgram.Examples.AdamsE2LowDegrees
+import KIP126.Main.Examples.LinProgram.AdamsE2Table
+import KIP126.Main.Examples.LinProgram.AdamsE2LowDegrees
+import KIP126.Checks.SourceMetadata.AppendixTable.Rows.Catalogue.Proofs
 
 /-! Library entry for shared definitions, stage inputs and open statements.
 Main's paper deductions are exported from Solution, without intermediate

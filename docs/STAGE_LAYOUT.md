@@ -7,11 +7,15 @@
 固定程序工件移入 `KIP126/LinProgram/`：Raw、Translate、Generated、
 不依赖消费公理的 Branch/State/Differentials 数据解释，以及 Route 的原始和选取记录。
 Examples 使用实际 Main 消费适配和显式来源证据，继续留在
-`Main/Axiom/LinProgram/Examples/`，不属于独立数据管线。
+`Main/Examples/LinProgram/`，不属于独立数据管线。
 原 `Interface/Solution/LinProgram` 中纯数据的 SquareDetection、SquareDimension
 证明移入 `LinProgram/Certificates/`，保留原公开声明与证明。Interface 的基认证、
 实际 E₂ 坐标、乘法和 staircase 生产端继续留在原层；新增 Square 生产端将已有局部
 证书运输为模型上的 `SphereSquareInterface`。
+
+Lin 专用的 `LinE2`、`LinSquareCertificate` 自动化工具统一位于
+`LinProgram/Tactic/`，与其固定数据和证书同属独立管线。原命令与命名空间保留；
+`e2_mul` 的正确性证明缺口不因迁移而消除。
 
 根 `Challenge2` 将 `LiteratureInterface` 与 `ComputationInterface` 分开，只有后者
 称为 C(M)。`ModelBindings` 保存共享 Moss/tmf 模型与通用比较，两个交付部分共同
@@ -31,7 +35,7 @@ Examples 使用实际 Main 消费适配和显式来源证据，继续留在
 - [Interface](../KIP126/Interface/README.md)：第 0 阶段产出的消费接口，以及计算认证和通用接口的目标／证明。
 - [Main](../KIP126/Main/README.md)：输入包和 near-126 至最终目标的推导。
 
-本次归整的 Def / Interface / Main 组件以 `README.md` 按“期望内容、现有内容、完成度、待做事项、执行步骤”记录。领域入口解释数学范围；下层文档列现有声明、占位及上游依赖。保留的 Mathlib、Tactic 等辅助目录说明尚未完整覆盖。Challenge 的 `sorry` 是目标陈述的约定，不计作该目录待补的证明。
+本次归整的 Def / Interface / Main 组件以 `README.md` 按“期望内容、现有内容、完成度、待做事项、执行步骤”记录。领域入口解释数学范围；下层文档列现有声明、占位及上游依赖。Lin 专用 tactic 的说明见 `LinProgram/Tactic/README.md`。Challenge 的 `sorry` 是目标陈述的约定，不计作该目录待补的证明。
 
 局部文件／声明盘点不等于数学完成度，不能把无 `sorry` 或编译成功换算成整个数学目标已完成。文档对未冻结的任务总量不提供伪精确百分比。
 
@@ -55,7 +59,8 @@ KIP126/
 │   ├── Generated/          固定 E₂、微分与 staircase 表
 │   ├── Interpretation/     不依赖消费公理的参数化行解释
 │   ├── Route/              §7 原始/选取记录与来源清单
-│   └── Certificates/       固定数据上的平方检测与维数证明
+│   ├── Certificates/       固定数据上的平方检测与维数证明
+│   └── Tactic/             Lin 专用计算与证明证书自动化
 ├── Def/                    公共对象、谓词、构造与性质
 │   ├── Challenge/          Nonempty Challenge1 的冻结目标
 │   └── Solution/           Nonempty Challenge1 的构造／证明轨
@@ -81,7 +86,6 @@ KIP126/
 │       ├── Computation/          输入上的计算推论
 │       └── Final/                最终证明轨
 ├── Mathlib/                保留原适配实现
-├── Tactic/                 保留现有 Lin 自动化工具
 └── Checks/                 保留回归检查
 ```
 
@@ -105,7 +109,7 @@ KIP126/
 | 纯数据平方检测与维数证明 | `LinProgram/Certificates`；Interface 的 Square 生产端完成模型运输 |
 | 固定 foundation、Milnor 的原输入 | `Challenge1` 包；`Interface/Axiom/Challenge1.lean` 暂时承认其存在 |
 | 固定 Lin presentation 与微分表输入 | `Challenge2` 包；`Main/Axiom/Challenge2.lean` 暂时承认其存在 |
-| `Examples/` | `Main/Axiom/LinProgram/Examples/`，依赖实际消费适配，保留原声明名 |
+| `Examples/` | `Main/Examples/LinProgram/`，依赖实际消费适配，保留原声明名 |
 | 依赖这些 axiom 的固定对象及条件推论 | `Main/Axiom` 解释层；论文所需计算推论归 `Main/Solution/Computation` |
 | `reference/`, `aimpaper/` | `Main/Axiom/Literature/{Sources,MainPaper}` |
 
@@ -177,8 +181,10 @@ KIP126/
 标准 Final 现为 `NonzeroSurvival sphereAdamsData (2,128) standardH6Square`。
 `Interface/Axiom/StandardSphere` 特化 Def 中的实际球谱塔及指定 Milnor cocycle，
 不消费 Lin 数据或 Challenge2。原固定序列名称不变，旧路径保留兼容导入。
-`Main/Axiom/LinProgram/Interpretation/Classes/Comparison/Proofs.lean` 负责
-`computedH6Square = standardH6Square`，供最终证明使用。
+`Interface/Solution/LinProgram/Square.lean` 使用显式 presentation、数据证书及独立
+标准非零性生产平方标签识别，并通过 `SphereSquareInterface.standard_class` 交付。
+`Main/Solution/Computation/LinProgram/Interpretation/Classes/Comparison/Proofs.lean`
+只投影这一结论并提供存活谓词的改写，供最终证明使用。
 按用户后续要求，Final 只保留 `h6_sq_permanent` 这一条命题及其配对 Solution；
 重复的计算版 Challenge/Solution 已删除。原计算版仅为占位，因此唯一 Solution
 直接保留待证的 `sorry`，没有删除实际完成的永久存活证明。陈述依赖基础 M，

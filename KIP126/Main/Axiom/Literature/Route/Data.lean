@@ -51,17 +51,4 @@ structure Inputs where
 directly to retain its concrete comparison/algebra witnesses. -/
 def A : Prop := Nonempty (Inputs D η L)
 
-/-- Supply the already frozen forward differential language from the
-external BHS rigidity input. This is only projection, not a proof of BHS. -/
-theorem Inputs.differentialLift (I : Inputs D η L) :
-    KIP126.Main.Solution.Route.DifferentialLiftInput D := by
-  intro X a s t r k hr x y h
-  exact (I.synthetic.differentials X a s t r k hr x y).mp h
-
-/-- The actual Cν triangle required by the Mahowald tool is available
-without assuming the tool's conclusion or a computed ν-extension. -/
-theorem Inputs.nuTriangle (I : Inputs D η L) :
-    NormalizedTriangleCompatible D.toModelData D.auxiliary.nuRouteTriangle
-      (I.applicability.nuCofiber.exponent_sum D) :=
-  I.applicability.nuCofiber.triangle _
 end KIP126.Literature.Route

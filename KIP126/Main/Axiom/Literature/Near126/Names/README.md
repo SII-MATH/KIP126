@@ -10,8 +10,8 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](Data.lean) | `Atom`, `Atom.record` |
-| [Proofs.lean](Proofs.lean) | `Atom.index_lt`, `Atom.record_eq`, `Atom.degree_eq` |
+| [Data.lean](../../../../../LinProgram/Interpretation/Near126/Names/Data.lean) | `Atom`, `Atom.record` |
+| [Proofs.lean](../../../../../LinProgram/Interpretation/Near126/Names/Proofs.lean) | `Atom.index_lt`, `Atom.record_eq`, `Atom.degree_eq` |
 
 ## 3. 大概完成度
 

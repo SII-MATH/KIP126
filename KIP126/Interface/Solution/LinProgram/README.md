@@ -10,6 +10,14 @@
 | [Staircase.lean](Staircase.lean) | 固定 staircase 快照的数学语义；仍为 `sorry` |
 | [Square.lean](Square.lean) | 使用外部 `Certificates/SquareDetection` 和 `Certificates/SquareDimension` 的局部证明，构造 `SphereSquareInterface` |
 
-`SphereSquareInterface` 交付实际 E₂ 上的平方非零性，以及该次数每个元素为零或该平方。Main 从同一个 Challenge2 见证的计算部分消费这些结论，不直接导入这里的生产证明。
+`SphereSquareInterface` 交付实际 E₂ 上的平方非零性、该次数每个元素为零或该平方，
+以及 `standard_class`：该计算类等于独立定义的标准 cobar 类。
+识别证明使用同一显式 presentation 下的固定数据穷尽证书和独立标准非零性；
+Main 从同一个 Challenge2 见证消费，不重新进行认证或导入这里的生产证明。
+
+标准 cobar cup、CSV 乘法和实际 Adams 层乘法的完整相容性仍是 Interface 的
+证明责任。通用比较工具放在 Def，固定模型上的生产使用同一基础、坐标和配对。
+`standard_class` 只识别此特定元素，不声称一般乘法比较已经完成；
+`Multiplication.lean` 的已有 `sorry` 保留其真实状态。
 
 这里的生产 theorem 不得使用 Main 的 Challenge2 消费公理。固定证书已有证明不等于整个数据解释均已认证；基、乘法、staircase 和完整 Challenge2 构造的证明债务仍保留。通用的显式认证基构造继续位于 [Def](../../../Def/AdamsE2/LinBasisTable/Certification/Data.lean)。

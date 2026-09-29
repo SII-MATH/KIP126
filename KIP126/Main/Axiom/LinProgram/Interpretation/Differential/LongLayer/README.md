@@ -11,7 +11,7 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Predicates.lean](Predicates.lean) | `SphereH6LongLayerMaps.LinCompatible` |
-| [Proofs.lean](Proofs.lean) | `SphereH6LongLayerMaps.LinCompatible.cross_sum_zero`, `computedH6Square_d_two_eq_zero_of_longLayer` |
+| [Proofs.lean](../../../../../Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/Proofs.lean) | `SphereH6LongLayerMaps.LinCompatible.cross_sum_zero`, `computedH6Square_d_two_eq_zero_of_longLayer` |
 
 ## 3. 大概完成度
 

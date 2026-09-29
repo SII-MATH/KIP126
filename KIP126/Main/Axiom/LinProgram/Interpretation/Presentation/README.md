@@ -11,7 +11,7 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Data.lean](Data.lean) | 兼容导入入口；`LinE2Presentation` 的唯一结构定义位于[根 Challenge2](../../../../../Challenge2.lean) |
-| [Proofs.lean](Proofs.lean) | `linToSphere_exists_preimage`, `linToSphere_eq_iff`, `linToSphere_ne_zero_iff`, `linToSphere_mul`, `linToSphere_product_eq` 等 6 个声明 |
+| [Proofs.lean](../../../../Solution/Computation/LinProgram/Interpretation/Presentation/Proofs.lean) | `linToSphere_exists_preimage`, `linToSphere_eq_iff`, `linToSphere_ne_zero_iff`, `linToSphere_mul`, `linToSphere_product_eq` 等 6 个声明 |
 
 ## 3. 大概完成度
 

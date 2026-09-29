@@ -2,7 +2,7 @@ import KIP126.Def.Solution.Challenge1
 import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.LinProgram.BasisTable
 import KIP126.Interface.Challenge.LinProgram.BasisTable
-import KIP126.Main.Axiom.LinProgram.Interpretation.BasisTable
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.BasisTable
 import KIP126.Interface.Axiom.StandardMilnor
 import KIP126.Main.Axiom.LinProgram.Interpretation.Differentials.Axiom
 

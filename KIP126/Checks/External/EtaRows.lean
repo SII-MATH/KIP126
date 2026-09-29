@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.EtaRows.Data
+import KIP126.Main.Solution.Literature.EtaRows.Proofs
 
 /-!
 # Regression checks for typed classical eta data

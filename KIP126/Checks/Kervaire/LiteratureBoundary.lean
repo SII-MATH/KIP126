@@ -1,4 +1,5 @@
 import KIP126.Main.Axiom.Literature.Route
+import KIP126.Main.Solution.Literature.Route.Inputs
 import Lean.Elab.Command
 
 /-! A(M) is a set of explicit input types, not a new source of global

@@ -49,8 +49,19 @@ fixed-data pipeline:
 
 - `KIP126/LinProgram/` owns pinned raw program artifacts, deterministic
   converters, generated Lean data, parameterized row semantics, and local
-  certificates about those fixed data. It does not own a stage axiom or assume
+  certificates about those fixed data. Its `Tactic/` contains the Lin-specific
+  computation and certificate automation. It does not own a stage axiom or assume
   that the data have been identified with the chosen mathematical model.
+
+`Main/Axiom/` is an input boundary, not a proof stage. Keep the single
+Challenge2 existence assumption, its correlated witness/projections, explicit
+input types and source metadata there. Mathematical deductions belong in
+Main's paired Challenge/Solution tracks; fixed computation certification and
+standard-label comparison belong to Interface. Do not put `Proofs.lean` modules
+under Main/Axiom or import Main proofs, Interface producers, or Checks from
+that boundary (including its aggregate entry module). Source-catalogue checks
+and transparent extraction of already supplied evidence do not certify a
+mathematical input; retain their provenance rather than replacing it by axioms.
 
 `KIP126/Challenge1.lean` and `KIP126/Challenge2.lean` are the two shared,
 reviewable witness types crossing stage boundaries. They contain definitions
@@ -267,9 +278,14 @@ types, ranges, and conditions, and do not treat packaging as proof progress.
   witness and supplies its consumer adapters. Main deductions consume that
   interface rather than importing its Interface/Solution producer proofs.
   The `Main/Solution/Computation` dependency chain now respects this boundary;
-  other legacy Main imports still need separate migration. Examples that use
-  Main consumer adapters and explicit provenance remain in
-  `Main/Axiom/LinProgram/Examples/`, outside the independent data pipeline.
+  Examples that use Main consumer adapters and explicit provenance live in
+  `Main/Examples/LinProgram/`, outside the independent data pipeline.
+  Consumer deductions and their entry modules live in
+  `Main/Solution/Computation/LinProgram/`, with paired Challenge statements.
+  `SphereSquareInterface.standard_class` delivers the identification with the
+  independently defined standard cobar class. Its producer uses an explicit
+  presentation and certificates, never Main's Challenge2 witness. This local
+  equality does not discharge the general cobar/actual-product comparison.
   Existing stage assumptions remain disclosed debt until the producer proofs
   are completed; moving local certificates is not additional proof progress.
 - Existing project axioms under `Def/`, `Mathlib/`, or the former `External/`

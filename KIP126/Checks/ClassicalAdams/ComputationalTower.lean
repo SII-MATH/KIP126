@@ -1,5 +1,5 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Axiom.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
 import Lean.Elab.Command
 
 /-! The actual tower representative is identified without a fixed Milnor

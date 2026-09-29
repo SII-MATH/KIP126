@@ -12,7 +12,7 @@
 | --- | --- |
 | [Data.lean](Data.lean) | `expressionOnSphere` |
 | [Predicates.lean](Predicates.lean) | `ExpressionDifferential` |
-| [Proofs.lean](Proofs.lean) | `expressionOnSphere_zero`, `expressionOnSphere_add`, `expressionOnSphere_mul`, `expressionOnSphere_h6`, `expressionOnSphere_h6_square` |
+| [Proofs.lean](../../../../Solution/Computation/LinProgram/Interpretation/Expressions/Proofs.lean) | `expressionOnSphere_zero`, `expressionOnSphere_add`, `expressionOnSphere_mul`, `expressionOnSphere_h6`, `expressionOnSphere_h6_square` |
 
 ## 3. 大概完成度
 

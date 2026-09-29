@@ -1,5 +1,5 @@
 import KIP126.Checks.ClassicalAdams.StandardSquareGeneric
-import KIP126.Main.Axiom.Literature.StandardSphere.Proofs
+import KIP126.Main.Solution.Literature.StandardSphere.Proofs
 import Lean.Elab.Command
 
 /-! The fixed specialization uses the existing foundation and Milnor

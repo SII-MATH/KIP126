@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Proofs.lean](Proofs.lean) | `d2_x125_8`, `d2_h6`, `d3_h4_x109_12`, `d3_h0Sq_x123_13_2`, `d3_x126_4` 等 6 个声明 |
+| [Proofs.lean](../../../../Solution/Computation/LinProgram/Interpretation/Selected/Proofs.lean) | `d2_x125_8`, `d2_h6`, `d3_h4_x109_12`, `d3_h0Sq_x123_13_2`, `d3_x126_4` 等 6 个声明 |
 
 ## 3. 大概完成度
 

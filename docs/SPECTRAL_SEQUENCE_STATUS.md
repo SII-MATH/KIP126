@@ -715,7 +715,7 @@ tower 或类别对象，但定理本身仍显式依赖低层结构与相容条�
 `LinSquareDetection/Parsing/Proofs.lean` 与 `Certificate/` 已证明原字符串
 检查器和字符列表检查器完全等价：分隔符处理、数字解析（包括下划线规则）
 及整个关系/数据块检查均保持不变。还证明了按换行拼接证书和从各块证书
-组装全表证书的规则。`Tactic/LinSquareCertificate.lean` 用 `decide +kernel`
+组装全表证书的规则。`LinProgram/Tactic/LinSquareCertificate.lean` 用 `decide +kernel`
 核验小型字符列表叶子，以已证拼接规则组合，再通过 `String.toList_ofList`
 回到原始字符串，避免直接展开 UTF-8 编解码的高成本。生成器仅提出证明项，
 最终类型和全部辅助定理由内核核验；原始 CSV 编码文件完全未改动。

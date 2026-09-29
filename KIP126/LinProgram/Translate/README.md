@@ -21,7 +21,7 @@
 
 ```bash
 python3 KIP126/LinProgram/Translate/select-route.py --check
-lake build KIP126.Main.Axiom.LinProgram.Route.Records KIP126.Checks.Computation.Route
+lake build KIP126.Main.Solution.Computation.LinProgram.Route.Records KIP126.Checks.Computation.Route
 ```
 
 此命令检查固定字节和转换结果，不完成数学认证。
