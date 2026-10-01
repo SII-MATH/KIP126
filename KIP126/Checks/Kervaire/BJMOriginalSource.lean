@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.BJMOriginal
+import KIP126.Def.References.Literature.BJMOriginal
 import Lean.Elab.Command
 
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

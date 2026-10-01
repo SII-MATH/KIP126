@@ -1,4 +1,8 @@
-import KIP126.Main.Axiom
+import KIP126.Def.References.Evidence
+import KIP126.Def.References.Results
+
+section
+
 
 /-!
 # Provenance API regression checks
@@ -120,3 +124,4 @@ example : artifact.ValidSha256 := by
     decide
 
 end KIP126.External.ProvenanceRegression
+end

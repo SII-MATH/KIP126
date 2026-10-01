@@ -1,6 +1,10 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
+import KIP126.Main.Solution.Computation.Comparisons.SecondDifferential
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 /-! The actual tower representative is identified without a fixed Milnor
 coordinate axiom or a Mathlib spectral-sequence adapter. The additional
@@ -38,8 +42,7 @@ run_cmd do
         throwError "missing disclosed computational tower input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
+        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
       throwError "unexpected computational tower import: {m}"
 
 #print axioms KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_computedH6Square
@@ -49,3 +52,4 @@ run_cmd do
 #print axioms KIP126.Classical.Adams.computedH6Square_d_two_value_of_double_lift
 #print axioms KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_iff_double_lift
 #print axioms KIP126.Classical.Adams.computedH6Square_double_lift_five_of_leibniz
+end

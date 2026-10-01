@@ -1,178 +1,107 @@
-# 所选 §7 路线的 A(M) 陈述清单
+# 第 0 步的外部来源、模型识别与内部适配
 
-合并 PR #139 远程更新后的联合审查见 [STAGED_INTERFACE_REVIEW.md](STAGED_INTERFACE_REVIEW.md)。本文件保留各自批次的范围和验证记录，不能据此宣称 M/A/C/T 已全部冻结。
+本文件对应当前重构中的接口，范围为 LWX v2 Theorem 7.1 经 Proposition 7.8、7.9 所用的完整路线及工具前提。声明存在不等于已构造模型或已证明定理。历史验收记录和此前审查保持原文件，不作为本次修改的编译或数学认证证据。
 
-本清单与 [M 的冻结范围](M_INPUT_FREEZE.md) 相同：LWX v2 Theorem 7.1，经
-Proposition 7.8、7.9 及其实际调用的工具、Toda/Moss、Cν、tmf 路线。
-**冻结的是输入的类型、数学含义、来源和适用条件；没有证明这些输入成立，
-也没有构造满足它们的实际模型。** 不以导入所有参考文献代替依赖分析。
-
-公共入口：`import KIP126.Main.Axiom.Literature.Route`。
-总包位于 `KIP126/Main/Axiom/Literature/Route/Data.lean`：
+数学类型入口为 `KIP126.Def.Kervaire.Inputs.Literature.Data`。原始 TeX、PDF 和来源清单仍存于 `KIP126/Main/Axiom/Literature/`，数学声明已迁到 Def。清单 [sources.json](../KIP126/Main/Axiom/Literature/Route/sources.json) 分列 `claims`、`model_bindings` 和 `internal_adapters`，不能把后三种责任一并称为接受前人结果。
 
 ```lean
-KIP126.Literature.Route.Inputs D η L
-KIP126.Literature.Route.A D η L  -- Nonempty (Inputs D η L)
+KIP126.Literature.Route.SourceApplicationData D η
+KIP126.Literature.Route.ModelBindings D η G E
+KIP126.Literature.Route.Inputs D η G
+KIP126.Literature.Route.Inputs.ofSourceAndBindings D η G E B
 ```
 
-其中 `D : Kervaire.Route.Model H M Syn` 是已经冻结的同一个模型；这里局部变量
-`M : MilnorCooperations H` 沿用旧 API 名称，并不是另一个项目数学背景。
-`η` 属于该模型的实际 `BiHom 1 2 S00`；`L : TmfLabels H` 只命名实际球谱
-E₂ 的 `g : E₂^(4,24)` 和 `Δh₁g : E₂^(9,54)`，其 CSV 识别仍属于 C(M)。
-`g⁴Δh₁g : E₂^(25,150)` 由现有标准 cup product 构造，没有自由乘法字段。
+`SourceApplicationData` 包含前人结果及内部适配，明确不整体作为 A 接受。纯叶子语言是 `ExternalLeaves D η sym mayTensor`，显式公理在 `Main/Axiom/Literature/{Source,Synthetic,Range,Moss}.lean`。Synthetic 叶子均要求同一个 `SourceModel D η G`；May 的 tensor suspension 数据由实际 source Binding 构造；Moss 使用固定球谱映射塔。`ModelBindings` 的经典/η、乘法、tmf、ν选择识别由内部定理提供。`SourceAdapters.acceptedInputs` 将这些工作组装为相同 D/η/G 的消费包，不能以整体公理代替适配。
 
-总包没有默认实例、全局存在性公理或 `sorry`。它要求调用者显式提供各项
-证据，因此以后可以分模块实现，不需要修改其使用者的命题类型。
-`Inputs.differentialLift` 和 `Inputs.nuTriangle` 只是已证明的投影适配，
-不是 BHS 或 Mahowald 的证明。
+这里 `D : Kervaire.Route.Model H M Syn` 固定整条路线，局部 `M : MilnorCooperations H` 只是其中的合作运算组件。η 始终为同一个 `BiHom 1 2 S00`。G 与 C(M) 共用；`g⁴Δh₁g` 由同一 `Sphere.Internal.product` 构造，未引入另一种乘法。
 
-## 输入内容与来源
+## 源结果及其待适配类型
 
-下列路径相对于 `KIP126/Main/Axiom/Literature/Route/`；文献原文的本地路径、
-SHA-256、稳定定位及每项分类另见同目录 `sources.json`。TeX label 优先于
-可能随版本变化的行号。`MainPaper` 只用于确定消费点，不能证明 A(M)。
+下表逐项区分实际外部叶子及内部适配；声明和接受形式均已拆开，source model 的最终验收状态仍以本轮报告为准。
 
-| 文件 / 声明 | 准确内容和条件 | 外部来源；论文消费点 |
+下表相对 Lean 路径在 `KIP126/Def/Kervaire/Inputs/Literature/`。完整声明均在 `KIP126.Literature.Route` 命名空间；具体原文定位及文件校验值见来源清单。
+
+| 输入 | 精确范围、量词及来源 | 消费点与内部责任 |
 | --- | --- | --- |
-| `Classical.lean` / `Theta5Existence` | 标准 h₅² 非零永久存活，存在被它检测且 2θ=0 的经典 θ | BJM84，亦可用 Xu Corollary 1.3；§7 BX 判据、Moss |
-| `Stem62ExponentTwo` | 实际经典 π₆₂ 的每个元素满足 α+α=0 | IWX 的完整 62-stem 计算；Lemma 7.16。不是从“存在一个二阶 θ”推出 |
-| `Theta5FiltrationGap` | 两个经典 h₅² 检测的选择之差位于实际 AF≥6 子群 | IWX 62-stem 的 AF 2、6、8、10；Lemma 7.10 的经典输入 |
-| `TwoDetection`、`HopfInput` | 真实 2、η、ν 的 h₀、h₁、h₂ 检测；η/ν 非零生存；同一个 synthetic η 与选定 normalized η 相等 | Adams 的低维 Hopf 类；BHS 低维计算。最后的相等是模型运输义务 |
-| `BX.lean` / `BXDistinguishedInput` | **一个共同 θ** 上的原始有限判据、实际 total boundary δ₁(h₆²)=ληθ²、无限判据 | BX Proposition 7.19 及证明；LWX Theorem 7.3 的来源 |
-| `Synthetic.lean` / `SyntheticInputs.lifts` | ν 保存三角 iff 完整同调短正合；正 AF 给出 λ 因子提升；同一三角的提升兼顾连接映射与 λ-torsion 比较 | Pstrągowski Lemma 4.23；BHS Lemma 9.15 及证明；LWX §3 |
-| `FiniteLiftCriterion` | x∈Z_q iff x 沿实际 ρ 提升到 νX/λ^q；q>0，允许零及边界 | BHS A.1(1a–b)；有限页解释 |
-| `BocksteinDifferential` | 可选择上述提升，使实际 δ_(q,q+1) 的第一商标签代表 d_(q+1)x | BHS A.1(1c)。目标 `(s+q+1,t+q)`；不是任意提升的精确 E₂ 等式 |
-| `PermanentLiftCriterion` | 共同 Z∞ 代表 iff 存在 untruncated νX 提升 | BHS A.1(2) 与商塔比较；不要求类非零 |
-| `DifferentialRigidity` | 同一 classical dᵣ(x)=y 与同一 synthetic dᵣ(λᵏx)=λ^(k+r−1)y 对应 | BHS A.8；LWX Theorem 3.6；r≥2，双向且保留实际页代表 |
-| `EInftyInput` | νX、νX/λ^q 的 E∞ 公式，actual cycles/boundaries 商，λ/ρ 相容及共同 E₂ 标签对应 | BHS A.9/A.11；LWX §3。仅给抽象等价不够 |
-| `E2WeightVanishing` | 在 shifted νX 的 w>t+a 区域 E₂=0；其余区域使用 M 已指定的 nuE2 | BHS A.8 的 E₂ 公式 |
-| `RealizationKernel` | 选定对象的实际同伦类经 λ 反演为零 iff 某个有限 λ 幂消去它 | Pstrągowski λ-localization 及紧球面 Hom；不指定某个次数无 torsion |
-| `FiltrationLambda` | 在 s≥w−m 时，νX 中 AF≥s iff 为 λ^(m+s−w) 的倍数 | BHS `cor:tau-surj`；§7 的过滤估计。没有把某个 θ² 的过滤作为输入 |
-| `Realization.lean` / `RealizationCoordinates` | 同一 realization 在双分次球上的比较；unit 与 λ 归一化显式固定 | Pstrągowski λ 反演的球面比较，实际模型运输 |
-| `RealizationDetection.lifetime` | 永久 cycle 的每个提升：非零存活至 E_(r+1) ⇒ λ^(r−1) 倍非零 | BHS A.1(2a) |
-| `.detection`、`.prescribed_lift` | 非零永久类的任意顶权重提升实现同一经典检测；指定被检测的经典类有相应提升 | BHS A.1(2b)、(3b) |
-| `.boundary_lift` | 对于被 dᵣ 击中的永久 cycle，**存在某个**提升被 λ^(r−1) 消去 | BHS A.1(3a)；不要求每个提升都被消去 |
-| `Algebra.lean` / `AlgebraInput` | 同一 tensor 的对称结构、同一 realization 的幺半结构；实际 S/λ^q 的相容交换代数；实际检测谱及其 ν 对象的交换代数 | Pstrągowski；BHSmot Appendices B/C；BX `cnstr:bock-maps`；tmf 的环谱结构 |
-| `QuotientAlgebras`、`DetectorAlgebra` | unit 固定为实际商映射/Hurewicz map，ρ 保乘法，乘法扩张 M 已定义的 sphereAction | 上述代数定理的同伦范畴后果。不是新造另一种乘法，也不宣称 `MonObj` 构造了完整 E∞ 结构 |
-| `May.lean` / `MayInput` | 同一 tensor 的 exact/shift 见证，以及两个实际三角的 smash-boundary lifting 等式 | May 2001 TC3、Lemma 4.6；LWX Lemma 6.13。不能只给 tensor exactness |
-| `Moss.lean` / `MossInput` | 同一 E₃ `<h₅²,h₀,B>` 中存在永久成员检测真实 `<θ,2,β>` 的一个成员 | Moss Theorem 1.2；Belmont–Kong 2021 Theorem 1.1/4.11 可核对；LWX Lemma 7.16 |
-| `Toda.lean` / `TodaInputs` | `[h₀]` 的第一商标签、λ[h₀]=2、[h₀]η=0、η²∈<[h₀],η,[h₀]>、低维不定性消失 | BHS `prop:syn-toda-range` (0)、(9) 及低维群；经典 Toda 关系经同一模型运输 |
-| `.symmetric_two` | 若 θ∈π_(62,64) 且 2θ=0，则 λ²ηθ∈<2,θ,2> | Toda 1962 Theorem 3.6 的 symmetric-bracket 后果；IWX §6 `cor:2-symmetric` 核对“包含”约定；synthetic 运输仍是显式义务 |
-| `Tmf.lean` / `TmfTheta5Vanishing` | 经典 θ₅ 经实际 detectorUnit 映为零 | BMQ Theorem 1.2、Figure 1.1 的 tmf 62-stem |
-| `TmfHigh125Detection` | g⁴Δh₁g 非零生存；其检测的经典类经实际 unit 映为非零 | BMQ §7，κ̄⁴w 的 Hurewicz 结果；Prop. 7.8 |
-| `TmfLowFiltration63` | 该 detector 的经典 E₂ 在 stem63、s≤0 为零 | BMQ §2 的 H_*tmf=(A//A(2))_* 及 change of rings；供上述零像的 synthetic 运输 |
-| `Applicability.lean` / `Applicability` | Moss 的实际塔 residual injectivity；Cν 三条实际映射的 exponent=1,0,0、选定 normalized ν 的 h₂ 标签及其三角 distinguished | 外部结果到固定模型的应用/选择义务；不是某个 ν-extension 计算结论 |
+| `Classical.lean`：`Theta5Existence` | Xu v1 Corollary 1.3：标准 h₅² 非零永久存活，存在一个被检测且二阶的经典 θ | BX/Moss；不从存在性推出所有选择二阶 |
+| `Stem62ExponentTwo` | IWX v3 的 2-primary π₆₂=(Z/2)⁴；不包括奇素数分量 | Lemma 7.16；必须是标准 2 完备背景 |
+| `Theta5FiltrationGap` | 相同 h₅² leading term 的经典选择相差 AF≥6；IWX 原图表 62 茎 AF=2、6、8、10 | Lemma 7.10；同实际 Adams 过滤适配 |
+| `ClassicalSourceResults` 的 `two_detection`/`eta_detection`/`nu_detection` | 标准 h₀/h₁/h₂ 检测源对象的真实 2/η/ν，h₁/h₂ 非零永久存活 | `HopfInput` 是运输后路线类型；normalized η识别及synthetic `EtaChoice` 独立在ModelBindings |
+| `BXDistinguishedInput` | BX v3 Prop.7.19 及证明：同一个特定二阶 synthetic θ 上的原始有限判据、δ₁(h₆²)=ληθ²、无限判据 | λ 规范化及任意选择版本归本文推导 |
+| `SyntheticInputs.lifts` | Pstrągowski v3 Lem.4.23，BHS v3 Lem.9.15：同调短正合、存在合适提升及连接箭头 | 不能自动验证任意选定 normalized maps |
+| `FiniteLiftCriterion` | BHS A.1(1a–b)，q>0；x∈Z_q iff 沿实际ρ提升到νX/λ^q，允许零与边界 | 不冒充非零永久存活 |
+| `BocksteinDifferential` | BHS A.1(1c)：存在合适提升，实际δ标签代表d_(q+1)；靶(s+q+1,t+q) | 保留存在量词与页边界 |
+| `PermanentLiftCriterion` | BHS A.1(2)，共同Z∞代表的未截断提升 | 源对象须 E-nilpotent complete，且同实际谱序列强收敛 |
+| `DifferentialRigidity`、`E2WeightVanishing` | BHS A.8；r≥2，classical dᵣ 与 synthetic λ^(r−1) 修正；w>t+a 的E₂消失 | 必须使用相同 family、ν 和标签比较 |
+| `EInftyInput` | BHS A.9/A.11；实际cycles/boundaries商、有限及无限版本、λ/ρ与标签 | 加法比较不自动给有限商乘法比较 |
+| `RealizationKernel`、`FiltrationLambda` | Pst full Syn λ反演；选定完备对象的 kernel 运输为内部定理，不能声称 hypercomplete sphere 紧；BHS `cor:tau-surj`，s≥w−m 的λ整除与AF对应 | 不假定指定高茎无λ-torsion |
+| `RealizationInput` | 具体球悬移、unit、λ比较；BHS A.1 的所有提升/存在提升分别保留 | `.lifetime` 是每个提升，`.boundary_lift` 是存在一个提升 |
+| `AlgebraInput` | Pst、BHSmot v2 Appendices B/C、BX `cnstr:bock-maps`：同一有限λ商的代数塔；真实商unit/ρ/sphereAction | 对指定cobar和Adams检测的乘法比较另归ModelBindings |
+| `MayInput` | May 2001 作者稿 pp.12–14 TC3、Lemma4.6：实际vertex、j₁/j₂/j₃、pushpull提升及**带负号**边界关系 | 不接受一般同伦群上的正等式；Leibniz/Mahowald仍为本文定理 |
+| `MossInput` | Belmont–Kong v2 Thm1.1/4.10、Def2.3–2.4、§1.2；与实际塔的弱收敛及 crossing 对应 | 保留检测、零复合、Massey非空、两个no-crossing和residual前提；不提供局部值/消失 |
+| `TodaInputs` | BHS `prop:syn-toda-range` 的低维环数据：[h₀]标签、λ[h₀]=2、[h₀]η=0、[h₀]·π₂,₃=0 | 两条synthetic Toda membership已经移出A，见内部适配 |
+| `TmfSourceResults` | BMQ v4 Fig1.1、§2、§7：源tmf π₆₂=0、stem63非正过滤E₂=0、经典κ̄/w检测、实际κ̄⁴w的unit像非零 | 不假定所有同leading term代表像非零；需C的经典F26尾部 |
+| `TmfSourceExistence` | 在已识别标准背景存在上述真实谱、环unit、检测类和源结果 | 不是任意D.detector的结果；2local→2complete运输归标准源模型构造 |
+| `TmfLabels.Standard` | IWX 2022原始E₂表：E₂^(4,24)和E₂^(9,54)各有唯一非零元 | 精确固定g/Δh₁g身份；与Lin坐标的等式仍由C证明 |
+| `NuCofiberSourceResults`、`NuCofiberSourceExistence` | Pst/BHS 的两个独立叶子经内部构造得到同一ν cofiber上的兼容三lift，e=(1,0,0)、h₂标签及distinguished三角；该构造不是整体A | 与D已选三map相等是独立绑定，不由“存在”自动给出 |
 
-Moss 输入保留：三个检测假设、两个零复合、完整 Massey 定义系统存在性、
-两个 no-crossing 假设、residual-tower 条件。它不提供任何指定 Massey 值、
-零不定性、具体 no-crossing 结果，也不说每个括号成员都永久。
-这些局部验证仍由 C(M) 和论文推导完成。
+## 模型识别独立交付
 
-## 来源结果与模型运输必须区别
+`ModelBindings D η G E` 不能通过接受文献而自动获得。
 
-A(M) 的每项都陈述在选定的 D 上，**不**宣称它对任意抽象 `Model` 自动成立。
-尤其应注意：
-
-1. BHS A.1 原文的 E-nilpotent completeness、强收敛及正确 ν/Adams 解释，是
-   将原文定理提供给所选模型的适用责任。这里要求其在选定完备对象上的精确
-   特化，不另引入一个没定义的 `Complete : Prop` 来掩盖责任，也不推广到所有谱。
-2. 文献给出的几何提升存在性，不自动等于 D 随意选择的 normalized map。
-   `Applicability.nuCofiber` 显式要求两者相容；`exponent_sum` 已证明其前提
-   可以形成。此绑定的证明/见证以后必须交付，不能仅用 Lemma 9.15 的名字填入。
-3. synthetic Toda 中 suspension 增加 `(1,0)`。`<2,θ,2>` 的值在 `(63,64)`，
-   因而应是 λ²ηθ。IWX 的 C-motivic τ 权重不被直接照抄为这里的 λ 权重。
-   新类型直接使用已有 `Toda.Relation`、shift 和 sphereProduct。
-4. 检测谱和 unit 必须作为 2-completed connective tmf 的实例供给。
-   本包只导入路线实际消费的后果，不以一个“tmf”名字构造 tmf。
-5. 同伦群按现有整数加法群使用，不能因为 E₂ 为 F₂ 向量空间就删掉 Toda 符号。
-   Bockstein 的负号仅在 mod-2 E₂ 标签中消失。
-
-来源审核状态：BHS、Pstrągowski、BX、Xu、IWX、BHSmot、BMQ 已核对仓库原文；
-BMQ 的图表也作了视觉核对。May 作者 PDF 已在线核对。Moss 1970 原始扫描本
-本次未取得，不能说已读过；用前于 LWX 的 Belmont–Kong v1 原文
-Theorem 1.1/4.11、Definition 2.10 核对了所需结论和 crossing 方向。
-Toda 原书没有本地核验副本，保留原始引用，同时明确标记通过 IWX §6 的原文
-复述及 BHS 低维计算核对、向 synthetic 模型的运输尚未证明。
-没有把这两项标为已完成原书证明核验。
-
-## 完整性范围与未归入 A(M) 的内容
-
-这是当前**选定证明路线的输入清单**，不是 LWX 全文参考文献清单。
-
-| 依赖段 | 本包提供 | 留给后续证明/C(M) |
+| 字段 / 类型 | 精确识别 | 后续交付 |
 | --- | --- | --- |
-| §3，解释 classical/synthetic 数据 | Pst/BHS 的提升、微分、E∞、实现、代数 | LWX 自己推导的公式与特殊化 |
-| §4–6，扩张和新工具 | 同一对象、比较、May 边界、提升三角适用性 | Generalized Leibniz、Mahowald、stretching、no-crossing 推论 |
-| Theorem 7.3、Remarks 7.4/7.5、Lemmas 7.10/7.11 | 原始 BX 的一个 θ，经典 θ/π₆₂/过滤缺口，BHS | λ 规范化、任意选择版本、synthetic 阶及选择无关性 |
-| Proposition 7.8 | 上述输入及经典 tmf 后果 | `DetectorInjectiveAt D 125 130 15`、过滤估计、C₃/C₄/C₅ 与 d₁₂ 的等价 |
-| Lemma 7.14 | 第一商、有限 λ 商、相容乘法、BHS | α₁/α₂/α₃ 的构造和所有局部等式 |
-| Lemma 7.16、Corollary 7.18 | Moss、Toda、π₆₂ 的阶、真实 λ/乘法/商映射 | 指定 Massey 值、零不定性、排除低过滤候选、2-extension |
-| Lemma 7.19 | Cν 真实三角及其模型适用性、标准 h₂ 标签 | Cν 的 d₃、胞腔标签、no-crossing 和 ν-extension |
-| Proposition 7.9 的反证 | 同一 Cν、quotient/λ 操作及 BHS rigidity | 表中潜在微分的穷尽性、两候选的排除和最终矛盾 |
-| T(M) | 标准 h₆²、现有同一内部谱序列（M 已定义） | 从上述 Main 命题推出它；未新增第二个 Final |
+| `classical : ClassicalSourceBinding D η E.classicalSource`、`synthetic_eta` | 同一经典convergence、η/ν映射、normalized η；单独的synthetic η标签识别 | `classicalInputsOfSource` 已用这些等式证明普通运输，不添加源事实 |
+| `algebra : AlgebraBinding D E.algebra` | 同一首λ商/cobar乘法；每个有限λ商的乘法与sphereAction检测；实际过滤乘法；经典球乘法检测 | 通用模型比较证明；不提供任何指定局部乘积值 |
+| `tmf : TmfBinding D G E.tmfSource` | detector的实际iso、unit方程、G两标签等式、同一球谱convergence | 源见证与路线模型的构造/比较 |
+| `applicability.nuCofiber` | 源ν/bottom/top三个lift分别等于D选择的实际map | 三角相容性由这些等式运输；不得接受任意lift版本 |
+| `applicability.moss` | 同一实际Adams塔的residual injectivity | 完备/强收敛适用证明，不是局部no-crossing结论 |
 
-明确排除：
+Pst/BHS源结果适用还要求 ν、λ商、Adams塔确实来自所声明构造，选定对象满足原文完备及收敛条件。不能新增无定义的 `Complete : Prop` 或仅用变量同名替代这些条件。源模型存在性、标准构造识别以及上述比较允许留作有准确签名的证明债；未经来源支持的任意模型通用公理不允许。
 
-- CSV 基正确性、Lin 的 relations/basis、具体 proofs.db 结果仍属于 C(M)。
-  未将“未知 d₅=0”“d₃ 的可能修正项=0”或含不定性的关系变成精确等式。
-- LWX 的新工具及 Proposition 7.8/7.9 没有进入 A(M)。
-- 经典 Toda coset/juggling、商映射/代表元传递等通用基础引理仍在 Def/内部证明。
-- 不为原始 BX 的内部证明重复要求 BJM 的全部归纳论证；使用其精确结论即可。
-- 不为本轮“接受 C(M) 的结果”路线导入机器证明重放需要的全部辅助谱、image-J
-  或 Appendix 手工 tmf differential 等额外输入。
-- Browder/HHR 的流形解释及非存在性用于论文引言的其他结论，不是当前唯一
-  T(M)=h₆² 非零永久存活的依赖，故不放入此包。
-- 本路线直接使用 BX 的无限判据。没有采用“任意有限提升 ⇒ 相容无限提升”，
-  因而不额外索取无限 homotopy limit 或一个无来源的紧致性公理。
+## 内部适配及其新增明确前提
 
-原有 56 行 claim ledger 服务历史原型、机器规则和其他目标，分类粒度不同；
-**不能将它的行数视为本路线 A(M) 的完成度**。本包使用独立且可检查的来源清单，
-不删除仍有其他消费者的历史接口。
+入口为 `KIP126/Main/Solution/Route/LiteratureAdapters/`，下列声明是内部定理，证明仍待完成处保留 `sorry`；它们不属于 Main/Axiom 接受集合。
 
-## 原文中需要保留的归一化备注
+- `May.may_signed_boundary` 从源TC3推出相同connecting maps的负等式。`may_boundary_after_exponent_two_projection` 只在显式加法投影的目标满足 x+x=0 后消符号；实际Mahowald应用必须构造相关页/过滤投影。不能令全部稳定同伦群成为F₂向量空间。
+- `Toda.synthetic_eta_squared` 负责实际低Massey/Moss与低Toda的运输；`synthetic_symmetric_two` 在θ∈π₆₂,₆₄、2θ=0下给λ²ηθ∈〈2,θ,2〉。其度为(63,64)，只断言membership，不取消高茎不定性。需要从同模型兼容张量三角及低维计算证明合适的对称Toda论证；不把IWX的C-motivic τηβ直接替换为synthetic公式。
+- `Tmf.tmf_high125_product_detected` 使用固定cobar/实际球乘法比较。`tmf_high125_detection` 另要求 `ClassicalHigh125Tail D`，即**经典**F26 π₁₂₅S=0。该尾部由C的有限页穷尽、Ravenel消失线、同一经典过滤的分离性导出。由此才得到每个同leading term的代表等于源产品并有非零unit像。该定理不推出synthetic λ-torsion消失或DetectorInjectiveAt。
+- `Tmf.tmf_route_inputs` 组合上述内部结果为 `TmfInputs D G`；这个旧名字现为内部路线后果类型。
+- `NuCofiber.nu_cofiber_applicability` / `nu_triangle` 用三个准确map等式运输源三角；输出是D的同一ν、cofiber及normalized maps。
+- `ComputationPrerequisites.tmf_labels_standard`、`nu_source_identification` 只用源标签绑定和经典Hopf输入，供C认证的适用前提；不依赖C结果，避免认证循环。
 
-LWX v2 Proposition 7.9 证明末尾写出 `S/(λ[h₂]) ≃ ν(Cν)`。
-与同文 §3 Notation 3.19 的 `C(hat f) ≃ ν(Cf)` 及
-`hat ν=[h₂] : S^(3,4)→S` 相比，这里的 λ 因子有归一化疑点。
-本包不把该印刷等式作为外部输入，而要求实际 normalized Cν triangle。
-后续反证只需“λ[h₂] 的倍数也是 [h₂] 的倍数，所以在 C(hat ν) 中为零”，
-再用该三角的 ν(Cν) 识别即可。此调整不改变 T(M)、所用经典 Cν 或机器表。
+## 本次直接原文及数据证据
 
-## 分阶段使用和验证
+Pst 1803.01804v3、BHS 1910.14116v3、BX 2302.11869v3、BHSmot 2010.10325v2、Xu 1410.6199v1、IWX 2001.04511v3、BMQ 2011.08956v4 均核对仓库存留原文相应片段。BMQ本地PDF Fig1.1经实际渲染确认62列空，并按图例检查c₄周期族。May作者PDF直接读取TC3符号及Lemma4.6，SHA256为`61f6f38ffc88becad1d482270526477de03c03e64b8871d353e3b3116d655763`。
 
-第二阶段的证明显式接收 `(a : Inputs D η L)` 和独立的 C(M) 输入。
-先用其字段证明模型上的选择无关性、工具、局部引理和两个 proposition，
-再接现有 `permanent_of_propositions`。不要为省略参数添加全局实例。
-之后构造实际 D、各文献运输证据和 C(M) 认证，是独立证明任务。
+IWX v3 `cor:main-Adams` 明确其引用图表完整到90茎；引用为2022 *Classical and C-motivic Adams charts*，固定作者[Zenodo v1记录6987157](https://zenodo.org/records/6987157)。本次实际解码完整原始CSV：
 
-验收检查包括统一入口定向编译、`Checks/Kervaire/LiteratureBoundary.lean`
-遍历新增命名空间的公理依赖、已有 M/Final 边界回归、来源文件 SHA/声明定位、
-Blueprint 声明检查及 diff 空白检查。Lean 编译能检查类型和依赖，不能认证
-文献的数学正确性或这个输入包确有见证。
+| 文件 | 原始物理行与内容 | SHA256 |
+| --- | --- | --- |
+| `Adams-classical-E2.csv` | 59：g, stem20, AF4；275：D h1 g, stem45, AF9；分别是该分次唯一记录 | `0b103227bf84d8c335b3e65c91219e1e2a7913bc95bac03f2ba52011abfaaa4c` |
+| `Adams-classical-Einfty.csv` | 204–207：stem62仅h₅²/AF2、h₅n/AF6、E₁+C₀/AF8、R/AF10 | `1e3b79c97472241543f1c58e713cf4c96447f553d99a94a7fc6ce3eeaac8393b` |
 
-2026-09-28 本地验收结果：
+这些是作者先前计算的原始输出与论文完整性陈述，用于核实准确外部事实；哈希本身不证明数学正确性，也未完成Lean数据认证。下载只放隔离临时目录，不改原始数据库。
 
-```text
-lake build +KIP126 \
-  KIP126.Checks.Kervaire.LiteratureBoundary \
-  KIP126.Checks.Kervaire.RouteBoundary \
-  KIP126.Checks.Kervaire.RouteFixedFinal \
-  KIP126.Checks.Kervaire.ChoiceBoundary \
-  KIP126.Checks.Interfaces.FoundationAndPaperTools
-```
+Moss 1970扫描仍未取得；此前直接核对 Belmont–Kong v1，本轮又直接读取固定 v2 的准确推广定理和§1.2前提，作为独立原始来源。旧版和新版定位分别保留，不能混写。Toda原书未直接读到；IWX §6明确为C-motivic重述。本次没有把这个证据缺口冒充已核验原书，且synthetic加强已归内部证明。
 
-通过（3240 jobs，未改依赖版本或共享缓存）。新增 A(M) 命名空间的公理检查
-通过，仅允许 Lean 的 `propext`、`Classical.choice`、`Quot.sound`。
-既有基础设施中的 `sorry`/开发公理仍保留，不属于本次证明成果。
+## 范围和证明债
 
-`python3 scripts/check_route_literature.py --lean-check /tmp/kip126-am-source-declarations.lean`
-通过：10 个总包字段、28 组来源条目、41 个声明引用、17 个本地源文件校验值；
-生成的 Lean 声明存在性检查也通过。28 是来源分组数，不是已证明定理数。
-`git diff --check` 和新增文件空白检查通过。
+仍由C(M)负责Lin坐标、基、乘积、微分、胞腔映射和穷尽认证；由本文推导负责λ规范化、任意 admissible 选择的 synthetic 二阶性、选择无关性、Massey局部值与零不定性、stretching、广义Leibniz/Mahowald、Prop.7.8/7.9及唯一标准T。BX 证明中一个共同 θ₅ 的 synthetic 二阶性另有原文依据：`kervairev2.tex:624–630`，其坐标 `(62,2)` 对应项目 `(62,64)`；不得将它与任意选择版本合并。Browder/HHR几何推论不属于该T必需A。机器重放若使用其他谱或本文新规则，应按实际依赖单独声明，不能用路线A的范围替代认证需求分析。
 
-`leanblueprint web` 生成成功；当前环境缺少 pdflatex/dvisvgm，因此不声称完成
-PDF 或矢量图渲染验证。生成的 1333 个 Lean 声明引用已在 `import KIP126`
-环境中全部核对，并再次检查只导出一个 Final 目标对应的 Challenge/Solution
-定理对。检查直接使用当前库，未构建旧 KIPBase。
+既往文档的3240-job build、28组来源及1333个Blueprint声明检查仅为历史记录。本次重构的实际定向编译与检查结果由本轮执行报告单独记录；本文件不把历史结果写成本轮通过，也不将任意编译通过视作来源核验或数学认证。
 
-M 的 Lean 定义和唯一 T(M) 的两个现有文件在本轮均未改动；所有修改留在本地。
+## 当前显式接受边界
+
+- `classical_source : StandardClassicalSourceExistence`：同一标准球谱，几何 η/ν 与标准来源绑定；Xu/IWX 所需经典结果。
+- `tmf_source : StandardTmfSourceExistence`：同一普通背景上 tmf 源对象与局部结果、connective/finite mod-2 type、真实环的交换性。
+- `sphere_vanishing_line` / `sphere_separated`：Ravenel 的独立无限范围结论；不是程序快照。
+- Synthetic 的 14 个叶子分别为 `nu_cofiber`、`full_lift`、`finite_lift`、`bockstein`、`permanent_lift`、`differentials`、`eInfty`、`filtration_lambda`、`e2_weight_vanishing`、`realization_detection`、`bx`、`low_ring`、`may_tc3`、`quotient_algebras`。全部带明确 `SourceModel D η G`，需要 η 的叶子还显式带 `EtaChoice`。
+- `quotient_algebras` 只接受 `Nonempty (QuotientAlgebraStructures D)`：实际正整数 λ 商的普通交换代数及单位。完整 `QuotientAlgebras` 的球作用和所选 ρ 的乘法相容由内部 `source_quotient_algebras` 给出。其负过滤窗口 `w+q−1<m` 来自第一商 E₂ 及有限商三角；映射/乘积适配用 `π_(1,-j) Q_i` 和 `π_(2,-2j) Q_i` 消失，不借用待识别的 BHS E∞ 限制映射或 C。这修正了第二轮把这部分适配仍留在 A18 中的问题。
+- `sphere_moss`：实际固定球谱映射 Adams 塔上的原始一般 statement；普通弱收敛、零复合和 crossing 前提保留。`MossSpecialization.moss_specialization` 到路线 `ThetaBMassey` 是内部证明债。
+
+`SourceModel` 本身只含几何/范畴/比较/适用范围，没有指定微分、局部乘积值、C₃/C₄/C₅、Prop.7.8/7.9 或 T。其数据构造、比较和适用范围的证明不由上列公理自动交付。所选 source 采用整个严格谱值图表范畴的导出局部化与 homotopy-sheaf 等价，保留高阶图表信息。
+
+内部 assembler 先接受叶子，构造 realization 坐标、ν兼容三角及其选择识别、实际 ν lax tensor 下 tmf algebra、有限 λ 商的同模型乘法比较，然后逐字段形成 `Inputs`。存在值的原始叶子只在这次组装内取见证；没有重新选择另一个 ordinary/synthetic 模型，也没有恢复原来的阶段总包投影传递体系。
+
+现行 `sources.json` 为 schema v2，检查脚本同时枚举实际 Main/Axiom/Literature 公理名与来源清单。哈希、字段覆盖和 Lean #check 都不等于来源数学真伪认证。最后验收与未核实项见[第三轮报告](audits/stage0-57647d2-iteration-3.md)；第二轮报告保留为历史快照。

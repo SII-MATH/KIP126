@@ -1,8 +1,11 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Selected.Proofs
+import KIP126.LinProgram.Interpretation.Selected.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Computation.LinProofs.Selected
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
+variable [KIP126.Computation.LinProofs.SphereTableCertificate]
 
 set_option maxRecDepth 4096
 

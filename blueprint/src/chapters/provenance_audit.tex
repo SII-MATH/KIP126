@@ -6,7 +6,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \section{Source-bearing input structures}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
-% VERIFIED-IN: KIP126/Main/Axiom/Provenance.lean, declaration SourceId.
+% VERIFIED-IN: KIP126/Def/References/Provenance.lean, declaration SourceId.
 \begin{definition}[Source identifier]
   \label{def:source-id}
   \lean{KIP126.External.SourceId}
@@ -20,7 +20,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
-% VERIFIED-IN: KIP126/Main/Axiom/Provenance.lean, declaration SourceKind.
+% VERIFIED-IN: KIP126/Def/References/Provenance.lean, declaration SourceKind.
 \begin{definition}[Source kind]
   \label{def:source-kind}
   \lean{KIP126.External.SourceKind}
@@ -30,7 +30,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
-% VERIFIED-IN: KIP126/Main/Axiom/Provenance.lean, declaration Locator.
+% VERIFIED-IN: KIP126/Def/References/Provenance.lean, declaration Locator.
 \begin{definition}[Source locator]
   \label{def:locator}
   \lean{KIP126.External.Locator}
@@ -45,7 +45,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
-% VERIFIED-IN: KIP126/Main/Axiom/Provenance.lean, declaration SourceRef.
+% VERIFIED-IN: KIP126/Def/References/Provenance.lean, declaration SourceRef.
 \begin{definition}[Source reference]
   \label{def:source-ref}
   \lean{KIP126.External.SourceRef}
@@ -59,7 +59,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs; Acceptance criteria.
-% VERIFIED-IN: KIP126/Main/Axiom/Provenance.lean, declaration ArtifactRef.
+% VERIFIED-IN: KIP126/Def/References/Provenance.lean, declaration ArtifactRef.
 \begin{definition}[Artifact reference]
   \label{def:artifact-ref}
   \lean{KIP126.External.ArtifactRef}
@@ -70,7 +70,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs and Acceptance criteria.
-% VERIFIED-IN: KIP126/Main/Axiom/Provenance.lean, declaration EvidenceMetadata.
+% VERIFIED-IN: KIP126/Def/References/Provenance.lean, declaration EvidenceMetadata.
 \begin{definition}[Evidence metadata]
   \label{def:evidence-metadata}
   \lean{KIP126.External.EvidenceMetadata}
@@ -83,7 +83,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md:149--167, explicit proposition-bearing wrappers.
-% VERIFIED-IN: KIP126/Main/Axiom/Provenance.lean, declaration ExternalResult.
+% VERIFIED-IN: KIP126/Def/References/Provenance.lean, declaration ExternalResult.
 \begin{definition}[External result]
   \label{def:external-result}
   \lean{KIP126.External.ExternalResult}
@@ -96,7 +96,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md:149--167, explicit proposition-bearing wrappers.
-% VERIFIED-IN: KIP126/Main/Axiom/Provenance.lean, declaration ExternalEvidence.
+% VERIFIED-IN: KIP126/Def/References/Provenance.lean, declaration ExternalEvidence.
 \begin{definition}[External evidence]
   \label{def:external-evidence}
   \lean{KIP126.External.ExternalEvidence}
@@ -112,7 +112,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 
 \section{Inventory validity and trust boundary}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceAvailability.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceAvailability.
 \begin{definition}[Source availability]
   \label{def:source-availability}
   \lean{KIP126.External.SourceAvailability}
@@ -125,7 +125,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   status class agrees with its flags.
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceStatusClass.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceStatusClass.
 \begin{definition}[Source status class]
   \label{def:source-status-class}
   \lean{KIP126.External.SourceStatusClass}
@@ -135,7 +135,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   Its encoder and decoder are inverse on the finite set of admitted classes.
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceEntry.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceEntry.
 \begin{definition}[Typed source entry]
   \label{def:source-entry}
   \lean{KIP126.External.SourceEntry}
@@ -152,7 +152,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, External inputs and Acceptance criteria.
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceInventory.inventory.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceInventory.inventory.
 \begin{definition}[Source inventory]
   \label{def:source-inventory}
   \lean{KIP126.External.SourceInventory.inventory}
@@ -169,7 +169,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:source-entry}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceRef.InventoryValid.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceRef.InventoryValid.
 \begin{definition}[Inventory-valid source reference]
   \label{def:inventory-valid-source-ref}
   \lean{KIP126.External.SourceRef.InventoryValid}
@@ -186,7 +186,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:source-ref,def:source-inventory}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration ExternalEvidence.InventoryValid.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration ExternalEvidence.InventoryValid.
 \begin{definition}[Inventory-valid external evidence]
   \label{def:inventory-valid-evidence}
   \lean{KIP126.External.ExternalEvidence.InventoryValid}
@@ -203,7 +203,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:external-evidence,def:inventory-valid-source-ref,def:artifact-ref}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceInventory.inventory_complete.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceInventory.inventory_complete.
 \begin{theorem}[Source inventory completeness]
   \label{thm:source-inventory-complete}
   \lean{KIP126.External.SourceInventory.inventory_complete}
@@ -221,7 +221,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \leanok
 \end{proof}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceInventory.inventory_globally_valid.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceInventory.inventory_globally_valid.
 \begin{theorem}[Global source-inventory validity]
   \label{thm:source-inventory-globally-valid}
   \lean{KIP126.External.SourceInventory.inventory_globally_valid}
@@ -239,7 +239,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \leanok
 \end{proof}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceInventory.inventory_valid.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceInventory.inventory_valid.
 \begin{theorem}[Source inventory row validity]
   \label{thm:source-inventory-valid}
   \lean{KIP126.External.SourceInventory.inventory_valid}
@@ -256,7 +256,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \leanok
 \end{proof}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/SourceInventory.lean, declaration SourceInventory.projectionManifest.
+% VERIFIED-IN: KIP126/Def/References/Literature/SourceInventory.lean, declaration SourceInventory.projectionManifest.
 \begin{definition}[Source projection manifest]
   \label{def:source-projection}
   \lean{KIP126.External.SourceInventory.projectionManifest}
@@ -270,7 +270,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:source-inventory,def:source-entry}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Evidence.lean, declaration ExternalEvidence.withArtifact_inventoryValid.
+% VERIFIED-IN: KIP126/Def/References/Evidence.lean, declaration ExternalEvidence.withArtifact_inventoryValid.
 \begin{theorem}[Inventory-valid artifact transport]
   \label{thm:inventory-valid-artifact-transport}
   \lean{KIP126.External.ExternalEvidence.withArtifact_inventoryValid}
@@ -317,7 +317,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
 
 \section{Claim ledger and catalogued inputs}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration ExternalRootId.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration ExternalRootId.
 \begin{definition}[External root identifier]
   \label{def:external-root-id}
   \lean{KIP126.External.ExternalRootId}
@@ -327,7 +327,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   may cross the project boundary.  It carries no proposition by itself.
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration ExternalClaimClass.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration ExternalClaimClass.
 \begin{definition}[External claim class]
   \label{def:external-claim-class}
   \lean{KIP126.External.ExternalClaimClass}
@@ -340,7 +340,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   itself is provenance metadata, not a proof of the associated proposition.
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration ExternalClaimRecord.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration ExternalClaimRecord.
 \begin{definition}[External claim record]
   \label{def:external-claim-record}
   \lean{KIP126.External.ExternalClaimRecord}
@@ -355,7 +355,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:external-root-id,def:external-claim-class,def:inventory-valid-source-ref}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration externalClaimLedger.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration externalClaimLedger.
 \begin{definition}[External claim ledger]
   \label{def:external-claim-ledger}
   \lean{KIP126.External.externalClaimLedger}
@@ -367,7 +367,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:external-claim-record}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration externalClaimLedger_complete.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration externalClaimLedger_complete.
 \begin{theorem}[External claim ledger completeness]
   \label{thm:external-claim-ledger-complete}
   \lean{KIP126.External.externalClaimLedger_complete}
@@ -386,7 +386,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \leanok
 \end{proof}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration externalClaimLedger_refs_nodup.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration externalClaimLedger_refs_nodup.
 \begin{theorem}[Unique canonical claim references]
   \label{thm:external-claim-refs-unique}
   \lean{KIP126.External.externalClaimLedger_refs_nodup}
@@ -404,7 +404,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \leanok
 \end{proof}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration externalClaimLedger_no_dependency_cycle.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration externalClaimLedger_no_dependency_cycle.
 \begin{theorem}[Acyclic external-claim dependencies]
   \label{thm:external-claim-dependency-acyclic}
   \lean{KIP126.External.externalClaimLedger_no_dependency_cycle}
@@ -424,7 +424,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \leanok
 \end{proof}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration CataloguedExternalResult.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration CataloguedExternalResult.
 \begin{definition}[Catalogued external result]
   \label{def:catalogued-external-result}
   \lean{KIP126.External.CataloguedExternalResult}
@@ -444,7 +444,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:external-result,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-source-ref,thm:external-claim-refs-unique}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration CataloguedExternalEvidence.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration CataloguedExternalEvidence.
 \begin{definition}[Catalogued external evidence]
   \label{def:catalogued-external-evidence}
   \lean{KIP126.External.CataloguedExternalEvidence}
@@ -463,7 +463,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:external-evidence,def:external-claim-ledger,def:external-claim-class,def:inventory-valid-evidence}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration externalClaimProjectionManifest.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration externalClaimProjectionManifest.
 \begin{definition}[External-claim projection manifest]
   \label{def:external-claim-projection}
   \lean{KIP126.External.externalClaimProjectionManifest}
@@ -480,7 +480,7 @@ This audit chapter records source identifiers, locators, inventories, claim ledg
   \uses{def:external-claim-ledger}
 \end{definition}
 
-% VERIFIED-IN: KIP126/Main/Axiom/Literature/Claims.lean, declaration every_source_has_valid_claim.
+% VERIFIED-IN: KIP126/Def/References/Literature/Claims.lean, declaration every_source_has_valid_claim.
 \begin{theorem}[Source coverage by claim roots]
   \label{thm:source-coverage-by-claims}
   \lean{KIP126.External.every_source_has_valid_claim}

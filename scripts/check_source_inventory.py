@@ -351,7 +351,7 @@ class InventoryValidator:
             # module first so a hand-edited Lean catalogue cannot be hidden by
             # a stale cache.
             built = subprocess.run(
-                ["lake", "build", "KIP126.Main.Axiom.Literature.Claims"],
+                ["lake", "build", "KIP126.Def.References.Literature.Claims"],
                 cwd=self.root,
                 check=False,
                 capture_output=True,

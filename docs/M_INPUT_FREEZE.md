@@ -1,12 +1,8 @@
-# 所选 §7 证明路线的 M 接口冻结记录
+# M / T 对象接口与来源比较
 
-合并 PR #139 远程更新后的联合审查见 [STAGED_INTERFACE_REVIEW.md](STAGED_INTERFACE_REVIEW.md)。本文件保留各自批次的范围和验证记录，不能据此宣称 M/A/C/T 已全部冻结。
+当前目录规则见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)。本次把固定标准基础、Adams 塔和标准类移入 Def，并加入基点拓扑空间、prespectrum、实际稳定同伦弱等价及 HF₂ 局部化的源实现接口。`standardFoundation` 与其源识别同属一个 `standardRealization`。构造证明仍使用 sorry，源对象和箭头的定义并非自由 Prop。
 
-本次冻结的是 **数学接口及其解释**，不是模型构造、A(M)/C(M) 的真实性或最终证明。
-后续 A(M) 的输入陈述已补齐，见 [A_INPUT_FREEZE.md](A_INPUT_FREEZE.md)；
-本文件末尾保留 M 冻结时的验证记录，不能据此推断后续 A/C 的证明完成度。
-范围为 LWX v2 的 Theorem 7.1，经 Proposition 7.8、7.9，连同证明它们使用的
-选择无关性、§3–6 工具、Toda/Moss、Cν 和 tmf 检测路线。最终 statement 保持原样。
+本轮已经补充全 ordinary derived smash 与源拓扑映射比较、synthetic 谱值图表/Day tensor/ν/λ/realization 的来源语言，以及同一实际塔的 E₂ 标签与第一 λ 商比较。准确声明的模型构造证明仍可 `sorry`，不能据此声称已构造完毕。源悬移及 Pst preferred sphere pairing 的最后自审状态、共同模型构造与验收结论见[本轮报告](audits/stage0-57647d2-iteration-2.md)。详细类型见[普通源接口](SOURCE_REALIZATION_INTERFACE.md)、[synthetic 来源接口](SYNTHETIC_SOURCE_GAP.md)；`StandardRouteModel` 别名本身不代替这些绑定。
 
 入口：`KIP126/Def/Kervaire/Route/Model/Coherent/Data.lean` 的
 `Kervaire.Route.Model H M Syn`。这里参数 `M : MilnorCooperations H` 是旧 API
@@ -43,7 +39,7 @@
 | 实际 Cν 三角 | `AuxiliaryData.nuRouteTriangle` | 由 νMap 的实际 cofiber 构造 f、底胞腔映射和顶胞腔映射；未另选自由 cell maps |
 | 标准悬移比较 | `ModelData.classicalSuspension` | 实际塔/layer 和 raw-cycle 商代表关系；不能以任意 E₂ 等价替代 |
 | 提升三角的对应条件 | `Route.Triangles.normalizedTriangle/NormalizedTriangleCompatible` | 三条箭头均由同一 D 的 selected normalized maps 按实际移位构造；Mahowald 显式要求这个三角 distinguished。仅有 νf 的 λ 分解不足以自动取得该条件；其推导不属于 M 的已知结论 |
-| normalized maps | `normalizedMap`、`normalizedExponent` | 指数由实际 Adams 塔 filtration 定义；所选 map 满足与同一 νf 的 λ 分解。它与文献 lifting triangle 的关系是明确 A(M) 输入/比较证明，非自动成立 |
+| normalized maps | `normalizedMap`、`normalizedExponent` | 指数由实际 Adams 塔 filtration 定义；所选 map 满足与同一 νf 的 λ 分解。它与文献 lifting triangle 的关系是明确的内部模型适配证明，非自动成立 |
 | 有限/无限扩张 | `Route.Extensions`、`Synthetic.ExtensionRelation` | 实际 normalized map 作用的两项过滤复形；`Finite/InfiniteExtensionWitness` 含页数、长度界、经典 cycle、synthetic E∞ 代表和真实解纤维 |
 | 不定性与 crossing | `ExtensionTargetCoset`、`EssentialExtension`、`Route.Extensions.Crossing/Stretching` | 原过滤复形的较短边界、真正的 shorter witnesses，非任意子群/候选列表；有限与无限情形分开 |
 | Massey/Toda/Moss | `Route.Massey`、`Route.Toda`、`StableHomotopy.Toda.Relation` | E₃ 的 `<h₅²,h₀,B>` 用实际 d₂ 定义系统的完整集合；Toda 用真实 distinguished cofiber 和全部 extensions；不定性不选点消除；Moss crossing 与 extension crossing 分开 |
@@ -104,32 +100,15 @@
 解释 C₃/C₄/C₅ 或新工具。已删除旧 `Near126Adams`、`ChoiceConditions`、
 `AnyChoiceCriterion` 的自由谓词中间接口。
 
-验收依据包括：路线相关 Lean 模块定向编译；标准 Final 类型不变的定义性检查；
-M/工具不导入 consumer axiom、CSV 或另一套谱序列的检查；实际度数及 Moss
-crossing 不等式检查；条件结论无新增公理的检查；Blueprint 声明核对。
-复杂基础证明允许待补，但本次新增路线代码本身没有 `axiom` 或 `sorry`。
+当前验收分别检查精确命题、对象来源、数据解释、来源适用条件、类型接线与证明责任。历史的 3227 jobs、1321 个 Blueprint 声明和旧总包边界检查不适用于本次重构。当前已经删除旧总包公理和对应最终占位 Solution；新标准 Final Challenge 仅导入 Def，条件 Solution 明列同一 A/C 与范围前提。实际 Final Solution 已通过 sourceRealization 和 acceptedInputs 接合这些前提，外层组装没有新增 sorry，但模型与内部引理仍有证明债。
 
-本地最终验证（2026-09-28）：
+本次新增模型、比较和内部论文引理有明确的 `sorry` 证明债；不再沿用“新增路线无 sorry”的历史结论。当前固定工具链的全库编译、声明一致性和数据检查结果见本次重构报告。编译不证明模型来源完整，也不认证计算输出。
 
-```text
-lake build +KIP126 \
-  KIP126.Checks.Kervaire.RouteBoundary \
-  KIP126.Checks.Kervaire.RouteFixedFinal \
-  KIP126.Checks.Kervaire.ChoiceBoundary \
-  KIP126.Checks.Interfaces.FoundationAndPaperTools
-```
+上轮的两项来源阻塞已补具体声明：ordinary derived smash 与张量/悬移/内 Hom 的混合方块绑定到 standardRealization；synthetic 来源与同一 D/ν/BHS/tmf、preferred sphere pairing、真实悬移和有限商边界绑定到 SourceModel。sourceRealization 给出同一 CS/TS 上的构造目标。模型构造、计算认证和 §3–7 证明债单独记录，不作为本阶段必须消除的 sorry 清单；最终审查结论见本轮报告。
 
-通过，报告 3227 jobs；既有证明占位及 linter 警告仍保留。`leanblueprint web`
-通过；在 `import KIP126` 的 Lean 环境逐条核对生成的 `blueprint/lean_decls`，
-1321 条声明引用全部存在，且 `Challenge.Final` / `Solution.Final` 下只导出
-同一个目标对应的一对定理。`git diff --check` 通过，新增文件另查无尾随空白。
+## 本次语义修正与责任
 
-仓库通用命令 `lake exe checkdecls blueprint/lean_decls` 因缺少历史库
-`KIPBase.olean` 未能运行到底；上述声明核对直接使用已编译的当前 `KIP126`
-环境完成，不把通用命令报告为通过，也没有为此构建旧库或更改依赖。
-
-仍须完成：构造所选 M 的实际见证；在该见证上提供所需 A(M)/C(M) 的精确且
-带来源的输入；冻结它们的完整清单；证明 §3–7 的论文推导；完成唯一 Final。
-现有 Challenge1/Challenge2 开发公理及历史 `sorry` 的信任边界没有被这次
-接口冻结消除。任何将来的扩展路线若需要新对象，必须单独说明扩展 M，
-不能悄悄重解释已冻结字段。
+- `Mod2Cohomology H n X` 使用负悬移 `Σ⁻ⁿX → HF₂`，和通常 Hⁿ(X)、UCT 同一约定。πₙHF₂ 的 F₂ 模结构另由 `mod2HF2HomotopyModule` 提供，避免把同伦下标一起反转。
+- `Def/Kervaire/Route/Multiplication/Operations.lean` 与 `Comparison.lean` 明确同一 λ 商 MonObj 乘法、球谱作用、cobar 乘法、检测和 associated-graded 的比较。它们没有指定局部乘积值；应用输入在 `AlgebraBinding`，不能作为源事实整体公理化。
+- `Main/Solution/Route/Conditional.lean` 陈述 A/C 到关键命题和同一个标准 T 的责任；一般消失线及经典 Adams 过滤分离性保留为具名范围/结构前提。
+- `(125,130)` 仅需要 λ 的单步注入，不能把未排除的 d₁₂ 分支对应的高幂 λ-torsion预先消掉。其他所需次数的全幂注入单独陈述。

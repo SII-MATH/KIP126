@@ -47,7 +47,7 @@ theorem sphereDoubleReducedBoundaryEquiv_lof_tmul (n k : ℤ) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ (a : LinearMap.ker (cooperationCounitF2 H R k))
       (b : LinearMap.ker (cooperationCounitF2 H R (n - k))),
     sphereDoubleReducedBoundaryEquiv H R K n (DirectSum.lof (ZMod 2) ℤ _ k (a ⊗ₜ[ZMod 2] b)) =
@@ -60,7 +60,7 @@ theorem sphereDoubleReducedBoundaryEquiv_lof_tmul (n k : ℤ) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a b
   change (gradedTensorLowerEquiv (R := ZMod 2)
     (V := fun i => LinearMap.ker (cooperationCounitF2 H R i))
@@ -91,7 +91,7 @@ theorem sphereDoubleReducedBoundaryEquiv_inclusion (n : ℤ)
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   have h : (reducedCooperationTensorInclusion H R
       (fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum 1)) (n - 1)).comp
       (sphereDoubleReducedBoundaryEquiv H R K n).toLinearMap =

@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Synthetic
+import KIP126.Def.References.Literature.Synthetic
 import Lean.Elab.Command
 
 /-! Check the tower-based filtration and consume the exact synthetic
@@ -68,5 +68,5 @@ run_cmd do
   for moduleName in (← getEnv).allImportedModuleNames do
     if (`KIPBase).isPrefixOf moduleName ||
         (`KIP126.Interface.Axiom).isPrefixOf moduleName ||
-        moduleName == `KIP126.Main.Axiom.Challenge2 then
+        moduleName == `KIP126.Main.Axiom then
       throwError "synthetic interface depends on an admitted fixed model: {moduleName}"

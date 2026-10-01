@@ -1,13 +1,17 @@
 # Section 7 路线的 C(M)：选取范围与交付边界
 
-本文件对应 `Main/Axiom/LinProgram/Route/Data.lean` 的 `Inputs D L G` / `CInput D L G`。
-这是**计算结果及其解释的交付类型**，没有默认实例、全局公理或生产证明。
-阶段二可显式接受 `I : Inputs D L G`；阶段一的任务是构造这样的值。
-本次完成接口定义和来源筛选，不宣称已证明 C(M)，也不宣称已证明其蕴涵主定理。
-
-这里的路线 `CInput` 当前尚未接入根 `Challenge2.ComputationInterface`，二者不能互换。
-它是待整合的路线交付规格，不是第二套全局阶段公理。统一接口的目标、当前差异与
-Main/Axiom 中剩余解释代码的归属见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
+本文件对应 `LinProgram/Route/Data.lean` 的 `Inputs D L G`，以及
+`Certification.lean` 的联合目标 `Certification D G := ∃ R L, CertifiedRealization R L G`。
+七组原子正确性条件全部绑定这个 R；L 的四个局部标签由同一个解释给出，G 与 A(M) 相同。
+生产目标在 `Interface/Challenge/LinProgram/Route.lean`，同型消费公理在
+`Main/Axiom/Computation/Route.lean`。二者都固定标准球谱背景，并显式要求
+`GeometricNuSourceIdentification D` 和 `G.Standard`，不对任意预先给定的 R/L/ν 映射断言计算成立。
+前者同时要求 h₂ 的非零永久存活/检测，以及 `D.auxiliary.nuMap` 等于同一
+`standardSourceBinding` 下由实际四元数 Hopf 映射稳定化得到的 `geometricNu`。
+一般 `NuDetectionIdentification` 仅表达 leading term；奇数倍 ν 也可满足它，不能据此唯一指定几何 ν。
+消费时局部 `rcases` 这个存在式；不从第二个全局 choice 取得解释。
+阶段一仍须证明全部原子目标；本文件不宣称已认证 C(M) 或完成论文推导。
+详情和后续证明责任见 [联合 C 边界](C_ROUTE_CERTIFICATION_BOUNDARY.md)。
 
 依据是仓库保存的论文 v2 `Main/Axiom/Literature/MainPaper/main.tex` 第 7 节及附录，
 逐段重新核对；历史 `Lin-program/summary.md` 不作为权威清单。
@@ -17,7 +21,7 @@ Main/Axiom 中剩余解释代码的归属见 [C(M) 交付说明](COMPUTATION_DEL
 ## 1. 数学对象和入口
 
 ```lean
-import KIP126.Main.Axiom.LinProgram.Route.Data
+import KIP126.LinProgram.Route.Certification
 -- D : Kervaire.Route.Model H M Syn
 -- L : Kervaire.Route.Labels H
 -- G : Literature.Route.TmfLabels H
@@ -41,8 +45,13 @@ import KIP126.Main.Axiom.LinProgram.Route.Data
 没有另选球谱序列、Cν 序列、页微分、乘法或胞腔映射。
 Cν 的其余局部基值是同一个 `realization` 中明确的基标签；这里只要求证明消费的
 胞腔映射值，不额外要求整个 Cν 模的乘法表/全部映射。
-ν 的几何识别、标准 Hopf 类检测及比较适用性沿用 A(M) 的条件。
+标准边界的定义在 `Certification/Standard.lean`。ν 的几何识别由
+`StandardClassicalSourceGeometry A.classicalSource` 与
+`A.bindings.classical.nu : D.auxiliary.nuMap = A.classicalSource.nu` 共同提供；
+标准 Hopf 类检测仍来自同一个 A 的经典输入。
 不能对任意未识别的 `nuMap` 无条件声称已认证了 Cν 文件。
+`standard_final_of_accepted_computation` 显式保留这个 `hGeometry` 参数，未用
+`sorry` 为任意 A 构造几何识别。后续来源模型必须提供这一同见证绑定。
 
 ## 2. 实际筛选范围
 
@@ -79,7 +88,7 @@ Cν 的其余局部基值是同一个 `realization` 中明确的基标签；这�
 
 `Route/selected.json` 给出**每条**断言的完整原始行、来源表、原行 id、源/靶次数和
 局部基编号；同文件的 `degrees` 保留每个基的全局行号、单项式及局部编号。
-`Route/Selected.lean` 是这个清单的机械生成版本；`Route/Records.lean` 提供具名投影定理，均显式依赖 `I : Inputs D L G`。
+`LinProgram/Route/Selected.lean` 是这个清单的机械生成版本；同目录 `Records.lean` 提供具名投影定理，均显式依赖 `I : Inputs D L G`。
 
 | 论文使用的等式/排除 | 原始来源 | 正确读取方式 |
 | --- | --- | --- |
@@ -122,7 +131,7 @@ Cν 的其余局部基值是同一个 `realization` 中明确的基标签；这�
 | Proposition 7.8 | stem125 AF≤4 空基、stem124 AF≤13、stem125–127 高过滤数据、g⁴Δh₁g 绑定 | θ₅² 的检测分支、tmf 检测论证、C₃/C₄/C₅ 与 d₁₂ 的关系 |
 | Fact 7.13 / Lemma 7.14 | V 的 row2569，log5990，log153768/462481/2671068，stem123/124 完整窗口 | 选择 α₁、α₂、α₃，有限 λ 商映射、乘 h₀ 消失 |
 | Fact 7.15 / Lemma 7.16 | Y 的 row2852、d₃(x₁₂₆,₄)、候选排除、Massey 所需 d₂ 与乘积查询 | Toda 检测、零不定性、Moss 条件与过滤比较 |
-| Corollary 7.18 | 上项和 h₀ 乘积查询 | 对任意代表元的 h₀-extension；不预设 extension 结论 |
+| Corollary 7.18 的必要弱化 | 上项和实际 AF12/13 消失、h₀ 过滤作用 | 存在 Y；对每个 Y，h₀Y 由 λ⁶T 非零检测；不要求任意代表的严格 λ⁶ 可除性 |
 | Fact 7.19 / Lemma 7.20 | X 的 row2433、实际 Cν 映射、三条 d₃、AF10 纠正项窗口 | 广义 Mahowald、λ³→λ⁵ 提升，再推到 λ⁹ |
 | Fact 7.21 / Proposition 7.9 | P/Q rows2622/2684、两个 h₂ 乘积边界、stem125 AF13、Cν 短入射源的完整基 | 线性组合穷尽、过滤提升、最后矛盾 |
 | Appendix 高过滤补充 | log154532–154537、154545，源与靶的完整 E₂ 坐标 | 由候选排除计算 E₅ 商空间；不能只检查某个单独向量 |
@@ -148,6 +157,24 @@ Cν 的其余局部基值是同一个 `realization` 中明确的基标签；这�
 因此“接口定义完成”不等于已经证明整个消费链充分。阶段二必须实际证明所列代数/范围/
 比较引理；发现依赖需要增加时应以明确源记录审查接口版本，不能临时悄悄增加外部结论。
 
+新增的内部范围与派生声明已经把上述责任落到源码：`sphere_vanishing_line` 使用原书
+Ravenel Th.3.4.5 的弱界 `0<t-s<2s-3`，不消去 h₀ 的零 stem 塔；
+`stem125_e5_zero_finite` 处理 s=26..64，`sphere_page_zero_stem125_tail` 处理 s≥65。
+`named_survive1000` 先要求从完整输入证明真实 E₁₀₀₀ 非零，再由
+`nonzero_permanent_of_survives1000` 排除无限尾部的出/入微分。
+`classical_stem125_filtration26_zero` 明确要求真实经典塔过滤分离，
+`classical_sphere_separated_of_strong_convergence` 列出从该球谱强收敛得到它的准确适配目标。
+高类、有限候选、W/U/T/G 与同一解释的比较及 Cν 的有限不被击中结论均有具名内部目标，
+不重复添加为 C 或 A 的无来源假设。上述复杂证明尚未完成。
+
+λ 窗口另有 `Main/Solution/Computation/Lambda.lean` 的明确同 A/I 目标：
+(62,64) 与 (124,128) 的所有 λ 幂/真实 realization 注入、任意 synthetic θ₅ 的二阶性，
+以及 (125,130) 的**单步** λ 注入和 BX 有限商零条件等价。
+后者不加强为所有 λ 幂无 torsion；这种加强会预先排除未知 d₁₂(h₆²) 分支。
+所需 stem63 AF≤0、stem125 AF≤2、stem126 AF3 均已在选集内（含空基）；
+负过滤由实际塔处理，无需扩充 Raw。精确源位置和 BHS 下标换算见
+[C 认证边界的 λ 窗口](C_ROUTE_CERTIFICATION_BOUNDARY.md#λ-窗口的精确推导接口)。
+
 ## 6. 重生成与信任边界
 
 ```bash
@@ -163,7 +190,9 @@ Cν 从其 DB 读取，另核对 top-cell map DB 和 ss.json。
 
 `--check` 从本地 Raw 重新生成并逐字比较 JSON/Lean，失败即退出，不接受缺失数据。
 Lean 回归同时检查全部记录的次数/编号，及缺失、重复、乱序、越界坐标不会变成零。
-新增文件没有 `sorry`、全局 `axiom`、默认数学正确性实例；依赖中的既有未证基础仍保留。
+数据/定义文件没有新增数学正确性默认实例。生产目标有公开 `sorry`，消费端有同型显式阶段公理；
+内部派生和范围证明在 `Main/Solution/Computation/Route.lean`，未完成证明继续标明 `sorry`。
+这些占位都不表示认证完成。
 
 新增 Cν DB、top-map DB、ss.json 来自本地发布目录
 `Lin-program/program/upstream/kervaire-49`，按完整文件字节固定摘要；
@@ -171,13 +200,30 @@ Lean 回归同时检查全部记录的次数/编号，及缺失、重复、乱�
 计算认证还必须证明源数据与实际数学对象的比较、各条结果及反证的可靠性。
 若重放使用本文新工具，先独立证明工具，再用于认证；不准调用最终定理反过来认证 C。
 
-## 7. 本批提交前验证
+## 7. 历史验证记录（重构前，不当作当前快照验证）
 
 - `select-route.py --check` 通过，检查 8 个固定输入及所有机械生成文件。
-- `lake build KIP126.Main.Solution.Computation.LinProgram.Route.Records KIP126.Checks.Computation.Route`
+- `lake build KIP126.LinProgram.Route.Records KIP126.Checks.Computation.Route`
   定向编译通过（2721 jobs），记录次数/坐标和解码边界回归通过。
 - 移除新增 Records/Checks 中的额外 `maxHeartbeats` 设置，并同步生成器；
   按默认 heartbeat 预算验证，不调整 CI 的预算规则。
 - `git diff --check` 通过；未修改依赖版本、共享缓存或既有数据库。
 
 这些验证不构造 `Inputs` 的数学见证，也不证明有限数据足以推出最终结论。
+
+## 8. 当前重构的检查
+
+`PYTHONDONTWRITEBYTECODE=1 python3 KIP126/LinProgram/Translate/select-route.py --check`
+已通过：648 次数、963 基向量、671 记录、73 乘积次数、4 底胞值、8 反证。
+JSON/原始文件仍在 `LinProgram`；只将生成 Lean 的输出目标迁到
+`LinProgram/Route`，输入字节和选择结果未变。
+`Checks/ClassicalAdams/RouteCertification.lean` 核对新生产/消费声明完整类型相同、
+消费声明确为 axiom，且生产目标未依赖其消费公理。Lean 检查结果由当前整体验证报告记录。
+
+§7 的逐步消费目标现另见 `Main/Solution/Route/ExtensionSteps.lean`：有限 ν 扩张的精确 stretching 实例、α₁ 的共同提升、Massey/Moss 条件、Q₉ 低过滤穷尽、全部 Y 选择的 h₀ 关系、λ 权重/代表适配、P/Q 过滤界和最终 Cν 边界桥。它们统一接受同一 `Inputs`，不改变原始 C 的有限强度；详细责任见 `C_ROUTE_CERTIFICATION_BOUNDARY.md`。
+
+几何 ν 边界收紧后的最小检查已通过：
+`lake build KIP126.Checks.ClassicalAdams.RouteCertification KIP126.Main.Solution.Route.LiteratureAdapters.ComputationPrerequisites KIP126.Main.Solution.Route.AcceptedComputation`
+（2947 jobs）。检查确认生产/消费的完整类型一致，强几何前提保留实际映射等式，
+生产目标未引用自身消费公理，标准适配器及带显式 `hGeometry` 的消费链类型正确。
+此项是接口/依赖检查，不是 Hopf 来源比较的证明或 Cν 数据认证。

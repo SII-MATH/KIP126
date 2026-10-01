@@ -47,7 +47,7 @@ def sphereDoubleReducedBoundaryEquiv (n : ℤ) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   exact gradedTensorLowerEquiv (R := ZMod 2)
     (V := fun i => LinearMap.ker (cooperationCounitF2 H R i))
     (W := fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum 1))

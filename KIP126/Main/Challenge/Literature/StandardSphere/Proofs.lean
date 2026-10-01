@@ -1,4 +1,4 @@
-import KIP126.Main.Solution.Literature.StandardSphere.Proofs
+import KIP126.Def.References.Literature.StandardSphere.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 

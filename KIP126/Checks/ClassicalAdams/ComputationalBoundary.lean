@@ -1,6 +1,10 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
+import KIP126.LinProgram.Interpretation.Classes.Data
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 /-! The internal calculation must not obtain its sequence from a Mathlib adapter
 or import the historical KIPBase component. -/
@@ -28,3 +32,4 @@ example (r : ℤ) : KIP126.Classical.Adams.sphereAdamsData.diffDeg r = (r, r - 1
 open KIP126.Classical.Adams KIP126.StableHomotopy in
 example : sphereAdamsData =
     adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum := rfl
+end

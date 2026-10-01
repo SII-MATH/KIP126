@@ -2,8 +2,12 @@ import KIP126.Checks.AxiomInputs
 import KIP126.Mathlib.ClassicalAdams.FinalComparison.Proofs
 import Lean.Elab.Command
 
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
+
 /-! Guard the theorem form and the three disclosed fixed inputs. Development
-checks report inherited Challenge2 type debt; strict proof completion remains
+checks report inherited computation interpretation type debt; strict proof completion remains
 an explicit `kip126.checks.strictStageConsumerAudit` obligation. -/
 
 open Lean Elab Command in
@@ -22,3 +26,4 @@ run_cmd do
       throwError "missing disclosed specified-class comparison input: {a}"
 
 #print axioms KIP126.Classical.Adams.h6Square_comparison
+end

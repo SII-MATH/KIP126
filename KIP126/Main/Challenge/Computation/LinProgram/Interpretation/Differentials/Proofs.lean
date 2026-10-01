@@ -1,8 +1,11 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Proofs
+import KIP126.LinProgram.Interpretation.Differentials.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Computation.LinProofs
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
+variable [KIP126.Computation.LinProofs.SphereTableCertificate]
 
 /-- The downstream API: prove a finite lookup, then use the same soundness
 assumption for every record. No per-record external hypothesis is needed. -/

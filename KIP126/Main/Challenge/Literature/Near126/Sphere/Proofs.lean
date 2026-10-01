@@ -1,8 +1,10 @@
-import KIP126.Main.Solution.Literature.Near126.Sphere.Proofs
+import KIP126.Def.References.Literature.Near126.Sphere.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Computation.Near126
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
 open KIP126.Classical.Adams
 open KIP126.Core.SpectralSequence
 

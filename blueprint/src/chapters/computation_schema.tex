@@ -102,9 +102,9 @@ stage witness instead of importing their Interface proof implementations.
 
 \begin{theorem}[Bounded actual sphere multiplication comparison]
   \label{thm:bounded-sphere-multiplication}
-  \lean{KIP126.Challenge2.SphereMultiplicativeInterface}
+  \lean{KIP126.Comparison.SphereMultiplicativeInterface}
   \lean{KIP126.Classical.Adams.Sphere.Multiplication.unitSecondCycle,KIP126.Classical.Adams.Sphere.Multiplication.firstProduct}
-  \lean{KIP126.Interface.Challenge.sphereMultiplicativeInterface,KIP126.Interface.Solution.sphereMultiplicativeInterface}
+
   \uses{def:hf2-adams-tower,def:lin-e2-catalogue}
   There is a bounded Lin presentation $P$ on the fixed sphere Adams
   sequence whose coordinate unit maps to the second-cycle class of the
@@ -266,7 +266,7 @@ stage witness instead of importing their Interface proof implementations.
 % database_ss.cpp:146--163; ss.cpp:281--328,374--436.
 \begin{definition}[Lossless staircase states and finite interpretation]
   \label{def:lin-staircase-states}
-  \lean{KIP126.Computation.LinProofs.Raw.StaircaseRow,KIP126.Computation.LinProofs.State.decode,KIP126.Core.SpectralSequence.ReachesPage,KIP126.Core.SpectralSequence.IsBoundaryBy,KIP126.Challenge2.StaircaseClaimStatement}
+  \lean{KIP126.Computation.LinProofs.Raw.StaircaseRow,KIP126.Computation.LinProofs.State.decode,KIP126.Core.SpectralSequence.ReachesPage,KIP126.Core.SpectralSequence.IsBoundaryBy,KIP126.Comparison.StaircaseClaimStatement}
   \uses{def:lin-spectrum-catalogue}
   The fixed sphere snapshot retains every signed integer, coordinate string,
   row identifier, and SQL NULL.  A known outgoing or incoming pair gives an
@@ -281,7 +281,7 @@ stage witness instead of importing their Interface proof implementations.
 
 \begin{theorem}[Fixed sphere staircase delivery]
   \label{thm:lin-staircase-delivery}
-  \lean{KIP126.Challenge2.SphereStaircaseInterface,KIP126.Interface.Challenge.sphereStaircaseInterface}
+  \lean{KIP126.Comparison.SphereStaircaseInterface}
   \uses{def:lin-staircase-states}
   \notready
   There is a Lin comparison for which every one of the $23822$ rows of the
@@ -300,7 +300,7 @@ stage witness instead of importing their Interface proof implementations.
 % mylog.cpp:120--148,151--206. The actual artifact contains no exclusions table.
 \begin{definition}[Conditional trial contexts and candidate coverage]
   \label{def:lin-conditional-branches}
-  \lean{KIP126.Computation.LinProofs.Branch.scopeRows,KIP126.Computation.LinProofs.Branch.FiniteEquation,KIP126.Computation.LinProofs.Branch.CandidateWindow.equations,KIP126.Computation.LinProofs.Branch.CandidateCoverage,KIP126.Computation.LinProofs.Branch.CandidateExhaustion,KIP126.Challenge2.LinBranchInterface}
+  \lean{KIP126.Computation.LinProofs.Branch.scopeRows,KIP126.Computation.LinProofs.Branch.FiniteEquation,KIP126.Computation.LinProofs.Branch.CandidateWindow.equations,KIP126.Computation.LinProofs.Branch.CandidateCoverage,KIP126.Computation.LinProofs.Branch.CandidateExhaustion,KIP126.Comparison.LinBranchInterface}
   The retained log is scoped by increasing row identifier and trial depth.
   A T or TI row introduces an assumption under its complete ancestor stack;
   TI stores the target degree.  Refutation means that these actual internal

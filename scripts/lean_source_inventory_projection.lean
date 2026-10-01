@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-!
 This tiny executable-facing module exports the projection which is shared by

@@ -54,7 +54,7 @@ theorem sphereH6DoubleInternalE2_eq_zero_iff_polynomial :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     sphereH6DoubleInternalE2 H R K B hK hD hU hM a ha (sphereMilnorUnitCoefficient H R) = 0 ↔
       ∃ b : LinearMap.ker (cooperationCounitF2 H R 128),
         differentialPolynomial 1 (cooperationMilnorPolynomial H R B 128 b.val) =
@@ -62,7 +62,7 @@ theorem sphereH6DoubleInternalE2_eq_zero_iff_polynomial :
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   refine (sphereH6DoubleInternalE2_eq_zero_iff_homologyD1 H R K B hK hD hU hM a ha
     (sphereMilnorUnitCoefficient H R)).trans ?_
   have h := sphereAdamsHomologyD1_mem_range_iff_polynomial H R K B hK hD hU hM 128

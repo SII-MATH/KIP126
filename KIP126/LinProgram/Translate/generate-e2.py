@@ -7,7 +7,7 @@ from pathlib import Path
 if len(sys.argv) not in (2,3):
  raise SystemExit('usage: generate-e2.py CSV_DIRECTORY [OUTPUT_DIRECTORY]')
 src=Path(sys.argv[1])
-dst=Path(sys.argv[2]) if len(sys.argv)==3 else Path(__file__).resolve().parents[1]/'Generated'
+dst=Path(sys.argv[2]) if len(sys.argv)==3 else Path(__file__).resolve().parents[3]/'KIP126/LinProgram/Generated'
 expected_sha256 = {
  'generators': '3c4e45a1e28837e651e729bee14e7c62a99f797bc650d69e8a79aec13a762c72',
  'relations': '8b4b67d6fb3c9a3a264813ea780340e73b1a66290c8616d3308ae1fc19f3add5',

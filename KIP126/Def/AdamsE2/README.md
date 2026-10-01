@@ -2,13 +2,13 @@
 
 ## 1. 预期
 
-保存 Adams E₂ 与 Lin 商代数的共享数学对象和确定性计算工具：presentation、生成元/关系、分次分量、表达式、乘法、basis schema、解析与 certificate checker。程序的固定原始数据和具体输出属于 Main 的 LinProgram 管线；“这些数据正确给出 basis/维数/非零性”的证明属于 Interface。
+保存 Adams E₂ 与 Lin 商代数的共享数学对象和确定性计算工具：presentation、生成元/关系、分次分量、表达式、乘法、basis schema、解析与 certificate checker。程序的固定原始数据和具体输出属于独立 `KIP126/LinProgram/` 管线；“这些数据正确给出 basis/维数/非零性”的证明属于 Interface。
 
 ## 2. 现有
 
-Def 中已有抽象 `Presentation`、`PageAlgebra`、表模型、Lin 多项式商、classes、表达式和值、纯 Lean 计算器、basis row schema、relation checker 和 certificate 数据。basis 正确性 statement、依赖它的实际 `Module.Basis` 构造、square detection 归档证明和 dimension 证明已经迁到 `Interface/Solution/LinProgram`；其中 `basisTable_correct` 仍有一个公开 `sorry`，后两类已有实质 kernel-checked 证明。固定 `LinE2Presentation` 及其依赖已迁到 `Main/Axiom/LinProgram`。
+Def 中已有抽象 `Presentation`、`PageAlgebra`、表模型、Lin 多项式商、classes、表达式和值、纯 Lean 计算器、basis row schema、relation checker 和 certificate 数据。basis 正确性 statement、依赖它的实际 `Module.Basis` 构造、square detection 归档证明和 dimension 证明已经迁到 `Interface/Solution/LinProgram`；其中 `basisTable_correct` 仍有一个公开 `sorry`，后两类已有实质 kernel-checked 证明。固定 `LinE2Presentation` 及其依赖已迁到 `LinProgram`。
 
-边界仍不纯：`LinModel/Data`、`LinCompute/Data` 直接 import Main 的 generated E₂，`Classes/Data` import Main 的 evidence-bearing interpretation。当前这些路径不递归引入项目 axiom，但确实把固定生成数据的模块所有权反向带进 Def。`coordinateCheck_sound` 还有 `sorry`，且 issue #138 已决定它不是当前冻结 A₀，只是工具内部正确性债务。
+边界仍不纯：`LinModel/Data`、`LinCompute/Data` 直接 import 管线的 generated E₂，`Classes/Data` import 其 evidence-bearing interpretation。当前这些路径不递归引入项目 axiom，但确实把固定生成数据的模块所有权反向带进 Def。`coordinateCheck_sound` 还有 `sorry`，且 issue #138 已决定它不是当前冻结 A₀，只是工具内部正确性债务。
 
 ## 3. 粗略完成度
 
@@ -26,7 +26,7 @@ Def 中已有抽象 `Presentation`、`PageAlgebra`、表模型、Lin 多项式�
 
 ## 5. 建议步骤
 
-1. 先切断 `Def/AdamsE2 → Main/Axiom` 三条反向 import，以参数传递固定 raw/generated 数据。
+1. 先切断 `Def/AdamsE2 → LinProgram` 三条反向 import，以参数传递固定 raw/generated 数据。
 2. 编译并审计已迁 Interface 的 basis、detection、dimension 纵切面。
 3. 为每个 checker 写“语法结果意味着什么数学命题”的小 theorem，再组合成冻结接口。
 4. 最后扩展 record schema；每次扩展同时加入翻译覆盖统计和语义回归。

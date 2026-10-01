@@ -1,9 +1,9 @@
 import KIP126.Checks.ClassicalAdams.StandardSquareGeneric
-import KIP126.Main.Solution.Literature.StandardSphere.Proofs
+import KIP126.Def.References.Literature.StandardSphere.Proofs
 import Lean.Elab.Command
 
 /-! The fixed specialization uses the existing foundation and Milnor
-coordinates projected from one Challenge1 witness. That witness now also
+coordinates projected from one structural realization witness. That witness now also
 contains Lin-basis data, so its import closure includes the corresponding
 types. The separate StandardSquareGeneric check preserves the proof's
 independence from those data; this check audits the fixed stage dependency. -/

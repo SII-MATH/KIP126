@@ -1,4 +1,4 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.Proofs
+import KIP126.LinProgram.Interpretation.Differential.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
@@ -30,6 +30,8 @@ theorem Challenge.LinE2Presentation.secondDifferential_square_eq_zero (P : LinE2
     (x : KIP126.LinE2.E2At s t) :
     P.secondDifferential (s + s) (t + t) ht (KIP126.LinE2.mulAt x x) = 0 := by
   sorry
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
 
 /-- Conditional vanishing for the existing computational square, not for a
 newly chosen differential. The compatibility hL is not supplied by the Lin axiom. -/

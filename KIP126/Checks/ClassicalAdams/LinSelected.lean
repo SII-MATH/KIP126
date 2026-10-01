@@ -1,6 +1,11 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Selected.Proofs
+import KIP126.LinProgram.Interpretation.Selected.Proofs
 import KIP126.Checks.ClassicalAdams.LinProofs
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+variable [KIP126.Computation.LinProofs.SphereTableCertificate]
+
 
 open Lean Elab Command in
 run_cmd do
@@ -44,3 +49,4 @@ example {R : Type} [Ring R] (E : SpectralSequence (ModuleCat R) (ℤ × ℤ))
     (r : ℤ) (p q : ℤ × ℤ) (hdeg : p + E.diffDeg r ≠ q)
     (x : E.Page 2 p) (y : E.Page 2 q) : ¬ HasDifferential E r p q x y :=
   fun h => hdeg h.target_degree
+end

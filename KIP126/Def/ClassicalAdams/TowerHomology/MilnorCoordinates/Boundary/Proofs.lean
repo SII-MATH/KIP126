@@ -49,7 +49,7 @@ theorem sphereTowerHomologyWordEquiv_boundary_basis_single (s : ℕ) (n k : ℤ)
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     let e := LinearEquiv.cast (R := ZMod 2)
       (M := fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum (s + 1)))
       (show n = (n + 1) - 1 by omega)
@@ -60,7 +60,7 @@ theorem sphereTowerHomologyWordEquiv_boundary_basis_single (s : ℕ) (n k : ℤ)
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   dsimp only
   rw [← reducedCooperationTensorInclusion_lof_tmul H R
     (fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum s)),

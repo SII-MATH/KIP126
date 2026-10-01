@@ -4,7 +4,7 @@ import Lean.Elab.Command
 
 /-! The generic standard-square proof must remain independent of Lin data
 and stage witnesses. Check its own import closure before the fixed
-specialization imports the bundled Challenge1 witness. -/
+specialization imports the bundled structural realization witness. -/
 
 open Lean Elab Command in
 run_cmd do

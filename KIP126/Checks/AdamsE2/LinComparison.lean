@@ -1,6 +1,11 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.E2
+import KIP126.LinProgram.E2
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+variable [KIP126.Comparison.SphereBasisInterface (inferInstance : KIP126.Classical.Adams.LinE2Presentation)]
+
 
 namespace KIP126.Classical.Adams
 open KIP126.LinE2
@@ -54,3 +59,4 @@ run_cmd do
 
 #print axioms KIP126.Classical.Adams.computedH6_mul_self
 #print axioms KIP126.Classical.Adams.data_h0_h1_page_product
+end

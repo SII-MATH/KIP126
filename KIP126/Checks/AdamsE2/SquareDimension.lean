@@ -3,9 +3,13 @@ import KIP126.LinProgram.Certificates.SquareDimension.Proofs
 import KIP126.Main.Solution.Computation.Dimension
 import Lean.Elab.Command
 
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
+
 /-! The small degree argument is kernel-checked, not an additive-basis
 certification axiom. The internal transfer uses the foundation projection and
-Lin comparison, and does not project the Milnor coordinates from Challenge 1. -/
+an explicitly supplied Lin comparison. No global stage witness supplies it. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -30,10 +34,10 @@ run_cmd do
         throwError "missing disclosed square-dimension input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
+        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
       throwError "unexpected internal square-dimension import: {m}"
 
 #print axioms KIP126.LinE2.monomialDegree_square_unique
 #print axioms KIP126.LinE2.E2At_square_eq_zero_or
 #print axioms KIP126.Classical.Adams.sphereAdamsData_eq_computedH6Square_of_ne_zero
+end

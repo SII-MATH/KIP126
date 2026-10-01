@@ -1,6 +1,6 @@
 # 当前冻结模型上的 A(M)
 
-入口为 `KIP126.Main.Axiom.Literature.Route`，主类型为 `Inputs D η L`。
+入口为 `KIP126.Def.References.Literature.Route`，主类型为 `Inputs D η L`。
 它集中当前 §7 证明路线使用的前人结果，全部引用同一个 `Route.Model`。
 仅声明输入类型，没有安装全局公理或默认实例，也没有证明这些输入。
 

@@ -1,8 +1,10 @@
-import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Proofs
+import KIP126.Def.References.Literature.Near126.Sphere.Boundaries.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Computation.Near126
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
 open KIP126.LinE2 KIP126.Classical.Adams KIP126.Core.SpectralSequence
 
 attribute [local irreducible] KIP126.LinE2.homogeneousPart

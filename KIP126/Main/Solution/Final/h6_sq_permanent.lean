@@ -1,20 +1,39 @@
-import KIP126.Interface.Axiom.StandardSphere.Classes.Data
-import KIP126.Def.SpectralSequence.Permanence.Predicates
+import KIP126.Def.Kervaire.Route.Source.Construction
+import KIP126.Main.Axiom.Literature.Source
+import KIP126.Main.Solution.Literature.SourceAdapters
+import KIP126.Main.Solution.Route.AcceptedComputation
 
-/-! The single final proof obligation T(M), paired with Main/Challenge/Final.
-The proof must implement the paper's deductions from A(M) and C(M). It remains
-unfinished. CSV/standard class comparisons are reusable lemmas in the
-computation interpretation layer, not a second version of the final theorem.
-No Challenge placeholder is used as a proof.
+/-! The standard Final through explicit A/C consumption on ONE source
+model. This outer proof has no new placeholder and imports no Challenge.
+It still depends on the separately declared model/comparison and paper
+proof debts. Hence this file is not a completed proof of the Kervaire
+theorem: step zero freezes the implication and all of its responsibilities.
 -/
-namespace KIP126.Solution.Final.H6SquarePermanent
+namespace KIP126.Main.Solution
+open CategoryTheory KIP126.StableHomotopy KIP126.Classical.Adams
+open KIP126.Kervaire.Route KIP126.Literature.Route
+open KIP126.Core.SpectralSequence
 
-open KIP126.Classical.Adams KIP126.Core.SpectralSequence
-
-/-- The standard h₆² has a common Z∞ representative projecting to it on E₂,
-whose E∞ image is nonzero, in bidegree (s,t) = (2,128). -/
 theorem h6_sq_permanent :
     NonzeroSurvival sphereAdamsData (2, 128) standardH6Square := by
-  sorry
+  obtain ⟨CS, hCS, hGeometry⟩ := KIP126.Main.Axiom.Literature.classical_source
+  obtain ⟨TS, hTS, hComm⟩ := KIP126.Main.Axiom.Literature.tmf_source
+  let R := sourceRealization CS TS hGeometry ⟨0, hTS.connective⟩ hTS.finiteMod2Type
+  letI := R.synthetic
+  letI := R.cofiber
+  letI := R.symmetric
+  have hc : ClassicalSourceResults standardMilnorCooperations R.source.classicalSource := by
+    simpa only [R.classicalSource_eq] using hCS
+  have ht : TmfSourceResults R.source.tmfSource := by
+    simpa only [R.tmfSource_eq] using hTS
+  have hm : letI := R.source.tmfSource.algebra
+      IsCommMonObj R.source.tmfSource.spectrum := by
+    exact Eq.mpr (congrArg (fun T : TmfSourceData standardFoundation.hf2 =>
+      letI := T.algebra
+      IsCommMonObj T.spectrum) R.tmfSource_eq) hComm
+  let A := Literature.acceptedInputs R.D R.eta R.labels R.source hc ht hm
+  apply Route.standard_final_of_accepted_computation R.D R.eta R.labels A
+  change StandardClassicalSourceGeometry R.source.classicalSource
+  exact R.source.geometry
 
-end KIP126.Solution.Final.H6SquarePermanent
+end KIP126.Main.Solution

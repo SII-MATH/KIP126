@@ -17,7 +17,7 @@ theorem cooperationReducedCobarDiagonal_inclusion (n : ℤ) :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R n),
       reducedCooperationSquareInclusion H R n
         (cooperationReducedCobarDiagonal H R B K hU hM n a) =
@@ -25,7 +25,7 @@ theorem cooperationReducedCobarDiagonal_inclusion (n : ℤ) :
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   exact LinearMap.codRestrictOfInjective_comp_apply _ _ _ _ a
 
@@ -35,7 +35,7 @@ theorem cooperationReducedCobarDiagonal_polynomial (n : ℤ) :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R n),
       cooperationTensorMilnorPolynomial H R B n
         (reducedCooperationSquareInclusion H R n
@@ -44,7 +44,7 @@ theorem cooperationReducedCobarDiagonal_polynomial (n : ℤ) :
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   rw [cooperationReducedCobarDiagonal_inclusion]
   exact cooperationCobarDiagonal_polynomial H R B K hU hM n a.val

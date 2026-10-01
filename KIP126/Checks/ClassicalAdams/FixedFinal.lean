@@ -1,64 +1,64 @@
-import KIP126.Checks.AxiomInputs
 import KIP126.Main.Challenge.Final.h6_sq_permanent
+import KIP126.Main.Solution.Route.Conditional
 import KIP126.Main.Solution.Final.h6_sq_permanent
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Comparison.Proofs
+import KIP126.Main.Solution.Computation.Comparisons.Classes
 import Lean.Elab.Command
 
-/-! Exactly one final target, paired with one proof obligation. The comparison
-lemmas may use C(M), but must not introduce a second final theorem. -/
+/-! Both the conditional route and the actual outer A/C assembly conclude
+exactly the same standard T. The latter still has explicit downstream proof
+debts; this check does not assert a completed proof. -/
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  let challenge := ``KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent
-  let solution := ``KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent
-  let some (.thmInfo ci) := env.find? challenge | throwError "missing final target"
-  let some (.thmInfo si) := env.find? solution | throwError "missing final proof obligation"
-  unless ci.type == si.type do
-    throwError "Challenge/Solution statement mismatch"
-  unless si.levelParams.isEmpty do
-    throwError "unexpected universe parameters"
-  if si.type.isForall then throwError "unexpected public parameter"
-  unless ci.value.getUsedConstants.contains ``sorryAx do
-    throwError "Challenge must remain a statement placeholder"
-  for (name, info) in env.constants.toList do
-    if (`KIP126.Challenge.Final).isPrefixOf name ||
-        (`KIP126.Solution.Final).isPrefixOf name then
-      if let .thmInfo _ := info then
-        unless name == challenge || name == solution do
-          throwError "extra final theorem: {name}"
-  let logical := [``propext, ``Classical.choice, ``Quot.sound]
-  let foundation := ``KIP126.Classical.Adams.standardFoundation
-  let inputs := [foundation, ``KIP126.Classical.Adams.linE2Presentation]
-  -- The unfinished Solution exposes its own proof debt. Its current placeholder
-  -- does not establish an actual use of C(M) in a mathematical proof.
-  let axioms ← liftCoreM (collectAxioms solution)
+  let some challenge := env.find? ``KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent
+    | throwError "missing standard Challenge"
+  let some conditional := env.find? ``KIP126.Main.Solution.Route.standard_final_of_inputs
+    | throwError "missing same-model conditional derivation"
+  let mut conclusion := conditional.type
+  while let .forallE _ _ body _ := conclusion do
+    conclusion := body
+  unless conclusion == challenge.type do
+    throwError "conditional route must conclude precisely the standard Final type"
+  let some (.thmInfo final) := env.find? ``KIP126.Main.Solution.h6_sq_permanent
+    | throwError "missing outer A/C assembly"
+  unless final.type == challenge.type do
+    throwError "outer A/C assembly changed the standard target"
+  if final.value.getUsedConstants.contains ``sorryAx then
+    throwError "outer assembly must use the explicit model/A/C/route chain"
+  let axioms ← liftCoreM (collectAxioms ``KIP126.Main.Solution.h6_sq_permanent)
+  unless axioms.contains ``KIP126.Main.Axiom.Computation.route_certification &&
+      axioms.contains ``KIP126.Main.Axiom.Literature.classical_source &&
+      axioms.contains ``KIP126.Main.Axiom.Literature.tmf_source do
+    throwError "outer assembly no longer consumes its named A/C inputs"
   for a in axioms do
-    unless KIP126.Checks.AxiomInputs.allows (logical ++ [``sorryAx] ++ inputs) a do
-      throwError "unexpected final dependency: {a}"
-  unless axioms.contains ``sorryAx do
-    throwError "update the proof-status audit when the final proof is completed"
-  unless KIP126.Checks.AxiomInputs.uses axioms foundation do
-    throwError "missing fixed foundation dependency"
-  -- The merged Challenge2 type contains unfinished structural comparisons.
-  -- As in Checks.AdamsE2.LinBasis, disclose its existing dependency closure;
-  -- this is a boundary check, not a claim of axiom-free certification.
-  let boundaryAxs ← liftCoreM (collectAxioms ``KIP126.Main.Axiom.challenge2)
-  let comparison := ``KIP126.Classical.Adams.computedH6Square_eq_standardH6Square
-  let some (.thmInfo comparisonInfo) := env.find? comparison
-    | throwError "missing CSV/standard comparison proof"
-  if comparisonInfo.value.getUsedConstants.contains ``sorryAx then
-    throwError "CSV/standard comparison must retain its actual conditional proof"
-  for a in ← liftCoreM (collectAxioms comparison) do
-    unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a || boundaryAxs.contains a do
-      throwError "CSV/standard comparison acquired a dependency outside its stage inputs: {a}"
+    unless [``propext, ``Classical.choice, ``Quot.sound, ``sorryAx].contains a ||
+        (`KIP126.Main.Axiom).isPrefixOf a do
+      throwError "unclassified axiom in outer assembly: {a}"
 
-open KIP126.Classical.Adams KIP126.Core.SpectralSequence in
-example : NonzeroSurvival sphereAdamsData (2, 128) standardH6Square :=
-  KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent
+  -- A18 accepts source algebra existence only. The action and the selected
+  -- cofiber restriction must remain internal transport obligations.
+  let some (.axiomInfo quotientSource) :=
+      env.find? ``KIP126.Main.Axiom.Literature.quotient_algebras
+    | throwError "missing explicit quotient source axiom"
+  let sourceTypeNames := quotientSource.type.getUsedConstants
+  unless sourceTypeNames.contains ``KIP126.Literature.Route.QuotientAlgebraStructures do
+    throwError "quotient source no longer states the raw algebra existence"
+  if sourceTypeNames.contains ``KIP126.Literature.Route.QuotientAlgebras then
+    throwError "selected quotient action/restriction leaked into A18"
+  for n in [``KIP126.Main.Solution.Literature.quotient_negative_window,
+      ``KIP126.Main.Solution.Literature.quotient_unit_map_multiplicative,
+      ``KIP126.Main.Solution.Literature.source_quotient_algebras] do
+    for a in ← liftCoreM (collectAxioms n) do
+      unless [``propext, ``Classical.choice, ``Quot.sound, ``sorryAx].contains a do
+        throwError "quotient transport acquired an accepted result dependency: {n}: {a}"
 
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
 open KIP126.Classical.Adams KIP126.Core.SpectralSequence in
 example : NonzeroSurvival sphereAdamsData (2, 128) computedH6Square ↔
     NonzeroSurvival sphereAdamsData (2, 128) standardH6Square :=
   computedH6Square_nonzeroSurvival_iff_standard
+end
+#print axioms KIP126.Main.Solution.Route.standard_final_of_inputs
 
-#print axioms KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent
+#print axioms KIP126.Main.Solution.h6_sq_permanent

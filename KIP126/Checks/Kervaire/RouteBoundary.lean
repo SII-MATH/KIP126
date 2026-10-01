@@ -1,7 +1,7 @@
-import KIP126.Main.Axiom.Literature.Route.DependencyTypes
-import KIP126.Main.Solution.Tools.GeneralizedLeibniz
-import KIP126.Main.Solution.Tools.GeneralizedMahowald
-import KIP126.Main.Solution.Tools.PageExtensionStretching
+import KIP126.Def.Kervaire.Route.DependencyTypes
+import KIP126.Def.Kervaire.Route.Goals.Tools.GeneralizedLeibniz
+import KIP126.Def.Kervaire.Route.Goals.Tools.GeneralizedMahowald
+import KIP126.Def.Kervaire.Route.Goals.Tools.PageExtensionStretching
 import Lean.Elab.Command
 
 /-! Compilation/audit boundary for the selected complete route language.

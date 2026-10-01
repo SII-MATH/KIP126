@@ -1,8 +1,10 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Proofs
+import KIP126.LinProgram.Interpretation.Classes.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Classical.Adams
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
 
 /-- The fixed computed square is genuinely the product of computed h₆ with
 itself, relative to the existing E₂ presentation. No survival is asserted. -/

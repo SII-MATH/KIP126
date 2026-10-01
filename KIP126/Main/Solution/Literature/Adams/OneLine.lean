@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Adams.OneLine
+import KIP126.Def.References.Literature.Adams.OneLine
 
 namespace KIP126.Classical
 

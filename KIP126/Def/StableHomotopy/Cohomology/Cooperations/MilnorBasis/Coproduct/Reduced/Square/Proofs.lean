@@ -21,7 +21,7 @@ theorem cooperationTensor_reduced_span_le_range (n : ℤ) :
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   apply Submodule.span_le.mpr
   rintro _ ⟨d, ⟨h₀, h₁⟩, rfl⟩
   refine ⟨DirectSum.lof F2 ℤ _ d.1

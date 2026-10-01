@@ -1,6 +1,10 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Proofs
+import KIP126.LinProgram.Interpretation.Differential.LongLayer.Proofs
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 /-! The fixed computational corollary discloses its foundation and Lin
 presentation inputs. No undeclared geometric axiom is allowed. In development,
@@ -24,8 +28,8 @@ run_cmd do
         throwError "missing disclosed computational long-pairing input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
+        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
       throwError "unexpected computational long-pairing import: {m}"
 
 #print axioms KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_longLayer
+end

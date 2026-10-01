@@ -23,14 +23,14 @@ theorem reducedTensorMilnorWordEquiv_basis_single (s : ℕ)
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     reducedTensorMilnorWordEquiv H R B V s e n
       (DirectSum.lof (ZMod 2) ℤ _ k ((B.basis k) a ⊗ₜ[ZMod 2] x)) =
       Finsupp.single (wordConsEquiv s (n + (s + 1 : ℕ)) ⟨k, a, d⟩) q := by
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   simp only [reducedTensorMilnorWordEquiv, LinearEquiv.trans_apply,
     DirectSum.coe_congrLinearEquiv, DirectSum.lmap_lof,
     LinearEquiv.coe_coe, TensorProduct.congr_tmul, Module.Basis.repr_self, hx]

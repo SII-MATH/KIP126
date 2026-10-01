@@ -1,32 +1,7 @@
-# Synthetic / Context
+# Def/Synthetic/Context
 
-本页记录本组件的共享对象和构造。数学范围参见[所属阶段](../../README.md)；项目交付条件定义在 [Challenge1](../../../Challenge1.lean)。
+数学对象、结构、操作、谓词、源模型识别以及比较声明。复杂构造和证明可暂用 sorry；不接受计算或文献公理。
 
-## 1. 原先期望包含什么
+本目录按当前 [阶段规范](/docs/STAGE_LAYOUT.md) 组织。旧的两道总包存在性公理、全局选择和投影传递链已移除。
 
-共享数学对象、条件和构造所需的性质。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。
-
-## 2. 现在包含什么
-
-| 文件 | 已有对象或结论（选列） |
-| --- | --- |
-| [Data.lean](Data.lean) | `lambdaPow`, `XModLambda`, `XModLambdaN`, `NuFunctorData`、连接映射落点 `NuFunctorData.boundaryLandingIso`、降低 full lift 次数的 `lowerFullLiftTarget` |
-| [Proofs.lean](Proofs.lean) | `NuFunctorData.shiftBiShift`, `XModLambda.incl`, `XModLambda.proj`, `XModLambda.triangle_distinguished`, `XModLambda.lam_comp_incl` 等 6 个声明 |
-
-## 3. 大概完成度
-
-**现有内容：共享 synthetic 背景及 shift/cofiber 构造。** `boundaryLandingIso` 和 `lowerFullLiftTarget` 由现有结构构造，不假定 ν 保持所有 cofiber，也不承诺任意 full lift 都是三角分量。项目文献命题的证明仍通过显式输入提供。
-
-未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
-
-## 4. 接下来还需要完成什么
-
-- 结合消费端检查现有结果是否足以覆盖领域入口列出的预期；没有占位正文不代表全部所需结果已经写出。
-
-## 5. 后续应该一步一步如何做
-
-1. 对照上面的声明及其直接 imports，确认本组件的数学条件和消费端，先处理已报告的陈述问题。
-2. 需要改公共定义或冻结陈述时交由整合者协调；同步目标、输入接口与对应证明，不单方扩大前提。
-3. 按依赖顺序处理已列出的未完成内容；复用已有证明，保持数据、条件和结果职责清楚。
-4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
-5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
+当前数学内容以本目录 Lean 声明、[对象接口](/docs/M_INPUT_FREEZE.md)、[A 输入](/docs/A_INPUT_FREEZE.md) 和 [C 输入](/docs/C_INPUT_FREEZE.md) 为准。目录存在、声明存在、构造 sorry 和已证明的 theorem 必须分别记录；本页不宣称第 0 步或最终证明完成。

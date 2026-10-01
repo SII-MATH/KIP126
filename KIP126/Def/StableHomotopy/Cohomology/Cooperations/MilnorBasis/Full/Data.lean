@@ -15,10 +15,10 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C] [MonoidalPreadditive C]
 cooperation is already reduced. The underlying inclusion is unchanged. -/
 def cooperationReducedEquivOfNe (n : ℤ) (hn : n ≠ 0) :
     letI := mod2HomologyModule H R n H.HF2
-    letI := mod2CohomologyModule H R n SphereSpectrum
+    letI := mod2HF2HomotopyModule H R n
     mod2HomologyF2 H R n H.HF2 ≃ₗ[ZMod 2] LinearMap.ker (cooperationCounitF2 H R n) :=
   letI := mod2HomologyModule H R n H.HF2
-  letI := mod2CohomologyModule H R n SphereSpectrum
+  letI := mod2HF2HomotopyModule H R n
   ((LinearEquiv.ofEq _ _ (cooperationCounitF2_ker_of_ne H R n hn)).trans
     (Submodule.topEquiv)).symm
 
@@ -34,12 +34,12 @@ def cooperationMilnorEquiv (n : ℤ) :
   by_cases hn : n = 0
   · subst n
     letI := mod2HomologyModule H R 0 H.HF2
-    letI := mod2CohomologyModule H R 0 SphereSpectrum
+    letI := mod2HF2HomotopyModule H R 0
     exact ((LinearEquiv.ofBijective (cooperationCounitF2 H R 0)
       (cooperationCounitF2_zero_bijective H R B)).trans (mod2Pi0LinearEquiv H R)).trans
         milnorZeroCoefficientsEquiv.symm
   · letI := mod2HomologyModule H R n H.HF2
-    letI := mod2CohomologyModule H R n SphereSpectrum
+    letI := mod2HF2HomotopyModule H R n
     exact (cooperationReducedEquivOfNe H R n hn).trans
       ((B.basis n).repr.trans (Finsupp.domLCongr (milnorMonomialEquivPositive n hn).symm))
 

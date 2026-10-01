@@ -32,9 +32,12 @@ def Mod2EilenbergMacLane.unit (H : Mod2EilenbergMacLane (C := C)) :
     SphereSpectrum ⟶ H.HF2 :=
   (shiftFunctorZero C ℤ).inv.app SphereSpectrum ≫ H.pi0Equiv.symm 1
 
-/-- The n-th mod-2 cohomology group, represented by `HF2`. -/
+/-- The n-th mod-2 cohomology group, represented by `HF2[n]`.
+The source-shift spelling is `[Σ⁻ⁿ X, HF2]`, so the grading agrees with
+ordinary cohomology and with the homology degree in the universal-coefficient
+comparison below. It is not `[Σⁿ X, HF2] = H⁻ⁿ(X)`. -/
 abbrev Mod2Cohomology (H : Mod2EilenbergMacLane (C := C)) (n : ℤ) (X : C) : Type v :=
-  (shiftFunctor C n).obj X ⟶ H.HF2
+  (shiftFunctor C (-n)).obj X ⟶ H.HF2
 
 /-- The n-th mod-2 homology group, represented by `HF2 ⊗ X`. -/
 abbrev Mod2Homology (H : Mod2EilenbergMacLane (C := C)) (n : ℤ) (X : C) : Type v :=
@@ -54,7 +57,7 @@ noncomputable def Mod2HomologyTotal (H : Mod2EilenbergMacLane (C := C)) (X : C) 
 def Mod2Cohomology.pullback (H : Mod2EilenbergMacLane (C := C))
     {X Y : C} (f : X ⟶ Y) (n : ℤ) :
     Mod2Cohomology H n Y → Mod2Cohomology H n X :=
-  fun φ => (shiftFunctor C n).map f ≫ φ
+  fun φ => (shiftFunctor C (-n)).map f ≫ φ
 
 /-- Pushforward in mod-2 homology. -/
 def Mod2Homology.pushforward (H : Mod2EilenbergMacLane (C := C))
@@ -74,7 +77,10 @@ structure SteenrodAlgebraData (H : Mod2EilenbergMacLane (C := C))
 
 attribute [instance] SteenrodAlgebraData.ring
 
-/-- Explicit universal-coefficient input for a chosen mod-2 context. -/
+/-- Explicit universal-coefficient input for the same mod-2 context.
+Both sides have degree `n`: `Hⁿ(X; F₂) = Hom(Hₙ(X; F₂), F₂)`.
+This is an additive comparison, not an assertion that integral homotopy
+groups are F₂-vector spaces. -/
 structure UniversalCoefficientData (H : Mod2EilenbergMacLane (C := C)) where
   cohomologyHomologyEquiv : ∀ (n : ℤ) (X : C),
     Mod2Cohomology H n X ≃+ (Mod2Homology H n X →+ ZMod 2)

@@ -1,16 +1,7 @@
-# Solution：阶段交付的生产证明
+# Interface/Solution
 
-这里从上游基础和固定工件证明根 `Challenge2` 的交付。文献与计算分成两个 structure，C(M) 只指计算部分；共享模型绑定保证两者使用同一个 Challenge1 模型。
+计算认证。Challenge 仅陈述准确目标并使用 by sorry；Solution 保留实际认证证明，不得引用待认证的 Main 公理或 Challenge 占位。
 
-| 文件或组件 | 职责与状态 |
-| --- | --- |
-| [Challenge2.lean](Challenge2.lean) | 完整 `Nonempty Challenge2` 的生产 theorem，仍为 `sorry` |
-| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | 固定 CSV 单项式的线性无关与生成认证，仍为 `sorry` |
-| [LinProgram/SphereBasis.lean](LinProgram/SphereBasis.lean) | 从基认证和指定 presentation 构造实际 E₂ 坐标；运输已实现，依赖待证认证 |
-| [LinProgram/Multiplication.lean](LinProgram/Multiplication.lean) | 指定 presentation 与实际球谱乘法、单位相容，仍为 `sorry` |
-| [LinProgram/Staircase.lean](LinProgram/Staircase.lean) | 固定 staircase 快照的模型语义，仍为 `sorry` |
-| [LinProgram/Square.lean](LinProgram/Square.lean) | 由独立固定数据证书构造 `SphereSquareInterface`，交付非零性与指定次数的穷尽结论 |
+本目录按当前 [阶段规范](/docs/STAGE_LAYOUT.md) 组织。旧的两道总包存在性公理、全局选择和投影传递链已移除。
 
-平方检测的 227 个归档 chunk、解析正确性和局部维数证明已移至独立 [LinProgram/Certificates](../../LinProgram/README.md)。它们是固定数据上的已有证明；本目录负责将其结论绑定到实际模型。Main 通过 Challenge2 计算接口消费，不能用消费公理反过来证明这里的交付。
-
-下一步完成基认证、乘法和 staircase 证明，并使完整见证中的相关字段使用同一个 presentation。目录名 Solution、证书搬迁和编译成功都不表示这些数学义务已经完成。
+当前数学内容以本目录 Lean 声明、[对象接口](/docs/M_INPUT_FREEZE.md)、[A 输入](/docs/A_INPUT_FREEZE.md) 和 [C 输入](/docs/C_INPUT_FREEZE.md) 为准。目录存在、声明存在、构造 sorry 和已证明的 theorem 必须分别记录；本页不宣称第 0 步或最终证明完成。

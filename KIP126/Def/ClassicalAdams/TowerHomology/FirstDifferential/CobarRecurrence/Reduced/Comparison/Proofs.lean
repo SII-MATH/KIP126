@@ -27,7 +27,7 @@ theorem sphereAdamsHomologyD1_reduced_comparison (n : ℤ) :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R n),
       adamsHomologyD1 H (adamsTower H.unit SphereSpectrum 1) (n - 1)
         (sphereReducedBoundaryEquiv H R K n a) =
@@ -36,7 +36,7 @@ theorem sphereAdamsHomologyD1_reduced_comparison (n : ℤ) :
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   apply (adamsNextHomologyTensorEquiv H R K (adamsTower H.unit SphereSpectrum 1) (n - 1)).injective
   change _ = (adamsNextHomologyTensorEquiv H R K _ _)
@@ -54,7 +54,7 @@ theorem sphereAdamsHomologyD1_reduced_polynomial (n : ℤ) :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R n),
       cooperationTensorMilnorPolynomial H R B n
         (reducedCooperationSquareInclusion H R n
@@ -65,7 +65,7 @@ theorem sphereAdamsHomologyD1_reduced_polynomial (n : ℤ) :
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   rw [sphereAdamsHomologyD1_reduced_comparison H R K B hK hD hU hM,
     LinearEquiv.symm_apply_apply]
@@ -79,7 +79,7 @@ theorem sphereAdamsHomologyD1_mem_range_iff_polynomial (n : ℤ)
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     (∃ x : mod2HomologyF2 H R (n - 1) (adamsTower H.unit SphereSpectrum 1),
       adamsHomologyD1 H (adamsTower H.unit SphereSpectrum 1) (n - 1) x = y) ↔
     ∃ a : LinearMap.ker (cooperationCounitF2 H R n),
@@ -89,7 +89,7 @@ theorem sphereAdamsHomologyD1_mem_range_iff_polynomial (n : ℤ)
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   constructor
   · rintro ⟨x, hx⟩
     obtain ⟨a, rfl⟩ := (sphereReducedBoundaryEquiv H R K n).surjective x

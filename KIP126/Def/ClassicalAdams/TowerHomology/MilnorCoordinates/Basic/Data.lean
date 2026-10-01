@@ -16,10 +16,10 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C] [MonoidalPreadditive C]
 
 /-- The sphere's coefficient homology, using the actual tensor unitor. -/
 def sphereHomologyCoefficientF2Equiv (n : ℤ) :
-    letI := mod2CohomologyModule H R n SphereSpectrum
+    letI := mod2HF2HomotopyModule H R n
     mod2HomologyF2 H R n SphereSpectrum ≃ₗ[ZMod 2] HomotopyGroup n H.HF2 :=
   letI := mod2HomologyModule H R n SphereSpectrum
-  letI := mod2CohomologyModule H R n SphereSpectrum
+  letI := mod2HF2HomotopyModule H R n
   let e : Mod2Homology H n SphereSpectrum ≃+ HomotopyGroup n H.HF2 :=
     ((homotopyGroupFunctor n).mapIso (ρ_ H.HF2)).addCommGroupIsoToAddEquiv
   { e with map_smul' := ZMod.map_smul e }
@@ -28,7 +28,7 @@ def sphereHomologyCoefficientF2Equiv (n : ℤ) :
 not from Milnor coordinates on a page. -/
 def sphereHomologyEmptyWordEquiv (n : ℤ) :
     mod2HomologyF2 H R n SphereSpectrum ≃ₗ[ZMod 2] (MilnorWord 0 n →₀ ZMod 2) := by
-  letI := mod2CohomologyModule H R n SphereSpectrum
+  letI := mod2HF2HomotopyModule H R n
   refine (sphereHomologyCoefficientF2Equiv H R n).trans
     (show HomotopyGroup n H.HF2 ≃ₗ[ZMod 2] (MilnorWord 0 n →₀ ZMod 2) from ?_)
   by_cases hn : n = 0

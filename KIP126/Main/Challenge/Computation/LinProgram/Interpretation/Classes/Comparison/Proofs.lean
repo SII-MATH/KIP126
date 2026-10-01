@@ -1,8 +1,10 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Comparison.Proofs
+import KIP126.Main.Solution.Computation.Comparisons.Classes
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Classical.Adams
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
 
 /-- Consume Interface's identification on the very same internal E₂ page.
 The certificate and nonvanishing argument belong to the Interface producer;

@@ -11,28 +11,23 @@
 | `generate-e2.py` | 读取三个 UTF-16 CSV，校验生成元、次数、齐次关系和 basis 地址，生成 `Generated/E2.lean` |
 | `check-e2.py` | 在临时目录重生成 E₂ 数据并与 committed 文件逐字比较 |
 | `import-proofs.py` | 只读扫描 `proofs.db`，联合 basis CSV 生成 86 个差分分片、`Table.lean` 和 manifest |
-| `import-selected.py` | 联合两个 SQLite、三个 CSV 和 bulk shards，生成 Main 消费端的 `Interpretation/Selected/{Proofs.lean,records.json}` |
-| `select-route.py` | 筛选球谱/Cν 的局部基、状态、正式日志和根层排除，生成本管线的 `Route/{Selected.lean,selected.json}` 和 Main 消费端的 `Route/Records.lean`；`--check` 逐字核对 |
-| `import-staircase.py` | 校验固定球谱快照，生成 23,822 条无损状态记录和 187 个分片 |
+| `import-selected.py` | 联合两个 SQLite、三个 CSV 和 bulk shards，生成 `Interpretation/Selected/{Proofs.lean,records.json}` |
+| `select-route.py` | 为三阶段路线筛选球谱/Cν 的局部基、状态、正式日志和根层排除，生成 `Route/{Selected.lean,Records.lean,selected.json}`；`--check` 逐字核对 |
 
-局部 C(M) 的入口保留在 [Main 的 Route/Data.lean](../../Main/Axiom/LinProgram/Route/Data.lean)，筛选依据见
-[C_INPUT_FREEZE.md](../../../docs/C_INPUT_FREEZE.md)。它不消费旧 bulk 正确性公理。
+新 C(M) 的入口为 `Route/Data.lean`，筛选依据见
+[C_INPUT_FREEZE.md](../../../../../docs/C_INPUT_FREEZE.md)。它不消费旧 bulk 正确性公理。
 从仓库根目录运行：
 
 ```bash
 python3 KIP126/LinProgram/Translate/select-route.py --check
-lake build KIP126.Main.Solution.Computation.LinProgram.Route.Records KIP126.Checks.Computation.Route
+lake build KIP126.LinProgram.Route.Records KIP126.Checks.Computation.Route
 ```
 
 此命令检查固定字节和转换结果，不完成数学认证。
-原始 Git LFS 数据保存在单独目录时，可以传入 `--raw-dir /path/to/raw`；
-输入摘要仍逐一校验，生成物和 Main 消费端投影的检查位置不变。
 
 迁移后的 repo root、模块模板和输出路径已经修正。`import-proofs.py` 的 stale-output 检查只允许同目录额外存在 `README.md`，不会宽泛忽略其他文件。
 
-固定输入位于相邻的 `../Raw/`。`import-selected.py` 与 `select-route.py` 中从 C(M)
-假设投影结论的输出保留在 `KIP126/Main/Axiom/LinProgram/`，不会作为独立数据证书。
-从仓库根目录可以直接运行三条检查：
+五个固定输入现在位于相邻的 `../Raw/`。从仓库根目录可以直接运行三条检查：
 
 ```bash
 python3 KIP126/LinProgram/Translate/check-e2.py \

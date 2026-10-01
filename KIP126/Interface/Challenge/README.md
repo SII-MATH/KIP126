@@ -1,34 +1,7 @@
-# Challenge
+# Interface/Challenge
 
-本页记录本阶段的目标陈述。数学范围参见[所属阶段](../README.md)；旧 Tools 的错误声明已同步退休，原 am7 的工具命题已移至 Main/Solution/Tools，不作为前人 A(M)。
+计算认证。Challenge 仅陈述准确目标并使用 by sorry；Solution 保留实际认证证明，不得引用待认证的 Main 公理或 Challenge 占位。
 
-## 1. 原先期望包含什么
+本目录按当前 [阶段规范](/docs/STAGE_LAYOUT.md) 组织。旧的两道总包存在性公理、全局选择和投影传递链已移除。
 
-准确保留本阶段的目标陈述；证明正文固定为 `by sorry`，证明工作由同路径的 Solution 承担。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。
-
-## 2. 现在包含什么
-
-| 文件 | 已有对象或结论（选列） |
-| --- | --- |
-| [Challenge2.lean](Challenge2.lean) | `Nonempty KIP126.Challenge2`，即本阶段向 Main 交付的完整包 |
-| [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | `t ≤ 261` 的完整 CSV 加法基认证；交付 `Challenge2.sphereBasis` |
-
-## 3. 大概完成度
-
-本目录的阶段包目标与已有派生接口保留 Challenge/Solution 配对。旧三条 Tools theorem 因陈述错误而退休，不能继续计作当前接口；其替代命题是 Main 的论文推导任务。这里保留的 `sorry` 是陈述轨约定，不能由占位正文推断数学进度。
-
-## 4. 接下来还需要完成什么
-
-- 核对现有目标的条件、次数及共享对象，并保持与 Solution 的完整类型一致。
-- 证明推进和未完成义务记录在同阶段 Solution；本目录继续保留陈述。
-- 完成原 a05 的基表认证；不能由 Main 的 Challenge2 消费假设反向证明。
-
-## 5. 后续应该一步一步如何做
-
-1. 对照上面的声明及其直接 imports，确认本组件的数学条件和消费端，先处理已报告的陈述问题。
-2. 需要改公共定义或冻结陈述时交由整合者协调；同步目标、输入接口与对应证明，不单方扩大前提。
-3. 在对应 Solution 文件实现证明；本目录只同步目标陈述。
-4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
-5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
-
-相关子组件：[LinProgram](LinProgram/README.md)、[旧 Tools 退休记录](Tools/README.md)。
+当前数学内容以本目录 Lean 声明、[对象接口](/docs/M_INPUT_FREEZE.md)、[A 输入](/docs/A_INPUT_FREEZE.md) 和 [C 输入](/docs/C_INPUT_FREEZE.md) 为准。目录存在、声明存在、构造 sorry 和已证明的 theorem 必须分别记录；本页不宣称第 0 步或最终证明完成。

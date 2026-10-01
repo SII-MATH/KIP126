@@ -1,6 +1,10 @@
 import KIP126.Mathlib.ClassicalAdams.StandardPage.Data
 import KIP126.Main.Solution.Computation.Dimension
-import KIP126.Main.Solution.Literature.StandardSphere.Proofs
+import KIP126.Def.References.Literature.StandardSphere.Proofs
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 namespace KIP126.Classical.Adams
 
@@ -22,3 +26,4 @@ theorem h6Square_comparison :
   exact hx
 
 end KIP126.Classical.Adams
+end

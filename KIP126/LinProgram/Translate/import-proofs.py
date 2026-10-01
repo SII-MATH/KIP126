@@ -169,6 +169,12 @@ def export(db, archive, output, raw_output=None, check=False, query_ids=(), *,
                     files_sha256={k: hashlib.sha256(v.encode()).hexdigest()
                                   for k, v in sorted(files.items())})
     files["manifest.json"] = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
+    # Mathematical Lean modules moved; preserve the provenance ledger path.
+    canonical = Path(__file__).resolve().parents[3] / "KIP126/LinProgram/Generated/Differentials"
+    def output_path(name):
+        if output.resolve() == canonical.resolve() and name == "manifest.json":
+            return Path(__file__).resolve().parents[3] / "KIP126/LinProgram/Generated/Differentials" / name
+        return output / name
     expected = set(files)
     existing = ({p.name for p in output.iterdir() if p.name != "README.md"}
                 if output.exists() else set())
@@ -176,12 +182,12 @@ def export(db, archive, output, raw_output=None, check=False, query_ids=(), *,
         raise ValueError(f"unexpected/stale output files (not removed): {existing - expected}")
     if check:
         for name, content in files.items():
-            if not (output / name).exists() or (output / name).read_text() != content:
+            if not output_path(name).exists() or output_path(name).read_text() != content:
                 raise ValueError(f"generated output differs: {name}")
     else:
         output.mkdir(parents=True, exist_ok=True)
         for name, content in files.items():
-            (output / name).write_text(content)
+            output_path(name).write_text(content)
     print(json.dumps({k: v for k, v in manifest.items() if k != "files_sha256"}, indent=2))
     by_id = {row["id"]: (i, row) for i, row in enumerate(selected)}
     for query in query_ids:

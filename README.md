@@ -1,5 +1,7 @@
 # KIP126
 
+当前架构与验收规则见 [阶段规范](docs/STAGE_LAYOUT.md)。标准目标只依赖 `Def/`；计算目标/证明分列 `Interface/Challenge` 与 `Interface/Solution`；显式 A/C 输入与论文推导分列 `Main/Axiom` 与 `Main/Solution`。旧的两道总包传递链已移除。本轮已完成指定标准 T 路线的第 0 步接口冻结；模型构造、计算认证和论文证明仍有明确证明债。来源比较、同模型组装及实际验证见[本轮报告](docs/audits/stage0-57647d2-iteration-3.md)。历史报告保留其当时结论，编译成功不单独证明第 0 步完成。
+
 ## Dependencies
 
 **Fixed Lean toolchain: `leanprover/lean4:v4.32.2`.** Both the canonical
@@ -33,13 +35,11 @@ formalization.
 The complete historical KIP-base library is retained as the separately compiled
 `KIPBase` component on the same Lean/mathlib 4.32.2 pins. Its original assumptions
 are isolated from `KIP126` and do not count as completed paper proofs. See the
-[component guide](KIPBase/README.md), [reuse boundaries](docs/KIPBASE_GAP_INVENTORY.md),
-and [original migration archive](migration/kip-base/README.md).
+[migration inventory, paper mapping, and validation commands](migration/kip-base/README.md).
 
 ## Project documents and workflow
 
 - [M / C(M) / A(M) / T(M) boundary audit](docs/MAC_T_INPUT_AUDIT.md): mathematical objects versus delivery interfaces, source classification, and remaining model bindings.
-- [C(M) delivery specification](docs/COMPUTATION_DELIVERY_SPEC.md): mathematical conclusions delivered to Main, table interpretation and certification responsibilities, and the remaining gap between Challenge2 and the selected route interface.
 
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
@@ -69,20 +69,14 @@ document:
   are package entry points.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
-  well as their import graph. `LinProgram/` owns the independent fixed-data
-  pipeline and its local certificates. `Def/` owns mathematical data and properties,
-  `Interface/` owns stage-zero outputs admitted as stage-one inputs in `Axiom/`, plus reusable
-  stage-one interface goals and their proofs, and `Main/`
+  well as their import graph.  `Def/` owns mathematical data and properties,
+  `Interface/` owns precise computation certification targets and their proofs, and `Main/`
   owns input assumptions plus the paper's argument. Main keeps only final goals
   in `Challenge/Final/`, paired with `Solution/Final/`; intermediate deductions
   live directly in `Solution/ChoiceIndependence`, `Solution/DifferentialReduction`,
   and `Solution/ExtensionObstruction`. `Checks/` owns regressions.
   Start with the module guides in [Def](KIP126/Def/README.md),
-  [Interface](KIP126/Interface/README.md), [Main](KIP126/Main/README.md), and
-  [LinProgram](KIP126/LinProgram/README.md). `Challenge2` separates literature
-  and computation structures on the same model; only its computation part is
-  `C(M)`. Main consumes their single stage witness, while Interface owns its
-  producer proofs.
+  [Interface](KIP126/Interface/README.md), and [Main](KIP126/Main/README.md).
   The [current layout and migration record](docs/STAGE_LAYOUT.md) explains
   ownership, preserved proof debt, and the old-to-new path map.
   The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
@@ -269,6 +263,6 @@ The reusable Blueprint workflow lives under
 They complement the global `leanblueprint` environment skill. The maintenance
 tools are read-only by default; marker changes require an explicit `--write`.
 
-所选 §7 证明路线的 M 接口及其全部依赖清单见 [M_INPUT_FREEZE.md](docs/M_INPUT_FREEZE.md)。该接口冻结不表示模型见证、计算认证、前人输入或最终证明已经完成。
+所选 §7 证明路线的当前 M 接口、依赖清单与来源缺口见 [M_INPUT_FREEZE.md](docs/M_INPUT_FREEZE.md)。该接口冻结不表示模型见证、计算认证、前人输入或最终证明已经完成。
 
 该路线的 A(M) 已以同一模型上的显式输入包实现，见 [A_INPUT_FREEZE.md](docs/A_INPUT_FREEZE.md) 和 [Literature/Route](KIP126/Main/Axiom/Literature/Route/README.md)。来源、条件与模型运输分开记录；没有新增全局公理，也未证明这些外部结果。

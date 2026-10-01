@@ -1,7 +1,11 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Proofs
-import KIP126.Main.Axiom.LinProgram.Interpretation.Expressions.Predicates
+import KIP126.LinProgram.Interpretation.Expressions.Proofs
+import KIP126.LinProgram.Interpretation.Expressions.Predicates
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 /-! Executable migration regressions. Runtime checks are not proofs of the
 CSV basis theorem or of Gröbner reduction soundness. -/
@@ -54,3 +58,4 @@ run_cmd do
   for m in (← getEnv).allImportedModuleNames do
     if (`KIPBase).isPrefixOf m || (`KIP126.Challenge).isPrefixOf m then
       throwError "retired or placeholder import: {m}"
+end

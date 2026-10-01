@@ -1,6 +1,10 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Literature.Near126
+import KIP126.Def.References.Literature.Near126
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 open Lean Elab Command in
 run_cmd do
@@ -44,3 +48,4 @@ run_cmd do
 #print axioms KIP126.Computation.Near126.Atom.record_eq
 #print axioms KIP126.Computation.Near126.SphereDifferentialFacts.d3_x126_6_ne_zero
 #print axioms KIP126.Computation.Near126.SphereSurvivalFacts.y_not_hit_on_page
+end

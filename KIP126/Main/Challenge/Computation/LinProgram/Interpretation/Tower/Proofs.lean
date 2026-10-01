@@ -1,8 +1,10 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.Proofs
+import KIP126.Main.Solution.Computation.Comparisons.Tower
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Classical.Adams
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
 
 noncomputable section
 open CategoryTheory MonoidalCategory KIP126.StableHomotopy

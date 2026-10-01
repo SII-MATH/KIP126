@@ -1,10 +1,7 @@
-# LinProgram：计算交付目标
+# Interface/Challenge/LinProgram
 
-这里陈述固定程序工件在选定模型上的认证与比较目标；证明在同名 [Solution](../../Solution/LinProgram/README.md) 文件中。原始输入、生成数据和局部证书位于独立 [LinProgram](../../../LinProgram/README.md)。
+计算认证。Challenge 仅陈述准确目标并使用 by sorry；Solution 保留实际认证证明，不得引用待认证的 Main 公理或 Challenge 占位。
 
-- [BasisTable.lean](BasisTable.lean)：v126.3.cw49 的固定 CSV 单项式线性无关且张成，范围为所有自然数 s,t 且内部次数 t ≤ 261。这是计算交付的辅助认证，不属于 Challenge1 基础选择。
-- [SphereBasis.lean](SphereBasis.lean)：经指定 presentation 给出实际球面 E₂ 的坐标和固定 CSV 值相容性。
-- [Multiplication.lean](Multiplication.lean)、[Staircase.lean](Staircase.lean)：实际乘法相容及固定快照语义。
-- [Square.lean](Square.lean)：经指定 presentation 交付实际 E₂ 中平方的非零性与指定次数的候选穷尽。
+本目录按当前 [阶段规范](/docs/STAGE_LAYOUT.md) 组织。旧的两道总包存在性公理、全局选择和投影传递链已移除。
 
-这些目标支撑 `Challenge2.ComputationInterface`，即 C(M)。Challenge 定理按约定保留 `sorry`；不能把它们当作 Solution 的证明依赖。
+当前数学内容以本目录 Lean 声明、[对象接口](/docs/M_INPUT_FREEZE.md)、[A 输入](/docs/A_INPUT_FREEZE.md) 和 [C 输入](/docs/C_INPUT_FREEZE.md) 为准。目录存在、声明存在、构造 sorry 和已证明的 theorem 必须分别记录；本页不宣称第 0 步或最终证明完成。

@@ -28,7 +28,7 @@ theorem sphereAdamsHomologyD1_firstBoundary_reduced
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R n),
       reducedCooperationTensorInclusion H R
         (fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum 1)) (n - 1)
@@ -49,7 +49,7 @@ theorem sphereAdamsHomologyD1_firstBoundary_reduced
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   refine (sphereAdamsHomologyD1_tensorBoundary_cobar H R K hK hD hU n
     ((sphereCooperationTensorEquiv H R n).symm a.val)).trans ?_

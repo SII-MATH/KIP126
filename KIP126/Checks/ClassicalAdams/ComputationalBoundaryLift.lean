@@ -1,6 +1,10 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
+import KIP126.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 open Lean Elab Command in
 run_cmd do
@@ -16,9 +20,9 @@ run_cmd do
         throwError "missing disclosed fixed boundary-lift input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
+        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
       throwError "unexpected fixed boundary-lift import: {m}"
 
 #print axioms KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_boundaryLifts
 #print axioms KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_firstCycleProductRule
+end

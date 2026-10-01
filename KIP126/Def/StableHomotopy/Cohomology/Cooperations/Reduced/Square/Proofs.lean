@@ -16,7 +16,7 @@ theorem reducedCooperationSquareInclusion_lof_tmul (n k : ℤ) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ (a : LinearMap.ker (cooperationCounitF2 H R k))
       (b : LinearMap.ker (cooperationCounitF2 H R (n - k))),
       reducedCooperationSquareInclusion H R n
@@ -25,7 +25,7 @@ theorem reducedCooperationSquareInclusion_lof_tmul (n k : ℤ) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a b
   unfold reducedCooperationSquareInclusion
   erw [LinearMap.comp_apply, reducedCooperationTensorInclusion_lof_tmul]
@@ -40,7 +40,7 @@ theorem reducedCooperationSquareInclusion_injective (n : ℤ) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   change Function.Injective
     ((cooperationTensorMap H R (fun i => LinearMap.ker (cooperationCounitF2 H R i))
       (fun i => (LinearMap.ker (cooperationCounitF2 H R i)).subtype) n) ∘

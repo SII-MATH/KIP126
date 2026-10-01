@@ -22,7 +22,7 @@ theorem Challenge.Inputs.differentialLift (I : Inputs D η L) :
 without assuming the tool's conclusion or a computed ν-extension. -/
 theorem Challenge.Inputs.nuTriangle (I : Inputs D η L) :
     NormalizedTriangleCompatible D.toModelData D.auxiliary.nuRouteTriangle
-      (I.applicability.nuCofiber.exponent_sum D) := by
+      (I.nuSourceResults.exponent_sum D) := by
   sorry
 
 end KIP126.Literature.Route

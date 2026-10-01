@@ -64,6 +64,16 @@ theorem mod2Cohomology_two_nsmul_zero (n : ℤ) (X : C) (x : Mod2Cohomology H n 
     x + x = x ≫ (𝟙 H.HF2 + 𝟙 H.HF2) := by simp [Preadditive.comp_add]
     _ = 0 := by rw [mod2_id_add_self H R, Limits.comp_zero]
 
+include R in
+/-- The coefficient spectrum's actual homotopy groups retain their homological
+index. In particular this theorem does not identify πₙHF₂ with Hⁿ(S⁰). -/
+theorem mod2HF2Homotopy_two_nsmul_zero (n : ℤ)
+    (x : HomotopyGroup n H.HF2) : 2 • x = 0 := by
+  rw [two_nsmul]
+  calc
+    x + x = x ≫ (𝟙 H.HF2 + 𝟙 H.HF2) := by simp [Preadditive.comp_add]
+    _ = 0 := by rw [mod2_id_add_self H R, Limits.comp_zero]
+
 end
 
 end KIP126.StableHomotopy.Cohomology

@@ -1,6 +1,11 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Differentials
+import KIP126.LinProgram.Differentials
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+variable [KIP126.Computation.LinProofs.SphereTableCertificate]
+
 
 open Lean Elab Command in
 run_cmd do
@@ -27,3 +32,4 @@ set_option maxRecDepth 2048 in
 example : KIP126.Computation.LinProofs.RawData.lookup 0 128 = none := by rfl
 
 #print axioms KIP126.Computation.LinProofs.row5541
+end

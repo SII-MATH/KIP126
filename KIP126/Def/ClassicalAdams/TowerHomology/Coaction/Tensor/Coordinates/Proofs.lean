@@ -30,7 +30,7 @@ theorem adamsNextHomologyTensorEquiv_boundary_lof_tmul (X : C) (n k : ℤ) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ (a : LinearMap.ker (cooperationCounitF2 H R k)) (x : mod2HomologyF2 H R (n - k) X),
     adamsNextHomologyTensorEquiv H R K X n
       (adamsTensorBoundary H R K X n
@@ -39,7 +39,7 @@ theorem adamsNextHomologyTensorEquiv_boundary_lof_tmul (X : C) (n k : ℤ) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a x
   rw [← reducedCooperationTensorInclusion_lof_tmul H R (fun i => mod2HomologyF2 H R i X)]
   exact adamsNextHomologyTensorEquiv_boundary_reduced H R K X n _

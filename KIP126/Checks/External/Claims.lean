@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-!
 # Claim-ledger regression checks

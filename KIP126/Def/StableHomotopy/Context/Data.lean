@@ -85,20 +85,38 @@ than global theorems of the abstract category interface.
 class ClosedSymmetricTensorTriangulated where
   symmetricCategory : SymmetricCategory C
   monoidalClosed : MonoidalClosed C
-  smashSuspIso : ∀ (X Y : C),
-    (shiftFunctor C (1 : ℤ)).obj X ⊗ Y ≅
-      (shiftFunctor C (1 : ℤ)).obj (X ⊗ Y)
-  smashExact : ∀ (W : C) [_inst : (tensorRight W).CommShift ℤ]
-    (T : Triangle C), T ∈ distTriang C →
-    (tensorRight W).mapTriangle.obj T ∈ distTriang C
-  ihomExact : ∀ (W : C),
-    letI : MonoidalClosed C := monoidalClosed
-    ∀ [_inst : (ihom W).CommShift ℤ],
-      (T : Triangle C) → T ∈ distTriang C →
-      (ihom W).mapTriangle.obj T ∈ distTriang C
+  /-- These are the selected suspension structures, not a quantification
+      over arbitrary boundary-sign choices. -/
+  smashShift : ∀ W : C, (tensorRight W).CommShift ℤ
+  leftShift : ∀ W : C, (tensorLeft W).CommShift ℤ
+  leftShift_eq : letI := symmetricCategory
+    ∀ W : C, letI := smashShift W
+      leftShift W = Functor.CommShift.ofIso (BraidedCategory.tensorLeftIsoTensorRight W).symm ℤ
+  ihomShift : letI := monoidalClosed; ∀ W : C, (ihom W).CommShift ℤ
+  /-- Internal-hom suspension is the mate under the SAME closed adjunction. -/
+  ihom_unit_shift : letI := monoidalClosed
+    ∀ W : C, letI := leftShift W; letI := ihomShift W
+      NatTrans.CommShift (ihom.adjunction W).unit ℤ
+  ihom_counit_shift : letI := monoidalClosed
+    ∀ W : C, letI := leftShift W; letI := ihomShift W
+      NatTrans.CommShift (ihom.adjunction W).counit ℤ
+  smashExact : ∀ W : C, letI := smashShift W
+    (tensorRight W).IsTriangulated
+  ihomExact : letI := monoidalClosed
+    ∀ W : C, letI := ihomShift W
+      (ihom W).IsTriangulated
 
 attribute [instance] ClosedSymmetricTensorTriangulated.symmetricCategory
 attribute [instance] ClosedSymmetricTensorTriangulated.monoidalClosed
+
+/-- The named suspension comparison is a projection of the selected
+right-tensor CommShift, rather than a second unrelated isomorphism. -/
+noncomputable def ClosedSymmetricTensorTriangulated.smashSuspIso
+    [ClosedSymmetricTensorTriangulated (C := C)] (X Y : C) :
+    (shiftFunctor C (1 : ℤ)).obj X ⊗ Y ≅
+      (shiftFunctor C (1 : ℤ)).obj (X ⊗ Y) :=
+  letI := ClosedSymmetricTensorTriangulated.smashShift Y
+  ((tensorRight Y).commShiftIso (1 : ℤ)).app X
 
 /-- The internal mapping spectrum supplied by a closed monoidal witness. -/
 noncomputable def MappingSpectrum (X Y : C)

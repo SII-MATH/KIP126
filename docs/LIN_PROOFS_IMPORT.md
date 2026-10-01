@@ -1,25 +1,19 @@
+> 本文的扫描数量和历史临时文件定位属于先前导入记录；本次重构没有重放全量证明。当前范围以路线清单和本次自审报告为准。
+
 # Lin proofs.db：批量导入与统一可靠性假设
 
 ## 当前实现
 
-不再逐条增加计算公理。入口是
-`KIP126.Main.Solution.Computation.LinProgram.Differentials`。第二阶段仅从共享包的存在假设
-取得一个见证；公开的 `sphereTable_sound` 已是该见证的投影定理，
-不再是独立公理：
+当前数学编码、解释与条件查表证明位于 `LinProgram/`。
+原始记录、版本清单和转换脚本仍位于 `LinProgram/`。
+旧的总包消费公理和选择投影已删除。历史全表查表引理显式要求
+`LinE2Presentation` 与 `SphereTableCertificate` 参数，没有全局实例。
+它们是可复用的条件引理，不作为路线已认证的事实。
 
-```lean
-axiom KIP126.Main.Axiom.challenge2 : Nonempty KIP126.Challenge2
-```
-
-表是固定生成的数据，不是调用者提供的任意表；结论是固定定义的数学命题，
-不是调用者提供的任意 `Prop`。下游证明一次有限查表等式，就能应用同一见证的字段。
-`Proofs.row5541` 是已编写的调用例子，不是另一条公理：
-
-```lean
-set_option maxRecDepth 2048 in
-theorem row5541 : DifferentialStatement ⟨5541, "d2", 1, 64, 2, [0], [0]⟩ :=
-  differential_of_lookup 0 69 _ (by rfl)
-```
+路线真正接受的 C 命题是 `Certification D G`，逐字段要求一个共同实现的基、
+CSV、乘积、标签、有限记录及同一 Cν 胞腔映射正确。
+对应目标与显式消费公理见 [当前边界](C_ROUTE_CERTIFICATION_BOUNDARY.md)。
+未完成数学认证时，有限查表等式仍只证明固定表中有这条记录。
 
 这里 `[0]` 表示该双次数的第 0 个**加法基坐标**，不是代数生成元 0。
 次数分别是源 `(s,t)=(1,64)`、目标 `(3,65)`。把它改写成
@@ -94,15 +88,12 @@ python3 KIP126/LinProgram/Translate/import-proofs.py --self-test \
 ## 信任边界与消公理范围
 
 查表的 `by rfl`（或 `by decide`）只证明**固定表中确有该条记录**，不是验证机器证明。
-共享见证承担“这些计算结论确实成立于固定球面 Adams 对象”的阶段输入责任。
-未来可以用数据库证明证书的验证及其数学可靠性定理替换它；不能只验证文件哈希。
-现有基础与 E₂ 比较假设不因此消失，最终 `h₆²` 非零永久存活也没有被直接假设。
-
-`Checks/ClassicalAdams/LinProofs.lean` 保留命名阶段输入和导入边界检查。
-当前 `Challenge2` 的字段类型含未完成的定义性质证明，因此其消费者的依赖集合
-也含 `sorryAx`。默认开发检查明确报告该债务，不再声称消费者无直接 `sorry`；
-启用 `kip126.checks.strictStageConsumerAudit` 后仍拒绝它。
-纯通用证明的严格检查保持；`scripts/Axioms.lean` 的最终审计同样不接受阶段公理或 `sorryAx`。
+路线 `Main/Axiom/Computation/Route.lean` 明确接受同型的有限数学认证目标；
+认证 Solution 尚未完成，不能用该消费 axiom 自证。未来的证书验证必须给出同一
+数学解释上的可靠性定理，不能仅验证文件哈希。
+`Checks/ClassicalAdams/RouteCertification.lean` 核对完整类型一致与生产/消费隔离。
+源构造、比较和本文推导的 `sorry` 另列为证明债；这些检查不要求零 sorry。
+`scripts/Axioms.lean` 的严格最终证明审计仍拒绝未消除的计算公理和 sorry。
 
 ## 固定球面 staircase 与条件分支
 

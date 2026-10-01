@@ -1,18 +1,24 @@
-import KIP126.Def.AdamsE2.LinSquareDetection.Data
-import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
+import KIP126.LinProgram.Certificates.SquareDetection.Archive.Proofs
+import KIP126.LinProgram.Interpretation.Classes.Data
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 namespace KIP126.Classical.Adams
 
-/-- Compatibility form of the delivered nonzero-square conclusion. The finite
-check is discharged by the Interface producer; Main consumes its C(M) field. -/
+/-- Transfer any concrete nonzero-square certificate along the existing E₂
+comparison. The unconditional specialization below uses the archived certificate. -/
 theorem computedH6Square_ne_zero_of_check
     (h : KIP126.LinE2.SquareDetection.allRelationsCheck = true) :
     computedH6Square ≠ 0 := by
-  exact KIP126.Main.Axiom.challenge2Witness.computation.sphereSquare.nonzero
+  exact fun hz => KIP126.LinE2.SquareDetection.dataH6Sq_ne_zero_of_check h
+    ((linToSphereE2 2 128 (by decide)).map_eq_zero_iff.mp hz)
 
-/-- The fixed computational class is nonzero on E₂, as delivered by the
-computation part of the one disclosed Challenge2 witness. -/
+/-- The fixed computational class is nonzero on E₂. This uses the disclosed
+Lin E₂ comparison, but no basis-table placeholder or unverified finite check. -/
 theorem computedH6Square_ne_zero : computedH6Square ≠ 0 :=
-  KIP126.Main.Axiom.challenge2Witness.computation.sphereSquare.nonzero
+  computedH6Square_ne_zero_of_check KIP126.LinE2.SquareDetection.allRelationsCheck_eq_true
 
 end KIP126.Classical.Adams
+end

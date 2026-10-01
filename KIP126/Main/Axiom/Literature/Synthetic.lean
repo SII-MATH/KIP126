@@ -1,77 +1,71 @@
-import KIP126.Challenge1
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.Kervaire.Inputs.Literature.Data
+import KIP126.Def.Kervaire.Inputs.Literature.SourceMay
 
-/-!
-# 带来源的 synthetic 文献输入
-
-数学接口在 Challenge1 中定义；这里将调用者提供的证明绑定到已有 claim
-目录的精确来源。目录编号和文献定位本身不产生证明，也不选择一个全局输入。
-
-ν 的 cofiber 判据来自 Pstrągowski Lemma 4.23；full lift 来自 BHS Lemma 9.15；
-与 distinguished triangle 相容的 lift 来自该引理的证明。三个输入始终使用
-同一个 H𝔽₂ 与同一个 ν，不能用相互无关的模型分别填入。
+/-! Separate literature leaves on one explicitly identified source model.
+No axiom below accepts `Inputs`, `ModelBindings`, a source-model existence,
+normalized-triangle compatibility, or any new LWX deduction. BHS A.1 and
+tau-surj use SM.adams' actual completeness/strong-convergence conditions.
+The data-bearing leaves retain existence, and are chosen once by the
+internal assembler. May uses constructed source suspension conventions.
 -/
+namespace KIP126.Main.Axiom.Literature
+open CategoryTheory KIP126.StableHomotopy KIP126.Classical.Adams
+open KIP126.Synthetic.Context KIP126.Kervaire.Route KIP126.Literature.Route
+variable {Syn : Type 1} [SyntheticCategory.{1,0} Syn]
+  [HasFunctorialCofiber (C := Syn)] [SymmetricCategory Syn]
+  (D : StandardRouteModel Syn) (η : BiHom 1 2 (S00 : Syn))
+  (G : TmfLabels standardFoundation.hf2)
 
-namespace KIP126.Synthetic
 
-open KIP126.External KIP126.StableHomotopy
-open KIP126.StableHomotopy.Cohomology KIP126.Synthetic.Context
+/-- Pstragowski Lemma 4.23, on the specified nu and actual triangles. -/
+axiom nu_cofiber (SM : SourceModel D η G) : KIP126.Synthetic.NuCofiberCriterion standardFoundation.hf2 D.nu
 
-universe u v u' v'
+/-- BHS Lemma 9.15: full lambda divisibility, not a selected triangle. -/
+axiom full_lift (SM : SourceModel D η G) : KIP126.Synthetic.SyntheticLiftComparison standardFoundation.hf2 D.nu
 
-variable {C : Type u} [StableHomotopyCategory.{u, v} C]
-  [HasFunctorialCofiber (C := C)]
-  {Syn : Type u'} [SyntheticCategory.{u', v'} Syn]
-  (H : Mod2EilenbergMacLane (C := C)) (N : NuFunctorData C Syn)
+/-- BHS A.1(1), with the selected complete/strongly convergent scope. -/
+axiom finite_lift (SM : SourceModel D η G) : FiniteLiftCriterion D
 
-/-- 将明确提供的 cofiber 判据证明绑定到 Pstrągowski Lemma 4.23。 -/
-def cataloguedNuCofiberCriterion (proof : NuCofiberCriterion H N) :
-    CataloguedExternalResult (NuCofiberCriterion H N) :=
-  { root := .nuCofiberCriterion
-    value :=
-      { proof := proof
-        ref := (externalClaimLedger.lookup .nuCofiberCriterion).ref }
-    ref_eq := rfl
-    class_supported := by trivial }
+/-- BHS A.1(1c): there exists an appropriate lift of the differential. -/
+axiom bockstein (SM : SourceModel D η G) : BocksteinDifferential D
 
-/-- 将明确提供的 full-lift 证明绑定到 BHS Lemma 9.15。 -/
-def cataloguedSyntheticLift (proof : SyntheticLiftComparison H N) :
-    CataloguedExternalResult (SyntheticLiftComparison H N) :=
-  { root := .syntheticLift
-    value :=
-      { proof := proof
-        ref := (externalClaimLedger.lookup .syntheticLift).ref }
-    ref_eq := rfl
-    class_supported := by trivial }
+/-- BHS A.1(2): permanent-cycle lifting, including zero/boundary labels. -/
+axiom permanent_lift (SM : SourceModel D η G) : PermanentLiftCriterion D
 
-/-- 将明确提供的三角提升证明绑定到 BHS Lemma 9.15 的证明。 -/
-def cataloguedSyntheticTriangleLift (proof : SyntheticTriangleLiftComparison H N) :
-    CataloguedExternalResult (SyntheticTriangleLiftComparison H N) :=
-  { root := .syntheticTriangleLift
-    value :=
-      { proof := proof
-        ref := (externalClaimLedger.lookup .syntheticTriangleLift).ref }
-    ref_eq := rfl
-    class_supported := by trivial }
+/-- BHS A.8, for the actual coefficient tower and canonical E2 map. -/
+axiom differentials (SM : SourceModel D η G) : DifferentialRigidity D
 
-/-- 同一 H𝔽₂ 与 ν 上的三个显式文献输入，分别锁定其 claim 来源。
+/-- BHS A.9/A.11, retaining finite windows, labels and lambda/rho maps. -/
+axiom eInfty (SM : SourceModel D η G) : Nonempty (EInftyInput D)
 
-每个 `CataloguedExternalResult` 同时携带命题证明与来源。此记录的定义不声称
-存在这样的输入，也不把未完成的来源定理转换为项目 axiom。
--/
-structure SyntheticLiteratureInput where
-  nu_cofiber : CataloguedExternalResult (NuCofiberCriterion H N)
-  nu_cofiber_root : nu_cofiber.root = .nuCofiberCriterion
-  lift : CataloguedExternalResult (SyntheticLiftComparison H N)
-  lift_root : lift.root = .syntheticLift
-  triangle_lift : CataloguedExternalResult (SyntheticTriangleLiftComparison H N)
-  triangle_lift_root : triangle_lift.root = .syntheticTriangleLift
+/-- BHS cor:tau-surj, with the same completed strongly convergent scope. -/
+axiom filtration_lambda (SM : SourceModel D η G) : FiltrationLambda D
 
-/-- 仅提取调用者已提供的三个证明，得到对应的数学接口。 -/
-theorem SyntheticLiteratureInput.interface (input : SyntheticLiteratureInput H N) :
-    SyntheticInterface H N where
-  nu_cofiber := input.nu_cofiber.value.proof
-  lift := input.lift.value.proof
-  triangle_lift := input.triangle_lift.value.proof
+/-- BHS A.8's complementary E2 weight-zero region. -/
+axiom e2_weight_vanishing (SM : SourceModel D η G) : E2WeightVanishing D
 
-end KIP126.Synthetic
+/-- BHS A.1(2a,b),(3a,b), using the constructed realization coordinates. -/
+axiom realization_detection (SM : SourceModel D η G) : RealizationDetection D (sourceRealizationCoordinates D)
+
+/-- BX Proposition 7.19 and its proof at one common theta5. The synthetic
+eta is separately identified; the LWX normalization is not included. -/
+axiom bx (SM : SourceModel D η G) (hη : EtaChoice standardMilnorCooperations D.toModelData η) :
+  BXDistinguishedInput D η
+
+/-- BHS low synthetic ring, prop:syn-toda-range (0),(9). No Toda
+membership or high-stem indeterminacy assertion is accepted here. -/
+axiom low_ring (SM : SourceModel D η G) (hη : EtaChoice standardMilnorCooperations D.toModelData η) :
+  Nonempty (TodaInputs D η)
+
+/-- May TC3 and Lemma4.6 with the actual source tensor/suspension maps
+and the original boundary sign. Positive-boundary transport is internal. -/
+axiom may_tc3 (SM : SourceModel D η G) (T U : HoCofiberSequence (C := Syn)) :
+  Nonempty (MayPushpullData Syn (sourceMayTensor D η G SM) T U)
+
+/-- BHSmot Appendices B/C and BX cnstr:bock-maps: commutative algebra
+structures on the positive finite lambda quotients, with the actual unit.
+Compatibility with D's preselected rho fillers and its sphere action is
+proved internally, as are the cobar and filtered-detection comparisons. -/
+axiom quotient_algebras (SM : SourceModel D η G) : Nonempty (QuotientAlgebraStructures D)
+
+end KIP126.Main.Axiom.Literature

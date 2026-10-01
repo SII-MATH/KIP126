@@ -1,8 +1,12 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Basis.Proofs
+import KIP126.LinProgram.Interpretation.Basis.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Classical.Adams
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
+variable [KIP126.Comparison.SphereBasisInterface
+  (inferInstance : KIP126.Classical.Adams.LinE2Presentation)]
 open KIP126.LinE2
 
 theorem Challenge.sphereE2Coordinates_basis (s t : ℕ) (ht : t ≤ 261) (i : BasisIndex s t) :

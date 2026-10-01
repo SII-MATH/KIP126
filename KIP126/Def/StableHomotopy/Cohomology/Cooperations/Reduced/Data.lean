@@ -32,7 +32,7 @@ def reducedCooperationTensorCongr {W : ℤ → Type*}
     reducedCooperationTensor H R V n ≃ₗ[ZMod 2] reducedCooperationTensor H R W n :=
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) := fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   DirectSum.congrLinearEquiv fun i =>
     TensorProduct.congr (LinearEquiv.refl (ZMod 2) (LinearMap.ker (cooperationCounitF2 H R i)))
       (e (n - i))

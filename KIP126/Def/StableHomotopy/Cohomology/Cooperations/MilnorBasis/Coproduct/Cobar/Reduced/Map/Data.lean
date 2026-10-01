@@ -18,12 +18,12 @@ def cooperationReducedCobarDiagonal
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     LinearMap.ker (cooperationCounitF2 H R n) →ₗ[F2] reducedCooperationSquare H R n := by
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   exact ((cooperationCobarDiagonal H R K n).comp
     (LinearMap.ker (cooperationCounitF2 H R n)).subtype).codRestrictOfInjective
       (reducedCooperationSquareInclusion H R n)

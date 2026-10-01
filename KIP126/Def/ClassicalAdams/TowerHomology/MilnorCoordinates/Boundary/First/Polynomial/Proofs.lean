@@ -22,7 +22,7 @@ theorem sphereFirstBoundary_polynomial_reduced (n : ℤ) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R (n + 1)),
     let e := LinearEquiv.cast (R := ZMod 2)
       (M := fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum 1))
@@ -35,7 +35,7 @@ theorem sphereFirstBoundary_polynomial_reduced (n : ℤ) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   refine (congrArg (milnorWordPolynomial 1 (n + 1))
     (sphereTowerHomologyWordEquiv_firstBoundary_reduced H R K B n a)).trans ?_

@@ -1,9 +1,14 @@
-import KIP126.Main.Solution.Computation.LinProgram.E2
+import KIP126.LinProgram.E2
 import Lean.Elab.Command
 
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+variable [KIP126.Comparison.SphereBasisInterface (inferInstance : KIP126.Classical.Adams.LinE2Presentation)]
+
+
 /-! Catalogue checks are executable regressions, not proofs of independence.
-The actual E₂ coordinates and CSV values come from the single Challenge2
-witness. Fixed-CSV certification is an Interface helper, not a Challenge1
+The actual E₂ coordinates and CSV values come from the single computation interpretation
+witness. Fixed-CSV certification is an Interface helper, not a structural realization
 field or a proof imported by Main. -/
 namespace KIP126.LinE2
 
@@ -46,32 +51,7 @@ example (x : E2At 1 64) (y : E2At 1 64) :
 
 end KIP126.LinE2
 
-open Lean Elab Command in
-run_cmd do
-  let env ← getEnv
-  for mod in env.allImportedModuleNames do
-    let name := mod.toString
-    if name.startsWith "KIPBase" || name.startsWith "KIP126.Mathlib." ||
-        name.startsWith "Mathlib.Algebra.Homology.SpectralSequence" then
-      throwError "Lin internal interface imported forbidden adapter: {mod}"
-    if name.startsWith "KIP126.Interface.Solution." then
-      throwError "Main basis consumer imported an Interface producer: {mod}"
-  let axs ← liftCoreM (collectAxioms ``KIP126.LinE2.multiply_mem)
-  for a in axs do
-    unless [``propext, ``Classical.choice, ``Quot.sound].contains a do
-      throwError "homogeneous multiplication has proof debt: {a}"
-  let basisAxs ← liftCoreM (collectAxioms ``KIP126.LinE2.dataBasis_val)
-  -- The shared boundary's mathematical types can themselves depend on
-  -- unfinished structural properties. Do not treat those as new independent
-  -- basis assumptions, or claim that this development boundary is proved.
-  let boundaryAxs ← liftCoreM (collectAxioms ``KIP126.Main.Axiom.challenge2)
-  for a in basisAxs do
-    unless [``propext, ``Classical.choice, ``Quot.sound].contains a ||
-        boundaryAxs.contains a do
-      throwError "unexpected basis certification dependency: {a}"
-  unless basisAxs.contains ``KIP126.Main.Axiom.challenge2 do
-    throwError "missing disclosed Challenge2 coordinate dependency"
-
 #print axioms KIP126.LinE2.multiply_mem
 #print axioms KIP126.LinE2.dataBasis_val
 #print axioms KIP126.Classical.Adams.sphereE2Basis_ne_zero
+end

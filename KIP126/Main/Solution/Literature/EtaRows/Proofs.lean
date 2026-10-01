@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.EtaRows.Data
+import KIP126.Def.References.Literature.EtaRows.Data
 
 namespace KIP126.Classical.ExtensionSS
 

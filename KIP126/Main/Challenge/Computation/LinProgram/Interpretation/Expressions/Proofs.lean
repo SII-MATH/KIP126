@@ -1,10 +1,12 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Proofs
+import KIP126.LinProgram.Interpretation.Expressions.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 set_option maxRecDepth 16384
 
 namespace KIP126.Classical.Adams
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
 open KIP126.LinE2
 attribute [local irreducible] homogeneousPart generatorDegree definingIdeal
 

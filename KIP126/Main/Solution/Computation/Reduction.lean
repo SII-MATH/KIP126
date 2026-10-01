@@ -1,6 +1,10 @@
 import KIP126.Main.Solution.Computation.Nonvanishing
 import KIP126.Main.Solution.Computation.Vanishing
 
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
+
 namespace KIP126.Classical.Adams
 
 open KIP126.StableHomotopy KIP126.Core.SpectralSequence
@@ -21,3 +25,4 @@ theorem computedH6Square_nonzeroSurvival_iff :
     (and_iff_right computedH6Square_ne_zero)
 
 end KIP126.Classical.Adams
+end

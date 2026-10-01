@@ -1,5 +1,5 @@
 import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
-import KIP126.Interface.Axiom.StandardSphere.Classes.Data
+import KIP126.Def.ClassicalAdams.StandardSphere.Classes.Data
 import Lean.Elab.Command
 
 open KIP126.StableHomotopy KIP126.Synthetic.Context
@@ -18,5 +18,5 @@ example (η : Eta Syn) (θ : Theta Syn) :
 open Lean Elab Command in
 run_cmd do
   for m in (← getEnv).allImportedModuleNames do
-    if (`KIP126.Main.Axiom).isPrefixOf m || m == `KIP126.Challenge2 then
+    if (`KIP126.Main.Axiom).isPrefixOf m || m == `KIP126.Def.Comparison.Interfaces then
       throwError "fixed standard comparison acquired C(M): {m}"

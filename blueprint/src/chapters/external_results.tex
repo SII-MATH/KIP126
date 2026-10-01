@@ -1,25 +1,26 @@
 \chapter{External literature results}
 \label{chap:external-results}
 
-This chapter records precise published inputs and the specializations now proved internally. Every node retains its source and locator; the text distinguishes an explicit external hypothesis from an internal proof.
+This chapter records published-input statements and their internal adaptations.
+Every node retains its source and locator; a statement, a model comparison,
+and a completed internal proof are separate obligations.
 
-The stage-delivery record \texttt{Challenge2.LiteratureInterface} separates
-Adams/May, Moss, and BR21 conclusions from computation delivery. Its Moss and
-tmf claims refer to the same shared contexts; cobar comparison and tmf model
-bindings are not reclassified as literature theorems. This organization does
-not supply proofs or replace the source-bearing inputs described below.
-
-\section{Explicit inputs for the frozen Section 7 model}
+\section{Explicit inputs and source identification}
 
 % SOURCE: docs/A_INPUT_FREEZE.md and Literature/Route/sources.json.
 % The declarations below are INPUT TYPES, not proofs of the source results.
-\begin{definition}[$A(M)$ on one selected model]
+\begin{definition}[Source statements and bindings on one selected model]
   \label{def:route-literature-inputs}
-  \lean{KIP126.Literature.Route.Inputs,KIP126.Literature.Route.A}
+  \lean{KIP126.Literature.Route.Inputs,KIP126.Literature.Route.SourceApplicationData,KIP126.Literature.Route.ModelBindings}
   \leanok
   For the fixed model $D$, the same synthetic $\eta$, and two classical tmf
-  labels, $A(M)$ is inhabitance of an explicit literature-input record.
-  It contains the source results below and their model applicability data.
+  labels, the route consumes an explicit \texttt{Inputs} record containing
+  \texttt{SourceApplicationData} and its \texttt{ModelBindings}.
+  Classical and tmf source statements are separate from their transport to
+  $D$. The synthetic source identification fixes the actual site, operations,
+  preferred sphere pairing, tower labels and recovery comparisons.
+  Separate source leaves are accepted in Main/Axiom; internal adapters
+  assemble this mixed application record. The whole record is not an axiom.
   It has no computation table, generalized Leibniz or Mahowald conclusion,
   $C_3/C_4/C_5$, Proposition 7.8/7.9, or final-survival field.
   Defining the record does not supply an inhabitant. No default instance or
@@ -43,36 +44,48 @@ not supply proofs or replace the source-bearing inputs described below.
   \label{def:route-synthetic-inputs}
   \lean{KIP126.Literature.Route.SyntheticInputs,KIP126.Literature.Route.RealizationInput,KIP126.Literature.Route.AlgebraInput,KIP126.Literature.Route.Applicability}
   \leanok
-  The Pstragowski/BHS inputs bind lifting, Bockstein maps, rigidity,
+  The Pstragowski/BHS application statements express lifting, Bockstein maps, rigidity,
   $E_\infty$ formulas, realization and filtration to $D$'s actual objects.
   They retain the first-quotient labels and compatibility with $\lambda$
-  and restriction maps. Algebra witnesses use the existing tensor products,
-  actual quotient inclusions and detector unit. Applicability separately
-  requires the selected normalized $C\nu$ triangle to be distinguished and
+  and restriction maps. The separate SourceModel binds $D$ to the
+  finite-projective spectral-diagram source construction. Algebra witnesses use the
+  existing tensor products and actual quotient inclusions; their
+  multiplicativity and detection comparisons are separate model bindings.
+  The accepted quotient-algebra leaf gives only the commutative algebra
+  structures and units. Compatibility with the selected restriction maps
+  and sphere action is an internal finite-cell comparison, using the
+  negative first-quotient window independently of the $E_\infty$ formulas.
+  Applicability separately identifies the selected normalized $C\nu$ maps
+  with the three source lifts and requires
   the classical tower condition used by Moss. These are explicit source
   application obligations, not consequences for arbitrary lift choices.
 \end{definition}
 
 \begin{definition}[May, Moss, low Toda and tmf inputs]
   \label{def:route-tools-tmf-inputs}
-  \lean{KIP126.Literature.Route.MayInput,KIP126.Literature.Route.MossInput,KIP126.Literature.Route.TodaInputs,KIP126.Literature.Route.TmfInputs}
+  \lean{KIP126.Literature.Route.MayInput,KIP126.Literature.Route.MossInput,KIP126.Literature.Route.TodaInputs,KIP126.Literature.Route.TmfSourceResults,KIP126.Literature.Route.TmfBinding}
   \leanok
-  May supplies the actual smash-boundary law. Moss supplies a conditional
+  May's input retains the signed TC3 statement, with the route
+  smash-boundary law derived internally. Moss supplies a conditional
   existence statement for a detected Toda member, with defining systems,
   null products and no-crossing hypotheses retained. The low Toda inputs
-  include $\lambda[h_0]=2$, $\eta^2\in\langle[h_0],\eta,[h_0]\rangle$ and
-  $\lambda^2\eta\theta\in\langle2,\theta,2\rangle$ when $2\theta=0$.
-  They do not discard the high-stem indeterminacy. The tmf fields are
-  classical Hurewicz results and a small low-filtration vanishing region;
-  the synthetic local injectivity used in Proposition 7.8 is still derived
-  from these inputs and the computation tables.
+  include $\lambda[h_0]=2$, $[h_0]\eta=0$ and the specified low-dimensional
+  ring vanishing. The synthetic Toda memberships
+  $\eta^2\in\langle[h_0],\eta,[h_0]\rangle$ and
+  $\lambda^2\eta\theta\in\langle2,\theta,2\rangle$ remain internal
+  adaptations with their order and indeterminacy conditions.
+  The tmf source statements concern specified classical detected classes,
+  their actual product's nonzero unit image and the stated vanishing
+  region. Passing to every representative with that leading class requires
+  the separate classical filtration-tail argument and the model binding;
+  no synthetic injectivity is an immediate tmf source field.
 \end{definition}
 
 \section{Published differentials, extensions, and stable-operation results}
 
 \begin{proposition}[Generic Toda cosets and juggling]
   \label{prop:generic-toda-coset-juggling}
-  \lean{KIP126.Challenge1.TodaInterface,KIP126.StableHomotopy.Toda.indeterminacy_complete,KIP126.StableHomotopy.Toda.relation_iff_indeterminacy,KIP126.StableHomotopy.Toda.juggling,KIP126.Def.Solution.todaInterface}
+  \lean{KIP126.Foundation.TodaInterface,KIP126.StableHomotopy.Toda.indeterminacy_complete,KIP126.StableHomotopy.Toda.relation_iff_indeterminacy,KIP126.StableHomotopy.Toda.juggling,KIP126.Def.Solution.todaInterface}
   \uses{def:toda-bracket}
   \leanok
   For the cone-defined Toda relation in a triangulated category, a bracket
@@ -99,7 +112,7 @@ not supply proofs or replace the source-bearing inputs described below.
 \begin{theorem}[Toda naturality, suspension, products and shuffle]
   \label{thm:toda-product-identities}
   \uses{def:toda-bracket,prop:generic-toda-coset-juggling}
-  \lean{KIP126.Challenge1.TodaNaturalityInterface,KIP126.Challenge1.TodaFunctorInterface,KIP126.Challenge1.TodaTensorInterface,KIP126.Def.Challenge.todaNaturalityInterface,KIP126.Def.Challenge.todaFunctorInterface,KIP126.Def.Challenge.todaTensorInterface}
+  \lean{KIP126.Foundation.TodaNaturalityInterface,KIP126.Foundation.TodaFunctorInterface,KIP126.Foundation.TodaTensorInterface,KIP126.Def.Solution.todaNaturalityInterface,KIP126.Def.Solution.todaFunctorInterface,KIP126.Def.Solution.todaTensorInterface}
   \notready
   The same cone-defined Toda relation satisfies pre- and postcomposition
   containments, both intermediate-factor absorption containments, suspension
@@ -112,8 +125,8 @@ not supply proofs or replace the source-bearing inputs described below.
     z\in-(\Sigma f)\langle g,h,d\rangle.
   \]
   The image sets retain their complete indeterminacy. These nine precise
-  statements and three matching Challenge/Solution delivery groups are now
-  present; the new proofs remain placeholders. Specific Section~7 bracket
+  statements and their generic Foundation proof obligations are present;
+  the new proofs remain placeholders. Specific Section~7 bracket
   values and proofs that their indeterminacy vanishes remain Main obligations.
 \end{theorem}
 
@@ -151,7 +164,7 @@ not supply proofs or replace the source-bearing inputs described below.
 \begin{theorem}[Adams one-line differentials]
   \label{thm:external-adams-one-line}
   \uses{def:adams-hj,def:external-result}
-  \lean{KIP126.Challenge2.AdamsOneLineInterface,KIP126.Interface.Challenge.adamsOneLine,KIP126.Interface.Challenge.adamsOneLine_d2,KIP126.Interface.Challenge.adamsHi_nonzeroSurvival_iff}
+  \lean{KIP126.Comparison.AdamsOneLineInterface,KIP126.Interface.Solution.adamsOneLine,KIP126.Interface.Solution.adamsOneLine_d2,KIP126.Interface.Solution.adamsHi_nonzeroSurvival_iff}
   \notready
   The internal statement fixes the one-line as a copy of $\mathbb F_2$
   generated by the specified $h_j$ in degrees $(1,2^j)$, and zero in all
@@ -182,9 +195,9 @@ not supply proofs or replace the source-bearing inputs described below.
 \begin{theorem}[tmf BR21 differential and coordinate compatibility (am14)]
   \label{thm:external-tmf-br21-d3-slice}
   \uses{def:hf2-adams-tower,def:adams-bidegree,def:unital-multiplication-data,def:external-result}
-  \lean{KIP126.Classical.Adams.Tmf.CsvE2.v2Sixteen,KIP126.Classical.Adams.Tmf.CsvE2.betaFiveG,KIP126.Challenge2.TmfDifferentialInterface,KIP126.Interface.Challenge.tmfDifferentialInterface}
+  \lean{KIP126.Classical.Adams.Tmf.CsvE2.v2Sixteen,KIP126.Classical.Adams.Tmf.CsvE2.betaFiveG,KIP126.Comparison.TmfDifferentialInterface,KIP126.Interface.Solution.tmfDifferentialInterface}
   \lean{KIP126.Classical.Adams.Tmf.CsvE2.one,KIP126.Classical.Adams.Tmf.CsvE2.mul,KIP126.Classical.Adams.Tmf.firstMultiplication,KIP126.Classical.Adams.Tmf.unitSecondCycle}
-  \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Challenge2.StandardTmfMultiplicativeInterface,KIP126.Interface.Challenge.tmfMultiplicativeInterface}
+  \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Comparison.StandardTmfMultiplicativeInterface,KIP126.Interface.Solution.tmfMultiplicativeInterface}
   \notready
   This delivery slice asks for an algebra object $T$ and an additive
   coordinate comparison, for $t\le261$, from the fixed polynomial quotient
@@ -434,7 +447,7 @@ not supply proofs or replace the source-bearing inputs described below.
 % MainPaper/main.tex:813--823, thm:17e90ac0.
 \begin{theorem}[Finite $\lambda$-Bockstein lifting and differential input]
   \label{thm:external-finite-lambda-bockstein}
-  \lean{KIP126.Challenge2.FiniteLambdaBocksteinInterface,KIP126.Synthetic.cataloguedFiniteLambdaBockstein}
+  \lean{KIP126.Comparison.FiniteLambdaBocksteinInterface,KIP126.Synthetic.cataloguedFiniteLambdaBockstein}
   \uses{def:first-lambda-quotient-comparison,def:finite-lambda-bockstein-maps,def:actual-adams-strong-convergence,def:external-result}
   \notready
   Fix the same $H\mathbb F_2$ unit, $\nu$, first-quotient comparison $Q$,
@@ -602,7 +615,7 @@ not supply proofs or replace the source-bearing inputs described below.
 \begin{theorem}[$\lambda$-adic completeness]
   \label{thm:external-synthetic-lambda-complete}
   \uses{def:lambda-rho-delta-triangle,def:external-result}
-  \lean{KIP126.StableHomotopy.SequentialHomotopyLimit,KIP126.Classical.Adams.IsENilpotentComplete,KIP126.Synthetic.Context.IsLambdaComplete,KIP126.Synthetic.Context.LambdaAdicCompletion,KIP126.Synthetic.LambdaAdicCompletenessInterface,KIP126.Def.Challenge.nu_lambdaAdicCompletion}
+  \lean{KIP126.StableHomotopy.SequentialHomotopyLimit,KIP126.Classical.Adams.IsENilpotentComplete,KIP126.Synthetic.Context.IsLambdaComplete,KIP126.Synthetic.Context.LambdaAdicCompletion,KIP126.Synthetic.LambdaAdicCompletenessInterface,KIP126.Def.Solution.nu_lambdaAdicCompletion}
   \notready
   For an $H\mathbb F_2$-nilpotent-complete spectrum $X$, an explicit BHS
   external result supplies a natural equivalence
@@ -736,7 +749,7 @@ not supply proofs or replace the source-bearing inputs described below.
 % SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; KIP126/Main/Axiom/Literature/MainPaper/main.tex:117-123, Theorem thm:browder.
 \begin{theorem}[Browder criterion]
   \label{thm:external-browder-criterion}
-  \lean{KIP126.Challenge2.BrowderInterface,KIP126.Kervaire.InternalBrowderLiteratureInput}
+  \lean{KIP126.Comparison.BrowderInterface,KIP126.Kervaire.InternalBrowderLiteratureInput}
   \uses{def:framed-kervaire-context,def:classical-adams-ss,def:adams-hj,def:ss-permanent-einfty-class,def:external-result}
   \notready
   Fix a stable context $\mathcal C$, a framed Kervaire context over
@@ -763,7 +776,7 @@ not supply proofs or replace the source-bearing inputs described below.
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:151-162 and cited classical Kervaire literature.
 \begin{theorem}[Prior low-dimensional Kervaire existence]
   \label{thm:external-low-kervaire-existence}
-  \lean{KIP126.Challenge1.GeometryInterface,KIP126.Kervaire.cataloguedLowKervaireDimensions,KIP126.Kervaire.GeometryLiteratureInput}
+  \lean{KIP126.Foundation.GeometryInterface,KIP126.Kervaire.cataloguedLowKervaireDimensions,KIP126.Kervaire.GeometryLiteratureInput}
   \uses{def:framed-kervaire-context,def:external-result}
   \notready
   Explicit literature results supply framed Kervaire-invariant-one manifolds
@@ -796,13 +809,14 @@ not supply proofs or replace the source-bearing inputs described below.
 % SOURCE: Barratt--Jones--Mahowald induction; KIP126/Main/Axiom/Literature/MainPaper/main.tex:162.
 \begin{proposition}[Low-dimensional permanence from explicit geometric inputs]
   \label{prop:internal-low-dimensional-permanence}
-  \lean{KIP126.Challenge2.LowDimensionalSquarePermanence,KIP126.Interface.Solution.lowDimensionalSquarePermanence}
+  \lean{KIP126.Comparison.LowDimensionalSquarePermanence,KIP126.Interface.Solution.lowDimensionalSquarePermanence}
   \uses{thm:external-browder-criterion,thm:external-low-kervaire-existence,def:milnor-internal-hi-family}
   \notready
   Given the same geometric existence and Browder inputs, the actual internal
   classes $h_4^2$ and $h_5^2$ have nonzero permanent survival. This implication
-  has a Lean proof. Its fixed sphere classes still use the admitted Challenge1
-  witness, and the geometric inputs themselves have not been constructed.
+  has a Lean proof conditional on its explicit geometric inputs. Its fixed sphere
+  classes use the definition-layer source realization, whose construction remains
+  a proof debt; the geometric inputs themselves have not been constructed.
 \end{proposition}
 \begin{proof}
   Apply Browder to the supplied manifold of dimension $2^{j+1}-2$ for

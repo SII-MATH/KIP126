@@ -1,8 +1,10 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Presentation.Proofs
+import KIP126.LinProgram.Interpretation.Presentation.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.Classical.Adams
+
+variable [KIP126.Classical.Adams.LinE2Presentation]
 
 /-- Every internal page class in range has a data-model preimage (PR #110). -/
 theorem Challenge.linToSphere_exists_preimage (s t : ℕ) (ht : t ≤ 261)

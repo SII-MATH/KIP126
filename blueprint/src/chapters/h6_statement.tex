@@ -3824,10 +3824,9 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   Under the existing fixed foundation and Lin presentation, every element
   of the internal $E_2^{2,128}$ is zero or \texttt{computedH6Square}.
   In particular every nonzero element equals that square. This is a
-  conclusion delivered through \texttt{computation.sphereSquare}. Its Interface
-  producer uses surjectivity of the specified Lin comparison and the independent
-  data certificate. Main projects this conclusion from the one Challenge2
-  witness; the aggregate stage delivery remains unfinished.
+  complete Lean proof by surjectivity of the existing Lin comparison,
+  but retains precisely those two fixed project assumptions. It imports
+  no Milnor coordinates or Mathlib spectral-sequence adapter.
 \end{proposition}
 
 \begin{proposition}[The actual double tensor-boundary class is the computed square]
@@ -4156,8 +4155,7 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   back with $\operatorname{toList}(\operatorname{ofList}(l))=l$. The resulting
   proof types must match the original archived string literals. Assemble
   eight consecutive batches covering the entire archive and apply the
-  soundness theorem. These fixed-data proofs live in the independent
-  \texttt{LinProgram/Certificates} tree. Native execution only generates candidate proof terms;
+  soundness theorem. Native execution only generates candidate proof terms;
   it supplies no evaluation axiom and does not replace any archived data.
   \leanok
 \end{proof}
@@ -4175,11 +4173,12 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   the all-stage lifting assertion is not proved by this equivalence.
 \end{proposition}
 \begin{proof}
-  The Interface producer transports the independent nonvanishing certificate
-  through the specified injective Lin comparison. Main obtains this fact from
-  \texttt{computation.sphereSquare} and substitutes it into the proved
-  survival/liftability equivalence. The aggregate Challenge2 production
-  remains unfinished, so this fixed-object node is not marked complete.
+  Transport nonvanishing through the injective Lin comparison. Substitute
+  this theorem into the already proved survival/liftability equivalence.
+  Both proof bodies are implemented and contain no unfinished proof;
+  this fixed-object node remains conditional on the named foundation,
+  and Lin comparison inputs and is therefore not marked complete. This
+  reduction no longer depends on the named Milnor-coordinate assumption.
 \end{proof}
 
 The regression module \texttt{Checks/AdamsE2/SquareDetection} audits the
@@ -4191,7 +4190,7 @@ survival; the computational final Solution remains open.
 
 \begin{definition}[Correlated stage-zero cooperation contract]
   \label{def:stage-zero-cooperation-contract}
-  \lean{KIP126.Challenge1.TensorInput,KIP126.Challenge1.CooperationInput}
+  \lean{KIP126.Foundation.TensorInput,KIP126.Foundation.CooperationInput}
   \uses{def:h6-reduced-milnor-basis-input,def:h6-milnor-coproduct-input,prop:h6-derived-milnor-coordinates,def:h6-milnor-cooperations}
   \leanok
   The first Challenge witness specifies one tensor suspension/exactness
@@ -4205,7 +4204,7 @@ survival; the computational final Solution remains open.
 
 \begin{proposition}[Cobar square-zero law from the first-page comparison]
   \label{prop:cobar-square-zero-from-comparison}
-  \lean{KIP126.Classical.Adams.sphereFirstDifferential_squared,KIP126.Classical.Adams.milnor_differential_squared,KIP126.Def.Solution.cobar_square_zero}
+  \lean{KIP126.Classical.Adams.sphereFirstDifferential_squared,KIP126.Classical.Adams.milnor_differential_squared,KIP126.Foundation.Proofs.cobar_square_zero}
   \uses{def:h6-milnor-cooperations,def:h6-tower-differential}
   \leanok
   Given the explicit Milnor comparison for the actual Adams first page,
@@ -4262,7 +4261,7 @@ survival; the computational final Solution remains open.
 
 \begin{proposition}[Cobar multiplication descends to cohomology]
   \label{prop:milnor-cobar-cup-descent}
-  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Challenge2.CobarCupCalculus}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Comparison.CobarCupCalculus}
   \uses{def:milnor-cobar-cohomology,def:milnor-internal-hi-family}
   \leanok
   Cobar concatenation induces an actual $\mathbb F_2$-bilinear product
@@ -4283,7 +4282,7 @@ survival; the computational final Solution remains open.
 
 \begin{proposition}[Canonical cobar comparison with the internal second page]
   \label{prop:milnor-cobar-internal-e2}
-  \lean{KIP126.Classical.Adams.MilnorCohomology.comparison,KIP126.Classical.Adams.MilnorCohomology.comparison_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.comparison_hi,KIP126.Classical.Adams.MilnorCohomology.comparison_hiSquare,KIP126.Challenge2.CobarE2Comparison,KIP126.Interface.Solution.cobarE2Comparison}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.comparison,KIP126.Classical.Adams.MilnorCohomology.comparison_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.comparison_hi,KIP126.Classical.Adams.MilnorCohomology.comparison_hiSquare,KIP126.Comparison.CobarE2Comparison,KIP126.Interface.Solution.cobarE2Comparison}
   \uses{def:milnor-cobar-cohomology,def:h6-tower-internal-sequence}
   \leanok
   For the same explicit Milnor coordinate comparison and all $s,t\ge0$,
@@ -4325,7 +4324,7 @@ survival; the computational final Solution remains open.
 
 \begin{theorem}[Additive catalogue certification, pending]
   \label{thm:lin-e2-basis-certification}
-  \lean{KIP126.Interface.Solution.LinE2.basisTable_correct}
+  \lean{KIP126.Interface.Challenge.LinE2.basisTable_correct}
   \uses{def:lin-e2-catalogue}
   \notready
   For all $s,t\in\mathbb N$ with $t\le261$, the listed monomial values of
@@ -4334,14 +4333,14 @@ survival; the computational final Solution remains open.
   linear independence and spanning, not merely that the list has the right
   length. This auxiliary certification is produced in Interface; its
   proof remains admitted. It is distinct from delivery of coordinates on
-  the actual sphere $E_2$ page and is no longer a Challenge1 field.
+  the actual sphere $E_2$ page and is no longer a Foundation interface field.
   Artifact hashes and executable checks of degrees, distinct coordinates
   and irreducibility do not discharge it.
 \end{theorem}
 
 \begin{theorem}[Fixed sphere additive-coordinate delivery, pending]
   \label{thm:lin-sphere-basis-interface}
-  \lean{KIP126.Challenge2.SphereBasisInterface,KIP126.Interface.Solution.sphereBasis}
+  \lean{KIP126.Comparison.SphereBasisInterface,KIP126.Interface.Solution.sphereBasis_of_basisTable}
   \uses{def:lin-e2-catalogue,def:h6-fixed-computation}
   \notready
   For the same range-limited Lin presentation $P$, deliver unique
@@ -4351,8 +4350,8 @@ survival; the computational final Solution remains open.
   page additive structure without choosing another $\mathbb F_2$ action.
   Pulling the inverse image of each standard coordinate vector back
   through $P$ gives exactly the specified CSV monomial value.
-  The \texttt{computation.sphereBasis} field of Challenge2 carries this interface for
-  that witness's own presentation.
+  The comparison is explicitly parameterized by this same presentation;
+  no global stage witness supplies it.
 \end{theorem}
 \begin{proof}
   \uses{thm:lin-e2-basis-certification}
@@ -4375,11 +4374,10 @@ survival; the computational final Solution remains open.
   \lean{KIP126.Classical.Adams.linToSphere_product_eq_zero}
   \uses{thm:lin-sphere-basis-interface,def:h6-fixed-computation}
   \notready
-  Main obtains its public data basis, data coordinates, basis-certification
-  compatibility theorem, and internal sphere coordinates from the unique
-  Challenge2 witness and its \texttt{computation.sphereBasis} field, using the same
-  presentation throughout. The data-side compatibility interfaces are
-  recovered from this delivery; they do not select a Challenge1 basis.
+  These historical coordinate lemmas are conditional on one explicitly supplied
+  presentation and basis certificate. The route instead locally eliminates its
+  joint certification existential and keeps the same realization for every
+  consumer. No global witness or independently chosen basis connects the stages.
   Each covered component has unique finite-support $\mathbb F_2$
   coordinates, with an integer-linear equivalence retaining the internal
   SSData $E_2$ page's existing additive structure.

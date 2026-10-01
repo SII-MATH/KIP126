@@ -4,6 +4,10 @@ import KIP126.Main.Solution.Computation.Reduction
 import KIP126.LinProgram.Certificates.SquareDetection.Certificate
 import Lean.Elab.Command
 
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
+
 /-! Kernel-proved algebraic soundness, the full finite certificate, and the
 fixed E₂ nonvanishing/reduction interfaces. No native evaluation axiom is allowed.
 The additional executable diagnostic is not used as a proof. Fixed-model
@@ -72,3 +76,4 @@ example : KIP126.LinE2.SquareDetection.relationCheck "69,3" = true := by
     IO.println "All archived relations pass square detection (additional runtime regression)."
   else
     throw (IO.userError "An archived relation fails square detection.")
+end

@@ -124,7 +124,8 @@ def main():
     if not args.check:
         OUTPUT.mkdir(parents=True, exist_ok=True)
     for name, content in files.items():
-        path = OUTPUT / name
+        path = (OUTPUT / name if name.endswith(".lean") else
+                ROOT / "KIP126/LinProgram/Generated/Staircase" / name)
         if args.check:
             if not path.exists() or path.read_text() != content:
                 raise ValueError(f"generated output mismatch: {path}")

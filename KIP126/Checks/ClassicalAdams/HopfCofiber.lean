@@ -1,6 +1,10 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Axiom.Literature.Near126.HopfCofiber.Fixed.Data
+import KIP126.Def.References.Literature.Near126.HopfCofiber.Fixed.Data
 import Lean.Elab.Command
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 open Lean Elab Command in
 run_cmd do
@@ -35,3 +39,4 @@ run_cmd do
 #print axioms KIP126.Classical.Adams.adamsTowerInduced_step
 #print axioms KIP126.Classical.Adams.sphereFiltrationOneClass
 #print axioms KIP126.Classical.Adams.sphereMapCofiberAdams
+end

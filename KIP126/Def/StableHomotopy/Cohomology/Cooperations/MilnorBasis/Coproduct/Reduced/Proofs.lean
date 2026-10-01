@@ -100,14 +100,14 @@ theorem cooperationMilnorPolynomial_reduced_normalized (n : ℤ) :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ (a : LinearMap.ker (cooperationCounitF2 H R n)) (j : Fin 1),
       augmentSlot j (cooperationMilnorPolynomial H R B n a.val) = 0 := by
   classical
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a j
   let f := (augmentSlot j).toLinearMap.comp
     ((cooperationMilnorPolynomial H R B n).comp (LinearMap.ker (cooperationCounitF2 H R n)).subtype)

@@ -16,7 +16,7 @@ theorem reducedCooperationTensorInclusion_lof_tmul (n k : ℤ) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ (a : LinearMap.ker (cooperationCounitF2 H R k)) (x : V (n - k)),
     reducedCooperationTensorInclusion H R V n
       (DirectSum.lof (ZMod 2) ℤ _ k (a ⊗ₜ[ZMod 2] x)) =
@@ -24,7 +24,7 @@ theorem reducedCooperationTensorInclusion_lof_tmul (n k : ℤ) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a x
   change (gradedTensorKernelEquiv (cooperationCounitF2 H R) V n
     (DirectSum.lof (ZMod 2) ℤ _ k (a ⊗ₜ[ZMod 2] x))).val = _

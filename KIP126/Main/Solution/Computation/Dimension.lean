@@ -1,12 +1,20 @@
-import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
+import KIP126.LinProgram.Certificates.SquareDimension.Proofs
+import KIP126.LinProgram.Interpretation.Classes.Data
+
+section
+variable [KIP126.Classical.Adams.LinE2Presentation]
+
 
 namespace KIP126.Classical.Adams
 
-/-- The computation interface supplies the exhaustive two-element description
-on the actual internal second page, for its own fixed presentation. -/
+/-- The existing Lin comparison transfers the exhaustive two-element
+description to the actual internal second page. No Milnor input is used. -/
 theorem sphereAdamsData_square_eq_zero_or (x : sphereAdamsData.Page 2 (2, 128)) :
     x = 0 ∨ x = computedH6Square := by
-  exact KIP126.Main.Axiom.challenge2Witness.computation.sphereSquare.exhaustive x
+  obtain ⟨a, rfl⟩ := (linToSphereE2 2 128 (by decide)).surjective x
+  rcases KIP126.LinE2.E2At_square_eq_zero_or a with rfl | rfl
+  · exact Or.inl (map_zero _)
+  · exact Or.inr rfl
 
 /-- Every nonzero element in this bidegree is the fixed computational square. -/
 theorem sphereAdamsData_eq_computedH6Square_of_ne_zero
@@ -14,3 +22,4 @@ theorem sphereAdamsData_eq_computedH6Square_of_ne_zero
   (sphereAdamsData_square_eq_zero_or x).resolve_left hx
 
 end KIP126.Classical.Adams
+end

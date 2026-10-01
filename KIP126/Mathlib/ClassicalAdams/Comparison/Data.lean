@@ -1,5 +1,5 @@
-import KIP126.Main.Axiom.Literature.StandardSphere.Data
-import KIP126.Main.Axiom.LinProgram.Interpretation.Sphere
+import KIP126.Def.References.Literature.StandardSphere.Data
+import KIP126.LinProgram.Interpretation.Sphere
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 import KIP126.Mathlib.SpectralSequence.Permanence.Data
 

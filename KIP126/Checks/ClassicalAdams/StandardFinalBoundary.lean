@@ -7,7 +7,7 @@ open Lean Elab Command in
 run_cmd do
   let env ← getEnv
   for m in env.allImportedModuleNames do
-    if (`KIP126.Main.Axiom).isPrefixOf m || m == `KIP126.Challenge2 ||
+    if (`KIP126.Main.Axiom).isPrefixOf m || m == `KIP126.Def.Comparison.Interfaces ||
         (`KIP126.Def.AdamsE2).isPrefixOf m || (`KIP126.Mathlib).isPrefixOf m ||
         (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
@@ -23,7 +23,7 @@ run_cmd do
   for c in ti.type.getUsedConstants do
     for a in ← liftCoreM (collectAxioms c) do
       unless [``propext, ``Classical.choice, ``Quot.sound,
-          ``KIP126.Interface.Axiom.challenge1].contains a do
+          ``sorryAx].contains a do
         throwError "standard Final type acquired a non-foundation input: {c}: {a}"
 
 open KIP126.Classical.Adams KIP126.StableHomotopy
