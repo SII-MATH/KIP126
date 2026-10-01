@@ -1,18 +1,19 @@
 # 当前阶段与目录规范
 
-本规范采用本次用户明确指定的架构，替代旧的两道总包传递架构。第 0 步只冻结数学接口，不要求完成计算认证或论文证明。当前剩余问题及验证结果见[本次重构报告](audits/stage0-57647d2-iteration-2.md)；历史审计按其快照理解。
+本规范采用当前统一交付架构。根 `KIP126/Challenge2.lean` 把文献部分 A(M)、计算部分 C(M) 及其共享选择组成一个见证；第 0 步只冻结数学接口，不要求完成计算认证或论文证明。当前剩余问题及验证结果见[本次重构报告](audits/stage0-57647d2-iteration-2.md)；历史审计按其快照理解。
 
 | 位置 | 职责 |
 | --- | --- |
 | `KIP126/Def/` | 全部数学对象、操作、谓词、结构条件、对象来源与比较接口；可含一般证明。不得导入 Interface/Main，不声明计算或文献公理。 |
 | `KIP126/LinProgram/` | 独立固定数据管线：原始 DB/CSV、hash/manifest、确定性转换器、生成的 Lean 数据、参数化解释和数据内部证书。不声明阶段公理，也不自动将表格识别为实际模型。 |
-| `KIP126/Interface/Challenge/` | 精确 C(M) 认证目标，每个目标 theorem 使用 `by sorry`。 |
-| `KIP126/Interface/Solution/` | 实际计算认证及其有效支撑证明；不得消费 Challenge 占位或 Main 计算公理。 |
-| `KIP126/Main/Axiom/` | 只显式声明 Main 阶段接受的准确 A(M)、C(M) statement 及其来源、范围和阶段性说明。 |
+| `KIP126/Challenge2.lean` | 项目专属统一交付规格；A(M) 与 C(M) 共享同一个见证、presentation 和模型绑定。 |
+| `KIP126/Interface/Challenge/` | 精确 `Nonempty Challenge2` 生产目标及局部 C(M) 认证目标；未完成目标使用 `by sorry`。 |
+| `KIP126/Interface/Solution/` | 实际交付与计算认证证明；不得消费 Challenge 占位或 Main 阶段假设。 |
+| `KIP126/Main/Axiom/` | 只声明 `axiom challenge2 : Nonempty KIP126.Challenge2`，并保存来源材料与阶段说明；不选择见证、不提取字段、不做适配。 |
 | `KIP126/Main/Challenge/` | 唯一标准 T(M)，仅导入定义层；证明为 `by sorry`。 |
-| `KIP126/Main/Solution/` | 从相同对象的 A/C 推导本文工具、命题及 T；复杂证明尚可 `sorry`，不得把它们重新列作输入。 |
+| `KIP126/Main/Solution/` | 在 `StageInput.lean` 选择唯一阶段见证并投影 A/C，其余文件从这些关联输入推导本文工具、命题及 T；复杂证明尚可 `sorry`。 |
 
-Interface 仅有 Challenge、Solution 两个直接子目录；Main 仅有 Axiom、Challenge、Solution 三个直接子目录。入口 `.lean` 仅导出模块。旧 `Challenge1.lean`、`Challenge2.lean`、总包存在公理及其 `Classical.choice` 投影链已删除。
+Interface 仅有 Challenge、Solution 两个直接子目录；Main 仅有 Axiom、Challenge、Solution 三个直接子目录。入口 `.lean` 仅导出模块。阶段边界仍使用根 `Challenge1` 与根 `Challenge2` 两个关联见证；Main 只对第二边界保留一个存在性假设。`Classical.choice` 及所有消费投影集中在 `Main/Solution/StageInput.lean`。
 
 ## 数学对象与目标
 
@@ -29,15 +30,15 @@ Def 中定义本文结论的 Prop 语言，不等于把结论成立作为 M 字�
 ## C 边界
 
 `LinProgram/Route/Certification.lean` 的 `Certification D G` 是存在同一 R、L，使基、CSV、乘积、标签、有限记录、底胞和顶胞七项成立的数学命题。
-`Interface/Challenge/LinProgram/Route.lean` 和 `Main/Axiom/Computation/Route.lean` 的完整声明同型，保持固定标准基础、实际 ν 的检测条件与 G 的标准标签身份。主证明局部拆解存在式后，全部消费者继续使用同一个 R、L；没有全局选择见证。
+`Interface/Challenge/LinProgram/Route.lean` 与 `Challenge2.ComputationInterface.route_certification` 的完整声明同型，保持固定标准基础、实际 ν 的检测条件与 G 的标准标签身份。Main 通过唯一阶段见证投影该字段；主证明局部拆解存在式后，全部消费者继续使用同一个 R、L。
 
-这类程序解释存在命题只包装同一计算的相关数学证书，不承担模型或外部文献的交付。`BasisTable` 是保留的独立基础证书目标，其 theorem/axiom 同型。
+这类程序解释存在命题只包装同一计算的相关数学证书，不承担模型或外部文献的交付。`BasisTable` 是保留的独立基础证书目标；其生产 theorem 与 C(M) 字段同型。
 
 原始 DB/CSV、来源清单、`selected.json`、生成 Lean 数据及其参数化解释统一放在 `LinProgram/`。有限到无限、全候选排除、λ 注入等是带精确条件的内部推导，不是新增程序原始输出。空基必须保留；未知、候选和特殊状态码不得解释成非零永久存活。
 
 ## A 与内部推导
 
-`SourceApplicationData` 明确是来源结果与内部适配共同使用的消费语言，不是整体接受公理。`ExternalLeaves` 只列实际前人成果；`Main/Axiom/Literature/{Source,Synthetic,Range,Moss}.lean` 分别显式接受它们。Synthetic 叶子带同一个 `SourceModel D η G`，实际 ν/λ、Day tensor、Adams 塔、E₂ 和第一商、realization 与其悬移/乘法均按具体源映射绑定。`ModelBindings` 以及完整 `Inputs` 由内部适配器组装；不能公理化整个模型比较包。preferred pairing、真实悬移与有限商边界各有独立绑定，最终验收及证明债见本轮报告。
+`SourceApplicationData` 明确是来源结果与内部适配共同使用的消费语言，不是整体接受公理。`ExternalLeaves` 只列实际前人成果；这些准确 statement 是 `Challenge2.LiteratureInterface` 的字段，并由 `Main.StageInput` 从同一个见证投影。Synthetic 叶子带同一个 `SourceModel D η G`，实际 ν/λ、Day tensor、Adams 塔、E₂ 和第一商、realization 与其悬移/乘法均按具体源映射绑定。完整 `Inputs` 仍由内部适配器组装；不能把整个模型比较包升级成额外公理。preferred pairing、真实悬移与有限商边界各有独立绑定，最终验收及证明债见本轮报告。
 
 May 的带符号 TC3 源结果与项目特化分开；Toda 的低维输入与 η²/Toda 推导分开；BX 原始有限判据与 λ 规范化、任意选择版本分开。
 

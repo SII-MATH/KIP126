@@ -74,7 +74,7 @@ def main():
         assert set(entry["sources"]) <= sources.keys()
         assert entry["background"] and entry["note"]
         for name in entry["declarations"]:
-            assert name.startswith("KIP126.Main.Axiom.Literature.")
+            assert name.startswith("KIP126.Main.StageInput.")
             declarations.append(name)
         declarations.extend(entry["targets"])
     assert "structure ModelBindings" in data
@@ -82,21 +82,20 @@ def main():
     assert "structure ExternalLeaves" in data
     accepted_names = {n for e in inventory.get("accepted_source_declarations", [])
                       for n in e["declarations"]}
-    actual_names = set()
-    for path in (root / "KIP126/Main/Axiom/Literature").rglob("*.lean"):
-        for name in re.findall(r"^axiom\s+(\w+)", path.read_text(), re.M):
-            actual_names.add("KIP126.Main.Axiom.Literature." + name)
+    stage_input = (root / "KIP126/Main/Solution/StageInput.lean").read_text()
+    actual_names = {
+        "KIP126.Main.StageInput." + name
+        for name in re.findall(r"^theorem\s+(\w+)", stage_input, re.M)
+        if "KIP126.Main.StageInput." + name in accepted_names
+    }
     assert accepted_names == actual_names, (
-        f"accepted axiom/provenance drift: missing={actual_names - accepted_names}, "
+        f"accepted stage-projection/provenance drift: missing={actual_names - accepted_names}, "
         f"obsolete={accepted_names - actual_names}")
     if args.lean_check:
         names = ",\n    ".join("`" + n for n in sorted(set(declarations)))
         args.lean_check.write_text(
             "import KIP126.Def.Kervaire.Inputs.Literature.Data\n"
-            "import KIP126.Main.Axiom.Literature.Source\n"
-            "import KIP126.Main.Axiom.Literature.Range\n"
-            "import KIP126.Main.Axiom.Literature.Synthetic\n"
-            "import KIP126.Main.Axiom.Literature.Moss\n"
+            "import KIP126.Main.Solution.StageInput\n"
             "import KIP126.Main.Solution.Literature.SourceAdapters\n"
             "import KIP126.Main.Solution.Literature.MossSpecialization\n"
             "import KIP126.Main.Solution.Route.LiteratureAdapters.Classical\n"

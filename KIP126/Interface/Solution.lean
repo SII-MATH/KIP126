@@ -12,3 +12,4 @@ import KIP126.LinProgram.Certificates.SquareDetection.Certificate
 import KIP126.LinProgram.Certificates.SquareDetection.Parsing
 import KIP126.LinProgram.Certificates.SquareDimension.Generators.Proofs
 import KIP126.LinProgram.Certificates.SquareDimension.Proofs
+import KIP126.Interface.Solution.Challenge2

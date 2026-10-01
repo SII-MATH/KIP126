@@ -8,7 +8,7 @@
 
 路线的四个非标准标签 L 是该解释的共同输出。因此不对任意预先选定的 L 或任意线性同构 R 断言结果成立。G 是 A(M) 同一个 tmf 标签包，其 `Standard` 条件用原始 IWX 低维计算中的唯一非零类识别。
 
-生产声明 `Interface.Challenge.LinProgram.route_certification` 与消费公理 `Main.Axiom.Computation.route_certification` 的完整类型一致：背景为固定的 `StandardRouteModel Syn`，显式要求 `GeometricNuSourceIdentification D` 和 `G.Standard`。几何条件定义在 `Certification/Standard.lean`，包含两件不同的事实：标准 h₂ 非零永久存活及其对 **D 中实际 ν 映射** 的 Adams 检测；该映射严格等于 `Source.Hopf.geometricNu standardSourceBinding`，即同一实际普通谱来源下稳定化的四元数 Hopf 映射。生产声明不导入消费公理。
+生产声明 `Interface.Challenge.LinProgram.route_certification` 与统一交付中 `Challenge2.ComputationInterface.route_certification` 的完整类型一致；Main 的消费名 `Main.StageInput.route_certification` 只是从唯一阶段见证投影该字段。背景为固定的 `StandardRouteModel Syn`，显式要求 `GeometricNuSourceIdentification D` 和 `G.Standard`。几何条件定义在 `Certification/Standard.lean`，包含两件不同的事实：标准 h₂ 非零永久存活及其对 **D 中实际 ν 映射** 的 Adams 检测；该映射严格等于 `Source.Hopf.geometricNu standardSourceBinding`，即同一实际普通谱来源下稳定化的四元数 Hopf 映射。生产声明不导入 Main 的阶段假设。
 
 一般谓词现名 `NuDetectionIdentification`。仅有它不能唯一识别几何 ν：同一 leading term 还允许奇数倍 ν。标准适配器 `geometric_nu_source_identification` 保留 `hGeometry : StandardClassicalSourceGeometry A.classicalSource`，将 `A.bindings.classical.nu` 与 `hGeometry.nu` 两个等式直接复合；检测部分投影自同一个 A。`standard_final_of_accepted_computation` 因此显式接受 `hGeometry`，没有为任意 A 额外断言几何识别。来源模型的后续构造须把接受的标准经典来源见证与这里的 A 绑定，不能另选来源。这条适用条件不依赖 Cν 的待认证输出，没有形成计算循环。
 
@@ -35,7 +35,7 @@
 | `cnu_d3` / `cnu_target_through5` | 同一 R 和真实 cofiber；源局部坐标 [0,3,4]，d₃ 靶 [3]；另一目标 (14,139)[2] | 后者只断言 E₆ 非零及 d₂–d₅ 不被击中，未声称 Cν 无限永久存活 |
 | `route_expression_labels` / `high125_label` | I 的 CSV/乘法/标准标签比较 | 连接 C 的 W/U/T/highClass 到论文 L 和 A 的 G；包含实际乘法结合律适配 |
 
-这些目标中的 `sorry` 是公开的后续证明债。`ClassicalSphereSeparated` 单独写成真实经典塔过滤的 Hausdorff 性；D 现有的经典 associated-graded 比较不能冒充这一性质，synthetic 分离性也未被无条件改名使用。现由 Main/Axiom/Literature/Range.lean 显式接受 Ravenel 在标准完成球谱背景的独立收敛/分离性特化；它是有来源的一般 A，而不是新增数值 C。
+这些目标中的 `sorry` 是公开的后续证明债。`ClassicalSphereSeparated` 单独写成真实经典塔过滤的 Hausdorff 性；D 现有的经典 associated-graded 比较不能冒充这一性质，synthetic 分离性也未被无条件改名使用。Ravenel 在标准完成球谱背景的独立收敛/分离性特化是 `Challenge2.LiteratureInterface` 的有来源 A(M) 字段，由 `Main.StageInput` 投影；它不是新增数值 C。
 
 消失线来源：Douglas Ravenel, *Complex Cobordism and Stable Homotopy Groups of Spheres*, Th. 3.4.5(a), pp.87,89；[原书 PDF](https://webhomes.maths.ed.ac.uk/~v1ranick/papers/ravenel2.pdf)。该原书包含证明，不只是搜索结果或未核验的二手摘要。
 
@@ -84,7 +84,7 @@ flowchart LR
   D --> T[标准h6平方非零永久存活]
 ```
 
-这是明确的证明责任图，不是已经核实了每一条程序日志的闭包图。第一阶段认证不可导入 `Main/Axiom/Computation/Route`；本文新规则的独立证明不可将当前 C、§7 特定结论或 T 当作前提。`Main/Solution/Computation/Route` 的局部派生推论位于 C 之后，不能反过来作为认证同一批 C 的叶子。
+这是明确的证明责任图，不是已经核实了每一条程序日志的闭包图。第一阶段认证不可导入 `Main/Axiom/Challenge2` 或消费端 `Main/Solution/StageInput`；本文新规则的独立证明不可将当前 C、§7 特定结论或 T 当作前提。`Main/Solution/Computation/Route` 的局部派生推论位于 C 之后，不能反过来作为认证同一批 C 的叶子。
 
 ## λ 窗口的精确推导接口
 

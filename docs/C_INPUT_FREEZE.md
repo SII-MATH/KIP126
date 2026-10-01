@@ -4,7 +4,7 @@
 `Certification.lean` 的联合目标 `Certification D G := ∃ R L, CertifiedRealization R L G`。
 七组原子正确性条件全部绑定这个 R；L 的四个局部标签由同一个解释给出，G 与 A(M) 相同。
 生产目标在 `Interface/Challenge/LinProgram/Route.lean`，同型消费公理在
-`Main/Axiom/Computation/Route.lean`。二者都固定标准球谱背景，并显式要求
+`Challenge2.ComputationInterface.route_certification`。生产目标与该字段都固定标准球谱背景，并显式要求
 `GeometricNuSourceIdentification D` 和 `G.Standard`，不对任意预先给定的 R/L/ν 映射断言计算成立。
 前者同时要求 h₂ 的非零永久存活/检测，以及 `D.auxiliary.nuMap` 等于同一
 `standardSourceBinding` 下由实际四元数 Hopf 映射稳定化得到的 `geometricNu`。

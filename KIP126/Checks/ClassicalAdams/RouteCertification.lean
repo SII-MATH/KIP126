@@ -1,5 +1,5 @@
 import KIP126.Interface.Challenge.LinProgram.Route
-import KIP126.Main.Axiom.Computation.Route
+import KIP126.Main.Solution.StageInput
 import Lean
 
 /-! Type/dependency regression only. It proves no program output. -/
@@ -22,14 +22,14 @@ open Lean Elab Command in
 run_cmd do
   let env ← getEnv
   let producer := ``KIP126.Interface.Challenge.LinProgram.route_certification
-  let consumer := ``KIP126.Main.Axiom.Computation.route_certification
+  let consumer := ``KIP126.Main.StageInput.route_certification
   let some pi := env.find? producer | throwError "missing route C production goal"
-  let some ci := env.find? consumer | throwError "missing route C consumption axiom"
+  let some ci := env.find? consumer | throwError "missing route C projection"
   unless pi.type == ci.type do
     throwError "joint route certification producer/consumer types differ"
   let producerAxioms ← liftCoreM (collectAxioms producer)
-  if producerAxioms.contains consumer then
-    throwError "route C producer depends on its own consumption axiom"
-  match ci with
-  | .axiomInfo _ => pure ()
-  | _ => throwError "route C stage boundary must be an explicit axiom"
+  if producerAxioms.contains ``KIP126.Main.Axiom.challenge2 then
+    throwError "route C producer depends on the Main stage assumption"
+  let consumerAxioms ← liftCoreM (collectAxioms consumer)
+  unless consumerAxioms.contains ``KIP126.Main.Axiom.challenge2 do
+    throwError "route C consumer no longer projects from the unified stage assumption"

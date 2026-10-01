@@ -1158,10 +1158,10 @@
   ],
   "accepted_source_declarations": [
     {
-      "module": "KIP126/Main/Axiom/Literature/Source.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.classical_source",
-        "KIP126.Main.Axiom.Literature.tmf_source"
+        "KIP126.Main.StageInput.classical_source",
+        "KIP126.Main.StageInput.tmf_source"
       ],
       "targets": [
         "KIP126.Literature.Route.StandardClassicalSourceExistence",
@@ -1177,10 +1177,10 @@
       "note": "Separate existence statements on the fixed ordinary source. StandardTmfSourceExistence also retains ordinary commutativity, connectivity and finite mod-2 type. No whole SourceApplicationData/Inputs or ModelBindings axiom."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Range.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.sphere_vanishing_line",
-        "KIP126.Main.Axiom.Literature.sphere_separated"
+        "KIP126.Main.StageInput.sphere_vanishing_line",
+        "KIP126.Main.StageInput.sphere_separated"
       ],
       "targets": [
         "KIP126.Computation.Route.SphereVanishingLine",
@@ -1193,9 +1193,9 @@
       "note": "Th.3.4.5(a), pp.87,89 supplies uniform weaker positive-stem line 0<t-s<2s-3. Section 2.1 Th.2.1.1 and Lemma2.1.12, pp.41-47, finite-type sphere completion argument gives intersection of actual tower filtration zero. These are independently accepted infinite-range A leaves, not finite program output or LWX rules; transport uses Def source and tower/cobar comparisons."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.nu_cofiber"
+        "KIP126.Main.StageInput.nu_cofiber"
       ],
       "targets": [
         "KIP126.Synthetic.NuCofiberCriterion"
@@ -1207,9 +1207,9 @@
       "note": "Pst Lemma4.23; exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.full_lift"
+        "KIP126.Main.StageInput.full_lift"
       ],
       "targets": [
         "KIP126.Synthetic.SyntheticLiftComparison"
@@ -1221,9 +1221,9 @@
       "note": "BHS Lemma9.15; exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.finite_lift"
+        "KIP126.Main.StageInput.finite_lift"
       ],
       "targets": [
         "KIP126.Literature.Route.FiniteLiftCriterion"
@@ -1235,9 +1235,9 @@
       "note": "BHS A.1(1); exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.bockstein"
+        "KIP126.Main.StageInput.bockstein"
       ],
       "targets": [
         "KIP126.Literature.Route.BocksteinDifferential"
@@ -1249,9 +1249,9 @@
       "note": "BHS A.1(1c); exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.permanent_lift"
+        "KIP126.Main.StageInput.permanent_lift"
       ],
       "targets": [
         "KIP126.Literature.Route.PermanentLiftCriterion"
@@ -1263,9 +1263,9 @@
       "note": "BHS A.1(2); exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.differentials"
+        "KIP126.Main.StageInput.differentials"
       ],
       "targets": [
         "KIP126.Literature.Route.DifferentialRigidity"
@@ -1277,9 +1277,9 @@
       "note": "BHS A.8; exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.eInfty"
+        "KIP126.Main.StageInput.eInfty"
       ],
       "targets": [
         "KIP126.Literature.Route.EInftyInput"
@@ -1291,9 +1291,9 @@
       "note": "BHS A.9/A.11; exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.filtration_lambda"
+        "KIP126.Main.StageInput.filtration_lambda"
       ],
       "targets": [
         "KIP126.Literature.Route.FiltrationLambda"
@@ -1305,9 +1305,9 @@
       "note": "BHS cor:tau-surj; exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.e2_weight_vanishing"
+        "KIP126.Main.StageInput.e2_weight_vanishing"
       ],
       "targets": [
         "KIP126.Literature.Route.E2WeightVanishing"
@@ -1319,9 +1319,9 @@
       "note": "BHS A.8; exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.realization_detection"
+        "KIP126.Main.StageInput.realization_detection"
       ],
       "targets": [
         "KIP126.Literature.Route.RealizationDetection"
@@ -1333,9 +1333,9 @@
       "note": "BHS A.1(2),(3); exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.bx"
+        "KIP126.Main.StageInput.bx"
       ],
       "targets": [
         "KIP126.Literature.Route.BXDistinguishedInput"
@@ -1347,9 +1347,9 @@
       "note": "BX Proposition 7.19 and proof (kervairev2.tex:587-605), together with the following theorem proof:624-630, explicitly supporting synthetic 2 theta5 = 0 at 625 (classical comparison/lambda-torsion-freeness at 627). All conclusions concern one common existential source witness; arbitrary-choice invariance and the LWX finite lambda normalization remain internal deductions. No new model is chosen."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.low_ring"
+        "KIP126.Main.StageInput.low_ring"
       ],
       "targets": [
         "KIP126.Literature.Route.TodaInputs"
@@ -1361,9 +1361,9 @@
       "note": "BHS prop:syn-toda-range (0),(9); exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.may_tc3"
+        "KIP126.Main.StageInput.may_tc3"
       ],
       "targets": [
         "KIP126.Literature.Route.MayPushpullData"
@@ -1375,9 +1375,9 @@
       "note": "May TC3/Lemma4.6 signed original; exact conditions in the declaration and target retained. The existence-valued leaf is chosen once within the internal assembler where applicable; it does not create another model."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.quotient_algebras"
+        "KIP126.Main.StageInput.quotient_algebras"
       ],
       "targets": [
         "KIP126.Literature.Route.QuotientAlgebraStructures"
@@ -1390,9 +1390,9 @@
       "note": "BHSmot Appendices B/C and BX cnstr:bock-maps support all positive quotient commutative algebras with their units. The accepted result contains only the algebra/commutative/unit fields; it does NOT assert compatibility of arbitrary TR3 rho fillers or the route sphere action. The internal source_quotient_algebras adapter supplies both, using exact finite-quotient triangles and negative classical E2 filtration, independently of BHS E-infinity maps or Lin results."
     },
     {
-      "module": "KIP126/Main/Axiom/Literature/Moss.lean",
+      "module": "KIP126/Main/Solution/StageInput.lean",
       "declarations": [
-        "KIP126.Main.Axiom.Literature.sphere_moss"
+        "KIP126.Main.StageInput.sphere_moss"
       ],
       "targets": [
         "KIP126.Classical.Adams.Moss.SphereStatement"
@@ -1407,7 +1407,7 @@
   ],
   "residual_interface_gaps": [],
   "remaining_source_application_fields": {
-    "all": "SourceApplicationData mixes accepted leaves and internal adapters intentionally. Only separate Main/Axiom declarations are accepted. SourceModel, algebra/source comparisons, normalized triangle compatibility and choice independence are internal."
+    "all": "SourceApplicationData mixes accepted leaves and internal adapters intentionally. The accepted leaves are fields of the unified Challenge2 witness and are projected by Main.StageInput. SourceModel, algebra/source comparisons, normalized triangle compatibility and choice independence are internal."
   },
   "source_application_entry": "KIP126.Literature.Route.SourceApplicationData",
   "freeze_review": {

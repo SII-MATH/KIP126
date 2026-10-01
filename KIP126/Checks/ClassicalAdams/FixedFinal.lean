@@ -4,7 +4,7 @@ import KIP126.Main.Solution.Final.h6_sq_permanent
 import KIP126.Main.Solution.Computation.Comparisons.Classes
 import Lean.Elab.Command
 
-/-! Both the conditional route and the actual outer A/C assembly conclude
+/-! Both the conditional route and the unified-stage A/C assembly conclude
 exactly the same standard T. The latter still has explicit downstream proof
 debts; this check does not assert a completed proof. -/
 open Lean Elab Command in
@@ -26,10 +26,8 @@ run_cmd do
   if final.value.getUsedConstants.contains ``sorryAx then
     throwError "outer assembly must use the explicit model/A/C/route chain"
   let axioms ← liftCoreM (collectAxioms ``KIP126.Main.Solution.h6_sq_permanent)
-  unless axioms.contains ``KIP126.Main.Axiom.Computation.route_certification &&
-      axioms.contains ``KIP126.Main.Axiom.Literature.classical_source &&
-      axioms.contains ``KIP126.Main.Axiom.Literature.tmf_source do
-    throwError "outer assembly no longer consumes its named A/C inputs"
+  unless axioms.contains ``KIP126.Main.Axiom.challenge2 do
+    throwError "outer assembly no longer consumes the unified A(M)/C(M) stage input"
   for a in axioms do
     unless [``propext, ``Classical.choice, ``Quot.sound, ``sorryAx].contains a ||
         (`KIP126.Main.Axiom).isPrefixOf a do
@@ -37,9 +35,8 @@ run_cmd do
 
   -- A18 accepts source algebra existence only. The action and the selected
   -- cofiber restriction must remain internal transport obligations.
-  let some (.axiomInfo quotientSource) :=
-      env.find? ``KIP126.Main.Axiom.Literature.quotient_algebras
-    | throwError "missing explicit quotient source axiom"
+  let some quotientSource := env.find? ``KIP126.Main.StageInput.quotient_algebras
+    | throwError "missing quotient source projection"
   let sourceTypeNames := quotientSource.type.getUsedConstants
   unless sourceTypeNames.contains ``KIP126.Literature.Route.QuotientAlgebraStructures do
     throwError "quotient source no longer states the raw algebra existence"

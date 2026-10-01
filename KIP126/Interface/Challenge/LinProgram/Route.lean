@@ -2,12 +2,11 @@ import KIP126.LinProgram.Route.Certification.Standard
 
 /-! Stage 1 production target. This is the joint raw C statement, not its
 paper-derived consequences. An unfinished proof is intentionally visible.
-It imports no consumption axiom from Main/Axiom/Computation/Route. -/
+It imports neither the unified Main assumption nor its consumer projections. -/
 namespace KIP126.Interface.Challenge.LinProgram
 open KIP126.StableHomotopy KIP126.Synthetic.Context KIP126.Classical.Adams
 open KIP126.Computation.Route
-universe w
-variable {Syn : Type w} [SyntheticCategory.{w, 0} Syn]
+variable {Syn : Type 1} [SyntheticCategory.{1, 0} Syn]
   [HasFunctorialCofiber (C := Syn)]
 
 /-- Fixed standard sphere; actual Hopf-nu cofiber; intrinsically identified

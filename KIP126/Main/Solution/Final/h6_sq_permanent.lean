@@ -1,10 +1,10 @@
 import KIP126.Def.Kervaire.Route.Source.Construction
-import KIP126.Main.Axiom.Literature.Source
+import KIP126.Main.Solution.StageInput
 import KIP126.Main.Solution.Literature.SourceAdapters
 import KIP126.Main.Solution.Route.AcceptedComputation
 
-/-! The standard Final through explicit A/C consumption on ONE source
-model. This outer proof has no new placeholder and imports no Challenge.
+/-! The standard Final through the A/C fields of one stage witness and one
+source model. This outer proof has no new placeholder and imports no Challenge.
 It still depends on the separately declared model/comparison and paper
 proof debts. Hence this file is not a completed proof of the Kervaire
 theorem: step zero freezes the implication and all of its responsibilities.
@@ -16,8 +16,8 @@ open KIP126.Core.SpectralSequence
 
 theorem h6_sq_permanent :
     NonzeroSurvival sphereAdamsData (2, 128) standardH6Square := by
-  obtain ⟨CS, hCS, hGeometry⟩ := KIP126.Main.Axiom.Literature.classical_source
-  obtain ⟨TS, hTS, hComm⟩ := KIP126.Main.Axiom.Literature.tmf_source
+  obtain ⟨CS, hCS, hGeometry⟩ := KIP126.Main.StageInput.classical_source
+  obtain ⟨TS, hTS, hComm⟩ := KIP126.Main.StageInput.tmf_source
   let R := sourceRealization CS TS hGeometry ⟨0, hTS.connective⟩ hTS.finiteMod2Type
   letI := R.synthetic
   letI := R.cofiber

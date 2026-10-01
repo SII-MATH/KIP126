@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Moss
+import KIP126.Main.Solution.StageInput
 import KIP126.Def.Kervaire.Inputs.Literature.Moss
 
 /-! Source specialization and signs are an internal proof responsibility.
@@ -18,12 +18,12 @@ theorem moss_specialization
     KIP126.Literature.Route.MossSourceInput standardMilnorCooperations c := by
   sorry
 
-/-- The only source acceptance used by this adapter is sphere_moss.
+/-- The only literature field used by this adapter is sphere_moss.
 The remaining sorry is the displayed internal specialization above. -/
 theorem accepted_moss
     (c : TowerDetection.Convergence standardFoundation.hf2.unit
       (SphereSpectrum (C := standardFoundation.Spectrum))) :
     KIP126.Literature.Route.MossSourceInput standardMilnorCooperations c := by
-  exact moss_specialization c (KIP126.Main.Axiom.Literature.sphere_moss c)
+  exact moss_specialization c (KIP126.Main.StageInput.sphere_moss c)
 
 end KIP126.Main.Solution.Literature

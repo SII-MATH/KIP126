@@ -4,7 +4,7 @@ The mathematical target is Lin–Wang–Xu, *On the Last Kervaire Invariant Prob
 
 ## Current architecture
 
-The current user-directed architecture is specified in [STAGE_LAYOUT](docs/STAGE_LAYOUT.md). It replaces the retired two-package stage-delivery architecture. Definitions, source realizations and comparison interfaces live in `Def/`. Computational certification goals/proofs live in `Interface/Challenge` and `Interface/Solution`. Explicit literature/computation axioms, the definition-only Final challenge, and paper deductions live in `Main/Axiom`, `Main/Challenge`, and `Main/Solution` respectively.
+The current user-directed architecture is specified in [STAGE_LAYOUT](docs/STAGE_LAYOUT.md). Definitions, source realizations and comparison interfaces live in `Def/`. The root `Challenge2` is the single correlated delivery: its literature field is A(M), its computation field is C(M), and both share one witness. Production goals and proofs live in `Interface/Challenge` and `Interface/Solution`. `Main/Axiom` contains only the temporary statement `Nonempty Challenge2`; witness selection and projections live in `Main/Solution/StageInput`, while the definition-only Final challenge and paper deductions remain in `Main/Challenge` and `Main/Solution`.
 
 No definition in Def may depend on Interface or Main. No Solution may consume a Challenge placeholder. A certification proof may not consume the result being certified through a Main axiom. Data and all their properties must refer to the same witnesses. Final's type uses only the fixed definition-layer sphere sequence, standard cobar class, and nonzero permanence predicate.
 

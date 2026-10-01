@@ -28,10 +28,15 @@ for mod, p in files.items():
     for imp in imports[mod]:
         if imp not in files:
             errors.append(f'{mod}: missing import {imp}')
-    if re.search(r'\b(?:challenge[12](?:Witness|_exists)|Challenge[12])\b', text):
-        errors.append(f'{mod}: obsolete stage package reference')
+    if re.search(r'\bchallenge[12](?:Witness|_exists)\b', text):
+        errors.append(f'{mod}: obsolete parallel stage-witness reference')
     if not mod.startswith('KIP126.Main.Axiom.') and re.search(r'^\s*axiom\s',text,re.M):
         errors.append(f'{mod}: axiom outside Main/Axiom')
+    if mod.startswith('KIP126.Main.Axiom.') and mod != 'KIP126.Main.Axiom.Challenge2' \
+            and re.search(r'^\s*axiom\s', text, re.M):
+        errors.append(f'{mod}: Main/Axiom must expose only the unified Challenge2 assumption')
+    if mod.startswith('KIP126.Main.Axiom.') and 'Classical.choice' in text:
+        errors.append(f'{mod}: witness selection belongs in Main/Solution')
 
 def closure(mod):
     found = set()
@@ -56,17 +61,22 @@ for mod in files:
         bad = [x for x in closure(mod) if x.startswith(('KIP126.Main.Challenge.', 'KIP126.Interface.Challenge.'))]
         if bad: errors.append(f'{mod}: consumes Challenge placeholders {bad}')
     if mod.startswith('KIP126.Interface.Solution.'):
-        bad = [x for x in closure(mod) if x.startswith('KIP126.Main.Axiom.Computation.')]
-        if bad: errors.append(f'{mod}: certification consumes computation axioms {bad}')
+        bad = [x for x in closure(mod) if x.startswith('KIP126.Main.Axiom.')]
+        if bad: errors.append(f'{mod}: certification consumes Main stage assumptions {bad}')
     if mod in closure(mod): errors.append(f'{mod}: import cycle')
 for directory, expected in [('Interface', {'Challenge','Solution'}),('Main', {'Axiom','Challenge','Solution'})]:
     actual = {p.name for p in (ROOT/'KIP126'/directory).iterdir() if p.is_dir()}
     if actual != expected: errors.append(f'{directory}: directories {actual} != {expected}')
-for p in ['KIP126/Challenge1.lean','KIP126/Challenge2.lean']:
-    if (ROOT/p).exists(): errors.append(f'obsolete stage package: {p}')
+for p in ['KIP126/Challenge2.lean', 'KIP126/Main/Axiom/Challenge2.lean',
+          'KIP126/Main/Solution/StageInput.lean']:
+    if not (ROOT/p).exists(): errors.append(f'missing unified stage boundary: {p}')
+main_axiom = without_comments((ROOT/'KIP126/Main/Axiom/Challenge2.lean').read_text())
+axioms = re.findall(r'^\s*axiom\s+(\w+)', main_axiom, re.M)
+if axioms != ['challenge2']:
+    errors.append(f'Main/Axiom/Challenge2.lean: expected sole challenge2 axiom, found {axioms}')
 if errors:
     print('\n'.join(errors))
     sys.exit(1)
-print(f'Architecture/import checks passed: {len(files)} Lean modules; no old stage chain.')
+print(f'Architecture/import checks passed: {len(files)} Lean modules; one unified Challenge2 stage input.')
 print('Run StageInputDeclarations and RouteCertification for elaborated declaration equality.')
 print('This check does not certify mathematical semantics, source applicability, or absence of sorry.')

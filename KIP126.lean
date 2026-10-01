@@ -1,4 +1,5 @@
 import KIP126.Def.Comparison.Proofs.FiniteCoherentPageExtension
+import KIP126.Challenge2
 import KIP126.Def.Comparison.Proofs.CoherentPageExtension
 import KIP126.Def.References.Literature.StandardSphere.Proofs
 import KIP126.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs

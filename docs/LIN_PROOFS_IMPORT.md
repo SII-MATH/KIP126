@@ -88,7 +88,7 @@ python3 KIP126/LinProgram/Translate/import-proofs.py --self-test \
 ## 信任边界与消公理范围
 
 查表的 `by rfl`（或 `by decide`）只证明**固定表中确有该条记录**，不是验证机器证明。
-路线 `Main/Axiom/Computation/Route.lean` 明确接受同型的有限数学认证目标；
+路线把同型的有限数学认证目标作为 `Challenge2.ComputationInterface` 字段交付，Main 通过 `Main.StageInput` 投影；
 认证 Solution 尚未完成，不能用该消费 axiom 自证。未来的证书验证必须给出同一
 数学解释上的可靠性定理，不能仅验证文件哈希。
 `Checks/ClassicalAdams/RouteCertification.lean` 核对完整类型一致与生产/消费隔离。

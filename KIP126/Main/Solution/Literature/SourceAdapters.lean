@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Synthetic
+import KIP126.Main.Solution.StageInput
 import KIP126.Def.Kervaire.Inputs.Literature.StandardTmfSource
 import KIP126.Def.Synthetic.Source.NuMonoidal
 import KIP126.Main.Solution.Literature.MossSpecialization
@@ -264,24 +264,24 @@ external conclusions, not the model adapters needed by `Inputs`. -/
 def acceptedLeaves
     (hCS : ClassicalSourceResults standardMilnorCooperations SM.classicalSource) :
     ExternalLeaves D η sym (sourceMayTensor D η G SM) := by
-  let hd := KIP126.Main.Axiom.Literature.realization_detection D η G SM
+  let hd := KIP126.Main.StageInput.realization_detection D η G SM
   let hη := source_eta D η G SM hCS hd
   exact {
-    nu_cofiber := KIP126.Main.Axiom.Literature.nu_cofiber D η G SM
-    full_lift := KIP126.Main.Axiom.Literature.full_lift D η G SM
-    finite_lift := KIP126.Main.Axiom.Literature.finite_lift D η G SM
-    bockstein := KIP126.Main.Axiom.Literature.bockstein D η G SM
-    permanent_lift := KIP126.Main.Axiom.Literature.permanent_lift D η G SM
-    differentials := KIP126.Main.Axiom.Literature.differentials D η G SM
-    eInfty := Classical.choice (KIP126.Main.Axiom.Literature.eInfty D η G SM)
-    filtration_lambda := KIP126.Main.Axiom.Literature.filtration_lambda D η G SM
-    e2_weight_vanishing := KIP126.Main.Axiom.Literature.e2_weight_vanishing D η G SM
+    nu_cofiber := KIP126.Main.StageInput.nu_cofiber D η G SM
+    full_lift := KIP126.Main.StageInput.full_lift D η G SM
+    finite_lift := KIP126.Main.StageInput.finite_lift D η G SM
+    bockstein := KIP126.Main.StageInput.bockstein D η G SM
+    permanent_lift := KIP126.Main.StageInput.permanent_lift D η G SM
+    differentials := KIP126.Main.StageInput.differentials D η G SM
+    eInfty := Classical.choice (KIP126.Main.StageInput.eInfty D η G SM)
+    filtration_lambda := KIP126.Main.StageInput.filtration_lambda D η G SM
+    e2_weight_vanishing := KIP126.Main.StageInput.e2_weight_vanishing D η G SM
     realization_detection := hd
-    bx := KIP126.Main.Axiom.Literature.bx D η G SM hη
-    toda := Classical.choice (KIP126.Main.Axiom.Literature.low_ring D η G SM hη)
-    may := KIP126.Main.Axiom.Literature.may_tc3 D η G SM
+    bx := KIP126.Main.StageInput.bx D η G SM hη
+    toda := Classical.choice (KIP126.Main.StageInput.low_ring D η G SM hη)
+    may := KIP126.Main.StageInput.may_tc3 D η G SM
     quotient_algebras := Classical.choice
-      (KIP126.Main.Axiom.Literature.quotient_algebras D η G SM) }
+      (KIP126.Main.StageInput.quotient_algebras D η G SM) }
 
 /-- Transparent assembly. The algebra model construction is a separate
 argument here so this function cannot conceal it inside literature

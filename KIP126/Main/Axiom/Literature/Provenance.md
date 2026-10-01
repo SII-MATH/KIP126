@@ -27,7 +27,7 @@ provenance 层应成为外部输入的单一索引：文件系统清单负责来
 
 ## 4. 接下来还需要完成什么
 
-- 建立“每个 Main literature axiom 对应唯一 claim row”的覆盖检查。
+- 建立“每个 `Challenge2.LiteratureInterface` 字段对应唯一 claim row”的覆盖检查。
 - 区分精确原文 locator、二手引用和 metadata-only 状态。
 - 检查 claim owner 是否真实存在，其 proposition 是否与登记说明一致。
 - 将 Lin 原始包或内容寻址下载记录纳入 artifact inventory。
@@ -37,6 +37,6 @@ provenance 层应成为外部输入的单一索引：文件系统清单负责来
 
 1. 保持稳定 `SourceId` 和 claim ID，不因目录移动重命名逻辑身份。
 2. 每次制品变化后运行 source inventory checker 与 Lean projection tests。
-3. 扫描 Main axiom，生成 axiom-to-claim 覆盖报告并拒绝无登记项。
+3. 扫描统一 A(M) 字段及 `Main.StageInput` 投影，生成 field-to-claim 覆盖报告并拒绝无登记项。
 4. 对 metadata-only 来源建立明确待办；取得原文后再确认 statement。
-5. 将 Interface theorem/Main axiom 的类型对齐与 provenance 覆盖作为两项独立 CI 检查。
+5. 将 Interface theorem/Challenge2 字段的类型对齐与 provenance 覆盖作为两项独立 CI 检查。

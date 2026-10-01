@@ -53,9 +53,10 @@ fixed-data pipeline:
   computation and certificate automation. It does not own a stage axiom or assume
   that the data have been identified with the chosen mathematical model.
 
-`Main/Axiom/` is an input boundary, not a proof stage. Keep the single
-Challenge2 existence assumption, its correlated witness/projections, explicit
-input types and source metadata there. Mathematical deductions belong in
+`Main/Axiom/` is an input boundary, not a proof stage. Keep only the single
+Challenge2 existence assumption, explicit input types and source metadata there.
+Select its correlated witness and expose consumer projections in
+`Main/Solution/StageInput.lean`. Mathematical deductions belong in
 Main's paired Challenge/Solution tracks; fixed computation certification and
 standard-label comparison belong to Interface. Do not put `Proofs.lean` modules
 under Main/Axiom or import Main proofs, Interface producers, or Checks from
@@ -133,10 +134,10 @@ types as scoped TODO comments; never substitute `True`, an unconstrained
 explicit external hypotheses. A precise statement is not proof of mathematical
 correctness, and checklist coverage does not mean either package is constructed.
 
-The `a10`/`a11` group `SyntheticInterface` is defined parametrically in root
-`Challenge1.lean`; `Main/Axiom/Literature/Synthetic.lean` supplies the explicit
-source-bearing input wrapper. This group does not extend the current
-`Nonempty Challenge1` witness, select a synthetic model, or prove the cited results.
+The `a10`/`a11` group `SyntheticInterface` is defined parametrically in the
+shared mathematical interfaces; the source-bearing literature statements are
+fields of root `Challenge2.LiteratureInterface`. They do not extend the current
+`Nonempty Challenge1` witness, select another synthetic model, or prove the cited results.
 
 This layout is a target as well as an ownership rule. During the authorized
 migration, move existing declarations without silently changing their
