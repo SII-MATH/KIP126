@@ -1,5 +1,12 @@
 # LinProgram / Def / Interface / Main 布局与迁移记录
 
+## 从 PR150 提取的消费边界整理
+
+`Main/Axiom/Challenge2.lean` 只声明 `Nonempty Challenge2`。同一见证的选择及文献、计算投影位于 `Main/Solution/StageInput.lean`；依赖这些投影的 15 个适配模块迁入 Main/Solution，声明和证明保持 develop 的实现。
+
+8 条已有比较、存活及微分推论按职责分为 `Computation/Comparisons/Classes.lean`、`Computation/Tower/Survival.lean`、`Computation/Differential/Second.lean`，Challenge/Solution 同步。另 3 条代表元比较暂留原模块。项目的模型接口、最终目标、数据认证和严格检查规则均保持原实现；这一步没有完成 Main/Axiom 全目录的职责清理，也没有完成新模型的构造或绑定。
+
+
 首轮工作整理已有内容、更新路径和补充模块说明。随后按用户确认，将两道跨阶段边界定义为根目录共享的 `Challenge1`、`Challenge2` 见证结构。上一阶段以 theorem 证明 `Nonempty ChallengeN`，下一阶段开发时以 axiom 暂时接受完全相同的命题；旧公开接口从同一个见证投影。未补数学证明、未修论文陈述、未增删原结构条件。接口范围沿用 [审核 issue #138](https://github.com/SII-MATH/KIP126/issues/138)。
 
 ## 2026-09-29：独立工件与分组交付
@@ -183,7 +190,7 @@ KIP126/
 不消费 Lin 数据或 Challenge2。原固定序列名称不变，旧路径保留兼容导入。
 `Interface/Solution/LinProgram/Square.lean` 使用显式 presentation、数据证书及独立
 标准非零性生产平方标签识别，并通过 `SphereSquareInterface.standard_class` 交付。
-`Main/Solution/Computation/LinProgram/Interpretation/Classes/Comparison/Proofs.lean`
+`Main/Solution/Computation/Comparisons/Classes.lean`
 只投影这一结论并提供存活谓词的改写，供最终证明使用。
 按用户后续要求，Final 只保留 `h6_sq_permanent` 这一条命题及其配对 Solution；
 重复的计算版 Challenge/Solution 已删除。原计算版仅为占位，因此唯一 Solution

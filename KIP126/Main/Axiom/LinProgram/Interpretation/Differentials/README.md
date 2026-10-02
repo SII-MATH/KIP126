@@ -10,9 +10,9 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Axiom.lean](Axiom.lean) | `sphereTable_sound` |
+| [Axiom.lean](../../../../Solution/Computation/LinProgram/Interpretation/Differentials/Certificate.lean) | `sphereTable_sound` |
 | [Data.lean](Data.lean) | `DifferentialRow` |
-| [Predicates.lean](Predicates.lean) | `HasCoordinates`, `DifferentialStatement` |
+| [Predicates.lean](../../../../Solution/Computation/LinProgram/Interpretation/Differentials/Predicates.lean) | `HasCoordinates`, `DifferentialStatement` |
 | [Proofs.lean](../../../../Solution/Computation/LinProgram/Interpretation/Differentials/Proofs.lean) | `differential_of_lookup`, `DifferentialStatement.hasDifferential`, `row5541` |
 
 ## 3. 大概完成度

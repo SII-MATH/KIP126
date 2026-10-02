@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Proofs.lean](../../../../../Solution/Computation/LinProgram/Interpretation/Tower/SecondDifferential/Proofs.lean) | `computedH6Square_d_two_value_of_double_lift`, `computedH6Square_d_two_double_value_exists`, `computedH6Square_d_two_eq_zero_iff_double_lift`, `computedH6Square_double_lift_five_of_leibniz` |
+| [Proofs.lean](../../../../../Solution/Computation/Differential/Second.lean) | `computedH6Square_d_two_value_of_double_lift`, `computedH6Square_d_two_double_value_exists`, `computedH6Square_d_two_eq_zero_iff_double_lift`, `computedH6Square_double_lift_five_of_leibniz` |
 
 ## 3. 大概完成度
 

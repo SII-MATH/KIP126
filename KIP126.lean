@@ -1,3 +1,4 @@
+import KIP126.Main.Solution.Computation.Tower.Survival
 import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Interface.Solution.CoherentPageExtension
 import KIP126.Main.Solution.Literature.StandardSphere.Proofs
@@ -5,8 +6,8 @@ import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.L
 import KIP126.Main.Solution.Computation.Vanishing
 import KIP126.Main.Solution.Computation.Nonvanishing
 import KIP126.Main.Solution.Computation.Dimension
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Comparison.Proofs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
+import KIP126.Main.Solution.Computation.Comparisons.Classes
+import KIP126.Main.Solution.Computation.Differential.Second
 import KIP126.Main.Solution.Computation.Reduction
 import KIP126.LinProgram.Certificates.SquareDetection.Certificate
 import KIP126.Interface.Solution.LinProgram.BasisTable

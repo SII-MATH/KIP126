@@ -10,8 +10,8 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](Data.lean) | `expressionOnSphere` |
-| [Predicates.lean](Predicates.lean) | `ExpressionDifferential` |
+| [Data.lean](../../../../Solution/Computation/LinProgram/Interpretation/Expressions/Data.lean) | `expressionOnSphere` |
+| [Predicates.lean](../../../../Solution/Computation/LinProgram/Interpretation/Expressions/Predicates.lean) | `ExpressionDifferential` |
 | [Proofs.lean](../../../../Solution/Computation/LinProgram/Interpretation/Expressions/Proofs.lean) | `expressionOnSphere_zero`, `expressionOnSphere_add`, `expressionOnSphere_mul`, `expressionOnSphere_h6`, `expressionOnSphere_h6_square` |
 
 ## 3. 大概完成度

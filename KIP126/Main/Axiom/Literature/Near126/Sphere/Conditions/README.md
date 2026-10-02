@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Predicates.lean](Predicates.lean) | `C3`, `D12` |
+| [Predicates.lean](../../../../../Solution/Literature/Near126/Sphere/Conditions/Predicates.lean) | `C3`, `D12` |
 | [Proofs.lean](../../../../../Solution/Literature/Near126/Sphere/Conditions/Proofs.lean) | `Sphere.d12_iff_differential`, `SphereSurvivalFacts.c3_iff_not_d6`, `SphereSurvivalFacts.hit_t_iff_d12` |
 
 ## 3. 大概完成度

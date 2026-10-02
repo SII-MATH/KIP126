@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Near126.Sphere.Predicates
+import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
 import KIP126.Main.Axiom.Provenance
 
 namespace KIP126.Computation.Near126

@@ -1,7 +1,7 @@
 import KIP126.Checks.AxiomInputs
 import KIP126.Main.Challenge.Final.h6_sq_permanent
 import KIP126.Main.Solution.Final.h6_sq_permanent
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Comparison.Proofs
+import KIP126.Main.Solution.Computation.Comparisons.Classes
 import Lean.Elab.Command
 
 /-! Exactly one final target, paired with one proof obligation. The comparison

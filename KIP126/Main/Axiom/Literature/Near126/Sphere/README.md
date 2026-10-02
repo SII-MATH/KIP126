@@ -10,8 +10,8 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](Data.lean) | `SphereDifferentialFacts`, `SphereSurvivalFacts`, `SphereProductFacts`, `SphereVanishingFacts`, `SphereFacts` |
-| [Predicates.lean](Predicates.lean) | `Differential`, `Survival`, `NotHit`, `Permanent`, `NoOutgoing` 等 8 个声明 |
+| [Data.lean](../../../../Solution/Literature/Near126/Sphere/Data.lean) | `SphereDifferentialFacts`, `SphereSurvivalFacts`, `SphereProductFacts`, `SphereVanishingFacts`, `SphereFacts` |
+| [Predicates.lean](../../../../Solution/Literature/Near126/Sphere/Predicates.lean) | `Differential`, `Survival`, `NotHit`, `Permanent`, `NoOutgoing` 等 8 个声明 |
 | [Proofs.lean](../../../../Solution/Literature/Near126/Sphere/Proofs.lean) | `SphereDifferentialFacts.d3_x126_6_ne_zero`, `SphereSurvivalFacts.y_not_hit_on_page` |
 
 ## 3. 大概完成度

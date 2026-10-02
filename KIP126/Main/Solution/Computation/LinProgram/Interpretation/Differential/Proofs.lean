@@ -1,5 +1,5 @@
 import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.Predicates
-import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
 
 namespace KIP126.Classical.Adams
 

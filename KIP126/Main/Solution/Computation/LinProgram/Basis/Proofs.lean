@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.LinProgram.Basis.Data
+import KIP126.Main.Solution.Computation.LinProgram.Basis.Data
 import KIP126.Def.AdamsE2.LinBasisTable.Predicates
 import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
 
@@ -11,7 +11,7 @@ open KIP126.Core.Algebra
 
 theorem dataBasis_val (s t : ℕ) (ht : t ≤ 261) (i : BasisIndex s t) :
     (dataBasis s t ht i).val = basisValue (basisRowAt s t i) :=
-  KIP126.Main.Axiom.computationInterface.sphereBasis.csv_values s t ht i
+  KIP126.Main.StageInput.computation.sphereBasis.csv_values s t ht i
 
 /-- Compatibility certification derived from the actual E₂ basis delivery.
 The independent fixed-CSV certification remains an Interface helper. -/

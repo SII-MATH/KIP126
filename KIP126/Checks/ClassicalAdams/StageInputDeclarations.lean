@@ -4,7 +4,7 @@ import KIP126.Interface.Solution.LinProgram.BasisTable
 import KIP126.Interface.Challenge.LinProgram.BasisTable
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.BasisTable
 import KIP126.Interface.Axiom.StandardMilnor
-import KIP126.Main.Axiom.LinProgram.Interpretation.Differentials.Axiom
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
 
 /-!
 Check that each stage consumes one shared Challenge package, that the old
@@ -49,7 +49,10 @@ run_cmd do
       ``KIP126.Main.Axiom.challenge2] do
     let some (.axiomInfo _) := env.find? name
       | throwError "missing stage-boundary axiom: {name}"
-  for name in [``KIP126.Classical.Adams.standardFoundation,
+  for name in [``KIP126.Main.StageInput.witness,
+      ``KIP126.Main.StageInput.literature,
+      ``KIP126.Main.StageInput.computation,
+      ``KIP126.Classical.Adams.standardFoundation,
       ``KIP126.Classical.Adams.standardMilnorCooperations,
       ``KIP126.Classical.Adams.linE2Presentation] do
     let some (.defnInfo _) := env.find? name

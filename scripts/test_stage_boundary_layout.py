@@ -90,13 +90,13 @@ class StageBoundaryLayoutTests(unittest.TestCase):
     def test_square_identification_is_delivered_by_the_same_interface(self):
         package = (ROOT / "KIP126/Challenge2.lean").read_text()
         self.assertIn("standard_class : presentation.comparison 2 128", package)
-        consumer = (ROOT / "KIP126/Main/Solution/Computation/LinProgram/Interpretation/"
-                    "Classes/Comparison/Proofs.lean").read_text()
-        self.assertIn("computationInterface.sphereSquare.standard_class", consumer)
+        consumer = (ROOT / "KIP126/Main/Solution/Computation/Comparisons/Classes.lean").read_text()
+        self.assertIn("Main.StageInput.computation.sphereSquare.standard_class", consumer)
         self.assertNotIn("sphereAdamsData_eq_computedH6Square_of_ne_zero", consumer)
 
     def test_new_consumer_proofs_have_statement_tracks(self):
-        for directory in ("Computation/LinProgram", "Literature"):
+        for directory in ("Computation/LinProgram", "Computation/Comparisons",
+                          "Computation/Tower", "Computation/Differential", "Literature"):
             for path in (ROOT / "KIP126/Main/Solution" / directory).rglob("*.lean"):
                 if not re.search(r"\btheorem\s+", path.read_text()):
                     continue

@@ -1,5 +1,5 @@
-import KIP126.Main.Axiom.Literature.Near126.Sphere.Conditions.Predicates
-import KIP126.Main.Axiom.Literature.Near126.Sphere.Data
+import KIP126.Main.Solution.Literature.Near126.Sphere.Conditions.Predicates
+import KIP126.Main.Solution.Literature.Near126.Sphere.Data
 import KIP126.Def.SpectralSequence.Computation.Proofs
 
 namespace KIP126.Computation.Near126

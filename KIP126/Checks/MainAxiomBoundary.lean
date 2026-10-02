@@ -1,6 +1,8 @@
+import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Differentials.Certificate
+import KIP126.Main.Challenge.Computation.Tower.Survival
 import KIP126.Main.Challenge.Computation.LinProgram.Basis.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Basis.Proofs
-import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Classes.Comparison.Proofs
+import KIP126.Main.Challenge.Computation.Comparisons.Classes
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Classes.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Differential.LongLayer.Cancellation.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
@@ -11,7 +13,7 @@ import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Expressions.P
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Presentation.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Selected.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Tower.Proofs
-import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
+import KIP126.Main.Challenge.Computation.Differential.Second
 import KIP126.Main.Challenge.Computation.LinProgram.Route.Records
 import KIP126.Main.Challenge.Literature.Adams.OneLine
 import KIP126.Main.Challenge.Literature.EtaRows.Proofs
@@ -31,6 +33,7 @@ open Lean Elab Command in
 run_cmd do
   let env ← getEnv
   let pairs : List (Name × Name) := [
+    (``KIP126.Computation.LinProofs.sphereTable_sound, ``KIP126.Computation.LinProofs.Challenge.sphereTable_sound),
     (``KIP126.LinE2.dataBasis_val, ``KIP126.LinE2.Challenge.dataBasis_val),
     (``KIP126.LinE2.basisTable_correct, ``KIP126.LinE2.Challenge.basisTable_correct),
     (``KIP126.LinE2.dataBasis_ne_zero, ``KIP126.LinE2.Challenge.dataBasis_ne_zero),

@@ -1,6 +1,6 @@
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Predicates
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs
-import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
 
 namespace KIP126.Classical.Adams
 

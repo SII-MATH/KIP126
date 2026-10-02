@@ -1,5 +1,5 @@
-import KIP126.Main.Axiom.Literature.Near126.Sphere.Predicates
-import KIP126.Main.Axiom.Literature.Near126.Sphere.Boundaries.Data
+import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
+import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Data
 import KIP126.Main.Axiom.Provenance
 
 /-! First semantic slice of the Section 7 computation package.

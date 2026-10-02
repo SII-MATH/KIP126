@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](Data.lean) | `SphereBoundaryFacts` |
+| [Data.lean](../../../../../Solution/Literature/Near126/Sphere/Boundaries/Data.lean) | `SphereBoundaryFacts` |
 | [Proofs.lean](../../../../../Solution/Literature/Near126/Sphere/Boundaries/Proofs.lean) | `SphereBoundaryFacts.p_h2_is_d2_cycle`, `SphereBoundaryFacts.q_h2_is_d2_cycle` |
 
 ## 3. 大概完成度

@@ -1,4 +1,4 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
+import KIP126.Main.Solution.Computation.Differential.Second
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 

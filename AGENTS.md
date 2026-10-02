@@ -54,8 +54,10 @@ fixed-data pipeline:
   that the data have been identified with the chosen mathematical model.
 
 `Main/Axiom/` is an input boundary, not a proof stage. Keep the single
-Challenge2 existence assumption, its correlated witness/projections, explicit
-input types and source metadata there. Mathematical deductions belong in
+Challenge2 existence assumption, explicit input types and source metadata there.
+Select its correlated witness and expose projections in
+`Main/Solution/StageInput.lean`; witness-dependent consumer adapters also live
+outside Axiom. Mathematical deductions belong in
 Main's paired Challenge/Solution tracks; fixed computation certification and
 standard-label comparison belong to Interface. Do not put `Proofs.lean` modules
 under Main/Axiom or import Main proofs, Interface producers, or Checks from
@@ -274,14 +276,18 @@ types, ranges, and conditions, and do not treat packaging as proof progress.
   Generated records and successful hash checks do not prove the interpreted
   propositions. `Interface/{Challenge,Solution}/LinProgram/` owns the goals
   and proofs identifying these artifacts with `C(M)` on the chosen model.
-  `Main/Axiom/LinProgram/` projects the computation part of the one Challenge 2
-  witness and supplies its consumer adapters. Main deductions consume that
+  `Main/Solution/StageInput.lean` projects the computation part of the one
+  Challenge 2 witness; its dependent adapters live in `Main/Solution/Computation`.
+  Main deductions consume that
   interface rather than importing its Interface/Solution producer proofs.
   The `Main/Solution/Computation` dependency chain now respects this boundary;
   Examples that use Main consumer adapters and explicit provenance live in
   `Main/Examples/LinProgram/`, outside the independent data pipeline.
   Consumer deductions and their entry modules live in
-  `Main/Solution/Computation/LinProgram/`, with paired Challenge statements.
+  `Main/Solution/Computation/`, with paired Challenge statements.
+  Class comparisons, tower survival, and second-differential deductions live
+  in `Comparisons/Classes.lean`, `Tower/Survival.lean`, and
+  `Differential/Second.lean`, respectively.
   `SphereSquareInterface.standard_class` delivers the identification with the
   independently defined standard cobar class. Its producer uses an explicit
   presentation and certificates, never Main's Challenge2 witness. This local

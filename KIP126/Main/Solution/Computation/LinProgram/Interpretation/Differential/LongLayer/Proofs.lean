@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.LinProgram.Interpretation.Differential.LongLayer.Predicates
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Predicates
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Cancellation.Proofs
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Proofs

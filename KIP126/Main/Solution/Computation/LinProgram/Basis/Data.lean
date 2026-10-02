@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.LinProgram.Interpretation.Basis.Data
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Basis.Data
 import Mathlib.Algebra.Module.ZMod
 
 /-!

@@ -1,5 +1,5 @@
 import KIP126.LinProgram.Interpretation.Near126.Classes.Data
-import KIP126.Main.Axiom.LinProgram.Interpretation.Classes.Data
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
 import KIP126.Def.SpectralSequence.Computation.Predicates
 
 /-! All predicates below concern the *fixed* tower-derived internal sphere

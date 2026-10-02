@@ -6,7 +6,7 @@
 
 | 位置 | 当前职责 |
 | --- | --- |
-| [Presentation.lean](Presentation.lean) | 从同一计算见证提供 Lin presentation 及兼容名称 |
+| [Presentation.lean](../../Solution/Computation/LinProgram/Presentation.lean) | 从同一计算见证提供 Lin presentation 及兼容名称 |
 | [Interpretation](Interpretation/README.md) | 固定模型上的坐标、类和表真实性投影；条件推论归 Main/Solution |
 | [Route/Data.lean](Route/Data.lean) | §7 所选路线在指定 Model、球谱和 tmf 标签上的 C(M) 需求 |
 | [Route/Records.lean](../../Solution/Computation/LinProgram/Route/Records.lean) | 带具名条件的路线投影 |
