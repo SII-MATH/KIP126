@@ -121,7 +121,7 @@ class StageBoundaryLayoutTests(unittest.TestCase):
     def test_new_consumer_proofs_have_statement_tracks(self):
         for directory in ("Computation/LinProgram", "Computation/Comparisons",
                           "Computation/Tower", "Computation/Differential", "Literature",
-                          "Computation/Route.lean", "Computation/Lambda.lean"):
+                          "Computation/Route.lean", "Computation/Lambda.lean", "Route"):
             base = ROOT / "KIP126/Main/Solution" / directory
             paths = [base] if base.is_file() else base.rglob("*.lean")
             for path in paths:

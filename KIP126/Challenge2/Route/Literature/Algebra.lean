@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Route.Classical
+import KIP126.Challenge2.Route.Literature.Classical
 import Mathlib.CategoryTheory.Monoidal.Mon
 
 /-! The ordinary homotopy-category consequences of the external symmetric

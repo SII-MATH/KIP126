@@ -12,7 +12,7 @@ import KIP126.Main.Solution.Tools.GeneralizedLeibniz
 import KIP126.Main.Solution.Tools.GeneralizedMahowald
 import KIP126.Main.Solution.Tools.PageExtensionStretching
 import KIP126.Main.Solution.DifferentialReduction.Conclusion
-import KIP126.Main.Axiom.Literature.Route.DependencyTypes
+import KIP126.Challenge2.Route.Literature.DependencyTypes
 
 import KIP126.Main.Solution.Literature.EtaRows.Proofs
 import KIP126.Main.Solution.Literature.Adams.OneLine
@@ -22,3 +22,4 @@ import KIP126.Main.Solution.Computation.LinProgram.E2
 import KIP126.Main.Solution.Literature.Route.Inputs
 import KIP126.Main.Solution.Computation.Route
 import KIP126.Main.Solution.Computation.Lambda
+import KIP126.Main.Solution.Route.Selected

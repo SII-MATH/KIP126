@@ -2,6 +2,10 @@ import KIP126.Main.Solution.Computation.Route
 import KIP126.Main.Solution.Computation.Lambda
 import KIP126.Main.Challenge.Computation.Route
 import KIP126.Main.Challenge.Computation.Lambda
+import KIP126.Main.Solution.Route.Selected
+import KIP126.Main.Challenge.Route.Selected
+import KIP126.Main.Solution.Final.h6_sq_permanent
+import KIP126.Main.Challenge.Final.h6_sq_permanent
 import Lean.Elab.Command
 import Lean.Meta.Basic
 
@@ -12,6 +16,12 @@ open Lean Elab Command in
 run_cmd do
   let env ← getEnv
   let pairs : List (Name × Name) := [
+    (``KIP126.Computation.Route.high125_detector_nonzero, ``KIP126.Computation.Route.Challenge.high125_detector_nonzero),
+    (``KIP126.Main.Solution.Route.cnu_d3, ``KIP126.Main.Challenge.Route.cnu_d3),
+    (``KIP126.Main.Solution.Route.lambda_injective_125_130, ``KIP126.Main.Challenge.Route.lambda_injective_125_130),
+    (``KIP126.Main.Solution.Route.proposition_7_8, ``KIP126.Main.Challenge.Route.proposition_7_8),
+    (``KIP126.Main.Solution.Route.proposition_7_9, ``KIP126.Main.Challenge.Route.proposition_7_9),
+    (``KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent, ``KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent),
     (``KIP126.Computation.Route.classical_sphere_separated_of_strong_convergence, ``KIP126.Computation.Route.Challenge.classical_sphere_separated_of_strong_convergence),
     (``KIP126.Computation.Route.sphere_page_zero_above_uniform_bound, ``KIP126.Computation.Route.Challenge.sphere_page_zero_above_uniform_bound),
     (``KIP126.Computation.Route.sphere_page_zero_stem125_tail, ``KIP126.Computation.Route.Challenge.sphere_page_zero_stem125_tail),

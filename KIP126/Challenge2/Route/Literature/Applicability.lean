@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Route.Moss
+import KIP126.Challenge2.Route.Literature.Moss
 import KIP126.Def.Kervaire.Route.Triangles.Predicates
 
 /-! Explicit source-to-model binding obligations. Existence of a good

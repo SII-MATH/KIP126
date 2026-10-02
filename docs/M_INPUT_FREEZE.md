@@ -14,10 +14,17 @@
 `ModelData` 是对象选择；`Model` 再要求指定映射的结构相容条件。
 四个非标准命名元素放在 `Labels H`；其计算标签识别属于 C(M)。
 
-固定实例类型 `Classical.Adams.StandardRouteModel Syn` 从唯一 Final 所用的
-同一个 `standardFoundation`、`standardMilnorCooperations` 特化。它没有新增
-存在性公理、默认 synthetic 实例或第二个球谱序列。今后构造这个类型的见证
-是基础工作的证明任务；该构造尚未交付。
+固定实例由既有 `Challenge1` 的 `routeInput` 交付：它包含 synthetic 范畴、
+cofiber 和基于同一 `foundationInput` / `milnorInput` 的 `Route.Model`。
+`StandardSynthetic`、`standardRouteModel` 直接投影同一个 Challenge1 见证。
+构造仍属于 `Def/{Challenge,Solution}/Challenge1.lean` 中的 `Nonempty Challenge1`，
+Solution 仍为 `sorry`；没有新增存在性公理。
+
+根 `Challenge2.ModelBindings` 绑定同一模型的 η、路线标签、tmf 标签、比较和
+来源适用条件，显式给出 detector 到现有 tmf 对象的同构及单位、乘法相容。
+`LiteratureInterface.route` 与 `ComputationInterface.route` 引用这些相同选择；
+后者的 `route_presentation` 要求路线解码与原球谱 presentation 在 t≤261 一致。
+Main 从 `StageInput.witness` 投影全部输入。接线完成不表示这些交付已构造。
 
 ## 冻结的数据、对象来源与条件
 
@@ -77,7 +84,7 @@
 | `fact:h1x1217`、`lem:nuext125` | actual Cν triangle、顶/底胞腔 E₂ map、悬移、Cν d₃、Mahowald/stretching | Cν 计算和标签对应为 C，ν-extension 为 Main |
 | `fact:stem122`、Table `Table:Cnu126`、Prop. 7.9 最后反证 | same Cν Eᵣ 中的 nonzero target 与全部潜在 incoming sources/页数 | C 的有限穷尽性义务；未知不能当零，未导入 49 个辅助谱也不宣称已经认证 |
 
-`Main/Axiom/Literature/Route/DependencyTypes.lean` 是这些输入的**类型绑定样例/入口**，
+`Challenge2/Route/Literature/DependencyTypes.lean` 是这些输入的**类型绑定样例/入口**，
 不是新增的全部 A/C 假设包。其每个谓词都有具体定义，无自由 `Prop` 字段。
 `HopfBindings` 还明确地把经典 η、ν 的 h₁/h₂ 检测与工具所用的 normalized η
 连接到 C₅ 中的同一个 synthetic η；名称相同不构成识别。
@@ -94,6 +101,7 @@
   按 Remark 7.12，C₅ 单独不强加目标非零。
 - Proposition 7.8 的两个排他分支与 `D12 ↔ C3 ∧ C4 ∧ C5`、
   Proposition 7.9 的 `C3 → ¬ C5` 均为 Main 中的待证命题定义。
+  `Main/{Challenge,Solution}/Route/Selected.lean` 现有基于根 Challenge2 输入的配对目标。
 - `permanent_of_propositions` 已证明二者蕴含 `PermanentH6Square`。
   此条件结论特化后与唯一 T(M) 按定义相同；没有新增另一版 Final。
 

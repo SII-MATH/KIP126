@@ -2,8 +2,9 @@ import KIP126.LinProgram.Interpretation.Route.Predicates
 import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
 
 /-! Parameterized route delivery specifications. No witness is chosen here.
-Binding these specifications to the root Challenge2 witness remains a separate
-Interface obligation; this module does not assert that binding. -/
+The root Challenge2 binds these specifications to its shared witness and requires
+agreement with the original sphere presentation. Producing that witness remains
+an Interface obligation; this parameterized module chooses no model. -/
 
 namespace KIP126.Computation.Route
 open CategoryTheory

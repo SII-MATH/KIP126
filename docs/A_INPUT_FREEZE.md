@@ -8,7 +8,7 @@ Proposition 7.8、7.9 及其实际调用的工具、Toda/Moss、Cν、tmf 路线
 也没有构造满足它们的实际模型。** 不以导入所有参考文献代替依赖分析。
 
 公共入口：`import KIP126.Main.Axiom.Literature.Route`。
-总包位于 `KIP126/Main/Axiom/Literature/Route/Data.lean`：
+总包位于 `KIP126/Challenge2/Route/Literature/Data.lean`：
 
 ```lean
 KIP126.Literature.Route.Inputs D η L
@@ -26,9 +26,20 @@ E₂ 的 `g : E₂^(4,24)` 和 `Δh₁g : E₂^(9,54)`，其 CSV 识别仍属于
 `Inputs.differentialLift` 和 `Inputs.nuTriangle` 只是已证明的投影适配，
 不是 BHS 或 Mahowald 的证明。
 
+当前接线：根 `Challenge2.ModelBindings.route` 保存 `Bindings D`，把 realization
+坐标、代数比较、May 的结构选择和来源适用条件与外部结论分开。
+`LiteratureInterface.route` 保存这些绑定上的 `Statements D η G`；
+`Statements.toInputs` 仅组装原参数化 API，不产生第二个见证。
+模型来自同一个 Challenge1，η 和 tmf 标签来自同一个 Challenge2。
+所有文献应用/比较的生产义务仍在 Interface，完整生产定理保留 `sorry`。
+
+`TmfHigh125Detection` 只要求存在一个被指定类检测且 tmf 像非零的经典元素。
+推广至任意同检测元素由 Main 的 `high125_detector_nonzero` 负责，显式保留
+`SphereVanishingLine` 和 `ClassicalSphereSeparated` 前提，并依赖待证的代表唯一性。
+
 ## 输入内容与来源
 
-下列路径相对于 `KIP126/Main/Axiom/Literature/Route/`；文献原文的本地路径、
+下列路径相对于 `KIP126/Challenge2/Route/Literature/`；文献原文的本地路径、
 SHA-256、稳定定位及每项分类另见同目录 `sources.json`。TeX label 优先于
 可能随版本变化的行号。`MainPaper` 只用于确定消费点，不能证明 A(M)。
 
@@ -59,7 +70,7 @@ SHA-256、稳定定位及每项分类另见同目录 `sources.json`。TeX label 
 | `Toda.lean` / `TodaInputs` | `[h₀]` 的第一商标签、λ[h₀]=2、[h₀]η=0、η²∈<[h₀],η,[h₀]>、低维不定性消失 | BHS `prop:syn-toda-range` (0)、(9) 及低维群；经典 Toda 关系经同一模型运输 |
 | `.symmetric_two` | 若 θ∈π_(62,64) 且 2θ=0，则 λ²ηθ∈<2,θ,2> | Toda 1962 Theorem 3.6 的 symmetric-bracket 后果；IWX §6 `cor:2-symmetric` 核对“包含”约定；synthetic 运输仍是显式义务 |
 | `Tmf.lean` / `TmfTheta5Vanishing` | 经典 θ₅ 经实际 detectorUnit 映为零 | BMQ Theorem 1.2、Figure 1.1 的 tmf 62-stem |
-| `TmfHigh125Detection` | g⁴Δh₁g 非零生存；其检测的经典类经实际 unit 映为非零 | BMQ §7，κ̄⁴w 的 Hurewicz 结果；Prop. 7.8 |
+| `TmfHigh125Detection` | g⁴Δh₁g 非零生存；存在被它检测且经实际 unit 映为非零的经典类 | BMQ §7，κ̄⁴w 的 Hurewicz 结果；Prop. 7.8 |
 | `TmfLowFiltration63` | 该 detector 的经典 E₂ 在 stem63、s≤0 为零 | BMQ §2 的 H_*tmf=(A//A(2))_* 及 change of rings；供上述零像的 synthetic 运输 |
 | `Applicability.lean` / `Applicability` | Moss 的实际塔 residual injectivity；Cν 三条实际映射的 exponent=1,0,0、选定 normalized ν 的 h₂ 标签及其三角 distinguished | 外部结果到固定模型的应用/选择义务；不是某个 ν-extension 计算结论 |
 

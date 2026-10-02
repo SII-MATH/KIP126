@@ -1,10 +1,10 @@
-import KIP126.Main.Axiom.Literature.Route.BX
-import KIP126.Main.Axiom.Literature.Route.Realization
-import KIP126.Main.Axiom.Literature.Route.Algebra
-import KIP126.Main.Axiom.Literature.Route.May
-import KIP126.Main.Axiom.Literature.Route.Toda
-import KIP126.Main.Axiom.Literature.Route.Tmf
-import KIP126.Main.Axiom.Literature.Route.Applicability
+import KIP126.Challenge2.Route.Literature.BX
+import KIP126.Challenge2.Route.Literature.Realization
+import KIP126.Challenge2.Route.Literature.Algebra
+import KIP126.Challenge2.Route.Literature.May
+import KIP126.Challenge2.Route.Literature.Toda
+import KIP126.Challenge2.Route.Literature.Tmf
+import KIP126.Challenge2.Route.Literature.Applicability
 
 /-!
 # A(M) for the frozen Section 7 route
@@ -46,6 +46,39 @@ structure Inputs where
   tmf : TmfInputs D L
   moss : MossInput D
   applicability : Applicability D
+
+/-- Project comparison choices and source-applicability conditions. These belong
+in the shared bindings, separately from the external conclusions A(M). -/
+structure Bindings where
+  realization : RealizationCoordinates D
+  algebra : AlgebraInput D
+  may : MayContext Syn
+  applicability : Applicability D
+
+/-- External conclusions on those EXACT bindings. Source locators and ranges
+are documented on the component declarations, including their hypotheses. -/
+structure Statements (B : Bindings D) where
+  classical : ClassicalInputs D η
+  bx : BXDistinguishedInput D η
+  synthetic : SyntheticInputs D
+  realization : RealizationDetection D B.realization
+  may : B.may.Boundary
+  toda : TodaInputs D η
+  tmf : TmfInputs D L
+  moss : MossInput D
+
+/-- Assemble the parameterized consumer API without selecting any new data. -/
+def Statements.toInputs {B : Bindings D} (A : Statements D η L B) : Inputs D η L where
+  classical := A.classical
+  bx := A.bx
+  synthetic := A.synthetic
+  realization := ⟨B.realization, A.realization⟩
+  algebra := B.algebra
+  may := { B.may with boundary := A.may }
+  toda := A.toda
+  tmf := A.tmf
+  moss := A.moss
+  applicability := B.applicability
 
 /-- Propositional spelling of A(M); consumers may instead take `Inputs`
 directly to retain its concrete comparison/algebra witnesses. -/

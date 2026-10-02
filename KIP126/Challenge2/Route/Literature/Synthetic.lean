@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Route.Classical
+import KIP126.Challenge2.Route.Literature.Classical
 
 /-! BHS/Pstrągowski source statements specialized to the frozen ν and
 sequence family. The statements are assumed explicitly for the selected

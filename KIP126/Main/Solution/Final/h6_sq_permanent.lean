@@ -1,9 +1,10 @@
+import KIP126.Main.Solution.Route.Selected
 import KIP126.Interface.Axiom.StandardSphere.Classes.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 
 /-! The single final proof obligation T(M), paired with Main/Challenge/Final.
-The proof must implement the paper's deductions from A(M) and C(M). It remains
-unfinished. CSV/standard class comparisons are reusable lemmas in the
+The final logical step now uses the same delivered A(M)/C(M).
+Propositions 7.8 and 7.9 remain unfinished in Main/Solution/Route/Selected. CSV/standard class comparisons are reusable lemmas in the
 computation interpretation layer, not a second version of the final theorem.
 No Challenge placeholder is used as a proof.
 -/
@@ -15,6 +16,11 @@ open KIP126.Classical.Adams KIP126.Core.SpectralSequence
 whose E∞ image is nonzero, in bidegree (s,t) = (2,128). -/
 theorem h6_sq_permanent :
     NonzeroSurvival sphereAdamsData (2, 128) standardH6Square := by
-  sorry
+  exact KIP126.Main.Solution.permanent_of_propositions
+    standardMilnorCooperations standardRouteModel
+    KIP126.Main.StageInput.routeLabels KIP126.Main.StageInput.routeEta
+    KIP126.Main.StageInput.routeLiterature.classical.hopf.1
+    (KIP126.Main.Solution.Route.proposition_7_8 KIP126.Main.StageInput.witness)
+    (KIP126.Main.Solution.Route.proposition_7_9 KIP126.Main.StageInput.witness)
 
 end KIP126.Solution.Final.H6SquarePermanent

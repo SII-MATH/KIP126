@@ -1,12 +1,13 @@
 # Main 输入边界整理
 
-`Main/Axiom/` 只保留阶段输入、同一见证的投影、显式输入类型和来源信息。
-目录及其聚合入口不再导入 Main 推导、Interface 生产证明或 Checks，也不再设置
-`Proofs.lean`。来源元数据校验和已有证据的透明提取不构成数学输入的生产证明。
+`Main/Axiom/` 只保留阶段输入、显式输入 statement 和来源信息。
+同一见证的选择和投影位于 `Main/Solution/StageInput.lean`。目录及其聚合入口
+不导入 Main 推导、Interface 生产证明或 Checks，也没有 `Proofs.lean`。
 
-这是已完成的证明文件与导入边界整理记录，不代表剩余解释定义都已归位。
-`Main/Axiom/LinProgram` 仍有基构造、参数化解释和独立路线交付类型；
-它们与根 computation 接口的关系及后续归属见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
+`Main/Axiom/LinProgram` 已清空：参数化解释归 LinProgram，交付规格归根
+Challenge2，消费者适配归 Main/Solution。路线文献规格与比较绑定归
+`Challenge2/Route/Literature`，原 `Main/Axiom/Literature/Route.lean` 仅作为导入入口。
+根 Challenge2 现已把路线 A/C 绑定到 Challenge1 的同一个模型。
 
 ## 归位结果
 
@@ -17,7 +18,7 @@
 | 消费接口示例 | `Main/Examples/LinProgram/` |
 | 附录来源表的元数据验证 | `Checks/SourceMetadata/AppendixTable/` |
 | 固定 CSV 的 near-126 名称、次数证书与类表达式 | `LinProgram/Interpretation/Near126/` |
-| 路线输入使用的类型语言 `DependencyTypes` | `Main/Axiom/Literature/Route/DependencyTypes.lean` |
+| 路线输入使用的类型语言 `DependencyTypes` | `Challenge2/Route/Literature/DependencyTypes.lean` |
 
 保留原有公开声明名称。105 条迁入 Main 证明轨道的定理补齐同路径 Challenge 声明；
 Challenge 名称在原命名空间内增加 `Challenge` 分组，证明均为 `sorry`。
@@ -39,7 +40,7 @@ Challenge2 消费公理。Main 的 `computedH6Square_eq_standardH6Square` 只投
 `Interface/Solution/LinProgram/Multiplication.lean` 和完整 Challenge2 构造中的
 `sorry` 保持原状态。没有新增独立公理或 Solution 占位证明。
 
-## 验证
+## 原迁移批次验证（当前接线验证另见提交说明）
 
 - `python -m unittest scripts.test_stage_boundary_layout`：8 项通过，涵盖导入无缺失／无环、
   独立数据管线、输入不依赖证明端、Main 消费不导入 Interface 实现及配对文件存在性。

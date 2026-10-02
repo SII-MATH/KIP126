@@ -465,6 +465,7 @@ the same commit already has a successful check covering that question, reuse it.
 choices and deterministic decoder; `Predicates.lean` states local certification
 conditions. `Challenge2/Route/Data.lean` owns the project-specific label and
 route delivery structures. These modules do not import Main or Interface and
-do not choose a stage witness. Their existence does not connect the route
-package to the root Challenge2: that binding must be stated and proved separately.
+do not choose a stage witness. The root Challenge2 now binds the route package to Challenge1.routeInput, with
+shared labels and explicit sphere-presentation / detector-tmf comparisons.
+Producing those comparisons remains part of the Interface existence goal.
 Reusable tmf labels live in `Def/Kervaire/Route/Labels/Tmf/Data.lean`.

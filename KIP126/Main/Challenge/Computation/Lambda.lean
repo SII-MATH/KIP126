@@ -1,5 +1,5 @@
 import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
-import KIP126.Main.Axiom.Literature.Route.Data
+import KIP126.Challenge2.Route.Literature.Data
 import KIP126.Main.Solution.Computation.Route
 
 /-! Precise finite/weight-window derivations. The relevant raw degrees are
@@ -130,5 +130,15 @@ theorem Challenge.two_torsion_62_70
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G)
     (V : SphereVanishingLine H) (b : BiHom 62 70 (S00 : Syn)) : b + b = 0 := by
   sorry
+/-- BMQ supplies one class with nonzero tmf image. Replacing it by an arbitrary
+class with the same leading term uses the Main higher-filtration argument. -/
+theorem Challenge.high125_detector_nonzero
+    (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G)
+    (V : SphereVanishingLine H) (S : ClassicalSphereSeparated H)
+    (a : HomotopyGroup (C := C) 125 SphereSpectrum)
+    (ha : TowerDetection.Detects (D.classicalConvergence .sphere) (25,150)
+      (G.high125 M) a) : a ≫ D.auxiliary.detectorUnit ≠ 0 := by
+  sorry
+
 end
 end KIP126.Computation.Route

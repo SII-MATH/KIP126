@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Route.Classical
+import KIP126.Challenge2.Route.Literature.Classical
 
 /-! Low-dimensional and symmetric Toda inputs. The synthetic versions
 are source-transport obligations, not verbatim classical formulas: λ²η,

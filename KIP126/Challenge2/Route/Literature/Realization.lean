@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Route.Synthetic
+import KIP126.Challenge2.Route.Literature.Synthetic
 
 namespace KIP126.Literature.Route
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

@@ -5,7 +5,9 @@
 阶段二可显式接受 `I : Inputs D L G`；阶段一的任务是构造这样的值。
 本次完成接口定义和来源筛选，不宣称已证明 C(M)，也不宣称已证明其蕴涵主定理。
 
-这里的路线 `CInput` 当前尚未接入根 `Challenge2.ComputationInterface`，二者不能互换。
+路线 `Inputs` 已由根 `Challenge2.ComputationInterface.route` 交付；它是 computation
+总接口的一个组成部分，不能把局部 `CInput` 与整个总接口等同。
+`route_presentation` 显式约束其球谱解释与原 presentation 在 t≤261 相同。
 它是待整合的路线交付规格，不是第二套全局阶段公理。统一接口的目标、当前差异与
 参数化解释与消费适配的归属见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
 
@@ -188,7 +190,11 @@ Main 的待证推导另见下节，不能与生成数据校验混为一谈。
 `Main/Challenge/Computation/Route.lean` 和 `Lambda.lean` 保存准确目标，
 `Main/Solution/Computation/Route.lean` 和 `Lambda.lean` 保存同签名的证明或 `sorry`。
 它们都显式接收同一 `D`、`L`、`G` 上的 `Inputs`；没有选取另一个全局见证。
-根 `Challenge2` 到路线 `Inputs` 的绑定仍是独立未完成项，不能把参数化命题称为固定实例接线完成。
+根 `Challenge2` 已绑定路线 `Inputs`，Main 的 `StageInput.routeComputation`
+直接投影它；`routeLiterature` 使用相同模型与 tmf 标签。
+`Main/{Challenge,Solution}/Route/Selected.lean` 把 Cν、λ 单步单射特化到此见证，
+并列出 Proposition 7.8/7.9 的实际消费目标。最终定理调用这两条待证命题再逻辑收尾。
+这些 Proposition 仍为 `sorry`，有限页到永久存活、消失线、过滤分离等步骤并未完成。
 
 | 推导组 | 精确边界 |
 | --- | --- |
@@ -215,3 +221,17 @@ Main 的待证推导另见下节，不能与生成数据校验混为一谈。
 本批验证：32 对完整签名的 Lean 内核检查和四个受影响 Main 模块定向编译通过；
 10 项目录依赖检查通过。32 条 Solution 中 8 条有证明体、24 条保留直接 `sorry`；
 其中 3 条有证明体的 λ 特例依赖本批待证的一般命题。没有据此宣称证明完成，未跟踪 CI。
+
+## 9. 固定模型接线验证
+
+- `Challenge1.routeInput`、根 Challenge2 的共享绑定和 Main.StageInput 已相连；
+  Cν 与 λ 单步单射的固定实例、Proposition 7.8/7.9 的配对目标及最终逻辑调用已接通。
+- 定向编译 `Checks.ClassicalAdams.StageInputDeclarations`、`Checks.Computation.RouteGoals`、
+  `Checks.Kervaire.RouteBoundary`、`Checks.Kervaire.RouteFixedFinal` 和两个迁移后的文献消费模块
+  通过（3318 jobs）。核对 38 对 Main 声明以及两阶段生产声明类型、同一见证投影、
+  sphere presentation 相容和最终标准 h₆² 定义。
+- 10 项目录依赖检查通过；28 组文献来源覆盖及 17 个原始文件哈希校验通过。
+- 未删除原有 theorem/lemma 声明；最终 Challenge 文件保持不变。
+- Def/Interface 的整包构造仍为 `sorry`。Main 新增两条 Proposition 的显式证明占位；
+  最终定理的逻辑收尾因此仍有这些证明依赖。经典消失线、过滤分离、数据认证和
+  模型比较没有因为接线或编译成功而得到证明。未检查 CI。

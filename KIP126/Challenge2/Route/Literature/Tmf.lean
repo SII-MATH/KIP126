@@ -1,5 +1,5 @@
 import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
-import KIP126.Main.Axiom.Literature.Route.Classical
+import KIP126.Challenge2.Route.Literature.Classical
 
 namespace KIP126.Literature.Route
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
@@ -24,16 +24,17 @@ def TmfTheta5Vanishing : Prop :=
     ClassicalTheta D θ → θ ≫ D.auxiliary.detectorUnit = 0
 
 /-- The local classical Adams detection consequence of BMQ §7: κ̄⁴w
-is nonzero, and its sphere detection is g⁴Δh₁g. The universal clause
-retains the indeterminacy of choosing a class with this leading term.
+is nonzero, and its sphere detection is g⁴Δh₁g. The existential clause supplies ONE detected class with nonzero image.
+Independence of the detected representative is a Main deduction, requiring
+higher-filtration vanishing; it is not a further external input.
 Identification of the selected detector/unit and these two labels with
 the source is part of supplying this explicit external input. -/
 def TmfHigh125Detection : Prop :=
   NonzeroSurvival (adamsTowerInternalSpectralSequence H.unit SphereSpectrum)
     (25,150) (L.high125 M) ∧
-  ∀ α : HomotopyGroup (C := C) 125 SphereSpectrum,
+  ∃ α : HomotopyGroup (C := C) 125 SphereSpectrum,
     TowerDetection.Detects (D.classicalConvergence .sphere) (25,150)
-      (L.high125 M) α → α ≫ D.auxiliary.detectorUnit ≠ 0
+      (L.high125 M) α ∧ α ≫ D.auxiliary.detectorUnit ≠ 0
 
 /-- The small part of the classical tmf E₂ calculation needed to transport
 the 62-stem vanishing through λ-localization. Source: BMQ §2,

@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--lean-check", type=Path, help="write an import/decl check to this path")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    route = root / "KIP126/Main/Axiom/Literature/Route"
+    route = root / "KIP126/Challenge2/Route/Literature"
     inventory = json.loads((route / "sources.json").read_text())
     assert inventory["schema_version"] == 1
     sources = {s["id"]: s for s in inventory["sources"]}

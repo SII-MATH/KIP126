@@ -1,3 +1,4 @@
+import KIP126.Def.Kervaire.Route.Model.Coherent.Data
 import KIP126.Def.StableHomotopy.Cohomology.Data
 import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
 import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
@@ -44,6 +45,8 @@ M 指 `Def/` 定义的数学对象、操作和结构条件；本文件只是阶�
 验收；陈述状态、实现状态和依赖关系分别记录。总见证 `Challenge1` 已明列 a01 的基础和 tensor 条件、a02 的 cooperation
 数据及相容性、a03 的球面 Milnor 坐标与 d₁ 相容性。a05 的固定 CSV 认证
 已迁出本包，由 Interface 辅助证明及 Challenge2 的实际 E₂ 坐标交付承担。
+`routeInput` 另交付同一 classical/Milnor 基础上的所选 §7 synthetic 模型，
+复用 `Route.Model` 的对象和结构相容条件，不加入 A/C 数值结论或论文 Proposition。
 a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可查；整包构造
 及其余条目仍未完成，不能把字段存在视作全部 14 项已证明。
 未冻结的条目以 TODO 保留，补成正式字段前须审核数学类型、范围和消费端。
@@ -349,6 +352,25 @@ structure MilnorInput (F : FoundationInput) where
     coordinates (s + 1) t (sphereFirstDifferential F.hf2 s t x) =
       Steenrod.Milnor.differential s t (coordinates s t x)
 
+/-- The generic Milnor record assembled from these exact stage-zero fields. -/
+def MilnorInput.toMilnor {F : FoundationInput} (M : MilnorInput F) :
+    MilnorCooperations F.hf2 where
+  coordinates := M.coordinates
+  differential_coordinates := M.differential_coordinates
+
+/-- Shared Section 7 objects on the SAME classical foundation and Milnor
+coordinates. Only objects and structural compatibility belong here; literature
+results, table certification and paper deductions are delivered separately.
+Constructing this package is part of the existing Challenge1 production goal. -/
+structure RouteInput (F : FoundationInput) (M : MilnorInput F) where
+  Syn : Type 1
+  synthetic : KIP126.Synthetic.Context.SyntheticCategory.{1, 0} Syn
+  cofiber : @HasFunctorialCofiber Syn synthetic.toStableHomotopyCategory
+  model : @KIP126.Kervaire.Route.Model F.Spectrum F.stable F.cofiber
+    F.hf2 M.toMilnor Syn synthetic cofiber
+
+attribute [instance] RouteInput.synthetic RouteInput.cofiber
+
 /-- a01/a03：同一基础的 tensor、悬移与三角条件。所有后续 Künneth 和
 边界公式使用这里选出的 CommShift，不重新选择 suspension comparison。 -/
 class TensorInput (F : FoundationInput) where
@@ -516,6 +538,7 @@ structure Challenge1 where
   milnorInput : Challenge1.MilnorInput foundationInput
   tensorInput : Challenge1.TensorInput foundationInput
   cooperationInput : @Challenge1.CooperationInput foundationInput tensorInput milnorInput
+  routeInput : Challenge1.RouteInput foundationInput milnorInput
 
 namespace Challenge1
 
@@ -535,6 +558,8 @@ def ofFoundationMilnor (F : StandardAdamsFoundation)
     (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
     (T : TensorInput (FoundationInput.ofStandard F))
     (A : @CooperationInput (FoundationInput.ofStandard F) T
+      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
+    (R : RouteInput (FoundationInput.ofStandard F)
       { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates }) :
     KIP126.Challenge1 where
   foundationInput := FoundationInput.ofStandard F
@@ -543,6 +568,7 @@ def ofFoundationMilnor (F : StandardAdamsFoundation)
       differential_coordinates := M.differential_coordinates }
   tensorInput := T
   cooperationInput := A
+  routeInput := R
 
 end Challenge1
 

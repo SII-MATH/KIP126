@@ -1,3 +1,6 @@
+import KIP126.Interface.Axiom.StandardSphere.Route.Data
+import KIP126.Challenge2.Route.Data
+import KIP126.Challenge2.Route.Literature.Data
 import KIP126.Def.Synthetic.EInfty.Presentation.Predicates
 import KIP126.LinProgram.Generated.Differentials.Table
 import KIP126.LinProgram.Generated.Staircase.Table
@@ -56,6 +59,12 @@ M 是 Def 中的数学对象，本文件仍绑定同一个 Challenge1 固定见�
 绑定到实际 Adams 层乘法和同一 presentation。
 `am9` 的 `CobarDerivedExtComparison` 固定实际分次右余模的导出 Ext 端、
 规范 cofree 分解公式及每个 cocycle 的 `extMk` 比较。
+路线接线更新：`ModelBindings.route` 保存同一 Challenge1 路线模型的项目比较与
+来源适用条件；`LiteratureInterface.route` 与 `ComputationInterface.route` 交付其
+A(M)、C(M)，共享 η、路线/tmf 标签。detector/tmf 的对象、单位和乘法比较以及
+路线球谱解释/presentation 的有界相等均为显式 Interface 生产义务。
+以下历史 am/cm 条目仍保留各子构造的证明状态；“已入包”只表示交付类型已关联，
+不表示整包构造、全数据认证、文献适用证明或 Main 论文推导已经完成。
 清单中的“未入包”不是额外假设，也不表示相应领域完全没有已有证明。
 
 阅读规则：**陈述状态**与**实现状态**分开记录。已有精确 Lean 类型可以尚未证明；
@@ -404,7 +413,8 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   因而 retained rows 的计数不能证明候选覆盖，也不由非空 info 推出矛盾。
 
 - `cm4` Cν、tmf、λ 商及 map/extension 输出。
-  陈述：确定性内部 M 解释尚未冻结、未入包。
+  陈述：所选路线的 Cν 解释已由 `ComputationInterface.route` 关联；
+  tmf 对象比较在 ModelBindings。全量 λ 商/map/extension 输出仍未统一交付。
   实现：`Main/Axiom/Literature/Near126/HopfCofiber/` 是手写消费需求，
   不能算作 Lin 输出。前置解释缺口：现有 `Translate/import-proofs.py` 明确排除
   非 S0／extension 行；须扩展 `LinProgram/Translate/`，将每条直接输出
@@ -1342,16 +1352,31 @@ structure ModelBindings where
   moss : StandardSphereMossContext
   tmf : TmfModel Classical.Adams.standardFoundation.hf2
   tmfMultiplicative : StandardTmfModelMultiplicativeInterface tmf
+  routeLabels : Kervaire.Route.Labels Classical.Adams.standardFoundation.hf2
+  tmfLabels : Literature.Route.TmfLabels Classical.Adams.standardFoundation.hf2
+  routeEta : Synthetic.Context.BiHom 1 2
+    (Synthetic.Context.S00 : Classical.Adams.StandardSynthetic)
+  route : Literature.Route.Bindings Classical.Adams.standardRouteModel
+  detectorIso : Classical.Adams.standardRouteModel.auxiliary.detector ≅ tmf.target.X
+  detector_unit : Classical.Adams.standardRouteModel.auxiliary.detectorUnit ≫
+    detectorIso.hom = Tmf.unit tmf.target
+  detector_mul :
+    letI := route.algebra.classicalSymmetric
+    letI := route.algebra.syntheticSymmetric
+    (detectorIso.hom ⊗ₘ detectorIso.hom) ≫ (MonObj.mul (X := tmf.target.X)) =
+      route.algebra.detector.classical.mul ≫ detectorIso.hom
 
 /-- Literature conclusions on the same selected model data. Sources and exact
 ranges remain those documented by AdamsOneLineInterface (Adams/May),
 StandardSphereMossStatement (Moss), and TmfModel.Br21Statement (BR21).
 The source-carrying external wrappers remain explicit inputs where used; this
 structure does not assert that citing a source constructs any of these proofs. -/
-structure LiteratureInterface (modelBindings : ModelBindings) : Prop where
+structure LiteratureInterface (modelBindings : ModelBindings) where
   adamsOneLine : AdamsOneLineInterface
   moss : StandardSphereMossStatement modelBindings.moss
   br21 : modelBindings.tmf.Br21Statement
+  route : Literature.Route.Statements Classical.Adams.standardRouteModel
+    modelBindings.routeEta modelBindings.tmfLabels modelBindings.route
 
 /-- The certified square facts and its standard label on the actual sphere
 page, through the specified comparison. Interface proves the identification
@@ -1368,7 +1393,8 @@ structure SphereSquareInterface (presentation : Classical.Adams.LinE2Presentatio
 /-- C(M): interpreted computation conclusions, all using one fixed presentation.
 The generated data and local certificates are separate from this model-bound
 mathematical delivery. -/
-structure ComputationInterface (presentation : Classical.Adams.LinE2Presentation) where
+structure ComputationInterface (modelBindings : ModelBindings)
+    (presentation : Classical.Adams.LinE2Presentation) where
   sphereBasis : SphereBasisInterface presentation
   sphereMultiplicative : SphereMultiplicativeInterface presentation
   sphereStaircase : SphereStaircaseInterface presentation
@@ -1377,6 +1403,13 @@ structure ComputationInterface (presentation : Classical.Adams.LinE2Presentation
     (row : Computation.LinProofs.DifferentialRow),
     Computation.LinProofs.RawData.lookup shard offset = some row →
       DifferentialStatement presentation row
+
+  route : Computation.Route.Inputs Classical.Adams.standardRouteModel
+    modelBindings.routeLabels modelBindings.tmfLabels
+  /-- Interface identifies the route's interpretation with the existing bounded
+  sphere presentation. Main must not assume or reconstruct this comparison. -/
+  route_presentation : ∀ (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t),
+    route.realization.sphere s t x = presentation.comparison s t ht x
 
 end Challenge2
 
@@ -1387,7 +1420,7 @@ structure Challenge2 where
   modelBindings : Challenge2.ModelBindings
   presentation : Classical.Adams.LinE2Presentation
   literature : Challenge2.LiteratureInterface modelBindings
-  computation : Challenge2.ComputationInterface presentation
+  computation : Challenge2.ComputationInterface modelBindings presentation
 
 namespace Challenge2
 

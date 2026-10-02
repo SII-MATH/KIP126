@@ -1,3 +1,5 @@
+import KIP126.Interface.Challenge.Challenge2
+import KIP126.Def.Challenge.Challenge1
 import KIP126.Def.Solution.Challenge1
 import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.LinProgram.BasisTable
@@ -23,8 +25,10 @@ example (F : StandardAdamsFoundation)
     (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
     (T : Challenge1.TensorInput (Challenge1.FoundationInput.ofStandard F))
     (A : @Challenge1.CooperationInput (Challenge1.FoundationInput.ofStandard F) T
+      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
+    (R : Challenge1.RouteInput F
       { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates }) :
-    (Challenge1.ofFoundationMilnor F M T A).foundation = F := by
+    (Challenge1.ofFoundationMilnor F M T A R).foundation = F := by
   rfl
 
 open KIP126 KIP126.Classical.Adams in
@@ -32,14 +36,16 @@ example (F : StandardAdamsFoundation)
     (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
     (T : Challenge1.TensorInput (Challenge1.FoundationInput.ofStandard F))
     (A : @Challenge1.CooperationInput (Challenge1.FoundationInput.ofStandard F) T
+      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
+    (R : Challenge1.RouteInput F
       { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates }) :
-    (Challenge1.ofFoundationMilnor F M T A).milnor = M := by
+    (Challenge1.ofFoundationMilnor F M T A R).milnor = M := by
   rfl
 
 open KIP126 in
 example (c : Challenge1) :
     Challenge1.ofFoundationMilnor c.foundation c.milnor
-      c.tensorInput c.cooperationInput = c := by
+      c.tensorInput c.cooperationInput c.routeInput = c := by
   rfl
 
 open Lean Elab Command in
@@ -95,3 +101,36 @@ example (c : KIP126.Challenge2) (s t : ℕ) (ht : t ≤ 261)
       ((c.sphereBasis.coordinates s t ht).symm (Finsupp.single i 1))).val =
         KIP126.LinE2.basisValue (KIP126.LinE2.basisRowAt s t i) :=
   c.sphereBasis.csv_values s t ht i
+
+-- Both route parts are projections of one witness, never separate choices.
+open KIP126.Main.StageInput in
+example : routeComputation = witness.computation.route := rfl
+
+open KIP126.Main.StageInput in
+example : routeLiterature = witness.literature.route.toInputs := rfl
+
+open KIP126 KIP126.Classical.Adams KIP126.Main.StageInput in
+example (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t) :
+    routeComputation.realization.sphere s t x = witness.presentation.comparison s t ht x :=
+  witness.computation.route_presentation s t ht x
+
+open KIP126 KIP126.Classical.Adams in
+example : Kervaire.Route.PermanentH6Square standardMilnorCooperations =
+    Core.SpectralSequence.NonzeroSurvival sphereAdamsData (2,128) standardH6Square := rfl
+
+open Lean Elab Command in
+run_cmd do
+  let env ← getEnv
+  for (producer, boundary) in [
+      (``KIP126.Def.Solution.challenge1, ``KIP126.Def.Challenge.challenge1),
+      (``KIP126.Interface.Solution.challenge2, ``KIP126.Interface.Challenge.challenge2),
+      (``KIP126.Interface.Solution.literatureInterface, ``KIP126.Interface.Challenge.literatureInterface),
+      (``KIP126.Interface.Solution.computationInterface, ``KIP126.Interface.Challenge.computationInterface)] do
+    let some p := env.find? producer | throwError "missing producer {producer}"
+    let some b := env.find? boundary | throwError "missing boundary {boundary}"
+    unless ← liftTermElabM (Lean.Meta.isDefEq p.type b.type) do
+      throwError "stage signatures differ: {producer} / {boundary}"
+  for name in [``KIP126.Main.StageInput.routeModel,
+      ``KIP126.Main.StageInput.routeLiterature, ``KIP126.Main.StageInput.routeComputation] do
+    let some (.defnInfo _) := env.find? name
+      | throwError "route inputs must only be definitions: {name}"

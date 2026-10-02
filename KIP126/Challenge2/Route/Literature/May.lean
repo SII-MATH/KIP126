@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Route.Classical
+import KIP126.Challenge2.Route.Literature.Classical
 
 namespace KIP126.Literature.Route
 open CategoryTheory CategoryTheory.MonoidalCategory KIP126.StableHomotopy
@@ -12,11 +12,20 @@ comparisons are explicit witnesses, not new tensor products or triangles.
 The law is stronger than tensor exactness alone: May (2001), TC3 and
 Lemma 4.6 (author PDF, p.14); LWX `lem:452d218c` is its elementwise form.
 No claim is made that arbitrary choices of CommShift satisfy this law. -/
-structure MayInput where
+structure MayContext where
   leftShift : ∀ X : Syn, (tensorLeft X).CommShift ℤ
   rightShift : ∀ X : Syn, (tensorRight X).CommShift ℤ
   leftExact : ∀ X : Syn, letI := leftShift X; (tensorLeft X).IsTriangulated
   rightExact : ∀ X : Syn, letI := rightShift X; (tensorRight X).IsTriangulated
+
+/-- May's boundary law on the exact tensor/shift choices in the model binding. -/
+def MayContext.Boundary (B : MayContext Syn) : Prop :=
+  letI := B.leftShift; letI := B.rightShift
+  letI := B.leftExact; letI := B.rightExact
+  KIP126.Stable.MaySmashBoundary (C := Syn)
+
+/-- Compatibility input, retaining both the fixed choices and their law. -/
+structure MayInput extends MayContext Syn where
   boundary : letI := leftShift; letI := rightShift
     letI := leftExact; letI := rightExact
     KIP126.Stable.MaySmashBoundary (C := Syn)

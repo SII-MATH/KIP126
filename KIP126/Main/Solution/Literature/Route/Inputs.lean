@@ -1,5 +1,5 @@
 import KIP126.Main.Solution.Literature.Route.Applicability
-import KIP126.Main.Axiom.Literature.Route.Data
+import KIP126.Challenge2.Route.Literature.Data
 
 namespace KIP126.Literature.Route
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology KIP126.Classical.Adams
