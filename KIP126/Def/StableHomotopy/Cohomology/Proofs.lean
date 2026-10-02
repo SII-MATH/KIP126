@@ -11,11 +11,17 @@ universe u v
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 
 /-- Shift-adjunction representability of mod-2 cohomology. -/
-noncomputable def cohomologyRepresentable_neg
+noncomputable def cohomologyRepresentable
     (H : Mod2EilenbergMacLane (C := C)) (n : ℤ) (X : C) :
     Mod2Cohomology H n X ≃
-      (X ⟶ (shiftFunctor C (-n)).obj H.HF2) :=
-  (shiftEquiv C n).toAdjunction.homEquiv X H.HF2
+      (X ⟶ (shiftFunctor C n).obj H.HF2) :=
+  (shiftEquiv' C (-n) n (neg_add_cancel n)).toAdjunction.homEquiv X H.HF2
+
+/-- Compatibility spelling at negative cohomological degree. -/
+noncomputable def cohomologyRepresentable_neg
+    (H : Mod2EilenbergMacLane (C := C)) (n : ℤ) (X : C) :
+    Mod2Cohomology H (-n) X ≃ (X ⟶ (shiftFunctor C (-n)).obj H.HF2) :=
+  cohomologyRepresentable H (-n) X
 
 @[simp] theorem pullback_id (H : Mod2EilenbergMacLane (C := C))
     (X : C) (n : ℤ) (φ : Mod2Cohomology H n X) :

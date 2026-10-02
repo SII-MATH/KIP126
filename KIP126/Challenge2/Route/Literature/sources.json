@@ -232,7 +232,10 @@
       "module": "KIP126/Challenge2/Route/Literature/Classical.lean",
       "declarations": [
         "KIP126.Literature.Route.Theta5Existence",
-        "KIP126.Literature.Route.ClassicalTheta"
+        "KIP126.Literature.Route.ClassicalTheta",
+        "KIP126.Literature.Route.ClassicalSourceData",
+        "KIP126.Literature.Route.ClassicalSourceResults",
+        "KIP126.Literature.Route.ClassicalSourceBinding"
       ],
       "kind": "source-specialization",
       "sources": [
@@ -244,7 +247,7 @@
         "lem:toda2ext"
       ],
       "proof_status": "explicit-input-unproved",
-      "note": "Alternative source: BJM84. Includes nonzero survival and an order-two choice."
+      "note": "The source results concern one classical source witness. Equality with the route convergence, eta, nu and selected normalized eta is a separate model comparison."
     },
     {
       "id": "AM02",
@@ -540,9 +543,12 @@
       "module": "KIP126/Challenge2/Route/Literature/Algebra.lean",
       "declarations": [
         "KIP126.Literature.Route.AlgebraInput",
-        "KIP126.Literature.Route.QuotientAlgebras"
+        "KIP126.Literature.Route.QuotientAlgebras",
+        "KIP126.Literature.Route.QuotientAlgebraStructures",
+        "KIP126.Literature.Route.QuotientAlgebraBinding",
+        "KIP126.Literature.Route.AlgebraBinding"
       ],
-      "kind": "source-specialization-and-transport",
+      "kind": "source-existence-with-separate-internal-comparison",
       "sources": [
         "pst",
         "bhsmot",
@@ -554,7 +560,7 @@
         "lem:toda2ext"
       ],
       "proof_status": "explicit-input-unproved",
-      "note": "Ordinary homotopy-category consequences on actual quotient objects, units and restrictions."
+      "note": "Source quotient algebras provide algebra, commutativity and the specified unit. Compatibility with selected restrictions, sphere action, detection and filtration is an internal Interface obligation, not the source existence theorem."
     },
     {
       "id": "AM18",
@@ -679,11 +685,11 @@
     {
       "id": "AM24",
       "input_field": "tmf",
-      "module": "KIP126/Challenge2/Route/Literature/Tmf.lean",
+      "module": "KIP126/Challenge2/Route/Literature/TmfSource.lean",
       "declarations": [
         "KIP126.Literature.Route.TmfTheta5Vanishing"
       ],
-      "kind": "source-specialization",
+      "kind": "source-result-with-internal-route-transport",
       "sources": [
         "tmf"
       ],
@@ -697,12 +703,15 @@
     {
       "id": "AM25",
       "input_field": "tmf",
-      "module": "KIP126/Challenge2/Route/Literature/Tmf.lean",
+      "module": "KIP126/Challenge2/Route/Literature/TmfSource.lean",
       "declarations": [
         "KIP126.Literature.Route.TmfHigh125Detection",
-        "KIP126.Literature.Route.TmfLabels.high125"
+        "KIP126.Literature.Route.TmfLabels.high125",
+        "KIP126.Literature.Route.TmfSourceData",
+        "KIP126.Literature.Route.TmfSourceResults",
+        "KIP126.Literature.Route.TmfBinding"
       ],
-      "kind": "source-specialization",
+      "kind": "source-result-with-internal-route-transport",
       "sources": [
         "tmf"
       ],
@@ -711,16 +720,16 @@
         "prop:possibleh62"
       ],
       "proof_status": "explicit-input-unproved",
-      "note": "Sphere high label is the actual product of two supplied labels; CSV identification stays C(M)."
+      "note": "BMQ provides the nonzero Hurewicz image of the actual kappaBar^4*w product. The route adapter additionally requires multiplicative detection and explicit nonzero survival of its leading term; a nonzero homotopy image alone is insufficient. Arbitrary-representative independence remains a conditional Main theorem."
     },
     {
       "id": "AM26",
       "input_field": "tmf",
-      "module": "KIP126/Challenge2/Route/Literature/Tmf.lean",
+      "module": "KIP126/Challenge2/Route/Literature/TmfSource.lean",
       "declarations": [
         "KIP126.Literature.Route.TmfLowFiltration63"
       ],
-      "kind": "prior-result-consequence",
+      "kind": "source-result-with-internal-route-transport",
       "sources": [
         "tmf"
       ],
@@ -758,9 +767,12 @@
       "input_field": "applicability",
       "module": "KIP126/Challenge2/Route/Literature/Moss.lean",
       "declarations": [
-        "KIP126.Literature.Route.MossTowerApplicability"
+        "KIP126.Literature.Route.MossTowerApplicability",
+        "KIP126.Literature.Route.NuCofiberSourceData",
+        "KIP126.Literature.Route.NuCofiberSourceResults",
+        "KIP126.Literature.Route.NuCofiberLiftBinding"
       ],
-      "kind": "model-applicability",
+      "kind": "internal-source-application-and-selected-map-comparison",
       "sources": [
         "moss",
         "belmont-kong"
@@ -770,7 +782,7 @@
         "lem:toda2ext"
       ],
       "proof_status": "explicit-input-unproved",
-      "note": "No local no-crossing, computation or Massey-value assertion."
+      "note": "The compatible three-lift construction is an internal target from the Pstragowski/BHS leaves. Its maps must be explicitly identified with D.normalizedMap. NuCofiberSourceResults is not an external axiom and is delivered separately from Statements."
     }
   ],
   "excluded": [

@@ -27,7 +27,7 @@ abbrev cooperationTensor (n : ℤ) :=
 /-- The tensor product with the actual coefficient groups `π_* H`. -/
 abbrev coefficientTensor (n : ℤ) :=
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   gradedTensor (ZMod 2) (fun i => HomotopyGroup i H.HF2) V n
 
 /-- Tensor the actual multiplication-induced counit with the identity. -/
@@ -35,14 +35,14 @@ def cooperationTensorCounit (n : ℤ) :
     cooperationTensor H R V n →ₗ[ZMod 2] coefficientTensor H R V n :=
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) := fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   gradedTensorMap (cooperationCounitF2 H R) V n
 
 /-- The reduced cooperation tensor product, with reduction in each degree. -/
 abbrev reducedCooperationTensor (n : ℤ) :=
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) := fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   gradedTensor (ZMod 2) (fun i => LinearMap.ker (cooperationCounitF2 H R i)) V n
 
 /-- The reduced tensor product is the kernel of the tensor counit.
@@ -52,14 +52,14 @@ def reducedCooperationTensorEquiv (n : ℤ) :
       LinearMap.ker (cooperationTensorCounit H R V n) :=
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) := fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   gradedTensorKernelEquiv (cooperationCounitF2 H R) V n
 
 /-- Since `π_* H` is concentrated in degree zero, its tensor product is `V`.
 This is constructed from the specified π₀ coordinate and vanishing, not postulated. -/
 def coefficientTensorEquiv (n : ℤ) : coefficientTensor H R V n ≃ₗ[ZMod 2] V n :=
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   (directSumConcentratedEquiv
     (fun i => HomotopyGroup i H.HF2 ⊗[ZMod 2] V (n - i)) 0 (fun i hi => by
       letI := H.homotopy_vanishes i hi

@@ -1,3 +1,7 @@
+import KIP126.Challenge2.Route.Literature.ClassicalSource
+import KIP126.Challenge2.Route.Literature.AlgebraBinding
+import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Data
+import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Route.Data
 import KIP126.Challenge2.Route.Literature.BX
 import KIP126.Challenge2.Route.Literature.Realization
 import KIP126.Challenge2.Route.Literature.Algebra
@@ -22,6 +26,7 @@ The closed statement inventory and exact source/application qualifications
 are in `docs/A_INPUT_FREEZE.md` and the adjacent `sources.json`.
 -/
 namespace KIP126.Literature.Route
+open CategoryTheory
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology KIP126.Classical.Adams
 open KIP126.Synthetic.Context KIP126.Kervaire.Route
 universe u v w
@@ -47,41 +52,73 @@ structure Inputs where
   moss : MossInput D
   applicability : Applicability D
 
-/-- Project comparison choices and source-applicability conditions. These belong
-in the shared bindings, separately from the external conclusions A(M). -/
+/-- Source choices and model comparisons for ONE delivered route. These
+are internal construction obligations, separate from the source results. -/
 structure Bindings where
   realization : RealizationCoordinates D
-  algebra : AlgebraInput D
+  algebra : AlgebraData D
+  quotientBinding : QuotientAlgebraBinding D algebra
+  algebraBinding : AlgebraBinding D algebra
   may : MayContext Syn
-  applicability : Applicability D
+  classicalSource : ClassicalSourceData H
+  classicalBinding : ClassicalSourceBinding D η classicalSource
+  synthetic_eta : EtaChoice M D.toModelData η
+  tmfSource : TmfSourceData H
+  tmfBinding : TmfBinding D L tmfSource
+  nuSource : NuCofiberSourceData D
+  nuBinding : NuCofiberLiftBinding D nuSource
+  moss : MossTowerApplicability (H := H)
+  realizationAdditive : D.recovery.realization.Additive
+  weights : KIP126.Comparison.ClassicalSynthetic.RealizationWeightComparison D.nu D.recovery
+  nuE2 :
+    letI := algebra.classicalSymmetric
+    letI := algebra.syntheticSymmetric
+    letI := algebra.realizationMonoidal.realization
+    letI := realizationAdditive
+    KIP126.Comparison.ClassicalSynthetic.RealizationTower.NuE2Binding D
+      (fun X a w => KIP126.Comparison.ClassicalSynthetic.RealizationWeightComparison.doubleShift
+        D.nu D.recovery weights (X.obj D.auxiliary) a (-w))
 
-/-- External conclusions on those EXACT bindings. Source locators and ranges
-are documented on the component declarations, including their hypotheses. -/
-structure Statements (B : Bindings D) where
-  classical : ClassicalInputs D η
+/-- External results on the source objects fixed in B. Classical and tmf
+results are not asserted for arbitrary preselected route objects or lifts. -/
+structure Statements (B : Bindings D η L) where
+  classical : ClassicalSourceResults M B.classicalSource
   bx : BXDistinguishedInput D η
   synthetic : SyntheticInputs D
   realization : RealizationDetection D B.realization
   may : B.may.Boundary
   toda : TodaInputs D η
-  tmf : TmfInputs D L
+  tmf : TmfSourceResults B.tmfSource
   moss : MossInput D
 
-/-- Assemble the parameterized consumer API without selecting any new data. -/
-def Statements.toInputs {B : Bindings D} (A : Statements D η L B) : Inputs D η L where
-  classical := A.classical
+/-- Interface's INTERNAL source-application delivery, separate from A(M).
+The compatible normalized triple is a construction from source leaves;
+the local tmf conclusions require the same-model multiplicative comparison.
+Neither conclusion is accepted as a new independent external theorem. -/
+structure Application (B : Bindings D η L) : Prop where
+  nuSource : NuCofiberSourceResults D B.nuSource
+  nuCofiber : NuCofiberApplicability D
+  tmf : TmfInputs D L
+
+/-- Assemble the consumer API from the SAME sources and certified application.
+This chooses no new model, labels, algebra, or convergence comparison. -/
+def Statements.toInputs {B : Bindings D η L} (A : Statements D η L B)
+    (P : Application D η L B) : Inputs D η L where
+  classical := classicalInputsOfSource D η B.classicalSource A.classical
+    B.classicalBinding B.synthetic_eta
   bx := A.bx
   synthetic := A.synthetic
   realization := ⟨B.realization, A.realization⟩
-  algebra := B.algebra
+  algebra := B.algebra.withBinding D B.quotientBinding
   may := { B.may with boundary := A.may }
   toda := A.toda
-  tmf := A.tmf
+  tmf := P.tmf
   moss := A.moss
-  applicability := B.applicability
+  applicability := ⟨B.moss, P.nuCofiber⟩
 
-/-- Propositional spelling of A(M); consumers may instead take `Inputs`
-directly to retain its concrete comparison/algebra witnesses. -/
+/-- Historical compatibility spelling for the applied consumer package.
+The current external A(M) is `Statements` on explicit `Bindings`; this alias
+also includes internal application evidence through `Inputs`. -/
 def A : Prop := Nonempty (Inputs D η L)
 
 end KIP126.Literature.Route

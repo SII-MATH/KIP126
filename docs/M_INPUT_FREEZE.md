@@ -12,6 +12,9 @@
 `Kervaire.Route.Model H M Syn`。这里参数 `M : MilnorCooperations H` 是旧 API
 中 Milnor 数据的局部变量名；本文的大写 M 指整套数学背景，不应混淆。
 `ModelData` 是对象选择；`Model` 再要求指定映射的结构相容条件。
+classical/synthetic 收敛现均要求与实际塔提升的规范比较，不能替换任意 E∞ 自同构
+来改变检测含义；权重、realization 塔与 νE₂ 的关联见
+[五项提取说明](PR150_SELECTED_DESIGN.md)。
 四个非标准命名元素放在 `Labels H`；其计算标签识别属于 C(M)。
 
 固定实例由既有 `Challenge1` 的 `routeInput` 交付：它包含 synthetic 范畴、

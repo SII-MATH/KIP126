@@ -1,0 +1,56 @@
+import KIP126.Challenge2.Route.Literature.Data
+
+namespace KIP126.Interface.Solution.Literature.Route
+open CategoryTheory CategoryTheory.Pretriangulated
+open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
+open KIP126.Core.SpectralSequence
+open KIP126.Classical.Adams KIP126.Synthetic.Context KIP126.Kervaire.Route
+open KIP126.Literature.Route
+universe u v w
+noncomputable section
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+  {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
+  {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
+  (D : Model H M Syn)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- Transport a compatible source triple along the three ACTUAL map equalities.
+No statement is made about arbitrary normalized lifts. -/
+theorem nuCofiber_of_source (S : NuCofiberSourceData D)
+    (hS : NuCofiberSourceResults D S) (B : NuCofiberLiftBinding D S) :
+    NuCofiberApplicability D := by
+  refine ⟨hS.nu_exponent, hS.bottom_exponent, hS.top_exponent, ?_, ?_⟩
+  · simpa [sourceNormalizedNu, normalizedNu, B.nu] using hS.normalized_label
+  · intro he
+    change normalizedTriangle D.toModelData D.auxiliary.nuRouteTriangle he ∈ distTriang Syn
+    have h := hS.triangle he
+    convert h using 1
+    simp [normalizedTriangle, sourceNormalizedTriangle, normalizedConnecting,
+        sourceNormalizedConnecting, AuxiliaryData.nuRouteTriangle,
+        B.nu, B.bottom, B.top]
+
+/-- Exact source-to-model tmf comparison. It must use the same actual
+product and canonical detection; the conclusion supplies only ONE detected
+high class. Its leading-term survival is an EXPLICIT premise: a nonzero
+homotopy image alone does not prove nonzero associated grade. The Interface
+producer must discharge that premise; representative independence remains Main. -/
+theorem tmf_of_source (G : TmfLabels H) (S : TmfSourceData H)
+    (hS : TmfSourceResults S) (B : TmfBinding D G S)
+    (multiplicative : ClassicalProductDetection D)
+    (hhigh : NonzeroSurvival (adamsTowerInternalSpectralSequence H.unit SphereSpectrum)
+      (25,150) (G.high125 M)) : TmfInputs D G := by
+  sorry
+
+/-- Assemble application evidence after the internal triple construction.
+The source theorem alone is not claimed to validate the preselected triple. -/
+theorem application_of_parts (η : BiHom 1 2 (S00 : Syn)) (G : TmfLabels H)
+    (B : Bindings D η G) (A : Statements D η G B)
+    (hnu : NuCofiberSourceResults D B.nuSource)
+    (hhigh : NonzeroSurvival (adamsTowerInternalSpectralSequence H.unit SphereSpectrum)
+      (25,150) (G.high125 M)) : Application D η G B := by
+  exact ⟨hnu, nuCofiber_of_source D B.nuSource hnu B.nuBinding,
+    tmf_of_source D G B.tmfSource A.tmf B.tmfBinding B.algebraBinding.classical_detection hhigh⟩
+
+end
+end KIP126.Interface.Solution.Literature.Route

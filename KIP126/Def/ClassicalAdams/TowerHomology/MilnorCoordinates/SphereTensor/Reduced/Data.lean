@@ -17,13 +17,13 @@ def sphereReducedCooperationTensorEquiv (n : ℤ) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     reducedCooperationTensor H R (fun i => mod2HomologyF2 H R i SphereSpectrum) n ≃ₗ[ZMod 2]
       LinearMap.ker (cooperationCounitF2 H R n) := by
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   refine (directSumConcentratedEquiv
     (fun i => LinearMap.ker (cooperationCounitF2 H R i) ⊗[ZMod 2]
       mod2HomologyF2 H R (n - i) SphereSpectrum) n (fun i hi => ?_)).trans
@@ -44,7 +44,7 @@ def sphereReducedBoundaryEquiv (n : ℤ) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     LinearMap.ker (cooperationCounitF2 H R n) ≃ₗ[ZMod 2]
       mod2HomologyF2 H R (n - 1) (adamsTower H.unit SphereSpectrum 1) :=
   (sphereReducedCooperationTensorEquiv H R n).symm.trans

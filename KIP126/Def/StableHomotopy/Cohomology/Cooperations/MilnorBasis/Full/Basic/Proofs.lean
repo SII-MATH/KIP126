@@ -17,10 +17,10 @@ include B in
 degree-zero counit kernel vanishes. -/
 theorem reducedCooperations_zero_subsingleton :
     letI := mod2HomologyModule H R 0 H.HF2
-    letI := mod2CohomologyModule H R 0 SphereSpectrum
+    letI := mod2HF2HomotopyModule H R 0
     Subsingleton (LinearMap.ker (cooperationCounitF2 H R 0)) := by
   letI := mod2HomologyModule H R 0 H.HF2
-  letI := mod2CohomologyModule H R 0 SphereSpectrum
+  letI := mod2HF2HomotopyModule H R 0
   letI : IsEmpty (PositiveMonomial 0) := ⟨fun d => (lt_irrefl 0) (positiveMonomial_degree_pos d)⟩
   exact (B.basis 0).repr.injective.subsingleton
 
@@ -28,7 +28,7 @@ include B in
 theorem cooperationCounitF2_zero_bijective :
     Function.Bijective (cooperationCounitF2 H R 0) := by
   letI := mod2HomologyModule H R 0 H.HF2
-  letI := mod2CohomologyModule H R 0 SphereSpectrum
+  letI := mod2HF2HomotopyModule H R 0
   letI := reducedCooperations_zero_subsingleton H R B
   have hk : LinearMap.ker (cooperationCounitF2 H R 0) = ⊥ := by
     apply bot_unique
@@ -41,10 +41,10 @@ theorem cooperationCounitF2_zero_bijective :
 omit B in
 theorem cooperationCounitF2_ker_of_ne (n : ℤ) (hn : n ≠ 0) :
     letI := mod2HomologyModule H R n H.HF2
-    letI := mod2CohomologyModule H R n SphereSpectrum
+    letI := mod2HF2HomotopyModule H R n
     LinearMap.ker (cooperationCounitF2 H R n) = ⊤ := by
   letI := mod2HomologyModule H R n H.HF2
-  letI := mod2CohomologyModule H R n SphereSpectrum
+  letI := mod2HF2HomotopyModule H R n
   rw [cooperationCounitF2_eq_zero_of_ne H R n hn, LinearMap.ker_zero]
 
 end KIP126.StableHomotopy.Cohomology

@@ -107,7 +107,8 @@ open KIP126.Main.StageInput in
 example : routeComputation = witness.computation.route := rfl
 
 open KIP126.Main.StageInput in
-example : routeLiterature = witness.literature.route.toInputs := rfl
+example : routeLiterature = KIP126.Literature.Route.Statements.toInputs
+    routeModel routeEta tmfLabels witness.literature.route witness.routeApplication := rfl
 
 open KIP126 KIP126.Classical.Adams KIP126.Main.StageInput in
 example (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t) :

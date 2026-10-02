@@ -18,14 +18,14 @@ theorem reducedCooperationCochainEquiv_val (n : ℕ) :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R n),
       (reducedCooperationCochainEquiv H R B n a).val =
         cooperationMilnorPolynomial H R B n a.val := by
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   let f := (cochains 1 n).subtype.comp (reducedCooperationCochainEquiv H R B n).toLinearMap
   let g := (cooperationMilnorPolynomial H R B n).comp
@@ -49,14 +49,14 @@ theorem reducedCooperation_polynomial_boundary_iff (n : ℕ) (y : cochains 2 n) 
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     (∃ a : LinearMap.ker (cooperationCounitF2 H R n),
       differentialPolynomial 1 (cooperationMilnorPolynomial H R B n a.val) = y.val) ↔
       ∃ x : cochains 1 n, differential 1 n x = y := by
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   constructor
   · rintro ⟨a, ha⟩
     refine ⟨reducedCooperationCochainEquiv H R B n a, Subtype.ext ?_⟩

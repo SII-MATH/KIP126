@@ -385,6 +385,11 @@ class TensorInput (F : FoundationInput) where
   [rightExact : ∀ X : F.Spectrum, (tensorRight X).IsTriangulated]
   [ihomExact : ∀ X : F.Spectrum, (ihom X).IsTriangulated]
   [unitShift : (mod2UnitNatTrans F.hf2).CommShift ℤ]
+  leftShift_eq : ∀ X : F.Spectrum,
+    leftShift X = Functor.CommShift.ofIso (BraidedCategory.tensorLeftIsoTensorRight X).symm ℤ
+  ihom_unit_shift : ∀ X : F.Spectrum, NatTrans.CommShift (ihom.adjunction X).unit ℤ
+  ihom_counit_shift : ∀ X : F.Spectrum, NatTrans.CommShift (ihom.adjunction X).counit ℤ
+
 
 attribute [reducible] TensorInput.symmetric TensorInput.closed
   TensorInput.leftShift TensorInput.rightShift TensorInput.ihomShift

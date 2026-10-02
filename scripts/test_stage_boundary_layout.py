@@ -108,6 +108,23 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                     if module not in goals:
                         self.assertEqual(deps & goals, set())
 
+    def test_source_and_certification_producers_do_not_consume_main(self):
+        for module in ("KIP126.Interface.Solution.Literature.Route.Adapters",
+                       "KIP126.Interface.Solution.LinProgram.Route.Certification"):
+            forbidden = [name for name in self.dependencies(module)
+                         if name.startswith(("KIP126.Main.", "KIP126.Interface.Challenge."))]
+            self.assertEqual(forbidden, [])
+
+    def test_new_comparison_data_does_not_hide_unfinished_proofs(self):
+        directories = ["ClassicalAdams/Detection/Convergence",
+                       "Synthetic/AdamsFiltration/Convergence/Canonical",
+                       "Comparison/ClassicalSynthetic/RealizationTower",
+                       "Comparison/ClassicalSynthetic/RealizationWeights"]
+        for directory in directories:
+            for path in (ROOT / "KIP126/Def" / directory).rglob("Data.lean"):
+                code = re.sub(r"/-[\s\S]*?-/", "", path.read_text())
+                self.assertNotRegex(code, r"\b(sorry|theorem|lemma|axiom)\b", str(path))
+
     def test_main_inputs_have_no_proof_modules(self):
         self.assertEqual(list((ROOT / "KIP126/Main/Axiom").rglob("Proofs.lean")), [])
 

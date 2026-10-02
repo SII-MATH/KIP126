@@ -26,7 +26,8 @@ noncomputable abbrev routeEta := witness.modelBindings.routeEta
 /-- A(M) assembled from the same shared bindings and external conclusions. -/
 noncomputable def routeLiterature :
     KIP126.Literature.Route.Inputs routeModel routeEta tmfLabels :=
-  literature.route.toInputs
+  KIP126.Literature.Route.Statements.toInputs routeModel routeEta tmfLabels
+    literature.route witness.routeApplication
 
 /-- C(M) on the same model and labels. This projects existing evidence. -/
 noncomputable def routeComputation :

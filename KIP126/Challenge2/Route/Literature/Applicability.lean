@@ -6,7 +6,7 @@ geometric lift does not imply that an arbitrary previously selected lift
 has that property. These conditions accompany A(M) instead of being
 silently added to the frozen M, or asserted for every abstract model. -/
 namespace KIP126.Literature.Route
-open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
+open CategoryTheory CategoryTheory.Pretriangulated KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
 open KIP126.Classical.Adams KIP126.Synthetic.Context KIP126.Kervaire.Route
 universe u v w
 noncomputable section
@@ -68,5 +68,90 @@ the ν-extension constructed in LWX Lemma 7.19. -/
 structure Applicability : Prop where
   moss : MossTowerApplicability (H := H)
   nuCofiber : NuCofiberApplicability D
+/-- The three lifts supplied by the Pstragowski/BHS geometric construction
+for the actual nu cofiber. They are independent of D's later selected
+normalized maps. Existence of this source data does not validate arbitrary
+choices in D. -/
+structure NuCofiberSourceData where
+  nuLift : NormalizedSyntheticMap H D.nu D.auxiliary.nuMap
+  bottomLift : NormalizedSyntheticMap H D.nu D.auxiliary.nuRouteTriangle.g
+  topLift : NormalizedSyntheticMap H D.nu D.auxiliary.nuRouteTriangle.h
+
+/-- The source top lift has exactly the same landing convention as the
+route's normalized connecting arrow. -/
+def sourceNormalizedConnecting (S : NuCofiberSourceData D)
+    (he : (normalizedExponent H D.auxiliary.nuRouteTriangle.f : ℤ) +
+      normalizedExponent H D.auxiliary.nuRouteTriangle.g +
+      normalizedExponent H D.auxiliary.nuRouteTriangle.h = 1) :=
+  let T := D.auxiliary.nuRouteTriangle
+  let eg : ℤ := normalizedExponent H T.g
+  let eh : ℤ := normalizedExponent H T.h
+  let X := D.nu.functor.obj (T.X.obj D.auxiliary)
+  (SyntheticCategory.biShift (0,-eg)).map
+      (negativeLift (normalizedExponent H T.h) S.topLift.map) ≫
+    (SyntheticCategory.biShift (0,-eg)).map
+      ((SyntheticCategory.biShift (0,-eh)).map (D.nu.suspensionIso (T.X.obj D.auxiliary)).hom) ≫
+    (SyntheticCategory.biShift (0,-eg)).map
+      ((SyntheticCategory.biShift_comp (1,1) (0,-eh)).hom.app X) ≫
+    (SyntheticCategory.biShift_comp ((1,1)+(0,-eh)) (0,-eg)).hom.app X ≫
+    eqToHom (congrArg (fun p => (SyntheticCategory.biShift p).obj X)
+      (show ((1,1)+(0,-eh))+(0,-eg) = (0,(normalizedExponent H T.f : ℤ))+(1,0) from by
+        dsimp [eg, eh, T]; ext <;> simp only [Prod.fst_add, Prod.snd_add, Prod.fst, Prod.snd] <;> omega)) ≫
+    (SyntheticCategory.biShift_comp (0,(normalizedExponent H T.f : ℤ)) (1,0)).inv.app X ≫
+    (SyntheticCategory.biShift_compat (Syn := Syn) 1).hom.app _
+
+def sourceNormalizedTriangle (S : NuCofiberSourceData D)
+    (he : (normalizedExponent H D.auxiliary.nuRouteTriangle.f : ℤ) +
+      normalizedExponent H D.auxiliary.nuRouteTriangle.g +
+      normalizedExponent H D.auxiliary.nuRouteTriangle.h = 1) : Triangle Syn :=
+  Triangle.mk S.nuLift.map
+    (negativeLift (normalizedExponent H D.auxiliary.nuRouteTriangle.g) S.bottomLift.map)
+    (sourceNormalizedConnecting D S he)
+
+def sourceNormalizedNu (S : NuCofiberSourceData D)
+    (he : normalizedExponent H D.auxiliary.nuMap = 1) : BiHom 3 4 (S00 : Syn) := by
+  let e : (SyntheticCategory.biShift (0, (normalizedExponent H D.auxiliary.nuMap : ℤ))).obj
+      (D.nu.functor.obj (Sphere (C := C) 3)) ≅ Smn (Syn := Syn) 3 4 := by
+    rw [he]
+    exact (SyntheticCategory.biShift (0,1)).mapIso (nuSphereThree D) ≪≫
+      (SyntheticCategory.biShift_comp (3,3) (0,1)).app S00
+  exact e.inv ≫ S.nuLift.map ≫ D.nu.unitIso.hom
+
+/-- Internal construction target for a compatible triple, with cofiber
+maps and the h2 label. Pstragowski Lemma 4.23 and BHS Lemma 9.15 supply
+the separate exactness and divisibility leaves; neither is quoted as
+the full compatible-three-lifts-and-label statement below. The assembly
+must also use actual Hopf detection and the first-quotient comparison.
+This asserts nothing about arbitrary selected lifts. -/
+structure NuCofiberSourceResults (S : NuCofiberSourceData D) : Prop where
+  nu_exponent : normalizedExponent H D.auxiliary.nuMap = 1
+  bottom_exponent : normalizedExponent H D.auxiliary.nuRouteTriangle.g = 0
+  top_exponent : normalizedExponent H D.auxiliary.nuRouteTriangle.h = 0
+  normalized_label :
+    D.sphereFirstQuotient 1 4 (quotientClass 1 (sourceNormalizedNu D S nu_exponent)) =
+      Sphere.Internal.hi H M 2
+  triangle : ∀ he, sourceNormalizedTriangle D S he ∈ distTriang Syn
+
+/-- Internal model-adaptation target for the identified nu background.
+It is not a permissible replacement for the separate Pstragowski/BHS
+source leaves in Main/Axiom. Its construction and the subsequent binding
+of D's normalized maps remain separate proof responsibilities. -/
+def NuCofiberSourceExistence : Prop :=
+  ∃ S : NuCofiberSourceData D, NuCofiberSourceResults D S
+
+/-- Binding the three actually selected route arrows to one compatible
+source triple. This is model realization data, not the source theorem and
+not a consequence of normalized-lift factorization alone. -/
+structure NuCofiberLiftBinding (S : NuCofiberSourceData D) : Prop where
+  nu : S.nuLift.map =
+    (D.normalizedMap (.shift 3 .sphere) .sphere D.auxiliary.nuMap).map
+  bottom : S.bottomLift.map =
+    (D.normalizedMap D.auxiliary.nuRouteTriangle.Y D.auxiliary.nuRouteTriangle.Z
+      D.auxiliary.nuRouteTriangle.g).map
+  top : S.topLift.map =
+    (D.normalizedMap D.auxiliary.nuRouteTriangle.Z (.shift 1 D.auxiliary.nuRouteTriangle.X)
+      D.auxiliary.nuRouteTriangle.h).map
+
+
 end
 end KIP126.Literature.Route

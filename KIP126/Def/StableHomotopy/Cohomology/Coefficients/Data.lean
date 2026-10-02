@@ -25,25 +25,30 @@ This is an explicit local structure, not a globally selected instance. -/
 abbrev mod2HomologyModule (n : ℤ) (X : C) : Module (ZMod 2) (Mod2Homology H n X) :=
   AddCommGroup.zmodModule (mod2Homology_two_nsmul_zero H R n X)
 
-/-- The derived F₂ action on represented cohomology, including `πₙ H` when
-the source is the sphere. -/
+/-- The derived F₂ action on the correctly graded represented cohomology. -/
 abbrev mod2CohomologyModule (n : ℤ) (X : C) : Module (ZMod 2) (Mod2Cohomology H n X) :=
   AddCommGroup.zmodModule (mod2Cohomology_two_nsmul_zero H R n X)
 
+/-- The F₂ action on the coefficient spectrum's actual πₙ. Keeping this
+separate from `mod2CohomologyModule` prevents a cohomological sign change
+from silently regrading coefficient and cooperation calculations. -/
+abbrev mod2HF2HomotopyModule (n : ℤ) : Module (ZMod 2) (HomotopyGroup n H.HF2) :=
+  AddCommGroup.zmodModule (mod2HF2Homotopy_two_nsmul_zero H R n)
+
 /-- The specified π₀ coordinate is automatically linear for the derived scalars. -/
 def mod2Pi0LinearEquiv :
-    letI := mod2CohomologyModule H R 0 SphereSpectrum
+    letI := mod2HF2HomotopyModule H R 0
     HomotopyGroup 0 H.HF2 ≃ₗ[ZMod 2] ZMod 2 :=
-  letI := mod2CohomologyModule H R 0 SphereSpectrum
+  letI := mod2HF2HomotopyModule H R 0
   { H.pi0Equiv with map_smul' := ZMod.map_smul H.pi0Equiv }
 
 /-- The actual cooperation counit, now F₂-linear without any polynomial coordinates. -/
 def cooperationCounitF2 (n : ℤ) :
     letI := mod2HomologyModule H R n H.HF2
-    letI := mod2CohomologyModule H R n SphereSpectrum
+    letI := mod2HF2HomotopyModule H R n
     Mod2Cooperations H n →ₗ[ZMod 2] HomotopyGroup n H.HF2 :=
   letI := mod2HomologyModule H R n H.HF2
-  letI := mod2CohomologyModule H R n SphereSpectrum
+  letI := mod2HF2HomotopyModule H R n
   (cooperationCounit H R n).toZModLinearMap 2
 
 /-- The actual cooperation diagonal is linear before any Künneth identification. -/

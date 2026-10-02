@@ -17,7 +17,7 @@ def reducedCooperationCochainEquiv (n : ℕ) :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     LinearMap.ker (cooperationCounitF2 H R n) ≃ₗ[F2] cochains 1 n :=
   (B.basis n).repr.trans
     ((Finsupp.domLCongr (R := F2) (singleMilnorWordEquiv n)).trans (cochainsWordEquiv 1 n).symm)

@@ -1,3 +1,4 @@
+import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Canonical.Predicates
 import KIP126.Def.Kervaire.Route.Model.Predicates
 
 namespace KIP126.Kervaire.Route
@@ -15,6 +16,11 @@ parameterized: no global witness, literature theorem, or computation result
 is produced by declaring the structure. -/
 structure Model extends ModelData H Syn where
   towerPresentation : TowerPresentation (nuCoefficientUnit H.unit nu) family
+  /-- Detection uses the actual tower lift/cofiber comparison for this
+  ONE presentation. An arbitrary E-infinity/associated-graded isomorphism
+  does not identify the detected homotopy class. -/
+  convergence_canonical : ∀ X,
+    TowerConvergence.Canonical (nuCoefficientUnit H.unit nu) (convergence X) towerPresentation
   comparisonCompatible : ComparisonCompatible toModelData
   homotopySeparated : HomotopySeparated toModelData
   sphereProductCommutative : SphereProductCommutative (Syn := Syn)

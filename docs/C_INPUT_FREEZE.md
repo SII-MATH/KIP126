@@ -235,3 +235,14 @@ Main 的待证推导另见下节，不能与生成数据校验混为一谈。
 - Def/Interface 的整包构造仍为 `sorry`。Main 新增两条 Proposition 的显式证明占位；
   最终定理的逻辑收尾因此仍有这些证明依赖。经典消失线、过滤分离、数据认证和
   模型比较没有因为接线或编译成功而得到证明。未检查 CI。
+
+
+## 10. 分项认证入口
+
+`CertifiedRealization R L G` 将同一 R 上的 basis、csv、products、labels、results、
+bottom、top 七项分开。Interface 的配对 `certify_of_parts` 从显式传入的七个证明
+组装证书；`certification` 从现有总包生产定理取得共同见证，并保留原 presentation
+的有界相等。没有对任意 R 或任意标签断言正确，也没有新增计算接受公理。
+
+两向 `toInputs` / `toCertifiedRealization` 保留原 R/L/G。原始有限页语义和
+Main 中有限页到永久存活的前提均未改变。详见 [五项提取说明](PR150_SELECTED_DESIGN.md)。

@@ -19,3 +19,5 @@ import KIP126.Interface.Challenge.PageExtensionSolutions
 import KIP126.Interface.Challenge.InternalNaturality
 import KIP126.Interface.Challenge.LowDimensionalPermanence
 import KIP126.Interface.Challenge.LinProgram.BasisTable
+import KIP126.Interface.Challenge.Literature.Route.Adapters
+import KIP126.Interface.Challenge.LinProgram.Route.Certification

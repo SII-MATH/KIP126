@@ -61,7 +61,7 @@ theorem sphereTowerHomologyWordEquiv_h6 (a : Mod2Cooperations H 64)
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   rw [cooperation_h6_eq_reduced_basis H R B a ha]
   have h := sphereTowerHomologyWordEquiv_firstBoundary_basis H R K B 63 h6PositiveMonomial
   rw [sphereCooperationTensorEquiv_symm_apply] at h
@@ -78,7 +78,7 @@ theorem sphereTowerHomologyWordEquiv_h6_double (a : Mod2Cooperations H 64)
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   change reducedTensorMilnorWordEquiv H R B
     (fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum 1))
     1 (sphereTowerHomologyWordEquiv H R K B 1) 126

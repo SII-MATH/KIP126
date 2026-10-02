@@ -8,11 +8,12 @@ Proposition 7.8、7.9 及其实际调用的工具、Toda/Moss、Cν、tmf 路线
 也没有构造满足它们的实际模型。** 不以导入所有参考文献代替依赖分析。
 
 公共入口：`import KIP126.Main.Axiom.Literature.Route`。
-总包位于 `KIP126/Challenge2/Route/Literature/Data.lean`：
+接口位于 `KIP126/Challenge2/Route/Literature/Data.lean`：
 
 ```lean
 KIP126.Literature.Route.Inputs D η L
-KIP126.Literature.Route.A D η L  -- Nonempty (Inputs D η L)
+KIP126.Literature.Route.A D η L  -- 历史兼容名：Nonempty (Inputs D η L)
+KIP126.Literature.Route.Statements D η L B  -- 当前 A(M)，B 是同一组 Bindings
 ```
 
 其中 `D : Kervaire.Route.Model H M Syn` 是已经冻结的同一个模型；这里局部变量
@@ -21,21 +22,27 @@ KIP126.Literature.Route.A D η L  -- Nonempty (Inputs D η L)
 E₂ 的 `g : E₂^(4,24)` 和 `Δh₁g : E₂^(9,54)`，其 CSV 识别仍属于 C(M)。
 `g⁴Δh₁g : E₂^(25,150)` 由现有标准 cup product 构造，没有自由乘法字段。
 
-总包没有默认实例、全局存在性公理或 `sorry`。它要求调用者显式提供各项
-证据，因此以后可以分模块实现，不需要修改其使用者的命题类型。
+原 `Inputs`/`A` 作为已应用结论的兼容 API 保留；它们包含内部比较的结果，
+不等于新分离的纯来源 `Statements`。这些记录不选择默认实例或声明独立公理。
+`Bindings.nuE2` 使用实际页映射，其定义暂依赖两条显式待证的 cycle/boundary
+保持定理；来源记录本身没有隐藏证明占位。
 `Inputs.differentialLift` 和 `Inputs.nuTriangle` 只是已证明的投影适配，
 不是 BHS 或 Mahowald 的证明。
 
-当前接线：根 `Challenge2.ModelBindings.route` 保存 `Bindings D`，把 realization
+当前接线：根 `Challenge2.ModelBindings.route` 保存 `Bindings D η G`，把 realization
 坐标、代数比较、May 的结构选择和来源适用条件与外部结论分开。
 `LiteratureInterface.route` 保存这些绑定上的 `Statements D η G`；
 `Statements.toInputs` 仅组装原参数化 API，不产生第二个见证。
 模型来自同一个 Challenge1，η 和 tmf 标签来自同一个 Challenge2。
-所有文献应用/比较的生产义务仍在 Interface，完整生产定理保留 `sorry`。
+来源对象的 classical/tmf 结果分别由 `ClassicalSourceResults`、`TmfSourceResults` 陈述。
+实际 lift 三角和 tmf 的路线结论单独放在根 `Challenge2.routeApplication`，由 Interface
+交付；它们不再作为 A(M) 的直接来源字段。`Statements.toInputs` 同时接收这两部分。
+原始商代数 `QuotientAlgebraStructures` 不含所选 restriction/sphere-action 比较。
 
-`TmfHigh125Detection` 只要求存在一个被指定类检测且 tmf 像非零的经典元素。
-推广至任意同检测元素由 Main 的 `high125_detector_nonzero` 负责，显式保留
-`SphereVanishingLine` 和 `ClassicalSphereSeparated` 前提，并依赖待证的代表唯一性。
+`TmfHigh125Detection` 保持“存在一个被指定类检测且 tmf 像非零”的消费结论。
+来源适配还需显式证明该首项非零存活；不能由非零同伦像直接推断。
+对任意同检测类的推广仍归 Main，保留消失线和过滤分离前提。
+五项具体接线和未完成证明见 [PR150 设计提取说明](PR150_SELECTED_DESIGN.md)。
 
 ## 输入内容与来源
 

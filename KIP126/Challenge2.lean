@@ -1356,7 +1356,7 @@ structure ModelBindings where
   tmfLabels : Literature.Route.TmfLabels Classical.Adams.standardFoundation.hf2
   routeEta : Synthetic.Context.BiHom 1 2
     (Synthetic.Context.S00 : Classical.Adams.StandardSynthetic)
-  route : Literature.Route.Bindings Classical.Adams.standardRouteModel
+  route : Literature.Route.Bindings Classical.Adams.standardRouteModel routeEta tmfLabels
   detectorIso : Classical.Adams.standardRouteModel.auxiliary.detector ≅ tmf.target.X
   detector_unit : Classical.Adams.standardRouteModel.auxiliary.detectorUnit ≫
     detectorIso.hom = Tmf.unit tmf.target
@@ -1420,6 +1420,9 @@ structure Challenge2 where
   modelBindings : Challenge2.ModelBindings
   presentation : Classical.Adams.LinE2Presentation
   literature : Challenge2.LiteratureInterface modelBindings
+  /-- Internal source-to-model application, produced by Interface. -/
+  routeApplication : Literature.Route.Application Classical.Adams.standardRouteModel
+    modelBindings.routeEta modelBindings.tmfLabels modelBindings.route
   computation : Challenge2.ComputationInterface modelBindings presentation
 
 namespace Challenge2

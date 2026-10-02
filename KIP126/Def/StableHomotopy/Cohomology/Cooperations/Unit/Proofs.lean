@@ -44,7 +44,7 @@ theorem cooperationTensorUnit_augmentation (n : ℤ) (x : V n) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   simp only [cooperationTensorAugmentation, LinearMap.comp_apply,
     cooperationTensorUnit_apply, cooperationTensorCounit, gradedTensorMap_lof_tmul,
     LinearEquiv.coe_coe]

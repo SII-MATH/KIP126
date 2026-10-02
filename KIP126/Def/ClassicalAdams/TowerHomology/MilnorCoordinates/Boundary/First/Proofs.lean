@@ -23,7 +23,7 @@ theorem sphereTowerHomologyWordEquiv_firstBoundary_basis (n : ℤ)
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     let e := LinearEquiv.cast (R := ZMod 2)
       (M := fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum 1))
       (show n = (n + 1) - 1 by omega)
@@ -34,7 +34,7 @@ theorem sphereTowerHomologyWordEquiv_firstBoundary_basis (n : ℤ)
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   let d : MilnorWord 0 (n + 1 - (n + 1)) :=
     ⟨Fin.elim0, by simp [wordDegree], fun i => Fin.elim0 i⟩
   have hx : (LinearEquiv.cast (R := ZMod 2) (M := fun t => MilnorWord 0 t →₀ ZMod 2)
@@ -82,7 +82,7 @@ theorem sphereTowerHomologyWordEquiv_firstBoundary_reduced (n : ℤ) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R (n + 1)),
     let e := LinearEquiv.cast (R := ZMod 2)
       (M := fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum 1))
@@ -95,7 +95,7 @@ theorem sphereTowerHomologyWordEquiv_firstBoundary_reduced (n : ℤ) :
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   let e := LinearEquiv.cast (R := ZMod 2)
     (M := fun i => mod2HomologyF2 H R i (adamsTower H.unit SphereSpectrum 1))

@@ -21,7 +21,7 @@ pages. Its existence is an explicit remaining lower-level input. -/
 structure Mod2ReducedMilnorBasis where
   basis : ∀ n : ℤ,
     letI := mod2HomologyModule H R n H.HF2
-    letI := mod2CohomologyModule H R n SphereSpectrum
+    letI := mod2HF2HomotopyModule H R n
     Module.Basis (PositiveMonomial n) (ZMod 2) (LinearMap.ker (cooperationCounitF2 H R n))
 
 /-- Convert one genuine reduced tensor step into one additional Milnor word
@@ -33,7 +33,7 @@ def reducedTensorMilnorWordEquiv (B : Mod2ReducedMilnorBasis H R)
       (MilnorWord (s + 1) (n + (s + 1 : ℕ)) →₀ ZMod 2) :=
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) := fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   (DirectSum.congrLinearEquiv fun i =>
     TensorProduct.congr (B.basis i).repr ((e (n + 1 - i)).trans
       (LinearEquiv.cast (R := ZMod 2) (M := fun t => MilnorWord s t →₀ ZMod 2)

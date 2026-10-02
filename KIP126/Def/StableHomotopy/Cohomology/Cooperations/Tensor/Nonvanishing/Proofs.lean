@@ -25,7 +25,7 @@ theorem cooperationTensorAugmentation_lof_tmul_eq_zero (n k : ℤ) (hk : k ≠ 0
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   simp only [cooperationTensorAugmentation, LinearMap.comp_apply,
     cooperationTensorCounit, gradedTensorMap_lof_tmul,
     cooperationCounitF2_eq_zero_of_ne H R k hk, LinearMap.zero_apply,

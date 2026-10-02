@@ -52,6 +52,47 @@ structure Inputs (D : Model H M Syn) (L : Labels H)
   bottom : ∀ p ∈ Raw.bottomMaps, BottomCorrect realization p
   top : TopCorrect realization
 
+/-- Seven atomic certification obligations on ONE interpretation. These are
+Interface proof targets; there is no extra stage axiom or fresh choice. -/
+structure CertifiedRealization {D : Model H M Syn} (R : Realization D)
+    (L : Labels H) (G : KIP126.Literature.Route.TmfLabels H) : Prop where
+  basis : ∀ d ∈ Raw.degrees, BasisCorrect R d
+  csv : ∀ d ∈ Raw.degrees, SphereBasisValue R d
+  products : ∀ p ∈ Raw.products, ProductCorrect R p
+  labels : LabelsCorrect R L G
+  results : ∀ c ∈ Raw.claims, Statement R c
+  bottom : ∀ p ∈ Raw.bottomMaps, BottomCorrect R p
+  top : TopCorrect R
+
+/-- Joint existence, not correctness for an arbitrary interpretation/label. -/
+def Certification (D : Model H M Syn) (G : KIP126.Literature.Route.TmfLabels H) : Prop :=
+  ∃ (R : Realization D) (L : Labels H), CertifiedRealization R L G
+
+/-- Assemble exactly the certified realization. -/
+def CertifiedRealization.toInputs {D : Model H M Syn} {R : Realization D}
+    {L : Labels H} {G : KIP126.Literature.Route.TmfLabels H}
+    (h : CertifiedRealization R L G) : Inputs D L G where
+  realization := R
+  basis := h.basis
+  csv := h.csv
+  products := h.products
+  labels := h.labels
+  results := h.results
+  bottom := h.bottom
+  top := h.top
+
+/-- Recover the same seven conditions without reinterpreting the data. -/
+def Inputs.toCertifiedRealization {D : Model H M Syn} {L : Labels H}
+    {G : KIP126.Literature.Route.TmfLabels H} (I : Inputs D L G) :
+    CertifiedRealization I.realization L G where
+  basis := I.basis
+  csv := I.csv
+  products := I.products
+  labels := I.labels
+  results := I.results
+  bottom := I.bottom
+  top := I.top
+
 /-- C(M), explicitly retaining the same route and tmf labels as A(M) and T(M). -/
 def CInput (D : Model H M Syn) (L : Labels H)
     (G : KIP126.Literature.Route.TmfLabels H) : Prop := Nonempty (Inputs D L G)

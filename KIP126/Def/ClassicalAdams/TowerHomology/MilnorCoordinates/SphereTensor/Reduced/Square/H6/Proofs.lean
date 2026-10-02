@@ -21,7 +21,7 @@ theorem sphereSecondReducedBoundaryEquiv_h6_double :
     letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
       fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-      fun i => mod2CohomologyModule H R i SphereSpectrum
+      fun i => mod2HF2HomotopyModule H R i
     ∀ a : LinearMap.ker (cooperationCounitF2 H R 64),
       sphereSecondReducedBoundaryEquiv H R K 128
         (DirectSum.lof F2 ℤ _ 64 (a ⊗ₜ[F2] a)) =
@@ -29,7 +29,7 @@ theorem sphereSecondReducedBoundaryEquiv_h6_double :
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   intro a
   apply (adamsNextHomologyTensorEquiv H R K (adamsTower H.unit SphereSpectrum 1) 127).injective
   change (adamsNextHomologyTensorEquiv H R K _ _)
@@ -56,7 +56,7 @@ theorem sphereSecondReducedBoundaryEquiv_h6_double_polynomial
   letI : ∀ i, Module F2 (Mod2Cooperations H i) :=
     fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module F2 (HomotopyGroup i H.HF2) :=
-    fun i => mod2CohomologyModule H R i SphereSpectrum
+    fun i => mod2HF2HomotopyModule H R i
   have har : a ∈ LinearMap.ker (cooperationCounitF2 H R 64) := by
     rw [LinearMap.mem_ker, cooperationCounitF2_eq_zero_of_ne H R 64 (by decide), LinearMap.zero_apply]
   let ar : LinearMap.ker (cooperationCounitF2 H R 64) := ⟨a, har⟩

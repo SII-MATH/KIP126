@@ -25,24 +25,24 @@ theorem cooperationTensorAugmentation_ker (n : ℤ) :
 theorem reducedCooperationTensorEquiv_coe (n : ℤ) (x : reducedCooperationTensor H R V n) :
     letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) := fun i => mod2HomologyModule H R i H.HF2
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-      mod2CohomologyModule H R i SphereSpectrum
+      mod2HF2HomotopyModule H R i
     (reducedCooperationTensorEquiv H R V n x : cooperationTensor H R V n) =
       gradedTensorMap (fun i => (LinearMap.ker (cooperationCounitF2 H R i)).subtype) V n x := by
   letI : ∀ i, Module (ZMod 2) (Mod2Cooperations H i) := fun i => mod2HomologyModule H R i H.HF2
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   exact gradedTensorKernelEquiv_coe _ _ _ _
 
 /-- The coefficient identification uses exactly the prescribed π₀ coordinate. -/
 theorem coefficientTensorEquiv_zero_tmul (n : ℤ) (a : HomotopyGroup 0 H.HF2)
     (v : V (n - 0)) :
     letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-      mod2CohomologyModule H R i SphereSpectrum
+      mod2HF2HomotopyModule H R i
     coefficientTensorEquiv H R V n
       (DirectSum.lof (ZMod 2) ℤ _ 0 (a ⊗ₜ[ZMod 2] v)) =
       LinearEquiv.cast (R := ZMod 2) (M := V) (sub_zero n) (H.pi0Equiv a • v) := by
   letI : ∀ i, Module (ZMod 2) (HomotopyGroup i H.HF2) := fun i =>
-    mod2CohomologyModule H R i SphereSpectrum
+    mod2HF2HomotopyModule H R i
   change LinearEquiv.cast (R := ZMod 2) (M := V) (sub_zero n)
     (TensorProduct.lid (ZMod 2) (V (n - 0))
       (TensorProduct.congr (mod2Pi0LinearEquiv H R) (LinearEquiv.refl (ZMod 2) _)
