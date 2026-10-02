@@ -70,6 +70,19 @@ theorem adamsTowerInternal_page_subsingleton_of_negative (r s t : ℤ) (hs : s <
   haveI := adamsPage_subsingleton_of_negative unit X ((r - 2).toNat + 2) (by omega) s t hs
   exact (adamsTowerSSDataPageIso unit X s t (r - 2).toNat).toLinearEquiv.injective.subsingleton
 
+/-- Transport the existing quotient-page vanishing theorem to the internal
+sequence, retaining the starting-page and page-order hypotheses. -/
+theorem adamsTowerInternal_page_subsingleton_of_le (r q s t : ℤ)
+    (hr : 2 ≤ r) (hrq : r ≤ q)
+    (h : Subsingleton ((adamsTowerInternalSpectralSequence unit X).Page r (s, t))) :
+    Subsingleton ((adamsTowerInternalSpectralSequence unit X).Page q (s, t)) := by
+  haveI : Subsingleton ((adamsTowerSSData unit X s t).page ↑(r - 2).toNat) := h
+  have hraw : Subsingleton (adamsPage unit X ((r - 2).toNat + 2) (by omega) s t) :=
+    (adamsTowerSSDataPageIso unit X s t (r - 2).toNat).toLinearEquiv.symm.injective.subsingleton
+  haveI := adamsPage_subsingleton_of_le unit X
+    ((r - 2).toNat + 2) ((q - 2).toNat + 2) (by omega) (by omega) (by omega) s t hraw
+  exact (adamsTowerSSDataPageIso unit X s t (q - 2).toNat).toLinearEquiv.injective.subsingleton
+
 /-- A zero incoming differential prevents any new boundaries at its target,
 even when its source is nonzero. -/
 theorem adamsBoundaries_succ_eq_of_differential_zero (r : ℕ) (hr : 1 ≤ r)

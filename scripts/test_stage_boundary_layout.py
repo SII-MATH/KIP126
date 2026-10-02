@@ -96,6 +96,18 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                              if name.startswith(("KIP126.Main.", "KIP126.Interface."))]
                 self.assertEqual(forbidden, [])
 
+    def test_route_deductions_are_not_certification_dependencies(self):
+        goals = {"KIP126.Main.Solution.Computation.Route",
+                 "KIP126.Main.Solution.Computation.Lambda"}
+        for module in self.graph:
+            if module.startswith(("KIP126.Interface.", "KIP126.LinProgram.")) or module in goals:
+                with self.subTest(module=module):
+                    deps = self.dependencies(module)
+                    self.assertFalse(any(name.startswith("KIP126.Main.Challenge.")
+                                         for name in deps))
+                    if module not in goals:
+                        self.assertEqual(deps & goals, set())
+
     def test_main_inputs_have_no_proof_modules(self):
         self.assertEqual(list((ROOT / "KIP126/Main/Axiom").rglob("Proofs.lean")), [])
 
@@ -108,8 +120,11 @@ class StageBoundaryLayoutTests(unittest.TestCase):
 
     def test_new_consumer_proofs_have_statement_tracks(self):
         for directory in ("Computation/LinProgram", "Computation/Comparisons",
-                          "Computation/Tower", "Computation/Differential", "Literature"):
-            for path in (ROOT / "KIP126/Main/Solution" / directory).rglob("*.lean"):
+                          "Computation/Tower", "Computation/Differential", "Literature",
+                          "Computation/Route.lean", "Computation/Lambda.lean"):
+            base = ROOT / "KIP126/Main/Solution" / directory
+            paths = [base] if base.is_file() else base.rglob("*.lean")
+            for path in paths:
                 if not re.search(r"\btheorem\s+", path.read_text()):
                     continue
                 paired = ROOT / "KIP126/Main/Challenge" / path.relative_to(

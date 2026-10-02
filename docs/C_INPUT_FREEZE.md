@@ -1,13 +1,13 @@
 # Section 7 路线的 C(M)：选取范围与交付边界
 
-本文件对应 `Main/Axiom/LinProgram/Route/Data.lean` 的 `Inputs D L G` / `CInput D L G`。
+本文件对应 `Challenge2/Route/Data.lean` 的 `Inputs D L G` / `CInput D L G`。
 这是**计算结果及其解释的交付类型**，没有默认实例、全局公理或生产证明。
 阶段二可显式接受 `I : Inputs D L G`；阶段一的任务是构造这样的值。
 本次完成接口定义和来源筛选，不宣称已证明 C(M)，也不宣称已证明其蕴涵主定理。
 
 这里的路线 `CInput` 当前尚未接入根 `Challenge2.ComputationInterface`，二者不能互换。
 它是待整合的路线交付规格，不是第二套全局阶段公理。统一接口的目标、当前差异与
-Main/Axiom 中剩余解释代码的归属见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
+参数化解释与消费适配的归属见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
 
 依据是仓库保存的论文 v2 `Main/Axiom/Literature/MainPaper/main.tex` 第 7 节及附录，
 逐段重新核对；历史 `Lin-program/summary.md` 不作为权威清单。
@@ -163,7 +163,8 @@ Cν 从其 DB 读取，另核对 top-cell map DB 和 ss.json。
 
 `--check` 从本地 Raw 重新生成并逐字比较 JSON/Lean，失败即退出，不接受缺失数据。
 Lean 回归同时检查全部记录的次数/编号，及缺失、重复、乱序、越界坐标不会变成零。
-新增文件没有 `sorry`、全局 `axiom`、默认数学正确性实例；依赖中的既有未证基础仍保留。
+生成数据和解码回归没有 `sorry`、全局 `axiom`、默认数学正确性实例；
+Main 的待证推导另见下节，不能与生成数据校验混为一谈。
 
 新增 Cν DB、top-map DB、ss.json 来自本地发布目录
 `Lin-program/program/upstream/kervaire-49`，按完整文件字节固定摘要；
@@ -181,3 +182,36 @@ Lean 回归同时检查全部记录的次数/编号，及缺失、重复、乱�
 - `git diff --check` 通过；未修改依赖版本、共享缓存或既有数据库。
 
 这些验证不构造 `Inputs` 的数学见证，也不证明有限数据足以推出最终结论。
+
+## 8. Main 的配对推导目标（PR #150 设计提取）
+
+`Main/Challenge/Computation/Route.lean` 和 `Lambda.lean` 保存准确目标，
+`Main/Solution/Computation/Route.lean` 和 `Lambda.lean` 保存同签名的证明或 `sorry`。
+它们都显式接收同一 `D`、`L`、`G` 上的 `Inputs`；没有选取另一个全局见证。
+根 `Challenge2` 到路线 `Inputs` 的绑定仍是独立未完成项，不能把参数化命题称为固定实例接线完成。
+
+| 推导组 | 精确边界 |
+| --- | --- |
+| 页范围与尾部 | 从显式 `SphereVanishingLine H` 推出页上消失；原始有限记录仍只表示到达 E₁₀₀₀ |
+| 永久性 | `ReachesPage` 只用于永久循环；非零永久存活另需 `SurvivesTo` 和后续入射排除 |
+| 候选与 Cν | 两个 d₃ 候选、E₅ 高类穷尽、Cν 三项之和及有限入射排除，都需要全部基和页上核/像 |
+| 过滤与检测 | F²⁶ 消失和高类代表唯一性保留实际 classical 过滤分离前提 |
+| λ 条件 | (62,64)、(124,128) 要求所有有限幂；(125,130) 只要求单步单射；(62,70) 不断言单射 |
+| 后续传输 | realization 单射、有限 BX 规范化、θ₅ 阶数与 B 的 torsion 窗口保留同一 A/C 输入 |
+
+`Route/Consequences.lean` 只定义这些结论的语言，不把 `SphereFacts` 加入交付字段。
+通用页微分消失、经典消失/分离及 λ 幂单射条件位于 `Def`；单步条件复用已有
+`Synthetic.Context.LambdaInjectiveAt`，不另造一套 λ 操作。
+
+经典消失线本次仅作为显式前提：PR 原稿的无额外前提 `sphere_vanishing_line` 未提取。
+其文献陈述和通往实际球谱 E₂ 的比较须另行交付。强收敛到分离、已有页消失定理的
+范围特化可以直接证明；其余尚未完成的代数、比较、尾部代表及过滤论证仍明确为 `sorry`。
+λ 数值特例通过一般条件命题推导，其依赖中的 `sorry` 仍然存在，不能计为完整数学证明。
+
+`Checks/Computation/RouteGoals.lean` 检查两侧完整类型及 Challenge 占位；
+布局检查禁止 Interface/LinProgram 的生产认证反向依赖这些 Main 推导。
+这些目标不改变最终命题、标准 h₆² 定义或现有阶段公理。
+
+本批验证：32 对完整签名的 Lean 内核检查和四个受影响 Main 模块定向编译通过；
+10 项目录依赖检查通过。32 条 Solution 中 8 条有证明体、24 条保留直接 `sorry`；
+其中 3 条有证明体的 λ 特例依赖本批待证的一般命题。没有据此宣称证明完成，未跟踪 CI。

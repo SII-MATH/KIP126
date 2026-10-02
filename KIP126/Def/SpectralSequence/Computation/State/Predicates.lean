@@ -91,4 +91,10 @@ def NeverHitOnWindow
   2 ≤ first ∧ first ≤ last ∧
     ∀ r : ℤ, first ≤ r → r ≤ last → ¬ HitOnPage E r p x
 
+/-- Every outgoing differential at this bidegree is zero on every page
+from E₂ onward. This permits a zero page and does not assert survival of a label. -/
+def NoOutgoingAt
+    (E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)) (s t : ℤ) : Prop :=
+  ∀ r : ℤ, 2 ≤ r → ∀ x : E.Page r (s, t), E.d r (s, t) x = 0
+
 end KIP126.Core.SpectralSequence

@@ -1,4 +1,4 @@
-import KIP126.Def.Synthetic.Sphere.Homotopy.Data
+import KIP126.Def.Synthetic.Sphere.Actions.Data
 
 namespace KIP126.Synthetic.Context
 open KIP126.StableHomotopy
@@ -9,6 +9,11 @@ variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
 out of this bidegree. This is a predicate, not a fact about the chosen model. -/
 def LambdaInjectiveAt (m n : ℤ) (X : Syn) : Prop :=
   Function.Injective (lambdaAction m n X)
+
+/-- Injectivity of every finite λ power from this bidegree, on the existing
+action. One-step injectivity at this weight alone does not imply this. -/
+def LambdaPowersInjectiveAt (m n : ℤ) (X : Syn) : Prop :=
+  ∀ k : ℕ, Function.Injective (fun a : BiHom m n X => lambdaMultiply k a)
 
 variable [HasFunctorialCofiber (C := Syn)]
 
