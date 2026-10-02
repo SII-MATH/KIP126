@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Route.Consequences
+import KIP126.Main.Solution.Computation.Route.Consequences
 import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
 import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
 

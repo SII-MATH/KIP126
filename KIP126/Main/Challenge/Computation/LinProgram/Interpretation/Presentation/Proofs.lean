@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Interpretation.Presentation.Proofs
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Presentation.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 

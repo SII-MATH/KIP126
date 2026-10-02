@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Route.Lambda
+import KIP126.Main.Solution.Computation.Route.Lambda
 import KIP126.Def.Kervaire.Inputs.Literature.Data
 import KIP126.Main.Solution.Computation.Route
 

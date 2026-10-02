@@ -1,4 +1,4 @@
-import KIP126.Def.References.Literature.Near126.Sphere.Boundaries.Proofs
+import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 

@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Interpretation.Sphere
+import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Sphere
 import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
 
 namespace KIP126.Classical.Adams

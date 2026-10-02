@@ -1,10 +1,10 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.LinProgram.E2
+import KIP126.Main.Solution.Computation.LinProgram.E2
 import Lean.Elab.Command
 
 section
 variable [KIP126.Classical.Adams.LinE2Presentation]
-variable [KIP126.Comparison.SphereBasisInterface (inferInstance : KIP126.Classical.Adams.LinE2Presentation)]
+variable [KIP126.Challenge2.SphereBasisInterface (inferInstance : KIP126.Classical.Adams.LinE2Presentation)]
 
 
 namespace KIP126.Classical.Adams

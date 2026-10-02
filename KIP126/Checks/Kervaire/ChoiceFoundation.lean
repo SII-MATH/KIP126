@@ -7,7 +7,7 @@ run_cmd do
   let env ← getEnv
   for m in env.allImportedModuleNames do
     if (`KIP126.Main).isPrefixOf m || (`KIP126.Interface).isPrefixOf m ||
-        m == `KIP126.Def.Foundation.Interfaces || m == `KIP126.Def.Comparison.Interfaces then
+        m == `KIP126.Challenge1 || m == `KIP126.Challenge2 then
       throwError "Def choice transport imports a project package: {m}"
   for n in [``KIP126.Kervaire.theta5_choice_independence,
       ``KIP126.Kervaire.bjm_bx_criterion_any_choice,

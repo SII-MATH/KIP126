@@ -29,7 +29,7 @@ run_cmd do
     for a in ← liftCoreM (collectAxioms declaration) do
       unless KIP126.Checks.AxiomInputs.allows basic a do
         throwError "unexpected generic vanishing dependency: {declaration}: {a}"
-  let inputs := [``KIP126.Classical.Adams.standardFoundation]
+  let inputs := [``KIP126.Interface.Axiom.challenge1]
   for declaration in [
       ``KIP126.Classical.Adams.sphereAdamsData_h6_incoming_source_subsingleton,
       ``KIP126.Classical.Adams.sphereAdamsData_h6_incoming_d_eq_zero,

@@ -1,5 +1,5 @@
 import KIP126.Main.Solution.DifferentialReduction.Conclusion
-import KIP126.Def.Kervaire.Route.Goals.ChoiceIndependence.any_choice_criterion
+import KIP126.Main.Solution.ChoiceIndependence.any_choice_criterion
 import Lean.Elab.Command
 
 /-! The old freely chosen predicates must not survive on the active route.

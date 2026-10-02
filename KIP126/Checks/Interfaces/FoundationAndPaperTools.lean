@@ -1,7 +1,7 @@
-import KIP126.Def.Foundation.Interfaces
-import KIP126.Def.Kervaire.Route.Goals.Tools.GeneralizedLeibniz
-import KIP126.Def.Kervaire.Route.Goals.Tools.GeneralizedMahowald
-import KIP126.Def.Kervaire.Route.Goals.Tools.PageExtensionStretching
+import KIP126.Challenge1
+import KIP126.Main.Solution.Tools.GeneralizedLeibniz
+import KIP126.Main.Solution.Tools.GeneralizedMahowald
+import KIP126.Main.Solution.Tools.PageExtensionStretching
 import Lean.Elab.Command
 
 /-! Foundation and paper-tool statements must not consume computed facts or
@@ -12,12 +12,12 @@ run_cmd do
   for mod in env.allImportedModuleNames do
     if (`KIP126.Main.Axiom).isPrefixOf mod ||
         (`KIP126.Interface.Axiom).isPrefixOf mod ||
-        (`KIP126.Def.AdamsE2).isPrefixOf mod || mod == `KIP126.Def.Comparison.Interfaces then
+        (`KIP126.Def.AdamsE2).isPrefixOf mod || mod == `KIP126.Challenge2 then
       throwError "foundation/paper-tool statements import a computation or stage input: {mod}"
-  for old in [`KIP126.Foundation.LinBasisInterface, `KIP126.Foundation.linBasis,
-      `KIP126.Comparison.GeneralizedLeibnizLaw,
-      `KIP126.Comparison.GeneralizedMahowaldLaw,
-      `KIP126.Comparison.FinitePageExtensionStretchingLaw] do
+  for old in [`KIP126.Challenge1.LinBasisInterface, `KIP126.Challenge1.linBasis,
+      `KIP126.Challenge2.GeneralizedLeibnizLaw,
+      `KIP126.Challenge2.GeneralizedMahowaldLaw,
+      `KIP126.Challenge2.FinitePageExtensionStretchingLaw] do
     if env.contains old then
       throwError "obsolete stage classification is still exported: {old}"
   for law in [``KIP126.Main.Solution.Tools.GeneralizedLeibnizLaw,

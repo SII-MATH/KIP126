@@ -1,5 +1,5 @@
-import KIP126.Def.Kervaire.Route.Goals.DifferentialReduction.d12_dichotomy_and_condition_equivalence
-import KIP126.Def.Kervaire.Route.Goals.ExtensionObstruction.c3_excludes_c5
+import KIP126.Main.Solution.DifferentialReduction.d12_dichotomy_and_condition_equivalence
+import KIP126.Main.Solution.ExtensionObstruction.c3_excludes_c5
 import KIP126.Def.Kervaire.Route.Conditions.Predicates
 import KIP126.Def.Kervaire.Route.Model.Coherent.Data
 

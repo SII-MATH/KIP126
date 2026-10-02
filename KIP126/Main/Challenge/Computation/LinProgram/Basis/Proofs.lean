@@ -1,11 +1,11 @@
-import KIP126.LinProgram.Basis.Proofs
+import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
 
 /-! Statement track for the preserved consumer API; every goal remains open. -/
 
 namespace KIP126.LinE2
 
 variable [KIP126.Classical.Adams.LinE2Presentation]
-variable [KIP126.Comparison.SphereBasisInterface
+variable [KIP126.Challenge2.SphereBasisInterface
   (inferInstance : KIP126.Classical.Adams.LinE2Presentation)]
 
 open KIP126.Core.Algebra

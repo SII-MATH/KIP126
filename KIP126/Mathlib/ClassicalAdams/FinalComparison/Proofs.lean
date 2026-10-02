@@ -1,6 +1,6 @@
 import KIP126.Mathlib.ClassicalAdams.StandardPage.Data
 import KIP126.Main.Solution.Computation.Dimension
-import KIP126.Def.References.Literature.StandardSphere.Proofs
+import KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs
 
 section
 variable [KIP126.Classical.Adams.LinE2Presentation]

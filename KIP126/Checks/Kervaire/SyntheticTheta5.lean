@@ -8,7 +8,7 @@ run_cmd do
   let env ← getEnv
   for m in env.allImportedModuleNames do
     if (`KIP126.Main).isPrefixOf m || (`KIP126.Interface).isPrefixOf m ||
-        m == `KIP126.Def.Foundation.Interfaces || m == `KIP126.Def.Comparison.Interfaces ||
+        m == `KIP126.Challenge1 || m == `KIP126.Challenge2 ||
         (`KIPBase).isPrefixOf m then
       throwError "actual-object theta5 definitions import a project input: {m}"
   for n in [``KIP126.Kervaire.BJMOriginalCriterion,

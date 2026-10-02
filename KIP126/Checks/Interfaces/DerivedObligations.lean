@@ -1,15 +1,15 @@
-import KIP126.Def.Comparison.Proofs.FiniteCoherentPageExtension
+import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Cycles.Data
 import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Boundary.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
 import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
-import KIP126.Def.Comparison.Proofs.CoherentPageExtension
-import KIP126.Def.Foundation.Proofs.FoundationConsequences
-import KIP126.Def.Foundation.Proofs.Toda
-import KIP126.Def.Comparison.Proofs.InternalPages
-import KIP126.Def.Comparison.Proofs.InternalNaturality
-import KIP126.Def.Comparison.Proofs.Cobar
+import KIP126.Interface.Solution.CoherentPageExtension
+import KIP126.Def.Solution.FoundationConsequences
+import KIP126.Def.Solution.Toda
+import KIP126.Interface.Solution.InternalPages
+import KIP126.Interface.Solution.InternalNaturality
+import KIP126.Interface.Solution.Cobar
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
 import KIP126.Def.Synthetic.QuotientTower.Proofs
@@ -17,14 +17,14 @@ import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Proofs
-import KIP126.Def.Foundation.Proofs.Synthetic.Localization
-import KIP126.Def.Comparison.Proofs.SyntheticEInfty
-import KIP126.Def.Comparison.Proofs.PageExtensionAmbiguity
+import KIP126.Def.Solution.Synthetic.Localization
+import KIP126.Interface.Solution.SyntheticEInfty
+import KIP126.Interface.Solution.PageExtensionAmbiguity
 import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
 import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
-import KIP126.Def.Comparison.Proofs.CanonicalPageExtension
+import KIP126.Interface.Solution.CanonicalPageExtension
 import KIP126.Def.Synthetic.QuotientFunctor.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
@@ -39,7 +39,7 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
 import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
-import KIP126.Def.Comparison.Proofs.PageExtensionSolutions
+import KIP126.Interface.Solution.PageExtensionSolutions
 import Lean.Elab.Command
 
 /-! These particular generic obligations are proved from explicit mathematical
@@ -96,8 +96,8 @@ run_cmd do
       ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.forall_obstruction_eq_zero_iff_surjective,
       ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.forall_obstruction_eq_zero_iff_differences_surjective,
       ``KIP126.Classical.Adams.AdamsFiltrationAtLeast.hasMod2ZeroFactorization,
-      ``KIP126.Foundation.Proofs.cobar_square_zero,
-      ``KIP126.Foundation.Proofs.adams_filtration_decomposition,
+      ``KIP126.Def.Solution.cobar_square_zero,
+      ``KIP126.Def.Solution.adams_filtration_decomposition,
       ``KIP126.Def.Solution.todaInterface,
       ``KIP126.Interface.Solution.pageCalculus,
       ``KIP126.Interface.Solution.representativeCalculus,
@@ -171,9 +171,9 @@ run_cmd do
       ``KIP126.Interface.Solution.finitePageExtension_iff_solutions,
       ``KIP126.Interface.Solution.infinitePageExtension_iff_solutions,
       ``KIP126.Interface.Solution.finitePageExtension_restrict,
-      ``KIP126.Comparison.restrictFiniteSolution,
-      ``KIP126.Comparison.restrictPermanentFiniteSolution,
-      ``KIP126.Comparison.CoherentPageExtensionSolutions,
+      ``KIP126.Challenge2.restrictFiniteSolution,
+      ``KIP126.Challenge2.restrictPermanentFiniteSolution,
+      ``KIP126.Challenge2.CoherentPageExtensionSolutions,
       ``KIP126.Synthetic.Context.XModLambdaN.map_id,
       ``KIP126.Synthetic.Context.XModLambdaN.map_comp,
       ``KIP126.Synthetic.Context.XModLambdaN.restriction_self,

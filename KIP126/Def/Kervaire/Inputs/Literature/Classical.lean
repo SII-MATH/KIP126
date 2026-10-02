@@ -1,4 +1,4 @@
-import KIP126.Def.Kervaire.Route.DependencyTypes
+import KIP126.Main.Solution.Route.DependencyTypes
 
 /-! Classical literature inputs on the frozen route's actual Adams tower.
 These are explicit hypotheses, not instances or proved theorems. See

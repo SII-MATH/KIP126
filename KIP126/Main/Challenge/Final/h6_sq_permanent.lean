@@ -1,13 +1,12 @@
-import KIP126.Def.ClassicalAdams.StandardSphere.Classes.Data
+import KIP126.Interface.Axiom.StandardSphere.Classes.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 
 /-! T(M): the standard h₆² survives on M's internal sphere Adams sequence.
 Source: Lin–Wang–Xu, Theorem 1.4 / 7.1 (local main.tex labels thm:h62 and
 thm:126survives). Both the sequence and the specified Milnor class come from
 the same foundation. The statement imports no C(M), Lin data, or SS adapter.
-The selected foundation has a concrete prespectrum-source binding in Def.
-Model construction and Milnor comparison proofs remain explicit proof debts;
-no stage consumption axiom defines this proposition.
+The selected foundation/Milnor data still use the Challenge1 stage input;
+independence of C(M) is not a claim that this fixed specialization is axiom-free.
 -/
 namespace KIP126.Challenge.Final.H6SquarePermanent
 

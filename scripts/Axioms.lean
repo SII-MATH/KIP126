@@ -2,7 +2,7 @@ import Lean
 
 /-!
 Compiled-environment audit of the canonical library's proof dependencies.
-Explicit literature/computation axioms are declared under `KIP126.Main.Axiom`
+Development-only project axioms are declared under `KIP126.Interface.Axiom`
 or `KIP126.Main.Axiom`
 (see PROJECT_BOUNDARY.md);
 they are inventoried separately from `sorryAx` and remain failures of this
@@ -105,7 +105,8 @@ def audit : CoreM AuditReport := do
       | continue
     -- Stage assumptions are centralized; registration still fails the strict
     -- completion audit below and never grants foundational trust.
-    if (`KIP126.Main.Axiom).isPrefixOf moduleName then
+    if (`KIP126.Interface.Axiom).isPrefixOf moduleName ||
+        (`KIP126.Main.Axiom).isPrefixOf moduleName then
       let line := s!"  {name} (declared in {moduleName})"
       report := { report with registered := report.registered.push line }
     else

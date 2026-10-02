@@ -1,6 +1,5 @@
 import KIP126.Main.Challenge.Computation.LinProgram.Basis.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Basis.Proofs
-import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Classes.Comparison.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Classes.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Differential.LongLayer.Cancellation.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
@@ -10,9 +9,9 @@ import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Differentials
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Expressions.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Presentation.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Selected.Proofs
-import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Tower.Proofs
-import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Tower.SecondDifferential.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Route.Records
+import KIP126.Main.Challenge.Computation.Route
+import KIP126.Main.Challenge.Computation.Lambda
 import KIP126.Main.Challenge.Literature.Adams.OneLine
 import KIP126.Main.Challenge.Literature.EtaRows.Proofs
 import KIP126.Main.Challenge.Literature.HopfCofiber.Proofs
@@ -21,7 +20,6 @@ import KIP126.Main.Challenge.Literature.Near126.Sphere.Conditions.Proofs
 import KIP126.Main.Challenge.Literature.Near126.Sphere.Proofs
 import KIP126.Main.Challenge.Literature.Route.Applicability
 import KIP126.Main.Challenge.Literature.Route.Inputs
-import KIP126.Main.Challenge.Literature.StandardSphere.Proofs
 import Lean.Elab.Command
 import Lean.Meta.Basic
 
@@ -41,8 +39,6 @@ run_cmd do
     (``KIP126.Classical.Adams.linToSphereE2_dataBasis, ``KIP126.Classical.Adams.Challenge.linToSphereE2_dataBasis),
     (``KIP126.Classical.Adams.sphereE2Basis_ne_zero, ``KIP126.Classical.Adams.Challenge.sphereE2Basis_ne_zero),
     (``KIP126.Classical.Adams.sphereE2Coordinates_reconstruct, ``KIP126.Classical.Adams.Challenge.sphereE2Coordinates_reconstruct),
-    (``KIP126.Classical.Adams.computedH6Square_eq_standardH6Square, ``KIP126.Classical.Adams.Challenge.computedH6Square_eq_standardH6Square),
-    (``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_standard, ``KIP126.Classical.Adams.Challenge.computedH6Square_nonzeroSurvival_iff_standard),
     (``KIP126.Classical.Adams.computedH6_mul_self, ``KIP126.Classical.Adams.Challenge.computedH6_mul_self),
     (``KIP126.Classical.Adams.LinE2Presentation.h6_cross_products_add_eq_zero, ``KIP126.Classical.Adams.Challenge.LinE2Presentation.h6_cross_products_add_eq_zero),
     (``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_boundaryLifts, ``KIP126.Classical.Adams.Challenge.computedH6Square_d_two_eq_zero_of_boundaryLifts),
@@ -74,15 +70,6 @@ run_cmd do
     (``KIP126.Computation.LinProofs.Selected.d3_h0Sq_x123_13_2, ``KIP126.Computation.LinProofs.Selected.Challenge.d3_h0Sq_x123_13_2),
     (``KIP126.Computation.LinProofs.Selected.d3_x126_4, ``KIP126.Computation.LinProofs.Selected.Challenge.d3_x126_4),
     (``KIP126.Computation.LinProofs.Selected.d7_x123_11_combination, ``KIP126.Computation.LinProofs.Selected.Challenge.d7_x123_11_combination),
-    (``KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_computedH6Square, ``KIP126.Classical.Adams.Challenge.sphereH6DoubleInternalE2_eq_computedH6Square),
-    (``KIP126.Classical.Adams.computedH6Square_double_representative, ``KIP126.Classical.Adams.Challenge.computedH6Square_double_representative),
-    (``KIP126.Classical.Adams.computedH6Square_of_double_representative, ``KIP126.Classical.Adams.Challenge.computedH6Square_of_double_representative),
-    (``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_double_lifts, ``KIP126.Classical.Adams.Challenge.computedH6Square_nonzeroSurvival_iff_double_lifts),
-    (``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_double_connecting_lifts, ``KIP126.Classical.Adams.Challenge.computedH6Square_nonzeroSurvival_iff_double_connecting_lifts),
-    (``KIP126.Classical.Adams.computedH6Square_d_two_value_of_double_lift, ``KIP126.Classical.Adams.Challenge.computedH6Square_d_two_value_of_double_lift),
-    (``KIP126.Classical.Adams.computedH6Square_d_two_double_value_exists, ``KIP126.Classical.Adams.Challenge.computedH6Square_d_two_double_value_exists),
-    (``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_iff_double_lift, ``KIP126.Classical.Adams.Challenge.computedH6Square_d_two_eq_zero_iff_double_lift),
-    (``KIP126.Classical.Adams.computedH6Square_double_lift_five_of_leibniz, ``KIP126.Classical.Adams.Challenge.computedH6Square_double_lift_five_of_leibniz),
     (``KIP126.Computation.Route.Inputs.d3_cnu_bottom_x126_8, ``KIP126.Computation.Route.Challenge.Inputs.d3_cnu_bottom_x126_8),
     (``KIP126.Computation.Route.Inputs.d3_cnu_bottom_x126_8_2, ``KIP126.Computation.Route.Challenge.Inputs.d3_cnu_bottom_x126_8_2),
     (``KIP126.Computation.Route.Inputs.X_reaches_e6, ``KIP126.Computation.Route.Challenge.Inputs.X_reaches_e6),
@@ -135,7 +122,40 @@ run_cmd do
     (``KIP126.Literature.Route.NuCofiberApplicability.exponent_sum, ``KIP126.Literature.Route.Challenge.NuCofiberApplicability.exponent_sum),
     (``KIP126.Literature.Route.Inputs.differentialLift, ``KIP126.Literature.Route.Challenge.Inputs.differentialLift),
     (``KIP126.Literature.Route.Inputs.nuTriangle, ``KIP126.Literature.Route.Challenge.Inputs.nuTriangle),
-    (``KIP126.Classical.Adams.sphereH6Square_ne_zero, ``KIP126.Classical.Adams.Challenge.sphereH6Square_ne_zero)]
+    (``KIP126.Computation.Route.sphere_vanishing_line, ``KIP126.Computation.Route.Challenge.sphere_vanishing_line),
+    (``KIP126.Computation.Route.classical_sphere_separated_of_strong_convergence, ``KIP126.Computation.Route.Challenge.classical_sphere_separated_of_strong_convergence),
+    (``KIP126.Computation.Route.sphere_page_zero_above_uniform_bound, ``KIP126.Computation.Route.Challenge.sphere_page_zero_above_uniform_bound),
+    (``KIP126.Computation.Route.sphere_page_zero_stem125_tail, ``KIP126.Computation.Route.Challenge.sphere_page_zero_stem125_tail),
+    (``KIP126.Computation.Route.late_outgoing_target_zero, ``KIP126.Computation.Route.Challenge.late_outgoing_target_zero),
+    (``KIP126.Computation.Route.permanent_cycle_of_reaches1000, ``KIP126.Computation.Route.Challenge.permanent_cycle_of_reaches1000),
+    (``KIP126.Computation.Route.nonzero_permanent_of_survives1000, ``KIP126.Computation.Route.Challenge.nonzero_permanent_of_survives1000),
+    (``KIP126.Computation.Route.named_survive1000, ``KIP126.Computation.Route.Challenge.named_survive1000),
+    (``KIP126.Computation.Route.d3_x1266_candidates, ``KIP126.Computation.Route.Challenge.d3_x1266_candidates),
+    (``KIP126.Computation.Route.high125_component, ``KIP126.Computation.Route.Challenge.high125_component),
+    (``KIP126.Computation.Route.stem125_e5_zero_finite, ``KIP126.Computation.Route.Challenge.stem125_e5_zero_finite),
+    (``KIP126.Computation.Route.stem125_e5_high_exhaustion, ``KIP126.Computation.Route.Challenge.stem125_e5_high_exhaustion),
+    (``KIP126.Computation.Route.sphere_facts, ``KIP126.Computation.Route.Challenge.sphere_facts),
+    (``KIP126.Computation.Route.cnu_d3, ``KIP126.Computation.Route.Challenge.cnu_d3),
+    (``KIP126.Computation.Route.cnu_target_through5, ``KIP126.Computation.Route.Challenge.cnu_target_through5),
+    (``KIP126.Computation.Route.route_expression_labels, ``KIP126.Computation.Route.Challenge.route_expression_labels),
+    (``KIP126.Computation.Route.high125_label, ``KIP126.Computation.Route.Challenge.high125_label),
+    (``KIP126.Computation.Route.classical_stem125_filtration26_zero, ``KIP126.Computation.Route.Challenge.classical_stem125_filtration26_zero),
+    (``KIP126.Computation.Route.high125_detected_choice_unique, ``KIP126.Computation.Route.Challenge.high125_detected_choice_unique),
+    (``KIP126.Computation.Route.no_outgoing_stem63_nonpositive, ``KIP126.Computation.Route.Challenge.no_outgoing_stem63_nonpositive),
+    (``KIP126.Computation.Route.no_outgoing_stem125_low, ``KIP126.Computation.Route.Challenge.no_outgoing_stem125_low),
+    (``KIP126.Computation.Route.no_outgoing_stem126_af3, ``KIP126.Computation.Route.Challenge.no_outgoing_stem126_af3),
+    (``KIP126.Computation.Route.lambda_injective_of_source, ``KIP126.Computation.Route.Challenge.lambda_injective_of_source),
+    (``KIP126.Computation.Route.lambda_powers_injective_of_source_halfplane, ``KIP126.Computation.Route.Challenge.lambda_powers_injective_of_source_halfplane),
+    (``KIP126.Computation.Route.lambda_powers_injective_62_64, ``KIP126.Computation.Route.Challenge.lambda_powers_injective_62_64),
+    (``KIP126.Computation.Route.lambda_powers_injective_124_128, ``KIP126.Computation.Route.Challenge.lambda_powers_injective_124_128),
+    (``KIP126.Computation.Route.lambda_injective_125_130, ``KIP126.Computation.Route.Challenge.lambda_injective_125_130),
+    (``KIP126.Computation.Route.realization_injective_62_64, ``KIP126.Computation.Route.Challenge.realization_injective_62_64),
+    (``KIP126.Computation.Route.realization_injective_124_128, ``KIP126.Computation.Route.Challenge.realization_injective_124_128),
+    (``KIP126.Computation.Route.bx_finite_lambda_normalization, ``KIP126.Computation.Route.Challenge.bx_finite_lambda_normalization),
+    (``KIP126.Computation.Route.theta5_choice_order_two, ``KIP126.Computation.Route.Challenge.theta5_choice_order_two),
+    (``KIP126.Computation.Route.lambda_kills_realization_kernel_62_71, ``KIP126.Computation.Route.Challenge.lambda_kills_realization_kernel_62_71),
+    (``KIP126.Computation.Route.two_torsion_62_70, ``KIP126.Computation.Route.Challenge.two_torsion_62_70),
+  ]
   for (solution, challenge) in pairs do
     let some si := env.find? solution | throwError "missing solution: {solution}"
     let some (.thmInfo ci) := env.find? challenge | throwError "missing challenge: {challenge}"

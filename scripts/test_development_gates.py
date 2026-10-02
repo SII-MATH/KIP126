@@ -540,12 +540,12 @@ class EmbeddedLakeConfigTests(unittest.TestCase):
     def test_standalone_configuration_retains_all_roots_and_options(self):
         config = (ROOT / "KIPBase/lakefile.toml").read_text()
         self.assertIn('srcDir = ".."', config)
-        self.assertIn('defaultTargets = ["KIPBase"]', config)
+        self.assertIn('defaultTargets = ["KIPBase", "KIPBaseDefEqCompat"]', config)
         roots = re.findall(r'^  "(KIPBase\.[^"]+)"', config, re.M)
         imports = re.findall(r"^import (KIPBase\.\S+)",
                              (ROOT / "KIPBase/Standalone.lean").read_text(), re.M)
         self.assertTrue(set(imports).issubset(roots))
-        self.assertIn('"maxSynthPendingDepth" = 3', config)
+        self.assertIn('"-DmaxSynthPendingDepth=3"', config)
         self.assertFalse((ROOT / "KIPBase/lakefile.lean").exists())
 
     def test_old_base_compiles_unimported_sources_but_not_embedded_configuration(self):

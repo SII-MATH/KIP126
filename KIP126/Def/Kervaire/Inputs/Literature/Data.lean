@@ -1,6 +1,7 @@
 import KIP126.Def.Kervaire.Inputs.Literature.ClassicalSource
 import KIP126.Def.Kervaire.Inputs.Literature.BX
-import KIP126.Def.Kervaire.Inputs.Literature.SourceCoordinates
+import KIP126.Def.Kervaire.Inputs.Literature.Synthetic
+import KIP126.Def.Kervaire.Inputs.Literature.Realization
 import KIP126.Def.Kervaire.Inputs.Literature.AlgebraBinding
 import KIP126.Def.Kervaire.Inputs.Literature.May
 import KIP126.Def.Kervaire.Inputs.Literature.Toda
@@ -58,7 +59,8 @@ specified synthetic symmetry. This is a statement language only; the
 Main/Axiom declarations require the concrete SourceModel identification.
 Coordinates, lambda kernel transport, normalized triangles, detector
 algebra transport and all local choice/Leibniz/Mahowald results are absent. -/
-structure ExternalLeaves (sym : SymmetricCategory Syn) (mayTensor : MayTensorData Syn) where
+structure ExternalLeaves (sym : SymmetricCategory Syn) (mayTensor : MayTensorData Syn)
+    (coordinates : RealizationCoordinates D) where
   nu_cofiber : KIP126.Synthetic.NuCofiberCriterion H D.nu
   full_lift : KIP126.Synthetic.SyntheticLiftComparison H D.nu
   finite_lift : FiniteLiftCriterion D
@@ -68,7 +70,7 @@ structure ExternalLeaves (sym : SymmetricCategory Syn) (mayTensor : MayTensorDat
   eInfty : EInftyInput D
   filtration_lambda : FiltrationLambda D
   e2_weight_vanishing : E2WeightVanishing D
-  realization_detection : RealizationDetection D (sourceRealizationCoordinates D)
+  realization_detection : RealizationDetection D coordinates
   bx : BXDistinguishedInput D η
   toda : TodaInputs D η
   may : ∀ T U : HoCofiberSequence (C := Syn),
@@ -104,13 +106,6 @@ abbrev Inputs.classical (I : Inputs D η L) : ClassicalInputs D η :=
 abbrev Inputs.algebraBinding (I : Inputs D η L) := I.bindings.algebra
 abbrev Inputs.tmfBinding (I : Inputs D η L) := I.bindings.tmf
 abbrev Inputs.applicability (I : Inputs D η L) := I.bindings.applicability
-
-/-- Supply the already frozen forward differential language from the
-external BHS rigidity input. This is only projection, not a proof of BHS. -/
-theorem Inputs.differentialLift (I : Inputs D η L) :
-    KIP126.Main.Solution.Route.DifferentialLiftInput D := by
-  intro X a s t r k hr x y h
-  exact (I.synthetic.differentials X a s t r k hr x y).mp h
 
 /-! The normalized nu triangle and the route tmf consequences are obtained
 by the internal `LiteratureAdapters` theorems. They are not projections of

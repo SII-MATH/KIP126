@@ -1,4 +1,4 @@
-import KIP126.Def.References.Literature.Synthetic
+import KIP126.Main.Axiom.Literature.Synthetic
 import Lean.Elab.Command
 
 /-! Check the tower-based filtration and consume the exact synthetic

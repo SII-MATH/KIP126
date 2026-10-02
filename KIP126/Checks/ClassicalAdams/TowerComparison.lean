@@ -23,13 +23,13 @@ run_cmd do
   let some (.defnInfo _) := (← getEnv).find? comparison
     | throwError "the sphere tower comparison must be constructed, not postulated"
   for a in ← liftCoreM (collectAxioms comparison) do
-    unless KIP126.Checks.AxiomInputs.allows (``KIP126.Classical.Adams.standardFoundation :: foundational) a do
+    unless KIP126.Checks.AxiomInputs.allows (``KIP126.Interface.Axiom.challenge1 :: foundational) a do
       throwError "unexpected fixed tower comparison dependency: {a}"
   let survival := ``KIP126.Classical.Adams.survival_comparison
   let some (.thmInfo _) := (← getEnv).find? survival
     | throwError "the survival comparison must be proved, not postulated"
   for a in ← liftCoreM (collectAxioms survival) do
-    unless KIP126.Checks.AxiomInputs.allows (``KIP126.Classical.Adams.standardFoundation :: foundational) a do
+    unless KIP126.Checks.AxiomInputs.allows (``KIP126.Interface.Axiom.challenge1 :: foundational) a do
       throwError "unexpected survival comparison dependency: {a}"
 
 #print axioms KIP126.Classical.Adams.adamsTowerPageComparison_differential

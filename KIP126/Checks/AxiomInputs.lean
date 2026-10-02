@@ -5,7 +5,8 @@ namespace KIP126.Checks.AxiomInputs
 open Lean Elab Command
 def direct (input : Name) : List Name :=
   if input == `KIP126.Classical.Adams.standardFoundation ||
-      input == `KIP126.Classical.Adams.standardMilnorCooperations then [``sorryAx]
+      input == `KIP126.Classical.Adams.standardMilnorCooperations then
+    [`KIP126.Interface.Axiom.challenge1]
   else if input == `KIP126.Classical.Adams.linE2Presentation ||
       input == `KIP126.Computation.LinProofs.sphereTable_sound then []
   else [input]

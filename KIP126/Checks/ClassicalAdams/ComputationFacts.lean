@@ -1,5 +1,5 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Def.References.Literature.Near126
+import KIP126.Main.Solution.Literature.Near126
 import Lean.Elab.Command
 
 section
@@ -37,7 +37,8 @@ run_cmd do
       ``KIP126.Computation.Near126.SphereSurvivalFacts.hit_t_iff_d12] do
     discard <| KIP126.Checks.AxiomInputs.checkStageConsumer
       (logical ++ [``KIP126.Classical.Adams.standardFoundation,
-        ``KIP126.Classical.Adams.linE2Presentation]) decl
+        ``KIP126.Classical.Adams.linE2Presentation,
+        ``KIP126.Main.Axiom.challenge2]) decl
       "unexpected fixed-sphere fact dependency"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||

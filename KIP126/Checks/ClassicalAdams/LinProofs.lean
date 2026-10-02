@@ -1,5 +1,5 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.LinProgram.Differentials
+import KIP126.Main.Solution.Computation.LinProgram.Differentials
 import Lean.Elab.Command
 
 section
