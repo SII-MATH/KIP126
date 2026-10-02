@@ -10,6 +10,9 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
+| [Comparisons/Classes.lean](Comparisons/Classes.lean) | 取出 C(M) 的标准平方识别，并改写非零存活命题（2 条） |
+| [Tower/Survival.lean](Tower/Survival.lean) | 将非零存活转成任意有限塔层的提升条件（2 条） |
+| [Differential/Second.lean](Differential/Second.lean) | 实际塔中的 d₂ 表达式、消失判据和条件提升（4 条） |
 | [Dimension.lean](Dimension.lean) | `sphereAdamsData_square_eq_zero_or`, `sphereAdamsData_eq_computedH6Square_of_ne_zero` |
 | [Nonvanishing.lean](Nonvanishing.lean) | `computedH6Square_ne_zero_of_check`, `computedH6Square_ne_zero` |
 | [Reduction.lean](Reduction.lean) | `computedH6Square_nonzeroSurvival_iff` |
@@ -17,7 +20,9 @@
 
 ## 3. 大概完成度
 
-**现有内容：4 个 Lean 文件、约 8 个显式声明，其中 8 条 theorem/lemma。** 本组件未扫描到显式占位正文，已有实现仍需结合依赖和语义审核判断是否完成。
+上述 8 条比较、存活和微分定理已按数学职责迁出 `LinProgram/Interpretation`，声明及证明保持不变；配对的 Challenge 声明保留 `sorry`。
+
+[代表元比较](LinProgram/Interpretation/Tower/Proofs.lean)的 3 条定理暂留原位置。其数学比较、计算识别及消费职责尚待拆分；本次没有调整其认证依赖。
 
 导入闭包仍涉及项目假设：`linE2Presentation`, `standardFoundation`。
 

@@ -1,3 +1,7 @@
+import KIP126.Main.Challenge.Computation.Tower.Survival
+import KIP126.Main.Challenge.Computation.Comparisons.Classes
+import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Tower.Proofs
+import KIP126.Main.Challenge.Computation.Differential.Second
 import KIP126.Main.Challenge.Computation.LinProgram.Basis.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Basis.Proofs
 import KIP126.Main.Challenge.Computation.LinProgram.Interpretation.Classes.Proofs
@@ -29,6 +33,17 @@ open Lean Elab Command in
 run_cmd do
   let env ← getEnv
   let pairs : List (Name × Name) := [
+    (``KIP126.Classical.Adams.computedH6Square_eq_standardH6Square, ``KIP126.Classical.Adams.Challenge.computedH6Square_eq_standardH6Square),
+    (``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_standard, ``KIP126.Classical.Adams.Challenge.computedH6Square_nonzeroSurvival_iff_standard),
+    (``KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_computedH6Square, ``KIP126.Classical.Adams.Challenge.sphereH6DoubleInternalE2_eq_computedH6Square),
+    (``KIP126.Classical.Adams.computedH6Square_double_representative, ``KIP126.Classical.Adams.Challenge.computedH6Square_double_representative),
+    (``KIP126.Classical.Adams.computedH6Square_of_double_representative, ``KIP126.Classical.Adams.Challenge.computedH6Square_of_double_representative),
+    (``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_double_lifts, ``KIP126.Classical.Adams.Challenge.computedH6Square_nonzeroSurvival_iff_double_lifts),
+    (``KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_double_connecting_lifts, ``KIP126.Classical.Adams.Challenge.computedH6Square_nonzeroSurvival_iff_double_connecting_lifts),
+    (``KIP126.Classical.Adams.computedH6Square_d_two_value_of_double_lift, ``KIP126.Classical.Adams.Challenge.computedH6Square_d_two_value_of_double_lift),
+    (``KIP126.Classical.Adams.computedH6Square_d_two_double_value_exists, ``KIP126.Classical.Adams.Challenge.computedH6Square_d_two_double_value_exists),
+    (``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_iff_double_lift, ``KIP126.Classical.Adams.Challenge.computedH6Square_d_two_eq_zero_iff_double_lift),
+    (``KIP126.Classical.Adams.computedH6Square_double_lift_five_of_leibniz, ``KIP126.Classical.Adams.Challenge.computedH6Square_double_lift_five_of_leibniz),
     (``KIP126.LinE2.dataBasis_val, ``KIP126.LinE2.Challenge.dataBasis_val),
     (``KIP126.LinE2.basisTable_correct, ``KIP126.LinE2.Challenge.basisTable_correct),
     (``KIP126.LinE2.dataBasis_ne_zero, ``KIP126.LinE2.Challenge.dataBasis_ne_zero),
