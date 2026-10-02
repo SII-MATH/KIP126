@@ -10,7 +10,7 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [OneLine.lean](OneLine.lean) | `adamsOneLineDifferentials`, `adamsOneLineDifferentials_h₄`, `adamsOneLineDifferentials_h₄_degrees`, `adamsOneLineResult`, `cataloguedAdamsOneLine` 等 10 个声明 |
+| [OneLine.lean](../../../../Def/References/Literature/Adams/OneLine.lean) | `adamsOneLineDifferentials`, `adamsOneLineDifferentials_h₄`, `adamsOneLineDifferentials_h₄_degrees`, `adamsOneLineResult`, `cataloguedAdamsOneLine` 等 10 个声明 |
 
 ## 3. 大概完成度
 

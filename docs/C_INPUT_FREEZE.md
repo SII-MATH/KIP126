@@ -17,7 +17,7 @@ Main/Axiom 中剩余解释代码的归属见 [C(M) 交付说明](COMPUTATION_DEL
 ## 1. 数学对象和入口
 
 ```lean
-import KIP126.Main.Axiom.LinProgram.Route.Data
+import KIP126.Challenge2.Route.Data
 -- D : Kervaire.Route.Model H M Syn
 -- L : Kervaire.Route.Labels H
 -- G : Literature.Route.TmfLabels H

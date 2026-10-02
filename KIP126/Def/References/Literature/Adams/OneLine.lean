@@ -1,5 +1,5 @@
 import KIP126.Def.ClassicalAdams.H4D2.Predicates
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 namespace KIP126.Classical
 

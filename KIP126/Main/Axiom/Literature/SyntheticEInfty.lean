@@ -1,5 +1,5 @@
 import KIP126.Challenge2
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-! Explicit, source-bearing inputs for the two E∞ formulas. These wrappers
 require the formula data; source locators alone never construct comparisons.

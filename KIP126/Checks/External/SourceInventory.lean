@@ -1,5 +1,5 @@
-import KIP126.Main.Axiom.Literature.SourceInventory
-import KIP126.Main.Axiom.Evidence
+import KIP126.Def.References.Literature.SourceInventory
+import KIP126.Def.References.Evidence
 
 /-!
 # Source-inventory regression checks

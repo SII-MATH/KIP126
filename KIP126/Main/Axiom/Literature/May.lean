@@ -1,5 +1,5 @@
 import KIP126.Challenge1
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-!
 # 带来源的 May smash-boundary 输入

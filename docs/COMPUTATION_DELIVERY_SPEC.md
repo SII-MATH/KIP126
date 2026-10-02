@@ -7,7 +7,7 @@
 
 本文明确目标边界，并对照当前实现记录尚未接通的部分；不宣称完成新的 Lean 接口或证明。
 具体实现以 [Challenge2](../KIP126/Challenge2.lean) 和
-[路线输入](../KIP126/Main/Axiom/LinProgram/Route/Data.lean) 为准。
+[路线输入](../KIP126/Challenge2/Route/Data.lean) 为准。
 
 ## 1. 数学陈述：对象、标签和性质
 

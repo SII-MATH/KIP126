@@ -214,7 +214,7 @@ def main():
  lines+=[']','','def bottomMaps : List BottomMap := [']
  lines+=['  ⟨'+f"{p['s']}, {p['t']}, "+lean_list(p['x'])+', '+lean_list(p['y'])+'⟩'+(',' if j<len(bottoms)-1 else '') for j,p in enumerate(bottoms)]
  lines += [']','','end KIP126.Computation.Route.Raw','']
- records=['import KIP126.Main.Axiom.LinProgram.Route.Data', '',
+ records=['import KIP126.Challenge2.Route.Data', '',
  '/-! GENERATED named projections from explicit C(M) hypotheses. These theorems',
  'do NOT prove the database computations or add mathematical assumptions. -/',
  'namespace KIP126.Computation.Route',
@@ -239,7 +239,7 @@ def main():
  artifacts={'selected.json':json.dumps(data,ensure_ascii=False,indent=2)+'\n',
             'Selected.lean':'\n'.join(lines),'Records.lean':'\n'.join(records)}
  for n,text in artifacts.items():
-  path = (ROOT.parent / 'Main/Axiom/LinProgram/Route' / n) if n == 'Records.lean' else out / n
+  path = (ROOT.parent / 'Main/Solution/Computation/LinProgram/Route' / n) if n == 'Records.lean' else out / n
   if args.check: require(path.read_text()==text,'stale generated file: '+str(path))
   else:
    path.parent.mkdir(parents=True,exist_ok=True)

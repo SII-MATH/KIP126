@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Provenance
+import KIP126.Def.References.Provenance
 
 /-!
 # External results

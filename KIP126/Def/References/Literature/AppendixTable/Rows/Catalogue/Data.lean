@@ -1,6 +1,6 @@
-import KIP126.Main.Axiom.Literature.AppendixTable.Rows.Catalogue.Rows001To160
-import KIP126.Main.Axiom.Literature.AppendixTable.Rows.Catalogue.Rows161To320
-import KIP126.Main.Axiom.Literature.AppendixTable.Rows.Catalogue.Rows321To401
+import KIP126.Def.References.Literature.AppendixTable.Rows.Catalogue.Rows001To160
+import KIP126.Def.References.Literature.AppendixTable.Rows.Catalogue.Rows161To320
+import KIP126.Def.References.Literature.AppendixTable.Rows.Catalogue.Rows321To401
 
 /-!
 # Transcribed Appendix catalogue

@@ -1,5 +1,5 @@
 import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
-import KIP126.Main.Axiom.Provenance
+import KIP126.Def.References.Provenance
 
 namespace KIP126.Computation.Near126
 open KIP126.LinE2 KIP126.Classical.Adams KIP126.Core.SpectralSequence

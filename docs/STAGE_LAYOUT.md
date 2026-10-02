@@ -1,5 +1,12 @@
 # LinProgram / Def / Interface / Main 布局与迁移记录
 
+## PR150 的第二批提取
+
+16 个来源目录与证据模块迁入 `Def/References`，保留原声明、证明和制品路径。剩余的 `Main/Axiom/LinProgram` Lean 模块已迁出：参数化 Adams E₂ 输入归独立管线；消费端微分适配归 Main/Solution；两处纯导入别名直接使用实际定义模块。
+
+路线 `Data.lean` 按职责拆成 `LinProgram/Interpretation/Route/{Data,Predicates}.lean` 与 `Challenge2/Route/Data.lean`。全部 15 个声明保留，tmf 标签单独归入 Def。没有添加新的阶段假设，也没有宣称路线 Inputs 已与根 Challenge2 等同或绑定。
+
+
 ## 从 PR150 提取的消费边界整理
 
 `Main/Axiom/Challenge2.lean` 只声明 `Nonempty Challenge2`。同一见证的选择及文献、计算投影位于 `Main/Solution/StageInput.lean`；依赖这些投影的 15 个适配模块迁入 Main/Solution，声明和证明保持 develop 的实现。

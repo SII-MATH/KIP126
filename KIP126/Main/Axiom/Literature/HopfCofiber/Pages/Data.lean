@@ -1,6 +1,6 @@
 import KIP126.Main.Axiom.Literature.HopfCofiber.Predicates
 import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
-import KIP126.Main.Axiom.LinProgram.Interpretation.Sphere
+import KIP126.Interface.Axiom.StandardSphere.Sequence.Data
 
 namespace KIP126.Classical.Adams
 open CategoryTheory KIP126.StableHomotopy

@@ -25,9 +25,9 @@ Challenge2 存在性输入的自动附加字段；详细清单见
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Challenge2.lean](Challenge2.lean) | 唯一阶段输入 `challenge2 : Nonempty KIP126.Challenge2` 及选定见证 |
-| [Evidence.lean](Evidence.lean) | `sourceId`, `withArtifact`, `map_ref`, `map_sourceId`, `withArtifact_evidence` 等 12 个声明 |
-| [Provenance.lean](Provenance.lean) | `SourceId`, `code`, `ofCode`, `all`, `all_nodup` 等 78 个声明 |
-| [Results.lean](Results.lean) | `sourceId`, `sourceId_mk`, `map_ref`, `map_sourceId` |
+| [Evidence.lean](../../Def/References/Evidence.lean) | `sourceId`, `withArtifact`, `map_ref`, `map_sourceId`, `withArtifact_evidence` 等 12 个声明 |
+| [Provenance.lean](../../Def/References/Provenance.lean) | `SourceId`, `code`, `ofCode`, `all`, `all_nodup` 等 78 个声明 |
+| [Results.lean](../../Def/References/Results.lean) | `sourceId`, `sourceId_mk`, `map_ref`, `map_sourceId` |
 | [Literature/Synthetic.lean](Literature/Synthetic.lean) | `SyntheticLiteratureInput`：同一 H𝔽₂/ν 上的 cofiber、full lift、三角提升显式证明及固定来源；接口定义位于根 Challenge1 |
 
 ## 3. 大概完成度

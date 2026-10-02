@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.SourceInventory
+import KIP126.Def.References.Literature.SourceInventory
 
 /-!
 # Claim-level inventory for external inputs

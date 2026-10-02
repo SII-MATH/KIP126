@@ -84,6 +84,18 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                                                      "KIP126.Checks."))]
                     self.assertEqual(forbidden, [])
 
+    def test_reference_and_route_specs_do_not_import_project_stages(self):
+        modules = [name for name in self.graph
+                   if name.startswith("KIP126.Def.References.")]
+        modules += ["KIP126.LinProgram.Interpretation.AdamsE2",
+                    "KIP126.LinProgram.Interpretation.Route.Predicates",
+                    "KIP126.Challenge2.Route.Data"]
+        for module in modules:
+            with self.subTest(module=module):
+                forbidden = [name for name in self.dependencies(module)
+                             if name.startswith(("KIP126.Main.", "KIP126.Interface."))]
+                self.assertEqual(forbidden, [])
+
     def test_main_inputs_have_no_proof_modules(self):
         self.assertEqual(list((ROOT / "KIP126/Main/Axiom").rglob("Proofs.lean")), [])
 

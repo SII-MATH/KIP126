@@ -10,8 +10,8 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](Data.lean) | `DatasetVersion`, `Cell`, `ClassName`, `ClassAtom`, `ClassTerm` 等 27 个声明 |
-| [Predicates.lean](Predicates.lean) | `Valid`, `DegreeValid`, `Valid`, `Valid`, `KeyValid` 等 9 个声明 |
+| [Data.lean](../../../../../Def/References/Literature/AppendixTable/Rows/Data.lean) | `DatasetVersion`, `Cell`, `ClassName`, `ClassAtom`, `ClassTerm` 等 27 个声明 |
+| [Predicates.lean](../../../../../Def/References/Literature/AppendixTable/Rows/Predicates.lean) | `Valid`, `DegreeValid`, `Valid`, `Valid`, `KeyValid` 等 9 个声明 |
 
 ## 3. 大概完成度
 

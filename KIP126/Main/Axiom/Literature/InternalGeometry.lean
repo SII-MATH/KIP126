@@ -1,5 +1,5 @@
 import KIP126.Challenge2
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-!
 # 几何输入与实际内部 Browder 接口的来源包装

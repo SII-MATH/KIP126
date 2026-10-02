@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.AppendixTable.Data
+import KIP126.Def.References.Literature.AppendixTable.Data
 
 /-! Enumeration and locator properties of the twelve source tables. -/
 

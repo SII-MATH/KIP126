@@ -2,7 +2,7 @@ import KIP126.Challenge2
 import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
 import KIP126.Def.SpectralSequence.Computation.Predicates
 import KIP126.Interface.Axiom.StandardMilnor
-import KIP126.Main.Axiom.LinProgram.Interpretation.Sphere
+import KIP126.Interface.Axiom.StandardSphere.Sequence.Data
 
 /-!
 am12 on the actual internal Adams tower and its specified Milnor classes.

@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.AppendixTable.Rows.Data
+import KIP126.Def.References.Literature.AppendixTable.Rows.Data
 
 /-! Appendix catalogue chunks 9–11, transcribed from `KIP126/Main/Axiom/Literature/MainPaper/main.tex`. -/
 

@@ -1,5 +1,5 @@
 import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-!
 # Original BX finite criterion on the actual objects

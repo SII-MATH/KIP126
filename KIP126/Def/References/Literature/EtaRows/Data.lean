@@ -1,5 +1,5 @@
 import KIP126.Def.ClassicalESS.Eta.Data
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-!
 # Typed data for the classical eta extension spectral sequence

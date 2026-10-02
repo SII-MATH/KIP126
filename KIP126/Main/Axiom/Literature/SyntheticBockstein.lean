@@ -1,5 +1,5 @@
 import KIP126.Challenge2
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-! Source-bearing input for the finite lifting/differential part of BHS
 Theorem A.1 (1a)--(1c). The input retains both E-nilpotent completeness and

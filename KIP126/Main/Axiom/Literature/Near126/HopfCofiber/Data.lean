@@ -1,5 +1,5 @@
 import KIP126.Def.SpectralSequence.Computation.Predicates
-import KIP126.Main.Axiom.Provenance
+import KIP126.Def.References.Provenance
 
 /-! General semantic interface for the Cν facts. The Fixed/Data specialization
 now constructs the cofiber sequence and bottom-cell classes from a map on the

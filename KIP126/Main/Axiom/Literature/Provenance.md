@@ -7,10 +7,10 @@ provenance 层应成为外部输入的单一索引：文件系统清单负责来
 ## 2. 现在包含什么
 
 - [source-inventory.json](source-inventory.json)：来源元数据、目录、可用状态、制品路径与 SHA-256 的文件系统清单。
-- [SourceInventory.lean](SourceInventory.lean)：清单的 typed Lean projection。
-- [Claims.lean](Claims.lean)：56 个 claim root 及其 classification、owner、Blueprint target、`SourceRef` 和 composite dependencies。
-- [`../Provenance.lean`](../Provenance.lean)：18 个封闭 `SourceId`，以及通用 `Locator`、`ArtifactRef`、`SourceRef`、`ExternalResult`、`ExternalEvidence`。
-- [`../Results.lean`](../Results.lean) 与 [`../Evidence.lean`](../Evidence.lean)：在保持来源元数据的情况下传递外部结果或证据。
+- [SourceInventory.lean](../../../Def/References/Literature/SourceInventory.lean)：清单的 typed Lean projection。
+- [Claims.lean](../../../Def/References/Literature/Claims.lean)：56 个 claim root 及其 classification、owner、Blueprint target、`SourceRef` 和 composite dependencies。
+- [`../Provenance.lean`](../../../Def/References/Provenance.lean)：18 个封闭 `SourceId`，以及通用 `Locator`、`ArtifactRef`、`SourceRef`、`ExternalResult`、`ExternalEvidence`。
+- [`../Results.lean`](../../../Def/References/Results.lean) 与 [`../Evidence.lean`](../../../Def/References/Evidence.lean)：在保持来源元数据的情况下传递外部结果或证据。
 - `scripts/check_source_inventory.py` 与 projection tests：检查路径、文件摘要及 JSON/Lean 投影的一致性。
 
 主论文位于 `MainPaper/`，其他来源位于 `Sources/`。Lin machine 当前登记了论文、Zenodo metadata 和网页制品，但大型 `proofs.db`/CSV 包仍只通过固定摘要和仓库外缓存参与转换。

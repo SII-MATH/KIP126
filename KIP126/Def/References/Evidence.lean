@@ -1,5 +1,5 @@
-import KIP126.Main.Axiom.Provenance
-import KIP126.Main.Axiom.Literature.SourceInventory
+import KIP126.Def.References.Provenance
+import KIP126.Def.References.Literature.SourceInventory
 
 /-!
 # External evidence

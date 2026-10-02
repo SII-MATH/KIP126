@@ -1,5 +1,5 @@
 import KIP126.Def.Kervaire.Theta5.Predicates
-import KIP126.Main.Axiom.Literature.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-!
 # Located Kervaire literature interfaces

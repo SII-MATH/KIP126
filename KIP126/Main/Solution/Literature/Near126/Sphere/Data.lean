@@ -1,6 +1,6 @@
 import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
 import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Data
-import KIP126.Main.Axiom.Provenance
+import KIP126.Def.References.Provenance
 
 /-! First semantic slice of the Section 7 computation package.
 Every field is an explicit, provenance-carrying premise. There is deliberately

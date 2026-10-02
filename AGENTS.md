@@ -54,7 +54,7 @@ fixed-data pipeline:
   that the data have been identified with the chosen mathematical model.
 
 `Main/Axiom/` is an input boundary, not a proof stage. Keep the single
-Challenge2 existence assumption, explicit input types and source metadata there.
+Challenge2 existence assumption, explicit input statements and their scope comments there.
 Select its correlated witness and expose projections in
 `Main/Solution/StageInput.lean`; witness-dependent consumer adapters also live
 outside Axiom. Mathematical deductions belong in
@@ -261,9 +261,10 @@ definitions projected from the one selected witness. Keep every data choice
 and property visible in the witness structures, preserve dependent choices,
 types, ranges, and conditions, and do not treat packaging as proof progress.
 
-- `Main/Axiom/Literature/` owns the literature source catalogue, precise claim
-  locators, the existing provenance-carrying wrappers, and any staged
-  assumptions needed by Main. Retain `ExternalResult`, `ExternalEvidence`,
+- `Def/References/` owns the literature source catalogue, precise claim
+  locators, and the existing provenance-carrying wrappers.
+  `Main/Axiom/Literature/` retains the input statements and staged assumptions
+  needed by Main; do not put catalogue construction or generic evidence helpers there. Retain `ExternalResult`, `ExternalEvidence`,
   `CataloguedExternalResult`, and `CataloguedExternalEvidence`; do not replace
   explicit external hypotheses wholesale with untracked global axioms. Each
   cited claim must identify its paper and a stable theorem, proposition,
@@ -457,3 +458,13 @@ results as evidence for read-only analysis.
 
 Before launching an expensive command, state which unresolved question it answers. If
 the same commit already has a successful check covering that question, reuse it.
+
+## Parameterized route interpretation
+
+`LinProgram/Interpretation/Route/Data.lean` owns the explicit interpretation
+choices and deterministic decoder; `Predicates.lean` states local certification
+conditions. `Challenge2/Route/Data.lean` owns the project-specific label and
+route delivery structures. These modules do not import Main or Interface and
+do not choose a stage witness. Their existence does not connect the route
+package to the root Challenge2: that binding must be stated and proved separately.
+Reusable tmf labels live in `Def/Kervaire/Route/Labels/Tmf/Data.lean`.

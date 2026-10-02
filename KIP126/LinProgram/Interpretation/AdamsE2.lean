@@ -1,5 +1,5 @@
 import KIP126.Def.AdamsE2.Presentation.Data
-import KIP126.Main.Axiom.Provenance
+import KIP126.Def.References.Provenance
 
 /-!
 # Explicit external E₂ presentation evidence

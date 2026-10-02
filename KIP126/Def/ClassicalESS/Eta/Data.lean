@@ -1,6 +1,6 @@
 import KIP126.Def.ClassicalAdams.SphereSequence.Data
 import KIP126.Def.SpectralSequence.PageLevel.Data
-import KIP126.Main.Axiom.Provenance
+import KIP126.Def.References.Provenance
 import Mathlib.Algebra.Homology.SpectralSequence.Basic
 
 /-!

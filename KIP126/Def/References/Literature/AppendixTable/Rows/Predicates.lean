@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.AppendixTable.Rows.Data
+import KIP126.Def.References.Literature.AppendixTable.Rows.Data
 
 /-! Well-formedness predicates for the external table transcription. -/
 
