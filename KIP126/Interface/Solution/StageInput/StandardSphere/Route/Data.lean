@@ -1,4 +1,4 @@
-import KIP126.Interface.Axiom.StandardSphere.Classes.Data
+import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Data
 import KIP126.Def.Kervaire.Route.Model.Coherent.Data
 
 /-! The route type and its selected witness are projections of Challenge1.
@@ -12,10 +12,10 @@ abbrev StandardRouteModel (Syn : Type w) [SyntheticCategory.{w, 0} Syn]
   KIP126.Kervaire.Route.Model standardFoundation.hf2 standardMilnorCooperations Syn
 /-- The synthetic category selected in the same Challenge1 witness as the
 fixed sphere and Milnor coordinates. No additional existence axiom. -/
-abbrev StandardSynthetic := KIP126.Interface.Axiom.challenge1Witness.routeInput.Syn
+abbrev StandardSynthetic := KIP126.Interface.StageInput.witness.routeInput.Syn
 
 /-- The one selected Section 7 model, before A(M) or C(M). -/
 noncomputable def standardRouteModel : StandardRouteModel StandardSynthetic :=
-  KIP126.Interface.Axiom.challenge1Witness.routeInput.model
+  KIP126.Interface.StageInput.witness.routeInput.model
 
 end KIP126.Classical.Adams

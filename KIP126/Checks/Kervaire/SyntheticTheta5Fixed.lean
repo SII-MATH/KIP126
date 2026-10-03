@@ -1,5 +1,5 @@
 import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
-import KIP126.Interface.Axiom.StandardSphere.Classes.Data
+import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Data
 import Lean.Elab.Command
 
 open KIP126.StableHomotopy KIP126.Synthetic.Context

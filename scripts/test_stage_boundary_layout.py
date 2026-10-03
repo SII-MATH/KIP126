@@ -69,7 +69,9 @@ class StageBoundaryLayoutTests(unittest.TestCase):
             if module.startswith("KIP126.Main.Solution.Computation."):
                 with self.subTest(module=module):
                     forbidden = [name for name in self.dependencies(module)
-                                 if name.startswith("KIP126.Interface.Solution.")]
+                                 if name.startswith("KIP126.Interface.Solution.")
+                                 and not name.startswith(
+                                     "KIP126.Interface.Solution.StageInput")]
                     self.assertEqual(forbidden, [])
 
     def test_main_inputs_do_not_import_deductions_or_checks(self):
@@ -79,17 +81,18 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                     forbidden = [name for name in self.dependencies(module)
                                  if name.startswith(("KIP126.Main.Solution.",
                                                      "KIP126.Main.Challenge.",
-                                                     "KIP126.Interface.Solution.",
                                                      "KIP126.Interface.Challenge.",
-                                                     "KIP126.Checks."))]
+                                                     "KIP126.Checks."))
+                                 or (name.startswith("KIP126.Interface.Solution.")
+                                     and not name.startswith(
+                                         "KIP126.Interface.Solution.StageInput"))]
                     self.assertEqual(forbidden, [])
 
     def test_reference_and_route_specs_do_not_import_project_stages(self):
         modules = [name for name in self.graph
                    if name.startswith("KIP126.Def.References.")]
         modules += ["KIP126.LinProgram.Interpretation.AdamsE2",
-                    "KIP126.LinProgram.Interpretation.Route.Predicates",
-                    "KIP126.Challenge2.Route.Data"]
+                    "KIP126.LinProgram.Interpretation.Route.Predicates"]
         for module in modules:
             with self.subTest(module=module):
                 forbidden = [name for name in self.dependencies(module)
@@ -134,6 +137,35 @@ class StageBoundaryLayoutTests(unittest.TestCase):
             code = re.sub(r"--[^\n]*", "", code)
             self.assertNotRegex(
                 code, r"\b(def|abbrev|theorem|lemma|instance|opaque)\b", str(path))
+
+    def test_interface_input_files_contain_only_statements(self):
+        for path in (ROOT / "KIP126/Interface/Axiom").rglob("*.lean"):
+            code = re.sub(r"/-[\s\S]*?-/", "", path.read_text())
+            code = re.sub(r"--[^\n]*", "", code)
+            self.assertNotRegex(
+                code, r"\b(def|abbrev|theorem|lemma|instance|opaque)\b", str(path))
+
+    def test_root_challenges_are_flat(self):
+        for challenge in ("Challenge1", "Challenge2"):
+            path = ROOT / "KIP126" / f"{challenge}.lean"
+            self.assertTrue(path.is_file())
+            self.assertFalse((ROOT / "KIP126" / challenge).exists())
+            code = re.sub(r"/-[\s\S]*?-/", "", path.read_text())
+            code = re.sub(r"--[^\n]*", "", code)
+            self.assertNotRegex(
+                code, r"\b(axiom|theorem|lemma|sorry)\b|Classical\.choice", str(path))
+
+    def test_stage_witnesses_are_selected_in_solution(self):
+        expected = {
+            ROOT / "KIP126/Interface/Solution/StageInput.lean":
+                "Classical.choice KIP126.Interface.Axiom.challenge1",
+            ROOT / "KIP126/Main/Solution/StageInput.lean":
+                "Classical.choice KIP126.Main.Axiom.challenge2",
+        }
+        for path, selection in expected.items():
+            with self.subTest(path=path):
+                self.assertEqual(path.read_text().count("Classical.choice"), 1)
+                self.assertIn(selection, path.read_text())
 
     def test_selected_metadata_stays_in_the_data_pipeline(self):
         self.assertTrue((ROOT / "KIP126/LinProgram/Generated/Selected/records.json").is_file())

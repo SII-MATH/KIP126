@@ -1,4 +1,4 @@
-import KIP126.Challenge2.Route.Literature.Moss
+import KIP126.Challenge2
 
 namespace KIP126.Interface.Solution.Literature.Route
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

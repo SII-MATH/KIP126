@@ -214,7 +214,7 @@ def main():
  lines+=[']','','def bottomMaps : List BottomMap := [']
  lines+=['  ⟨'+f"{p['s']}, {p['t']}, "+lean_list(p['x'])+', '+lean_list(p['y'])+'⟩'+(',' if j<len(bottoms)-1 else '') for j,p in enumerate(bottoms)]
  lines += [']','','end KIP126.Computation.Route.Raw','']
- records=['import KIP126.Challenge2.Route.Data', '',
+ records=['import KIP126.Challenge2', '',
  '/-! GENERATED named projections from explicit C(M) hypotheses. These theorems',
  'do NOT prove the database computations or add mathematical assumptions. -/',
  'namespace KIP126.Computation.Route',

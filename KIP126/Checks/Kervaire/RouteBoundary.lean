@@ -1,22 +1,23 @@
-import KIP126.Challenge2.Route.Literature.DependencyTypes
+import KIP126.Challenge2
 import KIP126.Main.Solution.Tools.GeneralizedLeibniz
 import KIP126.Main.Solution.Tools.GeneralizedMahowald
 import KIP126.Main.Solution.Tools.PageExtensionStretching
 import Lean.Elab.Command
 
 /-! Compilation/audit boundary for the selected complete route language.
-No consumer axiom or computed basis may construct M. -/
+The flat Challenge2 statement imports the previous Challenge1 stage input, but
+no Main consumer axiom or computed basis may construct the route definitions. -/
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
   for m in env.allImportedModuleNames do
-    if (`KIP126.Main.Axiom).isPrefixOf m || (`KIP126.Interface.Axiom).isPrefixOf m ||
+    if (`KIP126.Main.Axiom).isPrefixOf m ||
         (`KIPBase).isPrefixOf m || (`KIP126.Mathlib).isPrefixOf m then
       throwError "route language imports a consumer axiom or a second model: {m}"
   for n in [``KIP126.Kervaire.Route.C3, ``KIP126.Kervaire.Route.C4,
       ``KIP126.Kervaire.Route.C5, ``KIP126.Kervaire.Route.Model,
-      ``KIP126.Main.Solution.Route.ThetaBMossInput,
-      ``KIP126.Main.Solution.Route.DifferentialLiftInput] do
+      ``KIP126.Literature.Route.ThetaBMossInput,
+      ``KIP126.Literature.Route.DifferentialLiftInput] do
     for a in ← liftCoreM (collectAxioms n) do
       unless [``propext, ``Classical.choice, ``Quot.sound].contains a do
         throwError "route definition has acquired an unproved input: {n}: {a}"

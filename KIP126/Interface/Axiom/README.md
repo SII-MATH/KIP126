@@ -16,10 +16,9 @@
 | 文件 | 内容 |
 | --- | --- |
 | [根 Challenge1](../../Challenge1.lean) | 同文件定义 `FoundationInput`、`MilnorInput`，列出 `a01`–`a14` 清单；`foundation`、`milnor` 是旧通用记录的适配定义 |
-| [Challenge1.lean](Challenge1.lean) | 唯一存在性 axiom，并以 `Classical.choice` 选出一个见证 |
-| [StandardFoundation.lean](StandardFoundation.lean) | 从该见证投影旧公开名称 `standardFoundation` |
-| [StandardMilnor.lean](StandardMilnor.lean) | 从同一个见证投影旧公开名称 `standardMilnorCooperations` |
-| [StandardSphere](StandardSphere/README.md) | 同一基础生成的内部球谱、标准 `h₆` 与 `h₆²`；不依赖 C(M) |
+| [Challenge1.lean](Challenge1.lean) | 唯一存在性 axiom；本目录不选择见证，也不定义消费对象 |
+| [StageInput](../Solution/StageInput.lean) | 在 Solution 侧唯一一次 `Classical.choice`，并由该见证投影固定对象 |
+| [StandardSphere](../Solution/StageInput/StandardSphere/README.md) | 同一基础生成的内部球谱、标准 `h₆` 与 `h₆²`；不依赖 C(M) |
 
 基础选择、H𝔽₂ 的同伦群条件、Milnor 坐标和微分相容性的交付字段集中在根
 `Challenge1.lean`。Def 中的 `StandardAdamsFoundation`、`MilnorCooperations`

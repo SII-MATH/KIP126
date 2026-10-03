@@ -1,6 +1,7 @@
 import KIP126.Main.Solution.StageInput
 import KIP126.Main.Solution.Computation.Lambda
 import KIP126.Main.Solution.DifferentialReduction.Conclusion
+import KIP126.Main.Solution.Route.Predicates
 
 /-! Section 7 on the selected stage witnesses. No new model, A or C is chosen.
 The two paper propositions are still proof obligations in Main, never fields

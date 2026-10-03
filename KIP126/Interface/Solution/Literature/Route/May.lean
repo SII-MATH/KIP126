@@ -1,4 +1,4 @@
-import KIP126.Challenge2.Route.Literature.May
+import KIP126.Challenge2
 
 namespace KIP126.Interface.Solution.Literature.Route
 open CategoryTheory CategoryTheory.MonoidalCategory

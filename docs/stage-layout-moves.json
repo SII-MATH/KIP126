@@ -649,5 +649,25 @@
       "KIP126.Solution.Final.H6SquarePermanent"
     ],
     "proof_status": "The final mathematical statement and proof dependencies are unchanged. Propositions 7.8 and 7.9 remain unfinished; this path record does not assert new validation or mathematical completion."
+  },
+  "flat_root_challenges_2026_10_03": {
+    "description": "Keep each shared stage statement in one flat root Challenge file. Remove the Challenge2/Route source tree, move Challenge1 witness selection and fixed projections out of Interface/Axiom, and preserve the exact Nonempty Challenge1/Challenge2 producer and consumer propositions.",
+    "statement_merge": {
+      "KIP126/Challenge2/Route/Data.lean": "KIP126/Challenge2.lean",
+      "KIP126/Challenge2/Route/Literature/*.lean": "KIP126/Challenge2.lean"
+    },
+    "stage_input_moves": {
+      "KIP126/Interface/Axiom/StandardFoundation.lean": "KIP126/Interface/Solution/StageInput/Foundation.lean",
+      "KIP126/Interface/Axiom/StandardMilnor.lean": "KIP126/Interface/Solution/StageInput/Milnor.lean",
+      "KIP126/Interface/Axiom/StandardSphere/": "KIP126/Interface/Solution/StageInput/StandardSphere/"
+    },
+    "provenance_move": {
+      "KIP126/Challenge2/Route/Literature/sources.json": "docs/challenge2-route-sources.json"
+    },
+    "namespace_cleanup": {
+      "KIP126.Main.Solution.Route shared A(M) type language": "KIP126.Literature.Route",
+      "KIP126.Main.Solution.Route.DetectorInjectiveAt": "KIP126/Main/Solution/Route/Predicates.lean"
+    },
+    "proof_status": "No stage existence assumption or unfinished production proof is discharged by this layout change. Def/Solution/Challenge1 and Interface/Solution/Challenge2 retain their existing sorry obligations."
   }
 }

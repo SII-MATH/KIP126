@@ -9,7 +9,7 @@
 对象构造、表格解释、catalogue 包装、字段提取和证明都在本目录之外。
 
 - 项目交付规格：[Challenge2](../../Challenge2.lean)。
-- 文献来源规格：[Route/Literature](../../Challenge2/Route/Literature/Data.lean)。
+- 文献来源规格：[Route/Literature](../../Challenge2.lean)。
 - 消费构造与中间推论：[Main/Solution](../Solution.lean)，陈述与证明均只在该目录维护；只有最终目标与 Challenge 配对。
 - 原始与生成数据：[LinProgram](../../LinProgram/README.md)。
 - 通用来源目录与证据类型：[Def/References](../../Def/References/README.md)。

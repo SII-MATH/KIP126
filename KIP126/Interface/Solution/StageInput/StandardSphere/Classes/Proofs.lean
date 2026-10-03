@@ -1,4 +1,4 @@
-import KIP126.Interface.Axiom.StandardSphere.Classes.Data
+import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Data
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
 
 namespace KIP126.Classical.Adams

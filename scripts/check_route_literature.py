@@ -37,8 +37,7 @@ def main():
     parser.add_argument("--lean-check", type=Path, help="write a Lean declaration check")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    route = root / "KIP126/Challenge2/Route/Literature"
-    inventory = json.loads((route / "sources.json").read_text())
+    inventory = json.loads((root / "docs/challenge2-route-sources.json").read_text())
     assert inventory["schema_version"] == 2
     sources = {s["id"]: s for s in inventory["sources"]}
     assert len(sources) == len(inventory["sources"]), "duplicate source ID"
@@ -51,7 +50,7 @@ def main():
             assert hashlib.sha256(path.read_bytes()).hexdigest() == item["sha256"], (
                 f"source changed; review and repin explicitly: {path}")
             checked_files.add(item["path"])
-    data = (route / "Data.lean").read_text()
+    data = (root / "KIP126/Challenge2.lean").read_text()
     body = data.split("structure Inputs where\n", 1)[1].split("\n/--", 1)[0]
     fields = set(re.findall(r"^  (\w+) :", body, re.M))
     claims = inventory["claims"]

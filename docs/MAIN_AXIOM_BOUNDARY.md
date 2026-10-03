@@ -6,8 +6,8 @@
 
 `Main/Axiom/LinProgram` 已清空：参数化解释归 LinProgram，交付规格归根
 Challenge2，消费者适配归 Main/Solution。路线文献规格与比较绑定归
-`Challenge2/Route/Literature`。原 `Main/Axiom/Literature/Route.lean` 的单导入
-入口已删除，现直接导入 `KIP126.Challenge2.Route.Literature.Data`。
+根 `Challenge2.lean`。原 `Main/Axiom/Literature/Route.lean` 的单导入
+入口及后来的 `Challenge2/Route` 子目录均已删除，现直接导入 `KIP126.Challenge2`。
 根 Challenge2 现已把路线 A/C 绑定到 Challenge1 的同一个模型。
 
 Main 只为唯一最终定理保留 Challenge/Solution 配对；所有中间陈述、消费构造和
@@ -40,7 +40,7 @@ Selected 的纯来源元数据在 `LinProgram/Generated/Selected/records.json`�
 | 消费接口示例 | `Main/Examples/LinProgram/` |
 | 附录来源表的元数据验证 | `Checks/SourceMetadata/AppendixTable/` |
 | 固定 CSV 的 near-126 名称、次数证书与类表达式 | `LinProgram/Interpretation/Near126/` |
-| 路线输入使用的类型语言 `DependencyTypes` | `Challenge2/Route/Literature/DependencyTypes.lean` |
+| 路线输入使用的类型语言 `DependencyTypes` | `Challenge2.lean` |
 
 该历史批次保留原有公开声明名称，曾为 105 条迁入 Main 的定理补齐同路径
 Challenge 声明；其中 104 条 Solution 证明正文不变，平方标签比较改为统一

@@ -279,4 +279,4 @@ tools are read-only by default; marker changes require an explicit `--write`.
 
 所选 §7 证明路线的 M 接口及其全部依赖清单见 [M_INPUT_FREEZE.md](docs/M_INPUT_FREEZE.md)。该接口冻结不表示模型见证、计算认证、前人输入或最终证明已经完成。
 
-该路线的 A(M) 已以同一模型上的显式输入包实现，见 [A_INPUT_FREEZE.md](docs/A_INPUT_FREEZE.md) 和 [Literature/Route](KIP126/Challenge2/Route/Literature/README.md)。来源、条件与模型运输分开记录；没有新增全局公理，也未证明这些外部结果。
+该路线的 A(M) 已以同一模型上的显式输入包实现，见 [A_INPUT_FREEZE.md](docs/A_INPUT_FREEZE.md) 和根 [Challenge2](KIP126/Challenge2.lean)。来源、条件与模型运输分开记录；没有新增全局公理，也未证明这些外部结果。

@@ -1,4 +1,4 @@
-import KIP126.Challenge2.Route.Data
+import KIP126.Challenge2
 import KIP126.Def.ClassicalAdams.Detection.Predicates
 import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
 

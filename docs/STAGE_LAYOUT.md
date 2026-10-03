@@ -1,5 +1,25 @@
 # LinProgram / Def / Interface / Main 布局与迁移记录
 
+## 最新规则：根 Challenge statement 平铺
+
+`KIP126/Challenge1.lean` 与 `KIP126/Challenge2.lean` 各自是唯一、完整且可审查的
+阶段交付 statement 文件；不再维护同名子目录。原 `Challenge2/Route` 中真正用于
+陈述路线 A(M)／C(M) 的结构和谓词已并入根 `Challenge2.lean`，所有调用方直接
+导入 `KIP126.Challenge2`。路线来源台账移到
+[`challenge2-route-sources.json`](challenge2-route-sources.json)。
+
+两道边界使用同一消费规则：Axiom 文件只声明准确的 `Nonempty ChallengeN`；
+唯一 witness 选择和由它导出的固定对象位于下一阶段 `Solution/StageInput`。
+因此 Challenge1 的选择已从 `Interface/Axiom/Challenge1.lean` 移至
+`Interface/Solution/StageInput.lean`，固定 foundation、Milnor、sphere 和 route
+投影位于其 `StageInput/` 子树。Challenge2 继续由
+`Main/Solution/StageInput.lean` 选择。
+
+根 Challenge 文件不包含 axiom、生产 theorem、`sorry` 证明或 witness 选择。
+`DetectorInjectiveAt` 是论文 Proposition 7.8 的 Main 目标，保留在
+`Main/Solution/Route/Predicates.lean`；共享文献输入类型使用中立的
+`KIP126.Literature.Route` 命名空间。
+
 ## 最新调整：最终目标直接放在阶段目录
 
 最终两份 Lean 文件分别上移为
@@ -92,7 +112,7 @@ Synthetic、Geometry、May 的 catalogue 构造及真实字段提取证明移至
 
 来源目录的 Lean 声明与证据模块迁入 `Def/References`；原文资料仍在 `Main/Axiom/Literature/Sources`，声明、证明和制品字节保留。剩余的 `Main/Axiom/LinProgram` Lean 模块已迁出：参数化 Adams E₂ 输入归独立管线；消费端微分适配归 Main/Solution；两处纯导入别名直接使用实际定义模块。
 
-路线 `Data.lean` 按职责拆成 `LinProgram/Interpretation/Route/{Data,Predicates}.lean` 与 `Challenge2/Route/Data.lean`。全部 15 个声明保留，tmf 标签单独归入 Def。没有添加新的阶段假设，也没有宣称路线 Inputs 已与根 Challenge2 等同或绑定。
+路线 `Data.lean` 按职责拆成 `LinProgram/Interpretation/Route/{Data,Predicates}.lean` 与 `Challenge2.lean`。全部 15 个声明保留，tmf 标签单独归入 Def。没有添加新的阶段假设，也没有宣称路线 Inputs 已与根 Challenge2 等同或绑定。
 
 
 ## 从 PR150 提取的消费边界整理
@@ -170,6 +190,8 @@ KIP126/
 │   ├── Axiom/              同型的 Nonempty Challenge1 开发期输入
 │   ├── Challenge/          仅 Nonempty Challenge2 的总交付目标
 │   └── Solution/
+│       ├── StageInput.lean 唯一选择 Challenge1 见证
+│       ├── StageInput/     从同一见证投影固定基础、球谱与路线对象
 │       ├── Challenge2.lean 第二道边界的构造／证明轨
 │       ├── Tools/          旧错误工具声明的退休记录；本文工具现归 Main
 │       └── LinProgram/     基、乘法、staircase、平方等模型交付的生产证明
@@ -280,7 +302,7 @@ KIP126/
 ## 标准 T(M) 使用同一内部谱序列
 
 标准 Final 现为 `NonzeroSurvival sphereAdamsData (2,128) standardH6Square`。
-`Interface/Axiom/StandardSphere` 特化 Def 中的实际球谱塔及指定 Milnor cocycle，
+`Interface/Solution/StageInput/StandardSphere` 特化 Def 中的实际球谱塔及指定 Milnor cocycle，
 不消费 Lin 数据或 Challenge2。原固定序列名称不变，旧路径保留兼容导入。
 `Interface/Solution/LinProgram/Square.lean` 使用显式 presentation、数据证书及独立
 标准非零性生产平方标签识别，并通过 `SphereSquareInterface.standard_class` 交付。

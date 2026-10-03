@@ -229,7 +229,7 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    T(M) is `NonzeroSurvival sphereAdamsData (2, 128) standardH6Square`.
    The internal sphere sequence and standard class are Def constructions,
    specialized from the same Challenge1 witness in
-   `Interface/Axiom/StandardSphere`. They do not require C(M).
+   `Interface/Solution/StageInput/StandardSphere`. They do not require C(M).
    `Main/Challenge/h6_sq_permanent.lean` is the sole final target and
    `Main/Solution/h6_sq_permanent.lean` assembles Propositions 7.8 and 7.9
    on the same stage witness. Those two proofs still contain `sorry`, so the

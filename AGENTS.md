@@ -40,8 +40,11 @@ fixed-data pipeline:
   project axioms.
 - `KIP126/Interface/` owns the first proof stage: proofs of fixed program
   outputs after deterministic interpretation as `C(M)`, their comparisons,
-  and the necessary internal helper results. Its `Axiom/` contains stage-zero outputs admitted as inputs to stage one,
-  while their upstream constructions and proofs remain separate.
+  and the necessary internal helper results. Its `Axiom/` contains only the
+  exact `Nonempty Challenge1` statement admitted as input to stage one.
+  `Interface/Solution/StageInput.lean` makes the sole witness choice; fixed
+  foundation, Milnor, sphere and route projections live below that Solution
+  component rather than under Axiom.
   Its only Challenge theorem is `Nonempty Challenge2`; all internal
   certification, comparison and projection statements and proofs live only in
   `Interface/Solution/`.
@@ -76,7 +79,8 @@ replacing it by axioms.
 
 `KIP126/Challenge1.lean` and `KIP126/Challenge2.lean` are the two shared,
 reviewable witness types crossing stage boundaries. They contain definitions
-only. Challenge 2 separates `LiteratureInterface` and
+only, and no `KIP126/Challenge1/` or `KIP126/Challenge2/` source trees are
+maintained: each boundary statement is flat in its one root file. Challenge 2 separates `LiteratureInterface` and
 `ComputationInterface`: only the latter is `C(M)`. Shared model bindings and
 comparisons remain explicit, and both parts use the same Challenge 1 model.
 Generic model comparisons are not literature results. Their producer theorems
@@ -495,9 +499,11 @@ the same commit already has a successful check covering that question, reuse it.
 
 `LinProgram/Interpretation/Route/Data.lean` owns the explicit interpretation
 choices and deterministic decoder; `Predicates.lean` states local certification
-conditions. `Challenge2/Route/Data.lean` owns the project-specific label and
-route delivery structures. These modules do not import Main or Interface and
-do not choose a stage witness. The root Challenge2 now binds the route package to Challenge1.routeInput, with
+conditions. The single flat `Challenge2.lean` owns the project-specific label,
+literature and route delivery statements; no `Challenge2/` source directory is
+maintained. The LinProgram modules do not import a project stage. Challenge2
+uses the one Challenge1 witness selected in `Interface/Solution/StageInput.lean`
+and does not choose another witness. The root Challenge2 binds the route package to Challenge1.routeInput, with
 shared labels and explicit sphere-presentation / detector-tmf comparisons.
 Producing those comparisons remains part of the Interface existence goal.
 Reusable tmf labels live in `Def/Kervaire/Route/Labels/Tmf/Data.lean`.

@@ -1,6 +1,6 @@
 import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
 import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Proofs
-import KIP126.Interface.Axiom.StandardFoundation
+import KIP126.Interface.Solution.StageInput.Foundation
 import Lean.Elab.Command
 
 /-! Audit the actual layer comparison and homology-zero tower maps.

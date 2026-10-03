@@ -23,9 +23,9 @@ Challenge 文件已移除；总包中的文献/计算投影也只在 Solution �
 | --- | --- | --- |
 | 上同调次数 | `Def/StableHomotopy/Cohomology/Data.lean` 的 Hⁿ 使用 `[Σ⁻ⁿX,HF₂]`；独立 `mod2HF2HomotopyModule` 保持 πₙ 的次数 | 可表性和系数标量证明有实际证明体；旧名 `cohomologyRepresentable_neg` 保留于负上同调次数 |
 | 规范收敛与实际塔比较 | classical `Convergence.canonical`、synthetic `Model.convergence_canonical` 约束实际塔提升；`RealizationTower` 从 F.map、张量、单位、层和边界箭头定义 E₂ map | 代表存在、唯一性、cycle/boundary 保持及部分比较定理仍为显式 `sorry`；数据文件不含待证定理 |
-| 来源与模型比较 | `Challenge2/Route/Literature` 中 ClassicalSource、TmfSource、NuCofiberSource 及 Binding；原始商代数与 QuotientAlgebraBinding/AlgebraBinding 分开 | `Statements` 提供来源结论；根 `Challenge2.routeApplication` 另交付内部应用结果。来源的存在不能验证任意预选 normalized lifts 或限制映射 |
+| 来源与模型比较 | 根 `Challenge2.lean` 中 ClassicalSource、TmfSource、NuCofiberSource 及 Binding；原始商代数与 QuotientAlgebraBinding/AlgebraBinding 分开 | `Statements` 提供来源结论；根 `Challenge2.routeApplication` 另交付内部应用结果。来源的存在不能验证任意预选 normalized lifts 或限制映射 |
 | 张量、悬移和正合性 | `ClosedSymmetricTensorTriangulated` 针对指定 CommShift；`Challenge1.TensorInput` 关联左右张量及内 Hom 的 unit/counit | 不再量化任意悬移比较；这些相容性属于既有 Challenge1 构造义务 |
-| C(M) 分项认证 | 根 `Challenge2/Route/Data.lean` 的 `CertifiedRealization`，以及 `Interface/Solution/LinProgram/Route/Certification.lean` 中的内部认证陈述与证明 | 七项共用 R/L/G；组装和拆包不重新 choice。联合存在仍依赖原 Challenge2 生产目标，尚未证明七项数据的真实性 |
+| C(M) 分项认证 | 根 `Challenge2.lean` 的 `CertifiedRealization`，以及 `Interface/Solution/LinProgram/Route/Certification.lean` 中的内部认证陈述与证明 | 七项共用 R/L/G；组装和拆包不重新 choice。联合存在仍依赖原 Challenge2 生产目标，尚未证明七项数据的真实性 |
 
 ## 同一见证的接线
 

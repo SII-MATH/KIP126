@@ -1,3 +1,4 @@
+import KIP126.Interface.Solution.StageInput
 import KIP126.Interface.Solution.LinProgram.Staircase
 import KIP126.Interface.Solution.LinProgram.Square
 import KIP126.Interface.Solution.LinProgram.Multiplication

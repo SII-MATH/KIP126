@@ -21,7 +21,7 @@
 通用谱序列理论已有实现。KIP126 的 classical 对象也已有明确构造：
 [adamsTowerInternalSpectralSequence](../KIP126/Def/ClassicalAdams/TowerSSData/Sequence/Data.lean)
 从给定单位映射及对象的 Adams 塔构造谱序列；
-[球谱特化](../KIP126/Interface/Axiom/StandardSphere/Sequence/Data.lean)
+[球谱特化](../KIP126/Interface/Solution/StageInput/StandardSphere/Sequence/Data.lean)
 使用同一个 `standardFoundation`。
 
 完整路线所需的模型数据及相容条件见

@@ -1,4 +1,4 @@
-import KIP126.Interface.Axiom.StandardSphere.Classes.Data
+import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 
 /-! T(M): the standard h₆² survives on M's internal sphere Adams sequence.

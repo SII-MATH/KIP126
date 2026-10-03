@@ -15,7 +15,7 @@
 | `select-route.py` | 筛选球谱/Cν 的局部基、状态、正式日志和根层排除，生成本管线的 `Route/{Selected.lean,selected.json}` 和 Main 消费端的 `Route/Records.lean`；`--check` 逐字核对 |
 | `import-staircase.py` | 校验固定球谱快照，生成 23,822 条无损状态记录和 187 个分片 |
 
-局部 C(M) 的入口保留在 [根 Challenge2 的 Route/Data.lean](../../Challenge2/Route/Data.lean)，筛选依据见
+局部 C(M) 的入口保留在根 [Challenge2.lean](../../Challenge2.lean)，筛选依据见
 [C_INPUT_FREEZE.md](../../../docs/C_INPUT_FREEZE.md)。它不消费旧 bulk 正确性公理。
 从仓库根目录运行：
 

@@ -1,7 +1,7 @@
 import KIP126.Challenge2
 import KIP126.LinProgram.Certificates.SquareDetection.Archive.Proofs
 import KIP126.LinProgram.Certificates.SquareDimension.Proofs
-import KIP126.Interface.Axiom.StandardSphere.Classes.Proofs
+import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Proofs
 
 namespace KIP126.Interface.Solution
 

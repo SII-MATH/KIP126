@@ -1,5 +1,5 @@
-import KIP126.Interface.Axiom.StandardSphere.Sequence.Data
-import KIP126.Interface.Axiom.StandardMilnor
+import KIP126.Interface.Solution.StageInput.StandardSphere.Sequence.Data
+import KIP126.Interface.Solution.StageInput.Milnor
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
 
 /-! Standard labels on M's internal Adams sequence, independent of C(M).

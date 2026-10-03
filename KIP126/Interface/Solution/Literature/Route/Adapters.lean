@@ -2,7 +2,7 @@ import KIP126.Interface.Solution.Literature.Route.Moss
 import KIP126.Interface.Solution.Literature.Route.RealizationKernel
 import KIP126.Interface.Solution.Literature.Route.Toda
 import KIP126.Interface.Solution.Literature.Route.May
-import KIP126.Challenge2.Route.Literature.Data
+import KIP126.Challenge2
 
 namespace KIP126.Interface.Solution.Literature.Route
 open CategoryTheory CategoryTheory.Pretriangulated

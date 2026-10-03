@@ -4,6 +4,7 @@
 
 | 文件或组件 | 职责与状态 |
 | --- | --- |
+| [StageInput.lean](StageInput.lean)／[StageInput](StageInput/) | 从唯一 `Nonempty Challenge1` 假设选择关联见证，并投影固定基础、Milnor、球谱与路线对象；这些定义不是额外公理 |
 | [Challenge2.lean](Challenge2.lean) | 完整 `Nonempty Challenge2` 的生产 theorem，仍为 `sorry`；`literatureInterface`、`computationInterface` 的实际投影证明只在这里保留，依赖总包构造 |
 | [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | 固定 CSV 单项式的线性无关与生成认证，仍为 `sorry` |
 | [LinProgram/SphereBasis.lean](LinProgram/SphereBasis.lean) | 从基认证和指定 presentation 构造实际 E₂ 坐标；运输已实现，依赖待证认证 |

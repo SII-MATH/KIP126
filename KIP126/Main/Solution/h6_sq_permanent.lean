@@ -1,5 +1,5 @@
 import KIP126.Main.Solution.Route.Selected
-import KIP126.Interface.Axiom.StandardSphere.Classes.Data
+import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 
 /-! The single final proof obligation T(M), paired with

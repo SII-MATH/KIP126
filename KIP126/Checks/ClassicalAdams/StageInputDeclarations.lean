@@ -4,7 +4,7 @@ import KIP126.Def.Solution.Challenge1
 import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.LinProgram.BasisTable
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
-import KIP126.Interface.Axiom.StandardMilnor
+import KIP126.Interface.Solution.StageInput.Milnor
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
 import Lean.Elab.Command
 
@@ -51,7 +51,8 @@ example (c : Challenge1) :
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  for name in [``KIP126.Main.StageInput.witness,
+  for name in [``KIP126.Interface.StageInput.witness,
+      ``KIP126.Main.StageInput.witness,
       ``KIP126.Main.StageInput.literature,
       ``KIP126.Main.StageInput.computation,
       ``KIP126.Classical.Adams.standardFoundation,
@@ -59,6 +60,12 @@ run_cmd do
       ``KIP126.Classical.Adams.linE2Presentation] do
     let some (.defnInfo _) := env.find? name
       | throwError "compatibility interface must be a definition: {name}"
+  for (witness, input) in [
+      (``KIP126.Interface.StageInput.witness, ``KIP126.Interface.Axiom.challenge1),
+      (``KIP126.Main.StageInput.witness, ``KIP126.Main.Axiom.challenge2)] do
+    let axioms ← liftCoreM (collectAxioms witness)
+    unless axioms.contains input do
+      throwError "stage witness does not consume its matching input: {witness}"
   let some (.thmInfo _) := env.find? ``KIP126.Computation.LinProofs.sphereTable_sound
     | throwError "sphereTable_sound must be a theorem projected from Challenge 2"
 

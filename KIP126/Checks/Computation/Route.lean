@@ -1,4 +1,4 @@
-import KIP126.Challenge2.Route.Data
+import KIP126.Challenge2
 
 /-! Selected C(M) interface regressions. These check interpretation and binding,
 not the mathematical correctness of the archived calculation. -/

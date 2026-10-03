@@ -10,8 +10,4 @@ namespace KIP126.Interface.Axiom
 
 axiom challenge1 : Nonempty KIP126.Challenge1
 
-/-- The one witness used throughout Interface and all later fixed objects. -/
-noncomputable def challenge1Witness : KIP126.Challenge1 :=
-  Classical.choice challenge1
-
 end KIP126.Interface.Axiom

@@ -1,4 +1,4 @@
-import KIP126.Challenge2.Route.Literature.Data
+import KIP126.Challenge2
 import KIP126.Main.Solution.Literature.Route.Inputs
 import Lean.Elab.Command
 
@@ -10,11 +10,10 @@ run_cmd do
   let env ← getEnv
   for m in env.allImportedModuleNames do
     if (`KIP126.Main.Axiom.LinProgram).isPrefixOf m ||
-        (`KIP126.Interface.Axiom).isPrefixOf m ||
         (`KIP126.Main.Challenge).isPrefixOf m ||
         m == `KIP126.Main.Solution.h6_sq_permanent ||
         (`KIPBase).isPrefixOf m then
-      throwError "A(M) imports a computation, fixed axiom, or final theorem: {m}"
+      throwError "A(M) imports a computation or final theorem: {m}"
   for (n, info) in env.constants.toList do
     if (`KIP126.Literature.Route).isPrefixOf n then
       if let .axiomInfo _ := info then
@@ -58,7 +57,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 
 -- The consumer receives the SAME differential, in precisely the previously
 -- frozen type, without any arbitrary differential-operation parameter.
-example (I : Inputs D η L) : KIP126.Main.Solution.Route.DifferentialLiftInput D :=
+example (I : Inputs D η L) : KIP126.Literature.Route.DifferentialLiftInput D :=
   I.differentialLift D η L
 
 -- Cν compatibility is not vacuous: the exponent sum is available.

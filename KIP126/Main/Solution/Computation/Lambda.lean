@@ -1,6 +1,6 @@
 import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
 import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
-import KIP126.Challenge2.Route.Literature.Data
+import KIP126.Challenge2
 import KIP126.Main.Solution.Computation.Route
 
 /-! Precise finite/weight-window derivations. The relevant raw degrees are

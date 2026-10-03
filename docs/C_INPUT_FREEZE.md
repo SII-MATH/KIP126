@@ -1,6 +1,6 @@
 # Section 7 路线的 C(M)：选取范围与交付边界
 
-本文件对应 `Challenge2/Route/Data.lean` 的 `Inputs D L G` / `CInput D L G`。
+本文件对应 `Challenge2.lean` 的 `Inputs D L G` / `CInput D L G`。
 这是**计算结果及其解释的交付类型**，没有默认实例、全局公理或生产证明。
 阶段二可显式接受 `I : Inputs D L G`；阶段一的任务是构造这样的值。
 本次完成接口定义和来源筛选，不宣称已证明 C(M)，也不宣称已证明其蕴涵主定理。
@@ -19,7 +19,7 @@
 ## 1. 数学对象和入口
 
 ```lean
-import KIP126.Challenge2.Route.Data
+import KIP126.Challenge2
 -- D : Kervaire.Route.Model H M Syn
 -- L : Kervaire.Route.Labels H
 -- G : Literature.Route.TmfLabels H

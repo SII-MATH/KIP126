@@ -7,8 +7,8 @@ Proposition 7.8、7.9 及其实际调用的工具、Toda/Moss、Cν、tmf 路线
 **冻结的是输入的类型、数学含义、来源和适用条件；没有证明这些输入成立，
 也没有构造满足它们的实际模型。** 不以导入所有参考文献代替依赖分析。
 
-直接导入：`import KIP126.Challenge2.Route.Literature.Data`，不再经过单导入兼容入口。
-接口位于 `KIP126/Challenge2/Route/Literature/Data.lean`：
+直接导入：`import KIP126.Challenge2`，不再经过单导入兼容入口。
+接口位于 `KIP126/Challenge2.lean`：
 
 ```lean
 KIP126.Literature.Route.Inputs D η L
@@ -46,8 +46,9 @@ E₂ 的 `g : E₂^(4,24)` 和 `Δh₁g : E₂^(9,54)`，其 CSV 识别仍属于
 
 ## 输入内容与来源
 
-下列路径相对于 `KIP126/Challenge2/Route/Literature/`；文献原文的本地路径、
-SHA-256、稳定定位及每项分类另见同目录 `sources.json`（schema 2，分别记录来源结果、模型比较、内部应用和适配证明状态）。TeX label 优先于
+下表的文件名现在表示根 `KIP126/Challenge2.lean` 中保留的同名规格段落；
+文献原文的本地路径、SHA-256、稳定定位及每项分类另见
+[`challenge2-route-sources.json`](challenge2-route-sources.json)（schema 2，分别记录来源结果、模型比较、内部应用和适配证明状态）。TeX label 优先于
 可能随版本变化的行号。`MainPaper` 只用于确定消费点，不能证明 A(M)。
 
 | 文件 / 声明 | 准确内容和条件 | 外部来源；论文消费点 |

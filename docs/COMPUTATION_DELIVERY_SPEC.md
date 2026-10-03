@@ -7,7 +7,7 @@
 
 本文说明当前交付边界、已经完成的模型接线及仍待证明的生产义务；接口存在不等于生产证明已完成。
 具体实现以 [Challenge2](../KIP126/Challenge2.lean) 和
-[路线输入](../KIP126/Challenge2/Route/Data.lean) 为准。
+[路线输入](../KIP126/Challenge2.lean) 为准。
 
 ## 1. 数学陈述：对象、标签和性质
 

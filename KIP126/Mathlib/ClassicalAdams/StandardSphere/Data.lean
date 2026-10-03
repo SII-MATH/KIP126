@@ -1,4 +1,4 @@
-import KIP126.Interface.Axiom.StandardMilnor
+import KIP126.Interface.Solution.StageInput.Milnor
 import KIP126.Def.ClassicalAdams.SphereClasses.Data
 import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
 
