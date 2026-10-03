@@ -25,16 +25,19 @@ fixed-data pipeline:
 
 1. `KIP126/Def/` is the shared mathematical base and the first production
    stage. It contains definitions, predicates, constructions, reusable
-   theorems, and the Challenge/Solution pair for `Challenge1`. It contains no
+   theorems, and the single Challenge/Solution pair for `Nonempty Challenge1`.
+   Internal stage obligations live only in Def/Solution; generic mathematical
+   components keep their existing proof modules. Def contains no
    project `axiom` declarations. An unfinished theorem may remain visibly
    unfinished with `by sorry`; proof debt must not be hidden by changing its
    declaration kind.
-2. `KIP126/Interface/` is the first proof stage. Its Challenge/Solution track
-   proves fixed program outputs after deterministic interpretation as `C(M)`,
-   their comparisons and the necessary internal helper results. Its `Axiom/` contains
+2. `KIP126/Interface/` is the first proof stage. Its only Challenge theorem is
+   `Nonempty Challenge2`. Internal computation certification, comparisons and
+   helper statements and proofs live only in Interface/Solution. Its `Axiom/` contains
    stage-zero outputs admitted as inputs to this first proof stage.
-3. `KIP126/Main/` is the second proof stage. Its paired Challenge/Solution tracks own
-   the paper deductions and the single final goal. Its `Axiom/` tree provides
+3. `KIP126/Main/` is the second proof stage. Intermediate statements and proofs
+   live only in `Main/Solution/`; only the single final goal has matching
+   `Challenge/Final/` and `Solution/Final/` declarations. Its `Axiom/` tree provides
    audited development assumptions so this work can proceed in parallel with
    Interface proofs.
 
@@ -43,7 +46,7 @@ and their source artifacts. The Lean source catalogue and generic evidence
 helpers live in `Def/References`; project-specific evidence construction and
 field extraction live in `Main/Solution/Literature`. `KIP126/LinProgram/` manages raw artifacts, deterministic translation,
 generated records, parameterized interpretations, and local certificates.
-`Interface/{Challenge,Solution}/LinProgram/` produces the resulting claims on
+`Interface/Solution/LinProgram/` produces the resulting claims on
 the chosen model; `Main/Solution/StageInput.lean` and
 `Main/Solution/Computation/` supply consumer projections and adapters for those claims. The Mathlib adapter and Checks trees retain their
 independent roles;
@@ -228,9 +231,11 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    specialized from the same Challenge1 witness in
    `Interface/Axiom/StandardSphere`. They do not require C(M).
    `Main/Challenge/Final/h6_sq_permanent.lean` is the sole final target and
-   `Main/Solution/Final/h6_sq_permanent.lean` is its still-unproved solution.
-   The duplicate computational final target has been removed. CSV/standard
-   identifications remain comparison lemmas and may be used in the eventual
+   `Main/Solution/Final/h6_sq_permanent.lean` assembles Propositions 7.8 and 7.9
+   on the same stage witness. Those two proofs still contain `sorry`, so the
+   full theorem remains unfinished. The duplicate computational final target
+   has been removed. CSV/standard identifications remain comparison lemmas
+   and may be used in the eventual
    proof; they are not part of the final statement's definition.
    The fixed foundation is still admitted through the Challenge1 existence
    axiom. Thus independence from C(M) does not mean independence from all
@@ -246,8 +251,8 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
 By explicit user decision, Lin computation facts are to be imported in bulk
 from `proofs.db`, not introduced as one external axiom per row. The named
 `KIP126.Computation.LinProofs.sphereTable_sound` in
-the Lin-program portion of `KIP126/Main/Axiom/` is a projection of the selected
-Challenge2 witness, not an additional standalone axiom. It links literal CSV coordinates to
+`Main/Solution/Computation/LinProgram/Interpretation/Differentials/Certificate.lean`
+is a projection of the selected Challenge2 witness, not an additional standalone axiom. It links literal CSV coordinates to
 the existing tower-derived `sphereAdamsData`; it is not a soundness assertion
 for arbitrary tables or arbitrary caller-supplied `Prop`s. The compiled audit
 must inventory this exact exception and still reject it at final acceptance.
@@ -262,9 +267,11 @@ means for a supplied mathematical model. `Certificates/` contains local
 kernel-checked results about the fixed algebraic data; transporting them to the
 chosen model remains an Interface obligation. Main consumes the corresponding
 Challenge 2 computation delivery rather than its Interface producer proofs.
-`Main/Axiom/` contains input types, the one witness and its projections, and
-source metadata. Mathematical deductions and their imports are owned by the
-paired Main proof tracks, not by `Proofs.lean` files in the input directory.
+`Main/Axiom/` contains precise input statements, the single stage existence
+assumption, and source metadata. The witness and its projections live in
+`Main/Solution/StageInput.lean`. Intermediate deductions and their imports live
+only in `Main/Solution/`; only the final target is paired with Main/Challenge.
+There are no `Proofs.lean` files in the input directory.
 The input entry module must not import Main proofs, Interface producers or
 Checks. Source metadata helpers and transparent evidence extraction remain
 distinct from proving the mathematical claims carried by those inputs.
@@ -288,7 +295,7 @@ the generated manifest for exact scope.
 Deterministic translation, a successful hash check, and a generated Lean row
 establish reproducible syntax and provenance, not the row's mathematical
 truth. Replaying or verifying the interpreted conclusions from `Def/` is an
-Interface Challenge/Solution obligation. The initial migration preserves the
+internal Interface/Solution obligation contributing to `Nonempty Challenge2`. The initial migration preserves the
 existing bulk assumption and generated declarations; it does not claim that
 this verification has already been implemented.
 
@@ -387,8 +394,11 @@ dependency on the very computation facts it certifies.
 
 The near-126 reductions also belong to Main/Solution, grouped into
 ChoiceIndependence, DifferentialReduction and ExtensionObstruction. Only the
-final endpoint retains Main Challenge/Solution mirrors. The layout does not
-repair the historical free-predicate statements.
+final endpoint retains a Main Challenge/Solution pair; this also means that
+computation, literature-input deductions and route obligations have no
+intermediate Challenge mirrors. The final Solution assembles Propositions 7.8
+and 7.9, whose proofs still contain `sorry`. This layout change does not
+complete the remaining mathematical proof obligations.
 
 Fixed CSV basis independence and spanning is a computation certification:
 Interface produces it and Main consumes actual E2 coordinates and CSV values through

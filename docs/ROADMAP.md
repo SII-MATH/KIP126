@@ -59,7 +59,9 @@ convention 不一致、定理强度不对齐，或把数学内容藏入公理/ty
 Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录，只用注释标出
 “数学定义 → 外部输入 → 内部证明”三层。每章对应一组按数学概念划分的 Lean 模块，
 而不是单个源文件；`KIP126/Def.lean`、`KIP126/Main/Axiom.lean` 和
-`KIP126/Main/Challenge.lean` 是这些模块的包入口。旧路径与新路径的逐项对应及开放节点
+`KIP126/Main/Solution.lean` 是相应的定义、输入与推导入口；
+唯一 Final 目标直接导入 `KIP126.Main.Challenge.Final.h6_sq_permanent`。所有 Main 中间陈述和证明只在
+Solution 维护；Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。旧路径与新路径的逐项对应及开放节点
 见 [`DEF_CHALLENGE_LAYOUT_STATUS.md`](DEF_CHALLENGE_LAYOUT_STATUS.md)。
 章级 Blueprint 节点数量与完成度不在本文件汇总，以对应章节子 Wiki 的当前记录为准。
 

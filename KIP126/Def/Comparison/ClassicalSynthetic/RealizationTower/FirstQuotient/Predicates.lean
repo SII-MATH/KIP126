@@ -1,6 +1,6 @@
 import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Canonical.Data
 import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Route.Data
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Uniqueness
+import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Detection.Proofs
 
 /-! The first-quotient comparison, pinned to realization and actual tower
 arrows. Realization of nu X/lambda itself is zero, so applying realization

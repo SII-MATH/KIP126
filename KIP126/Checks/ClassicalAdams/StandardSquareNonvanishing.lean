@@ -1,12 +1,12 @@
 import KIP126.Checks.ClassicalAdams.StandardSquareGeneric
-import KIP126.Main.Solution.Literature.StandardSphere.Proofs
+import KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs
 import Lean.Elab.Command
 
 /-! The fixed specialization uses the existing foundation and Milnor
-coordinates projected from one Challenge1 witness. That witness now also
-contains Lin-basis data, so its import closure includes the corresponding
-types. The separate StandardSquareGeneric check preserves the proof's
-independence from those data; this check audits the fixed stage dependency. -/
+coordinates projected from one Challenge1 witness. Its Mathlib sphere-page
+objects and proof live in the StandardSphere adapter. The separate
+StandardSquareGeneric check preserves the generic proof's independence from
+adapters, Lin data and stage witnesses; this check audits the fixed dependency. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -22,7 +22,11 @@ run_cmd do
     unless KIP126.Checks.AxiomInputs.uses axioms a do
       throwError "missing disclosed standard-square dependency: {a}"
   for m in (← getEnv).allImportedModuleNames do
-    if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
+    let sphereAdapter := [
+      `KIP126.Mathlib.ClassicalAdams.StandardSphere.Data,
+      `KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs]
+    if ((`KIP126.Mathlib).isPrefixOf m && !sphereAdapter.contains m) ||
+        (`KIPBase).isPrefixOf m ||
         (`KIP126.External).isPrefixOf m then
       throwError "unexpected standard-square import: {m}"
 

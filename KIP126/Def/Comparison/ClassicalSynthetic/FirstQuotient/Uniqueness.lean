@@ -1,1 +1,0 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Detection.Proofs

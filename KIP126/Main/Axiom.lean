@@ -9,7 +9,7 @@ import KIP126.Def.References.Literature.SourceInventory
 import KIP126.Main.Axiom.Challenge2
 import KIP126.Main.Axiom.Literature.May
 import KIP126.Main.Axiom.Literature.InternalGeometry
-import KIP126.Main.Axiom.Literature.Route
+import KIP126.Challenge2.Route.Literature.Data
 import KIP126.Def.References.Literature.EtaRows.Data
 import KIP126.Def.References.Literature.Adams.OneLine
 import KIP126.Def.References.Literature.AppendixTable.Rows.Catalogue.Data

@@ -2,6 +2,17 @@
 
 本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../README.md)；本次只迁移，未补证明或修改陈述。
 
+## 分层与直接入口
+
+直接导入 `KIP126.Def.Steenrod.MilnorCobar.Proofs`，不再经过只重导出它的
+`MilnorCobar.lean`。多项式层 `Polynomial/{Data,Predicates,Proofs}` 保存原始
+运算、正规化 cochain 条件及保持性证明；本层的 Data/Predicates/Proofs 将
+运算限制到 cochains，定义 cocycle 条件并提供相应定理。
+
+第二层的数据构造使用第一层的保持性证明，相关证明义务仍在 Proofs 模块中；
+删除入口不新增假设、不改变具体公式或声明名称。原入口的历史未证数量
+不作为当前证明状态，具体状态应核对实际声明及其依赖。
+
 ## 1. 原先期望包含什么
 
 共享数学对象、条件和构造所需的性质。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。

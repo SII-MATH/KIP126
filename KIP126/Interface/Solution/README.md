@@ -1,10 +1,10 @@
 # Solution：阶段交付的生产证明
 
-这里从上游基础和固定工件证明根 `Challenge2` 的交付。文献与计算分成两个 structure，C(M) 只指计算部分；共享模型绑定保证两者使用同一个 Challenge1 模型。
+这里从上游基础和固定工件证明根 `Challenge2` 的交付。只有完整的 `Nonempty Challenge2` 与 Interface/Challenge 配对；所有内部认证、比较、适配和投影的陈述与证明只在本目录维护。文献与计算分成两个 structure，C(M) 只指计算部分；共享模型绑定保证两者使用同一个 Challenge1 模型。
 
 | 文件或组件 | 职责与状态 |
 | --- | --- |
-| [Challenge2.lean](Challenge2.lean) | 完整 `Nonempty Challenge2` 的生产 theorem，仍为 `sorry` |
+| [Challenge2.lean](Challenge2.lean) | 完整 `Nonempty Challenge2` 的生产 theorem，仍为 `sorry`；`literatureInterface`、`computationInterface` 的实际投影证明只在这里保留，依赖总包构造 |
 | [LinProgram/BasisTable.lean](LinProgram/BasisTable.lean) | 固定 CSV 单项式的线性无关与生成认证，仍为 `sorry` |
 | [LinProgram/SphereBasis.lean](LinProgram/SphereBasis.lean) | 从基认证和指定 presentation 构造实际 E₂ 坐标；运输已实现，依赖待证认证 |
 | [LinProgram/Multiplication.lean](LinProgram/Multiplication.lean) | 指定 presentation 与实际球谱乘法、单位相容，仍为 `sorry` |

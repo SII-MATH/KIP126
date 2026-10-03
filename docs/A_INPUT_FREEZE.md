@@ -7,7 +7,7 @@ Proposition 7.8、7.9 及其实际调用的工具、Toda/Moss、Cν、tmf 路线
 **冻结的是输入的类型、数学含义、来源和适用条件；没有证明这些输入成立，
 也没有构造满足它们的实际模型。** 不以导入所有参考文献代替依赖分析。
 
-公共入口：`import KIP126.Main.Axiom.Literature.Route`。
+直接导入：`import KIP126.Challenge2.Route.Literature.Data`，不再经过单导入兼容入口。
 接口位于 `KIP126/Challenge2/Route/Literature/Data.lean`：
 
 ```lean

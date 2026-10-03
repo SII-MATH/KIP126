@@ -29,8 +29,33 @@ run_cmd do
   let logical := [``propext, ``Classical.choice, ``Quot.sound]
   let foundation := ``KIP126.Classical.Adams.standardFoundation
   let inputs := [foundation, ``KIP126.Classical.Adams.linE2Presentation]
-  -- The unfinished Solution exposes its own proof debt. Its current placeholder
-  -- does not establish an actual use of C(M) in a mathematical proof.
+  -- The final logical step uses the shared A(M)/C(M) witness through 7.8/7.9.
+  -- Its remaining proof debt is inherited from those unfinished route theorems.
+  let finalDependencies := si.value.getUsedConstants
+  if finalDependencies.contains ``sorryAx then
+    throwError "the final logical step must retain its actual proof"
+  -- Both tracks are imported here for their type comparison. Inspect the
+  -- Solution dependency closure to ensure it never borrows a Challenge proof.
+  let mut todo : Array Name := #[solution]
+  let mut seen : NameSet := {}
+  while !todo.isEmpty do
+    let name := todo.back!
+    todo := todo.pop
+    if seen.contains name then continue
+    seen := seen.insert name
+    let some info := env.find? name | throwError "missing final dependency: {name}"
+    if let some moduleIdx := env.getModuleIdxFor? name then
+      let owner := env.header.moduleNames[moduleIdx]!
+      if (`KIP126.Main.Challenge).isPrefixOf owner ||
+          (`KIP126.Interface.Challenge).isPrefixOf owner ||
+          (`KIP126.Def.Challenge).isPrefixOf owner then
+        throwError "final Solution depends on a Challenge declaration: {name}: {owner}"
+      -- External libraries cannot refer to project declarations. Traverse
+      -- project modules, including their private and generated declarations.
+      unless (`KIP126).isPrefixOf owner do continue
+    todo := todo ++ info.type.getUsedConstants
+    if let some value := info.value? then
+      todo := todo ++ value.getUsedConstants
   let axioms ← liftCoreM (collectAxioms solution)
   for a in axioms do
     unless KIP126.Checks.AxiomInputs.allows (logical ++ [``sorryAx] ++ inputs) a do

@@ -10,7 +10,7 @@
 
 - 项目交付规格：[Challenge2](../../Challenge2.lean)。
 - 文献来源规格：[Route/Literature](../../Challenge2/Route/Literature/Data.lean)。
-- 消费构造与推论：[Main/Solution](../Solution.lean)，数学推论有配对 Challenge。
+- 消费构造与中间推论：[Main/Solution](../Solution.lean)，陈述与证明均只在该目录维护；只有最终目标与 Challenge 配对。
 - 原始与生成数据：[LinProgram](../../LinProgram/README.md)。
 - 通用来源目录与证据类型：[Def/References](../../Def/References/README.md)。
 

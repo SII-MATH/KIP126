@@ -518,5 +518,120 @@
         "challenge": "KIP126/Main/Challenge/Literature/May.lean"
       }
     }
+  },
+  "main_challenge_followup_2026_10_03": {
+    "description": "Main/Challenge retains only the final theorem, whose type must match Main/Solution/Final. Intermediate statements and proofs remain in Solution without Challenge mirrors. This supersedes intermediate Challenge pairing recorded in earlier followups; Def and Interface stage boundaries are unchanged.",
+    "retained_challenge": "KIP126/Main/Challenge/Final/h6_sq_permanent.lean",
+    "retained_solution": "KIP126/Main/Solution/Final/h6_sq_permanent.lean",
+    "removed_challenge_mirrors": {
+      "KIP126/Main/Challenge/Computation/Comparisons/Classes.lean": "KIP126/Main/Solution/Computation/Comparisons/Classes.lean",
+      "KIP126/Main/Challenge/Computation/Differential/Second.lean": "KIP126/Main/Solution/Computation/Differential/Second.lean",
+      "KIP126/Main/Challenge/Computation/Lambda.lean": "KIP126/Main/Solution/Computation/Lambda.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Basis/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Basis/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Basis/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Basis/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Classes/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Classes/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Differential/LongLayer/Cancellation/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/Cancellation/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Differential/LongLayer/Lifting/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/Lifting/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Differential/LongLayer/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Differential/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differential/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Differentials/Certificate.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differentials/Certificate.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Differentials/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differentials/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Expressions/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Expressions/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Presentation/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Presentation/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Selected/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Selected/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Interpretation/Tower/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Tower/Proofs.lean",
+      "KIP126/Main/Challenge/Computation/LinProgram/Route/Records.lean": "KIP126/Main/Solution/Computation/LinProgram/Route/Records.lean",
+      "KIP126/Main/Challenge/Computation/Route.lean": "KIP126/Main/Solution/Computation/Route.lean",
+      "KIP126/Main/Challenge/Computation/Tower/Survival.lean": "KIP126/Main/Solution/Computation/Tower/Survival.lean",
+      "KIP126/Main/Challenge/Literature/Adams/OneLine.lean": "KIP126/Main/Solution/Literature/Adams/OneLine.lean",
+      "KIP126/Main/Challenge/Literature/EtaRows/Proofs.lean": "KIP126/Main/Solution/Literature/EtaRows/Proofs.lean",
+      "KIP126/Main/Challenge/Literature/HopfCofiber/Proofs.lean": "KIP126/Main/Solution/Literature/HopfCofiber/Proofs.lean",
+      "KIP126/Main/Challenge/Literature/InternalGeometry.lean": "KIP126/Main/Solution/Literature/InternalGeometry.lean",
+      "KIP126/Main/Challenge/Literature/May.lean": "KIP126/Main/Solution/Literature/May.lean",
+      "KIP126/Main/Challenge/Literature/Near126/Sphere/Boundaries/Proofs.lean": "KIP126/Main/Solution/Literature/Near126/Sphere/Boundaries/Proofs.lean",
+      "KIP126/Main/Challenge/Literature/Near126/Sphere/Conditions/Proofs.lean": "KIP126/Main/Solution/Literature/Near126/Sphere/Conditions/Proofs.lean",
+      "KIP126/Main/Challenge/Literature/Near126/Sphere/Proofs.lean": "KIP126/Main/Solution/Literature/Near126/Sphere/Proofs.lean",
+      "KIP126/Main/Challenge/Literature/Route/Applicability.lean": "KIP126/Main/Solution/Literature/Route/Applicability.lean",
+      "KIP126/Main/Challenge/Literature/Route/Inputs.lean": "KIP126/Main/Solution/Literature/Route/Inputs.lean",
+      "KIP126/Main/Challenge/Literature/StandardSphere/Proofs.lean": "KIP126/Main/Solution/Literature/StandardSphere/Proofs.lean",
+      "KIP126/Main/Challenge/Literature/Synthetic.lean": "KIP126/Main/Solution/Literature/Synthetic.lean",
+      "KIP126/Main/Challenge/Route/Selected.lean": "KIP126/Main/Solution/Route/Selected.lean"
+    },
+    "proof_status": "Only redundant statement copies were removed. Solution theorem statements and proof bodies are unchanged; existing sorry obligations and stage assumptions remain."
+  },
+  "stage_challenge_followup_2026_10_03": {
+    "description": "All three stages keep only their aggregate delivery target in Challenge. Def delivers Nonempty Challenge1, Interface delivers Nonempty Challenge2, and Main delivers the standard h6-square final theorem. This supersedes earlier requirements for intermediate Challenge mirrors; root witness structures, Solution statements/proofs and consumer axioms are unchanged.",
+    "retained_challenges": [
+      "KIP126/Def/Challenge/Challenge1.lean",
+      "KIP126/Interface/Challenge/Challenge2.lean",
+      "KIP126/Main/Challenge/Final/h6_sq_permanent.lean"
+    ],
+    "removed_challenge_mirrors": {
+      "KIP126/Def/Challenge/FoundationConsequences.lean": "KIP126/Def/Solution/FoundationConsequences.lean",
+      "KIP126/Def/Challenge/Synthetic/Completion.lean": "KIP126/Def/Solution/Synthetic/Completion.lean",
+      "KIP126/Def/Challenge/Synthetic/Localization.lean": "KIP126/Def/Solution/Synthetic/Localization.lean",
+      "KIP126/Def/Challenge/Toda.lean": "KIP126/Def/Solution/Toda.lean",
+      "KIP126/Interface/Challenge/AdamsOneLine.lean": "KIP126/Interface/Solution/AdamsOneLine.lean",
+      "KIP126/Interface/Challenge/CanonicalPageExtension.lean": "KIP126/Interface/Solution/CanonicalPageExtension.lean",
+      "KIP126/Interface/Challenge/Cobar.lean": "KIP126/Interface/Solution/Cobar.lean",
+      "KIP126/Interface/Challenge/CoherentPageExtension.lean": "KIP126/Interface/Solution/CoherentPageExtension.lean",
+      "KIP126/Interface/Challenge/FiniteCoherentPageExtension.lean": "KIP126/Interface/Solution/FiniteCoherentPageExtension.lean",
+      "KIP126/Interface/Challenge/InternalNaturality.lean": "KIP126/Interface/Solution/InternalNaturality.lean",
+      "KIP126/Interface/Challenge/InternalPages.lean": "KIP126/Interface/Solution/InternalPages.lean",
+      "KIP126/Interface/Challenge/LinProgram/BasisTable.lean": "KIP126/Interface/Solution/LinProgram/BasisTable.lean",
+      "KIP126/Interface/Challenge/LinProgram/Multiplication.lean": "KIP126/Interface/Solution/LinProgram/Multiplication.lean",
+      "KIP126/Interface/Challenge/LinProgram/Route/Certification.lean": "KIP126/Interface/Solution/LinProgram/Route/Certification.lean",
+      "KIP126/Interface/Challenge/LinProgram/SphereBasis.lean": "KIP126/Interface/Solution/LinProgram/SphereBasis.lean",
+      "KIP126/Interface/Challenge/LinProgram/Square.lean": "KIP126/Interface/Solution/LinProgram/Square.lean",
+      "KIP126/Interface/Challenge/LinProgram/Staircase.lean": "KIP126/Interface/Solution/LinProgram/Staircase.lean",
+      "KIP126/Interface/Challenge/Literature/Route/Adapters.lean": "KIP126/Interface/Solution/Literature/Route/Adapters.lean",
+      "KIP126/Interface/Challenge/Literature/Route/May.lean": "KIP126/Interface/Solution/Literature/Route/May.lean",
+      "KIP126/Interface/Challenge/Literature/Route/Moss.lean": "KIP126/Interface/Solution/Literature/Route/Moss.lean",
+      "KIP126/Interface/Challenge/Literature/Route/RealizationKernel.lean": "KIP126/Interface/Solution/Literature/Route/RealizationKernel.lean",
+      "KIP126/Interface/Challenge/Literature/Route/Toda.lean": "KIP126/Interface/Solution/Literature/Route/Toda.lean",
+      "KIP126/Interface/Challenge/LowDimensionalPermanence.lean": "KIP126/Interface/Solution/LowDimensionalPermanence.lean",
+      "KIP126/Interface/Challenge/Moss.lean": "KIP126/Interface/Solution/Moss.lean",
+      "KIP126/Interface/Challenge/PageExtensionAmbiguity.lean": "KIP126/Interface/Solution/PageExtensionAmbiguity.lean",
+      "KIP126/Interface/Challenge/PageExtensionKernel.lean": "KIP126/Interface/Solution/PageExtensionKernel.lean",
+      "KIP126/Interface/Challenge/PageExtensionSolutions.lean": "KIP126/Interface/Solution/PageExtensionSolutions.lean",
+      "KIP126/Interface/Challenge/SyntheticEInfty.lean": "KIP126/Interface/Solution/SyntheticEInfty.lean",
+      "KIP126/Interface/Challenge/Tmf.lean": "KIP126/Interface/Solution/Tmf.lean"
+    },
+    "removed_projection_mirrors": {
+      "KIP126.Interface.Challenge.literatureInterface": "KIP126.Interface.Solution.literatureInterface",
+      "KIP126.Interface.Challenge.computationInterface": "KIP126.Interface.Solution.computationInterface"
+    },
+    "proof_status": "77 redundant intermediate declarations removed; their Solution declarations and proofs, including existing sorry obligations, are unchanged."
+  },
+  "single_import_entry_followup_2026_10_03": {
+    "description": "Remove redundant single-import KIP126 entry modules and import their concrete targets directly. Historical mappings above retain their original paths; this followup records the later removal, not a move of declarations.",
+    "removed_entries": {
+      "KIP126/Def/AdamsE2.lean": "KIP126/Def/AdamsE2/Classes/Proofs.lean",
+      "KIP126/Def/Challenge.lean": "KIP126/Def/Challenge/Challenge1.lean",
+      "KIP126/Def/Comparison/ClassicalSynthetic/FirstQuotient/Uniqueness.lean": "KIP126/Def/Comparison/ClassicalSynthetic/FirstQuotient/Detection/Proofs.lean",
+      "KIP126/Def/SpectralSequence/Completion.lean": "KIP126/Def/SpectralSequence/Completion/UniversalProperty/Proofs.lean",
+      "KIP126/Def/SpectralSequence/Convergence.lean": "KIP126/Def/SpectralSequence/Convergence/Category/Data.lean",
+      "KIP126/Def/SpectralSequence/Crossing.lean": "KIP126/Def/SpectralSequence/Crossing/Proofs.lean",
+      "KIP126/Def/SpectralSequence/Extension.lean": "KIP126/Def/SpectralSequence/Extension/Complex/Proofs.lean",
+      "KIP126/Def/SpectralSequence/FilteredComplex/HomologyTarget.lean": "KIP126/Def/SpectralSequence/FilteredComplex/HomologyTarget/Data.lean",
+      "KIP126/Def/SpectralSequence/FilteredComplex/SSDataConstruction.lean": "KIP126/Def/SpectralSequence/FilteredComplex/SpectralSequenceConstruction/Data.lean",
+      "KIP126/Def/SpectralSequence/FilteredComplex/WeakConvergence.lean": "KIP126/Def/SpectralSequence/FilteredComplex/WeakConvergence/Data.lean",
+      "KIP126/Def/SpectralSequence/UnboundedExtension.lean": "KIP126/Def/SpectralSequence/UnboundedExtension/TruncatedSpectralSequence/Data.lean",
+      "KIP126/Def/Steenrod/MilnorCobar.lean": "KIP126/Def/Steenrod/MilnorCobar/Proofs.lean",
+      "KIP126/Interface/Challenge.lean": "KIP126/Interface/Challenge/Challenge2.lean",
+      "KIP126/Main/Axiom/Literature/Route.lean": "KIP126/Challenge2/Route/Literature/Data.lean",
+      "KIP126/Main/Challenge.lean": "KIP126/Main/Challenge/Final/h6_sq_permanent.lean",
+      "KIP126/Main/Solution/ChoiceIndependence/Data.lean": "KIP126/Def/Kervaire/Route/Conditions/Predicates.lean",
+      "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Basis/Algebra/Data.lean": "KIP126/Main/Solution/Computation/LinProgram/Basis/Data.lean",
+      "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Basis/Algebra/Proofs.lean": "KIP126/Main/Solution/Computation/LinProgram/Basis/Proofs.lean",
+      "KIP126/Main/Solution/Computation/LinProgram/Interpretation/BasisTable.lean": "KIP126/Main/Solution/Computation/LinProgram/Basis/Proofs.lean",
+      "KIP126/Main/Solution/Literature/StandardSphere/Proofs.lean": "KIP126/Mathlib/ClassicalAdams/StandardSphere/Proofs.lean"
+    },
+    "retained_library_roots": {
+      "KIPBase.lean": "Required Lake library root, retained despite its single import of KIPBase.Basic."
+    },
+    "policy": "Do not add declaration-free wrappers for a single import unless a required library root or other explicit module behavior needs the file. Multi-module aggregators remain; namespace and declaration names are not rewritten.",
+    "documentation": "Unique scope and layering explanations were retained in the concrete component READMEs. Basis/Algebra compatibility documentation was consolidated into Main/Solution/Computation/LinProgram/Basis/README.md.",
+    "proof_status": "No mathematical declaration, proof obligation, or stage target is removed by these wrapper deletions. This record does not assert successful compilation or completion of any outstanding proof."
   }
 }

@@ -1,38 +1,32 @@
-import KIP126.Main.Challenge.Literature.Synthetic
 import KIP126.Main.Solution.Literature.Synthetic
-import KIP126.Main.Challenge.Literature.InternalGeometry
 import KIP126.Main.Solution.Literature.InternalGeometry
-import KIP126.Main.Challenge.Literature.May
 import KIP126.Main.Solution.Literature.May
 import KIP126.Main.Solution.Literature.SyntheticBockstein
 import KIP126.Main.Solution.Literature.SyntheticEInfty
 import Lean.Elab.Command
-import Lean.Meta.Basic
 
-/-! Moving explicit evidence extraction out of Axiom preserves its proof and
-type. Its statement track remains open and cannot supply the Solution proof. -/
+/-! Explicit evidence extraction belongs to Solution and introduces no new
+assumption beyond the input type. These proofs have no Challenge mirror. -/
 
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  for (solution, challenge) in [
-      (``KIP126.Synthetic.SyntheticLiteratureInput.interface,
-       ``KIP126.Synthetic.Challenge.SyntheticLiteratureInput.interface),
-      (``KIP126.Kervaire.GeometryLiteratureInput.interface,
-       ``KIP126.Kervaire.Challenge.GeometryLiteratureInput.interface),
-      (``KIP126.Kervaire.InternalBrowderLiteratureInput.interface,
-       ``KIP126.Kervaire.Challenge.InternalBrowderLiteratureInput.interface),
-      (``KIP126.Stable.MayLiteratureInput.interface,
-       ``KIP126.Stable.Challenge.MayLiteratureInput.interface)] do
-    let some (.thmInfo si) := env.find? solution | throwError "missing solution {solution}"
-    let some (.thmInfo ci) := env.find? challenge | throwError "missing challenge {challenge}"
-    unless si.levelParams.length == ci.levelParams.length do
-      throwError "universe mismatch {solution}"
-    let ct := ci.type.instantiateLevelParams ci.levelParams (si.levelParams.map Level.param)
-    unless ← liftTermElabM (Lean.Meta.isDefEq si.type ct) do
-      throwError "signature mismatch {solution}"
-    unless ci.value.getUsedConstants.contains ``sorryAx do
-      throwError "Challenge must remain open {challenge}"
+  for m in env.allImportedModuleNames do
+    if (`KIP126.Main.Challenge).isPrefixOf m ||
+        (`KIP126.Interface.Challenge).isPrefixOf m ||
+        (`KIP126.Def.Challenge).isPrefixOf m then
+      throwError "Solution imports a Challenge placeholder module: {m}"
+  for solution in [
+      ``KIP126.Synthetic.SyntheticLiteratureInput.interface,
+      ``KIP126.Kervaire.GeometryLiteratureInput.interface,
+      ``KIP126.Kervaire.InternalBrowderLiteratureInput.interface,
+      ``KIP126.Stable.MayLiteratureInput.interface] do
+    let some (.thmInfo _) := env.find? solution | throwError "missing Solution theorem {solution}"
+    let some moduleIdx := env.getModuleIdxFor? solution
+      | throwError "missing Solution module: {solution}"
+    let owner := env.header.moduleNames[moduleIdx]!
+    unless (`KIP126.Main.Solution).isPrefixOf owner do
+      throwError "evidence extraction moved outside Solution: {solution}: {owner}"
     let logical := [``propext, ``Classical.choice, ``Quot.sound]
     let projectAxioms := (← liftCoreM (collectAxioms solution)).filter
       (fun name => !logical.contains name)

@@ -185,14 +185,14 @@ Main 的待证推导另见下节，不能与生成数据校验混为一谈。
 
 这些验证不构造 `Inputs` 的数学见证，也不证明有限数据足以推出最终结论。
 
-## 8. Main 的配对推导目标（PR #150 设计提取）
+## 8. Main 的中间推导义务（PR #150 设计提取）
 
-`Main/Challenge/Computation/Route.lean` 和 `Lambda.lean` 保存准确目标，
-`Main/Solution/Computation/Route.lean` 和 `Lambda.lean` 保存同签名的证明或 `sorry`。
+`Main/Solution/Computation/Route.lean` 和 `Lambda.lean` 同时保存准确陈述与证明，
+未完成处保留 `sorry`。中间结果不另设 Challenge 镜像；Main 只有最终定理配对。
 它们都显式接收同一 `D`、`L`、`G` 上的 `Inputs`；没有选取另一个全局见证。
 根 `Challenge2` 已绑定路线 `Inputs`，Main 的 `StageInput.routeComputation`
 直接投影它；`routeLiterature` 使用相同模型与 tmf 标签。
-`Main/{Challenge,Solution}/Route/Selected.lean` 把 Cν、λ 单步单射特化到此见证，
+`Main/Solution/Route/Selected.lean` 把 Cν、λ 单步单射特化到此见证，
 并列出 Proposition 7.8/7.9 的实际消费目标。最终定理调用这两条待证命题再逻辑收尾。
 这些 Proposition 仍为 `sorry`，有限页到永久存活、消失线、过滤分离等步骤并未完成。
 
@@ -214,24 +214,25 @@ Main 的待证推导另见下节，不能与生成数据校验混为一谈。
 范围特化可以直接证明；其余尚未完成的代数、比较、尾部代表及过滤论证仍明确为 `sorry`。
 λ 数值特例通过一般条件命题推导，其依赖中的 `sorry` 仍然存在，不能计为完整数学证明。
 
-`Checks/Computation/RouteGoals.lean` 检查两侧完整类型及 Challenge 占位；
-布局检查禁止 Interface/LinProgram 的生产认证反向依赖这些 Main 推导。
+`Checks/Computation/RouteGoals.lean` 直接检查 Solution 的声明及证明状态，
+不再要求中间 Challenge 镜像。布局检查禁止 Interface/LinProgram 的生产认证
+反向依赖这些 Main 推导，也禁止 Main/Solution 的依赖闭包使用 Challenge 占位。
 这些目标不改变最终命题、标准 h₆² 定义或现有阶段公理。
 
-本批验证：32 对完整签名的 Lean 内核检查和四个受影响 Main 模块定向编译通过；
+提取时的历史验证（中间镜像现已删除）：32 对完整签名的 Lean 内核检查和四个受影响 Main 模块定向编译通过；
 10 项目录依赖检查通过。32 条 Solution 中 8 条有证明体、24 条保留直接 `sorry`；
 其中 3 条有证明体的 λ 特例依赖本批待证的一般命题。没有据此宣称证明完成，未跟踪 CI。
 
-## 9. 固定模型接线验证
+## 9. 固定模型接线及当时的验证记录
 
 - `Challenge1.routeInput`、根 Challenge2 的共享绑定和 Main.StageInput 已相连；
-  Cν 与 λ 单步单射的固定实例、Proposition 7.8/7.9 的配对目标及最终逻辑调用已接通。
-- 定向编译 `Checks.ClassicalAdams.StageInputDeclarations`、`Checks.Computation.RouteGoals`、
+  Cν 与 λ 单步单射的固定实例、Proposition 7.8/7.9 的 Solution 目标及最终逻辑调用已接通。
+- 接线批次当时的定向编译：`Checks.ClassicalAdams.StageInputDeclarations`、`Checks.Computation.RouteGoals`、
   `Checks.Kervaire.RouteBoundary`、`Checks.Kervaire.RouteFixedFinal` 和两个迁移后的文献消费模块
   通过（3318 jobs）。核对 38 对 Main 声明以及两阶段生产声明类型、同一见证投影、
-  sphere presentation 相容和最终标准 h₆² 定义。
+  sphere presentation 相容和最终标准 h₆² 定义。中间配对检查现已由直接检查 Solution 取代。
 - 10 项目录依赖检查通过；28 组文献来源覆盖及 17 个原始文件哈希校验通过。
-- 未删除原有 theorem/lemma 声明；最终 Challenge 文件保持不变。
+- 该接线批次未删除原有 theorem/lemma 声明；本轮只删除重复的中间 Challenge 声明，保留 Solution 和最终 Challenge。
 - Def/Interface 的整包构造仍为 `sorry`。Main 新增两条 Proposition 的显式证明占位；
   最终定理的逻辑收尾因此仍有这些证明依赖。经典消失线、过滤分离、数据认证和
   模型比较没有因为接线或编译成功而得到证明。未检查 CI。
@@ -240,9 +241,12 @@ Main 的待证推导另见下节，不能与生成数据校验混为一谈。
 ## 10. 分项认证入口
 
 `CertifiedRealization R L G` 将同一 R 上的 basis、csv、products、labels、results、
-bottom、top 七项分开。Interface 的配对 `certify_of_parts` 从显式传入的七个证明
+bottom、top 七项分开。`Interface/Solution/LinProgram/Route/Certification.lean`
+中的 `certify_of_parts` 从显式传入的七个证明
 组装证书；`certification` 从现有总包生产定理取得共同见证，并保留原 presentation
-的有界相等。没有对任意 R 或任意标签断言正确，也没有新增计算接受公理。
+的有界相等。这些内部认证只在 Solution 保留陈述和证明，不再建立 Challenge
+镜像；Interface 唯一配对目标是完整 `Nonempty Challenge2`。没有对任意 R 或
+任意标签断言正确，也没有新增计算接受公理。
 
 两向 `toInputs` / `toCertifiedRealization` 保留原 R/L/G。原始有限页语义和
 Main 中有限页到永久存活的前提均未改变。详见 [五项提取说明](PR150_SELECTED_DESIGN.md)。

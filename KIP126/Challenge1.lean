@@ -122,7 +122,7 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 - 角色：固定计算认证，已撤出 A₀／Challenge1 必交范围；编号仅用于追踪迁移。
 - 实现：已删除本包的 `LinBasisInterface`／`linBasis`；固定认证生产义务在
-  `Interface/{Challenge,Solution}/LinProgram/BasisTable.lean`，Solution 仍为 `sorry`。
+  `Interface/Solution/LinProgram/BasisTable.lean`，证明仍为 `sorry`。
   范围保持所有 s,t : ℕ 且 t ≤ 261，要求 v126.3.cw49 CSV 单项式构成 `Module.Basis`。
 - 下游：`Challenge2.SphereBasisInterface` 以同一 presentation 的实际 E₂
   坐标等价及 CSV 值相容条件交付基与穷尽性；Main 从第二道边界消费，
@@ -182,8 +182,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
   独立 `SymmetricMonoidal` 子组要求同一个 realization 的对称幺半结构。
 - 实现：`Def/Synthetic/Localization/` 已从这些显式数据证明单位的唯一分解、
   reflector 反演现有 λ、完全忠实的 spectral Yoneda，以及 λ⁻¹ν≅Id。
-  `Def/{Challenge,Solution}/Synthetic/Localization.lean` 配对交付单位泛性质与
-  自然恢复同构；Solution 使用真实通用证明。局部化及等价的模型见证尚未构造，
+  `Def/Solution/Synthetic/Localization.lean` 交付单位泛性质与
+  自然恢复同构，使用真实通用证明。局部化及等价的模型见证尚未构造，
   这个参数化组也尚未加入当前 `Nonempty Challenge1` 总见证。
 - 范围：遵循 PROJECT_BOUNDARY 的抽象稳定背景，以上记录明确普通范畴层的
   消费数据；不声称构造原文的 ∞ 范畴、smashing localization 或高阶幺半相容性。
@@ -266,7 +266,7 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 - 陈述：`TodaInterface` 明列同一 `Relation` 的可复合条件、存在性、完整
   不定性 coset 的充要条件与带负号的 juggling。
-- 实现：`Def/{Challenge,Solution}/Toda.lean` 中的 Solution 已由真实定理组装；
+- 实现：`Def/Solution/Toda.lean` 中的基础交付已由真实定理组装；
   历史 `indeterminacy_complete`、`juggling` 的证明经审核迁至
   `Def/StableHomotopy/Toda/{Coset,Juggling}/Proofs.lean`，无历史全局 axiom。
 - 依赖：纯稳定同伦结果；连接内部页面检测的 Massey／Moss 桥留在 am8/am15。
@@ -275,7 +275,7 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 陈述补齐：`TodaNaturalityInterface` 列出前后复合、两种 absorption、
   带符号的悬移等价和完整 shuffle；`TodaFunctorInterface` 与
   `TodaTensorInterface` 列出 exact functor 及左右 tensor 的包含。
-  `Def/{Challenge,Solution}/Toda.lean` 已有三个同签名交付，证明暂留 `sorry`。
+  `Def/Solution/Toda.lean` 已陈述这三个交付，证明暂留 `sorry`。
   第 7 节具体 Toda 积值与不定性消失仍是 Main 推导，不加入 a13。
 - 定位：`Def/StableHomotopy/Toda/{Predicates,Proofs}.lean`；Blueprint `thm:toda-product-identities`。
 

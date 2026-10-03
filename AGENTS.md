@@ -34,18 +34,23 @@ fixed-data pipeline:
 
 - `KIP126/Def/` is the common mathematical base and the first production stage.
   It owns objects, predicates, constructions, reusable theorems, and the
-  Challenge/Solution pair which constructs `Challenge1`. It must not declare
+  single Challenge/Solution pair for `Nonempty Challenge1`. Internal stage
+  obligations live only in `Def/Solution/`; generic mathematical components
+  retain their existing Data/Predicates/Proofs organization. Def must not declare
   project axioms.
 - `KIP126/Interface/` owns the first proof stage: proofs of fixed program
   outputs after deterministic interpretation as `C(M)`, their comparisons,
   and the necessary internal helper results. Its `Axiom/` contains stage-zero outputs admitted as inputs to stage one,
   while their upstream constructions and proofs remain separate.
-  Its `Challenge/` and `Solution/` trees are parallel tracks for stage-one outputs.
+  Its only Challenge theorem is `Nonempty Challenge2`; all internal
+  certification, comparison and projection statements and proofs live only in
+  `Interface/Solution/`.
 - `KIP126/Main/` owns the second proof stage: it uses accurate external
   results `A(M)` and delivered `C(M)` to prove the paper's intermediate results
   and final target. `Axiom/` contains documented,
   development-only assumptions that let this stage proceed in parallel;
-  `Challenge/` and `Solution/` contain the paper's main deductions and endpoint.
+  `Challenge/Final/` and `Solution/Final/` contain the single final target and its
+  proof. Intermediate statements and proofs live only in `Main/Solution/`.
 
 - `KIP126/LinProgram/` owns pinned raw program artifacts, deterministic
   converters, generated Lean data, parameterized row semantics, and local
@@ -57,15 +62,15 @@ fixed-data pipeline:
 Challenge2 existence assumption, explicit input statements and their scope comments there.
 Select its correlated witness and expose projections in
 `Main/Solution/StageInput.lean`; witness-dependent consumer adapters also live
-outside Axiom. Mathematical deductions belong in
-Main's paired Challenge/Solution tracks; fixed computation certification and
+outside Axiom. Intermediate mathematical statements and proofs belong only in
+`Main/Solution/`; only the final target has a Main Challenge/Solution pair. Fixed computation certification and
 standard-label comparison belong to Interface. Do not put `Proofs.lean` modules
 under Main/Axiom or import Main proofs, Interface producers, or Checks from
 that boundary (including its aggregate entry module). Do not define objects,
 operations, catalogue helpers, field-extraction theorems, or instances there.
 Source-catalogue helpers belong in Def/References when independent of project
-inputs; helpers specialized to those inputs belong in Main/Solution/Literature,
-with paired Challenge declarations for their theorems. Such evidence extraction
+inputs; helpers specialized to those inputs, including their theorem statements
+and proofs, belong only in Main/Solution/Literature. Such evidence extraction
 does not certify a mathematical input; retain its provenance rather than
 replacing it by axioms.
 
@@ -164,17 +169,28 @@ semantic migration of wrappers and `a05`.
 
 ## Challenge, Solution, and stage-axiom synchronization
 
-- Every theorem under `KIP126/Def/Challenge/`, `KIP126/Interface/Challenge/`,
-  or `KIP126/Main/Challenge/` must have a corresponding theorem under the same
-  relative path in that layer's `Solution/` tree. Preserve public declaration
-  names during directory-only migration; a file move alone does not authorize a
-  namespace or API change.
-- Keep each Challenge/Solution pair synchronized: declaration name, universe
+- Each stage has exactly one Challenge/Solution pair:
+  `Def/Challenge/Challenge1.lean` states `Nonempty KIP126.Challenge1`;
+  `Interface/Challenge/Challenge2.lean` states `Nonempty KIP126.Challenge2`;
+  `Main/Challenge/Final/h6_sq_permanent.lean` states the standard final theorem.
+  The corresponding Solution theorem must have the same complete type.
+  Root `Challenge1.lean` and `Challenge2.lean` define the shared witness types;
+  they are not additional Challenge theorem tracks.
+- Internal stage statements and proofs live only in the relevant Solution
+  tree, with explicit `sorry` where unfinished. This includes model
+  construction obligations, computation certification, literature adapters,
+  the `literatureInterface`/`computationInterface` projections, and paper-route
+  deductions. Do not create intermediate Challenge mirrors or turn proof
+  obligations into model fields or independent axioms. Generic mathematics in
+  Def retains its existing component and Data/Predicates/Proofs organization.
+  Preserve public Solution names, types and proofs during directory cleanup.
+- Keep each required Challenge/Solution pair synchronized: declaration name, universe
   parameters, variables, typeclass assumptions, explicit and implicit
   hypotheses, and conclusion must agree, apart from an intentional Challenge/
   Solution namespace difference. Update both files in the same change whenever
   a statement changes.
-- Challenge declarations are always `theorem ... := by sorry`. Never replace
+- Within these required pairs, Challenge declarations are always
+  `theorem ... := by sorry`. Never replace
   them with `def ... : Prop`, fill in their proofs, or remove their statements
   merely because Solution exists.
 - Write proofs of Challenge statements only in the matching Solution tree.
@@ -244,7 +260,13 @@ Mathlib's spectral sequence belong under `KIP126/Mathlib/SpectralSequence/`.
   component's `Proofs.lean`, then separate its predicates and proofs in turn.
   Do not create cyclic imports or turn provable properties into new input
   hypotheses to avoid the split.
-- A public entry module may re-export these layers using imports only.
+- Import the concrete module directly when an entry file only re-exports one
+  module and has no declarations or required module behavior. Do not create
+  such wrappers merely to shorten a path or preserve an obsolete entry name.
+  Keep useful comments in the concrete module or its README. Multi-module
+  aggregators and required Lake library roots remain valid; `KIPBase.lean` is
+  retained as a Lake root even though it imports only `KIPBase.Basic`.
+  Removing an import wrapper does not rename namespaces or declarations.
   Preserve public declaration names when reorganizing files unless the task
   requires an API change.
 
@@ -279,8 +301,9 @@ types, ranges, and conditions, and do not treat packaging as proof progress.
   raw artifacts and schemas; deterministic conversion code; typed records and
   manifests; parameterized meanings; and local proofs about the fixed data.
   Generated records and successful hash checks do not prove the interpreted
-  propositions. `Interface/{Challenge,Solution}/LinProgram/` owns the goals
-  and proofs identifying these artifacts with `C(M)` on the chosen model.
+  propositions. `Interface/Solution/LinProgram/` owns the internal statements
+  and proofs identifying these artifacts with `C(M)` on the chosen model;
+  only the complete `Nonempty Challenge2` delivery has a Challenge mirror.
   `Main/Solution/StageInput.lean` projects the computation part of the one
   Challenge 2 witness; its dependent adapters live in `Main/Solution/Computation`.
   Main deductions consume that
@@ -289,7 +312,8 @@ types, ranges, and conditions, and do not treat packaging as proof progress.
   Examples that use Main consumer adapters and explicit provenance live in
   `Main/Examples/LinProgram/`, outside the independent data pipeline.
   Consumer deductions and their entry modules live in
-  `Main/Solution/Computation/`, with paired Challenge statements.
+  `Main/Solution/Computation/`, including their statements and proofs; they have
+  no Main Challenge mirrors.
   Class comparisons, tower survival, and second-differential deductions live
   in `Comparisons/Classes.lean`, `Tower/Survival.lean`, and
   `Differential/Second.lean`, respectively.
@@ -436,10 +460,14 @@ results as evidence for read-only analysis.
 
 ## Check selection
 
-- Interface or Main Challenge/Solution statement change: compare both complete
+- Change to one of the three stage-total/final Challenge targets: compare both complete
   signatures and check both affected modules. Verify that Challenge still uses
   `by sorry` and that Solution does not use the Challenge placeholder as its
   proof.
+- Internal Def, Interface or Main statement or proof change: check the affected Solution
+  declaration and its dependencies directly. Its dependency closure must not
+  import Def/Interface/Main Challenge placeholders; no mirrored intermediate
+  Challenge file is required.
 - Stage-boundary change: both producer theorem and consumer axiom must state the
   same shared `Nonempty ChallengeN` type directly. Review the witness fields,
   provenance or generated data, and dependency on the preceding witness; do

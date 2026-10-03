@@ -480,7 +480,9 @@ tower 配对未必诱导谱序列配对，并给出反例。这里引用的是�
 `Double/Internal/Nonvanishing/`。证明通过排除过滤度一的入射 `d₁`，
 没有沿用过滤度零的零微分论证。实际 `Z₂` 来源及其精确 `B₂` 零判据仍保留。
 在选定基础上补充这些显式低层输入后，它与 Lin 计算平方的相等性已由下述
-`ComputationalTower/` 证明；固定输入的实现和高页存活仍未完成，最终 `sorry` 未改动。
+`ComputationalTower/` 证明；固定输入的实现和高页存活仍未完成。最终 Solution
+已串接同一阶段见证上的 Proposition 7.8/7.9，但这两条证明仍为 `sorry`，
+不能将逻辑串接视为永久存活证明完成。
 
 `MilnorCoordinates/H6/` 已进一步完成**具体代表元**的坐标核对。球面系数按
 已有 unitor 和 `π₀` 坐标规范化为 1，且已证明非零。约化张量经实际边界再取
@@ -591,10 +593,13 @@ tower 或类别对象，但定理本身仍显式依赖低层结构与相容条�
 的 `classOfMilnorCocycle ... x = 0 ↔ ∃ b, differential ... b = x`，
 并推出 `Sphere.h6Square H M ≠ 0`。证明使用实际第一页面的 homology
 商与 page-passage 同构，不另设标准类或微分。固定特化
-`StandardSphere/Proofs.lean` 的 `sphereH6Square_ne_zero` 只依赖既有
-`standardFoundation`、`standardMilnorCooperations` 两条项目公理；
-`Checks/ClassicalAdams/StandardSquareNonvanishing.lean` 精确审计这两个输入，
-禁止 Lin、External、KIPBase 与 `KIP126.Mathlib` 适配层导入。
+`Mathlib/ClassicalAdams/StandardSphere/Proofs.lean` 的 `sphereH6Square_ne_zero`
+使用从同一个 Challenge1 见证投影的 `standardFoundation` 和
+`standardMilnorCooperations`；原 Main 下的单导入入口已删除。
+`Checks/ClassicalAdams/StandardSquareNonvanishing.lean` 审计固定阶段输入，
+仅允许实际使用的 Mathlib StandardSphere Data/Proofs 两模块，继续排除其他
+Mathlib 适配、External 和 KIPBase。`StandardSquareGeneric` 单独检查通用
+证明对适配层与阶段数据的隔离；规则说明不代表本轮检查已经运行通过。
 这不提供固定 Milnor 结构的低层实现。非零性本身不足以比较两个元素；
 下面新增的次数唯一性论证补齐了指定类比较。高页存活缺口不变。
 

@@ -39,7 +39,7 @@ and [original migration archive](migration/kip-base/README.md).
 ## Project documents and workflow
 
 - [M / C(M) / A(M) / T(M) boundary audit](docs/MAC_T_INPUT_AUDIT.md): mathematical objects versus delivery interfaces, source classification, and remaining model bindings.
-- [C(M) delivery specification](docs/COMPUTATION_DELIVERY_SPEC.md): mathematical conclusions delivered to Main, table interpretation and certification responsibilities, and the remaining gap between Challenge2 and the selected route interface.
+- [C(M) delivery specification](docs/COMPUTATION_DELIVERY_SPEC.md): mathematical conclusions delivered to Main, table interpretation and certification responsibilities, the shared model binding, and remaining producer obligations.
 
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
@@ -65,25 +65,33 @@ document:
   mathematical statement, dependencies, sources, and intended Lean object can
   be checked together.  A chapter indexes several small Lean modules under
   `KIP126/Def/`, `KIP126/Interface/`, and `KIP126/Main/`;
-  `KIP126/Def.lean`, `KIP126/Main/Challenge.lean`, and `KIP126/Main/Solution.lean`
-  are package entry points.
+  `KIP126/Def.lean` and `KIP126/Main/Solution.lean` are multi-module package
+  entry points. Import the final target directly from
+  `KIP126.Main.Challenge.Final.h6_sq_permanent`.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
   well as their import graph. `LinProgram/` owns the independent fixed-data
   pipeline and its local certificates. `Def/` owns mathematical data and properties,
   `Interface/` owns stage-zero outputs admitted as stage-one inputs in `Axiom/`, plus reusable
   stage-one interface goals and their proofs, and `Main/`
-  owns input assumptions plus the paper's argument. Main keeps only final goals
-  in `Challenge/Final/`, paired with `Solution/Final/`; intermediate deductions
-  live directly in `Solution/ChoiceIndependence`, `Solution/DifferentialReduction`,
-  and `Solution/ExtensionObstruction`. `Checks/` owns regressions.
+  owns input assumptions plus the paper's argument. Each stage keeps exactly
+  one Challenge/Solution pair: Def delivers `Nonempty Challenge1`, Interface
+  delivers `Nonempty Challenge2`, and Main proves the single standard final
+  theorem in `Final/`. Internal stage statements and proofs live only in the
+  corresponding Solution tree; generic Def mathematics retains its component
+  organization. The final proof is
+  connected to Propositions 7.8 and 7.9, whose proofs still contain `sorry`.
+  `Checks/` owns regressions.
   Start with the module guides in [Def](KIP126/Def/README.md),
   [Interface](KIP126/Interface/README.md), [Main](KIP126/Main/README.md), and
   [LinProgram](KIP126/LinProgram/README.md). `Challenge2` separates literature
   and computation structures on the same model; only its computation part is
   `C(M)`. Main consumes their single stage witness, while Interface owns its
   producer proofs.
-  The [current layout and migration record](docs/STAGE_LAYOUT.md) explains
+  Import concrete modules directly instead of adding redundant wrappers that
+  only import one module. Multi-module aggregators and required Lake roots,
+  including `KIPBase.lean`, remain. The
+  [current layout and migration record](docs/STAGE_LAYOUT.md) explains
   ownership, preserved proof debt, and the old-to-new path map.
   The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
   small executable example connecting imported dimensions and multiplication

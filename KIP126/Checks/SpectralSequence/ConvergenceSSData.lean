@@ -1,4 +1,4 @@
-import KIP126.Def.SpectralSequence.Convergence
+import KIP126.Def.SpectralSequence.Convergence.Category.Data
 
 /-! API regression checks for the migrated nested-subobject convergence layer. -/
 

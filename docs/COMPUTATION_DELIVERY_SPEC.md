@@ -115,10 +115,12 @@ NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 | 通用数学对象、操作与坐标工具 | `Def` |
 | 固定数据、参数化解码、解释及局部证书 | `LinProgram` |
 | 项目模型、交付范围与关联条件 | 根 `Challenge1` / `Challenge2` 及其子模块 |
-| 固定计算认证和与模型的比较证明 | `Interface/Challenge` / `Interface/Solution` |
+| 固定计算认证和与模型的比较证明 | 只在 `Interface/Solution` 保存内部陈述与证明 |
+| 完整阶段交付目标 | Def 仅配对 `Nonempty Challenge1`，Interface 仅配对 `Nonempty Challenge2` |
 | 唯一阶段存在性假设和显式输入 statement | `Main/Axiom` |
 | 同一见证的选择与字段投影 | `Main/Solution/StageInput.lean` |
-| 交付后的消费构造与论文推论 | `Main/Solution`；数学定理有配对 `Main/Challenge` |
+| 交付后的消费构造与中间推论 | 只在 `Main/Solution` 保存陈述与证明，不设中间 Challenge 镜像 |
+| 唯一最终定理 | `Main/Challenge/Final` 与 `Main/Solution/Final` 配对 |
 
 `Main/Axiom/LinProgram` 的实现和过时说明均已迁出。
 固定 Hopf cofiber、塔与 E₂ 映射也已归消费构造，Mathlib 球谱适配归 Mathlib。

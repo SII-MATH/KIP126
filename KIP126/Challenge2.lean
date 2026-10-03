@@ -311,7 +311,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   j≤3 的非零永久存活与 j≥4 的非零 d₂(hⱼ)=h₀hⱼ₋₁²。
   May 的 h₀h₂、h₀h₃、h₂h₄ 及 j≤3 的 hⱼ² 非零永久性也分别列出。
   所有类由同一 Milnor cocycle、实际 cup 与实际内部 E₂ 比较构造。
-  `Interface/{Challenge,Solution}/AdamsOneLine.lean` 七个交付签名同步，
+  `Interface/Solution/AdamsOneLine.lean` 已陈述七个交付，
   新增证明均暂留 `sorry`；MainPaper:146 的方向笔误修正为 j≤3。
   `LowDimensionalSquarePermanence` 另使用内部 h₄²／h₅²；
   `Interface/Solution/LowDimensionalPermanence` 已从显式 a14 与 Browder 输入推出它。
@@ -386,7 +386,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   实现：`LinProgram/Generated/E2.lean`、`Def/AdamsE2/LinModel/`
   保留 v126.3.cw49 数据；本包的 existence Solution 尚为 `sorry`。
   a05 已迁出 Challenge1；固定 CSV 认证在
-  `Interface/{Challenge,Solution}/LinProgram/BasisTable.lean`，Solution 仍为 `sorry`。
+  `Interface/Solution/LinProgram/BasisTable.lean`，证明仍为 `sorry`。
   `Interface/Solution/LinProgram/SphereBasis.lean` 从该辅助认证及显式 P 构造
   实际交付；Main 从同一个 Challenge2 见证取得坐标，恢复兼容的 Lin 基与维数。
   没有新增独立 axiom，也不直接消费 Interface 的认证证明。`computedH6`、
@@ -431,7 +431,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   实现：`Raw/Staircase`、`Generated/Staircase`、`Interpretation/State` 和
   `Translate/import-staircase.py` 已连通全部固定球面 snapshot；原始 NULL 保留，
   哈希、schema、全部坐标和范围检查不等于数学真实性证明。
-  `Interface/{Challenge,Solution}/LinProgram/Staircase` 陈述同步，证明暂为 `sorry`。
+  `Interface/Solution/LinProgram/Staircase.lean` 已陈述交付，证明暂为 `sorry`。
   `LinProgram/Raw/Data.lean` 另无损保留全部 log 11 列和 NULL，
   reason 解析保留 D/DI 的多来源，999/1000/1001 分开；
   `Computation/State/Predicates.lean` 明确永久循环、最终边界与有界窗口状态。

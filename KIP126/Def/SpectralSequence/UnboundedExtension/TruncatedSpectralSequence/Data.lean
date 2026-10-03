@@ -1,5 +1,5 @@
 import KIP126.Def.SpectralSequence.UnboundedExtension.TruncatedComplex.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction
+import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
 
 /-!
 # Truncated extension spectral sequences

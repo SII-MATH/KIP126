@@ -2,6 +2,17 @@
 
 本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../../README.md)；本次只迁移，未补证明或修改陈述。
 
+## 迁移范围与直接入口
+
+直接导入 `KIP126.Def.SpectralSequence.UnboundedExtension.TruncatedSpectralSequence.Data`。
+本层保留原 `KIPBase/SpectralSequence/UnboundedExtension.lean` 中不依赖项目
+公理的截断复形、有界性证明及其谱序列。原单导入入口已删除，声明未因此迁移。
+
+历史源文件中的其他结论没有随这个入口导出：transition morphism 的
+cycle/boundary 保持证明未完成，页稳定和极限谱序列曾是占位，弱收敛曾声明为
+项目 axiom。使用那些结论前必须另行完成证明或提供准确的外部证据，不能
+把截断层的迁移视为它们已经通过 KIP126 的证明边界。
+
 ## 1. 原先期望包含什么
 
 共享数学对象、条件和构造所需的性质。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。

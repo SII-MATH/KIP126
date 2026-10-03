@@ -2,6 +2,10 @@
 
 本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../README.md)；本次只迁移，未补证明或修改陈述。
 
+本组件是 `KIPBase.SpectralSequence.Convergence` 中不依赖项目公理的
+嵌套子对象收敛构造迁移。现直接导入
+`KIP126.Def.SpectralSequence.Convergence.Category.Data`，不再保留单导入入口。
+
 ## 1. 原先期望包含什么
 
 共享数学对象、条件和构造所需的性质。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。

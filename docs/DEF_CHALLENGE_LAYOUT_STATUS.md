@@ -1,7 +1,7 @@
 > 历史布局记录：下文按迁移批次记录路径和当时的缺口，不是当前 KIPBase 证明状态清单。
 > 当前复用范围见 [KIPBase 与 KIP126](KIPBASE_GAP_INVENTORY.md)，目录职责以根 AGENTS.md 为准。
 
-> 后续状态：本记录曾描述仅保留 Final Challenge 的过渡布局；当前已恢复所需的 Main Challenge/Solution 配对。现行位置与状态见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)，不得从下文的历史清单推断当前配对缺失。
+> 现行规则：Main 只有唯一 Final 定理保留 Challenge/Solution 配对；中间陈述和证明只在 Main/Solution 维护。Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。现行位置与状态见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)，下文的历史清单与测试数量不是当前配对要求。
 
 > Historical layout record. The current layout is documented in [STAGE_LAYOUT.md](STAGE_LAYOUT.md); module ownership is Def / Interface / Main.
 

@@ -1,14 +1,63 @@
 # LinProgram / Def / Interface / Main 布局与迁移记录
 
+## 后续整理：直接导入实际模块
+
+删除 `KIP126/` 下 20 个没有声明、只重导出一个模块的 Lean 入口；调用处
+直接导入实际目标。三条阶段目标分别导入 `Def.Challenge.Challenge1`、
+`Interface.Challenge.Challenge2`、`Main.Challenge.Final.h6_sq_permanent`，
+完整模块名均加 `KIP126.` 前缀。目标本身和各自 Solution 不因删除入口改变。
+
+多模块聚合仍保留；`KIPBase.lean` 虽只有一次 import，也作为 Lake 库根保留。
+删除入口不重命名命名空间或声明，也不改变证明义务。20 个旧路径到实际模块的
+映射追加在 [迁移台账](stage-layout-moves.json) 的
+`single_import_entry_followup_2026_10_03`；此前迁移记录保留当时路径。
+
+原入口中的截断层迁移范围、Milnor cobar 分层和选择无关性的对象说明归入
+对应实际组件 README；基的兼容解释并入 `Main/Solution/Computation/LinProgram/Basis`。
+
+本轮验证：15 项布局检查、`+KIP126` 与 12 个受影响检查模块的定向编译、
+Blueprint 声明清单核验均通过。固定球面检查仅允许实际 StandardSphere
+适配层的 Data／Proofs 两模块；通用平方证明的隔离检查保留。
+现有数学定义与证明不变，编译通过不表示原有证明义务已完成。
+
+## 现行规则：每个阶段只保留一个 Challenge 目标
+
+| 阶段 | 唯一 Challenge 陈述 | 对应 Solution |
+| --- | --- | --- |
+| Def | `Def/Challenge/Challenge1.lean`：`Nonempty Challenge1` | `Def/Solution/Challenge1.lean` |
+| Interface | `Interface/Challenge/Challenge2.lean`：`Nonempty Challenge2` | `Interface/Solution/Challenge2.lean` |
+| Main | `Main/Challenge/Final/h6_sq_permanent.lean`：标准最终定理 | `Main/Solution/Final/h6_sq_permanent.lean` |
+
+所有阶段内部目标只在各自 Solution 保存陈述和证明，不再复制到 Challenge。
+Main 的 32 个中间镜像已删除；本轮再移除 Def 的 4 个、Interface 的 25 个
+中间 Challenge 文件，并去掉 Challenge2 中的两条内部投影占位。
+`literatureInterface`、`computationInterface` 的实际投影证明仍在 Solution。
+根 Challenge1/Challenge2 类型、所有 Solution 数学内容与通用 Def 组件归属不变。
+
+最终 Solution 已从同一个 `Main.StageInput.witness` 串接 7.8/7.9；二者仍为
+`sorry`，上游交付也有未完成义务。最终逻辑串接不等于完整数学证明。检查应
+核对三个总目标的完整类型，并直接检查内部 Solution 及其依赖，禁止借用
+Def/Interface/Main 的任何 Challenge 占位。
+
+此前三阶段目标清理的验证：15 项布局检查通过；两道阶段交付的 Challenge、Solution 与消费
+假设类型检查、内部 Interface 证明依赖检查通过；`+KIP126`、`+KIPBase`
+入口定向编译以及 `leanblueprint web`、`checkdecls` 通过。31 个 Def／Interface
+Solution 文件逐字节未变；根 Challenge1／Challenge2 仅更新清单注释。
+Interface 公开入口补导出现有 staircase Solution；没有补齐原有 `sorry`。
+
+下文保留各历史批次的迁移与验证记录；其中曾建立的中间配对已被此规则取代，
+历史测试通过不代表本轮修改已验证。
+
 ## 2026-10-03：PR150 剩余职责整理
 
 当前 `Main/Axiom` 只含唯一阶段存在性假设、显式输入结构及来源资料。
 固定 Hopf cofiber、塔、胞腔 E₂ 映射移入 `Main/Solution/Literature/HopfCofiber`；
 固定 Mathlib 球谱对象和非零性证明移入 `Mathlib/ClassicalAdams/StandardSphere`。
-旧 Main StandardSphere 模块仅保留配对接口所需的重导出。
+旧 Main StandardSphere 当时保留单导入入口；本轮删除该入口，改为直接导入
+`KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs`。
 
 Synthetic、Geometry、May 的 catalogue 构造及真实字段提取证明移至
-`Main/Solution/Literature`，相应 Challenge 声明保留开放。Bockstein/E∞ 纯包装也已迁出。
+`Main/Solution/Literature`；中间 Challenge 镜像现已删除。Bockstein/E∞ 纯包装也已迁出。
 三十个只剩旧布局说明的 README 已移到实际模块旁；来源原文制品不动。
 
 `LinProgram/Generated/Selected/records.json` 保存七项纯数据元信息；
@@ -31,7 +80,7 @@ Synthetic、Geometry、May 的 catalogue 构造及真实字段提取证明移至
 
 `Main/Axiom/Challenge2.lean` 只声明 `Nonempty Challenge2`。同一见证的选择及文献、计算投影位于 `Main/Solution/StageInput.lean`；依赖这些投影的 15 个适配模块迁入 Main/Solution，声明和证明保持 develop 的实现。
 
-8 条已有比较、存活及微分推论按职责分为 `Computation/Comparisons/Classes.lean`、`Computation/Tower/Survival.lean`、`Computation/Differential/Second.lean`，Challenge/Solution 同步。另 3 条代表元比较暂留原模块。项目的模型接口、最终目标、数据认证和严格检查规则均保持原实现；这一步没有完成 Main/Axiom 全目录的职责清理，也没有完成新模型的构造或绑定。
+8 条已有比较、存活及微分推论按职责分为 `Computation/Comparisons/Classes.lean`、`Computation/Tower/Survival.lean`、`Computation/Differential/Second.lean`，当时同步建立 Challenge/Solution 配对，现仅保留 Solution。另 3 条代表元比较当时暂留原模块。项目的模型接口、最终目标、数据认证和严格检查规则均保持原实现；这一步没有完成 Main/Axiom 全目录的职责清理，也没有完成新模型的构造或绑定。
 
 
 首轮工作整理已有内容、更新路径和补充模块说明。随后按用户确认，将两道跨阶段边界定义为根目录共享的 `Challenge1`、`Challenge2` 见证结构。上一阶段以 theorem 证明 `Nonempty ChallengeN`，下一阶段开发时以 axiom 暂时接受完全相同的命题；旧公开接口从同一个见证投影。未补数学证明、未修论文陈述、未增删原结构条件。接口范围沿用 [审核 issue #138](https://github.com/SII-MATH/KIP126/issues/138)。
@@ -97,10 +146,10 @@ KIP126/
 │   └── Tactic/             Lin 专用计算与证明证书自动化
 ├── Def/                    公共对象、谓词、构造与性质
 │   ├── Challenge/          Nonempty Challenge1 的冻结目标
-│   └── Solution/           Nonempty Challenge1 的构造／证明轨
+│   └── Solution/           总交付构造与内部陈述／证明
 ├── Interface/
 │   ├── Axiom/              同型的 Nonempty Challenge1 开发期输入
-│   ├── Challenge/          Challenge2 及工具目标
+│   ├── Challenge/          仅 Nonempty Challenge2 的总交付目标
 │   └── Solution/
 │       ├── Challenge2.lean 第二道边界的构造／证明轨
 │       ├── Tools/          旧错误工具声明的退休记录；本文工具现归 Main
@@ -108,9 +157,8 @@ KIP126/
 ├── Main/
 │   ├── Axiom/
 │   │   ├── Challenge2.lean 同型的 Nonempty Challenge2 开发期输入
-│   │   ├── Literature/     文献原文、主论文、清单与显式输入
-│   │   └── LinProgram/     计算交付投影、固定模型消费适配和路线需求
-│   │       └── Examples/   消费接口及显式来源证据示例
+│   │   └── Literature/     文献原文、主论文、清单与显式输入
+│   ├── Examples/LinProgram/ 消费接口及显式来源证据示例
 │   ├── Challenge/Final/    最终目标；中间命题不再复制到 Challenge
 │   └── Solution/           按数学主题组织现有推导
 │       ├── Tools/                本文新工具的待证命题
@@ -132,7 +180,7 @@ KIP126/
 | 原位置 | 新位置／处理 |
 | --- | --- |
 | `Challenge/Tools`, `Solution/Tools` | 初次迁至 Interface 后退休；新的 law 定义现归 `Main/Solution/Tools` |
-| `Challenge/{Near126,Final}`, `Solution/{Near126,Final}` | `Main` 下对应轨道 |
+| `Challenge/{Near126,Final}`, `Solution/{Near126,Final}` | 初次迁入 Main；现仅 Final 配对，中间推导只在 Main/Solution |
 | `External/{Provenance,Evidence,Results}` | `Main/Axiom` 共用来源类型及操作 |
 | `External/{SourceInventory,Claims}` | `Main/Axiom/Literature` |
 | `External/Computation/LinE2/RawData` | `LinProgram/Generated/E2` |
@@ -144,7 +192,7 @@ KIP126/
 | 固定 foundation、Milnor 的原输入 | `Challenge1` 包；`Interface/Axiom/Challenge1.lean` 暂时承认其存在 |
 | 固定 Lin presentation 与微分表输入 | `Challenge2` 包；`Main/Axiom/Challenge2.lean` 暂时承认其存在 |
 | `Examples/` | `Main/Examples/LinProgram/`，依赖实际消费适配，保留原声明名 |
-| 依赖这些 axiom 的固定对象及条件推论 | `Main/Axiom` 解释层；论文所需计算推论归 `Main/Solution/Computation` |
+| 依赖这些 axiom 的固定对象及条件推论 | 初次迁入 Main/Axiom 解释层，后已迁至 Main/Solution；计算推论归 `Main/Solution/Computation` |
 | `reference/`, `aimpaper/` | `Main/Axiom/Literature/{Sources,MainPaper}` |
 
 初次迁移及后续 Near126 归位的逐文件映射见 [stage-layout-moves.json](stage-layout-moves.json)。源论文与其制品保持原字节及 SHA-256；生成 Lean 分片仅因 import／生成器路径更新而变化，manifest 中的输出摘要相应刷新。
@@ -161,15 +209,15 @@ KIP126/
 | `d12_dichotomy_and_condition_equivalence.lean` | `DifferentialReduction/d12_dichotomy_and_condition_equivalence.lean` |
 | `c3_excludes_c5.lean` | `ExtensionObstruction/c3_excludes_c5.lean` |
 
-这五个文件都是论文推导，未迁入 Def 或 Axiom；它们引用的对象定义和外部输入仍在原所属层。两条最终定理的 Challenge/Solution 配对保持。`Near126Adams` 等旧接口的自由谓词问题明确列为待修陈述，本次未补数学证明。以上调整取代初次迁移表中 Main/Near126 的布局。
+这五个文件都是论文推导，未迁入 Def 或 Axiom；它们引用的对象定义和外部输入仍在原所属层。该批次当时保留两条最终定理配对；随后合并为唯一标准最终目标。`Near126Adams` 等旧接口的自由谓词问题当时列为待修陈述，后来已重述为实际模型上的目标；这不等于相关数学证明完成。以上调整取代初次迁移表中 Main/Near126 的布局。
 
-本次归位验证：五个 Solution 文件除注释外的 Lean 代码保持一致，删除的六条 Challenge 定理类型全部由 Solution 保留；`Main.Solution`、`Main.Challenge`、`Checks.ClassicalAdams.FixedFinal` 和模块入口 `+KIP126` 定向编译通过。Blueprint 网页重新生成成功，全部 1,295 条声明引用在当前 `KIP126` Lean 环境中通过存在性核验，删除的 Challenge 名称不再导出。默认 `lake exe checkdecls` 因本地缺少历史 `KIPBase.olean` 而未完成；上述核验直接检查同一生成清单，没有为此全量构建历史库。编译通过不代表旧陈述已修正或占位证明已完成。
+该历史批次的归位验证：五个 Solution 文件除注释外的 Lean 代码当时保持一致，删除的六条 Challenge 定理类型全部由 Solution 保留；`Main.Solution`、`Main.Challenge`、`Checks.ClassicalAdams.FixedFinal` 和模块入口 `+KIP126` 定向编译通过。Blueprint 网页重新生成成功，全部 1,295 条声明引用在当前 `KIP126` Lean 环境中通过存在性核验，删除的 Challenge 名称不再导出。默认 `lake exe checkdecls` 因本地缺少历史 `KIPBase.olean` 而未完成；上述核验直接检查同一生成清单，没有为此全量构建历史库。编译通过不代表旧陈述已修正或占位证明已完成。
 
 ## 后续调整：CSV 认证与本文工具的归属
 
 - `Challenge1` 不再含 `LinBasisInterface` 或 `linBasis`；`ofFoundationMilnor` 也不再接受基认证参数。基础模块的导入闭包不含固定 Lin 数据。
 - `Challenge2` 通过依赖同一 presentation 的 `SphereBasisInterface` / `sphereBasis` 交付实际 E₂ 坐标和固定 CSV 基向量值，范围为 v126.3.cw49、所有自然数 s,t 且 t ≤ 261。Main 从这些坐标恢复 CSV 基认证兼容接口；没有保留重复的 `linBasis` 字段。
-- 基认证生产目标／证明移至 `Interface/{Challenge,Solution}/LinProgram/BasisTable.lean`。Main 的 `Interpretation/BasisTable.lean` 从同一个 Challenge2 见证投影认证，指定基和坐标移至 `Interpretation/Basis/Algebra/`。生产者不导入自己的消费假设，证明仍为 `sorry`。
+- 基认证当时建立了 Challenge/Solution 两份入口；现只在 `Interface/Solution/LinProgram/BasisTable.lean` 保存陈述和证明。Main 的实际基、坐标与认证推论现在直接导入 `Main/Solution/Computation/LinProgram/Basis/{Data,Proofs}.lean`；旧 `Interpretation/BasisTable.lean` 与 `Interpretation/Basis/Algebra/` 单导入入口已删除。生产者不导入自己的消费假设，证明仍为 `sorry`。
 - 原 am7 的三条 law 从 Challenge2 移至 `Main/Solution/Tools`；它们属于本文推导，不是前人 A(M)，也没有新增公理字段。工具仍是待证 Prop 定义，所需模型比较与规则证明未完成。
 - 较短 extension 障碍谓词移至 `Def/Synthetic/PageExtension/Stretching/Predicates.lean`，保留为 M 的数学语言。通用解纤维与相容塔结果继续复用，计算认证使用规则时必须检查依赖无环。
 
@@ -220,6 +268,7 @@ KIP126/
 `Main/Solution/Computation/Comparisons/Classes.lean`
 只投影这一结论并提供存活谓词的改写，供最终证明使用。
 按用户后续要求，Final 只保留 `h6_sq_permanent` 这一条命题及其配对 Solution；
-重复的计算版 Challenge/Solution 已删除。原计算版仅为占位，因此唯一 Solution
-直接保留待证的 `sorry`，没有删除实际完成的永久存活证明。陈述依赖基础 M，
-证明仍可依赖 C(M)；阶段存在性输入与最终证明债务没有消除。
+重复的计算版 Challenge/Solution 已删除。原计算版仅为占位，该次合并没有删除
+实际完成的永久存活证明。当前唯一 Solution 已通过 `permanent_of_propositions`
+串接同一阶段见证上的 Proposition 7.8/7.9，但二者仍为 `sorry`。陈述依赖基础 M，
+证明消费 A(M)/C(M)；阶段存在性输入与最终证明债务没有消除。

@@ -1,22 +1,16 @@
-# Def Challenge
+# Def Challenge：唯一基础交付目标
 
-## 1. 预期
+本目录只保留 [Challenge1.lean](Challenge1.lean) 中的
+`theorem challenge1 : Nonempty KIP126.Challenge1`，正文按约定为 `by sorry`。
+根 [Challenge1](../../Challenge1.lean) 定义共享见证类型，并不是另一条目标。
 
-冻结 Def 必须交付给 Interface 的第一道边界陈述。
+对应构造由 [Solution/Challenge1.lean](../Solution/Challenge1.lean) 承担；其完整
+类型与这里一致。实际见证仍待构造，陈述存在和编译通过都不表示证明完成。
 
-## 2. 现有
+FoundationConsequences、Toda、synthetic localization/completion 等内部目标的
+陈述和证明只在 [Def/Solution](../Solution/README.md) 维护，不再建立 Challenge
+镜像。公共数学组件仍按原 Data/Predicates/Proofs 职责组织。本轮不修改它们的
+数学内容，也不增加模型字段或独立公理。
 
-`Challenge1.lean` 声明 `theorem challenge1 : Nonempty KIP126.Challenge1`，
-正文按 Challenge 约定保留 `sorry`。
-
-## 3. 完成度
-
-陈述已固定；这里不承担证明完成度。
-
-## 4. 待做
-
-随着共享 `Challenge1` 字段变化同步陈述，并保持与 Solution 使用同一类型。
-
-## 5. 步骤
-
-先由整合者审核共享包字段，再在对应 Solution 中完成构造；本目录只同步目标。
+修改根交付规格时同步核对唯一目标与 Solution 的完整类型。生产证明不能借用
+Challenge 占位，也不能依赖自己要解除的 Interface 阶段消费公理。

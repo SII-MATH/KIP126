@@ -104,7 +104,7 @@ stage witness instead of importing their Interface proof implementations.
   \label{thm:bounded-sphere-multiplication}
   \lean{KIP126.Challenge2.SphereMultiplicativeInterface}
   \lean{KIP126.Classical.Adams.Sphere.Multiplication.unitSecondCycle,KIP126.Classical.Adams.Sphere.Multiplication.firstProduct}
-  \lean{KIP126.Interface.Challenge.sphereMultiplicativeInterface,KIP126.Interface.Solution.sphereMultiplicativeInterface}
+  \lean{KIP126.Interface.Solution.sphereMultiplicativeInterface}
   \uses{def:hf2-adams-tower,def:lin-e2-catalogue}
   There is a bounded Lin presentation $P$ on the fixed sphere Adams
   sequence whose coordinate unit maps to the second-cycle class of the
@@ -121,7 +121,7 @@ stage witness instead of importing their Interface proof implementations.
   cycles; it cannot select a different operation. Quantifying over all
   representatives binds the page product to that actual layer product.
   Challenge~2 couples this condition to the same presentation as its
-  coordinate and differential fields. Both producer statements remain
+  coordinate and differential fields. The producer theorem remains
   unproved. No higher-page Leibniz rule, product outside the stated bound,
   or comparison with the cobar cup product is supplied here.
 \end{theorem}
@@ -281,7 +281,7 @@ stage witness instead of importing their Interface proof implementations.
 
 \begin{theorem}[Fixed sphere staircase delivery]
   \label{thm:lin-staircase-delivery}
-  \lean{KIP126.Challenge2.SphereStaircaseInterface,KIP126.Interface.Challenge.sphereStaircaseInterface}
+  \lean{KIP126.Challenge2.SphereStaircaseInterface,KIP126.Interface.Solution.sphereStaircaseInterface}
   \uses{def:lin-staircase-states}
   \notready
   There is a Lin comparison for which every one of the $23822$ rows of the

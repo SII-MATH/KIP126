@@ -17,7 +17,7 @@
 
 ## 1. 预期
 
-`KIP126/Def/` 应保存三个阶段共同使用的数学对象 M，以及可以跨项目复用、无需借用 Main 假设的定义、构造和一般定理。`Challenge` 只是对这些对象的交付/目标接口，不是 M 的定义，也不代表基础清单已经完整冻结。Def 还作为第一个生产阶段，在 `Challenge/Challenge1.lean` 冻结 `Nonempty Challenge1`，并在 `Solution/Challenge1.lean` 构造该见证。Def 不拥有项目 `axiom`，原则上也不应反向依赖 `Interface/` 或 `Main/`。Mathlib 的普通范畴与代数 API 可以直接使用；历史 Mathlib 谱序列适配层可以保留，但不产生“内部谱序列等于 Mathlib 谱序列”的新证明义务。
+`KIP126/Def/` 应保存三个阶段共同使用的数学对象 M，以及可以跨项目复用、无需借用 Main 假设的定义、构造和一般定理。`Challenge` 只是对这些对象的交付/目标接口，不是 M 的定义，也不代表基础清单已经完整冻结。Def 还作为第一个生产阶段，在 `Challenge/Challenge1.lean` 冻结 `Nonempty Challenge1`，并在 `Solution/Challenge1.lean` 构造该见证。这个整阶段目标是 Def 唯一的 Challenge/Solution 配对；内部交付命题只在 Def/Solution 保存陈述和证明，公共数学组件的 Data/Predicates/Proofs 归属不变。Def 不拥有项目 `axiom`，原则上也不应反向依赖 `Interface/` 或 `Main/`。Mathlib 的普通范畴与代数 API 可以直接使用；历史 Mathlib 谱序列适配层可以保留，但不产生“内部谱序列等于 Mathlib 谱序列”的新证明义务。
 
 ## 2. 现有
 

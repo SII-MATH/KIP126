@@ -104,7 +104,7 @@ Main 从 `StageInput.witness` 投影全部输入。接线完成不表示这些�
   按 Remark 7.12，C₅ 单独不强加目标非零。
 - Proposition 7.8 的两个排他分支与 `D12 ↔ C3 ∧ C4 ∧ C5`、
   Proposition 7.9 的 `C3 → ¬ C5` 均为 Main 中的待证命题定义。
-  `Main/{Challenge,Solution}/Route/Selected.lean` 现有基于根 Challenge2 输入的配对目标。
+  `Main/Solution/Route/Selected.lean` 保存基于根 Challenge2 输入的准确陈述和待证证明；中间目标不另设 Challenge 镜像。
 - `permanent_of_propositions` 已证明二者蕴含 `PermanentH6Square`。
   此条件结论特化后与唯一 T(M) 按定义相同；没有新增另一版 Final。
 

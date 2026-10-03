@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2
+import KIP126.Def.AdamsE2.Classes.Proofs
 import Mathlib.Data.Int.Interval
 
 /-!

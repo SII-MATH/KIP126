@@ -9,5 +9,5 @@
 - [Differential](Differential/README.md) 与 [Tower](Tower/README.md)：页面微分、长层及实际塔推论。
 
 Selected 的七条原始元数据在 `LinProgram/Generated/Selected/records.json`，
-与这里的六条条件证明分开保存。Main 的数学定理有配对 Challenge；
+与这里的六条条件证明分开保存。Main 中间定理的陈述与证明只在 Solution 维护，只有最终目标与 Challenge 配对；
 lookup 成功不会自动推出后续页面非零或永久存活。

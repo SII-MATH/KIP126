@@ -4,7 +4,7 @@ import KIP126.Main.Solution.DifferentialReduction.Conclusion
 
 /-! Section 7 on the selected stage witnesses. No new model, A or C is chosen.
 The two paper propositions are still proof obligations in Main, never fields
-of a model or stage input. Their paired Challenge statements remain open. -/
+of a model or stage input. Their unfinished proofs remain here in Solution. -/
 namespace KIP126.Main.Solution.Route
 open KIP126.Classical.Adams KIP126.Kervaire.Route
 open KIP126.Synthetic.Context

@@ -40,7 +40,7 @@ C(M)；两者共享同一 Challenge1 模型，通用比较保留为显式模型�
 | 本文推导：混合 order/torsion 包 | `Theta5OrderTorsionEvidence`；ledger `.projectDerivation` | 同时含中间推导和 torsion 条件 | 已撤销原始 C 包装；还需拆出真实计算输入及各步推论 |
 | 本文推导：choice transport | `Main/Solution/ChoiceIndependence`，一般引理在 `Def/.../Theta5/Proofs` | 普通条件下的表达式相等与判据传输 | 条件证明已实现；绑定实际 M 以及提供中间前提未完成 |
 | 本文新工具 | `Main/Solution/Tools` | 广义 Leibniz、Mahowald、有限 stretching | 已归 Main；结构相容性与证明仍待完成，不可作为前人结果假设 |
-| T | `Main/Challenge/Final/h6_sq_permanent` | `NonzeroSurvival sphereAdamsData (2,128) standardH6Square` | 单一标准目标；定义不导入 C，Solution 仍为 sorry |
+| T | `Main/Challenge/Final/h6_sq_permanent` | `NonzeroSurvival sphereAdamsData (2,128) standardH6Square` | 单一标准目标；定义不导入 C，Solution 已串接 7.8/7.9，但这两条命题仍为 sorry |
 
 ## 本轮来源核对
 

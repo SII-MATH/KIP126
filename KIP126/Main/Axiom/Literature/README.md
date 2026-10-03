@@ -1,8 +1,8 @@
 # 文献输入陈述与来源资料
 
 当前路线的外部结果规格是根接口中的
-[Statements](../../../Challenge2/Route/Literature/Data.lean)，通过
-[Route.lean](Route.lean) 引入。模型比较及内部应用另有明确交付义务；
+[Statements](../../../Challenge2/Route/Literature/Data.lean)，直接导入
+`KIP126.Challenge2.Route.Literature.Data`。模型比较及内部应用另有明确交付义务；
 Main 使用的 `Inputs` 是这些材料组成的消费接口，不能整体当成外部文献定理。
 
 本目录保留以下显式输入陈述，并不额外假设它们存在：

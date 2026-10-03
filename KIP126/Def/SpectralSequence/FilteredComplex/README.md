@@ -11,14 +11,16 @@
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
 | [Data.lean](Data.lean) | `FilteredComplex`, `homologyShortComplex`, `homologyObj`, `homologyObj_apply`, `homologyFiltration` 等 60 个声明 |
-| [HomologyTarget.lean](HomologyTarget.lean) | 模块导入入口 |
+| [HomologyTarget/Data.lean](HomologyTarget/Data.lean) | 历史次数约定下的同调目标和过滤 |
 | [SSData.lean](SSData.lean) | 模块导入入口 |
-| [SSDataConstruction.lean](SSDataConstruction.lean) | 模块导入入口 |
-| [WeakConvergence.lean](WeakConvergence.lean) | 模块导入入口 |
+| [SpectralSequenceConstruction/Data.lean](SpectralSequenceConstruction/Data.lean) | 从已构造的 PreSS 和有限页定律组装谱序列 |
+| [WeakConvergence/Data.lean](WeakConvergence/Data.lean) | 组装有界过滤复形的弱收敛记录 |
 
 ## 3. 大概完成度
 
-**现有内容：5 个 Lean 文件、约 60 个显式声明，其中 32 条 theorem/lemma。** 本组件未扫描到显式占位正文，已有实现仍需结合依赖和语义审核判断是否完成。
+三个单导入入口已删除，上表直接链接实际实现；`SSData.lean` 仍是多模块聚合。
+原迁移批次的“5 个文件、约 60 条声明”不是当前目录统计。已有实现仍需结合
+依赖和语义审核判断是否完成，入口精简不证明数学义务完成。
 
 未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
 

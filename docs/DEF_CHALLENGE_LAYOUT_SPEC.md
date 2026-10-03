@@ -41,30 +41,45 @@ a subsequent component's Data.lean. Continue the split for its predicates and
 proofs. Do not create cycles or replace a provable law with a new input
 hypothesis to avoid this separation.
 
-Public entry modules re-export components with imports only. Preserve public
+Multi-module public entries may re-export components using imports only.
+Import concrete modules directly instead of keeping redundant one-import
+wrappers; required Lake roots such as KIPBase.lean are retained. Preserve public
 declaration names unless the task requires an API change. A reusable implication
 is a direct theorem, not a parallel `def statement : Prop` alias.
-Paper milestones belong to Challenge/Solution; supporting lemmas belong to Def.
+The current three-stage policy supersedes the original mirrored layout:
+internal stage statements and proofs live only in the respective Solution; reusable
+mathematical lemmas still belong to Def when independent of Main inputs.
 
-## Challenge / Solution contract
+## Current Challenge / Solution contract
 
-KIP126/Main/Challenge/ and KIP126/Main/Solution/ have matching relative paths and entry
-modules. Theorems have the same names, universe parameters, variables,
-typeclass assumptions, hypotheses, and conclusions, modulo the respective
-KIP126.Main.Challenge and KIP126.Main.Solution namespace prefixes. Public structures
-and fields must also remain synchronized where mirrored.
+Each stage has exactly one paired declaration:
 
-Challenge theorems always have `:= by sorry`; they remain statement
-placeholders even after the Solution proof is complete. Write proofs only in
-Solution. An unfinished Solution theorem also uses `by sorry`; an import or
-comment does not satisfy the mirror requirement. Solution must not use
-Challenge placeholders, directly or indirectly.
+- `Def/Challenge/Challenge1.lean` and `Def/Solution/Challenge1.lean` state
+  `Nonempty KIP126.Challenge1`.
+- `Interface/Challenge/Challenge2.lean` and `Interface/Solution/Challenge2.lean`
+  state `Nonempty KIP126.Challenge2`.
+- `Main/Challenge/Final/h6_sq_permanent.lean` and the matching Solution file
+  state the single standard final theorem.
 
-Additions, removals, renames, and statement changes update both tracks in the
-same change. Proof-only Solution changes do not require Challenge edits.
-Compare relative trees and complete signatures during validation.
-Compiling a placeholder is never proof-completion evidence and must not
-justify a Blueprint completion marker.
+Each pair has identical complete types, including universe parameters,
+variables, typeclass assumptions and hypotheses. Internal statements and
+proofs live only in the corresponding Solution; do not create matching
+Challenge files for them. The literature/computation projections remain only
+in Interface/Solution. Root Challenge1/Challenge2 witness types and generic
+Def component organization are unchanged.
+
+Within these required pairs, Challenge theorems always have `:= by sorry`;
+they remain statement placeholders after the Solution proof is complete.
+An unfinished proof belongs in Solution with explicit `by sorry`.
+Solution must not use Challenge placeholders, directly or indirectly.
+
+Changes to a required paired statement update both declarations in the same
+change. Internal stage changes update their Solution declarations and
+checks directly. Validate the three stage-total/final pairs and Solution dependency
+closure; do not require matching intermediate trees. Compiling a placeholder
+is never proof-completion evidence and cannot justify a Blueprint completion
+marker. The current final Solution is connected to Propositions 7.8 and 7.9,
+whose proofs remain `sorry`.
 
 ## Source ownership
 
@@ -86,7 +101,7 @@ They do not require empty directories for planned mathematics.
 | Literature inputs | External/Literature/ |
 | Paper-specific appendix schema, encoded rows, computation inputs | External/Computation/ |
 | Source and claim bookkeeping | External/Provenance.lean, External/SourceInventory.lean, External/Claims.lean |
-| Milestone statements and proofs | Challenge/, Solution/ |
+| Stage-total statements and proofs | Each stage has one Challenge/Solution pair; internal targets live only in Solution |
 | Compilation and statement-shape regressions | Checks/ |
 
 The appendix schema and catalogue are exported by KIP126.Main.Axiom, not
@@ -97,11 +112,12 @@ Synthetic ESS, full paper-specific page extensions, and geometric endpoints
 remain planned mathematics where no implementation exists. The generic
 page-differential API is not a completed synthetic page-extension model.
 
-## Current milestone modules
+## Historical milestone modules
 
-Paths below are relative to both Challenge/ and Solution/. The Blueprint
-remains the mathematical statement and dependency index; this table is a
-module locator, not a proof-completion claim.
+This table records the original paired paths, not the current Challenge tree.
+Internal milestones now live only in the relevant Solution; see STAGE_LAYOUT.md
+for current ownership. The Blueprint remains the mathematical statement and
+dependency index; this historical locator does not claim proof completion.
 
 | Target | Relative module |
 | --- | --- |

@@ -10,6 +10,6 @@
 
 基础语言见 `Def/Kervaire/Route/Extensions`：有限与无限关系都是实际同伦映射的两项过滤复形中的解；目标不定性是该复形的较短边界。无限关系不再要求整个 π₀ 有有限过滤，也不声称任意指定的早期严格解都可提升。
 
-`Def/Kervaire/Route/Model` 固定同一 H、ν、family、实际塔过滤、λ 商及 λ/ρ/δ 相容性。`Main/Solution/Route/DependencyTypes` 明确所需文献输入如何绑定同一个 D；工具定理本身没有进入该输入清单。M 接口冻结记录与完整路线清单见 [M_INPUT_FREEZE.md](../../../../docs/M_INPUT_FREEZE.md)。
+`Def/Kervaire/Route/Model` 固定同一 H、ν、family、实际塔过滤、λ 商及 λ/ρ/δ 相容性。`Challenge2/Route/Literature/DependencyTypes.lean` 明确所需文献输入如何绑定同一个 D；工具定理本身没有进入该输入清单。M 接口冻结记录与完整路线清单见 [M_INPUT_FREEZE.md](../../../../docs/M_INPUT_FREEZE.md)。
 
 旧的 PageExtension 通用原型保留供兼容性和已有引理使用；本证明路线已不消费其独立选择的有界 family。

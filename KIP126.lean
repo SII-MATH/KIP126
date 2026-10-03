@@ -1,7 +1,7 @@
 import KIP126.Main.Solution.Computation.Tower.Survival
 import KIP126.Interface.Solution.FiniteCoherentPageExtension
 import KIP126.Interface.Solution.CoherentPageExtension
-import KIP126.Main.Solution.Literature.StandardSphere.Proofs
+import KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
 import KIP126.Main.Solution.Computation.Vanishing
 import KIP126.Main.Solution.Computation.Nonvanishing
@@ -20,9 +20,9 @@ import KIP126.Interface.Solution.LowDimensionalPermanence
 import KIP126.Def
 import KIP126.Challenge1
 import KIP126.Challenge2
-import KIP126.Def.Challenge
+import KIP126.Def.Challenge.Challenge1
 import KIP126.Def.Solution
-import KIP126.Def.AdamsE2
+import KIP126.Def.AdamsE2.Classes.Proofs
 import KIP126.Interface
 import KIP126.Main
 import KIP126.Main.Solution

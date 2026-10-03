@@ -1,10 +1,10 @@
 # LinProgram：计算交付证明
 
-本目录把固定程序工件及局部证书与选定模型相联系，生产 `Challenge2.ComputationInterface` 的 C(M) 结论。原始数据、转换程序、生成记录、参数化解释及纯数据证书位于独立 [LinProgram](../../../LinProgram/README.md)。
+本目录把固定程序工件及局部证书与选定模型相联系，生产 `Challenge2.ComputationInterface` 的 C(M) 结论。本目录同时保存内部认证目标的准确陈述和证明，不再建立 Challenge 镜像；唯一阶段目标是 `Nonempty Challenge2`。原始数据、转换程序、生成记录、参数化解释及纯数据证书位于独立 [LinProgram](../../../LinProgram/README.md)。
 
 | 文件 | 职责与状态 |
 | --- | --- |
-| [BasisTable.lean](BasisTable.lean) | 认证 v126.3.cw49、所有自然数 s,t 且 t ≤ 261 的固定加法基；仍为 `sorry` |
+| [BasisTable.lean](BasisTable.lean) | 认证 v126.3.cw49、所有自然数 s,t 且 t ≤ 261 的固定 CSV 单项式线性无关且张成；仍为 `sorry`，不属于 Challenge1 基础选择 |
 | [SphereBasis.lean](SphereBasis.lean) | 经同一个 presentation 将基认证运输为实际 E₂ 坐标；已实现运输，依赖待证基认证 |
 | [Multiplication.lean](Multiplication.lean) | Lin 表示中的乘法、单位与实际球谱 E₂ 相容；仍为 `sorry` |
 | [Staircase.lean](Staircase.lean) | 固定 staircase 快照的数学语义；仍为 `sorry` |

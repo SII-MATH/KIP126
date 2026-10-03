@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Route
+import KIP126.Challenge2.Route.Literature.Data
 import KIP126.Main.Solution.Literature.Route.Inputs
 import Lean.Elab.Command
 

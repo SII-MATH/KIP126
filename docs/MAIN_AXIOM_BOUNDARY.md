@@ -6,18 +6,24 @@
 
 `Main/Axiom/LinProgram` 已清空：参数化解释归 LinProgram，交付规格归根
 Challenge2，消费者适配归 Main/Solution。路线文献规格与比较绑定归
-`Challenge2/Route/Literature`，原 `Main/Axiom/Literature/Route.lean` 仅作为导入入口。
+`Challenge2/Route/Literature`。原 `Main/Axiom/Literature/Route.lean` 的单导入
+入口已删除，现直接导入 `KIP126.Challenge2.Route.Literature.Data`。
 根 Challenge2 现已把路线 A/C 绑定到 Challenge1 的同一个模型。
+
+Main 只为唯一最终定理保留 Challenge/Solution 配对；所有中间陈述、消费构造和
+证明均只放 Main/Solution。Final 的逻辑串接已完成，但所用 Proposition 7.8/7.9
+仍为 `sorry`，不表示完整数学证明完成。Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。
 
 ## 2026-10-03：剩余构造与包装迁出
 
 固定 Hopf cofiber、胞腔映射、实际塔及 E₂ 映射位于
 `Main/Solution/Literature/HopfCofiber`；Mathlib 球谱对象和非零性证明位于
 `Mathlib/ClassicalAdams/StandardSphere`。保留原公开声明名和已有证明，
-旧 Main StandardSphere 证明入口仅重新导出适配层。
+旧 Main StandardSphere 单导入证明入口已删除，现直接导入
+`KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs`。
 
 Synthetic、Geometry、May 的输入结构保留在 Axiom；catalogue 构造与字段提取
-移到 `Main/Solution/Literature`，原真实提取证明保留并配有 Challenge。
+移到 `Main/Solution/Literature`，原真实提取证明保留；中间 Challenge 镜像现已删除。
 Bockstein、E∞ 的纯包装也已迁出。Axiom 目录只接受 statement，不能包含
 `def`、`abbrev`、`theorem`、`lemma`、`instance` 或 `opaque`。
 
@@ -36,10 +42,10 @@ Selected 的纯来源元数据在 `LinProgram/Generated/Selected/records.json`�
 | 固定 CSV 的 near-126 名称、次数证书与类表达式 | `LinProgram/Interpretation/Near126/` |
 | 路线输入使用的类型语言 `DependencyTypes` | `Challenge2/Route/Literature/DependencyTypes.lean` |
 
-保留原有公开声明名称。105 条迁入 Main 证明轨道的定理补齐同路径 Challenge 声明；
-Challenge 名称在原命名空间内增加 `Challenge` 分组，证明均为 `sorry`。
-这些声明导入其 Solution 以共用原有数据定义和记号，但 Solution 不导入 Challenge。
-其中 104 条 Solution 证明正文不变；平方标签比较改为统一交付字段的投影。
+该历史批次保留原有公开声明名称，曾为 105 条迁入 Main 的定理补齐同路径
+Challenge 声明；其中 104 条 Solution 证明正文不变，平方标签比较改为统一
+交付字段的投影。按现行规则，这些重复的中间 Challenge 声明已经移除，
+Solution 的陈述和证明保留。只有最终定理继续要求两侧签名一致。
 
 ## 平方标签的生产与消费
 
@@ -56,7 +62,7 @@ Challenge2 消费公理。Main 的 `computedH6Square_eq_standardH6Square` 只投
 `Interface/Solution/LinProgram/Multiplication.lean` 和完整 Challenge2 构造中的
 `sorry` 保持原状态。没有新增独立公理或 Solution 占位证明。
 
-## 原迁移批次验证（当前接线验证另见提交说明）
+## 原迁移批次验证（历史记录，不是本轮验证）
 
 - `python -m unittest scripts.test_stage_boundary_layout`：8 项通过，涵盖导入无缺失／无环、
   独立数据管线、输入不依赖证明端、Main 消费不导入 Interface 实现及配对文件存在性。
@@ -70,4 +76,20 @@ Challenge2 消费公理。Main 的 `computedH6Square_eq_standardH6Square` 只投
   和 `Checks.ClassicalAdams.FixedFinal` 编译通过。
 - 最终 Challenge/Solution 的 `h6_sq_permanent.lean` 两个文件正文保持不变。
 
-上述检查针对依赖重排与接口正确连接，不代表原有数学证明债务已消除；未运行全仓库构建。
+上述检查是当时的依赖重排与接口验证，不代表原有数学证明债务已消除；当时未运行全仓库构建。中间镜像存在性及成对类型检查现已取消，改为直接检查 Solution，并保留唯一 Final 的类型一致性检查。Selected 元数据后来移至 LinProgram，见上文。
+
+## 前一轮 Main Challenge 清理验证（先于 Def/Interface 同类清理）
+
+- 删除 32 个中间 Challenge 文件、147 条重复声明；只保留最终目标。
+  75 个 Main/Solution Lean 文件全部保留，数学陈述和证明正文未变；
+  仅 `Route/Selected.lean` 的一行说明同步新规则。Final 两份文件逐字节不变。
+- `python -m unittest scripts.test_stage_boundary_layout`：15 项通过，
+  包括最终目标唯一入口、导入完整性和 Solution 不依赖 Challenge 占位。
+- 经共享缓存包装器定向编译通过：`Main.Challenge`、
+  `Checks.ClassicalAdams.StandardFinalBoundary`、`Checks.ClassicalAdams.FixedFinal`、
+  `Checks.MainAxiomBoundary`、`Checks.Computation.RouteGoals`、
+  `Checks.Interfaces.InputBoundaryAdapters`（模块前缀均为 `KIP126`）。
+  最终配对类型一致，保留的中间定理及输入提取检查通过。
+
+现有 Solution 的 `sorry` 和两道阶段存在性假设仍保留；以上是布局与接口验证。
+未运行全仓库构建或 CI。

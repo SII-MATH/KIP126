@@ -2,6 +2,10 @@
 
 日期：2026-09-26。状态：部分审计完成，输入尚未接齐。
 
+> 历史消费者审计：旧接口和双轨路径按当时状态记录；当前每个阶段只保留一个
+> 总目标 Challenge，内部陈述与证明只在所属 Solution。现行模型及目标见
+> [M_INPUT_FREEZE.md](M_INPUT_FREEZE.md) 和 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)。
+
 本文件是工作核查记录，不替代 Blueprint 的数学节点、Lean 的实际声明、
 或外部来源台账。目标是准备证明条件，不在这里证明论文主定理，
 也不把论文自己的关键推论重新标成 Lin 计算事实。
@@ -144,9 +148,9 @@ R11 排除命中 `i(T)∈E_r^(14,139)` 的 `2≤r≤5` 微分。所有可能源�
    `Input` 没有保证它们来自实际 triangle/SSData。因而不能仅修正两个字段名
    就宣称通用定理可证；需有数学结构和相容性的真正约束。
 
-本轮停止对这些冲突接口追加实例，先记录冲突。后续修正时必须同步
-Challenge/Solution 的声明和 Blueprint 链接；Solution 不得调用 Challenge
-中的 `sorry` 得出证明。
+该历史批次停止对冲突接口追加实例。按现行规则，内部接口修正在所属
+Solution 同步陈述、证明及 Blueprint 链接；只有整阶段目标需要同步 Challenge。
+Solution 不得调用 Challenge 中的 `sorry` 得出证明。
 
 ## 5. 下一步与验收检查
 

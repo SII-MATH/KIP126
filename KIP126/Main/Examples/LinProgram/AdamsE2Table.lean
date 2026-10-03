@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2
+import KIP126.Def.AdamsE2.Classes.Proofs
 import Mathlib.Algebra.Polynomial.Basic
 import Mathlib.Algebra.Polynomial.AlgebraMap
 

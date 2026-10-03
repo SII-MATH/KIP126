@@ -146,19 +146,35 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         self.assertIn("Main.StageInput.computation.sphereSquare.standard_class", consumer)
         self.assertNotIn("sphereAdamsData_eq_computedH6Square_of_ne_zero", consumer)
 
-    def test_new_consumer_proofs_have_statement_tracks(self):
-        for directory in ("Computation/LinProgram", "Computation/Comparisons",
-                          "Computation/Tower", "Computation/Differential", "Literature",
-                          "Computation/Route.lean", "Computation/Lambda.lean", "Route"):
-            base = ROOT / "KIP126/Main/Solution" / directory
-            paths = [base] if base.is_file() else base.rglob("*.lean")
-            for path in paths:
-                if not re.search(r"\btheorem\s+", path.read_text()):
-                    continue
-                paired = ROOT / "KIP126/Main/Challenge" / path.relative_to(
-                    ROOT / "KIP126/Main/Solution")
-                self.assertTrue(paired.exists(), f"missing statement track: {paired}")
-                self.assertIn("sorry", paired.read_text())
+    def test_challenge_trees_contain_only_stage_targets(self):
+        targets = {"Def": "Challenge1", "Interface": "Challenge2",
+                   "Main": "Final/h6_sq_permanent"}
+        for layer, target in targets.items():
+            with self.subTest(layer=layer):
+                root = ROOT / "KIP126" / layer / "Challenge"
+                self.assertEqual(
+                    {str(path.relative_to(root)) for path in root.rglob("*.lean")},
+                    {target + ".lean"})
+                module = target.replace("/", ".")
+                self.assertNotIn(f"KIP126.{layer}.Challenge", self.graph)
+                self.assertIn(f"KIP126.{layer}.Challenge.{module}",
+                              self.dependencies("KIP126"))
+                self.assertIn(f"KIP126.{layer}.Solution.{module}", self.graph)
+        # StageInputDeclarations and FixedFinal compare the elaborated boundary
+        # types and check that the three Challenge proofs remain placeholders.
+
+    def test_solutions_do_not_depend_on_challenge_placeholders(self):
+        challenge_roots = tuple(f"KIP126.{layer}.Challenge"
+                                for layer in ("Def", "Interface", "Main"))
+        solution_roots = tuple(f"KIP126.{layer}.Solution"
+                               for layer in ("Def", "Interface", "Main"))
+        for module in self.graph:
+            if module in solution_roots or module.startswith(tuple(root + "." for root in solution_roots)):
+                with self.subTest(module=module):
+                    forbidden = [name for name in self.dependencies(module)
+                                 if name in challenge_roots
+                                 or name.startswith(tuple(root + "." for root in challenge_roots))]
+                    self.assertEqual(forbidden, [])
 
 
 if __name__ == "__main__":
