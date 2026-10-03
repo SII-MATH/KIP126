@@ -714,19 +714,19 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
       claim .adamsOneLine .compositeResult `KIP126.Classical.adamsOneLineDifferentials
         "thm:external-adams-one-line" .aimPaper
         "AIM paper, lines 140--150; cited Adams, Mahowald--Tangora, and May inputs"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex")
+        (some "MainPaper/main.tex")
         [.mahowaldTangoraDifferentials, .mayLowPageSurvival]
   | .mapFiltrationFactorization =>
       claim .mapFiltrationFactorization .literatureResult
         `KIP126.Classical.mapFiltrationFactorization
         "thm:external-map-filtration-factorization" .aimPaper
         "AIM paper, lines 273--275, citation to Ravenel Theorem 2.2.14"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex")
+        (some "MainPaper/main.tex")
   | .browderCriterion =>
       claim .browderCriterion .literatureResult `KIP126.Kervaire.BrowderCriterion
         "thm:external-browder-criterion" .browder
         "Browder, section 7, Theorem 7.1; physical PDF page 23"
-        (some "KIP126/Main/Axiom/Literature/Sources/Browder/paper.pdf")
+        (some "Source/Browder/paper.pdf")
   | .mahowaldTangoraDifferentials =>
       claim .mahowaldTangoraDifferentials .literatureResult
         `KIP126.Kervaire.MahowaldTangoraDifferentials
@@ -748,97 +748,97 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
       claim .hhrNonexistence .literatureResult `KIP126.Kervaire.HHRNonexistence
         "thm:external-hhr-nonexistence" .hhr
         "Hill--Hopkins--Ravenel, Kervaire invariant one nonexistence theorem"
-        (some "KIP126/Main/Axiom/Literature/Sources/HHR/paper.pdf")
+        (some "Source/HHR/paper.pdf")
   | .xuTheta5Order =>
       claim .xuTheta5Order .literatureResult `KIP126.Kervaire.XuTheta5Order
         "source:xu-theta5-order" .xu
         "Xu, Corollary 1.3, an order-two theta_5 representative"
-        (some "KIP126/Main/Axiom/Literature/Sources/Xu/paper.pdf")
+        (some "Source/Xu/paper.pdf")
   | .iwxTheta5Filtration =>
       claim .iwxTheta5Filtration .literatureResult `KIP126.Kervaire.IWXTheta5Filtration
         "source:iwx-theta5-filtration" .iwx
         "Isaksen--Wang--Xu, stem-62 group order and choice-filtration tables"
-        (some "KIP126/Main/Axiom/Literature/Sources/IWX/paper.pdf")
+        (some "Source/IWX/paper.pdf")
   | .lowKervaireExistence =>
       claim .lowKervaireExistence .compositeResult `KIP126.Kervaire.LowKervaireExistence
         "thm:external-low-kervaire-existence" .aimPaper
         "AIM paper, lines 151--162, assembled prior low-dimensional existence input"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex")
+        (some "MainPaper/main.tex")
         [.mahowaldTangoraDifferentials, .theta5Existence, .bjmInduction,
           .mayLowPageSurvival]
   | .syntheticFoundation =>
       claim .syntheticFoundation .literatureResult `KIP126.Synthetic.SyntheticFoundation
         "thm:external-synthetic-foundation" .pst
         "Pstragowski, synthetic category construction and synthetic analogue functor"
-        (some "KIP126/Main/Axiom/Literature/Sources/Pst/paper.pdf")
+        (some "Source/Pst/paper.pdf")
   | .lambdaQuotientRing =>
       claim .lambdaQuotientRing .literatureResult `KIP126.Synthetic.LambdaQuotientRing
         "thm:external-lambda-quotient-ring" .pst
         "Pstragowski, Corollary 4.45, lambda-quotient ring structure"
-        (some "KIP126/Main/Axiom/Literature/Sources/Pst/paper.pdf")
+        (some "Source/Pst/paper.pdf")
   | .higherLambdaQuotientAlgebra =>
       claim .higherLambdaQuotientAlgebra .literatureResult
         `KIP126.Synthetic.HigherLambdaQuotientAlgebra
         "source:higher-lambda-quotient-algebra-tower" .burklundXu
         "Burklund--Xu, Construction 7.7, direct tower of commutative algebras on the higher lambda-power quotients"
-        (some "KIP126/Main/Axiom/Literature/Sources/BurklundXu/paper.pdf")
+        (some "Source/BurklundXu/paper.pdf")
   | .symmetricMonoidalDeformation =>
       claim .symmetricMonoidalDeformation .literatureResult
         `KIP126.Synthetic.SymmetricMonoidalDeformationConstruction
         "source:symmetric-monoidal-deformation-construction" .bhsMot
         "Burklund--Hahn--Senger, Appendix C, symmetric monoidal filtered-to-synthetic deformation construction underlying the Burklund--Xu tower"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHSmot/paper.pdf")
+        (some "Source/BHSmot/paper.pdf")
   | .lambdaInversion =>
       claim .lambdaInversion .literatureResult `KIP126.Synthetic.LambdaInversion
         "thm:external-lambda-inversion" .pst
         "Pstragowski, lambda-inversion comparison with classical spectra"
-        (some "KIP126/Main/Axiom/Literature/Sources/Pst/paper.pdf")
+        (some "Source/Pst/paper.pdf")
   | .nuCofiberCriterion =>
       claim .nuCofiberCriterion .literatureResult `KIP126.Synthetic.NuCofiberCriterion
         "thm:external-nu-cofiber-criterion" .pst
         "Pstragowski, Lemma 4.23, cofiber criterion for the synthetic analogue functor"
-        (some "KIP126/Main/Axiom/Literature/Sources/Pst/paper.pdf")
+        (some "Source/Pst/paper.pdf")
   | .syntheticRigidity =>
       claim .syntheticRigidity .literatureResult `KIP126.Synthetic.SyntheticRigidity
         "thm:external-synthetic-rigidity" .bhs
         "Burklund--Hahn--Senger, Theorem A.8, synthetic Adams rigidity"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
+        (some "Source/BHS/paper.pdf")
   | .lambdaBockstein =>
       claim .lambdaBockstein .literatureResult `KIP126.Challenge2.FiniteLambdaBocksteinInterface
         "thm:external-finite-lambda-bockstein" .bhs
         "Burklund--Hahn--Senger, Theorem A.1 (1a)--(1c), finite Bockstein lifting/differential"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
+        (some "Source/BHS/paper.pdf")
   | .syntheticEinfNu =>
       claim .syntheticEinfNu .literatureResult `KIP126.Challenge2.NuEInftyFormula
         "thm:external-synthetic-einfty-nu" .bhs
         "Burklund--Hahn--Senger, Corollary A.9, E_infinity of nu X"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
+        (some "Source/BHS/paper.pdf")
   | .syntheticEinfQuotient =>
       claim .syntheticEinfQuotient .literatureResult `KIP126.Challenge2.FiniteEInftyFormula
         "thm:external-synthetic-einfty-quotient" .bhs
         "Burklund--Hahn--Senger, Corollary A.11, E_infinity of a finite lambda quotient"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
+        (some "Source/BHS/paper.pdf")
   | .syntheticLift =>
       claim .syntheticLift .literatureResult `KIP126.Synthetic.SyntheticLiftComparison
         "thm:external-synthetic-lift" .bhs
         "Burklund--Hahn--Senger, Lemma 9.15, synthetic lift of a filtered map"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
+        (some "Source/BHS/paper.pdf")
   | .syntheticTriangleLift =>
       claim .syntheticTriangleLift .literatureResult
         `KIP126.Synthetic.SyntheticTriangleLiftComparison
         "thm:external-synthetic-triangle-lift" .bhs
         "Burklund--Hahn--Senger, proof of Lemma 9.15, lift of a distinguished triangle"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
+        (some "Source/BHS/paper.pdf")
   | .syntheticLambdaComplete =>
       claim .syntheticLambdaComplete .literatureResult
         `KIP126.Synthetic.SyntheticLambdaComplete
         "thm:external-synthetic-lambda-complete" .bhs
         "Burklund--Hahn--Senger, Proposition A.13, lambda-adic completeness"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
+        (some "Source/BHS/paper.pdf")
   | .maySmashBoundary =>
       claim .maySmashBoundary .literatureResult `KIP126.Literature.Route.MaySourceResults
         "thm:external-may-smash-boundary" .may01
-        "May author PDF pp.12--13 TC3 signed square and p.14 Lemma 4.6; unsigned projection requires an explicit exponent-two premise"
+        "Primary text unavailable; AIM paper line 1772 cites May Section 4 TC3 and Lemma 4.6; author PDF pp.12--14 gives the signed square, and unsigned projection requires an explicit exponent-two premise"
   | .mossConvergence =>
       claim .mossConvergence .literatureResult `KIP126.Stable.MossConvergence
         "thm:moss-convergence-adapter" .moss
@@ -847,28 +847,28 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
       claim .todaProductIdentities .compositeResult `KIP126.Stable.TodaProductIdentities
         "thm:toda-product-identities" .aimPaper
         "AIM paper, lines 2493--2567, load-bearing Toda product and shuffle identities"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.mossConvergence]
+        (some "MainPaper/main.tex") [.mossConvergence]
   | .bjmBxCriterion =>
       claim .bjmBxCriterion .literatureResult `KIP126.Kervaire.BJMOriginalCriterion
         "thm:external-bjm-bx-criterion" .burklundXu
         "Burklund--Xu Proposition 7.19, original eta / lambda^r finite criterion"
-        (some "KIP126/Main/Axiom/Literature/Sources/BurklundXu/paper.pdf") [.bjmInduction]
+        (some "Source/BurklundXu/paper.pdf") [.bjmInduction]
   | .theta5OrderData =>
       claim .theta5OrderData .projectDerivation `KIP126.Kervaire.Theta5OrderData
         "thm:external-theta5-order-data" .aimPaper
         "AIM paper, Remarks 7.4--7.5, Xu/IWX order and choice-filtration synthesis"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.xuTheta5Order, .iwxTheta5Filtration]
+        (some "MainPaper/main.tex") [.xuTheta5Order, .iwxTheta5Filtration]
   | .totalDifferentialIdentity =>
       claim .totalDifferentialIdentity .literatureResult
         `KIP126.Kervaire.SourceTotalDifferentialIdentity
         "thm:external-total-differential-identity" .burklundXu
         "Burklund--Xu Proposition 7.19 construction, total differential identity for an order-two choice"
-        (some "KIP126/Main/Axiom/Literature/Sources/BurklundXu/paper.pdf")
+        (some "Source/BurklundXu/paper.pdf")
   | .tmfDetection =>
       claim .tmfDetection .literatureResult `KIP126.Kervaire.TmfDetection
         "source:tmf-detection" .tmf
         "Behrens--Mahowald--Quigley, tmf Hurewicz detection and nonimage input"
-        (some "KIP126/Main/Axiom/Literature/Sources/tmf/paper.pdf")
+        (some "Source/tmf/paper.pdf")
   | .br21TmfDifferential =>
       claim .br21TmfDifferential .literatureResult `KIP126.Kervaire.Br21TmfDifferential
         "source:br21-tmf-differential" .br21
@@ -877,134 +877,134 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
       claim .linMachineRelease .machineEvidence `KIP126.External.LinMachineRelease
         "prop:lin-computation-provenance" .lwxMachine
         "Zenodo record 14875701, version v126.3.cw49"
-        (some "KIP126/Main/Axiom/Literature/Sources/LWXMachine/zenodo-record.json")
+        (some "Source/LWXMachine/zenodo-record.json")
   | .linSpectrumCatalogue =>
       claim .linSpectrumCatalogue .machineEvidence `KIP126.External.LinSpectrumCatalogue
         "def:lin-spectrum-catalogue" .lwxMachine
         "LWX machine release, the 49-CW-spectrum catalogue"
-        (some "KIP126/Main/Axiom/Literature/Sources/LWXMachine/zenodo-record.json") [.linMachineRelease]
+        (some "Source/LWXMachine/zenodo-record.json") [.linMachineRelease]
   | .linE2PageCatalogue =>
       claim .linE2PageCatalogue .machineEvidence `KIP126.External.LinE2PageCatalogue
         "def:lin-e2-page-catalogue" .lwxMachine
         "LWX machine paper section 2.1 and the E_2-page data for all retained spectra"
-        (some "KIP126/Main/Axiom/Literature/Sources/LWXMachine/paper.pdf") [.linMachineRelease, .linSpectrumCatalogue]
+        (some "Source/LWXMachine/paper.pdf") [.linMachineRelease, .linSpectrumCatalogue]
   | .linMapCatalogue =>
       claim .linMapCatalogue .machineEvidence `KIP126.External.LinMapCatalogue
         "def:lin-map-catalogue" .lwxMachine
         "LWX machine paper section 2.2, the 180-map catalogue"
-        (some "KIP126/Main/Axiom/Literature/Sources/LWXMachine/paper.pdf") [.linMachineRelease, .linSpectrumCatalogue]
+        (some "Source/LWXMachine/paper.pdf") [.linMachineRelease, .linSpectrumCatalogue]
   | .linD2Catalogue =>
       claim .linD2Catalogue .machineEvidence `KIP126.External.LinD2Catalogue
         "def:lin-d2-catalogue" .lwxMachine
         "LWX machine paper section 2.3, initial d_2 catalogue"
-        (some "KIP126/Main/Axiom/Literature/Sources/LWXMachine/paper.pdf") [.linMachineRelease, .linE2PageCatalogue]
+        (some "Source/LWXMachine/paper.pdf") [.linMachineRelease, .linE2PageCatalogue]
   | .linPropagatedOutputs =>
       claim .linPropagatedOutputs .machineEvidence `KIP126.External.LinPropagatedOutputs
         "def:lin-propagated-output-record" .lwxMachine
         "LWX machine release, propagated differential, extension, and disproof outputs"
-        (some "KIP126/Main/Axiom/Literature/Sources/LWXMachine/zenodo-record.json")
+        (some "Source/LWXMachine/zenodo-record.json")
         [.linMachineRelease, .linMapCatalogue, .linD2Catalogue]
   | .appendixTables =>
       claim .appendixTables .tableEvidence `KIP126.External.AppendixEvidence
         "def:appendix-evidence-record" .aimPaper
         "AIM Appendix, all twelve tables, nine zero bands, and every nonempty row"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex")
+        (some "MainPaper/main.tex")
         [.linE2PageCatalogue, .linPropagatedOutputs]
   | .manualDifferentials =>
       claim .manualDifferentials .transcribedEvidence `KIP126.External.ManualDifferentials
         "prop:appendix-manual-inputs" .aimPaper
         "AIM paper, lines 2785--2792, the three separately supplied differentials"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.linMachineRelease, .br21TmfDifferential]
+        (some "MainPaper/main.tex") [.linMachineRelease, .br21TmfDifferential]
   | .normalizedHopfDetection =>
       claim .normalizedHopfDetection .transcribedEvidence
         `KIP126.Kervaire.NormalizedHopfDetection
         "evidence:normalized-hopf-detection" .aimPaper
         "AIM Example 5.5(2), normalized detection of the Hopf map by h_2"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex")
+        (some "MainPaper/main.tex")
   | .etaEssRegression =>
       claim .etaEssRegression .tableEvidence `KIP126.Classical.Regression.etaEss
         "prop:eta-ess-regression" .aimPaper
         "AIM Example 2.11, eta-extension spectral-sequence regression in stem 46"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.iwxTheta5Filtration]
+        (some "MainPaper/main.tex") [.iwxTheta5Filtration]
   | .leibnizNegativeRegression =>
       claim .leibnizNegativeRegression .tableEvidence
         `KIP126.Classical.Regression.leibnizNegative
         "prop:leibniz-negative-regression" .aimPaper
         "AIM negative Generalized Leibniz example, lines 1694--1720"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.appendixTables]
+        (some "MainPaper/main.tex") [.appendixTables]
   | .chuaRuleCounterexample =>
       claim .chuaRuleCounterexample .transcribedEvidence
         `KIP126.Classical.Regression.chuaRuleCounterexample
         "prop:chua-rule-counterexample" .aimPaper
         "AIM Remark on the maximal-extension rule, lines 1733--1753"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex")
+        (some "MainPaper/main.tex")
   | .mahowaldCofiberRegression =>
       claim .mahowaldCofiberRegression .tableEvidence
         `KIP126.Classical.Regression.mahowaldCofiber
         "prop:mahowald-cofiber-regression" .aimPaper
         "AIM Mahowald-trick cofiber regression, lines 1930--1977"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.linD2Catalogue]
+        (some "MainPaper/main.tex") [.linD2Catalogue]
   | .synthetic14StemRegression =>
       claim .synthetic14StemRegression .tableEvidence
         `KIP126.Synthetic.Regression.stem14
         "prop:synthetic-14-stem-regression" .aimPaper
         "AIM synthetic 14-stem E_infinity regression, lines 878--910"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.syntheticRigidity, .appendixTables]
+        (some "MainPaper/main.tex") [.syntheticRigidity, .appendixTables]
   | .stem38CrossingRegression =>
       claim .stem38CrossingRegression .tableEvidence
         `KIP126.Synthetic.Regression.stem38Crossing
         "prop:stem38-crossing-regression" .aimPaper
         "AIM classical crossing-differential example in stem 38"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.appendixTables]
+        (some "MainPaper/main.tex") [.appendixTables]
   | .hopfCrossingExclusion =>
       claim .hopfCrossingExclusion .tableEvidence
         `KIP126.Classical.HopfCrossingObstructionExclusion
         "evidence:hopf-crossing-obstruction-exclusion" .aimPaper
         "AIM finite Ext-product exclusion for the Hopf page-extension example"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.appendixTables]
+        (some "MainPaper/main.tex") [.appendixTables]
   | .pageCrossingRegression =>
       claim .pageCrossingRegression .tableEvidence
         `KIP126.Classical.Regression.pageCrossing
         "prop:page-crossing-regression" .aimPaper
         "AIM Example 5.7, page-crossing regressions"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.hopfCrossingExclusion]
+        (some "MainPaper/main.tex") [.hopfCrossingExclusion]
   | .theta5OrderTorsion =>
       claim .theta5OrderTorsion .projectDerivation `KIP126.Kervaire.Theta5OrderTorsionEvidence
         "evidence:theta5-order-torsion" .aimPaper
         "AIM Remarks 7.4--7.5: derived order/choice and torsion bundle, not raw program output"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.theta5OrderData, .appendixTables]
+        (some "MainPaper/main.tex") [.theta5OrderData, .appendixTables]
   | .theta5SquareTmf =>
       claim .theta5SquareTmf .tableEvidence `KIP126.Kervaire.Theta5SquareTmfEvidence
         "evidence:theta5-square-tmf" .aimPaper
         "AIM exhaustive theta_5-square and tmf analysis, lines 2323--2354"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.tmfDetection, .appendixTables]
+        (some "MainPaper/main.tex") [.tmfDetection, .appendixTables]
   | .todaCandidateProducts =>
       claim .todaCandidateProducts .tableEvidence `KIP126.Kervaire.TodaCandidateProducts
         "evidence:near126-core" .aimPaper
         "AIM Section 7 finite Toda candidate-product ledger"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.appendixTables, .todaProductIdentities]
+        (some "MainPaper/main.tex") [.appendixTables, .todaProductIdentities]
   | .twoExtensionIndeterminacy =>
       claim .twoExtensionIndeterminacy .tableEvidence
         `KIP126.Kervaire.TwoExtensionIndeterminacy
         "evidence:h02x1259" .aimPaper
         "AIM stem-125 two-extension representatives and indeterminacy products"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.appendixTables, .mossConvergence]
+        (some "MainPaper/main.tex") [.appendixTables, .mossConvergence]
   | .hopfLiftObstructions =>
       claim .hopfLiftObstructions .tableEvidence `KIP126.Kervaire.HopfLiftObstructions
         "evidence:near126-indeterminacy" .aimPaper
         "AIM finite Hopf-lift obstruction ledger"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.appendixTables, .normalizedHopfDetection]
+        (some "MainPaper/main.tex") [.appendixTables, .normalizedHopfDetection]
   | .stem122ProductExhaustion =>
       claim .stem122ProductExhaustion .tableEvidence
         `KIP126.Kervaire.Stem122ProductExhaustion
         "evidence:stem122-product-exhaustion" .aimPaper
         "AIM stem-122 candidate and product exhaustion, lines 2707--2728"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.appendixTables]
+        (some "MainPaper/main.tex") [.appendixTables]
   | .cnuIncomingExclusion =>
       claim .cnuIncomingExclusion .tableEvidence `KIP126.Kervaire.CnuIncomingExclusion
         "evidence:cnu126-short-incoming-exclusion" .aimPaper
         "AIM Cnu126 finite short-incoming-differential exclusion"
-        (some "KIP126/Main/Axiom/Literature/MainPaper/main.tex") [.appendixTables]
+        (some "MainPaper/main.tex") [.appendixTables]
 
 /- The checked-in, complete claim-level provenance ledger. -/
 set_option maxRecDepth 100000 in

@@ -267,7 +267,7 @@ end SourceKind
 
 `description` should identify a theorem, page, equation, table row, or other
 stable anchor.  `artifact` optionally names the local artifact containing the
-location (for example `KIP126/Main/Axiom/Literature/MainPaper/main.tex`).  The description remains explanatory
+location (for example `MainPaper/main.tex`).  The description remains explanatory
 metadata; file existence and cryptographic hashes are checked by the external
 inventory validator, not by Lean. -/
 structure Locator where
@@ -535,7 +535,7 @@ end ExternalEvidence
 
 private def regressionLocator : Locator :=
   { description := "AIM paper, theorem locator"
-    artifact := some "KIP126/Main/Axiom/Literature/MainPaper/main.tex" }
+    artifact := some "MainPaper/main.tex" }
 
 private def regressionRef : SourceRef :=
   { source := .aimPaper, locator := regressionLocator }

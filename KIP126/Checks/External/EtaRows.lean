@@ -22,7 +22,7 @@ example : Set.range EtaRowId.row = etaESSDifferentials :=
   EtaRowId.range_row
 
 example (id : EtaRowId) :
-    id.row.locator.artifact = some "KIP126/Main/Axiom/Literature/MainPaper/main.tex" := by
+    id.row.locator.artifact = some "MainPaper/main.tex" := by
   cases id <;> rfl
 
 example (data : EtaData source target) : data.eta.degree = (1, 2) :=

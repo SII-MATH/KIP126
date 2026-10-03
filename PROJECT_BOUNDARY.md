@@ -6,8 +6,8 @@ This document records the agreed scope and acceptance criteria for the Lean
 formalization of:
 
 > Weinan Lin, Guozhen Wang, and Zhouli Xu, *On the Last Kervaire Invariant
-> Problem*, represented in this repository by `KIP126/Main/Axiom/Literature/MainPaper/main.tex`,
-> `KIP126/Main/Axiom/Literature/MainPaper/112.tex`, and `KIP126/Main/Axiom/Literature/MainPaper/2412.10879.pdf`.
+> Problem*, represented in this repository by `MainPaper/main.tex`,
+> `MainPaper/112.tex`, and `MainPaper/2412.10879.pdf`.
 
 The document is normative for the project. Any proposed extension or
 relaxation of this boundary must be agreed explicitly and recorded here.
@@ -41,10 +41,11 @@ fixed-data pipeline:
    audited development assumptions so this work can proceed in parallel with
    Interface proofs.
 
-`KIP126/Main/Axiom/Literature/` retains explicit literature input statements
-and their source artifacts. The Lean source catalogue and generic evidence
-helpers live in `Def/References`; project-specific evidence construction and
-field extraction live in `Main/Solution/Literature`. `KIP126/LinProgram/` manages raw artifacts, deterministic translation,
+External literature statements are fields of the root
+`Challenge2.LiteratureInterface` and enter Main through the single
+`Nonempty Challenge2` stage axiom. The Lean source catalogue and generic evidence
+helpers live in `Def/References`; consumer projections live in
+`Main/Solution/StageInput.lean`. `KIP126/LinProgram/` manages raw artifacts, deterministic translation,
 generated records, parameterized interpretations, and local certificates.
 `Interface/Solution/LinProgram/` produces the resulting claims on
 the chosen model; `Main/Solution/StageInput.lean` and
@@ -410,8 +411,9 @@ longer assumes that certificate. Its proof remains unfinished.
 
 Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables first enter the repository as audited source
-material. `KIP126/Main/Axiom/Literature/` retains input statements and source
-artifacts; `KIP126/Def/References/` owns the source catalogue. The independent
+material. Root `MainPaper/` and `Source/` retain the source artifacts;
+root `Challenge2.LiteratureInterface` retains the model-bound input statements;
+`KIP126/Def/References/` owns the typed source catalogue. The independent
 `KIP126/LinProgram/` owns the raw-to-interpreted program pipeline and local
 certificates. `KIP126/Main/Solution/Computation/` owns computation consumer adapters. Every accepted external input remains a
 value of an explicit structure carrying both the proposition and its provenance.

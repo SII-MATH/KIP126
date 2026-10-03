@@ -49,9 +49,9 @@ example :
 example (P : SphereAdamsPresentation A)
     (proof : adamsOneLineDifferentials P) :
     (cataloguedAdamsOneLine P proof).value.ref.locator.artifact =
-      some "KIP126/Main/Axiom/Literature/MainPaper/main.tex" := by
+      some "MainPaper/main.tex" := by
   let input := cataloguedAdamsOneLine P proof
-  change input.value.ref.locator.artifact = some "KIP126/Main/Axiom/Literature/MainPaper/main.tex"
+  change input.value.ref.locator.artifact = some "MainPaper/main.tex"
   rw [input.ref_eq]
   rfl
 
@@ -173,7 +173,7 @@ example (P : SphereAdamsPresentation sphereSystem.pageSlice)
       (externalClaimLedger.lookup .adamsOneLine).classification =
         .compositeResult ∧
       (externalClaimLedger.lookup .adamsOneLine).ref.locator.artifact =
-        some "KIP126/Main/Axiom/Literature/MainPaper/main.tex" := by
+        some "MainPaper/main.tex" := by
   exact ⟨input.ref_eq, rfl, rfl, rfl⟩
 
 example (P : SphereAdamsPresentation sphereSystem.pageSlice)

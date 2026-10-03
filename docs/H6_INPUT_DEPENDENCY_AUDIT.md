@@ -34,7 +34,7 @@ NonzeroSurvival sphereAdamsData (2, 128) computedH6Square
 
 ## 2. 从论文终点往回看
 
-论文最终推理（`KIP126/Main/Axiom/Literature/MainPaper/main.tex:2181–2215`）是：
+论文最终推理（`MainPaper/main.tex:2181–2215`）是：
 
 1. `prop:possibleh62`：要么永久存活，要么有非零 `d₁₂(h₆²)=T`；
    后一种情况等价于 C3、C4、C5 同时成立。

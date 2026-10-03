@@ -44,8 +44,8 @@ C(M)；两者共享同一 Challenge1 模型，通用比较保留为显式模型�
 
 ## 本轮来源核对
 
-- `Main/Axiom/Literature/Sources/BurklundXu/source/kervairev2.tex:587–600`：有限 η / λ^r 判据及证明中的总微分公式。
-- `Main/Axiom/Literature/MainPaper/main.tex:2127–2139`：Remark 7.4 的 λ 变换和 Remark 7.5 的 synthetic order/选择讨论。
+- `Source/BurklundXu/source/kervairev2.tex:587–600`：有限 η / λ^r 判据及证明中的总微分公式。
+- `MainPaper/main.tex:2127–2139`：Remark 7.4 的 λ 变换和 Remark 7.5 的 synthetic order/选择讨论。
 - 以上均为本仓库保存的论文源文，不从 `summary.md` 或命名猜测结论。
 
 ## 后续顺序

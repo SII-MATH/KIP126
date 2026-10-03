@@ -28,7 +28,7 @@ from check_source_inventory import (  # noqa: E402
 
 
 ROOT = SCRIPT_DIR.parent
-INVENTORY = ROOT / "KIP126/Main/Axiom/Literature/source-inventory.json"
+INVENTORY = ROOT / "Source/source-inventory.json"
 
 
 class SourceInventoryTests(unittest.TestCase):
@@ -87,14 +87,14 @@ class SourceInventoryTests(unittest.TestCase):
         document = self.read_inventory()
         browder = next(source for source in document["sources"] if source["id"] == "browder")
         artifact = next(item for item in browder["artifacts"] if item["kind"] == "pdf")
-        artifact["path"] = "KIP126/Main/Axiom/Literature/Sources/Browder/\x00paper.pdf"
+        artifact["path"] = "Source/Browder/\x00paper.pdf"
         errors = self.validate_document(document)
         self.assertTrue(any("control characters" in error for error in errors))
 
         document = self.read_inventory()
         browder = next(source for source in document["sources"] if source["id"] == "browder")
         artifact = next(item for item in browder["artifacts"] if item["kind"] == "pdf")
-        artifact["path"] = "KIP126/Main/Axiom/Literature/Sources/Browder"
+        artifact["path"] = "Source/Browder"
         errors = self.validate_document(document)
         self.assertTrue(any("inside source directory" in error for error in errors))
 
@@ -108,7 +108,7 @@ class SourceInventoryTests(unittest.TestCase):
         document = self.read_inventory()
         browder = next(source for source in document["sources"] if source["id"] == "browder")
         artifact = next(item for item in browder["artifacts"] if item["kind"] == "pdf")
-        artifact["path"] = "KIP126/Main/Axiom/Literature/Sources/Browder/\ud800.pdf"
+        artifact["path"] = "Source/Browder/\ud800.pdf"
         errors = self.validate_document(document, check_lean_projection=False)
         self.assertTrue(any("cannot resolve path" in error for error in errors))
 
@@ -196,12 +196,12 @@ class SourceInventoryTests(unittest.TestCase):
 
         validator = InventoryValidator(ROOT, INVENTORY)
         validator._check_lean_claim_projection(
-            claim_prefix.format(artifact="KIP126/Main/Axiom/Literature/MainPaper/main.tex"),
+            claim_prefix.format(artifact="MainPaper/main.tex"),
             [
                 {
                     "id": "aim_paper",
                     "artifacts": [
-                        {"path": "KIP126/Main/Axiom/Literature/MainPaper/main.tex", "required": False},
+                        {"path": "MainPaper/main.tex", "required": False},
                     ],
                 }
             ],
@@ -211,12 +211,12 @@ class SourceInventoryTests(unittest.TestCase):
 
         validator = InventoryValidator(ROOT, INVENTORY)
         validator._check_lean_claim_projection(
-            claim_prefix.format(artifact="KIP126/Main/Axiom/Literature/MainPaper"),
+            claim_prefix.format(artifact="MainPaper"),
             [
                 {
                     "id": "aim_paper",
                     "artifacts": [
-                        {"path": "KIP126/Main/Axiom/Literature/MainPaper", "required": True},
+                        {"path": "MainPaper", "required": True},
                     ],
                 }
             ],
@@ -245,7 +245,7 @@ class SourceInventoryTests(unittest.TestCase):
     def test_source_of_record_artifacts_are_required(self) -> None:
         document = self.read_inventory()
         aim = next(source for source in document["sources"] if source["id"] == "aim_paper")
-        artifact = next(item for item in aim["artifacts"] if item["path"] == "KIP126/Main/Axiom/Literature/MainPaper/main.tex")
+        artifact = next(item for item in aim["artifacts"] if item["path"] == "MainPaper/main.tex")
         artifact["required"] = False
         errors = self.validate_document(document, check_lean_projection=False)
         self.assertTrue(any("source-of-record artifact" in error and "required=true" in error for error in errors))

@@ -88,7 +88,7 @@ structure NuFunctorData (Stable : Type u) [StableHomotopyCategory.{u, v} Stable]
   /-- The synthetic analogue of the ordinary sphere is the synthetic unit.
   This is explicit model data, not a claim that ν is strong monoidal on all
   spectra. Source: Pstrągowski, Definition 4.6 and its following discussion
-  (`Sources/Pst/source/synthetic_spectra.tex`, lines 1935–1938). -/
+  (`Source/Pst/source/synthetic_spectra.tex`, lines 1935–1938). -/
   unitIso : functor.obj (SphereSpectrum (C := Stable)) ≅ SphereSpectrum (C := Syn)
   suspensionIso : ∀ X : Stable,
     functor.obj ((shiftFunctor Stable (1 : ℤ)).obj X) ≅

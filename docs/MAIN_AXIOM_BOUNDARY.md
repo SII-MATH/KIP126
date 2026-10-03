@@ -1,6 +1,7 @@
 # Main 输入边界整理
 
-`Main/Axiom/` 只保留阶段输入、显式输入 statement 和来源信息。
+`Main/Axiom/` 只保留 `Nonempty Challenge2` 这一阶段输入。全部显式文献
+statement 已进入根 `Challenge2.LiteratureInterface`。
 同一见证的选择和投影位于 `Main/Solution/StageInput.lean`。目录及其聚合入口
 不导入 Main 推导、Interface 生产证明或 Checks，也没有 `Proofs.lean`。
 
@@ -22,10 +23,10 @@ Main 只为唯一最终定理保留 Challenge/Solution 配对；所有中间陈�
 旧 Main StandardSphere 单导入证明入口已删除，现直接导入
 `KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs`。
 
-Synthetic、Geometry、May 的输入结构保留在 Axiom；catalogue 构造与字段提取
-移到 `Main/Solution/Literature`，原真实提取证明保留；中间 Challenge 镜像现已删除。
-Bockstein、E∞ 的纯包装也已迁出。Axiom 目录只接受 statement，不能包含
-`def`、`abbrev`、`theorem`、`lemma`、`instance` 或 `opaque`。
+Synthetic 与 May 的固定模型陈述已经是 `LiteratureInterface.route` 的字段；
+Geometry 的共同对象选择和三个带来源结论也已加入 Challenge2。原来未接入总
+见证的平行输入包装已经删除。主论文自己的 Hopf cofiber 条件归
+`Main/Solution/Literature`。Axiom 目录除唯一阶段 `axiom` 外不包含其他声明。
 
 Selected 的纯来源元数据在 `LinProgram/Generated/Selected/records.json`；
 六条条件 lookup 证明仍在 Main。生成器分别检查两个输出位置，元数据字节不变。

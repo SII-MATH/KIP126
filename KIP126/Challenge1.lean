@@ -149,8 +149,9 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 - 陈述：根 Challenge2 的 `MaySourceResults` 保存 May TC3 的 pushpull 数据和
   负号；Interface 证明带符号边界及带 exponent-two 前提的无符号投影。
   本文件 `Stable.MaySmashBoundary` 仅保留为历史无符号目标，不直接当作来源定理。
-- 实现：`Main/Axiom/Literature/May.lean` 仅声明来源输入；包装及字段提取在
-  Main/Solution，计算适配在 Interface。固定模型满足来源条件仍待交付。
+- 实现：固定模型上的来源陈述进入根 Challenge2 的
+  `LiteratureInterface.route.may`；计算适配在 Interface。固定模型满足来源条件
+  仍是 Challenge2 的生产义务，不另设 Main 文献公理。
 - 依赖：同一左右 tensor CommShift/IsTriangulated 结构及其正确的符号相容性。
 - 定位：MainPaper `lem:452d218c`；Blueprint `thm:external-may-smash-boundary`。
 
@@ -212,8 +213,8 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
   `HomologyShortExact` 同时要求单射、中间正合和满射，`NuImageIsCofiber` 固定 νf、νg。
 - 实现／依赖：当前 Def 已有 ν、同调与三角；历史 `KIPBase/Synthetic/Nu.lean`
   的 `nu_cofiber_ses` 已搭建正向接口，但其前提缺少两端，未直接沿用。
-- 交付：`SyntheticInterface.nu_cofiber` 是实际类型；
-  `Main/Axiom/Literature/Synthetic.lean` 的来源输入保留显式证明参数。
+- 交付：`SyntheticInterface.nu_cofiber` 是实际类型；固定模型上的来源证明由
+  `Challenge2.LiteratureInterface.route.synthetic.lifts` 交付。
 - TODO：接入选定的 synthetic 背景及其文献证明；此项不是“尚不能陈述”。
 - 定位：Blueprint `thm:external-nu-cofiber-criterion`；Claims 的 `nuCofiberCriterion`。
 
@@ -227,12 +228,12 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
   `lambdaPow`、双分次悬移足够表达命题，无须先完成 λ 反演或 synthetic 谱序列。
   历史 `KIPBase/Synthetic/Lift.lean` 有 `synthetic_lift` 等接口，但其自由 AF
   数值和未绑定 ν 分量的三角声明不能作为当前精确类型直接迁入。
-- 交付：`SyntheticInterface.lift`、`triangle_lift` 使用同一个 H 和 ν；
-  `Main/Axiom/Literature/Synthetic.lean` 将证明参数绑定 BHS 的确切来源条目。
+- 交付：`SyntheticInterface.lift`、`triangle_lift` 使用同一个 H 和 ν；固定模型
+  上的两项证明属于 `Challenge2.LiteratureInterface.route.synthetic.lifts`。
 - TODO：选择并关联实际 synthetic 模型、补齐文献证明和所需旋转特化；
   不再将缺口描述为缺少 lift/triangle 的陈述语言。
 - 定位：Blueprint `thm:external-synthetic-lift`、`thm:external-synthetic-triangle-lift`；
-  `Main/Axiom/Literature/Claims.lean` 中 BHS Lemma 9.15 的来源定位。
+  `Def/References/Literature/Claims.lean` 中 BHS Lemma 9.15 的来源定位。
 
 ### a12 — λ-adic 完备性
 
@@ -285,8 +286,9 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 - 陈述：`GeometryInterface` 明列 j=1,…,5 的存在性与 j≥7 的不存在性，
   几何对象、维数函数和 Kervaire 谓词是同一组显式参数；不使用内部 M。
-- 实现：`Main/Axiom/Literature/InternalGeometry.lean` 分别锁定低维来源与 HHR
-  目录项，并要求显式 proof；没有构造实际 framed-manifold 模型或证明 HHR。
+- 实现：`Challenge2.GeometryLiteratureInterface` 分别锁定低维来源、HHR 与
+  Browder 目录项，并绑定同一个显式几何模型；没有构造实际
+  framed-manifold 模型或证明这些文献结果。
 - 依赖：am16 的内部 Browder 桥现在使用实际标准 hⱼ²；二者推出低维永久性，
   但真实几何解释与所引文献适用于该解释仍须提供相应见证。
 - 定位：Blueprint `thm:external-low-kervaire-existence`、`thm:external-hhr-nonexistence`。
@@ -720,8 +722,8 @@ def LambdaInversionInterface.symmetricMonoidal {N : NuFunctorData C Syn}
 
 以下类型使用当前 Def 的对象，既不 import KIPBase，也不依赖 synthetic
 谱序列的迁移。参数 H 与 N 必须来自同一选定背景；本文件不为任意抽象 N
-无条件断言文献结论。`Main/Axiom/Literature/Synthetic.lean` 将实际证明与
-Pstrągowski/BHS 的目录项关联，消费者显式接收这些输入。
+无条件断言文献结论。固定模型上的实际证明由
+`Challenge2.LiteratureInterface.route.synthetic.lifts` 接收。
 
 历史 `KIPBase/Synthetic/Nu.lean`、`Lift.lean` 已搭建对应接口形状，但前者的
 短正合前提仅写了中间正合，后者部分三角未绑定 ν 的实际映射；下面按主论文

@@ -8,7 +8,7 @@
 
 `Context` 定义 synthetic category、λ powers、λ-cofiber quotients、ν functor data（含 ν-sphere 到 synthetic unit 的显式同构）及少量 shift/cofiber triangle 推论；`Sphere` 定义双分次球面和 λ action；`AdamsSequence` 定义 tridegree、页位移、λ page action、固定 weight 页面和若干次数公式。
 
-[Challenge1](../../Challenge1.lean) 已定义参数化的 ν-cofiber 双向判据、BHS full lift 和三角提升接口：短正合包含单射、正合与满射；filtration 绑定实际 Adams 塔；三角提升绑定 ν 的映射，并只在模 λ-torsion 意义下比较任意 full lift。`Context` 提供连接映射落点同构和降低 lift 次数的通用构造。[文献输入](../../Main/Axiom/Literature/Synthetic.lean) 将调用者提供的证明绑定到来源；当前尚未选定 synthetic 模型或将此组加入 `Nonempty Challenge1`。
+[Challenge1](../../Challenge1.lean) 已定义参数化的 ν-cofiber 双向判据、BHS full lift 和三角提升接口：短正合包含单射、正合与满射；filtration 绑定实际 Adams 塔；三角提升绑定 ν 的映射，并只在模 λ-torsion 意义下比较任意 full lift。`Context` 提供连接映射落点同构和降低 lift 次数的通用构造。固定模型上的文献证明由 [Challenge2](../../Challenge2.lean) 的 `LiteratureInterface.route.synthetic` 交付，不另设 Main 文献公理。
 
 `SyntheticAdamsSpectralSequence` 已直接改为内部 M；`SyntheticAdamsFamily` 在同一个 synthetic category 上取值，νX 与 λⁿ 商通过实际对象定义，商投影和 λ map 来自同一 functor。标准类不再独立选入该通用对象，weight 保持由次数公式推出。家族的构造、λ action 与实际 deformation map 的重分次识别、convergence 和文献性质仍待完成；没有新增 Mathlib 比较义务。
 

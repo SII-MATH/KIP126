@@ -5,7 +5,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 
 \section{Construction and elementwise notation}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:253-271, Definition def:ess.
+% SOURCE: MainPaper/main.tex:253-271, Definition def:ess.
 \begin{definition}[Filtered two-term complex]
   \label{def:filtered-two-term-complex}
   \uses{def:admissible-spectrum,def:adams-filtration,def:mathlib-chain-complex}
@@ -20,7 +20,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   structure records the fact that $f$ does not lower Adams filtration.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:264-271, Definition def:ess.
+% SOURCE: MainPaper/main.tex:264-271, Definition def:ess.
 \begin{definition}[$f$-extension spectral sequence]
   \label{def:f-extension-ss}
   \uses{def:filtered-two-term-complex,def:core-filtered-chain-complex,def:ess-complex-shape,thm:filtered-complex-to-spectral-sequence,def:ss-einfty-presentation,def:ss-convergence-detection-witness}
@@ -42,7 +42,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   convergence theorem.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:253-271; project-specific comparison required by
+% SOURCE: MainPaper/main.tex:253-271; project-specific comparison required by
 % the Section 2 ESS arguments.  The source and target convergence witnesses
 % are explicit inputs rather than a generic filtered-complex theorem.
 \begin{theorem}[$f$-ESS initial page and abutment comparison]
@@ -76,7 +76,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 
 \section{Naturality, composition, and exactness}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:461-501, Theorem thm:4114f70c.
+% SOURCE: MainPaper/main.tex:461-501, Theorem thm:4114f70c.
 \begin{theorem}[Commutative-square propagation]
   \label{thm:fess-commutative-square}
   \uses{prop:no-crossing-iff-uniform-detection}
@@ -117,7 +117,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   the asserted $q$-extension.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:555-574, Corollary cor:0012nik.
+% SOURCE: MainPaper/main.tex:555-574, Corollary cor:0012nik.
 \begin{corollary}[Unrestricted square propagation]
   \label{cor:fess-square-naturality}
   \uses{thm:fess-commutative-square}
@@ -133,7 +133,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   $g$-extension supplies every lower-bound hypothesis.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:576-595, Corollary cor:166dc180.
+% SOURCE: MainPaper/main.tex:576-595, Corollary cor:166dc180.
 \begin{corollary}[Triangle-shaped shift]
   \label{cor:fess-triangle-shift}
   \uses{cor:fess-square-naturality}
@@ -147,7 +147,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   its length-zero extension.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:597-615, Corollary cor:290d35ce.
+% SOURCE: MainPaper/main.tex:597-615, Corollary cor:290d35ce.
 % VERIFIED-IN: main.tex:604 has z in E_infty(Y); the diagram requires E_infty(Z).
 \begin{corollary}[Composition of successive extensions]
   \label{cor:fess-composition}
@@ -156,7 +156,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   If $q=gp$, $d_m^p(x)=z$ with
   $z\in E_\infty^{s+m,t+m}(Z)$, and $d_l^g(z)=w$ has no crossing, then
   $d_{m+l}^q(x)=w$.  The target spectrum of $z$ is $Z$; the occurrence of
-  $E_\infty(Y)$ in \texttt{KIP126/Main/Axiom/Literature/MainPaper/main.tex:604} is a corrected source typo.
+  $E_\infty(Y)$ in \texttt{MainPaper/main.tex:604} is a corrected source typo.
 \end{corollary}
 
 \begin{proof}
@@ -164,7 +164,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   extension.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:617-630, Corollary cor:e7b20ae2.
+% SOURCE: MainPaper/main.tex:617-630, Corollary cor:e7b20ae2.
 \begin{corollary}[Stable-page maps between extension spectral sequences]
   \label{cor:fess-map-of-stable-pages}
   \uses{cor:fess-square-naturality,def:reindexed-ss-morphism}
@@ -182,7 +182,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   constructs the next page map.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:632-646, Corollary cor:aed3d1a4.
+% SOURCE: MainPaper/main.tex:632-646, Corollary cor:aed3d1a4.
 \begin{corollary}[A zero composite makes the target permanent]
   \label{cor:fess-zero-composite-permanent}
   \uses{prop:fextension-iff-detected,cor:fess-square-naturality}
@@ -197,7 +197,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   naturality to the square with zero bottom and left maps.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:648-664, Proposition prop:cfe810af.
+% SOURCE: MainPaper/main.tex:648-664, Proposition prop:cfe810af.
 % VERIFIED-IN: only exactness at the middle abutment object in the fixed degree tau is used.
 \begin{proposition}[Exactness at the middle makes every permanent cycle a boundary]
   \label{prop:fess-exact-middle-boundary}
@@ -237,7 +237,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 
 \section{Representatives, essentiality, and crossings}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:277-295, Notation nota:6fb333a2.
+% SOURCE: MainPaper/main.tex:277-295, Notation nota:6fb333a2.
 \begin{definition}[$f$-ESS cycles and boundaries]
   \label{def:fess-cycles-boundaries}
   \uses{def:f-extension-ss}
@@ -254,7 +254,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   ${}^fB_{n-1}$.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:297-304, Definition def:768fba8a and following notation.
+% SOURCE: MainPaper/main.tex:297-304, Definition def:768fba8a and following notation.
 \begin{definition}[$f$-extension and essentiality]
   \label{def:f-extension-essential}
   \uses{def:fess-cycles-boundaries}
@@ -269,7 +269,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   that set.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:307-325, Proposition prop:8154e6f1(1).
+% SOURCE: MainPaper/main.tex:307-325, Proposition prop:8154e6f1(1).
 \begin{proposition}[Extension iff a representative maps to a representative]
   \label{prop:fextension-iff-detected}
   \uses{def:f-extension-essential,def:adams-detection}
@@ -287,7 +287,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   that changing either lift changes the target only by a shorter ESS boundary.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:307-325, Proposition prop:8154e6f1(2)-(3).
+% SOURCE: MainPaper/main.tex:307-325, Proposition prop:8154e6f1(2)-(3).
 \begin{proposition}[Inessential extensions and competing targets]
   \label{prop:fextension-inessential-iff-higher}
   \uses{prop:fextension-iff-detected,def:fess-cycles-boundaries}
@@ -311,7 +311,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   kept additive.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:344-352, Definition def:98skj23.
+% SOURCE: MainPaper/main.tex:344-352, Definition def:98skj23.
 \begin{definition}[Crossing and no-crossing range]
   \label{def:fess-crossing}
   \uses{def:f-extension-essential}
@@ -324,7 +324,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   without qualification when $p=s+1$.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:403-405, Remark 2.9.
+% SOURCE: MainPaper/main.tex:403-405, Remark 2.9.
 \begin{lemma}[Every crossing contains an essential crossing]
   \label{lem:crossing-has-essential-crossing}
   \uses{def:fess-crossing,prop:fextension-inessential-iff-higher}
@@ -342,7 +342,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   leaving the target-filtration interval.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:408-427, Proposition prop:i8r47oe.
+% SOURCE: MainPaper/main.tex:408-427, Proposition prop:i8r47oe.
 \begin{proposition}[No crossing iff uniform detection]
   \label{prop:no-crossing-iff-uniform-detection}
   \uses{def:fess-crossing,prop:fextension-iff-detected,prop:fextension-inessential-iff-higher,lem:crossing-has-essential-crossing}
@@ -369,7 +369,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   for a map of exact filtration $n$.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:430-456, Example 2.11; underlying values cited to IWX.
+% SOURCE: MainPaper/main.tex:430-456, Example 2.11; underlying values cited to IWX.
 \begin{proposition}[$\eta$-ESS regression in stem $46$]
   \label{prop:eta-ess-regression}
   \uses{def:f-extension-essential,def:fess-crossing,def:external-evidence}

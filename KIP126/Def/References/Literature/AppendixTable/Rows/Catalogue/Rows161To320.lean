@@ -1,6 +1,6 @@
 import KIP126.Def.References.Literature.AppendixTable.Rows.Data
 
-/-! Appendix catalogue chunks 5–8, transcribed from `KIP126/Main/Axiom/Literature/MainPaper/main.tex`. -/
+/-! Appendix catalogue chunks 5–8, transcribed from `MainPaper/main.tex`. -/
 
 namespace KIP126.Computation
 

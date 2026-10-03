@@ -3,7 +3,7 @@
 This directory contains only the external works that were identified in our
 formalization-boundary discussion as direct inputs, supporting results, or
 Lin-program evidence.  The target paper itself is in
-[`../aimpaper/`](../aimpaper/).
+[`../MainPaper/`](../MainPaper/).
 
 Each work directory contains its `citation.bib` and a
 `source-status.json`.  When a public copy was available, it also contains the

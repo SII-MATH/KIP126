@@ -17,10 +17,10 @@ private def browderRef : SourceRef :=
   { source := .browder
     locator :=
       { description := "Browder regression locator"
-        artifact := some "KIP126/Main/Axiom/Literature/Sources/Browder/paper.txt" } }
+        artifact := some "Source/Browder/paper.txt" } }
 
 private def browderArtifact : ArtifactRef :=
-  { path := "KIP126/Main/Axiom/Literature/Sources/Browder/paper.pdf"
+  { path := "Source/Browder/paper.pdf"
     sha256 := "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" }
 
 private def browderResult : ExternalResult True :=
@@ -36,14 +36,14 @@ private def traversalRef : SourceRef :=
   { source := .browder
     locator :=
       { description := "escaping locator"
-        artifact := some "KIP126/Main/Axiom/Literature/Sources/Browder/../HHR/paper.txt" } }
+        artifact := some "Source/Browder/../HHR/paper.txt" } }
 
 private def traversalEvidence : ExternalEvidence True :=
   { evidence := True.intro
     ref := browderRef
     method := "malformed regression check"
     artifact := some
-      { path := "KIP126/Main/Axiom/Literature/Sources/Browder/../HHR/paper.pdf"
+      { path := "Source/Browder/../HHR/paper.pdf"
         sha256 := "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" } }
 
 private def malformedHashEvidence : ExternalEvidence True :=
@@ -51,7 +51,7 @@ private def malformedHashEvidence : ExternalEvidence True :=
     ref := browderRef
     method := "malformed digest regression"
     artifact := some
-      { path := "KIP126/Main/Axiom/Literature/Sources/Browder/paper.pdf"
+      { path := "Source/Browder/paper.pdf"
         sha256 := "not-a-sha256" } }
 
 example :
@@ -95,22 +95,22 @@ example :
   SourceInventory.projection_nodup
 
 example :
-    SourceEntry.pathHasDirectoryPrefix "KIP126/Main/Axiom/Literature/Sources/Browder"
-      "KIP126/Main/Axiom/Literature/Sources/BrowderArchive/paper.pdf" = false := by
+    SourceEntry.pathHasDirectoryPrefix "Source/Browder"
+      "Source/BrowderArchive/paper.pdf" = false := by
   decide
 
 /-- Checkout-relative safety rejects both leading and internal traversal. -/
-example : SourceEntry.isSafeRelativePath "../KIP126/Main/Axiom/Literature/Sources/Browder/paper.pdf" = false := by
+example : SourceEntry.isSafeRelativePath "../Source/Browder/paper.pdf" = false := by
   decide
 
 example :
-    SourceEntry.isSafeRelativePath "KIP126/Main/Axiom/Literature/Sources/Browder/../HHR/paper.pdf" = false := by
+    SourceEntry.isSafeRelativePath "Source/Browder/../HHR/paper.pdf" = false := by
   decide
 
-example : SourceEntry.isSafeRelativePath "/KIP126/Main/Axiom/Literature/Sources/Browder/paper.pdf" = false := by
+example : SourceEntry.isSafeRelativePath "/Source/Browder/paper.pdf" = false := by
   decide
 
-example : SourceEntry.isSafeRelativePath "KIP126/Main/Axiom/Literature/Sources/Browder/pipe|name.pdf" = false := by
+example : SourceEntry.isSafeRelativePath "Source/Browder/pipe|name.pdf" = false := by
   decide
 
 example : SourceEntry.isSafeRelativePath "   " = false := by
@@ -132,7 +132,7 @@ example : SourceEntry.citationKeySafe noBreakSpace = false := by
   decide
 
 example :
-    SourceEntry.isSafeRelativePath ("KIP126/Main/Axiom/Literature/Sources/Browder/" ++ lineSeparator ++ "paper.pdf") =
+    SourceEntry.isSafeRelativePath ("Source/Browder/" ++ lineSeparator ++ "paper.pdf") =
       false := by
   decide
 
@@ -204,7 +204,7 @@ example :
       { source := .aimPaper
         kind := .paper
         citationKeys := ["LWX126"]
-        directory := "KIP126/Main/Axiom/Literature/MainPaper"
+        directory := "MainPaper"
         statusFile := none
         statusClass := .sourceOfRecord
         availability :=

@@ -56,6 +56,7 @@ import KIP126.Def.Kervaire.Route.Triangles.Predicates
 import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Data
 import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Route.Data
 import KIP126.LinProgram.Interpretation.Route.Predicates
+import KIP126.Def.References.Literature.Claims
 
 /-!
 # Challenge 2：Interface → Main 的接口定义与数学进度清单
@@ -70,6 +71,7 @@ M 是 Def 中的数学对象，本文件仍绑定同一个 Challenge1 固定见�
 编号追踪数学工作，不要求各项都成为总包字段或外部 A(M)。
 当前 Lean 总包包括 `cm1` 的有界 presentation 与实际 E₂ 基坐标、`cm2` 的表真实性陈述、
 `am12` 的一线／May 陈述、同一基础上 `am8/am15` 的球面 Moss 交付组、
+`am16` 与低／高维 Kervaire 文献共用的几何模型及来源字段、
 `am14` 的 tmf 微分/单位/乘法切片，以及 `cm5` 的固定球面 staircase 状态。
 `cm1/am4` 的 `SphereMultiplicativeInterface` 另将有界球面 product 与单位
 绑定到实际 Adams 层乘法和同一 presentation。
@@ -211,7 +213,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   永久性、检测与 Toda；这是待证命题，不是 Moss 的证明。
   实现：同一历史目录的 `AdamsMasseyProduct.lean`、`AdamsDetection.lean`、
   `MossCrossing.lean` 已分别定义 `Relation`、`DetectsAbutment`、`ForProducts`；
-  当前 Toda 关系在 `Def/StableHomotopy/Toda/`，来源在 `Main/Axiom/Literature/Claims.lean`。
+  当前 Toda 关系在 `Def/StableHomotopy/Toda/`，来源在 `Def/References/Literature/Claims.lean`。
   接入：以当前实际 Adams 对象及收敛数据替换历史全局选择，迁移这组签名并验证
   Moss crossing 方向、次数与文献条件；near-126 的具体推论仍留给 Main。
   已补前置：`Def/ClassicalAdams/Moss/{Mapping,Convergence,Detection,Crossing}/`
@@ -293,8 +295,8 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   角色：外部 BHS 公式与项目模型比较须分开，本文加强不冒充外部结果。
   陈述：本文件 `SyntheticEInftyPresentation` 使用同一内部 F，明确 νX 的
   Z∞/B_(1+t−w) 与有限商的 Z_(q−t+w)/B_(1+t−w)，范围外为零。
-  A.11 的 q≥2 与 q=1 special fiber 分开交付；来源 wrapper 位于
-  `Main/Axiom/Literature/SyntheticEInfty.lean`，仍需显式提供比较数据。
+  A.11 的 q≥2 与 q=1 special fiber 分开交付；固定模型的来源陈述位于
+  `LiteratureInterface.route.synthetic`，仍需显式提供比较数据。
   `SyntheticEInftyMapCompatibility` 固定真实 λ、ρ、商投影与规范子商映射的
   交换等式，λ 降低 weight、增加 boundary cutoff，ρ 保持 weight、包含 cycles。
   规范子商映射的单满射已证明；由模型相容性推出实际映射的单满射属派生交付。
@@ -339,7 +341,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   使用 ηθ₅² 在 S/λ^r 中为零；`BJMNormalizedFiniteCriterion` 使用 λη 与 r+1。
   第一商比较由 Def 的 `FirstQuotientHomotopyComparison` 提供；球面特化通过
   同一 ν unit iso 和 cofiber functor 传输，不另外选择第二份比较。
-  `Main/Axiom/Literature/BJMOriginal` 只给显式 proof 添加 BX Proposition 7.19 来源。
+  `Def/References/Literature/BJMOriginal` 只给显式 proof 添加 BX Proposition 7.19 来源。
   尚未构造 canonical 比较及 η 的几何识别，也未证明 λ 变换、原始 BX 或任意选择版。
   `Theta5ChoiceContext` 和旧 `BJM_BXCriterion` 保留为代数传输原型，不能冒充上述实际模型。
   synthetic order/choice 与混合 order/torsion 包仍为 `projectDerivation`，不是 A/C 原始输入。
@@ -355,7 +357,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   单位为 target.one 的实际 E₂ 类，乘法为 target.mul 诱导的实际层配对，
   条件量化全部 second-cycle 代表元。该比较的证明、θ₅ 的 tmf 像以及
   125-stem 检测仍未完成。
-  `Main/Axiom/Literature/Claims.lean` 的 `tmfDetection`、
+  `Def/References/Literature/Claims.lean` 的 `tmfDetection`、
   `br21TmfDifferential` 是来源条目，不是已构造的内部 theorem。
   TODO：把 Hurewicz 检测、θ₅ 的 tmf 像和 d₃(v₂¹⁶)=β⁵g 连接到同一内部对象与映射。
   后续模型义务：上述输入是参数化坐标实现，并非 tmf 的几何构造；不能把
@@ -367,7 +369,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
 
 - `am15` Moss convergence 与 normalized Hopf detection。
   角色：外部 Moss／Hopf 检测结果与项目 normalization 比较须分开。
-  陈述／实现：`Main/Axiom/Literature/Near126/HopfCofiber/Fixed/Data.lean` 的
+  陈述／实现：`Main/Solution/Literature/Near126/HopfCofiber/Fixed/Data.lean` 的
   `SphereHopfInput` 已将实际球面映射与 h₂ 的 filtration-one 表示条件一起打包，
   表示条件带 `ExternalEvidence`；历史 `../KIPBase/multiplicativeSS/Moss.lean`
   的 `SphereStatement` 是迁移的历史参考。当前 `MossInterface` 和
@@ -379,8 +381,9 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   角色：外部 Browder 定理及实际几何／内部页面的项目绑定。
   陈述：本文件 `BrowderInterface` 将几何存在性对应到同一内部球谱标准 hⱼ²
   的 `NonzeroSurvival`，不再将永久性端留作任意谓词。
-  实现：`Main/Axiom/Literature/InternalGeometry` 保留来源锁定和显式证明输入。
-  几何对象及 Kervaire 谓词仍为参数；固定其真实解释并提供适用的文献见证待完成。
+  实现：`GeometryModel` 固定几何对象、维数和 Kervaire 谓词；
+  `GeometryLiteratureInterface` 在总见证内保留三个来源锁定的显式输入。
+  固定其真实解释并提供适用的文献见证仍是 Interface 的生产义务。
 
 ## 原 am7 已移出：本文新工具的证明责任
 
@@ -431,7 +434,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
 - `cm4` Cν、tmf、λ 商及 map/extension 输出。
   陈述：所选路线的 Cν 解释已由 `ComputationInterface.route` 关联；
   tmf 对象比较在 ModelBindings。全量 λ 商/map/extension 输出仍未统一交付。
-  实现：`Main/Axiom/Literature/Near126/HopfCofiber/` 是手写消费需求，
+  实现：`Main/Solution/Literature/Near126/HopfCofiber/` 是手写消费需求，
   不能算作 Lin 输出。前置解释缺口：现有 `Translate/import-proofs.py` 明确排除
   非 S0／extension 行；须扩展 `LinProgram/Translate/`，将每条直接输出
   连接到同一固定谱与映射，包括 D8、Cν 短入射排除的确切记录。
@@ -459,7 +462,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   陈述：程序直接输出的完整解释未冻结、未入包。
   实现：`LinProgram/Certificates/SquareDimension/`、`LinProgram/Certificates/SquareDetection/`
   已有局部实质证明，但它们是数据模型上的派生结果，不因此成为新程序输入；
-  `Main/Axiom/Literature/Near126/Sphere/Data.lean` 的事实包也是消费需求。
+  `Main/Solution/Literature/Near126/Sphere/Data.lean` 的事实包也是消费需求。
   语义绑定缺口：`CandidateWindow` 及覆盖／排除／穷尽谓词已定义，仍须绑定
   实际搜索时的基、first/count 窗口及全线性组合、谱、页、次数和搜索上界；
   有限窗口不外推到全局，缺失记录不解释为零。
@@ -476,8 +479,9 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   `Main/Solution/Computation/{Dimension,Nonvanishing}.lean` 仍直接消费已证明的
   Interface square dimension/detection 工具；本次不调整这些中间证明的复用位置，
   也不据 a05 迁移声称所有跨层依赖都已隔离。
-- 文献仍由 `Main/Axiom/Literature/` 的 `ExternalResult`、`ExternalEvidence` 及
-  catalogued wrappers 显式携带；清单不是把它们变成无条件字段的授权。
+- 文献由 `LiteratureInterface` 中绑定同一模型的字段携带；适用的
+  `ExternalResult`、`ExternalEvidence` 及 catalogued wrappers 仍保留来源，
+  清单不是新增无条件字段的授权。
 - Blueprint 依据：`h6_statement.tex` 的 `thm:lin-e2-basis-certification`、
   `def:lin-e2-coordinates` 为 `notready`，`thm:lin-square-certified` 有 `leanok`；
   `comparison_and_rules.tex` 的 generalized Leibniz/Mahowald 节点为 `notready`。
@@ -2863,6 +2867,48 @@ def BrowderInterface {Manifold : Type} (dimension : Manifold → ℕ)
     (fun j => NonzeroSurvival sphereAdamsData
       (2, ((2 ^ (j + 1) : ℕ) : ℤ)) (standardHiSquare j))
 
+/-- The geometric objects referred to by the external Kervaire results.
+The data are selected once in the shared model bindings; the literature part
+states results about these exact choices. -/
+structure GeometryModel where
+  Manifold : Type
+  dimension : Manifold → ℕ
+  kervaireOne : Manifold → Prop
+
+/-- The source-bearing geometric part of A(M).  Low-dimensional existence,
+HHR nonexistence, and Browder's criterion all use the same geometric model.
+The catalogue roots keep the three logically distinct literature sources
+auditable inside the single Challenge2 witness. -/
+structure GeometryLiteratureInterface (G : GeometryModel) where
+  low_dimensions : External.CataloguedExternalResult
+    (∀ j : ℕ, 1 ≤ j → j ≤ 5 →
+      ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M)
+  low_dimensions_root : low_dimensions.root = .lowKervaireExistence
+  high_nonexistence : External.CataloguedExternalResult
+    (∀ j : ℕ, 7 ≤ j →
+      ¬ ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M)
+  high_nonexistence_root : high_nonexistence.root = .hhrNonexistence
+  browder : External.CataloguedExternalResult
+    (BrowderInterface G.dimension G.kervaireOne)
+  browder_root : browder.root = .browderCriterion
+
+set_option linter.defProp false in
+/-- Forget only the provenance wrapper while retaining the shared geometric
+model selected by Challenge2. -/
+def GeometryLiteratureInterface.geometry
+    {G : GeometryModel} (A : GeometryLiteratureInterface G) :
+    KIP126.Challenge1.GeometryInterface G.dimension G.kervaireOne where
+  low_dimensions := A.low_dimensions.value.proof
+  high_nonexistence := A.high_nonexistence.value.proof
+
+set_option linter.defProp false in
+/-- Browder's result on the same geometric model and the standard internal
+Adams squares used by the rest of Challenge2. -/
+def GeometryLiteratureInterface.browderCriterion
+    {G : GeometryModel} (A : GeometryLiteratureInterface G) :
+    BrowderInterface G.dimension G.kervaireOne :=
+  A.browder.value.proof
+
 /-- Literal CSV coordinates, independent of any choice of comparison map. -/
 def HasCoordinates {s t : Nat} (x : E2At s t) (indices : List Nat) : Prop :=
   ∃ rows : List BasisRow,
@@ -2938,6 +2984,7 @@ structure LinBranchInterface {R : Type u} [Ring R] {ι : Type w}
 claims and not extra program outputs. The underlying model remains the fixed
 Challenge1 witness used by all types above; no quantification over a new M is added. -/
 structure ModelBindings where
+  geometry : GeometryModel
   cobarDerivedExt : CobarDerivedExtComparison
     Classical.Adams.standardFoundation.hf2 Classical.Adams.standardMilnorCooperations
   moss : StandardSphereMossContext
@@ -2963,6 +3010,7 @@ StandardSphereMossStatement (Moss), and TmfModel.Br21Statement (BR21).
 The source-carrying external wrappers remain explicit inputs where used; this
 structure does not assert that citing a source constructs any of these proofs. -/
 structure LiteratureInterface (modelBindings : ModelBindings) where
+  geometry : GeometryLiteratureInterface modelBindings.geometry
   adamsOneLine : AdamsOneLineInterface
   moss : StandardSphereMossStatement modelBindings.moss
   br21 : modelBindings.tmf.Br21Statement

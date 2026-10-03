@@ -89,14 +89,19 @@ Interface 公开入口补导出现有 staircase Solution；没有补齐原有 `s
 
 ## 2026-10-03：PR150 剩余职责整理
 
-当前 `Main/Axiom` 只含唯一阶段存在性假设、显式输入结构及来源资料。
+当前 `Main/Axiom` 只含唯一阶段存在性假设。显式文献输入结构已并入根
+`Challenge2.LiteratureInterface`，范围说明随根接口维护。
+主论文和外部文献制品分别位于仓库根目录的 `MainPaper/` 与 `Source/`，
+不属于 Main 的公理边界。
 固定 Hopf cofiber、塔、胞腔 E₂ 映射移入 `Main/Solution/Literature/HopfCofiber`；
 固定 Mathlib 球谱对象和非零性证明移入 `Mathlib/ClassicalAdams/StandardSphere`。
 旧 Main StandardSphere 当时保留单导入入口；本轮删除该入口，改为直接导入
 `KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs`。
 
-Synthetic、Geometry、May 的 catalogue 构造及真实字段提取证明移至
-`Main/Solution/Literature`；中间 Challenge 镜像现已删除。Bockstein/E∞ 纯包装也已迁出。
+该历史批次曾把 Synthetic、Geometry、May 的输入包装留在 Main/Axiom，随后
+已由根 `Challenge2.LiteratureInterface` 取代：May 与 synthetic 使用固定路线
+字段，Geometry 绑定同一几何模型并携带三个来源项。Bockstein/E∞ 纯包装位于
+Solution；主论文 near-126 条件也只在 Main/Solution。
 三十个只剩旧布局说明的 README 已移到实际模块旁；来源原文制品不动。
 
 `LinProgram/Generated/Selected/records.json` 保存七项纯数据元信息；
@@ -110,7 +115,7 @@ Synthetic、Geometry、May 的 catalogue 构造及真实字段提取证明移至
 
 ## PR150 的第二批提取（此前批次）
 
-来源目录的 Lean 声明与证据模块迁入 `Def/References`；原文资料仍在 `Main/Axiom/Literature/Sources`，声明、证明和制品字节保留。剩余的 `Main/Axiom/LinProgram` Lean 模块已迁出：参数化 Adams E₂ 输入归独立管线；消费端微分适配归 Main/Solution；两处纯导入别名直接使用实际定义模块。
+来源目录的 Lean 声明与证据模块迁入 `Def/References`；原文资料仍在 `Source`，声明、证明和制品字节保留。剩余的 `Main/Axiom/LinProgram` Lean 模块已迁出：参数化 Adams E₂ 输入归独立管线；消费端微分适配归 Main/Solution；两处纯导入别名直接使用实际定义模块。
 
 路线 `Data.lean` 按职责拆成 `LinProgram/Interpretation/Route/{Data,Predicates}.lean` 与 `Challenge2.lean`。全部 15 个声明保留，tmf 标签单独归入 Def。没有添加新的阶段假设，也没有宣称路线 Inputs 已与根 Challenge2 等同或绑定。
 
@@ -165,13 +170,15 @@ Lin 专用的 `LinE2`、`LinSquareCertificate` 自动化工具统一位于
 
 Challenge 1 通过 `FoundationInput`、`MilnorInput` 展示现有基础条件，再以 `foundation`、`milnor` 适配定义组装原通用记录；消费端仍只选择一次见证。Challenge 2 在同文件中定义 `LinE2Presentation`、坐标和微分解释，并将文献与计算交付拆为独立 structure；共享模型绑定和兼容投影保留原数据关联。旧 presentation 模块作为兼容导入入口。生产／消费端继续直接使用相同的 `Nonempty ChallengeN`。
 
-`a10` 的 ν-cofiber 判据和 `a11` 的 synthetic lift／三角提升已在根 Challenge1 中定义为精确的参数化 `SyntheticInterface`；[Synthetic 文献入口](../KIP126/Main/Axiom/Literature/Synthetic.lean) 声明显式来源输入；接口组装现位于 [消费适配](../KIP126/Main/Solution/Literature/Synthetic.lean)。它尚未加入 `Nonempty Challenge1` 的原见证字段，没有选择固定 synthetic 模型，也没有完成所引文献结果的证明。
+`a10` 的 ν-cofiber 判据和 `a11` 的 synthetic lift／三角提升已在根 Challenge1 中定义为精确的参数化 `SyntheticInterface`；固定路线模型上的文献输入由 [Challenge2](../KIP126/Challenge2.lean) 的 `LiteratureInterface.route.synthetic` 交付。它与其他 A(M) 字段共享同一模型，但 Interface 的总见证证明仍未完成。
 
 这次整理保持现有数学承诺。Challenge 2 仍使用开发期选定的 Challenge 1 模型；Main 的平方消费已改为计算接口投影，消除了对应的 Interface/Solution 直接导入。固定模型构造和完整阶段证明仍是边界债务。完整清单不等于所有条目已经冻结或装入见证包。
 
 ## 目录及职责
 
 ```text
+MainPaper/                  被形式化的主论文及其原始材料
+Source/                     外部文献制品、获取元数据与来源清单
 KIP126/
 ├── Challenge1.lean         Def → Interface 的共享见证类型
 ├── Challenge2.lean         Interface → Main 的共享见证类型
@@ -197,7 +204,7 @@ KIP126/
 ├── Main/
 │   ├── Axiom/
 │   │   ├── Challenge2.lean 同型的 Nonempty Challenge2 开发期输入
-│   │   └── Literature/     文献原文、主论文、清单与显式输入
+│   │   └── Literature/     文献输入 statement 及其范围说明
 │   ├── Examples/LinProgram/ 消费接口及显式来源证据示例
 │   ├── Challenge/          唯一最终目标 h6_sq_permanent.lean
 │   └── Solution/           按数学主题组织现有推导
@@ -221,19 +228,19 @@ KIP126/
 | --- | --- |
 | `Challenge/Tools`, `Solution/Tools` | 旧错误声明已删除；准确的 law 定义归 `Main/Solution/Tools` |
 | `Challenge/{Near126,Final}`, `Solution/{Near126,Final}` | 初次迁入 Main；现仅 Final 配对，中间推导只在 Main/Solution |
-| `External/{Provenance,Evidence,Results}` | `Main/Axiom` 共用来源类型及操作 |
-| `External/{SourceInventory,Claims}` | `Main/Axiom/Literature` |
+| `External/{Provenance,Evidence,Results}` | `Def/References` 共用来源类型及操作 |
+| `External/{SourceInventory,Claims}` | `Def/References/Literature` |
 | `External/Computation/LinE2/RawData` | `LinProgram/Generated/E2` |
 | `External/Computation/LinProofs` | LinProgram 的 `Generated`、`Interpretation` 和入口 |
 | E₂、DB、selected 转换脚本 | `LinProgram/Translate` |
-| `External/Computation/{Near126,AppendixTable,EtaRows}` | `Main/Axiom/Literature`：保留论文／手写需求接口来源，不冒称机器直接输出 |
+| `External/Computation/{Near126,AppendixTable,EtaRows}` | near-126 条件归 `Main/Solution/Literature`；来源目录归 `Def/References/Literature` |
 | Lin 基表认证与模型比较 | `Interface/Solution/LinProgram`；固定基和坐标消费构造归 Main 解释层 |
 | 纯数据平方检测与维数证明 | `LinProgram/Certificates`；Interface 的 Square 生产端完成模型运输 |
 | 固定 foundation、Milnor 的原输入 | `Challenge1` 包；`Interface/Axiom/Challenge1.lean` 暂时承认其存在 |
 | 固定 Lin presentation 与微分表输入 | `Challenge2` 包；`Main/Axiom/Challenge2.lean` 暂时承认其存在 |
 | `Examples/` | `Main/Examples/LinProgram/`，依赖实际消费适配，保留原声明名 |
 | 依赖这些 axiom 的固定对象及条件推论 | 初次迁入 Main/Axiom 解释层，后已迁至 Main/Solution；计算推论归 `Main/Solution/Computation` |
-| `reference/`, `aimpaper/` | `Main/Axiom/Literature/{Sources,MainPaper}` |
+| `reference/`, `aimpaper/` | 根目录 `Source/`、`MainPaper/`；不属于 Main/Axiom |
 
 初次迁移及后续 Near126 归位的逐文件映射见 [stage-layout-moves.json](stage-layout-moves.json)。源论文与其制品保持原字节及 SHA-256；生成 Lean 分片仅因 import／生成器路径更新而变化，manifest 中的输出摘要相应刷新。
 

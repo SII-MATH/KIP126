@@ -25,7 +25,7 @@
 
 Def 根入口当前不递归依赖项目 axiom，但 import 方向尚未完全闭合：剩余 `Def → Main` 直接边只读取生成数据、provenance、claim catalogue 或要求调用者显式提供证明的 wrapper，并没有把文献命题安装成全局事实；它们仍是需要下沉纯 schema 后消除的结构债务。`ClassicalAdams/Permanence` 还反向使用历史 Mathlib adapter。`LinAutomation/Proofs` 仍有一个可见 `sorry`。这些都必须登记，不能因换目录而宣称数学边界已经完成。
 
-本轮已移除 `Theta5/Proofs → Main/Axiom/Literature/Kervaire`：通用传输定理改用普通数学假设；本文派生条件的组合放在 Main/Solution。详见 [分类与未冻结项](../../docs/MAC_T_INPUT_AUDIT.md)。
+本轮已移除旧的 `Theta5/Proofs → Main/Axiom/Literature/Kervaire` 反向依赖：通用传输定理改用普通数学假设；来源包装归 `Def/References`，固定模型陈述归根 Challenge2，本文派生条件的组合放在 Main/Solution。详见 [分类与未冻结项](../../docs/MAC_T_INPUT_AUDIT.md)。
 
 ## 3. 粗略完成度
 

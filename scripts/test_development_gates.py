@@ -95,7 +95,7 @@ class BlueprintRoutingTests(unittest.TestCase):
     def test_mixed_development_pr_is_eligible_without_reviewer_trailers(self):
         for paths in (["blueprint/src/content.tex", "KIP126/A.lean"],
                       ["blueprint/src/content.tex", "scripts/import.py", "docs/status.md"],
-                      ["blueprint/src/content.tex", "KIP126/A.lean", "KIP126/Main/Axiom/Literature/Sources/data.json"]):
+                      ["blueprint/src/content.tex", "KIP126/A.lean", "Source/data.json"]):
             with self.subTest(paths=paths):
                 result, output, _ = self.run_step("Classify the source boundary and diff size", paths=paths)
                 self.assertEqual(result.returncode, 0, result.stderr)

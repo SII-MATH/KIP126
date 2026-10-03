@@ -65,7 +65,7 @@ Main 从 `StageInput.witness` 投影全部输入。接线完成不表示这些�
 
 ## 全部选定路线的消费清单
 
-来源优先使用仓库中的 `Main/Axiom/Literature/MainPaper/main.tex` 稳定 label，
+来源优先使用仓库中的 `MainPaper/main.tex` 稳定 label，
 已与 https://arxiv.org/html/2412.10879v2 核对，不以 summary.md 为依据。
 
 | 消费点/来源 | 需要的语言 | 事实和证明归属 |

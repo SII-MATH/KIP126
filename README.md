@@ -45,7 +45,7 @@ The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
 document:
 
-- [`KIP126/Main/Axiom/Literature/MainPaper/`](KIP126/Main/Axiom/Literature/MainPaper/) contains the target paper and its source material.
+- [`MainPaper/`](MainPaper/) contains the target paper and its source material.
   It is the mathematical document to be formalized; its claims are not, by
   themselves, Lean proofs or project theorems.
 - [`PROJECT_BOUNDARY.md`](PROJECT_BOUNDARY.md) defines what this project does
@@ -96,8 +96,8 @@ document:
   The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
   small executable example connecting imported dimensions and multiplication
   coefficients to an existing spectral sequence's page.
-- [`KIP126/Main/Axiom/Literature/source-inventory.json`](KIP126/Main/Axiom/Literature/source-inventory.json), the
-  per-source status records under [`KIP126/Main/Axiom/Literature/Sources/`](KIP126/Main/Axiom/Literature/Sources/), and the Lean
+- [`Source/source-inventory.json`](Source/source-inventory.json), the
+  per-source status records under [`Source/`](Source/), and the Lean
   claim ledger own the catalogue and provenance of external inputs. They record
   evidence and assumptions; they do not turn those inputs into unconditional
   project theorems.
@@ -110,7 +110,7 @@ records through the source inventory and claim ledger.
 
 The intended workflow is therefore:
 
-1. use `KIP126/Main/Axiom/Literature/MainPaper/` to identify the mathematical target;
+1. use `MainPaper/` to identify the mathematical target;
 2. use `PROJECT_BOUNDARY.md` to decide which claims and inputs are in scope;
 3. use `docs/ROADMAP.md` to choose the next implementation slice;
 4. record its node-level natural-language statement and Lean correspondence
@@ -224,7 +224,7 @@ the generated list is not committed.
 of the finite catalogue is in `KIP126.Def.References.Literature.SourceInventory`, and the
 claim-level root/owner/dependency ledger is in `KIP126.Def.References.Literature.Claims`.
 Citation metadata, acquisition state, artifact paths, and SHA-256 digests are kept in
-[`KIP126/Main/Axiom/Literature/source-inventory.json`](KIP126/Main/Axiom/Literature/source-inventory.json).  Check
+[`Source/source-inventory.json`](Source/source-inventory.json).  Check
 the filesystem ledger and its regression tests with:
 
 ```sh

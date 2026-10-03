@@ -13,7 +13,7 @@ mathematical fact still requires explicit external evidence.
 
 namespace KIP126.Computation
 
-/-- All 401 nonempty rows transcribed from `KIP126/Main/Axiom/Literature/MainPaper/main.tex`. -/
+/-- All 401 nonempty rows transcribed from `MainPaper/main.tex`. -/
 def appendixRows : List AppendixRow := appendixRowsChunk1 ++ appendixRowsChunk2 ++ appendixRowsChunk3 ++ appendixRowsChunk4 ++ appendixRowsChunk5 ++ appendixRowsChunk6 ++ appendixRowsChunk7 ++ appendixRowsChunk8 ++ appendixRowsChunk9 ++ appendixRowsChunk10 ++ appendixRowsChunk11
 
 /-- The nine explicitly empty filtration bands printed in the appendix. -/

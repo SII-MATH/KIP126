@@ -89,8 +89,9 @@ RouteGoals、RouteFixedFinal、SelectedDesignExtraction 和 LiteratureBoundary�
 原来的 tmf 适配及其他基础构造占位继续保留，不能将这次结构接线完成报告成
 这些数学构造已完成。最终 h₆²、Main Proposition 7.8/7.9 和计算数据范围未变。
 May 的未使用消费字段从无符号式纠正为来源带符号式，是本批次明确的接口修正。
-旧 `MayLiteratureInput`、`cataloguedMaySmashBoundary`、`.interface` 名称保留，
-类型同步改为带 `MayContext` 的 synthetic 来源 API，不是单纯换目录。
+旧 `MayLiteratureInput`、`cataloguedMaySmashBoundary`、`.interface` 曾作为过渡
+包装保留；当前已由 `Challenge2.LiteratureInterface.route.may` 取代，不再形成
+平行的 Main 文献输入边界。
 
 PR150 采用设计择取结束，不整分支合并。原分支中破坏阶段交付或最终目标
 Challenge 边界、重复阶段公理、

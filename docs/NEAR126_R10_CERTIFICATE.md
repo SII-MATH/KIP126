@@ -5,7 +5,7 @@
 
 ## 数学内容、消费点与固定对象
 
-在 `KIP126/Main/Axiom/Literature/MainPaper/main.tex:2716,2726`，最后矛盾分别使用
+在 `MainPaper/main.tex:2716,2726`，最后矛盾分别使用
 `P=h₆Md₀`、`Q=h₅x₉₁,₁₁` 的 h₂ 乘积为 d₂ 边界。
 现有 Lean 接口把乘积通过 `linToSphereE2` 放入固定 `sphereAdamsData`，
 要求它属于该对象**实际 d₂** 的像，不能用任意另选的微分代替。
@@ -33,12 +33,12 @@ d_2(x_{126,11}+h_0x_{126,10})=Q h_2.
 | basis | `6a337964ad3ac02b729a46fd839dced7cb6764d14d4cea413163987eba8de871` |
 
 归档容器本身的 MD5 是 `86f62f57bc3412356204eca08ec4bf51`，与本地
-`KIP126/Main/Axiom/Literature/Sources/LWXMachine/zenodo-record.json` 中记载的容器 MD5
+`Source/LWXMachine/zenodo-record.json` 中记载的容器 MD5
 `631257d058529916d62d858e0da27417` 不同，故**不声称整个 RAR 是已验证的
 官方原始容器**。本次证据范围仅限上述逐字节匹配的三个 CSV；不把容器内
 其他文件、完整 proof database 或来源链一并认定为已验证。
 
-CSV 解释依据为 `KIP126/Main/Axiom/Literature/Sources/LWXMachine/source/ms.tex:137–153`：
+CSV 解释依据为 `Source/LWXMachine/source/ms.tex:137–153`：
 单项式以生成元 ID/指数对编码；分号是 F₂ 上相加；基索引是同一个
 `(stem,s)` 内部的索引；`d2` 的索引在 `(stem-1,s+2)` 中解释。
 空 `d2` 表示零，`[NULL]` 表示未知，二者不能混用。

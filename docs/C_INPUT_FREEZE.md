@@ -11,7 +11,7 @@
 它是待整合的路线交付规格，不是第二套全局阶段公理。统一接口的目标、当前差异与
 参数化解释与消费适配的归属见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
 
-依据是仓库保存的论文 v2 `Main/Axiom/Literature/MainPaper/main.tex` 第 7 节及附录，
+依据是仓库保存的论文 v2 `MainPaper/main.tex` 第 7 节及附录，
 逐段重新核对；历史 `Lin-program/summary.md` 不作为权威清单。
 论文中一般工具的证明和示例不需要额外固定数值数据；第 7 节消费的数值数据来自球谱和 Cν。
 认证这些结果可能涉及另外 47 个谱，消费接口不要求先引入它们。
