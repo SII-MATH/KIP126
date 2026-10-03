@@ -16,7 +16,7 @@ namespace KIP126.Solution.Near126.Conditions
 /-- LWX Lemmas 7.10 and 7.11. The quantified types are different:
 C₄ varies θ₅ in π_(62,64); C₅ varies [U] in π_(124,134).
 Existence of these choices is a proof input, not a hidden M field. -/
-def c4_c5_choice_equivalence (η : BiHom 1 2 (S00 : Syn)) : Prop :=
+def c4_c5_choice_equivalence (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   EtaChoice M D.toModelData η →
     (C4 M D.toModelData L ↔
       ∀ θ, ThetaChoice M D.toModelData θ → C4At M D.toModelData L θ) ∧

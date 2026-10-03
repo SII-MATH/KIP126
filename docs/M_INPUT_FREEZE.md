@@ -71,7 +71,7 @@ Main 从 `StageInput.witness` 投影全部输入。接线完成不表示这些�
 | 消费点/来源 | 需要的语言 | 事实和证明归属 |
 | --- | --- | --- |
 | Theorem 7.1；`thm:126survives` | 标准 h₆²、同一内部 NonzeroSurvival | T 不变；最终证明未完成 |
-| Proposition 7.8；`prop:possibleh62` | C₃、C₄、C₅、d₁₂ 非零、永久存活 | 已在同一 D 上重述为待证 Prop；Main 推导 |
+| Proposition 7.8；`prop:possible_h_6_sq` | C₃、C₄、C₅、d₁₂ 非零、永久存活 | 已在同一 D 上重述为待证 Prop；Main 推导 |
 | Proposition 7.9；`prop:state5false` | 同一 C₃→¬C₅ | 已重述；Main 推导 |
 | `lem:equistate4/5` | θ₅ 与 [U] 的不同同伦群、leading term 与更高过滤不定性 | 选择无关性待证；未用空的 ∀ 代替存在性 |
 | BX Prop. 7.19、LWX `thm:bjmbx/rem:theta5choice` | 标准检测、实际 ηθ²、λ 商、cofiber total boundary、实际 2-torsion | 原始 BX/经典阶为 A；λ 规范化、任意选择和 synthetic 阶为 Main 推导，所需无 torsion/表格分析由 C/A 提供 |
@@ -81,10 +81,10 @@ Main 从 `StageInput.witness` 投影全部输入。接线完成不表示这些�
 | Theorem 6.12 | 同一实际三角、normalized maps、tower suspension、模 Bᵣ 的结论 | `GeneralizedMahowaldLaw D`，Main 新工具；显式前提 `NormalizedTriangleCompatible` 绑定所选三个提升；该前提须由文献/比较证明提供 |
 | Proposition 6.20 / Corollary 6.21 | 后页 cycles、shorter extension/nonliftable crossing | 明确的有限充分条件版本，Main；不能称为无限相容解存在 |
 | `fact:theta5sqAF` 与 Prop. 7.8 证明 | 局部差分、全体潜在 target、过滤范围、λ-torsion、球→νtmf | 表格/穷尽性为 C；tmf Hurewicz 来源为 A；`detectorMap/DetectorInjectiveAt` 已用实际映射表达 |
-| `fact:x1239`、`lem:x1239` | S/λ¹¹→S/λ⁹、V、α₁/α₂/α₃、实际 λ/η 作用和差值 | 已有对象/标签/检测/商映射足够表达；具体计算 C，构造和关系 Main |
-| `fact:h02x1259`、`lem:toda2ext`、`cor:2ext125` | 三重 Toda 集合、sphere actions、过滤检测与所有不定性；S/λ⁹ 中 2-extension | 表格 C、Toda 通用法则基础引理、局部推导 Main。未知 d₅(Y) 没有设为零 |
+| `fact:x_123_9`、`lem:x_123_9` | S/λ¹¹→S/λ⁹、V、α₁/α₂/α₃、实际 λ/η 作用和差值 | 已有对象/标签/检测/商映射足够表达；具体计算 C，构造和关系 Main |
+| `fact:h_0_sq_mul_x_125_9_2`、`lem:toda2ext`、`cor:2ext125` | 三重 Toda 集合、sphere actions、过滤检测与所有不定性；S/λ⁹ 中 2-extension | 表格 C、Toda 通用法则基础引理、局部推导 Main。未知 d₅(Y) 没有设为零 |
 | Lemma 7.16 的 Moss 步骤 | B∈E₂^(8,70)、完整 d₂ defining systems、E₃ 集合、π₆₂ 阶、π₁₂₅ Toda、两产品的 crossing、塔 residual injectivity | `ThetaBMossInput D` 表达原文需要的局部含义，非证明；指定 Massey 值/零不定性/no crossing 须另证；不保证任意括号成员都永久 |
-| `fact:h1x1217`、`lem:nuext125` | actual Cν triangle、顶/底胞腔 E₂ map、悬移、Cν d₃、Mahowald/stretching | Cν 计算和标签对应为 C，ν-extension 为 Main |
+| `fact:h_1_mul_x_121_7`、`lem:nuext125` | actual Cν triangle、顶/底胞腔 E₂ map、悬移、Cν d₃、Mahowald/stretching | Cν 计算和标签对应为 C，ν-extension 为 Main |
 | `fact:stem122`、Table `Table:Cnu126`、Prop. 7.9 最后反证 | same Cν Eᵣ 中的 nonzero target 与全部潜在 incoming sources/页数 | C 的有限穷尽性义务；未知不能当零，未导入 49 个辅助谱也不宣称已经认证 |
 
 `Challenge2.lean` 是这些输入的**类型绑定样例/入口**，

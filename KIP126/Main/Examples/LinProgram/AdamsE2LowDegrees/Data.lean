@@ -183,13 +183,13 @@ def modelH0Sq : ModelRing :=
 def modelH1Sq : ModelRing :=
   table.generator (2, 4) (rectangle_mem 2 2 (by omega) (by omega) (by omega) (by omega))
     ⟨0, by decide⟩
-def modelH0H2 : ModelRing :=
+def model_h_0_mul_h_2 : ModelRing :=
   table.generator (2, 5) (rectangle_mem 2 3 (by omega) (by omega) (by omega) (by omega))
     ⟨0, by decide⟩
-def modelH0SqH2 : ModelRing :=
+def model_h_0_sq_mul_h_2 : ModelRing :=
   table.generator (3, 6) (rectangle_mem 3 3 (by omega) (by omega) (by omega) (by omega))
     ⟨0, by decide⟩
-def modelH1H3 : ModelRing :=
+def model_h_1_mul_h_3 : ModelRing :=
   table.generator (2, 10) (rectangle_mem 2 8 (by omega) (by omega) (by omega) (by omega))
     ⟨0, by decide⟩
 def modelH6Sq : ModelRing :=

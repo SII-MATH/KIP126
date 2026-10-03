@@ -17,7 +17,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
   {D : Model H M Syn} {L : Labels H} {G : KIP126.Literature.Route.TmfLabels H}
-  {η : BiHom 1 2 (S00 : Syn)}
+  {η : BiHom 1 2 (S_0_0 : Syn)}
 
 /-- Filtration zero vanishes by the existing Eilenberg--Mac Lane sphere
 calculation, and negative filtration vanishes in the actual tower. This
@@ -54,7 +54,7 @@ graded injectivity to actual homotopy, using D's Hausdorffness. -/
 theorem lambda_injective_of_source
     (A : KIP126.Literature.Route.Inputs D η G) (m wgt : ℤ)
     (hsource : NoOutgoingAt (sequence D .sphere) (wgt-m-2) (wgt-1)) :
-    LambdaInjectiveAt m wgt (S00 : Syn) := by
+    LambdaInjectiveAt m wgt (S_0_0 : Syn) := by
   sorry
 
 /-- Each iteration lowers the weight. Requiring the entire lower source
@@ -63,13 +63,13 @@ iterating a one-step result only known at a single weight. -/
 theorem lambda_powers_injective_of_source_halfplane
     (A : KIP126.Literature.Route.Inputs D η G) (m wgt : ℤ)
     (hsource : ∀ q : ℤ, q ≤ wgt-m-2 → NoOutgoingAt (sequence D .sphere) q (q+m+1)) :
-    LambdaPowersInjectiveAt m wgt (S00 : Syn) := by
+    LambdaPowersInjectiveAt m wgt (S_0_0 : Syn) := by
   sorry
 
 /-- The exact all-power torsion exclusion used for arbitrary theta5 choices. -/
 theorem lambda_powers_injective_62_64
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G) :
-    LambdaPowersInjectiveAt 62 64 (S00 : Syn) := by
+    LambdaPowersInjectiveAt 62 64 (S_0_0 : Syn) := by
   apply lambda_powers_injective_of_source_halfplane A
   intro q hq
   simpa [add_assoc] using no_outgoing_stem63_nonpositive (D := D) q (by omega)
@@ -78,7 +78,7 @@ theorem lambda_powers_injective_62_64
 This statement concerns (124,128), not the distinct (125,130) normalization. -/
 theorem lambda_powers_injective_124_128
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G) :
-    LambdaPowersInjectiveAt 124 128 (S00 : Syn) := by
+    LambdaPowersInjectiveAt 124 128 (S_0_0 : Syn) := by
   apply lambda_powers_injective_of_source_halfplane A
   intro q hq
   simpa [add_assoc] using no_outgoing_stem125_low I q (by omega)
@@ -87,7 +87,7 @@ theorem lambda_powers_injective_124_128
 No all-power assertion or localization injectivity in (125,130) is made. -/
 theorem lambda_injective_125_130
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G) :
-    LambdaInjectiveAt 125 130 (S00 : Syn) := by
+    LambdaInjectiveAt 125 130 (S_0_0 : Syn) := by
   exact lambda_injective_of_source A 125 130 (no_outgoing_stem126_af3 I)
 
 /-- Actual localization-map injectivity at the theta degree, obtained from
@@ -95,13 +95,13 @@ all-power lambda injectivity plus the sourced realization-kernel theorem.
 The map is D's existing functor on these exact sphere hom groups. -/
 theorem realization_injective_62_64
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G) :
-    Function.Injective (fun a : BiHom 62 64 (S00 : Syn) => D.recovery.realization.map a) := by
+    Function.Injective (fun a : BiHom 62 64 (S_0_0 : Syn) => D.recovery.realization.map a) := by
   sorry
 
 /-- Same actual localization conclusion for theta5 squared. -/
 theorem realization_injective_124_128
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G) :
-    Function.Injective (fun a : BiHom 124 128 (S00 : Syn) => D.recovery.realization.map a) := by
+    Function.Injective (fun a : BiHom 124 128 (S_0_0 : Syn) => D.recovery.realization.map a) := by
   sorry
 
 /-- The exact quotient-zero equivalence sufficient to normalize BX.
@@ -110,7 +110,7 @@ at (125,130). It does not strengthen the source finite criterion to an
 untruncated theorem or assume all choices have zero indeterminacy. -/
 theorem bx_finite_lambda_normalization
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G)
-    (r : ℕ) (hr : 1 ≤ r) (a : BiHom 125 130 (S00 : Syn)) :
+    (r : ℕ) (hr : 1 ≤ r) (a : BiHom 125 130 (S_0_0 : Syn)) :
     (quotientClass r a = 0 ↔ quotientClass (r+1) (lambdaMultiply 1 a) = 0) := by
   sorry
 
@@ -119,7 +119,7 @@ uses IWX's classical exponent-two result, the realization comparison and
 62/64 injectivity; it is not identified with Xu's distinguished existence. -/
 theorem theta5_choice_order_two
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G)
-    (theta : BiHom 62 64 (S00 : Syn))
+    (theta : BiHom 62 64 (S_0_0 : Syn))
     (htheta : ThetaChoice M D.toModelData theta) : theta + theta = 0 := by
   sorry
 /-- The distinct window needed for the B lift in Lemma 7.16. This is
@@ -130,7 +130,7 @@ has zero lambda image in weight70. The proof must use both finite
 staircases and the tail vanishing/actual separated filtration. -/
 theorem lambda_kills_realization_kernel_62_71
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G)
-    (V : SphereVanishingLine H) (a : BiHom 62 71 (S00 : Syn))
+    (V : SphereVanishingLine H) (a : BiHom 62 71 (S_0_0 : Syn))
     (ha : D.recovery.realization.map a = 0) : lambdaMultiply 1 a = 0 := by
   sorry
 
@@ -140,7 +140,7 @@ window kills lambda*(h0*b)=2*b. This does not assume lambda-injectivity
 at (62,70), which the selected d2 data would contradict. -/
 theorem two_torsion_62_70
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G)
-    (V : SphereVanishingLine H) (b : BiHom 62 70 (S00 : Syn)) : b + b = 0 := by
+    (V : SphereVanishingLine H) (b : BiHom 62 70 (S_0_0 : Syn)) : b + b = 0 := by
   sorry
 /-- BMQ supplies one class with nonzero tmf image. Replacing it by an arbitrary
 class with the same leading term uses the Main higher-filtration argument. -/

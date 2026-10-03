@@ -625,10 +625,10 @@ structure LambdaQuotientRealization {M : Type u} [Category.{v} M] [MonoidalCateg
     [HasFunctorialCofiber (C := Syn)] (L : M ⥤ Syn) where
   object : M
   unit : 𝟙_ M ⟶ object
-  unitIso : L.obj (𝟙_ M) ≅ (S00 : Syn)
-  quotientIso : L.obj object ≅ XModLambdaN (S00 : Syn) 1
+  unitIso : L.obj (𝟙_ M) ≅ (S_0_0 : Syn)
+  quotientIso : L.obj object ≅ XModLambdaN (S_0_0 : Syn) 1
   unit_binding : L.map unit ≫ quotientIso.hom =
-    unitIso.hom ≫ XModLambdaN.incl (S00 : Syn) 1
+    unitIso.hom ≫ XModLambdaN.incl (S_0_0 : Syn) 1
 
 /-- a09 的相关点集输入：所有张量、operad、代数模型与商单位都来自同一组数据。
 普通 Ho 局部化只固定底层同伦范畴；仍须接入该模型与 synthetic CAlg 的高阶

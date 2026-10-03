@@ -48,7 +48,7 @@
 
 ### 仍须明确的连接
 
-- `Route.Labels` 四个非标准元素及 `TmfLabels.g/deltaH1g` 与固定 CSV 坐标的识别。
+- `Route.Labels` 四个非标准元素及 `TmfLabels.g/delta_h_1_mul_g` 与固定 CSV 坐标的识别。
 - A 中所选 detector/unit、normalized Hopf maps、Moss 条件与实际模型的适用性。
   文献存在性结果不自动证明任意预选比较或提升满足这些条件。
 - 普通微分等式、非零微分、候选约束、存活和穷尽性各自的数据库来源及强度。

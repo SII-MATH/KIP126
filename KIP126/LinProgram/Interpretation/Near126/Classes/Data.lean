@@ -19,20 +19,20 @@ def h0Six : E2At 6 6 := mulAt (mulAt h0Sq h0Sq) h0Sq
 def h5Sq : E2At 2 64 := mulAt (atom .h5) (atom .h5)
 /-- The CSV itself uses this composite expression as the name of generator 82. -/
 def B : E2At 8 70 := atom .b
-def V : E2At 9 132 := atom .x123_9 + mulAt dataH0 (atom .x123_8)
-def U : E2At 10 134 := mulAt h0Sq (atom .x124_8)
-def T : E2At 14 139 := mulAt dataH1 (mulAt (atom .h4) (atom .x109_12))
-def W : E2At 8 134 := atom .x126_8_4 + atom .x126_8
-def Y : E2At 11 136 := mulAt h0Sq (atom .x125_9_2)
-def X : E2At 8 130 := mulAt dataH1 (atom .x121_7)
-def P : E2At 11 133 := mulAt dataH6 (atom .md0)
-def Q : E2At 12 134 := mulAt (atom .h5) (atom .x91_11)
-def correction : E2At 13 137 := mulAt (atom .e0) (atom .deltaH6g)
+def V : E2At 9 132 := atom .x_123_9 + mulAt dataH0 (atom .x_123_8)
+def U : E2At 10 134 := mulAt h0Sq (atom .x_124_8)
+def T : E2At 14 139 := mulAt dataH1 (mulAt (atom .h4) (atom .x_109_12))
+def W : E2At 8 134 := atom .x_126_8_4 + atom .x_126_8
+def Y : E2At 11 136 := mulAt h0Sq (atom .x_125_9_2)
+def X : E2At 8 130 := mulAt dataH1 (atom .x_121_7)
+def P : E2At 11 133 := mulAt dataH6 (atom .M_mul_d_0)
+def Q : E2At 12 134 := mulAt (atom .h5) (atom .x_91_11)
+def correction : E2At 13 137 := mulAt (atom .e0) (atom .delta_h_6_mul_g)
 def highClass : E2At 25 150 :=
-  mulAt (mulAt (mulAt (atom .g) (atom .g)) (mulAt (atom .g) (atom .g))) (atom .deltaH1g)
+  mulAt (mulAt (mulAt (atom .g) (atom .g)) (mulAt (atom .g) (atom .g))) (atom .delta_h_1_mul_g)
 def d7Source : E2At 11 134 :=
-  atom .x123_11_2 + atom .x123_11 + mulAt (mulAt dataH0 dataH6) (atom .b4)
-def d3Candidate : E2At 9 134 := mulAt (atom .h5) (atom .x94_8)
+  atom .x_123_11_2 + atom .x_123_11 + mulAt (mulAt dataH0 dataH6) (atom .b4)
+def d3Candidate : E2At 9 134 := mulAt (atom .h5) (atom .x_94_8)
 def d3OtherCandidate : E2At 9 134 := d3Candidate + mulAt dataH6 B
 
 end

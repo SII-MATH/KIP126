@@ -16,7 +16,24 @@ Main 使用的 `Inputs` 是这些材料组成的消费接口，不能整体当�
 塔及 E₂ 映射也在该消费目录。Mathlib 球谱适配位于
 [Mathlib/ClassicalAdams/StandardSphere](../../../Mathlib/ClassicalAdams/StandardSphere/README.md)。
 
-[MainPaper](MainPaper/) 和 [Sources](Sources/README.md) 保留原始资料；
+[MainPaper](MainPaper/) 是主论文的本地标签规范化副本，
+[Sources](Sources/README.md) 保留外部文献原始资料；
 `source-inventory.json` 记录制品。Lean catalogue、claim ledger 及通用证据包装
 位于 [Def/References](../../../Def/References/README.md)。来源定位本身不证明数学结论，
 主论文的内部推导也不能因此升级为外部输入。
+
+`MainPaper/main.tex` 仅规范化下表中的标签和引用，保留原标签作为同位置的
+兼容别名；数学正文和行号保持不变。`source-inventory.json` 的 SHA-256
+对应规范化后的本地文件。规范化前文件的 SHA-256 为
+`1125462bcae4a4ec56e3bfcaad15df4febf98757dfb83462b155af162c99c9e0`；
+`migration/kip-base/original/` 中的历史来源快照保持原样。
+
+| 原始标签 | 可读标签 |
+| --- | --- |
+| `thm:h62` | `thm:h_6_sq` |
+| `prop:possibleh62` | `prop:possible_h_6_sq` |
+| `fact:x1239` | `fact:x_123_9` |
+| `lem:x1239` | `lem:x_123_9` |
+| `fact:h02x1259` | `fact:h_0_sq_mul_x_125_9_2` |
+| `rem:h02x1259` | `rem:h_0_sq_mul_x_125_9_2` |
+| `fact:h1x1217` | `fact:h_1_mul_x_121_7` |

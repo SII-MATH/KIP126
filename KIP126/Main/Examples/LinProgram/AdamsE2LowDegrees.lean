@@ -47,15 +47,15 @@ theorem h1_square : modelH1 * modelH1 = modelH1Sq := by
   apply table.generator_mul_eq_generator (1, 2) (1, 2)
   decide
 
-theorem h0_times_h2 : modelH0 * modelH2 = modelH0H2 := by
+theorem h0_times_h2 : modelH0 * modelH2 = model_h_0_mul_h_2 := by
   apply table.generator_mul_eq_generator (1, 1) (1, 4)
   decide
 
-theorem h0Sq_times_h2 : modelH0Sq * modelH2 = modelH0SqH2 := by
+theorem h0Sq_times_h2 : modelH0Sq * modelH2 = model_h_0_sq_mul_h_2 := by
   apply table.generator_mul_eq_generator (2, 2) (1, 4)
   decide
 
-theorem h1_times_h1Sq : modelH1 * modelH1Sq = modelH0SqH2 := by
+theorem h1_times_h1Sq : modelH1 * modelH1Sq = model_h_0_sq_mul_h_2 := by
   apply table.generator_mul_eq_generator (1, 2) (2, 4)
   decide
 
@@ -63,10 +63,10 @@ theorem h1_times_h1Sq : modelH1 * modelH1Sq = modelH0SqH2 := by
 theorem h1_cube : modelH1 ^ 3 = modelH0 ^ 2 * modelH2 := by
   calc
     modelH1 ^ 3 = modelH1 * (modelH1 * modelH1) := by ring
-    _ = modelH0SqH2 := by rw [h1_square, h1_times_h1Sq]
+    _ = model_h_0_sq_mul_h_2 := by rw [h1_square, h1_times_h1Sq]
     _ = modelH0 ^ 2 * modelH2 := by rw [pow_two, h0_square, h0Sq_times_h2]
 
-theorem h1_times_h3 : modelH1 * modelH3 = modelH1H3 := by
+theorem h1_times_h3 : modelH1 * modelH3 = model_h_1_mul_h_3 := by
   apply table.generator_mul_eq_generator (1, 2) (1, 8)
   decide
 
@@ -136,7 +136,7 @@ def pageH1Sq (P : Presentation table A) : Page E (2, 4) :=
   pageClass E A P (2, 4)
     (rectangle_mem 2 2 (by omega) (by omega) (by omega) (by omega)) ⟨0, by decide⟩
 
-def pageH0SqH2 (P : Presentation table A) : Page E (3, 6) :=
+def page_h_0_sq_mul_h_2 (P : Presentation table A) : Page E (3, 6) :=
   pageClass E A P (3, 6)
     (rectangle_mem 3 3 (by omega) (by omega) (by omega) (by omega)) ⟨0, by decide⟩
 
@@ -217,8 +217,8 @@ theorem page_h0_h1_zero (P : Presentation table A) :
 /-- 将表中关系 h₁·h₁² = h₀²h₂ 解释为实际 E₂ 页在 (3,6) 分量中的等式。 -/
 theorem page_h1_times_h1Sq (P : Presentation table A) :
     A.product (1, 2) (2, 4)
-      (pageH1 E A P) (pageH1Sq E A P) = pageH0SqH2 E A P := by
-  rw [pageH1, pageH1Sq, pageH0SqH2, pageClass_eq_basis,
+      (pageH1 E A P) (pageH1Sq E A P) = page_h_0_sq_mul_h_2 E A P := by
+  rw [pageH1, pageH1Sq, page_h_0_sq_mul_h_2, pageClass_eq_basis,
     pageClass_eq_basis, pageClass_eq_basis]
   apply P.basis_mul_eq_basis
   decide

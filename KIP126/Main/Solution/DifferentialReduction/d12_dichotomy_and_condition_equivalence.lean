@@ -17,7 +17,7 @@ namespace KIP126.Solution.Near126.OnlyD12
 This definition does NOT prove it for arbitrary labels/models, nor assume it
 as M, A(M), or C(M). Its proof must use the separately established A/C inputs.
 The historical unrestricted sorry theorem has deliberately been retired. -/
-def d12_dichotomy_and_condition_equivalence (η : BiHom 1 2 (S00 : Syn)) : Prop :=
+def d12_dichotomy_and_condition_equivalence (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   EtaChoice M D.toModelData η →
     (((PermanentH6Square M ∧ ¬ D12 M L) ∨
         (D12 M L ∧ ¬ PermanentH6Square M)) ∧

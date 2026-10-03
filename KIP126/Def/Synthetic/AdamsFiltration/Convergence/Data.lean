@@ -6,7 +6,7 @@ open KIP126.StableHomotopy KIP126.Synthetic.Context
 universe u v
 noncomputable section
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
-  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S00 ⟶ H)
+  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S_0_0 ⟶ H)
 
 /-- The filtration is constructed from the tower; it cannot be replaced by
 an independently selected filtration to make a detection statement true. -/

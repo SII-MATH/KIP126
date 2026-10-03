@@ -28,7 +28,7 @@ run_cmd do
     ``KIP126.Computation.Route.permanent_cycle_of_reaches1000,
     ``KIP126.Computation.Route.nonzero_permanent_of_survives1000,
     ``KIP126.Computation.Route.named_survive1000,
-    ``KIP126.Computation.Route.d3_x1266_candidates,
+    ``KIP126.Computation.Route.d3_x_126_6_candidates,
     ``KIP126.Computation.Route.high125_component,
     ``KIP126.Computation.Route.stem125_e5_zero_finite,
     ``KIP126.Computation.Route.stem125_e5_high_exhaustion,

@@ -8,17 +8,17 @@ open KIP126.StableHomotopy KIP126.Synthetic.Context
 universe u v
 noncomputable section
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
-  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S00 ⟶ H)
+  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S_0_0 ⟶ H)
 
 /-- The specified bigraded suspension identifies the shifted domain sphere
 with the ordinary m-sphere. The map is fixed by biShift_comp and biShift_compat. -/
 def weightSourceIso (m w : ℤ) :
     (SyntheticCategory.biShift (0,-w)).obj (Smn m w (Syn := Syn)) ≅
       KIP126.StableHomotopy.Sphere (C := Syn) m :=
-  (SyntheticCategory.biShift_comp (m,w) (0,-w)).app S00 ≪≫
-    eqToIso (congrArg (fun p : ℤ × ℤ => (SyntheticCategory.biShift p).obj (S00 : Syn))
+  (SyntheticCategory.biShift_comp (m,w) (0,-w)).app S_0_0 ≪≫
+    eqToIso (congrArg (fun p : ℤ × ℤ => (SyntheticCategory.biShift p).obj (S_0_0 : Syn))
       (by ext <;> simp)) ≪≫
-    (SyntheticCategory.biShift_compat (Syn := Syn) m).app S00
+    (SyntheticCategory.biShift_compat (Syn := Syn) m).app S_0_0
 
 /-- Actual desuspension in weight, on maps rather than a selected bijection. -/
 def weightHomotopyMap (m w : ℤ) (X : Syn) (a : BiHom m w X) :

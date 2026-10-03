@@ -130,7 +130,7 @@ Cν 的其余局部基值是同一个 `realization` 中明确的基标签；这�
 | Appendix 高过滤补充 | log154532–154537、154545，源与靶的完整 E₂ 坐标 | 由候选排除计算 E₅ 商空间；不能只检查某个单独向量 |
 
 这里的编号按 v2 文本中的引用顺序；查找以同文件的 TeX labels
-`fact:theta5sqAF`、`fact:x1239`、`lem:toda2ext`、`lem:nuext125`、`fact:stem122`
+`fact:theta5sqAF`、`fact:x_123_9`、`lem:toda2ext`、`lem:nuext125`、`fact:stem122`
 及 `prop:state5false` 为准。计算层不预设上述推导所得的 synthetic 等式。
 
 特别注意：`Statement` 的普通等式不额外断言靶在 Eᵣ 非零。

@@ -14,7 +14,7 @@ universe u v w
 noncomputable section
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
   [HasFunctorialCofiber (C := Syn)]
-  {HS : Syn} {unit : S00 ⟶ HS} {family : SyntheticAdamsFamily Syn} {Y : Syn}
+  {HS : Syn} {unit : S_0_0 ⟶ HS} {family : SyntheticAdamsFamily Syn} {Y : Syn}
 
 /-- Associated-graded detection gives equality only after its possible
 higher-filtration error is eliminated. Zero labels are allowed. -/

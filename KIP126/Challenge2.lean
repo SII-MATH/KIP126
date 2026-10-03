@@ -565,7 +565,7 @@ def DifferentialLiftInput : Prop :=
 /-- Bind the geometric Hopf maps used by the tools to standard classes
 and to the actual synthetic η used in C₅. These are explicit literature
 identifications, not consequences inferred merely from the maps' names. -/
-def HopfBindings (η : BiHom 1 2 (S00 : Syn)) : Prop :=
+def HopfBindings (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   TowerDetection.Detects (D.classicalConvergence .sphere) (1,2)
     (Sphere.Internal.hi H M 1) D.auxiliary.etaMap ∧
   TowerDetection.Detects (D.classicalConvergence .sphere) (1,4)
@@ -576,12 +576,12 @@ def HopfBindings (η : BiHom 1 2 (S00 : Syn)) : Prop :=
 
 /-- The original distinguished-choice BX condition, before the LWX
 normalization and arbitrary-choice deductions. BX Proposition 7.19. -/
-abbrev BXInput (η : BiHom 1 2 (S00 : Syn)) (θ : BiHom 62 64 (S00 : Syn)) :=
+abbrev BXInput (η : BiHom 1 2 (S_0_0 : Syn)) (θ : BiHom 62 64 (S_0_0 : Syn)) :=
   BJMOriginalCriterion H M D.sphereFirstQuotient η θ
 
 /-- The actual Hurewicz map for the selected detector. In the chosen route
 A(M) identifies its object/unit with tmf and supplies the required results. -/
-noncomputable def detectorMap : (S00 : Syn) ⟶ D.nu.functor.obj D.auxiliary.detector :=
+noncomputable def detectorMap : (S_0_0 : Syn) ⟶ D.nu.functor.obj D.auxiliary.detector :=
   D.nu.unitIso.inv ≫ D.nu.functor.map D.auxiliary.detectorUnit
 
 /-- Actual order-two statement used before Moss; no presentation of π₆₂
@@ -667,7 +667,7 @@ def TwoDetection : Prop :=
 /-- Adams' Hopf classes, including identification of the selected synthetic
 η with the SAME normalized geometric η map. The equality is a model/source
 comparison obligation; the name of `etaMap` alone proves nothing. -/
-def HopfInput (η : BiHom 1 2 (S00 : Syn)) : Prop :=
+def HopfInput (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   EtaChoice M D.toModelData η ∧ KIP126.Literature.Route.HopfBindings D η ∧
   NonzeroSurvival (adamsTowerInternalSpectralSequence H.unit SphereSpectrum)
     (1,2) (Sphere.Internal.hi H M 1) ∧
@@ -676,7 +676,7 @@ def HopfInput (η : BiHom 1 2 (S00 : Syn)) : Prop :=
 
 /-- The finite set of classical inputs consumed by the selected §7 route.
 No h₆² differential or survival conclusion is a field. -/
-structure ClassicalInputs (η : BiHom 1 2 (S00 : Syn)) : Prop where
+structure ClassicalInputs (η : BiHom 1 2 (S_0_0 : Syn)) : Prop where
   theta5_exists : Theta5Existence D
   stem62_exponent_two : Stem62ExponentTwo (C := C)
   theta5_filtration_gap : Theta5FiltrationGap D
@@ -700,8 +700,8 @@ The original finite formula uses ηθ₅² modulo λ^r. The total-boundary formu
 and the untruncated iff are explicitly in the proof of BX Proposition 7.19.
 The LWX normalization to ληθ₅² modulo λ^(r+1), and extension to arbitrary
 choices, remain paper deductions; they are deliberately absent here. -/
-def BXDistinguishedInput (η : BiHom 1 2 (S00 : Syn)) : Prop :=
-  ∃ θ : BiHom 62 64 (S00 : Syn),
+def BXDistinguishedInput (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
+  ∃ θ : BiHom 62 64 (S_0_0 : Syn),
     BJMOriginalCriterion H M D.sphereFirstQuotient η θ ∧
     BJMSourceTotalBoundaryIdentity H M D.sphereFirstQuotient η θ ∧
     BJMUntruncatedCriterion H M η θ
@@ -927,7 +927,7 @@ variable {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C 
 normalized eta. These are construction/comparison obligations, not source
 facts valid for arbitrary selections in D. -/
 structure ClassicalSourceBinding (D : Model H M Syn)
-    (η : BiHom 1 2 (S00 : Syn)) (S : ClassicalSourceData H) : Prop where
+    (η : BiHom 1 2 (S_0_0 : Syn)) (S : ClassicalSourceData H) : Prop where
   convergence : D.classicalConvergence .sphere = S.convergence
   eta : D.auxiliary.etaMap = S.eta
   nu : D.auxiliary.nuMap = S.nu
@@ -937,7 +937,7 @@ structure ClassicalSourceBinding (D : Model H M Syn)
 /-- Ordinary transport along the displayed source equalities. The sole
 synthetic premise is supplied separately, so the classical source theorem
 does not assert it or normalized-map compatibility. -/
-def classicalInputsOfSource (D : Model H M Syn) (η : BiHom 1 2 (S00 : Syn))
+def classicalInputsOfSource (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn))
     (S : ClassicalSourceData H) (hS : ClassicalSourceResults M S)
     (B : ClassicalSourceBinding D η S) (hη : EtaChoice M D.toModelData η) :
     ClassicalInputs D η where
@@ -1056,33 +1056,33 @@ def tripleTodaSource (a aw b bw c cw : ℤ) :
       ((SyntheticCategory.biShift (b+c,bw+cw)).obj (Smn a aw))⟦(1 : ℤ)⟧ := by
   simpa only [Prod.mk_add_mk, add_zero, Smn, Functor.comp_obj] using
     ((SyntheticCategory.biShift_comp (a+(b+c),aw+(bw+cw)) (1,0)).app
-      (S00 : Syn)).symm ≪≫
+      (S_0_0 : Syn)).symm ≪≫
     (SyntheticCategory.biShift (1,0)).mapIso
-      ((SyntheticCategory.biShift_comp (a,aw) (b+c,bw+cw)).app S00).symm ≪≫
+      ((SyntheticCategory.biShift_comp (a,aw) (b+c,bw+cw)).app S_0_0).symm ≪≫
     (SyntheticCategory.biShift_compat (Syn := Syn) 1).app _
 
 /-- Complete Toda membership, including the actual distinguished triangle
 and all choices of extensions. This is a defined relation, not a free Prop. -/
 def TripleToda {a aw b bw c cw : ℤ}
-    (x : BiHom a aw (S00 : Syn)) (y : BiHom b bw (S00 : Syn))
-    (z : BiHom c cw (S00 : Syn))
-    (value : BiHom (a+(b+c)+1) (aw+(bw+cw)) (S00 : Syn)) : Prop :=
+    (x : BiHom a aw (S_0_0 : Syn)) (y : BiHom b bw (S_0_0 : Syn))
+    (z : BiHom c cw (S_0_0 : Syn))
+    (value : BiHom (a+(b+c)+1) (aw+(bw+cw)) (S_0_0 : Syn)) : Prop :=
   Toda.Relation ((tripleTodaSource a aw b bw c cw).inv ≫ value)
     ((SyntheticCategory.biShift (b+c,bw+cw)).map x)
-    ((SyntheticCategory.biShift_comp (b,bw) (c,cw)).inv.app S00 ≫
+    ((SyntheticCategory.biShift_comp (b,bw) (c,cw)).inv.app S_0_0 ≫
       (SyntheticCategory.biShift (c,cw)).map y) z
 
 /-- Actual multiplication by two, with the zero suspension removed. -/
-def syntheticTwo : BiHom 0 0 (S00 : Syn) :=
-  SyntheticCategory.biShift_zero.hom.app S00 ≫ (2 • 𝟙 _)
+def syntheticTwo : BiHom 0 0 (S_0_0 : Syn) :=
+  SyntheticCategory.biShift_zero.hom.app S_0_0 ≫ (2 • 𝟙 _)
 
 /-- Applied consumer package. Its BHS low-ring fields and INTERNAL secondary
 operation comparison are delivered separately by `TodaSourceResults` and
 `TodaApplication`. Toda 1962, Theorem 3.6 and IWX §6 motivate the latter;
 IWX `cor:2-symmetric` is C-motivic and is NOT directly a synthetic theorem. The final field asserts only membership;
 LWX's high-degree ZERO INDETERMINACY check remains a paper/C(M) task. -/
-structure TodaInputs (η : BiHom 1 2 (S00 : Syn)) where
-  h0 : BiHom 0 1 (S00 : Syn)
+structure TodaInputs (η : BiHom 1 2 (S_0_0 : Syn)) where
+  h0 : BiHom 0 1 (S_0_0 : Syn)
   h0_label : D.sphereFirstQuotient 1 1 (quotientClass 1 h0) = Sphere.Internal.hi H M 0
   lambda_h0 : lambdaMultiply 1 h0 = syntheticTwo
   h0_eta : sphereProduct h0 η = 0
@@ -1093,33 +1093,33 @@ structure TodaInputs (η : BiHom 1 2 (S00 : Syn)) where
   /-- Consequence of the BHS low-stem ring: [h₀]·π_(2,3)=0.
   Together with graded commutativity it kills both indeterminacy summands
   of the preceding LOW bracket, not those of <2,θ₅,2>. -/
-  low_indeterminacy : ∀ a : BiHom 2 3 (S00 : Syn), sphereProduct h0 a = 0
+  low_indeterminacy : ∀ a : BiHom 2 3 (S_0_0 : Syn), sphereProduct h0 a = 0
   /-- Symmetric Toda identity at the only other degree used by this route.
   No claim that the bracket is a singleton or that θ is order two is made. -/
-  symmetric_two : ∀ θ : BiHom 62 64 (S00 : Syn), θ + θ = 0 →
+  symmetric_two : ∀ θ : BiHom 62 64 (S_0_0 : Syn), θ + θ = 0 →
     TripleToda syntheticTwo θ syntheticTwo (lambdaMultiply 2 (sphereProduct η θ))
 
 /-- The one low-dimensional source choice. The label equation belongs to the
 source result below; no second η or h₀ is selected during consumption. -/
 structure TodaSourceData where
-  h0 : BiHom 0 1 (S00 : Syn)
+  h0 : BiHom 0 1 (S_0_0 : Syn)
 
 /-- BHS `prop:syn-toda-range`, low-ring/label consequences on the selected
 sphere. These equations do not prove a secondary Toda membership. -/
-structure TodaSourceResults (η : BiHom 1 2 (S00 : Syn))
+structure TodaSourceResults (η : BiHom 1 2 (S_0_0 : Syn))
     (S : TodaSourceData (Syn := Syn)) : Prop where
   h0_label : D.sphereFirstQuotient 1 1 (quotientClass 1 S.h0) = Sphere.Internal.hi H M 0
   lambda_h0 : lambdaMultiply 1 S.h0 = syntheticTwo
   h0_eta : sphereProduct S.h0 η = 0
-  low_indeterminacy : ∀ a : BiHom 2 3 (S00 : Syn), sphereProduct S.h0 a = 0
+  low_indeterminacy : ∀ a : BiHom 2 3 (S_0_0 : Syn), sphereProduct S.h0 a = 0
 
 /-- Internal source-to-model application: actual secondary Toda relations on
 the same sphere and chosen h₀,η. No high-degree indeterminacy is removed. -/
-structure TodaApplication (η : BiHom 1 2 (S00 : Syn))
+structure TodaApplication (η : BiHom 1 2 (S_0_0 : Syn))
     (S : TodaSourceData (Syn := Syn)) : Prop where
   eta_squared : TripleToda S.h0 η S.h0
     (sphereProduct (m := 1) (n := 2) (k := 1) (l := 2) η η)
-  symmetric_two : ∀ θ : BiHom 62 64 (S00 : Syn), θ + θ = 0 →
+  symmetric_two : ∀ θ : BiHom 62 64 (S_0_0 : Syn), θ + θ = 0 →
     TripleToda syntheticTwo θ syntheticTwo (lambdaMultiply 2 (sphereProduct η θ))
 
 /-- Exact secondary-operation evidence required before transporting the
@@ -1128,19 +1128,19 @@ Its product identification must be proved in this synthetic model; the
 C-motivic value τη in IWX cannot simply be renamed λ²η. The low bracket also
 requires an actual Massey/Moss or Toda calculation, beyond the ring equations.
 This record is an INTERNAL construction/comparison obligation, not A(M). -/
-structure TodaSecondaryComparison (η : BiHom 1 2 (S00 : Syn))
+structure TodaSecondaryComparison (η : BiHom 1 2 (S_0_0 : Syn))
     (S : TodaSourceData (Syn := Syn)) where
   low_bracket : TripleToda S.h0 η S.h0
     (sphereProduct (m := 1) (n := 2) (k := 1) (l := 2) η η)
-  twoStar : BiHom 1 0 (S00 : Syn)
-  symmetric : ∀ θ : BiHom 62 64 (S00 : Syn), θ + θ = 0 →
+  twoStar : BiHom 1 0 (S_0_0 : Syn)
+  symmetric : ∀ θ : BiHom 62 64 (S_0_0 : Syn), θ + θ = 0 →
     TripleToda syntheticTwo θ syntheticTwo (sphereProduct (m := 1) (n := 0) (k := 62) (l := 64) twoStar θ)
-  star_product : ∀ θ : BiHom 62 64 (S00 : Syn),
+  star_product : ∀ θ : BiHom 62 64 (S_0_0 : Syn),
     sphereProduct (m := 1) (n := 0) (k := 62) (l := 64) twoStar θ = lambdaMultiply 2 (sphereProduct η θ)
 
 /-- Assemble the unchanged consumer API from source ring facts and separately
 certified secondary operations. This introduces no choice or axiom. -/
-def todaInputsOfSource (η : BiHom 1 2 (S00 : Syn)) (S : TodaSourceData (Syn := Syn))
+def todaInputsOfSource (η : BiHom 1 2 (S_0_0 : Syn)) (S : TodaSourceData (Syn := Syn))
     (A : TodaSourceResults D η S) (P : TodaApplication η S) : TodaInputs D η where
   h0 := S.h0
   h0_label := A.h0_label
@@ -1225,7 +1225,7 @@ on homotopy groups. The base unit and weight changes are pinned down. -/
 structure RealizationCoordinates where
   sphere : ∀ m w : ℤ, Sphere (C := C) m ≅ D.recovery.realization.obj (Smn (Syn := Syn) m w)
   unit : (sphere 0 0).hom ≫ D.recovery.realization.map
-      (SyntheticCategory.biShift_zero.hom.app (S00 : Syn)) =
+      (SyntheticCategory.biShift_zero.hom.app (S_0_0 : Syn)) =
     (shiftFunctorZero C ℤ).hom.app SphereSpectrum ≫
       D.recovery.nuRealizationIso.inv.app SphereSpectrum ≫
       D.recovery.realization.map D.nu.unitIso.hom
@@ -1390,10 +1390,10 @@ Each positive finite quotient has a commutative algebra whose unit is its
 specified inclusion. No assertion about a preselected cofiber filler or
 the route sphere action is accepted in this raw source statement. -/
 structure QuotientAlgebraStructures (D : Model H M Syn) [BraidedCategory Syn] where
-  algebra : ∀ q : ℕ, 0 < q → MonObj (XModLambdaN (S00 : Syn) q)
+  algebra : ∀ q : ℕ, 0 < q → MonObj (XModLambdaN (S_0_0 : Syn) q)
   commutative : ∀ (q : ℕ) (hq : 0 < q),
-    letI := algebra q hq; IsCommMonObj (XModLambdaN (S00 : Syn) q)
-  unit : ∀ (q : ℕ) (hq : 0 < q), (algebra q hq).one = XModLambdaN.incl S00 q
+    letI := algebra q hq; IsCommMonObj (XModLambdaN (S_0_0 : Syn) q)
+  unit : ∀ (q : ℕ) (hq : 0 < q), (algebra q hq).one = XModLambdaN.incl S_0_0 q
 
 /-- The route-ready quotient algebras. The two additional comparisons are
 INTERNAL source-to-model obligations: a TR3 cofiber filler is not identified
@@ -1403,12 +1403,12 @@ Interface comparison obligation; source algebra existence alone is insufficient.
 structure QuotientAlgebras [BraidedCategory Syn] extends QuotientAlgebraStructures D where
   /-- The algebra product extends the already fixed sphere action. -/
   sphere_action : ∀ (q : ℕ) (hq : 0 < q) (m n k l : ℤ)
-      (x : BiHom m n (S00 : Syn)) (y : BiHom k l (XModLambdaN S00 q)),
+      (x : BiHom m n (S_0_0 : Syn)) (y : BiHom k l (XModLambdaN S_0_0 q)),
     algebraProduct (algebra q hq) (quotientClass q x) y = sphereAction x y
   restriction : ∀ (i j : ℕ) (hi : 0 < i) (hij : i ≤ j),
-    ((D.quotientTower (S00 : Syn)).rho i j hij ⊗ₘ
-        (D.quotientTower (S00 : Syn)).rho i j hij) ≫ (algebra i hi).mul =
-      (algebra j (hi.trans_le hij)).mul ≫ (D.quotientTower (S00 : Syn)).rho i j hij
+    ((D.quotientTower (S_0_0 : Syn)).rho i j hij ⊗ₘ
+        (D.quotientTower (S_0_0 : Syn)).rho i j hij) ≫ (algebra i hi).mul =
+      (algebra j (hi.trans_le hij)).mul ≫ (D.quotientTower (S_0_0 : Syn)).rho i j hij
 
 /-- The ring structure of the SAME detector and its synthetic analogue.
 The units are fixed to D's actual Hurewicz maps. This is the ordinary
@@ -1422,7 +1422,7 @@ structure DetectorAlgebra [BraidedCategory C] [BraidedCategory Syn] where
   synthetic_commutative : letI := synthetic
     IsCommMonObj (D.nu.functor.obj D.auxiliary.detector)
   synthetic_unit : synthetic.one = KIP126.Literature.Route.detectorMap D
-  sphere_action : ∀ (m n k l : ℤ) (x : BiHom m n (S00 : Syn))
+  sphere_action : ∀ (m n k l : ℤ) (x : BiHom m n (S_0_0 : Syn))
       (y : BiHom k l (D.nu.functor.obj D.auxiliary.detector)),
     algebraProduct synthetic (x ≫ KIP126.Literature.Route.detectorMap D) y =
       sphereAction x y
@@ -1457,12 +1457,12 @@ sphere action and restriction maps. This is produced internally, separately
 from the source existence result. -/
 structure QuotientAlgebraBinding (I : AlgebraData D) : Prop where
   sphere_action : letI := I.syntheticSymmetric; ∀ (q : ℕ) (hq : 0 < q) (m n k l : ℤ)
-      (x : BiHom m n (S00 : Syn)) (y : BiHom k l (XModLambdaN S00 q)),
+      (x : BiHom m n (S_0_0 : Syn)) (y : BiHom k l (XModLambdaN S_0_0 q)),
     algebraProduct (I.quotients.algebra q hq) (quotientClass q x) y = sphereAction x y
   restriction : letI := I.syntheticSymmetric; ∀ (i j : ℕ) (hi : 0 < i) (hij : i ≤ j),
-    ((D.quotientTower (S00 : Syn)).rho i j hij ⊗ₘ
-        (D.quotientTower (S00 : Syn)).rho i j hij) ≫ (I.quotients.algebra i hi).mul =
-      (I.quotients.algebra j (hi.trans_le hij)).mul ≫ (D.quotientTower (S00 : Syn)).rho i j hij
+    ((D.quotientTower (S_0_0 : Syn)).rho i j hij ⊗ₘ
+        (D.quotientTower (S_0_0 : Syn)).rho i j hij) ≫ (I.quotients.algebra i hi).mul =
+      (I.quotients.algebra j (hi.trans_le hij)).mul ≫ (D.quotientTower (S_0_0 : Syn)).rho i j hij
 
 /-- Assemble the consumer record on exactly the supplied source algebra. -/
 def AlgebraData.withBinding (I : AlgebraData D) (B : QuotientAlgebraBinding D I) :
@@ -1530,7 +1530,7 @@ structure TmfBinding (D : Model H M Syn) (G : TmfLabels H) (S : TmfSourceData H)
   detectorIso : D.auxiliary.detector ≅ S.spectrum
   unit : D.auxiliary.detectorUnit ≫ detectorIso.hom = S.unit
   g : G.g = S.labels.g
-  deltaH1g : G.deltaH1g = S.labels.deltaH1g
+  delta_h_1_mul_g : G.delta_h_1_mul_g = S.labels.delta_h_1_mul_g
   sphereConvergence : D.classicalConvergence .sphere = S.sphereConvergence
 
 /-- Intrinsic identities of the two source labels, without choosing an
@@ -1542,8 +1542,8 @@ The chart's `D` denotes Delta. These finite prior calculations make the
 source labels unique even when the source result is supplied existentially. -/
 def TmfLabels.Standard (G : TmfLabels H) : Prop :=
   G.g ≠ 0 ∧ (∀ x : E2 H SphereSpectrum 4 24, x ≠ 0 → x = G.g) ∧
-  G.deltaH1g ≠ 0 ∧
-    (∀ x : E2 H SphereSpectrum 9 54, x ≠ 0 → x = G.deltaH1g)
+  G.delta_h_1_mul_g ≠ 0 ∧
+    (∀ x : E2 H SphereSpectrum 9 54, x ≠ 0 → x = G.delta_h_1_mul_g)
 
 /-- BMQ v4 (2021), Figure 1.1, §2 and §7, after the explicitly separate
 2-local-to-2-complete transport. In §7 the nonzero class is the image of
@@ -1561,7 +1561,7 @@ structure TmfSourceResults (S : TmfSourceData H) : Prop where
   kappaBar_detection : TowerDetection.Detects S.sphereConvergence (4,24)
     S.labels.g S.kappaBar
   w_detection : TowerDetection.Detects S.sphereConvergence (9,54)
-    S.labels.deltaH1g S.wClass
+    S.labels.delta_h_1_mul_g S.wClass
   high125_nonzero : S.high125 ≫ S.unit ≠ 0
 
 /-- Exact existence form of the accepted local BMQ/IWX source result in
@@ -1705,22 +1705,22 @@ def nuSphereTwo : D.nu.functor.obj (Sphere (C := C) 2) ≅ Smn (Syn := Syn) 2 2 
   D.nu.functor.mapIso ((shiftFunctorAdd' C 1 1 2 (by norm_num)).app SphereSpectrum) ≪≫
     D.nu.suspensionIso (Sphere (C := C) 1) ≪≫
     (SyntheticCategory.biShift (1,1)).mapIso (nuSphereOne D) ≪≫
-    (SyntheticCategory.biShift_comp (1,1) (1,1)).app S00
+    (SyntheticCategory.biShift_comp (1,1) (1,1)).app S_0_0
 
 def nuSphereThree : D.nu.functor.obj (Sphere (C := C) 3) ≅ Smn (Syn := Syn) 3 3 :=
   D.nu.functor.mapIso ((shiftFunctorAdd' C 2 1 3 (by norm_num)).app SphereSpectrum) ≪≫
     D.nu.suspensionIso (Sphere (C := C) 2) ≪≫
     (SyntheticCategory.biShift (1,1)).mapIso (nuSphereTwo D) ≪≫
-    (SyntheticCategory.biShift_comp (2,2) (1,1)).app S00
+    (SyntheticCategory.biShift_comp (2,2) (1,1)).app S_0_0
 
 /-- The normalized Hopf ν is the map already selected by D. -/
 def normalizedNu (he : normalizedExponent H D.auxiliary.nuMap = 1) :
-    BiHom 3 4 (S00 : Syn) := by
+    BiHom 3 4 (S_0_0 : Syn) := by
   let e : (SyntheticCategory.biShift (0, (normalizedExponent H D.auxiliary.nuMap : ℤ))).obj
       (D.nu.functor.obj (Sphere (C := C) 3)) ≅ Smn (Syn := Syn) 3 4 := by
     rw [he]
     exact (SyntheticCategory.biShift (0,1)).mapIso (nuSphereThree D) ≪≫
-      (SyntheticCategory.biShift_comp (3,3) (0,1)).app S00
+      (SyntheticCategory.biShift_comp (3,3) (0,1)).app S_0_0
   exact e.inv ≫ (D.normalizedMap (.shift 3 .sphere) .sphere D.auxiliary.nuMap).map ≫
     D.nu.unitIso.hom
 
@@ -1789,12 +1789,12 @@ def sourceNormalizedTriangle (S : NuCofiberSourceData D)
     (sourceNormalizedConnecting D S he)
 
 def sourceNormalizedNu (S : NuCofiberSourceData D)
-    (he : normalizedExponent H D.auxiliary.nuMap = 1) : BiHom 3 4 (S00 : Syn) := by
+    (he : normalizedExponent H D.auxiliary.nuMap = 1) : BiHom 3 4 (S_0_0 : Syn) := by
   let e : (SyntheticCategory.biShift (0, (normalizedExponent H D.auxiliary.nuMap : ℤ))).obj
       (D.nu.functor.obj (Sphere (C := C) 3)) ≅ Smn (Syn := Syn) 3 4 := by
     rw [he]
     exact (SyntheticCategory.biShift (0,1)).mapIso (nuSphereThree D) ≪≫
-      (SyntheticCategory.biShift_comp (3,3) (0,1)).app S00
+      (SyntheticCategory.biShift_comp (3,3) (0,1)).app S_0_0
   exact e.inv ≫ S.nuLift.map ≫ D.nu.unitIso.hom
 
 /-- Internal construction target for a compatible triple, with cofiber
@@ -1861,7 +1861,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
-  (D : Model H M Syn) (η : BiHom 1 2 (S00 : Syn)) (L : TmfLabels H)
+  (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn)) (L : TmfLabels H)
 
 /-- Explicit literature inputs, specialized to one frozen model and η.
 The same tmf labels are used for the high class and its C(M) comparison.
@@ -1991,12 +1991,12 @@ structure LabelsCorrect {D : Model H M Syn} (R : Realization D)
   h0_square : R.sphere 2 2 Near126.h0Sq = Sphere.Internal.hiSquare H M 0
   h5_square : R.sphere 2 64 Near126.h5Sq = Sphere.Internal.hiSquare H M 5
   h6_square : R.sphere 2 128 dataH6Sq = Sphere.Internal.hiSquare H M 6
-  x1268_4 : R.sphere 8 134 (Near126.atom .x126_8_4) = L.x1268_4
-  x1268 : R.sphere 8 134 (Near126.atom .x126_8) = L.x1268
-  x1248 : R.sphere 8 132 (Near126.atom .x124_8) = L.x1248
-  x10912 : R.sphere 12 121 (Near126.atom .x109_12) = L.x10912
+  x_126_8_4 : R.sphere 8 134 (Near126.atom .x_126_8_4) = L.x_126_8_4
+  x_126_8 : R.sphere 8 134 (Near126.atom .x_126_8) = L.x_126_8
+  x_124_8 : R.sphere 8 132 (Near126.atom .x_124_8) = L.x_124_8
+  x_109_12 : R.sphere 12 121 (Near126.atom .x_109_12) = L.x_109_12
   g : R.sphere 4 24 (Near126.atom .g) = G.g
-  deltaH1g : R.sphere 9 54 (Near126.atom .deltaH1g) = G.deltaH1g
+  delta_h_1_mul_g : R.sphere 9 54 (Near126.atom .delta_h_1_mul_g) = G.delta_h_1_mul_g
 
 /-- Stage-1 delivery type. Supplying a value requires proving the selected
 computation claims and their interpretation on D. Stage 2 can instead accept
@@ -2946,7 +2946,7 @@ structure ModelBindings where
   routeLabels : Kervaire.Route.Labels Classical.Adams.standardFoundation.hf2
   tmfLabels : Literature.Route.TmfLabels Classical.Adams.standardFoundation.hf2
   routeEta : Synthetic.Context.BiHom 1 2
-    (Synthetic.Context.S00 : Classical.Adams.StandardSynthetic)
+    (Synthetic.Context.S_0_0 : Classical.Adams.StandardSynthetic)
   route : Literature.Route.Bindings Classical.Adams.standardRouteModel routeEta tmfLabels
   detectorIso : Classical.Adams.standardRouteModel.auxiliary.detector ≅ tmf.target.X
   detector_unit : Classical.Adams.standardRouteModel.auxiliary.detectorUnit ≫

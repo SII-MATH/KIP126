@@ -17,12 +17,12 @@ run_cmd do
     ``KIP126.Classical.Adams.standardFoundation,
     ``KIP126.Classical.Adams.linE2Presentation,
     ``KIP126.Computation.LinProofs.sphereTable_sound]
-  for decl in [``KIP126.Computation.LinProofs.Selected.d2_x125_8,
+  for decl in [``KIP126.Computation.LinProofs.Selected.d2_x_125_8,
       ``KIP126.Computation.LinProofs.Selected.d2_h6,
-      ``KIP126.Computation.LinProofs.Selected.d3_h4_x109_12,
-      ``KIP126.Computation.LinProofs.Selected.d3_h0Sq_x123_13_2,
-      ``KIP126.Computation.LinProofs.Selected.d3_x126_4,
-      ``KIP126.Computation.LinProofs.Selected.d7_x123_11_combination] do
+      ``KIP126.Computation.LinProofs.Selected.d3_h4_x_109_12,
+      ``KIP126.Computation.LinProofs.Selected.d3_h0Sq_x_123_13_2,
+      ``KIP126.Computation.LinProofs.Selected.d3_x_126_4,
+      ``KIP126.Computation.LinProofs.Selected.d7_x_123_11_combination] do
     let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer expected decl
       "selected-result dependency audit"
     unless KIP126.Checks.AxiomInputs.uses axioms

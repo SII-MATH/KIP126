@@ -18,7 +18,7 @@ theorem cnu_d3 :
 
 /-- One-step λ injectivity with A and C from the SAME stage witness. -/
 theorem lambda_injective_125_130 :
-    LambdaInjectiveAt 125 130 (S00 : StandardSynthetic) := by
+    LambdaInjectiveAt 125 130 (S_0_0 : StandardSynthetic) := by
   exact KIP126.Computation.Route.lambda_injective_125_130 routeLiterature routeComputation
 
 /-- Proposition 7.8 from this complete delivered input. The body must use

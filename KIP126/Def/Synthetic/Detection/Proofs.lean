@@ -8,7 +8,7 @@ open KIP126.Core.SpectralSequence
 universe u v
 variable {Syn : Type u} [SyntheticCategory.{u,v} Syn]
   [HasFunctorialCofiber (C := Syn)]
-  {H : Syn} {unit : S00 ⟶ H} {F : SyntheticAdamsFamily Syn} {X : Syn}
+  {H : Syn} {unit : S_0_0 ⟶ H} {F : SyntheticAdamsFamily Syn} {X : Syn}
   (c : TowerConvergence unit F X) (i : Tridegree)
 
 /-- Addition is taken in the actual homotopy group and in the same E₂

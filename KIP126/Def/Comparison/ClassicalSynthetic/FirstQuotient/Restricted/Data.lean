@@ -18,7 +18,7 @@ noncomputable def sphereFirstQuotientOfLambdaFunctor
     SphereFirstQuotientComparison H Syn := by
   intro s t
   let e : (SyntheticCategory.biShift (0, 0)).obj (N.functor.obj SphereSpectrum) ≅
-      (S00 : Syn) := SyntheticCategory.biShift_zero.app _ ≪≫ N.unitIso
+      (S_0_0 : Syn) := SyntheticCategory.biShift_zero.app _ ≪≫ N.unitIso
   let q := (Q.functor 1).mapIso e
   have c : BiHom (t - s) t
       (XModLambdaN ((SyntheticCategory.biShift (0, 0)).obj (N.functor.obj SphereSpectrum)) 1) ≃+

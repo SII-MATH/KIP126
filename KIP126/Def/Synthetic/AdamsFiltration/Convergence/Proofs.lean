@@ -8,7 +8,7 @@ open KIP126.StableHomotopy KIP126.Synthetic.Context
 universe u v
 noncomputable section
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
-  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S00 ⟶ H)
+  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S_0_0 ⟶ H)
 
 /-- Every genuine tower lift has a common family representative, transported
 through P.inverse. This is KJ=0, allowing a ZERO class, not convergence. -/

@@ -47,7 +47,7 @@ inductive SyntheticObject
 noncomputable def SyntheticObject.obj [HasFunctorialCofiber (C := C)]
     {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
     (N : NuFunctorData C Syn) (A : AuxiliaryData C) : SyntheticObject → Syn
-  | .sphere => S00
+  | .sphere => S_0_0
   | .nu X => N.functor.obj (X.obj A)
   | .shift p X => (SyntheticCategory.biShift p).obj (X.obj N A)
   | .quotient n X => XModLambdaN (X.obj N A) n

@@ -274,7 +274,7 @@ axiom adamsFiltration_functorial {X Y : 𝒮} (f : X ⟶ Y) (s n : ℤ)
 /-- KIP §0.2.3, Definition `prereq:def:detect` (detection): The Adams filtration
 of a nonzero map `f` determines its detection in the Adams spectral sequence.
 A nonzero map of Adams filtration `s` is detected by a nonzero element
-in `E_∞^{s, *}`. Used in `proof-main-theorem.tex` (Proposition `prop:possibleh62`)
+in `E_∞^{s, *}`. Used in `proof-main-theorem.tex` (Proposition `prop:possible_h_6_sq`)
 to relate Adams filtration of `θ₅²` to E∞-page elements. -/
 axiom af_detection {X Y : 𝒮} (f : X ⟶ Y)
     (hf : f ≠ 0) :
