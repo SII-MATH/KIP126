@@ -13,7 +13,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 
 /-- Transport the actual secondary-operation calculation, retaining its
 star/product identification. BHS ring facts alone are not sufficient. -/
-theorem todaApplication_of_secondary (η : BiHom 1 2 (S00 : Syn))
+theorem todaApplication_of_secondary (η : BiHom 1 2 (S_0_0 : Syn))
     (S : TodaSourceData (Syn := Syn)) (B : TodaSecondaryComparison η S) :
     TodaApplication η S := by
   refine ⟨B.low_bracket, ?_⟩
@@ -23,7 +23,7 @@ theorem todaApplication_of_secondary (η : BiHom 1 2 (S00 : Syn))
 
 /-- The public Toda consumer delivery keeps source facts and internal
 secondary-operation evidence separate until this final assembly. -/
-theorem toda_of_source (η : BiHom 1 2 (S00 : Syn)) (S : TodaSourceData (Syn := Syn))
+theorem toda_of_source (η : BiHom 1 2 (S_0_0 : Syn)) (S : TodaSourceData (Syn := Syn))
     (A : TodaSourceResults D η S) (B : TodaSecondaryComparison η S) :
     Nonempty (TodaInputs D η) := by
   exact ⟨todaInputsOfSource D η S A (todaApplication_of_secondary η S B)⟩

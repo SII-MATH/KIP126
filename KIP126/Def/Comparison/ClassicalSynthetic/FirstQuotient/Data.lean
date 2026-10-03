@@ -26,7 +26,7 @@ abbrev FirstQuotientHomotopyComparison (H : Mod2EilenbergMacLane (C := C))
 /-- The sphere specialization has no CSV labels or freely chosen Adams sequence. -/
 abbrev SphereFirstQuotientComparison (H : Mod2EilenbergMacLane (C := C))
     (Syn : Type w) [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)] :=
-  ∀ s t : ℤ, BiHom (t - s) t (XModLambdaN (S00 : Syn) 1) ≃+
+  ∀ s t : ℤ, BiHom (t - s) t (XModLambdaN (S_0_0 : Syn) 1) ≃+
     Ambient H SphereSpectrum (s, t)
 
 /-- Transport the supplied ν-sphere comparison through its specified unit iso.
@@ -38,7 +38,7 @@ noncomputable def sphereFirstQuotientComparison
     SphereFirstQuotientComparison H Syn := by
   intro s t
   let e : (SyntheticCategory.biShift (0, 0)).obj (N.functor.obj SphereSpectrum) ≅
-      (S00 : Syn) :=
+      (S_0_0 : Syn) :=
     SyntheticCategory.biShift_zero.app _ ≪≫ N.unitIso
   let q := (XModLambdaN.functor cofib 1).mapIso e
   have c : BiHom (t - s) t

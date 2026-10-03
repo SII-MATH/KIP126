@@ -8,7 +8,7 @@ open CategoryTheory KIP126.StableHomotopy KIP126.Synthetic.Context
 set_option backward.isDefEq.respectTransparency false
 universe u v
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
-  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S00 ⟶ H)
+  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S_0_0 ⟶ H)
 
 /-- Tower naturality gives filtration preservation. This general
 proof concerns actual maps and ranges; it is not a new operation or a local

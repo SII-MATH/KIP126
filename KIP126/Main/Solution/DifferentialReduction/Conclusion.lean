@@ -17,7 +17,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 namespace KIP126.Main.Solution
 /-- The purely logical last step of LWX Theorem 7.1. This is conditional
 on the two pending propositions; it is not another Final declaration. -/
-theorem permanent_of_propositions (η : BiHom 1 2 (S00 : Syn))
+theorem permanent_of_propositions (η : BiHom 1 2 (S_0_0 : Syn))
     (hη : EtaChoice M D.toModelData η)
     (h78 : KIP126.Solution.Near126.OnlyD12.d12_dichotomy_and_condition_equivalence M D L η)
     (h79 : KIP126.Solution.Near126.C3NotC5.c3_excludes_c5 M D L η) :

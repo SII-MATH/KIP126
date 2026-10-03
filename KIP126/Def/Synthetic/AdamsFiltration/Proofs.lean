@@ -3,7 +3,7 @@ namespace KIP126.Synthetic.SpectralSequence
 open CategoryTheory KIP126.StableHomotopy KIP126.Synthetic.Context KIP126.Classical.Adams
 universe u v
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
-  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S00 ⟶ H) (X : Syn)
+  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S_0_0 ⟶ H) (X : Syn)
 
 theorem towerFiltrationSubmodule_antitone (p : ℤ × ℤ) :
     Antitone (fun s => towerFiltrationSubmodule unit X s p) := by

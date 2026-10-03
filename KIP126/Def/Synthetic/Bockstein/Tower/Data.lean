@@ -30,7 +30,7 @@ isomorphism, rather than identified by definitional equality. -/
 noncomputable def representedSphereIso (n w : ℤ) :
     (Smn (Syn := Syn) 0 w)⟦n⟧ ≅ Smn n w :=
   (SyntheticCategory.biShift_compat n).symm.app (Smn 0 w) ≪≫
-    (SyntheticCategory.biShift_comp (0, w) (n, 0)).app S00 ≪≫
+    (SyntheticCategory.biShift_comp (0, w) (n, 0)).app S_0_0 ≪≫
       eqToIso (by simp only [Smn, Prod.mk_add_mk, zero_add, add_zero])
 
 /-- The induced additive comparison with actual bigraded homotopy groups. -/

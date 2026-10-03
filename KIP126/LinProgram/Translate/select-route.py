@@ -28,18 +28,18 @@ ATOMS = [0,1,2,7,9,13,18,51,69,79,80,82,85,89,188,190,251,275,323,
 LOG_IDS = [5541,5990,153768,462481,929469,2671068,212838,154545]
 TRIAL_IDS = [2047477,2047478,*range(154532,154538)]
 NAMES = {
- ('proofs.db/log',5990):'d2_x125_8', ('proofs.db/log',5541):'d2_h6',
- ('proofs.db/log',153768):'d3_h4_x109_12',
- ('proofs.db/log',462481):'d3_h0Sq_x123_13_2',
- ('proofs.db/log',929469):'d3_x126_4',
- ('proofs.db/log',2671068):'d7_x123_combination',
+ ('proofs.db/log',5990):'d2_x_125_8', ('proofs.db/log',5541):'d2_h6',
+ ('proofs.db/log',153768):'d3_h4_x_109_12',
+ ('proofs.db/log',462481):'d3_h0Sq_x_123_13_2',
+ ('proofs.db/log',929469):'d3_x_126_4',
+ ('proofs.db/log',2671068):'d7_x_123_combination',
  ('proofs.db/log',212838):'d3_cnu_top',
  ('S0_AdamsE2_basis/d2',513):'d2_h0Six_h6',
  ('S0_AdamsE2_basis/d2',2855):'d2_for_P_h2',
  ('S0_AdamsE2_basis/d2',2923):'d2_for_Q_h2_first',
  ('S0_AdamsE2_basis/d2',2926):'d2_for_Q_h2_second',
- ('Cnu_AdamsE2_ss',3872):'d3_cnu_bottom_x126_8',
- ('Cnu_AdamsE2_ss',3873):'d3_cnu_bottom_x126_8_2',
+ ('Cnu_AdamsE2_ss',3872):'d3_cnu_bottom_x_126_8',
+ ('Cnu_AdamsE2_ss',3873):'d3_cnu_bottom_x_126_8_2',
  ('S0_AdamsE2_ss',2702):'W_reaches_e6',
  ('S0_AdamsE2_ss',2852):'Y_reaches_e5',
  ('S0_AdamsE2_ss',2433):'X_reaches_e6',
@@ -169,7 +169,7 @@ def main():
   require(len(x)==len(y)==1,'bottom image requires reduction, not a direct basis entry')
   resolve('S0',s,t,[x[0]['local_index']]); resolve('Cnu',s,t,[y[0]['local_index']])
   bottoms.append(dict(s=s,t=t,x=[x[0]['local_index']],y=[y[0]['local_index']],source=x[0],target=y[0]))
- # Top lift x121,7 * (h1[4]); both actual generator image and bidegree checked.
+ # Top lift x_121_7 * (h1[4]); both actual generator image and bidegree checked.
  top=next(z for z in bases['Cnu'][8,134] if z['mon']=='323,1,1')
  m=dict(maps.execute('SELECT * FROM map_AdamsE2_Cnu_to_S0 WHERE id=1').fetchone())
  require(m['map']=='1,1','unexpected top map')

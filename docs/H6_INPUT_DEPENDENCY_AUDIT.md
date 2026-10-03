@@ -36,7 +36,7 @@ NonzeroSurvival sphereAdamsData (2, 128) computedH6Square
 
 论文最终推理（`MainPaper/main.tex:2181–2215`）是：
 
-1. `prop:possibleh62`：要么永久存活，要么有非零 `d₁₂(h₆²)=T`；
+1. `prop:possible_h_6_sq`：要么永久存活，要么有非零 `d₁₂(h₆²)=T`；
    后一种情况等价于 C3、C4、C5 同时成立。
 2. `prop:state5false`：C3 蕴含非 C5，排除后一种情况。
 3. 将这里的存活和元素解释回固定 SSData 目标，包括其非零语义。
@@ -52,8 +52,8 @@ synthetic 检测条件，不能仅用两个任意 `Prop` 代替其数学内容�
 | --- | --- | --- | --- |
 | BJM/BX 判据及总微分，`thm:bjmbx`，2117–2140、2300–2311 | θ₅ 检测 h₅²、阶二；`δ₁(h₆²)=ληθ₅²`；有限/无限存活判据。来源为论文引用 BX、BJM；阶数引用 Xu/IWX | classical 输入必须是固定球面，h₆² 必须比较到 `computedH6Square`；synthetic 检测不能是自由谓词 | 现有文献包装有来源，但 `Theta5ChoiceContext` 尚需这些具体解释；有限页到共同无限代表元的连接不得遗漏 |
 | 代表元选择，`lem:equistate4/5`，2221–2258 | θ₅ 差的过滤至少 6；平方差至少 12；U 代表元差乘 η 的过滤至少 15。计算 R1/R2 加群结构和乘法比较 | 全部 classical 类来自同一 Lin→sphere 比较，检测在同一 synthetic 球面 | 已有部分消失字段，不是完整差项/检测证明；两个选择不应被默认为相等 |
-| 排除 d₁₂ 以外的出射，`prop:possibleh62` 证明，2300–2360 | θ₅² 的低过滤和高过滤候选、T 的入射穷尽、W 的 d₆ 候选；synthetic rigidity、tmf 检测，R3 | 使用固定球面的真实 d、Z/B，tmf 映射及检测也必须来自该球面 | 现有 E₅ 单个分量穷尽不能控制全部高过滤尾部；需范围定理与 tmf 文献输入 |
-| α₁/α₂/α₃，`lem:x1239`，2387–2454 | V 存活；D1/D4/D5/D7；截断群候选穷尽 R4、乘法及商映射相容 | `V,U,correction` 的固定坐标；mod λ¹¹→mod λ⁹ 的同一代表元 | 不能分别选无关系的截断类；升降截断和过滤推理未接齐 |
+| 排除 d₁₂ 以外的出射，`prop:possible_h_6_sq` 证明，2300–2360 | θ₅² 的低过滤和高过滤候选、T 的入射穷尽、W 的 d₆ 候选；synthetic rigidity、tmf 检测，R3 | 使用固定球面的真实 d、Z/B，tmf 映射及检测也必须来自该球面 | 现有 E₅ 单个分量穷尽不能控制全部高过滤尾部；需范围定理与 tmf 文献输入 |
+| α₁/α₂/α₃，`lem:x_123_9`，2387–2454 | V 存活；D1/D4/D5/D7；截断群候选穷尽 R4、乘法及商映射相容 | `V,U,correction` 的固定坐标；mod λ¹¹→mod λ⁹ 的同一代表元 | 不能分别选无关系的截断类；升降截断和过滤推理未接齐 |
 | Toda 检测，`lem:toda2ext`，2470–2568 | D2/D3/D6/D9；AF≤12 生成项及所有和、Massey 零不定性、Moss crossing、阶数/乘法，R5/R6 | 三个候选由固定 E₂ 类检测；Moss 的 crossing 与论文后面使用的 crossing 区分 | 不是给出三个名字即可穷尽；这些 synthetic/Toda 推论不是原始 Lin 输出 |
 | 对所有代表元的 2-extension，`cor:2ext125`，2571–2585 | Toda 结论、吸收高过滤项和换代表元的不定性控制，R7 | 要与下一步 Hopf extension 选择的 Y 代表元兼容 | 一条对某个代表元的关系不足以组成最后等式 |
 | ν-extension，`lem:nuext125`，2613–2673 | X 存活，实际 cofiber 的 D8、i/q 关系，Mahowald 及截断提升 R8/R9 | 同一球面、同一 ν、同一 cofiber、同一组元素；详见下节 | 当前只有部分 cofiber 构造和二条计算事实接口；不是完整 Mahowald 输入 |

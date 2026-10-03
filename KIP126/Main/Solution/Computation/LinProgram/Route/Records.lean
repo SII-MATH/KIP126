@@ -14,13 +14,13 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 set_option maxRecDepth 10000
 
 /-- Cnu_AdamsE2_ss row 3872; equation. Coordinates are degree-local. -/
-def record_d3_cnu_bottom_x126_8 : Raw.Claim := ⟨.nuCofiber, .equation, 3, 8, 134, [4], 11, 136, [1], "Cnu_AdamsE2_ss", 3872⟩
-theorem Inputs.d3_cnu_bottom_x126_8 (I : Inputs D L G) : Statement I.realization record_d3_cnu_bottom_x126_8 :=
+def record_d3_cnu_bottom_x_126_8 : Raw.Claim := ⟨.nuCofiber, .equation, 3, 8, 134, [4], 11, 136, [1], "Cnu_AdamsE2_ss", 3872⟩
+theorem Inputs.d3_cnu_bottom_x_126_8 (I : Inputs D L G) : Statement I.realization record_d3_cnu_bottom_x_126_8 :=
   I.results _ (by exact List.getElem_mem (l := Raw.claims) (n := 33) (by decide))
 
 /-- Cnu_AdamsE2_ss row 3873; equation. Coordinates are degree-local. -/
-def record_d3_cnu_bottom_x126_8_2 : Raw.Claim := ⟨.nuCofiber, .equation, 3, 8, 134, [3], 11, 136, [2], "Cnu_AdamsE2_ss", 3873⟩
-theorem Inputs.d3_cnu_bottom_x126_8_2 (I : Inputs D L G) : Statement I.realization record_d3_cnu_bottom_x126_8_2 :=
+def record_d3_cnu_bottom_x_126_8_2 : Raw.Claim := ⟨.nuCofiber, .equation, 3, 8, 134, [3], 11, 136, [2], "Cnu_AdamsE2_ss", 3873⟩
+theorem Inputs.d3_cnu_bottom_x_126_8_2 (I : Inputs D L G) : Statement I.realization record_d3_cnu_bottom_x_126_8_2 :=
   I.results _ (by exact List.getElem_mem (l := Raw.claims) (n := 34) (by decide))
 
 /-- S0_AdamsE2_ss row 2433; reaches. Coordinates are degree-local. -/
@@ -54,28 +54,28 @@ theorem Inputs.d2_h6 (I : Inputs D L G) : Statement I.realization record_d2_h6 :
   I.results _ (by exact List.getElem_mem (l := Raw.claims) (n := 651) (by decide))
 
 /-- proofs.db/log row 5990; equation. Coordinates are degree-local. -/
-def record_d2_x125_8 : Raw.Claim := ⟨.sphere, .equation, 2, 8, 133, [1], 10, 134, [2, 4], "proofs.db/log", 5990⟩
-theorem Inputs.d2_x125_8 (I : Inputs D L G) : Statement I.realization record_d2_x125_8 :=
+def record_d2_x_125_8 : Raw.Claim := ⟨.sphere, .equation, 2, 8, 133, [1], 10, 134, [2, 4], "proofs.db/log", 5990⟩
+theorem Inputs.d2_x_125_8 (I : Inputs D L G) : Statement I.realization record_d2_x_125_8 :=
   I.results _ (by exact List.getElem_mem (l := Raw.claims) (n := 652) (by decide))
 
 /-- proofs.db/log row 153768; equation. Coordinates are degree-local. -/
-def record_d3_h4_x109_12 : Raw.Claim := ⟨.sphere, .equation, 3, 13, 137, [2], 16, 139, [0], "proofs.db/log", 153768⟩
-theorem Inputs.d3_h4_x109_12 (I : Inputs D L G) : Statement I.realization record_d3_h4_x109_12 :=
+def record_d3_h4_x_109_12 : Raw.Claim := ⟨.sphere, .equation, 3, 13, 137, [2], 16, 139, [0], "proofs.db/log", 153768⟩
+theorem Inputs.d3_h4_x_109_12 (I : Inputs D L G) : Statement I.realization record_d3_h4_x_109_12 :=
   I.results _ (by exact List.getElem_mem (l := Raw.claims) (n := 653) (by decide))
 
 /-- proofs.db/log row 462481; equation. Coordinates are degree-local. -/
-def record_d3_h0Sq_x123_13_2 : Raw.Claim := ⟨.sphere, .equation, 3, 15, 138, [2], 18, 140, [2], "proofs.db/log", 462481⟩
-theorem Inputs.d3_h0Sq_x123_13_2 (I : Inputs D L G) : Statement I.realization record_d3_h0Sq_x123_13_2 :=
+def record_d3_h0Sq_x_123_13_2 : Raw.Claim := ⟨.sphere, .equation, 3, 15, 138, [2], 18, 140, [2], "proofs.db/log", 462481⟩
+theorem Inputs.d3_h0Sq_x_123_13_2 (I : Inputs D L G) : Statement I.realization record_d3_h0Sq_x_123_13_2 :=
   I.results _ (by exact List.getElem_mem (l := Raw.claims) (n := 654) (by decide))
 
 /-- proofs.db/log row 929469; equation. Coordinates are degree-local. -/
-def record_d3_x126_4 : Raw.Claim := ⟨.sphere, .equation, 3, 4, 130, [0], 7, 132, [0], "proofs.db/log", 929469⟩
-theorem Inputs.d3_x126_4 (I : Inputs D L G) : Statement I.realization record_d3_x126_4 :=
+def record_d3_x_126_4 : Raw.Claim := ⟨.sphere, .equation, 3, 4, 130, [0], 7, 132, [0], "proofs.db/log", 929469⟩
+theorem Inputs.d3_x_126_4 (I : Inputs D L G) : Statement I.realization record_d3_x_126_4 :=
   I.results _ (by exact List.getElem_mem (l := Raw.claims) (n := 655) (by decide))
 
 /-- proofs.db/log row 2671068; equation. Coordinates are degree-local. -/
-def record_d7_x123_combination : Raw.Claim := ⟨.sphere, .equation, 7, 11, 134, [0, 1, 3], 18, 140, [1], "proofs.db/log", 2671068⟩
-theorem Inputs.d7_x123_combination (I : Inputs D L G) : Statement I.realization record_d7_x123_combination :=
+def record_d7_x_123_combination : Raw.Claim := ⟨.sphere, .equation, 7, 11, 134, [0, 1, 3], 18, 140, [1], "proofs.db/log", 2671068⟩
+theorem Inputs.d7_x_123_combination (I : Inputs D L G) : Statement I.realization record_d7_x_123_combination :=
   I.results _ (by exact List.getElem_mem (l := Raw.claims) (n := 656) (by decide))
 
 /-- proofs.db/log row 212838; equation. Coordinates are degree-local. -/

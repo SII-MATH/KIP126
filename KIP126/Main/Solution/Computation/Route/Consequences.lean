@@ -63,19 +63,19 @@ def OnlyIncomingT : Prop :=
 input. Each field must be derived on THIS R from `Inputs`, not obtained from
 the historical global `linToSphereE2` package. -/
 structure SphereFacts : Prop where
-  d2_x125_8 : Differential R 2 (atom .x125_8) (mulAt dataH1 V + U)
+  d2_x_125_8 : Differential R 2 (atom .x_125_8) (mulAt dataH1 V + U)
   d2_h6 : Differential R 2 dataH6 (mulAt dataH0 h5Sq)
   d2_h0Six_h6 : Differential R 2 (mulAt h0Six dataH6) (mulAt dataH0 B)
-  d3_h4_x109_12 : Differential R 3 (mulAt (atom .h4) (atom .x109_12))
-    (mulAt dataH1 (atom .x122_15_2))
-  d3_h0Sq_x123_13_2 : Differential R 3 (mulAt h0Sq (atom .x123_13_2))
-    (mulAt h0Sq (atom .x122_16))
-  d3_x126_4 : Differential R 3 (atom .x126_4) (mulAt h0Sq (atom .x125_5))
-  d7_source : Differential R 7 d7Source (mulAt dataH1 (atom .x121_17))
+  d3_h4_x_109_12 : Differential R 3 (mulAt (atom .h4) (atom .x_109_12))
+    (mulAt dataH1 (atom .x_122_15_2))
+  d3_h0Sq_x_123_13_2 : Differential R 3 (mulAt h0Sq (atom .x_123_13_2))
+    (mulAt h0Sq (atom .x_122_16))
+  d3_x_126_4 : Differential R 3 (atom .x_126_4) (mulAt h0Sq (atom .x_125_5))
+  d7_source : Differential R 7 d7Source (mulAt dataH1 (atom .x_121_17))
   /-- Uses E3 candidate coverage and both root refutations 2047477/2047478.
   The two refutations alone do not constitute candidate coverage. -/
-  d3_x126_6_candidates : Differential R 3 (atom .x126_6) d3Candidate ∨
-    Differential R 3 (atom .x126_6) d3OtherCandidate
+  d3_x_126_6_candidates : Differential R 3 (atom .x_126_6) d3Candidate ∨
+    Differential R 3 (atom .x_126_6) d3OtherCandidate
   w_to_e6 : Survival R 6 W
   t_permanent_cycle : IsPermanentCycle (sequence D .sphere) (14,139) (R.sphere 14 139 T)
   t_only_incoming : OnlyIncomingT R

@@ -17,7 +17,7 @@ open KIP126.Kervaire
 /-- The actual-model Theorem 7.3 / Remark 7.4 obligation. The original BX
 criterion at its source choice remains A(M); transport to every θ₅ and the
 normalized exponent are paper deductions. This definition asserts neither. -/
-def any_choice_criterion (η : BiHom 1 2 (S00 : Syn)) : Prop :=
+def any_choice_criterion (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   EtaChoice M D.toModelData η →
     ∀ θ, ThetaChoice M D.toModelData θ →
       BJMNormalizedFiniteCriterion H M η θ ∧

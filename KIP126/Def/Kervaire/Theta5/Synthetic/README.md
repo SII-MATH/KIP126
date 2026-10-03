@@ -4,7 +4,7 @@
 
 | 表达式 | 双次数 (stem, weight) | 定义来源 |
 | --- | --- | --- |
-| `Theta` | (62,64) | `BiHom 62 64 S00` |
+| `Theta` | (62,64) | `BiHom 62 64 S_0_0` |
 | `thetaSquare θ` | (124,128) | 实际悬移与态射复合 |
 | `etaThetaSquare η θ` | (125,130) | `Eta` 为 (1,2) 的候选类 |
 | `lambdaEtaThetaSquare η θ` | (125,129) | 现有 `lambdaAction` |

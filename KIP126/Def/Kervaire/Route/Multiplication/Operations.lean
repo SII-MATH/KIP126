@@ -14,7 +14,7 @@ variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
 matches sphereAction: its first input acts on the second input. -/
 def algebraProduct {A : Syn} (Q : MonObj A) {m n k l : ℤ}
     (x : BiHom m n A) (y : BiHom k l A) : BiHom (m+k) (n+l) A :=
-  (SyntheticCategory.biShift_comp (m,n) (k,l)).inv.app S00 ≫
+  (SyntheticCategory.biShift_comp (m,n) (k,l)).inv.app S_0_0 ≫
     (biShift_eq_tensor_Smn k l (Smn m n)).hom ≫ (y ⊗ₘ x) ≫ Q.mul
 
 end

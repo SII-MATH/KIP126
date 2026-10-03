@@ -14,7 +14,7 @@ open KIP126.Comparison.ClassicalSynthetic
 universe u v
 noncomputable section
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
-  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S00 ⟶ H)
+  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S_0_0 ⟶ H)
 
 attribute [local irreducible] adamsTowerSSData
 

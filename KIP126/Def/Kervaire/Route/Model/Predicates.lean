@@ -26,7 +26,7 @@ structure ComparisonCompatible : Prop where
     Detects (D.quotientConvergence 1 (by decide)) (s, t, t)
       (by simpa [SyntheticObject.obj, SyntheticAdamsSS.E₂] using D.quotientLabel 1 s t 0 x) ((D.sphereFirstQuotient s t).symm x)
   homotopy_lambda : ∀ (s t : ℤ) (k : ℕ)
-      (x : BiHom (t - s) t (S00 : Syn)),
+      (x : BiHom (t - s) t (S_0_0 : Syn)),
     Detects D.sphereConvergence (s, t, t - k)
       (D.sphereE2 s t k (D.sphereFirstQuotient s t (quotientClass 1 x)))
       (lambdaMultiply k x)
@@ -66,8 +66,8 @@ value, differential, or survivor. -/
 def MultiplicationCompatible (M : MilnorCooperations H) : Prop :=
   ∀ (s t s' t' k l : ℕ)
     (x : E2 H SphereSpectrum s t) (y : E2 H SphereSpectrum s' t')
-    (α : BiHom ((t : ℤ) - s) ((t : ℤ) - k) (S00 : Syn))
-    (β : BiHom ((t' : ℤ) - s') ((t' : ℤ) - l) (S00 : Syn)),
+    (α : BiHom ((t : ℤ) - s) ((t : ℤ) - k) (S_0_0 : Syn))
+    (β : BiHom ((t' : ℤ) - s') ((t' : ℤ) - l) (S_0_0 : Syn)),
     Detects D.sphereConvergence (s, t, (t : ℤ) - k) (D.sphereE2 s t k x) α →
     Detects D.sphereConvergence (s', t', (t' : ℤ) - l) (D.sphereE2 s' t' l y) β →
     Detects D.sphereConvergence ((s + s' : ℕ), (t + t' : ℕ), (t + t' : ℕ) - (k + l : ℕ))
@@ -86,7 +86,7 @@ def HomotopySeparated : Prop :=
 The sign uses the topological degrees; weights introduce no additional sign.
 The equalities in `homotopyRegrade` transport only the sum of degrees. -/
 def SphereProductCommutative : Prop :=
-  ∀ (m n k l : ℤ) (x : BiHom m n (S00 : Syn)) (y : BiHom k l (S00 : Syn)),
+  ∀ (m n k l : ℤ) (x : BiHom m n (S_0_0 : Syn)) (y : BiHom k l (S_0_0 : Syn)),
     sphereProduct x y = ((-1 : ℤ) ^ (m * k).natAbs) •
       homotopyRegrade (add_comm k m) (add_comm l n) (sphereProduct y x)
 

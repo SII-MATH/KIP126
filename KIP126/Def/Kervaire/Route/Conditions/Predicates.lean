@@ -32,34 +32,34 @@ def C3 : Prop :=
     6 (8, 134) (14, 139) L.W 0
 
 /-- Admissible θ₅ choices use the standard h₅² and the same sphere comparison. -/
-def ThetaChoice (θ : BiHom 62 64 (S00 : Syn)) : Prop :=
+def ThetaChoice (θ : BiHom 62 64 (S_0_0 : Syn)) : Prop :=
   SyntheticTheta5.DetectsTheta H M D.sphereFirstQuotient θ
 
 /-- Fixed η is identified by the standard h₁, not an arbitrary operation. -/
-def EtaChoice (η : BiHom 1 2 (S00 : Syn)) : Prop :=
+def EtaChoice (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   SyntheticTheta5.DetectsEta H M D.sphereFirstQuotient η
 
 /-- Proposition 7.8(4) at a specified choice. Detection retains higher-AF
 indeterminacy; its leading E∞ class is required to be nonzero. -/
-def C4At (θ : BiHom 62 64 (S00 : Syn)) : Prop :=
+def C4At (θ : BiHom 62 64 (S_0_0 : Syn)) : Prop :=
   DetectsNonzero D.sphereConvergence (10, 134, 128)
     (D.sphereE2 10 134 6 (L.U M)) (sphereProduct θ θ)
 
 def C4 : Prop := ∃ θ, ThetaChoice M D θ ∧ C4At M D L θ
 
 /-- `[U]` means an actual homotopy lift detected by U. -/
-def UChoice (u : BiHom 124 134 (S00 : Syn)) : Prop :=
+def UChoice (u : BiHom 124 134 (S_0_0 : Syn)) : Prop :=
   DetectsNonzero D.sphereConvergence (10, 134, 134)
     (D.sphereE2 10 134 0 (L.U M)) u
 
 /-- Proposition 7.8(5). No nonzero condition is added to the target here:
 Remark 7.12 makes that depend on C₃. The relation is equality in the
 associated graded, NOT a selected exact homotopy equality. -/
-def C5At (η : BiHom 1 2 (S00 : Syn)) (u : BiHom 124 134 (S00 : Syn)) : Prop :=
+def C5At (η : BiHom 1 2 (S_0_0 : Syn)) (u : BiHom 124 134 (S_0_0 : Syn)) : Prop :=
   Detects D.sphereConvergence (14, 139, 133)
     (D.sphereE2 14 139 6 (L.target M))
     (lambdaMultiply 3 (sphereProduct η u))
 
-def C5 (η : BiHom 1 2 (S00 : Syn)) : Prop :=
+def C5 (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   ∃ u, UChoice M D L u ∧ C5At M D L η u
 end KIP126.Kervaire.Route

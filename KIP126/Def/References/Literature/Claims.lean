@@ -986,7 +986,7 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
   | .twoExtensionIndeterminacy =>
       claim .twoExtensionIndeterminacy .tableEvidence
         `KIP126.Kervaire.TwoExtensionIndeterminacy
-        "evidence:h02x1259" .aimPaper
+        "evidence:h_0_sq_mul_x_125_9_2" .aimPaper
         "AIM stem-125 two-extension representatives and indeterminacy products"
         (some "MainPaper/main.tex") [.appendixTables, .mossConvergence]
   | .hopfLiftObstructions =>

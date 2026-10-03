@@ -6,4 +6,4 @@
 | --- | --- |
 | [Data.lean](Data.lean) | `SphereDifferentialFacts`, `SphereSurvivalFacts`, `SphereProductFacts`, `SphereVanishingFacts`, `SphereFacts` |
 | [Predicates.lean](Predicates.lean) | `Differential`, `Survival`, `NotHit`, `Permanent`, `NoOutgoing` 等 8 个声明 |
-| [Proofs.lean](Proofs.lean) | `SphereDifferentialFacts.d3_x126_6_ne_zero`, `SphereSurvivalFacts.y_not_hit_on_page` |
+| [Proofs.lean](Proofs.lean) | `SphereDifferentialFacts.d3_x_126_6_ne_zero`, `SphereSurvivalFacts.y_not_hit_on_page` |

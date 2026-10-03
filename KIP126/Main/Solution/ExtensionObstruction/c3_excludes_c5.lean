@@ -16,7 +16,7 @@ namespace KIP126.Solution.Near126.C3NotC5
 /-- LWX Proposition 7.9. This is the proposition to derive from the selected
 route's inputs, not an unconditional theorem about arbitrary data. The source
 differential, η, homotopy product and detection all use D's same objects. -/
-def c3_excludes_c5 (η : BiHom 1 2 (S00 : Syn)) : Prop :=
+def c3_excludes_c5 (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   EtaChoice M D.toModelData η → C3 L → ¬ C5 M D.toModelData L η
 end KIP126.Solution.Near126.C3NotC5
 

@@ -26,10 +26,10 @@ variable (D : Model H M Syn)
 with the fixed Milnor cobar product on the existing classical sphere E2.
 This is a multiplicativity equation, not just an additive equivalence. -/
 def FirstQuotientMultiplicationCompatible
-    (Q : MonObj (XModLambdaN (S00 : Syn) 1)) : Prop :=
+    (Q : MonObj (XModLambdaN (S_0_0 : Syn) 1)) : Prop :=
   ∀ (s t s' t' : ℕ)
-    (a : BiHom ((t : ℤ)-s) t (XModLambdaN (S00 : Syn) 1))
-    (b : BiHom ((t' : ℤ)-s') t' (XModLambdaN (S00 : Syn) 1)),
+    (a : BiHom ((t : ℤ)-s) t (XModLambdaN (S_0_0 : Syn) 1))
+    (b : BiHom ((t' : ℤ)-s') t' (XModLambdaN (S_0_0 : Syn) 1)),
     D.sphereFirstQuotient (s+s' : ℕ) (t+t' : ℕ)
       (homotopyRegrade (by simp only [Nat.cast_add]; omega)
         (by simp only [Nat.cast_add]) (algebraProduct Q a b)) =
@@ -40,11 +40,11 @@ def FirstQuotientMultiplicationCompatible
 same cobar product. Either leading term and the product may be zero.
 All weights are explicit; no premise requires a lift to the untruncated sphere. -/
 def FiniteQuotientMultiplicationCompatible (q : ℕ) (hq : 0 < q)
-    (Q : MonObj (XModLambdaN (S00 : Syn) q)) : Prop :=
+    (Q : MonObj (XModLambdaN (S_0_0 : Syn) q)) : Prop :=
   ∀ (s t s' t' k l : ℕ)
     (x : E2 H SphereSpectrum s t) (y : E2 H SphereSpectrum s' t')
-    (a : BiHom ((t : ℤ)-s) ((t : ℤ)-k) (XModLambdaN (S00 : Syn) q))
-    (b : BiHom ((t' : ℤ)-s') ((t' : ℤ)-l) (XModLambdaN (S00 : Syn) q)),
+    (a : BiHom ((t : ℤ)-s) ((t : ℤ)-k) (XModLambdaN (S_0_0 : Syn) q))
+    (b : BiHom ((t' : ℤ)-s') ((t' : ℤ)-l) (XModLambdaN (S_0_0 : Syn) q)),
     Detects (D.quotientConvergence q hq) (s,t,(t : ℤ)-k)
       (D.quotientLabel q s t k x) a →
     Detects (D.quotientConvergence q hq) (s',t',(t' : ℤ)-l)
@@ -61,8 +61,8 @@ exist only on that finite quotient, preserves the same leading product. -/
 def FiniteQuotientSphereActionCompatible : Prop :=
   ∀ (q : ℕ) (hq : 0 < q) (s t s' t' k l : ℕ)
     (x : E2 H SphereSpectrum s t) (y : E2 H SphereSpectrum s' t')
-    (a : BiHom ((t : ℤ)-s) ((t : ℤ)-k) (S00 : Syn))
-    (b : BiHom ((t' : ℤ)-s') ((t' : ℤ)-l) (XModLambdaN (S00 : Syn) q)),
+    (a : BiHom ((t : ℤ)-s) ((t : ℤ)-k) (S_0_0 : Syn))
+    (b : BiHom ((t' : ℤ)-s') ((t' : ℤ)-l) (XModLambdaN (S_0_0 : Syn) q)),
     Detects D.sphereConvergence (s,t,(t : ℤ)-k) (D.sphereE2 s t k x) a →
     Detects (D.quotientConvergence q hq) (s',t',(t' : ℤ)-l)
       (D.quotientLabel q s' t' l y) b →
@@ -77,7 +77,7 @@ def FiniteQuotientSphereActionCompatible : Prop :=
 all selected objects. It makes no finite upper bound or vanishing claim. -/
 def SphereActionFiltrationCompatible : Prop :=
   ∀ (X : SyntheticObject) (m w m' w' s s' : ℤ)
-    (a : BiHom m w (S00 : Syn))
+    (a : BiHom m w (S_0_0 : Syn))
     (b : BiHom m' w' (X.obj D.nu D.auxiliary)),
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s a →
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s' b →
@@ -85,10 +85,10 @@ def SphereActionFiltrationCompatible : Prop :=
 
 /-- The same filtration law for the actual finite-quotient algebra. -/
 def FiniteQuotientFiltrationCompatible (q : ℕ)
-    (Q : MonObj (XModLambdaN (S00 : Syn) q)) : Prop :=
+    (Q : MonObj (XModLambdaN (S_0_0 : Syn) q)) : Prop :=
   ∀ (m w m' w' s s' : ℤ)
-    (a : BiHom m w (XModLambdaN (S00 : Syn) q))
-    (b : BiHom m' w' (XModLambdaN (S00 : Syn) q)),
+    (a : BiHom m w (XModLambdaN (S_0_0 : Syn) q))
+    (b : BiHom m' w' (XModLambdaN (S_0_0 : Syn) q)),
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s a →
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s' b →
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) (s+s') (algebraProduct Q a b)

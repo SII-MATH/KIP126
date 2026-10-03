@@ -6,7 +6,7 @@ open KIP126.StableHomotopy KIP126.Synthetic.Context
 universe u v
 noncomputable section
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
-  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S00 ⟶ H)
+  [HasFunctorialCofiber (C := Syn)] {H : Syn} (unit : S_0_0 ⟶ H)
 
 /-- Canonical detection relative to the ONE supplied tower presentation.
 The first condition binds the weight-shifted tower filtration to the actual

@@ -31,14 +31,14 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   (H : Mod2EilenbergMacLane (C := C)) (M : MilnorCooperations H)
   (comparison : SphereFirstQuotientComparison H Syn) (η : Eta Syn) (θ : Theta Syn)
 
-noncomputable example : BiHom 124 128 (S00 : Syn) := thetaSquare θ
-noncomputable example : BiHom 125 130 (S00 : Syn) := etaThetaSquare η θ
-noncomputable example : BiHom 125 129 (S00 : Syn) := lambdaEtaThetaSquare η θ
-noncomputable example : BiHom 125 129 (S00 : Syn) := deltaH6Square H M comparison
+noncomputable example : BiHom 124 128 (S_0_0 : Syn) := thetaSquare θ
+noncomputable example : BiHom 125 130 (S_0_0 : Syn) := etaThetaSquare η θ
+noncomputable example : BiHom 125 129 (S_0_0 : Syn) := lambdaEtaThetaSquare η θ
+noncomputable example : BiHom 125 129 (S_0_0 : Syn) := deltaH6Square H M comparison
 
 -- Reduction really is composition with the chosen cofiber inclusion.
 example (r : ℕ) : VanishesModLambda r (etaThetaSquare η θ) ↔
-    etaThetaSquare η θ ≫ XModLambdaN.incl S00 r = 0 := Iff.rfl
+    etaThetaSquare η θ ≫ XModLambdaN.incl S_0_0 r = 0 := Iff.rfl
 
 -- θ₅ is detected by h₅² at (2,64), not an unrelated named generator.
 example : DetectsTheta H M comparison θ ↔
