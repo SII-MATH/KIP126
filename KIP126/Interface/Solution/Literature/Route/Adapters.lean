@@ -1,3 +1,7 @@
+import KIP126.Interface.Solution.Literature.Route.Moss
+import KIP126.Interface.Solution.Literature.Route.RealizationKernel
+import KIP126.Interface.Solution.Literature.Route.Toda
+import KIP126.Interface.Solution.Literature.Route.May
 import KIP126.Challenge2.Route.Literature.Data
 
 namespace KIP126.Interface.Solution.Literature.Route
@@ -42,14 +46,20 @@ theorem tmf_of_source (G : TmfLabels H) (S : TmfSourceData H)
       (25,150) (G.high125 M)) : TmfInputs D G := by
   sorry
 
-/-- Assemble application evidence after the internal triple construction.
-The source theorem alone is not claimed to validate the preselected triple. -/
+/-- Assemble source transports on the SAME bindings. The secondary Toda
+comparison, compatible lift triple and high-class survival remain explicit
+producer premises; source names alone do not establish those comparisons. -/
 theorem application_of_parts (η : BiHom 1 2 (S00 : Syn)) (G : TmfLabels H)
     (B : Bindings D η G) (A : Statements D η G B)
+    (secondary : TodaSecondaryComparison η B.todaSource)
     (hnu : NuCofiberSourceResults D B.nuSource)
     (hhigh : NonzeroSurvival (adamsTowerInternalSpectralSequence H.unit SphereSpectrum)
       (25,150) (G.high125 M)) : Application D η G B := by
-  exact ⟨hnu, nuCofiber_of_source D B.nuSource hnu B.nuBinding,
+  exact ⟨may_signed_boundary_of_source B.may A.may,
+    todaApplication_of_secondary η B.todaSource secondary,
+    realizationKernel_of_source D B.kernelSource A.realizationKernel B.kernelBinding,
+    mossInputOfClassicalSource D η B.classicalSource B.classicalBinding A.moss,
+    hnu, nuCofiber_of_source D B.nuSource hnu B.nuBinding,
     tmf_of_source D G B.tmfSource A.tmf B.tmfBinding B.algebraBinding.classical_detection hhigh⟩
 
 end

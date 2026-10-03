@@ -1,3 +1,7 @@
+import KIP126.Interface.Challenge.Literature.Route.Moss
+import KIP126.Interface.Challenge.Literature.Route.RealizationKernel
+import KIP126.Interface.Challenge.Literature.Route.Toda
+import KIP126.Interface.Challenge.Literature.Route.May
 import KIP126.Challenge2.Route.Literature.Data
 
 namespace KIP126.Interface.Challenge.Literature.Route
@@ -33,10 +37,12 @@ theorem tmf_of_source (G : TmfLabels H) (S : TmfSourceData H)
       (25,150) (G.high125 M)) : TmfInputs D G := by
   sorry
 
-/-- Assemble application evidence after the internal triple construction.
-The source theorem alone is not claimed to validate the preselected triple. -/
+/-- Assemble source transports on the SAME bindings. The secondary Toda
+comparison, compatible lift triple and high-class survival remain explicit
+producer premises; source names alone do not establish those comparisons. -/
 theorem application_of_parts (η : BiHom 1 2 (S00 : Syn)) (G : TmfLabels H)
     (B : Bindings D η G) (A : Statements D η G B)
+    (secondary : TodaSecondaryComparison η B.todaSource)
     (hnu : NuCofiberSourceResults D B.nuSource)
     (hhigh : NonzeroSurvival (adamsTowerInternalSpectralSequence H.unit SphereSpectrum)
       (25,150) (G.high125 M)) : Application D η G B := by

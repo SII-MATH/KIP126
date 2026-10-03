@@ -12,7 +12,7 @@
 - [Differentials](Differentials/README.md)：`Shard000`–`Shard085`、`Table.lean` 与 `manifest.json`，编码 10,907 条闭合球面有限页差分。
 - 差分 manifest 记录 2,672,275 个源行的互斥分类、数据库与 basis 摘要，以及 86 个 shard 和 `Table.lean` 共 87 个输出文件的 SHA-256。
 
-selected 输出不在本目录；六条 selected theorem 和七项来源元数据位于 [Interpretation/Selected](../../Main/Axiom/LinProgram/Interpretation/Selected/README.md)。
+七项 selected 来源元数据位于 [Selected/records.json](Selected/records.json)。六条依赖交付输入的 selected theorem 位于 [Main 的消费证明](../../Main/Solution/Computation/LinProgram/Interpretation/Selected/Proofs.lean)；元数据本身不证明其模型解释。
 
 ## 3. 大概完成度
 

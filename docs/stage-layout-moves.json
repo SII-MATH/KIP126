@@ -455,5 +455,68 @@
     "basis_selection": "Interface/Solution/LinProgram/Basis -> Main/Axiom/LinProgram/Interpretation/Basis/Algebra",
     "paper_rules": "Challenge2 PageExtensionRules -> Main/Solution/Tools; crossing predicate -> Def/Synthetic/PageExtension/Stretching/Predicates",
     "proof_status": "No basis certification or paper-rule proof is completed by this reclassification."
+  },
+  "followup_moves_2026_10_03": {
+    "description": "PR150 selected-design cleanup: later destinations; original historical moves above are retained.",
+    "moves": {
+      "KIP126/Main/Axiom/Literature/HopfCofiber/Data.lean": "KIP126/Main/Solution/Literature/HopfCofiber/Data.lean",
+      "KIP126/Main/Axiom/Literature/HopfCofiber/Predicates.lean": "KIP126/Main/Solution/Literature/HopfCofiber/Predicates.lean",
+      "KIP126/Main/Axiom/Literature/HopfCofiber/Pages/Data.lean": "KIP126/Main/Solution/Literature/HopfCofiber/Pages/Data.lean",
+      "KIP126/Main/Axiom/Literature/StandardSphere/Data.lean": "KIP126/Mathlib/ClassicalAdams/StandardSphere/Data.lean",
+      "KIP126/Main/Axiom/Literature/SyntheticBockstein.lean": "KIP126/Main/Solution/Literature/SyntheticBockstein.lean",
+      "KIP126/Main/Axiom/Literature/SyntheticEInfty.lean": "KIP126/Main/Solution/Literature/SyntheticEInfty.lean",
+      "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Selected/records.json": "KIP126/LinProgram/Generated/Selected/records.json",
+      "KIP126/Main/Solution/Literature/StandardSphere/Proofs.lean": "KIP126/Mathlib/ClassicalAdams/StandardSphere/Proofs.lean",
+      "KIP126/Main/Axiom/LinProgram/README.md": "KIP126/Main/Solution/Computation/LinProgram/README.md",
+      "KIP126/Main/Axiom/LinProgram/Basis/README.md": "KIP126/Main/Solution/Computation/LinProgram/Basis/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Basis/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Basis/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Basis/Algebra/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Basis/Algebra/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Classes/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Classes/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Differential/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differential/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Differential/LongLayer/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Differential/LongLayer/Cancellation/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/Cancellation/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Differential/LongLayer/Lifting/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differential/LongLayer/Lifting/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Differentials/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Differentials/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Expressions/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Expressions/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Presentation/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Presentation/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Selected/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Selected/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Tower/README.md": "KIP126/Main/Solution/Computation/LinProgram/Interpretation/Tower/README.md",
+      "KIP126/Main/Axiom/LinProgram/Interpretation/Tower/SecondDifferential/README.md": "KIP126/Main/Solution/Computation/Differential/README.md",
+      "KIP126/Main/Axiom/Literature/Adams/README.md": "KIP126/Def/References/Literature/Adams/README.md",
+      "KIP126/Main/Axiom/Literature/AppendixTable/README.md": "KIP126/Def/References/Literature/AppendixTable/README.md",
+      "KIP126/Main/Axiom/Literature/AppendixTable/Rows/README.md": "KIP126/Def/References/Literature/AppendixTable/Rows/README.md",
+      "KIP126/Main/Axiom/Literature/AppendixTable/Rows/Catalogue/README.md": "KIP126/Def/References/Literature/AppendixTable/Rows/Catalogue/README.md",
+      "KIP126/Main/Axiom/Literature/EtaRows/README.md": "KIP126/Def/References/Literature/EtaRows/README.md",
+      "KIP126/Main/Axiom/Literature/HopfCofiber/README.md": "KIP126/Main/Solution/Literature/HopfCofiber/README.md",
+      "KIP126/Main/Axiom/Literature/HopfCofiber/Pages/README.md": "KIP126/Main/Solution/Literature/HopfCofiber/Pages/README.md",
+      "KIP126/Main/Axiom/Literature/Near126/Classes/README.md": "KIP126/LinProgram/Interpretation/Near126/Classes/README.md",
+      "KIP126/Main/Axiom/Literature/Near126/HopfCofiber/Fixed/README.md": "KIP126/Main/Solution/Literature/Near126/HopfCofiber/Fixed/README.md",
+      "KIP126/Main/Axiom/Literature/Near126/Names/README.md": "KIP126/LinProgram/Interpretation/Near126/Names/README.md",
+      "KIP126/Main/Axiom/Literature/Near126/Sphere/README.md": "KIP126/Main/Solution/Literature/Near126/Sphere/README.md",
+      "KIP126/Main/Axiom/Literature/Near126/Sphere/Boundaries/README.md": "KIP126/Main/Solution/Literature/Near126/Sphere/Boundaries/README.md",
+      "KIP126/Main/Axiom/Literature/Near126/Sphere/Conditions/README.md": "KIP126/Main/Solution/Literature/Near126/Sphere/Conditions/README.md",
+      "KIP126/Main/Axiom/Literature/StandardSphere/README.md": "KIP126/Mathlib/ClassicalAdams/StandardSphere/README.md"
+    },
+    "removed_compatibility_imports": {
+      "KIP126/Main/Axiom/Literature/FixedSSData.lean": "KIP126/Interface/Axiom/StandardSphere/Sequence/Data.lean"
+    },
+    "split_modules": {
+      "KIP126/Main/Axiom/Literature/Synthetic.lean": {
+        "statements": "KIP126/Main/Axiom/Literature/Synthetic.lean",
+        "helpers_and_proofs": "KIP126/Main/Solution/Literature/Synthetic.lean",
+        "challenge": "KIP126/Main/Challenge/Literature/Synthetic.lean"
+      },
+      "KIP126/Main/Axiom/Literature/InternalGeometry.lean": {
+        "statements": "KIP126/Main/Axiom/Literature/InternalGeometry.lean",
+        "helpers_and_proofs": "KIP126/Main/Solution/Literature/InternalGeometry.lean",
+        "challenge": "KIP126/Main/Challenge/Literature/InternalGeometry.lean"
+      },
+      "KIP126/Main/Axiom/Literature/May.lean": {
+        "statements": "KIP126/Main/Axiom/Literature/May.lean",
+        "helpers_and_proofs": "KIP126/Main/Solution/Literature/May.lean",
+        "challenge": "KIP126/Main/Challenge/Literature/May.lean"
+      }
+    }
   }
 }

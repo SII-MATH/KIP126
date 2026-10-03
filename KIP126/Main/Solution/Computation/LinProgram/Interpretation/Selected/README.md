@@ -1,0 +1,7 @@
+# Main/Solution/Computation/LinProgram/Interpretation/Selected
+
+本目录保存已有输入的消费构造与推论；共享模型和数据均沿用阶段见证。证明的配对目标位于 Main/Challenge，目录迁移不解除生产端证明义务。
+
+| 文件 | 已有对象或结论（选列） |
+| --- | --- |
+| [Proofs.lean](Proofs.lean) | `d2_x125_8`, `d2_h6`, `d3_h4_x109_12`, `d3_h0Sq_x123_13_2`, `d3_x126_4` 等 6 个声明 |

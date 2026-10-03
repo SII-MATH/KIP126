@@ -1,8 +1,28 @@
 # LinProgram / Def / Interface / Main 布局与迁移记录
 
-## PR150 的第二批提取
+## 2026-10-03：PR150 剩余职责整理
 
-16 个来源目录与证据模块迁入 `Def/References`，保留原声明、证明和制品路径。剩余的 `Main/Axiom/LinProgram` Lean 模块已迁出：参数化 Adams E₂ 输入归独立管线；消费端微分适配归 Main/Solution；两处纯导入别名直接使用实际定义模块。
+当前 `Main/Axiom` 只含唯一阶段存在性假设、显式输入结构及来源资料。
+固定 Hopf cofiber、塔、胞腔 E₂ 映射移入 `Main/Solution/Literature/HopfCofiber`；
+固定 Mathlib 球谱对象和非零性证明移入 `Mathlib/ClassicalAdams/StandardSphere`。
+旧 Main StandardSphere 模块仅保留配对接口所需的重导出。
+
+Synthetic、Geometry、May 的 catalogue 构造及真实字段提取证明移至
+`Main/Solution/Literature`，相应 Challenge 声明保留开放。Bockstein/E∞ 纯包装也已迁出。
+三十个只剩旧布局说明的 README 已移到实际模块旁；来源原文制品不动。
+
+`LinProgram/Generated/Selected/records.json` 保存七项纯数据元信息；
+六条假设交付后的 lookup 定理继续由生成器输出到 Main/Solution。
+两者不再混放，已有 87 项差分 manifest 未改。
+
+当前路线 A/C 已通过根 Challenge2 绑定同一个 Challenge1 模型，
+外部来源陈述、模型比较和内部应用分别可查。
+下文按批次保留当时的迁移事实；“尚未接线”等描述仅适用于所标历史批次。
+最新职责与源码入口见 [Main 输入边界](MAIN_AXIOM_BOUNDARY.md)。
+
+## PR150 的第二批提取（此前批次）
+
+来源目录的 Lean 声明与证据模块迁入 `Def/References`；原文资料仍在 `Main/Axiom/Literature/Sources`，声明、证明和制品字节保留。剩余的 `Main/Axiom/LinProgram` Lean 模块已迁出：参数化 Adams E₂ 输入归独立管线；消费端微分适配归 Main/Solution；两处纯导入别名直接使用实际定义模块。
 
 路线 `Data.lean` 按职责拆成 `LinProgram/Interpretation/Route/{Data,Predicates}.lean` 与 `Challenge2/Route/Data.lean`。全部 15 个声明保留，tmf 标签单独归入 Def。没有添加新的阶段假设，也没有宣称路线 Inputs 已与根 Challenge2 等同或绑定。
 
@@ -57,7 +77,7 @@ Lin 专用的 `LinE2`、`LinSquareCertificate` 自动化工具统一位于
 
 Challenge 1 通过 `FoundationInput`、`MilnorInput` 展示现有基础条件，再以 `foundation`、`milnor` 适配定义组装原通用记录；消费端仍只选择一次见证。Challenge 2 在同文件中定义 `LinE2Presentation`、坐标和微分解释，并将文献与计算交付拆为独立 structure；共享模型绑定和兼容投影保留原数据关联。旧 presentation 模块作为兼容导入入口。生产／消费端继续直接使用相同的 `Nonempty ChallengeN`。
 
-`a10` 的 ν-cofiber 判据和 `a11` 的 synthetic lift／三角提升已在根 Challenge1 中定义为精确的参数化 `SyntheticInterface`；[Synthetic 文献入口](../KIP126/Main/Axiom/Literature/Synthetic.lean) 通过显式来源输入组装该接口。它尚未加入 `Nonempty Challenge1` 的原见证字段，没有选择固定 synthetic 模型，也没有完成所引文献结果的证明。
+`a10` 的 ν-cofiber 判据和 `a11` 的 synthetic lift／三角提升已在根 Challenge1 中定义为精确的参数化 `SyntheticInterface`；[Synthetic 文献入口](../KIP126/Main/Axiom/Literature/Synthetic.lean) 声明显式来源输入；接口组装现位于 [消费适配](../KIP126/Main/Solution/Literature/Synthetic.lean)。它尚未加入 `Nonempty Challenge1` 的原见证字段，没有选择固定 synthetic 模型，也没有完成所引文献结果的证明。
 
 这次整理保持现有数学承诺。Challenge 2 仍使用开发期选定的 Challenge 1 模型；Main 的平方消费已改为计算接口投影，消除了对应的 Interface/Solution 直接导入。固定模型构造和完整阶段证明仍是边界债务。完整清单不等于所有条目已经冻结或装入见证包。
 

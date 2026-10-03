@@ -12,4 +12,6 @@
 
 [标准 Final](../../../Main/Challenge/Final/h6_sq_permanent.lean) 使用这个内部元素和 `NonzeroSurvival`。计算编码的识别在 [Lin 比较层](../../../Main/Solution/Computation/Comparisons/Classes.lean)，不参与标准元素的定义。
 
-旧 `Main/Axiom/Literature/FixedSSData` 与 `Main/Axiom/LinProgram/Interpretation/Sphere` 保留为兼容导入，公开序列名称不变。
+消费者直接导入本目录的 `Sequence/Data.lean`；公开序列名称不变。
+固定 Hopf cofiber 的消费构造位于 `Main/Solution/Literature/HopfCofiber`，
+Mathlib 球谱适配位于 `Mathlib/ClassicalAdams/StandardSphere`。

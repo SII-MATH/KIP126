@@ -146,10 +146,11 @@ a04/a06 的派生义务与 a07/a09/a10/a11 的参数化接口也在本文件可�
 
 - 角色：外部定理及其在同一基础上的精确适用条件。
 
-- 陈述：本文件 `Stable.MaySmashBoundary` 精确使用两个实际三角、smash 箭头
-  及其边界；同一个 c 同时满足像和边界等式。
-- 实现：`Main/Axiom/Literature/May.lean` 以显式 proof 包装 May Lemma 4.6 / TC3；
-  没有从普通 tensor exactness 声称该定理自动成立，固定文献输入仍待提供。
+- 陈述：根 Challenge2 的 `MaySourceResults` 保存 May TC3 的 pushpull 数据和
+  负号；Interface 证明带符号边界及带 exponent-two 前提的无符号投影。
+  本文件 `Stable.MaySmashBoundary` 仅保留为历史无符号目标，不直接当作来源定理。
+- 实现：`Main/Axiom/Literature/May.lean` 仅声明来源输入；包装及字段提取在
+  Main/Solution，计算适配在 Interface。固定模型满足来源条件仍待交付。
 - 依赖：同一左右 tensor CommShift/IsTriangulated 结构及其正确的符号相容性。
 - 定位：MainPaper `lem:452d218c`；Blueprint `thm:external-may-smash-boundary`。
 
@@ -590,9 +591,10 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [∀ W : C, (tensorLeft W).IsTriangulated]
   [∀ W : C, (tensorRight W).IsTriangulated]
 
-/-- May's smash-boundary lifting property for the actual arrows of two
-specified distinguished triangles. Both equalities identify classes in the
-same group; in particular, the last equality uses their actual boundary maps. -/
+/-- Historical unsigned smash-boundary target on actual triangles.
+May's TC3 source relation carries a minus sign; the route now uses the signed
+`MaySourceResults` in root Challenge2. This legacy predicate is not accepted
+as the source theorem, and sign removal requires an additional hypothesis. -/
 def MaySmashBoundary : Prop :=
   ∀ (T U : HoCofiberSequence (C := C)) (n : ℤ)
     (a : HomotopyGroup n (T.X ⊗ U.Z))

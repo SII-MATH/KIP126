@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
-  "scope": "LWX v2 Section 7 route frozen in docs/M_INPUT_FREEZE.md; input statements only",
-  "entry": "KIP126.Literature.Route.Inputs",
+  "schema_version": 2,
+  "scope": "Selected LWX v2 Section 7 route: source statements, model comparisons and internal applications, separately classified; no claim of completed source proofs",
+  "entry": "KIP126.Literature.Route.Statements",
   "frozen_model": "KIP126.Kervaire.Route.Model",
   "sources": [
     {
@@ -229,13 +229,10 @@
     {
       "id": "AM01",
       "input_field": "classical",
-      "module": "KIP126/Challenge2/Route/Literature/Classical.lean",
+      "module": "KIP126/Challenge2/Route/Literature/ClassicalSource.lean",
       "declarations": [
-        "KIP126.Literature.Route.Theta5Existence",
-        "KIP126.Literature.Route.ClassicalTheta",
         "KIP126.Literature.Route.ClassicalSourceData",
-        "KIP126.Literature.Route.ClassicalSourceResults",
-        "KIP126.Literature.Route.ClassicalSourceBinding"
+        "KIP126.Literature.Route.ClassicalSourceResults"
       ],
       "kind": "source-specialization",
       "sources": [
@@ -246,8 +243,9 @@
         "thm:bjmbx",
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "The source results concern one classical source witness. Equality with the route convergence, eta, nu and selected normalized eta is a separate model comparison."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "The source results concern one classical source witness. Equality with the route convergence, eta, nu and selected normalized eta is a separate model comparison."
     },
     {
       "id": "AM02",
@@ -264,8 +262,9 @@
       "lwx_consumers": [
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Exponent two of the whole group, not merely one theta."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Exponent two of the whole group, not merely one theta."
     },
     {
       "id": "AM03",
@@ -282,16 +281,18 @@
       "lwx_consumers": [
         "lem:equistate4"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Classical difference filtration only; synthetic choice-independence remains Main."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Classical difference filtration only; synthetic choice-independence remains Main."
     },
     {
       "id": "AM04",
       "input_field": "classical",
-      "module": "KIP126/Challenge2/Route/Literature/Classical.lean",
+      "module": "KIP126/Challenge2/Route/Literature/ClassicalSource.lean",
       "declarations": [
-        "KIP126.Literature.Route.TwoDetection",
-        "KIP126.Literature.Route.HopfInput"
+        "KIP126.Literature.Route.ClassicalSourceResults.two_detection",
+        "KIP126.Literature.Route.ClassicalSourceResults.eta_detection",
+        "KIP126.Literature.Route.ClassicalSourceResults.nu_detection"
       ],
       "kind": "source-specialization-and-transport",
       "sources": [
@@ -304,8 +305,9 @@
         "lem:x1239",
         "lem:nuext125"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Binds selected eta/nu maps to standard h_1/h_2 and the chosen synthetic eta."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Source classical Hopf detections only; normalized synthetic eta identification is a separate ClassicalSourceBinding/EtaChoice obligation."
     },
     {
       "id": "AM05",
@@ -323,15 +325,16 @@
         "thm:bjmbx",
         "rem:theta5choice"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "All clauses for one theta; finite normalization and arbitrary-choice upgrade remain Main."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "All clauses for one theta; finite normalization and arbitrary-choice upgrade remain Main."
     },
     {
       "id": "AM06",
       "input_field": "synthetic",
       "module": "KIP126/Challenge2/Route/Literature/Synthetic.lean",
       "declarations": [
-        "KIP126.Literature.Route.SyntheticInputs.lifts"
+        "KIP126.Literature.Route.SyntheticSourceInputs.lifts"
       ],
       "kind": "source-specialization",
       "sources": [
@@ -344,8 +347,9 @@
         "prop:ef21f9bc",
         "prop:41561db2"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Uses existing SyntheticInterface H D.nu; does not identify arbitrary selected lifts."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Uses existing SyntheticInterface H D.nu; does not identify arbitrary selected lifts."
     },
     {
       "id": "AM07",
@@ -363,8 +367,9 @@
       "lwx_consumers": [
         "thm:17e90ac0"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Actual rho and delta; d_(q+1) after lift to quotient q."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Actual rho and delta; d_(q+1) after lift to quotient q."
     },
     {
       "id": "AM08",
@@ -381,8 +386,9 @@
       "lwx_consumers": [
         "thm:17e90ac0"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Permanent cycle may be zero or a boundary."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Permanent cycle may be zero or a boundary."
     },
     {
       "id": "AM09",
@@ -400,8 +406,9 @@
       "lwx_consumers": [
         "thm:rigid"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Same classical and synthetic sequences; lambda exponent r-1, not a replacement map."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Same classical and synthetic sequences; lambda exponent r-1, not a replacement map."
     },
     {
       "id": "AM10",
@@ -418,27 +425,29 @@
       "lwx_consumers": [
         "prop:6de7d130"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Includes actual lambda/rho compatibility and common-label agreement."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Includes actual lambda/rho compatibility and common-label agreement."
     },
     {
       "id": "AM11",
       "input_field": "synthetic",
-      "module": "KIP126/Challenge2/Route/Literature/Synthetic.lean",
+      "module": "KIP126/Challenge2/Route/Literature/RealizationKernel.lean",
       "declarations": [
-        "KIP126.Literature.Route.RealizationKernel"
+        "KIP126.Literature.Route.RealizationKernelSourceResults"
       ],
       "kind": "prior-result-consequence",
       "sources": [
         "pst"
       ],
-      "locator": "tau inversion as filtered colimit; compact synthetic spheres",
+      "locator": "Pst compact generators and prop:tau_inversion_functor_exists; Section 4.5 completion adjunction",
       "lwx_consumers": [
         "prop:possibleh62",
         "lem:equistate4"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Only selected objects; no degree-specific torsion-freeness assertion."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Finite-power kernel statement for full-source spheres and the inclusion of precisely the selected SyntheticObject targets. Transport uses the completion adjunction and RealizationKernelBinding. Compactness of a hypercomplete sphere is NOT asserted."
     },
     {
       "id": "AM12",
@@ -456,8 +465,9 @@
         "prop:possibleh62",
         "lem:x1239"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Nonnegative exponent condition explicit."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Nonnegative exponent condition explicit."
     },
     {
       "id": "AM13",
@@ -477,8 +487,9 @@
         "prop:possibleh62",
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Same actual realization, normalized unit and lambda actions."
+      "proof_status": "comparison-obligation",
+      "role": "model-comparison",
+      "notes": "Same actual realization, normalized unit and lambda actions."
     },
     {
       "id": "AM14",
@@ -496,8 +507,9 @@
         "prop:possibleh62",
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Every lift; E_(r+1) nonzero survival gives lambda^(r-1) nonzero."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Every lift; E_(r+1) nonzero survival gives lambda^(r-1) nonzero."
     },
     {
       "id": "AM15",
@@ -516,8 +528,9 @@
         "lem:equistate4",
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Same E2 class in actual convergence detection."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Same E2 class in actual convergence detection."
     },
     {
       "id": "AM16",
@@ -534,8 +547,9 @@
       "lwx_consumers": [
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Some lift, NOT every lift, killed by the required lambda power."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Some lift, NOT every lift, killed by the required lambda power."
     },
     {
       "id": "AM17",
@@ -545,8 +559,7 @@
         "KIP126.Literature.Route.AlgebraInput",
         "KIP126.Literature.Route.QuotientAlgebras",
         "KIP126.Literature.Route.QuotientAlgebraStructures",
-        "KIP126.Literature.Route.QuotientAlgebraBinding",
-        "KIP126.Literature.Route.AlgebraBinding"
+        "KIP126.Literature.Route.QuotientAlgebraBinding"
       ],
       "kind": "source-existence-with-separate-internal-comparison",
       "sources": [
@@ -559,8 +572,9 @@
         "lem:x1239",
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Source quotient algebras provide algebra, commutativity and the specified unit. Compatibility with selected restrictions, sphere action, detection and filtration is an internal Interface obligation, not the source existence theorem."
+      "proof_status": "comparison-obligation",
+      "role": "model-comparison",
+      "notes": "Source quotient algebras provide algebra, commutativity and the specified unit. Compatibility with selected restrictions, sphere action, detection and filtration is an internal Interface obligation, not the source existence theorem."
     },
     {
       "id": "AM18",
@@ -578,33 +592,36 @@
       "lwx_consumers": [
         "prop:possibleh62"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Selected detector and synthetic detector units are fixed to actual Hurewicz maps."
+      "proof_status": "comparison-obligation",
+      "role": "model-comparison",
+      "notes": "Selected detector and synthetic detector units are fixed to actual Hurewicz maps."
     },
     {
       "id": "AM19",
       "input_field": "may",
       "module": "KIP126/Challenge2/Route/Literature/May.lean",
       "declarations": [
-        "KIP126.Literature.Route.MayInput"
+        "KIP126.Literature.Route.MayPushpullData",
+        "KIP126.Literature.Route.MaySourceResults"
       ],
-      "kind": "source-specialization-and-transport",
+      "kind": "signed-source-statement",
       "sources": [
         "may"
       ],
-      "locator": "TC3 and Lemma 4.6",
+      "locator": "May author PDF pp.12–13 TC3 signed square, p.14 Lemma 4.6",
       "lwx_consumers": [
         "lem:452d218c"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Exact tensor witnesses and the boundary equality; not generalized Mahowald itself."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Boundary equality retains the negative sign. The conditional Interface proof derives SignedBoundary; sign removal in a projected additive target requires an explicit exponent-two premise."
     },
     {
       "id": "AM20",
       "input_field": "moss",
       "module": "KIP126/Challenge2/Route/Literature/Moss.lean",
       "declarations": [
-        "KIP126.Literature.Route.MossInput"
+        "KIP126.Literature.Route.MossSourceInput"
       ],
       "kind": "source-specialization-and-transport",
       "sources": [
@@ -616,19 +633,17 @@
       "lwx_consumers": [
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Original Moss scan unavailable. All null products, crossings and residual conditions remain premises."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Source statement on ClassicalSourceData.convergence; equality transport to D retains defining systems, null products, both no-crossing premises and residual injectivity. The original Moss scan is still not independently verified."
     },
     {
       "id": "AM21",
       "input_field": "toda",
       "module": "KIP126/Challenge2/Route/Literature/Toda.lean",
       "declarations": [
-        "KIP126.Literature.Route.TodaInputs.h0",
-        "KIP126.Literature.Route.TodaInputs.h0_label",
-        "KIP126.Literature.Route.TodaInputs.lambda_h0",
-        "KIP126.Literature.Route.TodaInputs.h0_eta",
-        "KIP126.Literature.Route.TodaInputs.low_indeterminacy"
+        "KIP126.Literature.Route.TodaSourceData",
+        "KIP126.Literature.Route.TodaSourceResults"
       ],
       "kind": "prior-result-consequence-and-transport",
       "sources": [
@@ -639,15 +654,17 @@
         "lem:x1239",
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Low indeterminacy only; actual first quotient standard h0 label."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Only the h0 label, lambda_h0, h0_eta and low indeterminacy source facts. Neither secondary Toda membership follows from these ring data alone."
     },
     {
       "id": "AM22",
       "input_field": "toda",
       "module": "KIP126/Challenge2/Route/Literature/Toda.lean",
       "declarations": [
-        "KIP126.Literature.Route.TodaInputs.eta_squared"
+        "KIP126.Literature.Route.TodaApplication.eta_squared",
+        "KIP126.Literature.Route.TodaSecondaryComparison.low_bracket"
       ],
       "kind": "prior-result-consequence-and-transport",
       "sources": [
@@ -659,15 +676,17 @@
       "lwx_consumers": [
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Synthetic membership in the actual Toda.Relation; no high-stem equality."
+      "proof_status": "internal-application-obligation",
+      "role": "internal-application",
+      "notes": "Internal secondary-operation comparison obligation on the chosen model. Citation of the low classical bracket does not prove this synthetic bracket."
     },
     {
       "id": "AM23",
       "input_field": "toda",
       "module": "KIP126/Challenge2/Route/Literature/Toda.lean",
       "declarations": [
-        "KIP126.Literature.Route.TodaInputs.symmetric_two"
+        "KIP126.Literature.Route.TodaApplication.symmetric_two",
+        "KIP126.Literature.Route.TodaSecondaryComparison"
       ],
       "kind": "source-transport",
       "sources": [
@@ -679,15 +698,16 @@
       "lwx_consumers": [
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Synthetic lambda^2 eta theta membership; source transport not yet proved; zero indeterminacy is NOT assumed."
+      "proof_status": "internal-application-obligation",
+      "role": "internal-application",
+      "notes": "IWX Corollary 6.2 is C-motivic. TodaSecondaryComparison requires an actual star operation, its symmetric bracket theorem and its lambda^2 eta product identification; no automatic C-motivic-to-synthetic inference."
     },
     {
       "id": "AM24",
       "input_field": "tmf",
       "module": "KIP126/Challenge2/Route/Literature/TmfSource.lean",
       "declarations": [
-        "KIP126.Literature.Route.TmfTheta5Vanishing"
+        "KIP126.Literature.Route.TmfSourceResults.vanishing62"
       ],
       "kind": "source-result-with-internal-route-transport",
       "sources": [
@@ -697,19 +717,17 @@
       "lwx_consumers": [
         "prop:possibleh62"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Classical vanishing only, not synthetic detector injectivity."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Source result on the actual source tmf object. The matching TmfInputs consumer conclusion requires the separately listed same-model adapter."
     },
     {
       "id": "AM25",
       "input_field": "tmf",
       "module": "KIP126/Challenge2/Route/Literature/TmfSource.lean",
       "declarations": [
-        "KIP126.Literature.Route.TmfHigh125Detection",
-        "KIP126.Literature.Route.TmfLabels.high125",
         "KIP126.Literature.Route.TmfSourceData",
-        "KIP126.Literature.Route.TmfSourceResults",
-        "KIP126.Literature.Route.TmfBinding"
+        "KIP126.Literature.Route.TmfSourceResults"
       ],
       "kind": "source-result-with-internal-route-transport",
       "sources": [
@@ -719,15 +737,16 @@
       "lwx_consumers": [
         "prop:possibleh62"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "BMQ provides the nonzero Hurewicz image of the actual kappaBar^4*w product. The route adapter additionally requires multiplicative detection and explicit nonzero survival of its leading term; a nonzero homotopy image alone is insufficient. Arbitrary-representative independence remains a conditional Main theorem."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "BMQ provides the nonzero Hurewicz image of the actual kappaBar^4*w product. The route adapter additionally requires multiplicative detection and explicit nonzero survival of its leading term; a nonzero homotopy image alone is insufficient. Arbitrary-representative independence remains a conditional Main theorem."
     },
     {
       "id": "AM26",
       "input_field": "tmf",
       "module": "KIP126/Challenge2/Route/Literature/TmfSource.lean",
       "declarations": [
-        "KIP126.Literature.Route.TmfLowFiltration63"
+        "KIP126.Literature.Route.TmfSourceResults.low_filtration63"
       ],
       "kind": "source-result-with-internal-route-transport",
       "sources": [
@@ -737,8 +756,9 @@
       "lwx_consumers": [
         "prop:possibleh62"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "A previously published tmf low-line fact, not a Lin sphere computation."
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Source result on the actual source tmf object. The matching TmfInputs consumer conclusion requires the separately listed same-model adapter."
     },
     {
       "id": "AM27",
@@ -759,18 +779,16 @@
         "lem:nuext125",
         "prop:state5false"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "Requires compatibility of the fixed choices, not a theorem for arbitrary normalized lifts."
+      "proof_status": "comparison-obligation",
+      "role": "model-comparison",
+      "notes": "Requires compatibility of the fixed choices, not a theorem for arbitrary normalized lifts."
     },
     {
       "id": "AM28",
       "input_field": "applicability",
       "module": "KIP126/Challenge2/Route/Literature/Moss.lean",
       "declarations": [
-        "KIP126.Literature.Route.MossTowerApplicability",
-        "KIP126.Literature.Route.NuCofiberSourceData",
-        "KIP126.Literature.Route.NuCofiberSourceResults",
-        "KIP126.Literature.Route.NuCofiberLiftBinding"
+        "KIP126.Literature.Route.MossTowerApplicability"
       ],
       "kind": "internal-source-application-and-selected-map-comparison",
       "sources": [
@@ -781,8 +799,9 @@
       "lwx_consumers": [
         "lem:toda2ext"
       ],
-      "proof_status": "explicit-input-unproved",
-      "note": "The compatible three-lift construction is an internal target from the Pstragowski/BHS leaves. Its maps must be explicitly identified with D.normalizedMap. NuCofiberSourceResults is not an external axiom and is delivered separately from Statements."
+      "proof_status": "internal-application-obligation",
+      "role": "internal-application",
+      "notes": "Residual injectivity for the SAME actual classical sphere tower is a model-applicability obligation; this entry does not supply a no-crossing computation or a source triangle."
     }
   ],
   "excluded": [
@@ -797,5 +816,209 @@
     "Moss original scan unavailable; checked prior Belmont-Kong v1 theorem instead.",
     "Toda original book not independently read; IWX/BHS comparison and synthetic transport explicitly distinguished.",
     "LWX final cofiber formula with lambda[h2] is not adopted; actual normalized Cnu triangle is used."
+  ],
+  "consumer_entry": "KIP126.Literature.Route.Inputs",
+  "model_bindings": [
+    {
+      "id": "MB01",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/ClassicalSource.lean",
+      "declarations": [
+        "KIP126.Literature.Route.ClassicalSourceBinding"
+      ],
+      "notes": "Same classical convergence and actual eta/nu maps; normalized eta identity remains required."
+    },
+    {
+      "id": "MB02",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/RealizationKernel.lean",
+      "declarations": [
+        "KIP126.Literature.Route.RealizationKernelSourceData",
+        "KIP126.Literature.Route.RealizationKernelBinding"
+      ],
+      "notes": "Actual completion adjunction, completed-sphere comparison, lambda action and realization zero comparison, restricted to the selected object closure."
+    },
+    {
+      "id": "MB03",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/Toda.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TodaSourceData",
+        "KIP126.Literature.Route.TodaSecondaryComparison"
+      ],
+      "notes": "Same h0, actual secondary Toda evidence and product identification; not implied by low ring data."
+    },
+    {
+      "id": "MB04",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/May.lean",
+      "declarations": [
+        "KIP126.Literature.Route.MayContext"
+      ],
+      "notes": "Specified left/right tensor suspension and exactness choices; TC3 source is additional evidence."
+    },
+    {
+      "id": "MB05",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/TmfSource.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TmfBinding"
+      ],
+      "notes": "Same detector/unit and named high class; nonzero leading-term survival is a separate producer premise."
+    },
+    {
+      "id": "MB06",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/Applicability.lean",
+      "declarations": [
+        "KIP126.Literature.Route.NuCofiberLiftBinding",
+        "KIP126.Literature.Route.NuCofiberSourceData"
+      ],
+      "notes": "Three actual map equalities for the same source normalized triangle. The compatible three-lift construction is an internal delivery from Pstragowski/BHS leaves; NuCofiberSourceResults is not an external axiom."
+    },
+    {
+      "id": "MB07",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/AlgebraBinding.lean",
+      "declarations": [
+        "KIP126.Literature.Route.AlgebraBinding"
+      ],
+      "notes": "Actual source-to-model multiplicative detection comparisons."
+    },
+    {
+      "id": "MB08",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/Data.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Bindings"
+      ],
+      "notes": "One correlated package of source choices and model comparisons; no independent model selection per consumer."
+    }
+  ],
+  "internal_adapters": [
+    {
+      "id": "IA01",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Literature/Route/May.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.may_signed_boundary_of_source",
+        "KIP126.Interface.Solution.Literature.Route.may_boundary_projected_of_exponent_two"
+      ],
+      "notes": "Conditional signed transport and projected sign removal; no generic exponent-two assertion."
+    },
+    {
+      "id": "IA02",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Literature/Route/Toda.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.todaApplication_of_secondary",
+        "KIP126.Interface.Solution.Literature.Route.toda_of_source"
+      ],
+      "notes": "Assembly only after explicit secondary-operation evidence."
+    },
+    {
+      "id": "IA03",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Literature/Route/RealizationKernel.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.realizationKernel_of_source"
+      ],
+      "notes": "Transport finite-power kernel along the completion/selected-target comparison."
+    },
+    {
+      "id": "IA04",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Literature/Route/Moss.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.mossInputOfClassicalSource"
+      ],
+      "notes": "Pure equality transport along the fixed classical convergence."
+    },
+    {
+      "id": "IA05",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Literature/Route/Adapters.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.nuCofiber_of_source"
+      ],
+      "notes": "Transport actual source triangle along three selected map equalities."
+    },
+    {
+      "id": "IA06",
+      "role": "internal-adapter",
+      "proof_status": "proof-placeholder",
+      "module": "KIP126/Interface/Solution/Literature/Route/Adapters.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.tmf_of_source"
+      ],
+      "notes": "Production proof remains sorry with explicit multiplicative detection and nonzero high-class survival."
+    },
+    {
+      "id": "IA07",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Literature/Route/Adapters.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.application_of_parts"
+      ],
+      "notes": "Assembly from the preceding producers; inherits the unfinished tmf proof and all explicit comparison premises."
+    },
+    {
+      "id": "IA08",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Challenge2/Route/Literature/Data.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Statements.toInputs"
+      ],
+      "notes": "Pure assembly from the SAME Bindings, Statements and Application; this does not prove that those inputs exist."
+    }
+  ],
+  "delivery_packages": [
+    {
+      "id": "DP01",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Challenge2/Route/Literature/Data.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Statements"
+      ],
+      "notes": "Current external A(M) source-result record on the fixed Bindings; defining it does not give an inhabitant."
+    },
+    {
+      "id": "DP02",
+      "role": "internal-application",
+      "proof_status": "internal-application-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/Data.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Application",
+        "KIP126.Literature.Route.Inputs",
+        "KIP126.Literature.Route.A"
+      ],
+      "notes": "Application records internal source application. Inputs and historical A=Nonempty Inputs are applied consumer delivery, not pure external-source input."
+    },
+    {
+      "id": "DP03",
+      "role": "internal-application",
+      "proof_status": "internal-application-obligation",
+      "module": "KIP126/Challenge2/Route/Literature/Applicability.lean",
+      "declarations": [
+        "KIP126.Literature.Route.NuCofiberSourceResults"
+      ],
+      "notes": "Compatible normalized triple construction from the source leaves. This is an internal delivery, not an independent external source theorem."
+    }
   ]
 }

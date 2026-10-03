@@ -211,10 +211,10 @@ the generated list is not committed.
 
 ## Provenance and source inventory
 
-`KIP126.Main.Axiom.Provenance` defines the explicit `SourceId`, `SourceRef`,
+`KIP126.Def.References.Provenance` defines the explicit `SourceId`, `SourceRef`,
 `ExternalResult`, and `ExternalEvidence` records.  The typed Lean projection
-of the finite catalogue is in `KIP126.Main.Axiom.Literature.SourceInventory`, and the
-claim-level root/owner/dependency ledger is in `KIP126.Main.Axiom.Literature.Claims`.
+of the finite catalogue is in `KIP126.Def.References.Literature.SourceInventory`, and the
+claim-level root/owner/dependency ledger is in `KIP126.Def.References.Literature.Claims`.
 Citation metadata, acquisition state, artifact paths, and SHA-256 digests are kept in
 [`KIP126/Main/Axiom/Literature/source-inventory.json`](KIP126/Main/Axiom/Literature/source-inventory.json).  Check
 the filesystem ledger and its regression tests with:

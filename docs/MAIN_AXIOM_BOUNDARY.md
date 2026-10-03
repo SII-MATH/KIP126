@@ -9,7 +9,23 @@ Challenge2，消费者适配归 Main/Solution。路线文献规格与比较绑�
 `Challenge2/Route/Literature`，原 `Main/Axiom/Literature/Route.lean` 仅作为导入入口。
 根 Challenge2 现已把路线 A/C 绑定到 Challenge1 的同一个模型。
 
-## 归位结果
+## 2026-10-03：剩余构造与包装迁出
+
+固定 Hopf cofiber、胞腔映射、实际塔及 E₂ 映射位于
+`Main/Solution/Literature/HopfCofiber`；Mathlib 球谱对象和非零性证明位于
+`Mathlib/ClassicalAdams/StandardSphere`。保留原公开声明名和已有证明，
+旧 Main StandardSphere 证明入口仅重新导出适配层。
+
+Synthetic、Geometry、May 的输入结构保留在 Axiom；catalogue 构造与字段提取
+移到 `Main/Solution/Literature`，原真实提取证明保留并配有 Challenge。
+Bockstein、E∞ 的纯包装也已迁出。Axiom 目录只接受 statement，不能包含
+`def`、`abbrev`、`theorem`、`lemma`、`instance` 或 `opaque`。
+
+Selected 的纯来源元数据在 `LinProgram/Generated/Selected/records.json`；
+六条条件 lookup 证明仍在 Main。生成器分别检查两个输出位置，元数据字节不变。
+本批次的 30 个过时组件 README 已归到实际模块旁，Axiom 下不再维持空的计算目录。
+
+## 前批次的归位结果
 
 | 原内容 | 当前归属 |
 | --- | --- |

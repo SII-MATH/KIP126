@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.HopfCofiber.Predicates
+import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
 
 namespace KIP126.Classical.Adams
 open CategoryTheory KIP126.StableHomotopy

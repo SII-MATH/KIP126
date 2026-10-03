@@ -3,8 +3,6 @@ import KIP126.Def.References.Literature.Claims
 import KIP126.Def.References.Literature.Kervaire
 import KIP126.Def.References.Literature.BJMOriginal
 import KIP126.Main.Axiom.Literature.Synthetic
-import KIP126.Main.Axiom.Literature.SyntheticEInfty
-import KIP126.Main.Axiom.Literature.SyntheticBockstein
 import KIP126.Def.References.Evidence
 import KIP126.Def.References.Results
 import KIP126.Def.References.Literature.SourceInventory

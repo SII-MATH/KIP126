@@ -41,10 +41,10 @@ def TripleToda {a aw b bw c cw : ℤ}
 def syntheticTwo : BiHom 0 0 (S00 : Syn) :=
   SyntheticCategory.biShift_zero.hom.app S00 ≫ (2 • 𝟙 _)
 
-/-- BHS `prop:syn-toda-range`, relations (0) and (9), fixes [h₀],
-λ[h₀]=2 and [h₀]η=0. Toda's low bracket and symmetric-bracket theorem
-(Toda 1962, Theorem 3.6; IWX §6, `cor:2-symmetric`) are transported to
-this same synthetic sphere. The final field asserts only membership;
+/-- Applied consumer package. Its BHS low-ring fields and INTERNAL secondary
+operation comparison are delivered separately by `TodaSourceResults` and
+`TodaApplication`. Toda 1962, Theorem 3.6 and IWX §6 motivate the latter;
+IWX `cor:2-symmetric` is C-motivic and is NOT directly a synthetic theorem. The final field asserts only membership;
 LWX's high-degree ZERO INDETERMINACY check remains a paper/C(M) task. -/
 structure TodaInputs (η : BiHom 1 2 (S00 : Syn)) where
   h0 : BiHom 0 1 (S00 : Syn)
@@ -63,5 +63,57 @@ structure TodaInputs (η : BiHom 1 2 (S00 : Syn)) where
   No claim that the bracket is a singleton or that θ is order two is made. -/
   symmetric_two : ∀ θ : BiHom 62 64 (S00 : Syn), θ + θ = 0 →
     TripleToda syntheticTwo θ syntheticTwo (lambdaMultiply 2 (sphereProduct η θ))
+
+/-- The one low-dimensional source choice. The label equation belongs to the
+source result below; no second η or h₀ is selected during consumption. -/
+structure TodaSourceData where
+  h0 : BiHom 0 1 (S00 : Syn)
+
+/-- BHS `prop:syn-toda-range`, low-ring/label consequences on the selected
+sphere. These equations do not prove a secondary Toda membership. -/
+structure TodaSourceResults (η : BiHom 1 2 (S00 : Syn))
+    (S : TodaSourceData (Syn := Syn)) : Prop where
+  h0_label : D.sphereFirstQuotient 1 1 (quotientClass 1 S.h0) = Sphere.Internal.hi H M 0
+  lambda_h0 : lambdaMultiply 1 S.h0 = syntheticTwo
+  h0_eta : sphereProduct S.h0 η = 0
+  low_indeterminacy : ∀ a : BiHom 2 3 (S00 : Syn), sphereProduct S.h0 a = 0
+
+/-- Internal source-to-model application: actual secondary Toda relations on
+the same sphere and chosen h₀,η. No high-degree indeterminacy is removed. -/
+structure TodaApplication (η : BiHom 1 2 (S00 : Syn))
+    (S : TodaSourceData (Syn := Syn)) : Prop where
+  eta_squared : TripleToda S.h0 η S.h0
+    (sphereProduct (m := 1) (n := 2) (k := 1) (l := 2) η η)
+  symmetric_two : ∀ θ : BiHom 62 64 (S00 : Syn), θ + θ = 0 →
+    TripleToda syntheticTwo θ syntheticTwo (lambdaMultiply 2 (sphereProduct η θ))
+
+/-- Exact secondary-operation evidence required before transporting the
+symmetric theorem. `twoStar` is the degree-(1,0) star of multiplication by two.
+Its product identification must be proved in this synthetic model; the
+C-motivic value τη in IWX cannot simply be renamed λ²η. The low bracket also
+requires an actual Massey/Moss or Toda calculation, beyond the ring equations.
+This record is an INTERNAL construction/comparison obligation, not A(M). -/
+structure TodaSecondaryComparison (η : BiHom 1 2 (S00 : Syn))
+    (S : TodaSourceData (Syn := Syn)) where
+  low_bracket : TripleToda S.h0 η S.h0
+    (sphereProduct (m := 1) (n := 2) (k := 1) (l := 2) η η)
+  twoStar : BiHom 1 0 (S00 : Syn)
+  symmetric : ∀ θ : BiHom 62 64 (S00 : Syn), θ + θ = 0 →
+    TripleToda syntheticTwo θ syntheticTwo (sphereProduct (m := 1) (n := 0) (k := 62) (l := 64) twoStar θ)
+  star_product : ∀ θ : BiHom 62 64 (S00 : Syn),
+    sphereProduct (m := 1) (n := 0) (k := 62) (l := 64) twoStar θ = lambdaMultiply 2 (sphereProduct η θ)
+
+/-- Assemble the unchanged consumer API from source ring facts and separately
+certified secondary operations. This introduces no choice or axiom. -/
+def todaInputsOfSource (η : BiHom 1 2 (S00 : Syn)) (S : TodaSourceData (Syn := Syn))
+    (A : TodaSourceResults D η S) (P : TodaApplication η S) : TodaInputs D η where
+  h0 := S.h0
+  h0_label := A.h0_label
+  lambda_h0 := A.lambda_h0
+  h0_eta := A.h0_eta
+  eta_squared := P.eta_squared
+  low_indeterminacy := A.low_indeterminacy
+  symmetric_two := P.symmetric_two
+
 end
 end KIP126.Literature.Route

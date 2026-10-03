@@ -91,9 +91,11 @@ def DifferentialRigidity : Prop :=
       (s,t,t+a-k) (s+r,t+r-1,(t+r-1)+a-(k+(r-1) : ℕ))
       (D.nuE2 X a s t k x) (D.nuE2 X a (s+r) (t+r-1) (k+(r-1)) y))
 
-/-- Pstrągowski's λ-localization, on maps from the selected compact
-bigraded sphere: the kernel is λ-power torsion. This neither assumes a
-particular bidegree is torsion-free nor asserts ν preserves all triangles. -/
+/-- Selected-model consequence of λ-localization: only the objects in
+`SyntheticObject` and their displayed bidegrees are quantified. Compactness
+belongs to the FULL source category; no hypercomplete sphere is asserted
+compact. The adjunction/λ/realization comparison is a separate Interface
+obligation, specified in `RealizationKernel.lean`. -/
 def RealizationKernel : Prop :=
   ∀ (X : SyntheticObject) (m w : ℤ) (a : BiHom m w (X.obj D.nu D.auxiliary)),
     (D.recovery.realization.map a = 0 ↔ ∃ k : ℕ, lambdaMultiply k a = 0)
@@ -126,6 +128,17 @@ structure EInftyInput where
   maps : KIP126.Main.Solution.Route.EInftyCompatibilityInput D presentation weightShift
   labels : KIP126.Main.Solution.Route.EInftyLabelAgreement D presentation
 
+/-- External BHS inputs excluding the internal full-to-selected-model kernel transport. -/
+structure SyntheticSourceInputs where
+  lifts : KIP126.Main.Solution.Route.SyntheticLiftInput D
+  finite_lift : FiniteLiftCriterion D
+  bockstein : BocksteinDifferential D
+  permanent_lift : PermanentLiftCriterion D
+  differentials : DifferentialRigidity D
+  eInfty : EInftyInput D
+  filtration_lambda : FiltrationLambda D
+  e2_weight_vanishing : E2WeightVanishing D
+
 structure SyntheticInputs where
   lifts : KIP126.Main.Solution.Route.SyntheticLiftInput D
   finite_lift : FiniteLiftCriterion D
@@ -136,5 +149,18 @@ structure SyntheticInputs where
   realization_kernel : RealizationKernel D
   filtration_lambda : FiltrationLambda D
   e2_weight_vanishing : E2WeightVanishing D
+
+/-- Pure assembly; source-to-model localization is supplied separately. -/
+def SyntheticSourceInputs.toInputs (S : SyntheticSourceInputs D)
+    (kernel : RealizationKernel D) : SyntheticInputs D where
+  lifts := S.lifts
+  finite_lift := S.finite_lift
+  bockstein := S.bockstein
+  permanent_lift := S.permanent_lift
+  differentials := S.differentials
+  eInfty := S.eInfty
+  realization_kernel := kernel
+  filtration_lambda := S.filtration_lambda
+  e2_weight_vanishing := S.e2_weight_vanishing
 end
 end KIP126.Literature.Route

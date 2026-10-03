@@ -1,7 +1,7 @@
 # Near-126 计算事实包：输入清单与接入状态
 
 > 当前三阶段方案的计算输入已另行筛选并定义于
-> [C_INPUT_FREEZE.md](C_INPUT_FREEZE.md) 及 `Main/Axiom/LinProgram/Route/Data.lean`。
+> [C_INPUT_FREEZE.md](C_INPUT_FREEZE.md) 及 `Challenge2/Route/Data.lean`。
 > 本文保留为历史需求/审计记录；尤其下面 R1–R11 中的 synthetic 推导不整体列为 C(M)，
 > 也不再把导入整个 bulk 数据表作为第 7 节结果消费的前提。
 

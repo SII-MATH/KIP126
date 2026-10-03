@@ -17,6 +17,6 @@
 
 `Archive` 表示证书针对固定归档数据，仍有生产证明消费者。已有局部证书由 Lean 内核检查；它们只证明所陈述的数据结论，不自动给出数据与实际球谱 E₂ 的比较。
 
-根 [Challenge2](../Challenge2.lean) 的 `ComputationInterface` 统一规定 C(M)。[Interface/Solution/LinProgram](../Interface/Solution/LinProgram/README.md) 使用这些工件证明模型上的基、乘法、平方和 staircase 交付；[Main/Axiom/LinProgram](../Main/Axiom/LinProgram/README.md) 从同一个阶段见证提供消费接口。`Main/Solution/Computation` 的平方推论通过该交付消费，其依赖链不再导入 Interface/Solution。Main 其他历史消费链的直接导入仍须分别整理。
+根 [Challenge2](../Challenge2.lean) 的 `ComputationInterface` 统一规定 C(M)。[Interface/Solution/LinProgram](../Interface/Solution/LinProgram/README.md) 使用这些工件证明模型上的基、乘法、平方和 staircase 交付；[Main 的消费适配](../Main/Solution/Computation/LinProgram/README.md) 从 `Main.StageInput` 的同一个阶段见证提供消费接口。`Main/Solution/Computation` 的平方推论通过该交付消费，其依赖链不再导入 Interface/Solution。Main 其他历史消费链的直接导入仍须分别整理。
 
 数据版本更新须同步原始摘要、生成 manifest 和转换核对；局部证书与模型认证分别验收。此次分目录不完成既有 `sorry`，完整 Challenge2 仍待构造。目录路径改变，既有 Lean 命名空间为 API 兼容而保留。

@@ -17,6 +17,18 @@ open Lean Elab Command in
 run_cmd do
   let env ← getEnv
   for (solution, challenge) in [
+      (``KIP126.Interface.Solution.Literature.Route.may_signed_boundary_of_source,
+       ``KIP126.Interface.Challenge.Literature.Route.may_signed_boundary_of_source),
+      (``KIP126.Interface.Solution.Literature.Route.may_boundary_projected_of_exponent_two,
+       ``KIP126.Interface.Challenge.Literature.Route.may_boundary_projected_of_exponent_two),
+      (``KIP126.Interface.Solution.Literature.Route.todaApplication_of_secondary,
+       ``KIP126.Interface.Challenge.Literature.Route.todaApplication_of_secondary),
+      (``KIP126.Interface.Solution.Literature.Route.toda_of_source,
+       ``KIP126.Interface.Challenge.Literature.Route.toda_of_source),
+      (``KIP126.Interface.Solution.Literature.Route.realizationKernel_of_source,
+       ``KIP126.Interface.Challenge.Literature.Route.realizationKernel_of_source),
+      (``KIP126.Interface.Solution.Literature.Route.mossInputOfClassicalSource,
+       ``KIP126.Interface.Challenge.Literature.Route.mossInputOfClassicalSource),
       (``KIP126.Interface.Solution.Literature.Route.nuCofiber_of_source,
        ``KIP126.Interface.Challenge.Literature.Route.nuCofiber_of_source),
       (``KIP126.Interface.Solution.Literature.Route.tmf_of_source,

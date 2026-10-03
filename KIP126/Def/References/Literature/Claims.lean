@@ -836,9 +836,9 @@ private def lookupClaim : ExternalRootId → ExternalClaimRecord
         "Burklund--Hahn--Senger, Proposition A.13, lambda-adic completeness"
         (some "KIP126/Main/Axiom/Literature/Sources/BHS/paper.pdf")
   | .maySmashBoundary =>
-      claim .maySmashBoundary .literatureResult `KIP126.Stable.MaySmashBoundary
+      claim .maySmashBoundary .literatureResult `KIP126.Literature.Route.MaySourceResults
         "thm:external-may-smash-boundary" .may01
-        "Primary text unavailable; AIM paper lines 1755--1778 cite May01 Lemma 4.6 and TC3 for the smash-boundary diagram"
+        "May author PDF pp.12--13 TC3 signed square and p.14 Lemma 4.6; unsigned projection requires an explicit exponent-two premise"
   | .mossConvergence =>
       claim .mossConvergence .literatureResult `KIP126.Stable.MossConvergence
         "thm:moss-convergence-adapter" .moss

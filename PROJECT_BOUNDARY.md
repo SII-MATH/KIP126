@@ -33,18 +33,19 @@ fixed-data pipeline:
    proves fixed program outputs after deterministic interpretation as `C(M)`,
    their comparisons and the necessary internal helper results. Its `Axiom/` contains
    stage-zero outputs admitted as inputs to this first proof stage.
-3. `KIP126/Main/` is the second proof stage. Its Challenge/Final track owns
-   the single final goal; Solution owns the paper deductions and final proof. Its `Axiom/` tree provides
+3. `KIP126/Main/` is the second proof stage. Its paired Challenge/Solution tracks own
+   the paper deductions and the single final goal. Its `Axiom/` tree provides
    audited development assumptions so this work can proceed in parallel with
    Interface proofs.
 
-`KIP126/Main/Axiom/Literature/` manages literature sources, claim-level
-locators, provenance-carrying wrappers, and the staged assumptions that use
-them. `KIP126/LinProgram/` manages raw artifacts, deterministic translation,
+`KIP126/Main/Axiom/Literature/` retains explicit literature input statements
+and their source artifacts. The Lean source catalogue and generic evidence
+helpers live in `Def/References`; project-specific evidence construction and
+field extraction live in `Main/Solution/Literature`. `KIP126/LinProgram/` manages raw artifacts, deterministic translation,
 generated records, parameterized interpretations, and local certificates.
 `Interface/{Challenge,Solution}/LinProgram/` produces the resulting claims on
-the chosen model; `Main/Axiom/LinProgram/` supplies consumer projections and
-adapters for those claims. The Mathlib adapter and Checks trees retain their
+the chosen model; `Main/Solution/StageInput.lean` and
+`Main/Solution/Computation/` supply consumer projections and adapters for those claims. The Mathlib adapter and Checks trees retain their
 independent roles;
 the architecture does not require empty placeholder directories. Retaining the
 historical Mathlib adapter does not add a project obligation to identify the
@@ -399,10 +400,10 @@ longer assumes that certificate. Its proof remains unfinished.
 
 Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables first enter the repository as audited source
-material. `KIP126/Main/Axiom/Literature/` owns the literature catalogue and
-claim wrappers; the independent `KIP126/LinProgram/` owns the raw-to-interpreted
-program pipeline and local certificates. `KIP126/Main/Axiom/LinProgram/` owns
-the computation consumer adapters. Every accepted external input remains a
+material. `KIP126/Main/Axiom/Literature/` retains input statements and source
+artifacts; `KIP126/Def/References/` owns the source catalogue. The independent
+`KIP126/LinProgram/` owns the raw-to-interpreted program pipeline and local
+certificates. `KIP126/Main/Solution/Computation/` owns computation consumer adapters. Every accepted external input remains a
 value of an explicit structure carrying both the proposition and its provenance.
 
 The staged Main axiom states `Nonempty Challenge2` while Interface is still

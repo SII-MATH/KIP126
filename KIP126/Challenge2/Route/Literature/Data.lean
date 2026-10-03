@@ -4,6 +4,7 @@ import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Data
 import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Route.Data
 import KIP126.Challenge2.Route.Literature.BX
 import KIP126.Challenge2.Route.Literature.Realization
+import KIP126.Challenge2.Route.Literature.RealizationKernel
 import KIP126.Challenge2.Route.Literature.Algebra
 import KIP126.Challenge2.Route.Literature.May
 import KIP126.Challenge2.Route.Literature.Toda
@@ -60,6 +61,9 @@ structure Bindings where
   quotientBinding : QuotientAlgebraBinding D algebra
   algebraBinding : AlgebraBinding D algebra
   may : MayContext Syn
+  todaSource : TodaSourceData (Syn := Syn)
+  kernelSource : RealizationKernelSourceData Syn
+  kernelBinding : RealizationKernelBinding D kernelSource
   classicalSource : ClassicalSourceData H
   classicalBinding : ClassicalSourceBinding D η classicalSource
   synthetic_eta : EtaChoice M D.toModelData η
@@ -84,18 +88,25 @@ results are not asserted for arbitrary preselected route objects or lifts. -/
 structure Statements (B : Bindings D η L) where
   classical : ClassicalSourceResults M B.classicalSource
   bx : BXDistinguishedInput D η
-  synthetic : SyntheticInputs D
+  synthetic : SyntheticSourceInputs D
+  realizationKernel : RealizationKernelSourceResults D B.kernelSource
   realization : RealizationDetection D B.realization
-  may : B.may.Boundary
-  toda : TodaInputs D η
+  may : MaySourceResults Syn B.may
+  toda : TodaSourceResults D η B.todaSource
   tmf : TmfSourceResults B.tmfSource
-  moss : MossInput D
+  moss : MossSourceInput M B.classicalSource.convergence
 
 /-- Interface's INTERNAL source-application delivery, separate from A(M).
-The compatible normalized triple is a construction from source leaves;
-the local tmf conclusions require the same-model multiplicative comparison.
-Neither conclusion is accepted as a new independent external theorem. -/
+May retains its sign; Toda uses actual secondary-operation evidence; the
+kernel and Moss statements use the fixed source/model comparisons. The
+compatible normalized triple and local tmf conclusions likewise require
+internal construction and multiplicative comparison. These fields are not
+new independent external theorems or separately chosen stage witnesses. -/
 structure Application (B : Bindings D η L) : Prop where
+  may : B.may.SignedBoundary
+  toda : TodaApplication η B.todaSource
+  realizationKernel : RealizationKernel D
+  moss : MossInput D
   nuSource : NuCofiberSourceResults D B.nuSource
   nuCofiber : NuCofiberApplicability D
   tmf : TmfInputs D L
@@ -107,13 +118,13 @@ def Statements.toInputs {B : Bindings D η L} (A : Statements D η L B)
   classical := classicalInputsOfSource D η B.classicalSource A.classical
     B.classicalBinding B.synthetic_eta
   bx := A.bx
-  synthetic := A.synthetic
+  synthetic := A.synthetic.toInputs D P.realizationKernel
   realization := ⟨B.realization, A.realization⟩
   algebra := B.algebra.withBinding D B.quotientBinding
-  may := { B.may with boundary := A.may }
-  toda := A.toda
+  may := { B.may with boundary := P.may }
+  toda := todaInputsOfSource D η B.todaSource A.toda P.toda
   tmf := P.tmf
-  moss := A.moss
+  moss := P.moss
   applicability := ⟨B.moss, P.nuCofiber⟩
 
 /-- Historical compatibility spelling for the applied consumer package.

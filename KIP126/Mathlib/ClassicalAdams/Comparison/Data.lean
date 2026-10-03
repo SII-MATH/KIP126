@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.StandardSphere.Data
+import KIP126.Mathlib.ClassicalAdams.StandardSphere.Data
 import KIP126.Interface.Axiom.StandardSphere.Sequence.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 import KIP126.Mathlib.SpectralSequence.Permanence.Data

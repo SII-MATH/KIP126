@@ -1,7 +1,7 @@
 > 历史布局记录：下文按迁移批次记录路径和当时的缺口，不是当前 KIPBase 证明状态清单。
 > 当前复用范围见 [KIPBase 与 KIP126](KIPBASE_GAP_INVENTORY.md)，目录职责以根 AGENTS.md 为准。
 
-> 后续布局更新：Main 的 Near126 中间命题已合并到 Solution 的 ChoiceIndependence、DifferentialReduction、ExtensionObstruction；Main/Challenge 只保留 Final。下文旧路径为历史记录，现行位置见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md#后续调整中间推导不再设-challenge-镜像)。
+> 后续状态：本记录曾描述仅保留 Final Challenge 的过渡布局；当前已恢复所需的 Main Challenge/Solution 配对。现行位置与状态见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)，不得从下文的历史清单推断当前配对缺失。
 
 > Historical layout record. The current layout is documented in [STAGE_LAYOUT.md](STAGE_LAYOUT.md); module ownership is Def / Interface / Main.
 

@@ -61,9 +61,13 @@ outside Axiom. Mathematical deductions belong in
 Main's paired Challenge/Solution tracks; fixed computation certification and
 standard-label comparison belong to Interface. Do not put `Proofs.lean` modules
 under Main/Axiom or import Main proofs, Interface producers, or Checks from
-that boundary (including its aggregate entry module). Source-catalogue checks
-and transparent extraction of already supplied evidence do not certify a
-mathematical input; retain their provenance rather than replacing it by axioms.
+that boundary (including its aggregate entry module). Do not define objects,
+operations, catalogue helpers, field-extraction theorems, or instances there.
+Source-catalogue helpers belong in Def/References when independent of project
+inputs; helpers specialized to those inputs belong in Main/Solution/Literature,
+with paired Challenge declarations for their theorems. Such evidence extraction
+does not certify a mathematical input; retain its provenance rather than
+replacing it by axioms.
 
 `KIP126/Challenge1.lean` and `KIP126/Challenge2.lean` are the two shared,
 reviewable witness types crossing stage boundaries. They contain definitions

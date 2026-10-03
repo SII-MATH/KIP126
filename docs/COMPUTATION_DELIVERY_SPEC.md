@@ -5,7 +5,7 @@
 `LinProgram/` 提供数据、确定性解释和局部证书；`Interface/` 负责证明这些解释在 M 上成立；
 `Main/` 接受交付的结论，继续证明论文。
 
-本文明确目标边界，并对照当前实现记录尚未接通的部分；不宣称完成新的 Lean 接口或证明。
+本文说明当前交付边界、已经完成的模型接线及仍待证明的生产义务；接口存在不等于生产证明已完成。
 具体实现以 [Challenge2](../KIP126/Challenge2.lean) 和
 [路线输入](../KIP126/Challenge2/Route/Data.lean) 为准。
 
@@ -64,26 +64,23 @@ C_Δ(M) := 存在这样的 φ，使 C_Δ(M, φ) 成立。
 有限计算如何排除全部潜在入射、如何得到非零 E∞ 存活，仍需要 Main 的范围论证和论文推导。
 不能为了使接口“足够用”，直接把这些推导或最终结论加进 C(M)。
 
-## 3. 当前实现有两份尚未统一的接口
+## 3. 当前统一交付与路线子接口
 
-| 当前接口 | 已写出的交付范围 | 当前连接状态 |
+| 当前接口 | 交付范围 | 连接状态 |
 | --- | --- | --- |
-| `Challenge2.ComputationInterface P` | 球面完整坐标 `t ≤ 261`；乘法总内部次数 `t+t′ ≤ 261`；固定微分、staircase 记录；h₆² 的非零、穷尽与标准标签 | 已作为 `Challenge2` 的 computation 字段，与 literature 共享同一个 Challenge1 模型；Main 从一个 Challenge2 见证投影 |
-| `Computation.Route.Inputs D L G` / `CInput D L G` | 第 7 节选定的球谱与 Cν 次数、基、乘积、记录、标准标签及胞腔映射 | 当前是显式参数化的独立交付类型；不是 Challenge2 的投影，也没有已接通两者的定理 |
+| `Challenge2.ComputationInterface B P` | 球面坐标 `t ≤ 261`；总内部次数 `t+t′ ≤ 261` 的乘法；固定微分、staircase 记录；h₆² 的非零、穷尽与标准标签 | 是根 Challenge2 的 computation 字段；与文献部分使用同一个 Challenge1 模型 |
+| `Computation.Route.Inputs D L G` | 第 7 节选定球谱与 Cν 的次数、基、乘积、记录、标准标签及胞腔映射 | 已作为 `ComputationInterface.route` 接入；`route_presentation` 明确球谱解释与同一个 presentation 相容 |
+| `CertifiedRealization R L G` | 基、CSV、乘法、标签、记录、底胞腔、顶胞腔七类认证 | 明确的 Interface 认证入口；与 `Inputs` 互相组装时不重新选择模型或标签 |
 
-第一份的 `ComputationInterface P` 含坐标数据，故本身是交付结构；当前阶段存在假设是
-`Nonempty Challenge2`。第二份的 `CInput D L G` 则定义为 `Nonempty (Inputs D L G)`。
-二者不能仅因注释都称为 C(M)，就被当作同一个已经实现的接口。
+`ModelBindings` 给出共享路线标签、tmf 标签、η 与比较数据，
+`Main.StageInput` 从同一个 Challenge2 见证投影所有消费入口。
+参数化的 `CInput D L G := Nonempty (Inputs D L G)` 仍可用于明确参数的条件定理，
+但不是另一条独立阶段公理。唯一阶段输入仍是 `Nonempty Challenge2`。
 
-路线的精确次数、记录来源和消费对应见 [C_INPUT_FREEZE](C_INPUT_FREEZE.md)。
-根接口目前绑定已选定的 Challenge1 见证，并不是任意 M 上都成立的定理。
-路线接口也只对满足所列输入条件的同一 `D L G` 供 Main 作条件推导。
-
-后续应把确实需要的路线字段与共享绑定整合进根 `Challenge2`，或证明它们由根接口推出，
-保留一个可审阅的总交付接口。两份包的基范围、模型绑定和乘法含义不同，不能只改名称或加类型别名。
-尤其路线 `ProductCorrect` 指向 `Sphere.Internal.product` 的 Milnor/cobar E₂ 乘积；
-根接口 `SphereMultiplicativeInterface` 约束实际 Adams 层代表元的乘积。
-二者之间所需的比较必须明确陈述并证明，不能以“都是实际乘法”为由省略。
+根接口的模型是已选定的 Challenge1 模型，不能由此宣称任意 M 都满足这些计算结果。
+路线精确范围见 [C_INPUT_FREEZE](C_INPUT_FREEZE.md)。
+路线 `ProductCorrect` 的 Milnor/cobar E₂ 乘积与实际 Adams 乘法之间，
+仍需履行声明中的相容证明；字段已接入不能代替 Interface 的证明。
 
 ## 4. 用 h₆² 看清交付与最终目标的差别
 
@@ -107,28 +104,26 @@ Main 的最终目标仍是：
 NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 ```
 
-这是 [最终定理](../KIP126/Main/Solution/Final/h6_sq_permanent.lean) 的命题，当前证明仍为 `sorry`。
-它不属于计算输入。完整 Challenge2 的生产证明也尚未完成。
+这是 [最终定理](../KIP126/Main/Solution/Final/h6_sq_permanent.lean) 的命题。
+其最后一步已通过同一见证接到 Main 的 Propositions 7.8/7.9；这两个命题及部分上游生产
+证明仍含 `sorry`，所以最终定理尚未成为独立完成的数学证明。它不属于计算输入。
 
-## 5. 为什么 Main/Axiom/LinProgram 现在仍显得复杂
+## 5. 当前目录边界
 
-上一次整理移走了 `Proofs.lean`，建立了生产证明与消费假设的导入边界；
-但剩余文件仍混合了输入投影、解释定义、数学构造及另一个交付规格。
-**“没有 Proofs.lean”只说明一次文件职责整理完成，不说明数学接口已经足够清晰。**
-
-| 剩余内容的例子 | 性质与后续归属 |
+| 内容 | 归属 |
 | --- | --- |
-| `Presentation.lean`、已交付字段的透明投影 | 真正的 Main 输入适配，可合并为少量入口；不另选见证 |
-| `Classes/Data.lean`、`Expressions/` 的表格像与解释谓词 | 将参数化解释放到 `LinProgram/Interpretation`，项目交付陈述放根 Challenge2；消费端仅保留必要的具名简称 |
-| `Basis/Data.lean` 的坐标传输及基构造 | 构造本身不是公理；通用工具归 Def，固定数据认证归 Interface，交付后的消费推导归 Main 的证明轨道 |
-| `Differential/` 的拉回微分、Leibniz 和长层相容条件 | 按通用定义、项目比较义务和论文推论分别归位；不能因为被 Main 使用就自动新增为 C(M) 假设 |
-| `Route/Data.lean` 的解码、解释和 `Inputs` | 参数化解码归独立管线；项目交付类型归根 Challenge2，先处理同模型与同标签的绑定，不能整文件盲搬 |
-| `Interpretation/AdamsE2.lean` 的独立 `Input` | 是另一套参数化输入，不是当前 Challenge2 的投影；须核对消费者后处理，不能默认它已绑定最终模型 |
-| 仅含 import 的历史适配文件 | 可在保留必要兼容性的前提下合并，文件数不代表数学性质的数量 |
+| 通用数学对象、操作与坐标工具 | `Def` |
+| 固定数据、参数化解码、解释及局部证书 | `LinProgram` |
+| 项目模型、交付范围与关联条件 | 根 `Challenge1` / `Challenge2` 及其子模块 |
+| 固定计算认证和与模型的比较证明 | `Interface/Challenge` / `Interface/Solution` |
+| 唯一阶段存在性假设和显式输入 statement | `Main/Axiom` |
+| 同一见证的选择与字段投影 | `Main/Solution/StageInput.lean` |
+| 交付后的消费构造与论文推论 | `Main/Solution`；数学定理有配对 `Main/Challenge` |
 
-`Main/Axiom` 的目标形态是：一个阶段存在假设、从同一见证得到的 literature/computation 投影，
-以及必要的来源信息和简短适配。项目专属的完整性质清单在根 Challenge2，
-其生产义务在 Interface。把复杂定义藏到别处而不澄清这些性质，不算完成整理。
+`Main/Axiom/LinProgram` 的实现和过时说明均已迁出。
+固定 Hopf cofiber、塔与 E₂ 映射也已归消费构造，Mathlib 球谱适配归 Mathlib。
+Axiom 内没有解释器、坐标传输、catalogue 构造或提取证明。
+纯 selected 元数据保存在独立管线，生成的条件定理保存在消费证明轨道。
 
-下一次实现调整应以三个结果验收：Main 能直接读出所需数学结论；每条结论有明确范围及同模型绑定；
-证明或解释责任不因搬文件而被改成新公理。本文只明确这些要求，不将上述待办标为已完成。
+现在应分别审查：statement 是否准确、是否绑定同一见证、生产证明是否完成。
+前两项已经接入；完整模型构造、文献适用性和计算认证的剩余证明义务继续显式保留。

@@ -1,48 +1,24 @@
-import KIP126.Challenge1
+import KIP126.Challenge2.Route.Literature.May
 import KIP126.Def.References.Literature.Claims
 
 /-!
-# 带来源的 May smash-boundary 输入
+# Located May source statement
 
-Challenge1 中的命题固定两条 distinguished triangle 的实际 tensor 箭头和
-connecting homomorphism。这里保留调用者的命题证明，并将来源锁定为 May 的
-smash-boundary 目录项；普通 tensor exactness 或目录定位不自动提供该证明。
-
-本地依据是主论文 Lemma `lem:452d218c`（1755--1778 行），其证明引用
-May (2001) Lemma 4.6 与 TC3 图表。May 原文当前不在本地来源目录中。
+The supplied result is the signed TC3/pushpull source data on the specified
+synthetic tensor suspension conventions. It does not assert the historical
+unsigned `Stable.MaySmashBoundary`. Producing this input for the chosen
+model remains an Interface obligation; no independent axiom is declared.
 -/
-
 namespace KIP126.Stable
-
-open CategoryTheory MonoidalCategory
-open KIP126.External KIP126.StableHomotopy
-
+open KIP126.External KIP126.Literature.Route KIP126.Synthetic.Context
 universe u v
+variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
 
-variable {C : Type u} [StableHomotopyCategory.{u, v} C]
-  [∀ W : C, (tensorLeft W).CommShift ℤ]
-  [∀ W : C, (tensorRight W).CommShift ℤ]
-  [∀ W : C, (tensorLeft W).IsTriangulated]
-  [∀ W : C, (tensorRight W).IsTriangulated]
-
-/-- 将调用者提供的 smash-boundary 证明绑定到明确的 May 来源项。 -/
-def cataloguedMaySmashBoundary (proof : MaySmashBoundary (C := C)) :
-    CataloguedExternalResult (MaySmashBoundary (C := C)) :=
-  { root := .maySmashBoundary
-    value :=
-      { proof := proof
-        ref := (externalClaimLedger.lookup .maySmashBoundary).ref }
-    ref_eq := rfl
-    class_supported := by trivial }
-
-/-- 在相同 tensor/shift 数据上的显式文献输入；此记录不声称存在该证明。 -/
-structure MayLiteratureInput where
-  smash_boundary : CataloguedExternalResult (MaySmashBoundary (C := C))
+/-- May (2001), TC3 and Lemma 4.6, on the SAME tensor conventions.
+The historical field spelling is retained; its statement now keeps the
+source sign. Extraction and catalogue construction are outside Axiom. -/
+structure MayLiteratureInput (B : MayContext Syn) where
+  smash_boundary : CataloguedExternalResult (MaySourceResults Syn B)
   smash_boundary_root : smash_boundary.root = .maySmashBoundary
-
-/-- 提取调用者已经提供的证明，不增添文献假设。 -/
-theorem MayLiteratureInput.interface (input : MayLiteratureInput (C := C)) :
-    MaySmashBoundary (C := C) :=
-  input.smash_boundary.value.proof
 
 end KIP126.Stable

@@ -6,7 +6,7 @@
 
 ## 2. 现有
 
-Def 中已有抽象 `Presentation`、`PageAlgebra`、表模型、Lin 多项式商、classes、表达式和值、纯 Lean 计算器、basis row schema、relation checker 和 certificate 数据。basis 正确性 statement、依赖它的实际 `Module.Basis` 构造、square detection 归档证明和 dimension 证明已经迁到 `Interface/Solution/LinProgram`；其中 `basisTable_correct` 仍有一个公开 `sorry`，后两类已有实质 kernel-checked 证明。固定 `LinE2Presentation` 及其依赖已迁到 `Main/Axiom/LinProgram`。
+Def 中已有抽象 `Presentation`、`PageAlgebra`、表模型、Lin 多项式商、classes、表达式和值、纯 Lean 计算器、basis row schema、relation checker 和 certificate 数据。basis 正确性 statement、依赖它的实际 `Module.Basis` 构造、square detection 归档证明和 dimension 证明已经迁到 `Interface/Solution/LinProgram`；其中 `basisTable_correct` 仍有一个公开 `sorry`，后两类已有实质 kernel-checked 证明。固定 `LinE2Presentation` 的规格在根 Challenge2，消费投影和推论位于 `Main/Solution/Computation/LinProgram`。
 
 边界仍不纯：`LinModel/Data`、`LinCompute/Data` 直接 import Main 的 generated E₂，`Classes/Data` import Main 的 evidence-bearing interpretation。当前这些路径不递归引入项目 axiom，但确实把固定生成数据的模块所有权反向带进 Def。`coordinateCheck_sound` 还有 `sorry`，且 issue #138 已决定它不是当前冻结 A₀，只是工具内部正确性债务。
 

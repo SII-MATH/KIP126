@@ -35,19 +35,19 @@ E₂ 的 `g : E₂^(4,24)` 和 `Δh₁g : E₂^(9,54)`，其 CSV 识别仍属于
 `Statements.toInputs` 仅组装原参数化 API，不产生第二个见证。
 模型来自同一个 Challenge1，η 和 tmf 标签来自同一个 Challenge2。
 来源对象的 classical/tmf 结果分别由 `ClassicalSourceResults`、`TmfSourceResults` 陈述。
-实际 lift 三角和 tmf 的路线结论单独放在根 `Challenge2.routeApplication`，由 Interface
+实际 lift 三角、May 带符号边界、Toda 二次运算、λ 核运输、Moss 收敛运输和 tmf 路线结论单独放在根 `Challenge2.routeApplication`，由 Interface
 交付；它们不再作为 A(M) 的直接来源字段。`Statements.toInputs` 同时接收这两部分。
 原始商代数 `QuotientAlgebraStructures` 不含所选 restriction/sphere-action 比较。
 
 `TmfHigh125Detection` 保持“存在一个被指定类检测且 tmf 像非零”的消费结论。
 来源适配还需显式证明该首项非零存活；不能由非零同伦像直接推断。
 对任意同检测类的推广仍归 Main，保留消失线和过滤分离前提。
-五项具体接线和未完成证明见 [PR150 设计提取说明](PR150_SELECTED_DESIGN.md)。
+全部已择取设计、收尾接线和未完成证明见 [PR150 设计提取说明](PR150_SELECTED_DESIGN.md)。
 
 ## 输入内容与来源
 
 下列路径相对于 `KIP126/Challenge2/Route/Literature/`；文献原文的本地路径、
-SHA-256、稳定定位及每项分类另见同目录 `sources.json`。TeX label 优先于
+SHA-256、稳定定位及每项分类另见同目录 `sources.json`（schema 2，分别记录来源结果、模型比较、内部应用和适配证明状态）。TeX label 优先于
 可能随版本变化的行号。`MainPaper` 只用于确定消费点，不能证明 A(M)。
 
 | 文件 / 声明 | 准确内容和条件 | 外部来源；论文消费点 |
@@ -64,7 +64,7 @@ SHA-256、稳定定位及每项分类另见同目录 `sources.json`。TeX label 
 | `DifferentialRigidity` | 同一 classical dᵣ(x)=y 与同一 synthetic dᵣ(λᵏx)=λ^(k+r−1)y 对应 | BHS A.8；LWX Theorem 3.6；r≥2，双向且保留实际页代表 |
 | `EInftyInput` | νX、νX/λ^q 的 E∞ 公式，actual cycles/boundaries 商，λ/ρ 相容及共同 E₂ 标签对应 | BHS A.9/A.11；LWX §3。仅给抽象等价不够 |
 | `E2WeightVanishing` | 在 shifted νX 的 w>t+a 区域 E₂=0；其余区域使用 M 已指定的 nuE2 | BHS A.8 的 E₂ 公式 |
-| `RealizationKernel` | 选定对象的实际同伦类经 λ 反演为零 iff 某个有限 λ 幂消去它 | Pstrągowski λ-localization 及紧球面 Hom；不指定某个次数无 torsion |
+| `RealizationKernelSourceResults` → `RealizationKernel` | 完整来源范畴中，所选对象的 inclusion 上的类经 λ-localization 为零 iff 被某个有限 λ 幂消去；再沿实际 completion adjunction 运输 | Pstrągowski telescope 和来源紧球面；`RealizationKernelBinding` 单列 λ 与 realization 比较，不假设 hypercomplete 球谱紧致 |
 | `FiltrationLambda` | 在 s≥w−m 时，νX 中 AF≥s iff 为 λ^(m+s−w) 的倍数 | BHS `cor:tau-surj`；§7 的过滤估计。没有把某个 θ² 的过滤作为输入 |
 | `Realization.lean` / `RealizationCoordinates` | 同一 realization 在双分次球上的比较；unit 与 λ 归一化显式固定 | Pstrągowski λ 反演的球面比较，实际模型运输 |
 | `RealizationDetection.lifetime` | 永久 cycle 的每个提升：非零存活至 E_(r+1) ⇒ λ^(r−1) 倍非零 | BHS A.1(2a) |
@@ -72,10 +72,10 @@ SHA-256、稳定定位及每项分类另见同目录 `sources.json`。TeX label 
 | `.boundary_lift` | 对于被 dᵣ 击中的永久 cycle，**存在某个**提升被 λ^(r−1) 消去 | BHS A.1(3a)；不要求每个提升都被消去 |
 | `Algebra.lean` / `AlgebraInput` | 同一 tensor 的对称结构、同一 realization 的幺半结构；实际 S/λ^q 的相容交换代数；实际检测谱及其 ν 对象的交换代数 | Pstrągowski；BHSmot Appendices B/C；BX `cnstr:bock-maps`；tmf 的环谱结构 |
 | `QuotientAlgebras`、`DetectorAlgebra` | unit 固定为实际商映射/Hurewicz map，ρ 保乘法，乘法扩张 M 已定义的 sphereAction | 上述代数定理的同伦范畴后果。不是新造另一种乘法，也不宣称 `MonObj` 构造了完整 E∞ 结构 |
-| `May.lean` / `MayInput` | 同一 tensor 的 exact/shift 见证，以及两个实际三角的 smash-boundary lifting 等式 | May 2001 TC3、Lemma 4.6；LWX Lemma 6.13。不能只给 tensor exactness |
-| `Moss.lean` / `MossInput` | 同一 E₃ `<h₅²,h₀,B>` 中存在永久成员检测真实 `<θ,2,β>` 的一个成员 | Moss Theorem 1.2；Belmont–Kong 2021 Theorem 1.1/4.11 可核对；LWX Lemma 7.16 |
-| `Toda.lean` / `TodaInputs` | `[h₀]` 的第一商标签、λ[h₀]=2、[h₀]η=0、η²∈<[h₀],η,[h₀]>、低维不定性消失 | BHS `prop:syn-toda-range` (0)、(9) 及低维群；经典 Toda 关系经同一模型运输 |
-| `.symmetric_two` | 若 θ∈π_(62,64) 且 2θ=0，则 λ²ηθ∈<2,θ,2> | Toda 1962 Theorem 3.6 的 symmetric-bracket 后果；IWX §6 `cor:2-symmetric` 核对“包含”约定；synthetic 运输仍是显式义务 |
+| `May.lean` / `MaySourceResults` → `MayInput` | 固定 tensor exact/shift 见证，来源 pushpull 顶点与带负号边界；Interface 证明带符号的逐元素结论 | May 2001 TC3 pp.12–13、Lemma 4.6 p.14。无符号投影另需实际加法像满足 exponent two |
+| `Moss.lean` / `MossSourceInput` → `MossInput` | 在来源 classical convergence 上给出条件结论，再沿 `ClassicalSourceBinding.convergence` 等式运输；同一 E₃ `<h₅²,h₀,B>` 中存在永久成员检测真实 `<θ,2,β>` 的一个成员 | Moss Theorem 1.2；Belmont–Kong 2021 Theorem 1.1/4.11 可核对；LWX Lemma 7.16 |
+| `Toda.lean` / `TodaSourceResults` | 同一个 `[h₀]` 的第一商标签、λ[h₀]=2、[h₀]η=0 和低维不定性消失 | BHS `prop:syn-toda-range` (0)、(9) 及低维群。η² 的具体 Toda 隶属另属 `TodaApplication` |
+| `.symmetric_two` | 若 θ∈π_(62,64) 且 2θ=0，则 λ²ηθ∈<2,θ,2> | Toda 1962 Theorem 3.6 的 symmetric-bracket 后果；IWX §6 `cor:2-symmetric` 核对“包含”约定；`TodaSecondaryComparison` 显式要求实际 star 运算、括号结论和 λ²η 乘积识别；运输仍是内部义务 |
 | `Tmf.lean` / `TmfTheta5Vanishing` | 经典 θ₅ 经实际 detectorUnit 映为零 | BMQ Theorem 1.2、Figure 1.1 的 tmf 62-stem |
 | `TmfHigh125Detection` | g⁴Δh₁g 非零生存；存在被它检测且经实际 unit 映为非零的经典类 | BMQ §7，κ̄⁴w 的 Hurewicz 结果；Prop. 7.8 |
 | `TmfLowFiltration63` | 该 detector 的经典 E₂ 在 stem63、s≤0 为零 | BMQ §2 的 H_*tmf=(A//A(2))_* 及 change of rings；供上述零像的 synthetic 运输 |
@@ -88,7 +88,7 @@ Moss 输入保留：三个检测假设、两个零复合、完整 Massey 定义�
 
 ## 来源结果与模型运输必须区别
 
-A(M) 的每项都陈述在选定的 D 上，**不**宣称它对任意抽象 `Model` 自动成立。
+A(M) 的来源对象由同一组 `Bindings` 关联到 D；来源陈述与内部运输分开，**不**宣称它们对任意抽象 `Model` 自动成立。
 尤其应注意：
 
 1. BHS A.1 原文的 E-nilpotent completeness、强收敛及正确 ν/Adams 解释，是
@@ -99,11 +99,12 @@ A(M) 的每项都陈述在选定的 D 上，**不**宣称它对任意抽象 `Mod
    可以形成。此绑定的证明/见证以后必须交付，不能仅用 Lemma 9.15 的名字填入。
 3. synthetic Toda 中 suspension 增加 `(1,0)`。`<2,θ,2>` 的值在 `(63,64)`，
    因而应是 λ²ηθ。IWX 的 C-motivic τ 权重不被直接照抄为这里的 λ 权重。
-   新类型直接使用已有 `Toda.Relation`、shift 和 sphereProduct。
+   新类型直接使用已有 `Toda.Relation`、shift 和 sphereProduct。`TodaSourceResults` 的低维环关系不蕴含两条二次运算公式；后者必须由 `TodaSecondaryComparison` 交付。
 4. 检测谱和 unit 必须作为 2-completed connective tmf 的实例供给。
    本包只导入路线实际消费的后果，不以一个“tmf”名字构造 tmf。
 5. 同伦群按现有整数加法群使用，不能因为 E₂ 为 F₂ 向量空间就删掉 Toda 符号。
-   Bockstein 的负号仅在 mod-2 E₂ 标签中消失。
+   Bockstein 的负号仅在 mod-2 E₂ 标签中消失。May 也保留负号；`may_boundary_projected_of_exponent_two` 只有在显式证明投影像 exponent two 后才去掉它。
+6. `RealizationKernelSourceData` 区分完整来源范畴与所选完备模型，代表比较由 completion/inclusion adjunction 定义。来源有限幂核结论只运输到 `SyntheticObject` 闭包；不声称完备球面紧致，也不把有限 λ 幂消去改成单步 λ 消去。
 
 来源审核状态：BHS、Pstrągowski、BX、Xu、IWX、BHSmot、BMQ 已核对仓库原文；
 BMQ 的图表也作了视觉核对。May 作者 PDF 已在线核对。Moss 1970 原始扫描本

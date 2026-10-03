@@ -128,6 +128,17 @@ class StageBoundaryLayoutTests(unittest.TestCase):
     def test_main_inputs_have_no_proof_modules(self):
         self.assertEqual(list((ROOT / "KIP126/Main/Axiom").rglob("Proofs.lean")), [])
 
+    def test_main_input_files_contain_only_statements(self):
+        for path in (ROOT / "KIP126/Main/Axiom").rglob("*.lean"):
+            code = re.sub(r"/-[\s\S]*?-/", "", path.read_text())
+            code = re.sub(r"--[^\n]*", "", code)
+            self.assertNotRegex(
+                code, r"\b(def|abbrev|theorem|lemma|instance|opaque)\b", str(path))
+
+    def test_selected_metadata_stays_in_the_data_pipeline(self):
+        self.assertTrue((ROOT / "KIP126/LinProgram/Generated/Selected/records.json").is_file())
+        self.assertEqual(list((ROOT / "KIP126/Main").rglob("records.json")), [])
+
     def test_square_identification_is_delivered_by_the_same_interface(self):
         package = (ROOT / "KIP126/Challenge2.lean").read_text()
         self.assertIn("standard_class : presentation.comparison 2 128", package)

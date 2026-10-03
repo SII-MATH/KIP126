@@ -32,7 +32,7 @@ C(M)；两者共享同一 Challenge1 模型，通用比较保留为显式模型�
 | C：cm1 | `Challenge2.ComputationInterface` 中的 `sphereBasis` 与有界 `LinE2Presentation` | v126.3.cw49 的明确基与 presentation，内部次数 t ≤ 261 | 类型已列入当前交付包，认证证明待完成；不能外推范围或自动补乘法比较 |
 | C：cm2 | `Challenge2.ComputationInterface` 的闭合球谱微分表真实性 | proofs.db 中 10,907 条 depth=0、S0 闭合等式 | 机械解释已有，数学真实性待证；等式本身不额外保证非零/存活 |
 | C：cm3–cm6 | `Challenge2` 清单及 LinProgram Raw/Translate | 条件分支、辅助谱、页面状态、穷尽性 | 未全部绑定/冻结；未知不当零，条件记录不升级为无条件等式 |
-| A：原始 BX 判据 | ledger `.bjmBxCriterion` | Burklund–Xu Proposition 7.19：ηθ₅² 在 S/λ^r 中为零 | 原始文本已核对；`Def/Kervaire/Theta5/Synthetic/Predicates` 已定义该声明；`Main/Axiom/Literature/BJMOriginal` 接受显式 proof，未提供见证或公理 |
+| A：原始 BX 判据 | ledger `.bjmBxCriterion` | Burklund–Xu Proposition 7.19：ηθ₅² 在 S/λ^r 中为零 | 原始文本已核对；`Def/Kervaire/Theta5/Synthetic/Predicates` 已定义该声明；`Def/References/Literature/BJMOriginal` 接受显式 proof，未提供见证或公理 |
 | A：总微分公式 | `SourceTotalDifferentialIdentity` 的 provenance wrapper | 同一 Proposition 的证明中 δ₁(h₆²)=ληΘ₅² | 旧原型保留；新的 `BJMSourceTotalBoundaryIdentity` 已用实际 first-quotient 逆比较和 cofiber boundary 定义，等式待证 |
 | A：经典 θ₅ order | Xu/IWX 来源清单 | LWX Remark 7.5 引用的经典 order-two 结果 | 精确原文定位、实际经典对象的输入与 synthetic 比较须继续审查 |
 | 本文推导：规范化 BX | `Def/.../Theta5/Predicates.BJM_BXCriterion` 定义条件；Main 负责证明 | LWX Remark 7.4 从 η / λ^r 转为 λη / λ^(r+1)，用无 λ-torsion | 已撤销直接文献包装；新增实际对象上的 `BJMNormalizedFiniteCriterion`，转换证明未完成 |

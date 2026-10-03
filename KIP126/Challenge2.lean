@@ -122,7 +122,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   输出 cycle 的底层由 `adamsSphereE1Product` 固定；存在量词只承载 cycle
   闭合性，不另选运算。坐标单位同时绑定到球面恒等的实际 E₂ 类。
   陈述：同一 presentation 上的 `LinE2Presentation.SecondDifferentialLeibniz`
-  已有精确类型，见 `Main/Axiom/LinProgram/Interpretation/Differential/Predicates.lean`；
+  已有精确类型，见 `Main/Solution/Computation/LinProgram/Interpretation/Differential/Predicates.lean`；
   本文件的 `comparison_mul` 不提供这个额外条件。
   实现：`Def/ClassicalAdams/TowerLongLayer/Pairing/Leibniz/` 已定义
   `RelativeBoundaryFormula` 并证明 `relativeBoundary_iff_leibniz`；
@@ -390,7 +390,7 @@ A(M) 仅限其他论文的外部定理，保留来源、前提、范围与证据
   `Interface/Solution/LinProgram/SphereBasis.lean` 从该辅助认证及显式 P 构造
   实际交付；Main 从同一个 Challenge2 见证取得坐标，恢复兼容的 Lin 基与维数。
   没有新增独立 axiom，也不直接消费 Interface 的认证证明。`computedH6`、
-  `computedH6Square` 在 `Main/Axiom/LinProgram/Interpretation/Classes/Data.lean`
+  `computedH6Square` 在 `Main/Solution/Computation/LinProgram/Interpretation/Classes/Data.lean`
   由比较机械定义，不新增任意同名元素。
 
 - `cm2` 闭合球面有限页微分表。

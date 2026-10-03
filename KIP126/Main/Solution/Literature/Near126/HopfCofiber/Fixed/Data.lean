@@ -1,8 +1,8 @@
 import KIP126.Main.Axiom.Literature.Near126.HopfCofiber.Data
 import KIP126.LinProgram.Interpretation.Near126.Classes.Data
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
-import KIP126.Main.Axiom.Literature.HopfCofiber.Predicates
-import KIP126.Main.Axiom.Literature.HopfCofiber.Pages.Data
+import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
+import KIP126.Main.Solution.Literature.HopfCofiber.Pages.Data
 
 namespace KIP126.Computation.Near126
 open KIP126.Classical.Adams KIP126.External

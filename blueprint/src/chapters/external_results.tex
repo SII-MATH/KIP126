@@ -15,11 +15,14 @@ not supply proofs or replace the source-bearing inputs described below.
 % The declarations below are INPUT TYPES, not proofs of the source results.
 \begin{definition}[$A(M)$ on one selected model]
   \label{def:route-literature-inputs}
-  \lean{KIP126.Literature.Route.Inputs,KIP126.Literature.Route.A}
+  \lean{KIP126.Literature.Route.Bindings,KIP126.Literature.Route.Statements,KIP126.Literature.Route.Application,KIP126.Literature.Route.Statements.toInputs,KIP126.Literature.Route.Inputs,KIP126.Literature.Route.A}
   \leanok
   For the fixed model $D$, the same synthetic $\eta$, and two classical tmf
-  labels, $A(M)$ is inhabitance of an explicit literature-input record.
-  It contains the source results below and their model applicability data.
+  labels, the external $A(M)$ is the source record \texttt{Statements} on
+  one \texttt{Bindings}. Internal source applications are delivered separately
+  in \texttt{Application}. Their assembly yields the consumer \texttt{Inputs}.
+  The historical name \texttt{A = Nonempty Inputs} includes those internal
+  applications and is only a compatibility API, not the external-source boundary.
   It has no computation table, generalized Leibniz or Mahowald conclusion,
   $C_3/C_4/C_5$, Proposition 7.8/7.9, or final-survival field.
   Defining the record does not supply an inhabitant. No default instance or
@@ -28,7 +31,7 @@ not supply proofs or replace the source-bearing inputs described below.
 
 \begin{definition}[Classical and original BX inputs]
   \label{def:route-classical-bx-inputs}
-  \lean{KIP126.Literature.Route.ClassicalInputs,KIP126.Literature.Route.BXDistinguishedInput}
+  \lean{KIP126.Literature.Route.ClassicalSourceResults,KIP126.Literature.Route.ClassicalSourceBinding,KIP126.Literature.Route.ClassicalInputs,KIP126.Literature.Route.BXDistinguishedInput}
   \leanok
   Classical inputs provide an order-two class detected by the standard
   $h_5^2$, exponent two in the classical $62$-stem, its filtration gap, and
@@ -57,12 +60,16 @@ not supply proofs or replace the source-bearing inputs described below.
   \label{def:route-tools-tmf-inputs}
   \lean{KIP126.Literature.Route.MayInput,KIP126.Literature.Route.MossInput,KIP126.Literature.Route.TodaInputs,KIP126.Literature.Route.TmfInputs}
   \leanok
-  May supplies the actual smash-boundary law. Moss supplies a conditional
+  May supplies signed pushpull source data; its elementwise boundary law is
+  derived internally. Moss supplies a conditional
   existence statement for a detected Toda member, with defining systems,
   null products and no-crossing hypotheses retained. The low Toda inputs
   include $\lambda[h_0]=2$, $\eta^2\in\langle[h_0],\eta,[h_0]\rangle$ and
   $\lambda^2\eta\theta\in\langle2,\theta,2\rangle$ when $2\theta=0$.
-  They do not discard the high-stem indeterminacy. The tmf fields are
+  The low ring facts and the two secondary-operation calculations are separate:
+  the latter require actual synthetic Toda comparison evidence, not just the
+  C-motivic formula in IWX. They do not discard the high-stem indeterminacy.
+  The tmf fields are
   classical Hurewicz results and a small low-filtration vanishing region;
   the synthetic local injectivity used in Proposition 7.8 is still derived
   from these inputs and the computation tables.
@@ -283,34 +290,115 @@ not supply proofs or replace the source-bearing inputs described below.
   in this implication.
 \end{proof}
 
-% SOURCE: May, The Additivity of Traces in Triangulated Categories, Lemma 4.6 and TC3; KIP126/Main/Axiom/Literature/MainPaper/main.tex:1755-1778.
-\begin{theorem}[May's smash-boundary lemma]
+% SOURCE: May author PDF AddJan01.pdf, TC3 pp.12--13, Lemma 4.6 p.14.
+\begin{definition}[Signed May source data]
   \label{thm:external-may-smash-boundary}
   \uses{def:smash-triangle,def:external-result}
-  \lean{KIP126.Stable.MaySmashBoundary,KIP126.Stable.MayLiteratureInput,KIP126.Stable.cataloguedMaySmashBoundary}
-  \notready
-  Fix the tensor functors' suspension comparisons and exactness witnesses.
-  Given two distinguished triangles, form their $3\times3$ smash diagram.  If
-  $a\in\pi_n(X\wedge Z')$ and $b\in\pi_n(Y\wedge Y')$ have the same image in
-  $\pi_n(Y\wedge Z')$, then there is
-  $c\in\pi_n(Z\wedge X')$ whose image agrees with $b$ in
-  $\pi_n(Z\wedge Y')$ and whose boundary agrees with the boundary of $a$ in
-  $\pi_{n-1}(X\wedge X')$.
-  The Lean predicate uses the actual tensor arrows and connecting
-  homomorphisms of these two mapped triangles.  Its source-bearing wrapper
-  requires a proof of that predicate and locks its claim root to
-  \texttt{maySmashBoundary}; the predicate and wrapper do not construct a
-  proof or select a stable model.
-\end{theorem}
+  \lean{KIP126.Literature.Route.MayContext,KIP126.Literature.Route.MayPushpullData,KIP126.Literature.Route.MaySourceResults}
+  \leanok
+  Fix the left and right tensor suspension comparisons and exactness witnesses.
+  The source input gives the TC3 pushpull vertex, its three actual maps and
+  the compatible-pair lifting property of Lemma 4.6. The two boundary paths
+  differ by a minus sign. This records the part of TC3 used here, not a
+  definition or construction of its entire axiom system. Supplying this
+  source input on the selected model remains unproved.
+\end{definition}
 
+\begin{theorem}[Conditional signed boundary and sign removal]
+  \label{thm:route-may-signed-adapter}
+  \uses{thm:external-may-smash-boundary}
+  \lean{KIP126.Interface.Solution.Literature.Route.may_signed_boundary_of_source,KIP126.Interface.Solution.Literature.Route.may_boundary_projected_of_exponent_two}
+  \leanok
+  Given the stated source data and a compatible pair $(a,b)$, there is $c$
+  with the required second square and $\partial_U a=-\partial_T c$.
+  For an additive projection $q$ satisfying $q(x)+q(x)=0$ for every $x\in\pi_{n-1}(X\wedge X')$, the projected boundaries are equal. No exponent-two property of
+  actual homotopy groups follows merely from mod-two Adams $E_2$ coordinates.
+\end{theorem}
 \begin{proof}
-  The proof remains an explicit external input, located at May's Lemma 4.6
-  and axiom TC3 via the main paper's Lemma \texttt{lem:452d218c}, lines
-  1755--1778; the May primary text is not in the local source catalogue.
-  The cited pullback object lifts the compatible pair $(a,b)$; its third
-  structure map gives $c$, and commutativity supplies the two equalities.
-  Ordinary tensor exactness alone does not supply this TC3 compatibility
-  for arbitrary choices of suspension comparisons.
+  \leanok
+  Lift $(a,b)$ to the source vertex, apply its third map, and compose the
+  signed source identity. Apply additivity and the displayed exponent-two
+  premise for the unsigned projected statement.
+\end{proof}
+
+\begin{definition}[Toda source facts and internal secondary comparison]
+  \label{def:route-toda-source-application}
+  \uses{def:route-tools-tmf-inputs,def:toda-bracket}
+  \lean{KIP126.Literature.Route.TodaSourceData,KIP126.Literature.Route.TodaSourceResults,KIP126.Literature.Route.TodaSecondaryComparison,KIP126.Literature.Route.TodaApplication}
+  \leanok
+  Source facts retain one $[h_0]$, its first-quotient label, low ring relations
+  and low indeterminacy. Internal comparison separately requires the actual
+  low Toda member, a symmetric Toda star operation, and its identification
+  with the $\lambda^2\eta$ product. IWX Corollary 6.2 is C-motivic and does
+  not itself deliver these facts on the chosen synthetic model.
+\end{definition}
+\begin{theorem}[Conditional Toda assembly]
+  \label{thm:route-toda-adapter}
+  \uses{def:route-toda-source-application}
+  \lean{KIP126.Interface.Solution.Literature.Route.todaApplication_of_secondary,KIP126.Interface.Solution.Literature.Route.toda_of_source}
+  \leanok
+  The specified secondary comparison gives the two local Toda memberships.
+  Together with the source facts it produces the existing Toda consumer
+  record, preserving the same $[h_0]$ and all precise premises.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Substitute the star/product identity into the supplied symmetric-bracket
+  theorem and assemble the fields. This does not construct the comparison.
+\end{proof}
+
+\begin{definition}[Full localization and completion comparison]
+  \label{def:route-kernel-source-binding}
+  \uses{def:route-synthetic-inputs}
+  \lean{KIP126.Literature.Route.RealizationKernelSourceData,KIP126.Literature.Route.RealizationKernelSourceResults,KIP126.Literature.Route.RealizationKernelBinding}
+  \leanok
+  The full source category carries its actual $\lambda$ localization.
+  Completion is left adjoint to the fully faithful inclusion of the chosen
+  complete model; source spheres are identified with model spheres only
+  after completion. The source finite-power kernel theorem is restricted
+  to the inclusion of the selected object closure. Its model binding
+  explicitly compares realization-zero and all $\lambda$ powers.
+  Compactness of a hypercomplete sphere is not assumed.
+\end{definition}
+\begin{theorem}[Conditional finite-power kernel transport]
+  \label{thm:route-kernel-adapter}
+  \uses{def:route-kernel-source-binding}
+  \lean{KIP126.Interface.Solution.Literature.Route.realizationKernel_of_source}
+  \leanok
+  Given the source kernel theorem and binding, a class on a selected object
+  realizes to zero exactly when a finite $\lambda$ power kills it.
+  This does not assert one-step $\lambda$ injectivity or a particular torsion bound.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Use the actual adjunction equivalence on representatives, the
+  realization-zero comparison, and injectivity of that equivalence together
+  with its $\lambda$ compatibility.
+\end{proof}
+
+\begin{definition}[Moss on the fixed classical source convergence]
+  \label{def:route-moss-source}
+  \uses{def:route-classical-bx-inputs,def:route-tools-tmf-inputs}
+  \lean{KIP126.Literature.Route.MossSourceInput}
+  \leanok
+  Moss's source statement is formulated on the same classical sphere
+  convergence used by the other classical inputs. It retains three
+  detections, two null products, a Massey defining system, both no-crossing
+  premises and residual injectivity. The source assertion itself is not
+  proved here; the original Moss scan has not been independently verified.
+\end{definition}
+\begin{theorem}[Moss convergence transport]
+  \label{thm:route-moss-source-adapter}
+  \uses{def:route-moss-source}
+  \lean{KIP126.Interface.Solution.Literature.Route.mossInputOfClassicalSource}
+  \leanok
+  Given the source statement and the equality identifying its convergence
+  with the route's sphere convergence, the existing route Moss input follows.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Rewrite along the convergence equality. No defining-system, crossing,
+  residual or indeterminacy hypothesis is discarded.
 \end{proof}
 
 \section{Published synthetic and comparison results}
