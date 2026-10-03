@@ -26,12 +26,12 @@ HASHES = {
 # These select records, not their computed answers. No row count is inferred
 # from the team's informal "eight": one of those eight is a Cnu result.
 SELECTION = [
-    (5990, "d2_x125_8", "Fact 7.13(2)"),
+    (5990, "d2_x_125_8", "Fact 7.13(2)"),
     (5541, "d2_h6", "Lemma 7.16, classical Toda bracket argument"),
-    (153768, "d3_h4_x109_12", "Lemma 7.14(1)"),
-    (462481, "d3_h0Sq_x123_13_2", "Lemma 7.14(2)"),
-    (929469, "d3_x126_4", "Lemma 7.16"),
-    (2671068, "d7_x123_11_combination", "Lemma 7.14(2)"),
+    (153768, "d3_h4_x_109_12", "Lemma 7.14(1)"),
+    (462481, "d3_h0Sq_x_123_13_2", "Lemma 7.14(2)"),
+    (929469, "d3_x_126_4", "Lemma 7.16"),
+    (2671068, "d7_x_123_11_combination", "Lemma 7.14(2)"),
 ]
 LOG_SCHEMA = ("CREATE TABLE log (id INTEGER PRIMARY KEY, depth TINYINT, reason TEXT, "
               "name TEXT, stem SMALLINT as (t-s), s SMALLINT, t SMALLINT, r SMALLINT, "

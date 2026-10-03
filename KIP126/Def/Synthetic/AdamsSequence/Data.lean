@@ -154,7 +154,7 @@ def obj (F : SyntheticAdamsFamily Syn) (X : Syn) : SyntheticAdamsSS.{v} where
 
 /-- The same family on the synthetic sphere; no independently chosen sequence. -/
 def sphere (F : SyntheticAdamsFamily Syn) : SyntheticAdamsSS.{v} :=
-  F.obj S00
+  F.obj S_0_0
 
 /-- Evaluate the family on the actual ν-image. -/
 def nu {Stable : Type u'} [StableHomotopyCategory.{u', v'} Stable]

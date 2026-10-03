@@ -49,7 +49,7 @@ theorem tmf_of_source (G : TmfLabels H) (S : TmfSourceData H)
 /-- Assemble source transports on the SAME bindings. The secondary Toda
 comparison, compatible lift triple and high-class survival remain explicit
 producer premises; source names alone do not establish those comparisons. -/
-theorem application_of_parts (η : BiHom 1 2 (S00 : Syn)) (G : TmfLabels H)
+theorem application_of_parts (η : BiHom 1 2 (S_0_0 : Syn)) (G : TmfLabels H)
     (B : Bindings D η G) (A : Statements D η G B)
     (secondary : TodaSecondaryComparison η B.todaSource)
     (hnu : NuCofiberSourceResults D B.nuSource)

@@ -18,7 +18,7 @@ KIP126.Literature.Route.Statements D η L B  -- 当前 A(M)，B 是同一组 Bin
 
 其中 `D : Kervaire.Route.Model H M Syn` 是已经冻结的同一个模型；这里局部变量
 `M : MilnorCooperations H` 沿用旧 API 名称，并不是另一个项目数学背景。
-`η` 属于该模型的实际 `BiHom 1 2 S00`；`L : TmfLabels H` 只命名实际球谱
+`η` 属于该模型的实际 `BiHom 1 2 S_0_0`；`L : TmfLabels H` 只命名实际球谱
 E₂ 的 `g : E₂^(4,24)` 和 `Δh₁g : E₂^(9,54)`，其 CSV 识别仍属于 C(M)。
 `g⁴Δh₁g : E₂^(25,150)` 由现有标准 cup product 构造，没有自由乘法字段。
 

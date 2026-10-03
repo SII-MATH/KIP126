@@ -1,6 +1,6 @@
 # Synthetic / Sphere
 
-`Data.lean` 定义同一 synthetic 范畴的球面 `S00`、`Smn`、`BiHom`、悬移等价与 λ 作用。
+`Data.lean` 定义同一 synthetic 范畴的球面 `S_0_0`、`Smn`、`BiHom`、悬移等价与 λ 作用。
 
 新增 `Homotopy/`：
 

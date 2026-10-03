@@ -9,7 +9,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
-  (D : Model H M Syn) (η : BiHom 1 2 (S00 : Syn)) (L : TmfLabels H)
+  (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn)) (L : TmfLabels H)
 
 /-- Supply the already frozen forward differential language from the
 external BHS rigidity input. This is only projection, not a proof of BHS. -/

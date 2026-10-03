@@ -7,9 +7,9 @@ open KIP126.Core.SpectralSequence
 
 /-- A downstream consumer can use the ambiguity without selecting a branch:
 the actual fixed tower d₃ in this bidegree is nonzero. -/
-theorem SphereDifferentialFacts.d3_x126_6_ne_zero (F : SphereDifferentialFacts) :
+theorem SphereDifferentialFacts.d3_x_126_6_ne_zero (F : SphereDifferentialFacts) :
     sphereAdamsData.d 3 (6, 132) ≠ 0 := by
-  rcases F.d3_x126_6_candidates.evidence with h | h
+  rcases F.d3_x_126_6_candidates.evidence with h | h
   · obtain ⟨_, _, h⟩ := h
     exact h.d_ne_zero
   · obtain ⟨_, _, h⟩ := h

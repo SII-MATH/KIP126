@@ -28,9 +28,9 @@ map and a suspension comparison; no such identification is asserted here. -/
 noncomputable def SphereHopfInput.xbar (N : SphereHopfInput)
     (topLift : (sphereMapCofiberAdams N.map).Page 2 (8, 134)) :=
   topLift + sphereMapCofiberBottomE2 N.map (8, 134)
-    (linToSphereE2 8 134 (by decide) (atom .x126_8)) +
+    (linToSphereE2 8 134 (by decide) (atom .x_126_8)) +
     sphereMapCofiberBottomE2 N.map (8, 134)
-      (linToSphereE2 8 134 (by decide) (atom .x126_8_2))
+      (linToSphereE2 8 134 (by decide) (atom .x_126_8_2))
 
 /-- The cofiber sequence and bottom-cell classes are now determined by the
 fixed sphere and N.map. The topLift comparison and all external evidence

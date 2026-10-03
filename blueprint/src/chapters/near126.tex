@@ -389,9 +389,9 @@ This chapter contains only the project deductions that assemble the setup, exter
   has filtration 14, the relation is independent of the representative.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possibleh62.
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possible_h_6_sq.
 \begin{proposition}[Only possible differential on $h_6^2$]
-  \label{prop:possible-h62}
+  \label{prop:possible-h-6-sq}
   \lean{KIP126.Kervaire.Route.Model}
   \lean{KIP126.Solution.Near126.CandidateReduction.only_d12_differential_reduction}
   \lean{KIP126.Kervaire.Route.Model}
@@ -421,10 +421,10 @@ This chapter contains only the project deductions that assemble the setup, exter
   exclusive because a source supporting a nonzero $d_{12}$ is not permanent.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2387-2446, Lemma lem:x1239.
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2387-2446, Lemma lem:x_123_9.
 \begin{lemma}[The classes $\alpha_1,\alpha_2,\alpha_3$]
   \label{lem:near126-alpha-relations}
-  \uses{def:near126-computation-input,evidence:x1239,thm:external-synthetic-einfty-quotient,evidence:near126-indeterminacy,data:table-s123,data:table-s124-high}
+  \uses{def:near126-computation-input,evidence:x_123_9,thm:external-synthetic-einfty-quotient,evidence:near126-indeterminacy,data:table-s123,data:table-s124-high}
   \notready
   For a near-$126$ computation input $D$, there exists
   $\alpha_1=[x_{123,9}+h_0x_{123,8}]$ in
@@ -492,7 +492,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
 \begin{lemma}[Toda bracket detects the two-extension source]
   \label{lem:toda-two-extension}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h02x1259,def:external-evidence}
+  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2,def:external-evidence}
   \notready
   For a near-$126$ computation input $D$, assuming $C_3$ and the universal
   form of $C_5$, the synthetic Toda bracket
@@ -518,7 +518,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2571-2580, proof of Corollary cor:2ext125, especially the comparison of all representatives detected by lambda^4 h_0^2 x_{125,9,2}; Appendix Table S125.19.
 \begin{lemma}[Indeterminacy of the two-extension source]
   \label{lem:near126-two-extension-indeterminacy}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:toda-h0-leading-nonvanishing,lem:toda-two-extension,evidence:h02x1259,evidence:near126-core,data:table-s125-low,thm:appendix-all-rows-encoded,thm:external-synthetic-einfty-quotient,def:external-evidence}
+  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:toda-h0-leading-nonvanishing,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,evidence:near126-core,data:table-s125-low,thm:appendix-all-rows-encoded,thm:external-synthetic-einfty-quotient,def:external-evidence}
   \notready
   For a near-$126$ computation input $D$, assume $C_3$ and the universal form
   of $C_5$.  Let $u_0$ be a bracket
@@ -554,10 +554,10 @@ This chapter contains only the project deductions that assemble the setup, exter
   the indeterminacy deduction is the project proof recorded here.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2478-2480, Remark rem:h02x1259, now deduced after Lemma lem:toda2ext.
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2478-2480, Remark rem:h_0_sq_mul_x_125_9_2, now deduced after Lemma lem:toda2ext.
 \begin{corollary}[Conditional vanishing of the unresolved $d_5$]
   \label{cor:h02x1259-d5-zero}
-  \uses{def:near126-computation-input,lem:near126-equiv-c5,lem:toda-two-extension,evidence:h02x1259,thm:external-synthetic-einfty-quotient}
+  \uses{def:near126-computation-input,lem:near126-equiv-c5,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,thm:external-synthetic-einfty-quotient}
   \notready
   For a near-$126$ computation input $D$, under $C_3$ and $C_5$, the class
   $\lambda^4h_0^2x_{125,9,2}$ detects a nonzero class modulo $\lambda^9$.
@@ -605,7 +605,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
-  \uses{def:near126-computation-input,evidence:h1x1217,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,data:table-cnu126,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility}
+  \uses{def:near126-computation-input,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,data:table-cnu126,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility}
   \notready
   For a near-$126$ computation input $D$, there is a class
   $[\lambda^4h_1x_{121,7}]\in
@@ -690,7 +690,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:128-130 and 2106-2214, Theorems thm:h62 and thm:126survives.
+% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:128-130 and 2106-2214, Theorems thm:h_6_sq and thm:126survives.
 \begin{theorem}[$h_6^2$ is a permanent cycle]
   \label{thm:h6-square-permanent}
   \lean{KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent}
@@ -709,7 +709,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 \end{theorem}
 
 \begin{proof}
-  \uses{prop:h6-internal-standard-comparison,def:kervaire-main-input,prop:possible-h62,prop:near126-c3-not-c5}
+  \uses{prop:h6-internal-standard-comparison,def:kervaire-main-input,prop:possible-h-6-sq,prop:near126-c3-not-c5}
   The proved label equality allows the proof to use CSV coordinates on the
   same internal sequence. The following is the still-unimplemented proof route
   for the unique standard target, not a completed Lean argument.
@@ -720,7 +720,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   theorem with this same $D$, and every spectral-sequence comparison through
   $I$'s coherence fields.  If the nonzero
   $d_{12}$ alternative of
-  Proposition~\ref{prop:possible-h62} held, then $C_3$, $C_4$, and $C_5$ would
+  Proposition~\ref{prop:possible-h-6-sq} held, then $C_3$, $C_4$, and $C_5$ would
   all hold.  Proposition~\ref{prop:near126-c3-not-c5} contradicts the first and
   third simultaneously.  Therefore the differential alternative is false,
   and the exclusive permanent-cycle alternative holds.

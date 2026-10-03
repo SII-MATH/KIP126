@@ -85,7 +85,7 @@ exact-couple 的 `J` 和第二页商映射代表 `h₂`，而不是只记录一�
 - 诱导映射保持实际 `Z_r/B_r`，因而给出 quotient-page 和 SSData E₂ 映射；
 - `sphereMapCofiberBottomE2`、`sphereMapCofiberTopE2` 是构造的映射；
 - `N.ybar`、`N.tbar` 固定为实际 bottom E₂ 映射作用于具体 `Y`、`T`；
-  `N.xbar topLift` 固定为 `topLift+i(x126,8)+i(x126,8,2)`。
+  `N.xbar topLift` 固定为 `topLift+i(x_126_8)+i(x_126_8_2)`。
 
 若采用这一实现，需要提供 `N`，并把 top-map 的目标（`ΣS³` 的 tower E₂）
 与球面的重分次 E₂ 比较。`X[4]` 不是唯一指定的类：要求同一组选定元素
@@ -107,9 +107,9 @@ Mahowald 定理的 crossing 条件是两个分支的析取；若使用零长度 
 `NotHit x` 只排除入射，`NoOutgoing x` 只排除出射；两者都没有被冒充为
 `NonzeroSurvival`。歧义字段保留完整析取，不提前选一个微分值。
 
-记 `V=x123,9+h0*x123,8`，`U=h0²*x124,8`，
-`T=h1*h4*x109,12`，`W=x126,8,4+x126,8`，
-`Y=h0²*x125,9,2`，`X=h1*x121,7`，`P=h6*Md0`，`Q=h5*x91,11`。
+记 `V=x_123_9+h0*x_123_8`，`U=h0²*x_124_8`，
+`T=h1*h4*x_109_12`，`W=x_126_8_4+x_126_8`，
+`Y=h0²*x_125_9_2`，`X=h1*x_121_7`，`P=h6*Md0`，`Q=h5*x_91_11`。
 
 ## D：图中的微分
 
@@ -117,15 +117,15 @@ Mahowald 定理的 crossing 条件是两个分支的析取；若使用零长度 
 
 | ID | 谱、微分 | 源 → 靶 `(s,t)` | 来源 / 状态 |
 | --- | --- | --- | --- |
-| D1 | 球面 `d₂(x125,8)=h1 V+U` | (8,133) → (10,134) | `fact:x1239`；固定对象接口 |
+| D1 | 球面 `d₂(x_125_8)=h1 V+U` | (8,133) → (10,134) | `fact:x_123_9`；固定对象接口 |
 | D2 | 球面 `d₂(h6)=h0 h5²` | (1,64) → (3,65) | `lem:toda2ext` 证明；固定对象接口 |
 | D3 | 球面 `d₂(h0⁶h6)=h0 B` | (7,70) → (9,71) | 同上；固定对象接口 |
-| D4 | 球面 `d₃(h4 x109,12)=h1 x122,15,2` | (13,137) → (16,139) | `lem:x1239` 证明；固定对象接口 |
-| D5 | 球面 `d₃(h0² x123,13,2)=h0² x122,16` | (15,138) → (18,140) | 同上；固定对象接口 |
-| D6 | 球面 `d₃(x126,4)=h0² x125,5` | (4,130) → (7,132) | `lem:toda2ext` 证明；固定对象接口 |
-| D7 | 球面 `d₇(x123,11,2+x123,11+h0 h6 B4)=h1 x121,17` | (11,134) → (18,140) | `lem:x1239` 证明；固定对象接口 |
-| D8 | Cν `d₃(X[4]+x126,8[0]+x126,8,2[0])=Y[0]` | (8,134) → (11,136) | `lem:nuext125`；对象/胞腔映射连接待办 |
-| D9 | 球面 `d₃(x126,6)` 是 `h5 x94,8` 或 `h5 x94,8+h6 B`，且非零 | (6,132) → (9,134) | `fact:theta5sqAF` 后的 remark；固定对象接口 |
+| D4 | 球面 `d₃(h4 x_109_12)=h1 x_122_15_2` | (13,137) → (16,139) | `lem:x_123_9` 证明；固定对象接口 |
+| D5 | 球面 `d₃(h0² x_123_13_2)=h0² x_122_16` | (15,138) → (18,140) | 同上；固定对象接口 |
+| D6 | 球面 `d₃(x_126_4)=h0² x_125_5` | (4,130) → (7,132) | `lem:toda2ext` 证明；固定对象接口 |
+| D7 | 球面 `d₇(x_123_11_2+x_123_11+h0 h6 B4)=h1 x_121_17` | (11,134) → (18,140) | `lem:x_123_9` 证明；固定对象接口 |
+| D8 | Cν `d₃(X[4]+x_126_8[0]+x_126_8_2[0])=Y[0]` | (8,134) → (11,136) | `lem:nuext125`；对象/胞腔映射连接待办 |
+| D9 | 球面 `d₃(x_126_6)` 是 `h5 x_94_8` 或 `h5 x_94_8+h6 B`，且非零 | (6,132) → (9,134) | `fact:theta5sqAF` 后的 remark；固定对象接口 |
 
 以上是原文断言的登记和数学命题接口，不是重新运行 Lin 的验证结果。
 每个 `ExternalEvidence` 值还应附上真实 archive/query/disproof 的出处。
@@ -137,12 +137,12 @@ Mahowald 定理的 crossing 条件是两个分支的析取；若使用零长度 
 | --- | --- | --- |
 | S1 | W 非零存活到 E₆；T 无出射；T 只可能被 d₆(W) 或 d₁₂(h6²) 打中 | `fact:theta5sqAF` |
 | S2 | U 非零永久存活；(25,150) 的 E₅ 只有零与 `g⁴ Δh1g` 这一个非零类 | 同上 |
-| S3 | W 的 d₆ 只能是零或 T；`e0 Δh6g` 永久存活 | `prop:possibleh62` 证明 |
-| S4 | V 到 E₁₂，Y 到 E₅，X 到 E₆，三者均无入射微分 | `fact:x1239`、`fact:h02x1259`、`fact:h1x1217` |
+| S3 | W 的 d₆ 只能是零或 T；`e0 Δh6g` 永久存活 | `prop:possible_h_6_sq` 证明 |
+| S4 | V 到 E₁₂，Y 到 E₅，X 到 E₆，三者均无入射微分 | `fact:x_123_9`、`fact:h_0_sq_mul_x_125_9_2`、`fact:h_1_mul_x_121_7` |
 | S5 | P、Q 非零永久存活 | `fact:stem122` |
 | P1 | `h5² B=0`；T 不为 h0 的倍数 | `lem:toda2ext` 证明 |
 | P2 | T 不为 h2 的倍数；`X h2=0`；Y 不为 h2 的倍数 | `prop:state5false`、`lem:nuext125` 证明 |
-| P3 | `h1(e0 Δh6g)=0` | `lem:x1239`、`prop:possibleh62` 证明 |
+| P3 | `h1(e0 Δh6g)=0` | `lem:x_123_9`、`prop:possible_h_6_sq` 证明 |
 | V1 | stem 125 的 E₂，0≤s≤4 全为零 | `Table:S125.19` |
 | V2 | stem 124 的 (s=11,E₅)、(s=12,E₄) 分量为零 | `Table:S124.12` |
 | V3 | stem 125 的 (s=12,E₄)、(s=13,E₅) 分量为零 | `Table:S125.19` |
@@ -162,7 +162,7 @@ P 类字段原则上可由现有代数的可检查计算证书消除；没有必
 | R1 | 指定权重的 λ-torsion 排除；θ5 选择差异的高过滤项 | `evidence:theta5-order-torsion` | 需要 classical/synthetic 比较；群结构与阶数归文献包 |
 | R2 | stem124 低过滤候选及 AF13 循环乘 h1 为零，区分循环与暂存页类 | `evidence:near126-indeterminacy` | V2 不足以代替完整代表元/indeterminacy 分析 |
 | R3 | θ5² 过滤至少10；10–13候选；更高过滤只剩 tmf 可检测项所需的完整表和范围界限 | `evidence:theta5-square-tmf` | 有部分消失字段；synthetic 推论及高过滤尾部界限未完成 |
-| R4 | `lem:x1239` 中 λ11/λ9 商的其余候选消失与代表元选择 | `lem:near126-alpha-relations` | D4/D5/D7 不能单独替代穷尽性 |
+| R4 | `lem:x_123_9` 中 λ11/λ9 商的其余候选消失与代表元选择 | `lem:near126-alpha-relations` | D4/D5/D7 不能单独替代穷尽性 |
 | R5 | Toda 所在截断群 AF≤12 的三个生成项及其线性组合；Massey 的零不定性 | `lem:toda-two-extension` | 需要群、乘法、截断比较；不是简单三选一就能覆盖任意和 |
 | R6 | Moss 的 crossing 排除及 synthetic Toda 的零不定性/阶数检查 | `thm:moss-convergence-adapter`、`lem:toda-two-extension` | Moss crossing 与本项目另一种 crossing 不能混用 |
 | R7 | 换代表元后的 h0-extension 不定性消失 | `lem:near126-two-extension-indeterminacy` | 需把逐候选乘法/微分与 synthetic 比较接起来 |

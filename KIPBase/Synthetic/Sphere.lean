@@ -23,11 +23,11 @@ variable {Syn : Type u} [Category.{v} Syn] [Preadditive Syn]
 
 /-- KIP §3, Definition 3.5 (bigraded spheres): The synthetic sphere S^{0,0}.
     This is the unit object of the synthetic spectra category. -/
-noncomputable def S00 : Syn := 𝟙_ Syn
+noncomputable def S_0_0 : Syn := 𝟙_ Syn
 
 /-- The bigraded synthetic sphere S^{m,n} = Σ^{m,n} S^{0,0}. -/
 noncomputable def Smn (m n : ℤ) : Syn :=
-  (SyntheticCategory.biShift (m, n)).obj S00
+  (SyntheticCategory.biShift (m, n)).obj S_0_0
 
 /-! ### Bigraded homotopy groups -/
 
@@ -73,7 +73,7 @@ noncomputable def susp_invariance (m n k l : ℤ) (X : Syn) :
         (SyntheticCategory.biShift (k, l)).obj X) := by
   refine ((biShift_fullyFaithful (k, l)).homEquiv).trans ?_
   exact Iso.homCongr
-    ((SyntheticCategory.biShift_comp (m, n) (k, l)).app S00)
+    ((SyntheticCategory.biShift_comp (m, n) (k, l)).app S_0_0)
     (Iso.refl _)
 
 /-! ### Z[λ]-module structure on π_{*,*} -/
@@ -90,7 +90,7 @@ noncomputable def lambdaAction (Syn : Type u) [Category.{v} Syn] [Preadditive Sy
   intro f
   have heq : (m, n) + (0, -1) = (m, n - 1) := by ext <;> simp [sub_eq_add_neg]
   refine eqToHom ?_ ≫
-    (SyntheticCategory.biShift_comp (m, n) (0, -1)).inv.app S00 ≫
+    (SyntheticCategory.biShift_comp (m, n) (0, -1)).inv.app S_0_0 ≫
     SyntheticCategory.lam.app (Smn m n) ≫ f
   simp only [Smn]
   rw [heq]

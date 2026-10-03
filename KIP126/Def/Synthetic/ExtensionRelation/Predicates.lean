@@ -5,7 +5,7 @@ open CategoryTheory KIP126.Core.SpectralSequence
 open KIP126.StableHomotopy KIP126.Synthetic.Context KIP126.Synthetic.PageExtension
 universe u v
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
-  [HasFunctorialCofiber (C := Syn)] {H : Syn} {unit : S00 ⟶ H}
+  [HasFunctorialCofiber (C := Syn)] {H : Syn} {unit : S_0_0 ⟶ H}
   {F : SyntheticAdamsFamily Syn} {X Y : Syn} (g : X ⟶ Y)
   (cx : TowerConvergence unit F X) (cy : TowerConvergence unit F Y)
 

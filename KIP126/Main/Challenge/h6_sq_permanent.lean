@@ -2,7 +2,7 @@ import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 
 /-! T(M): the standard h₆² survives on M's internal sphere Adams sequence.
-Source: Lin–Wang–Xu, Theorem 1.4 / 7.1 (local main.tex labels thm:h62 and
+Source: Lin–Wang–Xu, Theorem 1.4 / 7.1 (local main.tex labels thm:h_6_sq and
 thm:126survives). Both the sequence and the specified Milnor class come from
 the same foundation. The statement imports no C(M), Lin data, or SS adapter.
 The selected foundation/Milnor data still use the Challenge1 stage input;

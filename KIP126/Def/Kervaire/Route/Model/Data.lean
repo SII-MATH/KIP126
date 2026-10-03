@@ -90,8 +90,8 @@ def sphereFirstQuotient : SphereFirstQuotientComparison H Syn :=
 /-- The quotient label is induced by the actual quotient projection in the
 same functor. It is never selected independently of the sphere label. -/
 def quotientLabel (n : ℕ) (s t : ℤ) (k : ℕ) (x : E2 H SphereSpectrum s t) :
-    (D.family.obj (XModLambdaN (S00 : Syn) n)).E₂ (s, t, t - k) :=
-  familyPageMap D.family (XModLambdaN.incl S00 n) 2 (s, t, t - k)
+    (D.family.obj (XModLambdaN (S_0_0 : Syn) n)).E₂ (s, t, t - k) :=
+  familyPageMap D.family (XModLambdaN.incl S_0_0 n) 2 (s, t, t - k)
     (D.sphereE2 s t k x)
 end ModelData
 end

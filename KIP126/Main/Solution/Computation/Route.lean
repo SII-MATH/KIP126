@@ -119,9 +119,9 @@ theorem named_survive1000 (I : Inputs D L G) :
 /-- The two depth-1 T rows refute zero and one excluded E3 target.
 The conclusion requires reconstruction of the whole actual E3 target group
 from the basis and d2 rows, not a claim that retained trials were exhaustive. -/
-theorem d3_x1266_candidates (I : Inputs D L G) :
-    Derived.Differential I.realization 3 (atom .x126_6) d3Candidate ∨
-      Derived.Differential I.realization 3 (atom .x126_6) d3OtherCandidate := by
+theorem d3_x_126_6_candidates (I : Inputs D L G) :
+    Derived.Differential I.realization 3 (atom .x_126_6) d3Candidate ∨
+      Derived.Differential I.realization 3 (atom .x_126_6) d3OtherCandidate := by
   sorry
 
 /-- The six d4 root refutations, d4([1])=[3], and the reconstructed E4
@@ -167,7 +167,7 @@ theorem cnu_target_through5 (I : Inputs D L G) :
 
 /-- Public route expressions are exactly the CSV expressions interpreted
 through I. The target equality includes associativity of the actual cobar
-product: the two files parenthesize h1*h4*x10912 differently. -/
+product: the two files parenthesize h1*h4*x_109_12 differently. -/
 theorem route_expression_labels (I : Inputs D L G) :
     I.realization.sphere 8 134 W = L.W ∧
     I.realization.sphere 10 134 U = L.U M ∧

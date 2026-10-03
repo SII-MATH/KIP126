@@ -24,7 +24,7 @@ run_cmd do
     for a in ← liftCoreM (collectAxioms decl) do
       unless KIP126.Checks.AxiomInputs.allows logical a do
         throwError "unexpected computation predicate/coordinate dependency: {decl}: {a}"
-  for decl in [``KIP126.Computation.Near126.SphereDifferentialFacts.d3_x126_6_ne_zero,
+  for decl in [``KIP126.Computation.Near126.SphereDifferentialFacts.d3_x_126_6_ne_zero,
       ``KIP126.Computation.Near126.SphereSurvivalFacts.y_not_hit_on_page,
       ``KIP126.Computation.Near126.SphereBoundaryFacts.p_h2_is_d2_cycle,
       ``KIP126.Computation.Near126.SphereBoundaryFacts.q_h2_is_d2_cycle,
@@ -42,5 +42,5 @@ run_cmd do
       throwError "unexpected computation-facts import: {m}"
 
 #print axioms KIP126.Computation.Near126.Atom.record_eq
-#print axioms KIP126.Computation.Near126.SphereDifferentialFacts.d3_x126_6_ne_zero
+#print axioms KIP126.Computation.Near126.SphereDifferentialFacts.d3_x_126_6_ne_zero
 #print axioms KIP126.Computation.Near126.SphereSurvivalFacts.y_not_hit_on_page

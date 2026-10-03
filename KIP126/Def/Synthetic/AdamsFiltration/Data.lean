@@ -15,19 +15,19 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 
 /-- The coefficient unit is the image of the *same* classical HF₂ unit. -/
 def nuCoefficientUnit {H : C} (unit : 𝟙_ C ⟶ H) (N : NuFunctorData C Syn) :
-    S00 ⟶ N.functor.obj H := N.unitIso.inv ≫ N.functor.map unit
+    S_0_0 ⟶ N.functor.obj H := N.unitIso.inv ≫ N.functor.map unit
 
 variable [HasFunctorialCofiber (C := Syn)]
 
 /-- Actual tower projection on bigraded homotopy. -/
-def towerHomotopyMap {H : Syn} (unit : S00 ⟶ H) (X : Syn)
+def towerHomotopyMap {H : Syn} (unit : S_0_0 ⟶ H) (X : Syn)
     (s : ℕ) (p : ℤ × ℤ) :
     BiHom p.1 p.2 (adamsTower unit X s) →ₗ[ℤ] BiHom p.1 p.2 X :=
   (Preadditive.rightComp (Smn p.1 p.2)
     (adamsTowerMap unit X 0 s (Nat.zero_le s))).toIntLinearMap
 
 /-- Membership means a lift to stage `max(s,0)` of the coefficient tower. -/
-def towerFiltrationSubmodule {H : Syn} (unit : S00 ⟶ H) (X : Syn)
+def towerFiltrationSubmodule {H : Syn} (unit : S_0_0 ⟶ H) (X : Syn)
     (s : ℤ) (p : ℤ × ℤ) : Submodule ℤ (BiHom p.1 p.2 X) :=
   LinearMap.range (towerHomotopyMap unit X s.toNat p)
 end

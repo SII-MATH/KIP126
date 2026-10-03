@@ -13,32 +13,32 @@ open KIP126.LinE2 KIP126.External KIP126.Classical.Adams
 /-- Seven sphere identities and the unresolved, nonzero two-target d₃.
 The eighth pictured identity is on Cν and is kept in a separate interface. -/
 structure SphereDifferentialFacts where
-  /-- fact:x1239, lines 2377–2385. -/
-  d2_x125_8 : ExternalEvidence
-    (Sphere.Differential 2 (atom .x125_8) (mulAt dataH1 V + U))
+  /-- fact:x_123_9, lines 2377–2385. -/
+  d2_x_125_8 : ExternalEvidence
+    (Sphere.Differential 2 (atom .x_125_8) (mulAt dataH1 V + U))
   /-- lem:toda2ext proof, lines 2538–2544. -/
   d2_h6 : ExternalEvidence
     (Sphere.Differential 2 dataH6 (mulAt dataH0 h5Sq))
   d2_h0Six_h6 : ExternalEvidence
     (Sphere.Differential 2 (mulAt h0Six dataH6) (mulAt dataH0 B))
-  /-- lem:x1239 proof, lines 2400–2454. -/
-  d3_h4_x109_12 : ExternalEvidence
-    (Sphere.Differential 3 (mulAt (atom .h4) (atom .x109_12))
-      (mulAt dataH1 (atom .x122_15_2)))
-  d3_h0Sq_x123_13_2 : ExternalEvidence
-    (Sphere.Differential 3 (mulAt h0Sq (atom .x123_13_2))
-      (mulAt h0Sq (atom .x122_16)))
+  /-- lem:x_123_9 proof, lines 2400–2454. -/
+  d3_h4_x_109_12 : ExternalEvidence
+    (Sphere.Differential 3 (mulAt (atom .h4) (atom .x_109_12))
+      (mulAt dataH1 (atom .x_122_15_2)))
+  d3_h0Sq_x_123_13_2 : ExternalEvidence
+    (Sphere.Differential 3 (mulAt h0Sq (atom .x_123_13_2))
+      (mulAt h0Sq (atom .x_122_16)))
   /-- lem:toda2ext proof, line 2529. -/
-  d3_x126_4 : ExternalEvidence
-    (Sphere.Differential 3 (atom .x126_4) (mulAt h0Sq (atom .x125_5)))
-  /-- lem:x1239 proof, line 2439. -/
+  d3_x_126_4 : ExternalEvidence
+    (Sphere.Differential 3 (atom .x_126_4) (mulAt h0Sq (atom .x_125_5)))
+  /-- lem:x_123_9 proof, line 2439. -/
   d7_source : ExternalEvidence
-    (Sphere.Differential 7 d7Source (mulAt dataH1 (atom .x121_17)))
+    (Sphere.Differential 7 d7Source (mulAt dataH1 (atom .x_121_17)))
   /-- Remark following fact:theta5sqAF, lines 2169–2177. Neither alternative
   is selected; each branch includes nonvanishing on E₃, not just on E₂. -/
-  d3_x126_6_candidates : ExternalEvidence
-    (Sphere.Differential 3 (atom .x126_6) d3Candidate ∨
-      Sphere.Differential 3 (atom .x126_6) d3OtherCandidate)
+  d3_x_126_6_candidates : ExternalEvidence
+    (Sphere.Differential 3 (atom .x_126_6) d3Candidate ∨
+      Sphere.Differential 3 (atom .x_126_6) d3OtherCandidate)
 
 /-- Survival, nonvanishing and global incoming exclusions explicitly used
 by the main argument. Survival to Eᵣ does not assert vanishing of dᵣ. -/
@@ -49,17 +49,17 @@ structure SphereSurvivalFacts where
   t_only_incoming : ExternalEvidence Sphere.OnlyIncomingT
   u_permanent : ExternalEvidence (Sphere.Permanent U)
   high_e5_exhaustion : ExternalEvidence Sphere.HighComponentExhaustion
-  /-- prop:possibleh62 proof, line 2358; a target-exhaustion input. -/
+  /-- prop:possible_h_6_sq proof, line 2358; a target-exhaustion input. -/
   w_d6_targets : ExternalEvidence Sphere.D6WTargets
-  /-- prop:possibleh62 proof, lines 2337–2342. -/
+  /-- prop:possible_h_6_sq proof, lines 2337–2342. -/
   correction_permanent : ExternalEvidence (Sphere.Permanent correction)
-  /-- fact:x1239, lines 2377–2385. -/
+  /-- fact:x_123_9, lines 2377–2385. -/
   v_to_e12 : ExternalEvidence (Sphere.Survival 12 V)
   v_not_hit : ExternalEvidence (Sphere.NotHit V)
-  /-- fact:h02x1259, lines 2466–2468; d₅(Y) is NOT specified. -/
+  /-- fact:h_0_sq_mul_x_125_9_2, lines 2466–2468; d₅(Y) is NOT specified. -/
   y_to_e5 : ExternalEvidence (Sphere.Survival 5 Y)
   y_not_hit : ExternalEvidence (Sphere.NotHit Y)
-  /-- fact:h1x1217, lines 2613–2615. -/
+  /-- fact:h_1_mul_x_121_7, lines 2613–2615. -/
   x_to_e6 : ExternalEvidence (Sphere.Survival 6 X)
   x_not_hit : ExternalEvidence (Sphere.NotHit X)
   /-- fact:stem122, lines 2689–2696. -/
@@ -82,13 +82,13 @@ structure SphereProductFacts where
   x_h2_zero : ExternalEvidence ((mulAt X (atom .h2)).val = 0)
   y_not_h2_multiple : ExternalEvidence
     (¬ ∃ a : E2At 10 132, mulAt (atom .h2) a = Y)
-  /-- lem:x1239 and prop:possibleh62. -/
+  /-- lem:x_123_9 and prop:possible_h_6_sq. -/
   h1_correction_zero : ExternalEvidence ((mulAt dataH1 correction).val = 0)
 
 /-- Selected whole-component vanishing queries. Bounds and page numbers are
 part of the types; no inference is made from an unlisted table row. -/
 structure SphereVanishingFacts where
-  /-- Table:S125.19, line 3074; prop:possibleh62 proof, line 2328. -/
+  /-- Table:S125.19, line 3074; prop:possible_h_6_sq proof, line 2328. -/
   e2_stem125_low : ExternalEvidence
     (∀ (s : ℕ), s ≤ 4 → ∀ z : sphereAdamsData.Page 2 (s, (s : ℤ) + 125), z = 0)
   /-- Table:S124.12: AF=11 has an outgoing d₄, so E₄ is NOT asserted zero. -/

@@ -21,7 +21,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 It is a Main deduction target, rather than a literature or computation field of
 `Challenge2`. The selected route uses `(m,w,s) = (125,130,15)`. -/
 def DetectorInjectiveAt (m w s : ℤ) : Prop :=
-  ∀ α : BiHom m w (S00 : Syn),
+  ∀ α : BiHom m w (S_0_0 : Syn),
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s α →
     α ≫ KIP126.Literature.Route.detectorMap D = 0 → α = 0
 
