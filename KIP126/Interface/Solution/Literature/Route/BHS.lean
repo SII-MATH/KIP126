@@ -4,7 +4,7 @@ import KIP126.Interface.Solution.Challenge1
 /-! BHS source specialization and selected-to-completed comparison.
 
 The source adapters below consume the delivered source statements and retain
-the hypotheses of BHS A.1(2) and cor:tau-surj (references/literature/Sources/BHS/source/SynRevBigraded.tex
+the hypotheses of BHS A.1(2) and cor:tau-surj (Source/BHS/source/SynRevBigraded.tex
 and SynRevAdams.tex). Finite Cλ lifting is intentionally separate.
 
 The construction theorem uses bounded-below mod-two completion and the

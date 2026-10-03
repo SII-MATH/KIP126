@@ -1,3 +1,5 @@
+import KIP126.Def.Kervaire.Geometry.Data
+import KIP126.Def.References.Literature.Claims
 import KIP126.Def.Comparison.StageInterfaces
 import KIP126.Def.ClassicalAdams.Convergence.BHS.Predicates
 import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
@@ -70,7 +72,7 @@ Def. This file assembles accepted source conclusions, the exact applications
 of those sources, and the finite C(M) certification obligations on that same
 model. It chooses no new model and does not prove the paper's new tools.
 Source locators and outstanding production obligations are maintained in
-`docs/STAGE0_INTERFACES.md` and `Interface/Challenge/sources.json`.
+`docs/STAGE0_INTERFACES.md` and `docs/challenge2-route-sources.json`.
 -/
 
 namespace KIP126.Literature.Route
@@ -1118,6 +1120,40 @@ def BrowderInterface {Manifold : Type} (dimension : Manifold → ℕ)
     (fun j => NonzeroSurvival sphereAdamsData
       (2, ((2 ^ (j + 1) : ℕ) : ℤ)) (standardHiSquare j))
 
+/-- The source-bearing geometric part of A(M).  Low-dimensional existence,
+HHR nonexistence, and Browder's criterion all use the same geometric model.
+The catalogue roots keep the three logically distinct literature sources
+auditable inside the single Challenge2 witness. -/
+structure GeometryLiteratureInterface (G : GeometryModel) where
+  low_dimensions : External.CataloguedExternalResult
+    (∀ j : ℕ, 1 ≤ j → j ≤ 5 →
+      ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M)
+  low_dimensions_root : low_dimensions.root = .lowKervaireExistence
+  high_nonexistence : External.CataloguedExternalResult
+    (∀ j : ℕ, 7 ≤ j →
+      ¬ ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M)
+  high_nonexistence_root : high_nonexistence.root = .hhrNonexistence
+  browder : External.CataloguedExternalResult
+    (BrowderInterface G.dimension G.kervaireOne)
+  browder_root : browder.root = .browderCriterion
+
+set_option linter.defProp false in
+/-- Forget only the provenance wrapper while retaining the shared geometric
+model selected by Challenge2. -/
+def GeometryLiteratureInterface.geometry
+    {G : GeometryModel} (A : GeometryLiteratureInterface G) :
+    KIP126.Challenge1.GeometryInterface G.dimension G.kervaireOne where
+  low_dimensions := A.low_dimensions.value.proof
+  high_nonexistence := A.high_nonexistence.value.proof
+
+set_option linter.defProp false in
+/-- Browder's result on the same geometric model and the standard internal
+Adams squares used by the rest of Challenge2. -/
+def GeometryLiteratureInterface.browderCriterion
+    {G : GeometryModel} (A : GeometryLiteratureInterface G) :
+    BrowderInterface G.dimension G.kervaireOne :=
+  A.browder.value.proof
+
 /-- Literal CSV coordinates, independent of any choice of comparison map. -/
 def HasCoordinates {s t : Nat} (x : E2At s t) (indices : List Nat) : Prop :=
   ∃ rows : List BasisRow,
@@ -1194,6 +1230,7 @@ claims and not extra program outputs. The classical background is fixed in Def.
 The one route witness is correlated with its source results and C(M), instead
 of being arbitrarily chosen from a weaker type before source conditions exist. -/
 structure ModelBindings (routeInput : Classical.Adams.StandardRouteInput) where
+  geometry : GeometryModel
   cobarDerivedExt : CobarDerivedExtComparison
     Classical.Adams.standardFoundation.hf2 Classical.Adams.standardMilnorCooperations
   moss : StandardSphereMossContext
@@ -1220,6 +1257,7 @@ The source-carrying external wrappers remain explicit inputs where used; this
 structure does not assert that citing a source constructs any of these proofs. -/
 structure LiteratureInterface (routeInput : Classical.Adams.StandardRouteInput)
     (modelBindings : ModelBindings routeInput) where
+  geometry : GeometryLiteratureInterface modelBindings.geometry
   /-- Independent Adams vanishing-line specialization on the delivered
   standard sphere tower, used to close the finite computation's tail. -/
   sphereVanishing : SphereVanishingLine Classical.Adams.standardFoundation.hf2

@@ -466,8 +466,8 @@ def LambdaInversionInterface.symmetricMonoidal {N : NuFunctorData C Syn}
 
 以下类型使用当前 Def 的对象，既不 import KIPBase，也不依赖 synthetic
 谱序列的迁移。参数 H 与 N 必须来自同一选定背景；本文件不为任意抽象 N
-无条件断言文献结论。`Main/Axiom/Literature/Synthetic.lean` 将实际证明与
-Pstrągowski/BHS 的目录项关联，消费者显式接收这些输入。
+无条件断言文献结论。固定模型上的来源证明由
+Challenge2 的 synthetic 来源交付及模型比较接收。
 
 历史 `KIPBase/Synthetic/Nu.lean`、`Lift.lean` 已搭建对应接口形状，但前者的
 短正合前提仅写了中间正合，后者部分三角未绑定 ν 的实际映射；下面按主论文

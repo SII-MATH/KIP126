@@ -2,7 +2,7 @@ import KIP126.Def.References.Literature.Claims
 
 /-!
 This tiny executable-facing module exports the projection which is shared by
-the Lean catalogue and `references/literature/source-inventory.json`.  It is intentionally
+the Lean catalogue and `Source/source-inventory.json`.  It is intentionally
 kept outside the library namespace so the Python checker can invoke it with
 `lake env lean` without adding an I/O dependency to the formalization.
 -/

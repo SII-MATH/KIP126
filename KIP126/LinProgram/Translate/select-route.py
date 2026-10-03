@@ -180,9 +180,9 @@ def main():
  ds=[]
  for o,s,t in sorted(degrees):
   ds.append(dict(spectrum=o,s=s,t=t,core=(o,s,t) in core,basis=bases[o][s,t]))
- paper=ROOT.parents[1]/'references/literature/MainPaper/main.tex'
+ paper=ROOT.parents[1]/'MainPaper/main.tex'
  data=dict(version=1,dataset='Zenodo 14875701 / v126.3.cw49',sha256=HASHES,
-  paper=dict(path='references/literature/MainPaper/main.tex',
+  paper=dict(path='MainPaper/main.tex',
              sha256=hashlib.sha256(paper.read_bytes()).hexdigest(),section='7 and Appendix'),
   scope='Section 7 local inputs; core windows plus coordinate/product endpoints. No proof replay.',
   degrees=ds,claims=claims,products=[dict(s=s,t=t,sp=a,tp=b) for s,t,a,b in sorted(PAIRS)],

@@ -4,7 +4,7 @@ import KIP126.Def.References.Literature.AppendixTable.Data
 # Typed Appendix rows
 
 This module is the source-shaped catalogue for the twelve tables printed in
-`references/literature/MainPaper/main.tex`.  Row class expressions are syntax trees, rather than
+`MainPaper/main.tex`.  Row class expressions are syntax trees, rather than
 unparsed TeX: a generator carries its `(stem, filtration, index)` data, named
 classes are atoms, and products/sums/cell annotations are explicit nodes.
 The catalogue records the paper's row keys and source locations.  It does not
@@ -122,7 +122,7 @@ end DifferentialRelationId
 
 /-- A source locator for one printed row. -/
 structure AppendixRowLocator where
-  file : String := "references/literature/MainPaper/main.tex"
+  file : String := "MainPaper/main.tex"
   line : Nat
   deriving DecidableEq, Repr, Inhabited
 

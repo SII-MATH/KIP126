@@ -11,7 +11,7 @@ Pstrągowski's construction uses spherical sheaves of spectra on the finite
 HF₂-projective ∞-site, not ordinary sheaves on its homotopy category. Its
 hypercomplete version is symmetric monoidal; ν of an HF₂-local spectrum is
 hypercomplete, and τ-inversion recovers the same HF₂-local classical category.
-See references/literature/Sources/Pst/source/synthetic_spectra.tex,
+See Source/Pst/source/synthetic_spectra.tex,
 Definition 4.6 and §4.5, in particular
 `prop:synthetic_analogue_of_e_local_spectrum_nue_local` and the following
 proposition on hypercomplete τ-invertible objects.

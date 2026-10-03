@@ -53,7 +53,7 @@ structure EtaDifferential where
 
 private def etaLocator (description : String) : Locator :=
   { description := description
-    artifact := some "references/literature/MainPaper/main.tex" }
+    artifact := some "MainPaper/main.tex" }
 
 def etaD₁ : EtaDifferential :=
   { source := "h₅d₀", target := "h₁h₅d₀", length := 1

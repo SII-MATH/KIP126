@@ -42,7 +42,7 @@ theorem row5541 : DifferentialStatement ⟨5541, "d2", 1, 64, 2, [0], [0]⟩ :=
   `3a460683c023ee2d8f7e8f904ecef9044a474d88bb7184731e54978ba7dac248`。
 - 表：`log(id,depth,reason,name,stem,s,t,r,x,dx,info)`，其中 `stem=t-s`。
 - 全部 **2,672,275 行**均流式扫描；行号从 5432 到 2677718，不能假设连续。
-- 解释依据：`references/literature/Sources/LWXMachine/source/ms.tex` 的 Proofs 节（493–620 行）。
+- 解释依据：`Source/LWXMachine/source/ms.tex` 的 Proofs 节（493–620 行）。
   该文描述的一般表格式适用；其中旧版 2100 万行统计不是本次 cw49 的行数。
 
 导入器 `KIP126/LinProgram/Translate/import-proofs.py` 支持 `--raw-output` 输出全部原始字段，

@@ -1,4 +1,4 @@
-import KIP126.Main.Solution.Literature.Synthetic
+import KIP126.Challenge1
 import Lean.Elab.Command
 
 /-! Check the tower-based filtration and consume the exact synthetic
@@ -24,28 +24,28 @@ example {X Y : C} (f : X ⟶ Y) : AdamsFiltrationAtLeast H f 0 := by
 example {X Y : C} (k : ℕ) : AdamsFiltrationAtLeast H (0 : X ⟶ Y) k := by
   exact ⟨0, CategoryTheory.Limits.zero_comp⟩
 
-example (input : SyntheticLiteratureInput H N) (T : Triangle C)
+example (input : SyntheticInterface H N) (T : Triangle C)
     (hT : T ∈ distTriang C) (hSES : HomologyShortExact H T) :
     ∃ δ : N.functor.obj T.obj₃ ⟶ (N.functor.obj T.obj₁)⟦(1 : ℤ)⟧,
       Triangle.mk (N.functor.map T.mor₁) (N.functor.map T.mor₂) δ ∈ distTriang Syn :=
-  (input.interface.nu_cofiber T hT).mpr hSES
+  (input.nu_cofiber T hT).mpr hSES
 
-example (input : SyntheticLiteratureInput H N) (T : Triangle C)
+example (input : SyntheticInterface H N) (T : Triangle C)
     (hT : T ∈ distTriang C) (hν : NuImageIsCofiber N T) (n : ℤ) :
     Function.Injective (Mod2Homology.pushforward H T.mor₁ n) ∧
       Function.Surjective (Mod2Homology.pushforward H T.mor₂ n) := by
-  have h := (input.interface.nu_cofiber T hT).mp hν n
+  have h := (input.nu_cofiber T hT).mp hν n
   exact ⟨h.1, h.2.2⟩
 
-example (input : SyntheticLiteratureInput H N) {X Y : C}
+example (input : SyntheticInterface H N) {X Y : C}
     (f : X ⟶ Y) (k : ℕ) (hf : AdamsFiltrationAtLeast H f k) :
     ∃ l : N.functor.obj X ⟶
         (SyntheticCategory.biShift (0, -(k : ℤ))).obj (N.functor.obj Y),
       l ≫ lambdaPow k (N.functor.obj Y) = N.functor.map f := by
-  obtain ⟨L⟩ := input.interface.lift f k hf
+  obtain ⟨L⟩ := input.lift f k hf
   exact ⟨L.map, L.factorization⟩
 
-example (input : SyntheticLiteratureInput H N) (T : Triangle C)
+example (input : SyntheticInterface H N) (T : Triangle C)
     (hT : T ∈ distTriang C) (hf : AdamsFiltrationAtLeast H T.mor₃ 1)
     (hSES : HomologyShortExact H T) :
     ∃ D : SyntheticTriangleLift N T,
@@ -54,13 +54,13 @@ example (input : SyntheticLiteratureInput H N) (T : Triangle C)
       Triangle.mk (N.functor.map T.mor₁) (N.functor.map T.mor₂)
         (D.connecting ≫ (N.boundaryLandingIso T.obj₁).hom) ∈ distTriang Syn ∧
       D.FullLiftComparison N := by
-  obtain ⟨D, hD⟩ := input.interface.triangle_lift T hT hf hSES
+  obtain ⟨D, hD⟩ := input.triangle_lift T hT hf hSES
   exact ⟨D, D.factorization, D.distinguished, hD⟩
 
 open Lean Elab Command in
 run_cmd do
   for name in [``NuCofiberCriterion, ``SyntheticLiftComparison,
-      ``SyntheticTriangleLiftComparison, ``SyntheticLiteratureInput.interface] do
+      ``SyntheticTriangleLiftComparison] do
     let axioms ← liftCoreM (collectAxioms name)
     for axiomName in axioms do
       unless [``propext, ``Classical.choice, ``Quot.sound].contains axiomName do

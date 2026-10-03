@@ -6,7 +6,7 @@
 - `StageInput/` 从 Def 的唯一实现固定同一个基础、Milnor 坐标、球谱 Adams 塔与标准类。标准 h₆² 来自 Milnor cocycle，独立于 CSV。
 - `Comparison/StageInterfaces/` 保存通用比较语言和迁移后仍有用途的证明。
 - `Kervaire/Route/` 定义论文路线所需的对象和命题；本文新规则的成立性证明属于 Main/Solution。
-- `References/` 保存来源、引用和显式证据的通用类型。原始文献工件在仓库的 `references/literature/`。
+- `References/` 保存来源、引用和显式证据的通用类型。原始文献工件在仓库的 `Source/`。
 
 `Challenge1.lean` 规定交付同一个已固定实现的绑定，以及其标准球的 HF₂ nilpotent completeness 和实际 Adams 塔强收敛。`Challenge/Challenge1.lean` 是目标占位，`Solution/Challenge1.lean` 是生产端；两者类型相同。构造定理中的 `sorry` 是公开的证明债务，不等于实现已经构造完成。
 

@@ -10,7 +10,7 @@ Each work directory contains its `citation.bib` and a
 TeX source, PDF, or extracted text.  The archive does not bypass publisher
 access controls.
 
-[`../source-inventory.json`](../source-inventory.json) is the canonical machine-readable
+[`source-inventory.json`](source-inventory.json) is the canonical machine-readable
 catalogue.  It assigns stable snake-case IDs (the same codes exposed by the
 Lean `SourceId` API), records the intended role of each source, and lists the
 local artifacts and SHA-256 digests that can be audited.  The acquisition

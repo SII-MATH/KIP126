@@ -8,7 +8,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 \section{Assembly of explicit inputs}
 
-% SOURCE: references/literature/MainPaper/main.tex:2156--2167, 2181--2204, 2357--2360.
+% SOURCE: MainPaper/main.tex:2156--2167, 2181--2204, 2357--2360.
 \begin{definition}[Fixed-sphere $C_3$ and the $d_{12}$ alternative]
   \label{def:near126-fixed-page-conditions}
   \lean{KIP126.Computation.Near126.Sphere.C3,KIP126.Computation.Near126.Sphere.D12}
@@ -98,7 +98,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, Appendix data,
-% and External inputs; references/literature/MainPaper/main.tex:755--1274.
+% and External inputs; MainPaper/main.tex:755--1274.
 \begin{definition}[Synthetic interpretation of the computation catalogue]
   \label{def:synthetic-catalogue-coherence}
   \uses{def:classical-catalogue-coherence,def:near126-literature-input,def:near126-computation-input,def:synthetic-context,def:synthetic-adams-ss,def:synthetic-lambda-quotient,prop:synthetic-einfty-first-quotient,prop:synthetic-einfty-map-compatibility,def:sphere-adams-coherence}
@@ -160,7 +160,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 \section{The near-126 reduction and contradiction}
 
-% SOURCE: references/literature/MainPaper/main.tex:2133-2139, Remark rem:theta5choice; the concrete
+% SOURCE: MainPaper/main.tex:2133-2139, Remark rem:theta5choice; the concrete
 % correction calculation is a project obligation, not part of Burklund--Xu.
 \begin{proposition}[Vanishing of the $\theta_5$ choice correction]
   \label{prop:theta5-choice-correction-vanishes}
@@ -184,7 +184,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   \texttt{Route.ThetaChoice}.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:1009-1021, the m=infinity quotient triangle;
+% SOURCE: MainPaper/main.tex:1009-1021, the m=infinity quotient triangle;
 % its compatibility with the selected total differential is project transport.
 \begin{proposition}[Typed selected-product quotient compatibility]
   \label{prop:theta5-selected-product-quotient-compatibility}
@@ -223,7 +223,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   identity and composition.  The required endpoint comparison remains open.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2133-2139, Remark rem:theta5choice.
+% SOURCE: MainPaper/main.tex:2133-2139, Remark rem:theta5choice.
 \begin{proposition}[Choice independence of the inductive expression]
   \label{prop:theta5-choice-independence}
   % VERIFIED-IN: KIP126/Def/Kervaire/Theta5/Proofs.lean,
@@ -251,7 +251,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 \end{proof}
 
 % SOURCE: Burklund--Xu Proposition 7.19 in the archived version;
-% references/literature/MainPaper/main.tex:2133-2139, Remark rem:theta5choice.  The transport from
+% MainPaper/main.tex:2133-2139, Remark rem:theta5choice.  The transport from
 % the source choice to every admissible choice is internal to KIP126.
 \begin{proposition}[Total differential identity for every admissible choice]
   \label{prop:theta5-total-differential-any-choice}
@@ -318,7 +318,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   single-carrier prototype with the new bigraded objects.
 \end{proposition}
 
-% SOURCE: references/literature/MainPaper/main.tex:2117-2139, Theorem thm:bjmbx and Remark rem:theta5choice; project transport from the distinguished source choice.
+% SOURCE: MainPaper/main.tex:2117-2139, Theorem thm:bjmbx and Remark rem:theta5choice; project transport from the distinguished source choice.
 \begin{theorem}[BJM/BX criterion for any order-two choice]
   \label{thm:bjm-bx-criterion-any-choice}
   % VERIFIED-IN: KIP126/Def/Kervaire/Theta5/Proofs.lean,
@@ -353,7 +353,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   the criterion. The source inputs and the paper deductions remain to be supplied.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2221-2241, Lemma lem:equistate4.
+% SOURCE: MainPaper/main.tex:2221-2241, Lemma lem:equistate4.
 \begin{lemma}[Existential and universal forms of $C_4$]
   \label{lem:near126-equiv-c4}
   \lean{KIP126.Kervaire.Route.C4}
@@ -371,7 +371,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   so changing $\theta_5$ cannot alter its leading term.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2244-2258, Lemma lem:equistate5.
+% SOURCE: MainPaper/main.tex:2244-2258, Lemma lem:equistate5.
 \begin{lemma}[Existential and universal forms of $C_5$]
   \label{lem:near126-equiv-c5}
   \lean{KIP126.Solution.Near126.Conditions.c4_c5_choice_equivalence}
@@ -389,7 +389,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   has filtration 14, the relation is independent of the representative.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possible_h_6_sq.
+% SOURCE: MainPaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possible_h_6_sq.
 \begin{proposition}[Only possible differential on $h_6^2$]
   \label{prop:possible-h-6-sq}
   \lean{KIP126.Kervaire.Route.Model}
@@ -421,7 +421,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   exclusive because a source supporting a nonzero $d_{12}$ is not permanent.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2387-2446, Lemma lem:x_123_9.
+% SOURCE: MainPaper/main.tex:2387-2446, Lemma lem:x_123_9.
 \begin{lemma}[The classes $\alpha_1,\alpha_2,\alpha_3$]
   \label{lem:near126-alpha-relations}
   \uses{def:near126-computation-input,evidence:x_123_9,thm:external-synthetic-einfty-quotient,evidence:near126-indeterminacy,data:table-s123,data:table-s124-high}
@@ -458,7 +458,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   $\lambda^9$.
 \end{proof}
 
-% SOURCE: noncircular repair of references/literature/MainPaper/main.tex:2493-2496 using lines 2427-2429 and 2579.
+% SOURCE: noncircular repair of MainPaper/main.tex:2493-2496 using lines 2427-2429 and 2579.
 \begin{lemma}[Leading-term nonvanishing for the Toda product]
   \label{lem:toda-h0-leading-nonvanishing}
   \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,evidence:near126-core,thm:external-synthetic-einfty-quotient,thm:toda-product-identities}
@@ -489,7 +489,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   the Toda-detection conclusion below.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
+% SOURCE: MainPaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
 \begin{lemma}[Toda bracket detects the two-extension source]
   \label{lem:toda-two-extension}
   \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2,def:external-evidence}
@@ -515,7 +515,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   filtration-11 class.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2571-2580, proof of Corollary cor:2ext125, especially the comparison of all representatives detected by lambda^4 h_0^2 x_{125,9,2}; Appendix Table S125.19.
+% SOURCE: MainPaper/main.tex:2571-2580, proof of Corollary cor:2ext125, especially the comparison of all representatives detected by lambda^4 h_0^2 x_{125,9,2}; Appendix Table S125.19.
 \begin{lemma}[Indeterminacy of the two-extension source]
   \label{lem:near126-two-extension-indeterminacy}
   \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:toda-h0-leading-nonvanishing,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,evidence:near126-core,data:table-s125-low,thm:appendix-all-rows-encoded,thm:external-synthetic-einfty-quotient,def:external-evidence}
@@ -554,7 +554,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   the indeterminacy deduction is the project proof recorded here.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2478-2480, Remark rem:h_0_sq_mul_x_125_9_2, now deduced after Lemma lem:toda2ext.
+% SOURCE: MainPaper/main.tex:2478-2480, Remark rem:h_0_sq_mul_x_125_9_2, now deduced after Lemma lem:toda2ext.
 \begin{corollary}[Conditional vanishing of the unresolved $d_5$]
   \label{cor:h02x1259-d5-zero}
   \uses{def:near126-computation-input,lem:near126-equiv-c5,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,thm:external-synthetic-einfty-quotient}
@@ -575,7 +575,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   outgoing $d_5$ vanishes.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2571-2581, Corollary cor:2ext125.
+% SOURCE: MainPaper/main.tex:2571-2581, Corollary cor:2ext125.
 \begin{corollary}[The required two-extension]
   \label{cor:near126-two-extension}
   \uses{def:near126-computation-input,lem:near126-equiv-c5,lem:toda-two-extension,lem:near126-two-extension-indeterminacy,cor:h02x1259-d5-zero}
@@ -602,7 +602,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   filtration-$14$ leading term gives the asserted nonvanishing.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
+% SOURCE: MainPaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
   \uses{def:near126-computation-input,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,data:table-cnu126,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility}
@@ -623,15 +623,15 @@ This chapter contains only the project deductions that assemble the setup, exter
   has $(e(f),e(g),e(h))=(1,0,0)$ and uses that one lifted triangle.  Apply the
   generalized Mahowald trick to this triangle and the
   typed $S^0/\nu_{\mathrm{Hopf}}$ differential
-  displayed in \texttt{references/literature/MainPaper/main.tex:2638--2648}.  Its edge extensions and
+  displayed in \texttt{MainPaper/main.tex:2638--2648}.  Its edge extensions and
   no-crossing certificate give an $([h_2],E_4)$ extension, hence a relation
   modulo $\lambda^3$.  Use the independent obstruction-vanishing certificate
   to lift it modulo $\lambda^5$, then multiply by $\lambda^4$ and apply quotient
   compatibility to obtain the displayed relation modulo $\lambda^9$.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:1398-1405 and 929-961; the erroneous cofiber
-% conclusion at references/literature/MainPaper/main.tex:2730-2732 is repaired: the cofiber equivalent
+% SOURCE: MainPaper/main.tex:1398-1405 and 929-961; the erroneous cofiber
+% conclusion at MainPaper/main.tex:2730-2732 is repaired: the cofiber equivalent
 % to nu(S^0/nu) is C([h_2]), not C(lambda[h_2]).
 \begin{proposition}[Normalized synthetic Hopf cofiber]
   \label{prop:synthetic-hopf-cofiber-equivalence}
@@ -663,7 +663,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   shows that every $\lambda[h_2]$-multiple is already an $[h_2]$-multiple.
 \end{proof}
 
-% SOURCE: references/literature/MainPaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.
+% SOURCE: MainPaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.
 \begin{proposition}[$C_3$ excludes $C_5$]
   \label{prop:near126-c3-not-c5}
   \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
@@ -690,7 +690,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 
 
 
-% SOURCE: references/literature/MainPaper/main.tex:128-130 and 2106-2214, Theorems thm:h_6_sq and thm:126survives.
+% SOURCE: MainPaper/main.tex:128-130 and 2106-2214, Theorems thm:h_6_sq and thm:126survives.
 \begin{theorem}[$h_6^2$ is a permanent cycle]
   \label{thm:h6-square-permanent}
   \lean{KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent}

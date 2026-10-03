@@ -32,7 +32,7 @@ the complete backup are under the ignored `local/` directory. These logs describ
 source tree. Archive integrity can be checked as described in [README.md](README.md).
 
 Compilation is compatibility evidence. The historical library's unproved and
-axiomatized statements remain historical obligations, not completed KIP126/Main/Axiom/Literature/MainPaper
+axiomatized statements remain historical obligations, not completed MainPaper
 results. No canonical Blueprint completion flag was advanced by this migration.
 The migration PR also changed package layout and validation machinery. Its
 review requirements were specific to that task, not standing instructions for later work.

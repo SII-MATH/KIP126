@@ -6,7 +6,7 @@ References used only for historical context, notation, motivation, or a
 survey are intentionally not archived in this project.
 
 The complete machine-readable ledger, including the target paper row and
-artifact digests, is [`../source-inventory.json`](../source-inventory.json).  The
+artifact digests, is [`../source-inventory.json`](source-inventory.json).  The
 Lean-side stable keys are exposed by `KIP126.External.SourceId`; acquisition
 state is checked with `python3 scripts/check_source_inventory.py`.
 

@@ -3,7 +3,7 @@ import KIP126.Def.References.Provenance
 /-!
 # Source inventory
 
-This module is the typed Lean projection of `references/literature/source-inventory.json`.
+This module is the typed Lean projection of `Source/source-inventory.json`.
 The JSON file and `scripts/check_source_inventory.py` remain authoritative for
 human-readable citation metadata, filesystem paths, acquisition state, and
 cryptographic hashes.  Lean keeps the small finite index needed by source
@@ -355,71 +355,71 @@ private def row (source : SourceId) (kind : SourceKind)
 
 private def lookupRow : SourceId → SourceEntry
   | .aimPaper =>
-      row .aimPaper .paper ["LWX126"] "references/literature/MainPaper" none
+      row .aimPaper .paper ["LWX126"] "MainPaper" none
         .sourceOfRecord SourceAvailability.all
   | .browder =>
-      row .browder .literature ["Browder"] "references/literature/Sources/Browder"
-        (some "references/literature/Sources/Browder/source-status.json") .fullText
+      row .browder .literature ["Browder"] "Source/Browder"
+        (some "Source/Browder/source-status.json") .fullText
         { metadata := true, pdf := true, text := true, source := false }
   | .mahowaldTangora =>
       row .mahowaldTangora .literature ["MahowaldTangora"]
-        "references/literature/Sources/MahowaldTangora"
-        (some "references/literature/Sources/MahowaldTangora/source-status.json") .metadataOnly
+        "Source/MahowaldTangora"
+        (some "Source/MahowaldTangora/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .bjmTheta5 =>
-      row .bjmTheta5 .literature ["BJMtheta5"] "references/literature/Sources/BJMtheta5"
-        (some "references/literature/Sources/BJMtheta5/source-status.json") .metadataOnly
+      row .bjmTheta5 .literature ["BJMtheta5"] "Source/BJMtheta5"
+        (some "Source/BJMtheta5/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .bjmInduction =>
       row .bjmInduction .literature ["BJMinduction", "BarrattJonesMahowald"]
-        "references/literature/Sources/BJMinduction"
-        (some "references/literature/Sources/BJMinduction/source-status.json") .metadataOnly
+        "Source/BJMinduction"
+        (some "Source/BJMinduction/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .mayThesis =>
-      row .mayThesis .literature ["Maythesis"] "references/literature/Sources/Maythesis"
-        (some "references/literature/Sources/Maythesis/source-status.json") .metadataOnly
+      row .mayThesis .literature ["Maythesis"] "Source/Maythesis"
+        (some "Source/Maythesis/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .may01 =>
-      row .may01 .literature ["May01"] "references/literature/Sources/May01"
-        (some "references/literature/Sources/May01/source-status.json") .partialAvailability
+      row .may01 .literature ["May01"] "Source/May01"
+        (some "Source/May01/source-status.json") .partialAvailability
         { metadata := true, pdf := true, text := false, source := false }
   | .hhr =>
-      row .hhr .literature ["HHR"] "references/literature/Sources/HHR"
-        (some "references/literature/Sources/HHR/source-status.json") .fullText SourceAvailability.all
+      row .hhr .literature ["HHR"] "Source/HHR"
+        (some "Source/HHR/source-status.json") .fullText SourceAvailability.all
   | .xu =>
-      row .xu .literature ["Xu"] "references/literature/Sources/Xu"
-        (some "references/literature/Sources/Xu/source-status.json") .fullText SourceAvailability.all
+      row .xu .literature ["Xu"] "Source/Xu"
+        (some "Source/Xu/source-status.json") .fullText SourceAvailability.all
   | .iwx =>
-      row .iwx .literature ["IWX"] "references/literature/Sources/IWX"
-        (some "references/literature/Sources/IWX/source-status.json") .fullText SourceAvailability.all
+      row .iwx .literature ["IWX"] "Source/IWX"
+        (some "Source/IWX/source-status.json") .fullText SourceAvailability.all
   | .pst =>
-      row .pst .literature ["Pst"] "references/literature/Sources/Pst"
-        (some "references/literature/Sources/Pst/source-status.json") .fullText SourceAvailability.all
+      row .pst .literature ["Pst"] "Source/Pst"
+        (some "Source/Pst/source-status.json") .fullText SourceAvailability.all
   | .bhs =>
-      row .bhs .literature ["BHS"] "references/literature/Sources/BHS"
-        (some "references/literature/Sources/BHS/source-status.json") .fullText SourceAvailability.all
+      row .bhs .literature ["BHS"] "Source/BHS"
+        (some "Source/BHS/source-status.json") .fullText SourceAvailability.all
   | .bhsMot =>
-      row .bhsMot .literature ["BHSmot"] "references/literature/Sources/BHSmot"
-        (some "references/literature/Sources/BHSmot/source-status.json") .fullText
+      row .bhsMot .literature ["BHSmot"] "Source/BHSmot"
+        (some "Source/BHSmot/source-status.json") .fullText
         { metadata := false, pdf := true, text := true, source := true }
   | .burklundXu =>
-      row .burklundXu .literature ["BurklundXu"] "references/literature/Sources/BurklundXu"
-        (some "references/literature/Sources/BurklundXu/source-status.json") .fullText SourceAvailability.all
+      row .burklundXu .literature ["BurklundXu"] "Source/BurklundXu"
+        (some "Source/BurklundXu/source-status.json") .fullText SourceAvailability.all
   | .moss =>
-      row .moss .literature ["Moss"] "references/literature/Sources/Moss"
-        (some "references/literature/Sources/Moss/source-status.json") .metadataOnly
+      row .moss .literature ["Moss"] "Source/Moss"
+        (some "Source/Moss/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .br21 =>
-      row .br21 .literature ["BR21"] "references/literature/Sources/BR21"
-        (some "references/literature/Sources/BR21/source-status.json") .fullText
+      row .br21 .literature ["BR21"] "Source/BR21"
+        (some "Source/BR21/source-status.json") .fullText
         { metadata := true, pdf := true, text := true, source := false }
   | .tmf =>
-      row .tmf .literature ["tmf"] "references/literature/Sources/tmf"
-        (some "references/literature/Sources/tmf/source-status.json") .fullText SourceAvailability.all
+      row .tmf .literature ["tmf"] "Source/tmf"
+        (some "Source/tmf/source-status.json") .fullText SourceAvailability.all
   | .lwxMachine =>
       row .lwxMachine .machine ["LWXMachine", "LWXZenodo", "LinProgram", "LinPlot"]
-        "references/literature/Sources/LWXMachine"
-        (some "references/literature/Sources/LWXMachine/source-status.json") .fullText
+        "Source/LWXMachine"
+        (some "Source/LWXMachine/source-status.json") .fullText
         { metadata := false, pdf := true, text := true, source := true }
 
 /-- The checked-in Lean projection of the source inventory. -/
@@ -709,13 +709,13 @@ example : (SourceInventory.inventory.lookup .lwxMachine).kind = .machine := by
   rfl
 
 example :
-    SourceEntry.pathHasDirectoryPrefix "references/literature/Sources/Browder"
-      "references/literature/Sources/Browder/source-status.json" = true := by
+    SourceEntry.pathHasDirectoryPrefix "Source/Browder"
+      "Source/Browder/source-status.json" = true := by
   decide
 
 example :
-    SourceEntry.pathHasDirectoryPrefix "references/literature/Sources/Browder"
-      "references/literature/Sources/BrowderArchive/source-status.json" = false := by
+    SourceEntry.pathHasDirectoryPrefix "Source/Browder"
+      "Source/BrowderArchive/source-status.json" = false := by
   decide
 
 example (ref : SourceRef) :

@@ -5,7 +5,7 @@
   "sources": [
     {
       "id": "aim_paper",
-      "directory": "references/literature/MainPaper",
+      "directory": "MainPaper",
       "kind": "paper",
       "citation_keys": [
         "LWX126"
@@ -24,31 +24,31 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/MainPaper/main.tex",
+          "path": "MainPaper/main.tex",
           "kind": "tex",
           "required": true,
           "sha256": "828ee5a5aa06e1f390b036a043230ed417446fa7be11a4e27eecc4a565135c4b"
         },
         {
-          "path": "references/literature/MainPaper/112.tex",
+          "path": "MainPaper/112.tex",
           "kind": "tex",
           "required": true,
           "sha256": "5eb83ef105ce9dbbda87a9f57726bb5c078308fd3718840ea29ee8100cbefabb"
         },
         {
-          "path": "references/literature/MainPaper/main.bib",
+          "path": "MainPaper/main.bib",
           "kind": "bibliography",
           "required": true,
           "sha256": "ef28d62f0343a70c6176387d25fd19c50cc053197d522170632aa9aa24f1cd1d"
         },
         {
-          "path": "references/literature/MainPaper/main.bbl",
+          "path": "MainPaper/main.bbl",
           "kind": "bibliography",
           "required": false,
           "sha256": "bab55d90e78aa1910e086c0b811be5113eea2470af20e4eb3bf1e26e9d8f6675"
         },
         {
-          "path": "references/literature/MainPaper/2412.10879.pdf",
+          "path": "MainPaper/2412.10879.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "7cae269851a88d10dd194651dbf7497b75ef8b8b914bc1901dfa3734cd8096b4"
@@ -57,7 +57,7 @@
     },
     {
       "id": "browder",
-      "directory": "references/literature/Sources/Browder",
+      "directory": "Source/Browder",
       "kind": "literature",
       "citation_keys": [
         "Browder"
@@ -67,7 +67,7 @@
       "doi": "10.2307/1970686",
       "canonical_url": "https://doi.org/10.2307/1970686",
       "role": "Kervaire-invariant criterion relating survival of h_j^2 to a nonzero Kervaire class.",
-      "status_file": "references/literature/Sources/Browder/source-status.json",
+      "status_file": "Source/Browder/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -77,31 +77,31 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/Browder/citation.bib",
+          "path": "Source/Browder/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "57c7b5b0e1c37ebea4163f831e27f1607a0dc677f8d6b705b4cc08d3163e9ea9"
         },
         {
-          "path": "references/literature/Sources/Browder/source-status.json",
+          "path": "Source/Browder/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "5fce9aa430e08a6c432824c63a73407286831009cd88b7410b015a5b8b7e87c1"
         },
         {
-          "path": "references/literature/Sources/Browder/openalex.json",
+          "path": "Source/Browder/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "db1d6df5fe79e1b92b234fd78022acaf288bc99b8fccb1ddee2aec3eb0160471"
         },
         {
-          "path": "references/literature/Sources/Browder/paper.pdf",
+          "path": "Source/Browder/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "c193503233aa6885b094c83cbc98c91405650ff30d22b12baec34d7c30d823b3"
         },
         {
-          "path": "references/literature/Sources/Browder/paper.txt",
+          "path": "Source/Browder/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "740589b47594fc47dfb4328b69833ede27a185f9bf7258d23870dca979fc0377"
@@ -110,7 +110,7 @@
     },
     {
       "id": "mahowald_tangora",
-      "directory": "references/literature/Sources/MahowaldTangora",
+      "directory": "Source/MahowaldTangora",
       "kind": "literature",
       "citation_keys": [
         "MahowaldTangora"
@@ -120,7 +120,7 @@
       "doi": "10.1016/0040-9383(67)90023-7",
       "canonical_url": "https://doi.org/10.1016/0040-9383(67)90023-7",
       "role": "Earlier Adams differentials and the h_4^2 survival input.",
-      "status_file": "references/literature/Sources/MahowaldTangora/source-status.json",
+      "status_file": "Source/MahowaldTangora/source-status.json",
       "status_class": "metadata_only",
       "availability": {
         "metadata": true,
@@ -130,19 +130,19 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/MahowaldTangora/citation.bib",
+          "path": "Source/MahowaldTangora/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "573448eb965d8209bd63f370cc1d70ef1adb4ba82a4c122a6eb7ff4f9ce1179a"
         },
         {
-          "path": "references/literature/Sources/MahowaldTangora/source-status.json",
+          "path": "Source/MahowaldTangora/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "9d93742531cfb2c526cbb68459fec8c112f516031df2c2f6e6fb929d3f467334"
         },
         {
-          "path": "references/literature/Sources/MahowaldTangora/openalex.json",
+          "path": "Source/MahowaldTangora/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "bd153d7ea007fce820192f9117ef6e604b9cfc9ecbc293f021331209e14bf947"
@@ -151,7 +151,7 @@
     },
     {
       "id": "bjm_theta5",
-      "directory": "references/literature/Sources/BJMtheta5",
+      "directory": "Source/BJMtheta5",
       "kind": "literature",
       "citation_keys": [
         "BJMtheta5"
@@ -161,7 +161,7 @@
       "doi": "10.1112/jlms/s2-30.3.533",
       "canonical_url": "https://doi.org/10.1112/jlms/s2-30.3.533",
       "role": "h_5^2 survival and dimension-62 input supplying theta_5.",
-      "status_file": "references/literature/Sources/BJMtheta5/source-status.json",
+      "status_file": "Source/BJMtheta5/source-status.json",
       "status_class": "metadata_only",
       "availability": {
         "metadata": true,
@@ -171,25 +171,25 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/BJMtheta5/citation.bib",
+          "path": "Source/BJMtheta5/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "e29fee8f9a4d7fc71e4ca71719a4c4ee1a19f4a3eab1210a451db52a31b45230"
         },
         {
-          "path": "references/literature/Sources/BJMtheta5/source-status.json",
+          "path": "Source/BJMtheta5/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "473a51351b2cbebbd0ade357bdac62ff9f8fac1187a68d495caedf85f9a1594c"
         },
         {
-          "path": "references/literature/Sources/BJMtheta5/openalex.json",
+          "path": "Source/BJMtheta5/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "e27b63bf3352b9d422c6a7bcab5c46d9c470e61506feb812919194ec8dd5bcbc"
         },
         {
-          "path": "references/literature/Sources/BJMtheta5/semantic-scholar.json",
+          "path": "Source/BJMtheta5/semantic-scholar.json",
           "kind": "metadata",
           "required": true,
           "sha256": "c71f7b1fe80bef14172a78b893f07ea36dffb802fb3517c765009dd1b2332d87"
@@ -198,7 +198,7 @@
     },
     {
       "id": "bjm_induction",
-      "directory": "references/literature/Sources/BJMinduction",
+      "directory": "Source/BJMinduction",
       "kind": "literature",
       "citation_keys": [
         "BJMinduction",
@@ -209,7 +209,7 @@
       "doi": "10.1090/conm/019/711039",
       "canonical_url": "https://doi.org/10.1090/conm/019/711039",
       "role": "Barratt–Jones–Mahowald inductive criterion for theta_j.",
-      "status_file": "references/literature/Sources/BJMinduction/source-status.json",
+      "status_file": "Source/BJMinduction/source-status.json",
       "status_class": "metadata_only",
       "availability": {
         "metadata": true,
@@ -219,19 +219,19 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/BJMinduction/citation.bib",
+          "path": "Source/BJMinduction/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "8b08f1d3c475c7f834f5e84e9b43001852fe29f288f6f607b0f8af17aa5fbd4e"
         },
         {
-          "path": "references/literature/Sources/BJMinduction/source-status.json",
+          "path": "Source/BJMinduction/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "4236c88cafb6f457c6e66c17c2ac2f6e8f79f9297d9736b223cc4627ace8bcde"
         },
         {
-          "path": "references/literature/Sources/BJMinduction/openalex.json",
+          "path": "Source/BJMinduction/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "3353faa63b0c855d09fef6d2c36510e6b6435f8d5b78841af0685e0fa1267f9e"
@@ -240,7 +240,7 @@
     },
     {
       "id": "may_thesis",
-      "directory": "references/literature/Sources/Maythesis",
+      "directory": "Source/Maythesis",
       "kind": "literature",
       "citation_keys": [
         "Maythesis"
@@ -250,7 +250,7 @@
       "doi": "10.1016/0021-8693(66)90009-3",
       "canonical_url": "https://doi.org/10.1016/0021-8693(66)90009-3",
       "role": "Low-page Adams-survival results used by the lower-dimensional package.",
-      "status_file": "references/literature/Sources/Maythesis/source-status.json",
+      "status_file": "Source/Maythesis/source-status.json",
       "status_class": "metadata_only",
       "availability": {
         "metadata": true,
@@ -260,19 +260,19 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/Maythesis/citation.bib",
+          "path": "Source/Maythesis/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "b231d4d775a1a975644dae52f34df053a5dc75a57f03efb8dcd21c469d83bd26"
         },
         {
-          "path": "references/literature/Sources/Maythesis/source-status.json",
+          "path": "Source/Maythesis/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "2cd35e8c40d58efbf1aa9a8be020e1294a8496f8e71dad9e8114feec21bb82c3"
         },
         {
-          "path": "references/literature/Sources/Maythesis/openalex.json",
+          "path": "Source/Maythesis/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "d5402b5b43ada2b33432c407d6ff1764e0d722d8a91580f92c6fa33ad96bf487"
@@ -281,7 +281,7 @@
     },
     {
       "id": "hhr",
-      "directory": "references/literature/Sources/HHR",
+      "directory": "Source/HHR",
       "kind": "literature",
       "citation_keys": [
         "HHR"
@@ -291,7 +291,7 @@
       "doi": "10.4007/annals.2016.184.1.1",
       "canonical_url": "https://doi.org/10.4007/annals.2016.184.1.1",
       "role": "Nonexistence of Kervaire-invariant-one classes in forbidden higher dimensions.",
-      "status_file": "references/literature/Sources/HHR/source-status.json",
+      "status_file": "Source/HHR/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -301,37 +301,37 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/HHR/citation.bib",
+          "path": "Source/HHR/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "1ea332d9b9487c6ae2f67fd1c31ce01eea02ca62aaf3617ff9573455828770c0"
         },
         {
-          "path": "references/literature/Sources/HHR/source-status.json",
+          "path": "Source/HHR/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "b7a1616b3717acd58c66cffaa7f5020d0cdf4a9ed88a927509c612c2311b1e10"
         },
         {
-          "path": "references/literature/Sources/HHR/openalex.json",
+          "path": "Source/HHR/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "37fac92079be007677f4d32bc302b644c9eb6ce16b97534db253caa4accdc979"
         },
         {
-          "path": "references/literature/Sources/HHR/arxiv-source",
+          "path": "Source/HHR/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "8ae2e3f4e7cbfccafbf4557a621e07e1fadc95a200f6b3500f2488c047c79484"
         },
         {
-          "path": "references/literature/Sources/HHR/paper.pdf",
+          "path": "Source/HHR/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "f2c42787c5ca6532b131c2deae2cf211fef6bdc2513559dbb5e69f2c92daf1d2"
         },
         {
-          "path": "references/literature/Sources/HHR/paper.txt",
+          "path": "Source/HHR/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "2ea86c84f33d30dcfb3c712d0b131b84def2963a2d78c97c7c78ca412e491e0d"
@@ -340,7 +340,7 @@
     },
     {
       "id": "xu",
-      "directory": "references/literature/Sources/Xu",
+      "directory": "Source/Xu",
       "kind": "literature",
       "citation_keys": [
         "Xu"
@@ -350,7 +350,7 @@
       "doi": "10.2140/gt.2016.20.1611",
       "canonical_url": "https://doi.org/10.2140/gt.2016.20.1611",
       "role": "Dimension-62 stable-stem and order-two facts for theta_5.",
-      "status_file": "references/literature/Sources/Xu/source-status.json",
+      "status_file": "Source/Xu/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -360,37 +360,37 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/Xu/citation.bib",
+          "path": "Source/Xu/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "bef724085402bffd78cd862b4020c69b032e7b57803b884166db9787ab217141"
         },
         {
-          "path": "references/literature/Sources/Xu/source-status.json",
+          "path": "Source/Xu/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "7c7854dec1fba9816988aefb596fcd7d6378e36a58d0c6697d196630e577f01c"
         },
         {
-          "path": "references/literature/Sources/Xu/openalex.json",
+          "path": "Source/Xu/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "77a7c7a7c81c0cf975e144bf907517a59f6af84bc4c95fa5a043ae29ee164e0b"
         },
         {
-          "path": "references/literature/Sources/Xu/arxiv-source",
+          "path": "Source/Xu/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "fd37b77a8b7d5e38b3cf87f7c6ea6e95a8bcc4c69e6c7e7ca6778622dea95275"
         },
         {
-          "path": "references/literature/Sources/Xu/paper.pdf",
+          "path": "Source/Xu/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "133f6258fb9e4d2cc28651020697203b15ed793b1e4705bd111bd1fd27efa183"
         },
         {
-          "path": "references/literature/Sources/Xu/paper.txt",
+          "path": "Source/Xu/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "7de73c13b272eba9f8e45e90077cc27d09f35d5ea77f6fd8ea16f82cd9a35496"
@@ -399,7 +399,7 @@
     },
     {
       "id": "iwx",
-      "directory": "references/literature/Sources/IWX",
+      "directory": "Source/IWX",
       "kind": "literature",
       "citation_keys": [
         "IWX"
@@ -409,7 +409,7 @@
       "doi": "10.1007/s10240-023-00139-1",
       "canonical_url": "https://doi.org/10.1007/s10240-023-00139-1",
       "role": "Stable-stem and theta_5 indeterminacy/order-two facts.",
-      "status_file": "references/literature/Sources/IWX/source-status.json",
+      "status_file": "Source/IWX/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -419,37 +419,37 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/IWX/citation.bib",
+          "path": "Source/IWX/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "cc9a29719d448a700ebdc1e68426a791e23e3621f7125a560d85bf86aaf81a74"
         },
         {
-          "path": "references/literature/Sources/IWX/source-status.json",
+          "path": "Source/IWX/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "f6b6b89d57e280e2990ce8e3ac6d12c4d7a992ac7cb45f7bb421391ad9fd0fe4"
         },
         {
-          "path": "references/literature/Sources/IWX/openalex.json",
+          "path": "Source/IWX/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "a25101836295eefa85a1054efa4fafd2d7c9fdbfffdab2e61786e91ecd57b186"
         },
         {
-          "path": "references/literature/Sources/IWX/arxiv-source",
+          "path": "Source/IWX/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "178477986a1d07c6fae12ca657bca191d6b8903d98d78f3eb9650aedc9ac25cb"
         },
         {
-          "path": "references/literature/Sources/IWX/paper.pdf",
+          "path": "Source/IWX/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "f79cf973414fb3c1d6fa5fd94c522755518eb73933945b5ef0cece4e70e85bcc"
         },
         {
-          "path": "references/literature/Sources/IWX/paper.txt",
+          "path": "Source/IWX/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "e7b07da9365d801d0d3026886b180cbbe0fa41833387666bcd6fc1ef050a7f00"
@@ -458,7 +458,7 @@
     },
     {
       "id": "tmf",
-      "directory": "references/literature/Sources/tmf",
+      "directory": "Source/tmf",
       "kind": "literature",
       "citation_keys": [
         "tmf"
@@ -468,7 +468,7 @@
       "doi": "10.2140/gt.2023.27.2763",
       "canonical_url": "https://doi.org/10.2140/gt.2023.27.2763",
       "role": "Hurewicz-detection input for the possible lambda^20 g^4 Delta h_1 g class.",
-      "status_file": "references/literature/Sources/tmf/source-status.json",
+      "status_file": "Source/tmf/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -478,37 +478,37 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/tmf/citation.bib",
+          "path": "Source/tmf/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "e4d34be2fae0b5f48b72249c7ae75b4b6eda985b217d2212c304bde0d6373d6f"
         },
         {
-          "path": "references/literature/Sources/tmf/source-status.json",
+          "path": "Source/tmf/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "4cdd914c0079f9bca0d396d466cbc981cd026e256864912beb978c26afa30fd7"
         },
         {
-          "path": "references/literature/Sources/tmf/openalex.json",
+          "path": "Source/tmf/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "a8323936c039591718cd6e487de6f44ab620ae104fa7c6bc2fd8cb916d614796"
         },
         {
-          "path": "references/literature/Sources/tmf/arxiv-source",
+          "path": "Source/tmf/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "8e8f095032b7f41d57aeac1d336ac626f8f0396daa5b2cf643cc3960f20eeac8"
         },
         {
-          "path": "references/literature/Sources/tmf/paper.pdf",
+          "path": "Source/tmf/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "4cf5ba296d4a6bc1402b4c0dbdac10b689c2d41dda039372bef357f67b45561b"
         },
         {
-          "path": "references/literature/Sources/tmf/paper.txt",
+          "path": "Source/tmf/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "fa657969d0ca224ed0d2a71704239021ad7a8ca1394fdb46e4ee9f6af47d3ee6"
@@ -517,7 +517,7 @@
     },
     {
       "id": "pst",
-      "directory": "references/literature/Sources/Pst",
+      "directory": "Source/Pst",
       "kind": "literature",
       "citation_keys": [
         "Pst"
@@ -527,7 +527,7 @@
       "doi": "10.1007/s00222-022-01173-2",
       "canonical_url": "https://doi.org/10.1007/s00222-022-01173-2",
       "role": "Synthetic spectra, nu, and deformation/localization interfaces.",
-      "status_file": "references/literature/Sources/Pst/source-status.json",
+      "status_file": "Source/Pst/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -537,37 +537,37 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/Pst/citation.bib",
+          "path": "Source/Pst/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "96a6bdae98f0d6242a7d536cfea9c213b3bfdceaf5fa373357465fc15a89c7b1"
         },
         {
-          "path": "references/literature/Sources/Pst/source-status.json",
+          "path": "Source/Pst/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "cd9df0c7ec01cc685b2de3ae87865e23eeb30cf1c0ca9d6fecd79fa7057574f7"
         },
         {
-          "path": "references/literature/Sources/Pst/openalex.json",
+          "path": "Source/Pst/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "a9d49db8f7db478a32c0e7e98552989c83df667675b8c45d8e1581cac65d6eb2"
         },
         {
-          "path": "references/literature/Sources/Pst/arxiv-source",
+          "path": "Source/Pst/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "bc3187f0a63dc833b2c88aa580ad32674242587ee50765ac1ecd36633185d917"
         },
         {
-          "path": "references/literature/Sources/Pst/paper.pdf",
+          "path": "Source/Pst/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "7d27ca462cafbbb6ef3befc0ef76bb340c44a7bb666581a7e2eb7c10ada1c76d"
         },
         {
-          "path": "references/literature/Sources/Pst/paper.txt",
+          "path": "Source/Pst/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "5bf56a321eb0557ed99f44fdb07a56c2d3607df43a1e8416d2d00548a551f517"
@@ -576,7 +576,7 @@
     },
     {
       "id": "bhs",
-      "directory": "references/literature/Sources/BHS",
+      "directory": "Source/BHS",
       "kind": "literature",
       "citation_keys": [
         "BHS"
@@ -586,7 +586,7 @@
       "doi": "10.4310/acta.2023.v231.n2.a1",
       "canonical_url": "https://doi.org/10.4310/acta.2023.v231.n2.a1",
       "role": "Rigidity, synthetic Adams/Bockstein comparison, and extension interfaces.",
-      "status_file": "references/literature/Sources/BHS/source-status.json",
+      "status_file": "Source/BHS/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -596,37 +596,37 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/BHS/citation.bib",
+          "path": "Source/BHS/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "a2a01ae7adf8723a7204d18a839044a550380bdb7d9d5fa59cb140e3a5f2ece4"
         },
         {
-          "path": "references/literature/Sources/BHS/source-status.json",
+          "path": "Source/BHS/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "1d1534796214722cc1d42bc46d8f492114f2724183fa957160d469f7e1f4d057"
         },
         {
-          "path": "references/literature/Sources/BHS/openalex.json",
+          "path": "Source/BHS/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "28e4e8266b33cd1ab03420e6322c260cad734b39d3715cf6c9699b77206a91a9"
         },
         {
-          "path": "references/literature/Sources/BHS/arxiv-source",
+          "path": "Source/BHS/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "1caedec23a4a9d827930c8718d17d9a5643eda4457148ebd88cccd243c8df9db"
         },
         {
-          "path": "references/literature/Sources/BHS/paper.pdf",
+          "path": "Source/BHS/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "563c5bb63166c54033e82fcd90df1cef094def0dc7f8c69104a0888565474e6b"
         },
         {
-          "path": "references/literature/Sources/BHS/paper.txt",
+          "path": "Source/BHS/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "69e6c64c752723f4dd10f3edd8f27310011aec0073e22fe96de5d5e4d6fa6d74"
@@ -635,7 +635,7 @@
     },
     {
       "id": "bhs_mot",
-      "directory": "references/literature/Sources/BHSmot",
+      "directory": "Source/BHSmot",
       "kind": "literature",
       "citation_keys": [
         "BHSmot"
@@ -645,7 +645,7 @@
       "doi": "10.48550/arXiv.2010.10325",
       "canonical_url": "https://arxiv.org/abs/2010.10325",
       "role": "E_infinity structure on lambda^n-quotients used by synthetic constructions.",
-      "status_file": "references/literature/Sources/BHSmot/source-status.json",
+      "status_file": "Source/BHSmot/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": false,
@@ -655,31 +655,31 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/BHSmot/citation.bib",
+          "path": "Source/BHSmot/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "2601dede1852dfbec033aaf04ef0bb189083da6f3fd424cc67e3106fd8de902c"
         },
         {
-          "path": "references/literature/Sources/BHSmot/source-status.json",
+          "path": "Source/BHSmot/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "a502afcb353203fd176f89a55ddca793eb0496c7cc026573c10fc6c90c988036"
         },
         {
-          "path": "references/literature/Sources/BHSmot/arxiv-source",
+          "path": "Source/BHSmot/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "d873685e6f859a40952d55ec9a41beccd8d48e64bb7b74dbc101968d13cabd3d"
         },
         {
-          "path": "references/literature/Sources/BHSmot/paper.pdf",
+          "path": "Source/BHSmot/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "f74a6f89b5774c5e022750ddd46cbc8cb77abd6fddb9485746171d52586e2ef8"
         },
         {
-          "path": "references/literature/Sources/BHSmot/paper.txt",
+          "path": "Source/BHSmot/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "f8e2bb9eac1a3d6d050e743f4ca46db2fc28ae8176f1a4ace122ccec7350311e"
@@ -688,7 +688,7 @@
     },
     {
       "id": "burklund_xu",
-      "directory": "references/literature/Sources/BurklundXu",
+      "directory": "Source/BurklundXu",
       "kind": "literature",
       "citation_keys": [
         "BurklundXu"
@@ -698,7 +698,7 @@
       "doi": "10.1007/s00222-024-01298-6",
       "canonical_url": "https://doi.org/10.1007/s00222-024-01298-6",
       "role": "Synthetic extension of the BJM criterion and the lambda eta theta_5^2 differential relation.",
-      "status_file": "references/literature/Sources/BurklundXu/source-status.json",
+      "status_file": "Source/BurklundXu/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -708,37 +708,37 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/BurklundXu/citation.bib",
+          "path": "Source/BurklundXu/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "4e3494ac2239ac49b2319cdbe54ebd740c7744faad189356f15dc639cfc32883"
         },
         {
-          "path": "references/literature/Sources/BurklundXu/source-status.json",
+          "path": "Source/BurklundXu/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "c6ccb83ea3956f0ec4c590456c05390af67df518a9cd85d8ca236c6b15852fa1"
         },
         {
-          "path": "references/literature/Sources/BurklundXu/openalex.json",
+          "path": "Source/BurklundXu/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "9855be643480048ccd3669522b840b57115eb6652229fba5ebbe1a479e21c5dd"
         },
         {
-          "path": "references/literature/Sources/BurklundXu/arxiv-source",
+          "path": "Source/BurklundXu/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "a30c50a346291dde22bab52d07cff3fc378afb3088ec92643b45418fb615e028"
         },
         {
-          "path": "references/literature/Sources/BurklundXu/paper.pdf",
+          "path": "Source/BurklundXu/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "c94a3184977162ccbc3fa538a184c2bc3789e67e56de60ef9b1d72bb60617b6a"
         },
         {
-          "path": "references/literature/Sources/BurklundXu/paper.txt",
+          "path": "Source/BurklundXu/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "5487db430f7d1173f09ec2691bdc7a28796e806bcc25268254bc52f53cd08f4e"
@@ -747,7 +747,7 @@
     },
     {
       "id": "may01",
-      "directory": "references/literature/Sources/May01",
+      "directory": "Source/May01",
       "kind": "literature",
       "citation_keys": [
         "May01"
@@ -757,7 +757,7 @@
       "doi": "10.1006/aima.2001.1995",
       "canonical_url": "https://doi.org/10.1006/aima.2001.1995",
       "role": "Triangulated pullback lemma used in the generalized Leibniz argument.",
-      "status_file": "references/literature/Sources/May01/source-status.json",
+      "status_file": "Source/May01/source-status.json",
       "status_class": "partial",
       "availability": {
         "metadata": true,
@@ -767,25 +767,25 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/May01/citation.bib",
+          "path": "Source/May01/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "30765408084974b75e03b0e7e97ce6d4511119f3b99c80b39085a52ee8a94d04"
         },
         {
-          "path": "references/literature/Sources/May01/source-status.json",
+          "path": "Source/May01/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "2ba8ada4e8da0cdd0b3e18096b38e47744a6e53fb615f1d738f8127ff3f460f9"
         },
         {
-          "path": "references/literature/Sources/May01/openalex.json",
+          "path": "Source/May01/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "dbedbd5347d40d8272f23d8162d56d7ce7800428ea8b13f0d6c75805e3e23888"
         },
         {
-          "path": "references/literature/Sources/May01/paper.pdf",
+          "path": "Source/May01/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "61f6f38ffc88becad1d482270526477de03c03e64b8871d353e3b3116d655763"
@@ -794,7 +794,7 @@
     },
     {
       "id": "moss",
-      "directory": "references/literature/Sources/Moss",
+      "directory": "Source/Moss",
       "kind": "literature",
       "citation_keys": [
         "Moss"
@@ -804,7 +804,7 @@
       "doi": "10.1007/BF01129978",
       "canonical_url": "https://doi.org/10.1007/BF01129978",
       "role": "No-crossing/Toda-bracket criterion used in the final extension contradiction.",
-      "status_file": "references/literature/Sources/Moss/source-status.json",
+      "status_file": "Source/Moss/source-status.json",
       "status_class": "metadata_only",
       "availability": {
         "metadata": true,
@@ -814,25 +814,25 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/Moss/citation.bib",
+          "path": "Source/Moss/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "24755b33ce39a3bdfca49af7ccb065256050c541c77e46ef952b3bec98c41dfd"
         },
         {
-          "path": "references/literature/Sources/Moss/source-status.json",
+          "path": "Source/Moss/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "90fd45004ecbac787304a7e057b6fcd229d231f05d629dded1cfbc99656a9b41"
         },
         {
-          "path": "references/literature/Sources/Moss/openalex.json",
+          "path": "Source/Moss/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "0d8ab7e5fe9108c75a2e92c7a9ccf985632d4fc831c3eb0cd7174ed978eb7e51"
         },
         {
-          "path": "references/literature/Sources/Moss/semantic-scholar.json",
+          "path": "Source/Moss/semantic-scholar.json",
           "kind": "metadata",
           "required": true,
           "sha256": "5e938ee760c86289d296e385b6dd8b4243dd070012037cd04f2709b9b633af44"
@@ -841,7 +841,7 @@
     },
     {
       "id": "br21",
-      "directory": "references/literature/Sources/BR21",
+      "directory": "Source/BR21",
       "kind": "literature",
       "citation_keys": [
         "BR21"
@@ -851,7 +851,7 @@
       "doi": "10.1090/surv/253",
       "canonical_url": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/rognes-bruner-tmf-book.pdf",
       "role": "Author preliminary book: Theorem 5.18/Table 5.4 gives d3(w2^2)=beta*g^4; Tables 3.4/3.5 imply beta*g^4=beta^5*g. Source-to-selected-coordinate transport is a separate internal proof.",
-      "status_file": "references/literature/Sources/BR21/source-status.json",
+      "status_file": "Source/BR21/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": true,
@@ -861,31 +861,31 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/BR21/citation.bib",
+          "path": "Source/BR21/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "f36a963b2b4c9f45ab0b86cb9418b53cf327799f7b14192be7215a2e2cb22c47"
         },
         {
-          "path": "references/literature/Sources/BR21/source-status.json",
+          "path": "Source/BR21/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "6819d2663ca5600203caefe91141388acaccca9ca42d0726daa59b49a380cd40"
         },
         {
-          "path": "references/literature/Sources/BR21/openalex.json",
+          "path": "Source/BR21/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "e6d60ececf20d6ee696509464259c405f03f8b244a8e72a8336e49d21793cf47"
         },
         {
-          "path": "references/literature/Sources/BR21/paper.pdf",
+          "path": "Source/BR21/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "cad4df7d4f6057408e7ec90d8b7003f5658cdd46ee5eb3972d66eaef86f6e1b1"
         },
         {
-          "path": "references/literature/Sources/BR21/paper.txt",
+          "path": "Source/BR21/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "1c350553acae9c47a33d481159b3768f3af389d725bcc440a01e49074cd649c7"
@@ -894,7 +894,7 @@
     },
     {
       "id": "lwx_machine",
-      "directory": "references/literature/Sources/LWXMachine",
+      "directory": "Source/LWXMachine",
       "kind": "machine",
       "citation_keys": [
         "LWXMachine",
@@ -907,7 +907,7 @@
       "doi": "10.48550/arXiv.2412.10876",
       "canonical_url": "https://arxiv.org/abs/2412.10876",
       "role": "Lin–Wang–Xu paper, Zenodo proofs/data, SSeqCpp, and plot evidence for Appendix facts.",
-      "status_file": "references/literature/Sources/LWXMachine/source-status.json",
+      "status_file": "Source/LWXMachine/source-status.json",
       "status_class": "full_text",
       "availability": {
         "metadata": false,
@@ -917,49 +917,49 @@
       },
       "artifacts": [
         {
-          "path": "references/literature/Sources/LWXMachine/citation.bib",
+          "path": "Source/LWXMachine/citation.bib",
           "kind": "citation",
           "required": true,
           "sha256": "335a38a8aa422e134562d17957856a26c449d499a2d54b9364c1115fb57f2b9a"
         },
         {
-          "path": "references/literature/Sources/LWXMachine/source-status.json",
+          "path": "Source/LWXMachine/source-status.json",
           "kind": "status",
           "required": true,
           "sha256": "6da3f6ede4fd2f6c8e5a59b884fcb329e8beaa3e8d6b516d8e90d20a668306ac"
         },
         {
-          "path": "references/literature/Sources/LWXMachine/arxiv-source",
+          "path": "Source/LWXMachine/arxiv-source",
           "kind": "source_archive",
           "required": true,
           "sha256": "1431b62157e5e430e8fb62a0e11a666a969794d67597f132f89ce92a57a301c0"
         },
         {
-          "path": "references/literature/Sources/LWXMachine/paper.pdf",
+          "path": "Source/LWXMachine/paper.pdf",
           "kind": "pdf",
           "required": true,
           "sha256": "226fdd5b7d0078eaa9fd6c599a922d172ede5f8c095394b55c7550d4c8743935"
         },
         {
-          "path": "references/literature/Sources/LWXMachine/paper.txt",
+          "path": "Source/LWXMachine/paper.txt",
           "kind": "text",
           "required": true,
           "sha256": "d3caf1c0541328b8409ea24216d1ec168d3ccadf21aa3e898068e0c2602bb51d"
         },
         {
-          "path": "references/literature/Sources/LWXMachine/zenodo-record.json",
+          "path": "Source/LWXMachine/zenodo-record.json",
           "kind": "machine_metadata",
           "required": true,
           "sha256": "ee6a6622777d04cce0f268eded8255a108714e4bf4fddc333321309475fa43b3"
         },
         {
-          "path": "references/literature/Sources/LWXMachine/lin-program-page.html",
+          "path": "Source/LWXMachine/lin-program-page.html",
           "kind": "machine_artifact",
           "required": true,
           "sha256": "4bbec290b545ec628834307701939937d206090cff6c9831cd439ee80737c1dd"
         },
         {
-          "path": "references/literature/Sources/LWXMachine/lin-plot.html",
+          "path": "Source/LWXMachine/lin-plot.html",
           "kind": "machine_artifact",
           "required": true,
           "sha256": "96d3a345648b94971fb51fd15befd15f011878c2c2d7818e70e041955a0761bb"

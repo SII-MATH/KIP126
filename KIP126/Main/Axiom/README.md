@@ -4,4 +4,4 @@
 
 [Main/Solution/StageInput.lean](../Solution/StageInput.lean) 从同一见证提取对象绑定、A(M) 和 C(M)。最终目标的类型只依赖 Def，不导入本目录。
 
-原始文献在仓库的 `references/literature/`，固定数据在 [LinProgram](../../LinProgram/README.md)。Interface 的实际生产证明最终负责解除此开发期阶段假设。
+原始文献在仓库的 `Source/`，固定数据在 [LinProgram](../../LinProgram/README.md)。Interface 的实际生产证明最终负责解除此开发期阶段假设。

@@ -4,7 +4,7 @@
 
 ## IWX 作者数据：已直接核验
 
-来源为 Isaksen–Wang–Xu 的 [Zenodo 2022 v1 作者数据](https://zenodo.org/records/6987157)。本轮直接下载两份经典 Adams CSV 和配套 `README-Adams.pdf`；网页公布的两个 CSV MD5 与下载内容一致。文件原样存入 [IWX/data](../../references/literature/Sources/IWX/data)，SHA256 固定在 [来源台账](../challenge2-route-sources.json)。以下行号包括表头。
+来源为 Isaksen–Wang–Xu 的 [Zenodo 2022 v1 作者数据](https://zenodo.org/records/6987157)。本轮直接下载两份经典 Adams CSV 和配套 `README-Adams.pdf`；网页公布的两个 CSV MD5 与下载内容一致。文件原样存入 [IWX/data](../../Source/IWX/data)，SHA256 固定在 [来源台账](../challenge2-route-sources.json)。以下行号包括表头。
 
 | 材料 | 本轮直接读取的位置 | 支持的内容 |
 | --- | --- | --- |
@@ -24,7 +24,7 @@
 
 ## Ravenel：本轮直接读取作者公开书稿
 
-已下载并固定 [作者公开 PDF](https://www.sas.rochester.edu/mth/sites/doug-ravenel/mybooks/ravenel.pdf)，保存为 [Ravenel/ravenel.pdf](../../references/literature/Sources/Ravenel/ravenel.pdf)，SHA256 为 `880c053ba8f2d1695e2d8bae5ef28f9b7f737324ea43d420173c7219409528ab`。这是直接读取书中陈述和证明，不表示读过其引用的全部 Adams 原论文。
+已下载并固定 [作者公开 PDF](https://www.sas.rochester.edu/mth/sites/doug-ravenel/mybooks/ravenel.pdf)，保存为 [Ravenel/ravenel.pdf](../../Source/Ravenel/ravenel.pdf)，SHA256 为 `880c053ba8f2d1695e2d8bae5ef28f9b7f737324ea43d420173c7219409528ab`。这是直接读取书中陈述和证明，不表示读过其引用的全部 Adams 原论文。
 
 - Theorem 3.4.5(a)，印刷页 87 / PDF 第 107 页：正茎消失界为 `t-s < 2s-ε`，其中 `ε≤3`，故项目采用的严格较窄界 `0<t-s<2s-3` 正确；证明见印刷页 89。
 - Lemma 2.1.12，印刷页 46 / PDF 第 66 页：Adams 塔同伦逆极限消失给出实际过滤的交为零；不是仅给出任意分次同构。
@@ -75,7 +75,7 @@
 
 ## BR21 作者原书的新增直接核验
 
-本次补证已取得并逐项阅读 [作者公开的 AMS 获准预出版原书](https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/rognes-bruner-tmf-book.pdf)，未改动 PDF 保存于 `references/literature/Sources/BR21/paper.pdf`，708 页，SHA256 `cad4df7d4f6057408e7ec90d8b7003f5658cdd46ee5eb3972d66eaef86f6e1b1`。带 PDF 页码的本地抽取文本另存 paper.txt。这里明确采用作者预出版版本，未声称已逐页核对最终出版版。
+本次补证已取得并逐项阅读 [作者公开的 AMS 获准预出版原书](https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/rognes-bruner-tmf-book.pdf)，未改动 PDF 保存于 `Source/BR21/paper.pdf`，708 页，SHA256 `cad4df7d4f6057408e7ec90d8b7003f5658cdd46ee5eb3972d66eaef86f6e1b1`。带 PDF 页码的本地抽取文本另存 paper.txt。这里明确采用作者预出版版本，未声称已逐页核对最终出版版。
 
 | 原文位置 | 本次直接核实内容 | 当前坐标适配 |
 | --- | --- | --- |

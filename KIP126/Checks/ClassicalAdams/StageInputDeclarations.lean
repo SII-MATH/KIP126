@@ -180,3 +180,19 @@ example : ∃ routeInput : KIP126.Classical.Adams.StandardRouteInput,
     ∃ presentation : KIP126.Classical.Adams.LinE2Presentation,
       Nonempty (KIP126.Challenge2.ComputationInterface routeInput modelBindings presentation) :=
   KIP126.Interface.Solution.computationInterface
+
+-- The upstream geometry delivery must stay correlated with the same witness.
+open KIP126.Main.StageInput in
+example : geometryModel = witness.modelBindings.geometry := rfl
+
+example (c : KIP126.Challenge2) :
+    c.literature.geometry.low_dimensions.root = .lowKervaireExistence :=
+  c.literature.geometry.low_dimensions_root
+
+example (c : KIP126.Challenge2) :
+    c.literature.geometry.high_nonexistence.root = .hhrNonexistence :=
+  c.literature.geometry.high_nonexistence_root
+
+example (c : KIP126.Challenge2) :
+    c.literature.geometry.browder.root = .browderCriterion :=
+  c.literature.geometry.browder_root

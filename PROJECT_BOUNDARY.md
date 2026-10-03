@@ -6,8 +6,8 @@ This document records the agreed scope and acceptance criteria for the Lean
 formalization of:
 
 > Weinan Lin, Guozhen Wang, and Zhouli Xu, *On the Last Kervaire Invariant
-> Problem*, represented in this repository by `references/literature/MainPaper/main.tex`,
-> `references/literature/MainPaper/112.tex`, and `references/literature/MainPaper/2412.10879.pdf`.
+> Problem*, represented in this repository by `MainPaper/main.tex`,
+> `MainPaper/112.tex`, and `MainPaper/2412.10879.pdf`.
 
 The document is normative for the project. Any proposed extension or
 relaxation of this boundary must be agreed explicitly and recorded here.
@@ -36,7 +36,8 @@ See [STAGE_LAYOUT](docs/STAGE_LAYOUT.md) for the directory contract and
 - The independent LinProgram pipeline retains raw provenance and exact
   interpretation. Independent paper-tool proofs may be reused by certification
   only without Main's stage input or the same numerical output as premises.
-- Original literature lives under references/literature; source-bearing
+- The target paper lives under MainPaper and external literature under Source;
+  source-bearing
   contract language lives under Interface/Challenge. Historical audit files
   retain their original conclusions and are not current architecture rules.
 
@@ -204,7 +205,7 @@ chosen model remains an Interface obligation. Main consumes the corresponding
 Challenge 2 computation delivery rather than its Interface producer proofs.
 `Main/Axiom/` contains only the single stage existence assumption. Precise
 input contracts are in `Interface/Challenge/`, and source artifacts are in
-`references/literature/`. The witness and its projections live in
+`Source/`. The witness and its projections live in
 `Main/Solution/StageInput.lean`. Intermediate deductions and their imports live
 only in `Main/Solution/`; only the final target is paired with Main/Challenge.
 There are no `Proofs.lean` files in the input directory.
@@ -346,7 +347,7 @@ longer assumes that certificate. Its proof remains unfinished.
 
 Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables first enter the repository as audited source
-material. `references/literature/` retains input statements and source
+material. `Source/` retains input statements and source
 artifacts; `KIP126/Def/References/` owns the source catalogue. The independent
 `KIP126/LinProgram/` owns the raw-to-interpreted program pipeline and local
 certificates. `KIP126/Main/Solution/Computation/` owns computation consumer adapters. Every accepted external input remains a

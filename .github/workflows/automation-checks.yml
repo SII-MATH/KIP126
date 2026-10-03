@@ -8,7 +8,8 @@ on:
       - '.github/**'
       - 'scripts/**'
       - 'migration/kip-base/**'
-      - 'references/literature/**'
+      - 'MainPaper/**'
+      - 'Source/**'
       - 'KIP126/LinProgram/**'
   push:
     branches: [main]
@@ -16,7 +17,8 @@ on:
       - '.github/**'
       - 'scripts/**'
       - 'migration/kip-base/**'
-      - 'references/literature/**'
+      - 'MainPaper/**'
+      - 'Source/**'
       - 'KIP126/LinProgram/**'
   workflow_dispatch:
 

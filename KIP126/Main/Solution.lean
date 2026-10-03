@@ -28,8 +28,5 @@ import KIP126.Main.Solution.Computation.Lambda
 import KIP126.Main.Solution.Route.Selected
 import KIP126.Main.Solution.Route.AlphaOne
 import KIP126.Main.Solution.Route.Section7
-import KIP126.Main.Solution.Literature.Synthetic
-import KIP126.Main.Solution.Literature.InternalGeometry
 import KIP126.Main.Solution.Literature.SyntheticBockstein
 import KIP126.Main.Solution.Literature.SyntheticEInfty
-import KIP126.Main.Solution.Literature.May

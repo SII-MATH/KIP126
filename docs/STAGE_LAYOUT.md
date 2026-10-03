@@ -13,7 +13,7 @@
 | `KIP126/Main/Solution/` | 本文独立工具、内部推导及最终证明。认证若使用本文工具，只能使用不依赖 Main 输入或同一待认证 C 的独立工具证明。 |
 | `KIP126/LinProgram/` | 固定数据、解析、参数化数学解释和局部证书，不选择阶段 witness。 |
 | `KIP126/Checks/` | 编译、次数、定义依赖和交付一致性检查，以及有限表格示例。 |
-| `references/literature/` | 原始论文、书目、固定版本及来源台账。原始资料不是 Lean 定理。 |
+| `MainPaper/`、`Source/` | 分别保存主论文与外部文献、固定版本及来源台账；沿用最新 develop 的目录。原始资料不是 Lean 定理。 |
 
 Interface 和 Main 的直接子目录都恰为 `Axiom/`、`Challenge/`、`Solution/`。根 `Challenge1.lean`、`Challenge2.lean` 只保留导出，不拥有第二份类型或证明传递。
 
@@ -25,7 +25,7 @@ Interface 和 Main 的直接子目录都恰为 `Axiom/`、`Challenge/`、`Soluti
 - `KIP126/Challenge2.lean` 的阶段交付内容归 `Interface/Challenge/Challenge2.lean`；根文件只导出。
 - `Interface/Solution/StageInput/` 的基础、球塔和标准类归 `Def/StageInput/`。
 - `Main/Examples/` 归 `Checks/Examples/`，保留已有有用途的有限表格证明。
-- 原 `Main/Axiom/Literature/` 的输入语言归 `Interface/Challenge/Literature/`，非 Lean 资料归 `references/literature/`。
+- 沿用最新 develop 对旧文献包装的删除：文献输入集中于 `Interface/Challenge/Challenge2.lean`，条件性 Cν 事实位于 `Main/Solution/Literature/HopfCofiber/Predicates.lean`；主论文与外部资料分别归 `MainPaper/`、`Source/`。
 - 本文工具的 Prop 语言归 `Def/Kervaire/Route/Tools/`；实际证明目标仍在 `Main/Solution/Tools/`，不会作为 M 字段或外部定理接受。
 
 第0步与最终证明完成度的区别、范围及当前证明责任见 [STAGE0_INTERFACES.md](STAGE0_INTERFACES.md)。检查命令与实际结果须记录在本次修改报告中，不能沿用旧批次的通过记录。

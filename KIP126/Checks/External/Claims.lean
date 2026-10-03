@@ -77,7 +77,7 @@ private def malformedProjectionTargetClaim : ExternalClaimRecord :=
       "NOT_THE_TARGET" }
 
 private def mismatchedMachineArtifact : ArtifactRef :=
-  { path := "references/literature/Sources/LWXMachine/paper.pdf"
+  { path := "Source/LWXMachine/paper.pdf"
     sha256 := "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" }
 
 example :
