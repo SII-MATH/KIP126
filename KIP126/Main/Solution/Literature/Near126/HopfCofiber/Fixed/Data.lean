@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Near126.HopfCofiber.Data
+import KIP126.Interface.Challenge.Literature.Near126.HopfCofiber.Data
 import KIP126.LinProgram.Interpretation.Near126.Classes.Data
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
 import KIP126.Main.Solution.Literature.HopfCofiber.Predicates

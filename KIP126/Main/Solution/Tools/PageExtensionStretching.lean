@@ -1,14 +1,15 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
-import KIP126.Def.Kervaire.Route.Extensions.Stretching.Predicates
+import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
+import KIP126.Interface.Challenge.Challenge2
 
-/-! 本文待证工具；所有对象、代表和扩张均从同一个 Route.Model 派生。
-这里只定义待证命题，不把本文定理放入 M 或 A(M)。 -/
+/-! Independent paper-tool proof target. No computation delivery or selected
+stage witness is a premise. The theorem remains to be proved from the displayed
+source-to-model comparisons on the same model; declaring it does not certify log rows. -/
 namespace KIP126.Main.Solution.Tools
 
-open CategoryTheory CategoryTheory.MonoidalCategory
+open CategoryTheory
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
-open KIP126.Synthetic.Context KIP126.Synthetic.SpectralSequence
-open KIP126.Kervaire.Route KIP126.Classical.Adams KIP126.Classical.Adams.PageRepresentatives
+open KIP126.Synthetic.Context KIP126.Kervaire.Route KIP126.Classical.Adams
+open KIP126.Literature.Route
 
 universe u v w
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
@@ -18,22 +19,12 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
   (D : Model H M Syn)
 
-/-- 本文待证工具（原 am7）：有限页 relation 的 stretching 交付命题。
-参考 MainPaper Proposition `prop:dec738d3` 及 Corollary `cor:dfc6043e`。
-本项目要求源、靶都已属于后页所需的 cycle 层，并排除上述含 b=0 的
-障碍候选；这是明确的充分条件版本；模型相容条件已有类型，比较输入与证明仍待交付。
-结论只给出后页 extension 的存在，不声称任意指定的早期严格解可提升，
-也不蕴含相容解塔或未截断 extension 的存在。 -/
-def FinitePageExtensionStretchingLaw (X Y : ClassicalObject) (f : X.obj D.auxiliary ⟶ Y.obj D.auxiliary) : Prop :=
-  ∀ (rEarlier rLater : ℕ) (n s t : ℤ)
-    (x : Ambient H (X.obj D.auxiliary) (s, t)) (y : Ambient H (Y.obj D.auxiliary) (s + n, t + n)),
-    2 ≤ rEarlier → rEarlier ≤ rLater →
-    (normalizedExponent H f : ℤ) ≤ n →
-    n ≤ (rEarlier : ℤ) - 2 + normalizedExponent H f →
-    IsCycle H (X.obj D.auxiliary) ((rLater : ℤ) - 1) (s, t) x →
-    IsCycle H (Y.obj D.auxiliary) ((rLater : ℤ) - 1 - n + normalizedExponent H f) (s + n, t + n) y →
-    FiniteExtension D X Y f rEarlier n s t x y →
-    ¬ FiniteExtensionNonliftableCrossing D X Y f rEarlier rLater n s t →
-    FiniteExtension D X Y f rLater n s t x y
+/-- The finite sufficient-condition form of MainPaper Proposition `prop:dec738d3`
+and Corollary `cor:dfc6043e`. This asserts neither an infinite lift nor compatibility
+of arbitrarily chosen lifts; the later-page cycle conditions remain explicit. -/
+theorem finitePageExtensionStretching (synthetic : SyntheticInputs D)
+    (X Y : ClassicalObject) (f : X.obj D.auxiliary ⟶ Y.obj D.auxiliary) :
+    KIP126.Kervaire.Route.Tools.FinitePageExtensionStretchingLaw D X Y f := by
+  sorry
 
 end KIP126.Main.Solution.Tools

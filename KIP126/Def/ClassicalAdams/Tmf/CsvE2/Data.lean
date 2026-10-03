@@ -135,6 +135,11 @@ abbrev E2At (s t : ℕ) := ↥(homogeneousPart s t)
 There is no assumption that an E₂ element named v₂ exists. -/
 def v2SixteenValue : E2 := generator 12 ^ 2
 
+/-- BR21 Table 5.4 writes the differential target as βg⁴.
+The exact equality with the selected β⁵g expression is proved from two
+relations of this quotient in CsvE2/Proofs.lean. -/
+def betaGFourValue : E2 := generator 7 * generator 9 ^ 4
+
 /-- CSV generator 7 is β in degree (3,18), and generator 9 is g in (4,24). -/
 def betaFiveGValue : E2 := generator 7 ^ 5 * generator 9
 

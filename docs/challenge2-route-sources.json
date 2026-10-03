@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "scope": "Selected LWX v2 Section 7 route: source statements, model comparisons and internal applications, separately classified; no claim of completed source proofs",
+  "scope": "Selected LWX v2 Section 7 route: one correlated route/source witness over the fixed actual classical background; source statements, model comparisons and internal applications separately classified; no claim of completed source proofs",
   "entry": "KIP126.Literature.Route.Statements",
   "frozen_model": "KIP126.Kervaire.Route.Model",
   "sources": [
@@ -11,7 +11,7 @@
       "status": "local-source-and-online-checked",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/MainPaper/main.tex",
+          "path": "references/literature/MainPaper/main.tex",
           "sha256": "828ee5a5aa06e1f390b036a043230ed417446fa7be11a4e27eecc4a565135c4b"
         }
       ]
@@ -23,7 +23,7 @@
       "status": "local-primary-source-checked",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/Xu/source/theta5_arxiv.tex",
+          "path": "references/literature/Sources/Xu/source/theta5_arxiv.tex",
           "sha256": "ee83a8162dfedd7a8cc07d117ffc025e0999387644017d6c03e4e701265f4b89"
         }
       ],
@@ -38,19 +38,19 @@
       "status": "local-primary-source-checked",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/IWX/source/more-stable-stems-intro.tex",
+          "path": "references/literature/Sources/IWX/source/more-stable-stems-intro.tex",
           "sha256": "c690105bd338fd1e5ff045ea54d5aa05e89d440e070c92c82842221ae3720d63"
         },
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/IWX/source/more-stable-stems-tables.tex",
+          "path": "references/literature/Sources/IWX/source/more-stable-stems-tables.tex",
           "sha256": "c606709433ccd65fee9fb7ad3d519279df5469c22979ee8fcffe57e037d6e379"
         },
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/IWX/source/more-stable-stems-background.tex",
+          "path": "references/literature/Sources/IWX/source/more-stable-stems-background.tex",
           "sha256": "a96b762ab110325b0395ccce5ef74331b2634c1853ea0329c7a26f69ce0797b6"
         },
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/IWX/source/more-stable-stems-Toda.tex",
+          "path": "references/literature/Sources/IWX/source/more-stable-stems-Toda.tex",
           "sha256": "8bcdca77a8c459b78815e0f080c29ae2f1e7f5d54043fdcd3a4cf2fa284bc060"
         }
       ],
@@ -59,7 +59,8 @@
         "defn:crossing-diff",
         "thm:Moss",
         "cor:2-symmetric"
-      ]
+      ],
+      "note": "The Toda symmetric theorem and Corollary 6.2 in the local TeX are C-motivic. They do not automatically give the selected synthetic Toda operation."
     },
     {
       "id": "bx",
@@ -68,7 +69,7 @@
       "status": "local-primary-source-checked",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/BurklundXu/source/kervairev2.tex",
+          "path": "references/literature/Sources/BurklundXu/source/kervairev2.tex",
           "sha256": "34cdb9d20d21eafb3d502418b535b6517337a11a985487497003832de888491a"
         }
       ],
@@ -84,15 +85,15 @@
       "status": "local-primary-source-checked",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/BHS/source/SynRevBigraded.tex",
+          "path": "references/literature/Sources/BHS/source/SynRevBigraded.tex",
           "sha256": "3b9394fbf7b40946bd19fb85563e72b7177d50096934240af2db185682a54231"
         },
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/BHS/source/SynRevAdams.tex",
+          "path": "references/literature/Sources/BHS/source/SynRevAdams.tex",
           "sha256": "22e5f3c7c8b734f2611b812ee50f4de48c3ce2a2cf123615f3ded88613dc0943"
         },
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/BHS/source/SyntheticTodaRange.tex",
+          "path": "references/literature/Sources/BHS/source/SyntheticTodaRange.tex",
           "sha256": "d1ab0ecaddde05a9f4ba038c2cb0ccb16e885e958b1880688a4f3ce81570c29e"
         }
       ],
@@ -113,7 +114,7 @@
       "status": "local-primary-source-checked",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/Pst/source/synthetic_spectra.tex",
+          "path": "references/literature/Sources/Pst/source/synthetic_spectra.tex",
           "sha256": "8cf4dea5a56c89ed6d7adf6e8774a7c4be31a5da447b91c8c6c9061f292cd890"
         }
       ],
@@ -131,11 +132,11 @@
       "status": "local-primary-source-checked",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/BHSmot/source/Filtered.tex",
+          "path": "references/literature/Sources/BHSmot/source/Filtered.tex",
           "sha256": "e24f321a6c2217a79842a951ffc90a43c231a994e42afb9fb91720f18fc435cc"
         },
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/BHSmot/source/Deformation.tex",
+          "path": "references/literature/Sources/BHSmot/source/Deformation.tex",
           "sha256": "614d8c7ebf1707861e9b32b7699eca97e037ea99432739d8e9825981442fbc74"
         }
       ],
@@ -151,11 +152,11 @@
       "status": "local-primary-source-and-figure-checked",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/tmf/source/tmfhi9.tex",
+          "path": "references/literature/Sources/tmf/source/tmfhi9.tex",
           "sha256": "0509d24b10bb9563e23302e37dac800e73e8fcd7dd70c54b3411a6c3c39d6381"
         },
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/tmf/source/tmf2.pdf",
+          "path": "references/literature/Sources/tmf/source/tmf2.pdf",
           "sha256": "e0d37d1d51d5bf959408bf009c5528c1a7c3cb419de8e1405177d4ed46aff98c"
         }
       ],
@@ -170,18 +171,22 @@
       "id": "may",
       "role": "prior-result",
       "url": "https://math.uchicago.edu/~may/PAPERS/AddJan01.pdf",
-      "status": "author-pdf-checked-online",
+      "status": "author-pdf-read-and-pinned",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/May01/citation.bib",
+          "path": "references/literature/Sources/May01/citation.bib",
           "sha256": "30765408084974b75e03b0e7e97ce6d4511119f3b99c80b39085a52ee8a94d04"
+        },
+        {
+          "path": "references/literature/Sources/May01/paper.pdf",
+          "sha256": "61f6f38ffc88becad1d482270526477de03c03e64b8871d353e3b3116d655763"
         }
       ],
       "locators": [
         "TC3",
         "Lemma 4.6, PDF p.14"
       ],
-      "note": "Local file is citation metadata, not the original proof."
+      "note": "Author PDF TC3 and Lemma 4.6 checked directly; signs retained, unsigned projection requires exponent two."
     },
     {
       "id": "moss",
@@ -190,7 +195,7 @@
       "status": "original-scan-unavailable",
       "files": [
         {
-          "path": "KIP126/Main/Axiom/Literature/Sources/Moss/citation.bib",
+          "path": "references/literature/Sources/Moss/citation.bib",
           "sha256": "24755b33ce39a3bdfca49af7ccb065256050c541c77e46ef952b3bec98c41dfd"
         }
       ],
@@ -208,9 +213,10 @@
       "locators": [
         "Theorem 1.1 / 4.11",
         "Definition 2.10",
-        "Proposition 2.12"
+        "Proposition 2.12",
+        "Proposition 4.10; p. 2 multiplicativity caveat"
       ],
-      "note": "December 2021 version predates LWX; used to check the Moss statement and crossing directions, not its 2025 revision."
+      "note": "December 2021 v1 primary theorem checked directly. It supplies a multiplicative-tower version of Moss with its own hypotheses; p. 2 explicitly restricts Proposition 4.10 to the multiplicative setting. Applying it to the sphere requires actual pairing/composition comparison. It does not certify a general arbitrary-object composition theorem, nor constitute reading Moss 1970."
     },
     {
       "id": "toda",
@@ -223,15 +229,131 @@
         "low bracket <2,eta,2>"
       ],
       "note": "Symmetric membership checked through IWX chapter 6; synthetic transport is an explicit unproved input, not a verbatim classical or motivic statement."
+    },
+    {
+      "id": "iwx-data-2022",
+      "role": "prior-computation",
+      "url": "https://zenodo.org/records/6987157",
+      "status": "author-primary-csv-and-readme-directly-checked",
+      "files": [
+        {
+          "path": "references/literature/Sources/IWX/data/Adams-classical-E2.csv",
+          "sha256": "0b103227bf84d8c335b3e65c91219e1e2a7913bc95bac03f2ba52011abfaaa4c",
+          "url": "https://zenodo.org/records/6987157/files/Adams-classical-E2.csv?download=1"
+        },
+        {
+          "path": "references/literature/Sources/IWX/data/Adams-classical-Einfty.csv",
+          "sha256": "1e3b79c97472241543f1c58e713cf4c96447f553d99a94a7fc6ce3eeaac8393b",
+          "url": "https://zenodo.org/records/6987157/files/Adams-classical-Einfty.csv?download=1"
+        },
+        {
+          "path": "references/literature/Sources/IWX/data/README-Adams.pdf",
+          "sha256": "954227755b91ece8284acca2c1942d2d2fb97a6e811b3de255e79ce407e4e0bf",
+          "url": "https://zenodo.org/records/6987157/files/README-Adams.pdf?download=1"
+        }
+      ],
+      "locators": [
+        "Adams-classical-E2.csv lines 59 and 275, counting the header",
+        "Adams-classical-Einfty.csv lines 204-207, counting the header",
+        "README-Adams.pdf pp. 2-3"
+      ],
+      "note": "Author-deposited v1 data of 2022. Classical 2-complete Adams charts; D h1 g denotes Delta h1 g. CSV identity/rows are checked by check_route_literature.py; the mathematical interpretation and model comparison remain proof obligations."
+    },
+    {
+      "id": "ravenel",
+      "role": "prior-result",
+      "url": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/mybooks/ravenel.pdf",
+      "status": "author-hosted-book-statement-and-proof-directly-checked",
+      "files": [
+        {
+          "path": "references/literature/Sources/Ravenel/ravenel.pdf",
+          "sha256": "880c053ba8f2d1695e2d8bae5ef28f9b7f737324ea43d420173c7219409528ab"
+        }
+      ],
+      "locators": [
+        "Theorem 3.4.5(a), printed p.87 / PDF p.107; proof printed p.89 / PDF p.109",
+        "Theorem 2.1.1(b), printed pp.41-42 / PDF pp.61-62",
+        "Lemma 2.1.12 and Corollary 2.1.13, printed p.46 / PDF p.66",
+        "Lemmas 2.1.15-16 and proof of 2.1.1(b), printed pp.46-47 / PDF pp.66-67",
+        "Theorem 2.2.13, printed p.52 / PDF p.72"
+      ],
+      "note": "Directly read the author-hosted book, including its explicit Adams/May attribution. The conservative positive-stem vanishing region follows from epsilon <= 3. Classical finite-type completion/convergence is stated for an ordinary connective finite-type source and its completion; applying this to the derived-complete model and the canonical tower remains an Interface proof obligation. This is not a claim that Adams original papers were read."
+    },
+    {
+      "id": "adams-may",
+      "role": "prior-result",
+      "url": "https://doi.org/10.1016/0021-8693(66)90009-3",
+      "status": "source-locator-not-independently-read-in-this-supplement",
+      "files": [
+        {
+          "path": "references/literature/Sources/Maythesis/citation.bib",
+          "sha256": "b231d4d775a1a975644dae52f34df053a5dc75a57f03efb8dcd21c469d83bd26"
+        }
+      ],
+      "locators": [
+        "Adams Hopf-invariant-one differentials",
+        "May thesis classical one-line computation"
+      ],
+      "note": "Root AdamsOneLineInterface is a separate full one-line literature obligation. This row does not certify every original one-line source."
+    },
+    {
+      "id": "br21",
+      "role": "prior-result",
+      "url": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/rognes-bruner-tmf-book.pdf",
+      "status": "author-primary-preliminary-book-directly-read",
+      "files": [
+        {
+          "path": "references/literature/Sources/BR21/citation.bib",
+          "sha256": "f36a963b2b4c9f45ab0b86cb9418b53cf327799f7b14192be7215a2e2cb22c47"
+        },
+        {
+          "path": "references/literature/Sources/BR21/paper.pdf",
+          "sha256": "cad4df7d4f6057408e7ec90d8b7003f5658cdd46ee5eb3972d66eaef86f6e1b1"
+        },
+        {
+          "path": "references/literature/Sources/BR21/paper.txt",
+          "sha256": "1c350553acae9c47a33d481159b3768f3af389d725bcc440a01e49074cd649c7"
+        },
+        {
+          "path": "references/literature/Sources/BR21/source-status.json",
+          "sha256": "6819d2663ca5600203caefe91141388acaccca9ca42d0726daa59b49a380cd40"
+        }
+      ],
+      "locators": [
+        "Table 3.3, PDF 165 / print 148: beta=(stem15,s3), g=(20,4), gamma=(25,5), w2=(48,8)",
+        "Tables 3.4/3.5, PDF 166/168 / print 149/151: beta*gamma=g^2, beta^3=gamma*g",
+        "Remark 5.9, PDF 207 / print 190: d3(w2^2)=beta*g^4",
+        "Table 5.4 and Theorem 5.18, PDF 213 / print 196: d3(w2^2)=beta*g^4"
+      ],
+      "note": "Unchanged 708-page author preliminary version made available with AMS permission, independently read in this follow-up. The exact fixed CSV quotient relations prove beta*g^4=beta^5*g; the source-to-actual-tmf/coordinate realization is a separate internal obligation, not inferred from class names or bidegrees."
     }
   ],
   "claims": [
     {
-      "id": "AM01",
+      "id": "AM01-part-1",
       "input_field": "classical",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
-        "KIP126.Literature.Route.ClassicalSourceData",
+        "KIP126.Literature.Route.ClassicalSourceData"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "xu"
+      ],
+      "locator": "Corollary 1.3",
+      "lwx_consumers": [
+        "thm:bjmbx",
+        "lem:toda2ext"
+      ],
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "The source results concern one classical source witness. Equality with the route convergence, eta, nu and selected normalized eta is a separate model comparison."
+    },
+    {
+      "id": "AM01-part-2",
+      "input_field": "classical",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
         "KIP126.Literature.Route.ClassicalSourceResults"
       ],
       "kind": "source-specialization",
@@ -250,34 +372,36 @@
     {
       "id": "AM02",
       "input_field": "classical",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.Stem62ExponentTwo"
       ],
       "kind": "source-specialization",
       "sources": [
-        "iwx"
+        "iwx",
+        "iwx-data-2022"
       ],
-      "locator": "classical 62-stem group table",
+      "locator": "IWX 2022 v1 classical Einfty CSV lines 204-207; README pp. 2-3",
       "lwx_consumers": [
         "lem:toda2ext"
       ],
       "proof_status": "external-statement-unproved",
       "role": "source-result",
-      "notes": "Exponent two of the whole group, not merely one theta."
+      "notes": "The entire 62-stem has four associated-graded basis records, in filtrations 2,6,8,10. All h0info/h0target fields are empty, hence the data specify no visible or hidden 2-extensions. Reading the whole 2-complete group as exponent two uses convergence; this is stronger than the order of one theta witness."
     },
     {
       "id": "AM03",
       "input_field": "classical",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.Theta5FiltrationGap"
       ],
       "kind": "prior-result-consequence",
       "sources": [
-        "iwx"
+        "iwx",
+        "iwx-data-2022"
       ],
-      "locator": "classical 62-stem Adams filtrations 2,6,8,10",
+      "locator": "IWX 2022 v1 classical Einfty CSV lines 204-207; no 62-stem records in filtrations 3,4,5",
       "lwx_consumers": [
         "lem:equistate4"
       ],
@@ -288,7 +412,7 @@
     {
       "id": "AM04",
       "input_field": "classical",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.ClassicalSourceResults.two_detection",
         "KIP126.Literature.Route.ClassicalSourceResults.eta_detection",
@@ -312,7 +436,7 @@
     {
       "id": "AM05",
       "input_field": "bx",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.BXDistinguishedInput"
       ],
@@ -332,7 +456,7 @@
     {
       "id": "AM06",
       "input_field": "synthetic",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.SyntheticSourceInputs.lifts"
       ],
@@ -354,7 +478,7 @@
     {
       "id": "AM07",
       "input_field": "synthetic",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.FiniteLiftCriterion",
         "KIP126.Literature.Route.BocksteinDifferential"
@@ -363,20 +487,20 @@
       "sources": [
         "bhs"
       ],
-      "locator": "thm:synthetic-Adams (A.1), clauses (1a-c)",
+      "locator": "BHS A.1(1a-c), proved using SynRevAdams.tex lemm:comp1 and the finite-quotient argument",
       "lwx_consumers": [
         "thm:17e90ac0"
       ],
       "proof_status": "external-statement-unproved",
       "role": "source-result",
-      "notes": "Actual rho and delta; d_(q+1) after lift to quotient q."
+      "notes": "Finite quotient and boundary assertions retain their more general scope: lemm:comp1 proves Ctau^p nu(X) complete without assuming X itself complete. Do not add the untruncated source hypotheses to this finite clause. Actual rho/delta and d_(q+1) after a quotient-q lift are retained."
     },
     {
-      "id": "AM08",
+      "id": "AM08-part-1",
       "input_field": "synthetic",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
-        "KIP126.Literature.Route.PermanentLiftCriterion"
+        "KIP126.Literature.Route.BHSPermanentLiftAt"
       ],
       "kind": "source-specialization",
       "sources": [
@@ -388,12 +512,31 @@
       ],
       "proof_status": "external-statement-unproved",
       "role": "source-result",
-      "notes": "Permanent cycle may be zero or a boundary."
+      "notes": "Conditional source theorem: BHSObjectApplicability retains E-nilpotent completeness and strong Adams convergence. PermanentLiftCriterion on selected objects is an applied conclusion, obtained through BHSCompletionApplicability and BHSCompletionComparison. A permanent label may be zero or a boundary."
+    },
+    {
+      "id": "AM08-part-2",
+      "input_field": "synthetic",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Literature.Route.SyntheticSourceInputs.permanent_lift"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "thm:synthetic-Adams (A.1), clause (2)",
+      "lwx_consumers": [
+        "thm:17e90ac0"
+      ],
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Conditional source theorem: BHSObjectApplicability retains E-nilpotent completeness and strong Adams convergence. PermanentLiftCriterion on selected objects is an applied conclusion, obtained through BHSCompletionApplicability and BHSCompletionComparison. A permanent label may be zero or a boundary."
     },
     {
       "id": "AM09",
       "input_field": "synthetic",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.DifferentialRigidity",
         "KIP126.Literature.Route.E2WeightVanishing"
@@ -413,7 +556,7 @@
     {
       "id": "AM10",
       "input_field": "synthetic",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.EInftyInput"
       ],
@@ -430,9 +573,50 @@
       "notes": "Includes actual lambda/rho compatibility and common-label agreement."
     },
     {
+      "input_field": "synthetic",
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "SynRevAdams.tex cor:synth-ctau-ASS (A.11), clauses (1) and (3)",
+      "lwx_consumers": [
+        "prop:59f111f",
+        "lem:x_123_9"
+      ],
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "For q >= 1 and every finite page r >= 2, the actual nu(X)/lambda^q Adams group is zero when w > t or t-w >= q, in the LWX weight convention. These finite-page zero regions are additional to the E-infinity presentation; no nilpotent-completeness assumption on X and no claim that lambda^q annihilates quotient homotopy are introduced.",
+      "id": "AM10-finite-pages-predicate",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+      "declarations": [
+        "KIP126.Literature.Route.FiniteQuotientPageVanishing"
+      ]
+    },
+    {
+      "input_field": "synthetic",
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "SynRevAdams.tex cor:synth-ctau-ASS (A.11), clauses (1) and (3)",
+      "lwx_consumers": [
+        "prop:59f111f",
+        "lem:x_123_9"
+      ],
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "For q >= 1 and every finite page r >= 2, the actual nu(X)/lambda^q Adams group is zero when w > t or t-w >= q, in the LWX weight convention. These finite-page zero regions are additional to the E-infinity presentation; no nilpotent-completeness assumption on X and no claim that lambda^q annihilates quotient homotopy are introduced.",
+      "id": "AM10-finite-pages-delivery",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Literature.Route.SyntheticSourceInputs.finite_quotient_page_vanishing",
+        "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing"
+      ]
+    },
+    {
       "id": "AM11",
       "input_field": "synthetic",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.RealizationKernelSourceResults"
       ],
@@ -450,11 +634,11 @@
       "notes": "Finite-power kernel statement for full-source spheres and the inclusion of precisely the selected SyntheticObject targets. Transport uses the completion adjunction and RealizationKernelBinding. Compactness of a hypercomplete sphere is NOT asserted."
     },
     {
-      "id": "AM12",
+      "id": "AM12-part-1",
       "input_field": "synthetic",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
-        "KIP126.Literature.Route.FiltrationLambda"
+        "KIP126.Literature.Route.BHSFiltrationLambdaAt"
       ],
       "kind": "source-specialization",
       "sources": [
@@ -467,14 +651,54 @@
       ],
       "proof_status": "external-statement-unproved",
       "role": "source-result",
-      "notes": "Nonnegative exponent condition explicit."
+      "notes": "Source cor:tau-surj retains E-nilpotent completeness and strong convergence; the exponent is explicitly nonnegative. The selected FiltrationLambda conclusion uses actual q/nu(q) filtration and finite-divisibility reflection, not an unconditional source specialization."
     },
     {
-      "id": "AM13",
-      "input_field": "realization",
-      "module": "KIP126/Challenge2.lean",
+      "id": "AM12-part-2",
+      "input_field": "synthetic",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
-        "KIP126.Literature.Route.RealizationCoordinates",
+        "KIP126.Literature.Route.SyntheticSourceInputs.filtration_lambda"
+      ],
+      "kind": "source-specialization",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "cor:tau-surj",
+      "lwx_consumers": [
+        "prop:possible_h_6_sq",
+        "lem:x_123_9"
+      ],
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Source cor:tau-surj retains E-nilpotent completeness and strong convergence; the exponent is explicitly nonnegative. The selected FiltrationLambda conclusion uses actual q/nu(q) filtration and finite-divisibility reflection, not an unconditional source specialization."
+    },
+    {
+      "id": "AM13-part-1",
+      "input_field": "realization",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+      "declarations": [
+        "KIP126.Literature.Route.RealizationCoordinates"
+      ],
+      "kind": "source-transport",
+      "sources": [
+        "pst",
+        "bhs"
+      ],
+      "locator": "lambda-inversion, nuRealization and bigraded sphere comparisons",
+      "lwx_consumers": [
+        "prop:possible_h_6_sq",
+        "lem:toda2ext"
+      ],
+      "proof_status": "comparison-obligation",
+      "role": "model-comparison",
+      "notes": "Same actual realization, normalized unit and lambda actions."
+    },
+    {
+      "id": "AM13-part-2",
+      "input_field": "realization",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
         "KIP126.Literature.Route.RealizationInput"
       ],
       "kind": "source-transport",
@@ -494,9 +718,10 @@
     {
       "id": "AM14",
       "input_field": "realization",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
-        "KIP126.Literature.Route.RealizationDetection.lifetime"
+        "KIP126.Literature.Route.BHSRealizationDetectionAt.lifetime",
+        "KIP126.Literature.Route.BHSRealizationSourceResults"
       ],
       "kind": "source-specialization",
       "sources": [
@@ -509,15 +734,16 @@
       ],
       "proof_status": "external-statement-unproved",
       "role": "source-result",
-      "notes": "Every lift; E_(r+1) nonzero survival gives lambda^(r-1) nonzero."
+      "notes": "Every lift; E_(r+1) nonzero survival gives lambda^(r-1) nonzero. These are completed-source clauses under BHSObjectApplicability and the same source tower convergence. RealizationDetection is the internal transported consumer result; actual q/nu(q), detection and lift-image comparisons are separately required."
     },
     {
       "id": "AM15",
       "input_field": "realization",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
-        "KIP126.Literature.Route.RealizationDetection.detection",
-        "KIP126.Literature.Route.RealizationDetection.prescribed_lift"
+        "KIP126.Literature.Route.BHSRealizationDetectionAt.detection",
+        "KIP126.Literature.Route.BHSRealizationDetectionAt.prescribed_lift",
+        "KIP126.Literature.Route.BHSRealizationSourceResults"
       ],
       "kind": "source-specialization",
       "sources": [
@@ -530,14 +756,15 @@
       ],
       "proof_status": "external-statement-unproved",
       "role": "source-result",
-      "notes": "Same E2 class in actual convergence detection."
+      "notes": "Same E2 class in actual convergence detection. These are completed-source clauses under BHSObjectApplicability and the same source tower convergence. RealizationDetection is the internal transported consumer result; actual q/nu(q), detection and lift-image comparisons are separately required."
     },
     {
       "id": "AM16",
       "input_field": "realization",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
-        "KIP126.Literature.Route.RealizationDetection.boundary_lift"
+        "KIP126.Literature.Route.BHSRealizationDetectionAt.boundary_lift",
+        "KIP126.Literature.Route.BHSRealizationSourceResults"
       ],
       "kind": "source-specialization",
       "sources": [
@@ -549,12 +776,12 @@
       ],
       "proof_status": "external-statement-unproved",
       "role": "source-result",
-      "notes": "Some lift, NOT every lift, killed by the required lambda power."
+      "notes": "Some lift, NOT every lift, killed by the required lambda power. These are completed-source clauses under BHSObjectApplicability and the same source tower convergence. RealizationDetection is the internal transported consumer result; actual q/nu(q), detection and lift-image comparisons are separately required."
     },
     {
       "id": "AM17",
       "input_field": "algebra",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.AlgebraInput",
         "KIP126.Literature.Route.QuotientAlgebras",
@@ -579,7 +806,7 @@
     {
       "id": "AM18",
       "input_field": "algebra",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.DetectorAlgebra"
       ],
@@ -597,11 +824,29 @@
       "notes": "Selected detector and synthetic detector units are fixed to actual Hurewicz maps."
     },
     {
-      "id": "AM19",
+      "id": "AM19-part-1",
       "input_field": "may",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
-        "KIP126.Literature.Route.MayPushpullData",
+        "KIP126.Literature.Route.MayPushpullData"
+      ],
+      "kind": "signed-source-statement",
+      "sources": [
+        "may"
+      ],
+      "locator": "May author PDF pp.12–13 TC3 signed square, p.14 Lemma 4.6",
+      "lwx_consumers": [
+        "lem:452d218c"
+      ],
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Boundary equality retains the negative sign. The conditional Interface proof derives SignedBoundary; sign removal in a projected additive target requires an explicit exponent-two premise."
+    },
+    {
+      "id": "AM19-part-2",
+      "input_field": "may",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
         "KIP126.Literature.Route.MaySourceResults"
       ],
       "kind": "signed-source-statement",
@@ -619,7 +864,7 @@
     {
       "id": "AM20",
       "input_field": "moss",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.MossSourceInput"
       ],
@@ -638,11 +883,30 @@
       "notes": "Source statement on ClassicalSourceData.convergence; equality transport to D retains defining systems, null products, both no-crossing premises and residual injectivity. The original Moss scan is still not independently verified."
     },
     {
-      "id": "AM21",
+      "id": "AM21-part-1",
       "input_field": "toda",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
-        "KIP126.Literature.Route.TodaSourceData",
+        "KIP126.Literature.Route.TodaSourceData"
+      ],
+      "kind": "prior-result-consequence-and-transport",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "prop:syn-toda-range, relations (0),(9), and degree (2,3)",
+      "lwx_consumers": [
+        "lem:x_123_9",
+        "lem:toda2ext"
+      ],
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "Only the h0 label, lambda_h0, h0_eta and low indeterminacy source facts. Neither secondary Toda membership follows from these ring data alone."
+    },
+    {
+      "id": "AM21-part-2",
+      "input_field": "toda",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
         "KIP126.Literature.Route.TodaSourceResults"
       ],
       "kind": "prior-result-consequence-and-transport",
@@ -661,9 +925,29 @@
     {
       "id": "AM22",
       "input_field": "toda",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
-        "KIP126.Literature.Route.TodaApplication.eta_squared",
+        "KIP126.Literature.Route.TodaApplication.eta_squared"
+      ],
+      "kind": "prior-result-consequence-and-transport",
+      "sources": [
+        "toda",
+        "bhs",
+        "iwx"
+      ],
+      "locator": "low classical bracket <2,eta,2>; BHS low groups; IWX tables",
+      "lwx_consumers": [
+        "lem:toda2ext"
+      ],
+      "proof_status": "internal-application-obligation",
+      "role": "internal-application",
+      "notes": "Internal secondary-operation comparison obligation on the chosen model. Citation of the low classical bracket does not prove this synthetic bracket."
+    },
+    {
+      "id": "AM22-part-2",
+      "input_field": "toda",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+      "declarations": [
         "KIP126.Literature.Route.TodaSecondaryComparison.low_bracket"
       ],
       "kind": "prior-result-consequence-and-transport",
@@ -681,11 +965,31 @@
       "notes": "Internal secondary-operation comparison obligation on the chosen model. Citation of the low classical bracket does not prove this synthetic bracket."
     },
     {
-      "id": "AM23",
+      "id": "AM23-part-1",
       "input_field": "toda",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
-        "KIP126.Literature.Route.TodaApplication.symmetric_two",
+        "KIP126.Literature.Route.TodaApplication.symmetric_two"
+      ],
+      "kind": "source-transport",
+      "sources": [
+        "toda",
+        "iwx",
+        "bhs"
+      ],
+      "locator": "Toda Theorem 3.6; IWX thm:Toda-symmetric/cor:2-symmetric",
+      "lwx_consumers": [
+        "lem:toda2ext"
+      ],
+      "proof_status": "internal-application-obligation",
+      "role": "internal-application",
+      "notes": "IWX Corollary 6.2 is C-motivic. TodaSecondaryComparison requires an actual star operation, its symmetric bracket theorem and its lambda^2 eta product identification; no automatic C-motivic-to-synthetic inference."
+    },
+    {
+      "id": "AM23-part-2",
+      "input_field": "toda",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+      "declarations": [
         "KIP126.Literature.Route.TodaSecondaryComparison"
       ],
       "kind": "source-transport",
@@ -705,7 +1009,7 @@
     {
       "id": "AM24",
       "input_field": "tmf",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.TmfSourceResults.vanishing62"
       ],
@@ -722,16 +1026,16 @@
       "notes": "Source result on the actual source tmf object. The matching TmfInputs consumer conclusion requires the separately listed same-model adapter."
     },
     {
-      "id": "AM25",
+      "id": "AM25-part-1",
       "input_field": "tmf",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
-        "KIP126.Literature.Route.TmfSourceData",
-        "KIP126.Literature.Route.TmfSourceResults"
+        "KIP126.Literature.Route.TmfSourceData"
       ],
       "kind": "source-result-with-internal-route-transport",
       "sources": [
-        "tmf"
+        "tmf",
+        "iwx-data-2022"
       ],
       "locator": "Section 7 Hurewicz image, kappa-bar^4 w in stem 125",
       "lwx_consumers": [
@@ -739,12 +1043,32 @@
       ],
       "proof_status": "external-statement-unproved",
       "role": "source-result",
-      "notes": "BMQ provides the nonzero Hurewicz image of the actual kappaBar^4*w product. The route adapter additionally requires multiplicative detection and explicit nonzero survival of its leading term; a nonzero homotopy image alone is insufficient. Arbitrary-representative independence remains a conditional Main theorem."
+      "notes": "BMQ provides the nonzero Hurewicz image of the actual kappaBar^4*w product. The route adapter additionally requires multiplicative detection and explicit nonzero survival of its leading term; a nonzero homotopy image alone is insufficient. Arbitrary-representative independence remains a conditional Main theorem. The g and Delta h1 g E2 labels are pinned by the unique rows in IWX 2022 CSV lines 59 and 275; product nonzero does not imply nonzero associated grade."
+    },
+    {
+      "id": "AM25-part-2",
+      "input_field": "tmf",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TmfSourceResults"
+      ],
+      "kind": "source-result-with-internal-route-transport",
+      "sources": [
+        "tmf",
+        "iwx-data-2022"
+      ],
+      "locator": "Section 7 Hurewicz image, kappa-bar^4 w in stem 125",
+      "lwx_consumers": [
+        "prop:possible_h_6_sq"
+      ],
+      "proof_status": "external-statement-unproved",
+      "role": "source-result",
+      "notes": "BMQ provides the nonzero Hurewicz image of the actual kappaBar^4*w product. The route adapter additionally requires multiplicative detection and explicit nonzero survival of its leading term; a nonzero homotopy image alone is insufficient. Arbitrary-representative independence remains a conditional Main theorem. The g and Delta h1 g E2 labels are pinned by the unique rows in IWX 2022 CSV lines 59 and 275; product nonzero does not imply nonzero associated grade."
     },
     {
       "id": "AM26",
       "input_field": "tmf",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.TmfSourceResults.low_filtration63"
       ],
@@ -761,11 +1085,32 @@
       "notes": "Source result on the actual source tmf object. The matching TmfInputs consumer conclusion requires the separately listed same-model adapter."
     },
     {
-      "id": "AM27",
+      "id": "AM27-part-1",
       "input_field": "applicability",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
-        "KIP126.Literature.Route.Applicability",
+        "KIP126.Literature.Route.Applicability"
+      ],
+      "kind": "model-applicability",
+      "sources": [
+        "bhs",
+        "pst"
+      ],
+      "locator": "geometric triangle construction and chosen normalized lifts",
+      "lwx_consumers": [
+        "prop:41561db2",
+        "lem:nuext125",
+        "prop:state5false"
+      ],
+      "proof_status": "comparison-obligation",
+      "role": "model-comparison",
+      "notes": "Requires compatibility of the fixed choices, not a theorem for arbitrary normalized lifts."
+    },
+    {
+      "id": "AM27-part-2",
+      "input_field": "applicability",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+      "declarations": [
         "KIP126.Literature.Route.NuCofiberApplicability"
       ],
       "kind": "model-applicability",
@@ -786,7 +1131,7 @@
     {
       "id": "AM28",
       "input_field": "applicability",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.MossTowerApplicability"
       ],
@@ -802,6 +1147,47 @@
       "proof_status": "internal-application-obligation",
       "role": "internal-application",
       "notes": "Residual injectivity for the SAME actual classical sphere tower is a model-applicability obligation; this entry does not supply a no-crossing computation or a source triangle."
+    },
+    {
+      "id": "AM29-part-1",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TmfSourceResults.connective",
+        "KIP126.Literature.Route.TmfSourceResults.finiteMod2Type"
+      ],
+      "notes": "Connective finite-mod-two-type tmf scope and intrinsic g/Delta h1 g labels. The same completed tmf object and unit are identified in TmfBinding and bhsDetectorIso/bhsDetectorUnit; no high125 premise is used to prove completion applicability.",
+      "input_field": "tmf",
+      "kind": "source-scope-and-prior-label-computation",
+      "sources": [
+        "tmf",
+        "iwx-data-2022"
+      ],
+      "locator": "BMQ connective tmf/H_*tmf; IWX E2 CSV lines 59,275",
+      "lwx_consumers": [
+        "prop:possible_h_6_sq"
+      ]
+    },
+    {
+      "id": "AM29-part-2",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+      "declarations": [
+        "KIP126.Literature.Route.TmfLabels.Standard"
+      ],
+      "notes": "Connective finite-mod-two-type tmf scope and intrinsic g/Delta h1 g labels. The same completed tmf object and unit are identified in TmfBinding and bhsDetectorIso/bhsDetectorUnit; no high125 premise is used to prove completion applicability.",
+      "input_field": "tmf",
+      "kind": "source-scope-and-prior-label-computation",
+      "sources": [
+        "tmf",
+        "iwx-data-2022"
+      ],
+      "locator": "BMQ connective tmf/H_*tmf; IWX E2 CSV lines 59,275",
+      "lwx_consumers": [
+        "prop:possible_h_6_sq"
+      ]
     }
   ],
   "excluded": [
@@ -815,7 +1201,11 @@
   "source_caveats": [
     "Moss original scan unavailable; checked prior Belmont-Kong v1 theorem instead.",
     "Toda original book not independently read; IWX/BHS comparison and synthetic transport explicitly distinguished.",
-    "LWX final cofiber formula with lambda[h2] is not adopted; actual normalized Cnu triangle is used."
+    "LWX final cofiber formula with lambda[h2] is not adopted; actual normalized Cnu triangle is used.",
+    "Finite BHS quotient statements are more general than the untruncated theorem; only the latter retain the original completeness/strong-convergence application path.",
+    "RealizationDetection is an applied conclusion, not an unconditional external BHS statement; completed-source results and actual realization/detection comparisons are separately recorded.",
+    "The root vanishing/separation, Adams-one-line and BR21 leaves are now covered. BR21 and the original Adams/May one-line proofs remain source-evidence debts.",
+    "The IWX direct CSV check verifies fixed rows and their recorded extensions; it does not certify model comparison or the proof of the original computation."
   ],
   "consumer_entry": "KIP126.Literature.Route.Inputs",
   "model_bindings": [
@@ -823,7 +1213,7 @@
       "id": "MB01",
       "role": "model-comparison",
       "proof_status": "comparison-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.ClassicalSourceBinding"
       ],
@@ -833,7 +1223,7 @@
       "id": "MB02",
       "role": "model-comparison",
       "proof_status": "comparison-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.RealizationKernelSourceData",
         "KIP126.Literature.Route.RealizationKernelBinding"
@@ -844,7 +1234,7 @@
       "id": "MB03",
       "role": "model-comparison",
       "proof_status": "comparison-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.TodaSourceData",
         "KIP126.Literature.Route.TodaSecondaryComparison"
@@ -855,7 +1245,7 @@
       "id": "MB04",
       "role": "model-comparison",
       "proof_status": "comparison-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.MayContext"
       ],
@@ -865,7 +1255,7 @@
       "id": "MB05",
       "role": "model-comparison",
       "proof_status": "comparison-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.TmfBinding"
       ],
@@ -875,7 +1265,7 @@
       "id": "MB06",
       "role": "model-comparison",
       "proof_status": "comparison-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.NuCofiberLiftBinding",
         "KIP126.Literature.Route.NuCofiberSourceData"
@@ -886,7 +1276,7 @@
       "id": "MB07",
       "role": "model-comparison",
       "proof_status": "comparison-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
       "declarations": [
         "KIP126.Literature.Route.AlgebraBinding"
       ],
@@ -896,11 +1286,54 @@
       "id": "MB08",
       "role": "model-comparison",
       "proof_status": "comparison-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.Bindings"
       ],
       "notes": "One correlated package of source choices and model comparisons; no independent model selection per consumer."
+    },
+    {
+      "id": "MB09-part-1",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+      "declarations": [
+        "KIP126.Literature.Route.BHSCompletionData",
+        "KIP126.Literature.Route.BHSCompletionApplicability",
+        "KIP126.Literature.Route.BHSCompletionComparison"
+      ],
+      "notes": "Actual completed objects q and nu(q), mod-two equivalences, source completeness/strong convergence, permanent-cycle and finite-divisibility reflections. The completed detector is the same tmf source with the same actual unit; the nu cofiber is that of the fixed actual nu map."
+    },
+    {
+      "id": "MB09-part-2",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Literature.Route.Bindings.bhsDetectorIso",
+        "KIP126.Literature.Route.Bindings.bhsDetectorUnit"
+      ],
+      "notes": "Actual completed objects q and nu(q), mod-two equivalences, source completeness/strong convergence, permanent-cycle and finite-divisibility reflections. The completed detector is the same tmf source with the same actual unit; the nu cofiber is that of the fixed actual nu map."
+    },
+    {
+      "id": "MB10",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+      "declarations": [
+        "KIP126.Literature.Route.BHSRealizationComparison"
+      ],
+      "notes": "Actual E2 survival/differential, quotient-label, realization and detection comparisons along q/nu(q), with prescribed-lift and finite-torsion-lift reflection. No whole-homotopy surjectivity or particular target theorem is assumed."
+    },
+    {
+      "id": "MB11",
+      "role": "model-comparison",
+      "proof_status": "comparison-obligation",
+      "module": "KIP126/Def/ClassicalAdams/Convergence/BHS/Predicates.lean",
+      "declarations": [
+        "KIP126.Classical.Adams.BHSObjectApplicability"
+      ],
+      "notes": "The precise source applicability language retains countable products, E-nilpotent completeness and strong convergence. Countable products are structural data; completeness and convergence must be proved for the source objects."
     }
   ],
   "internal_adapters": [
@@ -960,11 +1393,11 @@
       "id": "IA06",
       "role": "internal-adapter",
       "proof_status": "proof-placeholder",
-      "module": "KIP126/Interface/Solution/Literature/Route/Adapters.lean",
+      "module": "KIP126/Main/Solution/Computation/Tmf.lean",
       "declarations": [
-        "KIP126.Interface.Solution.Literature.Route.tmf_of_source"
+        "KIP126.Main.Solution.Computation.tmf_of_source"
       ],
-      "notes": "Production proof remains sorry with explicit multiplicative detection and nonzero high-class survival."
+      "notes": "Main transport after its independent A+C+V/S proof of high125 NonzeroSurvival. This is not an Interface source application or Challenge2 field."
     },
     {
       "id": "IA07",
@@ -974,17 +1407,47 @@
       "declarations": [
         "KIP126.Interface.Solution.Literature.Route.application_of_parts"
       ],
-      "notes": "Assembly from the preceding producers; inherits the unfinished tmf proof and all explicit comparison premises."
+      "notes": "Assembly of internal source applications from explicit comparison premises; no tmf conclusion or high125 survival is supplied."
     },
     {
       "id": "IA08",
       "role": "internal-adapter",
       "proof_status": "implemented-adapter",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.Statements.toInputs"
       ],
-      "notes": "Pure assembly from the SAME Bindings, Statements and Application; this does not prove that those inputs exist."
+      "notes": "Pure assembly from SAME Bindings, Statements and Application plus an explicit Main-derived TmfInputs argument. Inputs is not a pure external-source delivery."
+    },
+    {
+      "id": "IA09",
+      "role": "internal-adapter",
+      "proof_status": "proof-placeholder",
+      "module": "KIP126/Interface/Solution/Literature/Route/BHS.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.realization_detection_of_completed_sources"
+      ],
+      "notes": "Independent transport theorem from conditional completed-source results and all actual q/nu(q) comparisons to RealizationDetection. Proof remains sorry; no aggregate Challenge2 or paper conclusion is a premise."
+    },
+    {
+      "id": "IA10",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Literature.Route.SyntheticSourceInputs.toInputs"
+      ],
+      "notes": "Actual iff composition supplies selected PermanentLiftCriterion and FiltrationLambda from source applicability and the internal completion comparison."
+    },
+    {
+      "id": "IA-BHS-finite-pages",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Literature/Route/BHS.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.bhs_finite_quotient_page_vanishing"
+      ],
+      "notes": "Projection of the same delivered BHS source field. Source proof and model construction remain obligations of source_background_exists; SyntheticSourceInputs.toInputs preserves the exact field."
     }
   ],
   "delivery_packages": [
@@ -992,7 +1455,7 @@
       "id": "DP01",
       "role": "source-result",
       "proof_status": "external-statement-unproved",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.Statements"
       ],
@@ -1002,23 +1465,410 @@
       "id": "DP02",
       "role": "internal-application",
       "proof_status": "internal-application-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.Application",
-        "KIP126.Literature.Route.Inputs",
-        "KIP126.Literature.Route.A"
+        "KIP126.Literature.Route.Inputs"
       ],
-      "notes": "Application records internal source application. Inputs and historical A=Nonempty Inputs are applied consumer delivery, not pure external-source input."
+      "notes": "Application contains only internal source application delivered by Challenge2. Inputs is the applied Main consumer package, assembled additionally with Main-derived TmfInputs; it is neither a Challenge2 field nor pure external A. The obsolete Nonempty Inputs alias was removed."
     },
     {
       "id": "DP03",
       "role": "internal-application",
       "proof_status": "internal-application-obligation",
-      "module": "KIP126/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
       "declarations": [
         "KIP126.Literature.Route.NuCofiberSourceResults"
       ],
       "notes": "Compatible normalized triple construction from the source leaves. This is an internal delivery, not an independent external source theorem."
+    }
+  ],
+  "source_producers": [
+    {
+      "id": "SP01",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Literature/Route/BHS.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.bhs_permanent_lift_of_complete_source",
+        "KIP126.Interface.Solution.Literature.Route.bhs_filtration_lambda_of_complete_source",
+        "KIP126.Interface.Solution.Literature.Route.bhs_realization_of_complete_source"
+      ],
+      "notes": "Projection adapters consume the source statements delivered on the SAME route; completeness and strong convergence remain explicit. No result is asserted for an arbitrary abstract route without source evidence."
+    },
+    {
+      "id": "SP02",
+      "role": "internal-adapter",
+      "proof_status": "proof-placeholder",
+      "module": "KIP126/Interface/Solution/Literature/Route/BHS.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.bhs_completed_sources"
+      ],
+      "notes": "Independent internal completion/comparison construction for the selected route on the actual HF2-local classical background. Sphere, the actual nu cofiber, the same connective finite-type tmf detector and shifts retain their BHS applicability obligations. No high125 or T premise."
+    },
+    {
+      "id": "SP03",
+      "role": "internal-adapter",
+      "proof_status": "proof-placeholder",
+      "module": "KIP126/Interface/Solution/Literature/Route/Range.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.standard_sphere_vanishing",
+        "KIP126.Interface.Solution.Literature.Route.standard_sphere_separated"
+      ],
+      "notes": "Independent infinite-range producers on the fixed derived 2-completed standard sphere. Strong convergence and canonical tower applicability must be proved; finite tables cannot supply either vanishing tail or separated filtration."
+    },
+    {
+      "id": "challenge1-sphere-background-handoff",
+      "module": "KIP126/Interface/Solution/Challenge1.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.standardSphereApplicability"
+      ],
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "notes": "Transports the Challenge1 completion/convergence proof to the unique Def implementation; does not select another sphere."
+    },
+    {
+      "id": "SP04",
+      "role": "internal-adapter",
+      "proof_status": "proof-placeholder",
+      "module": "KIP126/Interface/Solution/Literature/Route/SourceExistence.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.Literature.Route.source_background_exists"
+      ],
+      "sources": [
+        "pst",
+        "bhs",
+        "xu",
+        "iwx",
+        "bx",
+        "tmf",
+        "may",
+        "moss",
+        "belmont-kong",
+        "toda",
+        "ravenel",
+        "adams-may",
+        "br21",
+        "bhsmot",
+        "iwx-data-2022"
+      ],
+      "notes": "Correlated existential source delivery: choose the whole route, source bindings and LiteratureInterface together over the fixed actual classical foundation. Pstr hypercomplete construction and the separately inventoried prior results supply witnesses, with internal source assembly still to prove. This is not a unique Def definition of actual synthetic spectra or a theorem for every weak RouteInput. Excludes C, route Application, high125 NonzeroSurvival, paper tools and T; original Moss/Toda evidence limitations remain as recorded in their source entries."
+    },
+    {
+      "id": "BR21-book-language",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Def/ClassicalAdams/Tmf/Br21/Data.lean",
+      "declarations": [
+        "KIP126.Challenge2.TmfModel.Br21BookStatement"
+      ],
+      "sources": [
+        "br21"
+      ],
+      "notes": "Exact conditional source statement on identified tmf coordinates: d3(w2^2)=beta*g^4. Merely defining this Prop does not prove it for arbitrary models."
+    },
+    {
+      "id": "BR21-source-realization",
+      "role": "internal-adapter",
+      "proof_status": "proof-placeholder",
+      "module": "KIP126/Interface/Solution/Tmf.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.tmfBookDifferentialInterface"
+      ],
+      "sources": [
+        "br21"
+      ],
+      "notes": "Construct actual tmf and identify its source generators and tower with the fixed CSV comparison before invoking the book theorem."
+    },
+    {
+      "id": "BR21-source-adapter",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Interface/Solution/Tmf.lean",
+      "declarations": [
+        "KIP126.Interface.Solution.br21Statement_of_book",
+        "KIP126.Interface.Solution.tmfDifferentialInterface"
+      ],
+      "sources": [
+        "br21"
+      ],
+      "notes": "Pure target equality transport and existential assembly from the same book source model; quotient identity is a proved theorem."
+    },
+    {
+      "id": "BR21-quotient-relations",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Def/ClassicalAdams/Tmf/CsvE2/Proofs.lean",
+      "declarations": [
+        "KIP126.Classical.Adams.Tmf.CsvE2.g_square_eq_beta_gamma",
+        "KIP126.Classical.Adams.Tmf.CsvE2.g_gamma_eq_beta_cube",
+        "KIP126.Classical.Adams.Tmf.CsvE2.g_cube_eq_beta_four",
+        "KIP126.Classical.Adams.Tmf.CsvE2.betaGFourValue_eq_betaFiveGValue"
+      ],
+      "sources": [
+        "br21"
+      ],
+      "notes": "Kernel-checked quotient-ring proofs from the two explicit archived relations. No new sorry and no equality inferred merely from names or degrees."
+    },
+    {
+      "id": "BR21-model-label-transport",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Def/ClassicalAdams/Tmf/Model/Data.lean",
+      "declarations": [
+        "KIP126.Classical.Adams.Tmf.E2Presentation.betaGFour_eq_betaFiveG"
+      ],
+      "sources": [
+        "br21"
+      ],
+      "notes": "The same fixed linear E2 comparison transports the proved equality of typed quotient classes."
+    },
+    {
+      "id": "Main-tmf-high125",
+      "role": "internal-adapter",
+      "proof_status": "proof-placeholder",
+      "module": "KIP126/Main/Solution/Computation/Tmf.lean",
+      "declarations": [
+        "KIP126.Main.Solution.Computation.high125_nonzero_survival_of_computation"
+      ],
+      "notes": "Main alone derives the high125 nonzero leading grade from source product/nonzero image, multiplication detection, C, vanishing and separation. Challenge2 does not deliver the resulting TmfInputs or high125 NonzeroSurvival."
+    },
+    {
+      "id": "Main-tmf-assembly",
+      "role": "internal-adapter",
+      "proof_status": "implemented-adapter",
+      "module": "KIP126/Main/Solution/Computation/Tmf.lean",
+      "declarations": [
+        "KIP126.Main.Solution.Computation.tmf_inputs_of_computation"
+      ],
+      "notes": "Actual composition of the Main high125 nonzero-survival theorem and tmf_of_source, with shared A/C/V/S inputs; no Challenge2 assumption of the conclusion."
+    }
+  ],
+  "root_literature": [
+    {
+      "id": "RL01",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Challenge2.LiteratureInterface.sphereVanishing"
+      ],
+      "notes": "Positive-stem Adams vanishing line on the same standard sphere tower; supplied by the independent Range producer.",
+      "input_field": "sphereVanishing",
+      "sources": [
+        "ravenel"
+      ]
+    },
+    {
+      "id": "RL02",
+      "role": "internal-application",
+      "proof_status": "internal-application-obligation",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Challenge2.LiteratureInterface.sphereSeparated"
+      ],
+      "notes": "Derived 2-completed standard sphere: source bounded-below finite-type convergence and actual tower comparison yield separated filtration. This is not inferred from finite C data.",
+      "input_field": "sphereSeparated",
+      "sources": [
+        "bhs",
+        "ravenel"
+      ]
+    },
+    {
+      "id": "RL03",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Challenge2.AdamsOneLineInterface"
+      ],
+      "notes": "Full one-line family rather than a single h4 instance. Original Adams/May source evidence remains to be independently pinned.",
+      "input_field": "adamsOneLine",
+      "sources": [
+        "adams-may"
+      ]
+    },
+    {
+      "id": "RL04",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Challenge2.StandardSphereMossStatement"
+      ],
+      "notes": "Actual sphere multiplicative/composition tower statement with null-product, no-crossing and applicability premises. B-K v1 is an available prior primary comparison theorem; original Moss scan remains unread.",
+      "input_field": "moss",
+      "sources": [
+        "moss",
+        "belmont-kong"
+      ]
+    },
+    {
+      "id": "RL05",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Challenge2.TmfModel.Br21Statement"
+      ],
+      "notes": "BR21 Table 5.4/Theorem 5.18 directly read: d3(w2^2)=beta*g^4. The fixed quotient proves beta*g^4=beta^5*g and the same coordinate comparison transports that equality. Realization of the actual tmf tower remains an internal source obligation.",
+      "input_field": "br21",
+      "sources": [
+        "br21"
+      ]
+    },
+    {
+      "id": "RL06",
+      "role": "source-result",
+      "proof_status": "external-statement-unproved",
+      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "declarations": [
+        "KIP126.Challenge2.LiteratureInterface.route"
+      ],
+      "notes": "The correlated route Statements on the root shared model bindings, inventoried above.",
+      "input_field": "route",
+      "sources": [
+        "xu",
+        "iwx",
+        "bx",
+        "bhs",
+        "pst",
+        "tmf",
+        "may",
+        "moss"
+      ]
+    }
+  ],
+  "csv_evidence": [
+    {
+      "id": "IWX-G",
+      "source": "iwx-data-2022",
+      "path": "references/literature/Sources/IWX/data/Adams-classical-E2.csv",
+      "selector": {
+        "stem": "20",
+        "Adams filtration": "4"
+      },
+      "expected": [
+        {
+          "line": 59,
+          "row": {
+            "name": "g",
+            "stem": "20",
+            "Adams filtration": "4",
+            "shift": "0",
+            "h0info": "",
+            "h0target": "h2 e0",
+            "h1target": "h1 g",
+            "h2target": "h2 g",
+            "drinfo": "",
+            "drtarget": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "IWX-DHG",
+      "source": "iwx-data-2022",
+      "path": "references/literature/Sources/IWX/data/Adams-classical-E2.csv",
+      "selector": {
+        "stem": "45",
+        "Adams filtration": "9"
+      },
+      "expected": [
+        {
+          "line": 275,
+          "row": {
+            "name": "D h1 g",
+            "stem": "45",
+            "Adams filtration": "9",
+            "shift": "0",
+            "h0info": "",
+            "h0target": "",
+            "h1target": "",
+            "h2target": "",
+            "drinfo": "",
+            "drtarget": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "IWX-62",
+      "source": "iwx-data-2022",
+      "path": "references/literature/Sources/IWX/data/Adams-classical-Einfty.csv",
+      "selector": {
+        "stem": "62"
+      },
+      "expected": [
+        {
+          "line": 204,
+          "row": {
+            "name": "h5^2",
+            "stem": "62",
+            "Adams filtration": "2",
+            "shift": "",
+            "h0info": "",
+            "h0target": "",
+            "h1info": "",
+            "h1target": "h1 h5^2",
+            "h2info": "",
+            "h2target": "h2 h5^2",
+            "drinfo": "",
+            "drtarget": ""
+          }
+        },
+        {
+          "line": 205,
+          "row": {
+            "name": "h5 n",
+            "stem": "62",
+            "Adams filtration": "6",
+            "shift": "",
+            "h0info": "",
+            "h0target": "",
+            "h1info": "",
+            "h1target": "",
+            "h2info": "",
+            "h2target": "k1",
+            "drinfo": "",
+            "drtarget": ""
+          }
+        },
+        {
+          "line": 206,
+          "row": {
+            "name": "E1 + C0",
+            "stem": "62",
+            "Adams filtration": "8",
+            "shift": "",
+            "h0info": "",
+            "h0target": "",
+            "h1info": "",
+            "h1target": "h1 E1",
+            "h2info": "h",
+            "h2target": "h2 B22",
+            "drinfo": "",
+            "drtarget": ""
+          }
+        },
+        {
+          "line": 207,
+          "row": {
+            "name": "R",
+            "stem": "62",
+            "Adams filtration": "10",
+            "shift": "",
+            "h0info": "",
+            "h0target": "",
+            "h1info": "",
+            "h1target": "",
+            "h2info": "",
+            "h2target": "",
+            "drinfo": "",
+            "drtarget": ""
+          }
+        }
+      ]
     }
   ]
 }

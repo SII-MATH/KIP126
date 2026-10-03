@@ -5,7 +5,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 
 \section{Weightwise extension spectral sequences}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:998-1007.
+% SOURCE: references/literature/MainPaper/main.tex:998-1007.
 \begin{definition}[Synthetic extension spectral sequence]
   \label{def:synthetic-extension-ss}
   \uses{def:synthetic-adams-ss,def:f-extension-ss}
@@ -22,7 +22,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   \]
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:999-1007, assertion that all Section 2 results remain valid.
+% SOURCE: references/literature/MainPaper/main.tex:999-1007, assertion that all Section 2 results remain valid.
 \begin{proposition}[Weightwise transport of the ESS calculus]
   \label{prop:synthetic-ess-weightwise-transport}
   \uses{def:synthetic-extension-ss,prop:fextension-iff-detected,prop:fextension-inessential-iff-higher,prop:no-crossing-iff-uniform-detection,thm:fess-commutative-square,prop:fess-exact-middle-boundary}
@@ -66,7 +66,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 \begin{proposition}[Strictification of an internal page relation]
   \label{prop:strict-ess-fiber-page-relation}
   \uses{def:strict-ess-representative-fiber,thm:filtered-complex-to-spectral-sequence,def:page-extension,def:filtered-chain-map}
-  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_of_fiber,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_iff_nonempty_fiber,KIP126.Synthetic.PageExtension.finitePageExtension_iff_solutions,KIP126.Synthetic.PageExtension.infinitePageExtension_iff_solutions,KIP126.Synthetic.PageExtension.mem_targetCoset_iff_differentialRelation,KIP126.Synthetic.PageExtension.FiniteExtensionWitness.mem_targetCoset_iff_solutions,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.mem_targetCoset_iff_solutions,KIP126.Interface.Solution.finitePageExtension_restrict}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_of_fiber,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_iff_nonempty_fiber,KIP126.Synthetic.PageExtension.finitePageExtension_iff_solutions,KIP126.Synthetic.PageExtension.infinitePageExtension_iff_solutions,KIP126.Synthetic.PageExtension.mem_targetCoset_iff_differentialRelation,KIP126.Synthetic.PageExtension.FiniteExtensionWitness.mem_targetCoset_iff_solutions,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.mem_targetCoset_iff_solutions,KIP126.Def.Comparison.StageInterfaces.finitePageExtension_restrict}
   \leanok
   Suppose the filtered complex is bounded and $n\ge0$.
   A strict solution gives the canonical internal relation $d_n(x)=y$.
@@ -128,7 +128,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   back along the fixed $\lambda$ target map and apply strictification.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1981-2081, representative equations used in the
+% SOURCE: references/literature/MainPaper/main.tex:1981-2081, representative equations used in the
 % page-restriction argument; project packaging of their inverse system.
 \begin{definition}[Finite ESS solution torsors and coherent towers]
   \label{def:synthetic-ess-solution-tower}
@@ -194,7 +194,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 \begin{proposition}[Coherent finite solutions from surjective restrictions]
   \label{prop:synthetic-ess-coherent-tower-of-surjective}
   \uses{def:synthetic-ess-solution-tower}
-  \lean{KIP126.Core.InverseSequence.exists_compatible_of_surjective,KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_surjective,KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_surjective}
+  \lean{KIP126.Core.InverseSequence.exists_compatible_of_surjective,KIP126.Def.Comparison.StageInterfaces.exists_coherentPageExtensionSolutions_of_surjective,KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_surjective}
   \leanok
   Use one fixed $P,I,J$, permanent labels $x,y$, and $k=n-e(f)$ as in
   Definition~\ref{def:synthetic-ess-solution-tower}.  Specify an actual
@@ -221,7 +221,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 \begin{proposition}[Actual difference-group criterion for coherent finite solutions]
   \label{prop:synthetic-ess-coherent-tower-of-differences}
   \uses{def:synthetic-ess-solution-tower,lem:strict-solution-restriction-surjectivity,prop:synthetic-ess-coherent-tower-of-surjective}
-  \lean{KIP126.Interface.Solution.restrictPermanentFiniteSolution_surjective_iff_differences_surjective,KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_differences_surjective}
+  \lean{KIP126.Def.Comparison.StageInterfaces.restrictPermanentFiniteSolution_surjective_iff_differences_surjective,KIP126.Def.Comparison.StageInterfaces.exists_coherentPageExtensionSolutions_of_differences_surjective}
   \leanok
   Keep the same $P,I,J$, permanent labels, and actual difference groups
   $K_q=\ker\Phi_q$.  For $k<i\le j$, specify a solution in
@@ -278,7 +278,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 \begin{proposition}[Coherent choices in finite nonempty strict fibers]
   \label{prop:synthetic-ess-coherent-tower-of-finite}
   \uses{def:synthetic-ess-solution-tower}
-  \lean{KIP126.Core.InverseSequence.exists_compatible_of_finite,KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite}
+  \lean{KIP126.Core.InverseSequence.exists_compatible_of_finite,KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite}
   \leanok
   Fix the same $P,I,J$ and permanent labels as above.  Suppose every actual
   strict fiber $\operatorname{Sol}_q^n(x,y)$ for $q>k$ is a finite nonempty
@@ -337,7 +337,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
 \begin{proposition}[A finite classical diagonal supplies coherent strict solutions]
   \label{prop:synthetic-coherent-tower-of-finite-e2}
   \uses{def:synthetic-first-quotient-homotopy-comparison,lem:synthetic-finite-quotient-homotopy,lem:strict-fiber-finite-of-source,prop:synthetic-ess-coherent-tower-of-finite}
-  \lean{KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite_source,KIP126.Interface.Solution.finite_normalizedSourceHomotopy_of_firstQuotientComparison,KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite_e2}
+  \lean{KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite_source,KIP126.Def.Comparison.StageInterfaces.finite_normalizedSourceHomotopy_of_firstQuotientComparison,KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite_e2}
   \leanok
   Fix $P,I,J$, permanent labels $x,y$, and $n\ge e(f)$ as above.
   Supply a first-quotient homotopy comparison for $X$.  For each $q>0$,
@@ -372,8 +372,8 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   tower.
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1009--1021 defines the quotient triangles;
-% Burklund--Xu Construction 7.7, KIP126/Main/Axiom/Literature/Sources/BurklundXu/paper.txt:3022--3035,
+% SOURCE: references/literature/MainPaper/main.tex:1009--1021 defines the quotient triangles;
+% Burklund--Xu Construction 7.7, references/literature/Sources/BurklundXu/paper.txt:3022--3035,
 % supplies the finite tower and its cofiber sequences.  Naturality and the
 % identity/composition laws below are project-level consequences of the finite
 % cofiber presentations, not additional external algebra input.
@@ -477,7 +477,7 @@ This chapter defines weightwise extension spectral sequences, the basic $\lambda
   \leanok
 \end{proof}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:1009-1021, Notation not:deltaandrho.
+% SOURCE: references/literature/MainPaper/main.tex:1009-1021, Notation not:deltaandrho.
 \begin{definition}[$\lambda$--$\rho$--$\delta$ quotient triangle]
   \label{def:lambda-rho-delta-triangle}
   \uses{def:synthetic-lambda-quotient,def:cofiber-triangle}

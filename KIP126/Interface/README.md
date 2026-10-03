@@ -2,8 +2,8 @@
 
 本阶段从同一个 Challenge1 基础模型以及明确的上游输入，构造根 [Challenge2](../Challenge2.lean) 的交付见证。`Challenge2` 将文献部分 `LiteratureInterface` 和计算部分 `ComputationInterface` 分开；只有后者称为 C(M)。通用比较和共享模型选择由 `ModelBindings` 记录，不算作文献定理。
 
-- [Axiom](Axiom/README.md) 只暂时接受 `Nonempty Challenge1`；[Solution/StageInput](Solution/StageInput.lean) 唯一选择见证并投影基础、Milnor、球谱与路线对象。
-- [Challenge](Challenge/README.md) 只陈述完整的 `Nonempty Challenge2`；[Solution](Solution/README.md) 保留同型的生产 theorem，并单独维护所有内部陈述与证明。内部结果不再建立 Challenge 镜像。
+- [Axiom](Axiom/README.md) 只暂时接受 `Nonempty Challenge1`；固定基础、Milnor、球谱与路线对象均由 [Def/StageInput](../Def/StageInput.lean) 定义，交付见证必须绑定同一实现。
+- [Challenge](Challenge/README.md) 拥有完整合同和 `Nonempty Challenge2` 目标声明；[Solution](Solution/README.md) 保留同型的生产 theorem，并单独维护所有内部陈述与证明。内部结果不再建立 Challenge 镜像。
 - [LinProgram 证明](Solution/LinProgram/README.md) 将固定数据的认证结论运输到同一个模型，提供基、乘法、平方和 staircase 等计算接口。
 - 独立 [LinProgram 管线](../LinProgram/README.md) 保存原始数据、转换脚本、生成数据、参数化解释和局部证书。它不提供阶段公理。
 

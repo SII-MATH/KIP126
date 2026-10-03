@@ -13,7 +13,6 @@ run_cmd do
   let env ← getEnv
   for m in env.allImportedModuleNames do
     if (`KIP126.Main.Challenge).isPrefixOf m ||
-        (`KIP126.Interface.Challenge).isPrefixOf m ||
         (`KIP126.Def.Challenge).isPrefixOf m then
       throwError "Solution imports a Challenge placeholder module: {m}"
   for solution in [
@@ -30,13 +29,13 @@ run_cmd do
     let logical := [``propext, ``Classical.choice, ``Quot.sound]
     let projectAxioms := (← liftCoreM (collectAxioms solution)).filter
       (fun name => !logical.contains name)
-    -- Browder's existing conclusion uses the fixed internal sphere, whose
-    -- type already depends on Challenge 1. The projection adds no assumption.
+    -- Browder's existing conclusion uses Def's fixed internal sphere, whose
+    -- construction is unfinished. The projection adds no assumption.
     -- The other three interfaces are generic and have no stage dependency.
     if solution == ``KIP126.Kervaire.InternalBrowderLiteratureInput.interface then
       let typeAxioms := (← liftCoreM (collectAxioms ``KIP126.Challenge2.BrowderInterface)).filter
         (fun name => !logical.contains name)
-      let expected := [``KIP126.Interface.Axiom.challenge1]
+      let expected := [``sorryAx]
       unless typeAxioms.toList.all expected.contains && expected.all typeAxioms.contains do
         throwError "Browder input type changed its stage dependencies: {typeAxioms}"
       unless projectAxioms.toList.all typeAxioms.contains &&
@@ -45,3 +44,20 @@ run_cmd do
     else
       unless projectAxioms.isEmpty do
         throwError "generic evidence extraction gained assumptions: {solution}: {projectAxioms}"
+    -- Interface/Challenge owns the contract types. Reject the goal theorem,
+    -- rather than rejecting the types imported by every stage consumer.
+    let mut pending := #[solution]
+    let mut seen : NameSet := {}
+    while !pending.isEmpty do
+      let name := pending.back!
+      pending := pending.pop
+      if seen.contains name then continue
+      seen := seen.insert name
+      if name == `KIP126.Interface.Challenge.challenge2 then
+        throwError "evidence extraction uses the Challenge2 placeholder"
+      let some info := env.find? name | continue
+      if let some idx := env.getModuleIdxFor? name then
+        unless (`KIP126).isPrefixOf env.header.moduleNames[idx]! do continue
+      pending := pending ++ info.type.getUsedConstants
+      if let some value := info.value? then
+        pending := pending ++ value.getUsedConstants

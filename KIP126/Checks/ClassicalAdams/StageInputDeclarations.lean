@@ -1,10 +1,11 @@
+import KIP126.Interface.Axiom.Challenge1
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Def.Challenge.Challenge1
 import KIP126.Def.Solution.Challenge1
 import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.LinProgram.BasisTable
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
-import KIP126.Interface.Solution.StageInput.Milnor
+import KIP126.Def.StageInput.Milnor
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
 import Lean.Elab.Command
 
@@ -20,38 +21,20 @@ fixed CSV basis certification no longer belongs to this foundation. The round tr
 compatibility constructor may silently select fresh coordinates or a new base.
 -/
 
-open KIP126 KIP126.Classical.Adams in
-example (F : StandardAdamsFoundation)
-    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
-    (T : Challenge1.TensorInput (Challenge1.FoundationInput.ofStandard F))
-    (A : @Challenge1.CooperationInput (Challenge1.FoundationInput.ofStandard F) T
-      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
-    (R : Challenge1.RouteInput F
-      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates }) :
-    (Challenge1.ofFoundationMilnor F M T A R).foundation = F := by
-  rfl
-
-open KIP126 KIP126.Classical.Adams in
-example (F : StandardAdamsFoundation)
-    (M : @MilnorCooperations F.Spectrum F.stable F.cofiber F.hf2)
-    (T : Challenge1.TensorInput (Challenge1.FoundationInput.ofStandard F))
-    (A : @Challenge1.CooperationInput (Challenge1.FoundationInput.ofStandard F) T
-      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates })
-    (R : Challenge1.RouteInput F
-      { coordinates := M.coordinates, differential_coordinates := M.differential_coordinates }) :
-    (Challenge1.ofFoundationMilnor F M T A R).milnor = M := by
-  rfl
+open KIP126 in
+example (c : Challenge1) : c.implementation = Def.fixedImplementation :=
+  c.implementation_eq
 
 open KIP126 in
-example (c : Challenge1) :
-    Challenge1.ofFoundationMilnor c.foundation c.milnor
-      c.tensorInput c.cooperationInput c.routeInput = c := by
-  rfl
+example (c d : Challenge1) : c.implementation = d.implementation :=
+  Challenge1.sameImplementation c d
+
+example : KIP126.Def.StageInput.witness = KIP126.Def.fixedImplementation := rfl
 
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  for name in [``KIP126.Interface.StageInput.witness,
+  for name in [``KIP126.Def.StageInput.witness,
       ``KIP126.Main.StageInput.witness,
       ``KIP126.Main.StageInput.literature,
       ``KIP126.Main.StageInput.computation,
@@ -61,11 +44,14 @@ run_cmd do
     let some (.defnInfo _) := env.find? name
       | throwError "compatibility interface must be a definition: {name}"
   for (witness, input) in [
-      (``KIP126.Interface.StageInput.witness, ``KIP126.Interface.Axiom.challenge1),
       (``KIP126.Main.StageInput.witness, ``KIP126.Main.Axiom.challenge2)] do
     let axioms ← liftCoreM (collectAxioms witness)
     unless axioms.contains input do
       throwError "stage witness does not consume its matching input: {witness}"
+  let foundationAxioms ← liftCoreM (collectAxioms ``KIP126.Def.StageInput.witness)
+  if foundationAxioms.contains ``KIP126.Interface.Axiom.challenge1 ||
+      foundationAxioms.contains ``KIP126.Main.Axiom.challenge2 then
+    throwError "Def's fixed implementation depends on a consuming stage axiom"
   let some (.thmInfo _) := env.find? ``KIP126.Computation.LinProofs.sphereTable_sound
     | throwError "sphereTable_sound must be a theorem projected from Challenge 2"
 
@@ -106,7 +92,7 @@ example : routeComputation = witness.computation.route := rfl
 
 open KIP126.Main.StageInput in
 example : routeLiterature = KIP126.Literature.Route.Statements.toInputs
-    routeModel routeEta tmfLabels witness.literature.route witness.routeApplication := rfl
+    routeModel routeEta tmfLabels witness.literature.route witness.routeApplication routeTmf := rfl
 
 open KIP126 KIP126.Classical.Adams KIP126.Main.StageInput in
 example (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t) :
@@ -122,20 +108,9 @@ run_cmd do
   let env ← getEnv
   let boundaries := [``KIP126.Def.Challenge.challenge1,
     ``KIP126.Interface.Challenge.challenge2]
-  for m in env.allImportedModuleNames do
-    if (`KIP126.Def.Challenge).isPrefixOf m ||
-        (`KIP126.Interface.Challenge).isPrefixOf m then
-      unless [ `KIP126.Def.Challenge.Challenge1,
-          `KIP126.Interface.Challenge.Challenge2].contains m do
-        throwError "unexpected internal Challenge module: {m}"
-  for (name, info) in env.constants.toList do
-    if let .thmInfo _ := info then
-      if let some moduleIdx := env.getModuleIdxFor? name then
-        let owner := env.header.moduleNames[moduleIdx]!
-        if (`KIP126.Def.Challenge).isPrefixOf owner ||
-            (`KIP126.Interface.Challenge).isPrefixOf owner then
-          unless boundaries.contains name do
-            throwError "extra stage Challenge theorem: {name}"
+  -- Interface/Challenge now owns contract definitions as well as its one
+  -- intentional goal theorem. Do not confuse importing a type with using the
+  -- proof of that goal; the declaration traversal below checks the latter.
   for (producer, boundary, consumer, package) in [
       (``KIP126.Def.Solution.challenge1, ``KIP126.Def.Challenge.challenge1,
         ``KIP126.Interface.Axiom.challenge1, ``KIP126.Challenge1),
@@ -182,10 +157,10 @@ run_cmd do
     let some info := env.find? name | throwError "missing producer dependency: {name}"
     if let some moduleIdx := env.getModuleIdxFor? name then
       let owner := env.header.moduleNames[moduleIdx]!
-      if (`KIP126.Main.Challenge).isPrefixOf owner ||
-          (`KIP126.Interface.Challenge).isPrefixOf owner ||
-          (`KIP126.Def.Challenge).isPrefixOf owner then
-        throwError "stage producer depends on a Challenge declaration: {name}: {owner}"
+      if name == ``KIP126.Interface.Challenge.challenge2 ||
+          name == ``KIP126.Def.Challenge.challenge1 ||
+          (`KIP126.Main.Challenge).isPrefixOf owner then
+        throwError "stage producer borrows an intentional goal proof: {name}: {owner}"
       unless (`KIP126).isPrefixOf owner do continue
     todo := todo ++ info.type.getUsedConstants
     if let some value := info.value? then
@@ -195,11 +170,13 @@ run_cmd do
     let some (.defnInfo _) := env.find? name
       | throwError "route inputs must only be definitions: {name}"
 
-example : ∃ modelBindings : KIP126.Challenge2.ModelBindings,
-    Nonempty (KIP126.Challenge2.LiteratureInterface modelBindings) :=
+example : ∃ routeInput : KIP126.Classical.Adams.StandardRouteInput,
+    ∃ modelBindings : KIP126.Challenge2.ModelBindings routeInput,
+      Nonempty (KIP126.Challenge2.LiteratureInterface routeInput modelBindings) :=
   KIP126.Interface.Solution.literatureInterface
 
-example : ∃ modelBindings : KIP126.Challenge2.ModelBindings,
+example : ∃ routeInput : KIP126.Classical.Adams.StandardRouteInput,
+    ∃ modelBindings : KIP126.Challenge2.ModelBindings routeInput,
     ∃ presentation : KIP126.Classical.Adams.LinE2Presentation,
-      Nonempty (KIP126.Challenge2.ComputationInterface modelBindings presentation) :=
+      Nonempty (KIP126.Challenge2.ComputationInterface routeInput modelBindings presentation) :=
   KIP126.Interface.Solution.computationInterface

@@ -1,7 +1,7 @@
-import KIP126.Challenge1
-import KIP126.Main.Solution.Tools.GeneralizedLeibniz
-import KIP126.Main.Solution.Tools.GeneralizedMahowald
-import KIP126.Main.Solution.Tools.PageExtensionStretching
+import KIP126.Def.Challenge1
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
+import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
 import Lean.Elab.Command
 
 /-! Foundation and paper-tool statements must not consume computed facts or
@@ -20,9 +20,9 @@ run_cmd do
       `KIP126.Challenge2.FinitePageExtensionStretchingLaw] do
     if env.contains old then
       throwError "obsolete stage classification is still exported: {old}"
-  for law in [``KIP126.Main.Solution.Tools.GeneralizedLeibnizLaw,
-      ``KIP126.Main.Solution.Tools.GeneralizedMahowaldLaw,
-      ``KIP126.Main.Solution.Tools.FinitePageExtensionStretchingLaw] do
+  for law in [``KIP126.Kervaire.Route.Tools.GeneralizedLeibnizLaw,
+      ``KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw,
+      ``KIP126.Kervaire.Route.Tools.FinitePageExtensionStretchingLaw] do
     let some (.defnInfo _) := env.find? law
       | throwError "paper obligation must be a proposition definition, not an axiom/theorem: {law}"
     for a in ← liftCoreM (collectAxioms law) do

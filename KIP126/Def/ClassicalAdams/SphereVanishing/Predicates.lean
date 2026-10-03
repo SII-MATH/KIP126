@@ -1,4 +1,4 @@
-import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
+import KIP126.Def.StableHomotopy.Cohomology.Data
 import KIP126.Def.ClassicalAdams.Detection.Data
 
 namespace KIP126.Classical.Adams

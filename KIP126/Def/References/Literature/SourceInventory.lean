@@ -3,7 +3,7 @@ import KIP126.Def.References.Provenance
 /-!
 # Source inventory
 
-This module is the typed Lean projection of `KIP126/Main/Axiom/Literature/source-inventory.json`.
+This module is the typed Lean projection of `references/literature/source-inventory.json`.
 The JSON file and `scripts/check_source_inventory.py` remain authoritative for
 human-readable citation metadata, filesystem paths, acquisition state, and
 cryptographic hashes.  Lean keeps the small finite index needed by source
@@ -355,71 +355,71 @@ private def row (source : SourceId) (kind : SourceKind)
 
 private def lookupRow : SourceId → SourceEntry
   | .aimPaper =>
-      row .aimPaper .paper ["LWX126"] "KIP126/Main/Axiom/Literature/MainPaper" none
+      row .aimPaper .paper ["LWX126"] "references/literature/MainPaper" none
         .sourceOfRecord SourceAvailability.all
   | .browder =>
-      row .browder .literature ["Browder"] "KIP126/Main/Axiom/Literature/Sources/Browder"
-        (some "KIP126/Main/Axiom/Literature/Sources/Browder/source-status.json") .fullText
+      row .browder .literature ["Browder"] "references/literature/Sources/Browder"
+        (some "references/literature/Sources/Browder/source-status.json") .fullText
         { metadata := true, pdf := true, text := true, source := false }
   | .mahowaldTangora =>
       row .mahowaldTangora .literature ["MahowaldTangora"]
-        "KIP126/Main/Axiom/Literature/Sources/MahowaldTangora"
-        (some "KIP126/Main/Axiom/Literature/Sources/MahowaldTangora/source-status.json") .metadataOnly
+        "references/literature/Sources/MahowaldTangora"
+        (some "references/literature/Sources/MahowaldTangora/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .bjmTheta5 =>
-      row .bjmTheta5 .literature ["BJMtheta5"] "KIP126/Main/Axiom/Literature/Sources/BJMtheta5"
-        (some "KIP126/Main/Axiom/Literature/Sources/BJMtheta5/source-status.json") .metadataOnly
+      row .bjmTheta5 .literature ["BJMtheta5"] "references/literature/Sources/BJMtheta5"
+        (some "references/literature/Sources/BJMtheta5/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .bjmInduction =>
       row .bjmInduction .literature ["BJMinduction", "BarrattJonesMahowald"]
-        "KIP126/Main/Axiom/Literature/Sources/BJMinduction"
-        (some "KIP126/Main/Axiom/Literature/Sources/BJMinduction/source-status.json") .metadataOnly
+        "references/literature/Sources/BJMinduction"
+        (some "references/literature/Sources/BJMinduction/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .mayThesis =>
-      row .mayThesis .literature ["Maythesis"] "KIP126/Main/Axiom/Literature/Sources/Maythesis"
-        (some "KIP126/Main/Axiom/Literature/Sources/Maythesis/source-status.json") .metadataOnly
+      row .mayThesis .literature ["Maythesis"] "references/literature/Sources/Maythesis"
+        (some "references/literature/Sources/Maythesis/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .may01 =>
-      row .may01 .literature ["May01"] "KIP126/Main/Axiom/Literature/Sources/May01"
-        (some "KIP126/Main/Axiom/Literature/Sources/May01/source-status.json") .metadataOnly
-        { metadata := true, pdf := false, text := false, source := false }
+      row .may01 .literature ["May01"] "references/literature/Sources/May01"
+        (some "references/literature/Sources/May01/source-status.json") .partialAvailability
+        { metadata := true, pdf := true, text := false, source := false }
   | .hhr =>
-      row .hhr .literature ["HHR"] "KIP126/Main/Axiom/Literature/Sources/HHR"
-        (some "KIP126/Main/Axiom/Literature/Sources/HHR/source-status.json") .fullText SourceAvailability.all
+      row .hhr .literature ["HHR"] "references/literature/Sources/HHR"
+        (some "references/literature/Sources/HHR/source-status.json") .fullText SourceAvailability.all
   | .xu =>
-      row .xu .literature ["Xu"] "KIP126/Main/Axiom/Literature/Sources/Xu"
-        (some "KIP126/Main/Axiom/Literature/Sources/Xu/source-status.json") .fullText SourceAvailability.all
+      row .xu .literature ["Xu"] "references/literature/Sources/Xu"
+        (some "references/literature/Sources/Xu/source-status.json") .fullText SourceAvailability.all
   | .iwx =>
-      row .iwx .literature ["IWX"] "KIP126/Main/Axiom/Literature/Sources/IWX"
-        (some "KIP126/Main/Axiom/Literature/Sources/IWX/source-status.json") .fullText SourceAvailability.all
+      row .iwx .literature ["IWX"] "references/literature/Sources/IWX"
+        (some "references/literature/Sources/IWX/source-status.json") .fullText SourceAvailability.all
   | .pst =>
-      row .pst .literature ["Pst"] "KIP126/Main/Axiom/Literature/Sources/Pst"
-        (some "KIP126/Main/Axiom/Literature/Sources/Pst/source-status.json") .fullText SourceAvailability.all
+      row .pst .literature ["Pst"] "references/literature/Sources/Pst"
+        (some "references/literature/Sources/Pst/source-status.json") .fullText SourceAvailability.all
   | .bhs =>
-      row .bhs .literature ["BHS"] "KIP126/Main/Axiom/Literature/Sources/BHS"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHS/source-status.json") .fullText SourceAvailability.all
+      row .bhs .literature ["BHS"] "references/literature/Sources/BHS"
+        (some "references/literature/Sources/BHS/source-status.json") .fullText SourceAvailability.all
   | .bhsMot =>
-      row .bhsMot .literature ["BHSmot"] "KIP126/Main/Axiom/Literature/Sources/BHSmot"
-        (some "KIP126/Main/Axiom/Literature/Sources/BHSmot/source-status.json") .fullText
+      row .bhsMot .literature ["BHSmot"] "references/literature/Sources/BHSmot"
+        (some "references/literature/Sources/BHSmot/source-status.json") .fullText
         { metadata := false, pdf := true, text := true, source := true }
   | .burklundXu =>
-      row .burklundXu .literature ["BurklundXu"] "KIP126/Main/Axiom/Literature/Sources/BurklundXu"
-        (some "KIP126/Main/Axiom/Literature/Sources/BurklundXu/source-status.json") .fullText SourceAvailability.all
+      row .burklundXu .literature ["BurklundXu"] "references/literature/Sources/BurklundXu"
+        (some "references/literature/Sources/BurklundXu/source-status.json") .fullText SourceAvailability.all
   | .moss =>
-      row .moss .literature ["Moss"] "KIP126/Main/Axiom/Literature/Sources/Moss"
-        (some "KIP126/Main/Axiom/Literature/Sources/Moss/source-status.json") .metadataOnly
+      row .moss .literature ["Moss"] "references/literature/Sources/Moss"
+        (some "references/literature/Sources/Moss/source-status.json") .metadataOnly
         { metadata := true, pdf := false, text := false, source := false }
   | .br21 =>
-      row .br21 .literature ["BR21"] "KIP126/Main/Axiom/Literature/Sources/BR21"
-        (some "KIP126/Main/Axiom/Literature/Sources/BR21/source-status.json") .metadataOnly
-        { metadata := true, pdf := false, text := false, source := false }
+      row .br21 .literature ["BR21"] "references/literature/Sources/BR21"
+        (some "references/literature/Sources/BR21/source-status.json") .fullText
+        { metadata := true, pdf := true, text := true, source := false }
   | .tmf =>
-      row .tmf .literature ["tmf"] "KIP126/Main/Axiom/Literature/Sources/tmf"
-        (some "KIP126/Main/Axiom/Literature/Sources/tmf/source-status.json") .fullText SourceAvailability.all
+      row .tmf .literature ["tmf"] "references/literature/Sources/tmf"
+        (some "references/literature/Sources/tmf/source-status.json") .fullText SourceAvailability.all
   | .lwxMachine =>
       row .lwxMachine .machine ["LWXMachine", "LWXZenodo", "LinProgram", "LinPlot"]
-        "KIP126/Main/Axiom/Literature/Sources/LWXMachine"
-        (some "KIP126/Main/Axiom/Literature/Sources/LWXMachine/source-status.json") .fullText
+        "references/literature/Sources/LWXMachine"
+        (some "references/literature/Sources/LWXMachine/source-status.json") .fullText
         { metadata := false, pdf := true, text := true, source := true }
 
 /-- The checked-in Lean projection of the source inventory. -/
@@ -709,13 +709,13 @@ example : (SourceInventory.inventory.lookup .lwxMachine).kind = .machine := by
   rfl
 
 example :
-    SourceEntry.pathHasDirectoryPrefix "KIP126/Main/Axiom/Literature/Sources/Browder"
-      "KIP126/Main/Axiom/Literature/Sources/Browder/source-status.json" = true := by
+    SourceEntry.pathHasDirectoryPrefix "references/literature/Sources/Browder"
+      "references/literature/Sources/Browder/source-status.json" = true := by
   decide
 
 example :
-    SourceEntry.pathHasDirectoryPrefix "KIP126/Main/Axiom/Literature/Sources/Browder"
-      "KIP126/Main/Axiom/Literature/Sources/BrowderArchive/source-status.json" = false := by
+    SourceEntry.pathHasDirectoryPrefix "references/literature/Sources/Browder"
+      "references/literature/Sources/BrowderArchive/source-status.json" = false := by
   decide
 
 example (ref : SourceRef) :

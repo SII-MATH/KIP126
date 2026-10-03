@@ -3,9 +3,9 @@ import Lean
 /-!
 # Stage-boundary inputs used by dependency regressions
 
-The old public compatibility names are definitions projected from one of the
-two shared Challenge witnesses.  Dependency checks therefore allow the one
-boundary axiom that actually supplies each witness.
+The fixed foundation is selected by Def's explicit model construction, whose
+unfinished proofs currently disclose sorryAx. C consumers use the one
+Challenge2 boundary axiom. No Interface axiom is allowed to define T(M).
 
 The statement-development milestone permits unfinished property proofs in
 the type of an admitted package. The scoped consumer audit below reports
@@ -26,7 +26,7 @@ open Lean Elab Command
 def direct (input : Name) : List Name :=
   if input == `KIP126.Classical.Adams.standardFoundation ||
       input == `KIP126.Classical.Adams.standardMilnorCooperations then
-    [`KIP126.Interface.Axiom.challenge1]
+    [``sorryAx]
   else if input == `KIP126.Classical.Adams.linE2Presentation ||
       input == `KIP126.Computation.LinProofs.sphereTable_sound then
     [`KIP126.Main.Axiom.challenge2]
@@ -59,6 +59,11 @@ def checkStageConsumer (inputs : List Name) (declaration : Name)
     else
       pure false
   for a in axioms do
+    if a == ``sorryAx && kip126.checks.strictStageConsumerAudit.get (← getOptions) then
+      throwError "{context}: {declaration} contains unfinished proof debt (strict audit)"
+    if a == ``sorryAx && allows inputs a then
+      logWarning <| m!"{context}: {declaration} depends on Def's unfinished model construction; " ++
+        m!"this dependency inventory does not certify proof completion or exclude direct sorry."
     unless allows inputs a do
       if a == ``sorryAx && stageTypeHasSorry &&
           !kip126.checks.strictStageConsumerAudit.get (← getOptions) then

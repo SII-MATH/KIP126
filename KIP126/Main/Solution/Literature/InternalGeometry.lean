@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.InternalGeometry
+import KIP126.Interface.Challenge.Literature.InternalGeometry
 
 /-!
 # 几何输入与实际内部 Browder 接口的来源包装

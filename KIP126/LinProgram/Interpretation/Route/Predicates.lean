@@ -27,6 +27,14 @@ def Statement {D : Model H M Syn} (R : Realization D) (c : Raw.Claim) : Prop :=
     | .refutation => ∃ y, R.decode c.spectrum c.ts c.tt c.y = some y ∧
         ¬ HasDifferential (sequence D c.spectrum) c.r (c.s,c.t) (c.ts,c.tt) x y
 
+/-- Different provenance records can impose the same mathematical obligation.
+Keep their origin and record identifiers for traceability; they do not change
+the decoded claim or supply a proof of it. -/
+theorem statement_with_provenance {D : Model H M Syn} (R : Realization D)
+    (c : Raw.Claim) (origin : String) (record : Nat) :
+    Statement R { c with origin := origin, record := record } ↔ Statement R c :=
+  Iff.rfl
+
 /-- Explicit additive bases, including empty degrees and ALL linear combinations.
 An integer-linear equivalence to F₂ coordinates uses the actual additive group;
 it neither chooses a second group law nor postulates a new scalar action. -/

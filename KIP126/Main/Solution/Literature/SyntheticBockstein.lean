@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Def.References.Literature.Claims
 
 /-! Source-bearing input for the finite lifting/differential part of BHS

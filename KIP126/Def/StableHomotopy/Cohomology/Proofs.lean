@@ -1,4 +1,5 @@
 import KIP126.Def.StableHomotopy.Cohomology.Data
+import KIP126.Def.StableHomotopy.Context.MappingProofs
 
 /-! Derived representability and functoriality facts for mod-2 theories. -/
 namespace KIP126.StableHomotopy.Cohomology
@@ -22,6 +23,19 @@ noncomputable def cohomologyRepresentable_neg
     (H : Mod2EilenbergMacLane (C := C)) (n : ℤ) (X : C) :
     Mod2Cohomology H (-n) X ≃ (X ⟶ (shiftFunctor C (-n)).obj H.HF2) :=
   cohomologyRepresentable H (-n) X
+
+/-- The cohomological grading of Steenrod operations agrees with their
+degree as natural operations, rather than the homotopy grading of the
+mapping spectrum. Both comparisons are constructed from the selected
+closed and shift adjunctions. -/
+noncomputable def SteenrodAlgebraData.operationsRepresentable
+    (H : Mod2EilenbergMacLane (C := C))
+    [ClosedSymmetricTensorTriangulated (C := C)]
+    (A : SteenrodAlgebraData H) (n : ℤ) :
+    A.gradedComponent n ≃ (H.HF2 ⟶ (shiftFunctor C n).obj H.HF2) :=
+  (A.gradedIso n).trans
+    ((mappingSpectrumHomotopy (-n) H.HF2 H.HF2).trans
+      (cohomologyRepresentable H n H.HF2))
 
 @[simp] theorem pullback_id (H : Mod2EilenbergMacLane (C := C))
     (X : C) (n : ℤ) (φ : Mod2Cohomology H n X) :

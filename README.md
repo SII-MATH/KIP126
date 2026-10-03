@@ -38,14 +38,14 @@ and [original migration archive](migration/kip-base/README.md).
 
 ## Project documents and workflow
 
-- [M / C(M) / A(M) / T(M) boundary audit](docs/MAC_T_INPUT_AUDIT.md): mathematical objects versus delivery interfaces, source classification, and remaining model bindings.
-- [C(M) delivery specification](docs/COMPUTATION_DELIVERY_SPEC.md): mathematical conclusions delivered to Main, table interpretation and certification responsibilities, the shared model binding, and remaining producer obligations.
+- [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
+- [Stage layout](docs/STAGE_LAYOUT.md): directory ownership and the Challenge1/Challenge2 delivery chain.
 
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
 document:
 
-- [`KIP126/Main/Axiom/Literature/MainPaper/`](KIP126/Main/Axiom/Literature/MainPaper/) contains the target paper and its source material.
+- [`references/literature/MainPaper/`](references/literature/MainPaper/) contains the target paper and its source material.
   It is the mathematical document to be formalized; its claims are not, by
   themselves, Lean proofs or project theorems.
 - [`PROJECT_BOUNDARY.md`](PROJECT_BOUNDARY.md) defines what this project does
@@ -69,25 +69,18 @@ document:
   entry points. Import the final target directly from
   `KIP126.Main.Challenge.h6_sq_permanent`.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
-  authoritative for interfaces and proofs that are actually implemented, as
-  well as their import graph. `LinProgram/` owns the independent fixed-data
-  pipeline and its local certificates. `Def/` owns mathematical data and properties,
-  `Interface/` owns stage-zero outputs admitted as stage-one inputs in `Axiom/`, plus reusable
-  stage-one interface goals and their proofs, and `Main/`
-  owns input assumptions plus the paper's argument. Each stage keeps exactly
-  one Challenge/Solution pair: Def delivers `Nonempty Challenge1`, Interface
-  delivers `Nonempty Challenge2`, and Main proves the single standard final
-  theorem in `Main/{Challenge,Solution}/h6_sq_permanent.lean`. Internal stage statements and proofs live only in the
-  corresponding Solution tree; generic Def mathematics retains its component
-  organization. The final proof is
-  connected to Propositions 7.8 and 7.9, whose proofs still contain `sorry`.
-  `Checks/` owns regressions.
-  Start with the module guides in [Def](KIP126/Def/README.md),
-  [Interface](KIP126/Interface/README.md), [Main](KIP126/Main/README.md), and
-  [LinProgram](KIP126/LinProgram/README.md). `Challenge2` separates literature
-  and computation structures on the same model; only its computation part is
-  `C(M)`. Main consumes their single stage witness, while Interface owns its
-  producer proofs.
+  authoritative for the implemented interfaces, proofs and dependency graph.
+  `Def/` owns all mathematical objects and the fixed implementation; it never
+  imports Interface or Main. `Interface/` and `Main/` each have exactly three
+  direct directories: `Axiom/`, `Challenge/`, `Solution/`. Challenge1 delivers
+  the Def background; Challenge2, owned by `Interface/Challenge`, delivers
+  literature, computation and comparisons on that same background. The final
+  target in `Main/Challenge/h6_sq_permanent.lean` imports only Def; its proof
+  may consume Challenge2 through Main/Axiom. Stage-0 interface acceptance does
+  not mean certification or the final mathematical proof is complete.
+  `LinProgram/` retains the independent fixed-data pipeline; `Checks/Examples/`
+  contains the finite-table demonstrations. Original source artifacts live in
+  `references/literature/`; they are evidence, not Lean proof assumptions.
   Import concrete modules directly instead of adding redundant wrappers that
   only import one module. Multi-module aggregators and required Lake roots,
   including `KIPBase.lean`, remain. The
@@ -96,8 +89,8 @@ document:
   The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
   small executable example connecting imported dimensions and multiplication
   coefficients to an existing spectral sequence's page.
-- [`KIP126/Main/Axiom/Literature/source-inventory.json`](KIP126/Main/Axiom/Literature/source-inventory.json), the
-  per-source status records under [`KIP126/Main/Axiom/Literature/Sources/`](KIP126/Main/Axiom/Literature/Sources/), and the Lean
+- [`references/literature/source-inventory.json`](references/literature/source-inventory.json), the
+  per-source status records under [`references/literature/Sources/`](references/literature/Sources/), and the Lean
   claim ledger own the catalogue and provenance of external inputs. They record
   evidence and assumptions; they do not turn those inputs into unconditional
   project theorems.
@@ -110,7 +103,7 @@ records through the source inventory and claim ledger.
 
 The intended workflow is therefore:
 
-1. use `KIP126/Main/Axiom/Literature/MainPaper/` to identify the mathematical target;
+1. use `references/literature/MainPaper/` to identify the mathematical target;
 2. use `PROJECT_BOUNDARY.md` to decide which claims and inputs are in scope;
 3. use `docs/ROADMAP.md` to choose the next implementation slice;
 4. record its node-level natural-language statement and Lean correspondence
@@ -224,7 +217,7 @@ the generated list is not committed.
 of the finite catalogue is in `KIP126.Def.References.Literature.SourceInventory`, and the
 claim-level root/owner/dependency ledger is in `KIP126.Def.References.Literature.Claims`.
 Citation metadata, acquisition state, artifact paths, and SHA-256 digests are kept in
-[`KIP126/Main/Axiom/Literature/source-inventory.json`](KIP126/Main/Axiom/Literature/source-inventory.json).  Check
+[`references/literature/source-inventory.json`](references/literature/source-inventory.json).  Check
 the filesystem ledger and its regression tests with:
 
 ```sh
@@ -277,6 +270,6 @@ The reusable Blueprint workflow lives under
 They complement the global `leanblueprint` environment skill. The maintenance
 tools are read-only by default; marker changes require an explicit `--write`.
 
-所选 §7 证明路线的 M 接口及其全部依赖清单见 [M_INPUT_FREEZE.md](docs/M_INPUT_FREEZE.md)。该接口冻结不表示模型见证、计算认证、前人输入或最终证明已经完成。
-
-该路线的 A(M) 已以同一模型上的显式输入包实现，见 [A_INPUT_FREEZE.md](docs/A_INPUT_FREEZE.md) 和根 [Challenge2](KIP126/Challenge2.lean)。来源、条件与模型运输分开记录；没有新增全局公理，也未证明这些外部结果。
+当前第0步接口、来源适用性、计算范围及后续证明责任见
+[STAGE0_INTERFACES.md](docs/STAGE0_INTERFACES.md)。该文档不以声明存在或编译成功
+代替数学覆盖与对象绑定的复核。

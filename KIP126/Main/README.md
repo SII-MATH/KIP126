@@ -4,7 +4,7 @@ Main 使用同一数学模型上的文献结果 A(M) 和计算结果 C(M)，承�
 
 ## 目录职责
 
-- [Axiom](Axiom/README.md)：准确的阶段输入 statement、适用范围及来源信息；固定程序工件见独立 [LinProgram](../LinProgram/README.md)。
+- [Axiom](Axiom/README.md)：只传递 Challenge2 的同型阶段定理；固定程序工件见独立 [LinProgram](../LinProgram/README.md)。
 - [Challenge](Challenge/README.md)：只保留 `h6_sq_permanent.lean` 的唯一最终目标。
 - [Solution](Solution/README.md)：中间结果的陈述、消费构造与证明，以及最终证明；中间推导按 Tools、ChoiceIndependence、DifferentialReduction、ExtensionObstruction、Computation、Literature、Route 组织，最终证明直接位于 [h6_sq_permanent.lean](Solution/h6_sq_permanent.lean)。
 
@@ -18,7 +18,7 @@ Main 的阶段存在性输入仍为 `challenge2 : Nonempty Challenge2`。`Litera
 
 程序解释已有固定 E₂ 数据和 10,907 条闭合有限页球谱微分等式；等式不自动提供后续页非零。条件树、其他谱、extension、sentinel 和候选穷尽仍须逐项核验。手写 D/S/P/V 需求接口不自动成为程序认证结果。
 
-所选路线的 C₃/C₄/C₅、选择无关性和 Proposition 7.8/7.9 已重述到同一 `Route.Model` 的实际对象上，旧自由谓词中间接口已删除。准确目标、同一见证接线和数学证明是不同状态：前两者已有接口，相关代数、比较、尾部和过滤论证仍需完成。详见 [M_INPUT_FREEZE.md](../../docs/M_INPUT_FREEZE.md) 和 [C_INPUT_FREEZE.md](../../docs/C_INPUT_FREEZE.md)。
+所选路线的 C₃/C₄/C₅、选择无关性和 Proposition 7.8/7.9 已重述到同一 `Route.Model` 的实际对象上，旧自由谓词中间接口已删除。准确目标、同一见证接线和数学证明是不同状态：前两者已有接口，相关代数、比较、尾部和过滤论证仍需完成。详见 [STAGE0_INTERFACES.md](../../docs/STAGE0_INTERFACES.md) 。
 
 ## 剩余工作
 

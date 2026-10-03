@@ -1,5 +1,5 @@
 import KIP126.Main.Solution.Route.Selected
-import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Data
+import KIP126.Def.StageInput.StandardSphere.Classes.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 
 /-! The single final proof obligation T(M), paired with
@@ -18,10 +18,10 @@ whose E∞ image is nonzero, in bidegree (s,t) = (2,128). -/
 theorem h6_sq_permanent :
     NonzeroSurvival sphereAdamsData (2, 128) standardH6Square := by
   exact KIP126.Main.Solution.permanent_of_propositions
-    standardMilnorCooperations standardRouteModel
+    standardMilnorCooperations KIP126.Main.StageInput.routeModel
     KIP126.Main.StageInput.routeLabels KIP126.Main.StageInput.routeEta
     KIP126.Main.StageInput.routeLiterature.classical.hopf.1
     (KIP126.Main.Solution.Route.proposition_7_8 KIP126.Main.StageInput.witness)
-    (KIP126.Main.Solution.Route.proposition_7_9 KIP126.Main.StageInput.witness)
+    KIP126.Main.Solution.Route.proposition_7_9
 
 end KIP126.Solution.Final.H6SquarePermanent

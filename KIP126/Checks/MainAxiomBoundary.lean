@@ -1,3 +1,4 @@
+import KIP126.Checks.ProofDependencies
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
 import KIP126.Main.Solution.Computation.Tower.Survival
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
@@ -35,7 +36,6 @@ run_cmd do
   let env ← getEnv
   for m in env.allImportedModuleNames do
     if (`KIP126.Main.Challenge).isPrefixOf m ||
-        (`KIP126.Interface.Challenge).isPrefixOf m ||
         (`KIP126.Def.Challenge).isPrefixOf m then
       throwError "Solution imports a Challenge placeholder module: {m}"
   let solutions : List Name := [
@@ -145,6 +145,7 @@ run_cmd do
     ``KIP126.Literature.Route.Inputs.differentialLift,
     ``KIP126.Literature.Route.Inputs.nuTriangle,
     ``KIP126.Classical.Adams.sphereH6Square_ne_zero]
+  KIP126.Checks.rejectGoalProofs solutions.toArray
   for solution in solutions do
     let some (.thmInfo _) := env.find? solution
       | throwError "missing Solution theorem: {solution}"

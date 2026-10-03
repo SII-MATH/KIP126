@@ -1,5 +1,5 @@
 import KIP126.Mathlib.ClassicalAdams.StandardSphere.Data
-import KIP126.Interface.Solution.StageInput.StandardSphere.Sequence.Data
+import KIP126.Def.StageInput.StandardSphere.Sequence.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 import KIP126.Mathlib.SpectralSequence.Permanence.Data
 

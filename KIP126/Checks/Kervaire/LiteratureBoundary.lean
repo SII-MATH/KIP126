@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Main.Solution.Literature.Route.Inputs
 import Lean.Elab.Command
 
@@ -70,9 +70,5 @@ example (s t : ℤ) (q : ℕ) : (t+q) - (s+q+1) = (t-s)-1 := by omega
 
 -- The high tmf label has the required degree from the actual cup product.
 example : E2 H SphereSpectrum 25 150 := L.high125 M
-
--- The historical A alias retains the applied Inputs API. External source
--- statements are now Statements on the explicit Bindings; neither is selected here.
-example : A D η L ↔ Nonempty (Inputs D η L) := Iff.rfl
 
 end

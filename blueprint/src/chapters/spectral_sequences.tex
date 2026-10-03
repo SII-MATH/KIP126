@@ -36,7 +36,7 @@ synthetic rigidity and extension calculations belong to later chapters.
 
 \begin{proposition}[Derived internal page and representative calculus]
   \label{prop:internal-page-calculus}
-  \lean{KIP126.Challenge2.PageCalculus,KIP126.Challenge2.RepresentativeCalculus,KIP126.Interface.Solution.pageCalculus,KIP126.Interface.Solution.representativeCalculus}
+  \lean{KIP126.Challenge2.PageCalculus,KIP126.Challenge2.RepresentativeCalculus,KIP126.Def.Comparison.StageInterfaces.pageCalculus,KIP126.Def.Comparison.StageInterfaces.representativeCalculus}
   \uses{def:internal-nested-spectral-sequence}
   \leanok
   The next page is the homology of the current page differential. Boundaries
@@ -53,7 +53,7 @@ synthetic rigidity and extension calculations belong to later chapters.
 
 \begin{proposition}[Naturality of internal pages and representatives]
   \label{prop:internal-page-naturality}
-  \lean{KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Interface.Solution.internalNaturality}
+  \lean{KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Def.Comparison.StageInterfaces.internalNaturality}
   \uses{def:internal-canonical-page-map,prop:internal-page-calculus}
   \leanok
   The induced finite and infinite page maps preserve identity and composition.
@@ -364,7 +364,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   degreewise bounded-above filtration, supplies this completion witness.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:253-271 and 827-862; convergence is a concrete
+% SOURCE: references/literature/MainPaper/main.tex:253-271 and 827-862; convergence is a concrete
 % witness for the admissible sequences, not a generic Core construction.
 \begin{definition}[Complete and separated decreasing filtration]
   \label{def:complete-separated-filtration}
@@ -397,7 +397,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   eventual conditions, or degreewise boundedness.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
+% SOURCE: references/literature/MainPaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
 \begin{definition}[Spectral-sequence page-level convention]
   \label{def:ss-page-level}
   \notready
@@ -418,7 +418,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   identification of cycles with a synthetic quotient.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
+% SOURCE: references/literature/MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
 % VERIFIED-IN: KIP126/Classical/Adams/Basic.lean, declarations Bidegree,
 % classicalAdamsShift, classicalAdamsTarget, classicalAdamsShape, and
 % classicalAdamsShape_two_rel.
@@ -437,7 +437,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   the homology of this $E_2$ page with $E_3$.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
+% SOURCE: references/literature/MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
 \begin{definition}[Classical and synthetic Adams complex shape]
   \label{def:adams-complex-shape}
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
@@ -454,7 +454,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   the page-level convention and its admissibility/successor laws.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:264-295 and 999-1007, extension differential degree.
+% SOURCE: references/literature/MainPaper/main.tex:264-295 and 999-1007, extension differential degree.
 \begin{definition}[Extension spectral-sequence complex shape]
   \label{def:ess-complex-shape}
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
@@ -472,7 +472,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   summand transition, the starting-page witness, and the page-passage law.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:134-150 and 253-295.
+% SOURCE: references/literature/MainPaper/main.tex:134-150 and 253-295.
 \begin{definition}[Adams bidegree convention]
   \label{def:adams-bidegree}
   \lean{KIP126.Classical.Adams.Bidegree}
@@ -493,7 +493,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   as an extension length without an explicit conversion.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:690-739, 799-823, and 1138-1150.
+% SOURCE: references/literature/MainPaper/main.tex:690-739, 799-823, and 1138-1150.
 \begin{definition}[Synthetic tridegree and page-level conversion]
   \label{def:synthetic-tridegree}
   \uses{def:adams-bidegree}
@@ -519,7 +519,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   $S/\lambda^{r-1}$, and every use must retain that witness and its source.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:827-862, definitions of Z_r and B_r.
+% SOURCE: references/literature/MainPaper/main.tex:827-862, definitions of Z_r and B_r.
 \begin{definition}[Finite-page elementwise presentation]
   \label{def:ss-elementwise-page-presentation}
   \uses{def:mathlib-spectral-sequence,def:adams-bidegree,def:ss-page-level,def:adams-complex-shape}
@@ -556,7 +556,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   future pages.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:134-151, 827-862, and throughout the appendix.
+% SOURCE: references/literature/MainPaper/main.tex:134-151, 827-862, and throughout the appendix.
 \begin{definition}[Algebraic $E_\infty$ presentation]
   \label{def:ss-einfty-presentation}
   \uses{def:ss-elementwise-page-presentation}
@@ -589,7 +589,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   exactly when the representative is not in $B_\infty$.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:253-263, PROJECT_BOUNDARY.md external-input boundary.
+% SOURCE: references/literature/MainPaper/main.tex:253-263, PROJECT_BOUNDARY.md external-input boundary.
 \begin{definition}[Convergence and detection witness]
   \label{def:ss-convergence-detection-witness}
   \uses{def:core-filtration,def:ss-einfty-presentation,def:external-result}
@@ -815,7 +815,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   filtered homology of the original filtered complex.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:461-631 and 1218-1235, maps with shifted degrees.
+% SOURCE: references/literature/MainPaper/main.tex:461-631 and 1218-1235, maps with shifted degrees.
 \begin{definition}[Reindexed spectral-sequence morphism]
   \label{def:reindexed-ss-morphism}
   \uses{def:adams-bidegree,def:synthetic-tridegree}
@@ -840,7 +840,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   obligations of this node.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:138-150, 159-162, 1606-1753.
+% SOURCE: references/literature/MainPaper/main.tex:138-150, 159-162, 1606-1753.
 \begin{definition}[Multiplicative spectral sequence]
   \label{def:multiplicative-ss}
   \uses{def:ss-elementwise-page-presentation}
@@ -861,7 +861,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   expressions such as $h_j^2$ or $h_0x$ are meaningful.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:253-263 and all later elementwise arguments.
+% SOURCE: references/literature/MainPaper/main.tex:253-263 and all later elementwise arguments.
 \begin{proposition}[Categorical and elementwise presentations agree]
   \label{prop:categorical-elementwise-comparison}
   \uses{def:mathlib-spectral-sequence,def:mathlib-short-complex-exact,thm:mathlib-exact-iff-image-kernel,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:ss-elementwise-page-presentation}
@@ -1172,7 +1172,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   provide an explicit witness for the concrete sequence.
 \end{definition}
 
-% SOURCE: KIP126/Main/Axiom/Literature/MainPaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
+% SOURCE: references/literature/MainPaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
 \begin{theorem}[Filtered complex produces a spectral sequence]
   \label{thm:filtered-complex-to-spectral-sequence}
   \uses{def:filtered-complex-spectral-object-adapter,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object-morphism,def:filtered-chain-map,def:filtered-associated-graded-chain-map,def:filtered-associated-graded-functoriality,def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:ss-page-level}

@@ -8,7 +8,7 @@ Checks exact CSV hashes, local-degree basis indices, three d2 columns, and
 explicit F2 polynomial certificates using archived relations. Outputs JSON;
 does not modify the archive, generate Lean axioms, or prove that the archived
 d2 agrees with the fixed sphere's Adams differential. CSV notation source:
-KIP126/Main/Axiom/Literature/Sources/LWXMachine/source/ms.tex, notation nt:basis (lines 137--153).
+references/literature/Sources/LWXMachine/source/ms.tex, notation nt:basis (lines 137--153).
 """
 
 import argparse

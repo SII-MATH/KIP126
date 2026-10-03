@@ -8,7 +8,7 @@
 新增的 `Cnu_AdamsSS_t200.db`、`map_AdamsSS_Cnu_to_S0_t200.db` 和 `ss.json`
 供 `select-route.py` 使用；来源是本地 `Lin-program/program/upstream/kervaire-49`。
 它们仅在本地加入，未上传。精确摘要、用途及分发来源的信任边界见
-[C(M) 文档](../../../docs/C_INPUT_FREEZE.md)。下文关于已上传五个 LFS 对象的描述仅针对既有文件。
+[C(M) 文档](../../../docs/STAGE0_INTERFACES.md)。下文关于已上传五个 LFS 对象的描述仅针对既有文件。
 
 ## 1. 原先期望包含什么
 
@@ -29,7 +29,7 @@
 | `S0_AdamsE2_relations.csv` | UTF-16 CSV；E₂ 关系 | 11,634,438 | `8b4b67d6fb3c9a3a264813ea780340e73b1a66290c8616d3308ae1fc19f3add5` |
 | `S0_AdamsE2_basis.csv` | UTF-16 CSV；E₂ 加法 basis 与坐标 | 1,408,908 | `6a337964ad3ac02b729a46fd839dced7cb6764d14d4cea413163987eba8de871` |
 
-`proofs.db` 的 `log` 表字段为 `id, depth, reason, name, stem, s, t, r, x, dx, info`；共有 2,672,275 行，ID 为 5432–2677718。全量 JSONL 是它的派生调试输出，不是另一份原始事实源，因此不放入 Raw。LWX machine 的论文和 Zenodo metadata 位于 [Literature/Sources/LWXMachine](../../Main/Axiom/Literature/Sources/LWXMachine)。
+`proofs.db` 的 `log` 表字段为 `id, depth, reason, name, stem, s, t, r, x, dx, info`；共有 2,672,275 行，ID 为 5432–2677718。全量 JSONL 是它的派生调试输出，不是另一份原始事实源，因此不放入 Raw。LWX machine 的论文和 Zenodo metadata 位于 [Sources/LWXMachine](../../../references/literature/Sources/LWXMachine)。
 
 五个大文件由 `.gitattributes` 中的 Git LFS 规则覆盖，五个对象均已上传到远端 LFS 存储。协作者 checkout 后需要取得 LFS 内容，pointer 文本本身不是计算输入。
 

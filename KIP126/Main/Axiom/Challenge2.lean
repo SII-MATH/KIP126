@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 
 /-!
 # Development input for Challenge 2

@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 
 /-! am12：几何输入只给出相应维数的存在性。Browder 给出的存在指数必须
 先由二次幂的单射性识别为原指数，才能得到同一标准类的非零永久存活。 -/

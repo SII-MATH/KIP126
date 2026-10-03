@@ -1,37 +1,16 @@
-# Solution / Computation
+# Main 中的计算推导
 
-本页记录本组件在目录迁移时的状态。数学范围参见[所属阶段](../../README.md)；本次只迁移，未补证明或修改陈述。
+本目录从同一模型上的 C(M)、A(M) 和明确的比较证明推出论文消费事实。固定表本身、解析和七项认证合同由 LinProgram 与 Interface 负责；这里的推论不能反过来作为同一计算认证的前提。
 
-## 1. 原先期望包含什么
-
-完成本组件已有目标的证明，并清楚区分已用假设、辅助定义和仍待验证的结论。子文件的具体职责见下面清单；更大范围的数学目标以所属领域 README 与 [接口审核 #138](https://github.com/SII-MATH/KIP126/issues/138) 为准。
-
-## 2. 现在包含什么
-
-| 文件 | 已有对象或结论（选列） |
+| 位置 | 责任 |
 | --- | --- |
-| [Dimension.lean](Dimension.lean) | `sphereAdamsData_square_eq_zero_or`, `sphereAdamsData_eq_computedH6Square_of_ne_zero` |
-| [Nonvanishing.lean](Nonvanishing.lean) | `computedH6Square_ne_zero_of_check`, `computedH6Square_ne_zero` |
-| [Reduction.lean](Reduction.lean) | `computedH6Square_nonzeroSurvival_iff` |
-| [Vanishing.lean](Vanishing.lean) | `sphereAdamsData_h6_incoming_source_subsingleton`, `sphereAdamsData_h6_incoming_d_eq_zero`, `sphereAdamsData_h6_nonzeroSurvival_iff` |
+| `Route/Consequences.lean` | §7 消费事实的精确范围、代表和非零要求。 |
+| `Route.lean` | 从有限选区推出这些事实；越出选区的部分显式使用实际球谱消失线，过滤尾部归零还使用分离性。 |
+| `Tmf.lean` | 将 BMQ 非零同伦像提升为指定 high125 类的非零永久存活，显式依赖 C、消失线、分离性及同一乘法/单位比较。这是 Main 的证明责任。 |
+| `Lambda.lean` | λ 单步单射、高过滤检测及选择独立性等后续推导。 |
+| `Comparisons/`、`Dimension.lean`、`Reduction.lean` | 固定坐标与 Def 标准类的比较、维数和目标转换，保留已有证明。 |
+| `LinProgram/`、`Tower/`、`Differential/` | 已有计算解释与谱序列运算的局部证明。 |
 
-## 3. 大概完成度
+复杂推导仍有 `sorry`；这是公开的证明债务。通过目录、依赖和 Lean 编译检查只确认接口与程序一致，不代表完整认证或本文证明已经完成。最终目标的定义不导入本目录。
 
-**现有内容：4 个 Lean 文件、约 8 个显式声明，其中 8 条 theorem/lemma。** 本组件未扫描到显式占位正文，已有实现仍需结合依赖和语义审核判断是否完成。
-
-导入闭包仍涉及项目假设：`linE2Presentation`, `standardFoundation`。
-
-未冻结的任务总量没有可靠分母，因此不把文件数或 `sorry` 比率写成数学完成百分比。领域入口给出整体进度；本页给出可核查的局部实现状态。
-
-## 4. 接下来还需要完成什么
-
-- 结合消费端检查现有结果是否足以覆盖领域入口列出的预期；没有占位正文不代表全部所需结果已经写出。
-- 后续由 Interface 的相应证明解除上述阶段假设；调用这些假设得到的条件推论不能用来证明假设自身。
-
-## 5. 后续应该一步一步如何做
-
-1. 对照上面的声明及其直接 imports，确认本组件的数学条件和消费端，先处理已报告的陈述问题。
-2. 需要改公共定义或冻结陈述时交由整合者协调；同步目标、输入接口与对应证明，不单方扩大前提。
-3. 按依赖顺序处理已列出的未完成内容；复用已有证明，保持数据、条件和结果职责清楚。
-4. 用最小受影响模块检查编译及调用端；涉及阶段接口时核对完整类型，证明完成与编译成功分别判断。
-5. 完成一项后更新本页的现有内容和剩余事项；不要把本次目录迁移算作数学成果。
+职责和验收口径见 [第0步接口](../../../../docs/STAGE0_INTERFACES.md)。

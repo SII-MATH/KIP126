@@ -1,15 +1,15 @@
-import KIP126.Interface.Solution.FiniteCoherentPageExtension
+import KIP126.Def.Comparison.StageInterfaces.Proofs.FiniteCoherentPageExtension
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Cycles.Data
 import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Boundary.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
 import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
-import KIP126.Interface.Solution.CoherentPageExtension
+import KIP126.Def.Comparison.StageInterfaces.Proofs.CoherentPageExtension
 import KIP126.Def.Solution.FoundationConsequences
 import KIP126.Def.Solution.Toda
-import KIP126.Interface.Solution.InternalPages
-import KIP126.Interface.Solution.InternalNaturality
-import KIP126.Interface.Solution.Cobar
+import KIP126.Def.Comparison.StageInterfaces.Proofs.InternalPages
+import KIP126.Def.Comparison.StageInterfaces.Proofs.InternalNaturality
+import KIP126.Def.Comparison.StageInterfaces.Proofs.Cobar
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
 import KIP126.Def.Synthetic.QuotientTower.Proofs
@@ -18,13 +18,13 @@ import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Proofs
 import KIP126.Def.Solution.Synthetic.Localization
-import KIP126.Interface.Solution.SyntheticEInfty
-import KIP126.Interface.Solution.PageExtensionAmbiguity
+import KIP126.Def.Comparison.StageInterfaces.Proofs.SyntheticEInfty
+import KIP126.Def.Comparison.StageInterfaces.Proofs.PageExtensionAmbiguity
 import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
 import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
-import KIP126.Interface.Solution.CanonicalPageExtension
+import KIP126.Def.Comparison.StageInterfaces.Proofs.CanonicalPageExtension
 import KIP126.Def.Synthetic.QuotientFunctor.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
@@ -39,7 +39,7 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
 import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
-import KIP126.Interface.Solution.PageExtensionSolutions
+import KIP126.Def.Comparison.StageInterfaces.Proofs.PageExtensionSolutions
 import Lean.Elab.Command
 
 /-! These particular generic obligations are proved from explicit mathematical
@@ -59,10 +59,10 @@ run_cmd do
       ``KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.finite_solutions_of_finite_source,
       ``KIP126.Synthetic.PageExtension.NormalizedPageFamily.finite_finiteSolutions_of_finite_source,
       ``KIP126.Synthetic.PageExtension.NormalizedPageFamily.finite_permanentFiniteSolutions_of_finite_source,
-      ``KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite,
-      ``KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite_source,
-      ``KIP126.Interface.Solution.finite_normalizedSourceHomotopy_of_firstQuotientComparison,
-      ``KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_finite_e2,
+      ``KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite,
+      ``KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite_source,
+      ``KIP126.Def.Comparison.StageInterfaces.finite_normalizedSourceHomotopy_of_firstQuotientComparison,
+      ``KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite_e2,
       ``KIP126.Classical.Adams.Moss.longLayerTwoComposition,
       ``KIP126.Classical.Adams.Moss.longLayerTwoPairing,
       ``KIP126.Classical.Adams.Moss.longLayerTwoComposition_projection,
@@ -74,8 +74,8 @@ run_cmd do
       ``KIP126.Classical.Adams.Moss.layerComposition_ι_right_δ_comparison,
       ``KIP126.Classical.Adams.Moss.layerComposition_ι_right_δ,
       ``KIP126.Classical.Adams.Moss.stageComposition_succ_comparison,
-      ``KIP126.Interface.Solution.restrictPermanentFiniteSolution_surjective_iff_differences_surjective,
-      ``KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_differences_surjective,
+      ``KIP126.Def.Comparison.StageInterfaces.restrictPermanentFiniteSolution_surjective_iff_differences_surjective,
+      ``KIP126.Def.Comparison.StageInterfaces.exists_coherentPageExtensionSolutions_of_differences_surjective,
       ``KIP126.Classical.Adams.Moss.coefficientPairing_precomp,
       ``KIP126.Classical.Adams.Moss.coefficientPairing_postcomp,
       ``KIP126.Classical.Adams.Moss.coefficientPairing_innerUnit,
@@ -89,8 +89,8 @@ run_cmd do
       ``KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction_eq_zero,
       ``KIP126.Classical.Adams.Moss.longLayerTwoComposition_exists,
       ``KIP126.Core.InverseSequence.exists_compatible_of_surjective,
-      ``KIP126.Interface.Solution.exists_coherentPageExtensionSolutions_of_surjective,
-      ``KIP126.Interface.Solution.nonempty_coherentPageExtensionSolutions_of_surjective,
+      ``KIP126.Def.Comparison.StageInterfaces.exists_coherentPageExtensionSolutions_of_surjective,
+      ``KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_surjective,
       ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_displacement,
       ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_surjective_iff_differences_surjective,
       ``KIP126.Core.SpectralSequence.FilteredComplex.Solutions.forall_obstruction_eq_zero_iff_surjective,
@@ -99,33 +99,33 @@ run_cmd do
       ``KIP126.Def.Solution.cobar_square_zero,
       ``KIP126.Def.Solution.adams_filtration_decomposition,
       ``KIP126.Def.Solution.todaInterface,
-      ``KIP126.Interface.Solution.pageCalculus,
-      ``KIP126.Interface.Solution.representativeCalculus,
-      ``KIP126.Interface.Solution.paperCycleCalculus,
-      ``KIP126.Interface.Solution.internalNaturality,
-      ``KIP126.Interface.Solution.cobarE2Comparison,
-      ``KIP126.Interface.Solution.cobarCupCalculus,
+      ``KIP126.Def.Comparison.StageInterfaces.pageCalculus,
+      ``KIP126.Def.Comparison.StageInterfaces.representativeCalculus,
+      ``KIP126.Def.Comparison.StageInterfaces.paperCycleCalculus,
+      ``KIP126.Def.Comparison.StageInterfaces.internalNaturality,
+      ``KIP126.Def.Comparison.StageInterfaces.cobarE2Comparison,
+      ``KIP126.Def.Comparison.StageInterfaces.cobarCupCalculus,
       ``KIP126.Def.Solution.lambda_localization_unit,
       ``KIP126.Def.Solution.nu_realization_recovery,
-      ``KIP126.Interface.Solution.syntheticEInfty_lambda_nu_surjective,
-      ``KIP126.Interface.Solution.syntheticEInfty_lambda_finite_surjective,
-      ``KIP126.Interface.Solution.syntheticEInfty_rho_finite_injective,
-      ``KIP126.Interface.Solution.syntheticEInfty_rho_nu_injective,
-      ``KIP126.Interface.Solution.syntheticEInfty_nu_subsingleton_of_outside,
-      ``KIP126.Interface.Solution.syntheticEInfty_finite_subsingleton_of_outside,
-      ``KIP126.Interface.Solution.finitePageExtensionTargetCoset,
-      ``KIP126.Interface.Solution.finitePageExtensionEssential,
-      ``KIP126.Interface.Solution.infinitePageExtensionTargetCoset,
-      ``KIP126.Interface.Solution.infinitePageExtensionEssential,
-      ``KIP126.Interface.Solution.finiteLambdaTarget_eq_zero_iff,
-      ``KIP126.Interface.Solution.infiniteLambdaTarget_eq_zero_iff,
-      ``KIP126.Interface.Solution.finitePageExtensionBoundaryKernel,
-      ``KIP126.Interface.Solution.infinitePageExtensionBoundaryKernel,
-      ``KIP126.Interface.Solution.canonicalPageExtensionTargets_comparison,
-      ``KIP126.Interface.Solution.canonicalFinitePageExtensionBoundaryKernel,
-      ``KIP126.Interface.Solution.canonicalInfinitePageExtensionBoundaryKernel,
-      ``KIP126.Interface.Solution.canonicalFinitePageExtensionTargetCoset,
-      ``KIP126.Interface.Solution.canonicalInfinitePageExtensionTargetCoset,
+      ``KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_lambda_nu_surjective,
+      ``KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_lambda_finite_surjective,
+      ``KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_rho_finite_injective,
+      ``KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_rho_nu_injective,
+      ``KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_nu_subsingleton_of_outside,
+      ``KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_finite_subsingleton_of_outside,
+      ``KIP126.Def.Comparison.StageInterfaces.finitePageExtensionTargetCoset,
+      ``KIP126.Def.Comparison.StageInterfaces.finitePageExtensionEssential,
+      ``KIP126.Def.Comparison.StageInterfaces.infinitePageExtensionTargetCoset,
+      ``KIP126.Def.Comparison.StageInterfaces.infinitePageExtensionEssential,
+      ``KIP126.Def.Comparison.StageInterfaces.finiteLambdaTarget_eq_zero_iff,
+      ``KIP126.Def.Comparison.StageInterfaces.infiniteLambdaTarget_eq_zero_iff,
+      ``KIP126.Def.Comparison.StageInterfaces.finitePageExtensionBoundaryKernel,
+      ``KIP126.Def.Comparison.StageInterfaces.infinitePageExtensionBoundaryKernel,
+      ``KIP126.Def.Comparison.StageInterfaces.canonicalPageExtensionTargets_comparison,
+      ``KIP126.Def.Comparison.StageInterfaces.canonicalFinitePageExtensionBoundaryKernel,
+      ``KIP126.Def.Comparison.StageInterfaces.canonicalInfinitePageExtensionBoundaryKernel,
+      ``KIP126.Def.Comparison.StageInterfaces.canonicalFinitePageExtensionTargetCoset,
+      ``KIP126.Def.Comparison.StageInterfaces.canonicalInfinitePageExtensionTargetCoset,
       ``KIP126.Classical.Adams.PageRepresentatives.finiteTopEquiv,
       ``KIP126.Classical.Adams.PageRepresentatives.permanentTopEquiv,
       ``KIP126.Classical.Adams.Moss.layerComposition_ι,
@@ -168,9 +168,9 @@ run_cmd do
       ``KIP126.Synthetic.PageExtension.mem_targetCoset_iff_differentialRelation,
       ``KIP126.Synthetic.PageExtension.FiniteExtensionWitness.mem_targetCoset_iff_solutions,
       ``KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.mem_targetCoset_iff_solutions,
-      ``KIP126.Interface.Solution.finitePageExtension_iff_solutions,
-      ``KIP126.Interface.Solution.infinitePageExtension_iff_solutions,
-      ``KIP126.Interface.Solution.finitePageExtension_restrict,
+      ``KIP126.Def.Comparison.StageInterfaces.finitePageExtension_iff_solutions,
+      ``KIP126.Def.Comparison.StageInterfaces.infinitePageExtension_iff_solutions,
+      ``KIP126.Def.Comparison.StageInterfaces.finitePageExtension_restrict,
       ``KIP126.Challenge2.restrictFiniteSolution,
       ``KIP126.Challenge2.restrictPermanentFiniteSolution,
       ``KIP126.Challenge2.CoherentPageExtensionSolutions,

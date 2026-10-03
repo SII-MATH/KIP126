@@ -5,12 +5,12 @@
 | 组件 | 内容与当前状态 |
 | --- | --- |
 | [StageInput.lean](StageInput.lean) | 从唯一 `Nonempty Challenge2` 假设选择关联见证，并投影同一模型上的 A(M) 与 C(M) |
-| [Tools](Tools/README.md) | 本文广义 Leibniz、广义 Mahowald 和有限 stretching 的待证命题定义；不作为 A(M) 输入。 |
+| [Tools](Tools/README.md) | 本文广义 Leibniz、广义 Mahowald 和有限 stretching 的独立证明任务；命题语言在 Def，不作为 A(M) 输入。 |
 | [ChoiceIndependence](ChoiceIndependence/README.md) | 同一模型上的规范化 BX 判据和 C₄/C₅ 选择无关性；实际选择存在性及不定性论证待完成。 |
 | [DifferentialReduction](DifferentialReduction/README.md) | Proposition 7.8 和候选微分归约的准确目标；`Conclusion.lean` 已证明给定 7.8/7.9 后的逻辑收尾。 |
 | [ExtensionObstruction](ExtensionObstruction/README.md) | 同一模型上的 Proposition 7.9 目标 `EtaChoice → C3 → ¬ C5`，不作为外部输入。 |
 | [Computation](Computation/README.md) | 已有输入上的维数、非零、消失和归约推论，以及保留精确前提的待证义务。 |
-| [Literature](Literature/) | 文献输入的消费构造、证据提取和条件推论；来源输入 statement 保留在 Axiom。 |
+| [Literature](Literature/) | 文献输入的消费构造、证据提取和条件推论；来源合同位于 Interface/Challenge。 |
 | [Route/Predicates.lean](Route/Predicates.lean)／[Selected.lean](Route/Selected.lean) | 保存 Proposition 7.8 的局部单射目标，并将 Cν 与 λ 单步单射特化到同一阶段见证；Proposition 7.8/7.9 的证明仍为 `sorry`。 |
 | [h6_sq_permanent.lean](h6_sq_permanent.lean) | 唯一 T(M) 的最终串接已实现，仍依赖 7.8/7.9 及上游证明义务。 |
 

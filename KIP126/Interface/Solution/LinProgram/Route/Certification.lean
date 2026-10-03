@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Interface.Solution.Challenge2
 namespace KIP126.Interface.Solution.LinProgram.Route
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
@@ -26,13 +26,14 @@ theorem certify_of_parts {D : Model H M Syn} (R : Realization D)
 /-- Extract local certificates AND presentation agreement from the joint
 Interface producer. G is retained from that same model-binding witness. -/
 theorem certification :
-    ∃ (B : KIP126.Challenge2.ModelBindings) (P : LinE2Presentation)
-      (R : Realization standardRouteModel),
+    ∃ (routeInput : StandardRouteInput)
+      (B : KIP126.Challenge2.ModelBindings routeInput) (P : LinE2Presentation)
+      (R : Realization routeInput.model),
       CertifiedRealization R B.routeLabels B.tmfLabels ∧
       (∀ (s t : ℕ) (ht : t ≤ 261) (x : KIP126.LinE2.E2At s t),
         R.sphere s t x = P.comparison s t ht x) := by
   obtain ⟨I⟩ := KIP126.Interface.Solution.challenge2
-  exact ⟨I.modelBindings, I.presentation, I.computation.route.realization,
+  exact ⟨I.routeInput, I.modelBindings, I.presentation, I.computation.route.realization,
     I.computation.route.toCertifiedRealization, I.computation.route_presentation⟩
 
 end KIP126.Interface.Solution.LinProgram.Route

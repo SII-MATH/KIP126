@@ -1,4 +1,4 @@
-import KIP126.Interface.Solution.StageInput.StandardSphere.Sequence.Data
+import KIP126.Def.StageInput.StandardSphere.Sequence.Data
 import KIP126.Def.ClassicalAdams.TowerNaturality.Proofs
 
 /-! Cofibers of maps S³ → S⁰ in the *same* foundation as sphereAdamsData.

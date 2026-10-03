@@ -139,12 +139,26 @@ theorem stem125_e5_zero_finite (I : Inputs D L G)
     Subsingleton ((sequence D .sphere).Page 5 (s,(s : ℤ)+125)) := by
   sorry
 
-/-- Full high-filtration coverage in Fact 7.6.  The finite range s<=64
-comes from the selected bases and equations; s>=65 uses the independent
-vanishing line.  This is not added to C as an unbounded program assertion. -/
-theorem stem125_e5_high_exhaustion (I : Inputs D L G) (V : SphereVanishingLine H)
-    (s : ℕ) (hs : 15 ≤ s) (hne : s ≠ 25) :
-    Subsingleton ((sequence D .sphere).Page 5 (s,(s : ℤ)+125)) := by
+/-- The AF15 source is NONZERO on E5: the selected S0_ss3152 equation is
+d5(h1*x124,14)=d0^2*[Delta Delta1 g]. Nonzero follows from reconstruction
+of both E5 components, not from the equation alone. In particular it would
+be false to extend `stem125_e5_zero_finite` down to all s>=15, s!=25. -/
+theorem stem125_af15_nonzero_d5 (I : Inputs D L G) :
+    ∃ (x : Page D .sphere 15 140) (y : Page D .sphere 20 144),
+      I.realization.decode .sphere 15 140 [2] = some x ∧
+      I.realization.decode .sphere 20 144 [0] = some y ∧
+      HasNonzeroDifferential (sequence D .sphere) 5 (15,140) (20,144) x y := by
+  sorry
+
+/-- The AF18 target is NONZERO on E5: S0_ss3083/3391 give
+d5(h1*x125,12,2)=d0^2*x97,10. It disappears on E6. Its synthetic lifts
+require a separate torsion and higher-filtration argument at weight130;
+they cannot be discarded by declaring the classical E5 component zero. -/
+theorem stem125_af18_nonzero_incoming_d5 (I : Inputs D L G) :
+    ∃ (x : Page D .sphere 13 139) (y : Page D .sphere 18 143),
+      I.realization.decode .sphere 13 139 [0] = some x ∧
+      I.realization.decode .sphere 18 143 [0] = some y ∧
+      HasNonzeroDifferential (sequence D .sphere) 5 (13,139) (18,143) x y := by
   sorry
 
 /-- The complete local sphere interface now has an explicit derivation goal

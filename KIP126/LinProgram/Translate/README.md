@@ -16,7 +16,7 @@
 | `import-staircase.py` | 校验固定球谱快照，生成 23,822 条无损状态记录和 187 个分片 |
 
 局部 C(M) 的入口保留在根 [Challenge2.lean](../../Challenge2.lean)，筛选依据见
-[C_INPUT_FREEZE.md](../../../docs/C_INPUT_FREEZE.md)。它不消费旧 bulk 正确性公理。
+[STAGE0_INTERFACES.md](../../../docs/STAGE0_INTERFACES.md)。它不消费旧 bulk 正确性公理。
 从仓库根目录运行：
 
 ```bash

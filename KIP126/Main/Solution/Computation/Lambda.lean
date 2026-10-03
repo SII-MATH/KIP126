@@ -1,7 +1,8 @@
 import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
 import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Main.Solution.Computation.Route
+import KIP126.Main.Solution.Computation.High125
 
 /-! Precise finite/weight-window derivations. The relevant raw degrees are
 already selected, including empty bases. No new permanent-cycle claim is
@@ -10,6 +11,7 @@ namespace KIP126.Computation.Route
 open CategoryTheory
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology KIP126.Classical.Adams
 open KIP126.Core.SpectralSequence KIP126.Synthetic.Context KIP126.Kervaire.Route
+open KIP126.Synthetic.SpectralSequence
 universe u v w
 noncomputable section
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
@@ -155,6 +157,92 @@ theorem high125_detector_nonzero
     (by simpa only [high125_label I] using ha)
     (by simpa only [high125_label I] using hb)
   simpa only [heq] using hnonzero
+
+/-- The BHS lambda-kernel argument on any object in the selected classical
+closure.  The object is the actual `nu X`, not a renamed synthetic sphere.
+All decreasing weights are included, and the passage from graded kernels
+to homotopy uses `D.homotopySeparated` on `.nu X`. -/
+theorem nu_lambda_powers_injective_of_source_halfplane
+    (A : KIP126.Literature.Route.SyntheticInputs D)
+    (X : ClassicalObject) (m wgt : ℤ)
+    (hsource : ∀ q : ℤ, q ≤ wgt-m-2 →
+      NoOutgoingAt (adamsTowerInternalSpectralSequence H.unit (X.obj D.auxiliary))
+        q (q+m+1)) :
+    LambdaPowersInjectiveAt m wgt (D.nu.functor.obj (X.obj D.auxiliary)) := by
+  sorry
+
+/-- BMQ/change-of-rings gives E2=0 in this entire nonpositive-filtration
+half-plane of the same completed tmf. It is not a sphere computation. -/
+theorem detector_no_outgoing_stem63_nonpositive
+    (low : KIP126.Literature.Route.TmfLowFiltration63 D)
+    (q : ℤ) (hq : q ≤ 0) :
+    NoOutgoingAt (adamsTowerInternalSpectralSequence H.unit D.auxiliary.detector)
+      q (q+63) := by
+  intro r hr x
+  have hz : Subsingleton
+      ((adamsTowerInternalSpectralSequence H.unit D.auxiliary.detector).Page r
+        (q, q+63)) :=
+    adamsTowerInternal_page_subsingleton_of_le H.unit D.auxiliary.detector
+      2 r q (q+63) (by omega) hr (by simpa [add_comm] using low q hq)
+  rw [hz.elim x 0, map_zero]
+
+/-- All finite lambda powers are injective at (62,64) for synthetic tmf.
+This is a Main deduction from the sourced low-filtration tmf calculation
+and the BHS comparisons, rather than an added tmf vanishing assumption. -/
+theorem detector_lambda_powers_injective_62_64
+    (A : KIP126.Literature.Route.SyntheticInputs D)
+    (low : KIP126.Literature.Route.TmfLowFiltration63 D) :
+    LambdaPowersInjectiveAt 62 64 (D.nu.functor.obj D.auxiliary.detector) := by
+  apply nu_lambda_powers_injective_of_source_halfplane A .detector
+  intro q hq
+  simpa [ClassicalObject.obj, add_assoc] using
+    detector_no_outgoing_stem63_nonpositive low q (by omega)
+
+/-- Injectivity of the actual realization functor at the required tmf
+degree. It additionally uses `A.realization_kernel` on `.nu .detector`;
+an associated-graded comparison by itself does not imply this conclusion. -/
+theorem detector_realization_injective_62_64
+    (A : KIP126.Literature.Route.SyntheticInputs D)
+    (low : KIP126.Literature.Route.TmfLowFiltration63 D) :
+    Function.Injective (fun a : BiHom 62 64 (D.nu.functor.obj D.auxiliary.detector) =>
+      D.recovery.realization.map a) := by
+  sorry
+
+/-- The precise synthetic Hurewicz vanishing consumed in Proposition 7.8.
+Classical theta5 vanishing is transported through the SAME actual unit and
+realization comparisons; the preceding tmf injectivity removes its possible
+lambda-torsion lift. `A` is the assembled consumer package, not a new A axiom. -/
+theorem synthetic_theta5_detector_zero
+    (A : KIP126.Literature.Route.Inputs D η G)
+    (theta : BiHom 62 64 (S_0_0 : Syn))
+    (htheta : ThetaChoice M D.toModelData theta) :
+    theta ≫ KIP126.Literature.Route.detectorMap D = 0 := by
+  sorry
+
+/-- The synthetic tmf image used in the high-filtration contradiction.
+The product and unit are the ones bound by `A.algebra.detector`, on D's
+chosen completed tmf; no separate homotopy-ring model is selected. -/
+theorem synthetic_eta_theta5_square_detector_zero
+    (A : KIP126.Literature.Route.Inputs D η G)
+    (theta : BiHom 62 64 (S_0_0 : Syn))
+    (htheta : ThetaChoice M D.toModelData theta) :
+    sphereProduct η (sphereProduct theta theta) ≫
+      KIP126.Literature.Route.detectorMap D = 0 := by
+  sorry
+
+/-- The complete synthetic detector argument of Proposition 7.8. The
+weight130 exhaustion first gives a classical G detector for every nonzero
+F15 element; the same actual realization/unit comparison and tmf source
+then contradict zero detector image. No all-power injectivity at weight130
+or unqualified classical E5 vanishing is assumed. -/
+theorem detector_injective_125_130_filtration15
+    (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G)
+    (V : SphereVanishingLine H) (S : ClassicalSphereSeparated H)
+    (a : BiHom 125 130 (S_0_0 : Syn))
+    (ha : KIP126.Synthetic.SpectralSequence.FiltrationAtLeast
+      (nuCoefficientUnit H.unit D.nu) 15 a)
+    (hz : a ≫ KIP126.Literature.Route.detectorMap D = 0) : a = 0 := by
+  sorry
 
 end
 end KIP126.Computation.Route

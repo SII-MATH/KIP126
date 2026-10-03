@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
 
 namespace KIP126.Computation.LinProofs

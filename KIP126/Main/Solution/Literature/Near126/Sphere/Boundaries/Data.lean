@@ -8,7 +8,7 @@ open KIP126.External
 attribute [local irreducible] KIP126.LinE2.homogeneousPart
 
 /-- The two d₂-image facts consumed in the proof of prop:state5false,
-KIP126/Main/Axiom/Literature/MainPaper/main.tex:2716 and 2726. Sources have degrees (10,136) and (11,137),
+references/literature/MainPaper/main.tex:2716 and 2726. Sources have degrees (10,136) and (11,137),
 but their coordinates are not guessed. These are explicit input propositions,
 not consequences of E₂ multiplication or of later whole-page vanishing.
 The pinned CSV witnesses and algebra certificates have now been independently

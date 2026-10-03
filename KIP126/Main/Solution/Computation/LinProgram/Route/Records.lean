@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 
 /-! GENERATED named projections from explicit C(M) hypotheses. These theorems
 do NOT prove the database computations or add mathematical assumptions. -/

@@ -4,12 +4,12 @@
 目录安排和未完成证明清单已经失效，现已清理。本文保留链接入口，
 不再作为新 session 的执行指令。
 
-后续工作从仓库根 [README](../README.md) 和 [AGENTS.md](../AGENTS.md) 开始，
+后续工作从仓库根 [README](../README.md) 和 [PROJECT_BOUNDARY.md](../PROJECT_BOUNDARY.md) 开始，
 按当前任务和用户授权操作，不从旧交接记录推断 Git 权限或工作目录限制。
 
 - 组件使用与构建：[KIPBase README](../KIPBase/README.md)。
 - 源码复用范围与核对入口：[KIPBase 与 KIP126](KIPBASE_GAP_INVENTORY.md)。
-- 当前计算交付的数学边界：[C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
+- 当前计算交付的数学边界：[C(M) 交付说明](STAGE0_INTERFACES.md)。
 - 原迁移来源与历史验证：[迁移档案](../migration/kip-base/README.md)。
 
 迁移时优先复用已有且语义匹配的证明，核对当前源码中的参数、结论与依赖，

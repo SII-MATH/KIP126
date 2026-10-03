@@ -9,7 +9,7 @@
 这对应论文 Theorem 1.4 / 7.1：同一球谱内部 Adams 谱序列中的标准 h₆²
 非零存活至 E∞。标准类由 Milnor cocycle `[ξ₁^64 | ξ₁^64]` 定义；
 `NonzeroSurvival` 要求共同的 Z∞ 代表及非零 E∞ 像。陈述不使用 C(M) 或
-CSV 数据，但固定基础仍由 Challenge1 提供。
+CSV 数据，固定基础、球塔和标准类全部定义在 Def；T 的类型不依赖阶段交付假设。
 
 文件已直接放在本目录，不再有 Final 子目录；声明命名空间
 `KIP126.Challenge.Final.H6SquarePermanent` 保留不变。没有第二个计算版

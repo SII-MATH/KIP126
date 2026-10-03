@@ -34,4 +34,10 @@ example (H : Mod2EilenbergMacLane (C := C)) (U : UniversalCoefficientData H)
     Mod2Cohomology H n X ≃+ (Mod2Homology H n X →+ ZMod 2) :=
   U.cohomologyHomologyEquiv n X
 
+/-- Positive Steenrod degree raises the target cohomological degree. -/
+example (H : Mod2EilenbergMacLane (C := C))
+    [ClosedSymmetricTensorTriangulated (C := C)] (A : SteenrodAlgebraData H) :
+    Nonempty (A.gradedComponent 1 ≃ (H.HF2 ⟶ (shiftFunctor C (1 : ℤ)).obj H.HF2)) :=
+  ⟨A.operationsRepresentable H 1⟩
+
 end KIP126.Checks.StableHomotopy

@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Def.References.Literature.Claims
 
 /-! Explicit, source-bearing inputs for the two E∞ formulas. These wrappers

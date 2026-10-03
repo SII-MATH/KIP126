@@ -7,8 +7,8 @@ import Mathlib.Data.Fintype.Card
 The first table is the Hopf-cofiber table immediately before the Appendix.
 The remaining eleven tables are the sphere tables in the Appendix.  These
 identifiers locate a table; they make no assertion about any row's truth.
-The PDF page numbers refer to `KIP126/Main/Axiom/Literature/MainPaper/2412.10879.pdf`, and the source line
-numbers refer to `KIP126/Main/Axiom/Literature/MainPaper/main.tex` in this repository.
+The PDF page numbers refer to `references/literature/MainPaper/2412.10879.pdf`, and the source line
+numbers refer to `references/literature/MainPaper/main.tex` in this repository.
 -/
 
 namespace KIP126.Computation
@@ -52,7 +52,7 @@ def paperNumber : AppendixTableId → ℕ
   | .s127Middle => 11
   | .s127Low => 12
 
-/-- Exact TeX label used for cross-references in `KIP126/Main/Axiom/Literature/MainPaper/main.tex`. -/
+/-- Exact TeX label used for cross-references in `references/literature/MainPaper/main.tex`. -/
 def texLabel : AppendixTableId → String
   | .cnu126 => "Table:Cnu126"
   | .s122 => "Table:S122"

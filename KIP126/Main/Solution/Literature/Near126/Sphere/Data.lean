@@ -5,7 +5,7 @@ import KIP126.Def.References.Provenance
 /-! First semantic slice of the Section 7 computation package.
 Every field is an explicit, provenance-carrying premise. There is deliberately
 no global inhabitant, new axiom, or final h₆²-survival field.
-Sources below refer to labels/lines in KIP126/Main/Axiom/Literature/MainPaper/main.tex; evidence values must
+Sources below refer to labels/lines in references/literature/MainPaper/main.tex; evidence values must
 add the actual archive/query provenance before claiming machine verification. -/
 namespace KIP126.Computation.Near126
 open KIP126.LinE2 KIP126.External KIP126.Classical.Adams

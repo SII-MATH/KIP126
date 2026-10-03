@@ -22,7 +22,7 @@ from check_source_inventory import validate_inventory  # noqa: E402
 
 
 ROOT = SCRIPT_DIR.parent
-INVENTORY = ROOT / "KIP126/Main/Axiom/Literature/source-inventory.json"
+INVENTORY = ROOT / "references/literature/source-inventory.json"
 
 
 class SourceInventoryProjectionIntegrationTests(unittest.TestCase):
@@ -51,13 +51,13 @@ class SourceInventoryProjectionIntegrationTests(unittest.TestCase):
         aim["artifacts"] = [
             artifact
             for artifact in aim["artifacts"]
-            if artifact["path"] != "KIP126/Main/Axiom/Literature/MainPaper/main.tex"
+            if artifact["path"] != "references/literature/MainPaper/main.tex"
         ]
         errors = self.validate_document(document)
         self.assertTrue(
             any(
                 "lean_projection.claim." in error
-                and "KIP126/Main/Axiom/Literature/MainPaper/main.tex" in error
+                and "references/literature/MainPaper/main.tex" in error
                 and "not listed" in error
                 for error in errors
             )

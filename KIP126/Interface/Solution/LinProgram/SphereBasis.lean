@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Def.AdamsE2.LinBasisTable.Certification.Proofs
 import KIP126.Interface.Solution.LinProgram.BasisTable
 

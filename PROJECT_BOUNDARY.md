@@ -6,118 +6,45 @@ This document records the agreed scope and acceptance criteria for the Lean
 formalization of:
 
 > Weinan Lin, Guozhen Wang, and Zhouli Xu, *On the Last Kervaire Invariant
-> Problem*, represented in this repository by `KIP126/Main/Axiom/Literature/MainPaper/main.tex`,
-> `KIP126/Main/Axiom/Literature/MainPaper/112.tex`, and `KIP126/Main/Axiom/Literature/MainPaper/2412.10879.pdf`.
+> Problem*, represented in this repository by `references/literature/MainPaper/main.tex`,
+> `references/literature/MainPaper/112.tex`, and `references/literature/MainPaper/2412.10879.pdf`.
 
 The document is normative for the project. Any proposed extension or
 relaxation of this boundary must be agreed explicitly and recorded here.
 
 ## Staged repository architecture
 
-M is the collection of mathematical objects, operations, structural conditions,
-and predicates defined in `KIP126/Def/`. Challenge files are interfaces for
-stage deliveries or goals. They are not M itself. Def may also prove general
-lemmas; proving a paper-derived predicate is Main work, regardless of where
-that predicate is defined. See `docs/MAC_T_INPUT_AUDIT.md` for current boundaries.
+The user's current stage-0 architecture supersedes earlier migration rules.
+See [STAGE_LAYOUT](docs/STAGE_LAYOUT.md) for the directory contract and
+[STAGE0_INTERFACES](docs/STAGE0_INTERFACES.md) for mathematical responsibilities.
 
-The canonical source has three mathematical proof layers and an independent
-fixed-data pipeline:
+- Def owns M's objects, operations, properties, concrete implementation/source
+  identification and comparisons. Def has no direct or transitive dependency
+  on Interface or Main and declares no project axioms.
+- Interface has exactly Axiom, Challenge and Solution directories. Axiom
+  transmits Challenge1; Challenge owns Challenge2's A/C/comparison delivery
+  contract; Solution supplies its actual certification and comparison proofs.
+- Main has exactly Axiom, Challenge and Solution directories. Axiom transmits
+  Challenge2; Challenge contains the single standard h6-square target with its
+  intentional sorry; Solution proves the paper's results and that same target.
+- The target's type and entire defining/import dependency cone use Def and
+  foundational libraries only. Literature/CSV/certification inputs enter its
+  proof, never the standard sphere, Adams tower or standard element definition.
+- One Def implementation is fixed independently of Interface's consumption
+  axiom. Challenge1 explicitly binds its delivery to that implementation;
+  Challenge2 correlates all A/C objects, labels and comparisons on that base.
+- The independent LinProgram pipeline retains raw provenance and exact
+  interpretation. Independent paper-tool proofs may be reused by certification
+  only without Main's stage input or the same numerical output as premises.
+- Original literature lives under references/literature; source-bearing
+  contract language lives under Interface/Challenge. Historical audit files
+  retain their original conclusions and are not current architecture rules.
 
-1. `KIP126/Def/` is the shared mathematical base and the first production
-   stage. It contains definitions, predicates, constructions, reusable
-   theorems, and the single Challenge/Solution pair for `Nonempty Challenge1`.
-   Internal stage obligations live only in Def/Solution; generic mathematical
-   components keep their existing proof modules. Def contains no
-   project `axiom` declarations. An unfinished theorem may remain visibly
-   unfinished with `by sorry`; proof debt must not be hidden by changing its
-   declaration kind.
-2. `KIP126/Interface/` is the first proof stage. Its only Challenge theorem is
-   `Nonempty Challenge2`. Internal computation certification, comparisons and
-   helper statements and proofs live only in Interface/Solution. Its `Axiom/` contains
-   stage-zero outputs admitted as inputs to this first proof stage.
-3. `KIP126/Main/` is the second proof stage. Intermediate statements and proofs
-   live only in `Main/Solution/`; only the single final goal has matching
-   `Challenge/h6_sq_permanent.lean` and `Solution/h6_sq_permanent.lean` declarations. Its `Axiom/` tree provides
-   audited development assumptions so this work can proceed in parallel with
-   Interface proofs.
-
-`KIP126/Main/Axiom/Literature/` retains explicit literature input statements
-and their source artifacts. The Lean source catalogue and generic evidence
-helpers live in `Def/References`; project-specific evidence construction and
-field extraction live in `Main/Solution/Literature`. `KIP126/LinProgram/` manages raw artifacts, deterministic translation,
-generated records, parameterized interpretations, and local certificates.
-`Interface/Solution/LinProgram/` produces the resulting claims on
-the chosen model; `Main/Solution/StageInput.lean` and
-`Main/Solution/Computation/` supply consumer projections and adapters for those claims. The Mathlib adapter and Checks trees retain their
-independent roles;
-the architecture does not require empty placeholder directories. Retaining the
-historical Mathlib adapter does not add a project obligation to identify the
-internal spectral-sequence model with Mathlib's spectral sequence.
-
-The revised current decisions in issue #138 (2026-09-28) supersede the
-historical checklist's classification. `A(M)` contains only external theorems
-from other papers accurately restated on the same internal model, with sources,
-hypotheses, scope and evidence. Generic properties of `M`, project comparisons
-and this paper's intermediate results remain mathematical work; using `M`
-does not turn them into external inputs. `A₀` contains foundations actually
-consumed and expressible outside `M`, not every non-`M` statement. Classify by
-mathematical role, consumers and proof responsibility before checking whether
-the complete statement uses `M`. Historical checklist IDs remain progress
-indices, not instructions to add every item to a Challenge witness.
-
-The fixed CSV basis certification `a05` is withdrawn from `A₀` and the
-required Challenge1 scope; the `linBasis` field has been removed.
-Certification of the fixed CSV monomials is an Interface helper obligation;
-the comparison to actual E₂ delivers the required basis, coordinate, dimension
-and exhaustion properties to Main. A helper that does not use `M` need not be
-called `C(M)`. Preserve fixed versions, ranges, provenance and existing proofs,
-and migrate producers and consumers together without adding an independent
-axiom. The fixed certification producer now belongs to Interface;
-`Challenge2.ComputationInterface` includes `SphereBasisInterface`, which
-delivers actual E₂ coordinate equivalences
-whose inverse basis vectors recover the specified CSV values through the same
-presentation. Main projects those coordinates from the single Challenge2
-witness. Def retains generic graded-algebra and basis definitions, explicit
-certificate constructions and their soundness theorems.
-
-As clarified in issue #138, `Def` owns reusable mathematical
-objects, structures, predicates, constructions and theorems. The root Challenge
-files own the project's combinations of backgrounds, data, ranges and
-compatibility conditions. Do not duplicate those project combinations as a
-second delivery package inside `Def`. `StandardAdamsFoundation` is now the
-compatibility alias for the root `Challenge1.FoundationInput`; its old Def
-record has been removed. Any remaining wrappers require consumer-aware
-migration, preserving generic parameters and necessary adapters without reverse imports from the
-common mathematical base to a root Challenge or consumer axiom.
-
-Background specifications, theorems for a given background, and existence of
-the chosen background are distinct obligations. A record definition or adapter
-does not establish existence. The abstract-foundation choice below preserves
-the two fixed-witness production obligations; it neither makes the final
-theorems permanently parameterized nor expands the task to constructing a
-complete model of stable infinity-categories.
-
-The shared root structures `Challenge1` and `Challenge2` describe the current
-delivery contracts, not the complete input inventory for the paper.
-`Challenge2` separates `LiteratureInterface` from `ComputationInterface`;
-`C(M)` denotes only the computation part. Shared model bindings retain the
-chosen Moss/tmf contexts and generic comparisons without reclassifying them
-as literature. Both parts refer to the same Challenge 1 witness. Def and
-Interface prove respectively
-`Nonempty Challenge1` and `Nonempty Challenge2`; the next stage temporarily
-assumes that exact proposition and selects one witness. These upstream results
-eventually eliminate the assumptions without maintaining a duplicate signature.
-Accepted external literature still enters through
-explicit `ExternalResult`/`ExternalEvidence` values, so statement alignment
-does not turn a cited theorem into an untracked global fact.
-
-The initial reorganization moves existing declarations and preserves their
-public statements. The subsequent, explicitly authorized interface refinement
-packages each boundary into one shared witness and projects the old public
-interfaces from it, preserving dependent choices and conditions. It adds the
-missing producer goals but does not fill their proofs, replay a program, or
-establish a clean import boundary merely by changing paths. Existing cross-layer
-dependencies and unfinished producer proofs remain explicit follow-up work.
+Stage 0 freezes accurate statements and responsibilities. Complex construction,
+comparison, certification and deduction proofs may remain sorry. Missing
+mathematical meanings, object bindings, hypotheses or necessary coverage cannot
+be excused by that permission. Later project proof-completion criteria below
+remain separate from this milestone.
 
 ## Confirmed design decisions
 
@@ -126,7 +53,9 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    infinity-categories. The context must expose every operation and property
    needed by the paper's arguments: spectra, maps, homotopy classes,
    suspension, cofibers, distinguished triangles, smash products, homotopy
-   groups, and Adams filtrations.
+   groups, and Adams filtrations. An explicit implementation/identification
+   with a concrete spectrum source is required; an arbitrary abstract model
+   or an unspecified actual-spectrum proposition does not supply this binding.
 
 2. **Steenrod algebra and Ext.** We formalize the relevant algebraic
    interfaces and general theorems for the Steenrod algebra, graded objects,
@@ -152,14 +81,17 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    statement-only stage does not establish the conditional final theorem or
    relax the project's proof-completion and axiom-audit acceptance criteria.
 
-   The next agreed stage retains the abstract background and moves the
-   comparison foundation below the Adams pages: an associative unital
+   The shared implementation places the comparison foundation below the
+   Adams pages: an associative unital
    structure on the specified `H`, its graded cooperations, and the tensor,
    exactness, and Künneth compatibility needed to construct the comparison.
-   The first-page coordinates and their differential compatibility must be
-   derived from those foundations. Until that derivation is implemented,
-   the existing `MilnorCooperations` argument remains an explicit uneliminated
-   dependency; merely renaming or rebundling it does not complete this stage.
+   Its explicit coordinate equality ties the first-page coordinates and their
+   differential compatibility to those foundations. Constructing and proving
+   this implementation remains a proof-completion obligation. At stage 0,
+   its precise construction, source identification and comparison statements
+   must be fixed, while their proofs may remain `sorry` as specified above.
+   Renaming or rebundling `MilnorCooperations` does not supply those statements
+   or discharge their later proof obligations.
 
 3. **Appendix data.** Every entry in the Appendix tables is to be encoded,
    not only the entries used directly in the final proof. The encoding records
@@ -206,8 +138,8 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    presentation, and its interpreted table rows. Local fixed-data certificates
    live outside both proof stages and are transported into the computation
    delivery by Interface. The development axiom on each consuming side states
-   only `Nonempty ChallengeN`, exactly as the producing Challenge/Solution
-   theorem does. Compatibility names are projections from the selected witness.
+   the exact producing Challenge/Solution proposition. The fixed background
+   remains Def-owned; stage witness projections cannot change it.
    This preserves dependent choices but does not construct the selected data,
    prove the assumed properties, or authorize stronger laws.
 
@@ -228,18 +160,19 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
 8. **One fixed standard h₆² statement.**
    T(M) is `NonzeroSurvival sphereAdamsData (2, 128) standardH6Square`.
    The internal sphere sequence and standard class are Def constructions,
-   specialized from the same Challenge1 witness in
-   `Interface/Solution/StageInput/StandardSphere`. They do not require C(M).
+   specialized from the fixed Def implementation in
+   `Def/StageInput/StandardSphere`. They do not require C(M).
    `Main/Challenge/h6_sq_permanent.lean` is the sole final target and
    `Main/Solution/h6_sq_permanent.lean` assembles Propositions 7.8 and 7.9
-   on the same stage witness. Those two proofs still contain `sorry`, so the
-   full theorem remains unfinished. The duplicate computational final target
+   on the same stage witness. Proposition 7.8 and the local deductions used by
+   Proposition 7.9 still contain `sorry`, so the full theorem remains unfinished.
+   The duplicate computational final target
    has been removed. CSV/standard identifications remain comparison lemmas
    and may be used in the eventual
    proof; they are not part of the final statement's definition.
-   The fixed foundation is still admitted through the Challenge1 existence
-   axiom. Thus independence from C(M) does not mean independence from all
-   development assumptions. The computation part of Challenge2 supplies the
+   The fixed foundation is defined in Def from its explicit implementation
+   construction; Interface cannot choose a replacement foundation. Its model
+   construction and source comparison may still have disclosed proof debt. The computation part of Challenge2 supplies the
    currently admitted C(M) slice, including actual E₂ coordinates, presentation,
    square results and closed sphere differential equations. Both stage
    assumptions must eventually be discharged.
@@ -256,7 +189,9 @@ is a projection of the selected Challenge2 witness, not an additional standalone
 the existing tower-derived `sphereAdamsData`; it is not a soundness assertion
 for arbitrary tables or arbitrary caller-supplied `Prop`s. The compiled audit
 must inventory this exact exception and still reject it at final acceptance.
-No `sorryAx` is authorized by the exception.
+This computational boundary is not a proof of its contents. Stage 0 permits
+disclosed unfinished proofs, while the proof-completion audit still rejects
+`sorryAx`.
 
 The independent `KIP126/LinProgram/` tree separates the data responsibilities.
 `Raw/` records the
@@ -267,8 +202,9 @@ means for a supplied mathematical model. `Certificates/` contains local
 kernel-checked results about the fixed algebraic data; transporting them to the
 chosen model remains an Interface obligation. Main consumes the corresponding
 Challenge 2 computation delivery rather than its Interface producer proofs.
-`Main/Axiom/` contains precise input statements, the single stage existence
-assumption, and source metadata. The witness and its projections live in
+`Main/Axiom/` contains only the single stage existence assumption. Precise
+input contracts are in `Interface/Challenge/`, and source artifacts are in
+`references/literature/`. The witness and its projections live in
 `Main/Solution/StageInput.lean`. Intermediate deductions and their imports live
 only in `Main/Solution/`; only the final target is paired with Main/Challenge.
 There are no `Proofs.lean` files in the input directory.
@@ -282,7 +218,7 @@ the full cobar/actual-product compatibility, which remains an Interface
 obligation supported by generic Def mathematics.
 This import separation is implemented for `Main/Solution/Computation`; other
 legacy Main imports remain migration debt. Examples using Main consumer
-adapters and explicit provenance stay in `Main/Examples/LinProgram/`.
+adapters and explicit provenance stay in `Checks/Examples/LinProgram/`.
 The importer scans the entire
 pinned database, with per-category coverage counts. The currently interpreted
 fragment is **closed, finite-page sphere differential equations** within the
@@ -410,7 +346,7 @@ longer assumes that certificate. Its proof remains unfinished.
 
 Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables first enter the repository as audited source
-material. `KIP126/Main/Axiom/Literature/` retains input statements and source
+material. `references/literature/` retains input statements and source
 artifacts; `KIP126/Def/References/` owns the source catalogue. The independent
 `KIP126/LinProgram/` owns the raw-to-interpreted program pipeline and local
 certificates. `KIP126/Main/Solution/Computation/` owns computation consumer adapters. Every accepted external input remains a
@@ -523,7 +459,7 @@ prove conditionally:
 These are implications from explicit `ExternalResult`/`ExternalEvidence` arguments,
 not unconditional declarations of the external mathematics.
 
-## Acceptance criteria
+## Final proof-completion criteria
 
 The project is complete only when all of the following hold:
 

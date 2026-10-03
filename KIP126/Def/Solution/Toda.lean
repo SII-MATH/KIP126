@@ -1,4 +1,4 @@
-import KIP126.Challenge1
+import KIP126.Def.Challenge1
 import KIP126.Def.StableHomotopy.Toda.Coset.Proofs
 import KIP126.Def.StableHomotopy.Toda.Juggling.Proofs
 

@@ -13,7 +13,7 @@
 | [Certificates/SquareDimension](Certificates/SquareDimension/README.md) | 固定商代数指定次数的维数和候选穷尽证明 |
 | [Tactic](Tactic/README.md) | Lin 专用自动化：E₂ 坐标计算及数据块证明的生成、组合 |
 
-使用实际消费接口和显式来源证据的 [Examples](../Main/Examples/LinProgram/README.md) 留在 Main，避免独立数据管线反向依赖 Main 或 Interface。
+使用实际消费接口和显式来源证据的 [Examples](../Checks/Examples/LinProgram/README.md) 位于 Checks，避免独立数据管线反向依赖 Main 或 Interface。
 
 `Archive` 表示证书针对固定归档数据，仍有生产证明消费者。已有局部证书由 Lean 内核检查；它们只证明所陈述的数据结论，不自动给出数据与实际球谱 E₂ 的比较。
 

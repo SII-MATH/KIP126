@@ -12,13 +12,13 @@ namespace KIP126.External.ProvenanceRegression
 
 private def locator : Locator :=
   { description := "regression theorem"
-    artifact := some "KIP126/Main/Axiom/Literature/Sources/example/paper.txt" }
+    artifact := some "references/literature/Sources/example/paper.txt" }
 
 private def ref : SourceRef :=
   { source := .browder, locator := locator }
 
 private def artifact : ArtifactRef :=
-  { path := "KIP126/Main/Axiom/Literature/Sources/example/output.json"
+  { path := "references/literature/Sources/example/output.json"
     sha256 := "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
     version := some "regression" }
 

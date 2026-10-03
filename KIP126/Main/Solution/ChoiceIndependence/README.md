@@ -7,4 +7,4 @@
 和自由存活操作包已移除；`Def/Kervaire/Theta5/Proofs.lean` 中的通用代数
 选择传输引理保留，使用前仍须证明与实际对象的比较。
 
-完整数学接口、来源和冻结范围见 [M_INPUT_FREEZE.md](../../../../docs/M_INPUT_FREEZE.md)。
+完整数学接口、来源和冻结范围见 [STAGE0_INTERFACES.md](../../../../docs/STAGE0_INTERFACES.md)。

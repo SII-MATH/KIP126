@@ -4,7 +4,7 @@
 
 > 历史消费者审计：旧接口和双轨路径按当时状态记录；当前每个阶段只保留一个
 > 总目标 Challenge，内部陈述与证明只在所属 Solution。现行模型及目标见
-> [M_INPUT_FREEZE.md](M_INPUT_FREEZE.md) 和 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)。
+> [STAGE0_INTERFACES.md](STAGE0_INTERFACES.md) 和 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)。
 
 本文件是工作核查记录，不替代 Blueprint 的数学节点、Lean 的实际声明、
 或外部来源台账。目标是准备证明条件，不在这里证明论文主定理，
@@ -34,7 +34,7 @@ NonzeroSurvival sphereAdamsData (2, 128) computedH6Square
 
 ## 2. 从论文终点往回看
 
-论文最终推理（`KIP126/Main/Axiom/Literature/MainPaper/main.tex:2181–2215`）是：
+论文最终推理（`references/literature/MainPaper/main.tex:2181–2215`）是：
 
 1. `prop:possible_h_6_sq`：要么永久存活，要么有非零 `d₁₂(h₆²)=T`；
    后一种情况等价于 C3、C4、C5 同时成立。

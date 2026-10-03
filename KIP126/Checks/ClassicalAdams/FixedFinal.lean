@@ -46,10 +46,10 @@ run_cmd do
     let some info := env.find? name | throwError "missing final dependency: {name}"
     if let some moduleIdx := env.getModuleIdxFor? name then
       let owner := env.header.moduleNames[moduleIdx]!
-      if (`KIP126.Main.Challenge).isPrefixOf owner ||
-          (`KIP126.Interface.Challenge).isPrefixOf owner ||
-          (`KIP126.Def.Challenge).isPrefixOf owner then
-        throwError "final Solution depends on a Challenge declaration: {name}: {owner}"
+      if name == ``KIP126.Interface.Challenge.challenge2 ||
+          (`KIP126.Def.Challenge).isPrefixOf owner ||
+          (`KIP126.Main.Challenge).isPrefixOf owner then
+        throwError "final Solution borrows an intentional goal proof: {name}: {owner}"
       -- External libraries cannot refer to project declarations. Traverse
       -- project modules, including their private and generated declarations.
       unless (`KIP126).isPrefixOf owner do continue
@@ -62,8 +62,8 @@ run_cmd do
       throwError "unexpected final dependency: {a}"
   unless axioms.contains ``sorryAx do
     throwError "update the proof-status audit when the final proof is completed"
-  unless KIP126.Checks.AxiomInputs.uses axioms foundation do
-    throwError "missing fixed foundation dependency"
+  if axioms.contains `KIP126.Interface.Axiom.challenge1 then
+    throwError "final fixed objects must not be selected by the Interface axiom"
   -- The merged Challenge2 type contains unfinished structural comparisons.
   -- As in Checks.AdamsE2.LinBasis, disclose its existing dependency closure;
   -- this is a boundary check, not a claim of axiom-free certification.

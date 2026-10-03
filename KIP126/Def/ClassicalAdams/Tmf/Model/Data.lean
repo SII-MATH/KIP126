@@ -68,5 +68,15 @@ def E2Presentation.betaFiveG (P : E2Presentation H T) :
     (adamsTowerInternalSpectralSequence H.unit T.X).Page 2 (19, 114) :=
   P.comparison 19 114 (by decide) CsvE2.betaFiveG
 
+/-- BR21's target transported through the very same E₂ comparison. -/
+def E2Presentation.betaGFour (P : E2Presentation H T) :
+    (adamsTowerInternalSpectralSequence H.unit T.X).Page 2 (19, 114) :=
+  P.comparison 19 114 (by decide) CsvE2.betaGFour
+
+/-- Coordinate transport respects the proved quotient identity; no new choice. -/
+theorem E2Presentation.betaGFour_eq_betaFiveG (P : E2Presentation H T) :
+    P.betaGFour = P.betaFiveG :=
+  congrArg (P.comparison 19 114 (by decide)) CsvE2.betaGFour_eq_betaFiveG
+
 end
 end KIP126.Classical.Adams.Tmf

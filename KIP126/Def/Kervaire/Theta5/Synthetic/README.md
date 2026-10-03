@@ -19,6 +19,6 @@
 - `BJMSourceTotalBoundaryIdentity`：实际 cofiber 总边界等式。
 - `BJMUntruncatedCriterion`：标准内部 `NonzeroSurvival` 与实际 ληθ₅² 为零的等价；不是新的 Final 目标。
 
-全部是条件的**定义**，不是成立性证明。原始判据的来源包装位于 `Main/Axiom/Literature/BJMOriginal`，必须显式给出 proof，且包装固定使用从同一 ν、cofiber coherence 和第一商比较构造的球面比较。canonical 比较及其乘法/边界相容性、η 的几何识别、原始 BX 的见证、论文 λ 变换和任意 θ₅ 选择传输尚待完成。旧 `Theta5ChoiceContext` 仍只是单 Carrier 的代数原型，没有宣称它已经等同于这里的多次数对象。
+全部是条件的**定义**，不是成立性证明。原始判据的来源包装位于 `Def/References/Literature/BJMOriginal`，必须显式给出 proof，且包装固定使用从同一 ν、cofiber coherence 和第一商比较构造的球面比较。canonical 比较及其乘法/边界相容性、η 的几何识别、原始 BX 的见证、论文 λ 变换和任意 θ₅ 选择传输尚待完成。旧 `Theta5ChoiceContext` 仍只是单 Carrier 的代数原型，没有宣称它已经等同于这里的多次数对象。
 
 一般 λ 商工具在 `Def/Synthetic/Sphere/Homotopy`。其中 `LambdaInjectiveAt` 只要求**一次** λ 作用的单射性，不自动断言所有较低 weight 或任意 λ 幂的无挠性。`vanishesModLambda_iff_factors` 已从指定三角的正合性证明。

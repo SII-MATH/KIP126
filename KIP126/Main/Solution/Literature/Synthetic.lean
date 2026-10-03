@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.Synthetic
+import KIP126.Interface.Challenge.Literature.Synthetic
 
 /-!
 # 带来源的 synthetic 文献输入

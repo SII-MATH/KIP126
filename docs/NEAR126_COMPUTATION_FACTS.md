@@ -1,7 +1,7 @@
 # Near-126 计算事实包：输入清单与接入状态
 
 > 当前三阶段方案的计算输入已另行筛选并定义于
-> [C_INPUT_FREEZE.md](C_INPUT_FREEZE.md) 及 `Challenge2.lean`。
+> [STAGE0_INTERFACES.md](STAGE0_INTERFACES.md) 及 `Challenge2.lean`。
 > 本文保留为历史需求/审计记录；尤其下面 R1–R11 中的 synthetic 推导不整体列为 C(M)，
 > 也不再把导入整个 bulk 数据表作为第 7 节结果消费的前提。
 
@@ -32,7 +32,7 @@
 [最终目标输入审计](H6_INPUT_DEPENDENCY_AUDIT.md)。它记录数学要求及其与
 现有实现的差异，不将“补 Hopf 实例”预设为唯一实现路线。
 
-本文件记录主证明当前需要的计算输入，数学来源是 `KIP126/Main/Axiom/Literature/MainPaper/main.tex`
+本文件记录主证明当前需要的计算输入，数学来源是 `references/literature/MainPaper/main.tex`
 第 7 节及 Appendix；不是“最终结论已经可证”的报告。
 Blueprint 的完整计划仍在 `computation_schema.tex`、`computed_inputs.tex`
 和 `near126.tex`。本次实现的是其中可直接落到内部 SSData 的第一部分。
@@ -113,7 +113,7 @@ Mahowald 定理的 crossing 条件是两个分支的析取；若使用零长度 
 
 ## D：图中的微分
 
-下表的页次数已经体现在 Lean 命题中。来源标签均在 `KIP126/Main/Axiom/Literature/MainPaper/main.tex`。
+下表的页次数已经体现在 Lean 命题中。来源标签均在 `references/literature/MainPaper/main.tex`。
 
 | ID | 谱、微分 | 源 → 靶 `(s,t)` | 来源 / 状态 |
 | --- | --- | --- | --- |

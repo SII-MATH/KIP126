@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Def.ClassicalAdams.Detection.Predicates
 import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
 
@@ -115,9 +115,11 @@ structure SphereFacts : Prop where
   e4_stem124_af12 : Subsingleton ((sequence D .sphere).Page 4 (12,136))
   e4_stem125_af12 : Subsingleton ((sequence D .sphere).Page 4 (12,137))
   e5_stem125_af13 : Subsingleton ((sequence D .sphere).Page 5 (13,138))
-  /-- The all-filtration version needs both the finite table and a tail bound. -/
-  e5_high125_other : ∀ s : ℕ, 15 ≤ s → s ≠ 25 →
-    Subsingleton ((sequence D .sphere).Page 5 (s,(s : ℤ)+125))
+
+-- The weight130 high-filtration exhaustion belongs to the synthetic
+-- homotopy deductions in Computation/High125.lean. Classical E5 has
+-- nonzero components at AF15 and AF18, so no all-AF>=15 vanishing field
+-- belongs in this classical bundle.
 
 /-- Lemma 7.20's actual Cnu equation. The source is the sum of all three
 cells specified by the table, not just the top-cell summand in log 212838. -/

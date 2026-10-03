@@ -1,4 +1,4 @@
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 
 /-! Paper-route predicates derived after the Challenge 2 boundary. -/
 namespace KIP126.Main.Solution.Route

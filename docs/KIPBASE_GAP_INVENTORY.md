@@ -21,21 +21,21 @@
 通用谱序列理论已有实现。KIP126 的 classical 对象也已有明确构造：
 [adamsTowerInternalSpectralSequence](../KIP126/Def/ClassicalAdams/TowerSSData/Sequence/Data.lean)
 从给定单位映射及对象的 Adams 塔构造谱序列；
-[球谱特化](../KIP126/Interface/Solution/StageInput/StandardSphere/Sequence/Data.lean)
+[球谱特化](../KIP126/Def/StageInput/StandardSphere/Sequence/Data.lean)
 使用同一个 `standardFoundation`。
 
 完整路线所需的模型数据及相容条件见
 [Route.Model](../KIP126/Def/Kervaire/Route/Model/Coherent/Data.lean)。
 这些结构的定义、实际见证的构造、表格解释的认证是不同任务；
 不能把未完成的模型绑定重新描述成“通用谱序列理论尚未实现”。
-计算交付与模型绑定的关系见 [C(M) 交付说明](COMPUTATION_DELIVERY_SPEC.md)。
+计算交付与模型绑定的关系见 [C(M) 交付说明](STAGE0_INTERFACES.md)。
 
 ## 继续复用的方式
 
 以当前 Lean 声明为准，按一个具体消费需求核对 KIPBase 定理与 KIP126 类型。
 保留适用条件，复用已完成证明，并检查模型、页号、次数与乘法的对应。
 KIP126 的内部 SSData/PreSS 模型与 Mathlib 适配层职责以
-[AGENTS.md](../AGENTS.md) 为准；不沿用旧清单中将 Mathlib 谱序列作为唯一内部模型的安排。
+[PROJECT_BOUNDARY.md](../PROJECT_BOUNDARY.md) 为准；不沿用旧清单中将 Mathlib 谱序列作为唯一内部模型的安排。
 
 组件构建入口见 [KIPBase README](../KIPBase/README.md)。
 原始来源与快照检查见 [迁移档案](../migration/kip-base/README.md)，

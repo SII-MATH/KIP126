@@ -1,12 +1,12 @@
-import KIP126.Interface.Solution.StageInput.StandardSphere.Classes.Data
+import KIP126.Def.StageInput.StandardSphere.Classes.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 
-/-! T(M): the standard h₆² survives on M's internal sphere Adams sequence.
-Source: Lin–Wang–Xu, Theorem 1.4 / 7.1 (local main.tex labels thm:h_6_sq and
-thm:126survives). Both the sequence and the specified Milnor class come from
-the same foundation. The statement imports no C(M), Lin data, or SS adapter.
-The selected foundation/Milnor data still use the Challenge1 stage input;
-independence of C(M) is not a claim that this fixed specialization is axiom-free.
+/-! T(M): the standard h₆² on the fixed sphere Adams tower.
+All objects and predicates in this statement come from Def. No Interface
+witness, literature delivery, generated Lin data or certification goal is
+imported. Def's explicit model construction/identification remains a separate
+proof obligation; its existence does not assert a differential or permanence.
+Source: Lin–Wang–Xu, Theorem 1.4 / 7.1 (`thm:h_6_sq`, `thm:126survives`).
 -/
 namespace KIP126.Challenge.Final.H6SquarePermanent
 

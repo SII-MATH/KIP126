@@ -65,7 +65,9 @@ def Mod2Homology.pushforward (H : Mod2EilenbergMacLane (C := C))
     Mod2Homology H n X →+ Mod2Homology H n Y :=
   inducedMap (H.HF2 ◁ f) n
 
-/-- A chosen Steenrod-algebra carrier, ring structure, and grading bridge. -/
+/-- A chosen Steenrod-algebra carrier, ring structure, and cohomological
+grading bridge. Degree `n` operations are maps `HF2 → HF2[n]`, hence belong
+to homotopy degree `-n` of the mapping spectrum. -/
 structure SteenrodAlgebraData (H : Mod2EilenbergMacLane (C := C))
     [ClosedSymmetricTensorTriangulated (C := C)] where
   carrier : Type v
@@ -73,7 +75,7 @@ structure SteenrodAlgebraData (H : Mod2EilenbergMacLane (C := C))
   gradedComponent : ℤ → Type v
   gradedIso : ∀ n : ℤ,
     gradedComponent n ≃
-      HomotopyGroup n (MappingSpectrum H.HF2 H.HF2)
+      HomotopyGroup (-n) (MappingSpectrum H.HF2 H.HF2)
 
 attribute [instance] SteenrodAlgebraData.ring
 

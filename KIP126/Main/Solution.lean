@@ -12,7 +12,7 @@ import KIP126.Main.Solution.Tools.GeneralizedLeibniz
 import KIP126.Main.Solution.Tools.GeneralizedMahowald
 import KIP126.Main.Solution.Tools.PageExtensionStretching
 import KIP126.Main.Solution.DifferentialReduction.Conclusion
-import KIP126.Challenge2
+import KIP126.Interface.Challenge.Challenge2
 import KIP126.Main.Solution.Route.Predicates
 
 import KIP126.Main.Solution.Literature.EtaRows.Proofs
@@ -22,8 +22,12 @@ import KIP126.Main.Solution.Computation.LinProgram.Differentials
 import KIP126.Main.Solution.Computation.LinProgram.E2
 import KIP126.Main.Solution.Literature.Route.Inputs
 import KIP126.Main.Solution.Computation.Route
+import KIP126.Main.Solution.Computation.Tmf
+import KIP126.Main.Solution.Computation.High125
 import KIP126.Main.Solution.Computation.Lambda
 import KIP126.Main.Solution.Route.Selected
+import KIP126.Main.Solution.Route.AlphaOne
+import KIP126.Main.Solution.Route.Section7
 import KIP126.Main.Solution.Literature.Synthetic
 import KIP126.Main.Solution.Literature.InternalGeometry
 import KIP126.Main.Solution.Literature.SyntheticBockstein

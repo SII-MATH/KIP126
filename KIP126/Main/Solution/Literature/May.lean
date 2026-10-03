@@ -1,4 +1,4 @@
-import KIP126.Main.Axiom.Literature.May
+import KIP126.Interface.Challenge.Literature.May
 
 namespace KIP126.Stable
 open KIP126.External KIP126.Literature.Route KIP126.Synthetic.Context

@@ -66,7 +66,7 @@ Lean 验证了 `h₀h₁=0`、`h₁h₂=0`、`h₀c₀=0`、`h₁³=h₀²h₂`�
 python3 scripts/extract_adams_e2_low.py /path/to/S0_AdamsE2_csv.zip \
   --include-two-dimensional-cell \
   --check KIP126/LinProgram/Examples/AdamsE2LowDegrees/Data.lean
-bash scripts/shared-main-cache.sh run lake build KIP126.Main.Examples.LinProgram.AdamsE2LowDegrees
+bash scripts/shared-main-cache.sh run lake build KIP126.Checks.Examples.LinProgram.AdamsE2LowDegrees
 ```
 
 脚本先检查完整 ZIP 的 SHA-256 和 CRC，再核对基次数，枚举所有覆盖范围内
@@ -149,7 +149,7 @@ Adams 消解或 Milnor 上闭链的构造。
 ## 验证
 
 ```sh
-bash scripts/shared-main-cache.sh run lake build KIP126.Main.Examples.LinProgram.AdamsE2Table
+bash scripts/shared-main-cache.sh run lake build KIP126.Checks.Examples.LinProgram.AdamsE2Table
 ```
 
 样例末尾的 `#print axioms` 检查其关键证明是否只使用 Lean 的基础公理。

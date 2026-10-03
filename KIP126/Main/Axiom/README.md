@@ -1,17 +1,7 @@
-# Main 阶段接受的输入
+# Challenge2 的交付边界
 
-唯一阶段公理是 [Challenge2.lean](Challenge2.lean) 中的
-`challenge2 : Nonempty KIP126.Challenge2`。总交付同时固定模型、文献来源、
-模型适用性和计算结论；Main 从 [StageInput](../Solution/StageInput.lean)
-选择一个关联见证，再提取所有所需字段。
+本目录唯一 Lean 声明是 [Challenge2.lean](Challenge2.lean) 中的 `challenge2 : Nonempty KIP126.Challenge2`。它传递 [Interface 的合同](../../Interface/Challenge/Challenge2.lean)，不另造文献或计算假设。
 
-本目录只保留这条阶段假设、[文献输入陈述](Literature/README.md)及其来源资料。
-对象构造、表格解释、catalogue 包装、字段提取和证明都在本目录之外。
+[Main/Solution/StageInput.lean](../Solution/StageInput.lean) 从同一见证提取对象绑定、A(M) 和 C(M)。最终目标的类型只依赖 Def，不导入本目录。
 
-- 项目交付规格：[Challenge2](../../Challenge2.lean)。
-- 文献来源规格：[Route/Literature](../../Challenge2.lean)。
-- 消费构造与中间推论：[Main/Solution](../Solution.lean)，陈述与证明均只在该目录维护；只有最终目标与 Challenge 配对。
-- 原始与生成数据：[LinProgram](../../LinProgram/README.md)。
-- 通用来源目录与证据类型：[Def/References](../../Def/References/README.md)。
-
-阶段公理仍待 Interface 的同型生产定理解除。目录分离与编译通过均不表示该证明完成。
+原始文献在仓库的 `references/literature/`，固定数据在 [LinProgram](../../LinProgram/README.md)。Interface 的实际生产证明最终负责解除此开发期阶段假设。
