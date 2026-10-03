@@ -10,7 +10,7 @@
 
 通用、带显式基础和坐标参数的定义在 [Def 中的内部标准类](../../../Def/ClassicalAdams/SphereClasses/Hi/Internal/Data.lean)。`standardH6Square` 是 `[ξ₁^64 | ξ₁^64]` 的类，双次数为 `(s,t)=(2,128)`。这里的命名不额外假设所提供的页乘法与 cobar 乘法相容。
 
-[标准 Final](../../../Main/Challenge/Final/h6_sq_permanent.lean) 使用这个内部元素和 `NonzeroSurvival`。计算编码的识别在 [Lin 比较层](../../../Main/Solution/Computation/Comparisons/Classes.lean)，不参与标准元素的定义。
+[标准 Final](../../../Main/Challenge/h6_sq_permanent.lean) 使用这个内部元素和 `NonzeroSurvival`。计算编码的识别在 [Lin 比较层](../../../Main/Solution/Computation/Comparisons/Classes.lean)，不参与标准元素的定义。
 
 消费者直接导入本目录的 `Sequence/Data.lean`；公开序列名称不变。
 固定 Hopf cofiber 的消费构造位于 `Main/Solution/Literature/HopfCofiber`，

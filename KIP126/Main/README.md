@@ -5,8 +5,8 @@ Main 使用同一数学模型上的文献结果 A(M) 和计算结果 C(M)，承�
 ## 目录职责
 
 - [Axiom](Axiom/README.md)：准确的阶段输入 statement、适用范围及来源信息；固定程序工件见独立 [LinProgram](../LinProgram/README.md)。
-- [Challenge](Challenge/README.md)：只保留 `Final/h6_sq_permanent.lean` 的唯一最终目标。
-- [Solution](Solution/README.md)：中间结果的陈述、消费构造与证明，以及最终证明；按 Tools、ChoiceIndependence、DifferentialReduction、ExtensionObstruction、Computation、Literature、Route 和 Final 组织。
+- [Challenge](Challenge/README.md)：只保留 `h6_sq_permanent.lean` 的唯一最终目标。
+- [Solution](Solution/README.md)：中间结果的陈述、消费构造与证明，以及最终证明；中间推导按 Tools、ChoiceIndependence、DifferentialReduction、ExtensionObstruction、Computation、Literature、Route 组织，最终证明直接位于 [h6_sq_permanent.lean](Solution/h6_sq_permanent.lean)。
 
 只有最终目标保留 Challenge/Solution 配对。计算推论、文献输入的提取和论文路线中的中间义务都只在 Main/Solution 维护，未完成的证明明确保留 `sorry`，不再建立中间 Challenge 镜像。Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。
 

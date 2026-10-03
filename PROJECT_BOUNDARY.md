@@ -37,7 +37,7 @@ fixed-data pipeline:
    stage-zero outputs admitted as inputs to this first proof stage.
 3. `KIP126/Main/` is the second proof stage. Intermediate statements and proofs
    live only in `Main/Solution/`; only the single final goal has matching
-   `Challenge/Final/` and `Solution/Final/` declarations. Its `Axiom/` tree provides
+   `Challenge/h6_sq_permanent.lean` and `Solution/h6_sq_permanent.lean` declarations. Its `Axiom/` tree provides
    audited development assumptions so this work can proceed in parallel with
    Interface proofs.
 
@@ -230,8 +230,8 @@ dependencies and unfinished producer proofs remain explicit follow-up work.
    The internal sphere sequence and standard class are Def constructions,
    specialized from the same Challenge1 witness in
    `Interface/Axiom/StandardSphere`. They do not require C(M).
-   `Main/Challenge/Final/h6_sq_permanent.lean` is the sole final target and
-   `Main/Solution/Final/h6_sq_permanent.lean` assembles Propositions 7.8 and 7.9
+   `Main/Challenge/h6_sq_permanent.lean` is the sole final target and
+   `Main/Solution/h6_sq_permanent.lean` assembles Propositions 7.8 and 7.9
    on the same stage witness. Those two proofs still contain `sorry`, so the
    full theorem remains unfinished. The duplicate computational final target
    has been removed. CSV/standard identifications remain comparison lemmas

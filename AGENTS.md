@@ -49,8 +49,8 @@ fixed-data pipeline:
   results `A(M)` and delivered `C(M)` to prove the paper's intermediate results
   and final target. `Axiom/` contains documented,
   development-only assumptions that let this stage proceed in parallel;
-  `Challenge/Final/` and `Solution/Final/` contain the single final target and its
-  proof. Intermediate statements and proofs live only in `Main/Solution/`.
+  `Challenge/h6_sq_permanent.lean` and `Solution/h6_sq_permanent.lean` contain
+  the single final target and its proof. Intermediate statements and proofs live only in `Main/Solution/`.
 
 - `KIP126/LinProgram/` owns pinned raw program artifacts, deterministic
   converters, generated Lean data, parameterized row semantics, and local
@@ -172,7 +172,7 @@ semantic migration of wrappers and `a05`.
 - Each stage has exactly one Challenge/Solution pair:
   `Def/Challenge/Challenge1.lean` states `Nonempty KIP126.Challenge1`;
   `Interface/Challenge/Challenge2.lean` states `Nonempty KIP126.Challenge2`;
-  `Main/Challenge/Final/h6_sq_permanent.lean` states the standard final theorem.
+  `Main/Challenge/h6_sq_permanent.lean` states the standard final theorem.
   The corresponding Solution theorem must have the same complete type.
   Root `Challenge1.lean` and `Challenge2.lean` define the shared witness types;
   they are not additional Challenge theorem tracks.

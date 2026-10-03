@@ -5,7 +5,7 @@
 
 ## 三阶段的现行声明布局
 
-按用户确认，Main 仅为唯一最终定理保留 `Challenge/Final` 与 `Solution/Final`
+按用户确认，Main 仅为唯一最终定理保留 `Challenge/h6_sq_permanent.lean` 与 `Solution/h6_sq_permanent.lean`
 配对。32 个中间 Challenge 镜像文件已删除，所有中间陈述、准确前提和已有
 证明继续放在 Main/Solution；待证处明确保留 `sorry`，不改为模型字段或公理。
 同一规则现已扩展到 Def/Interface：它们分别只保留 `Nonempty Challenge1`、

@@ -209,4 +209,4 @@ Hopf/cofiber 接入推进后再次通过：
 不继续默认以构造更多 Hopf 底层代码为优先项。
 上述历史批次未修改最终目标的占位证明。当前最终 Solution 已串接 Proposition
 7.8/7.9，但二者仍为 `sorry`，完整证明尚未完成；现行入口见
-[Main/Final](../KIP126/Main/Solution/Final/README.md)。
+[Main 最终证明](../KIP126/Main/Solution/README.md)。

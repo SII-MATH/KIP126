@@ -12,7 +12,7 @@ run_cmd do
     if (`KIP126.Main.Axiom.LinProgram).isPrefixOf m ||
         (`KIP126.Interface.Axiom).isPrefixOf m ||
         (`KIP126.Main.Challenge).isPrefixOf m ||
-        (`KIP126.Main.Solution.Final).isPrefixOf m ||
+        m == `KIP126.Main.Solution.h6_sq_permanent ||
         (`KIPBase).isPrefixOf m then
       throwError "A(M) imports a computation, fixed axiom, or final theorem: {m}"
   for (n, info) in env.constants.toList do

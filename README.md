@@ -67,7 +67,7 @@ document:
   `KIP126/Def/`, `KIP126/Interface/`, and `KIP126/Main/`;
   `KIP126/Def.lean` and `KIP126/Main/Solution.lean` are multi-module package
   entry points. Import the final target directly from
-  `KIP126.Main.Challenge.Final.h6_sq_permanent`.
+  `KIP126.Main.Challenge.h6_sq_permanent`.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for interfaces and proofs that are actually implemented, as
   well as their import graph. `LinProgram/` owns the independent fixed-data
@@ -77,7 +77,7 @@ document:
   owns input assumptions plus the paper's argument. Each stage keeps exactly
   one Challenge/Solution pair: Def delivers `Nonempty Challenge1`, Interface
   delivers `Nonempty Challenge2`, and Main proves the single standard final
-  theorem in `Final/`. Internal stage statements and proofs live only in the
+  theorem in `Main/{Challenge,Solution}/h6_sq_permanent.lean`. Internal stage statements and proofs live only in the
   corresponding Solution tree; generic Def mathematics retains its component
   organization. The final proof is
   connected to Propositions 7.8 and 7.9, whose proofs still contain `sorry`.

@@ -1,6 +1,6 @@
 import KIP126.Checks.AxiomInputs
-import KIP126.Main.Challenge.Final.h6_sq_permanent
-import KIP126.Main.Solution.Final.h6_sq_permanent
+import KIP126.Main.Challenge.h6_sq_permanent
+import KIP126.Main.Solution.h6_sq_permanent
 import KIP126.Main.Solution.Computation.Comparisons.Classes
 import Lean.Elab.Command
 

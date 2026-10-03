@@ -2,7 +2,8 @@ import KIP126.Main.Solution.Route.Selected
 import KIP126.Interface.Axiom.StandardSphere.Classes.Data
 import KIP126.Def.SpectralSequence.Permanence.Predicates
 
-/-! The single final proof obligation T(M), paired with Main/Challenge/Final.
+/-! The single final proof obligation T(M), paired with
+Main/Challenge/h6_sq_permanent.lean.
 The final logical step now uses the same delivered A(M)/C(M).
 Propositions 7.8 and 7.9 remain unfinished in Main/Solution/Route/Selected. CSV/standard class comparisons are reusable lemmas in the
 computation interpretation layer, not a second version of the final theorem.

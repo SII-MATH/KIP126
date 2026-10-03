@@ -58,7 +58,7 @@ Each stage has exactly one paired declaration:
   `Nonempty KIP126.Challenge1`.
 - `Interface/Challenge/Challenge2.lean` and `Interface/Solution/Challenge2.lean`
   state `Nonempty KIP126.Challenge2`.
-- `Main/Challenge/Final/h6_sq_permanent.lean` and the matching Solution file
+- `Main/Challenge/h6_sq_permanent.lean` and the matching Solution file
   state the single standard final theorem.
 
 Each pair has identical complete types, including universe parameters,

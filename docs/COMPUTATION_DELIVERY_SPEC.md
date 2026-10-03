@@ -104,7 +104,7 @@ Main 的最终目标仍是：
 NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 ```
 
-这是 [最终定理](../KIP126/Main/Solution/Final/h6_sq_permanent.lean) 的命题。
+这是 [最终定理](../KIP126/Main/Solution/h6_sq_permanent.lean) 的命题。
 其最后一步已通过同一见证接到 Main 的 Propositions 7.8/7.9；这两个命题及部分上游生产
 证明仍含 `sorry`，所以最终定理尚未成为独立完成的数学证明。它不属于计算输入。
 
@@ -120,7 +120,7 @@ NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 | 唯一阶段存在性假设和显式输入 statement | `Main/Axiom` |
 | 同一见证的选择与字段投影 | `Main/Solution/StageInput.lean` |
 | 交付后的消费构造与中间推论 | 只在 `Main/Solution` 保存陈述与证明，不设中间 Challenge 镜像 |
-| 唯一最终定理 | `Main/Challenge/Final` 与 `Main/Solution/Final` 配对 |
+| 唯一最终定理 | `Main/Challenge/h6_sq_permanent.lean` 与 `Main/Solution/h6_sq_permanent.lean` 配对 |
 
 `Main/Axiom/LinProgram` 的实现和过时说明均已迁出。
 固定 Hopf cofiber、塔与 E₂ 映射也已归消费构造，Mathlib 球谱适配归 Mathlib。

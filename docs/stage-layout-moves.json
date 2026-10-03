@@ -633,5 +633,21 @@
     "policy": "Do not add declaration-free wrappers for a single import unless a required library root or other explicit module behavior needs the file. Multi-module aggregators remain; namespace and declaration names are not rewritten.",
     "documentation": "Unique scope and layering explanations were retained in the concrete component READMEs. Basis/Algebra compatibility documentation was consolidated into Main/Solution/Computation/LinProgram/Basis/README.md.",
     "proof_status": "No mathematical declaration, proof obligation, or stage target is removed by these wrapper deletions. This record does not assert successful compilation or completion of any outstanding proof."
+  },
+  "main_final_flatten_followup_2026_10_03": {
+    "description": "Move the single Main final target and proof directly into Main/Challenge and Main/Solution. Historical path mappings above remain unchanged; declaration namespaces retain Final.",
+    "moves": {
+      "KIP126/Main/Challenge/Final/h6_sq_permanent.lean": "KIP126/Main/Challenge/h6_sq_permanent.lean",
+      "KIP126/Main/Solution/Final/h6_sq_permanent.lean": "KIP126/Main/Solution/h6_sq_permanent.lean"
+    },
+    "documentation_consolidation": {
+      "KIP126/Main/Challenge/Final/README.md": "KIP126/Main/Challenge/README.md",
+      "KIP126/Main/Solution/Final/README.md": "KIP126/Main/Solution/README.md"
+    },
+    "preserved_namespaces": [
+      "KIP126.Challenge.Final.H6SquarePermanent",
+      "KIP126.Solution.Final.H6SquarePermanent"
+    ],
+    "proof_status": "The final mathematical statement and proof dependencies are unchanged. Propositions 7.8 and 7.9 remain unfinished; this path record does not assert new validation or mathematical completion."
   }
 }

@@ -1,6 +1,6 @@
 # h₆² 主定理的两个版本：固定对象、无参数陈述
 
-> 历史设计记录：双最终目标已由唯一标准目标取代，现行布局见 [Main/Final](../KIP126/Main/Solution/Final/README.md)。Main 仅最终定理保留 Challenge/Solution 配对，中间结果只在 Solution 维护。最终逻辑串接已完成，Proposition 7.8/7.9 仍为 `sorry`；下文的双目标、独立公理及当时证明状态不是当前规则。
+> 历史设计记录：双最终目标已由唯一标准目标取代，现行布局见 [Main 最终证明](../KIP126/Main/Solution/README.md)。Main 仅最终定理保留 Challenge/Solution 配对，中间结果只在 Solution 维护。最终逻辑串接已完成，Proposition 7.8/7.9 仍为 `sorry`；下文的双目标、独立公理及当时证明状态不是当前规则。
 
 状态：本设计已落实到 Lean。两个无参数目标、具体 Lin 平方、标准 tower 对象和命名对应公理已经编译；计算 Solution 仍保留 `sorry`。PR #110 的原始数据、商代数、计算引擎及 tactic 已迁入；加法基、坐标和内部 Adams 页的引用接口见 [LIN_E2_INTERFACES.md](LIN_E2_INTERFACES.md)。基表认证和计算器正确性仍各有一个独立的待证定理。
 

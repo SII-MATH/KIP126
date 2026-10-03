@@ -148,7 +148,7 @@ class StageBoundaryLayoutTests(unittest.TestCase):
 
     def test_challenge_trees_contain_only_stage_targets(self):
         targets = {"Def": "Challenge1", "Interface": "Challenge2",
-                   "Main": "Final/h6_sq_permanent"}
+                   "Main": "h6_sq_permanent"}
         for layer, target in targets.items():
             with self.subTest(layer=layer):
                 root = ROOT / "KIP126" / layer / "Challenge"

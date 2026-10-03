@@ -1,11 +1,30 @@
 # LinProgram / Def / Interface / Main 布局与迁移记录
 
-## 后续整理：直接导入实际模块
+## 最新调整：最终目标直接放在阶段目录
+
+最终两份 Lean 文件分别上移为
+`Main/Challenge/h6_sq_permanent.lean` 和 `Main/Solution/h6_sq_permanent.lean`，
+不再经过 Final 子目录。直接导入 `KIP126.Main.Challenge.h6_sq_permanent` 或
+`KIP126.Main.Solution.h6_sq_permanent`；声明命名空间中的 `Final` 保留不变。
+
+原两份 Final README 的命题含义、共享见证和剩余证明义务，分别并入
+[Main/Challenge](../KIP126/Main/Challenge/README.md) 和
+[Main/Solution](../KIP126/Main/Solution/README.md)。文件上移不改变标准 h₆²、
+最终陈述或证明依赖；Proposition 7.8/7.9 仍为 `sorry`。旧路径到新路径追加于
+[迁移台账](stage-layout-moves.json) 的 `main_final_flatten_followup_2026_10_03`，
+先前记录保留当时路径。以下历史验证不作为本次上移的验证结果。
+
+本次上移已通过 15 项布局检查，以及 `+KIP126`、`FixedFinal`、
+`StandardFinalBoundary`、`LiteratureBoundary` 的定向编译。
+两份最终声明与证明代码保持不变，检查已使用新模块路径。
+
+## 前一批整理：直接导入实际模块
 
 删除 `KIP126/` 下 20 个没有声明、只重导出一个模块的 Lean 入口；调用处
-直接导入实际目标。三条阶段目标分别导入 `Def.Challenge.Challenge1`、
+直接导入实际目标。当时三条阶段目标分别导入 `Def.Challenge.Challenge1`、
 `Interface.Challenge.Challenge2`、`Main.Challenge.Final.h6_sq_permanent`，
-完整模块名均加 `KIP126.` 前缀。目标本身和各自 Solution 不因删除入口改变。
+完整模块名均加 `KIP126.` 前缀；最终模块后来按上节继续上移。目标本身和
+各自 Solution 不因删除入口改变。
 
 多模块聚合仍保留；`KIPBase.lean` 虽只有一次 import，也作为 Lake 库根保留。
 删除入口不重命名命名空间或声明，也不改变证明义务。20 个旧路径到实际模块的
@@ -15,7 +34,7 @@
 原入口中的截断层迁移范围、Milnor cobar 分层和选择无关性的对象说明归入
 对应实际组件 README；基的兼容解释并入 `Main/Solution/Computation/LinProgram/Basis`。
 
-本轮验证：15 项布局检查、`+KIP126` 与 12 个受影响检查模块的定向编译、
+该批次验证：15 项布局检查、`+KIP126` 与 12 个受影响检查模块的定向编译、
 Blueprint 声明清单核验均通过。固定球面检查仅允许实际 StandardSphere
 适配层的 Data／Proofs 两模块；通用平方证明的隔离检查保留。
 现有数学定义与证明不变，编译通过不表示原有证明义务已完成。
@@ -26,10 +45,10 @@ Blueprint 声明清单核验均通过。固定球面检查仅允许实际 Standa
 | --- | --- | --- |
 | Def | `Def/Challenge/Challenge1.lean`：`Nonempty Challenge1` | `Def/Solution/Challenge1.lean` |
 | Interface | `Interface/Challenge/Challenge2.lean`：`Nonempty Challenge2` | `Interface/Solution/Challenge2.lean` |
-| Main | `Main/Challenge/Final/h6_sq_permanent.lean`：标准最终定理 | `Main/Solution/Final/h6_sq_permanent.lean` |
+| Main | `Main/Challenge/h6_sq_permanent.lean`：标准最终定理 | `Main/Solution/h6_sq_permanent.lean` |
 
 所有阶段内部目标只在各自 Solution 保存陈述和证明，不再复制到 Challenge。
-Main 的 32 个中间镜像已删除；本轮再移除 Def 的 4 个、Interface 的 25 个
+Main 的 32 个中间镜像已删除；随后又移除 Def 的 4 个、Interface 的 25 个
 中间 Challenge 文件，并去掉 Challenge2 中的两条内部投影占位。
 `literatureInterface`、`computationInterface` 的实际投影证明仍在 Solution。
 根 Challenge1/Challenge2 类型、所有 Solution 数学内容与通用 Def 组件归属不变。
@@ -159,14 +178,14 @@ KIP126/
 │   │   ├── Challenge2.lean 同型的 Nonempty Challenge2 开发期输入
 │   │   └── Literature/     文献原文、主论文、清单与显式输入
 │   ├── Examples/LinProgram/ 消费接口及显式来源证据示例
-│   ├── Challenge/Final/    最终目标；中间命题不再复制到 Challenge
+│   ├── Challenge/          唯一最终目标 h6_sq_permanent.lean
 │   └── Solution/           按数学主题组织现有推导
 │       ├── Tools/                本文新工具的待证命题
 │       ├── ChoiceIndependence/   选择无关性
 │       ├── DifferentialReduction/ 微分候选归约
 │       ├── ExtensionObstruction/  扩张矛盾
 │       ├── Computation/          输入上的计算推论
-│       └── Final/                最终证明轨
+│       └── h6_sq_permanent.lean  最终证明
 ├── Mathlib/                保留原适配实现
 └── Checks/                 保留回归检查
 ```

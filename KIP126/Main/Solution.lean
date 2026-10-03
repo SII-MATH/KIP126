@@ -2,7 +2,7 @@ import KIP126.Main.Solution.Computation.Dimension
 import KIP126.Main.Solution.Computation.Nonvanishing
 import KIP126.Main.Solution.Computation.Reduction
 import KIP126.Main.Solution.Computation.Vanishing
-import KIP126.Main.Solution.Final.h6_sq_permanent
+import KIP126.Main.Solution.h6_sq_permanent
 import KIP126.Main.Solution.ChoiceIndependence.any_choice_criterion
 import KIP126.Main.Solution.ChoiceIndependence.c4_c5_choice_equivalence
 import KIP126.Main.Solution.DifferentialReduction.d12_dichotomy_and_condition_equivalence
