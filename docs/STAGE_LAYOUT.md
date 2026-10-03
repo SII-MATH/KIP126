@@ -193,7 +193,6 @@ KIP126/
 │       ├── StageInput.lean 唯一选择 Challenge1 见证
 │       ├── StageInput/     从同一见证投影固定基础、球谱与路线对象
 │       ├── Challenge2.lean 第二道边界的构造／证明轨
-│       ├── Tools/          旧错误工具声明的退休记录；本文工具现归 Main
 │       └── LinProgram/     基、乘法、staircase、平方等模型交付的生产证明
 ├── Main/
 │   ├── Axiom/
@@ -220,7 +219,7 @@ KIP126/
 
 | 原位置 | 新位置／处理 |
 | --- | --- |
-| `Challenge/Tools`, `Solution/Tools` | 初次迁至 Interface 后退休；新的 law 定义现归 `Main/Solution/Tools` |
+| `Challenge/Tools`, `Solution/Tools` | 旧错误声明已删除；准确的 law 定义归 `Main/Solution/Tools` |
 | `Challenge/{Near126,Final}`, `Solution/{Near126,Final}` | 初次迁入 Main；现仅 Final 配对，中间推导只在 Main/Solution |
 | `External/{Provenance,Evidence,Results}` | `Main/Axiom` 共用来源类型及操作 |
 | `External/{SourceInventory,Claims}` | `Main/Axiom/Literature` |

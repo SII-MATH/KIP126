@@ -14,7 +14,8 @@ Challenge 正文按约定保留 `by sorry`。对应证明在
 投影保留，不是另外两条阶段目标或独立公理。
 
 固定基、乘法、平方与 staircase 的范围及状态见
-[LinProgram 证明](../Solution/LinProgram/README.md)；旧错误工具的退休说明见
-[Solution/Tools](../Solution/Tools/README.md)。这些内部义务仍须完成，且不能
-使用 Main 的 Challenge2 消费假设反向证明。任何 Solution 都不能使用
-Challenge 的占位证明。
+[LinProgram 证明](../Solution/LinProgram/README.md)。本文的广义 Leibniz、
+广义 Mahowald 与有限 stretching 命题归
+[Main/Solution/Tools](../../Main/Solution/Tools/README.md)，不属于 Interface
+交付。Interface 内部义务仍须完成，且不能使用 Main 的 Challenge2 消费
+假设反向证明。任何 Solution 都不能使用 Challenge 的占位证明。
