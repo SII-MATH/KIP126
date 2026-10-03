@@ -1,43 +1,66 @@
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
 import KIP126.Def.Synthetic.AdamsSequence.Data
-import Mathlib.Algebra.Category.ModuleCat.Abelian
-import Mathlib.Algebra.Field.ZMod
 
 /-!
-# Classical--synthetic comparison basics
+# Internal classical--synthetic regrading
 
-The comparison is heterogeneous only in its grading index.  Its page maps
-still target the same Mathlib page objects, and the compatibility fields are
-specific to the concrete forget-weight use case.
+Both endpoints use the internal nested-subobject model. The maps on every
+page, including E∞, are induced by the displayed ambient maps. This is the
+precise comparison datum; no comparison to Mathlib spectral sequences is
+introduced. Binding it to a selected classical Adams tower and the ν/quotient
+objects of one `SyntheticAdamsFamily` remains an explicit project obligation.
 -/
 
 namespace KIP126.Comparison.ClassicalSynthetic
 
 open CategoryTheory
-open KIP126.Classical.Adams
+open KIP126.Classical.Adams KIP126.Core.SpectralSequence
 open KIP126.Synthetic.SpectralSequence
 
+universe v
+noncomputable section
+
+abbrev InternalClassicalSequence :=
+  KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) Bidegree
+
+def classicalPage (E : InternalClassicalSequence.{v}) (r : ℤ) (b : Bidegree) :
+    ModuleCat.{v} ℤ := (E.ssData b).page (↑(r - 2).toNat : WithTop ℕ)
+
+/-- The actual source differential, normalized only by its Adams convention. -/
+def classicalDifferential (E : InternalClassicalSequence.{v})
+    (firstPage : E.r₀ = 2) (degree : ∀ r : ℤ, E.diffDeg r = (r, r - 1))
+    (r : ℤ) (b : Bidegree) :
+    classicalPage E r b ⟶ classicalPage E r (b + (r, r - 1)) :=
+  eqToHom (by simp only [classicalPage, firstPage]) ≫
+    E.d r b ≫ eqToHom (by
+      simp only [classicalPage, firstPage, degree])
+
 structure ReindexedSpectralSequenceMap
-    (classical : ClassicalAdamsSpectralSequence)
-    (synthetic : SyntheticAdamsSS) where
-  map : ∀ (w : ℤ) (r : ℤ) (hr : 2 ≤ r),
-    (classical.page r) ⟶ fixedWeightPage synthetic.sequence w r hr
-  pagePassage : ∀ (w : ℤ) (r : ℤ) (hr : 2 ≤ r) (b : Bidegree),
-    (fixedWeightPage synthetic.sequence w r hr).homology b ≅
-      (fixedWeightPage synthetic.sequence w (r + 1) (by omega)).X b
-  page_passage_comm : ∀ (w : ℤ) (r : ℤ) (hr : 2 ≤ r) (b : Bidegree),
-    HomologicalComplex.homologyMap (map w r hr) b ≫
-        (pagePassage w r hr b).hom =
-      (classical.iso r (r + 1) b rfl hr).hom ≫
-        (map w (r + 1) (by omega)).f b
+    (classical : InternalClassicalSequence.{v}) (synthetic : SyntheticAdamsSS.{v}) where
+  firstPage : classical.r₀ = 2
+  differentialDegree : ∀ r : ℤ, classical.diffDeg r = (r, r - 1)
+  ambient : ∀ w : ℤ, SSDataMorphism Bidegree classical.ssData
+    (fun b => synthetic.sequence.ssData (b.1, b.2, w))
+  comm_d : ∀ (w r : ℤ) (b : Bidegree),
+    (ambient w).pageMap b (↑(r - 2).toNat : WithTop ℕ) ≫
+        fixedWeightDifferential synthetic w r b =
+      classicalDifferential classical firstPage differentialDegree r b ≫
+        (ambient w).pageMap (b + (r, r - 1)) (↑(r - 2).toNat : WithTop ℕ)
 
 def sourcePageMap
-    {classical : ClassicalAdamsSpectralSequence}
-    {synthetic : SyntheticAdamsSS}
+    {classical : InternalClassicalSequence.{v}} {synthetic : SyntheticAdamsSS.{v}}
     (comparison : ReindexedSpectralSequenceMap classical synthetic)
-    (w : ℤ) (r : ℤ) (hr : 2 ≤ r) (b : Bidegree) :
-    (classical.page r).X b ⟶ (fixedWeightPage synthetic.sequence w r hr).X b :=
-  (comparison.map w r hr).f b
+    (w r : ℤ) (b : Bidegree) :
+    classicalPage classical r b ⟶ fixedWeightPage synthetic w r b :=
+  (comparison.ambient w).pageMap b (↑(r - 2).toNat : WithTop ℕ)
+
+/-- The E∞ map is induced by exactly the same ambient map as the finite pages. -/
+def sourceEInftyMap
+    {classical : InternalClassicalSequence.{v}} {synthetic : SyntheticAdamsSS.{v}}
+    (comparison : ReindexedSpectralSequenceMap classical synthetic)
+    (w : ℤ) (b : Bidegree) :
+    (classical.ssData b).eInfty ⟶
+      (synthetic.sequence.ssData (b.1, b.2, w)).eInfty :=
+  (comparison.ambient w).pageMap b ⊤
 
 abbrev classicalH₄Degree : Bidegree := (1, 16)
 abbrev classicalH₀H₃SquaredDegree : Bidegree := (3, 17)
@@ -47,4 +70,5 @@ abbrev syntheticH₀H₃SquaredDegree : Tridegree :=
 abbrev syntheticH₄TargetDegree : Tridegree :=
   lambdaTarget syntheticH₀H₃SquaredDegree
 
+end
 end KIP126.Comparison.ClassicalSynthetic

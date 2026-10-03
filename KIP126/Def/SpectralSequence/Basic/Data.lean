@@ -155,15 +155,76 @@ def SSDataMorphism.toUnderlying
     UnderlyingMorphism ι D D' where
   φ := f.φ
 
+/-- Identity on the ambient objects and their cycle and boundary towers. -/
+def SSDataMorphism.id
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι] (D : ι → SSData C) :
+    SSDataMorphism ι D D where
+  φ := fun _ => 𝟙 _
+  preserves_Z := fun _ _ => ⟨𝟙 _, by simp⟩
+  preserves_B := fun _ _ => ⟨𝟙 _, by simp⟩
+
+/-- Composition of ambient maps preserving both towers. -/
+def SSDataMorphism.comp
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' D'' : ι → SSData C}
+    (f : SSDataMorphism ι D D') (g : SSDataMorphism ι D' D'') :
+    SSDataMorphism ι D D'' where
+  φ := fun k => f.φ k ≫ g.φ k
+  preserves_Z := fun k r =>
+    ⟨(f.preserves_Z k r).choose ≫ (g.preserves_Z k r).choose, by
+      rw [Category.assoc, (g.preserves_Z k r).choose_spec,
+        ← Category.assoc, (f.preserves_Z k r).choose_spec, Category.assoc]⟩
+  preserves_B := fun k r =>
+    ⟨(f.preserves_B k r).choose ≫ (g.preserves_B k r).choose, by
+      rw [Category.assoc, (g.preserves_B k r).choose_spec,
+        ← Category.assoc, (f.preserves_B k r).choose_spec, Category.assoc]⟩
+
+/-- The restriction of the ambient map to cycles.  The subobject arrow is mono,
+so the preservation witness determines this map uniquely. -/
+noncomputable def SSDataMorphism.cycleMap
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} (f : SSDataMorphism ι D D')
+    (k : ι) (r : WithTop ℕ) :
+    Subobject.underlying.obj ((D k).Z r) ⟶ Subobject.underlying.obj ((D' k).Z r) :=
+  (f.preserves_Z k r).choose
+
+/-- The canonical quotient map induced by the ambient map on `Z_r / B_r`.
+This includes the infinity page and makes no independent choice of page maps. -/
+noncomputable def SSDataMorphism.pageMap
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {D D' : ι → SSData C} (f : SSDataMorphism ι D D')
+    (k : ι) (r : WithTop ℕ) : (D k).page r ⟶ (D' k).page r :=
+  cokernel.map
+    (Subobject.ofLE ((D k).B r) ((D k).Z r) ((D k).B_le_Z r))
+    (Subobject.ofLE ((D' k).B r) ((D' k).Z r) ((D' k).B_le_Z r))
+    (f.preserves_B k r).choose (f.cycleMap k r)
+    (by
+      apply (cancel_mono ((D' k).Z r).arrow).mp
+      simp only [Category.assoc, SSDataMorphism.cycleMap,
+        (f.preserves_Z k r).choose_spec, Subobject.ofLE_arrow,
+        (f.preserves_B k r).choose_spec, Subobject.ofLE_arrow_assoc])
+
+/-- The same quotient map with the displayed page numbering transported along
+equality of starting pages. -/
+noncomputable def SSDataMorphism.pageMapAt
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E E' : PreSS C ι} (f : SSDataMorphism ι E.ssData E'.ssData)
+    (h : E.r₀ = E'.r₀) (r : ℤ) (k : ι) : E.Page r k ⟶ E'.Page r k :=
+  f.pageMap k ↑(r - E.r₀).toNat ≫ eqToHom (by rw [h])
+
 /-- A morphism of pre-spectral sequences. -/
 structure PreSSMorphism
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E E' : PreSS C ι) extends SSDataMorphism ι E.ssData E'.ssData where
+  /-- Ordinary morphisms use the same displayed page numbering. -/
+  r₀_eq : E.r₀ = E'.r₀
+  /-- Ordinary morphisms preserve the differential degree on each page. -/
+  diffDeg_eq : E.diffDeg = E'.diffDeg
   /-- The induced maps on pages commute with the differentials. -/
   comm_d : ∀ (r : ℤ) (k : ι),
-    ∃ (f_page_k : E.Page r k ⟶ E'.Page r k)
-      (f_page_kd : E.Page r (k + E.diffDeg r) ⟶ E'.Page r (k + E'.diffDeg r)),
-      f_page_k ≫ E'.d r k = E.d r k ≫ f_page_kd
+    toSSDataMorphism.pageMapAt r₀_eq r k ≫ E'.d r k =
+      E.d r k ≫ toSSDataMorphism.pageMapAt r₀_eq r (k + E.diffDeg r) ≫
+        eqToHom (by rw [diffDeg_eq])
 
 /-- Forget differential compatibility from a `PreSSMorphism`. -/
 def PreSSMorphism.ssDataMorphism
@@ -173,6 +234,13 @@ def PreSSMorphism.ssDataMorphism
   φ := f.φ
   preserves_Z := f.preserves_Z
   preserves_B := f.preserves_B
+
+/-- The canonical page map of a pre-spectral-sequence morphism. -/
+noncomputable def PreSSMorphism.pageMap
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E E' : PreSS C ι} (f : PreSSMorphism E E') (r : ℤ) (k : ι) :
+    E.Page r k ⟶ E'.Page r k :=
+  f.toSSDataMorphism.pageMapAt f.r₀_eq r k
 
 end KIP126.Core.SpectralSequence
 
@@ -318,46 +386,67 @@ noncomputable def pageShortComplex
     (E : SpectralSequence C ι) (r : ℤ) (k : ι) : ShortComplex C :=
   ShortComplex.mk (E.d r k) (E.d r (k + E.diffDeg r)) (E.d_comp_d r k)
 
-/-- A morphism of spectral sequences. -/
+/-- A morphism of spectral sequences.  Its page maps are derived from `φ`,
+not supplied independently. -/
 structure SpectralSequenceMorphism
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E E' : SpectralSequence C ι) where
   /-- Map on each ambient object. -/
   φ : ∀ (k : ι), (E.ssData k).V ⟶ (E'.ssData k).V
-  /-- The maps preserve cycles. -/
+  /-- The ambient maps preserve cycles. -/
   preserves_Z : ∀ (k : ι) (r : WithTop ℕ),
     ∃ (lift : Subobject.underlying.obj ((E.ssData k).Z r) ⟶
       Subobject.underlying.obj ((E'.ssData k).Z r)),
       lift ≫ ((E'.ssData k).Z r).arrow = ((E.ssData k).Z r).arrow ≫ φ k
-  /-- The maps preserve boundaries. -/
+  /-- The ambient maps preserve boundaries. -/
   preserves_B : ∀ (k : ι) (r : WithTop ℕ),
     ∃ (lift : Subobject.underlying.obj ((E.ssData k).B r) ⟶
       Subobject.underlying.obj ((E'.ssData k).B r)),
       lift ≫ ((E'.ssData k).B r).arrow = ((E.ssData k).B r).arrow ≫ φ k
-  /-- The induced page maps commute with the differentials. -/
+  /-- Ordinary morphisms have the same displayed page numbering. -/
+  r₀_eq : E.r₀ = E'.r₀
+  /-- Ordinary morphisms have the same differential degrees. -/
+  diffDeg_eq : E.diffDeg = E'.diffDeg
+  /-- The canonical quotient maps commute with the differentials. -/
   comm_d : ∀ (r : ℤ) (k : ι),
-    ∃ (f_page_k : E.Page r k ⟶ E'.Page r k)
-      (f_page_kd : E.Page r (k + E.diffDeg r) ⟶
-        E'.Page r (k + E'.diffDeg r)),
-      f_page_k ≫ E'.d r k = E.d r k ≫ f_page_kd
+    let f : SSDataMorphism ι E.ssData E'.ssData :=
+      { φ := φ, preserves_Z := preserves_Z, preserves_B := preserves_B }
+    f.pageMapAt (E := E.toPreSS) (E' := E'.toPreSS) r₀_eq r k ≫ E'.d r k =
+      E.d r k ≫ f.pageMapAt (E := E.toPreSS) (E' := E'.toPreSS)
+        r₀_eq r (k + E.diffDeg r) ≫ eqToHom (by rw [diffDeg_eq])
+
+/-- Forget the differential law without changing the ambient map. -/
+def SpectralSequenceMorphism.toSSDataMorphism
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E E' : SpectralSequence C ι} (f : SpectralSequenceMorphism E E') :
+    SSDataMorphism ι E.ssData E'.ssData where
+  φ := f.φ
+  preserves_Z := f.preserves_Z
+  preserves_B := f.preserves_B
+
+/-- The same morphism between the underlying pre-spectral sequences. -/
+def SpectralSequenceMorphism.toPreSSMorphism
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E E' : SpectralSequence C ι} (f : SpectralSequenceMorphism E E') :
+    PreSSMorphism E.toPreSS E'.toPreSS where
+  toSSDataMorphism := f.toSSDataMorphism
+  r₀_eq := f.r₀_eq
+  diffDeg_eq := f.diffDeg_eq
+  comm_d := f.comm_d
+
+/-- The canonical map on each displayed page. -/
+noncomputable def SpectralSequenceMorphism.pageMap
+    {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
+    {E E' : SpectralSequence C ι} (f : SpectralSequenceMorphism E E')
+    (r : ℤ) (k : ι) : E.Page r k ⟶ E'.Page r k :=
+  f.toPreSSMorphism.pageMap r k
 
 /-- The map induced by a spectral-sequence morphism on the infinity page. -/
 noncomputable def SpectralSequenceMorphism.eInftyMap
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     {E E' : SpectralSequence C ι} (f : SpectralSequenceMorphism E E') (k : ι) :
-    (E.ssData k).eInfty ⟶ (E'.ssData k).eInfty := by
-  unfold SSData.eInfty SSData.page
-  exact cokernel.map
-    (Subobject.ofLE ((E.ssData k).B ⊤) ((E.ssData k).Z ⊤) ((E.ssData k).B_le_Z ⊤))
-    (Subobject.ofLE ((E'.ssData k).B ⊤) ((E'.ssData k).Z ⊤) ((E'.ssData k).B_le_Z ⊤))
-    (f.preserves_B k ⊤).choose
-    (f.preserves_Z k ⊤).choose
-    (by
-      have hB := (f.preserves_B k ⊤).choose_spec
-      have hZ := (f.preserves_Z k ⊤).choose_spec
-      apply (cancel_mono ((E'.ssData k).Z ⊤).arrow).mp
-      simp only [Category.assoc, hZ, Subobject.ofLE_arrow, hB,
-        Subobject.ofLE_arrow_assoc])
+    (E.ssData k).eInfty ⟶ (E'.ssData k).eInfty :=
+  f.toSSDataMorphism.pageMap k ⊤
 
 /-- A spectral sequence packaged with a convenient infinity-page accessor. -/
 structure EInftyData (C : Type u) [Category.{v} C] [Abelian C]

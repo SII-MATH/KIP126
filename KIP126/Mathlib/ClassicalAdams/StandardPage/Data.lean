@@ -1,4 +1,4 @@
-import KIP126.Mathlib.ClassicalAdams.Comparison.Axiom
+import KIP126.Mathlib.ClassicalAdams.Comparison.Construction.Data
 
 namespace KIP126.Classical.Adams
 

@@ -1,0 +1,10 @@
+# ChoiceIndependence
+
+论文规范化 BX 判据及 C₄/C₅ 选择无关性已重述到同一模型。C₄ 的变量在 π_(62,64)，C₅ 的变量在 π_(124,134)；检测来自同一实际塔。当前为待证 Prop，未声称已经证明这些论文结论。原通用代数条件引理保留作基础设施，不能代替实际选择存在性及不定性证明。
+
+直接导入 `KIP126.Def.Kervaire.Route.Conditions.Predicates` 取得共享实际对象，
+不再经过本目录的单导入 `Data.lean`。旧 `AnyChoiceCriterion` 的自由 Carrier
+和自由存活操作包已移除；`Def/Kervaire/Theta5/Proofs.lean` 中的通用代数
+选择传输引理保留，使用前仍须证明与实际对象的比较。
+
+完整数学接口、来源和冻结范围见 [STAGE0_INTERFACES.md](../../../../docs/STAGE0_INTERFACES.md)。

@@ -1,5 +1,5 @@
 import KIP126.Def.ClassicalESS.Eta.Data
-import KIP126.External.Claims
+import KIP126.Def.References.Literature.Claims
 
 /-! Provenance-bearing input and the resulting concrete classical eta ESS. -/
 

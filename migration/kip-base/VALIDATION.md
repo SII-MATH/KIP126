@@ -1,4 +1,8 @@
-# Migration validation — 2026-09-17
+# Migration validation — 2026-09-17 (historical record)
+
+This report applies only to the migration identified below. Its counts, build
+results and review policy are not the current KIPBase status or workflow.
+See [the archive guide](README.md) for its scope and current entry points.
 
 Base: KIP126 main `da017f6483e0a4cc22fac0ad5ab2c01a8ff0814b`.
 Source: KIP-base `bff9a8d1f96a7e450bca3b850020687560449e6d`, including the
@@ -24,11 +28,11 @@ Lean toolchain: `leanprover/lean4:v4.32.2`. Mathlib: `v4.32.2`, commit
 | Whitespace and shell checks | Passed; byte-identical historical documents and patch context retain their original whitespace |
 
 Local build logs, the full compiled JSON report, its compiler cross-check, and
-the complete backup are under the ignored `local/` directory. Reproduce checks
-using the cache-wrapper commands in [README.md](README.md).
+the complete backup are under the ignored `local/` directory. These logs describe that historical run; they are not evidence for the current
+source tree. Archive integrity can be checked as described in [README.md](README.md).
 
 Compilation is compatibility evidence. The historical library's unproved and
-axiomatized statements remain historical obligations, not completed aimpaper
+axiomatized statements remain historical obligations, not completed MainPaper
 results. No canonical Blueprint completion flag was advanced by this migration.
-The PR changes package layout and trusted validation machinery, so the existing
-human-review gate applies; these local checks do not replace exact-head PR checks.
+The migration PR also changed package layout and validation machinery. Its
+review requirements were specific to that task, not standing instructions for later work.

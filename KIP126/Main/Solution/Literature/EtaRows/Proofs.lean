@@ -1,0 +1,64 @@
+import KIP126.Def.References.Literature.EtaRows.Data
+
+namespace KIP126.Classical.ExtensionSS
+
+open KIP126.Classical.Adams
+open KIP126.External
+
+namespace EtaRowId
+
+@[simp] theorem all_length : all.length = 5 := rfl
+
+@[simp] theorem mem_all (id : EtaRowId) : id ∈ all := by
+  cases id <;> simp [all]
+
+/-- Every stable identity selects a row in the existing eta-ESS catalogue. -/
+theorem row_mem_etaESSDifferentials (id : EtaRowId) :
+    id.row ∈ etaESSDifferentials := by
+  cases id <;> simp [row, etaESSDifferentials]
+
+/-- The stable identities enumerate exactly the existing five-row catalogue. -/
+theorem range_row : Set.range row = etaESSDifferentials := by
+  ext differential
+  constructor
+  · rintro ⟨id, rfl⟩
+    exact row_mem_etaESSDifferentials id
+  · intro h
+    simp only [etaESSDifferentials, Set.mem_insert_iff, Set.mem_singleton_iff] at h
+    rcases h with h | h | h | h | h
+    · exact ⟨.d₁, h.symm⟩
+    · exact ⟨.d₂, h.symm⟩
+    · exact ⟨.d₃, h.symm⟩
+    · exact ⟨.d₄, h.symm⟩
+    · exact ⟨.d₂Inessential, h.symm⟩
+
+end EtaRowId
+
+namespace EtaData
+
+variable {stable : StableHomotopyContext} {X Y : stable.Spectrum}
+  {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
+
+@[simp] theorem sourceClass_degree (data : EtaData source target)
+    (id : EtaRowId) :
+    (data.sourceClass id).degree = id.row.sourceDegree :=
+  (data.typedRow id).sourceClass_degree
+
+@[simp] theorem targetClass_degree (data : EtaData source target)
+    (id : EtaRowId) :
+    (data.targetClass id).degree = id.row.targetDegree :=
+  (data.typedRow id).targetClass_degree
+
+/-- The evidence carried by the payload proves the canonical five-row claim. -/
+theorem ledger_claim (data : EtaData source target) :
+    KIP126.Classical.Regression.etaEss etaESSDifferentials :=
+  data.ledgerEvidence.value.evidence
+
+/-- The payload's evidence uses the pre-existing eta-ESS catalogue root. -/
+theorem ledger_root_eq (data : EtaData source target) :
+    data.ledgerEvidence.root = .etaEssRegression :=
+  data.ledger_root
+
+end EtaData
+
+end KIP126.Classical.ExtensionSS

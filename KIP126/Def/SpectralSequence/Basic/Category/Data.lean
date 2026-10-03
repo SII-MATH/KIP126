@@ -28,39 +28,15 @@ instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     Category.{max w v} (PreSS C ι) where
   Hom E E' := PreSSMorphism E E'
   id E := {
-    φ := fun _ => 𝟙 _
-    preserves_Z := fun _ _ => ⟨𝟙 _, by simp⟩
-    preserves_B := fun _ _ => ⟨𝟙 _, by simp⟩
-    comm_d := fun _ _ => ⟨𝟙 _, 𝟙 _, by simp⟩ }
+    toSSDataMorphism := SSDataMorphism.id E.ssData
+    r₀_eq := rfl
+    diffDeg_eq := rfl
+    comm_d := PreSSMorphism.id_comm_d E }
   comp f g := {
-    φ := fun k => f.φ k ≫ g.φ k
-    preserves_Z := fun k r =>
-      ⟨(f.preserves_Z k r).choose ≫ (g.preserves_Z k r).choose, by
-        rw [Category.assoc, (g.preserves_Z k r).choose_spec,
-          ← Category.assoc, (f.preserves_Z k r).choose_spec, Category.assoc]⟩
-    preserves_B := fun k r =>
-      ⟨(f.preserves_B k r).choose ≫ (g.preserves_B k r).choose, by
-        rw [Category.assoc, (g.preserves_B k r).choose_spec,
-          ← Category.assoc, (f.preserves_B k r).choose_spec, Category.assoc]⟩
-    comm_d := fun r k =>
-      ⟨(f.comm_d r k).choose ≫ (g.comm_d r k).choose,
-       (f.comm_d r k).choose_spec.choose ≫ (g.comm_d r k).choose_spec.choose, by
-        rcases (f.comm_d r k).choose_spec.choose_spec with h₁
-        rcases (g.comm_d r k).choose_spec.choose_spec with h₂
-        calc
-          ((f.comm_d r k).choose ≫ (g.comm_d r k).choose) ≫ _ =
-              (f.comm_d r k).choose ≫ ((g.comm_d r k).choose ≫ _) :=
-            Category.assoc _ _ _
-          _ = (f.comm_d r k).choose ≫
-              (_ ≫ (g.comm_d r k).choose_spec.choose) := by
-                conv_lhs => rw [h₂]
-          _ = ((f.comm_d r k).choose ≫ _) ≫
-              (g.comm_d r k).choose_spec.choose := (Category.assoc _ _ _).symm
-          _ = (_ ≫ (f.comm_d r k).choose_spec.choose) ≫
-              (g.comm_d r k).choose_spec.choose := by
-                conv_lhs => rw [h₁]
-          _ = _ ≫ ((f.comm_d r k).choose_spec.choose ≫
-              (g.comm_d r k).choose_spec.choose) := Category.assoc _ _ _⟩ }
+    toSSDataMorphism := f.toSSDataMorphism.comp g.toSSDataMorphism
+    r₀_eq := f.r₀_eq.trans g.r₀_eq
+    diffDeg_eq := f.diffDeg_eq.trans g.diffDeg_eq
+    comm_d := PreSSMorphism.comp_comm_d f g }
   id_comp f := PreSSMorphism.ext (funext fun k => Category.id_comp (f.φ k))
   comp_id f := PreSSMorphism.ext (funext fun k => Category.comp_id (f.φ k))
   assoc f g h :=
@@ -84,39 +60,19 @@ instance {ι : Type w} [AddCommGroup ι] [DecidableEq ι] :
     Category.{max w v} (SpectralSequence C ι) where
   Hom E E' := SpectralSequenceMorphism E E'
   id E := {
-    φ := fun _ => 𝟙 _
-    preserves_Z := fun _ _ => ⟨𝟙 _, by simp⟩
-    preserves_B := fun _ _ => ⟨𝟙 _, by simp⟩
-    comm_d := fun _ _ => ⟨𝟙 _, 𝟙 _, by simp⟩ }
+    φ := (SSDataMorphism.id E.ssData).φ
+    preserves_Z := (SSDataMorphism.id E.ssData).preserves_Z
+    preserves_B := (SSDataMorphism.id E.ssData).preserves_B
+    r₀_eq := rfl
+    diffDeg_eq := rfl
+    comm_d := PreSSMorphism.id_comm_d E.toPreSS }
   comp f g := {
-    φ := fun k => f.φ k ≫ g.φ k
-    preserves_Z := fun k r =>
-      ⟨(f.preserves_Z k r).choose ≫ (g.preserves_Z k r).choose, by
-        rw [Category.assoc, (g.preserves_Z k r).choose_spec,
-          ← Category.assoc, (f.preserves_Z k r).choose_spec, Category.assoc]⟩
-    preserves_B := fun k r =>
-      ⟨(f.preserves_B k r).choose ≫ (g.preserves_B k r).choose, by
-        rw [Category.assoc, (g.preserves_B k r).choose_spec,
-          ← Category.assoc, (f.preserves_B k r).choose_spec, Category.assoc]⟩
-    comm_d := fun r k =>
-      ⟨(f.comm_d r k).choose ≫ (g.comm_d r k).choose,
-       (f.comm_d r k).choose_spec.choose ≫ (g.comm_d r k).choose_spec.choose, by
-        rcases (f.comm_d r k).choose_spec.choose_spec with h₁
-        rcases (g.comm_d r k).choose_spec.choose_spec with h₂
-        calc
-          ((f.comm_d r k).choose ≫ (g.comm_d r k).choose) ≫ _ =
-              (f.comm_d r k).choose ≫ ((g.comm_d r k).choose ≫ _) :=
-            Category.assoc _ _ _
-          _ = (f.comm_d r k).choose ≫
-              (_ ≫ (g.comm_d r k).choose_spec.choose) := by
-                conv_lhs => rw [h₂]
-          _ = ((f.comm_d r k).choose ≫ _) ≫
-              (g.comm_d r k).choose_spec.choose := (Category.assoc _ _ _).symm
-          _ = (_ ≫ (f.comm_d r k).choose_spec.choose) ≫
-              (g.comm_d r k).choose_spec.choose := by
-                conv_lhs => rw [h₁]
-          _ = _ ≫ ((f.comm_d r k).choose_spec.choose ≫
-              (g.comm_d r k).choose_spec.choose) := Category.assoc _ _ _⟩ }
+    φ := (f.toSSDataMorphism.comp g.toSSDataMorphism).φ
+    preserves_Z := (f.toSSDataMorphism.comp g.toSSDataMorphism).preserves_Z
+    preserves_B := (f.toSSDataMorphism.comp g.toSSDataMorphism).preserves_B
+    r₀_eq := f.r₀_eq.trans g.r₀_eq
+    diffDeg_eq := f.diffDeg_eq.trans g.diffDeg_eq
+    comm_d := PreSSMorphism.comp_comm_d f.toPreSSMorphism g.toPreSSMorphism }
   id_comp f := SpectralSequenceMorphism.ext
     (funext fun k => Category.id_comp (f.φ k))
   comp_id f := SpectralSequenceMorphism.ext
@@ -129,15 +85,13 @@ def SpectralSequenceMorphism.equivPreSSMorphism
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E E' : SpectralSequence C ι) :
     SpectralSequenceMorphism E E' ≃ PreSSMorphism E.toPreSS E'.toPreSS where
-  toFun f := {
-    φ := f.φ
-    preserves_Z := f.preserves_Z
-    preserves_B := f.preserves_B
-    comm_d := f.comm_d }
+  toFun f := f.toPreSSMorphism
   invFun g := {
     φ := g.φ
     preserves_Z := g.preserves_Z
     preserves_B := g.preserves_B
+    r₀_eq := g.r₀_eq
+    diffDeg_eq := g.diffDeg_eq
     comm_d := g.comm_d }
   left_inv _ := rfl
   right_inv _ := rfl

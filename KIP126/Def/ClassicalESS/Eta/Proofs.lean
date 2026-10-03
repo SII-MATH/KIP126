@@ -60,7 +60,7 @@ theorem etaD₄_has_degree {stable : StableHomotopyContext} {X Y : stable.Spectr
     simp [etaESSDifferentials]
 
 theorem etaD₁_has_locator :
-    etaD₁.locator.artifact = some "aimpaper/main.tex" := rfl
+    etaD₁.locator.artifact = some "MainPaper/main.tex" := rfl
 
 theorem etaD₄_has_crossing {stable : StableHomotopyContext} {X Y : stable.Spectrum}
     {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}

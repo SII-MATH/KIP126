@@ -17,3 +17,10 @@ multiplicative spectral-sequence developments through
 `KIPBase.Compatibility.FilteredComplex` is deliberately excluded from the
 standalone target. It is an integration adapter whose public types mention
 `KIP126.Core`; the parent KIP126 project continues to build that module.
+
+The original migration snapshot is documented in the
+[archive guide](../migration/kip-base/README.md). Its proof-debt counts and
+validation results describe that snapshot, not this active source tree.
+For reuse in KIP126 and the distinction between generic spectral-sequence
+constructions and concrete model inputs, see the
+[reuse guide](../docs/KIPBASE_GAP_INVENTORY.md).

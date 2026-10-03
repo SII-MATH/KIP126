@@ -184,28 +184,28 @@ EXPECTED_KINDS = {
     "lwx_machine": "machine",
 }
 
-# The directory names are part of the checked-in reference layout.  Keeping
+# The directory names are part of the checked-in literature source layout. Keeping
 # this map explicit avoids accidentally changing an acronym's spelling when a
 # generic camel-case-to-snake-case converter is changed.
 REFERENCE_IDS: dict[str, str] = {
-    "aim_paper": "aimpaper",
-    "browder": "reference/Browder",
-    "mahowald_tangora": "reference/MahowaldTangora",
-    "bjm_theta5": "reference/BJMtheta5",
-    "bjm_induction": "reference/BJMinduction",
-    "may_thesis": "reference/Maythesis",
-    "may01": "reference/May01",
-    "hhr": "reference/HHR",
-    "xu": "reference/Xu",
-    "iwx": "reference/IWX",
-    "pst": "reference/Pst",
-    "bhs": "reference/BHS",
-    "bhs_mot": "reference/BHSmot",
-    "burklund_xu": "reference/BurklundXu",
-    "moss": "reference/Moss",
-    "br21": "reference/BR21",
-    "tmf": "reference/tmf",
-    "lwx_machine": "reference/LWXMachine",
+    "aim_paper": "MainPaper",
+    "browder": "Source/Browder",
+    "mahowald_tangora": "Source/MahowaldTangora",
+    "bjm_theta5": "Source/BJMtheta5",
+    "bjm_induction": "Source/BJMinduction",
+    "may_thesis": "Source/Maythesis",
+    "may01": "Source/May01",
+    "hhr": "Source/HHR",
+    "xu": "Source/Xu",
+    "iwx": "Source/IWX",
+    "pst": "Source/Pst",
+    "bhs": "Source/BHS",
+    "bhs_mot": "Source/BHSmot",
+    "burklund_xu": "Source/BurklundXu",
+    "moss": "Source/Moss",
+    "br21": "Source/BR21",
+    "tmf": "Source/tmf",
+    "lwx_machine": "Source/LWXMachine",
 }
 
 REQUIRED_SOURCE_FIELDS = {
@@ -288,7 +288,7 @@ class InventoryValidator:
             self.error("inventory.sources", "must not be empty")
             return self.errors
 
-        self._check_reference_layout()
+        self._check_source_layout()
         ids: set[str] = set()
         directories: set[str] = set()
         citation_keys: dict[str, str] = {}
@@ -351,7 +351,7 @@ class InventoryValidator:
             # module first so a hand-edited Lean catalogue cannot be hidden by
             # a stale cache.
             built = subprocess.run(
-                ["lake", "build", "KIP126.External.Claims"],
+                ["lake", "build", "KIP126.Def.References.Literature.Claims"],
                 cwd=self.root,
                 check=False,
                 capture_output=True,
@@ -624,19 +624,19 @@ class InventoryValidator:
         elif project != "KIP126":
             self.error("inventory.project", f"expected 'KIP126', got {project!r}")
 
-    def _check_reference_layout(self) -> None:
+    def _check_source_layout(self) -> None:
         """Ensure every retained source-status file has a catalogue slot."""
         status_dirs = {
             path.parent.relative_to(self.root).as_posix()
-            for path in self.root.glob("reference/*/source-status.json")
+            for path in self.root.glob("Source/*/source-status.json")
         }
         expected_dirs = {value for key, value in REFERENCE_IDS.items() if key != "aim_paper"}
         missing_dirs = sorted(expected_dirs - status_dirs)
         unexpected_dirs = sorted(status_dirs - expected_dirs)
         if missing_dirs:
-            self.error("reference", "missing expected source-status.json: " + ", ".join(missing_dirs))
+            self.error("Source", "missing expected source-status.json: " + ", ".join(missing_dirs))
         if unexpected_dirs:
-            self.error("reference", "source-status.json has no inventory entry: " + ", ".join(unexpected_dirs))
+            self.error("Source", "source-status.json has no inventory entry: " + ", ".join(unexpected_dirs))
 
     def _check_source(
         self,
@@ -700,7 +700,7 @@ class InventoryValidator:
         if is_project_source:
             if status_file_value is not None:
                 self.error(f"{where}.status_file", "aim_paper must not claim a source-status.json")
-            self._check_citation_file(self.root / "aimpaper/main.bib", where, keys)
+            self._check_citation_file(self.root / "MainPaper/main.bib", where, keys)
         else:
             expected_status = f"{directory}/source-status.json"
             if not isinstance(status_file_value, str) or not status_file_value.strip():
@@ -865,10 +865,10 @@ class InventoryValidator:
 
         if source_id == "aim_paper":
             expected = {
-                "metadata": (self.root / "aimpaper/main.bib").is_file(),
-                "pdf": (self.root / "aimpaper/2412.10879.pdf").is_file(),
-                "text": (self.root / "aimpaper/main.tex").is_file(),
-                "source": (self.root / "aimpaper/main.tex").is_file(),
+                "metadata": (self.root / "MainPaper/main.bib").is_file(),
+                "pdf": (self.root / "MainPaper/2412.10879.pdf").is_file(),
+                "text": (self.root / "MainPaper/main.tex").is_file(),
+                "source": (self.root / "MainPaper/main.tex").is_file(),
             }
         else:
             status_path = self.root / directory / "source-status.json"
@@ -1034,10 +1034,10 @@ class InventoryValidator:
             # The checked-in target paper is the source of record.  These four
             # files are the minimum auditable inputs used by the claim ledger.
             required_project_paths = (
-                "aimpaper/main.tex",
-                "aimpaper/112.tex",
-                "aimpaper/main.bib",
-                "aimpaper/2412.10879.pdf",
+                "MainPaper/main.tex",
+                "MainPaper/112.tex",
+                "MainPaper/main.bib",
+                "MainPaper/2412.10879.pdf",
             )
             for required_name in required_project_paths:
                 row = artifact_by_path.get(required_name)
@@ -1160,7 +1160,7 @@ def validate_inventory(
 
     root = root.resolve()
     if inventory_path is None:
-        inventory_path = root / "reference/source-inventory.json"
+        inventory_path = root / "Source/source-inventory.json"
     return InventoryValidator(
         root,
         inventory_path,
@@ -1176,7 +1176,7 @@ def main(argv: list[str] | None = None) -> int:
         "--inventory",
         type=Path,
         default=None,
-        help="inventory JSON path (default: reference/source-inventory.json)",
+        help="inventory JSON path (default: Source/source-inventory.json)",
     )
     parser.add_argument(
         "--skip-lean-projection",
@@ -1196,7 +1196,7 @@ def main(argv: list[str] | None = None) -> int:
     root = (args.root or script_root).resolve()
     inventory = args.inventory
     if inventory is None:
-        inventory = root / "reference/source-inventory.json"
+        inventory = root / "Source/source-inventory.json"
     elif not inventory.is_absolute():
         inventory = root / inventory
 

@@ -1,5 +1,5 @@
 import KIP126.Def.SpectralSequence.BoundedExtension.Sequence.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.WeakConvergence
+import KIP126.Def.SpectralSequence.FilteredComplex.WeakConvergence.Data
 
 /-!
 # The bounded extension spectral sequence

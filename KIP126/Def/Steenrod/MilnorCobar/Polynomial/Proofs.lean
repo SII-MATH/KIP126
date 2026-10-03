@@ -5,9 +5,8 @@ import Mathlib.Algebra.CharP.Two
 /-!
 # Polynomial preservation and membership proofs
 
-Concatenation preserves normalization and degree, and the specified
-representatives are normalized cocycles. Preservation by the general
-coproduct differential is the remaining open obligation in this module.
+Concatenation and the general coproduct differential preserve normalization
+and degree, and the specified representatives are normalized cocycles.
 -/
 
 namespace KIP126.Steenrod.Milnor

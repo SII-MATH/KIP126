@@ -1,4 +1,5 @@
 import KIP126.Def.SpectralSequence.PageLevel.Data
+import KIP126.Def.ClassicalAdams.Grading.Data
 import KIP126.Def.Algebra.Coefficients.Data
 import Mathlib.Algebra.Homology.SpectralSequence.Basic
 
@@ -8,8 +9,6 @@ namespace KIP126.Classical.Adams
 open CategoryTheory
 open KIP126.Core.Algebra
 open KIP126.Core.SpectralSequence
-
-abbrev Bidegree := ℤ × ℤ
 
 /-- The AIM classical Adams differential degree. -/
 def classicalAdamsShift (r : ℕ) : Bidegree := (r, (r : ℤ) - 1)
@@ -37,10 +36,6 @@ def classicalAdamsPageLevel : PageLevelConvention where
 @[simp] theorem classicalAdamsTarget_two (b : Bidegree) :
     classicalAdamsTarget 2 b = (b.1 + 2, b.2 + 1) := by
   apply Prod.ext <;> simp [classicalAdamsTarget, classicalAdamsShift]
-
-/-- The pagewise complex shape used by the classical Adams sequence. -/
-def classicalAdamsShape (r : ℤ) : ComplexShape Bidegree :=
-  ComplexShape.up' (r, r - 1)
 
 @[simp] theorem classicalAdamsShape_two_rel (b : Bidegree) :
     (classicalAdamsShape 2).Rel b (classicalAdamsTarget 2 b) := by

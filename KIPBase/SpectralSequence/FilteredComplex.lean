@@ -630,6 +630,111 @@ theorem FilteredComplex.B_le_Z_aux (FC : FilteredComplex C) (s k : ℤ)
           imageSubobject_comp_le _ _
 
 -- Complex SSData construction with multiple WithTop ℕ case analyses
+/-- 有限循环层随页数反单调。这个结论不需要过滤有界。 -/
+theorem FilteredComplex.cycleSubobject_nat_anti
+    (FC : FilteredComplex C) (s k : ℤ) {n₁ n₂ : ℕ} (hn : n₁ ≤ n₂) :
+    FC.cycleSubobject s k (n₂ : WithTop ℕ) ≤
+      FC.cycleSubobject s k (n₁ : WithTop ℕ) := by
+  suffices key : ∀ {X Y : C} {K₁ K₂ : Subobject X} (g : X ⟶ Y)
+      (hle : K₂ ≤ K₁),
+      imageSubobject (K₂.arrow ≫ g) ≤ imageSubobject (K₁.arrow ≫ g) by
+    change imageSubobject
+        ((kernelSubobject ((FC.fil s k).arrow ≫ FC.d k ≫
+          cokernel.π ((FC.fil (s + ↑n₂) (k - 1)).arrow))).arrow ≫ _) ≤
+      imageSubobject
+        ((kernelSubobject ((FC.fil s k).arrow ≫ FC.d k ≫
+          cokernel.π ((FC.fil (s + ↑n₁) (k - 1)).arrow))).arrow ≫ _)
+    have hfil : FC.fil (s + ↑n₂) (k - 1) ≤ FC.fil (s + ↑n₁) (k - 1) :=
+      FC.fil_anti_of_le (k - 1) (by omega)
+    have hcomp : (FC.fil (s + ↑n₂) (k - 1)).arrow ≫
+        cokernel.π ((FC.fil (s + ↑n₁) (k - 1)).arrow) = 0 := by
+      rw [show (FC.fil (s + ↑n₂) (k - 1)).arrow =
+        Subobject.ofLE _ _ hfil ≫ (FC.fil (s + ↑n₁) (k - 1)).arrow
+        from (Subobject.ofLE_arrow hfil).symm]
+      rw [Category.assoc, cokernel.condition, comp_zero]
+    let f₂ := (FC.fil s k).arrow ≫ FC.d k ≫
+      cokernel.π ((FC.fil (s + ↑n₂) (k - 1)).arrow)
+    let f₁ := (FC.fil s k).arrow ≫ FC.d k ≫
+      cokernel.π ((FC.fil (s + ↑n₁) (k - 1)).arrow)
+    have hker : kernelSubobject f₂ ≤ kernelSubobject f₁ := by
+      apply le_kernelSubobject
+      let desc := cokernel.desc ((FC.fil (s + ↑n₂) (k - 1)).arrow)
+        (cokernel.π ((FC.fil (s + ↑n₁) (k - 1)).arrow)) hcomp
+      have hfactor : f₁ = f₂ ≫ desc := by
+        simp only [f₂, f₁, desc, Category.assoc, cokernel.π_desc]
+      rw [hfactor, ← Category.assoc, kernelSubobject_arrow_comp, zero_comp]
+    exact key _ hker
+  intro X Y K₁ K₂ g hle
+  rw [show K₂.arrow ≫ g = Subobject.ofLE K₂ K₁ hle ≫ K₁.arrow ≫ g by
+    rw [← Category.assoc, Subobject.ofLE_arrow]]
+  exact imageSubobject_comp_le _ _
+
+/-- 有限边缘层随页数单调。这个结论不需要过滤有界。 -/
+theorem FilteredComplex.boundarySubobject_nat_mono
+    (FC : FilteredComplex C) (s k : ℤ) {n₁ n₂ : ℕ} (hn : n₁ ≤ n₂) :
+    FC.boundarySubobject s k (n₁ : WithTop ℕ) ≤
+      FC.boundarySubobject s k (n₂ : WithTop ℕ) := by
+  suffices img_mono : ∀ {X Y : C} {K₁ K₂ : Subobject X} (g : X ⟶ Y)
+      (hle : K₁ ≤ K₂),
+      imageSubobject (K₁.arrow ≫ g) ≤ imageSubobject (K₂.arrow ≫ g) by
+    have ofLE_mono : ∀ {X Y : C} {I₁ I₂ Q : Subobject X}
+        (h₁ : I₁ ≤ Q) (h₂ : I₂ ≤ Q) (hle : I₁ ≤ I₂)
+        (g : Subobject.underlying.obj Q ⟶ Y),
+        imageSubobject (Subobject.ofLE I₁ Q h₁ ≫ g) ≤
+          imageSubobject (Subobject.ofLE I₂ Q h₂ ≫ g) := by
+      intro X Y I₁ I₂ Q h₁ h₂ hle g
+      have factored : Subobject.ofLE I₁ Q h₁ =
+          Subobject.ofLE I₁ I₂ hle ≫ Subobject.ofLE I₂ Q h₂ := by
+        apply (cancel_mono Q.arrow).mp
+        simp only [Category.assoc, Subobject.ofLE_arrow]
+      rw [factored, Category.assoc]
+      exact imageSubobject_comp_le _ _
+    simp only [FilteredComplex.boundarySubobject]
+    have hfil : FC.fil (s - ↑n₁ + 1) (k + 1) ≤
+        FC.fil (s - ↑n₂ + 1) (k + 1) :=
+      FC.fil_anti_of_le (k + 1) (by omega)
+    apply ofLE_mono inf_le_right inf_le_right
+    apply inf_le_inf_right
+    exact img_mono _ hfil
+  intro X Y K₁ K₂ g hle
+  rw [show K₁.arrow ≫ g = Subobject.ofLE K₁ K₂ hle ≫ K₂.arrow ≫ g by
+    rw [← Category.assoc, Subobject.ofLE_arrow]]
+  exact imageSubobject_comp_le _ _
+
+/-- 第零个有限循环层是整个关联分次对象。这个结论不需要过滤有界。 -/
+theorem FilteredComplex.cycleSubobject_zero_eq_top
+    (FC : FilteredComplex C) (s k : ℤ) :
+    FC.cycleSubobject s k ((0 : ℕ) : WithTop ℕ) = ⊤ := by
+  simp only [FilteredComplex.cycleSubobject]
+  have hf0 : (FC.fil s k).arrow ≫ FC.d k ≫
+      cokernel.π ((FC.fil (s + ↑(0 : ℕ)) (k - 1)).arrow) = 0 := by
+    obtain ⟨φ, hφ⟩ := FC.d_preserves_fil s k
+    simp only [← Category.assoc]
+    rw [← hφ]
+    simp only [Category.assoc]
+    have hle : FC.fil s (k - 1) ≤ FC.fil (s + ↑(0 : ℕ)) (k - 1) :=
+      le_of_eq (by congr 1; omega)
+    rw [show (FC.fil s (k - 1)).arrow =
+      Subobject.ofLE _ _ hle ≫ (FC.fil (s + ↑(0 : ℕ)) (k - 1)).arrow
+      from (Subobject.ofLE_arrow hle).symm]
+    simp only [Category.assoc, cokernel.condition, comp_zero]
+  haveI : IsIso (kernelSubobject ((FC.fil s k).arrow ≫ FC.d k ≫
+      cokernel.π ((FC.fil (s + ↑(0 : ℕ)) (k - 1)).arrow))).arrow := by
+    rw [Subobject.isIso_arrow_iff_eq_top]
+    simp only [hf0, kernelSubobject_zero]
+  rw [imageSubobject_iso_comp]
+  let π := cokernel.π (Subobject.ofLE (FC.fil (s + 1) k)
+    (FC.fil s k) (FC.fil_anti s k))
+  haveI : Epi (image.ι π) := epi_image_of_epi _
+  haveI : IsIso (image.ι π) := isIso_of_mono_of_epi _
+  haveI : IsIso (imageSubobject π).arrow := by
+    have h : IsIso ((imageSubobjectIso π).hom ≫ image.ι π) := inferInstance
+    rw [imageSubobject_arrow] at h
+    exact h
+  apply (Subobject.isIso_arrow_iff_eq_top _).mp
+  change IsIso (imageSubobject π).arrow
+  infer_instance
+
 /-- Constructs `SSData C` from a filtered complex at bidegree `(s, k)`.
     - `V` is the associated graded `gr^s A^k = F^s / F^{s+1}`.
     - `Z r` are the `r`-cycles (as subobjects of `V`), deferred.
@@ -1012,8 +1117,59 @@ theorem FilteredComplex.boundary_zero_apply (FC : FilteredComplex C)
     _ = c ≫ j ≫ FC.filToAssocGraded s (k - 1) := by
       simp only [hbc, Category.assoc]
     _ = 0 := by
-      simp only [FilteredComplex.filToAssocGraded, j,
-        Category.assoc, cokernel.condition, comp_zero]
+      have hj : j ≫ FC.filToAssocGraded s (k - 1) = 0 := by
+        dsimp only [j, FilteredComplex.filToAssocGraded]
+        exact cokernel.condition _
+      rw [hj, comp_zero]
+
+/-- 过滤复形在有限层 `n` 上的页对象。这里只使用有限的
+循环层和边缘层，因此不需要过滤有界。 -/
+noncomputable def FilteredComplex.finitePage (FC : FilteredComplex C)
+    (s k : ℤ) (n : ℕ) : C :=
+  cokernel (Subobject.ofLE (FC.boundarySubobject s k (n : WithTop ℕ))
+    (FC.cycleSubobject s k (n : WithTop ℕ)) (FC.B_le_Z_aux s k n))
+
+/-- 有限页的规范商投影。 -/
+noncomputable def FilteredComplex.finitePageπ (FC : FilteredComplex C)
+    (s k : ℤ) (n : ℕ) :
+    Subobject.underlying.obj (FC.cycleSubobject s k (n : WithTop ℕ)) ⟶
+      FC.finitePage s k n :=
+  cokernel.π (Subobject.ofLE (FC.boundarySubobject s k (n : WithTop ℕ))
+    (FC.cycleSubobject s k (n : WithTop ℕ)) (FC.B_le_Z_aux s k n))
+
+/-- `toSSData` 在有限层的循环子对象就是过滤复形的有限循环层。 -/
+@[simp]
+theorem FilteredComplex.toSSData_Z_nat (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    (FC.toSSData bnd s k).Z (n : WithTop ℕ) = FC.cycleSubobject s k n := by
+  rfl
+
+/-- `toSSData` 在有限层的边缘子对象就是过滤复形的有限边缘层。 -/
+@[simp]
+theorem FilteredComplex.toSSData_B_nat (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    (FC.toSSData bnd s k).B (n : WithTop ℕ) = FC.boundarySubobject s k n := by
+  rfl
+
+/-- 有界构造的有限页与不带有界性参数的有限页是同一对象。 -/
+@[simp]
+theorem FilteredComplex.toSSData_page_eq_finitePage (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    (FC.toSSData bnd s k).page (n : WithTop ℕ) = FC.finitePage s k n := by
+  rfl
+
+/-- 有界构造的页投影与有限页投影一致。 -/
+@[simp]
+theorem FilteredComplex.toSSData_pageπ_eq_finitePageπ (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    (FC.toSSData bnd s k).pageπ (n : WithTop ℕ) = FC.finitePageπ s k n := by
+  rfl
+
+/-- 有界 `SSData` 的有限页与有限页核心之间的规范同构。 -/
+noncomputable def FilteredComplex.finitePageIso (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    (FC.toSSData bnd s k).page (n : WithTop ℕ) ≅ FC.finitePage s k n :=
+  eqToIso (FC.toSSData_page_eq_finitePage bnd s k n)
 
 -- Large proof with many kernel/cokernel factoring steps for the induced page differential
 /-- The induced differential on pages: `d_r : E_r^{s,k} → E_r^{s+r,k-1}`.
@@ -1025,9 +1181,9 @@ theorem FilteredComplex.boundary_zero_apply (FC : FilteredComplex C)
       `Z_n = { x ∈ F^s | dx ∈ F^{s+n} }` and `B_n = { dz | z ∈ F^{s-n}, dz ∈ F^s }`
     - Target: `E_n^{s+n,k-1} = Z_n^{s+n,k-1} / B_n^{s+n,k-1}`
     - Map: send class of x to class of dx -/
-noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
-    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
-    (FC.toSSData bnd s k).page ↑n ⟶ (FC.toSSData bnd (s + ↑n) (k - 1)).page ↑n := by
+noncomputable def FilteredComplex.finitePageDifferential (FC : FilteredComplex C)
+    (s k : ℤ) (n : ℕ) :
+    FC.finitePage s k n ⟶ FC.finitePage (s + ↑n) (k - 1) n := by
   -- === Source side abbreviations ===
   set ι_s := Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k) (FC.fil_anti s k) with hι_s_def
   let πV := FC.filToAssocGraded s k
@@ -1077,7 +1233,7 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
   -- === Step 3: Build ψ : kerZ.underlying → target page ===
   set to_Z_n_t := lift_to_kerZ' ≫ factorThruImageSubobject (kerZ'.arrow ≫ πV')
     with hto_Z_n_t_def
-  set pageπ' := (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ ↑n with hpageπ'_def
+  let pageπ' := FC.finitePageπ (s + ↑n) (k - 1) n
   set ψ := to_Z_n_t ≫ pageπ' with hψ_def
   -- === Step 4: Descend ψ through epi (kerZ → Z_n_s) using Abelian.epiDesc ===
   set p := factorThruImageSubobject (kerZ.arrow ≫ πV) with hp_def
@@ -1247,8 +1403,8 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
     -- We need to show kernel.ι p ≫ to_Z_n_t factors through ofLE(B_n_t, Z_n_t)
     -- This follows from: (kernel.ι p ≫ to_Z_n_t) ≫ Z_n_t.arrow = kernel.ι p ≫ lift_n ≫ πV'
     -- factors through B_n_t.arrow (h_bnd_fac).
-    set B_n_t := FC.boundarySubobject (s + ↑n) (k - 1) ↑n with hB_n_t_def
-    set Z_n_t := FC.cycleSubobject (s + ↑n) (k - 1) ↑n with hZ_n_t_def
+    let B_n_t := FC.boundarySubobject (s + ↑n) (k - 1) ↑n
+    let Z_n_t := FC.cycleSubobject (s + ↑n) (k - 1) ↑n
     have hB_le_Z := FC.B_le_Z_aux (s + ↑n) (k - 1) ↑n
     -- to_Z_n_t ≫ Z_n_t.arrow = lift_n ≫ πV'
     -- (since Z_n_t = imageSubobject(kerZ'.arrow ≫ πV') and
@@ -1283,22 +1439,18 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
         _ = γ ≫ B_n_t.arrow := hγ_spec.symm
         _ = (γ ≫ Subobject.ofLE B_n_t Z_n_t hB_le_Z) ≫ Z_n_t.arrow := by
           rw [Category.assoc, Subobject.ofLE_arrow]
-    -- cokernel condition: ofLE(B, Z) ≫ pageπ' = 0
-    have h_cok : Subobject.ofLE B_n_t Z_n_t hB_le_Z ≫ pageπ' = 0 := by
-      rw [hpageπ'_def]
-      change Subobject.ofLE B_n_t Z_n_t hB_le_Z ≫
-        cokernel.π (Subobject.ofLE (FC.boundarySubobject (s + ↑n) (k - 1) ↑n)
-          (FC.cycleSubobject (s + ↑n) (k - 1) ↑n)
-          (FC.B_le_Z_aux (s + ↑n) (k - 1) ↑n)) = 0
-      exact cokernel.condition _
     -- Final computation
     rw [hψ_def]
-    calc kernel.ι p ≫ to_Z_n_t ≫ pageπ'
-        = (kernel.ι p ≫ to_Z_n_t) ≫ pageπ' := (Category.assoc _ _ _).symm
-      _ = (γ ≫ Subobject.ofLE B_n_t Z_n_t hB_le_Z) ≫ pageπ' := by
+    calc kernel.ι p ≫ to_Z_n_t ≫ FC.finitePageπ (s + ↑n) (k - 1) n
+        = (kernel.ι p ≫ to_Z_n_t) ≫
+            FC.finitePageπ (s + ↑n) (k - 1) n := (Category.assoc _ _ _).symm
+      _ = (γ ≫ Subobject.ofLE B_n_t Z_n_t hB_le_Z) ≫
+            FC.finitePageπ (s + ↑n) (k - 1) n := by
         rw [← h_factor_B]
-      _ = γ ≫ (Subobject.ofLE B_n_t Z_n_t hB_le_Z ≫ pageπ') := Category.assoc _ _ _
-      _ = γ ≫ 0 := by rw [h_cok]
+      _ = γ ≫ (Subobject.ofLE B_n_t Z_n_t hB_le_Z ≫
+            FC.finitePageπ (s + ↑n) (k - 1) n) := Category.assoc _ _ _
+      _ = γ ≫ 0 := by
+        erw [FilteredComplex.finitePageπ, cokernel.condition, comp_zero]
       _ = 0 := comp_zero
   set h_on_Zn := Abelian.epiDesc p ψ h_ker_p_ψ with hh_on_Zn_def
   -- h_on_Zn : Z_n_s.underlying → target page, with p ≫ h_on_Zn = ψ
@@ -1382,11 +1534,17 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
     have hσ_factor : q ≫ Subobject.ofLE (FC.boundarySubobject s k ↑n)
         (FC.cycleSubobject s k ↑n) (FC.B_le_Z_aux s k ↑n) = σ_s ≫ p := by
       apply (inferInstance : Mono (FC.cycleSubobject s k ↑n).arrow).right_cancellation
-      -- Goal: (q ≫ ofLE) ≫ Z_n.arrow = (σ_s ≫ p) ≫ Z_n.arrow
-      simp only [Category.assoc, Subobject.ofLE_arrow]
-      -- Now both sides should reduce to oI_s ≫ πV
-      rw [Category.assoc, hσ_p_spec]
-      simpa only [hq_def, Category.assoc] using hq_arrow
+      calc
+        (q ≫ Subobject.ofLE (FC.boundarySubobject s k ↑n)
+            (FC.cycleSubobject s k ↑n) (FC.B_le_Z_aux s k ↑n)) ≫
+            (FC.cycleSubobject s k ↑n).arrow =
+            q ≫ Subobject.ofLE (FC.boundarySubobject s k ↑n)
+              (FC.cycleSubobject s k ↑n) (FC.B_le_Z_aux s k ↑n) ≫
+              (FC.cycleSubobject s k ↑n).arrow := Category.assoc _ _ _
+        _ = oI_s ≫ πV := hq_ofLE_spec
+        _ = σ_s ≫ p ≫ (FC.cycleSubobject s k ↑n).arrow := hσ_p_spec.symm
+        _ = (σ_s ≫ p) ≫ (FC.cycleSubobject s k ↑n).arrow :=
+          (Category.assoc _ _ _).symm
     -- === Step 5: σ_s ≫ lift_n = 0 (key: d² = 0) ===
     have hσ_lift_zero : σ_s ≫ lift_n = 0 := by
       apply (inferInstance : Mono (FC.fil (s + ↑n) (k - 1)).arrow).right_cancellation
@@ -1438,17 +1596,39 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
     have h_comp_zero : q ≫ (Subobject.ofLE (FC.boundarySubobject s k ↑n)
         (FC.cycleSubobject s k ↑n)
         (FC.B_le_Z_aux s k ↑n) ≫ h_on_Zn) = 0 := by
-      rw [← Category.assoc, hσ_factor, Category.assoc, hh_on_Zn_def,
-        Abelian.comp_epiDesc]
-      exact hσ_ψ_zero
+      calc
+        q ≫ (Subobject.ofLE (FC.boundarySubobject s k ↑n)
+            (FC.cycleSubobject s k ↑n) (FC.B_le_Z_aux s k ↑n) ≫ h_on_Zn) =
+            (q ≫ Subobject.ofLE (FC.boundarySubobject s k ↑n)
+              (FC.cycleSubobject s k ↑n) (FC.B_le_Z_aux s k ↑n)) ≫ h_on_Zn :=
+          (Category.assoc _ _ _).symm
+        _ = (σ_s ≫ p) ≫ h_on_Zn := by rw [hσ_factor]
+        _ = σ_s ≫ (p ≫ h_on_Zn) := Category.assoc _ _ _
+        _ = σ_s ≫ ψ := by rw [hh_on_Zn_def, Abelian.comp_epiDesc]
+        _ = 0 := hσ_ψ_zero
     exact (cancel_epi q).mp (by rw [h_comp_zero, comp_zero])
   -- Final: cokernel.desc gives source page → target page
   exact cokernel.desc _ h_on_Zn h_B_zero
 
+/-- 有界过滤复形的页微分。它是无界也可用的有限页核心
+在规范页同构下的输运；有界性只用于确定 `E∞` 层。 -/
+noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    (FC.toSSData bnd s k).page (n : WithTop ℕ) ⟶
+      (FC.toSSData bnd (s + ↑n) (k - 1)).page (n : WithTop ℕ) :=
+  FC.finitePageDifferential s k n
+
+/-- 在有限页的定义相等下，有界包装的页微分就是有限页核心微分。 -/
+@[simp]
+theorem FilteredComplex.pageDifferential_eq_finitePageDifferential
+    (FC : FilteredComplex C) (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    FC.pageDifferential bnd s k n = FC.finitePageDifferential s k n := by
+  rfl
+
 /-- 页微分在一个核代表元上的计算式：若过滤层中的微分由 `v` 表示，
 则源页代表元的微分等于 `v` 的目标页类。 -/
-theorem FilteredComplex.pageDifferential_on_kernel (FC : FilteredComplex C)
-    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+theorem FilteredComplex.finitePageDifferential_on_kernel (FC : FilteredComplex C)
+    (s k : ℤ) (n : ℕ) :
     let f := (FC.fil s k).arrow ≫ FC.d k ≫
       cokernel.π ((FC.fil (s + ↑n) (k - 1)).arrow)
     let g := (FC.fil (s + ↑n) (k - 1)).arrow ≫ FC.d (k - 1) ≫
@@ -1461,15 +1641,15 @@ theorem FilteredComplex.pageDifferential_on_kernel (FC : FilteredComplex C)
         v ≫ (FC.fil (s + ↑n) (k - 1)).arrow)
       (hvg : v ≫ g = 0),
       (u ≫ factorThruImageSubobject (K.arrow ≫ FC.filToAssocGraded s k)) ≫
-          (FC.toSSData bnd s k).pageπ (↑n) ≫ FC.pageDifferential bnd s k n =
+          FC.finitePageπ s k n ≫ FC.finitePageDifferential s k n =
         (factorThruKernelSubobject g v hvg ≫
           factorThruImageSubobject (K'.arrow ≫
             FC.filToAssocGraded (s + ↑n) (k - 1))) ≫
-          (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ (↑n) := by
+          FC.finitePageπ (s + ↑n) (k - 1) n := by
   dsimp only
   intro T u v hv hvg
-  unfold FilteredComplex.pageDifferential
-  simp only [SSData.pageπ, SSData.page, Category.assoc,
+  unfold FilteredComplex.finitePageDifferential
+  simp only [FilteredComplex.finitePageπ, Category.assoc,
     cokernel.π_desc, Abelian.comp_epiDesc]
   let f := (FC.fil s k).arrow ≫ FC.d k ≫
     cokernel.π ((FC.fil (s + ↑n) (k - 1)).arrow)
@@ -1507,11 +1687,92 @@ theorem FilteredComplex.pageDifferential_on_kernel (FC : FilteredComplex C)
       _ = v := hlift
       _ = factorThruKernelSubobject g v hvg ≫ K'.arrow := by
         rw [factorThruKernelSubobject_comp_arrow]
-  simpa only [Category.assoc, SSData.pageπ, SSData.page] using
+  simpa only [Category.assoc, FilteredComplex.finitePageπ] using
     congrArg (fun z : T ⟶ Subobject.underlying.obj K' =>
       z ≫ factorThruImageSubobject (K'.arrow ≫
         FC.filToAssocGraded (s + ↑n) (k - 1)) ≫
-        (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ (↑n)) hker
+        FC.finitePageπ (s + ↑n) (k - 1) n) hker
+
+/-- 未截断过滤复形中的严格微分等式在有限页上给出相应的页微分等式。
+此结论只使用有限循环层，因此不需要过滤有界。 -/
+theorem FilteredComplex.finitePageDifferential_of_lift (FC : FilteredComplex C)
+    (s k : ℤ) (n : ℕ) {T : C}
+    {xl : T ⟶ Subobject.underlying.obj (FC.fil s k)}
+    {yl : T ⟶ Subobject.underlying.obj (FC.fil (s + (n : ℤ)) (k - 1))}
+    (hd : xl ≫ FC.filDiff s k =
+      yl ≫ Subobject.ofLE (FC.fil (s + (n : ℤ)) (k - 1))
+        (FC.fil s (k - 1)) (FC.fil_anti_of_le (k - 1) (by omega))) :
+    FC.sourceCycleLift (n : ℤ) (Int.natCast_nonneg n) s k hd ≫
+        FC.finitePageπ s k n ≫ FC.finitePageDifferential s k n =
+      FC.targetCycleLift (n : ℤ) (Int.natCast_nonneg n) s k hd ≫
+        FC.finitePageπ (s + (n : ℤ)) (k - 1) n := by
+  let f := (FC.fil s k).arrow ≫ FC.d k ≫
+    cokernel.π ((FC.fil (s + (n : ℤ)) (k - 1)).arrow)
+  let g := (FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫ FC.d (k - 1) ≫
+    cokernel.π ((FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow)
+  let K := kernelSubobject f
+  have hxl : xl ≫ f = 0 := by
+    simpa only [f, Category.assoc] using
+      FC.filDiff_to_cokernel_eq_zero s k (n : ℤ) (Int.natCast_nonneg n) hd
+  let u := factorThruKernelSubobject f xl hxl
+  have hyl : yl ≫ g = 0 := by
+    have hcyc := FC.targetLift_filDiff_eq_zero s k (n : ℤ)
+      (Int.natCast_nonneg n) hd
+    have hraw : yl ≫ (FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫
+        FC.d (k - 1) = 0 := by
+      calc
+        yl ≫ (FC.fil (s + (n : ℤ)) (k - 1)).arrow ≫ FC.d (k - 1) =
+            yl ≫ FC.filDiff (s + (n : ℤ)) (k - 1) ≫
+              (FC.fil (s + (n : ℤ)) (k - 1 - 1)).arrow := by
+                rw [FC.filDiff_comp_arrow]
+        _ = 0 := by rw [← Category.assoc, hcyc, zero_comp]
+    simpa only [g, Category.assoc, zero_comp] using
+      congrArg (fun q => q ≫
+        cokernel.π ((FC.fil (s + (n : ℤ) + (n : ℤ)) (k - 1 - 1)).arrow)) hraw
+  have hv : u ≫ K.arrow ≫ (FC.fil s k).arrow ≫ FC.d k =
+      yl ≫ (FC.fil (s + (n : ℤ)) (k - 1)).arrow := by
+    calc
+      u ≫ K.arrow ≫ (FC.fil s k).arrow ≫ FC.d k =
+          xl ≫ (FC.fil s k).arrow ≫ FC.d k := by
+            simpa only [Category.assoc] using
+              congrArg (fun q => q ≫ (FC.fil s k).arrow ≫ FC.d k)
+                (factorThruKernelSubobject_comp_arrow f xl hxl)
+      _ = xl ≫ FC.filDiff s k ≫ (FC.fil s (k - 1)).arrow := by
+            rw [FC.filDiff_comp_arrow]
+      _ = yl ≫ Subobject.ofLE (FC.fil (s + (n : ℤ)) (k - 1))
+            (FC.fil s (k - 1)) (FC.fil_anti_of_le (k - 1) (by omega)) ≫
+            (FC.fil s (k - 1)).arrow := by
+              simpa only [Category.assoc] using
+                congrArg (fun q => q ≫ (FC.fil s (k - 1)).arrow) hd
+      _ = yl ≫ (FC.fil (s + (n : ℤ)) (k - 1)).arrow := by
+            rw [Subobject.ofLE_arrow]
+  simpa only [f, g, K, u, FilteredComplex.sourceCycleLift,
+    FilteredComplex.targetCycleLift, Int.toNat_natCast] using
+    FC.finitePageDifferential_on_kernel s k n u yl hv hyl
+
+/-- 有界页微分在核代表元上的计算式。 -/
+theorem FilteredComplex.pageDifferential_on_kernel (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    let f := (FC.fil s k).arrow ≫ FC.d k ≫
+      cokernel.π ((FC.fil (s + ↑n) (k - 1)).arrow)
+    let g := (FC.fil (s + ↑n) (k - 1)).arrow ≫ FC.d (k - 1) ≫
+      cokernel.π ((FC.fil (s + ↑n + ↑n) (k - 1 - 1)).arrow)
+    let K := kernelSubobject f
+    let K' := kernelSubobject g
+    ∀ {T : C} (u : T ⟶ Subobject.underlying.obj K)
+      (v : T ⟶ Subobject.underlying.obj (FC.fil (s + ↑n) (k - 1)))
+      (hv : u ≫ K.arrow ≫ (FC.fil s k).arrow ≫ FC.d k =
+        v ≫ (FC.fil (s + ↑n) (k - 1)).arrow)
+      (hvg : v ≫ g = 0),
+      (u ≫ factorThruImageSubobject (K.arrow ≫ FC.filToAssocGraded s k)) ≫
+          (FC.toSSData bnd s k).pageπ (↑n) ≫ FC.pageDifferential bnd s k n =
+        (factorThruKernelSubobject g v hvg ≫
+          factorThruImageSubobject (K'.arrow ≫
+            FC.filToAssocGraded (s + ↑n) (k - 1))) ≫
+          (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ (↑n) := by
+  dsimp only
+  intro T u v hv hvg
+  exact FC.finitePageDifferential_on_kernel s k n u v hv hvg
 
 -- Heavy unification through epi/mono factoring of kernel and image subobjects
 /-- The kernel of `Abelian.epiDesc p g hg` (where `p` is epi) is the image of
@@ -1647,16 +1908,16 @@ private theorem kernelSubobject_cokernel_desc' {C' : Type*} [Category C'] [Abeli
         Category.assoc, cokernel.π_desc, kernelSubobject_arrow_comp]
 
 -- Long proof: d² = 0 requires nested kernel/image factoring across three filtration levels
-theorem FilteredComplex.pageDifferential_comp (FC : FilteredComplex C)
-    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
-    FC.pageDifferential bnd s k n ≫ FC.pageDifferential bnd (s + ↑n) (k - 1) n = 0 := by
+theorem FilteredComplex.finitePageDifferential_comp (FC : FilteredComplex C)
+    (s k : ℤ) (n : ℕ) :
+    FC.finitePageDifferential s k n ≫ FC.finitePageDifferential (s + ↑n) (k - 1) n = 0 := by
   -- Step 1: Cancel epi cokernel.π(ofLE(B₁, Z₁))
   set f₁ := Subobject.ofLE (FC.boundarySubobject s k ↑n) (FC.cycleSubobject s k ↑n)
     (FC.B_le_Z_aux s k ↑n)
   haveI : Epi (cokernel.π f₁) := inferInstance
-  rw [show FC.pageDifferential bnd s k n ≫ FC.pageDifferential bnd (s + ↑n) (k - 1) n =
-    FC.pageDifferential bnd s k n ≫ FC.pageDifferential bnd (s + ↑n) (k - 1) n from rfl]
-  rw [← cancel_epi (cokernel.π f₁), comp_zero, ← Category.assoc]
+  rw [show FC.finitePageDifferential s k n ≫ FC.finitePageDifferential (s + ↑n) (k - 1) n =
+    FC.finitePageDifferential s k n ≫ FC.finitePageDifferential (s + ↑n) (k - 1) n from rfl]
+  erw [← cancel_epi (cokernel.π f₁), comp_zero, ← Category.assoc]
   erw [cokernel.π_desc]
   -- Step 2: Cancel epi p₁ = factorThruImageSubobject(kerZ₁.arrow ≫ πV₁)
   set f_n₁ := (FC.fil s k).arrow ≫ FC.d k ≫ cokernel.π ((FC.fil (s + ↑n) (k - 1)).arrow)
@@ -1731,17 +1992,26 @@ theorem FilteredComplex.pageDifferential_comp (FC : FilteredComplex C)
   -- Use erw [Category.assoc] twice to fully right-associate, then d_comp_d k
   erw [Category.assoc, Category.assoc, FC.d_comp_d k, comp_zero, comp_zero]
 
+/-- 有界页微分的平方为零；这是有限页核心结论在规范同构下的输运。 -/
+theorem FilteredComplex.pageDifferential_comp (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    FC.pageDifferential bnd s k n ≫
+      FC.pageDifferential bnd (s + ↑n) (k - 1) n = 0 := by
+  change FC.finitePageDifferential s k n ≫
+    FC.finitePageDifferential (s + ↑n) (k - 1) n = 0
+  exact FC.finitePageDifferential_comp s k n
+
 -- Multi-step proof: Z_{n+1} ↪ Z_n maps to kernel of page differential via index shifting
 /-- The ≥ direction of Z_succ: image(ofLE(Z_{n+1}, Z_n) ≫ pageπ n) ≤ kernel(pageDifferential).
     Elements of Z_{n+1} (deeper cycle condition: dx ∈ F^{s+n+1}) map to zero under pageDiff
     because their d-image lands in F^{s+n+1}, hence projects to 0 in gr^{s+n}. -/
 theorem pageDifferential_Z_succ_ge (FC : FilteredComplex C)
-    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    (s k : ℤ) (n : ℕ) :
     imageSubobject (
-      Subobject.ofLE ((FC.toSSData bnd s k).Z ↑(n + 1)) ((FC.toSSData bnd s k).Z ↑n)
-        ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) ≫
-      (FC.toSSData bnd s k).pageπ ↑n) ≤
-    kernelSubobject (FC.pageDifferential bnd s k n) := by
+      Subobject.ofLE (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+        (FC.cycleSubobject s k (n : WithTop ℕ))
+        (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) ≫
+      FC.finitePageπ s k n) ≤ kernelSubobject (FC.finitePageDifferential s k n) := by
   -- It suffices to show: ofLE(Z_{n+1}, Z_n) ≫ pageπ n ≫ pageDiff = 0
   -- Then the imageSubobject of (ofLE ≫ pageπ) has arrow killing pageDiff.
   apply le_kernelSubobject
@@ -1749,10 +2019,10 @@ theorem pageDifferential_Z_succ_ge (FC : FilteredComplex C)
   -- Factor: imageSubobject(f).arrow = factorThruImage(f)⁻¹ (not quite)
   -- Use: factorThruImage(f) is epi and factorThruImage(f) ≫ imageSubobject(f).arrow = f.
   -- So imageSubobject(f).arrow ≫ g = 0 ↔ (cancel epi factorThruImage(f)) f ≫ g = 0.
-  set ofLE_pageπ := Subobject.ofLE ((FC.toSSData bnd s k).Z ↑(n + 1))
-    ((FC.toSSData bnd s k).Z ↑n)
-    ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) ≫
-    (FC.toSSData bnd s k).pageπ ↑n with h_ofLE_pageπ
+  set ofLE_pageπ := Subobject.ofLE (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+    (FC.cycleSubobject s k (n : WithTop ℕ))
+    (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) ≫
+    FC.finitePageπ s k n with h_ofLE_pageπ
   rw [← cancel_epi (factorThruImageSubobject ofLE_pageπ), comp_zero,
     ← Category.assoc, imageSubobject_arrow_comp]
   -- Goal: ofLE_pageπ ≫ pageDiff = 0
@@ -1805,16 +2075,16 @@ theorem pageDifferential_Z_succ_ge (FC : FilteredComplex C)
           simp only [Category.assoc, cokernel.condition, comp_zero]
   set β := Subobject.ofLE kerZ1 kerZ hkerZ1_le
   -- Prove p1 ≫ ofLE(Z_{n+1}, Z_n) = β ≫ p by mono-cancellation on Z_n.arrow
-  have h_factor : p1 ≫ Subobject.ofLE ((FC.toSSData bnd s k).Z ↑(n + 1))
-      ((FC.toSSData bnd s k).Z ↑n)
-      ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) = β ≫ p := by
-    apply (inferInstance : Mono ((FC.toSSData bnd s k).Z ↑n).arrow).right_cancellation
+  have h_factor : p1 ≫ Subobject.ofLE (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+      (FC.cycleSubobject s k (n : WithTop ℕ))
+      (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) = β ≫ p := by
+    apply (inferInstance : Mono (FC.cycleSubobject s k (n : WithTop ℕ)).arrow).right_cancellation
     simp only [Category.assoc]
     -- LHS: p1 ≫ ofLE(Z_{n+1}, Z_n) ≫ Z_n.arrow = p1 ≫ Z_{n+1}.arrow = kerZ1.arrow ≫ πV
     -- RHS: β ≫ p ≫ Z_n.arrow = β ≫ kerZ.arrow ≫ πV = kerZ1.arrow ≫ πV
     -- Unfold set-names and use imageSubobject_arrow_comp + ofLE_arrow
     simp only [p1, p, β]
-    rw [Subobject.ofLE_arrow]
+    erw [Subobject.ofLE_arrow]
     erw [imageSubobject_arrow_comp, imageSubobject_arrow_comp]
     rw [← Category.assoc, Subobject.ofLE_arrow]
   -- Now use h_factor: p1 ≫ ofLE = β ≫ p to rewrite
@@ -2071,12 +2341,13 @@ private theorem correction_kills_cokernel' {C' : Type*}
     and `kernelSubobject_epiDesc'`, then constructing a factorization through Z_{n+1}
     using pullback + correction. -/
 theorem pageDifferential_Z_succ_le (FC : FilteredComplex C)
-    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
-    kernelSubobject (FC.pageDifferential bnd s k n) ≤
+    (s k : ℤ) (n : ℕ) :
+    kernelSubobject (FC.finitePageDifferential s k n) ≤
     imageSubobject (
-      Subobject.ofLE ((FC.toSSData bnd s k).Z ↑(n + 1)) ((FC.toSSData bnd s k).Z ↑n)
-        ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) ≫
-      (FC.toSSData bnd s k).pageπ ↑n) := by
+      Subobject.ofLE (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+        (FC.cycleSubobject s k (n : WithTop ℕ))
+        (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) ≫
+      FC.finitePageπ s k n) := by
   -- Reconstruct the internal abbreviations of pageDifferential
   let ι_s := Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k) (FC.fil_anti s k)
   let πV := FC.filToAssocGraded s k
@@ -2115,12 +2386,12 @@ theorem pageDifferential_Z_succ_le (FC : FilteredComplex C)
   have h_ltk_spec : lift_to_kerZ' ≫ kerZ'.arrow = lift_n :=
     factorThruKernelSubobject_comp_arrow f_n' lift_n h_lift_in_kerZ'
   let to_Z_n_t := lift_to_kerZ' ≫ factorThruImageSubobject (kerZ'.arrow ≫ πV')
-  let pageπ_t := (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ ↑n
+  let pageπ_t := FC.finitePageπ (s + ↑n) (k - 1) n
   set ψ := to_Z_n_t ≫ pageπ_t with hψ_def
   -- Phase A: Establish kernelSubobject(pageDiff) = imageSubobject((ker ψ).arrow ≫ p ≫ pageπ)
   -- Use erw in a have block to contain the pollution
-  have h_ker_le : kernelSubobject (FC.pageDifferential bnd s k n) ≤
-      imageSubobject ((kernelSubobject ψ).arrow ≫ p ≫ (FC.toSSData bnd s k).pageπ ↑n) := by
+  have h_ker_le : kernelSubobject (FC.finitePageDifferential s k n) ≤
+      imageSubobject ((kernelSubobject ψ).arrow ≫ p ≫ FC.finitePageπ s k n) := by
     erw [kernelSubobject_cokernel_epiDesc_eq']
     exact le_refl _
   -- Phase B: Show imageSubobject((ker ψ).arrow ≫ p ≫ pageπ) ≤ imageSubobject(ofLE ≫ pageπ)
@@ -2156,29 +2427,29 @@ theorem pageDifferential_Z_succ_le (FC : FilteredComplex C)
   let β := Subobject.ofLE kerZ1 kerZ hkerZ1_le
   let p1 := factorThruImageSubobject (kerZ1.arrow ≫ πV)
   haveI hp1_epi : Epi p1 := inferInstance
-  have h_Zn_eq : (FC.toSSData bnd s k).Z ↑n = imageSubobject (kerZ.arrow ≫ πV) := by
+  have h_Zn_eq : FC.cycleSubobject s k (n : WithTop ℕ) = imageSubobject (kerZ.arrow ≫ πV) := by
     subst kerZ
     subst f_n
     subst πV
     rfl
-  have h_Zn1_eq : (FC.toSSData bnd s k).Z ↑(n + 1) =
+  have h_Zn1_eq : FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ) =
       imageSubobject (kerZ1.arrow ≫ πV) := by
     subst kerZ1
     subst f_n1
     subst πV
     rfl
-  have h_factor : p1 ≫ Subobject.ofLE ((FC.toSSData bnd s k).Z ↑(n + 1))
-      ((FC.toSSData bnd s k).Z ↑n)
-      ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) = β ≫ p := by
+  have h_factor : p1 ≫ Subobject.ofLE (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+      (FC.cycleSubobject s k (n : WithTop ℕ))
+      (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) = β ≫ p := by
     cases h_Zn1_eq
     cases h_Zn_eq
-    apply (inferInstance : Mono ((FC.toSSData bnd s k).Z ↑n).arrow).right_cancellation
+    apply (inferInstance : Mono (FC.cycleSubobject s k (n : WithTop ℕ)).arrow).right_cancellation
     simp only [Category.assoc, p1, p, β]
     rw [Subobject.ofLE_arrow]
     erw [imageSubobject_arrow_comp, imageSubobject_arrow_comp]
     rw [← Category.assoc, Subobject.ofLE_arrow]
   -- Key abbreviation: h_p_Z
-  have h_p_Z : p ≫ ((FC.toSSData bnd s k).Z ↑n).arrow = kerZ.arrow ≫ πV :=
+  have h_p_Z : p ≫ (FC.cycleSubobject s k (n : WithTop ℕ)).arrow = kerZ.arrow ≫ πV :=
     imageSubobject_arrow_comp (kerZ.arrow ≫ πV)
   -- === Step 1: Factor (ker ψ).arrow ≫ to_Z_n_t through ker(pageπ_t) ===
   have h_to_Z_kills : ((kernelSubobject ψ).arrow ≫ to_Z_n_t) ≫ pageπ_t = 0 := by
@@ -2396,7 +2667,7 @@ theorem pageDifferential_Z_succ_le (FC : FilteredComplex C)
     factorThruKernelSubobject_comp_arrow _ _ _
   -- Key equation: w_fac ≫ β ≫ p = e ≫ (ker ψ).arrow ≫ p (by mono cancellation)
   have h_key_eq : w_fac ≫ β ≫ p = e ≫ (kernelSubobject ψ).arrow ≫ p := by
-    apply (inferInstance : Mono ((FC.toSSData bnd s k).Z ↑n).arrow).right_cancellation
+    apply (inferInstance : Mono (FC.cycleSubobject s k (n : WithTop ℕ)).arrow).right_cancellation
     simp only [Category.assoc]
     rw [h_p_Z]
     -- Goal: w_fac ≫ β ≫ kerZ.arrow ≫ πV = e ≫ (ker ψ).arrow ≫ kerZ.arrow ≫ πV
@@ -2413,45 +2684,76 @@ theorem pageDifferential_Z_succ_le (FC : FilteredComplex C)
   --   imageSubobject((ker ψ).arrow ≫ p ≫ pageπ) ≤ imageSubobject(ofLE ≫ pageπ)
   -- Step 1: imageSubobject_epi_comp' removes e
   rw [(imageSubobject_epi_comp' e
-    ((kernelSubobject ψ).arrow ≫ p ≫ (FC.toSSData bnd s k).pageπ ↑n)).symm]
+    ((kernelSubobject ψ).arrow ≫ p ≫ FC.finitePageπ s k n)).symm]
   -- Goal: imageSubobject(e ≫ (ker ψ).arrow ≫ p ≫ pageπ) ≤ imageSubobject(ofLE ≫ pageπ)
   -- Step 2: rewrite e ≫ ... = (w_fac ≫ p1) ≫ (ofLE ≫ pageπ)
-  have h_rewrite : e ≫ (kernelSubobject ψ).arrow ≫ p ≫ (FC.toSSData bnd s k).pageπ ↑n =
-      (w_fac ≫ p1) ≫ (Subobject.ofLE ((FC.toSSData bnd s k).Z ↑(n + 1))
-        ((FC.toSSData bnd s k).Z ↑n)
-        ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) ≫
-        (FC.toSSData bnd s k).pageπ ↑n) := by
+  have h_rewrite : e ≫ (kernelSubobject ψ).arrow ≫ p ≫ FC.finitePageπ s k n =
+      (w_fac ≫ p1) ≫ (Subobject.ofLE (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+        (FC.cycleSubobject s k (n : WithTop ℕ))
+        (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) ≫
+        FC.finitePageπ s k n) := by
     -- h_key_eq : w_fac ≫ β ≫ p = e ≫ (ker ψ).arrow ≫ p  (right-assoc on both sides)
     -- h_factor : p1 ≫ ofLE(...) = β ≫ p  (right-assoc)
     -- Use the prefix equation to derive the full equation
     have h_prefix : e ≫ (kernelSubobject ψ).arrow ≫ p =
-        w_fac ≫ p1 ≫ Subobject.ofLE ((FC.toSSData bnd s k).Z ↑(n + 1))
-        ((FC.toSSData bnd s k).Z ↑n)
-        ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) := by
+        w_fac ≫ p1 ≫ Subobject.ofLE (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+        (FC.cycleSubobject s k (n : WithTop ℕ))
+        (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) := by
       rw [← h_key_eq]; congr 1; exact h_factor.symm
     -- Left-associate everything to use h_prefix as a prefix rewrite
-    rw [show e ≫ (kernelSubobject ψ).arrow ≫ p ≫ (FC.toSSData bnd s k).pageπ ↑n =
-      (e ≫ (kernelSubobject ψ).arrow ≫ p) ≫ (FC.toSSData bnd s k).pageπ ↑n from by
+    rw [show e ≫ (kernelSubobject ψ).arrow ≫ p ≫ FC.finitePageπ s k n =
+      (e ≫ (kernelSubobject ψ).arrow ≫ p) ≫ FC.finitePageπ s k n from by
       simp only [Category.assoc],
       h_prefix]
     simp only [Category.assoc]
   rw [h_rewrite]
   exact imageSubobject_comp_le _ _
 
+/-- 有界页微分的核不超过下一循环层在当前页中的像。 -/
+theorem pageDifferential_Z_succ_le_bounded (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    kernelSubobject (FC.pageDifferential bnd s k n) ≤
+      imageSubobject (Subobject.ofLE
+        ((FC.toSSData bnd s k).Z ↑(n + 1)) ((FC.toSSData bnd s k).Z ↑n)
+        ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) ≫
+        (FC.toSSData bnd s k).pageπ ↑n) := by
+  change kernelSubobject (FC.finitePageDifferential s k n) ≤
+    imageSubobject (Subobject.ofLE
+      (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+      (FC.cycleSubobject s k (n : WithTop ℕ))
+      (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) ≫
+      FC.finitePageπ s k n)
+  exact pageDifferential_Z_succ_le FC s k n
+
+/-- 下一循环层在当前有界页中的像不超过页微分的核。 -/
+theorem pageDifferential_Z_succ_ge_bounded (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    imageSubobject (Subobject.ofLE
+        ((FC.toSSData bnd s k).Z ↑(n + 1)) ((FC.toSSData bnd s k).Z ↑n)
+        ((FC.toSSData bnd s k).Z_anti (by exact_mod_cast Nat.le_succ n)) ≫
+        (FC.toSSData bnd s k).pageπ ↑n) ≤
+      kernelSubobject (FC.pageDifferential bnd s k n) := by
+  change imageSubobject (Subobject.ofLE
+      (FC.cycleSubobject s k ((n + 1 : ℕ) : WithTop ℕ))
+      (FC.cycleSubobject s k (n : WithTop ℕ))
+      (FC.cycleSubobject_nat_anti s k (Nat.le_succ n)) ≫
+      FC.finitePageπ s k n) ≤
+    kernelSubobject (FC.finitePageDifferential s k n)
+  exact pageDifferential_Z_succ_ge FC s k n
+
 
 -- Long proof: image of page differential = B_{n+1}/B_n via pullback and boundary factoring
 /-- The image of the page differential `d_n` at `(s,k)` equals `B_{n+1}/B_n` at the target
     `(s+n, k-1)`. This is the content of the `B_succ` field for the spectral sequence. -/
-theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
-    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
-    imageSubobject (FC.pageDifferential bnd s k n) =
+theorem FilteredComplex.finitePageDifferential_B_succ (FC : FilteredComplex C)
+    (s k : ℤ) (n : ℕ) :
+    imageSubobject (FC.finitePageDifferential s k n) =
       imageSubobject (Subobject.ofLE
-        ((FC.toSSData bnd (s + ↑n) (k - 1)).B ↑(n + 1))
-        ((FC.toSSData bnd (s + ↑n) (k - 1)).Z ↑n)
-        (le_trans ((FC.toSSData bnd (s + ↑n) (k - 1)).B_le_Z ↑(n + 1))
-          ((FC.toSSData bnd (s + ↑n) (k - 1)).Z_anti
-            (by exact_mod_cast Nat.le_succ n))) ≫
-        (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ ↑n) := by
+        (FC.boundarySubobject (s + ↑n) (k - 1) ((n + 1 : ℕ) : WithTop ℕ))
+        (FC.cycleSubobject (s + ↑n) (k - 1) (n : WithTop ℕ))
+        (le_trans (FC.B_le_Z_aux (s + ↑n) (k - 1) (n + 1))
+          (FC.cycleSubobject_nat_anti (s + ↑n) (k - 1) (Nat.le_succ n))) ≫
+        FC.finitePageπ (s + ↑n) (k - 1) n) := by
   -- === Reconstruct the internal abbreviations of pageDifferential ===
   set ι_s := Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k) (FC.fil_anti s k) with hι_s_def
   set πV := FC.filToAssocGraded s k with hπV_def
@@ -2490,7 +2792,7 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
     factorThruKernelSubobject_comp_arrow f_n' lift_n h_lift_in_kerZ'
   set to_Z_n_t := lift_to_kerZ' ≫ factorThruImageSubobject (kerZ'.arrow ≫ πV')
     with hto_Z_n_t_def
-  set pageπ_t := (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ ↑n with hpageπ_t_def
+  set pageπ_t := FC.finitePageπ (s + ↑n) (k - 1) n with hpageπ_t_def
   set ψ := to_Z_n_t ≫ pageπ_t with hψ_def
   set p := factorThruImageSubobject (kerZ.arrow ≫ πV) with hp_def
   haveI : Epi p := inferInstance
@@ -2499,8 +2801,8 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
   have h_ker_p_ψ : kernel.ι p ≫ ψ = 0 := by
     -- This follows the same proof as in pageDifferential (lines 699-908).
     -- kernel.ι p ≫ to_Z_n_t factors through ofLE(B_n_t, Z_n_t), and cokernel kills it.
-    set B_n_t' := FC.boundarySubobject (s + ↑n) (k - 1) ↑n
-    set Z_n_t' := FC.cycleSubobject (s + ↑n) (k - 1) ↑n
+    let B_n_t' := FC.boundarySubobject (s + ↑n) (k - 1) ↑n
+    let Z_n_t' := FC.cycleSubobject (s + ↑n) (k - 1) ↑n
     have hB_le_Z' := FC.B_le_Z_aux (s + ↑n) (k - 1) ↑n
     -- to_Z_n_t ≫ Z_n_t'.arrow = lift_n ≫ πV'
     have h_to_Z_comp' : to_Z_n_t ≫ Z_n_t'.arrow = lift_n ≫ πV' := by
@@ -2600,19 +2902,14 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
       apply (inferInstance : Mono Z_n_t'.arrow).right_cancellation
       simp only [Category.assoc]
       rw [Subobject.ofLE_arrow, hγ'_spec]
-    have h_cok' : Subobject.ofLE B_n_t' Z_n_t' hB_le_Z' ≫ pageπ_t = 0 := by
-      rw [hpageπ_t_def]
-      change Subobject.ofLE B_n_t' Z_n_t' hB_le_Z' ≫
-        cokernel.π (Subobject.ofLE (FC.boundarySubobject (s + ↑n) (k - 1) ↑n)
-          (FC.cycleSubobject (s + ↑n) (k - 1) ↑n)
-          (FC.B_le_Z_aux (s + ↑n) (k - 1) ↑n)) = 0
-      exact cokernel.condition _
     rw [hψ_def]
     calc kernel.ι p ≫ to_Z_n_t ≫ pageπ_t
         = (kernel.ι p ≫ to_Z_n_t) ≫ pageπ_t := (Category.assoc _ _ _).symm
       _ = (γ' ≫ Subobject.ofLE B_n_t' Z_n_t' hB_le_Z') ≫ pageπ_t := by rw [h_factor_B']
       _ = γ' ≫ (Subobject.ofLE B_n_t' Z_n_t' hB_le_Z' ≫ pageπ_t) := Category.assoc _ _ _
-      _ = γ' ≫ 0 := by rw [h_cok']
+      _ = γ' ≫ 0 := by
+        erw [hpageπ_t_def, FilteredComplex.finitePageπ,
+          cokernel.condition, comp_zero]
       _ = 0 := comp_zero
   set h_on_Zn := Abelian.epiDesc p ψ h_ker_p_ψ with hh_on_Zn_def
   -- h_on_Zn : Z_n_s.underlying → target page, with p ≫ h_on_Zn = ψ
@@ -2632,13 +2929,15 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
   -- Use the approach: first show imageSubobject(pageDiff) = imageSubobject(ψ) indirectly.
   -- Approach: Use erw to access cokernel.π_desc and Abelian.comp_epiDesc, but
   -- contain pollution in a have block.
-  have h_img_pageDiff_eq_ψ : imageSubobject (FC.pageDifferential bnd s k n) =
+  have h_img_pageDiff_eq_ψ : imageSubobject (FC.finitePageDifferential s k n) =
       imageSubobject ψ := by
     -- Step 1: imageSubobject(pageπ_s ≫ pageDiff) = imageSubobject(pageDiff)
-    set pageπ_s := (FC.toSSData bnd s k).pageπ ↑n with hpageπ_s_def
+    set pageπ_s := FC.finitePageπ s k n with hpageπ_s_def
     haveI : Epi pageπ_s := by
-      simp only [hpageπ_s_def, SSData.pageπ]; infer_instance
-    rw [← imageSubobject_epi_comp' pageπ_s (FC.pageDifferential bnd s k n)]
+      rw [hpageπ_s_def]
+      dsimp only [FilteredComplex.finitePageπ]
+      infer_instance
+    rw [← imageSubobject_epi_comp' pageπ_s (FC.finitePageDifferential s k n)]
     -- Goal: imageSubobject(pageπ_s ≫ pageDiff) = imageSubobject(ψ)
     -- Step 2: pageπ_s ≫ pageDiff = h_on_Zn
     erw [cokernel.π_desc]
@@ -2677,8 +2976,8 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
       with hoI_bnd_def
     -- B_{n+1} at target = imageSubobject(oI_bnd ≫ πV')
     -- Z_n at target = imageSubobject(kerZ'.arrow ≫ πV')
-    set B_n1_t := FC.boundarySubobject (s + ↑n) (k - 1) ↑(n + 1) with hB_n1_t_def
-    set Z_n_t := FC.cycleSubobject (s + ↑n) (k - 1) ↑n with hZ_n_t_def
+    let B_n1_t := FC.boundarySubobject (s + ↑n) (k - 1) ↑(n + 1)
+    let Z_n_t := FC.cycleSubobject (s + ↑n) (k - 1) ↑n
     -- lift_n ≫ fil(s+n).arrow = kerZ.arrow ≫ fil(s).arrow ≫ d(k)
     -- This is in imgD_bnd because:
     -- fil(s).arrow ≫ d(k) = eqToHom ≫ fil(s)((k-1)+1).arrow ≫ dToK(k-1)
@@ -2739,8 +3038,7 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
       change FC.boundarySubobject (s + ↑n) (k - 1) ↑(n + 1) ≤
         FC.cycleSubobject (s + ↑n) (k - 1) ↑n
       exact le_trans (FC.B_le_Z_aux (s + ↑n) (k - 1) ↑(n + 1))
-        ((FC.toSSData bnd (s + ↑n) (k - 1)).Z_anti
-          (WithTop.coe_le_coe.mpr (Nat.le_succ n)))
+        (FC.cycleSubobject_nat_anti (s + ↑n) (k - 1) (Nat.le_succ n))
     set factorγ := B_n1_t.factorThru _ h_bnd_fac_to_Z with hfactorγ_def
     have hfactorγ_spec : factorγ ≫ B_n1_t.arrow = to_Z_n_t ≫ Z_n_t.arrow :=
       Subobject.factorThru_arrow _ _ _
@@ -2748,7 +3046,7 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
       apply (inferInstance : Mono Z_n_t.arrow).right_cancellation
       simp only [Category.assoc, Subobject.ofLE_arrow, hfactorγ_spec]
     -- Now ψ = to_Z_n_t ≫ pageπ_t = factorγ ≫ ofLE(B_{n+1}, Z_n) ≫ pageπ_t
-    rw [hψ_def, h_to_Z_eq, Category.assoc]
+    erw [hψ_def, h_to_Z_eq, Category.assoc]
     exact imageSubobject_comp_le _ _
   -- === (≥) direction: imageSubobject(ofLE(B_{n+1}, Z_n) ≫ pageπ_t) ≤ imageSubobject(ψ) ===
   · -- Strategy: Define σ_bnd (lifting of oI_bnd through kerZ'), cancel factorB (epi),
@@ -2760,14 +3058,13 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
     set I_bnd := imgD_bnd ⊓ FC.fil (s + ↑n) (k - 1) with hI_bnd_def
     set oI_bnd := Subobject.ofLE I_bnd (FC.fil (s + ↑n) (k - 1)) inf_le_right
       with hoI_bnd_def
-    set B_n1_t := FC.boundarySubobject (s + ↑n) (k - 1) ↑(n + 1) with hB_n1_t_def
-    set Z_n_t := FC.cycleSubobject (s + ↑n) (k - 1) ↑n with hZ_n_t_def
+    let B_n1_t := FC.boundarySubobject (s + ↑n) (k - 1) ↑(n + 1)
+    let Z_n_t := FC.cycleSubobject (s + ↑n) (k - 1) ↑n
     have hB_le_Z_n1 : B_n1_t ≤ Z_n_t := by
       change FC.boundarySubobject (s + ↑n) (k - 1) ↑(n + 1) ≤
         FC.cycleSubobject (s + ↑n) (k - 1) ↑n
       exact le_trans (FC.B_le_Z_aux (s + ↑n) (k - 1) ↑(n + 1))
-        ((FC.toSSData bnd (s + ↑n) (k - 1)).Z_anti
-          (WithTop.coe_le_coe.mpr (Nat.le_succ n)))
+        (FC.cycleSubobject_nat_anti (s + ↑n) (k - 1) (Nat.le_succ n))
     -- === Step 1: Define σ_bnd : I_bnd → kerZ' (lifting oI_bnd through kerZ') ===
     -- oI_bnd ≫ f_n' = 0 because d² = 0 on the image of d.
     have h_oI_fn' : oI_bnd ≫ f_n' = 0 := by
@@ -2816,7 +3113,7 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
         (Category.assoc _ _ _).symm]
       rw [show (factorB ≫ Subobject.ofLE B_n1_t Z_n_t hB_le_Z_n1) ≫
         Z_n_t.arrow = factorB ≫ B_n1_t.arrow from by
-          rw [Category.assoc, Subobject.ofLE_arrow]]
+          erw [Category.assoc, Subobject.ofLE_arrow]]
       exact imageSubobject_arrow_comp (oI_bnd ≫ πV')
     -- === Step 3: Show factorB ≫ ofLE = σ_to_Z via mono cancellation ===
     set σ_to_Z := σ_bnd ≫ factorThruImageSubobject (kerZ'.arrow ≫ πV') with hσ_to_Z_def
@@ -2828,7 +3125,7 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
         from (Category.assoc _ _ _).symm, hσ_bnd_spec]
     have h_factorB_ofLE_eq : factorB ≫ Subobject.ofLE B_n1_t Z_n_t hB_le_Z_n1 = σ_to_Z := by
       apply (inferInstance : Mono Z_n_t.arrow).right_cancellation
-      rw [Category.assoc, h_factorB_ofLE, hσ_to_Z_spec]
+      erw [Category.assoc, h_factorB_ofLE, hσ_to_Z_spec]
     -- Goal (after show): imageSubobject(ofLE(B_n1_t, Z_n_t) ≫ pageπ_t) ≤ imageSubobject(ψ)
     -- Rewrite factorB out:
     -- imageSubobject(factorB ≫ ofLE ≫ pageπ_t) = imageSubobject(ofLE ≫ pageπ_t)
@@ -2837,7 +3134,7 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
     -- Use have + calc to avoid rewrite issues with opaque names
     have h_img_ofLE_eq : imageSubobject (Subobject.ofLE B_n1_t Z_n_t hB_le_Z_n1 ≫ pageπ_t) =
         imageSubobject (σ_bnd ≫ factorThruImageSubobject (kerZ'.arrow ≫ πV') ≫ pageπ_t) := by
-      rw [← imageSubobject_epi_comp' factorB
+      erw [← imageSubobject_epi_comp' factorB
         (Subobject.ofLE B_n1_t Z_n_t hB_le_Z_n1 ≫ pageπ_t)]
       congr 1
       rw [show factorB ≫ Subobject.ofLE B_n1_t Z_n_t hB_le_Z_n1 ≫ pageπ_t =
@@ -2933,6 +3230,26 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
       simp only [Category.assoc]]
     exact imageSubobject_comp_le _ _
 
+/-- 有界页微分的像是下一边缘层在当前页中的像。 -/
+theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
+    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+    imageSubobject (FC.pageDifferential bnd s k n) =
+      imageSubobject (Subobject.ofLE
+        ((FC.toSSData bnd (s + ↑n) (k - 1)).B ↑(n + 1))
+        ((FC.toSSData bnd (s + ↑n) (k - 1)).Z ↑n)
+        (le_trans ((FC.toSSData bnd (s + ↑n) (k - 1)).B_le_Z ↑(n + 1))
+          ((FC.toSSData bnd (s + ↑n) (k - 1)).Z_anti
+            (by exact_mod_cast Nat.le_succ n))) ≫
+        (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ ↑n) := by
+  change imageSubobject (FC.finitePageDifferential s k n) =
+    imageSubobject (Subobject.ofLE
+      (FC.boundarySubobject (s + ↑n) (k - 1) ((n + 1 : ℕ) : WithTop ℕ))
+      (FC.cycleSubobject (s + ↑n) (k - 1) (n : WithTop ℕ))
+      (le_trans (FC.B_le_Z_aux (s + ↑n) (k - 1) (n + 1))
+        (FC.cycleSubobject_nat_anti (s + ↑n) (k - 1) (Nat.le_succ n))) ≫
+      FC.finitePageπ (s + ↑n) (k - 1) n)
+  exact FC.finitePageDifferential_B_succ s k n
+
 -- Assembling the data fields requires heavy unification of subobject and
 -- page computations
 /-- 第一步（纯数据）：由滤复形组装预谱序列 `PreSS C (ℤ × ℤ)`。
@@ -2984,21 +3301,21 @@ noncomputable def FilteredComplex.toSpectralSequence (FC : FilteredComplex C)
       obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hr
       simp only [Int.toNat_natCast,
         dif_pos (Int.natCast_nonneg n), eqToHom_refl, Category.id_comp, Category.comp_id]
-      -- Goal: kernelSubobject(pageDifferential bnd s k n) =
+      -- Goal: kernelSubobject(pageDifferential s k n) =
       --       imageSubobject(ofLE(Z_{n+1}, Z_n) ≫ pageπ n)
       -- Phase 2: le_antisymm
       apply le_antisymm
       · -- (≤): kernelSubobject(pageDiff) ≤ imageSubobject(ofLE(Z_{n+1}, Z_n) ≫ pageπ n)
-        exact pageDifferential_Z_succ_le FC bnd s k n
+        exact pageDifferential_Z_succ_le_bounded FC bnd s k n
       · -- (≥): imageSubobject(ofLE(Z_{n+1}, Z_n) ≫ pageπ n) ≤ kernelSubobject(pageDiff)
-        exact pageDifferential_Z_succ_ge FC bnd s k n)
+        exact pageDifferential_Z_succ_ge_bounded FC bnd s k n)
     (fun r ⟨s, k⟩ hr => by
       -- Phase 1: Eliminate dite and eqToHom
       dsimp only [FilteredComplex.toPreSS]
       obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hr
       simp only [Int.toNat_natCast,
         dif_pos (Int.natCast_nonneg n), eqToHom_refl, Category.id_comp, Category.comp_id]
-      -- Goal: imageSubobject(pageDifferential bnd s k n) =
+      -- Goal: imageSubobject(pageDifferential s k n) =
       --       imageSubobject(ofLE(B_{n+1}, Z_n, _) ≫ pageπ n) at target (s+↑n, k-1)
       exact FC.pageDifferential_B_succ bnd s k n)
 
@@ -4059,18 +4376,18 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
               (FC.homologyFiltration.F s k) h_Fs1_le_Fs) ≫
             (FC.homologyFiltration.F s k).arrow = ker_to_I_s1 ≫ gen_s1
           simp only [Category.assoc]
-          rw [h_ofLE_arrow]
+          erw [h_ofLE_arrow]
           -- Now: ker_to_I_s1 ≫ fTI gen_s1 ≫ (imageSubobject gen_s1).arrow
           -- = ker_to_I_s1 ≫ gen_s1
           -- (FC.homologyFiltration.F (s+1) k).arrow = (imageSubobject gen_s1).arrow definitionally
           change ker_to_I_s1 ≫ factorThruImageSubobject gen_s1 ≫
             (imageSubobject gen_s1).arrow = ker_to_I_s1 ≫ gen_s1
           rw [imageSubobject_arrow_comp]
-        rw [h_rhs]
+        erw [h_rhs]
         exact h_func_s1.symm
       -- Step E: compose with πRHS = cokernel.π → 0
       change kernel.ι e_Z ≫ (φ_to_Fs ≫ πRHS) = 0
-      rw [← Category.assoc, h_factor_ofLE, Category.assoc, Category.assoc]
+      erw [← Category.assoc, h_factor_ofLE, Category.assoc, Category.assoc]
       rw [show Subobject.ofLE (FC.homologyFiltration.F (s + 1) k)
             (FC.homologyFiltration.F s k) h_Fs1_le_Fs ≫ πRHS = 0
         from cokernel.condition _]
@@ -4112,7 +4429,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
           Subobject.ofLE ((FC.toSSData bnd s k).B ⊤) ((FC.toSSData bnd s k).Z ⊤)
           ((FC.toSSData bnd s k).B_le_Z ⊤) = oI_lift ≫ e_Z := by
         apply (cancel_mono ((FC.toSSData bnd s k).Z ⊤).arrow).mp
-        rw [Category.assoc, Subobject.ofLE_arrow]
+        erw [Category.assoc, Subobject.ofLE_arrow]
         change factorThruImageSubobject (oI ≫ πV) ≫
           ((FC.toSSData bnd s k).B ⊤).arrow = (oI_lift ≫ e_Z) ≫ _
         rw [show ((FC.toSSData bnd s k).B ⊤).arrow =
@@ -4123,7 +4440,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
           kerZ.arrow ≫ πV from imageSubobject_arrow_comp (kerZ.arrow ≫ πV)]
         rw [← Category.assoc, h_oI_lift]
       -- Step B: Cancel epi
-      rw [← cancel_epi (factorThruImageSubobject (oI ≫ πV))]
+      erw [← cancel_epi (factorThruImageSubobject (oI ≫ πV))]
       rw [comp_zero, ← Category.assoc, h_fti_ofLE]
       -- Goal: (oI_lift ≫ e_Z) ≫ fwd_Z = 0
       rw [Category.assoc, h_fwd_Z]
@@ -4358,7 +4675,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
           have : S.leftHomologyπ ≫ σ.hom = cokernel.π S.toCycles :=
             IsColimit.comp_coconePointUniqueUpToIso_hom S.leftHomologyIsCokernel
               (cokernelIsCokernel S.toCycles) WalkingParallelPair.one
-          rw [← this, ← Category.assoc, h_φ_lHπ, zero_comp]
+          erw [← this, ← Category.assoc, h_φ_lHπ, zero_comp]
         -- Factor through kernel(cokernel.π S.toCycles) = Abelian.image(S.toCycles)
         let κ := kernel.lift (cokernel.π S.toCycles)
             (kernel.ι e_Fs ≫ S.liftCycles I_s.arrow h_zero_s) h_φ_cok_tC
@@ -4445,7 +4762,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
           Subobject.ofLE ((FC.toSSData bnd s k).B ⊤) ((FC.toSSData bnd s k).Z ⊤)
           ((FC.toSSData bnd s k).B_le_Z ⊤) = oI_lift ≫ e_Z := by
         apply (cancel_mono ((FC.toSSData bnd s k).Z ⊤).arrow).mp
-        rw [Category.assoc, Subobject.ofLE_arrow]
+        erw [Category.assoc, Subobject.ofLE_arrow]
         change factorThruImageSubobject (oI ≫ πV) ≫
           ((FC.toSSData bnd s k).B ⊤).arrow = (oI_lift ≫ e_Z) ≫ _
         rw [show ((FC.toSSData bnd s k).B ⊤).arrow =
@@ -4455,7 +4772,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
           kerZ.arrow ≫ πV from imageSubobject_arrow_comp (kerZ.arrow ≫ πV)]
         rw [← Category.assoc, h_oI_lift]
       have h_oI_kill : oI_lift ≫ e_Z ≫ πLHS = 0 := by
-        rw [← Category.assoc, ← h_fti_ofLE, Category.assoc]
+        erw [← Category.assoc, ← h_fti_ofLE, Category.assoc]
         rw [show Subobject.ofLE ((FC.toSSData bnd s k).B ⊤) ((FC.toSSData bnd s k).Z ⊤)
             ((FC.toSSData bnd s k).B_le_Z ⊤) ≫ πLHS = 0 from cokernel.condition _]
         rw [comp_zero]
@@ -4506,7 +4823,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
         -- LHS: fTI gen_s1 ≫ ofLE(F_{s+1}, F_s) ≫ (F_s).arrow
         --     = fTI gen_s1 ≫ (F_{s+1}).arrow  (by ofLE_arrow)
         --     = gen_s1                          (by imageSubobject_arrow_comp)
-        rw [Category.assoc, Subobject.ofLE_arrow (FC.homologyFiltration.mono s k)]
+        erw [Category.assoc, Subobject.ofLE_arrow (FC.homologyFiltration.mono s k)]
         change factorThruImageSubobject gen_s1 ≫ (imageSubobject gen_s1).arrow =
           (Subobject.ofLE I_s1 I_s hle ≫ factorThruImageSubobject gen_s) ≫
             (imageSubobject gen_s).arrow
@@ -4515,7 +4832,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
       -- Step 3: substitute and rewrite
       -- Goal: fTI gen_s1 ≫ ofLE(F_{s+1}, F_s) ≫ inv_Fs = 0
       -- Reassociate to (fTI gen_s1 ≫ ofLE(F_{s+1}, F_s)) ≫ inv_Fs
-      rw [← Category.assoc, h_fTI_ofLE, Category.assoc]
+      erw [← Category.assoc, h_fTI_ofLE, Category.assoc]
       -- Goal: ofLE(I_s1, I_s) ≫ (factorThruImageSubobject gen_s ≫ inv_Fs) = 0
       -- factorThruImageSubobject gen_s = e_Fs
       change Subobject.ofLE I_s1 I_s hle ≫ (e_Fs ≫ inv_Fs) = 0
@@ -4586,7 +4903,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
       -- Strategy: cancel_epi πLHS, then cancel_epi e_Z, then algebraic manipulations.
       -- Step 1: It suffices to show πLHS ≫ (fwd ≫ inv) = πLHS (cancel_epi πLHS)
       apply (cancel_epi πLHS).mp
-      rw [Category.comp_id]
+      erw [Category.comp_id]
       -- Now: πLHS ≫ (fwd ≫ inv) = πLHS
       -- πLHS ≫ fwd = fwd_Z by cokernel.π_desc
       have h_πLHS_fwd : πLHS ≫ fwd = fwd_Z := cokernel.π_desc _ _ _
@@ -4640,7 +4957,7 @@ noncomputable def FilteredComplex.weakConvergence (FC : FilteredComplex C)
       -- Strategy: cancel_epi πRHS, then cancel_epi e_Fs, then algebraic manipulations.
       -- Step 1: cancel_epi πRHS
       apply (cancel_epi πRHS).mp
-      rw [Category.comp_id, ← Category.assoc]
+      erw [Category.comp_id, ← Category.assoc]
       -- Goal: (πRHS ≫ inv) ≫ fwd = πRHS
       have h_πRHS_inv' : πRHS ≫ inv = inv_Fs := cokernel.π_desc _ _ _
       rw [h_πRHS_inv']

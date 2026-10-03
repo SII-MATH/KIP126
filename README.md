@@ -33,15 +33,19 @@ formalization.
 The complete historical KIP-base library is retained as the separately compiled
 `KIPBase` component on the same Lean/mathlib 4.32.2 pins. Its original assumptions
 are isolated from `KIP126` and do not count as completed paper proofs. See the
-[migration inventory, paper mapping, and validation commands](migration/kip-base/README.md).
+[component guide](KIPBase/README.md), [reuse boundaries](docs/KIPBASE_GAP_INVENTORY.md),
+and [original migration archive](migration/kip-base/README.md).
 
 ## Project documents and workflow
+
+- [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
+- [Stage layout](docs/STAGE_LAYOUT.md): directory ownership and the Challenge1/Challenge2 delivery chain.
 
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
 document:
 
-- [`aimpaper/`](aimpaper/) contains the target paper and its source material.
+- [`MainPaper/`](MainPaper/) contains the target paper and its source material.
   It is the mathematical document to be formalized; its claims are not, by
   themselves, Lean proofs or project theorems.
 - [`PROJECT_BOUNDARY.md`](PROJECT_BOUNDARY.md) defines what this project does
@@ -60,22 +64,33 @@ document:
   definitions and the roadmap's order, and refines each step into nodes whose
   mathematical statement, dependencies, sources, and intended Lean object can
   be checked together.  A chapter indexes several small Lean modules under
-  `KIP126/Def/`, `KIP126/External/`, and `KIP126/Challenge/`;
-  `KIP126/Def.lean`, `KIP126/Challenge.lean`, and `KIP126/Solution.lean`
-  are package entry points.
+  `KIP126/Def/`, `KIP126/Interface/`, and `KIP126/Main/`;
+  `KIP126/Def.lean` and `KIP126/Main/Solution.lean` are multi-module package
+  entry points. Import the final target directly from
+  `KIP126.Main.Challenge.h6_sq_permanent`.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
-  authoritative for interfaces and proofs that are actually implemented, as
-  well as their import graph.  `Def/` owns mathematical data and properties,
-  `External/` owns provenance-bearing inputs, `Challenge/` owns internal proof
-  targets, `Solution/` owns their matching proofs, and `Checks/` owns
-  compilation regressions.  The
-  [layout migration map](docs/DEF_CHALLENGE_LAYOUT_STATUS.md) records moved
-  source modules and remaining open milestones.
+  authoritative for the implemented interfaces, proofs and dependency graph.
+  `Def/` owns all mathematical objects and the fixed implementation; it never
+  imports Interface or Main. `Interface/` and `Main/` each have exactly three
+  direct directories: `Axiom/`, `Challenge/`, `Solution/`. Challenge1 delivers
+  the Def background; Challenge2, owned by `Interface/Challenge`, delivers
+  literature, computation and comparisons on that same background. The final
+  target in `Main/Challenge/h6_sq_permanent.lean` imports only Def; its proof
+  may consume Challenge2 through Main/Axiom. Stage-0 interface acceptance does
+  not mean certification or the final mathematical proof is complete.
+  `LinProgram/` retains the independent fixed-data pipeline; `Checks/Examples/`
+  contains the finite-table demonstrations. Original source artifacts live in
+  `Source/`; they are evidence, not Lean proof assumptions.
+  Import concrete modules directly instead of adding redundant wrappers that
+  only import one module. Multi-module aggregators and required Lake roots,
+  including `KIPBase.lean`, remain. The
+  [current layout and migration record](docs/STAGE_LAYOUT.md) explains
+  ownership, preserved proof debt, and the old-to-new path map.
   The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
   small executable example connecting imported dimensions and multiplication
   coefficients to an existing spectral sequence's page.
-- [`reference/source-inventory.json`](reference/source-inventory.json), the
-  per-source status records under [`reference/`](reference/), and the Lean
+- [`Source/source-inventory.json`](Source/source-inventory.json), the
+  per-source status records under [`Source/`](Source/), and the Lean
   claim ledger own the catalogue and provenance of external inputs. They record
   evidence and assumptions; they do not turn those inputs into unconditional
   project theorems.
@@ -88,7 +103,7 @@ records through the source inventory and claim ledger.
 
 The intended workflow is therefore:
 
-1. use `aimpaper/` to identify the mathematical target;
+1. use `MainPaper/` to identify the mathematical target;
 2. use `PROJECT_BOUNDARY.md` to decide which claims and inputs are in scope;
 3. use `docs/ROADMAP.md` to choose the next implementation slice;
 4. record its node-level natural-language statement and Lean correspondence
@@ -197,12 +212,12 @@ the generated list is not committed.
 
 ## Provenance and source inventory
 
-`KIP126.External.Provenance` defines the explicit `SourceId`, `SourceRef`,
+`KIP126.Def.References.Provenance` defines the explicit `SourceId`, `SourceRef`,
 `ExternalResult`, and `ExternalEvidence` records.  The typed Lean projection
-of the finite catalogue is in `KIP126.External.SourceInventory`, and the
-claim-level root/owner/dependency ledger is in `KIP126.External.Claims`.
+of the finite catalogue is in `KIP126.Def.References.Literature.SourceInventory`, and the
+claim-level root/owner/dependency ledger is in `KIP126.Def.References.Literature.Claims`.
 Citation metadata, acquisition state, artifact paths, and SHA-256 digests are kept in
-[`reference/source-inventory.json`](reference/source-inventory.json).  Check
+[`Source/source-inventory.json`](Source/source-inventory.json).  Check
 the filesystem ledger and its regression tests with:
 
 ```sh
@@ -254,3 +269,7 @@ The reusable Blueprint workflow lives under
 
 They complement the global `leanblueprint` environment skill. The maintenance
 tools are read-only by default; marker changes require an explicit `--write`.
+
+当前第0步接口、来源适用性、计算范围及后续证明责任见
+[STAGE0_INTERFACES.md](docs/STAGE0_INTERFACES.md)。该文档不以声明存在或编译成功
+代替数学覆盖与对象绑定的复核。

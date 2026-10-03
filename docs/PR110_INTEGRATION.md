@@ -1,9 +1,14 @@
-# PR #110 完整整合记录
+# PR #110 完整整合记录（历史）
+
+本文记录 2026-09-24 的整合过程。下文的分支、PR/CI 状态、路径和证明状态
+仅适用于当时，不是当前操作指引或完成度清单。当前入口见
+[KIPBase 与 KIP126](KIPBASE_GAP_INVENTORY.md) 和
+[C(M) 交付说明](STAGE0_INTERFACES.md)。
 
 ## KIP126 下游入口
 
 实际使用全部从 `KIP126/` 进入：`import KIP126.Def.AdamsE2.Lin`，
-需要乘法自动化时再 `import KIP126.Tactic.LinE2`。
+需要乘法自动化时再 `import KIP126.LinProgram.Tactic.LinE2`。
 数据、生成器、商代数、加法基接口、计算器及内部 Adams 比较接口都已迁入
 KIP126；不需要导入或运行 KIPBase 文件。旧目录只是历史来源，不是下游入口。
 
@@ -24,11 +29,11 @@ KIP126 不直接导入这些旧文件。
 | PR 原件（相对 KIPBase/） | KIP126 对应实现 / 处理 |
 |---|---|
 | `E2pageData.lean` | `External/Computation/LinE2/RawData.lean`，仅替换命名空间 |
-| `E2pageData.generate.py` | `External/Computation/LinE2/generate.py`，独立生成 KIP126 数据；`scripts/generate-lin-e2.py` 为检查入口 |
+| `E2pageData.generate.py` | `External/Computation/LinE2/generate.py`，独立生成 KIP126 数据；`KIP126/LinProgram/Translate/check-e2.py` 为检查入口 |
 | `E2page.lean` | `Def/AdamsE2/` 下的 `LinModel`、`LinProduct`、`LinClasses`、`LinBasisTable`、`LinComputedPolynomial`；三个关系的计算示例在 `Checks/AdamsE2/LinTactic.lean` |
 | `E2pageCompute.lean` | `Def/AdamsE2/LinCompute/Data.lean` |
 | `E2pageExamples.lean` | `Checks/AdamsE2/LinCompute.lean` |
-| `E2pageTactic.lean` | `LinAutomation/{Data,Proofs}.lean` 与 `Tactic/LinE2.lean`，分离算法、待证定理和元程序 |
+| `E2pageTactic.lean` | `LinAutomation/{Data,Proofs}.lean` 与 `LinProgram/Tactic/LinE2.lean`，分离算法、待证定理和元程序 |
 | `E2pageTacticExamples.lean` | `Checks/AdamsE2/LinTactic.lean`，保留正反例和信任警告 |
 | `E2pageUsage.md` | 原文保留；当前说明为 `docs/LIN_E2_INTERFACES.md` |
 | `StableHomotopy/AdamsE2Comparison.lean` | `LinPresentation/{Data,Axiom,Proofs}.lean`，连接固定内部 SSData 页 |
@@ -68,13 +73,13 @@ KIP126 的独立生成器验证三份 UTF-16 CSV 的固定 SHA-256、次数、�
 默认只检查、不覆盖数据，整个流程无需 KIPBase：
 
 ```bash
-python3 scripts/generate-lin-e2.py /path/to/kervaire_csv
+python3 KIP126/LinProgram/Translate/check-e2.py /path/to/kervaire_csv
 ```
 
 显式指定输出时可以生成新文件用于对比：
 
 ```bash
-python3 scripts/generate-lin-e2.py /path/to/kervaire_csv --output /tmp/RawData.lean
+python3 KIP126/LinProgram/Translate/check-e2.py /path/to/kervaire_csv --output /tmp/RawData.lean
 ```
 
 本轮用哈希匹配的三份原始 CSV 完成重生成，结果与 canonical RawData 逐字一致。

@@ -12,6 +12,9 @@ import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Proofs
 import KIP126.Mathlib.SpectralSequence.SSData.Assembly.Proofs
 import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Proofs
 import KIP126.Mathlib.SpectralSequence.Permanence.Data
+import KIP126.Mathlib.ClassicalAdams.Comparison.Construction.Data
+import KIP126.Mathlib.ClassicalAdams.SurvivalComparison.Proofs
+import KIP126.Mathlib.ClassicalAdams.FinalComparison.Proofs
 
 /-!
 # Mathlib dependencies

@@ -8,14 +8,18 @@ on:
       - '.github/**'
       - 'scripts/**'
       - 'migration/kip-base/**'
-      - 'reference/**'
+      - 'MainPaper/**'
+      - 'Source/**'
+      - 'KIP126/LinProgram/**'
   push:
     branches: [main]
     paths:
       - '.github/**'
       - 'scripts/**'
       - 'migration/kip-base/**'
-      - 'reference/**'
+      - 'MainPaper/**'
+      - 'Source/**'
+      - 'KIP126/LinProgram/**'
   workflow_dispatch:
 
 permissions:
@@ -69,8 +73,15 @@ jobs:
             scripts.test_docs_helpers \
             scripts.test_kipbase_migration \
             scripts.test_check_source_inventory \
+            scripts.test_stage_boundary_layout \
             scripts.perf.test_perf \
             scripts.pr_status.test_pr_status
           if [[ -f scripts/test_lean_cache_wait.py ]]; then
             python3 -m unittest scripts.test_lean_cache_wait -v
           fi
+
+      - name: Check migrated source inventory and Lin translators
+        run: |
+          python3 scripts/check_source_inventory.py --skip-lean-projection
+          python3 scripts/test-import-lin-selected.py
+          python3 KIP126/LinProgram/Translate/import-proofs.py --self-test

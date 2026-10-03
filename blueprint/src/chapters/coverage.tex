@@ -8,7 +8,7 @@ individual nodes, with their own direct dependencies and status markers.
 
 \section{Section-by-section coverage}
 
-The introduction at \texttt{aimpaper/main.tex:78--252} is represented by the
+The introduction at \texttt{MainPaper/main.tex:78--252} is represented by the
 classical Adams interfaces in Chapter~\ref{chap:classical-adams}, the precise
 low-line literature statements in Chapter~\ref{chap:external-results}, the
 permanent-cycle reduction in Chapter~\ref{chap:near126}, and the geometric
@@ -30,11 +30,11 @@ $E_\infty$ formulas, lifted-triangle consumers, and normalized-triangle proofs
 occur in Chapter~\ref{chap:comparison-and-rules}.
 
 \paragraph{Higher $\lambda$-power quotient audit.}
-The expository claim in \texttt{aimpaper/main.tex:784--786} has been checked
+The expository claim in \texttt{MainPaper/main.tex:784--786} has been checked
 against Burklund--Xu Construction 7.7
-(\texttt{reference/BurklundXu/paper.txt:3017--3039}), whose coherent filtered
+(\texttt{Source/BurklundXu/paper.txt:3017--3039}), whose coherent filtered
 construction cites Burklund--Hahn--Senger Example C.15 and its surrounding
-Appendix-C deformation machinery (\texttt{reference/BHSmot/paper.txt:4708--4719}).
+Appendix-C deformation machinery (\texttt{Source/BHSmot/paper.txt:4708--4719}).
 It is therefore recorded as a verified source remark, not as the former
 isolated formal node or a standalone readiness obligation.  The project graph
 contains only the underlying quotient restriction/cofiber coherence proposition;
@@ -83,7 +83,7 @@ catalogue, and bundle types without asserting any value.  Chapter
 and nine zero bands---together with all 49 CW spectra and their $E_2$ pages,
 all 180 maps, initial $d_2$ ranges, and imported propagated outputs.  Its
 catalogue-completeness theorem links the machine records to the appendix rows.
-The active part of \texttt{aimpaper/112.tex} defines Figure 9 only;
+The active part of \texttt{MainPaper/112.tex} defines Figure 9 only;
 Definition~\ref{def:near126-figure-contract} treats it as a derived
 visualization, while its commented duplicate block is excluded.
 
@@ -148,7 +148,7 @@ plan and its proof frontier, not a completed Lean proof of the paper.
 
 The following gate is the frozen source-to-Blueprint index for every formal
 definition, theorem, proposition, corollary, and fact in
-\texttt{aimpaper/main.tex}. The source labels are copied from the frozen
+\texttt{MainPaper/main.tex}. The source labels are copied from the frozen
 aimpaper snapshot; the Blueprint reference is deliberately
 written using a reference macro so rendered numbers remain dynamic. An unlabelled
 source statement is recorded as ``unlabelled'' rather than being given a new
@@ -163,7 +163,7 @@ the complete source statement remains at the cited line span.
 Framed manifolds of Kervaire invariant one exist in dimension $126$. & \texttt{thm:main} & Theorem~\ref{thm:kervaire-126-conditional} \\
 The Kervaire dimensions are $2,6,14,30,62,126$. & unlabelled & Corollary~\ref{cor:kervaire-dimensions-exact} \\
 Kervaire existence is equivalent to $n=2^{j+1}-2$ and permanence of $h_j^2$. & \texttt{thm:browder} & Theorem~\ref{thm:external-browder-criterion} \\
-$h_6^2$ survives to $E_\infty$. & \texttt{thm:h62} & Theorem~\ref{thm:h6-square-permanent} \\
+$h_6^2$ survives to $E_\infty$. & \texttt{thm:h\_6\_sq} & Theorem~\ref{thm:h6-square-permanent} \\
 The surviving Adams two-line classes are the displayed $h_0h_2,h_0h_3,h_2h_4,h_1h_j,h_j^2$. & \texttt{cor:2line} & Corollary~\ref{cor:adams-two-line-survivors} \\
 Definition of the $f$-extension spectral sequence. & \texttt{def:ess} & Definition~\ref{def:f-extension-ss} \\
 Definition of an essential $f$-extension. & \texttt{def:768fba8a} & Definition~\ref{def:f-extension-essential} \\
@@ -204,12 +204,12 @@ Page-extension stretching. & \texttt{cor:dfc6043e} & Corollary~\ref{cor:page-ext
 $h_6^2$ survives to $E_\infty$. & \texttt{thm:126survives} & Theorem~\ref{thm:h6-square-permanent} \\
 BJM/BX criterion for $h_6^2$ and an order-two $\theta_5$ choice. & \texttt{thm:bjmbx} & Theorem~\ref{thm:external-bjm-bx-criterion} \\
 The listed $\theta_5^2$ filtration alternatives and incoming-killer facts. & \texttt{fact:theta5sqAF} & Proposition~\ref{evidence:near126-core} \\
-Exactly one of permanence or the displayed nonzero $d_{12}(h_6^2)$ holds, with the $C_3,C_4,C_5$ criterion. & \texttt{prop:possibleh62} & Proposition~\ref{prop:possible-h62} \\
+Exactly one of permanence or the displayed nonzero $d_{12}(h_6^2)$ holds, with the $C_3,C_4,C_5$ criterion. & \texttt{prop:possible\_h\_6\_sq} & Proposition~\ref{prop:possible-h-6-sq} \\
 If $C_3$ holds, $C_5$ is false. & \texttt{prop:state5false} & Proposition~\ref{prop:near126-c3-not-c5} \\
-The $x_{123,9}$ representative survives and is not killed. & \texttt{fact:x1239} & Proposition~\ref{evidence:x1239} \\
-$h_0^2x_{125,9,2}$ survives to $E_5$. & \texttt{fact:h02x1259} & Proposition~\ref{evidence:h02x1259} \\
+The $x_{123,9}$ representative survives and is not killed. & \texttt{fact:x\_123\_9} & Proposition~\ref{evidence:x_123_9} \\
+$h_0^2x_{125,9,2}$ survives to $E_5$. & \texttt{fact:h\_0\_sq\_mul\_x\_125\_9\_2} & Proposition~\ref{evidence:h_0_sq_mul_x_125_9_2} \\
 The conditional two-extension relation detected by $\lambda^4h_0^2x_{125,9,2}$. & \texttt{cor:2ext125} & Corollary~\ref{cor:near126-two-extension} \\
-$h_1x_{121,7}$ survives to $E_6$. & \texttt{fact:h1x1217} & Proposition~\ref{evidence:h1x1217} \\
+$h_1x_{121,7}$ survives to $E_6$. & \texttt{fact:h\_1\_mul\_x\_121\_7} & Proposition~\ref{evidence:h_1_mul_x_121_7} \\
 $h_6Md_0$ and $h_5x_{91,11}$ are permanent. & \texttt{fact:stem122} & Proposition~\ref{evidence:stem122-permanent} \\
 \end{tabular}
 \end{center}

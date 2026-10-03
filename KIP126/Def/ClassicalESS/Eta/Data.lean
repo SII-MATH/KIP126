@@ -1,6 +1,6 @@
 import KIP126.Def.ClassicalAdams.SphereSequence.Data
 import KIP126.Def.SpectralSequence.PageLevel.Data
-import KIP126.External.Provenance
+import KIP126.Def.References.Provenance
 import Mathlib.Algebra.Homology.SpectralSequence.Basic
 
 /-!
@@ -53,7 +53,7 @@ structure EtaDifferential where
 
 private def etaLocator (description : String) : Locator :=
   { description := description
-    artifact := some "aimpaper/main.tex" }
+    artifact := some "MainPaper/main.tex" }
 
 def etaD₁ : EtaDifferential :=
   { source := "h₅d₀", target := "h₁h₅d₀", length := 1

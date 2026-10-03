@@ -11,13 +11,13 @@ import graph 以 `KIP126/**/*.lean` 为准；项目范围、信任边界与最�
 
 | 阶段 | 目标 | 主要产物 | 阶段出口 |
 | --- | --- | --- | --- |
-| 一、建立包络面 | 分析所有旧仓库，逐章识别可借鉴的完成度 | 以 aimpaper 为唯一语义标准的自足、可编译 KIP126 基线 | 17 章均完成参考调研；选用或重写的实现达到 aimpaper 的语义、分次和定理强度 |
+| 一、建立包络面 | 分析所有旧仓库，逐章识别可借鉴的完成度 | 以 MainPaper 为唯一语义标准的自足、可编译 KIP126 基线 | 17 章均完成参考调研；选用或重写的实现达到 MainPaper 的语义、分次和定理强度 |
 | 二、继续形式化 | 在包络面基线上按数学依赖补完 Blueprint 与 Lean | 17 个章级模块及其 Lean 入口、外部输入接口和内部证明 | 所有应由项目实现的节点均完成；只允许保留经 `PROJECT_BOUNDARY.md` 明确分类的外部、开放或政策边界节点 |
 | 三、最终审计 | 对全仓库而非单个模块做论文一致性、完整性、信任和可复现性审计 | 最终审计记录、干净构建结果和主定理依赖锥报告 | 满足 `PROJECT_BOUNDARY.md` 的全部最终验收条件，而不只是“构建通过” |
 
 三个阶段按产物依赖排列。第二阶段只以第一阶段形成的 KIP126 基线为起点；旧仓库不
-定义项目的目标语义，只提供实现和证明思路。凡是弱于或不对齐 aimpaper 的参考实现，
-都不能直接充当完成结果，仍须按 aimpaper 的语义、分次、page convention 和定理强度
+定义项目的目标语义，只提供实现和证明思路。凡是弱于或不对齐 MainPaper 的参考实现，
+都不能直接充当完成结果，仍须按 MainPaper 的语义、分次、page convention 和定理强度
 重新实现。第二阶段中的模块级检查是持续门槛，不能代替第三阶段结束时面向整个仓库
 的完整审计。
 
@@ -29,7 +29,7 @@ sequence、stable homotopy、synthetic spectra、classical Adams 和论文端点
 真正成熟、语义忠实且可维护的部分迁入同一规范接口之后形成的可编译代码仓库。
 
 “包络面”不表示机械合并所有文件，也不以代码行数或 `sorry` 数量最少作为选择标准。
-同一概念只保留一个面向 aimpaper 的权威实现；比 aimpaper 语义更弱、分次或 page
+同一概念只保留一个面向 MainPaper 的权威实现；比 MainPaper 语义更弱、分次或 page
 convention 不一致、定理强度不对齐，或把数学内容藏入公理/typeclass 字段的旧实现，
 都只能作为 proof pattern 或实现线索，不能降低最终形式化目标。
 
@@ -45,21 +45,23 @@ convention 不一致、定理强度不对齐，或把数学内容藏入公理/ty
 4. 作为已完成成果迁入的证明及其依赖不含 `sorry`、`admit` 或项目自定义 `axiom`；
    Challenge 按契约保留 `by sorry`，不计入证明完成证据；外部事实改写为显式条件输入；
 5. 任何定义相等、索引换算和 adapter 均有证明义务与回归测试，不允许弱化或改变
-   aimpaper 的语义和定理强度；
+   MainPaper 的语义和定理强度；
 6. 形成可供第二阶段继续实现的、自足且可审计的 KIP126 包络面基线。
 
 ## 第二阶段：在包络面上继续形式化
 
 第二阶段以第一阶段形成的 KIP126 为唯一代码基线。旧仓库仍可用于查找证明思路，
-但参考实现不决定目标 statement；所有新增声明与证明都必须严格达到 aimpaper 的
+但参考实现不决定目标 statement；所有新增声明与证明都必须严格达到 MainPaper 的
 语义、分次、page convention 和定理强度。
 
 ### 模块划分口径
 
 Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录，只用注释标出
 “数学定义 → 外部输入 → 内部证明”三层。每章对应一组按数学概念划分的 Lean 模块，
-而不是单个源文件；`KIP126/Def.lean`、`KIP126/External.lean` 和
-`KIP126/Challenge.lean` 是这些模块的包入口。旧路径与新路径的逐项对应及开放节点
+而不是单个源文件；`KIP126/Def.lean`、`KIP126/Main/Axiom.lean` 和
+`KIP126/Main/Solution.lean` 是相应的定义、输入与推导入口；
+唯一 Final 目标直接导入 `KIP126.Main.Challenge.h6_sq_permanent`。所有 Main 中间陈述和证明只在
+Solution 维护；Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。旧路径与新路径的逐项对应及开放节点
 见 [`DEF_CHALLENGE_LAYOUT_STATUS.md`](DEF_CHALLENGE_LAYOUT_STATUS.md)。
 章级 Blueprint 节点数量与完成度不在本文件汇总，以对应章节子 Wiki 的当前记录为准。
 
@@ -127,7 +129,7 @@ page-extension、near-126 coherence 和几何端点的真实证明，同时为�
 5. **可复现构建**：在无缓存、干净检出的 Lean 4.32.2 / Mathlib v4.32.2 环境中运行
    完整 `lake build`、回归测试、Blueprint PDF/web 和声明检查；生成物必须可由工具
    重建。
-6. **论文一致性**：逐章核对 aimpaper 的 statement、分次、page convention 和定理
+6. **论文一致性**：逐章核对 MainPaper 的 statement、分次、page convention 和定理
    强度；仅复用了较弱或不对齐的参考实现，不算完成对应节点。
 
 ### 最终完成条件

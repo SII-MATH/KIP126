@@ -1,14 +1,72 @@
 \chapter{Spectral-sequence machinery}
 \label{chap:spectral-sequence-machinery}
 
-This chapter fixes the common machinery used by every later classical,
-synthetic, and extension spectral sequence.  It has four layers: the Mathlib
-spectral-sequence and spectral-object APIs; the paper's page, grading,
-convergence, and multiplicative conventions; the categorical--elementwise
-comparison; and the functorial construction from filtered complexes through
-triangulated and abelian spectral objects.  Paper-specific Adams towers,
-synthetic rigidity, and extension-spectral-sequence calculations belong to
-later chapters.
+The canonical interfaces use the internal nested-subobject model
+$\mathrm{SSData}\to\mathrm{PreSS}\to\mathrm{SpectralSequence}$.
+The retained Mathlib spectral-sequence and spectral-object constructions are
+optional adapters. They do not create an obligation to compare every internal
+sequence with a Mathlib spectral sequence. Paper-specific Adams towers,
+synthetic rigidity and extension calculations belong to later chapters.
+
+\section{Canonical internal pages and morphisms}
+
+\begin{definition}[Internal nested-subobject spectral sequence]
+  \label{def:internal-nested-spectral-sequence}
+  \lean{KIP126.Core.SpectralSequence.SSData,KIP126.Core.SpectralSequence.PreSS,KIP126.Core.SpectralSequence}
+  \uses{def:mathlib-abelian}
+  \leanok
+  At each degree, an ambient object carries decreasing cycles $Z_r$,
+  increasing boundaries $B_r\subseteq Z_r$, and their infinite levels.
+  The page is the specified quotient $Z_r/B_r$. A spectral sequence adds
+  the starting page and differential degree, actual quotient differentials,
+  their square-zero law, and the successor kernel/image identifications.
+\end{definition}
+
+\begin{definition}[Internal morphism and its induced page maps]
+  \label{def:internal-canonical-page-map}
+  \lean{KIP126.Core.SpectralSequence.SSDataMorphism,KIP126.Core.SpectralSequence.SSDataMorphism.cycleMap,KIP126.Core.SpectralSequence.SSDataMorphism.pageMap,KIP126.Core.SpectralSequence.PreSSMorphism,KIP126.Core.SpectralSequence.SpectralSequenceMorphism}
+  \uses{def:internal-nested-spectral-sequence}
+  \leanok
+  A map of ambient objects preserving cycles and boundaries induces its
+  unique map on every quotient, including $E_\infty$. An ordinary morphism
+  uses equal starting pages and differential degrees and requires these
+  induced maps to commute with the differential. Independently chosen page
+  maps cannot witness the differential condition.
+\end{definition}
+
+\begin{proposition}[Derived internal page and representative calculus]
+  \label{prop:internal-page-calculus}
+  \lean{KIP126.Challenge2.PageCalculus,KIP126.Challenge2.RepresentativeCalculus,KIP126.Def.Comparison.StageInterfaces.pageCalculus,KIP126.Def.Comparison.StageInterfaces.representativeCalculus}
+  \uses{def:internal-nested-spectral-sequence}
+  \leanok
+  The next page is the homology of the current page differential. Boundaries
+  are cycles, and an $E_2$ common representative identifies the same class.
+  A specified nonzero differential forces both named $E_2$ classes to have
+  nonzero representatives on that page. An arbitrary differential equality
+  supplies no nonvanishing conclusion.
+\end{proposition}
+\begin{proof}
+  Use the canonical quotient homology isomorphism, square-zero, and the same
+  cycle representatives in the defining internal relations.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Naturality of internal pages and representatives]
+  \label{prop:internal-page-naturality}
+  \lean{KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Def.Comparison.StageInterfaces.internalNaturality}
+  \uses{def:internal-canonical-page-map,prop:internal-page-calculus}
+  \leanok
+  The induced finite and infinite page maps preserve identity and composition.
+  They carry common representatives and differential equalities to those of
+  the target sequence. Preservation of nonzero classes requires an additional
+  hypothesis and is not asserted here.
+\end{proposition}
+\begin{proof}
+  Uniqueness of restriction to the cycle subobject and the cokernel universal
+  property prove the functorial laws. The same representative squares and the
+  actual differential commutation prove the elementwise statements.
+  \leanok
+\end{proof}
 
 \section{Mathlib spectral-sequence and spectral-object interfaces}
 
@@ -26,8 +84,8 @@ later chapters.
     H(E_r)_p \cong (E_{r+1})_p.
   \]
   This is Mathlib's definition \texttt{CategoryTheory.SpectralSequence} in
-  the pinned revision.  All generic KIP126 statements use this definition
-  directly rather than a project-local synonym.
+  the pinned revision.  It is used by the retained optional adapter layer. The stage-boundary
+  statements use Definition~\ref{def:internal-nested-spectral-sequence}.
 \end{definition}
 
 % SOURCE: Mathlib/Algebra/Homology/SpectralSequence/Basic.lean, declaration CategoryTheory.SpectralSequence.Hom.
@@ -306,7 +364,7 @@ later chapters.
   degreewise bounded-above filtration, supplies this completion witness.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:253-271 and 827-862; convergence is a concrete
+% SOURCE: MainPaper/main.tex:253-271 and 827-862; convergence is a concrete
 % witness for the admissible sequences, not a generic Core construction.
 \begin{definition}[Complete and separated decreasing filtration]
   \label{def:complete-separated-filtration}
@@ -339,7 +397,7 @@ later chapters.
   eventual conditions, or degreewise boundedness.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
+% SOURCE: MainPaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
 \begin{definition}[Spectral-sequence page-level convention]
   \label{def:ss-page-level}
   \notready
@@ -360,7 +418,7 @@ later chapters.
   identification of cycles with a synthetic quotient.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:134-150 and 799-807, Adams differential degree.
+% SOURCE: MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
 % VERIFIED-IN: KIP126/Classical/Adams/Basic.lean, declarations Bidegree,
 % classicalAdamsShift, classicalAdamsTarget, classicalAdamsShape, and
 % classicalAdamsShape_two_rel.
@@ -379,7 +437,7 @@ later chapters.
   the homology of this $E_2$ page with $E_3$.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:134-150 and 799-807, Adams differential degree.
+% SOURCE: MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
 \begin{definition}[Classical and synthetic Adams complex shape]
   \label{def:adams-complex-shape}
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
@@ -396,7 +454,7 @@ later chapters.
   the page-level convention and its admissibility/successor laws.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:264-295 and 999-1007, extension differential degree.
+% SOURCE: MainPaper/main.tex:264-295 and 999-1007, extension differential degree.
 \begin{definition}[Extension spectral-sequence complex shape]
   \label{def:ess-complex-shape}
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
@@ -414,7 +472,7 @@ later chapters.
   summand transition, the starting-page witness, and the page-passage law.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:134-150 and 253-295.
+% SOURCE: MainPaper/main.tex:134-150 and 253-295.
 \begin{definition}[Adams bidegree convention]
   \label{def:adams-bidegree}
   \lean{KIP126.Classical.Adams.Bidegree}
@@ -435,7 +493,7 @@ later chapters.
   as an extension length without an explicit conversion.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:690-739, 799-823, and 1138-1150.
+% SOURCE: MainPaper/main.tex:690-739, 799-823, and 1138-1150.
 \begin{definition}[Synthetic tridegree and page-level conversion]
   \label{def:synthetic-tridegree}
   \uses{def:adams-bidegree}
@@ -453,13 +511,15 @@ later chapters.
   synthetic $d_r$ has degree $(r,r-1,0)$.  Multiplication by $\lambda$ has
   degree $(0,0,-1)$.  Under the AIM regrading used in this paper, the degree
   embedding views a classical $E_2$ class of bidegree $(s,t)$ as having
-  tridegree $(s,t,t)$.  These grading operations are implemented.  They do
-  not by themselves assert that a classical page is a homotopy group of a
+  tridegree $(s,t,t)$.  These grading operations and the internal
+  cycle/boundary definition of the synthetic pages are implemented.  The
+  $E_2$-homology identification with $E_3$ uses the internal successor-page
+  theorem.  They do not by themselves assert that a classical page is a homotopy group of a
   synthetic quotient: the later rigidity input supplies the isomorphism with
   $S/\lambda^{r-1}$, and every use must retain that witness and its source.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:827-862, definitions of Z_r and B_r.
+% SOURCE: MainPaper/main.tex:827-862, definitions of Z_r and B_r.
 \begin{definition}[Finite-page elementwise presentation]
   \label{def:ss-elementwise-page-presentation}
   \uses{def:mathlib-spectral-sequence,def:adams-bidegree,def:ss-page-level,def:adams-complex-shape}
@@ -496,7 +556,7 @@ later chapters.
   future pages.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:134-151, 827-862, and throughout the appendix.
+% SOURCE: MainPaper/main.tex:134-151, 827-862, and throughout the appendix.
 \begin{definition}[Algebraic $E_\infty$ presentation]
   \label{def:ss-einfty-presentation}
   \uses{def:ss-elementwise-page-presentation}
@@ -529,7 +589,7 @@ later chapters.
   exactly when the representative is not in $B_\infty$.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:253-263, PROJECT_BOUNDARY.md external-input boundary.
+% SOURCE: MainPaper/main.tex:253-263, PROJECT_BOUNDARY.md external-input boundary.
 \begin{definition}[Convergence and detection witness]
   \label{def:ss-convergence-detection-witness}
   \uses{def:core-filtration,def:ss-einfty-presentation,def:external-result}
@@ -755,21 +815,23 @@ later chapters.
   filtered homology of the original filtered complex.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:461-631 and 1218-1235, maps with shifted degrees.
+% SOURCE: MainPaper/main.tex:461-631 and 1218-1235, maps with shifted degrees.
 \begin{definition}[Reindexed spectral-sequence morphism]
   \label{def:reindexed-ss-morphism}
-  \uses{def:mathlib-graded-comap,def:mathlib-complex-shape-up,def:mathlib-spectral-sequence-hom,def:adams-bidegree,def:synthetic-tridegree}
+  \uses{def:adams-bidegree,def:synthetic-tridegree}
   \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap}
   \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap.differential_comm}
   \lean{KIP126.Synthetic.SpectralSequence.fixedWeightPage}
   \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
   \notready
-  For every fixed synthetic weight and every page $r\geq2$, the compiled
-  classical--synthetic comparison supplies a homological-complex map from the
-  classical page to the corresponding fixed-weight synthetic page, together
-  with page-passage isomorphisms and their coherence.  Commutation with
-  differentials is derived from the chain-map law.  This realizes the
-  forgetful grading map $(s,t,w)\mapsto(s,t)$.
+  For every fixed synthetic weight, the internal classical--synthetic
+  comparison supplies a map of ambient objects preserving the nested cycle
+  and boundary subobjects.  The maps on finite pages and $E_\infty$ are
+  induced from this same map, and the comparison requires those determined
+  page maps to commute with the actual differentials.  It does not choose
+  independent page-passage isomorphisms.  The degree projection is
+  $(s,t,w)\mapsto(s,t)$; binding a comparison to the actual Adams tower and
+  the selected synthetic family remains a construction obligation.
 
   This compiled interface is specialized to fixed-weight comparison.  A fully
   general reindexed morphism must still provide arbitrary page and grading
@@ -778,7 +840,7 @@ later chapters.
   obligations of this node.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:138-150, 159-162, 1606-1753.
+% SOURCE: MainPaper/main.tex:138-150, 159-162, 1606-1753.
 \begin{definition}[Multiplicative spectral sequence]
   \label{def:multiplicative-ss}
   \uses{def:ss-elementwise-page-presentation}
@@ -799,7 +861,7 @@ later chapters.
   expressions such as $h_j^2$ or $h_0x$ are meaningful.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:253-263 and all later elementwise arguments.
+% SOURCE: MainPaper/main.tex:253-263 and all later elementwise arguments.
 \begin{proposition}[Categorical and elementwise presentations agree]
   \label{prop:categorical-elementwise-comparison}
   \uses{def:mathlib-spectral-sequence,def:mathlib-short-complex-exact,thm:mathlib-exact-iff-image-kernel,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:ss-elementwise-page-presentation}
@@ -1110,7 +1172,7 @@ later chapters.
   provide an explicit witness for the concrete sequence.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
+% SOURCE: MainPaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
 \begin{theorem}[Filtered complex produces a spectral sequence]
   \label{thm:filtered-complex-to-spectral-sequence}
   \uses{def:filtered-complex-spectral-object-adapter,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object-morphism,def:filtered-chain-map,def:filtered-associated-graded-chain-map,def:filtered-associated-graded-functoriality,def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:ss-page-level}

@@ -3,6 +3,16 @@
 
 This chapter defines the types used to state machine and appendix results.  It contains no Lin output, table row, or other computed value.
 
+The independent \texttt{KIP126/LinProgram} pipeline owns pinned inputs,
+translation, generated records, deterministic decoding, and local certificates.
+Its artifacts fix the statements to be interpreted; successful conversion
+alone does not prove them. The shared \texttt{Challenge2} witness separates
+\texttt{LiteratureInterface} from \texttt{ComputationInterface}; only the latter
+is $C(M)$. Both use the fixed Challenge~1 model. Shared model bindings keep
+project comparisons and applicability data distinct from external theorems.
+Interface produces the model-bound conclusions, and Main consumes the one
+stage witness instead of importing their Interface proof implementations.
+
 \section{Finite presentations of an existing Adams page}
 
 % SOURCE: project interface design; this does not assert any real computed value.
@@ -90,7 +100,33 @@ This chapter defines the types used to state machine and appendix results.  It c
 
 \section{Typed catalogue schemas}
 
-% SOURCE: aimpaper/main.tex:1930-1977, Example exam:Mahowald.
+\begin{theorem}[Bounded actual sphere multiplication comparison]
+  \label{thm:bounded-sphere-multiplication}
+  \lean{KIP126.Challenge2.SphereMultiplicativeInterface}
+  \lean{KIP126.Classical.Adams.Sphere.Multiplication.unitSecondCycle,KIP126.Classical.Adams.Sphere.Multiplication.firstProduct}
+  \lean{KIP126.Interface.Solution.sphereMultiplicativeInterface}
+  \uses{def:hf2-adams-tower,def:lin-e2-catalogue}
+  There is a bounded Lin presentation $P$ on the fixed sphere Adams
+  sequence whose coordinate unit maps to the second-cycle class of the
+  actual sphere identity. For all $s,t,s',t'\in\mathbb N$ with
+  $t+t'\leq261$ and all actual second-cycle representatives $a,b$ in the
+  two input bidegrees, there is a second cycle $z$ in their sum degree with
+  \[
+    z_{\mathrm{underlying}}=\mu_1(a,b),\qquad
+    [z]=P.\operatorname{product}([a],[b]).
+  \]
+  Here $\mu_1$ is the existing sphere Adams first-layer product, formed
+  from the same tower pairing and $H\mathbb F_2$ multiplication.
+  The existential $z$ asserts closure of this prescribed product in
+  cycles; it cannot select a different operation. Quantifying over all
+  representatives binds the page product to that actual layer product.
+  Challenge~2 couples this condition to the same presentation as its
+  coordinate and differential fields. The producer theorem remains
+  unproved. No higher-page Leibniz rule, product outside the stated bound,
+  or comparison with the cobar cup product is supplied here.
+\end{theorem}
+
+% SOURCE: MainPaper/main.tex:1930-1977, Example exam:Mahowald.
 \begin{definition}[Atiyah--Hirzebruch cell notation for $S^0/\nu_{\mathrm{Hopf}}$]
   \label{def:hopf-cofiber-cell-notation}
   \uses{def:cofiber-triangle,def:steenrod-ext}
@@ -102,7 +138,7 @@ This chapter defines the types used to state machine and appendix results.  It c
   typed by spectrum, cell, bidegree, and a chosen dataset identifier.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2738-3290, all twelve tables.
+% SOURCE: MainPaper/main.tex:2738-3290, all twelve tables.
 \begin{definition}[Appendix table identifier]
   \label{def:appendix-table-id}
   \leanok
@@ -121,7 +157,7 @@ This chapter defines the types used to state machine and appendix results.  It c
   number, spectrum, stem, filtration interval, source line range, and PDF page.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2738-3290, class-expression column; aimpaper/112.tex:8-1026.
+% SOURCE: MainPaper/main.tex:2738-3290, class-expression column; MainPaper/112.tex:8-1026.
 \begin{definition}[Typed Ext class expression]
   \label{def:typed-class-expression}
   \uses{def:steenrod-ext,def:hopf-cofiber-cell-notation}
@@ -144,7 +180,7 @@ This chapter defines the types used to state machine and appendix results.  It c
   to free-form text.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2738-3290, differential/status columns.
+% SOURCE: MainPaper/main.tex:2738-3290, differential/status columns.
 \begin{definition}[Appendix row status]
   \label{def:appendix-row-status}
   \uses{def:typed-class-expression}
@@ -167,7 +203,7 @@ This chapter defines the types used to state machine and appendix results.  It c
   finite target ambiguity attached to a known relation.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2738-3290; duplicated source/target presentations across adjacent stems.
+% SOURCE: MainPaper/main.tex:2738-3290; duplicated source/target presentations across adjacent stems.
 \begin{definition}[Differential relation identifier]
   \label{def:differential-relation-id}
   \uses{def:appendix-row-status}
@@ -181,7 +217,7 @@ This chapter defines the types used to state machine and appendix results.  It c
   a later validation step.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2738-3290.
+% SOURCE: MainPaper/main.tex:2738-3290.
 \begin{definition}[Appendix row catalogue]
   \label{def:appendix-row-catalogue}
   \uses{def:appendix-table-id,def:typed-class-expression,def:appendix-row-status,def:differential-relation-id}
@@ -226,6 +262,60 @@ This chapter defines the types used to state machine and appendix results.  It c
   than free-form strings.
 \end{definition}
 
+% SOURCE: pinned v126.3.cw49 ss/main.h:20--25,1095--1098;
+% database_ss.cpp:146--163; ss.cpp:281--328,374--436.
+\begin{definition}[Lossless staircase states and finite interpretation]
+  \label{def:lin-staircase-states}
+  \lean{KIP126.Computation.LinProofs.Raw.StaircaseRow,KIP126.Computation.LinProofs.State.decode,KIP126.Core.SpectralSequence.ReachesPage,KIP126.Core.SpectralSequence.IsBoundaryBy,KIP126.Challenge2.StaircaseClaimStatement}
+  \uses{def:lin-spectrum-catalogue}
+  The fixed sphere snapshot retains every signed integer, coordinate string,
+  row identifier, and SQL NULL.  A known outgoing or incoming pair gives an
+  equation on the actual internal differential.  An unknown outgoing value
+  at level $10000-r$ gives a common representative on $E_r$, possibly zero;
+  an unknown incoming value at level $r$ gives membership in $B_{r+1}$,
+  allowing earlier boundaries.  Level $9000$ retains the explicit bound
+  $E_{1000}$.  It does not by itself assert a nonzero permanent class.
+  All labels use the same bounded Lin comparison.  Invalid encodings and
+  out-of-range degrees are rejected, rather than interpreted as zero.
+\end{definition}
+
+\begin{theorem}[Fixed sphere staircase delivery]
+  \label{thm:lin-staircase-delivery}
+  \lean{KIP126.Challenge2.SphereStaircaseInterface,KIP126.Interface.Solution.sphereStaircaseInterface}
+  \uses{def:lin-staircase-states}
+  \notready
+  There is a Lin comparison for which every one of the $23822$ rows of the
+  fixed \texttt{S0\_AdamsE2\_ss} table both decodes successfully and satisfies
+  its internal mathematical statement.  The Challenge 2 package uses this
+  same comparison for the previously imported differential log.
+  The table contains $7893$ known equations in each direction, $6279$
+  unresolved outgoing entries, $136$ cumulative boundary entries, and
+  $1621$ threshold entries.  The database is pinned by SHA-256
+  \texttt{518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed}.
+  Lossless generation, decoder coverage, and coordinate checks are verified
+  mechanically; mathematical soundness remains an unproved delivery theorem.
+\end{theorem}
+
+% SOURCE: pinned ss/deduce.cpp:329--389,390--492;
+% mylog.cpp:120--148,151--206. The actual artifact contains no exclusions table.
+\begin{definition}[Conditional trial contexts and candidate coverage]
+  \label{def:lin-conditional-branches}
+  \lean{KIP126.Computation.LinProofs.Branch.scopeRows,KIP126.Computation.LinProofs.Branch.FiniteEquation,KIP126.Computation.LinProofs.Branch.CandidateWindow.equations,KIP126.Computation.LinProofs.Branch.CandidateCoverage,KIP126.Computation.LinProofs.Branch.CandidateExhaustion,KIP126.Challenge2.LinBranchInterface}
+  The retained log is scoped by increasing row identifier and trial depth.
+  A T or TI row introduces an assumption under its complete ancestor stack;
+  TI stores the target degree.  Refutation means that these actual internal
+  differential assumptions imply the negation of the trial equation.
+  A retained D or DI deduction is conditional on that same stack.  Missing
+  ancestors, unknown coordinates, and sentinels remain unresolved.
+  Candidate windows include every binary sum of their specified vectors,
+  including zero; coverage is a separate mathematical obligation asserting
+  that some candidate holds under the context.  Noncontradictory trials are
+  deleted by the program, so retained-row counts cannot establish coverage.
+  Diagnostic text, including an empty parent message, is preserved and is
+  not itself a contradiction proof.  The fixed catalogue, full raw-log
+  import, and actual candidate-window binding remain to be supplied.
+\end{definition}
+
 % SOURCE: LWXMachine, Section 2.1, Notations 2.1--2.5 and the
 % *_AdamsE2_generators/relations/basis files described there.
 \begin{definition}[Lin Adams $E_2$-page catalogue]
@@ -257,7 +347,7 @@ This chapter defines the types used to state machine and appendix results.  It c
 
 % SOURCE: LWXMachine, Section 2.3 and Table 11; the d_2 columns in the
 % per-spectrum Adams E_2 basis files;
-% aimpaper/main.tex:2785--2792 for the additional manual inputs.
+% MainPaper/main.tex:2785--2792 for the additional manual inputs.
 \begin{definition}[Lin initial $d_2$ catalogue]
   \label{def:lin-d2-catalogue}
   \uses{def:lin-e2-page-catalogue,def:differential-relation-id,def:external-evidence}
@@ -298,7 +388,7 @@ This chapter defines the types used to state machine and appendix results.  It c
   two records assign incompatible values to the same typed relation key.
 \end{definition}
 
-% SOURCE: PROJECT_BOUNDARY.md, Appendix data; aimpaper/main.tex:2785-2800.
+% SOURCE: PROJECT_BOUNDARY.md, Appendix data; MainPaper/main.tex:2785-2800.
 \begin{definition}[Appendix evidence record]
   \label{def:appendix-evidence-record}
   \uses{def:appendix-table-id,def:appendix-row-status,def:differential-relation-id,def:external-evidence}
@@ -313,7 +403,7 @@ This chapter defines the types used to state machine and appendix results.  It c
 \section{Input bundles and output contracts}
 
 % SOURCE: PROJECT_BOUNDARY.md, Appendix data and External inputs;
-% aimpaper/main.tex:2738--3290.
+% MainPaper/main.tex:2738--3290.
 \begin{definition}[Near-$126$ computation input]
   \label{def:near126-computation-input}
   \uses{def:lin-computation-bundle,def:appendix-evidence-record,def:external-result,def:external-evidence}
@@ -333,4 +423,57 @@ This chapter defines the types used to state machine and appendix results.  It c
   appropriate, with a source locator; project theorems receive this record as a
   parameter and prove all finite coverage and negative-search conclusions from
   its fields.
+\end{definition}
+
+\begin{definition}[Fixed internal sphere computation facts: implemented slice]
+  \label{def:near126-fixed-sphere-facts}
+  \lean{KIP126.Computation.Near126.SphereFacts,KIP126.Computation.Near126.HopfCofiberFacts}
+  \uses{def:near126-computation-input,def:h6-fixed-computation,def:external-evidence}
+  \notready
+  The current Lean slice constructs the Section~7 sphere expressions from
+  actual pinned CSV coordinates, with kernel-checked names and bidegrees,
+  and interprets them through the fixed Lin comparison in the internal
+  tower-derived sphere sequence.  Its explicit evidence fields state seven
+  sphere differential equalities, the nonzero two-target ambiguity for
+  $d_3(x_{126,6})$, selected survival, incoming-exclusion, product,
+  whole-component vanishing, and target-exhaustion facts.  Later-page
+  expressions require a common cycle representative with their $E_2$ names.
+  There is no assumption of $h_6^2$ permanence and no global package value.
+
+  The separate Hopf-cofiber slice states the $d_3$ and the exclusion of short
+  incoming differentials, but still takes its sequence and displayed classes
+  as parameters.  Definition~\ref{def:near126-sphere-hopf-input} specializes
+  it to a constructed cofiber, with bottom-cell classes defined by the actual
+  induced page map; the Hopf input and top-cell comparison remain unfinished.
+  This is not the complete input of Definition~\ref{def:near126-computation-input}.
+  Synthetic candidate exhaustion, torsion, crossing, indeterminacy, and
+  archive evidence instances remain open; the precise boundary and source
+  checklist are recorded in \texttt{docs/NEAR126\_COMPUTATION\_FACTS.md}.
+\end{definition}
+
+\begin{definition}[Sphere Hopf input and constructed cofiber pages]
+  \label{def:near126-sphere-hopf-input}
+  \lean{KIP126.Computation.Near126.SphereHopfInput,KIP126.Classical.Adams.SphereFiltrationOneRepresents,KIP126.Classical.Adams.sphereMapCofiberAdams,KIP126.Classical.Adams.sphereMapCofiberBottomE2,KIP126.Computation.Near126.SphereHopfInput.ComputationFacts}
+  \uses{def:near126-fixed-sphere-facts,def:cofiber-triangle,def:h6-fixed-computation}
+  \notready
+  An explicit input supplies a map $f:S^3\to S^0$ in the fixed foundation
+  and evidence for a lift $a:S^3\to F^1S^0$ whose composite to $S^0$ is $f$
+  and whose layer image represents the fixed Lin $h_2$ on the actual $E_2$
+  page.  This is a detection condition, not a claim that such an input has
+  been constructed or that it uniquely selects the geometric Hopf map.
+
+  The cofiber, its two cell maps, and its internal Adams sequence use this
+  very map and the same fixed $H\mathbb F_2$ unit as the sphere sequence.
+  Naturality of tower bonding maps and of the exact-couple maps gives maps
+  preserving $Z_r$ and $B_r$, hence maps of quotient pages.  In particular,
+  the bottom-cell classes $Y[0]$ and $T[0]$ are the images of the already fixed
+  sphere classes under this constructed $E_2$ map.  For a top-cell lift $u$,
+  the differential source is constructed as
+  $u+i_*(x_{126,8})+i_*(x_{126,8,2})$.
+
+  The actual top-cell map lands in the tower of $\Sigma S^3$; its suspension
+  comparison with the regraded sphere page, the equation identifying $u$
+  with $X[4]$, and the external differential/no-crossing evidence remain
+  outstanding.  No arbitrary auxiliary sequence or bottom-cell map is
+  supplied as a field of this construction.
 \end{definition}

@@ -1,4 +1,4 @@
-import KIP126.External.Computation.EtaRows.Data
+import KIP126.Main.Solution.Literature.EtaRows.Proofs
 
 /-!
 # Regression checks for typed classical eta data
@@ -22,7 +22,7 @@ example : Set.range EtaRowId.row = etaESSDifferentials :=
   EtaRowId.range_row
 
 example (id : EtaRowId) :
-    id.row.locator.artifact = some "aimpaper/main.tex" := by
+    id.row.locator.artifact = some "MainPaper/main.tex" := by
   cases id <;> rfl
 
 example (data : EtaData source target) : data.eta.degree = (1, 2) :=

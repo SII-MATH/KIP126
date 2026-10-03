@@ -46,14 +46,16 @@ axiom synthetic_lift {X Y : 𝒮} (f : X ⟶ Y) (k : ℕ)
     This is the "essential" Adams filtration, which only distinguishes
     between filtration 0 and positive filtration. -/
 noncomputable def eHat {X Y : 𝒮} (f : X ⟶ Y) : ℤ :=
-  if AF f = 0 then 0 else 1
+  if (adamsFiltration_exists f).val = 0 then 0 else 1
 
 theorem eHat_nonneg {X Y : 𝒮} (f : X ⟶ Y) : 0 ≤ eHat 𝒮 f := by
   simp only [eHat]
   split <;> omega
 
-theorem eHat_le_AF {X Y : 𝒮} (f : X ⟶ Y) : eHat 𝒮 f ≤ AF f := by
-  have hAF : 0 ≤ AF f := (adamsFiltration_exists f).property
+theorem eHat_le_filtration_value {X Y : 𝒮} (f : X ⟶ Y) :
+    eHat 𝒮 f ≤ (adamsFiltration_exists f).val := by
+  have hAF : 0 ≤ (adamsFiltration_exists f).val :=
+    (adamsFiltration_exists f).property
   simp only [eHat]
   split
   · omega
@@ -67,7 +69,7 @@ theorem eHat_hasAF_ge {X Y : 𝒮} (f : X ⟶ Y) :
     HasAF_ge f (eHat 𝒮 f).toNat := by
   unfold HasAF_ge
   rw [eHat_toNat_coe 𝒮 f]
-  exact eHat_le_AF 𝒮 f
+  exact ⟨adamsFiltration_exists f, eHat_le_filtration_value 𝒮 f⟩
 
 /-- f̂ is the canonical synthetic lift of f divided by λ^{ê(f)}.
     That is, f̂ : Σ^{0, ê(f)} ν(X) → ν(Y) with ν(f) = λ^{ê(f)} ∘ f̂. -/

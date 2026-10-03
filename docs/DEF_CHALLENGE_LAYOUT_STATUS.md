@@ -1,3 +1,10 @@
+> 历史布局记录：下文按迁移批次记录路径和当时的缺口，不是当前 KIPBase 证明状态清单。
+> 当前复用范围见 [KIPBase 与 KIP126](KIPBASE_GAP_INVENTORY.md)，目录职责以根 AGENTS.md 为准。
+
+> 现行规则：Main 只有唯一 Final 定理保留 Challenge/Solution 配对；中间陈述和证明只在 Main/Solution 维护。Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。现行位置与状态见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)，下文的历史清单与测试数量不是当前配对要求。
+
+> Historical layout record. The current layout is documented in [STAGE_LAYOUT.md](STAGE_LAYOUT.md); module ownership is Def / Interface / Main.
+
 # Def / Challenge migration status
 
 The source paths below describe the current branch. Public Lean declaration names
@@ -100,7 +107,7 @@ pages, spectra, stems, and filtration bands. `Rows/Catalogue/Data` contains the
 source-shaped 401-row input; `Rows/Predicates` defines schema validity and
 `Rows/Catalogue/Proofs` checks the transcription. The mathematical interpretation
 of the recorded differential and permanence statuses remains `\notready`.
-The complete paper-specific schema and catalogue are exported by `KIP126.External`,
+The complete paper-specific schema and catalogue are exported by `KIP126.Main.Axiom`,
 not `KIP126.Def`; public names in `KIP126.Computation` are preserved.
 
 The six former loose `ClassicalAdams` implementation files now live in
@@ -234,10 +241,9 @@ synthetic cofiber, enrichment, ν-cofiber preservation, λ-Bockstein, rigidity,
 or normalized-lift axioms; those remain explicit model inputs or open internal
 proof obligations.
 
-The preservation checker for the isolated historical component is currently
-blocked by source drift on `origin/main`: the immutable
-`migration/kip-base/source-4.28.tar.gz` snapshot predates later `KIPBase`
-changes in the bounded-extension and commutativity files, so
-`scripts/kipbase-migration.py` stops at its trust-debt comparison.  The archive
-and ledger are left unchanged; refreshing that archival baseline is a separate
-repository-maintenance decision.
+The original preservation mode compares the live tree with the immutable
+4.28 snapshot, so it is not a current development-status check. The development
+script now uses `scripts/kipbase-migration.py --archive-only` to check archive
+integrity independently of later source changes. See the
+[archive guide](../migration/kip-base/README.md); the original ledger remains
+historical evidence and is not refreshed to describe current proof progress.

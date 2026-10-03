@@ -1,4 +1,4 @@
-import KIP126.External.Computation.LinE2.RawData
+import KIP126.LinProgram.Generated.E2
 import KIP126.Def.Algebra.Coefficients.Data
 import Mathlib.Algebra.MvPolynomial.Basic
 import Mathlib.RingTheory.Ideal.Quotient.Operations

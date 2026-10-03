@@ -14,7 +14,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 def check(root: pathlib.Path = ROOT) -> None:
-    for path in sorted((root / "scripts").rglob("*.py")):
+    python_sources = [* (root / "scripts").rglob("*.py"),
+                      * (root / "KIP126/LinProgram/Translate").glob("*.py")]
+    for path in sorted(python_sources):
         # Do not write __pycache__ into the inputs used by the build contract.
         compile(path.read_bytes(), str(path), "exec")
     for path in sorted((root / "scripts").rglob("*.sh")):

@@ -1,9 +1,14 @@
 import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
+import KIP126.Def.ClassicalAdams.TowerSequence.PageHomology.Data
 import KIP126.Def.Steenrod.MilnorCobar.Proofs
 import Mathlib.Algebra.Homology.ConcreteCategory
 
 /-!
 # Standard sphere Adams classes from specified Milnor cocycles
+
+The codomain is the actual tower's quotient page. The optional Mathlib
+spectral-sequence wrapper has the definitionally same second-page carrier,
+but is not imported by these internal class constructions.
 -/
 
 namespace KIP126.Classical.Adams
@@ -25,7 +30,7 @@ variable (H : Mod2EilenbergMacLane (C := C)) (M : MilnorCooperations H)
 homology quotient and page-passage map to `E₂`. -/
 def classOfMilnorCocycle (s t : ℕ) (x : KIP126.Steenrod.Milnor.cochains s t)
     (hx : KIP126.Steenrod.Milnor.differential s t x = 0) :
-    ((mod2SphereAdams H).page 2 (by decide)).X ((s : ℤ), (t : ℤ)) := by
+    adamsPage H.unit SphereSpectrum 2 (by decide) s t := by
   let K := adamsPageComplex H.unit SphereSpectrum 1 (by decide)
   let p : ℤ × ℤ := (s, t)
   let q : ℤ × ℤ := ((s + 1 : ℕ), t)
@@ -40,13 +45,13 @@ def classOfMilnorCocycle (s t : ℕ) (x : KIP126.Steenrod.Milnor.cochains s t)
     ((K.homologyπ p).hom (K.cyclesMk a q hpq ha))
 
 /-- The standard sphere Adams class `h₆`, represented by `[ξ₁^64]`. -/
-def h6 : ((mod2SphereAdams H).page 2 (by decide)).X (1, 64) :=
+def h6 : adamsPage H.unit SphereSpectrum 2 (by decide) 1 64 :=
   classOfMilnorCocycle H M 1 64 KIP126.Steenrod.Milnor.h6Cochain
     KIP126.Steenrod.Milnor.h6Cochain_isCycle
 
 /-- The square of the standard `h₆`: the class of the concatenation product
 `[ξ₁^64 | ξ₁^64]`, in filtration two and internal degree 128. -/
-def h6Square : ((mod2SphereAdams H).page 2 (by decide)).X (2, 128) :=
+def h6Square : adamsPage H.unit SphereSpectrum 2 (by decide) 2 128 :=
   classOfMilnorCocycle H M 2 128 KIP126.Steenrod.Milnor.h6SquareCochain
     KIP126.Steenrod.Milnor.h6SquareCochain_isCycle
 
