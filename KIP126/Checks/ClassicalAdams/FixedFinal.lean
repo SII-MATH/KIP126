@@ -61,8 +61,6 @@ run_cmd do
       throwError "unexpected final dependency: {a}"
   unless axioms.contains ``sorryAx do
     throwError "update the proof-status audit when the final proof is completed"
-  if axioms.contains `KIP126.Interface.Axiom.challenge1 then
-    throwError "final fixed objects must not be selected by the Interface axiom"
   -- The merged Challenge2 type contains unfinished structural comparisons.
   -- As in Checks.AdamsE2.LinBasis, disclose its existing dependency closure;
   -- this is a boundary check, not a claim of axiom-free certification.

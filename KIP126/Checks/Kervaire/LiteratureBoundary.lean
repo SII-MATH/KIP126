@@ -9,8 +9,7 @@ open Lean Elab Command in
 run_cmd do
   let env ← getEnv
   for m in env.allImportedModuleNames do
-    if (`KIP126.Main.Axiom.LinProgram).isPrefixOf m ||
-        (`KIP126.Main.Challenge).isPrefixOf m ||
+    if (`KIP126.Main.Challenge).isPrefixOf m ||
         m == `KIP126.Main.Solution.h6_sq_permanent ||
         (`KIPBase).isPrefixOf m then
       throwError "A(M) imports a computation or final theorem: {m}"

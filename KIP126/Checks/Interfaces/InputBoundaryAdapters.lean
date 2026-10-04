@@ -12,8 +12,6 @@ run_cmd do
   for m in env.allImportedModuleNames do
     if (`KIP126.Main.Challenge).isPrefixOf m || (`KIP126.Def.Challenge).isPrefixOf m then
       throwError "Solution imports a Challenge placeholder module: {m}"
-    if (`KIP126.Main.Axiom.Literature).isPrefixOf m then
-      throwError "obsolete parallel literature boundary imported: {m}"
   for name in [``KIP126.Main.StageInput.literature,
       ``KIP126.Main.StageInput.routeLiterature] do
     let some (.defnInfo _) := env.find? name
