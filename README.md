@@ -33,8 +33,8 @@ formalization.
 The complete historical KIP-base library is retained as the separately compiled
 `KIPBase` component on the same Lean/mathlib 4.32.2 pins. Its original assumptions
 are isolated from `KIP126` and do not count as completed paper proofs. See the
-[component guide](KIPBase/README.md), [reuse boundaries](docs/KIPBASE_GAP_INVENTORY.md),
-and [original migration archive](migration/kip-base/README.md).
+[component build and reuse guide](KIPBase/README.md) and
+[original migration archive](migration/kip-base/README.md).
 
 ## Project documents and workflow
 
@@ -42,10 +42,10 @@ Documentation is kept at the project, stage, or component boundary where it
 adds context beyond the Lean source. A Lean directory does not need its own
 README: the source files and their imports are the current API, while historical
 migration snapshots remain available in Git history. Do not infer proof status
-from a directory listing or a past migration count.
+from a directory listing or a past migration count. Archived plans and check
+records are kept in [docs/archive/](docs/archive/) for historical reference.
 
 - [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
-- [Stage layout](docs/STAGE_LAYOUT.md): directory ownership and the unified Challenge2 delivery.
 - [Input review panel](docs/challenge-input-inventory.html): foundation, literature, computation, and remaining review obligations.
 
 The repository assigns different questions to different authoritative sources;
@@ -58,17 +58,10 @@ document:
 - [`PROJECT_BOUNDARY.md`](PROJECT_BOUNDARY.md) defines what this project does
   and does not formalize, together with its source, trust, and acceptance
   boundaries.
-- [`docs/ROADMAP.md`](docs/ROADMAP.md) owns the long-term stages and dependency
-  order: audit the earlier repositories and form KIP126's best-progress
-  envelope, continue the chapter-level formalization, and finish with a
-  repository-wide trust, provenance, completeness, and reproducibility audit.
-- [`docs/SPECTRAL_SEQUENCE_STATUS.md`](docs/SPECTRAL_SEQUENCE_STATUS.md) is the
-  concise current checkpoint for the canonical finite-page construction and
-  its remaining implementation gaps; implemented facts remain owned by Lean.
 - [`blueprint/src/content.tex`](blueprint/src/content.tex) and the chapters
   under [`blueprint/src/chapters`](blueprint/src/chapters) form the
   natural-language formalization sketch.  The Blueprint follows the paper's
-  definitions and the roadmap's order, and refines each step into nodes whose
+  definitions and mathematical dependencies, and refines each step into nodes whose
   mathematical statement, dependencies, sources, and intended Lean object can
   be checked together.  A chapter indexes several small Lean modules under
   `KIP126/Def/`, `KIP126/Interface/`, and `KIP126/Main/`;
@@ -90,12 +83,10 @@ document:
   `Source/`; they are evidence, not Lean proof assumptions.
   Import concrete modules directly instead of adding redundant wrappers that
   only import one module. Multi-module aggregators and required Lake roots,
-  including `KIPBase.lean`, remain. The
-  [current layout and migration record](docs/STAGE_LAYOUT.md) explains
-  ownership, preserved proof debt, and the old-to-new path map.
-  The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
-  small executable example connecting imported dimensions and multiplication
-  coefficients to an existing spectral sequence's page.
+  including `KIPBase.lean`, remain.
+  The [E₂ table example](KIP126/Checks/Examples/LinProgram/AdamsE2LowDegrees.lean)
+  demonstrates imported dimensions, multiplication and the explicit
+  representation evidence required to use them on a spectral-sequence page.
 - [`docs/external-inputs.json`](docs/external-inputs.json) is the canonical
   machine-readable manifest for source artifacts, locators, interface coverage,
   and route audit items. Per-source status records under [`Source/`](Source/)
@@ -105,14 +96,14 @@ document:
 When two sources appear to disagree, resolve the question through the owner
 above: scope, trust, and final acceptance through `PROJECT_BOUNDARY.md`;
 implemented facts through Lean; planned statements, dependencies, and status
-through the Blueprint; long-term order through the Roadmap; and source
+through the Blueprint; and source
 artifacts through the source inventory.
 
 The intended workflow is therefore:
 
 1. use `MainPaper/` to identify the mathematical target;
 2. use `PROJECT_BOUNDARY.md` to decide which claims and inputs are in scope;
-3. use `docs/ROADMAP.md` to choose the next implementation slice;
+3. use Blueprint dependencies and Lean source to choose the next implementation slice;
 4. record its node-level natural-language statement and Lean correspondence
    in the matching Blueprint chapter; and
 5. implement and verify the corresponding Lean declarations with Lake and the
@@ -126,9 +117,7 @@ replace the internal representative language. The filtered-complex layer also
 constructs homology filtrations and associated-graded differentials. The
 generic homological-image and spectral-object bridges, endpoint data, and
 convergence interfaces remain distinct from the internal `Z/B` presentation.
-This separation is still being completed; see
-[`docs/SPECTRAL_SEQUENCE_STATUS.md`](docs/SPECTRAL_SEQUENCE_STATUS.md). The
-toolchain and Mathlib dependency are pinned to matching `4.32.2` releases.
+This separation is still being completed. The toolchain and Mathlib dependency are pinned to matching `4.32.2` releases.
 
 The Blueprint remains ahead of the theorem proofs, while the source catalogue
 interfaces now cover the completed migration slices.  Its entry
@@ -138,7 +127,7 @@ It covers the paper's Sections 1--7, all 401 nonempty appendix rows and nine
 zero bands (the rows are now typed AST input records with executable catalogue
 regressions), the stable/spectral-sequence/Steenrod/synthetic background absent
 from Mathlib, explicit literature and computation provenance, and the full
-dependency cone from the compiled Core to the conditional Kervaire endpoints.
+dependency cone to standard `h₆²` nonzero permanent survival.
 All unimplemented nodes are conservatively marked `notready`; the Blueprint
 does not claim that the main theorem is already formalized.  Implemented APIs
 and planned nodes retain the responsibilities defined once in
@@ -234,9 +223,14 @@ python3 scripts/check_external_inputs.py
 
 The checks validate source acquisition records, artifact paths and hashes,
 declaration coverage and source locators. They do not establish that the cited
-text entails the Lean statement or certify a computation. The Blueprint's
-53 statement packages remain a writing and mathematical-review backlog;
-they are not a count of proved theorems or Challenge2 fields.
+text entails the Lean statement or certify a computation. Each Blueprint node
+records its own mathematical statement, declaration mapping and proof status.
+
+Pinned computation inputs are listed in
+[Raw/manifest.json](KIP126/LinProgram/Raw/manifest.json); the
+[translation tools](KIP126/LinProgram/Translate/) provide their command options
+through `--help`. Their checks compare fixed inputs and generated output;
+model certification remains an Interface proof obligation.
 
 ## Repository-private Blueprint skills
 

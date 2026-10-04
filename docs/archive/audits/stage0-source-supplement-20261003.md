@@ -1,10 +1,10 @@
 # 第 0 步修订后的来源补证（2026-10-03）
 
-本记录补充本轮实际取得的原始材料，并区分原文、数据解释和项目比较证明。原审查报告保持不变；本记录不宣称 `sorry` 已消除，也不把脚本通过等同于数学证明完成。
+本记录补充本轮实际取得的原始材料，并区分原文、数据解释和项目比较证明。本记录的接口路径与状态对应 2026-10-03 快照；其中 Challenge1 接线等历史架构已被后续修订取代，当前责任见 [STAGE0_INTERFACES.md](../../STAGE0_INTERFACES.md)。本记录不宣称 `sorry` 已消除，也不把脚本通过等同于数学证明完成。
 
 ## IWX 作者数据：已直接核验
 
-来源为 Isaksen–Wang–Xu 的 [Zenodo 2022 v1 作者数据](https://zenodo.org/records/6987157)。本轮直接下载两份经典 Adams CSV 和配套 `README-Adams.pdf`；网页公布的两个 CSV MD5 与下载内容一致。文件原样存入 [IWX/data](../../Source/IWX/data)，SHA256 固定在 [来源台账](../external-inputs.json)。以下行号包括表头。
+来源为 Isaksen–Wang–Xu 的 [Zenodo 2022 v1 作者数据](https://zenodo.org/records/6987157)。本轮直接下载两份经典 Adams CSV 和配套 `README-Adams.pdf`；网页公布的两个 CSV MD5 与下载内容一致。文件原样存入 [IWX/data](../../../Source/IWX/data)，SHA256 固定在 [来源台账](../../external-inputs.json)。以下行号包括表头。
 
 | 材料 | 本轮直接读取的位置 | 支持的内容 |
 | --- | --- | --- |
@@ -24,7 +24,7 @@
 
 ## Ravenel：本轮直接读取作者公开书稿
 
-已下载并固定 [作者公开 PDF](https://www.sas.rochester.edu/mth/sites/doug-ravenel/mybooks/ravenel.pdf)，保存为 [Ravenel/ravenel.pdf](../../Source/Ravenel/ravenel.pdf)，SHA256 为 `880c053ba8f2d1695e2d8bae5ef28f9b7f737324ea43d420173c7219409528ab`。这是直接读取书中陈述和证明，不表示读过其引用的全部 Adams 原论文。
+已下载并固定 [作者公开 PDF](https://www.sas.rochester.edu/mth/sites/doug-ravenel/mybooks/ravenel.pdf)，保存为 [Ravenel/ravenel.pdf](../../../Source/Ravenel/ravenel.pdf)，SHA256 为 `880c053ba8f2d1695e2d8bae5ef28f9b7f737324ea43d420173c7219409528ab`。这是直接读取书中陈述和证明，不表示读过其引用的全部 Adams 原论文。
 
 - Theorem 3.4.5(a)，印刷页 87 / PDF 第 107 页：正茎消失界为 `t-s < 2s-ε`，其中 `ε≤3`，故项目采用的严格较窄界 `0<t-s<2s-3` 正确；证明见印刷页 89。
 - Lemma 2.1.12，印刷页 46 / PDF 第 66 页：Adams 塔同伦逆极限消失给出实际过滤的交为零；不是仅给出任意分次同构。

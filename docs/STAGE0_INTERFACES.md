@@ -1,6 +1,6 @@
 # 第0步数学接口与证明责任
 
-第0步要求准确确定数学语言、对象来源、次数、条件、范围和证明责任。它允许明确的模型构造、比较、认证和本文证明暂用 `sorry`，不允许弱化目标、无来源新增假设或在模型中预设本文结论。目录职责以 [STAGE_LAYOUT.md](STAGE_LAYOUT.md) 为准。
+第0步要求准确确定数学语言、对象来源、次数、条件、范围和证明责任。它允许明确的模型构造、比较、认证和本文证明暂用 `sorry`，不允许弱化目标、无来源新增假设或在模型中预设本文结论。目录职责以 [AGENTS.md](../AGENTS.md) 和 [PROJECT_BOUNDARY.md](../PROJECT_BOUNDARY.md) 为准。
 
 历史修正报告中的验收结论限于当时检查的范围。目前完整第0步仍有文献覆盖、来源忠实性等待核验项，不能冻结 Literature 或宣称全体接口验收完成。C₂/Cη 等计算认证中间谱按用户决定留给 Interface 的证明过程，不再列为 Challenge2 接口完整性缺口。已有声明、已完成证明和实际验证分别记录；统一输入结构不改变模型构造、计算认证和论文推导中的证明责任。
 
@@ -26,7 +26,7 @@ Def 固定经典实现，包括实际完成球、HF₂、Milnor 坐标及 tensor
 
 Challenge2 在这一固定经典背景上，一起交付 `routeInput`、`ModelBindings routeInput`、A、内部适配、presentation 与 C；所有字段依赖同一个见证。Def 不先从较弱的 RouteInput 中任选 ν、Hopf maps 或 detector 再要求它们恰好满足文献定理。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联存在性责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到路线、绑定与 A。该定理不是对 synthetic 范畴的唯一性刻画，也不声称这里已经实现其 ∞-site；其构造证明仍待补，不含 C、Application、high125 或本文新工具。
 
-供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。53 条文献 package 是陈述撰写清单，保留 F12、C08–C10 等当前范围外的几何条目作来源记录；不能当作当前 Challenge2 字段清单或已核实的完整外部定理集合。
+供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。文献 package 是陈述撰写清单，保留 F12、C08–C10 等当前范围外的几何条目作来源记录；不能当作当前 Challenge2 字段清单或已核实的完整外部定理集合。
 
 唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须在同一路线见证上完成 foundation、认证与内部适配，不能分别选择两个存在性见证后视为同一对象。
 
@@ -82,4 +82,4 @@ Cη 顶胞腔自然性记录 462481 参与 `lem:x_123_9` 所用球谱 d₃ 的�
 
 第0步分别检查语义、计算覆盖、外部结果覆盖、职责、传递性依赖、目录及实际编译。完整认证、全部来源重证和最终 T 的无 sorry 证明属于后续目标。原始来源尚未核实、明确性质缺少绑定，或尚无可信充分前提时，应记录为未完成/证据缺口，不用通过编译代替判断。
 
-旧的按提交批次、PR编号叠加的冻结/迁移说明已合并到本文件与 STAGE_LAYOUT；[旧重构报告](audits/stage0-refactor-20261003.md)保留当时运行记录并明确标注结论撤回。数学接口以当前 Lean 源码为准，来源、locator 与声明对应关系以 [external-inputs.json](external-inputs.json) 为准。历史依赖对照和修正报告保留检查证据，不能作为另一份权威清单，也不能沿用旧报告的完成结论。
+数学接口以当前 Lean 源码为准，来源、locator 与声明对应关系以 [external-inputs.json](external-inputs.json) 为准。保留的来源审查与计算依赖表是注明日期的检查证据，不是另一份权威清单；旧迁移、集成和验收记录可从 Git 历史追溯，不能沿用其完成结论。

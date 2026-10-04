@@ -10,4 +10,4 @@ Lean 数学字段直接接收命题或认证数据。文献、计算、模型比
 
 基础适用性保留在 `Challenge2.foundation`；文献和计算分别进入 `literature` 与 `computation`；模型绑定和内部应用使用独立字段。来源到所选模型的识别责任不能被省略。
 
-当前文献覆盖、部分原文/locator 核验及 C₂/Cη 认证路径仍有缺口。详细范围见 [接口说明](../docs/STAGE0_INTERFACES.md)。维护时保留已有来源 ID；新增原文更新 manifest 及获取记录，数学陈述核验与文件摘要检查分别完成。
+当前文献覆盖、部分原文/locator 核验仍有待核验项。C₂/Cη 是 Interface 计算认证可能使用的内部证明依赖，不是 Challenge2 必须交付的字段；计算结论的认证责任仍须完成。详细范围见 [接口说明](../docs/STAGE0_INTERFACES.md)。维护时保留已有来源 ID；新增原文更新 manifest 及获取记录，数学陈述核验与文件摘要检查分别完成。

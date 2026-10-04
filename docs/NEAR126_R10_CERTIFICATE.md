@@ -1,7 +1,7 @@
-# R10：两项乘积为 d₂ 边界的归档复查
+# R10：两项乘积为 d₂ 边界的归档复查（2026-09-26）
 
-状态（2026-09-26）：具体 CSV 计算依据已找到并通过独立脚本复查；
-**不是 Lean 内核证明，也尚未构造 `SphereBoundaryFacts` 的证据值。**
+本记录保存 2026-09-26 的 CSV 核查、字节摘要和显式理想证书；它不是当前证明进度报告。
+**脚本复查不是 Lean 内核证明，也不能代替数据与实际微分的比较。**
 
 ## 数学内容、消费点与固定对象
 
@@ -88,7 +88,7 @@ python3 scripts/check-near126-product-boundaries.py --self-test /path/to/archive
 上述 F₂ 多项式理想证书；向 stdout 输出 JSON 定位记录，不写入归档。
 自测覆盖抵消、指数相加、正确证书及错误靶被拒绝。本地执行全部通过。
 
-仍需完成的工作：
+该核查本身不交付以下证明：
 
 1. 将这些有限代数证书导入 Lean 内核检查，而不是把 Python 成功当 Lean 证明；
 2. 明确这些归档 d₂ 值与 `sphereAdamsData.d` 的比较输入，不能从纯 E₂
@@ -96,6 +96,6 @@ python3 scripts/check-near126-product-boundaries.py --self-test /path/to/archive
 3. 从这两项 classical 边界事实及 synthetic 比较推出论文使用的过滤提升；
 4. 完成 R10 的 P/Q 候选空间、所有线性组合、高过滤纠正项穷尽。
 
-`SphereBoundaryFacts` 目前仅接收边界成员命题，不要求额外非零事实。
+本次核查所用 `SphereBoundaryFacts` 仅接收边界成员命题，不要求额外非零事实。
 这正是本处用于过滤提升的输入部分，不是对归档非零微分完整语义的编码，
 也不是 R10 或最终目标已经完成的声明。

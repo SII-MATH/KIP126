@@ -15,8 +15,8 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 ## Staged repository architecture
 
 The user's unified-input architecture supersedes earlier migration rules.
-See [STAGE_LAYOUT](docs/STAGE_LAYOUT.md) for the directory contract and
-[STAGE0_INTERFACES](docs/STAGE0_INTERFACES.md) for mathematical responsibilities.
+The directory contract is stated below and in [AGENTS.md](AGENTS.md);
+[STAGE0_INTERFACES](docs/STAGE0_INTERFACES.md) records mathematical responsibilities.
 
 - Def owns M's objects, operations, properties, concrete implementation/source
   identification and comparisons. Def has no direct or transitive dependency
@@ -241,8 +241,9 @@ fragment is **closed, finite-page sphere differential equations** within the
 existing E₂ comparison range. Other spectra, extension semantics,
 conditional branches, unknown values and permanence sentinels are not yet
 covered. Full raw JSONL export is supported without treating every log row as
-an unconditional mathematical assertion. See `docs/LIN_PROOFS_IMPORT.md` and
-the generated manifest for exact scope.
+an unconditional mathematical assertion. See
+`KIP126/LinProgram/Generated/Differentials/manifest.json` and the
+`KIP126/LinProgram/Translate/import-proofs.py` selection rules for exact scope.
 
 Deterministic translation, a successful hash check, and a generated Lean row
 establish reproducible syntax and provenance, not the row's mathematical

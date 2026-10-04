@@ -1,10 +1,10 @@
-# 主定理 h₆² 存活的计算依赖与当前 C(M) 对照（2026-10-03）
+# 主定理 h₆² 存活的计算依赖对照（2026-10-03 快照）
 
 > 2026-10-04 更新：本文的 C₂/Cη “第 0 步接口缺口”判断已被后续用户决定取代。它们是 Interface 认证计算结论时可能使用的内部证明依赖，不是 Challenge2 必须交付的字段；计算结论本身仍需证明。当前职责以 [第 0 步接口说明](../STAGE0_INTERFACES.md) 为准。下文保留当时的依赖调查，不作为当前接口验收结论。
 
-本表仅梳理主定理 **h₆² 在经典球谱 Adams 谱序列中非零永久存活**（`thm:126survives`）的证明实际使用的计算事实：从§7各证明步骤提取需求，向前追溯所调用工具的证明前提，向下核对其程序认证依赖，再与当前 `KIP126-develop` 的 C(M) 对照。引言的额外推论、教学示例和未建立主定理消费关系的展示数据不计入需求表。最初清单整理只修改文档；下表随后按第0步修正中的实际源码更新，接口覆盖与证明完成继续分开。
+本表仅梳理主定理 **h₆² 在经典球谱 Adams 谱序列中非零永久存活**（`thm:126survives`）的证明实际使用的计算事实：从§7各证明步骤提取需求，向前追溯所调用工具的证明前提，向下核对其程序认证依赖，再与当时 `KIP126-develop` 的 C(M) 对照。引言的额外推论、教学示例和未建立主定理消费关系的展示数据不计入需求表。最初清单整理只修改文档；下表随后按第0步修正中的实际源码更新，接口覆盖与证明完成继续分开。
 
-**完整第0步尚未完成。此前重新验收仅覆盖 S⁰/Cν 上的直接消费合同；不能据此宣称包括程序认证依赖在内的完整范围已经冻结。C₂/Cη 的缺口见 Z14、Z16；其对象、映射和解释接口仍须补齐。** 具体更正见[验收报告](stage0-correction-20261003.md)。 原 `stem125_e5_high_exhaustion` / `SphereFacts.e5_high125_other` 错把权重130的 synthetic 候选穷尽写成经典 E₅ 的全高过滤消失。该错误类型现已删除，AF15 的非零 d₅ 源、AF18 的非零 d₅ 靶及准确的权重130过滤/λ推导已分别立项。下表按当前类型重新判断覆盖；所有仍有 `sorry` 的认证、比较和 Main 推导仍是证明债务。表中未单列的内部步骤、未核实的程序重放叶子和备用基名解释不改标为“已包含”，其与必要输入合同的区别见新报告。
+原 `stem125_e5_high_exhaustion` / `SphereFacts.e5_high125_other` 曾错把权重130的 synthetic 候选穷尽写成经典 E₅ 的全高过滤消失；本表记录删除错误类型并分别声明 AF15 非零 d₅ 源、AF18 非零 d₅ 靶及权重130过滤/λ推导后的对照。表中的覆盖状态和源码行号对应当时快照，不能作为当前验收或证明完成结论。当前接口责任见 [STAGE0_INTERFACES.md](../STAGE0_INTERFACES.md)，C₂/Cη 的职责以上方更新为准。
 
 **定位和约定。** 主论文使用仓库的 [main.tex](../../MainPaper/main.tex)，SHA256 为 `828ee5a5aa06e1f390b036a043230ed417446fa7be11a4e27eecc4a565135c4b`；对应本地 [PDF](../../MainPaper/2412.10879.pdf) 的 SHA256 为 `7cae269851a88d10dd194651dbf7497b75ef8b8b914bc1901dfa3734cd8096b4`。初次整理版本 `Challenge2.lean` 的 SHA256 为 `75201cabd29d71bceacd01b1c3b0cb64aacfb4a25bf5ae08b05e91bc05021074`；合并最新 develop 后，`selected.json` 的当前 SHA256 为 `5f12d2bf25b1c5e2fcf29fe1328d444c3d6fd3c058ca74d8fbc317fb93cb4e64`；数值 payload 未变，仅将主论文路径改为 `MainPaper/main.tex`。迁移前摘要为 `7665db30f8a4400e8c1d70579811ae40cd5016511798461fc356e977b8ade60a`。第三列以稳定 TeX label 和实际证明中的步骤定位；行号只辅助阅读，不把表格出处当作消费位置。
 
@@ -264,4 +264,4 @@
 
 另只读核对全部三条 `reason=M` 日志（71642、71643、71644），全部8条选中root-refutation的原文、指定SS行和单项式坐标，及401条附录locator。固定选择重算是完整的数据一致性检查；针对反例、种子和间接依赖的额外SQL查询只为所列具体事实提供证据，**不是2672275条日志、49谱或全部认证DAG的重放**。日志与临时提取物位于 `/tmp/stage0-c-inventory-20261003/`；其不可用时可按上述固定hash/命令重做数据核验。
 
-[C认证入口](../../KIP126/Interface/Solution/LinProgram/Route/Certification.lean) 的 `certify_of_parts` 只是七项前提的组装，`certification` 从尚未完成的 `Interface.Solution.challenge2` 提取见证；[总生产者](../../KIP126/Interface/Solution/Challenge2.lean) 仍有证明责任。Main中存在准确的 `by sorry` 推导类型可以记录接口，但不能算已完成数学认证；存在错误类型则不能用sorry免责。初次范围修订只修改Markdown；本轮根据实际接口修正更新本表。数据一致性结果仍只对应上述固定选择，不等于重放认证；当前Lean构建与依赖检查结果见[修正与重新验收报告](stage0-correction-20261003.md)，不沿用旧构建成功作为数学结论的证据。
+[C认证入口](../../KIP126/Interface/Solution/LinProgram/Route/Certification.lean) 的 `certify_of_parts` 只是七项前提的组装，`certification` 从尚未完成的 `Interface.Solution.challenge2` 提取见证；[总生产者](../../KIP126/Interface/Solution/Challenge2.lean) 仍有证明责任。Main中存在准确的 `by sorry` 推导类型可以记录接口，但不能算已完成数学认证；存在错误类型则不能用sorry免责。初次范围修订只修改Markdown；本轮根据实际接口修正更新本表。数据一致性结果仍只对应上述固定选择，不等于重放认证；当前责任边界见[接口说明](../STAGE0_INTERFACES.md)；本表不提供当前构建或证明完成证据。

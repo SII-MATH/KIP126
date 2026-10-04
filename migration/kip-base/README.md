@@ -4,8 +4,7 @@
 `KIPBase/` 的实现状态、证明缺口或开发流程**。活动源码已经继续发展；
 原迁移的模块数量、公理和 `sorry` 数量不能作为当前统计。
 
-当前组件入口与构建方式见 [KIPBase README](../../KIPBase/README.md)，
-源码复用范围见 [KIPBase 与 KIP126](../../docs/KIPBASE_GAP_INVENTORY.md)。
+当前组件入口、构建方式与源码复用范围见 [KIPBase README](../../KIPBase/README.md)。
 项目职责和工作规则见根 [README](../../README.md) 与 [AGENTS.md](../../AGENTS.md)。
 
 ## 保留的来源材料

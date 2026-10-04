@@ -1,5 +1,7 @@
 # 当前输入与证明结构
 
+> 归档于 2026-10-04：本文件保留整理时的方案与状态，不再作为当前规范或进度入口。当前职责见 [AGENTS.md](../../AGENTS.md)、[项目边界](../../PROJECT_BOUNDARY.md) 和 [接口说明](../STAGE0_INTERFACES.md)。
+
 本文件记录用户批准的统一输入方案。原 Challenge1 阶段已取消，其实际数学义务保留在 `Challenge2.foundation`；历史报告记录当时的源码，不定义当前架构。
 
 | 位置 | 职责 |
@@ -25,4 +27,4 @@ Lean 接口只陈述数学。来源 metadata 不再通过 `ExternalResult`、`Ex
 
 只为体积、生成方式或真实复用需要拆模块。不要为展示结构创建空目录、单模块转发文件或另一套 claim registry。唯一保留的 Challenge/Solution 定理对是 Main 最终目标；Interface 通过构造 Challenge2 值完成交付。
 
-完整范围及未完成证明见 [STAGE0_INTERFACES.md](STAGE0_INTERFACES.md)。除用户明确移出范围的几何部分外，结构简化不解除模型构造、来源核验、计算认证或本文证明义务。
+完整范围及未完成证明见 [STAGE0_INTERFACES.md](../STAGE0_INTERFACES.md)。除用户明确移出范围的几何部分外，结构简化不解除模型构造、来源核验、计算认证或本文证明义务。
