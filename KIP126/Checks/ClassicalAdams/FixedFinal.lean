@@ -1,3 +1,4 @@
+import KIP126.Checks.ProofDependencies
 import KIP126.Checks.AxiomInputs
 import KIP126.Main.Challenge.h6_sq_permanent
 import KIP126.Main.Solution.h6_sq_permanent
@@ -36,31 +37,11 @@ run_cmd do
     throwError "the final logical step must retain its actual proof"
   -- Both tracks are imported here for their type comparison. Inspect the
   -- Solution dependency closure to ensure it never borrows a Challenge proof.
-  let mut todo : Array Name := #[solution]
-  let mut seen : NameSet := {}
-  while !todo.isEmpty do
-    let name := todo.back!
-    todo := todo.pop
-    if seen.contains name then continue
-    seen := seen.insert name
-    let some info := env.find? name | throwError "missing final dependency: {name}"
-    if let some moduleIdx := env.getModuleIdxFor? name then
-      let owner := env.header.moduleNames[moduleIdx]!
-      if (`KIP126.Def.Challenge).isPrefixOf owner ||
-          (`KIP126.Main.Challenge).isPrefixOf owner then
-        throwError "final Solution borrows an intentional goal proof: {name}: {owner}"
-      -- External libraries cannot refer to project declarations. Traverse
-      -- project modules, including their private and generated declarations.
-      unless (`KIP126).isPrefixOf owner do continue
-    todo := todo ++ info.type.getUsedConstants
-    if let some value := info.value? then
-      todo := todo ++ value.getUsedConstants
+  KIP126.Checks.rejectGoalProofs #[solution]
   let axioms ← liftCoreM (collectAxioms solution)
   for a in axioms do
     unless KIP126.Checks.AxiomInputs.allows (logical ++ [``sorryAx] ++ inputs) a do
       throwError "unexpected final dependency: {a}"
-  unless axioms.contains ``sorryAx do
-    throwError "update the proof-status audit when the final proof is completed"
   -- The merged Challenge2 type contains unfinished structural comparisons.
   -- As in Checks.AdamsE2.LinBasis, disclose its existing dependency closure;
   -- this is a boundary check, not a claim of axiom-free certification.

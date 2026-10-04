@@ -40,7 +40,7 @@ run_cmd do
           throwError "T(M) depends on a project axiom: {name}"
       else continue
     todo := todo ++ info.type.getUsedConstants
-    if let some value := info.value? then todo := todo ++ value.getUsedConstants
+    if let some value := info.value? (allowOpaque := true) then todo := todo ++ value.getUsedConstants
 
 open KIP126.Classical.Adams KIP126.StableHomotopy
 

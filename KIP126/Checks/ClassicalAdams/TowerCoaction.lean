@@ -37,8 +37,7 @@ run_cmd do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
         (`KIP126.Def.ClassicalAdams.MilnorCooperations).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardFoundation).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m ||
+        (`KIP126.Def.StageInput).isPrefixOf m ||
         (`KIP126.Def.Steenrod.MilnorCobar).isPrefixOf m ||
         (`KIP126.Def.AdamsE2).isPrefixOf m then
       throwError "unexpected tower-coaction import: {m}"

@@ -29,7 +29,7 @@ run_cmd do
         throwError "unexpected sphere cofiber assumption: {decl}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`KIP126.Challenge).isPrefixOf m ||
+        (`KIP126.Main.Challenge).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
       throwError "unexpected Hopf cofiber import: {m}"
 

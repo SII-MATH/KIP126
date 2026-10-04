@@ -54,8 +54,11 @@ run_cmd do
     if name.startsWith "KIPBase" || name.startsWith "KIP126.Mathlib." ||
         name.startsWith "Mathlib.Algebra.Homology.SpectralSequence" then
       throwError "Lin internal interface imported forbidden adapter: {mod}"
-    if name.startsWith "KIP126.Interface.Solution." then
-      throwError "Main basis consumer imported an Interface producer: {mod}"
+    -- Main may apply delivered literature through source adapters, but it
+    -- must not import the fixed-computation certification or total producer.
+    if (`KIP126.Interface.Solution.LinProgram).isPrefixOf mod ||
+        mod == `KIP126.Interface.Solution.Challenge2 then
+      throwError "Main basis consumer imported a computation producer: {mod}"
   let axs ← liftCoreM (collectAxioms ``KIP126.LinE2.multiply_mem)
   for a in axs do
     unless [``propext, ``Classical.choice, ``Quot.sound].contains a do

@@ -18,7 +18,7 @@ run_cmd do
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Challenge).isPrefixOf m then
+        (`KIP126.Main.Challenge).isPrefixOf m then
       throwError "unexpected Lin proofs import: {m}"
 
 set_option maxRecDepth 2048 in

@@ -43,7 +43,7 @@ run_cmd do
         (`KIP126.Def.ClassicalAdams).isPrefixOf m ||
         (`KIP126.Def.StableHomotopy).isPrefixOf m ||
         (`KIP126.Def.AdamsE2).isPrefixOf m ||
-        (`KIP126.External).isPrefixOf m then
+        (`KIP126.LinProgram).isPrefixOf m then
       throwError "unexpected pure-cobar non-boundary import: {m}"
 
 #print axioms KIP126.Steenrod.Milnor.h6Square_binary_parity

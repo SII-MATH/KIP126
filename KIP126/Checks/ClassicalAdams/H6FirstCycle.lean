@@ -55,10 +55,9 @@ run_cmd do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
         (`KIP126.Def.ClassicalAdams.MilnorCooperations).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardFoundation).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m ||
+        (`KIP126.Def.StageInput).isPrefixOf m ||
         (`KIP126.Def.AdamsE2).isPrefixOf m ||
-        (`KIP126.External.Computation.LinE2).isPrefixOf m then
+        (`KIP126.LinProgram).isPrefixOf m then
       throwError "unexpected fixed-input h6 first-cycle import: {m}"
 
 #print axioms KIP126.Classical.Adams.sphereAdamsPageD_one_h6_tensorBoundary

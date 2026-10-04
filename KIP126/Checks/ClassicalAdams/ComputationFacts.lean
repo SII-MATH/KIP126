@@ -38,7 +38,7 @@ run_cmd do
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Challenge).isPrefixOf m then
+        (`KIP126.Main.Challenge).isPrefixOf m then
       throwError "unexpected computation-facts import: {m}"
 
 #print axioms KIP126.Computation.Near126.Atom.record_eq

@@ -67,6 +67,6 @@ run_cmd do
         throwError "unexpected synthetic-interface assumption: {name}: {axiomName}"
   for moduleName in (← getEnv).allImportedModuleNames do
     if (`KIPBase).isPrefixOf moduleName ||
-        (`KIP126.Interface.Axiom).isPrefixOf moduleName ||
-        moduleName == `KIP126.Main.Axiom.Challenge2 then
+        (`KIP126.Interface).isPrefixOf moduleName ||
+        (`KIP126.Main).isPrefixOf moduleName then
       throwError "synthetic interface depends on an admitted fixed model: {moduleName}"

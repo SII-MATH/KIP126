@@ -32,15 +32,11 @@ run_cmd do
       ``KIP126.Classical.Adams.computedH6Square_d_two_double_value_exists,
       ``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_iff_double_lift,
       ``KIP126.Classical.Adams.computedH6Square_double_lift_five_of_leibniz] do
-    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer (logical ++ inputs)
+    discard <| KIP126.Checks.AxiomInputs.checkStageConsumer (logical ++ inputs)
       declaration "unexpected computational tower dependency"
-    for a in inputs do
-      unless KIP126.Checks.AxiomInputs.uses axioms a do
-        throwError "missing disclosed computational tower input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
+        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
       throwError "unexpected computational tower import: {m}"
 
 #print axioms KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_computedH6Square

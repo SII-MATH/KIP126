@@ -52,5 +52,5 @@ run_cmd do
     discard <| KIP126.Checks.AxiomInputs.checkStageConsumer expected decl
       "unexpected sphere expression axiom"
   for m in (← getEnv).allImportedModuleNames do
-    if (`KIPBase).isPrefixOf m || (`KIP126.Challenge).isPrefixOf m then
+    if (`KIPBase).isPrefixOf m || (`KIP126.Main.Challenge).isPrefixOf m then
       throwError "retired or placeholder import: {m}"

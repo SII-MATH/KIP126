@@ -1,3 +1,4 @@
+import KIP126.Checks.ProofDependencies
 import KIP126.Main.Solution.StageInput
 import Lean.Elab.Command
 
@@ -23,20 +24,5 @@ run_cmd do
       unless allowed.contains axiomName do
         throwError "literature projection gained an independent axiom: {name}: {axiomName}"
 
-  for root in [``KIP126.Main.StageInput.literature,
-      ``KIP126.Main.StageInput.routeLiterature] do
-    let mut pending := #[root]
-    let mut seen : NameSet := {}
-    while !pending.isEmpty do
-      let name := pending.back!
-      pending := pending.pop
-      if seen.contains name then continue
-      seen := seen.insert name
-      if (`KIP126.Main.Challenge).isPrefixOf name then
-        throwError "literature projection uses a final-goal placeholder"
-      let some info := env.find? name | continue
-      if let some idx := env.getModuleIdxFor? name then
-        unless (`KIP126).isPrefixOf env.header.moduleNames[idx]! do continue
-      pending := pending ++ info.type.getUsedConstants
-      if let some value := info.value? then
-        pending := pending ++ value.getUsedConstants
+  KIP126.Checks.rejectGoalProofs #[``KIP126.Main.StageInput.literature,
+    ``KIP126.Main.StageInput.routeLiterature]

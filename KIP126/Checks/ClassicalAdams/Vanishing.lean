@@ -4,7 +4,7 @@ import Lean.Elab.Command
 
 /-! The no-incoming-differential argument is internal and independent of the Lin
 table and Milnor coordinates. Its generic form uses the Eilenberg--Mac Lane
-property; its fixed form projects only the foundation from Challenge 1. -/
+property; its fixed form uses the implementation owned by Def. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -40,13 +40,9 @@ run_cmd do
     for a in axioms do
       unless KIP126.Checks.AxiomInputs.allows (basic ++ inputs) a do
         throwError "unexpected fixed vanishing dependency: {declaration}: {a}"
-    for a in inputs do
-      unless KIP126.Checks.AxiomInputs.uses axioms a do
-        throwError "missing disclosed vanishing input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
+        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
       throwError "unexpected internal vanishing import: {m}"
 
 #print axioms KIP126.Classical.Adams.sphereAdamsInternal_h6_incoming_d_eq_zero

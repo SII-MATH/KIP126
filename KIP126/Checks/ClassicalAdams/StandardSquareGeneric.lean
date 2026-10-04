@@ -16,7 +16,7 @@ run_cmd do
         throwError "unexpected generic standard-square dependency: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`KIP126.Def.AdamsE2).isPrefixOf m || (`KIP126.External).isPrefixOf m ||
+        (`KIP126.Def.AdamsE2).isPrefixOf m || (`KIP126.LinProgram).isPrefixOf m ||
         (`KIP126.Interface).isPrefixOf m || (`KIP126.Main).isPrefixOf m then
       throwError "unexpected generic standard-square import: {m}"
 

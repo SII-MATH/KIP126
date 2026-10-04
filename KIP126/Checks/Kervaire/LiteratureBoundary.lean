@@ -38,7 +38,7 @@ run_cmd do
         throwError "unexpected A(M) axiom dependency: {n}"
     todo := todo ++ info.type.getUsedConstants
     unless pendingComparisonProofs.contains n do
-      if let some value := info.value? then
+      if let some value := info.value? (allowOpaque := true) then
         if value.getUsedConstants.contains ``sorryAx then
           throwError "unregistered A(M) proof placeholder: {n}"
         todo := todo ++ value.getUsedConstants

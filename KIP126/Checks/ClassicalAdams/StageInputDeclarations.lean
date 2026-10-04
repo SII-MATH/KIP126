@@ -151,7 +151,7 @@ run_cmd do
         throwError "stage producer borrows an intentional goal proof: {name}: {owner}"
       unless (`KIP126).isPrefixOf owner do continue
     todo := todo ++ info.type.getUsedConstants
-    if let some value := info.value? then
+    if let some value := info.value? (allowOpaque := true) then
       todo := todo ++ value.getUsedConstants
   for name in [``KIP126.Main.StageInput.routeModel,
       ``KIP126.Main.StageInput.routeLiterature, ``KIP126.Main.StageInput.routeComputation] do

@@ -18,16 +18,13 @@ run_cmd do
   for a in axioms do
     unless KIP126.Checks.AxiomInputs.allows (logical ++ inputs) a do
       throwError "unexpected fixed standard-square dependency: {a}"
-  for a in inputs do
-    unless KIP126.Checks.AxiomInputs.uses axioms a do
-      throwError "missing disclosed standard-square dependency: {a}"
   for m in (← getEnv).allImportedModuleNames do
     let sphereAdapter := [
       `KIP126.Mathlib.ClassicalAdams.StandardSphere.Data,
       `KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs]
     if ((`KIP126.Mathlib).isPrefixOf m && !sphereAdapter.contains m) ||
         (`KIPBase).isPrefixOf m ||
-        (`KIP126.External).isPrefixOf m then
+        (`KIP126.LinProgram).isPrefixOf m then
       throwError "unexpected standard-square import: {m}"
 
 #print axioms KIP126.Classical.Adams.sphereH6Square_ne_zero

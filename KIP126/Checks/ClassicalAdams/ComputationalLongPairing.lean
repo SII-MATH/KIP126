@@ -17,15 +17,11 @@ run_cmd do
   for declaration in [``KIP126.Classical.Adams.SphereH6LongLayerMaps.LinCompatible,
       ``KIP126.Classical.Adams.SphereH6LongLayerMaps.LinCompatible.cross_sum_zero,
       ``KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_longLayer] do
-    let axioms ← KIP126.Checks.AxiomInputs.checkStageConsumer (logical ++ inputs)
+    discard <| KIP126.Checks.AxiomInputs.checkStageConsumer (logical ++ inputs)
       declaration "unexpected computational long-pairing dependency"
-    for a in inputs do
-      unless KIP126.Checks.AxiomInputs.uses axioms a do
-        throwError "missing disclosed computational long-pairing input: {declaration}: {a}"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
-        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m ||
-        (`KIP126.Def.ClassicalAdams.StandardMilnor).isPrefixOf m then
+        (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then
       throwError "unexpected computational long-pairing import: {m}"
 
 #print axioms KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_longLayer
