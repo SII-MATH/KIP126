@@ -1,5 +1,5 @@
 import KIP126.Def.ClassicalESS.Eta.Data
-import KIP126.Def.References.Literature.Claims
+
 
 /-!
 # Typed data for the classical eta extension spectral sequence
@@ -13,7 +13,7 @@ construction.
 namespace KIP126.Classical.ExtensionSS
 
 open KIP126.Classical.Adams
-open KIP126.External
+
 
 /-- Stable identities for the five rows in the eta-ESS regression table. -/
 inductive EtaRowId
@@ -59,7 +59,7 @@ structure EtaTypedRow {stable : StableHomotopyContext}
 
 The source and target Adams systems are fixed by the structure parameters.
 Rows can only be requested through `EtaRowId`, so callers cannot inject an
-uncatalogued row.  The evidence is tied to the existing eta regression root. -/
+uncatalogued row. The evidence states the existing eta regression directly. -/
 structure EtaData {stable : StableHomotopyContext}
     {X Y : stable.Spectrum}
     (source : ClassicalAdamsSS stable X)
@@ -67,9 +67,8 @@ structure EtaData {stable : StableHomotopyContext}
   eta : AdamsClass source
   eta_degree : eta.degree = (1, 2)
   typedRow : (id : EtaRowId) → EtaTypedRow source target id
-  ledgerEvidence : CataloguedExternalEvidence
+  evidence :
     (KIP126.Classical.Regression.etaEss etaESSDifferentials)
-  ledger_root : ledgerEvidence.root = .etaEssRegression
 
 namespace EtaData
 

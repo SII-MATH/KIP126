@@ -669,5 +669,56 @@
       "KIP126.Main.Solution.Route.DetectorInjectiveAt": "KIP126/Main/Solution/Route/Predicates.lean"
     },
     "proof_status": "No stage existence assumption or unfinished production proof is discharged by this layout change. Def/Solution/Challenge1 and Interface/Solution/Challenge2 retain their existing sorry obligations."
+  },
+  "root_literature_artifacts_2026_10_03": {
+    "description": "Intermediate artifact move: keep non-Lean literature artifacts outside the Main axiom boundary. The later Challenge2 literature consolidation supersedes its temporary statement-only Main/Axiom/Literature layout.",
+    "moves": {
+      "KIP126/Main/Axiom/Literature/MainPaper/": "MainPaper/",
+      "KIP126/Main/Axiom/Literature/Sources/": "Source/",
+      "KIP126/Main/Axiom/Literature/source-inventory.json": "Source/source-inventory.json",
+      "KIP126/Main/Axiom/Literature/Provenance.md": "Source/Provenance.md"
+    },
+    "proof_status": "Artifact bytes and mathematical declarations are unchanged; only filesystem paths, recorded locators, and documentation links are updated."
+  },
+  "challenge2_literature_consolidation_2026_10_03": {
+    "description": "Put all model-bound external literature statements in Challenge2.LiteratureInterface. Main/Axiom now contains only the single Nonempty Challenge2 stage axiom.",
+    "removed_parallel_inputs": {
+      "KIP126/Main/Axiom/Literature/Synthetic.lean": "KIP126/Challenge2.lean: LiteratureInterface.route.synthetic",
+      "KIP126/Main/Axiom/Literature/May.lean": "KIP126/Challenge2.lean: LiteratureInterface.route.may",
+      "KIP126/Main/Axiom/Literature/InternalGeometry.lean": "KIP126/Challenge2.lean: GeometryModel and GeometryLiteratureInterface"
+    },
+    "main_internal_move": {
+      "KIP126/Main/Axiom/Literature/Near126/HopfCofiber/Data.lean": "KIP126/Main/Solution/Literature/HopfCofiber/Predicates.lean"
+    },
+    "proof_status": "The Interface/Solution/Challenge2 existence proof remains sorry. Repackaging the statements neither proves the cited literature nor the MainPaper near-126 conditions."
+  },
+  "unified_project_input_2026_10_04": {
+    "description": "One direct Challenge2 input replaces the two Nonempty stage boundaries. Source provenance is maintained only in docs/external-inputs.json; Lean interfaces contain mathematical data and propositions.",
+    "obligation_moves": {
+      "KIP126.Challenge1.sphereApplicability": "KIP126.Challenge2.FoundationInputs.sphereApplicability",
+      "KIP126.Challenge2.routeApplication": "KIP126.Challenge2.InternalApplications.route",
+      "KIP126.Challenge2.sphereSeparated": "KIP126.Challenge2.InternalApplications.sphereSeparated"
+    },
+    "generic_namespace": {"KIP126.Challenge1": "KIP126.Foundation"},
+    "producer": "KIP126.Interface.Solution.challenge2 : KIP126.Challenge2",
+    "consumer": "KIP126.Main.Axiom.challenge2 : KIP126.Challenge2",
+    "removed": [
+      "KIP126/Challenge1.lean",
+      "KIP126/Challenge2.lean",
+      "KIP126/Def/Challenge1.lean",
+      "KIP126/Def/Challenge/Challenge1.lean",
+      "KIP126/Def/Solution/Challenge1.lean",
+      "KIP126/Interface/Axiom/Challenge1.lean",
+      "KIP126/Interface/Solution/Challenge1.lean"
+    ],
+    "proof_status": "The fixed implementation construction remains in Def. Sphere completion and convergence remain an explicit unfinished Foundation proof, assembled into the single package. No mathematical proof is completed by this migration. Earlier layout entries are historical, not current architecture."
+  },
+  "claim_ledger_removal_2026_10_03": {
+    "description": "Remove the redundant Lean claim-root ledger, its catalogued wrappers, projection output, and dedicated checks. External inputs retain direct SourceRef provenance through ExternalResult or ExternalEvidence; source artifact validation remains in SourceInventory and source-inventory.json.",
+    "removed": [
+      "KIP126/Def/References/Literature/Claims.lean",
+      "KIP126/Checks/External/Claims.lean"
+    ],
+    "proof_status": "No external proposition or computation is proved by this cleanup. Existing explicit proof/evidence values remain required at their consumers."
   }
 }

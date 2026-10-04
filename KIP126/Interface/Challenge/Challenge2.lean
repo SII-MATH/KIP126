@@ -1,5 +1,4 @@
 import KIP126.Def.Kervaire.Geometry.Data
-import KIP126.Def.References.Literature.Claims
 import KIP126.Def.Comparison.StageInterfaces
 import KIP126.Def.ClassicalAdams.Convergence.BHS.Predicates
 import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
@@ -50,7 +49,7 @@ import KIP126.Def.Kervaire.Route.Conditions.Predicates
 import KIP126.Def.Kervaire.Route.Massey.Predicates
 import KIP126.Def.Kervaire.Route.Toda.Predicates
 import KIP126.Def.Synthetic.Computation.Predicates
-import KIP126.Def.Challenge1
+import KIP126.Def.StableHomotopy.Implementation.Fixed
 import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
 import Mathlib.CategoryTheory.Adjunction.Additive
 import KIP126.Def.Kervaire.Route.Multiplication.Comparison
@@ -883,7 +882,7 @@ universe u v w
 
 /-- cm1：同一实际球面 E₂ 的完整 CSV 坐标，范围为 t ≤ 261。
 坐标逆像的每个单位向量，经同一 presentation 拉回后必须是指定 CSV 单项式。
-等价同时保证线性无关与生成性，不将固定 CSV 认证放回 Challenge1，
+等价同时保证线性无关与生成性，不将固定 CSV 认证放回基础定义，
 也不为内部页面另选一个 F₂ 作用。 -/
 structure SphereBasisInterface (P : LinE2Presentation) where
   coordinates : ∀ (s t : ℕ), t ≤ 261 →
@@ -953,26 +952,26 @@ def MossContext.withStatement {ι : Type w} {objects : ι → C}
 end Moss
 
 /-- am8/am15 的固定球面交付；基础、HF₂、ring 与所有 tensor 选择
-均来自同一个 Challenge1 见证，没有增加另一个可独立选择的模型。
+均来自 Def 的同一个固定实现，没有增加另一个可独立选择的模型。
 这里的球面映射谱仍需通过实际 ihom(unit,unit) 同构与 sphereAdamsData 比较。
 保留原兼容接口；总包分别存放 context 与文献结论。 -/
 def StandardSphereMossInterface : Type 1 :=
   let c := KIP126.Def.StageInput.witness
-  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  letI : Foundation.TensorInput c.foundationInput := c.tensorInput
   MossInterface c.foundationInput.hf2 c.cooperationInput.ring
     (fun _ : Unit => StableHomotopy.SphereSpectrum (C := c.foundationInput.Spectrum))
 
 /-- The same fixed sphere context, without assuming the external Moss statement. -/
 def StandardSphereMossContext : Type 1 :=
   let c := KIP126.Def.StageInput.witness
-  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  letI : Foundation.TensorInput c.foundationInput := c.tensorInput
   MossContext c.foundationInput.hf2 c.cooperationInput.ring
     (fun _ : Unit => StableHomotopy.SphereSpectrum (C := c.foundationInput.Spectrum))
 
 /-- Moss's conclusion on the selected composition and convergence data. -/
 def StandardSphereMossStatement (context : StandardSphereMossContext) : Prop :=
   let c := KIP126.Def.StageInput.witness
-  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  letI : Foundation.TensorInput c.foundationInput := c.tensorInput
   Classical.Adams.Moss.Statement c.foundationInput.hf2 c.cooperationInput.ring
     context.composition
     (fun _ : Unit => StableHomotopy.SphereSpectrum (C := c.foundationInput.Spectrum))
@@ -982,7 +981,7 @@ def StandardSphereMossStatement (context : StandardSphereMossContext) : Prop :=
 noncomputable def StandardSphereMossContext.withStatement (context : StandardSphereMossContext)
     (proof : StandardSphereMossStatement context) : StandardSphereMossInterface :=
   let c := KIP126.Def.StageInput.witness
-  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  letI : Foundation.TensorInput c.foundationInput := c.tensorInput
   MossContext.withStatement c.foundationInput.hf2 c.cooperationInput.ring context proof
 
 /-- am14 的 BR21 微分切片。同一代数对象的单位定义实际 Hurewicz，
@@ -1031,11 +1030,11 @@ def TmfModel.withDifferential {C : Type u}
 
 /-- am14 的单位与乘法比较义务，约束已选的同一个 target/coordinates。
 乘法使用实际 Adams 层配对及 target.mul；不再容许独立选择一个页面乘法。
-所有张量、HF₂ ring 和相容结构来自同一个 Challenge1 见证。 -/
+所有张量、HF₂ ring 和相容结构来自 Def 的同一个固定实现。 -/
 def StandardTmfModelMultiplicativeInterface
     (T : TmfModel standardFoundation.hf2) : Prop :=
   let c := KIP126.Def.StageInput.witness
-  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  letI : Foundation.TensorInput c.foundationInput := c.tensorInput
   T.coordinates.RespectsUnit ∧
     Tmf.E2Presentation.RespectsMultiplication c.cooperationInput.ring T.coordinates
 
@@ -1051,7 +1050,7 @@ def StandardTmfMultiplicativeInterface
 不由此宣称高页 Leibniz、全局乘法或与 cobar cup 的比较已经完成。 -/
 def SphereMultiplicativeInterface (P : LinE2Presentation) : Prop :=
   let c := KIP126.Def.StageInput.witness
-  letI : Challenge1.TensorInput c.foundationInput := c.tensorInput
+  letI : Foundation.TensorInput c.foundationInput := c.tensorInput
   (∃ x : LinE2.E2At 0 0, x.val = 1 ∧
     P.comparison 0 0 (by decide) x =
       Suspension.classOfSecondCycle c.foundationInput.hf2
@@ -1120,31 +1119,22 @@ def BrowderInterface {Manifold : Type} (dimension : Manifold → ℕ)
     (fun j => NonzeroSurvival sphereAdamsData
       (2, ((2 ^ (j + 1) : ℕ) : ℤ)) (standardHiSquare j))
 
-/-- The source-bearing geometric part of A(M).  Low-dimensional existence,
-HHR nonexistence, and Browder's criterion all use the same geometric model.
-The catalogue roots keep the three logically distinct literature sources
-auditable inside the single Challenge2 witness. -/
-structure GeometryLiteratureInterface (G : GeometryModel) where
-  low_dimensions : External.CataloguedExternalResult
-    (∀ j : ℕ, 1 ≤ j → j ≤ 5 →
-      ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M)
-  low_dimensions_root : low_dimensions.root = .lowKervaireExistence
-  high_nonexistence : External.CataloguedExternalResult
-    (∀ j : ℕ, 7 ≤ j →
-      ¬ ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M)
-  high_nonexistence_root : high_nonexistence.root = .hhrNonexistence
-  browder : External.CataloguedExternalResult
-    (BrowderInterface G.dimension G.kervaireOne)
-  browder_root : browder.root = .browderCriterion
+/-- Geometric literature conclusions on one model. Source attribution is
+maintained separately in the external-input manifest, not in these proofs. -/
+structure GeometryLiteratureInterface (G : GeometryModel) : Prop where
+  low_dimensions : ∀ j : ℕ, 1 ≤ j → j ≤ 5 →
+    ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M
+  high_nonexistence : ∀ j : ℕ, 7 ≤ j →
+    ¬ ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M
+  browder : BrowderInterface G.dimension G.kervaireOne
 
 set_option linter.defProp false in
-/-- Forget only the provenance wrapper while retaining the shared geometric
-model selected by Challenge2. -/
+/-- The geometric conclusions retain the model selected by Challenge2. -/
 def GeometryLiteratureInterface.geometry
     {G : GeometryModel} (A : GeometryLiteratureInterface G) :
-    KIP126.Challenge1.GeometryInterface G.dimension G.kervaireOne where
-  low_dimensions := A.low_dimensions.value.proof
-  high_nonexistence := A.high_nonexistence.value.proof
+    KIP126.Foundation.GeometryInterface G.dimension G.kervaireOne where
+  low_dimensions := A.low_dimensions
+  high_nonexistence := A.high_nonexistence
 
 set_option linter.defProp false in
 /-- Browder's result on the same geometric model and the standard internal
@@ -1152,7 +1142,7 @@ Adams squares used by the rest of Challenge2. -/
 def GeometryLiteratureInterface.browderCriterion
     {G : GeometryModel} (A : GeometryLiteratureInterface G) :
     BrowderInterface G.dimension G.kervaireOne :=
-  A.browder.value.proof
+  A.browder
 
 /-- Literal CSV coordinates, independent of any choice of comparison map. -/
 def HasCoordinates {s t : Nat} (x : E2At s t) (indices : List Nat) : Prop :=
@@ -1250,19 +1240,14 @@ structure ModelBindings (routeInput : Classical.Adams.StandardRouteInput) where
     (detectorIso.hom ⊗ₘ detectorIso.hom) ≫ (MonObj.mul (X := tmf.target.X)) =
       route.algebra.detector.classical.mul ≫ detectorIso.hom
 
-/-- Literature conclusions on the same selected model data. Sources and exact
-ranges remain those documented by AdamsOneLineInterface (Adams/May),
-StandardSphereMossStatement (Moss), and TmfModel.Br21Statement (BR21).
-The source-carrying external wrappers remain explicit inputs where used; this
-structure does not assert that citing a source constructs any of these proofs. -/
+/-- Literature conclusions on the same selected model data. Source attribution
+and locators are external metadata; each field requires its mathematical proof. -/
 structure LiteratureInterface (routeInput : Classical.Adams.StandardRouteInput)
     (modelBindings : ModelBindings routeInput) where
   geometry : GeometryLiteratureInterface modelBindings.geometry
   /-- Independent Adams vanishing-line specialization on the delivered
   standard sphere tower, used to close the finite computation's tail. -/
   sphereVanishing : SphereVanishingLine Classical.Adams.standardFoundation.hf2
-  /-- Separation of the same actual HF₂-local (2-completed) sphere tower. -/
-  sphereSeparated : ClassicalSphereSeparated Classical.Adams.standardFoundation.hf2
   adamsOneLine : AdamsOneLineInterface
   moss : StandardSphereMossStatement modelBindings.moss
   br21 : modelBindings.tmf.Br21Statement
@@ -1303,6 +1288,26 @@ structure ComputationInterface (routeInput : Classical.Adams.StandardRouteInput)
   route_presentation : ∀ (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t),
     route.realization.sphere s t x = presentation.comparison s t ht x
 
+/-- Completion and convergence for the implementation already fixed in Def.
+This retains the former first-stage proof obligation without selecting another
+implementation or transporting along an equality of implementations. -/
+structure FoundationInputs : Prop where
+  sphereApplicability : Classical.Adams.BHSObjectApplicability
+    KIP126.Def.fixedImplementation.foundationInput.countableProducts
+    KIP126.Def.fixedImplementation.foundationInput.hf2.unit
+    (StableHomotopy.SphereSpectrum
+      (C := KIP126.Def.fixedImplementation.foundationInput.Spectrum))
+
+/-- Project-specific applications of the sources to the chosen model. These
+remain proof obligations, but are neither literature quotations nor computed
+tables. Their mathematical types retain the exact shared model bindings. -/
+structure InternalApplications (routeInput : Classical.Adams.StandardRouteInput)
+    (modelBindings : ModelBindings routeInput) : Prop where
+  route : Literature.Route.Application routeInput.model
+    modelBindings.routeEta modelBindings.tmfLabels modelBindings.route
+  sphereSeparated : Classical.Adams.ClassicalSphereSeparated
+    Classical.Adams.standardFoundation.hf2
+
 end Challenge2
 
 /-- One correlated stage witness: shared project bindings, literature conclusions,
@@ -1311,14 +1316,13 @@ auxiliary route witness, its prior-source consequences and all internal
 applications/computations are delivered together. No weaker route is chosen
 in advance. Every sphere computation uses the one presentation stored here. -/
 structure Challenge2 where
+  foundation : Challenge2.FoundationInputs
   routeInput : Classical.Adams.StandardRouteInput
   modelBindings : Challenge2.ModelBindings routeInput
   presentation : Classical.Adams.LinE2Presentation
   literature : Challenge2.LiteratureInterface routeInput modelBindings
-  /-- Internal source-to-model application, produced by Interface. -/
-  routeApplication : Literature.Route.Application routeInput.model
-    modelBindings.routeEta modelBindings.tmfLabels modelBindings.route
   computation : Challenge2.ComputationInterface routeInput modelBindings presentation
+  applications : Challenge2.InternalApplications routeInput modelBindings
 
 namespace Challenge2
 
@@ -1371,9 +1375,3 @@ def sphereTable_sound (input : KIP126.Challenge2) (shard offset : Nat)
 end Challenge2
 
 end KIP126
-
-/-! Interface production target; no proof of this target is consumed by Main. -/
-namespace KIP126.Interface.Challenge
-theorem challenge2 : Nonempty KIP126.Challenge2 := by
-  sorry
-end KIP126.Interface.Challenge

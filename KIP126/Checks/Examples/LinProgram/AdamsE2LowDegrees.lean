@@ -197,7 +197,7 @@ theorem page_h6_square_from_model (P : Presentation table A) :
 
 /-- 将这张较大的表接入已有对象，不重新构造 E₂ 或谱序列。 -/
 def myAdams
-    (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
+    (evidence : (Nonempty (Presentation table A))) :
     Input where
   sequence := E
   algebra := A
@@ -257,7 +257,7 @@ theorem page_two_products_sum_ne_zero (P : Presentation table A) :
   simp at hc
 
 theorem imported_h6_square
-    (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
+    (evidence : (Nonempty (Presentation table A))) :
     (myAdams E A evidence).h6Square =
       (myAdams E A evidence).presentation.basis (2, 128)
         (exceptional_mem _ (Or.inr (Or.inl rfl)))
@@ -269,7 +269,7 @@ theorem imported_h6_square
   decide
 
 theorem imported_h6_square_ne_zero
-    (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
+    (evidence : (Nonempty (Presentation table A))) :
     (myAdams E A evidence).h6Square ≠ 0 := by
   rw [imported_h6_square]
   exact ((myAdams E A evidence).presentation.basis (2, 128)

@@ -142,7 +142,7 @@ theorem pageH6Sq_eq_basis (P : Presentation table A) :
 /-- A SINGLE input bundles the existing sequence and the table's external
 interpretation. The evidence is a parameter, not a new Lean axiom. -/
 def myAdams
-    (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
+    (evidence : (Nonempty (Presentation table A))) :
     Input where
   sequence := E
   algebra := A
@@ -173,7 +173,7 @@ theorem page_square (P : Presentation table A) :
       P.compatible (2, 128) modelH6SqClass
 
 theorem imported_h6_square
-    (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
+    (evidence : (Nonempty (Presentation table A))) :
     (myAdams E A evidence).h6Square =
       (myAdams E A evidence).presentation.basis
         (2, 128) square_covered (0 : Fin 1) := by
@@ -187,7 +187,7 @@ theorem imported_h6_square
   simpa only [hi] using h
 
 theorem imported_h6_square_ne_zero
-    (evidence : KIP126.External.ExternalEvidence (Nonempty (Presentation table A))) :
+    (evidence : (Nonempty (Presentation table A))) :
     (myAdams E A evidence).h6Square ≠ 0 := by
   rw [imported_h6_square]
   exact ((myAdams E A evidence).presentation.basis (2, 128) square_covered).ne_zero

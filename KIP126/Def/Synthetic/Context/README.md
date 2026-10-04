@@ -1,6 +1,6 @@
 # Synthetic / Context
 
-本页记录本组件的共享对象和构造。数学范围参见[所属阶段](../../README.md)；项目交付条件定义在 [Challenge1](../../../Challenge1.lean)。
+本页记录本组件的共享对象和构造。数学范围参见[所属阶段](../../README.md)；项目交付条件定义在 [Challenge2](../../../Interface/Challenge/Challenge2.lean)。
 
 ## 1. 原先期望包含什么
 

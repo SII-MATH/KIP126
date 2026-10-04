@@ -11,11 +11,11 @@ postulate about a coordinate differential. -/
 theorem SphereBoundaryFacts.p_h2_is_d2_cycle (F : SphereBoundaryFacts) :
     IsPageCycle sphereAdamsData 2 (12, 137)
       (linToSphereE2 12 137 (by decide) (mulAt P (atom .h2))) := by
-  exact F.p_h2_d2_boundary.evidence.isCycle
+  exact F.p_h2_d2_boundary.isCycle
 
 theorem SphereBoundaryFacts.q_h2_is_d2_cycle (F : SphereBoundaryFacts) :
     IsPageCycle sphereAdamsData 2 (13, 138)
       (linToSphereE2 13 138 (by decide) (mulAt Q (atom .h2))) := by
-  exact F.q_h2_d2_boundary.evidence.isCycle
+  exact F.q_h2_d2_boundary.isCycle
 
 end KIP126.Computation.Near126

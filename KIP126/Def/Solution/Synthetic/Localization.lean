@@ -1,4 +1,4 @@
-import KIP126.Def.Challenge1
+import KIP126.Def.StableHomotopy.Implementation.Data
 import KIP126.Def.Synthetic.Localization.Recovery.Proofs
 
 namespace KIP126.Def.Solution

@@ -5,7 +5,7 @@ import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
 import Lean.Elab.Command
 
 /-! Compilation/audit boundary for the selected complete route language.
-The flat Challenge2 statement imports the previous Challenge1 stage input, but
+The flat Challenge2 contract uses the implementation already fixed in Def, but
 no Main consumer axiom or computed basis may construct the route definitions. -/
 open Lean Elab Command in
 run_cmd do

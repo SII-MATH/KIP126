@@ -50,11 +50,11 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: PROJECT_BOUNDARY.md, External inputs and Axiom policy.
 \begin{definition}[Near-$126$ literature input]
   \label{def:near126-literature-input}
-  \uses{def:sphere-adams-coherence,def:external-result,def:external-evidence,def:source-ref,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-bx-quadratic-cell-calculus,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
+  \uses{def:sphere-adams-coherence,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-bx-quadratic-cell-calculus,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
   \notready
   For fixed $\mathcal C$, $\mathcal S$, $A_{\mathrm{cl}}$,
   $A_{\mathrm{syn}}$, and their sphere coherence datum, a near-$126$
-  literature input is a dependent record.  Its named \texttt{ExternalResult}
+  literature input is a dependent record.  Its named mathematical
   fields are \texttt{syntheticFoundation}, \texttt{syntheticRigidity},
   \texttt{syntheticEinfNu}, \texttt{syntheticEinfQuotient},
   \texttt{lambdaBockstein}, \texttt{syntheticLift},
@@ -68,13 +68,13 @@ This chapter contains only the project deductions that assemble the setup, exter
   order/choice predicate below is a paper deduction, not an extra literature
   field. The finite normalized BJM/BX statement likewise requires a project
   proof. The quadratic-construction fields supply the cited
-  cell-calculus input for the internal choice comparison.  Its named
-  \texttt{ExternalEvidence} field
+  cell-calculus input for the internal choice comparison.  Its mathematical
+  detection field
   \texttt{normalizedHopfDetection} supplies the triangle-compatible identity
   $\widehat\nu=[h_2]$ from
   Proposition~\ref{evidence:normalized-hopf-detection}.  Every proposition is
-  typed over the fixed contexts and sphere sequences and carries the locator
-  required by Definition~\ref{def:source-ref}.  There is no
+  typed over the fixed contexts and sphere sequences. Its source locator is
+  recorded in the external manifest.  There is no
   \texttt{classicalConvergence} field: convergence is already part of the
   chosen $A_{\mathrm{cl}}$ interface.
 \end{definition}
@@ -83,11 +83,11 @@ This chapter contains only the project deductions that assemble the setup, exter
 % and Conditional final theorems.
 \begin{definition}[Geometric Kervaire input]
   \label{def:geometric-kervaire-input}
-  \uses{def:sphere-adams-coherence,def:external-result,def:framed-kervaire-context,thm:external-browder-criterion,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence}
+  \uses{def:sphere-adams-coherence,def:framed-kervaire-context,thm:external-browder-criterion,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence}
   \notready
   For fixed $\mathcal C$ and $A_{\mathrm{cl}}$ as above, a geometric Kervaire
   input contains a framed context \texttt{framed} over $\mathcal C$ and named
-  external-result values \texttt{browder}, \texttt{lowKervaire}, and
+  mathematical hypotheses \texttt{browder}, \texttt{lowKervaire}, and
   \texttt{hhr}.  The proposition carried by \texttt{browder} is
   Browder's criterion for \texttt{framed} and this exact
   $A_{\mathrm{cl}}$; this dependency is part of the field's type.  The other two
@@ -131,31 +131,29 @@ This chapter contains only the project deductions that assemble the setup, exter
 % and Conditional final theorems.
 \begin{definition}[Main formalization input]
   \label{def:kervaire-main-input}
+  \lean{KIP126.Challenge2,KIP126.Challenge2.FoundationInputs,KIP126.Challenge2.LiteratureInterface,KIP126.Challenge2.ComputationInterface,KIP126.Challenge2.InternalApplications}
   \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence,def:geometric-kervaire-input}
   \notready
-  A \emph{main input} $I$ is an ordered dependent record with fields
-  \texttt{stable}, \texttt{synthetic} over \texttt{stable},
-  \texttt{classicalSphere} on \texttt{stable}'s $S^0$,
-  \texttt{syntheticSphere} on
-  \texttt{synthetic.nu} of that same $S^0$, and
-  \texttt{sphereCoherence} for those exact four fields.  Its
-  \texttt{literature} field is a near-$126$ literature input parameterized by
-  those fields.  Its \texttt{computation} field is the context-independent raw
-  near-$126$ ledger of Definition~\ref{def:near126-computation-input}.  The
-  subsequent MainInput fields \texttt{classicalCatalogueCoherence} and
-  \texttt{syntheticCatalogueCoherence} identify every consumed page, class,
-  product, and quotient interpretation in that ledger with
-  \texttt{classicalSphere} and \texttt{syntheticSphere} through
-  Definitions~\ref{def:classical-catalogue-coherence} and
-  \ref{def:synthetic-catalogue-coherence}; the latter is also parameterized by
-  \texttt{literature} and the former coherence datum.  These witnesses are not
-  fields hidden inside \texttt{computation}.  Its \texttt{geometry} field is a
-  geometric input parameterized by
-  \texttt{stable} and \texttt{classicalSphere}.  Thus no subpackage may carry
-  an unrelated context or sphere sequence.  These projections are the only
-  route by which external literature and machine evidence enter the main
-  proof.  The record contains no field asserting $h_6^2$ is permanent and no
-  geometric endpoint; those remain project theorems assembled from the fields.
+  The main input $I$ is one value of \texttt{Challenge2} on the fixed Def
+  implementation. Its \texttt{foundation} field retains actual sphere
+  nilpotent completeness and strong convergence; countable products and other
+  structural data remain in the fixed implementation. One \texttt{routeInput}
+  and its \texttt{modelBindings} correlate all dependent choices. A single
+  \texttt{presentation} is shared by the literature and computation delivery.
+  The \texttt{literature} fields state the external mathematical inputs,
+  including the geometric results. The \texttt{computation} fields state
+  interpreted, model-bound certification conclusions. The
+  \texttt{applications} record contains the internal route adapter and actual
+  sphere-filtration separation, rather than classifying them as citations or
+  program output. Source metadata is held in the external manifest.
+
+  Interface constructs this direct value; Main temporarily consumes one
+  disclosed axiom of that exact type. There is no independent Challenge1,
+  implementation-equality transport, existence wrapper or witness choice.
+  Def's implementation, foundation applicability and source/computation
+  producers still have unfinished proofs. The record contains no field
+  asserting $h_6^2$ permanence or a final geometric endpoint; those remain
+  project theorems assembled from these inputs.
 \end{definition}
 
 \section{The near-126 reduction and contradiction}
@@ -492,7 +490,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: MainPaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
 \begin{lemma}[Toda bracket detects the two-extension source]
   \label{lem:toda-two-extension}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2,def:external-evidence}
+  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2}
   \notready
   For a near-$126$ computation input $D$, assuming $C_3$ and the universal
   form of $C_5$, the synthetic Toda bracket
@@ -518,7 +516,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: MainPaper/main.tex:2571-2580, proof of Corollary cor:2ext125, especially the comparison of all representatives detected by lambda^4 h_0^2 x_{125,9,2}; Appendix Table S125.19.
 \begin{lemma}[Indeterminacy of the two-extension source]
   \label{lem:near126-two-extension-indeterminacy}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:toda-h0-leading-nonvanishing,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,evidence:near126-core,data:table-s125-low,thm:appendix-all-rows-encoded,thm:external-synthetic-einfty-quotient,def:external-evidence}
+  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:toda-h0-leading-nonvanishing,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,evidence:near126-core,data:table-s125-low,thm:appendix-all-rows-encoded,thm:external-synthetic-einfty-quotient}
   \notready
   For a near-$126$ computation input $D$, assume $C_3$ and the universal form
   of $C_5$.  Let $u_0$ be a bracket
@@ -668,7 +666,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   \label{prop:near126-c3-not-c5}
   \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion,def:external-evidence}
+  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion}
   \notready
   For a near-$126$ computation input $D$, if $C_3$ holds, then $C_5$ is false.
 \end{proposition}

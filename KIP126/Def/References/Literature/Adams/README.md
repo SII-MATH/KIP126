@@ -4,4 +4,4 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [OneLine.lean](OneLine.lean) | `adamsOneLineDifferentials`, `adamsOneLineDifferentials_h₄`, `adamsOneLineDifferentials_h₄_degrees`, `adamsOneLineResult`, `cataloguedAdamsOneLine` 等 10 个声明 |
+| [OneLine.lean](OneLine.lean) | `adamsOneLineDifferentials`、`adamsOneLineResult` 及其 $h_4$ 特化 |

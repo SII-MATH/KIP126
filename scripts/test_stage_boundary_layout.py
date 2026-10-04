@@ -1,4 +1,4 @@
-"""Stage-0 ownership checks; these check dependencies, not mathematical truth."""
+"""Single-input ownership checks; these check dependencies, not mathematical truth."""
 
 from pathlib import Path
 import re
@@ -51,10 +51,11 @@ class StageBoundaryLayoutTests(unittest.TestCase):
             visit(module)
 
     def test_exact_stage_directories(self):
-        for stage in ("Interface", "Main"):
+        for stage, directories in (("Interface", {"Challenge", "Solution"}),
+                                   ("Main", {"Axiom", "Challenge", "Solution"})):
             root = ROOT / "KIP126" / stage
-            self.assertEqual({p.name for p in root.iterdir() if p.is_dir()},
-                             {"Axiom", "Challenge", "Solution"})
+            self.assertEqual({p.name for p in root.iterdir() if p.is_dir()
+                              and any(p.rglob("*"))}, directories)
 
     def test_def_never_depends_on_proof_stages(self):
         for module in self.graph:
@@ -87,13 +88,27 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         self.assertEqual(forbidden, [])
 
     def test_stage_axioms_only_state_the_delivery(self):
-        for stage, target in (("Interface", "Challenge1"), ("Main", "Challenge2")):
-            root = ROOT / "KIP126" / stage / "Axiom"
-            self.assertEqual({p.relative_to(root).as_posix() for p in root.rglob("*.lean")},
-                             {target + ".lean"})
-            code = code_only((root / (target + ".lean")).read_text())
-            self.assertNotRegex(code, r"\b(def|abbrev|theorem|lemma|instance|opaque)\b")
-            self.assertEqual(len(re.findall(r"\baxiom\b", code)), 1)
+        axioms = {}
+        for path in (ROOT / "KIP126").rglob("*.lean"):
+            code = code_only(path.read_text())
+            count = len(re.findall(r"^\s*axiom\s", code, re.M))
+            if count:
+                axioms[path.relative_to(ROOT).as_posix()] = count
+        self.assertEqual(axioms, {"KIP126/Main/Axiom/Challenge2.lean": 1})
+        code = code_only((ROOT / "KIP126/Main/Axiom/Challenge2.lean").read_text())
+        self.assertRegex(code, r"axiom challenge2\s*:\s*KIP126\.Challenge2\b")
+        self.assertNotRegex(code, r"\b(def|abbrev|theorem|lemma|instance|opaque|Nonempty)\b")
+
+    def test_foundation_obligation_is_in_the_single_contract(self):
+        contract = code_only((ROOT / "KIP126/Interface/Challenge/Challenge2.lean").read_text())
+        self.assertRegex(contract, r"structure FoundationInputs\s*:\s*Prop where")
+        self.assertIn("sphereApplicability : Classical.Adams.BHSObjectApplicability", contract)
+        self.assertIn("foundation : Challenge2.FoundationInputs", contract)
+        self.assertIn("applications : Challenge2.InternalApplications", contract)
+        self.assertNotRegex(contract, r"theorem challenge2\b")
+        producer = code_only((ROOT / "KIP126/Interface/Solution/Challenge2.lean").read_text())
+        self.assertRegex(producer, r"def challenge2\s*:\s*KIP126\.Challenge2\b")
+        self.assertIn("foundation := foundationInputs", producer)
 
     def test_main_input_closure_has_no_proofs_or_goal_modules(self):
         for module in self.graph:
@@ -133,11 +148,10 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                 self.assertEqual([m for m in self.dependencies(module)
                                   if m.startswith("KIP126.Interface.Solution.")], [], module)
 
-    def test_compatibility_roots_only_export(self):
-        for name, target in (("Challenge1", "KIP126.Def.Challenge1"),
-                             ("Challenge2", CONTRACT)):
-            text = (ROOT / "KIP126" / (name + ".lean")).read_text()
-            self.assertEqual(code_only(text).strip(), "import " + target)
+    def test_no_redundant_challenge_wrappers(self):
+        self.assertFalse((ROOT / "KIP126/Challenge2.lean").exists())
+        self.assertFalse((ROOT / "KIP126/Challenge1.lean").exists())
+        self.assertFalse((ROOT / "KIP126/Def/Challenge1.lean").exists())
 
     def test_single_final_statement(self):
         root = ROOT / "KIP126/Main/Challenge"
@@ -154,8 +168,7 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                                   "KIP126.Main.Solution.")):
                 self.assertNotIn(FINAL, self.dependencies(module), module)
                 self.assertNotIn("KIP126.Def.Challenge.Challenge1", self.dependencies(module), module)
-        # Interface/Challenge owns the contract types as requested. Lean's
-        # declaration dependency checks separately reject using its goal proof.
+        # Interface/Challenge owns only the contract; no redundant goal proof.
 
     def test_selected_metadata_and_empty_degrees_stay_in_data_pipeline(self):
         self.assertTrue((ROOT / "KIP126/LinProgram/Generated/Selected/records.json").is_file())

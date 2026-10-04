@@ -3,7 +3,7 @@ import KIP126.Def.References.Literature.EtaRows.Data
 namespace KIP126.Classical.ExtensionSS
 
 open KIP126.Classical.Adams
-open KIP126.External
+
 
 namespace EtaRowId
 
@@ -50,14 +50,9 @@ variable {stable : StableHomotopyContext} {X Y : stable.Spectrum}
   (data.typedRow id).targetClass_degree
 
 /-- The evidence carried by the payload proves the canonical five-row claim. -/
-theorem ledger_claim (data : EtaData source target) :
+theorem evidence_claim (data : EtaData source target) :
     KIP126.Classical.Regression.etaEss etaESSDifferentials :=
-  data.ledgerEvidence.value.evidence
-
-/-- The payload's evidence uses the pre-existing eta-ESS catalogue root. -/
-theorem ledger_root_eq (data : EtaData source target) :
-    data.ledgerEvidence.root = .etaEssRegression :=
-  data.ledger_root
+  data.evidence
 
 end EtaData
 

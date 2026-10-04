@@ -1,39 +1,15 @@
-# External-input ledger
+# Archived external references
 
-Only the sources below contribute an external theorem or external evidence
-that the formalization must expose through `ExternalResult` or `ExternalEvidence`.
-References used only for historical context, notation, motivation, or a
-survey are intentionally not archived in this project.
+This is a reading guide to the archived sources, not a second input ledger.
+The canonical record is [external-inputs.json](../docs/external-inputs.json).
+It also includes supplemental and bibliography-only sources whose primary
+texts are unavailable or unverified, and connects mathematical inputs to Lean
+declarations and Blueprint nodes.
 
-The complete machine-readable ledger, including the target paper row and
-artifact digests, is [`../source-inventory.json`](source-inventory.json).  The
-Lean-side stable keys are exposed by `KIP126.External.SourceId`; acquisition
-state is checked with `python3 scripts/check_source_inventory.py`.
-
-The Lean-side claim ledger (`KIP126.External.externalClaimLedger`) gives each
-external root an intended owner declaration, a Blueprint label or enumerated
-source target, a dependency list,
-and explicit `SourceRef` metadata; composite claim rows therefore remain
-distinguishable from primitive literature results.  Owners in later, not-yet-
-implemented domain layers are recorded as stable names rather than being
-pretended to be existing proofs.  Its dependency relation has a checked
-strictly decreasing rank, and the source/claim exporter makes locator-artifact
-membership part of the JSON validation.  `CataloguedExternalResult` and
-`CataloguedExternalEvidence` are the bridge from this metadata ledger to an
-actual proposition-bearing wrapper; they still do not prove the external
-mathematics or inspect the filesystem.  The closed inventory uses the checked-in
-AIM paper as the source of record for claims that cite unarchived primary works
-(for example, the Ravenel theorem quoted by the AIM paper); those primary works
-are not silently represented as separate source IDs.  Claim roots are
-family-level records, so several downstream evidence labels can be covered by
-one aggregate root.
-
-For claim roots whose primary work is not archived locally (`MahowaldTangora`,
-`BJMtheta5`, `BJMinduction`, `Maythesis`, `May01`, `Moss`, and `BR21`), the
-Lean locator description explicitly records that unavailability and names the
-exact AIM-paper line or line range where the input is cited.  The source
-inventory integration checker rejects a newly added artifact-less claim that
-lacks this secondary line locator.
+Lean interfaces state mathematics directly. Citation and artifact metadata are
+maintained in the manifest. If primary text is unavailable, the actual secondary
+locator must be explicit; metadata checks do not establish that a cited result
+entails the Lean statement.
 
 | Source | External input represented in Lean |
 | --- | --- |
@@ -55,5 +31,6 @@ lacks this secondary line locator.
 | `BR21` | The manually supplied \(tmf\) Adams differential \(d_3(v_2^{16})=\beta^5g\). |
 | `LWXMachine` | Lin–Wang–Xu paper, Zenodo proofs/data, `SSeqCpp`, and plots supplying all Appendix table facts and computed differential/extension evidence. |
 
-The final `h_6^2` theorem is conditional on the corresponding structures,
-not on project-level Lean axioms.
+Conditional final theorems expose the corresponding mathematical hypotheses.
+The current Main development uses one disclosed Challenge2 witness axiom,
+which must be replaced by its proved construction before final acceptance.

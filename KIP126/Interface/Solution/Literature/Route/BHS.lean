@@ -1,5 +1,5 @@
 import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Challenge1
+import KIP126.Interface.Solution.Foundation
 
 /-! BHS source specialization and selected-to-completed comparison.
 
@@ -52,7 +52,7 @@ theorem bhs_filtration_lambda_of_complete_source
     BHSFiltrationLambdaAt route.model X :=
   source.filtration_lambda X products hX
 
-/-- Specialization consumes the SAME route source and the actual Challenge1
+/-- Specialization consumes the SAME route source and the actual fixed
 background proof. Only the classical sphere/HF₂ background is fixed in Def. -/
 theorem standard_sphere_permanent_lift
     (route : StandardRouteInput) (source : SyntheticSourceInputs route.model) :

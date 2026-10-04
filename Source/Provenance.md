@@ -1,17 +1,13 @@
-# Provenance：来源与 claim 管理
+# 来源与制品管理
 
-文件系统清单负责来源制品和 SHA-256，Lean 层负责稳定 ID、locator、claim 依赖与显式输入类型。这些记录约束信任边界，不制造数学证明。
+[docs/external-inputs.json](../docs/external-inputs.json) 是唯一机器清单：来源身份、locator、获取状态、制品摘要、Lean 声明与 Blueprint 标签以及路线审计项都在这里维护。原 source-inventory 和 route-sources 两份 JSON 已合并；没有 Lean 来源投影或 claim registry。
 
-- [source-inventory.json](source-inventory.json)：来源状态、制品路径与摘要。
-- [SourceInventory.lean](../KIP126/Def/References/Literature/SourceInventory.lean)：18 个来源的 Lean 投影。
-- [Claims.lean](../KIP126/Def/References/Literature/Claims.lean)：56 个 claim root、分类、定位及依赖。
-- [Provenance.lean](../KIP126/Def/References/Provenance.lean)、[Results.lean](../KIP126/Def/References/Results.lean) 与 [Evidence.lean](../KIP126/Def/References/Evidence.lean)：通用来源语言及保持来源的传递。
-- [逐字段来源台账](../docs/challenge2-route-sources.json)：当前路线的来源、模型比较、生产义务和内部适配；不能把整个应用后的 Inputs 当作纯 A(M)。
+Lean 数学字段直接接收命题或认证数据。文献、计算、模型比较和内部推导保留各自角色；引用 metadata 不再通过 `ExternalResult`、`ExternalEvidence` 或 `SourceId` 进入接口。
 
-主论文位于 [MainPaper](../MainPaper/)，外部文献保存在本目录。固定 Lin 数据由 `KIP126/LinProgram/Raw/` 登记；Git LFS pointer 本身不是计算输入。
+主论文在 [MainPaper](../MainPaper/)，外部文献制品在本目录；各作品的 `source-status.json` 保存原始获取记录。固定 Lin 数据仍由 `KIP126/LinProgram/Raw/` 保存。Git LFS pointer 不能冒充输入实体。
 
-`python3 scripts/check_source_inventory.py` 检查文件摘要及 JSON/Lean 投影，`python3 scripts/check_route_literature.py` 检查当前来源合同的字段覆盖、角色和定位。检查通过不证明原文蕴含对应 Lean 命题，也不意味着计算已认证。
+`python3 scripts/check_source_inventory.py` 检查来源、路径、状态和摘要；`python3 scripts/check_external_inputs.py` 检查声明、角色和定位关系。检查通过不证明原文蕴含 Lean 命题，也不意味着计算已认证。
 
-文献结果集中在同一 Challenge2 见证中，不恢复旧的 Main 文献公理树。Def 中的固定实现、来源识别和比较仍有构造证明义务；不能用名称或来源元数据替代数学识别。
+基础适用性保留在 `Challenge2.foundation`；文献和计算分别进入 `literature` 与 `computation`；模型绑定和内部应用使用独立字段。来源到所选模型的识别责任不能被省略。
 
-当前 C₂/Cη 源对象、映射、模作用及记录解释尚未接入，完整第0步尚未完成。详细范围见 [接口说明](../docs/STAGE0_INTERFACES.md)和[主定理计算依赖对照](../docs/audits/main-paper-computation-inventory-20261003.md)。
+当前文献覆盖、部分原文/locator 核验及 C₂/Cη 认证路径仍有缺口。详细范围见 [接口说明](../docs/STAGE0_INTERFACES.md)。维护时保留已有来源 ID；新增原文更新 manifest 及获取记录，数学陈述核验与文件摘要检查分别完成。

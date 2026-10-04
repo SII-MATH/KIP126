@@ -6,7 +6,7 @@ open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
 open KIP126.Core.Algebra
 open KIP126.Core.SpectralSequence
-open KIP126.External
+
 
 @[simp] theorem etaESSShape_rel (n : ℤ) (b : Index) :
     (etaESSShape n).Rel b (b + (n, n)) := by
@@ -32,7 +32,7 @@ theorem etaESS_row_nonzero {stable : StableHomotopyContext}
     ((etaESS D).page row.length).d row.sourceDegree row.targetDegree ≠ 0 := by
   rw [etaESS_page_differential D row hrow]
   apply D.adapter.rowMap_nonzero
-  have hClaim := D.ledgerEvidence.value.evidence
+  have hClaim := D.evidence
   change D.differentials = etaESSDifferentials at hClaim
   rw [hClaim] at hrow
   exact hrow
@@ -47,7 +47,7 @@ theorem differential_claim {stable : StableHomotopyContext} {X Y : stable.Spectr
     {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
     (D : EtaESSInput source target) :
     KIP126.Classical.Regression.etaEss D.differentials :=
-  D.ledgerEvidence.value.evidence
+  D.evidence
 
 theorem etaD₄_has_degree {stable : StableHomotopyContext} {X Y : stable.Spectrum}
     {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
@@ -58,9 +58,6 @@ theorem etaD₄_has_degree {stable : StableHomotopyContext} {X Y : stable.Spectr
     change D.differentials = etaESSDifferentials at h
     rw [h]
     simp [etaESSDifferentials]
-
-theorem etaD₁_has_locator :
-    etaD₁.locator.artifact = some "MainPaper/main.tex" := rfl
 
 theorem etaD₄_has_crossing {stable : StableHomotopyContext} {X Y : stable.Spectrum}
     {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}

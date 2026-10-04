@@ -61,8 +61,9 @@ Blueprint 使用平铺 chapter：`content.tex` 中没有 `\part` 或嵌套目录
 而不是单个源文件；`KIP126/Def.lean`、`KIP126/Main/Axiom.lean` 和
 `KIP126/Main/Solution.lean` 是相应的定义、输入与推导入口；
 唯一 Final 目标直接导入 `KIP126.Main.Challenge.h6_sq_permanent`。所有 Main 中间陈述和证明只在
-Solution 维护；Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。旧路径与新路径的逐项对应及开放节点
-见 [`DEF_CHALLENGE_LAYOUT_STATUS.md`](DEF_CHALLENGE_LAYOUT_STATUS.md)。
+Solution 维护；Interface 直接构造统一 Challenge2，Def 维护固定实现。
+独立 Challenge1、存在性包装及重复占位 theorem 已删除。当前职责见
+[`STAGE_LAYOUT.md`](STAGE_LAYOUT.md)；旧迁移路径记录仅供历史追溯。
 章级 Blueprint 节点数量与完成度不在本文件汇总，以对应章节子 Wiki 的当前记录为准。
 
 - `content.tex` 只保留按依赖顺序的平铺 `\input` 清单与三层注释；没有 LaTeX
@@ -82,7 +83,8 @@ Solution 维护；Def 和 Interface 同样只为完整的 `Nonempty Challenge1`�
 3. **内部证明层**：comparison/generalized rules 消费外部定理与计算输入，随后完成
    near-126 reduction，最后推出 geometric conclusions。
 4. **技术审计层**：provenance 与 coverage 章节保持平铺，但不作为所有数学章节的
-   父节点；`ExternalResult` 等 Lean 技术类型按需 import，不改变数学 DAG 的方向。
+   父节点。来源 metadata 在 `external-inputs.json` 维护，不再编译为 Lean
+   类型或加入数学 DAG。
 
 ### 模块增量验收
 

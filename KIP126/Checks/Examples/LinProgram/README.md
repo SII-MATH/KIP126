@@ -18,7 +18,7 @@
 
 低次样本使用源码注明的 t261.2 `S0_AdamsE2_csv.zip`，由 [提取脚本](../../../../scripts/extract_adams_e2_low.py) 重现；与当前 [Raw](../../../LinProgram/Raw/README.md) 中固定 v126.3.cw49 的五个输入分别记录，不把二者默认为同一版本。使用说明见 [E₂ 表接口](../../../../docs/ADAMS_E2_TABLE.md)。
 
-公开声明名仍保留 `KIP126.Examples.*`，只有文件及 import 模块路径迁到此处。这里没有新增项目 axiom；实际页上的结论仍要求调用者提供 `Presentation` 或相应 `ExternalEvidence`。
+公开声明名仍保留 `KIP126.Examples.*`，只有文件及 import 模块路径迁到此处。这里没有新增项目 axiom；实际页上的结论仍要求调用者提供 `Presentation` 或其存在性证明。
 
 ## 3. 大概完成度
 

@@ -22,12 +22,12 @@ theorem SphereSurvivalFacts.c3_iff_not_d6 (F : SphereSurvivalFacts) :
   have hvanish := differentialVanishesOn_iff_not_hasNonzeroDifferential
     (E := sphereAdamsData) (r := 6) (p := (8, 134))
     (x := linToSphereE2 8 134 (by decide) W)
-    (linToSphereE2 14 139 (by decide) T) F.w_d6_targets.evidence
+    (linToSphereE2 14 139 (by decide) T) F.w_d6_targets
   constructor
   · rintro ⟨_, hz⟩ ⟨_, _, h⟩
     exact hvanish.mp hz h
   · intro hn
-    refine ⟨F.w_to_e6.evidence, hvanish.mpr ?_⟩
+    refine ⟨F.w_to_e6, hvanish.mpr ?_⟩
     exact fun h => hn ⟨by decide, by decide, h⟩
 
 /-- With C3, the complete incoming-exhaustion input for T reduces to the
@@ -39,7 +39,7 @@ theorem SphereSurvivalFacts.hit_t_iff_d12 (F : SphereSurvivalFacts)
       r = 12 ∧ Sphere.D12 := by
   constructor
   · intro h
-    rcases F.t_only_incoming.evidence r h with ⟨_, h6⟩ | ⟨hr, h12⟩
+    rcases F.t_only_incoming r h with ⟨_, h6⟩ | ⟨hr, h12⟩
     · exact False.elim ((F.c3_iff_not_d6.mp hc3) h6)
     · exact ⟨hr, Sphere.d12_iff_differential.mpr h12⟩
   · rintro ⟨rfl, h12⟩

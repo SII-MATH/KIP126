@@ -7,7 +7,7 @@ import KIP126.Main.Solution.Literature.EtaRows.Proofs
 namespace KIP126.Classical.ExtensionSS.EtaDataRegression
 
 open KIP126.Classical.Adams
-open KIP126.External
+
 
 variable {stable : StableHomotopyContext} {X Y : stable.Spectrum}
   {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
@@ -21,10 +21,6 @@ example : Fintype.card EtaRowId = 5 := by
 example : Set.range EtaRowId.row = etaESSDifferentials :=
   EtaRowId.range_row
 
-example (id : EtaRowId) :
-    id.row.locator.artifact = some "MainPaper/main.tex" := by
-  cases id <;> rfl
-
 example (data : EtaData source target) : data.eta.degree = (1, 2) :=
   data.eta_degree
 
@@ -34,12 +30,8 @@ example (data : EtaData source target) (id : EtaRowId) :
   ⟨data.sourceClass_degree id, data.targetClass_degree id⟩
 
 example (data : EtaData source target) :
-    data.ledgerEvidence.root = .etaEssRegression :=
-  data.ledger_root_eq
-
-example (data : EtaData source target) :
     KIP126.Classical.Regression.etaEss etaESSDifferentials :=
-  data.ledger_claim
+  data.evidence_claim
 
 /-- info: 'KIP126.Classical.ExtensionSS.EtaRowId.range_row' depends on axioms: [propext, Quot.sound] -/
 #guard_msgs in
@@ -69,12 +61,8 @@ example (data : EtaData source target) :
 #guard_msgs in
 #print axioms EtaData.targetClass_degree
 
-/-- info: 'KIP126.Classical.ExtensionSS.EtaData.ledger_claim' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+/-- info: 'KIP126.Classical.ExtensionSS.EtaData.evidence_claim' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
-#print axioms EtaData.ledger_claim
-
-/-- info: 'KIP126.Classical.ExtensionSS.EtaData.ledger_root_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms EtaData.ledger_root_eq
+#print axioms EtaData.evidence_claim
 
 end KIP126.Classical.ExtensionSS.EtaDataRegression

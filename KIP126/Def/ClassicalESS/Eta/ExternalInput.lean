@@ -1,7 +1,7 @@
 import KIP126.Def.ClassicalESS.Eta.Data
-import KIP126.Def.References.Literature.Claims
 
-/-! Provenance-bearing input and the resulting concrete classical eta ESS. -/
+
+/-! Mathematical input and the resulting concrete classical eta ESS. -/
 
 namespace KIP126.Classical.ExtensionSS
 
@@ -9,7 +9,7 @@ open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
 open KIP126.Core.Algebra
 open KIP126.Core.SpectralSequence
-open KIP126.External
+
 
 structure EtaESSInput {stable : StableHomotopyContext}
     {X Y : stable.Spectrum}
@@ -19,7 +19,7 @@ structure EtaESSInput {stable : StableHomotopyContext}
   differentials : Set EtaDifferential
   detected : Set EtaDifferential
   detected_eq_differentials : detected = differentials
-  ledgerEvidence : KIP126.External.CataloguedExternalEvidence
+  evidence :
     (KIP126.Classical.Regression.etaEss differentials)
   pageData : EtaESSPageData adapter differentials
   pageIso : ∀ (n : ℤ) (b : Index),

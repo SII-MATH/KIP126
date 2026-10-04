@@ -1,18 +1,14 @@
-# Interface：模型上的阶段交付
+# Interface：统一输入的生产证明
 
-本阶段从同一个 Challenge1 基础模型以及明确的上游输入，构造根 [Challenge2](../Challenge2.lean) 的交付见证。`Challenge2` 将文献部分 `LiteratureInterface` 和计算部分 `ComputationInterface` 分开；只有后者称为 C(M)。通用比较和共享模型选择由 `ModelBindings` 记录，不算作文献定理。
+本目录从 Def 的固定实现和明确的上游输入构造 [Challenge2](Challenge/Challenge2.lean)。`foundation` 保留原 Challenge1 的球塔完成与收敛义务；`LiteratureInterface`、`ComputationInterface` 分别陈述文献与计算输入，`ModelBindings` 和 `InternalApplications` 保留模型比较与内部适配责任。
 
-- [Axiom](Axiom/README.md) 只暂时接受 `Nonempty Challenge1`；固定基础、Milnor、球谱与路线对象均由 [Def/StageInput](../Def/StageInput.lean) 定义，交付见证必须绑定同一实现。
-- [Challenge](Challenge/README.md) 拥有完整合同和 `Nonempty Challenge2` 目标声明；[Solution](Solution/README.md) 保留同型的生产 theorem，并单独维护所有内部陈述与证明。内部结果不再建立 Challenge 镜像。
-- [LinProgram 证明](Solution/LinProgram/README.md) 将固定数据的认证结论运输到同一个模型，提供基、乘法、平方和 staircase 等计算接口。
-- 独立 [LinProgram 管线](../LinProgram/README.md) 保存原始数据、转换脚本、生成数据、参数化解释和局部证书。它不提供阶段公理。
+- [Challenge](Challenge/README.md) 定义完整合同；结构本身就是构造目标。
+- [Solution](Solution/README.md) 构造直接的 Challenge2 值，不消费 Main 的公理。
+- [LinProgram 证明](Solution/LinProgram/README.md) 将固定数据认证运输到同一模型。
+- 独立 [LinProgram 管线](../LinProgram/README.md) 保存原始数据、生成数据、数学解释和局部证书。
 
-## 当前状态
+Lean 字段只陈述数学，来源与 locator 由 [统一清单](../../docs/external-inputs.json) 管理。没有独立 Challenge1 阶段、Interface 公理、implementation 相等运输或第二套来源 registry。
 
-固定 CSV 的 `basisTable_correct`、乘法相容、staircase 和完整 `Nonempty Challenge2` 构造仍有 `sorry`。`SphereBasisInterface` 的坐标运输已有证明，但依赖尚未完成的基认证。`SphereSquareInterface` 由独立平方检测和维数证书经指定 presentation 构造，交付实际 E₂ 中的非零性及候选穷尽；Main 从计算接口消费，生产证明不再直接进入 Main。
+foundation、基认证、乘法、staircase、来源适用性及完整见证仍有未完成证明。已有局部证书不表示实际模型认证完成。广义 Leibniz、广义 Mahowald 和 stretching 仍是 Main 的独立证明义务；认证使用这些工具时须避免循环依赖。
 
-同一 `Challenge2` 见证同时约束文献与计算的模型、范围和相容性。文献仍须保留来源和适用条件；装入 structure 不等于证明。完整交付尚未构造，原始数据库的全部类别也尚未完成数学认证。
-
-广义 Leibniz、广义 Mahowald 和有限 stretching 是本文新工具，其路线陈述位于 [Main/Solution/Tools](../Main/Solution/Tools/README.md)。它们不属于前人 A(M)，也不能因待证而加入输入包。Interface 若使用它们验证计算，须依赖独立证明并检查没有循环。
-
-后续先完成所需固定数据认证和模型比较，再构造完整 Challenge2，以生产 theorem 替换 Main 的同型阶段假设。两道边界的存在性证明和最终数学验收仍是独立的未完成工作。
+最终以完整 Challenge2 构造替换 Main 的唯一直接 witness 公理；目录名 Solution 和编译成功都不表示数学证明完成。

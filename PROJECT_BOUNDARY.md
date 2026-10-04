@@ -14,34 +14,36 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 ## Staged repository architecture
 
-The user's current stage-0 architecture supersedes earlier migration rules.
+The user's unified-input architecture supersedes earlier migration rules.
 See [STAGE_LAYOUT](docs/STAGE_LAYOUT.md) for the directory contract and
 [STAGE0_INTERFACES](docs/STAGE0_INTERFACES.md) for mathematical responsibilities.
 
 - Def owns M's objects, operations, properties, concrete implementation/source
   identification and comparisons. Def has no direct or transitive dependency
   on Interface or Main and declares no project axioms.
-- Interface has exactly Axiom, Challenge and Solution directories. Axiom
-  transmits Challenge1; Challenge owns Challenge2's A/C/comparison delivery
-  contract; Solution supplies its actual certification and comparison proofs.
+- Interface/Challenge defines Challenge2's foundation/A/C/comparison delivery
+  contract; Interface/Solution constructs it with actual foundation,
+  certification, comparison and internal-application proofs. There is no
+  independent Challenge1 stage or Interface consumption axiom.
 - Main has exactly Axiom, Challenge and Solution directories. Axiom transmits
   Challenge2; Challenge contains the single standard h6-square target with its
   intentional sorry; Solution proves the paper's results and that same target.
 - The target's type and entire defining/import dependency cone use Def and
   foundational libraries only. Literature/CSV/certification inputs enter its
   proof, never the standard sphere, Adams tower or standard element definition.
-- One Def implementation is fixed independently of Interface's consumption
-  axiom. Challenge1 explicitly binds its delivery to that implementation;
+- One Def implementation is fixed independently of the Main consumption
+  axiom. Challenge2's foundation applicability refers to it directly;
   Challenge2 correlates all A/C objects, labels and comparisons on that base.
 - The independent LinProgram pipeline retains raw provenance and exact
   interpretation. Independent paper-tool proofs may be reused by certification
   only without Main's stage input or the same numerical output as premises.
 - The target paper lives under MainPaper and external literature under Source;
-  source-bearing
-  contract language lives under Interface/Challenge. Historical audit files
+  mathematical contract language lives under Interface/Challenge, while
+  source metadata and input coverage live in `docs/external-inputs.json`.
+  Historical audit files
   retain their original conclusions and are not current architecture rules.
 
-Stage 0 freezes accurate statements and responsibilities. Complex construction,
+Stage 0 requires accurate statements and responsibilities. Complex construction,
 comparison, certification and deduction proofs may remain sorry. Missing
 mathematical meanings, object bindings, hypotheses or necessary coverage cannot
 be excused by that permission. Later project proof-completion criteria below
@@ -65,8 +67,9 @@ remain separate from this milestone.
    those statements. The Interface stage is intended to replay or verify the
    required interpreted high-stem conclusions from the common base and the
    pinned raw artifacts. Until those proofs exist, Main may consume the frozen
-   statements through disclosed stage axioms. Concrete raw output and table
-   entries retain `ExternalEvidence` provenance throughout this process.
+   statements through the disclosed Challenge2 axiom. Concrete raw output and
+   table entries retain explicit source and artifact records in the external
+   manifest throughout this process.
 
    For the statement of the permanent `h_6^2` target, the confirmed abstract
    foundation may include an explicit mod--2 Eilenberg--Mac Lane object and
@@ -116,9 +119,9 @@ remain separate from this milestone.
 6. **Axiom policy.** The project may use Lean's foundational axioms and the
    axioms already intrinsic to Lean's standard foundational mechanisms.
    During staged development, an internal statement deliberately introduced
-   with Lean's `axiom` command belongs under `KIP126/Interface/Axiom/` for
-   stage-zero outputs consumed by stage one, or `KIP126/Main/Axiom/` for
-   stage-one outputs consumed by Main. Each such declaration must record its
+   with Lean's `axiom` command is limited to the single direct witness
+   `Main.Axiom.challenge2 : KIP126.Challenge2` under `KIP126/Main/Axiom/`.
+   This declaration must record its
    intended upstream construction or proof, its meaning,
    its provenance or generated input where applicable, and the reason it is
    being assumed. `Def/` and `Mathlib/` must not own project axioms; existing
@@ -132,23 +135,24 @@ remain separate from this milestone.
    proof-completion validation, every stage axiom and its downstream dependency
    cone is rejected until the matching upstream result has replaced it.
 
-   By user decision, each stage boundary has one shared witness structure in
-   Lean source. `Challenge1` correlates the stable foundation with its Milnor
-   coordinates; `Challenge2` keeps literature and computation interfaces
-   separate while correlating their shared model bindings, the fixed Lin
-   presentation, and its interpreted table rows. Local fixed-data certificates
-   live outside both proof stages and are transported into the computation
-   delivery by Interface. The development axiom on each consuming side states
-   the exact producing Challenge/Solution proposition. The fixed background
-   remains Def-owned; stage witness projections cannot change it.
+   By user decision, `Challenge2` is the single shared witness structure.
+   It contains `FoundationInputs.sphereApplicability`, literature, computation,
+   shared model bindings, the fixed Lin presentation, and internal applications.
+   The former Challenge1 applicability obligation is preserved without a second
+   implementation, equality transport, existence axiom or choice step. Local
+   fixed-data certificates are transported into the computation delivery by
+   Interface. The Interface producer constructs a direct `Challenge2` value;
+   the structure itself specifies its construction goal. Only the final Main
+   theorem retains a Challenge/Solution placeholder pair. The fixed background
+   remains Def-owned; witness projections cannot change it.
    This preserves dependent choices but does not construct the selected data,
    prove the assumed properties, or authorize stronger laws.
 
    Literature results and computational artifacts retain the explicit
-   provenance mechanisms specified below. In particular, moving their catalogue
-   or wrappers under `Main/Axiom/` does not authorize replacing every
-   `ExternalResult` or `ExternalEvidence` parameter by an unconditional global
-   fact. Development compilation may tolerate disclosed stage assumptions but
+   external-manifest records specified below. Lean interfaces contain only
+   their mathematical statements; metadata is not carried in Lean wrappers.
+   This does not authorize introducing unconditional global mathematical facts.
+   Development compilation may tolerate the disclosed stage assumption but
    does not authorize retaining project axioms at final acceptance.
 
 7. **Pinned toolchain.**
@@ -175,8 +179,8 @@ remain separate from this milestone.
    construction; Interface cannot choose a replacement foundation. Its model
    construction and source comparison may still have disclosed proof debt. The computation part of Challenge2 supplies the
    currently admitted C(M) slice, including actual E₂ coordinates, presentation,
-   square results and closed sphere differential equations. Both stage
-   assumptions must eventually be discharged.
+   square results and closed sphere differential equations. The single stage
+   assumption and all preserved foundation obligations must eventually be discharged.
 
 ## In-scope formalization
 
@@ -203,15 +207,15 @@ means for a supplied mathematical model. `Certificates/` contains local
 kernel-checked results about the fixed algebraic data; transporting them to the
 chosen model remains an Interface obligation. Main consumes the corresponding
 Challenge 2 computation delivery rather than its Interface producer proofs.
-`Main/Axiom/` contains only the single stage existence assumption. Precise
+`Main/Axiom/` contains only the single direct Challenge2 assumption. Precise
 input contracts are in `Interface/Challenge/`, and source artifacts are in
 `Source/`. The witness and its projections live in
 `Main/Solution/StageInput.lean`. Intermediate deductions and their imports live
 only in `Main/Solution/`; only the final target is paired with Main/Challenge.
 There are no `Proofs.lean` files in the input directory.
 The input entry module must not import Main proofs, Interface producers or
-Checks. Source metadata helpers and transparent evidence extraction remain
-distinct from proving the mathematical claims carried by those inputs.
+Checks. Source metadata auditing remains external to proving the mathematical
+claims carried by those inputs.
 Interface's square producer supplies `SphereSquareInterface.standard_class`
 from an explicit presentation, fixed-data exhaustion and independent standard
 nonvanishing. Main only projects that identification. This does not establish
@@ -232,7 +236,7 @@ the generated manifest for exact scope.
 Deterministic translation, a successful hash check, and a generated Lean row
 establish reproducible syntax and provenance, not the row's mathematical
 truth. Replaying or verifying the interpreted conclusions from `Def/` is an
-internal Interface/Solution obligation contributing to `Nonempty Challenge2`. The initial migration preserves the
+internal Interface/Solution obligation contributing to the direct `Challenge2` construction. The initial migration preserves the
 existing bulk assumption and generated declarations; it does not claim that
 this verification has already been implemented.
 
@@ -340,84 +344,46 @@ complete the remaining mathematical proof obligations.
 Fixed CSV basis independence and spanning is a computation certification:
 Interface produces it and Main consumes actual E2 coordinates and CSV values through
 the `sphereBasis` field of `Challenge2.ComputationInterface`, in the same witness
-as the presentation and differential table. Challenge1 no
-longer assumes that certificate. Its proof remains unfinished.
+as the presentation and differential table. Foundation inputs do not assume
+that certificate. Its proof remains unfinished.
 
 ## External inputs
 
 Results from earlier papers, published computations, Lin's program, and facts
-read from the Appendix tables first enter the repository as audited source
-material. `Source/` retains input statements and source
-artifacts; `KIP126/Def/References/` owns the source catalogue. The independent
+read from the Appendix tables enter as audited source material. `Source/`
+retains original artifacts and acquisition records. The independent
 `KIP126/LinProgram/` owns the raw-to-interpreted program pipeline and local
-certificates. `KIP126/Main/Solution/Computation/` owns computation consumer adapters. Every accepted external input remains a
-value of an explicit structure carrying both the proposition and its provenance.
+certificates. `KIP126/Main/Solution/Computation/` owns consumer adapters.
 
-The staged Main axiom states `Nonempty Challenge2` while Interface is still
-constructing that witness. Each field must point to the source records used to
-formulate it; the package does not turn arbitrary literature or program output
-into an unconditional fact. Claims selected for internal replay or verification
-are Interface proof obligations. Claims deliberately retained as external
-mathematical inputs stay explicit parameters of conditional theorems.
+The canonical machine-readable manifest is `docs/external-inputs.json`.
+It records source IDs, precise locators, artifact paths and hashes, acquisition
+status, source roles, and their links to Lean declarations and Blueprint nodes.
+The old source inventory and route JSON have been consolidated into it; there
+is no parallel Lean source registry or claim ledger.
 
-The project will use the following conceptual interfaces (the exact field
-names may be refined during implementation):
+Lean interfaces contain mathematical statements only. For example a
+literature field has type `SphereVanishingLine ...`, rather than a proposition
+wrapped with citation metadata. Computation fields retain their precise
+interpretation, parameters and certification conditions. Removing metadata
+wrappers does not remove any mathematical premise.
 
-```lean
-structure SourceRef where
-  source  : SourceId
-  locator : Locator
-  note    : Option String := none
+The temporary Main axiom directly states `challenge2 : KIP126.Challenge2`
+while Interface constructs that witness. It correlates foundation
+applicability, model bindings, literature, computation and internal
+applications. Each external input has an auditable manifest record; internal
+model transports and deductions are classified separately. Claims selected
+for replay or verification remain Interface proof obligations. Claims retained
+as external mathematical inputs remain explicit conditional hypotheses.
 
-structure ExternalResult (P : Prop) where
-  proof : P
-  ref   : SourceRef
-
-structure ArtifactRef where
-  path   : String
-  sha256 : String
-  version : Option String := none
-
-structure ExternalEvidence (P : Prop) where
-  evidence : P
-  ref      : SourceRef
-  method   : String
-  artifact : Option ArtifactRef := none
-```
-
-`ExternalResult` is intended for a theorem imported from the literature.
-`ExternalEvidence` is intended for a computation, program output, table fact, or
-other finite evidence record. Both are hypotheses to conditional theorems;
-neither structure silently installs a project-level axiom.
-
-Every literature claim used as a final premise or to formulate a staged
-assumption must have its own auditable claim entry. That entry identifies the
-source and a stable theorem, lemma, proposition, equation, table, section,
-page, or line locator. When the primary text is unavailable, the inventory
-must say so and give the exact secondary locator used. The claim's artifact
-path resolves through the source inventory to a required file and its pinned
-digest where such an artifact is available; composite claims list their
-component claim dependencies instead of hiding them in prose.
-
-The implementation deliberately separates structural and checkout-facing
-validity.  `InventoryValid` adds syntactically safe, source-relative locator
-and evidence-artifact paths.  `CataloguedExternalResult` and
-`CataloguedExternalEvidence` then bind an actual proposition-bearing wrapper
-to one canonical claim root and a compatible trust class.  The Lean claim
-ledger proves finite completeness, global source coverage, and acyclicity of
-its dependency relation, but remains metadata: it does not prove the recorded
-external proposition.  The JSON checker is authoritative for artifact-list
-membership of canonical claim locators, required existing-file status, and
-SHA-256 equality.  Lean's source-relative condition is syntactic (a directory-prefix
-check, not a filesystem/symlink traversal check).  For a dynamically attached
-evidence artifact, Lean additionally checks a safe source-relative path and
-digest shape; a catalogued wrapper also requires its path to equal the
-canonical claim locator.  Lean does not silently assert the file's actual
-digest, nor compare an arbitrary wrapper digest automatically.  Root coverage is relative
-to the explicitly closed, family-level `ExternalRootId` enum.  This describes
-the current inventory coverage, not proof that every required result has been
-included in Challenge 2 or constructed by Interface. The boundary theorem and
-axiom already share one type; field coverage remains a mathematical review task.
+Every literature result used as a final premise or to formulate a development
+assumption must have an auditable locator identifying a theorem, lemma,
+proposition, equation, table, section, page or line. Unavailable primary text
+must be marked explicitly, with the exact secondary locator actually used.
+The checker validates declaration and Blueprint links, interface coverage,
+source status, artifact membership, safe paths and SHA-256 equality. These
+checks do not prove that the source entails the Lean statement. Full coverage
+of MainPaper, faithful hypotheses, and the separation of external results
+from internal applications remain mathematical-review obligations.
 
 Examples of external inputs include:
 
@@ -457,8 +423,8 @@ prove conditionally:
 2. the dimensions in which framed smooth manifolds with Kervaire invariant one
    exist are exactly `2, 6, 14, 30, 62, 126`.
 
-These are implications from explicit `ExternalResult`/`ExternalEvidence` arguments,
-not unconditional declarations of the external mathematics.
+These are implications from explicit mathematical literature and computation
+hypotheses, with their provenance recorded in the external manifest.
 
 ## Final proof-completion criteria
 
@@ -471,10 +437,11 @@ The project is complete only when all of the following hold:
   required `by sorry` bodies and are excluded from proof-completion evidence,
   while the isolated historical KIPBase component remains subject to its
   separate migration audit;
-- both Challenge existence axioms have been eliminated by the matching proved
-  producer theorem or removed as unnecessary; directory relocation and shared
-  signatures alone do not satisfy this condition;
-- every external input is passed through `ExternalResult` or `ExternalEvidence`;
+- the single Challenge2 axiom has been replaced by its proved construction;
+  deleting the old Challenge1 pipeline does not discharge its preserved
+  foundation applicability obligation;
+- every external mathematical input has an explicit Lean hypothesis and a
+  corresponding declaration/locator entry in `docs/external-inputs.json`;
 - every Appendix table entry has a Lean encoding;
 - the two geometric conclusions are available as conditional theorems;
 - the final theorem(s) pass a `#print axioms` audit with:

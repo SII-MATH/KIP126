@@ -8,4 +8,4 @@
 
 标准元素定义在 [Interface 的基础特化](../../../../../../Def/StageInput/StandardSphere/Classes/Data.lean)，不依赖本目录或 CSV 基正确性。比较引理使用固定 Lin presentation、已有的该次数穷尽描述和标准非零性，并不使用最终存活定理。
 
-本目录没有新增公理或 `sorry`。结果仍在阶段输入下成立：基础来自 `Challenge1`，presentation 来自 `Challenge2`。比较成立不等于最终永久存活证明完成。
+本目录没有新增公理或 `sorry`。结果仍在阶段输入下成立：基础对象由 Def 固定，foundation 与 presentation 来自同一 `Challenge2`。比较成立不等于最终永久存活证明完成。

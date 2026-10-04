@@ -109,7 +109,7 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
 % SOURCE: MainPaper/main.tex:213-240 and 2785-2800; LWXMachine and LWXZenodo bibliography entries.
 \begin{proposition}[Lin computation provenance]
   \label{prop:lin-computation-provenance}
-  \uses{def:near126-computation-input,def:lin-computation-bundle,def:appendix-evidence-record,def:source-ref}
+  \uses{def:near126-computation-input,def:lin-computation-bundle,def:appendix-evidence-record}
   \notready
   For a near-$126$ computation input, the spectrum, $E_2$-page, map, initial
   $d_2$, and propagated-output catalogues are tied to version
@@ -130,7 +130,7 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
 % SOURCE: MainPaper/main.tex:2785-2792, three manually supplied differentials.
 \begin{proposition}[Manual differential inputs]
   \label{prop:appendix-manual-inputs}
-  \uses{def:near126-computation-input,prop:lin-computation-provenance,def:external-result,def:external-evidence}
+  \uses{def:near126-computation-input,prop:lin-computation-provenance}
   \notready
   For a near-$126$ computation input $I$, its manual-input ledger separately
   records
@@ -410,7 +410,7 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
 % VERIFIED-IN: local source hashes recorded during audit.
 \begin{proposition}[Primary-source snapshot]
   \label{prop:paper-source-snapshot}
-  \uses{def:source-ref}
+
   \notready
   The audited snapshot records 66 PDF pages and SHA256 values
   \texttt{7cae269851a88d10dd194651dbf7497b75ef8b8b914bc1901dfa3734cd8096b4}
@@ -425,7 +425,7 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
 
 \begin{proof}
   Recompute the three hashes, verify the PDF page count, and compare them with
-  the stored source-reference fields before accepting any row-completeness
+  the canonical manifest records before accepting any row-completeness
   certificate.
 \end{proof}
 
@@ -481,7 +481,7 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
 % SOURCE: MainPaper/main.tex:2323-2354, exhaustive theta-square and eta-square analysis; tmf citation.
 \begin{proposition}[$\theta_5^2$ and $tmf$ exhaustive evidence]
   \label{evidence:theta5-square-tmf}
-  \uses{def:near126-computation-input,evidence:near126-core,evidence:near126-indeterminacy,data:table-s125-low,data:table-s125-high,def:external-result,def:external-evidence}
+  \uses{def:near126-computation-input,evidence:near126-core,evidence:near126-indeterminacy,data:table-s125-low,data:table-s125-high}
   \notready
   For a near-$126$ computation input $D$, its explicit table and $tmf$ inputs
   supply:
@@ -599,7 +599,7 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
 % SOURCE: MainPaper/main.tex:2707-2728, two ``upon inspection'' steps in the proof of Proposition prop:state5false.
 \begin{proposition}[Stem-$122$ candidate and product exhaustion]
   \label{evidence:stem122-product-exhaustion}
-  \uses{def:near126-computation-input,data:table-s122,data:table-s125-low,evidence:stem122-permanent,thm:appendix-all-rows-encoded,def:external-evidence}
+  \uses{def:near126-computation-input,data:table-s122,data:table-s125-low,evidence:stem122-permanent,thm:appendix-all-rows-encoded}
   \notready
   For a near-$126$ computation input $D$, in the bidegree and
   $\lambda$-quotient occurring in the proof of
@@ -632,7 +632,7 @@ This chapter contains the concrete Lin outputs, appendix rows, and finite eviden
 % MainPaper/main.tex:929-961, Notation not:fhat, for normalization.
 \begin{proposition}[Normalized Hopf-map detection]
   \label{evidence:normalized-hopf-detection}
-  \uses{def:synthetic-hat-map,def:adams-detection,thm:external-synthetic-triangle-lift,def:cofiber-triangle,def:external-evidence}
+  \uses{def:synthetic-hat-map,def:adams-detection,thm:external-synthetic-triangle-lift,def:cofiber-triangle}
   \notready
   Explicit detection evidence retains one chosen application of the synthetic
   triangle-lift theorem to the appropriate rotation of the classical Hopf

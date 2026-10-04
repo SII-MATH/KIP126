@@ -9,7 +9,7 @@ open KIP126.Classical.Adams KIP126.Core.SpectralSequence
 
 theorem lowDimensionalSquarePermanence {Manifold : Type}
     (dimension : Manifold → ℕ) (kervaireOne : Manifold → Prop)
-    (geometry : KIP126.Challenge1.GeometryInterface dimension kervaireOne)
+    (geometry : KIP126.Foundation.GeometryInterface dimension kervaireOne)
     (browder : KIP126.Challenge2.BrowderInterface dimension kervaireOne) :
     KIP126.Challenge2.LowDimensionalSquarePermanence := by
   have pow_ge_two (a : ℕ) : 2 ≤ 2 ^ (a + 1) := by

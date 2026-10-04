@@ -41,9 +41,6 @@ example (D : EtaESSInput source target) :
     etaD₄ ∈ D.differentials :=
   etaD₄_has_degree D
 
-example : etaD₁.locator.artifact = some "MainPaper/main.tex" :=
-  etaD₁_has_locator
-
 example (D : EtaESSInput source target) :
     Crossing D etaD₄ ↔ ∃ row, row ∈ D.differentials ∧
       row.sourceFiltration > etaD₄.sourceFiltration ∧

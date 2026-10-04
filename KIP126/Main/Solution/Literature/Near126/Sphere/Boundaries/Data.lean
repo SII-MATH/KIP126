@@ -1,9 +1,9 @@
 import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
-import KIP126.Def.References.Provenance
+
 
 namespace KIP126.Computation.Near126
 open KIP126.LinE2 KIP126.Classical.Adams KIP126.Core.SpectralSequence
-open KIP126.External
+
 
 attribute [local irreducible] KIP126.LinE2.homogeneousPart
 
@@ -21,10 +21,10 @@ nonzero claim for the product. This weaker consequence of the paper's stated
 nonzero hits also handles zero and linear combinations correctly. The synthetic
 filtration consequences and P/Q candidate exhaustion are separate obligations. -/
 structure SphereBoundaryFacts where
-  p_h2_d2_boundary : ExternalEvidence
+  p_h2_d2_boundary :
     (IsPageBoundary sphereAdamsData 2 (10, 136)
       (linToSphereE2 12 137 (by decide) (mulAt P (atom .h2))))
-  q_h2_d2_boundary : ExternalEvidence
+  q_h2_d2_boundary :
     (IsPageBoundary sphereAdamsData 2 (11, 137)
       (linToSphereE2 13 138 (by decide) (mulAt Q (atom .h2))))
 

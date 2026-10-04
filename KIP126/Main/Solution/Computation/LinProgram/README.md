@@ -8,5 +8,5 @@
 - [Interpretation](Interpretation/README.md)：标签、坐标、lookup 与谱序列推论。
 - [Route/Records.lean](Route/Records.lean)：当前路线的交付记录。
 
-唯一阶段假设是 `Main/Axiom/Challenge2.lean` 的 `Nonempty Challenge2`。
+唯一阶段假设是 `Main/Axiom/Challenge2.lean` 的 直接 `Challenge2` 构造。
 这里的消费证明不能用于解除其生产端假设。

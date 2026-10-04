@@ -4,4 +4,4 @@
 
 [Proofs.lean](Proofs.lean) 证明基向量坐标、非零性、坐标重构，以及恢复的数据基经该 presentation 等于实际页面基的公式。数据侧兼容 API 见 [Basis](../../Basis/README.md)。
 
-本组件不直接导入 Interface 的认证 Solution，也没有独立基认证公理。完整交付仍依赖 `Nonempty Challenge2` 的生产证明；Interface 的固定 CSV 基认证辅助定理仍待证。编译通过不表示这些生产义务完成。
+本组件不直接导入 Interface 的认证 Solution，也没有独立基认证公理。完整交付仍依赖 直接 `Challenge2` 构造 的生产证明；Interface 的固定 CSV 基认证辅助定理仍待证。编译通过不表示这些生产义务完成。

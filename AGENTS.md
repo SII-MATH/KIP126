@@ -15,10 +15,9 @@ working in this repository. Otherwise, ignore that file.
 ## Repository architecture
 
 - `KIP126/Def/` owns common mathematical objects, predicates, constructions,
-  and reusable theorems. It is also the producer of `Nonempty Challenge1` and
-  must not declare project axioms.
-- `KIP126/Interface/` consumes Challenge1 and produces
-  `Nonempty Challenge2`. It owns fixed-computation certification, comparison
+  the fixed implementation, and reusable theorems. It must not declare project axioms.
+- `KIP126/Interface/` constructs one `Challenge2` witness, including its
+  foundation applicability. It owns fixed-computation certification, comparison
   with the selected mathematical model, and the resulting delivery interface.
 - `KIP126/Main/` consumes Challenge2 and proves the paper's intermediate and
   final results. Intermediate statements and proofs belong in `Main/Solution/`;
@@ -29,17 +28,18 @@ working in this repository. Otherwise, ignore that file.
   the selected mathematical object.
 - `MainPaper/` owns the paper being formalized. `Source/` owns external
   literature artifacts, acquisition metadata, and the machine-readable source
-  inventory. These are provenance inputs, not project proofs.
+  artifacts. The canonical source and input manifest is `docs/external-inputs.json`.
+  These are provenance records, not project proofs.
 - `KIP126/Mathlib/` is the optional Mathlib adapter layer.
   `KIP126/Checks/` is the regression and audit layer.
 
-`KIP126/Challenge1.lean` and `KIP126/Challenge2.lean` are compatibility
-exports. The shared Challenge1 witness is defined in `KIP126/Def/Challenge1.lean`;
 Challenge2 is defined in `KIP126/Interface/Challenge/Challenge2.lean`.
-The user's stage-0 dependency-isolation requirement supersedes the earlier
-flat-definition rule. Do not create parallel witness definitions or proof
-transmission trees. Challenge2 separates literature and computation interfaces,
-and all its dependent fields use the same selected Def background.
+It directly contains foundation applicability, model bindings, a fixed
+presentation, literature, computation, and internal applications. Reusable
+foundation language lives under `KIP126.Foundation`; there is no Challenge1
+stage or equality transport to a second implementation. Do not create parallel
+witness definitions or proof transmission trees. All dependent fields use the
+same selected Def background and correlated route model.
 
 Do not create empty directories or placeholder modules merely to display the
 architecture. Import a concrete module directly when a wrapper would only
@@ -48,15 +48,12 @@ aggregators and required Lake library roots may remain.
 
 ## Proof-stage invariants
 
-The repository has exactly three Challenge/Solution pairs:
-
-- `Def/Challenge/Challenge1.lean` and `Def/Solution/Challenge1.lean` state
-  `Nonempty KIP126.Challenge1`.
-- `Interface/Challenge/Challenge2.lean` and
-  `Interface/Solution/Challenge2.lean` state
-  `Nonempty KIP126.Challenge2`.
-- `Main/Challenge/h6_sq_permanent.lean` and
-  `Main/Solution/h6_sq_permanent.lean` state the standard final theorem.
+The sole Challenge/Solution theorem pair is
+`Main/Challenge/h6_sq_permanent.lean` and
+`Main/Solution/h6_sq_permanent.lean`, stating the standard final theorem.
+The structure `Challenge2` itself specifies the Interface construction goal;
+`Interface/Solution/Challenge2.lean` constructs a value of that type. Do not
+add a duplicate placeholder theorem merely to restate this construction goal.
 
 For each pair:
 
@@ -73,7 +70,7 @@ Internal stage obligations live only in the relevant Solution tree; do not
 create intermediate Challenge mirrors or turn unfinished proof obligations into
 new structure fields or axioms. Generic reusable mathematics remains in Def.
 
-Each consumer selects one `Challenge1` or `Challenge2` witness and projects all
+Each consumer uses one direct `Challenge2` witness and projects all
 dependent data and compatibility facts from that same witness. Do not replace a
 correlated package with independent axioms or make dependent fields choose
 different base objects. Producer Solutions must not depend on the matching
@@ -81,10 +78,9 @@ consumer axiom.
 
 ## Trust boundary
 
-The only project `axiom` declarations are the two stage-existence assumptions:
-
-- `KIP126/Interface/Axiom/Challenge1.lean`
-- `KIP126/Main/Axiom/Challenge2.lean`
+The only project `axiom` is the temporary direct witness
+`Main.Axiom.challenge2 : KIP126.Challenge2` in
+`KIP126/Main/Axiom/Challenge2.lean`. It does not use `Nonempty` or a choice step.
 
 Do not add project axioms under `Def/`, `Mathlib/`, `Checks/`, `LinProgram/`,
 Challenge files, or Solution files. Do not convert an unfinished theorem into
@@ -93,7 +89,12 @@ an axiom to hide `sorryAx`.
 External results must retain their hypotheses, scope, source locators, and
 provenance. They remain explicit inputs bound to the same model through
 `Challenge2.LiteratureInterface`; do not replace them with untracked global
-facts. Source catalogue and evidence infrastructure belong in `Def/References/`.
+facts. Lean interfaces contain mathematical statements only. Source IDs,
+locators, acquisition status and artifact hashes belong in the canonical
+`docs/external-inputs.json` manifest, linked to Lean declarations and Blueprint
+labels by external checks. Do not restore `ExternalResult`, `ExternalEvidence`,
+or a parallel Lean source registry. Mathematical interpretation of computation
+rows remains in Lean, independently of this metadata.
 
 Generated records, successful hash checks, file moves, interface packaging, and
 successful compilation are not proof-completion evidence. A declaration that

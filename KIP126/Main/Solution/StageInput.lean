@@ -6,7 +6,10 @@ namespace KIP126.Main.StageInput
 
 /-- The one witness used throughout Main. -/
 noncomputable def witness : KIP126.Challenge2 :=
-  Classical.choice KIP126.Main.Axiom.challenge2
+  KIP126.Main.Axiom.challenge2
+
+/-- Foundation proofs are part of the same project input, not a second axiom. -/
+theorem foundation : KIP126.Challenge2.FoundationInputs := witness.foundation
 
 /-- Literature on the bindings stored in the sole stage witness. -/
 noncomputable def literature :
@@ -18,14 +21,14 @@ results in the same Challenge2 witness. -/
 noncomputable def geometryModel : KIP126.Challenge2.GeometryModel :=
   witness.modelBindings.geometry
 
-/-- Source-bearing low-dimensional, HHR, and Browder results on that model. -/
+/-- Low-dimensional, HHR, and Browder conclusions on that model. -/
 noncomputable def geometryLiterature :
     KIP126.Challenge2.GeometryLiteratureInterface geometryModel :=
   literature.geometry
 
 /-- The low-dimensional existence and high-dimensional nonexistence interface. -/
 theorem geometry :
-    KIP126.Challenge1.GeometryInterface geometryModel.dimension geometryModel.kervaireOne :=
+    KIP126.Foundation.GeometryInterface geometryModel.dimension geometryModel.kervaireOne :=
   geometryLiterature.geometry
 
 /-- Browder's criterion for the same geometric model and standard sphere classes. -/
@@ -57,7 +60,7 @@ noncomputable def sphereVanishing :
 
 noncomputable def sphereSeparated :
     KIP126.Classical.Adams.ClassicalSphereSeparated KIP126.Classical.Adams.standardFoundation.hf2 :=
-  literature.sphereSeparated
+  witness.applications.sphereSeparated
 
 /-- Main derives the tmf consumer facts from the same source, C(M) and tail
 premises. In particular high125 survival is not a Challenge2 field. -/
@@ -74,6 +77,6 @@ Main's tmf deduction on the same shared model. -/
 noncomputable def routeLiterature :
     KIP126.Literature.Route.Inputs routeModel routeEta tmfLabels :=
   KIP126.Literature.Route.Statements.toInputs routeModel routeEta tmfLabels
-    literature.route witness.routeApplication routeTmf
+    literature.route witness.applications.route routeTmf
 
 end KIP126.Main.StageInput

@@ -45,7 +45,7 @@ stage witness instead of importing their Interface proof implementations.
 \begin{definition}[Presentation of the actual $E_2$ page]
   \label{def:adams-e2-table-presentation}
   \lean{KIP126.AdamsE2.PageAlgebra,KIP126.AdamsE2.Presentation,KIP126.AdamsE2.Input}
-  \uses{def:adams-e2-table-model,def:classical-adams-e2-e3-shape-slice,def:external-evidence}
+  \uses{def:adams-e2-table-model,def:classical-adams-e2-e3-shape-slice}
   Fix an existing mod--$2$ Adams-shaped spectral sequence $E$ and a
   degree-preserving commutative algebra structure on the direct sum of its
   actual $E_2$ components.  A presentation consists of an algebra map
@@ -251,7 +251,7 @@ stage witness instead of importing their Interface proof implementations.
 % version v126.3.cw49; PROJECT_BOUNDARY.md, Appendix data.
 \begin{definition}[Lin CW-spectrum catalogue]
   \label{def:lin-spectrum-catalogue}
-  \uses{def:source-ref}
+
   \notready
   The computation input contains a finite, versioned catalogue of the 49 CW
   spectra used by Lin--Wang--Xu.  Each entry records its stable name, cell
@@ -320,7 +320,7 @@ stage witness instead of importing their Interface proof implementations.
 % *_AdamsE2_generators/relations/basis files described there.
 \begin{definition}[Lin Adams $E_2$-page catalogue]
   \label{def:lin-e2-page-catalogue}
-  \uses{def:lin-spectrum-catalogue,def:typed-class-expression,def:external-evidence}
+  \uses{def:lin-spectrum-catalogue,def:typed-class-expression}
   \notready
   For every spectrum in the Lin catalogue, an $E_2$-page record contains the
   complete finite generator, relation, and basis tables through its declared
@@ -335,7 +335,7 @@ stage witness instead of importing their Interface proof implementations.
 % Zenodo record 14875701.
 \begin{definition}[Lin map catalogue]
   \label{def:lin-map-catalogue}
-  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:external-evidence}
+  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue}
   \notready
   The map catalogue contains the 180 versioned maps used by the computation.
   A record gives source and target spectrum identifiers, suspension degree,
@@ -350,7 +350,7 @@ stage witness instead of importing their Interface proof implementations.
 % MainPaper/main.tex:2785--2792 for the additional manual inputs.
 \begin{definition}[Lin initial $d_2$ catalogue]
   \label{def:lin-d2-catalogue}
-  \uses{def:lin-e2-page-catalogue,def:differential-relation-id,def:external-evidence}
+  \uses{def:lin-e2-page-catalogue,def:differential-relation-id}
   \notready
   For every spectrum and degree range declared by the computation, the initial
   $d_2$ catalogue records all supplied $d_2$ values as typed differential
@@ -364,7 +364,7 @@ stage witness instead of importing their Interface proof implementations.
 % Tables-of-Proofs formats; proofs_csv.rar in Zenodo record 14875701.
 \begin{definition}[Lin propagated-output record]
   \label{def:lin-propagated-output-record}
-  \uses{def:lin-spectrum-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:differential-relation-id,def:external-evidence}
+  \uses{def:lin-spectrum-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:differential-relation-id}
   \notready
   A propagated-output record is one of a proved Adams differential, a proved
   map extension, a disproof of a candidate value, or an explicitly unresolved
@@ -391,7 +391,7 @@ stage witness instead of importing their Interface proof implementations.
 % SOURCE: PROJECT_BOUNDARY.md, Appendix data; MainPaper/main.tex:2785-2800.
 \begin{definition}[Appendix evidence record]
   \label{def:appendix-evidence-record}
-  \uses{def:appendix-table-id,def:appendix-row-status,def:differential-relation-id,def:external-evidence}
+  \uses{def:appendix-table-id,def:appendix-row-status,def:differential-relation-id}
   \notready
   An appendix evidence record contains a table identifier, a unique row key,
   spectrum and bidegree, typed class expression or zero band, row status,
@@ -406,7 +406,7 @@ stage witness instead of importing their Interface proof implementations.
 % MainPaper/main.tex:2738--3290.
 \begin{definition}[Near-$126$ computation input]
   \label{def:near126-computation-input}
-  \uses{def:lin-computation-bundle,def:appendix-evidence-record,def:external-result,def:external-evidence}
+  \uses{def:lin-computation-bundle,def:appendix-evidence-record}
   \notready
   A near-$126$ computation input is an explicit record containing a Lin
   computation bundle, the twelve finite appendix tables, the nine zero-band
@@ -417,18 +417,16 @@ stage witness instead of importing their Interface proof implementations.
   \texttt{todaCandidateProducts},
   \texttt{twoExtensionIndeterminacyProducts},
   \texttt{hopfLiftObstructions}, \texttt{stem122Products}, and
-  \texttt{cnuIncomingRange}; a proof cannot request an anonymous
-  \texttt{ExternalEvidence}.  Every field is an external-evidence or
-  external-result value, as
-  appropriate, with a source locator; project theorems receive this record as a
-  parameter and prove all finite coverage and negative-search conclusions from
-  its fields.
+  \texttt{cnuIncomingRange}. Every field states a specific mathematical
+  proposition with its source or computation locator recorded in the external
+  manifest. Project theorems receive explicit mathematical hypotheses and
+  prove finite coverage and negative-search conclusions from them.
 \end{definition}
 
 \begin{definition}[Fixed internal sphere computation facts: implemented slice]
   \label{def:near126-fixed-sphere-facts}
   \lean{KIP126.Computation.Near126.SphereFacts,KIP126.Computation.Near126.HopfCofiberFacts}
-  \uses{def:near126-computation-input,def:h6-fixed-computation,def:external-evidence}
+  \uses{def:near126-computation-input,def:h6-fixed-computation}
   \notready
   The current Lean slice constructs the Section~7 sphere expressions from
   actual pinned CSV coordinates, with kernel-checked names and bidegrees,

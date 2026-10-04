@@ -109,8 +109,8 @@ bash scripts/shared-main-cache.sh run lake build KIP126.Checks.Examples.LinProgr
 的乘法与该代数的乘法一致。没有重新定义页空间；也不要求提供球谱、
 Adams 消解或 Milnor 上闭链的构造。
 
-外部结论是 `Nonempty (Presentation table algebra)`，经
-`ExternalEvidence` 携带来源后交给 `myAdams`。其内容包括：
+外部结论是 `Nonempty (Presentation table algebra)`，作为直接的数学参数
+交给 `myAdams`；来源由 `docs/external-inputs.json` 记录。其内容包括：
 
 1. 模型代数到实际 `E₂` 总代数的代数同态；
 2. 所有次数上的相容线性映射，在覆盖域内是双射；

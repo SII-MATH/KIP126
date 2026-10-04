@@ -1,7 +1,4 @@
-import KIP126.Interface.Axiom.Challenge1
 import KIP126.Interface.Challenge.Challenge2
-import KIP126.Def.Challenge.Challenge1
-import KIP126.Def.Solution.Challenge1
 import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.LinProgram.BasisTable
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
@@ -10,26 +7,22 @@ import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.
 import Lean.Elab.Command
 
 /-!
-Check that each stage consumes one shared Challenge package, that the old
-public data names remain definitions, and that the differential result is a
-theorem projected from Challenge 2. Each entire stage has one Challenge target,
-one Solution producer and one temporary consumer axiom, all stating the same
-`Nonempty ChallengeN` type. Internal results have no Challenge mirrors.
-
-Challenge 1 delivers correlated cooperation data and tensor witnesses;
-fixed CSV basis certification no longer belongs to this foundation. The round trips retain every chosen datum; no
-compatibility constructor may silently select fresh coordinates or a new base.
+Check the single direct Challenge2 input and its independent producer. The
+foundation obligation is a field of this package, and fixed objects remain
+Def-owned. No second stage assumption, source wrapper or dummy goal is needed.
 -/
 
-open KIP126 in
-example (c : Challenge1) : c.implementation = Def.fixedImplementation :=
-  c.implementation_eq
-
-open KIP126 in
-example (c d : Challenge1) : c.implementation = d.implementation :=
-  Challenge1.sameImplementation c d
+example (c : KIP126.Challenge2) : KIP126.Classical.Adams.BHSObjectApplicability
+    KIP126.Def.fixedImplementation.foundationInput.countableProducts
+    KIP126.Def.fixedImplementation.foundationInput.hf2.unit
+    (KIP126.StableHomotopy.SphereSpectrum
+      (C := KIP126.Def.fixedImplementation.foundationInput.Spectrum)) :=
+  c.foundation.sphereApplicability
 
 example : KIP126.Def.StageInput.witness = KIP126.Def.fixedImplementation := rfl
+example : KIP126.Main.StageInput.witness = KIP126.Main.Axiom.challenge2 := rfl
+example : KIP126.Interface.Solution.challenge2.foundation =
+    KIP126.Interface.Solution.foundationInputs := rfl
 
 open Lean Elab Command in
 run_cmd do
@@ -49,8 +42,7 @@ run_cmd do
     unless axioms.contains input do
       throwError "stage witness does not consume its matching input: {witness}"
   let foundationAxioms ← liftCoreM (collectAxioms ``KIP126.Def.StageInput.witness)
-  if foundationAxioms.contains ``KIP126.Interface.Axiom.challenge1 ||
-      foundationAxioms.contains ``KIP126.Main.Axiom.challenge2 then
+  if foundationAxioms.contains ``KIP126.Main.Axiom.challenge2 then
     throwError "Def's fixed implementation depends on a consuming stage axiom"
   let some (.thmInfo _) := env.find? ``KIP126.Computation.LinProofs.sphereTable_sound
     | throwError "sphereTable_sound must be a theorem projected from Challenge 2"
@@ -60,11 +52,14 @@ example : ∀ (shard offset : Nat) (row : DifferentialRow),
     RawData.lookup shard offset = some row → DifferentialStatement row :=
   sphereTable_sound
 
--- The internal stage-one certification remains available only from Solution.
+-- The independent table certification remains available only from Solution.
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  for removed in [`KIP126.Challenge1.LinBasisInterface, `KIP126.Challenge1.linBasis,
+  for removed in [`KIP126.Challenge1, `KIP126.Interface.Axiom.challenge1,
+      `KIP126.Interface.Challenge.challenge2,
+      `KIP126.External.ExternalResult, `KIP126.External.ExternalEvidence,
+      `KIP126.External.SourceId,
       `KIP126.Challenge2.GeneralizedLeibnizLaw,
       `KIP126.Challenge2.GeneralizedMahowaldLaw,
       `KIP126.Challenge2.FinitePageExtensionStretchingLaw] do
@@ -92,7 +87,7 @@ example : routeComputation = witness.computation.route := rfl
 
 open KIP126.Main.StageInput in
 example : routeLiterature = KIP126.Literature.Route.Statements.toInputs
-    routeModel routeEta tmfLabels witness.literature.route witness.routeApplication routeTmf := rfl
+    routeModel routeEta tmfLabels witness.literature.route witness.applications.route routeTmf := rfl
 
 open KIP126 KIP126.Classical.Adams KIP126.Main.StageInput in
 example (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t) :
@@ -106,33 +101,20 @@ example : Kervaire.Route.PermanentH6Square standardMilnorCooperations =
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  let boundaries := [``KIP126.Def.Challenge.challenge1,
-    ``KIP126.Interface.Challenge.challenge2]
-  -- Interface/Challenge now owns contract definitions as well as its one
-  -- intentional goal theorem. Do not confuse importing a type with using the
-  -- proof of that goal; the declaration traversal below checks the latter.
-  for (producer, boundary, consumer, package) in [
-      (``KIP126.Def.Solution.challenge1, ``KIP126.Def.Challenge.challenge1,
-        ``KIP126.Interface.Axiom.challenge1, ``KIP126.Challenge1),
-      (``KIP126.Interface.Solution.challenge2, ``KIP126.Interface.Challenge.challenge2,
-        ``KIP126.Main.Axiom.challenge2, ``KIP126.Challenge2)] do
-    let some (.thmInfo p) := env.find? producer
-      | throwError "missing producer theorem: {producer}"
-    let some (.thmInfo b) := env.find? boundary
-      | throwError "missing stage target: {boundary}"
-    let some (.axiomInfo a) := env.find? consumer
-      | throwError "missing stage consumer axiom: {consumer}"
-    unless p.levelParams.isEmpty && b.levelParams.isEmpty && a.levelParams.isEmpty do
-      throwError "stage package acquired universe parameters: {producer}"
-    unless p.type == b.type && p.type == a.type do
-      throwError "stage signatures differ: {producer} / {boundary} / {consumer}"
-    unless p.type.getAppFn.isConstOf ``Nonempty &&
-        p.type.getAppArgs == #[mkConst package] do
-      throwError "stage target must be precisely Nonempty {package}"
-    unless b.value.getUsedConstants.contains ``sorryAx do
-      throwError "stage Challenge must remain a statement placeholder: {boundary}"
-    if (← liftCoreM (collectAxioms producer)).contains consumer then
-      throwError "producer depends on its matching consumer axiom: {producer}"
+  let producer := ``KIP126.Interface.Solution.challenge2
+  let consumer := ``KIP126.Main.Axiom.challenge2
+  let some (.defnInfo p) := env.find? producer
+    | throwError "missing direct package constructor: {producer}"
+  let some (.axiomInfo a) := env.find? consumer
+    | throwError "missing direct package input: {consumer}"
+  unless p.levelParams.isEmpty && a.levelParams.isEmpty do
+    throwError "project input acquired universe parameters"
+  unless p.type == a.type && p.type == mkConst ``KIP126.Challenge2 do
+    throwError "producer and consumer must have precisely type Challenge2"
+  for root in [producer, ``KIP126.Interface.Solution.foundationInputs,
+      ``KIP126.Interface.Solution.standardSphereApplicability] do
+    if (← liftCoreM (collectAxioms root)).contains consumer then
+      throwError "producer depends on the consumer axiom: {root}"
   -- The aggregate's field projections retain their actual proofs in Solution;
   -- their proof debt belongs to the aggregate producer, not a new stage axiom.
   for projection in [``KIP126.Interface.Solution.literatureInterface,
@@ -141,10 +123,8 @@ run_cmd do
       | throwError "missing Solution projection: {projection}"
     if p.value.getUsedConstants.contains ``sorryAx then
       throwError "stage projection lost its existing proof: {projection}"
-  -- Challenge targets coexist here solely for comparison. Walk the producers'
-  -- dependencies to reject any use of those intentionally unfinished proofs.
-  let mut todo : Array Name := #[``KIP126.Def.Solution.challenge1,
-    ``KIP126.Interface.Solution.challenge2,
+  -- A producer may use contract definitions, never the final goal placeholder.
+  let mut todo : Array Name := #[``KIP126.Interface.Solution.challenge2,
     ``KIP126.Interface.Solution.literatureInterface,
     ``KIP126.Interface.Solution.computationInterface,
     ``KIP126.Interface.Solution.LinE2.basisTable_correct]
@@ -157,9 +137,7 @@ run_cmd do
     let some info := env.find? name | throwError "missing producer dependency: {name}"
     if let some moduleIdx := env.getModuleIdxFor? name then
       let owner := env.header.moduleNames[moduleIdx]!
-      if name == ``KIP126.Interface.Challenge.challenge2 ||
-          name == ``KIP126.Def.Challenge.challenge1 ||
-          (`KIP126.Main.Challenge).isPrefixOf owner then
+      if (`KIP126.Main.Challenge).isPrefixOf owner then
         throwError "stage producer borrows an intentional goal proof: {name}: {owner}"
       unless (`KIP126).isPrefixOf owner do continue
     todo := todo ++ info.type.getUsedConstants
@@ -186,13 +164,18 @@ open KIP126.Main.StageInput in
 example : geometryModel = witness.modelBindings.geometry := rfl
 
 example (c : KIP126.Challenge2) :
-    c.literature.geometry.low_dimensions.root = .lowKervaireExistence :=
-  c.literature.geometry.low_dimensions_root
+    ∀ j : ℕ, 1 ≤ j → j ≤ 5 → ∃ M,
+      c.modelBindings.geometry.dimension M = 2 ^ (j + 1) - 2 ∧
+      c.modelBindings.geometry.kervaireOne M :=
+  c.literature.geometry.low_dimensions
 
 example (c : KIP126.Challenge2) :
-    c.literature.geometry.high_nonexistence.root = .hhrNonexistence :=
-  c.literature.geometry.high_nonexistence_root
+    ∀ j : ℕ, 7 ≤ j → ¬ ∃ M,
+      c.modelBindings.geometry.dimension M = 2 ^ (j + 1) - 2 ∧
+      c.modelBindings.geometry.kervaireOne M :=
+  c.literature.geometry.high_nonexistence
 
 example (c : KIP126.Challenge2) :
-    c.literature.geometry.browder.root = .browderCriterion :=
-  c.literature.geometry.browder_root
+    KIP126.Challenge2.BrowderInterface
+      c.modelBindings.geometry.dimension c.modelBindings.geometry.kervaireOne :=
+  c.literature.geometry.browder

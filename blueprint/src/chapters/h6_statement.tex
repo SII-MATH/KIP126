@@ -4191,7 +4191,7 @@ survival; the computational final Solution remains open.
 
 \begin{definition}[Correlated stage-zero cooperation contract]
   \label{def:stage-zero-cooperation-contract}
-  \lean{KIP126.Challenge1.TensorInput,KIP126.Challenge1.CooperationInput}
+  \lean{KIP126.Foundation.TensorInput,KIP126.Foundation.CooperationInput}
   \uses{def:h6-reduced-milnor-basis-input,def:h6-milnor-coproduct-input,prop:h6-derived-milnor-coordinates,def:h6-milnor-cooperations}
   \leanok
   The first Challenge witness specifies one tensor suspension/exactness
@@ -4334,7 +4334,7 @@ survival; the computational final Solution remains open.
   linear independence and spanning, not merely that the list has the right
   length. This auxiliary certification is produced in Interface; its
   proof remains admitted. It is distinct from delivery of coordinates on
-  the actual sphere $E_2$ page and is no longer a Challenge1 field.
+  the actual sphere $E_2$ page and is not a foundation input.
   Artifact hashes and executable checks of degrees, distinct coordinates
   and irreducibility do not discharge it.
 \end{theorem}
@@ -4379,7 +4379,7 @@ survival; the computational final Solution remains open.
   compatibility theorem, and internal sphere coordinates from the unique
   Challenge2 witness and its \texttt{computation.sphereBasis} field, using the same
   presentation throughout. The data-side compatibility interfaces are
-  recovered from this delivery; they do not select a Challenge1 basis.
+  recovered from this delivery; they do not change the fixed foundation.
   Each covered component has unique finite-support $\mathbb F_2$
   coordinates, with an integer-linear equivalence retaining the internal
   SSData $E_2$ page's existing additive structure.

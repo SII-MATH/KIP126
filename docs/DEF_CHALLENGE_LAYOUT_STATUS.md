@@ -1,15 +1,15 @@
 > 历史布局记录：下文按迁移批次记录路径和当时的缺口，不是当前 KIPBase 证明状态清单。
 > 当前复用范围见 [KIPBase 与 KIP126](KIPBASE_GAP_INVENTORY.md)，目录职责以根 AGENTS.md 为准。
 
-> 现行规则：Main 只有唯一 Final 定理保留 Challenge/Solution 配对；中间陈述和证明只在 Main/Solution 维护。Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。现行位置与状态见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)，下文的历史清单与测试数量不是当前配对要求。
+> 现行规则见 [STAGE_LAYOUT.md](STAGE_LAYOUT.md)：只有 Main 最终目标保留 Challenge/Solution 定理对；Interface 构造直接的统一 Challenge2。下文的 Challenge1、存在性包装、路径及测试数量均属历史记录。
 
 > Historical layout record. The current layout is documented in [STAGE_LAYOUT.md](STAGE_LAYOUT.md); module ownership is Def / Interface / Main.
 
 # Def / Challenge migration status
 
-The source paths below describe the current branch. Public Lean declaration names
-remain in their original namespaces. This is a migration-branch inventory, not
-confirmation that the layout is merged or fully compliant with AGENTS.md.
+The source paths below describe the historical migration branch at the time of
+this record. They are not current paths or API guarantees. This historical
+inventory does not establish current compliance with AGENTS.md.
 The Blueprint chapters and labels remain
 the mathematical index; compiling a Challenge module does not prove its node.
 
@@ -150,8 +150,7 @@ input to `SphereClasses` and the final theorem, whose proof is still open.
 The convergence witness structures now live in `Data`, their detection
 relation in `Predicates`, and the derived completion and detection results in
 `Proofs`. The provenance-bearing `EtaESSInput` and concrete eta ESS now live
-in `ExternalInput`; the eta `Data` file imports only the provenance data type,
-not the claim ledger. Public names and statements were preserved.
+in `ExternalInput`; the eta `Data` file imports only the provenance data type.
 
 The canonical filtration layer also now carries the historical
 degreewise-Mittag-Leffler predicate and the bounded-above/bounded proofs. This

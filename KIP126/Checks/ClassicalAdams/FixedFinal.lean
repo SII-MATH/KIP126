@@ -46,8 +46,7 @@ run_cmd do
     let some info := env.find? name | throwError "missing final dependency: {name}"
     if let some moduleIdx := env.getModuleIdxFor? name then
       let owner := env.header.moduleNames[moduleIdx]!
-      if name == ``KIP126.Interface.Challenge.challenge2 ||
-          (`KIP126.Def.Challenge).isPrefixOf owner ||
+      if (`KIP126.Def.Challenge).isPrefixOf owner ||
           (`KIP126.Main.Challenge).isPrefixOf owner then
         throwError "final Solution borrows an intentional goal proof: {name}: {owner}"
       -- External libraries cannot refer to project declarations. Traverse

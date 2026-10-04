@@ -3,7 +3,7 @@ import KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs
 import Lean.Elab.Command
 
 /-! The fixed specialization uses the existing foundation and Milnor
-coordinates projected from one Challenge1 witness. Its Mathlib sphere-page
+coordinates projected from Def's fixed implementation. Its Mathlib sphere-page
 objects and proof live in the StandardSphere adapter. The separate
 StandardSquareGeneric check preserves the generic proof's independence from
 adapters, Lin data and stage witnesses; this check audits the fixed dependency. -/

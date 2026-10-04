@@ -1,7 +1,7 @@
-# Challenge2：模型上的交付合同
+# Challenge2：统一数学输入合同
 
-[Challenge2.lean](Challenge2.lean) 定义 Interface 向 Main 交付的完整合同，并声明目标 `challenge2 : Nonempty KIP126.Challenge2 := by sorry`。根 `KIP126/Challenge2.lean` 仅导出这里的内容。
+[Challenge2.lean](Challenge2.lean) 定义 Interface 向 Main 交付的完整结构。结构本身规定构造目标，不再附加同型的占位 theorem。
 
-合同区分同一模型上的 A(M)、C(M)、对象绑定和内部比较责任。来源定理保留条件；完成对象到路线对象的运输、有限数据到论文消费事实的推导不冒充外部结果。原始文献及精确来源台账在 `Source/` 和 `docs/challenge2-route-sources.json`。
+合同包含 foundation、同一模型上的文献、计算、对象绑定及内部应用。数学命题保留条件；来源及 locator 独立记录于 [external-inputs.json](../../../docs/external-inputs.json)，不进入 Lean 类型。
 
-实际生产证明归 [Interface/Solution](../Solution/README.md)。本文新工具由 Main/Solution 独立证明，计算认证可使用这些证明，但不能反向消费 Main 的 Challenge2 假设或最终结论。任何生产证明都不能借用本目录的目标占位证明。
+实际构造归 [Interface/Solution](../Solution/README.md)。原 Challenge1 的球塔完成/收敛义务归 `FoundationInputs.sphereApplicability`；内部路线适配与球塔分离性归 `InternalApplications`。生产证明不能消费 Main 的 Challenge2 公理，也不能把本文新工具或最终结论加入输入来回避证明。

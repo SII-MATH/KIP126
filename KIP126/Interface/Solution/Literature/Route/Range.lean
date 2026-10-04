@@ -1,9 +1,9 @@
 import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Challenge1
+import KIP126.Interface.Solution.Foundation
 
 /-! Independent source specializations on the actual standard sphere tower.
 These producers supply the infinite-range premises that finite tables cannot
-establish. They depend on Challenge1's fixed model and comparisons, not on
+establish. They depend on Def's fixed model and comparisons, not on
 Challenge2, either paper proposition, or h₆² permanence.
 -/
 namespace KIP126.Interface.Solution.Literature.Route

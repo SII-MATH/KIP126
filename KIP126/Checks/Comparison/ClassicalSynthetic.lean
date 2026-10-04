@@ -1,5 +1,4 @@
 import KIP126.Def.Comparison.ClassicalSynthetic.Proofs
-import KIP126.Def.References.Literature.Claims
 
 /-!
 # Internal classical--synthetic regression
@@ -13,7 +12,7 @@ namespace KIP126.Comparison.ClassicalSynthetic.Regression
 
 open CategoryTheory
 open KIP126.Classical.Adams KIP126.Core.SpectralSequence
-open KIP126.External KIP126.StableHomotopy
+open KIP126.StableHomotopy
 open KIP126.Synthetic.Context KIP126.Synthetic.SpectralSequence
 
 universe u v u' v'
@@ -78,10 +77,6 @@ example : forgetWeight syntheticH₄Degree = classicalH₄Degree :=
 
 example : syntheticH₄TargetDegree = lambdaTarget syntheticH₀H₃SquaredDegree :=
   synthetic_h₄_target_is_lambda_target
-
-example :
-    (externalClaimLedger.lookup .adamsOneLine).owner =
-      `KIP126.Classical.adamsOneLineDifferentials := rfl
 
 end
 end KIP126.Comparison.ClassicalSynthetic.Regression

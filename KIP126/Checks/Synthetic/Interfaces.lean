@@ -1,4 +1,4 @@
-import KIP126.Challenge1
+import KIP126.Def.StableHomotopy.Implementation.Data
 import Lean.Elab.Command
 
 /-! Check the tower-based filtration and consume the exact synthetic

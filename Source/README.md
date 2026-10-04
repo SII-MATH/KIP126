@@ -10,37 +10,20 @@ Each work directory contains its `citation.bib` and a
 TeX source, PDF, or extracted text.  The archive does not bypass publisher
 access controls.
 
-[`source-inventory.json`](source-inventory.json) is the canonical machine-readable
-catalogue.  It assigns stable snake-case IDs (the same codes exposed by the
-Lean `SourceId` API), records the intended role of each source, and lists the
-local artifacts and SHA-256 digests that can be audited.  The acquisition
-claims in each work's `source-status.json` remain authoritative; the inventory
-checker rebuilds and executes the Lean source/claim projection exporter,
-verifies that the two source views agree, checks acquisition-status grammar and
-canonical artifact kinds, and checks that every nonempty
-canonical locator artifact path belongs to a `required=true`, existing regular
-file in the corresponding JSON artifact list:
+[`../docs/external-inputs.json`](../docs/external-inputs.json) is the canonical
+machine-readable source and input manifest. It records stable source IDs,
+locators, declaration/Blueprint coverage, acquisition state and artifact hashes.
+Per-source `source-status.json` files retain original acquisition records.
+There is no parallel Lean catalogue; mathematical fields carry only their
+mathematical statements.
 
 ```sh
 python3 scripts/check_source_inventory.py
+python3 scripts/check_external_inputs.py
 ```
 
-The checker allows a longer Lean build/export timeout on slow or cold
-checkouts, for example `--lean-timeout 900`.
-
-Claim-level external roots, intended owners, dependencies, and explicit
-`SourceRef` metadata are enumerated by
-`KIP126.External.externalClaimLedger`; names for future domain declarations
-are recorded without asserting that those declarations already exist.  The
-ledger also has a kernel-checked decreasing dependency rank.  The stronger
-`CataloguedExternalResult` / `CataloguedExternalEvidence` interfaces bind an
-actual explicit input to a canonical root.  The JSON catalogue remains the
-authority for the canonical claim locator's artifact membership, filesystem
-existence, and hashes.  A catalogued evidence artifact must use that locator's
-path; Lean also checks its safe source-relative path and digest shape, but does
-not automatically compare the wrapper's digest text with the JSON file.  Claim
-roots are intentionally families; a downstream Blueprint evidence label may be
-covered by an aggregate root instead of receiving a one-to-one row.
+These checks validate bookkeeping and declaration links, not the mathematical
+truth of a citation or the certification of an interpreted computation.
 
 The target paper is represented by the separate `aim_paper` entry.  It has no
 `source-status.json` because it is a checked-in project source rather than an
@@ -80,14 +63,15 @@ external reference.
 
 `LWXMachine/` also groups the corresponding Zenodo record, the `SSeqCpp`
 program page, and the interactive Adams spectral-sequence plot.  They are
-computational evidence (`ExternalEvidence`), not axioms or proved Lean theorems.
+computational evidence. Their mathematical interpretation and certification
+remain separate Lean obligations.
 
 ## Scope
 
-The 17 external source directories listed above are retained; the target paper
-is tracked separately as the `aim_paper` inventory row.  Other bibliography
-entries from the target paper were excluded because they do not supply an
-external theorem or evidence used by the formalization.
+The directories above are an acquisition archive, not an exhaustive list of
+MainPaper's references or required statements. The canonical manifest also
+records supplemental sources and bibliography-only items whose primary text
+has not been acquired. Missing sources and review status must stay explicit.
 
 For every retained work, `source-status.json` is authoritative about whether
 TeX, PDF, plain text, or only citation/metadata was obtained.

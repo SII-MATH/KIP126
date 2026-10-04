@@ -32,7 +32,7 @@ theorem certification :
       CertifiedRealization R B.routeLabels B.tmfLabels ∧
       (∀ (s t : ℕ) (ht : t ≤ 261) (x : KIP126.LinE2.E2At s t),
         R.sphere s t x = P.comparison s t ht x) := by
-  obtain ⟨I⟩ := KIP126.Interface.Solution.challenge2
+  let I := KIP126.Interface.Solution.challenge2
   exact ⟨I.routeInput, I.modelBindings, I.presentation, I.computation.route.realization,
     I.computation.route.toCertifiedRealization, I.computation.route_presentation⟩
 

@@ -36,8 +36,8 @@ run_cmd do
       pending := pending.pop
       if seen.contains name then continue
       seen := seen.insert name
-      if name == `KIP126.Interface.Challenge.challenge2 then
-        throwError "literature projection uses the Challenge2 placeholder"
+      if (`KIP126.Main.Challenge).isPrefixOf name then
+        throwError "literature projection uses a final-goal placeholder"
       let some info := env.find? name | continue
       if let some idx := env.getModuleIdxFor? name then
         unless (`KIP126).isPrefixOf env.header.moduleNames[idx]! do continue

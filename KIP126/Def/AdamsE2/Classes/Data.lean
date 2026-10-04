@@ -4,7 +4,7 @@ namespace KIP126.AdamsE2.Input
 
 noncomputable def presentation (myAdams : Input) :
     Presentation myAdams.table myAdams.algebra :=
-  Classical.choice myAdams.tableCorrect.evidence
+  Classical.choice myAdams.tableCorrect
 
 noncomputable def h6 (myAdams : Input) : Page myAdams.sequence (1, 64) :=
   myAdams.presentation.basis (1, 64) myAdams.h6_mem

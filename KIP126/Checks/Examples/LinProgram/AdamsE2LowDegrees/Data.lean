@@ -15,7 +15,7 @@ SHA-256 校验值：bb53d84a3450d58535f7119d3a4fa2123688f9574c396d592763c37be89d
 
 可用 `scripts/extract_adams_e2_low.py` 重现带标记的数据区块。
 这些数值数据本身并不证明它们描述了球谱的实际页；这一解释仍须由显式输入
-`ExternalEvidence (Nonempty (Presentation table A))` 提供。
+`(Nonempty (Presentation table A))` 提供。
 -/
 
 namespace KIP126.Examples.AdamsE2LowDegrees

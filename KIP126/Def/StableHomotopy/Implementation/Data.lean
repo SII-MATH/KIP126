@@ -29,15 +29,15 @@ import Mathlib.Algebra.Exact.Basic
 the selected stable category, HF₂ object and operations; the following
 records supply Milnor coordinates, tensor compatibility and the synthetic
 route language. Route witnesses are delivered later in one correlated
-existential package; none is chosen here. SourceComparison identifies this classical implementation with the
+input package; none is chosen here. SourceComparison identifies this classical implementation with the
 concrete HF₂-local source in Implementation/Completion.lean.
-The Def construction chooses this package once. Challenge1 only transports
-that fixed choice to Interface and cannot choose a different background. -/
+The Def construction chooses this package once. Interface and Main use this
+same fixed background; there is no second foundation choice. -/
 namespace KIP126
 
 open StableHomotopy StableHomotopy.Cohomology Classical.Adams
 
-namespace Challenge1
+namespace Foundation
 
 open CategoryTheory MonoidalCategory
 
@@ -275,23 +275,23 @@ structure TodaTensorInterface (C : Type u) [Category.{v} C] [Preadditive C]
       StableHomotopy.Toda.Relation (((tensorLeft V).commShiftIso (1 : ℤ)).inv.app X ≫ (V ◁ x))
         (V ◁ f) (V ◁ g) (V ◁ h)
 
-end Challenge1
+end Foundation
 
 /-- One candidate implementation of the entire mathematical background.
 Its classical source is the explicit HF₂-local prespectrum source.
 Choosing the fixed implementation and handing it to the next stage are separate. -/
 structure Implementation where
-  foundationInput : Challenge1.FoundationInput
-  milnorInput : Challenge1.MilnorInput foundationInput
-  tensorInput : Challenge1.TensorInput foundationInput
-  cooperationInput : @Challenge1.CooperationInput foundationInput tensorInput milnorInput
+  foundationInput : Foundation.FoundationInput
+  milnorInput : Foundation.MilnorInput foundationInput
+  tensorInput : Foundation.TensorInput foundationInput
+  cooperationInput : @Foundation.CooperationInput foundationInput tensorInput milnorInput
   sourceComparison : StableHomotopy.Implementation.SourceComparison foundationInput.hf2
   sourceTensor : letI := tensorInput
     StableHomotopy.Implementation.TensorComparison sourceComparison
 
 namespace Implementation
 
-open Challenge1
+open Foundation
 
 /-- 保留消费端使用的基础名称及类型，所有数据来自同一个边界见证。 -/
 def foundation (c : KIP126.Implementation) : StandardAdamsFoundation :=
@@ -554,7 +554,7 @@ def SyntheticTriangleLiftComparison (H : Mod2EilenbergMacLane (C := C))
 
 /-- a10/a11 的可检查交付组。三个字段都使用同一个 H 与 ν。
 固定 synthetic 背景的选择仍需接入；文献证明通过显式输入提供，不将此组
-安装成当前 `Nonempty Challenge1` 的无条件附加事实。 -/
+安装成项目输入的无条件附加事实。 -/
 structure SyntheticInterface (H : Mod2EilenbergMacLane (C := C))
     (N : NuFunctorData C Syn) : Prop where
   nu_cofiber : NuCofiberCriterion H N

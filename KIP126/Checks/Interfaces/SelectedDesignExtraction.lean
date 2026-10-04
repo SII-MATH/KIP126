@@ -57,4 +57,4 @@ example (I : KIP126.Challenge2)
     (tmf : Literature.Route.TmfInputs I.routeModel I.modelBindings.tmfLabels) :
     Literature.Route.Inputs I.routeModel I.modelBindings.routeEta I.modelBindings.tmfLabels :=
   Literature.Route.Statements.toInputs I.routeModel I.modelBindings.routeEta
-    I.modelBindings.tmfLabels I.literature.route I.routeApplication tmf
+    I.modelBindings.tmfLabels I.literature.route I.applications.route tmf

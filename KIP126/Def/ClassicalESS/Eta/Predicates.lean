@@ -6,7 +6,7 @@ open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
 open KIP126.Core.Algebra
 open KIP126.Core.SpectralSequence
-open KIP126.External
+
 
 /-- A paper-specific extension relation on the concrete finite rows. -/
 def FExtension {stable : StableHomotopyContext} {X Y : stable.Spectrum}

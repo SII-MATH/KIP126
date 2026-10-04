@@ -39,7 +39,8 @@ and [original migration archive](migration/kip-base/README.md).
 ## Project documents and workflow
 
 - [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
-- [Stage layout](docs/STAGE_LAYOUT.md): directory ownership and the Challenge1/Challenge2 delivery chain.
+- [Stage layout](docs/STAGE_LAYOUT.md): directory ownership and the unified Challenge2 delivery.
+- [Input review panel](docs/challenge-input-inventory.html): foundation, literature, computation, and remaining review obligations.
 
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
@@ -71,10 +72,10 @@ document:
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for the implemented interfaces, proofs and dependency graph.
   `Def/` owns all mathematical objects and the fixed implementation; it never
-  imports Interface or Main. `Interface/` and `Main/` each have exactly three
-  direct directories: `Axiom/`, `Challenge/`, `Solution/`. Challenge1 delivers
-  the Def background; Challenge2, owned by `Interface/Challenge`, delivers
-  literature, computation and comparisons on that same background. The final
+  imports Interface or Main. `Interface/Challenge` defines `Challenge2` and
+  `Interface/Solution` constructs it. This single witness delivers foundation
+  applicability, model bindings, literature, computation and internal
+  applications on the fixed Def background. The final
   target in `Main/Challenge/h6_sq_permanent.lean` imports only Def; its proof
   may consume Challenge2 through Main/Axiom. Stage-0 interface acceptance does
   not mean certification or the final mathematical proof is complete.
@@ -89,17 +90,17 @@ document:
   The [E₂ table interface walkthrough](docs/ADAMS_E2_TABLE.md) explains the
   small executable example connecting imported dimensions and multiplication
   coefficients to an existing spectral sequence's page.
-- [`Source/source-inventory.json`](Source/source-inventory.json), the
-  per-source status records under [`Source/`](Source/), and the Lean
-  claim ledger own the catalogue and provenance of external inputs. They record
-  evidence and assumptions; they do not turn those inputs into unconditional
-  project theorems.
+- [`docs/external-inputs.json`](docs/external-inputs.json) is the canonical
+  machine-readable manifest for source artifacts, locators, interface coverage,
+  and route audit items. Per-source status records under [`Source/`](Source/)
+  retain acquisition evidence. Lean fields contain mathematical statements;
+  the manifest connects them to citations without a second Lean metadata registry.
 
 When two sources appear to disagree, resolve the question through the owner
 above: scope, trust, and final acceptance through `PROJECT_BOUNDARY.md`;
 implemented facts through Lean; planned statements, dependencies, and status
-through the Blueprint; long-term order through the Roadmap; and external-input
-records through the source inventory and claim ledger.
+through the Blueprint; long-term order through the Roadmap; and source
+artifacts through the source inventory.
 
 The intended workflow is therefore:
 
@@ -212,46 +213,24 @@ the generated list is not committed.
 
 ## Provenance and source inventory
 
-`KIP126.Def.References.Provenance` defines the explicit `SourceId`, `SourceRef`,
-`ExternalResult`, and `ExternalEvidence` records.  The typed Lean projection
-of the finite catalogue is in `KIP126.Def.References.Literature.SourceInventory`, and the
-claim-level root/owner/dependency ledger is in `KIP126.Def.References.Literature.Claims`.
-Citation metadata, acquisition state, artifact paths, and SHA-256 digests are kept in
-[`Source/source-inventory.json`](Source/source-inventory.json).  Check
-the filesystem ledger and its regression tests with:
+Citation metadata, acquisition state, artifact paths, SHA-256 digests, and
+declaration-level source links are kept in
+[`docs/external-inputs.json`](docs/external-inputs.json). Mathematical inputs
+remain explicit Lean fields and hypotheses. No citation wrapper is needed to
+use or prove them. Check the manifest and its regression tests with:
 
 ```sh
 python3 scripts/check_source_inventory.py
 python3 -m unittest discover -s scripts -p 'test_check_source_inventory.py'  # unit tests
-python3 -m unittest discover -s scripts -p 'test_source_inventory_projection.py'  # Lean integration tests
 python3 -m unittest discover -s scripts -p 'test_*.py'  # all tests
-bash scripts/shared-main-cache.sh run lake build KIP126.Checks.External.Provenance \
-  KIP126.Checks.External.SourceInventory \
-  KIP126.Checks.External.Claims
+python3 scripts/check_external_inputs.py
 ```
 
-On a slow or cold checkout, increase the two Lean subprocess timeouts with
-`python3 scripts/check_source_inventory.py --lean-timeout 900`.
-
-The checker validates provenance metadata and reproducibility bookkeeping; it
-also rebuilds and executes the Lean exporter, compares all 18 source rows,
-checks acquisition-status grammar and canonical artifact kinds, checks all 55
-claim rows, and requires every nonempty canonical locator
-artifact path to name a listed, `required=true`, existing regular file.  Lean's
-`InventoryValid` predicates reject unsafe
-paths and paths that fail the syntactic source-directory prefix check, while
-`CataloguedExternalResult` and
-`CataloguedExternalEvidence` bind an actual wrapper value to one canonical
-claim root and compatible trust class; a catalogued evidence artifact must use
-the claim locator's canonical path.  The checker compares the checked-in file
-with the JSON digest; it does not automatically compare an arbitrary wrapper's
-digest field with that value.  None of these checks turns an external record
-into an unconditional theorem.  The root, locator, and trust-class
-checks are metadata checks: they do not establish that the wrapper proposition
-is definitionally the proposition named by a future owner declaration.  The
-canonical ledger is closed over 55 explicitly declared, family-level roots;
-coverage is relative to that enum rather than a claim that every Blueprint
-label has a one-to-one row.
+The checks validate source acquisition records, artifact paths and hashes,
+declaration coverage and source locators. They do not establish that the cited
+text entails the Lean statement or certify a computation. The Blueprint's
+53 statement packages remain a writing and mathematical-review backlog;
+they are not a count of proved theorems or Challenge2 fields.
 
 ## Repository-private Blueprint skills
 

@@ -3,7 +3,7 @@ import Lean.Elab.Command
 
 /-! Catalogue checks are executable regressions, not proofs of independence.
 The actual E₂ coordinates and CSV values come from the single Challenge2
-witness. Fixed-CSV certification is an Interface helper, not a Challenge1
+witness. Fixed-CSV certification is an Interface helper, not a foundation
 field or a proof imported by Main. -/
 namespace KIP126.LinE2
 

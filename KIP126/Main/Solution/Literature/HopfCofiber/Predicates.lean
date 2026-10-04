@@ -1,9 +1,9 @@
 import KIP126.Main.Solution.Literature.HopfCofiber.Data
 import KIP126.Def.SpectralSequence.Computation.Predicates
-import KIP126.Def.References.Provenance
+
 
 namespace KIP126.Computation.Near126
-open KIP126.Core KIP126.Core.SpectralSequence KIP126.External
+open KIP126.Core KIP126.Core.SpectralSequence
 
 /-- Semantic two-fact slice used by the paper's near-126 argument.  This is a
 Main-stage conditional statement about explicitly supplied Cν classes, not an
@@ -12,11 +12,11 @@ structure HopfCofiberFacts (E : SpectralSequence (ModuleCat ℤ) (ℤ × ℤ))
     (xbar : E.Page 2 (8, 134)) (ybar : E.Page 2 (11, 136))
     (tbar : E.Page 2 (14, 139)) where
   /-- `lem:nuext125`, MainPaper/main.tex:2648. -/
-  d3_xbar : ExternalEvidence
+  d3_xbar :
     (HasNonzeroDifferential E 3 (8, 134) (11, 136) xbar ybar)
   /-- `prop:state5false`, MainPaper/main.tex:2776; Table:Cnu126.
   Universal quantification includes arbitrary linear combinations of sources. -/
-  tbar_short_incoming : ExternalEvidence
+  tbar_short_incoming :
     (∀ r : ℤ, 2 ≤ r → r ≤ 5 → ¬ HitOnPage E r (14, 139) tbar)
 
 end KIP126.Computation.Near126

@@ -30,7 +30,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: AIM-7 concrete tracer bullet; MainPaper/main.tex:430-453.
 \begin{definition}[Concrete classical $\eta$-ESS tracer bullet]
   \label{def:classical-eta-ess-concrete}
-  \uses{def:classical-adams-ss,def:ess-complex-shape,thm:external-adams-h4-d2-slice,prop:eta-ess-regression,def:catalogued-external-evidence}
+  \uses{def:classical-adams-ss,def:ess-complex-shape,thm:external-adams-h4-d2-slice,prop:eta-ess-regression}
   \lean{KIP126.Classical.ExtensionSS.etaESS}
   \lean{KIP126.Classical.ExtensionSS.E₀}
   \lean{KIP126.Classical.ExtensionSS.abutment}
@@ -40,9 +40,9 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   Mathlib's `CategoryTheory.SpectralSequence` with page-zero object
   $E_\infty(X)\oplus E_\infty(Y)$, differential degree $(n,n)$, and
   componentwise abutment $\ker(\pi_*\eta)\oplus\operatorname{coker}(\pi_*\eta)$.
-  The finite differential rows carry the AIM paper locator and are injected
-  through the `etaEssRegression` claim ledger; this does not add a global
-  differential axiom.
+  The finite differential rows are explicit mathematical inputs. Their AIM
+  paper locators are recorded in the external manifest; no separate
+  differential axiom is introduced.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:327-342, unlabelled Corollary 2.6.
@@ -271,7 +271,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % Belmont--Kong, arXiv:2112.08689v2, Definitions 2.3--2.4.
 \begin{theorem}[Moss convergence adapter]
   \label{thm:moss-convergence-adapter}
-  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,def:external-result,prop:moss-long-layer-composition-obstruction}
+  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,prop:moss-long-layer-composition-obstruction}
   \lean{KIP126.Classical.Adams.Moss.PageMassey.Relation,KIP126.Classical.Adams.Moss.PageMassey.Indeterminacy,KIP126.Classical.Adams.Moss.StatementAt,KIP126.Challenge2.MossInterface,KIP126.Challenge2.StandardSphereMossInterface,KIP126.Interface.Solution.sphereMossInterface}
   \notready
   Fix one composition system whose page values are constrained by the actual
@@ -302,7 +302,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:685-691; AIM-6 concrete synthetic comparison slice.
 \begin{proposition}[The $h_4$ classical--synthetic $d_2$ comparison]
   \label{prop:aim6-h4-comparison}
-  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism,def:external-result}
+  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction}
   \lean{KIP126.Synthetic.SpectralSequence.lambdaMapFromAction}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction.lambdaMap_comm}
@@ -326,7 +326,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \end{proposition}
 
 \begin{proof}
-  The AIM-5 catalogue wrapper supplies the classical statement and degree
+  The AIM-5 mathematical input supplies the classical statement and degree
   equalities.  The remaining proof obligation is the representative-induced
   comparison across the two fixed weights and its compatibility with the
   typed action; no proof of the differential correspondence is claimed here.
@@ -496,7 +496,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:878-910, Example exam:synEinfty.
 \begin{proposition}[Synthetic $14$-stem regression]
   \label{prop:synthetic-14-stem-regression}
-  \uses{thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,def:external-evidence}
+  \uses{thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient}
   \notready
   Given the explicit classical evidence
   $d_2(h_4)=h_0h_3^2$,
@@ -878,7 +878,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:1240-1271, Example exam:classcrossdiff.
 \begin{proposition}[Stem-$38$ crossing regression]
   \label{prop:stem38-crossing-regression}
-  \uses{prop:classical-crossing-iff-delta-crossing,cor:classical-e2-no-crossing,def:external-evidence}
+  \uses{prop:classical-crossing-iff-delta-crossing,cor:classical-e2-no-crossing}
   \notready
   Given the typed computation evidence
   $d_3(e_1)=h_1t$ and
@@ -902,7 +902,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % deliberately stated without assuming that the E_infinity extension exists.
 \begin{proposition}[Hopf crossing-obstruction exclusion]
   \label{evidence:hopf-crossing-obstruction-exclusion}
-  \uses{def:page-extension-crossing,def:finite-page-extension-nonliftable-crossing,thm:external-adams-one-line,def:ss-elementwise-page-presentation,def:ss-cycle-boundary-survival,def:external-evidence,evidence:normalized-hopf-detection}
+  \uses{def:page-extension-crossing,def:finite-page-extension-nonliftable-crossing,thm:external-adams-one-line,def:ss-elementwise-page-presentation,def:ss-cycle-boundary-survival,evidence:normalized-hopf-detection}
   \notready
   For the candidate Hopf relation of length two from
   $h_0h_4^2$ to $h_0p$, a finite evidence record enumerates every
@@ -1003,7 +1003,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:1391-1402, Example exam:extonEn(1).
 \begin{proposition}[Hopf-map $E_2$ page extension]
   \label{prop:hopf-e2-page-extension}
-  \uses{def:page-extension,evidence:normalized-hopf-detection,prop:synthetic-einfty-first-quotient,def:external-evidence}
+  \uses{def:page-extension,evidence:normalized-hopf-detection,prop:synthetic-einfty-first-quotient}
   \notready
   Let $\nu_{\mathrm{Hopf}}:S^3\to S^0$ denote the classical Hopf map.  Typed Ext
   product evidence supplies the essential extension
@@ -1065,7 +1065,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:1391-1433, Example exam:extonEn(4).
 \begin{proposition}[Multiplication-by-two page-extension regression]
   \label{prop:two-page-extension-regression}
-  \uses{def:page-extension-coset,prop:no-crossing-iff-uniform-detection,def:external-evidence}
+  \uses{def:page-extension-coset,prop:no-crossing-iff-uniform-detection}
   \notready
   Given the stated $14$-stem evidence and the comparison
   $\lambda[h_0]=2$, multiplication by two has
@@ -1113,7 +1113,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:1541-1579, Example exam:Ercross.
 \begin{proposition}[Page-crossing regression]
   \label{prop:page-crossing-regression}
-  \uses{prop:hopf-e2-page-extension,prop:hopf-e3-page-extension,prop:hopf-einfty-page-extension,evidence:hopf-crossing-obstruction-exclusion,prop:two-page-extension-regression,prop:page-crossing-iff-synthetic-crossing,def:external-evidence}
+  \uses{prop:hopf-e2-page-extension,prop:hopf-e3-page-extension,prop:hopf-einfty-page-extension,evidence:hopf-crossing-obstruction-exclusion,prop:two-page-extension-regression,prop:page-crossing-iff-synthetic-crossing}
   \notready
   The four examples of Section 5 have the stated crossing behavior: the
   $E_2$, $E_3$, and $E_\infty$ Hopf-map extensions have no crossings, while
@@ -1223,7 +1223,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:1694-1720, Example exam:Leibnizno.
 \begin{proposition}[No-crossing is necessary]
   \label{prop:leibniz-negative-regression}
-  \uses{thm:generalized-leibniz,prop:two-page-extension-regression,prop:page-crossing-regression,def:external-evidence}
+  \uses{thm:generalized-leibniz,prop:two-page-extension-regression,prop:page-crossing-regression}
   \notready
   For $f=2$ and the computed differential
   $d_2(h_4)=h_0h_3^2$, all generalized Leibniz hypotheses except target
@@ -1244,7 +1244,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:1733-1753, Remark rem:chuaerror; Chua Definition 12.5 and Theorem 12.9.
 \begin{proposition}[Counterexample to the maximal-extension rule]
   \label{prop:chua-rule-counterexample}
-  \uses{prop:leibniz-negative-regression,def:external-result,def:external-evidence}
+  \uses{prop:leibniz-negative-regression}
   \notready
   The maximal-$[h_0]$ lift of $h_0h_3^2$ in the stated synthetic $14$-stem
   example maps to zero, while another lift maps to $[h_0d_0]$.  Consequently
@@ -1485,7 +1485,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:1930-1977, Example exam:Mahowald; computed cofiber d_2 is external evidence.
 \begin{proposition}[Cofiber regression for the Mahowald trick]
   \label{prop:mahowald-cofiber-regression}
-  \uses{thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,cor:classical-e2-no-crossing,def:external-evidence}
+  \uses{thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,cor:classical-e2-no-crossing}
   \notready
   Given the computed differential
   $d_2(h_0h_4^2[4])=h_0p[0]$ in the Adams spectral sequence of

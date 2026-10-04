@@ -49,8 +49,8 @@ Blueprint 的完整计划仍在 `computation_schema.tex`、`computed_inputs.tex`
   `(\Delta e_1+C_0+h_0^6h_5^2)`；没有假装已经分别定义这三个加项。
 - `Sphere/Predicates.lean`：将这些具体元素经已有 `linToSphereE2`
   放进固定的 `sphereAdamsData`，微分使用这个对象原有的 `d`。
-- `Sphere/Data.lean`：`SphereFacts` 的每个叶子都是 `ExternalEvidence`，
-  分为 differential、survival、product、vanishing 四部分。
+- `Sphere/Data.lean`：`SphereFacts` 的叶子直接陈述数学事实，
+  分为 differential、survival、product、vanishing 四部分；来源在统一清单维护。
 - `HopfCofiber/Data.lean`：第八条微分和最后的短入射排除已有语义接口，
   通用版本保留参数；新 `HopfCofiber/Fixed/Data.lean` 已将其限定到固定球面
   上一个指定映射的实际 cofiber，并构造底胞腔类。**尚无 Hopf 输入实例和
@@ -128,7 +128,7 @@ Mahowald 定理的 crossing 条件是两个分支的析取；若使用零长度 
 | D9 | 球面 `d₃(x_126_6)` 是 `h5 x_94_8` 或 `h5 x_94_8+h6 B`，且非零 | (6,132) → (9,134) | `fact:theta5sqAF` 后的 remark；固定对象接口 |
 
 以上是原文断言的登记和数学命题接口，不是重新运行 Lin 的验证结果。
-每个 `ExternalEvidence` 值还应附上真实 archive/query/disproof 的出处。
+每个事实应在 `external-inputs.json` 中链接真实 archive/query/disproof 的出处。
 尤其不能仅凭 E₂ CSV 或已转录的 Appendix 行构造这些证据。
 
 ## S/P/V：已写入球面包的其他输入

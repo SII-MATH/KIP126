@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KIP126 · 统一输入审阅</title>
+<style>
+:root{--ink:#20332c;--muted:#626f68;--line:#d9ded6;--paper:#f6f5ef;--card:#fffef9;--accent:#27674f;--warn:#865c20}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1000px;margin:auto;padding:48px 24px 80px}h1{font:500 clamp(28px,5vw,44px)/1.2 Georgia,serif;margin:10px 0 16px}h2{font-size:22px;margin:0 0 12px}h3{font-size:18px;margin:0 0 6px}p{margin:8px 0 14px}a{color:var(--accent);text-underline-offset:3px}.eyebrow{color:var(--accent);letter-spacing:.08em;font-weight:700}.muted,small{color:var(--muted)}.intro{max-width:760px}.note{border-left:4px solid #c28d3b;background:#fcf2dc;padding:14px 18px;margin:24px 0;border-radius:4px}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 24px}button,input,select{font:inherit;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:8px 12px;color:inherit}button{cursor:pointer}button[aria-pressed=true]{background:var(--accent);color:white;border-color:var(--accent)}button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #daa956;outline-offset:3px}.card{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:20px;margin:12px 0}.card p:last-child{margin-bottom:0}.tag{font-size:12px;display:inline-block;padding:2px 8px;border-radius:20px;background:#f4ead5;color:var(--warn);margin-bottom:7px}details{border-top:1px solid var(--line);margin-top:14px;padding-top:12px}summary{cursor:pointer;color:var(--accent);font-weight:600}details details{margin:10px 0 0;padding:10px 0}.field{padding:14px 0;border-bottom:1px solid var(--line)}.field:last-child{border:0}.field code{overflow-wrap:anywhere;font-size:13px}.field .locator{margin-top:8px;color:var(--muted);font-size:14px}.source-list{font-size:14px;display:flex;gap:8px;flex-wrap:wrap}.sources{margin:24px 0}label{display:block;margin-top:10px;font-size:14px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.toolbar input{flex:1;min-width:180px}.meta{font-size:13px;color:var(--muted)}.error{color:#9b3229}footer{margin-top:40px;border-top:1px solid var(--line);padding-top:20px;font-size:14px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eee;padding:12px;border-radius:8px}#search-area{margin-top:28px}#loading{padding:22px 0}select{max-width:100%}ul{padding-left:22px}.small-links{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0}@media(max-width:600px){main{padding:28px 16px 50px}.card{padding:16px}.tabs button{flex:1;white-space:nowrap}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">KIP126 / 输入审阅</div>
+<h1>一个 Challenge2，各项义务分别看。</h1>
+<p class="intro">基础、文献、计算和内部应用已合到同一个输入包。数学条件仍在 Lean 中；引用、定位和来源文件由一份清单管理。</p>
+<div class="note">布局已经简化，文献仍待逐项核验。下面的六项只是目前的打包方式；它们的完整性、原文定位和模型适用性还没有因此得到认可。</div>
+</header>
+<nav class="tabs" aria-label="查看输入类别">
+<button type="button" data-view="literature" aria-pressed="true">文献</button>
+<button type="button" data-view="foundation" aria-pressed="false">基础</button>
+<button type="button" data-view="computation" aria-pressed="false">计算</button>
+<button type="button" data-view="internal" aria-pressed="false">内部应用</button>
+</nav>
+<div id="loading" role="status">正在读取统一清单…</div>
+<section id="view" aria-live="polite"></section>
+<details id="search-area">
+<summary>查找全部登记字段与来源</summary>
+<p class="muted">这里包含父字段和子字段，不能相加当作独立定理数。审计覆盖不等于文献正确性或证明完成。</p>
+<div class="toolbar"><input id="search" type="search" aria-label="搜索声明、来源或定位" placeholder="搜索 Browder、Adams、字段名或 theorem locator…"><button id="export" type="button">导出我的审阅</button></div>
+<div id="all-fields"></div>
+<details><summary>文献与制品目录</summary><div id="sources"></div></details>
+</details>
+<footer>
+<p id="manifest-info">本页从 external-inputs.json 读取，不保存第二份输入台账。</p>
+<div class="small-links">
+<a href="external-inputs.json">唯一机器清单</a>
+<a href="STAGE0_INTERFACES.md">范围与未完成义务</a>
+<a href="../KIP126/Interface/Challenge/Challenge2.lean">Lean 数学接口</a>
+<a href="../blueprint/web/index.html">Blueprint 陈述</a>
+</div>
+<p>浏览器中的审阅选择只用于记录意见，不会修改 Lean 或证明状态。旧页面已保存的意见仍保留，导出时一并包含。</p>
+</footer>
+</main>
+<script>
+"use strict";
+const prefix = "KIP126.Challenge2.";
+const views = {
+  literature: {
+    heading: "目前的六个文献包",
+    intro: "geometry、Adams/May、Moss 等都属于外部文献。route 的细分审计只覆盖其中一部分；现在这些输入统一在同一清单中登记。",
+    structure: prefix + "LiteratureInterface",
+    order: ["geometry", "sphereVanishing", "adamsOneLine", "moss", "br21", "route"]
+  },
+  foundation: {
+    heading: "原 Challenge1 的义务在这里",
+    intro: "实际球塔的 HF₂ nilpotent completeness 和强收敛保留于 foundation。固定实现及 countable-products 等结构继续由 Def 构造；不再另选一个 implementation 后证明它相等。",
+    structure: prefix + "FoundationInputs",
+    order: ["sphereApplicability"]
+  },
+  computation: {
+    heading: "程序数据在同一模型上的七项交付",
+    intro: "固定表格、CSV 和日志必须解释到项目的真实数学对象上。已有局部证书、解析或哈希检查不等于这些交付已经全部认证。",
+    structure: prefix + "ComputationInterface",
+    order: ["sphereBasis", "sphereMultiplicative", "sphereStaircase", "sphereSquare", "sphereTable_sound", "route", "route_presentation"]
+  },
+  internal: {
+    heading: "需要自己完成的适配与推导",
+    intro: "来源对象与项目模型的对应关系由 ModelBindings 管理；下面两项是内部应用。本文的新工具与最终证明仍归 Main。",
+    structure: prefix + "InternalApplications",
+    order: ["route", "sphereSeparated"]
+  }
+};
+const descriptions = {
+  geometry: ["几何结论", "Browder 判据、低维 Kervaire-one 存在以及 HHR 高维不存在。三个独立子字段可以分别审阅。"],
+  sphereVanishing: ["球谱 Adams 消失线", "Ravenel 的正 stem 消失范围。将其应用到项目固定 Adams 塔，还需模型比较。"],
+  adamsOneLine: ["Adams 一线与 May 低维结果", "一线的生成和消失、Hopf invariant one、d₂(hⱼ) 及若干低维乘积与平方的永久性。原文 locator 仍有缺口。"],
+  moss: ["Moss convergence", "Massey product 与 Toda bracket 的比较，必须保留 convergence、crossing 和不定性条件。"],
+  br21: ["tmf 的指定 d₃", "BR21 中 d₃(v₂¹⁶) = β⁵g；模型和坐标比较另有责任。"],
+  sphereApplicability: ["固定球塔的完成与强收敛", "原 Challenge1 的实质证明义务未被删除，现在由 Challenge2.foundation 接收。"],
+  sphereBasis: ["E₂ 的有限坐标", "CSV 单项式确实线性无关并张成实际 E₂；缺失次数不能视作零。"],
+  sphereMultiplicative: ["乘法比较", "所选 presentation 与实际球谱乘法、单位相容。"],
+  sphereStaircase: ["staircase 的数学语义", "区分微分、非零微分、boundary、reach 和条件性反证。"],
+  sphereSquare: ["标准平方与候选穷尽", "固定数据的平方证书运输到实际 E₂，并识别标准 h₆²。"],
+  sphereTable_sound: ["固定微分表的正确性", "具体 CSV 坐标在实际塔上满足所登记的有限页球谱微分等式。"],
+  route_presentation: ["路线与 presentation 一致", "路线使用的命名类、基和表格都指向同一个 presentation。"],
+  sphereSeparated: ["球塔滤过分离性", "从实际收敛、有限型和模型比较得到的内部结论，不属于程序数据。"],
+  low_dimensions: ["低维存在", "维数 2、6、14、30、62 的 Kervaire-one 流形存在。"],
+  high_nonexistence: ["高维不存在", "HHR 的 Kervaire invariant one 不存在结果。"],
+  browder: ["Browder 判据", "几何 Kervaire-one 与对应 hⱼ² 非零永久存活的联系。"]
+};
+const nested = {
+  geometry: [prefix + "GeometryLiteratureInterface"],
+  adamsOneLine: [prefix + "AdamsOneLineInterface"],
+  route: ["KIP126.Literature.Route.Statements", "KIP126.Literature.Route.ClassicalSourceResults",
+    "KIP126.Literature.Route.SyntheticSourceInputs", "KIP126.Literature.Route.EInftyInput",
+    "KIP126.Literature.Route.BHSRealizationDetectionAt", "KIP126.Literature.Route.TodaSourceResults",
+    "KIP126.Literature.Route.TmfSourceResults"]
+};
+let manifest, records = [], active = "literature";
+function readStored(key) { try { return JSON.parse(localStorage.getItem(key) || "{}"); } catch { return {}; } }
+const decisions = readStored("kip126-unified-input-decisions");
+const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const sourcesFor = record => (record.sources || []).map(id => manifest.sources.find(source => source.id === id)).filter(Boolean);
+function sourceLinks(record) {
+  return sourcesFor(record).map(source => '<a href="#source-' + escapeHTML(source.id) + '" data-source="' + escapeHTML(source.id) + '">' +
+    escapeHTML((source.citation_keys || [])[0] || source.id) + "</a>").join(" · ");
+}
+function field(structure, name, record) {
+  const id = structure + "." + name;
+  const options = [["", "尚未判断"], ["check-source", "需要核实原文"], ["check-form", "需要检查数学形式"], ["check-role", "需要重新分类"], ["statement-ok", "陈述可接受，证明另审"]];
+  return '<div class="field"><code>' + escapeHTML(id) + '</code><div class="locator">' +
+    escapeHTML(record.locator) + '</div><div class="source-list">' + sourceLinks(record) + '</div><label>我的审阅 <select data-decision="' + escapeHTML(id) + '">' +
+    options.map(([value, label]) => '<option value="' + value + '"' + (decisions[id] === value ? " selected" : "") + ">" + label + "</option>").join("") +
+    '</select></label><p class="meta">清单状态：' + escapeHTML(record.proof_status) + '</p></div>';
+}
+function card(name, record, structure) {
+  let description = descriptions[name] || [name, ""];
+  if (name === "route") description = active === "literature"
+    ? ["§7 主证明路线", "θ₅、synthetic/BHS、May、Toda、tmf 等文献输入；来源事实与内部应用须分别审查。"]
+    : active === "computation" ? ["§7 路线计算", "在同一路线模型上解释并认证筛选后的程序记录。"]
+    : ["文献到路线的内部应用", "由来源结论和模型绑定组装 Main 所需事实；保留其内部证明责任。"];
+  let extra = "";
+  if (active === "literature") {
+    extra = (nested[name] || []).map(target => {
+      const group = manifest.interface_coverage.find(item => item.structure === target);
+      return group ? "<details><summary>" + escapeHTML(target.split(".").pop()) + " · " + Object.keys(group.fields).length +
+        " 个字段</summary>" + Object.entries(group.fields).map(([key, value]) => field(target, key, value)).join("") + "</details>" : "";
+    }).join("");
+  }
+  return '<article class="card"><span class="tag">' + (active === "literature" ? "待核验" : "保留证明义务") +
+    "</span><h3>" + escapeHTML(description[0]) + "</h3><p>" + escapeHTML(description[1]) +
+    '</p><div class="source-list">' + sourceLinks(record) + '</div><details><summary>查看陈述定位与子项</summary>' +
+    field(structure, name, record) + extra + "</details></article>";
+}
+function render() {
+  const config = views[active];
+  const group = manifest.interface_coverage.find(item => item.structure === config.structure);
+  document.querySelector("#view").innerHTML = "<h2>" + config.heading + "</h2><p class='muted'>" + config.intro +
+    "</p>" + config.order.filter(name => group && group.fields[name]).map(name => card(name, group.fields[name], config.structure)).join("");
+  document.querySelectorAll("[data-view]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.view === active)));
+}
+function renderSearch() {
+  const needle = document.querySelector("#search").value.toLocaleLowerCase().trim();
+  const filtered = records.filter(item => JSON.stringify(item).toLocaleLowerCase().includes(needle));
+  document.querySelector("#all-fields").innerHTML = "<p class='meta'>" + filtered.length + " 个登记字段（含嵌套层级）</p>" +
+    filtered.map(item => "<details><summary>" + escapeHTML(item.structure.split(".").pop() + "." + item.name) + "</summary>" +
+      field(item.structure, item.name, item.record) + "</details>").join("");
+}
+document.addEventListener("click", event => {
+  const button = event.target.closest("[data-view]");
+  if (button && manifest) { active = button.dataset.view; render(); }
+  const source = event.target.closest("[data-source]");
+  if (source) {
+    document.querySelector("#search-area").open = true;
+    document.querySelector("#sources").parentElement.open = true;
+  }
+});
+document.addEventListener("change", event => {
+  if (!event.target.matches("[data-decision]")) return;
+  decisions[event.target.dataset.decision] = event.target.value;
+  try { localStorage.setItem("kip126-unified-input-decisions", JSON.stringify(decisions)); } catch {
+    document.querySelector("#manifest-info").textContent = "浏览器禁止本地保存；请导出审阅意见。";
+  }
+  document.querySelectorAll("[data-decision]").forEach(select => { select.value = decisions[select.dataset.decision] || ""; });
+});
+document.querySelector("#search").addEventListener("input", renderSearch);
+document.querySelector("#export").addEventListener("click", () => {
+  const payload = {schema_version: 1, manifest: "docs/external-inputs.json", decisions,
+    legacy_statement_decisions: readStored("kip126-input-decisions"),
+    legacy_layout_decisions: readStored("kip126-compact-decisions")};
+  const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"}));
+  const link = document.createElement("a"); link.href = url; link.download = "kip126-input-review.json"; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+fetch("external-inputs.json", {cache: "no-store"}).then(response => {
+  if (!response.ok) throw new Error("HTTP " + response.status); return response.json();
+}).then(data => {
+  if (!Array.isArray(data.interface_coverage) || !Array.isArray(data.sources)) throw new Error("清单格式不匹配");
+  manifest = data;
+  records = data.interface_coverage.flatMap(group => Object.entries(group.fields).map(([name, record]) => ({structure: group.structure, name, record})));
+  document.querySelector("#loading").hidden = true;
+  render(); renderSearch();
+  document.querySelector("#sources").innerHTML = data.sources.map(source =>
+    '<article class="field" id="source-' + escapeHTML(source.id) + '"><h3>' + escapeHTML(source.title || source.id) +
+    '</h3><code>' + escapeHTML(source.id) + '</code><p class="meta">获取状态：' + escapeHTML(source.status_class || "见清单") +
+    " · " + (source.artifacts || []).length + " 个登记制品</p><p>" + escapeHTML(source.role || "") + "</p>" +
+    (source.canonical_url && /^https?:\/\//.test(source.canonical_url) ? '<a href="' + escapeHTML(source.canonical_url) + '">来源入口</a>' : "") +
+    "</article>").join("");
+  document.querySelector("#manifest-info").textContent = "直接读取 external-inputs.json：当前登记 " + data.sources.length +
+    " 个来源条目。来源条目数不等于已取得原文的篇数，也不等于定理数。";
+}).catch(error => {
+  document.querySelector("#loading").innerHTML = '<p class="error">无法读取统一清单：' + escapeHTML(error.message) +
+    '。请通过 HTTP 服务打开本页，并检查 <a href="external-inputs.json">清单链接</a>。</p>';
+});
+</script>
+</body>
+</html>

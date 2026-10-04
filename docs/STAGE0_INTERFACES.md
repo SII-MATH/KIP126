@@ -2,7 +2,7 @@
 
 第0步要求准确确定数学语言、对象来源、次数、条件、范围和证明责任。它允许明确的模型构造、比较、认证和本文证明暂用 `sorry`，不允许弱化目标、无来源新增假设或在模型中预设本文结论。目录职责以 [STAGE_LAYOUT.md](STAGE_LAYOUT.md) 为准。
 
-此前的“接口可冻结”结论已撤回，原因是后续主定理计算依赖核对发现了错误的 E₅ 高过滤消失命题及局部接口缺口。本轮修正、独立复审和最终全库验证后，**第0步接口重新验收通过**，依据见[修正与重新验收报告](audits/stage0-correction-20261003.md)。已有声明、已完成证明和实际验证分开记录；模型构造、C认证和论文推导中的 `sorry` 仍是后续证明责任。
+历史修正报告中的验收结论限于当时检查的范围。目前完整第0步仍有文献覆盖、来源忠实性以及 C₂/Cη 认证依赖缺口，不能冻结 Literature 或宣称全体接口验收完成。已有声明、已完成证明和实际验证分别记录；统一输入结构不改变模型构造、计算认证和论文推导中的证明责任。
 
 ## 同一个 M 与标准 T
 
@@ -18,13 +18,15 @@ NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 
 实际同伦群仍是整数模，不因 E₂ 为 F₂ 向量空间而全体变为特征2。上同调 Hⁿ(X;E)=[X,ΣⁿE]=π₋ₙF(X,E)；UCT 的 Hₙ 与 Hⁿ 对应，Steenrod degree n 同样对应 π₋ₙF(HF₂,HF₂)。
 
-## Challenge1 与 Challenge2
+## 统一 Challenge2
 
-Def 只固定经典实现，包括实际完成球、HF₂、Milnor 坐标及 tensor/cooperation 比较。Challenge1 交付与它相等的实现和实际球塔的 HF₂ nilpotent completeness、强收敛背景。它不交付固定 CSV 结论、指定高微分或本文 Proposition。
+Def 固定经典实现，包括实际完成球、HF₂、Milnor 坐标及 tensor/cooperation 比较。`Challenge2.FoundationInputs.sphereApplicability` 直接对这个固定实现陈述实际球塔的 HF₂ nilpotent completeness、强收敛背景；原 Challenge1 的实质义务保留于此。独立 Challenge1、重复 implementation 和相等运输已删除；countable-products 等结构仍来自固定实现。
 
 Challenge2 在这一固定经典背景上，一起交付 `routeInput`、`ModelBindings routeInput`、A、内部适配、presentation 与 C；所有字段依赖同一个见证。Def 不先从较弱的 RouteInput 中任选 ν、Hopf maps 或 detector 再要求它们恰好满足文献定理。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联存在性责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到路线、绑定与 A。该定理不是对 synthetic 范畴的唯一性刻画，也不声称这里已经实现其 ∞-site；其构造证明仍待补，不含 C、Application、high125 或本文新工具。
 
-阶段公理只为并行开发传递同一命题；生产者不得使用其要解除的消费公理或 Challenge 的占位证明。完整 Challenge2 的后续构造须在同一有来源的路线见证上完成认证与内部适配，不能分别选择两个存在性见证后视为同一对象。
+供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。53 条文献 package 是陈述撰写清单，不能当作已核实的完整外部定理集合。
+
+唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须在同一路线见证上完成 foundation、认证与内部适配，不能分别选择两个存在性见证后视为同一对象。
 
 来源的四层分别是 `Bindings`（对象及比较）、`Statements`（前人结果）、`Application`（内部来源适配）、`Inputs`（供 Main 消费的组装结果）。`Inputs` 还需要 Main 独立证明的 tmf 高过滤结论，因此它既不等于纯 A，也不是 Challenge2 字段。无实际用途的旧 `Literature.Route.A = Nonempty Inputs` 包装已删除。
 
@@ -78,4 +80,4 @@ Cη 顶胞腔自然性记录 462481 参与 `lem:x_123_9` 所用球谱 d₃ 的�
 
 第0步分别检查语义、计算覆盖、外部结果覆盖、职责、传递性依赖、目录及实际编译。完整认证、全部来源重证和最终 T 的无 sorry 证明属于后续目标。原始来源尚未核实、明确性质缺少绑定，或尚无可信充分前提时，应记录为未完成/证据缺口，不用通过编译代替判断。
 
-旧的按提交批次、PR编号叠加的冻结/迁移说明已合并到本文件与 STAGE_LAYOUT；[旧重构报告](audits/stage0-refactor-20261003.md)保留当时运行记录并明确标注结论撤回。当前状态以本轮源码、[主定理依赖对照](audits/main-paper-computation-inventory-20261003.md)及[修正与重新验收报告](audits/stage0-correction-20261003.md)为准，不能沿用旧报告的完成结论。
+旧的按提交批次、PR编号叠加的冻结/迁移说明已合并到本文件与 STAGE_LAYOUT；[旧重构报告](audits/stage0-refactor-20261003.md)保留当时运行记录并明确标注结论撤回。数学接口以当前 Lean 源码为准，来源、locator 与声明对应关系以 [external-inputs.json](external-inputs.json) 为准。历史依赖对照和修正报告保留检查证据，不能作为另一份权威清单，也不能沿用旧报告的完成结论。

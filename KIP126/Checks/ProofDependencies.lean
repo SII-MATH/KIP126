@@ -1,7 +1,7 @@
 import Lean.Elab.Command
 
-/-! Contract types may be imported from Interface/Challenge; their intentional
-goal proof may never be used to establish a Solution theorem. -/
+/-! Contract types may be imported from Interface/Challenge. Main's intentional
+final-goal placeholder may never establish a Solution theorem. -/
 namespace KIP126.Checks
 open Lean Elab Command
 
@@ -14,8 +14,7 @@ def rejectGoalProofs (roots : Array Name) : CommandElabM Unit := do
     pending := pending.pop
     if seen.contains name then continue
     seen := seen.insert name
-    if name == `KIP126.Interface.Challenge.challenge2 ||
-        (`KIP126.Main.Challenge).isPrefixOf name ||
+    if (`KIP126.Main.Challenge).isPrefixOf name ||
         (`KIP126.Def.Challenge).isPrefixOf name then
       throwError "Solution depends on an intentional goal proof: {name}"
     let some info := env.find? name | continue

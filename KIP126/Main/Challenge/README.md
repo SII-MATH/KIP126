@@ -15,7 +15,7 @@ CSV 数据，固定基础、球塔和标准类全部定义在 Def；T 的类型�
 `KIP126.Challenge.Final.H6SquarePermanent` 保留不变。没有第二个计算版
 最终目标，CSV 比较仅是证明中的辅助引理。
 
-所有中间结果，包括计算推论、文献输入提取、选择无关性、微分归约和 Proposition 7.8/7.9，只在 Main/Solution 保留陈述与证明，不建立 Challenge 镜像，也不改为 A(M) 或 C(M) 输入。Def 和 Interface 同样只为完整的 `Nonempty Challenge1`、`Nonempty Challenge2` 保留阶段配对，内部命题只在各自 Solution 维护。
+所有中间结果，包括计算推论、文献输入提取、选择无关性、微分归约和 Proposition 7.8/7.9，只在 Main/Solution 保留陈述与证明，不建立 Challenge 镜像，也不改为 A(M) 或 C(M) 输入。Interface 通过构造 Challenge2 交付；Def 保留固定实现，无需另设阶段占位 theorem。
 
 最终 Solution 已串接同一见证上的 Proposition 7.8/7.9；二者的证明仍为 `sorry`，完整数学证明尚未完成。
 

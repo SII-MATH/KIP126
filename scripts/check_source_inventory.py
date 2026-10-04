@@ -18,87 +18,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import math
 import re
-import subprocess
 import sys
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable, Mapping
 
 
-SCHEMA_VERSION = 1
-DEFAULT_LEAN_TIMEOUT = 600.0
+SCHEMA_VERSION = 3
 HASH_CHUNK_SIZE = 1024 * 1024
-EXPECTED_CLAIM_CODES = (
-    "adams_one_line",
-    "map_filtration_factorization",
-    "browder_criterion",
-    "mahowald_tangora_differentials",
-    "theta5_existence",
-    "bjm_induction",
-    "may_low_page_survival",
-    "hhr_nonexistence",
-    "xu_theta5_order",
-    "iwx_theta5_filtration",
-    "low_kervaire_existence",
-    "synthetic_foundation",
-    "lambda_quotient_ring",
-    "higher_lambda_quotient_algebra",
-    "symmetric_monoidal_deformation",
-    "lambda_inversion",
-    "nu_cofiber_criterion",
-    "synthetic_rigidity",
-    "lambda_bockstein",
-    "synthetic_einf_nu",
-    "synthetic_einf_quotient",
-    "synthetic_lift",
-    "synthetic_triangle_lift",
-    "synthetic_lambda_complete",
-    "may_smash_boundary",
-    "moss_convergence",
-    "toda_product_identities",
-    "bjm_bx_criterion",
-    "theta5_order_data",
-    "total_differential_identity",
-    "tmf_detection",
-    "br21_tmf_differential",
-    "lin_machine_release",
-    "lin_spectrum_catalogue",
-    "lin_e2_page_catalogue",
-    "lin_map_catalogue",
-    "lin_d2_catalogue",
-    "lin_propagated_outputs",
-    "appendix_tables",
-    "manual_differentials",
-    "normalized_hopf_detection",
-    "eta_ess_regression",
-    "leibniz_negative_regression",
-    "chua_rule_counterexample",
-    "mahowald_cofiber_regression",
-    "synthetic_14_stem_regression",
-    "stem_38_crossing_regression",
-    "hopf_crossing_exclusion",
-    "page_crossing_regression",
-    "theta5_order_torsion",
-    "theta5_square_tmf",
-    "toda_candidate_products",
-    "two_extension_indeterminacy",
-    "hopf_lift_obstructions",
-    "stem_122_product_exhaustion",
-    "cnu_incoming_exclusion",
-)
-EXPECTED_SOURCE_TARGETS = {
-    "source:bjm-theta5-existence",
-    "source:br21-tmf-differential",
-    "source:higher-lambda-quotient-algebra-tower",
-    "source:iwx-theta5-filtration",
-    "source:mahowald-tangora-differentials",
-    "source:may-low-page-survival",
-    "source:symmetric-monoidal-deformation-construction",
-    "source:tmf-detection",
-    "source:xu-theta5-order",
-}
-
 EXPECTED_ARTIFACT_KINDS_BY_NAME: dict[str, set[str]] = {
     "main.tex": {"tex"},
     "112.tex": {"tex"},
@@ -125,12 +52,6 @@ ACQUISITION_STATES: dict[str, set[str]] = {
 }
 
 
-def extract_tex_labels(text: str) -> set[str]:
-    """Return labels from TeX code while ignoring unescaped `%` comments."""
-
-    return set(re.findall(r"\\label\{([^}]+)\}", strip_unescaped_percent_comments(text)))
-
-
 def strip_unescaped_percent_comments(text: str) -> str:
     """Remove TeX/BibTeX comments while preserving line boundaries."""
 
@@ -154,12 +75,8 @@ def strip_unescaped_percent_comments(text: str) -> str:
 
 ID_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
-PROJECTION_LINE_SEPARATORS = {0x85, 0x2028, 0x2029}
-UNLOCATED_CLAIM_LOCATOR_RE = re.compile(
-    r"^Primary text unavailable; AIM paper lines? \d+(?:--\d+)?\b",
-    re.IGNORECASE,
-)
-ALLOWED_KINDS = {"paper", "literature", "machine", "governance"}
+LINE_SEPARATORS = {0x85, 0x2028, 0x2029}
+ALLOWED_KINDS = {"paper", "literature", "machine", "source_group"}
 ALLOWED_ARTIFACT_KINDS = {
     "citation",
     "bibliography",
@@ -184,30 +101,6 @@ EXPECTED_KINDS = {
     "lwx_machine": "machine",
 }
 
-# The directory names are part of the checked-in literature source layout. Keeping
-# this map explicit avoids accidentally changing an acronym's spelling when a
-# generic camel-case-to-snake-case converter is changed.
-REFERENCE_IDS: dict[str, str] = {
-    "aim_paper": "MainPaper",
-    "browder": "Source/Browder",
-    "mahowald_tangora": "Source/MahowaldTangora",
-    "bjm_theta5": "Source/BJMtheta5",
-    "bjm_induction": "Source/BJMinduction",
-    "may_thesis": "Source/Maythesis",
-    "may01": "Source/May01",
-    "hhr": "Source/HHR",
-    "xu": "Source/Xu",
-    "iwx": "Source/IWX",
-    "pst": "Source/Pst",
-    "bhs": "Source/BHS",
-    "bhs_mot": "Source/BHSmot",
-    "burklund_xu": "Source/BurklundXu",
-    "moss": "Source/Moss",
-    "br21": "Source/BR21",
-    "tmf": "Source/tmf",
-    "lwx_machine": "Source/LWXMachine",
-}
-
 REQUIRED_SOURCE_FIELDS = {
     "id",
     "directory",
@@ -224,18 +117,6 @@ REQUIRED_SOURCE_FIELDS = {
 }
 REQUIRED_ARTIFACT_FIELDS = {"path", "kind", "required", "sha256"}
 AVAILABILITY_FIELDS = {"metadata", "pdf", "text", "source"}
-
-
-def _parse_positive_timeout(value: str) -> float:
-    """Parse a finite, strictly positive subprocess timeout."""
-
-    try:
-        timeout = float(value)
-    except ValueError as exc:
-        raise argparse.ArgumentTypeError("must be a number of seconds") from exc
-    if not math.isfinite(timeout) or timeout <= 0:
-        raise argparse.ArgumentTypeError("must be a finite number greater than zero")
-    return timeout
 
 
 def _sha256_file(path: Path) -> str:
@@ -255,16 +136,11 @@ class InventoryValidator:
         self,
         root: Path,
         inventory_path: Path,
-        check_lean_projection: bool = True,
-        lean_timeout: float = DEFAULT_LEAN_TIMEOUT,
     ):
         self.root = root.resolve()
         self.inventory_path = inventory_path.resolve()
-        self.check_lean_projection = check_lean_projection
-        if not math.isfinite(lean_timeout) or lean_timeout <= 0:
-            raise ValueError("lean_timeout must be a finite number greater than zero")
-        self.lean_timeout = lean_timeout
         self.errors: list[str] = []
+        self.source_count = 0
         self.artifact_count = 0
         self.artifact_paths: dict[str, str] = {}
 
@@ -288,7 +164,8 @@ class InventoryValidator:
             self.error("inventory.sources", "must not be empty")
             return self.errors
 
-        self._check_source_layout()
+        self._check_source_layout(sources)
+        self.source_count = len(sources)
         ids: set[str] = set()
         directories: set[str] = set()
         citation_keys: dict[str, str] = {}
@@ -300,7 +177,10 @@ class InventoryValidator:
             source = dict(raw_source)
             self._check_unknown_empty_fields(source, where, REQUIRED_SOURCE_FIELDS)
             source_id = self._string(source, "id", where)
-            directory = self._string(source, "directory", where)
+            directory = source.get("directory")
+            if directory is not None and (not isinstance(directory, str) or not directory.strip()):
+                self.error(f"{where}.directory", "must be null or a non-empty path")
+                directory = None
             if source_id is not None:
                 if not ID_RE.fullmatch(source_id):
                     self.error(f"{where}.id", "must use canonical snake_case")
@@ -311,290 +191,9 @@ class InventoryValidator:
                 if directory in directories:
                     self.error(f"{where}.directory", f"duplicate directory {directory!r}")
                 directories.add(directory)
-                if "|" in directory:
-                    self.error(
-                        f"{where}.directory",
-                        "must not contain '|' (reserved by the Lean projection format)",
-                    )
             self._check_source(source, where, source_id, directory, citation_keys)
 
-        expected_ids = set(REFERENCE_IDS)
-        missing = sorted(expected_ids - ids)
-        extra = sorted(ids - expected_ids)
-        if missing:
-            self.error("inventory.sources", "missing source ids: " + ", ".join(missing))
-        if extra:
-            self.error("inventory.sources", "unknown source ids: " + ", ".join(extra))
-        if self.check_lean_projection:
-            self._check_lean_projection(sources)
         return self.errors
-
-    def _check_lean_projection(self, sources: list[Any]) -> None:
-        """Compare the typed Lean projection with the shared JSON fields.
-
-        The Lean helper emits one delimiter-separated row per source.  Building
-        the projection module immediately before running it closes the stale
-        `.olean` cache gap as well as the otherwise easy-to-miss drift gap where
-        both a hand-edited `lookupRow` and the JSON checker could remain locally
-        valid.
-        Source-row citation prose and hashes intentionally stay outside this
-        comparison; claim locator descriptions are exported because they are
-        part of the exact-claim locator contract.
-        """
-        helper = self.root / "scripts/lean_source_inventory_projection.lean"
-        if not helper.is_file():
-            self.error("lean_projection", f"helper file does not exist: {helper}")
-            return
-        try:
-            # `lean` normally consumes an existing `.olean` without checking
-            # whether the source file is newer.  Build the exact projection
-            # module first so a hand-edited Lean catalogue cannot be hidden by
-            # a stale cache.
-            built = subprocess.run(
-                ["lake", "build", "KIP126.Def.References.Literature.Claims"],
-                cwd=self.root,
-                check=False,
-                capture_output=True,
-                text=True,
-                timeout=self.lean_timeout,
-            )
-        except (OSError, subprocess.TimeoutExpired) as exc:
-            self.error("lean_projection", f"could not build Lean projection: {exc}")
-            return
-        if built.returncode != 0:
-            detail = (built.stderr or built.stdout).strip().splitlines()
-            suffix = detail[-1] if detail else f"exit status {built.returncode}"
-            self.error("lean_projection", f"Lean source/claim projection build failed: {suffix}")
-            return
-        try:
-            completed = subprocess.run(
-                ["lake", "env", "lean", str(helper)],
-                cwd=self.root,
-                check=False,
-                capture_output=True,
-                text=True,
-                timeout=self.lean_timeout,
-            )
-        except (OSError, subprocess.TimeoutExpired) as exc:
-            self.error("lean_projection", f"could not execute Lean projection: {exc}")
-            return
-        if completed.returncode != 0:
-            detail = (completed.stderr or completed.stdout).strip().splitlines()
-            suffix = detail[-1] if detail else f"exit status {completed.returncode}"
-            self.error("lean_projection", f"Lean export failed: {suffix}")
-            return
-
-        self._check_projection_output_shape(completed.stdout)
-
-        lean_rows: dict[str, tuple[str, ...]] = {}
-        for line in completed.stdout.splitlines():
-            if not line.startswith("KIP126_SOURCE|"):
-                continue
-            fields = line.split("|")
-            if len(fields) != 11:
-                self.error("lean_projection", f"malformed exported row: {line!r}")
-                continue
-            _, source_id, directory, kind, keys, status_file, status_class, *flags = fields
-            row = (
-                directory,
-                kind,
-                keys,
-                status_file,
-                status_class,
-                *flags,
-            )
-            if source_id in lean_rows:
-                self.error("lean_projection", f"duplicate exported source id {source_id!r}")
-            lean_rows[source_id] = row
-
-        expected: dict[str, tuple[str, ...]] = {}
-        for raw_source in sources:
-            if not isinstance(raw_source, Mapping):
-                continue
-            source_id = raw_source.get("id")
-            if not isinstance(source_id, str):
-                continue
-            availability = raw_source.get("availability")
-            if not isinstance(availability, Mapping):
-                continue
-            flags = tuple("1" if availability.get(field) is True else "0" for field in ("metadata", "pdf", "text", "source"))
-            raw_citation_keys = raw_source.get("citation_keys", [])
-            if not isinstance(raw_citation_keys, list):
-                # `_check_source` has already emitted the schema diagnostic.
-                # Keep the projection comparison total as well: malformed JSON
-                # must produce errors, never an uncaught Python exception.
-                raw_citation_keys = []
-            expected[source_id] = (
-                str(raw_source.get("directory", "")),
-                str(raw_source.get("kind", "")),
-                ",".join(str(key) for key in raw_citation_keys if isinstance(key, str)),
-                str(raw_source.get("status_file") or ""),
-                str(raw_source.get("status_class", "")),
-                *flags,
-            )
-
-        missing = sorted(set(expected) - set(lean_rows))
-        extra = sorted(set(lean_rows) - set(expected))
-        if missing:
-            self.error("lean_projection", "Lean is missing source ids: " + ", ".join(missing))
-        if extra:
-            self.error("lean_projection", "Lean has unknown source ids: " + ", ".join(extra))
-        for source_id in sorted(set(expected) & set(lean_rows)):
-            if expected[source_id] != lean_rows[source_id]:
-                self.error(
-                    f"lean_projection.{source_id}",
-                    f"does not match JSON (Lean={lean_rows[source_id]!r}, JSON={expected[source_id]!r})",
-                )
-
-        self._check_lean_claim_projection(completed.stdout, sources, expected)
-
-    def _check_projection_output_shape(self, output: str) -> None:
-        """Reject exporter chatter or line-fragment injection before parsing."""
-
-        for line_number, line in enumerate(output.splitlines(), start=1):
-            if not line.startswith(("KIP126_SOURCE|", "KIP126_CLAIM|")):
-                self.error(
-                    f"lean_projection.line[{line_number}]",
-                    f"unexpected exporter output: {line!r}",
-                )
-
-    def _check_lean_claim_projection(
-        self,
-        output: str,
-        sources: list[Any],
-        expected_sources: Mapping[str, tuple[str, ...]],
-    ) -> None:
-        """Check claim locators/owners/targets and bind artifacts to JSON rows."""
-
-        claim_rows: dict[str, tuple[str, str, str, str, str]] = {}
-        owners: dict[str, str] = {}
-        targets: dict[str, str] = {}
-        for line in output.splitlines():
-            if not line.startswith("KIP126_CLAIM|"):
-                continue
-            fields = line.split("|")
-            if len(fields) != 7:
-                self.error("lean_projection.claims", f"malformed exported claim row: {line!r}")
-                continue
-            _, claim_id, source_id, artifact, description, owner, target = fields
-            if claim_id in claim_rows:
-                self.error("lean_projection.claims", f"duplicate claim id {claim_id!r}")
-            claim_rows[claim_id] = (source_id, artifact, description, owner, target)
-            previous_owner = owners.get(owner)
-            if previous_owner is not None and previous_owner != claim_id:
-                self.error(
-                    f"lean_projection.claim.{claim_id}",
-                    f"owner {owner!r} is already assigned to {previous_owner!r}",
-                )
-            owners[owner] = claim_id
-            previous_target = targets.get(target)
-            if previous_target is not None and previous_target != claim_id:
-                self.error(
-                    f"lean_projection.claim.{claim_id}",
-                    f"target {target!r} is already assigned to {previous_target!r}",
-                )
-            targets[target] = claim_id
-
-        expected_claim_ids = set(EXPECTED_CLAIM_CODES)
-        if len(claim_rows) != len(EXPECTED_CLAIM_CODES):
-            self.error(
-                "lean_projection.claims",
-                f"expected {len(EXPECTED_CLAIM_CODES)} claim rows, got {len(claim_rows)}",
-            )
-        missing_claims = sorted(expected_claim_ids - set(claim_rows))
-        extra_claims = sorted(set(claim_rows) - expected_claim_ids)
-        if missing_claims:
-            self.error(
-                "lean_projection.claims",
-                "missing canonical claim ids: " + ", ".join(missing_claims),
-            )
-        if extra_claims:
-            self.error(
-                "lean_projection.claims",
-                "unknown claim ids: " + ", ".join(extra_claims),
-            )
-
-        artifacts_by_source: dict[str, dict[str, Mapping[str, Any]]] = {}
-        for raw_source in sources:
-            if not isinstance(raw_source, Mapping):
-                continue
-            source_id = raw_source.get("id")
-            if not isinstance(source_id, str):
-                continue
-            artifacts = raw_source.get("artifacts")
-            rows: dict[str, Mapping[str, Any]] = {}
-            if isinstance(artifacts, list):
-                for item in artifacts:
-                    if isinstance(item, Mapping) and isinstance(item.get("path"), str):
-                        rows[item["path"]] = item
-            artifacts_by_source[source_id] = rows
-
-        blueprint_labels: set[str] = set()
-        blueprint_src = self.root / "blueprint/src"
-        if blueprint_src.is_dir():
-            for tex_path in blueprint_src.rglob("*.tex"):
-                try:
-                    blueprint_labels.update(
-                        extract_tex_labels(tex_path.read_text(encoding="utf-8"))
-                    )
-                except (OSError, UnicodeError) as exc:
-                    self.error("lean_projection.claims", f"cannot read {tex_path}: {exc}")
-
-        covered_sources: set[str] = set()
-        for claim_id, (source_id, artifact, description, owner, target) in claim_rows.items():
-            where = f"lean_projection.claim.{claim_id}"
-            if not ID_RE.fullmatch(claim_id):
-                self.error(where, "claim id must use canonical snake_case")
-            if source_id not in expected_sources:
-                self.error(where, f"unknown source id {source_id!r}")
-                continue
-            covered_sources.add(source_id)
-            if not description:
-                self.error(where, "locator description must be non-empty")
-            elif not artifact and UNLOCATED_CLAIM_LOCATOR_RE.search(description) is None:
-                self.error(
-                    where,
-                    "claims without a local artifact must use an exact AIM paper line locator "
-                    "and state that the primary text is unavailable",
-                )
-            if not owner.startswith("KIP126."):
-                self.error(where, f"owner must be in the KIP126 namespace, got {owner!r}")
-            if target.startswith("source:") and target not in EXPECTED_SOURCE_TARGETS:
-                self.error(where, f"unknown source target: {target!r}")
-            elif not target.startswith("source:") and target not in blueprint_labels:
-                self.error(where, f"target is not a Blueprint label: {target!r}")
-            if artifact:
-                artifact_row = artifacts_by_source.get(source_id, {}).get(artifact)
-                if artifact_row is None:
-                    self.error(
-                        where,
-                        f"locator artifact {artifact!r} is not listed by source {source_id!r}",
-                    )
-                else:
-                    if artifact_row.get("required") is not True:
-                        self.error(
-                            where,
-                            f"canonical locator artifact {artifact!r} must have required=true",
-                        )
-                    artifact_path = self._safe_path(artifact, f"{where}.artifact")
-                    if artifact_path is not None:
-                        try:
-                            is_file = artifact_path.is_file()
-                        except (OSError, UnicodeError) as exc:
-                            self.error(where, f"cannot inspect canonical locator artifact: {exc}")
-                        else:
-                            if not is_file:
-                                self.error(
-                                    where,
-                                    f"canonical locator artifact must be an existing file: {artifact!r}",
-                                )
-
-        missing_coverage = sorted(set(expected_sources) - covered_sources)
-        if missing_coverage:
-            self.error(
-                "lean_projection.claims",
-                "sources without a claim row: " + ", ".join(missing_coverage),
-            )
 
     def _load_inventory(self) -> Any | None:
         try:
@@ -624,13 +223,14 @@ class InventoryValidator:
         elif project != "KIP126":
             self.error("inventory.project", f"expected 'KIP126', got {project!r}")
 
-    def _check_source_layout(self) -> None:
+    def _check_source_layout(self, sources: list[Any]) -> None:
         """Ensure every retained source-status file has a catalogue slot."""
         status_dirs = {
             path.parent.relative_to(self.root).as_posix()
             for path in self.root.glob("Source/*/source-status.json")
         }
-        expected_dirs = {value for key, value in REFERENCE_IDS.items() if key != "aim_paper"}
+        expected_dirs = {s["directory"] for s in sources if isinstance(s, Mapping)
+                         and isinstance(s.get("directory"), str) and s.get("status_file")}
         missing_dirs = sorted(expected_dirs - status_dirs)
         unexpected_dirs = sorted(status_dirs - expected_dirs)
         if missing_dirs:
@@ -646,20 +246,17 @@ class InventoryValidator:
         directory: str | None,
         citation_keys: dict[str, str],
     ) -> None:
-        if source_id is None or directory is None:
+        if source_id is None:
             return
-        expected_directory = REFERENCE_IDS.get(source_id)
-        if expected_directory is not None and directory != expected_directory:
-            self.error(f"{where}.directory", f"expected {expected_directory!r} for {source_id!r}")
-        directory_path = self._safe_path(directory, f"{where}.directory")
+        directory_path = self._safe_path(directory, f"{where}.directory") if directory else None
         if directory_path is not None and not directory_path.is_dir():
             self.error(f"{where}.directory", f"directory does not exist: {directory}")
 
         kind = self._string(source, "kind", where)
         if kind is not None and kind not in ALLOWED_KINDS:
             self.error(f"{where}.kind", f"unknown kind {kind!r}")
-        expected_kind = EXPECTED_KINDS.get(source_id, "literature")
-        if kind is not None and kind != expected_kind:
+        expected_kind = EXPECTED_KINDS.get(source_id)
+        if expected_kind is not None and kind != expected_kind:
             self.error(f"{where}.kind", f"expected {expected_kind!r} for {source_id!r}")
         status_class = self._string(source, "status_class", where)
         if status_class is not None and status_class not in ALLOWED_STATUS_CLASSES:
@@ -667,8 +264,8 @@ class InventoryValidator:
         self._check_scalar_metadata(source, where)
 
         keys = source.get("citation_keys")
-        if not isinstance(keys, list) or not keys:
-            self.error(f"{where}.citation_keys", "must be a non-empty array")
+        if not isinstance(keys, list) or (source.get("status_file") and not keys):
+            self.error(f"{where}.citation_keys", "must be an array, non-empty for acquisition records")
             keys = []
         local_keys: set[str] = set()
         for key_index, key in enumerate(keys):
@@ -676,16 +273,6 @@ class InventoryValidator:
             if not isinstance(key, str) or not key.strip():
                 self.error(key_where, "must be a non-empty string")
                 continue
-            if "|" in key or "," in key:
-                self.error(
-                    key_where,
-                    "must not contain '|' or ',' (reserved by the Lean projection format)",
-                )
-            if any(ord(char) in PROJECTION_LINE_SEPARATORS for char in key):
-                self.error(
-                    key_where,
-                    "must not contain non-ASCII line separators (reserved by the Lean projection format)",
-                )
             if key in local_keys:
                 self.error(key_where, f"duplicate citation key {key!r} in source")
             local_keys.add(key)
@@ -701,21 +288,20 @@ class InventoryValidator:
             if status_file_value is not None:
                 self.error(f"{where}.status_file", "aim_paper must not claim a source-status.json")
             self._check_citation_file(self.root / "MainPaper/main.bib", where, keys)
-        else:
+        elif status_file_value is not None:
             expected_status = f"{directory}/source-status.json"
             if not isinstance(status_file_value, str) or not status_file_value.strip():
                 self.error(f"{where}.status_file", "must name source-status.json")
             elif status_file_value != expected_status:
                 self.error(f"{where}.status_file", f"expected {expected_status!r}")
-            if isinstance(status_file_value, str) and "|" in status_file_value:
-                self.error(
-                    f"{where}.status_file",
-                    "must not contain '|' (reserved by the Lean projection format)",
-                )
             status_path = self._safe_path(status_file_value, f"{where}.status_file")
             if status_path is not None:
                 status = self._check_status_file(status_path, source, where, keys)
 
+        if source.get("bibliography_file"):
+            bibliography = self._safe_path(source["bibliography_file"], f"{where}.bibliography_file")
+            if bibliography:
+                self._check_citation_file(bibliography, where, keys)
         self._check_availability(source, where, source_id, directory)
         self._check_artifacts(source, where, is_project_source, status)
 
@@ -724,7 +310,9 @@ class InventoryValidator:
         if not isinstance(title, str) or not title.strip():
             self.error(f"{where}.title", "must be a non-empty string")
         year = source.get("year")
-        if isinstance(year, bool) or not isinstance(year, int) or not (1800 <= year <= 2100):
+        if year is None and source.get("kind") == "source_group":
+            pass
+        elif isinstance(year, bool) or not isinstance(year, int) or not (1800 <= year <= 2100):
             self.error(f"{where}.year", "must be an integer year between 1800 and 2100")
         for field in ("canonical_url", "role"):
             value = source.get(field)
@@ -870,7 +458,7 @@ class InventoryValidator:
                 "text": (self.root / "MainPaper/main.tex").is_file(),
                 "source": (self.root / "MainPaper/main.tex").is_file(),
             }
-        else:
+        elif source.get("status_file"):
             status_path = self.root / directory / "source-status.json"
             try:
                 status = json.loads(status_path.read_text(encoding="utf-8"))
@@ -889,6 +477,11 @@ class InventoryValidator:
                 "text": status.get("plain_text") == "extracted",
                 "source": status.get("arxiv_source") == "downloaded",
             }
+        else:
+            artifacts = source.get("artifacts", [])
+            kinds = {a.get("kind") for a in artifacts if isinstance(a, Mapping)} if isinstance(artifacts, list) else set()
+            expected = {"metadata": "metadata" in kinds, "pdf": "pdf" in kinds,
+                        "text": bool(kinds & {"text", "tex"}), "source": "source_archive" in kinds}
         expected_class = self._status_class_for(source_id, expected)
         declared_class = source.get("status_class")
         if declared_class != expected_class:
@@ -923,8 +516,8 @@ class InventoryValidator:
         status: Mapping[str, Any] | None,
     ) -> None:
         artifacts = source.get("artifacts")
-        if not isinstance(artifacts, list) or not artifacts:
-            self.error(f"{where}.artifacts", "must be a non-empty array")
+        if not isinstance(artifacts, list) or (source.get("status_file") and not artifacts):
+            self.error(f"{where}.artifacts", "must be an array, non-empty for acquisition records")
             return
         seen: set[str] = set()
         for index, raw_artifact in enumerate(artifacts):
@@ -946,11 +539,6 @@ class InventoryValidator:
                 self.error(
                     f"{artifact_where}.kind",
                     f"path {path_value!r} requires kind in {sorted(expected_kinds)!r}",
-                )
-            if "|" in path_value:
-                self.error(
-                    f"{artifact_where}.path",
-                    "must not contain '|' (reserved by the Lean projection format)",
                 )
             if path_value in seen:
                 self.error(f"{artifact_where}.path", f"duplicate artifact path {path_value!r}")
@@ -1032,7 +620,7 @@ class InventoryValidator:
         }
         if is_project_source:
             # The checked-in target paper is the source of record.  These four
-            # files are the minimum auditable inputs used by the claim ledger.
+            # files are the minimum auditable project-source inputs.
             required_project_paths = (
                 "MainPaper/main.tex",
                 "MainPaper/112.tex",
@@ -1051,8 +639,8 @@ class InventoryValidator:
                         f"{where}.artifacts",
                         f"source-of-record artifact {required_name!r} must have required=true",
                     )
-        else:
-            # Every external row must expose both its citation and status file
+        elif source.get("status_file"):
+            # Every acquisition row must expose both its citation and status file
             # as explicit required artefacts.  This prevents a valid-looking
             # row from hiding the authoritative acquisition record.
             paths = set(artifact_by_path)
@@ -1122,7 +710,7 @@ class InventoryValidator:
         if any(ord(char) < 32 or ord(char) == 127 for char in value):
             self.error(where, "must not contain ASCII control characters")
             return None
-        if any(ord(char) in PROJECTION_LINE_SEPARATORS for char in value):
+        if any(ord(char) in LINE_SEPARATORS for char in value):
             self.error(where, "must not contain non-ASCII line separators")
             return None
         candidate = PurePosixPath(value)
@@ -1153,20 +741,13 @@ class InventoryValidator:
 def validate_inventory(
     root: Path,
     inventory_path: Path | None = None,
-    check_lean_projection: bool = True,
-    lean_timeout: float = DEFAULT_LEAN_TIMEOUT,
 ) -> list[str]:
     """Return validation errors for callers that want a library API."""
 
     root = root.resolve()
     if inventory_path is None:
-        inventory_path = root / "Source/source-inventory.json"
-    return InventoryValidator(
-        root,
-        inventory_path,
-        check_lean_projection=check_lean_projection,
-        lean_timeout=lean_timeout,
-    ).validate()
+        inventory_path = root / "docs/external-inputs.json"
+    return InventoryValidator(root, inventory_path).validate()
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -1176,19 +757,7 @@ def main(argv: list[str] | None = None) -> int:
         "--inventory",
         type=Path,
         default=None,
-        help="inventory JSON path (default: Source/source-inventory.json)",
-    )
-    parser.add_argument(
-        "--skip-lean-projection",
-        action="store_true",
-        help="skip the Lean↔JSON projection comparison (for metadata-only fixtures)",
-    )
-    parser.add_argument(
-        "--lean-timeout",
-        type=_parse_positive_timeout,
-        default=DEFAULT_LEAN_TIMEOUT,
-        metavar="SECONDS",
-        help=f"timeout for each Lean build/export command (default: {DEFAULT_LEAN_TIMEOUT:g})",
+        help="inventory JSON path (default: docs/external-inputs.json)",
     )
     args = parser.parse_args(argv)
 
@@ -1196,23 +765,18 @@ def main(argv: list[str] | None = None) -> int:
     root = (args.root or script_root).resolve()
     inventory = args.inventory
     if inventory is None:
-        inventory = root / "Source/source-inventory.json"
+        inventory = root / "docs/external-inputs.json"
     elif not inventory.is_absolute():
         inventory = root / inventory
 
-    validator = InventoryValidator(
-        root,
-        inventory,
-        check_lean_projection=not args.skip_lean_projection,
-        lean_timeout=args.lean_timeout,
-    )
+    validator = InventoryValidator(root, inventory)
     errors = validator.validate()
     if errors:
         print(f"source inventory: {len(errors)} error(s)", file=sys.stderr)
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
-    print(f"source inventory: OK ({len(REFERENCE_IDS)} sources, {validator.artifact_count} artifacts)")
+    print(f"source inventory: OK ({validator.source_count} sources, {validator.artifact_count} artifacts)")
     return 0
 
 

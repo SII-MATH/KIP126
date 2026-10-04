@@ -4,7 +4,7 @@ import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
 import KIP126.Main.Solution.Literature.HopfCofiber.Pages.Data
 
 namespace KIP126.Computation.Near126
-open KIP126.Classical.Adams KIP126.External
+open KIP126.Classical.Adams
 
 /-- Explicit missing geometric input on the already fixed sphere. Its h₂
 condition is a statement about an actual filtration-one tower lift, not a
@@ -12,7 +12,7 @@ name, an arbitrary page map, or a freely chosen auxiliary spectral sequence.
 There is no global inhabitant or claim that h₂ detection chooses a unique ν. -/
 structure SphereHopfInput where
   map : SphereThreeMap
-  represents_h2 : ExternalEvidence
+  represents_h2 :
     (SphereFiltrationOneRepresents map (linToSphereE2 1 4 (by decide) (atom .h2)))
 
 noncomputable def SphereHopfInput.ybar (N : SphereHopfInput) :=
