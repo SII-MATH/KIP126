@@ -81,7 +81,8 @@ Solution 维护；Interface 直接构造统一 Challenge2，Def 维护固定实�
 2. **外部输入层**：在所有 statement 所需对象已经定义后，再陈述逐条 external
    literature result；具体 Lin 输出与附录表依赖 computation schema。
 3. **内部证明层**：comparison/generalized rules 消费外部定理与计算输入，随后完成
-   near-126 reduction，最后推出 geometric conclusions。
+   near-126 reduction 和标准 h₆² 的非零永久存活。geometric conclusions 已按用户
+   决定移出当前范围，Blueprint 仅保留未来扩展的陈述记录，不进入 Challenge2。
 4. **技术审计层**：provenance 与 coverage 章节保持平铺，但不作为所有数学章节的
    父节点。来源 metadata 在 `external-inputs.json` 维护，不再编译为 Lean
    类型或加入数学 DAG。
@@ -105,7 +106,7 @@ Solution 维护；Interface 直接构造统一 Challenge2，Def 维护固定实�
 
 当前执行前沿已推进到稳定同伦/合成同伦输入包、附录 401 行 typed catalogue、BJM/BX
 选择传输接口以及 Theorem 6.1/6.12/7.3 的精确开放命题。下一步按依赖图补齐
-page-extension、near-126 coherence 和几何端点的真实证明，同时为每个外部输入补上
+page-extension、near-126 coherence 和 h₆² 永久存活的真实证明，同时为每个外部输入补上
 具体实例与 evidence；这些开放目标继续保持 `notready`。Blueprint 记录节点状态和依赖，
 实现事实以 Lean 为准；本文件只在阶段、模块边界、依赖顺序变化时更新。
 

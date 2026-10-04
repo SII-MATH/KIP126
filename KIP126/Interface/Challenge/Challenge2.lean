@@ -1,4 +1,3 @@
-import KIP126.Def.Kervaire.Geometry.Data
 import KIP126.Def.Comparison.StageInterfaces
 import KIP126.Def.ClassicalAdams.Convergence.BHS.Predicates
 import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
@@ -20,7 +19,6 @@ import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
 import KIP126.Def.StageInput.Milnor
-import KIP126.Def.Kervaire.Theta5.Predicates
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
 import KIP126.Def.Synthetic.EInfty.Shift.Predicates
@@ -71,7 +69,7 @@ Def. This file assembles accepted source conclusions, the exact applications
 of those sources, and the finite C(M) certification obligations on that same
 model. It chooses no new model and does not prove the paper's new tools.
 Source locators and outstanding production obligations are maintained in
-`docs/STAGE0_INTERFACES.md` and `docs/challenge2-route-sources.json`.
+`docs/STAGE0_INTERFACES.md` and `docs/external-inputs.json`.
 -/
 
 namespace KIP126.Literature.Route
@@ -1105,45 +1103,6 @@ structure AdamsOneLineInterface : Prop where
       NonzeroSurvival sphereAdamsData (2, ((2 ^ (j + 1) : ℕ) : ℤ))
         (Sphere.Internal.hiSquare standardFoundation.hf2 standardMilnorCooperations j)
 
-/-- am12 的低维永久性切片，使用实际标准类和非零永久存活。
-不把结论降为自由 permanence 谓词或零类的循环性。 -/
-def LowDimensionalSquarePermanence : Prop :=
-  NonzeroSurvival sphereAdamsData (2, 32) (standardHiSquare 4) ∧
-    NonzeroSurvival sphereAdamsData (2, 64) (standardHiSquare 5)
-
-/-- am16：Browder 的准确内部页面端。几何解释仍由显式参数指定并需要
-相应文献证明，永久性端则固定为本项目同一内部球谱上的标准 hⱼ²。 -/
-def BrowderInterface {Manifold : Type} (dimension : Manifold → ℕ)
-    (kervaireOne : Manifold → Prop) : Prop :=
-  Kervaire.BrowderCriterionStatement dimension kervaireOne
-    (fun j => NonzeroSurvival sphereAdamsData
-      (2, ((2 ^ (j + 1) : ℕ) : ℤ)) (standardHiSquare j))
-
-/-- Geometric literature conclusions on one model. Source attribution is
-maintained separately in the external-input manifest, not in these proofs. -/
-structure GeometryLiteratureInterface (G : GeometryModel) : Prop where
-  low_dimensions : ∀ j : ℕ, 1 ≤ j → j ≤ 5 →
-    ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M
-  high_nonexistence : ∀ j : ℕ, 7 ≤ j →
-    ¬ ∃ M, G.dimension M = 2 ^ (j + 1) - 2 ∧ G.kervaireOne M
-  browder : BrowderInterface G.dimension G.kervaireOne
-
-set_option linter.defProp false in
-/-- The geometric conclusions retain the model selected by Challenge2. -/
-def GeometryLiteratureInterface.geometry
-    {G : GeometryModel} (A : GeometryLiteratureInterface G) :
-    KIP126.Foundation.GeometryInterface G.dimension G.kervaireOne where
-  low_dimensions := A.low_dimensions
-  high_nonexistence := A.high_nonexistence
-
-set_option linter.defProp false in
-/-- Browder's result on the same geometric model and the standard internal
-Adams squares used by the rest of Challenge2. -/
-def GeometryLiteratureInterface.browderCriterion
-    {G : GeometryModel} (A : GeometryLiteratureInterface G) :
-    BrowderInterface G.dimension G.kervaireOne :=
-  A.browder
-
 /-- Literal CSV coordinates, independent of any choice of comparison map. -/
 def HasCoordinates {s t : Nat} (x : E2At s t) (indices : List Nat) : Prop :=
   ∃ rows : List BasisRow,
@@ -1220,7 +1179,6 @@ claims and not extra program outputs. The classical background is fixed in Def.
 The one route witness is correlated with its source results and C(M), instead
 of being arbitrarily chosen from a weaker type before source conditions exist. -/
 structure ModelBindings (routeInput : Classical.Adams.StandardRouteInput) where
-  geometry : GeometryModel
   cobarDerivedExt : CobarDerivedExtComparison
     Classical.Adams.standardFoundation.hf2 Classical.Adams.standardMilnorCooperations
   moss : StandardSphereMossContext
@@ -1244,7 +1202,6 @@ structure ModelBindings (routeInput : Classical.Adams.StandardRouteInput) where
 and locators are external metadata; each field requires its mathematical proof. -/
 structure LiteratureInterface (routeInput : Classical.Adams.StandardRouteInput)
     (modelBindings : ModelBindings routeInput) where
-  geometry : GeometryLiteratureInterface modelBindings.geometry
   /-- Independent Adams vanishing-line specialization on the delivered
   standard sphere tower, used to close the finite computation's tail. -/
   sphereVanishing : SphereVanishingLine Classical.Adams.standardFoundation.hf2

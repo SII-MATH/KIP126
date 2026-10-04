@@ -1,7 +1,11 @@
-\chapter{Geometric conclusions}
+\chapter{Further consequences and future geometric extensions}
 \label{chap:final-kervaire}
 
-This chapter derives the conditional dimension-$126$ manifold and the final dimension list from the internal permanent-cycle theorem and the explicitly listed geometric inputs.
+The current project ends at nonzero permanent survival of the standard
+$h_6^2$. This chapter records further consequences of the paper. The geometric
+statements below are future, out-of-scope sketches, not Challenge2 fields or
+current acceptance obligations. No additional geometry root or proof module is
+introduced by retaining these bibliographic statements.
 
 \section{Classical two-line consequence}
 
@@ -29,33 +33,48 @@ This chapter derives the conditional dimension-$126$ manifold and the final dime
   points from this corollary to the main theorem, never conversely.
 \end{proof}
 
-\section{Conditional geometric endpoints}
+\section{Future geometric hypotheses and endpoints (outside current scope)}
 
-% SOURCE: MainPaper/main.tex:102-104, Theorem thm:main; made conditional by PROJECT_BOUNDARY.md.
+% SOURCE: MainPaper/main.tex:78--123; PROJECT_BOUNDARY.md, excluded geometry.
+\begin{definition}[Additional geometric Kervaire hypotheses for future work]
+  \label{def:geometric-kervaire-input}
+  \uses{def:sphere-adams-coherence,def:framed-kervaire-context,thm:external-browder-criterion,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence}
+  \notready
+  For a main input $I$, a future geometric extension would separately require
+  an actual framed-manifold context $G$ and the Browder, low-dimensional
+  existence and HHR results in that context. Its Pontryagin--Thom and Browder
+  comparisons must refer to the same fixed sphere and classical Adams
+  sequence as $I$, with explicit coherence when needed. This $G$ is not a
+  field of current Challenge2 and has no current Lean delivery obligation.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:102-104, Theorem thm:main; future/out of scope.
 \begin{theorem}[Conditional Kervaire manifold in dimension $126$]
   \label{thm:kervaire-126-conditional}
-  \uses{def:kervaire-main-input,thm:h6-square-permanent,thm:external-browder-criterion,def:kip126-trust-boundary}
+  \uses{def:kervaire-main-input,def:geometric-kervaire-input,thm:h6-square-permanent,thm:external-browder-criterion,def:kip126-trust-boundary}
   \notready
-  For every main input $I$, there exists a closed framed smooth
-  $126$-manifold in $I$'s geometric context with Kervaire invariant one.
+  For every main input $I$ and additional geometric hypotheses $G$ as above,
+  there exists a closed framed smooth $126$-manifold in $G$'s context with
+  Kervaire invariant one. This future conclusion does not follow from the
+  current Challenge2 package alone.
 \end{theorem}
 
 \begin{proof}
   Apply Theorem~\ref{thm:h6-square-permanent} to $I$, obtaining survival of
-  $h_6^2$, whose stem is $2^7-2=126$.  Apply the forward implication of
-  $I.\mathrm{geometry}.\mathrm{browder}$; by construction its permanent-cycle
-  premise is stated in $I.\mathrm{classicalSphere}$, the same sequence used by
-  the first step.  Every high-stem computation used there is a projection of
-  $I.\mathrm{computation}$ and its coherence witnesses.
+  $h_6^2$, whose stem is $2^7-2=126$. Apply the permanence-to-existence direction of
+  the separately supplied Browder theorem in $G$, after identifying its
+  permanent-cycle premise with the fixed sphere sequence used in the first
+  step. This is a future proof plan, not a current Lean construction.
 \end{proof}
 
-% SOURCE: MainPaper/main.tex:108-110, unlabelled Corollary 1.2; made conditional by PROJECT_BOUNDARY.md.
+% SOURCE: MainPaper/main.tex:108-110, unlabelled Corollary 1.2; future/out of scope.
 \begin{corollary}[Conditional exact list of Kervaire dimensions]
   \label{cor:kervaire-dimensions-exact}
-  \uses{def:kervaire-main-input,thm:kervaire-126-conditional,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence,thm:external-browder-criterion}
+  \uses{def:kervaire-main-input,def:geometric-kervaire-input,thm:kervaire-126-conditional,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence,thm:external-browder-criterion}
   \notready
-  For every main input $I$ and natural number $n$, a framed smooth manifold in
-  $I.\mathrm{geometry}.\mathrm{framed}$ with Kervaire invariant one exists in
+  For every main input $I$, additional geometric hypotheses $G$ as above,
+  and natural number $n$, a framed smooth manifold in $G$'s context with
+  Kervaire invariant one exists in
   dimension $n$ if and only if
   \[
     n=2\ \vee\ n=6\ \vee\ n=14\ \vee\ n=30\ \vee\ n=62\ \vee\ n=126.
@@ -63,9 +82,9 @@ This chapter derives the conditional dimension-$126$ manifold and the final dime
 \end{corollary}
 
 \begin{proof}
-  The low-dimensional fields of $I.\mathrm{geometry}$ and the conditional
-  $126$ theorem give existence in every listed dimension.  The Browder field
+  The separately supplied low-dimensional results in $G$ and the conditional
+  $126$ theorem give existence in every listed dimension. The Browder theorem
   restricts any other positive dimension to $2^{j+1}-2$; the low-index fields
-  cover $1\le j\le5$, the new theorem covers $j=6$, and the HHR field excludes
-  every $j\ge7$.
+  cover $1\le j\le5$, the new theorem covers $j=6$, and the HHR result excludes
+  every $j\ge7$. These additional geometric results are not current inputs.
 \end{proof}

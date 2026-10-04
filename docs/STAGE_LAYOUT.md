@@ -17,10 +17,12 @@
 
 `Challenge2` 包含 foundation、同一 `routeInput` 的模型绑定、固定 presentation、literature、computation 和 internal applications。原来的 implementation 相等字段及独立存在性/选择传递已删除；基础对象直接引用 `Def.fixedImplementation`。
 
+当前最终目标止于标准 h₆² 的非零永久存活。按用户决定，流形模型、Browder/Pontryagin–Thom 几何比较、低维流形存在性及几何 HHR 不存在性已从 Challenge2 交付和当前验收范围移除；不为它们另设输入根或证明模块。主路线实际使用的 θ₅/h₅² 经典文献输入仍保留。
+
 `FoundationInputs.sphereApplicability` 保留实际球塔的 HF₂ nilpotent completeness 和强收敛条件。countable-products 等结构仍在固定实现中。`InternalApplications` 包含 `route` 适配和 `sphereSeparated`，不能把它们重新登记为文献结论或程序输出。
 
 Lean 接口只陈述数学。来源 metadata 不再通过 `ExternalResult`、`ExternalEvidence` 或 `SourceId` 进入类型。文献与 computation 清单链接到声明和 Blueprint 标签；检查器检验对应关系，数学审查判断陈述是否忠实于原文。
 
 只为体积、生成方式或真实复用需要拆模块。不要为展示结构创建空目录、单模块转发文件或另一套 claim registry。唯一保留的 Challenge/Solution 定理对是 Main 最终目标；Interface 通过构造 Challenge2 值完成交付。
 
-完整范围及未完成证明见 [STAGE0_INTERFACES.md](STAGE0_INTERFACES.md)。本次结构简化不解除任何模型构造、来源核验、计算认证或本文证明义务。
+完整范围及未完成证明见 [STAGE0_INTERFACES.md](STAGE0_INTERFACES.md)。除用户明确移出范围的几何部分外，结构简化不解除模型构造、来源核验、计算认证或本文证明义务。

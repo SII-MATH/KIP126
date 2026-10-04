@@ -79,24 +79,6 @@ This chapter contains only the project deductions that assemble the setup, exter
   chosen $A_{\mathrm{cl}}$ interface.
 \end{definition}
 
-% SOURCE: PROJECT_BOUNDARY.md, Final geometric conclusions, External inputs,
-% and Conditional final theorems.
-\begin{definition}[Geometric Kervaire input]
-  \label{def:geometric-kervaire-input}
-  \uses{def:sphere-adams-coherence,def:framed-kervaire-context,thm:external-browder-criterion,thm:external-low-kervaire-existence,thm:external-hhr-nonexistence}
-  \notready
-  For fixed $\mathcal C$ and $A_{\mathrm{cl}}$ as above, a geometric Kervaire
-  input contains a framed context \texttt{framed} over $\mathcal C$ and named
-  mathematical hypotheses \texttt{browder}, \texttt{lowKervaire}, and
-  \texttt{hhr}.  The proposition carried by \texttt{browder} is
-  Browder's criterion for \texttt{framed} and this exact
-  $A_{\mathrm{cl}}$; this dependency is part of the field's type.  The other two
-  fields use the same framed context, Pontryagin--Thom map, dimension, and
-  invariant conventions.  Any nondefinitional identifications are stored as
-  explicit coherence witnesses rather than resolved by an unconstrained
-  transport.
-\end{definition}
-
 % SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, Appendix data,
 % and External inputs; MainPaper/main.tex:755--1274.
 \begin{definition}[Synthetic interpretation of the computation catalogue]
@@ -132,7 +114,7 @@ This chapter contains only the project deductions that assemble the setup, exter
 \begin{definition}[Main formalization input]
   \label{def:kervaire-main-input}
   \lean{KIP126.Challenge2,KIP126.Challenge2.FoundationInputs,KIP126.Challenge2.LiteratureInterface,KIP126.Challenge2.ComputationInterface,KIP126.Challenge2.InternalApplications}
-  \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence,def:geometric-kervaire-input}
+  \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence}
   \notready
   The main input $I$ is one value of \texttt{Challenge2} on the fixed Def
   implementation. Its \texttt{foundation} field retains actual sphere
@@ -140,8 +122,9 @@ This chapter contains only the project deductions that assemble the setup, exter
   structural data remain in the fixed implementation. One \texttt{routeInput}
   and its \texttt{modelBindings} correlate all dependent choices. A single
   \texttt{presentation} is shared by the literature and computation delivery.
-  The \texttt{literature} fields state the external mathematical inputs,
-  including the geometric results. The \texttt{computation} fields state
+  The \texttt{literature} fields state the external mathematical inputs for
+  the homotopy-theoretic proof; no manifold model or geometric Kervaire
+  results are fields of this package. The \texttt{computation} fields state
   interpreted, model-bound certification conclusions. The
   \texttt{applications} record contains the internal route adapter and actual
   sphere-filtration separation, rather than classifying them as citations or
@@ -152,8 +135,8 @@ This chapter contains only the project deductions that assemble the setup, exter
   implementation-equality transport, existence wrapper or witness choice.
   Def's implementation, foundation applicability and source/computation
   producers still have unfinished proofs. The record contains no field
-  asserting $h_6^2$ permanence or a final geometric endpoint; those remain
-  project theorems assembled from these inputs.
+  asserting $h_6^2$ permanence: this remains the project theorem assembled
+  from these inputs. Geometric endpoints are outside the current scope.
 \end{definition}
 
 \section{The near-126 reduction and contradiction}

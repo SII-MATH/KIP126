@@ -30,10 +30,10 @@ class ExternalInputTests(unittest.TestCase):
     def test_current_manifest_is_consistent(self):
         self.assertTrue(validate_document(ROOT, self.document))
 
-    def test_missing_geometry_leaf_is_rejected(self):
+    def test_missing_adams_leaf_is_rejected(self):
         document = self.fixture()
-        geometry = next(c for c in document["interface_coverage"] if c["structure"].endswith(".GeometryLiteratureInterface"))
-        del geometry["fields"]["browder"]
+        adams = next(c for c in document["interface_coverage"] if c["structure"].endswith(".AdamsOneLineInterface"))
+        del adams["fields"]["adamsOneLine_d2"]
         with self.assertRaisesRegex(ValueError, "field coverage drift"):
             validate_document(ROOT, document)
 
@@ -76,10 +76,20 @@ class ExternalInputTests(unittest.TestCase):
 
     def test_adding_manifest_leaf_does_not_add_a_lean_field(self):
         document = self.fixture()
-        item = next(c for c in document["interface_coverage"] if c["structure"].endswith(".GeometryLiteratureInterface"))
-        item["fields"]["imaginary_theorem"] = item["fields"]["browder"]
+        item = next(c for c in document["interface_coverage"] if c["structure"].endswith(".AdamsOneLineInterface"))
+        item["fields"]["imaginary_theorem"] = item["fields"]["adamsOneLine_d2"]
         with self.assertRaisesRegex(ValueError, "field coverage drift"):
             validate_document(ROOT, document)
+
+    def test_geometry_is_not_a_current_input(self):
+        literature = next(c for c in self.document["interface_coverage"]
+                          if c["structure"].endswith(".LiteratureInterface"))
+        self.assertEqual(set(literature["fields"]),
+                         {"sphereVanishing", "adamsOneLine", "moss", "br21", "route"})
+        self.assertNotIn("geometry", {r["input_field"]
+                                     for r in self.document["route"]["root_literature"]})
+        self.assertFalse(any("Geometry" in c["structure"]
+                             for c in self.document["interface_coverage"]))
 
     def test_transcription_status_cannot_be_promoted_to_proof(self):
         document = self.fixture()

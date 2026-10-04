@@ -32,6 +32,12 @@ implementation or Challenge~2 foundation obligations, route results may occur
 in its literature interface, and citation-only
 background need not become a stage input at all.
 
+By the current scope decision, F12 and C08--C10 are retained only as
+bibliographic/future geometry records. They are not fields of Challenge~2,
+current source-production obligations, or acceptance criteria. In particular,
+removing this geometry does not remove A01 or any other classical
+$\theta_5$/$h_5^2$ input needed by the selected proof route.
+
 The status column has the following meaning.  ``Node'' means that this chapter
 already has an individual Blueprint node; ``grouped'' means that the statement
 is currently visible only as a field of one of the four route input records;
@@ -58,7 +64,7 @@ F08 & The finite quotients $S/\lambda^n$ form a coherently multiplicative commut
 F09 & $\lambda$-inversion identifies synthetic spectra with the classical generic fiber, compatibly with $\nu$ and tensor products & \texttt{Pst} & Node: \ref{thm:external-lambda-inversion} \\
 F10 & The $\lambda$-special fiber is the derived category of dual-Steenrod-algebra comodules & \texttt{Pst}; \texttt{Hovey}; checked in \texttt{BHS} & Missing \\
 F11 & For an $H\mathbb F_2$-nilpotent-complete spectrum, $\nu X\simeq\varprojlim_n\nu X/\lambda^n$ & \texttt{BHS}, Proposition A.13 & Node: \ref{thm:external-synthetic-lambda-complete} \\
-F12 & Pontryagin--Thom identifies stable sphere homotopy with framed cobordism in the convention used for Kervaire classes & Classical Pontryagin--Thom theorem; exact project locator pending & Missing \\
+F12 & Pontryagin--Thom identifies stable sphere homotopy with framed cobordism in the convention used for Kervaire classes & Classical Pontryagin--Thom theorem; exact project locator pending & Out of current scope; future geometry \\
 \end{tabular}
 \end{center}
 
@@ -114,9 +120,9 @@ C04 & $h_3h_6$ supports the cited nonzero $d_3$ differential & \texttt{IWX} & Mi
 C05 & The family $h_1h_j$ survives for every $j\ge3$ & \texttt{Mahowaldetaj} & Missing \\
 C06 & Every $h_j^2$ for $j\ge7$ supports a nonzero differential & \texttt{HHR} & Missing; the geometric HHR node below is not this spectral-sequence statement \\
 C07 & If $2\theta_j=0$ and $\theta_j^2=0$, an order-two $\theta_{j+1}$ exists & \texttt{BJMinduction} & Node: \ref{thm:external-bjm-induction} \\
-C08 & Browder's equivalence between Kervaire-one framed manifolds and nonzero permanence of the corresponding $h_j^2$ & \texttt{Browder} & Node: \ref{thm:external-browder-criterion} \\
-C09 & Kervaire-one framed manifolds exist in dimensions $2,6,14,30,62$ & \texttt{Browder}; \texttt{Maythesis}; \texttt{MahowaldTangora}; \texttt{BJMtheta5}; \texttt{Jones30} & Node: \ref{thm:external-low-kervaire-existence}; exact per-dimension locators pending \\
-C10 & No Kervaire-one framed manifold exists in dimensions $2^{j+1}-2$ for $j\ge7$ & \texttt{HHR} & Node: \ref{thm:external-hhr-nonexistence} \\
+C08 & Browder's equivalence between Kervaire-one framed manifolds and nonzero permanence of the corresponding $h_j^2$ & \texttt{Browder} & Out of current scope; future node \ref{thm:external-browder-criterion} \\
+C09 & Kervaire-one framed manifolds exist in dimensions $2,6,14,30,62$ & \texttt{Browder}; \texttt{Maythesis}; \texttt{MahowaldTangora}; \texttt{BJMtheta5}; \texttt{Jones30} & Out of current scope; future node \ref{thm:external-low-kervaire-existence}; locators pending \\
+C10 & No Kervaire-one framed manifold exists in dimensions $2^{j+1}-2$ for $j\ge7$ & \texttt{HHR} & Out of current scope; future node \ref{thm:external-hhr-nonexistence} \\
 \end{tabular}
 \end{center}
 
@@ -997,18 +1003,17 @@ must add a new row before it is accepted as a stage input or proof dependency.
 % SOURCE: Browder, The Kervaire invariant of framed manifolds and its generalization; MainPaper/main.tex:117-123, Theorem thm:browder.
 \begin{theorem}[Browder criterion]
   \label{thm:external-browder-criterion}
-  \lean{KIP126.Challenge2.BrowderInterface,KIP126.Challenge2.GeometryLiteratureInterface.browderCriterion}
   \uses{def:framed-kervaire-context,def:classical-adams-ss,def:adams-hj,def:ss-permanent-einfty-class}
   \notready
+  This is a future geometry statement, not an input to current Challenge2.
   Fix a stable context $\mathcal C$, a framed Kervaire context over
   $\mathcal C$, and a chosen classical Adams spectral sequence
   $A_{\mathrm{cl}}$ of $S^0_{\mathcal C}$.  An explicit Browder external result
   supplies that a framed manifold with Kervaire invariant one exists in
   dimension $n$ if and only if $n=2^{j+1}-2$ for some $j\ge1$ and the class
   $h_j^2$ has nonzero permanent survival in this same $A_{\mathrm{cl}}$.
-  The root interface now uses the actual Milnor representatives on the fixed
-  internal sphere tower. The geometric model and the proof of the literature
-  result remain explicit inputs. The record must
+  A future implementation must use the actual Milnor representatives on the
+  fixed internal sphere tower and supply an actual geometric model. It must
   carry the precise theorem or page locator in Browder's paper and the
   Pontryagin--Thom convention; it cannot quantify over or silently select a
   second sphere Adams spectral sequence.
@@ -1016,17 +1021,16 @@ must add a new row before it is accepted as a stage input or proof dependency.
 
 \begin{proof}
   Instantiate the located Browder theorem and transport its Adams grading and
-  framed-cobordism notation into the two project interfaces.  This node remains
-  an explicit literature parameter; no project proof of Browder's criterion is
-  claimed.
+  framed-cobordism notation into the future geometric and Adams interfaces.
+  No current Lean input or project proof of Browder's criterion is claimed.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:151-162 and cited classical Kervaire literature.
 \begin{theorem}[Prior low-dimensional Kervaire existence]
   \label{thm:external-low-kervaire-existence}
-  \lean{KIP126.Foundation.GeometryInterface,KIP126.Challenge2.GeometryLiteratureInterface,KIP126.Challenge2.GeometryLiteratureInterface.geometry}
   \uses{def:framed-kervaire-context}
   \notready
+  This is a future geometry statement, outside the current input package.
   Explicit literature results supply framed Kervaire-invariant-one manifolds
   in dimensions $2,6,14,30,$ and $62$, with one source locator for each
   dimension or a single theorem covering the complete list.
@@ -1041,9 +1045,10 @@ must add a new row before it is accepted as a stage input or proof dependency.
 % SOURCE: Hill--Hopkins--Ravenel; cited at MainPaper/main.tex:86-92 and 151-160.
 \begin{theorem}[HHR nonexistence beyond dimension $126$]
   \label{thm:external-hhr-nonexistence}
-  \lean{KIP126.Challenge2.GeometryLiteratureInterface.high_nonexistence}
   \uses{def:framed-kervaire-context}
   \notready
+  This geometric statement is outside the current input package; it is
+  distinct from the spectral-sequence statement listed as C06.
   An explicit Hill--Hopkins--Ravenel result supplies nonexistence of
   Kervaire-invariant-one framed manifolds in dimensions
   $2^{j+1}-2$ for $j\ge7$, in the precise form and range of the cited theorem.
@@ -1057,14 +1062,13 @@ must add a new row before it is accepted as a stage input or proof dependency.
 % SOURCE: Barratt--Jones--Mahowald induction; MainPaper/main.tex:162.
 \begin{proposition}[Low-dimensional permanence from explicit geometric inputs]
   \label{prop:internal-low-dimensional-permanence}
-  \lean{KIP126.Challenge2.LowDimensionalSquarePermanence,KIP126.Interface.Solution.lowDimensionalSquarePermanence}
   \uses{thm:external-browder-criterion,thm:external-low-kervaire-existence,def:milnor-internal-hi-family}
   \notready
   Given the same geometric existence and Browder inputs, the actual internal
-  classes $h_4^2$ and $h_5^2$ have nonzero permanent survival. This implication
-  has a Lean proof. Its sphere classes use the fixed Def implementation,
-  whose construction remains unfinished, and the geometric inputs themselves
-  have not been constructed.
+  classes $h_4^2$ and $h_5^2$ have nonzero permanent survival. This is only a
+  future, out-of-scope implication: its former geometry-dependent Lean
+  delivery has been removed. The selected main route retains its independent
+  classical $\theta_5$/$h_5^2$ literature input rather than using this sketch.
 \end{proposition}
 \begin{proof}
   Apply Browder to the supplied manifold of dimension $2^{j+1}-2$ for

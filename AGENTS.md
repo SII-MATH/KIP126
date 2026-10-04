@@ -41,6 +41,12 @@ stage or equality transport to a second implementation. Do not create parallel
 witness definitions or proof transmission trees. All dependent fields use the
 same selected Def background and correlated route model.
 
+The current endpoint is standard `h_6^2` nonzero permanent survival. Geometry
+(framed manifolds, Browder/Pontryagin--Thom comparison, and geometric Kervaire
+existence/nonexistence) is outside the current scope and must not be restored
+as Challenge2 fields or acceptance obligations without user approval. Preserve
+the classical `theta_5`/`h_5^2` literature used by the selected proof route.
+
 Do not create empty directories or placeholder modules merely to display the
 architecture. Import a concrete module directly when a wrapper would only
 re-export that one module and provide no required behavior. Multi-module

@@ -36,6 +36,5 @@ import KIP126.Def.Comparison.StageInterfaces.Proofs.PageExtensionKernel
 import KIP126.Def.Comparison.StageInterfaces.Proofs.CanonicalPageExtension
 import KIP126.Def.Comparison.StageInterfaces.Proofs.PageExtensionSolutions
 import KIP126.Def.Comparison.StageInterfaces.Proofs.InternalNaturality
-import KIP126.Interface.Solution.LowDimensionalPermanence
 import KIP126.Interface.Solution.Literature.Route.Adapters
 import KIP126.Interface.Solution.LinProgram.Route.Certification

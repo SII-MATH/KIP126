@@ -15,7 +15,7 @@
 <div class="eyebrow">KIP126 / 输入审阅</div>
 <h1>一个 Challenge2，各项义务分别看。</h1>
 <p class="intro">基础、文献、计算和内部应用已合到同一个输入包。数学条件仍在 Lean 中；引用、定位和来源文件由一份清单管理。</p>
-<div class="note">布局已经简化，文献仍待逐项核验。下面的六项只是目前的打包方式；它们的完整性、原文定位和模型适用性还没有因此得到认可。</div>
+<div class="note">当前目标是标准 h₆² 的非零永久存活，不包含几何推论。文献包的完整性、原文定位和模型适用性仍待逐项核验。</div>
 </header>
 <nav class="tabs" aria-label="查看输入类别">
 <button type="button" data-view="literature" aria-pressed="true">文献</button>
@@ -28,9 +28,9 @@
 <details id="search-area">
 <summary>查找全部登记字段与来源</summary>
 <p class="muted">这里包含父字段和子字段，不能相加当作独立定理数。审计覆盖不等于文献正确性或证明完成。</p>
-<div class="toolbar"><input id="search" type="search" aria-label="搜索声明、来源或定位" placeholder="搜索 Browder、Adams、字段名或 theorem locator…"><button id="export" type="button">导出我的审阅</button></div>
+<div class="toolbar"><input id="search" type="search" aria-label="搜索声明、来源或定位" placeholder="搜索 Adams、BHS、字段名或 theorem locator…"><button id="export" type="button">导出我的审阅</button></div>
 <div id="all-fields"></div>
-<details><summary>文献与制品目录</summary><div id="sources"></div></details>
+<details><summary>文献与制品目录（含范围外背景资料）</summary><div id="sources"></div></details>
 </details>
 <footer>
 <p id="manifest-info">本页从 external-inputs.json 读取，不保存第二份输入台账。</p>
@@ -48,10 +48,10 @@
 const prefix = "KIP126.Challenge2.";
 const views = {
   literature: {
-    heading: "目前的六个文献包",
-    intro: "geometry、Adams/May、Moss 等都属于外部文献。route 的细分审计只覆盖其中一部分；现在这些输入统一在同一清单中登记。",
+    heading: "当前文献包",
+    intro: "消失线、Adams/May、Moss、BR21 和主证明路线均在同一清单登记。几何模型、Browder 判据及流形存在／不存在结论已移出当前交付范围。",
     structure: prefix + "LiteratureInterface",
-    order: ["geometry", "sphereVanishing", "adamsOneLine", "moss", "br21", "route"]
+    order: ["sphereVanishing", "adamsOneLine", "moss", "br21", "route"]
   },
   foundation: {
     heading: "原 Challenge1 的义务在这里",
@@ -73,7 +73,6 @@ const views = {
   }
 };
 const descriptions = {
-  geometry: ["几何结论", "Browder 判据、低维 Kervaire-one 存在以及 HHR 高维不存在。三个独立子字段可以分别审阅。"],
   sphereVanishing: ["球谱 Adams 消失线", "Ravenel 的正 stem 消失范围。将其应用到项目固定 Adams 塔，还需模型比较。"],
   adamsOneLine: ["Adams 一线与 May 低维结果", "一线的生成和消失、Hopf invariant one、d₂(hⱼ) 及若干低维乘积与平方的永久性。原文 locator 仍有缺口。"],
   moss: ["Moss convergence", "Massey product 与 Toda bracket 的比较，必须保留 convergence、crossing 和不定性条件。"],
@@ -85,13 +84,9 @@ const descriptions = {
   sphereSquare: ["标准平方与候选穷尽", "固定数据的平方证书运输到实际 E₂，并识别标准 h₆²。"],
   sphereTable_sound: ["固定微分表的正确性", "具体 CSV 坐标在实际塔上满足所登记的有限页球谱微分等式。"],
   route_presentation: ["路线与 presentation 一致", "路线使用的命名类、基和表格都指向同一个 presentation。"],
-  sphereSeparated: ["球塔滤过分离性", "从实际收敛、有限型和模型比较得到的内部结论，不属于程序数据。"],
-  low_dimensions: ["低维存在", "维数 2、6、14、30、62 的 Kervaire-one 流形存在。"],
-  high_nonexistence: ["高维不存在", "HHR 的 Kervaire invariant one 不存在结果。"],
-  browder: ["Browder 判据", "几何 Kervaire-one 与对应 hⱼ² 非零永久存活的联系。"]
+  sphereSeparated: ["球塔滤过分离性", "从实际收敛、有限型和模型比较得到的内部结论，不属于程序数据。"]
 };
 const nested = {
-  geometry: [prefix + "GeometryLiteratureInterface"],
   adamsOneLine: [prefix + "AdamsOneLineInterface"],
   route: ["KIP126.Literature.Route.Statements", "KIP126.Literature.Route.ClassicalSourceResults",
     "KIP126.Literature.Route.SyntheticSourceInputs", "KIP126.Literature.Route.EInftyInput",

@@ -109,12 +109,15 @@ remain separate from this milestone.
    - Open Questions are represented as propositions/statements only; they are
      not assumed and are not required to be proved.
 
-5. **Final geometric conclusions.** Both of the following are conditional
-   conclusions:
-   - existence of a framed smooth manifold with Kervaire invariant one in
-     dimension 126;
-   - the assertion that the dimensions are exactly
-     `2, 6, 14, 30, 62, 126`.
+5. **Current endpoint and excluded geometry.** The current endpoint is
+   nonzero permanent survival of the standard `h_6^2` in the classical Adams
+   spectral sequence. By user decision, framed-manifold existence in dimension
+   126 and the exact geometric dimension list `2, 6, 14, 30, 62, 126` are outside
+   the current scope. Challenge2 does not supply a manifold model, Browder's
+   geometric criterion, low-dimensional manifold existence or geometric HHR
+   nonexistence. These are neither current delivery nor acceptance obligations.
+   The classical `theta_5`/`h_5^2` results needed by the proof route remain in
+   scope; they are not replaced by geometric assumptions.
 
 6. **Axiom policy.** The project may use Lean's foundational axioms and the
    axioms already intrinsic to Lean's standard foundational mechanisms.
@@ -385,10 +388,8 @@ checks do not prove that the source entails the Lean statement. Full coverage
 of MainPaper, faithful hypotheses, and the separation of external results
 from internal applications remain mathematical-review obligations.
 
-Examples of external inputs include:
+Examples of current external inputs include:
 
-- Browder's criterion relating Kervaire invariant one manifolds to survival of
-  `h_j^2`;
 - Barratt--Jones--Mahowald and Burklund--Xu's inductive criterion;
 - prior synthetic-spectrum and rigidity theorems;
 - May's lemma and other prior-paper results used by the new arguments;
@@ -396,7 +397,7 @@ Examples of external inputs include:
   disproofs;
 - every entry of the Appendix tables, including entries not used in the final
   proof;
-- cited `tmf` detection facts and other prior computational or geometric
+- cited `tmf` detection facts and other prior computational or homotopy-theoretic
   conclusions.
 
 The final proof must make every retained dependency on these values explicit.
@@ -404,27 +405,17 @@ For a claim whose Main stage axiom has instead been discharged by an Interface
 proof, the proof dependency replaces the axiom while the source and conversion
 records remain available for audit.
 
-## Conditional final theorems
-
-The project must expose conditional theorems at two levels.
-
-### Homotopy-theoretic conclusion
+## Conditional final theorem
 
 Under the required external results and evidence, prove that `h_6^2` is a
 permanent cycle in the classical Adams spectral sequence.
 
-### Geometric conclusions
-
-Using the external Browder/Pontryagin-type input as an explicit hypothesis,
-prove conditionally:
-
-1. there exists a framed smooth manifold with Kervaire invariant one in
-   dimension 126;
-2. the dimensions in which framed smooth manifolds with Kervaire invariant one
-   exist are exactly `2, 6, 14, 30, 62, 126`.
-
-These are implications from explicit mathematical literature and computation
-hypotheses, with their provenance recorded in the external manifest.
+This is an implication from explicit mathematical literature and computation
+hypotheses, with their provenance recorded in the external manifest. Geometric
+consequences may be described as future work in the Blueprint, but they require
+separate authorization and actual manifold/Pontryagin--Thom bindings before
+becoming project obligations. They are not additional roots or fields of the
+current Challenge2 package.
 
 ## Final proof-completion criteria
 
@@ -443,7 +434,6 @@ The project is complete only when all of the following hold:
 - every external mathematical input has an explicit Lean hypothesis and a
   corresponding declaration/locator entry in `docs/external-inputs.json`;
 - every Appendix table entry has a Lean encoding;
-- the two geometric conclusions are available as conditional theorems;
 - the final theorem(s) pass a `#print axioms` audit with:
   - no `sorryAx`;
   - no project-defined or undeclared custom axiom;
@@ -457,6 +447,9 @@ documentation check.
 
 The project does not attempt to:
 
+- formalize framed-manifold Kervaire invariants, Pontryagin--Thom/Browder
+  geometric comparisons, or the geometric existence/nonexistence conclusions
+  in the current scope;
 - construct a complete model of stable infinity-categories;
 - reproduce Lin's implementation instruction-for-instruction or treat the
   upstream executable as part of Lean's trusted kernel; the required

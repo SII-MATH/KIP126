@@ -165,15 +165,6 @@ def AdamsFiltrationDecomposition (F : FoundationInput) : Prop :=
   ∀ {X Y : F.Spectrum} (f : X ⟶ Y) (k : ℕ), 0 < k →
     AdamsFiltrationAtLeast F.hf2 f k → HasMod2ZeroFactorization F.hf2 f k
 
-/-- a14 的纯几何交付。参数明确指定所谈的几何对象与 Kervaire 谓词；
-该类型本身不声称已经构造实际 framed-manifold 模型或证明文献结果。 -/
-structure GeometryInterface {Manifold : Type} (dimension : Manifold → ℕ)
-    (kervaireOne : Manifold → Prop) : Prop where
-  low_dimensions : ∀ j : ℕ, 1 ≤ j → j ≤ 5 →
-    ∃ M, dimension M = 2 ^ (j + 1) - 2 ∧ kervaireOne M
-  high_nonexistence : ∀ j : ℕ, 7 ≤ j →
-    ¬ ∃ M, dimension M = 2 ^ (j + 1) - 2 ∧ kervaireOne M
-
 open CategoryTheory.Limits
 
 universe u v

@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "project": "KIP126",
-  "description": "Single external provenance manifest: source acquisition and artifacts, field-to-source locators, and the selected route audit. Metadata and hash checks are not proofs or independent verification of cited mathematical statements. source-status.json files are retained raw acquisition records.",
+  "description": "Single external provenance manifest: source acquisition and artifacts, field-to-source locators, and the selected h6-square route audit. The source catalogue also retains bibliographic background outside the current goal; geometric corollaries are not Challenge2 inputs. Metadata and hash checks are not proofs or independent verification of cited mathematical statements. source-status.json files are retained raw acquisition records.",
   "sources": [
     {
       "id": "aim_paper",
@@ -74,7 +74,7 @@
       "year": 1969,
       "doi": "10.2307/1970686",
       "canonical_url": "https://doi.org/10.2307/1970686",
-      "role": "Kervaire-invariant criterion relating survival of h_j^2 to a nonzero Kervaire class.",
+      "role": "Bibliographic background outside the current h6-square goal: Kervaire-invariant criterion relating survival of h_j^2 to a nonzero Kervaire class. Not a Challenge2 input.",
       "status_file": "Source/Browder/source-status.json",
       "status_class": "full_text",
       "availability": {
@@ -117,7 +117,7 @@
       ],
       "route_review": {
         "url": "https://doi.org/10.2307/1970686",
-        "status": "Inherited develop catalogue input; model realization and source transport remain obligations.",
+        "status": "Retained source catalogue only; geometric realization and corollaries are outside the current goal.",
         "artifact_paths": [
           "Source/Browder/citation.bib",
           "Source/Browder/paper.pdf"
@@ -306,7 +306,7 @@
       "year": 2016,
       "doi": "10.4007/annals.2016.184.1.1",
       "canonical_url": "https://doi.org/10.4007/annals.2016.184.1.1",
-      "role": "Nonexistence of Kervaire-invariant-one classes in forbidden higher dimensions.",
+      "role": "Bibliographic background outside the current h6-square goal: nonexistence of Kervaire-invariant-one classes in forbidden higher dimensions. Not a Challenge2 input.",
       "status_file": "Source/HHR/source-status.json",
       "status_class": "full_text",
       "availability": {
@@ -355,7 +355,7 @@
       ],
       "route_review": {
         "url": "https://arxiv.org/abs/0908.3724",
-        "status": "Inherited develop catalogue input; model realization and source transport remain obligations.",
+        "status": "Retained source catalogue only; geometric realization and corollaries are outside the current goal.",
         "artifact_paths": [
           "Source/HHR/citation.bib",
           "Source/HHR/paper.pdf"
@@ -2913,29 +2913,6 @@
           "moss"
         ],
         "locator": "Per-field source locators in route.claims and interface_coverage"
-      },
-      {
-        "id": "RL07",
-        "role": "source-result",
-        "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
-        "declarations": [
-          "KIP126.Challenge2.GeometryLiteratureInterface",
-          "KIP126.Challenge2.GeometryLiteratureInterface.geometry",
-          "KIP126.Challenge2.GeometryLiteratureInterface.browderCriterion",
-          "KIP126.Challenge2.LiteratureInterface.geometry"
-        ],
-        "notes": "Low-dimensional existence, HHR nonexistence and Browder use one GeometryModel and are plain mathematical propositions; citations live only in this manifest. GeometryModel alone is not an identification with actual framed manifolds. These inputs concern the broader geometric conclusions; they are not new computational premises for h6-square survival.",
-        "input_field": "geometry",
-        "sources": [
-          "browder",
-          "hhr",
-          "may_thesis",
-          "mahowald_tangora",
-          "bjm_theta5",
-          "jones30"
-        ],
-        "locator": "Browder section 7 Theorem 7.1; HHR nonexistence; low-dimensional locators pending"
       }
     ],
     "csv_evidence": [
@@ -3153,62 +3130,6 @@
           "proof_status": "external-statement-unproved",
           "blueprint_labels": [
             "def:route-literature-inputs"
-          ]
-        },
-        "geometry": {
-          "sources": [
-            "browder",
-            "hhr",
-            "may_thesis",
-            "mahowald_tangora",
-            "bjm_theta5",
-            "jones30"
-          ],
-          "locator": "Browder section 7 Theorem 7.1; HHR nonexistence; low-dimensional locators pending",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-browder-criterion"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Challenge2.GeometryLiteratureInterface",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
-      "role": "literature",
-      "fields": {
-        "low_dimensions": {
-          "sources": [
-            "browder",
-            "may_thesis",
-            "mahowald_tangora",
-            "bjm_theta5",
-            "jones30"
-          ],
-          "locator": "MainPaper low-dimensional existence citations; exact per-dimension original locators pending verification.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-low-kervaire-existence"
-          ]
-        },
-        "high_nonexistence": {
-          "sources": [
-            "hhr"
-          ],
-          "locator": "Kervaire invariant one nonexistence theorem (j >= 7); original theorem numbering pending verification.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-hhr-nonexistence"
-          ]
-        },
-        "browder": {
-          "sources": [
-            "browder"
-          ],
-          "locator": "Section 7, Theorem 7.1; physical PDF p.23",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-browder-criterion"
           ]
         }
       }

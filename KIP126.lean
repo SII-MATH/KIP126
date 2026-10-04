@@ -16,7 +16,6 @@ import KIP126.Def.Comparison.StageInterfaces.Proofs.InternalNaturality
 import KIP126.Def.Comparison.StageInterfaces.Proofs.Cobar
 import KIP126.Interface.Solution.LinProgram.Multiplication
 import KIP126.Def.Comparison.StageInterfaces.Proofs.PageExtensionSolutions
-import KIP126.Interface.Solution.LowDimensionalPermanence
 import KIP126.Def
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Def.Solution

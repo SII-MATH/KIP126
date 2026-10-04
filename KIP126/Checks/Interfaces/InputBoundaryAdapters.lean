@@ -2,8 +2,8 @@ import KIP126.Main.Solution.StageInput
 import Lean.Elab.Command
 
 /-! The Main input boundary has one admitted witness. A(M), including the
-fixed-model May and synthetic source statements and the selected geometry,
-is projected from that witness rather than imported from a parallel
+fixed-model May and synthetic source statements, is projected from that
+witness rather than imported from a parallel
 `Main/Axiom/Literature` tree. -/
 
 open Lean Elab Command in
@@ -15,8 +15,7 @@ run_cmd do
     if (`KIP126.Main.Axiom.Literature).isPrefixOf m then
       throwError "obsolete parallel literature boundary imported: {m}"
   for name in [``KIP126.Main.StageInput.literature,
-      ``KIP126.Main.StageInput.routeLiterature,
-      ``KIP126.Main.StageInput.geometryLiterature] do
+      ``KIP126.Main.StageInput.routeLiterature] do
     let some (.defnInfo _) := env.find? name
       | throwError "missing Challenge2 literature projection: {name}"
     let axioms ← liftCoreM (collectAxioms name)
@@ -27,8 +26,7 @@ run_cmd do
         throwError "literature projection gained an independent axiom: {name}: {axiomName}"
 
   for root in [``KIP126.Main.StageInput.literature,
-      ``KIP126.Main.StageInput.routeLiterature,
-      ``KIP126.Main.StageInput.geometryLiterature] do
+      ``KIP126.Main.StageInput.routeLiterature] do
     let mut pending := #[root]
     let mut seen : NameSet := {}
     while !pending.isEmpty do

@@ -4,6 +4,8 @@
 
 历史修正报告中的验收结论限于当时检查的范围。目前完整第0步仍有文献覆盖、来源忠实性以及 C₂/Cη 认证依赖缺口，不能冻结 Literature 或宣称全体接口验收完成。已有声明、已完成证明和实际验证分别记录；统一输入结构不改变模型构造、计算认证和论文推导中的证明责任。
 
+按用户决定，当前目标止于标准 h₆² 的非零永久存活：流形模型、Browder/Pontryagin–Thom 几何比较、低维流形存在性及几何 HHR 不存在性不再属于 Challenge2 或当前验收。Blueprint 中对应文献仅作未来/背景记录，不是待补的当前输入。主路线需要的经典 θ₅ 存在、h₅² 检测与二阶性输入仍须交付；Hopf 映射、cofiber 和谱乘法等同伦模型义务也不受影响。
+
 ## 同一个 M 与标准 T
 
 Def 内固定的基础必须有实际谱模型的实现/识别接口。来源不能只是另一个任意稳定范畴或一个未定义的 `isActualSpectrum : Prop`：具体 prespectrum、稳定等价及 HF₂-local 反射给出可审核的经典对象来源。论文引言明确 S⁰ 为 2-completed sphere，源另列这个单位与 Moore-2 完成的比较，未声称所有无界谱的两种完成相同。比较须关联球谱、悬移、cofiber、乘法、HF₂ 及其单位映射。构造与识别证明可以待补；比较的数学内容不能省略。
@@ -24,7 +26,7 @@ Def 固定经典实现，包括实际完成球、HF₂、Milnor 坐标及 tensor
 
 Challenge2 在这一固定经典背景上，一起交付 `routeInput`、`ModelBindings routeInput`、A、内部适配、presentation 与 C；所有字段依赖同一个见证。Def 不先从较弱的 RouteInput 中任选 ν、Hopf maps 或 detector 再要求它们恰好满足文献定理。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联存在性责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到路线、绑定与 A。该定理不是对 synthetic 范畴的唯一性刻画，也不声称这里已经实现其 ∞-site；其构造证明仍待补，不含 C、Application、high125 或本文新工具。
 
-供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。53 条文献 package 是陈述撰写清单，不能当作已核实的完整外部定理集合。
+供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。53 条文献 package 是陈述撰写清单，保留 F12、C08–C10 等当前范围外的几何条目作来源记录；不能当作当前 Challenge2 字段清单或已核实的完整外部定理集合。
 
 唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须在同一路线见证上完成 foundation、认证与内部适配，不能分别选择两个存在性见证后视为同一对象。
 

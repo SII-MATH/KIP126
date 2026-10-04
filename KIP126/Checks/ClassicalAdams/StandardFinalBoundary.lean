@@ -44,6 +44,11 @@ run_cmd do
 
 open KIP126.Classical.Adams KIP126.StableHomotopy
 
+-- Scope changes to Challenge2 must not weaken the fixed standard h₆² goal.
+open KIP126.Core.SpectralSequence in
+example : NonzeroSurvival sphereAdamsData (2, 128) standardH6Square :=
+  KIP126.Challenge.Final.H6SquarePermanent.h6_sq_permanent
+
 example : sphereAdamsData =
     adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum := rfl
 

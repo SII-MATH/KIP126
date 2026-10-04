@@ -16,26 +16,6 @@ noncomputable def literature :
     KIP126.Challenge2.LiteratureInterface witness.routeInput witness.modelBindings :=
   witness.literature
 
-/-- The geometric objects and predicates used by all geometric literature
-results in the same Challenge2 witness. -/
-noncomputable def geometryModel : KIP126.Challenge2.GeometryModel :=
-  witness.modelBindings.geometry
-
-/-- Low-dimensional, HHR, and Browder conclusions on that model. -/
-noncomputable def geometryLiterature :
-    KIP126.Challenge2.GeometryLiteratureInterface geometryModel :=
-  literature.geometry
-
-/-- The low-dimensional existence and high-dimensional nonexistence interface. -/
-theorem geometry :
-    KIP126.Foundation.GeometryInterface geometryModel.dimension geometryModel.kervaireOne :=
-  geometryLiterature.geometry
-
-/-- Browder's criterion for the same geometric model and standard sphere classes. -/
-theorem browder :
-    KIP126.Challenge2.BrowderInterface geometryModel.dimension geometryModel.kervaireOne :=
-  geometryLiterature.browderCriterion
-
 /-- C(M) on the presentation stored in that same stage witness. -/
 noncomputable def computation :
     KIP126.Challenge2.ComputationInterface witness.routeInput witness.modelBindings

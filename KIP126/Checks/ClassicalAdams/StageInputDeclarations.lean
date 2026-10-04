@@ -62,7 +62,19 @@ run_cmd do
       `KIP126.External.SourceId,
       `KIP126.Challenge2.GeneralizedLeibnizLaw,
       `KIP126.Challenge2.GeneralizedMahowaldLaw,
-      `KIP126.Challenge2.FinitePageExtensionStretchingLaw] do
+      `KIP126.Challenge2.FinitePageExtensionStretchingLaw,
+      `KIP126.Challenge2.GeometryModel,
+      `KIP126.Challenge2.ModelBindings.geometry,
+      `KIP126.Challenge2.LiteratureInterface.geometry,
+      `KIP126.Challenge2.GeometryLiteratureInterface,
+      `KIP126.Challenge2.BrowderInterface,
+      `KIP126.Challenge2.LowDimensionalSquarePermanence,
+      `KIP126.Foundation.GeometryInterface,
+      `KIP126.Interface.Solution.lowDimensionalSquarePermanence,
+      `KIP126.Main.StageInput.geometryModel,
+      `KIP126.Main.StageInput.geometryLiterature,
+      `KIP126.Main.StageInput.geometry,
+      `KIP126.Main.StageInput.browder] do
     if env.contains removed then
       throwError "obsolete foundation/computation classification: {removed}"
   let some (.thmInfo _) := env.find? ``KIP126.Interface.Solution.LinE2.basisTable_correct
@@ -159,23 +171,22 @@ example : ∃ routeInput : KIP126.Classical.Adams.StandardRouteInput,
       Nonempty (KIP126.Challenge2.ComputationInterface routeInput modelBindings presentation) :=
   KIP126.Interface.Solution.computationInterface
 
--- The upstream geometry delivery must stay correlated with the same witness.
-open KIP126.Main.StageInput in
-example : geometryModel = witness.modelBindings.geometry := rfl
+-- Removing manifold consequences must retain the stable-homotopy source
+-- results needed by the selected h₆² proof, including the h₅² input.
+open KIP126.Classical.Adams KIP126.Core.SpectralSequence in
+example (c : KIP126.Challenge2) (j : ℕ) (hj : j ≤ 3) :
+    NonzeroSurvival sphereAdamsData (2, ((2 ^ (j + 1) : ℕ) : ℤ))
+      (Sphere.Internal.hiSquare standardFoundation.hf2 standardMilnorCooperations j) :=
+  c.literature.adamsOneLine.may_lowDimensionalSquares_permanent j hj
 
-example (c : KIP126.Challenge2) :
-    ∀ j : ℕ, 1 ≤ j → j ≤ 5 → ∃ M,
-      c.modelBindings.geometry.dimension M = 2 ^ (j + 1) - 2 ∧
-      c.modelBindings.geometry.kervaireOne M :=
-  c.literature.geometry.low_dimensions
-
-example (c : KIP126.Challenge2) :
-    ∀ j : ℕ, 7 ≤ j → ¬ ∃ M,
-      c.modelBindings.geometry.dimension M = 2 ^ (j + 1) - 2 ∧
-      c.modelBindings.geometry.kervaireOne M :=
-  c.literature.geometry.high_nonexistence
-
-example (c : KIP126.Challenge2) :
-    KIP126.Challenge2.BrowderInterface
-      c.modelBindings.geometry.dimension c.modelBindings.geometry.kervaireOne :=
-  c.literature.geometry.browder
+open Lean Elab Command in
+run_cmd do
+  let env ← getEnv
+  for retained in [``KIP126.Challenge2.AdamsOneLineInterface.may_lowDimensionalProducts_permanent,
+      ``KIP126.Challenge2.AdamsOneLineInterface.may_lowDimensionalSquares_permanent,
+      ``KIP126.Literature.Route.ClassicalSourceResults.h5Square_permanent,
+      ``KIP126.Literature.Route.ClassicalSourceResults.theta5_detection,
+      ``KIP126.Literature.Route.ClassicalSourceResults.theta5_order_two,
+      ``KIP126.Literature.Route.ClassicalSourceResults.theta5_filtration_gap] do
+    unless env.contains retained do
+      throwError "selected route lost a stable-homotopy source input: {retained}"

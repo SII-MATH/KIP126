@@ -32,7 +32,6 @@ FIELD_STATUSES = {
 REQUIRED_STRUCTURES = {
     "KIP126.Challenge2.FoundationInputs",
     "KIP126.Challenge2.LiteratureInterface",
-    "KIP126.Challenge2.GeometryLiteratureInterface",
     "KIP126.Challenge2.AdamsOneLineInterface",
     "KIP126.Literature.Route.Statements",
     "KIP126.Literature.Route.ClassicalSourceResults",
