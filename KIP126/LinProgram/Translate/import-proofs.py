@@ -170,8 +170,7 @@ def export(db, archive, output, raw_output=None, check=False, query_ids=(), *,
                                   for k, v in sorted(files.items())})
     files["manifest.json"] = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
     expected = set(files)
-    existing = ({p.name for p in output.iterdir() if p.name != "README.md"}
-                if output.exists() else set())
+    existing = ({p.name for p in output.iterdir()} if output.exists() else set())
     if existing - expected:
         raise ValueError(f"unexpected/stale output files (not removed): {existing - expected}")
     if check:

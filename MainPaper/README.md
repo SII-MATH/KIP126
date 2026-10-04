@@ -3,7 +3,7 @@
 `main.tex` 是主论文的本地标签规范化副本。规范化只调整下表中的标签和引用，
 并在同一位置保留原标签作为兼容别名；数学正文和行号保持不变。
 
-文件制品及 SHA-256 记录在 [`Source/source-inventory.json`](../Source/source-inventory.json)。
+文件制品及 SHA-256 记录在 [`docs/external-inputs.json`](../docs/external-inputs.json)。
 规范化前 `main.tex` 的 SHA-256 为
 `1125462bcae4a4ec56e3bfcaad15df4febf98757dfb83462b155af162c99c9e0`；
 `migration/kip-base/original/` 中的历史来源快照保持原样。

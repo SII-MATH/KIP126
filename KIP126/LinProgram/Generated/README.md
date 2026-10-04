@@ -9,7 +9,7 @@
 ## 2. 现在包含什么
 
 - [E2.lean](E2.lean)：包含 2,914 个生成元、231,848 条关系和 23,822 个加法 basis 行；有意不导入 CSV 的 `d2` 列。
-- [Differentials](Differentials/README.md)：`Shard000`–`Shard085`、`Table.lean` 与 `manifest.json`，编码 10,907 条闭合球面有限页差分。
+- [Differentials](Differentials/)：`Shard000`–`Shard085`、`Table.lean` 与 `manifest.json`，编码 10,907 条闭合球面有限页差分。
 - 差分 manifest 记录 2,672,275 个源行的互斥分类、数据库与 basis 摘要，以及 86 个 shard 和 `Table.lean` 共 87 个输出文件的 SHA-256。
 
 七项 selected 来源元数据位于 [Selected/records.json](Selected/records.json)。六条依赖交付输入的 selected theorem 位于 [Main 的消费证明](../../Main/Solution/Computation/LinProgram/Interpretation/Selected/Proofs.lean)；元数据本身不证明其模型解释。

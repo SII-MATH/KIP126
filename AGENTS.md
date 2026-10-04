@@ -47,6 +47,12 @@ existence/nonexistence) is outside the current scope and must not be restored
 as Challenge2 fields or acceptance obligations without user approval. Preserve
 the classical `theta_5`/`h_5^2` literature used by the selected proof route.
 
+Intermediate spectra used only to certify computation conclusions, such as
+`C2` and `Ceta`, belong to Interface's proof process. Do not add them to
+Challenge2 or treat their absence as an interface-completeness failure.
+Introduce their objects, data and comparisons only if the chosen proof needs
+them; the existing model-bound computation conclusions must still be proved.
+
 Do not create empty directories or placeholder modules merely to display the
 architecture. Import a concrete module directly when a wrapper would only
 re-export that one module and provide no required behavior. Multi-module

@@ -4,7 +4,7 @@
 
 ## IWX 作者数据：已直接核验
 
-来源为 Isaksen–Wang–Xu 的 [Zenodo 2022 v1 作者数据](https://zenodo.org/records/6987157)。本轮直接下载两份经典 Adams CSV 和配套 `README-Adams.pdf`；网页公布的两个 CSV MD5 与下载内容一致。文件原样存入 [IWX/data](../../Source/IWX/data)，SHA256 固定在 [来源台账](../challenge2-route-sources.json)。以下行号包括表头。
+来源为 Isaksen–Wang–Xu 的 [Zenodo 2022 v1 作者数据](https://zenodo.org/records/6987157)。本轮直接下载两份经典 Adams CSV 和配套 `README-Adams.pdf`；网页公布的两个 CSV MD5 与下载内容一致。文件原样存入 [IWX/data](../../Source/IWX/data)，SHA256 固定在 [来源台账](../external-inputs.json)。以下行号包括表头。
 
 | 材料 | 本轮直接读取的位置 | 支持的内容 |
 | --- | --- | --- |

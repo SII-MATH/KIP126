@@ -15,7 +15,7 @@
 | `select-route.py` | 筛选球谱/Cν 的局部基、状态、正式日志和根层排除，生成本管线的 `Route/{Selected.lean,selected.json}` 和 Main 消费端的 `Route/Records.lean`；`--check` 逐字核对 |
 | `import-staircase.py` | 校验固定球谱快照，生成 23,822 条无损状态记录和 187 个分片 |
 
-局部 C(M) 的入口保留在根 [Challenge2.lean](../../Challenge2.lean)，筛选依据见
+局部 C(M) 的交付合同见 [Challenge2.lean](../../Interface/Challenge/Challenge2.lean)，筛选依据见
 [STAGE0_INTERFACES.md](../../../docs/STAGE0_INTERFACES.md)。它不消费旧 bulk 正确性公理。
 从仓库根目录运行：
 
@@ -28,7 +28,7 @@ lake build KIP126.Main.Solution.Computation.LinProgram.Route.Records KIP126.Chec
 原始 Git LFS 数据保存在单独目录时，可以传入 `--raw-dir /path/to/raw`；
 输入摘要仍逐一校验，生成物和 Main 消费端投影的检查位置不变。
 
-迁移后的 repo root、模块模板和输出路径已经修正。`import-proofs.py` 的 stale-output 检查只允许同目录额外存在 `README.md`，不会宽泛忽略其他文件。
+`import-proofs.py` 的 stale-output 检查会拒绝生成目录中未列入 manifest 的文件。
 
 固定输入位于相邻的 `../Raw/`。`import-selected.py` 与 `select-route.py` 中从 C(M)
 假设投影结论的输出保留在 `KIP126/Main/Solution/Computation/LinProgram/`，不会作为独立数据证书。

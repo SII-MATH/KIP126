@@ -49,6 +49,14 @@ mathematical meanings, object bindings, hypotheses or necessary coverage cannot
 be excused by that permission. Later project proof-completion criteria below
 remain separate from this milestone.
 
+By user decision, intermediate spectra such as C2 and Ceta used only in
+certifying the selected computation conclusions are internal Interface proof
+dependencies, not additional Challenge2 inputs or prerequisites for interface
+completeness. Their construction, source data and comparisons are introduced
+only when required by the chosen proof. An independent proof of the same
+model-bound conclusions may avoid that program route entirely. This does not
+discharge the computation certification or permit new untracked assumptions.
+
 ## Confirmed design decisions
 
 1. **Homotopy-theoretic foundation.** We use an abstract stable homotopy

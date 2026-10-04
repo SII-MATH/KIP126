@@ -38,6 +38,12 @@ and [original migration archive](migration/kip-base/README.md).
 
 ## Project documents and workflow
 
+Documentation is kept at the project, stage, or component boundary where it
+adds context beyond the Lean source. A Lean directory does not need its own
+README: the source files and their imports are the current API, while historical
+migration snapshots remain available in Git history. Do not infer proof status
+from a directory listing or a past migration count.
+
 - [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
 - [Stage layout](docs/STAGE_LAYOUT.md): directory ownership and the unified Challenge2 delivery.
 - [Input review panel](docs/challenge-input-inventory.html): foundation, literature, computation, and remaining review obligations.

@@ -4,5 +4,5 @@
 
 | 文件 | 已有对象或结论（选列） |
 | --- | --- |
-| [Data.lean](../../../../../../Challenge2.lean) | 兼容导入入口；`LinE2Presentation` 的唯一结构定义位于[根 Challenge2](../../../../../../Challenge2.lean) |
+| [Challenge2.lean](../../../../../../Interface/Challenge/Challenge2.lean) | `LinE2Presentation` 的结构定义与交付合同 |
 | [Proofs.lean](Proofs.lean) | `linToSphere_exists_preimage`, `linToSphere_eq_iff`, `linToSphere_ne_zero_iff`, `linToSphere_mul`, `linToSphere_product_eq` 等 6 个声明 |
