@@ -46,7 +46,7 @@ from a directory listing or a past migration count. Archived plans and check
 records are kept in [docs/archive/](docs/archive/) for historical reference.
 
 - [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
-- [Input review panel](docs/challenge-input-inventory.html): foundation, literature, computation, and remaining review obligations.
+- [Input review panel](docs/challenge-input-inventory.html): literature, computation, Main's internal applications, and remaining review obligations. Fixed-sphere applicability is stated in Def.
 
 The repository assigns different questions to different authoritative sources;
 this is a responsibility map rather than one document overriding every other
@@ -72,9 +72,10 @@ document:
   authoritative for the implemented interfaces, proofs and dependency graph.
   `Def/` owns all mathematical objects and the fixed implementation; it never
   imports Interface or Main. `Interface/Challenge` defines `Challenge2` and
-  `Interface/Solution` constructs it. This single witness delivers foundation
-  applicability, model bindings, literature, computation and internal
-  applications on the fixed Def background. The final
+  `Interface/Solution` constructs it. This single witness delivers model
+  bindings, literature and computation on the fixed Def background. Main derives
+  internal applications after the stage axiom. Fixed-sphere applicability has a Def-owned theorem
+  with an explicit unfinished proof. The final
   target in `Main/Challenge/h6_sq_permanent.lean` imports only Def; its proof
   may consume Challenge2 through Main/Axiom. Stage-0 interface acceptance does
   not mean certification or the final mathematical proof is complete.
@@ -139,8 +140,8 @@ and planned nodes retain the responsibilities defined once in
 lake build
 ```
 
-The Blueprint PDF, web output, declaration checks, structural doctor, and DAG
-checks are maintained separately under `blueprint/` and `.agents/skills/`.
+The Blueprint PDF, web output, and declaration checks are maintained
+separately under `blueprint/`.
 
 The published Blueprint and API documentation are assembled by
 `.github/workflows/pages.yml` and served at
@@ -231,23 +232,6 @@ Pinned computation inputs are listed in
 [translation tools](KIP126/LinProgram/Translate/) provide their command options
 through `--help`. Their checks compare fixed inputs and generated output;
 model certification remains an Interface proof obligation.
-
-## Repository-private Blueprint skills
-
-The reusable Blueprint workflow lives under
-`.agents/skills/` and is intentionally independent of the KIP126 mathematics:
-
-- [leanblueprint-author](.agents/skills/leanblueprint-author/SKILL.md) — write
-  source-grounded mathematical chapters;
-- [leanblueprint-dag](.agents/skills/leanblueprint-dag/SKILL.md) — inspect and
-  repair dependency cones and formalization frontiers;
-- [leanblueprint-audit](.agents/skills/leanblueprint-audit/SKILL.md) — audit
-  structure, provenance, and Lean/Blueprint drift;
-- [leanblueprint-maintain](.agents/skills/leanblueprint-maintain/SKILL.md) —
-  build artifacts and safely synchronize proof-status markers.
-
-They complement the global `leanblueprint` environment skill. The maintenance
-tools are read-only by default; marker changes require an explicit `--write`.
 
 当前第0步接口、来源适用性、计算范围及后续证明责任见
 [STAGE0_INTERFACES.md](docs/STAGE0_INTERFACES.md)。该文档不以声明存在或编译成功

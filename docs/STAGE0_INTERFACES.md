@@ -22,15 +22,15 @@ NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 
 ## 统一 Challenge2
 
-Def 固定经典实现，包括实际完成球、HF₂、Milnor 坐标及 tensor/cooperation 比较。`Challenge2.FoundationInputs.sphereApplicability` 直接对这个固定实现陈述实际球塔的 HF₂ nilpotent completeness、强收敛背景；原 Challenge1 的实质义务保留于此。独立 Challenge1、重复 implementation 和相等运输已删除；countable-products 等结构仍来自固定实现。
+Def 固定经典实现，包括实际完成球、HF₂、Milnor 坐标及 tensor/cooperation 比较。`KIP126.Def.standardSphereApplicability` 对这个固定实现陈述实际球塔的 HF₂ nilpotent completeness 和强收敛，证明保留明确的 `sorry`；下游可直接引用其准确陈述。原 Challenge1 的实质义务仍在，但不是 Challenge2 字段。独立 Challenge1、重复 implementation 和相等运输已删除；countable-products 等结构仍来自固定实现。
 
-Challenge2 在这一固定经典背景上，一起交付 `routeInput`、`ModelBindings routeInput`、A、内部适配、presentation 与 C；所有字段依赖同一个见证。Def 不先从较弱的 RouteInput 中任选 ν、Hopf maps 或 detector 再要求它们恰好满足文献定理。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联存在性责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到路线、绑定与 A。该定理不是对 synthetic 范畴的唯一性刻画，也不声称这里已经实现其 ∞-site；其构造证明仍待补，不含 C、Application、high125 或本文新工具。
+Challenge2 在这一固定经典背景上，一起交付 `routeInput`、`ModelBindings routeInput`、A、presentation 与 C；所有字段依赖同一个见证。内部适配由 Main 在取得该见证后证明。Def 不先从较弱的 RouteInput 中任选 ν、Hopf maps 或 detector 再要求它们恰好满足文献定理。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联存在性责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到路线、绑定与 A。该定理不是对 synthetic 范畴的唯一性刻画，也不声称这里已经实现其 ∞-site；其构造证明仍待补，不含 C、Application、high125 或本文新工具。
 
 供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。文献 package 是陈述撰写清单，保留 F12、C08–C10 等当前范围外的几何条目作来源记录；不能当作当前 Challenge2 字段清单或已核实的完整外部定理集合。
 
-唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须在同一路线见证上完成 foundation、认证与内部适配，不能分别选择两个存在性见证后视为同一对象。
+唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须在同一路线见证上完成模型绑定与认证，不能分别选择两个存在性见证后视为同一对象。固定球谱适用性与分离性是独立的 Def 证明责任；Main 为 BHS 完成适用性、完成比较、realization 比较、Toda 二级运算比较及 ν 来源结论分别保留明确的 `sorry`；`routeApplication` 再从这五项和已有来源陈述组装，不能把它们当作现有字段的投影。
 
-来源的四层分别是 `Bindings`（对象及比较）、`Statements`（前人结果）、`Application`（内部来源适配）、`Inputs`（供 Main 消费的组装结果）。`Inputs` 还需要 Main 独立证明的 tmf 高过滤结论，因此它既不等于纯 A，也不是 Challenge2 字段。无实际用途的旧 `Literature.Route.A = Nonempty Inputs` 包装已删除。
+来源的四层分别是 `Bindings`（对象及比较）、`Statements`（前人结果）、`Application`（Main 待证的内部来源适配）、`Inputs`（供 Main 消费的组装结果）。`Inputs` 还需要 Main 独立证明的 tmf 高过滤结论，因此它既不等于纯 A，也不是 Challenge2 字段。无实际用途的旧 `Literature.Route.A = Nonempty Inputs` 包装已删除。
 
 ## C 的固定范围和语义
 

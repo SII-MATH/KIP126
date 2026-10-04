@@ -99,16 +99,21 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         self.assertRegex(code, r"axiom challenge2\s*:\s*KIP126\.Challenge2\b")
         self.assertNotRegex(code, r"\b(def|abbrev|theorem|lemma|instance|opaque|Nonempty)\b")
 
-    def test_foundation_obligation_is_in_the_single_contract(self):
+    def test_fixed_foundation_obligation_stays_in_def(self):
         contract = code_only((ROOT / "KIP126/Interface/Challenge/Challenge2.lean").read_text())
-        self.assertRegex(contract, r"structure FoundationInputs\s*:\s*Prop where")
-        self.assertIn("sphereApplicability : Classical.Adams.BHSObjectApplicability", contract)
-        self.assertIn("foundation : Challenge2.FoundationInputs", contract)
-        self.assertIn("applications : Challenge2.InternalApplications", contract)
+        self.assertNotIn("structure FoundationInputs", contract)
+        self.assertNotIn("foundation : Challenge2.FoundationInputs", contract)
+        self.assertNotIn("structure InternalApplications", contract)
+        self.assertNotIn("applications :", contract)
         self.assertNotRegex(contract, r"theorem challenge2\b")
         producer = code_only((ROOT / "KIP126/Interface/Solution/Challenge2.lean").read_text())
         self.assertRegex(producer, r"def challenge2\s*:\s*KIP126\.Challenge2\b")
-        self.assertIn("foundation := foundationInputs", producer)
+        self.assertNotIn("foundation :=", producer)
+        foundation = code_only((ROOT / "KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean").read_text())
+        self.assertIn("theorem standardSphereApplicability : Classical.Adams.BHSObjectApplicability", foundation)
+        self.assertIn("theorem standardSphereSeparated : Classical.Adams.ClassicalSphereSeparated", foundation)
+        main = code_only((ROOT / "KIP126/Main/Solution/StageInput.lean").read_text())
+        self.assertIn("theorem routeApplication :", main)
 
     def test_main_input_closure_has_no_proofs_or_goal_modules(self):
         for module in self.graph:
@@ -146,7 +151,8 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         for module in self.graph:
             if module.startswith("KIP126.Main.Solution.Computation."):
                 self.assertEqual([m for m in self.dependencies(module)
-                                  if m.startswith("KIP126.Interface.Solution.")], [], module)
+                                  if m.startswith("KIP126.Interface.Solution.LinProgram.")
+                                  or m == "KIP126.Interface.Solution.Challenge2"], [], module)
 
     def test_no_redundant_challenge_wrappers(self):
         self.assertFalse((ROOT / "KIP126/Challenge2.lean").exists())

@@ -1,5 +1,5 @@
 import KIP126.Def.StageInput
-import KIP126.Interface.Solution.Foundation
+import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
 import KIP126.Interface.Solution.Literature.Route.BHS
 import KIP126.Interface.Solution.Literature.Route.Range
 import KIP126.Interface.Solution.Literature.Route.SourceExistence

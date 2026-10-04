@@ -3,26 +3,25 @@ import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.LinProgram.BasisTable
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
 import KIP126.Def.StageInput.Milnor
+import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
 import Lean.Elab.Command
 
 /-!
 Check the single direct Challenge2 input and its independent producer. The
-foundation obligation is a field of this package, and fixed objects remain
-Def-owned. No second stage assumption, source wrapper or dummy goal is needed.
+fixed sphere applicability statement and its unfinished proof remain in Def.
+No second stage assumption, source wrapper or dummy goal is needed.
 -/
 
-example (c : KIP126.Challenge2) : KIP126.Classical.Adams.BHSObjectApplicability
+example : KIP126.Classical.Adams.BHSObjectApplicability
     KIP126.Def.fixedImplementation.foundationInput.countableProducts
     KIP126.Def.fixedImplementation.foundationInput.hf2.unit
     (KIP126.StableHomotopy.SphereSpectrum
       (C := KIP126.Def.fixedImplementation.foundationInput.Spectrum)) :=
-  c.foundation.sphereApplicability
+  KIP126.Def.standardSphereApplicability
 
 example : KIP126.Def.StageInput.witness = KIP126.Def.fixedImplementation := rfl
 example : KIP126.Main.StageInput.witness = KIP126.Main.Axiom.challenge2 := rfl
-example : KIP126.Interface.Solution.challenge2.foundation =
-    KIP126.Interface.Solution.foundationInputs := rfl
 
 open Lean Elab Command in
 run_cmd do
@@ -99,7 +98,7 @@ example : routeComputation = witness.computation.route := rfl
 
 open KIP126.Main.StageInput in
 example : routeLiterature = KIP126.Literature.Route.Statements.toInputs
-    routeModel routeEta tmfLabels witness.literature.route witness.applications.route routeTmf := rfl
+    routeModel routeEta tmfLabels witness.literature.route routeApplication routeTmf := rfl
 
 open KIP126 KIP126.Classical.Adams KIP126.Main.StageInput in
 example (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t) :
@@ -123,8 +122,7 @@ run_cmd do
     throwError "project input acquired universe parameters"
   unless p.type == a.type && p.type == mkConst ``KIP126.Challenge2 do
     throwError "producer and consumer must have precisely type Challenge2"
-  for root in [producer, ``KIP126.Interface.Solution.foundationInputs,
-      ``KIP126.Interface.Solution.standardSphereApplicability] do
+  for root in [producer, ``KIP126.Def.standardSphereApplicability] do
     if (← liftCoreM (collectAxioms root)).contains consumer then
       throwError "producer depends on the consumer axiom: {root}"
   -- The aggregate's field projections retain their actual proofs in Solution;

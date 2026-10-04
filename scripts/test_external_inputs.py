@@ -66,13 +66,13 @@ class ExternalInputTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "structure role mismatch"):
             validate_document(ROOT, document)
 
-    def test_foundation_cannot_be_reclassified_as_literature(self):
+    def test_fixed_foundation_is_not_a_challenge2_field(self):
         document = self.fixture()
-        item = next(c for c in document["interface_coverage"] if c["structure"].endswith(".FoundationInputs"))
-        item["role"] = "literature"
-        item["fields"]["sphereApplicability"]["proof_status"] = "external-statement-unproved"
-        with self.assertRaisesRegex(ValueError, "structure role mismatch"):
-            validate_document(ROOT, document)
+        self.assertFalse(any(c["structure"].endswith(".FoundationInputs")
+                             for c in document["interface_coverage"]))
+        self.assertTrue(any("KIP126.Def.standardSphereApplicability" in item["declarations"]
+                            and item["proof_status"] == "proof-placeholder"
+                            for item in document["route"]["source_producers"]))
 
     def test_adding_manifest_leaf_does_not_add_a_lean_field(self):
         document = self.fixture()

@@ -1,17 +1,15 @@
-import KIP126.Interface.Solution.Foundation
+import KIP126.Interface.Challenge.Challenge2
 
 /-! Construction track for the package Interface must deliver to Main. -/
 namespace KIP126.Interface.Solution
 
 noncomputable def challenge2 : KIP126.Challenge2 := by
   refine {
-    foundation := foundationInputs
     routeInput := ?_
     modelBindings := ?_
     presentation := ?_
     literature := ?_
-    computation := ?_
-    applications := ?_ }
+    computation := ?_ }
   all_goals sorry
 
 /-- The literature part retains its selected shared model bindings.

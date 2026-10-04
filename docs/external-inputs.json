@@ -1494,7 +1494,7 @@
     }
   ],
   "route": {
-    "scope": "Selected LWX v2 Section 7 route: one correlated route/source witness over the fixed actual classical background; source statements, model comparisons and internal applications separately classified; no claim of completed source proofs",
+    "scope": "Selected LWX v2 Section 7 route: one correlated route/source witness over the fixed actual classical background; source statements and shared model bindings delivered by Challenge2; Main internal applications and Def sphere separation separately classified; no claim of completed source proofs",
     "entry": "KIP126.Literature.Route.Statements",
     "frozen_model": "KIP126.Kervaire.Route.Model",
     "claims": [
@@ -2576,7 +2576,7 @@
         "declarations": [
           "KIP126.Interface.Solution.Literature.Route.application_of_parts"
         ],
-        "notes": "Assembly of internal source applications from explicit comparison premises; no tmf conclusion or high125 survival is supplied."
+        "notes": "Parameterized assembly from five explicit comparison and source premises. Main's routeApplication must establish those premises from the selected witness or prove the target directly."
       },
       {
         "id": "IA08",
@@ -2622,14 +2622,36 @@
         "id": "IA-SPHERE-SEPARATED",
         "role": "internal-adapter",
         "proof_status": "proof-placeholder",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean",
         "declarations": [
-          "KIP126.Challenge2.InternalApplications.sphereSeparated"
+          "KIP126.Def.standardSphereSeparated"
         ],
-        "notes": "Derived 2-completed standard-sphere filtration separation from bounded-below finite-type convergence and the actual tower comparison. It is a root Challenge2 application field, not literature and not finite C data.",
+        "notes": "Def-owned fixed 2-completed sphere filtration separation from standard applicability and convergence; explicit proof placeholder, not a Challenge2 field.",
         "sources": [
           "bhs",
           "ravenel"
+        ]
+      },
+      {
+        "id": "IA-ROUTE-APPLICATION",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Main/Solution/StageInput.lean",
+        "declarations": [
+          "KIP126.Main.StageInput.completionApplicability",
+          "KIP126.Main.StageInput.completionComparison",
+          "KIP126.Main.StageInput.realizationComparison",
+          "KIP126.Main.StageInput.todaSecondaryComparison",
+          "KIP126.Main.StageInput.nuSourceResults",
+          "KIP126.Main.StageInput.routeApplication"
+        ],
+        "notes": "Main proves the five selected-model premises after consuming one Challenge2 witness, then assembles routeApplication with the parameterized adapter. The five premises are explicit sorry targets, not projections of literature or computation.",
+        "sources": [
+          "bhs",
+          "pst",
+          "may01",
+          "toda",
+          "moss"
         ]
       }
     ],
@@ -2653,7 +2675,7 @@
           "KIP126.Literature.Route.Application",
           "KIP126.Literature.Route.Inputs"
         ],
-        "notes": "Application contains only internal source application delivered by Challenge2. Inputs is the applied Main consumer package, assembled additionally with Main-derived TmfInputs; it is neither a Challenge2 field nor pure external A. The obsolete Nonempty Inputs alias was removed."
+        "notes": "Application is the internal proof target constructed in Main from the one stage witness; Inputs also requires Main-derived TmfInputs. Neither is a Challenge2 field or pure external A."
       },
       {
         "id": "DP03",
@@ -2663,7 +2685,7 @@
         "declarations": [
           "KIP126.Literature.Route.NuCofiberSourceResults"
         ],
-        "notes": "Compatible normalized triple construction from the source leaves. This is an internal delivery, not an independent external source theorem."
+        "notes": "Compatible normalized triple construction remains an internal Main application target, not an independent external theorem or Challenge2 field."
       }
     ],
     "source_producers": [
@@ -2695,21 +2717,28 @@
         "proof_status": "proof-placeholder",
         "module": "KIP126/Interface/Solution/Literature/Route/Range.lean",
         "declarations": [
-          "KIP126.Interface.Solution.Literature.Route.standard_sphere_vanishing",
-          "KIP126.Interface.Solution.Literature.Route.standard_sphere_separated"
+          "KIP126.Interface.Solution.Literature.Route.standard_sphere_vanishing"
         ],
-        "notes": "Independent infinite-range producers on the fixed derived 2-completed standard sphere. Strong convergence and canonical tower applicability must be proved; finite tables cannot supply either vanishing tail or separated filtration."
+        "notes": "Independent positive-stem vanishing producer on the fixed sphere. Separation is now Def.standardSphereSeparated; finite tables supply neither."
       },
       {
         "id": "challenge1-sphere-background-handoff",
-        "module": "KIP126/Interface/Solution/Foundation.lean",
+        "module": "KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean",
         "declarations": [
-          "KIP126.Interface.Solution.standardSphereApplicability",
-          "KIP126.Interface.Solution.foundationInputs"
+          "KIP126.Def.standardSphereApplicability",
+          "KIP126.Def.standardSphereSeparated"
+        ],
+        "sources": [
+          "ravenel",
+          "bhs"
+        ],
+        "locator": "Ravenel Theorem 2.2.13; BHS source applicability: the fixed completed sphere and actual tower still require an internal proof.",
+        "blueprint_labels": [
+          "thm:external-classical-adams-convergence"
         ],
         "role": "internal-adapter",
-        "proof_status": "implemented-adapter",
-        "notes": "The original completion/convergence obligation is retained as a foundation proof on Def.fixedImplementation. No separate stage assumption or equality transport."
+        "proof_status": "proof-placeholder",
+        "notes": "Fixed sphere completion/convergence applicability and filtration separation are Def-owned with explicit sorry proofs. Neither is a Challenge2 field."
       },
       {
         "id": "SP04",
@@ -3049,24 +3078,6 @@
     ]
   },
   "interface_coverage": [
-    {
-      "structure": "KIP126.Challenge2.FoundationInputs",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
-      "role": "foundation",
-      "fields": {
-        "sphereApplicability": {
-          "sources": [
-            "ravenel",
-            "bhs"
-          ],
-          "locator": "Ravenel Theorem 2.2.13; BHS source applicability: the fixed completed sphere and actual tower still require an internal proof.",
-          "proof_status": "foundation-obligation",
-          "blueprint_labels": [
-            "thm:external-classical-adams-convergence"
-          ]
-        }
-      }
-    },
     {
       "structure": "KIP126.Challenge2.LiteratureInterface",
       "module": "KIP126/Interface/Challenge/Challenge2.lean",
@@ -3813,34 +3824,6 @@
           ],
           "locator": "Pinned LinProgram data and interpretation certificates: route_presentation. Correctness on the selected mathematical model remains a certification obligation.",
           "proof_status": "certification-obligation",
-          "blueprint_labels": []
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Challenge2.InternalApplications",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
-      "role": "internal-application",
-      "fields": {
-        "route": {
-          "sources": [
-            "bhs",
-            "pst",
-            "may01",
-            "toda",
-            "moss"
-          ],
-          "locator": "Internal application on the selected model; not a quoted external theorem.",
-          "proof_status": "internal-application-obligation",
-          "blueprint_labels": []
-        },
-        "sphereSeparated": {
-          "sources": [
-            "ravenel",
-            "bhs"
-          ],
-          "locator": "Internal separation from actual convergence, finite type and model comparison.",
-          "proof_status": "internal-application-obligation",
           "blueprint_labels": []
         }
       }

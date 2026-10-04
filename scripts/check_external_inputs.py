@@ -25,12 +25,10 @@ ROUTE_STATUSES = {
 }
 FIELD_STATUSES = {
     "literature": "external-statement-unproved",
-    "foundation": "foundation-obligation",
     "computation": "certification-obligation",
     "internal-application": "internal-application-obligation",
 }
 REQUIRED_STRUCTURES = {
-    "KIP126.Challenge2.FoundationInputs",
     "KIP126.Challenge2.LiteratureInterface",
     "KIP126.Challenge2.AdamsOneLineInterface",
     "KIP126.Literature.Route.Statements",
@@ -41,7 +39,6 @@ REQUIRED_STRUCTURES = {
     "KIP126.Literature.Route.TodaSourceResults",
     "KIP126.Literature.Route.TmfSourceResults",
     "KIP126.Challenge2.ComputationInterface",
-    "KIP126.Challenge2.InternalApplications",
 }
 
 
@@ -184,9 +181,7 @@ def validate_document(root, document):
     for item in coverage:
         name = item["structure"]
         expected_role = {
-            "KIP126.Challenge2.FoundationInputs": "foundation",
             "KIP126.Challenge2.ComputationInterface": "computation",
-            "KIP126.Challenge2.InternalApplications": "internal-application",
         }.get(name, "literature")
         require(item["role"] == expected_role, f"structure role mismatch: {name}")
         declaration_name(name)

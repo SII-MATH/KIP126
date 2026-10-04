@@ -65,9 +65,9 @@ import KIP126.Def.StageInput.StandardSphere.Classes.Family
 /-! Challenge 2: source-result and finite-computation delivery contracts.
 
 All mathematical operations and generic comparison language are defined in
-Def. This file assembles accepted source conclusions, the exact applications
-of those sources, and the finite C(M) certification obligations on that same
-model. It chooses no new model and does not prove the paper's new tools.
+Def. This file assembles accepted source conclusions and the finite C(M)
+certification obligations on that same model. Main proves their applications
+after consuming the one stage witness. It chooses no new model.
 Source locators and outstanding production obligations are maintained in
 `docs/STAGE0_INTERFACES.md` and `docs/external-inputs.json`.
 -/
@@ -709,7 +709,7 @@ structure Statements (B : Bindings D η L) where
   tmf : TmfSourceResults B.tmfSource
   moss : MossSourceInput M B.classicalSource.convergence
 
-/-- Interface's INTERNAL source-application delivery, separate from A(M).
+/-- Internal source-application target, separate from A(M).
 May retains its sign; Toda uses actual secondary-operation evidence; the
 kernel and Moss statements use the fixed source/model comparisons. The
 compatible normalized triple likewise requires
@@ -1245,41 +1245,18 @@ structure ComputationInterface (routeInput : Classical.Adams.StandardRouteInput)
   route_presentation : ∀ (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t),
     route.realization.sphere s t x = presentation.comparison s t ht x
 
-/-- Completion and convergence for the implementation already fixed in Def.
-This retains the former first-stage proof obligation without selecting another
-implementation or transporting along an equality of implementations. -/
-structure FoundationInputs : Prop where
-  sphereApplicability : Classical.Adams.BHSObjectApplicability
-    KIP126.Def.fixedImplementation.foundationInput.countableProducts
-    KIP126.Def.fixedImplementation.foundationInput.hf2.unit
-    (StableHomotopy.SphereSpectrum
-      (C := KIP126.Def.fixedImplementation.foundationInput.Spectrum))
-
-/-- Project-specific applications of the sources to the chosen model. These
-remain proof obligations, but are neither literature quotations nor computed
-tables. Their mathematical types retain the exact shared model bindings. -/
-structure InternalApplications (routeInput : Classical.Adams.StandardRouteInput)
-    (modelBindings : ModelBindings routeInput) : Prop where
-  route : Literature.Route.Application routeInput.model
-    modelBindings.routeEta modelBindings.tmfLabels modelBindings.route
-  sphereSeparated : Classical.Adams.ClassicalSphereSeparated
-    Classical.Adams.standardFoundation.hf2
-
 end Challenge2
 
 /-- One correlated stage witness: shared project bindings, literature conclusions,
-and C(M). The actual classical foundation and T(M) were fixed in Def; the
-auxiliary route witness, its prior-source consequences and all internal
-applications/computations are delivered together. No weaker route is chosen
-in advance. Every sphere computation uses the one presentation stored here. -/
+and C(M). The actual classical foundation and T(M) were fixed in Def. Main
+derives the internal applications after consuming this witness. Every sphere
+computation uses the one presentation stored here. -/
 structure Challenge2 where
-  foundation : Challenge2.FoundationInputs
   routeInput : Classical.Adams.StandardRouteInput
   modelBindings : Challenge2.ModelBindings routeInput
   presentation : Classical.Adams.LinE2Presentation
   literature : Challenge2.LiteratureInterface routeInput modelBindings
   computation : Challenge2.ComputationInterface routeInput modelBindings presentation
-  applications : Challenge2.InternalApplications routeInput modelBindings
 
 namespace Challenge2
 

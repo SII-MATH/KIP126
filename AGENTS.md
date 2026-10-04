@@ -15,9 +15,10 @@ working in this repository. Otherwise, ignore that file.
 ## Repository architecture
 
 - `KIP126/Def/` owns common mathematical objects, predicates, constructions,
-  the fixed implementation, and reusable theorems. It must not declare project axioms.
-- `KIP126/Interface/` constructs one `Challenge2` witness, including its
-  foundation applicability. It owns fixed-computation certification, comparison
+  the fixed implementation, its fixed-sphere applicability statement, and reusable
+  theorems. It must not declare project axioms.
+- `KIP126/Interface/` constructs one `Challenge2` witness. It owns
+  fixed-computation certification, comparison
   with the selected mathematical model, and the resulting delivery interface.
 - `KIP126/Main/` consumes Challenge2 and proves the paper's intermediate and
   final results. Intermediate statements and proofs belong in `Main/Solution/`;
@@ -34,8 +35,11 @@ working in this repository. Otherwise, ignore that file.
   `KIP126/Checks/` is the regression and audit layer.
 
 Challenge2 is defined in `KIP126/Interface/Challenge/Challenge2.lean`.
-It directly contains foundation applicability, model bindings, a fixed
-presentation, literature, computation, and internal applications. Reusable
+It directly contains model bindings, a fixed presentation, literature, and
+computation. Main derives internal applications after consuming the sole
+Challenge2 witness. Fixed-sphere applicability and filtration separation are
+Def-owned theorems with explicit unfinished proofs; downstream modules may
+reference their statements without adding them to Challenge2. Reusable
 foundation language lives under `KIP126.Foundation`; there is no Challenge1
 stage or equality transport to a second implementation. Do not create parallel
 witness definitions or proof transmission trees. All dependent fields use the

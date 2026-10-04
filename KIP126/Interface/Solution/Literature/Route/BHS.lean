@@ -1,5 +1,5 @@
 import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Foundation
+import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
 
 /-! BHS source specialization and selected-to-completed comparison.
 
@@ -58,13 +58,13 @@ theorem standard_sphere_permanent_lift
     (route : StandardRouteInput) (source : SyntheticSourceInputs route.model) :
     BHSPermanentLiftAt route.model SphereSpectrum :=
   bhs_permanent_lift_of_complete_source route source _ _
-    KIP126.Interface.Solution.standardSphereApplicability
+    KIP126.Def.standardSphereApplicability
 
 theorem standard_sphere_filtration_lambda
     (route : StandardRouteInput) (source : SyntheticSourceInputs route.model) :
     BHSFiltrationLambdaAt route.model SphereSpectrum :=
   bhs_filtration_lambda_of_complete_source route source _ _
-    KIP126.Interface.Solution.standardSphereApplicability
+    KIP126.Def.standardSphereApplicability
 
 /-- The remaining untruncated clauses of BHS A.1 on an applicable source.
 The classical convergence is canonical for that SAME source object's tower. -/

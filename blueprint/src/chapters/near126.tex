@@ -113,22 +113,23 @@ This chapter contains only the project deductions that assemble the setup, exter
 % and Conditional final theorems.
 \begin{definition}[Main formalization input]
   \label{def:kervaire-main-input}
-  \lean{KIP126.Challenge2,KIP126.Challenge2.FoundationInputs,KIP126.Challenge2.LiteratureInterface,KIP126.Challenge2.ComputationInterface,KIP126.Challenge2.InternalApplications}
+  \lean{KIP126.Challenge2,KIP126.Def.standardSphereApplicability,KIP126.Def.standardSphereSeparated,KIP126.Challenge2.LiteratureInterface,KIP126.Challenge2.ComputationInterface}
   \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence}
   \notready
   The main input $I$ is one value of \texttt{Challenge2} on the fixed Def
-  implementation. Its \texttt{foundation} field retains actual sphere
-  nilpotent completeness and strong convergence; countable products and other
-  structural data remain in the fixed implementation. One \texttt{routeInput}
+  implementation. Def's fixed-sphere applicability theorem states actual sphere
+  nilpotent completeness and strong convergence with an unfinished proof;
+  countable products and other structural data remain in the fixed
+  implementation. One \texttt{routeInput}
   and its \texttt{modelBindings} correlate all dependent choices. A single
   \texttt{presentation} is shared by the literature and computation delivery.
   The \texttt{literature} fields state the external mathematical inputs for
   the homotopy-theoretic proof; no manifold model or geometric Kervaire
   results are fields of this package. The \texttt{computation} fields state
-  interpreted, model-bound certification conclusions. The
-  \texttt{applications} record contains the internal route adapter and actual
-  sphere-filtration separation, rather than classifying them as citations or
-  program output. Source metadata is held in the external manifest.
+  interpreted, model-bound certification conclusions. Def states actual
+  sphere-filtration separation; Main states the internal route application
+  after consuming the one witness. Both retain unfinished proofs. Source
+  metadata is held in the external manifest.
 
   Interface constructs this direct value; Main temporarily consumes one
   disclosed axiom of that exact type. There is no independent Challenge1,
