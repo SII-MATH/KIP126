@@ -184,6 +184,7 @@ theorem BoundedExtensionSS.raisesFiltrationAt_succ
     apply boundarySubobject_eq_bot_of_dToK_eq_zero
     simp [FilteredComplex.dToK, BoundedExtensionSS.complex,
       underlyingComplex, twoTermObj, twoTermDiff]
+    rfl
   have hdn : (ext.ess t).d (n : ℤ) (s, 1) = 0 := hd s
   have hZsucc : FC.cycleSubobject s 1
       ((n + 1 : ℕ) : WithTop ℕ) = ⊤ := by
