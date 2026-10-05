@@ -73,6 +73,48 @@ class HasFunctorialCofiber where
         simp only [Category.assoc, h₂₃]
         rw [← Category.assoc, h₁₂, Category.assoc])
 
+namespace HasFunctorialCofiber
+
+/-- The pointwise cofiber of a natural transformation, using the selected
+functorial cofiber on objects and commutative squares. -/
+noncomputable def natCofiberFunctor [HasFunctorialCofiber C]
+    {F G : Functor C C} (τ : NatTrans F G) : Functor C C where
+  obj X := cofib (τ.app X)
+  map {X Y} f :=
+    cofibMap (τ.app X) (τ.app Y) (F.map f) (G.map f) (τ.naturality f)
+  map_id X := by
+    simpa only [F.map_id, G.map_id] using cofibMap_id (τ.app X)
+  map_comp f g := by
+    simpa only [F.map_comp, G.map_comp] using
+      (cofibMap_comp (τ.app _) (τ.app _) (τ.app _)
+        (F.map f) (G.map f) (F.map g) (G.map g)
+        (τ.naturality f) (τ.naturality g)).symm
+
+end HasFunctorialCofiber
+
+/-- Coherent preservation of the selected cofiber triangles by a functor.
+The last field is the morphism part of the stable 3×3 lemma: the comparison
+on the third vertices is natural in commutative squares, while the first two
+vertices are fixed by identities. -/
+structure PreservesFunctorialCofibers [HasFunctorialCofiber C]
+    (H : Functor C C) [H.CommShift ℤ] where
+  triangleIso {A B : C} (f : A ⟶ B) :
+    H.mapTriangle.obj (Triangle.mk f (HasFunctorialCofiber.cofibι f)
+      (HasFunctorialCofiber.cofibδ f)) ≅
+      Triangle.mk (H.map f) (HasFunctorialCofiber.cofibι (H.map f))
+        (HasFunctorialCofiber.cofibδ (H.map f))
+  hom₁ {A B : C} (f : A ⟶ B) :
+    (triangleIso f).hom.hom₁ = 𝟙 (H.obj A)
+  hom₂ {A B : C} (f : A ⟶ B) :
+    (triangleIso f).hom.hom₂ = 𝟙 (H.obj B)
+  naturality {A B A' B' : C} (f : A ⟶ B) (g : A' ⟶ B')
+      (a : A ⟶ A') (b : B ⟶ B') (h : a ≫ g = f ≫ b) :
+    H.map (HasFunctorialCofiber.cofibMap f g a b h) ≫
+      (triangleIso g).hom.hom₃ =
+      (triangleIso f).hom.hom₃ ≫
+        HasFunctorialCofiber.cofibMap (H.map f) (H.map g) (H.map a) (H.map b)
+          (by simpa only [Functor.map_comp] using congrArg H.map h)
+
 end FunctorialCofiber
 
 section TensorFunctorialCofiber
@@ -90,6 +132,61 @@ class TensorTriangulatedCatWithFunctorialCofiber extends HasFunctorialCofiber C 
       cofib(f ▷ W) ≅ cofib(f) ⊗ W. -/
   tensorCofibIso : ∀ {X Y : C} (f : X ⟶ Y) (W : C),
     cofib (f ▷ W) ≅ cofib f ⊗ W
+  /-- Stable 3×3 coherence: the pointwise cofiber of a morphism of exact
+      endofunctors has the canonical coherent shift comparison. This is the
+      stable enhancement missing from bare functorial choices of cones. -/
+  natCofiberFunctorCommShift (F G : Functor C C)
+      [F.CommShift ℤ] [G.CommShift ℤ] (τ : NatTrans F G)
+      [NatTrans.CommShift τ ℤ] :
+    (HasFunctorialCofiber.natCofiberFunctor C τ).CommShift ℤ
+  /-- The 3×3 lemma for the selected stable cofiber, including the natural
+      comparison of its third vertices. Exactness of the pointwise cofiber is
+      derived below from this coherent comparison. -/
+  natCofiberFunctorPreservesCofibers (F G : Functor C C)
+      [F.CommShift ℤ] [G.CommShift ℤ]
+      [F.IsTriangulated] [G.IsTriangulated] (τ : NatTrans F G)
+      [NatTrans.CommShift τ ℤ] :
+    letI := natCofiberFunctorCommShift F G τ
+    PreservesFunctorialCofibers C
+      (HasFunctorialCofiber.natCofiberFunctor C τ)
+
+namespace TensorTriangulatedCatWithFunctorialCofiber
+
+variable [TensorTriangulatedCatWithFunctorialCofiber C]
+
+/-- The coherent shift comparison supplied by stable functorial cofibers. -/
+noncomputable instance natCofiberFunctor_commShift {F G : Functor C C}
+    [F.CommShift ℤ] [G.CommShift ℤ] (τ : NatTrans F G)
+    [NatTrans.CommShift τ ℤ] :
+    (HasFunctorialCofiber.natCofiberFunctor C τ).CommShift ℤ :=
+  natCofiberFunctorCommShift F G τ
+
+/-- Exactness of pointwise cofibers, derived from the stable 3×3 field. -/
+noncomputable instance natCofiberFunctor_isTriangulated
+    {F G : Functor C C} [F.CommShift ℤ] [G.CommShift ℤ]
+    [F.IsTriangulated] [G.IsTriangulated] (τ : NatTrans F G)
+    [NatTrans.CommShift τ ℤ] :
+    (HasFunctorialCofiber.natCofiberFunctor C τ).IsTriangulated where
+  map_distinguished := by
+    intro T hT
+    let H := HasFunctorialCofiber.natCofiberFunctor C τ
+    let D := natCofiberFunctorPreservesCofibers F G τ
+    let K := Triangle.mk T.mor₁ (HasFunctorialCofiber.cofibι T.mor₁)
+      (HasFunctorialCofiber.cofibδ T.mor₁)
+    have hK : K ∈ distTriang C :=
+      HasFunctorialCofiber.cofib_distinguished T.mor₁
+    have hHK : H.mapTriangle.obj K ∈ distTriang C :=
+      isomorphic_distinguished _
+        (HasFunctorialCofiber.cofib_distinguished (H.map T.mor₁)) _
+        (D.triangleIso T.mor₁)
+    let e : T ≅ K := isoTriangleOfIso₁₂ T K hT hK
+      (Iso.refl _) (Iso.refl _) (by
+        change T.mor₁ ≫ 𝟙 _ = 𝟙 _ ≫ T.mor₁
+        rw [Category.comp_id, Category.id_comp])
+    change H.mapTriangle.obj T ∈ distTriang C
+    exact isomorphic_distinguished _ hHK _ (H.mapTriangle.mapIso e)
+
+end TensorTriangulatedCatWithFunctorialCofiber
 
 end TensorFunctorialCofiber
 

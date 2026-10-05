@@ -52,8 +52,8 @@ variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮]
 axiom sh_closedSymmetricTT : ClosedSymmetricTensorTriangulated 𝒮
 noncomputable instance : ClosedSymmetricTensorTriangulated 𝒮 := sh_closedSymmetricTT
 
-/-- The stable homotopy category has functorial cofiber compatible with
-    the tensor structure. -/
+/-- The stable homotopy category has stable functorial cofiber compatible
+    with the tensor structure, including the pointwise 3×3 property. -/
 axiom sh_tensor_functorial_cofiber : TensorTriangulatedCatWithFunctorialCofiber 𝒮
 noncomputable instance : TensorTriangulatedCatWithFunctorialCofiber 𝒮 :=
   sh_tensor_functorial_cofiber
@@ -224,11 +224,12 @@ noncomputable def connectingHomomorphism (T : HoCofiberSequence (𝒮 := 𝒮)) 
       (shiftFunctor 𝒮 (-1)).map (α ≫ T.h) ≫
         (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X
   map_zero' := by
-    erw [Limits.zero_comp, Functor.map_zero, Limits.zero_comp, Limits.comp_zero]
+    simp only [Limits.zero_comp, Functor.map_zero]
+    erw [Limits.zero_comp, Limits.comp_zero]
   map_add' := by
     intro a b
-    erw [Preadditive.add_comp, Functor.map_add,
-      Preadditive.comp_add_assoc, Preadditive.add_comp]
+    simp only [Preadditive.add_comp, Functor.map_add]
+    erw [Preadditive.comp_add_assoc, Preadditive.add_comp]
     simp only [Category.assoc]
 
 /-! ## Properties derived from the distinguished triangle -/
@@ -309,7 +310,8 @@ private theorem connectingHom_comp_f_zero (T : HoCofiberSequence (𝒮 := 𝒮))
       (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X ≫
       T.f) =
     (0 : (shiftFunctor 𝒮 (n - 1)).obj SphereSpectrum ⟶ T.Y)
-  convert hout using 1 <;> rfl
+  convert hout using 1
+  rfl
 
 /-! ## Long Exact Sequence on Homotopy Groups
 
