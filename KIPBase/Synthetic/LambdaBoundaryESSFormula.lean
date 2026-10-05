@@ -1,4 +1,4 @@
-import KIPBase.Synthetic.ExtensionSS
+import KIPBase.Synthetic.LambdaBoundaryNaturality
 
 /-!
 # The canonical boundary ESS and actual homotopy representatives
@@ -134,5 +134,24 @@ theorem lambdaPowerBockstein_essential_iff_homotopy_boundary
   rw [← zero_relation_iff_boundary,
     lambdaPowerBockstein_relation_iff_homotopy_boundary X n degree r hr s,
     lambdaPowerBockstein_relation_iff_homotopy_boundary X n degree r hr s]
+
+/-- Actual filtered representatives for the finite boundary give actual
+filtered representatives for the first boundary, retaining both specified
+ambient classes through the canonical restriction map. -/
+theorem lambdaBoundaryToOne_lifts (X : Syn) (n : ℕ)
+    (degree : ℤ × ℤ) (r : ℤ) (hr : 0 ≤ r) (s : ℤ)
+    {T : AddCommGrpCat.{0}} [Projective T]
+    {x : T ⟶ (unboundedExtensionSSData.{1, 0, 0, 0}
+      (lambdaPowerBocksteinCSSMap X (n + 1)) degree (s, 1)).V}
+    {y : T ⟶ (unboundedExtensionSSData.{1, 0, 0, 0}
+      (lambdaPowerBocksteinCSSMap X (n + 1)) degree (s + r, 0)).V}
+    (h : LambdaPowerBoundaryLifts X (n + 1) degree r s x y) :
+    LambdaPowerBoundaryLifts X 1 degree r s
+      (x ≫ (lambdaBoundaryToOneMorphism X n degree).φ (s, 1))
+      (y ≫ (lambdaBoundaryToOneMorphism X n degree).φ (s + r, 0)) := by
+  apply (lambdaPowerBockstein_relation_iff_homotopy_boundary X 1 degree r hr s).mp
+  exact lambdaBoundaryToOne_relation X n degree r (s, 1)
+    ((lambdaPowerBockstein_relation_iff_homotopy_boundary
+      X (n + 1) degree r hr s).mpr h)
 
 end KIPBase.Synthetic

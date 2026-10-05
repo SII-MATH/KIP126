@@ -1,5 +1,4 @@
 import KIPBase.Synthetic.ESSNaturality
-import KIPBase.Synthetic.LambdaBoundaryESSFormula
 
 /-!
 # The finite-to-single lambda boundary map on the canonical ESS
@@ -351,25 +350,6 @@ theorem lambdaBoundaryToOne_relation (X : Syn) (n : ℕ)
     (lambdaPowerBocksteinCSSMap X (n + 1)) (lambdaPowerBocksteinCSSMap X 1)
     degree (lambdaBoundaryToOneComplexMap X n degree) r k h
 
-/-- Actual filtered representatives for the finite boundary give actual
-filtered representatives for the first boundary, retaining both specified
-ambient classes through the canonical restriction map. -/
-theorem lambdaBoundaryToOne_lifts (X : Syn) (n : ℕ)
-    (degree : ℤ × ℤ) (r : ℤ) (hr : 0 ≤ r) (s : ℤ)
-    {T : AddCommGrpCat.{0}} [Projective T]
-    {x : T ⟶ (unboundedExtensionSSData.{1, 0, 0, 0}
-      (lambdaPowerBocksteinCSSMap X (n + 1)) degree (s, 1)).V}
-    {y : T ⟶ (unboundedExtensionSSData.{1, 0, 0, 0}
-      (lambdaPowerBocksteinCSSMap X (n + 1)) degree (s + r, 0)).V}
-    (h : LambdaPowerBoundaryLifts X (n + 1) degree r s x y) :
-    LambdaPowerBoundaryLifts X 1 degree r s
-      (x ≫ (lambdaBoundaryToOneMorphism X n degree).φ (s, 1))
-      (y ≫ (lambdaBoundaryToOneMorphism X n degree).φ (s + r, 0)) := by
-  apply (lambdaPowerBockstein_relation_iff_homotopy_boundary X 1 degree r hr s).mp
-  exact lambdaBoundaryToOne_relation X n degree r (s, 1)
-    ((lambdaPowerBockstein_relation_iff_homotopy_boundary
-      X (n + 1) degree r hr s).mpr h)
-
 /-- Essentiality of the image implies essentiality of the original
 relation. The forward implication is deliberately not asserted: restriction
 can annihilate a target page class. -/
@@ -483,5 +463,37 @@ theorem nuModLambdaSuccGeneratorEInftyIsoPage_toOne
       2 (s, t, t) = q10 := rfl
   rw [hq10eq]
   simp
+
+/-- The finite-to-one boundary map on source E0, followed by the finite
+quotient stable-page comparison, is the displayed inclusion into the
+Adams E2 page. -/
+theorem lambdaBoundaryToOne_e0Source_diagonal
+    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮]
+    (X : 𝒮) (n : ℕ) (s t : ℤ) :
+    lambdaBoundaryToOnePageMap ((nu 𝒮 Syn).obj X) n (t - s, t) 0 (s, 1) ≫
+        ((canonicalLambdaPowerBocksteinData ((nu 𝒮 Syn).obj X) 1).e0SourceIso
+          s (t - s, t)).hom ≫
+        (eqToIso (by
+          ext <;> simp [syntheticAdamsIndex] :
+          ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) 1)).ssData
+            (syntheticAdamsIndex s (t - s, t))).eInfty =
+          ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) 1)).ssData
+            (s, t, t)).eInfty)).hom ≫
+        (nuModLambdaPredGeneratorEInftyIsoPage 𝒮 Syn X 2 (by omega) s t).hom =
+      ((canonicalLambdaPowerBocksteinData ((nu 𝒮 Syn).obj X) (n + 1)).e0SourceIso
+          s (t - s, t)).hom ≫
+        (eqToIso (by
+          ext <;> simp [syntheticAdamsIndex] :
+          ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) (n + 1))).ssData
+            (syntheticAdamsIndex s (t - s, t))).eInfty =
+          ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) (n + 1))).ssData
+            (s, t, t)).eInfty)).hom ≫
+        (nuModLambdaSuccGeneratorEInftyIsoPage 𝒮 Syn X n s t).hom ≫
+          synAdams_displayedPageToE2OfBoundariesEq
+            ((nu 𝒮 Syn).obj X) n (s, t, t)
+            (synAdams_nu_diagonal_boundaries 𝒮 Syn X s t n) := by
+  rw [lambdaBoundaryToOne_e0Source]
+  simp only [Category.assoc]
+  rw [nuModLambdaSuccGeneratorEInftyIsoPage_toOne]
 
 end KIPBase.Synthetic
