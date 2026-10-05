@@ -3,7 +3,7 @@
   Extensions on a classical Adams page, expressed through synthetic ESSs.
 -/
 import KIPBase.Synthetic.Lift
-import KIPBase.Synthetic.ExtensionSS
+import KIPBase.Synthetic.FESS
 import KIPBase.SpectralSequence.Crossing
 
 namespace KIPBase.Synthetic
@@ -56,13 +56,70 @@ to use this same family, rather than choosing unrelated convergence witnesses
 at each page. -/
 structure NormalizedPageESSFamily {X Y : 𝒮} (f : X ⟶ Y) where
   finite : ∀ (r : ℕ) (hr : 2 ≤ r),
-    SyntheticExtensionData (fHatFinitePage 𝒮 Syn f r hr)
-  infinite : SyntheticExtensionData (fHatInfinitePage 𝒮 Syn f)
+    SyntheticExtensionCoreData (fHatFinitePage 𝒮 Syn f r hr)
+  infinite : SyntheticExtensionCoreData (fHatInfinitePage 𝒮 Syn f)
   finiteLambdaAction : ∀ (r : ℕ) (hr : 2 ≤ r)
       (degree index : ℤ × ℤ),
     LambdaPowerAction (((finite r hr).ess degree).ssData index).V
   infiniteLambdaAction : ∀ (degree index : ℤ × ℤ),
     LambdaPowerAction ((infinite.ess degree).ssData index).V
+
+namespace NormalizedPageESSFamily
+
+variable {X Y : 𝒮} {f : X ⟶ Y}
+
+/-- A normalized page family uses the canonical coherent synthetic Adams
+convergence data on every finite quotient and on the untruncated map.
+
+The lambda actions are deliberately not part of this proposition: the
+project's actual lambda action changes weight, whereas `LambdaPowerAction`
+is the legacy fixed-component interface. -/
+structure IsCanonical (family : NormalizedPageESSFamily 𝒮 Syn f) : Prop where
+  finite_eq : ∀ (r : ℕ) (hr : 2 ≤ r),
+    family.finite r hr =
+      syntheticExtensionCoreDataOfMap (fHatFinitePage 𝒮 Syn f r hr)
+  infinite_eq : family.infinite =
+    syntheticExtensionCoreDataOfMap (fHatInfinitePage 𝒮 Syn f)
+
+/-- Construct a page family with canonical convergence data from explicitly
+supplied fixed-component lambda actions.  Keeping these actions as parameters
+prevents the incorrect identification of the genuine weight-changing lambda
+map with an endomorphism of one component. -/
+noncomputable def canonicalOfActions
+    (finiteLambdaAction : ∀ (r : ℕ) (hr : 2 ≤ r)
+      (degree index : ℤ × ℤ),
+      LambdaPowerAction
+        (((syntheticExtensionCoreDataOfMap
+          (fHatFinitePage 𝒮 Syn f r hr)).ess degree).ssData index).V)
+    (infiniteLambdaAction : ∀ (degree index : ℤ × ℤ),
+      LambdaPowerAction
+        (((syntheticExtensionCoreDataOfMap
+          (fHatInfinitePage 𝒮 Syn f)).ess degree).ssData index).V) :
+    NormalizedPageESSFamily 𝒮 Syn f where
+  finite r hr := syntheticExtensionCoreDataOfMap
+    (fHatFinitePage 𝒮 Syn f r hr)
+  infinite := syntheticExtensionCoreDataOfMap
+    (fHatInfinitePage 𝒮 Syn f)
+  finiteLambdaAction := finiteLambdaAction
+  infiniteLambdaAction := infiniteLambdaAction
+
+/-- The family constructed by `canonicalOfActions` is canonical on all its
+convergence data. -/
+theorem canonicalOfActions_isCanonical
+    (finiteLambdaAction : ∀ (r : ℕ) (hr : 2 ≤ r)
+      (degree index : ℤ × ℤ),
+      LambdaPowerAction
+        (((syntheticExtensionCoreDataOfMap
+          (fHatFinitePage 𝒮 Syn f r hr)).ess degree).ssData index).V)
+    (infiniteLambdaAction : ∀ (degree index : ℤ × ℤ),
+      LambdaPowerAction
+        (((syntheticExtensionCoreDataOfMap
+          (fHatInfinitePage 𝒮 Syn f)).ess degree).ssData index).V) :
+    (canonicalOfActions 𝒮 Syn finiteLambdaAction
+      infiniteLambdaAction).IsCanonical := by
+  constructor <;> intros <;> rfl
+
+end NormalizedPageESSFamily
 
 /-- The exponent of `λ` on the target of an extension of length `n`. -/
 noncomputable def pageLambdaExponent {X Y : 𝒮} (f : X ⟶ Y) (n : ℤ) : ℕ :=
@@ -86,7 +143,7 @@ specific power `λ^(n-eHat(f))` on that ambient object.  Consequently
 relation.  Keeping the action as a morphism makes the compatibility typed and
 allows the later rigidity/comparison layer to provide its concrete formula. -/
 structure PageExtensionRelation {A B : Syn} {g : A ⟶ B}
-    (data : SyntheticExtensionData g) (degree : ℤ × ℤ)
+    (data : SyntheticExtensionCoreData g) (degree : ℤ × ℤ)
     (lambdaExponent : ℕ) (n s : ℤ) where
   T : AddCommGrpCat.{0}
   [projective : Projective T]
@@ -102,7 +159,7 @@ structure PageExtensionRelation {A B : Syn} {g : A ⟶ B}
 
 namespace PageExtensionRelation
 
-variable {A B : Syn} {g : A ⟶ B} {data : SyntheticExtensionData g}
+variable {A B : Syn} {g : A ⟶ B} {data : SyntheticExtensionCoreData g}
     {degree : ℤ × ℤ} {lambdaExponent : ℕ} {n s : ℤ}
 
 /-- The `λ`-scaled target used by the synthetic ESS relation. -/
@@ -147,6 +204,13 @@ extension relation: the scaled target is not a page boundary. -/
 def Essential (P : PageExtensionRelation data degree lambdaExponent n s) : Prop :=
   EssentialDifferentialRelation (data.ess degree) n (s, 1)
     P.source P.scaledTarget
+
+/-- Relation-level no-crossing for the exact generalized element carried by
+this page extension.  The projectivity witness is recovered from the
+relation package itself. -/
+def NoCrossing (P : PageExtensionRelation data degree lambdaExponent n s) : Prop :=
+  letI : Projective P.T := P.projective
+  ESSRelationNoCrossing n (s, 1) P.relation
 
 /-- Essentiality is equivalent to zero being absent from the complete target
 coset. -/
@@ -300,6 +364,34 @@ variable {𝒮 Syn} {X Y : 𝒮} {f : X ⟶ Y}
     {family : NormalizedPageESSFamily 𝒮 Syn f}
     {r : ℕ} {n s t : ℤ}
 
+/-- Transport a finite page extension to the canonical coherent convergence
+data.  This removes all arbitrary convergence witnesses while retaining the
+chosen lambda action and representatives. -/
+noncomputable def canonicalExtension
+    (P : FinitePageExtension 𝒮 Syn f family r n s t)
+    (hfamily : family.IsCanonical) :
+    PageExtensionRelation
+      (syntheticExtensionCoreDataOfMap
+        (fHatFinitePage 𝒮 Syn f r P.page_ge_two))
+      (t - s, t + eHat 𝒮 f) (pageLambdaExponent 𝒮 f n) n s := by
+  rw [← hfamily.finite_eq r P.page_ge_two]
+  exact P.extension
+
+/-- Transport a relation together with its no-crossing certificate.  Moving
+the dependent pair at once guarantees that the certificate remains attached
+to the very same generalized element after canonicalization. -/
+noncomputable def canonicalNoCrossingExtension
+    (P : FinitePageExtension 𝒮 Syn f family r n s t)
+    (hfamily : family.IsCanonical)
+    (hP : P.extension.NoCrossing) :
+    { Q : PageExtensionRelation
+        (syntheticExtensionCoreDataOfMap
+          (fHatFinitePage 𝒮 Syn f r P.page_ge_two))
+        (t - s, t + eHat 𝒮 f) (pageLambdaExponent 𝒮 f n) n s //
+      Q.NoCrossing } := by
+  rw [← hfamily.finite_eq r P.page_ge_two]
+  exact ⟨P.extension, hP⟩
+
 /-- The classical target cycle level `r-1-n+eHat(f)`. -/
 def targetCycleLevel (_P : FinitePageExtension 𝒮 Syn f family r n s t) : ℤ :=
   (r : ℤ) - 1 - n + eHat 𝒮 f
@@ -349,6 +441,30 @@ namespace InfinitePageExtension
 variable {𝒮 Syn} {X Y : 𝒮} {f : X ⟶ Y}
     {family : NormalizedPageESSFamily 𝒮 Syn f}
     {n s t : ℤ}
+
+/-- Transport an infinite page extension to the canonical coherent
+convergence data. -/
+noncomputable def canonicalExtension
+    (P : InfinitePageExtension 𝒮 Syn f family n s t)
+    (hfamily : family.IsCanonical) :
+    PageExtensionRelation
+      (syntheticExtensionCoreDataOfMap (fHatInfinitePage 𝒮 Syn f))
+      (t - s, t + eHat 𝒮 f) (pageLambdaExponent 𝒮 f n) n s := by
+  rw [← hfamily.infinite_eq]
+  exact P.extension
+
+/-- Canonicalize an untruncated relation and its attached no-crossing
+certificate simultaneously. -/
+noncomputable def canonicalNoCrossingExtension
+    (P : InfinitePageExtension 𝒮 Syn f family n s t)
+    (hfamily : family.IsCanonical)
+    (hP : P.extension.NoCrossing) :
+    { Q : PageExtensionRelation
+        (syntheticExtensionCoreDataOfMap (fHatInfinitePage 𝒮 Syn f))
+        (t - s, t + eHat 𝒮 f) (pageLambdaExponent 𝒮 f n) n s //
+      Q.NoCrossing } := by
+  rw [← hfamily.infinite_eq]
+  exact ⟨P.extension, hP⟩
 
 abbrev Essential (P : InfinitePageExtension 𝒮 Syn f family n s t) : Prop :=
   P.extension.Essential
@@ -408,6 +524,68 @@ structure InfinitePageExtension.Crossing {X Y : 𝒮} {f : X ⟶ Y}
     (n - a - b) (s + a) (t + a)
   essential : crossing.Essential
 
+namespace FinitePageExtension.Crossing
+
+variable {𝒮 Syn} {X Y : 𝒮} {f : X ⟶ Y}
+    {family : NormalizedPageESSFamily 𝒮 Syn f}
+    {r : ℕ} {n s t : ℤ}
+    {P : FinitePageExtension 𝒮 Syn f family r n s t}
+
+/-- The source cycle level of a finite crossing is exactly `r - 1 - a`. -/
+theorem sourceCycleLevel_eq (C : P.Crossing) :
+    (r - C.a) - 1 = r - 1 - C.a := by
+  omega
+
+/-- The target cycle level of a finite crossing is the Blueprint index
+`r - 1 - n + b + eHat(f)`. -/
+theorem targetCycleLevel_eq (C : P.Crossing) :
+    C.crossing.targetCycleLevel =
+      (r : ℤ) - 1 - n + C.b + eHat 𝒮 f := by
+  have ha : C.a ≤ r := le_trans C.a_le (Nat.sub_le r 2)
+  simp only [FinitePageExtension.targetCycleLevel, Nat.cast_sub ha]
+  ring
+
+/-- The shorter extension in a crossing lands in classical bidegree
+`(s+n-b,t+n-b)`. -/
+theorem targetBidegree_eq (C : P.Crossing) :
+    ((s + C.a) + (n - C.a - C.b),
+      (t + C.a) + (n - C.a - C.b)) =
+      (s + n - C.b, t + n - C.b) := by
+  ext <;> simp <;> ring
+
+/-- The crossing target is nonboundary with respect to its complete target
+coset, not merely with respect to the ordinary Adams boundary subgroup. -/
+theorem zero_not_mem_classicalTargetCoset (C : P.Crossing) :
+    0 ∉ C.crossing.classicalTargetCoset :=
+  (FinitePageExtension.essential_iff_zero_not_mem_classicalTargetCoset
+    C.crossing).mp C.essential
+
+end FinitePageExtension.Crossing
+
+namespace InfinitePageExtension.Crossing
+
+variable {𝒮 Syn} {X Y : 𝒮} {f : X ⟶ Y}
+    {family : NormalizedPageESSFamily 𝒮 Syn f}
+    {n s t : ℤ}
+    {P : InfinitePageExtension 𝒮 Syn f family n s t}
+
+/-- The actual untruncated shorter extension has target bidegree
+`(s+n-b,t+n-b)`. -/
+theorem targetBidegree_eq (C : P.Crossing) :
+    ((s + C.a) + (n - C.a - C.b),
+      (t + C.a) + (n - C.a - C.b)) =
+      (s + n - C.b, t + n - C.b) := by
+  ext <;> simp <;> ring
+
+/-- An `E∞` crossing also requires one actual essential untruncated relation,
+so its complete target coset cannot contain zero. -/
+theorem zero_not_mem_classicalTargetCoset (C : P.Crossing) :
+    0 ∉ C.crossing.classicalTargetCoset :=
+  (InfinitePageExtension.essential_iff_zero_not_mem_classicalTargetCoset
+    C.crossing).mp C.essential
+
+end InfinitePageExtension.Crossing
+
 /-- Existence of a finite page-extension crossing. -/
 def FinitePageExtension.HasCrossing {X Y : 𝒮} {f : X ⟶ Y}
     {family : NormalizedPageESSFamily 𝒮 Syn f}
@@ -426,13 +604,59 @@ def FinitePageExtension.NoCrossing {X Y : 𝒮} {f : X ⟶ Y}
     {family : NormalizedPageESSFamily 𝒮 Syn f}
     {r : ℕ} {n s t : ℤ}
     (P : FinitePageExtension 𝒮 Syn f family r n s t) : Prop :=
-  ¬ P.HasCrossing
+  ¬ P.HasCrossing ∧ P.extension.NoCrossing
 
 def InfinitePageExtension.NoCrossing {X Y : 𝒮} {f : X ⟶ Y}
     {family : NormalizedPageESSFamily 𝒮 Syn f}
     {n s t : ℤ}
     (P : InfinitePageExtension 𝒮 Syn f family n s t) : Prop :=
-  ¬ P.HasCrossing
+  ¬ P.HasCrossing ∧ P.extension.NoCrossing
+
+namespace FinitePageExtension
+
+variable {X Y : 𝒮} {f : X ⟶ Y}
+    {family : NormalizedPageESSFamily 𝒮 Syn f}
+    {r : ℕ} {n s t : ℤ}
+
+/-- The page-level no-crossing certificate contains exactly the relation-level
+no-crossing hypothesis consumed by ESS square propagation. -/
+theorem NoCrossing.essRelation
+    {P : FinitePageExtension 𝒮 Syn f family r n s t}
+    (hP : P.NoCrossing) :
+    P.extension.NoCrossing :=
+  hP.2
+
+/-- The strengthened no-crossing predicate still retains the original
+Blueprint assertion that no structural finite-page crossing exists. -/
+theorem NoCrossing.noPageCrossing
+    {P : FinitePageExtension 𝒮 Syn f family r n s t}
+    (hP : P.NoCrossing) : ¬ P.HasCrossing :=
+  hP.1
+
+end FinitePageExtension
+
+namespace InfinitePageExtension
+
+variable {X Y : 𝒮} {f : X ⟶ Y}
+    {family : NormalizedPageESSFamily 𝒮 Syn f}
+    {n s t : ℤ}
+
+/-- Infinite-page no-crossing supplies the relation-level hypothesis used by
+the pure synthetic propagation theorem. -/
+theorem NoCrossing.essRelation
+    {P : InfinitePageExtension 𝒮 Syn f family n s t}
+    (hP : P.NoCrossing) :
+    P.extension.NoCrossing :=
+  hP.2
+
+/-- The strengthened predicate also excludes an actual untruncated page
+crossing. -/
+theorem NoCrossing.noPageCrossing
+    {P : InfinitePageExtension 𝒮 Syn f family n s t}
+    (hP : P.NoCrossing) : ¬ P.HasCrossing :=
+  hP.1
+
+end InfinitePageExtension
 
 end
 
