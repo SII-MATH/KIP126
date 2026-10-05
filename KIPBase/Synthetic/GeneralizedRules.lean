@@ -295,6 +295,12 @@ variable {C : Type uC} [Category.{vC} C] [Abelian C]
 variable [LocallySmall.{w₀} C] [WellPowered.{w₀} C]
 variable [HasWidePullbacks.{w₀} C] [HasCoproducts.{w₀} C]
 
+/-- `AddCommGrpCat.{0}` 的子对象类型位于 `Type 1`，因而在无界
+交换律所用的同一 universe 上自动 small。此实例只在本文件局部使用。 -/
+noncomputable local instance addCommGrpCat_wellPowered_one :
+    WellPowered.{1} AddCommGrpCat.{0} where
+  subobject_small := fun _ => by infer_instance
+
 /-- Purely synthetic generalized Leibniz rule.
 
 The top relation has length `a`, the left relation length `b`, and the bottom
