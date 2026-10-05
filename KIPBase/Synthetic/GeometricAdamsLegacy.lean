@@ -427,6 +427,105 @@ theorem LambdaBocksteinSourcePageRep.exists_of_page
   · refine ⟨xZ, rfl, ?_⟩
     exact hxZPage
 
+/-- A representative of a source class on the `r`-th lambda-Bockstein page
+can be chosen so that its actual boundary already factors through filtration
+`s + r`.  This is the source-cycle condition written in the unbounded
+filtered complex.  No convergence or boundedness assumption enters here. -/
+theorem LambdaBocksteinSourcePageRep.exists_filtered_boundary_lift
+    {Y : Syn} {degree : ℤ × ℤ} {r s : ℤ}
+    {a : Smn (Syn := Syn) degree.1 degree.2 ⟶ XModLambdaN Y 1}
+    {xPage : AddCommGrpCat.of ℤ ⟶
+      (canonicalLambdaPowerBocksteinESS Y 1 degree).Page r (s, 1)}
+    (hr : 0 ≤ r)
+    (h : LambdaBocksteinSourcePageRep (Syn := Syn)
+      Y degree r s a xPage) :
+    ∃ (x : AddCommGrpCat.of ℤ ⟶
+        (unboundedExtensionSSData (lambdaPowerBocksteinCSSMap Y 1)
+          degree (s, 1)).V)
+      (xl : AddCommGrpCat.of ℤ ⟶ Subobject.underlying.obj
+        ((unboundedUnderlyingComplex (lambdaPowerBocksteinCSSMap Y 1)
+          degree).fil s 1))
+      (yl : AddCommGrpCat.of ℤ ⟶ Subobject.underlying.obj
+        ((unboundedUnderlyingComplex (lambdaPowerBocksteinCSSMap Y 1)
+          degree).fil (s + r) 0)),
+      xl ≫ (unboundedUnderlyingComplex (lambdaPowerBocksteinCSSMap Y 1)
+        degree).filToAssocGraded s 1 =
+        x ≫ (unboundedExtensionVComplexIso
+          (lambdaPowerBocksteinCSSMap Y 1) degree s 1).hom ∧
+      xl ≫ (unboundedUnderlyingComplex (lambdaPowerBocksteinCSSMap Y 1)
+        degree).filDiff s 1 =
+        yl ≫ Subobject.ofLE
+          ((unboundedUnderlyingComplex (lambdaPowerBocksteinCSSMap Y 1)
+            degree).fil (s + r) 0)
+          ((unboundedUnderlyingComplex (lambdaPowerBocksteinCSSMap Y 1)
+            degree).fil s 0)
+          ((unboundedUnderlyingComplex (lambdaPowerBocksteinCSSMap Y 1)
+            degree).fil_anti_of_le 0 (by omega)) := by
+  classical
+  rcases h with ⟨x, _xl, _hx, _ha, xZ, hxZ, _hxPage⟩
+  obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hr
+  let f := lambdaPowerBocksteinCSSMap Y 1
+  let FC := unboundedUnderlyingComplex f degree
+  let E := ExtensionSpectralSequence.{1, 0, 0, 0} f degree
+  let xC := xZ ≫ (unboundedExtensionZIso f degree (s, 1)
+    (n : WithTop ℕ)).hom
+  let g := (FC.fil s 1).arrow ≫ FC.d 1 ≫
+    cokernel.π ((FC.fil (s + (n : ℤ)) 0).arrow)
+  let K := kernelSubobject g
+  let p := factorThruImageSubobject (K.arrow ≫ FC.filToAssocGraded s 1)
+  let xC' : AddCommGrpCat.of ℤ ⟶ Subobject.underlying.obj
+      (imageSubobject (K.arrow ≫ FC.filToAssocGraded s 1)) := by
+    change AddCommGrpCat.of ℤ ⟶ Subobject.underlying.obj
+      ((unboundedComplexSSDataFamily f degree (s, 1)).Z (n : WithTop ℕ))
+    exact xC
+  let u := Projective.factorThru xC' p
+  have hxC' : xC' ≫ (imageSubobject
+      (K.arrow ≫ FC.filToAssocGraded s 1)).arrow =
+      x ≫ (unboundedExtensionVComplexIso f degree s 1).hom := by
+    have hcompat := congrArg (fun q => xZ ≫ q)
+      (unboundedExtensionZIso_hom_arrow f degree s 1 (n : WithTop ℕ))
+    change xZ ≫ (unboundedExtensionZIso f degree (s, 1)
+      (n : WithTop ℕ)).hom ≫
+        (FC.cycleSubobject s 1 (n : WithTop ℕ)).arrow = _ at hcompat
+    have hcompat' := (Category.assoc xZ
+      (unboundedExtensionZIso f degree (s, 1) (n : WithTop ℕ)).hom
+      (FC.cycleSubobject s 1 (n : WithTop ℕ)).arrow).trans hcompat
+    have hcompat'' := hcompat'.trans (Category.assoc xZ
+      ((E.ssData (s, 1)).Z (n : WithTop ℕ)).arrow
+      (unboundedExtensionVComplexIso f degree s 1).hom).symm
+    have hleft : xC' ≫ (imageSubobject
+        (K.arrow ≫ FC.filToAssocGraded s 1)).arrow =
+        (xZ ≫ ((E.ssData (s, 1)).Z (n : WithTop ℕ)).arrow) ≫
+          (unboundedExtensionVComplexIso f degree s 1).hom := by
+      dsimp only [xC', xC]
+      exact hcompat''
+    exact hleft.trans (congrArg (fun q => q ≫
+      (unboundedExtensionVComplexIso f degree s 1).hom) hxZ)
+  have hgK : (K.arrow ≫ (FC.fil s 1).arrow ≫ FC.d 1) ≫
+      cokernel.π ((FC.fil (s + (n : ℤ)) 0).arrow) = 0 := by
+    simpa only [g, Category.assoc] using kernelSubobject_arrow_comp g
+  let dLift := Abelian.monoLift (FC.fil (s + (n : ℤ)) 0).arrow
+    (K.arrow ≫ (FC.fil s 1).arrow ≫ FC.d 1) hgK
+  refine ⟨x, u ≫ K.arrow, u ≫ dLift, ?_, ?_⟩
+  · calc
+      (u ≫ K.arrow) ≫ FC.filToAssocGraded s 1 =
+          u ≫ (K.arrow ≫ FC.filToAssocGraded s 1) := Category.assoc _ _ _
+      _ = (u ≫ p) ≫ (imageSubobject
+          (K.arrow ≫ FC.filToAssocGraded s 1)).arrow := by
+            rw [Category.assoc, imageSubobject_arrow_comp]
+      _ = xC' ≫ (imageSubobject
+          (K.arrow ≫ FC.filToAssocGraded s 1)).arrow := by
+            rw [Projective.factorThru_comp]
+      _ = x ≫ (unboundedExtensionVComplexIso f degree s 1).hom := hxC'
+  · apply (cancel_mono (FC.fil s 0).arrow).mp
+    change ((u ≫ K.arrow) ≫ FC.filDiff s 1) ≫
+        (FC.fil s 0).arrow =
+      ((u ≫ dLift) ≫ Subobject.ofLE
+        (FC.fil (s + (n : ℤ)) 0) (FC.fil s 0) _) ≫
+          (FC.fil s 0).arrow
+    simp only [Category.assoc, FC.filDiff_comp_arrow,
+      Subobject.ofLE_arrow, dLift, Abelian.monoLift_comp]
+
 /-- The zero actual class is represented by the zero page class. -/
 theorem LambdaBocksteinSourcePageRep.zero
     (Y : Syn) (degree : ℤ × ℤ) (r s : ℤ) :
