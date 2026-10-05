@@ -9,12 +9,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{definition}[Filtered two-term complex]
   \label{def:filtered-two-term-complex}
   \uses{def:admissible-spectrum,def:adams-filtration,def:mathlib-chain-complex}
-  \lean{KIPBase.SpectralSequence.twoTermObj}
-  \lean{KIPBase.SpectralSequence.twoTermDiff}
-  \lean{KIPBase.SpectralSequence.twoTermDiff_sq}
-  \lean{KIPBase.SpectralSequence.twoTermFil}
-  \lean{KIPBase.SpectralSequence.underlyingComplex}
-  \leanok
+  \notready
   For a filtration-preserving map $f:A_1\to A_2$, let $C(f)$ be the
   two-term chain complex
   \[
@@ -32,15 +27,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{definition}[$f$-extension spectral sequence]
   \label{def:f-extension-ss}
   \uses{def:filtered-two-term-complex,def:core-filtered-chain-complex,def:ess-complex-shape,thm:filtered-complex-to-spectral-sequence,def:ss-einfty-presentation,def:ss-convergence-detection-witness}
-  \lean{KIPBase.SpectralSequence.ExtensionSpectralSequence}
-  \lean{KIPBase.SpectralSequence.ExtensionSpectralSequence_r₀}
-  \lean{KIPBase.SpectralSequence.ExtensionSpectralSequence_diffDeg}
-  \lean{KIPBase.SpectralSequence.ExtensionSpectralSequence_d_nat}
-  \lean{KIPBase.SpectralSequence.UnboundedExtensionSS}
-  \lean{KIPBase.SpectralSequence.UnboundedExtensionSS.weakConvergence}
-  \lean{KIPBase.SpectralSequence.BoundedExtensionSS.ess}
-  \lean{KIPBase.SpectralSequence.BoundedExtensionSS.weakConvergence}
-  \leanok
+  \notready
   The $f$-extension spectral sequence, or $f$-ESS, is the spectral sequence of
   the filtered two-term complex attached to a morphism of converging spectral
   sequences.  Its initial page is built directly from the two original
@@ -71,16 +58,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{theorem}[$f$-ESS initial page and abutment comparison]
   \label{thm:fess-e0-abutment-comparison}
   \uses{def:ss-convergence-detection-witness,def:filtered-two-term-complex}
-  \lean{KIPBase.SpectralSequence.extensionE0IsoAssociatedGraded}
-  \lean{KIPBase.SpectralSequence.extensionE0SourceIso}
-  \lean{KIPBase.SpectralSequence.extensionE0TargetIso}
-  \lean{KIPBase.SpectralSequence.extensionE0TotalIso}
-  \lean{KIPBase.SpectralSequence.underlyingComplexHomologyOneIsoKernel}
-  \lean{KIPBase.SpectralSequence.underlyingComplexHomologyZeroIsoCokernel}
-  \lean{KIPBase.SpectralSequence.underlyingComplexHomologyIsoKernelCokernel}
-  \lean{KIPBase.SpectralSequence.BoundedExtensionSS.d0_eq_inducedAssocGradedMap}
-  \lean{KIPBase.SpectralSequence.BoundedExtensionSS.abutmentComparison}
-  \leanok
+  \notready
   Let $f:A_1\to A_2$ be a filtration-preserving map presented as a morphism
   of converging spectral sequences.  The two nonzero columns of the zeroth
   extension page are canonically the associated-graded objects of $A_1$ and
@@ -116,9 +94,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{theorem}[Commutative-square propagation]
   \label{thm:fess-commutative-square}
   \uses{prop:no-crossing-iff-uniform-detection}
-  \lean{KIPBase.SpectralSequence.essCommutativity}
-  \lean{KIPBase.SpectralSequence.unboundedEssCommutativity}
-  \leanok
+  \notready
   Let
   \[
   \begin{array}{ccc}
@@ -159,9 +135,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{corollary}[Unrestricted square propagation]
   \label{cor:fess-square-naturality}
   \uses{thm:fess-commutative-square}
-  \lean{KIPBase.SpectralSequence.essCommutativity_noCrossing}
-  \lean{KIPBase.SpectralSequence.unboundedEssCommutativity_noCrossing}
-  \leanok
+  \notready
   In the same square, if $d_n^f(x)=y$, $d_m^p(x)=z$, one of these has no
   crossing, and $d_l^g(z)=w$ has no crossing, then
   $d_{m+l-n}^q(y)=w$ whenever the displayed length is nonnegative.
@@ -177,9 +151,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{corollary}[Triangle-shaped shift]
   \label{cor:fess-triangle-shift}
   \uses{cor:fess-square-naturality}
-  \lean{KIPBase.SpectralSequence.essCommutativity_triangle}
-  \lean{KIPBase.SpectralSequence.unboundedEssCommutativity_triangle}
-  \leanok
+  \notready
   If $p=qf$, $d_n^f(x)=y$, and $d_m^p(x)=z$, and at least one of these
   extensions has no crossing, then $d_{m-n}^q(y)=z$ whenever $m\ge n$.
 \end{corollary}
@@ -194,9 +166,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{corollary}[Composition of successive extensions]
   \label{cor:fess-composition}
   \uses{cor:fess-square-naturality}
-  \lean{KIPBase.SpectralSequence.essCommutativity_composition}
-  \lean{KIPBase.SpectralSequence.unboundedEssCommutativity_composition}
-  \leanok
+  \notready
   If $q=gp$, $d_m^p(x)=z$ with
   $z\in E_\infty^{s+m,t+m}(Z)$, and $d_l^g(z)=w$ has no crossing, then
   $d_{m+l}^q(x)=w$.  The target spectrum of $z$ is $Z$; the occurrence of
@@ -212,8 +182,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{corollary}[Stable-page maps between extension spectral sequences]
   \label{cor:fess-map-of-stable-pages}
   \uses{cor:fess-square-naturality,def:reindexed-ss-morphism}
-  \lean{KIPBase.SpectralSequence.HomotopyCommSquare.stablePageESSReindexedMorphism}
-  \leanok
+  \notready
   For a commutative square $qf=gp$, suppose the $p$- and $q$-ESS have no
   differential before page $r$.  Then $(d_r^p,d_r^q)$ induces compatible page
   maps from the $f$-ESS to the $g$-ESS, commuting with every later extension
@@ -231,8 +200,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{corollary}[A zero composite makes the target permanent]
   \label{cor:fess-zero-composite-permanent}
   \uses{prop:fextension-iff-detected,cor:fess-square-naturality}
-  \lean{KIPBase.SpectralSequence.essPermanentCycle_of_zero_composite}
-  \leanok
+  \notready
   If $gf=0$ and $d_n^f(x)=y$, then $y$ is a permanent cycle in the $g$-ESS:
   $d_m^g(y)=0$ for every $m\ge0$.
 \end{corollary}
@@ -248,9 +216,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{proposition}[Exactness at the middle makes every permanent cycle a boundary]
   \label{prop:fess-exact-middle-boundary}
   \uses{def:f-extension-ss,prop:fextension-iff-detected,cor:fess-zero-composite-permanent}
-  \lean{KIPBase.SpectralSequence.AbutmentExactAt}
-  \lean{KIPBase.SpectralSequence.ESSPermanentCycle}
-  \lean{KIPBase.SpectralSequence.ess_boundary_of_exact_at_abutment}
+  \notready
   Let $V_1\xrightarrow{f}V_2\xrightarrow{g}V_3$ be two composable morphisms of
   converging spectral sequences, and fix one abutment degree $\tau$.  Suppose
   that
@@ -287,11 +253,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{definition}[$f$-ESS cycles and boundaries]
   \label{def:fess-cycles-boundaries}
   \uses{def:f-extension-ss}
-  \lean{KIPBase.SpectralSequence.BoundedExtensionSS.source_boundary_eq_bot}
-  \lean{KIPBase.SpectralSequence.BoundedExtensionSS.target_cycle_eq_top}
-  \lean{KIPBase.SpectralSequence.SSData.boundaryQuotient}
-  \lean{KIPBase.SpectralSequence.BoundedExtensionSS.pageDecompositionIso}
-  \leanok
+  \notready
   Define ${}^fZ_n^{s,t}(X)\subseteq E_\infty^{s,t}(X)$ to consist of classes
   on which $d_0^f,\ldots,d_n^f$ vanish, and let
   ${}^fB_n^{s,t}(Y)$ be the subgroup generated by their images.  Put
@@ -308,9 +270,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{definition}[$f$-extension and essentiality]
   \label{def:f-extension-essential}
   \uses{def:fess-cycles-boundaries}
-  \lean{KIPBase.SpectralSequence.DifferentialRelation}
-  \lean{KIPBase.SpectralSequence.EssentialDifferentialRelation}
-  \leanok
+  \notready
   An $f$-extension of length $n$ from
   $x\in E_\infty^{s,t}(X)$ to
   $y\in E_\infty^{s+n,t+n}(Y)$ is the assertion $d_n^f(x)=y$.
@@ -325,8 +285,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{proposition}[Extension iff a representative maps to a representative]
   \label{prop:fextension-iff-detected}
   \uses{def:f-extension-essential,def:adams-detection}
-  \lean{KIPBase.SpectralSequence.FilteredComplex.differentialRelation_iff_lifts}
-  \leanok
+  \notready
   There is an $f$-extension $d_n^f(x)=y$ if and only if some
   $[x]\in\{x\}$ satisfies $f[x]\in\{y\}$, where the target filtration is
   $s+n$ and equality is understood modulo ${}^fB_{n-1}$.
@@ -368,10 +327,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{definition}[Crossing and no-crossing range]
   \label{def:fess-crossing}
   \uses{def:f-extension-essential}
-  \lean{KIPBase.SpectralSequence.FilteredComplex.GeneralCrossing}
-  \lean{KIPBase.SpectralSequence.ESSRelationNoCrossingRange}
-  \lean{KIPBase.SpectralSequence.ESSRelationNoCrossing}
-  \leanok
+  \notready
   A crossing of $d_n^f(x)=y$, with $x$ in filtration $s$, is an extension
   $d_m^f(x')=y'\ne0$ whose source has filtration $s+a$ for $a>0$ and whose
   target filtration lies between a specified lower bound $p$ and
@@ -384,8 +340,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{lemma}[Every crossing contains an essential crossing]
   \label{lem:crossing-has-essential-crossing}
   \uses{def:fess-crossing,prop:fextension-inessential-iff-higher}
-  \lean{KIPBase.SpectralSequence.FilteredComplex.generalCrossing_to_essential}
-  \leanok
+  \notready
   If an extension has a crossing in a fixed filtration interval, then it has
   an essential crossing, possibly of smaller length, whose target remains in
   the same interval.
@@ -403,8 +358,7 @@ This chapter develops the general extension-spectral-sequence construction and i
 \begin{proposition}[No crossing iff uniform detection]
   \label{prop:no-crossing-iff-uniform-detection}
   \uses{def:fess-crossing,prop:fextension-iff-detected,prop:fextension-inessential-iff-higher,lem:crossing-has-essential-crossing}
-  \lean{KIPBase.SpectralSequence.FilteredComplex.noGeneralCrossingRange_iff_uniformDetection}
-  \leanok
+  \notready
   An extension from $x$ to $y$ has no crossing in filtrations at least $p$ if
   and only if every $[x]\in\{x\}$ satisfying
   $\operatorname{AF}(f[x])\ge p$ has $f[x]\in\{y\}$.  In particular:

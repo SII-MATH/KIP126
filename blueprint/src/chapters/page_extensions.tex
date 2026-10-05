@@ -9,9 +9,7 @@ This chapter contains the definitions of normalized page reductions, page extens
 \begin{definition}[Finite-page normalized map]
   \label{def:hat-map-page-reduction}
   \uses{def:synthetic-hat-map,def:synthetic-lambda-quotient}
-  \lean{KIPBase.Synthetic.fHatFinitePage}
-  \lean{KIPBase.Synthetic.fHatInfinitePage}
-  \leanok
+  \notready
   For finite $2\le r<\infty$, define
   \[
     \widehat f_{r-1}:\Sigma^{0,e(f)}\nu X/\lambda^{r-1}
@@ -29,13 +27,7 @@ This chapter contains the definitions of normalized page reductions, page extens
 \begin{definition}[$(f,E_r)$-extension]
   \label{def:page-extension}
   \uses{def:hat-map-page-reduction,def:synthetic-extension-ss,def:f-extension-essential,def:ss-elementwise-page-presentation,def:ss-einfty-presentation}
-  \lean{KIPBase.Synthetic.PageExtensionRelation}
-  \lean{KIPBase.Synthetic.PageExtensionRelation.Essential}
-  \lean{KIPBase.Synthetic.FinitePageExtension}
-  \lean{KIPBase.Synthetic.FinitePageExtension.Essential}
-  \lean{KIPBase.Synthetic.InfinitePageExtension}
-  \lean{KIPBase.Synthetic.InfinitePageExtension.Essential}
-  \leanok
+  \notready
   For finite $2\le r<\infty$, let $x\in Z_{r-1}^{s,t}(X)$ and
   $y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y)$, with
   $e(f)\le n\le r-2+e(f)$.  An $(f,E_r)$-extension
@@ -60,12 +52,7 @@ This chapter contains the definitions of normalized page reductions, page extens
 \begin{definition}[Page-extension target coset]
   \label{def:page-extension-coset}
   \uses{def:page-extension,def:fess-cycles-boundaries}
-  \lean{KIPBase.Synthetic.PageExtensionRelation.targetCoset}
-  \lean{KIPBase.Synthetic.FinitePageExtension.classicalTargetCoset}
-  \lean{KIPBase.Synthetic.FinitePageExtension.essential_iff_zero_not_mem_classicalTargetCoset}
-  \lean{KIPBase.Synthetic.InfinitePageExtension.classicalTargetCoset}
-  \lean{KIPBase.Synthetic.InfinitePageExtension.essential_iff_zero_not_mem_classicalTargetCoset}
-  \leanok
+  \notready
   The target $y$ of $d_n^{f,E_r}(x)$ is a coset modulo
   $B_{1+n-e(f)}^{s+n,t+n}(Y)$ plus the sum of images of all shorter
   $\widehat f_{r-1}$-ESS differentials for finite $r$, or all shorter
@@ -80,18 +67,7 @@ This chapter contains the definitions of normalized page reductions, page extens
 \begin{definition}[Crossing of a page extension]
   \label{def:page-extension-crossing}
   \uses{def:page-extension,def:page-extension-coset}
-  \lean{KIPBase.Synthetic.FinitePageExtension.Crossing}
-  \lean{KIPBase.Synthetic.FinitePageExtension.Crossing.targetCycleLevel_eq}
-  \lean{KIPBase.Synthetic.FinitePageExtension.Crossing.targetBidegree_eq}
-  \lean{KIPBase.Synthetic.FinitePageExtension.Crossing.zero_not_mem_classicalTargetCoset}
-  \lean{KIPBase.Synthetic.FinitePageExtension.HasCrossing}
-  \lean{KIPBase.Synthetic.FinitePageExtension.NoCrossing}
-  \lean{KIPBase.Synthetic.InfinitePageExtension.Crossing}
-  \lean{KIPBase.Synthetic.InfinitePageExtension.Crossing.targetBidegree_eq}
-  \lean{KIPBase.Synthetic.InfinitePageExtension.Crossing.zero_not_mem_classicalTargetCoset}
-  \lean{KIPBase.Synthetic.InfinitePageExtension.HasCrossing}
-  \lean{KIPBase.Synthetic.InfinitePageExtension.NoCrossing}
-  \leanok
+  \notready
   A crossing of $d_n^{f,E_r}(x)=y$ is an essential
   $(f,E_{r-a})$-extension from
   $x'\in Z_{r-1-a}^{s+a,t+a}(X)$ to a nonboundary
