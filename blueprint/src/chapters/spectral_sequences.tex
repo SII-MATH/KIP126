@@ -369,8 +369,9 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Complete and separated decreasing filtration]
   \label{def:complete-separated-filtration}
   \uses{def:core-filtration,def:core-filtration-completion-witness}
+  \lean{KIPBase.SpectralSequence.Filtration.CompleteSeparated}
   \lean{KIP126.Classical.Adams.IsAdamsFiltrationSeparated}
-  \notready
+  \leanok
   Let $F$ be a decreasing filtration by subobjects of a graded object $A$.
   Degreewise ordinary exhaustiveness and separatedness mean, respectively,
   \[
@@ -384,15 +385,16 @@ synthetic rigidity and extension calculations belong to later chapters.
   \[
     A_n\longrightarrow\varprojlim_s A_n/F^sA_n
   \]
-  is an isomorphism for every $n$.  The quotient-tower part is represented by
-  the explicit witness in
-  Definition~\ref{def:core-filtration-completion-witness}; the combined
-  generic interface remains pending.  It must not identify ordinary
+  is an isomorphism for every $n$.  The three conditions are packaged by
+  \texttt{Filtration.CompleteSeparated}; its completeness field uses the
+  explicit truncation-tower universal property, while its exhaustive and
+  Hausdorff fields use the ordinary supremum and infimum conditions.  This
+  interface does not identify ordinary
   exhaustiveness with the stronger condition that $F^sA_n=\top$ for all
   sufficiently small $s$, nor separatedness with the stronger condition that
-  $F^sA_n=\bot$ for all sufficiently large $s$.  The latter two are the
-  current Core predicates \texttt{Filtration.IsExhaustive} and
-  \texttt{Filtration.IsEventuallyZero}.  Any later convergence theorem must
+  $F^sA_n=\bot$ for all sufficiently large $s$.  Those stronger eventual
+  conditions are recorded separately by the bounded-below and bounded-above
+  predicates.  Any later convergence theorem must
   state explicitly whether it assumes the ordinary conditions, these stronger
   eventual conditions, or degreewise boundedness.
 \end{definition}
@@ -400,7 +402,9 @@ synthetic rigidity and extension calculations belong to later chapters.
 % SOURCE: MainPaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
 \begin{definition}[Spectral-sequence page-level convention]
   \label{def:ss-page-level}
-  \notready
+  \lean{KIPBase.SpectralSequence.PageLevelConvention}
+  \lean{KIPBase.SpectralSequence.adamsPageLevelConvention}
+  \leanok
   A page-level convention consists of a first displayed page, a map from its
   natural-number display index to Mathlib's integer page index, a
   cycle/boundary level, and, when synthetic quotients are involved, a quotient
@@ -442,16 +446,21 @@ synthetic rigidity and extension calculations belong to later chapters.
   \label{def:adams-complex-shape}
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
   \lean{KIP126.Classical.Adams.classicalAdamsShape}
+  \lean{KIP126.Classical.Adams.classicalAdamsPageLevel}
   \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape}
-  \notready
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsPageLevel}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape_rel}
+  \leanok
   For every integer page $r\ge2$, the classical shape on
   $\mathbb Z\times\mathbb Z$ is $\operatorname{up}'(r,r-1)$, and the
   synthetic shape on $\mathbb Z\times\mathbb Z\times\mathbb Z$ is
   $\operatorname{up}'(r,r-1,0)$.  Consequently a nonzero component can only
   run from $(s,t)$ to $(s+r,t+r-1)$, or from $(s,t,w)$ to
-  $(s+r,t+r-1,w)$, respectively.  The raw target and shape functions are
-  implemented; the remaining obligation in this node is to package them with
-  the page-level convention and its admissibility/successor laws.
+  $(s+r,t+r-1,w)$, respectively.  The classical and synthetic shape functions
+  are each packaged with their own page-level convention, including the first
+  page, admissible internal page, successor laws, cycle level, and quotient
+  exponent.  The synthetic relation theorem verifies the displayed target for
+  every natural-number page.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:264-295 and 999-1007, extension differential degree.
@@ -460,26 +469,42 @@ synthetic rigidity and extension calculations belong to later chapters.
   \uses{def:mathlib-complex-shape-up,def:ss-page-level}
   \lean{KIP126.Classical.ExtensionSS.etaESSShape}
   \lean{KIP126.Classical.ExtensionSS.etaESSShape_rel}
+  \lean{KIP126.Classical.ExtensionSS.etaESSPageLevel}
   \lean{KIP126.Classical.ExtensionSS.differentialDegree}
-  \notready
+  \lean{KIPBase.SpectralSequence.ExtensionSpectralSequence_r₀}
+  \lean{KIPBase.SpectralSequence.ExtensionSpectralSequence_diffDeg}
+  \leanok
   The first displayed extension page is $n=0$.  On the paper's $(s,t)$
   indexing, its page-$n$ differential has additive degree $(n,n)$ and is
   represented by $\operatorname{up}'(n,n)$.  Any summand tag distinguishing
   the source and target spectra, and any synthetic weight, is an additional
   index whose transition must be stated separately; it is not encoded by the
-  pair $(n,n)$.  The current Lean slice implements this shape for the
-  classical $\eta$-ESS.  The pending generic interface must also specify the
-  summand transition, the starting-page witness, and the page-passage law.
+  pair $(n,n)$.  The classical $\eta$-ESS packages this shape with a page-level
+  convention starting at page zero.  The general internal ESS uses indices
+  $(s,k)$, starts at page zero, and has differential degree $(n,-1)$: the
+  second entry is the two-term-complex column transition, while the fixed
+  external stem recovers the paper's second Adams coordinate.  These are two
+  descriptions of the same grading convention and must not be conflated with
+  the page degrees of either input spectral sequence.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:134-150 and 253-295.
 \begin{definition}[Adams bidegree convention]
   \label{def:adams-bidegree}
+  \lean{KIP126.Core.SpectralSequence.AdamsPage}
+  \lean{KIP126.Core.SpectralSequence.ExtensionLength}
+  \lean{KIP126.Core.SpectralSequence.AdamsPage.ofNat}
+  \lean{KIP126.Core.SpectralSequence.AdamsPage.ofInt}
+  \lean{KIP126.Core.SpectralSequence.AdamsPage.toExtensionLength}
+  \lean{KIP126.Core.SpectralSequence.ExtensionLength.toAdamsPage}
   \lean{KIP126.Classical.Adams.Bidegree}
   \lean{KIP126.Classical.Adams.classicalAdamsShift}
   \lean{KIP126.Classical.Adams.classicalAdamsTarget}
+  \lean{KIP126.Classical.Adams.classicalAdamsShapeAt}
+  \lean{KIP126.Classical.ExtensionSS.differentialDegree}
+  \lean{KIP126.Classical.ExtensionSS.etaESSShapeAt}
   \lean{KIP126.Classical.Adams.adamsStem}
-  \notready
+  \leanok
   The two coordinates in a classical Adams bidegree $(s,t)$ are Adams
   filtration and internal degree; its topological stem is $t-s$.  A
   page-$r$ classical differential has
@@ -488,9 +513,16 @@ synthetic rigidity and extension calculations belong to later chapters.
   \]
   so it raises filtration by $r$ and lowers the stem by one.  A page-$n$
   extension differential has shift $(n,n)$ and therefore preserves the stem.
-  The bidegree, stem, and classical target functions are implemented.  The
-  remaining interface must prevent a theorem from using an Adams page index
-  as an extension length without an explicit conversion.
+  The bidegree, stem, and target functions are implemented with two distinct
+  nominal parameter types: \texttt{AdamsPage} contains a natural-number page
+  together with the proof that it is at least two, whereas
+  \texttt{ExtensionLength} contains an arbitrary natural-number length.
+  Adams and ESS degree functions accept only their respective parameter
+  types.  There is no coercion between them.  The named conversions
+  \texttt{AdamsPage.toExtensionLength} and
+  \texttt{ExtensionLength.toAdamsPage} are explicit; the latter additionally
+  requires a proof that the length is at least two.  Raw integer pages remain
+  only at the Mathlib adapter boundary and are converted explicitly.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:690-739, 799-823, and 1138-1150.
@@ -500,12 +532,18 @@ synthetic rigidity and extension calculations belong to later chapters.
   \lean{KIP126.Synthetic.SpectralSequence.Tridegree}
   \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShift}
   \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsTarget}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsPageLevel}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape_rel}
   \lean{KIP126.Synthetic.SpectralSequence.nuDegree}
+  \lean{KIP126.Synthetic.SpectralSequence.forgetWeight}
+  \lean{KIP126.Synthetic.SpectralSequence.forgetWeight_nuDegree}
+  \lean{KIP126.Synthetic.SpectralSequence.forgetWeight_add_shift}
   \lean{KIP126.Synthetic.SpectralSequence.lambdaDegree}
   \lean{KIP126.Synthetic.SpectralSequence.lambdaTarget}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.e₂ToE₃}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.d₂}
-  \notready
+  \leanok
   A synthetic Adams class is indexed by $(s,t,w)$, where $s$ is Adams
   filtration, $t-s$ is the topological stem, and $w$ is synthetic weight.  A
   synthetic $d_r$ has degree $(r,r-1,0)$.  Multiplication by $\lambda$ has
@@ -560,7 +598,8 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Algebraic $E_\infty$ presentation]
   \label{def:ss-einfty-presentation}
   \uses{def:ss-elementwise-page-presentation}
-  \notready
+  \lean{KIPBase.SpectralSequence.SSData.eInfty}
+  \leanok
   Given compatible finite-page data, define
   $Z_\infty=\bigcap_{r\ge1}Z_r$ and
   $B_\infty=\bigcup_{r\ge1}B_r$ in the chosen graded abelian category, and
@@ -572,7 +611,10 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Finite survival and permanent classes]
   \label{def:ss-cycle-boundary-survival}
   \uses{def:ss-elementwise-page-presentation}
-  \notready
+  \lean{KIPBase.SpectralSequence.SSData.IsCycleAt}
+  \lean{KIPBase.SpectralSequence.SSData.IsBoundaryAt}
+  \lean{KIPBase.SpectralSequence.SSData.SurvivesThrough}
+  \leanok
   A representative in the initial $E_2$ page is an $r$-cycle when it lies in
   $Z_r$ and an $r$-boundary when it lies in $B_r$.  An $E_r$ class survives
   through page $R$ when it has a representative in $Z_R$ modulo
@@ -583,7 +625,10 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Permanent representative and nonzero $E_\infty$ class]
   \label{def:ss-permanent-einfty-class}
   \uses{def:ss-einfty-presentation,def:ss-cycle-boundary-survival}
-  \notready
+  \lean{KIPBase.SpectralSequence.SSData.IsPermanentRepresentative}
+  \lean{KIPBase.SpectralSequence.SSData.RepresentsNonzeroAt}
+  \lean{KIPBase.SpectralSequence.SSData.permanent_nonzero_iff}
+  \leanok
   A representative is permanent when it lies in $Z_\infty$; its limiting
   class is its coset in $E_\infty=Z_\infty/B_\infty$.  That class is nonzero
   exactly when the representative is not in $B_\infty$.
@@ -593,7 +638,11 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Convergence and detection witness]
   \label{def:ss-convergence-detection-witness}
   \uses{def:core-filtration,def:ss-einfty-presentation}
-  \notready
+  \lean{KIP126.Core.SpectralSequence.Convergence}
+  \lean{KIP126.Core.SpectralSequence.Detects}
+  \lean{KIP126.Core.SpectralSequence.detect_zero}
+  \lean{KIP126.Core.SpectralSequence.detect_difference}
+  \leanok
   A convergence-and-detection witness for a concrete spectral sequence consists
   of a graded abutment $A_*$, a decreasing filtration $F^sA_n$, a comparison
   $E_\infty\cong\operatorname{gr}^F A$, and a detection relation between
@@ -833,29 +882,40 @@ synthetic rigidity and extension calculations belong to later chapters.
   $(s,t,w)\mapsto(s,t)$; binding a comparison to the actual Adams tower and
   the selected synthetic family remains a construction obligation.
 
-  This compiled interface is specialized to fixed-weight comparison.  A fully
-  general reindexed morphism must still provide arbitrary page and grading
-  reindexings, identities, composition, and the shifted reindexings
-  $(s,t)\mapsto(s+k,t+k+d)$ required later.  Those laws are the remaining
-  obligations of this node.
+  The general pagewise interface records an arbitrary grading reindexing, its
+  compatibility with differential degrees, and the transported differential
+  square.  In particular it accepts the affine shifts
+  $(s,t)\mapsto(s+k,t+k+d)$ used by extension spectral sequences.  The
+  fixed-weight comparison above is the compiled specialized construction.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:138-150, 159-162, 1606-1753.
 \begin{definition}[Multiplicative spectral sequence]
   \label{def:multiplicative-ss}
   \uses{def:ss-elementwise-page-presentation}
-  \notready
-  A multiplicative spectral sequence specifies, on every displayed page,
-  products $E_r^i\otimes E_r^j\to E_r^{i+j}$ and a unit in degree zero, with
-  associativity and unit laws.  Page passage is multiplicative, and the
+  \lean{KIPBase.SpectralSequence.GradingParity}
+  \lean{KIPBase.SpectralSequence.SSPairing}
+  \lean{KIPBase.SpectralSequence.MultiplicativeSS}
+  \lean{KIPBase.SpectralSequence.ConvergingSSPairing}
+  \lean{KIPBase.SpectralSequence.MultiplicativeConvergingSS}
+  \leanok
+  A pairing of spectral sequences specifies, on every displayed page,
+  products $E_{1,r}^i\otimes E_{2,r}^j\to E_{3,r}^{i+j}$.  A multiplicative
+  spectral sequence is, by definition, the self-pairing obtained by taking
+  all three spectral sequences to be the same one.  Associativity,
+  commutativity, and unitality are additional properties rather than fields
+  silently built into this definition.  Passage to the next page is
+  multiplicative, and the
   page-$r$ differential is a derivation
   \[
     d_r(xy)=d_r(x)y+(-1)^{|x|}x d_r(y)
   \]
-  for an explicitly chosen parity convention; over $\mathbb F_2$ the sign
-  disappears but the degree shift does not.  Strong convergence additionally
-  requires a filtered product $F^sA\,F^{s'}A\subseteq F^{s+s'}A$ and identifies
-  the limiting page product with the associated-graded product.  Module
+  for an explicitly chosen additive parity function, including for
+  multi-index gradings; over $\mathbb F_2$ the sign disappears but the degree
+  shift does not.  A pairing of converging spectral sequences additionally
+  records the product on $E_\infty$, a filtered abutment product
+  $F^sA\,F^{s'}A\subseteq F^{s+s'}A$, the induced associated-graded product,
+  and their compatibility under the convergence isomorphism.  Module
   spectral sequences use the analogous action laws and must not be promoted
   to internally multiplicative objects.  This interface is required before
   expressions such as $h_j^2$ or $h_0x$ are meaningful.
