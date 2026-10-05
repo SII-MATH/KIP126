@@ -40,7 +40,7 @@ comparison, completed-source comparisons and compatible lift triple remain expli
 producer premises; source names alone do not establish those comparisons.
 The tmf leading-grade survival deduction is not an Interface delivery. -/
 theorem application_of_parts (η : BiHom 1 2 (S_0_0 : Syn)) (G : TmfLabels H)
-    (B : Bindings D η G) (A : Statements D η G B)
+    {background : Background D} (B : Bindings D η G background) (A : Statements D η G B)
     (hBHS : BHSCompletionApplicability D B.bhsCompletion)
     (cBHS : BHSCompletionComparison D B.bhsCompletion)
     (rBHS : BHSRealizationComparison D B.realization B.bhsCompletion)

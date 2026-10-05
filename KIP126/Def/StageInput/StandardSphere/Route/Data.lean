@@ -1,8 +1,8 @@
 import KIP126.Def.StableHomotopy.Implementation.Fixed
 
-/-! The route MODEL TYPE on the fixed classical foundation. No synthetic
-category or route witness is chosen in Def. A later existence package must
-supply all those data together, including their source applicability. -/
+/-! The route model type on the fixed classical foundation. The selected
+synthetic construction is supplied by `Route/Fixed`; this module only defines
+its type and therefore does not depend on that construction or its proofs. -/
 namespace KIP126.Classical.Adams
 /-- The complete route-input language over the one fixed classical model. -/
 noncomputable abbrev StandardRouteInput :=

@@ -23,17 +23,18 @@ theorem certify_of_parts {D : Model H M Syn} (R : Realization D)
     (top : TopCorrect R) : CertifiedRealization R L G := by
   exact ⟨basis, csv, products, labels, results, bottom, top⟩
 
-/-- Extract local certificates AND presentation agreement from the joint
-Interface producer. G is retained from that same model-binding witness. -/
+/-- Extract local certificates and presentation agreement from the joint
+Interface producer. Source labels and program bindings belong to that same
+correlated literature/computation delivery. -/
 theorem certification :
-    ∃ (routeInput : StandardRouteInput)
-      (B : KIP126.Challenge2.ModelBindings routeInput) (P : LinE2Presentation)
-      (R : Realization routeInput.model),
-      CertifiedRealization R B.routeLabels B.tmfLabels ∧
+    ∃ (literature : KIP126.Challenge2.LiteratureInterface)
+      (bindings : KIP126.Challenge2.ComputationBindings literature),
+      CertifiedRealization bindings.routeRealization bindings.routeLabels
+        literature.bindings.tmfLabels ∧
       (∀ (s t : ℕ) (ht : t ≤ 261) (x : KIP126.LinE2.E2At s t),
-        R.sphere s t x = P.comparison s t ht x) := by
+        bindings.routeRealization.sphere s t x = bindings.presentation.comparison s t ht x) := by
   let I := KIP126.Interface.Solution.challenge2
-  exact ⟨I.routeInput, I.modelBindings, I.presentation, I.computation.route.realization,
-    I.computation.route.toCertifiedRealization, I.computation.route_presentation⟩
+  exact ⟨I.literature, I.computation.bindings,
+    I.computation.results.route, I.computation.results.route_presentation⟩
 
 end KIP126.Interface.Solution.LinProgram.Route

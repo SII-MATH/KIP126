@@ -1494,7 +1494,7 @@
     }
   ],
   "route": {
-    "scope": "Selected LWX v2 Section 7 route: one correlated route/source witness over the fixed actual classical background; source statements and shared model bindings delivered by Challenge2; Main internal applications and Def sphere separation separately classified; no claim of completed source proofs",
+    "scope": "Selected LWX v2 Section 7 route on Def's one fixed route model and background: Challenge2 delivers literature source bindings/results and computation interpretation bindings/results on those same sources; Main internal applications and Def sphere separation are separately classified; no source proof or comparison certificate is claimed complete.",
     "entry": "KIP126.Literature.Route.Statements",
     "frozen_model": "KIP126.Kervaire.Route.Model",
     "claims": [
@@ -1521,7 +1521,7 @@
       {
         "id": "AM01-part-2",
         "input_field": "classical",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.ClassicalSourceResults"
         ],
@@ -1581,7 +1581,7 @@
       {
         "id": "AM04",
         "input_field": "classical",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.ClassicalSourceResults.two_detection",
           "KIP126.Literature.Route.ClassicalSourceResults.eta_detection",
@@ -1625,7 +1625,7 @@
       {
         "id": "AM06",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.lifts"
         ],
@@ -1686,7 +1686,7 @@
       {
         "id": "AM08-part-2",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.permanent_lift"
         ],
@@ -1725,7 +1725,7 @@
       {
         "id": "AM10",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.EInftyInput"
         ],
@@ -1776,7 +1776,7 @@
         "role": "source-result",
         "notes": "For q >= 1 and every finite page r >= 2, the actual nu(X)/lambda^q Adams group is zero when w > t or t-w >= q, in the LWX weight convention. These finite-page zero regions are additional to the E-infinity presentation; no nilpotent-completeness assumption on X and no claim that lambda^q annihilates quotient homotopy are introduced.",
         "id": "AM10-finite-pages-delivery",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.finite_quotient_page_vanishing",
           "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing"
@@ -1785,7 +1785,7 @@
       {
         "id": "AM11",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.RealizationKernelSourceResults"
         ],
@@ -1825,7 +1825,7 @@
       {
         "id": "AM12-part-2",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.filtration_lambda"
         ],
@@ -1866,7 +1866,7 @@
       {
         "id": "AM13-part-2",
         "input_field": "realization",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.RealizationInput"
         ],
@@ -1887,7 +1887,7 @@
       {
         "id": "AM14",
         "input_field": "realization",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.BHSRealizationDetectionAt.lifetime",
           "KIP126.Literature.Route.BHSRealizationSourceResults"
@@ -1908,7 +1908,7 @@
       {
         "id": "AM15",
         "input_field": "realization",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.BHSRealizationDetectionAt.detection",
           "KIP126.Literature.Route.BHSRealizationDetectionAt.prescribed_lift",
@@ -1930,7 +1930,7 @@
       {
         "id": "AM16",
         "input_field": "realization",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.BHSRealizationDetectionAt.boundary_lift",
           "KIP126.Literature.Route.BHSRealizationSourceResults"
@@ -2014,7 +2014,7 @@
       {
         "id": "AM19-part-2",
         "input_field": "may",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.MaySourceResults"
         ],
@@ -2033,7 +2033,7 @@
       {
         "id": "AM20",
         "input_field": "moss",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.MossSourceInput"
         ],
@@ -2074,7 +2074,7 @@
       {
         "id": "AM21-part-2",
         "input_field": "toda",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.TodaSourceResults"
         ],
@@ -2094,7 +2094,7 @@
       {
         "id": "AM22",
         "input_field": "toda",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.TodaApplication.eta_squared"
         ],
@@ -2136,7 +2136,7 @@
       {
         "id": "AM23-part-1",
         "input_field": "toda",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.TodaApplication.symmetric_two"
         ],
@@ -2178,7 +2178,7 @@
       {
         "id": "AM24",
         "input_field": "tmf",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.TmfSourceResults.vanishing62"
         ],
@@ -2217,7 +2217,7 @@
       {
         "id": "AM25-part-2",
         "input_field": "tmf",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.TmfSourceResults"
         ],
@@ -2237,7 +2237,7 @@
       {
         "id": "AM26",
         "input_field": "tmf",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.TmfSourceResults.low_filtration63"
         ],
@@ -2256,7 +2256,7 @@
       {
         "id": "AM27-part-1",
         "input_field": "applicability",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.Applicability"
         ],
@@ -2321,7 +2321,7 @@
         "id": "AM29-part-1",
         "role": "source-result",
         "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.TmfSourceResults.connective",
           "KIP126.Literature.Route.TmfSourceResults.finiteMod2Type"
@@ -2455,11 +2455,11 @@
         "id": "MB08",
         "role": "model-comparison",
         "proof_status": "comparison-obligation",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.Bindings"
         ],
-        "notes": "One correlated package of source choices and model comparisons; no independent model selection per consumer."
+        "notes": "One package of source choices and completion/model comparisons over Def.standardRouteBackground; these certificates remain Interface construction obligations, not external literature results."
       },
       {
         "id": "MB09-part-1",
@@ -2477,7 +2477,7 @@
         "id": "MB09-part-2",
         "role": "model-comparison",
         "proof_status": "comparison-obligation",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.Bindings.bhsDetectorIso",
           "KIP126.Literature.Route.Bindings.bhsDetectorUnit"
@@ -2503,6 +2503,36 @@
           "KIP126.Classical.Adams.BHSObjectApplicability"
         ],
         "notes": "The precise source applicability language retains countable products, E-nilpotent completeness and strong convergence. Countable products are structural data; completeness and convergence must be proved for the source objects."
+      },
+      {
+        "id": "MB12-literature-delivery",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+        "declarations": [
+          "KIP126.Challenge2.LiteratureBindings",
+          "KIP126.Challenge2.LiteratureBindings.tmfLabels",
+          "KIP126.Challenge2.LiteratureBindings.route",
+          "KIP126.Challenge2.LiteratureBindings.br21Classes"
+        ],
+        "notes": "Source labels, route bindings and BR21 source endpoint classes are one literature binding package over Def's fixed model. Their construction and comparisons remain proof obligations, not literature theorem fields."
+      },
+      {
+        "id": "MB13-computation-delivery",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+        "declarations": [
+          "KIP126.Challenge2.ComputationBindings",
+          "KIP126.Challenge2.ComputationBindings.presentation",
+          "KIP126.Challenge2.ComputationBindings.routeRealization",
+          "KIP126.Challenge2.ComputationBindings.tmfCoordinates",
+          "KIP126.Challenge2.ComputationBindings.tmfMultiplicative",
+          "KIP126.Challenge2.ComputationBindings.tmf_v2Sixteen",
+          "KIP126.Challenge2.ComputationBindings.tmf_betaGFour",
+          "KIP126.Challenge2.ComputationBindings.routeLabels"
+        ],
+        "notes": "One fixed E2 presentation, route realization and tmf coordinate interpretation on the same literature sources. The source BR21 endpoints are compared with actual CSV classes here; routeLabels is defined from the route realization. Certificates remain Interface proof obligations."
       }
     ],
     "internal_adapters": [
@@ -2582,7 +2612,7 @@
         "id": "IA08",
         "role": "internal-adapter",
         "proof_status": "implemented-adapter",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.Statements.toInputs"
         ],
@@ -2602,7 +2632,7 @@
         "id": "IA10",
         "role": "internal-adapter",
         "proof_status": "implemented-adapter",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.toInputs"
         ],
@@ -2645,7 +2675,7 @@
           "KIP126.Main.StageInput.nuSourceResults",
           "KIP126.Main.StageInput.routeApplication"
         ],
-        "notes": "Main proves the five selected-model premises after consuming one Challenge2 witness, then assembles routeApplication with the parameterized adapter. The five premises are explicit sorry targets, not projections of literature or computation.",
+        "notes": "Main projects the three completion/applicability/realization certificates from literature.bindings.route, then proves TodaSecondaryComparison and NuCofiberSourceResults with explicit sorry placeholders and assembles routeApplication. The projected certificates remain unfinished Interface production obligations.",
         "sources": [
           "bhs",
           "pst",
@@ -2660,7 +2690,7 @@
         "id": "DP01",
         "role": "source-result",
         "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.Statements"
         ],
@@ -2670,7 +2700,7 @@
         "id": "DP02",
         "role": "internal-application",
         "proof_status": "internal-application-obligation",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.Application",
           "KIP126.Literature.Route.Inputs"
@@ -2681,7 +2711,7 @@
         "id": "DP03",
         "role": "internal-application",
         "proof_status": "internal-application-obligation",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
         "declarations": [
           "KIP126.Literature.Route.NuCofiberSourceResults"
         ],
@@ -2765,7 +2795,7 @@
           "bhs_mot",
           "iwx_data_2022"
         ],
-        "notes": "Correlated existential source delivery: choose the whole route, source bindings and LiteratureInterface together over the fixed actual classical foundation. Pstr hypercomplete construction and the separately inventoried prior results supply witnesses, with internal source assembly still to prove. This is not a unique Def definition of actual synthetic spectra or a theorem for every weak RouteInput. Excludes C, route Application, high125 NonzeroSurvival, paper tools and T; original Moss/Toda evidence limitations remain as recorded in their source entries."
+        "notes": "Correlated source delivery for the route and mathematical background fixed in Def: source objects, their comparisons and literature results must match that one background. Pstr hypercomplete construction and separately inventoried prior results supply the source reasoning; no C, route Application, high125 result, paper tools or final T is inferred."
       },
       {
         "id": "BR21-book-language",
@@ -2862,9 +2892,9 @@
         "id": "RL01",
         "role": "source-result",
         "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
         "declarations": [
-          "KIP126.Challenge2.LiteratureInterface.sphereVanishing"
+          "KIP126.Challenge2.LiteratureResults.sphereVanishing"
         ],
         "notes": "Positive-stem Adams vanishing line on the same standard sphere tower; supplied by the independent Range producer.",
         "input_field": "sphereVanishing",
@@ -2877,7 +2907,7 @@
         "id": "RL03",
         "role": "source-result",
         "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Sphere.lean",
         "declarations": [
           "KIP126.Challenge2.AdamsOneLineInterface"
         ],
@@ -2894,7 +2924,7 @@
         "id": "RL04",
         "role": "source-result",
         "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Sphere.lean",
         "declarations": [
           "KIP126.Challenge2.StandardSphereMossStatement"
         ],
@@ -2910,11 +2940,11 @@
         "id": "RL05",
         "role": "source-result",
         "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
         "declarations": [
-          "KIP126.Challenge2.TmfModel.Br21Statement"
+          "KIP126.Challenge2.LiteratureResults.br21"
         ],
-        "notes": "BR21 Table 5.4/Theorem 5.18 directly read: d3(w2^2)=beta*g^4. The fixed quotient proves beta*g^4=beta^5*g and the same coordinate comparison transports that equality. Realization of the actual tmf tower remains an internal source obligation.",
+        "notes": "BR21 differential on source endpoint classes in literature.bindings.br21Classes; transport to the selected tmf CSV coordinates is recorded separately in computation.bindings.",
         "input_field": "br21",
         "sources": [
           "br21"
@@ -2925,11 +2955,11 @@
         "id": "RL06",
         "role": "source-result",
         "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Challenge2.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
         "declarations": [
-          "KIP126.Challenge2.LiteratureInterface.route"
+          "KIP126.Challenge2.LiteratureResults.route"
         ],
-        "notes": "The correlated route Statements on the root shared model bindings, inventoried above.",
+        "notes": "Correlated route Statements on the source objects in literature.bindings.route, over Def's fixed route model and background.",
         "input_field": "route",
         "sources": [
           "xu",
@@ -3079,8 +3109,8 @@
   },
   "interface_coverage": [
     {
-      "structure": "KIP126.Challenge2.LiteratureInterface",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "structure": "KIP126.Challenge2.LiteratureResults",
+      "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
       "role": "literature",
       "fields": {
         "sphereVanishing": {
@@ -3147,7 +3177,7 @@
     },
     {
       "structure": "KIP126.Challenge2.AdamsOneLineInterface",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Literature/Sphere.lean",
       "role": "literature",
       "fields": {
         "adamsOneLine_at_power": {
@@ -3214,7 +3244,7 @@
     },
     {
       "structure": "KIP126.Literature.Route.Statements",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
       "role": "literature",
       "fields": {
         "classical": {
@@ -3318,7 +3348,7 @@
     },
     {
       "structure": "KIP126.Literature.Route.ClassicalSourceResults",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
       "role": "literature",
       "fields": {
         "h5Square_permanent": {
@@ -3438,7 +3468,7 @@
     },
     {
       "structure": "KIP126.Literature.Route.SyntheticSourceInputs",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
       "role": "literature",
       "fields": {
         "lifts": {
@@ -3536,7 +3566,7 @@
     },
     {
       "structure": "KIP126.Literature.Route.EInftyInput",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
       "role": "literature",
       "fields": {
         "presentation": {
@@ -3583,7 +3613,7 @@
     },
     {
       "structure": "KIP126.Literature.Route.BHSRealizationDetectionAt",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
       "role": "literature",
       "fields": {
         "lifetime": {
@@ -3630,7 +3660,7 @@
     },
     {
       "structure": "KIP126.Literature.Route.TodaSourceResults",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
       "role": "literature",
       "fields": {
         "h0_label": {
@@ -3677,7 +3707,7 @@
     },
     {
       "structure": "KIP126.Literature.Route.TmfSourceResults",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
       "role": "literature",
       "fields": {
         "connective": {
@@ -3766,8 +3796,8 @@
       }
     },
     {
-      "structure": "KIP126.Challenge2.ComputationInterface",
-      "module": "KIP126/Interface/Challenge/Challenge2.lean",
+      "structure": "KIP126.Challenge2.ComputationResults",
+      "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
       "role": "computation",
       "fields": {
         "sphereBasis": {

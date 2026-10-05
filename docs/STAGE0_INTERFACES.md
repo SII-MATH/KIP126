@@ -22,15 +22,15 @@ NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 
 ## 统一 Challenge2
 
-Def 固定经典实现，包括实际完成球、HF₂、Milnor 坐标及 tensor/cooperation 比较。`KIP126.Def.standardSphereApplicability` 对这个固定实现陈述实际球塔的 HF₂ nilpotent completeness 和强收敛，证明保留明确的 `sorry`；下游可直接引用其准确陈述。原 Challenge1 的实质义务仍在，但不是 Challenge2 字段。独立 Challenge1、重复 implementation 和相等运输已删除；countable-products 等结构仍来自固定实现。
+Def 固定经典实现、路线模型和共享数学背景，包括实际完成球、HF₂、Milnor 坐标及 tensor/cooperation 比较。`KIP126.Def.standardSphereApplicability` 对这个固定实现陈述实际球塔的 HF₂ nilpotent completeness 和强收敛，证明保留明确的 `sorry`；下游可直接引用其准确陈述。原 Challenge1 的实质义务仍在，但不是 Challenge2 字段。独立 Challenge1、重复 implementation 和相等运输已删除；countable-products 等结构仍来自固定实现。
 
-Challenge2 在这一固定经典背景上，一起交付 `routeInput`、`ModelBindings routeInput`、A、presentation 与 C；所有字段依赖同一个见证。内部适配由 Main 在取得该见证后证明。Def 不先从较弱的 RouteInput 中任选 ν、Hopf maps 或 detector 再要求它们恰好满足文献定理。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联存在性责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到路线、绑定与 A。该定理不是对 synthetic 范畴的唯一性刻画，也不声称这里已经实现其 ∞-site；其构造证明仍待补，不含 C、Application、high125 或本文新工具。
+Challenge2 顶层恰有 `literature` 和 `computation` 两项。`LiteratureInterface` 包含源对象及其比较的 `bindings`，以及依赖这些对象的五项 `results`；`ComputationInterface literature` 包含程序解释的 `bindings`，以及依赖同一文献包和计算绑定的七项 `results`。固定 E₂ `presentation` 在计算绑定中，路线模型与其 background 则由 Def 预先固定，不再由 Challenge2 另选。Main 在取得同一见证后证明内部适配。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联来源责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到与固定路线相容的来源和文献结论。它不声称这里已经实现其 ∞-site；构造证明仍待补，不含 C、Application、high125 或本文新工具。
 
 供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。文献 package 是陈述撰写清单，保留 F12、C08–C10 等当前范围外的几何条目作来源记录；不能当作当前 Challenge2 字段清单或已核实的完整外部定理集合。
 
-唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须在同一路线见证上完成模型绑定与认证，不能分别选择两个存在性见证后视为同一对象。固定球谱适用性与分离性是独立的 Def 证明责任；Main 为 BHS 完成适用性、完成比较、realization 比较、Toda 二级运算比较及 ν 来源结论分别保留明确的 `sorry`；`routeApplication` 再从这五项和已有来源陈述组装，不能把它们当作现有字段的投影。
+唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须让计算包依赖同一文献来源与 Def 固定模型，不能分别选择不相干的模型或来源。固定球谱适用性与分离性是独立的 Def 证明责任。BHS 完成适用性、完成比较和 realization 比较由 `literature.bindings.route` 明确交付；Main 仍须证明 Toda 二级运算比较与 ν 来源结论，再同已有来源陈述组装 `routeApplication`。这些未完成证明不能当作文献结果或程序输出。
 
-来源的四层分别是 `Bindings`（对象及比较）、`Statements`（前人结果）、`Application`（Main 待证的内部来源适配）、`Inputs`（供 Main 消费的组装结果）。`Inputs` 还需要 Main 独立证明的 tmf 高过滤结论，因此它既不等于纯 A，也不是 Challenge2 字段。无实际用途的旧 `Literature.Route.A = Nonempty Inputs` 包装已删除。
+来源的四层分别是 `Bindings`（相对于 Def 固定 background 的来源对象及比较）、`Statements`（这些对象上的前人结果）、`Application`（Main 待证的内部来源适配）、`Inputs`（供 Main 消费的组装结果）。`Inputs` 还需要 Main 独立证明的 tmf 高过滤结论，因此它既不等于纯 A，也不是 Challenge2 字段。无实际用途的旧 `Literature.Route.A = Nonempty Inputs` 包装已删除。
 
 ## C 的固定范围和语义
 
@@ -41,7 +41,7 @@ Challenge2 在这一固定经典背景上，一起交付 `routeInput`、`ModelBi
 | 所需事实 | 精确交付及责任 |
 |---|---|
 | 维数、零群、任意线性组合 | `BasisCorrect` 的实际 E₂ 与有限坐标模等价；同时给线性无关和生成。缺次数/越界/解码失败不当零。 |
-| CSV 单项式与命名类 | `SphereBasisValue`、`LabelsCorrect`、同一 root `route_presentation`；标准目标的定义不依赖 CSV 标签。 |
+| CSV 单项式与命名类 | `SphereBasisValue`、`LabelsCorrect`、`computation.results.route_presentation` 使用同一个 `computation.bindings.presentation`；标准目标的定义不依赖 CSV 标签。 |
 | 乘法 | `ProductCorrect` 对所选 degree pairs 的所有元素成立；另外比较 cobar product、presentation product 与实际塔层乘法。指定平方身份不替代一般乘法。 |
 | Cν 胞腔映射 | `BottomCorrect` 与 `TopCorrect` 使用同一几何 Hopf ν 的 actual cofiber ι/δ 与悬移比较。 |
 | 日志与 staircase | 普通 differential、非零 differential、reach、boundary、refutation 分开。depth1根反证不是正向等式；深层分支必须保留祖先条件。 |
@@ -55,7 +55,7 @@ Challenge2 在这一固定经典背景上，一起交付 `routeInput`、`ModelBi
 - 球谱正 stem 消失线保留 `0<t-s<2s-3` 的实际 E₂ 结论；来源为 Ravenel 第二版 Thm3.4.5(a) 的保守弱化。它的模型运输与标准球塔分离性有独立生产责任，不能从有限 CSV 推断。
 - BHS 有限商与无限结论分开。有限部分原文有更一般论证；永久 lift 与 filtration 比较必须保留所用完成/收敛条件。来源的适用性和到所选对象的运输使用同一完成映射、实际页面/ν 映射及精确像、滤过、λ 可除性比较。所选经典源采用论文的完成球；仍不把任意谱的不同完成概念无条件等同。
 - BHS `cor:synth-ctau-ASS` (1)/(3) 的 `FiniteQuotientPageVanishing` 另交付 q>0、r≥2 的**所有有限页**零区：w>t 或 t−w≥q。`SyntheticSourceInputs` 与 `SyntheticInputs` 原样传递这一前人结果；E∞ 公式不代替 E₃/E₇ 零区。Q9 的 `π_(123,130)` 只有过滤7…15可能具有非零关联分次；结合实际ρ的过滤自然性和分离性可消去更高过滤。任何这类论证均不预设 λ⁹ 在一般 Q9 同伦群上作用为零。
-- tmf 与 detector 的谱对象、单位和乘法都绑定；2-local 文献模型与所选完成对象的比较另列。BMQ 图支持 π₆₂(tmf₍₂₎)=0，但实际同伦像非零不自动推出指定关联分次非零。high125 的永久存活由 Main 从来源、乘法比较、C、消失线和分离性推出，不随 Challenge2 的 Application 传递。
+- Def 固定 tmf detector 的目标谱对象及单位；文献绑定选定来源谱和 BR21 的源端点类，计算绑定给出这些类到所选 CSV 坐标的比较及乘法相容性。2-local 文献模型与所选完成对象的比较仍须明确。BMQ 图支持 π₆₂(tmf₍₂₎)=0，但实际同伦像非零不自动推出指定关联分次非零。high125 的永久存活由 Main 从来源、乘法比较、C、消失线和分离性推出，不随 Challenge2 的 Application 传递。
 - `Computation/Lambda.lean` 为同一 synthetic tmf 单列 (62,64) 的全幂 λ 单射、实际 realization 单射、θ₅ 及 ηθ₅² 单位像为零的推导。所需低过滤 stem63 零群来自 `TmfSourceResults.low_filtration63`，不能套用球谱专用单射引理。这些结论仍是 Main 的证明责任。
 - Xu 的“存在一个二阶 θ₅”、整个62-stem的指数2、任意选择的 synthetic 二阶性分开；BX 原式与论文 λ 规范化分开。
 - May 保留边界负号；消去负号所需的指数2条件另列。Moss 保留 convergence、defining system、crossing 与不定性条件。Toda 的二级运算比较与 ν 的相容三角属于内部适配。

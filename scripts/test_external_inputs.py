@@ -58,12 +58,19 @@ class ExternalInputTests(unittest.TestCase):
 
     def test_literature_cannot_be_reclassified_to_bypass_blueprint(self):
         document = self.fixture()
-        item = next(c for c in document["interface_coverage"] if c["structure"].endswith(".LiteratureInterface"))
+        item = next(c for c in document["interface_coverage"] if c["structure"].endswith(".LiteratureResults"))
         item["role"] = "computation"
         for row in item["fields"].values():
             row["proof_status"] = "certification-obligation"
             row["blueprint_labels"] = []
         with self.assertRaisesRegex(ValueError, "structure role mismatch"):
+            validate_document(ROOT, document)
+
+    def test_delivery_shell_cannot_replace_result_coverage(self):
+        document = self.fixture()
+        item = next(c for c in document["interface_coverage"] if c["structure"].endswith(".ComputationResults"))
+        item["structure"] = "KIP126.Challenge2.ComputationInterface"
+        with self.assertRaisesRegex(ValueError, "interface coverage structure set drift"):
             validate_document(ROOT, document)
 
     def test_fixed_foundation_is_not_a_challenge2_field(self):
@@ -83,7 +90,7 @@ class ExternalInputTests(unittest.TestCase):
 
     def test_geometry_is_not_a_current_input(self):
         literature = next(c for c in self.document["interface_coverage"]
-                          if c["structure"].endswith(".LiteratureInterface"))
+                          if c["structure"].endswith(".LiteratureResults"))
         self.assertEqual(set(literature["fields"]),
                          {"sphereVanishing", "adamsOneLine", "moss", "br21", "route"})
         self.assertNotIn("geometry", {r["input_field"]

@@ -113,20 +113,22 @@ This chapter contains only the project deductions that assemble the setup, exter
 % and Conditional final theorems.
 \begin{definition}[Main formalization input]
   \label{def:kervaire-main-input}
-  \lean{KIP126.Challenge2,KIP126.Def.standardSphereApplicability,KIP126.Def.standardSphereSeparated,KIP126.Challenge2.LiteratureInterface,KIP126.Challenge2.ComputationInterface}
+  \lean{KIP126.Challenge2,KIP126.Def.standardSphereApplicability,KIP126.Def.standardSphereSeparated,KIP126.Challenge2.LiteratureBindings,KIP126.Challenge2.LiteratureResults,KIP126.Challenge2.LiteratureInterface,KIP126.Challenge2.ComputationBindings,KIP126.Challenge2.ComputationResults,KIP126.Challenge2.ComputationInterface}
   \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence}
   \notready
   The main input $I$ is one value of \texttt{Challenge2} on the fixed Def
   implementation. Def's fixed-sphere applicability theorem states actual sphere
   nilpotent completeness and strong convergence with an unfinished proof;
   countable products and other structural data remain in the fixed
-  implementation. One \texttt{routeInput}
-  and its \texttt{modelBindings} correlate all dependent choices. A single
-  \texttt{presentation} is shared by the literature and computation delivery.
-  The \texttt{literature} fields state the external mathematical inputs for
-  the homotopy-theoretic proof; no manifold model or geometric Kervaire
-  results are fields of this package. The \texttt{computation} fields state
-  interpreted, model-bound certification conclusions. Def states actual
+  implementation. Def fixes the route model, its normalized $\eta$, and their
+  shared background. The two root fields are \texttt{literature} and
+  \texttt{computation}. Literature has source \texttt{bindings} and five
+  \texttt{results} on those sources; its BR21 equation has source endpoint
+  classes. Computation has \texttt{bindings} for the common E$_2$
+  \texttt{presentation}, route interpretation, tmf coordinates and comparisons,
+  followed by seven certified \texttt{results}. Its fields depend on the same
+  literature delivery. No manifold model or geometric Kervaire result is a
+  field. Def states actual
   sphere-filtration separation; Main states the internal route application
   after consuming the one witness. Both retain unfinished proofs. Source
   metadata is held in the external manifest.
@@ -683,7 +685,7 @@ This chapter contains only the project deductions that assemble the setup, exter
   The Lean statement uses \texttt{standardH6Square} and
   \texttt{NonzeroSurvival} on the same internal \texttt{sphereAdamsData}
   used by the computation interfaces. Its type and statement module do not
-  depend on $C(M)$ or CSV data. The fixed objects still use Challenge~1.
+  depend on $C(M)$ or CSV data. The fixed objects are Def constructions.
   This is the only final target. Its paired Challenge and Solution both retain
   \texttt{sorry}; the duplicated computational final theorem has been removed.
   CSV class equalities remain reusable comparison lemmas for the proof,

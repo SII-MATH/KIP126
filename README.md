@@ -70,12 +70,14 @@ document:
   `KIP126.Main.Challenge.h6_sq_permanent`.
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for the implemented interfaces, proofs and dependency graph.
-  `Def/` owns all mathematical objects and the fixed implementation; it never
+  `Def/` owns the mathematical objects, fixed route and shared background; it never
   imports Interface or Main. `Interface/Challenge` defines `Challenge2` and
-  `Interface/Solution` constructs it. This single witness delivers model
-  bindings, literature and computation on the fixed Def background. Main derives
-  internal applications after the stage axiom. Fixed-sphere applicability has a Def-owned theorem
-  with an explicit unfinished proof. The final
+  `Interface/Solution` constructs it. Its only fields are literature and
+  computation. Each delivery has its own bindings and results, with computation
+  depending on the same literature sources; the fixed presentation belongs to
+  computation bindings. Main derives internal applications after the stage
+  axiom. Fixed-sphere applicability has a Def-owned theorem with an explicit
+  unfinished proof. The final
   target in `Main/Challenge/h6_sq_permanent.lean` imports only Def; its proof
   may consume Challenge2 through Main/Axiom. Stage-0 interface acceptance does
   not mean certification or the final mathematical proof is complete.

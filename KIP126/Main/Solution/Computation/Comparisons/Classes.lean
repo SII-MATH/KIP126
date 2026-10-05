@@ -7,7 +7,7 @@ namespace KIP126.Classical.Adams
 The certificate and nonvanishing argument belong to the Interface producer;
 this compatibility theorem only projects the one Challenge2 witness. -/
 theorem computedH6Square_eq_standardH6Square : computedH6Square = standardH6Square :=
-  KIP126.Main.StageInput.computation.sphereSquare.standard_class
+  KIP126.Main.StageInput.computation.results.sphereSquare.standard_class
 
 /-- Rewriting T(M) using a computational label needs only
 the equality of labels on M's sequence, not a change of spectral sequence. -/

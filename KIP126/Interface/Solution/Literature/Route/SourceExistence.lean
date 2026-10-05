@@ -2,10 +2,11 @@ import KIP126.Interface.Challenge.Challenge2
 
 /-! Correlated existence of the prior-literature background.
 
-The classical category, its actual HF₂-local sphere, HF₂ and Milnor coordinates
-are fixed in Def. The auxiliary synthetic category, ν, λ, Adams family and
-classical detector are chosen TOGETHER with the source bindings and statements.
-There is no prior choice from the weaker `StandardRouteInput` type.
+The classical category, its actual HF₂-local sphere, HF₂, Milnor coordinates,
+synthetic category, ν, λ, Adams family and classical detector are fixed by
+Def's explicit source-construction obligations. Interface supplies the
+literature sources, their comparisons with that same construction, and their
+statements. It does not select another route from `StandardRouteInput`.
 
 Pstrągowski's construction uses spherical sheaves of spectra on the finite
 HF₂-projective ∞-site, not ordinary sheaves on its homotopy category. Its
@@ -19,10 +20,11 @@ proposition on hypercomplete τ-invertible objects.
 The theorem below is the restricted existential consequence of that
 construction, the separately inventoried prior results, and their internal
 source assembly. It is not a verbatim theorem of one paper, a uniqueness
-characterization of synthetic spectra, or a Def construction of the ∞-site.
+characterization of synthetic spectra, or a completed Def construction of the ∞-site.
 BHS completeness/strong-convergence hypotheses remain inside the delivered
-conditional source statements. The same source assembly fixes Hopf maps,
-tmf/unit/labels, classical and synthetic towers, and all source comparisons.
+conditional source statements. Def fixes the actual Hopf maps, detector,
+unit, classical and synthetic towers. Interface binds the literature sources
+and their labels to those objects and supplies the source comparisons.
 
 This producer contains no computation certification, route Application,
 high125 NonzeroSurvival, generalized Leibniz/Mahowald theorem, or target T.
@@ -30,14 +32,12 @@ Those subsequent internal obligations must use this SAME route witness.
 -/
 namespace KIP126.Interface.Solution.Literature.Route
 
-/-- Produce a single route together with its prior-source background on the
-fixed actual classical sphere. The proof must construct the source model and
-transport every inventoried prior statement to the shared bindings; it must
+/-- Produce the prior-source background on Def's one fixed actual route.
+The proof must establish source applicability of that explicit construction
+and transport every inventoried prior statement to the shared bindings; it must
 not invoke the aggregate Challenge2 producer or any paper conclusion. -/
 theorem source_background_exists :
-    ∃ route : Classical.Adams.StandardRouteInput,
-      ∃ bindings : KIP126.Challenge2.ModelBindings route,
-        Nonempty (KIP126.Challenge2.LiteratureInterface route bindings) := by
+    Nonempty KIP126.Challenge2.LiteratureInterface := by
   sorry
 
 end KIP126.Interface.Solution.Literature.Route

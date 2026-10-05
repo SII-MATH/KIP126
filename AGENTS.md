@@ -15,11 +15,11 @@ working in this repository. Otherwise, ignore that file.
 ## Repository architecture
 
 - `KIP126/Def/` owns common mathematical objects, predicates, constructions,
-  the fixed implementation, its fixed-sphere applicability statement, and reusable
-  theorems. It must not declare project axioms.
+  the fixed implementation, route and mathematical background, its fixed-sphere
+  applicability statement, and reusable theorems. It must not declare project axioms.
 - `KIP126/Interface/` constructs one `Challenge2` witness. It owns
-  fixed-computation certification, comparison
-  with the selected mathematical model, and the resulting delivery interface.
+  literature source bindings and results, fixed-computation bindings and
+  certification, and the resulting delivery interfaces on Def's fixed model.
 - `KIP126/Main/` consumes Challenge2 and proves the paper's intermediate and
   final results. Intermediate statements and proofs belong in `Main/Solution/`;
   only the final target has a Main Challenge/Solution pair.
@@ -35,15 +35,17 @@ working in this repository. Otherwise, ignore that file.
   `KIP126/Checks/` is the regression and audit layer.
 
 Challenge2 is defined in `KIP126/Interface/Challenge/Challenge2.lean`.
-It directly contains model bindings, a fixed presentation, literature, and
-computation. Main derives internal applications after consuming the sole
-Challenge2 witness. Fixed-sphere applicability and filtration separation are
-Def-owned theorems with explicit unfinished proofs; downstream modules may
-reference their statements without adding them to Challenge2. Reusable
-foundation language lives under `KIP126.Foundation`; there is no Challenge1
-stage or equality transport to a second implementation. Do not create parallel
-witness definitions or proof transmission trees. All dependent fields use the
-same selected Def background and correlated route model.
+Its only fields are `literature` and `computation`. Literature has correlated
+`bindings` and `results`; computation has `bindings` and `results` dependent
+on that same literature delivery. Its presentation is a computation binding,
+not a third root field. Def fixes the route, model and shared mathematical
+background before either delivery. Main derives internal applications after
+consuming the sole Challenge2 witness. Fixed-sphere applicability and
+filtration separation are Def-owned theorems with explicit unfinished proofs;
+downstream modules may reference their statements without adding them to
+Challenge2. Reusable foundation language lives under `KIP126.Foundation`;
+there is no Challenge1 stage or equality transport to a second implementation.
+Do not create parallel witness definitions or proof transmission trees.
 
 The current endpoint is standard `h_6^2` nonzero permanent survival. Geometry
 (framed manifolds, Browder/Pontryagin--Thom comparison, and geometric Kervaire
@@ -104,7 +106,7 @@ an axiom to hide `sorryAx`.
 
 External results must retain their hypotheses, scope, source locators, and
 provenance. They remain explicit inputs bound to the same model through
-`Challenge2.LiteratureInterface`; do not replace them with untracked global
+`Challenge2.LiteratureResults` on its source bindings; do not replace them with untracked global
 facts. Lean interfaces contain mathematical statements only. Source IDs,
 locators, acquisition status and artifact hashes belong in the canonical
 `docs/external-inputs.json` manifest, linked to Lean declarations and Blueprint

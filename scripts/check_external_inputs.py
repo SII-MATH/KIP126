@@ -29,7 +29,7 @@ FIELD_STATUSES = {
     "internal-application": "internal-application-obligation",
 }
 REQUIRED_STRUCTURES = {
-    "KIP126.Challenge2.LiteratureInterface",
+    "KIP126.Challenge2.LiteratureResults",
     "KIP126.Challenge2.AdamsOneLineInterface",
     "KIP126.Literature.Route.Statements",
     "KIP126.Literature.Route.ClassicalSourceResults",
@@ -38,7 +38,7 @@ REQUIRED_STRUCTURES = {
     "KIP126.Literature.Route.BHSRealizationDetectionAt",
     "KIP126.Literature.Route.TodaSourceResults",
     "KIP126.Literature.Route.TmfSourceResults",
-    "KIP126.Challenge2.ComputationInterface",
+    "KIP126.Challenge2.ComputationResults",
 }
 
 
@@ -134,9 +134,17 @@ def validate_document(root, document):
     route = document["route"]
     claims = route["claims"]
     data = (root / "KIP126/Interface/Challenge/Challenge2.lean").read_text()
-    # Route Inputs is the first (consumer) structure with this short name.
-    consumer = data.split("structure Inputs where\n", 1)[1].split("\n/--", 1)[0]
-    consumer_fields = set(re.findall(r"^  (\w+) :", consumer, re.M))
+    require(structure_fields(data, "KIP126.Challenge2") == {"literature", "computation"},
+            "Challenge2 root field drift")
+    for path, name in (
+        ("KIP126/Interface/Challenge/Literature/Delivery.lean", "KIP126.Challenge2.LiteratureInterface"),
+        ("KIP126/Interface/Challenge/Computation/Delivery.lean", "KIP126.Challenge2.ComputationInterface"),
+    ):
+        require(structure_fields((root / path).read_text(), name) == {"bindings", "results"},
+                f"delivery field drift: {name}")
+    consumer_fields = structure_fields(
+        (root / "KIP126/Interface/Challenge/Literature/Route.lean").read_text(),
+        "KIP126.Literature.Route.Inputs")
     require({c["input_field"] for c in claims} == consumer_fields, "route consumer field coverage drift")
     paper_labels = set(re.findall(r"\\label\{([^}]+)\}", strip_unescaped_percent_comments(
         (root / "MainPaper/main.tex").read_text())))
@@ -145,7 +153,8 @@ def validate_document(root, document):
         require("aim_paper" not in claim["sources"], "MainPaper consumption is not a proof of an external result")
         require(claim["kind"] and claim["lwx_consumers"], f"missing consumer locator: {claim['id']}")
         require(set(claim["lwx_consumers"]) <= paper_labels, f"unknown paper label: {claim['id']}")
-    root_fields = structure_fields(data, "KIP126.Challenge2.LiteratureInterface")
+    root_fields = structure_fields((root / "KIP126/Interface/Challenge/Literature/Delivery.lean").read_text(),
+                                   "KIP126.Challenge2.LiteratureResults")
     require({e["input_field"] for e in route["root_literature"]} == root_fields,
             "root literature field coverage drift")
     for entry in route["root_literature"]:
@@ -181,7 +190,7 @@ def validate_document(root, document):
     for item in coverage:
         name = item["structure"]
         expected_role = {
-            "KIP126.Challenge2.ComputationInterface": "computation",
+            "KIP126.Challenge2.ComputationResults": "computation",
         }.get(name, "literature")
         require(item["role"] == expected_role, f"structure role mismatch: {name}")
         declaration_name(name)

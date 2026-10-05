@@ -20,3 +20,18 @@ def TmfModel.Br21BookStatement {C : Type u} [StableHomotopyCategory.{u,v} C]
     (16, 112) (19, 114) model.coordinates.v2Sixteen model.coordinates.betaGFour
 
 end KIP126.Challenge2
+
+/-! Source endpoint classes for BR21, before any program-coordinate comparison. -/
+namespace KIP126.Classical.Adams.Tmf
+open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
+universe u v
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+
+/-- The source's w₂² and βg⁴ in its actual HF₂-Adams E₂.
+Their identification with program expressions is an Interface computation obligation. -/
+structure Br21Classes (H : Mod2EilenbergMacLane (C := C)) (X : C) where
+  v2Sixteen : (adamsTowerInternalSpectralSequence H.unit X).Page 2 (16, 112)
+  betaGFour : (adamsTowerInternalSpectralSequence H.unit X).Page 2 (19, 114)
+
+end KIP126.Classical.Adams.Tmf

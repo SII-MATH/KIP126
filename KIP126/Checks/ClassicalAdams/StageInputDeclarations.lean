@@ -26,6 +26,8 @@ example : KIP126.Main.StageInput.witness = KIP126.Main.Axiom.challenge2 := rfl
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
+  unless getStructureFields env ``KIP126.Challenge2 == #[`literature, `computation] do
+    throwError "Challenge2 must contain exactly the literature and computation deliveries"
   for name in [``KIP126.Def.StageInput.witness,
       ``KIP126.Main.StageInput.witness,
       ``KIP126.Main.StageInput.literature,
@@ -40,9 +42,12 @@ run_cmd do
     let axioms ← liftCoreM (collectAxioms witness)
     unless axioms.contains input do
       throwError "stage witness does not consume its matching input: {witness}"
-  let foundationAxioms ← liftCoreM (collectAxioms ``KIP126.Def.StageInput.witness)
-  if foundationAxioms.contains ``KIP126.Main.Axiom.challenge2 then
-    throwError "Def's fixed implementation depends on a consuming stage axiom"
+  for background in [``KIP126.Def.StageInput.witness,
+      ``KIP126.Def.standardRouteInput, ``KIP126.Def.standardRouteBackground,
+      ``KIP126.Def.standardRouteEta, ``KIP126.Def.standardTmfTarget] do
+    let foundationAxioms ← liftCoreM (collectAxioms background)
+    if foundationAxioms.contains ``KIP126.Main.Axiom.challenge2 then
+      throwError "Def's fixed background depends on a consuming stage axiom: {background}"
   let some (.thmInfo _) := env.find? ``KIP126.Computation.LinProofs.sphereTable_sound
     | throwError "sphereTable_sound must be a theorem projected from Challenge 2"
 
@@ -98,12 +103,32 @@ example : routeComputation = witness.computation.route := rfl
 
 open KIP126.Main.StageInput in
 example : routeLiterature = KIP126.Literature.Route.Statements.toInputs
-    routeModel routeEta tmfLabels witness.literature.route routeApplication routeTmf := rfl
+    routeModel routeEta tmfLabels witness.literature.results.route routeApplication routeTmf := rfl
 
 open KIP126 KIP126.Classical.Adams KIP126.Main.StageInput in
 example (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t) :
     routeComputation.realization.sphere s t x = witness.presentation.comparison s t ht x :=
-  witness.computation.route_presentation s t ht x
+  witness.computation.results.route_presentation s t ht x
+
+open KIP126 KIP126.Classical.Adams in
+example (I : KIP126.Challenge2) : I.routeModel = standardRouteModel := rfl
+
+open KIP126 KIP126.Classical.Adams in
+example (I : KIP126.Challenge2) :
+    I.computation.route.realization = I.computation.bindings.routeRealization := rfl
+
+open KIP126 KIP126.Classical.Adams in
+example (I : KIP126.Challenge2) :
+    I.computation.results.route.toInputs = I.computation.route := rfl
+
+open KIP126 KIP126.Main.StageInput in
+example : routeLabels = witness.computation.bindings.routeLabels := rfl
+
+open KIP126 KIP126.Main.StageInput in
+example : tmfLabels = witness.literature.bindings.tmfLabels := rfl
+
+open KIP126 KIP126.Main.StageInput in
+example : routeEta = Def.standardRouteEta := rfl
 
 open KIP126 KIP126.Classical.Adams in
 example : Kervaire.Route.PermanentH6Square standardMilnorCooperations =
@@ -158,15 +183,11 @@ run_cmd do
     let some (.defnInfo _) := env.find? name
       | throwError "route inputs must only be definitions: {name}"
 
-example : ∃ routeInput : KIP126.Classical.Adams.StandardRouteInput,
-    ∃ modelBindings : KIP126.Challenge2.ModelBindings routeInput,
-      Nonempty (KIP126.Challenge2.LiteratureInterface routeInput modelBindings) :=
+example : Nonempty KIP126.Challenge2.LiteratureInterface :=
   KIP126.Interface.Solution.literatureInterface
 
-example : ∃ routeInput : KIP126.Classical.Adams.StandardRouteInput,
-    ∃ modelBindings : KIP126.Challenge2.ModelBindings routeInput,
-    ∃ presentation : KIP126.Classical.Adams.LinE2Presentation,
-      Nonempty (KIP126.Challenge2.ComputationInterface routeInput modelBindings presentation) :=
+example : ∃ literature : KIP126.Challenge2.LiteratureInterface,
+      Nonempty (KIP126.Challenge2.ComputationInterface literature) :=
   KIP126.Interface.Solution.computationInterface
 
 -- Removing manifold consequences must retain the stable-homotopy source
@@ -175,7 +196,7 @@ open KIP126.Classical.Adams KIP126.Core.SpectralSequence in
 example (c : KIP126.Challenge2) (j : ℕ) (hj : j ≤ 3) :
     NonzeroSurvival sphereAdamsData (2, ((2 ^ (j + 1) : ℕ) : ℤ))
       (Sphere.Internal.hiSquare standardFoundation.hf2 standardMilnorCooperations j) :=
-  c.literature.adamsOneLine.may_lowDimensionalSquares_permanent j hj
+  c.literature.results.adamsOneLine.may_lowDimensionalSquares_permanent j hj
 
 open Lean Elab Command in
 run_cmd do

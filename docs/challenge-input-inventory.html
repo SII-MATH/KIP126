@@ -14,7 +14,7 @@
 <header>
 <div class="eyebrow">KIP126 / 输入审阅</div>
 <h1>一个 Challenge2，各项义务分别看。</h1>
-<p class="intro">Challenge2 关联同一模型上的文献与计算。Main 在取得它后证明内部应用；固定球谱的适用性与分离性在 Def 中单列，保留未完成证明。数学条件仍在 Lean 中；引用、定位和来源文件由一份清单管理。</p>
+<p class="intro">Challenge2 顶层只交付文献和计算。两包各自列出绑定与结果，计算沿用同一文献来源；Def 固定路线模型和数学背景。Main 在取得见证后证明内部应用。来源比较与计算认证仍有生产证明责任，清单和编译不代表完成。</p>
 <div class="note">当前目标是标准 h₆² 的非零永久存活，不包含几何推论。文献包的完整性、原文定位和模型适用性仍待逐项核验。</div>
 </header>
 <nav class="tabs" aria-label="查看输入类别">
@@ -48,15 +48,17 @@
 const prefix = "KIP126.Challenge2.";
 const views = {
   literature: {
-    heading: "当前文献包",
-    intro: "消失线、Adams/May、Moss、BR21 和主证明路线均在同一清单登记。几何模型、Browder 判据及流形存在／不存在结论已移出当前交付范围。",
-    structure: prefix + "LiteratureInterface",
+    heading: "文献结果：五项",
+    intro: "来源对象及比较在文献绑定中；消失线、Adams/May、Moss、BR21 源端点微分和主证明路线是这些来源上的结果。来源比较证书仍须由 Interface 证明。",
+    bindingId: "MB12-literature-delivery",
+    structure: prefix + "LiteratureResults",
     order: ["sphereVanishing", "adamsOneLine", "moss", "br21", "route"]
   },
   computation: {
-    heading: "程序数据在同一模型上的七项交付",
-    intro: "固定表格、CSV 和日志必须解释到项目的真实数学对象上。已有局部证书、解析或哈希检查不等于这些交付已经全部认证。",
-    structure: prefix + "ComputationInterface",
+    heading: "计算结果：七项",
+    intro: "计算绑定统一选择 E₂ presentation、路线解释和 tmf 坐标，并比较 BR21 来源端点。七项结果须在这个绑定上认证；解析或哈希检查不构成数学证明。",
+    bindingId: "MB13-computation-delivery",
+    structure: prefix + "ComputationResults",
     order: ["sphereBasis", "sphereMultiplicative", "sphereStaircase", "sphereSquare", "sphereTable_sound", "route", "route_presentation"]
   },
   internal: {
@@ -69,13 +71,13 @@ const descriptions = {
   sphereVanishing: ["球谱 Adams 消失线", "Ravenel 的正 stem 消失范围。将其应用到项目固定 Adams 塔，还需模型比较。"],
   adamsOneLine: ["Adams 一线与 May 低维结果", "一线的生成和消失、Hopf invariant one、d₂(hⱼ) 及若干低维乘积与平方的永久性。原文 locator 仍有缺口。"],
   moss: ["Moss convergence", "Massey product 与 Toda bracket 的比较，必须保留 convergence、crossing 和不定性条件。"],
-  br21: ["tmf 的指定 d₃", "BR21 中 d₃(v₂¹⁶) = β⁵g；模型和坐标比较另有责任。"],
+  br21: ["tmf 来源端点的指定 d₃", "BR21 的微分先陈述在来源端点类上；这些类与所选 CSV 坐标的比较属于计算绑定。"],
   sphereBasis: ["E₂ 的有限坐标", "CSV 单项式确实线性无关并张成实际 E₂；缺失次数不能视作零。"],
   sphereMultiplicative: ["乘法比较", "所选 presentation 与实际球谱乘法、单位相容。"],
   sphereStaircase: ["staircase 的数学语义", "区分微分、非零微分、boundary、reach 和条件性反证。"],
   sphereSquare: ["标准平方与候选穷尽", "固定数据的平方证书运输到实际 E₂，并识别标准 h₆²。"],
   sphereTable_sound: ["固定微分表的正确性", "具体 CSV 坐标在实际塔上满足所登记的有限页球谱微分等式。"],
-  route_presentation: ["路线与 presentation 一致", "路线使用的命名类、基和表格都指向同一个 presentation。"],
+  route_presentation: ["路线与 presentation 一致", "已认证路线解释与计算绑定中的同一 E₂ presentation 比较。"],
   sphereSeparated: ["球塔滤过分离性", "从实际收敛、有限型和模型比较得到的 Def 证明目标。"]
 };
 const nested = {
@@ -134,8 +136,13 @@ function render() {
     return;
   }
   const group = manifest.interface_coverage.find(item => item.structure === config.structure);
+  const binding = manifest.route.model_bindings.find(item => item.id === config.bindingId);
+  const bindingCard = binding ? '<article class="card"><span class="tag">比较待证明</span><h3>本包的绑定</h3><p>' +
+    escapeHTML(binding.notes) + '</p><details><summary>查看绑定声明</summary><p class="meta">' +
+    binding.declarations.map(name => '<code>' + escapeHTML(name) + '</code>').join(' · ') +
+    '</p></details></article>' : '';
   document.querySelector("#view").innerHTML = "<h2>" + config.heading + "</h2><p class='muted'>" + config.intro +
-    "</p>" + config.order.filter(name => group && group.fields[name]).map(name => card(name, group.fields[name], config.structure)).join("");
+    "</p>" + bindingCard + config.order.filter(name => group && group.fields[name]).map(name => card(name, group.fields[name], config.structure)).join("");
   document.querySelectorAll("[data-view]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.view === active)));
 }
 function renderSearch() {

@@ -20,7 +20,7 @@ theorem cnu_d3 :
 
 /-- One-step λ injectivity with A and C from the SAME stage witness. -/
 theorem lambda_injective_125_130 :
-    LambdaInjectiveAt 125 130 (S_0_0 : witness.routeInput.Syn) := by
+    LambdaInjectiveAt 125 130 (S_0_0 : KIP126.Def.standardRouteInput.Syn) := by
   exact KIP126.Computation.Route.lambda_injective_125_130 routeLiterature routeComputation
 
 /-- The derived Section 7 finite/infinite facts use the delivered vanishing
@@ -47,8 +47,8 @@ theorem proposition_7_9 :
 its A/C fields and prove the finite-page/tail/filtration steps in Main. -/
 theorem proposition_7_8 (input : KIP126.Challenge2) :
     KIP126.Solution.Near126.OnlyD12.d12_dichotomy_and_condition_equivalence
-      standardMilnorCooperations input.routeModel input.modelBindings.routeLabels
-      input.modelBindings.routeEta := by
+      standardMilnorCooperations input.routeModel input.computation.bindings.routeLabels
+      KIP126.Def.standardRouteEta := by
   sorry
 
 end KIP126.Main.Solution.Route

@@ -50,13 +50,13 @@ run_cmd do
 
 open KIP126 KIP126.Classical.Adams KIP126.Computation.Route in
 example (I : KIP126.Challenge2) :
-    I.computation.route.toCertifiedRealization.toInputs = I.computation.route := rfl
+    I.computation.results.route.toInputs = I.computation.route := rfl
 
 open KIP126 KIP126.Classical.Adams in
 example (I : KIP126.Challenge2)
-    (application : Literature.Route.Application I.routeModel I.modelBindings.routeEta
-      I.modelBindings.tmfLabels I.modelBindings.route)
-    (tmf : Literature.Route.TmfInputs I.routeModel I.modelBindings.tmfLabels) :
-    Literature.Route.Inputs I.routeModel I.modelBindings.routeEta I.modelBindings.tmfLabels :=
-  Literature.Route.Statements.toInputs I.routeModel I.modelBindings.routeEta
-    I.modelBindings.tmfLabels I.literature.route application tmf
+    (application : Literature.Route.Application I.routeModel Def.standardRouteEta
+      I.literature.bindings.tmfLabels I.literature.bindings.route)
+    (tmf : Literature.Route.TmfInputs I.routeModel I.literature.bindings.tmfLabels) :
+    Literature.Route.Inputs I.routeModel Def.standardRouteEta I.literature.bindings.tmfLabels :=
+  Literature.Route.Statements.toInputs I.routeModel Def.standardRouteEta
+    I.literature.bindings.tmfLabels I.literature.results.route application tmf

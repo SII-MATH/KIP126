@@ -100,8 +100,9 @@ def MilnorInput.toMilnor {F : FoundationInput} (M : MilnorInput F) :
 /-- Shared Section 7 objects on the SAME classical foundation and Milnor
 coordinates. Only objects and structural compatibility belong here; literature
 results, table certification and paper deductions are delivered separately.
-Its source construction is delivered by Challenge2 together with bindings and
-the prior-source statements. Def does not choose from this weaker type first. -/
+Def fixes its specified source construction separately. Interface must then
+establish source applicability and deliver literature and computation on that
+same construction; this abstract type alone does not establish applicability. -/
 structure RouteInput (F : FoundationInput) (M : MilnorInput F) where
   Syn : Type 1
   synthetic : KIP126.Synthetic.Context.SyntheticCategory.{1, 0} Syn

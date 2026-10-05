@@ -57,14 +57,14 @@ theorem eleventh_quotient_candidate_d3 :
 vanishes on every finite page. Transport of the BHS nu(S) statement uses
 the same unit isomorphism and actual quotient functor. -/
 theorem ninth_quotient_candidate_target_zero (r : ℤ) (hr : 2 ≤ r) :
-    Subsingleton (((D).family.quotient (S_0_0 : witness.routeInput.Syn) 9).Page
+    Subsingleton (((D).family.quotient (S_0_0 : KIP126.Def.standardRouteInput.Syn) 9).Page
       r (18,140,130)) := by
   sorry
 
 /-- The actual rho page map kills these Q11 targets in Q9. This records
 the map used in Lemma x1239, rather than only comparing two dimensions. -/
 theorem rho_to_ninth_kills_candidate_target (r : ℤ) (hr : 2 ≤ r)
-    (y : ((D).family.quotient (S_0_0 : witness.routeInput.Syn) 11).Page
+    (y : ((D).family.quotient (S_0_0 : KIP126.Def.standardRouteInput.Syn) 11).Page
       r (18,140,130)) :
     familyPageMap (D).family ((D).quotientTower S_0_0 |>.rho 9 11 (by decide))
       r (18,140,130) y = 0 := by
@@ -95,7 +95,7 @@ theorem classical_stem124_af13_generated :
 of realization at (124,128); a classical bound alone does not exclude
 synthetic lambda-torsion at lower filtration. -/
 theorem theta5_square_filtration_ten
-    (theta : BiHom 62 64 (S_0_0 : witness.routeInput.Syn))
+    (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (htheta : ThetaChoice M (D).toModelData theta) :
     FiltrationAtLeast (nuCoefficientUnit standardFoundation.hf2.unit (D).nu) 10
       (sphereProduct theta theta) := by
@@ -105,11 +105,11 @@ theorem theta5_square_filtration_ten
 lambda preimage in the third branch and nonzero leading detection in the
 first two. This does not assume which branch actually occurs. -/
 theorem theta5_square_three_cases
-    (theta : BiHom 62 64 (S_0_0 : witness.routeInput.Syn))
+    (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (htheta : ThetaChoice M (D).toModelData theta) :
     C4At M (D).toModelData L theta ∨
       SphereDetected D 13 137 9 eCorrection (sphereProduct theta theta) ∨
-      ∃ a : BiHom 124 138 (S_0_0 : witness.routeInput.Syn),
+      ∃ a : BiHom 124 138 (S_0_0 : KIP126.Def.standardRouteInput.Syn),
         lambdaMultiply 10 a = sphereProduct theta theta := by
   sorry
 
@@ -117,7 +117,7 @@ theorem theta5_square_three_cases
 7<=s<=15. Every graded piece at s>=16 vanishes. Actual separatedness
 then kills the filtration, without asserting lambda^9 acts as zero on Q9. -/
 theorem ninth_quotient_stem123_weight130_filtration16_zero
-    (a : BiHom 123 130 (XModLambdaN (S_0_0 : witness.routeInput.Syn) 9))
+    (a : BiHom 123 130 (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 9))
     (ha : FiltrationAtLeast (nuCoefficientUnit standardFoundation.hf2.unit (D).nu) 16 a) :
     a = 0 := by
   sorry
@@ -127,7 +127,7 @@ support the nonzero d7(lambda^4 d7Source) and d3(lambda^8 h0^2 x123,13,2).
 Those targets disappear in Q9, so doing the calculation there first would
 lose the needed exclusion. All representatives with this detector qualify. -/
 theorem alpha_one_h0_filtration_seventeen
-    (a : BiHom 123 132 (XModLambdaN (S_0_0 : witness.routeInput.Syn) 11))
+    (a : BiHom 123 132 (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 11))
     (ha : FiniteDetected D 11 (by decide) 9 132 0 eV a) :
     FiltrationAtLeast (nuCoefficientUnit standardFoundation.hf2.unit (D).nu) 17
       (lambdaMultiply 3 (sphereAction h₀ a)) := by
@@ -138,7 +138,7 @@ all error-space exhaustion, and rho's actual preservation of filtration.
 The three exact homotopy equations are not inferred from leading Ext
 relations alone. They remain internal proof obligations here. -/
 theorem alpha_one_exists :
-    ∃ a11 : BiHom 123 132 (XModLambdaN (S_0_0 : witness.routeInput.Syn) 11),
+    ∃ a11 : BiHom 123 132 (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 11),
       AlphaOneProperties D η h₀ ((L).U M) eV a11 := by
   sorry
 

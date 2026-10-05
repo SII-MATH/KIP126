@@ -1,4 +1,5 @@
 import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+import KIP126.Def.SpectralSequence.Computation.Morphism.Proofs
 
 namespace KIP126.Classical.Adams
 open CategoryTheory MonoidalCategory KIP126.StableHomotopy
@@ -25,5 +26,25 @@ theorem adamsInternalE2Induced_coordinates (p : ℤ × ℤ)
   change (adamsTowerSSDataPageIso unit Y p.1 p.2 0).toLinearEquiv
     ((adamsTowerSSDataPageIso unit Y p.1 p.2 0).toLinearEquiv.symm _) = _
   exact LinearEquiv.apply_symm_apply _ _
+
+/-- Differential equations between actual Adams E₂ representatives are
+natural under a spectrum map. The image of either representative may be zero;
+this theorem does not preserve nonzero differentials.
+
+The remaining generic tower-naturality obligation is to assemble the proved
+layer, cycle and quotient-page maps into a morphism of the internal Adams
+spectral sequences, identify its E₂ map with `adamsInternalE2Induced`, and
+apply `SpectralSequenceMorphism.hasDifferential`. -/
+theorem adamsInternalE2Induced_hasDifferential
+    {r : ℤ} {p q : ℤ × ℤ}
+    {x : (adamsTowerInternalSpectralSequence unit X).Page 2 p}
+    {y : (adamsTowerInternalSpectralSequence unit X).Page 2 q}
+    (h : KIP126.Core.SpectralSequence.HasDifferential
+      (adamsTowerInternalSpectralSequence unit X) r p q x y) :
+    KIP126.Core.SpectralSequence.HasDifferential
+      (adamsTowerInternalSpectralSequence unit Y) r p q
+      (adamsInternalE2Induced unit f p x)
+      (adamsInternalE2Induced unit f q y) := by
+  sorry
 
 end KIP126.Classical.Adams

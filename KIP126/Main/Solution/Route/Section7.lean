@@ -62,10 +62,10 @@ nonzero detector must be produced, not inferred from order two alone.
 The proof uses the local Massey/no-crossing results, the supplied classical
 Moss application, and the realization/secondary-operation comparison. -/
 theorem synthetic_theta_b_toda
-    (theta : BiHom 62 64 (S_0_0 : witness.routeInput.Syn))
+    (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (htheta : ThetaChoice M (D).toModelData theta) :
-    ∃ (b : BiHom 62 70 (S_0_0 : witness.routeInput.Syn))
-      (z : BiHom 125 134 (S_0_0 : witness.routeInput.Syn)),
+    ∃ (b : BiHom 62 70 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
+      (z : BiHom 125 134 (S_0_0 : KIP126.Def.standardRouteInput.Syn)),
       SphereDetected D 8 70 0 eB b ∧ SphereDetected D 9 134 0 eH6B z ∧
       TripleToda theta syntheticTwo b z := by
   sorry
@@ -74,9 +74,9 @@ theorem synthetic_theta_b_toda
 these two images. This does not set the original high bracket's
 indeterminacy to zero and does not require an extra raw computation. -/
 theorem theta_b_multiplied_indeterminacy
-    (theta : BiHom 62 64 (S_0_0 : witness.routeInput.Syn))
+    (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (htheta : ThetaChoice M (D).toModelData theta)
-    (b : BiHom 62 70 (S_0_0 : witness.routeInput.Syn)) :
+    (b : BiHom 62 70 (S_0_0 : KIP126.Def.standardRouteInput.Syn)) :
     ThetaBMultipliedIndeterminacy h₀ theta b ∧
     SymmetricTwoMultipliedIndeterminacy b := by
   sorry
@@ -86,10 +86,10 @@ actual Toda membership, so no selected value replaces the original set.
 The two multiplied-indeterminacy statements above are internal proof
 dependencies, rather than new assumptions of this theorem. -/
 theorem theta_b_multiplied_shuffle
-    (theta : BiHom 62 64 (S_0_0 : witness.routeInput.Syn))
+    (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (htheta : ThetaChoice M (D).toModelData theta)
-    (b : BiHom 62 70 (S_0_0 : witness.routeInput.Syn))
-    (z : BiHom 125 134 (S_0_0 : witness.routeInput.Syn))
+    (b : BiHom 62 70 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
+    (z : BiHom 125 134 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (hz : TripleToda theta syntheticTwo b z) :
     lambdaMultiply 2 (sphereProduct h₀ z) =
       lambdaMultiply 3 (sphereProduct η (sphereProduct theta b)) := by
@@ -106,12 +106,12 @@ filtration analysis; cancelling eta in a homotopy equation is invalid.
 The two multiplied Toda-indeterminacy lemmas above apply exactly here. -/
 theorem main_toda_bracket_detected
     (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η)
-    (a11 : BiHom 123 132 (XModLambdaN (S_0_0 : witness.routeInput.Syn) 11))
+    (a11 : BiHom 123 132 (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 11))
     (ha : AlphaOneProperties D η h₀ ((L).U M) eV a11) :
     let a9 := a11 ≫ ((D).quotientTower S_0_0).rho 9 11 (by decide)
-    (∃ z : BiHom 125 132 (XModLambdaN (S_0_0 : witness.routeInput.Syn) 9),
+    (∃ z : BiHom 125 132 (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 9),
       ModuleTripleToda (lambdaMultiply 3 a9) h₀ η z) ∧
-    (∀ z : BiHom 125 132 (XModLambdaN (S_0_0 : witness.routeInput.Syn) 9),
+    (∀ z : BiHom 125 132 (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 9),
       ModuleTripleToda (lambdaMultiply 3 a9) h₀ η z →
       FiniteDetected D 9 (by decide) 11 136 4 eY z) := by
   sorry
