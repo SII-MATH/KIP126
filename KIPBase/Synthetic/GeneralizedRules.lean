@@ -371,19 +371,27 @@ variable {ω' : Type w}
 variable {S : ConvergingSSSquare (C := C) (ω := ω) (ω' := ω')}
 variable {a b c s : ℤ} {degree : ω'}
 
+/-- 无界方块传播结论中右下角代表元的规范重指标搬运。单独命名此映射，
+使后续定理不必在声明头部反复归约大型依赖 `Eq.mpr`。 -/
+noncomputable def targetTransport {T : C}
+    (w : T ⟶ (S.V₄.E.ssData
+      (S.V₄.conv.reindexEquiv.symm (s + b + c, degree))).eInfty) :
+    T ⟶ (S.V₄.E.ssData
+      (S.V₄.conv.reindexEquiv.symm (s + a + (b + c - a), degree))).eInfty :=
+  Eq.mpr (congrArg (fun X : C => T ⟶ X)
+    (unbounded_comm_target_eq S a b c s degree)) w
+
 /-- 消去完整的 generalized Leibniz 输入，得到方块右边长度
 `b + c - a` 的实际 ESS 关系。目标代表元中的 `Eq.mpr` 正是无界方块
 定理给出的规范重指标搬运，不额外选择新的代表元。 -/
 theorem propagate (I : SyntheticGeneralizedLeibnizInput S a b c s degree) :
     DifferentialRelation (ExtensionSpectralSequence S.q degree)
-      (b + c - a) (s + a, 1) I.y
-      (Eq.mpr (congrArg (fun X : C => I.T ⟶ X)
-        (unbounded_comm_target_eq S a b c s degree)) I.w) := by
-  letI : Projective I.T := I.projective
+      (b + c - a) (s + a, 1) I.y (targetTransport S a b c s degree I.w) := by
+  rcases I with ⟨ha, hb, hc, hr, T, x, y, z, w,
+    htop, hleft, hsync, hbottom, hbottomNoCrossing⟩
+  unfold targetTransport
   exact syntheticGeneralizedLeibniz S a b c s degree
-    I.topLength_nonneg I.leftLength_nonneg I.bottomLength_nonneg
-    I.resultLength_nonneg I.x I.y I.z I.w I.topRelation I.leftRelation
-    I.synchronizedNoCrossing I.bottomRelation I.bottomNoCrossing
+    ha hb hc hr x y z w htop hleft hsync hbottom hbottomNoCrossing
 
 /-- Complete a generalized Leibniz input from its synchronized top-left part
 and one already transported bottom relation. -/
