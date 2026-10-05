@@ -58,7 +58,7 @@ noncomputable def normalizedPreSS (A : Syn) :
     PreSS (ModuleCat.{v} ℤ) Tridegree where
   r₀ := 2
   ssData := normalizedSSData A
-  diffDeg := syntheticAdamsShift
+  diffDeg := syntheticAdamsRawShift
   d r i := if hr : 2 ≤ r then
     TowerSpectralSequence.internalD (lambdaTower A) (Smn 0 i.2.2)
       (r - 2).toNat (i.2.1 - i.2.2) (i.2.1 - i.1) ≫ eqToHom (by
@@ -69,9 +69,9 @@ noncomputable def normalizedPreSS (A : Syn) :
         change (TowerSpectralSequence.ssData (lambdaTower A) (Smn 0 i.2.2)
           (i.2.1 - i.2.2 + (((r - 2).toNat + 1 : ℕ) : ℤ)) (i.2.1 - i.1 - 1)).page
             ((r - 2).toNat : WithTop ℕ) =
-              (normalizedSSData A (i + syntheticAdamsShift r)).page
+              (normalizedSSData A (i + syntheticAdamsRawShift r)).page
                 ((r - 2).toNat : WithTop ℕ)
-        simp only [normalizedSSData, syntheticAdamsShift, Prod.fst_add,
+        simp only [normalizedSSData, syntheticAdamsRawShift, Prod.fst_add,
           Prod.snd_add, add_zero]
         rw [hk, hn])
     else 0

@@ -18,7 +18,8 @@ example (r : ℕ) :
 variable {stable : StableHomotopyContext} {X Y : stable.Spectrum}
   {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
 
-example (n : ℕ) : differentialDegree n = ((n : ℤ), (n : ℤ)) := by
+example (n : ExtensionLength) :
+    differentialDegree n = (n.toInt, n.toInt) := by
   rfl
 
 example (D : EtaESSInput source target) :
@@ -32,6 +33,10 @@ example (D : EtaESSInput source target) (b : Index) :
 example (_D : EtaESSInput source target) (n : ℤ) (b : Index) :
     (etaESSShape n).Rel b (b + (n, n)) :=
   etaESSShape_rel n b
+
+example (_D : EtaESSInput source target) (n : ExtensionLength) (b : Index) :
+    (etaESSShapeAt n).Rel b (b + differentialDegree n) :=
+  etaESSShapeAt_rel n b
 
 example (D : EtaESSInput source target) (row : EtaDifferential) :
     FExtension D row ↔ DetectedBy D row :=

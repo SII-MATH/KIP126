@@ -15,6 +15,7 @@ literature calculation as a project axiom.
 namespace KIP126.Classical.Adams.Regression
 
 open CategoryTheory
+open KIP126.Core.SpectralSequence
 
 example : classicalAdamsPageLevel.firstPage = 2 := rfl
 example : classicalAdamsPageLevel.admissibleFrom = 2 := rfl
@@ -38,11 +39,11 @@ variable {stable : StableHomotopyContext}
   {A : ClassicalAdamsSS stable stable.sphere}
 
 example :
-    classicalAdamsTarget 2 (1, 16) = (3, 17) := by
-  norm_num [classicalAdamsTarget, classicalAdamsShift]
+    classicalAdamsTarget AdamsPage.two (1, 16) = (3, 17) := by
+  norm_num [classicalAdamsTarget, classicalAdamsShift, AdamsPage.two, AdamsPage.toInt]
 
 example (b : Bidegree) :
-    (classicalAdamsShape 2).Rel b (classicalAdamsTarget 2 b) :=
+    (classicalAdamsShape 2).Rel b (classicalAdamsTarget AdamsPage.two b) :=
   classicalAdamsShape_two_rel b
 
 example (b : Bidegree) :

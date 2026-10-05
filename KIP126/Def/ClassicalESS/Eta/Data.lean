@@ -26,6 +26,10 @@ abbrev Coeff := F2ModuleCat
 /-- The `(n,n)` differential shape of a classical eta-ESS page. -/
 def etaESSShape (n : ℤ) : ComplexShape Index := ComplexShape.up' (n, n)
 
+/-- 把扩张长度送入 Mathlib 所需的整数页形状。 -/
+def etaESSShapeAt (n : ExtensionLength) : ComplexShape Index :=
+  etaESSShape n.toInt
+
 def etaESSPageLevel : PageLevelConvention where
   firstPage := 0
   admissibleFrom := 0
@@ -155,6 +159,6 @@ noncomputable def etaPage {stable : StableHomotopyContext}
 
 abbrev ClassicalEtaESS := SpectralSequence Coeff etaESSShape 0
 
-def differentialDegree (n : ℕ) : Index := (n, n)
+def differentialDegree (n : ExtensionLength) : Index := (n.toInt, n.toInt)
 
 end KIP126.Classical.ExtensionSS

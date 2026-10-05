@@ -12,6 +12,12 @@ open KIP126.Core.SpectralSequence
     (etaESSShape n).Rel b (b + (n, n)) := by
   simp [etaESSShape]
 
+/-- 扩张长度对应的形状具有同一个显式次数。 -/
+@[simp] theorem etaESSShapeAt_rel (n : ExtensionLength) (b : Index) :
+    (etaESSShapeAt n).Rel b (b + differentialDegree n) := by
+  rcases n with ⟨n⟩
+  simp [etaESSShapeAt, etaESSShape, differentialDegree, ExtensionLength.toInt]
+
 theorem abutment_component {stable : StableHomotopyContext} {X Y : stable.Spectrum}
   {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
   (D : EtaESSInput source target) (b : Index) :

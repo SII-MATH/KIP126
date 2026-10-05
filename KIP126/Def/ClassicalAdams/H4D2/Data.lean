@@ -14,11 +14,11 @@ structure AdamsD₂Statement {stable : StableHomotopyContext}
     {X : stable.Spectrum} (A : ClassicalAdamsSS stable X) where
   source : AdamsClass A
   target : AdamsClass A
-  target_degree : target.degree = classicalAdamsTarget 2 source.degree
+  target_degree : target.degree = classicalAdamsTarget AdamsPage.two source.degree
   representative_relation :
     (A.d₂ source.degree).hom source.representative =
       transportRepresentative target
-        (degree := classicalAdamsTarget 2 source.degree) target_degree
+        (degree := classicalAdamsTarget AdamsPage.two source.degree) target_degree
 
 variable {stable : StableHomotopyContext}
   {A : ClassicalAdamsSS stable stable.sphere}

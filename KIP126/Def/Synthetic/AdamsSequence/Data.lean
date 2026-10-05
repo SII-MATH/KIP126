@@ -27,9 +27,18 @@ noncomputable section
 
 abbrev Tridegree := ℤ × ℤ × ℤ
 
-def syntheticAdamsShift (r : ℤ) : Tridegree := (r, r - 1, 0)
+/-! 底层谱序列必须在所有整数页上给出次数；带 `Raw` 的名称只服务于该接口。 -/
+def syntheticAdamsRawShift (r : ℤ) : Tridegree := (r, r - 1, 0)
 
-def syntheticAdamsTarget (r : ℤ) (i : Tridegree) : Tridegree :=
+def syntheticAdamsRawTarget (r : ℤ) (i : Tridegree) : Tridegree :=
+  i + syntheticAdamsRawShift r
+
+/-- 有效 synthetic Adams 页的微分次数。 -/
+def syntheticAdamsShift (r : AdamsPage) : Tridegree :=
+  syntheticAdamsRawShift r.toInt
+
+/-- 有效 synthetic Adams 页微分的目标三次数。 -/
+def syntheticAdamsTarget (r : AdamsPage) (i : Tridegree) : Tridegree :=
   i + syntheticAdamsShift r
 
 def syntheticAdamsPageLevel : PageLevelConvention where
@@ -46,7 +55,11 @@ def syntheticAdamsPageLevel : PageLevelConvention where
 
 /-- A grading shape, not a Mathlib spectral-sequence object. -/
 def syntheticAdamsShape (r : ℤ) : ComplexShape Tridegree :=
-  ComplexShape.up' (syntheticAdamsShift r)
+  ComplexShape.up' (syntheticAdamsRawShift r)
+
+/-- 把有效 Adams 页送入底层整数形状。 -/
+def syntheticAdamsShapeAt (r : AdamsPage) : ComplexShape Tridegree :=
+  syntheticAdamsShape r.toInt
 
 def lambdaDegree : Tridegree := (0, 0, -1)
 
@@ -60,7 +73,7 @@ Standard classes and a λ action are not chosen independently in this record. -/
 structure SyntheticAdamsSS where
   sequence : SyntheticAdamsSpectralSequence.{v}
   firstPage : sequence.r₀ = 2
-  differentialDegree : ∀ r : ℤ, sequence.diffDeg r = syntheticAdamsShift r
+  differentialDegree : ∀ r : ℤ, sequence.diffDeg r = syntheticAdamsRawShift r
 
 namespace SyntheticAdamsSS
 
@@ -74,10 +87,10 @@ def E₃ (A : SyntheticAdamsSS.{v}) := A.Page 3
 
 /-- The actual internal differential, with only its proven degree transported. -/
 def d (A : SyntheticAdamsSS.{v}) (r : ℤ) (i : Tridegree) :
-    A.Page r i ⟶ A.Page r (syntheticAdamsTarget r i) :=
+    A.Page r i ⟶ A.Page r (syntheticAdamsRawTarget r i) :=
   eqToHom (by simp only [Page, A.firstPage]) ≫
     A.sequence.d r i ≫ eqToHom (by
-      simp only [Page, A.firstPage, A.differentialDegree, syntheticAdamsTarget])
+      simp only [Page, A.firstPage, A.differentialDegree, syntheticAdamsRawTarget])
 
 /-- Successor-page homology, derived from the internal cycle/boundary axioms. -/
 def e₂ToE₃ (A : SyntheticAdamsSS.{v}) (i : Tridegree) :
@@ -86,7 +99,7 @@ def e₂ToE₃ (A : SyntheticAdamsSS.{v}) (i : Tridegree) :
     eqToIso (by norm_num [E₃, Page, KIP126.Core.SpectralSequence.Page, A.firstPage])
 
 def d₂ (A : SyntheticAdamsSS.{v}) (i : Tridegree) :
-    A.E₂ i ⟶ A.E₂ (syntheticAdamsTarget 2 i) := A.d 2 i
+    A.E₂ i ⟶ A.E₂ (syntheticAdamsTarget AdamsPage.two i) := A.d 2 i
 
 end SyntheticAdamsSS
 
@@ -101,10 +114,10 @@ structure SyntheticLambdaAction (A : SyntheticAdamsSS.{v}) where
     ambient.pageMap i (↑(r - 2).toNat : WithTop ℕ) ≫
         A.d r (lambdaTarget i) ≫
         eqToHom (congrArg (A.Page r) (show
-          syntheticAdamsTarget r (lambdaTarget i) =
-            lambdaTarget (syntheticAdamsTarget r i) by
-          simp only [syntheticAdamsTarget, lambdaTarget]; abel)) =
-      A.d r i ≫ ambient.pageMap (syntheticAdamsTarget r i)
+          syntheticAdamsRawTarget r (lambdaTarget i) =
+            lambdaTarget (syntheticAdamsRawTarget r i) by
+          simp only [syntheticAdamsRawTarget, lambdaTarget]; abel)) =
+      A.d r i ≫ ambient.pageMap (syntheticAdamsRawTarget r i)
         (↑(r - 2).toNat : WithTop ℕ)
 
 def lambdaMapFromAction {A : SyntheticAdamsSS.{v}}
@@ -128,7 +141,7 @@ def fixedWeightDifferential (A : SyntheticAdamsSS.{v}) (w r : ℤ)
     (b : KIP126.Classical.Adams.Bidegree) :
     fixedWeightPage A w r b ⟶ fixedWeightPage A w r (b + (r, r - 1)) :=
   A.d r (b.1, b.2, w) ≫ eqToHom (by
-    unfold fixedWeightPage syntheticAdamsTarget syntheticAdamsShift
+    unfold fixedWeightPage syntheticAdamsRawTarget syntheticAdamsRawShift
     congr 1
     apply Prod.ext
     · rfl
@@ -141,7 +154,7 @@ fixed on every object. Its existence and construction are not postulated. -/
 structure SyntheticAdamsFamily (Syn : Type u) [SyntheticCategory.{u, v} Syn] where
   functor : Syn ⥤ KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) Tridegree
   firstPage : ∀ X, (functor.obj X).r₀ = 2
-  differentialDegree : ∀ X r, (functor.obj X).diffDeg r = syntheticAdamsShift r
+  differentialDegree : ∀ X r, (functor.obj X).diffDeg r = syntheticAdamsRawShift r
 
 namespace SyntheticAdamsFamily
 

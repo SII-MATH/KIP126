@@ -10,12 +10,13 @@ open KIP126.Synthetic.SpectralSequence
 universe v
 noncomputable section
 
-theorem forgetWeight_page_shape (r : ℤ) (i : Tridegree) :
-    (syntheticAdamsShape r).Rel i (syntheticAdamsTarget r i) :=
+theorem forgetWeight_page_shape (r : AdamsPage) (i : Tridegree) :
+    (syntheticAdamsShapeAt r).Rel i (syntheticAdamsTarget r i) :=
   syntheticAdamsShape_rel r i
 
-theorem forgetWeight_differential_degree (r : ℤ) (i : Tridegree) :
-    forgetWeight (syntheticAdamsTarget r i) = forgetWeight i + (r, r - 1) :=
+theorem forgetWeight_differential_degree (r : AdamsPage) (i : Tridegree) :
+    forgetWeight (syntheticAdamsTarget r i) =
+      forgetWeight i + (r.toInt, r.toInt - 1) :=
   forgetWeight_add_shift r i
 
 theorem synthetic_h₄_degree_forgets :

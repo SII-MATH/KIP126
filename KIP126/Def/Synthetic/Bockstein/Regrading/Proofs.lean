@@ -26,10 +26,10 @@ universe u v
 /-- Raw differential degree `(q,-1,0)` becomes the synthetic degree of
 page `q+1`. -/
 theorem gradingEquiv_differentialDegree (q : ℤ) :
-    gradingEquiv (q, -1, 0) = syntheticAdamsShift (q + 1) := by
+    gradingEquiv (q, -1, 0) = syntheticAdamsRawShift (q + 1) := by
   apply Prod.ext
-  · simp [gradingEquiv, syntheticAdamsShift]
-  · apply Prod.ext <;> simp [gradingEquiv, syntheticAdamsShift]
+  · simp [gradingEquiv, syntheticAdamsRawShift]
+  · apply Prod.ext <;> simp [gradingEquiv, syntheticAdamsRawShift]
 
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
   [HasFunctorialCofiber (C := Syn)]
@@ -38,7 +38,7 @@ variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
     (normalizedPreSS A).r₀ = 2 := rfl
 
 @[simp] theorem normalizedPreSS_diffDeg (A : Syn) (r : ℤ) :
-    (normalizedPreSS A).diffDeg r = syntheticAdamsShift r := rfl
+    (normalizedPreSS A).diffDeg r = syntheticAdamsRawShift r := rfl
 
 /-- The ambient and all nested subobjects are unchanged under regrading. -/
 theorem normalizedSSData_eq_weightwise (A : Syn) (i : Tridegree) :

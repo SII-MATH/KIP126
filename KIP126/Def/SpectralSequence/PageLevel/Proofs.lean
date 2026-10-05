@@ -3,6 +3,16 @@ import Lean.Elab.Tactic.Omega
 
 namespace KIP126.Core.SpectralSequence
 
+namespace AdamsPage
+
+/-- 有效 Adams 页转换成整数后仍满足第二页下界。 -/
+theorem two_le_toInt (r : AdamsPage) : (2 : ℤ) ≤ r.toInt := by
+  rcases r with ⟨r, hr⟩
+  change (2 : ℤ) ≤ (r : ℤ)
+  exact_mod_cast hr
+
+end AdamsPage
+
 namespace PageLevelConvention
 
 theorem page_ge (P : PageLevelConvention) {r : ℕ}
