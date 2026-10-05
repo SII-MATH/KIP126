@@ -369,7 +369,8 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Complete and separated decreasing filtration]
   \label{def:complete-separated-filtration}
   \uses{def:core-filtration,def:core-filtration-completion-witness}
-  \lean{KIPBase.SpectralSequence.Filtration.CompleteSeparated}
+  \lean{KIP126.Core.SpectralSequence.Filtration.IsExhaustive}
+  \lean{KIP126.Core.SpectralSequence.Filtration.IsHausdorff}
   \lean{KIP126.Classical.Adams.IsAdamsFiltrationSeparated}
   \leanok
   Let $F$ be a decreasing filtration by subobjects of a graded object $A$.
@@ -385,11 +386,12 @@ synthetic rigidity and extension calculations belong to later chapters.
   \[
     A_n\longrightarrow\varprojlim_s A_n/F^sA_n
   \]
-  is an isomorphism for every $n$.  The three conditions are packaged by
-  \texttt{Filtration.CompleteSeparated}; its completeness field uses the
-  explicit truncation-tower universal property, while its exhaustive and
-  Hausdorff fields use the ordinary supremum and infimum conditions.  This
-  interface does not identify ordinary
+  is an isomorphism for every $n$.  KIP126 records these three obligations
+  separately: completeness uses the explicit truncation-tower universal
+  property, while exhaustiveness and Hausdorffness are predicates on the
+  filtration.  This separation keeps a concrete convergence theorem from
+  acquiring any of the three conditions by construction.  These interfaces
+  do not identify ordinary
   exhaustiveness with the stronger condition that $F^sA_n=\top$ for all
   sufficiently small $s$, nor separatedness with the stronger condition that
   $F^sA_n=\bot$ for all sufficiently large $s$.  Those stronger eventual
@@ -402,8 +404,7 @@ synthetic rigidity and extension calculations belong to later chapters.
 % SOURCE: MainPaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
 \begin{definition}[Spectral-sequence page-level convention]
   \label{def:ss-page-level}
-  \lean{KIPBase.SpectralSequence.PageLevelConvention}
-  \lean{KIPBase.SpectralSequence.adamsPageLevelConvention}
+  \lean{KIP126.Core.SpectralSequence.PageLevelConvention}
   \leanok
   A page-level convention consists of a first displayed page, a map from its
   natural-number display index to Mathlib's integer page index, a
@@ -471,8 +472,6 @@ synthetic rigidity and extension calculations belong to later chapters.
   \lean{KIP126.Classical.ExtensionSS.etaESSShape_rel}
   \lean{KIP126.Classical.ExtensionSS.etaESSPageLevel}
   \lean{KIP126.Classical.ExtensionSS.differentialDegree}
-  \lean{KIPBase.SpectralSequence.ExtensionSpectralSequence_r₀}
-  \lean{KIPBase.SpectralSequence.ExtensionSpectralSequence_diffDeg}
   \leanok
   The first displayed extension page is $n=0$.  On the paper's $(s,t)$
   indexing, its page-$n$ differential has additive degree $(n,n)$ and is
@@ -598,7 +597,7 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Algebraic $E_\infty$ presentation]
   \label{def:ss-einfty-presentation}
   \uses{def:ss-elementwise-page-presentation}
-  \lean{KIPBase.SpectralSequence.SSData.eInfty}
+  \lean{KIP126.Core.SpectralSequence.SSData.eInfty}
   \leanok
   Given compatible finite-page data, define
   $Z_\infty=\bigcap_{r\ge1}Z_r$ and
@@ -611,10 +610,7 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Finite survival and permanent classes]
   \label{def:ss-cycle-boundary-survival}
   \uses{def:ss-elementwise-page-presentation}
-  \lean{KIPBase.SpectralSequence.SSData.IsCycleAt}
-  \lean{KIPBase.SpectralSequence.SSData.IsBoundaryAt}
-  \lean{KIPBase.SpectralSequence.SSData.SurvivesThrough}
-  \leanok
+  \notready
   A representative in the initial $E_2$ page is an $r$-cycle when it lies in
   $Z_r$ and an $r$-boundary when it lies in $B_r$.  An $E_r$ class survives
   through page $R$ when it has a representative in $Z_R$ modulo
@@ -625,10 +621,7 @@ synthetic rigidity and extension calculations belong to later chapters.
 \begin{definition}[Permanent representative and nonzero $E_\infty$ class]
   \label{def:ss-permanent-einfty-class}
   \uses{def:ss-einfty-presentation,def:ss-cycle-boundary-survival}
-  \lean{KIPBase.SpectralSequence.SSData.IsPermanentRepresentative}
-  \lean{KIPBase.SpectralSequence.SSData.RepresentsNonzeroAt}
-  \lean{KIPBase.SpectralSequence.SSData.permanent_nonzero_iff}
-  \leanok
+  \notready
   A representative is permanent when it lies in $Z_\infty$; its limiting
   class is its coset in $E_\infty=Z_\infty/B_\infty$.  That class is nonzero
   exactly when the representative is not in $B_\infty$.
@@ -882,23 +875,16 @@ synthetic rigidity and extension calculations belong to later chapters.
   $(s,t,w)\mapsto(s,t)$; binding a comparison to the actual Adams tower and
   the selected synthetic family remains a construction obligation.
 
-  The general pagewise interface records an arbitrary grading reindexing, its
-  compatibility with differential degrees, and the transported differential
-  square.  In particular it accepts the affine shifts
-  $(s,t)\mapsto(s+k,t+k+d)$ used by extension spectral sequences.  The
-  fixed-weight comparison above is the compiled specialized construction.
+  This node records the compiled fixed-weight comparison used on the KIP126
+  main line.  More general affine reindexing interfaces belong here only after
+  they have been migrated to a stable declaration under \texttt{KIP126}.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:138-150, 159-162, 1606-1753.
 \begin{definition}[Multiplicative spectral sequence]
   \label{def:multiplicative-ss}
   \uses{def:ss-elementwise-page-presentation}
-  \lean{KIPBase.SpectralSequence.GradingParity}
-  \lean{KIPBase.SpectralSequence.SSPairing}
-  \lean{KIPBase.SpectralSequence.MultiplicativeSS}
-  \lean{KIPBase.SpectralSequence.ConvergingSSPairing}
-  \lean{KIPBase.SpectralSequence.MultiplicativeConvergingSS}
-  \leanok
+  \notready
   A pairing of spectral sequences specifies, on every displayed page,
   products $E_{1,r}^i\otimes E_{2,r}^j\to E_{3,r}^{i+j}$.  A multiplicative
   spectral sequence is, by definition, the self-pairing obtained by taking
