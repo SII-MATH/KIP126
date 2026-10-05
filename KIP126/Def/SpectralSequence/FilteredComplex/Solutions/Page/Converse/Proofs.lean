@@ -182,4 +182,15 @@ theorem differentialRelation_iff_nonempty_fiber
   · rintro ⟨a⟩
     exact differentialRelation_of_fiber FC bnd n s k a
 
+/-- 在投射测试对象上，有限页的商页微分关系与严格过滤代表元关系等价。 -/
+theorem differentialRelation_iff_representativeRelation
+    (FC : FilteredComplex C) (bnd : FC.IsBounded) (n : ℕ) (s k : ℤ)
+    {T : C} [Projective T]
+    (x : T ⟶ FC.assocGraded s k)
+    (y : T ⟶ FC.assocGraded (s + ↑n) (k - 1)) :
+    DifferentialRelation (FC.toSpectralSequence bnd) n (s, k) x y ↔
+      FC.RepresentativeRelation n (Int.natCast_nonneg n) s k x y := by
+  rw [differentialRelation_iff_nonempty_fiber,
+    nonempty_fiber_iff (Int.natCast_nonneg n)]
+
 end KIP126.Core.SpectralSequence.FilteredComplex.Solutions
