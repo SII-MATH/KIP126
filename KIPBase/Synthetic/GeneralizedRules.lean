@@ -371,6 +371,20 @@ variable {ω' : Type w}
 variable {S : ConvergingSSSquare (C := C) (ω := ω) (ω' := ω')}
 variable {a b c s : ℤ} {degree : ω'}
 
+/-- 消去完整的 generalized Leibniz 输入，得到方块右边长度
+`b + c - a` 的实际 ESS 关系。目标代表元中的 `Eq.mpr` 正是无界方块
+定理给出的规范重指标搬运，不额外选择新的代表元。 -/
+theorem propagate (I : SyntheticGeneralizedLeibnizInput S a b c s degree) :
+    DifferentialRelation (ExtensionSpectralSequence S.q degree)
+      (b + c - a) (s + a, 1) I.y
+      (Eq.mpr (congrArg (fun X : C => I.T ⟶ X)
+        (unbounded_comm_target_eq S a b c s degree)) I.w) := by
+  letI : Projective I.T := I.projective
+  exact syntheticGeneralizedLeibniz S a b c s degree
+    I.topLength_nonneg I.leftLength_nonneg I.bottomLength_nonneg
+    I.resultLength_nonneg I.x I.y I.z I.w I.topRelation I.leftRelation
+    I.synchronizedNoCrossing I.bottomRelation I.bottomNoCrossing
+
 /-- Complete a generalized Leibniz input from its synchronized top-left part
 and one already transported bottom relation. -/
 noncomputable def ofTopLeftAndBottom
