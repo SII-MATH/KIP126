@@ -794,6 +794,11 @@ theorem lambda_bockstein_iso (X : 𝒮) :
     (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).r₀ = 2 :=
   synAdamsNu_r₀ 𝒮 Syn X
 
+/-- Preserve the develop starting-page name without a separate axiom. -/
+theorem lambda_bockstein_start_page (X : 𝒮) :
+    (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).r₀ = 2 :=
+  synAdamsNu_r₀ 𝒮 Syn X
+
 /-! ### E∞ computations -/
 
 /-- E∞ vanishing for ν(X) (KIP Prop 3.12):
