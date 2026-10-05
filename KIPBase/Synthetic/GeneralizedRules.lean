@@ -373,20 +373,25 @@ variable {a b c s : ℤ} {degree : ω'}
 
 /-- 无界方块传播结论中右下角代表元的规范重指标搬运。单独命名此映射，
 使后续定理不必在声明头部反复归约大型依赖 `Eq.mpr`。 -/
-noncomputable def targetTransport {T : C}
+noncomputable def targetTransport [LocallySmall.{uC} C] [WellPowered.{uC} C]
+    [HasWidePullbacks.{uC} C] [HasCoproducts.{uC} C] {T : C}
     (w : T ⟶ (S.V₄.E.ssData
       (S.V₄.conv.reindexEquiv.symm (s + b + c, degree))).eInfty) :
     T ⟶ (S.V₄.E.ssData
       (S.V₄.conv.reindexEquiv.symm (s + a + (b + c - a), degree))).eInfty :=
   Eq.mpr (congrArg (fun X : C => T ⟶ X)
-    (unbounded_comm_target_eq S a b c s degree)) w
+    (unbounded_comm_target_eq (C := C) S a b c s degree)) w
 
 /-- 消去完整的 generalized Leibniz 输入，得到方块右边长度
 `b + c - a` 的实际 ESS 关系。目标代表元中的 `Eq.mpr` 正是无界方块
 定理给出的规范重指标搬运，不额外选择新的代表元。 -/
-theorem propagate (I : SyntheticGeneralizedLeibnizInput S a b c s degree) :
+theorem propagate [LocallySmall.{uC} C] [WellPowered.{uC} C]
+    [HasWidePullbacks.{uC} C] [HasCoproducts.{uC} C]
+    (I : SyntheticGeneralizedLeibnizInput S a b c s degree) :
     DifferentialRelation (ExtensionSpectralSequence S.q degree)
-      (b + c - a) (s + a, 1) I.y (targetTransport S a b c s degree I.w) := by
+      (b + c - a) (s + a, 1) I.y
+      (targetTransport (S := S) (a := a) (b := b) (c := c) (s := s)
+        (degree := degree) I.w) := by
   rcases I with ⟨ha, hb, hc, hr, T, x, y, z, w,
     htop, hleft, hsync, hbottom, hbottomNoCrossing⟩
   unfold targetTransport
