@@ -1,6 +1,6 @@
 import KIP126.Def.ClassicalAdams.SphereSequence.Data
 import KIP126.Def.SpectralSequence.PageLevel.Data
-import KIP126.External.Provenance
+
 import Mathlib.Algebra.Homology.SpectralSequence.Basic
 
 /-!
@@ -18,13 +18,17 @@ open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
 open KIP126.Core.Algebra
 open KIP126.Core.SpectralSequence
-open KIP126.External
+
 
 abbrev Index := Bidegree
 abbrev Coeff := F2ModuleCat
 
 /-- The `(n,n)` differential shape of a classical eta-ESS page. -/
 def etaESSShape (n : ℤ) : ComplexShape Index := ComplexShape.up' (n, n)
+
+/-- 把扩张长度送入 Mathlib 所需的整数页形状。 -/
+def etaESSShapeAt (n : ExtensionLength) : ComplexShape Index :=
+  etaESSShape n.toInt
 
 def etaESSPageLevel : PageLevelConvention where
   firstPage := 0
@@ -38,7 +42,7 @@ def etaESSPageLevel : PageLevelConvention where
   quotient_succ := by intro r; norm_num
   cycleLevel_eq_quotientExponent := by intro r; rfl
 
-/-- One named finite eta-ESS differential, retaining its source locator. -/
+/-- One named finite eta-ESS differential with its mathematical degrees. -/
 structure EtaDifferential where
   source : String
   target : String
@@ -47,47 +51,37 @@ structure EtaDifferential where
   targetDegree : Index
   sourceFiltration : ℤ
   targetFiltration : ℤ
-  locator : Locator
   essential : Bool
   deriving DecidableEq, Repr, Inhabited
-
-private def etaLocator (description : String) : Locator :=
-  { description := description
-    artifact := some "aimpaper/main.tex" }
 
 def etaD₁ : EtaDifferential :=
   { source := "h₅d₀", target := "h₁h₅d₀", length := 1
     sourceDegree := (5, 51), targetDegree := (6, 52)
     sourceFiltration := 5, targetFiltration := 6
-    locator := etaLocator "AIM Example 2.11, d₁ eta extension"
     essential := true }
 
 def etaD₂ : EtaDifferential :=
   { source := "Δh₁g", target := "d₀l", length := 2
     sourceDegree := (9, 55), targetDegree := (11, 57)
     sourceFiltration := 9, targetFiltration := 11
-    locator := etaLocator "AIM Example 2.11, d₂ eta extension"
     essential := true }
 
 def etaD₃ : EtaDifferential :=
   { source := "h₁g₂", target := "Δh₂c₁", length := 3
     sourceDegree := (5, 51), targetDegree := (8, 54)
     sourceFiltration := 5, targetFiltration := 8
-    locator := etaLocator "AIM Example 2.11, d₃ eta extension"
     essential := true }
 
 def etaD₄ : EtaDifferential :=
   { source := "h₃²h₅", target := "Mh₁", length := 4
     sourceDegree := (3, 49), targetDegree := (7, 53)
     sourceFiltration := 3, targetFiltration := 7
-    locator := etaLocator "AIM Example 2.11, d₄ eta extension"
     essential := true }
 
 def etaD₂Inessential : EtaDifferential :=
   { source := "h₀h₃²h₅", target := "h₁h₅d₀", length := 2
     sourceDegree := (4, 50), targetDegree := (6, 52)
     sourceFiltration := 4, targetFiltration := 6
-    locator := etaLocator "AIM Example 2.11, inessential d₂ eta extension"
     essential := false }
 
 /-- The finite set of eta-extension rows used by the tracer bullet. -/
@@ -109,7 +103,8 @@ namespace KIP126.Classical.ExtensionSS
 open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
 open KIP126.Classical.Regression
-open KIP126.External
+open KIP126.Core.SpectralSequence
+
 
 /-! ### AIM-5 adapter and concrete page data -/
 
@@ -165,6 +160,6 @@ noncomputable def etaPage {stable : StableHomotopyContext}
 
 abbrev ClassicalEtaESS := SpectralSequence Coeff etaESSShape 0
 
-def differentialDegree (n : ℕ) : Index := (n, n)
+def differentialDegree (n : ExtensionLength) : Index := (n.toInt, n.toInt)
 
 end KIP126.Classical.ExtensionSS

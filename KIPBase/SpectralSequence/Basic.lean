@@ -56,14 +56,14 @@ structure SSData (C : Type u) [Category.{v} C] [Abelian C] where
 variable {C : Type u} [Category.{v} C] [Abelian C]
 
 /-- 该双次数上的第 r 页：E_r = Z r / B r = cokernel(B r ↪ Z r)。 -/
-noncomputable def SSData.page (D : SSData C) (r : WithTop ℕ) : C :=
+@[reducible] noncomputable def SSData.page (D : SSData C) (r : WithTop ℕ) : C :=
   cokernel (Subobject.ofLE (D.B r) (D.Z r) (D.B_le_Z r))
 
 /-- 该双次数上的 E∞ 页：Z ⊤ / B ⊤。 -/
 noncomputable def SSData.eInfty (D : SSData C) : C := D.page ⊤
 
 /-- 从 Z r 的底层对象到页 E_r = Z r / B r 的投影。 -/
-noncomputable def SSData.pageπ (D : SSData C) (r : WithTop ℕ) :
+@[reducible] noncomputable def SSData.pageπ (D : SSData C) (r : WithTop ℕ) :
     Subobject.underlying.obj (D.Z r) ⟶ D.page r :=
   cokernel.π (Subobject.ofLE (D.B r) (D.Z r) (D.B_le_Z r))
 
@@ -699,7 +699,8 @@ noncomputable def SpectralSequence.pageHomologyIso
   -- (wπ) f_lift ≫ π_map = 0
   have wπ : f_lift ≫ π_map = 0 := by
     calc f_lift ≫ π_map
-        = (ψ ≫ j) ≫ π_map := by rw [hψ_j]
+        = (ψ ≫ j) ≫ π_map :=
+          congrArg (fun q => q ≫ π_map) hψ_j.symm
       _ = ψ ≫ (j ≫ π_map) := by rw [Category.assoc]
       _ = ψ ≫ 0 := by rw [hj_π]
       _ = 0 := comp_zero
@@ -746,7 +747,8 @@ noncomputable def SpectralSequence.pageHomologyIso
       (fun s m hm => by
         -- 需要：m = thirdIso.inv ≫ cokernel.desc j (s.π) _
         change m = thirdIso.inv ≫ cokernel.desc j (Cofork.π s) (hjs s)
-        rw [← cancel_epi thirdIso.hom, thirdIso.hom_inv_id_assoc]
+        apply (cancel_epi thirdIso.hom).mp
+        rw [thirdIso.hom_inv_id_assoc]
         -- 目标：thirdIso.hom ≫ m = cokernel.desc j (s.π) _
         apply (cancel_epi (cokernel.π j)).mp
         rw [cokernel.π_desc, ← Category.assoc, hπ_factor]
@@ -813,6 +815,27 @@ structure SpectralSequenceMorphism
     {ι : Type w} [AddCommGroup ι] [DecidableEq ι]
     (E E' : SpectralSequence C ι)
     extends PreSSMorphism E.toPreSS E'.toPreSS
+
+/-! 同构的短复形诱导同构的中间同调。这个引理把逐页归纳中
+    “短复形层面的同构性”与 mathlib 的左同调接口接起来。 -/
+theorem ShortComplex.isIso_leftHomologyMap_of_iso
+    {C : Type u} [Category.{v} C] [Abelian C]
+    {S₁ S₂ : ShortComplex C} (e : S₁ ≅ S₂) [S₁.HasLeftHomology]
+    [S₂.HasLeftHomology] : IsIso (S₁.leftHomologyMap e.hom) := by
+  infer_instance
+
+/-! 交换的同调比较方块把同调层面的同构传回页面。 -/
+theorem isIso_of_pageHomologyIso_square
+    {C : Type u} [Category.{v} C]
+    {A B H K : C} (eA : A ≅ H) (eB : B ≅ K)
+    (f : A ⟶ B) (g : H ⟶ K) [IsIso g]
+    (h : eA.hom ≫ g = f ≫ eB.hom) : IsIso f := by
+  have hf : f = eA.hom ≫ g ≫ eB.inv := by
+    apply (cancel_mono eB.hom).1
+    rw [← h]
+    simp only [Category.assoc, eB.inv_hom_id, Category.comp_id]
+  rw [hf]
+  infer_instance
 
 /-- 谱序列态射经 `cokernel.map` 诱导 E∞ 页上的映射。 -/
 noncomputable def SpectralSequenceMorphism.eInftyMap

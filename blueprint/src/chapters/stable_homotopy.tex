@@ -1,11 +1,11 @@
-\chapter{Stable-homotopy objects}
+\section{Stable-homotopy objects}
 \label{chap:stable-background}
 
-This chapter defines the stable-homotopy language required by the paper.  Located May, Moss, and Toda inputs are stated later in the external-results chapter rather than treated as definitions.
+This section defines the stable-homotopy language required by the paper.  Located May, Moss, and Toda inputs are stated later in the external-results chapter rather than treated as definitions.
 
-\section{Spectra, triangles, and homology}
+\subsection{Spectra, triangles, and homology}
 
-% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decision 1; aimpaper/main.tex:253-263, 670-758.
+% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decision 1; MainPaper/main.tex:253-263, 670-758.
 \begin{definition}[Stable homotopy context]
   \label{def:stable-context}
   \uses{def:mathlib-shift,def:mathlib-triangle,def:mathlib-pretriangulated,def:mathlib-monoidal-category,def:mathlib-symmetric-category}
@@ -19,7 +19,7 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   hide them inside this context record.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:126-138 and 253-263; suspension conventions used throughout.
+% SOURCE: MainPaper/main.tex:126-138 and 253-263; suspension conventions used throughout.
 \begin{definition}[Sphere spectrum and suspension]
   \label{def:stable-sphere-suspension}
   \uses{def:stable-context}
@@ -30,7 +30,7 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   with smash products and mapping groups.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:102-170 and throughout Sections 2--7.
+% SOURCE: MainPaper/main.tex:102-170 and throughout Sections 2--7.
 \begin{definition}[Stable homotopy groups]
   \label{def:stable-homotopy-group}
   \uses{def:stable-sphere-suspension}
@@ -43,7 +43,7 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   isomorphisms fixed by the context's sign convention.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:253-263, global standing assumptions.
+% SOURCE: MainPaper/main.tex:253-263, global standing assumptions.
 \begin{definition}[Admissible spectrum]
   \label{def:admissible-spectrum}
   \uses{def:stable-context}
@@ -56,7 +56,7 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   admissible spectra.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:135-159, where products are used for the sphere;
+% SOURCE: MainPaper/main.tex:135-159, where products are used for the sphere;
 % standard associative-algebra-object structure in a symmetric monoidal category.
 \begin{definition}[Unital multiplication data]
   \label{def:unital-multiplication-data}
@@ -71,7 +71,7 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   synthetic context.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:688-769; Pstragowski interface used in Proposition 3.1.
+% SOURCE: MainPaper/main.tex:688-769; Pstragowski interface used in Proposition 3.1.
 \begin{definition}[$H\mathbb F_2$ homology]
   \label{def:hf2-homology}
   \uses{def:stable-context,def:mathlib-f2}
@@ -82,7 +82,7 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   sequences to long exact sequences.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:929-964 and all uses of distinguished triangles.
+% SOURCE: MainPaper/main.tex:929-964 and all uses of distinguished triangles.
 \begin{definition}[Cofiber and distinguished triangle data]
   \label{def:cofiber-triangle}
   \uses{def:stable-context}
@@ -100,7 +100,7 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   data rather than definitional equality of its third object with $C(f)$.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:253-271, 648-664, and 929-971; exactness used repeatedly.
+% SOURCE: MainPaper/main.tex:253-271, 648-664, and 929-971; exactness used repeatedly.
 \begin{theorem}[Stable homotopy long exact sequence]
   \label{thm:stable-homotopy-long-exact}
   \uses{def:stable-homotopy-group,def:cofiber-triangle,def:mathlib-homological-functor,thm:mathlib-homology-sequence-exact-one,thm:mathlib-homology-sequence-exact-two,thm:mathlib-homology-sequence-exact-three}
@@ -122,7 +122,7 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   of triangles.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:1755-1921, smash diagrams in May's lemma and the Mahowald trick.
+% SOURCE: MainPaper/main.tex:1755-1921, smash diagrams in May's lemma and the Mahowald trick.
 \begin{definition}[Smash of cofiber triangles]
   \label{def:smash-triangle}
   \uses{def:cofiber-triangle}
@@ -134,10 +134,10 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   cofiber.
 \end{definition}
 
-\section{Homotopy classes and secondary operations}
+\subsection{Homotopy classes and secondary operations}
 
-% SOURCE: aimpaper/main.tex:2387-2616, Toda-bracket arguments.
-\begin{definition}[Toda bracket interface]
+% SOURCE: MainPaper/main.tex:2387-2616, Toda-bracket arguments.
+\begin{definition}[Toda bracket]
   \label{def:toda-bracket}
   \uses{def:cofiber-triangle}
   \notready
@@ -149,8 +149,8 @@ This chapter defines the stable-homotopy language required by the paper.  Locate
   theorem supplies that comparison.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2470-2567, Massey products on Adams pages; Moss Theorem 1.2.
-\begin{definition}[Massey-product interface]
+% SOURCE: MainPaper/main.tex:2470-2567, Massey products on Adams pages; Moss Theorem 1.2.
+\begin{definition}[Massey product]
   \label{def:massey-product}
   \uses{def:multiplicative-ss,def:mathlib-f2}
   \notready

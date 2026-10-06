@@ -12,7 +12,7 @@ variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
 
 example (m n : ℤ) :
     Smn (Syn := Syn) m n =
-      (SyntheticCategory.biShift (m, n)).obj (S00 (Syn := Syn)) := rfl
+      (SyntheticCategory.biShift (m, n)).obj (S_0_0 (Syn := Syn)) := rfl
 
 example (m n : ℤ) (X : Syn) :
     BiHom (Syn := Syn) m n X = (Smn (Syn := Syn) m n ⟶ X) := rfl

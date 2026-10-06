@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinCompute.Data
+import KIP126.LinProgram.Compute.E2.Data
 
 /-!
 可执行示例及回归检查。只初始化一次完整数据索引。

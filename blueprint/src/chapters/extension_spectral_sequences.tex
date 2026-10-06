@@ -1,82 +1,96 @@
-\chapter{Extension spectral sequences}
+\section{Extension spectral sequences}
 \label{chap:extension-ss}
 
-This chapter develops the general extension-spectral-sequence construction and its internal formal properties.  Any cited factorization theorem is kept as a separate external result.
+This section develops the general extension-spectral-sequence construction and its internal formal properties.  Any cited factorization theorem is kept as a separate external result.
 
-\section{Construction and elementwise notation}
+\subsection{Construction and elementwise notation}
 
-% SOURCE: aimpaper/main.tex:253-271, Definition def:ess.
+% SOURCE: MainPaper/main.tex:253-271, Definition def:ess.
 \begin{definition}[Filtered two-term complex]
   \label{def:filtered-two-term-complex}
   \uses{def:admissible-spectrum,def:adams-filtration,def:mathlib-chain-complex}
   \notready
-  For a stable map $f:X\to Y$, let $C(f)$ be the two-term chain complex
+  For a filtration-preserving map $f:A_1\to A_2$, let $C(f)$ be the
+  two-term chain complex
   \[
-    0\longrightarrow\pi_*X\xrightarrow{\pi_*f}\pi_*Y
+    0\longrightarrow A_1\xrightarrow{f}A_2
       \longrightarrow0,
   \]
-  with both nonzero terms filtered by Adams filtration.  Its homology is
-  $\ker(\pi_*f)\oplus\operatorname{coker}(\pi_*f)$.  The filtered-complex
-  structure records the fact that $f$ does not lower Adams filtration.
+  with $A_1$ in complex degree $1$ and $A_2$ in degree $0$, and with the two
+  given filtrations in those degrees.  Its differential squares to zero and
+  the filtered-complex structure records the fact that $f$ preserves the
+  filtration.  For a stable map $X\to Y$, the intended Adams application is
+  obtained by taking $A_1=\pi_*X$, $A_2=\pi_*Y$, and $f=\pi_*f$.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:264-271, Definition def:ess.
+% SOURCE: MainPaper/main.tex:264-271, Definition def:ess.
 \begin{definition}[$f$-extension spectral sequence]
   \label{def:f-extension-ss}
   \uses{def:filtered-two-term-complex,def:core-filtered-chain-complex,def:ess-complex-shape,thm:filtered-complex-to-spectral-sequence,def:ss-einfty-presentation,def:ss-convergence-detection-witness}
   \notready
   The $f$-extension spectral sequence, or $f$-ESS, is the spectral sequence of
-  the Adams-filtered two-term complex.  Given convergence-and-detection
-  witnesses for the source and target Adams sequences, its initial page and
-  abutment comparison are
+  the filtered two-term complex attached to a morphism of converging spectral
+  sequences.  Its initial page is built directly from the two original
+  $E_\infty$ objects, and its differential has degree
+  $d_n^f:{}^fE_n^{s,k}\to{}^fE_n^{s+n,k-1}$.  In the paper's regrading this is
+  the stated $(n,n)$ shift: the external stem parameter is fixed, while $k$
+  is the source/target column of the two-term complex and is not the second
+  Adams coordinate of either input spectral sequence.  In the bounded
+  package, the $d_0$ map is identified with the map induced by $f$ on
+  associated graded objects.  Under the bounded hypotheses the construction has the
+  canonical weak-convergence witness; in the unbounded version the available
+  convergence theorem assumes bounded-below and Mittag--Leffler conditions.
+  In the Adams application the resulting comparison has the form
   \[
     {}^fE_0^{s,t}\cong E_\infty^{s,t}(X)\oplus
       E_\infty^{s,t}(Y)
     \Longrightarrow
     \ker(\pi_*f)\oplus\operatorname{coker}(\pi_*f),
   \]
-  and its differential has degree
-  $d_n^f:{}^fE_n^{s,t}\to{}^fE_n^{s+n,t+n}$.  The $d_0$ map is induced by
-  $f$ on associated graded homotopy groups.  This comparison is a
-  project-specific witness, not a consequence of a general filtered-complex
-  convergence theorem.
+  where the last line uses the separately proved two-term homology
+  calculation rather than identifying convergence with that calculation by
+  definition.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:253-271; project-specific comparison required by
+% SOURCE: MainPaper/main.tex:253-271; project-specific comparison required by
 % the Section 2 ESS arguments.  The source and target convergence witnesses
 % are explicit inputs rather than a generic filtered-complex theorem.
 \begin{theorem}[$f$-ESS initial page and abutment comparison]
   \label{thm:fess-e0-abutment-comparison}
   \uses{def:ss-convergence-detection-witness,def:filtered-two-term-complex}
   \notready
-  Let $f:X\to Y$ be a filtration-preserving stable map, and give the classical
-  Adams sequences of $X$ and $Y$ convergence-and-detection witnesses.  The
-  filtered two-term complex defining the $f$-ESS has
+  Let $f:A_1\to A_2$ be a filtration-preserving map presented as a morphism
+  of converging spectral sequences.  The two nonzero columns of the zeroth
+  extension page are canonically the associated-graded objects of $A_1$ and
+  $A_2$ and, through the input convergence isomorphisms, their original
+  $E_\infty$ terms.  Thus their biproduct gives
   \[
-    {}^fE_0^{s,t}\cong E_\infty^{s,t}(X)\oplus E_\infty^{s,t}(Y),
+    {}^fE_0^{s,t}\cong E_{1,\infty}^{s,t}\oplus E_{2,\infty}^{s,t},
   \]
   and its abutment is naturally
   \[
-    H_*C(f)\cong\ker(\pi_*f)\oplus\operatorname{coker}(\pi_*f).
+    H_*C(f)\cong\ker(f)\oplus\operatorname{coker}(f).
   \]
-  The comparison is compatible with the induced $d_0$ map and with the
-  representative ambiguity in both convergence witnesses.  This is the only
-  abutment comparison required by the Section 2 ESS proofs; it does not claim
-  a general strong-convergence theorem for arbitrary filtered complexes.
+  For the Adams specialization these become the $E_\infty$ terms of $X,Y$
+  and the kernel and cokernel of $\pi_*f$.  In the bounded package the $d_0$
+  map is the induced associated-graded map.  The kernel/cokernel identification
+  is an unconditional calculation of the homology of the two-term complex.
+  Combining it with ESS convergence is packaged in the bounded case; no
+  general strong-convergence theorem for arbitrary filtered complexes is
+  asserted here.
 \end{theorem}
 
 \begin{proof}
-  Apply the two specified witnesses to identify the associated graded terms of
-  the two filtered homotopy groups with their algebraic $E_\infty$ pages.
-  Compute the homology of the two-term complex directly as kernel plus
-  cokernel, and check that the induced map on associated graded objects is the
-  $d_0$ differential.  Naturality of the witness comparisons gives the stated
-  compatibility.
+  Apply the two convergence isomorphisms to identify the associated-graded
+  terms of $A_1,A_2$ with the two algebraic $E_\infty$ pages.  Compute the
+  homology of the two-term complex directly as kernel plus cokernel.  In the
+  bounded package, unfold the zeroth differential to identify it with the
+  induced associated-graded map.
 \end{proof}
 
-\section{Naturality, composition, and exactness}
+\subsection{Naturality, composition, and exactness}
 
-% SOURCE: aimpaper/main.tex:461-501, Theorem thm:4114f70c.
+% SOURCE: MainPaper/main.tex:461-501, Theorem thm:4114f70c.
 \begin{theorem}[Commutative-square propagation]
   \label{thm:fess-commutative-square}
   \uses{prop:no-crossing-iff-uniform-detection}
@@ -117,7 +131,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   the asserted $q$-extension.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:555-574, Corollary cor:0012nik.
+% SOURCE: MainPaper/main.tex:555-574, Corollary cor:0012nik.
 \begin{corollary}[Unrestricted square propagation]
   \label{cor:fess-square-naturality}
   \uses{thm:fess-commutative-square}
@@ -133,7 +147,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   $g$-extension supplies every lower-bound hypothesis.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:576-595, Corollary cor:166dc180.
+% SOURCE: MainPaper/main.tex:576-595, Corollary cor:166dc180.
 \begin{corollary}[Triangle-shaped shift]
   \label{cor:fess-triangle-shift}
   \uses{cor:fess-square-naturality}
@@ -147,7 +161,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   its length-zero extension.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:597-615, Corollary cor:290d35ce.
+% SOURCE: MainPaper/main.tex:597-615, Corollary cor:290d35ce.
 % VERIFIED-IN: main.tex:604 has z in E_infty(Y); the diagram requires E_infty(Z).
 \begin{corollary}[Composition of successive extensions]
   \label{cor:fess-composition}
@@ -156,7 +170,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   If $q=gp$, $d_m^p(x)=z$ with
   $z\in E_\infty^{s+m,t+m}(Z)$, and $d_l^g(z)=w$ has no crossing, then
   $d_{m+l}^q(x)=w$.  The target spectrum of $z$ is $Z$; the occurrence of
-  $E_\infty(Y)$ in \texttt{aimpaper/main.tex:604} is a corrected source typo.
+  $E_\infty(Y)$ in \texttt{MainPaper/main.tex:604} is a corrected source typo.
 \end{corollary}
 
 \begin{proof}
@@ -164,7 +178,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   extension.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:617-630, Corollary cor:e7b20ae2.
+% SOURCE: MainPaper/main.tex:617-630, Corollary cor:e7b20ae2.
 \begin{corollary}[Stable-page maps between extension spectral sequences]
   \label{cor:fess-map-of-stable-pages}
   \uses{cor:fess-square-naturality,def:reindexed-ss-morphism}
@@ -182,7 +196,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   constructs the next page map.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:632-646, Corollary cor:aed3d1a4.
+% SOURCE: MainPaper/main.tex:632-646, Corollary cor:aed3d1a4.
 \begin{corollary}[A zero composite makes the target permanent]
   \label{cor:fess-zero-composite-permanent}
   \uses{prop:fextension-iff-detected,cor:fess-square-naturality}
@@ -197,30 +211,45 @@ This chapter develops the general extension-spectral-sequence construction and i
   naturality to the square with zero bottom and left maps.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:648-664, Proposition prop:cfe810af.
-% VERIFIED-IN: only exactness at pi_*Y is used; the zeros printed at both ends are not assumptions.
+% SOURCE: MainPaper/main.tex:648-664, Proposition prop:cfe810af.
+% VERIFIED-IN: only exactness at the middle abutment object in the fixed degree tau is used.
 \begin{proposition}[Exactness at the middle makes every permanent cycle a boundary]
   \label{prop:fess-exact-middle-boundary}
   \uses{def:f-extension-ss,prop:fextension-iff-detected,cor:fess-zero-composite-permanent}
   \notready
-  If $X\xrightarrow fY\xrightarrow gZ$ induces a sequence exact at
-  $\pi_*Y$, then every permanent $g$-ESS cycle in $E_\infty(Y)$ is hit by an
-  $f$-ESS differential.  No injectivity of $f$ or surjectivity of $g$ is
-  assumed.
+  Let $V_1\xrightarrow{f}V_2\xrightarrow{g}V_3$ be two composable morphisms of
+  converging spectral sequences, and fix one abutment degree $\tau$.  Suppose
+  that
+  \[
+    V_1.A(\tau)\xrightarrow{f_A}V_2.A(\tau)
+      \xrightarrow{g_A}V_3.A(\tau)
+  \]
+  is exact at the middle term.  Assume at this same degree that the source
+  filtration has a layer equal to the whole abutment object, and that the
+  target filtration is Hausdorff, i.e.
+  $\bigcap_v F^vV_3.A(\tau)=0$.  Then every projective generalized element of
+  $E_\infty(V_2)$ represented by a fixed class whose image lies in every
+  target filtration layer (a compatible permanent cycle in the $g$-ESS) is
+  hit by an $f$-ESS differential.  No exactness in any other abutment degree,
+  injectivity of $f_A$, surjectivity of $g_A$, or finite zero filtration layer
+  is assumed.
 \end{proposition}
 
 \begin{proof}
-  A permanent $g$-ESS cycle has a detected representative $[y]$ with
-  $g[y]=0$.  Exactness at the middle supplies $[x]$ with $f[x]=[y]$.
-  Choose the leading Adams class $x$ detecting $[x]$ and apply the
-  representative characterization of $f$-extensions.  This avoids the
-  stronger short-exact sequence accidentally displayed in the paper's first
-  proof.
+  Let $[y]$ be the fixed representative.  The image subobject of $g_A[y]$ is
+  contained in every target filtration layer, hence Hausdorffness makes that
+  image subobject zero and therefore $g_A[y]=0$.  Exactness at the fixed degree
+  $\tau$ supplies an abutment preimage $[x]$ with $f_A[x]=[y]$.  The full
+  source filtration layer contains $[x]$; comparing its filtration with that
+  of $y$ gives a nonnegative length.  Projectivity lifts through the
+  categorical image of $f_A$, and the representative characterization
+  produces the required $f$-ESS differential.  The argument never refers to
+  another abutment degree.
 \end{proof}
 
-\section{Representatives, essentiality, and crossings}
+\subsection{Representatives, essentiality, and crossings}
 
-% SOURCE: aimpaper/main.tex:277-295, Notation nota:6fb333a2.
+% SOURCE: MainPaper/main.tex:277-295, Notation nota:6fb333a2.
 \begin{definition}[$f$-ESS cycles and boundaries]
   \label{def:fess-cycles-boundaries}
   \uses{def:f-extension-ss}
@@ -237,7 +266,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   ${}^fB_{n-1}$.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:297-304, Definition def:768fba8a and following notation.
+% SOURCE: MainPaper/main.tex:297-304, Definition def:768fba8a and following notation.
 \begin{definition}[$f$-extension and essentiality]
   \label{def:f-extension-essential}
   \uses{def:fess-cycles-boundaries}
@@ -252,7 +281,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   that set.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:307-325, Proposition prop:8154e6f1(1).
+% SOURCE: MainPaper/main.tex:307-325, Proposition prop:8154e6f1(1).
 \begin{proposition}[Extension iff a representative maps to a representative]
   \label{prop:fextension-iff-detected}
   \uses{def:f-extension-essential,def:adams-detection}
@@ -270,7 +299,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   that changing either lift changes the target only by a shorter ESS boundary.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:307-325, Proposition prop:8154e6f1(2)-(3).
+% SOURCE: MainPaper/main.tex:307-325, Proposition prop:8154e6f1(2)-(3).
 \begin{proposition}[Inessential extensions and competing targets]
   \label{prop:fextension-inessential-iff-higher}
   \uses{prop:fextension-iff-detected,def:fess-cycles-boundaries}
@@ -294,7 +323,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   kept additive.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:344-352, Definition def:98skj23.
+% SOURCE: MainPaper/main.tex:344-352, Definition def:98skj23.
 \begin{definition}[Crossing and no-crossing range]
   \label{def:fess-crossing}
   \uses{def:f-extension-essential}
@@ -307,7 +336,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   without qualification when $p=s+1$.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:403-405, Remark 2.9.
+% SOURCE: MainPaper/main.tex:403-405, Remark 2.9.
 \begin{lemma}[Every crossing contains an essential crossing]
   \label{lem:crossing-has-essential-crossing}
   \uses{def:fess-crossing,prop:fextension-inessential-iff-higher}
@@ -325,7 +354,7 @@ This chapter develops the general extension-spectral-sequence construction and i
   leaving the target-filtration interval.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:408-427, Proposition prop:i8r47oe.
+% SOURCE: MainPaper/main.tex:408-427, Proposition prop:i8r47oe.
 \begin{proposition}[No crossing iff uniform detection]
   \label{prop:no-crossing-iff-uniform-detection}
   \uses{def:fess-crossing,prop:fextension-iff-detected,prop:fextension-inessential-iff-higher,lem:crossing-has-essential-crossing}
@@ -352,10 +381,10 @@ This chapter develops the general extension-spectral-sequence construction and i
   for a map of exact filtration $n$.
 \end{proof}
 
-% SOURCE: aimpaper/main.tex:430-456, Example 2.11; underlying values cited to IWX.
+% SOURCE: MainPaper/main.tex:430-456, Example 2.11; underlying values cited to IWX.
 \begin{proposition}[$\eta$-ESS regression in stem $46$]
   \label{prop:eta-ess-regression}
-  \uses{def:f-extension-essential,def:fess-crossing,def:external-evidence}
+  \uses{def:f-extension-essential,def:fess-crossing}
   \lean{KIP126.Classical.Regression.etaEss}
   \notready
   With explicit IWX computation evidence, the four essential

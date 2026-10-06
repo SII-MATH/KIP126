@@ -6,8 +6,8 @@ This document records the agreed scope and acceptance criteria for the Lean
 formalization of:
 
 > Weinan Lin, Guozhen Wang, and Zhouli Xu, *On the Last Kervaire Invariant
-> Problem*, represented in this repository by `aimpaper/main.tex`,
-> `aimpaper/112.tex`, and `aimpaper/2412.10879.pdf`.
+> Problem*, represented in this repository by `MainPaper/main.tex`,
+> `MainPaper/112.tex`, and `MainPaper/2412.10879.pdf`.
 
 The document is normative for the project. Any proposed extension or
 relaxation of this boundary must be agreed explicitly and recorded here.
@@ -26,7 +26,8 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    filtered objects, and Ext/Adams pages. We do not reimplement the large
    high-stem Ext calculations performed by Lin's programs. Concrete
    high-stem values, computer output, and table entries are external inputs
-   represented by `ExternalResult` or `ExternalEvidence`.
+   represented by explicit mathematical hypotheses with provenance recorded
+   in `docs/external-inputs.json`.
 
    For the statement of the permanent `h_6^2` target, the confirmed abstract
    foundation may include an explicit mod--2 Eilenberg--Mac Lane object and
@@ -62,33 +63,44 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    - Expository Remarks are not required to become separate declarations.
    - Open Questions are represented as propositions/statements only; they are
      not assumed and are not required to be proved.
+   - **Introduction excluded (2026-10-06).** The introduction's exposition,
+     corollaries and open questions are outside the formalization plan.
+     Results supporting only that introduction are removed from Challenge2
+     and from active proof obligations. The standard `h_6^2` permanent-survival
+     target and all results needed by the body’s proof or computation
+     certification remain in scope, even when first mentioned in the
+     introduction. This decision supersedes the earlier retention of May’s
+     introductory low-dimensional square-survival family.
 
-5. **Final geometric conclusions.** Both of the following are conditional
-   conclusions:
-   - existence of a framed smooth manifold with Kervaire invariant one in
-     dimension 126;
-   - the assertion that the dimensions are exactly
-     `2, 6, 14, 30, 62, 126`.
+5. **Current endpoint and excluded geometry.** The current endpoint is
+   nonzero permanent survival of the standard `h_6^2` in the classical Adams
+   spectral sequence. Framed-manifold existence in dimension 126 and the exact
+   geometric dimension list `2, 6, 14, 30, 62, 126` are outside the current
+   scope and acceptance criteria. The classical `theta_5`/`h_5^2` results
+   needed by the homotopy-theoretic proof remain in scope.
 
 6. **Axiom policy.** The project may use Lean's foundational axioms and the
    axioms already intrinsic to Lean's standard foundational mechanisms.
-   During development, including KIPBase integration, an internal statement
-   deliberately introduced with Lean's `axiom` command must be placed in the
-   relevant mathematical component's `Axiom.lean`, alongside its `Data.lean`,
-   `Predicates.lean`, and `Proofs.lean` where those layers are needed. Each such
-   statement must record its source, intended meaning, and reason for being
-   assumed. At final proof-completion validation, audit each assumption
-   together with its downstream dependencies. Its presence is not evidence that the statement is proved.
-   An unfinished theorem instead remains in `Proofs.lean` with `by sorry`;
+   During development, an internal statement deliberately introduced with
+   Lean's `axiom` command is limited to the single direct witness
+   `Main.Axiom.challenge2 : KIP126.Challenge2`. No other project axioms may be
+   declared, including under `Def/` or `Mathlib/`. The development axiom must
+   record its intended meaning, source where applicable, intended construction
+   or proof, and reason for being assumed. Its presence is not evidence that
+   the statement or its downstream consequences are proved.
+
+   An unfinished theorem remains in the appropriate proof file with `by sorry`;
    it must not be converted into an axiom merely to avoid `sorryAx`.
    Development CI does not run proof-debt audits or publish debt reports, and
    requires no debt-specific human approval for a compiling pull request.
    Development merging does not claim that the affected theorem or the project
    is complete; the final proof-completion checks below remain strict.
+
    Literature results and computational inputs remain explicit external
-   premises as specified below, not project axioms. Development compilation
-   does not authorize retaining project axioms at final acceptance. Every such axiom declaration must be replaced by a proof
-   or removed before the final proof-completion criteria below can be met.
+   premises as specified below. The single development axiom must be
+   eliminated before final acceptance, while retained external results remain
+   explicit hypotheses of the conditional theorem. Development compilation
+   does not authorize retaining project axioms at final acceptance.
 
 7. **Pinned toolchain.**
    - Lean: `4.32.2`
@@ -97,22 +109,21 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    The project must use the matching Lean/mathlib versions and must not depend
    on an unpinned `master` branch or a release candidate.
 
-8. **Fixed, parameter-free h₆² statements (development-stage exception).**
-   By explicit user decision, both the computational and standard h₆² targets
-   fix the stable foundation, H𝔽₂, Milnor coordinates, SSData model, and Lin
-   dataset once. The final signatures have no model or external-evidence
-   parameters. The standard sphere sequence and Milnor class still reuse the
-   existing tower construction; they are not supplied by the computation table.
-   Until the fixed foundations and comparisons are constructed, individually
-   named axioms may supply them. This includes the fixed Lin E₂ presentation
-   (Zenodo 14875701, v126.3.cw49, internal degree at most 261), as an explicitly
-   authorized exception to passing computation evidence as a final theorem
-   parameter. Source hashes remain attached to the actual imported data.
-   Adapter axioms live in component `Axiom.lean` files under `KIP126/Mathlib/`;
-   internal/foundation axioms live under `KIP126/Def/`. Both are inventoried by
-   the explicitly invoked completion audit, and both remain final-acceptance debt.
-   This does not postulate h₆² survival: the computational Solution remains
-   open, and the standard Solution reduces to it using the named comparisons.
+8. **Fixed, parameter-free standard h₆² statement (development-stage exception).**
+   The standard `h_6^2` target fixes the stable foundation, H𝔽₂, Milnor
+   coordinates and Adams tower once. Its signature has no model or
+   external-evidence parameters. The standard sphere sequence and Milnor
+   class reuse the tower construction; they are not supplied by a computation
+   table. The target requires nonzero permanent survival of that standard
+   class.
+
+   The fixed Lin E₂ presentation (Zenodo 14875701, v126.3.cw49, internal degree
+   at most 261) remains an explicitly recorded external computation input to
+   the proof. Source hashes are recorded for the actual imported data in the
+   external manifest. Unfinished fixed foundations and comparisons remain
+   proof obligations under the axiom policy above. The target's survival
+   conclusion is not assumed.
+
    A proof body without `sorry` is not a claim that its dependency cone is
    free of `sorryAx`, project axioms, or external computation assumptions.
 
@@ -170,8 +181,8 @@ The abstract synthetic context must include:
 
 Foundational theorems imported from earlier papers (for example, the
 Pstrągowski and BHS results used to justify these interfaces) are not reproved
-here. Their statements are supplied through the external-result mechanism
-described below.
+here. Their statements are supplied as explicit mathematical hypotheses,
+with provenance recorded in the external manifest described below.
 
 ### 4. The paper's new results
 
@@ -187,7 +198,7 @@ explicit external inputs:
 - page-stretching and extension-propagation results;
 - all logical reductions in Section 7 that do not themselves assert an
   external theorem or a computed table value;
-- the conditional permanent-cycle theorem for `h_6^2`.
+- the conditional nonzero permanent-survival theorem for standard `h_6^2`.
 
 The proofs must preserve the degree conventions in the paper, including the
 third synthetic weight and the translation convention using `S^{1,0}`.
@@ -196,61 +207,29 @@ third synthetic weight and the translation convention using `S^{1,0}`.
 
 Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables are outside the proof-development boundary.
-They must not be introduced as Lean `axiom` declarations. Instead, each input
-is a value of an explicit structure carrying both the proposition and its
-provenance.
+They enter conditional theorems as explicit mathematical hypotheses. They
+must not become untracked global facts or separate Lean `axiom` declarations.
 
-The project will use the following conceptual interfaces (the exact field
-names may be refined during implementation):
+Lean interfaces contain the mathematical statements, hypotheses and
+conditions of those inputs. Source identities, locators, acquisition status,
+artifact paths, versions and hashes are recorded outside Lean in the
+canonical machine-readable manifest `docs/external-inputs.json`. Each
+external input must be linked there to the Lean declarations that state or
+consume it. There is no parallel Lean source registry or claim ledger.
 
-```lean
-structure SourceRef where
-  source  : SourceId
-  locator : Locator
-  note    : Option String := none
+The manifest must provide an auditable locator for each input, identifying a
+theorem, lemma, proposition, equation, table, section, page or line. Unavailable
+primary text must be marked explicitly, with the exact secondary locator used.
+Computational evidence must identify the actual imported artifacts and their
+versions and hashes. Source artifacts and acquisition records remain available
+for review.
 
-structure ExternalResult (P : Prop) where
-  proof : P
-  ref   : SourceRef
-
-structure ArtifactRef where
-  path   : String
-  sha256 : String
-  version : Option String := none
-
-structure ExternalEvidence (P : Prop) where
-  evidence : P
-  ref      : SourceRef
-  method   : String
-  artifact : Option ArtifactRef := none
-```
-
-`ExternalResult` is intended for a theorem imported from the literature.
-`ExternalEvidence` is intended for a computation, program output, table fact, or
-other finite evidence record. Both are hypotheses to conditional theorems;
-neither is a project-level axiom.
-
-The implementation deliberately separates structural and checkout-facing
-validity.  `InventoryValid` adds syntactically safe, source-relative locator
-and evidence-artifact paths.  `CataloguedExternalResult` and
-`CataloguedExternalEvidence` then bind an actual proposition-bearing wrapper
-to one canonical claim root and a compatible trust class.  The Lean claim
-ledger proves finite completeness, global source coverage, and acyclicity of
-its dependency relation, but remains metadata: it does not prove the recorded
-external proposition.  The JSON checker is authoritative for artifact-list
-membership of canonical claim locators, required existing-file status, and
-SHA-256 equality.  Lean's source-relative condition is syntactic (a directory-prefix
-check, not a filesystem/symlink traversal check).  For a dynamically attached
-evidence artifact, Lean additionally checks a safe source-relative path and
-digest shape; a catalogued wrapper also requires its path to equal the
-canonical claim locator.  Lean does not silently assert the file's actual
-digest, nor compare an arbitrary wrapper digest automatically.  Root coverage is relative
-to the explicitly closed, family-level `ExternalRootId` enum.
+Checks of paths, artifact membership, hashes and declaration links establish
+provenance consistency. They do not prove the recorded mathematical claim or
+that a source entails the Lean statement.
 
 Examples of external inputs include:
 
-- Browder's criterion relating Kervaire invariant one manifolds to survival of
-  `h_j^2`;
 - Barratt--Jones--Mahowald and Burklund--Xu's inductive criterion;
 - prior synthetic-spectrum and rigidity theorems;
 - May's lemma and other prior-paper results used by the new arguments;
@@ -258,32 +237,22 @@ Examples of external inputs include:
   disproofs;
 - every entry of the Appendix tables, including entries not used in the final
   proof;
-- cited `tmf` detection facts and other prior computational or geometric
-  conclusions.
+- cited `tmf` detection facts and other prior computational or
+  homotopy-theoretic conclusions.
 
-The final proof must make the dependency on these values explicit.
+The final proof must make the dependency on these mathematical hypotheses
+explicit, with their provenance linked in the external manifest.
 
-## Conditional final theorems
+## Conditional final theorem
 
-The project must expose conditional theorems at two levels.
+Under the required external mathematical literature and computation
+hypotheses, prove nonzero permanent survival of the standard `h_6^2` in the
+classical Adams spectral sequence.
 
-### Homotopy-theoretic conclusion
-
-Under the required external results and evidence, prove that `h_6^2` is a
-permanent cycle in the classical Adams spectral sequence.
-
-### Geometric conclusions
-
-Using the external Browder/Pontryagin-type input as an explicit hypothesis,
-prove conditionally:
-
-1. there exists a framed smooth manifold with Kervaire invariant one in
-   dimension 126;
-2. the dimensions in which framed smooth manifolds with Kervaire invariant one
-   exist are exactly `2, 6, 14, 30, 62, 126`.
-
-These are implications from explicit `ExternalResult`/`ExternalEvidence` arguments,
-not unconditional declarations of the external mathematics.
+The retained external hypotheses have their provenance recorded in
+`docs/external-inputs.json`. Framed-manifold existence, geometric dimension
+classification and Browder/Pontryagin--Thom comparisons are outside the current
+project scope.
 
 ## Acceptance criteria
 
@@ -295,9 +264,10 @@ The project is complete only when all of the following hold:
   `axiom`; Challenge statements retain their required `by sorry` bodies and
   are excluded from proof-completion evidence, while the isolated historical
   KIPBase component remains subject to its separate migration audit;
-- every external input is passed through `ExternalResult` or `ExternalEvidence`;
+- the single temporary development axiom has been eliminated;
+- every external input is an explicit Lean mathematical hypothesis with a
+  corresponding declaration and locator entry in `docs/external-inputs.json`;
 - every Appendix table entry has a Lean encoding;
-- the two geometric conclusions are available as conditional theorems;
 - the final theorem(s) pass a `#print axioms` audit with:
   - no `sorryAx`;
   - no project-defined or undeclared custom axiom;
@@ -311,6 +281,9 @@ documentation check.
 
 The project does not attempt to:
 
+- formalize framed-manifold Kervaire invariants, Browder/Pontryagin--Thom
+  comparisons, or geometric existence/nonexistence conclusions in the
+  current scope;
 - construct a complete model of stable infinity-categories;
 - independently reproduce Lin's high-stem computer calculations;
 - prove the cited prior-paper theorems;

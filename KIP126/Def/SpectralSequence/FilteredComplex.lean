@@ -1,7 +1,8 @@
 import KIP126.Def.SpectralSequence.FilteredComplex.Data
 import KIP126.Def.SpectralSequence.FilteredComplex.SSData
-import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction
-import KIP126.Def.SpectralSequence.FilteredComplex.WeakConvergence
+import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
+import KIP126.Def.SpectralSequence.FilteredComplex.Crossing
+import KIP126.Def.SpectralSequence.FilteredComplex.WeakConvergence.Data
 
 /-!
 # Filtered complexes and their nested-subobject spectral sequences

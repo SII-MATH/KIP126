@@ -1,4 +1,4 @@
-"""Regression tests for the historical-assumption inventory."""
+"""Regression tests for immutable source-archive integrity."""
 import contextlib
 import hashlib
 import io
@@ -13,28 +13,9 @@ import unittest
 TOOLS = runpy.run_path(str(Path(__file__).with_name("kipbase-migration.py")))
 
 
-class TrustInventoryTests(unittest.TestCase):
-    def test_nested_comments_and_strings_are_not_assumptions(self):
-        text = '/- axiom fake : False /- sorry -/ -/\ndef s := "sorry"\n'
-        text += 'theorem actual : True := by\n  sorry -- axiom ignored\n'
-        declarations, debt = TOOLS["inventory"](text)
-        self.assertEqual(declarations, [("def", "s"), ("theorem", "actual")])
-        self.assertEqual(debt, [{"kind": "sorry", "declaration": "actual", "line": 4}])
-
-    def test_data_placeholders_and_indented_assumptions_are_recorded(self):
-        text = 'noncomputable def data : Nat := sorry\n  axiom claim : True\n'
-        _, debt = TOOLS["inventory"](text)
-        self.assertEqual([(x["kind"], x["declaration"]) for x in debt],
-                         [("sorry", "data"), ("axiom", "claim")])
-
-    def test_private_named_declarations_are_covered(self):
-        declarations, _ = TOOLS["inventory"]('private lemma f : True := by trivial\n')
-        self.assertEqual(declarations, [("lemma", "f")])
-
-
 class ArchiveOnlyTests(unittest.TestCase):
     def fixture(self, root, corrupt=False):
-        archive = root / "migration/kip-base"
+        archive = root / "docs/migration/kip-base"
         archive.mkdir(parents=True)
         content = b"axiom historical : True\n"
         manifest = {"files": [{"source": "KIPBase.lean", "destination": "KIPBase.lean",
@@ -48,16 +29,17 @@ class ArchiveOnlyTests(unittest.TestCase):
             stream.addfile(entry, io.BytesIO(content))
         return archive
 
-    def test_development_verifies_archive_without_audit_or_live_source_policy(self):
+    def test_archive_verification_allows_live_proofs_to_evolve(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             archive = self.fixture(root)
+            # The archived axiom is retained as source evidence. Live code and
+            # the old migration patch may evolve independently of that record.
+            (root / "KIPBase.lean").write_text("theorem historical : True := by trivial\n")
+            (archive / "port.patch").write_text("historical migration patch\n")
             output = io.StringIO()
             with mock.patch.dict(TOOLS["verify"].__globals__, ROOT=root, ARCHIVE=archive):
                 with contextlib.redirect_stdout(output):
-                    TOOLS["verify"](archive_only=True)
-                # Explicit full migration checking still inspects the live source.
-                with self.assertRaises(FileNotFoundError):
                     TOOLS["verify"]()
             self.assertIn("1 files verified", output.getvalue())
             self.assertNotIn("debt", output.getvalue())
@@ -68,7 +50,7 @@ class ArchiveOnlyTests(unittest.TestCase):
             archive = self.fixture(root, corrupt=True)
             with mock.patch.dict(TOOLS["verify"].__globals__, ROOT=root, ARCHIVE=archive):
                 with self.assertRaises(AssertionError):
-                    TOOLS["verify"](archive_only=True)
+                    TOOLS["verify"]()
 
 
 if __name__ == "__main__":

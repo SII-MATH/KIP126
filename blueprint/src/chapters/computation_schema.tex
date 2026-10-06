@@ -1,9 +1,13 @@
-\chapter{Typed computation schemas}
+\section{Finite Adams presentations and coordinate conditions}
 \label{chap:computation-schema}
 
-This chapter defines the types used to state machine and appendix results.  It contains no Lin output, table row, or other computed value.
+Finite generator, relation, and basis tables describe graded algebras and
+coordinate expressions. To obtain conclusions about Adams spectral sequences,
+one must compare these algebras with the actual pages and prove the stated
+product, differential, and cell-map conditions. This section specifies those
+mathematical objects and conditions.
 
-\section{Finite presentations of an existing Adams page}
+\subsection{Finite presentations of an existing Adams page}
 
 % SOURCE: project interface design; this does not assert any real computed value.
 \begin{definition}[Finite basis multiplication table]
@@ -35,16 +39,15 @@ This chapter defines the types used to state machine and appendix results.  It c
 \begin{definition}[Presentation of the actual $E_2$ page]
   \label{def:adams-e2-table-presentation}
   \lean{KIP126.AdamsE2.PageAlgebra,KIP126.AdamsE2.Presentation,KIP126.AdamsE2.Input}
-  \uses{def:adams-e2-table-model,def:classical-adams-e2-e3-shape-slice,def:external-evidence}
+  \uses{def:adams-e2-table-model,def:classical-adams-e2-e3-shape-slice}
   Fix an existing mod--$2$ Adams-shaped spectral sequence $E$ and a
   degree-preserving commutative algebra structure on the direct sum of its
   actual $E_2$ components.  A presentation consists of an algebra map
   $A_T\to E_2$, compatible maps on every homogeneous component, and
   bijectivity on each degree in $D$.  It also supplies bases of the actual
   page components, of the recorded sizes, equal to the images of the
-  corresponding model generators.  Existence of this presentation is
-  supplied as explicit external evidence with provenance; reading the
-  numerical table does not prove it.
+  corresponding model generators.  The existence of such a presentation is a mathematical
+  comparison condition; the numerical table alone does not establish it.
 \end{definition}
 
 \begin{lemma}[Transporting a table product to the page]
@@ -60,14 +63,14 @@ This chapter defines the types used to state machine and appendix results.  It c
   of the target component into the direct sum.
 \end{proof}
 
-\begin{definition}[The classes obtained from an imported table]
+\begin{definition}[Classes represented by a table]
   \label{def:adams-e2-imported-h6}
   \lean{KIP126.AdamsE2.Input.h6,KIP126.AdamsE2.Input.h6Square}
   \uses{def:adams-e2-table-presentation}
   If the table contains $(1,64)$ with dimension one, define $h_6$ as the
   image of its sole basis vector.  Define $h_6^2$ using the actual page
-  multiplication.  Its nonvanishing or permanence is not a field of this
-  definition.  This interface alone does not identify an arbitrary
+  multiplication.  Neither nonvanishing nor permanent survival follows from this
+  definition.  This presentation alone does not identify an arbitrary
   Adams-shaped sequence with the sphere's sequence.
 \end{definition}
 
@@ -88,249 +91,381 @@ This chapter defines the types used to state machine and appendix results.  It c
   the specified basis vector in degree $(2,128)$ and is therefore nonzero.
 \end{proof}
 
-\section{Typed catalogue schemas}
 
-% SOURCE: aimpaper/main.tex:1930-1977, Example exam:Mahowald.
-\begin{definition}[Atiyah--Hirzebruch cell notation for $S^0/\nu_{\mathrm{Hopf}}$]
+\subsection{Coordinates on the fixed Adams pages}
+
+\begin{definition}[Shared sphere, cofiber, and tmf coordinates]
+  \label{def:computation-fixed-bindings}
+  \lean{KIP126.Classical.Adams.LinE2Presentation,KIP126.Computation.Route.Realization,KIP126.Classical.Adams.Tmf.E2Presentation,KIP126.Challenge2.ComputationBindings.routeLabels}
+  \uses{def:classical-adams-ss,def:h6-milnor-cooperations,def:hf2-adams-tower,def:adams-hj,def:lin-e2-catalogue}
+  \notready
+  Fix the mod--$2$ object $H$ and Milnor cooperations $M$ of
+  Definition~\ref{def:h6-milnor-cooperations}, the sphere Adams tower
+  of Definition~\ref{def:hf2-adams-tower}, and the specified Hopf map
+  $\nu:S^3\to S^0$. Put
+  $C\nu=\operatorname{cofib}(\nu)$. All pages below are the actual
+  $H$-unit Adams pages of these objects.
+
+  Write $A^{s,t}=\mathrm{LinE2.E2At}(s,t)$ for the homogeneous part of
+  the fixed sphere generator--relation quotient, and $|x|$ for its
+  underlying quotient value. A bounded presentation $P$ gives
+  integer-linear equivalences
+  \[
+    P_{s,t}:A^{s,t}\simeq_{\mathbb Z}E_2^{s,t}(S^0),
+       \qquad s,t\in\mathbb N,\quad t\le261,
+  \]
+  and a bilinear operation $P.\operatorname{product}$ in sum degrees
+  satisfying the same bound. Also fix coordinate equivalences
+  $\chi_{s,t}:E_2^{s,t}(S^0)\cong
+  (\mathrm{BasisIndex}(s,t)\to_0\mathbb F_2)$ over this range;
+  their compatibility with the specified monomial values is a separate
+  assertion. Fix linear maps
+  $R_{s,t}:A^{s,t}\to E_2^{s,t}(S^0)$ and vectors
+  $R_{o,s,t,i}\in E_2^{s,t}(o)$ for $o=S^0,C\nu$, indexed by the
+  selected degree and monomial lists. Equality of $R$ with $P$, and the
+  basis and multiplication properties of these vectors, are separate
+  mathematical assertions in Section~\ref{chap:computed-inputs}.
+
+  Let $L.x_{126,8,4}$, $L.x_{126,8}$, $L.x_{124,8}$, and
+  $L.x_{109,12}$ be the images under this same $R$ of the corresponding
+  fixed homogeneous generator classes. Let $G.g$ and
+  $G.\Delta h_1g$ be the sphere labels identified with the tmf source
+  labels of the source tmf spectrum appearing in
+  Theorem~\ref{thm:literature-tmf-standard-labels}.
+
+  Fix the tmf target $T_{\mathrm{fix}}=\mathrm{standardTmfTarget}$,
+  the tmf spectrum $T_{\mathrm{src}}$ occurring in the BR21 source
+  theorem, and their specified isomorphism
+  $I:T_{\mathrm{fix}}\cong T_{\mathrm{src}}$.
+  The bounded tmf coordinate comparison $U$ maps the homogeneous
+  tmf quotient to $E_2^{s,t}(T_{\mathrm{fix}})$ for $t\le261$.
+  Its unit, product, and source-class comparisons are stated separately.
+  All occurrences of $P,R,L,G,U,I$ use these same choices.
+
+  Write $C_X^{s,t}$ for the actual second-cycle group of the $H$-Adams
+  tower of $X$, and $[a]$ for its image in $E_2^{s,t}(X)$.
+  The prescribed sphere first-layer product, the Milnor/cobar product,
+  and $P.\operatorname{product}$ are distinct operations until their
+  displayed comparisons are proved. Write $\mathcal R_H$ for the
+  specified mod--$2$ ring structure on $H$.
+\end{definition}
+
+\begin{theorem}[Bounded actual sphere multiplication comparison]
+  \label{thm:bounded-sphere-multiplication}
+  \lean{KIP126.Challenge2.SphereMultiplicativeInterface}
+  \lean{KIP126.Classical.Adams.Sphere.Multiplication.unitSecondCycle,KIP126.Classical.Adams.Sphere.Multiplication.firstProduct}
+  \lean{KIP126.Interface.Solution.sphereMultiplicativeInterface}
+  \uses{def:hf2-adams-tower,def:lin-e2-catalogue}
+  \notready
+  There is a bounded presentation $P$ on the fixed sphere Adams
+  sequence whose coordinate unit maps to the second-cycle class of the
+  sphere identity. For all $s,t,s',t'\in\mathbb N$ with
+  $t+t'\le261$ and all actual second-cycle representatives $a,b$ in
+  the two input bidegrees, there is a second cycle $z$ in their sum degree
+  with
+  \[
+    z_{\mathrm{underlying}}=\mu_1(a,b),\qquad
+    [z]=P.\operatorname{product}([a],[b]).
+  \]
+  Here $\mu_1$ is the prescribed sphere Adams first-layer product,
+  formed from the same tower pairing and $H$ multiplication.
+  This existential condition asserts closure of that product in cycles.
+  It quantifies over all representatives. The condition for a specified
+  $P$ is Theorem~\ref{thm:computation-sphereMultiplicative}.
+  This existence theorem remains unproved. It supplies neither a
+  higher-page Leibniz rule, a product outside the bound, nor a comparison
+  with the cobar cup product.
+\end{theorem}
+
+\subsection{Class expressions and page conditions}
+
+% SOURCE: MainPaper/main.tex:1930--1977, Example exam:Mahowald.
+\begin{definition}[Atiyah--Hirzebruch cell notation for $C\nu$]
   \label{def:hopf-cofiber-cell-notation}
   \uses{def:cofiber-triangle,def:steenrod-ext}
   \notready
   In the Ext long exact sequence of
-  $S^3\xrightarrow{\nu_{\mathrm{Hopf}}}S^0\to S^0/\nu_{\mathrm{Hopf}}\to S^4$, write
-  $a[4]$ for a class restricting nontrivially to the top cell as $a$, and
-  $b[0]$ for a class induced from the bottom-cell class $b$.  The notation is
-  typed by spectrum, cell, bidegree, and a chosen dataset identifier.
+  $S^3\xrightarrow{\nu}S^0\to C\nu\to S^4$, write $a[4]$ for a
+  class restricting nontrivially to the top cell as $a$, and $b[0]$
+  for the class induced from a bottom-cell class $b$. The spectrum,
+  cell, and bidegree are part of this notation.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2738-3290, all twelve tables.
-\begin{definition}[Appendix table identifier]
-  \label{def:appendix-table-id}
-  \leanok
-  \lean{KIP126.Computation.AppendixTableId}
-  \lean{KIP126.Computation.AppendixTableId.paperNumber}
-  \lean{KIP126.Computation.AppendixTableId.texLabel}
-  \lean{KIP126.Computation.AppendixTableId.sourceStart}
-  \lean{KIP126.Computation.AppendixTableId.sourceEnd}
-  \lean{KIP126.Computation.AppendixTableId.pdfPage}
-  \lean{KIP126.Computation.AppendixTableId.spectrum}
-  \lean{KIP126.Computation.AppendixTableId.stem}
-  \lean{KIP126.Computation.AppendixTableId.filtrationRange}
-  The table identifier is a twelve-element finite type containing
-  $C\nu126$, $S122$, $S123$, the two $S124$ bands, the two $S125$ bands, the
-  two $S126$ bands, and the three $S127$ bands.  It records the paper table
-  number, spectrum, stem, filtration interval, source line range, and PDF page.
-\end{definition}
-
-% SOURCE: aimpaper/main.tex:2738-3290, class-expression column; aimpaper/112.tex:8-1026.
-\begin{definition}[Typed Ext class expression]
+% SOURCE: MainPaper/main.tex:2738--3290, class-expression column;
+% MainPaper/112.tex:8--1026.
+\begin{definition}[Degree-indexed Ext class expressions]
   \label{def:typed-class-expression}
   \uses{def:steenrod-ext,def:hopf-cofiber-cell-notation}
-  \leanok
-  \lean{KIP126.Computation.DatasetVersion}
-  \lean{KIP126.Computation.Cell}
-  \lean{KIP126.Computation.ClassAtom}
-  \lean{KIP126.Computation.ClassTerm}
-  \lean{KIP126.Computation.ExpressionMetadata}
-  \lean{KIP126.Computation.TypedClassExpression}
-  \lean{KIP126.Computation.ClassTerm.validBool}
-  \lean{KIP126.Computation.ClassTerm.Valid}
-  \lean{KIP126.Computation.TypedClassExpression.DegreeValid}
-  \lean{KIP126.Computation.TypedClassExpression.Valid}
-  A typed class expression is a sparse $\mathbb F_2$ expression built from a
-  dataset-versioned generator $x_{n,s,k}$, a named class, product, and finite
-  sum, together with spectrum, stem, filtration, internal degree, and optional
-  bottom- or top-cell tag.  The Lean data records degree validity as a
-  predicate; a finite candidate set represents ambiguity without converting it
-  to free-form text.
+  \lean{KIP126.Computation.Cell,KIP126.Computation.ClassAtom,KIP126.Computation.ClassTerm,KIP126.Computation.ClassTerm.validBool,KIP126.Computation.ClassTerm.Valid}
+  \notready
+  A class expression is built from the specified generators $x_{n,s,k}$
+  and named classes using products, powers, and finite $\mathbb F_2$
+  sums, with a bottom- or top-cell annotation when appropriate.
+  Each expression has a specified spectrum and bidegree
+  $(s,t)$, with stem $n=t-s$. Sums have equal degrees; multiplication
+  adds degrees. A finite set of candidate expressions represents an
+  ambiguity in a differential target without choosing a target.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2738-3290, differential/status columns.
-\begin{definition}[Appendix row status]
+% SOURCE: MainPaper/main.tex:2738--3290, differential/status columns.
+\begin{definition}[Mathematical meaning of appendix page conditions]
   \label{def:appendix-row-status}
-  \uses{def:typed-class-expression}
-  \leanok
-  \lean{KIP126.Computation.DifferentialDirection}
-  \lean{KIP126.Computation.AppendixRowStatus}
-  \lean{KIP126.Computation.AppendixRowStatus.isIncoming}
-  \lean{KIP126.Computation.AppendixRowStatus.unresolved}
-  Row status is one of:
+  \uses{def:typed-class-expression,def:internal-nested-spectral-sequence}
+  \lean{KIP126.Core.SpectralSequence.ReachesPage,KIP126.Core.SpectralSequence.IsBoundaryBy,KIP126.Core.SpectralSequence.HasDifferential}
+  \notready
+  For a class with the specified $E_2$ label, an appendix condition
+  asks for one of the following on its actual Adams sequence:
   \begin{enumerate}
-    \item an explicit zero filtration band;
-    \item a permanent class;
-    \item a known outgoing $d_r$ with a nonempty finite target set;
-    \item a known incoming $d_r$ with a nonempty finite source set;
-    \item survival through a stated page with the next outgoing differential
-      unresolved.
+    \item vanishing of every component in a stated filtration band;
+    \item permanent survival of the class;
+    \item an outgoing $d_r$ equation with target in a specified nonempty
+      finite set;
+    \item an incoming $d_r$ equation with source in a specified nonempty
+      finite set;
+    \item a common representative through a specified page, with the
+      next outgoing differential unresolved.
   \end{enumerate}
-  An incoming marker $d_r^{-1}$ is not an inverse map.  A printed $d_r?$ does
-  not assert existence of a nonzero differential.  A ``possibly'' term is a
-  finite target ambiguity attached to a known relation.
+  An incoming marker $d_r^{-1}$ denotes an incoming equation, not an
+  inverse map. A printed $d_r?$ does not assert existence of a nonzero
+  differential. A ``possibly'' term gives a finite target ambiguity
+  attached to a stated relation. The printed status records the intended
+  condition; it does not prove that condition.
 \end{definition}
 
-% SOURCE: aimpaper/main.tex:2738-3290; duplicated source/target presentations across adjacent stems.
-\begin{definition}[Differential relation identifier]
-  \label{def:differential-relation-id}
-  \uses{def:appendix-row-status}
-  \leanok
-  \lean{KIP126.Computation.DifferentialRelationId}
-  \lean{KIP126.Computation.DifferentialRelationId.Valid}
-  \lean{KIP126.Computation.DifferentialRelationId.validBool}
-  Each known differential has a stable relation identifier, length, typed
-  source expression, and typed target candidate set.  The row schema carries
-  this identifier explicitly; joining outgoing and incoming presentations is
-  a later validation step.
-\end{definition}
-
-% SOURCE: aimpaper/main.tex:2738-3290.
-\begin{definition}[Appendix row catalogue]
-  \label{def:appendix-row-catalogue}
-  \uses{def:appendix-table-id,def:typed-class-expression,def:appendix-row-status,def:differential-relation-id}
-  \leanok
-  \lean{KIP126.Computation.AppendixRowLocator}
-  \lean{KIP126.Computation.AppendixRow}
-  \lean{KIP126.Computation.AppendixRow.KeyValid}
-  \lean{KIP126.Computation.AppendixRow.MetadataValid}
-  \lean{KIP126.Computation.AppendixRow.RelationValid}
-  \lean{KIP126.Computation.AppendixRow.Valid}
-  \lean{KIP126.Computation.AppendixRow.validBool}
-  \lean{KIP126.Computation.AppendixZeroBand}
-  \lean{KIP126.Computation.AppendixZeroBand.Valid}
-  \lean{KIP126.Computation.AppendixZeroBand.validBool}
-  \lean{KIP126.Computation.expressionAt}
-  \lean{KIP126.Computation.sourceExpression}
-  \lean{KIP126.Computation.appendixRows}
-  \lean{KIP126.Computation.appendixRows_length}
-  \lean{KIP126.Computation.appendixRows_keys_nodup}
-  \lean{KIP126.Computation.appendixRows_valid}
-  \lean{KIP126.Computation.appendixZeroBands}
-  \lean{KIP126.Computation.appendixZeroBands_length}
-  \lean{KIP126.Computation.appendixZeroBands_valid}
-  The source-shaped catalogue contains all 401 nonempty rows printed in the
-  twelve tables, with table key, stem, filtration, typed expression, status,
-  relation key, and exact source line.  The nine explicitly empty filtration
-  bands are represented separately as display records.
-\end{definition}
-
-% SOURCE: LWXMachine, Section 2.1 and Tables 1--5; Zenodo record 14875701,
-% version v126.3.cw49; PROJECT_BOUNDARY.md, Appendix data.
-\begin{definition}[Lin CW-spectrum catalogue]
+% SOURCE: LWXMachine, Section 2.1 and Tables 1--5.
+\begin{definition}[Finite family of CW spectra]
   \label{def:lin-spectrum-catalogue}
-  \uses{def:source-ref}
   \notready
-  The computation input contains a finite, versioned catalogue of the 49 CW
-  spectra used by Lin--Wang--Xu.  Each entry records its stable name, cell
-  presentation and suspensions, whether it is used as a ring or module
-  spectrum, its maximum computed internal degree, and source locators for the
-  corresponding files in the Zenodo archive.  Spectrum names appearing in a
-  table, map, or proof record are typed references to this catalogue rather
-  than free-form strings.
+  Fix the finite family of CW spectra used by Lin--Wang--Xu,
+  with their specified cell presentations and suspensions. For each spectrum,
+  specify the internal-degree range under consideration and any ring
+  or module structure used to define products. The family is described
+  in LWXMachine, Section~2.1 and Tables~1--5. Spectra used to establish
+  a conclusion are distinguished from the sphere and $C\nu$ on which
+  the selected conclusions are stated.
 \end{definition}
 
-% SOURCE: LWXMachine, Section 2.1, Notations 2.1--2.5 and the
-% *_AdamsE2_generators/relations/basis files described there.
-\begin{definition}[Lin Adams $E_2$-page catalogue]
+% SOURCE: pinned v126.3.cw49 ss/main.h:20--25,1095--1098;
+% database_ss.cpp:146--163; ss.cpp:281--328,374--436.
+\begin{definition}[Finite-page meaning of staircase states]
+  \label{def:lin-staircase-states}
+  \lean{KIP126.Computation.LinProofs.Raw.StaircaseRow,KIP126.Computation.LinProofs.State.decode,KIP126.Core.SpectralSequence.ReachesPage,KIP126.Core.SpectralSequence.IsBoundaryBy,KIP126.Challenge2.StaircaseClaimStatement}
+  \uses{def:computation-fixed-bindings}
+  A known outgoing or incoming staircase entry specifies an equation
+  for the actual differential. An unknown outgoing value at level
+  $10000-r$ asks for a common representative on $E_r$, possibly zero;
+  an unknown incoming value at level $r$ asks for cumulative boundary
+  membership by that page. On the actual sequence with initial page
+  $r_0=2$, the raw boundary index is $r-1$, and its image is taken in
+  the initial $E_2$ quotient. Level $9000$ asks only for a representative
+  on $E_{1000}$; it does not assert nonzero permanent survival.
+  Every label is interpreted through the same bounded sphere
+  comparison. Reaching $E_7$ does not determine $d_7$. Finite-page
+  reachability, including $E_{1000}$ at level $9000$, permits zero page
+  classes and does not exclude incoming boundaries or imply nonzero
+  permanent survival. Invalid coordinates and out-of-range degrees have no
+  interpretation, including an empty coordinate list at a missing degree.
+\end{definition}
+
+\begin{theorem}[Realization of the sphere staircase conditions]
+  \label{thm:lin-staircase-delivery}
+  \lean{KIP126.Challenge2.SphereStaircaseInterface,KIP126.Interface.Solution.sphereStaircaseInterface}
+  \uses{def:lin-staircase-states}
+  \notready
+  There is a bounded sphere comparison for which every specified
+  staircase entry has a defined interpretation and
+  satisfies its corresponding actual page condition. Use this same
+  comparison for the differential equations of
+  Definition~\ref{def:lin-proofs-sphere-meaning}.
+  The condition for a specified comparison is
+  Theorem~\ref{thm:computation-sphereStaircase-rows-sound}.
+  Its mathematical soundness remains unproved.
+\end{theorem}
+
+% SOURCE: pinned ss/deduce.cpp:329--389,390--492;
+% mylog.cpp:120--148,151--206.
+\begin{definition}[Conditional differential assumptions and candidate coverage]
+  \label{def:lin-conditional-branches}
+  \lean{KIP126.Computation.LinProofs.Branch.scopeRows,KIP126.Computation.LinProofs.Branch.FiniteEquation,KIP126.Computation.LinProofs.Branch.CandidateWindow.equations,KIP126.Computation.LinProofs.Branch.CandidateCoverage,KIP126.Computation.LinProofs.Branch.CandidateExhaustion,KIP126.Challenge2.LinBranchInterface}
+  A trial differential equation is considered under its complete chain
+  of ancestor assumptions. A refutation proves that these actual
+  differential assumptions imply the negation of the trial equation;
+  a deduction remains conditional on the same chain.
+  A candidate window consists of all binary sums of specified vectors,
+  including zero. Candidate coverage is the assertion that at least
+  one candidate holds under the stated assumptions. Candidate exhaustion
+  additionally refutes the alternatives needed for the conclusion.
+  Incomplete assumption chains and undefined coordinates remain
+  unresolved; the mere number of retained trials proves no coverage.
+  The finite candidate windows and their actual coordinate interpretation
+  remain to be specified.
+\end{definition}
+
+% SOURCE: LWXMachine, Section 2.1, Notations 2.1--2.5.
+\begin{definition}[Finite Adams $E_2$ presentations]
   \label{def:lin-e2-page-catalogue}
-  \uses{def:lin-spectrum-catalogue,def:typed-class-expression,def:external-evidence}
+  \uses{def:lin-spectrum-catalogue,def:typed-class-expression,def:adams-e2-table-presentation}
   \notready
-  For every spectrum in the Lin catalogue, an $E_2$-page record contains the
-  complete finite generator, relation, and basis tables through its declared
-  internal-degree bound.  It includes typed multiplication or module-action
-  tables only when the spectrum catalogue supplies the corresponding ring or
-  module structure.  An external-evidence value identifies the three archived
-  files and proves that their normalized serialization is the value stored in
-  the record.
+  For each spectrum in the specified finite family, fix generators,
+  relations, and bases for a graded algebra or module through its
+  declared internal-degree bound. These describe the actual $E_2$
+  page only after a comparison with that page is supplied. Multiplication
+  or module action is specified only for spectra with the requisite ring
+  or module structure. LWXMachine, Section~2.1, Notations~2.1--2.5,
+  describes these presentations.
 \end{definition}
 
-% SOURCE: LWXMachine, Section 2.2 and Tables 6--10; the map_*.csv files in
-% Zenodo record 14875701.
-\begin{definition}[Lin map catalogue]
+% SOURCE: LWXMachine, Section 2.2 and Tables 6--10.
+\begin{definition}[Induced maps in finite $E_2$ coordinates]
   \label{def:lin-map-catalogue}
-  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:external-evidence}
+  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue}
   \notready
-  The map catalogue contains the 180 versioned maps used by the computation.
-  A record gives source and target spectrum identifiers, suspension degree,
-  geometric map kind, maximum computed degree, and the induced linear map on
-  the stored $E_2$ bases.  Cofiber-sequence membership and composition keys are
-  explicit fields, and the evidence locator names the archived map table rather
-  than merely the display name of the map.
+  For each specified map considered by Lin--Wang--Xu, give its
+  source and target spectrum, suspension degree, kind of map, range,
+  and matrix on the chosen $E_2$ bases. The matrices must represent
+  the maps induced by those actual spectrum maps. Cofiber sequences
+  and composites impose the corresponding compatibility equations.
+  The maps are described in LWXMachine, Section~2.2 and Tables~6--10.
 \end{definition}
 
-% SOURCE: LWXMachine, Section 2.3 and Table 11; the d_2 columns in the
-% per-spectrum Adams E_2 basis files;
-% aimpaper/main.tex:2785--2792 for the additional manual inputs.
-\begin{definition}[Lin initial $d_2$ catalogue]
+% SOURCE: LWXMachine, Section 2.3 and Table 11;
+% MainPaper/main.tex:2785--2792.
+\begin{definition}[Initial differential conditions]
   \label{def:lin-d2-catalogue}
-  \uses{def:lin-e2-page-catalogue,def:differential-relation-id,def:external-evidence}
+  \uses{def:lin-e2-page-catalogue,def:appendix-row-status}
   \notready
-  For every spectrum and degree range declared by the computation, the initial
-  $d_2$ catalogue records all supplied $d_2$ values as typed differential
-  relations and carries a range-completeness certificate.  A missing row is
-  therefore distinguishable from a certified zero differential.  Later manual
-  $d_3$, $d_5$, and $d_6$ inputs are stored separately and are never
-  reconstructed from program output.
+  For each spectrum and degree range, specify the initial $d_2$
+  values as equations on the actual Adams pages. Completeness asserts
+  a value for every class in that stated range; an omitted value is
+  not a zero differential. The additional manual $d_3$, $d_5$, and
+  $d_6$ equations are separate assumptions, rather than consequences
+  of the initial $d_2$ equations. See LWXMachine, Section~2.3 and
+  Table~11, and the paper's Appendix introduction.
 \end{definition}
 
-% SOURCE: LWXMachine, Section 3, especially the Adams-SS, cofiber-SS, and
-% Tables-of-Proofs formats; proofs_csv.rar in Zenodo record 14875701.
-\begin{definition}[Lin propagated-output record]
+% SOURCE: LWXMachine, Section 3, Adams-SS, cofiber-SS,
+% and Tables-of-Proofs formats.
+\begin{definition}[Differential and extension conclusions]
   \label{def:lin-propagated-output-record}
-  \uses{def:lin-spectrum-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:differential-relation-id,def:external-evidence}
+  \uses{def:lin-spectrum-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:appendix-row-status}
   \notready
-  A propagated-output record is one of a proved Adams differential, a proved
-  map extension, a disproof of a candidate value, or an explicitly unresolved
-  finite candidate set.  It stores the source inputs, propagation rule,
-  normalized source and target, page or extension length, proof-database key,
-  program version, and archived output row.  A disproof record contains the
-  rejected candidate and contradiction key; it is not represented as an absent
-  differential row.
+  A conclusion is an Adams differential equation, a map-extension
+  equation, the negation of a specified candidate equation, or an
+  unresolved finite candidate set. Each equation specifies the source
+  and target classes, their degrees, and the differential or extension
+  length. A conditional conclusion retains all differential assumptions
+  used to derive it. A refutation is a proof of the negated candidate
+  under those assumptions; absence from a list is not a refutation.
 \end{definition}
 
-% SOURCE: LWXMachine Sections 2--3; Zenodo record 14875701, version
-% v126.3.cw49; PROJECT_BOUNDARY.md, Appendix data.
-\begin{definition}[Lin computation bundle]
-  \label{def:lin-computation-bundle}
-  \uses{def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:lin-d2-catalogue,def:lin-propagated-output-record}
+\subsection{Selected sphere and cofiber conditions}
+
+\begin{definition}[Selected sphere and Hopf-cofiber differential conditions]
+  \label{def:near126-fixed-sphere-facts}
+  \lean{KIP126.Computation.Near126.SphereFacts,KIP126.Computation.Near126.HopfCofiberFacts}
+  \uses{def:computation-fixed-bindings,def:h6-fixed-computation}
   \notready
-  A Lin computation bundle contains the five catalogues above with one common
-  archive version and hashes for the program, database, CSV export, and proof
-  files.  Its validation data states that every map references stored source
-  and target pages, every propagated output references stored inputs, and no
-  two records assign incompatible values to the same typed relation key.
+  Interpret the selected homogeneous sphere classes through the fixed
+  comparison. The specified conditions comprise seven sphere differential
+  equalities, the nonzero two-target ambiguity for $d_3(x_{126,6})$,
+  selected page reachability, incoming exclusions, products, component
+  vanishing, and target exhaustion. A later-page expression requires a
+  common cycle representative with its named $E_2$ class. These conditions
+  do not assume permanent survival of $h_6^2$.
+
+  The Hopf-cofiber conditions specify a $d_3$ equation and exclusion of
+  short incoming differentials, initially for a sequence and displayed
+  classes given as parameters. Definition~\ref{def:near126-sphere-hopf-input}
+  specializes them to the constructed cofiber and its actual bottom-cell
+  maps. The comparison conditions remain unfinished.
 \end{definition}
 
-% SOURCE: PROJECT_BOUNDARY.md, Appendix data; aimpaper/main.tex:2785-2800.
-\begin{definition}[Appendix evidence record]
-  \label{def:appendix-evidence-record}
-  \uses{def:appendix-table-id,def:appendix-row-status,def:differential-relation-id,def:external-evidence}
+\begin{definition}[A filtration-one detected map and its cofiber Adams pages]
+  \label{def:near126-sphere-hopf-input}
+  \lean{KIP126.Computation.Near126.SphereHopfInput,KIP126.Classical.Adams.SphereFiltrationOneRepresents,KIP126.Classical.Adams.sphereMapCofiberAdams,KIP126.Classical.Adams.sphereMapCofiberBottomE2,KIP126.Computation.Near126.SphereHopfInput.ComputationFacts}
+  \uses{def:near126-fixed-sphere-facts,def:cofiber-triangle,def:h6-fixed-computation}
   \notready
-  An appendix evidence record contains a table identifier, a unique row key,
-  spectrum and bidegree, typed class expression or zero band, row status,
-  relation identifier when applicable, paper locator, computation-artifact
-  locator, program version, input hash, method, and an explicit evidence proof
-  of the proposition represented by that status.
+  Let $f:S^3\to S^0$ have a lift $a:S^3\to F^1S^0$ whose composite
+  to $S^0$ is $f$, and whose layer image represents the fixed coordinate
+  class $h_2$ on the actual $E_2$ page. This detection condition does
+  not uniquely select the geometric Hopf map.
+
+  Form the cofiber, its two cell maps, and its Adams sequence from
+  this same $f$ and the fixed $H$ unit. Naturality of the tower bonding
+  maps and exact-couple maps preserves $Z_r$ and $B_r$, hence induces
+  maps on quotient pages. The bottom-cell classes $Y[0]$ and $T[0]$
+  are images of the specified sphere classes under this actual $E_2$
+  map. For a top-cell lift $u$, the differential source is
+  $u+i_*(x_{126,8})+i_*(x_{126,8,2})$.
+
+  The top-cell map lands in the tower of $\Sigma S^3$. Its suspension
+  comparison with the regraded sphere page, the equation identifying
+  $u$ with $X[4]$, and the differential and no-crossing conditions remain
+  outstanding. All sequences and bottom-cell maps in this construction
+  are induced by the specified objects and morphisms.
 \end{definition}
 
-\section{Input bundles and output contracts}
-
-% SOURCE: PROJECT_BOUNDARY.md, Appendix data and External inputs;
-% aimpaper/main.tex:2738--3290.
-\begin{definition}[Near-$126$ computation input]
-  \label{def:near126-computation-input}
-  \uses{def:lin-computation-bundle,def:appendix-evidence-record,def:external-result,def:external-evidence}
-  \notready
-  A near-$126$ computation input is an explicit record containing a Lin
-  computation bundle, the twelve finite appendix tables, the nine zero-band
-  records, the three manual differential inputs, the $tmf$-detection evidence,
-  and the finite high-stem product and indeterminacy evidence consumed in
-  Section~7.  The latter are named fields, including
-  \texttt{theta5TorsionRanges}, \texttt{theta5SquareTmf},
-  \texttt{todaCandidateProducts},
-  \texttt{twoExtensionIndeterminacyProducts},
-  \texttt{hopfLiftObstructions}, \texttt{stem122Products}, and
-  \texttt{cnuIncomingRange}; a proof cannot request an anonymous
-  \texttt{ExternalEvidence}.  Every field is an external-evidence or
-  external-result value, as
-  appropriate, with a source locator; project theorems receive this record as a
-  parameter and prove all finite coverage and negative-search conclusions from
-  its fields.
+% SOURCE: LWXMachine, Section 3; Zenodo 14875701, v126.3.cw49.
+\begin{definition}[Finite-page sphere differential coordinates]
+  \label{def:lin-proofs-sphere-table}
+  \lean{KIP126.Computation.LinProofs.DifferentialRow,KIP126.Computation.LinProofs.RawData.lookup}
+  \uses{def:lin-e2-catalogue}
+  Fix the finite list of sphere differential equations from
+  Lin--Wang--Xu's Tables of Proofs. Each entry specifies a page $r$,
+  source bidegree $(s,t)$, and source and target additive-basis
+  coordinates. An incoming presentation is reindexed by the source
+  bidegree, so both presentations specify the same equation.
+  These entries concern closed finite-page differential equations;
+  conditional trials, unknown values, other spectra, map extensions,
+  and threshold pages require their own mathematical conditions.
 \end{definition}
+
+\begin{definition}[Differential equations on the fixed sphere sequence]
+  \label{def:lin-proofs-sphere-meaning}
+  \lean{KIP126.Challenge2.HasCoordinates,KIP126.Challenge2.DifferentialStatement}
+  \uses{def:lin-proofs-sphere-table,def:computation-fixed-bindings}
+  Interpret each coordinate list as the sum of its specified monomials
+  in the fixed quotient. Transport the homogeneous classes through $P$
+  to the sphere $E_2$ page and require common-cycle representatives on
+  $E_r$ for which the actual differential has the specified target.
+  A nonempty coordinate list does not by itself imply nonvanishing
+  on $E_r$.
+\end{definition}
+
+\subsection{Low-degree data illustration}
+
+\begin{definition}[Low-degree table extracted from Lin's data]
+  \label{def:lin-low-degree-table}
+  \lean{KIP126.Examples.AdamsE2LowDegrees.table}
+  \uses{def:adams-e2-basis-table}
+  Extract the region $0\le s\le8$, $0\le t-s\le8$, together with
+  $(1,64),(2,128),(1,16),(4,18),(5,20)$, from Lin's version
+  \texttt{t261.2} of Zenodo record \texttt{7865526}.
+  Retain the published additive-basis order and compute each covered basis
+  product using the published polynomial relations.
+  The component $(5,20)$ has dimension two, with basis
+  $(h_1d_0,h_0^4h_4)$.
+  This construction imports numerical data; identifying it with the actual
+  sphere page remains an explicit presentation input, not a consequence of
+  parsing the file. This dataset is distinct from the near-$126$
+  differential and extension catalogues used in Section~\ref{chap:near126}.
+\end{definition}
+
+\begin{lemma}[Low-degree table relations and a two-dimensional component]
+  \label{lem:lin-low-degree-table-relations}
+  \lean{KIP126.Examples.AdamsE2LowDegrees.h0_h1_zero,KIP126.Examples.AdamsE2LowDegrees.h1_h2_zero,KIP126.Examples.AdamsE2LowDegrees.h0_c0_zero,KIP126.Examples.AdamsE2LowDegrees.h1_cube,KIP126.Examples.AdamsE2LowDegrees.h6_square,KIP126.Examples.AdamsE2LowDegrees.page_two_products_sum_ne_zero}
+  \uses{def:lin-low-degree-table,def:adams-e2-table-presentation}
+  In the model algebra, the table implies
+  $h_0h_1=h_1h_2=h_0c_0=0$, $h_1^3=h_0^2h_2$, and the specified
+  square relation for $h_6$.
+  For any presentation of this table on an existing page, the actual products
+  $h_1d_0$ and $h_0^4h_4$ are its two specified basis vectors at $(5,20)$.
+  Their sum has coordinates $(1,1)$ and is nonzero.
+\end{lemma}
+\begin{proof}
+  \uses{lem:adams-e2-table-product}
+  Evaluate the imported coefficients and impose the corresponding relations
+  in the quotient algebra.  Under a presentation, transport these equalities
+  to the page.  Applying the first basis-coordinate functional to the sum
+  gives $1$, which rules out zero.
+\end{proof}

@@ -1,15 +1,11 @@
 import Mathlib.Algebra.Homology.SpectralSequence.Basic
 
 /-!
-# Mathlib spectral-sequence foundation
+# Optional Mathlib spectral-sequence adapter API
 
-The shared spectral-sequence object is
-`CategoryTheory.SpectralSequence`.  This module is deliberately an import
-boundary only: KIP126 does not introduce an alias, wrapper, or competing
-`SpectralSequence` structure here.
-
-Project-specific constructions belong in their own modules only when a
-downstream use requires mathematics absent from Mathlib.
+These examples check the pinned Mathlib page, differential and page-passage
+API used by KIP126's optional adapter layer. KIP126's internal sequence uses
+`SSData`/`PreSS`; these API checks do not select or replace that implementation.
 -/
 
 namespace KIP126.Core.SpectralSequence

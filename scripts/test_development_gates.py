@@ -95,7 +95,7 @@ class BlueprintRoutingTests(unittest.TestCase):
     def test_mixed_development_pr_is_eligible_without_reviewer_trailers(self):
         for paths in (["blueprint/src/content.tex", "KIP126/A.lean"],
                       ["blueprint/src/content.tex", "scripts/import.py", "docs/status.md"],
-                      ["blueprint/src/content.tex", "KIP126/A.lean", "reference/data.json"]):
+                      ["blueprint/src/content.tex", "KIP126/A.lean", "Source/data.json"]):
             with self.subTest(paths=paths):
                 result, output, _ = self.run_step("Classify the source boundary and diff size", paths=paths)
                 self.assertEqual(result.returncode, 0, result.stderr)
@@ -540,12 +540,15 @@ class EmbeddedLakeConfigTests(unittest.TestCase):
     def test_standalone_configuration_retains_all_roots_and_options(self):
         config = (ROOT / "KIPBase/lakefile.toml").read_text()
         self.assertIn('srcDir = ".."', config)
-        self.assertIn('defaultTargets = ["KIPBase"]', config)
+        self.assertIn('defaultTargets = ["KIPBase", "KIPBaseDefEqCompat"]', config)
         roots = re.findall(r'^  "(KIPBase\.[^"]+)"', config, re.M)
         imports = re.findall(r"^import (KIPBase\.\S+)",
                              (ROOT / "KIPBase/Standalone.lean").read_text(), re.M)
         self.assertTrue(set(imports).issubset(roots))
-        self.assertIn('"maxSynthPendingDepth" = 3', config)
+        libraries = config.split('[[lean_lib]]')[1:]
+        self.assertEqual(len(libraries), 2)
+        for library in libraries:
+            self.assertIn('"-DmaxSynthPendingDepth=3"', library)
         self.assertFalse((ROOT / "KIPBase/lakefile.lean").exists())
 
     def test_old_base_compiles_unimported_sources_but_not_embedded_configuration(self):

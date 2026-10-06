@@ -1,7 +1,9 @@
+import json
 import os
 import pathlib
 import shutil
 import subprocess
+import sys
 import tempfile
 import textwrap
 import unittest
@@ -112,14 +114,204 @@ class HeartbeatBudgetGuardTests(unittest.TestCase):
 
 
 
+class ProducerToolingWorkflowTests(unittest.TestCase):
+    """Check the trusted metadata handoff using the actual workflow scripts."""
+
+    def workflow_step(self, workflow, name):
+        text = (WORKFLOWS / workflow).read_text()
+        return text.split(f"- name: {name}\n", 1)[1].split("\n      - ", 1)[0]
+
+    def step_script(self, workflow, name):
+        section = self.workflow_step(workflow, name)
+        return textwrap.dedent(section.split("run: |\n", 1)[1])
+
+    def test_producer_publishes_metadata_before_candidate_checkout(self):
+        workflow = (WORKFLOWS / "pr-build.yml").read_text()
+        names = (
+            "Checkout workflow-pinned trusted build tooling",
+            "Record trusted producer tooling",
+            "Publish trusted producer tooling",
+            "Scope guard — allow KIP126 sources and validated pins",
+            "Checkout PR head (untrusted, no credentials)",
+        )
+        positions = [workflow.index(f"- name: {name}\n") for name in names]
+        self.assertEqual(positions, sorted(positions))
+        record = self.workflow_step("pr-build.yml", names[1])
+        for variable, value in {
+            "REPOSITORY": "github.repository",
+            "HEAD_SHA": "steps.pr.outputs.sha",
+            "TOOLING_SHA": "github.workflow_sha",
+            "WORKFLOW_REF": "github.workflow_ref",
+            "RUN_ID": "github.run_id",
+            "RUN_ATTEMPT": "github.run_attempt",
+        }.items():
+            self.assertIn(f"{variable}: ${{{{ {value} }}}}", record)
+        publish = self.workflow_step("pr-build.yml", names[2])
+        for section in (record, publish):
+            self.assertIn("github.event_name == 'pull_request_target'", section)
+        self.assertIn(
+            "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+            publish,
+        )
+        self.assertIn(
+            "name: lean-producer-tooling-${{ github.run_id }}-${{ github.run_attempt }}",
+            publish,
+        )
+        self.assertIn("lean-producer-tooling/tooling.json", publish)
+        self.assertIn("retention-days: 7", publish)
+        self.assertIn("if-no-files-found: error", publish)
+        self.assertNotIn("overwrite: true", publish)
+
+    def test_metadata_records_actual_trusted_checkout_and_rejects_wrong_sha(self):
+        script = self.step_script("pr-build.yml", "Record trusted producer tooling")
+        for mismatch in (False, True):
+            with self.subTest(mismatch=mismatch), tempfile.TemporaryDirectory() as directory:
+                root = pathlib.Path(directory)
+                gate = root / "gate"
+                subprocess.run(["git", "init", "--quiet", str(gate)], check=True)
+                subprocess.run(
+                    ["git", "-C", str(gate), "-c", "user.name=Workflow Test",
+                     "-c", "user.email=workflow-test@example.invalid", "-c",
+                     "commit.gpgsign=false", "commit", "--quiet", "--allow-empty",
+                     "-m", "trusted tooling"],
+                    check=True,
+                )
+                tooling_sha = subprocess.check_output(
+                    ["git", "-C", str(gate), "rev-parse", "HEAD"], text=True
+                ).strip()
+                runner_temp = root / "runner-temp"
+                runner_temp.mkdir()
+                environment = {
+                    **os.environ,
+                    "RUNNER_TEMP": str(runner_temp),
+                    "REPOSITORY": "SII-MATH/KIP126",
+                    "HEAD_SHA": "b" * 40,
+                    "TOOLING_SHA": "0" * 40 if mismatch else tooling_sha,
+                    "WORKFLOW_REF":
+                        "SII-MATH/KIP126/.github/workflows/pr-build.yml@refs/heads/main",
+                    "RUN_ID": "734123",
+                    "RUN_ATTEMPT": "2",
+                }
+                result = subprocess.run(
+                    ["bash", "-euo", "pipefail", "-c", script], cwd=root,
+                    env=environment, capture_output=True, text=True,
+                )
+                metadata = runner_temp / "lean-producer-tooling" / "tooling.json"
+                if mismatch:
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertFalse(metadata.exists())
+                else:
+                    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                    self.assertEqual(json.loads(metadata.read_text()), {
+                        "schema": 1,
+                        "repository": "SII-MATH/KIP126",
+                        "head_sha": "b" * 40,
+                        "tooling_sha": tooling_sha,
+                        "workflow_path": ".github/workflows/pr-build.yml",
+                        "workflow_ref": environment["WORKFLOW_REF"],
+                        "run_id": 734123,
+                        "run_attempt": 2,
+                        "event": "pull_request_target",
+                    })
+
+    def test_docs_use_resolved_tooling_and_the_same_producer_attempt(self):
+        pages = (WORKFLOWS / "pages.yml").read_text()
+        names = (
+            "Resolve trusted producer tooling",
+            "Checkout trusted producer contract",
+            "Wait for exact-input producer outputs",
+        )
+        positions = [pages.index(f"- name: {name}\n") for name in names]
+        self.assertEqual(positions, sorted(positions))
+        resolver = self.workflow_step("pages.yml", names[0])
+        self.assertIn("id: producer-tooling", resolver)
+        self.assertIn("needs.classify.outputs.cold != 'true'", resolver)
+        self.assertIn("needs.classify.outputs.lean_producer == 'pr-build.yml'", resolver)
+        self.assertIn("scripts/docs/wait_for_lean_cache.py", resolver)
+        self.assertIn("--resolve-tooling", resolver)
+        checkout = self.workflow_step("pages.yml", names[1])
+        self.assertIn("repository: ${{ github.repository }}", checkout)
+        self.assertIn(
+            "ref: ${{ steps.producer-tooling.outputs.tooling_sha || needs.classify.outputs.base_sha }}",
+            checkout,
+        )
+        self.assertIn("persist-credentials: false", checkout)
+        wait = self.workflow_step("pages.yml", names[2])
+        for variable, output in (("PRODUCER_RUN_ID", "run_id"),
+                                 ("PRODUCER_RUN_ATTEMPT", "run_attempt")):
+            self.assertIn(
+                f"{variable}: ${{{{ steps.producer-tooling.outputs.{output} }}}}", wait
+            )
+
+    def test_docs_wait_passes_bound_attempt_only_for_the_pr_producer(self):
+        script = self.step_script("pages.yml", "Wait for exact-input producer outputs")
+        script = script.replace("${{ runner.os }}", "Linux").replace(
+            "${{ runner.arch }}", "X64"
+        )
+        for producer, run_id, attempt in (
+            ("pr-build.yml", "734123", "2"),
+            ("ci.yml", "", ""),
+            ("pr-build.yml", "", "2"),
+            ("pr-build.yml", "734123", ""),
+        ):
+            with self.subTest(producer=producer, run_id=run_id, attempt=attempt), \
+                    tempfile.TemporaryDirectory() as directory:
+                root = pathlib.Path(directory)
+                gate_scripts = root / "gate" / "scripts"
+                gate_scripts.mkdir(parents=True)
+                for name, value in (("ci-build-cache-key.sh", "a" * 64),
+                                    ("ci-build-contract.sh", "c" * 32)):
+                    (gate_scripts / name).write_text(f"printf '%s\\n' '{value}'\n")
+                binary = root / "bin"
+                binary.mkdir()
+                capture = root / "arguments.json"
+                python = binary / "python3"
+                python.write_text(
+                    f"#!{sys.executable}\n"
+                    "import json, os, pathlib, sys\n"
+                    "pathlib.Path(os.environ['ARGV_CAPTURE']).write_text(json.dumps(sys.argv[1:]))\n"
+                )
+                python.chmod(0o755)
+                result = subprocess.run(
+                    ["bash", "-euo", "pipefail", "-c", script], cwd=root,
+                    env={
+                        **os.environ,
+                        "PATH": str(binary) + os.pathsep + os.environ["PATH"],
+                        "ARGV_CAPTURE": str(capture),
+                        "GITHUB_REPOSITORY": "SII-MATH/KIP126",
+                        "PRODUCER": producer,
+                        "HEAD_SHA": "b" * 40,
+                        "BASE_SHA": "d" * 40,
+                        "PRODUCER_RUN_ID": run_id,
+                        "PRODUCER_RUN_ATTEMPT": attempt,
+                    }, capture_output=True, text=True,
+                )
+                if producer == "pr-build.yml" and (not run_id or not attempt):
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertFalse(capture.exists())
+                    continue
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                arguments = json.loads(capture.read_text())
+                self.assertEqual(arguments[arguments.index("--workflow") + 1], producer)
+                self.assertEqual(arguments[arguments.index("--sha") + 1],
+                                 ("b" if producer == "pr-build.yml" else "d") * 40)
+                for flag, value in (("--producer-run-id", "734123"),
+                                    ("--producer-run-attempt", "2")):
+                    if producer == "pr-build.yml":
+                        self.assertEqual(arguments.count(flag), 1)
+                        self.assertEqual(arguments[arguments.index(flag) + 1], value)
+                    else:
+                        self.assertNotIn(flag, arguments)
+
+
 class WorkflowRoutingTests(unittest.TestCase):
     def read(self, name):
         return (WORKFLOWS / name).read_text()
 
-    def test_main_lean_ci_does_not_watch_blueprint_source(self):
+    def test_main_lean_ci_supplies_docs_producer_after_cache_eviction(self):
         ci = self.read("ci.yml")
         self.assertIn('      - "KIP126/**/*.lean"', ci)
-        self.assertNotIn('      - "blueprint/src/**"', ci)
+        self.assertIn('      - "blueprint/src/**"', ci)
 
     def test_blueprint_only_prs_skip_lean_build_and_profile(self):
         for name in ("pr-build.yml", "pr-profile.yml"):
@@ -395,6 +587,20 @@ class WorkflowRoutingTests(unittest.TestCase):
             (repo / "KIPBase" / "Basic.lean").write_text("def historical := 32\n")
             changed_legacy = commit("port historical proof")
             self.assertNotEqual(legacy_key, run("bash", str(key_script), ".", changed_legacy))
+
+
+class MainDocsProducerCoverageTests(unittest.TestCase):
+    def test_every_main_docs_trigger_has_a_main_build_producer(self):
+        import yaml
+        workflows = pathlib.Path(__file__).resolve().parents[1] / '.github/workflows'
+        pages = yaml.safe_load((workflows / 'pages.yml').read_text())
+        ci = yaml.safe_load((workflows / 'ci.yml').read_text())
+        # PyYAML 1.1 interprets the unquoted YAML key `on` as True.
+        page_paths = set(pages.get('on', pages.get(True))['push']['paths'])
+        producer_paths = set(ci.get('on', ci.get(True))['push']['paths'])
+        # KIP126/*.lean is covered by KIP126/**/*.lean on GitHub.
+        page_paths.discard('KIP126/*.lean')
+        self.assertFalse(page_paths - producer_paths, sorted(page_paths - producer_paths))
 
 
 if __name__ == "__main__":

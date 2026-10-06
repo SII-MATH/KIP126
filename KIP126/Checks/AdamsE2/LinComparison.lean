@@ -1,4 +1,5 @@
-import KIP126.Def.AdamsE2.Lin
+import KIP126.Checks.AxiomInputs
+import KIP126.Main.Solution.Computation.LinProgram.E2
 import Lean.Elab.Command
 
 namespace KIP126.Classical.Adams
@@ -42,10 +43,10 @@ run_cmd do
       ``KIP126.Classical.Adams.linToSphere_eq_iff,
       ``KIP126.Classical.Adams.linToSphere_product_eq_zero,
       ``KIP126.Classical.Adams.data_h0_h1_page_product] do
-    for a in ← liftCoreM (collectAxioms declaration) do
-      unless (allowed ++ [``KIP126.Classical.Adams.linE2Presentation,
-          ``KIP126.Classical.Adams.sphereAdamsModel]).contains a do
-        throwError "new proof debt in transferred product: {a}"
+    discard <| KIP126.Checks.AxiomInputs.checkStageConsumer
+      (allowed ++ [``KIP126.Classical.Adams.linE2Presentation,
+        ``KIP126.Classical.Adams.standardFoundation]) declaration
+      "transferred product dependency audit"
   for m in (← getEnv).allImportedModuleNames do
     if (`KIP126.Mathlib).isPrefixOf m || (`KIPBase).isPrefixOf m ||
         (`Mathlib.Algebra.Homology.SpectralSequence).isPrefixOf m then

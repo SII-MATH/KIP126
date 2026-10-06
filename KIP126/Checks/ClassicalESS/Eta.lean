@@ -8,6 +8,7 @@ namespace KIP126.Classical.ExtensionSS.Regression
 
 open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
+open KIP126.Core.SpectralSequence
 
 example : etaESSPageLevel.firstPage = 0 := rfl
 example (r : ℕ) : etaESSPageLevel.page r = r := rfl
@@ -18,7 +19,8 @@ example (r : ℕ) :
 variable {stable : StableHomotopyContext} {X Y : stable.Spectrum}
   {source : ClassicalAdamsSS stable X} {target : ClassicalAdamsSS stable Y}
 
-example (n : ℕ) : differentialDegree n = ((n : ℤ), (n : ℤ)) := by
+example (n : ExtensionLength) :
+    differentialDegree n = (n.toInt, n.toInt) := by
   rfl
 
 example (D : EtaESSInput source target) :
@@ -33,6 +35,10 @@ example (_D : EtaESSInput source target) (n : ℤ) (b : Index) :
     (etaESSShape n).Rel b (b + (n, n)) :=
   etaESSShape_rel n b
 
+example (_D : EtaESSInput source target) (n : ExtensionLength) (b : Index) :
+    (etaESSShapeAt n).Rel b (b + differentialDegree n) :=
+  etaESSShapeAt_rel n b
+
 example (D : EtaESSInput source target) (row : EtaDifferential) :
     FExtension D row ↔ DetectedBy D row :=
   extension_iff_detected D row
@@ -40,9 +46,6 @@ example (D : EtaESSInput source target) (row : EtaDifferential) :
 example (D : EtaESSInput source target) :
     etaD₄ ∈ D.differentials :=
   etaD₄_has_degree D
-
-example : etaD₁.locator.artifact = some "aimpaper/main.tex" :=
-  etaD₁_has_locator
 
 example (D : EtaESSInput source target) :
     Crossing D etaD₄ ↔ ∃ row, row ∈ D.differentials ∧
