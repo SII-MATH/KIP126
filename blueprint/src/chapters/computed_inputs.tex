@@ -1,4 +1,4 @@
-% This chapter can also be compiled directly by the source editor, whose
+% This section can also be compiled directly by the source editor, whose
 % standalone compiler does not load print.tex or the project's macro files.
 % When included in the complete Blueprint, use its existing preamble.
 \ifdefined\chapter
@@ -28,150 +28,34 @@
 \fi
 \KIPComputedInputsBegin
 
-\chapter{External computed results}
+\section{Computed Adams-page assertions}
 \label{chap:computed-inputs}
 
-This chapter maintains the individual model-bound computation inputs of
-Challenge2. Each numbered statement is linked to its exact delivery field and
-its fixed LinProgram data or mathematical comparison. The chapter has 33
-numbered statements and uses the same flat format as the literature inventory.
-The shared notation is unnumbered; internal applications, examples, appendix
-transcriptions and source audits are recorded in their own chapters.
+This section states the coordinate, product, differential, and cofiber-map
+assertions needed for the sphere and Hopf-cofiber argument, together with the
+tmf comparisons. The assertions concern the actual Adams towers, using the
+specified common coordinate systems of
+Definition~\ref{def:computation-fixed-bindings}. Their mathematical
+certification remains unfinished.
 
-\section{Individual Challenge2 computation statements}
+\subsection{Common page and coordinate notation}
 \label{sec:computation-master-inventory}
 
-The computation delivery has \textbf{29 individual result statements}, after
-expanding its nested proposition records, and \textbf{4 comparison statements}
-in its bindings. The flat index below lists these 33 statements once each.
-Parameterized families count as one statement, and conjunctions within a
-field retain all their clauses. Coordinate choices, interpretations and
-assembly records are data, rather than additional numbered inputs. The seven
-top-level result fields are packaging for these 29 statements, not seven
-individual theorem entries. Four label equations are definitional comparisons;
-this is a count of explicit statement fields, not logically independent facts.
+Use $P,R,L,G,U,I,H,M$ and $C_X^{s,t}$ as in
+Definition~\ref{def:computation-fixed-bindings}. Write
+$A(s,t)=A^{s,t}$ and $\mathcal R_H$ for the specified mod--$2$ ring
+structure on $H$. The symbol $\operatorname{atom}(a)$ denotes the
+specified homogeneous sphere quotient generator named by $a$.
+The sphere and tmf presentations, their monomial lists, and the staircase
+and differential coordinates are those of Lin--Wang--Xu,
+Zenodo record 14875701, version v126.3.cw49; see LWXMachine,
+Sections~2--3. The selected sphere and cofiber claims include the equations
+and page conditions used in the paper's Section~7 and Appendix.
+Every statement below uses the same $P,R,U$ and actual source objects.
 
-Each input has its own mathematical node and direct Lean projection link.
-The canonical \texttt{docs/external-inputs.json} manifest records the owning
-field, sources and locators. All input nodes retain their unfinished delivery
-status. Document correspondence, a successful import, a checksum and a
-successful compilation do not certify the claims on the fixed Adams towers.
-Raw-data definitions and the shared binding definition are in
-Chapter~\ref{chap:computation-schema}. Appendix transcription and export
-coverage are audited in Chapter~\ref{chap:coverage-audit}; internal
-consequences are in Chapter~\ref{chap:near126}.
-
-\paragraph{Shared notation.}
-Fix the Def implementation of Definition~\ref{def:literature-fixed-bindings},
-  with $H=\mathrm{standardFoundation.hf2}$,
-  $M=\mathrm{standardMilnorCooperations}$ and
-  $D=\mathrm{standardRouteModel}$. Fix one literature delivery $\ell$ and
-  one $b:\mathrm{ComputationBindings}(\ell)$. Throughout this inventory put
-  \[
-  \begin{aligned}
-    P&=b.\mathrm{presentation},& R&=b.\mathrm{routeRealization},\\
-    L&=b.\mathrm{routeLabels},& G&=\ell.\mathrm{bindings.tmfLabels},\\
-    U&=b.\mathrm{tmfCoordinates},& T_{\mathrm{fix}}&=\mathrm{Def.standardTmfTarget},\\
-    T_{\mathrm{src}}&=\ell.\mathrm{bindings.route.tmfSource}.
-  \end{aligned}
-  \]
-  Write $A^{s,t}=\mathrm{LinE2.E2At}(s,t)$ for the homogeneous part of the
-  fixed sphere CSV quotient, and $|x|$ for the underlying quotient value.
-  For $s,t\in\mathbb N$ and $h:t\le261$, write
-  $P_{s,t}=P.\mathrm{comparison}(s,t,h):A^{s,t}\simeq_{\mathbb Z}
-  E_2^{s,t}(S^0)$. This comparison and its bilinear data operation
-  $P.\mathrm{product}$ are the very same components in every field below.
-  Put $R_{s,t}=R.\mathrm{sphere}(s,t)$; this is initially a linear map,
-  and its agreement with $P$ is a separate result statement.
-  The basis function of $R$ is indexed by the fixed selected catalogue.
-
-  Every $E_r$ is the actual $H$-unit Adams tower page on the stated object.
-  The route interpreter uses the actual $S^0$ and
-  $C\nu=\operatorname{cofib}(D.\mathrm{auxiliary.nuMap}:S^3\to S^0)$.
-  Write $C_X^{s,t}$ for the actual second-cycle group and $[a]$ for the
-  page class $\mathrm{classOfSecondCycle}(H,X,s,t,a)$.
-  These are cycle representatives of this tower, rather than freely chosen
-  representatives on unrelated pages. The fixed first-layer product,
-  Milnor/cobar page product and $P.\mathrm{product}$ are distinguished in
-  the individual conditions that compare them.
-
-  The notation $\mathrm{atom}$ denotes the homogeneous fixed sphere
-  quotient class $\mathrm{Near126.atom}$; its label selects a pinned
-  generator. The tmf coordinate comparison $U$ has the same bound $t\le261$
-  and lands on $T_{\mathrm{fix}}.X$; the source tmf spectrum and its BR21
-  endpoint classes belong to this same $\ell$.
-  The CSV coordinate equivalences in \texttt{sphereBasis} are data carried
-  with that result; its numbered condition concerns precisely those
-  equivalences, without making another choice of coordinates.
-  Constructing $b$ and producing \texttt{ComputationResults} on it remain
-  Interface obligations. These conditions concern the one binding selected
-  by that construction; they do not assert correctness of every possible
-  route interpreter. Their production does not use Main's consumer axiom.
-
-
-
-\paragraph{What each delivery statement interprets.}
-The sphere quotient and CSV monomials are the fixed
-\texttt{LinProgram/Model/E2} and \texttt{LinProgram/Generated/E2.lean} data.
-The \texttt{sphereStaircase.rows\_sound} condition interprets the
-\texttt{LinProgram/Generated/Staircase} lookup table; the
-\texttt{sphereTable\_sound} condition interprets
-\texttt{LinProgram/Generated/Differentials}.
-The route conditions use exactly \texttt{Route/Selected.lean}'s degree,
-claim, product and bottom-map lists, with the top-map coordinates retained
-in \texttt{Route/selected.json}. Each quantified statement covers its fixed
-list, rather than adding a new external theorem for every database row.
-The standard-label, multiplication and source-endpoint comparisons specify
-how those fixed coordinates represent the same actual objects. They remain
-comparison obligations, rather than proof-log conclusions supplied by parsing.
-Appendix rows are not additional independent inputs: their expression
-identification, ambiguous targets, permanent statuses and homotopy consequences
-must be established from the program statements and the appropriate mathematics.
-
-\begin{enumerate}
-  \item \texttt{sphereBasis.csv\_values} (results): Theorem~\ref{thm:computation-sphereBasis-csv-values}.
-  \item \texttt{sphereMultiplicative} (results): Theorem~\ref{thm:computation-sphereMultiplicative}.
-  \item \texttt{sphereStaircase.rows\_sound} (results): Theorem~\ref{thm:computation-sphereStaircase-rows-sound}.
-  \item \texttt{sphereSquare.nonzero} (results): Theorem~\ref{thm:computation-sphereSquare-nonzero}.
-  \item \texttt{sphereSquare.exhaustive} (results): Theorem~\ref{thm:computation-sphereSquare-exhaustive}.
-  \item \texttt{sphereSquare.standard\_class} (results): Theorem~\ref{thm:computation-sphereSquare-standard-class}.
-  \item \texttt{sphereTable\_sound} (results): Theorem~\ref{thm:computation-sphereTable-sound}.
-  \item \texttt{route.basis} (results): Theorem~\ref{thm:computation-route-basis}.
-  \item \texttt{route.csv} (results): Theorem~\ref{thm:computation-route-csv}.
-  \item \texttt{route.products} (results): Theorem~\ref{thm:computation-route-products}.
-  \item \texttt{route.labels.h0} (results): Theorem~\ref{thm:computation-route-labels-h0}.
-  \item \texttt{route.labels.h1} (results): Theorem~\ref{thm:computation-route-labels-h1}.
-  \item \texttt{route.labels.h2} (results): Theorem~\ref{thm:computation-route-labels-h2}.
-  \item \texttt{route.labels.h4} (results): Theorem~\ref{thm:computation-route-labels-h4}.
-  \item \texttt{route.labels.h5} (results): Theorem~\ref{thm:computation-route-labels-h5}.
-  \item \texttt{route.labels.h6} (results): Theorem~\ref{thm:computation-route-labels-h6}.
-  \item \texttt{route.labels.h0\_square} (results): Theorem~\ref{thm:computation-route-labels-h0-square}.
-  \item \texttt{route.labels.h5\_square} (results): Theorem~\ref{thm:computation-route-labels-h5-square}.
-  \item \texttt{route.labels.h6\_square} (results): Theorem~\ref{thm:computation-route-labels-h6-square}.
-  \item \texttt{route.labels.x\_126\_8\_4} (results): Theorem~\ref{thm:computation-route-labels-x-126-8-4}.
-  \item \texttt{route.labels.x\_126\_8} (results): Theorem~\ref{thm:computation-route-labels-x-126-8}.
-  \item \texttt{route.labels.x\_124\_8} (results): Theorem~\ref{thm:computation-route-labels-x-124-8}.
-  \item \texttt{route.labels.x\_109\_12} (results): Theorem~\ref{thm:computation-route-labels-x-109-12}.
-  \item \texttt{route.labels.g} (results): Theorem~\ref{thm:computation-route-labels-g}.
-  \item \texttt{route.labels.delta\_h\_1\_mul\_g} (results): Theorem~\ref{thm:computation-route-labels-delta-h-1-mul-g}.
-  \item \texttt{route.results} (results): Theorem~\ref{thm:computation-route-results}.
-  \item \texttt{route.bottom} (results): Theorem~\ref{thm:computation-route-bottom}.
-  \item \texttt{route.top} (results): Theorem~\ref{thm:computation-route-top}.
-  \item \texttt{route\_presentation} (results): Theorem~\ref{thm:computation-route-presentation}.
-  \item \texttt{presentation.comparison\_mul} (bindings comparison): Theorem~\ref{thm:computation-presentation-comparison-mul}.
-  \item \texttt{tmfMultiplicative} (bindings comparison): Theorem~\ref{thm:computation-tmfMultiplicative}.
-  \item \texttt{tmf\_v2Sixteen} (bindings comparison): Theorem~\ref{thm:computation-bindings-tmf-v2Sixteen}.
-  \item \texttt{tmf\_betaGFour} (bindings comparison): Theorem~\ref{thm:computation-bindings-tmf-betaGFour}.
-\end{enumerate}
-
-Write $A(s,t)=A^{s,t}$ and $\mathcal R_H$ for Def's specified mod--2 ring
-structure on $H$. In cycle notation, $C_{T_{\mathrm{fix}}}^{s,t}$ abbreviates
-$C_{T_{\mathrm{fix}}.X}^{s,t}$.
-
-The route's object identifiers evaluate to precisely $S^0$ and
-$C\nu=\operatorname{cofib}(\nu_{\mathrm{Hopf}}:S^3\to S^0)$,
-where $\nu_{\mathrm{Hopf}}=D.\mathrm{auxiliary}.\mathrm{nuMap}$.
-Its basis data are $R_{o,s,t,i}\in E_2^{s,t}(o)$.
+The selected spectra are $S^0$ and
+$C\nu=\operatorname{cofib}(\nu:S^3\to S^0)$, with the specified Hopf
+map. Their coordinate vectors are $R_{o,s,t,i}\in E_2^{s,t}(o)$.
 The partial coordinate decoder $\operatorname{dec}_R(o,s,t,I)$ first
 requires a matching entry of the fixed degree list, strictly increasing
 indices, and every index below that entry's monomial-list length. On
@@ -202,26 +86,50 @@ $\operatorname{Bound}_r^o(p,x)$ for $r\ge2$ and existence of an element
 of the actual raw boundary subobject at index $r-1$ whose image under
 the fixed inclusions and initial $E_2$ quotient is $x$.
 These definitions allow zero page classes and zero differential targets.
+Reaching $E_7$ does not determine $d_7$. Reaching any finite page,
+including $E_{1000}$ for the level-$9000$ condition, does not rule out
+incoming boundaries and does not imply nonzero permanent survival.
 
 
-\begin{theorem}[The delivered sphere coordinate vectors have their prescribed CSV values]
+\subsection{Sphere coordinates and bounded products}
+
+\begin{theorem}[Sphere coordinate vectors have their prescribed monomial values]
   \label{thm:computation-sphereBasis-csv-values}
   \lean{KIP126.Challenge2.SphereBasisInterface.csv_values,KIP126.Challenge2.ComputationResults.sphereBasis}
   \notready
   \uses{def:computation-fixed-bindings}
   Let $\chi_{s,t}:E_2^{s,t}(S^0)\cong
   (\mathrm{BasisIndex}(s,t)\to_0\mathbb F_2)$ be the integer-linear
-  coordinate equivalence supplied by the same result delivery's
-  \texttt{sphereBasis.coordinates}. For all $s,t\in\mathbb N$ with
+  coordinate equivalence with the specified coordinate vectors. For all $s,t\in\mathbb N$ with
   $t\le261$ and every $i\in\mathrm{BasisIndex}(s,t)$,
   \[
     \left|P_{s,t}^{-1}\bigl(\chi_{s,t}^{-1}(\delta_i)\bigr)\right|
         =\mathrm{basisValue}(\mathrm{basisRowAt}(s,t,i)),
   \]
   where $\delta_i$ is the finite-support coordinate vector with value
-  one at $i$ and zero elsewhere. The coordinate data and this consistency
-  condition belong to one delivery; the condition is one quantified
-  statement for the full bound, rather than a theorem for each CSV row.
+  one at $i$ and zero elsewhere. The equivalences and prescribed monomial
+  values in this assertion use the same coordinate vectors over the full
+  bound.
+\end{theorem}
+
+\begin{theorem}[The sphere presentation transports its bounded quotient products]
+  \label{thm:computation-presentation-comparison-mul}
+  \lean{KIP126.Classical.Adams.LinE2Presentation.comparison_mul,KIP126.Challenge2.ComputationBindings.presentation}
+  \notready
+  \uses{def:computation-fixed-bindings}
+  For all $s,t,s',t'\in\mathbb N$ with $t+t'\le261$, every
+  $x\in A(s,t)$, $y\in A(s',t')$ and
+  $z\in A(s+s',t+t')$, if $|x|\,|y|=|z|$ in the same fixed quotient
+  algebra, then
+  \[
+    P_{s+s',t+t'}(z)
+      =P.\mathrm{product}_{s,t,s',t'}(P_{s,t}x,P_{s',t'}y).
+  \]
+  The sum-degree bound supplies the two input-degree bounds as well.
+  This condition compares the quotient multiplication with the specified
+  bilinear operation. Its agreement with the actual sphere-layer product
+  is separately the condition of
+  Theorem~\ref{thm:computation-sphereMultiplicative}.
 \end{theorem}
 
 \begin{theorem}[The bounded presentation product agrees with the prescribed sphere-layer product]
@@ -249,108 +157,7 @@ These definitions allow zero page classes and zero differential targets.
   comparison condition; its mathematical certification remains required.
 \end{theorem}
 
-\begin{theorem}[Every located sphere staircase row decodes and has its stated mathematical meaning]
-  \label{thm:computation-sphereStaircase-rows-sound}
-  \lean{KIP126.Challenge2.SphereStaircaseInterface.rows_sound,KIP126.Challenge2.ComputationResults.sphereStaircase}
-  \lean{KIP126.Challenge2.StaircaseClaimStatement,KIP126.Computation.LinProofs.State.decode}
-  \notready
-  \uses{def:computation-fixed-bindings}
-  For all shard and offset indices in $\mathbb N$ and every raw staircase
-  row $w$, if the fixed staircase lookup at those indices returns $w$,
-  there exists a claim $c$ with $\mathrm{decode}(w)=\mathrm{some}(c)$,
-  and $c$ satisfies the corresponding one of the following conditions
-  through the same $P$:
-  \begin{enumerate}
-    \item For $c=\mathrm{equation}(r,s,t,I,J)$, there exist witnesses
-      $t\le261$, $t+r-1\le261$, $x\in A(s,t)$ and
-      $y\in A(s+r,t+r-1)$ such that
-      $\operatorname{CSV}_{s,t}(x,I)$,
-      $\operatorname{CSV}_{s+r,t+r-1}(y,J)$, and
-      $\mathcal D_r^{S^0}((s,t),(s+r,t+r-1);P_{s,t}x,P_{s+r,t+r-1}y)$.
-    \item For $c=\mathrm{reaches}(r,s,t,I)$, there exist $t\le261$
-      and $x\in A(s,t)$ with $\operatorname{CSV}_{s,t}(x,I)$ and
-      $\operatorname{Reach}_r^{S^0}((s,t),P_{s,t}x)$.
-    \item For $c=\mathrm{boundaryBy}(r,s,t,I)$, there exist $t\le261$
-      and $x\in A(s,t)$ with $\operatorname{CSV}_{s,t}(x,I)$ and
-      $\operatorname{Bound}_r^{S^0}((s,t),P_{s,t}x)$.
-  \end{enumerate}
-  The claim indices are natural numbers. Both decoding success and the
-  appropriate mathematical conclusion are required. An unresolved outgoing
-  row only asserts a common page representative, and an unresolved incoming
-  row only asserts cumulative boundary membership. The decoder's threshold
-  claim $\mathrm{reaches}(1000,s,t,I)$ has exactly that finite meaning.
-  The whole table is one quantified statement.
-\end{theorem}
-
-\begin{theorem}[The interpreted fixed square is nonzero on the actual second page]
-  \label{thm:computation-sphereSquare-nonzero}
-  \lean{KIP126.Challenge2.SphereSquareInterface.nonzero,KIP126.Challenge2.ComputationResults.sphereSquare}
-  \notready
-  \uses{def:computation-fixed-bindings}
-  In the actual fixed sphere second page,
-  \[
-    P_{2,128}(\mathrm{LinE2.dataH6Sq})\ne0
-       \quad\text{in }E_2^{2,128}(S^0).
-  \]
-  The class is interpreted through this delivery's $P$.
-\end{theorem}
-
-\begin{theorem}[The interpreted fixed square exhausts the nonzero square-degree component]
-  \label{thm:computation-sphereSquare-exhaustive}
-  \lean{KIP126.Challenge2.SphereSquareInterface.exhaustive,KIP126.Challenge2.ComputationResults.sphereSquare}
-  \notready
-  \uses{def:computation-fixed-bindings}
-  For every $x\in E_2^{2,128}(S^0)$,
-  \[
-    x=0\quad\lor\quad x=P_{2,128}(\mathrm{LinE2.dataH6Sq}).
-  \]
-  This quantifies over the whole actual page component, using the same
-  comparison as the nonvanishing condition.
-\end{theorem}
-
-\begin{theorem}[The interpreted fixed square has the standard Milnor label]
-  \label{thm:computation-sphereSquare-standard-class}
-  \lean{KIP126.Challenge2.SphereSquareInterface.standard_class,KIP126.Challenge2.ComputationResults.sphereSquare}
-  \notready
-  \uses{def:computation-fixed-bindings}
-  On the same actual sphere second page,
-  \[
-    P_{2,128}(\mathrm{LinE2.dataH6Sq})
-      =\mathrm{standardH6Square}\in E_2^{2,128}(S^0).
-  \]
-  The right side is the class independently constructed from the fixed
-  Milnor cocycle $[\xi_1^{64}\mid\xi_1^{64}]$ and its actual tower
-  comparison. This equality identifies the two specified classes.
-\end{theorem}
-
-\begin{theorem}[Uniform soundness of the fixed sphere differential table on its one presentation]
-  \label{thm:computation-sphereTable-sound}
-  \lean{KIP126.Challenge2.ComputationResults.sphereTable_sound,KIP126.Challenge2.DifferentialStatement}
-  \notready
-  \uses{def:computation-fixed-bindings}
-  For all shard and offset indices in $\mathbb N$ and every differential
-  row $w$, if the fixed differential-table lookup returns $w$, there exist
-  witnesses $w.t\le261$ and $w.t+w.r-1\le261$, and elements
-  \[
-    x\in A(w.s,w.t),\qquad
-    y\in A(w.s+w.r,w.t+w.r-1),
-  \]
-  whose literal CSV coordinates are respectively $w.x$ and $w.dx$,
-  such that
-  \[
-    \mathcal D_{w.r}^{S^0}
-       \bigl((w.s,w.t),(w.s+w.r,w.t+w.r-1);
-          P_{w.s,w.t}x,P_{w.s+w.r,w.t+w.r-1}y\bigr).
-  \]
-  Thus there are common-cycle representatives of both displayed $E_2$
-  labels on the actual page $E_{w.r}$, the actual differential degree
-  equals the row's target degree, and that transported differential
-  carries the source representative to the target representative.
-  This is one model-bound soundness statement for all successful lookups,
-  carried in the correlated computation result delivery.
-\end{theorem}
-
-\begin{theorem}[Every selected route degree has the delivered additive basis]
+\begin{theorem}[Additive bases in the selected sphere and cofiber degrees]
   \label{thm:computation-route-basis}
   \lean{KIP126.Computation.Route.CertifiedRealization.basis,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.BasisCorrect}
   \notready
@@ -390,6 +197,20 @@ These definitions allow zero page classes and zero differential targets.
   quotient algebra, and the equality uses the same route realization $R$.
 \end{theorem}
 
+\begin{theorem}[The route sphere map agrees with the same bounded presentation]
+  \label{thm:computation-route-presentation}
+  \lean{KIP126.Challenge2.ComputationResults.route_presentation}
+  \notready
+  \uses{def:computation-fixed-bindings}
+  For all $s,t\in\mathbb N$ with $t\le261$ and every $x\in A(s,t)$,
+  \[
+    R.\mathrm{sphere}_{s,t}(x)=P_{s,t}(x)
+       \quad\text{in }E_2^{s,t}(S^0).
+  \]
+  Both sides use the fixed maps $R$ and $P$. The equation quantifies
+  over every homogeneous element throughout the presentation's bound.
+\end{theorem}
+
 \begin{theorem}[Every selected product respects the fixed Milnor-coordinate sphere product]
   \label{thm:computation-route-products}
   \lean{KIP126.Computation.Route.CertifiedRealization.products,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.ProductCorrect}
@@ -412,22 +233,19 @@ These definitions allow zero page classes and zero differential targets.
   it does not replace it by $P.\mathrm{product}$.
 \end{theorem}
 
+\subsection{Standard sphere classes and the square-degree component}
+
 \begin{theorem}[The computed $h_0$ is the standard Milnor class]
   \label{thm:computation-route-labels-h0}
   \lean{KIP126.Computation.Route.LabelsCorrect.h0,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h0} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{1,1}(\mathrm{dataH0})=\mathrm{Sphere.Internal.hi}(H,M,0).
   \]
   This equality is in $E_2^{1,1}(S^0)$.
-  Here $\mathrm{dataH0}=\mathrm{LinE2.dataH0}$ is the fixed quotient class of generator 0. Its image is taken by the same $R$ delivered on the fixed $D,H,M$.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
+  Here $\mathrm{dataH0}=\mathrm{LinE2.dataH0}$ is the fixed quotient class of generator 0. Its image is taken by the same $R$ specified on the fixed sphere tower.
 \end{theorem}
 
 \begin{theorem}[The computed $h_1$ is the standard Milnor class]
@@ -435,17 +253,12 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.h1,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h1} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{1,2}(\mathrm{dataH1})=\mathrm{Sphere.Internal.hi}(H,M,1).
   \]
   This equality is in $E_2^{1,2}(S^0)$.
   Here $\mathrm{dataH1}=\mathrm{LinE2.dataH1}$ is the fixed quotient class of generator 1. The comparison is the same $R$, with the fixed $H,M$.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
 \end{theorem}
 
 \begin{theorem}[The computed $h_2$ is the standard Milnor class]
@@ -453,17 +266,12 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.h2,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h2} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{1,4}(\mathrm{atom}(h_2))=\mathrm{Sphere.Internal.hi}(H,M,2).
   \]
   This equality is in $E_2^{1,4}(S^0)$.
   The atom is the homogeneous class of pinned sphere generator 2, interpreted by the same $R$. Its bidegree is $(1,4)$.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
 \end{theorem}
 
 \begin{theorem}[The computed $h_4$ is the standard Milnor class]
@@ -471,17 +279,12 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.h4,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h4} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{1,16}(\mathrm{atom}(h_4))=\mathrm{Sphere.Internal.hi}(H,M,4).
   \]
   This equality is in $E_2^{1,16}(S^0)$.
   The atom is the homogeneous class of pinned sphere generator 7, interpreted by the same $R$. Its bidegree is $(1,16)$.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
 \end{theorem}
 
 \begin{theorem}[The computed $h_5$ is the standard Milnor class]
@@ -489,17 +292,12 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.h5,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h5} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{1,32}(\mathrm{atom}(h_5))=\mathrm{Sphere.Internal.hi}(H,M,5).
   \]
   This equality is in $E_2^{1,32}(S^0)$.
   The atom is the homogeneous class of pinned sphere generator 18, interpreted by the same $R$. Its bidegree is $(1,32)$.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
 \end{theorem}
 
 \begin{theorem}[The computed $h_6$ is the standard Milnor class]
@@ -507,17 +305,12 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.h6,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h6} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{1,64}(\mathrm{dataH6})=\mathrm{Sphere.Internal.hi}(H,M,6).
   \]
   This equality is in $E_2^{1,64}(S^0)$.
   Here $\mathrm{dataH6}=\mathrm{LinE2.dataH6}$ is the fixed quotient class of generator 69. Its image is taken by the same $R$ on the actual fixed sphere tower.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
 \end{theorem}
 
 \begin{theorem}[The computed $h_0$ square is the standard Milnor square]
@@ -525,17 +318,12 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.h0_square,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h0\_square} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{2,2}(\mathrm{Near126.h0Sq})=\mathrm{Sphere.Internal.hiSquare}(H,M,0).
   \]
   This equality is in $E_2^{2,2}(S^0)$.
   The source is precisely $\mathrm{Near126.h0Sq}=\mathrm{mulAt}(\mathrm{dataH0},\mathrm{dataH0})$ in the fixed quotient. The target is the constructed standard square on the same fixed tower.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
 \end{theorem}
 
 \begin{theorem}[The computed $h_5$ square is the standard Milnor square]
@@ -543,17 +331,12 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.h5_square,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h5\_square} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{2,64}(\mathrm{Near126.h5Sq})=\mathrm{Sphere.Internal.hiSquare}(H,M,5).
   \]
   This equality is in $E_2^{2,64}(S^0)$.
   The source is precisely $\mathrm{Near126.h5Sq}=\mathrm{mulAt}(\mathrm{atom}(h_5),\mathrm{atom}(h_5))$ in the fixed quotient. This compares that product with the constructed standard square for the same $H,M$.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
 \end{theorem}
 
 \begin{theorem}[The computed $h_6$ square is the standard Milnor square]
@@ -561,17 +344,53 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.h6_square,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{h6\_square} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{2,128}(\mathrm{dataH6Sq})=\mathrm{Sphere.Internal.hiSquare}(H,M,6).
   \]
   This equality is in $E_2^{2,128}(S^0)$.
   Here $\mathrm{dataH6Sq}=\mathrm{LinE2.dataH6Sq}$ is the homogeneous square of pinned generator 69 in the fixed quotient. The target is the constructed standard $h_6$ square on the actual fixed sphere tower.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
+\end{theorem}
+
+\begin{theorem}[The interpreted fixed square is nonzero on the actual second page]
+  \label{thm:computation-sphereSquare-nonzero}
+  \lean{KIP126.Challenge2.SphereSquareInterface.nonzero,KIP126.Challenge2.ComputationResults.sphereSquare}
+  \notready
+  \uses{def:computation-fixed-bindings}
+  In the actual fixed sphere second page,
+  \[
+    P_{2,128}(\mathrm{LinE2.dataH6Sq})\ne0
+       \quad\text{in }E_2^{2,128}(S^0).
+  \]
+  The class is interpreted through the specified $P$.
+\end{theorem}
+
+\begin{theorem}[The interpreted fixed square exhausts the nonzero square-degree component]
+  \label{thm:computation-sphereSquare-exhaustive}
+  \lean{KIP126.Challenge2.SphereSquareInterface.exhaustive,KIP126.Challenge2.ComputationResults.sphereSquare}
+  \notready
+  \uses{def:computation-fixed-bindings}
+  For every $x\in E_2^{2,128}(S^0)$,
+  \[
+    x=0\quad\lor\quad x=P_{2,128}(\mathrm{LinE2.dataH6Sq}).
+  \]
+  This quantifies over the whole actual page component, using the same
+  comparison as the nonvanishing condition.
+\end{theorem}
+
+\begin{theorem}[The interpreted fixed square has the standard Milnor label]
+  \label{thm:computation-sphereSquare-standard-class}
+  \lean{KIP126.Challenge2.SphereSquareInterface.standard_class,KIP126.Challenge2.ComputationResults.sphereSquare}
+  \notready
+  \uses{def:computation-fixed-bindings}
+  On the same actual sphere second page,
+  \[
+    P_{2,128}(\mathrm{LinE2.dataH6Sq})
+      =\mathrm{standardH6Square}\in E_2^{2,128}(S^0).
+  \]
+  The right side is the class independently constructed from the fixed
+  Milnor cocycle $[\xi_1^{64}\mid\xi_1^{64}]$ and its actual tower
+  comparison. This equality identifies the two specified classes.
 \end{theorem}
 
 \begin{theorem}[The route label $x_{126,8,4}$ is this computed image]
@@ -579,17 +398,14 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.x_126_8_4,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{x\_126\_8\_4} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{8,134}(\mathrm{atom}(x_{126,8,4}))=L.x_{126,8,4}.
   \]
   This equality is in $E_2^{8,134}(S^0)$.
-  The atom is pinned sphere generator 395. Since $L=b.\mathrm{routeLabels}$ defines this component by exactly the left side, this equality is definitional. It remains the displayed label-comparison field of the delivered certificate; it selects no additional class or interpretation.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
+  The atom is the specified sphere generator 395. The label
+  $L.x_{126,8,4}$ is defined by exactly this image under $R$, so
+  the displayed equation is definitional and selects no additional class.
 \end{theorem}
 
 \begin{theorem}[The route label $x_{126,8}$ is this computed image]
@@ -597,17 +413,14 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.x_126_8,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{x\_126\_8} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{8,134}(\mathrm{atom}(x_{126,8}))=L.x_{126,8}.
   \]
   This equality is in $E_2^{8,134}(S^0)$.
-  The atom is pinned sphere generator 392. The component $L.x_{126,8}$ is defined by exactly this image under the same $R$, so the delivered label-comparison equality is definitional and introduces no further choice of object or class.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
+  The atom is the specified sphere generator 392. The label
+  $L.x_{126,8}$ is defined by exactly this image under $R$, so
+  the displayed equation is definitional and selects no additional class.
 \end{theorem}
 
 \begin{theorem}[The route label $x_{124,8}$ is this computed image]
@@ -615,17 +428,14 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.x_124_8,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{x\_124\_8} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{8,132}(\mathrm{atom}(x_{124,8}))=L.x_{124,8}.
   \]
   This equality is in $E_2^{8,132}(S^0)$.
-  The atom is pinned sphere generator 367. The component $L.x_{124,8}$ is defined by this image under the same $R$. The field is therefore a definitional label comparison in the delivered certificate, not an independent class choice.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
+  The atom is the specified sphere generator 367. The label
+  $L.x_{124,8}$ is defined by exactly this image under $R$, so
+  the displayed equation is definitional and selects no additional class.
 \end{theorem}
 
 \begin{theorem}[The route label $x_{109,12}$ is this computed image]
@@ -633,17 +443,14 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.x_109_12,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{x\_109\_12} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{12,121}(\mathrm{atom}(x_{109,12}))=L.x_{109,12}.
   \]
   This equality is in $E_2^{12,121}(S^0)$.
-  The atom is pinned sphere generator 275. The component $L.x_{109,12}$ is defined by exactly this image under the same $R$. The certificate retains that definitional equation without adding an independent class or realization.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
+  The atom is the specified sphere generator 275. The label
+  $L.x_{109,12}$ is defined by exactly this image under $R$, so
+  the displayed equation is definitional and selects no additional class.
 \end{theorem}
 
 \begin{theorem}[The computed $g$ agrees with the same literature label]
@@ -651,17 +458,14 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.g,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{g} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{4,24}(\mathrm{atom}(g))=G.g.
   \]
   This equality is in $E_2^{4,24}(S^0)$.
-  The atom is pinned sphere generator 13 and $G=\mathrm{literature.bindings.tmfLabels}$. The same literature source binding records $G.g=T_{\mathrm{src}}.\mathrm{labels}.g$. Thus the target is the sphere label already bound to the source tmf data, rather than a new freely named class. This field is the displayed $E_2$ comparison.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
+  The atom is the specified sphere generator 13. The target $G.g$
+  is the sphere class already identified with the source tmf label
+  in Theorem~\ref{thm:literature-tmf-standard-labels}.
 \end{theorem}
 
 \begin{theorem}[The computed $\Delta h_1g$ agrees with the same literature label]
@@ -669,20 +473,80 @@ These definitions allow zero page classes and zero differential targets.
   \lean{KIP126.Computation.Route.LabelsCorrect.delta_h_1_mul_g,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.CertifiedRealization.labels}
   \notready
   \uses{def:computation-fixed-bindings}
-  On the fixed $D,H,M$, with the same delivered $P,R,L,G$, the individual
-  \texttt{delta\_h\_1\_mul\_g} label-comparison field is
+  For the specified sphere map $R$,
   \[
     R_{9,54}(\mathrm{atom}(\Delta h_1g))=G.\mathrm{delta\_h\_1\_mul\_g}.
   \]
   This equality is in $E_2^{9,54}(S^0)$.
-  The atom is pinned sphere generator 51 and $G=\mathrm{literature.bindings.tmfLabels}$. The same literature source binding identifies this component of $G$ with $T_{\mathrm{src}}.\mathrm{labels}.\mathrm{delta\_h\_1\_mul\_g}$. Both sides of the displayed certificate are on the actual sphere $E_2$ page; the label is shared with the same source delivery.
-  The field is projected from the same
-  \texttt{ComputationResults.route} and its \texttt{CertifiedRealization.labels}.
-  It is a comparison equality on $E_2$; completing the full model-bound
-  certificate remains an Interface production obligation.
+  The atom is the specified sphere generator 51. The target
+  $G.\Delta h_1g$ is the sphere class already identified with the
+  source tmf label in Theorem~\ref{thm:literature-tmf-standard-labels}.
+  Both sides are on the same actual sphere $E_2$ page.
 \end{theorem}
 
-\begin{theorem}[Uniform mathematical meaning of all selected route claim records]
+\subsection{Differentials, page reachability, and boundaries}
+
+\begin{theorem}[Uniform soundness of the fixed sphere differential table on its one presentation]
+  \label{thm:computation-sphereTable-sound}
+  \lean{KIP126.Challenge2.ComputationResults.sphereTable_sound,KIP126.Challenge2.DifferentialStatement}
+  \notready
+  \uses{def:computation-fixed-bindings}
+  For all shard and offset indices in $\mathbb N$ and every differential
+  row $w$, if the fixed differential-table lookup returns $w$, there exist
+  witnesses $w.t\le261$ and $w.t+w.r-1\le261$, and elements
+  \[
+    x\in A(w.s,w.t),\qquad
+    y\in A(w.s+w.r,w.t+w.r-1),
+  \]
+  whose literal CSV coordinates are respectively $w.x$ and $w.dx$,
+  such that
+  \[
+    \mathcal D_{w.r}^{S^0}
+       \bigl((w.s,w.t),(w.s+w.r,w.t+w.r-1);
+          P_{w.s,w.t}x,P_{w.s+w.r,w.t+w.r-1}y\bigr).
+  \]
+  Thus there are common-cycle representatives of both displayed $E_2$
+  labels on the actual page $E_{w.r}$, the actual differential degree
+  equals the row's target degree, and that transported differential
+  carries the source representative to the target representative.
+  This is a uniform assertion for every specified differential equation
+  interpreted through the same $P$.
+\end{theorem}
+
+\begin{theorem}[Every located sphere staircase row decodes and has its stated mathematical meaning]
+  \label{thm:computation-sphereStaircase-rows-sound}
+  \lean{KIP126.Challenge2.SphereStaircaseInterface.rows_sound,KIP126.Challenge2.ComputationResults.sphereStaircase}
+  \lean{KIP126.Challenge2.StaircaseClaimStatement,KIP126.Computation.LinProofs.State.decode}
+  \notready
+  \uses{def:computation-fixed-bindings}
+  For all shard and offset indices in $\mathbb N$ and every raw staircase
+  row $w$, if the fixed staircase lookup at those indices returns $w$,
+  there exists a claim $c$ with $\mathrm{decode}(w)=\mathrm{some}(c)$,
+  and $c$ satisfies the corresponding one of the following conditions
+  through the same $P$:
+  \begin{enumerate}
+    \item For $c=\mathrm{equation}(r,s,t,I,J)$, there exist witnesses
+      $t\le261$, $t+r-1\le261$, $x\in A(s,t)$ and
+      $y\in A(s+r,t+r-1)$ such that
+      $\operatorname{CSV}_{s,t}(x,I)$,
+      $\operatorname{CSV}_{s+r,t+r-1}(y,J)$, and
+      $\mathcal D_r^{S^0}((s,t),(s+r,t+r-1);P_{s,t}x,P_{s+r,t+r-1}y)$.
+    \item For $c=\mathrm{reaches}(r,s,t,I)$, there exist $t\le261$
+      and $x\in A(s,t)$ with $\operatorname{CSV}_{s,t}(x,I)$ and
+      $\operatorname{Reach}_r^{S^0}((s,t),P_{s,t}x)$.
+    \item For $c=\mathrm{boundaryBy}(r,s,t,I)$, there exist $t\le261$
+      and $x\in A(s,t)$ with $\operatorname{CSV}_{s,t}(x,I)$ and
+      $\operatorname{Bound}_r^{S^0}((s,t),P_{s,t}x)$.
+  \end{enumerate}
+  The claim indices are natural numbers. Both decoding success and the
+  appropriate mathematical conclusion are required. An unresolved outgoing
+  row only asserts a common page representative, and an unresolved incoming
+  row only asserts cumulative boundary membership. The decoder's threshold
+  claim $\mathrm{reaches}(1000,s,t,I)$ has exactly that finite meaning.
+  The whole table is one quantified statement.
+\end{theorem}
+
+\begin{theorem}[Differential, page-reachability, and refutation conditions for the selected classes]
   \label{thm:computation-route-results}
   \lean{KIP126.Computation.Route.CertifiedRealization.results,KIP126.Challenge2.ComputationResults.route,KIP126.Computation.Route.Statement}
   \notready
@@ -709,10 +573,11 @@ These definitions allow zero page classes and zero differential targets.
   \end{enumerate}
   Each target decoding uses $\operatorname{dec}_R$ at precisely
   $(c.\mathrm{spectrum},c.ts,c.tt,c.y)$. Successful source and target
-  decoding are part of the assertion. The fixed list currently contains
-  671 registered records; its universal interpretation is one statement,
-  including records with different provenance for the same equation.
+  decoding are part of the assertion. All specified equations and page
+  conditions use the same source and target coordinate interpretation.
 \end{theorem}
+
+\subsection{Bottom- and top-cell maps of the Hopf cofiber}
 
 \begin{theorem}[The selected bottom-cell values are induced by the actual cofiber inclusion]
   \label{thm:computation-route-bottom}
@@ -734,10 +599,11 @@ For the next statement write $\operatorname{Desusp}_X^{s,t}(u,v)$ for
 the exact fixed tower-suspension comparison: there exist
 $a\in C_{\Sigma X}^{s,t}$ and $a'\in C_X^{s,t-1}$ with
 $[a]=u$, $[a']=v$ and
-$D.\mathrm{classicalSuspension}_X.\mathrm{desuspendFirstPage}(|a|)=|a'|$.
-The last map desuspends the actual first-page morphism through the
-specified layer isomorphism and reindexes its domain sphere; it is not
-an independently supplied linear map between second pages.
+$\sigma_X^{s,t}(|a|)=|a'|$.
+Here $\sigma_X^{s,t}$ desuspends the actual first-page morphism through
+the specified tower layer isomorphism and reindexes its domain sphere.
+This is the fixed tower-suspension comparison, rather than a freely
+chosen linear map between second pages.
 
 
 \begin{theorem}[The selected top-cell value agrees through four actual desuspensions]
@@ -772,46 +638,13 @@ an independently supplied linear map between second pages.
   $\kappa_{1,1,2}:S^2\cong\Sigma S^1$ are the hom components of the
   fixed shift-addition isomorphisms, and each star denotes its actual
   induced $E_2$ map. The four desuspension comparisons respectively use
-  $D$'s choices for the classical route indices
-  $\mathrm{shift}(3,S^0)$, $\mathrm{shift}(2,S^0)$,
-  $\mathrm{shift}(1,S^0)$ and $S^0$.
+  the fixed classical tower comparisons for $S^3$, $S^2$, $S^1$,
+  and $S^0$.
   This entire existence statement, including its six conditions,
   is one top-cell comparison obligation.
 \end{theorem}
 
-\begin{theorem}[The route sphere map agrees with the same bounded presentation]
-  \label{thm:computation-route-presentation}
-  \lean{KIP126.Challenge2.ComputationResults.route_presentation}
-  \notready
-  \uses{def:computation-fixed-bindings}
-  For all $s,t\in\mathbb N$ with $t\le261$ and every $x\in A(s,t)$,
-  \[
-    R.\mathrm{sphere}_{s,t}(x)=P_{s,t}(x)
-       \quad\text{in }E_2^{s,t}(S^0).
-  \]
-  Both sides use the same candidate bindings $b$. The equation quantifies
-  over every homogeneous element throughout the presentation's bound.
-\end{theorem}
-
-\begin{theorem}[The sphere presentation transports its bounded quotient products]
-  \label{thm:computation-presentation-comparison-mul}
-  \lean{KIP126.Classical.Adams.LinE2Presentation.comparison_mul,KIP126.Challenge2.ComputationBindings.presentation}
-  \notready
-  \uses{def:computation-fixed-bindings}
-  For all $s,t,s',t'\in\mathbb N$ with $t+t'\le261$, every
-  $x\in A(s,t)$, $y\in A(s',t')$ and
-  $z\in A(s+s',t+t')$, if $|x|\,|y|=|z|$ in the same fixed quotient
-  algebra, then
-  \[
-    P_{s+s',t+t'}(z)
-      =P.\mathrm{product}_{s,t,s',t'}(P_{s,t}x,P_{s',t'}y).
-  \]
-  The sum-degree bound supplies the two input-degree bounds as well.
-  This condition is the mathematical comparison field within the candidate
-  $P$ record; constructing such a record must supply it. The actual
-  sphere-layer agreement is separately the condition of
-  Theorem~\ref{thm:computation-sphereMultiplicative}.
-\end{theorem}
+\subsection{tmf products and source-class comparisons}
 
 \begin{theorem}[The fixed tmf coordinates respect the actual unit and layer multiplication]
   \label{thm:computation-tmfMultiplicative}
@@ -819,9 +652,9 @@ an independently supplied linear map between second pages.
   \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication}
   \notready
   \uses{def:computation-fixed-bindings}
-  Let $T_{\mathrm{fix}}=\mathrm{Def.standardTmfTarget}$ be the fixed
-  monoid spectrum and $U=b.\mathrm{tmfCoordinates}$ its one supplied
-  bounded integer-linear comparison from the fixed tmf CSV quotient.
+  Let $T_{\mathrm{fix}}$ be the fixed
+  monoid spectrum and $U$ its specified bounded integer-linear
+  comparison from the fixed tmf quotient.
   The following unit and multiplication clauses hold together.
   \[
     U_{0,0}(\mathrm{CsvE2.one})
@@ -841,8 +674,8 @@ an independently supplied linear map between second pages.
   fixed $H$-ring multiplication $\mathcal R_H$ and
   $T_{\mathrm{fix}}$'s actual monoid multiplication. It is the
   prescribed Adams-layer operation, with every representative pair
-  quantified. This is one mathematical binding condition on the same
-  target and coordinates, whose construction remains required.
+  quantified. This condition concerns the fixed target and the same
+  coordinate comparison $U$.
 \end{theorem}
 
 \begin{theorem}[The tmf $v_2^{16}$ coordinate is the transported source class]
@@ -850,32 +683,21 @@ an independently supplied linear map between second pages.
   \lean{KIP126.Challenge2.ComputationBindings.tmf_v2Sixteen}
   \notready
   \uses{def:computation-fixed-bindings}
-  Put $I=\mathrm{literature.bindings.route.tmfBinding.detectorIso}$,
-  with
+  Let $\alpha_v\in E_2^{16,112}(T_{\mathrm{src}})$ be the specified
+  BR21 source endpoint named $v_2^{16}$ in
+  Theorem~\ref{thm:literature-br21}, and let
+  $f_2^{s,t}=(I^{-1})_*:E_2^{s,t}(T_{\mathrm{src}})\to
+  E_2^{s,t}(T_{\mathrm{fix}})$ be the map induced by the actual
+  $H$-Adams tower map of $I^{-1}$. Then
   \[
-    I:T_{\mathrm{fix}}.X\cong T_{\mathrm{src}}.\mathrm{spectrum},\qquad
-    I^{-1}:T_{\mathrm{src}}.\mathrm{spectrum}\to T_{\mathrm{fix}}.X.
+    U.\mathrm{v2Sixteen}=f_2^{16,112}(\alpha_v).
   \]
-  For $U=b.\mathrm{tmfCoordinates}$, let $f_2^{s,t}$ denote
-  $\operatorname{adamsInternalE2Induced}(H.\mathrm{unit},I^{-1},(s,t))$.
-  The comparison field is exactly
-  \[
-    U.\mathrm{v2Sixteen}
-      =f_2^{16,112}
-        \bigl(\mathrm{literature.bindings.br21Classes.v2Sixteen}\bigr).
-  \]
-  This equality is in $E_2^{16,112}(T_{\mathrm{fix}}.X)$; its source endpoint
-  belongs to $E_2^{16,112}(T_{\mathrm{src}}.\mathrm{spectrum})$.
-  The left side is the image of the fixed tmf CSV class $w_2^2$, named
-  $v_2^{16}$, under $U$'s comparison. The right side is the map of the
-  actual Adams tower induced by the inverse of the same delivered detector
-  isomorphism, applied to that literature delivery's source endpoint.
-  The direction is source to fixed detector, and both objects, coordinates
-  and the source class are the correlated components of the same delivery.
-  This field supplies only the displayed comparison; the BR21 source
-  differential is a separate literature field, with its coordinate
-  consequence derived in Main. Producing this identification remains
-  an Interface obligation.
+  The left side is the image under $U$ of the fixed tmf quotient
+  class $w_2^2$, named $v_2^{16}$. The right side transports the
+  specified source class along the inverse of the same detector
+  isomorphism $I$. The BR21 differential on the source is a separate
+  literature theorem; this equality identifies its source with the
+  coordinate class on the fixed tmf target.
 \end{theorem}
 
 \begin{theorem}[The tmf $\beta g^4$ coordinate is the transported source class]
@@ -883,30 +705,19 @@ an independently supplied linear map between second pages.
   \lean{KIP126.Challenge2.ComputationBindings.tmf_betaGFour}
   \notready
   \uses{def:computation-fixed-bindings}
-  Put $I=\mathrm{literature.bindings.route.tmfBinding.detectorIso}$,
-  with
+  Let $\alpha_\beta\in E_2^{19,114}(T_{\mathrm{src}})$ be the
+  specified BR21 source endpoint named $\beta g^4$ in
+  Theorem~\ref{thm:literature-br21}. For the same
+  induced map $f_2^{s,t}=(I^{-1})_*$, one has
   \[
-    I:T_{\mathrm{fix}}.X\cong T_{\mathrm{src}}.\mathrm{spectrum},\qquad
-    I^{-1}:T_{\mathrm{src}}.\mathrm{spectrum}\to T_{\mathrm{fix}}.X.
+    U.\mathrm{betaGFour}=f_2^{19,114}(\alpha_\beta)
+       \quad\text{in }E_2^{19,114}(T_{\mathrm{fix}}).
   \]
-  For the same $U=b.\mathrm{tmfCoordinates}$, let $f_2^{s,t}$ denote
-  $\operatorname{adamsInternalE2Induced}(H.\mathrm{unit},I^{-1},(s,t))$.
-  The comparison field is exactly
-  \[
-    U.\mathrm{betaGFour}
-      =f_2^{19,114}
-        \bigl(\mathrm{literature.bindings.br21Classes.betaGFour}\bigr).
-  \]
-  This equality is in $E_2^{19,114}(T_{\mathrm{fix}}.X)$; its source endpoint
-  belongs to $E_2^{19,114}(T_{\mathrm{src}}.\mathrm{spectrum})$.
-  The left side is the image of the fixed CSV element $\beta g^4$ under
-  $U$'s comparison, and the right side transports the same literature
-  delivery's $\beta g^4$ endpoint along $I^{-1}$. This records the source
-  comparison before the proved fixed-quotient identity
-  $\beta g^4=\beta^5g$ is used. The displayed equality introduces neither
-  a second target nor a second coordinate interpretation. Producing this
-  identification remains an Interface obligation; it is not a computation
-  differential result field.
+  The left side is the image under the same $U$ of the fixed quotient
+  element $\beta g^4$. The right side transports the specified BR21
+  target class along the same $I^{-1}$. This source comparison is made
+  before using the fixed-quotient identity $\beta g^4=\beta^5g$;
+  it introduces no further object or coordinate choice.
 \end{theorem}
 
 \KIPComputedInputsEnd

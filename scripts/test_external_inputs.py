@@ -427,7 +427,7 @@ class ExternalInputTests(unittest.TestCase):
         document = self.fixture()
         literature = next(c for c in document["interface_coverage"]
                           if c["structure"].endswith(".LiteratureResults"))
-        literature["fields"]["moss"]["blueprint_labels"] = ["def:route-moss-source"]
+        literature["fields"]["moss"]["blueprint_labels"] = ["thm:main-local-moss-specialization"]
         with self.assertRaisesRegex(ValueError, "missing direct Blueprint field link"):
             validate_document(ROOT, document)
 

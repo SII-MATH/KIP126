@@ -1,18 +1,14 @@
-\chapter{Objects in the permanent $h_6^2$ statement}
+\section{Objects in the permanent $h_6^2$ statement}
 \label{chap:h6-statement}
 
-This chapter constructs the objects needed to state the permanent-cycle
+This appendix develops the objects needed to state the permanent-cycle
 target.  The reduction to $d_{12}$ and the conditions used in its exclusion
 belong to the later proof, not to these definitions.  The ambient category
 of spectra is abstract.  Its mod--$2$ Eilenberg--Mac Lane object and the
 explicit Milnor cooperation coordinates below are foundational inputs.
-The generic implementation still takes those coordinates as an argument.
-The final targets now select one fixed foundation and coordinates through
-explicitly named development axioms; removing parameters does not discharge
-those dependencies.
-The next comparison stage keeps the abstract background and derives them
-from the ring structure, cooperations, and tensor compatibility of $H$;
-that derivation is not yet implemented.
+The first-page comparison is initially conditional on these coordinates.
+Deriving them from the ring structure, cooperations, and tensor compatibility
+of $H$ remains a separate mathematical construction.
 
 % SOURCE: PROJECT_BOUNDARY.md, Confirmed design decision 1; abstract foundation
 % and Milnor cooperation boundary explicitly confirmed for this implementation.
@@ -427,7 +423,6 @@ $H\mathbb F_2$ is in the heart. This explains the intended source of the
 hypotheses. The long-exact-sequence deduction is now formalized above, but
 the current fixed foundation still supplies neither sphere connectivity
 nor a t-structure detecting its bounds from homotopy groups.
-No new project axiom is introduced here.
 
 \begin{definition}[Mixed pairings on the existing Adams layers]
   \label{def:h6-mixed-layer-pairings}
@@ -2037,7 +2032,6 @@ the fixed ring, exactness, unit/shift coherence and K\"unneth witnesses,
 the identification of genuine reduced cooperations with the Milnor
 polynomial algebra, and the diagonal/coaction comparisons needed to
 express this step as the Milnor cobar differential are still missing.
-No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
 
 \begin{proposition}[Page passage for the constructed tower]
   \label{prop:h6-tower-page-passage}
@@ -2689,8 +2683,8 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   $c_{T_s,n}$ from Definition~\ref{def:h6-reduced-cobar-step}.
   The equality with the explicitly specified Milnor polynomial
   differential is not yet proved: it still requires the compatible
-  coproduct/coaction identification. The fixed input witnesses are also
-  still missing, so \texttt{standardMilnorCooperations} remains an axiom.
+  coproduct/coaction identification. The required structures and their
+  compatibility on the fixed sphere remain to be constructed.
 \end{proposition}
 \begin{proof}
   In length zero, the tensor unitor and the Eilenberg--Mac Lane property
@@ -3701,61 +3695,36 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   and homology quotients and makes no claim of convergence to an abutment.
 \end{definition}
 
-\begin{definition}[Standard target on the internal sphere sequence]
-  \label{def:h6-standard-internal-target}
-  \lean{KIP126.Classical.Adams.standardH6,KIP126.Classical.Adams.standardH6Square,KIP126.Classical.Adams.sphereAdamsData,KIP126.Core.SpectralSequence.NonzeroSurvival}
-  \uses{def:h6-constructed-square,def:h6-tower-internal-sequence}
-  \notready
-  Specialize the existing internal tower construction and Milnor cocycle map
-  to the same foundation witness. The standard class is the image of
-  $[\xi_1^{64}\mid\xi_1^{64}]$ in the internal $E_2^{2,128}$.
-  Neither its definition nor the standard target uses CSV data or $C(M)$.
-  The target asks for a common $Z_\infty$ representative projecting to this
-  class, with nonzero $E_\infty$ image. The fixed foundation and Milnor
-  coordinates are fixed by Def independently of the Challenge2 witness;
-  no concrete realization or permanence proof is claimed here.
-\end{definition}
+
 
 \begin{definition}[Fixed standard and computational sphere objects]
   \label{def:h6-fixed-computation}
   \lean{KIP126.Classical.Adams.sphereAdams,KIP126.Classical.Adams.sphereH6Square,KIP126.Classical.Adams.sphereAdamsModel,KIP126.Classical.Adams.sphereAdamsData,KIP126.Classical.Adams.sphereAdams_towerComparison,KIP126.Classical.Adams.survival_comparison,KIP126.Classical.Adams.computedH6Square,KIP126.Core.SpectralSequence.NonzeroSurvival}
   \uses{def:h6-constructed-square,def:h6-pagewise-permanence,def:h6-tower-internal-sequence,prop:h6-tower-internal-comparison,prop:h6-tower-survival-comparison}
   \notready
-  Select the stable foundation, $H\mathbb F_2$, and Milnor coordinates once.
-  The standard sequence and class specialize the existing tower construction.
-  The computational object specializes the proved internal tower construction
-  to the same unit and sphere. It is no longer independently postulated.
-  Its specified
-  class is the image of generator 69 squared in the fixed Lin CSV quotient
-  (Zenodo 14875701, v126.3.cw49, internal degree at most 261).
-  Its nonzero survival means a common $Z_\infty$ representative whose $E_2$
-  image is the specified class and whose $E_\infty$ image is nonzero.
-  The fixed all-page tower comparison specializes the proved generic
-  comparison; it too is no longer an axiom. The survival comparison is now
-  the specialization of the proved generic equivalence. Foundation selection,
-  Milnor coordinates, and the range-limited Lin comparison remain named
-  development axioms. The specified-class comparison is now proved using
-  second-page nonvanishing and the unique nonzero element in bidegree $(2,128)$.
-  None of these statements asserts that the
-  specified class survives. The internal
-  computational proof imports neither KIPBase nor the Mathlib SS adapter.
-  The chosen abstract foundation has not been realized as a concrete model
-  of spectra. Nor does this construction establish the paper's exclusion
-  of differentials on the specified class.
+  Fix the stable foundation, $H\mathbb F_2$, and Milnor coordinates.
+  Both sphere sequences are obtained from the Adams tower of the same unit.
+  The standard square is defined by its Milnor cocycle. Given the bounded
+  Lin algebra presentation, the computational square is the image of
+  generator 69 squared in the quotient of version \texttt{v126.3.cw49}
+  (Zenodo 14875701), in internal degrees at most 261.
+  The tower comparison identifies the pages and differentials of the two
+  constructions, and its survival comparison identifies their common
+  $Z_\infty$ representatives and nonzero $E_\infty$ classes.
+  Construction of the specified foundation, Milnor coordinates, and Lin
+  presentation remains unfinished. These comparisons give no higher-page
+  survival conclusion for the square.
 \end{definition}
 
-\begin{proposition}[Fixed standard square: audited second-page nonvanishing]
+\begin{proposition}[Nonvanishing of the standard square on the second page]
   \label{prop:h6-fixed-standard-square-nonzero}
   \lean{KIP126.Classical.Adams.sphereH6Square_ne_zero}
   \uses{def:h6-fixed-computation,prop:h6-standard-square-nonzero}
   \notready
-  The fixed class \texttt{sphereH6Square} is nonzero on its constructed
-  second page. The Lean proof specializes the generic theorem and has no
-  local or transitive \texttt{sorry}; its named project assumptions are
-  exactly \texttt{standardFoundation} and \texttt{standardMilnorCooperations}.
-  This axiom-dependent specialization is not an unconditional completion
-  node. It does not use the Lin presentation or the specified-class
-  comparison, prove that comparison, or address higher-page survival.
+  Under the specified stable foundation and Milnor comparison, the
+  standard square is nonzero on the second page of the constructed sphere
+  Adams sequence. This is the specialization of
+  Proposition~\ref{prop:h6-standard-square-nonzero}; it concerns only $E_2$.
 \end{proposition}
 
 \begin{definition}[Fixed Lin algebra and additive catalogue]
@@ -3767,8 +3736,8 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   \lean{KIP126.LinE2.Compute.Engine.multiplyBasis}
   \uses{def:h6-fixed-computation}
   \notready
-  Use the fixed Zenodo 14875701 dataset, version v126.3.cw49, imported from
-  PR 110 at commit \texttt{ff39e951}. Its quotient algebra has 2914 algebra
+  Use the fixed Zenodo 14875701 dataset, version v126.3.cw49.
+  Its quotient algebra has 2914 algebra
   generators and 231848 relations and is truncated above internal degree 261.
   The separate additive catalogue has 23822 monomials, indexed by $(s,t,k)$;
   these indices are not algebra-generator numbers. The catalogue entry
@@ -3823,11 +3792,9 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   \notready
   Under the existing fixed foundation and Lin presentation, every element
   of the internal $E_2^{2,128}$ is zero or \texttt{computedH6Square}.
-  In particular every nonzero element equals that square. This is a
-  conclusion delivered through \texttt{computation.results.sphereSquare}. Its Interface
-  producer uses surjectivity of the specified Lin comparison and the independent
-  data certificate. Main projects this conclusion from the one Challenge2
-  witness; the aggregate stage delivery remains unfinished.
+  In particular every nonzero element equals that square. Surjectivity of
+  the Lin comparison transports the exhaustive alternative from the
+  quotient-algebra component to the actual second page.
 \end{proposition}
 
 \begin{proposition}[The actual double tensor-boundary class is the computed square]
@@ -4052,11 +4019,9 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   \lean{KIP126.Classical.Adams.h6Square_comparison}
   \uses{prop:h6-internal-square-unique,prop:h6-fixed-standard-square-nonzero,prop:h6-tower-internal-comparison}
   \notready
-  The actual page comparison carries \texttt{computedH6Square} to
-  \texttt{sphereH6Square}. This is no longer an independent project axiom:
-  the Lean proof has no \texttt{sorry} and depends on exactly the fixed
-  foundation, Milnor coordinates, and Lin presentation. Those remaining
-  inputs prevent unconditional completion of this fixed node.
+  Under the specified foundation, Milnor coordinates, and Lin presentation,
+  the second-page comparison carries the computational square to the
+  standard square.
 \end{proposition}
 \begin{proof}
   Pull the standard class back through the actual second-page isomorphism.
@@ -4070,13 +4035,17 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   \lean{KIP126.LinE2.SquareDetection.Target,KIP126.LinE2.SquareDetection.evaluate,KIP126.LinE2.SquareDetection.relationCheck,KIP126.LinE2.SquareDetection.allRelationsCheck}
   \uses{def:lin-e2-catalogue}
   \leanok
-  Let $T=\mathbb F_2[u]/(u^3)$. Evaluate generator 69 at $u$ and all other
-  generators at zero. The executable relation test checks that every
-  monomial of each archived relation individually evaluates to zero: it
-  contains a positive power of another generator or at least three copies
-  of generator 69. The test follows the exact parser conventions of the
-  quotient model, including malformed strings. Its value is a Boolean,
-  not a theorem asserting that the check succeeds.
+  Let $P$ be the polynomial algebra underlying the specified Lin
+  presentation, $I$ its defining ideal, and $T=\mathbb F_2[u]/(u^3)$.
+  Define the evaluation homomorphism $\epsilon:P\to T$ by
+  \[
+    \epsilon(x_{69})=u,\qquad\epsilon(x_i)=0\quad(i\ne69).
+  \]
+  The finite relation test \texttt{allRelationsCheck} applies a sufficient
+  termwise vanishing criterion to each specified relation: a monomial
+  vanishes under $\epsilon$ if it contains another variable with positive
+  exponent or at least three copies of $x_{69}$. The test is defined here;
+  its successful value is a separate assertion.
 \end{definition}
 
 \begin{proposition}[Soundness of the nonzero-square detector]
@@ -4090,8 +4059,8 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   nor the admitted soundness of the general Gr\"obner reducer.
 \end{proposition}
 \begin{proof}
-  Induct on the parsed generator/exponent list to verify the evaluation
-  test. The checked relations lie in the kernel. A monomial of internal
+  Every term covered by the test vanishes under $\epsilon$, so the
+  specified relations lie in its kernel. A monomial of internal
   degree greater than 261 either involves a killed variable or is a pure
   power of generator 69 with exponent at least five, so the truncation
   ideal also lies in the kernel. Finally $u^2\ne0$, since $X^3$ cannot
@@ -4100,65 +4069,24 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   \leanok
 \end{proof}
 
-\begin{proposition}[A semantics-preserving character-list certificate checker]
-  \label{prop:lin-square-parser-equivalence}
-  \lean{KIP126.LinE2.SquareDetection.splitOn_singleton_eq_list,KIP126.LinE2.SquareDetection.toNat?_eq_chars,KIP126.LinE2.SquareDetection.relationCheck_eq_chars,KIP126.LinE2.SquareDetection.chunkCheck_eq_chars}
-  \uses{def:lin-square-detector}
-  \leanok
-  For every string, splitting at a singleton separator agrees with splitting
-  its character list. The character-list natural-number parser agrees with
-  the library parser, including the underscore rules and malformed inputs.
-  Hence the character-list relation and chunk checkers return exactly the
-  same Booleans as the original archived-string checker.
-\end{proposition}
-\begin{proof}
-  Compare the substring split recursion with the character split recursion:
-  matching a one-character separator resets its offset immediately. Use the
-  existing characterization of character splitting on lists. Rewrite the
-  library numeric parser's character iteration and fold as list operations.
-  Compose these equalities through the monomial and relation checks.
-  \leanok
-\end{proof}
-
-\begin{proposition}[Composition of finite certificates]
-  \label{prop:lin-square-certificate-composition}
-  \lean{KIP126.LinE2.SquareDetection.charsChunkCheck_join,KIP126.LinE2.SquareDetection.charsChunkCheck_append,KIP126.LinE2.SquareDetection.charsChunkCheck_ofList,KIP126.LinE2.SquareDetection.firstRelations_check,KIP126.LinE2.SquareDetection.allRelationsCheck_of_chunks}
-  \uses{prop:lin-square-parser-equivalence}
-  \leanok
-  Two certified chunks can be joined by a newline. The three separately
-  stored initial relations pass the checker by a kernel-checked computation.
-  If each remaining archived chunk has a character-list certificate, then
-  the original full-table check equals \texttt{true}.
-  This statement does not assert that the remaining 227 chunk certificates
-  have been constructed.
-\end{proposition}
-\begin{proof}
-  Splitting a list at an inserted separator concatenates the two split lists;
-  the Boolean universal check becomes a conjunction. For the full archive,
-  decompose membership in the initial list and the flattened chunk list,
-  then apply the corresponding certificate and the proved parser comparison.
-  \leanok
-\end{proof}
-
-\begin{theorem}[Archived square certificate and initial nonvanishing]
+\begin{theorem}[Nonvanishing of the square in the specified quotient algebra]
   \label{thm:lin-square-certified}
-  \lean{KIP126.LinE2.SquareDetection.archivedChunks_check,KIP126.LinE2.SquareDetection.allRelationsCheck_eq_true,KIP126.LinE2.SquareDetection.dataH6Sq_ne_zero}
-  \uses{prop:lin-square-certificate-composition,prop:lin-square-detector-sound}
+  \lean{KIP126.LinE2.SquareDetection.dataH6Sq_ne_zero}
+  \uses{def:lin-square-detector,prop:lin-square-detector-sound}
   \leanok
-  All 227 archived chunks pass the finite detector. Including the three
-  separately stored relations, all 231848 relations pass. Consequently the
-  specified square is nonzero in the actual Lin quotient algebra, without
-  a finite-check hypothesis or additive-basis certification.
+  If $q:P\to P/I$ is the quotient map for the fixed Lin presentation, then
+  \[
+    q(x_{69}^2)\ne0.
+  \]
+  This is the specified data square in the Lin quotient algebra. The
+  conclusion has no remaining finite-test hypothesis and does not require
+  a certification of its additive basis.
 \end{theorem}
 \begin{proof}
-  Generate small character-list leaf proofs by kernel reduction. Join the
-  certificates using the proved list concatenation rule, and transport them
-  back with $\operatorname{toList}(\operatorname{ofList}(l))=l$. The resulting
-  proof types must match the original archived string literals. Assemble
-  eight consecutive batches covering the entire archive and apply the
-  soundness theorem. These fixed-data proofs live in the independent
-  \texttt{LinProgram/Certificates} tree. Native execution only generates candidate proof terms;
-  it supplies no evaluation axiom and does not replace any archived data.
+  For the fixed presentation, all specified relations satisfy the finite
+  detector's termwise criterion. By soundness, $I\subseteq\ker\epsilon$,
+  so $\epsilon$ factors through $P/I$. The image of $q(x_{69}^2)$ is
+  $u^2\ne0$ in $\mathbb F_2[u]/(u^3)$, proving the claim.
   \leanok
 \end{proof}
 
@@ -4175,32 +4103,22 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
   the all-stage lifting assertion is not proved by this equivalence.
 \end{proposition}
 \begin{proof}
-  The Interface producer transports the independent nonvanishing certificate
-  through the specified injective Lin comparison. Main obtains this fact from
-  \texttt{computation.results.sphereSquare} and substitutes it into the proved
-  survival/liftability equivalence. The aggregate Challenge2 production
-  remains unfinished, so this fixed-object node is not marked complete.
+  Transport quotient-algebra nonvanishing through the injective Lin
+  comparison and apply the survival/liftability equivalence.
 \end{proof}
 
-The regression module \texttt{Checks/AdamsE2/SquareDetection} audits the
-finite certificate and its transfers, rejecting \texttt{sorryAx} and
-native-evaluation axioms and listing the permitted fixed comparison inputs
-separately. Its additional runtime test is not used as a proof. Initial
-nonvanishing neither removes the Lin comparison axiom nor proves higher-page
-survival; the computational final Solution remains open.
-
-\begin{definition}[Correlated stage-zero cooperation contract]
+\begin{definition}[Tensor and cooperation compatibility]
   \label{def:stage-zero-cooperation-contract}
   \lean{KIP126.Foundation.TensorInput,KIP126.Foundation.CooperationInput}
   \uses{def:h6-reduced-milnor-basis-input,def:h6-milnor-coproduct-input,prop:h6-derived-milnor-coordinates,def:h6-milnor-cooperations}
   \leanok
-  The first Challenge witness specifies one tensor suspension/exactness
-  structure, one multiplication on its chosen $H\mathbb F_2$, one K\"unneth
-  comparison, and one reduced Milnor basis. It requires suspension,
-  diagonal, unit and Milnor coproduct compatibility. Its published first-page
-  coordinates agree with those derived from exactly these choices.
-  Construction of the fixed witness remains unfinished; the contract does
-  not identify unrelated choices merely because they share a type.
+  For the specified $H\mathbb F_2$, choose tensor suspension and exactness,
+  an associative unital multiplication, a K\"unneth comparison, and a
+  reduced Milnor basis. Require the suspension, diagonal, unit, and Milnor
+  coproduct diagrams to commute for these same choices. The induced
+  first-page coordinates are those derived from these structures.
+  Existence of such compatible choices on the fixed sphere remains
+  unfinished.
 \end{definition}
 
 \begin{proposition}[Cobar square-zero law from the first-page comparison]
@@ -4323,7 +4241,7 @@ survival; the computational final Solution remains open.
   \leanok
 \end{proof}
 
-\begin{theorem}[Additive catalogue certification, pending]
+\begin{theorem}[Basis of the Lin quotient-algebra components]
   \label{thm:lin-e2-basis-certification}
   \lean{KIP126.Interface.Solution.LinE2.basisTable_correct}
   \uses{def:lin-e2-catalogue}
@@ -4332,37 +4250,31 @@ survival; the computational final Solution remains open.
   degree $(s,t)$ in the fixed v126.3.cw49 catalogue form an
   $\mathbb F_2$-basis of its quotient-algebra component. This asserts both
   linear independence and spanning, not merely that the list has the right
-  length. This auxiliary certification is produced in Interface; its
-  proof remains admitted. It is distinct from delivery of coordinates on
-  the actual sphere $E_2$ page and is not a foundation input.
-  Artifact hashes and executable checks of degrees, distinct coordinates
-  and irreducibility do not discharge it.
+  length. The proof remains unfinished. Identifying these components
+  with the actual sphere $E_2$ page additionally requires the Lin
+  presentation.
 \end{theorem}
 
-\begin{theorem}[Fixed sphere additive-coordinate delivery, pending]
+\begin{theorem}[Additive coordinates on the sphere second page]
   \label{thm:lin-sphere-basis-interface}
   \lean{KIP126.Challenge2.SphereBasisInterface,KIP126.Interface.Solution.sphereBasis}
   \uses{def:lin-e2-catalogue,def:h6-fixed-computation}
   \notready
-  For the same range-limited Lin presentation $P$, deliver unique
+  Given the same range-limited Lin presentation $P$, there are unique
   finite-support $\mathbb F_2$ coordinates on the actual internal sphere
   $E_2^{s,t}$ for every $s,t\in\mathbb N$ with $t\le261$.
   The coordinate equivalences are integer-linear, preserving the existing
   page additive structure without choosing another $\mathbb F_2$ action.
   Pulling the inverse image of each standard coordinate vector back
   through $P$ gives exactly the specified CSV monomial value.
-  The \texttt{computation.results.sphereBasis} field of Challenge2 carries this
-  interface for the presentation in that witness's computation bindings.
-  Its individual coordinate-value condition is
-  Theorem~\ref{thm:computation-sphereBasis-csv-values}; the producer must prove
-  it for the constructed coordinates independently of Main's assumed delivery.
+  The coordinate-value condition is that of
+  Theorem~\ref{thm:computation-sphereBasis-csv-values}.
 \end{theorem}
 \begin{proof}
   \uses{thm:lin-e2-basis-certification}
   Transport the certified quotient-algebra basis through $P$.
-  The producer implements this conditional construction, but depends on
-  the admitted catalogue certification; the delivery is not proved
-  unconditionally.
+  This construction is conditional on the quotient-algebra basis theorem,
+  whose proof remains unfinished.
 \end{proof}
 
 \begin{definition}[Data and internal Adams additive coordinates]
@@ -4378,11 +4290,9 @@ survival; the computational final Solution remains open.
   \lean{KIP126.Classical.Adams.linToSphere_product_eq_zero}
   \uses{thm:lin-sphere-basis-interface,def:h6-fixed-computation}
   \notready
-  Main obtains its public data basis, data coordinates, basis-certification
-  compatibility theorem, and internal sphere coordinates from the unique
-  Challenge2 witness and its \texttt{computation.results.sphereBasis} field, using
-  its one computation presentation throughout. The data-side compatibility interfaces are
-  recovered from this delivery; they do not change the fixed foundation.
+  Use the same presentation and coordinate equivalences on every covered
+  component. The algebra-side basis and the sphere-side coordinates are
+  compared through this one family of equivalences.
   Each covered component has unique finite-support $\mathbb F_2$
   coordinates, with an integer-linear equivalence retaining the internal
   SSData $E_2$ page's existing additive structure.
@@ -4390,8 +4300,7 @@ survival; the computational final Solution remains open.
   reconstruct any element. Product equalities in the data quotient transfer
   to the internal page, including zero products. Every covered page element
   has a data preimage, and equality of images is equivalent to equality of
-  data representatives. These interfaces import no Mathlib spectral-sequence
-  adapter, and neither they nor the data assert higher-page survival.
+  data representatives. These comparisons concern the second page.
 \end{definition}
 
 \begin{lemma}[The computed class is the square of computed $h_6$]
@@ -4400,23 +4309,18 @@ survival; the computational final Solution remains open.
   \uses{def:h6-fixed-computation,def:lin-e2-catalogue}
   \notready
   Under the fixed Lin comparison, the internal $E_2$ product of the image of
-  data $h_6$ with itself is the computational target class. This replaces
-  PR 110's historical \texttt{h6Sq\_eq\_comparison}, with no additional
-  admitted theorem. It neither asserts permanence nor eliminates the
-  existing presentation axiom.
+  data $h_6$ with itself is the computational target class.
 \end{lemma}
 
-\begin{theorem}[Coordinate-check soundness, pending]
+\begin{theorem}[Soundness of coordinate reduction]
   \label{thm:lin-e2-coordinate-check}
   \lean{KIP126.LinE2.Automation.coordinateCheck_sound}
   \uses{def:lin-e2-catalogue}
   \notready
   If the concrete reducer successfully checks equal CSV coordinates for two
   expressions within range, their interpretations in the quotient algebra
-  are equal. The migrated \texttt{e2\_mul} tactic executes the check but uses
-  this admitted theorem to close goals. This algorithm-correctness debt is
-  separate from additive-basis certification and from the comparison with
-  the actual sphere Adams page. On Lean 4.32, the tactic's native evaluation
-  also generates evaluation axioms; the strict project audit rejects them.
-  Kernel-checkable reduction certificates remain a separate required step.
+  are equal. A reduction certificate must express their difference as a
+  sum of multiples of the defining relations. Correctness of the coordinate
+  reducer remains unfinished and is separate from basis certification and
+  comparison with the sphere Adams page.
 \end{theorem}

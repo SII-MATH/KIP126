@@ -1,9 +1,9 @@
-\chapter{$H\mathbb F_2$-synthetic homotopy and synthetic Adams objects}
+\section{$H\mathbb F_2$-synthetic homotopy and synthetic Adams objects}
 \label{chap:synthetic-foundations}
 
-This chapter introduces the synthetic objects and the language in which the imported Pstragowski and BHS statements can later be written.
+This section introduces the synthetic objects and the language in which the imported Pstragowski and BHS statements can later be written.
 
-\section{Topological operad language}
+\subsection{Topological operad language}
 
 % SOURCE: Def/HigherAlgebra/Operad/{Arity,Topological,Algebra}; May,
 % The Geometry of Iterated Loop Spaces, Definitions 1.1--1.2 and Lemma 1.4;
@@ -165,7 +165,7 @@ complete checklist item a09.
   commutative algebras.
 \end{definition}
 
-\section{The category, spheres, and deformation element}
+\subsection{The category, spheres, and deformation element}
 
 % SOURCE: MainPaper/main.tex:755-758; Pstragowski, construction of Syn_E.
 \begin{definition}[Synthetic context]
@@ -218,7 +218,7 @@ complete checklist item a09.
   algebra-model comparison for $L$.
 \end{definition}
 
-\begin{definition}[Fixed operadic quotient input and uniqueness target]
+\begin{definition}[Relative moduli of quotient algebra structures]
   \label{def:lambda-quotient-operadic-target}
   \lean{KIP126.Synthetic.LambdaQuotientOperadicInput,KIP126.Synthetic.LambdaQuotientOperadicInput.moduli,KIP126.Synthetic.LambdaQuotientOperadicInput.uniqueness}
   \uses{def:lambda-quotient-realization,def:transferred-operadic-model,def:enriched-finite-tensor,def:operadic-unit-spaces,def:weak-contractible-space}
@@ -251,7 +251,7 @@ formalization obligation: the project models the quotient maps and their
 coherence below, while a complete $\mathrm{CAlg}$ tower and its higher
 coherences remain outside the Project Boundary.
 
-\section{Synthetic Adams objects}
+\subsection{Synthetic Adams objects}
 
 % SOURCE: BHS SynRevBigraded.tex:149--159, thm:synthetic-Adams (1b)--(1c);
 % MainPaper/main.tex:813--823. The arrows use the project's chosen cofibers.
@@ -412,8 +412,7 @@ coherences remain outside the Project Boundary.
   subobjects are unchanged. This is more than assigning a different
   initial-page number: the differential is the earlier constructed map
   at that stage.
-  The resulting \texttt{normalizedAdamsSS} bundles this same sequence;
-  it does not select another sequence. Its ambient still consists of raw
+  This is the same spectral sequence with the indicated regrading. Its ambient still consists of raw
   first-layer representatives. The construction depends on unfinished
   spectral-sequence laws and is not a comparison with a separately supplied
   synthetic Adams family, a rigidity theorem, or a convergence result.
@@ -487,7 +486,7 @@ coherences remain outside the Project Boundary.
   provide the literature results.
 \end{definition}
 
-\section{Normalized synthetic map data}
+\subsection{Normalized synthetic map data}
 
 % SOURCE: MainPaper/main.tex:929-961, Proposition prop:41561db2, its following
 % torsion remark, and Notation not:fhat.
