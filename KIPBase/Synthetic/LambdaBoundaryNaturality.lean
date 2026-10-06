@@ -464,36 +464,11 @@ theorem nuModLambdaSuccGeneratorEInftyIsoPage_toOne
   rw [hq10eq]
   simp
 
-/-- The finite-to-one boundary map on source E0, followed by the finite
-quotient stable-page comparison, is the displayed inclusion into the
-Adams E2 page. -/
-theorem lambdaBoundaryToOne_e0Source_diagonal
-    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮]
-    (X : 𝒮) (n : ℕ) (s t : ℤ) :
-    lambdaBoundaryToOnePageMap ((nu 𝒮 Syn).obj X) n (t - s, t) 0 (s, 1) ≫
-        ((canonicalLambdaPowerBocksteinData ((nu 𝒮 Syn).obj X) 1).e0SourceIso
-          s (t - s, t)).hom ≫
-        (eqToIso (by
-          ext <;> simp [syntheticAdamsIndex] :
-          ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) 1)).ssData
-            (syntheticAdamsIndex s (t - s, t))).eInfty =
-          ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) 1)).ssData
-            (s, t, t)).eInfty)).hom ≫
-        (nuModLambdaPredGeneratorEInftyIsoPage 𝒮 Syn X 2 (by omega) s t).hom =
-      ((canonicalLambdaPowerBocksteinData ((nu 𝒮 Syn).obj X) (n + 1)).e0SourceIso
-          s (t - s, t)).hom ≫
-        (eqToIso (by
-          ext <;> simp [syntheticAdamsIndex] :
-          ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) (n + 1))).ssData
-            (syntheticAdamsIndex s (t - s, t))).eInfty =
-          ((SynAdamsSS Syn (XModLambdaN ((nu 𝒮 Syn).obj X) (n + 1))).ssData
-            (s, t, t)).eInfty)).hom ≫
-        (nuModLambdaSuccGeneratorEInftyIsoPage 𝒮 Syn X n s t).hom ≫
-          synAdams_displayedPageToE2OfBoundariesEq
-            ((nu 𝒮 Syn).obj X) n (s, t, t)
-            (synAdams_nu_diagonal_boundaries 𝒮 Syn X s t n) := by
-  rw [lambdaBoundaryToOne_e0Source]
-  simp only [Category.assoc]
-  rw [nuModLambdaSuccGeneratorEInftyIsoPage_toOne]
+/-- The source bidegree used by the boundary E0 term is the diagonal
+synthetic Adams tridegree.  Keeping this equality named prevents later
+comparison proofs from unfolding it under categorical transports. -/
+theorem syntheticAdamsIndex_boundaryDiagonal (s t : ℤ) :
+    syntheticAdamsIndex s (t - s, t) = (s, t, t) := by
+  ext <;> simp [syntheticAdamsIndex]
 
 end KIPBase.Synthetic
