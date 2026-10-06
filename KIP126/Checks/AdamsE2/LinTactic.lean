@@ -1,5 +1,5 @@
 import KIP126.LinProgram.Tactic.LinE2
-import KIP126.LinProgram.E2.Classes.Proofs
+import KIP126.LinProgram.Model.Classes.Proofs
 import Lean.Elab.Command
 
 /-!

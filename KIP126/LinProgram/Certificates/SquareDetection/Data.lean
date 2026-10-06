@@ -1,4 +1,4 @@
-import KIP126.LinProgram.E2.Classes.Data
+import KIP126.LinProgram.Model.Classes.Data
 import Mathlib.Algebra.Polynomial.Basic
 import Mathlib.Algebra.MvPolynomial.Eval
 

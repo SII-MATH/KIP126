@@ -1,4 +1,4 @@
-import KIP126.Def.Comparison.StageInterfaces
+import KIP126.Def.Comparison.Interfaces
 import KIP126.Def.ClassicalAdams.Convergence.BHS.Predicates
 import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
 import KIP126.Def.Synthetic.EInfty.Presentation.Predicates

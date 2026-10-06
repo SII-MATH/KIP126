@@ -1,4 +1,4 @@
-import KIP126.LinProgram.E2.BasisTable.Predicates
+import KIP126.LinProgram.Certificates.BasisTable.Predicates
 
 namespace KIP126.Interface.Solution.LinE2
 

@@ -39,3 +39,10 @@ metrics/
 # Local provenance-checker test caches
 scripts/**/__pycache__/
 scripts/**/*.pyc
+
+# Local workflow and helper directories
+/Proof-Workflow/
+/tools/
+
+# Local process crash dumps
+/core.[0-9]*

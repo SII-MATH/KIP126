@@ -1,4 +1,4 @@
-import KIP126.Def.References.Literature.EtaRows.Data
+import KIP126.Interface.Challenge.Literature.EtaRows
 
 namespace KIP126.Classical.ExtensionSS
 

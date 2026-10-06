@@ -1,5 +1,5 @@
 import KIP126.Main.Solution.Computation.LinProgram.Presentation
-import KIP126.LinProgram.E2.Product.Data
+import KIP126.LinProgram.Model.Product.Data
 
 namespace KIP126.Classical.Adams
 

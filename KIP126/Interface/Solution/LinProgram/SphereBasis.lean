@@ -1,5 +1,5 @@
 import KIP126.Interface.Challenge.Challenge2
-import KIP126.LinProgram.E2.BasisTable.Certification.Proofs
+import KIP126.LinProgram.Certificates.BasisTable.Proofs
 import KIP126.Interface.Solution.LinProgram.BasisTable
 
 namespace KIP126.Interface.Solution

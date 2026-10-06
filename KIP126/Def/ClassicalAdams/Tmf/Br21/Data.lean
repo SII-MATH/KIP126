@@ -1,4 +1,4 @@
-import KIP126.Def.Comparison.StageInterfaces.Models
+import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
 import KIP126.Def.SpectralSequence.Computation.Predicates
 
 /-! The exact target notation of BR21 Table 5.4 / Theorem 5.18.

@@ -156,8 +156,6 @@ import KIP126.Def.Synthetic.EInfty.Shift.Predicates
 import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Proofs
-import KIP126.Def.References.Literature.EtaRows.Data
-import KIP126.Def.References.Literature.AppendixTable.Rows.Catalogue.Data
 import KIP126.Def.ClassicalAdams.Suspension.Predicates
 import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs

@@ -9,15 +9,16 @@ the standard sphere Adams sequence or establish the final survival theorem.
 | `Translate/` | Deterministic translation and fixed-input checks. |
 | `Generated/` | Lean encodings of the imported records. |
 | `Route/` | Selection of the fixed records used by the proof route. |
-| `E2/Model/`, `E2/Classes/`, `E2/Product/` | The fixed truncated CSV quotient and its mathematical operations and elements. |
-| `E2/BasisTable/` | Imported basis values and coordinates conditional on explicit basis certification. |
-| `E2/Compute/`, `E2/Automation/`, `E2/ComputedPolynomial/`, `E2/Expression/`, `E2/ExpressionValue/` | Parsing, reduction, expression interpretation and calculation support. |
+| `SourceMetadata/AppendixTable/` | Typed transcription of the paper tables, with row labels and locators; recorded statuses require mathematical justification. |
+| `Model/E2/`, `Model/Classes/`, `Model/Product/` | The fixed truncated CSV quotient and its mathematical operations and elements. |
+| `Model/BasisTable/`, `Certificates/BasisTable/` | Imported basis values and coordinates conditional on explicit basis certification. |
+| `Compute/E2/`, `Tactic/Support/`, `Interpretation/Polynomial/`, `Interpretation/Expression/` | Parsing, reduction, expression interpretation and calculation support. |
 | `Interpretation/` | Mathematical interpretation parameterized by a supplied model. |
 | `Certificates/`, `Tactic/` | Local fixed-data certificates and calculation tactics. |
 
 Generic E₂ table, page-algebra, presentation and input definitions belong to
 `KIP126/Def/AdamsE2/`. The program-specific comparison with Def's fixed sphere
-page is `KIP126/Interface/Challenge/Computation/Presentation/Data.lean`.
+page is `KIP126/Interface/Challenge/Computation/Presentation.lean`.
 `Interface/Challenge/Computation/Delivery.lean` specifies the correlated bindings
 and results; `Interface/Solution/LinProgram/` constructs their certificates.
 Main consumes those results from the same Challenge2 witness.

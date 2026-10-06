@@ -1,6 +1,6 @@
 import KIP126.Def.StageInput.StandardSphere.Background.Data
 import KIP126.Def.StageInput.Milnor
-import KIP126.Def.Comparison.StageInterfaces.Proofs.Cobar
+import KIP126.Def.Comparison.Cobar.Proofs
 import KIP126.Def.Solution.StandardRouteBackground
 
 /-! Internal construction obligations for the one standard sphere background.

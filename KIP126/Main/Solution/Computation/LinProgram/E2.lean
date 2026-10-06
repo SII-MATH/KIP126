@@ -1,10 +1,10 @@
-import KIP126.LinProgram.E2.Classes.Data
-import KIP126.LinProgram.E2.Classes.Proofs
+import KIP126.LinProgram.Model.Classes.Data
+import KIP126.LinProgram.Model.Classes.Proofs
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
-import KIP126.LinProgram.E2.Product.Data
+import KIP126.LinProgram.Model.Product.Data
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Presentation.Proofs
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Basis.Proofs
-import KIP126.LinProgram.E2.Compute.Data
-import KIP126.LinProgram.E2.Automation.Proofs
-import KIP126.LinProgram.E2.ComputedPolynomial.Data
+import KIP126.LinProgram.Compute.E2.Data
+import KIP126.LinProgram.Tactic.Support.Proofs
+import KIP126.LinProgram.Interpretation.Polynomial.Data
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Proofs

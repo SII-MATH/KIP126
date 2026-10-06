@@ -57,12 +57,13 @@ class StageBoundaryLayoutTests(unittest.TestCase):
             self.assertEqual({p.name for p in root.iterdir() if p.is_dir()
                               and any(p.rglob("*"))}, directories)
 
-    def test_def_never_depends_on_program_data_or_proof_stages(self):
+    def test_def_never_depends_on_proof_stages_or_source_data(self):
         for module in self.graph:
             if module == "KIP126.Def" or module.startswith("KIP126.Def."):
                 with self.subTest(module=module):
                     forbidden = [m for m in self.dependencies(module)
-                                 if m.startswith(("KIP126.LinProgram", "KIP126.Interface", "KIP126.Main"))
+                                 if m.startswith(("KIP126.Interface", "KIP126.Main",
+                                                  "KIP126.LinProgram"))
                                  or m == "KIP126.Challenge2"]
                     self.assertEqual(forbidden, [])
 
@@ -188,11 +189,13 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         # do not replace it by an assertion that merely counts nonempty rows.
         self.assertTrue((ROOT / "KIP126/LinProgram/Route/selected.json").is_file())
 
-    def test_reference_language_does_not_import_stages(self):
-        for module in self.graph:
-            if module.startswith("KIP126.Def.References."):
+    def test_source_metadata_is_independent_of_mathematical_deliveries(self):
+        modules = [m for m in self.graph if m.startswith("KIP126.LinProgram.SourceMetadata.")]
+        self.assertTrue(modules, "source metadata ownership check must not be empty")
+        for module in modules:
+            with self.subTest(module=module):
                 self.assertEqual([m for m in self.dependencies(module)
-                                  if m.startswith(("KIP126.Interface.", "KIP126.Main."))], [])
+                                  if not m.startswith("KIP126.LinProgram.SourceMetadata.")], [])
 
 
 if __name__ == "__main__":
