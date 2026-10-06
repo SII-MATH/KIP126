@@ -1,0 +1,32 @@
+{
+  "actual_page_rules": {
+    "exit_code": 0,
+    "elapsed_s": 2.191581344231963,
+    "output": "'KIP126.Core.SpectralSequence.RepresentsOnPage.eq_zero_iff_isBoundaryBy' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'KIP126.Core.SpectralSequence.hasDifferential_zero_of_excluded_target' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'KIP126.Computation.LinProofs.Branch.CandidateElimination.sound_nil' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n"
+  },
+  "h1_actual_bridge": {
+    "exit_code": 0,
+    "elapsed_s": 3.2958179246634245,
+    "output": "'KIP126.LinE2.E2At_h1_eq_zero_or' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KIP126.Classical.Adams.MilnorCohomology.internal_hi_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KIP126.Interface.Solution.sphereH1_standard_class' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n"
+  },
+  "earlier_conditional_row5432": {
+    "exit_code": 0,
+    "elapsed_s": 14.690409259870648,
+    "output": "'KIP126.LinE2.LowStem.ph1Row_mem' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KIP126.Interface.Solution.LinProgram.row5432' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n"
+  },
+  "generated152098": {
+    "exit_code": 0,
+    "elapsed_s": 2.6305503603070974,
+    "output": "docs/audits/issue152/automatic-replay/GeneratedProductWitnesses.lean:13:14: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\ndocs/audits/issue152/automatic-replay/GeneratedProductWitnesses.lean:13:14: warning: 'simp only [htwo, mul_zero, add_zero]' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'Replay152098.productWitness0' depends on axioms: [propext, Classical.choice, Quot.sound]\ndocs/audits/issue152/automatic-replay/GeneratedProductWitnesses.lean:20:10: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'Replay152098.productWitness1' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  "generated152095": {
+    "exit_code": 0,
+    "elapsed_s": 2.3135559745132923,
+    "output": "docs/audits/issue152/automatic-replay/row152095/GeneratedProductWitnesses.lean:13:14: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\ndocs/audits/issue152/automatic-replay/row152095/GeneratedProductWitnesses.lean:13:14: warning: 'simp only [htwo, mul_zero, add_zero]' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'Replay152095.productWitness0' depends on axioms: [propext, Classical.choice, Quot.sound]\ndocs/audits/issue152/automatic-replay/row152095/GeneratedProductWitnesses.lean:20:14: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\ndocs/audits/issue152/automatic-replay/row152095/GeneratedProductWitnesses.lean:20:14: warning: 'simp only [htwo, mul_zero, add_zero]' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'Replay152095.productWitness1' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  "wrong_generated_target": {
+    "exit_code": 1,
+    "elapsed_s": 2.5725937504321337,
+    "output": "/tmp/issue152-current-wrong.lean:13:14: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/tmp/issue152-current-wrong.lean:13:14: warning: 'simp only [htwo, mul_zero, add_zero]' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'Replay152098.productWitness0' depends on axioms: [propext, Classical.choice, Quot.sound]\n/tmp/issue152-current-wrong.lean:16:164: error: unsolved goals\nhtwo : 2 = 0\n\u22a2 X 1 * X 9 * X 13 = X 1 * X 9 * X 13 + X 0 ^ 2 * X 36 + X 0 ^ 3 * X 36\n'Replay152098.productWitness1' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n"
+  }
+}
