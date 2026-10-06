@@ -1,0 +1,41 @@
+{
+  "status": "two-generated-actual-object-statements-checked; full-db-replay-incomplete",
+  "toolchain": "Lean 4.32.2",
+  "dependency_build": "isolated worktree overlay over pinned already-built dependencies",
+  "checks": [
+    {
+      "row": 5432,
+      "source_sha256": "6092128391c5c3b46339b2ef309c57477f374de497fe03d1d9e1c2b9e28a616f",
+      "exit_code": 0,
+      "lean_verification_s": 3.8715790919959545,
+      "output": "'Replay5432.replay' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n"
+    },
+    {
+      "row": 5434,
+      "source_sha256": "97d2f773518cf11e6a9b41ab63a9dcefdc72507f6253cb0aa3bd5d0e9d71592f",
+      "exit_code": 0,
+      "lean_verification_s": 3.5834561232477427,
+      "output": "'Replay5434.replay' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n"
+    }
+  ],
+  "explicit_inputs": [
+    "LiteratureInterface",
+    "LinE2Presentation"
+  ],
+  "db_derivation_replayed": false,
+  "foundation_debt": "These fixed-model results inherit existing sorryAx; no new admission or axiom was added.",
+  "python_regressions": {
+    "actual_backend": 2,
+    "local_algebra": 3,
+    "stage_boundary_layout": 18
+  },
+  "logical_only_audits": [
+    "generic Hi nonvanishing",
+    "local degree exhaustion and coordinates",
+    "stage pairing and filtered lift construction"
+  ],
+  "model_relative_audits": [
+    "row5434 producer and zero rejection",
+    "H1 identification and eta lift"
+  ]
+}
