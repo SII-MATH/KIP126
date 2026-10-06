@@ -34,7 +34,7 @@ The complete historical KIP-base library is retained as the separately compiled
 `KIPBase` component on the same Lean/mathlib 4.32.2 pins. Its original assumptions
 are isolated from `KIP126` and do not count as completed paper proofs. See the
 [component build and reuse guide](KIPBase/README.md) and
-[original migration archive](migration/kip-base/README.md).
+[original migration archive](docs/migration/kip-base/README.md).
 
 ## Project documents and workflow
 

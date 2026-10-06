@@ -21,7 +21,7 @@ lean_lib KIP126 where
 
 /-!
 Historical KIP-base, ported to the pinned toolchain. Its inherited assumptions
-are inventoried under migration/kip-base and must not enter KIP126's import graph.
+are inventoried under docs/migration/kip-base and must not enter KIP126's import graph.
 -/
 @[default_target]
 lean_lib KIPBase where

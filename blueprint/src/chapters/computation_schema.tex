@@ -107,6 +107,7 @@ stage witness instead of importing their Interface proof implementations.
   \lean{KIP126.Classical.Adams.Sphere.Multiplication.unitSecondCycle,KIP126.Classical.Adams.Sphere.Multiplication.firstProduct}
   \lean{KIP126.Interface.Solution.sphereMultiplicativeInterface}
   \uses{def:hf2-adams-tower,def:lin-e2-catalogue}
+  \notready
   There is a bounded Lin presentation $P$ on the fixed sphere Adams
   sequence whose coordinate unit maps to the second-cycle class of the
   actual sphere identity. For all $s,t,s',t'\in\mathbb N$ with
@@ -122,7 +123,8 @@ stage witness instead of importing their Interface proof implementations.
   cycles; it cannot select a different operation. Quantifying over all
   representatives binds the page product to that actual layer product.
   Challenge~2 couples this condition to the same presentation as its
-  coordinate and differential fields. The producer theorem remains
+  coordinate and differential fields; the individual input condition is
+  Theorem~\ref{thm:computation-sphereMultiplicative}. The producer theorem remains
   unproved. No higher-page Leibniz rule, product outside the stated bound,
   or comparison with the cobar cup product is supplied here.
 \end{theorem}
@@ -273,8 +275,10 @@ stage witness instead of importing their Interface proof implementations.
   row identifier, and SQL NULL.  A known outgoing or incoming pair gives an
   equation on the actual internal differential.  An unknown outgoing value
   at level $10000-r$ gives a common representative on $E_r$, possibly zero;
-  an unknown incoming value at level $r$ gives membership in $B_{r+1}$,
-  allowing earlier boundaries.  Level $9000$ retains the explicit bound
+  an unknown incoming value at level $r$ gives
+  \texttt{IsBoundaryBy}, allowing earlier boundaries. On the actual sequence
+  with initial page $r_0=2$, its raw boundary index is $r-1$ and its
+  image is taken in the initial $E_2$ quotient. Level $9000$ retains the explicit bound
   $E_{1000}$.  It does not by itself assert a nonzero permanent class.
   All labels use the same bounded Lin comparison.  Invalid encodings and
   out-of-range degrees are rejected, rather than interpreted as zero.
@@ -295,6 +299,9 @@ stage witness instead of importing their Interface proof implementations.
   \texttt{518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed}.
   Lossless generation, decoder coverage, and coordinate checks are verified
   mechanically; mathematical soundness remains an unproved delivery theorem.
+  Its exact result-field condition is
+  Theorem~\ref{thm:computation-sphereStaircase-rows-sound}; producing that
+  condition cannot invoke Main's assumed delivery.
 \end{theorem}
 
 % SOURCE: pinned ss/deduce.cpp:329--389,390--492;
@@ -407,21 +414,20 @@ stage witness instead of importing their Interface proof implementations.
 % MainPaper/main.tex:2738--3290.
 \begin{definition}[Near-$126$ computation input]
   \label{def:near126-computation-input}
-  \uses{def:lin-computation-bundle,def:appendix-evidence-record}
+  \lean{KIP126.Challenge2.ComputationInterface,KIP126.Challenge2.ComputationResults}
+  \uses{def:computation-fixed-bindings}
   \notready
-  A near-$126$ computation input is an explicit record containing a Lin
-  computation bundle, the twelve finite appendix tables, the nine zero-band
-  records, the three manual differential inputs, the $tmf$-detection evidence,
-  and the finite high-stem product and indeterminacy evidence consumed in
-  Section~7.  The latter are named fields, including
-  \texttt{theta5TorsionRanges}, \texttt{theta5SquareTmf},
-  \texttt{todaCandidateProducts},
-  \texttt{twoExtensionIndeterminacyProducts},
-  \texttt{hopfLiftObstructions}, \texttt{stem122Products}, and
-  \texttt{cnuIncomingRange}. Every field states a specific mathematical
-  proposition with its source or computation locator recorded in the external
-  manifest. Project theorems receive explicit mathematical hypotheses and
-  prove finite coverage and negative-search conclusions from them.
+  The current input is the one \texttt{ComputationInterface} dependent on
+  the same literature delivery and Def model. Its exact individual statements
+  are the 29 results and four binding comparisons in
+  Section~\ref{sec:computation-master-inventory}. They use the same bounded
+  sphere presentation, actual route realization and fixed tmf coordinates.
+  The selected route statements concern $S^0$ and its actual Hopf-$\nu$
+  cofiber. Appendix tables, manual program seeds and intermediate certification
+  spectra describe data or Interface proof dependencies; they do not create
+  more fields in this input. Main derives the high-stem, product, Toda and
+  indeterminacy consequences required for Section~7 from these certified
+  inputs and its separately stated mathematical proof obligations.
 \end{definition}
 
 \begin{definition}[Fixed internal sphere computation facts: implemented slice]
@@ -476,3 +482,121 @@ stage witness instead of importing their Interface proof implementations.
   outstanding.  No arbitrary auxiliary sequence or bottom-cell map is
   supplied as a field of this construction.
 \end{definition}
+
+\section{Shared fixed computation bindings and export definitions}
+
+\begin{definition}[One fixed model, literature delivery and computation binding]
+  \label{def:computation-fixed-bindings}
+  \lean{KIP126.Challenge2.ComputationBindings,KIP126.Challenge2.ComputationResults,KIP126.Challenge2.ComputationInterface,KIP126.Computation.Route.Realization,KIP126.Challenge2.ComputationBindings.routeLabels}
+  \uses{def:literature-fixed-bindings,def:hf2-adams-tower,def:adams-hj}
+  \notready
+  Fix the Def implementation of Definition~\ref{def:literature-fixed-bindings},
+  with $H=\mathrm{standardFoundation.hf2}$,
+  $M=\mathrm{standardMilnorCooperations}$ and
+  $D=\mathrm{standardRouteModel}$. Fix one literature delivery $\ell$ and
+  one $b:\mathrm{ComputationBindings}(\ell)$. For the inventory in
+  Chapter~\ref{chap:computed-inputs} put
+  \[
+  \begin{aligned}
+    P&=b.\mathrm{presentation},& R&=b.\mathrm{routeRealization},\\
+    L&=b.\mathrm{routeLabels},& G&=\ell.\mathrm{bindings.tmfLabels},\\
+    U&=b.\mathrm{tmfCoordinates},& T_{\mathrm{fix}}&=\mathrm{Def.standardTmfTarget},\\
+    T_{\mathrm{src}}&=\ell.\mathrm{bindings.route.tmfSource}.
+  \end{aligned}
+  \]
+  Write $A^{s,t}=\mathrm{LinE2.E2At}(s,t)$ for the homogeneous part of the
+  fixed sphere CSV quotient, and $|x|$ for the underlying quotient value.
+  For $s,t\in\mathbb N$ and $h:t\le261$, write
+  $P_{s,t}=P.\mathrm{comparison}(s,t,h):A^{s,t}\simeq_{\mathbb Z}
+  E_2^{s,t}(S^0)$. This comparison and its bilinear data operation
+  $P.\mathrm{product}$ are the very same components in every inventory field.
+  Put $R_{s,t}=R.\mathrm{sphere}(s,t)$; this is initially a linear map,
+  and its agreement with $P$ is a separate result statement.
+  The basis function of $R$ is indexed by the fixed selected catalogue.
+
+  Every $E_r$ is the actual $H$-unit Adams tower page on the stated object.
+  The route interpreter uses the actual $S^0$ and
+  $C\nu=\operatorname{cofib}(D.\mathrm{auxiliary.nuMap}:S^3\to S^0)$.
+  Write $C_X^{s,t}$ for the actual second-cycle group and $[a]$ for the
+  page class $\mathrm{classOfSecondCycle}(H,X,s,t,a)$.
+  These are cycle representatives of this tower, rather than freely chosen
+  representatives on unrelated pages. The fixed first-layer product,
+  Milnor/cobar page product and $P.\mathrm{product}$ are distinguished in
+  the individual conditions that compare them.
+
+  The notation $\mathrm{atom}$ denotes the homogeneous fixed sphere
+  quotient class $\mathrm{Near126.atom}$; its label selects a pinned
+  generator. The tmf coordinate comparison $U$ has the same bound $t\le261$
+  and lands on $T_{\mathrm{fix}}.X$; the source tmf spectrum and its BR21
+  endpoint classes belong to this same $\ell$.
+  The CSV coordinate equivalences in \texttt{sphereBasis} are data carried
+  with that result; its numbered condition concerns precisely those
+  equivalences, without making another choice of coordinates.
+  Constructing $b$ and producing \texttt{ComputationResults} on it remain
+  Interface obligations. These conditions concern the one binding selected
+  by that construction; they do not assert correctness of every possible
+  route interpreter. Their production does not use Main's consumer axiom.
+\end{definition}
+
+\begin{definition}[Pinned finite-page sphere differential table]
+  \label{def:lin-proofs-sphere-table}
+  \lean{KIP126.Computation.LinProofs.DifferentialRow,KIP126.Computation.LinProofs.RawData.lookup}
+  \uses{def:lin-e2-catalogue}
+  The importer scans all 2,672,275 rows of the \texttt{log} table of
+  \texttt{proofs.db}, Zenodo 14875701, version \texttt{v126.3.cw49}.
+  It exports 10,907 closed finite-page sphere differential records in
+  86 shards, preserving database IDs and local additive-basis coordinates.
+  Inverse records are normalized to source bidegrees.  A coverage manifest
+  accounts separately for every unexported row; branches, unknowns,
+  other spectra, extensions and sentinel pages are not silently asserted.
+\end{definition}
+
+\begin{definition}[Meaning on the fixed sphere sequence]
+  \label{def:lin-proofs-sphere-meaning}
+  \lean{KIP126.Challenge2.HasCoordinates,KIP126.Challenge2.DifferentialStatement}
+  \uses{def:lin-proofs-sphere-table,def:computation-fixed-bindings}
+  Decode the two coordinate lists as sums of the literal CSV monomials,
+  transport their homogeneous classes to the fixed sphere $E_2$, and require
+  common-cycle representatives on $E_r$ satisfying the actual differential
+  equation.  No nonvanishing on $E_r$ follows merely from a nonempty
+  coordinate list.  The statement has no caller-supplied proposition field.
+\end{definition}
+
+\section{Low-degree data illustration}
+
+\begin{definition}[Low-degree table extracted from Lin's data]
+  \label{def:lin-low-degree-table}
+  \lean{KIP126.Examples.AdamsE2LowDegrees.table}
+  \uses{def:adams-e2-basis-table}
+  Extract the region $0\le s\le8$, $0\le t-s\le8$, together with
+  $(1,64),(2,128),(1,16),(4,18),(5,20)$, from Lin's version
+  \texttt{t261.2} of Zenodo record \texttt{7865526}.
+  Retain the published additive-basis order and compute each covered basis
+  product using the published polynomial relations.
+  The resulting numerical table has 86 covered cells and 27 basis vectors:
+  60 cells have dimension zero, 25 have dimension one, and $(5,20)$ has
+  dimension two, with basis $(h_1d_0,h_0^4h_4)$ (source IDs 50 and 51).
+  This construction imports numerical data; identifying it with the actual
+  sphere page remains an explicit presentation input, not a consequence of
+  parsing the file. This dataset is distinct from the near-$126$
+  differential and extension catalogues used in Chapter~\ref{chap:near126}.
+\end{definition}
+
+\begin{lemma}[Low-degree table relations and a two-dimensional component]
+  \label{lem:lin-low-degree-table-relations}
+  \lean{KIP126.Examples.AdamsE2LowDegrees.h0_h1_zero,KIP126.Examples.AdamsE2LowDegrees.h1_h2_zero,KIP126.Examples.AdamsE2LowDegrees.h0_c0_zero,KIP126.Examples.AdamsE2LowDegrees.h1_cube,KIP126.Examples.AdamsE2LowDegrees.h6_square,KIP126.Examples.AdamsE2LowDegrees.page_two_products_sum_ne_zero}
+  \uses{def:lin-low-degree-table,def:adams-e2-table-presentation}
+  In the model algebra, the table implies
+  $h_0h_1=h_1h_2=h_0c_0=0$, $h_1^3=h_0^2h_2$, and the specified
+  square relation for $h_6$.
+  For any presentation of this table on an existing page, the actual products
+  $h_1d_0$ and $h_0^4h_4$ are its two specified basis vectors at $(5,20)$.
+  Their sum has coordinates $(1,1)$ and is nonzero.
+\end{lemma}
+\begin{proof}
+  \uses{lem:adams-e2-table-product}
+  Evaluate the imported coefficients and impose the corresponding relations
+  in the quotient algebra.  Under a presentation, transport these equalities
+  to the page.  Applying the first basis-coordinate functional to the sum
+  gives $1$, which rules out zero.
+\end{proof}

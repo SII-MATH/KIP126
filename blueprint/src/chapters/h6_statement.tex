@@ -3819,7 +3819,7 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
 \begin{proposition}[The fixed internal square is the unique nonzero element]
   \label{prop:h6-internal-square-unique}
   \lean{KIP126.Classical.Adams.sphereAdamsData_square_eq_zero_or,KIP126.Classical.Adams.sphereAdamsData_eq_computedH6Square_of_ne_zero}
-  \uses{def:h6-fixed-computation,prop:lin-square-component-two-elements}
+  \uses{def:h6-fixed-computation,prop:lin-square-component-two-elements,thm:computation-sphereSquare-exhaustive}
   \notready
   Under the existing fixed foundation and Lin presentation, every element
   of the internal $E_2^{2,128}$ is zero or \texttt{computedH6Square}.
@@ -4165,7 +4165,7 @@ No new fixed axiom is introduced, and the permanent-cycle Solution remains open.
 \begin{proposition}[Fixed computational nonvanishing and the remaining target]
   \label{prop:h6-certified-nonvanishing}
   \lean{KIP126.Classical.Adams.computedH6Square_ne_zero,KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff}
-  \uses{thm:lin-square-certified,prop:h6-survival-liftability,def:h6-fixed-computation}
+  \uses{thm:lin-square-certified,prop:h6-survival-liftability,def:h6-fixed-computation,thm:computation-sphereSquare-nonzero}
   \notready
   Under the already disclosed fixed foundation and Lin comparison, the
   computational class is nonzero on $E_2$. Using the proved
@@ -4353,6 +4353,9 @@ survival; the computational final Solution remains open.
   through $P$ gives exactly the specified CSV monomial value.
   The \texttt{computation.results.sphereBasis} field of Challenge2 carries this
   interface for the presentation in that witness's computation bindings.
+  Its individual coordinate-value condition is
+  Theorem~\ref{thm:computation-sphereBasis-csv-values}; the producer must prove
+  it for the constructed coordinates independently of Main's assumed delivery.
 \end{theorem}
 \begin{proof}
   \uses{thm:lin-e2-basis-certification}

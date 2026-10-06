@@ -14,7 +14,10 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from check_external_inputs import blueprint_nodes, structure_fields, validate_document  # noqa: E402
+from check_external_inputs import (  # noqa: E402
+    COMPUTATION_BINDINGS, COMPUTATION_RESULTS, blueprint_nodes,
+    computation_statements, lean_check, structure_fields, validate_document,
+)
 
 
 ROOT = SCRIPT_DIR.parent
@@ -110,6 +113,189 @@ class BlueprintNodeTests(unittest.TestCase):
         })
         self.assertEqual(labels, {"outer", "inner"})
         self.assertEqual(nodes, {"outer": {self.FIELD}, "inner": {self.OTHER_FIELD}})
+
+
+class ComputationStatementTests(unittest.TestCase):
+    """Mutations of a complete leaf fixture, independent of document editing."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.document = json.loads((ROOT / "docs/external-inputs.json").read_text())
+        cls.labels, cls.nodes = blueprint_nodes(ROOT)
+        expected, bindings = computation_statements(ROOT)
+        item = next(c for c in cls.document["interface_coverage"] if c["structure"] == COMPUTATION_RESULTS)
+        for field, leaves in expected.items():
+            row = item["fields"][field]
+            row["statements"], row["blueprint_labels"] = {}, []
+            for relative, specification in leaves.items():
+                label = "thm:test-computation-" + field + "-" + (relative or "root")
+                row["statements"][relative] = {**specification, "blueprint_labels": [label]}
+                row["blueprint_labels"].append(label)
+                cls.labels.add(label)
+                cls.nodes[label] = {COMPUTATION_RESULTS + "." + field, specification["declaration"]}
+        cls.document["computation_binding_statements"] = {}
+        for relative, specification in bindings.items():
+            label = "thm:test-computation-binding-" + relative
+            cls.document["computation_binding_statements"][relative] = {
+                **specification, "blueprint_labels": [label], "sources": ["lwx_machine"],
+                "locator": "Fixture comparison on the selected actual computation binding.",
+                "proof_status": "comparison-obligation",
+            }
+            cls.labels.add(label)
+            cls.nodes[label] = {
+                COMPUTATION_BINDINGS + "." + relative.split(".")[0], specification["declaration"],
+            }
+
+    def fixture(self):
+        return (copy.deepcopy(self.document), set(self.labels),
+                {label: set(links) for label, links in self.nodes.items()})
+
+    def fields(self, document):
+        return next(c["fields"] for c in document["interface_coverage"]
+                    if c["structure"] == COMPUTATION_RESULTS)
+
+    def validate(self, document, labels, nodes):
+        with patch("check_external_inputs.blueprint_nodes", return_value=(labels, nodes)):
+            return validate_document(ROOT, document)
+
+    def leaf(self, document, field="sphereBasis", relative="csv_values"):
+        return self.fields(document)[field]["statements"][relative]
+
+    def test_complete_29_results_and_four_comparisons_are_accepted(self):
+        document, labels, nodes = self.fixture()
+        self.assertEqual(sum(len(row["statements"]) for row in self.fields(document).values()), 29)
+        self.assertEqual(len(document["computation_binding_statements"]), 4)
+        declarations = self.validate(document, labels, nodes)
+        check = lean_check(document, declarations)
+        self.assertIn("getStructureFields env " + chr(96) + "KIP126.Computation.Route.LabelsCorrect", check)
+        self.assertIn("computation statement is data rather than a proposition", check)
+
+    def test_missing_computation_leaf_is_rejected(self):
+        document, labels, nodes = self.fixture()
+        del self.fields(document)["sphereSquare"]["statements"]["standard_class"]
+        with self.assertRaisesRegex(ValueError, "computation statement coverage drift"):
+            self.validate(document, labels, nodes)
+
+    def test_wrong_actual_leaf_projection_is_rejected(self):
+        document, labels, nodes = self.fixture()
+        self.leaf(document)["declaration"] = "KIP126.Challenge2.SphereBasisInterface.coordinates"
+        with self.assertRaisesRegex(ValueError, "wrong computation leaf declaration"):
+            self.validate(document, labels, nodes)
+
+    def test_wrong_leaf_owner_is_rejected(self):
+        document, labels, nodes = self.fixture()
+        self.leaf(document)["module"] = "KIP126/Interface/Challenge/Computation/Presentation.lean"
+        with self.assertRaisesRegex(ValueError, "wrong computation leaf module"):
+            self.validate(document, labels, nodes)
+
+    def test_two_computation_leaves_cannot_share_a_node(self):
+        document, labels, nodes = self.fixture()
+        shared = self.leaf(document)["blueprint_labels"]
+        row = self.fields(document)["sphereStaircase"]
+        row["statements"]["rows_sound"]["blueprint_labels"] = shared
+        row["blueprint_labels"] = shared
+        with self.assertRaisesRegex(ValueError, "Blueprint computation node reused"):
+            self.validate(document, labels, nodes)
+
+    def test_binding_and_result_cannot_share_a_node(self):
+        document, labels, nodes = self.fixture()
+        document["computation_binding_statements"]["tmfMultiplicative"]["blueprint_labels"] = (
+            self.leaf(document)["blueprint_labels"])
+        with self.assertRaisesRegex(ValueError, "Blueprint computation node reused"):
+            self.validate(document, labels, nodes)
+
+    def test_node_aliases_cannot_hide_reuse(self):
+        document, labels, nodes = self.fixture()
+        shared = self.leaf(document)["blueprint_labels"][0]
+        alias = "thm:test-computation-alias"
+        labels.add(alias)
+        nodes[alias] = nodes[shared]
+        row = self.fields(document)["sphereStaircase"]
+        row["statements"]["rows_sound"]["blueprint_labels"] = [alias]
+        row["blueprint_labels"] = [alias]
+        with self.assertRaisesRegex(ValueError, "Blueprint computation node reused"):
+            self.validate(document, labels, nodes)
+
+    def test_computation_parent_link_is_required(self):
+        document, labels, nodes = self.fixture()
+        nodes[self.leaf(document)["blueprint_labels"][0]].remove(COMPUTATION_RESULTS + ".sphereBasis")
+        with self.assertRaisesRegex(ValueError, "missing direct Blueprint computation parent link"):
+            self.validate(document, labels, nodes)
+
+    def test_computation_leaf_link_is_required(self):
+        document, labels, nodes = self.fixture()
+        leaf = self.leaf(document)
+        nodes[leaf["blueprint_labels"][0]].remove(leaf["declaration"])
+        with self.assertRaisesRegex(ValueError, "missing direct Blueprint computation leaf link"):
+            self.validate(document, labels, nodes)
+
+    def test_another_computation_root_cannot_be_added(self):
+        document, labels, nodes = self.fixture()
+        nodes[self.leaf(document)["blueprint_labels"][0]].add(COMPUTATION_RESULTS + ".sphereSquare")
+        with self.assertRaisesRegex(ValueError, "wrong Blueprint computation root link"):
+            self.validate(document, labels, nodes)
+
+    def test_one_node_cannot_combine_two_leaf_projections(self):
+        document, labels, nodes = self.fixture()
+        other = self.leaf(document, "sphereSquare", "nonzero")["declaration"]
+        nodes[self.leaf(document)["blueprint_labels"][0]].add(other)
+        with self.assertRaisesRegex(ValueError, "Blueprint node combines computation leaves"):
+            self.validate(document, labels, nodes)
+
+    def test_inactive_computation_node_cannot_cover_a_leaf(self):
+        document, labels, nodes = self.fixture()
+        leaf = self.leaf(document)
+        labels.remove(leaf["blueprint_labels"][0])
+        self.fields(document)["sphereBasis"]["blueprint_labels"] = []
+        with self.assertRaisesRegex(ValueError, "unknown computation Blueprint label"):
+            self.validate(document, labels, nodes)
+
+    def test_missing_computation_binding_is_rejected(self):
+        document, labels, nodes = self.fixture()
+        del document["computation_binding_statements"]["tmf_betaGFour"]
+        with self.assertRaisesRegex(ValueError, "computation binding statement coverage drift"):
+            self.validate(document, labels, nodes)
+
+    def test_wrapper_cannot_replace_route_label_leaves(self):
+        document, labels, nodes = self.fixture()
+        self.fields(document)["route"]["statements"] = {
+            "labels": {"declaration": "KIP126.Computation.Route.CertifiedRealization.labels",
+                       "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+                       "blueprint_labels": ["thm:test-wrapper"]},
+        }
+        with self.assertRaisesRegex(ValueError, "computation statement coverage drift"):
+            self.validate(document, labels, nodes)
+
+    def test_data_coordinates_are_not_a_statement_leaf(self):
+        document, labels, nodes = self.fixture()
+        self.fields(document)["sphereBasis"]["statements"]["coordinates"] = copy.deepcopy(self.leaf(document))
+        with self.assertRaisesRegex(ValueError, "computation statement coverage drift"):
+            self.validate(document, labels, nodes)
+
+    def test_parent_labels_must_be_the_ordered_leaf_union(self):
+        document, labels, nodes = self.fixture()
+        self.fields(document)["route"]["blueprint_labels"].reverse()
+        with self.assertRaisesRegex(ValueError, "computation parent Blueprint label union drift"):
+            self.validate(document, labels, nodes)
+
+    def test_leaf_metadata_cannot_override_inherited_sources(self):
+        document, labels, nodes = self.fixture()
+        self.leaf(document)["sources"] = ["aim_paper"]
+        with self.assertRaisesRegex(ValueError, "unexpected computation statement metadata"):
+            self.validate(document, labels, nodes)
+
+    def test_comparison_obligation_cannot_be_promoted_to_proved(self):
+        document, labels, nodes = self.fixture()
+        document["computation_binding_statements"]["tmfMultiplicative"]["proof_status"] = "proved"
+        with self.assertRaisesRegex(ValueError, "computation binding role/status mismatch"):
+            self.validate(document, labels, nodes)
+
+    def test_presentation_comparison_needs_its_binding_parent(self):
+        document, labels, nodes = self.fixture()
+        leaf = document["computation_binding_statements"]["presentation.comparison_mul"]
+        nodes[leaf["blueprint_labels"][0]].remove(COMPUTATION_BINDINGS + ".presentation")
+        with self.assertRaisesRegex(ValueError, "missing direct Blueprint computation parent link"):
+            self.validate(document, labels, nodes)
 
 
 class ExternalInputTests(unittest.TestCase):

@@ -32,6 +32,15 @@ The checker reads the active Blueprint inputs and rejects a shared summary
 node, an inactive label, or a link to a different field. The fixed-model
 bindings, foundational language, computation comparisons and Main's internal
 applications have separate nodes and do not increase this field count.
+Chapter~\ref{chap:computed-inputs} likewise lists 29 individual computation
+result statements and four binding comparison statements. Nested proposition
+records are expanded, while interpretation and coordinate data are excluded
+from the numbered statement inventory. Each of these 33 entries has a distinct
+canonical node, its actual Lean projection and its owning delivery-field link.
+The checker also verifies this expansion against the current Lean structures;
+it rejects a missing leaf, a wrapper counted as a statement, a duplicate node
+or an incorrect parent-field link. The seven top-level result fields remain
+structural coverage records, rather than seven numbered theorem entries.
 This correspondence is not certification of source fidelity or proof completion.
 
 \section{Unified construction and trust boundary}

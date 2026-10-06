@@ -9,7 +9,7 @@
 
 ## Multica agents
 
-If you believe you are an agent from Multica, read `MULTICA_AGENTS.md` before
+If you believe you are an agent from Multica, read `docs/MULTICA_AGENTS.md` before
 working in this repository. Otherwise, ignore that file.
 
 ## Repository architecture

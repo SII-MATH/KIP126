@@ -36,5 +36,5 @@ Project scope and acceptance are governed by
 [PROJECT_BOUNDARY.md](../PROJECT_BOUNDARY.md); current input responsibilities
 are in [STAGE0_INTERFACES.md](../docs/STAGE0_INTERFACES.md).
 The original migration snapshot is documented in the
-[archive guide](../migration/kip-base/README.md). Its proof-debt counts and
+[archive guide](../docs/migration/kip-base/README.md). Its proof-debt counts and
 validation results describe that snapshot, not this active source tree.
