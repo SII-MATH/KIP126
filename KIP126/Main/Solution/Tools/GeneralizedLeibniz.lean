@@ -1,5 +1,5 @@
 import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
-import KIP126.Interface.Challenge.Challenge2
+import KIP126.Interface.Solution.Literature.Applications
 
 /-! Independent paper-tool proof target. No computation delivery or selected
 stage witness is a premise. The theorem remains to be proved from the displayed

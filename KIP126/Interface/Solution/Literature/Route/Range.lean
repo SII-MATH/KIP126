@@ -1,4 +1,5 @@
 import KIP126.Interface.Challenge.Challenge2
+import KIP126.Interface.Solution.Literature.Applications
 
 /-! Independent vanishing-line specialization on the actual standard sphere
 tower. This producer supplies an infinite-range premise that finite tables

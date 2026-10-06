@@ -2,6 +2,8 @@ import KIP126.Main.Axiom.Challenge2
 import KIP126.Main.Solution.Computation.Tmf
 import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
 import KIP126.Interface.Solution.Literature.Route.Adapters
+import KIP126.Main.Solution.Literature.Route.SourceConsequences
+import KIP126.Main.Solution.Computation.Tmf.Br21
 
 /-! Consumer projections from the sole correlated Challenge2 witness. -/
 namespace KIP126.Main.StageInput
@@ -22,7 +24,7 @@ noncomputable def computation :
 
 /-- All Section 7 consumers use Def's one fixed route, with the source and
 program labels supplied by the same Challenge2 witness. -/
-noncomputable abbrev routeModel := witness.routeModel
+noncomputable abbrev routeModel := KIP126.Classical.Adams.standardRouteModel
 noncomputable abbrev routeLabels := computation.bindings.routeLabels
 noncomputable abbrev tmfLabels := literature.bindings.tmfLabels
 noncomputable abbrev routeEta := KIP126.Def.standardRouteEta
@@ -69,6 +71,15 @@ theorem nuSourceResults :
       literature.bindings.route.nuSource := by
   sorry
 
+/-- Main combines the same source results with its internal specialization
+of general Moss and naturality of the fixed synthetic weight comparison. -/
+noncomputable def routeStatements :
+    KIP126.Literature.Route.Statements routeModel routeEta tmfLabels
+      literature.bindings.route :=
+  literature.results.route
+    (KIP126.Main.Solution.Literature.route_moss literature)
+    (KIP126.Main.Solution.Literature.eInfty_shift_natural literature)
+
 /-- Main assembles the internal source application on the same bindings.
 The secondary Toda comparison and compatible ν triple remain unfinished
 internal proof obligations. -/
@@ -76,7 +87,7 @@ theorem routeApplication :
     KIP126.Literature.Route.Application routeModel routeEta tmfLabels
       literature.bindings.route := by
   exact KIP126.Interface.Solution.Literature.Route.application_of_parts
-    routeModel routeEta tmfLabels literature.bindings.route literature.results.route
+    routeModel routeEta tmfLabels literature.bindings.route routeStatements
     completionApplicability completionComparison realizationComparison
     todaSecondaryComparison nuSourceResults
 
@@ -86,7 +97,7 @@ noncomputable def routeTmf :
     KIP126.Literature.Route.TmfInputs routeModel tmfLabels :=
   KIP126.Main.Solution.Computation.tmf_inputs_of_computation routeModel
     routeComputation sphereVanishing sphereSeparated
-    literature.bindings.route.tmfSource literature.results.route.tmf
+    literature.bindings.route.tmfSource routeStatements.tmf
     literature.bindings.route.tmfBinding
     literature.bindings.route.algebraBinding.classical_detection
 
@@ -95,6 +106,6 @@ Main's tmf deduction on the same shared model. -/
 noncomputable def routeLiterature :
     KIP126.Literature.Route.Inputs routeModel routeEta tmfLabels :=
   KIP126.Literature.Route.Statements.toInputs routeModel routeEta tmfLabels
-    literature.results.route routeApplication routeTmf
+    routeStatements routeApplication routeTmf
 
 end KIP126.Main.StageInput

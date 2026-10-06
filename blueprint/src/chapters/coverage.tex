@@ -8,13 +8,13 @@ individual nodes, with their own direct dependencies and status markers.
 
 \section{Section-by-section coverage}
 
-The introduction at \texttt{MainPaper/main.tex:78--252} is represented by the
-classical Adams interfaces in Chapter~\ref{chap:classical-adams}, the precise
-low-line literature statements in Chapter~\ref{chap:external-results}, the
-permanent-cycle reduction in Chapter~\ref{chap:near126}, and the future,
-out-of-scope geometric endpoint sketches in Chapter~\ref{chap:final-kervaire}.
-Those sketches are not current Challenge2 obligations. The two open questions live
-in the Kervaire-setup chapter and do not feed the proof graph.
+The introduction at \texttt{MainPaper/main.tex:78--252} is excluded from
+formalization. Its geometric consequences, Adams two-line classification,
+and open questions have no formal nodes or acceptance obligations. The
+standard $h_6^2$ permanent-survival target remains in
+Chapter~\ref{chap:near126}, following Section~7's statement and proof route;
+the classical and synthetic definitions needed by that proof remain in their
+respective chapters.
 
 Section 2, lines 253--669, is represented in
 Chapter~\ref{chap:extension-ss}: the filtered two-term construction,
@@ -78,8 +78,6 @@ shared background; Main owns the internal applications. There is no geometric
 subrecord.
 Every data-dependent near-$126$ lemma is parameterized by the same computation
 projection, and the graph contains no implicit global package of those inputs.
-The future geometric endpoint sketches require additional, separately stated
-geometric hypotheses and do not feed the current permanent-cycle proof.
 
 The appendix at lines 2783--3290 and Table 1 in Section 7 use two flat
 chapters.  The computation-schema chapter defines the row, expression,
@@ -96,8 +94,6 @@ visualization, while its commented duplicate block is excluded.
 
 The Blueprint deliberately does not copy the following source defects:
 \begin{enumerate}
-  \item line 146's Hopf-survival inequality is read as $j\le3$, consistently
-    with the following nonzero $d_2$ formula for $j\ge4$;
   \item line 604's class $z$ lies in $E_\infty(Z)$, not $E_\infty(Y)$;
   \item line 819's Bockstein variable is $\lambda$, not $\tau$;
   \item Proposition 4.6 separates the infinite target from its image in a
@@ -151,9 +147,10 @@ plan and its proof frontier, not a completed Lean proof of the paper.
 
 \section{Statement traceability gate}
 
-The following gate is the frozen source-to-Blueprint index for every formal
-definition, theorem, proposition, corollary, and fact in
-\texttt{MainPaper/main.tex}. The source labels are copied from the frozen
+The following gate is the frozen source-to-Blueprint index for the formal
+definitions, theorems, propositions, corollaries, and facts in the body of
+\texttt{MainPaper/main.tex}, beginning with Section~2. The source labels are
+copied from the frozen
 aimpaper snapshot; the Blueprint reference is deliberately
 written using a reference macro so rendered numbers remain dynamic. An unlabelled
 source statement is recorded as ``unlabelled'' rather than being given a new
@@ -165,11 +162,6 @@ the complete source statement remains at the cited line span.
 \begin{tabular}{p{0.49\linewidth}p{0.17\linewidth}p{0.25\linewidth}}
 \textbf{Statement content} & \textbf{aimpaper label} & \textbf{Blueprint node} \\
 \hline
-Framed manifolds of Kervaire invariant one exist in dimension $126$. & \texttt{thm:main} & Theorem~\ref{thm:kervaire-126-conditional} \\
-The Kervaire dimensions are $2,6,14,30,62,126$. & unlabelled & Corollary~\ref{cor:kervaire-dimensions-exact} \\
-Kervaire existence is equivalent to $n=2^{j+1}-2$ and permanence of $h_j^2$. & \texttt{thm:browder} & Theorem~\ref{thm:external-browder-criterion} \\
-$h_6^2$ survives to $E_\infty$. & \texttt{thm:h\_6\_sq} & Theorem~\ref{thm:h6-square-permanent} \\
-The surviving Adams two-line classes are the displayed $h_0h_2,h_0h_3,h_2h_4,h_1h_j,h_j^2$. & \texttt{cor:2line} & Corollary~\ref{cor:adams-two-line-survivors} \\
 Definition of the $f$-extension spectral sequence. & \texttt{def:ess} & Definition~\ref{def:f-extension-ss} \\
 Definition of an essential $f$-extension. & \texttt{def:768fba8a} & Definition~\ref{def:f-extension-essential} \\
 Representative criterion and competing-target alternatives for an $f$-extension. & \texttt{prop:8154e6f1} & Propositions~\ref{prop:fextension-iff-detected} and~\ref{prop:fextension-inessential-iff-higher} \\

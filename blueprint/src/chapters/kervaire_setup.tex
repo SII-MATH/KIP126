@@ -1,29 +1,11 @@
 \chapter{The near-$126$ and Kervaire problem setup}
 \label{chap:kervaire-setup}
 
-This final chapter of the definition layer fixes the Kervaire contexts, near-$126$ predicates, open questions, coherence records, and explicit input-bundle shapes needed by the endpoint proof.
+This final chapter of the definition layer fixes the near-$126$ predicates,
+classical--synthetic sphere coherence, and explicit input-bundle shapes needed
+by the $h_6^2$ permanent-survival proof.
 
-\section{Open questions and near-126 objects}
-
-% SOURCE: MainPaper/main.tex:164-171, Questions que:2theta6 and que:theta5sq.
-\begin{definition}[Order-two $\theta_6$ question]
-  \label{def:question-order-two-theta6}
-  \uses{def:open-proposition,def:adams-hj,def:adams-detection}
-  \notready
-  This open proposition asks whether $h_6^2$ detects a Kervaire class
-  $\theta_6\in\pi_{126}S^0$ of exact order two.  It is recorded but is not a
-  hypothesis of the permanent-cycle proof.
-\end{definition}
-
-% SOURCE: MainPaper/main.tex:168-171, Question que:theta5sq.
-\begin{definition}[$\theta_5^2=0$ question]
-  \label{def:question-theta5-square-zero}
-  \uses{def:open-proposition,def:adams-detection}
-  \notready
-  This open proposition asks whether one can choose a class
-  $\theta_5\in\pi_{62}S^0$ detected by $h_5^2$ such that
-  $\theta_5^2=0$.  It is neither assumed nor proved by this project.
-\end{definition}
+\section{Near-126 objects and representative choices}
 
 % SOURCE: MainPaper/main.tex:2112-2114, Notation 7.2.
 \begin{definition}[Synthetic $\theta_5$ and $\eta$ choices]
@@ -111,26 +93,7 @@ This final chapter of the definition layer fixes the Kervaire contexts, near-$12
   propositions, not informal annotations.
 \end{definition}
 
-\section{Future framed Kervaire context and current sphere coherence}
-
-% SOURCE: MainPaper/main.tex:78-101; PROJECT_BOUNDARY.md, excluded geometry.
-\begin{definition}[Framed Kervaire context]
-  \label{def:framed-kervaire-context}
-  \uses{def:stable-context}
-  \lean{KIP126.Kervaire.FramedKervaireContext}
-  \lean{KIP126.Kervaire.StableHomotopyData}
-  \notready
-  This is a future geometric-context sketch, outside current Challenge2 and
-  acceptance requirements; the linked abstract language does not construct
-  actual framed manifolds or their invariant.
-  For a fixed stable context $\mathcal C$, a framed Kervaire context provides
-  closed smooth framed manifolds, framed cobordism, and a Pontryagin--Thom
-  correspondence landing in the stable homotopy of the same sphere
-  $S^0_{\mathcal C}$.  It also provides the middle-dimensional mod--$2$
-  intersection pairing, its quadratic refinement, the Arf invariant, and the
-  proposition that a manifold has Kervaire invariant one.  Only the laws needed
-  to state and apply Browder's criterion are exposed.
-\end{definition}
+\section{Coherence on the same fixed sphere}
 
 % SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, External inputs,
 % and Conditional final theorems.

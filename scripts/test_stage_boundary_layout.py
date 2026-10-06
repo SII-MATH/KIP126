@@ -99,6 +99,11 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         self.assertRegex(code, r"axiom challenge2\s*:\s*KIP126\.Challenge2\b")
         self.assertNotRegex(code, r"\b(def|abbrev|theorem|lemma|instance|opaque|Nonempty)\b")
 
+    def test_challenge2_is_only_the_delivery_contract(self):
+        contract = code_only((ROOT / "KIP126/Interface/Challenge/Challenge2.lean").read_text())
+        self.assertNotRegex(contract, r"\b(def|abbrev|theorem|lemma|instance|opaque)\b")
+        self.assertIn("computation : Challenge2.ComputationInterface literature", contract)
+
     def test_fixed_foundation_obligation_stays_in_def(self):
         contract = code_only((ROOT / "KIP126/Interface/Challenge/Challenge2.lean").read_text())
         self.assertNotIn("structure FoundationInputs", contract)

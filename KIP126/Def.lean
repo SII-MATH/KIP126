@@ -99,7 +99,6 @@ import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.C
 import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Cobar.Reduced.Map.Proofs
 import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Proofs
 import KIP126.Def.ClassicalAdams.Coefficients.Proofs
-import KIP126.Def.ClassicalAdams.H4D2.Predicates
 import KIP126.Def.ClassicalESS.Eta.Proofs
 import KIP126.Def.Comparison.ClassicalSynthetic.Proofs
 import KIP126.Def.SpectralSequence.Basic
@@ -159,7 +158,6 @@ import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Proofs
 import KIP126.Def.References.Literature.EtaRows.Data
-import KIP126.Def.References.Literature.Adams.OneLine
 import KIP126.Def.References.Literature.AppendixTable.Rows.Catalogue.Data
 import KIP126.Def.ClassicalAdams.Suspension.Predicates
 import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs

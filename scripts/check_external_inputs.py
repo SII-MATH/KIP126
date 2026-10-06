@@ -30,14 +30,6 @@ FIELD_STATUSES = {
 }
 REQUIRED_STRUCTURES = {
     "KIP126.Challenge2.LiteratureResults",
-    "KIP126.Challenge2.AdamsOneLineInterface",
-    "KIP126.Literature.Route.Statements",
-    "KIP126.Literature.Route.ClassicalSourceResults",
-    "KIP126.Literature.Route.SyntheticSourceInputs",
-    "KIP126.Literature.Route.EInftyInput",
-    "KIP126.Literature.Route.BHSRealizationDetectionAt",
-    "KIP126.Literature.Route.TodaSourceResults",
-    "KIP126.Literature.Route.TmfSourceResults",
     "KIP126.Challenge2.ComputationResults",
 }
 
@@ -117,6 +109,91 @@ def structure_fields(text, name):
     return set(fields)
 
 
+def blueprint_nodes(root):
+    """Read active Blueprint inputs and their mathematical declaration links."""
+    directory = (root / "blueprint/src").resolve()
+    visited, active = set(), []
+    environments = r"theorem|proposition|lemma|corollary|definition"
+    input_pattern = re.compile(r"\\input\b\s*\{([^}]+)\}")
+
+    def source_text(path):
+        text = strip_unescaped_percent_comments(path.read_text())
+        require(not re.search(
+            r"\\(?:verb|lstinline|mintinline)\b|"
+            r"\\begin\s*\{(?:verbatim\*?|comment|lstlisting|minted)\}", text),
+            f"unsupported Blueprint verbatim construct: {path}")
+
+        # external_results.tex has a node-free fallback preamble for its
+        # standalone editor build. No mathematical coverage can depend on it.
+        def standalone_preamble(match):
+            body = match[1]
+            require(not re.search(
+                r"\\(?:label|input|include)\b|\\lean\s*\{|"
+                r"\\begin\s*\{(?:" + environments + r")\}|\\if[A-Za-z@]*\b", body),
+                f"unsupported Blueprint conditional coverage: {path}")
+            return "\n" * match[0].count("\n")
+
+        text = re.sub(r"\\ifdefined\s*\\chapter\b(.*?)\\fi\b",
+                      standalone_preamble, text, flags=re.S)
+        require(not re.search(r"\\(?:if[A-Za-z@]*|else|fi)\b", text),
+                f"unsupported Blueprint conditional: {path}")
+        require(not re.search(r"\\include\b", text),
+                f"unsupported Blueprint include; use braced input: {path}")
+        require(len(re.findall(r"\\input\b", text)) == len(input_pattern.findall(text)),
+                f"unsupported Blueprint input; use braced input: {path}")
+        return text
+
+    def expand(path):
+        path = path.resolve()
+        require(path.is_relative_to(directory), f"Blueprint input escapes source tree: {path}")
+        require(path.is_file(), f"missing Blueprint input: {path}")
+        require(path not in active, f"cyclic Blueprint input: {path}")
+        require(path not in visited, f"repeated Blueprint input: {path}")
+        visited.add(path)
+        active.append(path)
+        try:
+            text = source_text(path)
+
+            def input_text(match):
+                name = match[1]
+                relative = Path(name)
+                require(not relative.is_absolute() and ".." not in relative.parts,
+                        f"unsafe Blueprint input: {name}")
+                if not relative.suffix:
+                    relative = relative.with_suffix(".tex")
+                return "\n" + expand(directory / relative) + "\n"
+
+            return input_pattern.sub(input_text, text)
+        finally:
+            active.pop()
+
+    text = expand(directory / "content.tex")
+    labels, nodes, stack = set(), {}, []
+    tokens = re.compile(
+        r"\\(?:(begin|end)\s*\{(" + environments + r")\}|"
+        r"label\s*\{([^}]+)\}|lean\s*\{([^}]+)\})")
+    for match in tokens.finditer(text):
+        command, environment, label, declarations = match.groups()
+        if command == "begin":
+            stack.append({"environment": environment, "labels": [], "declarations": set()})
+        elif command == "end":
+            require(stack and stack[-1]["environment"] == environment,
+                    f"unbalanced Blueprint mathematical environment: {environment}")
+            node = stack.pop()
+            for alias in node["labels"]:
+                nodes[alias] = node["declarations"]
+        elif label is not None:
+            require(label not in labels, f"duplicate active Blueprint label: {label}")
+            labels.add(label)
+            if stack:
+                stack[-1]["labels"].append(label)
+        elif stack:
+            stack[-1]["declarations"].update(
+                name.strip() for name in declarations.split(",") if name.strip())
+    require(not stack, "unclosed Blueprint mathematical environment")
+    return labels, nodes
+
+
 def validate_document(root, document):
     require(document["schema_version"] == 3, "unsupported external manifest schema")
     sources = {s["id"]: s for s in document["sources"]}
@@ -143,7 +220,7 @@ def validate_document(root, document):
         require(structure_fields((root / path).read_text(), name) == {"bindings", "results"},
                 f"delivery field drift: {name}")
     consumer_fields = structure_fields(
-        (root / "KIP126/Interface/Challenge/Literature/Route.lean").read_text(),
+        (root / "KIP126/Interface/Solution/Literature/Applications.lean").read_text(),
         "KIP126.Literature.Route.Inputs")
     require({c["input_field"] for c in claims} == consumer_fields, "route consumer field coverage drift")
     paper_labels = set(re.findall(r"\\label\{([^}]+)\}", strip_unescaped_percent_comments(
@@ -153,14 +230,8 @@ def validate_document(root, document):
         require("aim_paper" not in claim["sources"], "MainPaper consumption is not a proof of an external result")
         require(claim["kind"] and claim["lwx_consumers"], f"missing consumer locator: {claim['id']}")
         require(set(claim["lwx_consumers"]) <= paper_labels, f"unknown paper label: {claim['id']}")
-    root_fields = structure_fields((root / "KIP126/Interface/Challenge/Literature/Delivery.lean").read_text(),
-                                   "KIP126.Challenge2.LiteratureResults")
-    require({e["input_field"] for e in route["root_literature"]} == root_fields,
-            "root literature field coverage drift")
-    for entry in route["root_literature"]:
-        reference(entry, entry["id"])
     entries = sum((route[k] for k in ("claims", "model_bindings", "delivery_packages",
-                  "internal_adapters", "source_producers", "root_literature")), [])
+                  "internal_adapters", "source_producers")), [])
     require(len({e["id"] for e in entries}) == len(entries), "duplicate route audit ID")
     declarations = set()
     for entry in entries:
@@ -169,9 +240,12 @@ def validate_document(root, document):
             require(set(entry["sources"]) <= sources.keys(), f"unknown source: {entry['id']}")
         module = module_name(root, entry["module"])
         require(entry["declarations"], f"empty declaration group: {entry['id']}")
+        modules = entry.get("declaration_modules", {})
+        require(set(modules) <= set(entry["declarations"]), f"unknown declaration owner: {entry['id']}")
         for name in entry["declarations"]:
             declaration_name(name)
-            declarations.add((name, module))
+            owner = module_name(root, modules[name]) if name in modules else module
+            declarations.add((name, owner))
     require(all(e["role"] == "model-comparison" for e in route["model_bindings"]), "model role drift")
     require(all(e["role"] == "internal-adapter" for e in route["internal_adapters"]), "adapter role drift")
     for evidence in route["csv_evidence"]:
@@ -181,9 +255,8 @@ def validate_document(root, document):
             selected = [{"line": line, "row": row} for line, row in enumerate(csv.DictReader(handle), 2)
                         if all(row[key] == value for key, value in evidence["selector"].items())]
         require(selected == evidence["expected"], f"primary CSV evidence changed: {evidence['id']}")
-    blueprint_labels = set()
-    for path in (root / "blueprint/src").rglob("*.tex"):
-        blueprint_labels.update(re.findall(r"\\label\{([^}]+)\}", strip_unescaped_percent_comments(path.read_text())))
+    blueprint_labels, nodes = blueprint_nodes(root)
+    literature_nodes = set()
     coverage = document["interface_coverage"]
     require({c["structure"] for c in coverage} == REQUIRED_STRUCTURES, "interface coverage structure set drift")
     require(len(coverage) == len(REQUIRED_STRUCTURES), "duplicate interface coverage structure")
@@ -204,7 +277,17 @@ def validate_document(root, document):
             require(row["proof_status"] == FIELD_STATUSES[item["role"]], f"field role/status mismatch: {name}.{field}")
             require(set(row["blueprint_labels"]) <= blueprint_labels, f"unknown Blueprint label: {name}.{field}")
             if item["role"] == "literature":
-                require(row["blueprint_labels"], f"missing Blueprint coverage: {name}.{field}")
+                require(len(row["blueprint_labels"]) == 1,
+                        f"expected one individual Blueprint node: {name}.{field}")
+                label = row["blueprint_labels"][0]
+                require(label not in literature_nodes, f"Blueprint literature node reused: {label}")
+                literature_nodes.add(label)
+                require(label in nodes, f"Blueprint coverage is not a mathematical node: {label}")
+                require(name + "." + field in nodes[label],
+                        f"missing direct Blueprint field link: {name}.{field} at {label}")
+                field_links = {n for n in nodes[label] if n.startswith(name + ".")}
+                require(field_links == {name + "." + field},
+                        f"Blueprint node combines literature fields: {label}")
             declarations.add((name + "." + field, module))
     for row in document["declaration_sources"]:
         reference(row, row["declaration"])
@@ -218,7 +301,7 @@ def lean_check(document, declarations):
     modules = sorted({module for _, module in declarations})
     pairs = ",\n    ".join(f"(`{name}, `{module})" for name, module in sorted(declarations))
     checks = "".join(f"import {module}\n" for module in modules)
-    checks += "import Lean.Elab.Command\nopen Lean Elab Command in\nrun_cmd do\n  let env ← getEnv\n"
+    checks += "import Lean.Elab.Command\nimport Lean.Meta.Basic\nopen Lean Elab Command in\nrun_cmd do\n  let env ← getEnv\n"
     checks += f"  for (n, expected) in [{pairs}] do\n"
     checks += '    unless env.contains n do throwError "missing provenance declaration: {n}"\n'
     checks += '    let some idx := env.getModuleIdxFor? n | throwError "no defining module: {n}"\n'
@@ -230,6 +313,12 @@ def lean_check(document, declarations):
         checks += f"  let expected : Array Name := #[{expected}]\n"
         checks += '  unless actual.size == expected.size && actual.all (expected.contains ·) do\n'
         checks += f'    throwError "structure field coverage drift: {item["structure"]}: {{actual}}"\n'
+        if item["role"] == "literature":
+            checks += f"  for field in getStructureFields env `{item['structure']} do\n"
+            checks += f"    let name := `{item['structure']} ++ field\n"
+            checks += '    let some info := env.find? name | throwError "missing literature field: {name}"\n'
+            checks += '    unless ← liftTermElabM (Lean.Meta.isProp info.type) do\n'
+            checks += '      throwError "literature results field is data rather than a proposition: {name}"\n'
     return checks
 
 

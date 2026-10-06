@@ -1,4 +1,5 @@
 import KIP126.Main.Solution.Computation.Tmf
+import KIP126.Interface.Solution.Literature.Applications
 
 /-!
 # The weight130 high-filtration argument of Proposition 7.8

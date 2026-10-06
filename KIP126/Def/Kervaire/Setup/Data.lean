@@ -2,7 +2,6 @@ import KIP126.Def.ClassicalAdams.SphereSequence.Data
 import KIP126.Def.Algebra.Coefficients.Data
 import KIP126.Def.Synthetic.AdamsSequence.Data
 import KIP126.Def.StableHomotopy.Context.Data
-import Mathlib.Algebra.Field.ZMod
 
 /-!
 # Stable and synthetic data used by the Kervaire endpoint
@@ -17,19 +16,6 @@ namespace KIP126.Kervaire
 open KIP126.Classical.Adams
 open KIP126.Core.Algebra
 open KIP126.Synthetic.SpectralSequence
-
-/-- Graded stable homotopy groups attached to a stable context. -/
-structure StableHomotopyData (C : StableHomotopyContext) where
-  homotopy : ℤ → C.Spectrum → Type
-  homotopyAddCommGroup : ∀ (n : ℤ) (X : C.Spectrum), AddCommGroup (homotopy n X)
-
-attribute [instance] StableHomotopyData.homotopyAddCommGroup
-
-/-- A stable map interface with its induced maps on all homotopy groups. -/
-structure StableMapData {C : StableHomotopyContext} (H : StableHomotopyData C)
-    (X Y : C.Spectrum) where
-  map : Type
-  induced : ∀ (n : ℤ), H.homotopy n X → H.homotopy n Y
 
 /-- A synthetic stable context with the deformation element and its quotients. -/
 structure SyntheticHomotopyContext (C : StableHomotopyContext) where
@@ -114,25 +100,6 @@ structure Near126Conditions
     D.theta5Square ≠ 0
   C5 : D.lambda3 (D.etaAction D.h_0_sq_mul_x_124_8) =
     D.lambda_pow_six_on_h_1_mul_h_4 D.h_1_mul_h_4_mul_x_109_12
-
-/-- A framed manifold in dimension `n`, retaining its geometric carrier. -/
-structure FramedKervaireContext
-    {C : StableHomotopyContext} (H : StableHomotopyData C) where
-  Manifold : ℕ → Type
-  closedSmoothFramed : ∀ {n : ℕ}, Manifold n → Prop
-  framedCobordant : ∀ {n : ℕ}, Manifold n → Manifold n → Prop
-  pontryaginThom : ∀ {n : ℕ}, Manifold n → H.homotopy n C.sphere
-  middleSpace : ∀ {n : ℕ}, Manifold n → Type
-  intersectionPairing : ∀ {n : ℕ} (M : Manifold n),
-    middleSpace M → middleSpace M → ZMod 2
-  quadraticRefinement : ∀ {n : ℕ} (M : Manifold n),
-    middleSpace M → ZMod 2
-  arfInvariant : ∀ {n : ℕ}, Manifold n → ZMod 2
-  hasKervaireInvariantOne : ∀ {n : ℕ}, Manifold n → Prop
-  pontryaginThom_cobordism : ∀ {n : ℕ} {M N : Manifold n},
-    framedCobordant M N → pontryaginThom M = pontryaginThom N
-  kervaireInvariantOne_iff_arf : ∀ {n : ℕ} (M : Manifold n),
-    hasKervaireInvariantOne M ↔ arfInvariant M = 1
 
 /-- Explicit object and grading transports between classical and synthetic
 sphere Adams data. -/

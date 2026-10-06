@@ -16,7 +16,6 @@ import KIP126.Interface.Challenge.Challenge2
 import KIP126.Main.Solution.Route.Predicates
 
 import KIP126.Main.Solution.Literature.EtaRows.Proofs
-import KIP126.Main.Solution.Literature.Adams.OneLine
 import KIP126.Main.Solution.Literature.Near126
 import KIP126.Main.Solution.Computation.LinProgram.Differentials
 import KIP126.Main.Solution.Computation.LinProgram.E2

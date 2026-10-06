@@ -54,9 +54,13 @@ example (I : KIP126.Challenge2) :
 
 open KIP126 KIP126.Classical.Adams in
 example (I : KIP126.Challenge2)
-    (application : Literature.Route.Application I.routeModel Def.standardRouteEta
+    (localMoss : Literature.Route.MossSourceInput standardMilnorCooperations
+      I.literature.bindings.route.classicalSource.convergence)
+    (shiftNatural : I.literature.bindings.eInftyWeightShift.Natural)
+    (application : Literature.Route.Application standardRouteModel Def.standardRouteEta
       I.literature.bindings.tmfLabels I.literature.bindings.route)
-    (tmf : Literature.Route.TmfInputs I.routeModel I.literature.bindings.tmfLabels) :
-    Literature.Route.Inputs I.routeModel Def.standardRouteEta I.literature.bindings.tmfLabels :=
-  Literature.Route.Statements.toInputs I.routeModel Def.standardRouteEta
-    I.literature.bindings.tmfLabels I.literature.results.route application tmf
+    (tmf : Literature.Route.TmfInputs standardRouteModel I.literature.bindings.tmfLabels) :
+    Literature.Route.Inputs standardRouteModel Def.standardRouteEta I.literature.bindings.tmfLabels :=
+  Literature.Route.Statements.toInputs standardRouteModel Def.standardRouteEta
+    I.literature.bindings.tmfLabels
+    (I.literature.results.route localMoss shiftNatural) application tmf
