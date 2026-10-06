@@ -151,7 +151,8 @@ def make_report(root: Path, issues: list | None = None) -> dict:
     for label, node in sorted(nodes.items()):
         if node['complete']:
             continue
-        if label in external or label.startswith(('data:', 'evidence:')):
+        # Source status belongs to the manifest, not to a label's spelling.
+        if any(alias in external for alias in node['labels']):
             category = 'external_inputs'
         elif label.startswith(('question:', 'ques:')):
             category = 'open_questions'
@@ -166,12 +167,17 @@ def make_report(root: Path, issues: list | None = None) -> dict:
                   if any(re.search(r'(?<![\w:-])' + re.escape(alias) + r'(?![\w:-])',
                                    i.get('body', '') + '\n' + i.get('title', ''))
                          for alias in node['labels'])]
+        source_locators = []
+        for alias in node['labels']:
+            for locator in locators.get(alias, []):
+                if locator not in source_locators:
+                    source_locators.append(locator)
         groups[category].append({
             'label': label, 'aliases': node['labels'][1:],
             'lean': sorted(node['lean']), 'dependencies': sorted(node['deps']),
             'unfinished_dependencies': sorted(d for d in node['deps'] if not nodes[d]['complete']),
             'potential_dependents': len(descendants(label)),
-            'blueprint': locations.get(label), 'source_locators': locators.get(label, []),
+            'blueprint': locations.get(label), 'source_locators': source_locators,
             'issues': sorted(linked, key=lambda i: i['number']),
         })
     for rows in groups.values():

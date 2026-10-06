@@ -61,6 +61,38 @@ class FrontierTests(unittest.TestCase):
         self.assertEqual(report['groups']['external_inputs'][0]['source_locators'][0]['locator'], 'Theorem 1')
         self.assertEqual(report['groups']['blocked'][0]['label'], 'consumer')
 
+    def test_internal_evidence_and_data_use_targets_and_dependencies(self):
+        for prefix in ('evidence:', 'data:'):
+            with self.subTest(prefix=prefix):
+                source = self.node('done', flags=r'\leanok')
+                source += self.node(prefix + 'ready', 'done')
+                source += self.node(prefix + 'blocked', prefix + 'ready')
+                source += self.node(prefix + 'missing', lean='')
+                manifest = {'rows': [{
+                    'blueprint_labels': [prefix + 'ready'], 'sources': ['paper'],
+                    'locator': 'Theorem 2', 'proof_status': 'internal-application-obligation'}]}
+                groups = self.report(source, manifest)['groups']
+                self.assertEqual(groups['external_inputs'], [])
+                self.assertEqual([r['label'] for r in groups['frontier']], [prefix + 'ready'])
+                self.assertEqual([r['label'] for r in groups['blocked']], [prefix + 'blocked'])
+                self.assertEqual([r['label'] for r in groups['without_lean_target']], [prefix + 'missing'])
+                self.assertEqual(groups['frontier'][0]['source_locators'][0]['locator'], 'Theorem 2')
+
+    def test_external_status_and_locators_follow_node_aliases(self):
+        source = self.node('primary', flags=r'\label{external-alias}\notready')
+        source += self.node('consumer', 'external-alias')
+        manifest = {'rows': [
+            {'blueprint_labels': ['external-alias'], 'sources': ['paper'],
+             'locator': 'Theorem 1', 'proof_status': 'external-statement-unproved'},
+            {'blueprint_labels': ['primary', 'external-alias'], 'sources': ['paper'],
+             'locator': 'Theorem 1'}]}
+        groups = self.report(source, manifest)['groups']
+        self.assertEqual(groups['frontier'], [])
+        self.assertEqual(groups['blocked'][0]['dependencies'], ['primary'])
+        self.assertEqual(groups['external_inputs'][0]['label'], 'primary')
+        self.assertEqual(groups['external_inputs'][0]['source_locators'], [
+            {'sources': ['paper'], 'locator': 'Theorem 1'}])
+
     def test_notready_overrides_completion(self):
         report = self.report(self.node('one', flags=r'\leanok\notready'))
         self.assertEqual(report['completed_by_blueprint_markers'], 0)
@@ -123,17 +155,21 @@ class PublicationTests(unittest.TestCase):
 
 
 class WorkflowBoundaryTests(unittest.TestCase):
-    def test_pr_generation_has_no_write_permission_and_publication_is_main_only(self):
+    def test_manual_generation_is_optional_and_publication_is_main_only(self):
         import yaml
         root = Path(__file__).resolve().parents[1]
         workflow = yaml.safe_load((root / '.github/workflows/blueprint-frontier.yml').read_text())
+        triggers = workflow.get('on', workflow.get(True))
+        self.assertEqual(set(triggers), {'workflow_dispatch'})
         self.assertEqual(workflow['jobs']['generate']['permissions']['issues'], 'read')
         generation = next(step for step in workflow['jobs']['generate']['steps']
-                          if step.get('name') == 'Check frontier invariants and generate reports')
+                          if step.get('name') == 'Generate frontier reports')
         self.assertNotIn('GH_TOKEN', generation.get('env', {}))
+        automation = (root / '.github/workflows/automation-checks.yml').read_text()
+        self.assertNotIn('scripts.test_blueprint_frontier', automation)
         publish_job = workflow['jobs']['publish']
         self.assertIn("github.ref == 'refs/heads/main'", publish_job['if'])
-        self.assertIn("github.event_name != 'pull_request'", publish_job['if'])
+        self.assertIn("github.event_name == 'workflow_dispatch'", publish_job['if'])
         self.assertEqual(publish_job['needs'], 'generate')
 
 

@@ -12,12 +12,20 @@ separately on GitHub.
 | [pr-build](../.github/workflows/pr-build.yml) | Validate candidate sources and pins, compile offline in the sandbox, run repository checks, and publish build statuses and exact-input outputs for PRs and merge groups. Executable tooling comes from the trusted workflow configuration. |
 | [CI](../.github/workflows/ci.yml) | Compile main, publish its compilation baseline, and run repository checks under the `main-validation` job name. |
 | [blueprint-pr](../.github/workflows/blueprint-pr.yml) | Render candidate Blueprint source offline, then validate declaration mappings against exact producer outputs. Mixed PRs are checked too; only pure Blueprint PRs publish this workflow's `build`, `scope`, and `bump-guard` statuses. |
-| [Blueprint frontier](../.github/workflows/blueprint-frontier.yml) | Validate the active DAG, publish reproducible scheduling artifacts, and update one bot-owned issue comment after main changes. PR generation has read-only permissions. |
+| [Blueprint frontier](../.github/workflows/blueprint-frontier.yml) | Optional manual generation of scheduling reports with read-only permissions. Only a manual run on main updates the single bot-owned issue comment; it is not a required merge check. |
 | [Blueprint and API docs](../.github/workflows/pages.yml) | Build and check documentation. PR API previews require `docs-preview`; main, manual and scheduled runs retain full site generation. |
 
 Candidate Lean sources include both KIP126 and KIPBase. Root configuration,
 renderer and executable scripts remain trusted; candidate execution receives no
 GitHub credentials. Source-scope review is a separate policy from compilation.
+
+Frontier generation does not run on PRs or pushes, and its regression tests are
+not part of the required automation suite. Use the local command documented in
+[ISSUE_WORKFLOW.md](ISSUE_WORKFLOW.md) or dispatch the optional workflow when a
+fresh scheduling report is useful. External-input classification follows the
+explicit `proof_status` in [external-inputs.json](external-inputs.json); a
+`data:` or `evidence:` label prefix, or a source citation on an internal
+application, does not make that node an external input.
 
 ## Build outputs and caches
 

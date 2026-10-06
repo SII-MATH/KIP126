@@ -46,20 +46,25 @@ with a Lean target and completed direct prerequisites appear in the frontier.
 Completion uses the explicit Blueprint markers; it is not inferred from builds.
 The report is a scheduling projection, not an independent proof audit.
 
-External literature inputs and recorded computation evidence are shown
-separately, as are open questions and nodes lacking stable Lean targets. Their
-presence does not assert truth, certification or acceptance of external premises.
+External inputs are classified by the explicit `proof_status` in
+[external-inputs.json](external-inputs.json), and are shown separately from open
+questions and nodes lacking stable Lean targets. A `data:` or `evidence:` label
+prefix does not establish external-input status. Internal applications remain
+internal when they cite a source; source metadata alone does not classify them
+as external inputs. The report does not assert truth, certification or acceptance
+of external premises.
 Ranking counts distinct transitive dependents in the existing DAG, then sorts by
 label; it measures potential reach, not a promise that those nodes become ready
 immediately. Each entry includes its label, declarations, direct prerequisites,
 Blueprint location, source locator metadata where present and matching open
 issues. An absent matching issue is explicitly reported as unassigned.
 
-The Blueprint frontier workflow regenerates JSON and Markdown artifacts after
-relevant main pushes, and updates one bot-owned comment on issue #84. The original
-issue body and human comments are preserved; repeated runs update the same
-comment. Publication checks the main revision to avoid publishing an obsolete
-snapshot. A PR runs generation/tests with read-only permissions and never
-publishes. The workflow must be merged before automatic publication becomes
-active. The complete report is available as a workflow artifact; the comment is
-a bounded preview with a link to that run.
+The optional Blueprint frontier workflow generates JSON and Markdown artifacts
+only when manually dispatched. It does not run for PRs or pushes, and frontier
+generation and its regression tests are not required merge checks. Generation
+has read-only permissions on every branch. A manual run on main may update one
+bot-owned comment on issue #84; the original issue body and human comments are
+preserved, and repeated runs update the same comment. Publication checks the
+main revision to avoid publishing an obsolete snapshot. The complete report is
+available as a workflow artifact; the comment is a bounded preview with a link
+to that run.

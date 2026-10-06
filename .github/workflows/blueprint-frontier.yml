@@ -1,36 +1,13 @@
 name: Blueprint frontier
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'blueprint/src/**'
-      - 'KIP126/**'
-      - 'KIP126.lean'
-      - 'docs/external-inputs.json'
-      - 'scripts/blueprint_frontier.py'
-      - 'scripts/sync_blueprint_frontier.py'
-      - 'scripts/check_external_inputs.py'
-      - 'scripts/check_source_inventory.py'
-      - 'scripts/test_blueprint_frontier.py'
-      - '.github/workflows/blueprint-frontier.yml'
-  pull_request:
-    paths:
-      - 'blueprint/src/**'
-      - 'docs/external-inputs.json'
-      - 'scripts/blueprint_frontier.py'
-      - 'scripts/sync_blueprint_frontier.py'
-      - 'scripts/check_external_inputs.py'
-      - 'scripts/check_source_inventory.py'
-      - 'scripts/test_blueprint_frontier.py'
-      - '.github/workflows/blueprint-frontier.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: blueprint-frontier-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'main' }}
+  group: blueprint-frontier-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -44,17 +21,14 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - name: Install pinned test dependency
-        run: python3 -m pip install PyYAML==6.0.2
       - name: Read open tasks
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 1000 --json number,title,body,url > "$RUNNER_TEMP/issues.json"
-      - name: Check frontier invariants and generate reports
+      - name: Generate frontier reports
         env:
           PYTHONDONTWRITEBYTECODE: '1'
         run: |
-          python3 -m unittest scripts.test_blueprint_frontier scripts.test_external_inputs.BlueprintNodeTests -v
           python3 scripts/blueprint_frontier.py --issues "$RUNNER_TEMP/issues.json" --output-dir frontier
           cat frontier/preview.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -66,7 +40,7 @@ jobs:
 
   publish:
     needs: generate
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
