@@ -369,7 +369,9 @@ theorem lambdaPow_naturality (L : SynAdamsLambdaModule E) (m : ℕ)
       E.d r k ≫ L.lambdaPowTarget m r k := by
   induction m with
   | zero =>
-      simp [lambdaPow, lambdaPowTarget, lambdaPowShiftedDifferential]
+      change 𝟙 (E.Page r k) ≫ E.d r k =
+        E.d r k ≫ 𝟙 (E.Page r (k + E.diffDeg r))
+      simp
   | succ m ih =>
       let hcommute : lambdaIndex m k + E.diffDeg r + (0, 0, -1) =
           lambdaIndex (Nat.succ m) k + E.diffDeg r := by

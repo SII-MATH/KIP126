@@ -76,7 +76,7 @@ given sphere. This uses the existing synthetic shift identifications. -/
 noncomputable def sphereSuspensionIso (m w : ℤ) :
     (shiftFunctor Syn (1 : ℤ)).obj (Smn (Syn := Syn) (m - 1) w) ≅ Smn m w :=
   ((SyntheticCategory.biShift_compat (Syn := Syn) 1).app _).symm ≪≫
-    (SyntheticCategory.biShift_comp (m - 1, w) (1, 0)).app S00 ≪≫
+    (SyntheticCategory.biShift_comp (m - 1, w) (1, 0)).app S_0_0 ≪≫
       eqToIso (by simp [Smn])
 
 /-- Injectivity on the suspended term of the cofiber exact sequence follows

@@ -426,6 +426,12 @@ variable (Syn : Type v) [Category.{0} Syn] [Preadditive Syn]
     [MonoidalCategory Syn]
     [Pretriangulated Syn] [SyntheticCategory Syn]
 
+/-- The underlying additive group of a classical Adams page. -/
+noncomputable abbrev classicalAdamsPage (X : 𝒮) (r s t : ℤ) :
+    AddCommGrpCat.{0} :=
+  (forget₂ (ModuleCat.{0, 0} IntModuleRing.{0}) AddCommGrpCat.{0}).obj
+    ((AdamsSS 𝒮 X).Page r (s, t))
+
 /-- 恒等对象映射在 synthetic Adams 的任意显示页上诱导恒等。 -/
 theorem synAdamsPageMap_id_local (X : Syn) (r : ℤ)
     (k : ℤ × ℤ × ℤ) :
@@ -485,7 +491,7 @@ noncomputable def syntheticClassicalPageIso (X : 𝒮)
     (r : ℤ) (hr : 2 ≤ r) (s t weight : ℤ)
     (hfree : r - 2 ≤ t - weight) :
     (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page r (s, t, weight) ≅
-      (AdamsSS 𝒮 X).Page r (s, t) :=
+      classicalAdamsPage 𝒮 X r s t :=
   ((rigidity_free_lambda_pages 𝒮 Syn X).componentClassicalEquiv
     𝒮 Syn X r hr s t weight hfree).toAddCommGrpIso
 
@@ -535,7 +541,7 @@ theorem syntheticClassicalPageIso_differential (X : 𝒮)
 noncomputable def diagonalToClassicalPage (X : 𝒮)
     (r : ℕ) (hr : 2 ≤ r) (s t : ℤ) :
     (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page (r : ℤ) (s, t, t) ⟶
-      (AdamsSS 𝒮 X).Page (r : ℤ) (s, t) :=
+      classicalAdamsPage 𝒮 X (r : ℤ) s t :=
   syntheticPageLambdaPow Syn ((nu 𝒮 Syn).obj X) (r - 2)
       (r : ℤ) s t t ≫
     (syntheticClassicalPageIso 𝒮 Syn X (r : ℤ) (by omega)
@@ -567,8 +573,8 @@ noncomputable def diagonalDifferentialTargetToClassical (X : 𝒮)
     (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page (r : ℤ)
         ((s, t, t) +
           (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).diffDeg (r : ℤ)) ⟶
-      (AdamsSS 𝒮 X).Page (r : ℤ)
-        (s + (r : ℤ), t + (r : ℤ) - 1) := by
+      classicalAdamsPage 𝒮 X (r : ℤ)
+        (s + (r : ℤ)) (t + (r : ℤ) - 1) := by
   let E := SynAdamsSS Syn ((nu 𝒮 Syn).obj X)
   let L := synAdamsSS_zlambda_module Syn ((nu 𝒮 Syn).obj X)
   let m := r - 2
@@ -681,7 +687,7 @@ noncomputable def finiteQuotientEInftyToClassicalPage (X : 𝒮)
     ((SynAdamsSS Syn
       (XModLambdaN ((nu 𝒮 Syn).obj X) (r - 1))).ssData
         (s, t, t)).eInfty ⟶
-      (AdamsSS 𝒮 X).Page (r : ℤ) (s, t) :=
+      classicalAdamsPage 𝒮 X (r : ℤ) s t :=
   (nuModLambdaPredGeneratorEInftyIsoPage 𝒮 Syn X r hr s t).hom ≫
     diagonalToClassicalPage 𝒮 Syn X r hr s t
 
@@ -1047,7 +1053,7 @@ structure FiniteClassicalInput {X Y : 𝒮} (f : X ⟶ Y)
   page_ge_two : 2 ≤ r
   exponent_le_length : eHat 𝒮 f ≤ n
   length_le_page : n ≤ (r : ℤ) - 2 + eHat 𝒮 f
-  T : AddCommGrpCat.{0}
+  T : ModuleCat.{0, 0} IntModuleRing.{0}
   [projective : Projective T]
   sourceValue : T ⟶ ((AdamsSS 𝒮 X).ssData (s, t)).V
   sourceCycle : Subobject.Factors

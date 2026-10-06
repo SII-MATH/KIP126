@@ -224,13 +224,11 @@ noncomputable def connectingHomomorphism (T : HoCofiberSequence (𝒮 := 𝒮)) 
       (shiftFunctor 𝒮 (-1)).map (α ≫ T.h) ≫
         (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X
   map_zero' := by
-    simp only [Limits.zero_comp, Functor.map_zero]
-    erw [Limits.zero_comp, Limits.comp_zero]
+    simp
   map_add' := by
     intro a b
-    simp only [Preadditive.add_comp, Functor.map_add]
-    erw [Preadditive.comp_add_assoc, Preadditive.add_comp]
-    simp only [Category.assoc]
+    simp [Preadditive.add_comp, Functor.map_add, Preadditive.comp_add,
+      Category.assoc]
 
 /-! ## Properties derived from the distinguished triangle -/
 
@@ -311,7 +309,6 @@ private theorem connectingHom_comp_f_zero (T : HoCofiberSequence (𝒮 := 𝒮))
       T.f) =
     (0 : (shiftFunctor 𝒮 (n - 1)).obj SphereSpectrum ⟶ T.Y)
   convert hout using 1
-  rfl
 
 /-! ## Long Exact Sequence on Homotopy Groups
 

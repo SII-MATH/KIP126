@@ -20,9 +20,6 @@ variable {Syn : Type u} [Category.{v} Syn] [Preadditive Syn]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
 
-set_option backward.defeqAttrib.useBackward true
-set_option backward.isDefEq.respectTransparency false
-
 /-- Actual filtered homotopy lifts of two specified ambient ESS classes.
 The last equality is postcomposition by the actual finite λ-cofiber boundary. -/
 def LambdaPowerBoundaryLifts
@@ -70,9 +67,12 @@ theorem lambdaPowerBockstein_relation_iff_homotopy_boundary
       LambdaPowerBoundaryLifts X n degree r s x y := by
   constructor
   · intro h
-    obtain ⟨xl, yl, hx, hy, hd⟩ :=
-      unbounded_lift_of_differentialRelation.{1, 0, 0, 0}
-        (lambdaPowerBocksteinCSSMap X n) degree r hr s 1 h
+    have hlifts := unbounded_lift_of_differentialRelation_one.{1, 0, 0, 0}
+      (C := AddCommGrpCat.{0})
+      (cm := lambdaPowerBocksteinCSSMap X n) (t := degree)
+      (r := r) (hr := hr) (s := s)
+      (T := T) (x := x) (y := y) h
+    rcases hlifts with ⟨xl, yl, hx, hy, hd⟩
     refine ⟨xl, yl, hx, hy, ?_⟩
     have ha := unbounded_lift_ambient_map.{1, 0, 0, 0}
       (lambdaPowerBocksteinCSSMap X n) degree s (s + r) (by omega) xl yl hd

@@ -157,23 +157,29 @@ noncomputable def freeLambdaE2QuotientIso (A : AddCommGrpCat.{v})
 
 variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
 
+/-- The free lambda model is formulated in abelian groups.  Classical Adams
+E2 is now integer-linear, so this is its underlying additive group. -/
+noncomputable def adamsE2Underlying (X : 𝒮) (s t : ℤ) : AddCommGrpCat.{v} :=
+  (forget₂ (ModuleCat.{v, v} IntModuleRing.{v}) AddCommGrpCat.{v}).obj
+    ((AdamsSS 𝒮 X).Page 2 (s, t))
+
 /-- The free λ-module model for the `(s,t,w)` component of the synthetic
 Adams E₂ page of `νX`. -/
 noncomputable def nuAdamsE2FreeComponent (X : 𝒮) (s t w : ℤ) :
     AddCommGrpCat.{v} :=
-  FreeLambdaE2.component ((AdamsSS 𝒮 X).Page 2 (s, t)) t w
+  FreeLambdaE2.component (adamsE2Underlying 𝒮 X s t) t w
 
 /-- The resulting model for the E₂ page of `νX/λ^n`. -/
 noncomputable def nuModLambdaE2Component (X : 𝒮) (n : ℕ)
     (s t w : ℤ) : AddCommGrpCat.{v} :=
-  TruncatedLambdaE2.component ((AdamsSS 𝒮 X).Page 2 (s, t)) t w n
+  TruncatedLambdaE2.component (adamsE2Underlying 𝒮 X s t) t w n
 
 /-- The finite-quotient E₂ model is the cokernel of `λ^n` on the free
 λ-module E₂ model of `νX`. -/
 noncomputable def nuModLambdaE2QuotientIso (X : 𝒮) (n : ℕ)
     (s t w : ℤ) :
     cokernel (FreeLambdaE2.lambdaPow
-      ((AdamsSS 𝒮 X).Page 2 (s, t)) t w n) ≅
+      (adamsE2Underlying 𝒮 X s t) t w n) ≅
       nuModLambdaE2Component 𝒮 X n s t w :=
   freeLambdaE2QuotientIso _ t w n
 
@@ -182,17 +188,17 @@ copy of the classical Adams E₂ group. -/
 noncomputable def nuModLambdaE2InStripIso (X : 𝒮) (n : ℕ)
     (s t w : ℤ) (h : 0 ≤ t - w ∧ t - w < n) :
     nuModLambdaE2Component 𝒮 X n s t w ≅
-      (AdamsSS 𝒮 X).Page 2 (s, t) :=
+      adamsE2Underlying 𝒮 X s t :=
   eqToIso (TruncatedLambdaE2.component_eq_generator_iff
-    ((AdamsSS 𝒮 X).Page 2 (s, t)) t w n h)
+    (adamsE2Underlying 𝒮 X s t) t w n h)
 
 /-- Equivalently, the cokernel of `λ^n` on the free E₂ model is the
 classical Adams E₂ group in every weight of the surviving strip. -/
 noncomputable def nuModLambdaE2QuotientInStripIso (X : 𝒮) (n : ℕ)
     (s t w : ℤ) (h : 0 ≤ t - w ∧ t - w < n) :
     cokernel (FreeLambdaE2.lambdaPow
-      ((AdamsSS 𝒮 X).Page 2 (s, t)) t w n) ≅
-      (AdamsSS 𝒮 X).Page 2 (s, t) :=
+      (adamsE2Underlying 𝒮 X s t) t w n) ≅
+      adamsE2Underlying 𝒮 X s t :=
   nuModLambdaE2QuotientIso 𝒮 X n s t w ≪≫
     nuModLambdaE2InStripIso 𝒮 X n s t w h
 
@@ -201,7 +207,7 @@ weight `w=t`, where the component is the classical Adams E₂ component. -/
 noncomputable def nuModLambdaE2OneDiagonalIso (X : 𝒮) (s t w : ℤ)
     (h : w = t) :
     nuModLambdaE2Component 𝒮 X 1 s t w ≅
-      (AdamsSS 𝒮 X).Page 2 (s, t) :=
+      adamsE2Underlying 𝒮 X s t :=
   nuModLambdaE2InStripIso 𝒮 X 1 s t w (by omega)
 
 /-- Away from `w=t`, the first λ-quotient E₂ model vanishes. -/
@@ -218,8 +224,8 @@ E₂ component. -/
 noncomputable def nuModLambdaE2OneQuotientDiagonalIso (X : 𝒮)
     (s t w : ℤ) (h : w = t) :
     cokernel (FreeLambdaE2.lambdaPow
-      ((AdamsSS 𝒮 X).Page 2 (s, t)) t w 1) ≅
-      (AdamsSS 𝒮 X).Page 2 (s, t) :=
+      (adamsE2Underlying 𝒮 X s t) t w 1) ≅
+      adamsE2Underlying 𝒮 X s t :=
   nuModLambdaE2QuotientInStripIso 𝒮 X 1 s t w (by omega)
 
 /-- Direct form away from the diagonal: the cokernel of λ on the free E₂
@@ -227,7 +233,7 @@ page vanishes. -/
 theorem nuModLambdaE2OneQuotientIsZero (X : 𝒮)
     (s t w : ℤ) (h : w ≠ t) :
     IsZero (cokernel (FreeLambdaE2.lambdaPow
-      ((AdamsSS 𝒮 X).Page 2 (s, t)) t w 1)) :=
+      (adamsE2Underlying 𝒮 X s t) t w 1)) :=
   (nuModLambdaE2OneIsZero 𝒮 X s t w h).of_iso
     (nuModLambdaE2QuotientIso 𝒮 X 1 s t w)
 

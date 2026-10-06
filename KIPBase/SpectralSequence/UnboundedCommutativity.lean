@@ -28,13 +28,13 @@ namespace KIPBase.SpectralSequence
 
 open CategoryTheory CategoryTheory.Limits
 
-universe u v w
+universe u v w w₀
 
 set_option linter.dupNamespace false
 
 variable {C : Type u} [Category.{v} C] [Abelian C]
-variable [LocallySmall.{u} C] [WellPowered.{u} C]
-variable [HasWidePullbacks.{u} C] [HasCoproducts.{u} C]
+variable [LocallySmall.{w₀} C] [WellPowered.{w₀} C]
+variable [HasWidePullbacks.{w₀} C] [HasCoproducts.{w₀} C]
 
 /-- 无界 ESS 在次数 `1` 的环境对象确实是源谱序列的原始 `E∞` 项。 -/
 theorem unboundedExtension_source_V
@@ -704,6 +704,38 @@ theorem unbounded_lift_of_differentialRelation
     abel
   · change xl' ≫ FC.filDiff s k = yl' ≫ j
     simp only [xl', yl', Preadditive.sub_comp, hdFC, ha]
+
+/-- The degree-one specialization of `unbounded_lift_of_differentialRelation`,
+with the target complex degree normalized before specialization. -/
+theorem unbounded_lift_of_differentialRelation_one
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+    {ω' : Type w}
+    {E₁ E₂ : SpectralSequence C ω}
+    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
+    (cm : ConvergenceMorphism conv₁ conv₂) (t : ω')
+    (r : ℤ) (hr : 0 ≤ r) (s : ℤ) {T : C} [Projective T]
+    {x : T ⟶ (unboundedExtensionSSData cm t (s, 1)).V}
+    {y : T ⟶ (unboundedExtensionSSData cm t (s + r, 0)).V}
+    (h : DifferentialRelation (ExtensionSpectralSequence cm t) r (s, 1) x y) :
+    ∃ (xl : T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex cm t).fil s 1))
+      (yl : T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex cm t).fil (s + r) 0)),
+      UnboundedExtensionIsLift cm t s 1 xl x ∧
+      UnboundedExtensionIsLift cm t (s + r) 0 yl y ∧
+      xl ≫ (unboundedUnderlyingComplex cm t).filDiff s 1 =
+        yl ≫ Subobject.ofLE
+          ((unboundedUnderlyingComplex cm t).fil (s + r) 0)
+          ((unboundedUnderlyingComplex cm t).fil s 0)
+          ((unboundedUnderlyingComplex cm t).fil_anti_of_le 0 (by omega)) := by
+  obtain ⟨xl, yl, hx, hy, hd⟩ :=
+    unbounded_lift_of_differentialRelation cm t r hr s 1 h
+  refine ⟨xl, yl, hx, ?_, ?_⟩
+  · norm_num at hy ⊢
+    exact hy
+  · norm_num at hd ⊢
+    exact hd
 
 /-! ## 无界 crossing 的复形代表元接口 -/
 
