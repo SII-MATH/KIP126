@@ -22,11 +22,11 @@ def e₂ToE₃ (A : ClassicalAdamsSS stable X) (b : Bidegree) :
 
 /-- The actual page-2 differential component at the Adams target degree. -/
 def d₂ (A : ClassicalAdamsSS stable X) (b : Bidegree) :
-    (A.E₂).X b ⟶ (A.E₂).X (classicalAdamsTarget 2 b) :=
-  (A.E₂).d b (classicalAdamsTarget 2 b)
+    (A.E₂).X b ⟶ (A.E₂).X (classicalAdamsTarget AdamsPage.two b) :=
+  (A.E₂).d b (classicalAdamsTarget AdamsPage.two b)
 
 theorem d₂_shape (_A : ClassicalAdamsSS stable X) (b : Bidegree) :
-    (classicalAdamsShape 2).Rel b (classicalAdamsTarget 2 b) :=
+    (classicalAdamsShape 2).Rel b (classicalAdamsTarget AdamsPage.two b) :=
   classicalAdamsShape_two_rel b
 
 end ClassicalAdamsSS
@@ -120,14 +120,16 @@ structure SphereAdamsAlgebraPresentation {stable : StableHomotopyContext}
             apply Prod.ext <;>
               simp [classicalAdamsTarget, classicalAdamsShift, add_assoc,
                 add_comm, add_left_comm] :
-            classicalAdamsTarget 2 a + b = classicalAdamsTarget 2 (a + b))
-          (productMap (classicalAdamsTarget 2 a) b ((A.d₂ a).hom x) y) +
+            classicalAdamsTarget AdamsPage.two a + b =
+              classicalAdamsTarget AdamsPage.two (a + b))
+          (productMap (classicalAdamsTarget AdamsPage.two a) b ((A.d₂ a).hom x) y) +
         transportPageElement A
           (by
             apply Prod.ext <;>
               simp [classicalAdamsTarget, classicalAdamsShift, add_assoc] :
-            a + classicalAdamsTarget 2 b = classicalAdamsTarget 2 (a + b))
-          (productMap a (classicalAdamsTarget 2 b) x ((A.d₂ b).hom y))
+            a + classicalAdamsTarget AdamsPage.two b =
+              classicalAdamsTarget AdamsPage.two (a + b))
+          (productMap a (classicalAdamsTarget AdamsPage.two b) x ((A.d₂ b).hom y))
 
 /-- An external page pairing for arbitrary spectra.  Its target is the chosen
 smash spectrum, not either input, so it does not assert an internal product. -/
@@ -156,14 +158,16 @@ structure ExternalAdamsPairingLaws {stable : StableHomotopyContext}
             apply Prod.ext <;>
               simp [classicalAdamsTarget, classicalAdamsShift, add_assoc,
                 add_comm, add_left_comm] :
-            classicalAdamsTarget 2 a + b = classicalAdamsTarget 2 (a + b))
-          (pairMap (classicalAdamsTarget 2 a) b ((AX.d₂ a).hom x) y) +
+            classicalAdamsTarget AdamsPage.two a + b =
+              classicalAdamsTarget AdamsPage.two (a + b))
+          (pairMap (classicalAdamsTarget AdamsPage.two a) b ((AX.d₂ a).hom x) y) +
         transportPageElement AZ
           (by
             apply Prod.ext <;>
               simp [classicalAdamsTarget, classicalAdamsShift, add_assoc] :
-            a + classicalAdamsTarget 2 b = classicalAdamsTarget 2 (a + b))
-          (pairMap a (classicalAdamsTarget 2 b) x ((AY.d₂ b).hom y))
+            a + classicalAdamsTarget AdamsPage.two b =
+              classicalAdamsTarget AdamsPage.two (a + b))
+          (pairMap a (classicalAdamsTarget AdamsPage.two b) x ((AY.d₂ b).hom y))
 
 /-- The sphere page acts on the page of an arbitrary spectrum.  This is kept
 separate from `SphereAdamsMultiplication`, so a general Adams sequence gains no

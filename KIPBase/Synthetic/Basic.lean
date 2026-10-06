@@ -72,6 +72,29 @@ variable {Syn : Type u} [Category.{v} Syn] [Preadditive Syn]
   [MonoidalCategory Syn]
   [Pretriangulated Syn] [SyntheticCategory Syn]
 
+namespace SyntheticCategory
+
+/-- Every synthetic bidegree shift is an equivalence. Its inverse is the
+opposite bidegree shift; this follows from the composition and zero-shift
+coherence already present in `SyntheticCategory`. -/
+noncomputable instance biShift_isEquivalence (p : ℤ × ℤ) :
+    (biShift (Syn := Syn) p).IsEquivalence :=
+  Functor.IsEquivalence.mk' (biShift (-p))
+    (biShift_zero.symm ≪≫
+      eqToIso (congrArg biShift (by simp : (0 : ℤ × ℤ) = p + -p)) ≪≫
+      (biShift_comp p (-p)).symm)
+    (biShift_comp (-p) p ≪≫
+      eqToIso (congrArg biShift (by simp : -p + p = (0 : ℤ × ℤ))) ≪≫
+      biShift_zero)
+
+/-- Every synthetic bidegree shift is additive.  This is forced by its being
+an equivalence between preadditive categories with binary biproducts. -/
+noncomputable instance biShift_additive (p : ℤ × ℤ) :
+    Functor.Additive (biShift (Syn := Syn) p) :=
+  Functor.additive_of_preserves_binary_products _
+
+end SyntheticCategory
+
 /-! ### Cofiber of λ
 
 In a triangulated category, cofibers are obtained from distinguished triangles.
@@ -82,7 +105,9 @@ We apply this to λ_X : Σ^{0,-1}X → X to get X/λ as the cofiber.
 The resulting distinguished triangle is:
   Σ^{0,-1}X →[λ_X] X →[incl] X/λ →[proj] (Σ^{0,-1}X)⟦1⟧ -/
 
-/-- KIP §3: Synthetic spectra have functorial cofiber compatible with tensor. -/
+/-- KIP §3: synthetic spectra have a stable functorial cofiber compatible
+with tensor. In particular, its pointwise cofiber construction satisfies the
+stable 3×3 property recorded by the target class. -/
 axiom syn_functorial_cofiber :
   TensorTriangulatedCatWithFunctorialCofiber Syn
 

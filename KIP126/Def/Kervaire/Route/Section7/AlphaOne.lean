@@ -31,7 +31,7 @@ common page representatives of both prescribed weighted E2 labels. -/
 def FiniteNonzeroDifferential (q : ℕ) (r s t s' t' : ℤ) (k k' : ℕ)
     (x : E2 H SphereSpectrum s t) (y : E2 H SphereSpectrum s' t') : Prop :=
   let A := D.family.quotient (S_0_0 : Syn) q
-  ∃ h : syntheticAdamsTarget r (s,t,t-k) = (s',t',t'-k'),
+  ∃ h : syntheticAdamsRawTarget r (s,t,t-k) = (s',t',t'-k'),
     ∃ (xr : A.Page r (s,t,t-k)) (yr : A.Page r (s',t',t'-k')),
       KIP126.Synthetic.SpectralSequence.RepresentsOnPage A r (s,t,t-k)
         (D.quotientLabel q s t k x) xr ∧

@@ -10,12 +10,17 @@ open CategoryTheory
 open KIP126.Core.Algebra
 open KIP126.Core.SpectralSequence
 
-/-- The AIM classical Adams differential degree. -/
-def classicalAdamsShift (r : ℕ) : Bidegree := (r, (r : ℤ) - 1)
+/-- AIM 约定下有效 Adams 页的微分次数。 -/
+def classicalAdamsShift (r : AdamsPage) : Bidegree :=
+  (r.toInt, r.toInt - 1)
 
-/-- The target bidegree of a page-`r` classical Adams differential. -/
-def classicalAdamsTarget (r : ℕ) (b : Bidegree) : Bidegree :=
+/-- 有效 Adams 页微分的目标双次数。 -/
+def classicalAdamsTarget (r : AdamsPage) (b : Bidegree) : Bidegree :=
   b + classicalAdamsShift r
+
+/-- 把有效 Adams 页送入 Mathlib 所需的整数页形状。 -/
+def classicalAdamsShapeAt (r : AdamsPage) : ComplexShape Bidegree :=
+  classicalAdamsShape r.toInt
 
 def classicalAdamsPageLevel : PageLevelConvention where
   firstPage := 2
@@ -30,16 +35,18 @@ def classicalAdamsPageLevel : PageLevelConvention where
   cycleLevel_eq_quotientExponent := by intro r; rfl
 
 @[simp] theorem classicalAdamsShift_two :
-    classicalAdamsShift 2 = (2, 1) := by
-  norm_num [classicalAdamsShift]
+    classicalAdamsShift AdamsPage.two = (2, 1) := by
+  norm_num [classicalAdamsShift, AdamsPage.two, AdamsPage.toInt]
 
 @[simp] theorem classicalAdamsTarget_two (b : Bidegree) :
-    classicalAdamsTarget 2 b = (b.1 + 2, b.2 + 1) := by
-  apply Prod.ext <;> simp [classicalAdamsTarget, classicalAdamsShift]
+    classicalAdamsTarget AdamsPage.two b = (b.1 + 2, b.2 + 1) := by
+  apply Prod.ext <;>
+    simp [classicalAdamsTarget, classicalAdamsShift, AdamsPage.two, AdamsPage.toInt]
 
 @[simp] theorem classicalAdamsShape_two_rel (b : Bidegree) :
-    (classicalAdamsShape 2).Rel b (classicalAdamsTarget 2 b) := by
-  simp [classicalAdamsShape, classicalAdamsTarget, classicalAdamsShift]
+    (classicalAdamsShape 2).Rel b (classicalAdamsTarget AdamsPage.two b) := by
+  simp [classicalAdamsShape, classicalAdamsTarget, classicalAdamsShift,
+    AdamsPage.two, AdamsPage.toInt]
 
 /-- A mod-2 classical Adams spectral sequence, with the differential shape
 fixed to `(r,r-1)` and displayed from `E₂`. -/

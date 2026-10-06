@@ -52,11 +52,11 @@ noncomputable def biShift_eq_tensor_Smn (m n : ℤ) (X : Syn) :
 
 /-! ### biShift fully faithful -/
 
-/-- biShift(p) is fully faithful since it is an autoequivalence
-    (with inverse biShift(-p) via biShift_comp and biShift_zero).
-    Axiomatized to avoid verbose coherence proof for the equivalence triangle. -/
-axiom biShift_fullyFaithful (p : ℤ × ℤ) :
-    (SyntheticCategory.biShift (Syn := Syn) p).FullyFaithful
+/-- `biShift(p)` is fully faithful because it is the functor of the
+autoequivalence constructed from `biShift_comp` and `biShift_zero`. -/
+noncomputable def biShift_fullyFaithful (p : ℤ × ℤ) :
+    (SyntheticCategory.biShift (Syn := Syn) p).FullyFaithful :=
+  (SyntheticCategory.biShift (Syn := Syn) p).asEquivalence.fullyFaithfulFunctor
 
 /-! ### Suspension invariance -/
 

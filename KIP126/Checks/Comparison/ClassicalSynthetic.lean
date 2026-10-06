@@ -32,27 +32,26 @@ example {classical : InternalClassicalSequence.{v}} {synthetic : SyntheticAdamsS
         sourcePageMap comparison w r (b + (r, r - 1)) =
       sourcePageMap comparison w r b ≫ fixedWeightDifferential synthetic w r b :=
   comparison.differential_comm w r b
-
 example {classical : InternalClassicalSequence.{v}} {synthetic : SyntheticAdamsSS.{v}}
     (comparison : ReindexedSpectralSequenceMap classical synthetic)
     (w : ℤ) (b : Bidegree) :
     sourceEInftyMap comparison w b = (comparison.ambient w).pageMap b ⊤ := rfl
 
-example (r : ℤ) (i : Tridegree) :
-    (syntheticAdamsShape r).Rel i (syntheticAdamsTarget r i) :=
+example (r : AdamsPage) (i : Tridegree) :
+    (syntheticAdamsShapeAt r).Rel i (syntheticAdamsTarget r i) :=
   syntheticAdamsShape_rel r i
 
-example (r : ℤ) (i : Tridegree) :
+example (r : AdamsPage) (i : Tridegree) :
     i.2.2 = (syntheticAdamsTarget r i).2.2 :=
   weightPreserving_differential r i
 
 example {A : SyntheticAdamsSS.{v}} (action : SyntheticLambdaAction A) (i : Tridegree) :
     lambdaMapFromAction action i ≫ A.d₂ (lambdaTarget i) ≫
         eqToHom (congrArg (A.Page 2) (show
-          syntheticAdamsTarget 2 (lambdaTarget i) =
-            lambdaTarget (syntheticAdamsTarget 2 i) by
+          syntheticAdamsTarget AdamsPage.two (lambdaTarget i) =
+            lambdaTarget (syntheticAdamsTarget AdamsPage.two i) by
           simp only [syntheticAdamsTarget, lambdaTarget]; abel)) =
-      A.d₂ i ≫ lambdaMapFromAction action (syntheticAdamsTarget 2 i) :=
+      A.d₂ i ≫ lambdaMapFromAction action (syntheticAdamsTarget AdamsPage.two i) :=
   action.lambdaMap_comm i
 
 example {Syn : Type u} [SyntheticCategory.{u, v} Syn]

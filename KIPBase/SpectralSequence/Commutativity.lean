@@ -75,14 +75,68 @@ theorem BoundedExtensionSS.lift_ambient_map
   have hfil := (ext.complex t).filDiff_comp_arrow s 1
   change (ext.complex t).filDiff s 1 ≫ ((ext.complex t).fil s 0).arrow =
     ((ext.complex t).fil s 1).arrow ≫ (ext.complex t).d 1 at hfil
-  calc
-    xl ≫ ((ext.complex t).fil s 1).arrow ≫ cm.aMap t =
-        xl ≫ ((ext.complex t).fil s 1).arrow ≫ (ext.complex t).d 1 := by rw [hmap]
-    _ = (xl ≫ (ext.complex t).filDiff s 1) ≫
-        ((ext.complex t).fil s 0).arrow := by
-          simpa only [Category.assoc] using congrArg (fun f => xl ≫ f) hfil.symm
-    _ = yl ≫ ((ext.complex t).fil u 0).arrow := by
-          rw [hd, Category.assoc, Subobject.ofLE_arrow]
+  have hcore : xl ≫ ((ext.complex t).fil s 1).arrow ≫
+      (ext.complex t).d 1 = yl ≫ ((ext.complex t).fil u 0).arrow := by
+    calc
+      xl ≫ (((ext.complex t).fil s 1).arrow ≫ (ext.complex t).d 1) =
+        xl ≫ ((ext.complex t).filDiff s 1 ≫
+          ((ext.complex t).fil s 0).arrow) :=
+            congrArg (fun f => xl ≫ f) hfil.symm
+      _ = (xl ≫ (ext.complex t).filDiff s 1) ≫
+          ((ext.complex t).fil s 0).arrow := (Category.assoc _ _ _).symm
+      _ = (yl ≫ Subobject.ofLE ((ext.complex t).fil u 0)
+          ((ext.complex t).fil s 0)
+          ((ext.complex t).fil_anti_of_le 0 hsu)) ≫
+          ((ext.complex t).fil s 0).arrow :=
+            congrArg (fun f => f ≫ ((ext.complex t).fil s 0).arrow) hd
+      _ = yl ≫ (Subobject.ofLE ((ext.complex t).fil u 0)
+          ((ext.complex t).fil s 0)
+          ((ext.complex t).fil_anti_of_le 0 hsu) ≫
+          ((ext.complex t).fil s 0).arrow) := Category.assoc _ _ _
+      _ = yl ≫ ((ext.complex t).fil u 0).arrow :=
+        congrArg (fun f => yl ≫ f)
+          (Subobject.ofLE_arrow ((ext.complex t).fil_anti_of_le 0 hsu))
+  simpa [hmap, BoundedExtensionSS.complex, underlyingComplex, twoTermObj,
+    twoTermDiff] using hcore
+
+/- 若两个过滤代表元在极限对象中的实际像相同，则目标过滤层单态性
+   把该等式唯一地拉回过滤复形中的微分等式。 -/
+theorem BoundedExtensionSS.lift_eq_of_ambient_map
+    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
+    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
+    {cm : ConvergenceMorphism conv₁ conv₂}
+    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
+    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
+    (t : ω') (s u : ℤ) (hsu : s ≤ u) {T : C}
+    (xl : T ⟶ Subobject.underlying.obj ((ext.complex t).fil s 1))
+    (yl : T ⟶ Subobject.underlying.obj ((ext.complex t).fil u 0))
+    (hambient : xl ≫ ((ext.complex t).fil s 1).arrow ≫ cm.aMap t =
+      yl ≫ ((ext.complex t).fil u 0).arrow) :
+    xl ≫ (ext.complex t).filDiff s 1 =
+      yl ≫ Subobject.ofLE ((ext.complex t).fil u 0)
+        ((ext.complex t).fil s 0)
+        ((ext.complex t).fil_anti_of_le 0 hsu) := by
+  let FC := ext.complex t
+  have hdiff := FC.filDiff_comp_arrow s 1
+  change FC.filDiff s 1 ≫ (FC.fil s 0).arrow =
+    (FC.fil s 1).arrow ≫ FC.d 1 at hdiff
+  apply (cancel_mono (FC.fil s 0).arrow).mp
+  have hcore : (xl ≫ FC.filDiff s 1) ≫ (FC.fil s 0).arrow =
+      xl ≫ (FC.fil s 1).arrow ≫ cm.aMap t := by
+    simpa [FC, Category.assoc, BoundedExtensionSS.complex,
+      underlyingComplex, twoTermDiff, twoTermObj] using
+        congrArg (fun f => xl ≫ f) hdiff
+  have hambient' : xl ≫ (FC.fil s 1).arrow ≫ cm.aMap t =
+      yl ≫ (FC.fil u 0).arrow := by
+    simpa only [FC] using hambient
+  have htail : yl ≫ (FC.fil u 0).arrow =
+      (yl ≫ Subobject.ofLE (FC.fil u 0) (FC.fil s 0)
+        (FC.fil_anti_of_le 0 hsu)) ≫ (FC.fil s 0).arrow := by
+    simpa only [Category.assoc] using congrArg (fun f => yl ≫ f)
+      (Subobject.ofLE_arrow (FC.fil_anti_of_le 0 hsu)).symm
+  exact hcore.trans (hambient'.trans htail)
 
 /- 当目标过滤次数用算术上相等的另一表达式给出时，代表元引理
    仍可直接构造原页数的微分关系；等式只用于目标类型的搬运。 -/
@@ -105,7 +159,8 @@ theorem FilteredComplex.differentialRelation_of_lift_at_target
           rw [← hu]
           rfl)) y) := by
   subst u
-  simpa using FC.differentialRelation_of_lift bnd r hr s k hx hy hd
+  change DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y
+  exact FC.differentialRelation_of_lift bnd r hr s k hx hy hd
 
 /-! ### Homotopy commutative square in the category of converging spectral sequences -/
 
@@ -239,32 +294,6 @@ theorem HomotopyCommSquare.toSquare_comm {ω : Type w} [AddCommGroup ω] [Decida
 
 /-! ### ESS differential relation predicate -/
 
-/- 陈述为占位：body 引用 BoundedExtension.lean 中已注释的占位定义
-   `essDiff`（其定义体尚未落地）。在 essDiff 落地前该谓词无法引用。
-   按文件内既有 `/- def … -/` 先例整体注释，原文保留备查。 -/
-/- def ESSRelation {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {cm : ConvergenceMorphism conv₁ conv₂}
-    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
-    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
-    (n : ℤ) (k₁ k₂ : ω) : Prop :=
-  ¬IsZero (ext.essDiff n k₁ k₂)
--/
-
-/- 陈述为占位：同 ESSRelation，body 引用已注释的 essDiff。 -/
-/- def ESSVanishes {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {cm : ConvergenceMorphism conv₁ conv₂}
-    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
-    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
-    (n : ℤ) (k₁ k₂ : ω) : Prop :=
-  IsZero (ext.essDiff n k₁ k₂)
--/
-
 /-- No-crossing condition for an ESS differential datum, bundled with the
     convergence data. Takes the differential datum as a parameter
     (following Extension.lean patterns). -/
@@ -373,9 +402,10 @@ def ESSRelationNoCrossingRange
     (h : DifferentialRelation E r index x y) (p : ℤ) : Prop :=
   (⟨r, index, Prod.fst, T, x, y, h⟩ : ExtensionDifferentialRelation E).NoCrossingRange p
 
-/-- 过滤复形版本的统一检测：所有已经落入目标过滤层的源代表元，
-其实际微分都检测到同一个指定目标类。目标过滤层作为显式参数，
-避免把“像落入该层”误写成由无 crossing 自动得到的结论。 -/
+/-- 过滤复形版本的范围一致检测：对源类 `x` 的每个过滤代表元，
+若其实际微分的像落入 `F^p`，则该像实际还落入 `F^(s+r)`，
+并在这一关联分次上检测到指定目标类 `y`。这正是
+`AF(f[x]) ≥ p` 的范畴化表述。 -/
 def UniformDetection
     (FC : FilteredComplex C) (bnd : FC.IsBounded)
     (r : ℤ) (hr : 0 ≤ r) (s k p : ℤ) {T : C} [Projective T]
@@ -384,11 +414,13 @@ def UniformDetection
     (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y) : Prop :=
   ∀ (xl : T ⟶ Subobject.underlying.obj (FC.fil s k)),
     FC.IsLift s k xl x →
-  ∀ (yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1))),
-    xl ≫ FC.filDiff s k =
-      yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
-        (FC.fil_anti_of_le (k - 1) (by omega)) →
-    FC.IsLift (s + r) (k - 1) yl y
+    (FC.fil p (k - 1)).Factors
+      (xl ≫ (FC.fil s k).arrow ≫ FC.d k) →
+    ∃ yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1)),
+      xl ≫ FC.filDiff s k =
+          yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+            (FC.fil_anti_of_le (k - 1) (by omega)) ∧
+        FC.IsLift (s + r) (k - 1) yl y
 
 /-- 对过滤复形构造的 ESS，具体扩张关系的无 crossing 条件可转化为
 过滤复形代表元引理使用的关系级无 crossing 条件。 -/
@@ -851,9 +883,57 @@ theorem ESSRelationNoCrossingRange.uniformDetection_of_filteredComplex
     (hrel : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y)
     (hnc : ESSRelationNoCrossingRange r ⟨s, k⟩ hrel p) :
     UniformDetection FC bnd r hr s k p hrel := by
-  intro xl hx yl hd
-  exact ESSRelationNoCrossingRange.lift_rel_of_filteredComplex
-    FC bnd r hr s k p hp hrel hnc hx yl hd
+  classical
+  intro xl hx hxp
+  obtain ⟨x₀, y₀, hx₀, _hy₀, hd₀⟩ :=
+    FC.lift_of_differentialRelation bnd r hr s k hrel
+  obtain ⟨v, hv⟩ := FC.isLift_sub_lift s k hx hx₀
+  have hx₀p : (FC.fil p (k - 1)).Factors
+      (x₀ ≫ (FC.fil s k).arrow ≫ FC.d k) := by
+    have htarget : (FC.fil (s + r) (k - 1)).Factors
+        (x₀ ≫ (FC.fil s k).arrow ≫ FC.d k) := by
+      rw [← FC.filDiff_comp_arrow]
+      rw [← Category.assoc, hd₀]
+      simp only [Category.assoc, Subobject.ofLE_arrow]
+      exact Subobject.factors_comp_arrow y₀
+    exact Subobject.factors_of_le _
+      (FC.fil_anti_of_le (k - 1) hp) htarget
+  have hvp : (FC.fil p (k - 1)).Factors
+      (v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k) := by
+    have hvambient :
+        v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k =
+          (xl - x₀) ≫ (FC.fil s k).arrow ≫ FC.d k := by
+      have hinc : Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+          (FC.fil_anti s k) ≫ (FC.fil s k).arrow =
+          (FC.fil (s + 1) k).arrow :=
+        Subobject.ofLE_arrow (FC.fil_anti s k)
+      have hvembed : v ≫ (FC.fil (s + 1) k).arrow =
+          (xl - x₀) ≫ (FC.fil s k).arrow := by
+        let i := Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
+          (FC.fil_anti s k)
+        calc
+          v ≫ (FC.fil (s + 1) k).arrow =
+              v ≫ (i ≫ (FC.fil s k).arrow) := by
+                exact congrArg (fun f => v ≫ f) hinc.symm
+          _ = (v ≫ i) ≫ (FC.fil s k).arrow :=
+                (Category.assoc _ _ _).symm
+          _ = (xl - x₀) ≫ (FC.fil s k).arrow := by
+                exact congrArg (fun f => f ≫ (FC.fil s k).arrow) hv
+      simpa only [Category.assoc] using
+        congrArg (fun f => f ≫ FC.d k) hvembed
+    have hsum :
+        v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k +
+            x₀ ≫ (FC.fil s k).arrow ≫ FC.d k =
+          xl ≫ (FC.fil s k).arrow ≫ FC.d k := by
+      rw [hvambient, Preadditive.sub_comp]
+      abel
+    apply Subobject.factors_left_of_factors_add
+      (v ≫ (FC.fil (s + 1) k).arrow ≫ FC.d k)
+      (x₀ ≫ (FC.fil s k).arrow ≫ FC.d k)
+    · simpa only [hsum] using hxp
+    · exact hx₀p
+  exact ESSRelationNoCrossingRange.uniform_detection_from_reference
+    FC bnd r hr s k p hp hrel hnc x₀ xl y₀ hx₀ hx hd₀ v hv hvp
 
 /-- 零扩张的范围性无 crossing：只要代表元的像已进入零关系的
 目标过滤层，就必能进一步提升到严格更深的一层。 -/
@@ -980,36 +1060,10 @@ theorem essComm_lift_square_ambient
       zl ≫ ((extp.complex t).fil (sfx + m) 0).arrow ≫ sq.g.aMap t := by
   have hf : xl ≫ ((extf.complex t).fil sfx 1).arrow ≫ sq.f.aMap t =
       yl ≫ ((extf.complex t).fil (sfx + n) 0).arrow := by
-    have hdf : (extf.complex t).d 1 = sq.f.aMap t := by
-      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
-    have hfd := (extf.complex t).filDiff_comp_arrow sfx 1
-    change (extf.complex t).filDiff sfx 1 ≫
-      ((extf.complex t).fil sfx 0).arrow =
-      ((extf.complex t).fil sfx 1).arrow ≫ (extf.complex t).d 1 at hfd
-    calc
-      xl ≫ ((extf.complex t).fil sfx 1).arrow ≫ sq.f.aMap t =
-          xl ≫ ((extf.complex t).fil sfx 1).arrow ≫ (extf.complex t).d 1 := by rw [hdf]
-      _ = (xl ≫ (extf.complex t).filDiff sfx 1) ≫
-          ((extf.complex t).fil sfx 0).arrow := by
-            simpa only [Category.assoc] using congrArg (fun f => xl ≫ f) hfd.symm
-      _ = yl ≫ ((extf.complex t).fil (sfx + n) 0).arrow := by
-            rw [hdy, Category.assoc, Subobject.ofLE_arrow]
+    exact extf.lift_ambient_map t sfx (sfx + n) (by omega) xl yl hdy
   have hp : xl ≫ ((extp.complex t).fil sfx 1).arrow ≫ sq.p.aMap t =
       zl ≫ ((extp.complex t).fil (sfx + m) 0).arrow := by
-    have hdp : (extp.complex t).d 1 = sq.p.aMap t := by
-      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
-    have hpd := (extp.complex t).filDiff_comp_arrow sfx 1
-    change (extp.complex t).filDiff sfx 1 ≫
-      ((extp.complex t).fil sfx 0).arrow =
-      ((extp.complex t).fil sfx 1).arrow ≫ (extp.complex t).d 1 at hpd
-    calc
-      xl ≫ ((extp.complex t).fil sfx 1).arrow ≫ sq.p.aMap t =
-          xl ≫ ((extp.complex t).fil sfx 1).arrow ≫ (extp.complex t).d 1 := by rw [hdp]
-      _ = (xl ≫ (extp.complex t).filDiff sfx 1) ≫
-          ((extp.complex t).fil sfx 0).arrow := by
-            simpa only [Category.assoc] using congrArg (fun f => xl ≫ f) hpd.symm
-      _ = zl ≫ ((extp.complex t).fil (sfx + m) 0).arrow := by
-            rw [hdz, Category.assoc, Subobject.ofLE_arrow]
+    exact extp.lift_ambient_map t sfx (sfx + m) (by omega) xl zl hdz
   change xl ≫ (sq.V₁.F.F sfx t).arrow ≫ sq.f.aMap t =
       yl ≫ (sq.V₂.F.F (sfx + n) t).arrow at hf
   change xl ≫ (sq.V₁.F.F sfx t).arrow ≫ sq.p.aMap t =
@@ -1207,6 +1261,8 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
   obtain ⟨xl, yl, zl, hx, hy, hz, hdy, hdz⟩ :=
     essComm_common_source_lift sq bnd₁ bnd₂ bnd₃ extf extp
       n m sfx t x y z _hn _hm _hf_rel _hp_rel _hf_or_p_nc
+  let zl_g : T ⟶ Subobject.underlying.obj
+      ((extg.complex t).fil (sfx + m) 1) := zl
   have hsquare := essComm_lift_square_ambient
     sq bnd₁ bnd₂ bnd₃ extf extp n m sfx t _hn _hm xl yl zl hdy hdz
   have hyq : (extq.complex t).IsLift (sfx + n) 1 yl y := hy
@@ -1218,10 +1274,10 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
   change yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
     qdeep ≫ (sq.V₄.F.F (sfx + n + (kval - 1) + 1) t).arrow at hqambient
   change yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
-    zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t at hsquare
+    zl_g ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t at hsquare
   have hgRange : (sq.V₄.F.F (sfx + n + kval) t).Factors
-      (zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) := by
-    have hraw : zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t =
+      (zl_g ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) := by
+    have hraw : zl_g ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t =
         qdeep ≫ (sq.V₄.F.F (sfx + n + (kval - 1) + 1) t).arrow := by
       exact hsquare.symm.trans hqambient
     rw [hraw]
@@ -1232,7 +1288,6 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
       exact (extq.complex t).fil_anti_of_le 0 (by omega)
     exact Subobject.factors_of_le _ hle
       (Subobject.factors_comp_arrow qdeep)
-  let zl_g : T ⟶ Subobject.underlying.obj ((extg.complex t).fil (sfx + m) 1) := zl
   have hz_g : (extg.complex t).IsLift (sfx + m) 1 zl_g z := hz
   obtain ⟨z₀, w₀, hz₀, hw₀, hdg₀⟩ :=
     (extg.complex t).lift_of_differentialRelation
@@ -1254,22 +1309,15 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     exact Subobject.factors_of_le _ hle (Subobject.factors_comp_arrow w₀)
   have hgDiffRange : (sq.V₄.F.F (sfx + n + kval) t).Factors
       ((zl_g - z₀) ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) := by
-    simp only [Preadditive.sub_comp]
-    refine (Subobject.factors_iff _ _).2 ⟨
-      (sq.V₄.F.F (sfx + n + kval) t).factorThru
-          (zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) hgRange -
-      (sq.V₄.F.F (sfx + n + kval) t).factorThru
-          (z₀ ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) hg₀Range,
-      ?_⟩
-    rw [Preadditive.sub_comp]
-    change
-      (sq.V₄.F.F (sfx + n + kval) t).factorThru
-          (zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) hgRange ≫
-        (sq.V₄.F.F (sfx + n + kval) t).arrow -
-      (sq.V₄.F.F (sfx + n + kval) t).factorThru
-          (z₀ ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t) hg₀Range ≫
-        (sq.V₄.F.F (sfx + n + kval) t).arrow = _
-    rw [Subobject.factorThru_arrow, Subobject.factorThru_arrow]
+    let a : T ⟶ sq.V₄.A t :=
+      zl_g ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t
+    let b : T ⟶ sq.V₄.A t :=
+      z₀ ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t
+    have hab : (sq.V₄.F.F (sfx + n + kval) t).Factors (a - b) := by
+      apply Subobject.factors_left_of_factors_add (a - b) b
+      · simpa only [sub_add_cancel] using hgRange
+      · exact hg₀Range
+    simpa only [a, b, Preadditive.sub_comp] using hab
   have hgVRange : ((extg.complex t).fil (sfx + n + kval) 0).Factors
       (v ≫ ((extg.complex t).fil (sfx + m + 1) 1).arrow ≫
         (extg.complex t).d 1) := by
@@ -1308,7 +1356,7 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
       z₀ zl_g w₀ hz₀ hz_g hdg₀ v hv hgVRange
   have hgambient := extg.lift_ambient_map t (sfx + m) (sfx + m + l)
     (by omega) zl_g wg hdg
-  change zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t =
+  change zl_g ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t =
     wg ≫ (sq.V₄.F.F (sfx + m + l) t).arrow at hgambient
   have hqgambient : yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
       wg ≫ (sq.V₄.F.F (sfx + m + l) t).arrow :=
@@ -1317,63 +1365,13 @@ theorem essCommutativity {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
       wg ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
         ((extq.complex t).fil (sfx + n) 0)
         ((extq.complex t).fil_anti_of_le 0 (by omega)) := by
-    have hmap : (extq.complex t).d 1 = sq.q.aMap t := by
-      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
-    have hfil := (extq.complex t).filDiff_comp_arrow (sfx + n) 1
-    change (extq.complex t).filDiff (sfx + n) 1 ≫
-      ((extq.complex t).fil (sfx + n) 0).arrow =
-      ((extq.complex t).fil (sfx + n) 1).arrow ≫ (extq.complex t).d 1 at hfil
-    apply (cancel_mono ((extq.complex t).fil (sfx + n) 0).arrow).mp
-    calc
-      (yl ≫ (extq.complex t).filDiff (sfx + n) 1) ≫
-          ((extq.complex t).fil (sfx + n) 0).arrow =
-          yl ≫ ((extq.complex t).fil (sfx + n) 1).arrow ≫
-            (extq.complex t).d 1 := by
-            simpa only [Category.assoc] using congrArg (fun f => yl ≫ f) hfil
-      _ = yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t := by
-            rw [← hmap]
-            rfl
-      _ = wg ≫ (sq.V₄.F.F (sfx + m + l) t).arrow := hqgambient
-      _ = (wg ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
-            ((extq.complex t).fil (sfx + n) 0)
-            ((extq.complex t).fil_anti_of_le 0 (by omega))) ≫
-            ((extq.complex t).fil (sfx + n) 0).arrow := by
-              rw [Category.assoc, Subobject.ofLE_arrow]
-              rfl
+    exact extq.lift_eq_of_ambient_map t (sfx + n) (sfx + m + l)
+      (by omega) yl wg hqgambient
   have hwq : (extq.complex t).IsLift (sfx + m + l) 0 wg w := hwg
   exact (extq.complex t).differentialRelation_of_lift_at_target
     (extq.bounded t) (m + l - n) (by omega) (sfx + n) 1
     (sfx + m + l) (by omega) hyq hwq hqfil
 
-/- theorem essCommutativity_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (n m l : ℤ) (kx ky kz kw : ω)
-    (_hn : 0 ≤ n) (_hm : 0 ≤ m) (_hl : 0 ≤ l)
-    (_hf_rel : ESSRelation sq.extf n kx ky)
-    (_hp_rel : ESSRelation sq.extp m kx kz)
-    (ddf : DifferentialDatum C ω)
-    (_hddf : ddf.E = E₁ ∧ ddf.r = n ∧ ddf.k = kx)
-    (ddp : DifferentialDatum C ω)
-    (_hddp : ddp.E = E₁ ∧ ddp.r = m ∧ ddp.k = kx)
-    (_hf_or_p_nc : NoCrossing ddf ∨ NoCrossing ddp)
-    (_hg_rel : ESSRelation sq.extg l kz kw)
-    (ddg : DifferentialDatum C ω)
-    (_hddg : ddg.E = E₃ ∧ ddg.r = l ∧ ddg.k = kz)
-    (s : ℤ) (kval : ℤ) (_hk_pos : 0 < kval) (_hk_bound : kval ≤ m + l - n)
-    (_hg_nc_range : NoCrossingRange ddg (s + n + kval))
-    (ddq : DifferentialDatum C ω)
-    (_hddq : ddq.E = E₂ ∧ ddq.r = kval - 1 ∧ ddq.k = ky)
-    (_hq_vanish : ESSVanishes sq.extq (kval - 1) ky kw)
-    (_hq_nc : NoCrossing ddq) :
-    Nonempty (sq.extq.essDiff (m + l - n) ky kw ≅ sq.extg.essDiff l kz kw) := by
-  占位
--/
 /-! ### Corollary 2.15 — Simplified commutativity (no crossing everywhere) -/
 
 /-- **推论 2.15**（全无 crossing 的简化交换性）：与定理 2.12 相同的方块
@@ -1452,13 +1450,12 @@ theorem essCommutativity_noCrossing {ω : Type w} [AddCommGroup ω] [DecidableEq
   have hsquare := essComm_lift_square_ambient
     sq bnd₁ bnd₂ bnd₃ extf extp n m sfx t _hn _hm xl yl zl hdy hdz
   have hyq : (extq.complex t).IsLift (sfx + n) 1 yl y := hy
-  let zl_g : T ⟶ Subobject.underlying.obj ((extg.complex t).fil (sfx + m) 1) := zl
-  have hz_g : (extg.complex t).IsLift (sfx + m) 1 zl_g z := hz
+  have hz_g : (extg.complex t).IsLift (sfx + m) 1 zl z := hz
   obtain ⟨wg, hdg, hwg⟩ :=
     ESSRelationNoCrossing.uniform_detection_full
-      (extg.complex t) (extg.bounded t) l _hl (sfx + m) 1 _hg_rel _hg_nc zl_g hz_g
+      (extg.complex t) (extg.bounded t) l _hl (sfx + m) 1 _hg_rel _hg_nc zl hz_g
   have hgambient := extg.lift_ambient_map t (sfx + m) (sfx + m + l)
-    (by omega) zl_g wg hdg
+    (by omega) zl wg hdg
   change zl ≫ (sq.V₃.F.F (sfx + m) t).arrow ≫ sq.g.aMap t =
     wg ≫ (sq.V₄.F.F (sfx + m + l) t).arrow at hgambient
   change yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t =
@@ -1470,57 +1467,12 @@ theorem essCommutativity_noCrossing {ω : Type w} [AddCommGroup ω] [DecidableEq
       wg ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
         ((extq.complex t).fil (sfx + n) 0)
         ((extq.complex t).fil_anti_of_le 0 (by omega)) := by
-    have hmap : (extq.complex t).d 1 = sq.q.aMap t := by
-      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
-    have hfil := (extq.complex t).filDiff_comp_arrow (sfx + n) 1
-    change (extq.complex t).filDiff (sfx + n) 1 ≫
-      ((extq.complex t).fil (sfx + n) 0).arrow =
-      ((extq.complex t).fil (sfx + n) 1).arrow ≫ (extq.complex t).d 1 at hfil
-    apply (cancel_mono ((extq.complex t).fil (sfx + n) 0).arrow).mp
-    calc
-      (yl ≫ (extq.complex t).filDiff (sfx + n) 1) ≫
-          ((extq.complex t).fil (sfx + n) 0).arrow =
-          yl ≫ ((extq.complex t).fil (sfx + n) 1).arrow ≫
-            (extq.complex t).d 1 := by
-            simpa only [Category.assoc] using congrArg (fun f => yl ≫ f) hfil
-      _ = yl ≫ (sq.V₂.F.F (sfx + n) t).arrow ≫ sq.q.aMap t := by
-            rw [← hmap]
-            rfl
-      _ = wg ≫ (sq.V₄.F.F (sfx + m + l) t).arrow := hqgambient
-      _ = (wg ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
-            ((extq.complex t).fil (sfx + n) 0)
-            ((extq.complex t).fil_anti_of_le 0 (by omega))) ≫
-            ((extq.complex t).fil (sfx + n) 0).arrow := by
-              rw [Category.assoc, Subobject.ofLE_arrow]
-              rfl
+    exact extq.lift_eq_of_ambient_map t (sfx + n) (sfx + m + l)
+      (by omega) yl wg hqgambient
   have hwq : (extq.complex t).IsLift (sfx + m + l) 0 wg w := hwg
   exact (extq.complex t).differentialRelation_of_lift_at_target
     (extq.bounded t) (m + l - n) (by omega) (sfx + n) 1
     (sfx + m + l) (by omega) hyq hwq hqfil
-/- theorem essCommutativity_noCrossing_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (n m l : ℤ) (kx ky kz kw : ω)
-    (_hn : 0 ≤ n) (_hm : 0 ≤ m) (_hl : 0 ≤ l)
-    (_hf_rel : ESSRelation sq.extf n kx ky)
-    (_hp_rel : ESSRelation sq.extp m kx kz)
-    (ddf : DifferentialDatum C ω)
-    (_hddf : ddf.E = E₁ ∧ ddf.r = n ∧ ddf.k = kx)
-    (ddp : DifferentialDatum C ω)
-    (_hddp : ddp.E = E₁ ∧ ddp.r = m ∧ ddp.k = kx)
-    (_hf_or_p_nc : NoCrossing ddf ∨ NoCrossing ddp)
-    (_hg_rel : ESSRelation sq.extg l kz kw)
-    (ddg : DifferentialDatum C ω)
-    (_hddg : ddg.E = E₃ ∧ ddg.r = l ∧ ddg.k = kz)
-    (_hg_nc : NoCrossing ddg) :
-    Nonempty (sq.extq.essDiff (m + l - n) ky kw ≅ sq.extg.essDiff l kz kw) := by
-  占位
--/
 /-! ### Corollary 2.16 — Triangle case -/
 
 /-- **推论 2.16**（三角形情形）：取 `V₄ = V₃`、`g = 𝟙` 的退化方块
@@ -1616,59 +1568,11 @@ theorem essCommutativity_triangle {ω : Type w} [AddCommGroup ω] [DecidableEq �
       zl ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m) 0)
         ((extq.complex t).fil (sfx + n) 0)
         ((extq.complex t).fil_anti_of_le 0 (by omega)) := by
-    have hmap : (extq.complex t).d 1 = q.aMap t := by
-      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
-    have hfil := (extq.complex t).filDiff_comp_arrow (sfx + n) 1
-    change (extq.complex t).filDiff (sfx + n) 1 ≫
-      ((extq.complex t).fil (sfx + n) 0).arrow =
-      ((extq.complex t).fil (sfx + n) 1).arrow ≫ (extq.complex t).d 1 at hfil
-    apply (cancel_mono ((extq.complex t).fil (sfx + n) 0).arrow).mp
-    calc
-      (yl ≫ (extq.complex t).filDiff (sfx + n) 1) ≫
-          ((extq.complex t).fil (sfx + n) 0).arrow =
-          yl ≫ ((extq.complex t).fil (sfx + n) 1).arrow ≫
-            (extq.complex t).d 1 := by
-            simpa only [Category.assoc] using congrArg (fun f => yl ≫ f) hfil
-      _ = yl ≫ (V₂.F.F (sfx + n) t).arrow ≫ q.aMap t := by
-            rw [← hmap]
-            rfl
-      _ = zl ≫ (V₃.F.F (sfx + m) t).arrow := hqgambient
-      _ = (zl ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m) 0)
-            ((extq.complex t).fil (sfx + n) 0)
-            ((extq.complex t).fil_anti_of_le 0 (by omega))) ≫
-            ((extq.complex t).fil (sfx + n) 0).arrow := by
-              rw [Category.assoc, Subobject.ofLE_arrow]
-              rfl
+    exact extq.lift_eq_of_ambient_map t (sfx + n) (sfx + m)
+      (by omega) yl zl hqgambient
   exact (extq.complex t).differentialRelation_of_lift_at_target
     (extq.bounded t) (m - n) (by omega) (sfx + n) 1
     (sfx + m) (by omega) hyq hzq hqfil
-/- theorem essCommutativity_triangle_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂} {F₃ : Filtration A₃}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃}
-    (cmf : ConvergenceMorphism conv₁ conv₂)
-    (cmp : ConvergenceMorphism conv₁ conv₃)
-    (cmq : ConvergenceMorphism conv₂ conv₃)
-    (bnd₁ : F₁.IsBounded) (bnd₂ : F₂.IsBounded) (bnd₃ : F₃.IsBounded)
-    (extf : BoundedExtensionSS conv₁ conv₂ cmf bnd₁ bnd₂)
-    (extp : BoundedExtensionSS conv₁ conv₃ cmp bnd₁ bnd₃)
-    (extq : BoundedExtensionSS conv₂ conv₃ cmq bnd₂ bnd₃)
-    (_abutment_comm : ∀ (k' : ω'), cmf.aMap k' ≫ cmq.aMap k' = cmp.aMap k')
-    (_eInfty_comm : ∀ (k : ω), cmf.eMap k ≫ cmq.eMap k = cmp.eMap k)
-    (n m : ℤ) (kx ky kz : ω)
-    (_hn : 0 ≤ n) (_hm : 0 ≤ m) (_hmn : n ≤ m)
-    (_hf_rel : ESSRelation extf n kx ky)
-    (_hp_rel : ESSRelation extp m kx kz)
-    (ddf : DifferentialDatum C ω)
-    (_hddf : ddf.E = E₁ ∧ ddf.r = n ∧ ddf.k = kx)
-    (ddp : DifferentialDatum C ω)
-    (_hddp : ddp.E = E₁ ∧ ddp.r = m ∧ ddp.k = kx)
-    (_hf_or_p_nc : NoCrossing ddf ∨ NoCrossing ddp) :
-    Nonempty (extq.essDiff (m - n) ky kz ≅ extp.essDiff m kx kz) := by
-  占位
--/
 /-! ### Corollary 2.17 — Composition case -/
 
 /-- **推论 2.17**（复合情形）：取 `V₂ = V₁`、`f = 𝟙` 的退化方块
@@ -1746,36 +1650,19 @@ theorem essCommutativity_composition {ω : Type w} [AddCommGroup ω] [DecidableE
   obtain ⟨xl, zl, hx, hz, hdz⟩ :=
     (extp.complex t).lift_of_differentialRelation
       (extp.bounded t) m _hm sfx 1 _hp_rel
-  let zl_g : T ⟶ Subobject.underlying.obj ((extg.complex t).fil (sfx + m) 1) := zl
-  have hz_g : (extg.complex t).IsLift (sfx + m) 1 zl_g z := hz
+  have hz_g : (extg.complex t).IsLift (sfx + m) 1 zl z := hz
   obtain ⟨wg, hdg, hwg⟩ :=
     ESSRelationNoCrossing.uniform_detection_full
-      (extg.complex t) (extg.bounded t) l _hl (sfx + m) 1 _hg_rel _hg_nc zl_g hz_g
+      (extg.complex t) (extg.bounded t) l _hl (sfx + m) 1 _hg_rel _hg_nc zl hz_g
   have hgambient := extg.lift_ambient_map t (sfx + m) (sfx + m + l)
-    (by omega) zl_g wg hdg
+    (by omega) zl wg hdg
   change zl ≫ (V₃.F.F (sfx + m) t).arrow ≫ g.aMap t =
     wg ≫ (V₄.F.F (sfx + m + l) t).arrow at hgambient
   have hqgambient : xl ≫ (V₁.F.F sfx t).arrow ≫ q.aMap t =
       wg ≫ (V₄.F.F (sfx + m + l) t).arrow := by
     have hpp : xl ≫ (V₁.F.F sfx t).arrow ≫ p.aMap t =
         zl ≫ (V₃.F.F (sfx + m) t).arrow := by
-      have hmap : (extp.complex t).d 1 = p.aMap t := by
-        simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
-      have hfil := (extp.complex t).filDiff_comp_arrow sfx 1
-      change (extp.complex t).filDiff sfx 1 ≫
-        ((extp.complex t).fil sfx 0).arrow =
-        ((extp.complex t).fil sfx 1).arrow ≫ (extp.complex t).d 1 at hfil
-      calc
-        xl ≫ (V₁.F.F sfx t).arrow ≫ p.aMap t =
-            xl ≫ ((extp.complex t).fil sfx 1).arrow ≫ (extp.complex t).d 1 := by
-                rw [hmap]; rfl
-        _ = xl ≫ (extp.complex t).filDiff sfx 1 ≫
-              ((extp.complex t).fil sfx 0).arrow := by
-                exact congrArg (fun f => xl ≫ f) hfil.symm
-        _ = zl ≫ (V₃.F.F (sfx + m) t).arrow := by
-                rw [← Category.assoc, hdz, Category.assoc]
-                exact congrArg (fun f => zl ≫ f)
-                  (Subobject.ofLE_arrow ((extp.complex t).fil_anti_of_le 0 (by omega)))
+      exact extp.lift_ambient_map t sfx (sfx + m) (by omega) xl zl hdz
     calc
       xl ≫ (V₁.F.F sfx t).arrow ≫ q.aMap t =
           xl ≫ (V₁.F.F sfx t).arrow ≫ p.aMap t ≫ g.aMap t := by
@@ -1793,153 +1680,13 @@ theorem essCommutativity_composition {ω : Type w} [AddCommGroup ω] [DecidableE
       wg ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
         ((extq.complex t).fil sfx 0)
         ((extq.complex t).fil_anti_of_le 0 (by omega)) := by
-    have hmap : (extq.complex t).d 1 = q.aMap t := by
-      simp [BoundedExtensionSS.complex, underlyingComplex, twoTermDiff, twoTermObj]
-    have hfil := (extq.complex t).filDiff_comp_arrow sfx 1
-    change (extq.complex t).filDiff sfx 1 ≫
-      ((extq.complex t).fil sfx 0).arrow =
-      ((extq.complex t).fil sfx 1).arrow ≫ (extq.complex t).d 1 at hfil
-    apply (cancel_mono ((extq.complex t).fil sfx 0).arrow).mp
-    calc
-      (xl ≫ (extq.complex t).filDiff sfx 1) ≫
-          ((extq.complex t).fil sfx 0).arrow =
-          xl ≫ ((extq.complex t).fil sfx 1).arrow ≫
-            (extq.complex t).d 1 := by
-            simpa only [Category.assoc] using congrArg (fun f => xl ≫ f) hfil
-      _ = xl ≫ (V₁.F.F sfx t).arrow ≫ q.aMap t := by
-            rw [← hmap]
-            rfl
-      _ = wg ≫ (V₄.F.F (sfx + m + l) t).arrow := hqgambient
-      _ = (wg ≫ Subobject.ofLE ((extq.complex t).fil (sfx + m + l) 0)
-            ((extq.complex t).fil sfx 0)
-            ((extq.complex t).fil_anti_of_le 0 (by omega))) ≫
-            ((extq.complex t).fil sfx 0).arrow := by
-              rw [Category.assoc, Subobject.ofLE_arrow]
-              rfl
+    exact extq.lift_eq_of_ambient_map t sfx (sfx + m + l)
+      (by omega) xl wg hqgambient
   have hxq : (extq.complex t).IsLift sfx 1 xl x := hx
   have hwq : (extq.complex t).IsLift (sfx + m + l) 0 wg w := hwg
   exact (extq.complex t).differentialRelation_of_lift_at_target
     (extq.bounded t) (m + l) (by omega) sfx 1
     (sfx + m + l) (by omega) hxq hwq hqfil
-/- theorem essCommutativity_composition_iso {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (cmp : ConvergenceMorphism conv₁ conv₃)
-    (cmg : ConvergenceMorphism conv₃ conv₄)
-    (cmq : ConvergenceMorphism conv₁ conv₄)
-    (bnd₁ : F₁.IsBounded) (bnd₃ : F₃.IsBounded) (bnd₄ : F₄.IsBounded)
-    (extp : BoundedExtensionSS conv₁ conv₃ cmp bnd₁ bnd₃)
-    (extg : BoundedExtensionSS conv₃ conv₄ cmg bnd₃ bnd₄)
-    (extq : BoundedExtensionSS conv₁ conv₄ cmq bnd₁ bnd₄)
-    (_abutment_comm : ∀ (k' : ω'), cmp.aMap k' ≫ cmg.aMap k' = cmq.aMap k')
-    (_eInfty_comm : ∀ (k : ω), cmp.eMap k ≫ cmg.eMap k = cmq.eMap k)
-    (m l : ℤ) (kx kz kw : ω)
-    (_hm : 0 ≤ m) (_hl : 0 ≤ l)
-    (_hp_rel : ESSRelation extp m kx kz)
-    (_hg_rel : ESSRelation extg l kz kw)
-    (ddg : DifferentialDatum C ω)
-    (_hddg : ddg.E = E₃ ∧ ddg.r = l ∧ ddg.k = kz)
-    (_hg_nc : NoCrossing ddg) :
-    Nonempty (extq.essDiff (m + l) kx kw ≅ extg.essDiff l kz kw) := by
-  占位
--/
-/-! ### Corollary 2.18 — Induced map on ESS pages -/
-
-/- 陈述为占位（结论 `Nonempty (essDiff ⟶ essDiff)` 且前提全部 `_` 弃用），
-   essDiff 本身是 BoundedExtension.lean 中尚未落地的定义：在 essDiff 落地前
-   无法构造该映射。按文件内既有 `/- theorem … -/` 先例（见
-   essCommutativity_iso 等四条）整体注释，保留原文备查。 -/
-/- theorem essCommutativity_induces_map {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (r : ℤ) (_hr : 0 ≤ r)
-    (_hp_degen : E₁.DegeneratesAt r)
-    (_hg_degen : E₃.DegeneratesAt r)
-    (n : ℤ) (k₁ k₂ : ω) :
-    Nonempty (sq.extf.essDiff n k₁ k₂ ⟶ sq.extg.essDiff n k₁ k₂) := by
-  占位
--/
-
-/- 陈述为假（对任意给定的 φ₁₂/φ₂₃/d_f/d_g 断言交换律，一般不成立），
-   且四条映射的类型均落在尚未落地的 essDiff 定义上。按先例整体注释。 -/
-/- theorem essInducedPageMap_comm {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (r : ℤ) (_hr : 0 ≤ r)
-    (_hp_degen : E₁.DegeneratesAt r)
-    (_hg_degen : E₃.DegeneratesAt r)
-    (n : ℤ) (k₁ k₂ k₃ : ω)
-    (φ₁₂ : sq.extf.essDiff n k₁ k₂ ⟶ sq.extg.essDiff n k₁ k₂)
-    (φ₂₃ : sq.extf.essDiff n k₂ k₃ ⟶ sq.extg.essDiff n k₂ k₃)
-    (d_f : sq.extf.essDiff n k₁ k₂ ⟶ sq.extf.essDiff n k₂ k₃)
-    (d_g : sq.extg.essDiff n k₁ k₂ ⟶ sq.extg.essDiff n k₂ k₃) :
-    φ₁₂ ≫ d_g = d_f ≫ φ₂₃ := by
-  占位
--/
-/-! ### Corollary 2.19 — Null composition -/
-
-/- 陈述被 ESSVanishes（依赖尚未落地的 essDiff 定义）阻塞：永久圈结论
-   `d_m^g(y)=0` 的真实表述需要 essDiff 的具体定义才能落地。按先例注释。 -/
-/- theorem essCommutativity_null {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (n : ℤ) (kx ky : ω)
-    (_hn : 0 ≤ n)
-    (_hf_rel : ESSRelation sq.extf n kx ky)
-    (_h_null : ∀ (k' : ω'), sq.cmf.aMap k' ≫ sq.cmq.aMap k' = 0) :
-    ∀ (m : ℤ) (_hm : 0 ≤ m) (kw : ω),
-    ESSVanishes sq.extq m ky kw := by
-  占位
--/
-/-! ### Supporting axioms — Commutativity functoriality -/
-
-/- 陈述为占位（`Nonempty (essBoundary ⟶ essBoundary)`，前提 `_` 弃用），
-   essBoundary 是 BoundedExtension.lean 中尚未落地的定义。按先例注释。 -/
-/- theorem essCommutativity_preserves_boundaries {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (n m l : ℤ) (kw : ω)
-    (_hn : 0 ≤ n) (_hm : 0 ≤ m) (_hl : 0 ≤ l) :
-    Nonempty (sq.extq.essBoundary (m + l - n) kw ⟶ sq.extg.essBoundary l kw) := by
-  占位
--/
-/- 陈述为占位（结论映射 extf→extq 无前提支撑且类型落在 essDiff 上）。
-   按先例注释。 -/
-/- theorem essCommutativity_naturality {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (n : ℤ) (k₁ k₂ : ω) :
-    Nonempty (sq.extf.essDiff n k₁ k₂ ⟶ sq.extq.essDiff n k₁ k₂) := by
-  占位
--/
 /-- The commutativity data is compatible with the E∞ page maps. -/
 theorem essCommutativity_eInfty_compat {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
     {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
@@ -2064,45 +1811,6 @@ theorem essComposition_from_square {ω : Type w} [AddCommGroup ω] [DecidableEq 
       simp only [Category.id_comp, Filtration.transportGraded_self, Category.comp_id,
         F₁.inducedAssocGradedMap_id (conv₁.reindex k).1 (conv₁.reindex k).2] },
     BoundedExtensionSS.mk' conv₁ conv₁ _ bnd₁ bnd₁, fun _ => rfl, fun _ => rfl⟩
-/-! ### Boundary transfer -/
-
-/- 陈述为占位（`Nonempty (essBoundary ⟶ essBoundary)`，前提全无），
-   essBoundary 是尚未落地的定义。按先例注释。 -/
-/- theorem essCommutativity_boundary_transfer {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (n : ℤ) (kw : ω) :
-    Nonempty (sq.extq.essBoundary n kw ⟶ sq.extg.essBoundary n kw) := by
-  占位
--/
-/-! ### ESS page functoriality under commutativity -/
-
-/- 陈述为假（对任意给定的 φ/ψ/d_f/d_g 断言交换律，一般不成立），
-   且映射类型落在尚未落地的 essDiff 定义上。按先例注释。 -/
-/- theorem essCommutativity_page_functorial {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (r : ℤ) (_hr : 0 ≤ r)
-    (_hp_degen : E₁.DegeneratesAt r)
-    (_hg_degen : E₃.DegeneratesAt r)
-    (n : ℤ) (k₁ k₂ : ω)
-    (φ : sq.extf.essDiff n k₁ k₂ ⟶ sq.extg.essDiff n k₁ k₂)
-    (ψ : sq.extf.essDiff (n + 1) k₁ k₂ ⟶ sq.extg.essDiff (n + 1) k₁ k₂)
-    (d_f : sq.extf.essDiff n k₁ k₂ ⟶ sq.extf.essDiff (n + 1) k₁ k₂)
-    (d_g : sq.extg.essDiff n k₁ k₂ ⟶ sq.extg.essDiff (n + 1) k₁ k₂) :
-    φ ≫ d_g = d_f ≫ ψ := by
-  占位
--/
 /-- 检测相容性所需的分量投影：把余核投影从 `reindex₄ k` 的 gr 对象
     沿指标相等 `reindex_eq` 搬到 `reindex₂ k` 的 gr 对象。
     端点显式写出（而非隐藏于 eqToHom 的证明项中），使调用方
@@ -2365,20 +2073,4 @@ theorem essCommutativity_detection_compat {ω : Type w} [AddCommGroup ω] [Decid
     (yrep.val ≫ eqToHom (by rw [congrFun sq.cmq.reindex_eq k])) ≫
       (sq.cmq.filtration_compat (conv₄.reindex k).1 (conv₄.reindex k).2).choose,
     detection_transport_along_morphism sq.cmq k y yrep.val yrep.2⟩
-/- 陈述为占位（结论 `Nonempty (essDiff ⟶ essDiff)`，前提 `_` 弃用），
-   类型落在尚未落地的 essDiff 定义上。按先例注释。 -/
-/- theorem essCommutativity_page_transition {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
-    {E₁ E₂ E₃ E₄ : SpectralSequence C ω} {ω' : Type w}
-    {A₁ A₂ A₃ A₄ : ω' → C}
-    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
-    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
-    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
-    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
-    (n : ℤ) (ky kw : ω)
-    (_hq_rel_n : ESSRelation sq.extq n ky kw)
-    (_hg_rel_n : ESSRelation sq.extg n ky kw) :
-    Nonempty (sq.extq.essDiff n ky kw ⟶ sq.extg.essDiff n ky kw) := by
-  占位
--/
 end KIPBase.SpectralSequence

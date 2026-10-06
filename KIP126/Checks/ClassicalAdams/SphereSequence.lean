@@ -12,6 +12,7 @@ convergence, and the algebraic laws of a chosen sphere presentation.
 namespace KIP126.Classical.Adams.Regression
 
 open CategoryTheory
+open KIP126.Core.SpectralSequence
 
 example : classicalAdamsPageLevel.firstPage = 2 := rfl
 example : classicalAdamsPageLevel.admissibleFrom = 2 := rfl
@@ -35,11 +36,11 @@ variable {stable : StableHomotopyContext}
   {A : ClassicalAdamsSS stable stable.sphere}
 
 example (b : Bidegree) :
-    classicalAdamsTarget 2 b = (b.1 + 2, b.2 + 1) := by
-  apply Prod.ext <;> simp [classicalAdamsTarget, classicalAdamsShift]
+    classicalAdamsTarget AdamsPage.two b = (b.1 + 2, b.2 + 1) := by
+  simpa using classicalAdamsTarget_two b
 
 example (b : Bidegree) :
-    (classicalAdamsShape 2).Rel b (classicalAdamsTarget 2 b) :=
+    (classicalAdamsShape 2).Rel b (classicalAdamsTarget AdamsPage.two b) :=
   classicalAdamsShape_two_rel b
 
 example (b : Bidegree) :

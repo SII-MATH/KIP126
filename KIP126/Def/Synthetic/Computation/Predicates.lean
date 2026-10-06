@@ -18,7 +18,7 @@ def RepresentsOnPage (A : SyntheticAdamsSS.{v}) (r : ℤ) (i : Tridegree)
 tridegree and both representatives visible. A nonzero assertion is separate. -/
 def HasDifferential (A : SyntheticAdamsSS.{v}) (r : ℤ) (i j : Tridegree)
     (x : A.E₂ i) (y : A.E₂ j) : Prop :=
-  ∃ h : syntheticAdamsTarget r i = j,
+  ∃ h : syntheticAdamsRawTarget r i = j,
     ∃ (xr : A.Page r i) (yr : A.Page r j),
       RepresentsOnPage A r i x xr ∧ RepresentsOnPage A r j y yr ∧
         (A.d r i ≫ eqToHom (congrArg (A.Page r) h)) xr = yr
