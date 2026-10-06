@@ -22,7 +22,9 @@ run_cmd do
         throwError "unexpected axiom in independent h1 theorem {decl}: {ax}"
   let modelAxioms ← collectAxioms ``KIP126.Classical.Adams.sphereAdamsModel
   for decl in [``KIP126.Interface.Solution.sphereH1_exhaustive,
-      ``KIP126.Interface.Solution.sphereH1_standard_class] do
+      ``KIP126.Interface.Solution.sphereH1_standard_class,
+      ``KIP126.Interface.Solution.sphereH1_detects_eta,
+      ``KIP126.Interface.Solution.sphereH1_eta_towerLift] do
     for ax in (← collectAxioms decl) do
       unless logical.contains ax || modelAxioms.contains ax do
         throwError "h1 producer adds an axiom beyond the fixed Def model: {decl}: {ax}"
@@ -30,3 +32,5 @@ run_cmd do
 #print axioms KIP126.LinE2.E2At_h1_eq_zero_or
 #print axioms KIP126.Classical.Adams.MilnorCohomology.internal_hi_ne_zero
 #print axioms KIP126.Interface.Solution.sphereH1_standard_class
+
+#print axioms KIP126.Interface.Solution.sphereH1_eta_towerLift

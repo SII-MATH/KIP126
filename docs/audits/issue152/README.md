@@ -28,10 +28,65 @@ space. This row is **not yet certified** on the actual fixed sphere.
   dataH1 under any supplied `LinE2Presentation` is the actual standard h1.
 
 The generic rules, primitive-class nonvanishing and data exhaustion have only
-`propext`, `Classical.choice`, `Quot.sound`. The fixed h1 application and the
-older row5432 below still inherit `sorryAx` from the existing fixed model;
-no new axiom or admitted theorem is introduced. `LinReplayRules` and
-`LinH1Producer` audit these distinctions and reject forbidden consumer imports.
+`propext`, `Classical.choice`, `Quot.sound`. The fixed H1/eta application
+and the row5432/row5434 producers still inherit `sorryAx` from the existing
+fixed model;
+no new axiom or admitted theorem is introduced. `LinReplayRules`,
+`LinH1Producer` and `LinOneLineProducer` audit these distinctions and reject
+forbidden consumer imports.
+
+### Nonzero actual-object leaf and bounded translation
+
+`Interface/Solution/LinProgram/OneLine.lean` certifies the full
+`DifferentialStatement` for record 5434, including its nonzero target:
+`d2(h4) = h0 h3^2` at source (1,16) and target (3,17).
+`OneLine` and `OneLineTarget` prove each data component has at most two
+elements from generator degrees; the actual standard h4 is independently
+nonzero, and the explicit existing one-line literature input supplies actual
+target nonvanishing. A zero-preserving linear equivalence therefore identifies
+both CSV classes with their standard sphere classes. No general comparison of
+CSV multiplication and cobar multiplication is assumed. `row5434_rejects_zero`
+proves that replacing this actual target with zero is impossible under those
+same inputs.
+
+`replay-certified.py` reads and hashes the pinned database and mechanically
+emits an actual fixed-sphere `DifferentialStatement` for the two supported
+mathematical equations, 5432 and 5434. It matches spectrum, branch depth,
+reason, degrees, page, and both coordinate vectors. It uses the already proved
+producer rules with explicit `LiteratureInterface` and `LinE2Presentation`
+arguments. Unsupported seeds and derivations emit no proof source. Its report
+records the route as literature vanishing or literature one-line and explicitly
+sets `db_derivation_replayed=false` and `lean_checked=false`: generation alone
+does not certify a proof. This backend does not reconstruct the original
+secondary-operation algorithm for a `d2` record.
+
+Both generated actual-object examples were checked by Lean. With dependencies
+already compiled, generation (including hashing the 623 MB database) took
+0.81 seconds for each row; Lean verification took 3.87 seconds for 5432 and
+3.58 seconds for 5434. These are applications of cached proved rules, not a
+benchmark for all log derivations or a cold foundation build.
+`actual-replay/` retains the generated files, input reports and independent
+validation timings. Generation reports keep `lean_checked=false`; separate
+validation records the completed compiler run, so an unverified generator run
+never marks itself checked.
+
+### Genuine high-page geometric prerequisite
+
+`TowerSmash/Pairing/Transport/Composite/Proofs.lean` proves compatibility of
+the existing sphere-tower pairing with arbitrary-length tower composites.
+`TowerLongLayer/Pairing/Sphere/Stage/{Data,Proofs}.lean` then constructs the
+actual cofiber triangle comparison and a genuine one-sided pairing
+`L_r(s) tensor T_t iso L_r(s+t)`, including r=4 and t=1, from tensor exactness.
+Its inclusion, connecting morphism and homotopy connecting formulas are
+proved; no `RelativeBoundaryFormula` or higher-page derivation law is assumed.
+`Detection/Filtered/Proofs.lean` extracts an actual tower lift from the actual
+filtration in `Detects`. The H1 producer connects the CSV h1 label to the
+existing literature eta detection and extracts a real filtration-one eta lift.
+The lift's chosen E2 representative and consistency of independently completed
+triangles with the specified first-layer coefficient product remain to prove.
+This is not yet an E4 two-input multiplication or the complete replay law.
+`LinReplayStagePairing` checks all new generic constructions and forbids
+Interface, Main and LinProgram imports.
 
 ### Mechanical prototype and measured scope
 
@@ -64,15 +119,26 @@ CSV evidence, explicitly labeled as research, not completed proofs.
 
 1. Seed 5487: `d2(x_{38,6}) = h0^3 x_{37,5}`. The existing literature
    `adamsOneLine_d2` is about h_j and does not supply this differential. A
-   bottom-level algorithm certificate or independent mathematical proof is
-   still needed.
+   bounded run of the exact archived source now recovers the needed chain
+   data: minimal resolution through t=45 takes 0.067 seconds and secondary
+   lift computation 0.148 seconds after compilation. Independent Python
+   checks a closed dependency set of 96 resolution generators with d squared
+   zero and d f = f d + ddd, using 42,428 products and 236,708 coproduct
+   matrices, in 8.45 seconds. Changing the lift and its stored augmentation
+   consistently is rejected by a failed chain equation. This is not a Lean
+   proof. A Lean checker, resolution exactness/minimality and the comparison
+   of secondary operations with actual sphere d2 are still needed.
+   `seed5487-next.json` records exact source hashes, both target coefficients,
+   source locators, leaf equations, timings and reproduction commands;
+   `extract-secondary-witness.py` regenerates the full closed chain data.
 2. Source continuation: historical rows 97918 -> 97919 -> 97921 pass through
    C2h6/Ctheta5 and identify `h3 h5`; multiplying by h0^2 gives the source.
    The degree argument and actual object/map comparisons need certification.
    A direct C2h6 top-cell map may bypass the intermediate Ctheta5, but is not
    yet constructed here.
-3. Actual E4 multiplication and Leibniz: current long-layer pairing theorems
-   require compatibility and relative-boundary proofs. There is no existing
+3. Actual E4 multiplication and Leibniz: the new stage pairing closes a
+   genuine geometric prerequisite, while the long-layer page pairing theorems
+   still require compatibility and relative-boundary proofs. There is no existing
    fixed E4 sphere instance. Assuming `RelativeBoundaryFormula` merely
    restates the missing law and is not a solution.
 4. Exhaustive coordinates and actual earlier boundaries: raw basis slices
@@ -97,6 +163,12 @@ With the pinned toolchain and dependencies available:
 lake build KIP126.Checks.ClassicalAdams.LinReplayRules
 lake build KIP126.Checks.ClassicalAdams.LinH1Producer
 lake build KIP126.Checks.ClassicalAdams.LinLowStemProducer
+lake build KIP126.Checks.ClassicalAdams.LinOneLineProducer
+lake build KIP126.Checks.ClassicalAdams.LinReplayStagePairing
+python KIP126/LinProgram/Translate/test-replay-certified.py
+python KIP126/LinProgram/Translate/replay-certified.py --row 5434 \
+  --output-dir /tmp/issue152-certified-5434
+lake env lean /tmp/issue152-certified-5434/GeneratedReplay.lean
 python KIP126/LinProgram/Translate/test-replay-lowstem.py
 python KIP126/LinProgram/Translate/replay-lowstem.py --row 152098 \
   --certificate-only --output-dir /tmp/issue152-certificates
@@ -104,10 +176,13 @@ lake env lean /tmp/issue152-certificates/GeneratedProductWitnesses.lean
 ```
 
 Validation in the exploration worktree used the exact pinned Lean binary and
-an isolated compilation overlay with already-built dependencies. All three
-imported declaration audits and both generated algebra examples were checked.
-The Python regression suite checks the separation between local certificates
-and missing actual-row obligations.
+an isolated compilation overlay with already-built dependencies. The H1,
+one-line and stage-pairing declaration audits passed, and both generated
+actual-object sources passed Lean. The earlier generic-rule, low-stem and
+algebra audits are reproducible via the commands above. The Python suites
+passed 2 actual-backend and 3 algebra-boundary tests; all 18 stage-layout
+regressions passed. These checks preserve the separation between local
+certificates and missing actual-row obligations.
 
 ## Earlier vanishing-line producer slice
 
@@ -189,7 +264,7 @@ from actual Interface deliveries.
 | 5441 | (7,23), 2 | d₂(Pc₀) = 0 | Same pattern; target (9,24) has no CSV basis rows. |
 | 5443 | (9,26), 2 | d₂(P²h₁) = 0 | Same pattern; target (11,27) has no CSV basis rows. |
 | 5445 | (9,28), 2 | d₂(P²h₂) = 0 | Same pattern; target (11,29) has no CSV basis rows. |
-| 5434 | (1,16), 2 | d₂(h₄) = h₀h₃² | Existing `LiteratureResults.adamsOneLine_d2` at j=4 supplies the standard-class equation; coordinate/label identification is still required. |
+| 5434 | (1,16), 2 | d₂(h₄) = h₀h₃² | Existing `LiteratureResults.adamsOneLine_d2` at j=4 supplies the standard-class equation; coordinate/label identification and full conditional actual-row producer now proved; original d2 algorithm is not replayed. |
 | 5437 | (4,21), 2 | d₂(e₀) = h₁²d₀ | Needs an independent seed or derivation; reason `d2` is not a proof. |
 | 5439 | (4,22), 2 | d₂([f₀]) = h₀²e₀ | Same limitation. Source has a second basis vector, so index 0 must be preserved. |
 | 245131 | (2,17), 3 | d₃(h₀h₄) = h₀d₀ | Record info names Ceta__S0; a replay following that route needs its comparison and naturality premises. |
