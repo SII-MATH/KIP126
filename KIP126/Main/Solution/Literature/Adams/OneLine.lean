@@ -23,7 +23,9 @@ theorem adamsOneLineDifferentials_h₄_degrees
   · rw [hSource, P.h_degree]
     norm_num
   · rw [statement.target_degree, hSource, P.h_degree]
-    norm_num [Adams.classicalAdamsTarget, Adams.classicalAdamsShift]
+    norm_num [Adams.classicalAdamsTarget, Adams.classicalAdamsShift,
+      KIP126.Core.SpectralSequence.AdamsPage.two,
+      KIP126.Core.SpectralSequence.AdamsPage.toInt]
 
 end KIP126.Classical
 

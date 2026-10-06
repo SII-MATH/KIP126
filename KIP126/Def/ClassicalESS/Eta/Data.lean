@@ -103,6 +103,7 @@ namespace KIP126.Classical.ExtensionSS
 open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
 open KIP126.Classical.Regression
+open KIP126.Core.SpectralSequence
 
 
 /-! ### AIM-5 adapter and concrete page data -/

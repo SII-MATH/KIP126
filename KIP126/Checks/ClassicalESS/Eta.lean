@@ -8,6 +8,7 @@ namespace KIP126.Classical.ExtensionSS.Regression
 
 open CategoryTheory CategoryTheory.Limits
 open KIP126.Classical.Adams
+open KIP126.Core.SpectralSequence
 
 example : etaESSPageLevel.firstPage = 0 := rfl
 example (r : ℕ) : etaESSPageLevel.page r = r := rfl

@@ -5,6 +5,7 @@ namespace KIP126.Comparison.ClassicalSynthetic
 
 open CategoryTheory
 open KIP126.Classical.Adams
+open KIP126.Core.SpectralSequence
 open KIP126.Synthetic.SpectralSequence
 
 universe v
