@@ -1,0 +1,288 @@
+{
+  "status": "polynomial-certificates-only",
+  "actual_row_proof_generated": false,
+  "target": {
+    "id": 152098,
+    "depth": 0,
+    "reason": "D",
+    "name": "S0",
+    "stem": 38,
+    "s": 4,
+    "t": 42,
+    "r": 4,
+    "x": "1",
+    "dx": "",
+    "info": null
+  },
+  "trial": {
+    "id": 152097,
+    "depth": 1,
+    "reason": "T",
+    "name": "S0",
+    "stem": 38,
+    "s": 4,
+    "t": 42,
+    "r": 4,
+    "x": "1",
+    "dx": "0",
+    "info": "Get `S0 (38,4) d_4[1]=[0]`. Apply the Leibniz rule with `S0 (1,1) d_4[0]=[]` and get `S0 (39,5) d_4[]=[0]`.\nHowever, `S0 (38,9) [0]` is not in B_3."
+  },
+  "parsed_steps": [
+    {
+      "name": "S0",
+      "s": 4,
+      "t": 42,
+      "r": 4,
+      "x": [
+        1
+      ],
+      "dx": [
+        0
+      ]
+    },
+    {
+      "name": "S0",
+      "s": 1,
+      "t": 2,
+      "r": 4,
+      "x": [
+        0
+      ],
+      "dx": []
+    },
+    {
+      "name": "S0",
+      "s": 5,
+      "t": 44,
+      "r": 4,
+      "x": [],
+      "dx": [
+        0
+      ]
+    }
+  ],
+  "boundary": [
+    "S0",
+    "38",
+    "9",
+    "0",
+    "3"
+  ],
+  "source_hashes": {
+    "proofs.db": "3a460683c023ee2d8f7e8f904ecef9044a474d88bb7184731e54978ba7dac248",
+    "S0_AdamsE2_basis.csv": "6a337964ad3ac02b729a46fd839dced7cb6764d14d4cea413163987eba8de871",
+    "S0_AdamsE2_relations.csv": "8b4b67d6fb3c9a3a264813ea780340e73b1a66290c8616d3308ae1fc19f3add5"
+  },
+  "timings": {
+    "input_load_and_hash_s": 1.352157961577177,
+    "trial_lookup_and_parse_s": 0.0005238819867372513,
+    "prefix_index_s": 0.6652759779244661,
+    "local_algebra_s": 0.05810802988708019
+  },
+  "prefix_rows_read": 146663,
+  "prefix_degree_keys": 108247,
+  "prefix_reason_counts": {
+    "d2": 7836,
+    "N": 85612,
+    "XX": 122,
+    "M": 3,
+    "G": 40445,
+    "GI": 8206,
+    "OutCsI": 4432,
+    "T": 3,
+    "D": 3,
+    "TI": 1
+  },
+  "low_degree_relations": 212,
+  "divisibility_checks": 617,
+  "certificates": [
+    {
+      "input": [
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            18,
+            1
+          ]
+        ]
+      ],
+      "output": [],
+      "trace": [
+        {
+          "factor": [
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              18,
+              1
+            ]
+          ],
+          "relation": "0,1,1,1"
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            13,
+            1
+          ]
+        ]
+      ],
+      "output": [
+        [
+          [
+            0,
+            3
+          ],
+          [
+            36,
+            1
+          ]
+        ]
+      ],
+      "trace": [
+        {
+          "factor": [
+            [
+              13,
+              1
+            ]
+          ],
+          "relation": "1,1,9,1;0,1,10,1"
+        },
+        {
+          "factor": [
+            [
+              0,
+              1
+            ]
+          ],
+          "relation": "10,1,13,1;2,1,32,1"
+        },
+        {
+          "factor": [
+            [
+              0,
+              1
+            ]
+          ],
+          "relation": "2,1,32,1;0,2,36,1"
+        }
+      ]
+    }
+  ],
+  "local_history": {
+    "1,40": [],
+    "2,41": [],
+    "4,42": [
+      {
+        "id": 5475,
+        "depth": 0,
+        "reason": "d2",
+        "name": "S0",
+        "stem": 38,
+        "s": 4,
+        "t": 42,
+        "r": 2,
+        "x": "0",
+        "dx": "",
+        "info": null
+      }
+    ],
+    "5,43": [
+      {
+        "id": 6599,
+        "depth": 0,
+        "reason": "N",
+        "name": "S0",
+        "stem": 38,
+        "s": 5,
+        "t": 43,
+        "r": 999,
+        "x": "0",
+        "dx": "",
+        "info": "C2h5__S0_by_theta4"
+      }
+    ],
+    "6,44": [
+      {
+        "id": 5487,
+        "depth": 0,
+        "reason": "d2",
+        "name": "S0",
+        "stem": 38,
+        "s": 6,
+        "t": 44,
+        "r": 2,
+        "x": "0",
+        "dx": "1",
+        "info": null
+      }
+    ],
+    "6,45": [],
+    "7,46": [],
+    "8,45": [
+      {
+        "id": 36146,
+        "depth": 0,
+        "reason": "N",
+        "name": "S0",
+        "stem": 37,
+        "s": 8,
+        "t": 45,
+        "r": 3,
+        "x": "0",
+        "dx": "",
+        "info": "CW_eta_2__Q_CW_nu_eta_2"
+      }
+    ],
+    "9,47": [
+      {
+        "id": 7586,
+        "depth": 0,
+        "reason": "N",
+        "name": "S0",
+        "stem": 38,
+        "s": 9,
+        "t": 47,
+        "r": 3,
+        "x": "0",
+        "dx": "",
+        "info": "C2__S0"
+      }
+    ]
+  },
+  "unresolved": [
+    "Historical page state and exhaustive candidate set",
+    "d2 seed correctness and actual E4 Leibniz",
+    "Basis independence and nonzero modulo earlier boundaries"
+  ],
+  "total_s": 2.0764481350779533
+}

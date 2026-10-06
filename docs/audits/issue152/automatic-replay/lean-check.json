@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "elapsed_s": 2.2200014237314463,
+  "peak_kb": 1681224,
+  "output": "docs/audits/issue152/automatic-replay/GeneratedProductWitnesses.lean:13:14: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\ndocs/audits/issue152/automatic-replay/GeneratedProductWitnesses.lean:13:14: warning: 'simp only [htwo, mul_zero, add_zero]' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'Replay152098.productWitness0' depends on axioms: [propext, Classical.choice, Quot.sound]\ndocs/audits/issue152/automatic-replay/GeneratedProductWitnesses.lean:20:10: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice\n\nNote: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`\n'Replay152098.productWitness1' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+}

@@ -1,0 +1,12 @@
+{
+  "second_row": {
+    "elapsed_s": 2.0536816641688347,
+    "exit_code": 0,
+    "output": "docs/audits/issue152/automatic-replay/row152095/GeneratedProductWitnesses.lean:13:14: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\ndocs/audits/issue152/automatic-replay/row152095/GeneratedProductWitnesses.lean:13:14: warning: 'simp only [htwo, mul_zero, add_zero]' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'Replay152098.productWitness0' depends on axioms: [propext, Classical.choice, Quot.sound]\ndocs/audits/issue152/automatic-replay/row152095/GeneratedProductWitnesses.lean:20:14: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\ndocs/audits/issue152/automatic-replay/row152095/GeneratedProductWitnesses.lean:20:14: warning: 'simp only [htwo, mul_zero, add_zero]' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'Replay152098.productWitness1' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  "wrong_target": {
+    "elapsed_s": 2.165154952555895,
+    "exit_code": 1,
+    "output": "/tmp/issue152-wrong-generated.lean:13:14: warning: this tactic is never executed\n\nNote: This linter can be disabled with `set_option linter.unreachableTactic false`\n/tmp/issue152-wrong-generated.lean:13:14: warning: 'simp only [htwo, mul_zero, add_zero]' tactic does nothing\n\nNote: This linter can be disabled with `set_option linter.unusedTactic false`\n'Replay152098.productWitness0' depends on axioms: [propext, Classical.choice, Quot.sound]\n/tmp/issue152-wrong-generated.lean:16:164: error: unsolved goals\nhtwo : 2 = 0\n\u22a2 X 1 * X 9 * X 13 = X 1 * X 9 * X 13 + X 0 ^ 2 * X 36 + X 0 ^ 3 * X 36\n'Replay152098.productWitness1' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n"
+  }
+}
