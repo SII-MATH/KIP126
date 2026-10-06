@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinModel.Data
+import KIP126.LinProgram.E2.Model.Data
 import Mathlib.LinearAlgebra.Basis.Basic
 
 /-! Raw additive-basis catalogue from PR #110, ff39e951, Zenodo 14875701.

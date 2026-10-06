@@ -1,4 +1,4 @@
-import KIP126.LinProgram.Interpretation.AdamsE2
+import KIP126.Def.AdamsE2.Input.Data
 
 namespace KIP126.AdamsE2.Input
 

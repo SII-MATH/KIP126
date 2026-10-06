@@ -81,6 +81,14 @@ document:
   target in `Main/Challenge/h6_sq_permanent.lean` imports only Def; its proof
   may consume Challenge2 through Main/Axiom. Stage-0 interface acceptance does
   not mean certification or the final mathematical proof is complete.
+  `Def/AdamsE2/` contains the generic table, page algebra, presentation and
+  input language; it does not import the program pipeline. `LinProgram/E2/`
+  owns the fixed CSV quotient, named data classes, basis coordinates, parser,
+  reduction engine and automation. Local fixed-data certificates live in
+  `LinProgram/Certificates/`. The comparison with the fixed sphere page is
+  stated in `Interface/Challenge/Computation/Presentation/Data.lean`, and its
+  model-bound delivery obligations remain in Interface. Public Lean declaration
+  names are independent of these module paths.
   `LinProgram/` retains the independent fixed-data pipeline; `Checks/Examples/`
   contains the finite-table demonstrations. Original source artifacts live in
   `Source/`; they are evidence, not Lean proof assumptions.

@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinModel.Proofs
+import KIP126.LinProgram.E2.Model.Proofs
 
 namespace KIP126.LinE2
 

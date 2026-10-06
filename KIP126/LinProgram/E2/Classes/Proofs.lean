@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinClasses.Data
+import KIP126.LinProgram.E2.Classes.Data
 import Batteries.Data.String.Lemmas
 import Mathlib.Algebra.CharP.Two
 import Mathlib.RingTheory.MvPolynomial.Basic

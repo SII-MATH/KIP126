@@ -1,5 +1,5 @@
-import KIP126.Def.AdamsE2.LinModel.Data
-import KIP126.Def.AdamsE2.LinCompute.Data
+import KIP126.LinProgram.E2.Model.Data
+import KIP126.LinProgram.E2.Compute.Data
 
 /-! Executable quotation and checking, ported from PR #110 at ff39e951.
 No correctness theorem is assumed in this module. -/

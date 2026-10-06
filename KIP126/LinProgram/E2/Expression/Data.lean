@@ -1,5 +1,5 @@
-import KIP126.Def.AdamsE2.LinAutomation.Data
-import KIP126.Def.AdamsE2.LinBasisTable.Data
+import KIP126.LinProgram.E2.Automation.Data
+import KIP126.LinProgram.E2.BasisTable.Data
 
 /-! Degree-indexed expressions ported from KIPBase at 639057b.
 Strict decoding returns errors; it makes no claim about reduction soundness.

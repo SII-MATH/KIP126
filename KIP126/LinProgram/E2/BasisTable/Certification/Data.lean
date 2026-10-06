@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinBasisTable.Predicates
+import KIP126.LinProgram.E2.BasisTable.Predicates
 
 /-!
 Basis and coordinates obtained from an explicit certification of the fixed CSV

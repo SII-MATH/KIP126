@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinAutomation.Data
+import KIP126.LinProgram.E2.Automation.Data
 
 namespace KIP126.LinE2.Automation
 

@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinBasisTable.Data
+import KIP126.LinProgram.E2.BasisTable.Data
 
 namespace KIP126.LinE2
 open KIP126.Core.Algebra

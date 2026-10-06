@@ -1,5 +1,5 @@
-import KIP126.Def.AdamsE2.LinModel.Data
-import KIP126.Def.AdamsE2.LinCompute.Data
+import KIP126.LinProgram.E2.Model.Data
+import KIP126.LinProgram.E2.Compute.Data
 
 namespace KIP126.LinE2
 

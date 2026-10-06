@@ -1,5 +1,5 @@
 import KIP126.LinProgram.Interpretation.Route.Data
-import KIP126.Def.AdamsE2.LinBasisTable.Data
+import KIP126.LinProgram.E2.BasisTable.Data
 import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
 import KIP126.Def.SpectralSequence.Computation.State.Predicates
 

@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinSquareDetection.Data
+import KIP126.LinProgram.Certificates.SquareDetection.Data
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
 
 namespace KIP126.Classical.Adams

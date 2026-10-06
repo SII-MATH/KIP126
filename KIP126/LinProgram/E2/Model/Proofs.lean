@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinModel.Data
+import KIP126.LinProgram.E2.Model.Data
 
 namespace KIP126.LinE2
 

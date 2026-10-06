@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinSquareDetection.Certificate.Data
+import KIP126.LinProgram.Certificates.SquareDetection.Certificate.Data
 import KIP126.LinProgram.Certificates.SquareDetection.Parsing
 import Init.Data.String.Lemmas.Iterate
 

@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinExpression.Proofs
+import KIP126.LinProgram.E2.Expression.Proofs
 
 namespace KIP126.LinE2
 

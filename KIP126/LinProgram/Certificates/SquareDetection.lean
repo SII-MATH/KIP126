@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinSquareDetection.Data
+import KIP126.LinProgram.Certificates.SquareDetection.Data
 import Mathlib.Algebra.Polynomial.Degree.Domain
 
 namespace KIP126.LinE2.SquareDetection

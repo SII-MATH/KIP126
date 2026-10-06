@@ -57,12 +57,12 @@ class StageBoundaryLayoutTests(unittest.TestCase):
             self.assertEqual({p.name for p in root.iterdir() if p.is_dir()
                               and any(p.rglob("*"))}, directories)
 
-    def test_def_never_depends_on_proof_stages(self):
+    def test_def_never_depends_on_program_data_or_proof_stages(self):
         for module in self.graph:
             if module == "KIP126.Def" or module.startswith("KIP126.Def."):
                 with self.subTest(module=module):
                     forbidden = [m for m in self.dependencies(module)
-                                 if m.startswith(("KIP126.Interface", "KIP126.Main"))
+                                 if m.startswith(("KIP126.LinProgram", "KIP126.Interface", "KIP126.Main"))
                                  or m == "KIP126.Challenge2"]
                     self.assertEqual(forbidden, [])
 

@@ -1,6 +1,6 @@
 import KIP126.LinProgram.Interpretation.Near126.Names.Proofs
-import KIP126.Def.AdamsE2.LinClasses.Data
-import KIP126.Def.AdamsE2.LinProduct.Data
+import KIP126.LinProgram.E2.Classes.Data
+import KIP126.LinProgram.E2.Product.Data
 
 namespace KIP126.Computation.Near126
 open KIP126.LinE2

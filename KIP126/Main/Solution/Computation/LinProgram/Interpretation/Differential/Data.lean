@@ -1,5 +1,5 @@
 import KIP126.Interface.Challenge.Challenge2
-import KIP126.Def.AdamsE2.LinProduct.Data
+import KIP126.LinProgram.E2.Product.Data
 
 /-! Coordinates for the existing internal tower differential. No differential
 is inferred from the table or supplied as new data. -/

@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinBasisTable.Certification.Data
+import KIP126.LinProgram.E2.BasisTable.Certification.Data
 import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
 
 namespace KIP126.LinE2
