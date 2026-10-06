@@ -23,6 +23,13 @@ on:
       - "scripts/pr_status/**"
       - "scripts/ci-build-cache-key.sh"
       - ".github/workflows/ci.yml"
+      # Every main docs consumer needs a producer even after cache eviction.
+      - "blueprint/src/**"
+      - "requirements-blueprint.txt"
+      - "docbuild/**"
+      - "scripts/docs/**"
+      - "scripts/test_lean_cache_wait.py"
+      - ".github/workflows/pages.yml"
 
 permissions:
   contents: read

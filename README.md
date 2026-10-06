@@ -45,6 +45,7 @@ migration snapshots remain available in Git history. Do not infer proof status
 from a directory listing or a past migration count. Archived plans and check
 records are kept in [docs/archive/](docs/archive/) for historical reference.
 
+- [GitHub task and path review workflow](docs/ISSUE_WORKFLOW.md): issue forms, PR review responsibilities and generated Blueprint frontier.
 - [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
 - [Input review panel](docs/challenge-input-inventory.html): literature, computation, Main's internal applications, and remaining review obligations. Fixed-sphere applicability is stated in Def.
 

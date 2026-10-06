@@ -12,6 +12,7 @@ separately on GitHub.
 | [pr-build](../.github/workflows/pr-build.yml) | Validate candidate sources and pins, compile offline in the sandbox, run repository checks, and publish build statuses and exact-input outputs for PRs and merge groups. Executable tooling comes from the trusted workflow configuration. |
 | [CI](../.github/workflows/ci.yml) | Compile main, publish its compilation baseline, and run repository checks under the `main-validation` job name. |
 | [blueprint-pr](../.github/workflows/blueprint-pr.yml) | Render candidate Blueprint source offline, then validate declaration mappings against exact producer outputs. Mixed PRs are checked too; only pure Blueprint PRs publish this workflow's `build`, `scope`, and `bump-guard` statuses. |
+| [Blueprint frontier](../.github/workflows/blueprint-frontier.yml) | Validate the active DAG, publish reproducible scheduling artifacts, and update one bot-owned issue comment after main changes. PR generation has read-only permissions. |
 | [Blueprint and API docs](../.github/workflows/pages.yml) | Build and check documentation. PR API previews require `docs-preview`; main, manual and scheduled runs retain full site generation. |
 
 Candidate Lean sources include both KIP126 and KIPBase. Root configuration,
@@ -52,3 +53,22 @@ cache hit/miss, inherited evidence, sandbox result and repository-check result.
 | `build` passes, `scope` fails | Inspect the source-boundary policy result. |
 | Documentation reports missing producer outputs | Check that producer's identity and cache publication. Re-run the producer if outputs expired. |
 | Automation checks fails | Fix the candidate regression; a build using trusted tooling does not validate edited workflows. |
+
+## Documentation producer coverage
+
+Every main push path that starts the documentation workflow also starts CI.
+This includes Blueprint-only changes and documentation tooling/configuration:
+a previous exact-input cache may have expired. CI restores the usual baseline
+and uses Lake's incremental build, so an unchanged warm Lean graph does not
+need recompilation; consumers continue waiting for the explicit producer and
+never silently start a second build. A regression checks coverage of all docs
+push patterns by the main producer.
+
+KIPBase candidate sources are now overlaid by the trusted PR producer. Arbitrary
+candidate root Lake configuration remains outside that automatic overlay: a PR
+changing lakefile.lean still needs an infrastructure reviewer to arrange and
+validate an appropriate trusted producer. An exact-input publication mismatch
+must fail; it is not fixed by dropping the equality check or executing arbitrary
+candidate build configuration with credentials. Blueprint-only PRs referencing
+an old base whose cache has expired, and service failures after publication,
+still require producer/cache recovery. Issue #122 tracks these remaining cases.

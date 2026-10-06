@@ -14,7 +14,10 @@ import json
 import re
 from pathlib import Path
 
-from check_source_inventory import strip_unescaped_percent_comments, validate_inventory
+try:
+    from .check_source_inventory import strip_unescaped_percent_comments, validate_inventory
+except ImportError:
+    from check_source_inventory import strip_unescaped_percent_comments, validate_inventory
 
 
 ROUTE_STATUSES = {
@@ -277,8 +280,8 @@ def validate_computation_coverage(root, document, labels, nodes, used_labels, re
     return declarations
 
 
-def blueprint_nodes(root):
-    """Read active Blueprint inputs and their mathematical declaration links."""
+def blueprint_text(root):
+    """Expand the active, validated Blueprint source without executing TeX."""
     directory = (root / "blueprint/src").resolve()
     visited, active = set(), []
     environments = r"theorem|proposition|lemma|corollary|definition"
@@ -335,7 +338,13 @@ def blueprint_nodes(root):
         finally:
             active.pop()
 
-    text = expand(directory / "content.tex")
+    return expand(directory / "content.tex")
+
+
+def blueprint_nodes(root):
+    """Read active Blueprint inputs and their mathematical declaration links."""
+    text = blueprint_text(root)
+    environments = r"theorem|proposition|lemma|corollary|definition"
     labels, nodes, stack = set(), {}, []
     tokens = re.compile(
         r"\\(?:(begin|end)\s*\{(" + environments + r")\}|"
