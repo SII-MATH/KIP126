@@ -23,6 +23,9 @@ theorem beta_naturality {A B : Syn} (f : A ⟶ B) (q : ℕ) :
     XModLambdaN.map f q ≫ beta B q =
       beta A q ≫ (shiftFunctor Syn (1 : ℤ)).map
         ((SyntheticCategory.biShift (0, -(q : ℤ))).map (XModLambdaN.map f 1)) := by
-  sorry
+  unfold beta
+  rw [← Category.assoc, XModLambdaN.proj_naturality, Category.assoc,
+    ← Functor.map_comp, ← Functor.map_comp, XModLambdaN.incl_naturality,
+    Functor.map_comp, Functor.map_comp, Category.assoc]
 
 end KIP126.Synthetic.Bockstein

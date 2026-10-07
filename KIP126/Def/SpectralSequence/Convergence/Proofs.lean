@@ -1,4 +1,5 @@
 import KIP126.Def.SpectralSequence.Convergence.Predicates
+import KIP126.Def.Algebra.Filtration.Predicates
 
 /-!
 # Proofs for convergence of nested-subobject spectral sequences
@@ -138,10 +139,21 @@ theorem Filtration.IsBoundedBelow.toIsExhaustive
   intro k
   exact ⟨h.lo k, h.boundedBelow k (h.lo k) le_rfl⟩
 
+/-- Eventual vanishing implies separatedness. The stronger premise uses
+the existing algebra-filtration predicate on the same filtration. -/
+theorem Filtration.isHausdorff_of_isEventuallyZero
+    {ω : Type w} {A : ω → C} {F : Filtration A}
+    (h : F.toAlgebra.IsEventuallyZero) : F.IsHausdorff := by
+  intro k S hS
+  obtain ⟨s, hs⟩ := h k
+  change F.F s k = ⊥ at hs
+  exact le_antisymm (by simpa only [hs] using hS s) bot_le
+
 /-- A bounded-above filtration is Hausdorff. -/
 theorem Filtration.IsBoundedAbove.toIsHausdorff
     {ω : Type w} {A : ω → C} {F : Filtration A}
     (h : F.IsBoundedAbove) : F.IsHausdorff := by
+  apply Filtration.isHausdorff_of_isEventuallyZero
   intro k
   exact ⟨h.hi k, h.boundedAbove k (h.hi k) le_rfl⟩
 
