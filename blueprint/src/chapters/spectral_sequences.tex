@@ -1,14 +1,14 @@
-\chapter{Spectral-sequence machinery}
+\section{Spectral-sequence machinery}
 \label{chap:spectral-sequence-machinery}
 
-The canonical interfaces use the internal nested-subobject model
-$\mathrm{SSData}\to\mathrm{PreSS}\to\mathrm{SpectralSequence}$.
-The retained Mathlib spectral-sequence and spectral-object constructions are
-optional adapters. They do not create an obligation to compare every internal
-sequence with a Mathlib spectral sequence. Paper-specific Adams towers,
-synthetic rigidity and extension calculations belong to later chapters.
+Nested cycle and boundary subobjects determine the internal pages,
+differentials, and page passage. The constructions below also associate
+spectral objects and spectral sequences to filtered complexes. Identifying
+two such constructions requires compatible comparison maps; existence of
+one construction does not automatically provide the comparisons used in
+the Adams and synthetic arguments.
 
-\section{Canonical internal pages and morphisms}
+\subsection{Canonical internal pages and morphisms}
 
 \begin{definition}[Internal nested-subobject spectral sequence]
   \label{def:internal-nested-spectral-sequence}
@@ -68,7 +68,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   \leanok
 \end{proof}
 
-\section{Mathlib spectral-sequence and spectral-object interfaces}
+\subsection{Spectral objects and their spectral sequences}
 
 \begin{definition}[Spectral sequence in an abelian category]
   \label{def:mathlib-spectral-sequence}
@@ -231,11 +231,11 @@ synthetic rigidity and extension calculations belong to later chapters.
   abelian spectral object; those two conversions are project obligations below.
 \end{definition}
 
-\section{Pages, convergence, and comparison}
+\subsection{Pages, convergence, and comparison}
 
 % SOURCE: Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:20-24 records this bridge as TODO;
 % Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:217-240 supplies the three exactness lemmas.
-\begin{theorem}[Exactness obligations for a homological image]
+\begin{theorem}[Exactness of a homological image]
   \label{thm:homological-spectral-object-exactness}
   \uses{def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-exact-one,thm:mathlib-homology-sequence-exact-two,thm:mathlib-homology-sequence-exact-three}
   \lean{KIP126.Core.SpectralSequence.homologicalImage_exactness}
@@ -427,19 +427,26 @@ synthetic rigidity and extension calculations belong to later chapters.
 % VERIFIED-IN: KIP126/Classical/Adams/Basic.lean, declarations Bidegree,
 % classicalAdamsShift, classicalAdamsTarget, classicalAdamsShape, and
 % classicalAdamsShape_two_rel.
-\begin{definition}[Compiled classical Adams $E_2\to E_3$ shape slice]
+\begin{definition}[The classical Adams $E_2\to E_3$ page passage]
   \label{def:classical-adams-e2-e3-shape-slice}
   \uses{def:mathlib-spectral-sequence,def:mathlib-complex-shape-up,def:core-f2-module-category,thm:mathlib-module-category-abelian}
   \lean{KIP126.Classical.Adams.ClassicalAdamsSpectralSequence}
   \lean{KIP126.Classical.Adams.classicalAdamsShape_two_rel}
   \lean{KIP126.Classical.Adams.ClassicalAdamsSS.e₂ToE₃}
   \leanok
-  The compiled tracer bullet is a Mathlib spectral sequence of
-  $\mathbb F_2$-modules indexed by $\mathbb Z\times\mathbb Z$, displayed from
-  $E_2$, whose page-$r$ differential shape is
-  $\operatorname{up}'(r,r-1)$.  In particular, its $d_2$ component sends
-  $(s,t)$ to $(s+2,t+1)$, and Mathlib's page-passage isomorphism identifies
-  the homology of this $E_2$ page with $E_3$.
+  In the cohomological Adams convention, a spectral sequence of
+  $\mathbb F_2$-modules indexed by $\mathbb Z\times\mathbb Z$ and displayed
+  from $E_2$ has differentials
+  \[
+    d_r:E_r^{s,t}\longrightarrow E_r^{s+r,t+r-1}.
+  \]
+  In particular, $d_2$ sends $(s,t)$ to $(s+2,t+1)$, and passage to the
+  next page gives the isomorphism
+  \[
+    E_3^{s,t}\cong
+      \ker(d_2:E_2^{s,t}\to E_2^{s+2,t+1})\big/
+      \operatorname{im}(d_2:E_2^{s-2,t-1}\to E_2^{s,t}).
+  \]
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
@@ -640,8 +647,8 @@ synthetic rigidity and extension calculations belong to later chapters.
   of a graded abutment $A_*$, a decreasing filtration $F^sA_n$, a comparison
   $E_\infty\cong\operatorname{gr}^F A$, and a detection relation between
   nonzero $E_\infty$ classes and filtered elements of $A_*$.  It records the
-  naturality and representative ambiguity needed by its consumer.  It is an
-  explicit project input or located external result for this sequence; it does
+  naturality and representative ambiguity. Existence of such a witness
+  for the chosen sequence must be established separately; it does
   not assert a general Boardman theorem, vanishing of a $\lim^1$ obstruction,
   or automatic convergence of arbitrary unbounded filtrations.
 \end{definition}
@@ -746,7 +753,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   $\operatorname{gr}^s_F(C_k)$ and differential the compiled
   associated-graded differential.  In the displayed consecutive component the
   differential is followed by the canonical index transport induced by
-  $(k+1)-1=k$.  The compiled square-zero theorem supplies the chain-complex
+  $(k+1)-1=k$.  The square-zero theorem supplies the chain-complex
   relation; this node packages those existing components as a Mathlib chain
   complex rather than introducing a second differential.
 \end{definition}
@@ -805,7 +812,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   \leanok
   \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedChainMap}
   A filtered chain map $u:(C,F)\to(D,G)$ induces a chain map on every fixed
-  filtration grade.  Its component in chain degree $k$ is the compiled map
+  filtration grade.  Its component in chain degree $k$ is the map
   \[
     \operatorname{gr}^s_F(C_k)\longrightarrow\operatorname{gr}^s_G(D_k),
   \]
@@ -845,7 +852,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   canonical completion witness in every grading degree from the bounded-above
   component.  It also chooses, for every bidegree $(p,q)$, a page at least $2$
   and an isomorphism from that page object to the indicated associated-graded
-  piece of the endpoint abutment.  The boundedness field yields compiled proofs
+  piece of the endpoint abutment.  The boundedness field yields proofs
   of the strong degreewise eventual-top predicate named
   \texttt{IsExhaustive} and of degreewise eventual-bottom.  These imply
   ordinary exhaustiveness and separatedness, but are not definitions of those
@@ -875,9 +882,8 @@ synthetic rigidity and extension calculations belong to later chapters.
   $(s,t,w)\mapsto(s,t)$; binding a comparison to the actual Adams tower and
   the selected synthetic family remains a construction obligation.
 
-  This node records the compiled fixed-weight comparison used on the KIP126
-  main line.  More general affine reindexing interfaces belong here only after
-  they have been migrated to a stable declaration under \texttt{KIP126}.
+  This fixed-weight construction uses the displayed degree projection.
+  General affine reindexings require additional grading comparisons.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:138-150, 159-162, 1606-1753.
@@ -933,7 +939,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   finite presentation.
 \end{proof}
 
-\section{Filtered-complex realization}
+\subsection{Filtered-complex realization}
 
 % SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean: filtered-complex morphism declarations; Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean.
 \begin{definition}[Filtered chain map]
@@ -1149,7 +1155,7 @@ synthetic rigidity and extension calculations belong to later chapters.
   the mapping-cone and homological-image constructions yield an abelian
   spectral object indexed by $\operatorname{EInt}$.  Mathlib then supplies
   its canonical cohomological $E_2$ spectral sequence on
-  $\mathbb Z\times\mathbb Z$.  At $(p,q)$, the compiled first-page
+  $\mathbb Z\times\mathbb Z$.  At $(p,q)$, the first-page
   isomorphism identifies the $E_2$ object with the degree-$(p+q)$ homology
   functor evaluated on the interval from $q$ to $q+1$ in that spectral object.
   It does not identify this page with the associated graded of filtered
@@ -1241,7 +1247,7 @@ synthetic rigidity and extension calculations belong to later chapters.
 \end{theorem}
 
 \begin{proof}
-  Apply the adapter and use the compiled associated-graded differential and its
+  Apply the adapter and use the associated-graded differential and its
   square-zero theorem to identify the initial page as a complex.  Use the
   supplied page recipe and discharge Mathlib's endpoint-vanishing
   \texttt{HasSpectralSequence} fields from the stated boundary hypotheses;

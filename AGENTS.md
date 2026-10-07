@@ -3,13 +3,17 @@
 ## Start here
 
 - The Blueprint is the mathematical plan, not evidence that a proof is complete.
+- Blueprint nodes describe mathematical objects, statements, and proof
+  dependencies. Repository architecture, delivery inventories, source ledgers,
+  hashes, and coverage audits belong in `docs/BLUEPRINT_MAINTENANCE.md` or
+  their canonical engineering records, not in the mathematical graph.
 - A mechanical cleanup must not silently change a public declaration, a
   stage-boundary statement, source provenance, proof status, or mathematical
   strength.
 
 ## Multica agents
 
-If you believe you are an agent from Multica, read `MULTICA_AGENTS.md` before
+If you believe you are an agent from Multica, read `docs/MULTICA_AGENTS.md` before
 working in this repository. Otherwise, ignore that file.
 
 ## Repository architecture

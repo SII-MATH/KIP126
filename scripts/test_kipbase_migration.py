@@ -15,7 +15,7 @@ TOOLS = runpy.run_path(str(Path(__file__).with_name("kipbase-migration.py")))
 
 class ArchiveOnlyTests(unittest.TestCase):
     def fixture(self, root, corrupt=False):
-        archive = root / "migration/kip-base"
+        archive = root / "docs/migration/kip-base"
         archive.mkdir(parents=True)
         content = b"axiom historical : True\n"
         manifest = {"files": [{"source": "KIPBase.lean", "destination": "KIPBase.lean",

@@ -34,7 +34,7 @@ The complete historical KIP-base library is retained as the separately compiled
 `KIPBase` component on the same Lean/mathlib 4.32.2 pins. Its original assumptions
 are isolated from `KIP126` and do not count as completed paper proofs. See the
 [component build and reuse guide](KIPBase/README.md) and
-[original migration archive](migration/kip-base/README.md).
+[original migration archive](docs/migration/kip-base/README.md).
 
 ## Project documents and workflow
 
@@ -45,6 +45,8 @@ migration snapshots remain available in Git history. Do not infer proof status
 from a directory listing or a past migration count. Archived plans and check
 records are kept in [docs/archive/](docs/archive/) for historical reference.
 
+- [GitHub task and path review workflow](docs/ISSUE_WORKFLOW.md): issue forms, PR review responsibilities and generated Blueprint frontier.
+- [Blueprint maintenance](docs/BLUEPRINT_MAINTENANCE.md): engineering architecture, source correspondence, proof-status rules and historical coverage records.
 - [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
 - [Input review panel](docs/challenge-input-inventory.html): literature, computation, Main's internal applications, and remaining review obligations. Fixed-sphere applicability is stated in Def.
 

@@ -26,7 +26,7 @@
 <section id="view" aria-live="polite"></section>
 <details id="search-area">
 <summary>查找全部登记字段与来源</summary>
-<p class="muted">文献列出 48 条直接命题声明；计算保留其 7 项认证目标。文献包装视图不重复登记。审计覆盖不等于文献正确性或证明完成。</p>
+<p class="muted">文献列出 48 条直接命题声明；计算逐条列出 29 条结果与 4 条绑定比较。包装与对象数据不计入陈述条数。审计覆盖不等于文献正确性或证明完成。</p>
 <div class="toolbar"><input id="search" type="search" aria-label="搜索声明、来源或定位" placeholder="搜索 Adams、BHS、字段名或 theorem locator…"><button id="export" type="button">导出我的审阅</button></div>
 <div id="all-fields"></div>
 <details><summary>文献与制品目录（含范围外背景资料）</summary><div id="sources"></div></details>
@@ -55,11 +55,11 @@ const views = {
     order: null
   },
   computation: {
-    heading: "计算结果：七项",
-    intro: "计算绑定统一选择 E₂ presentation、路线解释和 tmf 坐标，并比较 BR21 来源端点。七项结果须在这个绑定上认证；解析或哈希检查不构成数学证明。",
+    heading: "计算：29 条结果与 4 条绑定比较",
+    intro: "逐条列出同一计算绑定上的结果和比较等式。E₂ presentation、路线解释和 tmf 坐标沿用同一文献交付；每条陈述分别对应 Blueprint 节点与实际 Lean 声明。",
     bindingId: "MB13-computation-delivery",
     structure: prefix + "ComputationResults",
-    order: ["sphereBasis", "sphereMultiplicative", "sphereStaircase", "sphereSquare", "sphereTable_sound", "route", "route_presentation"]
+    order: null
   },
   internal: {
     heading: "后续证明责任",
@@ -84,29 +84,63 @@ let manifest, records = [], active = "literature";
 function readStored(key) { try { return JSON.parse(localStorage.getItem(key) || "{}"); } catch { return {}; } }
 const decisions = readStored("kip126-unified-input-decisions");
 const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const statusLabel = status => ({
+  "external-statement-unproved": "文献陈述，待证明",
+  "certification-obligation": "计算认证待证明",
+  "comparison-obligation": "比较待证明"
+}[status] || status);
 const sourcesFor = record => (record.sources || []).map(id => manifest.sources.find(source => source.id === id)).filter(Boolean);
 function sourceLinks(record) {
   return sourcesFor(record).map(source => '<a href="#source-' + escapeHTML(source.id) + '" data-source="' + escapeHTML(source.id) + '">' +
     escapeHTML((source.citation_keys || [])[0] || source.id) + "</a>").join(" · ");
 }
-function field(structure, name, record) {
-  const id = structure + "." + name;
+function field(structure, name, record, reviewId) {
+  const id = reviewId || structure + "." + name;
+  const declaration = record.declaration || structure + "." + name;
   const options = [["", "尚未判断"], ["check-source", "需要核实原文"], ["check-form", "需要检查数学形式"], ["check-role", "需要重新分类"], ["statement-ok", "陈述可接受，证明另审"]];
-  return '<div class="field"><code>' + escapeHTML(id) + '</code><div class="locator">' +
-    escapeHTML(record.locator) + '</div><div class="source-list">' + sourceLinks(record) + '</div><label>我的审阅 <select data-decision="' + escapeHTML(id) + '">' +
+  const blueprint = (record.blueprint_labels || []).map(label => '<code>' + escapeHTML(label) + '</code>').join(' · ');
+  return '<div class="field"><code>' + escapeHTML(declaration) + '</code>' +
+    (record.module ? '<p class="meta">' + escapeHTML(record.module) + '</p>' : '') +
+    (blueprint ? '<p class="meta">Blueprint：' + blueprint + '</p>' : '') +
+    '<div class="locator">' + escapeHTML(record.locator) + '</div><div class="source-list">' + sourceLinks(record) + '</div><label>我的审阅 <select data-decision="' + escapeHTML(id) + '">' +
     options.map(([value, label]) => '<option value="' + value + '"' + (decisions[id] === value ? " selected" : "") + ">" + label + "</option>").join("") +
-    '</select></label><p class="meta">清单状态：' + escapeHTML(record.proof_status) + '</p></div>';
+    '</select></label><p class="meta">清单状态：' + escapeHTML(statusLabel(record.proof_status)) + '</p></div>';
 }
-function card(name, record, structure) {
+function card(name, record, structure, reviewId, scope) {
   let description = descriptions[name] || [name, ""];
   if (name === "route") description = active === "literature"
     ? ["§7 主证明路线", "θ₅、synthetic/BHS、May、Toda、tmf 等文献输入；来源事实与内部应用须分别审查。"]
     : active === "computation" ? ["§7 路线计算", "在同一路线模型上解释并认证筛选后的程序记录。"]
     : ["文献到路线的内部应用", "由来源结论和模型绑定组装 Main 所需事实；保留其内部证明责任。"];
-  return '<article class="card"><span class="tag">' + (active === "literature" ? "待核验" : "保留证明义务") +
-    "</span><h3>" + escapeHTML(description[0]) + "</h3><p>" + escapeHTML(description[1]) +
-    '</p><div class="source-list">' + sourceLinks(record) + '</div><details><summary>查看陈述定位</summary>' +
-    field(structure, name, record) + "</details></article>";
+  return '<article class="card"><span class="tag">' + (active === "literature" ? "待核验" : scope === "bindings" ? "绑定比较" : "计算结果") +
+    "</span><h3>" + escapeHTML(description[0]) + "</h3>" + (description[1] ? "<p>" + escapeHTML(description[1]) + "</p>" : "") +
+    '<div class="source-list">' + sourceLinks(record) + '</div><details><summary>查看陈述定位</summary>' +
+    field(structure, name, record, reviewId) + "</details></article>";
+}
+function statementRecords(data) {
+  const result = [];
+  for (const group of data.interface_coverage) {
+    for (const [top, record] of Object.entries(group.fields || {})) {
+      if (group.role === "computation") {
+        for (const [relativePath, statement] of Object.entries(record.statements || {})) {
+          const name = relativePath ? top + "." + relativePath : top;
+          result.push({
+            structure: group.structure, name, scope: "results", role: "computation",
+            reviewId: statement.declaration,
+            record: {sources: record.sources, locator: record.locator, proof_status: record.proof_status, ...statement}
+          });
+        }
+      } else {
+        result.push({structure: group.structure, name: top, role: group.role,
+          reviewId: group.structure + "." + top, record});
+      }
+    }
+  }
+  for (const [name, record] of Object.entries(data.computation_binding_statements || {})) {
+    result.push({structure: prefix + "ComputationBindings", name, scope: "bindings",
+      role: "computation", reviewId: record.declaration, record});
+  }
+  return result;
 }
 function render() {
   const config = views[active];
@@ -122,20 +156,29 @@ function render() {
   }
   const group = manifest.interface_coverage.find(item => item.structure === config.structure);
   const binding = manifest.route.model_bindings.find(item => item.id === config.bindingId);
-  const bindingCard = binding ? '<article class="card"><span class="tag">比较待证明</span><h3>本包的绑定</h3><p>' +
+  const bindingCard = active === "literature" && binding ? '<article class="card"><span class="tag">比较待证明</span><h3>本包的绑定</h3><p>' +
     escapeHTML(binding.notes) + '</p><details><summary>查看绑定声明</summary><p class="meta">' +
     binding.declarations.map(name => '<code>' + escapeHTML(name) + '</code>').join(' · ') +
     '</p></details></article>' : '';
-  document.querySelector("#view").innerHTML = "<h2>" + config.heading + "</h2><p class='muted'>" + config.intro +
-    "</p>" + bindingCard + (config.order || Object.keys(group?.fields || {})).filter(name => group && group.fields[name]).map(name => card(name, group.fields[name], config.structure)).join("");
+  const computation = records.filter(item => item.role === "computation");
+  const heading = active === "computation"
+    ? "计算：" + computation.filter(item => item.scope === "results").length + " 条结果与 " + computation.filter(item => item.scope === "bindings").length + " 条绑定比较"
+    : config.heading;
+  const cards = active === "computation"
+    ? computation.map(item => card(item.name, item.record, item.structure, item.reviewId, item.scope)).join("")
+    : (config.order || Object.keys(group?.fields || {})).filter(name => group && group.fields[name]).map(name => card(name, group.fields[name], config.structure)).join("");
+  document.querySelector("#view").innerHTML = "<h2>" + heading + "</h2><p class='muted'>" + config.intro +
+    "</p>" + bindingCard + cards;
   document.querySelectorAll("[data-view]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.view === active)));
 }
 function renderSearch() {
   const needle = document.querySelector("#search").value.toLocaleLowerCase().trim();
   const filtered = records.filter(item => JSON.stringify(item).toLocaleLowerCase().includes(needle));
   document.querySelector("#all-fields").innerHTML = "<p class='meta'>" + filtered.length + " 个登记声明</p>" +
-    filtered.map(item => "<details><summary>" + escapeHTML(item.structure.split(".").pop() + "." + item.name) + "</summary>" +
-      field(item.structure, item.name, item.record) + "</details>").join("");
+    filtered.map(item => "<details><summary>" + escapeHTML(item.role === "computation"
+      ? (item.scope === "bindings" ? "绑定比较 · " : "计算结果 · ") + item.name
+      : item.structure.split(".").pop() + "." + item.name) + "</summary>" +
+      field(item.structure, item.name, item.record, item.reviewId) + "</details>").join("");
 }
 document.addEventListener("click", event => {
   const button = event.target.closest("[data-view]");
@@ -168,7 +211,7 @@ fetch("external-inputs.json", {cache: "no-store"}).then(response => {
 }).then(data => {
   if (!Array.isArray(data.interface_coverage) || !Array.isArray(data.sources)) throw new Error("清单格式不匹配");
   manifest = data;
-  records = data.interface_coverage.flatMap(group => Object.entries(group.fields).map(([name, record]) => ({structure: group.structure, name, record})));
+  records = statementRecords(data);
   document.querySelector("#loading").hidden = true;
   render(); renderSearch();
   document.querySelector("#sources").innerHTML = data.sources.map(source =>

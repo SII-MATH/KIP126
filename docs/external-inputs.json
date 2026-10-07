@@ -3621,7 +3621,18 @@
           ],
           "locator": "Pinned LinProgram data and interpretation certificates: sphereBasis. Correctness on the selected mathematical model remains a certification obligation.",
           "proof_status": "certification-obligation",
-          "blueprint_labels": []
+          "blueprint_labels": [
+            "thm:computation-sphereBasis-csv-values"
+          ],
+          "statements": {
+            "csv_values": {
+              "declaration": "KIP126.Challenge2.SphereBasisInterface.csv_values",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereBasis-csv-values"
+              ]
+            }
+          }
         },
         "sphereMultiplicative": {
           "sources": [
@@ -3629,7 +3640,18 @@
           ],
           "locator": "Pinned LinProgram data and interpretation certificates: sphereMultiplicative. Correctness on the selected mathematical model remains a certification obligation.",
           "proof_status": "certification-obligation",
-          "blueprint_labels": []
+          "blueprint_labels": [
+            "thm:computation-sphereMultiplicative"
+          ],
+          "statements": {
+            "": {
+              "declaration": "KIP126.Challenge2.ComputationResults.sphereMultiplicative",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereMultiplicative"
+              ]
+            }
+          }
         },
         "sphereStaircase": {
           "sources": [
@@ -3637,7 +3659,18 @@
           ],
           "locator": "Pinned LinProgram data and interpretation certificates: sphereStaircase. Correctness on the selected mathematical model remains a certification obligation.",
           "proof_status": "certification-obligation",
-          "blueprint_labels": []
+          "blueprint_labels": [
+            "thm:computation-sphereStaircase-rows-sound"
+          ],
+          "statements": {
+            "rows_sound": {
+              "declaration": "KIP126.Challenge2.SphereStaircaseInterface.rows_sound",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereStaircase-rows-sound"
+              ]
+            }
+          }
         },
         "sphereSquare": {
           "sources": [
@@ -3645,7 +3678,34 @@
           ],
           "locator": "Pinned LinProgram data and interpretation certificates: sphereSquare. Correctness on the selected mathematical model remains a certification obligation.",
           "proof_status": "certification-obligation",
-          "blueprint_labels": []
+          "blueprint_labels": [
+            "thm:computation-sphereSquare-nonzero",
+            "thm:computation-sphereSquare-exhaustive",
+            "thm:computation-sphereSquare-standard-class"
+          ],
+          "statements": {
+            "nonzero": {
+              "declaration": "KIP126.Challenge2.SphereSquareInterface.nonzero",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereSquare-nonzero"
+              ]
+            },
+            "exhaustive": {
+              "declaration": "KIP126.Challenge2.SphereSquareInterface.exhaustive",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereSquare-exhaustive"
+              ]
+            },
+            "standard_class": {
+              "declaration": "KIP126.Challenge2.SphereSquareInterface.standard_class",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereSquare-standard-class"
+              ]
+            }
+          }
         },
         "sphereTable_sound": {
           "sources": [
@@ -3653,7 +3713,18 @@
           ],
           "locator": "Pinned LinProgram data and interpretation certificates: sphereTable_sound. Correctness on the selected mathematical model remains a certification obligation.",
           "proof_status": "certification-obligation",
-          "blueprint_labels": []
+          "blueprint_labels": [
+            "thm:computation-sphereTable-sound"
+          ],
+          "statements": {
+            "": {
+              "declaration": "KIP126.Challenge2.ComputationResults.sphereTable_sound",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereTable-sound"
+              ]
+            }
+          }
         },
         "route": {
           "sources": [
@@ -3661,7 +3732,178 @@
           ],
           "locator": "Pinned LinProgram data and interpretation certificates: route. Correctness on the selected mathematical model remains a certification obligation.",
           "proof_status": "certification-obligation",
-          "blueprint_labels": []
+          "blueprint_labels": [
+            "thm:computation-route-basis",
+            "thm:computation-route-csv",
+            "thm:computation-route-products",
+            "thm:computation-route-labels-h0",
+            "thm:computation-route-labels-h1",
+            "thm:computation-route-labels-h2",
+            "thm:computation-route-labels-h4",
+            "thm:computation-route-labels-h5",
+            "thm:computation-route-labels-h6",
+            "thm:computation-route-labels-h0-square",
+            "thm:computation-route-labels-h5-square",
+            "thm:computation-route-labels-h6-square",
+            "thm:computation-route-labels-x-126-8-4",
+            "thm:computation-route-labels-x-126-8",
+            "thm:computation-route-labels-x-124-8",
+            "thm:computation-route-labels-x-109-12",
+            "thm:computation-route-labels-g",
+            "thm:computation-route-labels-delta-h-1-mul-g",
+            "thm:computation-route-results",
+            "thm:computation-route-bottom",
+            "thm:computation-route-top"
+          ],
+          "statements": {
+            "basis": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.basis",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-basis"
+              ]
+            },
+            "csv": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.csv",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-csv"
+              ]
+            },
+            "products": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.products",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-products"
+              ]
+            },
+            "labels.h0": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h0",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h0"
+              ]
+            },
+            "labels.h1": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h1",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h1"
+              ]
+            },
+            "labels.h2": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h2",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h2"
+              ]
+            },
+            "labels.h4": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h4",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h4"
+              ]
+            },
+            "labels.h5": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h5",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h5"
+              ]
+            },
+            "labels.h6": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h6",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h6"
+              ]
+            },
+            "labels.h0_square": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h0_square",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h0-square"
+              ]
+            },
+            "labels.h5_square": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h5_square",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h5-square"
+              ]
+            },
+            "labels.h6_square": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h6_square",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h6-square"
+              ]
+            },
+            "labels.x_126_8_4": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.x_126_8_4",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-x-126-8-4"
+              ]
+            },
+            "labels.x_126_8": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.x_126_8",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-x-126-8"
+              ]
+            },
+            "labels.x_124_8": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.x_124_8",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-x-124-8"
+              ]
+            },
+            "labels.x_109_12": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.x_109_12",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-x-109-12"
+              ]
+            },
+            "labels.g": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.g",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-g"
+              ]
+            },
+            "labels.delta_h_1_mul_g": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.delta_h_1_mul_g",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-delta-h-1-mul-g"
+              ]
+            },
+            "results": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.results",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-results"
+              ]
+            },
+            "bottom": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.bottom",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-bottom"
+              ]
+            },
+            "top": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.top",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-top"
+              ]
+            }
+          }
         },
         "route_presentation": {
           "sources": [
@@ -3669,7 +3911,18 @@
           ],
           "locator": "Pinned LinProgram data and interpretation certificates: route_presentation. Correctness on the selected mathematical model remains a certification obligation.",
           "proof_status": "certification-obligation",
-          "blueprint_labels": []
+          "blueprint_labels": [
+            "thm:computation-route-presentation"
+          ],
+          "statements": {
+            "": {
+              "declaration": "KIP126.Challenge2.ComputationResults.route_presentation",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-route-presentation"
+              ]
+            }
+          }
         }
       }
     }
@@ -3792,5 +4045,57 @@
       "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
       "status": "statement-or-data-only"
     }
-  ]
+  ],
+  "computation_binding_statements": {
+    "presentation.comparison_mul": {
+      "declaration": "KIP126.Classical.Adams.LinE2Presentation.comparison_mul",
+      "module": "KIP126/Interface/Challenge/Computation/Presentation.lean",
+      "sources": [
+        "lwx_machine"
+      ],
+      "locator": "Fixed Lin sphere quotient products through the same bounded presentation (t+t′≤261). Identification with the actual sphere-layer product remains a separate result obligation.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-presentation-comparison-mul"
+      ]
+    },
+    "tmfMultiplicative": {
+      "declaration": "KIP126.Challenge2.ComputationBindings.tmfMultiplicative",
+      "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+      "sources": [
+        "lwx_machine"
+      ],
+      "locator": "Fixed tmf CSV unit and products through the same bounded E2 coordinate comparison on Def.standardTmfTarget (t+t′≤261). Actual second-cycle multiplication is required for every representative pair.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-tmfMultiplicative"
+      ]
+    },
+    "tmf_v2Sixteen": {
+      "declaration": "KIP126.Challenge2.ComputationBindings.tmf_v2Sixteen",
+      "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+      "sources": [
+        "lwx_machine",
+        "br21"
+      ],
+      "locator": "Fixed tmf CSV w2^2, named v2^16 at (16,112), compared with the BR21 source endpoint through the inverse of the same detectorIso. BR21 Table 5.4 / Theorem 5.18, printed p.196 / PDF p.213 identifies the source differential; the endpoint comparison is a separate obligation.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-bindings-tmf-v2Sixteen"
+      ]
+    },
+    "tmf_betaGFour": {
+      "declaration": "KIP126.Challenge2.ComputationBindings.tmf_betaGFour",
+      "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+      "sources": [
+        "lwx_machine",
+        "br21"
+      ],
+      "locator": "Fixed tmf CSV beta*g^4 at (19,114), compared with the BR21 source endpoint through the inverse of the same detectorIso. BR21 Table 5.4 / Theorem 5.18, printed p.196 / PDF p.213 identifies the source differential; beta*g^4=beta^5*g is a fixed-quotient relation, not this comparison proof.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-bindings-tmf-betaGFour"
+      ]
+    }
+  }
 }

@@ -1,9 +1,10 @@
-\chapter{Algebraic foundations}
+\section{Algebraic foundations}
 \label{chap:algebraic-foundations}
 
-This flat chapter is the first layer of the Blueprint.  It contains only the exact, graded, derived, and filtered algebra needed to state later spectral-sequence constructions; it contains no external mathematical input.
+The exact, graded, derived, and filtered algebra in this appendix supports
+the subsequent spectral-sequence constructions.
 
-\section{Exact, graded, and derived algebra}
+\subsection{Exact, graded, and derived algebra}
 
 \begin{definition}[Graded object]
   \label{def:mathlib-graded-object}
@@ -53,8 +54,8 @@ This flat chapter is the first layer of the Blueprint.  It contains only the exa
   \lean{KIP126.Core.Algebra.F2ModuleCat}
   \leanok
   \uses{def:core-f2,def:mathlib-f2-module-category}
-  The coefficient category used by the compiled classical and synthetic Adams
-  interfaces is the explicit abbreviation
+  The coefficient category for the classical and synthetic Adams
+  constructions is
   $\operatorname{ModuleCat}(\mathbb F_2)$.
 \end{definition}
 
@@ -322,7 +323,7 @@ This flat chapter is the first layer of the Blueprint.  It contains only the exa
   Exactness of tensoring a triangle remains extra project data.
 \end{definition}
 
-\section{Filtered objects and complexes}
+\subsection{Filtered objects and complexes}
 
 \begin{definition}[Decreasing filtration]
   \leanok
