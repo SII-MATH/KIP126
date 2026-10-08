@@ -1,4 +1,5 @@
 import KIP126.Interface.Challenge.Challenge2
+import KIP126.Interface.Solution.Literature.Applications
 
 /-! Selected C(M) interface regressions. These check interpretation and binding,
 not the mathematical correctness of the archived calculation. -/

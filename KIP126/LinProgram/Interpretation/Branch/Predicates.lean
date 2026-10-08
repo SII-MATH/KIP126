@@ -115,3 +115,24 @@ def FiniteTrialCoverage (rows : List Raw.LogRow) (row : Raw.LogRow) : Prop :=
     TrialRealizes lookup coordinate row equation
 
 end KIP126.Computation.LinProofs.Branch
+
+namespace KIP126.Challenge2
+open CategoryTheory
+universe u v w
+
+/-- cm3：实际内部对象、坐标字典与原始条件日志之间的参数化交付。
+每条已解释的 trial 是相对于完整祖先上下文的反驳；D/DI 才是条件结论。
+这一结构没有选择项目对象或字典，也没有将未解释记录当作已覆盖。
+固定全日志与各谱的实际坐标绑定是进入 Challenge2 总见证前的独立义务。 -/
+structure LinBranchInterface {R : Type u} [Ring R] {ι : Type w}
+    (E : ι → Core.SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ))
+    (lookup : String → Option ι)
+    (coordinates : Computation.LinProofs.Branch.CoordinateDictionary E)
+    (rows : List Computation.LinProofs.Raw.LogRow) : Prop where
+  trial_refutations :
+    Computation.LinProofs.Branch.RetainedTrialRefutations lookup coordinates rows
+  conditional_facts :
+    Computation.LinProofs.Branch.RetainedConditionalFacts lookup coordinates rows
+
+
+end KIP126.Challenge2

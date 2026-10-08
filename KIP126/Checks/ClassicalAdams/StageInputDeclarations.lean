@@ -1,4 +1,5 @@
 import KIP126.Interface.Challenge.Challenge2
+import KIP126.Interface.Solution.Literature.Applications
 import KIP126.Interface.Solution.Challenge2
 import KIP126.Interface.Solution.LinProgram.BasisTable
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
@@ -92,10 +93,10 @@ example (s t : ℕ) (ht : t ≤ 261) : KIP126.LinE2.BasisTableCorrect s t :=
 
 example (c : KIP126.Challenge2) (s t : ℕ) (ht : t ≤ 261)
     (i : KIP126.LinE2.BasisIndex s t) :
-    ((c.presentation.comparison s t ht).symm
-      ((c.sphereBasis.coordinates s t ht).symm (Finsupp.single i 1))).val =
+    ((c.computation.bindings.presentation.comparison s t ht).symm
+      ((c.computation.results.sphereBasis.coordinates s t ht).symm (Finsupp.single i 1))).val =
         KIP126.LinE2.basisValue (KIP126.LinE2.basisRowAt s t i) :=
-  c.sphereBasis.csv_values s t ht i
+  c.computation.results.sphereBasis.csv_values s t ht i
 
 -- Both route parts are projections of one witness, never separate choices.
 open KIP126.Main.StageInput in
@@ -103,15 +104,15 @@ example : routeComputation = witness.computation.route := rfl
 
 open KIP126.Main.StageInput in
 example : routeLiterature = KIP126.Literature.Route.Statements.toInputs
-    routeModel routeEta tmfLabels witness.literature.results.route routeApplication routeTmf := rfl
+    routeModel routeEta tmfLabels routeStatements routeApplication routeTmf := rfl
 
 open KIP126 KIP126.Classical.Adams KIP126.Main.StageInput in
 example (s t : ℕ) (ht : t ≤ 261) (x : LinE2.E2At s t) :
-    routeComputation.realization.sphere s t x = witness.presentation.comparison s t ht x :=
+    routeComputation.realization.sphere s t x = witness.computation.bindings.presentation.comparison s t ht x :=
   witness.computation.results.route_presentation s t ht x
 
 open KIP126 KIP126.Classical.Adams in
-example (I : KIP126.Challenge2) : I.routeModel = standardRouteModel := rfl
+example : KIP126.Main.StageInput.routeModel = standardRouteModel := rfl
 
 open KIP126 KIP126.Classical.Adams in
 example (I : KIP126.Challenge2) :
@@ -190,19 +191,19 @@ example : ∃ literature : KIP126.Challenge2.LiteratureInterface,
       Nonempty (KIP126.Challenge2.ComputationInterface literature) :=
   KIP126.Interface.Solution.computationInterface
 
--- Removing manifold consequences must retain the stable-homotopy source
--- results needed by the selected h₆² proof, including the h₅² input.
-open KIP126.Classical.Adams KIP126.Core.SpectralSequence in
-example (c : KIP126.Challenge2) (j : ℕ) (hj : j ≤ 3) :
-    NonzeroSurvival sphereAdamsData (2, ((2 ^ (j + 1) : ℕ) : ℤ))
-      (Sphere.Internal.hiSquare standardFoundation.hf2 standardMilnorCooperations j) :=
-  c.literature.results.adamsOneLine.may_lowDimensionalSquares_permanent j hj
-
+-- Introductory classification results are excluded; the classical θ₅
+-- results and the body’s Hopf differential remain required route inputs.
 open Lean Elab Command in
 run_cmd do
   let env ← getEnv
-  for retained in [``KIP126.Challenge2.AdamsOneLineInterface.may_lowDimensionalProducts_permanent,
-      ``KIP126.Challenge2.AdamsOneLineInterface.may_lowDimensionalSquares_permanent,
+  for removed in [`KIP126.Challenge2.LiteratureResults.adamsOneLine_at_power,
+      `KIP126.Challenge2.LiteratureResults.adamsOneLine_other_degree,
+      `KIP126.Challenge2.LiteratureResults.adamsHi_nonzeroSurvival_iff,
+      `KIP126.Challenge2.LiteratureResults.may_lowDimensionalProducts_permanent,
+      `KIP126.Challenge2.LiteratureResults.may_lowDimensionalSquares_permanent] do
+    if env.contains removed then
+      throwError "introductory-only result returned to Challenge2: {removed}"
+  for retained in [``KIP126.Challenge2.LiteratureResults.adamsOneLine_d2,
       ``KIP126.Literature.Route.ClassicalSourceResults.h5Square_permanent,
       ``KIP126.Literature.Route.ClassicalSourceResults.theta5_detection,
       ``KIP126.Literature.Route.ClassicalSourceResults.theta5_order_two,

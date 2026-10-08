@@ -1,4 +1,5 @@
 import KIP126.Interface.Challenge.Challenge2
+import KIP126.Interface.Solution.Literature.Applications
 import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
 
 /-! BHS source specialization and selected-to-completed comparison.

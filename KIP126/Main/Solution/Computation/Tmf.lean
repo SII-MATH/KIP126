@@ -1,4 +1,5 @@
 import KIP126.Main.Solution.Computation.Route
+import KIP126.Def.Kervaire.Route.Tmf.Predicates
 
 /-! The high125 tmf consequences are Main deductions. The source supplies
 one actual product with nonzero tmf image. Its nonzero associated grade at

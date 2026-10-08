@@ -261,16 +261,15 @@
       "citation_keys": [
         "Maythesis"
       ],
-      "title": "The cohomology of restricted Lie algebras and of Hopf algebras",
-      "year": 1966,
-      "doi": "10.1016/0021-8693(66)90009-3",
-      "canonical_url": "https://doi.org/10.1016/0021-8693(66)90009-3",
-      "role": "Low-page Adams-survival results used by the lower-dimensional package.",
+      "title": "The Cohomology of Restricted Lie Algebras and of Hopf Algebras; Application to the Steenrod Algebra",
+      "year": 1964,
+      "canonical_url": "https://www.math.ens.psl.eu/~obenoist/textes/May.pdf",
+      "role": "Archived primary thesis used in the source review. Its low-dimensional products and square-survival families only supported the excluded introduction and are no longer Challenge2 inputs.",
       "status_file": "Source/Maythesis/source-status.json",
-      "status_class": "metadata_only",
+      "status_class": "partial",
       "availability": {
         "metadata": true,
-        "pdf": false,
+        "pdf": true,
         "text": false,
         "source": false
       },
@@ -279,21 +278,60 @@
           "path": "Source/Maythesis/citation.bib",
           "kind": "citation",
           "required": true,
-          "sha256": "b231d4d775a1a975644dae52f34df053a5dc75a57f03efb8dcd21c469d83bd26"
+          "sha256": "6a6d66511ccb04a1ba10bc7a1f129d32dfc3e8c7feef7c6cf60a5b04df5c590f"
         },
         {
           "path": "Source/Maythesis/source-status.json",
           "kind": "status",
           "required": true,
-          "sha256": "2cd35e8c40d58efbf1aa9a8be020e1294a8496f8e71dad9e8114feec21bb82c3"
+          "sha256": "a6da37b1cc8e6cf9e13a315185e076e925501f9e1e3bbedd1e03130956f0c3da"
+        },
+        {
+          "path": "Source/Maythesis/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "65e8f8532364309e4f822ef123078d3b4ed295efb7d3eb6efb8e0ef1e0023161"
         },
         {
           "path": "Source/Maythesis/openalex.json",
           "kind": "metadata",
           "required": true,
           "sha256": "d5402b5b43ada2b33432c407d6ff1764e0d722d8a91580f92c6fa33ad96bf487"
+        },
+        {
+          "path": "Source/Maythesis/article-1966.citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "b231d4d775a1a975644dae52f34df053a5dc75a57f03efb8dcd21c469d83bd26"
+        },
+        {
+          "path": "Source/Maythesis/source-status-1966.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "2cd35e8c40d58efbf1aa9a8be020e1294a8496f8e71dad9e8114feec21bb82c3"
+        },
+        {
+          "path": "Source/Maythesis/article-1966.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "89228460dcb000a60100f9e67ca3dd07cbf2deb996cd565e0cec6ea74006e7b7"
         }
-      ]
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://www.math.ens.psl.eu/~obenoist/textes/May.pdf",
+        "status": "primary-thesis-pdf-read-and-pinned",
+        "locators": [
+          "PDF p.152 / printed II-7.2, h0 multiplication and the zero-stem case",
+          "Theorem II.7.9(2), PDF p.156 / printed II-7.6",
+          "Theorem II.7.9(3),(4),(9),(13) and E-infinity survivor identifications, PDF p.157 / printed II-7.7"
+        ],
+        "note": "The primary source is the 1964 thesis, not the 1966 Part I article. Scanned mathematical pages were visually reviewed; no usable extracted full text is claimed. Source identification is not fixed-model proof completion.",
+        "artifact_paths": [
+          "Source/Maythesis/paper.pdf",
+          "Source/Maythesis/citation.bib"
+        ]
+      }
     },
     {
       "id": "hhr",
@@ -1390,8 +1428,8 @@
       "citation_keys": [],
       "title": "Legacy combined Adams/May source attribution (not a single publication)",
       "year": null,
-      "canonical_url": "https://doi.org/10.1016/0021-8693(66)90009-3",
-      "role": "prior-result",
+      "canonical_url": "https://www.math.ens.psl.eu/~obenoist/textes/May.pdf",
+      "role": "Historical attribution group; not an input package. Introductory one-line classification and May low-dimensional survival families are excluded from the current formalization.",
       "status_file": null,
       "status_class": "partial",
       "availability": {
@@ -1408,13 +1446,12 @@
       ],
       "route_review": {
         "role": "prior-result",
-        "url": "https://doi.org/10.1016/0021-8693(66)90009-3",
-        "status": "source-locator-not-independently-read-in-this-supplement",
+        "url": "https://www.math.ens.psl.eu/~obenoist/textes/May.pdf",
+        "status": "individual-primary-source-reviews-recorded",
         "locators": [
-          "Adams Hopf-invariant-one differentials",
-          "May thesis classical one-line computation"
+          "Adams one-line and Hopf invariant one; May thesis 1964 Part II Section 7"
         ],
-        "note": "Root AdamsOneLineInterface is a separate full one-line literature obligation. This row does not certify every original one-line source.",
+        "note": "Historical source grouping only. The body’s classical Hopf differential remains an individually recorded input; introductory classification and May survival families have been removed.",
         "artifact_paths": [
           "Source/Maythesis/citation.bib"
         ]
@@ -1521,7 +1558,7 @@
       {
         "id": "AM01-part-2",
         "input_field": "classical",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.ClassicalSourceResults"
         ],
@@ -1581,7 +1618,7 @@
       {
         "id": "AM04",
         "input_field": "classical",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.ClassicalSourceResults.two_detection",
           "KIP126.Literature.Route.ClassicalSourceResults.eta_detection",
@@ -1625,7 +1662,7 @@
       {
         "id": "AM06",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.lifts"
         ],
@@ -1686,7 +1723,7 @@
       {
         "id": "AM08-part-2",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.permanent_lift"
         ],
@@ -1725,7 +1762,7 @@
       {
         "id": "AM10",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.EInftyInput"
         ],
@@ -1739,7 +1776,7 @@
         ],
         "proof_status": "external-statement-unproved",
         "role": "source-result",
-        "notes": "Includes actual lambda/rho compatibility and common-label agreement."
+        "notes": "BHS input scope is νX and its finite λ-quotients, including their λ/ρ formulas and common-label agreement. Full synthetic weight-shift naturality is an internal Main theorem on the fixed tower construction, not a BHS input."
       },
       {
         "input_field": "synthetic",
@@ -1776,16 +1813,19 @@
         "role": "source-result",
         "notes": "For q >= 1 and every finite page r >= 2, the actual nu(X)/lambda^q Adams group is zero when w > t or t-w >= q, in the LWX weight convention. These finite-page zero regions are additional to the E-infinity presentation; no nilpotent-completeness assumption on X and no claim that lambda^q annihilates quotient homotopy are introduced.",
         "id": "AM10-finite-pages-delivery",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.finite_quotient_page_vanishing",
           "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing"
-        ]
+        ],
+        "declaration_modules": {
+          "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing": "KIP126/Interface/Solution/Literature/Applications.lean"
+        }
       },
       {
         "id": "AM11",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.RealizationKernelSourceResults"
         ],
@@ -1825,7 +1865,7 @@
       {
         "id": "AM12-part-2",
         "input_field": "synthetic",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.filtration_lambda"
         ],
@@ -1866,7 +1906,7 @@
       {
         "id": "AM13-part-2",
         "input_field": "realization",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
         "declarations": [
           "KIP126.Literature.Route.RealizationInput"
         ],
@@ -1887,7 +1927,7 @@
       {
         "id": "AM14",
         "input_field": "realization",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.BHSRealizationDetectionAt.lifetime",
           "KIP126.Literature.Route.BHSRealizationSourceResults"
@@ -1908,7 +1948,7 @@
       {
         "id": "AM15",
         "input_field": "realization",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.BHSRealizationDetectionAt.detection",
           "KIP126.Literature.Route.BHSRealizationDetectionAt.prescribed_lift",
@@ -1930,7 +1970,7 @@
       {
         "id": "AM16",
         "input_field": "realization",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.BHSRealizationDetectionAt.boundary_lift",
           "KIP126.Literature.Route.BHSRealizationSourceResults"
@@ -2014,7 +2054,7 @@
       {
         "id": "AM19-part-2",
         "input_field": "may",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.MaySourceResults"
         ],
@@ -2033,11 +2073,12 @@
       {
         "id": "AM20",
         "input_field": "moss",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean",
         "declarations": [
-          "KIP126.Literature.Route.MossSourceInput"
+          "KIP126.Literature.Route.MossSourceInput",
+          "KIP126.Main.Solution.Literature.route_moss"
         ],
-        "kind": "source-specialization-and-transport",
+        "kind": "internal-specialization-of-general-moss",
         "sources": [
           "moss",
           "belmont_kong",
@@ -2047,9 +2088,12 @@
         "lwx_consumers": [
           "lem:toda2ext"
         ],
-        "proof_status": "external-statement-unproved",
-        "role": "source-result",
-        "notes": "Source statement on ClassicalSourceData.convergence; equality transport to D retains defining systems, null products, both no-crossing premises and residual injectivity. The original Moss scan is still not independently verified."
+        "proof_status": "internal-application-obligation",
+        "role": "internal-application",
+        "notes": "The local source-convergence Moss statement is derived in Main from the same LiteratureResults.moss, using the actual sphere mapping / Milnor and convergence comparisons. It is no longer a separate Challenge2 premise. Its internal proof remains unfinished; no crossing, indeterminacy or residual-injectivity hypothesis is dropped.",
+        "declaration_modules": {
+          "KIP126.Literature.Route.MossSourceInput": "KIP126/Interface/Challenge/Literature/Source.lean"
+        }
       },
       {
         "id": "AM21-part-1",
@@ -2074,7 +2118,7 @@
       {
         "id": "AM21-part-2",
         "input_field": "toda",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.TodaSourceResults"
         ],
@@ -2094,7 +2138,7 @@
       {
         "id": "AM22",
         "input_field": "toda",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
         "declarations": [
           "KIP126.Literature.Route.TodaApplication.eta_squared"
         ],
@@ -2136,7 +2180,7 @@
       {
         "id": "AM23-part-1",
         "input_field": "toda",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
         "declarations": [
           "KIP126.Literature.Route.TodaApplication.symmetric_two"
         ],
@@ -2178,7 +2222,7 @@
       {
         "id": "AM24",
         "input_field": "tmf",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.TmfSourceResults.vanishing62"
         ],
@@ -2217,7 +2261,7 @@
       {
         "id": "AM25-part-2",
         "input_field": "tmf",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.TmfSourceResults"
         ],
@@ -2237,7 +2281,7 @@
       {
         "id": "AM26",
         "input_field": "tmf",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.TmfSourceResults.low_filtration63"
         ],
@@ -2256,7 +2300,7 @@
       {
         "id": "AM27-part-1",
         "input_field": "applicability",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
         "declarations": [
           "KIP126.Literature.Route.Applicability"
         ],
@@ -2321,7 +2365,7 @@
         "id": "AM29-part-1",
         "role": "source-result",
         "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.TmfSourceResults.connective",
           "KIP126.Literature.Route.TmfSourceResults.finiteMod2Type"
@@ -2455,7 +2499,7 @@
         "id": "MB08",
         "role": "model-comparison",
         "proof_status": "comparison-obligation",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.Bindings"
         ],
@@ -2477,7 +2521,7 @@
         "id": "MB09-part-2",
         "role": "model-comparison",
         "proof_status": "comparison-obligation",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.Bindings.bhsDetectorIso",
           "KIP126.Literature.Route.Bindings.bhsDetectorUnit"
@@ -2513,9 +2557,12 @@
           "KIP126.Challenge2.LiteratureBindings",
           "KIP126.Challenge2.LiteratureBindings.tmfLabels",
           "KIP126.Challenge2.LiteratureBindings.route",
-          "KIP126.Challenge2.LiteratureBindings.br21Classes"
+          "KIP126.Challenge2.LiteratureBindings.br21Classes",
+          "KIP126.Challenge2.LiteratureBindings.eInfty_nu",
+          "KIP126.Challenge2.LiteratureBindings.eInfty_quotient",
+          "KIP126.Challenge2.LiteratureBindings.eInfty_specialFiber"
         ],
-        "notes": "Source labels, route bindings and BR21 source endpoint classes are one literature binding package over Def's fixed model. Their construction and comparisons remain proof obligations, not literature theorem fields."
+        "notes": "Source labels, route bindings, BR21 source endpoint classes, and the three νX / finite-quotient E∞ comparison choices share Def’s fixed model. The full synthetic weight-shift comparison is constructed from the fixed tower, with its naturality proved internally in Main; it is not an independently chosen literature input."
       },
       {
         "id": "MB13-computation-delivery",
@@ -2612,7 +2659,7 @@
         "id": "IA08",
         "role": "internal-adapter",
         "proof_status": "implemented-adapter",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
         "declarations": [
           "KIP126.Literature.Route.Statements.toInputs"
         ],
@@ -2632,7 +2679,7 @@
         "id": "IA10",
         "role": "internal-adapter",
         "proof_status": "implemented-adapter",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
         "declarations": [
           "KIP126.Literature.Route.SyntheticSourceInputs.toInputs"
         ],
@@ -2673,9 +2720,10 @@
           "KIP126.Main.StageInput.realizationComparison",
           "KIP126.Main.StageInput.todaSecondaryComparison",
           "KIP126.Main.StageInput.nuSourceResults",
-          "KIP126.Main.StageInput.routeApplication"
+          "KIP126.Main.StageInput.routeApplication",
+          "KIP126.Main.StageInput.routeStatements"
         ],
-        "notes": "Main projects the three completion/applicability/realization certificates from literature.bindings.route, then proves TodaSecondaryComparison and NuCofiberSourceResults with explicit sorry placeholders and assembles routeApplication. The projected certificates remain unfinished Interface production obligations.",
+        "notes": "Main derives the local Moss implication from the one general LiteratureResults.moss and derives full synthetic weight-shift naturality from Def’s actual canonical tower construction. Those applications join the same source fields in routeStatements. Completion certificates remain source projections; TodaSecondaryComparison and NuCofiberSourceResults remain internal proof placeholders.",
         "sources": [
           "bhs",
           "pst",
@@ -2683,24 +2731,38 @@
           "toda",
           "moss"
         ]
+      },
+      {
+        "id": "IA-MAIN-WEIGHT-NATURAL",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean",
+        "declarations": [
+          "KIP126.Main.Solution.Literature.eInfty_shift_natural"
+        ],
+        "notes": "Full synthetic naturality is an internal consequence of the actual fixed weight-tower construction. BHS only supplies νX / finite-quotient comparison formulas; no arbitrary all-object E-infinity isomorphism is a literature choice."
+      },
+      {
+        "id": "IA-MAIN-BR21-COORDINATES",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Main/Solution/Computation/Tmf/Br21.lean",
+        "declarations": [
+          "KIP126.Main.Solution.Computation.tmf_br21_d3"
+        ],
+        "sources": [
+          "br21",
+          "lwx_machine"
+        ],
+        "notes": "Main transports the same literature.results.br21 through that witness’s detectorIso and computation endpoint comparisons, then applies the proved betaGFour=betaFiveG coordinate relation. The theorem has a real proof body but depends on the existing unfinished generic Adams tower differential naturality theorem; it is not a new computation field or proof-completion claim."
       }
     ],
     "delivery_packages": [
       {
-        "id": "DP01",
-        "role": "source-result",
-        "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
-        "declarations": [
-          "KIP126.Literature.Route.Statements"
-        ],
-        "notes": "Current external A(M) source-result record on the fixed Bindings; defining it does not give an inhabitant."
-      },
-      {
         "id": "DP02",
         "role": "internal-application",
         "proof_status": "internal-application-obligation",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
         "declarations": [
           "KIP126.Literature.Route.Application",
           "KIP126.Literature.Route.Inputs"
@@ -2711,7 +2773,7 @@
         "id": "DP03",
         "role": "internal-application",
         "proof_status": "internal-application-obligation",
-        "module": "KIP126/Interface/Challenge/Literature/Route.lean",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
         "declarations": [
           "KIP126.Literature.Route.NuCofiberSourceResults"
         ],
@@ -2885,93 +2947,26 @@
           "KIP126.Main.Solution.Computation.tmf_inputs_of_computation"
         ],
         "notes": "Actual composition of the Main high125 nonzero-survival theorem and tmf_of_source, with shared A/C/V/S inputs; no Challenge2 assumption of the conclusion."
-      }
-    ],
-    "root_literature": [
-      {
-        "id": "RL01",
-        "role": "source-result",
-        "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
-        "declarations": [
-          "KIP126.Challenge2.LiteratureResults.sphereVanishing"
-        ],
-        "notes": "Positive-stem Adams vanishing line on the same standard sphere tower; supplied by the independent Range producer.",
-        "input_field": "sphereVanishing",
-        "sources": [
-          "ravenel"
-        ],
-        "locator": "Ravenel Theorem 3.4.5(a), printed p.87 / PDF p.107; fixed-tower application remains a proof obligation"
       },
       {
-        "id": "RL03",
-        "role": "source-result",
-        "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Literature/Sphere.lean",
+        "id": "SP-CANONICAL-WEIGHT-TOWER",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Proofs.lean",
         "declarations": [
-          "KIP126.Challenge2.AdamsOneLineInterface"
+          "KIP126.Synthetic.SpectralSequence.weightShiftObjectIso",
+          "KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient",
+          "KIP126.Synthetic.SpectralSequence.CanonicalWeightShift",
+          "KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists",
+          "KIP126.Def.standardEInftyWeightShift"
         ],
-        "notes": "Full one-line family rather than a single h4 instance. Original Adams/May source evidence remains to be independently pinned.",
-        "input_field": "adamsOneLine",
-        "sources": [
-          "adams58",
-          "adams60",
-          "may_thesis"
-        ],
-        "locator": "Adams58 / Adams60 and Maythesis; original per-field locators pending independent verification"
-      },
-      {
-        "id": "RL04",
-        "role": "source-result",
-        "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Literature/Sphere.lean",
-        "declarations": [
-          "KIP126.Challenge2.StandardSphereMossStatement"
-        ],
-        "notes": "Actual sphere multiplicative/composition tower statement with null-product, no-crossing and applicability premises. B-K v1 is an available prior primary comparison theorem; original Moss scan remains unread.",
-        "input_field": "moss",
-        "sources": [
-          "moss",
-          "belmont_kong"
-        ],
-        "locator": "Moss Theorem 1.2; Belmont–Kong v1 Theorems 1.1 / 4.11 cross-check only"
-      },
-      {
-        "id": "RL05",
-        "role": "source-result",
-        "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
-        "declarations": [
-          "KIP126.Challenge2.LiteratureResults.br21"
-        ],
-        "notes": "BR21 differential on source endpoint classes in literature.bindings.br21Classes; transport to the selected tmf CSV coordinates is recorded separately in computation.bindings.",
-        "input_field": "br21",
-        "sources": [
-          "br21"
-        ],
-        "locator": "BR21 Table 5.4 / Theorem 5.18"
-      },
-      {
-        "id": "RL06",
-        "role": "source-result",
-        "proof_status": "external-statement-unproved",
-        "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
-        "declarations": [
-          "KIP126.Challenge2.LiteratureResults.route"
-        ],
-        "notes": "Correlated route Statements on the source objects in literature.bindings.route, over Def's fixed route model and background.",
-        "input_field": "route",
-        "sources": [
-          "xu",
-          "iwx",
-          "burklund_xu",
-          "bhs",
-          "pst",
-          "tmf",
-          "may01",
-          "moss"
-        ],
-        "locator": "Per-field source locators in route.claims and interface_coverage"
+        "declaration_modules": {
+          "KIP126.Synthetic.SpectralSequence.weightShiftObjectIso": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Data.lean",
+          "KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Data.lean",
+          "KIP126.Synthetic.SpectralSequence.CanonicalWeightShift": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Predicates.lean",
+          "KIP126.Def.standardEInftyWeightShift": "KIP126/Def/StageInput/StandardSphere/EInfty/Data.lean"
+        },
+        "notes": "Structural construction from the fixed TowerPresentation and the actual biShift composition isomorphism. Its explicit existence theorem must prove descent and invertibility for the prescribed map; data definitions contain no hidden property proof. This is not a BHS external premise."
       }
     ],
     "csv_evidence": [
@@ -3113,6 +3108,475 @@
       "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
       "role": "literature",
       "fields": {
+        "adamsOneLine_d2": {
+          "sources": [
+            "adams60"
+          ],
+          "locator": "Adams Hopf differentials d2(h_j)=h0 h_(j-1)^2 for j>=4; May 1964 thesis II.7.11 / PDF p.158 and Ravenel Theorem 1.2.12 cross-check. MainPaper body uses j=6 in Lemma 7.16 (lem:toda2ext), and j=4,5 in generalized-Leibniz tool examples. The precise Adams60 original differential locator remains a review obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:external-adams-one-line"
+          ]
+        },
+        "classical_h5Square_permanent": {
+          "sources": [
+            "xu",
+            "bjm_theta5"
+          ],
+          "locator": "Xu Cor.1.3 and BJM theta5 existence; BJM original locator not independently verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-h5Square-permanent"
+          ]
+        },
+        "classical_theta5_detection": {
+          "sources": [
+            "xu"
+          ],
+          "locator": "Corollary 1.3, chosen theta5 detected by h5^2",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-theta5-detection"
+          ]
+        },
+        "classical_theta5_order_two": {
+          "sources": [
+            "xu"
+          ],
+          "locator": "Corollary 1.3, order-two choice",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-theta5-order-two"
+          ]
+        },
+        "classical_stem62_exponent_two": {
+          "sources": [
+            "iwx",
+            "iwx_data_2022"
+          ],
+          "locator": "Classical Einfty CSV lines 204–207; README pp.2–3",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-stem62-exponent-two"
+          ]
+        },
+        "classical_theta5_filtration_gap": {
+          "sources": [
+            "iwx",
+            "iwx_data_2022"
+          ],
+          "locator": "Classical Einfty CSV lines 204–207; no 62-stem filtration 3,4,5 rows",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-theta5-filtration-gap"
+          ]
+        },
+        "classical_two_detection": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-two-detection"
+          ]
+        },
+        "classical_eta_detection": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-eta-detection"
+          ]
+        },
+        "classical_nu_detection": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-nu-detection"
+          ]
+        },
+        "classical_eta_permanent": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-eta-permanent"
+          ]
+        },
+        "classical_nu_permanent": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-nu-permanent"
+          ]
+        },
+        "route_bx": {
+          "sources": [
+            "burklund_xu"
+          ],
+          "locator": "Proposition 7.19 AND proof (original distinguished choice)",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-route-bx"
+          ]
+        },
+        "route_realizationKernel": {
+          "sources": [
+            "pst"
+          ],
+          "locator": "Compact generators, prop:tau_inversion_functor_exists, Section 4.5; explicit full-category-to-model transport required.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-route-realizationKernel"
+          ]
+        },
+        "route_may": {
+          "sources": [
+            "may01"
+          ],
+          "locator": "Author PDF pp.12–13 TC3 signed square; p.14 Lemma 4.6",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-route-may"
+          ]
+        },
+        "synthetic_nu_cofiber": {
+          "sources": [
+            "pst",
+            "bhs"
+          ],
+          "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-nu-cofiber"
+          ]
+        },
+        "synthetic_lift": {
+          "sources": [
+            "pst",
+            "bhs"
+          ],
+          "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-lift"
+          ]
+        },
+        "synthetic_triangle_lift": {
+          "sources": [
+            "pst",
+            "bhs"
+          ],
+          "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-triangle-lift"
+          ]
+        },
+        "synthetic_finite_lift": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(1a–c) / lemm:comp1",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-finite-lift"
+          ]
+        },
+        "synthetic_bockstein": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(1c), finite-quotient Bockstein boundary",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-bockstein"
+          ]
+        },
+        "synthetic_permanent_lift": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1 clause (2), with actual source applicability",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-permanent-lift"
+          ]
+        },
+        "synthetic_differentials": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.8 thm:synth-ASS",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-differentials"
+          ]
+        },
+        "synthetic_filtration_lambda": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "cor:tau-surj with source applicability",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-filtration-lambda"
+          ]
+        },
+        "synthetic_e2_weight_vanishing": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.8, E2 weight range",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-e2-weight-vanishing"
+          ]
+        },
+        "synthetic_finite_quotient_page_vanishing": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollary A.11 (1),(3), all finite pages",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-finite-quotient-page-vanishing"
+          ]
+        },
+        "eInfty_lambda_nu": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-lambda-nu"
+          ]
+        },
+        "eInfty_lambda_finite": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-lambda-finite"
+          ]
+        },
+        "eInfty_rho_finite": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-rho-finite"
+          ]
+        },
+        "eInfty_rho_nu": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-rho-nu"
+          ]
+        },
+        "eInfty_labels": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; labels remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-labels"
+          ]
+        },
+        "realization_lifetime": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(2a), exponent r-1",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-realization-lifetime"
+          ]
+        },
+        "realization_detection": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(2b)",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-realization-detection"
+          ]
+        },
+        "realization_prescribed_lift": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(3b)",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-realization-prescribed-lift"
+          ]
+        },
+        "realization_boundary_lift": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(3a), existence of some boundary lift",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-realization-boundary-lift"
+          ]
+        },
+        "toda_h0_label": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); h0_label",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-toda-h0-label"
+          ]
+        },
+        "toda_lambda_h0": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); lambda_h0",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-toda-lambda-h0"
+          ]
+        },
+        "toda_h0_eta": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); h0_eta",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-toda-h0-eta"
+          ]
+        },
+        "toda_low_indeterminacy": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); low_indeterminacy",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-toda-low-indeterminacy"
+          ]
+        },
+        "tmf_connective": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Section 2, connective tmf",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-connective"
+          ]
+        },
+        "tmf_finiteMod2Type": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Section 2 H_*tmf, degreewise finite mod-2 homology",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-finiteMod2Type"
+          ]
+        },
+        "tmf_standard_labels": {
+          "sources": [
+            "tmf",
+            "iwx_data_2022"
+          ],
+          "locator": "IWX E2 CSV lines 59/275; README pp.2–3",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-standard-labels"
+          ]
+        },
+        "tmf_vanishing62": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Theorem 1.2 and Figure 1.1, stem 62",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-vanishing62"
+          ]
+        },
+        "tmf_low_filtration63": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Section 2 H_*tmf and change of rings",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-low-filtration63"
+          ]
+        },
+        "tmf_kappaBar_detection": {
+          "sources": [
+            "tmf",
+            "iwx_data_2022"
+          ],
+          "locator": "Section 7 actual kappa-bar product; associated IWX g label",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-kappaBar-detection"
+          ]
+        },
+        "tmf_w_detection": {
+          "sources": [
+            "tmf",
+            "iwx_data_2022"
+          ],
+          "locator": "Section 7 actual w class; IWX Delta h1 g label",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-w-detection"
+          ]
+        },
+        "tmf_high125_nonzero": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Section 7 Hurewicz image of actual kappa-bar^4 w, stem 125",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-high125-nonzero"
+          ]
+        },
         "sphereVanishing": {
           "sources": [
             "ravenel"
@@ -3123,18 +3587,6 @@
             "thm:external-sphere-vanishing"
           ]
         },
-        "adamsOneLine": {
-          "sources": [
-            "adams58",
-            "adams60",
-            "may_thesis"
-          ],
-          "locator": "Adams58 / Adams60 and Maythesis; original per-field locators pending independent verification",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-adams-one-line"
-          ]
-        },
         "moss": {
           "sources": [
             "moss",
@@ -3143,7 +3595,7 @@
           "locator": "Moss Theorem 1.2; Belmont–Kong v1 Theorems 1.1 / 4.11 cross-check only",
           "proof_status": "external-statement-unproved",
           "blueprint_labels": [
-            "def:route-moss-source"
+            "thm:literature-moss"
           ]
         },
         "br21": {
@@ -3153,644 +3605,7 @@
           "locator": "BR21 Table 5.4 / Theorem 5.18",
           "proof_status": "external-statement-unproved",
           "blueprint_labels": [
-            "thm:external-tmf-br21-d3-slice"
-          ]
-        },
-        "route": {
-          "sources": [
-            "xu",
-            "iwx",
-            "burklund_xu",
-            "bhs",
-            "pst",
-            "tmf",
-            "may01",
-            "moss"
-          ],
-          "locator": "Per-field source locators in route.claims and interface_coverage",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-literature-inputs"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Challenge2.AdamsOneLineInterface",
-      "module": "KIP126/Interface/Challenge/Literature/Sphere.lean",
-      "role": "literature",
-      "fields": {
-        "adamsOneLine_at_power": {
-          "sources": [
-            "adams58"
-          ],
-          "locator": "MainPaper Adams58 attribution; original one-line theorem locator pending verification.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-adams-one-line"
-          ]
-        },
-        "adamsOneLine_other_degree": {
-          "sources": [
-            "adams58"
-          ],
-          "locator": "MainPaper Adams58 attribution; original one-line vanishing locator pending verification.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-adams-one-line"
-          ]
-        },
-        "adamsHi_nonzeroSurvival_iff": {
-          "sources": [
-            "adams60"
-          ],
-          "locator": "Hopf invariant one theorem; original statement locator pending verification.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-adams-one-line"
-          ]
-        },
-        "adamsOneLine_d2": {
-          "sources": [
-            "adams60"
-          ],
-          "locator": "Hopf invariant one d2 family; original statement locator pending verification.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-adams-one-line"
-          ]
-        },
-        "may_lowDimensionalProducts_permanent": {
-          "sources": [
-            "may_thesis"
-          ],
-          "locator": "May thesis low-dimensional products h0h2,h0h3,h2h4; original locator pending verification.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-adams-one-line"
-          ]
-        },
-        "may_lowDimensionalSquares_permanent": {
-          "sources": [
-            "may_thesis"
-          ],
-          "locator": "May thesis low-dimensional h_j squares, j <= 3; original locator pending verification.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-adams-one-line"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Literature.Route.Statements",
-      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
-      "role": "literature",
-      "fields": {
-        "classical": {
-          "sources": [
-            "xu",
-            "iwx",
-            "iwx_data_2022",
-            "adams60"
-          ],
-          "locator": "Xu Cor.1.3; IWX 62-stem tables; ordinary low-stem Hopf detections.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "bx": {
-          "sources": [
-            "burklund_xu"
-          ],
-          "locator": "Proposition 7.19 AND proof (original distinguished choice)",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "synthetic": {
-          "sources": [
-            "bhs",
-            "pst"
-          ],
-          "locator": "BHS A.1, A.8, A.9, A.11, cor:tau-surj; Pst Lemma 4.23",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "realizationKernel": {
-          "sources": [
-            "pst"
-          ],
-          "locator": "Compact generators, prop:tau_inversion_functor_exists, Section 4.5; explicit full-category-to-model transport required.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "realization": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.1 (2a),(2b),(3a),(3b), retaining completion/convergence hypotheses.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "may": {
-          "sources": [
-            "may01"
-          ],
-          "locator": "Author PDF pp.12–13 TC3 signed square; p.14 Lemma 4.6",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "toda": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "prop:syn-toda-range, relations (0),(9) and degree (2,3); source ring facts only.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "tmf": {
-          "sources": [
-            "tmf",
-            "iwx_data_2022"
-          ],
-          "locator": "BMQ v4 Theorem 1.2, Figure 1.1, Sections 2/7; IWX classical E2 CSV lines 59/275.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "moss": {
-          "sources": [
-            "moss",
-            "belmont_kong",
-            "iwx"
-          ],
-          "locator": "Moss Theorem 1.2; BK v1 Theorems 1.1/4.11; IWX defn:crossing-diff and thm:Moss.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-moss-source"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Literature.Route.ClassicalSourceResults",
-      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
-      "role": "literature",
-      "fields": {
-        "h5Square_permanent": {
-          "sources": [
-            "xu",
-            "bjm_theta5"
-          ],
-          "locator": "Xu Cor.1.3 and BJM theta5 existence; BJM original locator not independently verified.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "theta5_detection": {
-          "sources": [
-            "xu"
-          ],
-          "locator": "Corollary 1.3, chosen theta5 detected by h5^2",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "theta5_order_two": {
-          "sources": [
-            "xu"
-          ],
-          "locator": "Corollary 1.3, order-two choice",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "stem62_exponent_two": {
-          "sources": [
-            "iwx",
-            "iwx_data_2022"
-          ],
-          "locator": "Classical Einfty CSV lines 204–207; README pp.2–3",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "theta5_filtration_gap": {
-          "sources": [
-            "iwx",
-            "iwx_data_2022"
-          ],
-          "locator": "Classical Einfty CSV lines 204–207; no 62-stem filtration 3,4,5 rows",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "two_detection": {
-          "sources": [
-            "adams60",
-            "bhs",
-            "iwx"
-          ],
-          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "eta_detection": {
-          "sources": [
-            "adams60",
-            "bhs",
-            "iwx"
-          ],
-          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "nu_detection": {
-          "sources": [
-            "adams60",
-            "bhs",
-            "iwx"
-          ],
-          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "eta_permanent": {
-          "sources": [
-            "adams60",
-            "bhs",
-            "iwx"
-          ],
-          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        },
-        "nu_permanent": {
-          "sources": [
-            "adams60",
-            "bhs",
-            "iwx"
-          ],
-          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-classical-bx-inputs"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Literature.Route.SyntheticSourceInputs",
-      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
-      "role": "literature",
-      "fields": {
-        "lifts": {
-          "sources": [
-            "pst",
-            "bhs"
-          ],
-          "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "finite_lift": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.1(1a–c) / lemm:comp1",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "bockstein": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.1(1c), finite-quotient Bockstein boundary",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-finite-lambda-bockstein"
-          ]
-        },
-        "permanent_lift": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.1 clause (2), with actual source applicability",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "differentials": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.8 thm:synth-ASS",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "thm:external-synthetic-rigidity"
-          ]
-        },
-        "eInfty": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Corollaries A.9 / A.11, compatible E-infinity formulas",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "filtration_lambda": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "cor:tau-surj with source applicability",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "e2_weight_vanishing": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.8, E2 weight range",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "finite_quotient_page_vanishing": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Corollary A.11 (1),(3), all finite pages",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Literature.Route.EInftyInput",
-      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
-      "role": "literature",
-      "fields": {
-        "presentation": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "weightShift": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Corollaries A.9/A.11 on the SAME family; weightShift remains an explicit source/application obligation.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "maps": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "labels": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Corollaries A.9/A.11 on the SAME family; labels remains an explicit source/application obligation.",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Literature.Route.BHSRealizationDetectionAt",
-      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
-      "role": "literature",
-      "fields": {
-        "lifetime": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.1(2a), exponent r-1",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "detection": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.1(2b)",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "prescribed_lift": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.1(3b)",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        },
-        "boundary_lift": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "Theorem A.1(3a), existence of some boundary lift",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-synthetic-inputs"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Literature.Route.TodaSourceResults",
-      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
-      "role": "literature",
-      "fields": {
-        "h0_label": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); h0_label",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "lambda_h0": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); lambda_h0",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "h0_eta": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); h0_eta",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "low_indeterminacy": {
-          "sources": [
-            "bhs"
-          ],
-          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); low_indeterminacy",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        }
-      }
-    },
-    {
-      "structure": "KIP126.Literature.Route.TmfSourceResults",
-      "module": "KIP126/Interface/Challenge/Literature/Route.lean",
-      "role": "literature",
-      "fields": {
-        "connective": {
-          "sources": [
-            "tmf"
-          ],
-          "locator": "Section 2, connective tmf",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "finiteMod2Type": {
-          "sources": [
-            "tmf"
-          ],
-          "locator": "Section 2 H_*tmf, degreewise finite mod-2 homology",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "standard_labels": {
-          "sources": [
-            "tmf",
-            "iwx_data_2022"
-          ],
-          "locator": "IWX E2 CSV lines 59/275; README pp.2–3",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "vanishing62": {
-          "sources": [
-            "tmf"
-          ],
-          "locator": "Theorem 1.2 and Figure 1.1, stem 62",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "low_filtration63": {
-          "sources": [
-            "tmf"
-          ],
-          "locator": "Section 2 H_*tmf and change of rings",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "kappaBar_detection": {
-          "sources": [
-            "tmf",
-            "iwx_data_2022"
-          ],
-          "locator": "Section 7 actual kappa-bar product; associated IWX g label",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "w_detection": {
-          "sources": [
-            "tmf",
-            "iwx_data_2022"
-          ],
-          "locator": "Section 7 actual w class; IWX Delta h1 g label",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
-          ]
-        },
-        "high125_nonzero": {
-          "sources": [
-            "tmf"
-          ],
-          "locator": "Section 7 Hurewicz image of actual kappa-bar^4 w, stem 125",
-          "proof_status": "external-statement-unproved",
-          "blueprint_labels": [
-            "def:route-tools-tmf-inputs"
+            "thm:literature-br21"
           ]
         }
       }
@@ -3948,6 +3763,33 @@
         "aim_paper"
       ],
       "locator": "Example 2.11, inessential d2 eta extension; transcription only",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Challenge2.LiteratureBindings.eInfty_nu",
+      "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Challenge2.LiteratureBindings.eInfty_quotient",
+      "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Challenge2.LiteratureBindings.eInfty_specialFiber",
+      "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
       "status": "statement-or-data-only"
     }
   ]

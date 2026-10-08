@@ -1,6 +1,6 @@
 import KIP126.Def.ClassicalAdams.Convergence.StrongData
 
-/-! Sphere Adams classes, products, and the h₄ differential statement. -/
+/-! Sphere Adams classes, products, and external pairings. -/
 namespace KIP126.Classical.Adams
 
 open CategoryTheory
@@ -91,7 +91,7 @@ theorem h6Square_degree {stable : StableHomotopyContext}
 /-- Algebraic laws for a chosen sphere presentation.  The product on named
 classes is required to be represented by a bilinear, unital, associative
 product on the actual Mathlib `E₂` page and to satisfy the page-`2` Leibniz
-rule.  The named generators and the `h₀h₃²` target are explicitly nonzero. -/
+rule. -/
 structure SphereAdamsAlgebraPresentation {stable : StableHomotopyContext}
     {A : ClassicalAdamsSS stable stable.sphere}
     (P : SphereAdamsPresentation A) where
@@ -130,9 +130,6 @@ structure SphereAdamsAlgebraPresentation {stable : StableHomotopyContext}
             a + classicalAdamsTarget AdamsPage.two b =
               classicalAdamsTarget AdamsPage.two (a + b))
           (productMap a (classicalAdamsTarget AdamsPage.two b) x ((A.d₂ b).hom y))
-  h_nonzero : ∀ j, (P.h j).representative ≠ 0
-  h₀h₃Squared_nonzero :
-    (sphereProduct P (P.h 0) (sphereProduct P (P.h 3) (P.h 3))).representative ≠ 0
 
 /-- An external page pairing for arbitrary spectra.  Its target is the chosen
 smash spectrum, not either input, so it does not assert an internal product. -/

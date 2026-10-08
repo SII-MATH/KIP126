@@ -47,7 +47,7 @@ theorem proposition_7_9 :
 its A/C fields and prove the finite-page/tail/filtration steps in Main. -/
 theorem proposition_7_8 (input : KIP126.Challenge2) :
     KIP126.Solution.Near126.OnlyD12.d12_dichotomy_and_condition_equivalence
-      standardMilnorCooperations input.routeModel input.computation.bindings.routeLabels
+      standardMilnorCooperations standardRouteModel input.computation.bindings.routeLabels
       KIP126.Def.standardRouteEta := by
   sorry
 

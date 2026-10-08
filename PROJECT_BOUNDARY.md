@@ -63,6 +63,14 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    - Expository Remarks are not required to become separate declarations.
    - Open Questions are represented as propositions/statements only; they are
      not assumed and are not required to be proved.
+   - **Introduction excluded (2026-10-06).** The introduction's exposition,
+     corollaries and open questions are outside the formalization plan.
+     Results supporting only that introduction are removed from Challenge2
+     and from active proof obligations. The standard `h_6^2` permanent-survival
+     target and all results needed by the body’s proof or computation
+     certification remain in scope, even when first mentioned in the
+     introduction. This decision supersedes the earlier retention of May’s
+     introductory low-dimensional square-survival family.
 
 5. **Current endpoint and excluded geometry.** The current endpoint is
    nonzero permanent survival of the standard `h_6^2` in the classical Adams

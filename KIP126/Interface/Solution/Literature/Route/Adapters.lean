@@ -4,6 +4,7 @@ import KIP126.Interface.Solution.Literature.Route.RealizationKernel
 import KIP126.Interface.Solution.Literature.Route.Toda
 import KIP126.Interface.Solution.Literature.Route.May
 import KIP126.Interface.Challenge.Challenge2
+import KIP126.Interface.Solution.Literature.Applications
 
 namespace KIP126.Interface.Solution.Literature.Route
 open CategoryTheory CategoryTheory.Pretriangulated
@@ -57,3 +58,88 @@ theorem application_of_parts (η : BiHom 1 2 (S_0_0 : Syn)) (G : TmfLabels H)
 
 end
 end KIP126.Interface.Solution.Literature.Route
+
+/-! Assemble the same literature fields with explicitly supplied internal
+Moss specialization and weight-shift naturality. Main proves those two
+applications; the Interface producer does not depend on Main. -/
+namespace KIP126.Challenge2.LiteratureResults
+open CategoryTheory Classical.Adams Core.SpectralSequence
+open StableHomotopy StableHomotopy.Cohomology Synthetic.Context Synthetic.SpectralSequence
+open KIP126.Literature.Route
+variable {bindings : KIP126.Challenge2.LiteratureBindings}
+
+noncomputable def route (input : LiteratureResults bindings)
+    (localMoss : MossSourceInput standardMilnorCooperations
+      bindings.route.classicalSource.convergence)
+    (shiftNatural : bindings.eInftyWeightShift.Natural) :
+    Literature.Route.Statements standardRouteModel Def.standardRouteEta
+      bindings.tmfLabels bindings.route where
+  classical := {
+    h5Square_permanent := input.classical_h5Square_permanent
+    theta5_detection := input.classical_theta5_detection
+    theta5_order_two := input.classical_theta5_order_two
+    stem62_exponent_two := input.classical_stem62_exponent_two
+    theta5_filtration_gap := input.classical_theta5_filtration_gap
+    two_detection := input.classical_two_detection
+    eta_detection := input.classical_eta_detection
+    nu_detection := input.classical_nu_detection
+    eta_permanent := input.classical_eta_permanent
+    nu_permanent := input.classical_nu_permanent
+  }
+  bx := input.route_bx
+  synthetic := {
+    lifts := {
+      nu_cofiber := input.synthetic_nu_cofiber
+      lift := input.synthetic_lift
+      triangle_lift := input.synthetic_triangle_lift
+    }
+    finite_lift := input.synthetic_finite_lift
+    bockstein := input.synthetic_bockstein
+    permanent_lift := input.synthetic_permanent_lift
+    differentials := input.synthetic_differentials
+    filtration_lambda := input.synthetic_filtration_lambda
+    e2_weight_vanishing := input.synthetic_e2_weight_vanishing
+    finite_quotient_page_vanishing := input.synthetic_finite_quotient_page_vanishing
+    eInfty := {
+      presentation := bindings.eInftyPresentation
+      weightShift := bindings.eInftyWeightShift
+      maps := {
+        shift_natural := shiftNatural
+        lambda_nu := input.eInfty_lambda_nu
+        lambda_finite := input.eInfty_lambda_finite
+        rho_finite := input.eInfty_rho_finite
+        rho_nu := input.eInfty_rho_nu
+      }
+      labels := input.eInfty_labels
+    }
+  }
+  realizationKernel := input.route_realizationKernel
+  realization := by
+    intro X products applicability convergence
+    exact {
+      lifetime := input.realization_lifetime X products applicability convergence
+      detection := input.realization_detection X products applicability convergence
+      prescribed_lift := input.realization_prescribed_lift X products applicability convergence
+      boundary_lift := input.realization_boundary_lift X products applicability convergence
+    }
+  may := input.route_may
+  toda := {
+    h0_label := input.toda_h0_label
+    lambda_h0 := input.toda_lambda_h0
+    h0_eta := input.toda_h0_eta
+    low_indeterminacy := input.toda_low_indeterminacy
+  }
+  tmf := {
+    connective := input.tmf_connective
+    finiteMod2Type := input.tmf_finiteMod2Type
+    standard_labels := input.tmf_standard_labels
+    vanishing62 := input.tmf_vanishing62
+    low_filtration63 := input.tmf_low_filtration63
+    kappaBar_detection := input.tmf_kappaBar_detection
+    w_detection := input.tmf_w_detection
+    high125_nonzero := input.tmf_high125_nonzero
+  }
+  moss := localMoss
+
+
+end KIP126.Challenge2.LiteratureResults

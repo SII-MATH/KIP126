@@ -16,7 +16,6 @@ import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Selected.Proof
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.Proofs
 import KIP126.Main.Solution.Computation.Differential.Second
 import KIP126.Main.Solution.Computation.LinProgram.Route.Records
-import KIP126.Main.Solution.Literature.Adams.OneLine
 import KIP126.Main.Solution.Literature.EtaRows.Proofs
 import KIP126.Main.Solution.Literature.HopfCofiber.Proofs
 import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Proofs
@@ -118,9 +117,6 @@ run_cmd do
     ``KIP126.Computation.Route.Inputs.d2_for_P_h2,
     ``KIP126.Computation.Route.Inputs.d2_for_Q_h2_first,
     ``KIP126.Computation.Route.Inputs.d2_for_Q_h2_second,
-    ``KIP126.Classical.adamsOneLineDifferentials_h₄,
-    ``KIP126.Classical.adamsOneLineDifferentials_h₄_degrees,
-    ``KIP126.Classical.Adams.adamsOneLineDifferentials_h₄_degrees_bound,
     ``KIP126.Classical.ExtensionSS.EtaRowId.all_length,
     ``KIP126.Classical.ExtensionSS.EtaRowId.mem_all,
     ``KIP126.Classical.ExtensionSS.EtaRowId.row_mem_etaESSDifferentials,

@@ -30,7 +30,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: AIM-7 concrete tracer bullet; MainPaper/main.tex:430-453.
 \begin{definition}[Concrete classical $\eta$-ESS tracer bullet]
   \label{def:classical-eta-ess-concrete}
-  \uses{def:classical-adams-ss,def:ess-complex-shape,thm:external-adams-h4-d2-slice,prop:eta-ess-regression}
+  \uses{def:classical-adams-ss,def:ess-complex-shape,prop:eta-ess-regression}
   \lean{KIP126.Classical.ExtensionSS.etaESS}
   \lean{KIP126.Classical.ExtensionSS.E₀}
   \lean{KIP126.Classical.ExtensionSS.abutment}
@@ -299,10 +299,11 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 
 \section{Synthetic comparison and normalized lifts}
 
-% SOURCE: MainPaper/main.tex:685-691; AIM-6 concrete synthetic comparison slice.
-\begin{proposition}[The $h_4$ classical--synthetic $d_2$ comparison]
-  \label{prop:aim6-h4-comparison}
-  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism}
+% SOURCE: MainPaper/main.tex:799--807, Theorem thm:rigid;
+% Source/BHS/source/SynRevAdams.tex:77--85, Theorem thm:synth-ASS.
+\begin{proposition}[Representative-induced comparison and lambda action]
+  \label{prop:representative-induced-synthetic-comparison}
+  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism,thm:external-synthetic-rigidity}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction}
   \lean{KIP126.Synthetic.SpectralSequence.lambdaMapFromAction}
   \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction.lambdaMap_comm}
@@ -317,19 +318,22 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   and the same requirement.  Weight preservation follows from the fixed
   differential degree, without an independently supplied field.
 
-  The $h_4$ correspondence remains \texttt{notready}: the named standard
-  classes must be identified on the selected objects, the action must be
-  identified with the regraded image of the actual synthetic deformation map,
-  and the representative comparison across weights must respect that action.
-  Generic synthetic sequences no longer carry arbitrary independently chosen
-  $h_4$ and $h_0h_3^2$ elements.
+  Applying BHS rigidity on the selected classical and synthetic objects
+  remains \texttt{notready}. The ambient maps must be constructed from their
+  representatives, and the action must be identified with the regraded image
+  of the actual synthetic deformation map. Comparison across weights must
+  respect that action. The displayed generic declarations check the quotient
+  maps and degree conventions conditional on those compatibility data; they
+  do not construct the fixed-model comparison or prove the sourced
+  differential correspondence.
 \end{proposition}
 
 \begin{proof}
-  The AIM-5 mathematical input supplies the classical statement and degree
-  equalities.  The remaining proof obligation is the representative-induced
-  comparison across the two fixed weights and its compatibility with the
-  typed action; no proof of the differential correspondence is claimed here.
+  Once the ambient maps preserve the cycle and boundary towers, their induced
+  quotient maps satisfy the displayed naturality and lambda-action identities
+  by the supplied differential compatibility. Constructing those maps on the
+  fixed objects and identifying their action with the actual deformation map
+  remain unfinished obligations.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex, Theorem thm:17e90ac0(1);
@@ -1824,3 +1828,43 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   second time.  The evidence's component equality becomes the zero tag's
   equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$.
 \end{proof}
+\begin{theorem}[Local sphere specialization of the general Moss input]
+  \label{thm:main-local-moss-specialization}
+  \uses{thm:literature-moss,def:route-moss-source,def:route-classical-bx-inputs}
+  \lean{KIP126.Main.Solution.Literature.route_moss}
+  \notready
+  Main derives the local $E_3$ implication for
+  $\langle h_5^2,h_0,B\rangle$ from the same delivery's general sphere
+  Moss statement. The actual mapping tower, composition, Milnor labels and
+  source convergence must be compared. All defining-system, detection,
+  null-product, noncrossing and residual-injectivity conditions remain
+  explicit. This is an internal theorem with an unfinished proof.
+\end{theorem}
+
+\begin{theorem}[Naturality of the fixed synthetic weight comparison]
+  \label{thm:main-weight-shift-naturality}
+  \uses{def:route-synthetic-inputs,def:hf2-adams-tower}
+  \lean{KIP126.Synthetic.SpectralSequence.weightShiftObjectIso,KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift,KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists,KIP126.Def.standardEInftyWeightShift,KIP126.Main.Solution.Literature.eInfty_shift_natural}
+  \notready
+  The actual object weight isomorphism and the fixed tower presentation
+  prescribe the map on permanent cycles. Def's explicit existence theorem
+  must descend this map and its inverse to $E_\infty$. Main proves that
+  this fixed comparison is natural on all synthetic objects. Neither its
+  construction nor full-category naturality is an independently selected
+  BHS literature input; both property proofs remain unfinished.
+\end{theorem}
+
+\begin{theorem}[BR21 in the computation coordinates used by Main]
+  \label{thm:main-tmf-br21-coordinate-differential}
+  \uses{thm:literature-br21,def:tmf-csv-coordinate-binding,def:hf2-adams-tower}
+  \lean{KIP126.Main.Solution.Computation.tmf_br21_d3}
+  \notready
+  For one Challenge2 witness, transport its literature differential
+  $d_3(w_2^2)=\beta g^4$ through its actual detector comparison and use
+  its computation coordinates and the proved relation
+  $\beta g^4=\beta^5g$. The resulting equation is
+  $d_3(v_2^{16})=\beta^5g$ in bidegrees
+  $(16,112)\to(19,114)$. The transport proof is implemented and uses the
+  existing unfinished generic Adams tower naturality theorem. It is not
+  an additional computation input or a completed proof claim.
+\end{theorem}
