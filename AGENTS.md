@@ -14,6 +14,25 @@
 If you are performing a Lean code task under `KIPBase/`, read
 [`docs/KIPBASE_AGENTS.md`](docs/KIPBASE_AGENTS.md) first.
 
+## KIP126 Blueprint synchronization
+
+For a Lean code task under `KIP126/`, read the relevant Blueprint chapter and
+its dependency nodes before editing. Keep `blueprint/src/content.tex` and the
+chapter files synchronized with the Lean code:
+
+- update the linked declaration when a public statement, proof stage, source
+  premise, or mathematical dependency changes;
+- keep `\lean`, `\uses`, `\leanok`, and `\notready` consistent with the actual
+  declaration and its proof dependencies;
+- preserve stable Blueprint labels and public Lean names unless an API change is
+  explicitly required;
+- run `leanblueprint web`, the active-label/dependency check, and the relevant
+  source/interface checks before completing the task.
+
+Blueprint synchronization records the mathematical plan and proof status; it
+does not turn compilation, generated output, or input certification into a
+completed proof.
+
 ## Multica agents
 
 If you believe you are an agent from Multica, read `docs/MULTICA_AGENTS.md` before
