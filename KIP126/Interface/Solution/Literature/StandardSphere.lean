@@ -8,12 +8,14 @@ not converted into an untracked fact. -/
 namespace KIP126.Interface.Solution.Literature
 
 /-- Human-facing form of the standard one-line calculation. -/
+set_option maxHeartbeats 1000000 in
 theorem h4_d2_h0h3sq
     (literature : KIP126.Challenge2.LiteratureInterface) :
     KIP126.Classical.Adams.StandardSphere.h4D2H0H3Sq := by
   exact (literature.results.adamsOneLine_d2 4 (by decide)).toHasDifferential
 
 /-- The literature result also records that the target class is nonzero. -/
+set_option maxHeartbeats 1000000 in
 theorem h4_d2_h0h3sq_nonzero
     (literature : KIP126.Challenge2.LiteratureInterface) :
     KIP126.Classical.Adams.StandardSphere.h4D2H0H3SqNonzero := by
