@@ -15,9 +15,9 @@ theorem h4_d2_h0h3sq
     KIP126.Classical.Adams.StandardSphere.h4D2H0H3Sq := by
   change KIP126.Core.SpectralSequence.HasDifferential KIP126.Classical.Adams.sphereAdamsData 2
     (1, 16) (3, 17)
-    (KIP126.Classical.Adams.Sphere.Internal.hi KIP126.Def.StageInput.standardFoundation.hf2
+    (KIP126.Classical.Adams.Sphere.Internal.hi KIP126.Classical.Adams.standardFoundation.hf2
       KIP126.Classical.Adams.standardMilnorCooperations 4)
-    (KIP126.Classical.Adams.Sphere.Internal.h0HiSquare KIP126.Def.StageInput.standardFoundation.hf2
+    (KIP126.Classical.Adams.Sphere.Internal.h0HiSquare KIP126.Classical.Adams.standardFoundation.hf2
       KIP126.Classical.Adams.standardMilnorCooperations 3)
   convert (literature.results.adamsOneLine_d2 4 (by decide)).toHasDifferential using 1 <;>
     norm_num
@@ -28,9 +28,9 @@ theorem h4_d2_h0h3sq_nonzero
     KIP126.Classical.Adams.StandardSphere.h4D2H0H3SqNonzero := by
   change KIP126.Core.SpectralSequence.HasNonzeroDifferential KIP126.Classical.Adams.sphereAdamsData 2
     (1, 16) (3, 17)
-    (KIP126.Classical.Adams.Sphere.Internal.hi KIP126.Def.StageInput.standardFoundation.hf2
+    (KIP126.Classical.Adams.Sphere.Internal.hi KIP126.Classical.Adams.standardFoundation.hf2
       KIP126.Classical.Adams.standardMilnorCooperations 4)
-    (KIP126.Classical.Adams.Sphere.Internal.h0HiSquare KIP126.Def.StageInput.standardFoundation.hf2
+    (KIP126.Classical.Adams.Sphere.Internal.h0HiSquare KIP126.Classical.Adams.standardFoundation.hf2
       KIP126.Classical.Adams.standardMilnorCooperations 3)
   convert literature.results.adamsOneLine_d2 4 (by decide) using 1 <;>
     norm_num
