@@ -4,12 +4,15 @@
 
 - The Blueprint is the mathematical plan, not evidence that a proof is complete.
 - Blueprint nodes describe mathematical objects, statements, and proof
-  dependencies. Repository architecture, delivery inventories, source ledgers,
-  hashes, and coverage audits belong in `docs/BLUEPRINT_MAINTENANCE.md` or
-  their canonical engineering records, not in the mathematical graph.
+  dependencies.
 - A mechanical cleanup must not silently change a public declaration, a
   stage-boundary statement, source provenance, proof status, or mathematical
   strength.
+
+## KIPBase agents
+
+If you are performing a Lean code task under `KIPBase/`, read
+[`docs/KIPBASE_AGENTS.md`](docs/KIPBASE_AGENTS.md) first.
 
 ## Multica agents
 
