@@ -114,6 +114,20 @@ noncomputable abbrev relative (G : Input X) (a b : ℕ) (h : a ≤ b) : Syn :=
 noncomputable abbrev layer (G : Input X) (s : ℕ) : Syn :=
   G.relative s (s + 1) (Nat.le_succ s)
 
+/-- A stage class whose image in the adjacent layer is zero lifts to the
+next stage.  This is the cofiber exactness step that turns a zero layer
+target into membership in the next filtration. -/
+theorem exists_stageLift_of_layer_zero (G : Input X) (S : Syn) (s : ℕ)
+    (a : S ⟶ G.stage s)
+    (ha : a ≫ syn_functorial_cofiber.cofibι
+      (G.transition s (s + 1) (Nat.le_succ s)) = 0) :
+    ∃ a' : S ⟶ G.stage (s + 1),
+      a' ≫ G.transition s (s + 1) (Nat.le_succ s) = a := by
+  obtain ⟨a', ha'⟩ := Triangle.coyoneda_exact₂ _
+    (syn_functorial_cofiber.cofib_distinguished
+      (G.transition s (s + 1) (Nat.le_succ s))) a ha
+  exact ⟨a', ha'.symm⟩
+
 /-- Projection of a relative representative to its adjacent source layer. -/
 noncomputable def sourceProjection (G : Input X) (s b : ℕ) (h : s + 1 ≤ b) :
     G.relative s b (by omega) ⟶ G.layer s :=
