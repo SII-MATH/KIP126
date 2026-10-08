@@ -13,6 +13,18 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)]
   (H : Mod2EilenbergMacLane (C := C)) (M : MilnorCooperations H)
 
+/- Transport an internal page element across equal presentations of its
+    bidegree.  This is only equality transport; it does not choose a second
+    representative or a new page class. -/
+def reindex {s t s' t' : ℕ} (hs : s = s') (ht : t = t')
+    (x : (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
+      (s, (t : ℤ))) :
+    (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
+      (s', (t' : ℤ)) := by
+  subst s'
+  subst t'
+  exact x
+
 /-- Multiplication of specified classes, not a free operation in a model. -/
 def product {s t s' t' : ℕ}
     (x : (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2 (s, t))
