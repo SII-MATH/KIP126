@@ -4178,6 +4178,20 @@ express this step as the Milnor cobar differential are still missing.
   rather than chosen independently.
 \end{definition}
 
+\begin{definition}[Uniform list notation for nonempty $h_i$ products]
+  \label{def:milnor-h-word-product}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.hWordDegree,KIP126.Classical.Adams.Sphere.Internal.hProduct,KIP126.Classical.Adams.Sphere.Internal.hMonomial,KIP126.Classical.Adams.StandardSphere.standardHProduct}
+  \uses{def:milnor-internal-hi-family}
+  \leanok
+  A nonempty list $[i_1,\ldots,i_n]$ is interpreted as the iterated
+  product $h_{i_1}\cdots h_{i_n}$ on the actual internal second page. Its
+  filtration is $n$ and its internal degree is
+  $\sum_k 2^{i_k}$. Repeated entries are repeated factors, so `[0,3,3]`
+  denotes $h_0h_3^2$ and `[0,0,3,5]` denotes $h_0^2h_3h_5$.
+  The empty list is excluded because this interface describes nonempty
+  monomials and does not silently choose a unit class.
+\end{definition}
+
 \begin{proposition}[Cobar multiplication descends to cohomology]
   \label{prop:milnor-cobar-cup-descent}
   \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Classical.Adams.Sphere.Internal.hiProduct_eq_product,KIP126.Classical.Adams.Sphere.Internal.hiSquare_eq_product,KIP126.Challenge2.CobarCupCalculus}

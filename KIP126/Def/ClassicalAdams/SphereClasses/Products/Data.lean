@@ -29,5 +29,36 @@ def h0HiSquare (i : ℕ) :
     (MilnorCohomology.cup H M (MilnorCohomology.hi H M 0)
       (MilnorCohomology.hiSquare H M i))
 
+/-- Internal degree of a word of standard `hᵢ` classes. -/
+def hWordDegree : List ℕ → ℕ
+  | [] => 0
+  | i :: is => 2 ^ i + hWordDegree is
+
+/-- Product of a nonempty word of standard classes.
+
+`hProduct H M i is` represents the code `i :: is`; for example,
+`hProduct H M 0 [3, 3]` is the code `[0, 3, 3]`. -/
+def hProduct (i : ℕ) : (is : List ℕ) →
+    (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
+      (1 + is.length, ((2 ^ i + hWordDegree is : ℕ) : ℤ))
+  | [] => hi H M i
+  | j :: js =>
+      reindex H
+        (by simp [Nat.add_comm, Nat.add_left_comm])
+        (by simp [hWordDegree])
+        (product H M (hi H M i) (hProduct j js))
+
+/-- A nonempty list represents a right-associated product of standard classes.
+
+Repeated indices are repeated factors: `[0, 3, 3]` represents `h₀ h₃ h₃`.
+The nonempty condition is discharged automatically for concrete nonempty lists. -/
+def hMonomial (indices : List ℕ) (hne : indices ≠ [] := by decide) :
+    (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
+      (indices.length, ((hWordDegree indices : ℕ) : ℤ)) :=
+  match indices with
+  | [] => False.elim (hne rfl)
+  | i :: is =>
+      reindex H (by simp [Nat.add_comm]) rfl (hProduct H M i is)
+
 end
 end KIP126.Classical.Adams.Sphere.Internal
