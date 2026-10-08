@@ -1,9 +1,9 @@
-\chapter{The classical mod--2 Adams spectral sequence}
+\section{The classical mod--2 Adams spectral sequence}
 \label{chap:classical-adams}
 
-This chapter defines the Steenrod, Ext, tower, convergence, product, and named-class interfaces.  Concrete published differentials and low-line calculations occur only in the later external-results chapter.
+This section defines the Steenrod, Ext, tower, convergence, product, and named-class interfaces.  Concrete published differentials and low-line calculations occur only in the later external-results chapter.
 
-\section{Steenrod algebra, Ext, towers, and convergence}
+\subsection{Steenrod algebra, Ext, towers, and convergence}
 
 % SOURCE: MainPaper/main.tex:126-150; PROJECT_BOUNDARY.md, Steenrod algebra and Ext.
 \begin{definition}[Dual Steenrod algebra]
@@ -220,8 +220,7 @@ This chapter defines the Steenrod, Ext, tower, convergence, product, and named-c
   equivalence without choosing new coordinates.
   The target Ext is defined in all integer internal degrees, whereas this
   comparison currently quantifies nonnegative internal degrees.
-  The producer theorem remains unproved. The field is correlated with
-  the same foundation and Milnor input in Challenge~2; neither the
+  Construction of these comparisons remains unfinished; neither the
   left Steenrod-module comparison nor compatibility with Yoneda products
   follows from this additive comparison.
 \end{theorem}
@@ -248,9 +247,8 @@ This chapter defines the Steenrod, Ext, tower, convergence, product, and named-c
   \]
   The target map must be a cocycle for this actual dual differential.
   The all-representatives condition determines the comparison; its
-  existence is stated but not proved. This is a fixed algebraic coefficient
-  comparison in Def, not an external result or an additional Challenge
-  field. It does not supply the general-spectrum coaction bridge or
+  existence is stated but not proved. This coefficient comparison does not
+  supply the general-spectrum coaction bridge or
   multiplication compatibility.
 \end{theorem}
 
@@ -459,6 +457,36 @@ This chapter defines the Steenrod, Ext, tower, convergence, product, and named-c
   by the witness's detection relation.
 \end{proof}
 
+% SOURCE: BHS SynRevBigraded.tex, dfn:E-complete and dfn:strong-conv;
+% fixed-sphere applicability and filtration separation are project obligations.
+\begin{proposition}[Completeness and strong convergence for the fixed sphere]
+  \label{prop:fixed-sphere-adams-applicability}
+  \lean{KIP126.Def.standardSphereApplicability}
+  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss}
+  \notready
+  For the fixed $2$-complete sphere $S^0$ and the same unit of
+  $H\mathbb F_2$, the residual Adams tower has acyclic homotopy limit.
+  Its Adams spectral sequence converges strongly: the tower filtration
+  on each $\pi_nS^0$ is complete and Hausdorff, and
+  \[
+    E_\infty^{s,t}(S^0)\cong
+    F^s\pi_{t-s}S^0/F^{s+1}\pi_{t-s}S^0.
+  \]
+  The applicability proof for this fixed object remains unfinished.
+\end{proposition}
+
+\begin{proposition}[Separation of the fixed sphere Adams filtration]
+  \label{prop:fixed-sphere-adams-separated}
+  \lean{KIP126.Def.standardSphereSeparated}
+  \uses{prop:fixed-sphere-adams-applicability,def:adams-tower-filtration}
+  \notready
+  For every integer $n$ and $a\in\pi_nS^0$, if
+  $a\in F^s\pi_nS^0$ for every $s\in\mathbb N$, then $a=0$.
+  Thus the intersection of all nonnegative Adams filtration stages is zero.
+  The deduction from the fixed-sphere convergence comparison remains
+  unfinished.
+\end{proposition}
+
 % SOURCE: MainPaper/main.tex:136-162.
 \begin{definition}[The classes $h_j$]
   \label{def:adams-hj}
@@ -472,7 +500,7 @@ This chapter defines the Steenrod, Ext, tower, convergence, product, and named-c
   supplied by Theorem~\ref{thm:adams-external-pairing}.
 \end{definition}
 
-\section{Adams filtration and detection}
+\subsection{Adams filtration and detection}
 
 % SOURCE: MainPaper/main.tex:253-263, 283-306, and 912-997.
 \begin{definition}[Adams filtration of elements and maps]

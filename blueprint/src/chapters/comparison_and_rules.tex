@@ -1,11 +1,12 @@
-\chapter{Comparison and generalized rules}
+\section{Comparison and generalized rules}
 \label{chap:comparison-and-rules}
 
-This chapter begins the internal-proof layer.  It consumes the explicit literature and computation inputs above to prove comparison, page-extension, Leibniz, Moss-adapter, and Mahowald results inside the project.
+This section develops the comparisons, page-extension consequences, Moss
+convergence, and generalized Leibniz and Mahowald rules used below.
 
-\section{Extension-SS consumers}
+\subsection{Consequences of extension spectral sequences}
 
-% SOURCE: AIM-7 concrete tracer bullet; MainPaper/main.tex:430-453.
+% SOURCE: MainPaper/main.tex:430-453.
 \begin{proposition}[Concrete eta detection slice]
   \label{prop:classical-eta-extension-iff-detected}
   \uses{def:classical-eta-ess-concrete,prop:eta-ess-regression}
@@ -24,11 +25,11 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \begin{proof}
   Expand the two predicates as membership in the detected and differential
   sets and rewrite with the concrete input's equality between those sets.
-  The eta rows themselves are supplied by the catalogued regression evidence.
+  Use the specified eta differential equations.
 \end{proof}
 
-% SOURCE: AIM-7 concrete tracer bullet; MainPaper/main.tex:430-453.
-\begin{definition}[Concrete classical $\eta$-ESS tracer bullet]
+% SOURCE: MainPaper/main.tex:430-453.
+\begin{definition}[Classical $\eta$-extension spectral sequence]
   \label{def:classical-eta-ess-concrete}
   \uses{def:classical-adams-ss,def:ess-complex-shape,prop:eta-ess-regression}
   \lean{KIP126.Classical.ExtensionSS.etaESS}
@@ -36,13 +37,12 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   \lean{KIP126.Classical.ExtensionSS.abutment}
   \lean{KIP126.Classical.ExtensionSS.ClassicalEtaESSAdapter}
   \notready
-  On the AIM-5 concrete classical Adams data, the $\eta$ tracer bullet uses
-  Mathlib's `CategoryTheory.SpectralSequence` with page-zero object
+  On the specified classical Adams data, the $\eta$-extension spectral
+  sequence has page-zero object
   $E_\infty(X)\oplus E_\infty(Y)$, differential degree $(n,n)$, and
   componentwise abutment $\ker(\pi_*\eta)\oplus\operatorname{coker}(\pi_*\eta)$.
-  The finite differential rows are explicit mathematical inputs. Their AIM
-  paper locators are recorded in the external manifest; no separate
-  differential axiom is introduced.
+  Its specified finite differential equations are the conditions used
+  in Proposition~\ref{prop:classical-eta-extension-iff-detected}.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:327-342, unlabelled Corollary 2.6.
@@ -60,7 +60,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   target in any smaller filtration shift.
 \end{proof}
 
-\section{Moss convergence adapter}
+\subsection{Moss convergence and detected Toda brackets}
 
 \begin{proposition}[Mapping-stage composition at a left successor]
   \label{prop:moss-stage-composition-successor}
@@ -269,7 +269,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:2537--2545; Moss Theorem 1.2.
 % The crossing and weak-convergence conventions have also been checked against
 % Belmont--Kong, arXiv:2112.08689v2, Definitions 2.3--2.4.
-\begin{theorem}[Moss convergence adapter]
+\begin{theorem}[Moss convergence for mapping Adams towers]
   \label{thm:moss-convergence-adapter}
   \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,prop:moss-long-layer-composition-obstruction}
   \lean{KIP126.Classical.Adams.Moss.PageMassey.Relation,KIP126.Classical.Adams.Moss.PageMassey.Indeterminacy,KIP126.Classical.Adams.Moss.StatementAt,KIP126.Challenge2.MossInterface,KIP126.Challenge2.StandardSphereMossInterface,KIP126.Interface.Solution.sphereMossInterface}
@@ -297,7 +297,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   define the separate cobar Massey product on $E_2$.
 \end{theorem}
 
-\section{Synthetic comparison and normalized lifts}
+\subsection{Synthetic comparison and normalized lifts}
 
 % SOURCE: MainPaper/main.tex:799--807, Theorem thm:rigid;
 % Source/BHS/source/SynRevAdams.tex:77--85, Theorem thm:synth-ASS.
@@ -358,8 +358,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   cited sources; extending it to arbitrary $a$ also requires compatibility
   of the actual shifts, $\lambda$, and cofiber quotients.
 
-  Both sides are already defined, so this is a precise parameterized
-  delivery type.  Its model witness has not been constructed.
+  Existence of this family of isomorphisms remains to be established.
   The existing special-fiber $E_\infty$ presentation identifies associated
   graded groups and does not by itself provide these homotopy isomorphisms.
   This comparison type does not include naturality or Bockstein-differential
@@ -582,7 +581,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   weight shift exactly $-1$.
 \end{proof}
 
-\section{Classical--synthetic extension comparison}
+\subsection{Classical--synthetic extension comparison}
 
 % PROOF-SOURCE: the standard obstruction calculation for a countable inverse
 % system of abelian torsors, combined with BHS Proposition A.13.
@@ -899,7 +898,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   $\lambda$ multiples remain represented.
 \end{proof}
 
-\section{Classical page-extension theorems}
+\subsection{Classical page-extension theorems}
 
 % SOURCE: MainPaper/main.tex:1541-1564 and 2084-2099, the finite Ext-product
 % enumeration used both for no-crossing and for page stretching.  This node is
@@ -1157,7 +1156,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   the synthetic differential coset to the displayed classical coset.
 \end{proof}
 
-\section{Generalized Leibniz and Mahowald rules}
+\subsection{Generalized Leibniz and Mahowald rules}
 
 % SOURCE: MainPaper/main.tex:1606-1652, Theorem thm:e73f481e.
 \begin{theorem}[Generalized Leibniz rule]
@@ -1186,7 +1185,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   \end{enumerate}
   Then $d_{r+l-m}(y)=y_\infty$.
   The linked Lean declaration specifies this law for a fixed actual
-  normalized page family; its validity is still a delivery obligation.
+  normalized page family; its validity remains to be established.
   It does not assert that arbitrary comparison isomorphisms satisfy the law.
 \end{theorem}
 
@@ -1266,11 +1265,11 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:1780-1917, complete hypotheses and degree package for Theorem thm:158d451a.
-\begin{definition}[Generalized Mahowald input package]
+\begin{definition}[Hypotheses of the generalized Mahowald rule]
   \label{def:mahowald-input-data}
   \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing}
   \notready
-  A Mahowald input package consists of a distinguished triangle
+  The Mahowald hypotheses specify a distinguished triangle
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
   $e(f)+e(g)+e(h)=1$, integers $s,t,n,m,l$, and
   \[
@@ -1291,9 +1290,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   $d_m^{g,E_{m_1+2}}(y)=\bar y$, and a proof that either the first page
   extension has no crossing or the classical differential has no crossing on
   $E_{r'}$.
-  In the Lean statement these are arguments of
-  \texttt{KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw}, not freely chosen page
-  operations. The target of the $h$-extension is an actual $E_2(\Sigma X)$
+  The target of the $h$-extension is an actual $E_2(\Sigma X)$
   label; the following comparison relates it to the displayed $X$ label.
 \end{definition}
 
@@ -1320,7 +1317,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   \label{lem:mahowald-synchronized-representatives}
   \uses{def:mahowald-input-data,prop:no-crossing-iff-uniform-detection,prop:classical-crossing-iff-delta-crossing,prop:page-crossing-iff-synthetic-crossing,thm:delta-classical-equivalence}
   \notready
-  For a Mahowald input package, one can choose
+  Under the Mahowald hypotheses, one can choose
   \[
     [\bar x]\in\pi_{t-s,t}(\nu Z/\lambda^{r'-1})
   \]
@@ -1344,9 +1341,9 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 % SOURCE: MainPaper/main.tex:1886-1907, the representative for y, degree-uniqueness, and the application of May's pullback lemma.
 \begin{lemma}[May-compatible lift in the Mahowald diagram]
   \label{lem:mahowald-compatible-quotient-lift}
-  \uses{def:mahowald-input-data,lem:mahowald-synchronized-representatives,thm:external-may-smash-boundary,prop:synthetic-ess-weightwise-transport,prop:fextension-iff-detected,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle}
+  \uses{def:mahowald-input-data,lem:mahowald-synchronized-representatives,thm:literature-route-may,prop:synthetic-ess-weightwise-transport,prop:fextension-iff-detected,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle}
   \notready
-  For a Mahowald input package, choose the synchronized representative
+  Under the Mahowald hypotheses, choose the synchronized representative
   $[\bar x]$ of Lemma~\ref{lem:mahowald-synchronized-representatives}.
   There are a representative
 
@@ -1386,7 +1383,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   \label{lem:mahowald-quotient-lift-survival}
   \uses{def:mahowald-input-data,lem:mahowald-synchronized-representatives,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-map-compatibility}
   \notready
-  For a Mahowald input package, suppose
+  Under the Mahowald hypotheses, suppose
 
   \[
     u\in\pi_{t-s-1,t-1+e(h)}(\nu X/\lambda^r)
@@ -1416,7 +1413,7 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
   \label{lem:mahowald-lambda-division}
   \uses{def:mahowald-input-data,prop:synthetic-einfty-map-compatibility,def:page-extension-coset}
   \notready
-  For a Mahowald input package, if the smash diagram gives
+  Under the Mahowald hypotheses, if the smash diagram gives
   \[
     d_n^{\widehat f_r}(\lambda^{l_1}x)=\lambda^{r'-1}y,
   \]
@@ -1830,12 +1827,12 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 \end{proof}
 \begin{theorem}[Local sphere specialization of the general Moss input]
   \label{thm:main-local-moss-specialization}
-  \uses{thm:literature-moss,def:route-moss-source,def:route-classical-bx-inputs}
+  \uses{thm:literature-moss,def:adams-hj,def:adams-detection,def:toda-bracket}
   \lean{KIP126.Main.Solution.Literature.route_moss}
   \notready
-  Main derives the local $E_3$ implication for
-  $\langle h_5^2,h_0,B\rangle$ from the same delivery's general sphere
-  Moss statement. The actual mapping tower, composition, Milnor labels and
+  The general sphere Moss theorem specializes to the local $E_3$ implication
+  for $\langle h_5^2,h_0,B\rangle$. The actual mapping tower,
+  composition, Milnor labels and
   source convergence must be compared. All defining-system, detection,
   null-product, noncrossing and residual-injectivity conditions remain
   explicit. This is an internal theorem with an unfinished proof.
@@ -1843,23 +1840,23 @@ This chapter begins the internal-proof layer.  It consumes the explicit literatu
 
 \begin{theorem}[Naturality of the fixed synthetic weight comparison]
   \label{thm:main-weight-shift-naturality}
-  \uses{def:route-synthetic-inputs,def:hf2-adams-tower}
+  \uses{def:synthetic-adams-ss,def:synthetic-tridegree,def:hf2-adams-tower}
   \lean{KIP126.Synthetic.SpectralSequence.weightShiftObjectIso,KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift,KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists,KIP126.Def.standardEInftyWeightShift,KIP126.Main.Solution.Literature.eInfty_shift_natural}
   \notready
   The actual object weight isomorphism and the fixed tower presentation
-  prescribe the map on permanent cycles. Def's explicit existence theorem
-  must descend this map and its inverse to $E_\infty$. Main proves that
-  this fixed comparison is natural on all synthetic objects. Neither its
+  prescribe the map on permanent cycles. The existence theorem
+  must descend this map and its inverse to $E_\infty$. This fixed comparison
+  is natural on all synthetic objects. Neither its
   construction nor full-category naturality is an independently selected
   BHS literature input; both property proofs remain unfinished.
 \end{theorem}
 
-\begin{theorem}[BR21 in the computation coordinates used by Main]
+\begin{theorem}[BR21 in the chosen tmf coordinates]
   \label{thm:main-tmf-br21-coordinate-differential}
-  \uses{thm:literature-br21,def:tmf-csv-coordinate-binding,def:hf2-adams-tower}
+  \uses{thm:literature-br21,def:tmf-csv-coordinate-binding,def:hf2-adams-tower,thm:computation-bindings-tmf-v2Sixteen,thm:computation-bindings-tmf-betaGFour,thm:computation-tmfMultiplicative}
   \lean{KIP126.Main.Solution.Computation.tmf_br21_d3}
   \notready
-  For one Challenge2 witness, transport its literature differential
+  Transport the BR21 differential
   $d_3(w_2^2)=\beta g^4$ through its actual detector comparison and use
   its computation coordinates and the proved relation
   $\beta g^4=\beta^5g$. The resulting equation is

@@ -1,5 +1,5 @@
 import KIP126.Def.SpectralSequence.Computation.Predicates
-import KIP126.Def.Comparison.StageInterfaces.Models
+import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
 import KIP126.Def.StageInput.StandardSphere.Tmf.Predicates
 import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
 import KIP126.Interface.Challenge.Challenge2

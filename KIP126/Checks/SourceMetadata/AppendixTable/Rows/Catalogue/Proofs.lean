@@ -1,5 +1,5 @@
-import KIP126.Def.References.Literature.AppendixTable.Rows.Catalogue.Data
-import KIP126.Def.References.Literature.AppendixTable.Rows.Predicates
+import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Data
+import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Predicates
 import KIP126.Checks.SourceMetadata.AppendixTable.Proofs
 
 /-!

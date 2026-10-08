@@ -12,7 +12,7 @@ from pathlib import Path
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-ARCHIVE = ROOT / "migration/kip-base"
+ARCHIVE = ROOT / "docs/migration/kip-base"
 
 
 def digest(data):

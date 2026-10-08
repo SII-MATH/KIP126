@@ -308,10 +308,10 @@ class WorkflowRoutingTests(unittest.TestCase):
     def read(self, name):
         return (WORKFLOWS / name).read_text()
 
-    def test_main_lean_ci_does_not_watch_blueprint_source(self):
+    def test_main_lean_ci_supplies_docs_producer_after_cache_eviction(self):
         ci = self.read("ci.yml")
         self.assertIn('      - "KIP126/**/*.lean"', ci)
-        self.assertNotIn('      - "blueprint/src/**"', ci)
+        self.assertIn('      - "blueprint/src/**"', ci)
 
     def test_blueprint_only_prs_skip_lean_build_and_profile(self):
         for name in ("pr-build.yml", "pr-profile.yml"):
@@ -587,6 +587,20 @@ class WorkflowRoutingTests(unittest.TestCase):
             (repo / "KIPBase" / "Basic.lean").write_text("def historical := 32\n")
             changed_legacy = commit("port historical proof")
             self.assertNotEqual(legacy_key, run("bash", str(key_script), ".", changed_legacy))
+
+
+class MainDocsProducerCoverageTests(unittest.TestCase):
+    def test_every_main_docs_trigger_has_a_main_build_producer(self):
+        import yaml
+        workflows = pathlib.Path(__file__).resolve().parents[1] / '.github/workflows'
+        pages = yaml.safe_load((workflows / 'pages.yml').read_text())
+        ci = yaml.safe_load((workflows / 'ci.yml').read_text())
+        # PyYAML 1.1 interprets the unquoted YAML key `on` as True.
+        page_paths = set(pages.get('on', pages.get(True))['push']['paths'])
+        producer_paths = set(ci.get('on', ci.get(True))['push']['paths'])
+        # KIP126/*.lean is covered by KIP126/**/*.lean on GitHub.
+        page_paths.discard('KIP126/*.lean')
+        self.assertFalse(page_paths - producer_paths, sorted(page_paths - producer_paths))
 
 
 if __name__ == "__main__":

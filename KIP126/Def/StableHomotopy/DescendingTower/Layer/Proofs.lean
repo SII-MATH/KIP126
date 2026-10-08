@@ -9,6 +9,8 @@ namespace KIP126.StableHomotopy
 
 open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated
 
+set_option backward.isDefEq.respectTransparency false
+
 universe u v
 
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
@@ -32,6 +34,9 @@ theorem DescendingTower.layerBoundary_step (T : DescendingTower C) (k : ℤ) :
 
 theorem InverseSequence.toDescendingTower_layer_isZero (D : InverseSequence C)
     (k : ℤ) (hk : k < 0) : IsZero (D.toDescendingTower.layer k) := by
-  sorry
+  apply (Triangle.isZero₃_iff_isIso₁ _ (D.toDescendingTower.layerTriangle_distinguished k)).2
+  change IsIso (D.toDescendingTower.step k)
+  rw [InverseSequence.toDescendingTower_step_neg D k hk]
+  infer_instance
 
 end KIP126.StableHomotopy

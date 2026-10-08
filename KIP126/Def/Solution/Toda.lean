@@ -1,6 +1,7 @@
 import KIP126.Def.StableHomotopy.Implementation.Data
 import KIP126.Def.StableHomotopy.Toda.Coset.Proofs
 import KIP126.Def.StableHomotopy.Toda.Juggling.Proofs
+import KIP126.Def.StableHomotopy.Toda.Law.Proofs
 
 namespace KIP126.Def.Solution
 
@@ -24,7 +25,13 @@ theorem todaNaturalityInterface (C : Type u) [Category.{v} C] [Preadditive C]
     [HasZeroObject C] [HasShift C ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor C n)] [Pretriangulated C] :
     KIP126.Foundation.TodaNaturalityInterface C := by
-  sorry
+  exact {
+    precompose := KIP126.StableHomotopy.Toda.precompose
+    postcompose := KIP126.StableHomotopy.Toda.postcompose
+    absorb_first := KIP126.StableHomotopy.Toda.absorb_first
+    absorb_last := KIP126.StableHomotopy.Toda.absorb_last
+    shuffle_iff := KIP126.StableHomotopy.Toda.shuffle_iff
+    suspension_iff := KIP126.StableHomotopy.Toda.suspension_iff }
 
 universe u' v'
 
@@ -37,13 +44,13 @@ theorem todaFunctorInterface {C : Type u} [Category.{v} C] [Preadditive C]
     [∀ n : ℤ, Functor.Additive (shiftFunctor D n)] [Pretriangulated D]
     (F : C ⥤ D) [F.CommShift ℤ] [F.IsTriangulated] :
     KIP126.Foundation.TodaFunctorInterface F := by
-  sorry
+  exact ⟨KIP126.StableHomotopy.Toda.map F⟩
 
 /-- a13: both actual tensor-functor product containments. -/
 theorem todaTensorInterface (C : Type u) [Category.{v} C] [Preadditive C]
     [HasZeroObject C] [HasShift C ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor C n)] [Pretriangulated C] [MonoidalCategory C] :
     KIP126.Foundation.TodaTensorInterface C := by
-  sorry
+  exact ⟨KIP126.StableHomotopy.Toda.tensor_right, KIP126.StableHomotopy.Toda.tensor_left⟩
 
 end KIP126.Def.Solution

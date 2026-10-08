@@ -1,12 +1,13 @@
 % Route-model refinement, 2026-09-28: the intermediate Lean declarations
 % are pending propositions on Kervaire.Route.Model. They do not assume
-% arbitrary permanence/detection predicates; A(M)/C(M) are still separate.
-\chapter{The near-$126$ reduction and permanent cycle}
+% arbitrary permanence/detection predicates; the sequence and classes are fixed.
+\section{The near-$126$ reduction and permanent cycle}
 \label{chap:near126}
 
-This chapter contains only the project deductions that assemble the setup, external results, and finite evidence into the permanent-cycle proof.
+This section develops the near-$126$ differentials, synthetic relations, and
+filtration arguments leading to nonzero permanent survival of $h_6^2$.
 
-\section{Assembly of explicit inputs}
+\subsection{Page conditions and synthetic comparisons}
 
 % SOURCE: MainPaper/main.tex:2156--2167, 2181--2204, 2357--2360.
 \begin{definition}[Fixed-sphere $C_3$ and the $d_{12}$ alternative]
@@ -47,47 +48,19 @@ This chapter contains only the project deductions that assemble the setup, exter
   hit.  All differentials used here are those of the fixed SSData object.
 \end{proof}
 
-% SOURCE: PROJECT_BOUNDARY.md, External inputs and Axiom policy.
-\begin{definition}[Near-$126$ literature input]
-  \label{def:near126-literature-input}
-  \uses{def:sphere-adams-coherence,thm:external-synthetic-foundation,thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,thm:external-lambda-bockstein,thm:external-synthetic-lift,thm:external-synthetic-triangle-lift,thm:external-nu-cofiber-criterion,thm:external-may-smash-boundary,thm:moss-convergence-adapter,thm:toda-product-identities,thm:external-bjm-bx-criterion,thm:external-bx-quadratic-cell-calculus,thm:external-total-differential-identity,evidence:normalized-hopf-detection}
-  \notready
-  For fixed $\mathcal C$, $\mathcal S$, $A_{\mathrm{cl}}$,
-  $A_{\mathrm{syn}}$, and their sphere coherence datum, a near-$126$
-  literature input is a dependent record.  Its named mathematical
-  fields are \texttt{syntheticFoundation}, \texttt{syntheticRigidity},
-  \texttt{syntheticEinfNu}, \texttt{syntheticEinfQuotient},
-  \texttt{lambdaBockstein}, \texttt{syntheticLift},
-  \texttt{syntheticTriangleLift}, \texttt{nuCofiberCriterion},
-  \texttt{maySmashBoundary}, \texttt{mossConvergence},
-  \texttt{todaProducts}, \texttt{bjmBx},
-  \texttt{quadraticCells}, and \texttt{totalDifferential}.  The last two
-  fields describe only the distinguished source choice; neither contains an
-  arbitrary-choice identity or choice-independence assumption. Original classical
-  Xu/IWX inputs require precise source and model bindings; the synthetic
-  order/choice predicate below is a paper deduction, not an extra literature
-  field. The finite normalized BJM/BX statement likewise requires a project
-  proof. The quadratic-construction fields supply the cited
-  cell-calculus input for the internal choice comparison.  Its mathematical
-  detection field
-  \texttt{normalizedHopfDetection} supplies the triangle-compatible identity
-  $\widehat\nu=[h_2]$ from
-  Proposition~\ref{evidence:normalized-hopf-detection}.  Every proposition is
-  typed over the fixed contexts and sphere sequences. Its source locator is
-  recorded in the external manifest.  There is no
-  \texttt{classicalConvergence} field: convergence is already part of the
-  chosen $A_{\mathrm{cl}}$ interface.
-\end{definition}
+% SOURCE: PROJECT_BOUNDARY.md, External inputs and Axiom policy;
+% KIP126/Interface/Challenge/Literature/Delivery.lean.
+
 
 % SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, Appendix data,
 % and External inputs; MainPaper/main.tex:755--1274.
 \begin{definition}[Synthetic interpretation of the computation catalogue]
   \label{def:synthetic-catalogue-coherence}
-  \uses{def:classical-catalogue-coherence,def:near126-literature-input,def:near126-computation-input,def:synthetic-context,def:synthetic-adams-ss,def:synthetic-lambda-quotient,prop:synthetic-einfty-first-quotient,prop:synthetic-einfty-map-compatibility,def:sphere-adams-coherence}
+  \uses{def:classical-catalogue-coherence,def:computation-fixed-bindings,def:synthetic-context,def:synthetic-adams-ss,def:synthetic-lambda-quotient,prop:synthetic-einfty-first-quotient,prop:synthetic-einfty-map-compatibility,def:sphere-adams-coherence}
   \notready
   Fix the data above, the selected synthetic sphere sequence
-  $A_{\mathrm{syn}}$, a near-$126$ literature input $L$, and a classical
-  catalogue coherence datum $C_{\mathrm{cl}}$.  A synthetic catalogue
+  $A_{\mathrm{syn}}$, the cited synthetic comparison theorems, and a classical
+  catalogue comparison $C_{\mathrm{cl}}$.  A synthetic catalogue
   coherence datum contains:
   \begin{enumerate}
     \item interpretations of every consumed spectrum as its chosen synthetic
@@ -96,7 +69,7 @@ This chapter contains only the project deductions that assemble the setup, exter
     \item interpretations of the raw class identifiers as page or homotopy
       classes in the stored tridegrees, together with detection witnesses and
       agreement with $C_{\mathrm{cl}}$ through the grading transport and the
-      specifically named rigidity/Bockstein fields of $L$;
+      differential-rigidity and Bockstein comparisons;
     \item compatibility of $\lambda$, $\rho$, quotient maps, suspensions,
       stable-map actions, sphere products, and module actions with the
       corresponding typed catalogue operations, including the separate
@@ -105,44 +78,309 @@ This chapter contains only the project deductions that assemble the setup, exter
       quotient relation, torsion exclusion, and obstruction record consumed by
       the near-$126$ proof is a proposition about these interpreted objects.
   \end{enumerate}
-  Thus no proof may turn a raw string or archive row into a class of
-  $A_{\mathrm{syn}}$ without an explicit field of this datum.
+  These comparisons identify the interpreted classical and synthetic
+  classes, products, and maps. The stated equations are required for each
+  class and operation used below.
 \end{definition}
 
 % SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, External inputs,
 % and Conditional final theorems.
-\begin{definition}[Main formalization input]
-  \label{def:kervaire-main-input}
-  \lean{KIP126.Challenge2,KIP126.Def.standardSphereApplicability,KIP126.Def.standardSphereSeparated,KIP126.Challenge2.LiteratureBindings,KIP126.Challenge2.LiteratureResults,KIP126.Challenge2.LiteratureInterface,KIP126.Challenge2.ComputationBindings,KIP126.Challenge2.ComputationResults,KIP126.Challenge2.ComputationInterface}
-  \uses{def:stable-context,def:classical-adams-ss,def:synthetic-context,def:synthetic-adams-ss,def:sphere-adams-coherence,def:near126-computation-input,def:near126-literature-input,def:classical-catalogue-coherence,def:synthetic-catalogue-coherence}
+
+
+\subsection{High-stem differentials, filtrations, and Hopf cofibers}
+\label{sec:near126-internal-deductions}
+
+Fix the sphere Adams sequence, its standard classes, and the synthetic sphere
+with the comparisons defined above. The results of this section use the
+literature theorems and computed equations on those same objects. Each
+finite-page, filtration, lifting, and nonvanishing conclusion requires its
+own proof, with the stated degree bounds and comparison maps.
+
+\begin{theorem}[Differentials of extracted sphere records]
+  \label{thm:lin-proofs-sphere-sound}
+  \lean{KIP126.Computation.LinProofs.sphereTable_sound,KIP126.Computation.LinProofs.differential_of_lookup,KIP126.Computation.LinProofs.row5541}
+  \uses{def:sphere-adams-coherence,def:lin-proofs-sphere-table,def:lin-proofs-sphere-meaning,thm:computation-sphereTable-sound}
   \notready
-  The main input $I$ is one value of \texttt{Challenge2} on the fixed Def
-  implementation. Def's fixed-sphere applicability theorem states actual sphere
-  nilpotent completeness and strong convergence with an unfinished proof;
-  countable products and other structural data remain in the fixed
-  implementation. Def fixes the route model, its normalized $\eta$, and their
-  shared background. The two root fields are \texttt{literature} and
-  \texttt{computation}. Literature has source \texttt{bindings} and five
-  \texttt{results} on those sources; its BR21 equation has source endpoint
-  classes. Computation has \texttt{bindings} for the common E$_2$
-  \texttt{presentation}, route interpretation, tmf coordinates and comparisons,
-  followed by seven certified \texttt{results}. Its fields depend on the same
-  literature delivery. No manifold model or geometric Kervaire result is a
-  field. Def states actual
-  sphere-filtration separation; Main states the internal route application
-  after consuming the one witness. Both retain unfinished proofs. Source
-  metadata is held in the external manifest.
+  Suppose every record of the fixed sphere differential table satisfies
+  the interpreted equation of Theorem~\ref{thm:computation-sphereTable-sound}.
+  Each successful lookup then gives that differential on the same sphere
+  sequence, with the source and target representatives of
+  Definition~\ref{def:lin-proofs-sphere-meaning}. In particular, the extracted
+  record numbered 5541 satisfies its displayed equation.
+\end{theorem}
 
-  Interface constructs this direct value; Main temporarily consumes one
-  disclosed axiom of that exact type. There is no independent Challenge1,
-  implementation-equality transport, existence wrapper or witness choice.
-  Def's implementation, foundation applicability and source/computation
-  producers still have unfinished proofs. The record contains no field
-  asserting $h_6^2$ permanence: this remains the project theorem assembled
-  from these inputs. Geometric endpoints are outside the current scope.
-\end{definition}
+% SOURCE: MainPaper/main.tex:2796--2800 and repeated rows at lines
+% 2999, 3096, 3161; KIP126/LinProgram/Route/selected.json proof refutations.
+\begin{proposition}[$x_{126,21}$ finite target ambiguity]
+  \label{prop:x_126_21-ambiguity}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,def:appendix-row-status,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound}
+  \notready
+  In the sphere Adams sequence, the $d_4$
+  on $x_{126,21}$ has one of the target candidates
+  \[
+    x_{125,25,2}+x_{125,25}+g^4\Delta h_1g
+      +\epsilon d_0^2e_0gB_4,
+    \qquad \epsilon\in\mathbb F_2,
+  \]
+  rather than a uniquely determined target. All repeated table displays
+  refer to one relation identifier with this two-element candidate set.
+  The spectral-sequence staircase by itself records an unresolved target;
+  the displayed finite ambiguity is a mathematical deduction from the
+  proof refutations and linear algebra, not a separate computation field.
+\end{proposition}
 
-\section{The near-126 reduction and contradiction}
+\begin{proof}
+  Identify the actual source and target page coordinates using the same
+  delivered presentation and comparisons. Enumerate the finite target space
+  and use the named refutations, with their naturality and Leibniz arguments
+  interpreted on the actual pages, to exclude every candidate outside the
+  two displayed values. Prove the surviving affine line by linear algebra
+  and encode its optional summand by $\epsilon$. Check that the prose and
+  three repeated table displays have the same fixed part, then retain their
+  shared relation identifier. Transcription and successful parsing alone do
+  not establish the exclusions or choose a value of $\epsilon$.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2156-2177, Fact fact:theta5sqAF and following remark; Appendix Tables 5,6,7,9.
+\begin{proposition}[Core near-$126$ evidence]
+  \label{evidence:near126-core}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,def:near126-conditions,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h0-square,thm:computation-route-labels-h1,thm:computation-route-labels-h4}
+  \notready
+  In the fixed sphere Adams spectral sequence:
+  \begin{enumerate}
+    \item $x_{126,8,4}+x_{126,8}$ survives through $E_6$;
+    \item $h_1h_4x_{109,12}$ supports no outgoing differential, and the
+      exhaustive search leaves exactly two possible incoming killers:
+      $d_6(x_{126,8,4}+x_{126,8})$ and $d_{12}(h_6^2)$;
+    \item $h_0^2x_{124,8}$ is permanent;
+    \item $g^4\Delta h_1g$ is the unique class in its bidegree surviving to
+      $E_5$;
+    \item $d_3(x_{126,6})$ is one of the two printed nonzero target sums and
+      therefore cannot kill $h_1h_4x_{109,12}$.
+  \end{enumerate}
+  Item (2) deliberately does not call the class permanent before both possible
+  incoming differentials are excluded.
+\end{proposition}
+
+\begin{proof}
+  Use the interpreted basis vectors and differential equations in the
+  stated stem and filtration ranges. Prove that these ranges exhaust all
+  possible sources and targets, then check outgoing and incoming
+  differentials separately. Preserve the finite ambiguity of $d_3(x_{126,6})$
+  and give a mathematical refutation of each excluded differential.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2221-2258, proofs of Lemmas lem:equistate4 and lem:equistate5.
+\begin{proposition}[Representative-indeterminacy evidence]
+  \label{evidence:near126-indeterminacy}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,evidence:theta5-order-torsion,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h1}
+  \notready
+  Filtration-11 and -12 cycles relevant
+  to $C_5$ are killed by $d_2$ or $d_3$, filtration-13 correction terms are
+  annihilated by $h_1$, and all remaining corrections begin in filtration at
+  least 15 after multiplication by $\lambda^3\eta$.
+\end{proposition}
+
+\begin{proof}
+  Enumerate the cycles using bases in stem 124 and filtrations 11--13.
+  Apply the interpreted outgoing differentials and products by $h_1$.
+  Spanning of the relevant groups excludes any additional correction.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2323-2354, exhaustive theta-square and eta-square analysis; tmf citation.
+\begin{proposition}[$\theta_5^2$ and $tmf$ exhaustive evidence]
+  \label{evidence:theta5-square-tmf}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,evidence:near126-core,evidence:near126-indeterminacy,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:literature-tmf-vanishing62,thm:literature-tmf-high125-nonzero,thm:literature-tmf-kappaBar-detection,thm:literature-tmf-w-detection,thm:computation-route-labels-g,thm:computation-route-labels-delta-h-1-mul-g}
+  \notready
+  The following alternatives and tmf comparisons hold:
+  \begin{enumerate}
+    \item the only possibilities for $\theta_5^2$ are
+      $\lambda^6[h_0^2x_{124,8}]$,
+      $\lambda^9[e_0\Delta h_6g]$, or a $\lambda^{10}$-multiple;
+    \item $h_1e_0\Delta h_6g=0$;
+    \item the only relevant high-filtration $\lambda^{10}$-multiple is the
+      class represented by $\lambda^{20}g^4\Delta h_1g$;
+    \item its $tmf$ Hurewicz image is nonzero, while every $\theta_5$ maps to
+      zero in $tmf$;
+    \item if $C_3$ fails, the unique alternative incoming differential is
+      $d_6(x_{126,8,4}+x_{126,8})=h_1h_4x_{109,12}$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Use bases of the relevant filtration ranges and the interpreted products
+  to obtain the three alternatives and the unique surviving high class. Apply the same literature
+  tmf Hurewicz and detection theorems,
+  with the stated coordinate comparisons, to its image and the image of
+  $\theta_5$. Finally use the incoming-differential completeness certificate
+  for the stated alternative. Each exclusion requires a proof that the
+  specified degree ranges exhaust all possible sources and targets.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2377-2385, Fact fact:x_123_9; Tables S123 and S125.19.
+\begin{proposition}[$x_{123,9}$ computation evidence]
+  \label{evidence:x_123_9}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h0,thm:computation-route-labels-h1}
+  \notready
+  On the same sphere and Hopf-cofiber sequences,
+  $x_{123,9}+h_0x_{123,8}$ survives through $E_{12}$ and has no incoming
+  differential on the sphere sequence; moreover,
+  \[
+    d_2(x_{125,8})=
+      h_1(x_{123,9}+h_0x_{123,8})+h_0^2x_{124,8}.
+  \]
+\end{proposition}
+
+\begin{proof}
+  Apply the interpreted differential equation and page-reachability
+  conditions. Enumerate all degree-compatible incoming sources using
+  bases in the relevant range and prove the stated exclusion.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2466-2468, Fact fact:h_0_sq_mul_x_125_9_2; Table S125.19.
+\begin{proposition}[$h_0^2x_{125,9,2}$ evidence]
+  \label{evidence:h_0_sq_mul_x_125_9_2}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h0-square}
+  \notready
+  On the same sphere and Hopf-cofiber sequences,
+  $h_0^2x_{125,9,2}$ survives through $E_5$ and no incoming
+  differential hits it.  Its printed $d_5?$ status remains unresolved and is
+  not asserted nonzero.
+\end{proposition}
+
+\begin{proof}
+  Use the page-reachability statement and enumerate all possible incoming
+  sources in the adjacent stem. Their interpreted differentials give the
+  incoming exclusion. This does not determine the outgoing $d_5$.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2613-2615, Fact fact:h_1_mul_x_121_7; Table S122.
+\begin{proposition}[$h_1x_{121,7}$ evidence]
+  \label{evidence:h_1_mul_x_121_7}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h1}
+  \notready
+  On the same sphere and Hopf-cofiber sequences,
+  $h_1x_{121,7}$ survives through $E_6$ and has no incoming
+  differential in the complete range.
+\end{proposition}
+
+\begin{proof}
+  Use the page-reachability statement and a basis of every degree-compatible
+  incoming source group. Prove that none of their differentials hits this class.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2617-2673, missing obstruction check in Lemma lem:nuext125.
+\begin{proposition}[Obstruction vanishing for the mod-$\lambda^5$ lift]
+  \label{evidence:nu-extension-obstruction-vanishing}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-bottom,thm:computation-route-top}
+  \notready
+  Given the relation modulo $\lambda^3$ obtained from the
+  $S^0/\nu_{\mathrm{Hopf}}$ $d_3$, every filtration-10 correction that could
+  obstruct a lift modulo
+  $\lambda^5$ either has no detected homotopy class or can be killed by changing
+  the lift.  Therefore a lift exists with no additional $[\lambda x]$ term.
+\end{proposition}
+
+\begin{proof}
+  Enumerate the complete filtration-10 source group, compute the relevant
+  $\rho$ obstruction and each candidate's synthetic survival from the table
+  relations, and give an explicit correction or vanishing certificate for
+  every element. The formal properties of $\rho$ alone do not prove this
+  obstruction calculation; the finite linear-algebra and lifting argument
+  at the cited ``upon inspection'' step remains to be proved.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2689-2696, Fact fact:stem122; Table S122.
+\begin{proposition}[Stem-$122$ permanent-class evidence]
+  \label{evidence:stem122-permanent}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound}
+  \notready
+  On the same sphere and Hopf-cofiber sequences,
+  $h_6Md_0$ and $h_5x_{91,11}$ are permanent in the actual interpreted
+  classical sphere Adams spectral sequence.
+\end{proposition}
+
+\begin{proof}
+  Start from the interpreted finite-page conditions. Prove that no
+  outgoing or incoming differential remains, using the relevant bases,
+  refutations, and sphere vanishing line. A recorded page threshold
+  alone does not establish nonzero permanent survival.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2707-2728, two ``upon inspection'' steps in the proof of Proposition prop:state5false.
+\begin{proposition}[Stem-$122$ candidate and product exhaustion]
+  \label{evidence:stem122-product-exhaustion}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,evidence:stem122-permanent,thm:computation-route-products,thm:computation-route-labels-h0,thm:computation-route-labels-h2}
+  \notready
+  On the same sphere and Hopf-cofiber sequences, in the
+  bidegree and
+  $\lambda$-quotient occurring in the proof of
+  Proposition \texttt{prop:state5false}, every nonzero representative of
+  $[\lambda^4h_1x_{121,7}][h_0]$ of Adams filtration at most $12$ is exactly
+  one of
+  \[
+    \lambda^6[h_6Md_0]\quad\text{or}\quad
+    \lambda^7[h_5x_{91,11}].
+  \]
+  In either case, the specified products and differentials imply that $\lambda^4[h_1h_4x_{109,12}]$ is a
+  $\lambda[h_2]$-multiple in the untruncated synthetic sphere. This obligation
+  includes the filtration-$13$ candidate search and the $d_2/d_4$ exclusions
+  used in lines 2716--2728.
+\end{proposition}
+
+\begin{proof}
+  Enumerate the stem-$122$ permanent representatives through filtration
+  $12$ and apply the interpreted $h_0$ and $h_2$ products. In stem $125$,
+  exhaust the filtration-$13$ corrections and prove that each is killed
+  by the specified $d_2$ or $d_4$. The two remaining source cases give
+  the asserted common divisibility conclusion.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1398-1405, Example exam:extonEn(2), for the
+% identity \widehat{\nu_{\mathrm{Hopf}}}=[h_2] and its grading;
+% MainPaper/main.tex:929-961, Notation not:fhat, for normalization.
+\begin{proposition}[Normalized Hopf-map detection]
+  \label{evidence:normalized-hopf-detection}
+  \uses{def:sphere-adams-coherence,thm:literature-classical-nu-detection,def:synthetic-hat-map,def:adams-detection,thm:external-synthetic-triangle-lift,def:cofiber-triangle}
+  \notready
+  Apply the synthetic triangle-lift theorem to the
+  appropriate rotation of the classical Hopf cofiber triangle. Its
+  normalized Hopf component is
+  \[
+    \widehat{\nu_{\mathrm{Hopf}}}=[h_2]:S^{3,4}\longrightarrow S^{0,0},
+  \]
+  where $[h_2]$ is detected by $h_2$ in the source's stated synthetic
+  tridegree.  With this fixed normalization,
+  $\nu(\nu_{\mathrm{Hopf}})=\lambda[h_2]$.
+\end{proposition}
+
+\begin{proof}
+  Use the explicit normalization and tridegree calculation in the cited
+  example. For that same lifted triangle, identify the detected Hopf
+  component with $[h_2]$ and prove the factorization by $\lambda$.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2698-2778 and Table Table:Cnu126.
+\begin{proposition}[$S^0/\nu$ short-incoming exclusion]
+  \label{evidence:cnu126-short-incoming-exclusion}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-route-bottom}
+  \notready
+  On the same sphere and Hopf-cofiber sequences, in the
+  interpreted classical Adams spectral sequence of
+  $S^0/\nu_{\mathrm{Hopf}}$, the class
+  $h_1h_4x_{109,12}[0]$ is not hit by any $d_r$ with $r\le5$.  This negative
+  statement requires exhaustion of every degree-compatible incoming
+  source group, rather than the status of one class.
+\end{proposition}
+
+\begin{proof}
+  Enumerate every degree-compatible source in filtrations 9--14 using
+  the specified bases. Apply the interpreted differential equations and
+  refutations to exclude the named bottom-cell target for lengths at most
+  five. Spanning of the source groups makes this finite argument exhaustive.
+\end{proof}
+
+\subsection{The near-126 reduction and contradiction}
 
 % SOURCE: MainPaper/main.tex:2133-2139, Remark rem:theta5choice; the concrete
 % correction calculation is a project obligation, not part of Burklund--Xu.
@@ -156,16 +394,14 @@ This chapter contains only the project deductions that assemble the setup, exter
   $\lambda\eta$ kills it.  In particular, the filtration bound on
   $\theta_5-\theta'_5$ alone is not being promoted to this vanishing claim.
   The calculation needs the actual product, grading, and vanishing or torsion
-  information for the fixed synthetic sphere.  It is a project theorem, not
-  a field of the near-$126$ literature input or a bare computation premise.
+  information for the fixed synthetic sphere.  Its proof requires the concrete square-difference and torsion calculation.
 \end{proposition}
 
 \begin{proof}
   Instantiate the square-difference formula in the concrete synthetic model,
   then verify the required $\lambda\eta$-annihilation using its typed
-  filtration and product data.  The resulting witness is passed explicitly
-  to the Lean transport theorem; it is not a field of
-  \texttt{Route.ThetaChoice}.
+  filtration and product comparisons. The correction-vanishing calculation
+  remains an explicit premise until it has been proved.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:1009-1021, the m=infinity quotient triangle;
@@ -212,9 +448,9 @@ This chapter contains only the project deductions that assemble the setup, exter
   \label{prop:theta5-choice-independence}
   % VERIFIED-IN: KIP126/Def/Kervaire/Theta5/Proofs.lean,
   % KIP126.Kervaire.theta5_choice_independence (project transport; remains notready).
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,evidence:theta5-order-torsion,prop:theta5-choice-correction-vanishes,prop:theta5-total-quotient-transport}
+  \uses{def:computation-fixed-bindings,def:synthetic-theta5-choice,evidence:theta5-order-torsion,prop:theta5-choice-correction-vanishes,prop:theta5-total-quotient-transport}
   \notready
-  For a near-$126$ computation input $D$, every synthetic $\theta_5$ has order
+  For the fixed sphere and comparisons above, every synthetic $\theta_5$ has order
   two, and the element
   $\lambda\eta\theta_5^2$ is independent of the choice of $\theta_5$.
   More precisely, any two choices give equal elements in the untruncated
@@ -266,25 +502,25 @@ This chapter contains only the project deductions that assemble the setup, exter
 \begin{proposition}[Derived synthetic $\theta_5$ order and choice conditions]
   \label{thm:external-theta5-order-data}
   \lean{KIP126.Kervaire.Theta5OrderData}
-  \uses{def:synthetic-theta5-choice,thm:external-synthetic-einfty-nu}
+  \uses{def:synthetic-theta5-choice,thm:external-synthetic-einfty-nu,thm:literature-classical-theta5-order-two,thm:literature-classical-stem62-exponent-two,thm:literature-classical-theta5-filtration-gap,thm:literature-classical-theta5-detection}
   \notready
   The predicate records order two and a bound on differences of choices.
   Its intended synthetic interpretation requires classical Xu/IWX inputs,
   comparison, and the paper's no-$\lambda$-torsion analysis in Remark 7.5.
   It is not directly supplied by a prior literature theorem.
-  Precise source bindings and a proof on the fixed model are pending.
+  The comparisons and no-torsion deduction on the fixed sphere remain
+  unfinished.
 \end{proposition}
 
-\begin{proposition}[Derived order and torsion bundle]
+\begin{proposition}[Order, choice differences, and lambda torsion]
   \label{evidence:theta5-order-torsion}
   \lean{KIP126.Kervaire.Theta5OrderTorsionEvidence}
-  \uses{def:synthetic-theta5-choice,thm:external-theta5-order-data,thm:external-synthetic-einfty-nu,data:table-s123,data:table-s124-low}
+  \uses{def:synthetic-theta5-choice,thm:external-theta5-order-data,thm:external-synthetic-einfty-nu,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound}
   \notready
-  This bundle combines derived order/choice conditions with absence of
+  The order and choice-difference conditions hold together with absence of
   $\lambda$-torsion in $\pi_{62,64}S^{0,0}$ and $\pi_{125,130}S^{0,0}$.
-  It is not a direct program output. Its raw computation prerequisites,
-  exact coverage, comparison maps, and intervening deductions must still be
-  separated and proved. The historical label does not classify the bundle as C(M).
+  This requires the classical order and difference bounds, their synthetic
+  comparisons, and a proof of the asserted absence of lambda torsion.
 \end{proposition}
 
 \begin{proposition}[Paper-normalized BJM/BX criterion]
@@ -297,9 +533,9 @@ This chapter contains only the project deductions that assemble the setup, exter
   $\lambda\eta\theta_5^2$ modulo $\lambda^{r+1}$.
   The Lean predicate retains the latter formula under its historical name.
   The separate actual-object predicate uses the same internal standard class
-  and actual quotient maps. Its conversion proof remains Main work; defining
-  the predicate does not prove the conversion, nor identify the old
-  single-carrier prototype with the new bigraded objects.
+  and actual quotient maps. The conversion requires absence of lambda
+  torsion and compatibility with those quotient maps; its proof remains
+  unfinished.
 \end{proposition}
 
 % SOURCE: MainPaper/main.tex:2117-2139, Theorem thm:bjmbx and Remark rem:theta5choice; project transport from the distinguished source choice.
@@ -307,11 +543,11 @@ This chapter contains only the project deductions that assemble the setup, exter
   \label{thm:bjm-bx-criterion-any-choice}
   % VERIFIED-IN: KIP126/Def/Kervaire/Theta5/Proofs.lean,
   % KIP126.Kervaire.bjm_bx_criterion_any_choice (project transport; remains notready).
-  \uses{def:near126-computation-input,def:synthetic-theta5-choice,prop:bjm-bx-normalized-criterion,prop:theta5-choice-independence,prop:theta5-total-quotient-transport}
+  \uses{def:computation-fixed-bindings,def:synthetic-theta5-choice,prop:bjm-bx-normalized-criterion,prop:theta5-choice-independence,prop:theta5-total-quotient-transport}
   \lean{KIP126.Kervaire.Route.ThetaChoice}
   \lean{KIP126.Solution.Near126.Thm7_3BJMBX.any_choice_criterion}
   \notready
-  For a near-$126$ computation input $D$, every synthetic choice $\theta_5$
+  For the fixed sphere and comparisons above, every synthetic choice $\theta_5$
   detected by $h_5^2$ has order two.  For each such choice:
   \begin{enumerate}
     \item for every integer $r\ge1$, $h_6^2$ survives to $E_{r+3}$ if and
@@ -342,9 +578,9 @@ This chapter contains only the project deductions that assemble the setup, exter
   \label{lem:near126-equiv-c4}
   \lean{KIP126.Kervaire.Route.C4}
   \lean{KIP126.Solution.Near126.Conditions.c4_c5_choice_equivalence}
-  \uses{def:near126-computation-input,def:near126-conditions,evidence:theta5-order-torsion}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,evidence:theta5-order-torsion}
   \notready
-  For a near-$126$ computation input $D$, condition $C_4$ is equivalent to the
+  For the fixed sphere and comparisons above, condition $C_4$ is equivalent to the
   same statement for every choice of $\theta_5$.
 \end{lemma}
 
@@ -359,9 +595,9 @@ This chapter contains only the project deductions that assemble the setup, exter
 \begin{lemma}[Existential and universal forms of $C_5$]
   \label{lem:near126-equiv-c5}
   \lean{KIP126.Solution.Near126.Conditions.c4_c5_choice_equivalence}
-  \uses{def:near126-computation-input,def:near126-conditions,evidence:near126-indeterminacy}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,evidence:near126-indeterminacy}
   \notready
-  For a near-$126$ computation input $D$, condition $C_5$ is equivalent to the
+  For the fixed sphere and comparisons above, condition $C_5$ is equivalent to the
   statement that its displayed relation holds for every homotopy class
   detected by $h_0^2x_{124,8}$.
 \end{lemma}
@@ -380,9 +616,9 @@ This chapter contains only the project deductions that assemble the setup, exter
   \lean{KIP126.Solution.Near126.CandidateReduction.only_d12_differential_reduction}
   \lean{KIP126.Kervaire.Route.Model}
   \lean{KIP126.Solution.Near126.OnlyD12.d12_dichotomy_and_condition_equivalence}
-  \uses{def:near126-computation-input,def:near126-conditions,thm:bjm-bx-criterion-any-choice,prop:theta5-total-differential-any-choice,thm:delta-classical-equivalence,evidence:near126-core,evidence:theta5-square-tmf,lem:near126-equiv-c4,lem:near126-equiv-c5}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,thm:bjm-bx-criterion-any-choice,prop:theta5-total-differential-any-choice,thm:delta-classical-equivalence,evidence:near126-core,evidence:theta5-square-tmf,lem:near126-equiv-c4,lem:near126-equiv-c5}
   \notready
-  For a near-$126$ computation input $D$, exactly one of the following holds:
+  For the fixed sphere and comparisons above, exactly one of the following holds:
   \begin{enumerate}
     \item $h_6^2$ is a permanent cycle;
     \item $d_{12}(h_6^2)=h_1h_4x_{109,12}$ is nonzero.
@@ -408,9 +644,9 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: MainPaper/main.tex:2387-2446, Lemma lem:x_123_9.
 \begin{lemma}[The classes $\alpha_1,\alpha_2,\alpha_3$]
   \label{lem:near126-alpha-relations}
-  \uses{def:near126-computation-input,evidence:x_123_9,thm:external-synthetic-einfty-quotient,evidence:near126-indeterminacy,data:table-s123,data:table-s124-high}
+  \uses{def:computation-fixed-bindings,evidence:x_123_9,thm:external-synthetic-einfty-quotient,evidence:near126-indeterminacy,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound}
   \notready
-  For a near-$126$ computation input $D$, there exists
+  For the fixed sphere and comparisons above, there exists
   $\alpha_1=[x_{123,9}+h_0x_{123,8}]$ in
   $\pi_{123,132}(S^{0,0}/\lambda^9)$ such that for every
   $[h_0^2x_{124,8}]$ there are
@@ -445,9 +681,9 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: noncircular repair of MainPaper/main.tex:2493-2496 using lines 2427-2429 and 2579.
 \begin{lemma}[Leading-term nonvanishing for the Toda product]
   \label{lem:toda-h0-leading-nonvanishing}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,evidence:near126-core,thm:external-synthetic-einfty-quotient,thm:toda-product-identities}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,evidence:near126-core,thm:external-synthetic-einfty-quotient,thm:toda-product-identities}
   \notready
-  For a near-$126$ computation input $D$, assume $C_3$ and the universal form
+  For the fixed sphere and comparisons above, assume $C_3$ and the universal form
   of $C_5$.  For the classes from
   Lemma~\ref{lem:near126-alpha-relations}, the element
   \[
@@ -476,9 +712,9 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: MainPaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
 \begin{lemma}[Toda bracket detects the two-extension source]
   \label{lem:toda-two-extension}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2}
   \notready
-  For a near-$126$ computation input $D$, assuming $C_3$ and the universal
+  For the fixed sphere and comparisons above, assuming $C_3$ and the universal
   form of $C_5$, the synthetic Toda bracket
   \[
     \langle\lambda^3\alpha_1,[h_0],\eta\rangle
@@ -502,9 +738,9 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: MainPaper/main.tex:2571-2580, proof of Corollary cor:2ext125, especially the comparison of all representatives detected by lambda^4 h_0^2 x_{125,9,2}; Appendix Table S125.19.
 \begin{lemma}[Indeterminacy of the two-extension source]
   \label{lem:near126-two-extension-indeterminacy}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,lem:toda-h0-leading-nonvanishing,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,evidence:near126-core,data:table-s125-low,thm:appendix-all-rows-encoded,thm:external-synthetic-einfty-quotient}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:toda-h0-leading-nonvanishing,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,evidence:near126-core,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:external-synthetic-einfty-quotient}
   \notready
-  For a near-$126$ computation input $D$, assume $C_3$ and the universal form
+  For the fixed sphere and comparisons above, assume $C_3$ and the universal form
   of $C_5$.  Let $u_0$ be a bracket
   representative supplied by Lemma~\ref{lem:toda-two-extension}, and let $u$
   be any class in $\pi_{125,132}(S^{0,0}/\lambda^9)$ detected by
@@ -541,9 +777,9 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: MainPaper/main.tex:2478-2480, Remark rem:h_0_sq_mul_x_125_9_2, now deduced after Lemma lem:toda2ext.
 \begin{corollary}[Conditional vanishing of the unresolved $d_5$]
   \label{cor:h02x1259-d5-zero}
-  \uses{def:near126-computation-input,lem:near126-equiv-c5,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,thm:external-synthetic-einfty-quotient}
+  \uses{def:computation-fixed-bindings,lem:near126-equiv-c5,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,thm:external-synthetic-einfty-quotient}
   \notready
-  For a near-$126$ computation input $D$, under $C_3$ and $C_5$, the class
+  For the fixed sphere and comparisons above, under $C_3$ and $C_5$, the class
   $\lambda^4h_0^2x_{125,9,2}$ detects a nonzero class modulo $\lambda^9$.
   Equivalently, the unresolved classical differential satisfies
   $d_5(h_0^2x_{125,9,2})=0$ under these hypotheses.
@@ -562,9 +798,9 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: MainPaper/main.tex:2571-2581, Corollary cor:2ext125.
 \begin{corollary}[The required two-extension]
   \label{cor:near126-two-extension}
-  \uses{def:near126-computation-input,lem:near126-equiv-c5,lem:toda-two-extension,lem:near126-two-extension-indeterminacy,cor:h02x1259-d5-zero}
+  \uses{def:computation-fixed-bindings,lem:near126-equiv-c5,lem:toda-two-extension,lem:near126-two-extension-indeterminacy,cor:h02x1259-d5-zero}
   \notready
-  For a near-$126$ computation input $D$, under $C_3$ and $C_5$, every class
+  For the fixed sphere and comparisons above, under $C_3$ and $C_5$, every class
   detected by
   $\lambda^4h_0^2x_{125,9,2}$ satisfies
   \[
@@ -589,9 +825,9 @@ This chapter contains only the project deductions that assemble the setup, exter
 % SOURCE: MainPaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
-  \uses{def:near126-computation-input,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,data:table-cnu126,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility}
+  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products}
   \notready
-  For a near-$126$ computation input $D$, there is a class
+  For the fixed sphere and comparisons above, there is a class
   $[\lambda^4h_1x_{121,7}]\in
   \pi_{122,126}(S^{0,0}/\lambda^9)$ such that
   \[
@@ -652,9 +888,9 @@ This chapter contains only the project deductions that assemble the setup, exter
   \label{prop:near126-c3-not-c5}
   \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
-  \uses{def:near126-computation-input,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion}
   \notready
-  For a near-$126$ computation input $D$, if $C_3$ holds, then $C_5$ is false.
+  For the fixed sphere and comparisons above, if $C_3$ holds, then $C_5$ is false.
 \end{proposition}
 
 \begin{proof}
@@ -682,27 +918,16 @@ This chapter contains only the project deductions that assemble the setup, exter
   \notready
   The standard class $h_6^2\in E_2^{2,128}(S^0)$ is nonzero permanent
   in the classical mod--$2$ Adams spectral sequence of the sphere.
-  The Lean statement uses \texttt{standardH6Square} and
-  \texttt{NonzeroSurvival} on the same internal \texttt{sphereAdamsData}
-  used by the computation interfaces. Its type and statement module do not
-  depend on $C(M)$ or CSV data. The fixed objects are Def constructions.
-  This is the only final target. Its paired Challenge and Solution both retain
-  \texttt{sorry}; the duplicated computational final theorem has been removed.
-  CSV class equalities remain reusable comparison lemmas for the proof,
-  not an additional final statement. No completed proof is claimed.
+  Precisely, there exists a common $Z_\infty$ representative whose
+  $E_2$ class is the standard $h_6^2$ and whose $E_\infty$ class is nonzero.
 \end{theorem}
 
 \begin{proof}
-  \uses{prop:h6-internal-standard-comparison,def:kervaire-main-input,prop:possible-h-6-sq,prop:near126-c3-not-c5}
-  The proved label equality allows the proof to use CSV coordinates on the
-  same internal sequence. The following is the still-unimplemented proof route
-  for the unique standard target, not a completed Lean argument.
-  Take a main input $I$ whose classical sphere sequence and named classes
-  are identified with the constructions above through its coherence data.
-  Put $D=I.\mathrm{computation}$.  Instantiate every literature leaf with its
-  named projection from $I.\mathrm{literature}$, every table and finite-search
-  theorem with this same $D$, and every spectral-sequence comparison through
-  $I$'s coherence fields.  If the nonzero
+  \uses{prop:h6-internal-standard-comparison,prop:fixed-sphere-adams-applicability,prop:fixed-sphere-adams-separated,prop:possible-h-6-sq,prop:near126-c3-not-c5}
+  Identify the standard square with the computational square using
+  Proposition~\ref{prop:h6-internal-standard-comparison}. Apply the
+  differential dichotomy and its characterization by $C_3,C_4,C_5$.
+  If the nonzero
   $d_{12}$ alternative of
   Proposition~\ref{prop:possible-h-6-sq} held, then $C_3$, $C_4$, and $C_5$ would
   all hold.  Proposition~\ref{prop:near126-c3-not-c5} contradicts the first and

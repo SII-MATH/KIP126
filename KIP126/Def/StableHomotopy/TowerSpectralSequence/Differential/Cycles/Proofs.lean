@@ -14,6 +14,10 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 theorem boundaries_le_differential_ker (q : ℕ) (hq : 1 ≤ q) (k n : ℤ) :
     cycleBoundaries T P q hq k n ≤
       LinearMap.ker (differentialOnCycles T P q hq k n) := by
-  sorry
+  intro x hx
+  obtain ⟨y, _, hy⟩ := hx
+  change differentialValue T P q hq k n x = 0
+  apply differentialValue_eq_zero_of_K
+  exact (RepresentedHom.exact_g P (T.layerCofiberSequence k) n x.val).2 ⟨y, hy⟩
 
 end KIP126.StableHomotopy.TowerSpectralSequence

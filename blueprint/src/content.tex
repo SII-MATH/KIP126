@@ -1,24 +1,44 @@
-% Part I: mathematical objects and semantic definitions (flat chapters)
-\input{chapters/algebraic_foundations}
-\input{chapters/spectral_sequences}
+\chapter{Mathematical setting and the standard $h_6^2$ target}
+\label{chap:mathematical-setting}
+
+Fix the sphere, its mod--$2$ Adams tower, the standard classes, and the
+classical--synthetic comparisons used in the proof. The theorem concerns
+nonzero permanent survival of the standard $h_6^2$ in bidegree $(2,128)$.
+Detailed foundational constructions and their auxiliary lemmas are retained
+in Appendix~\ref{chap:mathematical-foundations-appendix}.
+
 \input{chapters/stable_homotopy}
 \input{chapters/classical_adams}
-\input{chapters/h6_statement}
+\input{chapters/kervaire_setup}
+\input{chapters/h6_target}
+
+\chapter{Extension spectral sequences}
+\label{chap:extension-spectral-sequences-main}
 \input{chapters/extension_spectral_sequences}
+
+\chapter{Synthetic Adams comparisons and generalized rules}
+\label{chap:synthetic-comparisons-main}
 \input{chapters/synthetic_homotopy}
 \input{chapters/synthetic_extensions}
 \input{chapters/page_extensions}
-\input{chapters/computation_schema}
-\input{chapters/kervaire_setup}
+\input{chapters/comparison_and_rules}
 
-% Part II: external literature and computed inputs (flat chapters)
+\chapter{Literature theorems}
+\label{chap:literature-theorems-main}
 \input{chapters/external_results}
+
+\chapter{Finite computation and its mathematical interpretation}
+\label{chap:finite-computation-main}
+\input{chapters/computation_schema}
 \input{chapters/computed_inputs}
 
-% Part III: internal deductions consuming the explicit inputs (flat chapters)
-\input{chapters/comparison_and_rules}
+\chapter{The near-$126$ proof and nonzero permanent survival}
+\label{chap:near126-proof-main}
 \input{chapters/near126}
 
-% Flat audit chapters; no LaTeX part/appendix hierarchy is introduced.
-\input{chapters/provenance_audit}
-\input{chapters/coverage}
+\appendix
+\chapter{Foundational constructions and auxiliary lemmas}
+\label{chap:mathematical-foundations-appendix}
+\input{chapters/algebraic_foundations}
+\input{chapters/spectral_sequences}
+\input{chapters/h6_statement}

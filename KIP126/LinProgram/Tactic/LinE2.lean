@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinAutomation.Proofs
+import KIP126.LinProgram.Tactic.Support.Proofs
 import Lean
 
 /-! PR #110 concrete E₂ tactic. Successful proofs still use the explicitly

@@ -1,11 +1,10 @@
-\chapter{The near-$126$ and Kervaire problem setup}
+\section{The near-$126$ and Kervaire problem setup}
 \label{chap:kervaire-setup}
 
-This final chapter of the definition layer fixes the near-$126$ predicates,
-classical--synthetic sphere coherence, and explicit input-bundle shapes needed
-by the $h_6^2$ permanent-survival proof.
+This section fixes the near-$126$ predicates, detected representatives, and
+classical--synthetic comparisons used in the $h_6^2$ permanent-survival proof.
 
-\section{Near-126 objects and representative choices}
+\subsection{Near-126 objects and representative choices}
 
 % SOURCE: MainPaper/main.tex:2112-2114, Notation 7.2.
 \begin{definition}[Synthetic $\theta_5$ and $\eta$ choices]
@@ -31,7 +30,6 @@ by the $h_6^2$ permanent-survival proof.
   \lean{KIP126.Comparison.ClassicalSynthetic.sphereFirstQuotientComparison}
   \uses{def:synthetic-context,def:synthetic-sphere,def:classical-adams-ss}
   \notready
-  The generic comparison type belongs to Def; Challenge2 retains an alias.
   A supplied comparison for $\nu S^0$ is specialized to $S^{0,0}$ through the
   same nu unit isomorphism and actual quotient functor. Cofiber functoriality
   is an explicit model condition. This construction does not supply the
@@ -93,7 +91,7 @@ by the $h_6^2$ permanent-survival proof.
   propositions, not informal annotations.
 \end{definition}
 
-\section{Coherence on the same fixed sphere}
+\subsection{Coherence on the same fixed sphere}
 
 % SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, External inputs,
 % and Conditional final theorems.
@@ -120,13 +118,13 @@ by the $h_6^2$ permanent-survival proof.
 % MainPaper/main.tex:2738--3290.
 \begin{definition}[Classical interpretation of the computation catalogue]
   \label{def:classical-catalogue-coherence}
-  \uses{def:near126-computation-input,def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:typed-class-expression,def:appendix-evidence-record,def:stable-context,def:classical-adams-ss,def:sphere-adams-coherence,thm:adams-external-pairing}
+  \uses{def:computation-fixed-bindings,def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:typed-class-expression,def:appendix-row-status,def:stable-context,def:classical-adams-ss,def:sphere-adams-coherence,thm:adams-external-pairing}
   \notready
-  Fix a raw near-$126$ computation input $D$, a stable context $\mathcal C$,
+  Fix the finite graded catalogues above and a stable context $\mathcal C$,
   the selected sphere sequence $A_{\mathrm{cl}}$, and its sphere coherence.
   A classical catalogue coherence datum contains:
   \begin{enumerate}
-    \item for every spectrum identifier of $D$, an admissible spectrum of
+    \item for every spectrum identifier in the catalogue, an admissible spectrum of
       $\mathcal C$ and a chosen classical Adams sequence, with the sphere
       identifier identified with $S^0_{\mathcal C}$ and its sequence
       transported to exactly $A_{\mathrm{cl}}$;
@@ -139,10 +137,10 @@ by the $h_6^2$ permanent-survival proof.
       compositions, cofiber keys, and the stored linear $E_2$ action commute
       with these interpretations;
     \item a typing equality saying that every appendix row, differential key,
-      product record, and finite negative query in $D$ states its proposition
+      product record, and finite exclusion condition in the catalogue states its proposition
       about these interpreted pages and elements.
   \end{enumerate}
-  These are structure fields, not a blanket assertion named
-  ``catalogue models the sphere.''  In particular, they expose the transports
-  used when a table theorem is applied to $A_{\mathrm{cl}}$.
+  These comparisons make each interpreted equation a statement about the
+  specified classical page, and identify the sphere sequence with
+  $A_{\mathrm{cl}}$. Existence of the comparisons remains unfinished.
 \end{definition}

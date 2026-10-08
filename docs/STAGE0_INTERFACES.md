@@ -24,9 +24,13 @@ NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 
 Def 固定经典实现、路线模型和共享数学背景，包括实际完成球、HF₂、Milnor 坐标及 tensor/cooperation 比较。`KIP126.Def.standardSphereApplicability` 对这个固定实现陈述实际球塔的 HF₂ nilpotent completeness 和强收敛，证明保留明确的 `sorry`；下游可直接引用其准确陈述。原 Challenge1 的实质义务仍在，但不是 Challenge2 字段。独立 Challenge1、重复 implementation 和相等运输已删除；countable-products 等结构仍来自固定实现。
 
-Challenge2 顶层恰有 `literature` 和 `computation` 两项。`LiteratureInterface` 包含源对象、E∞ 同构选择及其比较的 `bindings`，以及依赖这些对象的 48 条直接数学声明 `results`；`ComputationInterface literature` 包含程序解释的 `bindings`，以及依赖同一文献包和计算绑定的七项 `results`。固定 E₂ `presentation` 在计算绑定中，路线模型与其 background 则由 Def 预先固定，不再由 Challenge2 另选。Main 在取得同一见证后证明内部适配。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联来源责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到与固定路线相容的来源和文献结论。它不声称这里已经实现其 ∞-site；构造证明仍待补，不含 C、Application、high125 或本文新工具。
+Challenge2 顶层恰有 `literature` 和 `computation` 两项。`LiteratureInterface` 包含源对象、E∞ 同构选择及其比较的 `bindings`，以及依赖这些对象的 48 条直接数学声明 `results`；`ComputationInterface literature` 包含程序解释的 `bindings`，以及依赖同一文献包和计算绑定的七个顶层 `results` 字段。展开命题结构后，结果层共有 29 条声明；bindings 中另外有 4 条数学比较条件，坐标对象与包装字段不计为定理。固定 E₂ `presentation` 在计算绑定中，路线模型与其 background 则由 Def 预先固定，不再由 Challenge2 另选。Main 在取得同一见证后证明内部适配。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联来源责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到与固定路线相容的来源和文献结论。它不声称这里已经实现其 ∞-site；构造证明仍待补，不含 C、Application、high125 或本文新工具。
 
 供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。文献结果只登记 `LiteratureResults` 的 48 条直接命题字段，不再登记 `adamsOneLine`、`route` 等包装字段或重复展开父子结构。Challenge2 文件只陈述两项交付，不定义便利转发或证明适配。正文使用的经典 Hopf 微分直接取对应字段；实际需要的路线消费视图由直接字段与 Main 的内部推论组装，未另选输入。E∞ 的三个 νX/有限商页面同构保留在 bindings；全 synthetic 对象的 weight 同构来自固定 Adams 塔构造，自然性在 Main 证明，不作为独立文献输入。BHS 的 λ/ρ 相容性与标签条件保留在 results。导言不再形式化：Adams 一线分类、完整 Hopf 存活 iff、May 低维乘积和平方存活均已删除；`adamsOneLine_other_degree` 的未使用生产声明也已删除。正文使用的 `adamsOneLine_d2` 保留，经典 `theta_5`/`h_5^2`、η/ν 检测和存活输入保留。参数化命题族按一个字段计数，字段内的合取不再拆分。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。Blueprint 已为这 48 条分别补写独立数学节点，保留量词、假设、次数和同一 bindings，并直接链接到相应 Lean 字段。唯一 JSON 清单逐条绑定 48 个不同节点；校验读取活跃章节，拒绝共用概述节点或误连字段。Moss 一般输入与 Main 局部应用、BR21 源方程与 Main 计算坐标推论已分开。该绑定不表示来源核验或证明完成；导言专用分类、几何结论及开放问题已移出当前形式化计划。归档文献制品保留作来源记录，不能当作当前 Challenge2 字段清单或已核实的完整外部定理集合。
+
+计算的逐条 Blueprint 清单位于 `blueprint/src/chapters/computed_inputs.tex`，采用与文献清单相同的平面索引：29 条结果声明、4 条绑定比较条件，各自有独立数学节点和实际 Lean 投影链接。该章只保留这 33 条编号陈述；共享定义和示例在 `computation_schema.tex`，Main 内部推导计划在 `near126.tex`，附录转录和输出覆盖审计在 `coverage.tex`。唯一 JSON 清单在七个结果字段下登记具体 statement，在 `computation_binding_statements` 中登记四条比较；校验同时核对实际 Lean 结构的展开、独立节点和所属字段。人工 HTML 清单读取这些记录逐条展示，不再用七个包装字段代表定理条数。原始表中的每行不是额外的独立定理项，普通合取和参数化命题族仍按一条计算。全部节点保留未完成的交付状态；这次对齐不证明实际谱模型上的计算正确性。
+
+附录的 401 条记录和 9 个空带目前是论文转录。实际数据库审计确认：375 条球谱表范围记录由完整 staircase 覆盖，26 条 Cν 表范围记录由选定路线覆盖，九个空带的全部 35 个双次数在完整 E₂ 数据中为空。但这不是 401 条纸面表达式和状态的逐条语义对应：选定切片只包含其中 376 条记录所在的双次数，且程序的有限页到达、未知目标和反证记录仍需表达式识别、线性代数及 Main 的永久存活证明。不能把纸面状态再作为独立外部输入。[本次核查](audits/linprogram-appendix-20261006.md)记录直接输出与内部推论的界线。
 
 唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须让计算包依赖同一文献来源与 Def 固定模型，不能分别选择不相干的模型或来源。固定球谱适用性与分离性是独立的 Def 证明责任。BHS 完成适用性、完成比较和 realization 比较由 `literature.bindings.route` 明确交付；Main 仍须证明一般 Moss 到局部 sphere 结论的特化、全 synthetic weight shift 自然性、Toda 二级运算比较与 ν 来源结论，再同已有来源陈述组装 `routeApplication`。这些未完成证明不能当作文献结果或程序输出。
 
@@ -82,6 +86,28 @@ Cη 顶胞腔自然性记录 462481 参与 `lem:x_123_9` 所用球谱 d₃ 的�
 
 第0步分别检查语义、计算覆盖、外部结果覆盖、职责、传递性依赖、目录及实际编译。完整认证、全部来源重证和最终 T 的无 sorry 证明属于后续目标。原始来源尚未核实、明确性质缺少绑定，或尚无可信充分前提时，应记录为未完成/证据缺口，不用通过编译代替判断。
 
-Challenge 目录按交付职责组织：`Literature/Delivery.lean` 直接陈述固定绑定和 48 条文献结果，`Literature/Source.lean` 保存生产这些结果所需的参数化来源对象与原始声明；`Computation/Delivery.lean` 直接陈述固定计算绑定及认证要求。来源到模型的内部应用与组装在 `Interface/Solution/Literature/Applications.lean`。通用分支语义和参数化解释认证分别在 `LinProgram/Interpretation/Branch/Predicates.lean` 与 `LinProgram/Interpretation/Route/Certification.lean`；有界球谱 E₂ 比较对象和固定 tmf 乘法条件归 Def。Challenge 下不再按 Sphere/Tmf 对象与 Route 用途混合分类；保留旧公开命名空间只用于维持现有声明名，文件归属以清单为准。
+Challenge 目录按交付职责组织：`Literature/Delivery.lean` 直接陈述固定绑定和 48 条文献结果，`Literature/Source.lean` 保存生产这些结果所需的参数化来源对象与原始声明；`Computation/Delivery.lean` 直接陈述固定计算绑定及认证要求。来源到模型的内部应用与组装在 `Interface/Solution/Literature/Applications.lean`。通用分支语义和参数化解释认证分别在 `LinProgram/Interpretation/Branch/Predicates.lean` 与 `LinProgram/Interpretation/Route/Certification.lean`；绑定固定球谱的有界 E₂ 比较对象在 `Interface/Challenge/Computation/Presentation.lean`，固定 tmf 乘法条件仍归 Def。Challenge 下不再按 Sphere/Tmf 对象与 Route 用途混合分类；保留旧公开命名空间只用于维持现有声明名，文件归属以清单为准。
+
+## 定义、计算与来源的文件归属
+
+通用数学对象与参数化数学接口均可留在 Def；分层依据是依赖和职责，而不是声明使用 `def` 还是 `structure`。Def 的传递依赖不得进入 LinProgram、Interface 或 Main。以下路径均相对于 `KIP126/`：
+
+| 原路径 | 当前归属 |
+| --- | --- |
+| `LinProgram/Interpretation/AdamsE2.lean` | `Def/AdamsE2/Input/Data.lean`；通用 E₂ presentation 输入随远程 develop 的调整保留在 Def |
+| `Def/AdamsE2/LinModel`、`LinClasses`、`LinProduct`、`LinBasisTable/Data.lean` | `LinProgram/Model/{E2,Classes,Product,BasisTable}` |
+| `Def/AdamsE2/LinCompute` | `LinProgram/Compute/E2` |
+| `Def/AdamsE2/LinComputedPolynomial`、`LinExpression`、`LinExpressionValue`、`Classes` | `LinProgram/Interpretation/{Polynomial,Expression,Expression/Value,AdamsE2/Classes}` |
+| `Def/AdamsE2/LinAutomation` | `LinProgram/Tactic/Support` |
+| `Def/AdamsE2/LinBasisTable/Predicates.lean`、`LinBasisTable/Certification`、`LinSquareDetection` | `LinProgram/Certificates/{BasisTable,SquareDetection}` |
+| `Def/ClassicalAdams/LinE2Presentation/Data.lean` | `Interface/Challenge/Computation/Presentation.lean` |
+| `Def/References/Literature/EtaRows/Data.lean` | `Interface/Challenge/Literature/EtaRows.lean` |
+| `Def/References/Literature/AppendixTable` | `LinProgram/SourceMetadata/AppendixTable` |
+| `Def/Comparison/StageInterfaces.lean` 及其 `Proofs` | `Def/Comparison/{Pages,ClassicalSynthetic/EInfty,ClassicalSynthetic/FiniteBockstein,PageExtension,Cobar}`，按主题组织定义和证明；`Def/Comparison/Interfaces.lean` 汇总通用接口 |
+| `Def/Comparison/StageInterfaces/Models.lean` | `Def/ClassicalAdams/Moss/Context/Data.lean` 与 `Def/ClassicalAdams/Tmf/Model/Binding/Data.lean` |
+
+迁移保留声明名、数学陈述和证明内容；旧公开命名空间如 `KIP126.Challenge2`、`KIP126.Def.Comparison.StageInterfaces` 不随文件改名。旧模块路径不保留单模块转发文件，直接使用新 import。`KIP126.lean` 继续汇总原有公开内容，`KIP126/Def.lean` 只汇总 Def 模块。
+
+`LinProgram/SourceMetadata` 中的附录表抄录用于来源核对，不是来源清单的第二权威，也不能直接充当数学证明；规范来源清单仍为 `docs/external-inputs.json`。这些记录随 Lin 计算资料一起组织，不单设顶层 SourceMetadata 目录。`scripts/test_stage_boundary_layout.py` 检查上述传递依赖边界、导入完整性与无环性。
 
 数学接口以当前 Lean 源码为准，来源、locator 与声明对应关系以 [external-inputs.json](external-inputs.json) 为准。保留的来源审查与计算依赖表是注明日期的检查证据，不是另一份权威清单；旧迁移、集成和验收记录可从 Git 历史追溯，不能沿用其完成结论。

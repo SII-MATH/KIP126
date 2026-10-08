@@ -34,7 +34,7 @@ The complete historical KIP-base library is retained as the separately compiled
 `KIPBase` component on the same Lean/mathlib 4.32.2 pins. Its original assumptions
 are isolated from `KIP126` and do not count as completed paper proofs. See the
 [component build and reuse guide](KIPBase/README.md) and
-[original migration archive](migration/kip-base/README.md).
+[original migration archive](docs/migration/kip-base/README.md).
 
 ## Project documents and workflow
 
@@ -45,6 +45,8 @@ migration snapshots remain available in Git history. Do not infer proof status
 from a directory listing or a past migration count. Archived plans and check
 records are kept in [docs/archive/](docs/archive/) for historical reference.
 
+- [GitHub task and path review workflow](docs/ISSUE_WORKFLOW.md): issue forms, PR review responsibilities and generated Blueprint frontier.
+- [Blueprint maintenance](docs/BLUEPRINT_MAINTENANCE.md): engineering architecture, source correspondence, proof-status rules and historical coverage records.
 - [Stage-0 mathematical interfaces](docs/STAGE0_INTERFACES.md): M / C(M) / A(M) / T(M), object and source bindings, exact ranges and proof responsibilities.
 - [Input review panel](docs/challenge-input-inventory.html): literature, computation, Main's internal applications, and remaining review obligations. Fixed-sphere applicability is stated in Def.
 
@@ -71,17 +73,26 @@ document:
 - [`KIP126.lean`](KIP126.lean) and the modules under [`KIP126/`](KIP126/) are
   authoritative for the implemented interfaces, proofs and dependency graph.
   `Def/` owns the mathematical objects, fixed route and shared background; it never
-  imports Interface or Main. `Interface/Challenge` defines `Challenge2` and
+  imports LinProgram, Interface, or Main. Generic mathematical
+  interfaces stay in Def and are grouped by subject under `Comparison/` or the
+  relevant mathematical object. `Interface/Challenge` defines `Challenge2` and
   `Interface/Solution` constructs it. Its only fields are literature and
   computation. Each delivery has its own bindings and results, with computation
   depending on the same literature sources; the fixed presentation belongs to
-  computation bindings. Main derives internal applications after the stage
+  computation bindings in `Interface/Challenge/Computation/Presentation.lean`.
+  Main derives internal applications after the stage
   axiom. Fixed-sphere applicability has a Def-owned theorem with an explicit
   unfinished proof. The final
   target in `Main/Challenge/h6_sq_permanent.lean` imports only Def; its proof
   may consume Challenge2 through Main/Axiom. Stage-0 interface acceptance does
   not mean certification or the final mathematical proof is complete.
-  `LinProgram/` retains the independent fixed-data pipeline; `Checks/Examples/`
+  `Def/AdamsE2/` contains the generic table, page algebra, presentation and input
+  language. The [Lin program layout](KIP126/LinProgram/README.md) describes the
+  fixed-data modules and their separate mathematical certification obligations.
+  `LinProgram/` retains the independent fixed-data pipeline, including its
+  data models, computations, interpretations, and certificates.
+  `LinProgram/SourceMetadata/` holds the typed appendix-table transcription and its
+  locators; recorded statuses are not mathematical conclusions. `Checks/Examples/`
   contains the finite-table demonstrations. Original source artifacts live in
   `Source/`; they are evidence, not Lean proof assumptions.
   Import concrete modules directly instead of adding redundant wrappers that

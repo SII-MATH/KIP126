@@ -1,15 +1,15 @@
-import KIP126.Def.Comparison.StageInterfaces.Proofs.FiniteCoherentPageExtension
+import KIP126.Def.Comparison.PageExtension.Solutions.Finiteness.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Cycles.Data
 import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Boundary.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
 import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
-import KIP126.Def.Comparison.StageInterfaces.Proofs.CoherentPageExtension
+import KIP126.Def.Comparison.PageExtension.Solutions.Coherence.Proofs
 import KIP126.Def.Solution.FoundationConsequences
 import KIP126.Def.Solution.Toda
-import KIP126.Def.Comparison.StageInterfaces.Proofs.InternalPages
-import KIP126.Def.Comparison.StageInterfaces.Proofs.InternalNaturality
-import KIP126.Def.Comparison.StageInterfaces.Proofs.Cobar
+import KIP126.Def.Comparison.Pages.Proofs
+import KIP126.Def.Comparison.Pages.Naturality.Proofs
+import KIP126.Def.Comparison.Cobar.Proofs
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
 import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
 import KIP126.Def.Synthetic.QuotientTower.Proofs
@@ -18,13 +18,13 @@ import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Proofs
 import KIP126.Def.Solution.Synthetic.Localization
-import KIP126.Def.Comparison.StageInterfaces.Proofs.SyntheticEInfty
-import KIP126.Def.Comparison.StageInterfaces.Proofs.PageExtensionAmbiguity
+import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Proofs
+import KIP126.Def.Comparison.PageExtension.Ambiguity.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
 import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
 import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
 import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
-import KIP126.Def.Comparison.StageInterfaces.Proofs.CanonicalPageExtension
+import KIP126.Def.Comparison.PageExtension.Targets.Proofs
 import KIP126.Def.Synthetic.QuotientFunctor.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
 import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
@@ -39,7 +39,7 @@ import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
 import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
 import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
-import KIP126.Def.Comparison.StageInterfaces.Proofs.PageExtensionSolutions
+import KIP126.Def.Comparison.PageExtension.Solutions.Proofs
 import Lean.Elab.Command
 
 /-! These particular generic obligations are proved from explicit mathematical

@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinModel.Data
+import KIP126.LinProgram.Model.E2.Data
 
 /-! Zero-based CSV addresses used by the Section 7 computation inputs.
 These are addresses in the pinned sphere algebra, not assumed page facts. -/

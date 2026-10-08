@@ -1,5 +1,6 @@
 import KIP126.Main.Solution.Computation.Route.Consequences
 import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
+import KIP126.Def.SpectralSequence.Permanence.Proofs
 import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
 
 /-!
@@ -93,7 +94,15 @@ theorem permanent_cycle_of_reaches1000 (V : SphereVanishingLine H)
     (x : E2 H SphereSpectrum s t)
     (hx : ReachesPage (sequence D .sphere) 1000 (s,t) x) :
     IsPermanentCycle (sequence D .sphere) (s,t) x := by
-  sorry
+  apply isPermanentCycle_of_reachesPage (sequence D .sphere) 1000
+    (by change (2 : ℤ) ≤ 1000; omega) (s, t) x hx
+  intro r hr
+  haveI : Subsingleton ((sequence D .sphere).Page r
+      (((s : ℤ), (t : ℤ)) + (sequence D .sphere).diffDeg r)) := by
+    change Subsingleton ((sequence D .sphere).Page r ((s : ℤ) + r, (t : ℤ) + (r - 1)))
+    simpa only [add_sub_assoc] using late_outgoing_target_zero (D := D) V s t hn hn' r hr
+  ext y
+  exact Subsingleton.elim _ _
 
 /-- Nonzero permanence needs nonzero survival to E1000.  For s<1000 every
 later incoming source has negative filtration; the actual tower vanishing
@@ -104,7 +113,23 @@ theorem nonzero_permanent_of_survives1000 (V : SphereVanishingLine H)
     (x : E2 H SphereSpectrum s t)
     (hx : SurvivesTo (sequence D .sphere) 1000 (s,t) x) :
     NonzeroSurvival (sequence D .sphere) (s,t) x := by
-  sorry
+  apply nonzeroSurvival_of_survivesTo (sequence D .sphere) 1000
+    (by change (2 : ℤ) ≤ 1000; omega) (s, t) x hx
+  · intro r hr
+    haveI : Subsingleton ((sequence D .sphere).Page r
+        (((s : ℤ), (t : ℤ)) + (sequence D .sphere).diffDeg r)) := by
+      change Subsingleton ((sequence D .sphere).Page r ((s : ℤ) + r, (t : ℤ) + (r - 1)))
+      simpa only [add_sub_assoc] using late_outgoing_target_zero (D := D) V s t hn hn' r hr
+    ext y
+    exact Subsingleton.elim _ _
+  · intro r hr
+    haveI : Subsingleton ((sequence D .sphere).Page r
+        (((s : ℤ), (t : ℤ)) - (sequence D .sphere).diffDeg r)) :=
+      adamsTowerInternal_page_subsingleton_of_negative H.unit SphereSpectrum
+        r ((s : ℤ) - r) ((t : ℤ) - (r - 1)) (by omega)
+    ext y
+    change (sequence D .sphere).d r _ y = 0
+    rw [Subsingleton.elim y 0, map_zero]
 
 /-- Finite candidate/boundary reconstruction, including all linear
 combinations.  These four claims require more than their four level-9000 rows:

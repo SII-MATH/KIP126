@@ -1,4 +1,4 @@
-import KIP126.Def.AdamsE2.LinExpressionValue.Data
+import KIP126.LinProgram.Interpretation.Expression.Value.Data
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
 
 namespace KIP126.Classical.Adams

@@ -3,20 +3,26 @@
 ## Start here
 
 - The Blueprint is the mathematical plan, not evidence that a proof is complete.
+- Blueprint nodes describe mathematical objects, statements, and proof
+  dependencies. Repository architecture, delivery inventories, source ledgers,
+  hashes, and coverage audits belong in `docs/BLUEPRINT_MAINTENANCE.md` or
+  their canonical engineering records, not in the mathematical graph.
 - A mechanical cleanup must not silently change a public declaration, a
   stage-boundary statement, source provenance, proof status, or mathematical
   strength.
 
 ## Multica agents
 
-If you believe you are an agent from Multica, read `MULTICA_AGENTS.md` before
+If you believe you are an agent from Multica, read `docs/MULTICA_AGENTS.md` before
 working in this repository. Otherwise, ignore that file.
 
 ## Repository architecture
 
 - `KIP126/Def/` owns common mathematical objects, predicates, constructions,
   the fixed implementation, route and mathematical background, its fixed-sphere
-  applicability statement, and reusable theorems. It must not declare project axioms.
+  applicability statement, and reusable theorems. Generic mathematical interfaces
+  belong here, grouped by subject. It must not declare project axioms or import
+  `LinProgram/`, `Interface/`, or `Main/`.
 - `KIP126/Interface/` constructs one `Challenge2` witness. It owns
   literature source bindings and results, fixed-computation bindings and
   certification, and the resulting delivery interfaces on Def's fixed model.
@@ -25,8 +31,15 @@ working in this repository. Otherwise, ignore that file.
   only the final target has a Main Challenge/Solution pair.
 - `KIP126/LinProgram/` owns pinned program artifacts, deterministic
   translation, generated Lean data, parameterized interpretation, and local
-  certificates. These artifacts do not by themselves prove that the data model
+  certificates. Data models, computations, and interpretation support tied to
+  these artifacts belong here, rather than in Def. The fixed sphere comparison
+  belongs to `Interface/Challenge/Computation/Presentation.lean`; LinProgram must
+  not depend on Def's fixed stage model. These artifacts do not by themselves prove that the data model
   the selected mathematical object.
+  Its `SourceMetadata/` subdirectory owns the typed transcription of the paper's appendix
+  tables, including row labels, locators, and recorded statuses. It is independent
+  of the mathematical deliveries and does not replace `docs/external-inputs.json`.
+  A recorded status is not a proved differential or survival statement.
 - `MainPaper/` owns the paper being formalized. `Source/` owns external
   literature artifacts, acquisition metadata, and the machine-readable source
   artifacts. The canonical source and input manifest is `docs/external-inputs.json`.
