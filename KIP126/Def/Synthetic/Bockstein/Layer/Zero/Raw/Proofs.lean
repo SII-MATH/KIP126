@@ -12,11 +12,14 @@ open CategoryTheory KIP126.StableHomotopy KIP126.Synthetic.Context
 universe u v
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
 
+set_option backward.isDefEq.respectTransparency false in
 /-- The n=0 residual-step/power compatibility, with the actual source
 normalization and the same biShift_zero target comparison. -/
 theorem layerZeroSquare (A : Syn) :
     (layerZeroSourceIso A).hom ≫ lambdaPow 1 A =
       (lambdaTower A).step 0 ≫ (layerZeroTargetIso A).hom := by
-  sorry
+  dsimp only [layerZeroSourceIso, layerZeroTargetIso, lambdaTower,
+    InverseSequence.toDescendingTower, lambdaResidualSequence]
+  simp [lambdaPow]
 
 end KIP126.Synthetic.Bockstein

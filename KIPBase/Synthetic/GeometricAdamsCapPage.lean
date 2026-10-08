@@ -1,5 +1,6 @@
 import KIPBase.Synthetic.GeometricAdamsBoundaryComparison
 import KIPBase.Synthetic.GeometricAdamsPageShift
+import KIPBase.Synthetic.GeometricAdamsCofiber
 
 /-!
 # Pages represented by actual lambda caps
@@ -182,6 +183,121 @@ noncomputable def capDifferential (G : Input X) (S : Syn)
   QuotientAddGroup.map _ _ (G.capDividedTargetHom S s r n)
     (G.capDividedTargetHom_mem S s r hr n)
 
+/-- A cap differential is zero exactly when its divided target is a shorter
+target boundary after multiplication by the prescribed λ-power.  This is
+the target-side kernel statement used to turn a zero Adams differential
+into a zero-source λ-Bockstein relation. -/
+theorem capDifferential_mk_eq_zero_iff (G : Input X) (S : Syn)
+    (s r : ℕ) (hr : 1 ≤ r) (n : ℕ)
+    (c : G.CapRepresentatives S s r n) :
+    G.capDifferential S s r hr n (QuotientAddGroup.mk c) = 0 ↔
+      G.capDividedTargetHom S s r n c ∈
+        G.dividedTargetBoundaries S s r hr n := by
+  change QuotientAddGroup.mk (G.capDividedTargetHom S s r n c) = 0 ↔ _
+  rw [QuotientAddGroup.eq_zero_iff]
+
+/-- Expanded form of the zero cap differential criterion.  The witness is a
+relative representative with zero source whose target is the prescribed
+λ-multiple of the divided target. -/
+theorem capDifferential_mk_eq_zero_iff_exists_zero_source
+    (G : Input X) (S : Syn) (s r : ℕ) (hr : 1 ≤ r) (n : ℕ)
+    (c : G.CapRepresentatives S s r n) :
+    G.capDifferential S s r hr n (QuotientAddGroup.mk c) = 0 ↔
+      ∃ z : G.Representative S s r,
+        G.source S s r hr z = 0 ∧
+        G.target S s r z =
+          G.capDividedTargetHom S s r n c ≫
+            (shiftFunctor Syn (1 : ℤ)).map (lambdaPow n (G.layer (s + r))) := by
+  rw [G.capDifferential_mk_eq_zero_iff S s r hr n c]
+  change _ ∈ G.targetAmbiguity S s r hr ↔ _
+  constructor
+  · rintro ⟨z, hz, htarget⟩
+    change G.source S s r hr z = 0 at hz
+    exact ⟨z, hz, htarget⟩
+  · rintro ⟨z, hz, htarget⟩
+    refine ⟨z, ?_, htarget⟩
+    change G.source S s r hr z = 0
+    exact hz
+
+/-- A divided target whose λ-multiple is zero in the Adams target quotient
+has a cap with zero source page class and that same divided target.  The
+construction is the corrected-boundary construction applied to the zero
+source class, followed by the common-cone lift.  Thus the cap belongs to
+the explicit source-relation subgroup. -/
+theorem exists_capRelation_of_dividedTarget_page_zero
+    (G : Input X) (R : G.FreeLayers) (A : G.SyntheticAdamsGeometricRealization R)
+    (s r : ℕ) (hr : 2 ≤ r) (m : ℤ)
+    (y : Smn m (m + s) ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -((r - 1 : ℕ) : ℤ))).obj
+        (G.layer (s + r))))
+    (hzero : (QuotientAddGroup.mk
+      (y ≫ (shiftFunctor Syn (1 : ℤ)).map
+        (lambdaPow (r - 1) (G.layer (s + r)))) :
+        (Smn m (m + s) ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+          (G.layer (s + r))) ⧸ G.targetAmbiguity
+            (Smn m (m + s)) s r (by omega)) = 0) :
+    ∃ c : G.CapRepresentatives (Smn m (m + s)) s r (r - 1),
+      c ∈ G.capRelations (Smn m (m + s)) s r (by omega) (r - 1) ∧
+      G.capDividedTarget (Smn m (m + s)) s r (r - 1) c = y := by
+  have hxy : G.pageObstruction (Smn m (m + s)) s r (by omega)
+      (0 : G.PageGroup (Smn m (m + s)) s r (by omega)) =
+      QuotientAddGroup.mk
+        (y ≫ (shiftFunctor Syn (1 : ℤ)).map
+          (lambdaPow (r - 1) (G.layer (s + r)))) := by
+    simpa using hzero.symm
+  obtain ⟨c, hcsource, hctarget⟩ :=
+    (G.capRealizes_iff_pageObstruction R A s r hr m
+      (0 : G.PageGroup (Smn m (m + s)) s r (by omega)) y).mpr hxy
+  refine ⟨c, ?_, hctarget⟩
+  rw [G.capRelations_eq_ker (Smn m (m + s)) s r (by omega) (r - 1)]
+  simpa only [AddMonoidHom.mem_ker, capSourceHom_apply] using hcsource
+
+/-- A cap has zero divided-target page class exactly when its divided target
+is also realized by a cap relation.  This packages the zero-source disk and
+the cone attachment into the form used by the λ-Bockstein source quotient. -/
+theorem capDifferential_mk_eq_zero_iff_exists_capRelation_same_dividedTarget
+    (G : Input X) (R : G.FreeLayers) (A : G.SyntheticAdamsGeometricRealization R)
+    (s r : ℕ) (hr : 2 ≤ r) (m : ℤ)
+    (c : G.CapRepresentatives (Smn m (m + s)) s r (r - 1)) :
+    G.capDifferential (Smn m (m + s)) s r (by omega) (r - 1)
+        (QuotientAddGroup.mk c) = 0 ↔
+      ∃ d : G.CapRepresentatives (Smn m (m + s)) s r (r - 1),
+        d ∈ G.capRelations (Smn m (m + s)) s r (by omega) (r - 1) ∧
+        G.capDividedTarget (Smn m (m + s)) s r (r - 1) d =
+          G.capDividedTarget (Smn m (m + s)) s r (r - 1) c := by
+  constructor
+  · intro hzero
+    have hboundary : G.capDividedTargetHom (Smn m (m + s)) s r (r - 1) c ∈
+        G.dividedTargetBoundaries (Smn m (m + s)) s r (by omega) (r - 1) :=
+      (G.capDifferential_mk_eq_zero_iff
+        (Smn m (m + s)) s r (by omega) (r - 1) c).mp hzero
+    have hquotient : (QuotientAddGroup.mk
+        (G.capDividedTarget (Smn m (m + s)) s r (r - 1) c ≫
+          (shiftFunctor Syn (1 : ℤ)).map
+            (lambdaPow (r - 1) (G.layer (s + r)))) :
+          (Smn m (m + s) ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+            (G.layer (s + r))) ⧸ G.targetAmbiguity
+              (Smn m (m + s)) s r (by omega)) = 0 := by
+      apply (QuotientAddGroup.eq_zero_iff _).mpr
+      change G.capDividedTargetHom (Smn m (m + s)) s r (r - 1) c ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          (lambdaPow (r - 1) (G.layer (s + r))) ∈
+        G.targetAmbiguity (Smn m (m + s)) s r (by omega)
+      exact hboundary
+    obtain ⟨d, hd, htarget⟩ :=
+      G.exists_capRelation_of_dividedTarget_page_zero R A s r hr m
+        (G.capDividedTarget (Smn m (m + s)) s r (r - 1) c) hquotient
+    exact ⟨d, hd, htarget⟩
+  · rintro ⟨d, hd, htarget⟩
+    apply (G.capDifferential_mk_eq_zero_iff
+      (Smn m (m + s)) s r (by omega) (r - 1) c).mpr
+    change G.capDividedTarget (Smn m (m + s)) s r (r - 1) c ∈
+      G.dividedTargetBoundaries (Smn m (m + s)) s r (by omega) (r - 1)
+    rw [← htarget]
+    change G.capDividedTargetHom (Smn m (m + s)) s r (r - 1) d ∈
+      G.dividedTargetBoundaries (Smn m (m + s)) s r (by omega) (r - 1)
+    exact G.capDividedTargetHom_mem (Smn m (m + s)) s r (by omega) (r - 1) d hd
+
 /-- Actual lambda multiplication gives the comparison on the target quotient. -/
 noncomputable def dividedTargetEquiv (G : Input X) (R : G.FreeLayers)
     (s r : ℕ) (hr : 2 ≤ r) (m : ℤ) :
@@ -290,6 +406,108 @@ theorem capStageBoundary_layer (G : Input X) (S : Syn) (s r n : ℕ)
     G.capStageBoundary S s r n c ≫ G.dividedLayerProjection n (s + r) =
       G.capDividedTargetHom S s r n c := rfl
 
+/-- If the divided layer component of a cap boundary vanishes, its actual
+boundary map factors through the next stage of the lambda-boundary tower.
+This is the geometric passage from a zero target class to the next Adams
+filtration; it is obtained from cofiber exactness, without choosing a page
+representative. -/
+theorem capStageBoundary_lifts_of_capDividedTarget_eq_zero
+    [SyntheticShiftCofiberCompatibility (Syn := Syn)]
+    (G : Input X) (S : Syn) (s r n : ℕ)
+    (c : G.CapRepresentatives S s r n)
+    (hzero : G.capDividedTargetHom S s r n c = 0) :
+    ∃ y' : S ⟶ (G.boundaryTarget n).stage (s + r + 1),
+      y' ≫ (G.boundaryTarget n).transition (s + r) (s + r + 1)
+        (Nat.le_succ _) = G.capStageBoundary S s r n c := by
+  let W : Syn ⥤ Syn := SyntheticCategory.biShift (0, -(n : ℤ))
+  let H := G.map W
+  let f := H.transition (s + r) (s + r + 1) (Nat.le_succ _)
+  let a := G.capStageBoundary S s r n c
+  have hlayer : a ≫
+      (shiftFunctor Syn (1 : ℤ)).map
+        (W.map (syn_functorial_cofiber.cofibι
+          (G.transition (s + r) (s + r + 1) (Nat.le_succ _)))) = 0 := by
+    change G.capStageBoundary S s r n c ≫
+      G.dividedLayerProjection n (s + r) = 0
+    rw [G.capStageBoundary_layer]
+    exact hzero
+  let e := G.mapRelativeIso W (s + r) (s + r + 1) (Nat.le_succ _)
+  have hz : a ≫ (shiftFunctor Syn (1 : ℤ)).map
+      (syn_functorial_cofiber.cofibι f) = 0 := by
+    apply (cancel_mono ((shiftFunctor Syn (1 : ℤ)).map e.hom)).mp
+    rw [Category.assoc, ← Functor.map_comp]
+    change a ≫ (shiftFunctor Syn (1 : ℤ)).map
+      (syn_functorial_cofiber.cofibι
+        ((G.map W).transition (s + r) (s + r + 1) (Nat.le_succ _)) ≫
+          (G.mapRelativeIso W (s + r) (s + r + 1) (Nat.le_succ _)).hom) =
+        0 ≫ (shiftFunctor Syn (1 : ℤ)).map e.hom
+    rw [G.mapRelativeIso_incl, Limits.zero_comp]
+    exact hlayer
+  let T := chosenCofiberTriangle f
+  let Ts := (shiftFunctor (Pretriangulated.Triangle Syn) (1 : ℤ)).obj T
+  have hTs : Ts ∈ distTriang Syn :=
+    Pretriangulated.Triangle.shift_distinguished T
+      (syn_functorial_cofiber.cofib_distinguished f) (1 : ℤ)
+  have hzTs : a ≫ Ts.mor₂ = 0 := by
+    simpa [Ts, T, Pretriangulated.Triangle.shiftFunctor, chosenCofiberTriangle] using hz
+  obtain ⟨y', hy'⟩ := Pretriangulated.Triangle.coyoneda_exact₂ Ts hTs a hzTs
+  refine ⟨-y', ?_⟩
+  have hm : Ts.mor₁ = -((shiftFunctor Syn (1 : ℤ)).map f) := by
+    simp [Ts, T, Pretriangulated.Triangle.shiftFunctor, chosenCofiberTriangle]
+  rw [hm] at hy'
+  change (-y') ≫ (shiftFunctor Syn (1 : ℤ)).map f = a
+  simpa only [Preadditive.neg_comp, Preadditive.comp_neg, neg_neg] using hy'.symm
+
+/-- Caps with the same divided target have λ-boundary representatives whose
+difference factors through the next boundary-tower stage.  Consequently,
+their single-λ boundaries differ by one higher Adams filtration step. -/
+theorem exists_nextStage_of_capStageBoundary_sub_of_same_dividedTarget
+    [SyntheticShiftCofiberCompatibility (Syn := Syn)]
+    (G : Input X) (S : Syn) (s r n : ℕ)
+    (c d : G.CapRepresentatives S s r n)
+    (hdivided : G.capDividedTarget S s r n c =
+      G.capDividedTarget S s r n d) :
+    ∃ y' : S ⟶ (G.boundaryTarget n).stage (s + r + 1),
+      y' ≫ (G.boundaryTarget n).transition (s + r) (s + r + 1)
+        (Nat.le_succ _) =
+          G.capStageBoundary S s r n c - G.capStageBoundary S s r n d := by
+  have hzero : G.capDividedTarget S s r n (c - d) = 0 := by
+    change ((c - d) ≫ syn_functorial_cofiber.cofibδ
+      (lambdaPow n (G.stage (s + r)) ≫
+        G.transition s (s + r) (Nat.le_add_right s r))) ≫
+          G.dividedLayerProjection n (s + r) = 0
+    rw [Preadditive.sub_comp, Preadditive.sub_comp]
+    change G.capDividedTarget S s r n c -
+      G.capDividedTarget S s r n d = 0
+    exact sub_eq_zero.mpr hdivided
+  obtain ⟨y', hy'⟩ :=
+    G.capStageBoundary_lifts_of_capDividedTarget_eq_zero S s r n (c - d) hzero
+  refine ⟨y', ?_⟩
+  simpa only [map_sub] using hy'
+
+/-- The remaining-power map from `λ^(n+1)` to `λ` is compatible with one
+transition of the boundary towers. -/
+theorem boundaryTarget_transition_lambdaPowerToOne
+    (G : Input X) (n b : ℕ) :
+    (G.boundaryTarget (n + 1)).transition b (b + 1) (Nat.le_succ b) ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          (lambdaPowerToOne (G.stage b) n) =
+      (shiftFunctor Syn (1 : ℤ)).map (lambdaPowerToOne (G.stage (b + 1)) n) ≫
+        (G.boundaryTarget 1).transition b (b + 1) (Nat.le_succ b) := by
+  change (shiftFunctor Syn (1 : ℤ)).map
+      ((SyntheticCategory.biShift (0, -((n + 1 : ℕ) : ℤ))).map
+        (G.transition b (b + 1) (Nat.le_succ b))) ≫
+      (shiftFunctor Syn (1 : ℤ)).map
+        (lambdaPowerToOne (G.stage b) n) =
+    (shiftFunctor Syn (1 : ℤ)).map (lambdaPowerToOne (G.stage (b + 1)) n) ≫
+      (shiftFunctor Syn (1 : ℤ)).map
+        ((SyntheticCategory.biShift (0, (-1 : ℤ))).map
+          (G.transition b (b + 1) (Nat.le_succ b)))
+  rw [← Functor.map_comp, ← Functor.map_comp]
+  exact congrArg ((shiftFunctor Syn (1 : ℤ)).map)
+    ((lambdaPowerToOneNatTrans n).naturality
+      (G.transition b (b + 1) (Nat.le_succ b)))
+
 /-- After restriction to the first quotient, the actual lambda boundary
 retains the remaining power at the deep stage. For an Adams differential
 of length `n+2` this power is `n`, i.e. length minus two. -/
@@ -303,6 +521,58 @@ theorem capQuotientClass_toOne_boundary (G : Input X) (S : Syn) (s r n : ℕ)
             (G.boundaryTarget 1).toBase (s + r) :=
   G.toOne_boundary_formula n S (s + r) _ _
     (G.capQuotientClass_boundary S s r (n + 1) c)
+
+/-- Equal divided targets give equal single-λ boundary classes on the
+current associated graded: their difference belongs to the next target
+filtration. -/
+theorem capToOne_boundary_sub_mem_next_of_same_dividedTarget
+    [SyntheticShiftCofiberCompatibility (Syn := Syn)]
+    (G : Input X) (S : Syn) (s r n : ℕ)
+    (c d : G.CapRepresentatives S s r (n + 1))
+    (hdivided : G.capDividedTarget S s r (n + 1) c =
+      G.capDividedTarget S s r (n + 1) d) :
+    (G.boundaryTarget 1).AFGe
+      ((G.capQuotientClass S s r (n + 1) c ≫ XModLambdaN.toOne X n) ≫
+          lambdaBocksteinConnecting X -
+        (G.capQuotientClass S s r (n + 1) d ≫ XModLambdaN.toOne X n) ≫
+          lambdaBocksteinConnecting X)
+      (s + r + 1) := by
+  obtain ⟨y', hy'⟩ :=
+    G.exists_nextStage_of_capStageBoundary_sub_of_same_dividedTarget
+      S s r (n + 1) c d hdivided
+  let e := (shiftFunctor Syn (1 : ℤ)).map
+    (lambdaPowerToOne (G.stage (s + r + 1)) n)
+  refine ⟨y' ≫ e, ?_⟩
+  have hnatural := G.boundaryTarget_transition_lambdaPowerToOne n (s + r)
+  have hc := G.capQuotientClass_toOne_boundary S s r n c
+  have hd := G.capQuotientClass_toOne_boundary S s r n d
+  calc
+    (y' ≫ e) ≫ (G.boundaryTarget 1).toBase (s + r + 1) =
+        y' ≫ e ≫ ((G.boundaryTarget 1).transition (s + r) (s + r + 1)
+          (Nat.le_succ _) ≫ (G.boundaryTarget 1).toBase (s + r)) := by
+          rw [(G.boundaryTarget 1).transition_toBase]
+          simp only [Category.assoc]
+    _ = y' ≫ ((G.boundaryTarget (n + 1)).transition (s + r) (s + r + 1)
+          (Nat.le_succ _) ≫ (shiftFunctor Syn (1 : ℤ)).map
+            (lambdaPowerToOne (G.stage (s + r)) n)) ≫
+          (G.boundaryTarget 1).toBase (s + r) := by
+          have h := congrArg
+            (fun f => y' ≫ f ≫ (G.boundaryTarget 1).toBase (s + r))
+            hnatural.symm
+          simpa only [Category.assoc, e] using h
+    _ = (G.capStageBoundary S s r (n + 1) c -
+        G.capStageBoundary S s r (n + 1) d) ≫
+          (shiftFunctor Syn (1 : ℤ)).map
+            (lambdaPowerToOne (G.stage (s + r)) n) ≫
+          (G.boundaryTarget 1).toBase (s + r) := by
+            have h := congrArg
+              (fun f => f ≫ (shiftFunctor Syn (1 : ℤ)).map
+                (lambdaPowerToOne (G.stage (s + r)) n) ≫
+                  (G.boundaryTarget 1).toBase (s + r)) hy'
+            simpa only [Category.assoc] using h
+    _ = _ := by
+      simpa only [Preadditive.sub_comp, Category.assoc] using
+        (congrArg₂ (fun f g => f - g) hc hd).symm
 
 /-- Equality of source page classes gives equality of the divided boundary
 classes. This is independence of the chosen geometric filling. -/

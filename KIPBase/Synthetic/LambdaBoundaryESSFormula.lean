@@ -134,6 +134,7 @@ theorem lambdaPowerBockstein_essential_iff_homotopy_boundary
   rw [← zero_relation_iff_boundary,
     lambdaPowerBockstein_relation_iff_homotopy_boundary X n degree r hr s,
     lambdaPowerBockstein_relation_iff_homotopy_boundary X n degree r hr s]
+  rfl
 
 /-- Actual filtered representatives for the finite boundary give actual
 filtered representatives for the first boundary, retaining both specified

@@ -1,3 +1,10 @@
+> Archived on 8 October 2026 from `docs/BLUEPRINT_MAINTENANCE.md`.
+> This preserves the previous maintenance text and dated audit records; it is
+> not a current status report. Relative Markdown links were adjusted for this
+> location. Source paths and locators retain their original meaning.
+> For current guidance, see the active Blueprint source and
+> [PROJECT_BOUNDARY.md](../../PROJECT_BOUNDARY.md).
+
 # Blueprint maintenance and source audit
 
 The mathematical Blueprint is `blueprint/src/content.tex`. Its nodes state
@@ -8,17 +15,23 @@ mathematical claims; it does not promote any proof status.
 
 This document preserves the audit records formerly included as the Blueprint's
 provenance and coverage chapters. The single canonical source and input manifest
-remains [external-inputs.json](external-inputs.json); this document is an
+remains [external-inputs.json](../external-inputs.json); this document is an
 explanation and historical audit index, not a second source registry.
 
 ## Mathematical reading order
 
-The main text is organized into six themes: mathematical setting and the
-standard $h_6^2$ target; extension spectral sequences; synthetic comparisons
-and generalized rules; located literature theorems; interpreted finite
-computations; and the near-126 deduction. A single mathematical appendix
-contains detailed algebraic and spectral-sequence foundations together with
-the auxiliary object constructions and lemmas underlying the target.
+The main text is organized into six themes: mathematical background;
+extension spectral sequences and comparison foundations; generalized proof
+tools; located literature theorems; interpreted finite computations; and the
+proof of nonzero permanent survival of $h_6^2$. The comparison foundations
+include the synthetic objects, quotient and page-extension machinery, and Moss
+convergence; the generalized proof-tools chapter contains the Leibniz and
+Mahowald rules that consume them.
+A single mathematical appendix contains detailed algebraic and spectral-sequence
+implementation details together with reusable auxiliary lemmas. The general
+Adams-tower constructions belong to the mathematical-background chapter;
+target-specific
+objects used only by the final $h_6^2$ proof are kept with that proof.
 The principal $h_6^2$ target appears in the main text. This order serves the
 mathematical argument rather than the repository directory structure.
 
@@ -61,7 +74,7 @@ proof status.
 During development Main consumes the sole project axiom
 `Main.Axiom.challenge2 : KIP126.Challenge2`. Interface must construct its witness
 without using this consumer axiom. There is no additional existence wrapper or
-choice step. Final acceptance is governed by [PROJECT_BOUNDARY.md](../PROJECT_BOUNDARY.md):
+choice step. Final acceptance is governed by [PROJECT_BOUNDARY.md](../../PROJECT_BOUNDARY.md):
 the development axiom must be replaced by the proved construction and every
 relevant `sorry` dependency discharged. The intentional final Main Challenge
 placeholder remains a statement mirror and is never proof-completion evidence.
@@ -86,13 +99,13 @@ comparison statements. Nested proposition records are expanded; coordinate
 choices, interpretation data and assembly structures are excluded from the
 statement count. The seven top-level computation result fields are structural
 coverage records. The count does not assert logical independence or proof
-completion. [check_external_inputs.py](../scripts/check_external_inputs.py)
+completion. [check_external_inputs.py](../../scripts/check_external_inputs.py)
 checks the manifest against active Blueprint inputs and Lean structures,
 rejecting missing leaves, duplicate or inactive nodes, wrappers counted as
 statements, and incorrect delivery-field links. Mathematical chapter ordering
 need not follow that engineering inventory.
 
-[check_source_inventory.py](../scripts/check_source_inventory.py) checks artifact
+[check_source_inventory.py](../../scripts/check_source_inventory.py) checks artifact
 paths, statuses and digests. Neither checker proves that a source entails a
 Lean statement. Parsing, hash agreement, generated records, interface assembly,
 successful compilation and declaration-name checks do not complete source
@@ -265,7 +278,7 @@ known $d_4$ and complete page-coordinate linear algebra. The raw $(25,150)$
 snapshot still retains two independent arrival vectors. The corresponding
 mathematical deductions are in `near126.tex`, including
 `prop:x_126_21-ambiguity`, rather than extra appendix inputs. The detailed
-audit is [linprogram-appendix-20261006.md](audits/linprogram-appendix-20261006.md).
+audit is [linprogram-appendix-20261006.md](../audits/linprogram-appendix-20261006.md).
 
 Transcription checks compare normalized cell tags, expressions, spectrum and
 bidegree, source-line coverage, unique row keys, zero bands, paired relation

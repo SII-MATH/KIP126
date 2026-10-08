@@ -185,6 +185,28 @@ private theorem lambdaBocksteinSource_boundary_isZero
     (unboundedExtensionBIso.{1, 0, 0, 0}
       f degree (s, 1) (n : WithTop ℕ))
 
+/-- No boundary enters the source column of the λ-Bockstein sequence, so
+every finite source boundary subobject agrees with the initial one. -/
+theorem lambdaBocksteinSource_boundaries_eq_initial
+    {Y : Syn} (degree : ℤ × ℤ) (s : ℤ) (n : ℕ) :
+    ((canonicalLambdaPowerBocksteinESS Y 1 degree).ssData (s, 1)).B
+        (n : WithTop ℕ) =
+      ((canonicalLambdaPowerBocksteinESS Y 1 degree).ssData (s, 1)).B 0 := by
+  let D := (canonicalLambdaPowerBocksteinESS Y 1 degree).ssData (s, 1)
+  have hn : IsZero (Subobject.underlying.obj (D.B (n : WithTop ℕ))) :=
+    lambdaBocksteinSource_boundary_isZero (Syn := Syn) degree s n
+  have h0 : IsZero (Subobject.underlying.obj (D.B 0)) :=
+    lambdaBocksteinSource_boundary_isZero (Syn := Syn) degree s 0
+  apply le_antisymm
+  · apply Subobject.le_of_comm (0 : Subobject.underlying.obj (D.B n) ⟶
+      Subobject.underlying.obj (D.B 0))
+    rw [zero_comp]
+    exact hn.eq_of_src _ _
+  · apply Subobject.le_of_comm (0 : Subobject.underlying.obj (D.B 0) ⟶
+      Subobject.underlying.obj (D.B n))
+    rw [zero_comp]
+    exact h0.eq_of_src _ _
+
 /-- An occurrence relation determines actual source and target classes on
 the displayed lambda-Bockstein page, and the page differential sends the
 source class to the target class. -/
@@ -1920,6 +1942,164 @@ theorem exists_cap_detecting_synAdamsClass
           (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
           s (n + 2) (by omega) (n + 1))) c) = x
   rw [hc, AddEquiv.apply_symm_apply]
+
+/-- If a declared Adams differential is zero, a cap detecting its source has
+the same divided target as a cap relation.  The latter cap represents the
+zero source class in the finite λ quotient.  This is the geometric cycle
+step: the zero Adams target is converted into an actual zero-source cap
+with the identical divided boundary. -/
+theorem exists_capRelation_same_dividedTarget_of_adams_differential_eq_zero
+    (C : NuSynAdamsGeometricComparison S Syn X M)
+    (s n : ℕ) (t : ℤ)
+    (x : (SynAdamsSS Syn ((nu S Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ) ((s : ℤ), t, t))
+    (hzero : (synAdamsDifferentialNormalized Syn ((nu S Syn).obj X)
+      ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x = 0) :
+    ∃ (c d : M.input.CapRepresentatives
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1)),
+      M.capQuotientDetectedClass s (n + 2) (by omega) t c = x ∧
+      d ∈ M.input.capRelations
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (by omega) (n + 1) ∧
+      M.input.capDividedTarget
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) d =
+        M.input.capDividedTarget
+          (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+          s (n + 2) (n + 1) c := by
+  obtain ⟨c, hc⟩ := C.exists_cap_detecting_synAdamsClass s n t x
+  have hsource : C.sourceEquiv s (n + 2) (by omega) t x =
+      M.input.capSourceClass
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (by omega) (n + 1) c := by
+    rw [← hc, C.source_detects_cap]
+    exact AddEquiv.apply_symm_apply _ _
+  have htarget : M.input.pageObstruction
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) (by omega)
+      (M.input.capSourceClass
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (by omega) (n + 1) c) = 0 := by
+    rw [← hsource, ← C.differential, hzero, map_zero]
+  have hcapzero : M.input.capDifferential
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) (by omega) (n + 1) (QuotientAddGroup.mk c) = 0 := by
+    apply (M.input.dividedTargetEquiv M.freeLayers s (n + 2)
+      (by omega) (t - (s : ℤ))).injective
+    dsimp only [NuSynAdamsGeometricModel.SourceSphere]
+    have hpage := M.input.pageObstruction_capSourceClass
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) (by omega) (n + 1) c
+    rw [htarget] at hpage
+    rw [map_zero]
+    calc
+      _ = QuotientAddGroup.mk
+        (M.input.capDividedTarget
+          (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+          s (n + 2) (n + 1) c ≫
+            (shiftFunctor Syn (1 : ℤ)).map
+              (lambdaPow (n + 1) (M.input.layer (s + (n + 2))))) := by
+          rfl
+      _ = 0 := hpage.symm
+  obtain ⟨d, hd, hdivided⟩ :=
+    (M.input.capDifferential_mk_eq_zero_iff_exists_capRelation_same_dividedTarget
+      M.freeLayers M.realization s (n + 2) (by omega) (t - (s : ℤ)) c).mp hcapzero
+  exact ⟨c, d, hc, hd, hdivided⟩
+
+/-- For two caps with the same divided target, their actual single-λ
+boundaries have equal current Adams associated-graded classes.  This is the
+filtration form used to identify the two Bockstein target-page
+representatives. -/
+theorem capSingleLambdaBoundary_sub_mem_next_of_same_dividedTarget
+    [SyntheticShiftCofiberCompatibility (Syn := Syn)]
+    (M : NuSynAdamsGeometricModel S Syn X)
+    (s n : ℕ) (t : ℤ)
+    (c d : M.input.CapRepresentatives
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) (n + 1))
+    (hdivided : M.input.capDividedTarget
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) c =
+      M.input.capDividedTarget
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) d) :
+    ((M.input.capQuotientClass
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) c ≫ XModLambdaN.toOne ((nu S Syn).obj X) n) ≫
+        lambdaBocksteinConnecting ((nu S Syn).obj X) -
+      (M.input.capQuotientClass
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) d ≫ XModLambdaN.toOne ((nu S Syn).obj X) n) ≫
+        lambdaBocksteinConnecting ((nu S Syn).obj X)) ∈
+      synAdamsFiltration Syn
+        ((shiftFunctor Syn (1 : ℤ)).obj
+          ((SyntheticCategory.biShift (0, (-1 : ℤ))).obj ((nu S Syn).obj X)))
+        (t - (s : ℤ)) (t - (s : ℤ) + (s : ℤ))
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ) + 1) := by
+  have hfiltered := M.input.capToOne_boundary_sub_mem_next_of_same_dividedTarget
+    (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) n c d hdivided
+  have h := (M.boundaryTarget_afGe_iff_synAdamsFiltration 1
+    (s + (n + 2) + 1) (t - (s : ℤ)) (t - (s : ℤ) + (s : ℤ)) _).mp hfiltered
+  simpa [NuSynAdamsGeometricModel.SourceSphere] using h
+
+/-- The same filtration comparison after changing the source to the
+standard generator sphere used by the canonical Bockstein page. -/
+theorem canonicalCapSingleLambdaBoundary_sub_mem_next_of_same_dividedTarget
+    [SyntheticShiftCofiberCompatibility (Syn := Syn)]
+    (M : NuSynAdamsGeometricModel S Syn X)
+    (s n : ℕ) (t : ℤ)
+    (c d : M.input.CapRepresentatives
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) (n + 1))
+    (hdivided : M.input.capDividedTarget
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) c =
+      M.input.capDividedTarget
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) d) :
+    (((NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t).inv ≫
+        M.input.capQuotientClass
+          (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+          s (n + 2) (n + 1) c ≫
+        XModLambdaN.toOne ((nu S Syn).obj X) n) ≫
+          lambdaBocksteinConnecting ((nu S Syn).obj X)) -
+      (((NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t).inv ≫
+        M.input.capQuotientClass
+          (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+          s (n + 2) (n + 1) d ≫
+        XModLambdaN.toOne ((nu S Syn).obj X) n) ≫
+          lambdaBocksteinConnecting ((nu S Syn).obj X)) ∈
+      synAdamsFiltration Syn
+        ((shiftFunctor Syn (1 : ℤ)).obj
+          ((SyntheticCategory.biShift (0, (-1 : ℤ))).obj ((nu S Syn).obj X)))
+        (t - (s : ℤ)) t
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ) + 1) := by
+  let sphere := NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t
+  let e := NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t
+  have hfiltered := M.input.capToOne_boundary_sub_mem_next_of_same_dividedTarget
+    sphere s (n + 2) n c d hdivided
+  obtain ⟨y', hy'⟩ := hfiltered
+  have hAF : (M.input.boundaryTarget 1).AFGe
+      (((e.inv ≫ M.input.capQuotientClass sphere s (n + 2) (n + 1) c ≫
+          XModLambdaN.toOne ((nu S Syn).obj X) n) ≫
+            lambdaBocksteinConnecting ((nu S Syn).obj X)) -
+        ((e.inv ≫ M.input.capQuotientClass sphere s (n + 2) (n + 1) d ≫
+          XModLambdaN.toOne ((nu S Syn).obj X) n) ≫
+            lambdaBocksteinConnecting ((nu S Syn).obj X)))
+      (s + (n + 2) + 1) := by
+    refine ⟨e.inv ≫ y', ?_⟩
+    change (e.inv ≫ y') ≫ (M.input.boundaryTarget 1).toBase
+      (s + (n + 2) + 1) = _
+    change y' ≫ (M.input.boundaryTarget 1).toBase
+      (s + (n + 2) + 1) = _ at hy'
+    rw [Category.assoc]
+    rw [hy', Preadditive.comp_sub]
+    simp only [Category.assoc]
+  have h := (M.boundaryTarget_afGe_iff_synAdamsFiltration 1
+    (s + (n + 2) + 1) (t - (s : ℤ)) t _).mp hAF
+  simpa [NuSynAdamsGeometricModel.SourceSphere] using h
 
 /-- Every Adams source class is sent to a Bockstein source represented by
 one actual cap, and the Bockstein differential is the boundary of that same

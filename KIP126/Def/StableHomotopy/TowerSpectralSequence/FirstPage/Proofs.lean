@@ -28,12 +28,15 @@ theorem firstPageProjection_apply (k n : ℤ) (x : E1 T P k n) :
 first-page identification, not an independent map. -/
 theorem firstPageProjection_eq_inv (k n : ℤ) :
     firstPageProjection T P k n = (firstPageIso T P k n).inv := by
-  sorry
+  rfl
 
 /-- Taking the E₁ value of the actual projected representative returns
 precisely that representative. -/
 @[simp] theorem firstPageIso_projection (k n : ℤ) (x : E1 T P k n) :
     (firstPageIso T P k n).hom.hom ((firstPageProjection T P k n).hom x) = x := by
-  sorry
+  rw [firstPageProjection_eq_inv]
+  change ((firstPageIso T P k n).inv ≫ (firstPageIso T P k n).hom).hom x = x
+  rw [Iso.inv_hom_id]
+  rfl
 
 end KIP126.StableHomotopy.TowerSpectralSequence
