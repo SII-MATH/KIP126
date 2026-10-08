@@ -1,5 +1,4 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+import KIP126.Def.ClassicalAdams.SphereClasses.Product.Data
 import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
 
 /-! Specified products of the standard Milnor classes on the actual internal E₂.
