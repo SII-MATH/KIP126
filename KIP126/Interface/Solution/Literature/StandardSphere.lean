@@ -13,12 +13,26 @@ namespace KIP126.Interface.Solution.Literature
 theorem h4_d2_h0h3sq
     (literature : KIP126.Challenge2.LiteratureInterface) :
     KIP126.Classical.Adams.StandardSphere.h4D2H0H3Sq := by
-  exact (literature.results.adamsOneLine_d2 4 (by decide)).toHasDifferential
+  change KIP126.Core.SpectralSequence.HasDifferential KIP126.Classical.Adams.sphereAdamsData 2
+    (1, 16) (3, 17)
+    (KIP126.Classical.Adams.Sphere.Internal.hi KIP126.Def.StageInput.standardFoundation.hf2
+      KIP126.Classical.Adams.standardMilnorCooperations 4)
+    (KIP126.Classical.Adams.Sphere.Internal.h0HiSquare KIP126.Def.StageInput.standardFoundation.hf2
+      KIP126.Classical.Adams.standardMilnorCooperations 3)
+  convert (literature.results.adamsOneLine_d2 4 (by decide)).toHasDifferential using 1 <;>
+    norm_num
 
 /-- The literature result also records that the target class is nonzero. -/
 theorem h4_d2_h0h3sq_nonzero
     (literature : KIP126.Challenge2.LiteratureInterface) :
     KIP126.Classical.Adams.StandardSphere.h4D2H0H3SqNonzero := by
-  exact literature.results.adamsOneLine_d2 4 (by decide)
+  change KIP126.Core.SpectralSequence.HasNonzeroDifferential KIP126.Classical.Adams.sphereAdamsData 2
+    (1, 16) (3, 17)
+    (KIP126.Classical.Adams.Sphere.Internal.hi KIP126.Def.StageInput.standardFoundation.hf2
+      KIP126.Classical.Adams.standardMilnorCooperations 4)
+    (KIP126.Classical.Adams.Sphere.Internal.h0HiSquare KIP126.Def.StageInput.standardFoundation.hf2
+      KIP126.Classical.Adams.standardMilnorCooperations 3)
+  convert literature.results.adamsOneLine_d2 4 (by decide) using 1 <;>
+    norm_num
 
 end KIP126.Interface.Solution.Literature
