@@ -10,6 +10,7 @@ kept as a separate proposition. -/
 
 namespace KIP126.Classical.Adams.StandardSphere
 
+noncomputable section
 open KIP126.Core.SpectralSequence
 
 /-- The standard hᵢ class, with its bidegree computed from `i`. -/
@@ -36,4 +37,5 @@ def h4D2H0H3Sq : Prop :=
 def h4D2H0H3SqNonzero : Prop :=
   NonzeroDifferential sphereAdamsData 2 h4 h0H3Sq
 
+end
 end KIP126.Classical.Adams.StandardSphere
