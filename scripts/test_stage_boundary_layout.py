@@ -153,12 +153,21 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                 code = code_only((ROOT / Path(*module.split('.'))).with_suffix('.lean').read_text())
                 self.assertNotRegex(code, r"\b(KIP126\.Challenge2|routeComputation|routeLiterature)\b")
 
-    def test_main_computation_does_not_import_certification_proofs(self):
+    def test_main_computation_reuses_only_explicit_row_proof(self):
+        # The migrated 5541 consumer supplies literature and presentation from
+        # its one witness to this parameterized row theorem. Keep the producer
+        # in its owning layer rather than moving actual-model certification
+        # into Def or duplicating it in Main. LinProofs/LinSelected's compiled
+        # proof-value audits additionally reject total-results constants AND
+        # inline projections; all other producer imports remain forbidden.
+        reusable = {"KIP126.Interface.Solution.LinProgram.OneLineH6"}
         for module in self.graph:
             if module.startswith("KIP126.Main.Solution.Computation."):
-                self.assertEqual([m for m in self.dependencies(module)
-                                  if m.startswith("KIP126.Interface.Solution.LinProgram.")
-                                  or m == "KIP126.Interface.Solution.Challenge2"], [], module)
+                forbidden = [m for m in self.dependencies(module)
+                             if (m.startswith("KIP126.Interface.Solution.LinProgram.")
+                                 and m not in reusable)
+                             or m == "KIP126.Interface.Solution.Challenge2"]
+                self.assertEqual(forbidden, [], module)
 
     def test_no_redundant_challenge_wrappers(self):
         self.assertFalse((ROOT / "KIP126/Challenge2.lean").exists())

@@ -1,6 +1,6 @@
 import KIP126.LinProgram.Certificates.Secondary.Seed5487.Input
 
-/-! Four checked products from the selected native paths. Rank stability
+/-! Five checked products from the selected native paths. Rank stability
 proves their coefficients at every original eight-coordinate monomial. -/
 
 set_option maxRecDepth 100000
@@ -47,6 +47,22 @@ theorem product001_200_rank8 : IsMilnorProductAll 8
 theorem product800_100_rank8 : IsMilnorProductAll 8
     [[8,0,0,0,0,0,0,0]] [[1,0,0,0,0,0,0,0]] [[6,1,0,0,0,0,0,0],[9,0,0,0,0,0,0,0]] := by
   exact stable_product 3 5 8 1 _ _ _ product800_100
+    (by intro m hm; simp only [List.mem_singleton] at hm; subst m; decide)
+    (by intro m hm; simp only [List.mem_singleton] at hm; subst m; decide)
+    (by intro m hm; simp only [List.mem_cons, List.not_mem_nil, or_false] at hm
+        rcases hm with rfl | rfl <;> decide)
+    (by decide)
+
+private theorem product401_100 : IsMilnorProductAll 3
+    [[4,0,1]] [[1,0,0]] [[2,1,1],[5,0,1]] := by
+  milnor_cert_all using (⟨generate ⟨3,12⟩,11,1⟩ : AllCertificate)
+
+/-- The single native path for row3145729 expands into two distinct terms.
+Rank stability retains all eight-coordinate monomials, without a degree cutoff. -/
+theorem product401_100_rank8 : IsMilnorProductAll 8
+    [[4,0,1,0,0,0,0,0]] [[1,0,0,0,0,0,0,0]]
+    [[2,1,1,0,0,0,0,0],[5,0,1,0,0,0,0,0]] := by
+  exact stable_product 3 5 11 1 _ _ _ product401_100
     (by intro m hm; simp only [List.mem_singleton] at hm; subst m; decide)
     (by intro m hm; simp only [List.mem_singleton] at hm; subst m; decide)
     (by intro m hm; simp only [List.mem_cons, List.not_mem_nil, or_false] at hm

@@ -100,6 +100,31 @@ This section defines the stable-homotopy language required by the paper.  Locate
   data rather than definitional equality of its third object with $C(f)$.
 \end{definition}
 
+\begin{proposition}[Extension along a shifted cofiber inclusion]
+  \label{prop:shifted-cofiber-extension}
+  \lean{KIP126.StableHomotopy.CofiberExtension.exists_extension_of_shift_comp_zero,KIP126.StableHomotopy.CofiberExtension.exists_eta_nu_extension}
+  \uses{def:cofiber-triangle,def:stable-sphere-suspension,def:mathlib-pretriangulated}
+  \leanok
+  In any supplied stable-homotopy context with the chosen cofibers, let
+  $f:X\to Y$, $n\in\mathbb Z$, and $a:\Sigma^nY\to Z$. If
+  $a\circ\Sigma^nf=0$, there exists $g:\Sigma^nC(f)\to Z$ with
+  $g\circ\Sigma^n\iota_f=a$. All integers and all objects are retained.
+  In particular, for the same maps $\eta:S^1\to S^0$ and
+  $\nu:S^3\to S^0$, the explicit premise
+  $\nu\circ\Sigma^3\eta=0$ gives an extension
+  $\Sigma^3C\eta\to S^0$ restricting to $\nu$.
+  This does not prove the composite-zero premise for the fixed model,
+  choose an actual CW comparison, or identify native coordinates.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Shift the chosen distinguished cofiber triangle and apply contravariant
+  representable exactness at its middle term. Both first arrows acquire
+  $(-1)^n$; multiplying the obtained extension by this unit gives the
+  stated equation for the positive shifted inclusion. No additional sign
+  compatibility is assumed.
+\end{proof}
+
 % SOURCE: MainPaper/main.tex:253-271, 648-664, and 929-971; exactness used repeatedly.
 \begin{theorem}[Stable homotopy long exact sequence]
   \label{thm:stable-homotopy-long-exact}

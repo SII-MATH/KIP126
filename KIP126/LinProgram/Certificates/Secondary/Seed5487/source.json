@@ -389,7 +389,311 @@
           "v": 0
         }
       ]
+    },
+    {
+      "id": 2097152,
+      "s": 4,
+      "v": 0,
+      "t": 4,
+      "d": [
+        {
+          "sq": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        }
+      ],
+      "f": [],
+      "d_f": [],
+      "f_d": [],
+      "associator": []
+    },
+    {
+      "id": 3145729,
+      "s": 6,
+      "v": 1,
+      "t": 16,
+      "d": [
+        {
+          "sq": [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 1
+        },
+        {
+          "sq": [
+            8,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        }
+      ],
+      "f": [
+        {
+          "sq": [
+            4,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        }
+      ],
+      "d_f": [
+        {
+          "sq": [
+            2,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        },
+        {
+          "sq": [
+            5,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        }
+      ],
+      "f_d": [
+        {
+          "sq": [
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 1
+        },
+        {
+          "sq": [
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 2
+        },
+        {
+          "sq": [
+            2,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        },
+        {
+          "sq": [
+            3,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        },
+        {
+          "sq": [
+            6,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 1
+        },
+        {
+          "sq": [
+            6,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        }
+      ],
+      "associator": [
+        {
+          "sq": [
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 1
+        },
+        {
+          "sq": [
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 2
+        },
+        {
+          "sq": [
+            3,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        },
+        {
+          "sq": [
+            5,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        },
+        {
+          "sq": [
+            6,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 1
+        },
+        {
+          "sq": [
+            6,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "v": 0
+        }
+      ]
     }
   ],
-  "scope": "Selected d-squared row 1048577 and d(f) composition row 1572866 only. The d/f columns transcribe native databases; d_f/f_d/associator are auxiliary expressions proposed by extract-secondary-witness.py. No secondary-associator or actual Adams d2 comparison."
+  "scope": "Selected d-squared row 1048577 and d(f) composition rows 1572866 and 3145729 only. The latter is a direct dependency of both selected native target lifts. The d/f columns transcribe native databases; d_f/f_d/associator are auxiliary expressions proposed by extract-secondary-witness.py. No secondary-associator or actual Adams d2 comparison.",
+  "selected_generator_count": 7,
+  "selected_semantic_sha256": "ee919f10abe5f5beeb3213b6529e598198c217555aeccfb415d838e13a2218c8",
+  "direct_dependency_occurrences": [
+    {
+      "root_id": 4194320,
+      "field": "f",
+      "term_index": 8,
+      "term": {
+        "sq": [
+          0,
+          7,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "v": 1
+      },
+      "image_id": 3145729
+    },
+    {
+      "root_id": 4194319,
+      "field": "f",
+      "term_index": 7,
+      "term": {
+        "sq": [
+          1,
+          2,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "v": 1
+      },
+      "image_id": 3145729
+    }
+  ]
 }

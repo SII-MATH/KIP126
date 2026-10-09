@@ -103,7 +103,39 @@ theorem doubleDesuspensionCompatible : DoubleDesuspensionCompatible := by
   exact (standardRouteModel.classicalSuspension .sphere).hasDifferential_desuspendTwice
     (standardRouteModel.classicalSuspension (.shift 1 .sphere)) hsx hsy hx hy h
 
-private theorem statement_of_hasDifferential (P : LinE2Presentation)
+/-- Naturality along the fixed top-cell map followed by the actual two
+fixed desuspensions. This reusable statement retains every integer page,
+bidegree and representative; only the source differential and the four
+representative comparisons are inputs. -/
+theorem topCell_hasDifferential_desuspendTwice (r s t u v : ℤ)
+    (a : cetaSequence.Page 2 (s, t)) (b : cetaSequence.Page 2 (u, v))
+    (x1 : PageRepresentatives.Ambient standardFoundation.hf2
+      (Sphere (C := standardFoundation.Spectrum) 1) (s, t - 1))
+    (y1 : PageRepresentatives.Ambient standardFoundation.hf2
+      (Sphere (C := standardFoundation.Spectrum) 1) (u, v - 1))
+    (x : sphereAdamsData.Page 2 (s, t - 1 - 1))
+    (y : sphereAdamsData.Page 2 (u, v - 1 - 1))
+    (source_first :
+      (standardRouteModel.classicalSuspension (.shift 1 .sphere)).DesuspendsClass
+        s t (adamsInternalE2Induced standardFoundation.hf2.unit topCell (s, t) a) x1)
+    (target_first :
+      (standardRouteModel.classicalSuspension (.shift 1 .sphere)).DesuspendsClass
+        u v (adamsInternalE2Induced standardFoundation.hf2.unit topCell (u, v) b) y1)
+    (source_second :
+      (standardRouteModel.classicalSuspension .sphere).DesuspendsClass s (t - 1) x1 x)
+    (target_second :
+      (standardRouteModel.classicalSuspension .sphere).DesuspendsClass u (v - 1) y1 y)
+    (source : HasDifferential cetaSequence r (s, t) (u, v) a b) :
+    HasDifferential sphereAdamsData r (s, t - 1 - 1) (u, v - 1 - 1) x y :=
+  doubleDesuspensionCompatible r s t u v
+    (adamsInternalE2Induced standardFoundation.hf2.unit topCell (s, t) a)
+    (adamsInternalE2Induced standardFoundation.hf2.unit topCell (u, v) b)
+    x1 y1 x y source_first target_first source_second target_second
+    (adamsInternalE2Induced_hasDifferential standardFoundation.hf2.unit topCell source)
+
+/-- Package native coordinate witnesses and an actual differential using
+the same presentation on both endpoints. -/
+theorem statement_of_hasDifferential (P : LinE2Presentation)
     (row : KIP126.Computation.LinProofs.DifferentialRow)
     (hx : row.t ≤ 261) (hy : row.t + row.r - 1 ≤ 261)
     (x : E2At row.s row.t)
@@ -150,14 +182,10 @@ theorem row245131 (P : LinE2Presentation) (coordinates : CetaCoordinates)
       KIP126.Computation.LinProofs.Raw.Naturality.output245131 := by
   have h : HasDifferential sphereAdamsData 3 (2, 17) (5, 19)
       (P.comparison 2 17 (by decide) x) (P.comparison 5 19 (by decide) y) :=
-    doubleDesuspensionCompatible 3 2 19 5 21
-      (adamsInternalE2Induced standardFoundation.hf2.unit topCell (2, 19)
-        (coordinates 2 19 0))
-      (adamsInternalE2Induced standardFoundation.hf2.unit topCell (5, 21)
-        (coordinates 5 21 0)) x1 y1
+    topCell_hasDifferential_desuspendTwice 3 2 19 5 21
+      (coordinates 2 19 0) (coordinates 5 21 0) x1 y1
       (P.comparison 2 17 (by decide) x) (P.comparison 5 19 (by decide) y)
-      source_first target_first source_second target_second
-      (row245130_topCell coordinates source)
+      source_first target_first source_second target_second source
   exact statement_of_hasDifferential P
     KIP126.Computation.LinProofs.Raw.Naturality.output245131
     (by decide) (by decide) x y x_coordinates y_coordinates h

@@ -14,10 +14,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 DEST = ROOT / 'KIP126/LinProgram/Certificates/Secondary/Seed5487'
 EXPECTED = '088958541d91f6a987c825ab94a3266001cf94e6eccdf19757ac9b39d92c69fa'
-SELECTED = 'ba9cb96f4ad386fb4130167e58281286e57c145c909df15b0669318ff318f48e'
+SELECTED = 'ee919f10abe5f5beeb3213b6529e598198c217555aeccfb415d838e13a2218c8'
 CLOSURE_IDS = '353a86fc9dc8a69e60f674d62dbf14ebface2bd29f2fa530dc0ef0804dc74f52'
 REBUILD_AUDIT = ROOT / 'docs/audits/issue152/seed5487-next.json'
-IDS = [0, 524288, 524289, 1048577, 1572866]
+IDS = [0, 524288, 524289, 1048577, 1572866, 2097152, 3145729]
 
 
 def canonical(x):
@@ -75,7 +75,8 @@ def check_source_chain(audit, rendered_input):
             selected['sha256'] == hashlib.sha256((DEST / 'source.json').read_bytes()).hexdigest(),
             'selected fixture does not match the canonical derivation link')
     require(selected['complete_96_row_semantic_sha256'] == EXPECTED and
-            selected['selected_five_row_semantic_sha256'] == SELECTED and
+            selected['selected_row_semantic_sha256'] == SELECTED and
+            selected['selected_row_count'] == len(IDS) and
             selected['closure_ids_sha256'] == CLOSURE_IDS,
             'canonical semantic fingerprints differ from the fixed fixture')
     require(derived['fixed_input']['path'] == str((DEST / 'Input.lean').relative_to(ROOT)) and
@@ -97,6 +98,8 @@ def main():
     require(data['schema'] == 'lin-secondary-seed5487-selected/v1', 'unexpected fixture schema')
     require(data['source_witness_semantic_sha256'] == recorded['chain_semantic_sha256'] == EXPECTED,
             'full-witness fingerprint differs from the fixed rebuild record')
+    require(data['selected_generator_count'] == len(IDS) and
+            data['selected_semantic_sha256'] == SELECTED, 'selected count or metadata fingerprint changed')
     require(hashlib.sha256(canonical(data['selected_generators'])).hexdigest() == SELECTED,
             'selected payload fingerprint changed')
     require(len(closure) == len(set(closure)) == 96, 'closure must contain 96 distinct IDs')
@@ -130,6 +133,19 @@ def main():
         for key in ('target_id', 'comparison_target_id', 'source_v',
                     'augmentation', 'comparison_augmentation'):
             require(witness[key] == recorded[key], f'witness seed endpoint changed: {key}')
+        by_id = {row['id']: row for row in rows}
+        require(len(data['direct_dependency_occurrences']) == 2,
+                'both native target-lift dependencies must be retained')
+        require([item['root_id'] for item in data['direct_dependency_occurrences']] ==
+                [data['target_id'], data['comparison_target_id']], 'dependency endpoints changed')
+        for item in data['direct_dependency_occurrences']:
+            root = by_id[item['root_id']]
+            require(item['field'] == 'f' and item['image_id'] == 3145729,
+                    'unexpected direct dependency kind or image')
+            require(root['f'][item['term_index']] == item['term'],
+                    'direct dependency differs from the original target lift')
+            require(((root['s'] - 2) << 19) + item['term']['v'] == item['image_id'],
+                    'direct dependency uses the wrong homological degree')
         original_hashes = witness['input_hashes']
         hashes = {Path(k).name: v for k, v in original_hashes.items()}
         require(len(hashes) == len(original_hashes) == 2 and set(hashes) == set(data['input_hashes']),

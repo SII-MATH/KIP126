@@ -13,6 +13,7 @@ run_cmd do
   let logical := [``propext, ``Classical.choice, ``Quot.sound]
   for decl in [``KIP126.Computation.Secondary.Seed5487.row1048577_d_squared,
       ``KIP126.Computation.Secondary.Seed5487.row1572866_d_f,
+      ``KIP126.Computation.Secondary.Seed5487.row3145729_d_f,
       ``MilnorCertificates.checkAll_sound, ``MilnorCertificates.stable_product] do
     for ax in (← collectAxioms decl) do
       unless logical.contains ax do
@@ -42,7 +43,23 @@ example : compose 8 firstDifferentialImages [⟨[0,1,0,0,0,0,0,0],0⟩] ≠
 -- A changed output is rejected by the reused semantic checker.
 example : checkAll 2 [[0,1]] [[1,0]] [] ⟨generate ⟨2,4⟩,3,1⟩ = false := by decide
 
+-- This new path also rejects an absent native differential image.
+example : compose 8 (fun _ => none) row3145729.f = none := rfl
+
+-- Deleting the second output term changes the actual composite coefficient.
+example : compose 8 fourthDifferentialImages row3145729.f ≠
+    some (fun target m => expressionCoefficient
+      [⟨[2,1,1,0,0,0,0,0],0⟩] target m.val) := by
+  rw [row3145729_d_f]
+  intro h
+  have h0 := congrArg
+    (fun value => value.map fun f => f 0 ⟨[5,0,1,0,0,0,0,0],rfl⟩) h
+  change some true = some false at h0
+  contradiction
+
 end KIP126.Computation.Secondary.Seed5487
 
 #print axioms KIP126.Computation.Secondary.Seed5487.row1048577_d_squared
 #print axioms KIP126.Computation.Secondary.Seed5487.row1572866_d_f
+
+#print axioms KIP126.Computation.Secondary.Seed5487.row3145729_d_f

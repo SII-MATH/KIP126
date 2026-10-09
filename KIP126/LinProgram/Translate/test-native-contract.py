@@ -73,6 +73,44 @@ class NativeContractTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "map suspension"):
             NATIVE.validate_naturality(naturality["source_candidate_log"], naturality["target_log"], mapping)
 
+    def test_naturality_output_can_be_next_naturality_source(self):
+        extra = self.expected["additional_missing_trace"]
+        source, target = extra["source_candidate_log"], extra["target_log"]
+        mapping = self.expected["naturality"]["native_map"]
+        self.assertEqual(source["reason"], "N")
+        NATIVE.validate_naturality(source, target, mapping)
+        for changed in ({**source, "reason": "T"}, {**source, "depth": 1}):
+            with self.assertRaisesRegex(ValueError, "unsupported source"):
+                NATIVE.validate_naturality(changed, target, mapping)
+        self.assertFalse(extra["actual_row_certified"])
+
+    def test_recovered_trace_keeps_exact_source_and_unproved_obligations(self):
+        extra = self.expected["additional_missing_trace"]
+        source, target = extra["source_candidate_log"], extra["target_log"]
+        trace = json.loads((NATIVE.ROOT / extra["native_trace"]["path"]).read_text())
+        mapping = self.expected["naturality"]["native_map"]
+        NATIVE.validate_recovered_trace(trace, source, target, mapping)
+        changed = copy.deepcopy(trace)
+        for row in changed["adjacent_context"]["branch_rows"]:
+            if row["id"] == source["id"]:
+                row["reason"] = "D"
+        with self.assertRaisesRegex(ValueError, "trace source differs"):
+            NATIVE.validate_recovered_trace(changed, source, target, mapping)
+        changed = {**trace, "remaining_propositions": []}
+        with self.assertRaisesRegex(ValueError, "erased actual-model obligations"):
+            NATIVE.validate_recovered_trace(changed, source, target, mapping)
+
+    def test_nonempty_incomplete_trace_premises_cannot_be_rebaselined(self):
+        extra = self.expected["additional_missing_trace"]
+        expected_bytes = (NATIVE.ROOT / extra["native_trace"]["path"]).read_bytes()
+        trace = json.loads(expected_bytes)
+        for remaining in (["placeholder"], [trace["remaining_propositions"][4]]):
+            changed = {**trace, "remaining_propositions": remaining}
+            changed_bytes = (json.dumps(changed, ensure_ascii=False, indent=2) + "\n").encode()
+            with self.subTest(remaining=remaining), self.assertRaisesRegex(
+                    ValueError, "fixed-input reconstruction"):
+                NATIVE.check_recovered_trace_snapshot(changed_bytes, expected_bytes)
+
     def test_missing_trace_and_obligations_cannot_be_erased(self):
         swapped_targets = list(reversed(self.expected["algebra"]["fixed_quotient_statement_declarations"]))
         for section, key, value in (("naturality", "remaining_premises", []),

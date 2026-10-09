@@ -12,7 +12,7 @@
 其来源仍登记在唯一 canonical manifest `docs/external-inputs.json` 的既有 `lwx_machine` 条目下。
 
 确定性 `Translate/native-contract.py` 输出
-`Generated/NativeContract/manifest.json`，固定原始行、字段、坐标、辅助多项式见证及缺失依赖。它检查输入哈希与提取结果，不宣称完成 Lean 或实际数学认证。
+`Generated/NativeContract/manifest.json`，固定原始行、字段、坐标、辅助多项式见证及缺失依赖。462481 条目已更新为原生上下文已找回，保持实际认证为 false，并链接可重建快照；连续 N→N 的来源标签和剩余实际义务有专门检查。合同生成前从固定输入完整重建该上下文，逐字比较，不能通过对被删改前提的派生 JSON 重新盖哈希来接受它。它检查输入哈希与提取结果，不宣称完成 Lean 或实际数学认证。
 
 | 原生目标 | 完整数学坐标 | 当前状态 |
 | --- | --- | --- |
@@ -92,7 +92,7 @@ lake build KIP126.Checks.AdamsE2.LinReplayCoordinates \
 
 原生基底行 id69 为 `7,1,1`、id80 为 `8,1,1`，模块生成元 1 的像为 S0 的 `0,1`。固定 schema 和映射版本元数据后，两个所需局部矩阵都是 `[[1]]`，将两端 `[0]` 精确送到原生日志的 `[0]`。互反 staircase 行也固定在快照中。这是数据库中存储的模块生成元像的形式线性延拓及直接单项式匹配，仍不是实际谱序列映射比较。
 
-相邻日志及这些原生矩阵不提供来源微分的证明。额外目标 462481 的原生源数据可继续查取；其实际来源微分及比较仍未认证。来源审计在只存在 LFS 指针时明确报告 metadata-only；`native-contract.py` 必须读取并哈希验证实体字节，不能用指针代替数据核验。原生输入加载器还严格核对指针完整格式、登记 OID 和大小，在构造缓存路径前拒绝畸形或错配指针；7 项实体/指针/缓存回归测试通过。
+相邻日志及这些原生矩阵不提供来源微分的证明。额外目标 462481 的原生源数据和完整上下文已提取并重建，见下节；其实际来源微分及比较仍未认证。来源审计在只存在 LFS 指针时明确报告 metadata-only；`native-contract.py` 必须读取并哈希验证实体字节，不能用指针代替数据核验。原生输入加载器还严格核对指针完整格式、登记 OID 和大小，在构造缓存路径前拒绝畸形或错配指针；7 项实体/指针/缓存回归测试通过。
 
 ```sh
 lake build KIP126.Checks.AdamsE2.LinNaturalityCoordinates \
@@ -115,6 +115,69 @@ lake build KIP126.Checks.ClassicalAdams.LinReplayRules
 
 三个新定理的独立 Lean 编译和传递公理审计已通过，仅使用标准逻辑公理。实际目标的 `¬ IsBoundaryBy ... 3 ...` 仍是数学义务，数据库的文字断言不提供其证明。
 
+## 462481 上游分支的完整原生候选商
+
+`row462481-trace.json` 保留原始 11 列日志、相邻分支、完整局部数据库切片及来源链。462479 是 CW_nu_eta 的 `D`：`d3:(15,144)[1]→(18,146)[0]`；随后 462480 是 Ceta 的 `N`：`d3:(15,140)[1]→(18,142)[0]`，462481 是 S0 的 `N`：`d3:(15,138)[2]→(18,140)[2]`。相邻位置、映射元数据及原生像共同支持这条重构链，但数据库没有显式 parent-id 列；不能把重构边当成已证数学依赖。
+
+`LinProgram.BranchD2Coordinates.kernel_mod_image_representatives` 对所有 `Fin 4 → F2` 向量证明完整核/像商的唯一代表为 `[]、[0]、[2]、[0,2]`。原矩阵是 5→4→4：入射列 `[1,3],[],[],[],[]`，出射列 `[],[2],[],[2]`，对应全部原始行 `5600–5604 → 5720–5723 → 5854–5857`。没有丢弃零列或把未知列当成零。核有八个元素，像有两个元素；定理保留全部五维入射域和四维中间域。
+
+这一步只认证实际固定原生矩阵的线性代数。它不提供实际 CW 的 E2 比较、实际 d2 交换方块或实际 E3 `CandidateCoverage`，也没有把三条 trial 的文字诊断升级为反驳证明。
+
+```sh
+python3 -B KIP126/LinProgram/Translate/extract-row462481-trace.py --check
+python3 KIP126/LinProgram/Translate/check-branch-d2-coordinates.py
+python3 KIP126/LinProgram/Translate/test-branch-d2-coordinates.py
+lake build +KIP126.Checks.AdamsE2.LinBranchD2Coordinates:olean
+```
+
+独立 Lean 编译、公理/导入审计及 8 项数据负例通过。证明只使用标准逻辑公理。只读检查从唯一 canonical 清单中既有 Zenodo 记录摘要出发，认证同版本归档，再核对成员、完整 SQL 切片和 Lean 输入；不把新增 JSON 自身的哈希用作来源信任根。
+
+快照重建器还核对两级映射的全部列及所列原生多项式差，保留每条日志全部 11 列。正常重放及四项变异拒绝通过。历史状态 `CW d3:(16,145)[3]→(19,147)[1]` 虽未找到独立直接 root 日志，但已识别一组充分的原生代数依赖：更早 `D461961: CW d3:(15,137)[0]→(18,139)[0]` 乘 S0 `(1,8)[0]`，与 `D153861: S0 d3:(15,138)[0]→0` 乘 CW `(1,7)[0]` 相加。源像分别为 `[2,3]` 与 `[2]`，目标像为 `[1]` 与零，原生坐标相加得到 `[3]→[1]`。
+
+这只是独立代数重构，数据库没有记录这些 parent 边。两条早期实际 D、两个实际乘子循环、实际模 Leibniz、CW relation13675 与球面 relation10936 的模作用/坐标比较均须落实。快照保留两个完整祖先分支，未把其失败 trial 当作已证；例如 461958 的记录页与诊断中的 d40/d999 仍分别保留，不能按统一 d3 规则强行解读。
+
+`LinE2.NaturalityHighStemProducts` 另外闭合了三条固定球面商等式，保留全部原生生成元：
+
+| 定理 | 原生等式 | 固定来源 |
+| --- | --- | --- |
+| `native_map_column0` | `x24*x189 = x7*x279` | S0 relation rowid 10210，CSV 零基序号 10209 |
+| `native_h0_product_zero` | `x0*x519 = 0` | rowid 13637，CSV 序号 13636 |
+| `native_ancestor_product` | `x3*x358 = x0²*x437` | rowid 10936，CSV 序号 10935 |
+
+```sh
+lake build KIP126.Checks.AdamsE2.LinNaturalityHighStemProducts
+```
+
+三条定理均经独立 Lean 编译、公理/导入审计与错配目标拒绝，公理只有标准逻辑三项。第一条供 Ceta→S0 完整矩阵的额外列化简使用；选中向量原本不需要它。后两条供上游原生代数诊断及历史输入重构使用。两条 Ceta 模块关系及一条 CW 模块关系仍待证；上述球面商等式不解决实际模作用、实际页比较或历史微分来源。
+
+## 从原生核/像商接到实际 E3 页
+
+新增独立 Def 模块 `SpectralSequence/Computation/PageThree/Proofs.lean` 在任意环 `R`、任意内部谱序列 `E` 和全部次数上证明五项结论：每个 E3 元素有 E2 共同代表；当 `E.r₀≤2` 时，E2 标签到达 E3 等价于实际 d2 为零，`IsBoundaryBy E 2` 等价于实际 d2 像中的成员性；标签代表同一个 E3 元素、以及两个已代表的 E3 元素相等，都由标签之差在完整 d2 像中刻画。证明直接使用规范商页和 `Z_succ/B_succ`，没有另行假设 E3 是核/像商。
+
+`LinProgram.BranchPageThree.representatives` 将已闭合的四个原生代表运输到任意 `ModuleCat ℤ` 谱序列，量化**每个**实际 E3 元素。其显式输入是起始页界、三个完整 ℤ 线性坐标同构（5、4、4 维）和两个对全部向量成立的实际 d2 交换等式；没有加入 `CandidateCoverage`、非零性、整表结果或源延拓假设。
+
+```sh
+lake build KIP126.Checks.SpectralSequence.PageThree \
+  KIP126.Checks.AdamsE2.LinBranchPageThree
+```
+
+四个新模块均独立 Lean 编译通过且无警告，公理审计只有标准逻辑公理。这一通用条件运输定理已闭合；其实际 CW 应用仍需同一模型中的 CW 对象、d2 次数 `(2,1)`、三份完整坐标同构及两交换方块。此外，源 `(15,144)[1]` 的 E3 延拓也必须证明，不能由目标空间覆盖或 D 标签推断。因此尚未构造实际 CW 的 `CandidateCoverage`。
+
+## 462481 的同模型条件自然性重放
+
+`Interface.Solution.LinProgram.NaturalityHighStem.row462481` 现已给出精确原生输出 `d3:(15,138)[2]→(18,140)[2]`。它重用同一 Ceta、eta 映射、实际 topCell、两份 tower comparison 和传入的同一个 presentation `P`。新增通用 `Naturality.topCell_hasDifferential_desuspendTwice` 保留全部整数页与次数；旧 245131 两个公开入口的完整类型逐字不变，证明改为共用此传输。
+
+球面源类 `x0²*x418` 和目标类 `x0²*x437` 的归档行、同质次数及 `[2]` 坐标都已闭合，分别对应原始基底 id3002、id3140。原生日志 462480/462481 全部 11 列由重建器核对；来源 462480 保持 **N**，没有被改写为 D。
+
+准确剩余前提是实际 `HasDifferential cetaSequence 3 (15,140) (18,142) (coordinates 15 140 1) (coordinates 18 142 0)`，以及 topCell 像经过两次降悬时源、目标的四条坐标比较。Ceta 原生坐标与实际模型的识别同样尚需构造。实际模型本身的既有基础待证命题保留，Main 的 462481 消费者因此尚未迁移。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.LinNaturalityHighStem \
+  KIP126.Checks.ClassicalAdams.LinNaturalityReplay
+```
+
+五个修改/新增 Lean 模块及新旧检查均独立编译通过。坐标和 `HasCoordinates` 证明只有标准逻辑公理；条件实际重放继承已有固定模型 `sorryAx`。证明值检查确认新旧包装均使用同一共用传输，均不读取整表认证或待构造总交付。它们不把非空坐标升级为后来页上的非零结论。
+
 ## 已闭合的悬移与重编号规则
 
 `Suspension.TowerComparison.desuspend_adamsI`、`desuspend_adamsJ`、`desuspend_adamsK` 已从既有 tower/layer 方块证明：前两项交换，K 带负号。所有整数次数及 tower stages 保留，没有加入新的 differential-compatibility 假设。实际有限循环与边界的保持也已经证明；循环见证的负号来自同一个 K 方块。
@@ -127,13 +190,13 @@ I/J/K、这两条重编号规则以及 `desuspendPage_differential` 均通过独
 lake build KIP126.Checks.ClassicalAdams.LinSuspensionReplay
 ```
 
-## 种子 5487 输入中的两条闭合代数等式
+## 种子 5487 输入中的三条闭合代数等式
 
-复用现有提取审计 `docs/audits/issue152/seed5487-next.json`，从同一 96 生成元闭包选取实际标识 `0,524288,524289,1048577,1572866`。完整闭包语义 SHA256 为 `088958541d91f6a987c825ab94a3266001cf94e6eccdf19757ac9b39d92c69fa`。原数据库的 `d、f` 字段与提取器计算的辅助见证 `d_f、f_d、associator` 明确区分；辅助见证可以被证书验证，其存在不等于原生算法正确性证明。
+复用现有提取审计 `docs/audits/issue152/seed5487-next.json`，从同一 96 生成元闭包选取实际标识 `0,524288,524289,1048577,1572866,2097152,3145729`。完整闭包语义 SHA256 为 `088958541d91f6a987c825ab94a3266001cf94e6eccdf19757ac9b39d92c69fa`。原数据库的 `d、f` 字段与提取器计算的辅助见证 `d_f、f_d、associator` 明确区分；辅助见证可以被证书验证，其存在不等于原生算法正确性证明。
 
-`KIP126.Computation.Secondary.Seed5487.row1048577_d_squared` 证明实际行 `(s,v,t)=(2,1,4)` 的全部两条路径相消。`row1572866_d_f` 证明行 `(3,2,10)` 的原生 `f` 经原生第一微分后，恰等于辅助见证中的三项表达式。这两条函数等式覆盖所有目标生成元和所有原始八坐标 Milnor 单项式，不限制次数。缺失中间像返回 `none`，不能被当成零列。
+`KIP126.Computation.Secondary.Seed5487.row1048577_d_squared` 证明实际行 `(s,v,t)=(2,1,4)` 的全部两条路径相消。`row1572866_d_f` 证明行 `(3,2,10)` 的原生 `f` 经原生第一微分后，恰等于辅助见证中的三项表达式。`row3145729_d_f` 进一步证明行 `(6,1,16)` 的原生 f 经行 2097152 的原生 d 后，等于辅助 d_f 的两项表达式；该行直接出现在种子两个端点 4194320/4194319 的原生 f 中。这三条函数等式覆盖所有目标生成元和所有原始八坐标 Milnor 单项式，不限制次数。缺失中间像返回 `none`，不能被当成零列。当前七行选定语义 SHA256 为 `ee919f10abe5f5beeb3213b6529e598198c217555aeccfb415d838e13a2218c8`；完整96行摘要不变。
 
-乘法语义是已有显式 Milnor 余乘法的对偶；直接复用远程导入的 `checkAll_sound` 与 `stable_product`。小秩的证书通过次数支撑定理覆盖窗口外系数，再扩到原始秩八。Lean 编译及公理审计通过，依赖仅标准逻辑三项；删除非零路径、缺少中间像、篡改输出的三项负例均通过。
+乘法语义是已有显式 Milnor 余乘法的对偶；直接复用远程导入的 `checkAll_sound` 与 `stable_product`。五个小秩乘法证书通过次数支撑定理覆盖窗口外系数，再扩到原始秩八；新增乘法采用 rank3/window12，结果为 Milnor 指数 `(2,1,1)` 与 `(5,0,1)`，没有将结论限制在窗口内。Lean 编译及公理审计通过，依赖仅标准逻辑三项；删除非零路径、缺少中间像、篡改输出的三项负例均通过。
 
 这些结果未证明整个 96 行闭包的全部等式、associator 公式、分解正合性/极小性或到同一实际球面 `d₂` 的比较。日志 5487 的实际微分仍未认证。
 
@@ -170,6 +233,44 @@ lake build KIP126.Checks.ClassicalAdams.LinReplayStagePairing
 
 双侧配对仍缺实际 `y : Q_s^r ⊗ Q_t^r → T_{s+t+r}[1]`，使其沿塔映射的悬移投影等于指定的 `adamsSphereLongLayerProductBoundary`；准确条件为 `adamsSphereLongLayerProduct_exists_iff_boundaryLift` 的右侧。现有每个长度的三角补全由独立选择构造，跨长度投影相容不能自动推出。即使这一点解决，实际 `BoundaryCompatible` 和两项 `RelativeBoundaryFormula` 仍需分别证明。因此单侧规则尚不完成 152097 的 E4 Leibniz 诊断。
 
+## 5541 的文献生产端与消费者迁移
+
+固定原生日志为 `(5541, depth=0, reason="d2", name="S0", stem=63, s=1, t=64, r=2, x="0", dx="0", info=NULL)`。源归档基底行 401 是 `(1,64)[0]="69,1"`，目标行 416 是 `(3,65)[0]="0,1,18,2"`。
+
+`LinE2.OneLineH6.source_eq_zero_or` 和 `target_eq_zero_or` 在完整 2914 生成元商中证明两个**完整同质分量**分别只有零与指定原生类两种可能；不是把 CSV 列表直接假定为基底。证明使用完整生成元次数数组、单项式次数穷尽及 F2 系数，传递公理只有标准逻辑公理。
+
+`Interface.Solution.LinProgram.row5541_hasNonzeroDifferential literature P` 在同一固定球面上实例化已有 `literature.results.adamsOneLine_d2` 的 `j=6`，保留非零微分结论。源是标准 `h6`，目标是标准 `h0*h5²`；利用两分量穷尽、`P.comparison` 的满射性及这两个标准类的非零性，证明精确原生坐标与实际标准类相等。这一步不假定 presentation 的任意乘法已经等于规范 cobar 乘法。
+
+`row5541` 给出原生日志完整的 `DifferentialStatement P ⟨5541,"d2",1,64,2,[0],[0]⟩`；`row5541_rejects_zero` 排除把目标改为零向量。两条 Main 消费者 `Computation.LinProofs.row5541` 与 `Selected.d2_h6` 保持原有完整类型，改用同一直接 witness 投影得到的 `StageInput.literature` 和 `StageInput.computation.bindings.presentation`。一般整表定理及其全部量词保留；另外五条选定行仍使用原有整表交付。
+
+这一路径明确依赖已有 one-line 文献输入，未重放 Lin 的 secondary 算法。实际模型的已有 `sorryAx` 仍在，因此只标为条件实际结果；数据坐标证书本身已闭合。生产端不导入 Main 或待构造总交付。消费者审计沿证明值检查常量和内联结构投影，禁止读取 `ComputationInterface.results`、`ComputationResults` 及整表认证。 原布局检查按路径禁止全部 LinProgram producer 复用；为这次具体迁移，只开放 `Interface.Solution.LinProgram.OneLineH6` 一个完全参数化模块，其余 producer 与总交付仍禁止导入，逆向 Main 依赖禁令保留。这样实际模型证书继续由 Interface 持有，Main 以同一 witness 的显式输入复用；不把实现挪入 Challenge/Def 或复制证明。18 项布局检查通过，编译后的证明值/投影审计负责进一步约束这一精确例外。
+
+```sh
+python3 KIP126/LinProgram/Translate/import-selected.py --check
+python3 scripts/test-import-lin-selected.py
+lake build KIP126.Checks.ClassicalAdams.LinH6OneLineProducer \
+  KIP126.Checks.ClassicalAdams.LinProofs \
+  KIP126.Checks.ClassicalAdams.LinSelected
+```
+
+当前检查：确定性重生成一致；7 项生成器测试通过，其中原生目标、次数、reason、页码错配均不能复用该 producer。数据证书、生产端及生产端公理/导入审计正式构建通过；包含 Main 消费者的完整根库构建也已通过（4209 jobs），消费者的证明值与内联投影审计通过。既有固定模型的 sorryAx 和直接 witness 依赖如实保留。
+
+## 实际 CW 对象及 shift-four 映射的精确缺口
+
+本地固定文献 `Source/LWXMachine/source/ms.tex:187–190` 用两个三角定义 `CW_a_b`；对 `CW_nu_eta`，胞次数是 0、4、6，三角为 `Cν → X → S⁶` 与 `S⁰ → X → Σ⁴Cη`。同文第221行明确允许同名的不同同伦型选择。因此必须把原生数据比较到一个在同一实际模型中明确构造的选择，数据库中的名字不能唯一指定该对象。
+
+现有 `standardRouteModel.auxiliary` 已有实际 η、ν；同一 literature 的 `ClassicalSourceBinding` 可以绑定这些映射，但现有结果没有给出所需的 `ν ∘ (Σ³η) = 0`。原生配置中空的 ην/νη 乘积记录不提供这个实际复合为零的证明。
+
+一条可复用的构造路线是在同一个 η-cofiber 上，由上述复合零和 `Triangle.yoneda_exact₂` 取得 `g : Σ³Cη → S⁰`，使其沿 `Σ³` 底胞限制为同一 ν。随后令 `X := cofib g`，以 `cofibδ g` 后接规范悬移合成同构作为 `X → Σ⁴Cη`；与实际 `Cν → X → S⁶` 三角的比较可由同一范畴的八面体公理构造。悬移三角的三条箭头在奇数次悬移时均带符号，必须显式处理，不能把 shift-distinguished 当成箭头逐项不变。
+
+`StableHomotopy.CofiberExtension.exists_extension_of_shift_comp_zero` 已从实际移位三角的 `Triangle.yoneda_exact₂` 证明任意整数移位的延拓存在；`exists_eta_nu_extension` 是同一 η/ν 的三次移位特化。两条定理保留全部对象及量词，显式假设复合为零。奇数移位的符号由对延拓乘 `(-1)^n` 处理，没有新增符号兼容性输入。
+
+```sh
+lake build KIP126.Checks.StableHomotopy.CofiberExtension
+```
+
+独立编译及正式根库构建、公理/导入审计均通过，只有标准逻辑三项。准确待证内容包括：实际复合零；指定延拓与固定原生模块的比较；两个选定余纤维三角的比较；上述实际商映射在所用坐标上的等式。现 route 的 `ClassicalObject` 悬移比较覆盖 sphere/Cν/detector 及其 shifts，未覆盖 Cη；还需在同一 foundation 上为 Cη 及前三次悬移构造实际 `TowerComparison`，才可完成 CW→Cη 的四次降悬。没有新增源假设、Challenge2 字段或替代模型来掩盖这些义务。
+
 ## 后续依赖与实际接入边界
 
 | 目标 | 精确剩余义务 | 可复用模块 |
@@ -181,7 +282,8 @@ lake build KIP126.Checks.ClassicalAdams.LinReplayStagePairing
 | 候选覆盖 | 对准确 context/window 构造 `CandidateCoverage`，排除全部其他候选；保留 trial 数量不是覆盖证明 | 既有 `CandidateElimination.sound` / `CandidateExhaustion.sound` |
 | secondary d2 种子 5487 | 已闭合选中行的 d² 与 d∘f 等式；整个96行、associator公式、分解正合/极小性与实际球面d2比较仍待证 | `Translate/extract-secondary-witness.py` 与 issue152 原有审计 |
 | 245131 实际认证 | 实例化上述来源及四条坐标比较；来源原始数据已补，双降悬通用定理已闭合；仍需实际比较 | `Naturality` |
-| 消费者迁移 | 只有实际已经供给的结果才接到同一 `literature`、`bindings.presentation`、`standardRouteModel`；不读取待构造的 `Interface.Solution.challenge2` 来制造 producer | 现有 `ComputationResults`/Main 消费层 |
+| 462481 实际认证 | Ceta 来源462480的实际微分、同一 topCell 的四条降悬坐标比较；如重放更早分支，还需同模型 CW 对象/映射、实际d2坐标比较、完整源到达E3及所有祖先trial反驳 | `Naturality`、完整原生矩阵证书和 `row462481-trace.json` |
+| 消费者迁移 | 5541 已改用显式 one-line 文献和独立坐标证书；其实际基础仍待证，另外五条选定行尚依赖整表。只有实际已经供给的结果才接到同一 `literature`、`bindings.presentation`、`standardRouteModel`；不读取待构造的 `Interface.Solution.challenge2` 来制造 producer | 现有 `ComputationResults`/Main 消费层 |
 
 本次没有新项目公理、Challenge2 根字段、独立 literature、替代实际模型或总交付读取。较早复用的 `row5434` 是由同一 literature 中 one-line 定理和独立坐标证书得到的条件实际结果，不等于重放原生 secondary 算法。
 
@@ -198,6 +300,18 @@ lake build KIP126.Checks.AdamsE2.LinReplayProducts \
   KIP126.Checks.ClassicalAdams.LinLowStemProducer \
   KIP126.Checks.ClassicalAdams.LinOneLineProducer \
   KIP126.Checks.ClassicalAdams.LinReplayStagePairing
+lake build +KIP126:olean \
+  KIP126.Checks.ClassicalAdams.LinH6OneLineProducer \
+  KIP126.Checks.ClassicalAdams.LinProofs \
+  KIP126.Checks.ClassicalAdams.LinSelected \
+  KIP126.Checks.ClassicalAdams.LinNaturalityHighStem \
+  KIP126.Checks.ClassicalAdams.LinNaturalityReplay \
+  KIP126.Checks.AdamsE2.LinBranchD2Coordinates \
+  KIP126.Checks.AdamsE2.LinBranchPageThree \
+  KIP126.Checks.SpectralSequence.PageThree \
+  KIP126.Checks.AdamsE2.LinNaturalityHighStemProducts \
+  KIP126.Checks.ClassicalAdams.LinSecondary5487 \
+  KIP126.Checks.StableHomotopy.CofiberExtension
 python3 scripts/check_source_inventory.py
 python3 -m scripts.test_check_source_inventory
 python3 -m scripts.test_external_inputs
@@ -207,10 +321,11 @@ python3 scripts/test_stage_boundary_layout.py
 python3 scripts/blueprint_frontier.py --output-dir /tmp/linprogram-certificate-frontier
 python3 -m scripts.test_blueprint_frontier
 leanblueprint web
+lake exe checkdecls blueprint/lean_decls
 git diff --check
 ```
 
-来源清单（26 sources/117 artifacts）、来源审计22项、外部输入51项、边界布局18项、Blueprint frontier15项和活动依赖解析已通过。原有 E2、staircase、proofs、route 重建检查通过。统一六项 Lean 构建已通过（3504 jobs）；自然性条件封装与导入/公理审计通过；来源声明/module/field 的 Lean 校验通过；Blueprint web 渲染通过（固定 0.0.20 环境，仅原有 `relax` renderer 警告）。原生合同12项测试通过。第二批五目标正式构建通过（3498 jobs），包括固定原生坐标、双降悬、固定坐标自然性入口和同一presentation乘法运输。来源/字段静态核验与Blueprint渲染已重放；来源/字段Lean核验本轮重放及整个根库的完整声明检查，仍待消费者迁移稳定后统一重建；尚不报告为通过。八个本轮Blueprint节点的46项声明已在定向编译环境中检查存在。
+来源清单（26 sources/117 artifacts）、来源审计22项、外部输入51项、边界布局18项、Blueprint frontier15项和活动依赖解析已通过。原有 E2、staircase、proofs、route 重建检查通过。统一六项 Lean 构建已通过（3504 jobs）；自然性条件封装与导入/公理审计通过；来源声明/module/field 的 Lean 校验通过；Blueprint web 渲染通过（固定 0.0.20 环境，仅原有 `relax` renderer 警告）。原生合同现15项测试通过（含新增 N→N 来源与 trace 前提防擦除检查）。第二批五目标正式构建通过（3498 jobs），包括固定原生坐标、双降悬、固定坐标自然性入口和同一presentation乘法运输。来源/字段静态核验与Blueprint渲染已重放；本轮来源/字段Lean核验已通过（无输出、exit 0）。包含消费者迁移的根库构建已通过（4209 jobs）；随后全部新增证书的统一补建通过（4891 jobs），余纤维延拓及其检查的正式构建通过（4882 jobs）。完整Blueprint声明检查最初发现两个已有声明没有由根库导出，现已通过直接导入既有 `Interface.Solution.Literature.StandardSphere` 模块补齐；根库重建（4884 jobs）与 `lake exe checkdecls blueprint/lean_decls` 均通过。这个导入修复没有改动两条原声明及其前提。此前定向核验的八个Blueprint节点共46项声明，现也纳入上述完整声明检查。
 
 本机的固定 renderer 位于 `/tmp/kip126-lean-retry-blueprint/bin`，重放时可将该目录加入 PATH 后运行 `leanblueprint web`。
 
@@ -219,3 +334,5 @@ git diff --check
 远程提交 `295adaedc` 的 `Lin-program/` 已原样合并，首批证书与合并提交 `2a3c5c5c7` 已同步远程。该独立研究项目没有到本仓库固定球面模型的比较证明；其有限范围认证不扩展为本次实际目标的认证。已有 `Ceta__S0` 代数块只覆盖源 `t≤12`，不覆盖本目标 `t=19,21`；S0 `(6,44)` 的导入 d2 矩阵也不是原生日志 5487 的 secondary 算法证明。
 
 为后续有限链等式直接复用原有 Milnor 核，根 Lake 注册了九个非默认模块，未复制数学主体或纳入旧项目的全部生成批次。`MilnorCertificates.StableProduct` 已正式构建，打印的乘法/秩稳定性定理只有标准逻辑公理。
+
+本批新增的完整原生分支商、E3 条件运输、462481 条件重放、5541 消费者迁移、第三条 secondary 等式和通用余纤维延拓，均已有正式构建及 Blueprint 声明核验。独立复核确认没有缩小量词、删除剩余前提或读取待构造总交付；实际模型的未完成数学义务仍如上记录。

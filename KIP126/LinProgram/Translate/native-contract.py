@@ -116,7 +116,9 @@ def equation(row):
 
 def validate_naturality(source, target, mapping):
     require(source["id"] + 1 == target["id"], "source candidate is not adjacent to target log")
-    require(source["reason"] == "D" and source["depth"] == 0, "unsupported source candidate")
+    # An N output can itself be the source of another N step. These tags
+    # only validate this fixed native chain; neither tag supplies a proof.
+    require(source["reason"] in {"D", "N"} and source["depth"] == 0, "unsupported source candidate")
     require(target["reason"] == "N" and target["depth"] == 0, "not a root naturality log")
     require(mapping["name"] == target["info"], "naturality info does not name this map")
     require(mapping["from"] == source["name"] and mapping["to"] == target["name"],
@@ -128,6 +130,23 @@ def validate_naturality(source, target, mapping):
     require(source["t"] + source["r"] - 1 <= mapping["t_max"], "source target exceeds map range")
     equation(source)
     equation(target)
+
+
+def check_recovered_trace_snapshot(actual, reconstructed):
+    require(actual == reconstructed,
+            "recovered trace differs from fixed-input reconstruction; raw context or remaining premises changed")
+
+
+def validate_recovered_trace(trace, source, target, mapping):
+    """Bind the derived context to authenticated rows without treating it as a proof."""
+    validate_naturality(source, target, mapping)
+    require(trace["target"] == target, "recovered trace target differs from pinned log")
+    rows = trace["adjacent_context"]["branch_rows"]
+    sources = [row for row in rows if row["id"] == source["id"]]
+    require(sources == [source], "recovered trace source differs from pinned log")
+    require(trace["maps"]["ceta_to_sphere"]["native_map"] == mapping,
+            "recovered trace map differs from pinned catalogue")
+    require(bool(trace["remaining_propositions"]), "recovered trace erased actual-model obligations")
 
 
 def validate_product_witness(certificate, relation_rows, lowstem):
@@ -391,6 +410,26 @@ def rebuild():
         natural_coordinates = sphere_coordinates(sphere, target)
         with connect(paths["Ceta_AdamsSS_t200.db"]) as ceta, connect(paths["map_AdamsSS_Ceta_to_S0_t200.db"]) as maps:
             native_map_data = native_ceta_map_slice(ceta, maps, sphere, source, target, mapping, lowstem)
+        extra_source = raw_row(db, 462480)
+        trace_path = ROOT / "docs/audits/linprogram-certificate/row462481-trace.json"
+        trace_bytes = trace_path.read_bytes()
+        # Reconstruct the entire context from authenticated inputs. Merely
+        # rehashing a modified derived JSON would let a nonempty but incomplete
+        # obligations list become the new baseline.
+        with tempfile.TemporaryDirectory(prefix="lin-recovered-context-") as temporary:
+            rebuilt_trace = Path(temporary) / "row462481-trace.json"
+            run = subprocess.run([sys.executable, "-B",
+                str(LIN / "Translate/extract-row462481-trace.py"),
+                "--output", str(rebuilt_trace)], capture_output=True, text=True)
+            require(run.returncode == 0, f"native context reconstruction failed: {run.stderr}")
+            check_recovered_trace_snapshot(trace_bytes, rebuilt_trace.read_bytes())
+        extra_trace = json.loads(trace_bytes)
+        validate_recovered_trace(extra_trace, extra_source, extra, mapping)
+        raw_high_stem = (LIN / "Raw/NaturalityHighStem.lean").read_text()
+        for name, row in (("source462480Full", extra_source), ("output462481Full", extra)):
+            pattern = rf"(?ms)^def {re.escape(name)} : LogRow where\n.*?(?=\n\n|\Z)"
+            require(re.findall(pattern, raw_high_stem) == [raw_log_declaration(name, row)],
+                    f"Raw.NaturalityHighStem.{name} transcription differs from pinned log")
         natural_lookup, extra_lookup = bulk_lookup(target), bulk_lookup(extra)
     archive_inputs = []
     for role, name in (("source_page_database", modules[0]["path"]), ("map_matrix_database", mapping["path"])):
@@ -485,11 +524,21 @@ def rebuild():
             "target_log": extra, "native_equation": equation(extra),
             "selected_record_snapshot": "KIP126/LinProgram/Generated/Selected/records.json",
             "sphere_coordinates": extra_coordinates, "bulk_lookup": extra_lookup,
-            "status": "unverified-target-without-source-trace",
-            "missing": "The row462481-specific Ceta source trace and coordinate preimages for S0 (15,138)[2] -> (18,140)[2] have not been extracted here; the Ceta and map databases are now pinned, while their actual comparison remains unproved",
+            "source_candidate_log": extra_source,
+            "native_trace": {
+                "path": str(trace_path.relative_to(ROOT)),
+                "sha256": hashlib.sha256(trace_bytes).hexdigest(),
+                "kind": "derived-native-context; not an independent source registry or mathematical proof",
+                "replay": "python3 -B KIP126/LinProgram/Translate/extract-row462481-trace.py --check",
+            },
+            "status": "recovered-native-context-with-unproved-actual-source-and-comparisons",
+            "actual_row_certified": False,
+            "missing": "The native source N462480, complete local branch context and map-coordinate preimages are extracted. The actual Ceta source differential, actual top-cell coordinate comparisons and upstream CW branch interpretation remain unproved.",
+            "remaining_premises": extra_trace["remaining_propositions"],
         },
         "replay_commands": [
             "python3 KIP126/LinProgram/Translate/native-contract.py --check",
+            "python3 -B KIP126/LinProgram/Translate/extract-row462481-trace.py --check",
             "python3 KIP126/LinProgram/Translate/replay-lowstem.py --row 152098 --certificate-only --output-dir /tmp/lin-native-products",
             "lake env lean /tmp/lin-native-products/GeneratedProductWitnesses.lean",
         ],

@@ -18,7 +18,6 @@ run_cmd do
     ``KIP126.Classical.Adams.linE2Presentation,
     ``KIP126.Computation.LinProofs.sphereTable_sound]
   for decl in [``KIP126.Computation.LinProofs.Selected.d2_x_125_8,
-      ``KIP126.Computation.LinProofs.Selected.d2_h6,
       ``KIP126.Computation.LinProofs.Selected.d3_h4_x_109_12,
       ``KIP126.Computation.LinProofs.Selected.d3_h0Sq_x_123_13_2,
       ``KIP126.Computation.LinProofs.Selected.d3_x_126_4,
@@ -28,6 +27,8 @@ run_cmd do
     unless KIP126.Checks.AxiomInputs.uses axioms
         ``KIP126.Computation.LinProofs.sphereTable_sound do
       throwError "missing Challenge 2 database assumption: {decl}"
+
+run_cmd KIP126.Checks.checkOneLineH6Consumer ``KIP126.Computation.LinProofs.Selected.d2_h6
 
 open KIP126.Core KIP126.Core.SpectralSequence
 open CategoryTheory

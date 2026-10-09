@@ -54,4 +54,28 @@ theorem row1572866_d_f :
     exact (coefficient_append _ _ _).symm
   · simp [ht, expressionCoefficient, row1572866, coefficient]
 
+private theorem row3145729_d_f_paths :
+    resolvePaths fourthDifferentialImages row3145729.f = some
+      [⟨[4,0,1,0,0,0,0,0], [1,0,0,0,0,0,0,0], 0⟩] := rfl
+
+/-- This actual lift column occurs in both native target lifts for seed5487.
+Its composite with the supplied fourth differential is exactly the two-term
+auxiliary `d_f` expression. The statement covers every target generator and
+every rank-eight monomial, and does not assert the associator construction. -/
+theorem row3145729_d_f :
+    compose 8 fourthDifferentialImages row3145729.f =
+      some (fun target m => expressionCoefficient row3145729.d_f target m.val) := by
+  unfold compose
+  rw [row3145729_d_f_paths]
+  simp only [Option.map_some]
+  apply congrArg some
+  funext target ⟨m, hm⟩
+  dsimp only [pathCoefficient]
+  by_cases ht : 0 = target
+  · subst target
+    simp only [if_true, Bool.xor_false]
+    rw [← product401_100_rank8.2.2.2 m hm]
+    rfl
+  · simp [ht, expressionCoefficient, row3145729, coefficient]
+
 end KIP126.Computation.Secondary.Seed5487

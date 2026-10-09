@@ -51,6 +51,30 @@ the Adams and synthetic arguments.
   \leanok
 \end{proof}
 
+\begin{proposition}[Third-page labels, cycles and incoming images]
+  \label{prop:internal-page-three-representatives}
+  \lean{KIP126.Core.SpectralSequence.PageThree.exists_representative,KIP126.Core.SpectralSequence.PageThree.reachesPage_iff_d2_eq_zero,KIP126.Core.SpectralSequence.PageThree.isBoundaryBy_iff_mem_d2_range,KIP126.Core.SpectralSequence.PageThree.represents_iff_sub_mem_d2_range,KIP126.Core.SpectralSequence.PageThree.equal_iff_sub_mem_d2_range}
+  \uses{def:internal-nested-spectral-sequence,prop:internal-page-calculus}
+  \leanok
+  For an internal spectral sequence in modules over any ring, every
+  $E_3$ element has an $E_2$ label represented by the same cycle.
+  If the starting page is at most two, an $E_2$ label reaches $E_3$
+  exactly when its actual $d_2$ vanishes. Its cumulative boundary
+  condition after $d_2$ is precisely membership in the actual incoming
+  $d_2$ image. Given a common representative, another label represents
+  that same $E_3$ element exactly when their difference lies in this image.
+  The same criterion detects equality of two represented $E_3$ elements.
+  All degrees, labels and page elements remain quantified.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Use the canonical quotient epimorphisms and the spectral sequence's
+  successor kernel and image identities. Transport the subobjects to
+  module kernels and ranges; the quotient zero criterion and differences
+  of common cycles prove the equivalences. No separate homology
+  identification is supplied as a new premise.
+\end{proof}
+
 \begin{proposition}[Naturality of internal pages and representatives]
   \label{prop:internal-page-naturality}
   \lean{KIP126.Core.SpectralSequence.SSDataMorphism.hasDifferential_reindexed,KIP126.Core.SpectralSequence.SSDataMorphism.representsOnPage_reindexed,KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Def.Comparison.StageInterfaces.internalNaturality}
