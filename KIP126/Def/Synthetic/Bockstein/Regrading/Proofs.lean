@@ -5,7 +5,7 @@ import KIP126.Def.Synthetic.Bockstein.Tower.Proofs
 # Laws and page checkpoints for the actual λ regrading
 
 The square-zero and successor statements concern the constructed maps.
-Their pending proofs are separated from the data; none is an extra model
+Their proofs are separated from the data; none is an extra model
 input or an independently chosen spectral sequence.
 -/
 
@@ -14,6 +14,8 @@ namespace KIP126.Synthetic.Bockstein
 open CategoryTheory CategoryTheory.Limits
 open KIP126.StableHomotopy KIP126.Synthetic.Context
 open KIP126.Synthetic.SpectralSequence KIP126.Core.SpectralSequence
+
+set_option backward.isDefEq.respectTransparency false
 
 universe u v
 
@@ -65,7 +67,17 @@ theorem normalizedInfinity_eq_weightwiseInfinity (A : Syn) (i : Tridegree) :
 theorem normalizedPreSS_d_comp_d (A : Syn) (r : ℤ) (i : Tridegree) :
     (normalizedPreSS A).d r i ≫
       (normalizedPreSS A).d r (i + (normalizedPreSS A).diffDeg r) = 0 := by
-  sorry
+  by_cases hr : 2 ≤ r
+  · dsimp only [normalizedPreSS]
+    simp only [dif_pos hr, syntheticAdamsRawShift, Prod.fst_add, Prod.snd_add]
+    rw [Category.assoc]
+    rw [TowerSpectralSequence.internalD_transport_assoc (lambdaTower A) (Smn 0 i.2.2)
+      (Smn 0 (i.2.2 + 0)) (by rw [add_zero]) (r - 2).toNat
+      (i.2.1 - i.2.2 + ((r - 2).toNat + 1 : ℕ)) (i.2.1 - i.1 - 1)
+      (i.2.1 + (r - 1) - (i.2.2 + 0)) (i.2.1 + (r - 1) - (i.1 + r))
+      (by omega) (by omega)]
+    rw [← Category.assoc, TowerSpectralSequence.internalD_comp, zero_comp]
+  · simp only [normalizedPreSS, dif_neg hr, zero_comp]
 
 theorem normalizedPreSS_Z_succ (A : Syn) (r : ℤ) (i : Tridegree) (hr : 2 ≤ r) :
     let m := (r - 2).toNat
@@ -76,7 +88,9 @@ theorem normalizedPreSS_Z_succ (A : Syn) (r : ℤ) (i : Tridegree) (hr : 2 ≤ r
         (((normalizedPreSS A).ssData i).Z_anti
           (by exact_mod_cast Nat.le_succ m)) ≫
         ((normalizedPreSS A).ssData i).pageπ (m : WithTop ℕ)) := by
-  sorry
+  simp only [normalizedPreSS, dif_pos hr, kernelSubobject_comp_mono]
+  exact TowerSpectralSequence.internalD_kernel (lambdaTower A) (Smn 0 i.2.2)
+    (i.2.1 - i.2.2) (i.2.1 - i.1) (r - 2).toNat
 
 theorem normalizedPreSS_B_succ (A : Syn) (r : ℤ) (i : Tridegree) (hr : 2 ≤ r) :
     let m := (r - 2).toNat
@@ -87,6 +101,9 @@ theorem normalizedPreSS_B_succ (A : Syn) (r : ℤ) (i : Tridegree) (hr : 2 ≤ r
         (le_trans (D.B_le_Z ((m + 1 : ℕ) : WithTop ℕ))
           (D.Z_anti (by exact_mod_cast Nat.le_succ m))) ≫
         D.pageπ (m : WithTop ℕ)) := by
-  sorry
+  simp only [normalizedPreSS, dif_pos hr]
+  apply TowerSpectralSequence.internalD_image_of_target_eq
+  simp only [normalizedSSData, syntheticAdamsRawShift, Prod.fst_add, Prod.snd_add, add_zero]
+  congr 1 <;> omega
 
 end KIP126.Synthetic.Bockstein

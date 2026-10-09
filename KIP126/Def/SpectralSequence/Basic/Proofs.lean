@@ -393,4 +393,157 @@ theorem EInftyData.eInfty_isZero_of_page_isZero
     IsZero (eData.EInfty k) :=
   SpectralSequence.eInfty_isZero_of_page_isZero eData.ss k h
 
+/-! Local stabilization, adapted from the generic proofs in
+`KIPBase/Synthetic/AdamsVanishing.lean`; no synthetic model is used. -/
+
+private theorem subobject_eq_of_quotient_epi
+    {C : Type*} [Category C] [Abelian C] {V : C}
+    (B P Q : Subobject V) (hBP : B ≤ P) (hPQ : P ≤ Q)
+    [Epi (Subobject.ofLE P Q hPQ ≫
+      cokernel.π (Subobject.ofLE B Q (hBP.trans hPQ)))] : P = Q := by
+  let i := Subobject.ofLE P Q hPQ
+  let b := Subobject.ofLE B Q (hBP.trans hPQ)
+  have hi : Epi i := by
+    apply (Preadditive.epi_iff_cancel_zero i).mpr
+    intro R g hg
+    have hbg : b ≫ g = 0 := by
+      change Subobject.ofLE B Q _ ≫ g = 0
+      rw [← Subobject.ofLE_comp_ofLE B P Q hBP hPQ, Category.assoc]
+      change Subobject.ofLE B P hBP ≫ (i ≫ g) = 0
+      rw [hg, comp_zero]
+    let q := cokernel.desc b g hbg
+    have hq : q = 0 := by
+      apply zero_of_epi_comp (i ≫ cokernel.π b)
+      rw [Category.assoc, cokernel.π_desc]
+      exact hg
+    calc
+      g = cokernel.π b ≫ q := (cokernel.π_desc b g hbg).symm
+      _ = 0 := by rw [hq, comp_zero]
+  haveI : Epi (Subobject.ofLE P Q hPQ) := hi
+  haveI : IsIso (Subobject.ofLE P Q hPQ) := isIso_of_mono_of_epi _
+  exact le_antisymm hPQ
+    (Subobject.le_of_comm (inv (Subobject.ofLE P Q hPQ))
+      (by simp [Subobject.ofLE_arrow]))
+
+/-- A zero outgoing differential preserves the cycle subobject. -/
+theorem cycles_succ_of_zero
+    {C : Type*} [Category C] [Abelian C]
+    {ι : Type*} [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence C ι) (r : ℤ) (hr : E.r₀ ≤ r)
+    (k : ι) (hd : E.d r k = 0) :
+    (E.ssData k).Z ↑((r - E.r₀).toNat + 1) =
+      (E.ssData k).Z ↑(r - E.r₀).toNat := by
+  let n := (r - E.r₀).toNat
+  let D := E.ssData k
+  have hz := E.Z_succ r k hr
+  rw [hd, kernelSubobject_zero] at hz
+  let i := Subobject.ofLE (D.Z ↑(n + 1)) (D.Z ↑n)
+    (D.Z_anti (by exact_mod_cast Nat.le_succ n))
+  let p := i ≫ D.pageπ ↑n
+  have hp : imageSubobject p = ⊤ := hz.symm
+  haveI : IsIso (imageSubobject p).arrow :=
+    (Subobject.isIso_arrow_iff_eq_top _).mpr hp
+  haveI : Epi p := by
+    rw [← imageSubobject_arrow_comp p]
+    infer_instance
+  let hBP : D.B ↑n ≤ D.Z ↑(n + 1) :=
+    (D.B_mono (by exact_mod_cast Nat.le_succ n)).trans (D.B_le_Z _)
+  let hPQ : D.Z ↑(n + 1) ≤ D.Z ↑n :=
+    D.Z_anti (by exact_mod_cast Nat.le_succ n)
+  have hEpi : Epi (Subobject.ofLE (D.Z ↑(n + 1)) (D.Z ↑n) hPQ ≫
+      cokernel.π (Subobject.ofLE (D.B ↑n) (D.Z ↑n) (hBP.trans hPQ))) := by
+    change Epi p
+    infer_instance
+  exact @subobject_eq_of_quotient_epi C _ _ D.V
+    (D.B ↑n) (D.Z ↑(n + 1)) (D.Z ↑n) hBP hPQ hEpi
+
+/-- A zero differential leaves its target boundary subobject unchanged. -/
+theorem boundaries_succ_of_zero
+    {C : Type*} [Category C] [Abelian C]
+    {ι : Type*} [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence C ι) (r : ℤ) (hr : E.r₀ ≤ r)
+    (k : ι) (hd : E.d r k = 0) :
+    (E.ssData (k + E.diffDeg r)).B ↑((r - E.r₀).toNat + 1) =
+      (E.ssData (k + E.diffDeg r)).B ↑(r - E.r₀).toNat := by
+  let n := (r - E.r₀).toNat
+  let D := E.ssData (k + E.diffDeg r)
+  have hb := E.B_succ r k hr
+  rw [hd, imageSubobject_zero] at hb
+  let b := Subobject.ofLE (D.B ↑n) (D.Z ↑n) (D.B_le_Z _)
+  let j := Subobject.ofLE (D.B ↑(n + 1)) (D.Z ↑n)
+    ((D.B_le_Z _).trans (D.Z_anti (by exact_mod_cast Nat.le_succ n)))
+  have hj : j ≫ cokernel.π b = 0 := by
+    have hp : imageSubobject (j ≫ cokernel.π b) = ⊥ := hb.symm
+    have ha : (imageSubobject (j ≫ cokernel.π b)).arrow = 0 := by
+      rw [hp]
+      exact Subobject.bot_arrow
+    rw [← imageSubobject_arrow_comp (j ≫ cokernel.π b), ha, comp_zero]
+  apply le_antisymm _ (D.B_mono (by exact_mod_cast Nat.le_succ n))
+  apply Subobject.le_of_comm (Abelian.monoLift b j hj)
+  have hcomp := congrArg (fun f => f ≫ (D.Z ↑n).arrow)
+    (Abelian.monoLift_comp b j hj)
+  simpa only [Category.assoc, b, j, Subobject.ofLE_arrow] using hcomp
+
+
+/-- Vanishing of all later outgoing differentials stabilizes the cycles
+at this grading, including the actual intersection at infinity. -/
+theorem cycles_top_eq_of_d_eq_zero
+    {C : Type*} [Category C] [Abelian C]
+    {ι : Type*} [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence C ι) (N : ℤ) (hN : E.r₀ ≤ N) (k : ι)
+    (hd : ∀ r : ℤ, N ≤ r → E.d r k = 0) :
+    (E.ssData k).Z ⊤ = (E.ssData k).Z ↑(N - E.r₀).toNat := by
+  let n₀ := (N - E.r₀).toNat
+  let D := E.ssData k
+  have hn₀ : (n₀ : ℤ) = N - E.r₀ := Int.toNat_of_nonneg (by omega)
+  have htail : ∀ m : ℕ, D.Z (↑(n₀ + m) : WithTop ℕ) = D.Z ↑n₀ := by
+    intro m
+    induction m with
+    | zero => simp
+    | succ m ih =>
+      have hz := cycles_succ_of_zero E (E.r₀ + (n₀ + m : ℕ)) (by omega) k
+        (hd _ (by rw [Nat.cast_add, hn₀]; omega))
+      simp only [add_sub_cancel_left, Int.toNat_natCast] at hz
+      exact hz.trans ih
+  apply le_antisymm (D.Z_anti le_top)
+  apply D.Z_top_greatest
+  intro n
+  by_cases hn : n₀ ≤ n
+  · have h := (htail (n - n₀)).ge
+    simpa only [Nat.add_sub_of_le hn] using h
+  · exact D.Z_anti (by exact_mod_cast Nat.le_of_lt (Nat.lt_of_not_ge hn))
+
+/-- Vanishing of all later incoming differentials stabilizes the boundaries
+at this grading, including the actual union at infinity. -/
+theorem boundaries_top_eq_of_d_eq_zero
+    {C : Type*} [Category C] [Abelian C]
+    {ι : Type*} [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence C ι) (N : ℤ) (hN : E.r₀ ≤ N) (k : ι)
+    (hd : ∀ r : ℤ, N ≤ r → E.d r (k - E.diffDeg r) = 0) :
+    (E.ssData k).B ⊤ = (E.ssData k).B ↑(N - E.r₀).toNat := by
+  let n₀ := (N - E.r₀).toNat
+  let D := E.ssData k
+  have hn₀ : (n₀ : ℤ) = N - E.r₀ := Int.toNat_of_nonneg (by omega)
+  have htail : ∀ m : ℕ, D.B (↑(n₀ + m) : WithTop ℕ) = D.B ↑n₀ := by
+    intro m
+    induction m with
+    | zero => simp
+    | succ m ih =>
+      have hb := boundaries_succ_of_zero E (E.r₀ + (n₀ + m : ℕ)) (by omega)
+        (k - E.diffDeg (E.r₀ + (n₀ + m : ℕ)))
+        (hd _ (by rw [Nat.cast_add, hn₀]; omega))
+      simp only [add_sub_cancel_left, Int.toNat_natCast] at hb
+      have hb' : D.B ↑(n₀ + m + 1) = D.B ↑(n₀ + m) :=
+        (congrArg (fun j => (E.ssData j).B ↑(n₀ + m + 1) =
+          (E.ssData j).B ↑(n₀ + m))
+          (sub_add_cancel k (E.diffDeg (E.r₀ + (n₀ + m : ℕ))))).mp hb
+      exact hb'.trans ih
+  apply le_antisymm _ (D.B_mono le_top)
+  apply D.B_top_least
+  intro n
+  by_cases hn : n₀ ≤ n
+  · have h := (htail (n - n₀)).le
+    simpa only [Nat.add_sub_of_le hn] using h
+  · exact D.B_mono (by exact_mod_cast Nat.le_of_lt (Nat.lt_of_not_ge hn))
+
 end KIP126.Core.SpectralSequence

@@ -21,12 +21,18 @@ the previously specified J(lift(K(x))) quotient value. -/
 theorem differential_JToPage (q : ℕ) (hq : 1 ≤ q) (k n : ℤ)
     (x : ShiftedHom P n (T.obj k)) :
     differential T P q hq k n (JToPage T P q hq k n x) = 0 := by
-  sorry
+  change differentialValue T P q hq k n (JToCycles T P q hq k n x) = 0
+  apply differentialValue_eq_zero_of_K
+  exact (RepresentedHom.exact_g P (T.layerCofiberSequence k) n _).2 ⟨x, rfl⟩
 
 /-- The constructed intrinsic page differential squares to zero. -/
 theorem differential_comp (q : ℕ) (hq : 1 ≤ q) (k n : ℤ)
     (x : page T P q hq k n) :
     differential T P q hq (k + q) (n - 1) (differential T P q hq k n x) = 0 := by
-  sorry
+  induction x using Submodule.Quotient.induction_on with
+  | H x =>
+    change differential T P q hq (k + q) (n - 1)
+      (JToPage T P q hq (k + q) (n - 1) (cycleLift T P q hq k n x)) = 0
+    exact differential_JToPage T P q hq (k + q) (n - 1) _
 
 end KIP126.StableHomotopy.TowerSpectralSequence

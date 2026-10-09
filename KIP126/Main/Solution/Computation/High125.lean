@@ -1,5 +1,6 @@
 import KIP126.Main.Solution.Computation.Tmf
 import KIP126.Interface.Solution.Literature.Applications
+import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
 
 /-!
 # The weight130 high-filtration argument of Proposition 7.8
@@ -42,6 +43,11 @@ theorem stem125_weight130_filtration26_zero
     (I : Inputs D L G) (BHS : SyntheticInputs D) (V : SphereVanishingLine H)
     (a : BiHom 125 130 (S_0_0 : Syn))
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 26 a) : a = 0 := by
+  apply D.sphereConvergence.eq_zero_of_eInfty_isZero_ge 26 125 130
+    (D.homotopySeparated .sphere 125 130) ?_ a ha
+  intro j hj
+  -- Remaining obligation: BHS and the finite computation/vanishing line
+  -- kill this actual infinity-page component for every j >= 26.
   sorry
 
 /-- The precise high-filtration elimination in pi_(125,130).
@@ -56,6 +62,11 @@ theorem stem125_weight130_filtration15_eq25
     (a : BiHom 125 130 (S_0_0 : Syn)) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 a ↔
       FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 25 a := by
+  apply D.sphereConvergence.filtrationAtLeast_iff_of_eInfty_isZero
+    15 25 125 130 (by omega) ?_ a
+  intro j hj h25
+  -- Remaining obligation: the BHS weight130 quotient is zero throughout
+  -- this interval, including the d5 source and target discussed above.
   sorry
 
 /-- Transport BHS filtration/lambda divisibility from nu(S) along the

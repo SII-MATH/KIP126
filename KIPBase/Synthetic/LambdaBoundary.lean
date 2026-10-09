@@ -102,6 +102,7 @@ theorem lambdaPowerStepNatTrans_comp (n : ℕ) :
   rw [← transport]
   simp only [Category.assoc]
 
+
 /-- The natural factor `Σ^{0,-(n+1)}X ⟶ Σ^{0,-1}X` in `λ^(n+1)`.
 Its construction follows the existing power recursion, so no additional
 coherence law for the chosen bigraded suspension is assumed. -/

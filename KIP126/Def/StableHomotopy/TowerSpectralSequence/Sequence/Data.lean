@@ -2,7 +2,7 @@ import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Proofs
 
 /-! Assemble the actual tower spectral sequence from its constructed
 kernel/image pages and quotient differential, using the separately stated
-laws. This does not prove those pending laws or any convergence condition. -/
+proved laws. No convergence condition is asserted here. -/
 
 namespace KIP126.StableHomotopy.TowerSpectralSequence
 

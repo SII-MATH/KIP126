@@ -47,10 +47,12 @@ def Filtration.IsExhaustive
     {ω : Type w} {A : ω → C} (F : Filtration A) : Prop :=
   ∀ (k : ω), ∃ (s : ℤ), F.F s k = ⊤
 
-/-- Degreewise Hausdorffness/separatedness in the eventually-zero form. -/
+/-- Degreewise Hausdorffness: the intersection of the filtration levels is
+zero, expressed by its subobject universal property. No finite level is
+required to vanish. -/
 def Filtration.IsHausdorff
     {ω : Type w} {A : ω → C} (F : Filtration A) : Prop :=
-  ∀ (k : ω), ∃ (s : ℤ), F.F s k = ⊥
+  ∀ (k : ω) (S : Subobject (A k)), (∀ s : ℤ, S ≤ F.F s k) → S = ⊥
 
 /-- The infinity-page class `y` detects the filtered class represented by `x`. -/
 def Detects

@@ -135,6 +135,7 @@ theorem lambdaPowerBockstein_essential_iff_homotopy_boundary
     lambdaPowerBockstein_relation_iff_homotopy_boundary X n degree r hr s,
     lambdaPowerBockstein_relation_iff_homotopy_boundary X n degree r hr s]
 
+
 /-- Actual filtered representatives for the finite boundary give actual
 filtered representatives for the first boundary, retaining both specified
 ambient classes through the canonical restriction map. -/

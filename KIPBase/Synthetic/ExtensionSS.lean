@@ -1521,6 +1521,7 @@ theorem lambdaPowerBockstein_differential_formula
       xl ≫ (FC.fil u 1).arrow ≫ f.aMap degree =
           xA ≫ f.aMap degree := by
             rw [← Category.assoc, hxl]
+
       _ = yA := hxA
       _ = ylFC ≫ (FC.fil s 0).arrow := rfl
   have hmap : FC.d 1 = f.aMap degree := by
@@ -1646,6 +1647,7 @@ theorem lambdaBockstein_differential_formula
       xl ≫ (FC.fil u 1).arrow ≫ f.aMap degree =
           xA ≫ f.aMap degree := by
             rw [← Category.assoc, hxl]
+
       _ = yA := hxA
       _ = ylFC ≫ (FC.fil s 0).arrow := rfl
   have hmap : FC.d 1 = f.aMap degree := by

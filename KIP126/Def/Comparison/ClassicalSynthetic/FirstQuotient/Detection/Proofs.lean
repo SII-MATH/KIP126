@@ -1,4 +1,6 @@
 import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Detection.Predicates
+import KIP126.Def.Synthetic.Detection.Proofs
+import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
 
 /-! Detection determines a homotopy representative only when the next
 actual Adams filtration vanishes. For the first lambda quotient, BHS
@@ -23,7 +25,11 @@ theorem detects_unique_of_next_filtration_zero
     (hzero : towerFiltrationSubmodule unit Y (i.1+1) (i.2.1-i.1,i.2.2) = ⊥)
     (x : (family.obj Y).E₂ i)
     (α β : BiHom (i.2.1-i.1) i.2.2 Y)
-    (hα : Detects c i x α) (hβ : Detects c i x β) : α = β := by sorry
+    (hα : Detects c i x α) (hβ : Detects c i x β) : α = β := by
+  have h := detects_sub_filtration c i hα hβ
+  change α - β ∈ towerFiltrationSubmodule unit Y (i.1+1) (i.2.1-i.1,i.2.2) at h
+  rw [hzero, Submodule.mem_bot] at h
+  exact sub_eq_zero.mp h
 
 variable {C : Type w} [StableHomotopyCategory.{w, v} C]
   [HasFunctorialCofiber (C := C)]
@@ -35,7 +41,17 @@ tower filtration eliminates the entire tail. No finite snapshot is used. -/
 theorem firstQuotient_next_filtration_zero_of_range
     (X : ClassicalObject) (a s t : ℤ)
     (h : FirstQuotientSingleFiltration D X a) :
-    FirstQuotientNextFiltrationZero D X a s t := by sorry
+    FirstQuotientNextFiltrationZero D X a s t := by
+  apply eq_bot_iff.mpr
+  intro α hα
+  apply D.homotopySeparated (.quotient 1 (.shift (0,a) (.nu X))) (t-s) (t+a) α
+  intro j
+  by_cases hj : s+1 ≤ (j : ℤ)
+  · apply ((D.convergence (.quotient 1 (.shift (0,a) (.nu X)))).filtrationAtLeast_iff_of_eInfty_isZero
+      (s+1) j (t-s) (t+a) hj (fun q hq _ => ?_) α).mp hα
+    letI := h (t-s) (t+a) q (by omega)
+    exact ModuleCat.isZero_of_subsingleton _
+  · exact towerFiltrationSubmodule_antitone _ _ _ (by omega) hα
 
 /-- Once the BHS single-filtration range is transported to this same
 quotient/tower, the already fixed comparisonCompatible detection condition
