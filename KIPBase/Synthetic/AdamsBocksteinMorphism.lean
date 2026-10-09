@@ -463,7 +463,7 @@ theorem LambdaBocksteinTargetPageRep.eq_zero_of_mem_next
       (↑(r - E.r₀).toNat : WithTop ℕ)).arrow).mp
     rw [hxZ, hxZero, zero_comp]
   rw [← hxClass, hxZZero, zero_comp]
-  rfl
+
 
 /-- Two target representatives define the same current page class whenever
 their actual λ-boundaries differ by one higher filtration step. -/
@@ -1693,20 +1693,20 @@ noncomputable def ofSinglePageMap
   · simpa only [sub_add_cancel, Φ.degree_compat sk] using
       Φ.pageMap (sk + B.diffDeg r)
   · convert Φ.differential_comm (sk - B.diffDeg r) using 1
-    all_goals simp [hsub, sub_add_cancel]
+    all_goals simp only [hsub, sub_add_cancel]
     all_goals apply CategoryTheory.heq_comp
-    all_goals try simp [hsub, sub_add_cancel, cast_heq]
+    all_goals try simp only [hsub, sub_add_cancel, cast_heq]
     case e'_3.H1 => exact hdheq
     case e'_3.H2 =>
       simpa only [cast_heq_iff_heq, heq_eqToHom_comp_iff] using hpheq
   · convert Φ.differential_comm sk using 1
-    all_goals simp [hsub, sub_add_cancel, Φ.degree_compat sk]
+    all_goals simp only [hsub, sub_add_cancel, Φ.degree_compat sk]
     all_goals apply CategoryTheory.heq_comp
     all_goals
       first
       | exact congr_arg_heq (fun k => B.d r k) (by simp [sub_add_cancel])
       | exact congr_arg_heq (fun k => E.d r k) (by simp [sub_add_cancel])
-      | simp [hsub, sub_add_cancel, Φ.degree_compat sk, cast_heq]
+      | simp only [hsub, sub_add_cancel, Φ.degree_compat sk, cast_heq]
 
 /-- A full morphism restricts to the single-page data used by the induction. -/
 noncomputable def ofMorphism
