@@ -12,7 +12,7 @@ assumed here.
 
 namespace KIP126.Synthetic.Bockstein.Lift
 
-open CategoryTheory KIP126.StableHomotopy KIP126.Synthetic.Context
+open CategoryTheory CategoryTheory.Limits KIP126.StableHomotopy KIP126.Synthetic.Context
 
 universe u v
 

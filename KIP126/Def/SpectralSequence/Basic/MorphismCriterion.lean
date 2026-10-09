@@ -103,15 +103,20 @@ noncomputable def DifferentialMorphismCriterion.toMorphism
         congrArg (fun d => k + d) (congrFun H.diffDeg_eq r)
       let p := (E.ssData k).pageπ n
       let q := (E.ssData (k + E.diffDeg r)).pageπ n
-      haveI : Epi p := by dsimp only [p, SSData.pageπ]; infer_instance
-      haveI : Epi q := by dsimp only [q, SSData.pageπ]; infer_instance
+      haveI : Epi p := inferInstanceAs (Epi (cokernel.π
+        (Subobject.ofLE ((E.ssData k).B n) ((E.ssData k).Z n)
+          ((E.ssData k).B_le_Z n))))
+      haveI : Epi q := inferInstanceAs (Epi (cokernel.π
+        (Subobject.ofLE ((E.ssData (k + E.diffDeg r)).B n)
+          ((E.ssData (k + E.diffDeg r)).Z n)
+          ((E.ssData (k + E.diffDeg r)).B_le_Z n))))
       let g := p ≫ E.d r k
       let P := pullback g q
       haveI : Epi (pullback.fst g q) := inferInstance
       have hrep := H.differential r k P (pullback.fst g q) (pullback.snd g q)
         (pullback.condition)
       have hπ (j : ι) :
-          (F.preserves_Z j n).choose = (H.survives j n).choose := rfl
+          F.cycleMap j n = (H.survives j n).choose := rfl
       apply (cancel_epi p).mp
       apply (cancel_epi (pullback.fst g q)).mp
       dsimp only [P, g, p, q] at hrep ⊢
@@ -124,10 +129,16 @@ noncomputable def DifferentialMorphismCriterion.toMorphism
         (F.pageMap (k + E.diffDeg r) n)] at ⊢
       rw [F.pageπ_pageMap, F.pageπ_pageMap] at ⊢
       rw [hπ k, hπ (k + E.diffDeg r)] at ⊢
-      convert hrep using 1 <;> simp only [Category.assoc] <;>
+      convert hrep using 1 <;> simp only [Category.assoc, eqToHom_trans] <;>
         dsimp only [g, q, p, n]
   }
-  exact { toPreSSMorphism := P }
+  exact {
+    φ := P.φ
+    preserves_Z := P.preserves_Z
+    preserves_B := P.preserves_B
+    r₀_eq := P.r₀_eq
+    diffDeg_eq := P.diffDeg_eq
+    comm_d := P.comm_d }
 
 theorem DifferentialMorphismCriterion.exists_morphism
     {E E' : SpectralSequence C ι}
