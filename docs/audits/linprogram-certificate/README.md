@@ -158,7 +158,7 @@ python3 KIP126/LinProgram/Translate/generate-secondary-seed5487.py --check --wit
 lake build +KIP126.Checks.ClassicalAdams.LinSecondary5487:olean
 ```
 
-已使用固定原程序在新目录实际重跑，完整 96 行语义及种子端点相同。单独运行生成器 `--check` 只核查固定选定内容；核验完整闭包必须传入 `--witness`。现有提取审计是重建记录；唯一 canonical 来源清单仍是 `docs/external-inputs.json`。
+已使用固定原程序在新目录实际重跑，完整 96 行语义及种子端点相同。单独运行生成器 `--check` 只核查固定选定内容；核验完整闭包必须传入 `--witness`。现有提取审计是重建记录；唯一 canonical 来源清单仍是 `docs/external-inputs.json`。生成器还直接核对该清单中的原程序实体、MD5/SHA、重建记录链接、选定fixture及生成Lean输入摘要；四类来源错配均在无写入测试中被拒绝，`python -O` 重放同样通过。
 
 ## 实际单侧长层乘积的零微分规则
 

@@ -50,6 +50,39 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def check_source_chain(audit, rendered_input):
+    """Connect the fixed fixture and existing rebuild record to the sole source manifest."""
+    inventory = json.loads((ROOT / 'docs/external-inputs.json').read_text())
+    sources = [s for s in inventory['sources'] if s['id'] == 'lwx_machine']
+    require(len(sources) == 1, 'canonical LWX source must be unique')
+    archive_path = 'Source/LWXMachine/source-code.zip'
+    archives = [a for a in sources[0]['artifacts'] if a['path'] == archive_path]
+    require(len(archives) == 1, 'fixed source archive is absent or duplicated in the canonical manifest')
+    artifact = archives[0]
+    original = audit['source_archive']
+    payload = (ROOT / archive_path).read_bytes()
+    require(len(payload) == artifact['size'] == original['bytes'] and
+            hashlib.sha256(payload).hexdigest() == artifact['sha256'] == original['sha256'],
+            'canonical archive bytes differ from the fixed rebuild source')
+    require(hashlib.md5(payload).hexdigest() == original['md5'] and
+            artifact['downloaded_from']['checksum'] == 'md5:' + original['md5'],
+            'canonical archive checksum differs from the recorded source')
+    require(artifact['reproduction']['existing_extraction_and_rebuild_record'] ==
+            str(REBUILD_AUDIT.relative_to(ROOT)), 'canonical rebuild-record link changed')
+    derived = artifact['derived_outputs']
+    selected = derived['selected_witness']
+    require(selected['path'] == str((DEST / 'source.json').relative_to(ROOT)) and
+            selected['sha256'] == hashlib.sha256((DEST / 'source.json').read_bytes()).hexdigest(),
+            'selected fixture does not match the canonical derivation link')
+    require(selected['complete_96_row_semantic_sha256'] == EXPECTED and
+            selected['selected_five_row_semantic_sha256'] == SELECTED and
+            selected['closure_ids_sha256'] == CLOSURE_IDS,
+            'canonical semantic fingerprints differ from the fixed fixture')
+    require(derived['fixed_input']['path'] == str((DEST / 'Input.lean').relative_to(ROOT)) and
+            derived['fixed_input']['sha256'] == hashlib.sha256(rendered_input.encode()).hexdigest(),
+            'generated Lean input differs from its canonical derivation link')
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--witness', type=Path)
@@ -114,6 +147,7 @@ def main():
         print('seed5487: selected payload and fixed metadata checked only; '
               'checking the complete 96-row source requires --witness')
     result = render(data)
+    check_source_chain(audit, result)
     output = DEST / 'Input.lean'
     if args.check:
         require(output.read_text() == result, 'generated Lean differs from fixed input')
