@@ -212,6 +212,11 @@ def inducedMap {X Y : 𝒮} (f : X ⟶ Y) (n : ℤ) :
 /-- Fixed proof that 1 + (-1) = 0 in ℤ, used for shift functor composition. -/
 private theorem one_plus_neg_one : (1 : ℤ) + (-1) = 0 := by omega
 
+section ConnectingHomomorphism
+
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
 /-- The connecting homomorphism in the long exact sequence:
 ∂ : πₙ(Z) → πₙ₋₁(X) arising from a distinguished triangle.
 
@@ -224,11 +229,13 @@ noncomputable def connectingHomomorphism (T : HoCofiberSequence (𝒮 := 𝒮)) 
       (shiftFunctor 𝒮 (-1)).map (α ≫ T.h) ≫
         (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X
   map_zero' := by
-    simp
+    simp [Limits.zero_comp]
   map_add' := by
     intro a b
     simp [Preadditive.add_comp, Functor.map_add, Preadditive.comp_add,
       Category.assoc]
+
+end ConnectingHomomorphism
 
 /-! ## Properties derived from the distinguished triangle -/
 
@@ -308,7 +315,7 @@ private theorem connectingHom_comp_f_zero (T : HoCofiberSequence (𝒮 := 𝒮))
       (shiftFunctorCompIsoId 𝒮 1 (-1) one_plus_neg_one).hom.app T.X ≫
       T.f) =
     (0 : (shiftFunctor 𝒮 (n - 1)).obj SphereSpectrum ⟶ T.Y)
-  convert hout using 1
+  exact hout
 
 /-! ## Long Exact Sequence on Homotopy Groups
 

@@ -106,6 +106,25 @@ noncomputable def mapRelativeIso (G : GeometricAdams.Input X)
       (G.map F).boundary a b hab :=
   CofiberComparison.iso_hom_boundary F (G.transition a b hab)
 
+/-- A class in a mapped stage lifts to the next mapped stage whenever its
+image under the mapped adjacent-layer projection vanishes.  The cofiber
+comparison converts that projection to the canonical cofiber inclusion of
+the mapped tower, after which `exists_stageLift_of_layer_zero` applies. -/
+theorem exists_mapped_stageLift_of_mapped_layer_zero
+    (G : GeometricAdams.Input X) (F : Syn ⥤ Syn)
+    [F.CommShift ℤ] [F.IsTriangulated]
+    (S : Syn) (s : ℕ) (a : S ⟶ (G.map F).stage s)
+    (ha : a ≫ F.map (syn_functorial_cofiber.cofibι
+      (G.transition s (s + 1) (Nat.le_succ s))) = 0) :
+    ∃ a' : S ⟶ (G.map F).stage (s + 1),
+      a' ≫ (G.map F).transition s (s + 1) (Nat.le_succ s) = a := by
+  have hz : a ≫ syn_functorial_cofiber.cofibι
+      ((G.map F).transition s (s + 1) (Nat.le_succ s)) = 0 := by
+    apply (cancel_mono (G.mapRelativeIso F s (s + 1) (Nat.le_succ s)).hom).mp
+    rw [Category.assoc, G.mapRelativeIso_incl]
+    simpa only [Limits.zero_comp] using ha
+  exact (G.map F).exists_stageLift_of_layer_zero S s a hz
+
 /-- In particular, associated graded commutes with an exact functor. -/
 noncomputable abbrev mapLayerIso (G : GeometricAdams.Input X)
     (F : Syn ⥤ Syn) [F.CommShift ℤ] [F.IsTriangulated] (s : ℕ) :
