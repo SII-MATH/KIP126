@@ -1,0 +1,70 @@
+{
+  "status": "no_correctness_findings",
+  "modules": [
+    "Maps",
+    "Comparison",
+    "Naturality",
+    "MapSemantics",
+    "Actual",
+    "CoordinateBridge"
+  ],
+  "axiom_reports": 21,
+  "raw_row": [
+    2994,
+    17,
+    138,
+    "0,1,2",
+    null,
+    9000
+  ],
+  "matrices": 6,
+  "columns": 18,
+  "reductions": 7,
+  "full_comparisons": 4,
+  "quotient_cycle_pairs": 208,
+  "full_input_vectors": 56,
+  "whole_chainmap_vectors": 36,
+  "named_raw_image": 7,
+  "named_boundary_preimage": 1,
+  "boundary_preimage_basis": 2803,
+  "induced_source_columns": [
+    0
+  ],
+  "induced_target_columns": [
+    2,
+    0
+  ],
+  "target_kernel": [
+    0,
+    2
+  ],
+  "affine_pairs": 16,
+  "quotient_coordinate_changes": [
+    {
+      "tag": "source",
+      "index": 11,
+      "forward": [
+        1
+      ],
+      "inverse": [
+        1
+      ],
+      "cycles": 4
+    },
+    {
+      "tag": "upperSource",
+      "index": 25,
+      "forward": [
+        2,
+        1
+      ],
+      "inverse": [
+        2,
+        1
+      ],
+      "cycles": 8
+    }
+  ],
+  "staircase_residual": 1,
+  "scope": "Actual whole coordinate meanings and actual d3 naturality are premises. The detector restricts the differential to zero or the nonzero residual; neither branch is selected. Raw NULL is retained and this does not prove E8 survival."
+}

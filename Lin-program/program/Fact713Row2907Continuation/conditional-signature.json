@@ -1,0 +1,58 @@
+{
+  "status": "three_conditional_whole_d4_families",
+  "parents": {
+    "Fact713Row2916Continuation/frozen-source.json": "bdf4bed3d37fe752ddbec35493e032d5520f7a8ee104c23a688408190aa85e41",
+    "Row2907D4Candidates/frozen-source.json": "fbad432ccccd864921e1813d4241aff4d6097ac34ae66c53e1e838100963461d",
+    "Row2907TargetProduct/frozen-source.json": "da384e288b0e84111b6067a0a72b2289613833e497a2df0f1515a601dd0aca2e"
+  },
+  "previous_families_preserved": true,
+  "canonical_columns": [
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1
+    ]
+  ],
+  "staircase_columns": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1
+    ]
+  ],
+  "actual_whole_column": "Fact713Row2907Continuation.Actual.whole_column_in_staircase",
+  "actual_full_quotient_binding": "Fact713Row2907Continuation.Actual.quotient_all",
+  "actual_source_E5_zero": "Fact713Row2907Continuation.Binding.source_E5_zero",
+  "actual_new_whole_d5_zero": "Fact713Row2907Continuation.Binding.whole_row2622_d5_zero",
+  "actual_premises": [
+    "Full Row2907TargetProduct.Actual.TargetMeaning W r false with its same-input Witness",
+    "Known actual product d4 remains part of Witness",
+    "Local quotient zero law at (16,137), page4 for source E5zero and row2622 d5zero"
+  ],
+  "actual_a": "false derived in TargetProduct",
+  "actual_r": null,
+  "actual_b": null,
+  "raw_row2907_NULL_preserved": true,
+  "all_prior_meanings_automatically_proved": false,
+  "named_finite_endpoint": "E10",
+  "actual_E10_premise": "Same S, pages complete Prefix10",
+  "next_obstructions": {
+    "zero_b0": "row2994 d4 (17,138), target dimension2",
+    "zero_b1": "row2994 d4 (17,138), target dimension2",
+    "residual": "row3147 d3 (16,140), target dimension2"
+  },
+  "actual_full_staircase_d3_meaning": "Fact713Row2907Continuation.Actual.complete",
+  "actual_quotient_coordinate_equality": "Fact713Row2907Continuation.Actual.constructed_coordinates_all"
+}

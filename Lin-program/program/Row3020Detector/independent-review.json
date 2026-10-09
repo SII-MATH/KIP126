@@ -1,0 +1,44 @@
+{
+  "status": "independent_finite_semantics_and_data_audit_passed",
+  "findings": [],
+  "raw": [
+    3020,
+    11,
+    138,
+    "0",
+    null,
+    9000
+  ],
+  "source_basis_id": 3018,
+  "source_matrix_rows": 3,
+  "source_matrix_cols": 4,
+  "full_source_matrix_zero": true,
+  "all16_source_vectors_annihilated": true,
+  "target_rank": 2,
+  "all4_target_vectors_kernel_checked": true,
+  "named_canonical_coordinate": [
+    1,
+    0,
+    0
+  ],
+  "different_from_row3019_coordinate": [
+    0,
+    0,
+    1
+  ],
+  "semantic_statement": "For arbitrary ds:S->U and dt:T->V at this exact degree, explicit zeroPreserving and naturality plus actual zero source map and injective target map imply forall x, ds x=zero. No matrix realization or desired-zero premise is assumed.",
+  "compile": {
+    "actual_exit": 0,
+    "standard_axioms_only": true
+  },
+  "inputs_sha256": {
+    "Row3020Detector/Meaning.lean": "c84257627eccc92983565951effe397f744654850ce2653cb7ca15afad2d7ae6",
+    "Row3020Detector/Meaning.log": "32d70aa4c34486c49957614c6d489fdaa218738af2875f7a256f59ba81e3bf97",
+    "Row3020Detector/review.json": "5c9fe347b3f0f4bb71728e31a8426f81921a2ec13574f408232052e51fdc0d65",
+    "Row3020Detector/compile-audit.json": "aecfcc2a6b66eb3e0c2d9d005e30c78b5306951924c7c51be75f0afa67c78892",
+    "Row3019Detector/source.json": "10b08e129852c78c923d1d75dd367d5c34b280c883a007c840780dadc7e28317",
+    "Row3019Detector/comparison-source.json": "0b11aaec9d3b2c6d9cd3e93dae00367f341e583f096672c76012f5b14ccf8b27",
+    "Row3019Detector/Naturality.lean": "5fdb812708b28a23f29faf8bb7d94d709f055c38d5bd373494d561927cfb617e",
+    "Row3019Detector/Matches.lean": "5e08cd007ae54639714cd9bfdbf338d9f362e27684b3bccc22733327b9c7fdd3"
+  }
+}

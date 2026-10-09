@@ -1,0 +1,40 @@
+Fact713E12Search/Prefix.lean:15:32: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Stage
+
+Hint: Adding the command `deriving instance Inhabited for PageTransitionCertificates.Stage` may allow Lean to derive the missing instance.
+Fact713E12Search/Prefix.lean:15:86: error: Type mismatch
+  rfl
+has type
+  ?m.12 = ?m.12
+but is expected to have type
+  stages[0]!.vector = Fact713PageCertificates.target
+Fact713E12Search/Prefix.lean:23:6: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Stage
+
+Hint: Adding the command `deriving instance Inhabited for PageTransitionCertificates.Stage` may allow Lean to derive the missing instance.
+Fact713E12Search/Prefix.lean:23:30: error: Expected type must not contain metavariables
+  eval b_S0_9_132_d2.comparison.projection Fact713PageCertificates.target = stages[1]!.vector
+Fact713E12Search/Prefix.lean:26:45: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Stage
+
+Hint: Adding the command `deriving instance Inhabited for PageTransitionCertificates.Stage` may allow Lean to derive the missing instance.
+Fact713E12Search/Prefix.lean:27:36: error: Expected type must not contain metavariables
+  eval b_S0_9_132_d3.comparison.projection stages[1]!.vector = fun x => true
+Fact713E12Search/Prefix.lean:32:22: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Stage
+
+Hint: Adding the command `deriving instance Inhabited for PageTransitionCertificates.Stage` may allow Lean to derive the missing instance.
+Fact713E12Search/Prefix.lean:33:13: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Stage
+
+Hint: Adding the command `deriving instance Inhabited for PageTransitionCertificates.Stage` may allow Lean to derive the missing instance.
+Fact713E12Search/Prefix.lean:34:49: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Stage
+
+Hint: Adding the command `deriving instance Inhabited for PageTransitionCertificates.Stage` may allow Lean to derive the missing instance.
+Fact713E12Search/Prefix.lean:36:2: error: Expected type must not contain metavariables
+  zero = eval (matrixOf 2 2 b_S0_9_132_d3.outgoing) stages[1]!.vector
+'Fact713E12Search.Prefix.finite_E4' depends on axioms: [propext, Quot.sound]
+Fact713E12Search/Prefix.lean:39:14: error(lean.unknownIdentifier): Unknown constant `named_E3_coordinates`
+Fact713E12Search/Prefix.lean:40:14: error(lean.unknownIdentifier): Unknown constant `named_E4_coordinate`
+'Fact713E12Search.Prefix.stored_first_column_requires_cycle' depends on axioms: [propext, sorryAx]

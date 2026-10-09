@@ -1,0 +1,50 @@
+{
+  "arbitrary_target_dimension_smoke_cases": 33,
+  "assumptions": [
+    "full E3 source realization",
+    "surjective actual cycle-to-next-page transitions",
+    "row2632 named cycles on pages3..6",
+    "same named class under transitions",
+    "actual d7 row2632 zero prefix",
+    "full E7 source realization",
+    "actual differential preserves zero",
+    "for explicit E6/E7 coordinate models: zero incoming-source realizations and full linear column semantics"
+  ],
+  "full_raw_comparisons": 3,
+  "inputs_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "Fact762IncomingCertificates/review.py": "ba84de8b2ae8c4eabc63c30c0a2c9c4416557ec36f02da20a0560a8b4ebbc15c",
+    "Fact762Source7Certificates/Finite.lean": "edb399346742f4d7ac2a076c45b5c17db6356509a94479eff2223d2d18634a96",
+    "Fact762Source7Certificates/Inputs.lean": "44a2232f8df4f3c4072e3f98ce58563a2987e0f40740536c83410d1851c14ece",
+    "Fact762Source7Certificates/Propagation.lean": "b4b786758a5aa44b5bf67dbbca102bb683c6754328d42602e7fd663116bd527e",
+    "Fact762Source7Certificates/Semantics.lean": "e4913e98589d4bfc5b18f9486269660925a7f7548a770c1114cf10a8cef408ea",
+    "Fact762Source7Certificates/incoming5.json": "6bf1304a06daa55d7d9fa68eb1227050efb77c29e9929f9c882497ec20d069e8",
+    "Fact762Source7Certificates/incoming6.json": "acf23da773884b23ebe08c5d1a95f7303c24645970a83730d8ae6dde6c777711",
+    "Fact762Source7Certificates/prepare.py": "279531041fd6253e719fe39d021976948711a1a6eee9badadc814d809f8e0f53",
+    "Fact762Source7Certificates/review.py": "e32e2498ee0f2dd84bba707854300075d953d5496190b24dd05480bede4fb1a2",
+    "Fact762Source7Certificates/source-d2.json": "114576769755abdfad14afaa41d0ca4cd5825d92e57f5a0cdffb81ec445be574",
+    "Fact762Source7Certificates/source.json": "9b7e710f53b4d9bf444fb22d8c7783b4275f7006955a6e4ef6469f1a85d18355"
+  },
+  "raw_columns": 5,
+  "remaining": "This is conditional d7 full-source map vanishing. It is not source-space vanishing or proof of the imported d18 prefix.",
+  "source_basis": [
+    [
+      2631,
+      "1,1,69,1,76,1"
+    ],
+    [
+      2632,
+      "0,5,69,2"
+    ]
+  ],
+  "source_row": [
+    2632,
+    7,
+    133,
+    "0",
+    null,
+    9982
+  ],
+  "status": "independent_raw_and_arithmetic_review_passed",
+  "theorem_scope": "Lean proves arbitrary Nat target dimension; Python finite cases are regression evidence only."
+}

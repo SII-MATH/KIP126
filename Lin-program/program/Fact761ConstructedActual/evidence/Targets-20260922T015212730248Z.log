@@ -1,0 +1,41 @@
+Fact761ConstructedActual/Targets.lean:63:35: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  I.target3.coordinates.equivalence 0
+in the target expression
+  I.target3.coordinates.equivalence 0 =
+    eval (matrixOf b13_138_3.m b13_138_3.n b13_138_3.incoming)
+      (((ActualAdamsIncomingBridge.sourceEquiv S 3 { filtration := 13, internal := 138 } ⋯).trans
+          I.source3.coordinates.equivalence)
+        x)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+I : Row2858.D2Input S pages
+T : Target13Stage3 I
+x : ActualAdamsIncomingBridge.Source S 3 { filtration := 13, internal := 138 }
+⊢ I.target3.coordinates.equivalence 0 =
+    eval (matrixOf b13_138_3.m b13_138_3.n b13_138_3.incoming)
+      (((ActualAdamsIncomingBridge.sourceEquiv S 3 { filtration := 13, internal := 138 } ⋯).trans
+          I.source3.coordinates.equivalence)
+        x)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    I.target3
+  has type
+    Chart Row2858.targetDegree S 3 3
+  but is expected to have type
+    Fact721ConstructedActual.AdditiveCoordinates { filtration := 13, internal := 138 } S 3 b13_138_3.m
+  in the application
+    I.target3.coordinates
+'Fact761ConstructedActual.Targets.Empty17.row3080_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Targets.Target13Stage3.step3' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Targets.Target13Stage4.step4' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Targets.d4_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Targets.d5_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

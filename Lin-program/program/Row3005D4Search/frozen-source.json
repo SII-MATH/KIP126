@@ -1,0 +1,164 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Row3005D4Search.Data",
+      "axiom_reports": 12,
+      "source_sha256": "fe8d208cba30f8360b9da76b8fd16300bcbdd009a26934008b5342881440dfc1",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713C2Row3005/MapSemantics.olean": "dce102d2a1debab8f642ec258783dde13d0eb5c6dc3bc283f92db5bb969bf417",
+        ".lake/build/lib/lean/Fact713C2Row3005/MapImported.olean": "60914f51ea0eaa21b6f02082de56c20f8e8e7e4076d53e5183cec47da59ba6cb",
+        ".lake/build/lib/lean/Fact762CsigmasqD5/Descent.olean": "e3a199b28c574f442b8c4cac3519df63664ad2fa9b052691d750b5fff91d4ab7",
+        ".lake/build/lib/lean/Fact715IncomingTail/Basic.olean": "4df25d710acfd18fb9e7cb45e5a09b0ea4b418017b88734969899f7b2b08ee07"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3005D4Search/Data.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3005D4Search/Data.olean"
+      ],
+      "log": "evidence/Data-20260922T023841583594Z.log",
+      "external_input_sha256": {
+        "Row3005D4Search/wire/empty2.json": "8bc8fd296e13d929b520a8b461c97d75a0cffae2cd6b1f3d4e0a4de81cc30125",
+        "Row3005D4Search/wire/empty3.json": "e00d6d1c9cff5782b89e894b76cee55323e9120a2c99aaf0e85130dbe6a3e4d0",
+        "Row3005D4Search/wire/sphere3.json": "da6e93b38cf51201c5fddcee46baa531f03f8c367b986d01603bd638b5e26498"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "d225911c8eba9d3491022d16c7adab60a4bad3b026e19f7a1faee9caf15be690",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Fact713C2Row3005/MapSemantics.olean": "dce102d2a1debab8f642ec258783dde13d0eb5c6dc3bc283f92db5bb969bf417",
+        ".lake/build/lib/lean/Fact713C2Row3005/MapImported.olean": "60914f51ea0eaa21b6f02082de56c20f8e8e7e4076d53e5183cec47da59ba6cb",
+        ".lake/build/lib/lean/Fact762CsigmasqD5/Descent.olean": "e3a199b28c574f442b8c4cac3519df63664ad2fa9b052691d750b5fff91d4ab7",
+        ".lake/build/lib/lean/Fact715IncomingTail/Basic.olean": "4df25d710acfd18fb9e7cb45e5a09b0ea4b418017b88734969899f7b2b08ee07"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "5b78ccf9b639e7c285097d54749729ceb4c44123b7f432a435a1813ecdc34022"
+    },
+    {
+      "module": "Row3005D4Search.Source",
+      "axiom_reports": 9,
+      "source_sha256": "fb1d235e780fc793c3a5ad10083fafef2313cd83e730c204ce45c212730f85c5",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3005D4Search/Data.olean": "5b78ccf9b639e7c285097d54749729ceb4c44123b7f432a435a1813ecdc34022"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3005D4Search/Source.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3005D4Search/Source.olean"
+      ],
+      "log": "evidence/Source-20260922T023945600792Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "3aadb7b8e263963486e0a905867d188f455fce109d36c1f3ae56d6da181cc456",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row3005D4Search/Data.olean": "5b78ccf9b639e7c285097d54749729ceb4c44123b7f432a435a1813ecdc34022"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "080ede26da3a48dfaeb9ee6463e1f3b1edd51f61d92ed4c4efa69c96bd4a20df"
+    },
+    {
+      "module": "Row3005D4Search.Actual",
+      "axiom_reports": 7,
+      "source_sha256": "c63fe7818fa96697c3c794848688f67688ce355851c799571c9afb461c8337c7",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3005D4Search/Source.olean": "080ede26da3a48dfaeb9ee6463e1f3b1edd51f61d92ed4c4efa69c96bd4a20df"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3005D4Search/Actual.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3005D4Search/Actual.olean"
+      ],
+      "log": "evidence/Actual-20260922T024050589421Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "1dbc912b664602cac2786b6d019557a71a0fa3c2c4ec285d402f5b1ad0c74b52",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row3005D4Search/Source.olean": "080ede26da3a48dfaeb9ee6463e1f3b1edd51f61d92ed4c4efa69c96bd4a20df"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "ceb13a18a570b64e08452b5e8149c9b872a4f4fb44774b3b66c2163cea610380"
+    },
+    {
+      "module": "Row3005D4Search.Tactic",
+      "axiom_reports": 3,
+      "source_sha256": "c526bb75174601bb9a09f097bec2206a1409576ef15427aecc5d57b648ff4152",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3005D4Search/Actual.olean": "ceb13a18a570b64e08452b5e8149c9b872a4f4fb44774b3b66c2163cea610380",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/lib/lean/Lean/Elab/Tactic.olean": "cc9e89c311871fa7e0f02ba6cdcb4e40d779b44bc1c28ed1cff1e4f1da9e8378"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3005D4Search/Tactic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3005D4Search/Tactic.olean"
+      ],
+      "log": "evidence/Tactic-20260922T024354788260Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "f895598bf4e4d36f960d247f46cbb45ea4801ed81783e837116f438a246eb029",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row3005D4Search/Actual.olean": "ceb13a18a570b64e08452b5e8149c9b872a4f4fb44774b3b66c2163cea610380",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/lib/lean/Lean/Elab/Tactic.olean": "cc9e89c311871fa7e0f02ba6cdcb4e40d779b44bc1c28ed1cff1e4f1da9e8378"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "7159d24cc4d025664b565bde0b37b28fdac52e2bc91d67a79e2c680d9fa51ece"
+    }
+  ],
+  "axiom_reports": 31,
+  "dependency_note": "Direct dependency hashes are historical observations at compile time; root builds may later rebuild registered dependencies.",
+  "files": {
+    "Row3005D4Search/Actual-compile.json": "6e89155f93423611a30da07c37a05e00f9acaf8aa8b5906c1e9c0936de01a471",
+    "Row3005D4Search/Actual.lean": "c63fe7818fa96697c3c794848688f67688ce355851c799571c9afb461c8337c7",
+    "Row3005D4Search/Data-compile.json": "b33796e43d7b337743197776b757372f2e534547b10b4929e672e06413497857",
+    "Row3005D4Search/Data.lean": "fe8d208cba30f8360b9da76b8fd16300bcbdd009a26934008b5342881440dfc1",
+    "Row3005D4Search/README.md": "2bf956829437e1e5d0b5460ecc47446de955f24cade4ded83df1a49930e9df6d",
+    "Row3005D4Search/Source-compile.json": "6851732da266bbd0bdb453b6f5eb6a48042d291d8d6886158a087dd4eae238d1",
+    "Row3005D4Search/Source.lean": "fb1d235e780fc793c3a5ad10083fafef2313cd83e730c204ce45c212730f85c5",
+    "Row3005D4Search/Tactic-compile.json": "4b0b00f5cca22126768c696103a5e98b7c66814c7c7617f69ce9b8f08891440e",
+    "Row3005D4Search/Tactic.lean": "c526bb75174601bb9a09f097bec2206a1409576ef15427aecc5d57b648ff4152",
+    "Row3005D4Search/audit.json": "421dc17f47d7bcb2d4fb293d85b8c42567a2af30e5089fa12807684d081d9d6b",
+    "Row3005D4Search/audit.log": "421dc17f47d7bcb2d4fb293d85b8c42567a2af30e5089fa12807684d081d9d6b",
+    "Row3005D4Search/audit.py": "99ba33cf85f8aee558da8f6968bd886d555d5ec7e3e3989ae24ea78a514dff66",
+    "Row3005D4Search/c2-search.json": "92863d38e3b23deffbf4412a6e1c0397cb6a4e27fb8545f3c235ef840e2bba2a",
+    "Row3005D4Search/c2-search.log": "9430b3a457dd37a507cda8ce0263efc3f7b8631e033ca35968d9b72b54571a0a",
+    "Row3005D4Search/compile.py": "6f4b40b725a4b7aabc66b070ee54efc961c7336c7ae943cc0cedbb0084274349",
+    "Row3005D4Search/evidence/Actual-20260922T024050589421Z.json": "6e89155f93423611a30da07c37a05e00f9acaf8aa8b5906c1e9c0936de01a471",
+    "Row3005D4Search/evidence/Actual-20260922T024050589421Z.log": "1dbc912b664602cac2786b6d019557a71a0fa3c2c4ec285d402f5b1ad0c74b52",
+    "Row3005D4Search/evidence/Data-20260922T023722414297Z.json": "7e5ba786ec03bdb42e578eac550e7db02d8eaad9d03a782edab8d8d12daaafc5",
+    "Row3005D4Search/evidence/Data-20260922T023722414297Z.log": "c86ad929f5dfbd1f51006b837d88327150dd7915fdd45d404d9ab96b993fa42a",
+    "Row3005D4Search/evidence/Data-20260922T023841583594Z.json": "b33796e43d7b337743197776b757372f2e534547b10b4929e672e06413497857",
+    "Row3005D4Search/evidence/Data-20260922T023841583594Z.log": "d225911c8eba9d3491022d16c7adab60a4bad3b026e19f7a1faee9caf15be690",
+    "Row3005D4Search/evidence/Source-20260922T023903711275Z.json": "f8d169f2b24bf9f2455c45391cad86bceb6e8df7487d95db39c13387a88de27c",
+    "Row3005D4Search/evidence/Source-20260922T023903711275Z.log": "1ed755ca49d32d261afce8c88fed9a70d399421de4dffbffc13c7f95a5395d91",
+    "Row3005D4Search/evidence/Source-20260922T023945600792Z.json": "6851732da266bbd0bdb453b6f5eb6a48042d291d8d6886158a087dd4eae238d1",
+    "Row3005D4Search/evidence/Source-20260922T023945600792Z.log": "3aadb7b8e263963486e0a905867d188f455fce109d36c1f3ae56d6da181cc456",
+    "Row3005D4Search/evidence/Tactic-20260922T024104739970Z.json": "4313a60675e32bcf07cd81febc569e3c1b8d528d118146575bf5e01219152a13",
+    "Row3005D4Search/evidence/Tactic-20260922T024104739970Z.log": "33b47928973bf353de412adfa00df6f4e35628d2ed854fae277bb232be414d2c",
+    "Row3005D4Search/evidence/Tactic-20260922T024354788260Z.json": "4b0b00f5cca22126768c696103a5e98b7c66814c7c7617f69ce9b8f08891440e",
+    "Row3005D4Search/evidence/Tactic-20260922T024354788260Z.log": "f895598bf4e4d36f960d247f46cbb45ea4801ed81783e837116f438a246eb029",
+    "Row3005D4Search/evidence/source-preflight-failure.json": "d7984e46827aae73eccc419653cddf0fbf565247e1a969f8ccc49dea1263d015",
+    "Row3005D4Search/freeze.py": "40bc068dbe5ff5e5f2ce52ef4fb0cf0f00d8814ed6c7d960e271d449d21cd0f9",
+    "Row3005D4Search/lifted-search.json": "bda6d9f1bcf61ce52ebee1bd025e61d5f91b8fdb5d74f7b7464a3355e0c6147e",
+    "Row3005D4Search/map-screen.log": "2bd533758def689db7ea944a4c680b873842744f6d2bc4e0c86eb281dff4a710",
+    "Row3005D4Search/modules.txt": "07f333a8e6cfd95488e570c1f751465146a1036c7f680225bca403f76c054ad5",
+    "Row3005D4Search/products-screen.json": "d5f73463923b488cad24878017efdf344901692f2d8e69f55522221f136fa0fe",
+    "Row3005D4Search/products-screen.log": "6bd236dafab0e77ec9b1b36b546c588a5428950592e51ea342f4d6883212aa4b",
+    "Row3005D4Search/proof-events.json": "b9b18f4204b1e7214f3df9b15212e7d591047f5a88e5778acea34473947a86c4",
+    "Row3005D4Search/proof-events.log": "712ebbc4f09bf51916cf81ac12dec32ac08bce5a613e4bfe02ea6c1049b4cc7c",
+    "Row3005D4Search/proof_events.py": "30f6220b84a23db244f9aa5a5accea2bc7278533447a8659049b94c8abb0cfeb",
+    "Row3005D4Search/reproduction.json": "8c0040abb5d3ff1fe99f2084ba825cca3f186ca5696a745f823a513d468d4938",
+    "Row3005D4Search/screen_products.py": "17edb2948e094fa7a9f424666d19538b30123167e86d6f0899677dac37e94462",
+    "Row3005D4Search/search_c2.py": "4554052c52c24c2e795e65a028998e3edd8089bbd2087bb402d472c50c5da3a1",
+    "Row3005D4Search/search_maps.py": "bbfeec38f31cee68504cfad7ab334e353d2051248b59e9704bebcdf452c4ce45",
+    "Row3005D4Search/wire/empty2.json": "8bc8fd296e13d929b520a8b461c97d75a0cffae2cd6b1f3d4e0a4de81cc30125",
+    "Row3005D4Search/wire/empty3.json": "e00d6d1c9cff5782b89e894b76cee55323e9120a2c99aaf0e85130dbe6a3e4d0",
+    "Row3005D4Search/wire/sphere3.json": "da6e93b38cf51201c5fddcee46baa531f03f8c367b986d01603bd638b5e26498",
+    "Row3005D4Search/file-list.txt": "bbd1943a207147b1547ec3da2eb50735779cde46de2363c0842a0b64eda68bb1"
+  }
+}

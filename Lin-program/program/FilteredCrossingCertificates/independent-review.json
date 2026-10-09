@@ -1,0 +1,46 @@
+{
+  "status": "independent_full_higher_image_review_passed",
+  "input_cases": 12796,
+  "accepted": 1693,
+  "rejected": 11103,
+  "extensions_with_crossings": 32,
+  "preserved_stable_fixtures": 596,
+  "strict_negative_cases": 13,
+  "deterministic_runs": 3,
+  "fresh_source_rebuild_equal": true,
+  "direct_records": {
+    "Basic": {
+      "direct_exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_object_matches_direct": true
+    },
+    "Import": {
+      "direct_exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_object_matches_direct": true
+    },
+    "Examples": {
+      "direct_exit_code": 0,
+      "standard_axiom_reports": 4,
+      "current_object_matches_direct": true
+    }
+  },
+  "scope": "Whole finite higher-source image into next target filtration; actual NoPageCrossing for any well-formedness proof.",
+  "input_sha256": {
+    "FilteredCrossingCertificates/Basic.lean": "6cd2bb17f51c52bec8841d821f92e7b517ce021e1af664010fe421b7cc8ccf55",
+    "FilteredCrossingCertificates/Basic.log": "6063d3eb505d1814395cebb8a9b5587123f3a822bd38cb14dc76e2b6c7d3e25b",
+    "FilteredCrossingCertificates/Basic-compile.json": "bea6076317d594ee1a94ec70ac23d76751105315870be9b83a78fd6201ff65c4",
+    "FilteredCrossingCertificates/Import.lean": "26a2f907545711e397a9babcb4de932bca48f93be117772c544ae32e34856667",
+    "FilteredCrossingCertificates/Import.log": "be5452ef05d0ea0e8439bd27b3fd0fc7a2da76dfc14611aaa9f6128b7d3202cf",
+    "FilteredCrossingCertificates/Import-compile.json": "6508f36dc06f4a06b7c86762cdb94133828b13303963c06ed5f1826a3a0bcd46",
+    "FilteredCrossingCertificates/Examples.lean": "cb52970aa134392fb1e9cabab322ead319a56670d5d626ff282d4c4063c048d7",
+    "FilteredCrossingCertificates/Examples.log": "2d93462f45f3da498c33026e1db30fe247eb5c319c8b59a12141e37334a622de",
+    "FilteredCrossingCertificates/Examples-compile.json": "f3d45c7c9ecc0467f7de9fb838ceeed54ca85889278f9530566ab644c6fb8bf3",
+    "FilteredCrossingCertificates/export.cpp": "9fe525c5928a8b5ea57ee13f4f5a4d02c263c5677e9f4ff82319112801ec7a91",
+    "FilteredCrossingCertificates/filtered-stable-export": "90ffc1dde142cdb86cddd72f3f33303c9167aa8d2dcdb9d5b58c8c2bd717ce83",
+    "FilteredCrossingCertificates/valid.jsonl": "2106f873dbdb35ee3a1d55f6dacf464cea60a5fad73545afa0d315780a52987a",
+    "FilteredCrossingCertificates/nonzero.json": "f8795240dd685716e96346e2ae04c76d407f0d95caa2898b162e80134ca1f407",
+    "FilteredCrossingCertificates/README.md": "23fcb64b2a2b711ba44c10e98b158033e2325e6a58633d62b2f6b9c9d5fc9483",
+    "FilteredExtensionProducer/independent-review.py": "06e28fa7e4b181c24e55799e802f8af60a1eae62d7e109875b32b55c2650f119"
+  }
+}

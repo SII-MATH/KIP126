@@ -1,0 +1,48 @@
+FilteredTwoTermSequence/Homology.lean:20:71: error: unsolved goals
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+n t : ℕ
+h : n ≤ t
+x : Page F G f n (t - n)
+⊢ (0, (⋯ ▸ AddEquiv.refl (AllTargetPage F G f (t - n + n) n)) ((targetD F G f (t - n) n) x.1)) =
+    (⋯ ▸ AddEquiv.refl (Page F G f n (t - n + n))) (0, (targetD F G f (t - n) n) x.1)
+FilteredTwoTermSequence/Homology.lean:24:87: error: unsolved goals
+case snd
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+n t : ℕ
+h : t < n
+x : Page F G f n (t - n)
+⊢ ((incomingPage F G f n t) x).2 = (0 x).2
+FilteredTwoTermSequence/Homology.lean:59:4: error: Application type mismatch: The argument
+  (nextSourceEquivKernel F G f t n).symm.prodCongr ?m.53
+has type
+  @AddEquiv (↥(targetD F G f t n).ker × ?m.34) (SourcePage F G f t (n + 1) × ?m.38)
+    (@Prod.instAdd ↥(targetD F G f t n).ker ?m.34 (targetD F G f t n).ker.toAddGroup.toAddZeroClass.toAdd
+      AddZeroClass.toAddZero.toAdd)
+    Prod.instAdd
+but is expected to have type
+  @AddEquiv (↥(targetD F G f t n).ker × AllTargetPage F G f t n ⧸ (incomingD F G f t n).range) (Page F G f (n + 1) t)
+    (@Prod.instAdd (↥(targetD F G f t n).ker) (AllTargetPage F G f t n ⧸ (incomingD F G f t n).range)
+      (targetD F G f t n).ker.add
+      (QuotientAddGroup.Quotient.addCommGroup
+                (incomingD F G f t n).range).toAddCommMonoid.toAddCommSemigroup.toAddCommMagma.toAdd)
+    Prod.instAdd
+in the application
+  (pageHomologySplit F G f n t).trans ((nextSourceEquivKernel F G f t n).symm.prodCongr ?m.53)
+'FilteredTwoTermSequence.pageD_incoming_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.incomingPage_is_pageD' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.pageHomologySplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.homologyEquivNext' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.initialPageEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.initial_differential_commutes' depends on axioms: [propext, Classical.choice, Quot.sound]

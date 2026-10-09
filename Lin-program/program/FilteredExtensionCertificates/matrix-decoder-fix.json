@@ -1,0 +1,36 @@
+{
+  "reason": "replace dependent Matrix-list decoding with shape-checked raw bit indexing; preserve all shape checks",
+  "before_source_sha256": "9878ca400b3cc8dce0e96f35e3320eb1a993157ed2fcc80cd58082f24f3f72ea",
+  "after_source_sha256": "b220a72452359573e6a9efb039924b70a17b9fc94b9c4b39d554a63be98361ad",
+  "current_import_compile": {
+    "source_sha256": "b220a72452359573e6a9efb039924b70a17b9fc94b9c4b39d554a63be98361ad",
+    "external_input_sha256": {},
+    "observed_exit_code": 0,
+    "log_sha256": "2496aad141fe187b5f78d67b5173fc95e1602d6b6dcfb0e17bccf2eac1e41cb6",
+    "olean_sha256": "e6899ce22417fba161b4a23749995c2acf237d4ff9073fd663c9dc8e53388321"
+  },
+  "old_resource_interruptions": [
+    "batch00-interrupted.json",
+    "large-batch-interrupted.json",
+    "same-process-batches-interrupted.json"
+  ],
+  "proof_test": "Import, Five and Batch00 all exited 0 after fix; Five previously hit 200000 heartbeats, Batch00 previous interrupt had >10 GiB RSS",
+  "external_files": {
+    "batch13.jsonl": "376359217620a070ff32e42fb7a4942bd83b373244f85a2645a37676717dda56",
+    "batch05.jsonl": "5568af244cec29d3522ddb60ef666945526f32268e8a36fa5d3057bff5fdaf4a",
+    "batch15.jsonl": "d477dc7c5791da8a198f0b6c8e654d88b84961d9be73d6bcfedd77656b861c9b",
+    "batch10.jsonl": "8da22714b69bda0ebf7586555f1c81eaa5ffe0b9ce73d8f4214187ef1fc0ae9e",
+    "batch04.jsonl": "28452d57e2cc38dbc8e23199ab53dc1232738b9049ac578e5e6d23adfea346d1",
+    "batch02.jsonl": "5f67042cd0f3d6777f2e5b940e445868efabada66a0d0fdc6a98f9f5886cdb1a",
+    "batch03.jsonl": "2d17ac591f77d7c4a786b686dbba620515ac1dc9c30eb76c00395abab75b0b59",
+    "batch01.jsonl": "a5c9f4d73e567e7e28649d51c60d9a9353e599db7158ecb4bb83017c2d6ad5fa",
+    "batch14.jsonl": "877e873f974d6cbdbb25579ff661e39ed341d38da71d7299e3ef993481a44a9f",
+    "batch06.jsonl": "569ebd1ce77990bc35d2e8920a2ccf72c8de8b321933e1e8a39a9556271c2519",
+    "batch12.jsonl": "fbdfb3480ddb2fa8f55680c9c305d0484f878e3c5b83e4c23a868782415c99f5",
+    "batch11.jsonl": "5a207845b83d061baa61e5f6367d15dff58f9309d8157d8658d36e5b491b6510",
+    "batch08.jsonl": "856b4e45be5f8d463565c17d1b089f88aed455dc5a5f163443af98bf77132d36",
+    "batch00.jsonl": "94186aece1355bb10e7c0dc2620fe9af8782b82ad27575b192d0829c1047f54f",
+    "batch09.jsonl": "23dc9c1213e6e59d2a80e54cb4c9f7917da029eb69268547d59db0b358300a7c",
+    "batch07.jsonl": "23438e0fa9f3a533bc1d69dc0c5919b4ff237469f472c77278a09245c67b1705"
+  }
+}

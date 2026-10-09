@@ -1,0 +1,710 @@
+{
+  "status": "all_configured_maps_independently_replayed",
+  "maps": 70,
+  "directions": 3,
+  "full_target_dimension": 2,
+  "source_zero_maps": 20,
+  "single_candidates": [],
+  "joint_pairs": [],
+  "complete_maps": 48,
+  "incomplete_maps": 22,
+  "reviews": [
+    {
+      "label": "target",
+      "vector": [
+        1,
+        0
+      ],
+      "review_sha256": "2e25d7f4f017be64d35ff9be8b01bfe52467899afc7a16699f2f057e4f406f3e",
+      "complete_cycle_quotients": 97,
+      "reduction_steps": 226,
+      "unknown_stages": [
+        {
+          "map": "S0__tmf",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__tmf",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=154 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "d2 degree t=153 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=155 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "source",
+          "reason": "d2 degree t=138 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "target",
+          "reason": "d2 degree t=140 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5",
+          "stage": "target",
+          "reason": "d2 degree t=140 exceeds d2_t_max=139"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "source",
+          "reason": "d2 degree t=202 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "target",
+          "reason": "d2 degree t=204 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=266 exceeds t_max=261"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=268 exceeds t_max=261"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "source",
+          "reason": "E2 degree t=202 exceeds t_max=200"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "target",
+          "reason": "E2 degree t=204 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=266 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=268 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "source",
+          "reason": "E2 degree t=202 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "target",
+          "reason": "E2 degree t=204 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "source",
+          "reason": "d2 degree t=169 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "target",
+          "reason": "d2 degree t=171 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "source",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "target",
+          "reason": "E2 degree t=203 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "source",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "target",
+          "reason": "E2 degree t=267 exceeds t_max=200"
+        }
+      ]
+    },
+    {
+      "label": "target1",
+      "vector": [
+        0,
+        1
+      ],
+      "review_sha256": "0aae48fbe99d632c62e333f2ae7654f158c0b4e22298bbd1e8c74211aadb8699",
+      "complete_cycle_quotients": 97,
+      "reduction_steps": 252,
+      "unknown_stages": [
+        {
+          "map": "S0__tmf",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__tmf",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=154 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "d2 degree t=153 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=155 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "source",
+          "reason": "d2 degree t=138 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "target",
+          "reason": "d2 degree t=140 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5",
+          "stage": "target",
+          "reason": "d2 degree t=140 exceeds d2_t_max=139"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "source",
+          "reason": "d2 degree t=202 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "target",
+          "reason": "d2 degree t=204 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=266 exceeds t_max=261"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=268 exceeds t_max=261"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "source",
+          "reason": "E2 degree t=202 exceeds t_max=200"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "target",
+          "reason": "E2 degree t=204 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=266 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=268 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "source",
+          "reason": "E2 degree t=202 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "target",
+          "reason": "E2 degree t=204 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "source",
+          "reason": "d2 degree t=169 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "target",
+          "reason": "d2 degree t=171 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "source",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "target",
+          "reason": "E2 degree t=203 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "source",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "target",
+          "reason": "E2 degree t=267 exceeds t_max=200"
+        }
+      ]
+    },
+    {
+      "label": "targetsum",
+      "vector": [
+        1,
+        1
+      ],
+      "review_sha256": "27f1e45dbe27147f7c2a47df23b0af8bdcd0c10913aea606219ba988844dd0cd",
+      "complete_cycle_quotients": 97,
+      "reduction_steps": 303,
+      "unknown_stages": [
+        {
+          "map": "S0__tmf",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__tmf",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=154 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "d2 degree t=153 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=155 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "source",
+          "reason": "d2 degree t=138 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "target",
+          "reason": "d2 degree t=140 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5",
+          "stage": "target",
+          "reason": "d2 degree t=140 exceeds d2_t_max=139"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "source",
+          "reason": "d2 degree t=202 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "target",
+          "reason": "d2 degree t=204 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=266 exceeds t_max=261"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=268 exceeds t_max=261"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "source",
+          "reason": "E2 degree t=202 exceeds t_max=200"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "target",
+          "reason": "E2 degree t=204 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=266 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=268 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "source",
+          "reason": "E2 degree t=202 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "target",
+          "reason": "E2 degree t=204 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "source",
+          "reason": "d2 degree t=169 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "target",
+          "reason": "d2 degree t=171 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "source",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "target",
+          "reason": "E2 degree t=203 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "source",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "target",
+          "reason": "E2 degree t=267 exceeds t_max=200"
+        }
+      ]
+    }
+  ],
+  "source_row": [
+    2994,
+    17,
+    138,
+    "0,1,2",
+    null,
+    9000
+  ],
+  "input_sha256": {
+    "Fact713DC2h6Source/row2994-screen/review.py": "f25de493bd0c43901e8091d76864d67a37e064317e400af72ac118be100703f5",
+    "Fact713DC2h6Source/row2994-screen/search.py": "bf00f36cc151f8dfdd8fbe9ae7cf965b6d260165dc5c40a162b49c254b746dd1",
+    "Fact713DC2h6Source/row2994-screen/lifted-search.json": "bf63e88d5b40703bce5c165f512fa43b3c5d6ddf7224bed79e04fd2bc51da266",
+    "Fact713DC2h6Source/row2994-screen/candidates.json": "7b4a9ba18c2f21c5932e70b8c18235abd9ea8344a513b272b2e9772935d8ba37",
+    "Row3147MapSearch/review.py": "557efe11ed1b33c89b3d02c88de0eaab66f5c627b6e77736e0f8b83eaf76fcc2"
+  },
+  "limitation": "Bounded numerical search only. No single or paired detector was found. Incomplete maps remain explicit failures; no missing d3 value is inferred."
+}

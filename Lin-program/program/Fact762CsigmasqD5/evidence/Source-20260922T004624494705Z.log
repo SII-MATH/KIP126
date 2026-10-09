@@ -1,0 +1,140 @@
+Fact762CsigmasqD5/Source.lean:61:19: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?e ((Equiv.symm ?e) ?x)
+in the target expression
+  InKernel (matrixOf c14_154_2.k c14_154_2.m c14_154_2.outgoing)
+    (P.stage.previous.previous.source.equivalence (P.stage.previous.previous.source.equivalence.symm named2))
+
+C S : AdamsSpectralSequence
+P : Prefix C S
+⊢ InKernel (matrixOf c14_154_2.k c14_154_2.m c14_154_2.outgoing)
+    (P.stage.previous.previous.source.equivalence (P.stage.previous.previous.source.equivalence.symm named2))
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    P.stage.previous.previous.source
+  has type
+    Coordinates C 2 sourceDegree 6
+  but is expected to have type
+    Coordinates C 2 sourceDegree c14_154_2.m
+  in the application
+    P.stage.previous.previous.source.equivalence
+Fact762CsigmasqD5/Source.lean:70:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (nextCoordinates ?M ?pages ?valid ?zeroMeaning).equivalence
+    ((CertifiedAdamsPages.nextPage ?pages ?m.65 ?m.66).toNext ⟦?x⟧)
+in the target expression
+  (P.stage.previous.previous.input.sourceMeaning.nextCoordinates P.stage.previous.previous.input.sourcePages ⋯
+          ⋯).equivalence
+      P.value3 =
+    named
+
+C S : AdamsSpectralSequence
+P : Prefix C S
+⊢ (P.stage.previous.previous.input.sourceMeaning.nextCoordinates P.stage.previous.previous.input.sourcePages ⋯
+          ⋯).equivalence
+      P.value3 =
+    named
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    P.stage.previous.previous.source
+  has type
+    Coordinates C 2 sourceDegree 6
+  but is expected to have type
+    Coordinates C 2 sourceDegree c14_154_2.m
+  in the application
+    @nextCoordinates C 2 sourceDegree c14_154_2 P.stage.previous.previous.source
+Fact762CsigmasqD5/Source.lean:78:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  P.stage.previous.previous.input.nextSource.equivalence P.value3
+in the target expression
+  InKernel (matrixOf c14_154_3.k c14_154_3.m c14_154_3.outgoing)
+    (P.stage.previous.previous.input.nextSource.equivalence P.value3)
+
+C S : AdamsSpectralSequence
+P : Prefix C S
+⊢ InKernel (matrixOf c14_154_3.k c14_154_3.m c14_154_3.outgoing)
+    (P.stage.previous.previous.input.nextSource.equivalence P.value3)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    P.stage.previous.previous.source
+  has type
+    Coordinates C 2 sourceDegree 6
+  but is expected to have type
+    Coordinates C 2 sourceDegree c14_154_2.m
+  in the application
+    @Input.nextSource C S 2 sourceDegree sphereDegree c14_154_2 s14_139_2 P.stage.previous.previous.source
+Fact762CsigmasqD5/Source.lean:87:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (nextCoordinates ?M ?pages ?valid ?zeroMeaning).equivalence
+    ((CertifiedAdamsPages.nextPage ?pages ?m.61 ?m.62).toNext ⟦?x⟧)
+in the target expression
+  (P.stage.previous.input.sourceMeaning.nextCoordinates P.stage.previous.input.sourcePages ⋯ ⋯).equivalence P.value4 =
+    named
+
+C S : AdamsSpectralSequence
+P : Prefix C S
+⊢ (P.stage.previous.input.sourceMeaning.nextCoordinates P.stage.previous.input.sourcePages ⋯ ⋯).equivalence P.value4 =
+    named
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    P.stage.previous.previous.source
+  has type
+    Coordinates C 2 sourceDegree 6
+  but is expected to have type
+    Coordinates C 2 sourceDegree c14_154_2.m
+  in the application
+    @Input.nextSource C S 2 sourceDegree sphereDegree c14_154_2 s14_139_2 P.stage.previous.previous.source
+Fact762CsigmasqD5/Source.lean:92:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  P.stage.previous.input.nextSource.equivalence P.value4
+in the target expression
+  InKernel (matrixOf c14_154_4.k c14_154_4.m c14_154_4.outgoing)
+    (P.stage.previous.input.nextSource.equivalence P.value4)
+
+C S : AdamsSpectralSequence
+P : Prefix C S
+⊢ InKernel (matrixOf c14_154_4.k c14_154_4.m c14_154_4.outgoing)
+    (P.stage.previous.input.nextSource.equivalence P.value4)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    P.stage.previous.previous.source
+  has type
+    Coordinates C 2 sourceDegree 6
+  but is expected to have type
+    Coordinates C 2 sourceDegree c14_154_2.m
+  in the application
+    @Input.nextSource C S 2 sourceDegree sphereDegree c14_154_2 s14_139_2 P.stage.previous.previous.source
+Fact762CsigmasqD5/Source.lean:101:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (nextCoordinates ?M ?pages ?valid ?zeroMeaning).equivalence
+    ((CertifiedAdamsPages.nextPage ?pages ?m.57 ?m.58).toNext ⟦?x⟧)
+in the target expression
+  (P.stage.input.sourceMeaning.nextCoordinates P.stage.input.sourcePages ⋯ ⋯).equivalence P.value5 = named
+
+C S : AdamsSpectralSequence
+P : Prefix C S
+⊢ (P.stage.input.sourceMeaning.nextCoordinates P.stage.input.sourcePages ⋯ ⋯).equivalence P.value5 = named
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    P.stage.previous.previous.source
+  has type
+    Coordinates C 2 sourceDegree 6
+  but is expected to have type
+    Coordinates C 2 sourceDegree c14_154_2.m
+  in the application
+    @Input.nextSource C S 2 sourceDegree sphereDegree c14_154_2 s14_139_2 P.stage.previous.previous.source
+'Fact762CsigmasqD5.Source.Stage2.input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Stage3.input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Stage4.input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.map_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.map_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.coordinate3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.coordinate4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.coordinate5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.named_image' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

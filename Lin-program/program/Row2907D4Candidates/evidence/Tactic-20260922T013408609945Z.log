@@ -1,0 +1,15 @@
+Row2907D4Candidates/Tactic.lean:39:32: error: failed to synthesize
+  Decidable ((eval (column false) fun x => true) = fun i => [true, false][↑i]?.getD false)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2907D4Candidates/Tactic.lean:42:32: error: failed to synthesize
+  Decidable ((eval (column true) fun x => true) = fun i => [true, true][↑i]?.getD false)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2907D4Candidates/Tactic.lean:72:33: warning: Variable name `T` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Row2907D4Candidates.Request.check_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907D4Candidates.Request.checkBatch_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

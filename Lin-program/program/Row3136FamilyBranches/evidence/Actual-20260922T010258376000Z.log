@@ -1,0 +1,115 @@
+Row3136FamilyBranches/Actual.lean:61:9: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  T.target.equivalence 0
+in the target expression
+  T.target.equivalence 0 = eval M.matrix (M.source.equivalence M.named)
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+u : Bool
+T : Row3136SquareCandidates.Actual.TargetMeaning S u
+M : SourceMeaning S P u T
+hz : (S.differential 3 Row3135H0Leibniz.Actual.sourceDegree).toFun M.named = 0
+h : T.target.equivalence 0 = eval M.matrix (M.source.equivalence M.named)
+⊢ (eval M.matrix fun i => ↑i == 1) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 3 (AdamsTarget 3 Row3135H0Leibniz.Actual.sourceDegree)).carrier
+  but is expected to have type
+    (S.element 3 Row3136SquareCandidates.Actual.targetDegree).carrier
+  in the application
+    T.target.equivalence 0
+Row3136FamilyBranches/Actual.lean:82:24: error: Tactic `rewrite` failed: motive is not type correct:
+  fun _a =>
+    T.next.equivalence
+        ((S.differential 3 Row3136SquareCandidates.Actual.targetDegree).toFun
+          ((S.differential 3 sourceDegree).toFun x)) =
+      eval (Row3136SquareCandidates.targetDifferential _a) (eval M.matrix v)
+Error: Application type mismatch: The argument
+  T
+has type
+  Row3136SquareCandidates.Actual.TargetMeaning S u
+but is expected to have type
+  Row3136SquareCandidates.Actual.TargetMeaning S _a
+in the application
+  T.next
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+u : Bool
+T : Row3136SquareCandidates.Actual.TargetMeaning S u
+W : ParameterWitness S P u T
+M : SourceMeaning S P u T
+v : Vec 2
+x : (S.element 3 sourceDegree).carrier := M.source.equivalence.symm v
+hx : M.source.equivalence x = v
+h :
+  T.next.equivalence
+      ((S.differential 3 Row3136SquareCandidates.Actual.targetDegree).toFun ((S.differential 3 sourceDegree).toFun x)) =
+    eval (Row3136SquareCandidates.targetDifferential u) (eval M.matrix v)
+⊢ eval (Row3136SquareCandidates.targetDifferential false) (eval M.matrix v) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (S.differential 3 sourceDegree).toFun x
+  has type
+    (S.element 3 (AdamsTarget 3 sourceDegree)).carrier
+  but is expected to have type
+    (S.element 3 Row3136SquareCandidates.Actual.targetDegree).carrier
+  in the application
+    (S.differential 3 Row3136SquareCandidates.Actual.targetDegree).toFun ((S.differential 3 sourceDegree).toFun x)
+Row3136FamilyBranches/Actual.lean:126:23: error: Tactic `rewrite` failed: motive is not type correct:
+  fun _a =>
+    eval (Row3136SquareCandidates.targetDifferential _a) (T.target.equivalence x) =
+      eval (staircaseTargetOut r (M.matrix 0 0)) (T.target.equivalence x)
+Error: Application type mismatch: The argument
+  T
+has type
+  Row3136SquareCandidates.Actual.TargetMeaning S u
+but is expected to have type
+  Row3136SquareCandidates.Actual.TargetMeaning S _a
+in the application
+  T.target
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+case refine_3
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+u : Bool
+T : Row3136SquareCandidates.Actual.TargetMeaning S u
+W : ParameterWitness S P u T
+M : SourceMeaning S P u T
+r : Bool
+I : Coordinates S 3 incomingDegree 1
+incoming :
+  ∀ (x : (S.element 3 incomingDegree).carrier),
+    M.source.equivalence ((S.differential 3 incomingDegree).toFun x) = eval (matrixOf 2 1 [false, r]) (I.equivalence x)
+x : (S.element 3 targetDegree).carrier
+⊢ eval (Row3136SquareCandidates.targetDifferential u) (T.target.equivalence x) =
+    eval (staircaseTargetOut r (M.matrix 0 0)) (T.target.equivalence x)
+'Row3136FamilyBranches.Actual.parameter_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3136FamilyBranches.Actual.second_column_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3136FamilyBranches.Actual.complete_matrix_candidates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3136FamilyBranches.Actual.actual_complete_matrix' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Row3136FamilyBranches.Actual.outgoing_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3136FamilyBranches.Actual.incoming_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3136FamilyBranches.Actual.target_binding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3136FamilyBranches.Actual.actual_selected_family' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Row3136FamilyBranches.Actual.actual_rebased_d4_zero' depends on axioms: [propext, Quot.sound]

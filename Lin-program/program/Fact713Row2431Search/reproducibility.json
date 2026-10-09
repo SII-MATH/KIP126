@@ -1,0 +1,29 @@
+{
+  "status": "byte_identical_regeneration",
+  "files": {
+    "Maps.lean": "9dd97eee52b6cdc140e497497ef59a476406f322d25b4f137af5f41e2aa97f90",
+    "Comparison.lean": "11663b0fcba2aa5973eb28fbd75cb4ed8579615fabf82c4797a1979869b7facf",
+    "source.json": "513f6b5999ddca3a1065ddd6687832b61151c4e9da263d011c151fe72a58d72d",
+    "comparison-source.json": "7cbd1a6bd2fa1cf390a5586d943c06ee40fd2bfb1afb5fb31ce98c3f79be4a83",
+    "wire/s10t131.json": "ffc1168f5bb6928c79a5435cb59f9bdc12fdc1c6a92f42212448b1393b069719",
+    "wire/s11t131.json": "2b9cb8da6455625ec2c543823582d8f30508d7c3529caab1cdd73d7e8e369dd5",
+    "wire/s12t132.json": "0f7ecabbf4154515bec0e62be99bbf638cb199a09477d63686c21b3deb4ff22f",
+    "wire/s14t133.json": "8e9da72d3ca9f55eb20105bcb142b19ccd593ce71122162014f45d6019437c81",
+    "wire/s7t129.json": "0a32d7aeffe7c4e2c841a32e3ee9250bbf6ab7786e112db5a46407d0f615ec8f",
+    "wire/s9t130.json": "2485898cac8cbb3c32454ae1148ccc3e1ae0e641652fd363a263451a63cb63a9"
+  },
+  "runs": [
+    {
+      "script": "export_maps.py",
+      "exit_code": 0,
+      "stdout": "complete shifted matrices; 13 columns; 3 explicit reductions\n",
+      "stderr": ""
+    },
+    {
+      "script": "generate_comparison.py",
+      "exit_code": 0,
+      "stdout": "four complete d2 quotients, two actual chain maps\n",
+      "stderr": ""
+    }
+  ]
+}

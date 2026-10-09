@@ -1,0 +1,68 @@
+{
+  "status": "read_only_null_inventory_impact_review_passed",
+  "accepted_obstructions": 95,
+  "contamination_found": false,
+  "null_inventory_outgoing": [
+    {
+      "staircase_id": 2696,
+      "raw": null,
+      "level": 9993,
+      "next_undetermined_page": 7,
+      "accepted_event_indices": []
+    },
+    {
+      "staircase_id": 2852,
+      "raw": null,
+      "level": 9995,
+      "next_undetermined_page": 5,
+      "accepted_event_indices": []
+    }
+  ],
+  "residual_ids": [
+    2695,
+    2696,
+    2697,
+    2852,
+    3080,
+    3151,
+    3152,
+    3992,
+    3993,
+    3994
+  ],
+  "exact_null_hint_records": [
+    {
+      "id": 2422885,
+      "file": "proofs-part3.csv",
+      "start_line": 935536,
+      "r": 7,
+      "dx": "[NULL]",
+      "reason": "[NULL]"
+    },
+    {
+      "id": 2423248,
+      "file": "proofs-part3.csv",
+      "start_line": 935913,
+      "r": 5,
+      "dx": "[NULL]",
+      "reason": "[NULL]"
+    }
+  ],
+  "inventory_counts": {
+    "stored_outgoing": 63,
+    "stored_incoming": 38,
+    "sentinel_unknown": 4
+  },
+  "interpretation": "outgoing inventory label only encodes a level range; NULL is next undetermined page, not a known nonzero differential",
+  "risk": "63 outgoing inventory rows include two NULL markers; wording known outgoing/exclude101 must not be interpreted as proved nonzero events",
+  "input_sha256": {
+    "AggregateTargetInventory/inventory.json": "5305d51f32ad48fffa3da528155cc97258b7a52e13d0a02086a297f8de5c5538",
+    "AggregateIncomingTargetCompletion/bound95.jsonl": "0f2511eed6ee9ab21fe384356db99cd73f8651abc85cda7089039c448ad3a2cc",
+    "AggregateEliminationCertificates/Basic.lean": "b4135b98434922f9f758b5b82606a2a5609eaecd4b8e906ede4a7d18fa285fb1",
+    "AggregateEliminationCertificates/Data.lean": "8a14670568aad2c3eb1afb6c4158f54c1dc9264d3b52091be086ed3e78e776e0",
+    "AggregateTargetInventory/generate.py": "62aa7097d57352896f4f4b09604ce9d885e6e0647b00b5dbccfb38cd5625c51f",
+    "NullTargetProofAudit/matches.jsonl": "dc8172d73d63e249d2905bb04c25627eef583559b640b9e3caa24359be254d33",
+    "upstream/release-source/SSeqCpp-master/ss/ss.cpp": "2618cbb3906002064ed696e63dd603ab8a8900a55e43a2fb1d980482926353dc"
+  },
+  "script_sha256": "2771e24cca963d27d0682431b8e5b05eaaa842e69e330f83ce5ef43f9624bf14"
+}

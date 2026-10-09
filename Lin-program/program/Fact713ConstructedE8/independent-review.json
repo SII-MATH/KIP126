@@ -1,0 +1,62 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "proof_evidence": {
+    "Basic": {
+      "record": {
+        "source_sha256": "a0acbcc3fbb48ff58b45d1abe2779fc30515003c6e7a9ae23a06d46541206ac0",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "e75b2c15354b44df3b9407934c6f5d80010d771c678d13e33b91bda422043274",
+        "olean_sha256": "caa1ad4da2ee8d9f0dc3289779a658af30af0ecb16e43f7df5d6d37623ccd92e"
+      },
+      "reports": 4
+    },
+    "Trace": {
+      "record": {
+        "source_sha256": "5f05215010d821723426835924c78b16a0672c89fbeddb9900a562e306921657",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "249681486af6a80e93f454b3cbcfe78948849a37eb9e1e9c9c5ca5cfedacaa48",
+        "olean_sha256": "aa65eb9d9a664e929b9128881f636345a93b60994f0c6eff9067c6248426974d"
+      },
+      "reports": 6
+    }
+  },
+  "counts": {
+    "quotient_coordinates_constructed": 504,
+    "local_quotient_addition_pairs": 1296,
+    "derived_additivity_pairs": 1296,
+    "same_raw_actual_trace_steps": 216,
+    "whole_incoming_elements": 504,
+    "models": 36
+  },
+  "supplied_tracked_page_coordinates": [
+    "E2"
+  ],
+  "constructed_tracked_page_coordinates": [
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7",
+    "E8"
+  ],
+  "remaining_premises": [
+    "Same actual S and CertifiedAdamsPages throughout",
+    "Full neighboring differential meanings at d2 through d7",
+    "Local zero and addition laws for each actual quotient identification",
+    "Actual initial named E2 interpretation for sphere claim"
+  ],
+  "scope": "A conditional actual E8 trace for the fixed initial raw vector. Its d7 wire comes from an explicitly interpreted finite branch; no actual row2994 branch selection, sphere meanings or E12 theorem.",
+  "source_sha256": {
+    "Fact713ConstructedE8/Basic.lean": "a0acbcc3fbb48ff58b45d1abe2779fc30515003c6e7a9ae23a06d46541206ac0",
+    "Fact713ConstructedE8/Trace.lean": "5f05215010d821723426835924c78b16a0672c89fbeddb9900a562e306921657",
+    "ActualAdamsHomologyCoordinates/Basic.lean": "de6e59f1752062308e73843a8f7b3dcd986cd674987d71a6d3d48c4ff901d95d",
+    "ActualAdamsHomologyCoordinates/Adapter.lean": "f77596734d2804856e28d3d993b2b1af82daf41675f2c4c94f2b4bdccfc6ba68",
+    "Fact713NextSourceSearch/refined.json": "3e814a14391b4be42809db7ccd1346e8353304c6aa5bb5a12ee59179bdc2629b",
+    "Fact713ConstructedNamed/Basic.lean": "7bd9c7234c8157a1e017482af006fba30896028c521699f4cabedff86fb317e9",
+    "Fact713ConstructedNamed/Trace.lean": "5c8f539667d9f2c44315fb169a37cea56b15ee5816b09cdf036f35c72aa2785e",
+    "Fact713Row2994Branches/wire/b_S0_9_132_d7.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f"
+  }
+}

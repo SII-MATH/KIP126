@@ -1,0 +1,87 @@
+{
+  "branches": [
+    {
+      "eta_constraint": true,
+      "first": false,
+      "second": false,
+      "source3152_boundary": false
+    },
+    {
+      "eta_constraint": false,
+      "first": false,
+      "second": true,
+      "source3152_boundary": true
+    },
+    {
+      "eta_constraint": true,
+      "first": true,
+      "second": false,
+      "source3152_boundary": false
+    },
+    {
+      "eta_constraint": false,
+      "first": true,
+      "second": true,
+      "source3152_boundary": true
+    }
+  ],
+  "d2_chain_maps": 6,
+  "d2_comparisons": 12,
+  "d3_chain_maps": 2,
+  "d3_comparisons": 4,
+  "eta_columns": 70,
+  "eta_d4_unrestricted": true,
+  "eta_reductions": 75,
+  "eta_target_matrix": [
+    false,
+    true
+  ],
+  "h05_columns": 6,
+  "h05_reductions": 5,
+  "inputs_sha256": {
+    "Row2925EtaD4/comparison-source.json": "fb89a3c4926ed5532ecdb965976a26e266a883289047fa6b6448ed70af4c8dd4",
+    "Row2925EtaD4/h05-provenance.json": "3b4bca47e8967ae7ed40f22c59b08eb71763390871f036291d0716fc3563f1e9",
+    "Row2925EtaD4/product-source.json": "816ae655a4707533e7e703829f7c46a458728acfd7fd201a6ab80dff8ec13d75",
+    "Row2925EtaD4/products-provenance.json": "1375810082f7e2b08e1bcfe3ba81e7609913d1bd5a72ababa831345ddb1b178f",
+    "Row2925EtaD4/review.py": "acabc124c30f3673d1fab1973b3212fe5ff5e7e1eb70b285fb6df48e4ec3b283",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "no_event3152_d5_value_used": true,
+  "raw_rows": {
+    "2925": [
+      2925,
+      11,
+      137,
+      "1,2",
+      null,
+      9000
+    ],
+    "2926": [
+      2926,
+      11,
+      137,
+      "2",
+      "1",
+      9996
+    ],
+    "3151": [
+      3151,
+      15,
+      140,
+      "1",
+      "2",
+      4
+    ],
+    "3152": [
+      3152,
+      15,
+      140,
+      "2",
+      "0",
+      9995
+    ]
+  },
+  "scope": "Full finite products and quotients. Actual Adams multiplication meanings and earlier conditional column meanings remain explicit; no new d5 event asserted.",
+  "status": "raw_polynomial_quotient_replay_passed",
+  "unknown_first_coordinate_retained": true
+}

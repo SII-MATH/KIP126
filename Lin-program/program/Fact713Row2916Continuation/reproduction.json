@@ -1,0 +1,39 @@
+{
+  "status": "byte_identical",
+  "files": 19,
+  "sha256": {
+    "Data.lean": "deb590b46c513139f77891004ac047adaaf7ee6537afad25be9a265c3445738e",
+    "Extra.lean": "3fb978dc66b0fcdb9a2a7413754bfda91a52eb610504190e3686dd8928b0a284",
+    "ResidualA0.lean": "18d3a8a8cde7453c90dc90dda17795d8b9cfc3949da17c6bbba94e37be058186",
+    "ResidualA1.lean": "02cdd76b9d2557c570cc9fcbe3b13d0f576e97142698ed1eede14dee680575b1",
+    "ZeroA0.lean": "60d64cebf7a5657bd382b1874d836982af52100f35a8582573dc90f9c4c882fd",
+    "ZeroA1.lean": "a58c4903332b25f47cbaf3d4ca5436a6c11a6f92c1c9b59571895b862bb36ac9",
+    "branches/residual_a0.json": "cbb8934ea4a7eb4e876934f51e19f559d4cc439b198347eeff60b5753305c141",
+    "branches/residual_a1.json": "2ea4d44661af6833892c530827262f5ea143f8f5c50ccf59a84c6e3b653273ba",
+    "branches/summary.json": "1cc89ba835fc563a8328d992d8961656f23631d038cf33402db81dea3a2f2ec6",
+    "branches/zero_a0.json": "3d136b0ed2e62bf3ce5d8cd88e34c3e7659ddf73faf2c7b68ba3cc60480d7955",
+    "branches/zero_a1.json": "d1297a669dc3ef55e6d9362e759d22e3570a61b1a5483dd6459d28ab11d7da23",
+    "extra.json": "f0b2f71fa4b899e1e0d95abf6b8c24248cba37ce5ea18970ee690fbcb5a9a985",
+    "residual_a0-family.json": "96bcff7ca8e5ddb24132dc01f816cf18a73d72df56bfc1f90017798d1723dcce",
+    "residual_a1-family.json": "82262373102f0ee09483d0fc661421465192baf4d12a9b8a80b1f4ee74e3b287",
+    "wire/b_S0_17_140_d4.json": "ec044a87ef946c2c17a712ea3a980d31b555e2a2eb6f4f5dd1a8da6ed12688aa",
+    "wire/b_S0_17_140_d5.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "wire/b_S0_22_144_d5.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "zero_a0-family.json": "5f5fc741850f5488c3fd0ec8a4a7c120896d5adc54a21475fafc1d1787737beb",
+    "zero_a1-family.json": "9acabd073e94c8109ae77a56d07ff7f4028018f0f4bedfeaad94c623a1ac9679"
+  },
+  "commands": [
+    {
+      "script": "generate.py",
+      "observed_exit_code": 0
+    },
+    {
+      "script": "package.py",
+      "observed_exit_code": 0
+    },
+    {
+      "script": "audit.py",
+      "observed_exit_code": 0
+    }
+  ]
+}

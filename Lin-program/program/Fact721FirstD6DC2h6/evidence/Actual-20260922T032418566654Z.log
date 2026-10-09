@@ -1,0 +1,33 @@
+Fact721FirstD6DC2h6/Actual.lean:58:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  I.incoming4.map.map ?r (AdamsTarget ?r ?d) ((S.differential ?r ?d).toFun ?x)
+in the target expression
+  I.incoming4.map.map 6 Target.degree ((S.differential 6 First.degree).toFun old.endpoint6.value) = 0
+
+S T : AdamsSpectralSequence
+sp : CertifiedAdamsPages S
+tp : CertifiedAdamsPages T
+P : CertifiedAdamsProduct S
+initial : Fact721ConstructedActual.AdditiveCoordinates First.degree S 2 2
+previous : Fact721FirstD4Search.Constructed.Prefix5 S sp initial
+old : Fact721FirstLater.Input previous P
+I : Input old
+⊢ I.incoming4.map.map 6 Target.degree ((S.differential 6 First.degree).toFun old.endpoint6.value) = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (S.differential 6 First.degree).toFun old.endpoint6.value
+  has type
+    (S.element 6 (AdamsTarget 6 First.degree)).carrier
+  but is expected to have type
+    (S.element 6 Target.degree).carrier
+  in the application
+    I.incoming4.map.map 6 Target.degree ((S.differential 6 First.degree).toFun old.endpoint6.value)
+'Fact721FirstD6DC2h6.Actual.Input.reflects4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Actual.Input.incoming4_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Actual.Input.incoming5_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Actual.Input.reflects5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Actual.Input.reflects6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Actual.Input.d6_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Actual.Input.nonzero7' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Actual.Input.same_input7' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

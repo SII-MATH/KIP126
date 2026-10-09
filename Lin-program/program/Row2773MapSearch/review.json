@@ -1,0 +1,756 @@
+{
+  "status": "all_configured_maps_independently_replayed",
+  "maps": 70,
+  "directions": 3,
+  "full_target_dimension": 2,
+  "source_zero_maps": 41,
+  "single_candidates": [
+    "S0__Ceta",
+    "S0__CW_nu_eta_by_2"
+  ],
+  "joint_pairs": [
+    [
+      "S0__CW_sigma_nu",
+      "S0__CW_eta_2"
+    ],
+    [
+      "S0__CW_sigma_nu",
+      "S0__Ceta_by_2"
+    ],
+    [
+      "S0__CW_eta_2",
+      "S0__Ceta_by_nu"
+    ],
+    [
+      "S0__CW_eta_2",
+      "S0__Cnu_by_eta"
+    ],
+    [
+      "S0__CW_eta_2",
+      "S0__CW_2_eta_by_nu"
+    ],
+    [
+      "S0__CW_eta_2",
+      "S0__C2_by_eta"
+    ],
+    [
+      "S0__CW_eta_2",
+      "S0__C2h4"
+    ],
+    [
+      "S0__CW_eta_2",
+      "S0__S0_by_kappa"
+    ],
+    [
+      "S0__CW_eta_2",
+      "S0__S0_by_g"
+    ],
+    [
+      "S0__CW_eta_2",
+      "S0__C2_by_h5"
+    ],
+    [
+      "S0__Ceta_by_nu",
+      "S0__Ceta_by_2"
+    ],
+    [
+      "S0__Ceta_by_2",
+      "S0__Cnu_by_eta"
+    ],
+    [
+      "S0__Ceta_by_2",
+      "S0__CW_2_eta_by_nu"
+    ],
+    [
+      "S0__Ceta_by_2",
+      "S0__C2_by_eta"
+    ],
+    [
+      "S0__Ceta_by_2",
+      "S0__C2h4"
+    ],
+    [
+      "S0__Ceta_by_2",
+      "S0__S0_by_kappa"
+    ],
+    [
+      "S0__Ceta_by_2",
+      "S0__S0_by_g"
+    ],
+    [
+      "S0__Ceta_by_2",
+      "S0__C2_by_h5"
+    ]
+  ],
+  "complete_maps": 49,
+  "incomplete_maps": 21,
+  "reviews": [
+    {
+      "label": "target",
+      "vector": [
+        1,
+        0
+      ],
+      "review_sha256": "dd85308aaea02f9e05310ee94aacb484221425189a3d2e9e41a596104ebb10d4",
+      "complete_cycle_quotients": 99,
+      "reduction_steps": 183,
+      "unknown_stages": [
+        {
+          "map": "S0__tmf",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__tmf",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=151 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 3991"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 4553"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "target",
+          "reason": "d2 degree t=137 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "source",
+          "reason": "d2 degree t=199 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "target",
+          "reason": "d2 degree t=201 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=263 exceeds t_max=261"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=265 exceeds t_max=261"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 10948"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=263 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "source",
+          "reason": "d2 degree t=166 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "target",
+          "reason": "d2 degree t=168 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "source",
+          "reason": "d2 degree t=198 exceeds d2_t_max=139"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "source",
+          "reason": "E2 degree t=262 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "target",
+          "reason": "E2 degree t=264 exceeds t_max=200"
+        }
+      ]
+    },
+    {
+      "label": "target1",
+      "vector": [
+        0,
+        1
+      ],
+      "review_sha256": "538dd046801cd66a63173d9a333b535ae9507aaf40c870f13a7ef381b263955b",
+      "complete_cycle_quotients": 99,
+      "reduction_steps": 168,
+      "unknown_stages": [
+        {
+          "map": "S0__tmf",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__tmf",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=151 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 3991"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 4553"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "target",
+          "reason": "d2 degree t=137 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "source",
+          "reason": "d2 degree t=199 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "target",
+          "reason": "d2 degree t=201 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=263 exceeds t_max=261"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=265 exceeds t_max=261"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 10948"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=263 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "source",
+          "reason": "d2 degree t=166 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "target",
+          "reason": "d2 degree t=168 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "source",
+          "reason": "d2 degree t=198 exceeds d2_t_max=139"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "source",
+          "reason": "E2 degree t=262 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "target",
+          "reason": "E2 degree t=264 exceeds t_max=200"
+        }
+      ]
+    },
+    {
+      "label": "targetsum",
+      "vector": [
+        1,
+        1
+      ],
+      "review_sha256": "6488b0c78f956837df9883f495e3c38135500801afbce285e2c5e31415c265f1",
+      "complete_cycle_quotients": 99,
+      "reduction_steps": 258,
+      "unknown_stages": [
+        {
+          "map": "S0__tmf",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__tmf",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=151 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 3991"
+        },
+        {
+          "map": "S0__CW_2_eta_nu_by_sigma",
+          "stage": "target",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__C2sigma",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 4553"
+        },
+        {
+          "map": "S0__DC2h4",
+          "stage": "target",
+          "reason": "d2 degree t=137 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Fphi",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S1__CW_2_A_eta",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "source",
+          "reason": "d2 degree t=199 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5",
+          "stage": "target",
+          "reason": "d2 degree t=201 exceeds d2_t_max=177"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=263 exceeds t_max=261"
+        },
+        {
+          "map": "S0__S0_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=265 exceeds t_max=261"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 10948"
+        },
+        {
+          "map": "S0__C2_by_h6",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "source",
+          "reason": "E2 degree t=263 exceeds t_max=200"
+        },
+        {
+          "map": "S0__CW_2_eta_by_theta5sq",
+          "stage": "target",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Csigmasq_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta4_by_2",
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "map": "S0__Ctheta5_by_2",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "source",
+          "reason": "d2 degree t=166 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h4_by_sigmasq",
+          "stage": "target",
+          "reason": "d2 degree t=168 exceeds d2_t_max=135"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "source",
+          "reason": "d2 degree t=198 exceeds d2_t_max=139"
+        },
+        {
+          "map": "S0__DC2h5_by_theta4",
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "source",
+          "reason": "E2 degree t=262 exceeds t_max=200"
+        },
+        {
+          "map": "S0__DC2h6_by_theta5",
+          "stage": "target",
+          "reason": "E2 degree t=264 exceeds t_max=200"
+        }
+      ]
+    }
+  ],
+  "source_row": [
+    2773,
+    13,
+    135,
+    "1",
+    null,
+    9000
+  ],
+  "input_sha256": {
+    "Row2773MapSearch/review.py": "77898186177cae470828b77ecbd097f0844f077c0cc8cc0cd6080448c0547fe2",
+    "Row2773MapSearch/search.py": "6686c6dd2a29a1c0681c03c8417c8c733ae9371d67e85f09a50ff2c2a31b146f",
+    "Row2773MapSearch/lifted-search.json": "82bdb423bf9e0b5802cd5ced87febb2046ad79f1e6a7673e4c372a74893e77c6",
+    "Row2773MapSearch/candidates.json": "06a7f3f0f6a8003a8ff508c30d98a431a4d4fedccc41c45b99dec64343bfa10d",
+    "Row3147MapSearch/review.py": "557efe11ed1b33c89b3d02c88de0eaab66f5c627b6e77736e0f8b83eaf76fcc2"
+  },
+  "limitation": "Numerical candidate maps only; no full chain-map or actual naturality proof for these alternatives. The separate Leibniz route supplies the conditional theorem."
+}

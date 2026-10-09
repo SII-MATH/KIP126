@@ -1,0 +1,54 @@
+{
+  "complete_comparisons": 336,
+  "finite_nonzero_events": 90,
+  "unresolved": 11,
+  "added_blocks": [
+    "S0:4,132:d3"
+  ],
+  "new_conditional_uses": [
+    {
+      "block": "S0:4,132:d3",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        4,
+        132
+      ],
+      "page": 3,
+      "row": [
+        2576,
+        "0",
+        null,
+        9000
+      ],
+      "kind": "conditional_c2_h2",
+      "target_predecessor": "S0:7,134:d2"
+    }
+  ],
+  "target_basis_change": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "incoming_comparison_complete": false,
+  "row2708_retained_unknown": true,
+  "affected_unresolved_events": [
+    {
+      "event": 3391,
+      "remaining_failure": "unknown S0:4,132:d4:row2576; target dimension 2"
+    }
+  ],
+  "changed_failure_event": 3391,
+  "changed_failure_page": 4,
+  "generated_sha256": {
+    "source.json": "495c4b95b876a1e7571ae445aec730a4f8b3366380f2f1139f00b4a0f2d96475",
+    "event-results.json": "55284f20790456efac0ec317ae7b7de6728c28308c73e7464c77b58a3a563a19",
+    "Data.lean": "5af43be3f6805b49727343ac309769e4fbb6c2c632b2376f2af4cd3204470782",
+    "Events.lean": "9d8619fe15994c42fc56dcf06f62567734a0bb0115abda4fe21b59098ebbcecb"
+  }
+}

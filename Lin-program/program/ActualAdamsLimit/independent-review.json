@@ -1,0 +1,62 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "finite_replay": {
+    "ambient": "F2^3",
+    "additive_subgroups": 16,
+    "two_transition_constant_tail_towers": 355,
+    "initial_element_cases": 2840,
+    "additive_quotient_pairs": 19627,
+    "nonzero_limit_classes_by_representative": 476,
+    "killed_nonzero_initial_cycles": 595,
+    "outgoing_only_not_strong": 950,
+    "zero_not_permanent_cases": 355
+  },
+  "checked_semantics": [
+    "ZInfinity is the intersection of all actual additive cycle subgroups.",
+    "BInfinity is the increasing union, with addition closure proved using max indices.",
+    "BInfinity is a subgroup of ZInfinity by actual boundary coherence.",
+    "Limit is the literal additive quotient via subgroup comap to ZInfinity.",
+    "For x already in ZInfinity, strong permanence iff its limit class is nonzero.",
+    "Intersection tactic uses only outgoing-cycle prefix and full outgoing-map tail.",
+    "Nonzero-limit tactic retains strict nonboundary prefix and full incoming/outgoing tails."
+  ],
+  "limitations": [
+    "Constant-tail finite models do not independently prove arbitrary infinite-tail theorems.",
+    "No actual sphere or named paper class instance constructed.",
+    "No convergence to stable homotopy groups or identification with paper-specific filtered objects.",
+    "Meaning proofs and infinite tail equations are supplied in Lean, not imported from JSON.",
+    "The certificate theorem starts from x : ZInfinity; intersection theorem can establish that membership first."
+  ],
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "exit_code": 0,
+      "standard_axiom_reports": 3,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Certificate",
+      "exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "standard_axiom_reports": 5,
+  "input_sha256": {
+    "ActualAdamsLimit/Basic.lean": "fafc8a72f96ffd7098e0dd9c70acafe70a20064aa41bc2901fd2721f9f1e7c56",
+    "ActualAdamsLimit/Certificate.lean": "f329bc39e90a84d639a7a71ca9103f1df33822f294b3647622e0ab44f531a7b9",
+    "ActualAdamsLimit/README.md": "f8b6696fc58c0672aa2ad9c8de57f102a46c2c8526aa035ec95ba9d3525484dc",
+    "ActualAdamsLimit/independent-review.py": "ff04e1056357e6f0dcbd216ab0255ae9ca2d73d74d6eee3573294b6903d91f80",
+    "ActualAdamsAdditiveFiltration/Subgroups.lean": "cc6434b5604b6b2054996650a1313fc09bdd9b0e3a9b3680ee25f2a893cc1e58",
+    "ActualAdamsAdditiveFiltration/Basic.lean": "1608a3c3d1acbd9e0392773ee05b63e45d6f2ce5e1f3c62f419e28979ca5a8cd",
+    "ActualAdamsFiltration/Actual.lean": "0ebae97fe28695725981f1ed79d91ee3df9edb2b00caf099c159e850425af4cb",
+    "ActualAdamsFiltration/Basic.lean": "dc951fcd2770198683cc98551d9686547686f811c7688240e66bdc005a551bb5",
+    "OutgoingCycleFiltrationCertificates/Strong.lean": "291d13cd499c58fabfbcc180eb864d983272423dab654ddbada7a36c171d014f",
+    "PermanentMapTailCertificates/Basic.lean": "8429c2f4d443f8df0d1aa33788f3b58a30771cca7295bb3aa585e4af78cf239c",
+    "PermanentMapTailCertificates/Certificate.lean": "460c54501c1bca0dd8635978206788522c1a8698c3bbf686584dfe1847d45908"
+  }
+}

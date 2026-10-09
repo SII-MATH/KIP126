@@ -1,0 +1,736 @@
+{
+  "branch": "zero",
+  "assumed_staircase_d3": [
+    0,
+    0
+  ],
+  "baseline_preserved": 1272,
+  "changed_selection_rows": [],
+  "new_comparisons": {
+    "S0:17,138:d3": {
+      "object": "S0",
+      "center": [
+        17,
+        138
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            17,
+            138
+          ],
+          "page": 3,
+          "row": [
+            2994,
+            "0,1,2",
+            null,
+            9000
+          ],
+          "kind": "explicit_two_candidate_branch",
+          "branch": "zero",
+          "coordinates": [
+            0,
+            0
+          ],
+          "target_predecessor": "S0:20,140:d2",
+          "premise": "One case of actual_staircase_candidates, not an unconditional differential value."
+        },
+        {
+          "object": "S0",
+          "source": [
+            14,
+            136
+          ],
+          "page": 3,
+          "row": [
+            2841,
+            "0",
+            "0",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:17,138:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:14,136:d2",
+        "S0:17,138:d2",
+        "S0:20,140:d2"
+      ]
+    },
+    "S0:13,135:d4": {
+      "object": "S0",
+      "center": [
+        13,
+        135
+      ],
+      "page": 4,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 4,
+          "row": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2773_d4_actual_leibniz",
+          "target_predecessor": "S0:17,138:d3",
+          "theorem": "Row2773D4Leibniz.Actual.actual_row2773_d4_zero",
+          "coordinate_binding": "Row2773D4Leibniz.CoordinateBridge.actual_next_unique",
+          "premise": "E3 product meanings, actual full homology multiplicativity and eta d3 derivation."
+        },
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 4,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:13,135:d3"
+        }
+      ],
+      "predecessors": [
+        "S0:9,132:d3",
+        "S0:13,135:d3",
+        "S0:17,138:d3"
+      ]
+    },
+    "S0:8,131:d5": {
+      "object": "S0",
+      "center": [
+        8,
+        131
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:3,127:d4",
+        "S0:8,131:d4",
+        "S0:13,135:d4"
+      ]
+    },
+    "S0:13,135:d5": {
+      "object": "S0",
+      "center": [
+        13,
+        135
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 5,
+          "row": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:18,139:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:8,131:d4",
+        "S0:13,135:d4",
+        "S0:18,139:d4"
+      ]
+    },
+    "S0:18,139:d5": {
+      "object": "S0",
+      "center": [
+        18,
+        139
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 5,
+          "row": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:18,139:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:13,135:d4",
+        "S0:18,139:d4",
+        "S0:23,143:d4"
+      ]
+    },
+    "S0:2,126:d6": {
+      "object": "S0",
+      "center": [
+        2,
+        126
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-4,121:d5",
+        "S0:2,126:d5",
+        "S0:8,131:d5"
+      ]
+    },
+    "S0:8,131:d6": {
+      "object": "S0",
+      "center": [
+        8,
+        131
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:2,126:d5",
+        "S0:8,131:d5",
+        "S0:14,136:d5"
+      ]
+    },
+    "S0:14,136:d6": {
+      "object": "S0",
+      "center": [
+        14,
+        136
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:8,131:d5",
+        "S0:14,136:d5",
+        "S0:20,141:d5"
+      ]
+    },
+    "S0:2,126:d7": {
+      "object": "S0",
+      "center": [
+        2,
+        126
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-5,120:d6",
+        "S0:2,126:d6",
+        "S0:9,132:d6"
+      ]
+    },
+    "S0:9,132:d7": {
+      "object": "S0",
+      "center": [
+        9,
+        132
+      ],
+      "page": 7,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 7,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:16,138:d6"
+        }
+      ],
+      "predecessors": [
+        "S0:2,126:d6",
+        "S0:9,132:d6",
+        "S0:16,138:d6"
+      ]
+    },
+    "S0:15,137:d7": {
+      "object": "S0",
+      "center": [
+        15,
+        137
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:8,131:d6",
+        "S0:15,137:d6",
+        "S0:22,143:d6"
+      ]
+    }
+  },
+  "graph_available": 1280,
+  "graph_unresolved": 140,
+  "source_direct_comparison": {
+    "down": [
+      false,
+      false
+    ],
+    "h": 1,
+    "inclusion": [
+      true
+    ],
+    "incoming": [
+      false
+    ],
+    "k": 2,
+    "m": 1,
+    "n": 1,
+    "outgoing": [
+      false,
+      false
+    ],
+    "projection": [
+      true
+    ],
+    "up": [
+      false
+    ],
+    "version": 1
+  },
+  "source_next_selected_raw": [
+    [
+      2994,
+      "0,1,2",
+      null,
+      9000
+    ]
+  ],
+  "source_selection_compatible": true,
+  "source_result": {
+    "status": "finite_comparison_available",
+    "dimensions": {
+      "k": 2,
+      "m": 1,
+      "n": 1,
+      "h": 1
+    },
+    "unresolved_predecessors": []
+  },
+  "roots": [
+    {
+      "key": "S0:9,132:d2",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 2,
+        "m": 2,
+        "n": 3,
+        "h": 2
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d3",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d4",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d5",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d6",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d7",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d8",
+      "status": "unresolved",
+      "first_failure": "unknown S0:12,134:d4:row2684; target dimension 1",
+      "unresolved_predecessors": [
+        "S0:1,125:d7",
+        "S0:17,139:d7"
+      ]
+    },
+    {
+      "key": "S0:9,132:d9",
+      "status": "unresolved",
+      "first_failure": "unknown S0:11,133:d4:row2622; target dimension 2",
+      "unresolved_predecessors": [
+        "S0:0,124:d8",
+        "S0:9,132:d8",
+        "S0:18,140:d8"
+      ]
+    },
+    {
+      "key": "S0:9,132:d10",
+      "status": "unresolved",
+      "first_failure": "unknown S0:11,133:d4:row2622; target dimension 2",
+      "unresolved_predecessors": [
+        "S0:-1,123:d9",
+        "S0:9,132:d9",
+        "S0:19,141:d9"
+      ]
+    },
+    {
+      "key": "S0:9,132:d11",
+      "status": "unresolved",
+      "first_failure": "unknown S0:9,130:d3:row2431; target dimension 3",
+      "unresolved_predecessors": [
+        "S0:-2,122:d10",
+        "S0:9,132:d10",
+        "S0:20,142:d10"
+      ]
+    }
+  ],
+  "named_trajectory": [
+    {
+      "page": 2,
+      "vector": [
+        1,
+        1
+      ],
+      "outgoing": [
+        0,
+        0
+      ],
+      "is_boundary": false,
+      "next": [
+        1,
+        0
+      ]
+    },
+    {
+      "page": 3,
+      "vector": [
+        1,
+        0
+      ],
+      "outgoing": [
+        0,
+        0
+      ],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 4,
+      "vector": [
+        1
+      ],
+      "outgoing": [
+        0
+      ],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 5,
+      "vector": [
+        1
+      ],
+      "outgoing": [],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 6,
+      "vector": [
+        1
+      ],
+      "outgoing": [],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 7,
+      "vector": [
+        1
+      ],
+      "outgoing": [
+        0
+      ],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    }
+  ],
+  "scope": "Finite case split. A staircase selection mismatch is not a contradiction from topology; raw level9000 does not itself prove next-page survival."
+}

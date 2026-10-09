@@ -1,0 +1,6008 @@
+{
+  "schema": "lin-category-inventory/v1",
+  "source_sha256": "a9a623bf7165e62fcf455e454fdf9195237491bf07bd148902e245aa1dba64d8",
+  "counts": {
+    "cofseqs": 61,
+    "commutativity": 36,
+    "maps": 180,
+    "maps_v2": 115,
+    "modules": 47,
+    "rings": 2
+  },
+  "records": [
+    {
+      "section": "rings",
+      "ordinal": 1,
+      "source": {
+        "deduce": "on",
+        "latex": "S^0",
+        "name": "S0",
+        "path": "S0_AdamsSS_t261.db",
+        "plot_factors": [
+          [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              7,
+              1,
+              0
+            ],
+            [
+              8,
+              3,
+              0
+            ],
+            [
+              9,
+              5,
+              0
+            ],
+            [
+              11,
+              5,
+              0
+            ],
+            [
+              14,
+              4,
+              0
+            ],
+            [
+              20,
+              4,
+              0
+            ]
+          ]
+        ]
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "rings",
+      "ordinal": 2,
+      "source": {
+        "deduce": "on",
+        "latex": "tmf",
+        "name": "tmf",
+        "path": "tmf_AdamsSS_t261.db",
+        "plot_factors": [
+          [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              3,
+              1,
+              0
+            ]
+          ],
+          []
+        ]
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 1,
+      "source": {
+        "deduce": "on",
+        "name": "C2",
+        "over": "S0",
+        "path": "C2_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 2,
+      "source": {
+        "deduce": "on",
+        "name": "Ceta",
+        "over": "S0",
+        "path": "Ceta_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 3,
+      "source": {
+        "deduce": "on",
+        "name": "Cnu",
+        "over": "S0",
+        "path": "Cnu_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 4,
+      "source": {
+        "deduce": "on",
+        "name": "Csigma",
+        "over": "S0",
+        "path": "Csigma_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 5,
+      "source": {
+        "deduce": "on",
+        "name": "CW_2_eta",
+        "over": "S0",
+        "path": "CW_2_eta_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 6,
+      "source": {
+        "deduce": "on",
+        "name": "CW_eta_2",
+        "over": "S0",
+        "path": "CW_eta_2_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 7,
+      "source": {
+        "deduce": "on",
+        "name": "CW_eta_nu",
+        "over": "S0",
+        "path": "CW_eta_nu_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 8,
+      "source": {
+        "deduce": "on",
+        "name": "CW_nu_eta",
+        "over": "S0",
+        "path": "CW_nu_eta_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 9,
+      "source": {
+        "deduce": "on",
+        "name": "CW_sigma_nu",
+        "over": "S0",
+        "path": "CW_sigma_nu_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 10,
+      "source": {
+        "deduce": "on",
+        "name": "CW_nu_sigma",
+        "over": "S0",
+        "path": "CW_nu_sigma_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 11,
+      "source": {
+        "deduce": "on",
+        "name": "CW_2_eta_nu",
+        "over": "S0",
+        "path": "CW_2_eta_nu_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 12,
+      "source": {
+        "deduce": "on",
+        "name": "CW_nu_eta_2",
+        "over": "S0",
+        "path": "CW_nu_eta_2_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 13,
+      "source": {
+        "deduce": "on",
+        "name": "CW_sigma_nu_eta",
+        "over": "S0",
+        "path": "CW_sigma_nu_eta_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 14,
+      "source": {
+        "deduce": "on",
+        "name": "CW_eta_nu_sigma",
+        "over": "S0",
+        "path": "CW_eta_nu_sigma_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 15,
+      "source": {
+        "deduce": "on",
+        "name": "CW_sigma_nu_eta_2",
+        "over": "S0",
+        "path": "CW_sigma_nu_eta_2_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 16,
+      "source": {
+        "deduce": "on",
+        "name": "CW_2_eta_nu_sigma",
+        "over": "S0",
+        "path": "CW_2_eta_nu_sigma_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 17,
+      "source": {
+        "deduce": "on",
+        "name": "Csigmasq",
+        "over": "S0",
+        "path": "Csigmasq_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 18,
+      "source": {
+        "deduce": "on",
+        "name": "C2h4",
+        "over": "S0",
+        "path": "C2h4_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 19,
+      "source": {
+        "deduce": "on",
+        "name": "DC2h4",
+        "over": "S0",
+        "path": "DC2h4_AdamsSS_t198.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 20,
+      "source": {
+        "deduce": "on",
+        "name": "Ctheta4",
+        "over": "S0",
+        "path": "Ctheta4_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 21,
+      "source": {
+        "deduce": "on",
+        "name": "C2h5",
+        "over": "S0",
+        "path": "C2h5_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 22,
+      "source": {
+        "deduce": "on",
+        "name": "DC2h5",
+        "over": "S0",
+        "path": "DC2h5_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 23,
+      "source": {
+        "deduce": "on",
+        "name": "Ctheta5",
+        "over": "S0",
+        "path": "Ctheta5_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 24,
+      "source": {
+        "deduce": "on",
+        "name": "C2h6",
+        "over": "S0",
+        "path": "C2h6_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 25,
+      "source": {
+        "deduce": "on",
+        "name": "DC2h6",
+        "over": "S0",
+        "path": "DC2h6_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 26,
+      "source": {
+        "deduce": "on",
+        "name": "C2_C2",
+        "over": "S0",
+        "path": "C2_C2_AdamsSS_t180.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 27,
+      "source": {
+        "deduce": "on",
+        "name": "Ceta_Ceta",
+        "over": "S0",
+        "path": "Ceta_Ceta_AdamsSS_t160.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 28,
+      "source": {
+        "deduce": "on",
+        "name": "Cnu_Cnu",
+        "over": "S0",
+        "path": "Cnu_Cnu_AdamsSS_t180.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 29,
+      "source": {
+        "deduce": "on",
+        "name": "Csigma_Csigma",
+        "over": "S0",
+        "path": "Csigma_Csigma_AdamsSS_t180.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 30,
+      "source": {
+        "deduce": "on",
+        "name": "CW_2sigma_sigma",
+        "over": "S0",
+        "path": "CW_2sigma_sigma_AdamsSS_t180.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 31,
+      "source": {
+        "deduce": "on",
+        "name": "CW_sigma_2sigma",
+        "over": "S0",
+        "path": "CW_sigma_2sigma_AdamsSS_t180.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 32,
+      "source": {
+        "deduce": "on",
+        "name": "C2sigma",
+        "over": "S0",
+        "path": "C2sigma_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 33,
+      "source": {
+        "deduce": "on",
+        "name": "CW_2_V_eta",
+        "over": "S0",
+        "path": "CW_2_V_eta_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 34,
+      "source": {
+        "deduce": "on",
+        "name": "CW_2_A_eta",
+        "over": "S0",
+        "path": "CW_2_A_eta_AdamsSS_t180.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 35,
+      "source": {
+        "deduce": "on",
+        "name": "Joker",
+        "over": "S0",
+        "path": "Joker_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 36,
+      "source": {
+        "deduce": "on",
+        "name": "CW_eta_2_eta_Eq_2_nu",
+        "over": "S0",
+        "path": "CW_eta_2_eta_Eq_2_nu_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 37,
+      "source": {
+        "deduce": "on",
+        "name": "CW_eta_2_eta_Eq_nu_2",
+        "over": "S0",
+        "path": "CW_eta_2_eta_Eq_nu_2_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 38,
+      "source": {
+        "deduce": "on",
+        "name": "C2_Ceta",
+        "over": "S0",
+        "path": "C2_Ceta_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 39,
+      "source": {
+        "deduce": "on",
+        "name": "RP3_6",
+        "over": "S0",
+        "path": "RP3_6_AdamsSS_t199.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 40,
+      "source": {
+        "deduce": "on",
+        "name": "Fphi",
+        "over": "S0",
+        "path": "Fphi_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 41,
+      "source": {
+        "deduce": "on",
+        "name": "RP1_4",
+        "over": "S0",
+        "path": "RP1_4_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 42,
+      "source": {
+        "deduce": "on",
+        "name": "RP1_6",
+        "over": "S0",
+        "path": "RP1_6_AdamsSS_t183.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 43,
+      "source": {
+        "deduce": "on",
+        "name": "RP1_8",
+        "over": "S0",
+        "path": "RP1_8_AdamsSS_t180.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 44,
+      "source": {
+        "deduce": "on",
+        "name": "RP1_10",
+        "over": "S0",
+        "path": "RP1_10_AdamsSS_t180.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 45,
+      "source": {
+        "deduce": "on",
+        "name": "RP1_12",
+        "over": "S0",
+        "path": "RP1_12_AdamsSS_t178.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 46,
+      "source": {
+        "deduce": "on",
+        "name": "RP1_256",
+        "over": "S0",
+        "path": "RP1_256_AdamsSS_t200.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "modules",
+      "ordinal": 47,
+      "source": {
+        "deduce": "on",
+        "name": "RP3_256",
+        "over": "S0",
+        "path": "RP3_256_AdamsSS_t160.db"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 1,
+      "source": {
+        "from": "S0",
+        "name": "S0__tmf",
+        "path": "map_AdamsSS_S0_to_tmf_t261.db",
+        "t_max": 261,
+        "to": "tmf"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 2,
+      "source": {
+        "from": "C2",
+        "name": "C2__S0",
+        "path": "map_AdamsSS_C2_to_S0_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 3,
+      "source": {
+        "from": "Ceta",
+        "name": "Ceta__S0",
+        "path": "map_AdamsSS_Ceta_to_S0_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 4,
+      "source": {
+        "from": "Cnu",
+        "name": "Cnu__S0",
+        "path": "map_AdamsSS_Cnu_to_S0_t200.db",
+        "sus": 4,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 5,
+      "source": {
+        "from": "Csigma",
+        "name": "Csigma__S0",
+        "path": "map_AdamsSS_Csigma_to_S0_t200.db",
+        "sus": 8,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 6,
+      "source": {
+        "from": "C2",
+        "name": "C2__CW_2_eta",
+        "path": "map_AdamsSS_C2_to_CW_2_eta_t180.db",
+        "t_max": 180,
+        "to": "CW_2_eta",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 7,
+      "source": {
+        "from": "Ceta",
+        "name": "Ceta__CW_eta_2",
+        "path": "map_AdamsSS_Ceta_to_CW_eta_2_t180.db",
+        "t_max": 180,
+        "to": "CW_eta_2",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 8,
+      "source": {
+        "from": "Ceta",
+        "name": "Ceta__CW_eta_nu",
+        "path": "map_AdamsSS_Ceta_to_CW_eta_nu_t180.db",
+        "t_max": 180,
+        "to": "CW_eta_nu",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 9,
+      "source": {
+        "from": "Cnu",
+        "name": "Cnu__CW_nu_eta",
+        "path": "map_AdamsSS_Cnu_to_CW_nu_eta_t180.db",
+        "t_max": 180,
+        "to": "CW_nu_eta",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 10,
+      "source": {
+        "from": "Cnu",
+        "name": "Cnu__CW_nu_sigma",
+        "path": "map_AdamsSS_Cnu_to_CW_nu_sigma_t200.db",
+        "t_max": 200,
+        "to": "CW_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 11,
+      "source": {
+        "from": "CW_nu_sigma",
+        "name": "CW_nu_sigma__Csigma",
+        "path": "map_AdamsSS_CW_nu_sigma_to_Csigma_t199.db",
+        "sus": 4,
+        "t_max": 199,
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 12,
+      "source": {
+        "from": "CW_sigma_nu",
+        "name": "CW_sigma_nu__Cnu",
+        "path": "map_AdamsSS_CW_sigma_nu_to_Cnu_t199.db",
+        "sus": 8,
+        "t_max": 199,
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 13,
+      "source": {
+        "from": "CW_2_eta",
+        "name": "CW_2_eta__Ceta",
+        "path": "map_AdamsSS_CW_2_eta_to_Ceta_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 14,
+      "source": {
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__C2",
+        "path": "map_AdamsSS_CW_eta_2_to_C2_t180.db",
+        "sus": 2,
+        "t_max": 180,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 15,
+      "source": {
+        "from": "CW_eta_nu",
+        "name": "CW_eta_nu__Cnu",
+        "path": "map_AdamsSS_CW_eta_nu_to_Cnu_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 16,
+      "source": {
+        "from": "CW_nu_eta",
+        "name": "CW_nu_eta__Ceta",
+        "path": "map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
+        "sus": 4,
+        "t_max": 200,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 17,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_CW_nu_eta_2",
+        "path": "map_AdamsSS_C2_to_Q_CW_nu_eta_2_t194.db",
+        "sus": -5,
+        "t_max": 194,
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 18,
+      "source": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_2_eta_nu",
+        "path": "map_AdamsSS_Cnu_to_Q_CW_2_eta_nu_t197.db",
+        "sus": -2,
+        "t_max": 197,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 19,
+      "source": {
+        "from": "CW_2_eta_nu",
+        "name": "CW_2_eta_nu__CW_eta_nu",
+        "path": "map_AdamsSS_CW_2_eta_nu_to_CW_eta_nu_t190.db",
+        "sus": 1,
+        "t_max": 190,
+        "to": "CW_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 20,
+      "source": {
+        "from": "CW_2_eta",
+        "name": "CW_2_eta__CW_2_eta_nu",
+        "path": "map_AdamsSS_CW_2_eta_to_CW_2_eta_nu_t200.db",
+        "t_max": 200,
+        "to": "CW_2_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 21,
+      "source": {
+        "fil": 1,
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__Q_CW_nu_eta_2",
+        "path": "map_AdamsSS_CW_eta_2_to_Q_CW_nu_eta_2_t200.db",
+        "sus": -3,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 22,
+      "source": {
+        "fil": 1,
+        "from": "CW_eta_nu",
+        "name": "CW_eta_nu__Q_CW_2_eta_nu",
+        "path": "map_AdamsSS_CW_eta_nu_to_Q_CW_2_eta_nu_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 23,
+      "source": {
+        "from": "CW_nu_eta_2",
+        "name": "CW_nu_eta_2__CW_eta_2",
+        "path": "map_AdamsSS_CW_nu_eta_2_to_CW_eta_2_t200.db",
+        "sus": 4,
+        "t_max": 200,
+        "to": "CW_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 24,
+      "source": {
+        "from": "CW_nu_eta",
+        "name": "CW_nu_eta__CW_nu_eta_2",
+        "path": "map_AdamsSS_CW_nu_eta_to_CW_nu_eta_2_t187.db",
+        "t_max": 187,
+        "to": "CW_nu_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 25,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__CW_sigma_nu_by_eta",
+        "path": "map_AdamsSS_C2_to_CW_sigma_nu_by_eta_t179.db",
+        "sus": -13,
+        "t_max": 179,
+        "to": "CW_sigma_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 26,
+      "source": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Csigma_by_nu",
+        "path": "map_AdamsSS_Ceta_to_Csigma_by_nu_t188.db",
+        "sus": -11,
+        "t_max": 188,
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 27,
+      "source": {
+        "fil": 1,
+        "from": "Csigma",
+        "name": "Csigma__Ceta_by_nu",
+        "path": "map_AdamsSS_Csigma_to_Ceta_by_nu_t194.db",
+        "sus": -5,
+        "t_max": 194,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 28,
+      "source": {
+        "fil": 1,
+        "from": "Csigma",
+        "name": "Csigma__CW_2_eta_by_nu",
+        "path": "map_AdamsSS_Csigma_to_CW_2_eta_by_nu_t193.db",
+        "sus": -6,
+        "t_max": 193,
+        "to": "CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 29,
+      "source": {
+        "from": "CW_2_eta_nu_sigma",
+        "name": "CW_2_eta_nu_sigma__CW_eta_nu_sigma",
+        "path": "map_AdamsSS_CW_2_eta_nu_sigma_to_CW_eta_nu_sigma_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "CW_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 30,
+      "source": {
+        "from": "CW_2_eta_nu",
+        "name": "CW_2_eta_nu__CW_2_eta_nu_sigma",
+        "path": "map_AdamsSS_CW_2_eta_nu_to_CW_2_eta_nu_sigma_t200.db",
+        "t_max": 200,
+        "to": "CW_2_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 31,
+      "source": {
+        "fil": 1,
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__Csigma_by_nu",
+        "path": "map_AdamsSS_CW_eta_2_to_Csigma_by_nu_t188.db",
+        "sus": -11,
+        "t_max": 188,
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 32,
+      "source": {
+        "from": "CW_eta_nu_sigma",
+        "name": "CW_eta_nu_sigma__CW_nu_sigma",
+        "path": "map_AdamsSS_CW_eta_nu_sigma_to_CW_nu_sigma_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "CW_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 33,
+      "source": {
+        "fil": 1,
+        "from": "CW_eta_nu_sigma",
+        "name": "CW_eta_nu_sigma__S0_by_2",
+        "path": "map_AdamsSS_CW_eta_nu_sigma_to_S0_by_2_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 34,
+      "source": {
+        "from": "CW_eta_nu",
+        "name": "CW_eta_nu__CW_eta_nu_sigma",
+        "path": "map_AdamsSS_CW_eta_nu_to_CW_eta_nu_sigma_t200.db",
+        "t_max": 200,
+        "to": "CW_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 35,
+      "source": {
+        "fil": 1,
+        "from": "CW_nu_eta_2",
+        "name": "CW_nu_eta_2__S0_by_sigma",
+        "path": "map_AdamsSS_CW_nu_eta_2_to_S0_by_sigma_t200.db",
+        "sus": -7,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 36,
+      "source": {
+        "fil": 1,
+        "from": "CW_nu_eta",
+        "name": "CW_nu_eta__S0_by_sigma",
+        "path": "map_AdamsSS_CW_nu_eta_to_S0_by_sigma_t197.db",
+        "sus": -7,
+        "t_max": 197,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 37,
+      "source": {
+        "fil": 1,
+        "from": "CW_nu_sigma",
+        "name": "CW_nu_sigma__C2_by_eta",
+        "path": "map_AdamsSS_CW_nu_sigma_to_C2_by_eta_t197.db",
+        "sus": -2,
+        "t_max": 197,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 38,
+      "source": {
+        "fil": 1,
+        "from": "CW_nu_sigma",
+        "name": "CW_nu_sigma__S0_by_eta",
+        "path": "map_AdamsSS_CW_nu_sigma_to_S0_by_eta_t199.db",
+        "sus": -1,
+        "t_max": 199,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 39,
+      "source": {
+        "from": "CW_sigma_nu_eta_2",
+        "name": "CW_sigma_nu_eta_2__CW_nu_eta_2",
+        "path": "map_AdamsSS_CW_sigma_nu_eta_2_to_CW_nu_eta_2_t200.db",
+        "sus": 8,
+        "t_max": 200,
+        "to": "CW_nu_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 40,
+      "source": {
+        "from": "CW_sigma_nu_eta",
+        "name": "CW_sigma_nu_eta__CW_nu_eta",
+        "path": "map_AdamsSS_CW_sigma_nu_eta_to_CW_nu_eta_t200.db",
+        "sus": 8,
+        "t_max": 200,
+        "to": "CW_nu_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 41,
+      "source": {
+        "from": "CW_sigma_nu_eta",
+        "name": "CW_sigma_nu_eta__CW_sigma_nu_eta_2",
+        "path": "map_AdamsSS_CW_sigma_nu_eta_to_CW_sigma_nu_eta_2_t200.db",
+        "t_max": 200,
+        "to": "CW_sigma_nu_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 42,
+      "source": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_2_eta",
+        "path": "map_AdamsSS_Ceta_to_Q_CW_2_eta_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 43,
+      "source": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_nu_eta",
+        "path": "map_AdamsSS_Ceta_to_Q_CW_nu_eta_t200.db",
+        "sus": -3,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 44,
+      "source": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_eta_nu",
+        "path": "map_AdamsSS_Cnu_to_Q_CW_eta_nu_t200.db",
+        "sus": -1,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 45,
+      "source": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_sigma_nu",
+        "path": "map_AdamsSS_Cnu_to_Q_CW_sigma_nu_t200.db",
+        "sus": -7,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 46,
+      "source": {
+        "from": "Csigma",
+        "name": "Csigma__CW_sigma_nu",
+        "path": "map_AdamsSS_Csigma_to_CW_sigma_nu_t190.db",
+        "t_max": 190,
+        "to": "CW_sigma_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 47,
+      "source": {
+        "fil": 1,
+        "from": "Csigma",
+        "name": "Csigma__Q_CW_nu_sigma",
+        "path": "map_AdamsSS_Csigma_to_Q_CW_nu_sigma_t200.db",
+        "sus": -3,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 48,
+      "source": {
+        "from": "CW_sigma_nu",
+        "name": "CW_sigma_nu__CW_sigma_nu_eta",
+        "path": "map_AdamsSS_CW_sigma_nu_to_CW_sigma_nu_eta_t200.db",
+        "t_max": 200,
+        "to": "CW_sigma_nu_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 49,
+      "source": {
+        "from": "Csigma",
+        "name": "Csigma__Csigmasq",
+        "path": "map_AdamsSS_Csigma_to_Csigmasq_t193.db",
+        "sus": -7,
+        "t_max": 193,
+        "to": "Csigmasq"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 50,
+      "source": {
+        "from": "Csigmasq",
+        "name": "Csigmasq__S0",
+        "path": "map_AdamsSS_Csigmasq_to_S0_t200.db",
+        "sus": 15,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 51,
+      "source": {
+        "from": "C2h4",
+        "name": "C2h4__Csigmasq",
+        "path": "map_AdamsSS_C2h4_to_Csigmasq_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "Csigmasq"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 52,
+      "source": {
+        "from": "Csigmasq",
+        "name": "Csigmasq__DC2h4",
+        "path": "map_AdamsSS_Csigmasq_to_DC2h4_t196.db",
+        "t_max": 196,
+        "to": "DC2h4",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 53,
+      "source": {
+        "from": "Csigmasq",
+        "name": "Csigmasq__Csigma",
+        "path": "map_AdamsSS_Csigmasq_to_Csigma_t200.db",
+        "t_max": 200,
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 54,
+      "source": {
+        "fil": 1,
+        "from": "Csigmasq",
+        "name": "Csigmasq__C2_by_sigmasq",
+        "path": "map_AdamsSS_Csigmasq_to_C2_by_sigmasq_t184.db",
+        "sus": -15,
+        "t_max": 184,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 55,
+      "source": {
+        "fil": 1,
+        "from": "Csigmasq",
+        "name": "Csigmasq__Q_C2h4",
+        "path": "map_AdamsSS_Csigmasq_to_Q_C2h4_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 56,
+      "source": {
+        "fil": 2,
+        "from": "Csigmasq",
+        "name": "Csigmasq__S0_by_sigmasq",
+        "path": "map_AdamsSS_Csigmasq_to_S0_by_sigmasq_t200.db",
+        "sus": -14,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 57,
+      "source": {
+        "from": "C2",
+        "name": "C2__C2h4",
+        "path": "map_AdamsSS_C2_to_C2h4_t200.db",
+        "t_max": 200,
+        "to": "C2h4",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 58,
+      "source": {
+        "from": "DC2h4",
+        "name": "DC2h4__C2",
+        "path": "map_AdamsSS_DC2h4_to_C2_t193.db",
+        "sus": 15,
+        "t_max": 193,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 59,
+      "source": {
+        "from": "C2h4",
+        "name": "C2h4__S0",
+        "path": "map_AdamsSS_C2h4_to_S0_t200.db",
+        "sus": 16,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 60,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_DC2h4",
+        "path": "map_AdamsSS_C2_to_Q_DC2h4_t200.db",
+        "sus": -14,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 61,
+      "source": {
+        "fil": 1,
+        "from": "C2h4",
+        "name": "C2h4__S0_by_sigmasq",
+        "path": "map_AdamsSS_C2h4_to_S0_by_sigmasq_t199.db",
+        "sus": -14,
+        "t_max": 199,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 62,
+      "source": {
+        "from": "C2",
+        "name": "C2__C2h5",
+        "path": "map_AdamsSS_C2_to_C2h5_t200.db",
+        "t_max": 200,
+        "to": "C2h5",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 63,
+      "source": {
+        "from": "C2h5",
+        "name": "C2h5__Ctheta4",
+        "path": "map_AdamsSS_C2h5_to_Ctheta4_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "Ctheta4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 64,
+      "source": {
+        "from": "Ctheta4",
+        "name": "Ctheta4__DC2h5",
+        "path": "map_AdamsSS_Ctheta4_to_DC2h5_t200.db",
+        "t_max": 200,
+        "to": "DC2h5",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 65,
+      "source": {
+        "from": "DC2h5",
+        "name": "DC2h5__C2",
+        "path": "map_AdamsSS_DC2h5_to_C2_t200.db",
+        "sus": 31,
+        "t_max": 200,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 66,
+      "source": {
+        "from": "C2h5",
+        "name": "C2h5__S0",
+        "path": "map_AdamsSS_C2h5_to_S0_t200.db",
+        "sus": 32,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 67,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_DC2h5",
+        "path": "map_AdamsSS_C2_to_Q_DC2h5_t200.db",
+        "sus": -30,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 68,
+      "source": {
+        "fil": 1,
+        "from": "C2h5",
+        "name": "C2h5__S0_by_theta4",
+        "path": "map_AdamsSS_C2h5_to_S0_by_theta4_t200.db",
+        "sus": -30,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 69,
+      "source": {
+        "fil": 1,
+        "from": "Ctheta4",
+        "name": "Ctheta4__Q_C2h5",
+        "path": "map_AdamsSS_Ctheta4_to_Q_C2h5_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 70,
+      "source": {
+        "from": "Ctheta4",
+        "name": "Ctheta4__S0",
+        "path": "map_AdamsSS_Ctheta4_to_S0_t200.db",
+        "sus": 31,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 71,
+      "source": {
+        "fil": 1,
+        "from": "Ctheta4",
+        "name": "Ctheta4__C2_by_theta4",
+        "path": "map_AdamsSS_Ctheta4_to_C2_by_theta4_t168.db",
+        "sus": -31,
+        "t_max": 168,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 72,
+      "source": {
+        "fil": 2,
+        "from": "Ctheta4",
+        "name": "Ctheta4__S0_by_theta4",
+        "path": "map_AdamsSS_Ctheta4_to_S0_by_theta4_t200.db",
+        "sus": -30,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 73,
+      "source": {
+        "from": "C2",
+        "name": "C2__C2h6",
+        "path": "map_AdamsSS_C2_to_C2h6_t200.db",
+        "t_max": 200,
+        "to": "C2h6",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 74,
+      "source": {
+        "from": "C2h6",
+        "name": "C2h6__Ctheta5",
+        "path": "map_AdamsSS_C2h6_to_Ctheta5_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "Ctheta5"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 75,
+      "source": {
+        "from": "Ctheta5",
+        "name": "Ctheta5__DC2h6",
+        "path": "map_AdamsSS_Ctheta5_to_DC2h6_t200.db",
+        "t_max": 200,
+        "to": "DC2h6",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 76,
+      "source": {
+        "from": "DC2h6",
+        "name": "DC2h6__C2",
+        "path": "map_AdamsSS_DC2h6_to_C2_t200.db",
+        "sus": 63,
+        "t_max": 200,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 77,
+      "source": {
+        "from": "C2h6",
+        "name": "C2h6__S0",
+        "path": "map_AdamsSS_C2h6_to_S0_t200.db",
+        "sus": 64,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 78,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_DC2h6",
+        "path": "map_AdamsSS_C2_to_Q_DC2h6_t198.db",
+        "sus": -62,
+        "t_max": 198,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 79,
+      "source": {
+        "fil": 1,
+        "from": "C2h6",
+        "name": "C2h6__S0_by_theta5",
+        "path": "map_AdamsSS_C2h6_to_S0_by_theta5_t198.db",
+        "sus": -62,
+        "t_max": 198,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 80,
+      "source": {
+        "fil": 1,
+        "from": "Ctheta5",
+        "name": "Ctheta5__Q_C2h6",
+        "path": "map_AdamsSS_Ctheta5_to_Q_C2h6_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 81,
+      "source": {
+        "from": "Ctheta5",
+        "name": "Ctheta5__S0",
+        "path": "map_AdamsSS_Ctheta5_to_S0_t200.db",
+        "sus": 63,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 82,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_CW_2_theta5_2_Eq_eta_theta5",
+        "path": "map_AdamsSS_C2_to_Q_CW_2_theta5_2_Eq_eta_theta5_t136.db",
+        "sus": -63,
+        "t_max": 136,
+        "to": "CW_2_V_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 83,
+      "source": {
+        "fil": 1,
+        "from": "Ctheta5",
+        "name": "Ctheta5__Q_CW_2_theta5_2_Eq_eta_theta5",
+        "path": "map_AdamsSS_Ctheta5_to_Q_CW_2_theta5_2_Eq_eta_theta5_t198.db",
+        "sus": -1,
+        "t_max": 198,
+        "to": "C2h6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 84,
+      "source": {
+        "fil": 1,
+        "from": "DC2h6",
+        "name": "DC2h6__Q_CW_2_theta5_2_Eq_eta_theta5",
+        "path": "map_AdamsSS_DC2h6_to_Q_CW_2_theta5_2_Eq_eta_theta5_t191.db",
+        "t_max": 191,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 85,
+      "source": {
+        "from": "C2_C2",
+        "name": "C2_C2__C2",
+        "path": "map_AdamsSS_C2_C2__C2_t180.db",
+        "sus": 1,
+        "t_max": 180,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 86,
+      "source": {
+        "from": "C2",
+        "name": "C2__C2_C2",
+        "path": "map_AdamsSS_C2__C2_C2_t180.db",
+        "t_max": 180,
+        "to": "C2_C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 87,
+      "source": {
+        "fil": 1,
+        "from": "CW_2_eta",
+        "name": "CW_2_eta__Q_RP1_6",
+        "path": "map_AdamsSS_CW_2_eta__Q_RP1_6_t180.db",
+        "sus": 3,
+        "t_max": 180,
+        "to": "CW_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 88,
+      "source": {
+        "from": "Ceta_Ceta",
+        "name": "Ceta_Ceta__Ceta",
+        "path": "map_AdamsSS_Ceta_Ceta__Ceta_t157.db",
+        "sus": 2,
+        "t_max": 157,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 89,
+      "source": {
+        "from": "Ceta",
+        "name": "Ceta__Ceta_Ceta",
+        "path": "map_AdamsSS_Ceta__Ceta_Ceta_t160.db",
+        "t_max": 160,
+        "to": "Ceta_Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 90,
+      "source": {
+        "from": "Cnu_Cnu",
+        "name": "Cnu_Cnu__Cnu",
+        "path": "map_AdamsSS_Cnu_Cnu__Cnu_t180.db",
+        "sus": 4,
+        "t_max": 180,
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 91,
+      "source": {
+        "from": "Cnu",
+        "name": "Cnu__Cnu_Cnu",
+        "path": "map_AdamsSS_Cnu__Cnu_Cnu_t180.db",
+        "t_max": 180,
+        "to": "Cnu_Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 92,
+      "source": {
+        "from": "Csigma_Csigma",
+        "name": "Csigma_Csigma__CW_sigma_2sigma",
+        "path": "map_AdamsSS_Csigma_Csigma__CW_sigma_2sigma_t180.db",
+        "sus": 4,
+        "t_max": 180,
+        "to": "CW_sigma_2sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 93,
+      "source": {
+        "from": "Csigma_Csigma",
+        "name": "Csigma_Csigma__Csigma",
+        "path": "map_AdamsSS_Csigma_Csigma__Csigma_t180.db",
+        "sus": 8,
+        "t_max": 180,
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 94,
+      "source": {
+        "from": "Csigma",
+        "name": "Csigma__CW_sigma_2sigma",
+        "path": "map_AdamsSS_Csigma__CW_sigma_2sigma_t180.db",
+        "t_max": 180,
+        "to": "CW_sigma_2sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 95,
+      "source": {
+        "from": "Csigma",
+        "name": "Csigma__Csigma_Csigma",
+        "path": "map_AdamsSS_Csigma__Csigma_Csigma_t180.db",
+        "t_max": 180,
+        "to": "Csigma_Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 96,
+      "source": {
+        "from": "C2sigma",
+        "name": "C2sigma__S0",
+        "path": "map_AdamsSS_C2sigma__S0_t200.db",
+        "sus": 8,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 97,
+      "source": {
+        "from": "C2sigma",
+        "name": "C2sigma__CW_2sigma_sigma",
+        "path": "map_AdamsSS_C2sigma__CW_2sigma_sigma_t160.db",
+        "t_max": 160,
+        "to": "CW_2sigma_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 98,
+      "source": {
+        "from": "CW_sigma_2sigma",
+        "name": "CW_sigma_2sigma__C2sigma",
+        "path": "map_AdamsSS_CW_sigma_2sigma__C2sigma_t180.db",
+        "sus": 8,
+        "t_max": 180,
+        "to": "C2sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 99,
+      "source": {
+        "from": "C2_C2",
+        "name": "C2_C2__CW_2_V_eta",
+        "path": "map_AdamsSS_C2_C2__CW_2_V_eta_t160.db",
+        "t_max": 160,
+        "to": "CW_2_V_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 100,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_CW_2_A_eta",
+        "path": "map_AdamsSS_C2__Q_CW_2_A_eta_t139.db",
+        "t_max": 139,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 101,
+      "source": {
+        "from": "CW_2_A_eta",
+        "name": "CW_2_A_eta__C2_C2",
+        "path": "map_AdamsSS_CW_2_A_eta__C2_C2_t160.db",
+        "t_max": 160,
+        "to": "C2_C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 102,
+      "source": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_2_A_eta",
+        "path": "map_AdamsSS_Ceta__Q_CW_2_A_eta_t160.db",
+        "sus": 2,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 103,
+      "source": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_eta_A_nu",
+        "path": "map_AdamsSS_Ceta__Q_CW_eta_A_nu_t160.db",
+        "sus": -1,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 104,
+      "source": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_eta_A_nu",
+        "path": "map_AdamsSS_Cnu__Q_CW_eta_A_nu_t160.db",
+        "sus": 3,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 105,
+      "source": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_nu_A_sigma",
+        "path": "map_AdamsSS_Cnu__Q_CW_nu_A_sigma_t160.db",
+        "sus": -3,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 106,
+      "source": {
+        "fil": 1,
+        "from": "Csigma",
+        "name": "Csigma__Q_CW_nu_A_sigma",
+        "path": "map_AdamsSS_Csigma__Q_CW_nu_A_sigma_t160.db",
+        "sus": 5,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 107,
+      "source": {
+        "from": "CW_2_V_eta",
+        "name": "CW_2_V_eta__S1",
+        "path": "map_AdamsSS_CW_2_V_eta__S1_t160.db",
+        "sus": 1,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 108,
+      "source": {
+        "from": "CW_2_V_eta",
+        "name": "CW_2_V_eta__S2",
+        "path": "map_AdamsSS_CW_2_V_eta__S2_t160.db",
+        "sus": 2,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 109,
+      "source": {
+        "from": "Ceta",
+        "name": "Ceta__Joker",
+        "path": "map_AdamsSS_Ceta_to_Joker_t193.db",
+        "t_max": 193,
+        "to": "Joker"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 110,
+      "source": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_Joker",
+        "path": "map_AdamsSS_Ceta_to_Q_Joker_t198.db",
+        "sus": -1,
+        "t_max": 198,
+        "to": "CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 111,
+      "source": {
+        "from": "CW_2_eta",
+        "name": "CW_2_eta__Joker",
+        "path": "map_AdamsSS_CW_2_eta_to_Joker_t200.db",
+        "t_max": 200,
+        "to": "Joker"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 112,
+      "source": {
+        "fil": 1,
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__Q_Joker",
+        "path": "map_AdamsSS_CW_eta_2_to_Q_Joker_t199.db",
+        "t_max": 199,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 113,
+      "source": {
+        "from": "Joker",
+        "name": "Joker__Ceta",
+        "path": "map_AdamsSS_Joker_to_Ceta_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 114,
+      "source": {
+        "from": "Joker",
+        "name": "Joker__CW_eta_2",
+        "path": "map_AdamsSS_Joker_to_CW_eta_2_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "CW_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 115,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_Joker",
+        "path": "map_AdamsSS_C2_to_Q_Joker_t197.db",
+        "sus": -2,
+        "t_max": 197,
+        "to": "CW_2_V_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 116,
+      "source": {
+        "from": "CW_2_V_eta",
+        "name": "CW_2_V_eta__Joker",
+        "path": "map_AdamsSS_CW_2_V_eta_to_Joker_t192.db",
+        "t_max": 192,
+        "to": "Joker"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 117,
+      "source": {
+        "from": "Joker",
+        "name": "Joker__CW_2_A_eta",
+        "path": "map_AdamsSS_Joker_to_CW_2_A_eta_t182.db",
+        "sus": 2,
+        "t_max": 182,
+        "to": "CW_2_A_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 118,
+      "source": {
+        "fil": 1,
+        "from": "CW_2_A_eta",
+        "name": "CW_2_A_eta__Q_Joker",
+        "path": "map_AdamsSS_CW_2_A_eta_to_Q_Joker_t180.db",
+        "sus": -1,
+        "t_max": 180,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 119,
+      "source": {
+        "from": "CW_sigma_nu_eta_2",
+        "name": "CW_sigma_nu_eta_2__tmf",
+        "over": "S0__tmf",
+        "path": "map_AdamsSS_CW_sigma_nu_eta_2_to_tmf_t200.db",
+        "t_max": 200,
+        "to": "tmf"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 120,
+      "source": {
+        "from": "C2_Ceta",
+        "name": "C2_Ceta__C2",
+        "path": "map_AdamsSS_C2_Ceta_to_C2_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 121,
+      "source": {
+        "from": "C2_Ceta",
+        "name": "C2_Ceta__Ceta",
+        "path": "map_AdamsSS_C2_Ceta_to_Ceta_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 122,
+      "source": {
+        "from": "C2",
+        "name": "C2__C2_Ceta",
+        "path": "map_AdamsSS_C2_to_C2_Ceta_t180.db",
+        "t_max": 180,
+        "to": "C2_Ceta",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 123,
+      "source": {
+        "from": "Ceta",
+        "name": "Ceta__C2_Ceta",
+        "path": "map_AdamsSS_Ceta_to_C2_Ceta_t180.db",
+        "t_max": 180,
+        "to": "C2_Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 124,
+      "source": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_eta_nu_eta_Eq_nu_nu",
+        "path": "map_AdamsSS_Cnu_to_Q_CW_eta_nu_eta_Eq_nu_nu_t196.db",
+        "sus": -3,
+        "t_max": 196,
+        "to": "CW_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 125,
+      "source": {
+        "fil": 1,
+        "from": "Csigma",
+        "name": "Csigma__Q_CW_nu_sigma_nu_Eq_sigma_sigma",
+        "path": "map_AdamsSS_Csigma_to_Q_CW_nu_sigma_nu_Eq_sigma_sigma_t192.db",
+        "sus": -7,
+        "t_max": 192,
+        "to": "CW_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 126,
+      "source": {
+        "fil": 1,
+        "from": "CW_nu_eta",
+        "name": "CW_nu_eta__Q_CW_eta_nu_eta_Eq_nu_nu",
+        "path": "map_AdamsSS_CW_nu_eta_to_Q_CW_eta_nu_eta_Eq_nu_nu_t195.db",
+        "sus": -1,
+        "t_max": 195,
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 127,
+      "source": {
+        "fil": 1,
+        "from": "CW_sigma_nu",
+        "name": "CW_sigma_nu__Q_CW_nu_sigma_nu_Eq_sigma_sigma",
+        "path": "map_AdamsSS_CW_sigma_nu_to_Q_CW_nu_sigma_nu_Eq_sigma_sigma_t194.db",
+        "sus": -3,
+        "t_max": 194,
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 128,
+      "source": {
+        "from": "C2",
+        "name": "C2__CW_eta_2_eta_Eq_2_nu",
+        "path": "map_AdamsSS_C2_to_CW_eta_2_eta_Eq_2_nu_t193.db",
+        "t_max": 193,
+        "to": "CW_eta_2_eta_Eq_2_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 129,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_CW_eta_2_eta_Eq_nu_2",
+        "path": "map_AdamsSS_C2_to_Q_CW_eta_2_eta_Eq_nu_2_t196.db",
+        "sus": -3,
+        "t_max": 196,
+        "to": "CW_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 130,
+      "source": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_eta_2_eta_Eq_2_nu",
+        "path": "map_AdamsSS_Cnu_to_Q_CW_eta_2_eta_Eq_2_nu_t199.db",
+        "t_max": 199,
+        "to": "CW_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 131,
+      "source": {
+        "fil": 1,
+        "from": "CW_2_eta",
+        "name": "CW_2_eta__Q_CW_eta_2_eta_Eq_2_nu",
+        "path": "map_AdamsSS_CW_2_eta_to_Q_CW_eta_2_eta_Eq_2_nu_t198.db",
+        "sus": -1,
+        "t_max": 198,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 132,
+      "source": {
+        "fil": 1,
+        "from": "CW_2_eta",
+        "name": "CW_2_eta__Q_CW_eta_2_eta_Eq_nu_2",
+        "path": "map_AdamsSS_CW_2_eta_to_Q_CW_eta_2_eta_Eq_nu_2_t198.db",
+        "sus": -1,
+        "t_max": 198,
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 133,
+      "source": {
+        "from": "CW_eta_2_eta_Eq_2_nu",
+        "name": "CW_eta_2_eta_Eq_2_nu__Cnu",
+        "path": "map_AdamsSS_CW_eta_2_eta_Eq_2_nu_to_Cnu_t193.db",
+        "sus": 1,
+        "t_max": 193,
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 134,
+      "source": {
+        "from": "CW_eta_2_eta_Eq_2_nu",
+        "name": "CW_eta_2_eta_Eq_2_nu__CW_2_eta",
+        "path": "map_AdamsSS_CW_eta_2_eta_Eq_2_nu_to_CW_2_eta_t193.db",
+        "sus": 2,
+        "t_max": 193,
+        "to": "CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 135,
+      "source": {
+        "from": "CW_eta_2_eta_Eq_nu_2",
+        "name": "CW_eta_2_eta_Eq_nu_2__C2",
+        "path": "map_AdamsSS_CW_eta_2_eta_Eq_nu_2_to_C2_t200.db",
+        "sus": 4,
+        "t_max": 200,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 136,
+      "source": {
+        "from": "CW_eta_2_eta_Eq_nu_2",
+        "name": "CW_eta_2_eta_Eq_nu_2__CW_2_eta",
+        "path": "map_AdamsSS_CW_eta_2_eta_Eq_nu_2_to_CW_2_eta_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 137,
+      "source": {
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__CW_eta_2_eta_Eq_2_nu",
+        "path": "map_AdamsSS_CW_eta_2_to_CW_eta_2_eta_Eq_2_nu_t193.db",
+        "t_max": 193,
+        "to": "CW_eta_2_eta_Eq_2_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 138,
+      "source": {
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__CW_eta_2_eta_Eq_nu_2",
+        "path": "map_AdamsSS_CW_eta_2_to_CW_eta_2_eta_Eq_nu_2_t200.db",
+        "t_max": 200,
+        "to": "CW_eta_2_eta_Eq_nu_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 139,
+      "source": {
+        "from": "Cnu",
+        "name": "Cnu__CW_eta_2_eta_Eq_nu_2",
+        "path": "map_AdamsSS_Cnu_to_CW_eta_2_eta_Eq_nu_2_t200.db",
+        "t_max": 200,
+        "to": "CW_eta_2_eta_Eq_nu_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 140,
+      "source": {
+        "from": "C2",
+        "name": "C2__CW_2_V_eta",
+        "path": "map_AdamsSS_C2_to_CW_2_V_eta_t177.db",
+        "t_max": 177,
+        "to": "CW_2_V_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 141,
+      "source": {
+        "from": "CW_2_V_eta",
+        "name": "CW_2_V_eta__C2_Ceta",
+        "path": "map_AdamsSS_CW_2_V_eta_to_C2_Ceta_t200.db",
+        "t_max": 200,
+        "to": "C2_Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 142,
+      "source": {
+        "from": "CW_2_V_eta",
+        "name": "CW_2_V_eta__CW_eta_2_eta_Eq_2_nu",
+        "path": "map_AdamsSS_CW_2_V_eta_to_CW_eta_2_eta_Eq_2_nu_t200.db",
+        "t_max": 200,
+        "to": "CW_eta_2_eta_Eq_2_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 143,
+      "source": {
+        "from": "Ceta",
+        "name": "Ceta__CW_2_V_eta",
+        "path": "map_AdamsSS_Ceta_to_CW_2_V_eta_t200.db",
+        "t_max": 200,
+        "to": "CW_2_V_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 144,
+      "source": {
+        "from": "C2_Ceta",
+        "name": "C2_Ceta__CW_2_A_eta",
+        "path": "map_AdamsSS_C2_Ceta_to_CW_2_A_eta_t181.db",
+        "sus": 1,
+        "t_max": 181,
+        "to": "CW_2_A_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 145,
+      "source": {
+        "from": "CW_2_A_eta",
+        "name": "CW_2_A_eta__C2",
+        "path": "map_AdamsSS_CW_2_A_eta_to_C2_t180.db",
+        "sus": 1,
+        "t_max": 180,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 146,
+      "source": {
+        "from": "CW_2_A_eta",
+        "name": "CW_2_A_eta__Ceta",
+        "path": "map_AdamsSS_CW_2_A_eta_to_Ceta_t180.db",
+        "t_max": 180,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 147,
+      "source": {
+        "fil": 1,
+        "from": "CW_2_A_eta",
+        "name": "CW_2_A_eta__Q_C2_Ceta",
+        "path": "map_AdamsSS_CW_2_A_eta_to_Q_C2_Ceta_t180.db",
+        "t_max": 180,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 148,
+      "source": {
+        "fil": 1,
+        "from": "CW_2_A_eta",
+        "name": "CW_2_A_eta__Q_CW_eta_2_eta_Eq_nu_2",
+        "path": "map_AdamsSS_CW_2_A_eta_to_Q_CW_eta_2_eta_Eq_nu_2_t180.db",
+        "sus": -1,
+        "t_max": 180,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 149,
+      "source": {
+        "from": "CW_eta_2_eta_Eq_nu_2",
+        "name": "CW_eta_2_eta_Eq_nu_2__CW_2_A_eta",
+        "path": "map_AdamsSS_CW_eta_2_eta_Eq_nu_2_to_CW_2_A_eta_t183.db",
+        "sus": 3,
+        "t_max": 183,
+        "to": "CW_2_A_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 150,
+      "source": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_eta_2_eta_Eq_2_nu",
+        "path": "map_AdamsSS_Ceta_to_Q_CW_eta_2_eta_Eq_2_nu_t197.db",
+        "sus": -2,
+        "t_max": 197,
+        "to": "CW_2_V_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 151,
+      "source": {
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__Fphi",
+        "path": "map_AdamsSS_CW_eta_2_to_Fphi_t199.db",
+        "t_max": 199,
+        "to": "Fphi"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 152,
+      "source": {
+        "fil": 1,
+        "from": "RP1_4",
+        "name": "RP5_8__RP3_4",
+        "path": "map_AdamsSS_RP5_8_to_RP3_4_t173.db",
+        "t_max": 173,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 153,
+      "source": {
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__RP1_6",
+        "path": "map_AdamsSS_CW_eta_2_to_RP1_6_t180.db",
+        "sus": -3,
+        "t_max": 180,
+        "to": "RP1_6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 154,
+      "source": {
+        "from": "RP1_6",
+        "name": "RP1_6__CW_2_eta",
+        "path": "map_AdamsSS_RP1_6_to_CW_2_eta_t180.db",
+        "sus": 1,
+        "t_max": 180,
+        "to": "CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 155,
+      "source": {
+        "from": "Fphi",
+        "name": "Fphi__RP1_256",
+        "path": "map_AdamsSS_Fphi_to_RP1_256_t196.db",
+        "sus": 1,
+        "t_max": 196,
+        "to": "RP1_256"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 156,
+      "source": {
+        "display": "RP1_256__S0",
+        "fil": 1,
+        "from": "RP1_256",
+        "name": "RP1_256__S0",
+        "path": "map_AdamsSS_RP1_256_to_S0_t199.db",
+        "t_max": 199,
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 157,
+      "source": {
+        "from": "RP1_4",
+        "name": "RP1_4__CP1_2",
+        "path": "map_AdamsSS_RP1_4_to_CP1_2_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 158,
+      "source": {
+        "fil": 1,
+        "from": "RP1_256",
+        "name": "RP1_256__RPm7_0",
+        "path": "map_AdamsSS_RP1_256_to_RPm7_0_t172.db",
+        "sus": -7,
+        "t_max": 172,
+        "to": "RP1_8"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 159,
+      "source": {
+        "from": "RP1_10",
+        "name": "RP1_10__RP7_10",
+        "path": "map_AdamsSS_RP1_10_to_RP7_10_t180.db",
+        "sus": 4,
+        "t_max": 180,
+        "to": "RP3_6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 160,
+      "source": {
+        "fil": 1,
+        "from": "RP1_8",
+        "name": "RP9_16__RP1_8",
+        "path": "map_AdamsSS_RP9_16_to_RP1_8_t156.db",
+        "sus": -7,
+        "t_max": 156,
+        "to": "RP1_8"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 161,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "RP3_4__RP1_2",
+        "path": "map_AdamsSS_RP3_4__RP1_2_t198.db",
+        "sus": -1,
+        "t_max": 198,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 162,
+      "source": {
+        "fil": 1,
+        "from": "C2",
+        "name": "RP5_6__RP3_4",
+        "path": "map_AdamsSS_RP5_6__RP3_4_t198.db",
+        "sus": -1,
+        "t_max": 198,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 163,
+      "source": {
+        "from": "RP1_4",
+        "name": "RP1_4__RP2_4",
+        "path": "map_AdamsSS_RP1_4__RP2_4_t160.db",
+        "sus": 2,
+        "t_max": 160,
+        "to": "CW_2_A_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 164,
+      "source": {
+        "from": "CW_2_V_eta",
+        "name": "RP3_5__RP3_6",
+        "path": "map_AdamsSS_RP3_5__RP3_6_t160.db",
+        "sus": -3,
+        "t_max": 160,
+        "to": "RP3_6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 165,
+      "source": {
+        "from": "C2",
+        "name": "RP3_4__RP3_6",
+        "path": "map_AdamsSS_RP3_4_to_RP3_6_t188.db",
+        "sus": -3,
+        "t_max": 188,
+        "to": "RP3_6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 166,
+      "source": {
+        "from": "C2",
+        "name": "RP1_2__RP1_4",
+        "path": "map_AdamsSS_RP1_2_to_RP1_4_t199.db",
+        "sus": -1,
+        "t_max": 199,
+        "to": "RP1_4",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 167,
+      "source": {
+        "from": "RP1_4",
+        "name": "RP1_4__RP1_6",
+        "path": "map_AdamsSS_RP1_4_to_RP1_6_t183.db",
+        "t_max": 183,
+        "to": "RP1_6",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 168,
+      "source": {
+        "from": "RP1_6",
+        "name": "RP1_6__RP1_8",
+        "path": "map_AdamsSS_RP1_6_to_RP1_8_t175.db",
+        "t_max": 175,
+        "to": "RP1_8",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 169,
+      "source": {
+        "from": "RP1_8",
+        "name": "RP1_8__RP1_10",
+        "path": "map_AdamsSS_RP1_8_to_RP1_10_t174.db",
+        "t_max": 174,
+        "to": "RP1_10",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 170,
+      "source": {
+        "from": "RP1_10",
+        "name": "RP1_10__RP1_12",
+        "path": "map_AdamsSS_RP1_10_to_RP1_12_t178.db",
+        "t_max": 178,
+        "to": "RP1_12",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 171,
+      "source": {
+        "from": "RP1_12",
+        "name": "RP1_12__RP1_256",
+        "path": "map_AdamsSS_RP1_12_to_RP1_256_t178.db",
+        "t_max": 178,
+        "to": "RP1_256",
+        "type": "skeleton"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 172,
+      "source": {
+        "from": "RP1_6",
+        "name": "RP1_6__RP3_6",
+        "path": "map_AdamsSS_RP1_6_to_RP3_6_t179.db",
+        "t_max": 179,
+        "to": "RP3_6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 173,
+      "source": {
+        "from": "RP3_6",
+        "name": "RP3_6__RP5_6",
+        "path": "map_AdamsSS_RP3_6_to_RP5_6_t191.db",
+        "sus": 5,
+        "t_max": 191,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 174,
+      "source": {
+        "from": "RP1_4",
+        "name": "RP1_4__RP3_4",
+        "path": "map_AdamsSS_RP1_4_to_RP3_4_t200.db",
+        "sus": 3,
+        "t_max": 200,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 175,
+      "source": {
+        "from": "RP1_6",
+        "name": "RP1_6__RP5_6",
+        "path": "map_AdamsSS_RP1_6_to_RP5_6_t162.db",
+        "sus": 5,
+        "t_max": 162,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 176,
+      "source": {
+        "from": "RP1_8",
+        "name": "RP1_8__RP5_8",
+        "path": "map_AdamsSS_RP1_8_to_RP5_8_t176.db",
+        "sus": 4,
+        "t_max": 176,
+        "to": "RP1_4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 177,
+      "source": {
+        "from": "RP1_12",
+        "name": "RP1_12__RP9_12",
+        "path": "map_AdamsSS_RP1_12_to_RP9_12_t178.db",
+        "sus": 8,
+        "t_max": 178,
+        "to": "RP1_4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 178,
+      "source": {
+        "from": "RP1_256",
+        "name": "RP1_256__RP3_256",
+        "path": "map_AdamsSS_RP1_256__RP3_256_t160.db",
+        "t_max": 160,
+        "to": "RP3_256"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 179,
+      "source": {
+        "from": "RP3_6",
+        "name": "RP3_6__RP3_256",
+        "path": "map_AdamsSS_RP3_6_to_RP3_256_t140.db",
+        "t_max": 140,
+        "to": "RP3_256"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps",
+      "ordinal": 180,
+      "source": {
+        "fil": 1,
+        "from": "RP3_256",
+        "name": "RP3_256__RP1_2",
+        "path": "map_AdamsSS_RP3_256__RP1_2_t160.db",
+        "sus": 2,
+        "t_max": 160,
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 1,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 2,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ceta",
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 3,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Cnu",
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 4,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigma",
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 5,
+      "source": {
+        "factor": [
+          0,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_2",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 6,
+      "source": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_eta",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 7,
+      "source": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_nu",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 8,
+      "source": {
+        "factor": [
+          7,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_sigma",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 9,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta",
+        "to": "CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 10,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_eta_nu",
+        "to": "CW_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 11,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_nu_sigma",
+        "to": "CW_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 12,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_nu",
+        "to": "CW_2_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 13,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_nu_eta_2",
+        "to": "CW_nu_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 14,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_eta_nu_sigma",
+        "to": "CW_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 15,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_nu_sigma",
+        "to": "CW_2_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 16,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_nu_eta",
+        "to": "CW_nu_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 17,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_sigma_nu",
+        "to": "CW_sigma_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 18,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_eta_2",
+        "to": "CW_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 19,
+      "source": {
+        "factor": [
+          5,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ceta_by_nu",
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 20,
+      "source": {
+        "factor": [
+          2,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ceta_by_2",
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 21,
+      "source": {
+        "factor": [
+          11,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Cnu_by_sigma",
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 22,
+      "source": {
+        "factor": [
+          5,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Cnu_by_eta",
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 23,
+      "source": {
+        "factor": [
+          11,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigma_by_nu",
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 24,
+      "source": {
+        "factor": [
+          6,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_by_nu",
+        "to": "CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 25,
+      "source": {
+        "factor": [
+          6,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_nu_eta_by_2",
+        "to": "CW_nu_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 26,
+      "source": {
+        "factor": [
+          13,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_eta_nu_by_sigma",
+        "to": "CW_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 27,
+      "source": {
+        "factor": [
+          14,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_nu_by_sigma",
+        "to": "CW_2_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 28,
+      "source": {
+        "factor": [
+          2,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2_by_eta",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 29,
+      "source": {
+        "composition": [
+          "CW_2_eta__Ceta",
+          "Ceta__S0"
+        ],
+        "from": "CW_2_eta",
+        "name": "CW_2_eta__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 30,
+      "source": {
+        "composition": [
+          "CW_eta_nu__Cnu",
+          "Cnu__S0"
+        ],
+        "from": "CW_eta_nu",
+        "name": "CW_eta_nu__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 31,
+      "source": {
+        "composition": [
+          "CW_nu_sigma__Csigma",
+          "Csigma__S0"
+        ],
+        "from": "CW_nu_sigma",
+        "name": "CW_nu_sigma__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 32,
+      "source": {
+        "composition": [
+          "CW_2_eta_nu__CW_eta_nu",
+          "CW_eta_nu__Cnu"
+        ],
+        "from": "CW_2_eta_nu",
+        "name": "CW_2_eta_nu__Cnu",
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 33,
+      "source": {
+        "composition": [
+          "CW_2_eta_nu__Cnu",
+          "Cnu__S0"
+        ],
+        "from": "CW_2_eta_nu",
+        "name": "CW_2_eta_nu__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 34,
+      "source": {
+        "composition": [
+          "CW_nu_eta_2__CW_eta_2",
+          "CW_eta_2__C2"
+        ],
+        "from": "CW_nu_eta_2",
+        "name": "CW_nu_eta_2__C2",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 35,
+      "source": {
+        "composition": [
+          "CW_nu_eta_2__C2",
+          "C2__S0"
+        ],
+        "from": "CW_nu_eta_2",
+        "name": "CW_nu_eta_2__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 36,
+      "source": {
+        "composition": [
+          "CW_eta_nu_sigma__CW_nu_sigma",
+          "CW_nu_sigma__Csigma"
+        ],
+        "from": "CW_eta_nu_sigma",
+        "name": "CW_eta_nu_sigma__Csigma",
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 37,
+      "source": {
+        "composition": [
+          "CW_eta_nu_sigma__Csigma",
+          "Csigma__S0"
+        ],
+        "from": "CW_eta_nu_sigma",
+        "name": "CW_eta_nu_sigma__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 38,
+      "source": {
+        "composition": [
+          "C2__CW_2_eta",
+          "CW_2_eta__CW_2_eta_nu"
+        ],
+        "from": "C2",
+        "name": "C2__CW_2_eta_nu",
+        "to": "CW_2_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 39,
+      "source": {
+        "composition": [
+          "Ceta__CW_eta_nu",
+          "CW_eta_nu__CW_eta_nu_sigma"
+        ],
+        "from": "Ceta",
+        "name": "Ceta__CW_eta_nu_sigma",
+        "to": "CW_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 40,
+      "source": {
+        "composition": [
+          "CW_2_eta_nu_sigma__CW_eta_nu_sigma",
+          "CW_eta_nu_sigma__CW_nu_sigma"
+        ],
+        "from": "CW_2_eta_nu_sigma",
+        "name": "CW_2_eta_nu_sigma__CW_nu_sigma",
+        "to": "CW_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 41,
+      "source": {
+        "composition": [
+          "CW_2_eta_nu_sigma__CW_nu_sigma",
+          "CW_nu_sigma__Csigma"
+        ],
+        "from": "CW_2_eta_nu_sigma",
+        "name": "CW_2_eta_nu_sigma__Csigma",
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 42,
+      "source": {
+        "composition": [
+          "CW_2_eta_nu_sigma__Csigma",
+          "Csigma__S0"
+        ],
+        "from": "CW_2_eta_nu_sigma",
+        "name": "CW_2_eta_nu_sigma__S0",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 43,
+      "source": {
+        "composition": [
+          "CW_2_eta__CW_2_eta_nu",
+          "CW_2_eta_nu__CW_2_eta_nu_sigma"
+        ],
+        "from": "CW_2_eta",
+        "name": "CW_2_eta__CW_2_eta_nu_sigma",
+        "to": "CW_2_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 44,
+      "source": {
+        "composition": [
+          "C2__CW_2_eta",
+          "CW_2_eta__CW_2_eta_nu_sigma"
+        ],
+        "from": "C2",
+        "name": "C2__CW_2_eta_nu_sigma",
+        "to": "CW_2_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 45,
+      "source": {
+        "composition": [
+          "CW_eta_2__C2",
+          "C2__S0"
+        ],
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 46,
+      "source": {
+        "composition": [
+          "CW_nu_eta__Ceta",
+          "Ceta__S0"
+        ],
+        "from": "CW_nu_eta",
+        "name": "CW_nu_eta__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 47,
+      "source": {
+        "composition": [
+          "CW_sigma_nu__Cnu",
+          "Cnu__S0"
+        ],
+        "from": "CW_sigma_nu",
+        "name": "CW_sigma_nu__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 48,
+      "source": {
+        "composition": [
+          "CW_sigma_nu__Cnu",
+          "Cnu__S0"
+        ],
+        "from": "CW_sigma_nu",
+        "name": "CW_sigma_nu__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 49,
+      "source": {
+        "composition": [
+          "C2__CW_sigma_nu_by_eta",
+          "CW_sigma_nu__S0"
+        ],
+        "from": "C2",
+        "name": "C2__S0_by_eta",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 50,
+      "source": {
+        "composition": [
+          "CW_eta_2__Csigma_by_nu",
+          "Csigma__S0"
+        ],
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__S0_by_nu",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 51,
+      "source": {
+        "composition": [
+          "Ceta__CW_eta_2",
+          "CW_eta_2__S0_by_nu"
+        ],
+        "from": "Ceta",
+        "name": "Ceta__S0_by_nu",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 52,
+      "source": {
+        "composition": [
+          "Cnu__CW_nu_eta",
+          "CW_nu_eta__CW_nu_eta_2"
+        ],
+        "from": "Cnu",
+        "name": "Cnu__CW_nu_eta_2",
+        "to": "CW_nu_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 53,
+      "source": {
+        "composition": [
+          "Cnu__CW_nu_eta_2",
+          "CW_nu_eta_2__S0_by_sigma"
+        ],
+        "from": "Cnu",
+        "name": "Cnu__S0_by_sigma",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 54,
+      "source": {
+        "factor": [
+          0,
+          1,
+          0
+        ],
+        "from": "tmf",
+        "name": "tmf__tmf_by_2",
+        "to": "tmf"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 55,
+      "source": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "tmf",
+        "name": "tmf__tmf_by_eta",
+        "to": "tmf"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 56,
+      "source": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "tmf",
+        "name": "tmf__tmf_by_nu",
+        "to": "tmf"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 57,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigmasq",
+        "to": "Csigmasq"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 58,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ctheta4",
+        "to": "Ctheta4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 59,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ctheta5",
+        "to": "Ctheta5"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 60,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2sigma",
+        "to": "C2sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 61,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2h4",
+        "to": "C2h4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 62,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2h5",
+        "to": "C2h5"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 63,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2h6",
+        "to": "C2h6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 64,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h4",
+        "t_max": 198,
+        "to": "DC2h4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 65,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h5",
+        "to": "DC2h5"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 66,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h6",
+        "to": "DC2h6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 67,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Fphi",
+        "to": "Fphi"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 68,
+      "source": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_A_eta",
+        "to": "CW_2_A_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 69,
+      "source": {
+        "factor": [
+          1,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S1__CW_2_A_eta",
+        "to": "CW_2_A_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 70,
+      "source": {
+        "factor": [
+          14,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_sigmasq",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 71,
+      "source": {
+        "factor": [
+          30,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_theta4",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 72,
+      "source": {
+        "factor": [
+          62,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_theta5",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 73,
+      "source": {
+        "factor": [
+          124,
+          4,
+          []
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_theta5sq",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 74,
+      "source": {
+        "factor": [
+          3,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_2nu",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 75,
+      "source": {
+        "factor": [
+          7,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_2sigma",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 76,
+      "source": {
+        "factor": [
+          8,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_etasigma",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 77,
+      "source": {
+        "factor": [
+          14,
+          4,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_kappa",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 78,
+      "source": {
+        "factor": [
+          20,
+          4,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_g",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 79,
+      "source": {
+        "factor": [
+          16,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_eta4",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 80,
+      "source": {
+        "factor": [
+          32,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_eta5",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 81,
+      "source": {
+        "factor": [
+          15,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2_by_h4",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 82,
+      "source": {
+        "factor": [
+          31,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2_by_h5",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 83,
+      "source": {
+        "factor": [
+          63,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2_by_h6",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 84,
+      "source": {
+        "factor": [
+          127,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_by_theta5sq",
+        "to": "CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 85,
+      "source": {
+        "factor": [
+          15,
+          1,
+          [
+            0,
+            1
+          ]
+        ],
+        "from": "S0",
+        "name": "S0__Csigmasq_by_2",
+        "to": "Csigmasq"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 86,
+      "source": {
+        "factor": [
+          31,
+          1,
+          [
+            0,
+            1
+          ]
+        ],
+        "from": "S0",
+        "name": "S0__Ctheta4_by_2",
+        "to": "Ctheta4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 87,
+      "source": {
+        "factor": [
+          63,
+          1,
+          [
+            0,
+            1
+          ]
+        ],
+        "from": "S0",
+        "name": "S0__Ctheta5_by_2",
+        "to": "Ctheta5"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 88,
+      "source": {
+        "factor": [
+          15,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigma_by_2sigma",
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 89,
+      "source": {
+        "factor": [
+          30,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h4_by_sigmasq",
+        "to": "DC2h4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 90,
+      "source": {
+        "factor": [
+          62,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h5_by_theta4",
+        "to": "DC2h5"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 91,
+      "source": {
+        "factor": [
+          126,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h6_by_theta5",
+        "to": "DC2h6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 92,
+      "source": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S2__Q_CW_2_V_eta",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 93,
+      "source": {
+        "factor": [
+          0,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S1__Q_CW_2_V_eta",
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 94,
+      "source": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S4__Q_CW_eta_V_nu",
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 95,
+      "source": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S2__Q_CW_eta_V_nu",
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 96,
+      "source": {
+        "factor": [
+          7,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S8__Q_CW_nu_V_sigma",
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 97,
+      "source": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S4__Q_CW_nu_V_sigma",
+        "to": "Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 98,
+      "source": {
+        "factor": [
+          0,
+          1,
+          0
+        ],
+        "from": "C2",
+        "name": "C2__C2_by_2",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 99,
+      "source": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "C2",
+        "name": "C2__C2_by_eta",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 100,
+      "source": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "C2",
+        "name": "C2__C2_by_nu",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 101,
+      "source": {
+        "composition": [
+          "C2_Ceta__CW_2_A_eta",
+          "CW_2_A_eta__C2"
+        ],
+        "from": "C2_Ceta",
+        "name": "C2_Ceta__C2",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 102,
+      "source": {
+        "composition": [
+          "CW_sigma_2sigma__C2sigma",
+          "C2sigma__S0"
+        ],
+        "from": "CW_sigma_2sigma",
+        "name": "CW_sigma_2sigma__S0",
+        "to": "S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 103,
+      "source": {
+        "composition": [
+          "DC2h4__C2",
+          "C2__S0"
+        ],
+        "from": "DC2h4",
+        "name": "DC2h4__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 104,
+      "source": {
+        "composition": [
+          "DC2h5__C2",
+          "C2__S0"
+        ],
+        "from": "DC2h5",
+        "name": "DC2h5__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 105,
+      "source": {
+        "composition": [
+          "DC2h6__C2",
+          "C2__S0"
+        ],
+        "from": "DC2h6",
+        "name": "DC2h6__S0",
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 106,
+      "source": {
+        "factor": [
+          0,
+          1,
+          0
+        ],
+        "from": "Ceta",
+        "name": "Ceta__Ceta_by_2",
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 107,
+      "source": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "Ceta",
+        "name": "Ceta__Ceta_by_nu",
+        "to": "Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 108,
+      "source": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "Cnu",
+        "name": "Cnu__Cnu_by_eta",
+        "to": "Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 109,
+      "source": {
+        "composition": [
+          "RP1_2__RP1_4",
+          "RP1_4__RP1_6"
+        ],
+        "from": "C2",
+        "name": "RP1_2__RP1_6",
+        "to": "RP1_6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 110,
+      "source": {
+        "composition": [
+          "RP1_6__RP1_8",
+          "RP1_8__RP1_10"
+        ],
+        "from": "RP1_6",
+        "name": "RP1_6__RP1_10",
+        "to": "RP1_10"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 111,
+      "source": {
+        "composition": [
+          "RP1_6__RP1_10",
+          "RP1_10__RP1_12"
+        ],
+        "from": "RP1_6",
+        "name": "RP1_6__RP1_12",
+        "to": "RP1_12"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 112,
+      "source": {
+        "composition": [
+          "RP1_6__RP1_12",
+          "RP1_12__RP1_256"
+        ],
+        "from": "RP1_6",
+        "name": "RP1_6__RP1_256",
+        "to": "RP1_256"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 113,
+      "source": {
+        "composition": [
+          "RP1_4__RP1_6",
+          "RP1_6__RP1_256"
+        ],
+        "from": "RP1_4",
+        "name": "RP1_4__RP1_256",
+        "to": "RP1_256"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 114,
+      "source": {
+        "composition": [
+          "RP1_2__RP1_6",
+          "RP1_6__RP1_256"
+        ],
+        "from": "C2",
+        "name": "RP1_2__RP1_256",
+        "to": "RP1_256"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 115,
+      "source": {
+        "composition": [
+          "RP3_6__RP3_256",
+          "RP3_256__RP1_2"
+        ],
+        "from": "RP3_6",
+        "name": "RP3_6__RP1_2",
+        "to": "C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 1,
+      "source": {
+        "d": "S0__S0_by_2",
+        "deduce": "on",
+        "i": "S0__C2",
+        "name": "S0__C2__S0",
+        "path": "cofseq_S0__C2__S0.db",
+        "q": "C2__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 2,
+      "source": {
+        "d": "S0__S0_by_eta",
+        "deduce": "on",
+        "i": "S0__Ceta",
+        "name": "S0__Ceta__S0",
+        "path": "cofseq_S0__Ceta__S0.db",
+        "q": "Ceta__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 3,
+      "source": {
+        "d": "S0__S0_by_nu",
+        "deduce": "on",
+        "i": "S0__Cnu",
+        "name": "S0__Cnu__S0",
+        "path": "cofseq_S0__Cnu__S0.db",
+        "q": "Cnu__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 4,
+      "source": {
+        "d": "S0__S0_by_sigma",
+        "deduce": "on",
+        "i": "S0__Csigma",
+        "name": "S0__Csigma__S0",
+        "path": "cofseq_S0__Csigma__S0.db",
+        "q": "Csigma__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 5,
+      "source": {
+        "d": "Ceta__Q_CW_2_eta",
+        "deduce": "on",
+        "i": "S0__CW_2_eta",
+        "name": "S0__CW_2_eta__Ceta",
+        "path": "cofseq_S0__CW_2_eta__Ceta.db",
+        "q": "CW_2_eta__Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 6,
+      "source": {
+        "d": "S0__C2_by_eta",
+        "deduce": "on",
+        "i": "C2__CW_2_eta",
+        "name": "C2__CW_2_eta__S0",
+        "path": "cofseq_C2__CW_2_eta__S0.db",
+        "q": "CW_2_eta__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 7,
+      "source": {
+        "d": "Cnu__Q_CW_eta_nu",
+        "deduce": "on",
+        "i": "S0__CW_eta_nu",
+        "name": "S0__CW_eta_nu__Cnu",
+        "path": "cofseq_S0__CW_eta_nu__Cnu.db",
+        "q": "CW_eta_nu__Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 8,
+      "source": {
+        "d": "S0__Ceta_by_nu",
+        "deduce": "on",
+        "i": "Ceta__CW_eta_nu",
+        "name": "Ceta__CW_eta_nu__S0",
+        "path": "cofseq_Ceta__CW_eta_nu__S0.db",
+        "q": "CW_eta_nu__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 9,
+      "source": {
+        "d": "Csigma__Q_CW_nu_sigma",
+        "deduce": "on",
+        "i": "S0__CW_nu_sigma",
+        "name": "S0__CW_nu_sigma__Csigma",
+        "path": "cofseq_S0__CW_nu_sigma__Csigma.db",
+        "q": "CW_nu_sigma__Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 10,
+      "source": {
+        "d": "S0__Cnu_by_sigma",
+        "deduce": "on",
+        "i": "Cnu__CW_nu_sigma",
+        "name": "Cnu__CW_nu_sigma__S0",
+        "path": "cofseq_Cnu__CW_nu_sigma__S0.db",
+        "q": "CW_nu_sigma__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 11,
+      "source": {
+        "d": "C2__S0_by_eta",
+        "deduce": "on",
+        "i": "S0__CW_eta_2",
+        "name": "S0__CW_eta_2__C2",
+        "path": "cofseq_S0__CW_eta_2__C2.db",
+        "q": "CW_eta_2__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 12,
+      "source": {
+        "d": "S0__Ceta_by_2",
+        "deduce": "on",
+        "i": "Ceta__CW_eta_2",
+        "name": "Ceta__CW_eta_2__S0",
+        "path": "cofseq_Ceta__CW_eta_2__S0.db",
+        "q": "CW_eta_2__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 13,
+      "source": {
+        "d": "Ceta__S0_by_nu",
+        "deduce": "on",
+        "i": "S0__CW_nu_eta",
+        "name": "S0__CW_nu_eta__Ceta",
+        "path": "cofseq_S0__CW_nu_eta__Ceta.db",
+        "q": "CW_nu_eta__Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 14,
+      "source": {
+        "d": "S0__Cnu_by_eta",
+        "deduce": "on",
+        "i": "Cnu__CW_nu_eta",
+        "name": "Cnu__CW_nu_eta__S0",
+        "path": "cofseq_Cnu__CW_nu_eta__S0.db",
+        "q": "CW_nu_eta__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 15,
+      "source": {
+        "d": "Cnu__S0_by_sigma",
+        "deduce": "on",
+        "i": "S0__CW_sigma_nu",
+        "name": "S0__CW_sigma_nu__Cnu",
+        "path": "cofseq_S0__CW_sigma_nu__Cnu.db",
+        "q": "CW_sigma_nu__Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 16,
+      "source": {
+        "d": "S0__Csigma_by_nu",
+        "deduce": "on",
+        "i": "Csigma__CW_sigma_nu",
+        "name": "Csigma__CW_sigma_nu__S0",
+        "path": "cofseq_Csigma__CW_sigma_nu__S0.db",
+        "q": "CW_sigma_nu__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 17,
+      "source": {
+        "d": "S0__S0_by_2sigma",
+        "deduce": "on",
+        "i": "S0__C2sigma",
+        "name": "S0__C2sigma__S0",
+        "path": "cofseq_S0__C2sigma__S0.db",
+        "q": "C2sigma__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 18,
+      "source": {
+        "d": "S0__S0_by_sigmasq",
+        "deduce": "on",
+        "i": "S0__Csigmasq",
+        "name": "S0__Csigmasq__S0",
+        "path": "cofseq_S0__Csigmasq__S0.db",
+        "q": "Csigmasq__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 19,
+      "source": {
+        "d": "S0__S0_by_theta4",
+        "deduce": "on",
+        "i": "S0__Ctheta4",
+        "name": "S0__Ctheta4__S0",
+        "path": "cofseq_S0__Ctheta4__S0.db",
+        "q": "Ctheta4__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 20,
+      "source": {
+        "d": "S0__S0_by_theta5",
+        "deduce": "on",
+        "i": "S0__Ctheta5",
+        "name": "S0__Ctheta5__S0",
+        "path": "cofseq_S0__Ctheta5__S0.db",
+        "q": "Ctheta5__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 21,
+      "source": {
+        "d": "C2__C2_by_2",
+        "deduce": "on",
+        "i": "C2__C2_C2",
+        "name": "C2__C2_C2__C2",
+        "path": "cofseq_C2__C2_C2__C2.db",
+        "q": "C2_C2__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 22,
+      "source": {
+        "d": "C2__C2_by_eta",
+        "deduce": "on",
+        "i": "C2__C2_Ceta",
+        "name": "C2__C2_Ceta__C2",
+        "path": "cofseq_C2__C2_Ceta__C2.db",
+        "q": "C2_Ceta__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 23,
+      "source": {
+        "d": "S0__C2_by_h4",
+        "deduce": "on",
+        "i": "C2__C2h4",
+        "name": "C2__C2h4__S0",
+        "path": "cofseq_C2__C2h4__S0.db",
+        "q": "C2h4__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 24,
+      "source": {
+        "d": "S0__C2_by_h5",
+        "deduce": "on",
+        "i": "C2__C2h5",
+        "name": "C2__C2h5__S0",
+        "path": "cofseq_C2__C2h5__S0.db",
+        "q": "C2h5__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 25,
+      "source": {
+        "d": "S0__C2_by_h6",
+        "deduce": "on",
+        "i": "C2__C2h6",
+        "name": "C2__C2h6__S0",
+        "path": "cofseq_C2__C2h6__S0.db",
+        "q": "C2h6__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 26,
+      "source": {
+        "d": "Csigmasq__Q_C2h4",
+        "deduce": "on",
+        "i": "S0__C2h4",
+        "name": "S0__C2h4__Csigmasq",
+        "path": "cofseq_S0__C2h4__Csigmasq.db",
+        "q": "C2h4__Csigmasq"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 27,
+      "source": {
+        "d": "Ctheta4__Q_C2h5",
+        "deduce": "on",
+        "i": "S0__C2h5",
+        "name": "S0__C2h5__Ctheta4",
+        "path": "cofseq_S0__C2h5__Ctheta4.db",
+        "q": "C2h5__Ctheta4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 28,
+      "source": {
+        "d": "Ctheta5__Q_C2h6",
+        "deduce": "on",
+        "i": "S0__C2h6",
+        "name": "S0__C2h6__Ctheta5",
+        "path": "cofseq_S0__C2h6__Ctheta5.db",
+        "q": "C2h6__Ctheta5"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 29,
+      "source": {
+        "d": "S0__Csigmasq_by_2",
+        "deduce": "on",
+        "i": "Csigmasq__DC2h4",
+        "name": "Csigmasq__DC2h4__S0",
+        "path": "cofseq_Csigmasq__DC2h4__S0.db",
+        "q": "DC2h4__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 30,
+      "source": {
+        "d": "S0__Ctheta4_by_2",
+        "deduce": "on",
+        "i": "Ctheta4__DC2h5",
+        "name": "Ctheta4__DC2h5__S0",
+        "path": "cofseq_Ctheta4__DC2h5__S0.db",
+        "q": "DC2h5__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 31,
+      "source": {
+        "d": "S0__Ctheta5_by_2",
+        "deduce": "on",
+        "i": "Ctheta5__DC2h6",
+        "name": "Ctheta5__DC2h6__S0",
+        "path": "cofseq_Ctheta5__DC2h6__S0.db",
+        "q": "DC2h6__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 32,
+      "source": {
+        "d": "C2__Q_DC2h4",
+        "deduce": "on",
+        "i": "S0__DC2h4",
+        "name": "S0__DC2h4__C2",
+        "path": "cofseq_S0__DC2h4__C2.db",
+        "q": "DC2h4__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 33,
+      "source": {
+        "d": "C2__Q_DC2h5",
+        "deduce": "on",
+        "i": "S0__DC2h5",
+        "name": "S0__DC2h5__C2",
+        "path": "cofseq_S0__DC2h5__C2.db",
+        "q": "DC2h5__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 34,
+      "source": {
+        "d": "C2__Q_DC2h6",
+        "deduce": "on",
+        "i": "S0__DC2h6",
+        "name": "S0__DC2h6__C2",
+        "path": "cofseq_S0__DC2h6__C2.db",
+        "q": "DC2h6__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 35,
+      "source": {
+        "d": "S2__Q_CW_2_V_eta",
+        "deduce": "on",
+        "i": "C2__CW_2_V_eta",
+        "name": "C2__CW_2_V_eta__S2",
+        "path": "cofseq_C2__CW_2_V_eta__S2.db",
+        "q": "CW_2_V_eta__S2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 36,
+      "source": {
+        "d": "S1__Q_CW_2_V_eta",
+        "deduce": "on",
+        "i": "Ceta__CW_2_V_eta",
+        "name": "Ceta__CW_2_V_eta__S1",
+        "path": "cofseq_Ceta__CW_2_V_eta__S1.db",
+        "q": "CW_2_V_eta__S1"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 37,
+      "source": {
+        "d": "C2__Q_CW_2_A_eta",
+        "deduce": "on",
+        "i": "S0__CW_2_A_eta",
+        "name": "S0__CW_2_A_eta__C2",
+        "path": "cofseq_S0__CW_2_A_eta__C2.db",
+        "q": "CW_2_A_eta__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 38,
+      "source": {
+        "d": "Ceta__Q_CW_2_A_eta",
+        "deduce": "on",
+        "i": "S1__CW_2_A_eta",
+        "name": "S1__CW_2_A_eta__Ceta",
+        "path": "cofseq_S1__CW_2_A_eta__Ceta.db",
+        "q": "CW_2_A_eta__Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 39,
+      "source": {
+        "d": "S0__Csigma_by_2sigma",
+        "deduce": "on",
+        "i": "Csigma__CW_sigma_2sigma",
+        "name": "Csigma__CW_sigma_2sigma__S0",
+        "path": "cofseq_Csigma__CW_sigma_2sigma__S0.db",
+        "q": "CW_sigma_2sigma__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 40,
+      "source": {
+        "d": "CW_eta_nu__Q_CW_2_eta_nu",
+        "deduce": "on",
+        "i": "S0__CW_2_eta_nu",
+        "name": "S0__CW_2_eta_nu__CW_eta_nu",
+        "path": "cofseq_S0__CW_2_eta_nu__CW_eta_nu.db",
+        "q": "CW_2_eta_nu__CW_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 41,
+      "source": {
+        "d": "Cnu__Q_CW_2_eta_nu",
+        "deduce": "on",
+        "i": "C2__CW_2_eta_nu",
+        "name": "C2__CW_2_eta_nu__Cnu",
+        "path": "cofseq_C2__CW_2_eta_nu__Cnu.db",
+        "q": "CW_2_eta_nu__Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 42,
+      "source": {
+        "d": "S0__CW_2_eta_by_nu",
+        "deduce": "on",
+        "i": "CW_2_eta__CW_2_eta_nu",
+        "name": "CW_2_eta__CW_2_eta_nu__S0",
+        "path": "cofseq_CW_2_eta__CW_2_eta_nu__S0.db",
+        "q": "CW_2_eta_nu__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 43,
+      "source": {
+        "d": "CW_nu_sigma__S0_by_eta",
+        "deduce": "on",
+        "i": "S0__CW_eta_nu_sigma",
+        "name": "S0__CW_eta_nu_sigma__CW_nu_sigma",
+        "path": "cofseq_S0__CW_eta_nu_sigma__CW_nu_sigma.db",
+        "q": "CW_eta_nu_sigma__CW_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 44,
+      "source": {
+        "d": "Csigma__Ceta_by_nu",
+        "deduce": "on",
+        "i": "Ceta__CW_eta_nu_sigma",
+        "name": "Ceta__CW_eta_nu_sigma__Csigma",
+        "path": "cofseq_Ceta__CW_eta_nu_sigma__Csigma.db",
+        "q": "CW_eta_nu_sigma__Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 45,
+      "source": {
+        "d": "S0__CW_eta_nu_by_sigma",
+        "deduce": "on",
+        "i": "CW_eta_nu__CW_eta_nu_sigma",
+        "name": "CW_eta_nu__CW_eta_nu_sigma__S0",
+        "path": "cofseq_CW_eta_nu__CW_eta_nu_sigma__S0.db",
+        "q": "CW_eta_nu_sigma__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 46,
+      "source": {
+        "d": "CW_eta_2__Q_CW_nu_eta_2",
+        "deduce": "on",
+        "i": "S0__CW_nu_eta_2",
+        "name": "S0__CW_nu_eta_2__CW_eta_2",
+        "path": "cofseq_S0__CW_nu_eta_2__CW_eta_2.db",
+        "q": "CW_nu_eta_2__CW_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 47,
+      "source": {
+        "d": "C2__Q_CW_nu_eta_2",
+        "deduce": "on",
+        "i": "Cnu__CW_nu_eta_2",
+        "name": "Cnu__CW_nu_eta_2__C2",
+        "path": "cofseq_Cnu__CW_nu_eta_2__C2.db",
+        "q": "CW_nu_eta_2__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 48,
+      "source": {
+        "d": "S0__CW_nu_eta_by_2",
+        "deduce": "on",
+        "i": "CW_nu_eta__CW_nu_eta_2",
+        "name": "CW_nu_eta__CW_nu_eta_2__S0",
+        "path": "cofseq_CW_nu_eta__CW_nu_eta_2__S0.db",
+        "q": "CW_nu_eta_2__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 49,
+      "source": {
+        "d": "CW_eta_nu_sigma__S0_by_2",
+        "deduce": "on",
+        "i": "S0__CW_2_eta_nu_sigma",
+        "name": "S0__CW_2_eta_nu_sigma__CW_eta_nu_sigma",
+        "path": "cofseq_S0__CW_2_eta_nu_sigma__CW_eta_nu_sigma.db",
+        "q": "CW_2_eta_nu_sigma__CW_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 50,
+      "source": {
+        "d": "CW_nu_sigma__C2_by_eta",
+        "deduce": "on",
+        "i": "C2__CW_2_eta_nu_sigma",
+        "name": "C2__CW_2_eta_nu_sigma__CW_nu_sigma",
+        "path": "cofseq_C2__CW_2_eta_nu_sigma__CW_nu_sigma.db",
+        "q": "CW_2_eta_nu_sigma__CW_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 51,
+      "source": {
+        "d": "Csigma__CW_2_eta_by_nu",
+        "deduce": "on",
+        "i": "CW_2_eta__CW_2_eta_nu_sigma",
+        "name": "CW_2_eta__CW_2_eta_nu_sigma__Csigma",
+        "path": "cofseq_CW_2_eta__CW_2_eta_nu_sigma__Csigma.db",
+        "q": "CW_2_eta_nu_sigma__Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 52,
+      "source": {
+        "d": "S0__CW_2_eta_nu_by_sigma",
+        "deduce": "on",
+        "i": "CW_2_eta_nu__CW_2_eta_nu_sigma",
+        "name": "CW_2_eta_nu__CW_2_eta_nu_sigma__S0",
+        "path": "cofseq_CW_2_eta_nu__CW_2_eta_nu_sigma__S0.db",
+        "q": "CW_2_eta_nu_sigma__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 53,
+      "source": {
+        "d": "CW_eta_2__Q_Joker",
+        "deduce": "on",
+        "i": "Ceta__Joker",
+        "name": "Ceta__Joker__CW_eta_2",
+        "path": "cofseq_Ceta__Joker__CW_eta_2.db",
+        "q": "Joker__CW_eta_2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 54,
+      "source": {
+        "d": "Ceta__Q_Joker",
+        "deduce": "on",
+        "i": "CW_2_eta__Joker",
+        "name": "CW_2_eta__Joker__Ceta",
+        "path": "cofseq_CW_2_eta__Joker__Ceta.db",
+        "q": "Joker__Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 55,
+      "source": {
+        "d": "CW_2_eta__Q_RP1_6",
+        "deduce": "on",
+        "i": "CW_eta_2__RP1_6",
+        "name": "CW_eta_2__RP1_6__CW_2_eta",
+        "path": "cofseq_CW_eta_2__RP1_6__CW_2_eta.db",
+        "q": "RP1_6__CW_2_eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 56,
+      "source": {
+        "d": "Ceta__Ceta_by_2",
+        "deduce": "on",
+        "i": "Ceta__C2_Ceta",
+        "name": "Ceta__C2_Ceta__Ceta",
+        "path": "cofseq_Ceta__C2_Ceta__Ceta.db",
+        "q": "C2_Ceta__Ceta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 57,
+      "source": {
+        "d": "RP3_4__RP1_2",
+        "deduce": "on",
+        "i": "RP1_2__RP1_4",
+        "name": "RP1_2__RP1_4__RP3_4",
+        "path": "cofseq_RP1_2__RP1_4__RP3_4.db",
+        "q": "RP1_4__RP3_4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 58,
+      "source": {
+        "d": "RP5_6__RP3_4",
+        "deduce": "on",
+        "i": "RP3_4__RP3_6",
+        "name": "RP3_4__RP3_6__RP5_6",
+        "path": "cofseq_RP3_4__RP3_6__RP5_6.db",
+        "q": "RP3_6__RP5_6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 59,
+      "source": {
+        "d": "RP3_6__RP1_2",
+        "deduce": "on",
+        "i": "RP1_2__RP1_6",
+        "name": "RP1_2__RP1_6__RP3_6",
+        "path": "cofseq_RP1_2__RP1_6__RP3_6.db",
+        "q": "RP1_6__RP3_6"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 60,
+      "source": {
+        "d": "RP3_256__RP1_2",
+        "deduce": "on",
+        "i": "RP1_2__RP1_256",
+        "name": "RP1_2__RP1_256__RP3_256",
+        "path": "cofseq_RP1_2__RP1_256__RP3_256.db",
+        "q": "RP1_256__RP3_256"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "cofseqs",
+      "ordinal": 61,
+      "source": {
+        "d": "S0__Fphi",
+        "deduce": "on",
+        "i": "Fphi__RP1_256",
+        "name": "Fphi__RP1_256__S0",
+        "path": "cofseq_Fphi__RP1_256__S0.db",
+        "q": "RP1_256__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 1,
+      "source": {
+        "f": [
+          "S0__S0_by_2",
+          "S0__S0_by_eta"
+        ],
+        "g": [],
+        "name": "2*eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 2,
+      "source": {
+        "f": [
+          "S0__S0_by_eta",
+          "S0__S0_by_nu"
+        ],
+        "g": [],
+        "name": "eta*nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 3,
+      "source": {
+        "f": [
+          "S0__S0_by_nu",
+          "S0__S0_by_sigma"
+        ],
+        "g": [],
+        "name": "nu*sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 4,
+      "source": {
+        "f": [
+          "S0__S0_by_eta",
+          "S0__S0_by_2"
+        ],
+        "g": [],
+        "name": "eta*2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 5,
+      "source": {
+        "f": [
+          "S0__S0_by_nu",
+          "S0__S0_by_eta"
+        ],
+        "g": [],
+        "name": "nu*eta"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 6,
+      "source": {
+        "f": [
+          "S0__S0_by_sigma",
+          "S0__S0_by_nu"
+        ],
+        "g": [],
+        "name": "sigma*nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 7,
+      "source": {
+        "f": [
+          "S0__S0_by_2",
+          "S0__S0_by_sigmasq"
+        ],
+        "g": [],
+        "name": "2*sigmasq"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 8,
+      "source": {
+        "f": [
+          "S0__S0_by_2",
+          "S0__S0_by_theta4"
+        ],
+        "g": [],
+        "name": "2*theta4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 9,
+      "source": {
+        "f": [
+          "S0__S0_by_2",
+          "S0__S0_by_theta5"
+        ],
+        "g": [],
+        "name": "2*theta5"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 10,
+      "source": {
+        "f": [
+          "S0__S0_by_sigmasq",
+          "S0__S0_by_2"
+        ],
+        "g": [],
+        "name": "sigmasq*2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 11,
+      "source": {
+        "f": [
+          "S0__S0_by_theta4",
+          "S0__S0_by_2"
+        ],
+        "g": [],
+        "name": "theta4*2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 12,
+      "source": {
+        "f": [
+          "S0__S0_by_theta5",
+          "S0__S0_by_2"
+        ],
+        "g": [],
+        "name": "theta5*2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 13,
+      "source": {
+        "f": [
+          "S0__S0_by_sigma",
+          "S0__S0_by_sigma"
+        ],
+        "g": [
+          "S0__S0_by_sigmasq"
+        ],
+        "name": "sigmasq"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 14,
+      "source": {
+        "f": [
+          "S0__S0_by_sigmasq",
+          "S0__S0_by_sigmasq"
+        ],
+        "g": [],
+        "name": "sigmasq_sigmasq"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 15,
+      "source": {
+        "f": [
+          "S0__S0_by_theta4",
+          "S0__S0_by_theta4"
+        ],
+        "g": [],
+        "name": "theta4_theta4"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 16,
+      "source": {
+        "f": [
+          "S0__S0_by_2",
+          "S0__S0_by_sigma"
+        ],
+        "g": [
+          "S0__S0_by_2sigma"
+        ],
+        "name": "2sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 17,
+      "source": {
+        "f": [
+          "S0__S0_by_sigma",
+          "S0__S0_by_2"
+        ],
+        "g": [
+          "S0__S0_by_2sigma"
+        ],
+        "name": "sigma2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 18,
+      "source": {
+        "f": [
+          "C2h4__Csigmasq",
+          "Csigmasq__S0"
+        ],
+        "g": [
+          "C2h4__S0"
+        ],
+        "name": "C2h4__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 19,
+      "source": {
+        "f": [
+          "C2h5__Ctheta4",
+          "Ctheta4__S0"
+        ],
+        "g": [
+          "C2h5__S0"
+        ],
+        "name": "C2h5__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 20,
+      "source": {
+        "f": [
+          "C2h6__Ctheta5",
+          "Ctheta5__S0"
+        ],
+        "g": [
+          "C2h6__S0"
+        ],
+        "name": "C2h6__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 21,
+      "source": {
+        "f": [
+          "DC2h4__C2",
+          "C2__S0"
+        ],
+        "g": [
+          "DC2h4__S0"
+        ],
+        "name": "DC2h4__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 22,
+      "source": {
+        "f": [
+          "DC2h5__C2",
+          "C2__S0"
+        ],
+        "g": [
+          "DC2h5__S0"
+        ],
+        "name": "DC2h5__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 23,
+      "source": {
+        "f": [
+          "DC2h6__C2",
+          "C2__S0"
+        ],
+        "g": [
+          "DC2h6__S0"
+        ],
+        "name": "DC2h6__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 24,
+      "source": {
+        "f": [
+          "CW_2_eta__Ceta",
+          "Ceta__S0"
+        ],
+        "g": [
+          "CW_2_eta__S0"
+        ],
+        "name": "CW_2_eta__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 25,
+      "source": {
+        "f": [
+          "CW_eta_nu__Cnu",
+          "Cnu__S0"
+        ],
+        "g": [
+          "CW_eta_nu__S0"
+        ],
+        "name": "CW_eta_nu__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 26,
+      "source": {
+        "f": [
+          "CW_nu_sigma__Csigma",
+          "Csigma__S0"
+        ],
+        "g": [
+          "CW_nu_sigma__S0"
+        ],
+        "name": "CW_nu_sigma__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 27,
+      "source": {
+        "f": [
+          "CW_2_eta_nu__CW_eta_nu",
+          "CW_eta_nu__Cnu"
+        ],
+        "g": [
+          "CW_2_eta_nu__Cnu"
+        ],
+        "name": "CW_2_eta_nu__Cnu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 28,
+      "source": {
+        "f": [
+          "CW_2_eta_nu__Cnu",
+          "Cnu__S0"
+        ],
+        "g": [
+          "CW_2_eta_nu__S0"
+        ],
+        "name": "CW_2_eta_nu__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 29,
+      "source": {
+        "f": [
+          "CW_nu_eta_2__CW_eta_2",
+          "CW_eta_2__C2"
+        ],
+        "g": [
+          "CW_nu_eta_2__C2"
+        ],
+        "name": "CW_nu_eta_2__C2"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 30,
+      "source": {
+        "f": [
+          "CW_nu_eta_2__C2",
+          "C2__S0"
+        ],
+        "g": [
+          "CW_nu_eta_2__S0"
+        ],
+        "name": "CW_nu_eta_2__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 31,
+      "source": {
+        "f": [
+          "CW_eta_nu_sigma__Csigma",
+          "Csigma__S0"
+        ],
+        "g": [
+          "CW_eta_nu_sigma__S0"
+        ],
+        "name": "CW_eta_nu_sigma__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 32,
+      "source": {
+        "f": [
+          "CW_eta_nu_sigma__CW_nu_sigma",
+          "CW_nu_sigma__Csigma"
+        ],
+        "g": [
+          "CW_eta_nu_sigma__Csigma"
+        ],
+        "name": "CW_eta_nu_sigma__Csigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 33,
+      "source": {
+        "f": [
+          "C2__CW_2_eta",
+          "CW_2_eta__CW_2_eta_nu"
+        ],
+        "g": [
+          "C2__CW_2_eta_nu"
+        ],
+        "name": "C2__CW_2_eta_nu"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 34,
+      "source": {
+        "f": [
+          "Ceta__CW_eta_nu",
+          "CW_eta_nu__CW_eta_nu_sigma"
+        ],
+        "g": [
+          "Ceta__CW_eta_nu_sigma"
+        ],
+        "name": "Ceta__CW_eta_nu_sigma"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 35,
+      "source": {
+        "f": [
+          "CW_eta_2__C2",
+          "C2__S0"
+        ],
+        "g": [
+          "CW_eta_2__S0"
+        ],
+        "name": "CW_eta_2__S0"
+      },
+      "status": "inventory_only"
+    },
+    {
+      "section": "commutativity",
+      "ordinal": 36,
+      "source": {
+        "f": [
+          "CW_sigma_nu__Cnu",
+          "Cnu__S0"
+        ],
+        "g": [
+          "CW_sigma_nu__S0"
+        ],
+        "name": "CW_sigma_nu__S0"
+      },
+      "status": "inventory_only"
+    }
+  ]
+}

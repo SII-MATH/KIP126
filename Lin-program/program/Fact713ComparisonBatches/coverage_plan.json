@@ -1,0 +1,30 @@
+{
+  "request": "fact-7.13",
+  "named_degree": [
+    9,
+    132
+  ],
+  "requested_pages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "named_raw_dense": [
+    true,
+    true
+  ],
+  "source_snapshot": "Fact713E12Search/successor-search.json",
+  "finite_coverage_only": [
+    2,
+    3
+  ],
+  "first_absent_page": 4,
+  "note": "Coverage.lean asserts genuine absent requested key, not failure of a search heuristic. It must compile after family coherence."
+}

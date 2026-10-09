@@ -1,0 +1,286 @@
+{
+  "blocks": {
+    "S0:26,149:d2": {
+      "object": "S0",
+      "center": [
+        26,
+        149
+      ],
+      "page": 2,
+      "wire": {
+        "down": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 2,
+        "n": 2,
+        "outgoing": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          true
+        ],
+        "projection": [],
+        "up": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:23,147:d3": {
+      "object": "S0",
+      "center": [
+        23,
+        147
+      ],
+      "page": 3,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          false,
+          true
+        ],
+        "incoming": [
+          true,
+          false
+        ],
+        "k": 0,
+        "m": 2,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          0,
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            23,
+            147
+          ],
+          "page": 3,
+          "row": [
+            3742,
+            "2",
+            "0",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:26,149:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            23,
+            147
+          ],
+          "page": 3,
+          "row": [
+            3743,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:26,149:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            20,
+            145
+          ],
+          "page": 3,
+          "row": [
+            3557,
+            "0",
+            "2",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:23,147:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:20,145:d2",
+        "S0:23,147:d2",
+        "S0:26,149:d2"
+      ]
+    },
+    "S0:23,147:d4": {
+      "object": "S0",
+      "center": [
+        23,
+        147
+      ],
+      "page": 4,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            23,
+            147
+          ],
+          "page": 4,
+          "row": [
+            3743,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "conditional_successor_row3986",
+          "target_predecessor": "S0:27,150:d3"
+        }
+      ],
+      "predecessors": [
+        "S0:19,144:d3",
+        "S0:23,147:d3",
+        "S0:27,150:d3"
+      ]
+    },
+    "S0:18,143:d5": {
+      "object": "S0",
+      "center": [
+        18,
+        143
+      ],
+      "page": 5,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          true
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false
+        ],
+        "projection": [],
+        "up": [
+          true
+        ],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            18,
+            143
+          ],
+          "page": 5,
+          "row": [
+            3391,
+            "0",
+            "0",
+            5
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:23,147:d4"
+        },
+        {
+          "object": "S0",
+          "source": [
+            13,
+            139
+          ],
+          "page": 5,
+          "row": [
+            3083,
+            "0",
+            "0",
+            9995
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:18,143:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:13,139:d4",
+        "S0:18,143:d4",
+        "S0:23,147:d4"
+      ]
+    }
+  },
+  "failures": {},
+  "root": "S0:18,143:d5",
+  "scope": "Explicit row3743 zero conditional on actual known successor meaning; raw NULL unchanged.",
+  "input_sha256": {
+    "Stem125E4Search/search.json": "0f081906a81db78346ea5e29e6bb745801212d102d026a39510d68554c5c5955",
+    "Stem125E5Search/search.json": "0547da02505a480429886d36e44df6f4cb5baaf50aeb7783de3da1a32b1b97da",
+    "Row3743Successor/source.json": "2d9ab8191a4d38bbbc159f178eb3de867a317427aaee63bf7565108709d077a4",
+    "Row3743Successor/Basic.lean": "357c0dfe2ec2dc86ed894541394fa60bdc7dcddef5cf61e141f04b0d91ad02b8",
+    "Row3743Successor/Named.lean": "460dc621c652c669e84051f0f6a345e679ed702bb490876641f74ad9c83355f9",
+    "AggregateD5Conditional/generate.py": "2189a28e2051a99cc57310dc6ecdf4b0a12a90a6ed9b769ee584beeaffd66c15",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "Stem125E4Search/search.py": "6826b14ed9cfb4ecb75fe0ee879730b93a843504a1beba274b2e0993ef8d305c",
+    "AggregateIncomingTargetCompletion/search_final.py": "c44b6b1a6527d6dd19b97d432eb527b9b6832434863011d0312c21ac9c958707"
+  }
+}

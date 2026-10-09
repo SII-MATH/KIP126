@@ -1,0 +1,42 @@
+Fact761ConstructedActual/Tests.lean:27:109: error: Application type mismatch: The argument
+  zeroBoundary
+has type
+  (InKernel (matrixOf falseIncoming.k falseIncoming.m falseIncoming.outgoing) fun x => true) →
+    InImage (matrixOf falseIncoming.m falseIncoming.n falseIncoming.incoming)
+      (add (fun x => true)
+        (eval falseIncoming.comparison.inclusion (eval falseIncoming.comparison.projection fun x => true)))
+but is expected to have type
+  InKernel falseIncoming.comparison.projection
+    (eval (matrixOf falseIncoming.m falseIncoming.n falseIncoming.incoming) fun x => true)
+in the application
+  (have this := ?m.28;
+    this)
+    zeroBoundary
+Fact761ConstructedActual/Tests.lean:27:101: error: failed to synthesize
+  Decidable
+    ¬InKernel falseIncoming.comparison.projection
+        (eval (matrixOf falseIncoming.m falseIncoming.n falseIncoming.incoming) fun x => true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Fact761ConstructedActual/Tests.lean:36:43: warning: Variable name `c` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Fact761ConstructedActual/Tests.lean:42:43: warning: Variable name `c` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Fact761ConstructedActual.corrupted_incoming_rejected' depends on axioms: [propext]
+'Fact761ConstructedActual.wrong_raw_vector_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.unknown_rows_retained' does not depend on any axioms
+'Fact761ConstructedActual.constructed_tactic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Certificate.sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Certificate.nonboundaries' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Row2858.D2Input.source_same_representative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Row2858.D2Input.target_same_representative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

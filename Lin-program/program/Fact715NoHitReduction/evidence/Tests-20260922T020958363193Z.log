@@ -1,0 +1,11 @@
+Fact715NoHitReduction/Tests.lean:17:48: error: unsolved goals
+case start
+h : (filtration ActualAdamsFiltration.Examples.stable Examples.stableLaws).Z 7 true
+⊢ (filtration ActualAdamsFiltration.Examples.stable Examples.stableLaws).Z 3 true
+'Fact715NoHitReduction.Tests.stable_no_exceptional_hit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715NoHitReduction.Tests.stable_exceptional_image_nonzero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact715NoHitReduction.Tests.real_exceptional_hit' depends on axioms: [propext, Quot.sound]
+'Fact715NoHitReduction.Tests.exceptional_exclusion_cannot_be_dropped' depends on axioms: [propext, Quot.sound]

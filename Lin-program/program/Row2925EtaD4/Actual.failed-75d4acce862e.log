@@ -1,0 +1,79 @@
+Row2925EtaD4/Actual.lean:42:53: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  M.sourceProduct 0
+in the target expression
+  Naturality.zt = M.sourceProduct 0
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+eta : (S.element 4 etaDegree).carrier
+M : ProductMeaning S P eta
+x : (S.element 4 sourceDegree).carrier
+named : M.source x = Naturality.named
+⊢ Naturality.zt = M.sourceProduct 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 4 (etaDegree.add sourceDegree)).carrier
+  but is expected to have type
+    (S.element 4 productDegree).carrier
+  in the application
+    M.sourceProduct 0
+Row2925EtaD4/Actual.lean:46:40: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  M.targetProduct 0
+in the target expression
+  Naturality.zv = M.targetProduct 0
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+eta : (S.element 4 etaDegree).carrier
+M : ProductMeaning S P eta
+x : (S.element 4 sourceDegree).carrier
+named : M.source x = Naturality.named
+productZero : P.product.multiply 4 etaDegree sourceDegree eta x = 0
+⊢ Naturality.zv = M.targetProduct 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 4 ((AdamsTarget 4 etaDegree).add sourceDegree)).carrier
+  but is expected to have type
+    (S.element 4 resultDegree).carrier
+  in the application
+    M.targetProduct 0
+Row2925EtaD4/Actual.lean:55:31: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  M.targetProduct 0
+in the target expression
+  M.targetProduct 0 = Naturality.zv
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+eta : (S.element 4 etaDegree).carrier
+M : ProductMeaning S P eta
+x : (S.element 4 sourceDegree).carrier
+named : M.source x = Naturality.named
+productZero : P.product.multiply 4 etaDegree sourceDegree eta x = 0
+leftZero : P.product.multiply 4 (AdamsTarget 4 etaDegree) sourceDegree ((S.differential 4 etaDegree).toFun eta) x = 0
+leibniz :
+  0 =
+    pageCast S 4 ⋯
+      (P.product.multiply 4 etaDegree (AdamsTarget 4 sourceDegree) eta ((S.differential 4 sourceDegree).toFun x))
+targetZero : P.product.multiply 4 etaDegree targetDegree eta ((S.differential 4 sourceDegree).toFun x) = 0
+⊢ M.targetProduct 0 = Naturality.zv
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 4 (etaDegree.add targetDegree)).carrier
+  but is expected to have type
+    (S.element 4 resultDegree).carrier
+  in the application
+    M.targetProduct 0
+'Row2925EtaD4.Actual.actual_second_coordinate_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Row2925EtaD4.Actual.actual_source_nonboundary' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1,0 +1,208 @@
+{
+  "columns": 29,
+  "database_sha256": {
+    "Cnu_AdamsSS_t200.db": "e1274528151c3391f5e5f4de72f8428a68b5e145a07bb3cc946781efd9bfdbbe",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "factor": {
+    "database_basis_id": 9,
+    "degree": [
+      1,
+      6
+    ],
+    "map": "S0__Cnu_by_eta",
+    "module_generator": 1
+  },
+  "failures": [],
+  "full_quotients": [
+    {
+      "basis_degrees": [
+        [
+          9,
+          136
+        ],
+        [
+          11,
+          137
+        ],
+        [
+          13,
+          138
+        ]
+      ],
+      "degree": [
+        11,
+        137
+      ],
+      "dimension": 2,
+      "object": "S0",
+      "tag": "source"
+    },
+    {
+      "basis_degrees": [
+        [
+          10,
+          142
+        ],
+        [
+          12,
+          143
+        ],
+        [
+          14,
+          144
+        ]
+      ],
+      "degree": [
+        12,
+        143
+      ],
+      "dimension": 4,
+      "object": "Cnu",
+      "tag": "target"
+    },
+    {
+      "basis_degrees": [
+        [
+          12,
+          138
+        ],
+        [
+          14,
+          139
+        ],
+        [
+          16,
+          140
+        ]
+      ],
+      "degree": [
+        14,
+        139
+      ],
+      "dimension": 1,
+      "object": "S0",
+      "tag": "upperSource"
+    },
+    {
+      "basis_degrees": [
+        [
+          13,
+          144
+        ],
+        [
+          15,
+          145
+        ],
+        [
+          17,
+          146
+        ]
+      ],
+      "degree": [
+        15,
+        145
+      ],
+      "dimension": 2,
+      "object": "Cnu",
+      "tag": "upperTarget"
+    }
+  ],
+  "inputs_sha256": {
+    "AggregateThreeProductConditional/Remaining/maps2925/lifted-search.json": "d6940748effd39a66c27cb1f27f61048c58d557406db1001f35b0560f3190fd4",
+    "Row2925Detector/comparison-source.json": "175cd7885702f7e3139fea64c51d5c7c3fbf58510f9a05d245ea2d46eeae9466",
+    "Row2925Detector/source.json": "628252048043513f21a8b216285c5e8c82e5910bb7d3f0bf4d36666c3896cc5b"
+  },
+  "lifted_ring_relations": 5,
+  "limitations": "Raw d3 differential remains NULL. Naturality, preservation of zero, and Adams realization are not inferred by this audit.",
+  "matrices": 6,
+  "metadata": {
+    "Cnu": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 177,
+      "t_max": 200,
+      "timestamp": 1734865212,
+      "version": 3
+    },
+    "S0": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 177,
+      "t_max": 261,
+      "timestamp": 1710516671,
+      "version": 3
+    }
+  },
+  "raw_row": [
+    2925,
+    11,
+    137,
+    "1,2",
+    null,
+    9000
+  ],
+  "relation_steps": 31,
+  "script_sha256": "1cf431e8d8872f0917be82820712f92a09bb7b02d28736ae60c882bb46809fd7",
+  "selected_source_basis_ids": [
+    2924,
+    2925
+  ],
+  "selected_source_basis_indices": [
+    1,
+    2
+  ],
+  "status": "independent_SQL_and_F2_replay_passed_not_a_topological_theorem",
+  "witnesses": [
+    {
+      "coordinates": [
+        1,
+        2
+      ],
+      "degree": [
+        11,
+        137
+      ],
+      "image": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "image_boundary": true,
+      "label": "source",
+      "quotient": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_nonboundary": true
+    },
+    {
+      "coordinates": [
+        1
+      ],
+      "degree": [
+        14,
+        139
+      ],
+      "image": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "image_boundary": false,
+      "label": "target",
+      "quotient": [
+        0,
+        1
+      ],
+      "source_nonboundary": true
+    }
+  ]
+}

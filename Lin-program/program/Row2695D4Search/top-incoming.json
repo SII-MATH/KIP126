@@ -1,0 +1,7263 @@
+{
+  "status": "bounded_finite_source_map_search",
+  "results": [
+    {
+      "map": {
+        "from": "C2",
+        "name": "C2__S0",
+        "path": "map_AdamsSS_C2_to_S0_t200.db",
+        "sus": 1,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        133
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            4,
+            132
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              2560,
+              "1,2,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 2560,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            6,
+            133
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              2631,
+              "317",
+              ""
+            ],
+            [
+              2632,
+              "377,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            true,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 2631,
+              "generator": 317,
+              "generator_image": "368,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 2632,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            8,
+            134
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              2688,
+              "323",
+              ""
+            ],
+            [
+              2689,
+              "395,1,0",
+              ""
+            ],
+            [
+              2690,
+              "394,1,0",
+              ""
+            ],
+            [
+              2691,
+              "393,1,0",
+              ""
+            ],
+            [
+              2692,
+              "392,1,0",
+              ""
+            ],
+            [
+              2693,
+              "69,1,85,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 2688,
+              "generator": 323,
+              "generator_image": "376,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 2689,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 2690,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 2691,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 2692,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 2693,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 2560,
+              "mon": "1,2,69,2,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 2631,
+              "mon": "317",
+              "d2": ""
+            },
+            {
+              "id": 2632,
+              "mon": "377,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 2688,
+              "mon": "323",
+              "d2": ""
+            },
+            {
+              "id": 2689,
+              "mon": "395,1,0",
+              "d2": ""
+            },
+            {
+              "id": 2690,
+              "mon": "394,1,0",
+              "d2": ""
+            },
+            {
+              "id": 2691,
+              "mon": "393,1,0",
+              "d2": ""
+            },
+            {
+              "id": 2692,
+              "mon": "392,1,0",
+              "d2": ""
+            },
+            {
+              "id": 2693,
+              "mon": "69,1,85,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "h": 2,
+          "inclusion": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "incoming": [
+            false,
+            false
+          ],
+          "k": 6,
+          "m": 2,
+          "n": 1,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "projection": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "up": [
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "exact_E3_lift",
+      "lifts": [
+        {
+          "source_E3": [
+            1,
+            0
+          ],
+          "source_E2": [
+            1,
+            0
+          ],
+          "target_E2": [
+            1,
+            0
+          ]
+        },
+        {
+          "source_E3": [
+            1,
+            1
+          ],
+          "source_E2": [
+            1,
+            1
+          ],
+          "target_E2": [
+            1,
+            0
+          ]
+        }
+      ],
+      "source_staircase": [
+        [
+          2631,
+          6,
+          133,
+          "1",
+          null,
+          9995
+        ],
+        [
+          2632,
+          6,
+          133,
+          "0",
+          null,
+          9997
+        ]
+      ]
+    },
+    {
+      "map": {
+        "from": "Ceta",
+        "name": "Ceta__S0",
+        "path": "map_AdamsSS_Ceta_to_S0_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        134
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            4,
+            133
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              4181,
+              "0,2,324,1,1",
+              "0"
+            ],
+            [
+              4182,
+              "0,1,2,1,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4181,
+              "generator": 1,
+              "generator_image": "0,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 4182,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            6,
+            134
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              4303,
+              "0,3,69,2,1",
+              ""
+            ],
+            [
+              4304,
+              "399,1,0",
+              ""
+            ],
+            [
+              4305,
+              "398,1,0",
+              "3,4,5"
+            ],
+            [
+              4306,
+              "2,1,340,1,0",
+              "5"
+            ],
+            [
+              4307,
+              "0,1,378,1,0",
+              "5"
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4303,
+              "generator": 1,
+              "generator_image": "0,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 4304,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4305,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4306,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4307,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            8,
+            135
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              4425,
+              "415,1,0",
+              "4"
+            ],
+            [
+              4426,
+              "2,1,353,1,0",
+              ""
+            ],
+            [
+              4427,
+              "2,1,69,1,75,1,0",
+              ""
+            ],
+            [
+              4428,
+              "0,1,397,1,0",
+              ""
+            ],
+            [
+              4429,
+              "0,1,396,1,0",
+              ""
+            ],
+            [
+              4430,
+              "0,2,377,1,0",
+              ""
+            ],
+            [
+              4431,
+              "0,7,324,1,0",
+              "5"
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4425,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4426,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4427,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4428,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4429,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4430,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4431,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 4181,
+              "mon": "0,2,324,1,1",
+              "d2": "0"
+            },
+            {
+              "id": 4182,
+              "mon": "0,1,2,1,69,2,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 4303,
+              "mon": "0,3,69,2,1",
+              "d2": ""
+            },
+            {
+              "id": 4304,
+              "mon": "399,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4305,
+              "mon": "398,1,0",
+              "d2": "3,4,5"
+            },
+            {
+              "id": 4306,
+              "mon": "2,1,340,1,0",
+              "d2": "5"
+            },
+            {
+              "id": 4307,
+              "mon": "0,1,378,1,0",
+              "d2": "5"
+            }
+          ],
+          [
+            {
+              "id": 4425,
+              "mon": "415,1,0",
+              "d2": "4"
+            },
+            {
+              "id": 4426,
+              "mon": "2,1,353,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4427,
+              "mon": "2,1,69,1,75,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4428,
+              "mon": "0,1,397,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4429,
+              "mon": "0,1,396,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4430,
+              "mon": "0,2,377,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4431,
+              "mon": "0,7,324,1,0",
+              "d2": "5"
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "h": 2,
+          "inclusion": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true
+          ],
+          "incoming": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "k": 7,
+          "m": 5,
+          "n": 2,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "projection": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "up": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          4303,
+          6,
+          134,
+          "0",
+          "0",
+          2
+        ],
+        [
+          4304,
+          6,
+          134,
+          "3,4",
+          null,
+          9994
+        ],
+        [
+          4305,
+          6,
+          134,
+          "1",
+          null,
+          9994
+        ],
+        [
+          4306,
+          6,
+          134,
+          "4",
+          "5",
+          9998
+        ],
+        [
+          4307,
+          6,
+          134,
+          "2",
+          "3,4,5",
+          9998
+        ]
+      ]
+    },
+    {
+      "map": {
+        "from": "Cnu",
+        "name": "Cnu__S0",
+        "path": "map_AdamsSS_Cnu_to_S0_t200.db",
+        "sus": 4,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        136
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            4,
+            135
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              4003,
+              "324,1,2",
+              "0"
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            true
+          ],
+          "traces": [
+            {
+              "source_basis": 4003,
+              "generator": 2,
+              "generator_image": "0,3",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            6,
+            136
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              4101,
+              "0,1,69,2,2",
+              ""
+            ],
+            [
+              4102,
+              "69,1,93,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4101,
+              "generator": 2,
+              "generator_image": "0,3",
+              "reductions": []
+            },
+            {
+              "source_basis": 4102,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            8,
+            137
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              4190,
+              "348",
+              "2"
+            ],
+            [
+              4191,
+              "429,1,0",
+              ""
+            ],
+            [
+              4192,
+              "69,1,95,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4190,
+              "generator": 348,
+              "generator_image": "375,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 4191,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4192,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 4003,
+              "mon": "324,1,2",
+              "d2": "0"
+            }
+          ],
+          [
+            {
+              "id": 4101,
+              "mon": "0,1,69,2,2",
+              "d2": ""
+            },
+            {
+              "id": 4102,
+              "mon": "69,1,93,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 4190,
+              "mon": "348",
+              "d2": "2"
+            },
+            {
+              "id": 4191,
+              "mon": "429,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4192,
+              "mon": "69,1,95,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "h": 1,
+          "inclusion": [
+            false,
+            true
+          ],
+          "incoming": [
+            true,
+            false
+          ],
+          "k": 3,
+          "m": 2,
+          "n": 1,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "projection": [
+            false,
+            true
+          ],
+          "up": [
+            true,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          4101,
+          6,
+          136,
+          "0",
+          "0",
+          2
+        ],
+        [
+          4102,
+          6,
+          136,
+          "1",
+          null,
+          9995
+        ]
+      ]
+    },
+    {
+      "map": {
+        "from": "Csigma",
+        "name": "Csigma__S0",
+        "path": "map_AdamsSS_Csigma_to_S0_t200.db",
+        "sus": 8,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        140
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            4,
+            139
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              4675,
+              "4,1,324,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4675,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            6,
+            140
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              4803,
+              "69,2,1",
+              ""
+            ],
+            [
+              4804,
+              "468,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4803,
+              "generator": 1,
+              "generator_image": "0,4",
+              "reductions": []
+            },
+            {
+              "source_basis": 4804,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            8,
+            141
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              4911,
+              "480,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4911,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 4675,
+              "mon": "4,1,324,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 4803,
+              "mon": "69,2,1",
+              "d2": ""
+            },
+            {
+              "id": 4804,
+              "mon": "468,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 4911,
+              "mon": "480,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false
+          ],
+          "h": 2,
+          "inclusion": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "incoming": [
+            false,
+            false
+          ],
+          "k": 1,
+          "m": 2,
+          "n": 1,
+          "outgoing": [
+            false,
+            false
+          ],
+          "projection": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "up": [
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          4803,
+          6,
+          140,
+          "0",
+          null,
+          9992
+        ],
+        [
+          4804,
+          6,
+          140,
+          "1",
+          null,
+          9995
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "CW_eta_2",
+        "name": "CW_eta_2__Q_CW_nu_eta_2",
+        "path": "map_AdamsSS_CW_eta_2_to_Q_CW_nu_eta_2_t200.db",
+        "sus": -3,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        128
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            127
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            128
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            129
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [],
+          []
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 0,
+          "m": 0,
+          "n": 0,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "CW_eta_nu",
+        "name": "CW_eta_nu__Q_CW_2_eta_nu",
+        "path": "map_AdamsSS_CW_eta_nu_to_Q_CW_2_eta_nu_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            130
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              3906,
+              "0,2,324,1,0",
+              "0"
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            true
+          ],
+          "traces": [
+            {
+              "source_basis": 3906,
+              "generator": 0,
+              "generator_image": "0,1",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            131
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              4010,
+              "0,3,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            true
+          ],
+          "traces": [
+            {
+              "source_basis": 4010,
+              "generator": 0,
+              "generator_image": "0,1",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            132
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 3906,
+              "mon": "0,2,324,1,0",
+              "d2": "0"
+            }
+          ],
+          [
+            {
+              "id": 4010,
+              "mon": "0,3,69,2,0",
+              "d2": ""
+            }
+          ],
+          []
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [
+            true
+          ],
+          "k": 0,
+          "m": 1,
+          "n": 1,
+          "outgoing": [],
+          "projection": [],
+          "up": [
+            true
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          4010,
+          5,
+          131,
+          "0",
+          "0",
+          2
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "CW_eta_nu_sigma",
+        "name": "CW_eta_nu_sigma__S0_by_2",
+        "path": "map_AdamsSS_CW_eta_nu_sigma_to_S0_by_2_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            130
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              4477,
+              "0,2,324,1,0",
+              "0"
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            true
+          ],
+          "traces": [
+            {
+              "source_basis": 4477,
+              "generator": 0,
+              "generator_image": "0,1",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            131
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              4606,
+              "0,3,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            true
+          ],
+          "traces": [
+            {
+              "source_basis": 4606,
+              "generator": 0,
+              "generator_image": "0,1",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            132
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 4477,
+              "mon": "0,2,324,1,0",
+              "d2": "0"
+            }
+          ],
+          [
+            {
+              "id": 4606,
+              "mon": "0,3,69,2,0",
+              "d2": ""
+            }
+          ],
+          []
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [
+            true
+          ],
+          "k": 0,
+          "m": 1,
+          "n": 1,
+          "outgoing": [],
+          "projection": [],
+          "up": [
+            true
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          4606,
+          5,
+          131,
+          "0",
+          "0",
+          2
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "CW_nu_eta_2",
+        "name": "CW_nu_eta_2__S0_by_sigma",
+        "path": "map_AdamsSS_CW_nu_eta_2_to_S0_by_sigma_t200.db",
+        "sus": -7,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        124
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            123
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            124
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            125
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              2133,
+              "210",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 2133,
+              "generator": 210,
+              "generator_image": "376,1",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [],
+          [
+            {
+              "id": 2133,
+              "mon": "210",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 1,
+          "m": 0,
+          "n": 0,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "CW_nu_eta",
+        "name": "CW_nu_eta__S0_by_sigma",
+        "path": "map_AdamsSS_CW_nu_eta_to_S0_by_sigma_t197.db",
+        "sus": -7,
+        "t_max": 197,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        124
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            123
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            124
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            125
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              3473,
+              "180",
+              "3"
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 3473,
+              "generator": 180,
+              "generator_image": "376,1",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [],
+          [
+            {
+              "id": 3473,
+              "mon": "180",
+              "d2": "3"
+            }
+          ]
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 1,
+          "m": 0,
+          "n": 0,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "CW_nu_sigma",
+        "name": "CW_nu_sigma__S0_by_eta",
+        "path": "map_AdamsSS_CW_nu_sigma_to_S0_by_eta_t199.db",
+        "sus": -1,
+        "t_max": 199,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        130
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            129
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              4236,
+              "0,1,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4236,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 1,
+                  "raw": "0,1,1,1",
+                  "degree": [
+                    2,
+                    3
+                  ],
+                  "multiplier": [
+                    69,
+                    69
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            130
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              4341,
+              "340,1,0",
+              "3"
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4341,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 8350,
+                  "raw": "1,1,340,1",
+                  "degree": [
+                    6,
+                    132
+                  ],
+                  "multiplier": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            131
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              4422,
+              "460",
+              "2,5"
+            ],
+            [
+              4423,
+              "353,1,0",
+              ""
+            ],
+            [
+              4424,
+              "69,1,75,1,0",
+              ""
+            ],
+            [
+              4425,
+              "0,1,339,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4422,
+              "generator": 460,
+              "generator_image": "376,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 4423,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 8636,
+                  "raw": "1,1,353,1",
+                  "degree": [
+                    8,
+                    133
+                  ],
+                  "multiplier": []
+                }
+              ]
+            },
+            {
+              "source_basis": 4424,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 696,
+                  "raw": "1,1,75,1",
+                  "degree": [
+                    7,
+                    69
+                  ],
+                  "multiplier": [
+                    69
+                  ]
+                }
+              ]
+            },
+            {
+              "source_basis": 4425,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 1,
+                  "raw": "0,1,1,1",
+                  "degree": [
+                    2,
+                    3
+                  ],
+                  "multiplier": [
+                    339
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 4236,
+              "mon": "0,1,69,2,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 4341,
+              "mon": "340,1,0",
+              "d2": "3"
+            }
+          ],
+          [
+            {
+              "id": 4422,
+              "mon": "460",
+              "d2": "2,5"
+            },
+            {
+              "id": 4423,
+              "mon": "353,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4424,
+              "mon": "69,1,75,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4425,
+              "mon": "0,1,339,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            true
+          ],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [
+            false
+          ],
+          "k": 4,
+          "m": 1,
+          "n": 1,
+          "outgoing": [
+            false,
+            false,
+            false,
+            true
+          ],
+          "projection": [],
+          "up": [
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          4341,
+          5,
+          130,
+          "0",
+          "3",
+          9998
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_2_eta",
+        "path": "map_AdamsSS_Ceta_to_Q_CW_2_eta_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            130
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              3872,
+              "0,2,324,1,0",
+              "0"
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            true
+          ],
+          "traces": [
+            {
+              "source_basis": 3872,
+              "generator": 0,
+              "generator_image": "0,1",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            131
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              3972,
+              "0,3,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            true
+          ],
+          "traces": [
+            {
+              "source_basis": 3972,
+              "generator": 0,
+              "generator_image": "0,1",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            132
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 3872,
+              "mon": "0,2,324,1,0",
+              "d2": "0"
+            }
+          ],
+          [
+            {
+              "id": 3972,
+              "mon": "0,3,69,2,0",
+              "d2": ""
+            }
+          ],
+          []
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [
+            true
+          ],
+          "k": 0,
+          "m": 1,
+          "n": 1,
+          "outgoing": [],
+          "projection": [],
+          "up": [
+            true
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          3972,
+          5,
+          131,
+          "0",
+          "0",
+          2
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_nu_eta",
+        "path": "map_AdamsSS_Ceta_to_Q_CW_nu_eta_t200.db",
+        "sus": -3,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        128
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            127
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            128
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            129
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [],
+          []
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 0,
+          "m": 0,
+          "n": 0,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_eta_nu",
+        "path": "map_AdamsSS_Cnu_to_Q_CW_eta_nu_t200.db",
+        "sus": -1,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        130
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            129
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              3424,
+              "0,1,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 3424,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 1,
+                  "raw": "0,1,1,1",
+                  "degree": [
+                    2,
+                    3
+                  ],
+                  "multiplier": [
+                    69,
+                    69
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            130
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              3503,
+              "340,1,0",
+              "2"
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 3503,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 8350,
+                  "raw": "1,1,340,1",
+                  "degree": [
+                    6,
+                    132
+                  ],
+                  "multiplier": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            131
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              3568,
+              "353,1,0",
+              ""
+            ],
+            [
+              3569,
+              "69,1,75,1,0",
+              ""
+            ],
+            [
+              3570,
+              "0,1,339,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 3568,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 8636,
+                  "raw": "1,1,353,1",
+                  "degree": [
+                    8,
+                    133
+                  ],
+                  "multiplier": []
+                }
+              ]
+            },
+            {
+              "source_basis": 3569,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 696,
+                  "raw": "1,1,75,1",
+                  "degree": [
+                    7,
+                    69
+                  ],
+                  "multiplier": [
+                    69
+                  ]
+                }
+              ]
+            },
+            {
+              "source_basis": 3570,
+              "generator": 0,
+              "generator_image": "1,1",
+              "reductions": [
+                {
+                  "relation_row": 1,
+                  "raw": "0,1,1,1",
+                  "degree": [
+                    2,
+                    3
+                  ],
+                  "multiplier": [
+                    339
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 3424,
+              "mon": "0,1,69,2,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 3503,
+              "mon": "340,1,0",
+              "d2": "2"
+            }
+          ],
+          [
+            {
+              "id": 3568,
+              "mon": "353,1,0",
+              "d2": ""
+            },
+            {
+              "id": 3569,
+              "mon": "69,1,75,1,0",
+              "d2": ""
+            },
+            {
+              "id": 3570,
+              "mon": "0,1,339,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            true
+          ],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [
+            false
+          ],
+          "k": 3,
+          "m": 1,
+          "n": 1,
+          "outgoing": [
+            false,
+            false,
+            true
+          ],
+          "projection": [],
+          "up": [
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          3503,
+          5,
+          130,
+          "0",
+          "2",
+          9998
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_sigma_nu",
+        "path": "map_AdamsSS_Cnu_to_Q_CW_sigma_nu_t200.db",
+        "sus": -7,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        124
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            123
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            124
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            125
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [],
+          []
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 0,
+          "m": 0,
+          "n": 0,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Csigma",
+        "name": "Csigma__Q_CW_nu_sigma",
+        "path": "map_AdamsSS_Csigma_to_Q_CW_nu_sigma_t200.db",
+        "sus": -3,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        128
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            127
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            128
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            129
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [],
+          []
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 0,
+          "m": 0,
+          "n": 0,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "from": "Csigmasq",
+        "name": "Csigmasq__S0",
+        "path": "map_AdamsSS_Csigmasq_to_S0_t200.db",
+        "sus": 15,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        147
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Csigmasq",
+        "name": "Csigmasq__Q_C2h4",
+        "path": "map_AdamsSS_Csigmasq_to_Q_C2h4_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "fil": 2,
+        "from": "Csigmasq",
+        "name": "Csigmasq__S0_by_sigmasq",
+        "path": "map_AdamsSS_Csigmasq_to_S0_by_sigmasq_t200.db",
+        "sus": -14,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        4,
+        116
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "from": "C2h4",
+        "name": "C2h4__S0",
+        "path": "map_AdamsSS_C2h4_to_S0_t200.db",
+        "sus": 16,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        148
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            4,
+            147
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              6143,
+              "759",
+              ""
+            ],
+            [
+              6144,
+              "0,2,324,1,6",
+              "0"
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false,
+            true
+          ],
+          "traces": [
+            {
+              "source_basis": 6143,
+              "generator": 759,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 6144,
+              "generator": 6,
+              "generator_image": "0,1",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            6,
+            148
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              6300,
+              "0,3,69,2,6",
+              ""
+            ],
+            [
+              6301,
+              "2,1,506,1,0",
+              ""
+            ],
+            [
+              6302,
+              "1,1,8,1,324,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 6300,
+              "generator": 6,
+              "generator_image": "0,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 6301,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 6302,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            8,
+            149
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              6415,
+              "792",
+              ""
+            ],
+            [
+              6416,
+              "791",
+              "6"
+            ],
+            [
+              6417,
+              "790",
+              "2,3,4,6"
+            ],
+            [
+              6418,
+              "69,2,8",
+              ""
+            ],
+            [
+              6419,
+              "525,1,1",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 6415,
+              "generator": 792,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 6416,
+              "generator": 791,
+              "generator_image": "376,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 6417,
+              "generator": 790,
+              "generator_image": "375,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 6418,
+              "generator": 8,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 6419,
+              "generator": 1,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 6143,
+              "mon": "759",
+              "d2": ""
+            },
+            {
+              "id": 6144,
+              "mon": "0,2,324,1,6",
+              "d2": "0"
+            }
+          ],
+          [
+            {
+              "id": 6300,
+              "mon": "0,3,69,2,6",
+              "d2": ""
+            },
+            {
+              "id": 6301,
+              "mon": "2,1,506,1,0",
+              "d2": ""
+            },
+            {
+              "id": 6302,
+              "mon": "1,1,8,1,324,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 6415,
+              "mon": "792",
+              "d2": ""
+            },
+            {
+              "id": 6416,
+              "mon": "791",
+              "d2": "6"
+            },
+            {
+              "id": 6417,
+              "mon": "790",
+              "d2": "2,3,4,6"
+            },
+            {
+              "id": 6418,
+              "mon": "69,2,8",
+              "d2": ""
+            },
+            {
+              "id": 6419,
+              "mon": "525,1,1",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "h": 2,
+          "inclusion": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            true
+          ],
+          "incoming": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
+          ],
+          "k": 5,
+          "m": 3,
+          "n": 2,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "projection": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            true
+          ],
+          "up": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          6300,
+          6,
+          148,
+          "0",
+          "1",
+          2
+        ],
+        [
+          6301,
+          6,
+          148,
+          "2",
+          null,
+          9000
+        ],
+        [
+          6302,
+          6,
+          148,
+          "1",
+          null,
+          9993
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_DC2h4",
+        "path": "map_AdamsSS_C2_to_Q_DC2h4_t200.db",
+        "sus": -14,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        117
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            116
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            117
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              1778,
+              "69,1,31",
+              "0"
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 1778,
+              "generator": 31,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            118
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              1819,
+              "69,1,33",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 1819,
+              "generator": 33,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [
+            {
+              "id": 1778,
+              "mon": "69,1,31",
+              "d2": "0"
+            }
+          ],
+          [
+            {
+              "id": 1819,
+              "mon": "69,1,33",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            true
+          ],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 1,
+          "m": 1,
+          "n": 0,
+          "outgoing": [
+            true
+          ],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          1778,
+          5,
+          117,
+          "0",
+          "0",
+          9998
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "C2h4",
+        "name": "C2h4__S0_by_sigmasq",
+        "path": "map_AdamsSS_C2h4_to_S0_by_sigmasq_t199.db",
+        "sus": -14,
+        "t_max": 199,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        117
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            116
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            117
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              2918,
+              "69,1,57",
+              "1"
+            ],
+            [
+              2919,
+              "69,1,56",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 2918,
+              "generator": 57,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 2919,
+              "generator": 56,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            118
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              2991,
+              "394",
+              ""
+            ],
+            [
+              2992,
+              "0,1,2,1,163,1,6",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 2991,
+              "generator": 394,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 2992,
+              "generator": 6,
+              "generator_image": "7,2",
+              "reductions": [
+                {
+                  "relation_row": 80,
+                  "raw": "2,1,7,2",
+                  "degree": [
+                    3,
+                    36
+                  ],
+                  "multiplier": [
+                    0,
+                    163
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [
+            {
+              "id": 2918,
+              "mon": "69,1,57",
+              "d2": "1"
+            },
+            {
+              "id": 2919,
+              "mon": "69,1,56",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 2991,
+              "mon": "394",
+              "d2": ""
+            },
+            {
+              "id": 2992,
+              "mon": "0,1,2,1,163,1,6",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "h": 1,
+          "inclusion": [
+            false,
+            true
+          ],
+          "incoming": [],
+          "k": 2,
+          "m": 2,
+          "n": 0,
+          "outgoing": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "projection": [
+            false,
+            true
+          ],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          2918,
+          5,
+          117,
+          "1",
+          null,
+          9997
+        ],
+        [
+          2919,
+          5,
+          117,
+          "0",
+          "1",
+          9998
+        ]
+      ]
+    },
+    {
+      "map": {
+        "from": "C2h5",
+        "name": "C2h5__S0",
+        "path": "map_AdamsSS_C2h5_to_S0_t200.db",
+        "sus": 32,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        164
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            4,
+            163
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              7811,
+              "0,2,324,1,13",
+              "1"
+            ],
+            [
+              7812,
+              "7,2,324,1,1",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 7811,
+              "generator": 13,
+              "generator_image": "0,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 7812,
+              "generator": 1,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            6,
+            164
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              7973,
+              "324,1,16",
+              ""
+            ],
+            [
+              7974,
+              "0,3,69,2,13",
+              ""
+            ],
+            [
+              7975,
+              "660,1,1",
+              ""
+            ],
+            [
+              7976,
+              "699,1,0",
+              ""
+            ],
+            [
+              7977,
+              "24,1,324,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 7973,
+              "generator": 16,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 7974,
+              "generator": 13,
+              "generator_image": "0,1",
+              "reductions": []
+            },
+            {
+              "source_basis": 7975,
+              "generator": 1,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 7976,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 7977,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            8,
+            165
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              8168,
+              "986",
+              ""
+            ],
+            [
+              8169,
+              "985",
+              ""
+            ],
+            [
+              8170,
+              "18,1,339,1,1",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 8168,
+              "generator": 986,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 8169,
+              "generator": 985,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 8170,
+              "generator": 1,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 7811,
+              "mon": "0,2,324,1,13",
+              "d2": "1"
+            },
+            {
+              "id": 7812,
+              "mon": "7,2,324,1,1",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 7973,
+              "mon": "324,1,16",
+              "d2": ""
+            },
+            {
+              "id": 7974,
+              "mon": "0,3,69,2,13",
+              "d2": ""
+            },
+            {
+              "id": 7975,
+              "mon": "660,1,1",
+              "d2": ""
+            },
+            {
+              "id": 7976,
+              "mon": "699,1,0",
+              "d2": ""
+            },
+            {
+              "id": 7977,
+              "mon": "24,1,324,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 8168,
+              "mon": "986",
+              "d2": ""
+            },
+            {
+              "id": 8169,
+              "mon": "985",
+              "d2": ""
+            },
+            {
+              "id": 8170,
+              "mon": "18,1,339,1,1",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "h": 4,
+          "inclusion": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "incoming": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "k": 3,
+          "m": 5,
+          "n": 2,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "projection": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "up": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          7973,
+          6,
+          164,
+          "1",
+          "0",
+          2
+        ],
+        [
+          7974,
+          6,
+          164,
+          "4",
+          null,
+          9993
+        ],
+        [
+          7975,
+          6,
+          164,
+          "3",
+          null,
+          9996
+        ],
+        [
+          7976,
+          6,
+          164,
+          "0",
+          null,
+          9996
+        ],
+        [
+          7977,
+          6,
+          164,
+          "2",
+          "5",
+          9997
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_DC2h5",
+        "path": "map_AdamsSS_C2_to_Q_DC2h5_t200.db",
+        "sus": -30,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        101
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            100
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            101
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              1163,
+              "69,1,17",
+              ""
+            ],
+            [
+              1164,
+              "26,1,69,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 1163,
+              "generator": 17,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 1164,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            102
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              1204,
+              "191,1,0",
+              ""
+            ],
+            [
+              1205,
+              "28,1,69,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 1204,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 1205,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [
+            {
+              "id": 1163,
+              "mon": "69,1,17",
+              "d2": ""
+            },
+            {
+              "id": 1164,
+              "mon": "26,1,69,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 1204,
+              "mon": "191,1,0",
+              "d2": ""
+            },
+            {
+              "id": 1205,
+              "mon": "28,1,69,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "h": 2,
+          "inclusion": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "incoming": [],
+          "k": 2,
+          "m": 2,
+          "n": 0,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "projection": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          1163,
+          5,
+          101,
+          "1",
+          null,
+          9000
+        ],
+        [
+          1164,
+          5,
+          101,
+          "0",
+          null,
+          9989
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "C2h5",
+        "name": "C2h5__S0_by_theta4",
+        "path": "map_AdamsSS_C2h5_to_S0_by_theta4_t200.db",
+        "sus": -30,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        101
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            100
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              1523,
+              "228",
+              "2"
+            ],
+            [
+              1524,
+              "1,2,204",
+              "2"
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 1523,
+              "generator": 228,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 1524,
+              "generator": 204,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            101
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              1564,
+              "2,1,211",
+              ""
+            ],
+            [
+              1565,
+              "69,1,18",
+              ""
+            ],
+            [
+              1566,
+              "26,1,69,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 1564,
+              "generator": 211,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 1565,
+              "generator": 18,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 1566,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            102
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              1621,
+              "242",
+              ""
+            ],
+            [
+              1622,
+              "241",
+              ""
+            ],
+            [
+              1623,
+              "0,5,69,1,13",
+              "0"
+            ],
+            [
+              1624,
+              "191,1,0",
+              ""
+            ],
+            [
+              1625,
+              "28,1,69,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 1621,
+              "generator": 242,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 1622,
+              "generator": 241,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 1623,
+              "generator": 13,
+              "generator_image": "18,2",
+              "reductions": [
+                {
+                  "relation_row": 2384,
+                  "raw": "18,1,69,1",
+                  "degree": [
+                    2,
+                    96
+                  ],
+                  "multiplier": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    18
+                  ]
+                }
+              ]
+            },
+            {
+              "source_basis": 1624,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 1625,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 1523,
+              "mon": "228",
+              "d2": "2"
+            },
+            {
+              "id": 1524,
+              "mon": "1,2,204",
+              "d2": "2"
+            }
+          ],
+          [
+            {
+              "id": 1564,
+              "mon": "2,1,211",
+              "d2": ""
+            },
+            {
+              "id": 1565,
+              "mon": "69,1,18",
+              "d2": ""
+            },
+            {
+              "id": 1566,
+              "mon": "26,1,69,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 1621,
+              "mon": "242",
+              "d2": ""
+            },
+            {
+              "id": 1622,
+              "mon": "241",
+              "d2": ""
+            },
+            {
+              "id": 1623,
+              "mon": "0,5,69,1,13",
+              "d2": "0"
+            },
+            {
+              "id": 1624,
+              "mon": "191,1,0",
+              "d2": ""
+            },
+            {
+              "id": 1625,
+              "mon": "28,1,69,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "h": 2,
+          "inclusion": [
+            true,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "incoming": [
+            false,
+            false,
+            false,
+            false,
+            true,
+            true
+          ],
+          "k": 5,
+          "m": 3,
+          "n": 2,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "projection": [
+            true,
+            false,
+            false,
+            false,
+            true,
+            false
+          ],
+          "up": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          1564,
+          5,
+          101,
+          "2",
+          "0",
+          2
+        ],
+        [
+          1565,
+          5,
+          101,
+          "1",
+          null,
+          9989
+        ],
+        [
+          1566,
+          5,
+          101,
+          "0",
+          null,
+          9996
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Ctheta4",
+        "name": "Ctheta4__Q_C2h5",
+        "path": "map_AdamsSS_Ctheta4_to_Q_C2h5_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "from": "Ctheta4",
+        "name": "Ctheta4__S0",
+        "path": "map_AdamsSS_Ctheta4_to_S0_t200.db",
+        "sus": 31,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        163
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "fil": 2,
+        "from": "Ctheta4",
+        "name": "Ctheta4__S0_by_theta4",
+        "path": "map_AdamsSS_Ctheta4_to_S0_by_theta4_t200.db",
+        "sus": -30,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        4,
+        100
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "from": "C2h6",
+        "name": "C2h6__S0",
+        "path": "map_AdamsSS_C2h6_to_S0_t200.db",
+        "sus": 64,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        196
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "d2 degree t=196 exceeds d2_t_max=177"
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_DC2h6",
+        "path": "map_AdamsSS_C2_to_Q_DC2h6_t198.db",
+        "sus": -62,
+        "t_max": 198,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        69
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            68
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              385,
+              "2,1,18,2,0",
+              ""
+            ],
+            [
+              386,
+              "1,2,69,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 385,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 386,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            69
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              405,
+              "2,1,70,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 405,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            70
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              420,
+              "85,1,0",
+              ""
+            ],
+            [
+              421,
+              "84,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 420,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 421,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 385,
+              "mon": "2,1,18,2,0",
+              "d2": ""
+            },
+            {
+              "id": 386,
+              "mon": "1,2,69,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 405,
+              "mon": "2,1,70,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 420,
+              "mon": "85,1,0",
+              "d2": ""
+            },
+            {
+              "id": 421,
+              "mon": "84,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false
+          ],
+          "h": 1,
+          "inclusion": [
+            true
+          ],
+          "incoming": [
+            false,
+            false
+          ],
+          "k": 2,
+          "m": 1,
+          "n": 2,
+          "outgoing": [
+            false,
+            false
+          ],
+          "projection": [
+            true
+          ],
+          "up": [
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          405,
+          5,
+          69,
+          "0",
+          null,
+          9000
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "C2h6",
+        "name": "C2h6__S0_by_theta5",
+        "path": "map_AdamsSS_C2h6_to_S0_by_theta5_t198.db",
+        "sus": -62,
+        "t_max": 198,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        69
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            68
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              387,
+              "2,1,18,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 387,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            69
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              405,
+              "0,4,56",
+              ""
+            ],
+            [
+              406,
+              "2,1,70,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 405,
+              "generator": 56,
+              "generator_image": "69,2",
+              "reductions": []
+            },
+            {
+              "source_basis": 406,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            70
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              422,
+              "85,1,0",
+              ""
+            ],
+            [
+              423,
+              "84,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 422,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 423,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 387,
+              "mon": "2,1,18,2,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 405,
+              "mon": "0,4,56",
+              "d2": ""
+            },
+            {
+              "id": 406,
+              "mon": "2,1,70,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 422,
+              "mon": "85,1,0",
+              "d2": ""
+            },
+            {
+              "id": 423,
+              "mon": "84,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "h": 2,
+          "inclusion": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "incoming": [
+            false,
+            false
+          ],
+          "k": 2,
+          "m": 2,
+          "n": 1,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "projection": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "up": [
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          405,
+          5,
+          69,
+          "0",
+          null,
+          9000
+        ],
+        [
+          406,
+          5,
+          69,
+          "1",
+          null,
+          9000
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Ctheta5",
+        "name": "Ctheta5__Q_C2h6",
+        "path": "map_AdamsSS_Ctheta5_to_Q_C2h6_t200.db",
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "from": "Ctheta5",
+        "name": "Ctheta5__S0",
+        "path": "map_AdamsSS_Ctheta5_to_S0_t200.db",
+        "sus": 63,
+        "t_max": 200,
+        "to": "S0"
+      },
+      "source_degree": [
+        6,
+        195
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "from": "C2sigma",
+        "name": "C2sigma__S0",
+        "path": "map_AdamsSS_C2sigma__S0_t200.db",
+        "sus": 8,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "source_degree": [
+        6,
+        140
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "C2",
+        "name": "C2__Q_CW_2_A_eta",
+        "path": "map_AdamsSS_C2__Q_CW_2_A_eta_t139.db",
+        "t_max": 139,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            130
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              2421,
+              "1,1,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 2421,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            131
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            132
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              2555,
+              "305",
+              ""
+            ],
+            [
+              2556,
+              "304",
+              "1"
+            ],
+            [
+              2557,
+              "303",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 2555,
+              "generator": 305,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 2556,
+              "generator": 304,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 2557,
+              "generator": 303,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 2421,
+              "mon": "1,1,69,2,0",
+              "d2": ""
+            }
+          ],
+          [],
+          [
+            {
+              "id": 2555,
+              "mon": "305",
+              "d2": ""
+            },
+            {
+              "id": 2556,
+              "mon": "304",
+              "d2": "1"
+            },
+            {
+              "id": 2557,
+              "mon": "303",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 3,
+          "m": 0,
+          "n": 1,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_2_A_eta",
+        "path": "map_AdamsSS_Ceta__Q_CW_2_A_eta_t160.db",
+        "sus": 2,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        133
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            132
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              4090,
+              "0,1,324,1,1",
+              "0"
+            ],
+            [
+              4091,
+              "2,1,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4090,
+              "generator": 1,
+              "generator_image": "0,2",
+              "reductions": []
+            },
+            {
+              "source_basis": 4091,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            133
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              4179,
+              "0,2,69,2,1",
+              ""
+            ],
+            [
+              4180,
+              "378,1,0",
+              "3"
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4179,
+              "generator": 1,
+              "generator_image": "0,2",
+              "reductions": []
+            },
+            {
+              "source_basis": 4180,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            134
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              4298,
+              "0,1,340,1,1",
+              ""
+            ],
+            [
+              4299,
+              "397,1,0",
+              "5"
+            ],
+            [
+              4300,
+              "396,1,0",
+              "5"
+            ],
+            [
+              4301,
+              "0,1,377,1,0",
+              ""
+            ],
+            [
+              4302,
+              "0,6,324,1,0",
+              "6"
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4298,
+              "generator": 1,
+              "generator_image": "0,2",
+              "reductions": [
+                {
+                  "relation_row": 8637,
+                  "raw": "0,3,340,1",
+                  "degree": [
+                    8,
+                    133
+                  ],
+                  "multiplier": []
+                }
+              ]
+            },
+            {
+              "source_basis": 4299,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4300,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4301,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 4302,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 4090,
+              "mon": "0,1,324,1,1",
+              "d2": "0"
+            },
+            {
+              "id": 4091,
+              "mon": "2,1,69,2,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 4179,
+              "mon": "0,2,69,2,1",
+              "d2": ""
+            },
+            {
+              "id": 4180,
+              "mon": "378,1,0",
+              "d2": "3"
+            }
+          ],
+          [
+            {
+              "id": 4298,
+              "mon": "0,1,340,1,1",
+              "d2": ""
+            },
+            {
+              "id": 4299,
+              "mon": "397,1,0",
+              "d2": "5"
+            },
+            {
+              "id": 4300,
+              "mon": "396,1,0",
+              "d2": "5"
+            },
+            {
+              "id": 4301,
+              "mon": "0,1,377,1,0",
+              "d2": ""
+            },
+            {
+              "id": 4302,
+              "mon": "0,6,324,1,0",
+              "d2": "6"
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false
+          ],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [
+            true,
+            false,
+            false,
+            false
+          ],
+          "k": 5,
+          "m": 2,
+          "n": 2,
+          "outgoing": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "projection": [],
+          "up": [
+            true,
+            false,
+            false,
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          4179,
+          5,
+          133,
+          "0",
+          "0",
+          2
+        ],
+        [
+          4180,
+          5,
+          133,
+          "1",
+          "3",
+          9998
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Ceta",
+        "name": "Ceta__Q_CW_eta_A_nu",
+        "path": "map_AdamsSS_Ceta__Q_CW_eta_A_nu_t160.db",
+        "sus": -1,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        130
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            129
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [
+            [
+              3791,
+              "0,1,69,2,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 3791,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            5,
+            130
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              3869,
+              "340,1,0",
+              "2"
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 3869,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            131
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              3967,
+              "353,1,0",
+              ""
+            ],
+            [
+              3968,
+              "69,1,75,1,0",
+              ""
+            ],
+            [
+              3969,
+              "0,1,339,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 3967,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 3968,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            },
+            {
+              "source_basis": 3969,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [
+            {
+              "id": 3791,
+              "mon": "0,1,69,2,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 3869,
+              "mon": "340,1,0",
+              "d2": "2"
+            }
+          ],
+          [
+            {
+              "id": 3967,
+              "mon": "353,1,0",
+              "d2": ""
+            },
+            {
+              "id": 3968,
+              "mon": "69,1,75,1,0",
+              "d2": ""
+            },
+            {
+              "id": 3969,
+              "mon": "0,1,339,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false,
+            false,
+            true
+          ],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [
+            false
+          ],
+          "k": 3,
+          "m": 1,
+          "n": 1,
+          "outgoing": [
+            false,
+            false,
+            true
+          ],
+          "projection": [],
+          "up": [
+            false
+          ],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          3869,
+          5,
+          130,
+          "0",
+          "2",
+          9998
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_eta_A_nu",
+        "path": "map_AdamsSS_Cnu__Q_CW_eta_A_nu_t160.db",
+        "sus": 3,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        134
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            133
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            134
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [
+            [
+              3883,
+              "400,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 3883,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        },
+        {
+          "source_degree": [
+            7,
+            135
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              4001,
+              "0,1,398,1,0",
+              "2"
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4001,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [
+            {
+              "id": 3883,
+              "mon": "400,1,0",
+              "d2": ""
+            }
+          ],
+          [
+            {
+              "id": 4001,
+              "mon": "0,1,398,1,0",
+              "d2": "2"
+            }
+          ]
+        ],
+        "wire": {
+          "down": [
+            false
+          ],
+          "h": 1,
+          "inclusion": [
+            true
+          ],
+          "incoming": [],
+          "k": 1,
+          "m": 1,
+          "n": 0,
+          "outgoing": [
+            false
+          ],
+          "projection": [
+            true
+          ],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": [
+        [
+          3883,
+          5,
+          134,
+          "0",
+          null,
+          9994
+        ]
+      ]
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Cnu",
+        "name": "Cnu__Q_CW_nu_A_sigma",
+        "path": "map_AdamsSS_Cnu__Q_CW_nu_A_sigma_t160.db",
+        "sus": -3,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        128
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            127
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            128
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            129
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [],
+          []
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 0,
+          "m": 0,
+          "n": 0,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "Csigma",
+        "name": "Csigma__Q_CW_nu_A_sigma",
+        "path": "map_AdamsSS_Csigma__Q_CW_nu_A_sigma_t160.db",
+        "sus": 5,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        136
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "complete_maps": [
+        {
+          "source_degree": [
+            3,
+            135
+          ],
+          "target_degree": [
+            4,
+            131
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2495,
+              "0,3,324,1",
+              "1"
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            5,
+            136
+          ],
+          "target_degree": [
+            6,
+            132
+          ],
+          "source_rows": [],
+          "target_rows": [
+            [
+              2573,
+              "368,1",
+              ""
+            ],
+            [
+              2574,
+              "0,4,69,2",
+              ""
+            ]
+          ],
+          "matrix": [],
+          "traces": []
+        },
+        {
+          "source_degree": [
+            7,
+            137
+          ],
+          "target_degree": [
+            8,
+            133
+          ],
+          "source_rows": [
+            [
+              4456,
+              "430,1,0",
+              ""
+            ]
+          ],
+          "target_rows": [
+            [
+              2629,
+              "376,1",
+              ""
+            ],
+            [
+              2630,
+              "375,1",
+              "2,4"
+            ]
+          ],
+          "matrix": [
+            false,
+            false
+          ],
+          "traces": [
+            {
+              "source_basis": 4456,
+              "generator": 0,
+              "generator_image": "",
+              "reductions": []
+            }
+          ]
+        }
+      ],
+      "source_comparison": {
+        "rows": [
+          [],
+          [],
+          [
+            {
+              "id": 4456,
+              "mon": "430,1,0",
+              "d2": ""
+            }
+          ]
+        ],
+        "wire": {
+          "down": [],
+          "h": 0,
+          "inclusion": [],
+          "incoming": [],
+          "k": 1,
+          "m": 0,
+          "n": 0,
+          "outgoing": [],
+          "projection": [],
+          "up": [],
+          "version": 1
+        }
+      },
+      "status": "no_E3_lift",
+      "lifts": [],
+      "source_staircase": []
+    },
+    {
+      "map": {
+        "from": "CW_2_V_eta",
+        "name": "CW_2_V_eta__S1",
+        "path": "map_AdamsSS_CW_2_V_eta__S1_t160.db",
+        "sus": 1,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "source_degree": [
+        6,
+        133
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "from": "CW_2_V_eta",
+        "name": "CW_2_V_eta__S2",
+        "path": "map_AdamsSS_CW_2_V_eta__S2_t160.db",
+        "sus": 2,
+        "t_max": 160,
+        "to": "S0"
+      },
+      "source_degree": [
+        6,
+        134
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "fil": 1,
+        "from": "CW_2_A_eta",
+        "name": "CW_2_A_eta__Q_C2_Ceta",
+        "path": "map_AdamsSS_CW_2_A_eta_to_Q_C2_Ceta_t180.db",
+        "t_max": 180,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    },
+    {
+      "map": {
+        "display": "RP1_256__S0",
+        "fil": 1,
+        "from": "RP1_256",
+        "name": "RP1_256__S0",
+        "path": "map_AdamsSS_RP1_256_to_S0_t199.db",
+        "t_max": 199,
+        "to": "S0"
+      },
+      "source_degree": [
+        5,
+        131
+      ],
+      "target_degree": [
+        6,
+        132
+      ],
+      "status": "unknown",
+      "reason": "no such column: d2"
+    }
+  ],
+  "sphere_comparison": {
+    "rows": [
+      [
+        {
+          "id": 2495,
+          "mon": "0,3,324,1",
+          "d2": "1"
+        }
+      ],
+      [
+        {
+          "id": 2573,
+          "mon": "368,1",
+          "d2": ""
+        },
+        {
+          "id": 2574,
+          "mon": "0,4,69,2",
+          "d2": ""
+        }
+      ],
+      [
+        {
+          "id": 2629,
+          "mon": "376,1",
+          "d2": ""
+        },
+        {
+          "id": 2630,
+          "mon": "375,1",
+          "d2": "2,4"
+        }
+      ]
+    ],
+    "wire": {
+      "down": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "h": 1,
+      "inclusion": [
+        true,
+        false
+      ],
+      "incoming": [
+        false,
+        true
+      ],
+      "k": 2,
+      "m": 2,
+      "n": 1,
+      "outgoing": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "projection": [
+        true,
+        false
+      ],
+      "up": [
+        false,
+        true
+      ],
+      "version": 1
+    }
+  },
+  "meaning": "Complete finite E2 chain maps and their E3 image; no actual all-page map or source permanence supplied.",
+  "input_sha256": {
+    "C2_AdamsSS_t200.db": "87976dfa0101429e65d4064525176f3f755a969617f1366e6d6571aa79625b8e",
+    "C2h4_AdamsSS_t200.db": "d1ccef3df3c11bba5a0033f00004cbd530e3bbe74ec8e846819d0e6465800b11",
+    "C2h5_AdamsSS_t200.db": "09ce104df05722024614b4909c84d35790f1d36fec8abc18576717608a6091b3",
+    "C2h6_AdamsSS_t200.db": "87d92d91edd62bd914c89370699b30ef7405eace68b75a08a1c500e96eaa9e88",
+    "C2sigma_AdamsSS_t200.db": "c060c74fd8106393a142935bf3a834ba480c8a475d4372ac266625951cc327fb",
+    "CW_2_A_eta_AdamsSS_t180.db": "5dcc45738a89d3aadb79e95f90e77af14898fa94377cffd2d386889a4993e973",
+    "CW_2_V_eta_AdamsSS_t200.db": "d65e475f907b727a881062732d0b59f0be9ca2b44e06c54440bd9d2c35dd4385",
+    "CW_eta_2_AdamsSS_t200.db": "fc78e9509a2fc83695d641947d2256e5cc9333538f65ee64dad3908e1fc4cb2c",
+    "CW_eta_nu_AdamsSS_t200.db": "90348cf74380b68dca4c6bcac1ff372289ab1a2c5dd58ebd2ea3c0751f0497ae",
+    "CW_eta_nu_sigma_AdamsSS_t200.db": "a4a891258b33dd47329a869351733a95610f948aa653cd053dfe2dd5aaea17bb",
+    "CW_nu_eta_2_AdamsSS_t200.db": "21bfdc04681038169ac5bc6ae17b87123f270c28d7b62e9f291db742b8a08094",
+    "CW_nu_eta_AdamsSS_t200.db": "8007f076e6bb78f269849758db8ec347625896607dd54d31e9fc0df770aec278",
+    "CW_nu_sigma_AdamsSS_t200.db": "5ac64eb20944dca239663578d687c442a5295b9be9007895013cb47b067e4165",
+    "Ceta_AdamsSS_t200.db": "ca0f379210e07d2908576c6e0ddb8889db9b17c8ef426a68b0831bb3f606b477",
+    "Cnu_AdamsSS_t200.db": "e1274528151c3391f5e5f4de72f8428a68b5e145a07bb3cc946781efd9bfdbbe",
+    "Csigma_AdamsSS_t200.db": "96c380f9893f2c3e0445c03cdddc6b242b3d163655cf9a9b007360c93b3b4680",
+    "Csigmasq_AdamsSS_t200.db": "4fa9cad9ffce2df67e196ca7f38b4c9e6030bac41b2e85e85e89ca8d95eaa98a",
+    "Ctheta4_AdamsSS_t200.db": "06dd759b3d36ed099ea66c54c89a10b0b6f0da2e838e625a6e85283cb1384cbe",
+    "Ctheta5_AdamsSS_t200.db": "e8b5ad370614e4350bbc747893b6c26b8e637115236b8b2c0a713c65b9de403c",
+    "RP1_256_AdamsSS_t200.db": "6722ac3a673d2e245d32081adbf1c435481996448b4e3ea44c22c10cb8d88539",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "map_AdamsSS_C2__Q_CW_2_A_eta_t139.db": "b0a0f795c9673914d1e685e3c9de13405a974c8bbee0ecaa96a3e82109fe088e",
+    "map_AdamsSS_C2_to_Q_DC2h4_t200.db": "5d3aaa4c57e21729b0f11e1ccf47bf13c92ae03d117caf8bcbd79f7f16e1d23b",
+    "map_AdamsSS_C2_to_Q_DC2h5_t200.db": "f9f186edabef1867370d83b842302978062b1c79fb3adb61fe666d6a60ce2b8a",
+    "map_AdamsSS_C2_to_Q_DC2h6_t198.db": "cb317bca8ba9b99ecd902e965fbc9f8f81f69f6f020969fabd243370dfdd75ed",
+    "map_AdamsSS_C2_to_S0_t200.db": "aa69e433ac805d7cbe8d1b336294fc0be7e62d410f9ca2a8c8fbd237d9d519b2",
+    "map_AdamsSS_C2h4_to_S0_by_sigmasq_t199.db": "457b851dbf87ed7e1bcef3a6f3ac3a5aa81effac9e4ade9e4725f858638c11ea",
+    "map_AdamsSS_C2h4_to_S0_t200.db": "b4ede1d2be02105646c758ecb996476b780d834264b0fb30ba9a0024efa3b1d6",
+    "map_AdamsSS_C2h5_to_S0_by_theta4_t200.db": "0ac38a027a703706df64c9806ac3fb8f44026685d4ee0b1deced58db49bab90d",
+    "map_AdamsSS_C2h5_to_S0_t200.db": "14931ef08d76cd838b91c1c838c342116dfe8a5b950c704fe2cca0d6f5c8d559",
+    "map_AdamsSS_C2h6_to_S0_by_theta5_t198.db": "e17c762fc5c085233a09f5dad72e60c951f41a419e09c1adbfcbb1dadbf861f5",
+    "map_AdamsSS_C2h6_to_S0_t200.db": "fe961eacf3bd8cf016539ef2cbb3433c39a71414a567f049b292d72e0602ca3a",
+    "map_AdamsSS_C2sigma__S0_t200.db": "a8a5b2b69c2e19fd2b169b5eb036ad362d8e64eae649a039a54c5a56f3276276",
+    "map_AdamsSS_CW_2_A_eta_to_Q_C2_Ceta_t180.db": "0f028031d68ec0b43afef1151317acb719eb1e2f0b2b12b7f4ea07c33328b6ab",
+    "map_AdamsSS_CW_2_V_eta__S1_t160.db": "a506e47d53f35ff7c0c7d7b509bb3b489e12af203e677243fbefe1a18f3023ab",
+    "map_AdamsSS_CW_2_V_eta__S2_t160.db": "2a1e117cd538fb4ab3bac2e27421fd83675dfafbf025ec47a1a2c8f3b744c76c",
+    "map_AdamsSS_CW_eta_2_to_Q_CW_nu_eta_2_t200.db": "52c07467e334785a25f4d639e348d9531f6554ec060f8932a733558fc375e6f8",
+    "map_AdamsSS_CW_eta_nu_sigma_to_S0_by_2_t200.db": "cb5c1e94606f9affa580221281cc4b2706532e3d7cda187dbdaf7069507078df",
+    "map_AdamsSS_CW_eta_nu_to_Q_CW_2_eta_nu_t200.db": "643c12b185155718f03aa208bfb6baa6e5aedf1b68f13dfa5f4c994b012632d9",
+    "map_AdamsSS_CW_nu_eta_2_to_S0_by_sigma_t200.db": "4cd2b8ce5e5bb0b7e9a255587250c01ecac1ebd4402084b709fd4b76f3fb55cf",
+    "map_AdamsSS_CW_nu_eta_to_S0_by_sigma_t197.db": "1ac44a98a8eb72b3dd64be51eae82d3aae33f6cdaafde9b4bcaf18aafa1ef3b4",
+    "map_AdamsSS_CW_nu_sigma_to_S0_by_eta_t199.db": "9b7a435792af1ad47d3c2541e54916c90ec1127ccb21483af9c7c83927cc0877",
+    "map_AdamsSS_Ceta__Q_CW_2_A_eta_t160.db": "f3741a95c202474bc1ec51d19b162464ab18bcd964e42014187895b9c7200ceb",
+    "map_AdamsSS_Ceta__Q_CW_eta_A_nu_t160.db": "15be0ef7ea351a1244f62d54f8694e79178279b76b442ab8f334a0481cb6cf6c",
+    "map_AdamsSS_Ceta_to_Q_CW_2_eta_t200.db": "576b6f48fc4fd5a3e4d0a4f70e383daca1908404406499daeb83f67eecf6b072",
+    "map_AdamsSS_Ceta_to_Q_CW_nu_eta_t200.db": "dfa599b2a3a1e0a96fea022ff76543a6974af79e829a6a48c535437d56cbd7ce",
+    "map_AdamsSS_Ceta_to_S0_t200.db": "3d4dbed8ede47c8b1b1ed3bcfea9a514c55210b329bd5888c6f07711b90865b8",
+    "map_AdamsSS_Cnu__Q_CW_eta_A_nu_t160.db": "7cac12e3ee6c1302f22d993b4b0cfb65a6062402cd60206911d18c03b324ba3f",
+    "map_AdamsSS_Cnu__Q_CW_nu_A_sigma_t160.db": "0cc7b7f46ae9d011632a6ab60ae72765f5da4016a2c93ee4788100a97379ea33",
+    "map_AdamsSS_Cnu_to_Q_CW_eta_nu_t200.db": "40b7b526a7960d716bb28e4a53fd0605ed2c98b11da78f42f3626c2a8f965641",
+    "map_AdamsSS_Cnu_to_Q_CW_sigma_nu_t200.db": "6a16872322b11bd2d3c75f403e7af755cbcea9b343d715ffcb639240280c77c6",
+    "map_AdamsSS_Cnu_to_S0_t200.db": "348873fdbe993aa6b266c34bb4eca6121ab4a44b086a951cb29026a19a0e57f1",
+    "map_AdamsSS_Csigma__Q_CW_nu_A_sigma_t160.db": "ff3e9028c0ef319fe5676da077be856d3c31d141fc7598e440ce8828b0df2955",
+    "map_AdamsSS_Csigma_to_Q_CW_nu_sigma_t200.db": "85c05a116157ed6f4bf2d32aefcdafd666589799000e5baa0869daf6423dd295",
+    "map_AdamsSS_Csigma_to_S0_t200.db": "2c4147cdf8452e0323e695913150af1ad746d96220c690eec0214de348d629c1",
+    "map_AdamsSS_Csigmasq_to_Q_C2h4_t200.db": "ddfaae1d4c67e7a4683364e03f5ee1b0f4736e1dad04124a2cbcd10f082ca34d",
+    "map_AdamsSS_Csigmasq_to_S0_by_sigmasq_t200.db": "fc5da5fdec85079373d5c847268d24f9b69643aa781fe5aa757e6981249b2838",
+    "map_AdamsSS_Csigmasq_to_S0_t200.db": "cbac44a8e31c64039918c84a169c3b5340636bf0332cf6c13c66feb96c2267c8",
+    "map_AdamsSS_Ctheta4_to_Q_C2h5_t200.db": "713ba06dd2bb3e8fdfb0bcb481d682fe259caa12475fdfaed6014713ef40ceba",
+    "map_AdamsSS_Ctheta4_to_S0_by_theta4_t200.db": "43151d773e88b378c24758509691ba9b8a7a8dbb332955928a433d0094f9c4e4",
+    "map_AdamsSS_Ctheta4_to_S0_t200.db": "b2cc0c09e0b4a3b193539cea0d817d3deae123cc5ff531cf4500b6f1bf0d0dfd",
+    "map_AdamsSS_Ctheta5_to_Q_C2h6_t200.db": "c6966880f03564c0c2da45a83d78ebb48015661927d9f7cf044a2dc3396cec20",
+    "map_AdamsSS_Ctheta5_to_S0_t200.db": "68d4a8cc9b1ed61c57a31830760546452de5377413c8f91cab8d113ef39f7c33",
+    "map_AdamsSS_RP1_256_to_S0_t199.db": "5685d4419db3ac8665d6138e24d4faa793cafa488c854ef07909a2478ffb1bfa"
+  }
+}

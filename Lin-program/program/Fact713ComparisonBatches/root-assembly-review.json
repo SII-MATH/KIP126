@@ -1,0 +1,17 @@
+{
+  "scope": "Root review of generated assembly and key-order use; batch arithmetic independently reviewed elsewhere",
+  "checks": [
+    "Every batch proves original KeyValid and full wire.Valid",
+    "Append assembly uses forall_mem_append and previously proved batch theorems, not imported validity flags",
+    "keyCode may collide globally but accepted adjacent strict increase proves original UniqueKeys",
+    "neighbor batches compare only exact lookup neighbors; generic soundness recovers all PairCompatible cases",
+    "Coverage missing d4 uses unique-key lookup theorem to refute actual CoversKeys"
+  ],
+  "source_sha256": {
+    "Imported.lean": "a9e828466e905aa1b135c60260e571302adb96bf785bc0ff08afd5f9cbea7faa",
+    "generate.py": "4d17b65f7bc2ef7e4ffd89ca1091a753fb17b59de0c8fd6b26ee8bf8c90c8c29",
+    "generate_neighbors.py": "c6e8ea7808199e301603df01daefbc10e3e655f1825b321203f8f03f01bea464",
+    "Coverage.lean": "ed0d6ab02f431780e6e30b13a9a03726943490a3d18ee286b2ff2101e6ae6991"
+  },
+  "compile_status": "Imported actual exit0; neighbors and Coverage pending"
+}

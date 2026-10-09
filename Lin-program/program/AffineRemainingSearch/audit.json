@@ -1,0 +1,678 @@
+{
+  "conclusions": [
+    "Row2697 has the same known nonzero d3 in both exhaustive row2574 branches; each branch has a valid one-dimensional E4 comparison.",
+    "Row2696 is a d3 boundary in branch0 and survives to E4 in branch1. Its stored d7 target is NULL, so no unconditional finite nonzero d7 event is exported.",
+    "Both row2574 branches contradict treating the two displayed next-page staircase vectors as an independent complete basis; their true quotient has dimension1. A branch-aware quotient basis is required.",
+    "Using global next-page staircase completeness without a separate semantic premise would erase an actual inconsistency. The row2708 uniqueness observation is conditional and must not be applied globally."
+  ],
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "input_sha256": {
+    "AggregateDC2h6Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "AggregateDC2h6Conditional/source.json": "ad7565992978dadab89b7ec4e0fc09b3e7e2d5d1a6ff6a1c348156ee37b45b8b",
+    "AllClaimTrajectoryAudit/claims.json": "224cd3b4ea5c4e9c3f4e4bc9a0534b838a61d16375ebfc500a6591c899058b35",
+    "Row2574Detector/Additional/Combined.lean": "5b826265c4e00b47e2434e8692d76400e6b6929699ed1096552bda33ca56bcc2",
+    "Row2574Detector/target.json": "eda9ae6293db994875adae46a0e097ea9f6948fcd7febbb271b1830b876a4658",
+    "Row2708MapSearch/nonzero-source-constraints.json": "db646df8391941b529eb9c2b82a3818f4c4eff2e96e5c8ef86e15de6bdd676e0"
+  },
+  "no_theorem_asserted": true,
+  "no_unconditional_assignment": true,
+  "raw_rows": {
+    "2574": [
+      2574,
+      6,
+      132,
+      "0",
+      null,
+      9997
+    ],
+    "2695": [
+      2695,
+      9,
+      134,
+      "2",
+      null,
+      9000
+    ],
+    "2696": [
+      2696,
+      9,
+      134,
+      "3",
+      null,
+      9993
+    ],
+    "2697": [
+      2697,
+      9,
+      134,
+      "1",
+      "0",
+      9997
+    ],
+    "2707": [
+      2707,
+      7,
+      134,
+      "2",
+      null,
+      9990
+    ],
+    "2708": [
+      2708,
+      7,
+      134,
+      "0,1",
+      null,
+      9997
+    ]
+  },
+  "row2574_branches": [
+    {
+      "E2_basis_ids": [
+        2698
+      ],
+      "E2_representative": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "actual_E4_dimension": 1,
+      "aggregate_incoming_coordinates": [
+        0,
+        1,
+        0
+      ],
+      "branch": 0,
+      "canonical_target_coordinates": [
+        0,
+        0,
+        1
+      ],
+      "complete_d3": {
+        "down": [
+          false,
+          false,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          true,
+          false
+        ],
+        "k": 1,
+        "m": 3,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "event2696": {
+        "E4_projection": [
+          0
+        ],
+        "d3_boundary": true,
+        "d3_cycle": true,
+        "raw_target": null
+      },
+      "event2697": {
+        "finite_d3_value_valid": true,
+        "source_coordinates": [
+          0,
+          0,
+          1
+        ],
+        "target_coordinates": [
+          1
+        ]
+      },
+      "stored_next_basis_coordinates": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "stored_next_basis_count": 2,
+      "stored_next_basis_independent": false
+    },
+    {
+      "E2_basis_ids": [
+        2697,
+        2698
+      ],
+      "E2_representative": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "actual_E4_dimension": 1,
+      "aggregate_incoming_coordinates": [
+        1,
+        1,
+        0
+      ],
+      "branch": 1,
+      "canonical_target_coordinates": [
+        0,
+        1,
+        1
+      ],
+      "complete_d3": {
+        "down": [
+          false,
+          false,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          true,
+          true,
+          false
+        ],
+        "k": 1,
+        "m": 3,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "event2696": {
+        "E4_projection": [
+          1
+        ],
+        "d3_boundary": false,
+        "d3_cycle": true,
+        "raw_target": null
+      },
+      "event2697": {
+        "finite_d3_value_valid": true,
+        "source_coordinates": [
+          0,
+          0,
+          1
+        ],
+        "target_coordinates": [
+          1
+        ]
+      },
+      "stored_next_basis_coordinates": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "stored_next_basis_count": 2,
+      "stored_next_basis_independent": false
+    }
+  ],
+  "row2708": {
+    "choices": [
+      {
+        "actual_E4_dimension": 2,
+        "complete_d3": {
+          "down": [
+            false,
+            false
+          ],
+          "h": 2,
+          "inclusion": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "incoming": [
+            false,
+            false
+          ],
+          "k": 1,
+          "m": 2,
+          "n": 1,
+          "outgoing": [
+            false,
+            false
+          ],
+          "projection": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "up": [
+            false,
+            false
+          ],
+          "version": 1
+        },
+        "full_staircase_kernel_semantics_consistent": false,
+        "later_prefix_survivor_coordinates": [
+          1,
+          0
+        ],
+        "named_d3": 0,
+        "stored_E4_basis_count": 1
+      },
+      {
+        "actual_E4_dimension": 1,
+        "complete_d3": {
+          "down": [
+            false,
+            true
+          ],
+          "h": 1,
+          "inclusion": [
+            true,
+            false
+          ],
+          "incoming": [
+            false,
+            false
+          ],
+          "k": 1,
+          "m": 2,
+          "n": 1,
+          "outgoing": [
+            false,
+            true
+          ],
+          "projection": [
+            true,
+            false
+          ],
+          "up": [
+            false,
+            false
+          ],
+          "version": 1
+        },
+        "full_staircase_kernel_semantics_consistent": true,
+        "later_prefix_survivor_coordinates": [
+          1,
+          0
+        ],
+        "named_d3": 1,
+        "stored_E4_basis_count": 1
+      }
+    ],
+    "named_E3": [
+      0,
+      1
+    ],
+    "source_full_d2": {
+      "down": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "h": 2,
+      "inclusion": [
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "incoming": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "k": 6,
+      "m": 5,
+      "n": 1,
+      "outgoing": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "projection": [
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "up": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "version": 1
+    },
+    "source_incoming_d3": {
+      "center": [
+        4,
+        132
+      ],
+      "object": "S0",
+      "page": 3,
+      "predecessors": [
+        "S0:1,130:d2",
+        "S0:4,132:d2",
+        "S0:7,134:d2"
+      ],
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "conditional_c2_h2",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            2576,
+            "0",
+            null,
+            9000
+          ],
+          "source": [
+            4,
+            132
+          ],
+          "target_predecessor": "S0:7,134:d2"
+        }
+      ],
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 2,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    "survivor_E3": [
+      1,
+      0
+    ],
+    "target_full_d2": {
+      "down": [
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "h": 1,
+      "inclusion": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "incoming": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "k": 5,
+      "m": 5,
+      "n": 7,
+      "outgoing": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "projection": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "up": [
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "version": 1
+    },
+    "valid_conditional_conclusion": "Under complete E4 kernel/boundary semantics for the displayed sole survivor and zero incoming d3, the entire 1D target forces d3(named)=1. NULL9997 alone supplies neither nonzero nor zero."
+  },
+  "schema": "remaining_affine_branch_audit/v1",
+  "script_sha256": "4b92843ece521444ac8860c4f4e8c61b6862e64e94ed119abce1d66cf1fa2a7a"
+}

@@ -1,0 +1,177 @@
+{
+  "status": "no_correctness_findings",
+  "modules": [
+    "Maps",
+    "Comparison",
+    "Naturality",
+    "MapSemantics",
+    "Actual",
+    "Overlay",
+    "CoordinateBridge"
+  ],
+  "compiled": {
+    "Maps": {
+      "source_sha256": "1e381254baf5773cd63b6b37462e40bde69921e37e0be1a63d3e621c5896266e",
+      "external_input_sha256": {
+        "Fact713DC2h6Source/wire/s11t133.json": "debb26785afabb53be60405516b5ddbbd8229935e9ad39c82c0e3cbd8e61d1d2",
+        "Fact713DC2h6Source/wire/s12t134.json": "3adfec33ac76caf039ae0301fe0af1062d8837e33ededff1fc7bdf047644ee76",
+        "Fact713DC2h6Source/wire/s13t134.json": "7daec53064f9e396880c617ed777bfb33656d4849feb79a4b1241bb858b9ab58",
+        "Fact713DC2h6Source/wire/s14t135.json": "8844139399ec700463e1ccd0c72de179e0fec3c2e2659dcf9850d2b8a6dc3549",
+        "Fact713DC2h6Source/wire/s16t136.json": "4c86a07cb976ed97f8e54edafde5d83439eed57730e9863bad7a01b7725801a4",
+        "Fact713DC2h6Source/wire/s9t132.json": "d34e8e58d3aeb4721dc3b801baec9f95237a6b94f34969e6c9812fe0f6ad2c35"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "b9f4ab92520d453e9b799c9859e9cca7348c5ead4fa4047f9c2129c31dd930d3",
+      "olean_sha256": "bf87bddcbe3b7d91694bdd1487cf714b4be117df66c50b6f699e77e5cd762505"
+    },
+    "Comparison": {
+      "source_sha256": "db2962e3f3e7c6556f81bee30367cdc310b1fe6f61f46811331f30744dd2669b",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "c6417d8e384ad98fb7417d6931fd76b30db1e938a53e9ab1b516e1012962b913",
+      "olean_sha256": "7681e3f22d2b732d4ec9a090f634dc8ec01eadcfcbedecdb029c2f39e32f1e2f"
+    },
+    "Naturality": {
+      "source_sha256": "09c5575e33369fd852df688c6a19370fc9d8e3b06433a55d6e0b33b7b52d73d8",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "872759c464d3b2e772d33c30aa490f4c67831f67cd57ceb3426395b70bcf4a8e",
+      "olean_sha256": "7963d091b4085830d2583b3ada9aefbb4ceac79317e60f461cbf836e5a2b2e31"
+    },
+    "MapSemantics": {
+      "source_sha256": "aa5f46fe954f7545feaab6f6e260a6af8a01e3ed0a6bfeadc2104be449fb1429",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "64dd3df86d503bb9a8ad9f7754badb2c2abc3f9c1df2186ad1edda9e1c03a8e6",
+      "olean_sha256": "d7c6843b5ec98d5d68b1cb4ffc5e50d1d5e58dff98569945260446a16cf083f2"
+    },
+    "Actual": {
+      "source_sha256": "8be5edfe8b4743f2c2afaad5146dc56a077784d5129fdde6e2c2355828697ebc",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "5ec3a16e5f7aab1b7e9b301e095be6bff231078440e77e58a096a95b5221995d",
+      "olean_sha256": "59b95321045e6f747695240774e742c65a736481da41f43ae1091bd84ebd59f4"
+    },
+    "Overlay": {
+      "source_sha256": "8feee5bd27029252e4467b48d77a3b408fe15cba5e45227464e0454d8274a14d",
+      "external_input_sha256": {
+        "Fact713DC2h6Source/wires/b_S0_10_132_d4.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+        "Fact713DC2h6Source/wires/b_S0_11_133_d3.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+        "Fact713DC2h6Source/wires/b_S0_14_135_d3.json": "050a3abcf00918a352666022f7c95273a11e785e4fe9b59c99fd1a69953f216f",
+        "Fact713DC2h6Source/wires/b_S0_14_135_d4.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "Fact713DC2h6Source/wires/b_S0_2_126_d5.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713DC2h6Source/wires/b_S0_3_126_d6.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713DC2h6Source/wires/b_S0_3_127_d7.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713DC2h6Source/wires/b_S0_5_128_d5.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713DC2h6Source/wires/b_S0_7_130_d4.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+        "Fact713DC2h6Source/wires/b_S0_9_131_d5.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+        "Fact713DC2h6Source/wires/b_S0_neg12_113_d8.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713DC2h6Source/wires/b_S0_neg1_123_d6.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713DC2h6Source/wires/b_S0_neg4_120_d7.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713DC2h6Source/wires/b_S0_neg4_121_d6.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713DC2h6Source/wires/b_S0_neg8_117_d7.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "4313fa4da7f73e3f9f1302b0f20b3f9671850671db73b338fefd0af1bc816724",
+      "olean_sha256": "d8cdf840ee201a0686a38f073ec7f0936ebdf4380708da8630472c06515402bb"
+    },
+    "CoordinateBridge": {
+      "source_sha256": "19039deb7e7e6593e3614999c0ecaf0195d7e8422e270cf06ae4b7eb78983039",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "b06aaa7aac1c10ddc0f165f5a4e9df9c410376b0f0d52c0b70d815045ace1a37",
+      "olean_sha256": "fbabb81364131ecda47202d8bafa2e02bfc41210579e839166cff9539c360cbb"
+    }
+  },
+  "axiom_reports": 20,
+  "raw_row": [
+    2622,
+    11,
+    133,
+    "1",
+    null,
+    9000
+  ],
+  "matrices": 6,
+  "columns": 11,
+  "reductions": 0,
+  "full_comparisons": 4,
+  "whole_chainmap_vectors": 18,
+  "named_raw_image": 2,
+  "named_boundary_preimage": 1,
+  "boundary_preimage_basis": 2722,
+  "induced_source_columns": [
+    1,
+    0
+  ],
+  "induced_target_columns": [
+    2
+  ],
+  "target_injective": true,
+  "quotient_coordinate_changes": [
+    {
+      "key": "S0:11,133:d2",
+      "forward": [
+        3,
+        2
+      ],
+      "inverse": [
+        3,
+        2
+      ]
+    },
+    {
+      "key": "S0:14,135:d2",
+      "forward": [
+        1
+      ],
+      "inverse": [
+        1
+      ]
+    }
+  ],
+  "local_quotient_pairs": 52,
+  "baseline_preserved": 1257,
+  "added": 15,
+  "union": 1272,
+  "graph": 1269,
+  "blocked": 151,
+  "overlay_quotient_pairs": 9489,
+  "overlay_vectors": 2551,
+  "adjacent": 966,
+  "predecessor_dimensions": 2316,
+  "finite_E7_trajectory": [
+    [
+      2,
+      3,
+      1
+    ],
+    [
+      3,
+      1,
+      1
+    ],
+    [
+      4,
+      1,
+      1
+    ],
+    [
+      5,
+      1,
+      1
+    ],
+    [
+      6,
+      1,
+      1
+    ]
+  ],
+  "input_sha256": {
+    "Fact713DC2h6Source/source.json": "b9a3889c19a2e0bbd4334061e57cb022ed2a4ea488b8e45b72d90d4ee8f8f391",
+    "Fact713DC2h6Source/comparison-source.json": "b97d2cf0d14f3f47436fd2008d45a06dcf9a1e5ca45242ffb12c5b046cd20527",
+    "Fact713DC2h6Source/refined.json": "8d1a72bd4ff557b013c5f7202e19608e7a2a5209657e219a4fcf30007df5d8b9",
+    "Fact713NextSourceSearch/refined.json": "3e814a14391b4be42809db7ccd1346e8353304c6aa5bb5a12ee59179bdc2629b"
+  },
+  "scope": "Actual whole coordinate meanings and actual d3 naturality are premises. The named source image is a nonzero E2 boundary, not literal zero; the whole source quotient map is nonzero. Inherited zero-prefix interpretation remains a premise. Finite E7 is not actual sphere E7/E12 survival."
+}

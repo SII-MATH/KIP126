@@ -1,0 +1,131 @@
+Fact713H2Continuation/Actual.lean:29:49: error(lean.unknownIdentifier): Unknown constant `Bool.true_eq_true`
+Fact713H2Continuation/Actual.lean:29:49: error(lean.unknownIdentifier): Unknown constant `Bool.true_eq_true`
+Fact713H2Continuation/Actual.lean:31:51: error(lean.unknownIdentifier): Unknown constant `Bool.true_eq_true`
+Fact713H2Continuation/Actual.lean:31:51: error(lean.unknownIdentifier): Unknown constant `Bool.true_eq_true`
+Fact713H2Continuation/Actual.lean:32:51: error(lean.unknownIdentifier): Unknown constant `Bool.true_eq_true`
+Fact713H2Continuation/Actual.lean:32:51: error(lean.unknownIdentifier): Unknown constant `Bool.true_eq_true`
+Fact713H2Continuation/Actual.lean:48:10: error: unexpected identifier; expected prec
+Fact713H2Continuation/Actual.lean:66:28: error(lean.invalidField): Invalid field `sourceAdd`: The environment does not contain `Fact713H2Continuation.Actual.Input.sourceAdd`, so it is not possible to project the field `sourceAdd` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:73:27: error(lean.invalidField): Invalid field `targetAdd`: The environment does not contain `Fact713H2Continuation.Actual.Input.targetAdd`, so it is not possible to project the field `targetAdd` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:77:13: error(lean.invalidField): Invalid field `incomingSource`: The environment does not contain `Fact713H2Continuation.Actual.Input.incomingSource`, so it is not possible to project the field `incomingSource` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:76:84: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+D : Input S pages P
+⊢ (S.differential 3 degree).toFun (D.product.product3.equivalence.symm (basis3 0)) = 0
+Fact713H2Continuation/Actual.lean:110:47: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  D.product.target3.equivalence 0
+in the target expression
+  D.product.target3.equivalence 0 = eval (matrixOf 2 3 wire.outgoing) zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+D : Input S pages P
+x : (S.element 3 degree).carrier
+f : Vec 3 → Vec 2 :=
+  fun v => D.product.target3.equivalence ((S.differential 3 degree).toFun (D.product.product3.equivalence.symm v))
+g : Vec 3 → Vec 2 := eval (matrixOf 2 3 wire.outgoing)
+inverse_add :
+  ∀ (u v : Vec 3),
+    D.product.product3.equivalence.symm (add u v) =
+      D.product.product3.equivalence.symm u + D.product.product3.equivalence.symm v
+fadd : ∀ (u v : Vec 3), f (add u v) = add (f u) (f v)
+hz : D.product.product3.equivalence.symm zero = 0
+⊢ D.product.target3.equivalence 0 = eval (matrixOf 2 3 wire.outgoing) zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 3 (AdamsTarget 3 degree)).carrier
+  but is expected to have type
+    (S.element 3 Row3147H2Product.Actual.targetDegree).carrier
+  in the application
+    D.product.target3.equivalence 0
+Fact713H2Continuation/Actual.lean:115:10: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (S.differential 3 degree).toFun (D.product.product3.equivalence.symm (basis3 0))
+in the target expression
+  D.product.target3.equivalence
+      ((S.differential 3 degree).toFun (D.product.product3.equivalence.symm (basis3 ⟨0, ⋯⟩))) =
+    eval (matrixOf 2 3 wire.outgoing) (basis3 ⟨0, ⋯⟩)
+
+case «0»
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+D : Input S pages P
+x : (S.element 3 degree).carrier
+f : Vec 3 → Vec 2 :=
+  fun v => D.product.target3.equivalence ((S.differential 3 degree).toFun (D.product.product3.equivalence.symm v))
+g : Vec 3 → Vec 2 := eval (matrixOf 2 3 wire.outgoing)
+inverse_add :
+  ∀ (u v : Vec 3),
+    D.product.product3.equivalence.symm (add u v) =
+      D.product.product3.equivalence.symm u + D.product.product3.equivalence.symm v
+fadd : ∀ (u v : Vec 3), f (add u v) = add (f u) (f v)
+fzero : f zero = g zero
+⊢ D.product.target3.equivalence
+      ((S.differential 3 degree).toFun (D.product.product3.equivalence.symm (basis3 ⟨0, ⋯⟩))) =
+    eval (matrixOf 2 3 wire.outgoing) (basis3 ⟨0, ⋯⟩)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    Nat.le_refl 3
+  has type
+    3 ≤ 3
+  but is expected to have type
+    2 < 3
+  in the application
+    Nat.le_of_lt (Nat.le_refl 3)
+Fact713H2Continuation/Actual.lean:119:36: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact713H2Continuation.Actual.Input.prefix`, so it is not possible to project the field `prefix` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:122:14: error(lean.invalidField): Invalid field `lastColumn`: The environment does not contain `Fact713H2Continuation.Actual.Input.lastColumn`, so it is not possible to project the field `lastColumn` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:131:22: error(lean.invalidField): Invalid field `incomingSource`: The environment does not contain `Fact713H2Continuation.Actual.Input.incomingSource`, so it is not possible to project the field `incomingSource` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:133:16: error(lean.invalidField): Invalid field `incoming`: The environment does not contain `Fact713H2Continuation.Actual.Input.incoming`, so it is not possible to project the field `incoming` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:136:68: error(lean.invalidField): Invalid field `zeroMeaning3`: The environment does not contain `Fact713H2Continuation.Actual.Input.zeroMeaning3`, so it is not possible to project the field `zeroMeaning3` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:139:44: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact713H2Continuation.Actual.Input.prefix`, so it is not possible to project the field `prefix` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:145:60: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact713H2Continuation.Actual.Input.prefix`, so it is not possible to project the field `prefix` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:153:63: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact713H2Continuation.Actual.Input.prefix`, so it is not possible to project the field `prefix` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:154:25: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact713H2Continuation.Actual.Input.prefix`, so it is not possible to project the field `prefix` from an expression
+  D
+of type `Input S pages P`
+Fact713H2Continuation/Actual.lean:155:27: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact713H2Continuation.Actual.Input.prefix`, so it is not possible to project the field `prefix` from an expression
+  D
+of type `Input S pages P`
+'Fact713H2Continuation.Actual.source_previous_exact' does not depend on any axioms
+'Fact713H2Continuation.Actual.additive_three_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.boundary_differential_zero' depends on axioms: [propext, Quot.sound]
+'Fact713H2Continuation.Actual.Input.current_add' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.Input.target_add' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.first_column_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.whole_outgoing' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.Input.whole' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.Input.page4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.coordinate4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.nonzero4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.same_input_E4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

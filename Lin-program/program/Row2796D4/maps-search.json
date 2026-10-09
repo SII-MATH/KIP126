@@ -1,0 +1,2123 @@
+{
+  "config_source_sha256": "a9a623bf7165e62fcf455e454fdf9195237491bf07bd148902e245aa1dba64d8",
+  "counts": {
+    "target_literal_zero": 25,
+    "source_not_literal_zero": 24,
+    "unknown": 20,
+    "candidate_needs_E4": 1
+  },
+  "maps": [
+    {
+      "section": "maps",
+      "ordinal": 1,
+      "map": {
+        "from": "S0",
+        "name": "S0__tmf",
+        "path": "map_AdamsSS_S0_to_tmf_t261.db",
+        "t_max": 261,
+        "to": "tmf"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": []
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 1,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2",
+        "to": "C2"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 2,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ceta",
+        "to": "Ceta"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          2
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          12286
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 3,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Cnu",
+        "to": "Cnu"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          14518
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 4,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigma",
+        "to": "Csigma"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          2
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          2
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 5,
+      "map": {
+        "factor": [
+          0,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_2",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          9,
+          136
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          8359
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          139
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          10540
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 6,
+      "map": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_eta",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          9,
+          137
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          2
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          140
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 7,
+      "map": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_nu",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          9,
+          139
+        ],
+        "coordinates": [
+          1
+        ],
+        "relation_rowids": [
+          941
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          142
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          10816,
+          11590
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 8,
+      "map": {
+        "factor": [
+          7,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_sigma",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          9,
+          143
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          6
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          146
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          12306
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 9,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta",
+        "to": "CW_2_eta"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 10,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_eta_nu",
+        "to": "CW_eta_nu"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          16885
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 11,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_nu_sigma",
+        "to": "CW_nu_sigma"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          21725
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 12,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_nu",
+        "to": "CW_2_eta_nu"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 13,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_nu_eta_2",
+        "to": "CW_nu_eta_2"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          11794
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 14,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_eta_nu_sigma",
+        "to": "CW_eta_nu_sigma"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          19657
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 15,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_nu_sigma",
+        "to": "CW_2_eta_nu_sigma"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 16,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_nu_eta",
+        "to": "CW_nu_eta"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          10022
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 17,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_sigma_nu",
+        "to": "CW_sigma_nu"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          2
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          2
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 18,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_eta_2",
+        "to": "CW_eta_2"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          2
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          14354
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 19,
+      "map": {
+        "factor": [
+          5,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ceta_by_nu",
+        "to": "Ceta"
+      },
+      "source": {
+        "degree": [
+          9,
+          141
+        ],
+        "coordinates": [
+          1
+        ],
+        "relation_rowids": []
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 20,
+      "map": {
+        "factor": [
+          2,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ceta_by_2",
+        "to": "Ceta"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 21,
+      "map": {
+        "factor": [
+          11,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Cnu_by_sigma",
+        "to": "Cnu"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 22,
+      "map": {
+        "factor": [
+          5,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Cnu_by_eta",
+        "to": "Cnu"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 23,
+      "map": {
+        "factor": [
+          11,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigma_by_nu",
+        "to": "Csigma"
+      },
+      "source": {
+        "degree": [
+          9,
+          147
+        ],
+        "coordinates": [
+          1
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          13,
+          150
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          18518
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 24,
+      "map": {
+        "factor": [
+          6,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_by_nu",
+        "to": "CW_2_eta"
+      },
+      "source": {
+        "degree": [
+          9,
+          142
+        ],
+        "coordinates": [
+          2
+        ],
+        "relation_rowids": []
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 25,
+      "map": {
+        "factor": [
+          6,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_nu_eta_by_2",
+        "to": "CW_nu_eta"
+      },
+      "source": {
+        "degree": [
+          9,
+          142
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          12228
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          145
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": [
+          13591
+        ]
+      },
+      "status": "candidate_needs_E4"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 26,
+      "map": {
+        "factor": [
+          13,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_eta_nu_by_sigma",
+        "to": "CW_eta_nu"
+      },
+      "source": {
+        "degree": [
+          9,
+          149
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": [
+          2308
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          152
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          24882
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 27,
+      "map": {
+        "factor": [
+          14,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_nu_by_sigma",
+        "to": "CW_2_eta_nu"
+      },
+      "source": {
+        "degree": [
+          9,
+          150
+        ],
+        "coordinates": [
+          1
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          13,
+          153
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          16670,
+          1
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 28,
+      "map": {
+        "factor": [
+          2,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2_by_eta",
+        "to": "C2"
+      },
+      "source": {
+        "degree": [
+          9,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          3
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          141
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          2,
+          1
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 57,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigmasq",
+        "to": "Csigmasq"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 58,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ctheta4",
+        "to": "Ctheta4"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          4
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 59,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Ctheta5",
+        "to": "Ctheta5"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          4
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 60,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2sigma",
+        "to": "C2sigma"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          2
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          6
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 61,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2h4",
+        "to": "C2h4"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 62,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2h5",
+        "to": "C2h5"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          7
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 63,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2h6",
+        "to": "C2h6"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          675
+        ]
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 64,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h4",
+        "t_max": 198,
+        "to": "DC2h4"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          4
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 65,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h5",
+        "to": "DC2h5"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          5
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 66,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h6",
+        "to": "DC2h6"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          441
+        ]
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 67,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Fphi",
+        "to": "Fphi"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          2
+        ]
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          17505
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 68,
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_A_eta",
+        "to": "CW_2_A_eta"
+      },
+      "source": {
+        "degree": [
+          8,
+          135
+        ],
+        "coordinates": [
+          7
+        ],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          12,
+          138
+        ],
+        "coordinates": [
+          7
+        ],
+        "relation_rowids": []
+      },
+      "status": "source_not_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 69,
+      "map": {
+        "factor": [
+          1,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S1__CW_2_A_eta",
+        "to": "CW_2_A_eta"
+      },
+      "source": {
+        "degree": [
+          8,
+          136
+        ],
+        "coordinates": [
+          3
+        ],
+        "relation_rowids": []
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 70,
+      "map": {
+        "factor": [
+          14,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_sigmasq",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          10,
+          151
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          6
+        ]
+      },
+      "target": {
+        "degree": [
+          14,
+          154
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          14
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 71,
+      "map": {
+        "factor": [
+          30,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_theta4",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          10,
+          167
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          80
+        ]
+      },
+      "target": {
+        "degree": [
+          14,
+          170
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          15761,
+          8
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 72,
+      "map": {
+        "factor": [
+          62,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_theta5",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          10,
+          199
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          2384
+        ]
+      },
+      "target": {
+        "degree": [
+          14,
+          202
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          25901
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 73,
+      "map": {
+        "factor": [
+          124,
+          4,
+          []
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_theta5sq",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          12,
+          263
+        ],
+        "coordinates": [],
+        "relation_rowids": []
+      },
+      "target": {
+        "degree": [
+          16,
+          266
+        ],
+        "coordinates": [],
+        "relation_rowids": []
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 74,
+      "map": {
+        "factor": [
+          3,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_2nu",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          10,
+          140
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          5
+        ]
+      },
+      "target": {
+        "degree": [
+          14,
+          143
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          4
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 75,
+      "map": {
+        "factor": [
+          7,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_2sigma",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          10,
+          144
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          6
+        ]
+      },
+      "target": {
+        "degree": [
+          14,
+          147
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          10540
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 76,
+      "map": {
+        "factor": [
+          8,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_etasigma",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          10,
+          145
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          2
+        ]
+      },
+      "target": {
+        "degree": [
+          14,
+          148
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 77,
+      "map": {
+        "factor": [
+          14,
+          4,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_kappa",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          12,
+          153
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          22,
+          1808
+        ]
+      },
+      "target": {
+        "degree": [
+          16,
+          156
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          17351,
+          21
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 78,
+      "map": {
+        "factor": [
+          20,
+          4,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_g",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          12,
+          159
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          2311
+        ]
+      },
+      "target": {
+        "degree": [
+          16,
+          162
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          20076,
+          20626
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 79,
+      "map": {
+        "factor": [
+          16,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_eta4",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          10,
+          153
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          2
+        ]
+      },
+      "target": {
+        "degree": [
+          14,
+          156
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 80,
+      "map": {
+        "factor": [
+          32,
+          2,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__S0_by_eta5",
+        "to": "S0"
+      },
+      "source": {
+        "degree": [
+          10,
+          169
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          2
+        ]
+      },
+      "target": {
+        "degree": [
+          14,
+          172
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 81,
+      "map": {
+        "factor": [
+          15,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2_by_h4",
+        "to": "C2"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 82,
+      "map": {
+        "factor": [
+          31,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2_by_h5",
+        "to": "C2"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 83,
+      "map": {
+        "factor": [
+          63,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2_by_h6",
+        "to": "C2"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 84,
+      "map": {
+        "factor": [
+          127,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_by_theta5sq",
+        "to": "CW_2_eta"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 85,
+      "map": {
+        "factor": [
+          15,
+          1,
+          [
+            0,
+            1
+          ]
+        ],
+        "from": "S0",
+        "name": "S0__Csigmasq_by_2",
+        "to": "Csigmasq"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 86,
+      "map": {
+        "factor": [
+          31,
+          1,
+          [
+            0,
+            1
+          ]
+        ],
+        "from": "S0",
+        "name": "S0__Ctheta4_by_2",
+        "to": "Ctheta4"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 87,
+      "map": {
+        "factor": [
+          63,
+          1,
+          [
+            0,
+            1
+          ]
+        ],
+        "from": "S0",
+        "name": "S0__Ctheta5_by_2",
+        "to": "Ctheta5"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 88,
+      "map": {
+        "factor": [
+          15,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigma_by_2sigma",
+        "to": "Csigma"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 89,
+      "map": {
+        "factor": [
+          30,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h4_by_sigmasq",
+        "to": "DC2h4"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 90,
+      "map": {
+        "factor": [
+          62,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h5_by_theta4",
+        "to": "DC2h5"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 91,
+      "map": {
+        "factor": [
+          126,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h6_by_theta5",
+        "to": "DC2h6"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 92,
+      "map": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S2__Q_CW_2_V_eta",
+        "to": "C2"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 93,
+      "map": {
+        "factor": [
+          0,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S1__Q_CW_2_V_eta",
+        "to": "Ceta"
+      },
+      "source": {
+        "degree": [
+          9,
+          136
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          879
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          139
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          12286
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 94,
+      "map": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S4__Q_CW_eta_V_nu",
+        "to": "Ceta"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 95,
+      "map": {
+        "factor": [
+          1,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S2__Q_CW_eta_V_nu",
+        "to": "Cnu"
+      },
+      "source": {
+        "degree": [
+          9,
+          137
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          140
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          14518
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 96,
+      "map": {
+        "factor": [
+          7,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S8__Q_CW_nu_V_sigma",
+        "to": "Cnu"
+      },
+      "source": {
+        "degree": [
+          9,
+          143
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          1
+        ]
+      },
+      "target": {
+        "degree": [
+          13,
+          146
+        ],
+        "coordinates": [],
+        "relation_rowids": [
+          14518
+        ]
+      },
+      "status": "target_literal_zero"
+    },
+    {
+      "section": "maps_v2",
+      "ordinal": 97,
+      "map": {
+        "factor": [
+          3,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S4__Q_CW_nu_V_sigma",
+        "to": "Csigma"
+      },
+      "status": "unknown",
+      "reason": "no reducing relation"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "E3_coordinate_maps": {
+    "source": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "target": [
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  "columns": 24,
+  "complete_d2_comparisons": 4,
+  "failures": [],
+  "full_target_E3_dimension": 1,
+  "input_sha256": {
+    "Row2929Detector/comparison-source.json": "840b332a23d860e15881d15826761fa3fa82858931e91b96d62702d1e4a88d3a",
+    "Row2929Detector/source.json": "38a86845e94045976e10066b6b2428ee90b3ef3d6ba102941270c5dee303fcab",
+    "Row2929Detector/wire/s10t137.json": "f03247c14c811a5f9a9b0773bd688963158cfb7970ff737ac8a39e203dc1985b",
+    "Row2929Detector/wire/s11t138.json": "0f64eb4a84483330fa2926359c44133e1ef5f36896e12eede5acb39076d7d94c",
+    "Row2929Detector/wire/s12t138.json": "e051650d7be460253ba73ce6b4cc91d3c12c6034c46d7717d2a57da837742647",
+    "Row2929Detector/wire/s13t139.json": "4c90cf72106171e37c933aa7c31649c07c9ba3cf78dd85ec4a398a35cd2400c1",
+    "Row2929Detector/wire/s15t140.json": "b6e573d22db6332fc799117e104ee29beab0ec5564d8077effa32a993f165456",
+    "Row2929Detector/wire/s8t136.json": "8094bafd84049becb6dc3f2148af58a71e122621d308e76498da539b84c0b79c",
+    "Row2929Search/lifted-search.json": "dba84d85de3033e8f4a024dbddfd77a63e21b912e37057d00e49b77e671cdffe",
+    "upstream/category-inventory.json": "506dace295387da68b60bad6a7027bbfe916c9c8c2ac4846ea704133e37059e9"
+  },
+  "lifted_relations": 0,
+  "limitations": "Local d3 naturality, preservation of zero, interpretation of imported E2 relations and d2 values, and Adams realization remain explicit. Raw row2929 d3 is NULL.",
+  "matrices": 6,
+  "metadata": {
+    "CW_2_eta": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 160,
+      "t_max": 200,
+      "timestamp": 1734865201,
+      "version": 3
+    },
+    "S0": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 177,
+      "t_max": 261,
+      "timestamp": 1710516671,
+      "version": 3
+    }
+  },
+  "reduction_steps": 18,
+  "script_sha256": "4694020c8eb966f3860c4fcf90f7e9a9956c430e1a99a865727550c18db75957",
+  "source_E2_coordinates": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "source_E3_coordinates": [
+    0,
+    1,
+    0
+  ],
+  "source_basis_id": 2932,
+  "sources": {
+    "CW_2_eta_AdamsSS_t200.db": "d09387bd964b7359139962bd01e2b4782d9fce637ed79f27ce68c6152b5fefcf",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "independent_actual_map_and_full_d2_quotient_audit_passed",
+  "unknown_retained": [
+    2929,
+    10,
+    137,
+    "3",
+    null,
+    9000
+  ]
+}

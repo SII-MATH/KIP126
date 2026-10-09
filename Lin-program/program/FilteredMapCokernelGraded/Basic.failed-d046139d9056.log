@@ -1,0 +1,43 @@
+FilteredMapCokernelGraded/Basic.lean:41:11: warning: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FilteredMapCokernelGraded/Basic.lean:41:13: warning: Variable name `y` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FilteredMapCokernelGraded/Basic.lean:91:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑?x = 0
+in the target expression
+  (gradedClass (cokernelFiltration F G f) t) ((levelMap F G f t) y) = 0 ↔ ↑y ∈ finalRelations F G f t
+
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+t : ℕ
+y : ↥(G.group t)
+⊢ (gradedClass (cokernelFiltration F G f) t) ((levelMap F G f t) y) = 0 ↔ ↑y ∈ finalRelations F G f t
+'FilteredMapCokernelGraded.restrictedHom_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapCokernelGraded.levelMap_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapCokernelGraded.levelQuotientEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapCokernelGraded.toGraded_kernel' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapCokernelGraded.finalQuotientEquivGraded' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapCokernelGraded.finalSubgroup_image' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapCokernelGraded.iteratedQuotientEquivGraded' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredMapCokernelGraded.allTargetsEquivCokernelGraded' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredMapCokernelGraded.allTargetsEquivCokernelGraded_class' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

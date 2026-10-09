@@ -1,0 +1,77 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Fact762DerivedD5.Basic",
+      "axiom_reports": 4,
+      "source_sha256": "f6d9038891d9ca525bd7c08d7a4fef7842c751ea28346848c33bf6dfea9d2012",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact762SphereGDetection/Constructed.olean": "1ae8eb03ad655c5933366c20b8d43e9913912b5017b9fc43c77000d6a77b206d",
+        ".lake/build/lib/lean/Fact762CsigmasqD5/Actual.olean": "9765cc7844bc0adcfe1ec3a68aad61b8581e445812f75eed9215e9f3b7f36acd"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact762DerivedD5/Basic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact762DerivedD5/Basic.olean"
+      ],
+      "log": "evidence/Basic-20260922T014226490565Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "2b646cef4b2f7f3e32c036b88b8914c65b1d8f8ec25687712b4bc61dfc96fdd7",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Fact762SphereGDetection/Constructed.olean": "1ae8eb03ad655c5933366c20b8d43e9913912b5017b9fc43c77000d6a77b206d",
+        ".lake/build/lib/lean/Fact762CsigmasqD5/Actual.olean": "9765cc7844bc0adcfe1ec3a68aad61b8581e445812f75eed9215e9f3b7f36acd"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "d8a990e60a6834b3eb8370b7de12b2ea76bf5f179fd9c0ceea528d9e371fa193"
+    },
+    {
+      "module": "Fact762DerivedD5.Tests",
+      "axiom_reports": 1,
+      "source_sha256": "93be8a7971aea11591a630fbb1383f94b584ddd52a869b3c00e575197a6a20d5",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact762DerivedD5/Basic.olean": "d8a990e60a6834b3eb8370b7de12b2ea76bf5f179fd9c0ceea528d9e371fa193"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact762DerivedD5/Tests.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact762DerivedD5/Tests.olean"
+      ],
+      "log": "evidence/Tests-20260922T014356440428Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "1eb94495dac2409de74e5ccea2ddcdc801c4381cd3b61a854d2e2aacd7a0b433",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Fact762DerivedD5/Basic.olean": "d8a990e60a6834b3eb8370b7de12b2ea76bf5f179fd9c0ceea528d9e371fa193"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "a4ec56d660607bc064aa6ecf7d762b863cfd0dc03fda3c289ce323d516d10750"
+    }
+  ],
+  "axiom_reports": 5,
+  "dependency_note": "Direct dependency hashes are historical observations at compile time; root builds may later rebuild registered dependencies.",
+  "files": {
+    "Fact762DerivedD5/Basic-compile.json": "0973bc30f47156a704d5c11ff22bad8d1e5c6d230a106292ab4e25efdaf2852e",
+    "Fact762DerivedD5/Basic.lean": "f6d9038891d9ca525bd7c08d7a4fef7842c751ea28346848c33bf6dfea9d2012",
+    "Fact762DerivedD5/INDEPENDENT_BASIC_REVIEW.md": "3f0b437cf145f5b27550f9a4afb282122261f164eca64161affbe912a3dd64aa",
+    "Fact762DerivedD5/README.md": "d9cf8c7175fc03689e21d8de42f95c548be602d01f4b1dc8cba78bc4bd700873",
+    "Fact762DerivedD5/Tests-compile.json": "113051898710bebd442ba8904acdc067b0897f03f758ad4882e1544e0b7c2c7c",
+    "Fact762DerivedD5/Tests.lean": "93be8a7971aea11591a630fbb1383f94b584ddd52a869b3c00e575197a6a20d5",
+    "Fact762DerivedD5/compile-current.log": "dc308afb11acc904cdbeb39c8c18103fb4c6285c71c5a42ded334a2f90a99e9c",
+    "Fact762DerivedD5/compile.py": "0fba83a169f84933edf21ddf8f50a382ff5133ebcb269177c825bd986602fc6e",
+    "Fact762DerivedD5/evidence/Basic-20260922T014226490565Z.json": "0973bc30f47156a704d5c11ff22bad8d1e5c6d230a106292ab4e25efdaf2852e",
+    "Fact762DerivedD5/evidence/Basic-20260922T014226490565Z.log": "2b646cef4b2f7f3e32c036b88b8914c65b1d8f8ec25687712b4bc61dfc96fdd7",
+    "Fact762DerivedD5/evidence/Tests-20260922T014356440428Z.json": "113051898710bebd442ba8904acdc067b0897f03f758ad4882e1544e0b7c2c7c",
+    "Fact762DerivedD5/evidence/Tests-20260922T014356440428Z.log": "1eb94495dac2409de74e5ccea2ddcdc801c4381cd3b61a854d2e2aacd7a0b433",
+    "Fact762DerivedD5/freeze.py": "398557d37711ac581ee4fe3692b787d2ad8fe206af8dad029d9f48e7e772c3d8",
+    "Fact762DerivedD5/independent-basic-review.json": "41f108ae02428fab9aa1402ccbbbea33f6d59cf8b091a46c36e4c29a8a0790db",
+    "Fact762DerivedD5/independent-basic-review.log": "41f108ae02428fab9aa1402ccbbbea33f6d59cf8b091a46c36e4c29a8a0790db",
+    "Fact762DerivedD5/independent_basic_review.py": "ca8f0ad36118f789c6852f28614b379f05e0bea7410f836f1981af80576825b1",
+    "Fact762DerivedD5/modules.txt": "1821ebc985ca2b51a246567c7a150c972c240eb10fe0d049b9d497453f180dbf",
+    "Fact762DerivedD5/file-list.txt": "323534cd20d84f2b69fd50d1c836aafcaa52090c89cbf3009d1ed79af6dd9900"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "build_observation": {
+    "all_checkpoint_artifacts_verified": 20,
+    "allowed_standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "direct_assert_current": "Not claimed: Lake legitimately replaced direct-build olean artifacts. Sources and logs independently match all direct records.",
+    "direct_axiom_reports": 10,
+    "historical_direct_audits_preserved": true,
+    "independent_recompile": false,
+    "lake_checkpoint": "tests/permanence-elimination-lake-checkpoint.json",
+    "lake_checkpoint_sha256": "83b8cad928ce54411657c046734644ac8973212c36f968948fbea9843b083ac0",
+    "lake_jobs": 2483,
+    "lake_observed_exit_code": 0,
+    "lake_session_id": 90304,
+    "modules": [
+      {
+        "current_lake_olean_matches": true,
+        "current_lake_trace_matches": true,
+        "direct_record_sha256": "0643602e9c38be4a39e98b8a19896f4bca2e2f50c72a3bff0427c2d77b0dcd28",
+        "direct_sources_and_log_match": true,
+        "historical_direct_exit_code": 0,
+        "historical_direct_olean_matches_current": false,
+        "module": "System"
+      },
+      {
+        "current_lake_olean_matches": true,
+        "current_lake_trace_matches": true,
+        "direct_record_sha256": "9569f38386e7bfa96e787b79f8f7dc0477cbd337c9a848ff2de2f773de39e2d7",
+        "direct_sources_and_log_match": true,
+        "historical_direct_exit_code": 0,
+        "historical_direct_olean_matches_current": false,
+        "module": "Finite"
+      },
+      {
+        "current_lake_olean_matches": true,
+        "current_lake_trace_matches": true,
+        "direct_record_sha256": "2e5389a2a58268a86ee9e7701a73f089d287f425dc8daf9beed68b446097905f",
+        "direct_sources_and_log_match": true,
+        "historical_direct_exit_code": 0,
+        "historical_direct_olean_matches_current": false,
+        "module": "AdamsBounds"
+      },
+      {
+        "current_lake_olean_matches": true,
+        "current_lake_trace_matches": true,
+        "direct_record_sha256": "bbf1122832ed8b2ed5e94f42b5a0a8c7129d36abc9dd8a874f5ad7c1e94a44a0",
+        "direct_sources_and_log_match": true,
+        "historical_direct_exit_code": 0,
+        "historical_direct_olean_matches_current": false,
+        "module": "Examples"
+      },
+      {
+        "current_lake_olean_matches": true,
+        "current_lake_trace_matches": true,
+        "direct_record_sha256": "28eba2139bfed6eebefa5b2786b4084e1c7acec2d1fd21f120cdbe97137cda21",
+        "direct_sources_and_log_match": true,
+        "historical_direct_exit_code": 0,
+        "historical_direct_olean_matches_current": false,
+        "module": "Counterexamples"
+      }
+    ]
+  },
+  "findings": [],
+  "independent_replays": {
+    "hidden_late_model": {
+      "Bool_law_checks": 160,
+      "indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "late_values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "raw_four_class_SQL_and_manifest_hashes": "passed without overwriting existing review.json"
+  },
+  "inputs_sha256": {
+    "PageTransitionCertificates/Trajectory.lean": "514f2c74c3f16bf0a26b8a353d11c70e3960ead242e3f99e161fe75a1d8dcdc3",
+    "PermanentCycleCertificates/AdamsBounds.lean": "4eb745111e34d138795536215bd615734d2d5e108ac78d4e29066a70c49573b2",
+    "PermanentCycleCertificates/Counterexamples.lean": "38451e2a0eaa54b595207a59f5c52a89d8d7d8ce4ee99a244f8a12310c423ba7",
+    "PermanentCycleCertificates/Examples.lean": "75e4822790fbed4637e07910811e650ed649e71a5cef7a7309d179af0f2f611e",
+    "PermanentCycleCertificates/Finite.lean": "0fc1b71d6cd54ce35a6a25ed57c6de5e9a3b17901ac84715c48a0b1a48839948",
+    "PermanentCycleCertificates/README.md": "a22336e95801cac5e2bf0ab9acac15c67830e0854c7176e9a87355a1d9a773c4",
+    "PermanentCycleCertificates/System.lean": "06163bec82e9d0a515244f62d455c8bce8224c7054b6bc15a7a55bf19b95668c",
+    "PermanentCycleCertificates/fact-boundary-audit.json": "07d7db19c7a5d158b3fd674ad81ebb05092852dcc4679b1d95648183242838ea",
+    "PermanentCycleCertificates/review.py": "f1086ae9dcd23485ee3a4a8271f3167ceef00071164e2dc22d4f5f7622a516b1",
+    "SemanticTrajectoryCertificates/Page.lean": "64539da0617101de775a1f59502308d34ac7c8d754165f0911d04ee1af65082f"
+  },
+  "limitations": [
+    "TailVanishing is sufficient and stronger than vanishing maps; the hidden model has Outgoing Bool at every index, so it cannot satisfy this interface even after its nonzero differential.",
+    "The four paper staircase rows remain raw NULL9000. Their existing checked d2 cycle/nonboundary and nonzero E3 results do not prove the required later prefix or all-page permanence.",
+    "Actual Adams interpretation, negative-filtration and outgoing-region theorems, or another genuine permanence argument remain caller mathematics. No convergence or stable-homotopy conclusion is supplied.",
+    "The hidden-late counterexample is an abstract pointed System satisfying the stated actual homology law, not a constructed topological Adams spectral sequence. It refutes prefix-only permanence under this interface."
+  ],
+  "reviewed_claims": [
+    {
+      "check": "The selected element follows actual recursive advance at every index; permanence quantifies every actual page, outgoing cycle and absence of any actual incoming preimage.",
+      "theorem": "System.at / System.Good / System.Permanent"
+    },
+    {
+      "check": "TailVanishing quantifies whole Incoming and Outgoing types for all n >= cutoff. No future selected-element survival premise is present. Outgoing subsingleton gives cycle; incoming subsingleton plus incoming_zero gives nonboundary for nonzero elements; homology_zero proves nonzero of every next transition.",
+      "theorem": "tail_good / tail_stability"
+    },
+    {
+      "check": "Strictly positive cutoff and the final checked Good stage derive nonzero at cutoff. Prefix length L checks indices 0..L-1 (Adams pages 2..L+1); tail begins at index L (page L+2). No page is omitted.",
+      "theorem": "permanent_of_prefix"
+    },
+    {
+      "check": "PageData uses actual system incoming/outgoing/advance and zeros. Full Meaning equations apply to every supplied actual incoming source. Named coordinates equal s.at x i at every stage, so the selected finite stages cannot be unrelated representatives. Positivity and all checkStage results are extracted.",
+      "theorem": "PrefixMeaning / checkPrefix_sound"
+    },
+    {
+      "check": "Finite stages are executable; PrefixMeaning and whole-tail vanishing are explicit proved terms. Certificate fixes caller system and element. Batch soundness quantifies every request. Empty or zero-representative prefixes are rejected and diagnosis reports index and page.",
+      "theorem": "checkPermanent_sound / checkBatch_sound / permanent_cert"
+    },
+    {
+      "check": "Index n corresponds exactly to r=n+2. Incoming source filtration s-r is negative for r>s. Outgoing target stem t-s-1 is fixed. All-page and all-degree vanishing premises plus injective actual-space interpretations imply whole-type subsingletons. The linear-bound theorem needs no sign restriction on A because its stem argument is fixed.",
+      "theorem": "incoming_vanishes / outgoing_vanishes_above_line / tail_from_adams_vanishing"
+    },
+    {
+      "check": "For any late index the actual advance is identity before late, outgoing at late is identity on Bool, and the next class is zero. The actual homology law holds on cycles. hiddenMeaning supplies every finite coordinate equation for the accepted one-stage prefix at late=3, yet the class fails permanence.",
+      "theorem": "hidden_not_permanent / every_finite_prefix / accepted_finite_but_not_permanent"
+    },
+    {
+      "check": "Constructs a genuine abstract infinite System, constant Bool Page and Unit incoming/outgoing spaces, full finite meaning, tail proof and tactic application; this is not an instance for an actual paper class.",
+      "theorem": "Examples.stable_permanent"
+    }
+  ],
+  "scope": "System, Finite, AdamsBounds, Examples and Counterexamples; four raw paper-class identities and current Lake artifacts.",
+  "status": "independent_permanence_semantic_review_passed"
+}

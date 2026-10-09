@@ -1,0 +1,11 @@
+Fact713Row3247Source/Binding.lean:23:2: error: Type mismatch
+  correction_boundary
+has type
+  InImage (inc S0_18_141) boundaryCorrection
+but is expected to have type
+  InImage (inc S0_18_141) (add rawSphere historySphere)
+'Fact713Row3247Source.Binding.correction_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.raw_history_same' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.raw_named' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.products_raw_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.raw_nulls' does not depend on any axioms

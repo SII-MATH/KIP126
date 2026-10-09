@@ -1,0 +1,304 @@
+{
+  "status": "conditional_row3247_d3_two_finite_branches",
+  "branches": [
+    {
+      "previous_branch_preserved": 18,
+      "branch": "zero",
+      "assumed_staircase_d3": [
+        0,
+        0
+      ],
+      "baseline_preserved": 1272,
+      "changed_selection_rows": [],
+      "graph_available": 1297,
+      "graph_unresolved": 123,
+      "source_direct_comparison": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "source_next_selected_raw": [
+        [
+          2994,
+          "0,1,2",
+          null,
+          9000
+        ]
+      ],
+      "source_selection_compatible": true,
+      "source_result": {
+        "status": "finite_comparison_available",
+        "dimensions": {
+          "k": 2,
+          "m": 1,
+          "n": 1,
+          "h": 1
+        },
+        "unresolved_predecessors": []
+      },
+      "named_trajectory": [
+        {
+          "page": 2,
+          "vector": [
+            1,
+            1
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1,
+            0
+          ]
+        },
+        {
+          "page": 3,
+          "vector": [
+            1,
+            0
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 4,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 5,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 6,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 7,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 8,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        }
+      ],
+      "scope": "Conditional finite case split requiring named actual E3 cycle representatives. A staircase selection mismatch is not a contradiction from topology; raw level9000 does not itself prove next-page survival."
+    },
+    {
+      "previous_branch_preserved": 20,
+      "branch": "residual_rebased",
+      "assumed_staircase_d3": [
+        1,
+        0
+      ],
+      "baseline_preserved": 1272,
+      "changed_selection_rows": [
+        2994,
+        3135
+      ],
+      "graph_available": 1299,
+      "graph_unresolved": 121,
+      "source_direct_comparison": {
+        "down": [
+          true,
+          false
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          true,
+          false
+        ],
+        "projection": [],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "source_next_selected_raw": [],
+      "source_selection_compatible": true,
+      "source_result": {
+        "status": "finite_comparison_available",
+        "dimensions": {
+          "k": 2,
+          "m": 1,
+          "n": 1,
+          "h": 0
+        },
+        "unresolved_predecessors": []
+      },
+      "named_trajectory": [
+        {
+          "page": 2,
+          "vector": [
+            1,
+            1
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1,
+            0
+          ]
+        },
+        {
+          "page": 3,
+          "vector": [
+            1,
+            0
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 4,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 5,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 6,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 7,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 8,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        }
+      ],
+      "scope": "Conditional finite case split requiring named actual E3 cycle representatives. A staircase selection mismatch is not a contradiction from topology; raw level9000 does not itself prove next-page survival."
+    }
+  ],
+  "sha256": {
+    "Fact713DC2h6Source/refined.json": "8d1a72bd4ff557b013c5f7202e19608e7a2a5209657e219a4fcf30007df5d8b9",
+    "Fact713DC2h6Source/refine.py": "74392e5c1513acf75a59c7171e5fb79845f27cb5bfd7688d6142d4ff7e21e0f6",
+    "Fact713Row3247ConditionalBranches/generate.py": "3bf5d2943cd24aa2062af28b7e650a4605fd267ace7ecff3237eec97ace8a26e"
+  }
+}

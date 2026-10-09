@@ -1,0 +1,1884 @@
+{
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "metadata": {
+    "version": 3,
+    "change notes": "Add fil,from,to in version table of maps.",
+    "t_max": 261,
+    "d2_t_max": 177,
+    "timestamp": 1710516671
+  },
+  "event_roots": [
+    "S0:52,177:d4",
+    "S0:55,180:d2",
+    "S0:56,181:d2",
+    "S0:54,180:d3"
+  ],
+  "dependency_blocks": [
+    "S0:45,172:d2",
+    "S0:48,174:d2",
+    "S0:48,174:d3",
+    "S0:49,175:d2",
+    "S0:51,176:d2",
+    "S0:51,178:d2",
+    "S0:52,177:d2",
+    "S0:52,177:d3",
+    "S0:52,177:d4",
+    "S0:53,178:d2",
+    "S0:54,180:d2",
+    "S0:54,180:d3",
+    "S0:55,179:d2",
+    "S0:55,180:d2",
+    "S0:56,180:d2",
+    "S0:56,180:d3",
+    "S0:56,181:d2",
+    "S0:57,182:d2",
+    "S0:59,182:d2"
+  ],
+  "complete_d2_comparisons": [
+    {
+      "key": "S0:45,172:d2",
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:48,174:d2",
+      "wire": {
+        "down": [],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 2,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:49,175:d2",
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 2,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:51,176:d2",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:51,178:d2",
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 2,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:52,177:d2",
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:53,178:d2",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 2,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:54,180:d2",
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:55,179:d2",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:55,180:d2",
+      "wire": {
+        "down": [
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          true
+        ],
+        "projection": [],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:56,180:d2",
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:56,181:d2",
+      "wire": {
+        "down": [
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          true
+        ],
+        "projection": [],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:57,182:d2",
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "key": "S0:59,182:d2",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    }
+  ],
+  "reconstructed_degrees": [
+    {
+      "degree": [
+        43,
+        171
+      ],
+      "target_degree": [
+        45,
+        172
+      ],
+      "source_basis": [
+        [
+          5982,
+          "8,5,117,1",
+          ""
+        ]
+      ],
+      "target_basis": [
+        [
+          6111,
+          "0,44,324,1",
+          ""
+        ]
+      ],
+      "staircase": [
+        [
+          5982,
+          "0",
+          "1",
+          4
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            5982,
+            "0",
+            "1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 1,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        45,
+        172
+      ],
+      "target_degree": [
+        47,
+        173
+      ],
+      "source_basis": [
+        [
+          6111,
+          "0,44,324,1",
+          ""
+        ]
+      ],
+      "target_basis": [
+        [
+          6198,
+          "5,1,635,1",
+          ""
+        ],
+        [
+          6199,
+          "0,9,686,1",
+          ""
+        ]
+      ],
+      "staircase": [
+        [
+          6111,
+          "0",
+          "0",
+          9996
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0
+      ],
+      "rows": 2,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            6111,
+            "0",
+            "0",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 1,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        46,
+        173
+      ],
+      "target_degree": [
+        48,
+        174
+      ],
+      "source_basis": [
+        [
+          6200,
+          "0,45,324,1",
+          ""
+        ]
+      ],
+      "target_basis": [
+        [
+          6297,
+          "8,4,182,1",
+          ""
+        ],
+        [
+          6298,
+          "0,10,686,1",
+          ""
+        ]
+      ],
+      "staircase": [
+        [
+          6200,
+          "0",
+          "0",
+          9996
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0
+      ],
+      "rows": 2,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            6200,
+            "0",
+            "0",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 1,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        47,
+        174
+      ],
+      "target_degree": [
+        49,
+        175
+      ],
+      "source_basis": [
+        [
+          6299,
+          "8,4,183,1",
+          ""
+        ],
+        [
+          6300,
+          "0,46,324,1",
+          ""
+        ]
+      ],
+      "target_basis": [
+        [
+          6445,
+          "0,11,686,1",
+          ""
+        ]
+      ],
+      "staircase": [
+        [
+          6299,
+          "1",
+          "1",
+          9996
+        ],
+        [
+          6300,
+          "0",
+          "0,1",
+          9996
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0
+      ],
+      "rows": 1,
+      "cols": 2,
+      "evidence": [
+        {
+          "row": [
+            6299,
+            "1",
+            "1",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6300,
+            "0",
+            "0,1",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 2,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        48,
+        174
+      ],
+      "target_degree": [
+        50,
+        175
+      ],
+      "source_basis": [
+        [
+          6297,
+          "8,4,182,1",
+          ""
+        ],
+        [
+          6298,
+          "0,10,686,1",
+          ""
+        ]
+      ],
+      "target_basis": [],
+      "staircase": [
+        [
+          6297,
+          "0",
+          "0",
+          4
+        ],
+        [
+          6298,
+          "1",
+          "1",
+          4
+        ]
+      ],
+      "basis_columns": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "staircase_images": [
+        [],
+        []
+      ],
+      "entries": [],
+      "rows": 0,
+      "cols": 2,
+      "evidence": [
+        {
+          "row": [
+            6297,
+            "0",
+            "0",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6298,
+            "1",
+            "1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 2,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        49,
+        175
+      ],
+      "target_degree": [
+        51,
+        176
+      ],
+      "source_basis": [
+        [
+          6445,
+          "0,11,686,1",
+          ""
+        ]
+      ],
+      "target_basis": [],
+      "staircase": [
+        [
+          6445,
+          "0",
+          "0",
+          4
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        []
+      ],
+      "entries": [],
+      "rows": 0,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            6445,
+            "0",
+            "0",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 1,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        49,
+        177
+      ],
+      "target_degree": [
+        51,
+        178
+      ],
+      "source_basis": [
+        [
+          6656,
+          "8,1,634,1",
+          null
+        ],
+        [
+          6657,
+          "0,3,805,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          6788,
+          "0,50,324,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6656,
+          "1",
+          "0",
+          2
+        ],
+        [
+          6657,
+          "0",
+          "0",
+          9996
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0
+      ],
+      "rows": 1,
+      "cols": 2,
+      "evidence": [
+        {
+          "row": [
+            6656,
+            "1",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6657,
+            "0",
+            "0",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 2,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        50,
+        176
+      ],
+      "target_degree": [
+        52,
+        177
+      ],
+      "source_basis": [
+        [
+          6534,
+          "0,12,686,1",
+          ""
+        ]
+      ],
+      "target_basis": [
+        [
+          6651,
+          "8,2,469,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6534,
+          "0",
+          "0",
+          4
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            6534,
+            "0",
+            "0",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 1,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        51,
+        176
+      ],
+      "target_degree": [
+        53,
+        177
+      ],
+      "source_basis": [],
+      "target_basis": [],
+      "staircase": [],
+      "basis_columns": [],
+      "inverse_rows": [],
+      "staircase_images": [],
+      "entries": [],
+      "rows": 0,
+      "cols": 0,
+      "evidence": [],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        51,
+        177
+      ],
+      "target_degree": [
+        53,
+        178
+      ],
+      "source_basis": [
+        [
+          6652,
+          "8,2,470,1",
+          null
+        ],
+        [
+          6653,
+          "0,13,686,1",
+          null
+        ]
+      ],
+      "target_basis": [],
+      "staircase": [
+        [
+          6652,
+          "1",
+          "1",
+          4
+        ],
+        [
+          6653,
+          "0",
+          "0,1",
+          4
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "staircase_images": [
+        [],
+        []
+      ],
+      "entries": [],
+      "rows": 0,
+      "cols": 2,
+      "evidence": [
+        {
+          "row": [
+            6652,
+            "1",
+            "1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6653,
+            "0",
+            "0,1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 2,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        51,
+        178
+      ],
+      "target_degree": [
+        53,
+        179
+      ],
+      "source_basis": [
+        [
+          6788,
+          "0,50,324,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          6893,
+          "0,15,686,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6788,
+          "0",
+          "0",
+          9995
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            6788,
+            "0",
+            "0",
+            9995
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        52,
+        177
+      ],
+      "target_degree": [
+        54,
+        178
+      ],
+      "source_basis": [
+        [
+          6651,
+          "8,2,469,1",
+          null
+        ]
+      ],
+      "target_basis": [],
+      "staircase": [
+        [
+          6651,
+          "0",
+          "0",
+          9996
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        []
+      ],
+      "entries": [],
+      "rows": 0,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            6651,
+            "0",
+            "0",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": true
+    },
+    {
+      "degree": [
+        52,
+        179
+      ],
+      "target_degree": [
+        54,
+        180
+      ],
+      "source_basis": [
+        [
+          6894,
+          "0,51,324,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7008,
+          "17,1,554,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6894,
+          "0",
+          "0",
+          9995
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            6894,
+            "0",
+            "0",
+            9995
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        53,
+        178
+      ],
+      "target_degree": [
+        55,
+        179
+      ],
+      "source_basis": [],
+      "target_basis": [],
+      "staircase": [],
+      "basis_columns": [],
+      "inverse_rows": [],
+      "staircase_images": [],
+      "entries": [],
+      "rows": 0,
+      "cols": 0,
+      "evidence": [],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        53,
+        179
+      ],
+      "target_degree": [
+        55,
+        180
+      ],
+      "source_basis": [
+        [
+          6893,
+          "0,15,686,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7007,
+          "16,1,554,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6893,
+          "0",
+          "0",
+          4
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            6893,
+            "0",
+            "0",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        54,
+        179
+      ],
+      "target_degree": [
+        56,
+        180
+      ],
+      "source_basis": [],
+      "target_basis": [
+        [
+          7006,
+          "8,1,661,1",
+          null
+        ]
+      ],
+      "staircase": [],
+      "basis_columns": [],
+      "inverse_rows": [],
+      "staircase_images": [],
+      "entries": [],
+      "rows": 1,
+      "cols": 0,
+      "evidence": [],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        54,
+        180
+      ],
+      "target_degree": [
+        56,
+        181
+      ],
+      "source_basis": [
+        [
+          7008,
+          "17,1,554,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7162,
+          "0,1,16,1,554,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          7008,
+          "0",
+          "0",
+          9997
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            7008,
+            "0",
+            "0",
+            9997
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        55,
+        179
+      ],
+      "target_degree": [
+        57,
+        180
+      ],
+      "source_basis": [],
+      "target_basis": [],
+      "staircase": [],
+      "basis_columns": [],
+      "inverse_rows": [],
+      "staircase_images": [],
+      "entries": [],
+      "rows": 0,
+      "cols": 0,
+      "evidence": [],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        55,
+        180
+      ],
+      "target_degree": [
+        57,
+        181
+      ],
+      "source_basis": [
+        [
+          7007,
+          "16,1,554,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7161,
+          "0,1,8,1,661,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          7007,
+          "0",
+          "0",
+          9998
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          1
+        ]
+      ],
+      "entries": [
+        1
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            7007,
+            "0",
+            "0",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        55,
+        181
+      ],
+      "target_degree": [
+        57,
+        182
+      ],
+      "source_basis": [
+        [
+          7163,
+          "0,1,17,1,554,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7247,
+          "0,2,16,1,554,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          7163,
+          "0",
+          "1",
+          5
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            7163,
+            "0",
+            "1",
+            5
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        56,
+        180
+      ],
+      "target_degree": [
+        58,
+        181
+      ],
+      "source_basis": [
+        [
+          7006,
+          "8,1,661,1",
+          null
+        ]
+      ],
+      "target_basis": [],
+      "staircase": [
+        [
+          7006,
+          "0",
+          "0",
+          4
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        []
+      ],
+      "entries": [],
+      "rows": 0,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            7006,
+            "0",
+            "0",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        56,
+        181
+      ],
+      "target_degree": [
+        58,
+        182
+      ],
+      "source_basis": [
+        [
+          7162,
+          "0,1,16,1,554,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7246,
+          "0,2,8,1,661,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          7162,
+          "0",
+          "0",
+          9998
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          1
+        ]
+      ],
+      "entries": [
+        1
+      ],
+      "rows": 1,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            7162,
+            "0",
+            "0",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        57,
+        181
+      ],
+      "target_degree": [
+        59,
+        182
+      ],
+      "source_basis": [
+        [
+          7161,
+          "0,1,8,1,661,1",
+          null
+        ]
+      ],
+      "target_basis": [],
+      "staircase": [
+        [
+          7161,
+          "0",
+          "0",
+          2
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        []
+      ],
+      "entries": [],
+      "rows": 0,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            7161,
+            "0",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        57,
+        182
+      ],
+      "target_degree": [
+        59,
+        183
+      ],
+      "source_basis": [
+        [
+          7247,
+          "0,2,16,1,554,1",
+          null
+        ]
+      ],
+      "target_basis": [],
+      "staircase": [
+        [
+          7247,
+          "0",
+          "0",
+          3
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        []
+      ],
+      "entries": [],
+      "rows": 0,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            7247,
+            "0",
+            "0",
+            3
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    {
+      "degree": [
+        59,
+        182
+      ],
+      "target_degree": [
+        61,
+        183
+      ],
+      "source_basis": [],
+      "target_basis": [],
+      "staircase": [],
+      "basis_columns": [],
+      "inverse_rows": [],
+      "staircase_images": [],
+      "entries": [],
+      "rows": 0,
+      "cols": 0,
+      "evidence": [],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 0,
+      "raw_d2_metadata_covers": false
+    }
+  ],
+  "failures": {},
+  "trust": "staircase relation and prefix semantics are imported finite data, not raw E2.d2 extension or Adams topology"
+}

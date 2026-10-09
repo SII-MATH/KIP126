@@ -1,0 +1,39 @@
+Row2907PDeltaDetection/Descent.lean:86:22: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  C.knownTarget4.equivalence 0
+in the target expression
+  C.knownTarget4.equivalence 0 = fun x => true
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+C : Prefix S pages
+K : KnownDifferential C
+x : (S.element 4 productDegree).carrier
+named : C.product4.equivalence x = fun x => true
+same : x = C.product4.equivalence.symm fun x => true
+zeroDiff : (S.differential 4 productDegree).toFun x = 0
+h : C.knownTarget4.equivalence 0 = fun x => true
+⊢ False
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 4 (AdamsTarget 4 productDegree)).carrier
+  but is expected to have type
+    (S.element 4 knownTargetDegree).carrier
+  in the application
+    C.knownTarget4.equivalence 0
+'Row2907PDeltaDetection.Descent.sourceD3_valid' depends on axioms: [propext, Quot.sound]
+'Row2907PDeltaDetection.Descent.source_swap_named' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.source_projection_named' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.product_projection_named' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.factor_projection_named' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.Prefix.factor4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.Prefix.source4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.Prefix.product4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.Prefix.knownTarget4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.Prefix.factor_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.Prefix.source_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.Prefix.product_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Descent.known_nonzero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

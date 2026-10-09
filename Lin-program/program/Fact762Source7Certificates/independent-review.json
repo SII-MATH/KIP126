@@ -1,0 +1,133 @@
+{
+  "build_observation": {
+    "current_olean_status": "Root full Lake session6460 is rebuilding these artifacts. Historical direct source/log evidence checked; current Lake checkpoint must be matched separately.",
+    "modules": [
+      {
+        "axiom_reports": 5,
+        "historical_direct_exit_code": 0,
+        "module": "Finite",
+        "source_log_match": true
+      },
+      {
+        "axiom_reports": 2,
+        "historical_direct_exit_code": 0,
+        "module": "Propagation",
+        "source_log_match": true
+      },
+      {
+        "axiom_reports": 5,
+        "historical_direct_exit_code": 0,
+        "module": "Semantics",
+        "source_log_match": true
+      },
+      {
+        "axiom_reports": 3,
+        "historical_direct_exit_code": 0,
+        "module": "Inputs",
+        "source_log_match": true
+      }
+    ],
+    "standard_or_no_axiom_reports": 15
+  },
+  "contracts_reviewed": [
+    "source_all_classes derives the full quotient two-element span from a complete homology comparison; named basis0 is distinct from the boundary basis1.",
+    "Both incoming-source complete raw quotients are zero; their faithful actual realizations and PageTower zero propagation are explicit.",
+    "span_next uses surjectivity of actual cycle-to-next map; this covers every next class, not only named rows. It does not assume the named element remains nonzero.",
+    "The page7 result requires all page3..6 named cycle/transition equations, surjective E3 and E7 realizations, the actual d7 zero prefix, and actual zero preservation.",
+    "The conclusion quantifies every sys.Source7 element and supplies the exact VanishesAt obligation of only_six_or_twelve. It does not prove no-hit unless a later caller supplies target nonzeroness.",
+    "Arbitrary target dimension k is universally quantified; a single nonzero coordinate determines the full Matrix k1. No unknown numerical target dimension is fabricated."
+  ],
+  "dependency_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "Fact762IncomingCertificates/Incoming.lean": "f747d1357c8ed1d68eae326a55c9d29247deccc3c4c980b6434f8848364864ac",
+    "Fact762IncomingCertificates/ZeroPropagation.lean": "f78379ab209e37175083d3244f5355a7dca35d593d28f896d776ce544b62471b"
+  },
+  "findings": [],
+  "independent_raw_replay": {
+    "actual_CPP_bytewise_replays": 3,
+    "all_cycle_pairs": 18,
+    "full_SQL_groups_compared": 9,
+    "models": [
+      {
+        "boundaries": 2,
+        "center": [
+          7,
+          133
+        ],
+        "cycles": 4,
+        "homology_classes": 2,
+        "shape": [
+          5,
+          2,
+          1,
+          1
+        ]
+      },
+      {
+        "boundaries": 1,
+        "center": [
+          2,
+          129
+        ],
+        "cycles": 1,
+        "homology_classes": 1,
+        "shape": [
+          2,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "boundaries": 1,
+        "center": [
+          1,
+          128
+        ],
+        "cycles": 1,
+        "homology_classes": 1,
+        "shape": [
+          1,
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "named_E2_basis_id": 2631,
+    "named_local_coordinate": 0,
+    "raw_columns": 5,
+    "source_mon": "1,1,69,1,76,1",
+    "source_row": [
+      2632,
+      7,
+      133,
+      "0",
+      null,
+      9982
+    ]
+  },
+  "limitations": [
+    "The SQL row level9982 and NULL differential are metadata, not a proof of an actual d18 prefix.",
+    "The actual source spectral sequence, complete realizations, transition semantics and prefix proofs remain mathematical inputs.",
+    "The optional E6/E7 coordinate models require a complete one-dimensional current realization and complete zero incoming-source realization; these are not established by merely defining identityComparison.",
+    "This does not settle page4, high-page target nonzeroness, permanence or Fact7.6(2) as an unconditional theorem."
+  ],
+  "reviewer": "certificate_pipeline_next",
+  "source_sha256": {
+    "Fact762Source7Certificates/Finite.lean": "edb399346742f4d7ac2a076c45b5c17db6356509a94479eff2223d2d18634a96",
+    "Fact762Source7Certificates/Inputs.lean": "44a2232f8df4f3c4072e3f98ce58563a2987e0f40740536c83410d1851c14ece",
+    "Fact762Source7Certificates/Propagation.lean": "b4b786758a5aa44b5bf67dbbca102bb683c6754328d42602e7fd663116bd527e",
+    "Fact762Source7Certificates/README.md": "a25dcbf75ef52775e45507066f4eea3b2223e62d92d178e391ccd61da928c023",
+    "Fact762Source7Certificates/Semantics.lean": "e4913e98589d4bfc5b18f9486269660925a7f7548a770c1114cf10a8cef408ea",
+    "Fact762Source7Certificates/compile-audit.json": "ced9f74c971419373824940a0b55b8aa80d821f48832e7ed38f8a0f17d5ad0d7",
+    "Fact762Source7Certificates/incoming5.json": "6bf1304a06daa55d7d9fa68eb1227050efb77c29e9929f9c882497ec20d069e8",
+    "Fact762Source7Certificates/incoming6.json": "acf23da773884b23ebe08c5d1a95f7303c24645970a83730d8ae6dde6c777711",
+    "Fact762Source7Certificates/prepare.py": "279531041fd6253e719fe39d021976948711a1a6eee9badadc814d809f8e0f53",
+    "Fact762Source7Certificates/review.json": "6d7d3d389da0d6a8743fa1a0106cb1eee9d6f66b7ac30ffee40cf758d707ea35",
+    "Fact762Source7Certificates/review.py": "e32e2498ee0f2dd84bba707854300075d953d5496190b24dd05480bede4fb1a2",
+    "Fact762Source7Certificates/source-d2.json": "114576769755abdfad14afaa41d0ca4cd5825d92e57f5a0cdffb81ec445be574",
+    "Fact762Source7Certificates/source.json": "9b7e710f53b4d9bf444fb22d8c7783b4275f7006955a6e4ef6469f1a85d18355"
+  },
+  "status": "no_findings_in_conditional_all_source_scope"
+}

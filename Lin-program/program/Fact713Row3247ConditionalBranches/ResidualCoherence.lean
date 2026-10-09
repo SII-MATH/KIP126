@@ -1,0 +1,7 @@
+import Fact713Row3247ConditionalBranches.ResidualCross
+namespace Fact713Row3247ConditionalBranches.Residual
+open IndexedFamilyCertificates
+theorem family_coherent : Coherent family :=
+  Fact713RefinedComparisonFamily.coherent_append _ _ Fact713D4ComparisonBranches.Residual.family_coherent extra_coherent cross_checked
+#print axioms family_coherent
+end Fact713Row3247ConditionalBranches.Residual

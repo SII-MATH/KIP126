@@ -1,0 +1,39 @@
+Prop79IncomingSearch/Actual.lean:65:44: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  bottomUpper 0
+in the target expression
+  bottomUpper 0 = 0
+
+sphere cnu : AdamsSpectralSequence
+etaLower : (sphere.element 3 sourceDegree).carrier → (cnu.element 3 etaSourceDegree).carrier
+etaUpper : (sphere.element 3 targetDegree).carrier → (cnu.element 3 etaTargetDegree).carrier
+bottomLower : (sphere.element 3 sourceDegree).carrier → (cnu.element 3 sourceDegree).carrier
+bottomUpper : (sphere.element 3 targetDegree).carrier → (cnu.element 3 targetDegree).carrier
+M : Meaning sphere cnu etaLower etaUpper bottomLower bottomUpper
+etaNaturality :
+  ∀ (x : (sphere.element 3 sourceDegree).carrier),
+    (cnu.differential 3 etaSourceDegree).toFun (etaLower x) = etaUpper ((sphere.differential 3 sourceDegree).toFun x)
+bottomNaturality :
+  ∀ (x : (sphere.element 3 sourceDegree).carrier),
+    (cnu.differential 3 sourceDegree).toFun (bottomLower x) = bottomUpper ((sphere.differential 3 sourceDegree).toFun x)
+bottomZero : bottomUpper 0 = 0
+x : (cnu.element 3 sourceDegree).carrier
+named : M.bottomSource x = Naturality.named
+y : (sphere.element 3 sourceDegree).carrier := M.source.symm Row2925Detector.Naturality.named
+hy : M.source y = Row2925Detector.Naturality.named
+etaZero : etaLower y = 0
+upperZero : etaUpper ((sphere.differential 3 sourceDegree).toFun y) = 0
+sphereZero : (sphere.differential 3 sourceDegree).toFun y = 0
+lift : bottomLower y = x
+⊢ bottomUpper 0 = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (sphere.element 3 (AdamsTarget 3 sourceDegree)).carrier
+  but is expected to have type
+    (sphere.element 3 targetDegree).carrier
+  in the application
+    bottomUpper 0
+'Prop79IncomingSearch.Actual.actual_row4180_d3_zero' depends on axioms: [propext, sorryAx, Quot.sound]

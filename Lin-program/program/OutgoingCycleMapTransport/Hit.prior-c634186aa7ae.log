@@ -1,0 +1,14 @@
+OutgoingCycleMapTransport/Hit.lean:56:20: error(lean.unknownIdentifier): Unknown constant `Bool.and_eq_true.mp`
+OutgoingCycleMapTransport/Hit.lean:53:91: error: unsolved goals
+s : System
+x : s.Page 0
+c : HitCertificate s x
+checked : OutgoingCycleCertificates.checkPrefix c.stages = true
+n : ℕ
+hn : n < c.stages.length
+⊢ s.outgoing n (s.at x n) = s.zeroOutgoing n
+'OutgoingCycleMapTransport.zero_after_hit' does not depend on any axioms
+'OutgoingCycleMapTransport.alwaysCycle_of_hit' depends on axioms: [propext, Quot.sound]
+'OutgoingCycleMapTransport.not_permanent_of_hit' does not depend on any axioms
+'OutgoingCycleMapTransport.HitCertificate.sound' depends on axioms: [propext, sorryAx, Quot.sound]
+'OutgoingCycleMapTransport.checkBatch_sound' depends on axioms: [propext, sorryAx, Quot.sound]

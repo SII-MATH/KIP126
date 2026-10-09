@@ -1,0 +1,22 @@
+{
+  "source_sha256": "60eb0b67f679b232b550b24284fc2501a686d187eb6637101d0cc9d2034977b6",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact721FirstLater/Incoming.olean": "db0e2d3dee080086eb60a28192ec0d1865d017375dadd37771c72e9042cc149a",
+    ".lake/build/lib/lean/Row2907PDeltaDetection/Branches.olean": "3aaac7a7df0a8161dbcd5db163c5c0b4f6ec043494146f9d3416448ea6c7a098"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact721FirstLater/Actual.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact721FirstLater/Actual.olean"
+  ],
+  "log": "evidence/Actual-20260922T024344082097Z.log",
+  "external_input_sha256": {
+    "Fact721FirstLater/source.json": "ddd5323fcf68b1d364c0203dbbf25b3c5fb6ce20078b69336953832789c60f44"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "6f701fef20c914a97649157571443c16c7b460ce21f76c766a816ca22e5ae931",
+  "inputs_stable": true,
+  "olean_sha256": "621b888cc321781c13984f4546825ad5e63de9935d7bb4c35314781b0ed705ac"
+}

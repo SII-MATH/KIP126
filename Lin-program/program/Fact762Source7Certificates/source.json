@@ -1,0 +1,268 @@
+{
+  "comparisons": [
+    {
+      "center": [
+        7,
+        133
+      ],
+      "degrees": [
+        [
+          5,
+          132
+        ],
+        [
+          7,
+          133
+        ],
+        [
+          9,
+          134
+        ]
+      ],
+      "groups": [
+        [
+          [
+            2575,
+            "0,4,324,1",
+            "1"
+          ]
+        ],
+        [
+          [
+            2631,
+            "1,1,69,1,76,1",
+            ""
+          ],
+          [
+            2632,
+            "0,5,69,2",
+            ""
+          ]
+        ],
+        [
+          [
+            2695,
+            "391,1",
+            "3,4"
+          ],
+          [
+            2696,
+            "390,1",
+            ""
+          ],
+          [
+            2697,
+            "69,1,82,1",
+            ""
+          ],
+          [
+            2698,
+            "18,1,190,1",
+            ""
+          ],
+          [
+            2699,
+            "0,1,375,1",
+            "4"
+          ]
+        ]
+      ],
+      "name": "source-d2",
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          true
+        ],
+        "k": 5,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        2,
+        129
+      ],
+      "degrees": [
+        [
+          0,
+          128
+        ],
+        [
+          2,
+          129
+        ],
+        [
+          4,
+          130
+        ]
+      ],
+      "groups": [
+        [],
+        [
+          [
+            2381,
+            "0,1,324,1",
+            "1"
+          ]
+        ],
+        [
+          [
+            2436,
+            "341,1",
+            ""
+          ],
+          [
+            2437,
+            "0,2,69,2",
+            ""
+          ]
+        ]
+      ],
+      "name": "incoming5",
+      "wire": {
+        "down": [
+          false,
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 2,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false,
+          true
+        ],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        1,
+        128
+      ],
+      "degrees": [
+        [
+          -1,
+          127
+        ],
+        [
+          1,
+          128
+        ],
+        [
+          3,
+          129
+        ]
+      ],
+      "groups": [
+        [],
+        [
+          [
+            2315,
+            "324,1",
+            "0"
+          ]
+        ],
+        [
+          [
+            2380,
+            "0,1,69,2",
+            ""
+          ]
+        ]
+      ],
+      "name": "incoming6",
+      "wire": {
+        "down": [
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          true
+        ],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    }
+  ],
+  "inputs_sha256": {
+    "Fact762Source7Certificates/prepare.py": "279531041fd6253e719fe39d021976948711a1a6eee9badadc814d809f8e0f53",
+    "PageTransitionCertificates/page-transition-export": "f7b892701724e6d0ef308e54a4eca48a12746c5823572e485cc5f6fe350b56c5",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "metadata": {
+    "change notes": "Add fil,from,to in version table of maps.",
+    "d2_t_max": 177,
+    "t_max": 261,
+    "timestamp": 1710516671,
+    "version": 3
+  },
+  "premise": "Level9982 is external row2632 differential-zero prefix metadata; no mathematical prefix follows from this number alone.",
+  "row2632": [
+    2632,
+    7,
+    133,
+    "0",
+    null,
+    9982
+  ],
+  "source_basis": [
+    [
+      2631,
+      "1,1,69,1,76,1"
+    ],
+    [
+      2632,
+      "0,5,69,2"
+    ]
+  ]
+}

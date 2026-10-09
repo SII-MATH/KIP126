@@ -1,0 +1,120 @@
+{
+  "status": "final_source_consistency_passed",
+  "review_type": "final_source_and_previous_direct_evidence_no_new_build",
+  "initial_root_review": {
+    "sha256": "700d23098f6efc7d60db94ad06f1be790d83e08de74e9055e00e26b8e5912b46",
+    "record": {
+      "scope": "Source review of both full append coherence families and named coverage. No topology realization inferred.",
+      "findings": [],
+      "reviewed": {
+        "program/Fact713RefinedComparisonFamily/Basic.lean": "0cc11e9fe3057cfc4088dd7219dd098841e00d449c52252db88143c8b2875199",
+        "program/Fact713RefinedComparisonFamily/Coherence.lean": "2cdba4e0f22fd45fc93ddb871eeba268299ce26a7b8bffd9097437c0bab41028",
+        "program/Fact713RefinedComparisonFamily/Coverage.lean": "e1da2a16664e724fafe2f2499103886a91db0e72599329a579d9b4d4ff76b261",
+        "program/Fact713RefinedComparisonFamily/Cross.lean": "5779594ca2bb3bbc3ca9725d3fddaa0f58ab93b47deb9226d4a9cc221bc860aa",
+        "program/Fact713RefinedComparisonFamily/Extra.lean": "e869a48916cc1f9889cca13a9eacc263014906c460f9dd1c5e230cc82ce01925",
+        "program/Fact713Row2773ComparisonFamily/Coherence.lean": "fb3cbcb66994528b366eaf8d63f2df3c2745316824135fa8a168b0e07b11a118",
+        "program/Fact713Row2773ComparisonFamily/Coverage.lean": "fbcc5fe396b355a6315cf7afcdcb31366a3dc010553c07ee42bf457063c224f9",
+        "program/Fact713Row2773ComparisonFamily/Cross.lean": "3867c4b67900d4c46a4f90865680eed17169ca1cd8a147696a8039767dc5248b",
+        "program/Fact713Row2773ComparisonFamily/Extra.lean": "e27f5088cc9f670fc60d7fd32d8a3a8c81696730a35eac016381a1e92d400af2"
+      },
+      "checks": [
+        "Both directions of cross-pair compatibility",
+        "Whole entry validity inherited for every old and added entry",
+        "Disjoint keys combined with both unique lists",
+        "Missing named key gives contradiction using unique lookup",
+        "Coverage list uses fixed S0 object, page and bidegree",
+        "1239 and1249 snapshots retain distinct missing d4/d6 statements"
+      ]
+    }
+  },
+  "final_sources": {
+    "Cross.lean": "3867c4b67900d4c46a4f90865680eed17169ca1cd8a147696a8039767dc5248b",
+    "Coherence.lean": "fb3cbcb66994528b366eaf8d63f2df3c2745316824135fa8a168b0e07b11a118",
+    "Extra.lean": "e27f5088cc9f670fc60d7fd32d8a3a8c81696730a35eac016381a1e92d400af2",
+    "Coverage.lean": "fbcc5fe396b355a6315cf7afcdcb31366a3dc010553c07ee42bf457063c224f9"
+  },
+  "final_direct_compile": {
+    "Cross": {
+      "source_sha256": "3867c4b67900d4c46a4f90865680eed17169ca1cd8a147696a8039767dc5248b",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2773ComparisonFamily/Extra.olean": "c052486cf6108e9b553dbb8a0564b6c5bf6ab54225d7e641e39121d652bc0703",
+        ".lake/build/lib/lean/Fact713RefinedComparisonFamily/Cross.olean": "c676920e8d31a3c5318a7766aa00ae8e4d03614b3dd3aa1c15cb55b2835433a9"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2773ComparisonFamily/Cross.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2773ComparisonFamily/Cross.olean"
+      ],
+      "log": "evidence/Cross-20260921T230532517131Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "f49145e9a0c9276faeb8cf0d099c4a224252850b77408bc59af15c0f31547d61",
+      "inputs_stable": true,
+      "olean_sha256": "4462ee3cd2b05940ce11adfed9a040b66072fd5e8b61c74cf68ad8e286a6c90d"
+    },
+    "Coherence": {
+      "source_sha256": "fb3cbcb66994528b366eaf8d63f2df3c2745316824135fa8a168b0e07b11a118",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2773ComparisonFamily/Cross.olean": "4462ee3cd2b05940ce11adfed9a040b66072fd5e8b61c74cf68ad8e286a6c90d",
+        ".lake/build/lib/lean/Fact713RefinedComparisonFamily/Coherence.olean": "ae2e8ca3ceeb4d2c4e0229d1f9544321bcef26da56b7264c4a36d2ae108e6805"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2773ComparisonFamily/Coherence.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2773ComparisonFamily/Coherence.olean"
+      ],
+      "log": "evidence/Coherence-20260921T230840597351Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "fd4ad2bcba2185d326e08bb9d3a67eb762fa9bab840c482dcc1bdb5de0983f9e",
+      "inputs_stable": true,
+      "olean_sha256": "cc110991f340f1c777de2ddc57fe9058c2097be17a2635dcc502b76d06c7b29d"
+    },
+    "Extra": {
+      "source_sha256": "e27f5088cc9f670fc60d7fd32d8a3a8c81696730a35eac016381a1e92d400af2",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713RefinedComparisonFamily/Basic.olean": "48781da35948411408b067d4d731e3cfbbca46738c1812b21259c473aa43647b",
+        ".lake/build/lib/lean/Fact713Row2773Refinement/Data.olean": "30d2d0b6db29127a6184adcac6a5af9a5c58405c3e6eb5a2e90c4577ba58ebee"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2773ComparisonFamily/Extra.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2773ComparisonFamily/Extra.olean"
+      ],
+      "log": "evidence/Extra-20260921T230519781588Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "2e42d57ba443db6cdf88557e3016852bf9116caae0672d772aef4049a130ed37",
+      "inputs_stable": true,
+      "olean_sha256": "c052486cf6108e9b553dbb8a0564b6c5bf6ab54225d7e641e39121d652bc0703"
+    },
+    "Coverage": {
+      "source_sha256": "fbcc5fe396b355a6315cf7afcdcb31366a3dc010553c07ee42bf457063c224f9",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2773ComparisonFamily/Coherence.olean": "cc110991f340f1c777de2ddc57fe9058c2097be17a2635dcc502b76d06c7b29d"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2773ComparisonFamily/Coverage.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2773ComparisonFamily/Coverage.olean"
+      ],
+      "log": "evidence/Coverage-20260921T230843548995Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "59289adc9cf653b5a461a6d7cd43711d4ced008ebea3f54816d5bfb50fddce8f",
+      "inputs_stable": true,
+      "olean_sha256": "d2e5105809ea662c2f0c4d38660f069b36f36f939ab09543280892c866c277a0"
+    }
+  },
+  "checks": [
+    "Exact old family concatenated with imported new entries; no replacement",
+    "Two coherent premises plus disjoint keys and both cross-pair directions",
+    "UniqueKeys derived with nodup_append",
+    "Coverage theorem proves finite named prefix; separate missing-page theorem refutes complete requested roots"
+  ],
+  "independent_review_claimed": false
+}

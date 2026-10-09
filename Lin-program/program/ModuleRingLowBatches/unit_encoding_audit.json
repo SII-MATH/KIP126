@@ -1,0 +1,79 @@
+{
+  "upstream_source": "ExtComplexCertificates/SSeqCpp-build-source/src/dbAdamsSS.cpp",
+  "sha256": "d078b1d547f680e22a430a63e648a8b926e7fa5f702e86ad23461778876fcda6",
+  "convention": {
+    "empty_string": "zero polynomial",
+    "semicolon": "unit polynomial with one empty monomial"
+  },
+  "maps_with_units": [
+    {
+      "name": "Csigmasq__S0",
+      "path": "map_AdamsSS_Csigmasq_to_S0_t200.db",
+      "unit_generator_ids": [
+        1
+      ]
+    },
+    {
+      "name": "Ctheta4__S0",
+      "path": "map_AdamsSS_Ctheta4_to_S0_t200.db",
+      "unit_generator_ids": [
+        1
+      ]
+    },
+    {
+      "name": "Ctheta5__S0",
+      "path": "map_AdamsSS_Ctheta5_to_S0_t200.db",
+      "unit_generator_ids": [
+        1
+      ]
+    },
+    {
+      "name": "C2sigma__S0",
+      "path": "map_AdamsSS_C2sigma__S0_t200.db",
+      "unit_generator_ids": [
+        1
+      ]
+    },
+    {
+      "name": "CW_sigma_nu_eta_2__tmf",
+      "path": "map_AdamsSS_CW_sigma_nu_eta_2_to_tmf_t200.db",
+      "unit_generator_ids": [
+        0
+      ]
+    }
+  ],
+  "ring_tables": [
+    {
+      "object": "S0",
+      "table": "S0_AdamsE2_relations",
+      "column": "rel",
+      "unit_count": 0
+    },
+    {
+      "object": "S0",
+      "table": "S0_AdamsE2_basis",
+      "column": "d2",
+      "unit_count": 0
+    },
+    {
+      "object": "S0",
+      "table": "S0_pi_relations",
+      "column": "rel",
+      "unit_count": 0
+    },
+    {
+      "object": "tmf",
+      "table": "tmf_AdamsE2_relations",
+      "column": "rel",
+      "unit_count": 0
+    },
+    {
+      "object": "tmf",
+      "table": "tmf_pi_relations",
+      "column": "rel",
+      "unit_count": 0
+    }
+  ],
+  "existing_verified_full_maps_affected": false,
+  "reason": "S0__tmf and Cnu__S0 contain no semicolon images"
+}

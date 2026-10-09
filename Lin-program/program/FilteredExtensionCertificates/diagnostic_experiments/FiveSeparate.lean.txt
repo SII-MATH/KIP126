@@ -1,0 +1,14 @@
+import FilteredExtensionCertificates.Import
+namespace FilteredExtensionCertificates.FiveSeparate
+def w0 : WireCertificate := filtered_extension_certificate% "FilteredExtensionCertificates/one0.json"
+theorem valid0 : WireValid w0 := by filtered_extension_cert using ()
+def w1 : WireCertificate := filtered_extension_certificate% "FilteredExtensionCertificates/one1.json"
+theorem valid1 : WireValid w1 := by filtered_extension_cert using ()
+def w2 : WireCertificate := filtered_extension_certificate% "FilteredExtensionCertificates/one2.json"
+theorem valid2 : WireValid w2 := by filtered_extension_cert using ()
+def w3 : WireCertificate := filtered_extension_certificate% "FilteredExtensionCertificates/one3.json"
+theorem valid3 : WireValid w3 := by filtered_extension_cert using ()
+def w4 : WireCertificate := filtered_extension_certificate% "FilteredExtensionCertificates/one4.json"
+theorem valid4 : WireValid w4 := by filtered_extension_cert using ()
+
+end FilteredExtensionCertificates.FiveSeparate

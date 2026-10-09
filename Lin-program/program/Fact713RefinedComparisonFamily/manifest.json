@@ -1,0 +1,32 @@
+{
+  "format_version": 1,
+  "baseline_count": 1234,
+  "extra_count": 5,
+  "family_count": 1239,
+  "available_e12_graph_comparisons": 1236,
+  "unresolved_e12_graph_comparisons": 184,
+  "additional_e12_keys": [
+    "S0:19,140:d5",
+    "S0:24,144:d4"
+  ],
+  "additional_successor_keys": [
+    "S0:28,147:d4",
+    "S0:32,150:d3",
+    "S0:35,152:d2"
+  ],
+  "source_sha256": {
+    "Fact713ComparisonBatches/family.json": "3b6aece24381ef709107ea3693e96753115540d7cb880f7f0b777305e311aa01",
+    "Fact713RefinedSourceSearch/manifest.json": "0c2ac85f09d840798f6d08fc7212fe005905464aaceb26f96abb2e7a5002a664",
+    "Fact713RefinedSourceSearch/refined.json": "cd50a06cb4bd8697eaffdb4448e754148fdb8e240c3ac1582e4fe65304d50c6b",
+    "Fact713RefinedSourceSearch/wires/b_S0_19_140_d5.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+    "Fact713RefinedSourceSearch/wires/b_S0_24_144_d4.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+    "Fact713RefinedSourceSearch/wires/b_S0_28_147_d4.json": "8ef5de7ccb4f07a67aea8c9795e17fec0770b925d97cccbeb58a2c5e96f28097",
+    "Fact713RefinedSourceSearch/wires/b_S0_32_150_d3.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+    "Fact713RefinedSourceSearch/wires/b_S0_35_152_d2.json": "050a3abcf00918a352666022f7c95273a11e785e4fe9b59c99fd1a69953f216f"
+  },
+  "output_sha256": {
+    "family.json": "90c78b5198670db3b4a97d662e5ff079de8ab78f769019835f9995fdf30bbf2d",
+    "extra.json": "04c86c1a00e5763a4662f426940eafdd49e6c893a35af13b044baeb548d05fdc"
+  },
+  "note": "JSON mirrors the exact imported Lean definitions; hashes establish provenance only. The supplied comparison family is coherent but the requested E12 window is incomplete."
+}

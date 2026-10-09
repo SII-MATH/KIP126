@@ -1,0 +1,44 @@
+ActualAdamsSystemBridge/Basic.lean:38:27: warning: Variable name `h` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ActualAdamsSystemBridge/Basic.lean:54:33: error: Application type mismatch: The argument
+  hy
+has type
+  incoming S r d (Sum.inr ⟨e, (h, z)⟩) = x
+but is expected to have type
+  ⋯ ▸ (S.differential r e).toFun z = x
+in the application
+  Exists.intro (↑h) hy
+ActualAdamsSystemBridge/Basic.lean:57:40: error: Application type mismatch: The argument
+  hy
+has type
+  h ▸ (S.differential r e).toFun y = x
+but is expected to have type
+  incoming S r d (Sum.inr ⟨e, (⟨h, trivial⟩, y)⟩) = x
+in the application
+  Exists.intro (Sum.inr ⟨e, (⟨h, trivial⟩, y)⟩) hy
+ActualAdamsSystemBridge/Basic.lean:62:2: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Decidable ((S.differential r d).toFun x = S.zero r (AdamsTarget r d))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+ActualAdamsSystemBridge/Basic.lean:70:52: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+r : ℕ
+d : Bidegree
+x : (S.element r d).carrier
+h : (S.differential r d).toFun x = S.zero r (AdamsTarget r d)
+⊢ sorry = (pages.nextPage r d).toNext ⟦⟨x, h⟩⟧
+ActualAdamsSystemBridge/Basic.lean:72:13: warning: declaration uses `sorry`
+ActualAdamsSystemBridge/Basic.lean:72:22: warning: This simp argument is unused:
+  dif_pos h
+
+Hint: Omit it from the simp argument list.
+  simp only [advance,̵ ̵d̵i̵f̵_̵p̵o̵s̵ ̵h̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'ActualAdamsSystemBridge.quotient_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsSystemBridge.incoming_image' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsSystemBridge.system' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

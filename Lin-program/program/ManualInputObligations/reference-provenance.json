@@ -1,0 +1,132 @@
+{
+  "scope": "Exact mathematical bodies preserved; namespace/import-only isolated copy",
+  "files": [
+    {
+      "original": "Reference/LinProgramReference/Foundations.lean",
+      "original_sha256": "606f624e00893463d6c9c7221f0f831128cdc9c5234e89ebd7c23e367cd9cd33",
+      "copy": "ManualInputObligations/Reference/Foundations.lean",
+      "copy_sha256": "8ecca340212441285b272a7fea2a2cfa78f28d05338a4fbf54f1923042c875e3",
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference",
+        "Umbrella Mathlib.Tactic replaced by existing Omega, Abel, NormNum and Real.Basic imports"
+      ],
+      "normalized_body_sha256": "3c5a7cdcce1327ecd3254832a030faf3ebc21a2b8843f85131e2eb507fb4da9a",
+      "normalized_bodies_identical": true,
+      "original_imports": [
+        "import Mathlib.Data.Finsupp.Basic",
+        "import Mathlib.Data.Finset.Basic",
+        "import Mathlib.Data.ZMod.Basic",
+        "import Mathlib.Tactic"
+      ],
+      "copy_imports": [
+        "import Mathlib.Data.Finsupp.Basic",
+        "import Mathlib.Data.Finset.Basic",
+        "import Mathlib.Data.ZMod.Basic",
+        "import Lean.Elab.Tactic.Omega",
+        "import Mathlib.Tactic.Abel",
+        "import Mathlib.Tactic.NormNum",
+        "import Mathlib.Data.Real.Basic"
+      ]
+    },
+    {
+      "original": "Reference/LinProgramReference/AlgebraTopology.lean",
+      "original_sha256": "2aa054879e88fbd4eea841b7012de6de54b770cd0ef533784c6822c8cbfdb84a",
+      "copy": "ManualInputObligations/Reference/AlgebraTopology.lean",
+      "copy_sha256": "a04e55a385ecc61b64eb54c8675f691eec954855d9ff6cba7ca2b104275588fb",
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference",
+        "Added Mathlib.Topology.Constructions and Mathlib.Topology.UniformSpace.Real to supply product/subspace and real topology instances used by unchanged pointed homotopy bodies"
+      ],
+      "normalized_body_sha256": "29ed909535b5c4223702505f576c9cd0c983bd9ad34b03de80d4267122ea7893",
+      "normalized_bodies_identical": true,
+      "original_imports": [
+        "import LinProgramReference.Foundations",
+        "import Mathlib.Data.Set.Basic",
+        "import Mathlib.Algebra.Module.Submodule.Basic",
+        "import Mathlib.Topology.Basic"
+      ],
+      "copy_imports": [
+        "import ManualInputObligations.Reference.Foundations",
+        "import Mathlib.Data.Set.Basic",
+        "import Mathlib.Algebra.Module.Submodule.Basic",
+        "import Mathlib.Topology.Basic",
+        "import Mathlib.Topology.Constructions",
+        "import Mathlib.Topology.UniformSpace.Real"
+      ]
+    },
+    {
+      "original": "Reference/LinProgramReference/CohomologySteenrod.lean",
+      "original_sha256": "1cd87761f294ffc57da2b774980a5a342af84eaf2f047e44826fa109a5194400",
+      "copy": "ManualInputObligations/Reference/CohomologySteenrod.lean",
+      "copy_sha256": "726e956622bec7ef04310a4198543b29147ac5576fd4a97bcde5982c5136f523",
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference"
+      ],
+      "normalized_body_sha256": "5964f8675a2aad15d1a6e12e90dfe16ae02e0c4ad9dfe5e1ec0e47d12e26ecbc",
+      "normalized_bodies_identical": true,
+      "original_imports": [
+        "import LinProgramReference.AlgebraTopology",
+        "import Mathlib.Data.Finset.Basic",
+        "import Mathlib.Algebra.BigOperators.Group.Finset.Basic"
+      ],
+      "copy_imports": [
+        "import ManualInputObligations.Reference.AlgebraTopology",
+        "import Mathlib.Data.Finset.Basic",
+        "import Mathlib.Algebra.BigOperators.Group.Finset.Basic"
+      ]
+    },
+    {
+      "original": "Reference/LinProgramReference/SteenrodAdams.lean",
+      "original_sha256": "327f2e6948f4a3f1dba6be461c2205b4472b849c02f8d21bd00d65fbb2a5ed59",
+      "copy": "ManualInputObligations/Reference/SteenrodAdams.lean",
+      "copy_sha256": "c19f01164e9738b444761d5251348028d2c386308911af720ff399443f812028",
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference"
+      ],
+      "normalized_body_sha256": "e248b868057a7dfeb892fd99d210f7a2c2bcfaf5c49a321cfb9cc28ef8aac3d3",
+      "normalized_bodies_identical": true,
+      "original_imports": [
+        "import LinProgramReference.CohomologySteenrod",
+        "import Mathlib.Data.Nat.Choose.Sum"
+      ],
+      "copy_imports": [
+        "import ManualInputObligations.Reference.CohomologySteenrod",
+        "import Mathlib.Data.Nat.Choose.Sum"
+      ]
+    },
+    {
+      "original": "Reference/LinProgramReference/AdamsHomology.lean",
+      "original_sha256": "fe5a5cc852be5c675f478a1359914d25f8df661ce303596d46ab797d943581c3",
+      "copy": "ManualInputObligations/Reference/AdamsHomology.lean",
+      "copy_sha256": "527fc8f59f7dc609c70f359876ec4c83010df3801c5fad301b1b2d0dc4b92232",
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference"
+      ],
+      "normalized_body_sha256": "7b24b3f4abe91e2fb5a93dc36c0060b105f2c98c2f337ee955d9382471d4ba4b",
+      "normalized_bodies_identical": true,
+      "original_imports": [
+        "import LinProgramReference.SteenrodAdams"
+      ],
+      "copy_imports": [
+        "import ManualInputObligations.Reference.SteenrodAdams"
+      ]
+    },
+    {
+      "original": "Reference/LinProgramReference/AdamsRules.lean",
+      "original_sha256": "c0fff8b036b1d944d2fb5cb28aaac9b5d7bd76ec699232aff91f8861ee8563b6",
+      "copy": "ManualInputObligations/Reference/AdamsRules.lean",
+      "copy_sha256": "f5e899de1219c1df1056ff94aab36049ce54f0621d08f2e35c80564ebdde64ce",
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference"
+      ],
+      "normalized_body_sha256": "0eb1ec34f562cf3b89249c5f3e7a7cbd51333f231842b481cf689fffed2f7cba",
+      "normalized_bodies_identical": true,
+      "original_imports": [
+        "import LinProgramReference.AdamsHomology"
+      ],
+      "copy_imports": [
+        "import ManualInputObligations.Reference.AdamsHomology"
+      ]
+    }
+  ]
+}

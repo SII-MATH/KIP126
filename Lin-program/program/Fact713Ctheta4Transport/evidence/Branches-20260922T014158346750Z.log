@@ -1,0 +1,10 @@
+Fact713Ctheta4Transport/Branches.lean:22:12: error: Function expected at
+  matrixOf
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  2
+
+Hint: The identifier `matrixOf` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+'Fact713Ctheta4Transport.Branches.residual_false' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

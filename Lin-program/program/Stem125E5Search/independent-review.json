@@ -1,0 +1,85 @@
+{
+  "findings": [],
+  "independent_replay": {
+    "all_SQL_degrees_match": true,
+    "choices": 480,
+    "cycle_pairs": 12385,
+    "full_homotopy_every_vector": true,
+    "higher_columns": 27,
+    "known_centers": 13,
+    "known_family": {
+      "adjacent_pairs": 48,
+      "consecutive_pairs": 52,
+      "entries": 163
+    },
+    "known_homology": 2,
+    "known_input": 17,
+    "local_counts": [
+      2,
+      3,
+      4,
+      20
+    ],
+    "new_blocks": 21,
+    "positive_centers": 17,
+    "possible_dimensions": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "previous_zero_partition": [
+      14,
+      14
+    ],
+    "raw_d2_columns": 26,
+    "zero_centers": 28
+  },
+  "limitations": [
+    "All actual differential, quotient, named-basis, stored-prefix and conditional row interpretations remain mathematical premises.",
+    "The known 163-entry family and local families do not establish one globally realized Adams family for every product choice.",
+    "The result is a range2..7 of local finite coordinate counts, not a unique actual E5 dimension.",
+    "Earlier zero spaces require actual page propagation for a topological application."
+  ],
+  "proof_review": [
+    "All 20 filtration25 full-map choices are exhausted under the stored first column and complex law, not guessed from a named value.",
+    "Filtration14 retains the row2708-controlled zero/one incoming dimension via source14_dimension_link.",
+    "Filtration9 preserves both target prefix choices and both prior row2574 branches, with no chosen actual interpretation.",
+    "Whole quotient products include all 17 positive and 28 zero centers; the 28 split into 14 earlier and 14 newly zero centers.",
+    "Addition is representative-defined and preserved by the quotient coordinate equivalence.",
+    "The README correctly limits 480 choices to finite local products; no whole actual Adams realization or full future family is asserted."
+  ],
+  "reviewer": "certificate_pipeline_next",
+  "source_sha256": {
+    "Stem125E5Search/Branches.lean": "5b4f8830e1df8fe099ed4400641a26eae86ec851b42485c3216c736ebe00fdf6",
+    "Stem125E5Search/Data.lean": "0761be0df1648982e0f5e7d8ccfd7a975d4e99dfce4574a7c59c692bf3be03d6",
+    "Stem125E5Search/Family.lean": "ea1943c8a5e3b5ad78f0b45f6e6f477f0aa55b3afd5d427faa0846cd2bdf1a82",
+    "Stem125E5Search/Known.lean": "9d0dece6646d8cbea6a983886b0fb320633c9a7d9d71a8f7973615e34e5839ed",
+    "Stem125E5Search/Product.lean": "386974155d8e529db929448c5b9cee0e1f198d0f1c5a8e7c5629322662229533",
+    "Stem125E5Search/README.md": "12937e46b542767592262ce7686d5822220397107a47ff60b67894869dacfb25",
+    "Stem125E5Search/Zero.lean": "9fe33b1e2cf9d73c01a6dfbe9bdb022414e013c2b20a71e5592025047063e89c",
+    "Stem125E5Search/branches.json": "db3f9503b56460ec6860d76cdd445ebd63a30750e3def68afc61926d3fdb2987",
+    "Stem125E5Search/compile-audit.json": "cad80806d50c8b772aa266be3da3b1b6eb1c04c17656bc3a7f34021306f577ac",
+    "Stem125E5Search/review.json": "a9ac288b4f9be9f7b110186cfdc460cc8727e99ce83533d8bbbda90f8d9d1c0f",
+    "Stem125E5Search/review.py": "157a6614c45eae01ccd83419c9094fdac0448134e6b1b4aea64955d28a450be1",
+    "Stem125E5Search/search.json": "0547da02505a480429886d36e44df6f4cb5baaf50aeb7783de3da1a32b1b97da"
+  },
+  "status": "no_findings_in_conditional_local_branch_scope",
+  "direct_build_evidence": {
+    "module_count": 6,
+    "exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "standard_axiom_reports": 14,
+    "assert_current_passed": true,
+    "audit_sha256": "cad80806d50c8b772aa266be3da3b1b6eb1c04c17656bc3a7f34021306f577ac",
+    "scope": "Current source, direct logs, current oleans, and source-side review fingerprints validated without recompiling or modifying historical evidence."
+  }
+}

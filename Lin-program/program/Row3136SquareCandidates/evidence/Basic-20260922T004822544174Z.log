@@ -1,0 +1,69 @@
+Row3136SquareCandidates/Basic.lean:14:38: error: failed to synthesize
+  Decidable
+    ((∀ (x : Vec 2), eval (targetDifferential false) (eval (sourceDifferential false false) x) = zero) ↔
+      false = (false && false))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:14:38: error: failed to synthesize
+  Decidable
+    ((∀ (x : Vec 2), eval (targetDifferential false) (eval (sourceDifferential false true) x) = zero) ↔
+      true = (false && false))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:14:38: error: failed to synthesize
+  Decidable
+    ((∀ (x : Vec 2), eval (targetDifferential false) (eval (sourceDifferential true false) x) = zero) ↔
+      false = (false && true))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:14:38: error: failed to synthesize
+  Decidable
+    ((∀ (x : Vec 2), eval (targetDifferential false) (eval (sourceDifferential true true) x) = zero) ↔
+      true = (false && true))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:14:38: error: failed to synthesize
+  Decidable
+    ((∀ (x : Vec 2), eval (targetDifferential true) (eval (sourceDifferential false false) x) = zero) ↔
+      false = (true && false))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:14:38: error: failed to synthesize
+  Decidable
+    ((∀ (x : Vec 2), eval (targetDifferential true) (eval (sourceDifferential false true) x) = zero) ↔
+      true = (true && false))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:14:38: error: failed to synthesize
+  Decidable
+    ((∀ (x : Vec 2), eval (targetDifferential true) (eval (sourceDifferential true false) x) = zero) ↔
+      false = (true && true))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:14:38: error: failed to synthesize
+  Decidable
+    ((∀ (x : Vec 2), eval (targetDifferential true) (eval (sourceDifferential true true) x) = zero) ↔
+      true = (true && true))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:19:73: error: failed to synthesize
+  Decidable (∀ (u : Bool) (v : Vec 2), eval (targetDifferential u) v = zero ↔ v = candidate u (v 0))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:28:34: error: failed to synthesize
+  Decidable (candidate false false = zero)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:28:34: error: failed to synthesize
+  Decidable (candidate true false = zero)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3136SquareCandidates/Basic.lean:37:62: error: failed to synthesize
+  Decidable ((candidate true true = fun x => true) ∧ candidate true true ≠ fun i => ↑i == 0)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'Row3136SquareCandidates.square_iff' depends on axioms: [propext, sorryAx]
+'Row3136SquareCandidates.cycle_iff' depends on axioms: [propext, sorryAx]
+'Row3136SquareCandidates.two_candidates' depends on axioms: [propext, sorryAx]
+'Row3136SquareCandidates.four_parameter_pairs' does not depend on any axioms
+'Row3136SquareCandidates.diagonal_nonzero_case' depends on axioms: [sorryAx]

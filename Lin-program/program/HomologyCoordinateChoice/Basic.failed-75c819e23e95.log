@@ -1,0 +1,60 @@
+HomologyCoordinateChoice/Basic.lean:18:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (homologyEquivalence outgoing incoming second hs).fromCoordinates
+    ((homologyEquivalence outgoing incoming second hs).toCoordinates ?x)
+in the target expression
+  (fun x =>
+        (homologyEquivalence outgoing incoming first hf).toCoordinates
+          ((homologyEquivalence outgoing incoming second hs).fromCoordinates x))
+      ((fun x =>
+          (homologyEquivalence outgoing incoming second hs).toCoordinates
+            ((homologyEquivalence outgoing incoming first hf).fromCoordinates x))
+        x) =
+    x
+
+k m n h j : Nat
+outgoing : Matrix k m
+incoming : Matrix m n
+first : Comparison k m n h
+second : Comparison k m n j
+hf : HomologyComparison outgoing incoming first
+hs : HomologyComparison outgoing incoming second
+x : Vec h
+⊢ (fun x =>
+        (homologyEquivalence outgoing incoming first hf).toCoordinates
+          ((homologyEquivalence outgoing incoming second hs).fromCoordinates x))
+      ((fun x =>
+          (homologyEquivalence outgoing incoming second hs).toCoordinates
+            ((homologyEquivalence outgoing incoming first hf).fromCoordinates x))
+        x) =
+    x
+HomologyCoordinateChoice/Basic.lean:21:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (homologyEquivalence outgoing incoming first hf).fromCoordinates
+    ((homologyEquivalence outgoing incoming first hf).toCoordinates ?x)
+in the target expression
+  (fun x =>
+        (homologyEquivalence outgoing incoming second hs).toCoordinates
+          ((homologyEquivalence outgoing incoming first hf).fromCoordinates x))
+      ((fun x =>
+          (homologyEquivalence outgoing incoming first hf).toCoordinates
+            ((homologyEquivalence outgoing incoming second hs).fromCoordinates x))
+        x) =
+    x
+
+k m n h j : Nat
+outgoing : Matrix k m
+incoming : Matrix m n
+first : Comparison k m n h
+second : Comparison k m n j
+hf : HomologyComparison outgoing incoming first
+hs : HomologyComparison outgoing incoming second
+x : Vec j
+⊢ (fun x =>
+        (homologyEquivalence outgoing incoming second hs).toCoordinates
+          ((homologyEquivalence outgoing incoming first hf).fromCoordinates x))
+      ((fun x =>
+          (homologyEquivalence outgoing incoming first hf).toCoordinates
+            ((homologyEquivalence outgoing incoming second hs).fromCoordinates x))
+        x) =
+    x
+'HomologyCoordinateChoice.equivalence' depends on axioms: [propext, sorryAx, Quot.sound]
+'HomologyCoordinateChoice.coordinates_compatible' depends on axioms: [propext, sorryAx, Quot.sound]

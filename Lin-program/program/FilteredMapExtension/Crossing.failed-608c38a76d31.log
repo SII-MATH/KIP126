@@ -1,0 +1,118 @@
+FilteredMapExtension/Crossing.lean:55:6: error: Type mismatch: After simplification, term
+  hfa
+ has type
+  @SameLeading B inst✝ (G.group (p + 1)) (f.hom a) ↑(targetAt G order y)
+but is expected to have type
+  @SameLeading B inst✝ (G.group (p + 1)) (f.hom a) ↑y
+FilteredMapExtension/Crossing.lean:105:46: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  CrossingAt F G sumFiltered
+FilteredMapExtension/Crossing.lean:106:39: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  crossing_iff_higher_image F G sumFiltered
+FilteredMapExtension/Crossing.lean:109:4: error: Tactic `assumption` failed
+
+case left
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+⊢ sorry.hom sorry ∈ G.group 1
+FilteredMapExtension/Crossing.lean:114:21: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  differential F G sumFiltered
+FilteredMapExtension/Crossing.lean:114:54: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  sourceClass F G sumFiltered
+FilteredMapExtension/Crossing.lean:115:35: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  differential_zero_iff F G sumFiltered
+FilteredMapExtension/Crossing.lean:116:28: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  corrections F G sumFiltered
+FilteredMapExtension/Crossing.lean:119:16: error: Application type mismatch: The argument
+  ↑sourceOne
+has type
+  ℤ × ℤ
+of sort `Type` but is expected to have type
+  A
+of sort `Type u_1` in the application
+  ExactAt F 1 ↑sourceOne
+FilteredMapExtension/Crossing.lean:119:44: error: Application type mismatch: The argument
+  ↑targetOne
+has type
+  ℤ
+of sort `Type` but is expected to have type
+  B
+of sort `Type u_2` in the application
+  ExactAt G 1 ↑targetOne
+FilteredMapExtension/Crossing.lean:120:21: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  differential F G sumFiltered
+FilteredMapExtension/Crossing.lean:120:54: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  sourceClass F G sumFiltered
+FilteredMapExtension/Crossing.lean:121:22: error: Application type mismatch: The argument
+  sumFiltered
+has type
+  FilteredMap.{0, 0} Examples.F Examples.G
+of sort `Type` but is expected to have type
+  FilteredMap.{u_1, u_2} F G
+of sort `Type (max u_1 u_2)` in the application
+  targetClass F G sumFiltered
+'FilteredMapExtension.finite_filtration_exit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.crossing_iff_higher_image' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.noPageCrossing_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.noPageCrossing_iff_higher' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.noPageCrossing_iff_all_representatives' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredMapExtension.Examples.inessential_crossing' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.Examples.inessential_zero_differential' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredMapExtension.Examples.length_zero_crossing' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

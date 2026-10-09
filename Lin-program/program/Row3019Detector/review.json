@@ -1,0 +1,176 @@
+{
+  "E3_coordinate_maps": {
+    "source": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "target": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "all_nonzero_target_directions": [
+    {
+      "E2_representative": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "image": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "input": [
+        1,
+        0
+      ],
+      "quotient": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "E2_representative": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "image": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "input": [
+        0,
+        1
+      ],
+      "quotient": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "E2_representative": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "image": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "input": [
+        1,
+        1
+      ],
+      "quotient": [
+        0,
+        1,
+        0,
+        1
+      ]
+    }
+  ],
+  "columns": 21,
+  "complete_d2_comparisons": 4,
+  "distinct_same_id_E2_basis_is_different_class": true,
+  "failures": [],
+  "full_target_E3_dimension": 2,
+  "input_sha256": {
+    "Row2925Detector/source_independent_audit.py": "1cf431e8d8872f0917be82820712f92a09bb7b02d28736ae60c882bb46809fd7",
+    "Row3019Detector/Actual.lean": "ddbb95c210696d7c35fe5d5324ad0d59e0bc0f5eb1658caccd2bcf37047f9862",
+    "Row3019Detector/Comparison.lean": "55f64588191d4b44e2ddd612aae0e5ef51c8691d5f6bbd5027bdffbc0718243b",
+    "Row3019Detector/comparison-source.json": "0b11aaec9d3b2c6d9cd3e93dae00367f341e583f096672c76012f5b14ccf8b27",
+    "Row3019Detector/export.py": "cf1a130b103549bda341e21c8f7ff5df87db4b3c96d49841c9f19806f530f250",
+    "Row3019Detector/generate_comparison.py": "57d065577bdea1b432553f8ac63508f1c58b5c2d0eab2fb7c79fbf48ae505cd5",
+    "Row3019Detector/source.json": "10b08e129852c78c923d1d75dd367d5c34b280c883a007c840780dadc7e28317",
+    "Row3019Detector/wire/s11t138.json": "c481bb881b6ff17420902ec5bec4639a3528aac5feac41d8cc75694dd49bd6e8",
+    "Row3019Detector/wire/s12t139.json": "5cc85d5c5b592c70fab6aa8aa150bf5827e5e1581645a5392b62708e61e61e3b",
+    "Row3019Detector/wire/s13t139.json": "1fd5ffec4b9fcec17f398995c039c051970ec666cbb5431c787468f47d16a02d",
+    "Row3019Detector/wire/s14t140.json": "92f43bdebac8f7d9abbee968249fb69b36ec3c9a3f201d15948cdbbd578659bc",
+    "Row3019Detector/wire/s16t141.json": "f48dfc156ba6eda7f13a8828225a3af1d502f3cea474e2c28fb9f1539d829242",
+    "Row3019Detector/wire/s9t137.json": "457329e755265b37ac6df1b4f97ebc42b17737728b4be476519dc7cf3dc900a8",
+    "Row3019Search/raw/lifted-search.json": "473997e4464530e74e3c7f86236c1167d34dcfacf8e422fdbaf1fded6f7f8579",
+    "Row3019Search/review.json": "82de7eaf05d05da2ac3e962ff82cb597bb5fc7aaaaeb57709bed0d1aa4b1d1f2",
+    "upstream/category-inventory.json": "506dace295387da68b60bad6a7027bbfe916c9c8c2ac4846ea704133e37059e9"
+  },
+  "lifted_relations": 0,
+  "limitations": "Local d3 naturality, preservation of zero, interpretation of imported E2 relations and d2 values, and Adams realization remain explicit. Raw row3019 d3 is NULL.",
+  "matrices": 6,
+  "metadata": {
+    "C2": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 199,
+      "t_max": 200,
+      "timestamp": 1734865196,
+      "version": 3
+    },
+    "S0": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 177,
+      "t_max": 261,
+      "timestamp": 1710516671,
+      "version": 3
+    }
+  },
+  "reduction_steps": 12,
+  "script_sha256": "f1e0e5ca356e4a718ebe65c69ffa11c0a3fda8ffa83c03b250709c90a55b841e",
+  "source_E2_coordinates": [
+    0,
+    0,
+    1,
+    0
+  ],
+  "source_E3_coordinates": [
+    0,
+    0,
+    1
+  ],
+  "source_basis_id": 3020,
+  "source_basis_ids": [
+    3018,
+    3019,
+    3020,
+    3021
+  ],
+  "source_staircase_id": 3019,
+  "sources": {
+    "C2_AdamsSS_t200.db": "87976dfa0101429e65d4064525176f3f755a969617f1366e6d6571aa79625b8e",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "independent_actual_map_and_full_d2_quotient_audit_passed",
+  "target_map_rank": 2,
+  "unknown_retained": [
+    3019,
+    11,
+    138,
+    "2",
+    null,
+    9000
+  ]
+}

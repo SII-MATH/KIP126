@@ -1,0 +1,7 @@
+Fact715ConstructedActual/Assembly.lean:31:4: error(lean.dependsOnNoncomputable): failed to compile definition, consider marking it as 'noncomputable' because it depends on 'Fact713D4SourceSearch.ActualDescent.Input.nextTarget', which is 'noncomputable'
+Fact715ConstructedActual/Assembly.lean:90:5: error: unexpected token 'named'; expected '_' or identifier
+'Fact715ConstructedActual.Assembly.TargetInput.whole' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715ConstructedActual.Assembly.TargetInput.next' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715ConstructedActual.Assembly.TargetInput.next_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715ConstructedActual.Assembly.TargetInput.next_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+Fact715ConstructedActual/Assembly.lean:98:14: error(lean.unknownIdentifier): Unknown constant `actual_E5`

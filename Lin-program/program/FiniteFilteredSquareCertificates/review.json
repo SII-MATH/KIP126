@@ -1,0 +1,33 @@
+{
+  "status": "finite_square_semantic_replay_passed",
+  "fixtures": 4,
+  "original_fourth_inputs_not_cycles": 1,
+  "witness_bit_mutations": 125,
+  "valid_alternative_witnesses": 31,
+  "rejected_witness_mutations": 94,
+  "direct_records": {
+    "Basic": {
+      "exit_code": 0,
+      "standard_reports": 3,
+      "current_object_matches_direct": true
+    },
+    "Import": {
+      "exit_code": 0,
+      "standard_reports": 2,
+      "current_object_matches_direct": true
+    },
+    "Examples": {
+      "exit_code": 0,
+      "standard_reports": 4,
+      "current_object_matches_direct": true
+    }
+  },
+  "input_sha256": {
+    "examples.jsonl": "99ed9096ee1570753d05df59300e2e46a0ef089433d69bcae6a29d637b49a9d3",
+    "generate_examples.py": "b857977f828b9093fe5a98c3303eefce70dd7547eb21e6b52c9725d5c13fd05a",
+    "review.py": "347655f2134d8ae0e00af405b47aa2f90cab6edeb651a7d8164023a7b01433dd",
+    "Basic.lean": "2274e44f339991bf0effedb6334d84613e2cdcc6ce50b3ca0055161285ef9dd3",
+    "Import.lean": "2358845d7c0d4a24f990c9c9b68e5cc036908c06b22d2ef35274f4bbfeac319a",
+    "Examples.lean": "6074267f1e3a904ab8a5957078c6e08d672226208017d031a2f46abb5e54ac16"
+  }
+}

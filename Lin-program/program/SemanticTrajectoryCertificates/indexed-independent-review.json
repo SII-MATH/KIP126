@@ -1,0 +1,96 @@
+{
+  "actual_example": {
+    "bindings": [
+      {
+        "degree": {
+          "s": 52,
+          "t": 177
+        },
+        "full_matrix_lookup": true,
+        "page": 2,
+        "side": "source"
+      },
+      {
+        "degree": {
+          "s": 52,
+          "t": 177
+        },
+        "full_matrix_lookup": true,
+        "page": 3,
+        "side": "source"
+      },
+      {
+        "degree": {
+          "s": 56,
+          "t": 180
+        },
+        "full_matrix_lookup": true,
+        "page": 2,
+        "side": "target"
+      },
+      {
+        "degree": {
+          "s": 56,
+          "t": 180
+        },
+        "full_matrix_lookup": true,
+        "page": 3,
+        "side": "target"
+      }
+    ],
+    "event": 6651,
+    "family_entries": 351,
+    "page": 4,
+    "source_degree": {
+      "s": 52,
+      "t": 177
+    },
+    "target_degree": {
+      "s": 56,
+      "t": 180
+    }
+  },
+  "assert_indexed": "passed",
+  "axiom_reports": 6,
+  "build_observation": [
+    {
+      "current_inputs": true,
+      "exit_code": 0,
+      "module": "Indexed",
+      "record_sha256": "76e097080716423cc6974095384fa7d1771b64a5ec62e1a9d46c1192d3809249"
+    },
+    {
+      "current_inputs": true,
+      "exit_code": 0,
+      "module": "IndexedExample",
+      "record_sha256": "dfdf0edea8346d7d6ab4f4f334cfc415de43242f4f1c995ffd12510745cb6b44"
+    }
+  ],
+  "findings": [],
+  "inputs_sha256": {
+    "AggregateTargetInventory/EventAudit/Indexed.lean": "1309ea94d9cf27514937438ed62e2ecc19d8bc0938a720f4ac9992da3407cf2e",
+    "IndexedFamilyCertificates/Basic.lean": "aa153c63d766feb49491454acc083cebf8c18dd30c6270bf859c9e8777c52ab2",
+    "IndexedFamilyCertificates/Import.lean": "93a7d8eba94df2675a283aee2039047580151116fadf5d4e077b1b29126dfc39",
+    "IndexedFamilyProducer/HighD2/events/event6651.json": "fb766fbde959d0448e4c3b7ffb51df192897aafff024fdb2ab715e618f075ebd",
+    "IndexedFamilyProducer/HighD2/family.json": "22fd1d0834bf76b32da3e0600fe107fc642ba994f26e02edc13d498644dad9dd",
+    "SemanticTrajectoryCertificates/Event.lean": "f09e4372cc6a8ff421f3782cf1d98f7532d074364be377a3d933425682671a6e",
+    "SemanticTrajectoryCertificates/Indexed.lean": "2f2925a682781bfe71f1c9efc2ec378952ab756a1626b3c3d72c167f0bf022d8",
+    "SemanticTrajectoryCertificates/IndexedExample.lean": "37091a6a7b3ba7ba12fb81c37f4d6ae6e91526e5a919d4f0a7c142743fa998de",
+    "SemanticTrajectoryCertificates/Page.lean": "64539da0617101de775a1f59502308d34ac7c8d754165f0911d04ee1af65082f",
+    "SemanticTrajectoryCertificates/Path.lean": "ad20289eed9585469b8ecc76a15b0a70551e13cb55107dfb18d456202159e255"
+  },
+  "limitations": [
+    "This is exact finite coverage of the specified interval2..r-1, not an existence theorem for an Adams spectral sequence or a global bound outside that interval.",
+    "Actual semantic objects have supplied coordinate interpretations; their topology and intrinsic bidegrees are not established by finite labels.",
+    "Global family coherence and coverage of unrelated keys remain separate obligations. The bound theorem supplies unique keys and the specific event/stage lookups.",
+    "Meaning of all actual incoming sources, outgoing maps, conditional staircase entries and naturality stays in EventData or the application."
+  ],
+  "reviewed_claims": [
+    "page_coverage uses labels.length+2=r and stages.length=labels.length, providing a valid Fin(q-2) for every2<=q<r and matching the exact stage and label.",
+    "Each page lookup binds the entire WireComparison, including incoming/outgoing/projection/inclusion and comparison witnesses, to object/page/source-or-target-degree.",
+    "bound_event_transport obtains page counts and labels from the checked IndexedShape, every binding from BoundWire.Valid, and semantic model counts from EventData stage equality.",
+    "The already reviewed event_transport proves both complete semantic paths and the final same-endpoint differential/nonzero-target statement.",
+    "checkBound_sound powers the tactic and batch lifting; no supplied semantic assumptions are inferred from C++ or hashes."
+  ],
+  "status": "independent_indexed_semantic_API_review_passed"
+}

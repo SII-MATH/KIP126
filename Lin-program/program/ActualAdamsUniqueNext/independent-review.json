@@ -1,0 +1,50 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "finite_replay": {
+    "full_complexes": 568,
+    "one_dimensional_homology_complexes": 273,
+    "actual_nonboundary_named_cases": 588,
+    "all_next_page_elements": 1176,
+    "zero_swapping_bijection_counterexamples": 588
+  },
+  "semantics": [
+    "IsOnlyNonzero asserts actual nonzeroness and dichotomy for every element of the full next-page carrier.",
+    "next_unique uses the actual cycle advance branch, exact quotient-zero iff boundary, and the supplied ZeroMeaning.",
+    "All next-page elements are considered through fromNext and its true right inverse.",
+    "The finite certificate retains full incoming coordinates, their surjectivity, both faithful coordinate maps, and all differential equations from ActualAdamsUniqueBridge.",
+    "The new certificate adds explicit ZeroMeaning; a finite wire or hash cannot manufacture it.",
+    "Fact764 preserves both allowed input branches and its tactic specializes the exact false-branch wire."
+  ],
+  "not_claimed": [
+    "Type bijection alone preserves zero",
+    "Named E2-to-E4 trace without external assembly",
+    "Automatic full coordinate meanings from finite data",
+    "Permanent survival of the E5 class",
+    "Actual topology or convergence"
+  ],
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Fact764",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "inputs_sha256": {
+    "ActualAdamsUniqueNext/Basic.lean": "238388e07a602c3954c63e663414c6a48a32cf830fa47182c32bb20690c8248b",
+    "ActualAdamsUniqueNext/Fact764.lean": "562f0ec8e05fca841a59bb65f420cc08170c15429b1f99700244355ce6e7ec18",
+    "ActualAdamsUniqueBridge/Basic.lean": "11482b48459325156dd878e71a5abb3238b0dab46d225a4054365c851690d414",
+    "ActualAdamsUniqueBridge/Quotient.lean": "4cc8f6895fba58d278d201aa8ea2318be3ad6fe6d102c332948d131d275b8630",
+    "ActualAdamsUniqueBridge/Fact764.lean": "87d498fb2196649ae5303d7ec19a8c4670fed8f55c861075976191ac81259d51",
+    "ActualAdamsSystemBridge/Basic.lean": "f6fab04ed4161c2f05e85c26b98b5bcb1589625f8a2843901aa0b407cc51a0f5",
+    "Fact764ConstrainedE5/Actual.lean": "92a7327907b21eb9c119aec0f62a51eb81c3ee84440a8f95f99fc5a81eeaa2e6"
+  }
+}

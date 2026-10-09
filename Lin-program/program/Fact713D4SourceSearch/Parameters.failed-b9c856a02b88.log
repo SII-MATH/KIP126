@@ -1,0 +1,24 @@
+Fact713D4SourceSearch/Parameters.lean:57:76: error: Application type mismatch: The argument
+  sE3
+has type
+  Matrix sD.h sS.h
+but is expected to have type
+  Matrix (sourceD a b c).m sourceS.m
+in the application
+  CompatibleMap (matrixOf sourceS.k sourceS.m sourceS.outgoing) (matrixOf sourceS.m sourceS.n sourceS.incoming)
+    (matrixOf (sourceD a b c).k (sourceD a b c).m (sourceD a b c).outgoing)
+    (matrixOf (sourceD a b c).m (sourceD a b c).n (sourceD a b c).incoming) sE3
+Fact713D4SourceSearch/Parameters.lean:62:70: error: Application type mismatch: The argument
+  tE3
+has type
+  Matrix tD.h tS.h
+but is expected to have type
+  Matrix (targetD u v).m targetS.m
+in the application
+  CompatibleMap (matrixOf targetS.k targetS.m targetS.outgoing) (matrixOf targetS.m targetS.n targetS.incoming)
+    (matrixOf (targetD u v).k (targetD u v).m (targetD u v).outgoing)
+    (matrixOf (targetD u v).m (targetD u v).n (targetD u v).incoming) tE3
+'Fact713D4SourceSearch.Parameters.sourceD_valid' depends on axioms: [propext, Quot.sound]
+'Fact713D4SourceSearch.Parameters.targetD_valid' depends on axioms: [propext, Quot.sound]
+'Fact713D4SourceSearch.Parameters.source_compatible' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713D4SourceSearch.Parameters.target_compatible' depends on axioms: [propext, sorryAx, Quot.sound]

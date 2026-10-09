@@ -1,0 +1,130 @@
+{
+  "status": "conditional_named_d5_zero_with_complete_other_column_and_incoming",
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "incoming2": {
+    "rows": [
+      [
+        {
+          "id": 2380,
+          "mon": "0,1,69,2",
+          "d2": ""
+        }
+      ],
+      [
+        {
+          "id": 2435,
+          "mon": "340,1",
+          "d2": "2"
+        }
+      ],
+      [
+        {
+          "id": 2489,
+          "mon": "353,1",
+          "d2": ""
+        },
+        {
+          "id": 2490,
+          "mon": "69,1,75,1",
+          "d2": ""
+        },
+        {
+          "id": 2491,
+          "mon": "0,1,339,1",
+          "d2": ""
+        }
+      ]
+    ],
+    "wire": {
+      "down": [
+        false,
+        false,
+        true
+      ],
+      "h": 0,
+      "inclusion": [],
+      "incoming": [
+        false
+      ],
+      "k": 3,
+      "m": 1,
+      "n": 1,
+      "outgoing": [
+        false,
+        false,
+        true
+      ],
+      "projection": [],
+      "up": [
+        false
+      ],
+      "version": 1
+    }
+  },
+  "source5": {
+    "down": [
+      false,
+      true
+    ],
+    "h": 1,
+    "inclusion": [
+      true,
+      false
+    ],
+    "incoming": [],
+    "k": 1,
+    "m": 2,
+    "n": 0,
+    "outgoing": [
+      false,
+      true
+    ],
+    "projection": [
+      true,
+      false
+    ],
+    "up": [],
+    "version": 1
+  },
+  "source_rows": [
+    [
+      2693,
+      "4",
+      null,
+      9000
+    ],
+    [
+      2694,
+      "3",
+      "1",
+      9995
+    ]
+  ],
+  "target_last_column_E5": [
+    1
+  ],
+  "named_column": {
+    "raw": [
+      2693,
+      "4",
+      null,
+      9000
+    ],
+    "theorem": "Row2693D5Search.Actual.Input.named_d5_zero",
+    "coordinates": [
+      0
+    ]
+  },
+  "retained_column": {
+    "raw": [
+      2694,
+      "3",
+      "1",
+      9995
+    ],
+    "coordinates": [
+      1
+    ]
+  },
+  "limitation": "Complete actual coordinate/product/quotient and stored-column meanings remain premises."
+}

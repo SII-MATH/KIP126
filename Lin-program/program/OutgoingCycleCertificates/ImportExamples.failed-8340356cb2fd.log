@@ -1,0 +1,13 @@
+OutgoingCycleCertificates/ImportExamples.lean:12:11: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Stage
+
+Hint: Adding the command `deriving instance Inhabited for PageTransitionCertificates.Stage` may allow Lean to derive the missing instance.
+OutgoingCycleCertificates/ImportExamples.lean:12:63: error: Expected type must not contain metavariables
+  imported.stages[0]!.vector = fun x => true
+OutgoingCycleCertificates/ImportExamples.lean:13:11: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Inhabited Stage
+
+Hint: Adding the command `deriving instance Inhabited for PageTransitionCertificates.Stage` may allow Lean to derive the missing instance.
+OutgoingCycleCertificates/ImportExamples.lean:13:49: error: Expected type must not contain metavariables
+  imported.stages[1]!.wire.m = 0
+'OutgoingCycleCertificates.ImportExamples.imported_valid' depends on axioms: [propext]

@@ -1,0 +1,171 @@
+{
+  "database_sha256": {
+    "S0": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "generator_sha256": "87e0e2e7ded790f1037cc2b434b1af840a1ccd236cd430527d8a56dd64f4df34",
+  "roots": {
+    "source": {
+      "degree": [
+        8,
+        135
+      ],
+      "status": "complete_conditional_finite_comparison",
+      "e3_dimension": 2,
+      "e4_dimension": 2
+    },
+    "d4_target": {
+      "degree": [
+        12,
+        138
+      ],
+      "status": "complete_conditional_finite_comparison",
+      "e3_dimension": 1,
+      "e4_dimension": 1
+    },
+    "h3": {
+      "degree": [
+        1,
+        8
+      ],
+      "status": "complete_conditional_finite_comparison",
+      "e3_dimension": 1,
+      "e4_dimension": 1
+    },
+    "generator8": {
+      "degree": [
+        4,
+        18
+      ],
+      "status": "complete_conditional_finite_comparison",
+      "e3_dimension": 1,
+      "e4_dimension": 1
+    },
+    "h3_source_product": {
+      "degree": [
+        9,
+        143
+      ],
+      "status": "blocked",
+      "reason": "unknown S0:6,141:d3:row3283; target dimension 1"
+    },
+    "h3_target_product": {
+      "degree": [
+        13,
+        146
+      ],
+      "status": "complete_conditional_finite_comparison",
+      "e3_dimension": 2,
+      "e4_dimension": 2
+    },
+    "generator8_source_product": {
+      "degree": [
+        12,
+        153
+      ],
+      "status": "blocked",
+      "reason": "unknown S0:12,153:d3:row4306; target dimension 1"
+    },
+    "generator8_target_product": {
+      "degree": [
+        16,
+        156
+      ],
+      "status": "blocked",
+      "reason": "unknown S0:13,154:d3:row4364; target dimension 1"
+    }
+  },
+  "complete_comparisons": 29,
+  "failures": {
+    "S0:9,143:d3": "unknown S0:6,141:d3:row3283; target dimension 1",
+    "S0:12,153:d3": "unknown S0:12,153:d3:row4306; target dimension 1",
+    "S0:16,156:d3": "unknown S0:13,154:d3:row4364; target dimension 1"
+  },
+  "conditional_uses": [
+    {
+      "block": "S0:8,135:d3",
+      "object": "S0",
+      "source": [
+        8,
+        135
+      ],
+      "page": 3,
+      "row": [
+        2796,
+        "2",
+        null,
+        9000
+      ],
+      "kind": "conditional_h3_d0",
+      "target_predecessor": "S0:11,137:d2"
+    },
+    {
+      "block": "S0:12,138:d3",
+      "object": "S0",
+      "source": [
+        9,
+        136
+      ],
+      "page": 3,
+      "row": [
+        2861,
+        "1",
+        null,
+        9000
+      ],
+      "kind": "conditional_csigma",
+      "target_predecessor": "S0:12,138:d2"
+    }
+  ],
+  "target_product_obstruction": [
+    {
+      "factor": "h3",
+      "input_degree": [
+        12,
+        138
+      ],
+      "input_e2_vector": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "output_degree": [
+        13,
+        146
+      ],
+      "output_e2_vector": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "conclusion": "literal_zero_cannot_detect_nonzero_E4_target"
+    },
+    {
+      "factor": "d0",
+      "input_degree": [
+        12,
+        138
+      ],
+      "input_e2_vector": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "output_degree": [
+        16,
+        156
+      ],
+      "output_e2_vector": [
+        0,
+        0,
+        0
+      ],
+      "conclusion": "literal_zero_cannot_detect_nonzero_E4_target"
+    }
+  ]
+}

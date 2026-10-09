@@ -1,0 +1,50 @@
+{
+  "status": "graded_comparison_replay_passed",
+  "counts": {
+    "filtered_maps": 1179,
+    "source_and_target_isomorphisms": 18864,
+    "survivor_recursions": 18864,
+    "initial_pages": 4716,
+    "event_equivalences": 82584,
+    "essential_equivalences": 82584,
+    "target_cokernel_recursions": 18864,
+    "all_target_incoming_steps": 17685,
+    "all_target_stable_steps": 23580,
+    "noncycle_original_events": 2376
+  },
+  "direct_records": {
+    "Basic": {
+      "exit_code": 0,
+      "standard_reports": 7,
+      "current_object_matches_direct": true
+    },
+    "Event": {
+      "exit_code": 0,
+      "standard_reports": 4,
+      "current_object_matches_direct": true
+    },
+    "Recurrence": {
+      "exit_code": 0,
+      "standard_reports": 6,
+      "current_object_matches_direct": true
+    },
+    "AllTargets": {
+      "exit_code": 0,
+      "standard_reports": 7,
+      "current_object_matches_direct": true
+    },
+    "Examples": {
+      "exit_code": 0,
+      "standard_reports": 6,
+      "current_object_matches_direct": true
+    }
+  },
+  "input_sha256": {
+    "Basic.lean": "3d72ba765ddcc14619d9f4758a691057b3b3a87a1f216f8d4430f39240e69cf6",
+    "Event.lean": "a85d26a33b191945d9c89ce7defcca566d8220c6b5decb71d9120625ec6a54a8",
+    "Recurrence.lean": "01d3a1f687e1163614fe7b9538d932f3e5af00fdba9860ae8fbb1fd7d934c543",
+    "AllTargets.lean": "ceacd7834d4facde2605ab08faa8010d3cf32de7c389e3f9d75ad3f91f6c9d9c",
+    "Examples.lean": "20e227a15c768307f24623feccea6c2d147fc9c9327aeb986f588e7c76643d92",
+    "review.py": "92595dbcd4fe9be8d9e8cbb442c8dfd7e56e3ccac10dc0b65c5b857617442e2c"
+  }
+}

@@ -1,0 +1,71 @@
+ActualAdamsIncomingBridge/Basic.lean:15:18: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  b - c ≥ 1
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑{ filtration := filtration✝, internal := internal✝ }.filtration
+ b := ↑r
+ c := ↑filtration✝
+ActualAdamsIncomingBridge/Basic.lean:38:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (S.differential r ?m.15).toFun 0
+in the target expression
+  pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun (⋯.mp (⋯.mpr 0))) = S.zero r d
+
+case pos
+S : AdamsSpectralSequence
+r : ℕ
+d : Bidegree
+h : r ≤ d.filtration
+⊢ pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun (⋯.mp (⋯.mpr 0))) = S.zero r d
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    differential._proof_1 S r d (Eq.mpr_prop (Eq.refl (r ≤ d.filtration)) h)
+  has type
+    @Eq Type (if r ≤ d.filtration then (S.element r (sourceDegree r d)).carrier else Unit)
+      (S.element r (sourceDegree r d)).carrier
+  but is expected to have type
+    @Eq Type (Source S r d) (S.element r (sourceDegree r d)).carrier
+  in the application
+    ⋯.mp
+ActualAdamsIncomingBridge/Basic.lean:59:59: error: unsolved goals
+S : AdamsSpectralSequence
+r : ℕ
+d : Bidegree
+x✝ : (S.element r d).carrier
+h : r ≤ d.filtration
+x : (S.element r d).carrier
+⊢ (∃ y, pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun (⋯.mp y)) = x) ↔
+    ∃ y, pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun y) = x
+ActualAdamsIncomingBridge/Basic.lean:65:68: error: Type mismatch: After simplification, term
+  hy
+ has type
+  Eq.rec (motive := fun x h => (S.element r (AdamsTarget r (sourceDegree r d))).carrier → (S.element r x).carrier) id ⋯
+      ((S.differential r (sourceDegree r d)).toFun y) =
+    x
+but is expected to have type
+  ⋯ ▸ (S.differential r (sourceDegree r d)).toFun y = x
+ActualAdamsIncomingBridge/Basic.lean:76:20: error: Type mismatch: After simplification, term
+  hy
+ has type
+  he ▸ (S.differential r (sourceDegree r d)).toFun y = x
+but is expected to have type
+  Eq.rec (motive := fun x h => (S.element r (AdamsTarget r (sourceDegree r d))).carrier → (S.element r x).carrier) id ⋯
+      ((S.differential r (sourceDegree r d)).toFun y) =
+    x
+ActualAdamsIncomingBridge/Basic.lean:61:47: warning: This simp argument is unused:
+  if_pos h
+
+Hint: Omit it from the simp argument list.
+  simp only [̵d̵i̵f̵f̵e̵r̵e̵n̵t̵i̵a̵l̵,̵S̵o̵u̵r̵c̵e̵,̵d̵i̵f̵_̵p̵o̵s̵ ̵h̵,̵i̵f̵_̵p̵o̵s̵[̲d̲i̲f̲f̲e̲r̲e̲n̲t̲i̲a̲l̲,̲ ̲S̲o̲u̲r̲c̲e̲,̲ ̲d̲i̲f̲_̲p̲o̲s̲ h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'ActualAdamsIncomingBridge.target_sourceDegree' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsIncomingBridge.differential_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsIncomingBridge.source_above_filtration' depends on axioms: [propext, Quot.sound]
+'ActualAdamsIncomingBridge.differential_image' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsIncomingBridge.hit_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

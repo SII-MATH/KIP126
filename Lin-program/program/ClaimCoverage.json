@@ -1,0 +1,789 @@
+{
+  "schema": "lin-claim-coverage/v1",
+  "status": "step4_incomplete",
+  "audit_method": "All17CSVrows and3expandedpaperallpageclaims accountedfor. Rootbuild26514exit0:3784jobs/1576modules/48rebuilt. Fullaudit16266exit0:70972declarations/23environments. Currenthashassert8183exit0.3078binaryinputs/137libraries. C++regression76198passed,no later C++changes.",
+  "claims": [
+    {
+      "id": "strategy-e2",
+      "level": "finite_semantics_partial",
+      "actual_inputs": [
+        "upstream/kervaire-49/*_AdamsSS*.db",
+        "ExtComplexCertificates/actual-s0/manifest.json"
+      ],
+      "certificate_families": [
+        "Milnor",
+        "ExtComplex",
+        "Resolution",
+        "RealMap"
+      ],
+      "proved_theorems": [
+        "ExtComplexCertificates/ActualResolution.lean: checkRaw_sound",
+        "ExtComplexCertificates/ActualExactnessExamples.lean: exactCase0_0",
+        "RealMapCertificates/MatrixSemantics.lean",
+        "MilnorCertificates/Coassociativity.lean: coassociative_pad",
+        "MilnorCertificates/DualAlgebra.lean: dualMul_assoc",
+        "MilnorCertificates/DualAlgebra.lean: certified_products_associative",
+        "MilnorCertificates/GradedDual.lean: finite_homogeneous_decomposition",
+        "MilnorCertificates/FinitePolynomialAlgebra.lean: finitePolynomial_mul",
+        "ExtComplexCertificates/ActualFiniteExactness.lean: finitePositiveHomogeneousExactness",
+        "ExtComplexCertificates/ActualHomCohomology.lean: actualHomCohomologyEquiv",
+        "SemilinearMapCertificates/AllVectors.lean: allVectors"
+      ],
+      "unproved_premises": [
+        "49 spectra: original Steenrod modules, complete free resolutions, Ext identification and all map comparisons missing.",
+        "New S0 resolution experiment t<=8 uses GitHub commit, not fixed paper release.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence."
+      ],
+      "batch_scope": "All180 direct maps covered in imported finite algebra through source t<=12 (135 module-module,43 module-S0,1 ring-ring,1 semilinear module-tmf). Larger verified scopes: S0->tmf t<=261 and Cnu->S0 t<=200.49 spectra inventoried; actual new S0 resolution t<=8 has16 generators and45 exactness certificates transported into finite-support modules. Not49 reconstructed topological E2 pages.",
+      "paper_location": "Introduction \u00a71",
+      "requested_conclusion": "Adams E2 pages and maps",
+      "actual_complex_update": "Actual finite-support degreewise projective chain complex and augmentation chainmap;genuine homogeneous homology vanishes positive s at t<=8,H00=ZMod2;notglobalQuasiIso/Ext_A."
+    },
+    {
+      "id": "strategy-d2",
+      "level": "finite_semantics_partial",
+      "actual_inputs": [
+        "release-certificates/*-d2.jsonl",
+        "release-certificates/AppendixD2.lean"
+      ],
+      "certificate_families": [
+        "Linear",
+        "PageTransition"
+      ],
+      "proved_theorems": [
+        "LinearCertificates/Checker.lean: checkComplex_sound",
+        "PageTransitionCertificates/Basic.lean: checkComparison_sound"
+      ],
+      "unproved_premises": [
+        "Secondary Steenrod operation and comparison theorem yielding actual Adams d2 not implemented.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence."
+      ],
+      "batch_scope": "2512 adjacent-matrix square-zero checks in complex-audit; imported selected d2 blocks; unknown values excluded.",
+      "paper_location": "Introduction \u00a71",
+      "requested_conclusion": "selected Adams d2 differentials",
+      "reconstruction_update": "25 complete staircase basis reconstructions, 14 comparisons, 9 known raw columns and 15 retained NULL cells. 16 matrix-role uses require explicit StaircaseMeaning; full build 2346 passed. This does not prove actual Adams d2."
+    },
+    {
+      "id": "strategy-propagation",
+      "level": "finite_and_conditional",
+      "actual_inputs": [
+        "upstream/proofs_csv/*.csv",
+        "upstream/kervaire-49/ss.json"
+      ],
+      "certificate_families": [
+        "Propagation",
+        "Branches",
+        "Affine",
+        "Connecting",
+        "InducedMap"
+      ],
+      "proved_theorems": [
+        "PropagationCertificates/Rules.lean: check_sound",
+        "PropagationCertificates/Branches.lean: exclude_sound",
+        "AdvancedRuleCertificates/Connecting.lean: connecting_natural",
+        "PageTransitionCertificates/InducedMap.lean: induced_coordinates_all"
+      ],
+      "unproved_premises": [
+        "No full replay of 2,672,275 proof events.",
+        "Generalized Leibniz/Mahowald topological rules and scoped historical state incomplete."
+      ],
+      "batch_scope": "49 spectra,180 direct+115 derived maps,61 cofibers,36 commuting relations inventoried; 20 source tags,17 known observed+NULL.",
+      "paper_location": "Introduction \u00a71",
+      "requested_conclusion": "propagated Adams differentials and extensions",
+      "derived_map_update": "115configured derived records2849 source blocks;5460 checked certificates69batches includingdependencies/881 E2 commutativity equalities.26 nonzero E2 composites and69 permanence obligations explicitly retained. Cofiber finite exactness audit active,not accepted yet.",
+      "cofiber_update": "All61 configurations3cyclicpositions4440 nonempty-middle t<=12 blocks classified:4411 finite exactness,29 noncomplex;8021 dependency certificates;156 kernel batches passed.57 cyclic shifts(1,0),4 shifts(2,1).Does not prove topological LES/connecting spectral-sequence laws.",
+      "additive_filtration_update": "ActualAdamsAdditiveFiltration constructs genuine additive Z/B subgroups, cycle-only additive advance, complete additive image, boundary kernel and quotient addition from local homology AddMeaning. AddMeaning implies ZeroMeaning; actual 49 spectra and local compatible page maps still unproved.",
+      "generalized_rule_audit": "GeneralizedLeibnizAudit: exact 26 v2 excerpts distinguish ordinary same-page Leibniz, three crossing definitions, actual extension-ESS and synthetic lambda square. Representative square transfer proved with all-lift correction stability; no theorem claiming full paper 6.1.",
+      "representative_square": "RepresentativeSquareCertificates and RepresentativeSquareProducer: deterministic C++ witnesses for whole commuting matrices and subgroup stability; strict imported 1480-record kernel batch, both branches. Algebraic coset transfer only; synthetic ESS comparisons and actual Theorem6.1 remain unproved.",
+      "filtered_map_construction": "FilteredMapExtension constructs actual additive quotient pages and the map-induced extension differential, proves next-source=kernel and next-target=cokernel, and identifies quotient equations with leading representative extensions. Crossing uses these actual quotient equations and exact leading degrees, with proved higher-image/all-representative equivalence; no topology/synthetic ESS identification claimed.",
+      "quotient_extension_square": "FilteredExtensionSquare proves three actual quotient extension equations plus page-defined no-crossing in a filtered commuting square imply the fourth at lengthm+l-n. It allows correcting raw source representatives and has nonzero integer examples. Classical/synthetic connecting-map comparisons still missing.",
+      "filtered_extension_certificate": "FilteredExtensionCertificates: strict complete-filtration JSON import, actual quotient differential ResultValid, sound checker, typed input tactic.604 producer records kernel checked in16 bounded batches;112 independent invalid witnesses kernel rejected and a nonzero quotient example proved.64dimension proof tracked separately.",
+      "filtered_no_crossing": "FilteredCrossingCertificates: executable full-higher-source factor check implies actual quotient NoPageCrossing for every well-formedness proof of the fixed input, plus all-representative stability.596kernel checked fixtures;8valid extensions rejected for crossing; independent12796query oracle. No synthetic or topological comparison inferred.",
+      "finite_filtered_square": "FiniteFilteredSquareCertificates proves the fixed fourth actual quotient extension from complete filtrations, three corrected representative equations, whole commutativity and no-crossing factors. FiniteFilteredSquareProducer: 863 actual C++ outputs kernel checked in 23 direct modules; 22240 producer cases and 10610 independent oracle queries. No synthetic comparison assumed.",
+      "associated_graded_comparison": "FilteredMapGradedComparison: source survivors embed in the initial associated graded; target is the initial graded quotient by earlier boundaries. Both directions of ordinary extension comparison, kernel/cokernel recurrence, and all nonnegative target degrees proved in five direct modules. Final target relations use f(F0), requiring F0=top to cover the full image. Independent proper-F0/nonseparated-filtration oracle passed.",
+      "two_term_homology": "FilteredTwoTermSequence constructs actual page differential, square-zero, literal kernel/image homology and next-page additive isomorphism, including source0 and absentnegativefiltration. Initial page is associatedgraded; no assumed page-transition record. Three directmodules passed.",
+      "bounded_two_term_limit": "Actual induced kernel and restrictedcokernel filtrations, target final quotient comparison, source injection and boundedtarget surjection proved. FilteredTwoTermLimit gives actual stablepage=gradedkernel times gradedrestrictedcoker at n=q+t+1 when Gq=0; does not infer Adams boundedness from finite certificates.",
+      "certificate_completeness": "FilteredExtensionCertificateCompleteness proves exact finite ResultValid iff an accepted witness exists. Executable exhaustive reference search and no-certificate filtered_extension_search tactic, with finite completeness and kernel soundness. Exponential, not a claim of C++ implementation completeness.",
+      "actual_page_certificates": "FilteredExtensionPageBridge transports604 rawcycle extension and596 stable certificates to actual full two-term pageD, with fixed input/result tactic. General leading representatives may need correction; crossing definition retains inessential exact target possibility.",
+      "finite_source_limit": "FilteredFiniteSourceLimit proves finite-source + separated actual target filtration gives common nonzero-image depth and stable actual kernel/restrictedcoker graded; infinite unbounded target sequence example verified. No actual Adams separation/finite-source premise supplied automatically.",
+      "square_page_bridge": "FilteredSquarePageBridge: full fourth actual pageD event with corrected representative; all863existing certified outputs transported, 3modules integrated3072.",
+      "stable_completeness": "FilteredCrossingCertificateCompleteness: exact existing stable result iff acceptedcertificate exists, exponential reference search+filtered_stable_search. FiniteFilteredSquareCertificateCompleteness instead proves full explicit Premises iff accepted; formal counterexample shows fourthResult alone weaker.",
+      "finite_prefix_boundary": "FilteredLateDifferential: finite ZMod2 actual two-term pageD has arbitrarily late nonzero differential after any chosen finite zero-prefix, even bounded separated target. No finite-prefix-only permanence claim."
+    },
+    {
+      "id": "strategy-101-105",
+      "level": "finite_basis_complete_elimination_missing",
+      "actual_inputs": [
+        "doc_data/kervaire_claims.csv",
+        "upstream/kervaire-49/S0_AdamsSS_t261.db",
+        "AggregateTargetInventory/inventory.json"
+      ],
+      "certificate_families": [
+        "Finite elimination framework"
+      ],
+      "proved_theorems": [
+        "AggregateTargetInventory/Aggregate.lean: total_dimension",
+        "AggregateTargetInventory/Aggregate.lean: forward_backward",
+        "AggregateTargetInventory/Aggregate.lean: backward_forward",
+        "AggregateTargetInventory/EventAudit/Events.lean: event2435_target_in_image",
+        "AggregateTargetInventory/EventAudit/Executable.lean: check_sound"
+      ],
+      "unproved_premises": [
+        "No actual exhaustive105 target certificate with101 semantically justified eliminations and induction inputs.",
+        "All36 accepted incoming rows now have complete finite target quotients in the399-entry extension. Their actual Adams interpretation, inherited source conditions and new known-successor meaning remain unproved."
+      ],
+      "batch_scope": "Complete pinned stem125 input: 105 E2 basis generators and 105 staircase rows across 45 filtrations. Software orientation: 38 incoming, 63 outgoing, 4 sentinel states. Of the 63 outgoing states, 61 have stored values and 2 are pending NULL pages; these are not 101 proved eliminations. All coordinate expansions independently audited.",
+      "paper_location": "Introduction \u00a71",
+      "requested_conclusion": "101 targets ruled out",
+      "event_audit": {
+        "complete_finite_events": 95,
+        "outgoing": 59,
+        "incoming": 36,
+        "unresolved": 6,
+        "elimination_theorem": "not_proved",
+        "prior_cycle_steps": 102,
+        "prior_nonboundary_steps": 102,
+        "endpoint_traces": 190,
+        "same_page_full_nonimage": 2,
+        "executable_certificates": 95,
+        "conditional_comparisons": 358,
+        "indexed_certificates": 95,
+        "baseline_complete_comparisons": 327,
+        "baseline_conditional_roots": 6,
+        "baseline_coordinate_links": 261,
+        "new_events": [
+          3254,
+          3744,
+          3745,
+          6651,
+          7007,
+          7162,
+          7247,
+          3391
+        ],
+        "bound_family_entries": 358,
+        "bound_events": 95,
+        "coherent_family": "IndexedD5Certificates.family_coherent",
+        "current_conditional_snapshot": "AggregateD5Conditional (full Lake2459 passed)",
+        "bound_family_snapshot": "IndexedD5Certificates351+7 (full Lake2459 passed)",
+        "unresolved_ids": [
+          2696,
+          2697,
+          2852,
+          3151,
+          3152,
+          3992
+        ],
+        "branchwise_common_event": {
+          "staircase_id": 2697,
+          "branches": 2,
+          "counted_in_shared94": false,
+          "proof": "AffineRemainingSearch.Pipeline.Both.each_branch",
+          "scope": "two explicitly interpreted branch families; not two additional events"
+        },
+        "branchwise_3151": {
+          "branches": 4,
+          "counted_in_shared95": false,
+          "proof": "Row3151BranchCertificates.Semantics.each_branch",
+          "scope": "all four unknown column completions; named differential value remains an explicit imported premise"
+        },
+        "semantic_transport": "SemanticTrajectoryCertificates: full indexed paths and caller-request endpoint binding; full meanings remain explicit premises; full Lake2459 passed",
+        "named_elimination_audit": {
+          "proved_named_obstructions": 95,
+          "outgoing": 59,
+          "incoming": 36,
+          "incoming_target_full_comparison": 23,
+          "incoming_target_missing_comparison": 13,
+          "dimension_elimination": "not_proved; noncycles may cancel in linear combinations",
+          "proof": "AggregateEliminationCertificates.Data.all_obstructions"
+        },
+        "branchwise_3992": {
+          "branches": 8,
+          "counted_in_shared95": false,
+          "independent_derivation": false,
+          "proof": "Row3992BranchCertificates.Checks.result",
+          "scope": "known differential is caller premise; all remaining-column possibilities checked"
+        },
+        "stored_event_slots": 101,
+        "known_value_records": 99,
+        "pending_outgoing_records": [
+          2696,
+          2852
+        ]
+      },
+      "whole_homology_update": {
+        "proof": "Stem125HomologyCertificates.D2.equivalence",
+        "input_dimension": 105,
+        "E3_coordinates": 44,
+        "exact_scope": "whole finite d2 homology over45 recorded nonzero centers; 7NULL columns retain explicit staircase meaning",
+        "d3_partial": {
+          "centers": 28,
+          "input": 37,
+          "output": 23,
+          "missing_nonzero_centers": 5,
+          "missing_dimension": 7
+        },
+        "d4_partial": {
+          "centers": 9,
+          "input": 9,
+          "output": 2
+        },
+        "whole_E4_or_E5": "wholefiniteE4 exactly24 in2branches; wholefiniteE5 parametric480localchoices with2..7coordinates, each retainsunprovedactualinterpretation",
+        "d3_complete_conditional": {
+          "centers": 45,
+          "nonzero_previous_centers": 31,
+          "zero_previous_centers": 14,
+          "input": 44,
+          "output_each_branch": 24,
+          "branches": 2,
+          "whole_quotient": "Stem125E4Search.whole_cardinality",
+          "scope": "complete finite45-center product;14Vec0 centers permit arbitrary neighbor dimensions; incoming/outgoing and known product premises remain explicit"
+        },
+        "actual_meaning": "Stem125HomologyCertificates.Meaning derives actual quotient/next-page equivalences and additive compatibility from all-vector faithful/complete coordinates and equations; meanings remain caller proofs",
+        "d4_complete_conditional": {
+          "positive_centers": 17,
+          "zero_centers": 28,
+          "input": 24,
+          "known_centers": 13,
+          "known_output": 2,
+          "unresolved_centers": [
+            9,
+            14,
+            15,
+            25
+          ],
+          "local_choices": 480,
+          "finite_output_range": [
+            2,
+            7
+          ],
+          "proof": "Stem125E5Search.whole_cardinality",
+          "status": "fullLake2744actual0 andindependentreviewpassed",
+          "limits": "all compatible localmatrices enumerated;480 choices are not claimed globallyrealizable;no choice selected"
+        }
+      },
+      "constrained_e5_update": "Stem125ConstrainedE5: under explicit f25 obstructions and named cycle, 48 local possibilities, full 45-center finite homology dimension 3..6 and cardinality8..64. Not 48 globally realized systems; not 101 eliminations.",
+      "actual_recorded_e5": "ActualStem125ConstrainedE5: same actual S for 17 positive E4->E5 pages and 28 actual-zero E4 centers; WholeMeaning and zero faithfulness imply the full 45-recorded-center E5 product has2^D elements,3<=D<=6. It does not prove that these45centers exhaust every actual filtration.",
+      "actual_e5_product": "ActualStem125ConstrainedE5 binds typed product trace, full coordinates and 28 zero-center meanings to the same actual Adams system across45 recorded centers. Conditional actual E5 product cardinality8..64; no global sphere realization or exhaustion of every filtration.",
+      "incoming_target_completion": "AggregateIncomingTargetCompletion: all13 formerly missing target comparisons now supplied in coherent399-entry extension of the358 snapshot; original95events/102prefix stages retained. 12 from later complete E4/E5 pages, final3391 uses a single explicit row3743-zero deduction from known row3986 injective successor and actual d-squared. All36incoming targets have finite quotient data. This removes the missing-target-comparison gap, not actual Adams realization or101independent eliminations.",
+      "successor_rule": "Row3743Successor:12newcomparisons/13closure, two complete named rawE2-to-E4 nonboundary trajectories; full one-dimensional successor injective. Actual d4zero follows from typed known named event and faithful coordinates; SQLNULL preserved and no circular unknown use.",
+      "event3152_eta_constraint": "Row2925EtaD4: 12 direct modules prove the second coordinate of the unknown row2925 d4 is zero using actual typed Leibniz, complete eta and h0^5 products, without eta-cycle assumption. Both remaining first-coordinate choices satisfy full finite Leibniz. Product meanings and inherited d3 comparisons remain explicit. Event3152 is not yet added to the shared 95-event family.",
+      "branchwise3152": "Row3152BranchCertificates: two complete finite source/target d2-d4 paths for b=false/true, same single d5 event, outside shared95. Fixed input/result tactic row3152_cert and full page labels; all six stages pinned. Actual event theorem retains whole d5 interpretation/next-page meaning and actual earlier traces; no incoming dimension asserted, arbitrary actual incoming image zero derives from d5 injectivity and squarezero.",
+      "full3151_neighborhood": "Row3151FullNeighborhood: unknown row2708 d3 gives incoming source dimension1or2; eta fixes outgoing secondbit, retains nonzeroincoming q. Exactly6 admissible local outgoing/incoming pairs among320; each checked9key family coherent and binds known3151 nonzero event plus target3152 comparison. Does not enumerate all arbitrary9key completions or give actualsphere identification; shared95 unchanged.",
+      "null_state_audit": "NullTargetProofAudit: complete 2672275-row scan; rows2696/2852 encode next unresolved d7/d5, with both zero and local4 software candidates retained. Independent check confirms neither belongs to accepted95. Software state counts do not prove deaths or dimension reduction.",
+      "row3151_actual_transport": "Same actual S/full incoming coordinates/d3quotient/prefix gives six d4branches and exact actual boundary/quotientzero iff; 2modules integrated3072. Separate Named fixes E2 vectors and derives four actual prefix steps to d4event, independently reviewed/direct compiled, later integration pending; known d4 and actual coordinate interpretations explicit."
+    },
+    {
+      "id": "fact-7.6-1",
+      "level": "finite_semantics",
+      "actual_inputs": [
+        "NamedElementCertificates/name_audit.json",
+        "StaircaseCertificates/Named.lean",
+        "upstream/kervaire-49/S0_AdamsSS_t261.db",
+        "Fact761PageCertificates/source.json",
+        "Fact761PageCertificates/comparison.json",
+        "NamedPageComparison/blocker_sources.json",
+        "NamedPageComparison/higher-blockers.json",
+        "NamedPageComparison/conditional-higher-source.json",
+        "NamedPageComparison/conditional-review.json"
+      ],
+      "certificate_families": [
+        "Named polynomial",
+        "Staircase survival",
+        "Named finite d2 quotient"
+      ],
+      "proved_theorems": [
+        "StaircaseCertificates/FiniteClaims.lean: case0FiniteFilteredSurvival",
+        "Fact761PageCertificates/Survivor.lean: named_expression_evaluation",
+        "Fact761PageCertificates/Survivor.lean: targetClass_coordinates",
+        "Fact761PageCertificates/Survivor.lean: targetClass_nonzero",
+        "NamedPageComparison/Fact761D3.lean: named_d2_d3_trajectory",
+        "NamedPageComparison/Fact761D3.lean: d3_columns_from_stored_query",
+        "NamedPageComparison/ConditionalHigherData.lean: constructed_trajectory_checked",
+        "NamedPageComparison/ConditionalHigher.lean: conditional_E6_from_leibniz"
+      ],
+      "unproved_premises": [
+        "Finite selected survival to E6 is not a theorem about actual Adams pages.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence.",
+        "Higher recursive trajectory blocked: row2858 and row3080 have level9000/NULL; D153713 is an unverified deduction log, not a zero proof. Row3080 has no exact r3 event; target-zero-space shortcut not yet connected.",
+        "ConditionalHigher's OverrideMatches covers the selected unknown column only. All other stored known/page-prefix records retain external finite-data provenance; no global comparison with a true spectral differential on every source is proved."
+      ],
+      "batch_scope": "One named finite filtered query through page6; generic checker batchable. Actual named finite d2 quotient class now proved nonzero, coordinates (1,0,1,0) in dimension4; not higher-page survival. Conditional finite d2-d5 trajectory now checked with 36 predecessor comparisons; row2858 zero override follows explicit quotient Leibniz premises; row3080 uses a zero target space. This does not prove real E6 survival.",
+      "paper_location": "\u00a77 Fact 7.6(1)",
+      "requested_conclusion": "survives to E6",
+      "latest_update": "Fact761ConstructedActual11leaves/60reports integrated3688. SamecallerE2nonzeroactualE6constructed;Row2858d3fromfullquotientLeibniz,Row3080fromemptytarget,maind4/d5emptytargets. Row2438finitecycles3/4/5remainexplicit."
+    },
+    {
+      "id": "fact-7.6-2",
+      "level": "conditional_actual_nonzero_E6_not_permanence",
+      "actual_inputs": [
+        "NamedElementCertificates/name_audit.json",
+        "StaircaseCertificates/Named.lean",
+        "Fact762PageCertificates/README.md"
+      ],
+      "certificate_families": [
+        "Named polynomial",
+        "Basis change",
+        "Named finite d2 quotient"
+      ],
+      "proved_theorems": [
+        "StaircaseCertificates/Named.lean: case1CoordinatesCorrect",
+        "Fact762PageCertificates/Survivor.lean: named_expression_evaluation",
+        "Fact762PageCertificates/Survivor.lean: targetClass_nonzero",
+        "Fact762CsigmasqD5/D2.lean: differential_value",
+        "Fact762CsigmasqD5/Actual.lean: result_sound",
+        "Fact762CsigmasqD5/Actual.lean: extends_to_E6",
+        "Fact762SphereGDetection/Actual.lean: named_d5_zero",
+        "Fact762SphereGDetection/Assembly.lean: result_sound",
+        "Fact762SphereGDetection/Constructed.lean: stage3 and stage4",
+        "Fact762DerivedD5/Basic.lean: Certificate.result_sound"
+      ],
+      "unproved_premises": [
+        "No all-pages permanent cycle/convergence theorem.",
+        "No complete incoming-source classification restricting killers to d6/d12.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence."
+      ],
+      "batch_scope": "Fact762NonzeroE6 derives same-input nonzero E6 from the earlier product-derived d5 zero and complete incoming collapse. Strict JSON/JSONL requests, semantic batch soundness and tactic are implemented. Actual complete meanings remain explicit; permanence is not proved.",
+      "paper_location": "\u00a77 Fact 7.6(2)",
+      "requested_conclusion": "permanent; only d6 or d12 can kill it",
+      "permanence_framework": "PermanentCycleCertificates.checkPermanent_sound: finite prefix under actual coordinate interpretation plus full-tail space vanishing and actual homology law. No actual paper permanence instance; later prefix and tail theorems remain missing.",
+      "incoming_inventory": {
+        "pages": "2..14",
+        "source_comparisons": 123,
+        "proof": "Fact762IncomingCertificates.only_six_or_twelve",
+        "r7_route": "Fact762Source7Certificates.page7_incoming_vanishes: explicitrow2632prefix+actual full source realization; no all-page target nonzero premise",
+        "r4": "Fact762Source4Certificates.page4_incoming_vanishes under row2708 completekernel; not combined with contradictory oldnonboundary",
+        "limits": "All actual incoming/source meanings and query-page target nonzero remain explicit",
+        "assembly": "Fact762AssemblyCertificates.only_six_or_twelve;full2532passed;query-onlynonzero;allrealizationsandroutepremisesexplicit"
+      },
+      "permanence_binding": "ActualPermanenceBoundary.Cases binds all4 existingd2survivors to the actualSystem and element; conditional full-tailfrompage3 is not proved for paper classes. System.Permanent is all-page nonboundary survival, stronger than outgoing-only permanent cycle inFact762.",
+      "outgoing_cycle_semantics": {
+        "definition": "OutgoingCycleCertificates.AlwaysCycle",
+        "paper_meaning": "supports no nonzero outgoing differential; incomingd6/d12 may kill it",
+        "strong_survival": "PermanentCycleCertificates.System.Permanent additionally requires everypage nonboundary",
+        "status": "outgoing finitechecker/import/sound/tactic and conditionalactualFact762bound;fullactualoutgoingtailunproved",
+        "filtration_bridge": "OutgoingCycleFiltrationCertificates: fullquotient/localzero/advancelaws giveAlwaysCycle\u2194ZInfinity;all5modulesfull2744passed;paperAdamsrealizationstillunproved"
+      },
+      "actual_cycle_filtration": "ActualAdamsSystemBridge constructs the system from real graded differential and homology quotient; ActualAdamsFiltration derives the full E2 cycle quotient realization from local quotient surjectivity and proves actual Trace equivalence. Zero compatibility explicit; additive identification and actual paper input remain separate.",
+      "map_tail": "PermanentMapTailCertificates: entire incoming/outgoing maps zero suffice for strong permanence; only outgoing maps zero suffice for AlwaysCycle. No future selected-element survival premise. Actual incoming map vanishes above target filtration.",
+      "additive_filtration_update": "ActualAdamsAdditiveFiltration constructs genuine additive Z/B subgroups, cycle-only additive advance, complete additive image, boundary kernel and quotient addition from local homology AddMeaning. AddMeaning implies ZeroMeaning; actual 49 spectra and local compatible page maps still unproved.",
+      "actual_incoming_bridge": "ActualAdamsIncomingBridge uses the unique actual source degree when legal and singleton otherwise. Full incoming image equals PageBoundary; actual degree gives automatic tail. Conditional page4/page7 and seven whole-map checks imply only6or12 for nonzero targets. Original tagged-source vacuity fixed and independently checked by a constructed nonzero target model with CertifiedAdamsPages and ZeroMeaning. Paper Conditions not instantiated.",
+      "actual_limit": "ActualAdamsLimit forms actual additive Z-infinity and B-infinity and their quotient; strong permanence iff nonzero limit class for an outgoing cycle. No homotopy convergence or actual paper permanence proved.",
+      "outgoing_hit_update": "OutgoingCycleMapTransport5/25 integrated3395: actualhit plus finitepriorcycles forces next andalllaterzero, and therefore outgoingAlwaysCycle; full cycle-map transport/reflection proved. This proves only thehitbranch, not nohit-tail or strongPermanent. Explicit actualFact762 binding retained.",
+      "csigmasq_d5_update": "Ten explicit raw-NULL finite conditions remain. Source basis7441 is staircase7443, not basis7443. Top module generator has an explicit nonzero d2. Independent SQL/polynomial/bitset review passes 223392 quotient pairs and 5136 map vectors.",
+      "sphere_detector_update": "149standard reports/18detectorleaves; fullE2\u2192E5 product descent constructs injective detector. Any d5(g) lifts toE2, whose entire product withnamedinput iszero. Five rawNULL columns derived by products/by_sigma; explicitCW4427d3/S05468d3,d4finiteprefixes remain. DerivedD5twoleaves/5reports binds old same-inputsourceprefix.",
+      "nonzero_e6_update": "Four frozen, independently reviewed modules are now integrated in root3784 and audit16266. Complete incoming (9,135) dimensions 6->4->2->0 give the same prior E6 endpoint nonzero. Both rootbuild and fullaudit exited0."
+    },
+    {
+      "id": "fact-7.6-3",
+      "level": "conditional_actual_nonzero_E6_not_permanence",
+      "actual_inputs": [
+        "NamedElementCertificates/name_audit.json",
+        "StaircaseCertificates/Named.lean",
+        "Fact763PageCertificates/README.md"
+      ],
+      "certificate_families": [
+        "Named polynomial",
+        "Basis change",
+        "Named finite d2 quotient"
+      ],
+      "proved_theorems": [
+        "StaircaseCertificates/Named.lean: case2CoordinatesCorrect",
+        "Fact763PageCertificates/Survivor.lean: named_expression_evaluation",
+        "Fact763PageCertificates/Survivor.lean: targetClass_nonzero"
+      ],
+      "unproved_premises": [
+        "No all-pages permanent cycle/convergence theorem.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence."
+      ],
+      "batch_scope": "Same original input has a conditional actual nonzero E6 endpoint. Full E3 basis conversion, whole d5 [0,1], and complete incoming-source collapse are checked. No E-infinity or permanence theorem.",
+      "paper_location": "\u00a77 Fact 7.6(3)",
+      "requested_conclusion": "survives to E-infinity",
+      "permanence_framework": "PermanentCycleCertificates.checkPermanent_sound: finite prefix under actual coordinate interpretation plus full-tail space vanishing and actual homology law. No actual paper permanence instance; later prefix and tail theorems remain missing.",
+      "permanence_binding": "ActualPermanenceBoundary.Cases binds all4 existingd2survivors to the actualSystem and element; conditional full-tailfrompage3 is not proved for paper classes. System.Permanent is all-page nonboundary survival, stronger than outgoing-only permanent cycle inFact762.",
+      "actual_cycle_filtration": "ActualAdamsSystemBridge constructs the system from real graded differential and homology quotient; ActualAdamsFiltration derives the full E2 cycle quotient realization from local quotient surjectivity and proves actual Trace equivalence. Zero compatibility explicit; additive identification and actual paper input remain separate.",
+      "map_tail": "PermanentMapTailCertificates: entire incoming/outgoing maps zero suffice for strong permanence; only outgoing maps zero suffice for AlwaysCycle. No future selected-element survival premise. Actual incoming map vanishes above target filtration.",
+      "additive_filtration_update": "ActualAdamsAdditiveFiltration constructs genuine additive Z/B subgroups, cycle-only additive advance, complete additive image, boundary kernel and quotient addition from local homology AddMeaning. AddMeaning implies ZeroMeaning; actual 49 spectra and local compatible page maps still unproved.",
+      "actual_limit": "ActualAdamsLimit forms actual additive Z-infinity and B-infinity and their quotient; strong permanence iff nonzero limit class for an outgoing cycle. No homotopy convergence or actual paper permanence proved.",
+      "latest_update": "Row2693D5Search and Fact763Continuation are frozen, independently reviewed and integrated in root3784 and audit16266. Actual d5 zero comes from product descent and full correction annihilation; full coordinate bridge and incoming collapse yield same-input nonzero E6."
+    },
+    {
+      "id": "fact-7.6-4",
+      "level": "finite_and_conditional",
+      "actual_inputs": [
+        "BranchReplayCertificates/relevant-records.json",
+        "BranchReplayCertificates/products-provenance.json",
+        "BranchReplayCertificates/leaves-provenance.json"
+      ],
+      "certificate_families": [
+        "Affine elimination",
+        "Product/map semantic columns",
+        "Full quotient comparison"
+      ],
+      "proved_theorems": [
+        "BranchReplayCertificates/MapRefutation.lean: combined_affine",
+        "BranchReplayCertificates/QuotientConclusion.lean: whole_quotient",
+        "BranchReplayCertificates/ProductBasisSemantics.lean: allCoefficients25",
+        "BranchReplayCertificates/MapBasisSemantics.lean: allCoefficients25",
+        "Fact764ConstrainedE5/Actual.lean: unique_by_tactic",
+        "Fact764CycleFromProduct/Basic.lean: unique_from_product",
+        "Fact764NamedActualE5/Basic.lean: coordinates_complex",
+        "Fact764NamedActualE5/Actual.lean: result_sound",
+        "Fact764NamedActualE5/Actual.lean: Witness.unique5"
+      ],
+      "unproved_premises": [
+        "Actual E4 Leibniz/naturality constraints, historical scope, D154545 boundary provenance, full true E5 boundaries remain missing.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence."
+      ],
+      "batch_scope": "Fact764NamedActualE5 integrated3618: exact initialg^4*delta, constructedE4product and literalE5quotient with unique nonzero element of entiredegree(25,150); fullE4incoming/product/mapconstraint meanings explicit. 3leaves/18reports, fixedinput/output tactic.",
+      "paper_location": "\u00a77 Fact 7.6(4)",
+      "requested_conclusion": "only survivor through E5",
+      "whole_unique_checker": "UniqueHomologyCertificates: all cycles boundary or homologous to supplied nonzero class, with full one-dimensional comparison; both explicit finite boundary choices compiled. Actual boundary provenance/topology remain missing.",
+      "constrained_e5_update": "Fact764ConstrainedE5 full quotient uniqueness from two candidate obstructions, full complex law and named cycle; only branches 8/18. Fact764CycleFromProduct derives named cycle under explicit characteristic-two Leibniz, whole zero-target realization, and true named-product coordinates. All seven leaves in root Lake 2766; actual Adams realization remains unproved.",
+      "typed_cycle_update": "ActualAdamsProductCycleBridge replaces the common ungraded ring and independent target tower with one actual graded S, its CertifiedAdamsPages and ordinary same-page CertifiedAdamsProduct. Actual named E4 coordinates and E2 target faithfulness remain explicit; not a completed paper instance.",
+      "actual_uniqueness_update": "ActualAdamsUniqueBridge: finite uniqueness transports to actual differential/PageBoundary and all actual cycles; next-page card2 from full homology inverse. ActualAdamsUniqueNext additionally uses ZeroMeaning to prove the specified actual next class is uniquely nonzero. Strict existing wire importer plus adams_unique_cert/adams_next_unique_cert; full actual S0 matrix meanings remain unproved.",
+      "actual_named_trace": "ActualAdamsProductTraceBridge derives same E2 named monomial to same E4 product via six full-cycle multiplicativity squares and five actual empty factor targets; no target Trace as premise, no nonboundary assumption on factors."
+    },
+    {
+      "id": "remark-7.7",
+      "level": "finite_semantics_candidate_set",
+      "actual_inputs": [
+        "NamedElementCertificates/remark-7.7*.json",
+        "AdvancedRuleCertificates/Remark77.lean"
+      ],
+      "certificate_families": [
+        "Named polynomial",
+        "Affine separator"
+      ],
+      "proved_theorems": [
+        "AdvancedRuleCertificates/Remark77.lean: all_values_nonzero",
+        "AdvancedRuleCertificates/AffineHomology.lean: check_sound"
+      ],
+      "unproved_premises": [
+        "No proof that actual d3 value belongs to this permitted affine set.",
+        "Generic affine homology theorem is not instantiated as actual Remark7.7 Adams homology.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence."
+      ],
+      "batch_scope": "Both displayed possibilities interpreted via base local3+span(local2); universal affine nonzero theorem.",
+      "paper_location": "\u00a77 Remark 7.7",
+      "requested_conclusion": "nonzero and cannot kill h1 h4 x109,12"
+    },
+    {
+      "id": "fact-7.13",
+      "level": "conditional_actual_E10_and_all_page_no_hit",
+      "actual_inputs": [
+        "NamedElementCertificates/name_audit.json",
+        "StaircaseCertificates/Named.lean",
+        "upstream/kervaire-49/S0_AdamsSS_t261.db",
+        "Fact713PageCertificates/source.json",
+        "Fact713PageCertificates/comparison.json"
+      ],
+      "certificate_families": [
+        "Named polynomial",
+        "Staircase survival",
+        "d2 matrix",
+        "Named finite d2 quotient"
+      ],
+      "proved_theorems": [
+        "StaircaseCertificates/FiniteClaims.lean: case5FiniteFilteredSurvival",
+        "NamedElementCertificates/Fact713.lean: named_differential_value",
+        "Fact713PageCertificates/Survivor.lean: named_expression_evaluation",
+        "Fact713PageCertificates/Survivor.lean: targetClass_coordinates",
+        "Fact713PageCertificates/Survivor.lean: targetClass_nonzero",
+        "Fact713TrajectoryCertificates/Row3076.lean: from_ceta_naturality",
+        "Fact713ComparisonBatches/Coherence.lean: family_coherent",
+        "Row2773Leibniz/Actual.lean: actual_row2773_d3_zero",
+        "Fact713Row2773Refinement/Data.lean: finite_E6",
+        "Fact713NamedActual/Basic.lean: named_E6",
+        "Row3305H0Search/Assembly.lean: actual_two_candidates",
+        "Row3143D0Leibniz/Actual.lean: actual_row3143_d4_zero",
+        "ActualFiniteNoHit/Fact713.lean: not_killed",
+        "Row2907TargetProduct/Actual.lean: parameter_zero",
+        "Row2907D4Candidates/Actual.lean: complete_candidates",
+        "Fact713Row2907Continuation/Binding.lean: source_E5_zero"
+      ],
+      "unproved_premises": [
+        "Finite selected survival to E12 is not a theorem about actual Adams pages.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence."
+      ],
+      "batch_scope": "Same-input actual E10 and original-E2 not-BInfinity remain integrated. Two corrected1413-entry coherent families are integrated in3784 and audited16266; explicit full predecessor checker added. E11 continuation is under construction; actual E12 remains open.",
+      "paper_location": "\u00a77 Fact 7.13",
+      "requested_conclusion": "survives to E12; exact d2(x125,8); the named survivor is not killed by any classical differential (all pages)",
+      "shared_dependency_update": "One shared row3076 dependency connected to actual quotient and outgoing matrix column from Ceta naturality;raw diff none preserved;remaining dependencies not discharged.",
+      "e12_dependency_search": "Fact713E12Search: 1420 dependency nodes/681 raw degrees; 1234 finite comparisons after two explicit successor-injectivity closures, 186 blocked. 85 Lean comparison subset, 13 zero target quotients, finite two-stage E4 prefix. 82 raw NULL obligations (including nine named zero-prefix stages) remain separate; no actual E12 survival proof.",
+      "complete_available_batches": "Fact713ComparisonBatches: all 1234 available finite comparisons imported in 31 batches, with whole-family coherence and separate coverage theorems. Integrated in the successful 1113-module build. The baseline retains 186 absent graph positions.",
+      "additional_successor": "Fact713RefinedSourceSearch: actualfullsuccessorfaithfulness+map values+differentialSq implyrow3476whole d4zero;rawNULLretained.5newfinitecomparisons+5oldbatchrefs directcompiled;2newE12nodes1236/1420,3externalsuccessorclosure union1239.Originaltopologicalmeanings and184graphnodes remain.",
+      "row2773_refinement": "Row2773Leibniz derives actual row2773 d3 zero from typed Leibniz, full product descent, six complete d2 quotients and four product columns. It does not assume eta is a d3 cycle. Ten new finite blocks preserve the preceding 1239 entries. Actual source, quotient and product interpretations remain explicit.",
+      "named_actual_E6": "Fact713NamedActual.Basic constructs a same-system actual quotient trace from fixed E2 coordinates (1,1), with cycles and nonboundaries at d2-d5 and a nonzero E6 endpoint. Four whole StepMeaning premises include complete incoming maps and quotient laws. Sphere realization and the inherited row2569 prefix interpretation remain unproved.",
+      "refined_family": "Fact713Row2773ComparisonFamily: 1249 coherent finite entries; exact named d2-d5 coverage and missing d6 proved. Its 1239-entry predecessor has a separate coverage theorem. Both are integrated in the successful 1113-module build.",
+      "c2h5_detector": "Fact713NextSourceSearch: the configured C2h5 map annihilates the named source and reflects zero on the whole two-dimensional target quotient. Six full coefficient matrices and four quotient comparisons support a typed actual naturality theorem for row2684. Eight additional comparisons give 1257 union entries, 1254 of 1420 graph positions, and 166 gaps. Finite E7, the 1257-entry coherent family, and both coordinate bridges are integrated in the successful 1127-module build. Actual map interpretations remain explicit.",
+      "dc2h6_detector": "Fact713DC2h6Source: seven direct-compiled leaves prove the row2622 d3zero consequence via the configured DC2h6 map. The named source maps to a nonzero E2 boundary, witnessed by basis2722; the whole source map is not zero. Six complete matrices, four quotient comparisons and full coordinate changes checked. Fifteen added blocks give1269of1420 graph positions and1272union;151missing. Named d7 remains blocked by row2994. Actual map and quotient interpretations remain explicit.",
+      "constructed_next_coordinates": "ActualAdamsHomologyCoordinates: actual homology/next-page coordinate equivalence is derived from the current complete additive coordinates, faithful outgoing map, complete incoming map, accepted homology certificate and local zero identification. Adapter constructs StepMeaning without supplied next coordinates or projection law; local actual addition law supports iteration. Two leaves directexit0/14standardreports, IntegratedfullLake3210/1127modules actualexit0;independentreviewpassed.",
+      "row2994_candidates": "Fact713Row2994Constraint: six directly compiled leaves constrain the actual d3 to zero or one explicit quotient class via full CW_nu_eta_2 map certificates and actual naturality. The named image is a certified nonzero E2 boundary. The complete target kernel and affine fibers are proved; the full coordinate change identifies the residual staircase vector (1,0). Both possibilities remain; no d3 zero or E8 claim. Independent review passed.",
+      "recursive_named_coordinates": "Fact713ConstructedNamed: two directly compiled leaves recursively derive all tracked E3-E7 additive coordinates from the initial E2 additive coordinates, each whole neighboring differential interpretation, and local actual quotient zero/addition laws. Fixed named raw E2 advances to a nonzero actual E7 endpoint. Actual sphere realization and inherited prefix interpretations remain explicit; no arbitrary endpoint or later coordinates are supplied. Independent review passed in 36 relabeled actual carrier models; integration follows the next registered build.",
+      "row2994_branch": "Fact713Row2994Branches: five direct-compiled leaves form a separately coherent1284-entry residual branch preserving the1272baseline. Twelve added comparisons give1281of1420graph positions,139gaps, fixed finiteE8 and named d8missing. Zero branch only finiteE7. Both source d3 alternatives have checked complete quotients; unavailable target(20,140)d3 and later target3135 selection are not used in the12newblocks. Independent review passed; no commonE8 or actualsphere assertion.",
+      "eta_d3_source": "EtaD3Source: four direct-compiled leaves and independent SQL/semantic review prove actualeta d3zero under complete actualquotient/product interpretations, fromzero h0target,zero h0eta carrier andwholeinjectiveh0 product. Six fulld2quotients andtwo products;rawNULL rows1/3 retained. This supplies a conditional eta E4 premise for later Leiniz transport.",
+      "row2773_d4_source": "Row2773D4Leibniz: six directly compiled leaves,29 standard axiom reports and independent SQL/whole-quotient review. Actual E3 whole product vanishing transports through multiplicative actual quotients to E4; Leibniz gives the named d4 zero independently of the row2994 branch. Full coordinate swap and constructed next-coordinate uniqueness bind the named row2773 E4 element; actual meanings remain explicit.",
+      "both_finite_E8": "Fact713D4Branches: five directly compiled leaves,16 standard reports. Separate zero and residual row2994 families have1283/1284 entries,1280/1281 of1420 requested blocks and140/139 missing. Both use exactly the same named d2-d7 finite trajectory; no unconditional row2994 value or actual realization is asserted.",
+      "constructed_actual_E8": "Fact713ConstructedE8: four directly compiled leaves,15 standard reports. Starting from only the initial E2 additive coordinates, recursively constructs E3-E8 coordinates and a nonzero actual quotient trace of the same fixed raw vector; full neighboring differential meanings and local quotient zero/add laws remain caller proofs. Identical final wire is bound to each separately coherent family. No actual E12 theorem. Fixed source/output request checker and batch soundness use fact713_e8_cert, with four negative tactic cases and field diagnostics.",
+      "dc2h6_exact_graph": "Fact713DC2h6ComparisonFamily: all9leavesdirect0/26standardreports, independentfullgraphreview. Exact1420node/2763edge graph,1272familykeys,1269available,151missing,3outside; keyNodup and both membership/difference equivalences proved. Strict parser positive and4negative types passed; no global code injectivity or topology assumption.",
+      "c2h5_d4_source": "Fact713D4SourceSearch:10directcompiled frozen leaves/39standardreports, finalindependentreview.16fullmatrices44columns20reductions,12d2quotients,14parameterd3quotients,32acceptedcases outof512assignments. Actualnaturalness+row2773d3zero derives incoming3988zero, actualwholequotientmap formulas derive sourcezero andtargetreflection, so wholeactualrow2684d4zero.5unknownbits retained. Coordinatebasisbugfixed beforefreeze:sourceS incoming[0,0,1,1], oldfailed evidence archived. Integrated in successful 3307-job / 1202-module build; current exhaustive audit pending.",
+      "c2h5_d4_branches": "Fact713D4ComparisonBranches: eight modules integrated; zero/residual families 1290/1292 entries preserve all old entries, cover 1287/1289 requested nodes, leave 133/131 graph gaps. Both finite E8; row3247 d3 blocks named d8. Separate conditional h0+d0 route is unregistered and does not discharge missing product cycles.",
+      "constructed_e9_update": "Fact713ConstructedE9: three modules/12 reports, same initialE2 class through derivedE9 coordinates, strict input/output checks and fact713_e9_cert. Two branch cycle premises remain; no sphere realization.",
+      "next_rules_update": "Row2916 whole actual d4 zero and Row2907 whole source d4 nonzero integrated3554. Target product derives a=false, whole d4 candidates and row3143 source complete incoming/outgoing comparison integrated3574. Source/target basis swaps are explicit.",
+      "strict_next_request_update": "ActualTraceRequestsNext integrated in 3494: strict canonical JSON/JSONL for E9, first/second E5 and Prop79 noHitThrough5. Exact claim, source, output and lengths bind to the same actual trace. 64008 request oracle cases, 64004 rejected, 72 malformed records, 24 bad batches, 24 parser locations and 40 good batches passed. Actual meanings remain explicit.",
+      "strict_E10_update": "ActualTraceRequestsE10: exact E10 claim/source/output/version JSON and JSONL requests, semantic same-input E2-to-E10 trace, batch soundness and dedicated tactic. 10668 request cases / 10667 rejected, 18 malformed records, six malformed batches, six parser locations and ten good batches checked. Generic closed-check tactic does not accept a free actual Prefix10.",
+      "unregistered_fourbranch_update": "Historical four branches preserved. Target-product theorem excludes a=true using actual whole quotient multiplication; residual r and the two-dimensional second d4 coefficient remain. Three branch graph continuation under construction.",
+      "csv_conclusion": "survives to E12; exact d2(x125,8)",
+      "expanded_paper_source": "AdvancedRuleCertificates/kervaire-v2.html:4929",
+      "pending_no_hit": "ActualFiniteNoHit integrated3618: actual complete homology and quotient zero law, same nonzeroE10 trace and strict filtration cutoff give original-E2 not-BInfinity. Independent countermodels distinguish outgoing death from incoming boundary; sphere realization remains open.",
+      "unregistered_ctheta4": "Historical note: Ctheta4Transport/Continuation were integrated and audited before3718; both eliminate the residual row2994 branch under explicit actual naturality and complete meanings.",
+      "latest_update": "Corrected Row2693 continuation has two1413-entry families with all2724 preceding-page dimensions each checked independently. The initial1411 families were rejected for two missing predecessors, and failed evidence is retained. Ten new comparisons and source nonzeroE6 are integrated in root3784 and audit16266. Row3005D4Search full map reflection and actual quotient descent derive whole sphere d4zero and are also registered. Next1431-entry continuation to actual E11 is under construction, not yet audited.",
+      "next_reviewed_e11": "Eleven-module Row3005 stage plus independent two-module TreeClosure now successful directcompiled and rootreviewed. Main same-input nonzeroE11 from completeE2target collapse, both1431families2775predecessors. Rootbuild64916running; original mathematical meanings remain explicit; E12open.",
+      "row2574_branches": "Row2574D3Search5modules/62files/55reports frozen and independently reviewed. h2 product plus actuald3\u00b2 restricts unknown column to two actual branches, each with complete sourceh0/targeth1 and same-input nonzeroE4.13comparisons511pairs/27SQLdegrees38d2columns/80640models. Not yet integrated; noE12 conclusion."
+    },
+    {
+      "id": "fact-7.15",
+      "level": "conditional_actual_finite_prefix",
+      "actual_inputs": [
+        "NamedElementCertificates/name_audit.json",
+        "StaircaseCertificates/Named.lean",
+        "upstream/kervaire-49/S0_AdamsSS_t261.db",
+        "Fact715PageCertificates/source.json",
+        "Fact715PageCertificates/comparison.json"
+      ],
+      "certificate_families": [
+        "Named polynomial",
+        "Staircase survival",
+        "Named finite d2 quotient",
+        "Fact715ConstructedActual"
+      ],
+      "proved_theorems": [
+        "StaircaseCertificates/FiniteClaims.lean: case10FiniteFilteredSurvival",
+        "Fact715PageCertificates/Survivor.lean: named_expression_evaluation",
+        "Fact715PageCertificates/Survivor.lean: targetClass_nonzero",
+        "Fact715TrajectoryCertificates/Generated.lean: named_finite_E4",
+        "Fact715TrajectoryCertificates/Naturality.lean: sphere_d3_zero",
+        "Fact715TrajectoryCertificates/Conditional.lean: finite_E5_from_naturality",
+        "Fact715TrajectoryCertificates/MapSemantics.lean: middleMapLinear",
+        "Fact715ConstructedActual/Trace.lean: result_sound",
+        "Fact715ConstructedActual/Detector.lean: Input.named_d3_zero",
+        "Fact715ConstructedActual/Assembly.lean: actual_E5"
+      ],
+      "unproved_premises": [
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence.",
+        "Separate all-page incoming exclusion must be established; finite survival alone does not prove it."
+      ],
+      "batch_scope": "Five constructed-actual modules integrated in successful 1202-module build. Same supplied E2 input through derived E3/E4/E5 coordinates, dimensions 5/4/2/1. Detector-derived complete row3076 d3 meaning constructs the actual E4 target used by main d4. Whole known differential meanings, actual naturality, initial coordinates and local quotient laws remain explicit.",
+      "paper_location": "\u00a77 Fact 7.15",
+      "requested_conclusion": "survives to E5; the named survivor is not killed by any classical differential (all pages)",
+      "constructed_actual_E5": "Fact715ConstructedActual: 31 standard reports, root independent 2381 quotient-pair review, exact SQL name binding and four candidate d3 maps. fact715_cert binds caller input; zero rejected. No unknown d5 claim or sphere realization.",
+      "typed_requests": "ActualTraceRequests: strict canonical version1 JSON/JSONL, exact claim/source/output/length matching with same actual trace semantics; batch soundness and diagnose/diagnoseBatch success equivalences. Seven modules integrated3346,11reports. Four imported positive and6negative kernelcases, independent16002runtime/42672semanticrequests,6192lengthaliases rejected. Actual prefix mathematical meanings remain proofs, not importable flags.",
+      "csv_conclusion": "survives to E5",
+      "expanded_paper_source": "AdvancedRuleCertificates/kervaire-v2.html:5119",
+      "latest_update": "IncomingTail/Source2574 integrated3688 audited. NoHitReduction integrated3718/root81791exit0, fullaudit50124exit0: exact BInfinity iff d9hit with genuine E9cycle, noE9survivalpremise. Conditional tactic requires explicit D9Exclusion; d9 itself remains unproved."
+    },
+    {
+      "id": "fact-7.19",
+      "level": "conditional_actual_finite_prefix",
+      "actual_inputs": [
+        "NamedElementCertificates/name_audit.json",
+        "StaircaseCertificates/Named.lean",
+        "upstream/kervaire-49/S0_AdamsSS_t261.db",
+        "Fact719PageCertificates/source.json",
+        "Fact719PageCertificates/comparison.json",
+        "Fact719TrajectoryCertificates/source.json"
+      ],
+      "certificate_families": [
+        "Named polynomial",
+        "Staircase survival",
+        "Named finite d2 quotient"
+      ],
+      "proved_theorems": [
+        "StaircaseCertificates/FiniteClaims.lean: case11FiniteFilteredSurvival",
+        "Fact719PageCertificates/Survivor.lean: named_expression_evaluation",
+        "Fact719PageCertificates/Survivor.lean: targetClass_nonzero",
+        "Fact719TrajectoryCertificates/Generated.lean: named_finite_E6",
+        "Fact719TrajectoryCertificates/Named.lean: initial_named_vector",
+        "Fact719TrajectoryCertificates/Named.lean: initial_literal"
+      ],
+      "unproved_premises": [
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence.",
+        "Lemma7.20 multiplication extension not established.",
+        "Separate all-page incoming exclusion must be established; finite survival alone does not prove it."
+      ],
+      "batch_scope": "Complete36comparison finiteE6 trajectory plus actualsameinputE6trace constructed fromsingleinitial additivecoordinates andwhole neighboring differential meanings. fixedinputfact719_cert; rawd6unknownretained. Integrated1171modulebuild; sphereidentificationandLemma7.20unproved.",
+      "paper_location": "\u00a77 Fact 7.19",
+      "requested_conclusion": "survives to E6; the named survivor is not killed by any classical differential (all pages)",
+      "constructed_actual_E6": "Fact719ConstructedActual: three directly compiled leaves,21 standard axiom reports. Only initial tracked additive E2 coordinates are supplied; complete neighboring maps and local quotient laws recursively construct E3-E6 coordinates and the same named input trace with nonzero endpoint. Dedicated fixed-input fact719_cert supports explicit naming proof; wrong input rejected. Independent SQL/all-quotient and32relabeled-carrier checks passed; actual sphere meanings and Lemma7.20 extension remain unproved.",
+      "typed_requests": "ActualTraceRequests: strict canonical version1 JSON/JSONL, exact claim/source/output/length matching with same actual trace semantics; batch soundness and diagnose/diagnoseBatch success equivalences. Seven modules integrated3346,11reports. Four imported positive and6negative kernelcases, independent16002runtime/42672semanticrequests,6192lengthaliases rejected. Actual prefix mathematical meanings remain proofs, not importable flags.",
+      "csv_conclusion": "survives to E6",
+      "expanded_paper_source": "AdvancedRuleCertificates/kervaire-v2.html:5413",
+      "pending_no_hit": "Fact719NoHit2leaves/7reports frozen, independent review pending: three complete initial emptyincoming sources(2,125),(1,124),(0,123) yield wholemapzero onpages6..8; filtration excludeslater sources. Same actualE6 endpoint givesnotBInfinity; actualinitialinterpretations stillpremises.",
+      "latest_update": "Fact719NoHit integrated3645: same-input E6nonzero plus originalE2 notBInfinity follows from complete emptyE2 sources at pages6/7/8 and filtrationtail. Independent reviewpassed. Actualcompleteinitialcoordinates and quotientlaws explicit."
+    },
+    {
+      "id": "fact-7.21",
+      "level": "conditional_actual_finite_prefix_not_permanence",
+      "actual_inputs": [
+        "NamedElementCertificates/name_audit.json",
+        "StaircaseCertificates/Named.lean",
+        "Fact721PageCertificates/README.md"
+      ],
+      "certificate_families": [
+        "Named polynomial",
+        "Basis change",
+        "Named finite d2 quotient",
+        "Fact721ConstructedActual"
+      ],
+      "proved_theorems": [
+        "StaircaseCertificates/Named.lean: case12CoordinatesCorrect",
+        "Fact721PageCertificates/First.lean: named_expression_evaluation",
+        "Fact721PageCertificates/First.lean: targetClass_nonzero",
+        "Fact721PageCertificates/Second.lean: named_expression_evaluation",
+        "Fact721PageCertificates/Second.lean: targetClass_nonzero",
+        "Fact721ConstructedActual/First.lean: result_sound",
+        "Fact721ConstructedActual/Second.lean: result_sound",
+        "Fact721ConstructedActual/Second.lean: D4Input.assemble",
+        "Fact721FirstLater/Actual.lean: Input.same_input6",
+        "Fact721FirstLater/NoHit.lean: named_not_hit",
+        "Fact721FirstLater/Request.lean: batch_sound"
+      ],
+      "unproved_premises": [
+        "No all-pages permanent cycle/convergence theorem.",
+        "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence."
+      ],
+      "batch_scope": "First same-input nonzeroE6; second same-input nonzeroE18. Both original E2 inputs are conditionally outside BInfinity using complete incoming tails. All new modules are frozen, independently reviewed and integrated in3784 and audited16266. Whole actual meanings remain explicit; outgoing permanence remains unproved.",
+      "paper_location": "\u00a77 Fact 7.21",
+      "requested_conclusion": "both are permanent cycles",
+      "permanence_framework": "PermanentCycleCertificates.checkPermanent_sound: finite prefix under actual coordinate interpretation plus full-tail space vanishing and actual homology law. No actual paper permanence instance; later prefix and tail theorems remain missing.",
+      "permanence_binding": "ActualPermanenceBoundary.Cases binds all4 existingd2survivors to the actualSystem and element; conditional full-tailfrompage3 is not proved for paper classes. System.Permanent is all-page nonboundary survival, stronger than outgoing-only permanent cycle inFact762.",
+      "actual_cycle_filtration": "ActualAdamsSystemBridge constructs the system from real graded differential and homology quotient; ActualAdamsFiltration derives the full E2 cycle quotient realization from local quotient surjectivity and proves actual Trace equivalence. Zero compatibility explicit; additive identification and actual paper input remain separate.",
+      "map_tail": "PermanentMapTailCertificates: entire incoming/outgoing maps zero suffice for strong permanence; only outgoing maps zero suffice for AlwaysCycle. No future selected-element survival premise. Actual incoming map vanishes above target filtration.",
+      "additive_filtration_update": "ActualAdamsAdditiveFiltration constructs genuine additive Z/B subgroups, cycle-only additive advance, complete additive image, boundary kernel and quotient addition from local homology AddMeaning. AddMeaning implies ZeroMeaning; actual 49 spectra and local compatible page maps still unproved.",
+      "actual_limit": "ActualAdamsLimit forms actual additive Z-infinity and B-infinity and their quotient; strong permanence iff nonzero limit class for an outgoing cycle. No homotopy convergence or actual paper permanence proved.",
+      "constructed_actual_prefix": "Both exact input tactics and zero rejection kernel-checked. Root quotient review and second independent coordinate/actual-model review passed. First incoming basis2622 is raw2622; second E2basis2682 is raw2684. No row2994 branch is selected; firstd4/second d5 onward remain.",
+      "strict_next_request_update": "ActualTraceRequestsNext integrated in 3494: strict canonical JSON/JSONL for E9, first/second E5 and Prop79 noHitThrough5. Exact claim, source, output and lengths bind to the same actual trace. 64008 request oracle cases, 64004 rejected, 72 malformed records, 24 bad batches, 24 parser locations and 40 good batches passed. Actual meanings remain explicit.",
+      "latest_update": "SecondLater independent review passed; SecondLater/E18/NoHit registered. FirstLater6modules passes root review of21complete comparisons297pairs and seven empty incoming sources. Nonzero first E6 uses whole one-dimensional target d4death; first noHit already follows from E5. Requests bind actual E2 input, not merely strings. Rootbuild26514 and fullaudit16266 both exited0;1576modules/70972decl."
+    },
+    {
+      "id": "prop-7.9",
+      "level": "conditional_actual_no_hit_through_d5",
+      "actual_inputs": [
+        "NamedElementCertificates/CnuBottomCell.lean",
+        "upstream/kervaire-49/Cnu_AdamsSS_t200.db",
+        "CnuPageCertificates/source.json",
+        "CnuPageCertificates/comparison.json"
+      ],
+      "certificate_families": [
+        "Module expression",
+        "Staircase",
+        "conditional Prop7.8 application",
+        "Named finite d2 homology quotient",
+        "Prop79IncomingSearch",
+        "Prop79TargetSearch"
+      ],
+      "proved_theorems": [
+        "NamedElementCertificates/CnuBottomCell.lean: named_bottom_cell_evaluation",
+        "Proposition78Certificates/Reduction.lean: survival_from_detection",
+        "CnuPageCertificates/BottomCell.lean: target_cycle",
+        "CnuPageCertificates/BottomCell.lean: target_not_boundary",
+        "CnuPageCertificates/BottomCell.lean: targetClass_coordinates",
+        "CnuPageCertificates/BottomCell.lean: targetClass_nonzero",
+        "Prop79IncomingSearch/Actual.lean: actual_row4180_d3_zero",
+        "Prop79IncomingSearch/Incoming.lean: complete_incoming_zero",
+        "Prop79IncomingSearch/Incoming.lean: complete_no_hit",
+        "Prop79TargetSearch/Trace.lean: result_sound",
+        "Prop79TargetSearch/Assembly.lean: prefix4",
+        "Prop79TargetSearch/ActualIncoming.lean: all_actual_incoming_zero"
+      ],
+      "unproved_premises": [
+        "Actual Adams realization, full neighboring coordinate/differential meanings, actual naturality and source naming bridges remain explicit.",
+        "Known boundary/future-prefix column meanings and local quotient laws must be supplied as Lean proofs.",
+        "Synthetic extension contradiction, Proposition7.8 detection equivalence and unconditional Proposition7.9 are not proved."
+      ],
+      "batch_scope": "Conditional minimal graph24/24; optional full target d5graph33/36, so no E6 claim. Four actual PageBoundary negations d2..d5 and nonzero E5 endpoint of the same named E2input, constructed E3/E4/E5 coordinates, prop79_cert.14modules/54reports integrated3346. Root10600quotientpair review and second256actual-model review passed.",
+      "paper_location": "\u00a77 Proposition 7.9",
+      "requested_conclusion": "not killed by any d_r; contradiction to the remaining case",
+      "incoming_d3": "Eight modules integrated, 32 standard reports. Six full bottom-cell coefficient matrices, four d2 quotients and two actual naturality squares derive named row4180 d3 zero. Boundary/prefix columns plus additivity cover the entire incoming map. Complete finite quotient no-hit is proved; actual all-column transport and target work are integrated in Prop79TargetSearch; its complete actual meanings remain explicit.",
+      "conditional_actual": "Both previously unknown d3 columns derived from explicit mathematical source meanings; Assembly assembles full d3, then zero full E4 neighbors give d4zero. Last E5 incoming prefix remains explicit. 221184finite relabeled models and 663552steps; secondreview covers omitted-column/faithfulness countermodels and a valid nonzero d5outgoing example.",
+      "neighbor_coordinates_update": "Prop79NeighborCoordinates2/11 integrated3395: derives full d4zero-dimensional neighbors andd5one-dimensionalincoming frominitialE2coordinates; oneactualbasisd5zero yieldswholeincomingzero. Knownprefix/actualmeanings remain.",
+      "strict_next_request_update": "ActualTraceRequestsNext integrated in 3494: strict canonical JSON/JSONL for E9, first/second E5 and Prop79 noHitThrough5. Exact claim, source, output and lengths bind to the same actual trace. 64008 request oracle cases, 64004 rejected, 72 malformed records, 24 bad batches, 24 parser locations and 40 good batches passed. Actual meanings remain explicit."
+    },
+    {
+      "id": "manual-1",
+      "level": "external_input_inventory",
+      "actual_inputs": [
+        "upstream/proofs_csv/*.csv reason=M",
+        "AdvancedRuleCertificates/paper-audit.md"
+      ],
+      "certificate_families": [
+        "Explicit external theorem premise"
+      ],
+      "proved_theorems": [],
+      "unproved_premises": [
+        "No local Lean proof of the manual differential.",
+        "Image-of-J theorem required.",
+        "Typed contexts still require actualS0/tmf identities, namedE2interpretations andfullendpointtraces; the interface proves none ofthemanualequations."
+      ],
+      "batch_scope": "Exactly3 manual events preserved; no theorem generated from their presence.",
+      "paper_location": "\u00a78 Appendix",
+      "requested_conclusion": "d5(h0^24 h6)=h0^2 P^6 d0",
+      "typed_obligation": "ManualInputObligations.Typed: exact gradedactualdifferential, E2product followed bycyclequotientTrace; ExternalProofs explicitlyrequiresLeanproofsofmanualequations; sevenmodulesdirectcompiled/full1282declarationstandardaxiomaudit"
+    },
+    {
+      "id": "manual-2",
+      "level": "external_input_inventory",
+      "actual_inputs": [
+        "upstream/proofs_csv/*.csv reason=M",
+        "AdvancedRuleCertificates/paper-audit.md"
+      ],
+      "certificate_families": [
+        "Explicit external theorem premise"
+      ],
+      "proved_theorems": [],
+      "unproved_premises": [
+        "No local Lean proof of the manual differential.",
+        "Image-of-J theorem required.",
+        "Typed contexts still require actualS0/tmf identities, namedE2interpretations andfullendpointtraces; the interface proves none ofthemanualequations."
+      ],
+      "batch_scope": "Exactly3 manual events preserved; no theorem generated from their presence.",
+      "paper_location": "\u00a78 Appendix",
+      "requested_conclusion": "d6(h0^55 h7)=h0^2 x126,60",
+      "typed_obligation": "ManualInputObligations.Typed: exact gradedactualdifferential, E2product followed bycyclequotientTrace; ExternalProofs explicitlyrequiresLeanproofsofmanualequations; sevenmodulesdirectcompiled/full1282declarationstandardaxiomaudit"
+    },
+    {
+      "id": "manual-3",
+      "level": "external_input_inventory",
+      "actual_inputs": [
+        "upstream/proofs_csv/*.csv reason=M",
+        "AdvancedRuleCertificates/paper-audit.md"
+      ],
+      "certificate_families": [
+        "Explicit external theorem premise"
+      ],
+      "proved_theorems": [],
+      "unproved_premises": [
+        "No local Lean proof of the manual differential.",
+        "Bruner--Rognes power-operation theorem required.",
+        "Typed contexts still require actualS0/tmf identities, namedE2interpretations andfullendpointtraces; the interface proves none ofthemanualequations."
+      ],
+      "batch_scope": "Exactly3 manual events preserved; no theorem generated from their presence.",
+      "paper_location": "\u00a78 Appendix",
+      "requested_conclusion": "d3(v2^16)=beta^5 g",
+      "typed_obligation": "ManualInputObligations.Typed: exact gradedactualdifferential, E2product followed bycyclequotientTrace; ExternalProofs explicitlyrequiresLeanproofsofmanualequations; sevenmodulesdirectcompiled/full1282declarationstandardaxiomaudit"
+    }
+  ],
+  "additional_consumer": {
+    "id": "prop-7.8",
+    "status": "conditional_application_only",
+    "files": [
+      "Proposition78Certificates/Reduction.lean",
+      "Proposition78Certificates/README.md"
+    ],
+    "missing": "Full all-pages reduction; equivalence with synthetic existential detection conditions; page12 quotient nonzero and topological realization."
+  },
+  "shared_trust_boundary": "No comparison theorem identifies the imported finite presentation/page with the complete topological Adams spectral sequence.",
+  "pending_checker": "Balanced-tree checker and real1413/1431instances now directcompiled0 and independently reviewed; registration in64916build inprogress. Earlier interrupted full-Wire/compactlist attempts retained outside accepted module list.",
+  "pending_integration": "Rootbuild64916 running for27additional independently reviewed modules. Two real tree closures compiled0 and bind both full1413/1431families. Previous3784/1576/70972 remains latest fully audited checkpoint."
+}

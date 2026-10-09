@@ -1,0 +1,89 @@
+{
+  "status": "conditional_actual_interpretation",
+  "whole_theorem": "Fact713Row3247Boundaries.Whole.row3247_whole_d3_zero",
+  "finite_conclusion": "both_finite_E9",
+  "actual_conclusion_proved": false,
+  "named_actual_E3_cycle_representatives": [
+    {
+      "object": "Cnu",
+      "degree": [
+        18,
+        85
+      ],
+      "row": 1183,
+      "base": "0",
+      "later_boundary": {
+        "page": 4,
+        "source_degree": [
+          14,
+          82
+        ],
+        "source_row": 1078
+      }
+    },
+    {
+      "object": "Cnu",
+      "degree": [
+        19,
+        146
+      ],
+      "row": 5286,
+      "base": "3",
+      "later_boundary": {
+        "page": 7,
+        "source_degree": [
+          12,
+          140
+        ],
+        "source_row": 4536
+      }
+    }
+  ],
+  "requirements": [
+    "The two actual PageCycle values and their named full-coordinate bindings",
+    "Complete actual sphere/Cnu E3 quotient equivalences and source-zero law",
+    "Complete h0,d0,P-squared and alternate factor action meanings",
+    "Actual module Leibniz law and top-cell-map naturality",
+    "Actual representative transitions and endpoint boundary equations"
+  ],
+  "warning": "The cycle proof uses the supplied actual E3 PageCycle properties. Later-boundary equations associate provenance; they do not prove those properties from raw labels.",
+  "unresolved_next": {
+    "named_d9": "row3143 d4 at (17,140), target dimension1",
+    "named_d10_and_first_d5": "row3136 d3 at (20,140), target dimension2",
+    "named_d11": "row2431 d3 at (9,130), target dimension3"
+  },
+  "parent_signature_sha256": "08232bde8ac0901f9c65800a65132657ed2d39c4d66f98bde619e8aac9f829a6",
+  "new_whole_theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+  "new_whole_inputs": [
+    "Complete sphere and C2h6 E3 homology meanings",
+    "Whole current map coordinate interpretations",
+    "Actual homology quotient map transitions",
+    "Whole d4 naturality"
+  ],
+  "new_rule_has_named_cycle_premise": false,
+  "prior_signature_sha256": "9ed84c1ff79ea22feaa6b7a0dd263268afff6db465fc5026e4e90eacf929c6ed",
+  "new_named_rules": [
+    {
+      "row": 2916,
+      "theorem": "Fact713Row2916Search.Actual.actual_row2916_d3_zero",
+      "actual_inputs": [
+        "complete d2 actual homology meanings",
+        "whole current map coordinate equations",
+        "actual quotient transitions",
+        "C2h5 d3 naturality",
+        "named derived source coordinate1"
+      ],
+      "effect": "13 complete comparisons in each branch"
+    },
+    {
+      "row": 3135,
+      "theorem": "Row3135H0Leibniz.Actual.actual_row3135_d3_zero",
+      "actual_inputs": [
+        "complete actual product/quotient meanings",
+        "named h0, right and source classes",
+        "known nonzero actual d3 of right factor from ss3066 to E2basis3236"
+      ],
+      "effect": "named column only; row3136 remains unknown, no complete d3 comparison"
+    }
+  ]
+}

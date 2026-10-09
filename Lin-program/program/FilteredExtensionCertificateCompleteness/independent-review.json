@@ -1,0 +1,42 @@
+{
+  "status": "independent_finite_certificate_completeness_review_passed",
+  "counts": {
+    "whole_range_factor_equivalences": 499,
+    "range_membership_equivalences": 1871,
+    "whole_certificate_search_equivalences": 672,
+    "accepted_inputs": 137,
+    "rejected_inputs": 535
+  },
+  "direct_records": {
+    "Linear": {
+      "observed_exit_code": 0,
+      "standard_reports": 8,
+      "source_sha256": "1c7f0bc43a0fc05856b3ca1eabb8d0ba7e9202303edcbbd48cf97295360500ce",
+      "log_sha256": "d41b1aa12b9176ec960974d3c0a0861bfe49988d1ad480cdd0a5acfbd83c6429",
+      "current_object_matches_direct": true
+    },
+    "Basic": {
+      "observed_exit_code": 0,
+      "standard_reports": 5,
+      "source_sha256": "8aee506dbbf690d7acac8425e6a6afadd9d6f69e6a109ce0754e4d9e1f1f0edd",
+      "log_sha256": "51449476f5f920ace48cbdc2a265bd12542cfb79f57d4131c504d9a6ff024cea",
+      "current_object_matches_direct": true
+    },
+    "Search": {
+      "observed_exit_code": 0,
+      "standard_reports": 7,
+      "source_sha256": "51d83b077317408f673f89b825e9b5d537b993febbb10e9c1f12ea511d8c129e",
+      "log_sha256": "1c6360c6d045ef78b03af1e07c17d9f1979d8a596216112e91027cf2866d4c8b",
+      "current_object_matches_direct": true
+    },
+    "Examples": {
+      "observed_exit_code": 0,
+      "standard_reports": 8,
+      "source_sha256": "746da5a264ecd1fbe2b124355123b3e1fddf42b2c5300fa7496b500291128d34",
+      "log_sha256": "b7d6ef9f86300b8b8649b7520d5a75b019de833d5ef968a360f5933480ab5e54",
+      "current_object_matches_direct": true
+    }
+  },
+  "script_sha256": "844219432cac17239aa039be89913f65a21eb29f5c11fe0a3eb0b3958b019891",
+  "scope": "exact existing finite filtered-extension ResultValid; complete exponential reference search, not C++ producer completeness"
+}

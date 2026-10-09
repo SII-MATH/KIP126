@@ -1,0 +1,36 @@
+Fact713H2Continuation/Actual.lean:142:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (D.whole.meaning.nextCoordinates ?pages ?valid ?zeroMeaning).equivalence
+    ((CertifiedAdamsPages.nextPage ?pages 3 degree).toNext ⟦?x⟧)
+in the target expression
+  D.page4.equivalence ((pages.nextPage 3 degree).toNext ⟦⟨D.product.value3, ⋯⟩⟧) = fun x => true
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+D : Input S pages P
+⊢ D.page4.equivalence ((pages.nextPage 3 degree).toNext ⟦⟨D.product.value3, ⋯⟩⟧) = fun x => true
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    ⟨D.product.value3, ⋯⟩
+  has type
+    { x //
+      (S.differential 3 Row3147H2Product.Actual.productDegree).toFun x =
+        S.zero 3 (AdamsTarget 3 Row3147H2Product.Actual.productDegree) }
+  but is expected to have type
+    PageCycle S 3 degree
+  in the application
+    ⟦⟨D.product.value3, ⋯⟩⟧
+'Fact713H2Continuation.Actual.source_previous_exact' does not depend on any axioms
+'Fact713H2Continuation.Actual.additive_three_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.boundary_differential_zero' depends on axioms: [propext, Quot.sound]
+'Fact713H2Continuation.Actual.Input.current_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.Input.target_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.first_column_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.whole_outgoing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.Input.whole' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.Input.page4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.coordinate4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.nonzero4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713H2Continuation.Actual.same_input_E4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1,0 +1,67 @@
+{
+  "status": "pass",
+  "findings": [],
+  "proof_evidence": {
+    "Basic": {
+      "reports": 6,
+      "record": {
+        "source_sha256": "6eeabd9f91c3502fd33fb9f7cbdf37e040afb747a9f8709c732dcda1c5c57eca",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "5c41dc3f70afa391c78403c845249ca61b42a344a57f572f98479270b64a8884",
+        "olean_sha256": "c09fdff55871411a0929baa8fda93407ba7d62e46c530797840f78a0da7aa62b"
+      },
+      "warnings": [
+        "FilteredTwoTermNaturality/Basic.lean:41:27: warning: Variable name `x` is not explicitly referenced.",
+        "FilteredTwoTermNaturality/Basic.lean:67:26: warning: Variable name `y` is not explicitly referenced."
+      ],
+      "current_olean_matches": true
+    },
+    "Laws": {
+      "reports": 3,
+      "record": {
+        "source_sha256": "c1203d4d75e658e220a4b3f9f831ee21094d8b573f208fab5188c2be62f6e96d",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "8e606f52c8dd1f8151209a7d7bb7cfd847f00d35ff6d2966789f3018fc78b3cf",
+        "olean_sha256": "540e5a46a947a996035a055ba216507ff33e9f31f5e1e6a31c7d3b3917b74c12"
+      },
+      "warnings": [],
+      "current_olean_matches": true
+    },
+    "Examples": {
+      "reports": 3,
+      "record": {
+        "source_sha256": "13c2d670a36a419ac1ac7d9224ec8afc2439e15da1eafae46df935798e49acc6",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "60da1b00fdc462a0a0b00180f8364ac49ed6b4d0284dd36151825b9bcdc0175d",
+        "olean_sha256": "f9cdd830d8e492635b5088ba56a78fdfd5e08db7e6186478b37711ad4fd81227"
+      },
+      "warnings": [],
+      "current_olean_matches": true
+    }
+  },
+  "finite_oracle_counts": {
+    "squares": 2400,
+    "proper_initial_filtration": 1770,
+    "unequal_group_orders": 2388,
+    "nonzero_square_maps": 97,
+    "source_classes": 82431,
+    "nonzero_differentials": 604,
+    "nonzero_transported_differentials": 18,
+    "source_representative_pairs": 234473,
+    "source_next": 81500,
+    "target_levels": 48000,
+    "target_n_above_t": 24000,
+    "target_classes_and_advance": 89300,
+    "target_representative_pairs": 280820,
+    "integer_example_representatives": 729
+  },
+  "scope": "Independent cyclic group quotient oracle and source proof review. No assertion of topological or Adams realization; composition oracle includes scalar second squares, while Lean theorem is general.",
+  "source_sha256": {
+    "Basic.lean": "6eeabd9f91c3502fd33fb9f7cbdf37e040afb747a9f8709c732dcda1c5c57eca",
+    "Laws.lean": "c1203d4d75e658e220a4b3f9f831ee21094d8b573f208fab5188c2be62f6e96d",
+    "Examples.lean": "13c2d670a36a419ac1ac7d9224ec8afc2439e15da1eafae46df935798e49acc6"
+  }
+}

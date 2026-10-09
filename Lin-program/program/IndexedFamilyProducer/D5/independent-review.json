@@ -1,0 +1,107 @@
+{
+  "all_raw_conditionals_retained": 39,
+  "assert_current": "passed",
+  "compile_modules": [
+    {
+      "exit_code": 0,
+      "module": "IndexedD5Certificates.Extension"
+    },
+    {
+      "exit_code": 0,
+      "module": "IndexedD5Certificates.Family"
+    },
+    {
+      "exit_code": 0,
+      "module": "IndexedD5Certificates.Events"
+    }
+  ],
+  "consecutive_pairs": 135,
+  "cross_pairs": 4914,
+  "events": 95,
+  "extra_entries": 7,
+  "extra_keys": [
+    [
+      "S0",
+      3,
+      12,
+      136
+    ],
+    [
+      "S0",
+      4,
+      13,
+      139
+    ],
+    [
+      "S0",
+      5,
+      13,
+      139
+    ],
+    [
+      "S0",
+      3,
+      14,
+      140
+    ],
+    [
+      "S0",
+      4,
+      18,
+      143
+    ],
+    [
+      "S0",
+      5,
+      3,
+      129
+    ],
+    [
+      "S0",
+      4,
+      8,
+      133
+    ]
+  ],
+  "extra_pairs": 49,
+  "family_entries": 358,
+  "findings": [],
+  "horizontal_pairs": 196,
+  "inputs_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "IndexedD5Certificates/Events.lean": "d886c6ae97be63a0dc06aad7a3729170ecba706f1f59f9c88291d07bac169943",
+    "IndexedD5Certificates/Extension.lean": "71f93eb206cdebdfaf350577836cbf7cdaccc0af491bb27b4f3163f9dc3f0a75",
+    "IndexedD5Certificates/Family.lean": "5aac59e129f1b4c640cdeb4c9978124a290e0db07204be5215003913e2f6730f",
+    "IndexedFamilyCertificates/Basic.lean": "aa153c63d766feb49491454acc083cebf8c18dd30c6270bf859c9e8777c52ab2",
+    "IndexedFamilyCertificates/Coherence.lean": "a957d41b8508112828bc80e0b11416d65ae97622c26a2f489e2c90df02462257",
+    "IndexedFamilyCertificates/Results.lean": "b303d5fae5912f30b3d67b5094b2f017fc358184f5bd56dd6bea75a192d7e0fb",
+    "IndexedFamilyProducer/D5/bound95.jsonl": "0f2511eed6ee9ab21fe384356db99cd73f8651abc85cda7089039c448ad3a2cc",
+    "IndexedFamilyProducer/D5/cli_test.py": "0d19e71ee9f28d1ca434982eb52ca63069e7d31b9a69225442bec5cb4c5ceee9",
+    "IndexedFamilyProducer/D5/compile-audit.json": "04892a54614a4c0d940a15443e8442a122bc56993986a9e9169743a7fce7df56",
+    "IndexedFamilyProducer/D5/extra.json": "a8dc5e8288cf6e0b8ab8a1ef490458676126374b85cd5ab8b14bb628d82c1fc9",
+    "IndexedFamilyProducer/D5/family-extension.json": "66deb518c646014a194c6a86fba891811a5da1369b3cf1a4298b90d4b888dfa2",
+    "IndexedFamilyProducer/D5/family.json": "23d7946d3f295a5b9f57a1aa1518dd317dcfe5b671b44a24570a4f3fb112573e",
+    "IndexedFamilyProducer/D5/generate.py": "ac1938a3765ca997949d8800148348fd6b057043d998bfaa7a47eeffa87e2c12",
+    "IndexedFamilyProducer/D5/prepare.py": "fb249276abc7640feb15ac161f164455b08e8a0fe974482a4e77e145393af9df",
+    "IndexedFamilyProducer/D5/proof-inputs.json": "d7ccac6b4ba0e6f3b178667594551533f430c2ee01468ad42efe9b5636fbf209",
+    "IndexedFamilyProducer/D5/provenance.json": "709ad16ecd16811a6adea27716d1163c3d883506ddd0fe5adee953c7a738cc23",
+    "IndexedFamilyProducer/D5/review.py": "8691baf861aaca9a62ed7fe17f17be85b781d53aa8d7ec8b59784243eba2f51a"
+  },
+  "limitations": [
+    "Coherence checks every supplied block and every overlapping/consecutive pair; it does not assert absent pages or Adams realization.",
+    "The95 events retain conditional staircase meanings, actual-map and naturality obligations, including the newly conditional row2796d5.",
+    "The Lean family and event lists preserve the old prefix and append new items, whereas producer files sort the full collection. The reviewer verifies map/set equality and each record binding; positions are not conflated."
+  ],
+  "new_event": 3391,
+  "old_bound_records_byte_unchanged": 94,
+  "old_entries_unchanged": 351,
+  "old_pairs_reused": 123201,
+  "ordered_pairs": 128164,
+  "prior_stages": 102,
+  "proof_review": [
+    "append_extends preserves exact first-match lookup values; valid_extension requires new UniqueKeys and transports the event and every stage binding.",
+    "coherent_append covers all four old/new pair cases; Family proves seven extra entries, all49 extra ordered pairs and both directions of all2457 cross pairs.",
+    "Events derives validity for all94 original BoundWire values by extension and explicitly binds the3391 imported complete wire; no hash is used as proof."
+  ],
+  "status": "independent_extension_family_and_all_bindings_review_passed"
+}

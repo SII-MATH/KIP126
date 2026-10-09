@@ -1,0 +1,17 @@
+AggregateIncomingTargetCompletion/FinalTarget.lean:47:42: error: Ambiguous term
+  Cycle
+Possible interpretations:
+  _root_.Cycle ?m.14 : Type ?u.12
+  
+  PageTransitionCertificates.Cycle ?m.16 : Type
+AggregateIncomingTargetCompletion/FinalTarget.lean:82:57: error: maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+'AggregateIncomingTargetCompletion.Final.event3391_same_family' depends on axioms: [propext, Quot.sound]
+AggregateIncomingTargetCompletion/FinalTarget.lean:85:14: error(lean.unknownIdentifier): Unknown constant `target3391_quotient_zero`
+'AggregateIncomingTargetCompletion.Final.conditional_column_meaning' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'AggregateIncomingTargetCompletion.Final.old_missing_exact' does not depend on any axioms
+'AggregateIncomingTargetCompletion.Final.all_incoming_count' does not depend on any axioms
+'AggregateIncomingTargetCompletion.Final.all_13_targets_supplied' depends on axioms: [sorryAx]

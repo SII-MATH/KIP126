@@ -1,0 +1,10 @@
+ActualStem125ConstrainedE5/Basic.lean:42:56: error: failed to synthesize
+  Decidable
+    (∀ (f : Fin 20), IsComplex (matrixOf 1 3 (Data.twentyfive f).outgoing) (matrixOf 3 2 (Data.twentyfive f).incoming))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'ActualStem125ConstrainedE5.TraceData.finite_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.complex' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualStem125ConstrainedE5.select' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.finite_aggregate' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.dimension_bounds' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

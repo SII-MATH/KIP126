@@ -1,0 +1,50 @@
+{
+  "status": "no_correctness_findings",
+  "matrices": 16,
+  "columns": 44,
+  "relation_steps": 20,
+  "complete_d2_quotients": 12,
+  "whole_d2_square_vectors": 114,
+  "quotient_pair_checks": 959,
+  "parameter_d3_quotients": 14,
+  "tested_unknown_assignments": 512,
+  "accepted_assignments": 32,
+  "rejected_assignments": 480,
+  "incoming_unknown_forced_zero": true,
+  "whole_source_map_zero_in_all_cases": true,
+  "whole_target_map_reflects_zero_in_all_cases": true,
+  "exact_row_binding": {
+    "named_target": {
+      "staircase_id": 4185,
+      "base": "3",
+      "basis_id": 4188
+    },
+    "unknown_target_d3": {
+      "staircase_id": 4188,
+      "base": "0",
+      "basis_id": 4185
+    },
+    "incoming_unknown": {
+      "staircase_id": 3988,
+      "base": "3",
+      "basis_id": 3991
+    }
+  },
+  "actual_premises": [
+    "complete current coordinate meanings for all six neighborhoods",
+    "conditional S0 d3-zero refinements for staircase rows 2684 and 2773",
+    "actual current map interpretation on every element",
+    "actual quotient transitions with explicit zero laws",
+    "actual d4 naturality"
+  ],
+  "limitation": "Independent finite-data audit only; database rows and reduction relations are not topological realizations.",
+  "input_sha256": {
+    "Fact713D4SourceSearch/candidate_independent_review.py": "b041ee7f7ece178d5c728c1ce2289bbb8db50b6de8d85ffac61ec2db23cef7df",
+    "Fact713D4SourceSearch/source.json": "349dde5035db6f1316321bf55d6b4752a9defeb8a8118377c56d4a894881b611",
+    "Fact713D4SourceSearch/comparison-source.json": "376832cd2b2e43c3d84e4e05630167b7cf31ee379bd4f2bcda44d187d5f972f4",
+    "Fact713D4SourceSearch/c2h5-e4-candidates.json": "832d5af3ae1ad3483d9cf5f11a8d7a757c26cbabdc028caddf4b06f30f21325d",
+    "Fact713D4SourceSearch/parameters.json": "c8b0673cc861bb967fb25d8a6dbad1b82c4bbf20b718731acbee29660bd14c9b",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "upstream/kervaire-49/C2h5_AdamsSS_t200.db": "09ce104df05722024614b4909c84d35790f1d36fec8abc18576717608a6091b3"
+  }
+}

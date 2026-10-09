@@ -1,0 +1,37 @@
+{
+  "status": "conditional_full_d4_and_constructed_actual_E5",
+  "previous_families_preserved": true,
+  "parents": {
+    "Fact713FourBranchContinuation/frozen-source.json": "9ace25c060e79dceb221e256de8b2641f812848c73565197b35c3a5de1d96203",
+    "Row2916D4Search/frozen-source.json": "4b7771179b7f99e4840b249c1cd1a9c9896f2fa88941852b6d09efc4b8bd1463",
+    "Fact713Row3143Continuation/frozen-source.json": "73670867b2231388cf7c92f3e0fdbcd07f54520e2732f4400824dfbb2c43d09c",
+    "Row2907TargetProduct/frozen-source.json": "da384e288b0e84111b6067a0a72b2289613833e497a2df0f1515a601dd0aca2e"
+  },
+  "new_comparisons": [
+    "S0:17,140:d4",
+    "S0:17,140:d5",
+    "S0:22,144:d5"
+  ],
+  "whole_incoming": "Row2916D4Search.Actual.whole_sphere_d4_zero",
+  "whole_outgoing": "Fact713Row3143Continuation.ActualRule.whole_d4_zero",
+  "actual_bridge": "Fact713Row2916Continuation.Actual.Input.whole",
+  "actual_endpoint": "Fact713Row2916Continuation.Actual.named5_nonzero",
+  "new_premises": [
+    "All frozen Row2916 rule premises and its full actual quotient transition",
+    "All frozen Row3143 rule premises",
+    "Entire actual E4 outgoing-target coordinates",
+    "Local quotient additivity at source E3",
+    "Local quotient zero law at source E4"
+  ],
+  "desired_incoming_or_outgoing_equations_are_input_fields": false,
+  "actual_a_selection": "a=false derived only with complete Row2907TargetProduct.Actual.TargetMeaning",
+  "actual_r_selection": null,
+  "raw_row2907_NULL_preserved": true,
+  "row2907_new_nonzero_overlay": false,
+  "actual_E10_request": "Complete same-S same-pages Prefix10 still explicit; full family coherence alone does not supply it",
+  "limitations": [
+    "No unconditional original topology interpretation",
+    "No new named d10 comparison",
+    "Four conditional historical branches preserved"
+  ]
+}

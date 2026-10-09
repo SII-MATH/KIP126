@@ -1,0 +1,154 @@
+{
+  "current_lake_build": {
+    "all_four_sources_oleans_and_traces_match": true,
+    "build_log_matches": true,
+    "checkpoint": "tests/whole-homology-lake-checkpoint.json",
+    "checkpoint_sha256": "5ce559bb9abad66f5b26d7076482ff7a8f15b35ced33042f0d1d20daa8a5f5d6",
+    "jobs": 2498,
+    "observed_exit_code": 0
+  },
+  "findings": [],
+  "historical_direct_builds": {
+    "exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "modules": [
+      "Basic",
+      "D2",
+      "D3",
+      "D4"
+    ],
+    "olean_status": "Previously independently matched direct audit. Concurrent root Lake build now atomically replaces artifacts; no current direct-olean assertion is made.",
+    "source_and_log_fingerprints_current": true,
+    "standard_only_axiom_reports": 14
+  },
+  "independent_mathematical_replay": {
+    "SQL_E2_basis_rows": 105,
+    "SQL_recorded_stem125_groups": 45,
+    "all_cycle_pairs": 2302,
+    "checked": [
+      "All wire shapes and bits",
+      "Full contracting-homotopy identity on every selected block",
+      "All local cycles and incoming boundaries",
+      "Surjectivity of homology coordinates",
+      "For every local cycle pair: equal coordinates iff difference is a boundary",
+      "Preservation of representative-defined quotient addition",
+      "All 45 SQL E2/staircase ID lists and their exact ordering",
+      "All 45 basis matrices against SQL base indices and both inverse compositions on every local vector"
+    ],
+    "conditional_NULL_d2_roles": 7,
+    "d2": {
+      "blocks": 45,
+      "cardinality": "2^44",
+      "cycle_pairs": 1833,
+      "homology_coordinates": 44,
+      "input_coordinates": 105
+    },
+    "d3": {
+      "blocks": 28,
+      "cardinality": "2^23",
+      "cycle_pairs": 454,
+      "homology_coordinates": 23,
+      "input_coordinates": 37
+    },
+    "d3_missing_nonzero_previous_filtrations": [
+      [
+        9,
+        3
+      ],
+      [
+        34,
+        1
+      ],
+      [
+        36,
+        1
+      ],
+      [
+        45,
+        1
+      ],
+      [
+        57,
+        1
+      ]
+    ],
+    "d4": {
+      "blocks": 9,
+      "cardinality": "2^2",
+      "cycle_pairs": 15,
+      "homology_coordinates": 2,
+      "input_coordinates": 9
+    },
+    "d4_missing_nonzero_previous_filtrations": [
+      [
+        13,
+        2
+      ],
+      [
+        14,
+        1
+      ],
+      [
+        15,
+        2
+      ],
+      [
+        16,
+        1
+      ],
+      [
+        21,
+        1
+      ],
+      [
+        22,
+        2
+      ],
+      [
+        25,
+        3
+      ],
+      [
+        46,
+        1
+      ],
+      [
+        49,
+        1
+      ]
+    ],
+    "full_comparison_blocks": 82
+  },
+  "limitations": [
+    "The d2 product covers all 45 recorded stem-125 centers in the supplied SQL snapshot, not a proof that unrecorded Adams groups vanish.",
+    "Seven raw NULL d2 roles retain explicit conditional staircase provenance; they are not silently converted to known SQL zeros.",
+    "The d3 product omits 7 known prior coordinates; d4 omits 14 known prior coordinates and inherits d3 gaps. Neither is a full E4 or E5 page.",
+    "All actual Adams identifications and conditional source-rule uses remain separate mathematical premises.",
+    "Cardinality and an additive coordinate equivalence are proved; no new Mathlib finrank instance is claimed.",
+    "The replay is independent engineering evidence; mathematical soundness is supplied by Lean proofs checked by the kernel."
+  ],
+  "proof_review": [
+    "The source defines a product of actual boundary quotients and constructs its additive equivalence to the coordinate vector space.",
+    "Flattening only reindexes coordinates; quotient addition is induced from cycle representatives.",
+    "All-combinations claims follow from complete comparisons and quotient equivalence, not subtraction of named events.",
+    "C++ output and hashes introduce no mathematical axioms."
+  ],
+  "reviewer": "certificate_pipeline_next",
+  "source_sha256": {
+    "Stem125HomologyCertificates/Basic.lean": "ab6bcfdbef256abe80fc313f43bad11b1beb404f75325ece008fb51b55348adf",
+    "Stem125HomologyCertificates/D2.lean": "77f7bd150d66b1dd8ea591a3b8ab3e8c56cb0b75cb3da59fa1823ea7d2ad7ba3",
+    "Stem125HomologyCertificates/D3.lean": "16de5554d7858953414562dade8423414bddb2a63461acdb4673e6e9b22997f7",
+    "Stem125HomologyCertificates/D4.lean": "c7048493cc2f1c76e2496796dcbfa988e52cf2a3e21b77bbaa6325059cd764dc",
+    "Stem125HomologyCertificates/README.md": "8ed26414935b1354af0349455b18d6d66e9b76069aad03ca90bbb5cdf44503d4",
+    "Stem125HomologyCertificates/compile-audit.json": "72c0dbd575216bd01a34d18c18b446e418922344aabafb3c13d07ca121aeed8e",
+    "Stem125HomologyCertificates/coverage.json": "310592d99961ba9d3af4012f3f76ae0a7a19298546176e68c1a286ba818436b1",
+    "Stem125HomologyCertificates/generate.py": "c2075f7c00428cbe91241ed9b7d1fa7b853bb9b80586c4ab45bac0eac19795e8",
+    "Stem125HomologyCertificates/review.json": "05b88492851f9c874cc60cd4cf48ac7d2ca4c6f786827fb9943c4df944e24920",
+    "Stem125HomologyCertificates/review.py": "ec0bbbef3f8895fd78b7c556437de87c02f099a469a9753b10fc775088318ed3"
+  },
+  "status": "no_findings_in_finite_conditional_scope"
+}

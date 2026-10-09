@@ -1,0 +1,31 @@
+FilteredMapGradedComparison/Recurrence.lean:58:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (gradedClass ?G (?s + ?n)) ?y ∈ earlierBoundaries ?F ?G ?f ?s ?n
+in the target expression
+  (QuotientAddGroup.mk' (gradedRelations G (s + 0))) y ∈ earlierBoundaries F G f s 0 ↔
+    (QuotientAddGroup.mk' (gradedRelations G (s + 0))) y ∈ ⊥
+
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+s : ℕ
+y : ↥(G.group (s + 0))
+⊢ (QuotientAddGroup.mk' (gradedRelations G (s + 0))) y ∈ earlierBoundaries F G f s 0 ↔
+    (QuotientAddGroup.mk' (gradedRelations G (s + 0))) y ∈ ⊥
+FilteredMapGradedComparison/Recurrence.lean:105:4: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Add ((Graded G (s + 1 + n) ⧸ earlierBoundaries F G f (s + 1) n) ⧸ (leadingDifferential F G f (s + 1) n).range)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+FilteredMapGradedComparison/Recurrence.lean:108:2: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  (leadingDifferential F G f (s + 1) n).range.Normal
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+'FilteredMapGradedComparison.surviving_next_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapGradedComparison.surviving_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapGradedComparison.boundaries_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapGradedComparison.gradedTargetAdvance_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapGradedComparison.gradedTargetNextEquivCokernel' depends on axioms: [sorryAx]
+'FilteredMapGradedComparison.boundaries_step_iff_image' depends on axioms: [propext, Classical.choice, Quot.sound]

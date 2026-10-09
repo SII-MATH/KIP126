@@ -1,0 +1,12 @@
+Fact762NonzeroE6/Tests.lean:7:69: error: Expected type must not contain free variables
+  eval (matrixOf source4.k source4.m source4.outgoing) x = x
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+Fact762NonzeroE6/Tests.lean:20:9: warning: Variable name `c` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Fact762NonzeroE6.Tests.complete_d4_injective' depends on axioms: [propext, sorryAx]
+'Fact762NonzeroE6.Tests.missing_d4_column_rejected' depends on axioms: [propext]
+'Fact762NonzeroE6.Tests.zero_input_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,261 @@
+{
+  "status": "joint_kernel_and_affine_obligations_checked",
+  "complete_maps": 48,
+  "complete_source_zero_maps": 20,
+  "entire_source_zero_joint_kernel": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "affine_candidates_after_source_zero_maps": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "maps_that_can_distinguish_candidates": [
+    {
+      "map": "S0__Csigma",
+      "source_degree": [
+        17,
+        138
+      ],
+      "mapped_source_E2_support": [
+        4,
+        5,
+        6
+      ],
+      "mapped_source_E3": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "residual_image": [
+        0,
+        0,
+        1
+      ],
+      "unknown_rows": [
+        [
+          4537,
+          "4,6",
+          null,
+          9000
+        ],
+        [
+          4538,
+          "5",
+          null,
+          9000
+        ]
+      ],
+      "all_local_staircase_rows": [
+        [
+          4533,
+          "7",
+          "2",
+          2
+        ],
+        [
+          4534,
+          "0,2",
+          "0",
+          2
+        ],
+        [
+          4535,
+          "2,4,6",
+          "0",
+          3
+        ],
+        [
+          4536,
+          "3",
+          "2",
+          3
+        ],
+        [
+          4537,
+          "4,6",
+          null,
+          9000
+        ],
+        [
+          4538,
+          "5",
+          null,
+          9000
+        ],
+        [
+          4539,
+          "1",
+          "3",
+          9997
+        ],
+        [
+          4540,
+          "6",
+          "1",
+          9998
+        ]
+      ],
+      "source_not_in_span_of_all_nonnull_cycle_rows": true,
+      "database": "Csigma_AdamsSS_t200.db",
+      "database_sha256": "96c380f9893f2c3e0445c03cdddc6b242b3d163655cf9a9b007360c93b3b4680"
+    },
+    {
+      "map": "S0__CW_2_eta_by_nu",
+      "source_degree": [
+        18,
+        145
+      ],
+      "mapped_source_E2_support": [
+        2
+      ],
+      "mapped_source_E3": [
+        0,
+        0,
+        1
+      ],
+      "residual_image": [
+        0,
+        1
+      ],
+      "unknown_rows": [
+        [
+          4206,
+          "2",
+          null,
+          9000
+        ]
+      ],
+      "all_local_staircase_rows": [
+        [
+          4202,
+          "6",
+          "2",
+          2
+        ],
+        [
+          4203,
+          "3",
+          "4",
+          2
+        ],
+        [
+          4204,
+          "1,5",
+          "0",
+          2
+        ],
+        [
+          4205,
+          "5",
+          "4",
+          3
+        ],
+        [
+          4206,
+          "2",
+          null,
+          9000
+        ],
+        [
+          4207,
+          "0",
+          "1",
+          9997
+        ],
+        [
+          4208,
+          "4",
+          "1",
+          9998
+        ]
+      ],
+      "source_not_in_span_of_all_nonnull_cycle_rows": true,
+      "database": "CW_2_eta_AdamsSS_t200.db",
+      "database_sha256": "d09387bd964b7359139962bd01e2b4782d9fce637ed79f27ce68c6152b5fefcf"
+    },
+    {
+      "map": "S0__DC2h6",
+      "source_degree": [
+        17,
+        138
+      ],
+      "mapped_source_E2_support": [
+        1,
+        2,
+        3
+      ],
+      "mapped_source_E3": [
+        1,
+        1
+      ],
+      "residual_image": [
+        0,
+        1
+      ],
+      "unknown_rows": [
+        [
+          3219,
+          "1,2,3",
+          null,
+          9000
+        ]
+      ],
+      "all_local_staircase_rows": [
+        [
+          3217,
+          "4",
+          "0",
+          2
+        ],
+        [
+          3218,
+          "0,1",
+          "0",
+          3
+        ],
+        [
+          3219,
+          "1,2,3",
+          null,
+          9000
+        ],
+        [
+          3220,
+          "2,3",
+          "0",
+          9998
+        ],
+        [
+          3221,
+          "3",
+          "2",
+          9998
+        ]
+      ],
+      "source_not_in_span_of_all_nonnull_cycle_rows": true,
+      "database": "DC2h6_AdamsSS_t200.db",
+      "database_sha256": "8ea004020e413f34a569b9d142e58c73c7661dd1acff35b0757dac9e73586162"
+    }
+  ],
+  "consequence": "Affine constraints from the source-zero family cannot distinguish 0 and (0,1). Only three complete maps distinguish them; all require presently unknown detector-source d3 values.",
+  "limitation": "A finite search obstruction, not a theorem ruling out other mathematical arguments or incomplete maps.",
+  "sha256": {
+    "affine_screen.py": "72b8ba5c40b5978eab6c91ea01c304a91976ad78839c366084371797c51c4c2b",
+    "lifted-search.json": "bf63e88d5b40703bce5c165f512fa43b3c5d6ddf7224bed79e04fd2bc51da266"
+  }
+}

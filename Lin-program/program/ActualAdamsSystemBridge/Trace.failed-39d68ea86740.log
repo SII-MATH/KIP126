@@ -1,0 +1,16 @@
+ActualAdamsSystemBridge/Trace.lean:12:24: error: invalid `▸` notation, expected result type of cast is 
+  (system S pages zeroMeaning d).Page n
+however, the equality 
+  h
+of type 
+  r = n + 2
+does not contain the expected result type on either the left or the right hand side
+ActualAdamsSystemBridge/Trace.lean:33:8: warning: declaration uses `sorry`
+ActualAdamsSystemBridge/Trace.lean:60:0: warning: Definition `differentialLaws` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+'ActualAdamsSystemBridge.trace_at_transport' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsSystemBridge.trace_at' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsSystemBridge.endpoint_at' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsSystemBridge.incoming_cycle' depends on axioms: [propext, Quot.sound]
+'ActualAdamsSystemBridge.differentialLaws' depends on axioms: [propext, Classical.choice, Quot.sound]

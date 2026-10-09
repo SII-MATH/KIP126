@@ -1,0 +1,32 @@
+{
+  "status": "pass",
+  "findings": [],
+  "counts": {
+    "requested": 1420,
+    "available": 1269,
+    "missing": 151,
+    "outside": 3,
+    "familyKeys": 1272
+  },
+  "reconstructed_nodes": 1420,
+  "reconstructed_edges": 2763,
+  "axiom_reports": {
+    "GraphData": 0,
+    "GraphPartitions": 2,
+    "GraphDisjoint": 3,
+    "GraphCoverage": 11,
+    "GraphParserTests": 0
+  },
+  "input_sha256": {
+    "Fact713DC2h6ComparisonFamily/graph-proof.json": "85592a8dec23a9533f6b7985079cd1c465dfac5a74303755480946f80a4093c4",
+    "Fact713DC2h6ComparisonFamily/graph-gaps.json": "83e79cdc8f9673283706bce0e74dd1501908ee8f67535c61c78521a978be37a6",
+    "Fact713DC2h6ComparisonFamily/family.json": "66724a278c4a5de3703c0581378a7bdb4cd49da3bc3b61b3b027dc155c490dd7",
+    "Fact713E12Search/search.json": "b092b909e211bcccb0aa261314167107fd6e9c84ad5be1fb0153a519e59b137c",
+    "Fact713DC2h6ComparisonFamily/GraphCoverage.lean": "d87e9a2c4cacdad64cede80157d3194ca068b26552b4a2e0e291f6eb21cc5020",
+    "Fact713DC2h6ComparisonFamily/GraphData.lean": "85b2aaea8f874baca97d8481f9591941f8e03fbbc6970b8eb09a5ab574b70e12",
+    "Fact713DC2h6ComparisonFamily/GraphDisjoint.lean": "3ffb60e23ff67d5542b31bee84195b7e3a6da78d583db31a466447fb16e799d3",
+    "Fact713DC2h6ComparisonFamily/GraphParserTests.lean": "a5e0abd6317be93950f3f39793211ed834af12f3d607869b0481e5c053ccf440",
+    "Fact713DC2h6ComparisonFamily/GraphPartitions.lean": "7e0447eea1a1c196acd3ff0bfe1cbb390a9f010f0239ff99738d689b3863fcff"
+  },
+  "scope": "Exact finite graph closure, full key identities and cached data; no topology claim."
+}

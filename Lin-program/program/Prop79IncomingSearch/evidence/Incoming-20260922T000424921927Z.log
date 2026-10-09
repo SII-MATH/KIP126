@@ -1,0 +1,12 @@
+Prop79IncomingSearch/Incoming.lean:29:39: error: failed to synthesize
+  Decidable ((fun i => ↑i == 1) = basis 1)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'Prop79IncomingSearch.Incoming.finite_not_image' depends on axioms: [propext, Quot.sound]
+'Prop79IncomingSearch.Incoming.zero_of_three_columns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Prop79IncomingSearch.Incoming.source_basis1_named' depends on axioms: [propext, sorryAx, Quot.sound]
+'Prop79IncomingSearch.Incoming.complete_incoming_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Prop79IncomingSearch.Incoming.complete_no_hit' depends on axioms: [propext, Classical.choice, Quot.sound]

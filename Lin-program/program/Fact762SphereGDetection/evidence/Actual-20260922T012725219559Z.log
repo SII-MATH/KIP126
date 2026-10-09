@@ -1,0 +1,32 @@
+Fact762SphereGDetection/Actual.lean:31:59: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  P.product.multiply (3 + 2) factorD5Degree sourceDegree ((S.differential 5 factorDegree).toFun g) x
+in the target expression
+  0 =
+    P.product.multiply 5 (AdamsTarget 5 factorDegree) sourceDegree ((S.differential 5 factorDegree).toFun g) x +
+      pageCast S 5 ⋯
+        (P.product.multiply 5 factorDegree (AdamsTarget 5 sourceDegree) g ((S.differential 5 sourceDegree).toFun x))
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+zeros : ActualAdamsSystemBridge.ZeroMeaning S pages
+P : CertifiedAdamsProduct S
+detector : Detector.Stage4 S pages P
+x0 : (S.element 2 sourceDegree).carrier
+x : (S.element 5 sourceDegree).carrier
+trace : Trace S pages sourceDegree 5 x0 x
+initialProduct : ∀ (g0 : (S.element 2 factorDegree).carrier), P.product.multiply 2 factorDegree sourceDegree g0 x0 = 0
+initialCorrection :
+  ∀ (v0 : (S.element 2 factorD5Degree).carrier), P.product.multiply 2 factorD5Degree sourceDegree v0 x0 = 0
+productTransitions : ∀ (q : ℕ), 2 ≤ q → q < 5 → Transition S pages P q factorDegree sourceDegree
+correctionTransitions : ∀ (q : ℕ), 2 ≤ q → q < 5 → Transition S pages P q factorD5Degree sourceDegree
+g : (S.element 5 factorDegree).carrier
+namedG : detector.input.nextLeft.equivalence g = fun x => true
+productZero : P.product.multiply (3 + 2) factorDegree sourceDegree g x = 0
+correctionZero : P.product.multiply (3 + 2) factorD5Degree sourceDegree ((S.differential 5 factorDegree).toFun g) x = 0
+formula :
+  0 =
+    P.product.multiply 5 (AdamsTarget 5 factorDegree) sourceDegree ((S.differential 5 factorDegree).toFun g) x +
+      pageCast S 5 ⋯
+        (P.product.multiply 5 factorDegree (AdamsTarget 5 sourceDegree) g ((S.differential 5 sourceDegree).toFun x))
+⊢ (S.differential 5 sourceDegree).toFun x = 0
+'Fact762SphereGDetection.Actual.named_d5_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

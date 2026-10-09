@@ -1,0 +1,14 @@
+FilteredFiniteSourceLimit/Examples.lean:42:7: error: unexpected token 'at'; expected '(', ':=', '|' or term
+FilteredFiniteSourceLimit/Examples.lean:42:7: error: Missing cases:
+FilteredFiniteSourceLimit/Examples.lean:35:59: error: unsolved goals
+i : ℕ
+h : target.group i = ⊥
+mem : spike i ∈ ⊥
+zero : spike i = 0
+⊢ False
+'FilteredFiniteSourceLimit.Examples.target_separated' depends on axioms: [propext, Quot.sound]
+'FilteredFiniteSourceLimit.Examples.target_unbounded' depends on axioms: [propext, sorryAx, Quot.sound]
+'FilteredFiniteSourceLimit.Examples.image_bound' depends on axioms: [propext, Quot.sound]
+'FilteredFiniteSourceLimit.Examples.converges_with_unbounded_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

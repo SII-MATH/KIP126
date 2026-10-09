@@ -1,0 +1,18 @@
+Prop79IncomingSearch/CoordinateBridge.lean:32:28: error(lean.unknownIdentifier): Unknown identifier `eval_compose`
+Prop79IncomingSearch/CoordinateBridge.lean:34:2: error: Tactic `apply` failed: could not unify the conclusion of `@funext`
+  ?f = ?g
+with the goal
+  Finite.Cnu_11_137_d2.m = Comparison.target.h
+
+Note: The full type of `@funext` is
+  ∀ {α : Sort ?u.12} {β : α → Sort ?u.11} {f g : (x : α) → β x}, (∀ (x : α), f x = g x) → f = g
+
+case e_2
+x : Naturality.T
+he : Naturality.coordinates.fromCoordinates (Naturality.coordinates.toCoordinates x) = x
+⊢ Finite.Cnu_11_137_d2.m = Comparison.target.h
+'Prop79IncomingSearch.CoordinateBridge.named_source_coordinates' depends on axioms: [propext, Quot.sound]
+'Prop79IncomingSearch.CoordinateBridge.named_target_coordinates' depends on axioms: [propext, Quot.sound]
+'Prop79IncomingSearch.CoordinateBridge.all_source_coordinates' depends on axioms: [propext, sorryAx, Quot.sound]
+'Prop79IncomingSearch.CoordinateBridge.d4_source_zero' does not depend on any axioms
+'Prop79IncomingSearch.CoordinateBridge.d5_source_dimension' does not depend on any axioms

@@ -1,0 +1,31 @@
+Row3135H0Leibniz/Actual.lean:54:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  pageCast S ?r ⋯ ((S.differential ?r (Bidegree.add ?d ?e)).toFun (P.product.multiply ?r ?d ?e ?x ?y))
+in the target expression
+  pageCast S 3 ⋯ ((S.differential 3 sourceDegree).toFun (P.product.multiply 3 h0Degree rightDegree a b)) = 0
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+M : Meaning S P
+a : (S.element 3 h0Degree).carrier
+b : (S.element 3 rightDegree).carrier
+x : (S.element 3 sourceDegree).carrier
+namedA : M.h0 a = namedH0
+namedB : M.right b = namedRight
+namedX : M.source x = namedSource
+known : M.rightTarget ((S.differential 3 rightDegree).toFun b) = knownDifferential
+same : x = P.product.multiply 3 h0Degree rightDegree a b
+rightZero : P.product.multiply 3 h0Degree (AdamsTarget 3 rightDegree) a ((S.differential 3 rightDegree).toFun b) = 0
+⊢ pageCast S 3 ⋯ ((S.differential 3 sourceDegree).toFun (P.product.multiply 3 h0Degree rightDegree a b)) = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    P.product.multiply 3 h0Degree rightDegree a b
+  has type
+    (S.element 3 (h0Degree.add rightDegree)).carrier
+  but is expected to have type
+    (S.element 3 sourceDegree).carrier
+  in the application
+    (S.differential 3 sourceDegree).toFun (P.product.multiply 3 h0Degree rightDegree a b)
+'Row3135H0Leibniz.Actual.actual_h0_d3_zero' depends on axioms: [propext, Quot.sound]
+'Row3135H0Leibniz.Actual.actual_row3135_d3_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

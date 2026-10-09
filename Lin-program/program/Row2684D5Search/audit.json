@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "sql_relation_occurrences": 12,
+  "whole_product_columns": 4,
+  "complete_comparisons": 6,
+  "all_cycle_quotient_pairs": 93,
+  "source_and_square_trajectories": [
+    [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    [
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ]
+  ],
+  "relabeled_models": 8640,
+  "relabeled_product_quotient_squares": 34560,
+  "relabeled_all_input_trace_steps": 207360,
+  "checked_d5_candidates": 17280,
+  "requests": 138240,
+  "rejected_requests": 129600,
+  "omitted_transition_counterexample": {
+    "source_E5_nonzero": 1,
+    "factor_E5": 0,
+    "square_E5": 0,
+    "named_d5": 1,
+    "violated": "same-input multiplicative quotient transition"
+  },
+  "factor_d4_incoming": "row400 remains unknown; no value needed or inferred",
+  "scope": "Finite polynomial, complete local quotient and input binding checks; not a global Adams realization.",
+  "lean_source_sha256": {
+    "Actual.lean": "8421e744cbec2c559cf2b1270f6df9949d8b5da2f1b535edde77babbe0f0f7be",
+    "Data.lean": "07e8976f3c0c6bcb0c987b8264070b154f0afa9b491940e8f7a302d80e97487f",
+    "Descent.lean": "727ee41e9413d36559d85dd781737a8205e57cd5d42ef27655bfe4eb3e739de1",
+    "Semantics.lean": "0d1f5561790cc9c9b88fca92f7f97aedd4281d8acf0235b95f2d883ecafe2a4d",
+    "Tactic.lean": "d3ff5a2981dfbec01fcfd9226d40aee4f36d3b5a2643531025c0f6839271bad7"
+  }
+}

@@ -1,0 +1,76 @@
+Fact761ConstructedActual/SourceTrace.lean:32:4: error: Function expected at
+  Endpoint
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Endpoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Fact761ConstructedActual/SourceTrace.lean:35:4: error: Function expected at
+  Endpoint
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Endpoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Fact761ConstructedActual/SourceTrace.lean:42:8: warning: declaration uses `sorry`
+Fact761ConstructedActual/SourceTrace.lean:48:6: warning: 'change
+  eval _ (T.initial.coordinates.equivalence (T.initial.coordinates.equivalence.symm sourceNamed2)) =
+    _' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Fact761ConstructedActual/SourceTrace.lean:49:6: warning: 'rw [T.initial.coordinates.equivalence.apply_symm_apply]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Fact761ConstructedActual/SourceTrace.lean:50:6: warning: 'exact sourceFinite2.2' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Fact761ConstructedActual/SourceTrace.lean:48:6: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact761ConstructedActual/SourceTrace.lean:49:6: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact761ConstructedActual/SourceTrace.lean:50:6: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact761ConstructedActual/SourceTrace.lean:53:4: error: Function expected at
+  Endpoint
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Endpoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Fact761ConstructedActual/SourceTrace.lean:59:8: warning: declaration uses `sorry`
+Fact761ConstructedActual/SourceTrace.lean:69:4: error: Function expected at
+  Endpoint
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Endpoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Fact761ConstructedActual/SourceTrace.lean:75:8: warning: declaration uses `sorry`
+Fact761ConstructedActual/SourceTrace.lean:84:8: warning: declaration uses `sorry`
+'Fact761ConstructedActual.Incoming.Source3Stage2.coordinate3' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Incoming.Source3Stage3.coordinate4' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Incoming.Source3Stage4.coordinate5' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Incoming.Source3Stage5.traced_cycle' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

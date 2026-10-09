@@ -1,0 +1,29 @@
+{
+  "status": "byte_identical_regeneration",
+  "files": {
+    "Maps.lean": "f9b0a884f17b28356d48b613910054ad3ffd0098806e7c3725eeb1f3c479fb87",
+    "Comparison.lean": "9fa5cc876a8dd892eb3fd9f44d3eacd86da82a9628bd355e9bcf594476d8f9d9",
+    "source.json": "79c8bdd2c5e5ffcea4d99deb662c26e5fd210f564ae72c85cb6539605a884493",
+    "comparison-source.json": "31d41dec5298e30643a5a4e8a225fcc1480383f11158bbf0f46103a6f6c37e2a",
+    "wire/s11t136.json": "0dcf39ceae2ea9c696bb405c89274b7b0f7c8e715577122d758db15c5b88f7af",
+    "wire/s13t137.json": "ef499097c3052cac9aa102ff9dc4b851ba6510e6383ad5b9e71978a7ee0819a7",
+    "wire/s14t138.json": "8006bd9ca11a26b26095089f8732a1cfb289318a91e5690d57feb7a9817771c7",
+    "wire/s15t138.json": "08a5e3cb58fbfd2d1a20446f5a099fd2e2a4373c618edc7c7b87e9b456cc5db6",
+    "wire/s16t139.json": "fb00689697625b8d76925e691f65bd699de8849ca25a028fabe81144aeb90ccc",
+    "wire/s18t140.json": "afeafde3a7abfe50fb90b6cee54317e40a25d570b80a4af87e04cbe293311d6e"
+  },
+  "runs": [
+    {
+      "script": "export_maps.py",
+      "exit_code": 0,
+      "stdout": "complete shifted matrices; 23 columns; 8 explicit reductions\n",
+      "stderr": ""
+    },
+    {
+      "script": "generate_comparison.py",
+      "exit_code": 0,
+      "stdout": "four complete d2 quotients, two actual chain maps\n",
+      "stderr": ""
+    }
+  ]
+}

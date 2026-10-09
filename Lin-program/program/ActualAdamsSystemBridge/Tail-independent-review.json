@@ -1,0 +1,27 @@
+{
+  "actual_exit": 0,
+  "current_olean_matches_direct": true,
+  "findings": [],
+  "finite_filtration_cases": 16805,
+  "proof_review": [
+    "Incoming is Unit plus every actual nonnegative source bidegree satisfying AdamsTarget r e=d.",
+    "For filtration<r, no Sigma witness exists since source filtration is Nat and target filtration=source+r.",
+    "Only Unit remains, so the entire incoming type is subsingleton without losing possible source terms.",
+    "The exact system indexing is r=n+2; filtration<cutoff+2 suffices for every n>=cutoff.",
+    "Incoming zero uses the actual zero_is_zero equation; no outgoing map fact is asserted."
+  ],
+  "reviewer": "/root/source_rules_next",
+  "source_sha256": {
+    "ActualAdamsSystemBridge/Basic.lean": "f6fab04ed4161c2f05e85c26b98b5bcb1589625f8a2843901aa0b407cc51a0f5",
+    "ActualAdamsSystemBridge/TAIL.md": "1f777ee058cf325c7779eb9388fbe4c6a533f61b06f485b9059b19712a343921",
+    "ActualAdamsSystemBridge/Tail-compile.json": "bec7f385ed1997a29ea332e863f0252f796a60f90bb8f81cce2d484e1796c8b1",
+    "ActualAdamsSystemBridge/Tail.lean": "0365afa26e7b5e1e28ff0a6bca3beb1874a09b34d16634e13f70f4e3286cad8c",
+    "ActualAdamsSystemBridge/Tail.log": "5079caf289585083c8f9173d71a88af0871a2e5e1ca471d103973e2dfaa5b3a6",
+    "ManualInputObligations/Reference/Foundations.lean": "8ecca340212441285b272a7fea2a2cfa78f28d05338a4fbf54f1923042c875e3",
+    "ManualInputObligations/Reference/SteenrodAdams.lean": "c19f01164e9738b444761d5251348028d2c386308911af720ff399443f812028",
+    "PermanentMapTailCertificates/independent-review.py": "a0fda06fd3b340085e0368d410cebb46314a06f3a03c323cfd0a7252ca4a8034"
+  },
+  "standard_reports": 4,
+  "status": "independent_review_passed",
+  "strict_bound_boundary_witnesses": 39
+}

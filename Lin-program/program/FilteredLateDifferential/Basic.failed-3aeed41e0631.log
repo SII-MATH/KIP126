@@ -1,0 +1,19 @@
+FilteredLateDifferential/Basic.lean:33:30: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+FilteredLateDifferential/Basic.lean:58:4: warning: Try `simp at higher` instead of `simpa using higher`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+FilteredLateDifferential/Basic.lean:79:41: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 0
+  a ≥ 0
+  a - b ≥ 2
+where
+ a := ↑n
+ b := ↑cutoff
+'FilteredLateDifferential.source_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredLateDifferential.earlier_differential_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredLateDifferential.late_differential_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredLateDifferential.actual_page_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredLateDifferential.arbitrary_finite_prefix' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

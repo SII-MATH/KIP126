@@ -1,0 +1,231 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 49492,
+  "observed_exit_code": 0,
+  "jobs": 3441,
+  "build_log": "tests/step4-next-d3-rules-build.log",
+  "build_log_sha256": "364270707d764324948bc50f8179131d2e29e26ef7a6f6a6f2f14739457e1fd7",
+  "individual_module_logs": {
+    "tests/step4-next-d3-rules-build.log": "364270707d764324948bc50f8179131d2e29e26ef7a6f6a6f2f14739457e1fd7"
+  },
+  "lakefile_sha256": "d6dce6591f60e70e474b251492c66da82cc1b5506c378dcf347912cd79901259",
+  "modules": [
+    {
+      "module": "Fact713NextD3Continuation.ActualRules",
+      "source_sha256": "84a90f07994c9d9b67c5cfad83230bf5f084ce40761260b19b4854275d7c444f",
+      "olean_sha256": "cdea0acd01ae80be55361cd636af733e6a6142b2c7693616eaf3343c96f168ff",
+      "trace_sha256": "2fff1f843299524056023fd562bcd78e04bfcb7ef00c57898314204c2e4c9d59"
+    },
+    {
+      "module": "Fact713NextD3Continuation.Branches",
+      "source_sha256": "422b9492a0deb843d5652bb6cbe1a46ed47ea11fc291a102931d4cec587f3c62",
+      "olean_sha256": "5939f8f3d24a7c1b7652a57375d269cd9a0c0e8e2dfbf690f12d169768fd96b1",
+      "trace_sha256": "e9c3710c433f2adc8ca8b5d97544a6f08784b2b3fdd2464881ba1c8e3e6ca920"
+    },
+    {
+      "module": "Fact713NextD3Continuation.Data",
+      "source_sha256": "1bef28200385f8adbb03676f0737afe56a397e829591a1182ce932d422e6fe44",
+      "olean_sha256": "6f4ca29a048aef5b37d8791857bf18df1850a47ab441b9c71e95876f7627ed8d",
+      "trace_sha256": "02d8b9224f144bca9c424dfe7354a4d2dbda60e25d1005dbd11fd7b1dae2a3bc"
+    },
+    {
+      "module": "Fact713NextD3Continuation.ResidualCoherence",
+      "source_sha256": "e9df45b3aa74bcbb5bbe1449ece05e84fda4ca8e5407609d072d3ea07d5c3b64",
+      "olean_sha256": "565bc752755478c47e2789c8eb5fab1ef0ff569845610670d5e921647987d930",
+      "trace_sha256": "101801dbce63fdb18eb7fc755cdecf76f687c27e456eb39a8a06d22d4ea7874f"
+    },
+    {
+      "module": "Fact713NextD3Continuation.ResidualCross",
+      "source_sha256": "a2504e619f48e4ab947c48ca87b8e1e950cf66dc9956c798d7dbdbfd9ef4f2da",
+      "olean_sha256": "4c73c282a0f49431cd8681d8c71728a5001a6765f2a70e07982aa7e2f6a295c6",
+      "trace_sha256": "e15b828333942b41bd7cab5101e91d885ad00b6e15ecde11bc125cb6d0ef81f7"
+    },
+    {
+      "module": "Fact713NextD3Continuation.ResidualExtra",
+      "source_sha256": "8cca6553e1befa528e735174cab4f4a05d4b044bd9e60893b8d1bc8566917886",
+      "olean_sha256": "727e4ea15986236fa8b5b1ebd217af1dbebbd8117189caea11ba0dafe2657d3c",
+      "trace_sha256": "eafa8bb4f683c661ef7fa476fab6a600b23e2a18430128e06425ae892791f6f4"
+    },
+    {
+      "module": "Fact713NextD3Continuation.ZeroCoherence",
+      "source_sha256": "86da7cd0161d855eed7f332706d1d237c5631aaf3f0a08892e78ba7ee3902b3b",
+      "olean_sha256": "52a28e7cba96bacfdd6b4a2126ed05bbc99205d3235465be48045fc583b7f8ad",
+      "trace_sha256": "d3bd66a65327a6e3840b532979827ead8691081efc66de1e656d73ced6c78506"
+    },
+    {
+      "module": "Fact713NextD3Continuation.ZeroCross",
+      "source_sha256": "f010eca550a55fed1f52afdb35ea96a304fcd8df07493820eee2bbb3cee5176e",
+      "olean_sha256": "81993114abff2c9d3ac3779dcbf6080fc5b4fbbfa668df0dcaff86cb140548d5",
+      "trace_sha256": "ea8ba9ebd73d50a3ff074f46aff770b6987bac419423fa1a1b1ea971eba3deff"
+    },
+    {
+      "module": "Fact713NextD3Continuation.ZeroExtra",
+      "source_sha256": "04cda6b930ea8223f0f182380fe6cdbed15860dc7f96211ddc0f516eb934f883",
+      "olean_sha256": "58f952aa4f090442f515f2135217894ac33e3580510ea78aaa6680e99a288516",
+      "trace_sha256": "9d8a5559e0ff9b99d2790f4fd69bce5c5887933a56c2f5522db05e6fe74189e0"
+    },
+    {
+      "module": "Fact713Row2431Search.Actual",
+      "source_sha256": "98fc6687f4212722fbb6ce6e4ce0c2b801aa2f53a9c8dbe732ed71505d8057ff",
+      "olean_sha256": "03f98923e8f23cb81eaf7a02204a151e7eb767dfff16e0de63bde772b128896d",
+      "trace_sha256": "288b274f12b64e6d8088722c2c249b4fabb482cc942fa8004e2cebb468ba0b37"
+    },
+    {
+      "module": "Fact713Row2431Search.Comparison",
+      "source_sha256": "11663b0fcba2aa5973eb28fbd75cb4ed8579615fabf82c4797a1979869b7facf",
+      "olean_sha256": "18f7400e54f14783bd2bf55c70edc96e552ba0dfb576877ed2a3ff39ac3a9bb2",
+      "trace_sha256": "7902d4c5055cfcc8e96ebdf6274a05ed7156387a931b816df4b88d27cfab7c63"
+    },
+    {
+      "module": "Fact713Row2431Search.CoordinateBridge",
+      "source_sha256": "1e87d828855b178a68d1244d170ba93def9cbb5e94205765e8fb5eb34d222e22",
+      "olean_sha256": "86dc3420319df626795569abf8770751025fca87e6f490117c4f7711b7c531e9",
+      "trace_sha256": "b8287ec2cbc93b27a0784cd37197671cd6c68a2a692f92da959b3063990698a5"
+    },
+    {
+      "module": "Fact713Row2431Search.MapSemantics",
+      "source_sha256": "ecfa5d495f94b4f2630d153262a473d0b8e9be389986c242b3e40adda931ddf3",
+      "olean_sha256": "7cf659b41c7dd5c63a512dc291adde623de8254413d997cdb3d188e9abe51e8b",
+      "trace_sha256": "b04dd6bcf11ce2e177f1a9b5b4fddc6560b56bb012264104c885e32e7b3c41fc"
+    },
+    {
+      "module": "Fact713Row2431Search.Maps",
+      "source_sha256": "9dd97eee52b6cdc140e497497ef59a476406f322d25b4f137af5f41e2aa97f90",
+      "olean_sha256": "9b44ec56179ae5cd23615536e74ca2ddcdde0cbbcf1863c08acaec2f7e733288",
+      "trace_sha256": "e5b4784048d0ee5bd8e225ffaa7c4fe49aa667a6c608ab4b81fd818278fc4c48"
+    },
+    {
+      "module": "Fact713Row2431Search.Naturality",
+      "source_sha256": "641681f7e11683dab045ae5f2d8d97bb2eaf7f16d39f3bccd8411ab713131294",
+      "olean_sha256": "dbc8514d0acf3c7c61d2755ba557776e3cdd5b20fb7a3b1a35ee8a39f521d9af",
+      "trace_sha256": "29972cef0ac6973b81752cb4e14aab392f42e874ad8b15ca72569d7b3a02a051"
+    },
+    {
+      "module": "Fact713Row2431Search.Tactic",
+      "source_sha256": "f0a93cb31779a4c74307cd1dc2d8c38c659bcc04b34b36e07a4c4ef1a51c239c",
+      "olean_sha256": "6037d5e7b92be133338d5f3006b11c6978d09e01d52423eeaa1dd68005f9f763",
+      "trace_sha256": "eede2d3dc5b9c29e23862fa37004c0ed87c0bc83769e26cd4f3c428edbc478b4"
+    },
+    {
+      "module": "Fact713Row2916Search.Actual",
+      "source_sha256": "e70cf4dac07edee93135e26cc9694e33ba11814fdca968afbc1c9c098256f931",
+      "olean_sha256": "8d4f51917b7ac49f6a9bd4e0e93cd4e2d942102df53b00a50a4314feacc6643f",
+      "trace_sha256": "b81c43e738babf0677f0faba5600cb0545128e67f27d8b0d6a59ec852efd6428"
+    },
+    {
+      "module": "Fact713Row2916Search.Comparison",
+      "source_sha256": "9fa5cc876a8dd892eb3fd9f44d3eacd86da82a9628bd355e9bcf594476d8f9d9",
+      "olean_sha256": "a0c3218218e8cd1ddc595520e7b8e55fd82f73d2dfe183c1f6e849a991325dbf",
+      "trace_sha256": "4279e5dbc980b7cf45f3d5e39d5da547fe2c47531a7ad577e241f0bf510e5a52"
+    },
+    {
+      "module": "Fact713Row2916Search.CoordinateBridge",
+      "source_sha256": "b51a0d93bdb28451389b91caec9bac3e4c48502b2c2250598af2303d98ebe851",
+      "olean_sha256": "704bc95ddb3efb77e748cc576db710321b9c424f4956860a65a020d3e2328c25",
+      "trace_sha256": "4067cdd7c16ba6cd88c951805157a05d438437659591c6206b66e6134b1017f3"
+    },
+    {
+      "module": "Fact713Row2916Search.MapSemantics",
+      "source_sha256": "89c0d02b6df869481a2c6f0053694552607ecee11404e8218a617192aed29b41",
+      "olean_sha256": "fa136bec743b455b4943b60e5f46d282266f65010e593060523ec72ca1891be8",
+      "trace_sha256": "b1bbc53c597c213cc3adcd4187dd11e06f5b0ba7de993584f211a7171aff06c0"
+    },
+    {
+      "module": "Fact713Row2916Search.Maps",
+      "source_sha256": "f9b0a884f17b28356d48b613910054ad3ffd0098806e7c3725eeb1f3c479fb87",
+      "olean_sha256": "9b832b1aa0f2f98822705a4a308d4b2415d26a0858e997e17a3695361097a546",
+      "trace_sha256": "5bce58ba148708fb8c66dd78e810645e6e1642410345631486f14461d39bd32d"
+    },
+    {
+      "module": "Fact713Row2916Search.Naturality",
+      "source_sha256": "e03daafef6958f0de5ceebadefb6ae36a99a868e285712f36feb0ef2f2bc59d1",
+      "olean_sha256": "c4c8b0e160dbf43faabb78b5a24fd489833bd6b0d49f39610b1096a704803e1a",
+      "trace_sha256": "b7050f59356d103647b417c71b02b4cecf0219cf3ffa3025b6b66759928044ad"
+    },
+    {
+      "module": "Fact713Row2916Search.Tactic",
+      "source_sha256": "6838f8a137542ae5e3bc9d7d5bd88e8c47db54be2c8d16ff3f69aa3c34ce02b3",
+      "olean_sha256": "6887c72b34a3a2cf45cb16ef0b60f98d2a4c21049496edcb14adc471ffd6e1ec",
+      "trace_sha256": "57e81e0bd66ab788f527a161f76b87f244a91567e462590b9aa9c58ab6fa10f3"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.ActualRule",
+      "source_sha256": "8eba7d8481b06e07561bd0d3f4a8fbbcf3f2439e86df47a945da0d1752dc422d",
+      "olean_sha256": "e11b791b9482af8b5f2643c380021609d5243592a9f8bd554668202b761fb659",
+      "trace_sha256": "9b1e08f61d1dc1b1c7ff0522ce1f4098091d5ce567cac751336cf5437a07a154"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.Branches",
+      "source_sha256": "442a8d1fb6d497a0357c5bab7a869b55247a98a349addf21b94f9c4c996d58f0",
+      "olean_sha256": "b895f4f59d13ad412d43e848eb8e419b708da32fffe319cfeb6ef603d5cb68d0",
+      "trace_sha256": "c62ee877827c91253694830fd4725edd622535677ec072ca10b297c600caad24"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.Data",
+      "source_sha256": "2b9ac605040bb6164e0efcb1143ad6a5451f1992edb7e935010f56ad40b567ea",
+      "olean_sha256": "61ec49ab4f861697347c09e424665e3feb9b989b9f5b5c67502bb4a5a99a006d",
+      "trace_sha256": "c56ba1552e03194ff27b987b95beb15a74d1303f2273e4b29db58982a79b159f"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.ResidualCoherence",
+      "source_sha256": "0060d0b54b643fa59689f59a135276df2f8909406f170c784ce3756fa819d793",
+      "olean_sha256": "d36b68885a175fcc506419438e47beafa3f6b19f2c651858ac6f3f4b1ea24a6b",
+      "trace_sha256": "c7c5bad59e2ea33c05210081cf01ba0fe53f49156e8d831491e2616e1d11359d"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.ResidualCross",
+      "source_sha256": "e4c97077f59adb609a521d4435dcf8eb5b9ea98e9d9d97df86b44d0996c60ec5",
+      "olean_sha256": "1cc72dbe4e3ebbe18e838ea824d860e01999e815ec0cb2636a9471652a60e164",
+      "trace_sha256": "aff832414e6b73019e1e0e55be387e01bc75407fca355bf4c861183a8a56eb35"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.ResidualExtra",
+      "source_sha256": "73eec7400c339c82aa0aa162cc074c737d05df390580e1dd049f0a7f8fe9d6a5",
+      "olean_sha256": "b8ad94ab8b322f24f836095b570039ddd98d6a5f6c9819281a41dd62a7b5ecc9",
+      "trace_sha256": "e5c3a49829d9e26319d8f6daad6c2e6f507e8dc22bfe0a069ab10c147d1d0885"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.ZeroCoherence",
+      "source_sha256": "9587722da4066b6d604d60e475393aa5f907823afed317f795936a04c25956fe",
+      "olean_sha256": "d47ce7b0e90829974c60b9361fb688adb8c13f5690f70a99ab269ef94e6cb79e",
+      "trace_sha256": "c58dfd01cd35c48038d32277ae630e233af44ab448c76d8520652c9b0905e2de"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.ZeroCross",
+      "source_sha256": "b2212e30e2c00cf236214e16ba662813a89c354a165258c08f24d2220a987888",
+      "olean_sha256": "051884df99b59514fb20eb61c3c029e8946b1cee05dbc60d052b843981bb562e",
+      "trace_sha256": "8226f4e0b9cda1cd680af5c11f290cdce83a99483446ec305a51ea40a1347f21"
+    },
+    {
+      "module": "Fact721FirstD4Continuation.ZeroExtra",
+      "source_sha256": "f718d3aa5a4f36e4f6db6679e1882c2e8bcd20f23694c5caf4d809a056560521",
+      "olean_sha256": "43d4187b2446ac934544a3bf797b1ae19291b808de06110a0e5e31b4ac2f339e",
+      "trace_sha256": "b2556a3915c2de4a62948f85a6f1d23cb8ac8467ad09b45612a4e6f605f8f37b"
+    },
+    {
+      "module": "Row3135H0Leibniz.Actual",
+      "source_sha256": "90ae3dee641312b0b03f58fb48f386459733c0ab6c2776a023e9ca4d997753e8",
+      "olean_sha256": "7f7514b7038c8674f7784231c09dce91641cc9d7456b3da7e83d1c71b7d3f450",
+      "trace_sha256": "7798778d3d79ddd4ef6634e59a5dc99a4b87590429dd458311f5db201df63a44"
+    },
+    {
+      "module": "Row3135H0Leibniz.Basic",
+      "source_sha256": "7563d60715ec17bcaf7d90a4160a8ba476b8d9a626f92ddb7e7f81497e97fef1",
+      "olean_sha256": "6e58119efdb63c0bd5dab0564814c6e324c057e2664327828a61df5de14ae906",
+      "trace_sha256": "2451f04b7cce19750404e859154935a4ba733d4ea71aac4f6817d002f9369260"
+    },
+    {
+      "module": "Row3135H0Leibniz.Data",
+      "source_sha256": "b06a054725e0d0c280717ea77a8d24c65baeb520fa3ae4a23f67de04ba3b3728",
+      "olean_sha256": "14b9e252f698b807231cec88663b9014526a7149b7e5b0775be26d0deb89a6df",
+      "trace_sha256": "e2943b06862188b5a4f12f56d5ef9d3b05830b058675ce6721ddf82e40498c6c"
+    },
+    {
+      "module": "Row3135H0Leibniz.Semantics",
+      "source_sha256": "3786f87e4fd07435b99b3d4256325f22ee1df2d8f9b75d1c3df0efa89a534061",
+      "olean_sha256": "f6a53cafbbfbfd638fdc3e79ff088bfd3d09e9ca1f40aadf2b88be1132aace18",
+      "trace_sha256": "6aa99f376b28cc781789f8adf96f091aa0f262cd8010a8f209121366b13fd758"
+    }
+  ]
+}

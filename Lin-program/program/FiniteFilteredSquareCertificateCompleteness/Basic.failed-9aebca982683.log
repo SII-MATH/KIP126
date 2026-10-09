@@ -1,0 +1,26 @@
+FiniteFilteredSquareCertificateCompleteness/Basic.lean:117:10: error: Type mismatch: After simplification, term
+  firstStable
+ has type
+  @Eq Bool (checkPreserves D.square.f D.square.higherA D.square.higherB factor) true
+but is expected to have type
+  @Eq Bool (checkPreserves D.f (D.A (D.s + 1)) (D.B (D.s + D.n + 1)) factor) true
+FiniteFilteredSquareCertificateCompleteness/Basic.lean:120:10: error: Type mismatch: After simplification, term
+  firstStable
+ has type
+  @Eq Bool (checkPreserves D.square.p D.square.higherA D.square.higherC factor) true
+but is expected to have type
+  @Eq Bool (checkPreserves D.p (D.A (D.s + 1)) (D.C (D.s + D.m + 1)) factor) true
+'FiniteFilteredSquareCertificateCompleteness.checkFiltered_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FiniteFilteredSquareCertificateCompleteness.checkChainMap_complete' depends on axioms: [propext, Quot.sound]
+'FiniteFilteredSquareCertificateCompleteness.check_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteFilteredSquareCertificateCompleteness.check_premises' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FiniteFilteredSquareCertificateCompleteness.check_exists_iff' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FiniteFilteredSquareCertificateCompleteness.premises_result' depends on axioms: [propext, Classical.choice, Quot.sound]

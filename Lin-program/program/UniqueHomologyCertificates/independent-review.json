@@ -1,0 +1,76 @@
+{
+  "current_lake_build": {
+    "all_four_sources_oleans_and_traces_match": true,
+    "build_log_matches": true,
+    "checkpoint": "tests/whole-homology-lake-checkpoint.json",
+    "checkpoint_sha256": "5ce559bb9abad66f5b26d7076482ff7a8f15b35ced33042f0d1d20daa8a5f5d6",
+    "jobs": 2498,
+    "observed_exit_code": 0
+  },
+  "dependency_sha256": {
+    "BranchReplayCertificates/QuotientConclusion.lean": "6a70891093d9d5746b88b0abae540408af21b4319fc6c3a546ba238eb0c9d4d2",
+    "PageTransitionCertificates/Basic.lean": "2089e8a6d11f09015ad6720f2f088b25ccb149fd393a0203ebacccab66cec073",
+    "PageTransitionCertificates/Import.lean": "304e74349de41c17f220b755c1d5080b97ef8526c351bc87329c629892917d31",
+    "PageTransitionCertificates/Trajectory.lean": "514f2c74c3f16bf0a26b8a353d11c70e3960ead242e3f99e161fe75a1d8dcdc3",
+    "PageTransitionCertificates/export.cpp": "a4bf58464bb05fe5f23f11b701a4b192b48cfbaef213336b768755d9f058bbdb"
+  },
+  "findings": [],
+  "historical_direct_builds": {
+    "exit_codes": [
+      0,
+      0,
+      0
+    ],
+    "modules": [
+      "Basic",
+      "Import",
+      "Examples"
+    ],
+    "source_and_log_fingerprints_current": true,
+    "standard_only_axiom_reports": 5
+  },
+  "independent_replay": {
+    "accepted": 159,
+    "complexes": 260,
+    "exact_rejection_line_set_matched": true,
+    "full_cycle_pairs_checked": 19345,
+    "homology_dimension_one_complexes": 102,
+    "lean_cli_exit": 1,
+    "lean_cli_summary": "159/1159 unique nonzero finite homology classes accepted",
+    "method": "Exhaustive all Boolean matrices with m<=2 and k,n<=2, plus m=3 and k,n<=1; every named vector; independent complete homotopy and quotient-coset checks; one Lean CLI batch replay.",
+    "named_certificate_records": 1159,
+    "noncomplex_matrix_pairs_excluded": 320,
+    "rejected": 1000
+  },
+  "limitations": [
+    "The proposition concerns the entire supplied finite matrix complex; no identification with an actual Adams page is supplied by this interface.",
+    "The producer may output a candidate with homology dimension other than one; Lean rejects it as documented.",
+    "Successful import/CLI checking does not provide a proof about external topology; the goal-bound tactic and mathematical interpretation premises remain required.",
+    "The independent exhaustive replay is finite engineering evidence and does not replace the universal Lean soundness theorem."
+  ],
+  "proof_review": [
+    "IsUniqueNonzeroClass quantifies every cycle in the entire supplied matrix complex.",
+    "The complete comparison checks incoming and outgoing matrices, projection/inclusion identities, and a contracting-homotopy identity on the entire input space.",
+    "The named vector is checked to be a cycle with nonzero coordinate in a one-dimensional full quotient.",
+    "The one-bit dichotomy and comparison boundary-coset equivalence prove every cycle is either a boundary or homologous to the named vector.",
+    "The goal-bound Certificate is indexed by outgoing, incoming and named; a certificate for different input cannot silently change the requested proposition.",
+    "Wire dimension checks prevent matrixOf and Stage.vector default-false access from filling omitted data.",
+    "Strict canonical JSON comparison rejects unknown or duplicate fields, including nested comparison fields.",
+    "Both Fact 7.6(4) optional-boundary choices use the full comparison and retain their separate actual-Adams interpretation obligations.",
+    "The C++ producer is untrusted; import creates data and the tactic kernel-reduces a proved sound checker."
+  ],
+  "reviewer": "certificate_pipeline_next",
+  "source_sha256": {
+    "UniqueHomologyCertificates/Basic.lean": "17a8cc6085f476d49d63181e0210e3d3faec5f38ed20cea9fcdd9f95802b2ff7",
+    "UniqueHomologyCertificates/CheckFile.lean": "21a725de42a3dc9af544ed5560b790e1ae3a6a6401972e58aa780a58101d4581",
+    "UniqueHomologyCertificates/Examples.lean": "77e98444cf95fcfcb29bf1fbb838f0ae057674d99ec22e61c4ae4668b7d1bb24",
+    "UniqueHomologyCertificates/Import.lean": "2eb821b575730c3e828361df888104a06d7cc1777fe8da37d0c8c4f6ceee3c8c",
+    "UniqueHomologyCertificates/README.md": "001b18f8bd6fd905887326e1ba4a60f71fe0a36f7a952f732ea6598506a31957",
+    "UniqueHomologyCertificates/compile-audit.json": "881fa6534e2e6a9c89f8f2d88021aa6675c50f634a717420148f4056da6e4a8c",
+    "UniqueHomologyCertificates/export.cpp": "da610d49e4ff2eebfe2c4ff89f89aac6a2babeee080a2384eb42af3ed4dfa946",
+    "UniqueHomologyCertificates/independent-replay.json": "06b8c291f4bbc9ec2e15d903a892d395010bf1e72bc24a53cac4e4b531a89ddc",
+    "UniqueHomologyCertificates/sample.json": "fce7cf7ca1108d0582190534f16ca88dd16afd851b12fc105732f37e64345760",
+    "UniqueHomologyCertificates/test.py": "1ed5fa9186375e53a32e115a43caec83baf17e5bd062f65f573dae48b725dc23"
+  },
+  "status": "no_findings_in_full_finite_homology_scope"
+}

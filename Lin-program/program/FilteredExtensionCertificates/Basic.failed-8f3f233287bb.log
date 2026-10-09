@@ -1,0 +1,260 @@
+FilteredExtensionCertificates/Basic.lean:11:15: error: Application type mismatch: The argument
+  a
+has type
+  (b : ?m.1) →
+    (ha : ?m.7 b) → (hb : ?m.8 b ha) → (depth : ?m.9 b ha hb) → (s : ?m.10 b ha hb depth) → ?m.11 b ha hb depth s → ℕ
+but is expected to have type
+  ℕ
+in the application
+  Matrix b a
+FilteredExtensionCertificates/Basic.lean:12:30: error: Application type mismatch: The argument
+  a
+has type
+  (b : ?m.1) →
+    (ha : ?m.7 b) → (hb : ?m.8 b ha) → (depth : ?m.9 b ha hb) → (s : ?m.10 b ha hb depth) → ?m.11 b ha hb depth s → ℕ
+but is expected to have type
+  ℕ
+in the application
+  Matrix a
+FilteredExtensionCertificates/Basic.lean:14:10: error: Application type mismatch: The argument
+  a
+has type
+  (b : ?m.1) →
+    (ha : ?m.7 b) → (hb : ?m.8 b ha) → (depth : ?m.9 b ha hb) → (s : ?m.10 b ha hb depth) → ?m.11 b ha hb depth s → ℕ
+but is expected to have type
+  ℕ
+in the application
+  Vec a
+FilteredExtensionCertificates/Basic.lean:20:35: error(lean.invalidField): Invalid field `source`: The environment does not contain `RepresentativeSquareCertificates.Data.source`, so it is not possible to project the field `source` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:21:35: error(lean.invalidField): Invalid field `target`: The environment does not contain `RepresentativeSquareCertificates.Data.target`, so it is not possible to project the field `target` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:33:24: error: Application type mismatch: The argument
+  ih (fun i j => H i j.succ) (fun r j => factor r j.succ) (fun i j => equations i j.succ) fun j => v j.succ
+has type
+  eval K (eval (fun r j => factor r j.succ) fun j => v j.succ) i = eval (fun i j => H i j.succ) (fun j => v j.succ) i
+but is expected to have type
+  ?m.43 = ?m.44
+in the application
+  congrFun (ih (fun i j => H i j.succ) (fun r j => factor r j.succ) (fun i j => equations i j.succ) fun j => v j.succ)
+FilteredExtensionCertificates/Basic.lean:48:4: error: Application type mismatch: The argument
+  congrArg ?m.45 (factor_eval H K factor (of_decide_eq_true accepted) v.bits)
+has type
+  ?m.45 (eval K (eval factor v.bits)) = ?m.45 (eval H v.bits)
+but is expected to have type
+  (hom K) { bits := eval factor v.bits } = (hom H) v
+in the application
+  Exists.intro { bits := eval factor v.bits }
+    (congrArg ?m.45 (factor_eval H K factor (of_decide_eq_true accepted) v.bits))
+FilteredExtensionCertificates/Basic.lean:51:24: error(lean.invalidField): Invalid field `depth`: The environment does not contain `RepresentativeSquareCertificates.Data.depth`, so it is not possible to project the field `depth` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:52:24: error(lean.invalidField): Invalid field `depth`: The environment does not contain `RepresentativeSquareCertificates.Data.depth`, so it is not possible to project the field `depth` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:53:21: error(lean.invalidField): Invalid field `depth`: The environment does not contain `RepresentativeSquareCertificates.Data.depth`, so it is not possible to project the field `depth` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:77:22: error(lean.invalidField): Invalid field `depth`: The environment does not contain `RepresentativeSquareCertificates.Data.depth`, so it is not possible to project the field `depth` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:78:26: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `RepresentativeSquareCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:78:45: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `RepresentativeSquareCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:82:19: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `RepresentativeSquareCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:82:44: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `RepresentativeSquareCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:84:25: error(lean.invalidField): Invalid field `depth`: The environment does not contain `RepresentativeSquareCertificates.Data.depth`, so it is not possible to project the field `depth` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:85:72: error(lean.unknownIdentifier): Unknown identifier `bound`
+FilteredExtensionCertificates/Basic.lean:86:11: error(nested.lean.propRecLargeElim): Tactic `cases` failed with a nested error:
+Tactic `induction` failed: recursor `Exists.casesOn` can only eliminate into `Prop`
+
+case refine_2
+D : Data
+cert : Certificate D
+accepted : checkMap D cert = true
+i : ℕ
+x : RepresentativeSquareCertificates.Vector D.a
+hx : x ∈ higher sorry
+⊢ Decidable (i < sorry)
+FilteredExtensionCertificates/Basic.lean:82:76: error: unsolved goals
+case pos
+D : Data
+cert : Certificate D
+accepted : checkMap D cert = true
+i : ℕ
+x : RepresentativeSquareCertificates.Vector D.a
+hx : x ∈ higher sorry
+bound : i < sorry
+⊢ x ∈ AddSubgroup.comap (hom D.f) (higher sorry)
+
+case neg
+D : Data
+cert : Certificate D
+accepted : checkMap D cert = true
+i : ℕ
+x : RepresentativeSquareCertificates.Vector D.a
+hx : x ∈ higher sorry
+bound : ¬i < sorry
+⊢ x ∈ AddSubgroup.comap (hom D.f) (higher sorry)
+FilteredExtensionCertificates/Basic.lean:97:50: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `RepresentativeSquareCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:98:50: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `RepresentativeSquareCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:99:29: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `RepresentativeSquareCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:99:54: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `RepresentativeSquareCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:101:37: error: Function expected at
+  WellFormed
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  D
+
+Hint: The identifier `WellFormed` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+FilteredExtensionCertificates/Basic.lean:102:22: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `RepresentativeSquareCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:104:37: error: Function expected at
+  WellFormed
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  D
+
+Hint: The identifier `WellFormed` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+FilteredExtensionCertificates/Basic.lean:105:22: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `RepresentativeSquareCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:107:32: error: Function expected at
+  WellFormed
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  D
+
+Hint: The identifier `WellFormed` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+FilteredExtensionCertificates/Basic.lean:112:8: error(lean.unknownIdentifier): Unknown identifier `WellFormed`
+FilteredExtensionCertificates/Basic.lean:114:7: error(lean.unknownIdentifier): Unknown identifier `filteredMap`
+FilteredExtensionCertificates/Basic.lean:114:26: error(lean.invalidField): Invalid field `s`: The environment does not contain `RepresentativeSquareCertificates.Data.s`, so it is not possible to project the field `s` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:114:30: error(lean.invalidField): Invalid field `n`: The environment does not contain `RepresentativeSquareCertificates.Data.n`, so it is not possible to project the field `n` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:115:64: error(lean.invalidField): Invalid field `s`: The environment does not contain `RepresentativeSquareCertificates.Data.s`, so it is not possible to project the field `s` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:115:68: error(lean.invalidField): Invalid field `n`: The environment does not contain `RepresentativeSquareCertificates.Data.n`, so it is not possible to project the field `n` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:116:64: error(lean.unknownIdentifier): Unknown identifier `filteredMap`
+FilteredExtensionCertificates/Basic.lean:116:83: error(lean.invalidField): Invalid field `s`: The environment does not contain `RepresentativeSquareCertificates.Data.s`, so it is not possible to project the field `s` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:116:87: error(lean.invalidField): Invalid field `n`: The environment does not contain `RepresentativeSquareCertificates.Data.n`, so it is not possible to project the field `n` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:117:7: error: Function expected at
+  sourceClass ?m.43 ?m.44 ?m.45 ?m.46 ?m.47
+but this term has type
+  ↥(cycles ?m.43 ?m.44 ?m.45 ?m.46 ?m.47) →+ SourcePage ?m.43 ?m.44 ?m.45 ?m.46 ?m.47
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨⟨D.x⟩, hx⟩
+FilteredExtensionCertificates/Basic.lean:117:43: error: Function expected at
+  targetClass ?m.53 ?m.54 ?m.55 ?m.56 ?m.57
+but this term has type
+  ↥(Filtration.group ?m.54 (?m.56 + ?m.57)) →+ TargetPage ?m.53 ?m.54 ?m.55 ?m.56 ?m.57
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨⟨D.y⟩, hy⟩
+FilteredExtensionCertificates/Basic.lean:120:20: error(lean.invalidField): Invalid field `source`: The environment does not contain `RepresentativeSquareCertificates.Data.source`, so it is not possible to project the field `source` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:121:20: error(lean.invalidField): Invalid field `target`: The environment does not contain `RepresentativeSquareCertificates.Data.target`, so it is not possible to project the field `target` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:122:16: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `RepresentativeSquareCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:123:16: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `RepresentativeSquareCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:124:16: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `RepresentativeSquareCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:125:24: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `RepresentativeSquareCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:125:45: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `RepresentativeSquareCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:131:13: error: Application type mismatch: The argument
+  congrArg ?m.35 hw
+has type
+  ?m.35 (eval M w) = ?m.35 x
+but is expected to have type
+  (hom M) { bits := w } = { bits := x }
+in the application
+  Exists.intro { bits := w } (congrArg ?m.35 hw)
+FilteredExtensionCertificates/Basic.lean:135:13: warning: declaration uses `sorry`
+FilteredExtensionCertificates/Basic.lean:133:8: warning: declaration uses `sorry`
+FilteredExtensionCertificates/Basic.lean:135:19: warning: This simp argument is unused:
+  Bool.and_eq_true
+
+Hint: Omit it from the simp argument list.
+  simp only [check,̵B̵o̵o̵l̵.̵a̵n̵d̵_̵e̵q̵_̵t̵r̵u̵e̵] at accepted
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+FilteredExtensionCertificates/Basic.lean:137:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+FilteredExtensionCertificates/Basic.lean:139:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+FilteredExtensionCertificates/Basic.lean:140:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+FilteredExtensionCertificates/Basic.lean:141:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+FilteredExtensionCertificates/Basic.lean:137:2: warning: 'let h : WellFormed D :=
+  ⟨checkDecreasing_sound _ _ hs, checkDecreasing_sound _ _ ht, checkMap_sound _ _ hm⟩' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+FilteredExtensionCertificates/Basic.lean:139:2: warning: 'refine ⟨h, ⟨image_member _ _ _ hx, image_member _ _ _ hfx⟩, image_member _ _ _ hy, ?_⟩' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+FilteredExtensionCertificates/Basic.lean:140:2: warning: 'apply (differential_eq_iff_leading_extension _ _ _ _ _ _ _).mpr' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+FilteredExtensionCertificates/Basic.lean:141:2: warning: 'exact checkExtension_sound _ _ _ _ _ _ _ _ he' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'FilteredExtensionCertificates.factor_eval' depends on axioms: [propext, sorryAx, Quot.sound]
+'FilteredExtensionCertificates.checkFactor_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.checkDecreasing_sound' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+FilteredExtensionCertificates/Basic.lean:153:14: error(lean.unknownIdentifier): Unknown constant `checkMap_sound`
+'FilteredExtensionCertificates.check_sound' depends on axioms: [sorryAx]

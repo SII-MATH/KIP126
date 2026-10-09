@@ -1,0 +1,68 @@
+{
+  "status": "independent_review_passed_after_nonvacuity_fix",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "resolved_findings": [
+    "Old Unit-plus-Sigma source gave two distinct zero encodings and uninhabitable page4 route.",
+    "Current proof-indexed actual source has no additional zero encoding; Conditions model is explicitly constructed."
+  ],
+  "finite_replay": {
+    "degree_cases": 82533,
+    "legal_source_degrees": 34221,
+    "nonexistent_source_tail_degrees": 48312,
+    "all_linear_map_models": 689,
+    "target_membership_cases": 5054,
+    "zero_source_models": 4,
+    "finite_excluded_pages": 11,
+    "tested_tail_pages": 987,
+    "supported_degree_nonzero_target_pages": 1002
+  },
+  "semantic_checks": [
+    "Legal r<=filtration sourceEquiv identifies Source with entire actual source carrier.",
+    "Above filtration proof domain is empty and Source has exactly one element.",
+    "differential_image proves exact complete PageBoundary image, using AdamsTarget injectivity.",
+    "Tail vanishing follows from actual degree, with no caller-supplied tail-zero assumption.",
+    "Page4 faithful coordinates are now on actual source rather than tagged duplicate zeros.",
+    "Page7 complete coverage now ends in actual source carrier, permitting singleton actual source.",
+    "Only pages6/12 retained for nonzero queried target; all other r>=2 covered.",
+    "Nonvacuity constructs Conditions with a nonzero target, rather than assuming existence.",
+    "The explicit zero-differential model also constructs full CertifiedAdamsPages and zero compatibility.",
+    "Basic classification uses the actual differential model; full homology compatibility is not required for that theorem."
+  ],
+  "limitations": [
+    "No actual sphere or identification of the target with the named paper class.",
+    "Page2/3 no-hit, page4/7 route, and finite map-zero facts remain actual mathematical inputs.",
+    "The page classification does not assert an incoming hit exists at6/12 or outgoing permanence.",
+    "Historical vacuity proof applies to the archived old source and is not current proof evidence.",
+    "Finite Python models support the review and do not replace the Lean theorems."
+  ],
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "exit_code": 0,
+      "standard_axiom_reports": 6,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Nonvacuity",
+      "exit_code": 0,
+      "standard_axiom_reports": 8,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "standard_axiom_reports": 14,
+  "input_sha256": {
+    "ActualAdamsIncomingBridge/Basic.lean": "8897d3091bfaf63eb075fb3a541133e3b9a5f0eb97a62fa31d61027ae5c806c0",
+    "ActualAdamsIncomingBridge/Nonvacuity.lean": "0790b6dd6df4946deaab72436468e7b00822432757ec1b4e402656f2cda558a0",
+    "ActualAdamsIncomingBridge/README.md": "5932a3249665637a64aca16c752f02c9fb3563f0ed925c38d1e64544d047d02a",
+    "ActualAdamsIncomingBridge/independent-review.py": "62e569170e79600cf067fc8dce9b355e09082510272fa9ce300a7b1ae18e838b",
+    "ActualAdamsSystemBridge/Basic.lean": "f6fab04ed4161c2f05e85c26b98b5bcb1589625f8a2843901aa0b407cc51a0f5",
+    "Fact762AssemblyCertificates/Routes.lean": "a2d9ddef1d297dfdc9245b9fedf30d29bbb87657cb22565613da88a5f721c2e8",
+    "Fact762IncomingCertificates/Incoming.lean": "f747d1357c8ed1d68eae326a55c9d29247deccc3c4c980b6434f8848364864ac",
+    "Fact762Source4Certificates/KernelBranch.lean": "423bd2984757822b42b1c8a4f6f461e8a5b948131ee38d8105ae38e103d30592",
+    "ActualAdamsIncomingBridgeReview/INDEPENDENT_REVIEW.md": "b20d8a8dc8a15f3d08bf95a4479886a35b6b7438a23d1bef4ab7de0e05006ece",
+    "ActualAdamsIncomingBridge/history/tagged-vacuous-Basic.lean.txt": "4590ed01aefc541bf4cc97bf432e71ba0c345b4581f0ec4f5be4d80e6e176d55"
+  }
+}

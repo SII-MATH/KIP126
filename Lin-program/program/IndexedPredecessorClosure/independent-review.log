@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "findings": [],
+  "modules": [
+    "IndexedPredecessorClosure.Basic",
+    "IndexedPredecessorClosure.Diagnostics",
+    "IndexedPredecessorClosure.Tests"
+  ],
+  "standard_axiom_reports": 13,
+  "empty_axiom_reports": 4,
+  "counts": {
+    "degree_cases": 374,
+    "required_predecessors": 1122,
+    "missing_mutations": 1122,
+    "dimension_mutations": 1122,
+    "key_mutations": 4488,
+    "recursive_families": 6,
+    "intermediate_missing_mutations": 637,
+    "diagnostic_boolean_cases": 8,
+    "closure_only_countermodels": 3
+  },
+  "source_sha256": {
+    "Basic.lean": "9f4bc27e110b782c37622faaace85a40d1002a7930e1bd4efdaa467315191af5",
+    "Diagnostics.lean": "8985f7fa008c31211d8e8a1686de3c766df635019db31796a49bcb23b58d5a57",
+    "Tests.lean": "4a9fc7cc3b7c4dc5438775e99a6f7ac03242404271a107965f5e4220d13c31fb"
+  },
+  "historical_dependency_changes": [],
+  "conclusions": [
+    "current r sets degree shift while r-1 selects the preceding comparison",
+    "incoming/current/outgoing h match n/m/k respectively",
+    "recursive closure follows because every supplied predecessor is checked",
+    "Valid combines finite coherence and predecessor closure",
+    "diagnose reports only predecessor failures, with one-based row index"
+  ],
+  "limitations": "No actual Adams realization or complete E2 mathematical meaning follows from finite closure; an empty family is vacuously closed and coverage requires separate requested keys."
+}

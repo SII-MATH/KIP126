@@ -1,0 +1,78 @@
+{
+  "status": "no_core_correctness_findings",
+  "findings": [],
+  "modules": {
+    "Data": {
+      "source_sha256": "d422c7dec643aaf3defadfdcebf7f35131ec435ae8e2ca419111d051e8fb5ad5",
+      "log_sha256": "36b0686ee3d9ad7ae7fe2cebec62a69aefa42f0c4196eeed6771e894648cd53a",
+      "axiom_reports": 26
+    },
+    "Basic": {
+      "source_sha256": "aff5380765a0d2f6fd89251a2486459bc4363d01285a4ac5d6cbd6c4f304b0f0",
+      "log_sha256": "e4facd31258adc80e5d57e364d120775431d4352c11ea1e14f0b07c0a4125d34",
+      "axiom_reports": 9
+    },
+    "Semantics": {
+      "source_sha256": "e83e20c34937a6b2352e40e25987a6234ffd981df4b27e022c876464126883cd",
+      "log_sha256": "c85409a5cb208ea04653ece7f8539ccfcc9715bda28492d9b087f011039fe9c2",
+      "axiom_reports": 2
+    },
+    "D2Links": {
+      "source_sha256": "5c050cb3de1675fd9fa6b5bd310b12ab530af0d13eb04b009f6a1e4c1570cb56",
+      "log_sha256": "6fe1ceabae2d28f73872b203cdf84637d92c4501bd68fbda81bb6814c5c9b102",
+      "axiom_reports": 9
+    },
+    "Descent": {
+      "source_sha256": "143230a276730962f393315ff7afaa3d95dd3c1ddfe7cf8d4661d60304393084",
+      "log_sha256": "47457be19092fd43ad7e9c71f03e728d00e48130b1ecca995e103fc1fa4d0cb5",
+      "axiom_reports": 13
+    },
+    "Actual": {
+      "source_sha256": "dff1163d389a84d864ae9a0484e429799e14662deaefbc5213d2f3cad3be48bd",
+      "log_sha256": "b7fa4305b3e4169375411351fa8cc280c5ac813ed24c593f2ce93770573311cd",
+      "axiom_reports": 8
+    }
+  },
+  "axiom_reports": 67,
+  "counts": {
+    "all_cycle_product_pairs": 24,
+    "all_left_boundary_product_pairs": 12,
+    "all_right_boundary_product_pairs": 6,
+    "all_same_input_product_quotient_pairs": 24576,
+    "zero_source_counterfeit_rejected": 3072,
+    "same_input_label_models": 3072
+  },
+  "reviewed_scope": [
+    "Data",
+    "Basic",
+    "Semantics",
+    "D2Links",
+    "Descent",
+    "Actual"
+  ],
+  "excluded_scope": [
+    "Branches",
+    "Tactic"
+  ],
+  "preserved_inputs": [
+    "Known actual ss6934 d4 in constructed product/target E4 coordinates",
+    "Complete actual d3 meanings and full source coordinate swap binding",
+    "Actual product equation and its whole quotient transition",
+    "Nine complete staircase d2 interpretations, not inferred from raw levels"
+  ],
+  "conclusion": "Actual nonzero d4 for the same named source E4 representative; no exact target coefficient or unconditional sphere realization is inferred.",
+  "source_null_preserved": [
+    2907,
+    16,
+    137,
+    "1",
+    null,
+    9996
+  ],
+  "inputs_sha256": {
+    "Row2907PDeltaDetection/products.json": "3eaa203914f21e86d722d4c2d4d78aff58868af95a2f7aad536304e613eaad74",
+    "Row2907PDeltaDetection/search.json": "98229742dd112c793817191712789564ad5bbd9a677d2ab63661a808c0b9bb34",
+    "Row2907PDeltaDetection/review.json": "c3c13f61c917eedaf6ad5b9a92a0c439b0d4cada6098c15e12e8b9fe04ae0a7b",
+    "Row2907PDeltaDetection/independent_core_review.py": "690515cd6865d933afe563eb1f9e6d815303884b2283bd57e61e53ff590658a1"
+  }
+}

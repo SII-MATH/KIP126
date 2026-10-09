@@ -1,0 +1,9 @@
+import AggregateTargetInventory.EventAudit.IndexedBatch0
+import AggregateTargetInventory.EventAudit.IndexedBatch1
+import AggregateTargetInventory.EventAudit.IndexedBatch2
+import AggregateTargetInventory.EventAudit.IndexedBatch3
+import AggregateTargetInventory.EventAudit.IndexedBatch4
+import AggregateTargetInventory.EventAudit.IndexedBatch5
+import AggregateTargetInventory.EventAudit.IndexedBatch6
+import AggregateTargetInventory.EventAudit.IndexedBatch7
+import AggregateTargetInventory.EventAudit.IndexedBatch8

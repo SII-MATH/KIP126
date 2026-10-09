@@ -1,0 +1,36 @@
+Row2693D5Search/Product.lean:34:57: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  current.equivalence 0
+in the target expression
+  current.equivalence 0 = eval (matrixOf Data.left3.m Data.left3.n Data.left3.incoming) zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+r : ℕ
+hr : 1 < r
+current : Coordinates S r leftDegree 1
+target : Coordinates S r (AdamsTarget r leftDegree) 1
+additive :
+  ∀ (x y : (S.element r leftDegree).carrier),
+    current.equivalence (x + y) = add (current.equivalence x) (current.equivalence y)
+cycle : ∀ (x : (S.element r leftDegree).carrier), (S.differential r leftDegree).toFun x = 0
+x : ActualAdamsIncomingBridge.Source S r leftDegree
+h : ¬r ≤ leftDegree.filtration
+⊢ current.equivalence 0 = eval (matrixOf Data.left3.m Data.left3.n Data.left3.incoming) zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    current
+  has type
+    Coordinates S r leftDegree 1
+  but is expected to have type
+    Coordinates S r leftDegree Data.left3.m
+  in the application
+    current.equivalence
+'Row2693D5Search.Product.h1Meaning' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2693D5Search.Product.Stage2.input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2693D5Search.Product.Stage3.leftMeaning' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2693D5Search.Product.Stage3.input' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2693D5Search.Product.Stage4.leftMeaning' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2693D5Search.Product.Stage4.input' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

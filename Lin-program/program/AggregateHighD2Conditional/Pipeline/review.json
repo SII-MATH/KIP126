@@ -1,0 +1,195 @@
+{
+  "events": [
+    6651,
+    7007,
+    7162,
+    7247
+  ],
+  "generated_sha256": {
+    "Executable6651.lean": "6629040a42ae7978f01af67204fc6b9a3b8df4ac79b49e86cce796f9e03c2f21",
+    "Executable7007.lean": "4e04343d427da12694b74736d1ef60094becf64c0f32a93e59225285e2b70c09",
+    "Executable7162.lean": "a58dcbc9cc33e197b99dc5543b4bf6d853892cde5b97d7911be05e01df4563fb",
+    "Executable7247.lean": "7522b38a447bc6df25a819aaeef3b2420eda2cf4e70ce1d001d4b9be721c9ac1",
+    "Trace6651.lean": "0addf0b48279034afe9b66001936cb413cb0e95b28ef8cf36ba816b6b7ccb0cb",
+    "Trace7007.lean": "70a5c84d228d88afd10bc53c5891b5304cfe69149395a478d7c02976489ddf5b",
+    "Trace7162.lean": "043dfe33bad1f036deb6a374cfab7adb5ffbee92d15b82329f0975d92abc95a1",
+    "Trace7247.lean": "fb43acc3e825b341a46e05ac206f46ff6c7b49025bc364c174d08c84df701736",
+    "trajectory-cycles.json": "39a95bfb8907df0897d4724401fcf1934275a29b783caa9537f2d9ffc88a0bef"
+  },
+  "input_sha256": {
+    "AggregateHighD2Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "AggregateHighD2Conditional/source.json": "1d8efe310d883d1e6c0e68fca84684513ba39d754d10fb3284a78a9a9321959c",
+    "AggregateTargetInventory/inventory.json": "5305d51f32ad48fffa3da528155cc97258b7a52e13d0a02086a297f8de5c5538",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "limitations": "Conditional staircase-derived d2 value semantics remain explicit, including database NULL columns and beyond d2_t_max coverage. No raw missing d2 value is asserted independently.",
+  "prior_cycle_steps": 6,
+  "prior_nonboundary_steps": 6,
+  "producer_sha256": {
+    "event6651.json": "5218ffe53a33d69ff68f9503b39a23ba59470f94d55b171bc28a8b5a3fa485b2",
+    "event7007.json": "92b5086c0c53f08ec7ace7d5c9433cd537db5c0b69060bb2274075283fef43bf",
+    "event7162.json": "92b5086c0c53f08ec7ace7d5c9433cd537db5c0b69060bb2274075283fef43bf",
+    "event7247.json": "56fe90d39fa364388bffe561d168544812a6a6c59a066628c02a7312d2212de7",
+    "indexed-event6651.json": "20a4405bb7fbcadcb3fa7b1b9e2771dd07827689aeaceb2f848866afb4f4a306",
+    "indexed-event7007.json": "bd4902c8616bf5d076de734e1acabbd2aeafca2340a0fc7db474fbe006f92fdf",
+    "indexed-event7162.json": "6088dd14140e46163c3c5494da4431a15c259eb19206560bdb6afbc2b5cb6771",
+    "indexed-event7247.json": "d49913a137048ad74d247f2b60a3d3a3bb4f1dd487962d3b42e56aa33011226a"
+  },
+  "producer_wires_match": true,
+  "raw_projection_links": 8,
+  "raw_sql_endpoint_links": [
+    {
+      "basis_ids": [
+        6651
+      ],
+      "basis_rows": [
+        [
+          6651,
+          "8,2,469,1",
+          null
+        ]
+      ],
+      "degree": [
+        52,
+        177
+      ],
+      "endpoint": "source",
+      "event": 6651,
+      "prior_stages": 2
+    },
+    {
+      "basis_ids": [
+        7006
+      ],
+      "basis_rows": [
+        [
+          7006,
+          "8,1,661,1",
+          null
+        ]
+      ],
+      "degree": [
+        56,
+        180
+      ],
+      "endpoint": "target",
+      "event": 6651,
+      "prior_stages": 2
+    },
+    {
+      "basis_ids": [
+        7007
+      ],
+      "basis_rows": [
+        [
+          7007,
+          "16,1,554,1",
+          null
+        ]
+      ],
+      "degree": [
+        55,
+        180
+      ],
+      "endpoint": "source",
+      "event": 7007,
+      "prior_stages": 0
+    },
+    {
+      "basis_ids": [
+        7161
+      ],
+      "basis_rows": [
+        [
+          7161,
+          "0,1,8,1,661,1",
+          null
+        ]
+      ],
+      "degree": [
+        57,
+        181
+      ],
+      "endpoint": "target",
+      "event": 7007,
+      "prior_stages": 0
+    },
+    {
+      "basis_ids": [
+        7162
+      ],
+      "basis_rows": [
+        [
+          7162,
+          "0,1,16,1,554,1",
+          null
+        ]
+      ],
+      "degree": [
+        56,
+        181
+      ],
+      "endpoint": "source",
+      "event": 7162,
+      "prior_stages": 0
+    },
+    {
+      "basis_ids": [
+        7246
+      ],
+      "basis_rows": [
+        [
+          7246,
+          "0,2,8,1,661,1",
+          null
+        ]
+      ],
+      "degree": [
+        58,
+        182
+      ],
+      "endpoint": "target",
+      "event": 7162,
+      "prior_stages": 0
+    },
+    {
+      "basis_ids": [
+        7008
+      ],
+      "basis_rows": [
+        [
+          7008,
+          "17,1,554,1",
+          null
+        ]
+      ],
+      "degree": [
+        54,
+        180
+      ],
+      "endpoint": "source",
+      "event": 7247,
+      "prior_stages": 1
+    },
+    {
+      "basis_ids": [
+        7247
+      ],
+      "basis_rows": [
+        [
+          7247,
+          "0,2,16,1,554,1",
+          null
+        ]
+      ],
+      "degree": [
+        57,
+        182
+      ],
+      "endpoint": "target",
+      "event": 7247,
+      "prior_stages": 1
+    }
+  ],
+  "script_sha256": "0b04d8d0993f5ec2ced6c1f14b3b8379df37325f4d3768e53e6bb818fadab5d3"
+}

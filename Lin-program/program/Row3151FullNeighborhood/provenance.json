@@ -1,0 +1,211 @@
+{
+  "distinct_events": 1,
+  "cases": [
+    {
+      "code": "000",
+      "row2708_d3": false,
+      "row2925_first_bit": false,
+      "additional_incoming_kernel_bit": false,
+      "incoming_source_dimension": 2,
+      "incoming_source_next_dimension": 2,
+      "event_homology_dimension": 1,
+      "target_next_dimension": 1,
+      "incoming_matrix": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "outgoing_matrix": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "entries": 9
+    },
+    {
+      "code": "001",
+      "row2708_d3": false,
+      "row2925_first_bit": false,
+      "additional_incoming_kernel_bit": true,
+      "incoming_source_dimension": 2,
+      "incoming_source_next_dimension": 1,
+      "event_homology_dimension": 0,
+      "target_next_dimension": 1,
+      "incoming_matrix": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "outgoing_matrix": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "entries": 9
+    },
+    {
+      "code": "010",
+      "row2708_d3": false,
+      "row2925_first_bit": true,
+      "additional_incoming_kernel_bit": false,
+      "incoming_source_dimension": 2,
+      "incoming_source_next_dimension": 2,
+      "event_homology_dimension": 1,
+      "target_next_dimension": 1,
+      "incoming_matrix": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "outgoing_matrix": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "entries": 9
+    },
+    {
+      "code": "011",
+      "row2708_d3": false,
+      "row2925_first_bit": true,
+      "additional_incoming_kernel_bit": true,
+      "incoming_source_dimension": 2,
+      "incoming_source_next_dimension": 1,
+      "event_homology_dimension": 0,
+      "target_next_dimension": 1,
+      "incoming_matrix": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "outgoing_matrix": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "entries": 9
+    },
+    {
+      "code": "100",
+      "row2708_d3": true,
+      "row2925_first_bit": false,
+      "additional_incoming_kernel_bit": false,
+      "incoming_source_dimension": 1,
+      "incoming_source_next_dimension": 1,
+      "event_homology_dimension": 1,
+      "target_next_dimension": 1,
+      "incoming_matrix": [
+        false,
+        false
+      ],
+      "outgoing_matrix": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "entries": 9
+    },
+    {
+      "code": "110",
+      "row2708_d3": true,
+      "row2925_first_bit": true,
+      "additional_incoming_kernel_bit": false,
+      "incoming_source_dimension": 1,
+      "incoming_source_next_dimension": 1,
+      "event_homology_dimension": 1,
+      "target_next_dimension": 1,
+      "incoming_matrix": [
+        false,
+        false
+      ],
+      "outgoing_matrix": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "entries": 9
+    }
+  ],
+  "raw_rows": {
+    "2576": [
+      2576,
+      4,
+      132,
+      "0",
+      null,
+      9000
+    ],
+    "2707": [
+      2707,
+      7,
+      134,
+      "2",
+      null,
+      9990
+    ],
+    "2708": [
+      2708,
+      7,
+      134,
+      "0,1",
+      null,
+      9997
+    ],
+    "2925": [
+      2925,
+      11,
+      137,
+      "1,2",
+      null,
+      9000
+    ],
+    "2926": [
+      2926,
+      11,
+      137,
+      "2",
+      "1",
+      9996
+    ],
+    "3151": [
+      3151,
+      15,
+      140,
+      "1",
+      "2",
+      4
+    ],
+    "3152": [
+      3152,
+      15,
+      140,
+      "2",
+      "0",
+      9995
+    ]
+  },
+  "frozen_aggregate_unchanged": true,
+  "premise": "row2707 zero d3/d4 prefixes; row2576 d3 zero; known3151 d4; eta second bit zero; inherited source/target d3 meanings; actual realization remains external",
+  "improvement": "Exhaust both row2708 d3 outcomes and all compatible d4 incoming maps; no complete-kernel hypothesis chooses its dimension.",
+  "legacy_scope": "Row3151BranchCertificates treats n=1 only. Its four outgoing completions were never a complete enumeration of the n=2 branch.",
+  "input_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateD5Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "AffineRemainingSearch/branch2708-0.json": "7e4c11955d7f4403c4d2fa8dd2e1ead7d068dfe1caebbf5b4a0b23485d64d80f",
+    "AffineRemainingSearch/branch2708-1.json": "6696ccbfedb0d173f474c5dd2e5b93615d5997bf80aa782528f8228130d9af92",
+    "Row3152BranchCertificates/sourceD40.json": "1b2dc184b0f1edb6b82198427529ffafbab7c62fb4dee665d9fea3b4d30131e0",
+    "Row3152BranchCertificates/sourceD41.json": "a1afa869d8496e9288b10c781e75e864c8c977ffb07e06d9650738376113544a",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "Row3151FullNeighborhood/prepare.py": "bf80ba21cdf947642184f63a243fdaa51a2811dedafa9b5989eae920a1abb33f"
+  }
+}

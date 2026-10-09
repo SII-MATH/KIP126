@@ -1,0 +1,142 @@
+{
+  "E3_maps": 10,
+  "E4_maps": 3,
+  "E5_target_matrix": [
+    1
+  ],
+  "actual_compatibility_squares": 28,
+  "columns": 81,
+  "comparison_blocks": 30,
+  "d2_comparisons": 20,
+  "failures": [],
+  "inputs_sha256": {
+    "AggregateC2Row3019Conditional/source.json": "938cd2b4801d326cae1c6af1eab091a37964919e32ff7ffd29f52edfc6002f08",
+    "Row2796D5Detector/Actual.lean": "27602bbd0e95b07944b652c9db91ef13de93e953bc75bcda1226b135662fffe5",
+    "Row2796D5Detector/Comparison.lean": "6748337a0516fea819582dd6aeb83bc0a3479cf1a3e79372e1688a7ced72aa7c",
+    "Row2796D5Detector/CurrentImports.lean": "fe31ef31157d16f89486b87e970c0649e1b8ee9060fff1794dd17ede260aab54",
+    "Row2796D5Detector/Higher.lean": "a8a9eed1ef8646f037744427880ba83e765d33b27a1442f7afeb9d0b9ce98357",
+    "Row2796D5Detector/MapSemantics.lean": "f094858349e9e8dec5bb550710d9c21ba10acc4a0b8256714ce3a5a0b9ec6fe6",
+    "Row2796D5Detector/Matches.lean": "09fa1cb0dcd57f024b4bac26d73de9f7726e1808daf0b53a043c5c4a00e8d91b",
+    "Row2796D5Detector/Source.lean": "e5b0ba4c29d31a6ace2ad9e269c33c3c668312975ff4bfd83760dcb678138b28",
+    "Row2796D5Detector/Target.lean": "b09313fe24c10c845763b2f0028f15681703a15018d7b12029160f6f80749688",
+    "Row2796D5Detector/Tests.lean": "4a6fe56e4425fe6a45eec04f6239bc5f27a2b1be77de81ebbc1e5c38cdce51f5",
+    "Row2796D5Detector/comparison-source.json": "520c098293894ce0ff72270d4475925fe72e91b60a1cf8c600c50677661607f1",
+    "Row2796D5Detector/export.py": "3072d34f6b3376ed3b381af126849bf39ad2d1d306069faf5ed1a7e2a6fab404",
+    "Row2796D5Detector/generate_comparison.py": "c9abc6de800f926c4ece83637aa952833103c40c491982577cffba07fce66fcc",
+    "Row2796D5Detector/review.py": "679fabc7965b375b59c2f7545447ce53ed6feeca84aba74b13574bea597f71d2",
+    "Row2796D5Detector/source.json": "73dc52763ff48c08d9618ad2338879aaa0554296224dd1770c6cb041b43c71ac",
+    "Row2796D5Detector/wire/s10t136.json": "1e0c396df00c13536aa5127142bb8bccf925283e9e511c2f900ebbbf62a93eb5",
+    "Row2796D5Detector/wire/s10t137.json": "f5cce4c9c14af278ea569efadeee3baa3e6b98a618b62071ec6a5c9098b02a6c",
+    "Row2796D5Detector/wire/s11t137.json": "3fc2a481269628228e81d60c5b1abe523c735a92bc919ddb5ac2b5a2c25db120",
+    "Row2796D5Detector/wire/s11t138.json": "6529714c85e2fe5187b80c6965a3042e7485d1b24a09d06b0ffd41aa4693b599",
+    "Row2796D5Detector/wire/s12t138.json": "c12be1bcfe868facee8e829c729044576bfbaddd133b8518ae09b93e106effdf",
+    "Row2796D5Detector/wire/s12t139.json": "b81b598e8866f5c60589245124c5f787bf18bb93c2de9a10619c4bff958f3dc3",
+    "Row2796D5Detector/wire/s13t139.json": "394be35b799e6e22af4a11d7f136429f15cfbabf566712847d87df3fe9e34c04",
+    "Row2796D5Detector/wire/s14t139.json": "df4648d06987afd260f38969083e4b411c471d1ae636ae0e3ca699a5c361644f",
+    "Row2796D5Detector/wire/s14t140.json": "8ef0dd57f5fcaf6a9bf090fef950fa66a1182176637b2f58cc6a131f175cc566",
+    "Row2796D5Detector/wire/s15t140.json": "f543668d5e7bb1d4631d78b4d39a1896ba81edc5d2d647e47e5f73ca3daf4fcb",
+    "Row2796D5Detector/wire/s15t141.json": "c86f917310ef2cb6f17b1790b743ab68bbe10f6640d2ed1cfb11406c8aac36a2",
+    "Row2796D5Detector/wire/s16t141.json": "2488ed65eb801f34c66f093fd18b239e9fc80173bd3763f587564d4b46f826ff",
+    "Row2796D5Detector/wire/s17t142.json": "d3e7d3c6d8141514d0b5cec43a4c2be05bf9fbdddedd5aefb6d5ac8f7e752c0a",
+    "Row2796D5Detector/wire/s18t142.json": "f7844a946386c840723cc8d565aefa1791c8adacaa3dd83bdb192573ad5cb3bb",
+    "Row2796D5Detector/wire/s18t143.json": "18c581a521a357cd4c2c373dfa0ddc1bbf2756e4d4b0ca0af40f50f1713b904a",
+    "Row2796D5Detector/wire/s19t143.json": "aeac708cf4f00e2d9498a4d317646d627248040acb12428fc76ec4444a13cd83",
+    "Row2796D5Detector/wire/s20t144.json": "5b88753f27b31c0d5fb8b38ac9b6ce06a7be81f140e3ffbcf1b6d3369c2c53ba",
+    "Row2796D5Detector/wire/s22t145.json": "f0812c92e106498ffd5088ee337b6dc3370ec20770545d0bf8c2983d15abc7ca",
+    "Row2796D5Detector/wire/s4t133.json": "0d349e52a174d9e1dfa85cc759a8911a94b388f96ae094454e8f25c96d0a3fa9",
+    "Row2796D5Detector/wire/s6t134.json": "5c27684ec1ab70b2fc08c7c871cb1198bc6467abe73e9991a3024c4d671197c5",
+    "Row2796D5Detector/wire/s7t135.json": "ef620ac2be9ff553508561906d21177a00ee1d9ad7528c5f981fda0c5a2aed3f",
+    "Row2796D5Detector/wire/s8t135.json": "2bd17dc42f7bde557762586d288b12115ec75f60125ebb055ba334d28fb61bd5",
+    "Row2796D5Detector/wire/s8t136.json": "21adffcf4976de6ae97e727768ffac20dd7bca6fc0bdc0fb0832f950c9bcf4fd",
+    "Row2796D5Detector/wire/s9t136.json": "3e99ebe7728be37285a0cb3b63c55776f59a00465051744bb09a266a0ee3e548",
+    "Row2796D5Search/comparisons.json": "87d45669330d78890e1daa5a461c8c2efa5b1da5f72600fec9defd7408410a11",
+    "Row2796D5Search/review.json": "2a06fa9bf2786c780eb1a395d3b5cedf318b6b2ca5fb18a3817b5251b86dbbcd",
+    "Row2925Detector/source_independent_audit.py": "1cf431e8d8872f0917be82820712f92a09bb7b02d28736ae60c882bb46809fd7",
+    "upstream/category-inventory.json": "506dace295387da68b60bad6a7027bbfe916c9c8c2ac4846ea704133e37059e9"
+  },
+  "lifted_ring_relations": 0,
+  "limitations": "No existence of either source completion is asserted. Completion4 provides an induced quotient relation, not a proved Adams E5 realization; an actual complex interpretation remains external. No arbitrary unknown entries are set to zero.",
+  "matrices": 24,
+  "named_source_image": [
+    0,
+    0,
+    0
+  ],
+  "raw": [
+    2796,
+    8,
+    135,
+    "2",
+    null,
+    9000
+  ],
+  "relation_steps": 4,
+  "semantic_premises": [
+    "Completion3 with full HomologyComparison and actual E3 CompatibleMap",
+    "Completion4 with actual induced E4 CompatibleMap",
+    "local d5 naturality and zero preservation",
+    "inherited finite source and target staircase meanings",
+    "Adams realization when required"
+  ],
+  "source_E3_matrix": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+  ],
+  "source_d3_d4_comparisons": 2,
+  "source_database_sha256": {
+    "DC2h6_AdamsSS_t200.db": "8ea004020e413f34a569b9d142e58c73c7661dd1acff35b0757dac9e73586162",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "source_map_nonzero": true,
+  "source_trace": [
+    {
+      "page": 2,
+      "projection": [
+        1,
+        0
+      ],
+      "raw_or_coordinates": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "page": 3,
+      "projection": [
+        1,
+        0
+      ],
+      "raw_or_coordinates": [
+        1,
+        0
+      ]
+    },
+    {
+      "page": 4,
+      "projection": [
+        1,
+        0
+      ],
+      "raw_or_coordinates": [
+        1,
+        0
+      ]
+    }
+  ],
+  "source_unknown_completed": false,
+  "status": "independent_SQL_full_matrix_and_higher_target_audit_passed",
+  "target_E5_coordinate": [
+    1
+  ],
+  "target_d3_comparisons": 6,
+  "target_d4_comparisons": 2
+}

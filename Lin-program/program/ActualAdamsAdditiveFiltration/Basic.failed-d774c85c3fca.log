@@ -1,0 +1,38 @@
+ActualAdamsAdditiveFiltration/Basic.lean:67:10: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (S.differential (n + 2) d).toFun (?x + ?y)
+in the target expression
+  (S.differential (n + 2) d).toFun (s.at x n + s.at y n) = S.zero (n + 2) (AdamsTarget (n + 2) d)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+additive : AddMeaning S pages
+d : Bidegree
+x y : (S.element 2 d).carrier
+s : PermanentCycleCertificates.System := system S pages ⋯ d
+n : ℕ
+ih :
+  Cycles (system S pages ⋯ d) n x →
+    Cycles (system S pages ⋯ d) n y → Cycles s n (x + y) ∧ s.at (x + y) n = s.at x n + s.at y n
+hx : Cycles (system S pages ⋯ d) (n + 1) x
+hy : Cycles (system S pages ⋯ d) (n + 1) y
+hxp : Cycles s n x
+hxc : s.outgoing n (s.at x n) = s.zeroOutgoing n
+hyp : Cycles s n y
+hyc : s.outgoing n (s.at y n) = s.zeroOutgoing n
+hp : Cycles s n (x + y)
+he : s.at (x + y) n = s.at x n + s.at y n
+⊢ (S.differential (n + 2) d).toFun (s.at x n + s.at y n) = S.zero (n + 2) (AdamsTarget (n + 2) d)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    x
+  has type
+    (S.element 2 d).carrier
+  but is expected to have type
+    s.Page 0
+  in the application
+    s.at x
+'ActualAdamsAdditiveFiltration.AddMeaning.zeroMeaning' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.advance_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.cycles_add_and_at' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

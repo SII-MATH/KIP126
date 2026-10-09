@@ -1,0 +1,44 @@
+{
+  "modules": [
+    {
+      "module": "FilteredMapCokernelGraded.Basic",
+      "axiom_reports": 9,
+      "source_sha256": "49c545b0ef72e7dc7628ef72e0f9afc927668f8b713546d03658aec8ced2cb5d",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "7c9a59685317cc5335c2123fdeb1739409ab94f7987a49643d569cd277fd9b6f",
+      "olean_sha256": "a15fa59e9f45561da746135cc7489f7e2ac9af1df358db3c9511aabf975d51a5"
+    },
+    {
+      "module": "FilteredMapCokernelGraded.Conditions",
+      "axiom_reports": 8,
+      "source_sha256": "e6baec26a201c2f2a6ba685fc169694e6b214e290e43bb70e2a59e719ab6161c",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "ed9a9efc869a1bfde86ffea5322d8d11b6505520b705afa00974b717696869f6",
+      "olean_sha256": "2f2401e02add8ed3289533000572527f132b376258b3e94ae0537631d0790b52"
+    },
+    {
+      "module": "FilteredMapCokernelGraded.Examples",
+      "axiom_reports": 4,
+      "source_sha256": "936c2a6e26edd21cde4270a2b15d8322b0185c7f03c2b393c66647fd423f2392",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "f40b1c5d37036c3a85624e5525d13a0b537e86b515c5f65c187f84293ae9caad",
+      "olean_sha256": "912c01ee7ca7c85c9b6df38dfd503cf1c64ddc5bb242183918387c0bd4b60950"
+    }
+  ],
+  "observed_successful_direct_compilations": 3,
+  "standard_only_axiom_reports": 21,
+  "oracle_report_sha256": "b0e6519110174f7d6a5b910dd3fe3f47f387a158ddf370880a847ba45011e823",
+  "scope": "actual associated graded of the cokernel of f restricted to F0",
+  "full_cokernel_condition": "F0 = top suffices; no source fullness is assumed",
+  "exhaustion_condition": "induced filtration exhaustive iff G0 = top",
+  "excluded": [
+    "topological convergence",
+    "identification of actual Adams filtrations"
+  ],
+  "failed_attempts": [
+    "Basic.failed-d046139d9056.log"
+  ]
+}

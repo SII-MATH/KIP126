@@ -1,0 +1,42 @@
+Row2684D5Search/Actual.lean:46:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (W.source.step2.meaning.nextCoordinates pages Data.source2_valid ⋯).equivalence
+    ((pages.nextPage 2 sourceDegree).toNext ⟦square⟧)
+in the target expression
+  Data.middleVector =
+    (W.source.step2.next Data.source2_valid).equivalence
+      ((pages.nextPage 2 (factorDegree.add factorDegree)).toNext ⟦multiplyCycle S P 2 factorDegree factorDegree a a⟧)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+W : Witness S pages P
+a : PageCycle S 2 factorDegree := ⟨W.factor.endpoint2.value, ⋯⟩
+square : PageCycle S 2 (factorDegree.add factorDegree) := multiplyCycle S P 2 factorDegree factorDegree a a
+next :
+  (pages.nextPage 2 (factorDegree.add factorDegree)).toNext ⟦multiplyCycle S P 2 factorDegree factorDegree a a⟧ =
+    P.product.multiply (2 + 1) factorDegree factorDegree ((pages.nextPage 2 factorDegree).toNext ⟦a⟧)
+      ((pages.nextPage 2 factorDegree).toNext ⟦a⟧)
+coordinates :
+  (W.source.step2.meaning.nextCoordinates pages Data.source2_valid ⋯).equivalence
+      ((pages.nextPage 2 sourceDegree).toNext ⟦square⟧) =
+    eval Data.source2.comparison.projection (W.source.initial.equivalence ↑square)
+⊢ Data.middleVector =
+    (W.source.step2.next Data.source2_valid).equivalence
+      ((pages.nextPage 2 (factorDegree.add factorDegree)).toNext ⟦multiplyCycle S P 2 factorDegree factorDegree a a⟧)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    Data.middleVector
+  has type
+    Vec 2
+  but is expected to have type
+    Vec Data.source2.h
+  in the application
+    Eq Data.middleVector
+'Row2684D5Search.Actual.square_next' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.Actual.Witness.named3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2684D5Search.Actual.Witness.named4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2684D5Search.Actual.Witness.named5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2684D5Search.Actual.named_d5_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2684D5Search.Actual.whole_d5_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

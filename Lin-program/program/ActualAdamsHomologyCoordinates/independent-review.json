@@ -1,0 +1,52 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "proof_evidence": {
+    "Basic": {
+      "record": {
+        "source_sha256": "de6e59f1752062308e73843a8f7b3dcd986cd674987d71a6d3d48c4ff901d95d",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "9e6373a9e4841f3adb04c0f28a32a14dce000c3a3ffb82bd1055bf874f433b06",
+        "olean_sha256": "66754bf292409282c305b01c199eb42d64566f8d6f276931ce52f5446852269d"
+      },
+      "reports": 10
+    },
+    "Adapter": {
+      "record": {
+        "source_sha256": "f77596734d2804856e28d3d993b2b1af82daf41675f2c4c94f2b4bdccfc6ba68",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "eeabc605f5684dde0fa09d99b3cff38e8dae55ff745a6cc773577f7de34fb97f",
+        "olean_sha256": "c0bfdc0d4d2a1b6d9d0d6b12093cf386f25c47df00c52542447cd68940031e3f"
+      },
+      "reports": 4
+    }
+  },
+  "counts": {
+    "proper_outgoing_coordinate_images": 140,
+    "noninjective_incoming_coordinate_maps": 189,
+    "whole_cycle_boundary_elements": 1256,
+    "quotient_representatives": 821,
+    "related_iff_pairs": 7731,
+    "next_type_equivalences": 581,
+    "zero_law_false": 191,
+    "zero_preserving_but_nonadditive": 16,
+    "nonzero_equivalence_checks": 1467,
+    "derived_additivity_pairs": 2744,
+    "whole_complex_models": 189
+  },
+  "reviewed_minimal_premises": [
+    "Current whole zero-preserving additive coordinate equivalence",
+    "Faithful outgoing coordinates and full differential meaning",
+    "Surjective incoming coordinates and full incoming meaning",
+    "Kernel-checked complete comparison",
+    "Local zero law for next zero; local addition law for next additivity"
+  ],
+  "scope": "Actual quotient and next coordinates are derived. The actual current meanings and certified page equivalence remain supplied; no sphere realization follows.",
+  "source_sha256": {
+    "ActualAdamsHomologyCoordinates/Basic.lean": "de6e59f1752062308e73843a8f7b3dcd986cd674987d71a6d3d48c4ff901d95d",
+    "ActualAdamsHomologyCoordinates/Adapter.lean": "f77596734d2804856e28d3d993b2b1af82daf41675f2c4c94f2b4bdccfc6ba68",
+    "Fact713NextComparisonFamily/family.json": "4aaf2848aa8ba6217391b8b6dde20684f66eaa45fa3c6966595141afaaa72114"
+  }
+}

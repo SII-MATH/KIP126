@@ -1,0 +1,82 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Fact719NoHit.Basic",
+      "axiom_reports": 5,
+      "source_sha256": "a0ebbbabb6cf754c536b6aa1da9278e28dda4b8f63379ec7c802df47a200b83e",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ActualFiniteNoHit/Basic.olean": "44f005d5f3ca63eba173331b21ab08dc46e1267751418290c8b25fa3492eed58",
+        ".lake/build/lib/lean/Fact719ConstructedActual/Trace.olean": "b8870f6ab1ead78f3d2fb0e41f80b99be713f7f2626037155e88e4e79125f11d",
+        ".lake/build/lib/lean/Fact762SphereGDetection/Trace.olean": "80bd327035a19d3d31e55d6f41618adb8acd1a39723712ce6c2e9aafe3616427"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact719NoHit/Basic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact719NoHit/Basic.olean"
+      ],
+      "log": "evidence/Basic-20260922T014834000386Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "7ef5dace57fffcd51a387c6c0970272523c893b51574f442de2b927120469c12",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/ActualFiniteNoHit/Basic.olean": "44f005d5f3ca63eba173331b21ab08dc46e1267751418290c8b25fa3492eed58",
+        ".lake/build/lib/lean/Fact719ConstructedActual/Trace.olean": "b8870f6ab1ead78f3d2fb0e41f80b99be713f7f2626037155e88e4e79125f11d",
+        ".lake/build/lib/lean/Fact762SphereGDetection/Trace.olean": "80bd327035a19d3d31e55d6f41618adb8acd1a39723712ce6c2e9aafe3616427"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "afb2d6a7fac94483a42a00e46e159f8dbb7b355460430cea3e1bd735f1eeb248"
+    },
+    {
+      "module": "Fact719NoHit.Tactic",
+      "axiom_reports": 2,
+      "source_sha256": "14789eb5248698b488ff56a27b86d8de1d9779823d3126efc0a3c75ab5464c16",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact719NoHit/Basic.olean": "afb2d6a7fac94483a42a00e46e159f8dbb7b355460430cea3e1bd735f1eeb248",
+        ".lake/build/lib/lean/Fact719ConstructedActual/Tactic.olean": "a32f4785fb21d3f4db3c6659475c0b50b8260fcaed6562286e26381ead262ac7"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact719NoHit/Tactic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact719NoHit/Tactic.olean"
+      ],
+      "log": "evidence/Tactic-20260922T015022312233Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "0b9fd43730f5a4a9e467b324588dc76be59a88aef2516ffbe490d130002b6127",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Fact719NoHit/Basic.olean": "afb2d6a7fac94483a42a00e46e159f8dbb7b355460430cea3e1bd735f1eeb248",
+        ".lake/build/lib/lean/Fact719ConstructedActual/Tactic.olean": "a32f4785fb21d3f4db3c6659475c0b50b8260fcaed6562286e26381ead262ac7"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "0a9a92344ab38c9848bc7bbb0b3c2df353e355eb7193127dbd77153327899e35"
+    }
+  ],
+  "axiom_reports": 7,
+  "dependency_note": "Direct dependency hashes are historical observations at compile time; root builds may later rebuild registered dependencies.",
+  "files": {
+    "Fact719NoHit/Basic-compile.json": "6614c8baf28e1fe4c804ecd4cd5b14edf8cab977dfcdb2e8acfb9c42a12a6826",
+    "Fact719NoHit/Basic.lean": "a0ebbbabb6cf754c536b6aa1da9278e28dda4b8f63379ec7c802df47a200b83e",
+    "Fact719NoHit/README.md": "dcf674a269f587a8b859ba0e3896105d3ebdba7227411da0bffd17aac0995858",
+    "Fact719NoHit/Tactic-compile.json": "0b039c119f3e747d5676ce841434ea70fcf9588b975f5d769506fc4a34931e8f",
+    "Fact719NoHit/Tactic.lean": "14789eb5248698b488ff56a27b86d8de1d9779823d3126efc0a3c75ab5464c16",
+    "Fact719NoHit/compile-current.log": "0e5a0dea44e215eaed82aebae48bc4ff4d808f16aa919bba08b189173eb1aa27",
+    "Fact719NoHit/compile.py": "ade60df42189c6473a5907e249bb58495c82a521834b3c146c37bd579bece8ce",
+    "Fact719NoHit/evidence/Basic-20260922T014747927426Z.json": "a190f894271a70293dee854b92501b375d0b73b4549f4d857c17d4b98b9c1067",
+    "Fact719NoHit/evidence/Basic-20260922T014747927426Z.log": "0b7c05d7d33ce625ab7dba5375f229d8a42045d99b6f4b6fe011ccecd86b45b7",
+    "Fact719NoHit/evidence/Basic-20260922T014834000386Z.json": "6614c8baf28e1fe4c804ecd4cd5b14edf8cab977dfcdb2e8acfb9c42a12a6826",
+    "Fact719NoHit/evidence/Basic-20260922T014834000386Z.log": "7ef5dace57fffcd51a387c6c0970272523c893b51574f442de2b927120469c12",
+    "Fact719NoHit/evidence/Tactic-20260922T014948345566Z.json": "4315e9d43fb3775e8e48ddaf52547767319d5587f837fd5daf39ec0151026bfd",
+    "Fact719NoHit/evidence/Tactic-20260922T014948345566Z.log": "303ca01819a00ab78a6331fdf80f5700c12f4bb51d788860c0b7fdfe9beeaa16",
+    "Fact719NoHit/evidence/Tactic-20260922T015022312233Z.json": "0b039c119f3e747d5676ce841434ea70fcf9588b975f5d769506fc4a34931e8f",
+    "Fact719NoHit/evidence/Tactic-20260922T015022312233Z.log": "0b9fd43730f5a4a9e467b324588dc76be59a88aef2516ffbe490d130002b6127",
+    "Fact719NoHit/freeze.py": "898aaa884a39c07c2e7beb61a1501ec4bd15dd7c4faaeac7e510cf329aa7a5fd",
+    "Fact719NoHit/modules.txt": "7ab4cbdd767a7d1cd79b01307fa1d64d95ce5b12a49c652f71df831456b0d2c0",
+    "Fact719NoHit/source-empty.json": "27f2d31297c59e86e33a3762a58990e13d236ec07193db251a6a2bc8c3553c46",
+    "Fact719NoHit/file-list.txt": "bfc8a34a71aa4592925a504aaf0ec784621760102511908bc6375a59f055138f"
+  }
+}

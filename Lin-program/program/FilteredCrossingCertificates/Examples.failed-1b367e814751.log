@@ -1,0 +1,27 @@
+FilteredCrossingCertificates/Examples.lean:59:0: error: Expression
+  decide (check input tampered = false)
+did not evaluate to `true`
+FilteredCrossingCertificates/Examples.lean:69:23: error(lean.invalidField): Invalid field `isError`: The environment does not contain `Except.isError`, so it is not possible to project the field `isError` from an expression
+  parseBatch ""
+of type
+  Except String (List WireCertificate)
+FilteredCrossingCertificates/Examples.lean:69:0: error: cannot evaluate code because 'sorryAx' uses 'sorry' and/or contains errors
+FilteredCrossingCertificates/Examples.lean:70:25: error(lean.invalidField): Invalid field `isError`: The environment does not contain `Except.isError`, so it is not possible to project the field `isError` from an expression
+  parseBatch "\n"
+of type
+  Except String (List WireCertificate)
+FilteredCrossingCertificates/Examples.lean:70:0: error: cannot evaluate code because 'sorryAx' uses 'sorry' and/or contains errors
+FilteredCrossingCertificates/Examples.lean:71:60: error(lean.invalidField): Invalid field `isError`: The environment does not contain `Except.isError`, so it is not possible to project the field `isError` from an expression
+  parseBatch ((Lean.toJson wire).compress ++ "\n\n")
+of type
+  Except String (List WireCertificate)
+FilteredCrossingCertificates/Examples.lean:71:0: error: cannot evaluate code because 'sorryAx' uses 'sorry' and/or contains errors
+FilteredCrossingCertificates/Examples.lean:72:57: error(lean.invalidField): Invalid field `isError`: The environment does not contain `Except.isError`, so it is not possible to project the field `isError` from an expression
+  parse ((Lean.toJson wire).compress ++ "\x00")
+of type `Except String WireCertificate`
+FilteredCrossingCertificates/Examples.lean:72:0: error: cannot evaluate code because 'sorryAx' uses 'sorry' and/or contains errors
+FilteredCrossingCertificates/Examples.lean:73:64: error: unexpected token '++'; expected ')', ',' or ':'
+'FilteredCrossingCertificates.Examples.batch_count' does not depend on any axioms
+'FilteredCrossingCertificates.Examples.batch_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredCrossingCertificates.Examples.requested_result' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredCrossingCertificates.Examples.requested_no_crossing' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,351 @@
+import SemanticTrajectoryCertificates
+import IndexedD5Certificates
+import AggregateD5Conditional
+import Row2796D5Detector
+import AggregateC2Row3019Conditional
+import Row3020Detector
+import Row3019Detector
+import IndexedHighD2Certificates
+import AffineRemainingSearch
+import AggregateDC2h6Conditional
+import Row2695Detector
+import AggregateHighD2Conditional
+import HighFiltrationD2Certificates
+import Row2861D4Detector
+import AggregateCW2EtaConditional
+import Row2929Detector
+import AggregateC2D4Conditional
+import Row2576D4Detector
+import IndexedFamilyCertificates
+import Step4ContractAudit
+import AggregateC2H2Conditional
+import Row2576Detector
+import AggregateCnuConditional
+import Row2925Detector
+import AggregateThreeProductConditional
+import Row3325Detector
+import AggregateD4Conditional
+import Row2796D4Detector
+import Row2574Detector
+import AggregateTwoDetectorConditional
+import Row2796Detector
+import AggregateCsigmaConditional
+import Row2861Csigma
+import ExtComplexCertificates.GenericAugmentedT8.Case8
+import AggregateTargetInventory
+import AllClaimLeibnizConditionalCertificates
+import LinProgramCertificates
+import KervaireProgram
+import LinearCertificates
+import MilnorCertificates
+import ResolutionCertificates
+import PageCertificates
+import PropagationCertificates
+import StaircaseCertificates
+import PageTransitionCertificates
+import NamedElementCertificates
+import AdvancedRuleCertificates
+import ExtComplexCertificates
+import RealMapCertificates
+import BranchReplayCertificates
+import ModuleMapCertificates
+import CnuPageCertificates
+import MilnorCertificates.Coassociativity
+import MilnorCertificates.GradedDual
+import ModuleToModuleCertificates.RingTarget
+import Fact764TrajectoryAudit.Row3564
+import Fact764TrajectoryAudit.C2Naturality
+import MilnorCertificates.FinitePolynomialAlgebra
+import SemilinearMapCertificates.Basic
+import SemilinearMapCertificates.Import
+import SemilinearMapCertificates.AllVectors
+import ExtComplexCertificates.ActualFiniteModule
+import ExtComplexCertificates.ActualFiniteExactness
+import ExtComplexCertificates.ActualFiniteHom
+import ExtComplexCertificates.ActualDegreeComplex
+import ExtComplexCertificates.ActualDegreeExactness
+import ExtComplexCertificates.ActualProjectiveComplex
+import ExtComplexCertificates.ActualChainAugmentation
+import ExtComplexCertificates.ActualChainHomology
+import ExtComplexCertificates.GenericFreeComplex
+import ExtComplexCertificates.GenericFreeComplexImport
+import ExtComplexCertificates.GenericFreeComplexProducerExample
+import ExtComplexCertificates.GenericHomogeneousCoordinates
+import ExtComplexCertificates.GenericDifferentialCoordinates
+import ExtComplexCertificates.GenericComponentDiagnostics
+import ExtComplexCertificates.GenericComponentExamples
+import ExtComplexCertificates.GenericAugmentationImport
+import ExtComplexCertificates.GenericCheckDecomposition
+import AllClaimPrefixConditionalCertificates.Matches
+import Fact713C2Row3005.Matches
+import Fact713C2Row3143.Matches
+import AllClaimC2ConditionalCertificates.Matches
+import DerivedMapCertificates.Linkage
+import Row2693Detector.Matches
+import Fact713Ctheta4Certificates.Obstruction
+import CofiberE2Certificates.Basic
+import CofiberE2Certificates.Counterexamples
+import CofiberE2Certificates.Transport
+import AllClaimZeroTargetCertificates.Data
+import AllClaimConditionalZeroCertificates.Matches
+import CofiberE2Certificates.Linkage
+import Fact764TrajectoryAudit.LaterDetector
+import Fact713TrajectoryCertificates.Row3076
+import DerivedMapCertificates.Basic
+import DerivedMapCertificates.Counterexample
+
+#print axioms KervaireProgram.checkResult_sound
+#print axioms KervaireProgram.checkBundle_sound
+#print axioms LinearCertificates.checkChainMap_sound
+#print axioms PageTransitionCertificates.checkComparison_sound
+#print axioms PageTransitionCertificates.homologyEquivalence
+#print axioms PageTransitionCertificates.checkInducedWire_sound
+#print axioms PageTransitionCertificates.WireInducedMap.coordinates
+#print axioms StaircaseCertificates.checkBasis_sound
+#print axioms StaircaseCertificates.checkSurvives_sound
+#print axioms StaircaseCertificates.checkCoherent_sound
+#print axioms NamedElementCertificates.check_sound
+#print axioms NamedElementCertificates.check_sound_evaluate
+#print axioms NamedElementCertificates.ModuleExpressions.check_sound_evaluate
+#print axioms NamedElementCertificates.ModuleExpressions.checkWire_sound
+#print axioms AdvancedRuleCertificates.AffineHomology.check_sound
+#print axioms PropagationCertificates.MatrixNaturality.check_sound
+
+#print axioms PageTransitionCertificates.checkTrajectory_sound
+#print axioms PageTransitionCertificates.checkWireTrajectory_sound
+#print axioms ExtComplexCertificates.dual_pairing
+#print axioms RealMapCertificates.mapEvaluation_hom
+#print axioms BranchReplayCertificates.reduction
+#print axioms BranchReplayCertificates.QuotientConclusion.whole_quotient_comparison
+
+#print axioms ExtComplexCertificates.checkEquivariant_sound
+#print axioms ExtComplexCertificates.checkPresentation_sound
+#print axioms ExtComplexCertificates.SqOneResolution.exact_every_degree
+#print axioms BranchReplayCertificates.ProductRefutation.compatibility_forces_bit
+
+#print axioms ExtComplexCertificates.ActualResolution.checkRaw_sound
+#print axioms BranchReplayCertificates.ProductBasisSemantics.allCoefficients25
+#print axioms BranchReplayCertificates.MapBasisSemantics.allCoefficients25
+
+#print axioms ExtComplexCertificates.ActualResolution.checkRawExact_sound
+
+#print axioms MilnorCertificates.coproduct_homogeneous
+#print axioms MilnorCertificates.product_degree_support
+#print axioms MilnorCertificates.sqOne_square_unbounded_degree
+
+#print axioms MilnorCertificates.check_all_monomials
+#print axioms MilnorCertificates.checkAll_sound
+#print axioms MilnorCertificates.checkStable_sound
+#print axioms MilnorCertificates.coproduct_pad
+#print axioms MilnorCertificates.stable_product
+#print axioms MilnorCertificates.coproduct_coassociative
+#print axioms MilnorCertificates.dualMul_assoc
+#print axioms MilnorCertificates.certified_products_associative
+#print axioms MilnorCertificates.dualMul_unit_left
+#print axioms MilnorCertificates.dualMul_unit_right
+#print axioms MilnorCertificates.unitPolynomial_left
+#print axioms PageTransitionCertificates.homologyCoordinates_add
+#print axioms PageTransitionCertificates.inducedMap_add
+#print axioms RealMapCertificates.matrixValid_hom
+#print axioms ModuleMapCertificates.checkWire_sound
+#print axioms ModuleMapCertificates.matrixValid_linear
+#print axioms CnuPageCertificates.targetClass_nonzero
+#print axioms MilnorCertificates.homogeneousDual_mul
+#print axioms MilnorCertificates.degreeBounded_support_finite
+#print axioms MilnorCertificates.finite_homogeneous_decomposition
+#print axioms ExtComplexCertificates.ActualResolution.actualDifferential_square_zero
+#print axioms ExtComplexCertificates.ActualResolution.differential_reconstruct
+#print axioms ExtComplexCertificates.ActualResolution.actualPositiveHomogeneousExactness
+#print axioms ExtComplexCertificates.ActualResolution.actualAugmentedHomogeneousExactness
+#print axioms ExtComplexCertificates.ActualResolution.actualAugmentation_surjective
+#print axioms ExtComplexCertificates.ActualResolution.actualHom_differential_zero
+#print axioms ExtComplexCertificates.ActualResolution.actualHomCohomologyEquiv
+#print axioms ModuleToModuleCertificates.unit_target_allVectors
+#print axioms Fact764TrajectoryAudit.Row3564.requested_ne_logged
+#print axioms Fact764TrajectoryAudit.C2Naturality.requested_zero_from_target_kernel
+#print axioms Fact764TrajectoryAudit.C2Naturality.target_kernel_iff
+#print axioms MilnorCertificates.finitePolynomial_mul
+#print axioms MilnorCertificates.finitePolynomial_sum_products_zero
+#print axioms SemilinearMapCertificates.valid_semilinear
+#print axioms SemilinearMapCertificates.checkWire_sound
+#print axioms SemilinearMapCertificates.allVectors
+#print axioms ExtComplexCertificates.ActualResolution.finiteModuleInclusion_injective
+#print axioms ExtComplexCertificates.ActualResolution.finiteDifferential_inclusion
+#print axioms ExtComplexCertificates.ActualResolution.finiteDifferential_square_zero
+#print axioms ExtComplexCertificates.ActualResolution.finitePositiveHomogeneousExactness
+#print axioms ExtComplexCertificates.ActualResolution.finiteAugmentedHomogeneousExactness
+#print axioms ExtComplexCertificates.ActualResolution.finiteAugmentation_surjective
+#print axioms Fact764TrajectoryAudit.LaterDetector.from_D154545_conditions
+#print axioms ExtComplexCertificates.ActualResolution.FiniteHom.differential_zero
+#print axioms ExtComplexCertificates.ActualResolution.FiniteHom.cohomologyFullEquiv
+#print axioms ExtComplexCertificates.ActualResolution.FiniteHom.cohomologyCoordinates
+#print axioms ExtComplexCertificates.ActualResolution.degreeInclusion_injective
+#print axioms ExtComplexCertificates.ActualResolution.degreeDifferential_inclusion
+#print axioms ExtComplexCertificates.ActualResolution.degreeDifferential_square_zero
+#print axioms ExtComplexCertificates.ActualResolution.degreePositiveExactness
+#print axioms ExtComplexCertificates.ActualResolution.degreeAugmentedExactness
+#print axioms ExtComplexCertificates.ActualResolution.degreeModuleProjective
+#print axioms ExtComplexCertificates.ActualResolution.actualProjectiveChainComplex
+#print axioms ExtComplexCertificates.ActualResolution.actualChain_boundary
+#print axioms ExtComplexCertificates.ActualResolution.augmentationMorphism_epi
+#print axioms ExtComplexCertificates.ActualResolution.actualChainAugmentation_f_zero
+#print axioms ExtComplexCertificates.ActualResolution.actualChainAugmentation_generator
+#print axioms ExtComplexCertificates.ActualResolution.positiveChainHomology_zero
+#print axioms ExtComplexCertificates.ActualResolution.zeroChainHomologyField
+#print axioms ExtComplexCertificates.ActualResolution.zeroChainHomology_positive_zero
+#print axioms ExtComplexCertificates.GenericFreeComplex.check_sound
+#print axioms ExtComplexCertificates.GenericFreeComplex.checkLinked_sound
+#print axioms ExtComplexCertificates.GenericFreeComplex.checkWire_sound
+#print axioms ExtComplexCertificates.GenericFreeComplex.decodeWire_sound
+#print axioms ExtComplexCertificates.GenericFreeComplex.producedT4_square_zero
+#print axioms ExtComplexCertificates.GenericFreeComplex.orderedComponentEquiv
+#print axioms ExtComplexCertificates.GenericFreeComplex.differential_reconstruct
+#print axioms ExtComplexCertificates.GenericFreeComplex.checkExactComponent_sound
+#print axioms ExtComplexCertificates.GenericFreeComplex.decodeComponent_sound
+#print axioms ExtComplexCertificates.GenericFreeComplex.component15_exact
+#print axioms ExtComplexCertificates.GenericFreeComplex.GenericHom.checkAugmentation_sound
+#print axioms ExtComplexCertificates.GenericFreeComplex.GenericHom.exact_minimal_hom
+#print axioms ExtComplexCertificates.GenericFreeComplex.wire_valid_of_sources
+#print axioms AllClaimPrefixConditionalCertificates.Matches.Prefix.matched
+#print axioms Fact713C2Row3005.Matches.matched
+#print axioms Fact713C2Row3143.Matches.matched_zero
+#print axioms AllClaimC2ConditionalCertificates.Matches.C2.matched
+#print axioms AllClaimC2ConditionalCertificates.Matches.Ceta.matched
+#print axioms DerivedMapCertificates.CompositionWire.transport_linked
+#print axioms Row2693Detector.Combined.differential_zero
+#print axioms Row2693Detector.Matches.matched
+#print axioms Fact713Ctheta4Certificates.Obstruction.target_not_exact
+#print axioms CofiberE2Certificates.check_sound
+#print axioms CofiberE2Certificates.Counterexamples.notComplex0
+#print axioms CofiberE2Certificates.Wire.exact_under_interpretation
+#print axioms CofiberE2Certificates.Wire.transport_exact
+#print axioms AllClaimZeroTargetCertificates.zero_quotient
+#print axioms AllClaimZeroTargetCertificates.differential_to_zero
+#print axioms AllClaimConditionalZeroCertificates.Matches.conditional_block
+#print axioms CofiberE2Certificates.Wire.transport_linked
+#print axioms Fact713TrajectoryCertificates.Row3076.from_ceta_naturality
+#print axioms DerivedMapCertificates.checkFactor_sound
+#print axioms DerivedMapCertificates.checkComposition_sound
+#print axioms DerivedMapCertificates.FactorWire.column_semantics
+#print axioms DerivedMapCertificates.FactorWire.allVectors
+#print axioms DerivedMapCertificates.CompositionWire.transport
+#print axioms DerivedMapCertificates.Counterexample.two_sigma_squared_E2_nonzero
+
+#print axioms AllClaimLeibnizConditionalCertificates.Matches.Leibniz.conditional_target
+
+#print axioms ExtComplexCertificates.GenericFreeComplex.GenericHom.checkAugmented_sound
+#print axioms ExtComplexCertificates.GenericFreeComplex.GenericHom.augmentedH0EquivRange
+
+#print axioms AggregateTargetInventory.Aggregate.forward_backward
+#print axioms AggregateTargetInventory.Aggregate.backward_forward
+
+#print axioms AggregateTargetInventory.EventAudit.Events.event2435_target_in_image
+
+#print axioms AggregateTargetInventory.EventAudit.EliminationStage.event2572_target_zero_next
+
+#print axioms AggregateTargetInventory.EventAudit.SamePage.row2492_not_hit_same_page
+
+#print axioms ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact8
+
+#print axioms Row2861Csigma.Matches.matched
+
+#print axioms AggregateTargetInventory.EventAudit.CoordinateLinks.event2492_inventory_basis_column
+#print axioms AggregateTargetInventory.EventAudit.SemanticLinks.Ceta.actual_column
+
+#print axioms AggregateTargetInventory.EventAudit.TrajectoryCycles.event2492_source_cycle_d3
+
+#print axioms AggregateCsigmaConditional.Matches.matched
+
+#print axioms AggregateTargetInventory.EventAudit.NonboundaryBasic.nonzero_projection_not_boundary
+
+#print axioms AggregateTargetInventory.EventAudit.Executable.check_sound
+
+#print axioms AggregateTargetInventory.EventAudit.Indexed.check_sound
+
+#print axioms AggregateTargetInventory.EventAudit.Indexed.diagnoseIndexed_sound
+
+#print axioms Row2796Detector.Matches.matched
+
+#print axioms AggregateTwoDetectorConditional.H3D0.matched
+
+#print axioms Row2574Detector.Quotient.differential_restricted
+
+#print axioms Row2574Detector.Additional.two_candidate_restriction
+
+#print axioms Row2796D4Detector.Source.named_d4_zero
+
+#print axioms AggregateD4Conditional.D4.matched
+
+#print axioms AggregateD4Conditional.Executable3254.indexed_valid
+
+#print axioms Row3325Detector.Matches.matched
+
+#print axioms AggregateThreeProductConditional.ThreeProducts.matched
+
+#print axioms AggregateThreeProductConditional.Pipeline.Executable3744.indexed_valid
+#print axioms AggregateThreeProductConditional.Pipeline.Executable3745.indexed_valid
+
+#print axioms Row2925Detector.Naturality.named_d3_zero
+
+#print axioms AggregateCnuConditional.CnuEta.matched
+#print axioms AggregateCnuConditional.CnuEta.source_coordinates
+#print axioms AggregateCnuConditional.CnuEta.source_named_coordinate
+
+#print axioms Row2576Detector.Quotient.named_d3_zero
+#print axioms Row2576Detector.Matches.matched
+#print axioms AggregateC2H2Conditional.C2H2.matched
+#print axioms AggregateC2H2Conditional.C2H2.target_coordinates
+#print axioms KervaireProgram.checkBundle_dataWellFormed
+
+#print axioms IndexedFamilyCertificates.checkResult_sound
+#print axioms IndexedFamilyCertificates.checkBatch_sound
+#print axioms IndexedFamilyCertificates.checkFamily_sound
+#print axioms IndexedFamilyCertificates.checkWindow_sound
+#print axioms IndexedFamilyCertificates.interpreted_result
+#print axioms IndexedFamilyCertificates.Generated.all_events_valid
+#print axioms IndexedFamilyCertificates.Generated.family_coherent
+
+#print axioms Row2576D4Detector.Source.named_d4_zero
+#print axioms Row2576D4Detector.ImportedBoundary.transported_d4_zero
+
+#print axioms AggregateC2D4Conditional.C2D4.matched
+
+#print axioms Row2929Detector.Naturality.named_d3_zero
+
+#print axioms AggregateCW2EtaConditional.CW2Eta.matched
+
+#print axioms Row2861D4Detector.ImportedMeaning.transported_d4_zero
+
+#print axioms HighFiltrationD2Certificates.check_sound
+#print axioms HighFiltrationD2Certificates.staircase_reconstruction
+
+#print axioms Row2695Detector.Naturality.named_d3_zero
+#print axioms AggregateHighD2Conditional.Pipeline.Executable6651.indexed_valid
+#print axioms AggregateHighD2Conditional.Pipeline.Executable7007.indexed_valid
+#print axioms AggregateHighD2Conditional.Pipeline.Executable7162.indexed_valid
+#print axioms AggregateHighD2Conditional.Pipeline.Executable7247.indexed_valid
+
+#print axioms AggregateDC2h6Conditional.DC2D3.matched
+
+#print axioms AffineRemainingSearch.Branches.common_event_valid
+#print axioms AffineRemainingSearch.Links.affine_semantics_exhaustive
+#print axioms AffineRemainingSearch.Kernel.row2708_unique_matrix
+
+#print axioms IndexedHighD2Certificates.all_events_valid
+#print axioms IndexedHighD2Certificates.family_coherent
+#print axioms IndexedHighD2Certificates.Example.event6651
+
+#print axioms Row3019Detector.Naturality.named_d3_zero
+
+#print axioms Row3020Detector.all_d3_zero
+#print axioms AggregateC2Row3019Conditional.C2Rows3019.incoming_meaning
+#print axioms AffineRemainingSearch.Pipeline.Both.each_branch
+
+#print axioms Row2796D5Detector.Source.named_d5_zero
+#print axioms IndexedHighD2Certificates.RequestExample.stated_result
+
+#print axioms SemanticTrajectoryCertificates.event_transport
+#print axioms SemanticTrajectoryCertificates.bundle_sound
+#print axioms IndexedD5Certificates.all_events
+#print axioms IndexedD5Certificates.family_coherent
+#print axioms AggregateD5Conditional.Pipeline.Executable3391.indexed_valid

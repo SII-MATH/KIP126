@@ -1,0 +1,166 @@
+make: Entering directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'
+rm -f lin-cert-export program-manifest.jsonl kervaire-claims.jsonl
+g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic cert_export.cpp -o lin-cert-export
+mkdir -p tests/output
+./lin-cert-export self-test
+lin-cert-export self-test: ok
+./lin-cert-export manifest tests/output/lin-program-manifest.jsonl
+test "$(wc -l < tests/output/lin-program-manifest.jsonl)" -eq 295
+./lin-cert-export claims ../doc_data/kervaire_claims.csv tests/output/lin-program-claims.jsonl
+test "$(wc -l < tests/output/lin-program-claims.jsonl)" -eq 18
+./lin-cert-export adams examples/adams_sample.csv tests/output/lin-program-adams.jsonl
+./lin-cert-export proofs examples/proof_sample.csv tests/output/lin-program-proof.jsonl
+python3 tests/test_export.py
+Exporter: hashes, reproducibility, 17 claims, inventory, unknowns, malformed CSV, six finite result kinds passed
+python3 tests/assert_claim_coverage.py
+PASS: all 17 source claims accounted for; 17 retain explicit mathematical obligations
+python3 Step4ContractAudit/audit_coverage.py
+All 17 claims classified; three manual inputs remain inventory; 0 stale metadata fields
+python3 tests/audit_search_coverage.py
+Coverage audit passed: 70 configured maps, 96 cycle quotients; 95 ordinary factors, 13 detector blocks, 56 actual columns; 10 rejection checks. No searches rerun; no mathematical theorem asserted.
+python3 tests/audit_event_coverage.py
+Event coverage passed: 214 d2 blocks / 576 raw columns, 213 within d2 window + 1 structural-empty exception; 90 accepted events entirely within window; 11 explicit conditional uses, 30 NULL prefix uses retained; 5 rejection tests.
+python3 LinearCertificates/test_export.py
+PASS: 262 exhaustive certificates, deterministic JSONL, malformed input rejection
+python3 ResolutionCertificates/test_export.py
+resolution exporter: 4 accepted, 4 rejected, deterministic
+python3 PageTransitionCertificates/test_export.py
+PASS 75 homology comparisons, 230 noncomplex rejections, malformed inputs and determinism
+python3 PageTransitionCertificates/test_induced_export.py
+PASS 38 induced maps, 90 rejected maps/complexes, canonical deterministic output, batch and malformed input
+python3 PageTransitionCertificates/test_trajectory_export.py
+PASS trajectory producer: canonical deterministic output, page/shape/complex/empty rejection
+python3 NamedElementCertificates/test_module_export.py
+module packer: deterministic batch, crossing, zero rank, variable/unit distinction and 7 malformed inputs passed
+python3 PageProductCertificates/test_export.py
+2 actual products deterministic; noncycle producer rejected; mutation fixtures generated
+python3 GenericFreeComplexProducer/test.py
+25 producer tests passed
+python3 GenericFreeComplexProducer/component_test.py
+{'rank': 3, 'generators': 8, 'checked_products': 512, 'source_sha256': '99497bb465ded44e5b172e77527d636874f81e21c5706ea0c3eada5759180df4', 'certificate_sha256': '80a5b2e0f2eaa2375866ae084f7bef840bd6fd5cc476cf828df9f8acccea4346', 'status': 'independent source/tensor audit passed; Lean proof separately checked'}
+{'input_sha256': '0a02884d06db50dfba4cb5f76a6656847812d855b44fe43ea8e3354d27a0eec7', 'output_sha256': '0e670bb2b9c352b30e85ef6a756c73f7c000cc7aa225149003285eee68e6c428', 'components': 25, 'exact': 24, 'nonexact': [{'s': 0, 't': 0, 'reason': 'unaugmented complex retains sphere unit'}], 'status': 'independent actual Milnor matrix and contraction audit passed'}
+noncomplex and off-range bad-grading tests passed
+6 strict component parser/batch cases passed
+2 component resource recovery cases passed
+python3 GenericFreeComplexProducer/augmented_test.py
+{"status": "independent source/coproduct/matrix/contraction audit passed", "deterministic": true, "negative_cases": 9, "runs": [{"degree": 4, "components": 5, "input_sha256": "0a02884d06db50dfba4cb5f76a6656847812d855b44fe43ea8e3354d27a0eec7", "augmentation_sha256": "7fae28979e39e2b46ee2b1d5d8c670abfff87e41d03c095586a2e0826aea7f3c", "output_sha256": "90087acd54a6b1a849a794c41987cdbf57834b9f22b6dde476fd6e173b19a0b5", "source_sha256": "99497bb465ded44e5b172e77527d636874f81e21c5706ea0c3eada5759180df4"}, {"degree": 8, "components": 9, "input_sha256": "8aacc9fefe6db27686855b44038541940c4d039fa0d26f6eab04e500971b8d5d", "augmentation_sha256": "48d0abffd3fa5950c0c96135c86ac0676b06739d7fbe45294e871419f6feadf2", "output_sha256": "e6028966435753a6dee49cec876afe87c9f53cc53da0380c459924d16ee8b889", "source_sha256": "99497bb465ded44e5b172e77527d636874f81e21c5706ea0c3eada5759180df4"}]}
+python3 GenericFreeComplexProducer/augmented_review_test.py
+{"status": "passed", "regressions": 2}
+python3 FiniteEventProducer/test.py
+{'status': 'independent full comparison/trace/event audit passed', 'events': 87, 'pages': [2, 3, 4], 'earlier_stages': 78, 'negative_cases': 10, 'sha256': {'actual.input.jsonl': '5cc51672b0507138d3faf303b0ca168ff515ccc2ccaa952e49c583bfa3448f39', 'actual.jsonl': '5cc51672b0507138d3faf303b0ca168ff515ccc2ccaa952e49c583bfa3448f39', 'all87.input.jsonl': '85d8e5fc7bbc58aec365112dd96167ae7efa38449bd87661a6ff367d264da722', 'all87.jsonl': '85d8e5fc7bbc58aec365112dd96167ae7efa38449bd87661a6ff367d264da722', 'provenance.json': 'b9c2f43649ca19b49df90b1c57e98f4ea6b204e96f22b431e47f7dab79278579'}}
+python3 FiniteEventProducer/indexed_test.py
+{'status': '87 indexed events match original inventory degrees and contiguous prior pages', 'records': 87, 'prior_labels': 78, 'negative_cases': 9, 'sha256': 'cd342e89b41b62fda8421105ba08204cda23f7dcca1a1ca8d7652e9b09f02f91'}
+python3 FiniteEventProducer/D4/test.py
+{'status': '88 original-inventory and full finite/indexed trace checks passed', 'events': 88, 'unchanged_old_events': 87, 'new_event': 3254, 'prior_stages': 82, 'new_conditional_kinds': ['conditional_csigma', 'conditional_d4_module', 'conditional_h3_d0'], 'sha256': {'all88.jsonl': '294449e5ae07a2a46ea62d155845e368dd399b1a462959f25d29f6f228120f54', 'indexed88.jsonl': '51d0d431e970b58095ace696b888487f11b7689550c2a8555fb137edc442a356', 'event3254.json': '530fc3d2fb22e7e8023c8a983d26c92705bcb4b5dd798b297842ba60204a3391', 'indexed-event3254.json': 'beee8969cb0a231a7e7485a3779006ffd9ab0028e1ab97c888aa0e5bacb2c47c', 'provenance.json': 'e351203b139ea82b738f541cba7f73dab6edad507e5437e06c3d4876ce948226'}}
+python3 FiniteEventProducer/ThreeProduct/test.py
+{'status': '90 original-inventory and full finite/indexed trace checks passed', 'events': 90, 'source_blocks': 333, 'byte_unchanged_old_events': 88, 'new_events': [3744, 3745], 'prior_stages': 90, 'new_conditional_kinds': ['conditional_three_products'], 'sha256': {'all90.jsonl': '33260ac8aad44d4cd93e48ddc91ff7562a882a6d31fb9df6a1c26f76f5387a83', 'indexed90.jsonl': 'd303cb1d53f7ee61e5df473bc4335be156e264eb3d55693ff29b58e0ec8c5f12', 'event3744.json': 'c8b9ba06a45b7f4bc4800aa3dfbdb90474fa7913be557652021dd3fde7ec43c9', 'indexed-event3744.json': '2e250f8d04d4fc4c43572deac7d9e1bd5598de95b3fc3098fcef195c79a28bf7', 'event3745.json': '5e156ea84fa13ecbd80ada0982d6b2b6be40b026f74850f51abcf39740a61821', 'indexed-event3745.json': '036fc75e044fbabc0125d4fb0575e793119856b7e48e8416b872c541c82d8037', 'provenance.json': '7d242712e4808dfacefa01a7bcd73c59584cd0250af17b357f63635421ff97dd'}}
+python3 FiniteEventProducer/HighD2/test.py
+{'status': '94 original-inventory and full finite/indexed trace checks passed', 'events': 94, 'source_blocks': 351, 'byte_unchanged_old_events': 90, 'new_events': [6651, 7007, 7162, 7247], 'prior_stages': 96, 'new_conditional_kinds': ['conditional_d2_staircase'], 'sha256': {'all94.jsonl': 'd47828c8d3fd3835c2e56caa7686c022b50f29cb621a341f28fd1b1641341d61', 'indexed94.jsonl': '4c699bd70b1cbd37f93471ce03fb1f31be3ef2cf87c29c9a72f9c7e31b943ce3', 'event6651.json': '5218ffe53a33d69ff68f9503b39a23ba59470f94d55b171bc28a8b5a3fa485b2', 'indexed-event6651.json': '20a4405bb7fbcadcb3fa7b1b9e2771dd07827689aeaceb2f848866afb4f4a306', 'event7007.json': '92b5086c0c53f08ec7ace7d5c9433cd537db5c0b69060bb2274075283fef43bf', 'indexed-event7007.json': 'bd4902c8616bf5d076de734e1acabbd2aeafca2340a0fc7db474fbe006f92fdf', 'event7162.json': '92b5086c0c53f08ec7ace7d5c9433cd537db5c0b69060bb2274075283fef43bf', 'indexed-event7162.json': '6088dd14140e46163c3c5494da4431a15c259eb19206560bdb6afbc2b5cb6771', 'event7247.json': '56fe90d39fa364388bffe561d168544812a6a6c59a066628c02a7312d2212de7', 'indexed-event7247.json': 'd49913a137048ad74d247f2b60a3d3a3bb4f1dd487962d3b42e56aa33011226a', 'provenance.json': '7b71b76b37d2a21f9a2d85012b8ea4d4bb1b62db9574c82d4f96cf6741bef883'}}
+python3 FiniteEventProducer/D5/test.py
+{'status': '95 original-inventory and full finite/indexed trace checks passed', 'events': 95, 'source_blocks': 358, 'byte_unchanged_old_events': 94, 'new_events': [3391], 'prior_stages': 102, 'new_conditional_kinds': ['conditional_dc2h6_d5'], 'sha256': {'all95.jsonl': 'd57c5e0cc2e68c389d63adae551f0c16edfa91d296224cffcde03b6bedae1790', 'indexed95.jsonl': '1c8401c1cbfa5d210d87a07c6bd6ca05c9d66cd8376119a83b08eca0bc604c83', 'event3391.json': 'e7de2f27900aeb53d41fda082e549c4e6bb7d19bb5b57d6157ef27a4417558ff', 'indexed-event3391.json': 'a52cc162c3c2d4aefbab5696c0a9246971cd8c27baf9ef86f7c53fcdd1944263', 'provenance.json': '55e8db223bab8fe3f92bda61470efc0e3a7ace156a2aefaf7bff4fee40b3eaeb'}}
+python3 HighFiltrationD2Audit/test_export.py
+{"success": true, "single_certificates": 25, "batch_certificates": 25, "malformed_cases": 12, "canonical_bytes_match": true}
+python3 IndexedFamilyProducer/test.py
+one shared 336-entry family; 90 bound events; full conditional provenance retained
+336 full blocks; 190/122 coherent pairs; 90 events/90 stages; 17 rejection cases
+python3 IndexedFamilyProducer/HighD2/review.py
+one shared 351-entry family; 94 bound events; full conditional provenance retained
+PASS: 351 full blocks, 94 bound events, 96 stages, 194/128 compatible pairs
+python3 IndexedFamilyProducer/D5/review.py
+PASS: 358 complete blocks; 95 bound events; 102 prior stages; 196 / 135 compatible pairs
+python3 AffineRemainingSearch/Pipeline/review.py
+2 finite,2 indexed,2 separately bound family certificates;1 common event2697;3 explicit keys per branch
+Three Lean modules generated:fixed-goal tactic,full supplied-family coherence,requested coverage,branch separation
+Both3entryfamiliescoherent;4exactpriorstages;18pairchecks;crossbranch/missingkeydiagnosticsreject;old94untouched
+python3 PermanentCycleCertificates/test_import.py
+C++ deterministic prefix export; Lean strict import and line diagnostics; 15 malformed records plus link rejection; proof fields remain external Lean terms
+python3 UniqueHomologyCertificates/test.py
+PASS: deterministic C++ whole-homology witness; two valid and eight invalid records; batch recovery and write failures
+python3 tests/test_res_export.py
+PASS raw resolution export deterministic,16 records,NULL and malformed BLOB rejected
+python3 CnuPageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact713PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact761PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact715PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact719PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact762PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact763PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact721PageCertificates/first-review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact721PageCertificates/second-review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 NamedPageComparison/review.py
+Actual E3 representative columns match: 4;0,3;3;2. Unknown d6/d17 values retained.
+python3 NamedPageComparison/review_d3.py
+d3 actual known columns and pre-first-unknown zero prefixes verified; incoming E3 dimension0
+python3 NamedPageComparison/Row2858/review_bridges.py
+4 complete d2 inputs and 30 product target bases match pinned database
+python3 NamedPageComparison/Row2858/review_h1_zero.py
+5 complete d2 input triples match database; h0 d3 target (4,3) dimension0
+python3 ModuleToModuleCertificates/assert_actual.py
+PASS 30 complete blocks, 32 columns, original generator images/bases/relations, independent coefficient oracle
+python3 PageProductCertificates/row2858_review.py
+3 complete factor input triples and 6 product tensors verified
+python3 NamedPageComparison/review_conditional_higher.py
+{
+  "status": "conditional_raw_unknowns_retained",
+  "checked_blocks": 36,
+  "unknown_required_rows": [
+    {
+      "block": "b13_138_3",
+      "degree": [
+        10,
+        136
+      ],
+      "page": 3,
+      "row": [
+        2858,
+        "2",
+        null,
+        9000
+      ]
+    },
+    {
+      "block": "b17_141_3",
+      "degree": [
+        14,
+        139
+      ],
+      "page": 3,
+      "row": [
+        3080,
+        "1",
+        null,
+        9000
+      ]
+    }
+  ]
+}
+python3 Fact719TrajectoryCertificates/review.py
+36 recursive full input blocks verified; no required unknown or sentinel override
+python3 Fact715TrajectoryCertificates/review.py
+4 recursive full input blocks verified; no required unknown or sentinel override
+python3 ModuleToModuleCertificates/test_module_ring_sources.py
+PASS 1090 source/target degree blocks, actual generator images and exact module/ring relation rows; sentinel rejected
+python3 SemilinearMapCertificates/assert_sources.py
+PASS 21 complete source blocks, explicit actual coefficient map, unit image and independent relation oracle
+python3 Fact713TrajectoryCertificates/review.py
+Fact713 row3076: exact predecessor data and unknown marker retained
+python3 IndexedFamilyCertificates/cli_test.py
+PASS: 90 actual events; mixed-record recovery, empty batch and invalid family rejected
+python3 IndexedFamilyProducer/HighD2/cli_test.py
+PASS: 94 actual events; mixed-record recovery, empty batch and invalid family rejected
+python3 IndexedFamilyProducer/HighD2/request_cli_test.py
+PASS: 94 exact requested results; wrong key/input/output, unknown/duplicate fields and empty batch rejected
+python3 IndexedFamilyProducer/D5/cli_test.py
+PASS: 95 actual events; mixed-record recovery, empty batch and invalid family rejected
+python3 IndexedFamilyProducer/D5/request_cli_test.py
+PASS: 95 exact requested results; wrong key/input/output, unknown/duplicate fields and empty batch rejected
+make: Leaving directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'

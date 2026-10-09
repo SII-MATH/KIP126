@@ -1,0 +1,11 @@
+FilteredExtensionCertificates/Basic.lean:101:6: error: Type mismatch: After simplification, term
+  zero_dot v.bits
+ has type
+  @Eq Bool (dot zero v.bits) false
+but is expected to have type
+  @Eq Bool (dot (fun x => false) v.bits) false
+'FilteredExtensionCertificates.factor_eval' depends on axioms: [propext, Quot.sound]
+'FilteredExtensionCertificates.checkFactor_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.checkDecreasing_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.checkMap_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.check_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

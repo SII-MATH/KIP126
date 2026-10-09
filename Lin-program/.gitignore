@@ -1,0 +1,46 @@
+# Local dependencies and compiled artifacts
+.lake/
+__pycache__/
+*.py[cod]
+*.olean
+*.ilean
+*.o
+*.a
+*.so
+.DS_Store
+/program/ExtComplexCertificates/cpp-build/
+/program/ExtComplexCertificates/cmake-tool/
+
+# These oversized CSV files are preserved in upstream/proofs_csv.rar.
+/program/upstream/proofs_csv/
+
+# Locally compiled executables (sources are included).
+/program/lin-cert-export
+/program/d2-export
+/program/NamedElementCertificates/module-export
+/program/HighFiltrationD2Audit/d2-basis-export
+/program/RepresentativeSquareProducer/representative-square-export
+/program/upstream/unrar/unrar
+/program/OutgoingCycleCertificates/outgoing-prefix-export
+/program/PageTransitionCertificates/page-transition-export
+/program/PageTransitionCertificates/induced-export
+/program/PageTransitionCertificates/trajectory-export
+/program/ResolutionCertificates/resolution-export
+/program/FiniteFilteredSquareProducer/finite-filtered-square-export
+/program/StaircaseCertificates/staircase-export
+/program/GenericFreeComplexProducer/generic-free-export
+/program/GenericFreeComplexProducer/generic-augmented
+/program/GenericFreeComplexProducer/generic-components
+/program/Row3152BranchCertificates/row3152-path-export
+/program/PageProductCertificates/page-product-export
+/program/ExtComplexCertificates/res-export
+/program/IndexedFamilyProducer/indexed-family-export
+/program/FiniteEventProducer/finite-event-export
+/program/FiniteEventProducer/indexed-event-export
+/program/UniqueHomologyCertificates/unique-export
+/program/MilnorCertificates/milnor-export
+/program/PermanentCycleCertificates/prefix-export
+/program/FilteredCrossingCertificates/filtered-stable-export
+/program/FilteredExtensionProducer/filtered-extension-export
+/program/LinearCertificates/linear_export
+/program/PropagationCertificates/propagation-export

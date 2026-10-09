@@ -1,0 +1,43 @@
+"""Full d2 quotients and exact links to the checked actual shifted matrices."""
+import importlib.util
+import json
+import sqlite3
+from pathlib import Path
+
+p = Path(__file__).resolve().parent
+r = p.parent
+spec = importlib.util.spec_from_file_location('helper',r/'Row3147MapSearch/search_lifted.py')
+helper = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(helper)
+sc = sqlite3.connect(f'file:{r}/upstream/kervaire-49/S0_AdamsSS_t261.db?mode=ro',uri=True)
+tc = sqlite3.connect(f'file:{r}/upstream/kervaire-49/C2h5_AdamsSS_t200.db?mode=ro',uri=True)
+blocks = []
+lines = ['import Fact713NextSourceSearch.Maps','import PageTransitionCertificates.InducedMap',
+         'import PageTransitionCertificates.Import','namespace Fact713NextSourceSearch.Comparison',
+         'open LinearCertificates PageTransitionCertificates ResolutionCertificates']
+def bits(values):
+    return '['+','.join('true' if v else 'false' for v in values)+']'
+for tag,c,obj,s,t in [('source',sc,'S0',12,134),('target',tc,'C2h5',12,134),
+                      ('upperSource',sc,'S0',15,136),('upperTarget',tc,'C2h5',15,136)]:
+    result = helper.comparison(c,obj,s,t,helper.metadata(c))
+    w = result['wire']
+    k,m,n,h = (w[x] for x in ['k','m','n','h'])
+    lines += [f'def {tag} : WireComparison := ⟨1,{k},{m},{n},{h},'+
+              ','.join(bits(w[field]) for field in ['outgoing','incoming','inclusion','projection','up','down'])+'⟩',
+              f'theorem {tag}_complete : {tag}.Valid := by lin_cert using ()']
+    blocks.append(dict(tag=tag,object=obj,degree=[s,t],**result))
+data = json.loads((p/'source.json').read_text())
+for tag,s,t in [('middleMap',12,134),('outMap',14,135),('inMap',10,133),
+                ('upperMiddleMap',15,136),('upperOutMap',17,137),('upperInMap',13,135)]:
+    wire = next(b['wire']['algebra'] for b in data['matrices'] if b['source_degree']==[s,t])
+    lines += [f'def {tag} : Matrix {wire["rows"]} {wire["cols"]} := Maps.m{s}_{t}.algebra.mat']
+for prefix,S,T,F,U,L in [('', 'source','target','middleMap','outMap','inMap'),
+                        ('upper','upperSource','upperTarget','upperMiddleMap','upperOutMap','upperInMap')]:
+    lines += [f'theorem {prefix}compatible : CompatibleMap (matrixOf {S}.k {S}.m {S}.outgoing) '
+              f'(matrixOf {S}.m {S}.n {S}.incoming) (matrixOf {T}.k {T}.m {T}.outgoing) '
+              f'(matrixOf {T}.m {T}.n {T}.incoming) {F} {U} {L} := by lin_cert using ()']
+lines += ['#print axioms compatible','#print axioms uppercompatible',
+          'end Fact713NextSourceSearch.Comparison']
+(p/'Comparison.lean').write_text('\n'.join(lines)+'\n')
+(p/'comparison-source.json').write_text(json.dumps(blocks,indent=2)+'\n')
+print('four complete d2 quotients, two actual chain maps')

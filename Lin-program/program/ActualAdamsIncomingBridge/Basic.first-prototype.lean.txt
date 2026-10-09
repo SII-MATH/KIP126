@@ -1,0 +1,108 @@
+import ActualAdamsSystemBridge.Tail
+import Fact762AssemblyCertificates.Assembly
+
+namespace ActualAdamsIncomingBridge
+open ManualInputObligations.Reference Fact762IncomingCertificates
+
+def sourceDegree (r : Nat) (d : Bidegree) : Bidegree :=
+  ⟨d.filtration-r,d.internal-(r : Int)+1⟩
+
+theorem target_sourceDegree (r : Nat) (d : Bidegree) (h : r ≤ d.filtration) :
+    AdamsTarget r (sourceDegree r d) = d := by
+  cases d
+  change r ≤ _ at h
+  simp only [AdamsTarget,sourceDegree,Bidegree.mk.injEq]
+  constructor <;> omega
+
+/-- Choose the unique possible actual source degree; above target filtration
+the source is the zero type. This avoids multiple encodings of zero. -/
+def Source (S : AdamsSpectralSequence) (r : Nat) (d : Bidegree) : Type :=
+  if r ≤ d.filtration then (S.element r (sourceDegree r d)).carrier else Unit
+
+def sourceZero (S : AdamsSpectralSequence) (r : Nat) (d : Bidegree) : Source S r d :=
+  if h : r ≤ d.filtration then
+    (by simpa only [Source,if_pos h] using (0 : (S.element r (sourceDegree r d)).carrier))
+  else (by simpa only [Source,if_neg h] using ())
+
+def differential (S : AdamsSpectralSequence) (r : Nat) (d : Bidegree)
+    (x : Source S r d) : (S.element r d).carrier :=
+  if h : r ≤ d.filtration then
+    pageCast S r (target_sourceDegree r d h)
+      (S.differential r (sourceDegree r d) (by simpa only [Source,if_pos h] using x))
+  else 0
+
+theorem differential_zero (S : AdamsSpectralSequence) (r : Nat) (d : Bidegree) :
+    differential S r d (sourceZero S r d) = S.zero r d := by
+  by_cases h : r ≤ d.filtration
+  · simp only [differential,sourceZero,dif_pos h]
+    rw [(S.differential r _).map_zero']
+    have castZero {e : Bidegree} (h : e = d) :
+        pageCast S r h (0 : (S.element r e).carrier) = 0 := by subst e; rfl
+    exact (castZero _).trans (S.zero_is_zero r d).symm
+  · simp only [differential,dif_neg h]
+    exact (S.zero_is_zero r d).symm
+
+theorem source_above_filtration (S : AdamsSpectralSequence) (r : Nat) (d : Bidegree)
+    (h : d.filtration < r) : Subsingleton (Source S r d) := by
+  unfold Source
+  rw [if_neg (by omega : ¬ r ≤ d.filtration)]
+  infer_instance
+
+theorem differential_image (S : AdamsSpectralSequence) (r : Nat) (d : Bidegree)
+    (x : (S.element r d).carrier) :
+    (∃ y, differential S r d y = x) ↔ PageBoundary S r d x := by
+  by_cases h : r ≤ d.filtration
+  · have represent : ∀ x : (S.element r d).carrier,
+        (∃ y, differential S r d y = x) ↔
+        ∃ y : (S.element r (sourceDegree r d)).carrier,
+          pageCast S r (target_sourceDegree r d h)
+            (S.differential r (sourceDegree r d) y) = x := by
+      intro x
+      simp only [differential,Source,dif_pos h,if_pos h]
+    rw [represent]
+    constructor
+    · rintro ⟨y,hy⟩
+      exact Or.inr ⟨sourceDegree r d,y,target_sourceDegree r d h,by simpa [pageCast] using hy⟩
+    · rintro (hx | ⟨e,y,he,hy⟩)
+      · subst x
+        refine ⟨0,?_⟩
+        rw [(S.differential r _).map_zero']
+        have castZero {e : Bidegree} (h : e = d) :
+            pageCast S r h (0 : (S.element r e).carrier) = 0 := by subst e; rfl
+        exact castZero _
+      · have eq : e = sourceDegree r d := adamsTarget_injective r
+          (he.trans (target_sourceDegree r d h).symm)
+        subst e
+        exact ⟨y,by simpa [pageCast] using hy⟩
+  · constructor
+    · rintro ⟨y,hy⟩
+      apply Or.inl
+      simpa only [differential,Source,dif_neg h,if_neg h] using hy.symm
+    · rintro (hx | ⟨e,y,he,hy⟩)
+      · exact ⟨sourceZero S r d,(differential_zero S r d).trans
+          ((S.zero_is_zero r d).trans hx.symm)⟩
+      · have degree := congrArg Bidegree.filtration he
+        change e.filtration+r = d.filtration at degree
+        omega
+
+def incomingSystem (S : AdamsSpectralSequence) (d : Bidegree)
+    (target : ∀ r, (S.element r d).carrier) : IncomingSystem where
+  Source := fun r => Source S r d
+  Target := fun r => (S.element r d).carrier
+  zeroSource := fun r => sourceZero S r d
+  zeroTarget := fun r => S.zero r d
+  differential := fun r => differential S r d
+  target := target
+  preservesZero := fun r => differential_zero S r d
+
+theorem hit_iff (S : AdamsSpectralSequence) (d : Bidegree)
+    (target : ∀ r, (S.element r d).carrier) (r : Nat) :
+    (incomingSystem S d target).HitAt r ↔ PageBoundary S r d (target r) :=
+  differential_image S r d (target r)
+
+#print axioms target_sourceDegree
+#print axioms differential_zero
+#print axioms source_above_filtration
+#print axioms differential_image
+#print axioms hit_iff
+end ActualAdamsIncomingBridge

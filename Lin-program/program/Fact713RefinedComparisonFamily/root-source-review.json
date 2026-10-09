@@ -1,0 +1,19 @@
+{
+  "status": "source_review_passed",
+  "compiled_scope": "Basic/Extra/Cross successful per agent; Coherence/Coverage awaiting baseline",
+  "findings": [],
+  "checks": [
+    "Cross checks disjoint keys and both ordered PairCompatible directions",
+    "coherent_append explicitly covers four membership cases and reuses exact old Coherent property",
+    "five imported wires match known incremental count and full comparison definitions",
+    "family has all old entries, no replacement",
+    "Coverage rejects absent named d4 and preserves explicit requested roots"
+  ],
+  "source_sha256": {
+    "Basic": "0cc11e9fe3057cfc4088dd7219dd098841e00d449c52252db88143c8b2875199",
+    "Extra": "e869a48916cc1f9889cca13a9eacc263014906c460f9dd1c5e230cc82ce01925",
+    "Cross": "5779594ca2bb3bbc3ca9725d3fddaa0f58ab93b47deb9226d4a9cc221bc860aa",
+    "Coherence": "2cdba4e0f22fd45fc93ddb871eeba268299ce26a7b8bffd9097437c0bab41028",
+    "Coverage": "08038f93d60fc0240e0dfd08038eff8d0e31bc636a7f75cb9a018f125b4566ba"
+  }
+}

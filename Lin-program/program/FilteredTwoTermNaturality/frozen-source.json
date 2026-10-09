@@ -1,0 +1,46 @@
+{
+  "modules": [
+    "FilteredTwoTermNaturality.Basic",
+    "FilteredTwoTermNaturality.Laws",
+    "FilteredTwoTermNaturality.Examples"
+  ],
+  "axiom_reports": 12,
+  "direct_compilation": {
+    "Basic": {
+      "source_sha256": "6eeabd9f91c3502fd33fb9f7cbdf37e040afb747a9f8709c732dcda1c5c57eca",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "5c41dc3f70afa391c78403c845249ca61b42a344a57f572f98479270b64a8884",
+      "olean_sha256": "c09fdff55871411a0929baa8fda93407ba7d62e46c530797840f78a0da7aa62b"
+    },
+    "Laws": {
+      "source_sha256": "c1203d4d75e658e220a4b3f9f831ee21094d8b573f208fab5188c2be62f6e96d",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "8e606f52c8dd1f8151209a7d7bb7cfd847f00d35ff6d2966789f3018fc78b3cf",
+      "olean_sha256": "540e5a46a947a996035a055ba216507ff33e9f31f5e1e6a31c7d3b3917b74c12"
+    },
+    "Examples": {
+      "source_sha256": "13c2d670a36a419ac1ac7d9224ec8afc2439e15da1eafae46df935798e49acc6",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "60da1b00fdc462a0a0b00180f8364ac49ed6b4d0284dd36151825b9bcdc0175d",
+      "olean_sha256": "f9cdd830d8e492635b5088ba56a78fdfd5e08db7e6186478b37711ad4fd81227"
+    }
+  },
+  "source_sha256": {
+    "FilteredTwoTermNaturality/Basic.lean": "6eeabd9f91c3502fd33fb9f7cbdf37e040afb747a9f8709c732dcda1c5c57eca",
+    "FilteredTwoTermNaturality/Laws.lean": "c1203d4d75e658e220a4b3f9f831ee21094d8b573f208fab5188c2be62f6e96d",
+    "FilteredTwoTermNaturality/Examples.lean": "13c2d670a36a419ac1ac7d9224ec8afc2439e15da1eafae46df935798e49acc6",
+    "FilteredTwoTermNaturality/compile.py": "8c7d2263af6547ccbb3db60059f0ef46c037ad7b0e2eef5752e27666a152f7d5",
+    "FilteredTwoTermNaturality/README.md": "094814819258df60ec5319da8eb8e13940ea04a323aaeb0b78242bcb26b803f1"
+  },
+  "imported_source_sha256": {
+    "FilteredTwoTermSequence/Basic.lean": "3d5ef553508c5fa95e47b6524d179ac505b806b34c913d5383a325ce34332404",
+    "FilteredTwoTermSequence/Algebra.lean": "3d6adc86e6ae8077c61e3fff87f1e17bb28da7eacbde23d378b6fae7cb683e8c",
+    "FilteredMapExtension/Basic.lean": "5a96e67fdf8250a8a608fce9691f39907951aca55d489a24f5b3ec5e15f0f70b",
+    "FilteredMapExtension/NextPage.lean": "db80a100708c062dc4a203fcda1f0a5cbd3480d786da22569e0be7d53b9ae1f1",
+    "FilteredMapExtension/Examples.lean": "2d3a1beae497b8e53c60616bfcf60573387aa6d615c412ed74fac5654c0a47d1",
+    "FilteredMapGradedComparison/AllTargets.lean": "ceacd7834d4facde2605ab08faa8010d3cf32de7c389e3f9d75ad3f91f6c9d9c"
+  }
+}

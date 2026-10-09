@@ -1,0 +1,1818 @@
+
+
+3. 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra
+
+
+
+
+
+In Section 
+2
+, we explored classical extension problems in the context of commutative diagrams and cofiber sequences of spectra, framed in terms of the extension spectral sequence. The power of the extension spectral sequence can be further enhanced by generalizing and applying it to the category of 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra, a topic we will discuss in Section 
+4
+.
+
+
+
+
+
+
+In this section, we recall some recent work of Pstragowski 
+[ 50 ]
+ and Appendix A of Burklund–Hahn–Senger 
+[ 16 ]
+ on 
+$E$
+-synthetic spectra, which is strongly motivated by the work of Hu–Kriz–Ormsby 
+[ 25 ]
+, Isaksen 
+[ 26 ]
+, Gheorghe–Wang–Xu 
+[ 22 ]
+, and Gheorghe–Isaksen–Krause–Ricka 
+[ 21 ]
+ on the 
+$\mathbb{C}$
+-motivic spectra. We will specialize some of these results to 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra, refining and highlighting specific properties.
+
+
+
+
+
+
+The stable, presentable, symmetric monoidal 
+$\infty$
+-category 
+$\mathrm{Syn}_{\mathrm{H}{\mathbb{F}}_{2}}$
+ of 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra is constructed in 
+[ 50 ]
+, along with a functor
+
+
+
+
+
+
+
+
+
+
+$\nu:\mathrm{Sp}\to\mathrm{Syn}_{\mathrm{H}{\mathbb{F}}_{2}},$
+
+
+
+
+
+
+
+from the 
+$\infty$
+-category of spectra 
+$\mathrm{Sp}$
+. This functor is lax symmetric monoidal and preserves filtered colimits. However, 
+$\nu$
+ does not generally preserve cofiber sequences. Instead, the following holds.
+
+
+
+
+
+
+Proposition 3.1
+ 
+(
+[ 50 , Lemma 4.23]
+)
+.
+
+
+
+
+Suppose that
+
+
+
+
+
+
+
+
+
+
+$X\xrightarrow{f}Y\xrightarrow{g}Z$
+
+
+
+
+
+
+
+is a cofiber sequence of spectra. Then
+
+
+
+
+
+
+
+
+
+
+$\nu X\xrightarrow{\nu f}\nu Y\xrightarrow{\nu g}\nu Z$
+
+
+
+
+
+
+
+is a cofiber sequence of ${\mathrm{H}{\mathbb{F}}_{2}}$ -synthetic spectra if and only if
+
+
+
+
+
+
+
+
+
+
+$0\to{\mathrm{H}{\mathbb{F}}_{2}}_{*}X\xrightarrow{{\mathrm{H}{\mathbb{F}}_{2}}_{*}f}{\mathrm{H}{\mathbb{F}}_{2}}_{*}Y\xrightarrow{{\mathrm{H}{\mathbb{F}}_{2}}_{*}g}{\mathrm{H}{\mathbb{F}}_{2}}_{*}Z\to 0$
+
+
+
+
+
+
+
+is a short exact sequence.
+
+
+
+
+
+
+
+
+Definition 3.2
+ 
+(
+[ 50 , Definition 4.6]
+)
+.
+
+
+
+
+The bigraded spheres 
+$S^{s,w}$
+ are the synthetic spectra defined by 
+$\Sigma^{s-w}\nu(S^{w})$
+.
+
+
+
+
+
+
+
+
+Definition 3.3
+ 
+(
+[ 50 , Definition 4.27]
+)
+.
+
+
+
+
+The natural comparison map
+
+
+
+
+
+
+
+
+
+
+$S^{0,-1}=\Sigma\nu(S^{-1})\to\nu(\Sigma S^{-1})=S^{0,0}$
+
+
+
+
+
+
+
+in the category of 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra is denoted by 
+$\lambda\in\pi_{0,-1}S^{0,0}$
+. We denote by 
+$S^{0,0}/\lambda$
+ the cofiber of 
+$\lambda$
+. In general for synthetic 
+$X$
+ the following
+
+
+
+
+
+
+
+
+
+
+$\lambda\wedge id_{X}:\Sigma^{0,-1}X\to X.$
+
+
+
+
+
+
+
+is a natural transformation and by abuse of notation this map is also denoted by 
+$\lambda$
+.
+We denote by 
+$X/\lambda$
+ the cofiber of 
+$\lambda$
+
+which is equivalent to 
+$(S^{0,0}/\lambda)\wedge X$
+.
+
+
+
+
+
+
+
+
+Remark 3.4
+.
+
+
+
+
+For every 
+$n\geq 1$
+, 
+$S^{0,0}/\lambda^{n}$
+ is an 
+$E_{\infty}$
+-object in 
+$\mathrm{Syn}_{\mathrm{H}{\mathbb{F}}_{2}}$
+ (see 
+[ 15 , Appendix B, C]
+ for example).
+
+
+
+
+
+
+
+
+Remark 3.5
+.
+
+
+
+
+The element 
+$\lambda$
+ can be viewed as a parameter of a categorical deformation on 
+$\mathrm{Syn}_{\mathrm{H}{\mathbb{F}}_{2}}$
+ (see 
+[ 50 ]
+).
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\textup{Sp}^{\wedge}_{2}}$ $\textstyle{\mathrm{Syn}_{\mathrm{H}{\mathbb{F}}_{2}}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\lambda^{-1}}$ generic fiber $\scriptstyle{mod~\lambda}$ special fiber $\textstyle{\mathcal{D}(A_{*}\textup{-Comod})}$
+
+
+
+
+
+
+
+Inverting 
+$\lambda$
+, the generic fiber is equivalent to the classical category of 2-completed spectra 
+$\textup{Sp}^{\wedge}_{2}$
+. Modding out by 
+$\lambda$
+, the special fiber is equivalent to Hovey’s derived category 
+[ 24 ]
+ of comodules over the mod 2 dual Steenrod algebra 
+$\mathcal{D}(A_{*}\textup{-Comod})$
+. Historically, this synthetic deformation is motivated by, and analogous to, the motivic deformation conjectured by Isaksen and proven by Gheorghe–Wang–Xu 
+[ 22 ]
+: Specifically, there exists a map
+
+
+
+
+
+
+
+
+
+
+$\tau:\widehat{S^{0,-1}}\rightarrow\widehat{S^{0,0}}$
+
+
+
+
+
+
+
+between p-completed motivic spheres. This element 
+$\tau$
+
+can be viewed as a parameter of a categorical deformation on the category of cellular objects over 
+$\widehat{S^{0,0}}$
+.
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\textup{Sp}^{\wedge}_{p}}$ $\textstyle{\widehat{S^{0,0}}\textup{-Mod}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\tau^{-1}}$ generic fiber $\scriptstyle{mod~\tau}$ special fiber $\textstyle{\mathcal{D}(BP_{*}BP\textup{-Comod})}$
+
+
+
+
+
+
+
+Inverting 
+$\tau$
+, the generic fiber is equivalent to the classical category of p-completed spectra 
+$\textup{Sp}^{\wedge}_{p}$
+. Modding out by 
+$\tau$
+, the special fiber is equivalent to Hovey’s derived category of comodules over the Hopf algebroid 
+$BP_{*}BP$
+.
+
+
+
+
+
+
+
+
+Theorem 3.6
+ 
+(
+[ 16 , Theorem A.8]
+)
+.
+
+
+
+
+The synthetic Adams spectral sequence for $\nu X$
+
+
+
+
+
+
+
+
+
+
+$\prescript{\mathrm{syn}\!}{}{E}_{2}^{s,t,w}(\nu X)\Longrightarrow\pi_{t-s,w}(\nu X)$
+
+
+
+
+
+
+
+has an $E_{2}$ -page
+
+
+
+
+
+
+
+
+
+
+$\prescript{\mathrm{syn}\!}{}{E}_{2}^{*,*,*}(\nu X)\cong E_{2}^{*,*}(X)\otimes\mathbb{F}_{2}[\lambda]$
+
+
+
+
+
+
+
+with differentials
+
+
+
+
+
+
+
+
+
+
+$d_{r}:\prescript{\mathrm{syn}\!}{}{E}_{r}^{s,t,w}\to\prescript{\mathrm{syn}\!}{}{E}_{r}^{s+r,t+r-1,w}.$
+
+
+
+
+
+
+
+Here $E_{2}^{*,*}(X)\cong\mathrm{Ext}_{A}^{*,*}(X)$ is the classical Adams $E_{2}$ -page of $X$ . An element in $E_{2}^{s,t}(X)$ is viewed as having tridegree $(s,t,t)$ in $\prescript{\mathrm{syn}\!}{}{E}_{2}^{s,t,t}(\nu X)$ , and $\lambda$ is in tridegree $(0,0,-1)$ . Given a classical Adams differential $d_{r}^{\mathrm{cl}}(x)=y$ , the corresponding synthetic differential is $d_{r}(x)=\lambda^{r-1}y$ , which is $\lambda$ -linear, and all synthetic Adams differentials arise in this way.
+
+
+
+
+
+
+
+
+Remark 3.7
+.
+
+
+
+
+Here, we use a third grading of the synthetic Adams 
+$E_{2}$
+-page that differs from 
+[ 16 ]
+ but more compatible with 
+[ 17 ]
+. Specifically, we view elements in 
+$E_{2}^{s,t}(X)$
+ as having tridegree 
+$(s,t,t)$
+, instead of 
+$(s,t,s)$
+ as in 
+[ 16 ]
+. This choice ensures that differentials and maps preserve the third degree, which proves convenient for the extension spectral sequence in the 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic category in Section 
+4
+.
+
+
+
+
+
+
+
+
+Theorem 3.8
+ 
+(
+[ 16 , Theorem A.1]
+)
+.
+
+
+
+
+The synthetic Adams spectral sequence for $\nu X$ is isomorphic to the $\lambda$ -Bockstein spectral sequence (with no sign difference because we are working over ${\mathbb{F}}_{2}$ here). More specifically, we have
+
+
+
+ (1)
+ 
+
+
+
+$E_{2}^{s,t}(X)\cong\pi_{t-s,t}(\nu X/\lambda)$
+.
+
+ 
+ (2)
+ 
+
+
+
+If we have a classical Adams differential 
+$d_{r}x=y$
+ for
+
+
+
+
+
+
+
+
+
+
+$x\in E_{2}^{s,t}(X)\cong\pi_{t-s,t}(\nu X/\lambda),$
+
+
+
+
+
+
+
+then 
+$x$
+ admits a lift to 
+$\pi_{t-s,t}(\nu X/\lambda^{r-1})$
+ whose image under the 
+$\tau$
+-Bockstein
+
+
+
+
+
+
+
+
+
+
+$\nu X/\lambda^{r-1}\to\Sigma^{1,-r+1}\nu X/\lambda$
+
+
+
+
+
+
+
+is equal to 
+$d_{r}(x)$
+.
+
+ 
+
+
+
+
+
+
+
+
+
+Remark 3.9
+.
+
+
+
+
+The isomorphism with the 
+$\lambda$
+-Bockstein spectral sequence in Theorem 
+3.8
+ and the correspondence of differentials between the classical and synthetic Adams spectral sequences in Theorem 
+3.6
+ can be interpreted as manifestations of the rigidity of the synthetic Adams spectral sequence. This type of rigidity was first observed by Hu–Kriz–Ormsby 
+[ 25 ]
+ and Isaksen 
+[ 26 ]
+ in the context of the motivic Adams–Novikov spectral sequence, and it was utilized extensively in the work of Gheorghe–Wang–Xu 
+[ 22 ]
+. Subsequently, Burklund–Xu 
+[ 18 ]
+ uncovered the rigidity of the motivic Cartan–Eilenberg spectral sequence and performed computations based on this property. See also 
+[ 27 ]
+, 
+[ 13 ]
+ for applications of this type of rigidity.
+
+
+
+
+
+
+Together with Remark 
+3.5
+, 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra can be seen as a categorification of the classical Adams spectral sequence, just as cellular motivic spectra can be viewed a categorification of the classical Adams–Novikov spectral sequence.
+
+
+
+
+
+
+
+
+Notation 3.10
+.
+
+
+
+
+Consider the classical Adams spectral sequence of 
+$X$
+. Let 
+$B_{r}^{s,t}(X)$
+ denote the subgroups of 
+$E_{2}^{s,t}(X)$
+ generated by the sum of images of Adams differentials 
+$d_{2},\dots,d_{r}$
+. Let 
+$Z_{r}^{s,t}(X)$
+ denote the subgroup of 
+$E_{2}^{s,t}(X)$
+ consisting of elements on which 
+$d_{2},\dots,d_{r}$
+ vanish. For 
+$r=1$
+, we define 
+$Z_{1}^{s,t}(X)=E_{2}^{s,t}(X)$
+ and 
+$B_{1}^{s,t}(X)=0$
+. For 
+$r=\infty$
+, let 
+$Z_{\infty}^{s,t}(X)$
+ be the intersection of all 
+$Z_{r}^{s,t}(X)$
+, and 
+$B_{\infty}^{s,t}(X)$
+ be the union of all 
+$B_{r}^{s,t}(X)$
+. We then have the following inclusions
+
+
+
+
+
+
+
+
+
+
+$0=B_{1}\subset B_{2}\subset B_{3}\subset\cdots\subset B_{\infty}\subset Z_{\infty}\subset\cdots\subset Z_{3}\subset Z_{2}\subset Z_{1}=E_{2}.$
+
+
+
+
+
+
+
+In this article, we interpret a classical Adams differential 
+$d_{r}$
+ as the map
+
+
+
+
+
+
+
+
+
+
+$d_{r}:Z_{r-1}^{s,t}(X)\to E_{2}^{s+r,t+r-1}(X)/B_{r-1}^{s+r,t+r-1}(X),$
+
+
+
+
+
+
+
+and follow the pattern in Notation 
+2.2
+ for writing differentials.
+
+
+
+
+
+
+
+
+The following two propositions are taken from 
+[ 16 , Corollary A.9, A.11]
+. Note that our third grading, 
+$w$
+, differs from that used in the reference.
+
+
+
+
+
+
+Proposition 3.11
+.
+
+
+
+
+The $E_{\infty}$ -page of the synthetic Adams spectral sequence for $\nu X$ is given by
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{s,t,w}(\nu X)\cong\begin{cases}Z_{\infty}^{s,t}(X)/B_{1+t-w}^{s,t}(X)&\text{ if }t\geq w,\\
+0&\text{ otherwise }.\end{cases}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Proposition 3.12
+.
+
+
+
+
+The $E_{\infty}$ -page of the synthetic Adams spectral sequence for $\nu X/\lambda^{r}$ for $r\geq 2$ is given by
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{s,t,w}(\nu X/\lambda^{r})\cong\begin{cases}Z_{r-t+w}^{s,t}(X)/B_{1+t-w}^{s,t}(X)&\text{if }0\leq t-w<r,\\
+0&\text{otherwise}.\end{cases}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Notation 3.13
+.
+
+
+
+
+For convenience, whenever 
+$n\leq 0$
+ or 
+$m\leq 0$
+, we will define 
+$Z_{n}(X)/B_{m}(X)$
+ as a trivial group. This is a bit counterintuitive to the definition of 
+$Z_{n}$
+ and 
+$B_{m}$
+ but it allows us to consistently express the following
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{s,t,w}(\nu X)\cong Z_{\infty}^{s,t}(X)/B_{1+t-w}^{s,t}(X)$
+
+
+
+
+
+
+
+and
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{s,t,w}(\nu X/\lambda^{r})\cong Z_{r-t+w}^{s,t}(X)/B_{1+t-w}^{s,t}(X).$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Remark 3.14
+.
+
+
+
+
+The isomorphisms in Propositions 
+3.11
+ and 
+3.12
+ are compatible with the synthetic maps 
+$\lambda^{r^{\prime}-r}:\Sigma^{-r^{\prime}+r}\nu X/\lambda^{r}\to\nu X/\lambda^{r^{\prime}}$
+ and 
+$\rho:\nu X/\lambda^{r}\to\nu X/\lambda^{r^{\prime\prime}}$
+ for 
+$r^{\prime}\geq r\geq r^{\prime\prime}$
+. The induced map
+
+
+
+
+
+
+
+
+
+
+$\lambda^{r^{\prime}-r}:E_{\infty}^{s,t,w}(\nu X/\lambda^{r})\to E_{\infty}^{s,t,w-r^{\prime}+r}(\nu X/\lambda^{r^{\prime}})$
+
+
+
+
+
+
+
+corresponds to the quotient map (when all subscripts are positive):
+
+
+
+
+
+
+
+
+
+
+$\lambda^{r^{\prime}-r}:Z_{r-t+w}^{s,t}(X)/B_{1+t-w}^{s,t}(X)\to Z_{r-t+w}^{s,t}(X)/B_{1+t-w+r^{\prime}-r}^{s,t}(X)$
+
+
+
+
+
+
+
+Similarly, the induced map
+
+
+
+
+
+
+
+
+
+
+$\rho:E_{\infty}^{s,t,w}(\nu X/\lambda^{r})\to E_{\infty}^{s,t,w}(\nu X/\lambda^{r^{\prime\prime}})$
+
+
+
+
+
+
+
+corresponds to the embedding map (when all subscripts are positive):
+
+
+
+
+
+
+
+
+
+
+$\rho:Z_{r-t+w}^{s,t}(X)/B_{1+t-w}^{s,t}(X)\to Z_{r^{\prime\prime}-t+w}^{s,t}(X)/B_{1+t-w}^{s,t}(X).$
+
+
+
+
+
+
+
+These data do not extend beyond classical information. However, when we consider a map 
+$f:X\to Y$
+, we can obtain interesting extensions, as will be discussed in Section 
+4
+.
+
+
+
+
+
+
+
+
+Example 3.15
+.
+
+
+
+
+Consider the first few nonzero differentials in the classical Adams spectral sequence from the 15-stem to the 14-stem:
+
+
+
+
+
+
+
+
+
+
+$d_{2}(h_{4})=h_{0}h_{3}^{2},\ d_{3}(h_{0}h_{4})=h_{0}d_{0},\ d_{3}(h_{0}^{2}h_{4})=h_{0}^{2}d_{0},$
+
+
+
+
+
+
+
+where
+
+
+
+
+
+
+
+
+
+
+$h_{0}\in\mathrm{Ext}_{A}^{1,1},\ h_{3}\in\mathrm{Ext}_{A}^{1,8},\ h_{4}\in\mathrm{Ext}_{A}^{1,16},\ d_{0}\in\mathrm{Ext}_{A}^{4,18}.$
+
+
+
+
+
+
+
+The 
+$E_{2}$
+-page of the synthetic Adams spectral sequence for 
+$S^{0,0}$
+ has the form
+
+
+
+
+
+
+
+
+
+
+$\prescript{\mathrm{syn}\!}{}{E}_{2}^{*,*,*}(S^{0,0})\cong\mathrm{Ext}_{A}^{*,*}\otimes\mathbb{F}_{2}[\lambda],$
+
+
+
+
+
+
+
+and we have
+
+
+
+
+
+
+
+
+
+
+$h_{0}\in\prescript{\mathrm{syn}\!}{}{E}_{2}^{1,1,1},\ h_{3}\in\prescript{\mathrm{syn}\!}{}{E}_{2}^{1,8,8},\ h_{4}\in\prescript{\mathrm{syn}\!}{}{E}_{2}^{1,16,16},\ d_{0}\in\prescript{\mathrm{syn}\!}{}{E}_{2}^{4,18,18}.$
+
+
+
+
+
+
+
+The corresponding nonzero synthetic Adams differentials for 
+$S^{0,0}$
+ are
+
+
+
+
+
+
+
+
+
+
+$d_{2}(h_{4})=\lambda h_{0}h_{3}^{2},\ d_{3}(h_{0}h_{4})=\lambda^{2}h_{0}d_{0},\ d_{3}(h_{0}^{2}h_{4})=\lambda^{2}h_{0}^{2}d_{0},$
+
+
+
+
+
+
+
+along with their 
+$\lambda$
+-multiples. As a result, the 14-stem of the synthetic 
+$E_{\infty}$
+-page is generated by 
+$\lambda$
+-free elements 
+$h_{3}^{2}$
+ and 
+$d_{0}$
+, along with the following 
+$\lambda$
+-torsion elements:
+
+
+
+
+
+
+
+
+
+
+$h_{0}h_{3}^{2},\ h_{0}d_{0},\ \lambda h_{0}d_{0},\ h_{0}^{2}d_{0},\ \lambda h_{0}^{2}d_{0}.$
+
+
+
+
+
+
+
+On the other hand, since 
+$h_{0}h_{3}^{2}\in\mathrm{Ext}_{A}^{3,17}$
+ is a 
+$d_{2}$
+-cycle, we have
+
+
+
+
+
+
+
+
+
+
+$0=B_{1}^{3,17}\subset B_{2}^{3,17}=Z_{\infty}^{3,17}=E_{2}^{3,17}\cong\mathbb{F}_{2}\{h_{0}h_{3}^{2}\},$
+
+
+
+
+
+
+
+which matches the description:
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{3,17,w}(S^{0,0})\cong\begin{cases}Z_{\infty}^{3,17}/B_{18-w}^{3,17}\cong\mathbb{F}_{2}\{h_{0}h_{3}^{2}\}&\text{ if }w=17,\\
+Z_{\infty}^{3,17}/B_{18-w}^{3,17}=0&\text{ if }w\leq 16,\\
+0&\text{ if }w\geq 18.\end{cases}$
+
+
+
+
+
+
+
+The element 
+$h_{0}h_{3}^{2}$
+ detects homotopy classes of 
+$\mathrm{AF}=3$
+ in 
+$\pi_{14,17}$
+. Due to the presence of the 
+$\lambda$
+-free element 
+$d_{0}$
+ in the synthetic 
+$E_{\infty}$
+-page, the element 
+$\lambda d_{0}$
+ also detects homotopy classes in 
+$\pi_{14,17}$
+, but with 
+$\mathrm{AF}=4$
+. This illustrates why it is more convenient to describe the 
+$E_{\infty}$
+-page as in Proposition 
+3.11
+, rather than in terms of synthetic homotopy groups.
+
+
+
+
+
+
+As a comparison, the only nonzero synthetic Adams differential in the 14-stem for 
+$S^{0,0}/\lambda^{2}$
+ is
+
+
+
+
+
+
+
+
+
+
+$d_{2}(h_{4})=\lambda h_{0}h_{3}^{2},$
+
+
+
+
+
+
+
+and the elements 
+$\lambda h_{4},\ h_{0}h_{4},\ h_{0}^{2}h_{4}$
+ are all permanent cycles.
+
+
+
+
+
+
+For 
+$S^{0,0}/\lambda^{3}$
+, the nonzero synthetic Adams differentials in the 14-stem are
+
+
+
+
+
+
+
+
+
+
+$d_{2}(h_{4})=\lambda h_{0}h_{3}^{2},\ d_{2}(\lambda h_{4})=\lambda^{2}h_{0}h_{3}^{2},$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$d_{3}(h_{0}h_{4})=\lambda^{2}h_{0}d_{0},\ d_{3}(h_{0}^{2}h_{4})=\lambda^{2}h_{0}^{2}d_{0},$
+
+
+
+
+
+
+
+and the elements 
+$\lambda^{2}h_{4},\ \lambda h_{0}h_{4},\ \lambda^{2}h_{0}h_{4},\ \lambda h_{0}^{2}h_{4},\lambda^{2}h_{0}^{2}h_{4}$
+ are all permanent cycles.
+
+
+
+
+
+
+These results can be compared with the statements in Proposition 
+3.12
+.
+
+
+
+
+
+
+
+
+Proposition 3.16
+ 
+(
+[ 16 , Lemma 9.15]
+)
+.
+
+
+
+
+If a map $f:X\to Y$ has Adams filtration $\mathrm{AF}(f)=k$ , then there exists a factorization
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\Sigma^{0,-k}\nu Y\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\lambda^{k}}$ $\textstyle{\nu X\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\nu f}$ $\scriptstyle{\Sigma^{0,-k}\tilde{f}}$ $\textstyle{\nu Y}$
+
+
+
+
+
+
+
+where $\tilde{f}:\Sigma^{0,k}\nu X\to\nu Y$ is called a synthetic lift of $f$ .
+
+
+
+
+
+
+
+
+In Proposition 
+3.16
+ the map 
+$\nu f$
+ can be also factorized as follows:
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\nu X\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\nu f}$ $\scriptstyle{\lambda^{k}}$ $\textstyle{\nu Y}$ $\textstyle{\Sigma^{0,k}\nu X\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\tilde{f}}$ 
+
+
+
+
+
+
+
+
+
+
+
+Proposition 3.17
+.
+
+
+
+
+Suppose that we have a distinguished triangle of spectra
+
+
+
+
+
+
+
+
+
+
+$X\xrightarrow{f}Y\xrightarrow{g}Z\xrightarrow{h}\Sigma X$
+
+
+
+
+
+
+
+with $\mathrm{AF}(h)>0$ , and consequently a short exact sequence on $\mathrm{H}{\mathbb{F}}_{2}$ -homology
+
+
+
+
+
+
+
+
+
+
+$0\to H_{*}X\xrightarrow{H_{*}f}H_{*}Y\xrightarrow{H_{*}g}H_{*}Z\to 0.$
+
+
+
+
+
+
+
+Then there exists a distinguished triangle of synthetic spectra
+
+
+
+
+
+
+
+
+
+
+$\nu X\xrightarrow{\nu f}\nu Y\xrightarrow{\nu g}\nu Z\xrightarrow{\Sigma^{0,-1}\hat{h}}\Sigma^{0,-1}\nu\Sigma X=\Sigma^{1,0}\nu X$
+
+
+
+
+
+
+
+such that $\nu h=\lambda\hat{h}$ .
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+The proof is contained in the proof of [ 16 , Lemma 9.15] .
+∎
+
+
+
+
+
+
+
+
+Remark 3.18
+.
+
+
+
+
+For 
+$h$
+ in Proposition 
+3.17
+, let 
+$\tilde{h}$
+ be a synthetic map such that 
+$\nu h=\lambda^{k}\tilde{h}$
+, then 
+$\hat{h}$
+ is equal to 
+$\lambda^{k-1}\tilde{h}$
+ up to some 
+$\lambda$
+-torsion.
+
+
+
+
+
+
+
+
+Notation 3.19
+.
+
+
+
+
+For a map 
+$f:X\to Y$
+ which is part of a distinguished triangle
+
+
+
+
+
+
+
+
+
+
+$X\xrightarrow{f}Y\xrightarrow{g}Cf\to\Sigma X,$
+
+
+
+
+
+
+
+we define
+
+
+
+
+
+
+
+
+
+
+$e(f)=\begin{cases}0&\text{ if }\mathrm{AF}(f)=0,\\
+1&\text{ if }\mathrm{AF}(f)>0.\end{cases}$
+
+
+
+
+
+
+
+When 
+$\mathrm{AF}(f)=0$
+, we also denote 
+$\nu f$
+ by 
+$\hat{f}$
+. In both cases, we have
+
+
+
+
+
+
+
+
+
+
+$\hat{f}:\Sigma^{0,e(f)}\nu X\to\nu Y$
+
+
+
+
+
+
+
+and 
+$\nu f=\lambda^{e(f)}\hat{f}$
+. Further more, 
+$C\hat{f}\simeq\Sigma^{0,-e(g)}\nu Cf$
+ or equivalently,
+
+
+
+ •
+ 
+
+
+
+if 
+$f$
+ induces a trivial map or an injection on 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-homology, then 
+$C\hat{f}\simeq\nu Cf$
+;
+
+ 
+ •
+ 
+
+
+
+if 
+$f$
+ induces a surjection on 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-homology, then 
+$C\hat{f}\simeq\Sigma^{0,-1}\nu Cf$
+.
+
+ 
+
+
+
+
+
+
+
+
+
+With the notation above, we can rewrite Proposition 
+3.17
+ into the following form which will be used in Theorem 
+6.12
+ and help us unify different cases.
+
+
+
+
+
+
+Proposition 3.20
+.
+
+
+
+
+Suppose that we have a distinguished triangle of spectra
+
+
+
+
+
+
+
+
+
+
+$X\xrightarrow{f}Y\xrightarrow{g}Z\xrightarrow{h}\Sigma X$
+
+
+
+
+
+
+
+such that $e(f)+e(g)+e(h)=1$ . Then we have a distinguished triangle of synthetic spectra
+
+
+
+
+
+
+
+
+
+
+$\nu X\xrightarrow{\hat{f}}\Sigma^{0,-e(f)}\nu Y\xrightarrow{\hat{g}}\Sigma^{0,-e(f)-e(g)}\nu Z\xrightarrow{\hat{h}}\Sigma^{0,-1}\nu\Sigma X$
+
+
+
+
+
+
+
+(For simplicity we often omit the suspensions before maps but keep the suspensions before spectra.)
+
+
+
+
+
+
+
+
+Remark 3.21
+.
+
+
+
+
+When 
+$\mathrm{AF}(f)>1$
+, it is often more advantageous to work with 
+$C\tilde{f}$
+ rather than 
+$C\hat{f}$
+, as the 
+$\lambda$
+-Bockstein spectral sequence for 
+$C\tilde{f}$
+ corresponds to a modified Adams spectral sequence, which differs from the classical one but may provide additional information. On the other hand, given the equivalence 
+$C\hat{f}\simeq\nu Cf$
+ from Notation 
+3.19
+, the rigidity Theorems 
+3.6
+ and 
+3.8
+ imply that the synthetic Adams spectral sequence for 
+$C\hat{f}$
+ is isomorphic to the 
+$\lambda$
+-Bockstein spectral sequence, and aligns with the classical Adams spectral sequence for 
+$Cf$
+. Since the computational data used in this work is based on the classical Adams spectral sequence, we defer the exploration of 
+$C\tilde{f}$
+ to future work.
+
+
+
+
+
+
+To illustrate this in more detail, consider the example of the synthetic lift 
+$\tilde{\eta^{3}}\in\pi_{3,6}$
+ of 
+$\eta^{3}\in\pi_{3}$
+, which has 
+$\mathrm{AF}=3$
+. We can examine several 
+$\lambda$
+-multiples of 
+$\tilde{\eta^{3}}$
+:
+
+
+
+
+
+
+
+
+
+
+$\lambda\tilde{\eta^{3}}\in\pi_{3,5},\ \ \hat{\eta^{3}}=\lambda^{2}\tilde{\eta^{3}}\in\pi_{3,4},\ \ \nu(\eta^{3})=\lambda^{3}\tilde{\eta^{3}}\in\pi_{3,3}.$
+
+
+
+
+
+
+
+
+
+
+
+Now, consider the synthetic 2-cell complexes formed by taking the cofibers of these maps:
+
+
+
+
+
+
+
+
+
+
+$C(\tilde{\eta^{3}}),\ C(\lambda\tilde{\eta^{3}}),\ C(\lambda^{2}\tilde{\eta^{3}})\simeq C(\hat{\eta^{3}})\simeq\nu(C\eta^{3}),\ C(\lambda^{3}\tilde{\eta^{3}})\simeq C\nu(\eta^{3}).$
+
+
+
+
+
+
+
+
+
+
+
+The rigidity Theorems 
+3.6
+ and 
+3.8
+ apply only to 
+$C(\hat{\eta^{3}})$
+, as it is equivalent to 
+$\nu(C\eta^{3})$
+. In this case, its synthetic Adams 
+$E_{2}$
+-page is 
+$\lambda$
+-free over 
+$\mathrm{Ext}_{A}^{*,*}(C\eta^{3})$
+; in particular the identity element from the top cell has tridegree 
+$(s,t,w)=(0,4,4)$
+. There is a correspondence of differentials between the classical and synthetic Adams spectral sequence, and a synthetic differential generates 
+$\lambda$
+-torsion corresponding to its length.
+
+
+
+
+
+
+For 
+$C(\tilde{\eta^{3}}),C(\lambda\tilde{\eta^{3}})$
+ and 
+$C(\lambda^{3}\tilde{\eta^{3}})$
+, their synthetic Adams 
+$E_{2}$
+-pages remain 
+$\lambda$
+-free, but the identity element from the top cell has tridegree
+
+
+
+
+
+
+
+
+
+
+$(s,t,w)=(0,4,6),(0,4,5),(0,4,7)$
+
+
+
+
+
+
+
+respectively. As a result, each supports a nonzero Adams 
+$d_{3}$
+-differential killing 
+$h_{1}^{3}$
+ from the bottom cell when multiplied by 
+$1,\lambda,\lambda^{3}$
+, respectively. This leaves no 
+$\lambda$
+-torsion, 
+$\lambda^{1}$
+-torsion and 
+$\lambda^{3}$
+-torsion in 
+$\pi_{4,6}$
+, respectively.
+
+
+
+
+
+
+On the other hand, the 
+$\lambda$
+-Bockstein spectral sequences for 
+$C(\tilde{\eta^{3}})$
+ and 
+$C(\lambda\tilde{\eta^{3}})$
+ correspond to a modified Adams spectral sequence in the sense of 
+[ 7 , Section 3]
+, with the AF of 
+$\eta^{3}$
+ “modified" to 
+$\mathrm{AF}=1$
+ and 
+$\mathrm{AF}=2$
+, respectively. In particular, the 
+$E_{2}$
+-page of the 
+$\lambda$
+-Bockstein spectral sequence for 
+$C(\tilde{\eta^{3}})$
+, i.e., 
+$\pi_{*,*}C(\tilde{\eta^{3}})/\lambda$
+, may contain more multiplicative information than 
+$\mathrm{Ext}_{A}^{*,*}(C\eta^{3})$
+.
+
+
+
+
+

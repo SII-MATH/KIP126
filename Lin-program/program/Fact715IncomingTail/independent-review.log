@@ -1,0 +1,90 @@
+{
+  "status": "passed_independent_review",
+  "findings": [],
+  "counts": {
+    "frozen_files": 31,
+    "source_degrees": 29,
+    "basis_rows": 42,
+    "staircase_rows": 42,
+    "comparisons": 19,
+    "exported_comparisons": 6,
+    "cycle_vectors": 42,
+    "quotient_pairs": 148,
+    "d2_columns": 35,
+    "higher_columns": 2,
+    "selected_representatives": 12
+  },
+  "scope": "No source edits or recompilation; frozen source, objects, successful compile evidence and independent finite replay.",
+  "covered_page_sources": {
+    "5": [
+      6,
+      132
+    ],
+    "6": [
+      5,
+      131
+    ],
+    "7": [
+      4,
+      130
+    ],
+    "8": [
+      3,
+      129
+    ],
+    "9": [
+      2,
+      128
+    ],
+    "10": [
+      1,
+      127
+    ],
+    "11": [
+      0,
+      126
+    ]
+  },
+  "excluded_pages": [
+    5,
+    9
+  ],
+  "source7": {
+    "raw_staircase": 2437,
+    "e2_source_basis": 2436,
+    "source_degree": [
+      4,
+      130
+    ],
+    "page": 3,
+    "target_degree": [
+      7,
+      132
+    ],
+    "source_E3_dimension": 1,
+    "target_E3_dimension": 1,
+    "outgoing": [
+      1
+    ],
+    "incoming_dimension": 0,
+    "result_E4_dimension": 0
+  },
+  "actual_obligations": [
+    "complete E2 and d2 StepInput meanings for sources6,7,8",
+    "step7b complete actual outgoing/incoming E3 equations in the chart constructed by step7a",
+    "complete source10/source11 E2 Coordinates to Vec0",
+    "all-page quotient ZeroMeaning"
+  ],
+  "qualifications": [
+    "source7Incoming2 and source7Target2 are checked finite predecessor certificates; their actual E3 meanings remain step7b inputs",
+    "unexported cached page9 prefix calculation is not used to eliminate page9",
+    "Data has no explicit axiom print reports; Basic reports5, root full declaration audit covers Data"
+  ],
+  "historical_direct_dependency_changes": [],
+  "standard_axiom_reports": 5,
+  "input_hashes": {
+    "frozen-source.json": "a7f76676b2281b41ebf1d02468f57c0842ab4d1ae880b809db6568e359b3d1e9",
+    "comparisons.json": "7094e7681249ef2249c6e3c2d2d4f88483ab6154399367c4b1543ac065a6de26",
+    "database": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

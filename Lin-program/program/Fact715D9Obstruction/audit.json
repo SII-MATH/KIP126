@@ -1,0 +1,81 @@
+{
+  "status": "finite_search_artifacts_checked_d9_mathematics_unresolved",
+  "complete_low_factor_combinations": 178,
+  "rejected_noncycles": 19,
+  "higher_factor_basis_columns": 1081,
+  "comparison_identities": 461,
+  "independently_replayed_products": 1399,
+  "early_detector_boundaries": [
+    {
+      "object": "S0",
+      "target_degree": [
+        12,
+        137
+      ],
+      "target_index": 3,
+      "d3_source": [
+        2793,
+        9,
+        135,
+        "3",
+        "3",
+        9997
+      ],
+      "d2_correction": null,
+      "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+    },
+    {
+      "object": "Csigma",
+      "target_degree": [
+        12,
+        152
+      ],
+      "target_index": 6,
+      "d3_source": [
+        6069,
+        9,
+        150,
+        "3",
+        "6",
+        9997
+      ],
+      "d2_correction": null,
+      "database_sha256": "96c380f9893f2c3e0445c03cdddc6b242b3d163655cf9a9b007360c93b3b4680"
+    },
+    {
+      "object": "Ceta",
+      "target_degree": [
+        12,
+        137
+      ],
+      "target_index": 6,
+      "d3_source": [
+        4422,
+        9,
+        135,
+        "4",
+        "6,7",
+        9997
+      ],
+      "d2_correction": [
+        4521,
+        "264",
+        "7"
+      ],
+      "database_sha256": "ca0f379210e07d2908576c6e0ddb8889db9b17c8ef426a68b0831bb3f606b477"
+    }
+  ],
+  "input_sha256": {
+    "screen_products.py": "024aa12126fcc680a90ba426293a934089dfa47b25224c1ca75fa0a65860bf14",
+    "products-screen.json": "26a742dcf1cdffe7857baa05438f68750d7889fb7b64763a147c77702fe6f3d0",
+    "products-screen.log": "5d4ad5e79da3048c5ac1e1c558efd76869fcaef451f6a0070b13123a1016469b",
+    "screen_higher.py": "000d15357ab2bd494a03af6198a154f864e1b59b76ab34d53b5e677c62ac6067",
+    "higher-screen.json": "0a55061dcee33c1bb6024d363d0dc47e0e8173c59ecac933f2d3b97a74dc33d0",
+    "higher-screen.log": "1f58e6f0c0d346860571ed960cbf1821c9588c91c03978beb3954e0648d33856",
+    "screen_events.py": "4dd4a582d438f799a08ebb3bff5b3ed74e1ed2545792a861483c3b2cff44c7fd",
+    "map-events.json": "6f191b05a448a8c775359de1dda75ba10ac7ca3addff045f15ac7701def1b8df",
+    "map-events.log": "34f7c646dd4fc273738b6a4fc7b48b8fb7821db173e57ae4e561c4256c22c1b8",
+    "audit.py": "4f35293270c42903ce6cdf4240078b7450ec835e6f84cb20be058e80bba313c2"
+  },
+  "limitation": "No actual higher-page meaning or d9 exclusion is asserted. Staircase upper-page support only screens candidates. Unknown differentials and proof events remain untrusted data."
+}

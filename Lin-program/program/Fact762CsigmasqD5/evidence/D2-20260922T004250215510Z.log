@@ -1,0 +1,92 @@
+Fact762CsigmasqD5/D2.lean:53:4: error: Type mismatch: After simplification, term
+  h.right
+ has type
+  ModuleExpressions.check (List.map (toExpression w.reduction.rank) w.reduction.relations)
+      (toExpression w.reduction.rank w.reduction.input) (toExpression w.reduction.rank w.reduction.output)
+      w.reduction.terms =
+    true
+but is expected to have type
+  ModuleExpressions.check (List.map (toExpression 2) w.reduction.relations) (toExpression 2 w.reduction.input)
+      (toExpression 2 w.reduction.output) w.reduction.terms =
+    true
+Fact762CsigmasqD5/D2.lean:63:6: error(lean.unknownIdentifier): Unknown constant `Fin.sum_univ_succ`
+Fact762CsigmasqD5/D2.lean:63:6: error(lean.unknownIdentifier): Unknown constant `Fin.sum_univ_succ`
+Fact762CsigmasqD5/D2.lean:46:76: error: unsolved goals
+case false
+R M : Type
+inst✝³ : CommRing R
+inst✝² : CharP R 2
+inst✝¹ : AddCommGroup M
+inst✝ : Module R M
+w : Wire
+hw : w.Valid
+v : ℕ → R
+g : Fin 2 → M
+dR : R →+ R
+dM : M →+ M
+leibniz : ∀ (a : R) (x : M), dM (a • x) = dR a • x + a • dM x
+coefficient :
+  dR (NamedElementCertificates.evaluate v w.coefficient) = NamedElementCertificates.evaluate v w.coefficientDifferential
+bottom : dM (g 0) = 0
+top : dM (g 1) = NamedElementCertificates.evaluate v [[3, 3]] • g 0
+relations : ∀ rel ∈ w.reduction.relations, ModuleExpressions.evaluate v g (toExpression 2 rel) = 0
+hc :
+  ModuleExpressions.check (List.map (toExpression 2) w.reduction.relations) (toExpression 2 w.reduction.input)
+      (toExpression 2 w.reduction.output) w.reduction.terms =
+    true
+equality :
+  ModuleExpressions.evaluate v g (toExpression 2 w.expanded) =
+    ModuleExpressions.evaluate v g (toExpression 2 w.reduction.output)
+ht : w.top = false
+⊢ NamedElementCertificates.evaluate v w.coefficientDifferential • g 0 =
+    ∑ x, NamedElementCertificates.evaluate v [w.coefficientDifferential, []][↑x] • g x
+
+case true
+R M : Type
+inst✝³ : CommRing R
+inst✝² : CharP R 2
+inst✝¹ : AddCommGroup M
+inst✝ : Module R M
+w : Wire
+hw : w.Valid
+v : ℕ → R
+g : Fin 2 → M
+dR : R →+ R
+dM : M →+ M
+leibniz : ∀ (a : R) (x : M), dM (a • x) = dR a • x + a • dM x
+coefficient :
+  dR (NamedElementCertificates.evaluate v w.coefficient) = NamedElementCertificates.evaluate v w.coefficientDifferential
+bottom : dM (g 0) = 0
+top : dM (g 1) = NamedElementCertificates.evaluate v [[3, 3]] • g 0
+relations : ∀ rel ∈ w.reduction.relations, ModuleExpressions.evaluate v g (toExpression 2 rel) = 0
+hc :
+  ModuleExpressions.check (List.map (toExpression 2) w.reduction.relations) (toExpression 2 w.reduction.input)
+      (toExpression 2 w.reduction.output) w.reduction.terms =
+    true
+equality :
+  ModuleExpressions.evaluate v g (toExpression 2 w.expanded) =
+    ModuleExpressions.evaluate v g (toExpression 2 w.reduction.output)
+ht : w.top = true
+⊢ NamedElementCertificates.evaluate v w.coefficient • NamedElementCertificates.evaluate v [[3, 3]] • g 0 +
+      NamedElementCertificates.evaluate v w.coefficientDifferential • g 1 =
+    ∑ x, NamedElementCertificates.evaluate v [multiply w.coefficient [[3, 3]], w.coefficientDifferential][↑x] • g x
+Fact762CsigmasqD5/D2.lean:63:35: warning: This simp argument is unused:
+  evaluate_multiply
+
+Hint: Omit it from the simp argument list.
+  simp [̵W̵i̵r̵e̵.̵e̵x̵p̵a̵n̵d̵e̵d̵,̵h̵t̵,̵M̵o̵d̵u̵l̵e̵E̵x̵p̵r̵e̵s̵s̵i̵o̵n̵s̵.̵e̵v̵a̵l̵u̵a̵t̵e̵,̵t̵o̵E̵x̵p̵r̵e̵s̵s̵i̵o̵n̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵F̵i̵n̵.̵s̵u̵m̵_̵u̵n̵i̵v̵_̵s̵u̵c̵c̵,̵b̵o̵t̵t̵o̵m̵,̵t̵o̵p̵,̵e̵v̵a̵l̵u̵a̵t̵e̵_̵m̵u̵l̵t̵i̵p̵l̵y̵,̵m̵u̵l̵_̵s̵m̵u̵l̵,̵a̵d̵d̵_̵c̵o̵m̵m̵]̵[̲W̲i̲r̲e̲.̲e̲x̲p̲a̲n̲d̲e̲d̲,̲ ̲h̲t̲,̲ ̲M̲o̲d̲u̲l̲e̲E̲x̲p̲r̲e̲s̲s̲i̲o̲n̲s̲.̲e̲v̲a̲l̲u̲a̲t̲e̲,̲ ̲t̲o̲E̲x̲p̲r̲e̲s̲s̲i̲o̲n̲,̲ ̲F̲i̲n̲.̲s̲u̲m̲_̲u̲n̲i̲v̲_̲s̲u̲c̲c̲,̲ ̲b̲o̲t̲t̲o̲m̲,̲
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲t̲o̲p̲,̲ ̲m̲u̲l̲_̲s̲m̲u̲l̲,̲ ̲a̲d̲d̲_̲c̲o̲m̲m̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Fact762CsigmasqD5/D2.lean:63:53: warning: This simp argument is unused:
+  mul_smul
+
+Hint: Omit it from the simp argument list.
+  simp [̵W̵i̵r̵e̵.̵e̵x̵p̵a̵n̵d̵e̵d̵,̵h̵t̵,̵M̵o̵d̵u̵l̵e̵E̵x̵p̵r̵e̵s̵s̵i̵o̵n̵s̵.̵e̵v̵a̵l̵u̵a̵t̵e̵,̵t̵o̵E̵x̵p̵r̵e̵s̵s̵i̵o̵n̵,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵F̵i̵n̵.̵s̵u̵m̵_̵u̵n̵i̵v̵_̵s̵u̵c̵c̵,̵b̵o̵t̵t̵o̵m̵,̵t̵o̵p̵,̵e̵v̵a̵l̵u̵a̵t̵e̵_̵m̵u̵l̵t̵i̵p̵l̵y̵,̵m̵u̵l̵_̵s̵m̵u̵l̵,̵a̵d̵d̵_̵c̵o̵m̵m̵]̵[̲W̲i̲r̲e̲.̲e̲x̲p̲a̲n̲d̲e̲d̲,̲ ̲h̲t̲,̲ ̲M̲o̲d̲u̲l̲e̲E̲x̲p̲r̲e̲s̲s̲i̲o̲n̲s̲.̲e̲v̲a̲l̲u̲a̲t̲e̲,̲ ̲t̲o̲E̲x̲p̲r̲e̲s̲s̲i̲o̲n̲,̲ ̲F̲i̲n̲.̲s̲u̲m̲_̲u̲n̲i̲v̲_̲s̲u̲c̲c̲,̲ ̲b̲o̲t̲t̲o̲m̲,̲
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲t̲o̲p̲,̲ ̲e̲v̲a̲l̲u̲a̲t̲e̲_̲m̲u̲l̲t̲i̲p̲l̲y̲,̲ ̲a̲d̲d̲_̲c̲o̲m̲m̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'Fact762CsigmasqD5.D2.check_sound' depends on axioms: [propext]
+'Fact762CsigmasqD5.D2.differential_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

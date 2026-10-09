@@ -1,0 +1,33 @@
+Row3147H2Product/Actual.lean:149:41: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  I.target3.equivalence 0
+in the target expression
+  I.target3.equivalence 0 = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+I : Stage2 S pages P
+K : I.Prefix
+⊢ I.target3.equivalence 0 = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 3 (AdamsTarget 3 productDegree)).carrier
+  but is expected to have type
+    (S.element 3 targetDegree).carrier
+  in the application
+    I.target3.equivalence 0
+'Row3147H2Product.Actual.Stage2.productInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.name3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.trace3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.nonzero3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.factor_d3_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.source_d3_zero_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.product_name' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.named_d3_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.trace4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.same_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3147H2Product.Actual.Stage2.named_output' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

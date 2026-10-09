@@ -1,0 +1,33 @@
+Prop79TargetSearch/Tactic.lean:10:10: error: unexpected identifier; expected prec
+Prop79TargetSearch/Tactic.lean:11:26: error: unexpected token 'syntax'; expected ':'
+Prop79TargetSearch/Tactic.lean:38:2: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Prop79TargetSearch.Constructed.Certificate.prefix`, so it is not possible to project the field `prefix` from an expression
+  certificate
+of type `Certificate S pages initial`
+Prop79TargetSearch/Tactic.lean:38:2: error(lean.invalidField): Invalid field `last`: The environment does not contain `Prop79TargetSearch.Constructed.Certificate.last`, so it is not possible to project the field `last` from an expression
+  certificate
+of type `Certificate S pages initial`
+Prop79TargetSearch/Tactic.lean:38:2: error: Tactic `assumption` failed
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+initial : AdditiveCoordinates S 2 4
+certificate : Certificate S pages initial
+⊢ initial.coordinates.equivalence (raw initial) = NoHit.input
+Prop79TargetSearch/Tactic.lean:45:2: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Prop79TargetSearch.Constructed.Certificate.prefix`, so it is not possible to project the field `prefix` from an expression
+  certificate
+of type `Certificate S pages initial`
+Prop79TargetSearch/Tactic.lean:45:2: error(lean.invalidField): Invalid field `last`: The environment does not contain `Prop79TargetSearch.Constructed.Certificate.last`, so it is not possible to project the field `last` from an expression
+  certificate
+of type `Certificate S pages initial`
+Prop79TargetSearch/Tactic.lean:48:43: warning: Variable name `certificate` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Prop79TargetSearch/Tactic.lean:54:43: warning: Variable name `certificate` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Prop79TargetSearch.Constructed.tactic_fixed' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Prop79TargetSearch.Constructed.tactic_input' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

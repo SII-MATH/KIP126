@@ -1,0 +1,426 @@
+{
+  "candidate_details": [
+    {
+      "factor": {
+        "basis": [
+          {
+            "id": 0,
+            "mon": "0"
+          }
+        ],
+        "degree": [
+          0,
+          0
+        ],
+        "indices": [
+          0
+        ]
+      },
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta",
+        "to": "CW_2_eta"
+      },
+      "ordinal": 9,
+      "section": "maps_v2",
+      "source_E2_coordinates": [],
+      "source_degree": [
+        10,
+        137
+      ],
+      "source_quotient": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "target_E2_coordinates": [
+        4
+      ],
+      "target_degree": [
+        13,
+        139
+      ],
+      "target_quotient": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "factor": {
+        "basis": [
+          {
+            "id": 0,
+            "mon": "0"
+          }
+        ],
+        "degree": [
+          0,
+          0
+        ],
+        "indices": [
+          0
+        ]
+      },
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__C2h6",
+        "to": "C2h6"
+      },
+      "ordinal": 63,
+      "section": "maps_v2",
+      "source_E2_coordinates": [
+        7
+      ],
+      "source_degree": [
+        10,
+        137
+      ],
+      "source_quotient": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "target_E2_coordinates": [
+        6
+      ],
+      "target_degree": [
+        13,
+        139
+      ],
+      "target_quotient": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "factor": {
+        "basis": [
+          {
+            "id": 0,
+            "mon": "0"
+          }
+        ],
+        "degree": [
+          0,
+          0
+        ],
+        "indices": [
+          0
+        ]
+      },
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h6",
+        "to": "DC2h6"
+      },
+      "ordinal": 66,
+      "section": "maps_v2",
+      "source_E2_coordinates": [
+        4
+      ],
+      "source_degree": [
+        10,
+        137
+      ],
+      "source_quotient": [
+        0,
+        0,
+        0
+      ],
+      "target_E2_coordinates": [
+        1
+      ],
+      "target_degree": [
+        13,
+        139
+      ],
+      "target_quotient": [
+        1,
+        0
+      ]
+    }
+  ],
+  "complete_cycle_quotients": 97,
+  "counts": {
+    "candidate_needs_full_map_compatibility": 3,
+    "source_nonzero_quotient": 10,
+    "target_zero_quotient": 35,
+    "unknown": 22
+  },
+  "deterministic_rerun": true,
+  "explicit_ring_relation_lifts": 52,
+  "map_records": 70,
+  "noncycle_images": 0,
+  "recommendation": "S0__CW_2_eta: source annihilated in E2; the full one-dimensional E3 target is detected. Actual full map compatibility and naturality remain to prove.",
+  "reduction_steps": 178,
+  "report_sha256": "dba84d85de3033e8f4a024dbddfd77a63e21b912e37057d00e49b77e671cdffe",
+  "requested_max_s": 17,
+  "requested_max_t": 267,
+  "review_script_sha256": "ea69fd2146d55e7d6649975643a33bb25dc6d256c4e44d797a270376960e8cc7",
+  "row": [
+    2929,
+    10,
+    137,
+    "3",
+    null,
+    9000
+  ],
+  "schema": "row2929_full_target_review/v1",
+  "shared_reviewer_sha256": "557efe11ed1b33c89b3d02c88de0eaab66f5c627b6e77736e0f8b83eaf76fcc2",
+  "source_basis_id": 2932,
+  "status": "independently_replayed_bounded_search_not_a_Lean_theorem",
+  "target_E2_coordinates": [
+    1,
+    0,
+    0
+  ],
+  "target_coordinates": [
+    1
+  ],
+  "unknown_stages": [
+    {
+      "map": "S0__tmf",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__tmf",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__CW_eta_nu_by_sigma",
+      "reason": "d2 degree t=151 exceeds d2_t_max=150",
+      "stage": "source"
+    },
+    {
+      "map": "S0__CW_eta_nu_by_sigma",
+      "reason": "d2 degree t=153 exceeds d2_t_max=150",
+      "stage": "target"
+    },
+    {
+      "map": "S0__CW_2_eta_nu_by_sigma",
+      "reason": "d2 degree t=152 exceeds d2_t_max=150",
+      "stage": "source"
+    },
+    {
+      "map": "S0__CW_2_eta_nu_by_sigma",
+      "reason": "d2 degree t=154 exceeds d2_t_max=150",
+      "stage": "target"
+    },
+    {
+      "map": "S0__Csigmasq",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__Csigmasq",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__Ctheta4",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__Ctheta4",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__Ctheta5",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__Ctheta5",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__C2sigma",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__C2sigma",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__DC2h4",
+      "reason": "d2 degree t=137 exceeds d2_t_max=135",
+      "stage": "source"
+    },
+    {
+      "map": "S0__DC2h4",
+      "reason": "d2 degree t=139 exceeds d2_t_max=135",
+      "stage": "target"
+    },
+    {
+      "map": "S0__DC2h5",
+      "reason": "unknown d2 in complete quotient at basis id 4394",
+      "stage": "target"
+    },
+    {
+      "map": "S0__Fphi",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__Fphi",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__CW_2_A_eta",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__CW_2_A_eta",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S1__CW_2_A_eta",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S1__CW_2_A_eta",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__S0_by_theta5",
+      "reason": "d2 degree t=201 exceeds d2_t_max=177",
+      "stage": "source"
+    },
+    {
+      "map": "S0__S0_by_theta5",
+      "reason": "d2 degree t=203 exceeds d2_t_max=177",
+      "stage": "target"
+    },
+    {
+      "map": "S0__S0_by_theta5sq",
+      "reason": "E2 degree t=265 exceeds t_max=261",
+      "stage": "source"
+    },
+    {
+      "map": "S0__S0_by_theta5sq",
+      "reason": "E2 degree t=267 exceeds t_max=261",
+      "stage": "target"
+    },
+    {
+      "map": "S0__C2_by_h6",
+      "reason": "E2 degree t=201 exceeds t_max=200",
+      "stage": "source"
+    },
+    {
+      "map": "S0__C2_by_h6",
+      "reason": "E2 degree t=203 exceeds t_max=200",
+      "stage": "target"
+    },
+    {
+      "map": "S0__CW_2_eta_by_theta5sq",
+      "reason": "E2 degree t=265 exceeds t_max=200",
+      "stage": "source"
+    },
+    {
+      "map": "S0__CW_2_eta_by_theta5sq",
+      "reason": "E2 degree t=267 exceeds t_max=200",
+      "stage": "target"
+    },
+    {
+      "map": "S0__Csigmasq_by_2",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__Csigmasq_by_2",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__Ctheta4_by_2",
+      "reason": "no d2 column",
+      "stage": "source"
+    },
+    {
+      "map": "S0__Ctheta4_by_2",
+      "reason": "no d2 column",
+      "stage": "target"
+    },
+    {
+      "map": "S0__Ctheta5_by_2",
+      "reason": "E2 degree t=201 exceeds t_max=200",
+      "stage": "source"
+    },
+    {
+      "map": "S0__Ctheta5_by_2",
+      "reason": "E2 degree t=203 exceeds t_max=200",
+      "stage": "target"
+    },
+    {
+      "map": "S0__DC2h4_by_sigmasq",
+      "reason": "d2 degree t=168 exceeds d2_t_max=135",
+      "stage": "source"
+    },
+    {
+      "map": "S0__DC2h4_by_sigmasq",
+      "reason": "d2 degree t=170 exceeds d2_t_max=135",
+      "stage": "target"
+    },
+    {
+      "map": "S0__DC2h5_by_theta4",
+      "reason": "E2 degree t=201 exceeds t_max=200",
+      "stage": "source"
+    },
+    {
+      "map": "S0__DC2h5_by_theta4",
+      "reason": "E2 degree t=202 exceeds t_max=200",
+      "stage": "target"
+    },
+    {
+      "map": "S0__DC2h6_by_theta5",
+      "reason": "E2 degree t=264 exceeds t_max=200",
+      "stage": "source"
+    },
+    {
+      "map": "S0__DC2h6_by_theta5",
+      "reason": "E2 degree t=266 exceeds t_max=200",
+      "stage": "target"
+    }
+  ],
+  "viable_candidates": [
+    "S0__CW_2_eta",
+    "S0__C2h6",
+    "S0__DC2h6"
+  ],
+  "wrapper_sha256": "26ff01de9b71878df8cef73286ef68022730e2b91850e55572f9022eb8d55a3e"
+}

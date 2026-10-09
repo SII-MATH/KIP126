@@ -1,0 +1,97 @@
+{
+  "status": "no_correctness_findings",
+  "modules": [
+    "Maps",
+    "Comparison",
+    "Naturality",
+    "MapSemantics",
+    "Actual",
+    "Overlay",
+    "CoordinateBridge"
+  ],
+  "axiom_reports": 20,
+  "raw_row": [
+    2622,
+    11,
+    133,
+    "1",
+    null,
+    9000
+  ],
+  "matrices": 6,
+  "columns": 11,
+  "reductions": 0,
+  "full_comparisons": 4,
+  "whole_chainmap_vectors": 18,
+  "named_raw_image": 2,
+  "named_boundary_preimage": 1,
+  "boundary_preimage_basis": 2722,
+  "induced_source_columns": [
+    1,
+    0
+  ],
+  "induced_target_columns": [
+    2
+  ],
+  "target_injective": true,
+  "quotient_coordinate_changes": [
+    {
+      "key": "S0:11,133:d2",
+      "forward": [
+        3,
+        2
+      ],
+      "inverse": [
+        3,
+        2
+      ]
+    },
+    {
+      "key": "S0:14,135:d2",
+      "forward": [
+        1
+      ],
+      "inverse": [
+        1
+      ]
+    }
+  ],
+  "local_quotient_pairs": 52,
+  "baseline_preserved": 1257,
+  "added": 15,
+  "union": 1272,
+  "graph": 1269,
+  "blocked": 151,
+  "overlay_quotient_pairs": 9489,
+  "overlay_vectors": 2551,
+  "adjacent": 966,
+  "predecessor_dimensions": 2316,
+  "finite_E7_trajectory": [
+    [
+      2,
+      3,
+      1
+    ],
+    [
+      3,
+      1,
+      1
+    ],
+    [
+      4,
+      1,
+      1
+    ],
+    [
+      5,
+      1,
+      1
+    ],
+    [
+      6,
+      1,
+      1
+    ]
+  ],
+  "scope": "Actual whole coordinate meanings and actual d3 naturality are premises. The named source image is a nonzero E2 boundary, not literal zero; the whole source quotient map is nonzero. Inherited zero-prefix interpretation remains a premise. Finite E7 is not actual sphere E7/E12 survival."
+}

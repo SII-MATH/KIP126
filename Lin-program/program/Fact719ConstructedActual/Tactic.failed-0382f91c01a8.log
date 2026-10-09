@@ -1,0 +1,13 @@
+Fact719ConstructedActual/Tactic.lean:28:5: error: unexpected token 'named'; expected '_' or identifier
+Fact719ConstructedActual/Tactic.lean:33:43: warning: Variable name `certificate` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Fact719ConstructedActual/Tactic.lean:39:43: warning: Variable name `certificate` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Fact719ConstructedActual.result_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact719ConstructedActual.zero_input_rejected' depends on axioms: [propext, Classical.choice, Quot.sound]

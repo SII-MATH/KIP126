@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "modules": 9,
+  "standard_axiom_reports": 28,
+  "branches": [
+    {
+      "file": "zero-family.json",
+      "old": 1327,
+      "total": 1333,
+      "quotient_pairs": 9619,
+      "adjacent": 1017,
+      "consecutive": 833,
+      "same_input_finite_E9": true
+    },
+    {
+      "file": "residual-family.json",
+      "old": 1335,
+      "total": 1341,
+      "quotient_pairs": 9630,
+      "adjacent": 1024,
+      "consecutive": 841,
+      "same_input_finite_E9": true
+    }
+  ],
+  "actual_whole_map_review": "Named row2916 via complete descent; named row3135 only, no whole d3 claim",
+  "inputs": {
+    "Fact713Row2431Continuation/independent_review.py": "66c61e2ba0abfe3d1af6c5f05629b05a5f57721fb64dbe703a20b23d3101f2e5",
+    "Fact713Row2431Continuation/frozen-source.json": "21a8444ec4b6e9fa6b57122ec14efe3393f69ef79abcb890119b97850fc72bbe",
+    "Fact713Row2431Continuation/ActualRule.lean": "f53df45d3b3aad433b3a4c19fbaa396b25fb16c1989efde1148cbe33c280e4fa"
+  }
+}

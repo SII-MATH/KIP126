@@ -1,0 +1,98 @@
+{
+  "build_observation": {
+    "allowed_standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "assert_current": "passed",
+    "axiom_reports": 13,
+    "independent_recompile": false,
+    "modules": [
+      {
+        "compile_record_sha256": "d823a93555c400d31334e8bbecafa9311cf30b71cc11d8e428f9d90c49338fdf",
+        "exit_code": 0,
+        "log_sha256": "40e7e06b155723bacd72d21f58110de59a3c3856a50094c006c72fdb1f4668e6",
+        "module": "Page"
+      },
+      {
+        "compile_record_sha256": "17160a04786d7176ba0428b6d12ce6632362a6bf6ea3766494e4566accfeed3b",
+        "exit_code": 0,
+        "log_sha256": "25aa6eaa8fb49896636ad215491d7cbf971c763dd432f1dd0cb79c0018d46992",
+        "module": "Path"
+      },
+      {
+        "compile_record_sha256": "35a17108b7b5c2c93308c093bd77662825ec4ee33ca220e16ba9d8181f970bdd",
+        "exit_code": 0,
+        "log_sha256": "79f400389313d6ddcad7f50baac62d342ea70472bb0676e24e5cb6ce41ff6899",
+        "module": "Event"
+      },
+      {
+        "compile_record_sha256": "e50cfb50bb5cf63c2f444ff85b55ab585bcab6bc4c6a74b90083e10bf602b36c",
+        "exit_code": 0,
+        "log_sha256": "1690b4255e79e95139acb052036731238c81d0ad239ef3f51c51891f4ecd08c0",
+        "module": "Examples"
+      },
+      {
+        "compile_record_sha256": "e9005ed1ffabcc9c91a04d65834ebc131fa6ae235dde27292137617d6e22f05d",
+        "exit_code": 0,
+        "log_sha256": "b5ec85f18d20a2be726e412326e66e7ac354aea7c660f3954e629d36c25fcf64",
+        "module": "Counterexamples"
+      }
+    ]
+  },
+  "findings": [],
+  "inputs_sha256": {
+    "AggregateTargetInventory/EventAudit/Executable.lean": "9436b46064bd2c1a450814c5d5eee17f1f2d255012b1314d790fbf72d666a1d6",
+    "PageTransitionCertificates/Trajectory.lean": "514f2c74c3f16bf0a26b8a353d11c70e3960ead242e3f99e161fe75a1d8dcdc3",
+    "SemanticTrajectoryCertificates/Counterexamples.lean": "ead75e324ac7d2cde46586df58b39b35e80c16693455c9379a03b7a130eb1d9a",
+    "SemanticTrajectoryCertificates/Event.lean": "f09e4372cc6a8ff421f3782cf1d98f7532d074364be377a3d933425682671a6e",
+    "SemanticTrajectoryCertificates/Examples.lean": "254c64788b2cc7d7356a1d81727d6cce441704bc40cbf3b78fd13614ad75fd54",
+    "SemanticTrajectoryCertificates/Page.lean": "64539da0617101de775a1f59502308d34ac7c8d754165f0911d04ee1af65082f",
+    "SemanticTrajectoryCertificates/Path.lean": "ad20289eed9585469b8ecc76a15b0a70551e13cb55107dfb18d456202159e255",
+    "Step4ContractAudit/SemanticBridge.lean": "4063cbd69bb688d2327d53e94d7b0f598595d3a3d5bbaf0c54ce21e9a9927fd1"
+  },
+  "limitations": [
+    "The theorem transports all stages provided in a checked wire. Stage and Path contain no Adams page numbers, starting page, degree, or global completeness requirement. A nonempty prescribed range and genuine Adams realization must be supplied by an application.",
+    "Empty paths intentionally express zero preceding transitions; their acceptance does not prove survival through missing Adams pages.",
+    "The actual Incoming type must include every genuine possible incoming source in a mathematical application. incoming_all enforces every value of the supplied type but cannot certify that the caller chose the complete actual Adams source.",
+    "Coordinate examples prove finite matrix and quotient semantics. They do not establish the imported matrices, relations, external differential assumptions, or spectral-sequence models from original topology.",
+    "No findings concerns the soundness of the stated conditional finite-transport propositions; it is not a claim of unconditional Kervaire theorem completion."
+  ],
+  "reviewed_claims": [
+    {
+      "check": "Actual outgoing equality uses injective outgoing coordinates and zero identification. Nonboundary uses incoming_all for every actual incoming source. Nonzero next value follows full finite homology comparison and next_cycle only on a proved cycle. No incoming coordinate surjectivity is required for these implications.",
+      "theorem": "stage_transport"
+    },
+    {
+      "check": "Converse boundary lifting uses CompleteMeaning.incoming_surjective explicitly; current injectivity identifies the lifted actual boundary. The other direction uses next injectivity. The cycle hypothesis is retained.",
+      "theorem": "next_zero_iff_boundary"
+    },
+    {
+      "check": "Dimensions are supplied by Linked or EndsAt, eliminating vacuous unequal-shape commutation. Whole-object coordinate commutation, next_cycle, injectivity, and named coordinates derive equality with the next chosen element; equality of chosen path elements is not a premise.",
+      "theorem": "linked_transport / endpoint_transport"
+    },
+    {
+      "check": "Induction checks every provided stage and every connection, including the last projection to the exact endpoint. all_stages_hold extracts per-stage results without dropping either path.",
+      "theorem": "path_transport"
+    },
+    {
+      "check": "EventData stage equalities bind supplied models to every finite source/target stage. Both transported paths terminate at the same endpoint objects used by the final all-source differential intertwining premise. Injective target coordinates prove the named differential and zero coordinates prove its target nonzero.",
+      "theorem": "event_transport"
+    },
+    {
+      "check": "The tactic uses executable finite checking and event_from_check. Semantic meaning, connections, and all-source differential interpretation reside in the supplied EventData; the tactic does not synthesize mathematical realizations from numerical data.",
+      "theorem": "CertificateVerifier / bundle_sound"
+    },
+    {
+      "check": "Uses the real finite 6651 wire with two source and two target stages. coordinateEvent gives a concrete finite coordinate model; both single-result and batch lin_cert examples compile.",
+      "theorem": "Examples.event6651_full_semantics"
+    },
+    {
+      "check": "Rejects a real incoming image absent from the empty finite matrix, collapsed outgoing coordinates without injectivity, wrong named coordinates, a true boundary stage, corrupted earlier representative, and wrong final projection. Diagnostic identifies source[1].",
+      "theorem": "Counterexamples / Examples"
+    }
+  ],
+  "scope": "Five semantic trajectory modules and their finite checker, stage, and interpreted-event dependencies.",
+  "status": "independent_semantic_API_review_passed"
+}

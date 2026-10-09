@@ -1,0 +1,29 @@
+{
+  "status": "proposed_whole_E3_zero_product_is_false",
+  "right_target_E2_cycle": [
+    0,
+    0,
+    1
+  ],
+  "right_target_E3_coordinate": [
+    1
+  ],
+  "product_E2": [
+    0,
+    1
+  ],
+  "product_E3": [
+    1
+  ],
+  "boundary_E2": [
+    0,
+    1,
+    0
+  ],
+  "boundary_product_E2": [
+    0,
+    0
+  ],
+  "reason": "E2 column 1 is a d2 boundary; the nonzero E3 coordinate uses column 2.",
+  "replacement": "Known nonzero d4 from ss2149 gives injection on the whole one-dimensional E4 target; differentialSq forces the preceding d4 to vanish."
+}

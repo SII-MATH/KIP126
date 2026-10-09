@@ -1,0 +1,66 @@
+[
+  {
+    "name": "01-valid",
+    "observed_exit_code": 0,
+    "rebuilt": true,
+    "expected_rebuilt": true,
+    "input_sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58",
+    "log_sha256": "798f4d8829ba21c9065474283e3bf279baf5b3e5592007dbd541f063a9cbfe41"
+  },
+  {
+    "name": "02-cached",
+    "observed_exit_code": 0,
+    "rebuilt": false,
+    "expected_rebuilt": false,
+    "input_sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58",
+    "log_sha256": "f25dbfb8926108be3681339fb97c20a3ad55e4bb027bcceddb6e1cbe0f9d85d0"
+  },
+  {
+    "name": "03-changed-value-rejected",
+    "observed_exit_code": 1,
+    "rebuilt": false,
+    "expected_rebuilt": null,
+    "input_sha256": "aa67a169b0bba217aa0aa88a65346920c84c42447c36ba5f7ea65f422c1fe5d8",
+    "log_sha256": "5f0d2a282f13dcf2d25969b69870b6a2a85ab871a6724c104ed393c4e2f95fa3"
+  },
+  {
+    "name": "04-restored",
+    "observed_exit_code": 0,
+    "rebuilt": true,
+    "expected_rebuilt": true,
+    "input_sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58",
+    "log_sha256": "5353425307789c93bbf36b6fb349247b91cf99e60830810bcddd38acc9aa13a2"
+  },
+  {
+    "name": "05-crlf-binary-change",
+    "observed_exit_code": 0,
+    "rebuilt": true,
+    "expected_rebuilt": true,
+    "input_sha256": "9b6dd0f55d1cea37555db317f53a0631f694bd46df8018cc2aeed3d9e2f32f5f",
+    "log_sha256": "5353425307789c93bbf36b6fb349247b91cf99e60830810bcddd38acc9aa13a2"
+  },
+  {
+    "name": "06-unrelated-change",
+    "observed_exit_code": 0,
+    "rebuilt": false,
+    "expected_rebuilt": false,
+    "input_sha256": "9b6dd0f55d1cea37555db317f53a0631f694bd46df8018cc2aeed3d9e2f32f5f",
+    "log_sha256": "f25dbfb8926108be3681339fb97c20a3ad55e4bb027bcceddb6e1cbe0f9d85d0"
+  },
+  {
+    "name": "07-missing-input",
+    "observed_exit_code": 1,
+    "rebuilt": false,
+    "expected_rebuilt": null,
+    "input_sha256": null,
+    "log_sha256": "9eb33f6ce638ca72cbf4028386c8069e6c103169735bff69378a8cc1deca411c"
+  },
+  {
+    "name": "08-final-valid",
+    "observed_exit_code": 0,
+    "rebuilt": true,
+    "expected_rebuilt": true,
+    "input_sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58",
+    "log_sha256": "487e9b4cb00f767e655aec9cfd09d3ec7bcecbf5a8028cc58413b159c9a7de7b"
+  }
+]

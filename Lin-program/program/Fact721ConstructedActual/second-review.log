@@ -1,0 +1,142 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "counts": {
+    "all_coordinate_vectors": 8,
+    "cycle_coordinate_checks": 12,
+    "named_relabelings": 48,
+    "wrong_binding_counterexamples": 48
+  },
+  "cases": [
+    {
+      "name": "First",
+      "raw_row": 2622,
+      "basis_row": 2622,
+      "canonical_named": [
+        0,
+        1
+      ],
+      "staircase_named": [
+        0,
+        1
+      ],
+      "all_changes": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "meaning": "DetectorInput.binding is an explicit equation on the source class; it contains no differential value."
+    },
+    {
+      "name": "Second",
+      "raw_row": 2684,
+      "basis_row": 2682,
+      "canonical_named": [
+        1,
+        0
+      ],
+      "staircase_named": [
+        0,
+        1
+      ],
+      "all_changes": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "meaning": "DetectorInput.binding is an explicit equation on the source class; it contains no differential value."
+    }
+  ],
+  "axiom_reports": {
+    "Basic": 3,
+    "First": 6,
+    "Second": 9,
+    "Tactic": 4
+  },
+  "reviewed": [
+    "The same derived E3 element is passed to the actual detector theorem.",
+    "The naming equation is an explicit compatibility premise, not automatically discharged by the finite coordinate bridge.",
+    "No global injectivity of the source-meaning function is required by the zero-reflection argument.",
+    "Both basis columns are used before asserting that the whole actual d3 map is zero.",
+    "Second D4 assembly uses an already-whole actual map theorem and cannot choose an unknown branch."
+  ],
+  "limitations": [
+    "Actual realization, full initial/neighboring map meanings, naming equations and naturality remain premises.",
+    "Finite canonical/staircase equivalence alone cannot establish equality to an arbitrary actual detector source meaning.",
+    "First endpoint is E4, second E5; neither theorem establishes permanence."
+  ]
+}

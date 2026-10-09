@@ -1,0 +1,64 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "finite_replay": {
+    "full_square_cases": 65536,
+    "full_factor_cases": 65536,
+    "actual_extension_witnesses": 262144,
+    "accepted_wires": 1480,
+    "single_bit_witness_mutations": 16441,
+    "rejected_mutations": 11134
+  },
+  "semantic_checks": [
+    "Vector carries actual XOR AddCommGroup, matrices actual additive homomorphisms.",
+    "higher is whole image subgroup, including all combinations and redundant generators.",
+    "First/second/third existential representatives are checked through two full preimage equations.",
+    "Every square and factor basis equation implies equality on all vectors by proved linearity.",
+    "Transfer is ordinary existential coset semantics; no fourth witness or conclusion field.",
+    "Exact canonical roundtrip rejects unknown/duplicate fields; decode fixes matrix/vector dimensions.",
+    "File elaborator emits data, and soundness requires a separate kernel Boolean proof.",
+    "Diagnostics are advisory; batch rejection propagates any decode or semantic failure."
+  ],
+  "limitations": [
+    "External imported files need rebuild dependency tracking or explicit regeneration.",
+    "No identification of image subgroups with actual paper filtrations/crossing.",
+    "Not paper Theorem6.1 or synthetic/extension spectral-sequence realization.",
+    "Finite replay supports review, not the general Lean proof."
+  ],
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "exit_code": 0,
+      "standard_axiom_reports": 3,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Import",
+      "exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Examples",
+      "exit_code": 0,
+      "standard_axiom_reports": 9,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "standard_axiom_reports": 14,
+  "input_sha256": {
+    "RepresentativeSquareCertificates/Basic.lean": "ef7b6a64f4a8ba3feaeef5e86fc118cdf3bfe883fd7e450597095022a86550f2",
+    "RepresentativeSquareCertificates/Import.lean": "2aee27deaee8bb68f15eb1e8cac9ef2b63e018f035fd5c735682c5a33a6d49c0",
+    "RepresentativeSquareCertificates/Examples.lean": "acc7bebe1cc2c0fcb4056858a5052bc1393ce7d073f9bd2134de3a4a8f7b1c97",
+    "RepresentativeSquareCertificates/README.md": "e418d215cc9e70f260c520c78de02cda075c49fb0253f5acb6d4877473411db8",
+    "RepresentativeSquareCertificates/independent-review.py": "80b94e5cf638ac08f71c4ded62aac1e7df2ad6c42fd1ea417068d6186110b7a9",
+    "LinearCertificates/Checker.lean": "281b55ec37dd72dcbed24ec5ec7a8cbb0f0c5ea911b127a69234475b5d545ad5",
+    "LinearCertificates/Import.lean": "9dd78cd9dcf76d2fdf4e40180f9b6cbaae4f00b9ca2871164154904ab444697c",
+    "GeneralizedLeibnizAudit/RepresentativeSquare.lean": "713204fb9411597f2c58d1989c00ccbb86f6ad7b0ce3d6f24a69582d30f945be",
+    "RepresentativeSquareProducer/valid.jsonl": "4808fa9c3f2fcdc887fd71daeb09845f999ebfec162e00a2d1e7046ee253de9a"
+  }
+}

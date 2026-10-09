@@ -1,0 +1,73 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Fact713Row3005Closure.Data",
+      "axiom_reports": 0,
+      "source_sha256": "f09163e382c52bda3279642fe200173df91cac615e9ea6c6176bae318aed0fa1",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/IndexedPredecessorClosureTree/Basic.olean": "c22344baae471b2e125598b884975e087a9e000ac4a46176bba789890cb98ac2"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row3005Closure/Data.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row3005Closure/Data.olean"
+      ],
+      "log": "evidence/Data-20260922T030726611565Z.log",
+      "external_input_sha256": {
+        "Fact713Row3005Closure/trees.json": "ecd8ae26b63659235b5e9bf06143de9c8e395901467326e69cf548e465ff5ebc"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_stable": true,
+      "olean_sha256": "fdb011ede16262b9d9efb74564f3ed7ca566c3f969a2f0b38ddccab780a5947e"
+    },
+    {
+      "module": "Fact713Row3005Closure.Actual",
+      "axiom_reports": 7,
+      "source_sha256": "cc01a2f9f6069b946199f069e2524d78bc25012b1cc66a8fda46745e9e0e1f68",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row3005Closure/Data.olean": "fdb011ede16262b9d9efb74564f3ed7ca566c3f969a2f0b38ddccab780a5947e",
+        ".lake/build/lib/lean/Fact713Row3005Continuation/Branches.olean": "e12de925ff2d5464939b98edb1d50ed436c4582b29a68f8f5358bfd91f7c9117"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row3005Closure/Actual.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row3005Closure/Actual.olean"
+      ],
+      "log": "evidence/Actual-20260922T030738826974Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "c5233d80ecad2871eece03250c9c5825f7684471eaa44e5a9863a5c50a74aab1",
+      "inputs_stable": true,
+      "olean_sha256": "5457fa4141a2a13cc173140b68101e00cb044ed5c193565ef2e18622030a8625"
+    }
+  ],
+  "axiom_reports": 7,
+  "dependency_note": "Direct dependency hashes are historical observations at compile time; root builds may later rebuild registered dependencies.",
+  "files": {
+    "Fact713Row3005Closure/Actual-compile.json": "7a3c353e120daf45e3ea2533730d8093ee2f0849c5340380068dbca733c7fc2d",
+    "Fact713Row3005Closure/Actual.lean": "cc01a2f9f6069b946199f069e2524d78bc25012b1cc66a8fda46745e9e0e1f68",
+    "Fact713Row3005Closure/Data-compile.json": "3c700ed7b32d221d5e808447429f819e1a7ade84b0b95978d4fd24229c4ff522",
+    "Fact713Row3005Closure/Data.lean": "f09163e382c52bda3279642fe200173df91cac615e9ea6c6176bae318aed0fa1",
+    "Fact713Row3005Closure/README.md": "61c24a9fcf839534c7834fd269c93e5f4d84632e49fb23a3e184e34da2ec984c",
+    "Fact713Row3005Closure/compile.py": "395cb839841eeed6ac11917be89542b08a8158b7988c8dc17e5dad9a841c975d",
+    "Fact713Row3005Closure/evidence/Actual-20260922T030738826974Z.json": "7a3c353e120daf45e3ea2533730d8093ee2f0849c5340380068dbca733c7fc2d",
+    "Fact713Row3005Closure/evidence/Actual-20260922T030738826974Z.log": "c5233d80ecad2871eece03250c9c5825f7684471eaa44e5a9863a5c50a74aab1",
+    "Fact713Row3005Closure/evidence/Data-20260922T030726611565Z.json": "3c700ed7b32d221d5e808447429f819e1a7ade84b0b95978d4fd24229c4ff522",
+    "Fact713Row3005Closure/evidence/Data-20260922T030726611565Z.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Fact713Row3005Closure/freeze.py": "4f1a38eeb6a41f5b2e6e407083ed49c145c5c97df9709115fa6d3a2ed11ea344",
+    "Fact713Row3005Closure/generate.py": "22d00f0e13aadde718164f1a8a1459c11d6ff6bc681bdd6ecd4112e7d6f855af",
+    "Fact713Row3005Closure/modules.txt": "0dc8fd3357025ac5f69cae7b5c234af572af264d4b891cf5b4ba643bd4da7899",
+    "Fact713Row3005Closure/reproduction.json": "f92610b0904a26dd3448ff65c3971df38f833bf45b6f152f8e15e9fcaadf8a31",
+    "Fact713Row3005Closure/review.json": "f396854fc548792d0ffe33fa2435b89b03341a2414f92fe3f1468276d013c158",
+    "Fact713Row3005Closure/review.log": "f396854fc548792d0ffe33fa2435b89b03341a2414f92fe3f1468276d013c158",
+    "Fact713Row3005Closure/review.py": "ea36c9926f99bd890ffbcdc2600080ad72105224b3672b9411ae65686dc2a1cc",
+    "Fact713Row3005Closure/trees.json": "ecd8ae26b63659235b5e9bf06143de9c8e395901467326e69cf548e465ff5ebc",
+    "Fact713Row3005Closure/file-list.txt": "abdc9049030590b2ac033d8d0085097c2dd9d8e8f557510e002535fd44473cc9"
+  }
+}

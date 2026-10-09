@@ -1,0 +1,164 @@
+{
+  "status": "passed",
+  "reviewed_modules": [
+    {
+      "module": "Basic",
+      "source_sha256": "d5cfa16a208caa8866927545c7903a8c2eb4a5d0b7e6c341df400f8f4fa1de7b",
+      "compile_record_sha256": "b32f67f6326e3b27d8e6a523ff624f4fb22c5103c517693c243dc06e7cfa0394",
+      "axiom_reports": 3
+    },
+    {
+      "module": "Fact713",
+      "source_sha256": "a788dabca52247824001efc2acdda9689057374c2df2cac043b0effd2a44ab92",
+      "compile_record_sha256": "3dfb083fc21277a5a33d3bf6a826a27637c3ce2fb1061316641854a5380defcf",
+      "axiom_reports": 1
+    }
+  ],
+  "finite_horizon": 4,
+  "max_page_dimension": 3,
+  "complete_local_quotient_choices": {
+    "0": 1,
+    "1": 3,
+    "2": 11,
+    "3": 51
+  },
+  "full_quotient_equivalence_pairs": 1698,
+  "page_sequences": 2172,
+  "boundary_stability_comparisons": 87973,
+  "nonzero_endpoint_implications": 10820,
+  "cumulative_monotonicity_checks": 67452,
+  "outgoing_death_not_boundary": 8466,
+  "late_incoming_without_tail": 12345,
+  "exact_Adams_degree_queries": 14322,
+  "countermodels": {
+    "missing_tail": {
+      "initial": 1,
+      "cutoff": 0,
+      "steps": [
+        [
+          1,
+          0,
+          [
+            0
+          ]
+        ],
+        [
+          1,
+          0,
+          [
+            0
+          ]
+        ],
+        [
+          1,
+          0,
+          [
+            0
+          ]
+        ],
+        [
+          1,
+          0,
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "at": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "cycles": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "boundaries": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ]
+    },
+    "outgoing_death_with_zero_at": {
+      "initial": 1,
+      "steps": [
+        [
+          1,
+          0,
+          [
+            0
+          ]
+        ],
+        [
+          1,
+          0,
+          [
+            0
+          ]
+        ],
+        [
+          1,
+          0,
+          [
+            0
+          ]
+        ],
+        [
+          1,
+          1,
+          [
+            0
+          ]
+        ]
+      ],
+      "at": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "cycles": [
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "boundaries": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "missing_nonzero": {
+      "description": "The initial zero has a trace through every page and zero incoming tail, but belongs to Boundary 0 and BInfinity.",
+      "initial": 0,
+      "boundary_at_zero": true
+    },
+    "nonstrict_degree_cutoff": {
+      "page": 9,
+      "target": [
+        9,
+        132
+      ],
+      "legal_source": [
+        0,
+        124
+      ],
+      "explanation": "At r=s=9 a nonzero incoming source may exist; only r>s excludes it."
+    }
+  },
+  "scope": "Independent local additive-page quotient models with a constant infinite tail; not a reconstruction of the sphere or complete global Adams system.",
+  "build_note": "Only existing direct compile records read; no dependencies compiled. Current dependency object hashes may change during the root build."
+}

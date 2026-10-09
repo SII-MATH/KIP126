@@ -1,0 +1,59 @@
+import FilteredExtensionCertificates.Import
+
+namespace FilteredExtensionCertificates.Dimension64
+open LinearCertificates RepresentativeSquareCertificates
+set_option maxRecDepth 100000
+set_option maxHeartbeats 32000000
+
+elab "dimension64_data%" : term => do
+  let text ← IO.FS.readFile "FilteredExtensionProducer/case_dimension64.json"
+  match parse text.trimAscii.toString with
+  | .ok w => return Lean.toExpr w
+  | .error e => throwError "{e}"
+
+def wire : WireCertificate := dimension64_data%
+#check wire
+
+def matrix64 : Matrix 64 64 := fun i j => wire.data.f[i.val*64+j.val]!
+def vector64 : Vec 64 := fun i => wire.data.x[i.val]!
+
+def input : FilteredExtensionCertificates.Data :=
+  ⟨64,64,64,64,1,0,0,matrix64,fun _ => matrix64,fun _ => matrix64,vector64,vector64⟩
+
+def certificate : FilteredExtensionCertificates.Certificate input where
+  sourceFactors := fun _ _ _ => false
+  targetFactors := fun _ _ _ => false
+  mapFactors := fun _ => matrix64
+  sourceMember := vector64
+  imageMember := vector64
+  targetMember := vector64
+  representative := vector64
+  sourceCorrection := zero
+  targetCorrection := zero
+
+theorem decoded : decode wire = .ok ⟨input,certificate⟩ := by
+  rfl
+#print axioms decoded
+
+theorem checked : FilteredExtensionCertificates.check input certificate = true := by
+  simp only [FilteredExtensionCertificates.check,Bool.and_eq_true]
+  refine ⟨⟨⟨⟨⟨⟨?_,?_⟩,?_⟩,?_⟩,?_⟩,?_⟩,?_⟩
+  · apply of_decide_eq_true
+    decide
+  · apply of_decide_eq_true
+    decide
+  · change decide (∀ i : Fin 1, checkPreserves matrix64 matrix64 matrix64 matrix64 = true) = true
+    apply decide_eq_true
+    intro i
+    apply decide_eq_true
+    intro j k
+    rfl
+  · decide
+  · decide
+  · decide
+  · decide
+
+theorem valid : WireValid wire := ⟨⟨input,certificate⟩,decoded,check_sound _ _ checked⟩
+
+#print axioms valid
+end FilteredExtensionCertificates.Dimension64

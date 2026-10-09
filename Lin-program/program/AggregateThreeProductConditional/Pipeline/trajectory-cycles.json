@@ -1,0 +1,294 @@
+[
+  {
+    "staircase_id": 3744,
+    "event_page": 4,
+    "endpoints": [
+      {
+        "endpoint": "source",
+        "degree": [
+          18,
+          144
+        ],
+        "raw_local_indices": [
+          1
+        ],
+        "raw_vector": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:18,144:d2",
+            "coordinates": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "outgoing_value": [
+              0,
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1,
+              1,
+              0
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:18,144:d3",
+            "coordinates": [
+              1,
+              1,
+              0
+            ],
+            "outgoing_value": [
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1,
+              1,
+              0
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "endpoint": "target",
+        "degree": [
+          22,
+          147
+        ],
+        "raw_local_indices": [
+          1
+        ],
+        "raw_vector": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:22,147:d2",
+            "coordinates": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "outgoing_value": [
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1,
+              0
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:22,147:d3",
+            "coordinates": [
+              1,
+              0
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1,
+              0
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1,
+          0
+        ]
+      }
+    ],
+    "all_prior_cycles": true,
+    "conditional_uses": [
+      {
+        "block": "S0:18,144:d3",
+        "object": "S0",
+        "source": [
+          15,
+          142
+        ],
+        "page": 3,
+        "row": [
+          3325,
+          "2",
+          null,
+          9000
+        ],
+        "kind": "conditional_three_products",
+        "target_predecessor": "S0:18,144:d2"
+      }
+    ]
+  },
+  {
+    "staircase_id": 3745,
+    "event_page": 4,
+    "endpoints": [
+      {
+        "endpoint": "source",
+        "degree": [
+          18,
+          144
+        ],
+        "raw_local_indices": [
+          2,
+          3
+        ],
+        "raw_vector": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:18,144:d2",
+            "coordinates": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "outgoing_value": [
+              0,
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:18,144:d3",
+            "coordinates": [
+              0,
+              1,
+              1
+            ],
+            "outgoing_value": [
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "endpoint": "target",
+        "degree": [
+          22,
+          147
+        ],
+        "raw_local_indices": [
+          0,
+          3
+        ],
+        "raw_vector": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:22,147:d2",
+            "coordinates": [
+              1,
+              0,
+              0,
+              1
+            ],
+            "outgoing_value": [
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              0,
+              1
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:22,147:d3",
+            "coordinates": [
+              0,
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              0,
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          0,
+          1
+        ]
+      }
+    ],
+    "all_prior_cycles": true,
+    "conditional_uses": [
+      {
+        "block": "S0:18,144:d3",
+        "object": "S0",
+        "source": [
+          15,
+          142
+        ],
+        "page": 3,
+        "row": [
+          3325,
+          "2",
+          null,
+          9000
+        ],
+        "kind": "conditional_three_products",
+        "target_predecessor": "S0:18,144:d2"
+      }
+    ]
+  }
+]

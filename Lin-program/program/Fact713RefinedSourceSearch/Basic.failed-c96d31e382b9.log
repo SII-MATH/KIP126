@@ -1,0 +1,27 @@
+Fact713RefinedSourceSearch/Basic.lean:47:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (S.differential 4 middleDegree).toFun 0
+in the target expression
+  (S.differential 4 middleDegree).toFun ((S.differential 4 sourceDegree).toFun x) =
+    (S.differential 4 middleDegree).toFun 0
+
+S : AdamsSpectralSequence
+meaning : SuccessorMeaning S
+x : (S.element 4 sourceDegree).carrier
+⊢ (S.differential 4 middleDegree).toFun ((S.differential 4 sourceDegree).toFun x) =
+    (S.differential 4 middleDegree).toFun 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (S.differential 4 sourceDegree).toFun x
+  has type
+    (S.element 4 (AdamsTarget 4 sourceDegree)).carrier
+  but is expected to have type
+    (S.element 4 middleDegree).carrier
+  in the application
+    (S.differential 4 middleDegree).toFun ((S.differential 4 sourceDegree).toFun x)
+'Fact713RefinedSourceSearch.successor_injective' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedSourceSearch.finite_incoming_zero' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedSourceSearch.actual_successor_injective' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedSourceSearch.actual_source_d4_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713RefinedSourceSearch.all_actual_incoming_zero' depends on axioms: [propext, sorryAx, Quot.sound]

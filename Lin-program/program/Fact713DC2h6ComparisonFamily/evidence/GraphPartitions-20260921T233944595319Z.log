@@ -1,0 +1,8 @@
+Fact713DC2h6ComparisonFamily/GraphPartitions.lean:22:2: error: Type mismatch
+  sortBy_perm (fun a b => ?m.11) keys
+has type
+  (sortBy (fun a b => ?m.11) keys).Perm keys
+but is expected to have type
+  (cachedSort keys).Perm keys
+'Fact713DC2h6ComparisonFamily.GraphCoverage.family_partition' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713DC2h6ComparisonFamily.GraphCoverage.request_partition' depends on axioms: [propext, sorryAx, Quot.sound]

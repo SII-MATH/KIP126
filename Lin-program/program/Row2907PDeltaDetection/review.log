@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "counts": {
+    "sql_relations": 15,
+    "product_columns": 6,
+    "product_cycle_pairs": 24,
+    "quotient_pairs": 261,
+    "cycle_vectors": 53,
+    "comparisons": 18,
+    "staircase_columns": 26,
+    "d2_basis_changes": 9,
+    "rejected_zero_source_models": 32,
+    "nonzero_actual_models": 32
+  },
+  "source_sha256": "b08d170fdc8af0599310ccfe25c101cf72739d2000d4d4b34ff3977eaf21d9a3",
+  "limitation": "Finite algebra and explicit actual-product assumptions only. Known ss6934 d4 is an actual premise; source ss2907 NULL is preserved. Nine full staircase d2 meanings remain explicit, not inferred from levels."
+}

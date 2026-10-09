@@ -1,0 +1,4742 @@
+{
+  "matrices": {
+    "Ctheta4:12,166": {
+      "source_degree": [
+        12,
+        166
+      ],
+      "target_degree": [
+        14,
+        167
+      ],
+      "source": [
+        [
+          8279,
+          "408,1,1"
+        ],
+        [
+          8280,
+          "0,1,386,1,1"
+        ],
+        [
+          8281,
+          "0,2,69,1,80,1,1"
+        ],
+        [
+          8282,
+          "0,1,712,1,0"
+        ],
+        [
+          8283,
+          "0,2,18,1,366,1,0"
+        ],
+        [
+          8284,
+          "0,4,676,1,0"
+        ]
+      ],
+      "target": [
+        [
+          8439,
+          "0,1,407,1,1"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 8279,
+          "mon": "408,1,1",
+          "coefficient": {
+            "id": 2775,
+            "mon": "408,1",
+            "d2": "",
+            "degree": [
+              12,
+              135
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                408
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  1,
+                  3,
+                  477
+                ],
+                [
+                  7,
+                  408
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  3,
+                  7
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7
+                ]
+              ]
+            },
+            {
+              "relation": 1,
+              "multiplier": [
+                [
+                  1,
+                  477
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 15359,
+              "raw": "7,1,408,1;1,1,3,1,477,1",
+              "ring_degree": [
+                13,
+                151
+              ],
+              "generator": 0,
+              "degree": [
+                13,
+                151
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 27,
+              "raw": "3,1,7,1",
+              "ring_degree": [
+                2,
+                24
+              ],
+              "generator": 0,
+              "degree": [
+                2,
+                24
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8280,
+          "mon": "0,1,386,1,1",
+          "coefficient": {
+            "id": 2776,
+            "mon": "0,1,386,1",
+            "d2": "",
+            "degree": [
+              12,
+              135
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                7,
+                7,
+                386
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  6,
+                  396
+                ],
+                [
+                  7,
+                  386
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  2,
+                  2,
+                  13
+                ],
+                [
+                  6,
+                  7
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  2,
+                  2
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "relation": 1,
+              "multiplier": [
+                [
+                  0,
+                  396
+                ]
+              ]
+            },
+            {
+              "relation": 2,
+              "multiplier": [
+                [
+                  13,
+                  396
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 14864,
+              "raw": "7,1,386,1;6,1,396,1",
+              "ring_degree": [
+                12,
+                150
+              ],
+              "generator": 0,
+              "degree": [
+                12,
+                150
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 61,
+              "raw": "6,1,7,1;2,2,13,1",
+              "ring_degree": [
+                6,
+                32
+              ],
+              "generator": 0,
+              "degree": [
+                6,
+                32
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 5,
+              "raw": "0,1,2,2",
+              "ring_degree": [
+                3,
+                9
+              ],
+              "generator": 0,
+              "degree": [
+                3,
+                9
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8281,
+          "mon": "0,2,69,1,80,1,1",
+          "coefficient": {
+            "id": 2777,
+            "mon": "0,2,69,1,80,1",
+            "d2": "",
+            "degree": [
+              12,
+              135
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                0,
+                7,
+                7,
+                69,
+                80
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  80
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  0,
+                  7,
+                  69
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 1509,
+              "raw": "7,1,80,1",
+              "ring_degree": [
+                10,
+                85
+              ],
+              "generator": 0,
+              "degree": [
+                10,
+                85
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8282,
+          "mon": "0,1,712,1,0",
+          "coefficient": {
+            "id": 5504,
+            "mon": "0,1,712,1",
+            "d2": "",
+            "degree": [
+              12,
+              166
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8283,
+          "mon": "0,2,18,1,366,1,0",
+          "coefficient": {
+            "id": 5505,
+            "mon": "0,2,18,1,366,1",
+            "d2": "",
+            "degree": [
+              12,
+              166
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8284,
+          "mon": "0,4,676,1,0",
+          "coefficient": {
+            "id": 5506,
+            "mon": "0,4,676,1",
+            "d2": "",
+            "degree": [
+              12,
+              166
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        }
+      ],
+      "rows": 1,
+      "cols": 6,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Ctheta4:14,167": {
+      "source_degree": [
+        14,
+        167
+      ],
+      "target_degree": [
+        16,
+        168
+      ],
+      "source": [
+        [
+          8439,
+          "0,1,407,1,1"
+        ]
+      ],
+      "target": [
+        [
+          8623,
+          "422,1,1"
+        ],
+        [
+          8624,
+          "8,1,261,1,1"
+        ],
+        [
+          8625,
+          "0,1,7,1,267,1,1"
+        ],
+        [
+          8626,
+          "8,2,367,1,0"
+        ],
+        [
+          8627,
+          "3,1,650,1,0"
+        ],
+        [
+          8628,
+          "1,1,18,1,385,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 8439,
+          "mon": "0,1,407,1,1",
+          "coefficient": {
+            "id": 2841,
+            "mon": "0,1,407,1",
+            "d2": "",
+            "degree": [
+              14,
+              136
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                7,
+                7,
+                407
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  407
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 15377,
+              "raw": "7,1,407,1",
+              "ring_degree": [
+                14,
+                151
+              ],
+              "generator": 0,
+              "degree": [
+                14,
+                151
+              ]
+            }
+          ],
+          "coordinates": []
+        }
+      ],
+      "rows": 6,
+      "cols": 1,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Ctheta4:15,168": {
+      "source_degree": [
+        15,
+        168
+      ],
+      "target_degree": [
+        17,
+        169
+      ],
+      "source": [
+        [
+          8629,
+          "424,1,1"
+        ],
+        [
+          8630,
+          "423,1,1"
+        ],
+        [
+          8631,
+          "741,1,0"
+        ],
+        [
+          8632,
+          "740,1,0"
+        ],
+        [
+          8633,
+          "67,1,197,1,0"
+        ],
+        [
+          8634,
+          "8,1,562,1,0"
+        ],
+        [
+          8635,
+          "1,1,27,1,324,1,0"
+        ]
+      ],
+      "target": [
+        [
+          8805,
+          "436,1,1"
+        ],
+        [
+          8806,
+          "23,1,188,1,1"
+        ],
+        [
+          8807,
+          "0,1,422,1,1"
+        ],
+        [
+          8808,
+          "0,2,7,1,267,1,1"
+        ],
+        [
+          8809,
+          "75,1,188,1,0"
+        ],
+        [
+          8810,
+          "1,2,708,1,0"
+        ],
+        [
+          8811,
+          "0,1,8,2,367,1,0"
+        ],
+        [
+          8812,
+          "0,1,3,1,650,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 8629,
+          "mon": "424,1,1",
+          "coefficient": {
+            "id": 2909,
+            "mon": "424,1",
+            "d2": "3",
+            "degree": [
+              15,
+              137
+            ],
+            "differential_rows": [
+              [
+                2996,
+                "0,2,7,1,267,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                424
+              ]
+            ],
+            [
+              [
+                0,
+                0,
+                7,
+                267
+              ]
+            ]
+          ],
+          "output": [
+            [],
+            [
+              [
+                0,
+                0,
+                7,
+                267
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  5,
+                  18,
+                  209
+                ],
+                [
+                  7,
+                  424
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  5,
+                  7
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7
+                ]
+              ]
+            },
+            {
+              "relation": 1,
+              "multiplier": [
+                [
+                  18,
+                  209
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 16337,
+              "raw": "7,1,424,1;5,1,18,1,209,1",
+              "ring_degree": [
+                16,
+                153
+              ],
+              "generator": 0,
+              "degree": [
+                16,
+                153
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 52,
+              "raw": "5,1,7,1",
+              "ring_degree": [
+                6,
+                30
+              ],
+              "generator": 0,
+              "degree": [
+                6,
+                30
+              ]
+            }
+          ],
+          "coordinates": [
+            3
+          ]
+        },
+        {
+          "id": 8630,
+          "mon": "423,1,1",
+          "coefficient": {
+            "id": 2910,
+            "mon": "423,1",
+            "d2": "",
+            "degree": [
+              15,
+              137
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                423
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  423
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 16335,
+              "raw": "7,1,423,1",
+              "ring_degree": [
+                16,
+                153
+              ],
+              "generator": 0,
+              "degree": [
+                16,
+                153
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8631,
+          "mon": "741,1,0",
+          "coefficient": {
+            "id": 5720,
+            "mon": "741,1",
+            "d2": "",
+            "degree": [
+              15,
+              168
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8632,
+          "mon": "740,1,0",
+          "coefficient": {
+            "id": 5721,
+            "mon": "740,1",
+            "d2": "",
+            "degree": [
+              15,
+              168
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8633,
+          "mon": "67,1,197,1,0",
+          "coefficient": {
+            "id": 5722,
+            "mon": "67,1,197,1",
+            "d2": "",
+            "degree": [
+              15,
+              168
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8634,
+          "mon": "8,1,562,1,0",
+          "coefficient": {
+            "id": 5723,
+            "mon": "8,1,562,1",
+            "d2": "",
+            "degree": [
+              15,
+              168
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8635,
+          "mon": "1,1,27,1,324,1,0",
+          "coefficient": {
+            "id": 5724,
+            "mon": "1,1,27,1,324,1",
+            "d2": "",
+            "degree": [
+              15,
+              168
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        }
+      ],
+      "rows": 8,
+      "cols": 7,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Ctheta4:16,169": {
+      "source_degree": [
+        16,
+        169
+      ],
+      "target_degree": [
+        18,
+        170
+      ],
+      "source": [
+        [
+          8813,
+          "437,1,1"
+        ],
+        [
+          8814,
+          "23,1,189,1,1"
+        ],
+        [
+          8815,
+          "0,1,424,1,1"
+        ],
+        [
+          8816,
+          "75,1,189,1,0"
+        ],
+        [
+          8817,
+          "0,1,741,1,0"
+        ],
+        [
+          8818,
+          "0,1,67,1,197,1,0"
+        ]
+      ],
+      "target": [
+        [
+          8983,
+          "13,3,75,1,1"
+        ],
+        [
+          8984,
+          "0,1,23,1,188,1,1"
+        ],
+        [
+          8985,
+          "0,2,422,1,1"
+        ],
+        [
+          8986,
+          "761,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 8813,
+          "mon": "437,1,1",
+          "coefficient": {
+            "id": 2997,
+            "mon": "437,1",
+            "d2": "",
+            "degree": [
+              16,
+              138
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                437
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  437
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 16867,
+              "raw": "7,1,437,1",
+              "ring_degree": [
+                17,
+                154
+              ],
+              "generator": 0,
+              "degree": [
+                17,
+                154
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8814,
+          "mon": "23,1,189,1,1",
+          "coefficient": {
+            "id": 2998,
+            "mon": "23,1,189,1",
+            "d2": "",
+            "degree": [
+              16,
+              138
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                23,
+                189
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  23
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7,
+                  189
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 272,
+              "raw": "7,1,23,1",
+              "ring_degree": [
+                7,
+                52
+              ],
+              "generator": 0,
+              "degree": [
+                7,
+                52
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8815,
+          "mon": "0,1,424,1,1",
+          "coefficient": {
+            "id": 2999,
+            "mon": "0,1,424,1",
+            "d2": "",
+            "degree": [
+              16,
+              138
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                7,
+                7,
+                424
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  5,
+                  18,
+                  209
+                ],
+                [
+                  7,
+                  424
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  5
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  7
+                ]
+              ]
+            },
+            {
+              "relation": 1,
+              "multiplier": [
+                [
+                  7,
+                  18,
+                  209
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 16337,
+              "raw": "7,1,424,1;5,1,18,1,209,1",
+              "ring_degree": [
+                16,
+                153
+              ],
+              "generator": 0,
+              "degree": [
+                16,
+                153
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 12,
+              "raw": "0,1,5,1",
+              "ring_degree": [
+                6,
+                15
+              ],
+              "generator": 0,
+              "degree": [
+                6,
+                15
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8816,
+          "mon": "75,1,189,1,0",
+          "coefficient": {
+            "id": 5816,
+            "mon": "75,1,189,1",
+            "d2": "",
+            "degree": [
+              16,
+              169
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8817,
+          "mon": "0,1,741,1,0",
+          "coefficient": {
+            "id": 5817,
+            "mon": "0,1,741,1",
+            "d2": "",
+            "degree": [
+              16,
+              169
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8818,
+          "mon": "0,1,67,1,197,1,0",
+          "coefficient": {
+            "id": 5818,
+            "mon": "0,1,67,1,197,1",
+            "d2": "",
+            "degree": [
+              16,
+              169
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        }
+      ],
+      "rows": 4,
+      "cols": 6,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Ctheta4:17,169": {
+      "source_degree": [
+        17,
+        169
+      ],
+      "target_degree": [
+        19,
+        170
+      ],
+      "source": [
+        [
+          8805,
+          "436,1,1"
+        ],
+        [
+          8806,
+          "23,1,188,1,1"
+        ],
+        [
+          8807,
+          "0,1,422,1,1"
+        ],
+        [
+          8808,
+          "0,2,7,1,267,1,1"
+        ],
+        [
+          8809,
+          "75,1,188,1,0"
+        ],
+        [
+          8810,
+          "1,2,708,1,0"
+        ],
+        [
+          8811,
+          "0,1,8,2,367,1,0"
+        ],
+        [
+          8812,
+          "0,1,3,1,650,1,0"
+        ]
+      ],
+      "target": [
+        [
+          8979,
+          "0,1,22,1,188,1,1"
+        ],
+        [
+          8980,
+          "0,1,8,1,267,1,1"
+        ],
+        [
+          8981,
+          "0,2,17,1,209,1,1"
+        ],
+        [
+          8982,
+          "760,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 8805,
+          "mon": "436,1,1",
+          "coefficient": {
+            "id": 2993,
+            "mon": "436,1",
+            "d2": "0",
+            "degree": [
+              17,
+              138
+            ],
+            "differential_rows": [
+              [
+                3064,
+                "0,1,22,1,188,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                436
+              ]
+            ],
+            [
+              [
+                0,
+                22,
+                188
+              ]
+            ]
+          ],
+          "output": [
+            [],
+            [
+              [
+                0,
+                22,
+                188
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  436
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 16891,
+              "raw": "7,1,436,1",
+              "ring_degree": [
+                18,
+                154
+              ],
+              "generator": 0,
+              "degree": [
+                18,
+                154
+              ]
+            }
+          ],
+          "coordinates": [
+            0
+          ]
+        },
+        {
+          "id": 8806,
+          "mon": "23,1,188,1,1",
+          "coefficient": {
+            "id": 2994,
+            "mon": "23,1,188,1",
+            "d2": "0,2",
+            "degree": [
+              17,
+              138
+            ],
+            "differential_rows": [
+              [
+                3064,
+                "0,1,22,1,188,1",
+                ""
+              ],
+              [
+                3066,
+                "0,2,17,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                23,
+                188
+              ]
+            ],
+            [
+              [
+                0,
+                0,
+                17,
+                209
+              ],
+              [
+                0,
+                22,
+                188
+              ]
+            ]
+          ],
+          "output": [
+            [],
+            [
+              [
+                0,
+                0,
+                17,
+                209
+              ],
+              [
+                0,
+                22,
+                188
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  23
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7,
+                  188
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 272,
+              "raw": "7,1,23,1",
+              "ring_degree": [
+                7,
+                52
+              ],
+              "generator": 0,
+              "degree": [
+                7,
+                52
+              ]
+            }
+          ],
+          "coordinates": [
+            2,
+            0
+          ]
+        },
+        {
+          "id": 8807,
+          "mon": "0,1,422,1,1",
+          "coefficient": {
+            "id": 2995,
+            "mon": "0,1,422,1",
+            "d2": "2",
+            "degree": [
+              17,
+              138
+            ],
+            "differential_rows": [
+              [
+                3066,
+                "0,2,17,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                7,
+                7,
+                422
+              ]
+            ],
+            [
+              [
+                0,
+                0,
+                17,
+                209
+              ]
+            ]
+          ],
+          "output": [
+            [],
+            [
+              [
+                0,
+                0,
+                17,
+                209
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  422
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 16358,
+              "raw": "7,1,422,1",
+              "ring_degree": [
+                17,
+                153
+              ],
+              "generator": 0,
+              "degree": [
+                17,
+                153
+              ]
+            }
+          ],
+          "coordinates": [
+            2
+          ]
+        },
+        {
+          "id": 8808,
+          "mon": "0,2,7,1,267,1,1",
+          "coefficient": {
+            "id": 2996,
+            "mon": "0,2,7,1,267,1",
+            "d2": "",
+            "degree": [
+              17,
+              138
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                0,
+                7,
+                7,
+                7,
+                267
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  3,
+                  3,
+                  18
+                ],
+                [
+                  7,
+                  7,
+                  7
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  3,
+                  3
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  0,
+                  267
+                ]
+              ]
+            },
+            {
+              "relation": 1,
+              "multiplier": [
+                [
+                  18,
+                  267
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 214,
+              "raw": "7,3;3,2,18,1",
+              "ring_degree": [
+                3,
+                48
+              ],
+              "generator": 0,
+              "degree": [
+                3,
+                48
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 14,
+              "raw": "0,2,3,2",
+              "ring_degree": [
+                4,
+                18
+              ],
+              "generator": 0,
+              "degree": [
+                4,
+                18
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8809,
+          "mon": "75,1,188,1,0",
+          "coefficient": {
+            "id": 5812,
+            "mon": "75,1,188,1",
+            "d2": "",
+            "degree": [
+              17,
+              169
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8810,
+          "mon": "1,2,708,1,0",
+          "coefficient": {
+            "id": 5813,
+            "mon": "1,2,708,1",
+            "d2": "",
+            "degree": [
+              17,
+              169
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8811,
+          "mon": "0,1,8,2,367,1,0",
+          "coefficient": {
+            "id": 5814,
+            "mon": "0,1,8,2,367,1",
+            "d2": "",
+            "degree": [
+              17,
+              169
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 8812,
+          "mon": "0,1,3,1,650,1,0",
+          "coefficient": {
+            "id": 5815,
+            "mon": "0,1,3,1,650,1",
+            "d2": "",
+            "degree": [
+              17,
+              169
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        }
+      ],
+      "rows": 4,
+      "cols": 8,
+      "entries": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Ctheta4:18,170": {
+      "source_degree": [
+        18,
+        170
+      ],
+      "target_degree": [
+        20,
+        171
+      ],
+      "source": [
+        [
+          8983,
+          "13,3,75,1,1"
+        ],
+        [
+          8984,
+          "0,1,23,1,188,1,1"
+        ],
+        [
+          8985,
+          "0,2,422,1,1"
+        ],
+        [
+          8986,
+          "761,1,0"
+        ]
+      ],
+      "target": [
+        [
+          9181,
+          "455,1,1"
+        ],
+        [
+          9182,
+          "0,2,8,1,267,1,1"
+        ],
+        [
+          9183,
+          "0,3,17,1,209,1,1"
+        ],
+        [
+          9184,
+          "80,1,188,1,0"
+        ],
+        [
+          9185,
+          "17,1,475,1,0"
+        ],
+        [
+          9186,
+          "0,1,760,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 8983,
+          "mon": "13,3,75,1,1",
+          "coefficient": {
+            "id": 3067,
+            "mon": "13,3,75,1",
+            "d2": "",
+            "degree": [
+              18,
+              139
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                13,
+                13,
+                13,
+                75
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  2,
+                  25
+                ],
+                [
+                  7,
+                  13
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  2,
+                  25
+                ],
+                [
+                  7,
+                  13
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  1,
+                  34
+                ],
+                [
+                  2,
+                  2,
+                  25
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  26
+                ],
+                [
+                  1,
+                  25
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  13,
+                  26
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7,
+                  13,
+                  13,
+                  75
+                ]
+              ]
+            },
+            {
+              "relation": 1,
+              "multiplier": [
+                [
+                  2,
+                  13,
+                  25,
+                  75
+                ]
+              ]
+            },
+            {
+              "relation": 2,
+              "multiplier": [
+                [
+                  13,
+                  25,
+                  75
+                ]
+              ]
+            },
+            {
+              "relation": 3,
+              "multiplier": [
+                [
+                  13,
+                  34,
+                  75
+                ]
+              ]
+            },
+            {
+              "relation": 4,
+              "multiplier": [
+                [
+                  0,
+                  34,
+                  75
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 120,
+              "raw": "7,1,13,1;2,1,25,1",
+              "ring_degree": [
+                5,
+                40
+              ],
+              "generator": 0,
+              "degree": [
+                5,
+                40
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 120,
+              "raw": "7,1,13,1;2,1,25,1",
+              "ring_degree": [
+                5,
+                40
+              ],
+              "generator": 0,
+              "degree": [
+                5,
+                40
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 156,
+              "raw": "2,2,25,1;1,1,34,1",
+              "ring_degree": [
+                6,
+                44
+              ],
+              "generator": 0,
+              "degree": [
+                6,
+                44
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 100,
+              "raw": "1,1,25,1;0,1,26,1",
+              "ring_degree": [
+                5,
+                38
+              ],
+              "generator": 0,
+              "degree": [
+                5,
+                38
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 464,
+              "raw": "13,1,26,1",
+              "ring_degree": [
+                8,
+                61
+              ],
+              "generator": 0,
+              "degree": [
+                8,
+                61
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 8984,
+          "mon": "0,1,23,1,188,1,1",
+          "coefficient": {
+            "id": 3068,
+            "mon": "0,1,23,1,188,1",
+            "d2": "2",
+            "degree": [
+              18,
+              139
+            ],
+            "differential_rows": [
+              [
+                3136,
+                "0,3,17,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                7,
+                7,
+                23,
+                188
+              ]
+            ],
+            [
+              [
+                0,
+                0,
+                0,
+                17,
+                209
+              ]
+            ]
+          ],
+          "output": [
+            [],
+            [
+              [
+                0,
+                0,
+                0,
+                17,
+                209
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  23
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  7,
+                  188
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 272,
+              "raw": "7,1,23,1",
+              "ring_degree": [
+                7,
+                52
+              ],
+              "generator": 0,
+              "degree": [
+                7,
+                52
+              ]
+            }
+          ],
+          "coordinates": [
+            2
+          ]
+        },
+        {
+          "id": 8985,
+          "mon": "0,2,422,1,1",
+          "coefficient": {
+            "id": 3069,
+            "mon": "0,2,422,1",
+            "d2": "2",
+            "degree": [
+              18,
+              139
+            ],
+            "differential_rows": [
+              [
+                3136,
+                "0,3,17,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                0,
+                7,
+                7,
+                422
+              ]
+            ],
+            [
+              [
+                0,
+                0,
+                0,
+                17,
+                209
+              ]
+            ]
+          ],
+          "output": [
+            [],
+            [
+              [
+                0,
+                0,
+                0,
+                17,
+                209
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  422
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  0,
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 16358,
+              "raw": "7,1,422,1",
+              "ring_degree": [
+                17,
+                153
+              ],
+              "generator": 0,
+              "degree": [
+                17,
+                153
+              ]
+            }
+          ],
+          "coordinates": [
+            2
+          ]
+        },
+        {
+          "id": 8986,
+          "mon": "761,1,0",
+          "coefficient": {
+            "id": 5916,
+            "mon": "761,1",
+            "d2": "",
+            "degree": [
+              18,
+              170
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        }
+      ],
+      "rows": 6,
+      "cols": 4,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Ctheta4:19,171": {
+      "source_degree": [
+        19,
+        171
+      ],
+      "target_degree": [
+        21,
+        172
+      ],
+      "source": [
+        [
+          9187,
+          "0,3,422,1,1"
+        ],
+        [
+          9188,
+          "780,1,0"
+        ]
+      ],
+      "target": [
+        [
+          9374,
+          "13,3,80,1,1"
+        ],
+        [
+          9375,
+          "1,1,447,1,1"
+        ],
+        [
+          9376,
+          "0,1,455,1,1"
+        ],
+        [
+          9377,
+          "0,4,17,1,209,1,1"
+        ],
+        [
+          9378,
+          "1,1,64,1,209,1,0"
+        ],
+        [
+          9379,
+          "0,1,17,1,475,1,0"
+        ],
+        [
+          9380,
+          "0,2,760,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 9187,
+          "mon": "0,3,422,1,1",
+          "coefficient": {
+            "id": 3137,
+            "mon": "0,3,422,1",
+            "d2": "3",
+            "degree": [
+              19,
+              140
+            ],
+            "differential_rows": [
+              [
+                3241,
+                "0,4,17,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                7,
+                7,
+                422
+              ]
+            ],
+            [
+              [
+                0,
+                0,
+                0,
+                0,
+                17,
+                209
+              ]
+            ]
+          ],
+          "output": [
+            [],
+            [
+              [
+                0,
+                0,
+                0,
+                0,
+                17,
+                209
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  422
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  0,
+                  0,
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 16358,
+              "raw": "7,1,422,1",
+              "ring_degree": [
+                17,
+                153
+              ],
+              "generator": 0,
+              "degree": [
+                17,
+                153
+              ]
+            }
+          ],
+          "coordinates": [
+            3
+          ]
+        },
+        {
+          "id": 9188,
+          "mon": "780,1,0",
+          "coefficient": {
+            "id": 6050,
+            "mon": "780,1",
+            "d2": "",
+            "degree": [
+              19,
+              171
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        }
+      ],
+      "rows": 7,
+      "cols": 2,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Ctheta4:20,171": {
+      "source_degree": [
+        20,
+        171
+      ],
+      "target_degree": [
+        22,
+        172
+      ],
+      "source": [
+        [
+          9181,
+          "455,1,1"
+        ],
+        [
+          9182,
+          "0,2,8,1,267,1,1"
+        ],
+        [
+          9183,
+          "0,3,17,1,209,1,1"
+        ],
+        [
+          9184,
+          "80,1,188,1,0"
+        ],
+        [
+          9185,
+          "17,1,475,1,0"
+        ],
+        [
+          9186,
+          "0,1,760,1,0"
+        ]
+      ],
+      "target": [
+        [
+          9367,
+          "471,1,1"
+        ],
+        [
+          9368,
+          "8,1,13,2,101,1,1"
+        ],
+        [
+          9369,
+          "0,1,454,1,1"
+        ],
+        [
+          9370,
+          "785,1,0"
+        ],
+        [
+          9371,
+          "8,1,69,1,147,1,0"
+        ],
+        [
+          9372,
+          "0,1,8,1,582,1,0"
+        ],
+        [
+          9373,
+          "0,2,64,1,209,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 9181,
+          "mon": "455,1,1",
+          "coefficient": {
+            "id": 3134,
+            "mon": "455,1",
+            "d2": "",
+            "degree": [
+              20,
+              140
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                455
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  455
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 18049,
+              "raw": "7,1,455,1",
+              "ring_degree": [
+                21,
+                156
+              ],
+              "generator": 0,
+              "degree": [
+                21,
+                156
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 9182,
+          "mon": "0,2,8,1,267,1,1",
+          "coefficient": {
+            "id": 3135,
+            "mon": "0,2,8,1,267,1",
+            "d2": "",
+            "degree": [
+              20,
+              140
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                0,
+                7,
+                7,
+                8,
+                267
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  8
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  0,
+                  7,
+                  267
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 70,
+              "raw": "7,1,8,1",
+              "ring_degree": [
+                5,
+                34
+              ],
+              "generator": 0,
+              "degree": [
+                5,
+                34
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 9183,
+          "mon": "0,3,17,1,209,1,1",
+          "coefficient": {
+            "id": 3136,
+            "mon": "0,3,17,1,209,1",
+            "d2": "",
+            "degree": [
+              20,
+              140
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                7,
+                7,
+                17,
+                209
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  17
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  0,
+                  0,
+                  7,
+                  209
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 187,
+              "raw": "7,1,17,1",
+              "ring_degree": [
+                8,
+                46
+              ],
+              "generator": 0,
+              "degree": [
+                8,
+                46
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 9184,
+          "mon": "80,1,188,1,0",
+          "coefficient": {
+            "id": 6047,
+            "mon": "80,1,188,1",
+            "d2": "3",
+            "degree": [
+              20,
+              171
+            ],
+            "differential_rows": [
+              [
+                6135,
+                "0,2,64,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 0,
+          "input": [
+            [
+              [
+                0,
+                0,
+                64,
+                209
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [
+              [
+                0,
+                0,
+                64,
+                209
+              ]
+            ],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": [
+            6
+          ]
+        },
+        {
+          "id": 9185,
+          "mon": "17,1,475,1,0",
+          "coefficient": {
+            "id": 6048,
+            "mon": "17,1,475,1",
+            "d2": "2",
+            "degree": [
+              20,
+              171
+            ],
+            "differential_rows": [
+              [
+                6134,
+                "0,1,8,1,582,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 0,
+          "input": [
+            [
+              [
+                0,
+                8,
+                582
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [
+              [
+                0,
+                8,
+                582
+              ]
+            ],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": [
+            5
+          ]
+        },
+        {
+          "id": 9186,
+          "mon": "0,1,760,1,0",
+          "coefficient": {
+            "id": 6049,
+            "mon": "0,1,760,1",
+            "d2": "3",
+            "degree": [
+              20,
+              171
+            ],
+            "differential_rows": [
+              [
+                6135,
+                "0,2,64,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 0,
+          "input": [
+            [
+              [
+                0,
+                0,
+                64,
+                209
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [
+              [
+                0,
+                0,
+                64,
+                209
+              ]
+            ],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": [
+            6
+          ]
+        }
+      ],
+      "rows": 7,
+      "cols": 6,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    "Ctheta4:21,172": {
+      "source_degree": [
+        21,
+        172
+      ],
+      "target_degree": [
+        23,
+        173
+      ],
+      "source": [
+        [
+          9374,
+          "13,3,80,1,1"
+        ],
+        [
+          9375,
+          "1,1,447,1,1"
+        ],
+        [
+          9376,
+          "0,1,455,1,1"
+        ],
+        [
+          9377,
+          "0,4,17,1,209,1,1"
+        ],
+        [
+          9378,
+          "1,1,64,1,209,1,0"
+        ],
+        [
+          9379,
+          "0,1,17,1,475,1,0"
+        ],
+        [
+          9380,
+          "0,2,760,1,0"
+        ]
+      ],
+      "target": [
+        [
+          9546,
+          "0,1,471,1,1"
+        ],
+        [
+          9547,
+          "0,2,454,1,1"
+        ],
+        [
+          9548,
+          "8,2,423,1,0"
+        ],
+        [
+          9549,
+          "0,1,8,1,69,1,147,1,0"
+        ],
+        [
+          9550,
+          "0,3,64,1,209,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 9374,
+          "mon": "13,3,80,1,1",
+          "coefficient": {
+            "id": 3238,
+            "mon": "13,3,80,1",
+            "d2": "",
+            "degree": [
+              21,
+              141
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                13,
+                13,
+                13,
+                80
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  2,
+                  25
+                ],
+                [
+                  7,
+                  13
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  2,
+                  25
+                ],
+                [
+                  7,
+                  13
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  1,
+                  34
+                ],
+                [
+                  2,
+                  2,
+                  25
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  26
+                ],
+                [
+                  1,
+                  25
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  13,
+                  26
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7,
+                  13,
+                  13,
+                  80
+                ]
+              ]
+            },
+            {
+              "relation": 1,
+              "multiplier": [
+                [
+                  2,
+                  13,
+                  25,
+                  80
+                ]
+              ]
+            },
+            {
+              "relation": 2,
+              "multiplier": [
+                [
+                  13,
+                  25,
+                  80
+                ]
+              ]
+            },
+            {
+              "relation": 3,
+              "multiplier": [
+                [
+                  13,
+                  34,
+                  80
+                ]
+              ]
+            },
+            {
+              "relation": 4,
+              "multiplier": [
+                [
+                  0,
+                  34,
+                  80
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 120,
+              "raw": "7,1,13,1;2,1,25,1",
+              "ring_degree": [
+                5,
+                40
+              ],
+              "generator": 0,
+              "degree": [
+                5,
+                40
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 120,
+              "raw": "7,1,13,1;2,1,25,1",
+              "ring_degree": [
+                5,
+                40
+              ],
+              "generator": 0,
+              "degree": [
+                5,
+                40
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 156,
+              "raw": "2,2,25,1;1,1,34,1",
+              "ring_degree": [
+                6,
+                44
+              ],
+              "generator": 0,
+              "degree": [
+                6,
+                44
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 100,
+              "raw": "1,1,25,1;0,1,26,1",
+              "ring_degree": [
+                5,
+                38
+              ],
+              "generator": 0,
+              "degree": [
+                5,
+                38
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 464,
+              "raw": "13,1,26,1",
+              "ring_degree": [
+                8,
+                61
+              ],
+              "generator": 0,
+              "degree": [
+                8,
+                61
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 9375,
+          "mon": "1,1,447,1,1",
+          "coefficient": {
+            "id": 3239,
+            "mon": "1,1,447,1",
+            "d2": "",
+            "degree": [
+              21,
+              141
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                1,
+                7,
+                7,
+                447
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  4,
+                  501
+                ],
+                [
+                  7,
+                  447
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  4,
+                  500
+                ],
+                [
+                  4,
+                  501
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  1,
+                  1,
+                  18,
+                  260
+                ],
+                [
+                  4,
+                  500
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1,
+                  1
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  7,
+                  18
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  1,
+                  7
+                ]
+              ]
+            },
+            {
+              "relation": 1,
+              "multiplier": [
+                [
+                  1,
+                  7
+                ]
+              ]
+            },
+            {
+              "relation": 2,
+              "multiplier": [
+                [
+                  1,
+                  7
+                ]
+              ]
+            },
+            {
+              "relation": 3,
+              "multiplier": [
+                [
+                  7,
+                  18,
+                  260
+                ]
+              ]
+            },
+            {
+              "relation": 4,
+              "multiplier": [
+                [
+                  0,
+                  0,
+                  2,
+                  260
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 17492,
+              "raw": "7,1,447,1;4,1,501,1",
+              "ring_degree": [
+                21,
+                155
+              ],
+              "generator": 0,
+              "degree": [
+                21,
+                155
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 17493,
+              "raw": "4,1,501,1;4,1,500,1",
+              "ring_degree": [
+                21,
+                155
+              ],
+              "generator": 0,
+              "degree": [
+                21,
+                155
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 17494,
+              "raw": "4,1,500,1;1,2,18,1,260,1",
+              "ring_degree": [
+                21,
+                155
+              ],
+              "generator": 0,
+              "degree": [
+                21,
+                155
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 3,
+              "raw": "1,3;0,2,2,1",
+              "ring_degree": [
+                3,
+                6
+              ],
+              "generator": 0,
+              "degree": [
+                3,
+                6
+              ]
+            },
+            {
+              "kind": "ring_lift",
+              "rowid": 213,
+              "raw": "7,1,18,1",
+              "ring_degree": [
+                2,
+                48
+              ],
+              "generator": 0,
+              "degree": [
+                2,
+                48
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 9376,
+          "mon": "0,1,455,1,1",
+          "coefficient": {
+            "id": 3240,
+            "mon": "0,1,455,1",
+            "d2": "",
+            "degree": [
+              21,
+              141
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                7,
+                7,
+                455
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  455
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  7
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 18049,
+              "raw": "7,1,455,1",
+              "ring_degree": [
+                21,
+                156
+              ],
+              "generator": 0,
+              "degree": [
+                21,
+                156
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 9377,
+          "mon": "0,4,17,1,209,1,1",
+          "coefficient": {
+            "id": 3241,
+            "mon": "0,4,17,1,209,1",
+            "d2": "",
+            "degree": [
+              21,
+              141
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                0,
+                7,
+                7,
+                17,
+                209
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  7,
+                  7
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  17,
+                  209
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 82,
+              "raw": "0,4,7,2",
+              "ring_degree": [
+                6,
+                36
+              ],
+              "generator": 0,
+              "degree": [
+                6,
+                36
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 9378,
+          "mon": "1,1,64,1,209,1,0",
+          "coefficient": {
+            "id": 6136,
+            "mon": "1,1,64,1,209,1",
+            "d2": "",
+            "degree": [
+              21,
+              172
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 9379,
+          "mon": "0,1,17,1,475,1,0",
+          "coefficient": {
+            "id": 6137,
+            "mon": "0,1,17,1,475,1",
+            "d2": "",
+            "degree": [
+              21,
+              172
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 9380,
+          "mon": "0,2,760,1,0",
+          "coefficient": {
+            "id": 6138,
+            "mon": "0,2,760,1",
+            "d2": "2",
+            "degree": [
+              21,
+              172
+            ],
+            "differential_rows": [
+              [
+                6243,
+                "0,3,64,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 0,
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                64,
+                209
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [
+              [
+                0,
+                0,
+                0,
+                64,
+                209
+              ]
+            ],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": [
+            4
+          ]
+        }
+      ],
+      "rows": 5,
+      "cols": 7,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "Ctheta4:22,173": {
+      "source_degree": [
+        22,
+        173
+      ],
+      "target_degree": [
+        24,
+        174
+      ],
+      "source": [
+        [
+          9551,
+          "0,5,17,1,209,1,1"
+        ],
+        [
+          9552,
+          "8,1,13,2,209,1,0"
+        ],
+        [
+          9553,
+          "0,2,17,1,475,1,0"
+        ],
+        [
+          9554,
+          "0,3,760,1,0"
+        ]
+      ],
+      "target": [
+        [
+          9747,
+          "8,1,9,1,194,1,1"
+        ],
+        [
+          9748,
+          "812,1,0"
+        ],
+        [
+          9749,
+          "811,1,0"
+        ],
+        [
+          9750,
+          "13,2,303,1,0"
+        ],
+        [
+          9751,
+          "8,1,13,2,212,1,0"
+        ],
+        [
+          9752,
+          "0,2,8,1,69,1,147,1,0"
+        ],
+        [
+          9753,
+          "0,4,64,1,209,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 9551,
+          "mon": "0,5,17,1,209,1,1",
+          "coefficient": {
+            "id": 3307,
+            "mon": "0,5,17,1,209,1",
+            "d2": "",
+            "degree": [
+              22,
+              142
+            ],
+            "differential_rows": []
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                0,
+                0,
+                7,
+                7,
+                17,
+                209
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  7,
+                  7
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  0,
+                  17,
+                  209
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 82,
+              "raw": "0,4,7,2",
+              "ring_degree": [
+                6,
+                36
+              ],
+              "generator": 0,
+              "degree": [
+                6,
+                36
+              ]
+            }
+          ],
+          "coordinates": []
+        },
+        {
+          "id": 9552,
+          "mon": "8,1,13,2,209,1,0",
+          "coefficient": {
+            "id": 6244,
+            "mon": "8,1,13,2,209,1",
+            "d2": "",
+            "degree": [
+              22,
+              173
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 9553,
+          "mon": "0,2,17,1,475,1,0",
+          "coefficient": {
+            "id": 6245,
+            "mon": "0,2,17,1,475,1",
+            "d2": "",
+            "degree": [
+              22,
+              173
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 9554,
+          "mon": "0,3,760,1,0",
+          "coefficient": {
+            "id": 6246,
+            "mon": "0,3,760,1",
+            "d2": "5",
+            "degree": [
+              22,
+              173
+            ],
+            "differential_rows": [
+              [
+                6370,
+                "0,4,64,1,209,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 0,
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                0,
+                64,
+                209
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [
+              [
+                0,
+                0,
+                0,
+                0,
+                64,
+                209
+              ]
+            ],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": [
+            6
+          ]
+        }
+      ],
+      "rows": 7,
+      "cols": 4,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "Ctheta4:24,174": {
+      "source_degree": [
+        24,
+        174
+      ],
+      "target_degree": [
+        26,
+        175
+      ],
+      "source": [
+        [
+          9747,
+          "8,1,9,1,194,1,1"
+        ],
+        [
+          9748,
+          "812,1,0"
+        ],
+        [
+          9749,
+          "811,1,0"
+        ],
+        [
+          9750,
+          "13,2,303,1,0"
+        ],
+        [
+          9751,
+          "8,1,13,2,212,1,0"
+        ],
+        [
+          9752,
+          "0,2,8,1,69,1,147,1,0"
+        ],
+        [
+          9753,
+          "0,4,64,1,209,1,0"
+        ]
+      ],
+      "target": [
+        [
+          9940,
+          "8,2,13,3,23,1,1"
+        ],
+        [
+          9941,
+          "8,4,89,1,1"
+        ],
+        [
+          9942,
+          "0,1,810,1,0"
+        ],
+        [
+          9943,
+          "0,2,797,1,0"
+        ]
+      ],
+      "columns": [
+        {
+          "id": 9747,
+          "mon": "8,1,9,1,194,1,1",
+          "coefficient": {
+            "id": 3382,
+            "mon": "8,1,9,1,194,1",
+            "d2": "0",
+            "degree": [
+              24,
+              143
+            ],
+            "differential_rows": [
+              [
+                3470,
+                "8,2,13,3,23,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 1,
+          "input": [
+            [
+              [
+                7,
+                7,
+                8,
+                9,
+                194
+              ]
+            ],
+            [
+              [
+                8,
+                8,
+                13,
+                13,
+                13,
+                23
+              ]
+            ]
+          ],
+          "output": [
+            [],
+            [
+              [
+                8,
+                8,
+                13,
+                13,
+                13,
+                23
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  7,
+                  8
+                ]
+              ],
+              []
+            ]
+          ],
+          "terms": [
+            {
+              "relation": 0,
+              "multiplier": [
+                [
+                  7,
+                  9,
+                  194
+                ]
+              ]
+            }
+          ],
+          "relation_sources": [
+            {
+              "kind": "ring_lift",
+              "rowid": 70,
+              "raw": "7,1,8,1",
+              "ring_degree": [
+                5,
+                34
+              ],
+              "generator": 0,
+              "degree": [
+                5,
+                34
+              ]
+            }
+          ],
+          "coordinates": [
+            0
+          ]
+        },
+        {
+          "id": 9748,
+          "mon": "812,1,0",
+          "coefficient": {
+            "id": 6365,
+            "mon": "812,1",
+            "d2": "",
+            "degree": [
+              24,
+              174
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 9749,
+          "mon": "811,1,0",
+          "coefficient": {
+            "id": 6366,
+            "mon": "811,1",
+            "d2": "0,1",
+            "degree": [
+              24,
+              174
+            ],
+            "differential_rows": [
+              [
+                6470,
+                "0,1,810,1",
+                ""
+              ],
+              [
+                6471,
+                "0,2,797,1",
+                ""
+              ]
+            ]
+          },
+          "generator": 0,
+          "input": [
+            [
+              [
+                0,
+                0,
+                797
+              ],
+              [
+                0,
+                810
+              ]
+            ],
+            []
+          ],
+          "output": [
+            [
+              [
+                0,
+                0,
+                797
+              ],
+              [
+                0,
+                810
+              ]
+            ],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": [
+            3,
+            2
+          ]
+        },
+        {
+          "id": 9750,
+          "mon": "13,2,303,1,0",
+          "coefficient": {
+            "id": 6367,
+            "mon": "13,2,303,1",
+            "d2": "",
+            "degree": [
+              24,
+              174
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 9751,
+          "mon": "8,1,13,2,212,1,0",
+          "coefficient": {
+            "id": 6368,
+            "mon": "8,1,13,2,212,1",
+            "d2": "",
+            "degree": [
+              24,
+              174
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 9752,
+          "mon": "0,2,8,1,69,1,147,1,0",
+          "coefficient": {
+            "id": 6369,
+            "mon": "0,2,8,1,69,1,147,1",
+            "d2": "",
+            "degree": [
+              24,
+              174
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        },
+        {
+          "id": 9753,
+          "mon": "0,4,64,1,209,1,0",
+          "coefficient": {
+            "id": 6370,
+            "mon": "0,4,64,1,209,1",
+            "d2": "",
+            "degree": [
+              24,
+              174
+            ],
+            "differential_rows": []
+          },
+          "generator": 0,
+          "input": [
+            [],
+            []
+          ],
+          "output": [
+            [],
+            []
+          ],
+          "relations": [],
+          "terms": [],
+          "relation_sources": [],
+          "coordinates": []
+        }
+      ],
+      "rows": 4,
+      "cols": 7,
+      "entries": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "module_generator0": {
+    "degree": [
+      0,
+      0
+    ],
+    "d2": "complete empty target (2,1)"
+  },
+  "module_generator1": {
+    "degree": [
+      0,
+      31
+    ],
+    "row": [
+      99,
+      "0",
+      "0",
+      9998
+    ],
+    "target": [
+      105,
+      "7,2,0"
+    ],
+    "d2": "h4 squared times bottom cell"
+  },
+  "premise": "Actual finite coefficient d2 values, module generator1 d2, module action Leibniz and relations; no NULL value is converted to zero.",
+  "source_sha256": {
+    "upstream/kervaire-49/Ctheta4_AdamsSS_t200.db": "06dd759b3d36ed099ea66c54c89a10b0b6f0da2e838e625a6e85283cb1384cbe",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

@@ -1,0 +1,55 @@
+Row3005D4Search/Source.lean:56:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (nextCoordinates ?M ?pages ?valid ?zeroMeaning).equivalence
+    ((CertifiedAdamsPages.nextPage ?pages ?m.48 ?m.49).toNext ⟦?x⟧)
+in the target expression
+  A.middle.nextTarget.equivalence ((A.middle.targetPages.nextPage 2 sDegree).toNext ⟦A.middle.mappedCycle A.cycle2⟧) =
+    Data.sphereName
+
+C S : AdamsSpectralSequence
+A : Stage2 C S
+transition : A.middle.Transition
+⊢ A.middle.nextTarget.equivalence ((A.middle.targetPages.nextPage 2 sDegree).toNext ⟦A.middle.mappedCycle A.cycle2⟧) =
+    Data.sphereName
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    A.sourceCoordinates
+  has type
+    Coordinates C 2 cDegree 5
+  but is expected to have type
+    Coordinates C 2 cDegree source.m
+  in the application
+    @Input.nextTarget C S 2 cDegree sDegree source target A.sourceCoordinates
+Row3005D4Search/Source.lean:102:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (nextCoordinates ?M ?pages ?valid ?zeroMeaning).equivalence
+    ((CertifiedAdamsPages.nextPage ?pages ?m.21 ?m.22).toNext ⟦?x⟧)
+in the target expression
+  D.sphere4.equivalence ((D.stage2.middle.targetPages.nextPage 3 sDegree).toNext ⟦D.mappedCycle3 D.cycle3⟧) =
+    Data.sphereName
+
+C S : AdamsSpectralSequence
+D : Input C S
+transition : D.Transition3
+⊢ D.sphere4.equivalence ((D.stage2.middle.targetPages.nextPage 3 sDegree).toNext ⟦D.mappedCycle3 D.cycle3⟧) =
+    Data.sphereName
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    D.stage2.sourceCoordinates
+  has type
+    Coordinates C 2 cDegree 5
+  but is expected to have type
+    Coordinates C 2 cDegree source.m
+  in the application
+    @Input.targetPages C S 2 cDegree sDegree source target D.stage2.sourceCoordinates
+'Row3005D4Search.Source.Stage2.middle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Source.Stage2.upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Source.Stage2.named2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Source.Stage2.named3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3005D4Search.Source.Input.sphere_zero3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Source.Input.source_zero3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Source.Input.named4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3005D4Search.Source.Input.source_trace4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Source.Input.sphere_trace4' depends on axioms: [propext, Classical.choice, Quot.sound]

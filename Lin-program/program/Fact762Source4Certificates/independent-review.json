@@ -1,0 +1,78 @@
+{
+  "build_observation": {
+    "historical_direct_modules": [
+      "KernelBranch"
+    ],
+    "note": "Historical direct records preserved; global Lake artifacts use separate checkpoint evidence.",
+    "source_and_log_match": true,
+    "standard_or_no_axiom_reports": 3
+  },
+  "findings": [],
+  "independent_kernel_replay": {
+    "admissible_matrix": [
+      0,
+      1
+    ],
+    "all_matrices_examined": 4,
+    "full_image": [
+      0,
+      1
+    ]
+  },
+  "inputs_sha256": {
+    "AffineRemainingSearch/Kernel.lean": "791b96bb131dd6852f42270eef4bea8dc299de936c74fad1a72076b377df6389",
+    "Fact762IncomingCertificates/Incoming.lean": "f747d1357c8ed1d68eae326a55c9d29247deccc3c4c980b6434f8848364864ac",
+    "Fact762IncomingCertificates/ZeroPropagation.lean": "f78379ab209e37175083d3244f5355a7dca35d593d28f896d776ce544b62471b",
+    "Fact762Source4Certificates/KernelBranch.lean": "423bd2984757822b42b1c8a4f6f461e8a5b948131ee38d8105ae38e103d30592",
+    "Fact762Source4Certificates/README.md": "f32036a2feda24ac87656d23a17e6ba361b7f9fba67155bd8a8464ab482f0b24",
+    "Fact762Source4Certificates/compile-audit.json": "0a313433ff0a9baa704458a7d5a9da1bef1a03b16502d8ea83f188d6a4107698",
+    "Fact762Source4Certificates/review.json": "3c9e5010466dc907d6f904699ce2b822ea4a5519176ab22d7acc66c9e918090b",
+    "Fact762Source4Certificates/review.py": "c7a934b9a1e66def72ef5d20cf5852e9398a161d72be6a4f0a8754a34d828704",
+    "Fact762Source7Certificates/Propagation.lean": "b4b786758a5aa44b5bf67dbbca102bb683c6754328d42602e7fd663116bd527e",
+    "Fact762Source7Certificates/Semantics.lean": "e4913e98589d4bfc5b18f9486269660925a7f7548a770c1114cf10a8cef408ea",
+    "Row2708KernelConditional/Conflict.lean": "6a22be05e98dc60ac2b70ce7422f545760227a595e5c3aafb18500fc8409e61d"
+  },
+  "limitations": [
+    "Row2708 complete kernel and all actual coordinate/transition meanings remain unproved mathematical inputs.",
+    "The old proposed nonboundary cannot be retained when instantiating the complete-kernel branch.",
+    "The assembly does not prove an actual d6/d12 hit exists, establish outgoing-cycle behavior, or identify actual topology.",
+    "A queried target nonzero proof remains required to infer no hit from a zero differential."
+  ],
+  "raw_SQL_rows": {
+    "2707": [
+      2707,
+      7,
+      134,
+      "2",
+      null,
+      9990
+    ],
+    "2708": [
+      2708,
+      7,
+      134,
+      "0,1",
+      null,
+      9997
+    ],
+    "2858": [
+      2858,
+      10,
+      136,
+      "2",
+      null,
+      9000
+    ]
+  },
+  "reviewed_contracts": [
+    "The entire row2708 kernel, not a list of selected cycles, is constrained by KernelSpanned. The named cycle condition and complete kernel together force [0,1].",
+    "Surjectivity of the incoming image annihilates the full target quotient. The arbitrary outgoing dimension and complex law are retained.",
+    "The old row2858 nonboundary assertion is not an input; Conflict proves it is inconsistent with this complete-kernel branch. No theorem combines those incompatible premises.",
+    "Faithful coordinates and zero matching identify every actual page4 source as zero. Page4 differential vanishing then follows from actual zero preservation.",
+    "The page7 route retains full E3/E7 realization surjectivity and the full PageTower nextSurjective premise, as well as each named cycle/transition and actual d7 prefix.",
+    "The assembly requires nonzero only at the queried page q, not for every page. No Permanent or all-page nonboundary premise is present.",
+    "The page partition2..14 is exact, with all q>14 handled by an explicit integer negative-filtration source-absence premise."
+  ],
+  "reviewer": "certificate_pipeline_next",
+  "status": "no_findings_in_conditional_scope"
+}

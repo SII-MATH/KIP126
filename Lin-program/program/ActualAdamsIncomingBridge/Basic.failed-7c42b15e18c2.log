@@ -1,0 +1,90 @@
+ActualAdamsIncomingBridge/Basic.lean:14:18: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  c ≥ 0
+  b ≥ 0
+  b - c ≥ 1
+  a ≥ 0
+  a - b ≥ 0
+where
+ a := ↑{ filtration := filtration✝, internal := internal✝ }.filtration
+ b := ↑r
+ c := ↑filtration✝
+ActualAdamsIncomingBridge/Basic.lean:39:2: error: Tactic `split` failed: Could not split an `if` or `match` expression in the goal
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+S : AdamsSpectralSequence
+r : ℕ
+d : Bidegree
+⊢ id
+      (Decidable.casesOn (motive := fun x =>
+        (if r ≤ d.filtration then (S.element r (sourceDegree r d)).carrier else Unit) → (S.element r d).carrier)
+        (r.decLe d.filtration) (fun h => ⋯.mpr fun x => 0) fun h =>
+        ⋯.mpr fun x => pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun x))
+      (id (Decidable.casesOn (r.decLe d.filtration) (fun h => ⋯.mpr ()) fun h => ⋯.mpr 0)) =
+    S.zero r d
+ActualAdamsIncomingBridge/Basic.lean:61:59: error: unsolved goals
+S : AdamsSpectralSequence
+r : ℕ
+d : Bidegree
+x✝ : (S.element r d).carrier
+h : r ≤ d.filtration
+x : (S.element r d).carrier
+⊢ (∃ y,
+      id
+          (Decidable.rec (motive := fun x =>
+            (if r ≤ d.filtration then (S.element r (sourceDegree r d)).carrier else Unit) → (S.element r d).carrier)
+            (fun h => ⋯.mpr fun x => 0)
+            (fun h => ⋯.mpr fun x => pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun x))
+            (r.decLe d.filtration))
+          y =
+        x) ↔
+    ∃ y, pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun y) = x
+ActualAdamsIncomingBridge/Basic.lean:67:65: error: Application type mismatch: The argument
+  hy
+has type
+  pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun y) = x
+but is expected to have type
+  ⋯ ▸ (S.differential r (sourceDegree r d)).toFun y = x
+in the application
+  Exists.intro (target_sourceDegree r d h) hy
+ActualAdamsIncomingBridge/Basic.lean:78:17: error: Application type mismatch: The argument
+  hy
+has type
+  he ▸ (S.differential r (sourceDegree r d)).toFun y = x
+but is expected to have type
+  pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun y) = x
+in the application
+  Exists.intro y hy
+ActualAdamsIncomingBridge/Basic.lean:82:6: error: Type mismatch: After simplification, term
+  Eq.symm hy
+ has type
+  x =
+    id
+      (Decidable.rec (motive := fun x =>
+        (if r ≤ d.filtration then (S.element r (sourceDegree r d)).carrier else Unit) → (S.element r d).carrier)
+        (fun h => ⋯.mpr fun x => 0)
+        (fun h => ⋯.mpr fun x => pageCast S r ⋯ ((S.differential r (sourceDegree r d)).toFun x)) (r.decLe d.filtration))
+      y
+but is expected to have type
+  x = 0
+ActualAdamsIncomingBridge/Basic.lean:63:37: warning: This simp argument is unused:
+  dif_pos h
+
+Hint: Omit it from the simp argument list.
+  simp only [̵d̵i̵f̵f̵e̵r̵e̵n̵t̵i̵a̵l̵,̵S̵o̵u̵r̵c̵e̵,̵d̵i̵f̵_̵p̵o̵s̵ ̵h̵,̵i̵f̵_̵p̵o̵s̵[̲d̲i̲f̲f̲e̲r̲e̲n̲t̲i̲a̲l̲,̲ ̲S̲o̲u̲r̲c̲e̲,̲ ̲i̲f̲_̲p̲o̲s̲ h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ActualAdamsIncomingBridge/Basic.lean:63:47: warning: This simp argument is unused:
+  if_pos h
+
+Hint: Omit it from the simp argument list.
+  simp only [̵d̵i̵f̵f̵e̵r̵e̵n̵t̵i̵a̵l̵,̵S̵o̵u̵r̵c̵e̵,̵d̵i̵f̵_̵p̵o̵s̵ ̵h̵,̵i̵f̵_̵p̵o̵s̵[̲d̲i̲f̲f̲e̲r̲e̲n̲t̲i̲a̲l̲,̲ ̲S̲o̲u̲r̲c̲e̲,̲ ̲d̲i̲f̲_̲p̲o̲s̲ h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ActualAdamsIncomingBridge/Basic.lean:98:39: error: invalid occurrence of `·` notation, it must be surrounded by parentheses (e.g. `(· + 1)`)
+'ActualAdamsIncomingBridge.target_sourceDegree' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsIncomingBridge.differential_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsIncomingBridge.source_above_filtration' depends on axioms: [propext, Quot.sound]
+'ActualAdamsIncomingBridge.differential_image' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsIncomingBridge.hit_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

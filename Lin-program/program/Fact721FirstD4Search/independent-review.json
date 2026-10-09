@@ -1,0 +1,394 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "proof_evidence": {
+    "Maps": {
+      "source_sha256": "efe1650e1cbd9a6b53b76d7af709c2434119556cdf29a0863014bb790c581912",
+      "log_sha256": "40c40f7576f61054707e2fe6ab710c4acdcfa5cff40d38bb0b91f0900601c3cd",
+      "observed_exit_code": 0,
+      "axiom_reports": 16
+    },
+    "Comparison": {
+      "source_sha256": "a4ecc113923c7838c308ddb1d418001c443d2746b1082d00ce091bad086527c2",
+      "log_sha256": "d882c2331e90d415fc1b45df2c2c0e769b1c75af5fe762b139c0ad533ea2cd41",
+      "observed_exit_code": 0,
+      "axiom_reports": 18
+    },
+    "D3": {
+      "source_sha256": "e35b085813d83ebcf2f87aca187540bccfa897d73ab806fb2d62d1fa08db1c7b",
+      "log_sha256": "bc7206d6d11f5f0d1638429b34863900286348ad6310ad12844a23ffa70bc4ef",
+      "observed_exit_code": 0,
+      "axiom_reports": 6
+    },
+    "Naturality": {
+      "source_sha256": "d6a4e0af82d7d87b207939e5bd8d6427e04ecbef2b92c7f1687b8da450a8dccc",
+      "log_sha256": "43f500cbf6d68befe10fbf8ec33d5986a59d08a0dce68f284766785f49d818c4",
+      "observed_exit_code": 0,
+      "axiom_reports": 3
+    },
+    "Actual": {
+      "source_sha256": "6ae991dfbd816e121bd1b32cc7c371f46f38ff01510dfaf6dcc109813a7cb70a",
+      "log_sha256": "727d787a460675baf411a91daeb1b6cb9a228d585c461858c1acd671a7202bc9",
+      "observed_exit_code": 0,
+      "axiom_reports": 1
+    },
+    "MapSemantics": {
+      "source_sha256": "3f2da750ea8122cd901503916cd8ef109077da38852151f3104f4713a7b5c73c",
+      "log_sha256": "c4cfcf09ac5578fe1ab899e698535cc4b63d3b56961a6d07b9d3f3a996a032cb",
+      "observed_exit_code": 0,
+      "axiom_reports": 2
+    },
+    "Constructed": {
+      "source_sha256": "5d566d857d487f1ec56497b6cb7fb3b4da220c1e8f1590d377b7aaf1d5fc2c66",
+      "log_sha256": "67175d4050185a59e1b5450c7e98ec4e9e202505788590b61dd80d65810ecddd",
+      "observed_exit_code": 0,
+      "axiom_reports": 7
+    },
+    "Tactic": {
+      "source_sha256": "b1ca6d7c5c1218ea8aeb51345eae994488d1e9e7919a675b2d8300a8f5abe150",
+      "log_sha256": "c7c6732adaab6acc254596ddcdd465f671824dba2b26054eb95c89a3054f4b3d",
+      "observed_exit_code": 0,
+      "axiom_reports": 2
+    }
+  },
+  "frozen_files_verified": 82,
+  "counts": {
+    "raw_matrix_columns": 34,
+    "raw_matrices": 16,
+    "raw_relation_reductions": 13,
+    "d2_homotopy_vectors": 70,
+    "d2_quotient_pairs": 240,
+    "d2_complexes": 12,
+    "d3_homotopy_vectors": 14,
+    "d3_quotient_pairs": 52,
+    "d3_complexes": 4,
+    "conditional_unknown_columns": 2,
+    "d3_basis_combinations": 26,
+    "d2_square_vectors": 66,
+    "d2_quotient_map_vectors": 24,
+    "d2_full_maps": 6,
+    "d3_square_vectors": 14,
+    "d3_quotient_map_vectors": 8,
+    "d3_full_maps": 2,
+    "actual_descent_quotient_representatives": 1327488,
+    "actual_descent_all_elements": 1327296,
+    "actual_descent_source_models": 96,
+    "actual_descent_target_models": 331776,
+    "accepted_whole_d4_maps": 1152,
+    "rejected_nonzero_d4_maps": 3456,
+    "whole_d4_relabelings": 1152,
+    "trace_homotopy_vectors": 10,
+    "trace_quotient_pairs": 36,
+    "trace_complexes": 3,
+    "same_input_actual_quotient_pairs": 82944,
+    "same_input_actual_trace_steps": 6912,
+    "same_input_actual_trace_models": 2304
+  },
+  "d3_raw_maps": [
+    {
+      "object": "S0",
+      "degree": [
+        11,
+        133
+      ],
+      "rows": [
+        [
+          2621,
+          "0,1",
+          "0",
+          3
+        ],
+        [
+          2622,
+          "1",
+          null,
+          9000
+        ]
+      ],
+      "kinds": [
+        "imported_strict_prefix_or_boundary_meaning",
+        "explicit_conditional_actual_theorem"
+      ],
+      "staircase_vectors": [
+        3,
+        2
+      ],
+      "staircase_images": [
+        0,
+        0
+      ],
+      "canonical_columns": [
+        0,
+        0
+      ]
+    },
+    {
+      "object": "S0",
+      "degree": [
+        8,
+        131
+      ],
+      "rows": [
+        [
+          2488,
+          "0",
+          "0,1",
+          9997
+        ]
+      ],
+      "kinds": [
+        "recorded_d3_event"
+      ],
+      "staircase_vectors": [
+        1
+      ],
+      "staircase_images": [
+        3
+      ],
+      "canonical_columns": [
+        3
+      ]
+    },
+    {
+      "object": "C2h6",
+      "degree": [
+        11,
+        133
+      ],
+      "rows": [
+        [
+          2836,
+          "0",
+          "1",
+          3
+        ]
+      ],
+      "kinds": [
+        "imported_strict_prefix_or_boundary_meaning"
+      ],
+      "staircase_vectors": [
+        1
+      ],
+      "staircase_images": [
+        0
+      ],
+      "canonical_columns": [
+        0
+      ]
+    },
+    {
+      "object": "C2h6",
+      "degree": [
+        8,
+        131
+      ],
+      "rows": [
+        [
+          2660,
+          "0,1",
+          "1",
+          9996
+        ],
+        [
+          2661,
+          "1",
+          "0",
+          9997
+        ]
+      ],
+      "kinds": [
+        "imported_strict_prefix_or_boundary_meaning",
+        "recorded_d3_event"
+      ],
+      "staircase_vectors": [
+        3,
+        2
+      ],
+      "staircase_images": [
+        0,
+        1
+      ],
+      "canonical_columns": [
+        1,
+        1
+      ]
+    },
+    {
+      "object": "S0",
+      "degree": [
+        15,
+        136
+      ],
+      "rows": [
+        [
+          2839,
+          "1",
+          null,
+          9994
+        ],
+        [
+          2840,
+          "0",
+          null,
+          9995
+        ]
+      ],
+      "kinds": [
+        "imported_strict_prefix_or_boundary_meaning",
+        "imported_strict_prefix_or_boundary_meaning"
+      ],
+      "staircase_vectors": [
+        2,
+        1
+      ],
+      "staircase_images": [
+        0,
+        0
+      ],
+      "canonical_columns": [
+        0,
+        0
+      ]
+    },
+    {
+      "object": "S0",
+      "degree": [
+        12,
+        134
+      ],
+      "rows": [
+        [
+          2683,
+          "1",
+          "0",
+          3
+        ],
+        [
+          2684,
+          "0",
+          null,
+          9000
+        ]
+      ],
+      "kinds": [
+        "imported_strict_prefix_or_boundary_meaning",
+        "explicit_conditional_actual_theorem"
+      ],
+      "staircase_vectors": [
+        2,
+        1
+      ],
+      "staircase_images": [
+        0,
+        0
+      ],
+      "canonical_columns": [
+        0,
+        0
+      ]
+    },
+    {
+      "object": "C2h6",
+      "degree": [
+        15,
+        136
+      ],
+      "rows": [
+        [
+          3096,
+          "2",
+          null,
+          9994
+        ],
+        [
+          3097,
+          "1",
+          null,
+          9994
+        ]
+      ],
+      "kinds": [
+        "imported_strict_prefix_or_boundary_meaning",
+        "imported_strict_prefix_or_boundary_meaning"
+      ],
+      "staircase_vectors": [
+        2,
+        1
+      ],
+      "staircase_images": [
+        0,
+        0
+      ],
+      "canonical_columns": [
+        0,
+        0
+      ]
+    },
+    {
+      "object": "C2h6",
+      "degree": [
+        12,
+        134
+      ],
+      "rows": [
+        [
+          2901,
+          "1",
+          "0,1",
+          4
+        ]
+      ],
+      "kinds": [
+        "imported_strict_prefix_or_boundary_meaning"
+      ],
+      "staircase_vectors": [
+        1
+      ],
+      "staircase_images": [
+        0
+      ],
+      "canonical_columns": [
+        0
+      ]
+    }
+  ],
+  "same_input": [
+    false,
+    true
+  ],
+  "endpoint_page": 5,
+  "endpoint_coordinates": [
+    true
+  ],
+  "source_E4_matrix_columns": [
+    0
+  ],
+  "target_E4_matrix_columns": [
+    1,
+    2
+  ],
+  "remaining_inputs": [
+    "Full actual d3 complexes, all-vector current map meanings and actual quotient transition laws",
+    "Actual d4 naturality with the detector",
+    "The previous First.Prefix4 for the same S, pages and initial coordinates",
+    "Complete actual d4 outgoing-target and zero-dimensional incoming-source coordinates",
+    "Local zero and addition laws for the actual d4 quotient",
+    "Interpretation of the initial vector as the named sphere class"
+  ],
+  "limitations": [
+    "The two SQL NULL d3 columns remain explicitly conditional; raw NULL never proves zero",
+    "MapSemantics proves evaluation of any checked matrix under supplied actual generator images and vanishing relations",
+    "This module does not construct sphere Adams meanings or prove permanence after E5",
+    "Python carrier models supplement Lean proofs and are not Adams realizations"
+  ],
+  "input_sha256": {
+    "Fact721FirstD4Search/frozen-source.json": "d9a08eac07ac33e2ece37aa357e65927b45024663b8820bc1e2fcc74adf85448",
+    "Fact721FirstD4Search/source.json": "e3bfefb173391288cbc9e115151b7ed39da9394822bd9a19d969e4793bc36797",
+    "Fact721FirstD4Search/comparison-source.json": "953929476df4ddc45e69baabeb7099859c226a6a205252dcf0b91a22cf96b74f",
+    "Fact721FirstD4Search/d3-source.json": "a75385623b615fe2fb800e5caf0cba86f8b109a5354d9c979ccfa910b078661a",
+    "Fact721ConstructedActual/First.lean": "a0a84f979c210a0f9c97cb65592d7b4b04dbacdb0adbbc5be59846f83da8fda6",
+    "Fact713D4SourceSearch/ActualDescent.lean": "6d39e97a5677237ab1ad2c4d3293144046d22152c7f5062f90c0abe1098f508a",
+    "Fact713ComparisonBatches/Batch06.json": "c66fa59a8e59ca66f6235a00641b670af7868158cb2e02b3f7db78a0a945f5fc",
+    "Fact713DC2h6Source/wires/b_S0_11_133_d3.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d"
+  }
+}

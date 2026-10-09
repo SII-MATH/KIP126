@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "full_finite_candidates": 8192,
+  "accepted_whole_column_cases": 2,
+  "countermodels_without_derived_named_cycle": [
+    [
+      7,
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        6
+      ]
+    ],
+    [
+      15,
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        7
+      ]
+    ]
+  ],
+  "relabeled_local_quotient_models": 4032,
+  "all_representative_pairs": 258048,
+  "fixed_input_output_requests": 64512,
+  "wrong_input_or_output_rejected": 60480,
+  "scope": "Full finite d4 conditions and local quotient representation oracle; not a constructed global multiplicative Adams spectral sequence.",
+  "lean_source_sha256": {
+    "Actual.lean": "adb1e1f8ea49fa12dd90367861b39a57c02f3f0338ce52d2d878e71e0dda2e46",
+    "Basic.lean": "40049e03d50e3730095e52078cd8ec7b8bfb05abfd4ab31e6d2b23caeed47d53",
+    "Tactic.lean": "5e0613898e0cddfcdb888648752dabf51ab5f75e303b07e23c1fe9773d0d2e50"
+  }
+}

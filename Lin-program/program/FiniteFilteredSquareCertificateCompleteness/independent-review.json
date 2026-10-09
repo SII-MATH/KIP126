@@ -1,0 +1,29 @@
+{
+  "status": "independent_completeness_scope_review_passed",
+  "crossing_counts": {
+    "checked_inputs": 672,
+    "accepted": 133,
+    "rejected": 539,
+    "base_extension_without_stability": 4
+  },
+  "square_counts": {
+    "checked_inputs": 38817,
+    "accepted": 1095,
+    "rejected": 37722,
+    "fourth_result_true_without_certificate": 3047
+  },
+  "direct_records": {
+    "Basic": {
+      "observed_exit_code": 0,
+      "standard_reports": 6,
+      "source_sha256": "a2aa79c92dfe5fd0c86a5f7588799aecdbe360ef18d96b7d702b779c7eaa09c6",
+      "log_sha256": "bfd51cecd822c0ccd4e26fa5e66483c9c4e3931d5cb57373b0d182e09a7446f8",
+      "current_object_matches_direct": true
+    }
+  },
+  "script": "FiniteFilteredSquareCertificateCompleteness/independent-review.py",
+  "script_sha256": "5657d89a378fcd6c156745d77de83af80459b55cbe9b4c0dd354a70ed9801a4d",
+  "named_counterexample": "all groups/maps zero, x=1, y=z=w=0: old ResultValid true but memberX check impossible",
+  "findings": [],
+  "scope": "stable extension complete for old result; square complete for Premises only, not fourth-extension conclusion"
+}

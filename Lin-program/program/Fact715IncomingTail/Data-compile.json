@@ -1,0 +1,29 @@
+{
+  "source_sha256": "96b4094b04e9d30a80ea90252999313e033fad73a3a1f6785c21ad8ac06b8d56",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact715IncomingTail/Data.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact715IncomingTail/Data.olean"
+  ],
+  "log": "evidence/Data-20260922T015919288493Z.log",
+  "external_input_sha256": {
+    "Fact715IncomingTail/wire/source6d2.json": "9cfe0c6375c962bcb16a5cdbb64e44beef6a6af8f11e16de0cefb1f538b54d85",
+    "Fact715IncomingTail/wire/source7Incoming2.json": "acf23da773884b23ebe08c5d1a95f7303c24645970a83730d8ae6dde6c777711",
+    "Fact715IncomingTail/wire/source7Target2.json": "3f744886ccc8f165165b3ad5a9ad5d4adb745cea3a58499c05aed891cd7a4c05",
+    "Fact715IncomingTail/wire/source7d2.json": "b165d93d2385cc852b8e0b59015dcab576f197d922da51dc6961f04aecc9d8f0",
+    "Fact715IncomingTail/wire/source7d3.json": "acf23da773884b23ebe08c5d1a95f7303c24645970a83730d8ae6dde6c777711",
+    "Fact715IncomingTail/wire/source8d2.json": "8351c8926669695a0a262154db2e6b85efee5d43bb0db0d02241286428631412"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff"
+  },
+  "inputs_stable": true,
+  "olean_sha256": "def5ba266032154ac21755d6b1a4f6228837e60f587ec5520412fb8343ebaf21"
+}

@@ -1,0 +1,206 @@
+import NamedPageComparison.Fact761D3
+namespace NamedPageComparison.ConditionalHigherData
+open LinearCertificates PageTransitionCertificates
+def queryStored (n : Nat) (row : Fact761D3.ImportedRow) (page : Nat) : Option (Vec n) := match PropagationCertificates.decodeLevel row.level with | some (.outgoing eventPage) => if 2 ≤ page ∧ page < eventPage then some (fun _ => false) else if page = eventPage then row.diff.map (fun entries i => entries.contains i.val) else none | _ => none
+def bneg4_125_2 : WireComparison := ⟨1,0,0,0,0,[],[],[],[],[],[]⟩
+theorem bneg4_125_2_complete : bneg4_125_2.Valid := by lin_cert using ()
+def bneg1_127_2 : WireComparison := ⟨1,1,0,0,0,[],[],[],[],[],[]⟩
+theorem bneg1_127_2_complete : bneg1_127_2.Valid := by lin_cert using ()
+def b0_128_2 : WireComparison := ⟨1,1,0,0,0,[],[],[],[],[],[]⟩
+theorem b0_128_2_complete : b0_128_2.Valid := by lin_cert using ()
+def b1_129_2 : WireComparison := ⟨1,2,0,0,0,[],[],[],[],[],[]⟩
+theorem b1_129_2_complete : b1_129_2.Valid := by lin_cert using ()
+def b2_129_2 : WireComparison := ⟨1,2,1,0,0,[false,true],[],[],[],[],[false,true]⟩
+theorem b2_129_2_complete : b2_129_2.Valid := by lin_cert using ()
+def b3_130_2 : WireComparison := ⟨1,1,2,0,1,[false,true],[],[true,false],[true,false],[],[false,true]⟩
+theorem b3_130_2_complete : b3_130_2.Valid := by lin_cert using ()
+theorem b3_130_2_representative_0 : ∀ i : Fin 2, b3_130_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([true,false] : List Bool)[i.val]!) i := by decide
+def b4_131_2 : WireComparison := ⟨1,2,1,1,0,[false,true],[false],[],[],[false],[false,true]⟩
+theorem b4_131_2_complete : b4_131_2.Valid := by lin_cert using ()
+def b5_132_2 : WireComparison := ⟨1,2,1,0,0,[false,true],[],[],[],[],[false,true]⟩
+theorem b5_132_2_complete : b5_132_2.Valid := by lin_cert using ()
+def b6_132_2 : WireComparison := ⟨1,2,2,1,1,[false,false,false,false],[false,true],[true,false],[true,false],[false,true],[false,false,false,false]⟩
+theorem b6_132_2_complete : b6_132_2.Valid := by lin_cert using ()
+theorem b6_132_2_representative_0 : ∀ i : Fin 2, b6_132_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([true,false] : List Bool)[i.val]!) i := by decide
+def b6_133_2 : WireComparison := ⟨1,6,2,1,1,[false,false,false,false,false,false,false,false,false,false,false,true],[false,false],[true,false],[true,false],[false,false],[false,false,false,false,false,false,false,false,false,false,false,true]⟩
+theorem b6_133_2_complete : b6_133_2.Valid := by lin_cert using ()
+theorem b6_133_2_representative_0 : ∀ i : Fin 2, b6_133_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([true,false] : List Bool)[i.val]!) i := by decide
+def b7_133_2 : WireComparison := ⟨1,5,2,1,1,[false,false,false,false,false,false,false,false,false,false],[false,true],[true,false],[true,false],[false,true],[false,false,false,false,false,false,false,false,false,false]⟩
+theorem b7_133_2_complete : b7_133_2.Valid := by lin_cert using ()
+theorem b7_133_2_representative_0 : ∀ i : Fin 2, b7_133_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([true,false] : List Bool)[i.val]!) i := by decide
+def b8_134_2 : WireComparison := ⟨1,5,6,2,4,[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,true],[false,true,false,false,false,false,false,false,false,false,false,true,false,true,true,false,true,false,false,false,false,false,false,false],[false,false,false,false,true,false,true,false,false,false,false,false,true,false,false,true,false,false,false,false,true,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,true],[false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]⟩
+theorem b8_134_2_complete : b8_134_2.Valid := by lin_cert using ()
+theorem b8_134_2_representative_0 : ∀ i : Fin 6, b8_134_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([false,false,false,false,true,false] : List Bool)[i.val]!) i := by decide
+theorem b8_134_2_representative_1 : ∀ i : Fin 6, b8_134_2.comparison.inclusion i ⟨1,by decide⟩ = (fun i => ([true,false,false,true,false,false] : List Bool)[i.val]!) i := by decide
+theorem b8_134_2_representative_2 : ∀ i : Fin 6, b8_134_2.comparison.inclusion i ⟨2,by decide⟩ = (fun i => ([false,false,false,true,false,false] : List Bool)[i.val]!) i := by decide
+theorem b8_134_2_representative_3 : ∀ i : Fin 6, b8_134_2.comparison.inclusion i ⟨3,by decide⟩ = (fun i => ([false,false,true,false,false,false] : List Bool)[i.val]!) i := by decide
+def b9_135_2 : WireComparison := ⟨1,5,6,5,4,[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true],[false,false,true,false,false,true,false,false,true,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false],[false,false,true,false,false,false,false,true,false,false,false,false,true,false,false,false,false,false,false,false,false,true,false,false],[false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]⟩
+theorem b9_135_2_complete : b9_135_2.Valid := by lin_cert using ()
+theorem b9_135_2_representative_0 : ∀ i : Fin 6, b9_135_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([false,false,true,false,false,false] : List Bool)[i.val]!) i := by decide
+theorem b9_135_2_representative_1 : ∀ i : Fin 6, b9_135_2.comparison.inclusion i ⟨1,by decide⟩ = (fun i => ([false,true,false,false,false,false] : List Bool)[i.val]!) i := by decide
+theorem b9_135_2_representative_2 : ∀ i : Fin 6, b9_135_2.comparison.inclusion i ⟨2,by decide⟩ = (fun i => ([true,false,false,false,false,false] : List Bool)[i.val]!) i := by decide
+theorem b9_135_2_representative_3 : ∀ i : Fin 6, b9_135_2.comparison.inclusion i ⟨3,by decide⟩ = (fun i => ([false,false,false,true,false,false] : List Bool)[i.val]!) i := by decide
+def b10_135_2 : WireComparison := ⟨1,5,5,6,1,[false,false,false,false,false,false,true,false,false,false,false,true,false,false,false,false,false,true,false,false,false,false,true,false,true],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false],[true,false,false,false,false],[true,false,false,false,false],[false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,true,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,true,true]⟩
+theorem b10_135_2_complete : b10_135_2.Valid := by lin_cert using ()
+theorem b10_135_2_representative_0 : ∀ i : Fin 5, b10_135_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([true,false,false,false,false] : List Bool)[i.val]!) i := by decide
+def b10_136_2 : WireComparison := ⟨1,5,5,7,1,[false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false,true],[false,false,true,false,false],[false,false,true,false,false],[false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true],[false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]⟩
+theorem b10_136_2_complete : b10_136_2.Valid := by lin_cert using ()
+theorem b10_136_2_representative_0 : ∀ i : Fin 5, b10_136_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([false,false,true,false,false] : List Bool)[i.val]!) i := by decide
+def b11_136_2 : WireComparison := ⟨1,4,5,6,4,[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,true,true,false,false,false,false,true,false,false,false,false,true,false,false,false,false,false],[false,true,false,false,false,false,false,true,false,false,false,false,false,true,false,true,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true]⟩
+theorem b11_136_2_complete : b11_136_2.Valid := by lin_cert using ()
+theorem b11_136_2_representative_0 : ∀ i : Fin 5, b11_136_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([false,true,false,false,false] : List Bool)[i.val]!) i := by decide
+theorem b11_136_2_representative_1 : ∀ i : Fin 5, b11_136_2.comparison.inclusion i ⟨1,by decide⟩ = (fun i => ([false,false,true,false,false] : List Bool)[i.val]!) i := by decide
+theorem b11_136_2_representative_2 : ∀ i : Fin 5, b11_136_2.comparison.inclusion i ⟨2,by decide⟩ = (fun i => ([false,false,false,true,false] : List Bool)[i.val]!) i := by decide
+theorem b11_136_2_representative_3 : ∀ i : Fin 5, b11_136_2.comparison.inclusion i ⟨3,by decide⟩ = (fun i => ([true,false,false,false,false] : List Bool)[i.val]!) i := by decide
+def b12_137_2 : WireComparison := ⟨1,5,5,5,2,[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,true,false,false,false],[false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,true,false,true,true],[false,false,false,true,false,false,false,false,true,true],[false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,true,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]⟩
+theorem b12_137_2_complete : b12_137_2.Valid := by lin_cert using ()
+theorem b12_137_2_representative_0 : ∀ i : Fin 5, b12_137_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([false,false,false,true,true] : List Bool)[i.val]!) i := by decide
+theorem b12_137_2_representative_1 : ∀ i : Fin 5, b12_137_2.comparison.inclusion i ⟨1,by decide⟩ = (fun i => ([false,false,false,false,true] : List Bool)[i.val]!) i := by decide
+def b13_138_2 : WireComparison := ⟨1,4,5,6,3,[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,true,false,false],[true,false,false,false,false,true,false,true,false,false,false,false,false,false,false],[true,false,false,false,false,false,false,true,false,false,false,true,false,false,false],[false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]⟩
+theorem b13_138_2_complete : b13_138_2.Valid := by lin_cert using ()
+theorem b13_138_2_representative_0 : ∀ i : Fin 5, b13_138_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([true,false,false,false,false] : List Bool)[i.val]!) i := by decide
+theorem b13_138_2_representative_1 : ∀ i : Fin 5, b13_138_2.comparison.inclusion i ⟨1,by decide⟩ = (fun i => ([false,false,true,false,false] : List Bool)[i.val]!) i := by decide
+theorem b13_138_2_representative_2 : ∀ i : Fin 5, b13_138_2.comparison.inclusion i ⟨2,by decide⟩ = (fun i => ([false,true,false,false,false] : List Bool)[i.val]!) i := by decide
+def b14_139_2 : WireComparison := ⟨1,5,3,5,1,[false,false,false,false,false,false,true,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,true,false,false,false],[false,true,false],[false,true,false],[false,false,false,false,false,true,false,false,false,false,false,false,false,false,false],[false,false,true,false,false,false,false,false,false,false,false,false,false,false,false]⟩
+theorem b14_139_2_complete : b14_139_2.Valid := by lin_cert using ()
+theorem b14_139_2_representative_0 : ∀ i : Fin 3, b14_139_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([false,true,false] : List Bool)[i.val]!) i := by decide
+def b15_139_2 : WireComparison := ⟨1,4,4,5,2,[false,false,false,false,false,false,false,false,false,true,true,true,false,true,false,true],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,false,true,false,false,false,true],[true,false,false,false,false,false,false,true],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,true,false,false,true,true,false,false,false,false]⟩
+theorem b15_139_2_complete : b15_139_2.Valid := by lin_cert using ()
+theorem b15_139_2_representative_0 : ∀ i : Fin 4, b15_139_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([true,false,false,false] : List Bool)[i.val]!) i := by decide
+theorem b15_139_2_representative_1 : ∀ i : Fin 4, b15_139_2.comparison.inclusion i ⟨1,by decide⟩ = (fun i => ([false,true,false,true] : List Bool)[i.val]!) i := by decide
+def b16_140_2 : WireComparison := ⟨1,3,5,3,3,[false,false,false,false,false,false,false,false,false,false,false,false,false,true,false],[false,false,false,false,false,false,true,false,false,false,false,false,false,false,false],[false,false,true,true,false,false,false,false,false,false,false,false,false,true,false],[false,true,false,false,false,false,false,false,false,true,true,false,false,false,false],[false,false,true,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,true,false,false,false]⟩
+theorem b16_140_2_complete : b16_140_2.Valid := by lin_cert using ()
+theorem b16_140_2_representative_0 : ∀ i : Fin 5, b16_140_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([false,true,false,false,false] : List Bool)[i.val]!) i := by decide
+theorem b16_140_2_representative_1 : ∀ i : Fin 5, b16_140_2.comparison.inclusion i ⟨1,by decide⟩ = (fun i => ([false,false,false,false,true] : List Bool)[i.val]!) i := by decide
+theorem b16_140_2_representative_2 : ∀ i : Fin 5, b16_140_2.comparison.inclusion i ⟨2,by decide⟩ = (fun i => ([true,false,false,false,false] : List Bool)[i.val]!) i := by decide
+def b17_141_2 : WireComparison := ⟨1,4,4,5,0,[true,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,true,false,false,false,false],[],[],[false,false,false,true,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false],[true,false,false,false,false,false,false,false,true,false,false,true,false,false,false,false]⟩
+theorem b17_141_2_complete : b17_141_2.Valid := by lin_cert using ()
+def b20_143_2 : WireComparison := ⟨1,3,1,2,1,[false,false,false],[false,false],[true],[true],[false,false],[false,false,false]⟩
+theorem b20_143_2_complete : b20_143_2.Valid := by lin_cert using ()
+theorem b20_143_2_representative_0 : ∀ i : Fin 1, b20_143_2.comparison.inclusion i ⟨0,by decide⟩ = (fun i => ([true] : List Bool)[i.val]!) i := by decide
+def bneg1_127_3 : WireComparison := ⟨1,0,0,0,0,[],[],[],[],[],[]⟩
+theorem bneg1_127_3_complete : bneg1_127_3.Valid := by lin_cert using ()
+def b3_130_3 : WireComparison := ⟨1,1,1,0,1,[false],[],[true],[true],[],[false]⟩
+theorem b3_130_3_complete : b3_130_3.Valid := by lin_cert using ()
+theorem b3_130_3_representative_0 : ∀ i : Fin 1, b3_130_3.comparison.inclusion i ⟨0,by decide⟩ = (eval b3_130_2.comparison.projection (fun i => ([true,false] : List Bool)[i.val]!)) i := by decide
+def b3_130_3_outgoing_row_0 : Fact761D3.ImportedRow := ⟨2438,[0],9986,none⟩
+theorem b3_130_3_outgoing_row_0_column : ∀ i : Fin 1, (queryStored 2 b3_130_3_outgoing_row_0 3).map (fun v => (eval b6_132_2.comparison.projection v) i) = some (matrixOf 1 1 b3_130_3.outgoing i ⟨0,by decide⟩) := by decide
+def b4_131_3 : WireComparison := ⟨1,1,0,0,0,[],[],[],[],[],[]⟩
+theorem b4_131_3_complete : b4_131_3.Valid := by lin_cert using ()
+def b7_133_3 : WireComparison := ⟨1,1,1,0,1,[false],[],[true],[true],[],[false]⟩
+theorem b7_133_3_complete : b7_133_3.Valid := by lin_cert using ()
+theorem b7_133_3_representative_0 : ∀ i : Fin 1, b7_133_3.comparison.inclusion i ⟨0,by decide⟩ = (eval b7_133_2.comparison.projection (fun i => ([true,false] : List Bool)[i.val]!)) i := by decide
+def b7_133_3_outgoing_row_0 : Fact761D3.ImportedRow := ⟨2632,[0],9982,none⟩
+theorem b7_133_3_outgoing_row_0_column : ∀ i : Fin 1, (queryStored 5 b7_133_3_outgoing_row_0 3).map (fun v => (eval b10_135_2.comparison.projection v) i) = some (matrixOf 1 1 b7_133_3.outgoing i ⟨0,by decide⟩) := by decide
+def b8_134_3 : WireComparison := ⟨1,4,4,0,2,[false,false,true,false,false,false,false,true,false,false,false,false,false,false,false,false],[],[true,false,false,true,false,false,false,false],[true,false,false,false,false,true,false,false],[],[false,false,false,false,false,false,false,false,true,false,false,false,false,true,false,false]⟩
+theorem b8_134_3_complete : b8_134_3.Valid := by lin_cert using ()
+theorem b8_134_3_representative_0 : ∀ i : Fin 4, b8_134_3.comparison.inclusion i ⟨0,by decide⟩ = (eval b8_134_2.comparison.projection (fun i => ([false,false,false,false,true,false] : List Bool)[i.val]!)) i := by decide
+theorem b8_134_3_representative_1 : ∀ i : Fin 4, b8_134_3.comparison.inclusion i ⟨1,by decide⟩ = (eval b8_134_2.comparison.projection (fun i => ([true,false,false,true,false,false] : List Bool)[i.val]!)) i := by decide
+def b8_134_3_outgoing_row_0 : Fact761D3.ImportedRow := ⟨2701,[4],9983,none⟩
+theorem b8_134_3_outgoing_row_0_column : ∀ i : Fin 4, (queryStored 5 b8_134_3_outgoing_row_0 3).map (fun v => (eval b11_136_2.comparison.projection v) i) = some (matrixOf 4 4 b8_134_3.outgoing i ⟨0,by decide⟩) := by decide
+def b8_134_3_outgoing_row_1 : Fact761D3.ImportedRow := ⟨2702,[0,3],9994,none⟩
+theorem b8_134_3_outgoing_row_1_column : ∀ i : Fin 4, (queryStored 5 b8_134_3_outgoing_row_1 3).map (fun v => (eval b11_136_2.comparison.projection v) i) = some (matrixOf 4 4 b8_134_3.outgoing i ⟨1,by decide⟩) := by decide
+def b8_134_3_outgoing_row_2 : Fact761D3.ImportedRow := ⟨2703,[3],9997,some [1]⟩
+theorem b8_134_3_outgoing_row_2_column : ∀ i : Fin 4, (queryStored 5 b8_134_3_outgoing_row_2 3).map (fun v => (eval b11_136_2.comparison.projection v) i) = some (matrixOf 4 4 b8_134_3.outgoing i ⟨2,by decide⟩) := by decide
+def b8_134_3_outgoing_row_3 : Fact761D3.ImportedRow := ⟨2704,[2],9997,some [2]⟩
+theorem b8_134_3_outgoing_row_3_column : ∀ i : Fin 4, (queryStored 5 b8_134_3_outgoing_row_3 3).map (fun v => (eval b11_136_2.comparison.projection v) i) = some (matrixOf 4 4 b8_134_3.outgoing i ⟨3,by decide⟩) := by decide
+def b9_135_3 : WireComparison := ⟨1,2,4,1,2,[false,false,true,true,false,false,false,true],[false,false,false,false],[true,false,false,true,false,false,false,false],[true,false,false,false,false,true,false,false],[false,false,false,false],[false,false,false,false,true,true,false,true]⟩
+theorem b9_135_3_complete : b9_135_3.Valid := by lin_cert using ()
+theorem b9_135_3_representative_0 : ∀ i : Fin 4, b9_135_3.comparison.inclusion i ⟨0,by decide⟩ = (eval b9_135_2.comparison.projection (fun i => ([false,false,true,false,false,false] : List Bool)[i.val]!)) i := by decide
+theorem b9_135_3_representative_1 : ∀ i : Fin 4, b9_135_3.comparison.inclusion i ⟨1,by decide⟩ = (eval b9_135_2.comparison.projection (fun i => ([false,true,false,false,false,false] : List Bool)[i.val]!)) i := by decide
+def b9_135_3_outgoing_row_0 : Fact761D3.ImportedRow := ⟨2790,[2],9996,some [0]⟩
+theorem b9_135_3_outgoing_row_0_column : ∀ i : Fin 2, (queryStored 5 b9_135_3_outgoing_row_0 3).map (fun v => (eval b12_137_2.comparison.projection v) i) = some (matrixOf 2 4 b9_135_3.outgoing i ⟨0,by decide⟩) := by decide
+def b9_135_3_outgoing_row_1 : Fact761D3.ImportedRow := ⟨2791,[1],9996,some [2]⟩
+theorem b9_135_3_outgoing_row_1_column : ∀ i : Fin 2, (queryStored 5 b9_135_3_outgoing_row_1 3).map (fun v => (eval b12_137_2.comparison.projection v) i) = some (matrixOf 2 4 b9_135_3.outgoing i ⟨1,by decide⟩) := by decide
+def b9_135_3_outgoing_row_2 : Fact761D3.ImportedRow := ⟨2792,[0],9997,some [3,4]⟩
+theorem b9_135_3_outgoing_row_2_column : ∀ i : Fin 2, (queryStored 5 b9_135_3_outgoing_row_2 3).map (fun v => (eval b12_137_2.comparison.projection v) i) = some (matrixOf 2 4 b9_135_3.outgoing i ⟨2,by decide⟩) := by decide
+def b9_135_3_outgoing_row_3 : Fact761D3.ImportedRow := ⟨2793,[3],9997,some [3]⟩
+theorem b9_135_3_outgoing_row_3_column : ∀ i : Fin 2, (queryStored 5 b9_135_3_outgoing_row_3 3).map (fun v => (eval b12_137_2.comparison.projection v) i) = some (matrixOf 2 4 b9_135_3.outgoing i ⟨3,by decide⟩) := by decide
+def b9_135_3_incoming_row_0 : Fact761D3.ImportedRow := ⟨2633,[0],9996,none⟩
+theorem b9_135_3_incoming_row_0_column : ∀ i : Fin 4, (queryStored 6 b9_135_3_incoming_row_0 3).map (fun v => (eval b9_135_2.comparison.projection v) i) = some (matrixOf 4 1 b9_135_3.incoming i ⟨0,by decide⟩) := by decide
+def b12_137_3 : WireComparison := ⟨1,2,2,4,0,[false,false,false,false],[false,false,true,true,false,false,false,true],[],[],[false,false,false,false,true,true,false,true],[false,false,false,false]⟩
+theorem b12_137_3_complete : b12_137_3.Valid := by lin_cert using ()
+def b12_137_3_outgoing_row_0 : Fact761D3.ImportedRow := ⟨2919,[3,4],3,some [0]⟩
+theorem b12_137_3_outgoing_row_0_boundary : PropagationCertificates.decodeLevel 3 = some (.incoming 3) := by decide
+theorem b12_137_3_outgoing_row_0_column : ∀ i : Fin 2, matrixOf 2 2 b12_137_3.outgoing i ⟨0,by decide⟩ = (eval b15_139_2.comparison.projection (fun i => ([false,false,false,false] : List Bool)[i.val]!)) i := by decide
+def b12_137_3_outgoing_row_1 : Fact761D3.ImportedRow := ⟨2920,[4],3,some [0,3]⟩
+theorem b12_137_3_outgoing_row_1_boundary : PropagationCertificates.decodeLevel 3 = some (.incoming 3) := by decide
+theorem b12_137_3_outgoing_row_1_column : ∀ i : Fin 2, matrixOf 2 2 b12_137_3.outgoing i ⟨1,by decide⟩ = (eval b15_139_2.comparison.projection (fun i => ([false,false,false,false] : List Bool)[i.val]!)) i := by decide
+def b12_137_3_incoming_row_0 : Fact761D3.ImportedRow := ⟨2790,[2],9996,some [0]⟩
+theorem b12_137_3_incoming_row_0_column : ∀ i : Fin 2, (queryStored 5 b12_137_3_incoming_row_0 3).map (fun v => (eval b12_137_2.comparison.projection v) i) = some (matrixOf 2 4 b12_137_3.incoming i ⟨0,by decide⟩) := by decide
+def b12_137_3_incoming_row_1 : Fact761D3.ImportedRow := ⟨2791,[1],9996,some [2]⟩
+theorem b12_137_3_incoming_row_1_column : ∀ i : Fin 2, (queryStored 5 b12_137_3_incoming_row_1 3).map (fun v => (eval b12_137_2.comparison.projection v) i) = some (matrixOf 2 4 b12_137_3.incoming i ⟨1,by decide⟩) := by decide
+def b12_137_3_incoming_row_2 : Fact761D3.ImportedRow := ⟨2792,[0],9997,some [3,4]⟩
+theorem b12_137_3_incoming_row_2_column : ∀ i : Fin 2, (queryStored 5 b12_137_3_incoming_row_2 3).map (fun v => (eval b12_137_2.comparison.projection v) i) = some (matrixOf 2 4 b12_137_3.incoming i ⟨2,by decide⟩) := by decide
+def b12_137_3_incoming_row_3 : Fact761D3.ImportedRow := ⟨2793,[3],9997,some [3]⟩
+theorem b12_137_3_incoming_row_3_column : ∀ i : Fin 2, (queryStored 5 b12_137_3_incoming_row_3 3).map (fun v => (eval b12_137_2.comparison.projection v) i) = some (matrixOf 2 4 b12_137_3.incoming i ⟨3,by decide⟩) := by decide
+def b13_138_3 : WireComparison := ⟨1,3,3,1,2,[false,false,true,false,false,false,false,false,false],[false,false,false],[true,false,false,true,false,false],[true,false,false,false,true,false],[false,false,false],[false,false,false,false,false,false,true,false,false]⟩
+theorem b13_138_3_complete : b13_138_3.Valid := by lin_cert using ()
+theorem b13_138_3_representative_0 : ∀ i : Fin 3, b13_138_3.comparison.inclusion i ⟨0,by decide⟩ = (eval b13_138_2.comparison.projection (fun i => ([true,false,false,false,false] : List Bool)[i.val]!)) i := by decide
+theorem b13_138_3_representative_1 : ∀ i : Fin 3, b13_138_3.comparison.inclusion i ⟨1,by decide⟩ = (eval b13_138_2.comparison.projection (fun i => ([false,false,true,false,false] : List Bool)[i.val]!)) i := by decide
+def b13_138_3_outgoing_row_0 : Fact761D3.ImportedRow := ⟨3010,[0],4,some [2]⟩
+theorem b13_138_3_outgoing_row_0_boundary : PropagationCertificates.decodeLevel 4 = some (.incoming 4) := by decide
+theorem b13_138_3_outgoing_row_0_column : ∀ i : Fin 3, matrixOf 3 3 b13_138_3.outgoing i ⟨0,by decide⟩ = (eval b16_140_2.comparison.projection (fun i => ([false,false,false,false,false] : List Bool)[i.val]!)) i := by decide
+def b13_138_3_outgoing_row_1 : Fact761D3.ImportedRow := ⟨3011,[2],4,some [1]⟩
+theorem b13_138_3_outgoing_row_1_boundary : PropagationCertificates.decodeLevel 4 = some (.incoming 4) := by decide
+theorem b13_138_3_outgoing_row_1_column : ∀ i : Fin 3, matrixOf 3 3 b13_138_3.outgoing i ⟨1,by decide⟩ = (eval b16_140_2.comparison.projection (fun i => ([false,false,false,false,false] : List Bool)[i.val]!)) i := by decide
+def b13_138_3_outgoing_row_2 : Fact761D3.ImportedRow := ⟨3012,[1],9997,some [1]⟩
+theorem b13_138_3_outgoing_row_2_column : ∀ i : Fin 3, (queryStored 5 b13_138_3_outgoing_row_2 3).map (fun v => (eval b16_140_2.comparison.projection v) i) = some (matrixOf 3 3 b13_138_3.outgoing i ⟨2,by decide⟩) := by decide
+def b13_138_3_incoming_row_0 : Fact761D3.ImportedRow := ⟨2858,[2],9000,none⟩
+theorem b13_138_3_incoming_row_0_raw_unknown : b13_138_3_incoming_row_0.diff = none := by decide
+def b17_141_3 : WireComparison := ⟨1,1,0,1,0,[],[],[],[],[],[]⟩
+theorem b17_141_3_complete : b17_141_3.Valid := by lin_cert using ()
+def b17_141_3_incoming_row_0 : Fact761D3.ImportedRow := ⟨3080,[1],9000,none⟩
+theorem b17_141_3_incoming_row_0_raw_unknown : b17_141_3_incoming_row_0.diff = none := by decide
+def b3_130_4 : WireComparison := ⟨1,1,1,0,1,[false],[],[true],[true],[],[false]⟩
+theorem b3_130_4_complete : b3_130_4.Valid := by lin_cert using ()
+theorem b3_130_4_representative_0 : ∀ i : Fin 1, b3_130_4.comparison.inclusion i ⟨0,by decide⟩ = (eval b3_130_3.comparison.projection (eval b3_130_2.comparison.projection (fun i => ([true,false] : List Bool)[i.val]!))) i := by decide
+def b3_130_4_outgoing_row_0 : Fact761D3.ImportedRow := ⟨2438,[0],9986,none⟩
+theorem b3_130_4_outgoing_row_0_column : ∀ i : Fin 1, (queryStored 2 b3_130_4_outgoing_row_0 4).map (fun v => (eval b7_133_3.comparison.projection (eval b7_133_2.comparison.projection v)) i) = some (matrixOf 1 1 b3_130_4.outgoing i ⟨0,by decide⟩) := by decide
+def b8_134_4 : WireComparison := ⟨1,0,2,0,2,[],[],[true,false,false,true],[true,false,false,true],[],[]⟩
+theorem b8_134_4_complete : b8_134_4.Valid := by lin_cert using ()
+theorem b8_134_4_representative_0 : ∀ i : Fin 2, b8_134_4.comparison.inclusion i ⟨0,by decide⟩ = (eval b8_134_3.comparison.projection (eval b8_134_2.comparison.projection (fun i => ([false,false,false,false,true,false] : List Bool)[i.val]!))) i := by decide
+theorem b8_134_4_representative_1 : ∀ i : Fin 2, b8_134_4.comparison.inclusion i ⟨1,by decide⟩ = (eval b8_134_3.comparison.projection (eval b8_134_2.comparison.projection (fun i => ([true,false,false,true,false,false] : List Bool)[i.val]!))) i := by decide
+def b8_134_4_outgoing_row_0 : Fact761D3.ImportedRow := ⟨2701,[4],9983,none⟩
+theorem b8_134_4_outgoing_row_0_column : ∀ i : Fin 0, (queryStored 5 b8_134_4_outgoing_row_0 4).map (fun v => (eval b12_137_3.comparison.projection (eval b12_137_2.comparison.projection v)) i) = some (matrixOf 0 2 b8_134_4.outgoing i ⟨0,by decide⟩) := by decide
+def b8_134_4_outgoing_row_1 : Fact761D3.ImportedRow := ⟨2702,[0,3],9994,none⟩
+theorem b8_134_4_outgoing_row_1_column : ∀ i : Fin 0, (queryStored 5 b8_134_4_outgoing_row_1 4).map (fun v => (eval b12_137_3.comparison.projection (eval b12_137_2.comparison.projection v)) i) = some (matrixOf 0 2 b8_134_4.outgoing i ⟨1,by decide⟩) := by decide
+def b13_138_4 : WireComparison := ⟨1,0,2,2,0,[],[true,false,false,true],[],[],[true,false,false,true],[]⟩
+theorem b13_138_4_complete : b13_138_4.Valid := by lin_cert using ()
+def b13_138_4_outgoing_row_0 : Fact761D3.ImportedRow := ⟨3010,[0],4,some [2]⟩
+theorem b13_138_4_outgoing_row_0_boundary : PropagationCertificates.decodeLevel 4 = some (.incoming 4) := by decide
+theorem b13_138_4_outgoing_row_0_column : ∀ i : Fin 0, matrixOf 0 2 b13_138_4.outgoing i ⟨0,by decide⟩ = (eval b17_141_3.comparison.projection (eval b17_141_2.comparison.projection (fun i => ([false,false,false,false] : List Bool)[i.val]!))) i := by decide
+def b13_138_4_outgoing_row_1 : Fact761D3.ImportedRow := ⟨3011,[2],4,some [1]⟩
+theorem b13_138_4_outgoing_row_1_boundary : PropagationCertificates.decodeLevel 4 = some (.incoming 4) := by decide
+theorem b13_138_4_outgoing_row_1_column : ∀ i : Fin 0, matrixOf 0 2 b13_138_4.outgoing i ⟨1,by decide⟩ = (eval b17_141_3.comparison.projection (eval b17_141_2.comparison.projection (fun i => ([false,false,false,false] : List Bool)[i.val]!))) i := by decide
+def b13_138_4_incoming_row_0 : Fact761D3.ImportedRow := ⟨2790,[2],9996,some [0]⟩
+theorem b13_138_4_incoming_row_0_column : ∀ i : Fin 2, (queryStored 5 b13_138_4_incoming_row_0 4).map (fun v => (eval b13_138_3.comparison.projection (eval b13_138_2.comparison.projection v)) i) = some (matrixOf 2 2 b13_138_4.incoming i ⟨0,by decide⟩) := by decide
+def b13_138_4_incoming_row_1 : Fact761D3.ImportedRow := ⟨2791,[1],9996,some [2]⟩
+theorem b13_138_4_incoming_row_1_column : ∀ i : Fin 2, (queryStored 5 b13_138_4_incoming_row_1 4).map (fun v => (eval b13_138_3.comparison.projection (eval b13_138_2.comparison.projection v)) i) = some (matrixOf 2 2 b13_138_4.incoming i ⟨1,by decide⟩) := by decide
+def b8_134_5 : WireComparison := ⟨1,0,2,1,2,[],[false,false],[true,false,false,true],[true,false,false,true],[false,false],[]⟩
+theorem b8_134_5_complete : b8_134_5.Valid := by lin_cert using ()
+theorem b8_134_5_representative_0 : ∀ i : Fin 2, b8_134_5.comparison.inclusion i ⟨0,by decide⟩ = (eval b8_134_4.comparison.projection (eval b8_134_3.comparison.projection (eval b8_134_2.comparison.projection (fun i => ([false,false,false,false,true,false] : List Bool)[i.val]!)))) i := by decide
+theorem b8_134_5_representative_1 : ∀ i : Fin 2, b8_134_5.comparison.inclusion i ⟨1,by decide⟩ = (eval b8_134_4.comparison.projection (eval b8_134_3.comparison.projection (eval b8_134_2.comparison.projection (fun i => ([true,false,false,true,false,false] : List Bool)[i.val]!)))) i := by decide
+def b8_134_5_outgoing_row_0 : Fact761D3.ImportedRow := ⟨2701,[4],9983,none⟩
+theorem b8_134_5_outgoing_row_0_column : ∀ i : Fin 0, (queryStored 5 b8_134_5_outgoing_row_0 5).map (fun v => (eval b13_138_4.comparison.projection (eval b13_138_3.comparison.projection (eval b13_138_2.comparison.projection v))) i) = some (matrixOf 0 2 b8_134_5.outgoing i ⟨0,by decide⟩) := by decide
+def b8_134_5_outgoing_row_1 : Fact761D3.ImportedRow := ⟨2702,[0,3],9994,none⟩
+theorem b8_134_5_outgoing_row_1_column : ∀ i : Fin 0, (queryStored 5 b8_134_5_outgoing_row_1 5).map (fun v => (eval b13_138_4.comparison.projection (eval b13_138_3.comparison.projection (eval b13_138_2.comparison.projection v))) i) = some (matrixOf 0 2 b8_134_5.outgoing i ⟨1,by decide⟩) := by decide
+def b8_134_5_incoming_row_0 : Fact761D3.ImportedRow := ⟨2438,[0],9986,none⟩
+theorem b8_134_5_incoming_row_0_column : ∀ i : Fin 2, (queryStored 6 b8_134_5_incoming_row_0 5).map (fun v => (eval b8_134_4.comparison.projection (eval b8_134_3.comparison.projection (eval b8_134_2.comparison.projection v))) i) = some (matrixOf 2 1 b8_134_5.incoming i ⟨0,by decide⟩) := by decide
+theorem b2_129_2_incoming_link : b2_129_2.incoming = b0_128_2.outgoing := by decide
+theorem b3_130_2_incoming_link : b3_130_2.incoming = b1_129_2.outgoing := by decide
+theorem b6_132_2_incoming_link : b6_132_2.incoming = b4_131_2.outgoing := by decide
+theorem b7_133_2_incoming_link : b7_133_2.incoming = b5_132_2.outgoing := by decide
+theorem b7_133_3_incoming_link : b7_133_3.incoming = b4_131_3.outgoing := by decide
+theorem b8_134_2_incoming_link : b8_134_2.incoming = b6_133_2.outgoing := by decide
+theorem b10_135_2_incoming_link : b10_135_2.incoming = b8_134_2.outgoing := by decide
+theorem b11_136_2_incoming_link : b11_136_2.incoming = b9_135_2.outgoing := by decide
+theorem b12_137_2_incoming_link : b12_137_2.incoming = b10_136_2.outgoing := by decide
+theorem b12_137_3_incoming_link : b12_137_3.incoming = b9_135_3.outgoing := by decide
+theorem b15_139_2_incoming_link : b15_139_2.incoming = b13_138_2.outgoing := by decide
+theorem b16_140_2_incoming_link : b16_140_2.incoming = b14_139_2.outgoing := by decide
+theorem named_prefix_2 : b8_134_2.outgoing = Fact761D3.firstWire.outgoing ∧ b8_134_2.incoming = Fact761D3.firstWire.incoming ∧ b8_134_2.inclusion = Fact761D3.firstWire.inclusion ∧ b8_134_2.projection = Fact761D3.firstWire.projection := by decide
+theorem named_prefix_3 : b8_134_3.outgoing = Fact761D3.secondWire.outgoing ∧ b8_134_3.incoming = Fact761D3.secondWire.incoming ∧ b8_134_3.inclusion = Fact761D3.secondWire.inclusion ∧ b8_134_3.projection = Fact761D3.secondWire.projection := by decide
+def stages : List Stage := [⟨b8_134_2,[true,false,false,true,false,false]⟩,⟨b8_134_3,[false,true,false,false]⟩,⟨b8_134_4,[false,true]⟩,⟨b8_134_5,[false,true]⟩]
+theorem constructed_trajectory_checked : TrajectoryValid stages := by lin_cert using ()
+end NamedPageComparison.ConditionalHigherData

@@ -1,0 +1,13 @@
+Certificate diagnostics could not be evaluated; checking the proof goal.
+DiagnosticTacticReview/Examples.lean:26:60: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (CertificateVerifier.Cert (Accepted 5)) 5
+numerals are polymorphic in Lean, but the numeral `5` cannot be used in a context where the expected type is
+  CertificateVerifier.Cert (Accepted 5)
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+DiagnosticTacticReview/Examples.lean:29:2: error: expected certificate rejection
+'DiagnosticTacticReview.accepted' depends on axioms: [sorryAx]
+'DiagnosticTacticReview.coordinate_diagnostic' depends on axioms: [sorryAx]
+'DiagnosticTacticReview.diagnostic_cannot_accept_false_result' does not depend on any axioms
+'DiagnosticTacticReview.no_diagnostic_instance' does not depend on any axioms

@@ -1,0 +1,42 @@
+Fact715ConstructedActual/Detector.lean:9:13: error: unexpected token ':='; expected command
+Fact715ConstructedActual/Detector.lean:22:40: error(lean.unknownIdentifier): Unknown identifier `MC.source.m`
+Fact715ConstructedActual/Detector.lean:23:42: error(lean.unknownIdentifier): Unknown identifier `MC.target.m`
+Fact715ConstructedActual/Detector.lean:24:40: error(lean.unknownIdentifier): Unknown identifier `MC.upperSource.m`
+Fact715ConstructedActual/Detector.lean:25:42: error(lean.unknownIdentifier): Unknown identifier `MC.upperTarget.m`
+Fact715ConstructedActual/Detector.lean:26:10: error(lean.unknownIdentifier): Unknown identifier `ActualDescent.Input`
+Fact715ConstructedActual/Detector.lean:28:10: error(lean.unknownIdentifier): Unknown identifier `ActualDescent.Input`
+Fact715ConstructedActual/Detector.lean:30:31: error(lean.unknownIdentifier): Unknown identifier `MC.middleMap`
+Fact715ConstructedActual/Detector.lean:31:31: error(lean.unknownIdentifier): Unknown identifier `MC.upperMiddleMap`
+Fact715ConstructedActual/Detector.lean:39:38: error: type expected, got
+  (Input sphere
+  ceta : (r : ℕ) →
+  (ds dt : Bidegree) → (ws wt : WireComparison) → Coordinates sphere r ds ws.m → Coordinates ceta r dt wt.m → Type)
+Fact715ConstructedActual/Detector.lean:42:31: error: type expected, got
+  (Input sphere
+  ceta : (r : ℕ) →
+  (ds dt : Bidegree) → (ws wt : WireComparison) → Coordinates sphere r ds ws.m → Coordinates ceta r dt wt.m → Type)
+Fact715ConstructedActual/Detector.lean:50:36: error: type expected, got
+  (Input sphere
+  ceta : (r : ℕ) →
+  (ds dt : Bidegree) → (ws wt : WireComparison) → Coordinates sphere r ds ws.m → Coordinates ceta r dt wt.m → Type)
+Fact715ConstructedActual/Detector.lean:56:30: error: type expected, got
+  (Input sphere
+  ceta : (r : ℕ) →
+  (ds dt : Bidegree) → (ws wt : WireComparison) → Coordinates sphere r ds ws.m → Coordinates ceta r dt wt.m → Type)
+Fact715ConstructedActual/Detector.lean:61:33: error: type expected, got
+  (Input sphere
+  ceta : (r : ℕ) →
+  (ds dt : Bidegree) → (ws wt : WireComparison) → Coordinates sphere r ds ws.m → Coordinates ceta r dt wt.m → Type)
+Fact715ConstructedActual/Detector.lean:71:31: error: type expected, got
+  (Input sphere
+  ceta : (r : ℕ) →
+  (ds dt : Bidegree) → (ws wt : WireComparison) → Coordinates sphere r ds ws.m → Coordinates ceta r dt wt.m → Type)
+Fact715ConstructedActual/Detector.lean:97:14: error(lean.unknownIdentifier): Unknown constant `Input.named_image`
+Fact715ConstructedActual/Detector.lean:98:14: error(lean.unknownIdentifier): Unknown constant `Input.ceta_target_zero`
+Fact715ConstructedActual/Detector.lean:99:14: error(lean.unknownIdentifier): Unknown constant `Input.upper_zero`
+Fact715ConstructedActual/Detector.lean:100:14: error(lean.unknownIdentifier): Unknown constant `Input.named_d3_zero`
+Fact715ConstructedActual/Detector.lean:101:14: error(lean.unknownIdentifier): Unknown constant `Input.all_d3_zero`
+Fact715ConstructedActual/Detector.lean:102:0: error: Invalid name after `end`: Expected `Detector.MC`, but found `Fact715ConstructedActual.Detector`
+
+Hint: If you meant to end the outer scope(s) `Fact715ConstructedActual.Detector`, you must end all the intervening scopes `Fact715ConstructedActual.Detector.MC`:
+  end Fact715ConstructedActual.Detector.̲M̲C̲

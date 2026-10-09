@@ -1,0 +1,12 @@
+Fact713Row3247Boundaries/Basic.lean:38:4: error: Type mismatch: After simplification, term
+  h
+ has type
+  @Eq (T.element (3 + 1) { filtration := 18, internal := 85 }).carrier
+    ((pages.nextPage 3 { filtration := 18, internal := 85 }).toNext ⟦B.first⟧)
+    (id ((T.differential 4 { filtration := 14, internal := 82 }).toFun B.boundarySource))
+but is expected to have type
+  @Eq (T.element (3 + 1) Fact713Generator30P2.Detection.productDegree).carrier
+    ((pages.nextPage 3 Fact713Generator30P2.Detection.productDegree).toNext ⟦B.first⟧)
+    ((T.differential 4 Fact713Generator30P2.Detection.boundaryDegree).toFun B.boundarySource)
+'Fact713Row3247Boundaries.p2Boundary' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3247Boundaries.bound_element_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]

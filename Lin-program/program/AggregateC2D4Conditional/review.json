@@ -1,0 +1,62 @@
+{
+  "complete_comparisons": 337,
+  "unchanged_previous_comparisons": 336,
+  "finite_nonzero_events": 90,
+  "unresolved": 11,
+  "all_accepted_prior_stages": 90,
+  "added_blocks": [
+    "S0:8,135:d4"
+  ],
+  "new_conditional_uses": [
+    {
+      "block": "S0:8,135:d4",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        4,
+        132
+      ],
+      "page": 4,
+      "row": [
+        2576,
+        "0",
+        null,
+        9000
+      ],
+      "kind": "conditional_c2_d4_prefix",
+      "target_predecessor": "S0:8,135:d3"
+    }
+  ],
+  "changed_event": {
+    "staircase_id": 3391,
+    "classification": "stored_incoming",
+    "event_page": 5,
+    "root": "S0:13,139:d5",
+    "status": "unresolved",
+    "reason": "unknown S0:10,137:d3:row2929; target dimension 1"
+  },
+  "d3_d4_kinds_distinct": true,
+  "row2708_and_row2929_retained_unknown": true,
+  "source_outgoing_d4_comparison_complete": false,
+  "interpretation_obligations": [
+    "C2 row2633 incoming d3 prefix meaning",
+    "inherited S0 d3 conditions",
+    "local d3/d4 naturality and zero preservation",
+    "actual Adams interpretation"
+  ],
+  "generated_sha256": {
+    "source.json": "4dfb952a9e1a8396e892ed9eb1a241deab5d5acfedb3b49bcdea56f99a7dbf00",
+    "event-results.json": "9777c3531ea7537152d8c941d2628d1683f6215e1fd41fbb59122cad70292749",
+    "Data.lean": "bed4ce9e2139cbe7cbcd10aeb017e892df8444f3aebee0b5ef4133bfff6f37cc",
+    "Events.lean": "19f56f10b64b4e70d6c79fc036a60bc06a15a42b196f663f906efdac14cd3ddf"
+  },
+  "dependency_sha256": {
+    "AggregateC2D4Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "AggregateC2D4Conditional/generate.py": "4971a61ada663264bab3401e979672404cec98e8a4eadc33cd4ba701ec79bb1a",
+    "AggregateC2D4Conditional/events.py": "235ba44e8e519593d0b0a5fabe452a67220422be426ca608db6789cd5b0e4aed",
+    "AggregateC2D4Conditional/review.py": "c3541aef1d777dee636cc6ae9c8c3ffdc093faa20991e82345eded706f28612b",
+    "Row2576D4Detector/comparison-source.json": "ba6743c806f3855842e8fc5c600b0892cc119230d85738d1c4af7852bfd5cfa9",
+    "Row2576D4Detector/ImportedBoundary.lean": "35eaa870bde1be42cd6ccfbd0b444ce0dbfc537c84554c465541ed3d5fcff8e5",
+    "AggregateC2H2Conditional/source.json": "495c4b95b876a1e7571ae445aec730a4f8b3366380f2f1139f00b4a0f2d96475"
+  }
+}

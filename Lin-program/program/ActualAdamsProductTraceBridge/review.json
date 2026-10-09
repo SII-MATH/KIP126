@@ -1,0 +1,69 @@
+{
+  "empty_target_degrees": [
+    [
+      6,
+      25
+    ],
+    [
+      7,
+      26
+    ],
+    [
+      11,
+      55
+    ],
+    [
+      12,
+      56
+    ],
+    [
+      13,
+      57
+    ]
+  ],
+  "factor_rows": {
+    "delta": [
+      "51,1",
+      9,
+      54
+    ],
+    "g": [
+      "13,1",
+      4,
+      24
+    ],
+    "named": [
+      "13,4,51,1",
+      25,
+      150,
+      ""
+    ]
+  },
+  "invertible_zero_preserving_maps": 6,
+  "local_squares": 6,
+  "multiplicative_maps": 1,
+  "nonmultiplicative_counterexamples": 5,
+  "proof_review": [
+    "Transition is quantified over every cycle pair at the local page/degrees.",
+    "trace_product constructs a Type-valued trace by induction, with no target trace hypothesis.",
+    "Factor prefixes use only outgoing cycles; incoming death and zero representatives remain possible.",
+    "Actual E2 named-product equality precedes construction of its E4 trace.",
+    "System.at index2 is E4, and d4-cycle is proved for that same endpoint.",
+    "Finite coordinate binding remains explicit, as does reverse actual WholeMeaning completeness."
+  ],
+  "source_sha256": {
+    "ActualAdamsProductCycleBridge/Zero.lean": "414513d15e9ab282ca7107ed15b4e4ca40a0783cee1cafbadc8134a9f3eccd09",
+    "ActualAdamsProductTraceBridge/Assembly.lean": "695e6af00c1b23a66864386997d119fc06af2037dfa9273547a6fca8e6a81d8f",
+    "ActualAdamsProductTraceBridge/Basic.lean": "718e644cda549cc2c3046ef25de9701378c1073e5a435245bfa3ca8acaeddc6d",
+    "ActualAdamsProductTraceBridge/Factors.lean": "1b78a72e1f7c2e3e7a2becf3de1fe5be3c96862ab7d01f9f609405142f1ff0b0",
+    "ActualAdamsProductTraceBridge/Named.lean": "2eb3e44290d891b988c15b465b9c9d49b72f2a8c78f4d054f8c20623c8a0fd30",
+    "ActualAdamsProductTraceBridge/README.md": "72fd706d78689314d95e106c29c0e45b860768d26ae4c3b7dc495eb156686fc4",
+    "ActualAdamsProductTraceBridge/review.py": "f0f53671a0695fcf2b8de63f5de79f4a0f1575dad3851a9e628bbd1d884a9ab6",
+    "ActualAdamsSystemBridge/Trace.lean": "b58db9baba1534108e37bd068bd0b1faffc5e3d196b35d08f5b67b22ebcc058b",
+    "ManualInputObligations/Reference/AdamsRules.lean": "f5e899de1219c1df1056ff94aab36049ce54f0621d08f2e35c80564ebdde64ce",
+    "ManualInputObligations/Typed.lean": "d38170dbe354b4af0ecd4ff56846d6144fde3250fa9209db61fd2781a4f98524",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "actual_product_trace_review_passed",
+  "two_transition_product_trace_cases": 16
+}

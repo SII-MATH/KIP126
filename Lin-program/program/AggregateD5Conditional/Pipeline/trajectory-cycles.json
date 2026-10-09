@@ -1,0 +1,325 @@
+[
+  {
+    "staircase_id": 3391,
+    "event_page": 5,
+    "endpoints": [
+      {
+        "endpoint": "source",
+        "degree": [
+          13,
+          139
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1,
+          0,
+          0
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:13,139:d2",
+            "coordinates": [
+              1,
+              0,
+              0
+            ],
+            "outgoing_value": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:13,139:d3",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          },
+          {
+            "page": 4,
+            "comparison": "S0:13,139:d4",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      },
+      {
+        "endpoint": "target",
+        "degree": [
+          18,
+          143
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1,
+          0
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:18,143:d2",
+            "coordinates": [
+              1,
+              0
+            ],
+            "outgoing_value": [
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:18,143:d3",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          },
+          {
+            "page": 4,
+            "comparison": "S0:18,143:d4",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      }
+    ],
+    "all_prior_cycles": true,
+    "conditional_uses": [
+      {
+        "block": "S0:12,138:d3",
+        "object": "S0",
+        "source": [
+          9,
+          136
+        ],
+        "page": 3,
+        "row": [
+          2861,
+          "1",
+          null,
+          9000
+        ],
+        "kind": "conditional_csigma",
+        "target_predecessor": "S0:12,138:d2"
+      },
+      {
+        "block": "S0:13,139:d3",
+        "object": "S0",
+        "source": [
+          10,
+          137
+        ],
+        "page": 3,
+        "row": [
+          2929,
+          "3",
+          null,
+          9000
+        ],
+        "kind": "conditional_cw_2_eta",
+        "target_predecessor": "S0:13,139:d2"
+      },
+      {
+        "block": "S0:13,139:d4",
+        "object": "S0",
+        "source": [
+          9,
+          136
+        ],
+        "page": 4,
+        "row": [
+          2861,
+          "1",
+          null,
+          9000
+        ],
+        "kind": "conditional_dc2h6_d4",
+        "target_predecessor": "S0:13,139:d3"
+      },
+      {
+        "block": "S0:13,139:d5",
+        "object": "S0",
+        "source": [
+          8,
+          135
+        ],
+        "page": 5,
+        "row": [
+          2796,
+          "2",
+          null,
+          9000
+        ],
+        "kind": "conditional_dc2h6_d5",
+        "target_predecessor": "S0:13,139:d4"
+      },
+      {
+        "block": "S0:14,140:d3",
+        "object": "S0",
+        "source": [
+          11,
+          138
+        ],
+        "page": 3,
+        "row": [
+          3019,
+          "2",
+          null,
+          9000
+        ],
+        "kind": "conditional_c2_row3019",
+        "target_predecessor": "S0:14,140:d2"
+      },
+      {
+        "block": "S0:14,140:d3",
+        "object": "S0",
+        "source": [
+          11,
+          138
+        ],
+        "page": 3,
+        "row": [
+          3020,
+          "0",
+          null,
+          9000
+        ],
+        "kind": "conditional_c2_row3020",
+        "target_predecessor": "S0:14,140:d2"
+      },
+      {
+        "block": "S0:4,132:d3",
+        "object": "S0",
+        "source": [
+          4,
+          132
+        ],
+        "page": 3,
+        "row": [
+          2576,
+          "0",
+          null,
+          9000
+        ],
+        "kind": "conditional_c2_h2",
+        "target_predecessor": "S0:7,134:d2"
+      },
+      {
+        "block": "S0:8,135:d3",
+        "object": "S0",
+        "source": [
+          8,
+          135
+        ],
+        "page": 3,
+        "row": [
+          2796,
+          "2",
+          null,
+          9000
+        ],
+        "kind": "conditional_h3_d0",
+        "target_predecessor": "S0:11,137:d2"
+      },
+      {
+        "block": "S0:8,135:d4",
+        "object": "S0",
+        "source": [
+          8,
+          135
+        ],
+        "page": 4,
+        "row": [
+          2796,
+          "2",
+          null,
+          9000
+        ],
+        "kind": "conditional_d4_module",
+        "target_predecessor": "S0:12,138:d3"
+      },
+      {
+        "block": "S0:8,135:d4",
+        "object": "S0",
+        "source": [
+          4,
+          132
+        ],
+        "page": 4,
+        "row": [
+          2576,
+          "0",
+          null,
+          9000
+        ],
+        "kind": "conditional_c2_d4_prefix",
+        "target_predecessor": "S0:8,135:d3"
+      },
+      {
+        "block": "S0:9,136:d3",
+        "object": "S0",
+        "source": [
+          9,
+          136
+        ],
+        "page": 3,
+        "row": [
+          2861,
+          "1",
+          null,
+          9000
+        ],
+        "kind": "conditional_csigma",
+        "target_predecessor": "S0:12,138:d2"
+      }
+    ]
+  }
+]

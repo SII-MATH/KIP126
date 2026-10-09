@@ -1,0 +1,127 @@
+[
+  {
+    "name": "actual-nonzero-cancellation",
+    "exit_code": 0,
+    "diagnostic": ""
+  },
+  {
+    "name": "deterministic-repeat",
+    "exit_code": 0,
+    "diagnostic": ""
+  },
+  {
+    "name": "two-record-stream",
+    "exit_code": 0,
+    "diagnostic": ""
+  },
+  {
+    "name": "rank-1",
+    "exit_code": 0,
+    "diagnostic": ""
+  },
+  {
+    "name": "rank-2",
+    "exit_code": 0,
+    "diagnostic": ""
+  },
+  {
+    "name": "rank-5",
+    "exit_code": 0,
+    "diagnostic": ""
+  },
+  {
+    "name": "rank-8",
+    "exit_code": 0,
+    "diagnostic": ""
+  },
+  {
+    "name": "missing-edge",
+    "exit_code": 1,
+    "diagnostic": "line 1: dense dimension mismatch\n"
+  },
+  {
+    "name": "rank-error",
+    "exit_code": 1,
+    "diagnostic": "line 1: edge(1,0): monomial rank mismatch\n"
+  },
+  {
+    "name": "grading-error",
+    "exit_code": 1,
+    "diagnostic": "line 1: edge(1,0): homological/internal degree mismatch\n"
+  },
+  {
+    "name": "broken-cancellation",
+    "exit_code": 1,
+    "diagnostic": "line 1: square-zero failure at source 5, target 0\n"
+  },
+  {
+    "name": "unknown-field",
+    "exit_code": 1,
+    "diagnostic": "line 1: unknown field extra\n"
+  },
+  {
+    "name": "duplicate-field",
+    "exit_code": 1,
+    "diagnostic": "line 1: duplicate field n\n"
+  },
+  {
+    "name": "null-edge",
+    "exit_code": 1,
+    "diagnostic": "line 1: JSON byte 10: expected natural/array/object\n"
+  },
+  {
+    "name": "large-integer",
+    "exit_code": 1,
+    "diagnostic": "line 1: integer resource limit\n"
+  },
+  {
+    "name": "nesting-limit",
+    "exit_code": 1,
+    "diagnostic": "line 1: JSON nesting limit\n"
+  },
+  {
+    "name": "byte-limit",
+    "exit_code": 1,
+    "diagnostic": "line 1: input byte limit 10MB\n"
+  },
+  {
+    "name": "recover-after-oversized",
+    "exit_code": 1,
+    "diagnostic": "line 1: input byte limit 10MB\n"
+  },
+  {
+    "name": "negative-integer",
+    "exit_code": 1,
+    "diagnostic": "line 1: JSON byte 11: expected natural/array/object\n"
+  },
+  {
+    "name": "leading-zero",
+    "exit_code": 1,
+    "diagnostic": "line 1: leading zero integer\n"
+  },
+  {
+    "name": "empty-stream",
+    "exit_code": 1,
+    "diagnostic": "empty JSONL input\n"
+  },
+  {
+    "name": "blank-record",
+    "exit_code": 1,
+    "diagnostic": "line 1: blank JSONL record\n"
+  },
+  {
+    "name": "rank-resource-limit",
+    "exit_code": 1,
+    "diagnostic": "line 1: resource limits rank 1..8,n 0..32\n"
+  },
+  {
+    "name": "degree-resource-limit",
+    "exit_code": 1,
+    "diagnostic": "line 1: product(0,1,0): product degree window limit 12\n"
+  },
+  {
+    "name": "continue-after-error",
+    "exit_code": 1,
+    "diagnostic": "line 2: missing field edges\n"
+  }
+]

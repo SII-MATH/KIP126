@@ -1,0 +1,24 @@
+OutgoingCycleMapTransport/Examples.lean:24:0: warning: Definition `laws` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+OutgoingCycleMapTransport/Examples.lean:42:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 1
+  a ≥ 1
+  a - b ≥ 1
+where
+ a := ↑[stage].length
+ b := ↑↑⟨0, ⋯⟩
+OutgoingCycleMapTransport/Examples.lean:51:6: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 1
+  a ≥ 1
+  a - b ≥ 1
+where
+ a := ↑[stage].length
+ b := ↑↑⟨0, ⋯⟩
+'OutgoingCycleMapTransport.Examples.hit_cycle' depends on axioms: [propext, sorryAx, Quot.sound]
+'OutgoingCycleMapTransport.Examples.hit_not_permanent' depends on axioms: [propext, Quot.sound]
+'OutgoingCycleMapTransport.Examples.all_later_zero' depends on axioms: [propext, Quot.sound]
+'OutgoingCycleMapTransport.Examples.identity_cycle' depends on axioms: [propext, sorryAx, Quot.sound]
+'OutgoingCycleMapTransport.Examples.batch_cycle' depends on axioms: [propext, sorryAx, Quot.sound]

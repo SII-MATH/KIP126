@@ -1,0 +1,37 @@
+import IndexedPredecessorClosure.Diagnostics
+import Fact713Row2693Continuation.Branches
+
+namespace IndexedPredecessorClosureActual
+open IndexedPredecessorClosure
+
+set_option maxRecDepth 100000
+set_option maxHeartbeats 32000000
+
+theorem zero_branch_closed :
+    PredecessorClosed (Fact713Row2693Continuation.family false) := by
+  predecessor_closed_cert using ()
+
+theorem one_branch_closed :
+    PredecessorClosed (Fact713Row2693Continuation.family true) := by
+  predecessor_closed_cert using ()
+
+theorem all_branches_closed (b : Bool) :
+    PredecessorClosed (Fact713Row2693Continuation.family b) := by
+  cases b
+  · exact zero_branch_closed
+  · exact one_branch_closed
+
+theorem all_branches_valid (b : Bool) :
+    Valid (Fact713Row2693Continuation.family b) :=
+  ⟨Fact713Row2693Continuation.family_coherent b,all_branches_closed b⟩
+
+theorem no_missing_predecessor (b : Bool) :
+    diagnose (Fact713Row2693Continuation.family b) = none :=
+  (diagnose_none_iff _).mpr ((checkPredecessors_iff _).mpr (all_branches_closed b))
+
+#print axioms zero_branch_closed
+#print axioms one_branch_closed
+#print axioms all_branches_closed
+#print axioms all_branches_valid
+#print axioms no_missing_predecessor
+end IndexedPredecessorClosureActual

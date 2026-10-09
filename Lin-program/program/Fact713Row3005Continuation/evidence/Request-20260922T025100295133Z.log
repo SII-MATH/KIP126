@@ -1,0 +1,69 @@
+Fact713Row3005Continuation/Request.lean:10:10: error: Ambiguous term
+  Request
+Possible interpretations:
+  ActualTraceRequests.Request : Type
+  
+  IndexedFamilyCertificates.Request : Type
+Fact713Row3005Continuation/Request.lean:11:20: error: Ambiguous term
+  Request
+Possible interpretations:
+  ActualTraceRequests.Request : Type
+  
+  IndexedFamilyCertificates.Request : Type
+Fact713Row3005Continuation/Request.lean:15:64: error: Ambiguous term
+  Request
+Possible interpretations:
+  ActualTraceRequests.Request : Type
+  
+  IndexedFamilyCertificates.Request : Type
+Fact713Row3005Continuation/Request.lean:23:67: error: Ambiguous term
+  Request
+Possible interpretations:
+  ActualTraceRequests.Request : Type
+  
+  IndexedFamilyCertificates.Request : Type
+Fact713Row3005Continuation/Request.lean:25:9: error: Tactic `rcases` failed: `x✝ : ?m.6` is not an inductive datatype
+Fact713Row3005Continuation/Request.lean:40:71: error: Ambiguous term
+  Request
+Possible interpretations:
+  ActualTraceRequests.Request : Type
+  
+  IndexedFamilyCertificates.Request : Type
+Fact713Row3005Continuation/Request.lean:60:2: error: fact713_row3005_cert: expected the same original E2 input and E11 output with complete Prefix11; use ActualTraceRequests.diagnose or diagnoseBatch with Fact713Row3005Continuation.spec for the record and field
+Fact713Row3005Continuation/Request.lean:61:8: warning: declaration uses `sorry`
+Fact713Row3005Continuation/Request.lean:64:9: warning: Variable name `b` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Fact713Row3005Continuation/Request.lean:64:20: warning: Variable name `P` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Fact713Row3005Continuation/Request.lean:66:70: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact713Row3005Continuation/Request.lean:68:75: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact713Row3005Continuation/Request.lean:70:65: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact713Row3005Continuation/Request.lean:72:72: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact713Row3005Continuation/Request.lean:74:60: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact713Row3005Continuation/Request.lean:76:35: error: `sorryAx` is not a structure
+Fact713Row3005Continuation/Request.lean:96:5: warning: Variable name `wrong` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Fact713Row3005Continuation.request_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.batch_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.imported_single' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.imported_batch' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.source_sound' depends on axioms: [propext, Classical.choice, Quot.sound]

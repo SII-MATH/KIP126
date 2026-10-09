@@ -1,0 +1,921 @@
+{
+  "success": true,
+  "events": [
+    {
+      "row_ref": "event3151",
+      "raw": {
+        "object": "S0",
+        "target": [
+          11,
+          137
+        ],
+        "page": 5,
+        "zero_target_candidate": true,
+        "event": {
+          "inventory_row": {
+            "staircase_id": 3151,
+            "filtration": 15,
+            "total_degree": 140,
+            "stem": 125,
+            "base": "1",
+            "base_local_indices": [
+              1
+            ],
+            "base_global_ids": [
+              3151
+            ],
+            "base_monomials": [
+              "67,1,107,1"
+            ],
+            "diff": "2",
+            "level": 4,
+            "status": "stored_incoming",
+            "event_page": 4,
+            "other_degree": [
+              11,
+              137
+            ],
+            "diff_global_ids": [
+              2925
+            ],
+            "diff_local_indices": [
+              2
+            ]
+          },
+          "event_source": [
+            11,
+            137
+          ],
+          "event_page": 4,
+          "comparison": "S0:11,137:d4"
+        }
+      },
+      "target_predecessor": "S0:11,137:d4",
+      "status": "unresolved",
+      "reason": "unknown S0:7,134:d3:row2708; target dimension 1"
+    },
+    {
+      "row_ref": "event3152",
+      "raw": {
+        "object": "S0",
+        "target": [
+          15,
+          140
+        ],
+        "page": 6,
+        "zero_target_candidate": true,
+        "event": {
+          "inventory_row": {
+            "staircase_id": 3152,
+            "filtration": 15,
+            "total_degree": 140,
+            "stem": 125,
+            "base": "2",
+            "base_local_indices": [
+              2
+            ],
+            "base_global_ids": [
+              3152
+            ],
+            "base_monomials": [
+              "1,1,439,1"
+            ],
+            "diff": "0",
+            "level": 9995,
+            "status": "stored_outgoing",
+            "event_page": 5,
+            "other_degree": [
+              20,
+              144
+            ],
+            "diff_global_ids": [
+              3484
+            ],
+            "diff_local_indices": [
+              0
+            ]
+          },
+          "event_source": [
+            15,
+            140
+          ],
+          "event_page": 5,
+          "comparison": "S0:15,140:d5"
+        }
+      },
+      "target_predecessor": "S0:15,140:d5",
+      "status": "unresolved",
+      "reason": "unknown S0:7,134:d3:row2708; target dimension 1"
+    },
+    {
+      "row_ref": "event3992",
+      "raw": {
+        "object": "S0",
+        "target": [
+          21,
+          147
+        ],
+        "page": 5,
+        "zero_target_candidate": true,
+        "event": {
+          "inventory_row": {
+            "staircase_id": 3992,
+            "filtration": 25,
+            "total_degree": 150,
+            "stem": 125,
+            "base": "3",
+            "base_local_indices": [
+              3
+            ],
+            "base_global_ids": [
+              3995
+            ],
+            "base_monomials": [
+              "8,2,9,1,13,1,80,1"
+            ],
+            "diff": "1",
+            "level": 4,
+            "status": "stored_incoming",
+            "event_page": 4,
+            "other_degree": [
+              21,
+              147
+            ],
+            "diff_global_ids": [
+              3749
+            ],
+            "diff_local_indices": [
+              1
+            ]
+          },
+          "event_source": [
+            21,
+            147
+          ],
+          "event_page": 4,
+          "comparison": "S0:21,147:d4"
+        }
+      },
+      "target_predecessor": "S0:21,147:d4",
+      "status": "unresolved",
+      "reason": "unknown S0:18,145:d3:row3564; target dimension 3"
+    }
+  ],
+  "row2708_exact_records": [
+    {
+      "file": "proofs-part3.csv",
+      "physical_start_line": 935364,
+      "physical_end_line": 935364,
+      "id": "2422713",
+      "depth": "0",
+      "reason": "[NULL]",
+      "name": "S0",
+      "stem": "127",
+      "s": "7",
+      "t": "134",
+      "r": "3",
+      "x": "0,1",
+      "dx": "[NULL]",
+      "info": "[NULL]"
+    },
+    {
+      "file": "proofs-part3.csv",
+      "physical_start_line": 1346198,
+      "physical_end_line": 1346198,
+      "id": "2603924",
+      "depth": "0",
+      "reason": "[NULL]",
+      "name": "S0",
+      "stem": "127",
+      "s": "7",
+      "t": "134",
+      "r": "3",
+      "x": "0,1",
+      "dx": "[NULL]",
+      "info": "[NULL]"
+    }
+  ],
+  "detecting_nonzero_source_maps": [
+    {
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigma",
+        "to": "Csigma"
+      },
+      "degree": [
+        7,
+        134
+      ],
+      "wanted": [
+        1,
+        0
+      ],
+      "detected_target": [
+        1
+      ],
+      "records": [
+        {
+          "id": "86602",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 81172,
+          "reason": "N",
+          "page": "3",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353218",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 786549,
+          "reason": "T",
+          "page": "7",
+          "raw_x": "2",
+          "raw_dx": "2,4",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353219",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 786552,
+          "reason": "D",
+          "page": "7",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353222",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 786555,
+          "reason": "T",
+          "page": "8",
+          "raw_x": "2",
+          "raw_dx": "0",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353223",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 786558,
+          "reason": "D",
+          "page": "8",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        }
+      ],
+      "known_zero_log_span_does_not_contain_wanted": true,
+      "caveat": "Even these later zero logs require finite page prefix semantics; no log is accepted as proof."
+    },
+    {
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_sigma_nu",
+        "to": "CW_sigma_nu"
+      },
+      "degree": [
+        7,
+        134
+      ],
+      "wanted": [
+        1,
+        0
+      ],
+      "detected_target": [
+        0,
+        0,
+        1
+      ],
+      "records": [
+        {
+          "id": "86586",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 81156,
+          "reason": "N",
+          "page": "3",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2073235",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 130004,
+          "reason": "G",
+          "page": "7",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353226",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 786561,
+          "reason": "N",
+          "page": "8",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2477553",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 1040981,
+          "reason": "N",
+          "page": "9",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            1
+          ],
+          "exact_match": false
+        }
+      ],
+      "known_zero_log_span_does_not_contain_wanted": true,
+      "caveat": "Even these later zero logs require finite page prefix semantics; no log is accepted as proof."
+    },
+    {
+      "map": {
+        "factor": [
+          6,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__CW_2_eta_by_nu",
+        "to": "CW_2_eta"
+      },
+      "degree": [
+        8,
+        141
+      ],
+      "wanted": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "detected_target": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "records": [
+        {
+          "id": "86612",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 81182,
+          "reason": "N",
+          "page": "3",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "356107",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 530349,
+          "reason": "T",
+          "page": "3",
+          "raw_x": "0",
+          "raw_dx": "6",
+          "quotient": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "356108",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 530351,
+          "reason": "T",
+          "page": "3",
+          "raw_x": "1",
+          "raw_dx": "6",
+          "quotient": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2078067",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 138864,
+          "reason": "T",
+          "page": "7",
+          "raw_x": "2",
+          "raw_dx": "1",
+          "quotient": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2078068",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 138867,
+          "reason": "T",
+          "page": "7",
+          "raw_x": "2",
+          "raw_dx": "0",
+          "quotient": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2078069",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 138871,
+          "reason": "T",
+          "page": "7",
+          "raw_x": "2",
+          "raw_dx": "0,1",
+          "quotient": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2078070",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 138875,
+          "reason": "D",
+          "page": "7",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353224",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 786559,
+          "reason": "N",
+          "page": "8",
+          "raw_x": "2",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2448327",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 974733,
+          "reason": "[NULL]",
+          "page": "10",
+          "raw_x": "2",
+          "raw_dx": "[NULL]",
+          "quotient": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "exact_match": false
+        }
+      ],
+      "known_zero_log_span_does_not_contain_wanted": true,
+      "caveat": "Even these later zero logs require finite page prefix semantics; no log is accepted as proof."
+    },
+    {
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h5",
+        "to": "DC2h5"
+      },
+      "degree": [
+        7,
+        134
+      ],
+      "wanted": [
+        0,
+        1,
+        0
+      ],
+      "detected_target": [
+        0,
+        1
+      ],
+      "records": [
+        {
+          "id": "2623249",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 1385865,
+          "reason": "XY",
+          "page": "11",
+          "raw_x": "3,4",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            0,
+            1
+          ],
+          "exact_match": false
+        }
+      ],
+      "known_zero_log_span_does_not_contain_wanted": true,
+      "caveat": "Even these later zero logs require finite page prefix semantics; no log is accepted as proof."
+    },
+    {
+      "map": {
+        "factor": [
+          0,
+          0,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__DC2h6",
+        "to": "DC2h6"
+      },
+      "degree": [
+        7,
+        134
+      ],
+      "wanted": [
+        0,
+        1,
+        0
+      ],
+      "detected_target": [
+        0,
+        0,
+        1
+      ],
+      "records": [
+        {
+          "id": "899327",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 1855838,
+          "reason": "N",
+          "page": "5",
+          "raw_x": "0,4",
+          "raw_dx": "",
+          "quotient": [
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2052068",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 90585,
+          "reason": "N",
+          "page": "6",
+          "raw_x": "0,4",
+          "raw_dx": "",
+          "quotient": [
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2438861",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 957397,
+          "reason": "N",
+          "page": "8",
+          "raw_x": "0,4",
+          "raw_dx": "",
+          "quotient": [
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2609526",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 1355228,
+          "reason": "N",
+          "page": "9",
+          "raw_x": "0,4",
+          "raw_dx": "",
+          "quotient": [
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        }
+      ],
+      "known_zero_log_span_does_not_contain_wanted": true,
+      "caveat": "Even these later zero logs require finite page prefix semantics; no log is accepted as proof."
+    },
+    {
+      "map": {
+        "factor": [
+          15,
+          1,
+          0
+        ],
+        "from": "S0",
+        "name": "S0__Csigma_by_2sigma",
+        "to": "Csigma"
+      },
+      "degree": [
+        8,
+        150
+      ],
+      "wanted": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "detected_target": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "records": [
+        {
+          "id": "49056",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 43626,
+          "reason": "N",
+          "page": "2",
+          "raw_x": "0,1,2,3",
+          "raw_dx": "",
+          "quotient": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "295134",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 404937,
+          "reason": "N",
+          "page": "3",
+          "raw_x": "0,1,2,3",
+          "raw_dx": "",
+          "quotient": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "381421",
+          "file": "proofs-part1.csv",
+          "physical_start_line": 584685,
+          "reason": "N",
+          "page": "4",
+          "raw_x": "0,1,2,3",
+          "raw_dx": "",
+          "quotient": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353536",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 787039,
+          "reason": "T",
+          "page": "3",
+          "raw_x": "1",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353537",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 787043,
+          "reason": "T",
+          "page": "3",
+          "raw_x": "1",
+          "raw_dx": "6",
+          "quotient": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353538",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 787047,
+          "reason": "T",
+          "page": "3",
+          "raw_x": "3",
+          "raw_dx": "",
+          "quotient": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        },
+        {
+          "id": "2353539",
+          "file": "proofs-part3.csv",
+          "physical_start_line": 787051,
+          "reason": "T",
+          "page": "3",
+          "raw_x": "3",
+          "raw_dx": "6",
+          "quotient": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "exact_match": false
+        }
+      ],
+      "known_zero_log_span_does_not_contain_wanted": true,
+      "caveat": "Even these later zero logs require finite page prefix semantics; no log is accepted as proof."
+    }
+  ],
+  "row3564_exact_records": [
+    {
+      "file": "proofs-part1.csv",
+      "physical_start_line": 298588,
+      "physical_end_line": 298588,
+      "id": "241081",
+      "depth": "0",
+      "reason": "N",
+      "name": "S0",
+      "stem": "127",
+      "s": "18",
+      "t": "145",
+      "r": "999",
+      "x": "1",
+      "dx": "",
+      "info": "C2__S0"
+    },
+    {
+      "file": "proofs-part1.csv",
+      "physical_start_line": 586829,
+      "physical_end_line": 586829,
+      "id": "382803",
+      "depth": "0",
+      "reason": "N",
+      "name": "S0",
+      "stem": "127",
+      "s": "18",
+      "t": "145",
+      "r": "3",
+      "x": "4",
+      "dx": "2",
+      "info": "CW_eta_nu__Q_CW_2_eta_nu"
+    }
+  ],
+  "c2_target_map_kernel": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1
+    ]
+  ],
+  "c2_quotients_independently_rechecked": 4,
+  "row3564_source_basis_id": 3562,
+  "c2_source_staircase_id": 3735,
+  "conclusions": "No automatic zero override. Six detector routes still need actual image d3 values; C2 route needs local0-bit exclusion plus naturality and page coherence.",
+  "inputs_sha256": {
+    "RemainingEventAudit/source.json": "58a73b3f1e81a9741478d078babe209f585297e80b3d5b62fbc58a343499c0f6",
+    "RemainingEventAudit/analyze.py": "03819da26a5e704c83b4915841825d0354d9fa963b4de92fe0c597244f7b06ae",
+    "Fact764TrajectoryAudit/MapComparison.lean": "0b4ca6bef46d92c21b7bce431a3fae34428c50bce83e18f97bd2e0b89c280a63",
+    "Fact764TrajectoryAudit/comparison-source.json": "6ee072c61a49705a4980eeeece3d7eba4fcfa093dcce1275cf81690a7bd5d9e2",
+    "Row2925Detector/source_independent_audit.py": "1cf431e8d8872f0917be82820712f92a09bb7b02d28736ae60c882bb46809fd7"
+  }
+}

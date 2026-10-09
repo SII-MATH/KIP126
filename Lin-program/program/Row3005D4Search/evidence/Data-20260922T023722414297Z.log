@@ -1,0 +1,20 @@
+Row3005D4Search/Data.lean:21:86: error: failed to synthesize
+  Decidable (InKernel (matrixOf source.k source.m source.outgoing) c2Raw)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3005D4Search/Data.lean:25:94: error: failed to synthesize
+  Decidable (∀ (v : Vec 1), InKernel (matrixOf sphere3.k sphere3.m sphere3.outgoing) v)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'Row3005D4Search.Data.sphere3_valid' depends on axioms: [propext, Quot.sound]
+'Row3005D4Search.Data.empty2_valid' depends on axioms: [propext, Quot.sound]
+'Row3005D4Search.Data.empty3_valid' depends on axioms: [propext, Quot.sound]
+'Row3005D4Search.Data.c2_cycle2' depends on axioms: [propext, sorryAx]
+'Row3005D4Search.Data.map_named2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Data.sphere_next2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Data.sphere_zero3' depends on axioms: [propext, sorryAx]
+'Row3005D4Search.Data.sphere_next3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Data.upper_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Data.upper_reflects' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Data.named_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3005D4Search.Data.empty_dimensions' does not depend on any axioms

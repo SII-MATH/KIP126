@@ -1,0 +1,93 @@
+{
+  "status": "independent_eta_route_review_passed",
+  "polynomial_columns": 76,
+  "polynomial_reduction_steps": 80,
+  "d2_comparisons": 12,
+  "d3_comparisons": 4,
+  "d2_chain_maps": 6,
+  "d3_chain_maps": 2,
+  "cycle_pairs": 1324,
+  "branches": 4,
+  "upper_eta_columns": [
+    0,
+    1
+  ],
+  "arbitrary_deta_left_term_zero": true,
+  "row3152_d3_codomain_zero_from_d2": true,
+  "row3152_d5_value_needed": false,
+  "inherited_conditional_d3_uses": [
+    [
+      2925,
+      "conditional_cnu_eta"
+    ],
+    [
+      2796,
+      "conditional_h3_d0"
+    ]
+  ],
+  "standard_reports": 36,
+  "direct_records": {
+    "Products": {
+      "exit_code": 0,
+      "standard_reports": 1,
+      "current_object_matches_direct": true
+    },
+    "Comparison": {
+      "exit_code": 0,
+      "standard_reports": 2,
+      "current_object_matches_direct": true
+    },
+    "Higher": {
+      "exit_code": 0,
+      "standard_reports": 2,
+      "current_object_matches_direct": true
+    },
+    "ProductSemantics": {
+      "exit_code": 0,
+      "standard_reports": 16,
+      "current_object_matches_direct": true
+    },
+    "H05": {
+      "exit_code": 0,
+      "standard_reports": 1,
+      "current_object_matches_direct": true
+    },
+    "H05Semantics": {
+      "exit_code": 0,
+      "standard_reports": 1,
+      "current_object_matches_direct": true
+    },
+    "LeftTerm": {
+      "exit_code": 0,
+      "standard_reports": 5,
+      "current_object_matches_direct": true
+    },
+    "Naturality": {
+      "exit_code": 0,
+      "standard_reports": 3,
+      "current_object_matches_direct": true
+    },
+    "Restriction": {
+      "exit_code": 0,
+      "standard_reports": 5,
+      "current_object_matches_direct": true
+    }
+  },
+  "input_sha256": {
+    "Row2925EtaD4/Products.lean": "6765faa7bd03918a9e57c2c363101078d9094f853206c5499c9b95cea268d71d",
+    "Row2925EtaD4/Comparison.lean": "44678a203cbada1ee8d8f16facc8e72e0c30edc2400cc0b673dc31c03f509322",
+    "Row2925EtaD4/Higher.lean": "edfa5942e400f3aed30e0fe018bb435e69315807844d8580cf22063f40870406",
+    "Row2925EtaD4/ProductSemantics.lean": "04aa07eff021c2dd831a15a3d896481a0317516ffb902602b586e150ef64657f",
+    "Row2925EtaD4/H05.lean": "cae4b5c0b69f8f521a0e0c435ceaab7ba741b2d22161547ae39b9030e8ea369f",
+    "Row2925EtaD4/H05Semantics.lean": "ea562d9364073c346785d87dd6d5eabc382935c59c747f95dadf0cf875a6f5ed",
+    "Row2925EtaD4/LeftTerm.lean": "813407d10d844e599d0a0620c46895ca24b441062e70b87582660dbcdded48e8",
+    "Row2925EtaD4/Naturality.lean": "090d222c69c96b9e52a633cef82dee300dd001987f5a33821118982255124646",
+    "Row2925EtaD4/Restriction.lean": "8d11b61df03148ed5d7a01c87648e8a272958ab08b3eaf2eec463b0e49e17be0",
+    "Row2925EtaD4/products-provenance.json": "1375810082f7e2b08e1bcfe3ba81e7609913d1bd5a72ababa831345ddb1b178f",
+    "Row2925EtaD4/h05-provenance.json": "3b4bca47e8967ae7ed40f22c59b08eb71763390871f036291d0716fc3563f1e9",
+    "Row2925EtaD4/comparison-source.json": "fb89a3c4926ed5532ecdb965976a26e266a883289047fa6b6448ed70af4c8dd4",
+    "Row2925EtaD4/leftTermD3.json": "044cfd315bba93f554be6afd088e280cf026d35cd4daf51493910f21598fd557",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "limitation": "Restriction is conditional on exact full ordinary Leibniz and coordinate meanings. Actual.lean is outside this nine-leaf review."
+}

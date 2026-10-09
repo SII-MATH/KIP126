@@ -1,0 +1,207 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Row2574D3Search.Data",
+      "axiom_reports": 21,
+      "source_sha256": "9cecd8e1703a2c2b98f1747df8b6b0908d8e51f6895ff4af5fe2e4cd5febf9f2",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact715Source2574/Recorded.olean": "6142373d51e15ce546c18bbfce26353f38f67d0514e603d2c78100d6c0a852cd",
+        ".lake/build/lib/lean/Fact715Source2574/Vanishing.olean": "aa2de18e3955ec89859b80edc94f50956b71c5be6ca3f4bfdbbc1ffa61fca7de",
+        ".lake/build/lib/lean/Row2574Detector/Quotient.olean": "1917f3f1a1705d1444908e55e594dd5a6329d079bfe2dc87884001be98b49368"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row2574D3Search/Data.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2574D3Search/Data.olean"
+      ],
+      "log": "evidence/Data-20260922T025822488560Z.log",
+      "external_input_sha256": {
+        "Row2574D3Search/wire/current2.json": "d20758e2cc7f75eead2341d578c3e1ea6e5f0dbafe2649351a1cea61148f9087",
+        "Row2574D3Search/wire/current3_0.json": "ebf9cb330afdf2cc00ebb26a355c0f65b601a8cf76f6ac44da56faa0b6f8d6eb",
+        "Row2574D3Search/wire/current3_1.json": "ee4b5187cf70339e77e7cd804030d54c1372d622f1547fdfcdbb32f542fb0351",
+        "Row2574D3Search/wire/source3_0.json": "ad96ba1d80832b017f95faf38fc913a614e73b8a948473d0fa56c76b0177d500",
+        "Row2574D3Search/wire/source3_1.json": "180f7a7997cba0cfb5f70b4379470770433163fef67c91b41ee3070ee42c0978",
+        "Row2574D3Search/wire/sourceIncoming2.json": "be6e1ef6a68899d533569542b812fcf4b3bc6de06d299bece4b3ac16827b2ae1",
+        "Row2574D3Search/wire/upper2.json": "114fff3cd1eb3bf7b22e8f29d2409a9c22ba76cea7c8a4cd4e6bd3bd11cfee43"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "ad130c5c6c65fe45541ad7953517bae1b35d0922fbdbd4536a884de8330edac7",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Fact715Source2574/Recorded.olean": "6142373d51e15ce546c18bbfce26353f38f67d0514e603d2c78100d6c0a852cd",
+        ".lake/build/lib/lean/Fact715Source2574/Vanishing.olean": "aa2de18e3955ec89859b80edc94f50956b71c5be6ca3f4bfdbbc1ffa61fca7de",
+        ".lake/build/lib/lean/Row2574Detector/Quotient.olean": "1917f3f1a1705d1444908e55e594dd5a6329d079bfe2dc87884001be98b49368"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "b7a449c39e022340af0fbb4f16355ddd8ddb785a7d73b862a11179447901d1ba"
+    },
+    {
+      "module": "Row2574D3Search.Semantics",
+      "axiom_reports": 11,
+      "source_sha256": "a76b77c7c3cd470d34177a4c94efe72d750592a04eda9c1782ba0a9964ca5c43",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row2574D3Search/Data.olean": "b7a449c39e022340af0fbb4f16355ddd8ddb785a7d73b862a11179447901d1ba",
+        ".lake/build/lib/lean/BranchReplayCertificates/BasisSemantics.olean": "b2cab866631df2c3b15bbdbc8856abd2451dcc62a63a620a7a42cf7f851671d5"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row2574D3Search/Semantics.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2574D3Search/Semantics.olean"
+      ],
+      "log": "evidence/Semantics-20260922T025827426218Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "afc2b52294637d45e7ffb7c2de6f647ccdbb136e73c11d4de9879e33437c84b6",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row2574D3Search/Data.olean": "b7a449c39e022340af0fbb4f16355ddd8ddb785a7d73b862a11179447901d1ba",
+        ".lake/build/lib/lean/BranchReplayCertificates/BasisSemantics.olean": "b2cab866631df2c3b15bbdbc8856abd2451dcc62a63a620a7a42cf7f851671d5"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "9750dcc1032ba48f87bccbda226580b6fb362d609c5e8d7d2dcc0f213c8fc5c0"
+    },
+    {
+      "module": "Row2574D3Search.Product",
+      "axiom_reports": 3,
+      "source_sha256": "1ec393dffdb37c629eb95f10a8d555d5fac67391b0f0a944e218b2472326bc49",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row2574D3Search/Semantics.olean": "9750dcc1032ba48f87bccbda226580b6fb362d609c5e8d7d2dcc0f213c8fc5c0"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row2574D3Search/Product.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2574D3Search/Product.olean"
+      ],
+      "log": "evidence/Product-20260922T025831323661Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "361d0914be90695dc596426e562631b3ffe7eb383ed2afe2e74fcf62f868c0f0",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row2574D3Search/Semantics.olean": "9750dcc1032ba48f87bccbda226580b6fb362d609c5e8d7d2dcc0f213c8fc5c0"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "e7fd38e56a56e5b07ec341e99e9455c646c3cc82c5af018afcce4023de2843ec"
+    },
+    {
+      "module": "Row2574D3Search.Actual",
+      "axiom_reports": 16,
+      "source_sha256": "0995ecc0626acb1713c86b8fb91f71183235a74e103d910c6efb4337e2bbb9ad",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row2574D3Search/Product.olean": "e7fd38e56a56e5b07ec341e99e9455c646c3cc82c5af018afcce4023de2843ec"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row2574D3Search/Actual.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2574D3Search/Actual.olean"
+      ],
+      "log": "evidence/Actual-20260922T025909328811Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "e02e32a5e8dcf269afbbd29187632660897b334485d3ef2e554f2d6ba5db96fd",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row2574D3Search/Product.olean": "e7fd38e56a56e5b07ec341e99e9455c646c3cc82c5af018afcce4023de2843ec"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "1d6f2d9d3581c50527ad5727e701b0b5e37113ea720d90a6f904d75bff437620"
+    },
+    {
+      "module": "Row2574D3Search.Tactic",
+      "axiom_reports": 4,
+      "source_sha256": "2088c0b622f0737d4fa8ac4310fd11d5a77fc3b64fc3e90a5fe6b18f462354c4",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row2574D3Search/Actual.olean": "1d6f2d9d3581c50527ad5727e701b0b5e37113ea720d90a6f904d75bff437620",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/lib/lean/Lean/Elab/Tactic.olean": "cc9e89c311871fa7e0f02ba6cdcb4e40d779b44bc1c28ed1cff1e4f1da9e8378"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row2574D3Search/Tactic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2574D3Search/Tactic.olean"
+      ],
+      "log": "evidence/Tactic-20260922T025913038045Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "0d17d4047966e645a145307ecb67933cac109b2435020e1e83aae3ecf4b50bc4",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row2574D3Search/Actual.olean": "1d6f2d9d3581c50527ad5727e701b0b5e37113ea720d90a6f904d75bff437620",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/lib/lean/Lean/Elab/Tactic.olean": "cc9e89c311871fa7e0f02ba6cdcb4e40d779b44bc1c28ed1cff1e4f1da9e8378"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "a22f98b9818943820afab05324580499fc9d479ec2b7b7f881ebb66112df4d32"
+    }
+  ],
+  "axiom_reports": 55,
+  "dependency_note": "Direct dependency hashes are historical observations at compile time; root builds may later rebuild registered dependencies.",
+  "files": {
+    "Row2574D3Search/Actual-compile.json": "b4a2bdac67d42171de5ae15f00c287d2a22810e4be40b0897b0ed3159c28e398",
+    "Row2574D3Search/Actual.lean": "0995ecc0626acb1713c86b8fb91f71183235a74e103d910c6efb4337e2bbb9ad",
+    "Row2574D3Search/Data-compile.json": "aecabd5d8d43d65f8cd1746ab71fc8db9231aeededf17a11e789ebbd25a223d2",
+    "Row2574D3Search/Data.lean": "9cecd8e1703a2c2b98f1747df8b6b0908d8e51f6895ff4af5fe2e4cd5febf9f2",
+    "Row2574D3Search/Product-compile.json": "8f6c7e636595a82e19bc5e7f997e604937bd4e25ded3f3ed595c7aa32ab95fa7",
+    "Row2574D3Search/Product.lean": "1ec393dffdb37c629eb95f10a8d555d5fac67391b0f0a944e218b2472326bc49",
+    "Row2574D3Search/README.md": "528731b45db50186a1ae70ece1a2324f10d8796e567c156bd7a4362f3684a2a2",
+    "Row2574D3Search/Semantics-compile.json": "46b80bfbb640ff685188eded8981544b500ab3f14c7ff11e3873207bb1ac93a8",
+    "Row2574D3Search/Semantics.lean": "a76b77c7c3cd470d34177a4c94efe72d750592a04eda9c1782ba0a9964ca5c43",
+    "Row2574D3Search/Tactic-compile.json": "3fd65dbe000babd8296b5e4f05aaf8b42f7f9c54818f552acaef23b9298c14d7",
+    "Row2574D3Search/Tactic.lean": "2088c0b622f0737d4fa8ac4310fd11d5a77fc3b64fc3e90a5fe6b18f462354c4",
+    "Row2574D3Search/audit.json": "2a05a7a5312061555bbc6d98c1ba5709651886cb18204e3ef43a58ca08d7950f",
+    "Row2574D3Search/audit.log": "2a05a7a5312061555bbc6d98c1ba5709651886cb18204e3ef43a58ca08d7950f",
+    "Row2574D3Search/audit.py": "9c90bc7c402f0722c36a33a2c33daf6cf4d0e3651fdd6620708f6c922604a0c2",
+    "Row2574D3Search/compile.py": "0fae0c8524e22d742bc33c1a4a0f2919c92a143a02847aa7c27017b6b45e21a2",
+    "Row2574D3Search/evidence/Actual-20260922T025835319216Z.json": "6706b5d962942778a2a1f044e46d52d3407ae3d378c8c378aed4d6210ef41fa5",
+    "Row2574D3Search/evidence/Actual-20260922T025835319216Z.log": "64744e9cbe2c4b18d376a3da744348b312f56c491fa86059b11ae0cdf9c03791",
+    "Row2574D3Search/evidence/Actual-20260922T025851122162Z.json": "81a1d9b60977e5f42a0739456100c6695900e1d70d196c22f50bb0a3c3df32e1",
+    "Row2574D3Search/evidence/Actual-20260922T025851122162Z.log": "56baacc445ea95a9eec51618aecc1d0c8fd1ca014dbb61c58385ef3a6b39e41c",
+    "Row2574D3Search/evidence/Actual-20260922T025909328811Z.json": "b4a2bdac67d42171de5ae15f00c287d2a22810e4be40b0897b0ed3159c28e398",
+    "Row2574D3Search/evidence/Actual-20260922T025909328811Z.log": "e02e32a5e8dcf269afbbd29187632660897b334485d3ef2e554f2d6ba5db96fd",
+    "Row2574D3Search/evidence/Data-20260922T024911865562Z.json": "aab396d0372478e1e775d49ddbb710948abd391f2e13f5598cbbb9d30f3b7640",
+    "Row2574D3Search/evidence/Data-20260922T024911865562Z.log": "3cf32beb991339e9e64325dc3d791fa0295b19ec7e0eae26b50a79f6469871dc",
+    "Row2574D3Search/evidence/Data-20260922T025035384774Z.json": "103ebc6760f2ad8daed722731317ee0d42cdfcd0a4b0370faff1d6db4402207d",
+    "Row2574D3Search/evidence/Data-20260922T025035384774Z.log": "3cf32beb991339e9e64325dc3d791fa0295b19ec7e0eae26b50a79f6469871dc",
+    "Row2574D3Search/evidence/Data-20260922T025822488560Z.json": "aecabd5d8d43d65f8cd1746ab71fc8db9231aeededf17a11e789ebbd25a223d2",
+    "Row2574D3Search/evidence/Data-20260922T025822488560Z.log": "ad130c5c6c65fe45541ad7953517bae1b35d0922fbdbd4536a884de8330edac7",
+    "Row2574D3Search/evidence/Product-20260922T024955969381Z.json": "261d3837188a605b75b6a18f1d56d0dff689235b510f2b9e96c8b8de102ffc7a",
+    "Row2574D3Search/evidence/Product-20260922T024955969381Z.log": "8f1274d27e078c3b21f75b3647c58bd517f10303232bf43d5e6bfec6241ecb2b",
+    "Row2574D3Search/evidence/Product-20260922T025015918751Z.json": "4182bee92361fd5c34771667769c4e0514ca079855c72b7f77d27155ab64a3c5",
+    "Row2574D3Search/evidence/Product-20260922T025015918751Z.log": "2f68e715fd87d7465fa43959f76b7146c9bcb328d9f509983abd1822a30d50b2",
+    "Row2574D3Search/evidence/Product-20260922T025039421980Z.json": "1254593c8029ca97f6af1b16b2e841fc14b8b0aef4f1d5d170ee0abec9261c77",
+    "Row2574D3Search/evidence/Product-20260922T025039421980Z.log": "361d0914be90695dc596426e562631b3ffe7eb383ed2afe2e74fcf62f868c0f0",
+    "Row2574D3Search/evidence/Product-20260922T025831323661Z.json": "8f6c7e636595a82e19bc5e7f997e604937bd4e25ded3f3ed595c7aa32ab95fa7",
+    "Row2574D3Search/evidence/Product-20260922T025831323661Z.log": "361d0914be90695dc596426e562631b3ffe7eb383ed2afe2e74fcf62f868c0f0",
+    "Row2574D3Search/evidence/Semantics-20260922T025827426218Z.json": "46b80bfbb640ff685188eded8981544b500ab3f14c7ff11e3873207bb1ac93a8",
+    "Row2574D3Search/evidence/Semantics-20260922T025827426218Z.log": "afc2b52294637d45e7ffb7c2de6f647ccdbb136e73c11d4de9879e33437c84b6",
+    "Row2574D3Search/evidence/Tactic-20260922T025913038045Z.json": "3fd65dbe000babd8296b5e4f05aaf8b42f7f9c54818f552acaef23b9298c14d7",
+    "Row2574D3Search/evidence/Tactic-20260922T025913038045Z.log": "0d17d4047966e645a145307ecb67933cac109b2435020e1e83aae3ecf4b50bc4",
+    "Row2574D3Search/freeze.py": "75ff4adba9ffeaad62be8707b24d94ab381d937fa0c01f030c58811459c951d8",
+    "Row2574D3Search/generate.log": "d2978c3f205c77b2674092b8ff1e9394141bec5a92fe51f4f8bbf849c38a1f3a",
+    "Row2574D3Search/generate.py": "b2958b68763485279442c57848deb4544ab052c9e315d39893b7861453fdcdb4",
+    "Row2574D3Search/lifted-search.json": "1bcbb0569dc6618f77ca4ec3b54438c2b9a1f511f392de25bd5a49de72f07581",
+    "Row2574D3Search/map-screen.log": "3b31d2eeb5a49407dc02ef12dc934b953b7cf23c77bfde835e36612474c3d7ef",
+    "Row2574D3Search/modules.txt": "3812d808a604dca7125cea54f065924e7fd0f1ae5da393fc7666858247efc7a0",
+    "Row2574D3Search/products-screen.json": "f6ba2b31be72b07f19c2f730b370d6357f9dda264aa47e39931701c2823746a3",
+    "Row2574D3Search/products-screen.log": "bf1d35ff682cf0531eb58a34818d05332baf7e60fe318102f2275b4d1dc49e49",
+    "Row2574D3Search/proof-events.json": "0cdd52088913fdda896a25f7058ca6899c5043e6ac58d41a3f300195ddc366c3",
+    "Row2574D3Search/proof-events.log": "989b4358b463729055e285c6397647577dad68aeef1318a16bbd3595c1c71bea",
+    "Row2574D3Search/proof_events.py": "32b74d7eaf5130b4edb8d8a8f850a01a4f6e5200578411aab0bcdc91ae1f889b",
+    "Row2574D3Search/raw-degrees.json": "44afde6285f7c9d874f97351ac582c428bdee2f163d3aca8b57f4dbaea3bfb99",
+    "Row2574D3Search/reproduction.json": "2952a3eb89a0defb3c6c2cb78f79c9c0d06bd91419f6e3d002c126b051183cd2",
+    "Row2574D3Search/screen_products.py": "247dc9a1592be35fdeb349c30611791bb8bc7e2c745f49bef3eaa66b5531e184",
+    "Row2574D3Search/search_maps.py": "72105f0fc2defa5ae95cbfd3437fe44b6df2c7dc8e9a78014fa28f872efa1571",
+    "Row2574D3Search/wire/current2.json": "d20758e2cc7f75eead2341d578c3e1ea6e5f0dbafe2649351a1cea61148f9087",
+    "Row2574D3Search/wire/current3_0.json": "ebf9cb330afdf2cc00ebb26a355c0f65b601a8cf76f6ac44da56faa0b6f8d6eb",
+    "Row2574D3Search/wire/current3_1.json": "ee4b5187cf70339e77e7cd804030d54c1372d622f1547fdfcdbb32f542fb0351",
+    "Row2574D3Search/wire/source3_0.json": "ad96ba1d80832b017f95faf38fc913a614e73b8a948473d0fa56c76b0177d500",
+    "Row2574D3Search/wire/source3_1.json": "180f7a7997cba0cfb5f70b4379470770433163fef67c91b41ee3070ee42c0978",
+    "Row2574D3Search/wire/sourceIncoming2.json": "be6e1ef6a68899d533569542b812fcf4b3bc6de06d299bece4b3ac16827b2ae1",
+    "Row2574D3Search/wire/upper2.json": "114fff3cd1eb3bf7b22e8f29d2409a9c22ba76cea7c8a4cd4e6bd3bd11cfee43",
+    "Row2574D3Search/file-list.txt": "10abb35bb26ce82dc6ad4fd6ee778b62860ba7092daa045d4d4ee4ac7cdad0d1"
+  }
+}

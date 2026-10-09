@@ -1,0 +1,92 @@
+{
+  "paper_versions": {
+    "lin_machine_proofs": "arXiv:2412.10876v2 (2025-02-22)",
+    "kervaire": "arXiv:2412.10879v2 (2025-02-22)"
+  },
+  "program_boundary": {
+    "adams": [
+      "minimal Steenrod-algebra resolutions",
+      "multiplicative E2 data",
+      "exported Adams E2 pages",
+      "selected Adams d2 differentials",
+      "maps between E2 pages"
+    ],
+    "ss": [
+      "propagation of Adams differentials",
+      "extension spectral sequence computations",
+      "Leibniz rule and naturality",
+      "Generalized Leibniz Rule",
+      "Generalized Mahowald Trick",
+      "machine-readable and human-readable proof logs",
+      "interactive plots"
+    ]
+  },
+  "input_classes": [
+    "CW spectrum definitions",
+    "E2 generators, relations, bases and bidegrees",
+    "maps between E2 pages",
+    "cofiber sequences",
+    "known d2 differentials",
+    "three manually added differentials",
+    "propagation rules and theorem conditions",
+    "stem/filtration/internal-degree bounds"
+  ],
+  "output_classes": [
+    "E2 generators/relations/bases",
+    "multiplication data",
+    "E2-page maps",
+    "Adams differentials and inverse differential records",
+    "permanent cycles",
+    "undetermined candidates",
+    "extensions and filtration jumps",
+    "proof-tree rows and human-readable proof text",
+    "plots"
+  ],
+  "spectra_count": 49,
+  "maps_count": 180,
+  "cofiber_sequences_count": 61,
+  "kervaire_appendix": {
+    "range": "122 <= t-s <= 127, s <= 25",
+    "tables": [
+      {"id": 1, "object": "S0/nu", "stem": 126, "filtration": "9-14"},
+      {"id": 2, "object": "S0", "stem": 122, "filtration": "<=25"},
+      {"id": 3, "object": "S0", "stem": 123, "filtration": "<=25"},
+      {"id": 4, "object": "S0", "stem": 124, "filtration": "13-25"},
+      {"id": 5, "object": "S0", "stem": 124, "filtration": "<=12"},
+      {"id": 6, "object": "S0", "stem": 125, "filtration": "20-25"},
+      {"id": 7, "object": "S0", "stem": 125, "filtration": "<=19"},
+      {"id": 8, "object": "S0", "stem": 126, "filtration": "11-25"},
+      {"id": 9, "object": "S0", "stem": 126, "filtration": "<=10"},
+      {"id": 10, "object": "S0", "stem": 127, "filtration": "21-25"},
+      {"id": 11, "object": "S0", "stem": 127, "filtration": "10-20"},
+      {"id": 12, "object": "S0", "stem": 127, "filtration": "<=9"}
+    ]
+  },
+  "kervaire_claims": [
+    {"id": "fact-7.6-1", "claim": "x126,8,4 + x126,8 survives to E6", "source_tables": [7, 9, 5, 6]},
+    {"id": "fact-7.6-2", "claim": "h1 h4 x109,12 is permanent and has only the stated possible killers", "source_tables": [7, 9, 5, 6]},
+    {"id": "fact-7.6-3", "claim": "h0^2 x124,8 survives to E-infinity", "source_tables": [5, 7]},
+    {"id": "fact-7.6-4", "claim": "g^4 Delta h1 g is the only survivor in Ext at stem 125, filtration 25 through E5", "source_tables": [6, 7]},
+    {"id": "remark-7.7", "claim": "d3(x126,6) = h5 x94,8, possibly plus h6(Delta e1 + C0 + h0^6 h5^2), nonzero", "source_tables": [9]},
+    {"id": "fact-7.13", "claim": "x123,9 + h0 x123,8 survives to E12 and d2(x125,8) has the displayed value", "source_tables": [3, 7]},
+    {"id": "fact-7.15", "claim": "h0^2 x125,9,2 survives to E5", "source_tables": [7]},
+    {"id": "fact-7.19", "claim": "h1 x121,7 survives to E6", "source_tables": [2]},
+    {"id": "fact-7.21", "claim": "h6 M d0 and h5 x91,11 are permanent cycles", "source_tables": [2]},
+    {"id": "proposition-7.9-input", "claim": "In S0/nu stem 126, h1 h4 x109,12[0] is not killed by d_r for r <= 5", "source_tables": [1]},
+    {"id": "strategy-1.165", "claim": "Lin's program plus induction rules out 101 of 105 possible targets of h6^2 in stem 125", "source_tables": [2, 3, 4, 5, 6, 7, 8, 9]}
+  ],
+  "manual_differentials": [
+    "d5(h0^24 h6) = h0^2 P^6 d0 in S0",
+    "d6(h0^55 h7) = h0^2 x126,60 in S0",
+    "d3(v2^16) = beta^5 g in tmf"
+  ],
+  "proof_record_fields": ["id", "depth", "reason", "name", "stem", "s", "t", "r", "x", "dx", "info"],
+  "unknown_markers": ["?", "[NULL]", "possibly"],
+  "source_urls": {
+    "machine_paper": "https://arxiv.org/abs/2412.10876",
+    "kervaire_paper": "https://arxiv.org/abs/2412.10879",
+    "source_code": "https://github.com/WayneLin92/SSeqCpp",
+    "zenodo": "https://doi.org/10.5281/zenodo.14272279",
+    "interactive_plot": "https://waynelin92.github.io/ss/kervaire-49.html"
+  }
+}

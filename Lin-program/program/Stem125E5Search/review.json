@@ -1,0 +1,332 @@
+{
+  "branch_counts": {
+    "fifteen": 4,
+    "fourteen": 3,
+    "nine": 2,
+    "source14prefix": 2,
+    "target9prefix": 2,
+    "twentyfive": 20
+  },
+  "cycle_pairs": 12385,
+  "inherited_conditions": [
+    {
+      "block": "S0:10,134:d3",
+      "kind": "conditional_h0_h2_leibniz",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2693,
+        "4",
+        null,
+        9000
+      ],
+      "source": [
+        10,
+        134
+      ],
+      "target_predecessor": "S0:13,136:d2"
+    },
+    {
+      "block": "S0:12,138:d3",
+      "kind": "conditional_csigma",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2861,
+        "1",
+        null,
+        9000
+      ],
+      "source": [
+        9,
+        136
+      ],
+      "target_predecessor": "S0:12,138:d2"
+    },
+    {
+      "block": "S0:13,138:d3",
+      "kind": "conditional_leibniz",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2858,
+        "2",
+        null,
+        9000
+      ],
+      "source": [
+        10,
+        136
+      ],
+      "target_predecessor": "S0:13,138:d2"
+    },
+    {
+      "block": "S0:14,140:d3",
+      "kind": "conditional_c2_row3019",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        3019,
+        "2",
+        null,
+        9000
+      ],
+      "source": [
+        11,
+        138
+      ],
+      "target_predecessor": "S0:14,140:d2"
+    },
+    {
+      "block": "S0:14,140:d3",
+      "kind": "conditional_c2_row3020",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        3020,
+        "0",
+        null,
+        9000
+      ],
+      "source": [
+        11,
+        138
+      ],
+      "target_predecessor": "S0:14,140:d2"
+    },
+    {
+      "block": "S0:15,139:d3",
+      "kind": "conditional_ceta",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        3076,
+        "1,3",
+        null,
+        9000
+      ],
+      "source": [
+        15,
+        139
+      ],
+      "target_predecessor": "S0:18,141:d2"
+    },
+    {
+      "block": "S0:18,144:d3",
+      "kind": "conditional_three_products",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        3325,
+        "2",
+        null,
+        9000
+      ],
+      "source": [
+        15,
+        142
+      ],
+      "target_predecessor": "S0:18,144:d2"
+    },
+    {
+      "basis_certificate": "d52_177",
+      "block": "S0:52,177:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        6651,
+        "8,2,469,1",
+        null
+      ],
+      "source": [
+        52,
+        177
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix",
+          "row": [
+            6651,
+            "0",
+            "0",
+            9996
+          ]
+        }
+      ]
+    },
+    {
+      "basis_certificate": "d51_177",
+      "block": "S0:53,178:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        6652,
+        "8,2,470,1",
+        null
+      ],
+      "source": [
+        51,
+        177
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            6652,
+            "1",
+            "1",
+            4
+          ]
+        },
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            6653,
+            "0",
+            "0,1",
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "basis_certificate": "d51_177",
+      "block": "S0:53,178:d2",
+      "column": 1,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        6653,
+        "0,13,686,1",
+        null
+      ],
+      "source": [
+        51,
+        177
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            6652,
+            "1",
+            "1",
+            4
+          ]
+        },
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            6653,
+            "0",
+            "0,1",
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "basis_certificate": "d56_180",
+      "block": "S0:56,180:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        7006,
+        "8,1,661,1",
+        null
+      ],
+      "source": [
+        56,
+        180
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            7006,
+            "0",
+            "0",
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "basis_certificate": "d57_181",
+      "block": "S0:59,182:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        7161,
+        "0,1,8,1,661,1",
+        null
+      ],
+      "source": [
+        57,
+        181
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            7161,
+            "0",
+            "0",
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "inputs_sha256": {
+    "AggregateD5Conditional/event-results.json": "47ef1c3887a8cb598289dd0719df04cd11dc9c999b8d47e6d4e1705a5c3dfb59",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "Stem125E4Search/coverage.json": "ede0b33c5c7d0486163627e2764ba821ab1c170dd417a5514a69f77e50213b65",
+    "Stem125E5Search/Branches.lean": "5b4f8830e1df8fe099ed4400641a26eae86ec851b42485c3216c736ebe00fdf6",
+    "Stem125E5Search/Data.lean": "0761be0df1648982e0f5e7d8ccfd7a975d4e99dfce4574a7c59c692bf3be03d6",
+    "Stem125E5Search/Family.lean": "ea1943c8a5e3b5ad78f0b45f6e6f477f0aa55b3afd5d427faa0846cd2bdf1a82",
+    "Stem125E5Search/Known.lean": "9d0dece6646d8cbea6a983886b0fb320633c9a7d9d71a8f7973615e34e5839ed",
+    "Stem125E5Search/Product.lean": "386974155d8e529db929448c5b9cee0e1f198d0f1c5a8e7c5629322662229533",
+    "Stem125E5Search/Zero.lean": "9fe33b1e2cf9d73c01a6dfbe9bdb022414e013c2b20a71e5592025047063e89c",
+    "Stem125E5Search/branches.json": "db3f9503b56460ec6860d76cdd445ebd63a30750e3def68afc61926d3fdb2987",
+    "Stem125E5Search/family_generate.py": "4ee412178cc760de26b6b4e29a28d7211f210343a72030eb173cc69d1c8f082a",
+    "Stem125E5Search/generate.py": "b20d74cc9c716f0e0168db302b68f21c394a3b3227967f8b25f109bcdd71f1d8",
+    "Stem125E5Search/product_generate.py": "357b53ef79d373ae5e645cd2e5283d744e9d4da458761713aa9f826e836c702c",
+    "Stem125E5Search/review.py": "157a6614c45eae01ccd83419c9094fdac0448134e6b1b4aea64955d28a450be1",
+    "Stem125E5Search/search.json": "0547da02505a480429886d36e44df6f4cb5baaf50aeb7783de3da1a32b1b97da",
+    "Stem125E5Search/search.py": "a4a3138bc13d716deabd1ce04fb5d4270a6549e551815be6f4c902ed814df36c"
+  },
+  "known_centers": 13,
+  "known_homology": 2,
+  "known_input_dimension": 17,
+  "known_predecessor_closure": 163,
+  "limitations": [
+    "480 local choices are not proved realizable Adams spectral sequences or a globally constructed subsequent-page family.",
+    "Every full-product theorem is parameterized by choice and requires exact interpretation of incoming/outgoing columns and prefix basis changes.",
+    "Zero factors remain arbitrary neighboring-dimension zero-current quotients; earlier zero-group propagation needs actual page semantics.",
+    "No branch, unknown column, or missing quotient basis is implicitly selected."
+  ],
+  "local_compatible_product_choices": 480,
+  "new_blocks": 21,
+  "new_higher_columns": 27,
+  "new_raw_d2_columns": 26,
+  "possible_coordinate_counts": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "projected_cycles": 20,
+  "status": "conditional_E5_branch_review_passed"
+}

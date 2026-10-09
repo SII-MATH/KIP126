@@ -1,0 +1,31 @@
+{
+  "source_sha256": "343264a1cc5b361d7cdfb787ae90a8160b64951be46515cd3f4d8c694790f2ef",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Row2916D4Search/Maps.olean": "1149bac4c4d000130386e95364304c1fca0529679443d8c96378cf69a4e85572",
+    ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff",
+    ".lake/build/lib/lean/PageTransitionCertificates/InducedMap.olean": "00683f19bb38e7aad45da1e73459905cfe6f515671711dcb59ad28d32da982e8"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Row2916D4Search/Comparison.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2916D4Search/Comparison.olean"
+  ],
+  "log": "evidence/Comparison-20260922T011600260115Z.log",
+  "external_input_sha256": {
+    "Row2916D4Search/quotient/Ceta_10_137.json": "0a066cd34767791fd1c1ca83d19ec005ed1ec89035beb91c84c5b8375e5a9617",
+    "Row2916D4Search/quotient/Ceta_13_139.json": "825ea2aab79956008873e2a2c40d9a0db6b8e42c4fdff71ee53224fb4e46a5d9",
+    "Row2916D4Search/quotient/Ceta_16_141.json": "c84d8e35cceac1752bee7be6b2eb707c51e46a99972ae00b34395a3238708711",
+    "Row2916D4Search/quotient/Ceta_17_142.json": "3f0d149c1de271899a17f9844a76ba7a751a5a6b568f62355582ad3c22666a09",
+    "Row2916D4Search/quotient/Ceta_5_38.json": "8a28ddb6c8a907e5942412e6fb35bc13b34fc987afc3396785c3fe2ddb6c4e46",
+    "Row2916D4Search/quotient/Ceta_8_40.json": "8f714491baf4cfa1abf50b2e2cfea236f234c9d75ecbfc0b794400b1223ae8a4",
+    "Row2916D4Search/quotient/S0_11_103.json": "8a28ddb6c8a907e5942412e6fb35bc13b34fc987afc3396785c3fe2ddb6c4e46",
+    "Row2916D4Search/quotient/S0_13_137.json": "bf3d622c6ce39c6fb37721dc0e6ccd82638ce9a85d5b56aceda68bebc2b5faca",
+    "Row2916D4Search/quotient/S0_8_101.json": "8abd0cee8d6af29771f8f233217845c494875d925ad118a852f7f33907e491ed"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "ae4306f877d4259e6ceedba3baac81a1279561481280f0b1ecc6135ee3288f54",
+  "inputs_stable": true,
+  "olean_sha256": "885121fc637a89c2003bdd8ab11f0fb0dc834c4ead6d7cff7636eb5d7778a5e5"
+}

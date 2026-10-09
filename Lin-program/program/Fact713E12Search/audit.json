@@ -1,0 +1,79 @@
+{
+  "status": "independent_finite_identity_and_NULL_audit_passed",
+  "comparison_count": 1211,
+  "all_input_vectors": 2452,
+  "all_cycle_pairs": 9296,
+  "identical_adjacent_differentials": 914,
+  "complete_predecessor_closure": true,
+  "raw_differential_rows": 760,
+  "raw_NULL_row_pages": 82,
+  "raw_NULL_classifications": {
+    "stored_earlier_zero_prefix": 25,
+    "sentinel_unknown": 55,
+    "unknown_event": 2
+  },
+  "named_NULL_prefix_pages": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "conditional_sources": {
+    "conditional_h0_h2_leibniz": {
+      "row_key": "10,134,d3,row2693",
+      "source_files": [
+        "Row2693Detector/Matches.lean",
+        "Row2693Detector/Combined.lean"
+      ],
+      "actual_adams_proof_supplied": false,
+      "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+    },
+    "conditional_c2_successor": {
+      "row_key": "17,140,d3,row3143",
+      "source_files": [
+        "Fact713C2Row3143/Matches.lean",
+        "Fact713C2Row3143/Naturality.lean"
+      ],
+      "actual_adams_proof_supplied": false,
+      "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+    },
+    "conditional_c2_prefix": {
+      "row_key": "14,138,d3,row3005",
+      "source_files": [
+        "Fact713C2Row3005/Matches.lean",
+        "Fact713C2Row3005/Naturality.lean"
+      ],
+      "actual_adams_proof_supplied": false,
+      "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+    },
+    "conditional_dc2h6_d3": {
+      "row_key": "9,134,d3,row2695",
+      "source_files": [
+        "AggregateDC2h6Conditional/Matches.lean",
+        "Row2695Detector/Naturality.lean"
+      ],
+      "actual_adams_proof_supplied": false,
+      "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+    },
+    "conditional_ceta": {
+      "row_key": "15,139,d3,row3076",
+      "source_files": [
+        "Fact713TrajectoryCertificates/Row3076.lean",
+        "Fact715TrajectoryCertificates/Naturality.lean"
+      ],
+      "actual_adams_proof_supplied": false,
+      "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+    }
+  },
+  "trust": "All finite matrix identities checked independently. These computations do not instantiate any actual Adams meaning or prove the named NULL zero-prefix assumptions.",
+  "input_sha256": {
+    "Fact713E12Search/search.json": "b092b909e211bcccb0aa261314167107fd6e9c84ad5be1fb0153a519e59b137c",
+    "Fact713E12Search/audit.py": "23eb6cfd38d814bc71417ece69db49ccecadff4ab97950664ece726275888ce6",
+    "Fact713TrajectoryAudit/dag.json": "e2f4057a2f56161d38657dff44320fdc66f311658213ee934becc27b1c248c1c"
+  }
+}

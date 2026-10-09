@@ -1,0 +1,56 @@
+{
+  "details": {
+    "accepted_events_unchanged": 95,
+    "all_incoming_columns": 3,
+    "compiled_only": "Source",
+    "complete_comparisons_snapshot": 359,
+    "exploratory_uncompiled": [
+      "Basic",
+      "Data",
+      "Events"
+    ],
+    "incoming_column_values": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "limitation": "Whole incoming matrix theorem assumes all three exact column meanings. No actual-source semantics are inferred from SQL.",
+    "modules": 1,
+    "old358_unchanged": true,
+    "premises": [
+      "row3563 boundary prefix",
+      "row3564 named zero from detector under its own hypotheses",
+      "row3565 stored nonzero value"
+    ],
+    "unresolved": 6
+  },
+  "findings": [],
+  "inputs_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateLeibniz3564Conditional/Basic.lean": "fda0933aa5e4cb8e9917d24e76b9b5d8a480a911419e6b73d348deeec4090f30",
+    "AggregateLeibniz3564Conditional/Data.lean": "dbf3d3dbe6088a046437749b14963360a5ec06240d1c9f7ddcd6fcd25dc73977",
+    "AggregateLeibniz3564Conditional/Events.lean": "53e66effffc8b0b4932343a1c85378c054038170a9d824fa5089c778096659e3",
+    "AggregateLeibniz3564Conditional/Source.lean": "6cf5787426a458fe3f6e847544270f42ec2ca19a8b9f1cd796febd0a32dd7417",
+    "AggregateLeibniz3564Conditional/compile-audit.json": "419f128998166bd74ce0d518047a9aab8c2014aec9b02c3871c3834698545f0d",
+    "AggregateLeibniz3564Conditional/event-results.json": "b986a65fe7fe276637b6fe11776b7f2044b2173694e3a1e7540ed3019615a5f7",
+    "AggregateLeibniz3564Conditional/review.json": "c9d7732936fcdea55e017ed285c5ddde3e4282551159c417b472854a1b7e889d",
+    "AggregateLeibniz3564Conditional/review.py": "fbf6bf739aa417b7a1a414cfd1323227264223d88680af3d89273abd473efad9",
+    "AggregateLeibniz3564Conditional/source.json": "8896061fd1fa76f4fb6109f4920c5d0661e8b4da945767ed89f884182fbbc60c",
+    "Row3564LeibnizDetector/Matches.lean": "b3bb07c0a7eb9e478c0b8147fc5be30d420a0733cf1e0d1dcbca399ca458770a",
+    "Row3564LeibnizDetector/Quotient.lean": "5871c996d062f0a826f1a2c3d7744de5701968934e80c416842ee72bcaa19140",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "independent_source_semantics_SQL_and_finite_replay_passed"
+}

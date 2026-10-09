@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "queries": 22240,
+  "accepted": 863,
+  "rejected": 21377,
+  "deterministic_runs": 3,
+  "strict_negative_cases": 21,
+  "dimension64": "producer accepted; no kernel claim",
+  "sources": {
+    "export.cpp": "e4b0ac806f63a31de49dcee5bf45f71fc6ea6c84aa0bb8c4b357a844842118b7",
+    "test.py": "db9b7a1d4d49e71a7bbcdc034543f7831814f3f3850e7ff762b7c9042db91555",
+    "Makefile": "0971c69e2f98fb9a4fc07efc67bfe6f962c2f027132b7c650ba68fcb0d505b23"
+  },
+  "outputs": {
+    "valid.input.jsonl": "191ce0d24588874dc676b03eb5fcee65802ecdea010259784367e4b9d87f9108",
+    "valid.jsonl": "bec2e25f456a8509440d06826d4742c62edce3b0ec0557602e10d8e78bc7be6f",
+    "case_nonzero_f.json": "cc66aebec020442b74adde48b22e33917060119cb66d5b309d096ec066ebfa8f",
+    "case_nonzero_p.json": "b8d7291787b64ca6035a254216092e8587f5605752ece965700e83fbc090c337",
+    "case_corrected.json": "527b5acf3a333d453b00b6fdd8bec4bb4ff88e7859421ca1d27a3e35fa3628d2",
+    "case_empty.json": "b82d9a43486d7e166b162bd9af3abda8f222db686ea05def1602a89c0ad0e543",
+    "case_dimension64.json": "6a3a9f29d5de21a3f29fce3c37176bdffe6048add1ea074694581bf1391fb3e9"
+  }
+}

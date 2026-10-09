@@ -1,0 +1,10 @@
+FamilyKeyOrder/Basic.lean:30:20: error: Type mismatch
+  fun x x_1 less => Nat.ne_of_lt less
+has type
+  ∀ (x : a✝ < b✝) (x_1 : ?m.17 x), ?m.18 x x_1 < ?m.19 x x_1 → ?m.18 x x_1 ≠ ?m.19 x x_1
+but is expected to have type
+  a✝ < b✝ → a✝ ≠ b✝
+'FamilyKeyOrder.checkOrder_pairwise' depends on axioms: [propext, Quot.sound]
+'FamilyKeyOrder.checkOrder_nodup' depends on axioms: [propext, sorryAx, Quot.sound]
+'FamilyKeyOrder.nodup_of_map_nodup' depends on axioms: [propext, Quot.sound]
+'FamilyKeyOrder.check_key_order_sound' depends on axioms: [propext, sorryAx, Quot.sound]

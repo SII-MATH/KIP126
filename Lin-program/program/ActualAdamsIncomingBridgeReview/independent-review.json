@@ -1,0 +1,37 @@
+{
+  "counterproof_direct_exit": 0,
+  "counterproof_standard_reports": 2,
+  "findings": [
+    {
+      "consequence": "Conditions S target is uninhabitable for every S and target; assembly theorem is vacuous.",
+      "file": "ActualAdamsIncomingBridge/Basic.lean",
+      "kernel_proof": "ActualAdamsIncomingBridgeReview.conditions_impossible",
+      "line": 38,
+      "severity": "P1",
+      "title": "Page4Route is impossible on Unit plus the actual source"
+    }
+  ],
+  "original_direct_exit": 0,
+  "original_standard_reports": 4,
+  "page_partition_cases": 9999,
+  "reviewer": "/root/source_rules_next",
+  "source_sha256": {
+    "ActualAdamsIncomingBridge/Basic-compile.json": "92e81ab4b409886c4403cfac9a65004223fb2fe380b7733b68e302558b3ab1c6",
+    "ActualAdamsIncomingBridge/Basic.lean": "4590ed01aefc541bf4cc97bf432e71ba0c345b4581f0ec4f5be4d80e6e176d55",
+    "ActualAdamsIncomingBridge/Basic.log": "27fcb7e403b249958a7a15e1a1cde0e7c446bc132ba5952fb7d7a75d22126d39",
+    "ActualAdamsIncomingBridgeReview/INDEPENDENT_REVIEW.md": "b20d8a8dc8a15f3d08bf95a4479886a35b6b7438a23d1bef4ab7de0e05006ece",
+    "ActualAdamsIncomingBridgeReview/Vacuity.lean": "3ca8c955365aeb611fd1cf8ba038f76b131ea2c3cc6ce7277ab9d7b465820c48",
+    "ActualAdamsIncomingBridgeReview/Vacuity.log": "ae5bf22910e06ff63bf965cf66af2e2833d61cc3f0c535597ecaa850866c96e3",
+    "ActualAdamsIncomingBridgeReview/compile-audit.json": "e3556982156bfea39f36b10f50d7307f33cac2722c981875ef05b52b8c4724fe",
+    "ActualAdamsIncomingBridgeReview/review.py": "753b9e210fc4750050baa338f235ed42de4d2443d077cc6d93be87ab14800438",
+    "ActualAdamsSystemBridge/Basic.lean": "f6fab04ed4161c2f05e85c26b98b5bcb1589625f8a2843901aa0b407cc51a0f5",
+    "ActualAdamsSystemBridge/Tail.lean": "0365afa26e7b5e1e28ff0a6bca3beb1874a09b34d16634e13f70f4e3286cad8c",
+    "Fact762AssemblyCertificates/Routes.lean": "a2d9ddef1d297dfdc9245b9fedf30d29bbb87657cb22565613da88a5f721c2e8",
+    "Fact762IncomingCertificates/Incoming.lean": "f747d1357c8ed1d68eae326a55c9d29247deccc3c4c980b6434f8848364864ac",
+    "Fact762Source4Certificates/KernelBranch.lean": "423bd2984757822b42b1c8a4f6f461e8a5b948131ee38d8105ae38e103d30592",
+    "Fact762Source7Certificates/Semantics.lean": "e4913e98589d4bfc5b18f9486269660925a7f7548a770c1114cf10a8cef408ea",
+    "ManualInputObligations/Reference/AdamsHomology.lean": "527fc8f59f7dc609c70f359876ec4c83010df3801c5fad301b1b2d0dc4b92232"
+  },
+  "status": "independent_review_found_vacuous_conditions",
+  "tagged_zero_examples": 5
+}

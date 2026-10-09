@@ -1,0 +1,744 @@
+[
+  {
+    "staircase_id": 6651,
+    "event_page": 4,
+    "endpoints": [
+      {
+        "endpoint": "source",
+        "degree": [
+          52,
+          177
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:52,177:d2",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:52,177:d3",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      },
+      {
+        "endpoint": "target",
+        "degree": [
+          56,
+          180
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:56,180:d2",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:56,180:d3",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      }
+    ],
+    "all_prior_cycles": true,
+    "conditional_uses": [
+      {
+        "block": "S0:52,177:d2",
+        "object": "S0",
+        "source": [
+          52,
+          177
+        ],
+        "page": 2,
+        "row": [
+          6651,
+          "8,2,469,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d52_177",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              6651,
+              "0",
+              "0",
+              9996
+            ],
+            "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:53,178:d2",
+        "object": "S0",
+        "source": [
+          51,
+          177
+        ],
+        "page": 2,
+        "row": [
+          6652,
+          "8,2,470,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d51_177",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              6652,
+              "1",
+              "1",
+              4
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          },
+          {
+            "row": [
+              6653,
+              "0",
+              "0,1",
+              4
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:53,178:d2",
+        "object": "S0",
+        "source": [
+          51,
+          177
+        ],
+        "page": 2,
+        "row": [
+          6653,
+          "0,13,686,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 1,
+        "basis_certificate": "d51_177",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              6652,
+              "1",
+              "1",
+              4
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          },
+          {
+            "row": [
+              6653,
+              "0",
+              "0,1",
+              4
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:56,180:d2",
+        "object": "S0",
+        "source": [
+          56,
+          180
+        ],
+        "page": 2,
+        "row": [
+          7006,
+          "8,1,661,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d56_180",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              7006,
+              "0",
+              "0",
+              4
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:59,182:d2",
+        "object": "S0",
+        "source": [
+          57,
+          181
+        ],
+        "page": 2,
+        "row": [
+          7161,
+          "0,1,8,1,661,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d57_181",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              7161,
+              "0",
+              "0",
+              2
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "staircase_id": 7007,
+    "event_page": 2,
+    "endpoints": [
+      {
+        "endpoint": "source",
+        "degree": [
+          55,
+          180
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1
+        ],
+        "prior_stages": [],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      },
+      {
+        "endpoint": "target",
+        "degree": [
+          57,
+          181
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1
+        ],
+        "prior_stages": [],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      }
+    ],
+    "all_prior_cycles": true,
+    "conditional_uses": [
+      {
+        "block": "S0:55,180:d2",
+        "object": "S0",
+        "source": [
+          55,
+          180
+        ],
+        "page": 2,
+        "row": [
+          7007,
+          "16,1,554,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d55_180",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              7007,
+              "0",
+              "0",
+              9998
+            ],
+            "kind": "stored_outgoing_d2"
+          }
+        ]
+      },
+      {
+        "block": "S0:55,180:d2",
+        "object": "S0",
+        "source": [
+          53,
+          179
+        ],
+        "page": 2,
+        "row": [
+          6893,
+          "0,15,686,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d53_179",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              6893,
+              "0",
+              "0",
+              4
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "staircase_id": 7162,
+    "event_page": 2,
+    "endpoints": [
+      {
+        "endpoint": "source",
+        "degree": [
+          56,
+          181
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1
+        ],
+        "prior_stages": [],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      },
+      {
+        "endpoint": "target",
+        "degree": [
+          58,
+          182
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1
+        ],
+        "prior_stages": [],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      }
+    ],
+    "all_prior_cycles": true,
+    "conditional_uses": [
+      {
+        "block": "S0:56,181:d2",
+        "object": "S0",
+        "source": [
+          56,
+          181
+        ],
+        "page": 2,
+        "row": [
+          7162,
+          "0,1,16,1,554,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d56_181",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              7162,
+              "0",
+              "0",
+              9998
+            ],
+            "kind": "stored_outgoing_d2"
+          }
+        ]
+      },
+      {
+        "block": "S0:56,181:d2",
+        "object": "S0",
+        "source": [
+          54,
+          180
+        ],
+        "page": 2,
+        "row": [
+          7008,
+          "17,1,554,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d54_180",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              7008,
+              "0",
+              "0",
+              9997
+            ],
+            "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "staircase_id": 7247,
+    "event_page": 3,
+    "endpoints": [
+      {
+        "endpoint": "source",
+        "degree": [
+          54,
+          180
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:54,180:d2",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      },
+      {
+        "endpoint": "target",
+        "degree": [
+          57,
+          182
+        ],
+        "raw_local_indices": [
+          0
+        ],
+        "raw_vector": [
+          1
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:57,182:d2",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      }
+    ],
+    "all_prior_cycles": true,
+    "conditional_uses": [
+      {
+        "block": "S0:51,178:d2",
+        "object": "S0",
+        "source": [
+          51,
+          178
+        ],
+        "page": 2,
+        "row": [
+          6788,
+          "0,50,324,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d51_178",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              6788,
+              "0",
+              "0",
+              9995
+            ],
+            "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:51,178:d2",
+        "object": "S0",
+        "source": [
+          49,
+          177
+        ],
+        "page": 2,
+        "row": [
+          6656,
+          "8,1,634,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d49_177",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              6656,
+              "1",
+              "0",
+              2
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          },
+          {
+            "row": [
+              6657,
+              "0",
+              "0",
+              9996
+            ],
+            "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:51,178:d2",
+        "object": "S0",
+        "source": [
+          49,
+          177
+        ],
+        "page": 2,
+        "row": [
+          6657,
+          "0,3,805,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 1,
+        "basis_certificate": "d49_177",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              6656,
+              "1",
+              "0",
+              2
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          },
+          {
+            "row": [
+              6657,
+              "0",
+              "0",
+              9996
+            ],
+            "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:54,180:d2",
+        "object": "S0",
+        "source": [
+          54,
+          180
+        ],
+        "page": 2,
+        "row": [
+          7008,
+          "17,1,554,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d54_180",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              7008,
+              "0",
+              "0",
+              9997
+            ],
+            "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:54,180:d2",
+        "object": "S0",
+        "source": [
+          52,
+          179
+        ],
+        "page": 2,
+        "row": [
+          6894,
+          "0,51,324,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d52_179",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              6894,
+              "0",
+              "0",
+              9995
+            ],
+            "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:57,182:d2",
+        "object": "S0",
+        "source": [
+          57,
+          182
+        ],
+        "page": 2,
+        "row": [
+          7247,
+          "0,2,16,1,554,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d57_182",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              7247,
+              "0",
+              "0",
+              3
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          }
+        ]
+      },
+      {
+        "block": "S0:57,182:d2",
+        "object": "S0",
+        "source": [
+          55,
+          181
+        ],
+        "page": 2,
+        "row": [
+          7163,
+          "0,1,17,1,554,1",
+          null
+        ],
+        "kind": "conditional_d2_staircase",
+        "column": 0,
+        "basis_certificate": "d55_181",
+        "staircase_basis_evidence": [
+          {
+            "row": [
+              7163,
+              "0",
+              "1",
+              5
+            ],
+            "kind": "incoming_boundary_d2_cycle_prefix"
+          }
+        ]
+      }
+    ]
+  }
+]

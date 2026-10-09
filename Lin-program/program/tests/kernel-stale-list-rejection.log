@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/run_kernel_audit.py", line 22, in <module>
+    assert len(scheduled) == len(set(scheduled)) and set(scheduled) == registered, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Stale axiom audit module list: run tests/generate_kernel_audit.py after registration

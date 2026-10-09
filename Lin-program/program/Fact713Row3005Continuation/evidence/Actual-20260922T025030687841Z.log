@@ -1,0 +1,27 @@
+Fact713Row3005Continuation/Actual.lean:46:34: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  D.target.equivalence 0
+in the target expression
+  D.target.equivalence 0 = eval (matrixOf wire.k wire.m wire.outgoing) (D.calculation.input.sphere4.equivalence x)
+
+C S : AdamsSpectralSequence
+D : Input C S
+x : (S.element 4 degree).carrier
+⊢ D.target.equivalence 0 = eval (matrixOf wire.k wire.m wire.outgoing) (D.calculation.input.sphere4.equivalence x)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    D.target
+  has type
+    Coordinates S 4 (AdamsTarget 4 degree) 1
+  but is expected to have type
+    Coordinates S 4 (AdamsTarget 4 degree) wire.k
+  in the application
+    D.target.equivalence
+'Fact713Row3005Continuation.Actual.Incoming.page4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.Actual.Input.incomingSource' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.Actual.Input.whole' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.Actual.Input.page5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.Actual.coordinate5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.Actual.nonzero5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.Actual.same_input_E5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

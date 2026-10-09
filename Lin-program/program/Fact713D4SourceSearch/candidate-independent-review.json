@@ -1,0 +1,751 @@
+{
+  "status": "no_correctness_findings",
+  "matrices": 16,
+  "columns": 44,
+  "relation_steps": 20,
+  "complete_d2_quotients": 12,
+  "whole_d2_square_vectors": 114,
+  "quotient_pair_checks": 1071,
+  "parameter_d3_quotients": 14,
+  "tested_unknown_assignments": 512,
+  "accepted_assignments": 32,
+  "rejected_assignments": 480,
+  "incoming_unknown_forced_zero": true,
+  "whole_source_map_zero_in_all_cases": true,
+  "whole_target_map_reflects_zero_in_all_cases": true,
+  "coordinate_bridge_checks": 40,
+  "raw_d3_column_checks": [
+    {
+      "object": "S0",
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "source_E3": [
+        1,
+        1
+      ],
+      "checked_image": [
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "S0",
+      "row": [
+        2570,
+        "1",
+        "1,2",
+        9997
+      ],
+      "source_E3": [
+        0,
+        1
+      ],
+      "checked_image": [
+        0,
+        1
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "S0",
+      "row": [
+        2684,
+        "0",
+        null,
+        9000
+      ],
+      "source_E3": [
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        0
+      ],
+      "justification": "conditional_refinement"
+    },
+    {
+      "object": "S0",
+      "row": [
+        2683,
+        "1",
+        "0",
+        3
+      ],
+      "source_E3": [
+        0,
+        1
+      ],
+      "checked_image": [
+        0,
+        0
+      ],
+      "justification": "d3_boundary_cycle"
+    },
+    {
+      "object": "S0",
+      "row": [
+        2773,
+        "1",
+        null,
+        9000
+      ],
+      "source_E3": [
+        0,
+        1
+      ],
+      "checked_image": [
+        0,
+        0
+      ],
+      "justification": "conditional_refinement"
+    },
+    {
+      "object": "S0",
+      "row": [
+        2774,
+        "0",
+        "2",
+        9997
+      ],
+      "source_E3": [
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        1
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "S0",
+      "row": [
+        2906,
+        "2",
+        "0",
+        3
+      ],
+      "source_E3": [
+        0,
+        1
+      ],
+      "checked_image": [
+        0
+      ],
+      "justification": "d3_boundary_cycle"
+    },
+    {
+      "object": "S0",
+      "row": [
+        2907,
+        "1",
+        null,
+        9996
+      ],
+      "source_E3": [
+        1,
+        0
+      ],
+      "checked_image": [
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3682,
+        "2",
+        null,
+        9987
+      ],
+      "source_E3": [
+        0,
+        1
+      ],
+      "checked_image": [
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3683,
+        "0",
+        null,
+        9992
+      ],
+      "source_E3": [
+        1,
+        0
+      ],
+      "checked_image": [
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4185,
+        "3",
+        "5",
+        9996
+      ],
+      "source_E3": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "checked_image": [
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4186,
+        "1",
+        "0",
+        9997
+      ],
+      "source_E3": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "checked_image": [
+        1,
+        0
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4187,
+        "2",
+        "1",
+        9997
+      ],
+      "source_E3": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        1
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3989,
+        "1",
+        null,
+        9993
+      ],
+      "source_E3": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3990,
+        "2",
+        null,
+        9993
+      ],
+      "source_E3": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3991,
+        "0",
+        null,
+        9993
+      ],
+      "source_E3": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4185,
+        "3",
+        "5",
+        9996
+      ],
+      "source_E3": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "checked_image": [
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4186,
+        "1",
+        "0",
+        9997
+      ],
+      "source_E3": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "checked_image": [
+        1,
+        0
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4187,
+        "2",
+        "1",
+        9997
+      ],
+      "source_E3": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        1
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3989,
+        "1",
+        null,
+        9993
+      ],
+      "source_E3": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3990,
+        "2",
+        null,
+        9993
+      ],
+      "source_E3": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3991,
+        "0",
+        null,
+        9993
+      ],
+      "source_E3": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4185,
+        "3",
+        "5",
+        9996
+      ],
+      "source_E3": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "checked_image": [
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4186,
+        "1",
+        "0",
+        9997
+      ],
+      "source_E3": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "checked_image": [
+        1,
+        0
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4187,
+        "2",
+        "1",
+        9997
+      ],
+      "source_E3": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        1
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3989,
+        "1",
+        null,
+        9993
+      ],
+      "source_E3": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3990,
+        "2",
+        null,
+        9993
+      ],
+      "source_E3": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3991,
+        "0",
+        null,
+        9993
+      ],
+      "source_E3": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4185,
+        "3",
+        "5",
+        9996
+      ],
+      "source_E3": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "checked_image": [
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4186,
+        "1",
+        "0",
+        9997
+      ],
+      "source_E3": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "checked_image": [
+        1,
+        0
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        4187,
+        "2",
+        "1",
+        9997
+      ],
+      "source_E3": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        1
+      ],
+      "justification": "stored_d3"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3989,
+        "1",
+        null,
+        9993
+      ],
+      "source_E3": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3990,
+        "2",
+        null,
+        9993
+      ],
+      "source_E3": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    },
+    {
+      "object": "C2h5",
+      "row": [
+        3991,
+        "0",
+        null,
+        9993
+      ],
+      "source_E3": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "checked_image": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "justification": "later_prefix"
+    }
+  ],
+  "resolved_findings": [
+    {
+      "location": "sourceS.incoming",
+      "original": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "corrected": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "reason": "Raw incoming staircase basis (e0+e1,e1) differs from E2-ordered E3 basis (e0,e1). Both columns hit e1."
+    }
+  ],
+  "exact_row_binding": {
+    "named_target": {
+      "staircase_id": 4185,
+      "base": "3",
+      "basis_id": 4188
+    },
+    "unknown_target_d3": {
+      "staircase_id": 4188,
+      "base": "0",
+      "basis_id": 4185
+    },
+    "incoming_unknown": {
+      "staircase_id": 3988,
+      "base": "3",
+      "basis_id": 3991
+    }
+  },
+  "actual_premises": [
+    "complete current coordinate meanings for all six neighborhoods",
+    "conditional S0 d3-zero refinements for staircase rows 2684 and 2773",
+    "actual current map interpretation on every element",
+    "actual quotient transitions with explicit zero laws",
+    "actual d4 naturality"
+  ],
+  "limitation": "Independent finite-data audit only; database rows and reduction relations are not topological realizations.",
+  "input_sha256": {
+    "Fact713D4SourceSearch/candidate_independent_review.py": "42735a0400755ccd82f81122aa13ae8596f499987c22798df76e03b6bb42cc36",
+    "Fact713D4SourceSearch/source.json": "349dde5035db6f1316321bf55d6b4752a9defeb8a8118377c56d4a894881b611",
+    "Fact713D4SourceSearch/comparison-source.json": "376832cd2b2e43c3d84e4e05630167b7cf31ee379bd4f2bcda44d187d5f972f4",
+    "Fact713D4SourceSearch/c2h5-e4-candidates.json": "0fde5148439eab05f8f2e90bf843ed54c541e60cd5f277931993b71d4a42c534",
+    "Fact713D4SourceSearch/parameters.json": "045cbf51ef5607ed09b5056afcb4d0d406144c06e27e5e0c414170404bc945d3",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "upstream/kervaire-49/C2h5_AdamsSS_t200.db": "09ce104df05722024614b4909c84d35790f1d36fec8abc18576717608a6091b3"
+  }
+}

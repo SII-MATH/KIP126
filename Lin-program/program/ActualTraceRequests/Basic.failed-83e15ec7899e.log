@@ -1,0 +1,18 @@
+ActualTraceRequests/Basic.lean:49:6: error: unsolved goals
+case neg
+spec : Specification
+request : Request
+hv : request.version = 1
+hc : request.claim = spec.claim
+hs : request.source = spec.source
+ho : ¬request.output = spec.output
+⊢ ¬(if request.output.length = spec.output.length then
+        some { kind := "actual_trace", location := "output", message := "output coordinates differ from goal" }
+      else
+        some
+          { kind := "actual_trace", location := "output.length",
+            message := "output coordinate count differs from goal" }) =
+      none
+'ActualTraceRequests.check_sound' depends on axioms: [propext]
+'ActualTraceRequests.diagnose_none_iff' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualTraceRequests.diagnoseBatch_none_iff' depends on axioms: [propext, sorryAx, Quot.sound]

@@ -1,0 +1,23 @@
+{
+  "scope": "Source review of both full append coherence families and named coverage. No topology realization inferred.",
+  "findings": [],
+  "reviewed": {
+    "program/Fact713RefinedComparisonFamily/Basic.lean": "0cc11e9fe3057cfc4088dd7219dd098841e00d449c52252db88143c8b2875199",
+    "program/Fact713RefinedComparisonFamily/Coherence.lean": "2cdba4e0f22fd45fc93ddb871eeba268299ce26a7b8bffd9097437c0bab41028",
+    "program/Fact713RefinedComparisonFamily/Coverage.lean": "e1da2a16664e724fafe2f2499103886a91db0e72599329a579d9b4d4ff76b261",
+    "program/Fact713RefinedComparisonFamily/Cross.lean": "5779594ca2bb3bbc3ca9725d3fddaa0f58ab93b47deb9226d4a9cc221bc860aa",
+    "program/Fact713RefinedComparisonFamily/Extra.lean": "e869a48916cc1f9889cca13a9eacc263014906c460f9dd1c5e230cc82ce01925",
+    "program/Fact713Row2773ComparisonFamily/Coherence.lean": "fb3cbcb66994528b366eaf8d63f2df3c2745316824135fa8a168b0e07b11a118",
+    "program/Fact713Row2773ComparisonFamily/Coverage.lean": "fbcc5fe396b355a6315cf7afcdcb31366a3dc010553c07ee42bf457063c224f9",
+    "program/Fact713Row2773ComparisonFamily/Cross.lean": "3867c4b67900d4c46a4f90865680eed17169ca1cd8a147696a8039767dc5248b",
+    "program/Fact713Row2773ComparisonFamily/Extra.lean": "e27f5088cc9f670fc60d7fd32d8a3a8c81696730a35eac016381a1e92d400af2"
+  },
+  "checks": [
+    "Both directions of cross-pair compatibility",
+    "Whole entry validity inherited for every old and added entry",
+    "Disjoint keys combined with both unique lists",
+    "Missing named key gives contradiction using unique lookup",
+    "Coverage list uses fixed S0 object, page and bidegree",
+    "1239 and1249 snapshots retain distinct missing d4/d6 statements"
+  ]
+}

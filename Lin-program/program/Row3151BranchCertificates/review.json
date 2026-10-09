@@ -1,0 +1,280 @@
+{
+  "all_possible_unknown_columns": 4,
+  "branches": [
+    {
+      "branch": "00",
+      "endpoints": [
+        {
+          "basis_id": 2925,
+          "degree": [
+            11,
+            137
+          ],
+          "final": [
+            0,
+            1
+          ],
+          "local_index": 2,
+          "side": "source"
+        },
+        {
+          "basis_id": 3151,
+          "degree": [
+            15,
+            140
+          ],
+          "final": [
+            1,
+            0
+          ],
+          "local_index": 1,
+          "side": "target"
+        }
+      ],
+      "homology_dimension": 1,
+      "unknown_column": [
+        false,
+        false
+      ]
+    },
+    {
+      "branch": "01",
+      "endpoints": [
+        {
+          "basis_id": 2925,
+          "degree": [
+            11,
+            137
+          ],
+          "final": [
+            0,
+            1
+          ],
+          "local_index": 2,
+          "side": "source"
+        },
+        {
+          "basis_id": 3151,
+          "degree": [
+            15,
+            140
+          ],
+          "final": [
+            1,
+            0
+          ],
+          "local_index": 1,
+          "side": "target"
+        }
+      ],
+      "homology_dimension": 0,
+      "unknown_column": [
+        false,
+        true
+      ]
+    },
+    {
+      "branch": "10",
+      "endpoints": [
+        {
+          "basis_id": 2925,
+          "degree": [
+            11,
+            137
+          ],
+          "final": [
+            0,
+            1
+          ],
+          "local_index": 2,
+          "side": "source"
+        },
+        {
+          "basis_id": 3151,
+          "degree": [
+            15,
+            140
+          ],
+          "final": [
+            1,
+            0
+          ],
+          "local_index": 1,
+          "side": "target"
+        }
+      ],
+      "homology_dimension": 1,
+      "unknown_column": [
+        true,
+        false
+      ]
+    },
+    {
+      "branch": "11",
+      "endpoints": [
+        {
+          "basis_id": 2925,
+          "degree": [
+            11,
+            137
+          ],
+          "final": [
+            0,
+            1
+          ],
+          "local_index": 2,
+          "side": "source"
+        },
+        {
+          "basis_id": 3151,
+          "degree": [
+            15,
+            140
+          ],
+          "final": [
+            1,
+            0
+          ],
+          "local_index": 1,
+          "side": "target"
+        }
+      ],
+      "homology_dimension": 0,
+      "unknown_column": [
+        true,
+        true
+      ]
+    }
+  ],
+  "conditional_uses": [
+    {
+      "block": "S0:11,137:d3",
+      "kind": "conditional_cnu_eta",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2925,
+        "1,2",
+        null,
+        9000
+      ],
+      "source": [
+        11,
+        137
+      ],
+      "target_predecessor": "S0:14,139:d2"
+    },
+    {
+      "block": "S0:11,137:d3",
+      "kind": "conditional_h3_d0",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2796,
+        "2",
+        null,
+        9000
+      ],
+      "source": [
+        8,
+        135
+      ],
+      "target_predecessor": "S0:11,137:d2"
+    }
+  ],
+  "distinct_events": 1,
+  "event": 3151,
+  "family_entries_each": 5,
+  "findings": [],
+  "inputs_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "Row2708KernelConditional/Conflict.lean": "6a22be05e98dc60ac2b70ce7422f545760227a595e5c3aafb18500fc8409e61d",
+    "Row3151BranchCertificates/Branch00.lean": "11186336e98c5ff14553d9ae13f7d89bc779b227401da3085ece87f108b29aa1",
+    "Row3151BranchCertificates/Branch01.lean": "20353b1b042cd129f8530eea31e808c4fdb3293baa4802c28c505a8bacb90d17",
+    "Row3151BranchCertificates/Branch10.lean": "30b39d46e9808757966f9b52dfa2757fb2783d9f2da794daf17d2336972f6fda",
+    "Row3151BranchCertificates/Branch11.lean": "29bfe9162af4e1bd7c90fd8d35d14a18d00d0d8f5ccbd813524f8b8736010c65",
+    "Row3151BranchCertificates/Semantics.lean": "2609c76ef21516188f95538142711843a6845dc35b882c6ab17b77c1909871e1",
+    "Row3151BranchCertificates/bound00.json": "bdf18dc9a3905c52fbd612231e1502f574f990af722a2512e970e5a0c508929b",
+    "Row3151BranchCertificates/bound01.json": "e41dcf54d071233024c01b3b9d095019f7a54c30c4d4d42bb7a16d2e7f28fa61",
+    "Row3151BranchCertificates/bound10.json": "ece8298366a771c71d8b12a597acccc966907a6efeb972bd8819900185e8ea80",
+    "Row3151BranchCertificates/bound11.json": "44bd4ba2510072fbaa1727add68def3712c45b40b9fcfca17363f3ab7f2b2205",
+    "Row3151BranchCertificates/comparison00.json": "8f714491baf4cfa1abf50b2e2cfea236f234c9d75ecbfc0b794400b1223ae8a4",
+    "Row3151BranchCertificates/comparison01.json": "5ed275d1a2876287a57932017ec16a9ada025217ecafd5ef8d32bf1f42f86731",
+    "Row3151BranchCertificates/comparison10.json": "13bd26b12d4af6359f46f25f15ff61986bb5121e3f6c3c574c205e323d9e1629",
+    "Row3151BranchCertificates/comparison11.json": "5fed5b4d67f54ddfd5ab20a43e845c17be62a018d6f2298b8a2d90a3638ea4b9",
+    "Row3151BranchCertificates/family00.input.json": "eb499b331152f27381b1fc94d107f6778cbaa149c9ceaf46ba34c49e89f822b5",
+    "Row3151BranchCertificates/family00.json": "eb499b331152f27381b1fc94d107f6778cbaa149c9ceaf46ba34c49e89f822b5",
+    "Row3151BranchCertificates/family01.input.json": "4ffada365c5124a0312fa0f9fed30b637b7b843a3191d03f245e5fec75d60529",
+    "Row3151BranchCertificates/family01.json": "4ffada365c5124a0312fa0f9fed30b637b7b843a3191d03f245e5fec75d60529",
+    "Row3151BranchCertificates/family10.input.json": "78053a63f7310026f6fb602ebe4ad79d8e2db5c1421912e56905f3f77b2f0564",
+    "Row3151BranchCertificates/family10.json": "78053a63f7310026f6fb602ebe4ad79d8e2db5c1421912e56905f3f77b2f0564",
+    "Row3151BranchCertificates/family11.input.json": "ef40a7b354589992b8c385b307aa63e2f4bc66d6d073543498c560fb2e7f1ba8",
+    "Row3151BranchCertificates/family11.json": "ef40a7b354589992b8c385b307aa63e2f4bc66d6d073543498c560fb2e7f1ba8",
+    "Row3151BranchCertificates/finite00.json": "08f0f059e82e1f9768364361f42cdd190c6af016e233cd961f672ed4f955dcbd",
+    "Row3151BranchCertificates/finite01.json": "68267c8b9c33cc6263ff225a5735a4ed2ad7181345117854480927a39beb073b",
+    "Row3151BranchCertificates/finite10.json": "56814312094d2bdca07bb5cf62edcb7d4da3c4c37654c297d842414d70fb5758",
+    "Row3151BranchCertificates/finite11.json": "61f0f84c4acaff221c9210dc2ef3ad4faae8fe42e8e9d1bfd6dfa6ce55765292",
+    "Row3151BranchCertificates/finite4.input.jsonl": "29c5f02d8348973390b26c9444ff22299eb9ae228444132330e99d2f7e0359ea",
+    "Row3151BranchCertificates/finite4.jsonl": "29c5f02d8348973390b26c9444ff22299eb9ae228444132330e99d2f7e0359ea",
+    "Row3151BranchCertificates/indexed00.json": "2dce5e9c7cd5e9cd471022abcbc45baddd29d4734e35625287a9b50f5921958a",
+    "Row3151BranchCertificates/indexed01.json": "e1f9ef2957b0f15ab8fd25d2f0541514a589d855ca6b0d874cb9e4f4e316dfa3",
+    "Row3151BranchCertificates/indexed10.json": "62f4895a7a6767a73a436eb9dc66b5912627819b367d03010cfe9106580ba12e",
+    "Row3151BranchCertificates/indexed11.json": "a2423d66f54b94795769ca71a3928ccbf5afa7d5d8d73e27d057ae8bff2dca80",
+    "Row3151BranchCertificates/indexed4.input.jsonl": "a19640a219d15737772a2d755c1396002d9cddf2942d72baff8f648c2a5aea92",
+    "Row3151BranchCertificates/indexed4.jsonl": "a19640a219d15737772a2d755c1396002d9cddf2942d72baff8f648c2a5aea92",
+    "Row3151BranchCertificates/prepare.py": "f915d36659f2b814f7e44e57184d32958a44f9bc2728425e35764b618d9f8502",
+    "Row3151BranchCertificates/provenance.json": "ca2265b5e07feaf5dea64fed7e98cf069c8297fe1f0f11004ea72ae5e0b06205",
+    "Row3151BranchCertificates/review.py": "fae3977adee1ebbc129149d391efc9d25cfcb9b38a25c84054c67dde2027bb53",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "limitations": [
+    "Four finite families are separate alternatives; no branch is chosen, and accepted aggregate95 is not extended.",
+    "actual_comparison_exists requires the stored named d4 value and zero incoming prefix; it constructs a matching comparison only for the supplied matrices.",
+    "The incoming source-page dimension, complete-kernel condition at row2708, and inherited earlier staircase meanings are not established by these branches.",
+    "The supplied key window omits target d4 and explicitly rejects a coverage request adding it. Full Adams realization remains external."
+  ],
+  "prior_stages_each": 4,
+  "raw_rows": {
+    "2707": [
+      2707,
+      7,
+      134,
+      "2",
+      null,
+      9990
+    ],
+    "2708": [
+      2708,
+      7,
+      134,
+      "0,1",
+      null,
+      9997
+    ],
+    "2925": [
+      2925,
+      11,
+      137,
+      "1,2",
+      null,
+      9000
+    ],
+    "2926": [
+      2926,
+      11,
+      137,
+      "2",
+      "1",
+      9996
+    ],
+    "3151": [
+      3151,
+      15,
+      140,
+      "1",
+      "2",
+      4
+    ]
+  },
+  "status": "independent_four_branch_SQL_matrix_and_semantic_review_passed"
+}

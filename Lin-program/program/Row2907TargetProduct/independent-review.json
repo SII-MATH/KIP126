@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "findings": [],
+  "modules": 4,
+  "axiom_reports": 19,
+  "frozen_files": 27,
+  "cases": [
+    {
+      "r": 0,
+      "a": 0,
+      "cycles": 4,
+      "cosets": 4,
+      "compatible_d4_coordinates": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "r": 0,
+      "a": 1,
+      "cycles": 2,
+      "cosets": 2,
+      "compatible_d4_coordinates": []
+    },
+    {
+      "r": 1,
+      "a": 0,
+      "cycles": 4,
+      "cosets": 2,
+      "compatible_d4_coordinates": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "r": 1,
+      "a": 1,
+      "cycles": 2,
+      "cosets": 1,
+      "compatible_d4_coordinates": []
+    }
+  ],
+  "frozen_source_sha256": "da384e288b0e84111b6067a0a72b2289613833e497a2df0f1515a601dd0aca2e",
+  "proof_review": [
+    "Complete incoming surjectivity and outgoing injectivity retained",
+    "Same factor and known-target bindings as the known product differential",
+    "E4 product zero derived using arbitrary actual quotient representatives",
+    "Leibniz uses a separately supplied product differential, not the desired coefficient",
+    "Residual parameter remains free; no topology realization follows from finite coherence"
+  ]
+}

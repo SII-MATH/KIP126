@@ -1,0 +1,17 @@
+Fact761ConstructedActual/Local.lean:21:35: error: Ambiguous term
+  Cycle
+Possible interpretations:
+  _root_.Cycle ?m.6 : Type ?u.5
+  
+  PageTransitionCertificates.Cycle ?m.8 : Type
+Fact761ConstructedActual/Local.lean:24:49: error: Type mismatch
+  eval_zero ?m.6
+has type
+  eval ?m.6 zero = zero
+but is expected to have type
+  (finiteEquiv w valid) (finiteZero w) = zero
+'Fact761ConstructedActual.Local.finiteEquiv_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact761ConstructedActual.Local.toFinite_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact761ConstructedActual.Local.empty_zero' depends on axioms: [propext, Quot.sound]
+'Fact761ConstructedActual.Local.emptyNext' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Local.one_dimensional_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

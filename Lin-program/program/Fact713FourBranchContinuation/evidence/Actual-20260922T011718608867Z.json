@@ -1,0 +1,23 @@
+{
+  "source_sha256": "b0b3dfe6721e46a953485211aa36cd794d20fb960649b1c66cae6ef463fb434f",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact713FourBranchContinuation/Branches.olean": "ea93ae19f2417cd40d11b4db8c1187b3a9c15acb8f587531f72ad811d7ccd1cc",
+    ".lake/build/lib/lean/Fact713Row3143Continuation/ActualRule.olean": "301072357150110ca284097e1bc6d7a8d3aecad203756daad5f46a836619ea3e"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact713FourBranchContinuation/Actual.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713FourBranchContinuation/Actual.olean"
+  ],
+  "log": "evidence/Actual-20260922T011718608867Z.log",
+  "external_input_sha256": {},
+  "observed_exit_code": 1,
+  "log_sha256": "bb679e4a4636b80b51e5e1bea8c1c0cdd2d934df44ebcba8c23f113b4d56dd13",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/Fact713FourBranchContinuation/Branches.olean": "ea93ae19f2417cd40d11b4db8c1187b3a9c15acb8f587531f72ad811d7ccd1cc",
+    ".lake/build/lib/lean/Fact713Row3143Continuation/ActualRule.olean": "301072357150110ca284097e1bc6d7a8d3aecad203756daad5f46a836619ea3e"
+  },
+  "inputs_stable": true
+}

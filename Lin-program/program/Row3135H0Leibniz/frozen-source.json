@@ -1,0 +1,107 @@
+{
+  "status": "frozen",
+  "modules": [
+    {
+      "module": "Row3135H0Leibniz.Data",
+      "axiom_reports": 8,
+      "source_sha256": "b06a054725e0d0c280717ea77a8d24c65baeb520fa3ae4a23f67de04ba3b3728",
+      "external_input_sha256": {
+        "Row3135H0Leibniz/h0.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "Row3135H0Leibniz/leftTarget.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+        "Row3135H0Leibniz/right.json": "64b9dd4d68d8ab32acbd112f2c4c3dcd150ac84ac356563ace33e1678b7c48ea",
+        "Row3135H0Leibniz/rightProduct.json": "c0855ed6f64d7840b8dd7e887deecb853424b0f95d37217c268a328cd8ed42e5",
+        "Row3135H0Leibniz/rightProduct0.json": "3ad6f4f4dbecfb5977b5a24ecd83a46326c3eff9630c05a45c22ccdbc227fa39",
+        "Row3135H0Leibniz/rightProduct1.json": "48b512fe65bf3d47caf14ef9404fcc0cc3778c54cd1bbe1f33961b8d66dd9226",
+        "Row3135H0Leibniz/rightProduct2.json": "d0c23628a34f8ffe907c6861a962cdb6fe99138e1a2b1f0ccb144b4dae695e52",
+        "Row3135H0Leibniz/rightTarget.json": "5d161cc15b32fae172105151294c2a0ed792542489b874c29fc5e5833a585990",
+        "Row3135H0Leibniz/source.json": "55b5b152106625d2a6769f6479f1a4de740bc784b52d777fd4dc66ecb4ba4d9a",
+        "Row3135H0Leibniz/sourceProduct.json": "3fd60474ad8c0aa1de556ea679a3a1a63c743532378f185b2ada59949edd0df5",
+        "Row3135H0Leibniz/sourceProduct0.json": "4871578398fac2a86bf27a4680bdf5f4debdf5a07d4cdc4577ae992f39d647c0",
+        "Row3135H0Leibniz/sourceProduct1.json": "b4686c3be3997d90050155b6cacd29eedcacf36d8de87d624e9c2f8fda009a23",
+        "Row3135H0Leibniz/sourceProduct2.json": "dcaa18ad8df31e0ffd547ba9dc18559a567041ad7bed406c897718707cc79144",
+        "Row3135H0Leibniz/target.json": "2f37d271d8cb87d4c27d8254777115f124ddfcfcc5c03064a9397a726e8164e2"
+      },
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff",
+        ".lake/build/lib/lean/PageProductCertificates/Import.olean": "61954dd33f4b6e33565922ca1e479772406a06efc4907c48eb6e55230d0fb26b",
+        ".lake/build/lib/lean/NamedElementCertificates/Evaluation.olean": "8047d21d53200a652d3ad18030588afc2eaf47fc7b4c6b8b262aa3e02b9b007b",
+        ".lake/build/lib/lean/LinearCertificates/Checker.olean": "1e09e46fae607d38b1df5d075459befce6822135573ecb99ae19b01b54bbcf02"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "b313287e735df531b5db0125c096c56aec5c7f6ff56fccaab36905f7ecf62ab4",
+      "olean_sha256": "15147d1d43f971dd97dc3003696c3fdfaedb1fc73e46efd1a0652d5ce13cc838"
+    },
+    {
+      "module": "Row3135H0Leibniz.Basic",
+      "axiom_reports": 5,
+      "source_sha256": "7563d60715ec17bcaf7d90a4160a8ba476b8d9a626f92ddb7e7f81497e97fef1",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3135H0Leibniz/Data.olean": "15147d1d43f971dd97dc3003696c3fdfaedb1fc73e46efd1a0652d5ce13cc838"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "4aa8fe02cdc08ec52ea1738ea74863a35dea71f947f1a71da74801648a9a9493",
+      "olean_sha256": "fa35aa6e992555197ade399db388590fd317256fb6c36a958ecf52a1680fcc70"
+    },
+    {
+      "module": "Row3135H0Leibniz.Semantics",
+      "axiom_reports": 2,
+      "source_sha256": "3786f87e4fd07435b99b3d4256325f22ee1df2d8f9b75d1c3df0efa89a534061",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3135H0Leibniz/Basic.olean": "fa35aa6e992555197ade399db388590fd317256fb6c36a958ecf52a1680fcc70",
+        ".lake/build/lib/lean/BranchReplayCertificates/BasisSemantics.olean": "b2cab866631df2c3b15bbdbc8856abd2451dcc62a63a620a7a42cf7f851671d5"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "7d6f6530b1ae97ea0760b107da59779068e9fd5220bf2f6672f655f406d275eb",
+      "olean_sha256": "3336f0330897d69c78f09f391ab5ad233fadaae5bcfae3b4c488f4aaa939dd12"
+    },
+    {
+      "module": "Row3135H0Leibniz.Actual",
+      "axiom_reports": 2,
+      "source_sha256": "90ae3dee641312b0b03f58fb48f386459733c0ab6c2776a023e9ca4d997753e8",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3135H0Leibniz/Basic.olean": "fa35aa6e992555197ade399db388590fd317256fb6c36a958ecf52a1680fcc70",
+        ".lake/build/lib/lean/ActualAdamsProductCycleBridge/Basic.olean": "016845b4764690176d84b4f54a937df23d9650ed2b72e27827fe556f093c64d9"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "46517fb4be12b1688586b6cea5740f8f9b502cc8258e4aadc0657f979971103d",
+      "olean_sha256": "b83af866b790123b9fead743d9196494b2bb193b4a692459bd676a1da62475be"
+    }
+  ],
+  "axiom_reports": 17,
+  "files": {
+    "Actual-compile.json": "f58684154e036b0b3de6d34e765b4f5498546c95cacb7648dc90f889185bf9d8",
+    "Actual.lean": "90ae3dee641312b0b03f58fb48f386459733c0ab6c2776a023e9ca4d997753e8",
+    "Basic-compile.json": "ff08f643fb2e9d2f579408157a531b5e02af144e73bef8bad9d31089d378dbac",
+    "Basic.lean": "7563d60715ec17bcaf7d90a4160a8ba476b8d9a626f92ddb7e7f81497e97fef1",
+    "Data-compile.json": "efece14aa572a7f79e20e44bec66dc5e9ae6c5708f3837b849c042a53bce4ee1",
+    "Data.lean": "b06a054725e0d0c280717ea77a8d24c65baeb520fa3ae4a23f67de04ba3b3728",
+    "INDEPENDENT_REVIEW.md": "5fe3a009b9c201cff2d215150a9acc07681821c15a03cebf323f9026f9940f55",
+    "README.md": "268c7f425d39d21290d9136bd79eb77a79316d1c39a861036cde3fe9090e7cca",
+    "Semantics-compile.json": "caefd3573ffdcdebf81314c76852b08f431fb6a1debc795bf03b26477f25306c",
+    "Semantics.lean": "3786f87e4fd07435b99b3d4256325f22ee1df2d8f9b75d1c3df0efa89a534061",
+    "compile.py": "311ebe657e803a3f91f0d1d84d9e30d345b51f47116aa241424c6e5630b61a10",
+    "generate.py": "e0f62b6b47cf7cfdb8379b50d6669847b0c162e28439810397e9c78a31a76cb7",
+    "generate_semantics.py": "ca4d373adfc5caad4819f7c26b371b62bc6fce63d7617e55938d7a024a1e6240",
+    "h0.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "independent-review.json": "ee2274a1eae430d4a770b71d1b02f7b03d6e9483417a0f5a0d55c28e2e13e539",
+    "independent_review.py": "ade4e778b34d0bf2ff87b330252941d3421c6e43810b23e797961329e3f2dae5",
+    "leftTarget.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "modules.txt": "561d3c1b9c629041b4a9d97e464b18c79e68efc77dfca50804eb443e43e30cca",
+    "provenance.json": "34896bcbd9f7e503ed40c0fb2535191c9b99a74341254a7077b3a3500599afa3",
+    "right.json": "64b9dd4d68d8ab32acbd112f2c4c3dcd150ac84ac356563ace33e1678b7c48ea",
+    "rightProduct.json": "c0855ed6f64d7840b8dd7e887deecb853424b0f95d37217c268a328cd8ed42e5",
+    "rightProduct0.json": "3ad6f4f4dbecfb5977b5a24ecd83a46326c3eff9630c05a45c22ccdbc227fa39",
+    "rightProduct1.json": "48b512fe65bf3d47caf14ef9404fcc0cc3778c54cd1bbe1f33961b8d66dd9226",
+    "rightProduct2.json": "d0c23628a34f8ffe907c6861a962cdb6fe99138e1a2b1f0ccb144b4dae695e52",
+    "rightTarget.json": "5d161cc15b32fae172105151294c2a0ed792542489b874c29fc5e5833a585990",
+    "source.json": "55b5b152106625d2a6769f6479f1a4de740bc784b52d777fd4dc66ecb4ba4d9a",
+    "sourceProduct.json": "3fd60474ad8c0aa1de556ea679a3a1a63c743532378f185b2ada59949edd0df5",
+    "sourceProduct0.json": "4871578398fac2a86bf27a4680bdf5f4debdf5a07d4cdc4577ae992f39d647c0",
+    "sourceProduct1.json": "b4686c3be3997d90050155b6cacd29eedcacf36d8de87d624e9c2f8fda009a23",
+    "sourceProduct2.json": "dcaa18ad8df31e0ffd547ba9dc18559a567041ad7bed406c897718707cc79144",
+    "target.json": "2f37d271d8cb87d4c27d8254777115f124ddfcfcc5c03064a9397a726e8164e2"
+  }
+}

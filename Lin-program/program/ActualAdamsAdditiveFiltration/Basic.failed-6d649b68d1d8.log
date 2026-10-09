@@ -1,0 +1,14 @@
+ActualAdamsAdditiveFiltration/Basic.lean:6:17: error: failed to set `[local reducible]` for `system`, recall that `[reducible]` affects the term indexing datastructures used by `simp` and type class resolution
+
+Note: Use `set_option allowUnsafeReducibility true` to override reducibility status validation
+ActualAdamsAdditiveFiltration/Basic.lean:52:8: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HAdd ((system S pages ⋯ d).Page n) ((system S pages ⋯ d).Page n) ?m.15
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+ActualAdamsAdditiveFiltration/Basic.lean:55:43: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HAdd (s.Page n) (s.Page n) ?m.31
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+'ActualAdamsAdditiveFiltration.AddMeaning.zeroMeaning' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.advance_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.cycles_add_and_at' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

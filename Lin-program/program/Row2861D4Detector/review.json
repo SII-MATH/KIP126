@@ -1,0 +1,415 @@
+{
+  "E3_coordinate_maps": {
+    "(10, 137)": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "(12, 138)": [],
+    "(13, 139)": [
+      1,
+      0
+    ],
+    "(16, 141)": [
+      0
+    ],
+    "(6, 134)": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "(9, 136)": [
+      0,
+      1,
+      0,
+      0
+    ]
+  },
+  "E4_coordinate_maps": {
+    "source": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "target": [
+      1,
+      0
+    ]
+  },
+  "columns": 63,
+  "complete_d2_comparisons": 12,
+  "complete_d3_comparisons": 4,
+  "conditional_d3": [
+    {
+      "block": "S0:9,136:d3",
+      "kind": "conditional_csigma",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2861,
+        "1",
+        null,
+        9000
+      ],
+      "source": [
+        9,
+        136
+      ],
+      "target_predecessor": "S0:12,138:d2"
+    },
+    {
+      "block": "S0:13,139:d3",
+      "kind": "conditional_cw_2_eta",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2929,
+        "3",
+        null,
+        9000
+      ],
+      "source": [
+        10,
+        137
+      ],
+      "target_predecessor": "S0:13,139:d2"
+    }
+  ],
+  "failures": [],
+  "full_target_E4_dimension": 1,
+  "imported_d3_prefixes": [
+    {
+      "block": "S0:9,136:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2862,
+        "0",
+        "2",
+        9995
+      ],
+      "source": [
+        9,
+        136
+      ],
+      "target_predecessor": "S0:12,138:d2"
+    },
+    {
+      "block": "S0:9,136:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2711,
+        "2,3",
+        null,
+        9995
+      ],
+      "source": [
+        6,
+        134
+      ],
+      "target_predecessor": "S0:9,136:d2"
+    },
+    {
+      "block": "S0:9,136:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2712,
+        "0",
+        null,
+        9995
+      ],
+      "source": [
+        6,
+        134
+      ],
+      "target_predecessor": "S0:9,136:d2"
+    },
+    {
+      "block": "DC2h6:9,136:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        3064,
+        "1",
+        "2",
+        9995
+      ],
+      "source": [
+        9,
+        136
+      ],
+      "target_predecessor": "DC2h6:12,138:d2"
+    },
+    {
+      "block": "DC2h6:9,136:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        3065,
+        "0",
+        null,
+        9995
+      ],
+      "source": [
+        9,
+        136
+      ],
+      "target_predecessor": "DC2h6:12,138:d2"
+    },
+    {
+      "block": "DC2h6:9,136:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        2879,
+        "3,4",
+        null,
+        9995
+      ],
+      "source": [
+        6,
+        134
+      ],
+      "target_predecessor": "DC2h6:9,136:d2"
+    },
+    {
+      "block": "DC2h6:9,136:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        2880,
+        "1",
+        null,
+        9995
+      ],
+      "source": [
+        6,
+        134
+      ],
+      "target_predecessor": "DC2h6:9,136:d2"
+    },
+    {
+      "block": "S0:13,139:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        3083,
+        "0",
+        "0",
+        9995
+      ],
+      "source": [
+        13,
+        139
+      ],
+      "target_predecessor": "S0:16,141:d2"
+    },
+    {
+      "block": "S0:13,139:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2930,
+        "2,4",
+        "0",
+        9994
+      ],
+      "source": [
+        10,
+        137
+      ],
+      "target_predecessor": "S0:13,139:d2"
+    },
+    {
+      "block": "S0:13,139:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2931,
+        "4",
+        "0",
+        9996
+      ],
+      "source": [
+        10,
+        137
+      ],
+      "target_predecessor": "S0:13,139:d2"
+    },
+    {
+      "block": "DC2h6:13,139:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        3325,
+        "1",
+        "0",
+        9995
+      ],
+      "source": [
+        13,
+        139
+      ],
+      "target_predecessor": "DC2h6:16,141:d2"
+    },
+    {
+      "block": "DC2h6:13,139:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        3326,
+        "0,2",
+        "0",
+        9996
+      ],
+      "source": [
+        13,
+        139
+      ],
+      "target_predecessor": "DC2h6:16,141:d2"
+    },
+    {
+      "block": "DC2h6:13,139:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        3141,
+        "3,5",
+        "2",
+        9994
+      ],
+      "source": [
+        10,
+        137
+      ],
+      "target_predecessor": "DC2h6:13,139:d2"
+    },
+    {
+      "block": "DC2h6:13,139:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        3142,
+        "5",
+        "0",
+        9996
+      ],
+      "source": [
+        10,
+        137
+      ],
+      "target_predecessor": "DC2h6:13,139:d2"
+    },
+    {
+      "block": "DC2h6:13,139:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "DC2h6",
+      "page": 3,
+      "row": [
+        3143,
+        "0",
+        null,
+        9996
+      ],
+      "source": [
+        10,
+        137
+      ],
+      "target_predecessor": "DC2h6:13,139:d2"
+    }
+  ],
+  "input_sha256": {
+    "AggregateCW2EtaConditional/source.json": "40f4e438f94408bae4d86dc16cc1e5a2ae106fb8c918f144f60848dbbecaef04",
+    "Row2861D4Detector/comparison-source.json": "3f2f997442bc25660d2b7bf068f0d0ab177cfd18f4e5ae14edbb9da76d1f0df4",
+    "Row2861D4Detector/source.json": "aa7e7b2edb33070efc531a3b74dd1f0640fc93024c8699a4886691b8309a1082",
+    "Row2861D4Detector/wire/s10t137.json": "f5cce4c9c14af278ea569efadeee3baa3e6b98a618b62071ec6a5c9098b02a6c",
+    "Row2861D4Detector/wire/s11t137.json": "3fc2a481269628228e81d60c5b1abe523c735a92bc919ddb5ac2b5a2c25db120",
+    "Row2861D4Detector/wire/s11t138.json": "6529714c85e2fe5187b80c6965a3042e7485d1b24a09d06b0ffd41aa4693b599",
+    "Row2861D4Detector/wire/s12t138.json": "c12be1bcfe868facee8e829c729044576bfbaddd133b8518ae09b93e106effdf",
+    "Row2861D4Detector/wire/s13t139.json": "394be35b799e6e22af4a11d7f136429f15cfbabf566712847d87df3fe9e34c04",
+    "Row2861D4Detector/wire/s14t139.json": "df4648d06987afd260f38969083e4b411c471d1ae636ae0e3ca699a5c361644f",
+    "Row2861D4Detector/wire/s14t140.json": "8ef0dd57f5fcaf6a9bf090fef950fa66a1182176637b2f58cc6a131f175cc566",
+    "Row2861D4Detector/wire/s15t140.json": "f543668d5e7bb1d4631d78b4d39a1896ba81edc5d2d647e47e5f73ca3daf4fcb",
+    "Row2861D4Detector/wire/s16t141.json": "2488ed65eb801f34c66f093fd18b239e9fc80173bd3763f587564d4b46f826ff",
+    "Row2861D4Detector/wire/s18t142.json": "f7844a946386c840723cc8d565aefa1791c8adacaa3dd83bdb192573ad5cb3bb",
+    "Row2861D4Detector/wire/s4t133.json": "0d349e52a174d9e1dfa85cc759a8911a94b388f96ae094454e8f25c96d0a3fa9",
+    "Row2861D4Detector/wire/s6t134.json": "5c27684ec1ab70b2fc08c7c871cb1198bc6467abe73e9991a3024c4d671197c5",
+    "Row2861D4Detector/wire/s7t135.json": "ef620ac2be9ff553508561906d21177a00ee1d9ad7528c5f981fda0c5a2aed3f",
+    "Row2861D4Detector/wire/s8t135.json": "2bd17dc42f7bde557762586d288b12115ec75f60125ebb055ba334d28fb61bd5",
+    "Row2861D4Detector/wire/s8t136.json": "21adffcf4976de6ae97e727768ffac20dd7bca6fc0bdc0fb0832f950c9bcf4fd",
+    "Row2861D4Detector/wire/s9t136.json": "3e99ebe7728be37285a0cb3b63c55776f59a00465051744bb09a266a0ee3e548",
+    "Row2861D4Search/comparisons.json": "a70e92d25334c9d1db08aff42d4d15ae16169ef92d4a3dd346abf49aa5fa84cc",
+    "Row2861D4Search/lifted-search.json": "6e91f64e67606de2ca8649991e85dea44c1a6037438664b2456966cd1224d4fd",
+    "upstream/category-inventory.json": "506dace295387da68b60bad6a7027bbfe916c9c8c2ac4846ea704133e37059e9"
+  },
+  "lifted_relations": 0,
+  "limitations": "DC2h6 higher-prefix meanings, inherited S0 conditional d3 identities, local d4 naturality, preservation of zero, E2/d2 interpretation and Adams realization remain explicit. Raw row2861 d4 is NULL.",
+  "matrices": 16,
+  "metadata": {
+    "DC2h6": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 146,
+      "t_max": 200,
+      "timestamp": 1712843725,
+      "version": 3
+    },
+    "S0": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 177,
+      "t_max": 261,
+      "timestamp": 1710516671,
+      "version": 3
+    }
+  },
+  "reduction_steps": 3,
+  "script_sha256": "ef9e6fd2f3d2c99e9c062e417c9e459df2c070022e601dc7b7cb3b2df3ee4914",
+  "source_E2_coordinates": [
+    0,
+    1,
+    0,
+    0,
+    0
+  ],
+  "source_E3_and_E4_coordinates": [
+    1,
+    0
+  ],
+  "source_basis_id": 2861,
+  "sources": {
+    "DC2h6_AdamsSS_t200.db": "8ea004020e413f34a569b9d142e58c73c7661dd1acff35b0757dac9e73586162",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "independent_actual_map_and_two_stage_quotient_audit_passed",
+  "unknown_retained": [
+    2861,
+    9,
+    136,
+    "1",
+    null,
+    9000
+  ]
+}

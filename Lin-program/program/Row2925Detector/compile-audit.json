@@ -1,0 +1,56 @@
+{
+  "modules": [
+    {
+      "module": "Row2925Detector.Actual",
+      "source_sha256": "650ac4ddf7f82b6b79aaddca8d9fc2b37f0e9a6c87e4487270f38d27dc557853",
+      "olean_sha256": "fc985ed5e4f657afe9de012de246e8fe994152716a389b092fc768778f736f41",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    {
+      "module": "Row2925Detector.Comparison",
+      "source_sha256": "7401efcdf0988a47abd4f75734553cec0e597eacc09ca5e7ca78fd936501ce23",
+      "olean_sha256": "c87302d3d7655cfcdbf4bd1de866d5741109d1b318695d0efe640204f69cb61c",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    {
+      "module": "Row2925Detector.Naturality",
+      "source_sha256": "46264d18e4144610e1e29526bd023482ea7eea32b538bccb16f4f7decc1d06c1",
+      "olean_sha256": "5a9c446f9baeb9315ef8ec67f9f831f315b59a646dec9802c927f80e871c8254",
+      "log_sha256": "061a963b57a6437b364ab68fc5dee1ab52e36b9d1cfc0255d8ee270b9a142e42",
+      "exit_code": 0
+    },
+    {
+      "module": "Row2925Detector.Matches",
+      "source_sha256": "decb1a8c2af6cd42dc64b290a790320569c3d37b04503727f7ed32664d389088",
+      "olean_sha256": "f0f3c7a5add3316ddb047edfd13812451d0bb163846c556b80a9f92926caf1b7",
+      "log_sha256": "d0bf0f1596073364aa0806c1e67d07c1675207941f1c5027d7cf51716e32f24e",
+      "exit_code": 0
+    },
+    {
+      "module": "Row2925Detector.Semantics",
+      "source_sha256": "ec7d4f48d20abfd875947c7891e91633bbf73542aa79c55b3d140e28692c6c89",
+      "olean_sha256": "6280313df8bd7f53ce4975746909558c96758b366b3cb4954cd64d0d37c0a231",
+      "log_sha256": "6cf1d5ecc31b9049737db894157933a97c2c210c5ed8c75560dfd3df386dde56",
+      "exit_code": 0
+    },
+    {
+      "module": "Row2925Detector.Tests",
+      "source_sha256": "d52275ee1f973bc3972df626cc3a94264f09426f4ef22cdab04e310e2b785119",
+      "olean_sha256": "61d6ffb87fd4bc07be07d66f3921e8e159f4b05ad3ad4d54e8f357402570cade",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    }
+  ],
+  "first_serial_session": 99830,
+  "first_session_notes": "Actual and Comparison succeeded before Naturality failed on simp; no failed theorem accepted.",
+  "successful_followup_serial_session": 34011,
+  "successful_followup_exit_code": 0,
+  "followup_modules": [
+    "Naturality",
+    "Matches",
+    "Semantics",
+    "Tests"
+  ]
+}

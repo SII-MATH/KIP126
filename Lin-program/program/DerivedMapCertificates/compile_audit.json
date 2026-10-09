@@ -1,0 +1,541 @@
+[
+  {
+    "file": "DerivedMapCertificates/Basic.lean",
+    "digest": "7f408d1a5aa9ee1e70dd5ec4b0d2d3fdda28a00c209ca529d37355209b7e4e04",
+    "exit_code": 0,
+    "seconds": 3.1022238731384277,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapCertificates/Import.lean",
+    "digest": "8f40f8b149b9d48e3d695aa1887a9ac8341635311ef8f7d2ac4d9c4013b497bb",
+    "exit_code": 0,
+    "seconds": 2.5685360431671143,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapCertificates/Tests.lean",
+    "digest": "b01cff189a847714f23433c998bce668feb6fb82f66e9a533c73da5a67f2d8f7",
+    "exit_code": 1,
+    "seconds": 2.8514211177825928,
+    "output": "DerivedMapCertificates/Tests.lean:12:34: error(lean.invalidField): Invalid field `isError`: The environment does not contain `Except.isError`, so it is not possible to project the field `isError` from an expression\n  parseComposition \"{}\"\nof type `Except String CompositionWire`\nDerivedMapCertificates/Tests.lean:13:70: error(lean.invalidField): Invalid field `isError`: The environment does not contain `Except.isError`, so it is not possible to project the field `isError` from an expression\n  parseComposition ((Lean.toJson identity).compress ++ \" \")\nof type `Except String CompositionWire`\nDerivedMapCertificates/Tests.lean:25:29: error(lean.invalidField): Invalid field `isError`: The environment does not contain `Except.isError`, so it is not possible to project the field `isError` from an expression\n  parseFactor \"{}\"\nof type `Except String FactorWire`\n'DerivedMapCertificates.checkComposition_sound' depends on axioms: [propext, Quot.sound]\n'DerivedMapCertificates.checkFactor_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DerivedMapCertificates.FactorWire.column_semantics' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  {
+    "file": "DerivedMapCertificates/Tests.lean",
+    "digest": "a03750b59ddee0b3fb165b6d65e5f9ff7d0d5dc81dd9c3bd11747aeac9e53e5e",
+    "exit_code": 1,
+    "seconds": 2.7043557167053223,
+    "output": "DerivedMapCertificates/Tests.lean:15:56: error: Tactic `decide` failed for proposition\n  rejected (parseComposition \"{}\") = true\nbecause its `Decidable` instance\n  instDecidableEqBool (rejected (parseComposition \"{}\")) true\ndid not reduce to `isTrue` or `isFalse`.\n\nAfter unfolding the instances `instDecidableEqBool` and `Bool.decEq`, reduction got stuck at the `Decidable` instance\n  match rejected (parseComposition \"{}\"), true with\n  | false, false => isTrue \u22ef\n  | false, true => isFalse \u22ef\n  | true, false => isFalse \u22ef\n  | true, true => isTrue \u22ef\nDerivedMapCertificates/Tests.lean:16:92: error: Tactic `decide` failed for proposition\n  rejected (parseComposition ((Lean.toJson identity).compress ++ \" \")) = true\nbecause its `Decidable` instance\n  instDecidableEqBool (rejected (parseComposition ((Lean.toJson identity).compress ++ \" \"))) true\ndid not reduce to `isTrue` or `isFalse`.\n\nAfter unfolding the instances `instDecidableEqBool` and `Bool.decEq`, reduction got stuck at the `Decidable` instance\n  match rejected (parseComposition ((Lean.toJson identity).compress ++ \" \")), true with\n  | false, false => isTrue \u22ef\n  | false, true => isFalse \u22ef\n  | true, false => isFalse \u22ef\n  | true, true => isTrue \u22ef\nDerivedMapCertificates/Tests.lean:28:51: error: Tactic `decide` failed for proposition\n  rejected (parseFactor \"{}\") = true\nbecause its `Decidable` instance\n  instDecidableEqBool (rejected (parseFactor \"{}\")) true\ndid not reduce to `isTrue` or `isFalse`.\n\nAfter unfolding the instances `instDecidableEqBool` and `Bool.decEq`, reduction got stuck at the `Decidable` instance\n  match rejected (parseFactor \"{}\"), true with\n  | false, false => isTrue \u22ef\n  | false, true => isFalse \u22ef\n  | true, false => isFalse \u22ef\n  | true, true => isTrue \u22ef\n'DerivedMapCertificates.checkComposition_sound' depends on axioms: [propext, Quot.sound]\n'DerivedMapCertificates.checkFactor_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DerivedMapCertificates.FactorWire.column_semantics' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  {
+    "file": "DerivedMapCertificates/Tests.lean",
+    "digest": "798d5a25bddec0b535045a65af0bc91cf33603cbf95d4a5fd116ebb9655998b5",
+    "exit_code": 1,
+    "seconds": 2.8493499755859375,
+    "output": "DerivedMapCertificates/Tests.lean:15:60: error(lean.synthInstanceFailed): failed to synthesize instance of type class\n  MonadExcept IO.Error Lean.Elab.Command.CommandElabM\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\nDerivedMapCertificates/Tests.lean:16:96: error(lean.synthInstanceFailed): failed to synthesize instance of type class\n  MonadExcept IO.Error Lean.Elab.Command.CommandElabM\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\nDerivedMapCertificates/Tests.lean:28:55: error(lean.synthInstanceFailed): failed to synthesize instance of type class\n  MonadExcept IO.Error Lean.Elab.Command.CommandElabM\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\n'DerivedMapCertificates.checkComposition_sound' depends on axioms: [propext, Quot.sound]\n'DerivedMapCertificates.checkFactor_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DerivedMapCertificates.FactorWire.column_semantics' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  {
+    "file": "DerivedMapCertificates/Tests.lean",
+    "digest": "316d3e929da26e7999d40c659cb7c57a191e646739ed63c924a7d3931efc78c4",
+    "exit_code": 0,
+    "seconds": 2.571535348892212,
+    "output": "'DerivedMapCertificates.checkComposition_sound' depends on axioms: [propext, Quot.sound]\n'DerivedMapCertificates.checkFactor_sound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'DerivedMapCertificates.FactorWire.column_semantics' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  {
+    "file": "DerivedMapCertificates/Counterexample.lean",
+    "digest": "5ce352b9cf1aabc685d47c52f7279e2843f78b2916044bf67200a419563d76db",
+    "exit_code": 0,
+    "seconds": 2.341343879699707,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch000.lean",
+    "digest": "529308d006729cfbd83585fceed7a6e859e4b9d62eefcda02c1fe32df3e814f8",
+    "exit_code": 0,
+    "seconds": 4.989746809005737,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch001.lean",
+    "digest": "06396366eddb7d7867d5e60bf583a7d8548b4be2a0bfb89894755a46d5bfe167",
+    "exit_code": 0,
+    "seconds": 5.001030683517456,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch002.lean",
+    "digest": "deefd37e17d499426c9780d8cf7891270b77340a5b244917334d33693ca6edea",
+    "exit_code": 0,
+    "seconds": 5.157240390777588,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch003.lean",
+    "digest": "c5b7f1734aefd7f6b265a9b626f642ba3b140a8f0284c21f05a41a78549be40f",
+    "exit_code": 0,
+    "seconds": 5.2036356925964355,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch004.lean",
+    "digest": "0c04c38c8a0ee225e54e64d168b6c91823fd7f5f1a52a32c0606b1a560ffc83f",
+    "exit_code": 0,
+    "seconds": 5.190584421157837,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch005.lean",
+    "digest": "495e662d3e8eda087e6464d2d7d7b68f69e1a084e1566f32a440e65628d1af25",
+    "exit_code": 0,
+    "seconds": 5.131004095077515,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch006.lean",
+    "digest": "1341c9490b4f16dff6fb90aa29a9afa9846f02139d1b73d52b4878070da81bad",
+    "exit_code": 0,
+    "seconds": 6.344354629516602,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch007.lean",
+    "digest": "0083f47b8e7dae530c9721427f6435951067338a9414a55eb3c0a24b25f9acea",
+    "exit_code": 0,
+    "seconds": 6.0073301792144775,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch008.lean",
+    "digest": "e5e172518f065732821ec3139d70842654838749c347fb6e1d161bcc85c4f52d",
+    "exit_code": 0,
+    "seconds": 6.69101095199585,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch009.lean",
+    "digest": "4e866f346453a095f720bc3cb8ea6a31c776a4e01756b3871b08caef21458309",
+    "exit_code": 0,
+    "seconds": 4.787020921707153,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch010.lean",
+    "digest": "ad173fb90387d6597d0ac54948ccbd6f13b393dcdcf68189e32bde975f1be7ea",
+    "exit_code": 0,
+    "seconds": 4.291788101196289,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch011.lean",
+    "digest": "a468fd94da0bed28b612c2e855cd339efebedf9396786b8d177561d04dd6ec43",
+    "exit_code": 0,
+    "seconds": 4.4047629833221436,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch012.lean",
+    "digest": "af3f0dd0bee7d33014a67f86423bea661dd4a7daf0ffd329b712dbf381bd1fb7",
+    "exit_code": 0,
+    "seconds": 4.25768518447876,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch013.lean",
+    "digest": "053570aff1cd4e7677b5a90b54341ae4c0b262aed768eb5cc2aa4a747b18c8f2",
+    "exit_code": 0,
+    "seconds": 4.463495492935181,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch014.lean",
+    "digest": "8112f05ccee430b4d61f78a83cc6516f432e057dc6a26ac1efdde070eaa56384",
+    "exit_code": 0,
+    "seconds": 3.859163522720337,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch015.lean",
+    "digest": "61015976a4a264c187d197ace36caafd44e18cbad00c3cc31e24e2b1a6135328",
+    "exit_code": 0,
+    "seconds": 3.8417038917541504,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch016.lean",
+    "digest": "43248f848feb99579db61d26e844dde55538a4acd8b9df14fe68add187f96006",
+    "exit_code": 0,
+    "seconds": 6.594475030899048,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch017.lean",
+    "digest": "df739e2b49feaa4ee9619a17eab50ea892b250e923dfb0c2226314559d6d42e6",
+    "exit_code": 0,
+    "seconds": 4.3482513427734375,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch018.lean",
+    "digest": "f899fd5fd54ee4d9107d98ad69471e4d686d520bce4020af262aaedf5736e5c2",
+    "exit_code": 0,
+    "seconds": 4.396992921829224,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch019.lean",
+    "digest": "d52c18fe5d9e29615fd9cf009b35a83563297d13c4534d30e1f333bc711cdd95",
+    "exit_code": 0,
+    "seconds": 3.8578197956085205,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch020.lean",
+    "digest": "76cbdb776a018950f7f8cfa039443936cd2fb7612799517eeddf5e1486885b1a",
+    "exit_code": 0,
+    "seconds": 4.019244909286499,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch021.lean",
+    "digest": "fcc2db2ac97e94cebd3735c99d8b25786e248f0a1f1523af22ffc0dc75fd02df",
+    "exit_code": 0,
+    "seconds": 4.0612311363220215,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch022.lean",
+    "digest": "61aa1e13392f04f02a350dd545f9cee47312472e04b81cfe92b88219ae57589c",
+    "exit_code": 0,
+    "seconds": 4.116897821426392,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch023.lean",
+    "digest": "0f9154ba1c95a044f329b76e5b7c8ebdc41f3557fb452b495be8ba94cf9be7e9",
+    "exit_code": 0,
+    "seconds": 4.642597198486328,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch024.lean",
+    "digest": "9beb7e96c2778e3df810731029889dc51ba9619534d315afb0c4e204052c09f8",
+    "exit_code": 0,
+    "seconds": 4.804923057556152,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch025.lean",
+    "digest": "2df0213cdd017ecb1537e7acae7ffdad2b2afe1ba94d8a23ce89357100d04f90",
+    "exit_code": 0,
+    "seconds": 3.951265335083008,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch026.lean",
+    "digest": "aa73633fd53e93f9e0dd8ed75694e55591569ed35fadef1a71d4e17c82d7f2d4",
+    "exit_code": 0,
+    "seconds": 4.119954586029053,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch027.lean",
+    "digest": "2ac2ba529cbdd048f4a7befa6d9ce8cb6c9788c5aec5329d80969e2cc6e7fed5",
+    "exit_code": 0,
+    "seconds": 4.312551975250244,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch028.lean",
+    "digest": "0c0fe5f2d335a9cdc97a5d283d857a95e9c1792e1fa9057f95b4ddba1089b019",
+    "exit_code": 0,
+    "seconds": 4.85791277885437,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch029.lean",
+    "digest": "4f0fb1ac269c3c02cbe1d74d59ad8f8a99e284dc8837fc1b443da0ff719967e7",
+    "exit_code": 0,
+    "seconds": 4.985767841339111,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch030.lean",
+    "digest": "7aabbdc510955362a17bf4bf7023db9ee7d50c34ad07e19720cc2f3cad6bb925",
+    "exit_code": 0,
+    "seconds": 5.313685655593872,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch031.lean",
+    "digest": "3b8790f63ca41ece14ac8864781f82c6f6d8ce131337b2ab5768d6325ca9cc37",
+    "exit_code": 0,
+    "seconds": 5.363171577453613,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch032.lean",
+    "digest": "5e78272df16e52dba26e0debe140171347005e73c4730358b0bc52508931e93a",
+    "exit_code": 0,
+    "seconds": 5.053781032562256,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch033.lean",
+    "digest": "15edc71b703537d9908171185e94fc4343811d4f2e2466734ef2273fc0a49568",
+    "exit_code": 0,
+    "seconds": 5.8440117835998535,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch034.lean",
+    "digest": "c6afaa7d9b3207160d99f4366e4c8272236459752e08cc54e458dc77977a72b8",
+    "exit_code": 0,
+    "seconds": 5.373360872268677,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch035.lean",
+    "digest": "35c178f889c39cefb4cee69f5c3ff3905f2ae11d142352f3962a161a7cd80fd6",
+    "exit_code": 0,
+    "seconds": 5.6526875495910645,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch036.lean",
+    "digest": "e389f74c129c5c3baa7c472b6732a6c6606352e976ffe23cd3322bc9ec399601",
+    "exit_code": 0,
+    "seconds": 5.583432912826538,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch037.lean",
+    "digest": "533d5a0a718e1784418743a5bf05a1ed221579ac8ee30f01a774a343b199c134",
+    "exit_code": 0,
+    "seconds": 8.445085525512695,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch038.lean",
+    "digest": "b8a03a96b2ff5b4b813adb56aabd2f3cea0982e899568361c01fef7fbb46269d",
+    "exit_code": 0,
+    "seconds": 46.98332715034485,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch039.lean",
+    "digest": "8af878dea9707e3ec83eac6995fb41647c1d08fd3aea6f4435c82313dfdf5112",
+    "exit_code": 0,
+    "seconds": 6.8400654792785645,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch040.lean",
+    "digest": "992bb6cd5ceed65e09af1d09e8a3d60066ae079b6415a27f3827584f021d5745",
+    "exit_code": 0,
+    "seconds": 8.788147926330566,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch041.lean",
+    "digest": "68fc41b18a7ea605010b7839f3a42b263668fe924eaa6cf6a47dae168d5d7cfa",
+    "exit_code": 0,
+    "seconds": 5.386730670928955,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch042.lean",
+    "digest": "5ba4fae6d5a8dea011167c20c2845f99e7f8c5d07237beffb755f3885a089473",
+    "exit_code": 0,
+    "seconds": 5.8933610916137695,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch043.lean",
+    "digest": "e8e6170ab12a32e92d293fb1f3fa7520ef44ab3738e0bfe1addc9af14abf1d65",
+    "exit_code": 0,
+    "seconds": 4.320561170578003,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch044.lean",
+    "digest": "c254eabe617fa866ffbd40fcebea8acdbe99c26be1535e65e6355365aa544d8c",
+    "exit_code": 0,
+    "seconds": 3.8979735374450684,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch045.lean",
+    "digest": "78269b87a43a1c7856b7c9b92e16eda0ee9bbe0b343655c19c4be88a2a35b781",
+    "exit_code": 0,
+    "seconds": 3.8441925048828125,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch046.lean",
+    "digest": "dfd6c9da5812ea090886751b50779bcbe827eccf66afa4a3563bc8fa38d4971b",
+    "exit_code": 0,
+    "seconds": 3.949909210205078,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch047.lean",
+    "digest": "02740d37af6141d0cf5c93f48b6530951ce0b7438fe12b20268d8bf19407e5df",
+    "exit_code": 0,
+    "seconds": 5.352668523788452,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch048.lean",
+    "digest": "13c245c1a195c7dc099c746b4a5e57505b947448c7b59766e2a158be301d3b4f",
+    "exit_code": 0,
+    "seconds": 5.329585552215576,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch049.lean",
+    "digest": "3f79ac48c086017b16fa58e8afa7362fc77d2600b6583d642f0256d21715b6ba",
+    "exit_code": 0,
+    "seconds": 5.046461343765259,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch050.lean",
+    "digest": "b25c0adab5a7e4db7a4e8d75b02ba6f4002bc5bca032aceceb39120d371713d9",
+    "exit_code": 0,
+    "seconds": 4.071467876434326,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch051.lean",
+    "digest": "7665a6bf0c0e725d0ec26330bee39e34dec3ceececf6470c7d07bb7bd96ee083",
+    "exit_code": 0,
+    "seconds": 4.216585636138916,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch052.lean",
+    "digest": "71263283f01109b847ace219c87e475e463964fa9eaf714a019f5a81060ab5df",
+    "exit_code": 0,
+    "seconds": 3.7563068866729736,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch053.lean",
+    "digest": "62dd24a42f05524a50a9ca17f463b4fc5ff7bd681c18ff92d45914c2c9993bba",
+    "exit_code": 0,
+    "seconds": 3.8700180053710938,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch054.lean",
+    "digest": "d21f7c423070e4d0c6e9dd9f04b859d176fe783a5f5aca1a1312db15feb615bf",
+    "exit_code": 0,
+    "seconds": 3.981783151626587,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch055.lean",
+    "digest": "f636a63ad0a2309431967d5430b520920453e2f5e2d53ededf71f31dad23ee9a",
+    "exit_code": 0,
+    "seconds": 3.9074385166168213,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch056.lean",
+    "digest": "cab9b0e0d1249621f1e6b26e85e93c8516610610811e3dc53c38ea3c4055b03f",
+    "exit_code": 0,
+    "seconds": 4.268355131149292,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch057.lean",
+    "digest": "95d4745de3dddd9ea64a9ec958ebe8f3b3a6a9e9dfbe4d406ac6c8aaa437c1b2",
+    "exit_code": 0,
+    "seconds": 4.926089525222778,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch058.lean",
+    "digest": "ebe8e4b52e0e4d81394c1ec1b947df6765f6d49ec436fe825739a1d54dd0a50b",
+    "exit_code": 0,
+    "seconds": 4.311524868011475,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch059.lean",
+    "digest": "6e0e089e073344212eb66535ed1c3d0cacca377a2fa2ed246c97eae0b9f9ac5e",
+    "exit_code": 0,
+    "seconds": 7.347551345825195,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch060.lean",
+    "digest": "08ebb9712d157ebcbb98716012226346b44bd7e403f9c8937bcd547337c4b0f8",
+    "exit_code": 0,
+    "seconds": 3.842421531677246,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch061.lean",
+    "digest": "daf584485fb6ea7acc57d14a52654e8d49460d787cd78ec2859cd4f6520204ad",
+    "exit_code": 0,
+    "seconds": 4.180004119873047,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch062.lean",
+    "digest": "141850ea9b49b8a3327e6825b4e7d5dd2b0931c86d229e551f01d9ffde7fe455",
+    "exit_code": 0,
+    "seconds": 4.070735216140747,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch063.lean",
+    "digest": "a5409ce8430a63daa7b630f43abc79db3037a7fd2a3cdfc986a876bb7d7c7ae8",
+    "exit_code": 0,
+    "seconds": 3.592277765274048,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch064.lean",
+    "digest": "e1c82621f7139093d4c798bddee5febe6438c1866b231314c23e70e4ff883ddc",
+    "exit_code": 0,
+    "seconds": 3.5085513591766357,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch065.lean",
+    "digest": "23c194c4f6c8b03d4e89e84e9133e0e531545eb4e5a663f1abb74075f5a15804",
+    "exit_code": 0,
+    "seconds": 3.5254600048065186,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch066.lean",
+    "digest": "73278435648cf6d8710a20e65da139945e1f28ab62e6cc0e665ac9d8c484a7c7",
+    "exit_code": 0,
+    "seconds": 3.4782726764678955,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch067.lean",
+    "digest": "50af9d13e405e11aa6315b01954d08bcd9b679d3c3b5907374a11787aaabc58a",
+    "exit_code": 0,
+    "seconds": 3.5177438259124756,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapBatches/Batch068.lean",
+    "digest": "ce4eb810ef9aafc263010147237e776e625968c8f9a29dfd05419531b07614c4",
+    "exit_code": 0,
+    "seconds": 2.5584359169006348,
+    "output": ""
+  },
+  {
+    "file": "DerivedMapCertificates/CheckFile.lean",
+    "digest": "c30a9ca7a7c7359b42543f71a164468ecc1fc5cd86452e6263b3b171e7375ff3",
+    "exit_code": 0,
+    "seconds": 2.526272773742676,
+    "output": ""
+  }
+]

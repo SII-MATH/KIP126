@@ -1,0 +1,38 @@
+{
+  "status": "C++_producer_and_Lean_outgoing_cycle_import_passed",
+  "valid_lines": 2,
+  "rejected_cases": [
+    "schema",
+    "version",
+    "firstPage",
+    "stages",
+    "unknown_top",
+    "duplicate_top",
+    "unknown_stage",
+    "unknown_wire",
+    "duplicate_representative",
+    "dimension",
+    "unknown",
+    "false_comparison",
+    "blank",
+    "nul"
+  ],
+  "rejected_link": true,
+  "batch_recovery": true,
+  "literal_metacharacter_path": true,
+  "output_write_failure": true,
+  "producer_stderr": "<temporary>/paths.txt:2: trajectory producer failed: stage 0: matrix: expected exact row-major bit count 1\n",
+  "lean_mixed_stdout": "2/16 finite prefixes accepted; all-page outgoing cycle still requires proved meaning and outgoing tail; incoming hits remain allowed",
+  "inputs": {
+    "OutgoingCycleCertificates/export.cpp": "3a722589c447fe619ecf07864d4eacb7ddf6d8005bb9a8226897f6916384c9d2",
+    "OutgoingCycleCertificates/outgoing-prefix-export": "d6f20048a3e45f4be61abfacc5f3286bccd86d15c33285854dd36660e3a2cab0",
+    "OutgoingCycleCertificates/killed-prefix.input": "8321249ad1e75628035eb8595dc64d592ee6f59feccfc63bb8770195dfd0667b",
+    "OutgoingCycleCertificates/killed-prefix.json": "7ec6c4cf48a35f9fe7e6aa0681e09a239d61ca4d23e40ddc6b60cec19793dcb9",
+    "OutgoingCycleCertificates/Import.lean": "7e430d703f0841266e89b596fa9e06f579d76d74ec687344341af11f00b540a8",
+    "OutgoingCycleCertificates/CheckFile.lean": "8fa38834aad99d522b94651d832e0a97437795b32b1cb69b46659159cfca5918",
+    "OutgoingCycleCertificates/test.py": "d1f627d0c438f12b03bcc7c7a9236fc5a8ea7cc940bb06608436e80d252df512",
+    "PermanentCycleCertificates/prefix_export.cpp": "3f6e3a6a61460f75d10206a06e26006ee5867ab6ddaa82aaab2f39ac375f5fb2",
+    "PageTransitionCertificates/trajectory_export.cpp": "8e6856efa23acf27dbbe6f140417a11d2f86a5b6d2646cf3cc143258f2532642",
+    "PageTransitionCertificates/trajectory-export": "f0a83c03a4c526b83d7cd45996828866250d59b894bb9a2966a971667a417613"
+  }
+}

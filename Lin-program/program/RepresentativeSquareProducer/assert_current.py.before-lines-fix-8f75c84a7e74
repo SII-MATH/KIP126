@@ -1,0 +1,38 @@
+"""Check current producer regression and successful Lean import evidence."""
+import hashlib
+import json
+from pathlib import Path
+import re
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+audit = json.loads((HERE / 'audit.json').read_text())
+for path, digest in audit['input_sha256'].items():
+    assert sha(ROOT / path) == digest, path
+assert audit['input_cases'] == 5296 and audit['accepted'] == 1480 and audit['rejected'] == 3816
+assert audit['repeat_runs'] == 3 and audit['byte_identical']
+assert audit['largest_tested_dimension'] == 64
+assert audit['executable_sha256'] == sha(HERE / 'representative-square-export')
+assert audit['valid_input_sha256'] == sha(HERE / 'valid.input.jsonl')
+assert audit['valid_output_sha256'] == sha(HERE / 'valid.jsonl')
+build = json.loads((HERE / 'Imported-compile.json').read_text())
+assert build['observed_exit_code'] == 0
+assert build['source_sha256'] == sha(HERE / 'Imported.lean')
+assert build['log_sha256'] == sha(HERE / 'Imported.log')
+log = (HERE / 'Imported.log').read_text()
+assert 'sorryAx' not in log and 'error:' not in log and 'error(' not in log
+axioms = re.findall(r'depends on axioms: \[([^]]*)\]', log)
+assert all({x.strip() for x in a.split(',')} <= {'propext', 'Classical.choice', 'Quot.sound'} for a in axioms)
+reports = len(axioms) + log.count('does not depend on any axioms')
+assert reports == 6
+result = dict(status='current_producer_and_lean_batch_verified', records=1480,
+    kernel_batch_count=True, standard_or_no_axiom_reports=reports,
+    current_olean_matches_direct=build['olean_sha256'] == sha(
+        ROOT / '.lake/build/lib/lean/RepresentativeSquareProducer/Imported.olean'),
+    input_sha256={str(p.relative_to(ROOT)): sha(p) for p in [
+        HERE / 'audit.json', HERE / 'Imported.lean', HERE / 'Imported.log',
+        HERE / 'valid.jsonl', HERE / 'case_f.json', HERE / 'case_p.json', HERE / 'case_zero.json',
+        Path(__file__)]})
+(HERE / 'current-audit.json').write_text(json.dumps(result, indent=2) + '\n')
+print('5296 producer cases;1480 kernel-checked imported certificates;6 standard reports')

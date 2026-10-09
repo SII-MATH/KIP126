@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "findings": [],
+  "frozen_files": 15,
+  "modules": 2,
+  "standard_axiom_reports": 4,
+  "counts": {
+    "event_models": 2187,
+    "cutoff_cases": 17496,
+    "valid_tail_nonzero_cases": 255,
+    "outgoing_death_cases": 247,
+    "missing_tail_countermodels": 1636,
+    "zero_start_countermodels": 3025
+  },
+  "empty_legal_incoming_degrees": 5,
+  "semantic_checks": [
+    "cutoff 6 is actual E8",
+    "full incoming sum converted by exact image equivalences",
+    "same raw input and nonzero actual E8 endpoint",
+    "no survival assumption above E8",
+    "NotHit is not BInfinity, not permanent"
+  ],
+  "limitations": "Initial coordinate, known differential, square/product, and actual quotient meanings inherited from the finite E8 certificate remain mathematical premises."
+}

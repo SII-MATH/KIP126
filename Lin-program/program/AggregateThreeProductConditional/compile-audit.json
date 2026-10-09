@@ -1,0 +1,36 @@
+{
+  "command": "lean -j1 FILE -o OLEAN",
+  "serial_shell_session": 72074,
+  "serial_shell_exit_code": 0,
+  "evidence": "Four commands ran in order; shell exits immediately on any nonzero status; shell completed with exit code zero.",
+  "modules": [
+    {
+      "module": "AggregateThreeProductConditional.Basic",
+      "source_sha256": "7f796bc82fa22af9f04b209887b68ab1094e27920b04d24db27da11f4697db4a",
+      "olean_sha256": "8a567d9b2ba19f9accf501ef6798e952f585e55af10d1b44e11bef9f5abd0d96",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    {
+      "module": "AggregateThreeProductConditional.Data",
+      "source_sha256": "85b65f412a1aa6340f32787cb907dbb8e11b1044033caa80185377fb3dd7d484",
+      "olean_sha256": "34e9ae2af04572a20edcfba62150d0f196f1dfcf54788a46764eeb6e80f7913f",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    {
+      "module": "AggregateThreeProductConditional.Events",
+      "source_sha256": "a899ff3ae9b114af23e12416a5f89f4c0d7d4d7ceb1ef27132d36f3b4783852b",
+      "olean_sha256": "a6f4947244bd7a69c29a1dc38a045efcc694d8c24dfc6072796c552571e40fc9",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_code": 0
+    },
+    {
+      "module": "AggregateThreeProductConditional.Matches",
+      "source_sha256": "76970e9c02123c4dc22d224828539a22821087e64bb585a2915ae72a4734918e",
+      "olean_sha256": "613c3525bf615dd6712e7f97f0f3deed9a15ed0685ad91383b1991baf17b17ac",
+      "log_sha256": "86f3d431b9658565e9e067c5ebea57317a94d43a2c24bba64bf4a81af2bc468e",
+      "exit_code": 0
+    }
+  ]
+}

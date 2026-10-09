@@ -1,0 +1,6570 @@
+{
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "overrides": [
+    {
+      "row": 2858,
+      "degree": [
+        10,
+        136
+      ],
+      "page": 3,
+      "kind": "conditional_quotient_zero",
+      "raw_diff": null,
+      "level": 9000
+    },
+    {
+      "row": 3080,
+      "degree": [
+        14,
+        139
+      ],
+      "page": 3,
+      "kind": "unique_zero_codomain",
+      "raw_diff": null,
+      "level": 9000
+    }
+  ],
+  "status": "conditional_candidate_only",
+  "blocks": {
+    "bneg4_125_2": {
+      "center": [
+        -4,
+        125,
+        2
+      ],
+      "e2": {
+        "(-6, 124)": [],
+        "(-4, 125)": [],
+        "(-2, 126)": []
+      },
+      "raw": {
+        "(-6, 124)": [],
+        "(-4, 125)": [],
+        "(-2, 126)": []
+      },
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "bneg1_127_2": {
+      "center": [
+        -1,
+        127,
+        2
+      ],
+      "e2": {
+        "(-3, 126)": [],
+        "(-1, 127)": [],
+        "(1, 128)": [
+          [
+            2315,
+            "324,1",
+            "0"
+          ]
+        ]
+      },
+      "raw": {
+        "(-3, 126)": [],
+        "(-1, 127)": [],
+        "(1, 128)": [
+          [
+            2315,
+            "0",
+            "0",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b0_128_2": {
+      "center": [
+        0,
+        128,
+        2
+      ],
+      "e2": {
+        "(-2, 127)": [],
+        "(0, 128)": [],
+        "(2, 129)": [
+          [
+            2381,
+            "0,1,324,1",
+            "1"
+          ]
+        ]
+      },
+      "raw": {
+        "(-2, 127)": [],
+        "(0, 128)": [],
+        "(2, 129)": [
+          [
+            2381,
+            "0",
+            "1",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b1_129_2": {
+      "center": [
+        1,
+        129,
+        2
+      ],
+      "e2": {
+        "(-1, 128)": [],
+        "(1, 129)": [],
+        "(3, 130)": [
+          [
+            2438,
+            "1,1,69,2",
+            ""
+          ],
+          [
+            2439,
+            "0,2,324,1",
+            "0"
+          ]
+        ]
+      },
+      "raw": {
+        "(-1, 128)": [],
+        "(1, 129)": [],
+        "(3, 130)": [
+          [
+            2438,
+            "0",
+            null,
+            9986
+          ],
+          [
+            2439,
+            "1",
+            "0",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 2,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b2_129_2": {
+      "center": [
+        2,
+        129,
+        2
+      ],
+      "e2": {
+        "(0, 128)": [],
+        "(2, 129)": [
+          [
+            2381,
+            "0,1,324,1",
+            "1"
+          ]
+        ],
+        "(4, 130)": [
+          [
+            2436,
+            "341,1",
+            ""
+          ],
+          [
+            2437,
+            "0,2,69,2",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(0, 128)": [],
+        "(2, 129)": [
+          [
+            2381,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(4, 130)": [
+          [
+            2436,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2437,
+            "0",
+            "0",
+            9997
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 2,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false,
+          true
+        ],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b3_130_2": {
+      "center": [
+        3,
+        130,
+        2
+      ],
+      "e2": {
+        "(1, 129)": [],
+        "(3, 130)": [
+          [
+            2438,
+            "1,1,69,2",
+            ""
+          ],
+          [
+            2439,
+            "0,2,324,1",
+            "0"
+          ]
+        ],
+        "(5, 131)": [
+          [
+            2494,
+            "0,3,69,2",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(1, 129)": [],
+        "(3, 130)": [
+          [
+            2438,
+            "0",
+            null,
+            9986
+          ],
+          [
+            2439,
+            "1",
+            "0",
+            9998
+          ]
+        ],
+        "(5, 131)": [
+          [
+            2494,
+            "0",
+            "1",
+            2
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 2,
+        "n": 0,
+        "outgoing": [
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b4_131_2": {
+      "center": [
+        4,
+        131,
+        2
+      ],
+      "e2": {
+        "(2, 130)": [
+          [
+            2440,
+            "1,1,324,1",
+            ""
+          ]
+        ],
+        "(4, 131)": [
+          [
+            2495,
+            "0,3,324,1",
+            "1"
+          ]
+        ],
+        "(6, 132)": [
+          [
+            2573,
+            "368,1",
+            ""
+          ],
+          [
+            2574,
+            "0,4,69,2",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(2, 130)": [
+          [
+            2440,
+            "0",
+            null,
+            9991
+          ]
+        ],
+        "(4, 131)": [
+          [
+            2495,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(6, 132)": [
+          [
+            2573,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2574,
+            "0",
+            null,
+            9997
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false,
+          true
+        ],
+        "projection": [],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b5_132_2": {
+      "center": [
+        5,
+        132,
+        2
+      ],
+      "e2": {
+        "(3, 131)": [],
+        "(5, 132)": [
+          [
+            2575,
+            "0,4,324,1",
+            "1"
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1,1,69,1,76,1",
+            ""
+          ],
+          [
+            2632,
+            "0,5,69,2",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(3, 131)": [],
+        "(5, 132)": [
+          [
+            2575,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2632,
+            "0",
+            null,
+            9982
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 2,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false,
+          true
+        ],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b6_132_2": {
+      "center": [
+        6,
+        132,
+        2
+      ],
+      "e2": {
+        "(4, 131)": [
+          [
+            2495,
+            "0,3,324,1",
+            "1"
+          ]
+        ],
+        "(6, 132)": [
+          [
+            2573,
+            "368,1",
+            ""
+          ],
+          [
+            2574,
+            "0,4,69,2",
+            ""
+          ]
+        ],
+        "(8, 133)": [
+          [
+            2629,
+            "376,1",
+            ""
+          ],
+          [
+            2630,
+            "375,1",
+            "2,4"
+          ]
+        ]
+      },
+      "raw": {
+        "(4, 131)": [
+          [
+            2495,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(6, 132)": [
+          [
+            2573,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2574,
+            "0",
+            null,
+            9997
+          ]
+        ],
+        "(8, 133)": [
+          [
+            2629,
+            "0",
+            "0",
+            9997
+          ],
+          [
+            2630,
+            "1",
+            "2,4",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          true
+        ],
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    "b6_133_2": {
+      "center": [
+        6,
+        133,
+        2
+      ],
+      "e2": {
+        "(4, 132)": [
+          [
+            2576,
+            "1,2,69,2",
+            ""
+          ]
+        ],
+        "(6, 133)": [
+          [
+            2633,
+            "377,1",
+            ""
+          ],
+          [
+            2634,
+            "0,5,324,1",
+            "5"
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "395,1",
+            ""
+          ],
+          [
+            2701,
+            "394,1",
+            "3"
+          ],
+          [
+            2702,
+            "393,1",
+            ""
+          ],
+          [
+            2703,
+            "392,1",
+            ""
+          ],
+          [
+            2704,
+            "69,1,85,1",
+            ""
+          ],
+          [
+            2705,
+            "0,6,69,2",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(4, 132)": [
+          [
+            2576,
+            "0",
+            null,
+            9000
+          ]
+        ],
+        "(6, 133)": [
+          [
+            2633,
+            "0",
+            null,
+            9996
+          ],
+          [
+            2634,
+            "1",
+            "5",
+            9998
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "5",
+            "1",
+            2
+          ],
+          [
+            2701,
+            "4",
+            null,
+            9983
+          ],
+          [
+            2702,
+            "0,3",
+            null,
+            9994
+          ],
+          [
+            2703,
+            "3",
+            "1",
+            9997
+          ],
+          [
+            2704,
+            "2",
+            "2",
+            9997
+          ],
+          [
+            2705,
+            "1",
+            "3",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 6,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b7_133_2": {
+      "center": [
+        7,
+        133,
+        2
+      ],
+      "e2": {
+        "(5, 132)": [
+          [
+            2575,
+            "0,4,324,1",
+            "1"
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1,1,69,1,76,1",
+            ""
+          ],
+          [
+            2632,
+            "0,5,69,2",
+            ""
+          ]
+        ],
+        "(9, 134)": [
+          [
+            2695,
+            "391,1",
+            "3,4"
+          ],
+          [
+            2696,
+            "390,1",
+            ""
+          ],
+          [
+            2697,
+            "69,1,82,1",
+            ""
+          ],
+          [
+            2698,
+            "18,1,190,1",
+            ""
+          ],
+          [
+            2699,
+            "0,1,375,1",
+            "4"
+          ]
+        ]
+      },
+      "raw": {
+        "(5, 132)": [
+          [
+            2575,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2632,
+            "0",
+            null,
+            9982
+          ]
+        ],
+        "(9, 134)": [
+          [
+            2695,
+            "2",
+            null,
+            9000
+          ],
+          [
+            2696,
+            "3",
+            null,
+            9993
+          ],
+          [
+            2697,
+            "1",
+            "0",
+            9997
+          ],
+          [
+            2698,
+            "0",
+            "3,4",
+            9998
+          ],
+          [
+            2699,
+            "4",
+            "4",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          true
+        ],
+        "k": 5,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    "b8_134_2": {
+      "center": [
+        8,
+        134,
+        2
+      ],
+      "e2": {
+        "(6, 133)": [
+          [
+            2633,
+            "377,1",
+            ""
+          ],
+          [
+            2634,
+            "0,5,324,1",
+            "5"
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "395,1",
+            ""
+          ],
+          [
+            2701,
+            "394,1",
+            "3"
+          ],
+          [
+            2702,
+            "393,1",
+            ""
+          ],
+          [
+            2703,
+            "392,1",
+            ""
+          ],
+          [
+            2704,
+            "69,1,85,1",
+            ""
+          ],
+          [
+            2705,
+            "0,6,69,2",
+            ""
+          ]
+        ],
+        "(10, 135)": [
+          [
+            2783,
+            "413,1",
+            ""
+          ],
+          [
+            2784,
+            "412,1",
+            "1,2"
+          ],
+          [
+            2785,
+            "0,1,391,1",
+            "3,4"
+          ],
+          [
+            2786,
+            "0,1,390,1",
+            ""
+          ],
+          [
+            2787,
+            "0,2,375,1",
+            "4"
+          ]
+        ]
+      },
+      "raw": {
+        "(6, 133)": [
+          [
+            2633,
+            "0",
+            null,
+            9996
+          ],
+          [
+            2634,
+            "1",
+            "5",
+            9998
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "5",
+            "1",
+            2
+          ],
+          [
+            2701,
+            "4",
+            null,
+            9983
+          ],
+          [
+            2702,
+            "0,3",
+            null,
+            9994
+          ],
+          [
+            2703,
+            "3",
+            "1",
+            9997
+          ],
+          [
+            2704,
+            "2",
+            "2",
+            9997
+          ],
+          [
+            2705,
+            "1",
+            "3",
+            9998
+          ]
+        ],
+        "(10, 135)": [
+          [
+            2783,
+            "3",
+            "1",
+            2
+          ],
+          [
+            2784,
+            "0",
+            "0",
+            9997
+          ],
+          [
+            2785,
+            "1",
+            "1,2",
+            9998
+          ],
+          [
+            2786,
+            "2",
+            "3,4",
+            9998
+          ],
+          [
+            2787,
+            "4",
+            "4",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 4,
+        "inclusion": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "k": 5,
+        "m": 6,
+        "n": 2,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    "b9_135_2": {
+      "center": [
+        9,
+        135,
+        2
+      ],
+      "e2": {
+        "(7, 134)": [
+          [
+            2706,
+            "397,1",
+            "4"
+          ],
+          [
+            2707,
+            "396,1",
+            "4"
+          ],
+          [
+            2708,
+            "1,1,368,1",
+            ""
+          ],
+          [
+            2709,
+            "0,1,377,1",
+            ""
+          ],
+          [
+            2710,
+            "0,6,324,1",
+            "5"
+          ]
+        ],
+        "(9, 135)": [
+          [
+            2788,
+            "414,1",
+            ""
+          ],
+          [
+            2789,
+            "1,1,376,1",
+            ""
+          ],
+          [
+            2790,
+            "1,1,375,1",
+            ""
+          ],
+          [
+            2791,
+            "0,1,394,1",
+            ""
+          ],
+          [
+            2792,
+            "0,1,392,1",
+            ""
+          ],
+          [
+            2793,
+            "0,7,69,2",
+            ""
+          ]
+        ],
+        "(11, 136)": [
+          [
+            2850,
+            "69,1,89,1",
+            ""
+          ],
+          [
+            2851,
+            "1,1,389,1",
+            ""
+          ],
+          [
+            2852,
+            "1,1,388,1",
+            ""
+          ],
+          [
+            2853,
+            "0,2,391,1",
+            ""
+          ],
+          [
+            2854,
+            "0,3,375,1",
+            "3"
+          ]
+        ]
+      },
+      "raw": {
+        "(7, 134)": [
+          [
+            2706,
+            "3",
+            "0",
+            2
+          ],
+          [
+            2707,
+            "2",
+            null,
+            9990
+          ],
+          [
+            2708,
+            "0,1",
+            null,
+            9997
+          ],
+          [
+            2709,
+            "1",
+            "4",
+            9998
+          ],
+          [
+            2710,
+            "4",
+            "5",
+            9998
+          ]
+        ],
+        "(9, 135)": [
+          [
+            2788,
+            "4",
+            "1",
+            2
+          ],
+          [
+            2789,
+            "5",
+            "4",
+            2
+          ],
+          [
+            2790,
+            "2",
+            "0",
+            9996
+          ],
+          [
+            2791,
+            "1",
+            "2",
+            9996
+          ],
+          [
+            2792,
+            "0",
+            "3,4",
+            9997
+          ],
+          [
+            2793,
+            "3",
+            "3",
+            9997
+          ]
+        ],
+        "(11, 136)": [
+          [
+            2850,
+            "1",
+            "3",
+            3
+          ],
+          [
+            2851,
+            "2",
+            "2",
+            3
+          ],
+          [
+            2852,
+            "3",
+            null,
+            9995
+          ],
+          [
+            2853,
+            "0",
+            "0",
+            9996
+          ],
+          [
+            2854,
+            "4",
+            "3",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 4,
+        "inclusion": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "k": 5,
+        "m": 6,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    "b10_135_2": {
+      "center": [
+        10,
+        135,
+        2
+      ],
+      "e2": {
+        "(8, 134)": [
+          [
+            2700,
+            "395,1",
+            ""
+          ],
+          [
+            2701,
+            "394,1",
+            "3"
+          ],
+          [
+            2702,
+            "393,1",
+            ""
+          ],
+          [
+            2703,
+            "392,1",
+            ""
+          ],
+          [
+            2704,
+            "69,1,85,1",
+            ""
+          ],
+          [
+            2705,
+            "0,6,69,2",
+            ""
+          ]
+        ],
+        "(10, 135)": [
+          [
+            2783,
+            "413,1",
+            ""
+          ],
+          [
+            2784,
+            "412,1",
+            "1,2"
+          ],
+          [
+            2785,
+            "0,1,391,1",
+            "3,4"
+          ],
+          [
+            2786,
+            "0,1,390,1",
+            ""
+          ],
+          [
+            2787,
+            "0,2,375,1",
+            "4"
+          ]
+        ],
+        "(12, 136)": [
+          [
+            2845,
+            "1,1,387,1",
+            ""
+          ],
+          [
+            2846,
+            "0,1,410,1",
+            "2"
+          ],
+          [
+            2847,
+            "0,1,409,1",
+            "2"
+          ],
+          [
+            2848,
+            "0,2,389,1",
+            ""
+          ],
+          [
+            2849,
+            "0,4,367,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(8, 134)": [
+          [
+            2700,
+            "5",
+            "1",
+            2
+          ],
+          [
+            2701,
+            "4",
+            null,
+            9983
+          ],
+          [
+            2702,
+            "0,3",
+            null,
+            9994
+          ],
+          [
+            2703,
+            "3",
+            "1",
+            9997
+          ],
+          [
+            2704,
+            "2",
+            "2",
+            9997
+          ],
+          [
+            2705,
+            "1",
+            "3",
+            9998
+          ]
+        ],
+        "(10, 135)": [
+          [
+            2783,
+            "3",
+            "1",
+            2
+          ],
+          [
+            2784,
+            "0",
+            "0",
+            9997
+          ],
+          [
+            2785,
+            "1",
+            "1,2",
+            9998
+          ],
+          [
+            2786,
+            "2",
+            "3,4",
+            9998
+          ],
+          [
+            2787,
+            "4",
+            "4",
+            9998
+          ]
+        ],
+        "(12, 136)": [
+          [
+            2845,
+            "1,2",
+            "1",
+            2
+          ],
+          [
+            2846,
+            "3,4",
+            "2",
+            2
+          ],
+          [
+            2847,
+            "4",
+            "4",
+            2
+          ],
+          [
+            2848,
+            "0",
+            "1",
+            3
+          ],
+          [
+            2849,
+            "2",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 5,
+        "m": 5,
+        "n": 6,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b10_136_2": {
+      "center": [
+        10,
+        136,
+        2
+      ],
+      "e2": {
+        "(8, 135)": [
+          [
+            2794,
+            "415,1",
+            "1"
+          ],
+          [
+            2795,
+            "2,1,353,1",
+            ""
+          ],
+          [
+            2796,
+            "2,1,69,1,75,1",
+            ""
+          ],
+          [
+            2797,
+            "0,1,397,1",
+            "3"
+          ],
+          [
+            2798,
+            "0,1,396,1",
+            "3"
+          ],
+          [
+            2799,
+            "0,2,377,1",
+            ""
+          ],
+          [
+            2800,
+            "0,7,324,1",
+            "4"
+          ]
+        ],
+        "(10, 136)": [
+          [
+            2855,
+            "419,1",
+            "2"
+          ],
+          [
+            2856,
+            "0,1,414,1",
+            ""
+          ],
+          [
+            2857,
+            "0,2,394,1",
+            ""
+          ],
+          [
+            2858,
+            "0,2,392,1",
+            ""
+          ],
+          [
+            2859,
+            "0,8,69,2",
+            ""
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "426,1",
+            "3"
+          ],
+          [
+            2919,
+            "425,1",
+            "4"
+          ],
+          [
+            2920,
+            "0,1,69,1,89,1",
+            ""
+          ],
+          [
+            2921,
+            "0,3,391,1",
+            ""
+          ],
+          [
+            2922,
+            "0,4,375,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(8, 135)": [
+          [
+            2794,
+            "3,4,5",
+            "1",
+            2
+          ],
+          [
+            2795,
+            "5",
+            "3",
+            2
+          ],
+          [
+            2796,
+            "2",
+            null,
+            9000
+          ],
+          [
+            2797,
+            "1",
+            null,
+            9991
+          ],
+          [
+            2798,
+            "0",
+            "1",
+            9998
+          ],
+          [
+            2799,
+            "4",
+            "3",
+            9998
+          ],
+          [
+            2800,
+            "6",
+            "4",
+            9998
+          ]
+        ],
+        "(10, 136)": [
+          [
+            2855,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2856,
+            "3",
+            "4",
+            2
+          ],
+          [
+            2857,
+            "4",
+            "6",
+            2
+          ],
+          [
+            2858,
+            "2",
+            null,
+            9000
+          ],
+          [
+            2859,
+            "0",
+            "2",
+            9998
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "2",
+            "0",
+            2
+          ],
+          [
+            2919,
+            "3,4",
+            "0",
+            3
+          ],
+          [
+            2920,
+            "4",
+            "0,3",
+            3
+          ],
+          [
+            2921,
+            "1",
+            "4",
+            9998
+          ],
+          [
+            2922,
+            "0",
+            "3",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "k": 5,
+        "m": 5,
+        "n": 7,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    "b11_136_2": {
+      "center": [
+        11,
+        136,
+        2
+      ],
+      "e2": {
+        "(9, 135)": [
+          [
+            2788,
+            "414,1",
+            ""
+          ],
+          [
+            2789,
+            "1,1,376,1",
+            ""
+          ],
+          [
+            2790,
+            "1,1,375,1",
+            ""
+          ],
+          [
+            2791,
+            "0,1,394,1",
+            ""
+          ],
+          [
+            2792,
+            "0,1,392,1",
+            ""
+          ],
+          [
+            2793,
+            "0,7,69,2",
+            ""
+          ]
+        ],
+        "(11, 136)": [
+          [
+            2850,
+            "69,1,89,1",
+            ""
+          ],
+          [
+            2851,
+            "1,1,389,1",
+            ""
+          ],
+          [
+            2852,
+            "1,1,388,1",
+            ""
+          ],
+          [
+            2853,
+            "0,2,391,1",
+            ""
+          ],
+          [
+            2854,
+            "0,3,375,1",
+            "3"
+          ]
+        ],
+        "(13, 137)": [
+          [
+            2914,
+            "76,1,82,1",
+            ""
+          ],
+          [
+            2915,
+            "9,1,251,1",
+            ""
+          ],
+          [
+            2916,
+            "7,1,275,1",
+            ""
+          ],
+          [
+            2917,
+            "0,5,367,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(9, 135)": [
+          [
+            2788,
+            "4",
+            "1",
+            2
+          ],
+          [
+            2789,
+            "5",
+            "4",
+            2
+          ],
+          [
+            2790,
+            "2",
+            "0",
+            9996
+          ],
+          [
+            2791,
+            "1",
+            "2",
+            9996
+          ],
+          [
+            2792,
+            "0",
+            "3,4",
+            9997
+          ],
+          [
+            2793,
+            "3",
+            "3",
+            9997
+          ]
+        ],
+        "(11, 136)": [
+          [
+            2850,
+            "1",
+            "3",
+            3
+          ],
+          [
+            2851,
+            "2",
+            "2",
+            3
+          ],
+          [
+            2852,
+            "3",
+            null,
+            9995
+          ],
+          [
+            2853,
+            "0",
+            "0",
+            9996
+          ],
+          [
+            2854,
+            "4",
+            "3",
+            9998
+          ]
+        ],
+        "(13, 137)": [
+          [
+            2914,
+            "3",
+            "4",
+            2
+          ],
+          [
+            2915,
+            "0",
+            "0",
+            3
+          ],
+          [
+            2916,
+            "1",
+            null,
+            9000
+          ],
+          [
+            2917,
+            "2",
+            "0",
+            9997
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "h": 4,
+        "inclusion": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 4,
+        "m": 5,
+        "n": 6,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b12_137_2": {
+      "center": [
+        12,
+        137,
+        2
+      ],
+      "e2": {
+        "(10, 136)": [
+          [
+            2855,
+            "419,1",
+            "2"
+          ],
+          [
+            2856,
+            "0,1,414,1",
+            ""
+          ],
+          [
+            2857,
+            "0,2,394,1",
+            ""
+          ],
+          [
+            2858,
+            "0,2,392,1",
+            ""
+          ],
+          [
+            2859,
+            "0,8,69,2",
+            ""
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "426,1",
+            "3"
+          ],
+          [
+            2919,
+            "425,1",
+            "4"
+          ],
+          [
+            2920,
+            "0,1,69,1,89,1",
+            ""
+          ],
+          [
+            2921,
+            "0,3,391,1",
+            ""
+          ],
+          [
+            2922,
+            "0,4,375,1",
+            ""
+          ]
+        ],
+        "(14, 138)": [
+          [
+            3003,
+            "440,1",
+            "1"
+          ],
+          [
+            3004,
+            "439,1",
+            "1,2"
+          ],
+          [
+            3005,
+            "23,1,190,1",
+            ""
+          ],
+          [
+            3006,
+            "1,1,418,1",
+            ""
+          ],
+          [
+            3007,
+            "1,1,417,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(10, 136)": [
+          [
+            2855,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2856,
+            "3",
+            "4",
+            2
+          ],
+          [
+            2857,
+            "4",
+            "6",
+            2
+          ],
+          [
+            2858,
+            "2",
+            null,
+            9000
+          ],
+          [
+            2859,
+            "0",
+            "2",
+            9998
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "2",
+            "0",
+            2
+          ],
+          [
+            2919,
+            "3,4",
+            "0",
+            3
+          ],
+          [
+            2920,
+            "4",
+            "0,3",
+            3
+          ],
+          [
+            2921,
+            "1",
+            "4",
+            9998
+          ],
+          [
+            2922,
+            "0",
+            "3",
+            9998
+          ]
+        ],
+        "(14, 138)": [
+          [
+            3003,
+            "4",
+            "1",
+            2
+          ],
+          [
+            3004,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3005,
+            "2",
+            null,
+            9000
+          ],
+          [
+            3006,
+            "1",
+            "1,2",
+            9998
+          ],
+          [
+            3007,
+            "0",
+            "1",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 5,
+        "m": 5,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b13_138_2": {
+      "center": [
+        13,
+        138,
+        2
+      ],
+      "e2": {
+        "(11, 137)": [
+          [
+            2923,
+            "427,1",
+            "3"
+          ],
+          [
+            2924,
+            "1,1,413,1",
+            ""
+          ],
+          [
+            2925,
+            "1,1,412,1",
+            ""
+          ],
+          [
+            2926,
+            "0,1,419,1",
+            "4"
+          ],
+          [
+            2927,
+            "0,2,414,1",
+            ""
+          ],
+          [
+            2928,
+            "0,9,69,2",
+            ""
+          ]
+        ],
+        "(13, 138)": [
+          [
+            3008,
+            "24,1,190,1",
+            ""
+          ],
+          [
+            3009,
+            "3,1,335,1",
+            ""
+          ],
+          [
+            3010,
+            "0,1,425,1",
+            ""
+          ],
+          [
+            3011,
+            "0,4,391,1",
+            ""
+          ],
+          [
+            3012,
+            "0,5,375,1",
+            ""
+          ]
+        ],
+        "(15, 139)": [
+          [
+            3075,
+            "448,1",
+            ""
+          ],
+          [
+            3076,
+            "3,2,287,1",
+            "2,3"
+          ],
+          [
+            3077,
+            "0,1,440,1",
+            "2"
+          ],
+          [
+            3078,
+            "0,1,439,1",
+            "2,3"
+          ]
+        ]
+      },
+      "raw": {
+        "(11, 137)": [
+          [
+            2923,
+            "4",
+            "2",
+            2
+          ],
+          [
+            2924,
+            "5",
+            "4",
+            2
+          ],
+          [
+            2925,
+            "1,2",
+            null,
+            9000
+          ],
+          [
+            2926,
+            "2",
+            "1",
+            9996
+          ],
+          [
+            2927,
+            "0",
+            "3",
+            9998
+          ],
+          [
+            2928,
+            "3",
+            "4",
+            9998
+          ]
+        ],
+        "(13, 138)": [
+          [
+            3008,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3009,
+            "4",
+            "3",
+            2
+          ],
+          [
+            3010,
+            "0",
+            "2",
+            4
+          ],
+          [
+            3011,
+            "2",
+            "1",
+            4
+          ],
+          [
+            3012,
+            "1",
+            "1",
+            9997
+          ]
+        ],
+        "(15, 139)": [
+          [
+            3075,
+            "0",
+            "0",
+            4
+          ],
+          [
+            3076,
+            "1,3",
+            null,
+            9000
+          ],
+          [
+            3077,
+            "3",
+            "2,3",
+            9998
+          ],
+          [
+            3078,
+            "2",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 3,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "k": 4,
+        "m": 5,
+        "n": 6,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b14_139_2": {
+      "center": [
+        14,
+        139,
+        2
+      ],
+      "e2": {
+        "(12, 138)": [
+          [
+            3013,
+            "25,1,190,1",
+            ""
+          ],
+          [
+            3014,
+            "3,1,336,1",
+            "2"
+          ],
+          [
+            3015,
+            "0,1,427,1",
+            ""
+          ],
+          [
+            3016,
+            "0,2,419,1",
+            ""
+          ],
+          [
+            3017,
+            "0,10,69,2",
+            ""
+          ]
+        ],
+        "(14, 139)": [
+          [
+            3079,
+            "449,1",
+            "2"
+          ],
+          [
+            3080,
+            "1,1,7,1,275,1",
+            ""
+          ],
+          [
+            3081,
+            "0,2,425,1",
+            ""
+          ]
+        ],
+        "(16, 140)": [
+          [
+            3145,
+            "9,1,261,1",
+            ""
+          ],
+          [
+            3146,
+            "1,1,438,1",
+            ""
+          ],
+          [
+            3147,
+            "0,1,448,1",
+            ""
+          ],
+          [
+            3148,
+            "0,2,440,1",
+            "2"
+          ],
+          [
+            3149,
+            "0,2,439,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(12, 138)": [
+          [
+            3013,
+            "0",
+            "0",
+            2
+          ],
+          [
+            3014,
+            "2",
+            "1",
+            2
+          ],
+          [
+            3015,
+            "4",
+            "5",
+            2
+          ],
+          [
+            3016,
+            "3",
+            "1",
+            9996
+          ],
+          [
+            3017,
+            "1",
+            "2",
+            9998
+          ]
+        ],
+        "(14, 139)": [
+          [
+            3079,
+            "2",
+            "1",
+            2
+          ],
+          [
+            3080,
+            "1",
+            null,
+            9000
+          ],
+          [
+            3081,
+            "0",
+            "2",
+            9998
+          ]
+        ],
+        "(16, 140)": [
+          [
+            3145,
+            "2",
+            "0",
+            2
+          ],
+          [
+            3146,
+            "1",
+            "1",
+            3
+          ],
+          [
+            3147,
+            "4",
+            null,
+            9000
+          ],
+          [
+            3148,
+            "0",
+            "0,1,2",
+            9997
+          ],
+          [
+            3149,
+            "3",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "k": 5,
+        "m": 3,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b15_139_2": {
+      "center": [
+        15,
+        139,
+        2
+      ],
+      "e2": {
+        "(13, 138)": [
+          [
+            3008,
+            "24,1,190,1",
+            ""
+          ],
+          [
+            3009,
+            "3,1,335,1",
+            ""
+          ],
+          [
+            3010,
+            "0,1,425,1",
+            ""
+          ],
+          [
+            3011,
+            "0,4,391,1",
+            ""
+          ],
+          [
+            3012,
+            "0,5,375,1",
+            ""
+          ]
+        ],
+        "(15, 139)": [
+          [
+            3075,
+            "448,1",
+            ""
+          ],
+          [
+            3076,
+            "3,2,287,1",
+            "2,3"
+          ],
+          [
+            3077,
+            "0,1,440,1",
+            "2"
+          ],
+          [
+            3078,
+            "0,1,439,1",
+            "2,3"
+          ]
+        ],
+        "(17, 140)": [
+          [
+            3141,
+            "8,1,280,1",
+            ""
+          ],
+          [
+            3142,
+            "3,1,359,1",
+            "1"
+          ],
+          [
+            3143,
+            "0,2,438,1",
+            ""
+          ],
+          [
+            3144,
+            "0,4,418,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(13, 138)": [
+          [
+            3008,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3009,
+            "4",
+            "3",
+            2
+          ],
+          [
+            3010,
+            "0",
+            "2",
+            4
+          ],
+          [
+            3011,
+            "2",
+            "1",
+            4
+          ],
+          [
+            3012,
+            "1",
+            "1",
+            9997
+          ]
+        ],
+        "(15, 139)": [
+          [
+            3075,
+            "0",
+            "0",
+            4
+          ],
+          [
+            3076,
+            "1,3",
+            null,
+            9000
+          ],
+          [
+            3077,
+            "3",
+            "2,3",
+            9998
+          ],
+          [
+            3078,
+            "2",
+            "2",
+            9998
+          ]
+        ],
+        "(17, 140)": [
+          [
+            3141,
+            "2,3",
+            "3",
+            2
+          ],
+          [
+            3142,
+            "3",
+            "2,3",
+            2
+          ],
+          [
+            3143,
+            "0",
+            null,
+            9000
+          ],
+          [
+            3144,
+            "1",
+            "1",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 4,
+        "m": 4,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b16_140_2": {
+      "center": [
+        16,
+        140,
+        2
+      ],
+      "e2": {
+        "(14, 139)": [
+          [
+            3079,
+            "449,1",
+            "2"
+          ],
+          [
+            3080,
+            "1,1,7,1,275,1",
+            ""
+          ],
+          [
+            3081,
+            "0,2,425,1",
+            ""
+          ]
+        ],
+        "(16, 140)": [
+          [
+            3145,
+            "9,1,261,1",
+            ""
+          ],
+          [
+            3146,
+            "1,1,438,1",
+            ""
+          ],
+          [
+            3147,
+            "0,1,448,1",
+            ""
+          ],
+          [
+            3148,
+            "0,2,440,1",
+            "2"
+          ],
+          [
+            3149,
+            "0,2,439,1",
+            ""
+          ]
+        ],
+        "(18, 141)": [
+          [
+            3246,
+            "9,1,267,1",
+            "2"
+          ],
+          [
+            3247,
+            "0,1,3,1,359,1",
+            "2"
+          ],
+          [
+            3248,
+            "0,5,418,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(14, 139)": [
+          [
+            3079,
+            "2",
+            "1",
+            2
+          ],
+          [
+            3080,
+            "1",
+            null,
+            9000
+          ],
+          [
+            3081,
+            "0",
+            "2",
+            9998
+          ]
+        ],
+        "(16, 140)": [
+          [
+            3145,
+            "2",
+            "0",
+            2
+          ],
+          [
+            3146,
+            "1",
+            "1",
+            3
+          ],
+          [
+            3147,
+            "4",
+            null,
+            9000
+          ],
+          [
+            3148,
+            "0",
+            "0,1,2",
+            9997
+          ],
+          [
+            3149,
+            "3",
+            "2",
+            9998
+          ]
+        ],
+        "(18, 141)": [
+          [
+            3246,
+            "2",
+            "3",
+            2
+          ],
+          [
+            3247,
+            "0,1",
+            null,
+            9000
+          ],
+          [
+            3248,
+            "1",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "h": 3,
+        "inclusion": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 5,
+        "n": 3,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b17_141_2": {
+      "center": [
+        17,
+        141,
+        2
+      ],
+      "e2": {
+        "(15, 140)": [
+          [
+            3150,
+            "456,1",
+            "3"
+          ],
+          [
+            3151,
+            "67,1,107,1",
+            ""
+          ],
+          [
+            3152,
+            "1,1,439,1",
+            ""
+          ],
+          [
+            3153,
+            "0,1,449,1",
+            "1"
+          ],
+          [
+            3154,
+            "0,3,425,1",
+            ""
+          ]
+        ],
+        "(17, 141)": [
+          [
+            3249,
+            "472,1",
+            "0,3"
+          ],
+          [
+            3250,
+            "0,2,448,1",
+            ""
+          ],
+          [
+            3251,
+            "0,3,440,1",
+            "3"
+          ],
+          [
+            3252,
+            "0,3,439,1",
+            ""
+          ]
+        ],
+        "(19, 142)": [
+          [
+            3313,
+            "9,1,13,2,95,1",
+            ""
+          ],
+          [
+            3314,
+            "0,1,9,1,267,1",
+            ""
+          ],
+          [
+            3315,
+            "0,2,3,1,359,1",
+            ""
+          ],
+          [
+            3316,
+            "0,6,418,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(15, 140)": [
+          [
+            3150,
+            "4",
+            "1",
+            2
+          ],
+          [
+            3151,
+            "1",
+            "2",
+            4
+          ],
+          [
+            3152,
+            "2",
+            "0",
+            9995
+          ],
+          [
+            3153,
+            "0",
+            "3",
+            9998
+          ],
+          [
+            3154,
+            "3",
+            "1",
+            9998
+          ]
+        ],
+        "(17, 141)": [
+          [
+            3249,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3250,
+            "1",
+            "3",
+            2
+          ],
+          [
+            3251,
+            "0",
+            "0,3",
+            9998
+          ],
+          [
+            3252,
+            "2",
+            "3",
+            9998
+          ]
+        ],
+        "(19, 142)": [
+          [
+            3313,
+            "0,3",
+            "0",
+            2
+          ],
+          [
+            3314,
+            "3",
+            "2",
+            2
+          ],
+          [
+            3315,
+            "1,2",
+            "0",
+            3
+          ],
+          [
+            3316,
+            "2",
+            "1",
+            9997
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 4,
+        "m": 4,
+        "n": 5,
+        "outgoing": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "projection": [],
+        "up": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b20_143_2": {
+      "center": [
+        20,
+        143,
+        2
+      ],
+      "e2": {
+        "(18, 142)": [
+          [
+            3317,
+            "0,1,472,1",
+            ""
+          ],
+          [
+            3318,
+            "0,4,440,1",
+            ""
+          ]
+        ],
+        "(20, 143)": [
+          [
+            3388,
+            "492,1",
+            ""
+          ]
+        ],
+        "(22, 144)": [
+          [
+            3481,
+            "499,1",
+            ""
+          ],
+          [
+            3482,
+            "9,1,13,2,101,1",
+            ""
+          ],
+          [
+            3483,
+            "0,1,8,1,292,1",
+            "1"
+          ]
+        ]
+      },
+      "raw": {
+        "(18, 142)": [
+          [
+            3317,
+            "0,1",
+            "0",
+            2
+          ],
+          [
+            3318,
+            "1",
+            "3",
+            2
+          ]
+        ],
+        "(20, 143)": [
+          [
+            3388,
+            "0",
+            "0",
+            9997
+          ]
+        ],
+        "(22, 144)": [
+          [
+            3481,
+            "1",
+            "2",
+            3
+          ],
+          [
+            3482,
+            "0",
+            "1",
+            9997
+          ],
+          [
+            3483,
+            "2",
+            "1",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 1,
+        "n": 2,
+        "outgoing": [
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "bneg1_127_3": {
+      "center": [
+        -1,
+        127,
+        3
+      ],
+      "e2": {
+        "(-4, 125)": [],
+        "(-1, 127)": [],
+        "(2, 129)": [
+          [
+            2381,
+            "0,1,324,1",
+            "1"
+          ]
+        ]
+      },
+      "raw": {
+        "(-4, 125)": [],
+        "(-1, 127)": [],
+        "(2, 129)": [
+          [
+            2381,
+            "0",
+            "1",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b3_130_3": {
+      "center": [
+        3,
+        130,
+        3
+      ],
+      "e2": {
+        "(0, 128)": [],
+        "(3, 130)": [
+          [
+            2438,
+            "1,1,69,2",
+            ""
+          ],
+          [
+            2439,
+            "0,2,324,1",
+            "0"
+          ]
+        ],
+        "(6, 132)": [
+          [
+            2573,
+            "368,1",
+            ""
+          ],
+          [
+            2574,
+            "0,4,69,2",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(0, 128)": [],
+        "(3, 130)": [
+          [
+            2438,
+            "0",
+            null,
+            9986
+          ],
+          [
+            2439,
+            "1",
+            "0",
+            9998
+          ]
+        ],
+        "(6, 132)": [
+          [
+            2573,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2574,
+            "0",
+            null,
+            9997
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b4_131_3": {
+      "center": [
+        4,
+        131,
+        3
+      ],
+      "e2": {
+        "(1, 129)": [],
+        "(4, 131)": [
+          [
+            2495,
+            "0,3,324,1",
+            "1"
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1,1,69,1,76,1",
+            ""
+          ],
+          [
+            2632,
+            "0,5,69,2",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(1, 129)": [],
+        "(4, 131)": [
+          [
+            2495,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2632,
+            "0",
+            null,
+            9982
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b7_133_3": {
+      "center": [
+        7,
+        133,
+        3
+      ],
+      "e2": {
+        "(4, 131)": [
+          [
+            2495,
+            "0,3,324,1",
+            "1"
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1,1,69,1,76,1",
+            ""
+          ],
+          [
+            2632,
+            "0,5,69,2",
+            ""
+          ]
+        ],
+        "(10, 135)": [
+          [
+            2783,
+            "413,1",
+            ""
+          ],
+          [
+            2784,
+            "412,1",
+            "1,2"
+          ],
+          [
+            2785,
+            "0,1,391,1",
+            "3,4"
+          ],
+          [
+            2786,
+            "0,1,390,1",
+            ""
+          ],
+          [
+            2787,
+            "0,2,375,1",
+            "4"
+          ]
+        ]
+      },
+      "raw": {
+        "(4, 131)": [
+          [
+            2495,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2632,
+            "0",
+            null,
+            9982
+          ]
+        ],
+        "(10, 135)": [
+          [
+            2783,
+            "3",
+            "1",
+            2
+          ],
+          [
+            2784,
+            "0",
+            "0",
+            9997
+          ],
+          [
+            2785,
+            "1",
+            "1,2",
+            9998
+          ],
+          [
+            2786,
+            "2",
+            "3,4",
+            9998
+          ],
+          [
+            2787,
+            "4",
+            "4",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b8_134_3": {
+      "center": [
+        8,
+        134,
+        3
+      ],
+      "e2": {
+        "(5, 132)": [
+          [
+            2575,
+            "0,4,324,1",
+            "1"
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "395,1",
+            ""
+          ],
+          [
+            2701,
+            "394,1",
+            "3"
+          ],
+          [
+            2702,
+            "393,1",
+            ""
+          ],
+          [
+            2703,
+            "392,1",
+            ""
+          ],
+          [
+            2704,
+            "69,1,85,1",
+            ""
+          ],
+          [
+            2705,
+            "0,6,69,2",
+            ""
+          ]
+        ],
+        "(11, 136)": [
+          [
+            2850,
+            "69,1,89,1",
+            ""
+          ],
+          [
+            2851,
+            "1,1,389,1",
+            ""
+          ],
+          [
+            2852,
+            "1,1,388,1",
+            ""
+          ],
+          [
+            2853,
+            "0,2,391,1",
+            ""
+          ],
+          [
+            2854,
+            "0,3,375,1",
+            "3"
+          ]
+        ]
+      },
+      "raw": {
+        "(5, 132)": [
+          [
+            2575,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "5",
+            "1",
+            2
+          ],
+          [
+            2701,
+            "4",
+            null,
+            9983
+          ],
+          [
+            2702,
+            "0,3",
+            null,
+            9994
+          ],
+          [
+            2703,
+            "3",
+            "1",
+            9997
+          ],
+          [
+            2704,
+            "2",
+            "2",
+            9997
+          ],
+          [
+            2705,
+            "1",
+            "3",
+            9998
+          ]
+        ],
+        "(11, 136)": [
+          [
+            2850,
+            "1",
+            "3",
+            3
+          ],
+          [
+            2851,
+            "2",
+            "2",
+            3
+          ],
+          [
+            2852,
+            "3",
+            null,
+            9995
+          ],
+          [
+            2853,
+            "0",
+            "0",
+            9996
+          ],
+          [
+            2854,
+            "4",
+            "3",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [],
+        "k": 4,
+        "m": 4,
+        "n": 0,
+        "outgoing": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b9_135_3": {
+      "center": [
+        9,
+        135,
+        3
+      ],
+      "e2": {
+        "(6, 133)": [
+          [
+            2633,
+            "377,1",
+            ""
+          ],
+          [
+            2634,
+            "0,5,324,1",
+            "5"
+          ]
+        ],
+        "(9, 135)": [
+          [
+            2788,
+            "414,1",
+            ""
+          ],
+          [
+            2789,
+            "1,1,376,1",
+            ""
+          ],
+          [
+            2790,
+            "1,1,375,1",
+            ""
+          ],
+          [
+            2791,
+            "0,1,394,1",
+            ""
+          ],
+          [
+            2792,
+            "0,1,392,1",
+            ""
+          ],
+          [
+            2793,
+            "0,7,69,2",
+            ""
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "426,1",
+            "3"
+          ],
+          [
+            2919,
+            "425,1",
+            "4"
+          ],
+          [
+            2920,
+            "0,1,69,1,89,1",
+            ""
+          ],
+          [
+            2921,
+            "0,3,391,1",
+            ""
+          ],
+          [
+            2922,
+            "0,4,375,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(6, 133)": [
+          [
+            2633,
+            "0",
+            null,
+            9996
+          ],
+          [
+            2634,
+            "1",
+            "5",
+            9998
+          ]
+        ],
+        "(9, 135)": [
+          [
+            2788,
+            "4",
+            "1",
+            2
+          ],
+          [
+            2789,
+            "5",
+            "4",
+            2
+          ],
+          [
+            2790,
+            "2",
+            "0",
+            9996
+          ],
+          [
+            2791,
+            "1",
+            "2",
+            9996
+          ],
+          [
+            2792,
+            "0",
+            "3,4",
+            9997
+          ],
+          [
+            2793,
+            "3",
+            "3",
+            9997
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "2",
+            "0",
+            2
+          ],
+          [
+            2919,
+            "3,4",
+            "0",
+            3
+          ],
+          [
+            2920,
+            "4",
+            "0,3",
+            3
+          ],
+          [
+            2921,
+            "1",
+            "4",
+            9998
+          ],
+          [
+            2922,
+            "0",
+            "3",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 4,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b12_137_3": {
+      "center": [
+        12,
+        137,
+        3
+      ],
+      "e2": {
+        "(9, 135)": [
+          [
+            2788,
+            "414,1",
+            ""
+          ],
+          [
+            2789,
+            "1,1,376,1",
+            ""
+          ],
+          [
+            2790,
+            "1,1,375,1",
+            ""
+          ],
+          [
+            2791,
+            "0,1,394,1",
+            ""
+          ],
+          [
+            2792,
+            "0,1,392,1",
+            ""
+          ],
+          [
+            2793,
+            "0,7,69,2",
+            ""
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "426,1",
+            "3"
+          ],
+          [
+            2919,
+            "425,1",
+            "4"
+          ],
+          [
+            2920,
+            "0,1,69,1,89,1",
+            ""
+          ],
+          [
+            2921,
+            "0,3,391,1",
+            ""
+          ],
+          [
+            2922,
+            "0,4,375,1",
+            ""
+          ]
+        ],
+        "(15, 139)": [
+          [
+            3075,
+            "448,1",
+            ""
+          ],
+          [
+            3076,
+            "3,2,287,1",
+            "2,3"
+          ],
+          [
+            3077,
+            "0,1,440,1",
+            "2"
+          ],
+          [
+            3078,
+            "0,1,439,1",
+            "2,3"
+          ]
+        ]
+      },
+      "raw": {
+        "(9, 135)": [
+          [
+            2788,
+            "4",
+            "1",
+            2
+          ],
+          [
+            2789,
+            "5",
+            "4",
+            2
+          ],
+          [
+            2790,
+            "2",
+            "0",
+            9996
+          ],
+          [
+            2791,
+            "1",
+            "2",
+            9996
+          ],
+          [
+            2792,
+            "0",
+            "3,4",
+            9997
+          ],
+          [
+            2793,
+            "3",
+            "3",
+            9997
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "2",
+            "0",
+            2
+          ],
+          [
+            2919,
+            "3,4",
+            "0",
+            3
+          ],
+          [
+            2920,
+            "4",
+            "0,3",
+            3
+          ],
+          [
+            2921,
+            "1",
+            "4",
+            9998
+          ],
+          [
+            2922,
+            "0",
+            "3",
+            9998
+          ]
+        ],
+        "(15, 139)": [
+          [
+            3075,
+            "0",
+            "0",
+            4
+          ],
+          [
+            3076,
+            "1,3",
+            null,
+            9000
+          ],
+          [
+            3077,
+            "3",
+            "2,3",
+            9998
+          ],
+          [
+            3078,
+            "2",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "k": 2,
+        "m": 2,
+        "n": 4,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    "b13_138_3": {
+      "center": [
+        13,
+        138,
+        3
+      ],
+      "e2": {
+        "(10, 136)": [
+          [
+            2855,
+            "419,1",
+            "2"
+          ],
+          [
+            2856,
+            "0,1,414,1",
+            ""
+          ],
+          [
+            2857,
+            "0,2,394,1",
+            ""
+          ],
+          [
+            2858,
+            "0,2,392,1",
+            ""
+          ],
+          [
+            2859,
+            "0,8,69,2",
+            ""
+          ]
+        ],
+        "(13, 138)": [
+          [
+            3008,
+            "24,1,190,1",
+            ""
+          ],
+          [
+            3009,
+            "3,1,335,1",
+            ""
+          ],
+          [
+            3010,
+            "0,1,425,1",
+            ""
+          ],
+          [
+            3011,
+            "0,4,391,1",
+            ""
+          ],
+          [
+            3012,
+            "0,5,375,1",
+            ""
+          ]
+        ],
+        "(16, 140)": [
+          [
+            3145,
+            "9,1,261,1",
+            ""
+          ],
+          [
+            3146,
+            "1,1,438,1",
+            ""
+          ],
+          [
+            3147,
+            "0,1,448,1",
+            ""
+          ],
+          [
+            3148,
+            "0,2,440,1",
+            "2"
+          ],
+          [
+            3149,
+            "0,2,439,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(10, 136)": [
+          [
+            2855,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2856,
+            "3",
+            "4",
+            2
+          ],
+          [
+            2857,
+            "4",
+            "6",
+            2
+          ],
+          [
+            2858,
+            "2",
+            null,
+            9000
+          ],
+          [
+            2859,
+            "0",
+            "2",
+            9998
+          ]
+        ],
+        "(13, 138)": [
+          [
+            3008,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3009,
+            "4",
+            "3",
+            2
+          ],
+          [
+            3010,
+            "0",
+            "2",
+            4
+          ],
+          [
+            3011,
+            "2",
+            "1",
+            4
+          ],
+          [
+            3012,
+            "1",
+            "1",
+            9997
+          ]
+        ],
+        "(16, 140)": [
+          [
+            3145,
+            "2",
+            "0",
+            2
+          ],
+          [
+            3146,
+            "1",
+            "1",
+            3
+          ],
+          [
+            3147,
+            "4",
+            null,
+            9000
+          ],
+          [
+            3148,
+            "0",
+            "0,1,2",
+            9997
+          ],
+          [
+            3149,
+            "3",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 3,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "b17_141_3": {
+      "center": [
+        17,
+        141,
+        3
+      ],
+      "e2": {
+        "(14, 139)": [
+          [
+            3079,
+            "449,1",
+            "2"
+          ],
+          [
+            3080,
+            "1,1,7,1,275,1",
+            ""
+          ],
+          [
+            3081,
+            "0,2,425,1",
+            ""
+          ]
+        ],
+        "(17, 141)": [
+          [
+            3249,
+            "472,1",
+            "0,3"
+          ],
+          [
+            3250,
+            "0,2,448,1",
+            ""
+          ],
+          [
+            3251,
+            "0,3,440,1",
+            "3"
+          ],
+          [
+            3252,
+            "0,3,439,1",
+            ""
+          ]
+        ],
+        "(20, 143)": [
+          [
+            3388,
+            "492,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(14, 139)": [
+          [
+            3079,
+            "2",
+            "1",
+            2
+          ],
+          [
+            3080,
+            "1",
+            null,
+            9000
+          ],
+          [
+            3081,
+            "0",
+            "2",
+            9998
+          ]
+        ],
+        "(17, 141)": [
+          [
+            3249,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3250,
+            "1",
+            "3",
+            2
+          ],
+          [
+            3251,
+            "0",
+            "0,3",
+            9998
+          ],
+          [
+            3252,
+            "2",
+            "3",
+            9998
+          ]
+        ],
+        "(20, 143)": [
+          [
+            3388,
+            "0",
+            "0",
+            9997
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b3_130_4": {
+      "center": [
+        3,
+        130,
+        4
+      ],
+      "e2": {
+        "(-1, 127)": [],
+        "(3, 130)": [
+          [
+            2438,
+            "1,1,69,2",
+            ""
+          ],
+          [
+            2439,
+            "0,2,324,1",
+            "0"
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1,1,69,1,76,1",
+            ""
+          ],
+          [
+            2632,
+            "0,5,69,2",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(-1, 127)": [],
+        "(3, 130)": [
+          [
+            2438,
+            "0",
+            null,
+            9986
+          ],
+          [
+            2439,
+            "1",
+            "0",
+            9998
+          ]
+        ],
+        "(7, 133)": [
+          [
+            2631,
+            "1",
+            "0",
+            2
+          ],
+          [
+            2632,
+            "0",
+            null,
+            9982
+          ]
+        ]
+      },
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b8_134_4": {
+      "center": [
+        8,
+        134,
+        4
+      ],
+      "e2": {
+        "(4, 131)": [
+          [
+            2495,
+            "0,3,324,1",
+            "1"
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "395,1",
+            ""
+          ],
+          [
+            2701,
+            "394,1",
+            "3"
+          ],
+          [
+            2702,
+            "393,1",
+            ""
+          ],
+          [
+            2703,
+            "392,1",
+            ""
+          ],
+          [
+            2704,
+            "69,1,85,1",
+            ""
+          ],
+          [
+            2705,
+            "0,6,69,2",
+            ""
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "426,1",
+            "3"
+          ],
+          [
+            2919,
+            "425,1",
+            "4"
+          ],
+          [
+            2920,
+            "0,1,69,1,89,1",
+            ""
+          ],
+          [
+            2921,
+            "0,3,391,1",
+            ""
+          ],
+          [
+            2922,
+            "0,4,375,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(4, 131)": [
+          [
+            2495,
+            "0",
+            "1",
+            9998
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "5",
+            "1",
+            2
+          ],
+          [
+            2701,
+            "4",
+            null,
+            9983
+          ],
+          [
+            2702,
+            "0,3",
+            null,
+            9994
+          ],
+          [
+            2703,
+            "3",
+            "1",
+            9997
+          ],
+          [
+            2704,
+            "2",
+            "2",
+            9997
+          ],
+          [
+            2705,
+            "1",
+            "3",
+            9998
+          ]
+        ],
+        "(12, 137)": [
+          [
+            2918,
+            "2",
+            "0",
+            2
+          ],
+          [
+            2919,
+            "3,4",
+            "0",
+            3
+          ],
+          [
+            2920,
+            "4",
+            "0,3",
+            3
+          ],
+          [
+            2921,
+            "1",
+            "4",
+            9998
+          ],
+          [
+            2922,
+            "0",
+            "3",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 2,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    "b13_138_4": {
+      "center": [
+        13,
+        138,
+        4
+      ],
+      "e2": {
+        "(9, 135)": [
+          [
+            2788,
+            "414,1",
+            ""
+          ],
+          [
+            2789,
+            "1,1,376,1",
+            ""
+          ],
+          [
+            2790,
+            "1,1,375,1",
+            ""
+          ],
+          [
+            2791,
+            "0,1,394,1",
+            ""
+          ],
+          [
+            2792,
+            "0,1,392,1",
+            ""
+          ],
+          [
+            2793,
+            "0,7,69,2",
+            ""
+          ]
+        ],
+        "(13, 138)": [
+          [
+            3008,
+            "24,1,190,1",
+            ""
+          ],
+          [
+            3009,
+            "3,1,335,1",
+            ""
+          ],
+          [
+            3010,
+            "0,1,425,1",
+            ""
+          ],
+          [
+            3011,
+            "0,4,391,1",
+            ""
+          ],
+          [
+            3012,
+            "0,5,375,1",
+            ""
+          ]
+        ],
+        "(17, 141)": [
+          [
+            3249,
+            "472,1",
+            "0,3"
+          ],
+          [
+            3250,
+            "0,2,448,1",
+            ""
+          ],
+          [
+            3251,
+            "0,3,440,1",
+            "3"
+          ],
+          [
+            3252,
+            "0,3,439,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(9, 135)": [
+          [
+            2788,
+            "4",
+            "1",
+            2
+          ],
+          [
+            2789,
+            "5",
+            "4",
+            2
+          ],
+          [
+            2790,
+            "2",
+            "0",
+            9996
+          ],
+          [
+            2791,
+            "1",
+            "2",
+            9996
+          ],
+          [
+            2792,
+            "0",
+            "3,4",
+            9997
+          ],
+          [
+            2793,
+            "3",
+            "3",
+            9997
+          ]
+        ],
+        "(13, 138)": [
+          [
+            3008,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3009,
+            "4",
+            "3",
+            2
+          ],
+          [
+            3010,
+            "0",
+            "2",
+            4
+          ],
+          [
+            3011,
+            "2",
+            "1",
+            4
+          ],
+          [
+            3012,
+            "1",
+            "1",
+            9997
+          ]
+        ],
+        "(17, 141)": [
+          [
+            3249,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3250,
+            "1",
+            "3",
+            2
+          ],
+          [
+            3251,
+            "0",
+            "0,3",
+            9998
+          ],
+          [
+            3252,
+            "2",
+            "3",
+            9998
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "k": 0,
+        "m": 2,
+        "n": 2,
+        "outgoing": [],
+        "projection": [],
+        "up": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    "b8_134_5": {
+      "center": [
+        8,
+        134,
+        5
+      ],
+      "e2": {
+        "(3, 130)": [
+          [
+            2438,
+            "1,1,69,2",
+            ""
+          ],
+          [
+            2439,
+            "0,2,324,1",
+            "0"
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "395,1",
+            ""
+          ],
+          [
+            2701,
+            "394,1",
+            "3"
+          ],
+          [
+            2702,
+            "393,1",
+            ""
+          ],
+          [
+            2703,
+            "392,1",
+            ""
+          ],
+          [
+            2704,
+            "69,1,85,1",
+            ""
+          ],
+          [
+            2705,
+            "0,6,69,2",
+            ""
+          ]
+        ],
+        "(13, 138)": [
+          [
+            3008,
+            "24,1,190,1",
+            ""
+          ],
+          [
+            3009,
+            "3,1,335,1",
+            ""
+          ],
+          [
+            3010,
+            "0,1,425,1",
+            ""
+          ],
+          [
+            3011,
+            "0,4,391,1",
+            ""
+          ],
+          [
+            3012,
+            "0,5,375,1",
+            ""
+          ]
+        ]
+      },
+      "raw": {
+        "(3, 130)": [
+          [
+            2438,
+            "0",
+            null,
+            9986
+          ],
+          [
+            2439,
+            "1",
+            "0",
+            9998
+          ]
+        ],
+        "(8, 134)": [
+          [
+            2700,
+            "5",
+            "1",
+            2
+          ],
+          [
+            2701,
+            "4",
+            null,
+            9983
+          ],
+          [
+            2702,
+            "0,3",
+            null,
+            9994
+          ],
+          [
+            2703,
+            "3",
+            "1",
+            9997
+          ],
+          [
+            2704,
+            "2",
+            "2",
+            9997
+          ],
+          [
+            2705,
+            "1",
+            "3",
+            9998
+          ]
+        ],
+        "(13, 138)": [
+          [
+            3008,
+            "3",
+            "0",
+            2
+          ],
+          [
+            3009,
+            "4",
+            "3",
+            2
+          ],
+          [
+            3010,
+            "0",
+            "2",
+            4
+          ],
+          [
+            3011,
+            "2",
+            "1",
+            4
+          ],
+          [
+            3012,
+            "1",
+            "1",
+            9997
+          ]
+        ]
+      },
+      "wire": {
+        "down": [],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 2,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    }
+  },
+  "current_status": "actual_same_input_E6_under_explicit_mathematical_interpretations",
+  "source_document": {
+    "path": "NamedPageComparison/conditional-higher-source.json",
+    "sha256": "25c0b1574f417b5f0661efcbbf1275f5f6efd0b4c8ecf37c684018208da2c41c"
+  },
+  "override_derivations": {
+    "2858": "Row2858.D2Input.whole_zero: actual quotient Leibniz and complete E3 source dimension one",
+    "3080": "Targets.Empty17.row3080_zero: complete actual E3 target dimension zero"
+  }
+}

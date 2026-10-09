@@ -1,0 +1,10 @@
+PermanentCycleCertificates/Counterexamples.lean:24:21: warning: This simp argument is unused:
+  if_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [hn,̵ ̵i̵f̵_̵n̵e̵g̵] at hx ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'PermanentCycleCertificates.Counterexamples.hidden_not_permanent' depends on axioms: [propext, Quot.sound]
+'PermanentCycleCertificates.Counterexamples.every_finite_prefix' depends on axioms: [propext, Quot.sound]
+'PermanentCycleCertificates.Counterexamples.accepted_finite_but_not_permanent' depends on axioms: [propext, Quot.sound]

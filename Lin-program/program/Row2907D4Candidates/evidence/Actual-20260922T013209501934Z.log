@@ -1,0 +1,81 @@
+Row2907D4Candidates/Actual.lean:20:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (W.data.knownTargetMeaning.nextCoordinates pages Data.c32_182_3_valid ⋯).equivalence
+    ((pages.nextPage 3 knownTargetDegree).toNext ⟦?x⟧)
+in the target expression
+  W.data.knownTarget4.equivalence
+      ((pages.nextPage 3 (factorDegree.add targetDegree)).toNext
+        ⟦multiplyCycle S P 3 factorDegree targetDegree xx yy⟧) =
+    action4 r (W.data.factor4.equivalence ((pages.nextPage 3 factorDegree).toNext ⟦xx⟧))
+      (T.page4.equivalence ((pages.nextPage 3 targetDegree).toNext ⟦yy⟧))
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+W : Witness S pages P
+r : Bool
+T : TargetMeaning W r false
+xx : PageCycle S 3 factorDegree
+yy : PageCycle S 3 targetDegree
+⊢ W.data.knownTarget4.equivalence
+      ((pages.nextPage 3 (factorDegree.add targetDegree)).toNext
+        ⟦multiplyCycle S P 3 factorDegree targetDegree xx yy⟧) =
+    action4 r (W.data.factor4.equivalence ((pages.nextPage 3 factorDegree).toNext ⟦xx⟧))
+      (T.page4.equivalence ((pages.nextPage 3 targetDegree).toNext ⟦yy⟧))
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (pages.nextPage 3 (factorDegree.add targetDegree)).toNext ⟦multiplyCycle S P 3 factorDegree targetDegree xx yy⟧
+  has type
+    (S.element (3 + 1) (factorDegree.add targetDegree)).carrier
+  but is expected to have type
+    (S.element 4 knownTargetDegree).carrier
+  in the application
+    W.data.knownTarget4.equivalence
+      ((pages.nextPage 3 (factorDegree.add targetDegree)).toNext ⟦multiplyCycle S P 3 factorDegree targetDegree xx yy⟧)
+Row2907D4Candidates/Actual.lean:54:63: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin (comparison false false).h) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin (comparison false false).h
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2907D4Candidates/Actual.lean:58:61: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin (comparison false false).h) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  Fin (comparison false false).h
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2907D4Candidates/Actual.lean:70:55: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  T.page4.equivalence 0
+in the target expression
+  T.page4.equivalence 0 = eval (column (remainingCoefficient T)) (W.data.source4.equivalence 0)
+
+case inl
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+W : Witness S pages P
+T : TargetMeaning W false false
+x : (S.element 4 sourceDegree).carrier
+hz : W.data.source4.equivalence x = zero
+same : x = 0
+⊢ T.page4.equivalence 0 = eval (column (remainingCoefficient T)) (W.data.source4.equivalence 0)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 4 (AdamsTarget 4 sourceDegree)).carrier
+  but is expected to have type
+    (S.element 4 targetDegree).carrier
+  in the application
+    T.page4.equivalence 0
+'Row2907D4Candidates.Actual.whole_E4_action' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907D4Candidates.Actual.product_d4_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907D4Candidates.Actual.named_action_one' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907D4Candidates.Actual.named_first_one' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907D4Candidates.Actual.whole_column' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907D4Candidates.Actual.complete_candidates' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

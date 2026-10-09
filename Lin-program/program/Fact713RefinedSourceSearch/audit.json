@@ -1,0 +1,186 @@
+{
+  "status": "independent_finite_and_raw_binding_checks_passed",
+  "preserved_comparisons": 1234,
+  "refined_e12_comparisons": 1236,
+  "all_distinct_comparisons": 1239,
+  "still_unresolved_e12_comparisons": 184,
+  "all_input_vectors": 2496,
+  "all_cycle_pairs": 9375,
+  "adjacent_differential_matches": 937,
+  "predecessor_dimension_checks": 2217,
+  "scanned_unknown_row_pages": 36,
+  "sole_new_forced_zero_row": 3476,
+  "raw_unknown": [
+    3476,
+    24,
+    144,
+    "0",
+    null,
+    9000
+  ],
+  "raw_successor": [
+    3728,
+    28,
+    147,
+    "2",
+    "0,2",
+    9996
+  ],
+  "raw_degree_data": {
+    "S0:24,144": {
+      "object": "S0",
+      "degree": [
+        24,
+        144
+      ],
+      "e2": [
+        [
+          3474,
+          "13,6",
+          ""
+        ],
+        [
+          3475,
+          "8,1,64,2",
+          ""
+        ],
+        [
+          3476,
+          "8,2,23,1,89,1",
+          ""
+        ]
+      ],
+      "staircase": [
+        [
+          3474,
+          "2",
+          "0",
+          2
+        ],
+        [
+          3475,
+          "1",
+          "0",
+          4
+        ],
+        [
+          3476,
+          "0",
+          null,
+          9000
+        ]
+      ]
+    },
+    "S0:28,147": {
+      "object": "S0",
+      "degree": [
+        28,
+        147
+      ],
+      "e2": [
+        [
+          3726,
+          "8,3,154,1",
+          ""
+        ],
+        [
+          3727,
+          "8,3,9,1,13,3",
+          ""
+        ],
+        [
+          3728,
+          "1,2,491,1",
+          ""
+        ]
+      ],
+      "staircase": [
+        [
+          3726,
+          "0,2",
+          "0",
+          2
+        ],
+        [
+          3727,
+          "1",
+          "1",
+          2
+        ],
+        [
+          3728,
+          "2",
+          "0,2",
+          9996
+        ]
+      ]
+    },
+    "S0:32,150": {
+      "object": "S0",
+      "degree": [
+        32,
+        150
+      ],
+      "e2": [
+        [
+          3972,
+          "8,1,17,1,185,1",
+          "1"
+        ],
+        [
+          3973,
+          "8,7,13,1",
+          ""
+        ],
+        [
+          3974,
+          "0,5,509,1",
+          "1"
+        ]
+      ],
+      "staircase": [
+        [
+          3972,
+          "1",
+          "0",
+          2
+        ],
+        [
+          3973,
+          "0,2",
+          "2",
+          4
+        ],
+        [
+          3974,
+          "2",
+          "1",
+          9998
+        ]
+      ]
+    }
+  },
+  "source_projection": [
+    0,
+    1
+  ],
+  "successor_source_projection": [
+    1
+  ],
+  "successor_target_projection": [
+    1
+  ],
+  "conditions": [
+    "full actual successor equation",
+    "faithful middle coordinates",
+    "actual differential square zero"
+  ],
+  "scope": "Independent finite verification. This does not prove the stored successor is the actual topological differential; SuccessorMeaning remains explicit.",
+  "input_sha256": {
+    "Fact713E12Search/successor-search.json": "d0d7283e9fe616087389078d58613fd027b9781557f8436652401a31e0908328",
+    "Fact713RefinedSourceSearch/refined.json": "cd50a06cb4bd8697eaffdb4448e754148fdb8e240c3ac1582e4fe65304d50c6b",
+    "Fact713RefinedSourceSearch/successors.json": "a3ea71cce14890cb11baf023abe0840e2e421ec60dd60b57d95e887d8ad32647",
+    "Fact713RefinedSourceSearch/audit.py": "61b7a49ec90bce4a387c72bf8b1f11114a34789c96e56dcf3b926539cee58eac",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

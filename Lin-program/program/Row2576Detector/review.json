@@ -1,0 +1,110 @@
+{
+  "columns": 15,
+  "failures": [],
+  "full_d2_comparisons": 9,
+  "inputs_sha256": {
+    "Row2576Detector/ann.json": "1318a121b13baae765de945fda5801c8f04f241bd201e912be3bd60f022c68df",
+    "Row2576Detector/comparison-source.json": "8f4b873479ff8df207bbc53669c3ca753b104db42aa3fbe9d2a513e95d2b17a8",
+    "Row2576Detector/detect.json": "62ced91c28bbf8a53787cdc8432f25da8845477f74e14df878116c3fc32bc836",
+    "Row2576Detector/product-comparisons.json": "e4e4d5842f0c00d2957173ce5ee93782772b6c0950e8370bc6f83234703e4e67",
+    "Row2576Detector/products-h2-provenance.json": "6b6cc7ebe27cceda18ea3eabb60d23470cd916dfd09dbfa6d50eb9278f62d9fe",
+    "Row2576Detector/source.json": "3ae88f96184e0811bf1bf80e3c0301c10184b91686e38e7524631d1995784508"
+  },
+  "joint_table": [
+    {
+      "c2": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "h2": [
+        0
+      ],
+      "input": [
+        0,
+        0
+      ]
+    },
+    {
+      "c2": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "h2": [
+        0
+      ],
+      "input": [
+        0,
+        1
+      ]
+    },
+    {
+      "c2": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "h2": [
+        1
+      ],
+      "input": [
+        1,
+        0
+      ]
+    },
+    {
+      "c2": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "h2": [
+        1
+      ],
+      "input": [
+        1,
+        1
+      ]
+    }
+  ],
+  "limitations": "Algebra relations and differential rows are imported; this audit does not prove topological realization or the local naturality/Leibniz premises.",
+  "matrices": 6,
+  "metadata": {
+    "C2": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 199,
+      "t_max": 200,
+      "timestamp": 1734865196,
+      "version": 3
+    },
+    "S0": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 177,
+      "t_max": 261,
+      "timestamp": 1710516671,
+      "version": 3
+    }
+  },
+  "module_reduction_steps": 6,
+  "polynomial_columns": 6,
+  "polynomial_reduction_steps": 5,
+  "raw_row": [
+    2576,
+    4,
+    132,
+    "0",
+    null,
+    9000
+  ],
+  "script_sha256": "9baca5dc3eac0471c17bd2f8e05f60e659320812feeb8ef937205dd2ba1e328b",
+  "sources": {
+    "C2_AdamsSS_t200.db": "87976dfa0101429e65d4064525176f3f755a969617f1366e6d6571aa79625b8e",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "independent_data_and_joint_detector_audit_passed"
+}

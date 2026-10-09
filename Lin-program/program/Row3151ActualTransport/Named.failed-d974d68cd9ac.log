@@ -1,0 +1,136 @@
+Row3151ActualTransport/Named.lean:107:22: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Coordinates.equivalence ?next) (advance ?S ?pages ?r ?degree ?w ?current ?next ?M ?raw ?previous ?finite).value
+in the target expression
+  M.sourceE3.equivalence
+      (advance S pages 2 sourceDegree source2 M.sourceE2 M.sourceE3 M.sourceD2 (namedSource S pages a I E M)
+          { value := namedSource S pages a I E M, trace := Trace.start (namedSource S pages a I E M) } ⋯).value =
+    sourceNext
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+a : Bool
+I : IncomingMeaning S pages a
+E : EventMeaning S a I.page4
+M : Meanings S pages a I E
+⊢ M.sourceE3.equivalence
+      (advance S pages 2 sourceDegree source2 M.sourceE2 M.sourceE3 M.sourceD2 (namedSource S pages a I E M)
+          { value := namedSource S pages a I E M, trace := Trace.start (namedSource S pages a I E M) } ⋯).value =
+    sourceNext
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.sourceE2
+  has type
+    Coordinates S 2 sourceDegree 6
+  but is expected to have type
+    Coordinates S 2 sourceDegree source2.m
+  in the application
+    advance S pages 2 sourceDegree source2 M.sourceE2
+Row3151ActualTransport/Named.lean:114:46: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.sourceE3 ?M).equivalence (sourceEndpoint3 ?S ?pages ?a ?I ?E ?M).value
+in the target expression
+  eval (matrixOf source3.k source3.m source3.outgoing)
+      (M.sourceE3.equivalence (sourceEndpoint3 S pages a I E M).value) =
+    zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+a : Bool
+I : IncomingMeaning S pages a
+E : EventMeaning S a I.page4
+M : Meanings S pages a I E
+⊢ eval (matrixOf source3.k source3.m source3.outgoing)
+      (M.sourceE3.equivalence (sourceEndpoint3 S pages a I E M).value) =
+    zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.sourceE3
+  has type
+    Coordinates S 3 sourceDegree 2
+  but is expected to have type
+    Coordinates S 3 sourceDegree source3.m
+  in the application
+    M.sourceE3.equivalence
+Row3151ActualTransport/Named.lean:118:6: warning: declaration uses `sorry`
+Row3151ActualTransport/Named.lean:116:8: warning: declaration uses `sorry`
+Row3151ActualTransport/Named.lean:119:2: warning: 'exact finite_source_path.2.2.2' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Row3151ActualTransport/Named.lean:119:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Row3151ActualTransport/Named.lean:130:22: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Coordinates.equivalence ?next) (advance ?S ?pages ?r ?degree ?w ?current ?next ?M ?raw ?previous ?finite).value
+in the target expression
+  M.targetE3.equivalence
+      (advance S pages 2 targetDegree target2 M.targetE2 M.targetE3 M.targetD2 (namedTarget S pages a I E M)
+          { value := namedTarget S pages a I E M, trace := Trace.start (namedTarget S pages a I E M) } ⋯).value =
+    targetNext
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+a : Bool
+I : IncomingMeaning S pages a
+E : EventMeaning S a I.page4
+M : Meanings S pages a I E
+⊢ M.targetE3.equivalence
+      (advance S pages 2 targetDegree target2 M.targetE2 M.targetE3 M.targetD2 (namedTarget S pages a I E M)
+          { value := namedTarget S pages a I E M, trace := Trace.start (namedTarget S pages a I E M) } ⋯).value =
+    targetNext
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.targetE2
+  has type
+    Coordinates S 2 targetDegree 5
+  but is expected to have type
+    Coordinates S 2 targetDegree target2.m
+  in the application
+    advance S pages 2 targetDegree target2 M.targetE2
+Row3151ActualTransport/Named.lean:137:46: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.targetE3 ?M).equivalence (targetEndpoint3 ?S ?pages ?a ?I ?E ?M).value
+in the target expression
+  eval (matrixOf target3.k target3.m target3.outgoing)
+      (M.targetE3.equivalence (targetEndpoint3 S pages a I E M).value) =
+    zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+a : Bool
+I : IncomingMeaning S pages a
+E : EventMeaning S a I.page4
+M : Meanings S pages a I E
+⊢ eval (matrixOf target3.k target3.m target3.outgoing)
+      (M.targetE3.equivalence (targetEndpoint3 S pages a I E M).value) =
+    zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.targetE3
+  has type
+    Coordinates S 3 targetDegree 2
+  but is expected to have type
+    Coordinates S 3 targetDegree target3.m
+  in the application
+    M.targetE3.equivalence
+Row3151ActualTransport/Named.lean:141:6: warning: declaration uses `sorry`
+Row3151ActualTransport/Named.lean:139:8: warning: declaration uses `sorry`
+Row3151ActualTransport/Named.lean:142:2: warning: 'exact finite_target_path.2.2.2' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Row3151ActualTransport/Named.lean:142:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+'Row3151ActualTransport.Named.cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.Named.advance_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.Named.raw_binding' depends on axioms: [propext]
+'Row3151ActualTransport.Named.finite_source_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.Named.finite_target_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.Named.source4_coordinate' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3151ActualTransport.Named.target4_coordinate' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3151ActualTransport.Named.named_event' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

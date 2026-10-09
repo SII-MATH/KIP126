@@ -1,0 +1,44 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "branches": [
+    {
+      "branch": "zero",
+      "entries": 1290,
+      "new_entries": 7,
+      "vectors": 2575,
+      "quotient_pairs": 9525,
+      "adjacent": 983,
+      "consecutive": 790,
+      "graph_available": 1287,
+      "graph_missing": 133
+    },
+    {
+      "branch": "residual",
+      "entries": 1292,
+      "new_entries": 8,
+      "vectors": 2578,
+      "quotient_pairs": 9527,
+      "adjacent": 985,
+      "consecutive": 792,
+      "graph_available": 1289,
+      "graph_missing": 131
+    }
+  ],
+  "axiom_reports": 27,
+  "same_fixed_E2_to_E8_path": true,
+  "E9_proved": false,
+  "source_sha256": {
+    "Fact713D4ComparisonBranches/zero-family.json": "a8d93a6bad6a4fabdfa794c7d09319c9b8aa19228405fafca2ca9fa83d33226b",
+    "Fact713D4ComparisonBranches/residual-family.json": "6a89472a02c984b12e3fda984ff177186bbcf847c4a7347fbd27571d1e27bdb9",
+    "Fact713D4ComparisonBranches/Branches.lean": "d5ac6790f1e6671d99a4d6537cdec0f48d3b7bbadfebbddd525ab377ab12f239",
+    "Fact713D4ComparisonBranches/Data.lean": "eb95436c752c227f273242cae967fe42901f2362c72d340ed55a2452a0ff0405",
+    "Fact713D4ComparisonBranches/ResidualCoherence.lean": "4e71a2eb2b49cea9bf26e9508ba7587429181c4d061f3700ac09d927a333ad18",
+    "Fact713D4ComparisonBranches/ResidualCross.lean": "801da8d07e28b93a22c2b62572d8070c6fa654a11905ff855ec51ef0ac4fab8c",
+    "Fact713D4ComparisonBranches/ResidualExtra.lean": "803b9a519cfd8e2871ee4d198cf37ef80e0e7b35910a402b278fd5f50fb16136",
+    "Fact713D4ComparisonBranches/ZeroCoherence.lean": "a7b240daf673ac7be2e69e2302760226490f06e3ce36d475184c15e6d1b19feb",
+    "Fact713D4ComparisonBranches/ZeroCross.lean": "f8b730fce3dbcb21dd25810f3f1b9b5496116579e6250755c487adf08ed9d3b1",
+    "Fact713D4ComparisonBranches/ZeroExtra.lean": "c5ba3013d0c0e22abb99df5db9507f93a251f3174de845d1ec0cb118a569da61"
+  },
+  "scope": "Separate coherent finite families with conditional source meanings; no actual branch choice or sphere realization."
+}

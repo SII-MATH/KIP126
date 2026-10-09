@@ -1,0 +1,52 @@
+{
+  "status": "complete_map_reflection_and_empty_target_transport_passed",
+  "counts": {
+    "empty_d4_target_basis": 1,
+    "complete_SQL_basis_groups": 12,
+    "cycle_pairs": 2342,
+    "comparisons": 11,
+    "SQL_d2_columns": 34,
+    "complete_polynomial_map_columns": 20,
+    "polynomial_relation_steps": 5,
+    "map_outgoing_square_vectors": 40,
+    "map_incoming_square_vectors": 32,
+    "inherited_full_sphere_d3_matches": 2,
+    "complete_C2_d3_candidates": 16,
+    "C2_d3_candidates_rejected_by_naturality": 15,
+    "sphere_d4_candidates": 2,
+    "same_input_bindings": 3072,
+    "relabelled_E3_E4_models": 96
+  },
+  "complete_C2_E3_dimension": 4,
+  "sphere_E3_E4_dimension": 1,
+  "upper_E3_map": [
+    1
+  ],
+  "raw_source_id": 3106,
+  "raw_sphere_id": 3005,
+  "raw_sphere_vector": [
+    2
+  ],
+  "map_suspension": 1,
+  "retained_unknowns": [
+    "C2 row3109 d3",
+    "C2 row2933 d3",
+    "C2 row3110 raw NULL d5"
+  ],
+  "assumptions": [
+    "existing full actual sphere d3 meaning, including original prefix obligations",
+    "full E2 source/target/map meanings",
+    "actual d3/d4 naturality and all-cycle quotient transition",
+    "C2 E2 (18,142) complete empty chart and zero quotient law"
+  ],
+  "no_desired_cycle_premise": true,
+  "sources": {
+    "upstream/kervaire-49/C2_AdamsSS_t200.db": "87976dfa0101429e65d4064525176f3f755a969617f1366e6d6571aa79625b8e",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "upstream/kervaire-49/map_AdamsSS_C2_to_S0_t200.db": "aa69e433ac805d7cbe8d1b336294fc0be7e62d410f9ca2a8c8fbd237d9d519b2",
+    "Fact713C2Row3005/comparison-source.json": "3feb9c9751ebb5da4a13fb5d280f6260f7465f19236b97934d7d18ea91de94d5",
+    "Fact713C2Row3005/audit.json": "b4782cfbf3850f3d1e121773cdb06c068445300db385f2bcb1536ba59405bf07",
+    "Row3005D4Search/c2-search.json": "92863d38e3b23deffbf4412a6e1c0397cb6a4e27fb8545f3c235ef840e2bba2a"
+  },
+  "limitations": "Conditional actual Adams semantics; no topology realization, no E5 nonzero claim, no all-page permanence."
+}

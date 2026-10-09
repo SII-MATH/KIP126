@@ -1,0 +1,742 @@
+import AggregateD5Conditional.Events
+namespace AggregateD5Conditional.Matches
+open LinearCertificates PageTransitionCertificates Data Row2861Csigma.Naturality
+
+theorem source_outgoing : b_S0_9_136_d2.outgoing = Row2861Csigma.Comparison.source.outgoing := by decide
+theorem source_incoming : b_S0_9_136_d2.incoming = Row2861Csigma.Comparison.source.incoming := by decide
+theorem target_comparison : b_S0_12_138_d2 = Row2861Csigma.Comparison.upperSource := rfl
+
+def sourceCoordinates := homologyEquivalence _ _ b_S0_9_136_d2.comparison b_S0_9_136_d2_complete.2
+
+theorem source_named_coordinate :
+    sourceCoordinates.toCoordinates named = (fun i : Fin 2 => i.val == 0) := by
+  funext i
+  exact (show ∀ i : Fin 2, sourceCoordinates.toCoordinates named i = (i.val == 0) from by decide) i
+
+theorem source_named_representative :
+    ∀ i : Fin 5, b_S0_9_136_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 1) := by decide
+
+def ColumnMatches (ds : S → U) : Prop := ds named = zs ∧
+  (∀ i : Fin 1, matrixOf 1 2 b_S0_9_136_d3.outgoing i 0 = ue.toCoordinates (ds named) i) ∧
+  (∀ i : Fin 1, matrixOf 1 2 b_S0_12_138_d3.incoming i 0 = ue.toCoordinates (ds named) i)
+
+/-- Naturality and preservation of zero are explicit semantic premises.
+The imported unknown is only replaced under this interface. -/
+theorem matched (ds : S → U) (dt : T → V)
+    (zeroPreserving : dt zt = zv) (naturality : ∀ x, dt (f x) = g (ds x)) :
+    ColumnMatches ds := by
+  have h := Row2861Csigma.Matches.matched ds dt zeroPreserving naturality
+  refine ⟨h.1,?_,?_⟩
+  · intro i
+    have he : matrixOf 1 2 b_S0_9_136_d3.outgoing i 0 = Row2861Csigma.Matches.candidateColumn i 0 := by decide +revert
+    exact he.trans (h.2 i)
+  · intro i
+    have he : matrixOf 1 2 b_S0_12_138_d3.incoming i 0 = Row2861Csigma.Matches.candidateColumn i 0 := by decide +revert
+    exact he.trans (h.2 i)
+
+#print axioms matched
+#print axioms source_named_coordinate
+end AggregateD5Conditional.Matches
+
+namespace AggregateD5Conditional.H3D0
+open LinearCertificates PageTransitionCertificates Data
+open Row2796Detector.Quotient Row2796Detector.Combined
+
+theorem source_outgoing : b_S0_8_135_d2.outgoing = ann.right.outgoing := by decide
+theorem source_incoming : b_S0_8_135_d2.incoming = ann.right.incoming := by decide
+theorem target_outgoing : b_S0_11_137_d2.outgoing = detect.right.outgoing := by decide
+theorem target_incoming : b_S0_11_137_d2.incoming = detect.right.incoming := by decide
+
+theorem selected_source : ∀ i : Fin 7,
+  b_S0_8_135_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 2) := by decide
+
+def targetCoordinates := homologyEquivalence _ _ b_S0_11_137_d2.comparison b_S0_11_137_d2_complete.2
+
+def ColumnMatches (d : Q ann.right → Q detect.right) : Prop := d named = z detect.right ∧
+  ∀ i : Fin 2, matrixOf 2 2 b_S0_8_135_d3.outgoing i 0 = targetCoordinates.toCoordinates (d named) i
+
+theorem matched (d : Q ann.right → Q detect.right)
+    (d0 : Q ann0.target → Q detect0.target) (d2 : Q ann.target → Q detect.target)
+    (z0 : d0 (z ann0.target) = z detect0.target) (z2 : d2 (z ann.target) = z detect.target)
+    (l0 : ∀ x, d0 (annMap0 x) = detectMap0 (d x)) (l2 : ∀ x, d2 (annMap x) = detectMap (d x)) : ColumnMatches d := by
+  have hz := differential_zero d d0 d2 z0 z2 l0 l2
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval b_S0_11_137_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 2, matrixOf 2 2 b_S0_8_135_d3.outgoing i 0 = zero i from by decide) i
+#print axioms matched
+end AggregateD5Conditional.H3D0
+
+namespace AggregateD5Conditional.D4
+open LinearCertificates PageTransitionCertificates Data
+open Row2796D4Detector
+
+theorem source_comparison : b_S0_8_135_d3 = Comparison.namedSource := rfl
+theorem target_comparison : b_S0_12_138_d3 = Comparison.source := rfl
+
+theorem named_e4_representative : ∀ i : Fin 2,
+    b_S0_8_135_d3.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 0) := by decide
+
+theorem named_e2_representative : ∀ i : Fin 7,
+    b_S0_8_135_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 2) := by decide
+
+def ColumnMatches (ds : Source.S → Target.U) : Prop := ds Source.named = Target.zu ∧
+    ∀ i : Fin 1, matrixOf 1 2 b_S0_12_138_d4.incoming i 0 =
+      Target.ue.toCoordinates (ds Source.named) i
+
+/-- The only completed new role is the incoming column at (12,138), d4.
+The unknown module source differential is arbitrary; local naturality and
+zero preservation remain explicit. -/
+theorem matched (outT : Matrix 3 2) (inT : Matrix 2 4)
+    (ds : Source.S → Target.U) (dt : Homology outT inT → Target.V)
+    (zeroPreserving : dt (Source.z outT inT) = Target.zv)
+    (naturality : ∀ x, dt (Source.f outT inT x) = Target.g (ds x)) :
+    ColumnMatches ds := by
+  have hz := Source.named_d4_zero outT inT ds dt zeroPreserving naturality
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval Comparison.source.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 1, matrixOf 1 2 b_S0_12_138_d4.incoming i 0 = zero i from by decide) i
+#print axioms matched
+end AggregateD5Conditional.D4
+
+namespace AggregateD5Conditional.ThreeProducts
+open LinearCertificates PageTransitionCertificates Data
+open Row3325Detector.Quotient
+
+theorem source_outgoing : b_S0_15_142_d2.outgoing = ann1.right.outgoing := by decide
+theorem source_incoming : b_S0_15_142_d2.incoming = ann1.right.incoming := by decide
+theorem target_outgoing : b_S0_18_144_d2.outgoing = detect1.right.outgoing := by decide
+theorem target_incoming : b_S0_18_144_d2.incoming = detect1.right.incoming := by decide
+
+def sourceCoordinates := homologyEquivalence _ _ b_S0_15_142_d2.comparison
+  b_S0_15_142_d2_complete.2
+def targetCoordinates := homologyEquivalence _ _ b_S0_18_144_d2.comparison
+  b_S0_18_144_d2_complete.2
+
+theorem source_named_coordinate :
+    sourceCoordinates.toCoordinates named = (fun i : Fin 2 => i.val == 0) := by
+  funext i
+  exact (show ∀ i : Fin 2,
+    sourceCoordinates.toCoordinates named i = (i.val == 0) from by decide) i
+
+theorem source_named_representative : ∀ i : Fin 5,
+    b_S0_15_142_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 2) := by decide
+
+/-- The aggregate uses staircase order, which differs from the detector basis. -/
+def targetBasisChange : Matrix 3 3 := fun i j =>
+  ((i.val == 0 || i.val == 1) && j.val == 0) ||
+  (i.val == 1 && j.val == 2) || (i.val == 2 && j.val == 1)
+
+theorem target_coordinates (x : Q detect1.right) :
+    targetCoordinates.toCoordinates x =
+      eval targetBasisChange (Row3325Detector.Combined.ce.toCoordinates x) := by
+  induction x using Quot.inductionOn with
+  | h x =>
+    change eval b_S0_18_144_d2.comparison.projection x.val =
+      eval targetBasisChange (eval detect1.right.comparison.projection x.val)
+    exact (show ∀ v : Vec 4,
+      eval b_S0_18_144_d2.comparison.projection v =
+        eval targetBasisChange (eval detect1.right.comparison.projection v) from by decide) x.val
+
+def ColumnMatches (d : Q ann1.right → Q detect1.right) : Prop :=
+  d named = z detect1.right ∧
+    ∀ i : Fin 3, matrixOf 3 2 b_S0_18_144_d3.incoming i 0 =
+      targetCoordinates.toCoordinates (d named) i
+
+/-- Three actual descended products justify this incoming column under their
+local Leibniz squares and zero preservation. The raw NULL is retained. -/
+theorem matched (d : Q ann1.right → Q detect1.right)
+    (d1 : Q ann1.target → Q detect1.target)
+    (d8 : Q ann8.target → Q detect8.target)
+    (d13 : Q ann13.target → Q detect13.target)
+    (z1 : d1 (z ann1.target) = z detect1.target)
+    (z8 : d8 (z ann8.target) = z detect8.target)
+    (z13 : d13 (z ann13.target) = z detect13.target)
+    (l1 : ∀ x, d1 (annMap1 x) = detectMap1 (d x))
+    (l8 : ∀ x, d8 (annMap8 x) = detectMap8 (d x))
+    (l13 : ∀ x, d13 (annMap13 x) = detectMap13 (d x)) : ColumnMatches d := by
+  have h := Row3325Detector.Matches.matched d d1 d8 d13 z1 z8 z13 l1 l8 l13
+  refine ⟨h.1, ?_⟩
+  rw [h.1]
+  intro i
+  change _ = eval b_S0_18_144_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 3,
+    matrixOf 3 2 b_S0_18_144_d3.incoming i 0 = zero i from by decide) i
+
+#print axioms matched
+#print axioms target_coordinates
+#print axioms source_named_coordinate
+end AggregateD5Conditional.ThreeProducts
+
+namespace AggregateD5Conditional.CnuEta
+open LinearCertificates PageTransitionCertificates Data
+open Row2925Detector.Naturality
+
+theorem source_outgoing : b_S0_11_137_d2.outgoing = Row2925Detector.Comparison.source.outgoing := by decide
+theorem source_incoming : b_S0_11_137_d2.incoming = Row2925Detector.Comparison.source.incoming := by decide
+theorem target_comparison : b_S0_14_139_d2 = Row2925Detector.Comparison.upperSource := rfl
+
+def sourceCoordinates := homologyEquivalence _ _ b_S0_11_137_d2.comparison
+  b_S0_11_137_d2_complete.2
+def targetCoordinates := homologyEquivalence _ _ b_S0_14_139_d2.comparison
+  b_S0_14_139_d2_complete.2
+
+/-- The detector basis is [local1,local2]; staircase order is
+[local1+local2,local2]. This coordinate change is its own inverse. -/
+def sourceBasisChange : Matrix 2 2 := fun i j => i.val == 1 || j.val == 0
+
+theorem source_coordinates (x : S) : sourceCoordinates.toCoordinates x =
+    eval sourceBasisChange (Row2925Detector.Matches.sourceCoordinates.toCoordinates x) := by
+  induction x using Quot.inductionOn with
+  | h x =>
+    change eval b_S0_11_137_d2.comparison.projection x.val =
+      eval sourceBasisChange (eval Row2925Detector.Comparison.source.comparison.projection x.val)
+    exact (show ∀ v : Vec 6, eval b_S0_11_137_d2.comparison.projection v =
+      eval sourceBasisChange (eval Row2925Detector.Comparison.source.comparison.projection v)
+      from by decide) x.val
+
+theorem source_named_coordinate : sourceCoordinates.toCoordinates named =
+    (fun i : Fin 2 => i.val == 0) := by
+  funext i
+  exact (show ∀ i : Fin 2, sourceCoordinates.toCoordinates named i = (i.val == 0)
+    from by decide) i
+
+theorem source_named_representative : ∀ i : Fin 6,
+    b_S0_11_137_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 1 || i.val == 2) := by decide
+
+theorem target_coordinates (x : U) : targetCoordinates.toCoordinates x = ue.toCoordinates x := rfl
+
+theorem outgoing_incoming_same : b_S0_11_137_d3.outgoing = b_S0_14_139_d3.incoming := by decide
+
+def ColumnMatches (ds : S → U) : Prop := ds named = zs ∧
+  (∀ i : Fin 1, matrixOf 1 2 b_S0_11_137_d3.outgoing i 0 =
+    targetCoordinates.toCoordinates (ds named) i) ∧
+  (∀ i : Fin 1, matrixOf 1 2 b_S0_14_139_d3.incoming i 0 =
+    targetCoordinates.toCoordinates (ds named) i)
+
+/-- Both completed roles use the same actual Cnu quotient map theorem.
+Local d3 naturality and preservation of zero remain explicit premises. -/
+theorem matched (ds : S → U) (dt : T → V)
+    (zeroPreserving : dt zt = zv) (naturality : ∀ x, dt (f x) = g (ds x)) :
+    ColumnMatches ds := by
+  have h := Row2925Detector.Matches.matched ds dt zeroPreserving naturality
+  refine ⟨h.1, ?_, ?_⟩
+  · intro i
+    have he : matrixOf 1 2 b_S0_11_137_d3.outgoing i 0 =
+        Row2925Detector.Matches.candidateColumn i 0 := by decide +revert
+    exact he.trans (h.2 i)
+  · intro i
+    have he : matrixOf 1 2 b_S0_14_139_d3.incoming i 0 =
+        Row2925Detector.Matches.candidateColumn i 0 := by decide +revert
+    exact he.trans (h.2 i)
+
+#print axioms matched
+#print axioms source_coordinates
+#print axioms source_named_coordinate
+end AggregateD5Conditional.CnuEta
+
+namespace AggregateD5Conditional.C2H2
+open LinearCertificates PageTransitionCertificates Data
+open Row2576Detector.Quotient
+
+theorem source_comparison : b_S0_4_132_d2 = Row2576Detector.Comparison.source := rfl
+theorem target_outgoing : b_S0_7_134_d2.outgoing = Row2576Detector.Comparison.upperSource.outgoing := by decide
+theorem target_incoming : b_S0_7_134_d2.incoming = Row2576Detector.Comparison.upperSource.incoming := by decide
+
+def sourceCoordinates := homologyEquivalence _ _ b_S0_4_132_d2.comparison
+  b_S0_4_132_d2_complete.2
+def aggregateTargetCoordinates := homologyEquivalence _ _ b_S0_7_134_d2.comparison
+  b_S0_7_134_d2_complete.2
+
+theorem source_named_coordinate : sourceCoordinates.toCoordinates named = (fun _ : Fin 1 => true) := by
+  funext i
+  exact (show ∀ i : Fin 1, sourceCoordinates.toCoordinates named i = true from by decide) i
+
+theorem source_named_representative : ∀ i : Fin 1,
+    b_S0_4_132_d2.comparison.inclusion i ⟨0,by decide⟩ = true := by decide
+
+/-- The detector orders [local0+local1,local2]; the aggregate swaps these. -/
+def targetBasisChange : Matrix 2 2 := fun i j => i.val != j.val
+
+theorem target_coordinates (x : Q Row2576Detector.Comparison.upperSource) :
+    aggregateTargetCoordinates.toCoordinates x = eval targetBasisChange (targetCoordinates.toCoordinates x) := by
+  induction x using Quot.inductionOn with
+  | h x =>
+    change eval b_S0_7_134_d2.comparison.projection x.val =
+      eval targetBasisChange (eval Row2576Detector.Comparison.upperSource.comparison.projection x.val)
+    exact (show ∀ v : Vec 5, eval b_S0_7_134_d2.comparison.projection v =
+      eval targetBasisChange (eval Row2576Detector.Comparison.upperSource.comparison.projection v)
+      from by decide) x.val
+
+def ColumnMatches (d : Q Row2576Detector.Comparison.source → Q Row2576Detector.Comparison.upperSource) : Prop :=
+  d named = z Row2576Detector.Comparison.upperSource ∧
+  ∀ i : Fin 2, matrixOf 2 1 b_S0_4_132_d3.outgoing i 0 =
+    aggregateTargetCoordinates.toCoordinates (d named) i
+
+/-- C2 naturality and h2 Leibniz jointly justify the complete outgoing column.
+Their local squares and zero preservation remain explicit. -/
+theorem matched (d : Q Row2576Detector.Comparison.source → Q Row2576Detector.Comparison.upperSource)
+    (dc2 : Q Row2576Detector.Comparison.target → Q Row2576Detector.Comparison.upperTarget)
+    (dh2 : Q ann.target → Q detect.target)
+    (zc2 : dc2 (z Row2576Detector.Comparison.target) = z Row2576Detector.Comparison.upperTarget)
+    (zh2 : dh2 (z ann.target) = z detect.target)
+    (naturality : ∀ x, dc2 (c2Map x) = c2Detect (d x))
+    (leibniz : ∀ x, dh2 (annMap x) = detectMap (d x)) : ColumnMatches d := by
+  have h := Row2576Detector.Matches.matched d dc2 dh2 zc2 zh2 naturality leibniz
+  refine ⟨h.1, ?_⟩
+  rw [h.1]
+  intro i
+  change _ = eval b_S0_7_134_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 2, matrixOf 2 1 b_S0_4_132_d3.outgoing i 0 = zero i from by decide) i
+
+#print axioms matched
+#print axioms target_coordinates
+#print axioms source_named_coordinate
+end AggregateD5Conditional.C2H2
+
+namespace AggregateD5Conditional.C2D4
+open LinearCertificates PageTransitionCertificates Data
+open Row2576D4Detector
+
+theorem source_comparison : b_S0_4_132_d3 = Comparison.source3 := rfl
+theorem target_comparison : b_S0_8_135_d3 = Comparison.target3 := rfl
+
+def sourceCoordinates := homologyEquivalence _ _ b_S0_4_132_d3.comparison
+  b_S0_4_132_d3_complete.2
+def targetCoordinates := homologyEquivalence _ _ b_S0_8_135_d3.comparison
+  b_S0_8_135_d3_complete.2
+
+theorem source_named_coordinate : sourceCoordinates.toCoordinates Source.named =
+    (fun _ : Fin 1 => true) := by
+  funext i
+  exact (show ∀ i : Fin 1, sourceCoordinates.toCoordinates Source.named i = true from by decide) i
+
+theorem source_named_raw_representative : ∀ i : Fin 1,
+    b_S0_4_132_d2.comparison.inclusion i ⟨0, by decide⟩ = true := by decide
+
+theorem candidate_is_actual_incoming : ∀ i : Fin 2,
+    matrixOf 2 1 b_S0_8_135_d4.incoming i 0 =
+      Row2576D4Detector.Matches.candidateColumn i 0 := by decide
+
+def ColumnMatches (ds : Source.S → Target.U) : Prop :=
+  ds Source.named = Target.zu ∧ ∀ i : Fin 2,
+    matrixOf 2 1 b_S0_8_135_d4.incoming i 0 =
+      targetCoordinates.toCoordinates (ds Source.named) i
+
+/-- The new role is the actual incoming d4 column. Row2633's earlier-page
+interpretation and both local naturality squares remain explicit premises. -/
+theorem matched (incoming : Matrix 6 1)
+    (meaning : ImportedBoundary.IncomingMeaning incoming)
+    (outT : Matrix 4 0) (inT : Matrix 0 0)
+    (targetOut : Matrix 5 6) (d3Naturality : Target.Natural targetOut)
+    (ds : Source.S → Target.U)
+    (dt : Source.T outT inT → Homology targetOut incoming)
+    (zeroPreserving : dt (Source.z outT inT) =
+      (ImportedBoundary.targetEquiv targetOut incoming meaning).symm (Target.zv targetOut))
+    (d4Naturality : ∀ x, dt (Source.f outT inT x) =
+      (ImportedBoundary.targetEquiv targetOut incoming meaning).symm
+        (Target.g targetOut d3Naturality (ds x))) : ColumnMatches ds := by
+  have hz := ImportedBoundary.transported_d4_zero incoming meaning outT inT
+    targetOut d3Naturality ds dt zeroPreserving d4Naturality
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval b_S0_8_135_d3.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 2, matrixOf 2 1 b_S0_8_135_d4.incoming i 0 = zero i from by decide) i
+
+#print axioms matched
+#print axioms source_named_coordinate
+end AggregateD5Conditional.C2D4
+
+namespace AggregateD5Conditional.CW2Eta
+open LinearCertificates PageTransitionCertificates Data
+open Row2929Detector.Naturality
+
+theorem source_outgoing : b_S0_10_137_d2.outgoing =
+    Row2929Detector.Comparison.source.outgoing := rfl
+theorem source_incoming : b_S0_10_137_d2.incoming =
+    Row2929Detector.Comparison.source.incoming := rfl
+theorem target_comparison : b_S0_13_139_d2 = Row2929Detector.Comparison.upperSource := rfl
+
+def sourceCoordinates := homologyEquivalence _ _ b_S0_10_137_d2.comparison
+  b_S0_10_137_d2_complete.2
+def targetCoordinates := homologyEquivalence _ _ b_S0_13_139_d2.comparison
+  b_S0_13_139_d2_complete.2
+
+/-- Aggregate staircase coordinates are [local3,local2+local4,local4];
+the detector's complete quotient basis is [local2,local3,local4]. -/
+def sourceBasisChange : Matrix 3 3 := fun i j =>
+  (i.val == 0 && j.val == 1) || (i.val == 1 && j.val == 0) ||
+  (i.val == 2 && (j.val == 0 || j.val == 2))
+
+theorem source_coordinates (x : S) : sourceCoordinates.toCoordinates x =
+    eval sourceBasisChange (Row2929Detector.Matches.sourceCoordinates.toCoordinates x) := by
+  induction x using Quot.inductionOn with
+  | h x =>
+    change eval b_S0_10_137_d2.comparison.projection x.val =
+      eval sourceBasisChange (eval Row2929Detector.Comparison.source.comparison.projection x.val)
+    exact (show ∀ v : Vec 6,
+      eval b_S0_10_137_d2.comparison.projection v =
+        eval sourceBasisChange (eval Row2929Detector.Comparison.source.comparison.projection v)
+      from by decide) x.val
+
+theorem source_named_coordinate : sourceCoordinates.toCoordinates named =
+    (fun i : Fin 3 => i.val == 0) := by
+  funext i
+  exact (show ∀ i : Fin 3, sourceCoordinates.toCoordinates named i = (i.val == 0) from by decide) i
+
+theorem source_staircase_inclusion : b_S0_10_137_d2.comparison.inclusion =
+    Row2929Detector.Matches.staircaseInclusion := by decide
+
+def ColumnMatches (ds : S → U) : Prop := ds named = zs ∧
+  ∀ i : Fin 1, matrixOf 1 3 b_S0_13_139_d3.incoming i 0 =
+    targetCoordinates.toCoordinates (ds named) i
+
+/-- Only the named first incoming column is derived by this CW_2_eta
+naturality argument. Other stored columns keep their own provenance. -/
+theorem matched (ds : S → U) (dt : T → V)
+    (zeroPreserving : dt zt = zv) (naturality : ∀ x, dt (f x) = g (ds x)) :
+    ColumnMatches ds := by
+  have hz := Row2929Detector.Naturality.named_d3_zero ds dt zeroPreserving naturality
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval b_S0_13_139_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 1, matrixOf 1 3 b_S0_13_139_d3.incoming i 0 = zero i from by decide) i
+
+#print axioms matched
+#print axioms source_coordinates
+#print axioms source_named_coordinate
+end AggregateD5Conditional.CW2Eta
+
+namespace AggregateD5Conditional.HighD2
+open LinearCertificates PageTransitionCertificates Data
+open HighFiltrationD2Certificates
+theorem b_S0_51_178_d2_incoming_matrix : matrixOf 1 2 b_S0_51_178_d2.incoming = HighFiltrationD2Certificates.Data.d49_177.outputMatrix := rfl
+theorem b_S0_51_178_d2_incoming_meaning (d : Vec 2 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d49_177 HighFiltrationD2Certificates.Data.d49_177_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 2 b_S0_51_178_d2.incoming) x := by
+  intro x
+  rw [b_S0_51_178_d2_incoming_matrix]
+  exact HighFiltrationD2Certificates.Data.d49_177_staircase_reconstruct d hz ha meaning x
+theorem b_S0_51_178_d2_outgoing_matrix : matrixOf 1 1 b_S0_51_178_d2.outgoing = HighFiltrationD2Certificates.Data.d51_178.outputMatrix := rfl
+theorem b_S0_51_178_d2_outgoing_meaning (d : Vec 1 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d51_178 HighFiltrationD2Certificates.Data.d51_178_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 1 b_S0_51_178_d2.outgoing) x := by
+  intro x
+  rw [b_S0_51_178_d2_outgoing_matrix]
+  exact HighFiltrationD2Certificates.Data.d51_178_staircase_reconstruct d hz ha meaning x
+theorem b_S0_52_177_d2_outgoing_matrix : matrixOf 0 1 b_S0_52_177_d2.outgoing = HighFiltrationD2Certificates.Data.d52_177.outputMatrix := rfl
+theorem b_S0_52_177_d2_outgoing_meaning (d : Vec 1 → Vec 0) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d52_177 HighFiltrationD2Certificates.Data.d52_177_kinds d) :
+    ∀ x, d x = eval (matrixOf 0 1 b_S0_52_177_d2.outgoing) x := by
+  intro x
+  rw [b_S0_52_177_d2_outgoing_matrix]
+  exact HighFiltrationD2Certificates.Data.d52_177_staircase_reconstruct d hz ha meaning x
+theorem b_S0_53_178_d2_incoming_matrix : matrixOf 0 2 b_S0_53_178_d2.incoming = HighFiltrationD2Certificates.Data.d51_177.outputMatrix := rfl
+theorem b_S0_53_178_d2_incoming_meaning (d : Vec 2 → Vec 0) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d51_177 HighFiltrationD2Certificates.Data.d51_177_kinds d) :
+    ∀ x, d x = eval (matrixOf 0 2 b_S0_53_178_d2.incoming) x := by
+  intro x
+  rw [b_S0_53_178_d2_incoming_matrix]
+  exact HighFiltrationD2Certificates.Data.d51_177_staircase_reconstruct d hz ha meaning x
+theorem b_S0_54_180_d2_incoming_matrix : matrixOf 1 1 b_S0_54_180_d2.incoming = HighFiltrationD2Certificates.Data.d52_179.outputMatrix := rfl
+theorem b_S0_54_180_d2_incoming_meaning (d : Vec 1 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d52_179 HighFiltrationD2Certificates.Data.d52_179_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 1 b_S0_54_180_d2.incoming) x := by
+  intro x
+  rw [b_S0_54_180_d2_incoming_matrix]
+  exact HighFiltrationD2Certificates.Data.d52_179_staircase_reconstruct d hz ha meaning x
+theorem b_S0_54_180_d2_outgoing_matrix : matrixOf 1 1 b_S0_54_180_d2.outgoing = HighFiltrationD2Certificates.Data.d54_180.outputMatrix := rfl
+theorem b_S0_54_180_d2_outgoing_meaning (d : Vec 1 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d54_180 HighFiltrationD2Certificates.Data.d54_180_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 1 b_S0_54_180_d2.outgoing) x := by
+  intro x
+  rw [b_S0_54_180_d2_outgoing_matrix]
+  exact HighFiltrationD2Certificates.Data.d54_180_staircase_reconstruct d hz ha meaning x
+theorem b_S0_55_180_d2_incoming_matrix : matrixOf 1 1 b_S0_55_180_d2.incoming = HighFiltrationD2Certificates.Data.d53_179.outputMatrix := rfl
+theorem b_S0_55_180_d2_incoming_meaning (d : Vec 1 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d53_179 HighFiltrationD2Certificates.Data.d53_179_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 1 b_S0_55_180_d2.incoming) x := by
+  intro x
+  rw [b_S0_55_180_d2_incoming_matrix]
+  exact HighFiltrationD2Certificates.Data.d53_179_staircase_reconstruct d hz ha meaning x
+theorem b_S0_55_180_d2_outgoing_matrix : matrixOf 1 1 b_S0_55_180_d2.outgoing = HighFiltrationD2Certificates.Data.d55_180.outputMatrix := rfl
+theorem b_S0_55_180_d2_outgoing_meaning (d : Vec 1 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d55_180 HighFiltrationD2Certificates.Data.d55_180_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 1 b_S0_55_180_d2.outgoing) x := by
+  intro x
+  rw [b_S0_55_180_d2_outgoing_matrix]
+  exact HighFiltrationD2Certificates.Data.d55_180_staircase_reconstruct d hz ha meaning x
+theorem b_S0_56_180_d2_outgoing_matrix : matrixOf 0 1 b_S0_56_180_d2.outgoing = HighFiltrationD2Certificates.Data.d56_180.outputMatrix := rfl
+theorem b_S0_56_180_d2_outgoing_meaning (d : Vec 1 → Vec 0) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d56_180 HighFiltrationD2Certificates.Data.d56_180_kinds d) :
+    ∀ x, d x = eval (matrixOf 0 1 b_S0_56_180_d2.outgoing) x := by
+  intro x
+  rw [b_S0_56_180_d2_outgoing_matrix]
+  exact HighFiltrationD2Certificates.Data.d56_180_staircase_reconstruct d hz ha meaning x
+theorem b_S0_56_181_d2_incoming_matrix : matrixOf 1 1 b_S0_56_181_d2.incoming = HighFiltrationD2Certificates.Data.d54_180.outputMatrix := rfl
+theorem b_S0_56_181_d2_incoming_meaning (d : Vec 1 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d54_180 HighFiltrationD2Certificates.Data.d54_180_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 1 b_S0_56_181_d2.incoming) x := by
+  intro x
+  rw [b_S0_56_181_d2_incoming_matrix]
+  exact HighFiltrationD2Certificates.Data.d54_180_staircase_reconstruct d hz ha meaning x
+theorem b_S0_56_181_d2_outgoing_matrix : matrixOf 1 1 b_S0_56_181_d2.outgoing = HighFiltrationD2Certificates.Data.d56_181.outputMatrix := rfl
+theorem b_S0_56_181_d2_outgoing_meaning (d : Vec 1 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d56_181 HighFiltrationD2Certificates.Data.d56_181_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 1 b_S0_56_181_d2.outgoing) x := by
+  intro x
+  rw [b_S0_56_181_d2_outgoing_matrix]
+  exact HighFiltrationD2Certificates.Data.d56_181_staircase_reconstruct d hz ha meaning x
+theorem b_S0_57_182_d2_incoming_matrix : matrixOf 1 1 b_S0_57_182_d2.incoming = HighFiltrationD2Certificates.Data.d55_181.outputMatrix := rfl
+theorem b_S0_57_182_d2_incoming_meaning (d : Vec 1 → Vec 1) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d55_181 HighFiltrationD2Certificates.Data.d55_181_kinds d) :
+    ∀ x, d x = eval (matrixOf 1 1 b_S0_57_182_d2.incoming) x := by
+  intro x
+  rw [b_S0_57_182_d2_incoming_matrix]
+  exact HighFiltrationD2Certificates.Data.d55_181_staircase_reconstruct d hz ha meaning x
+theorem b_S0_57_182_d2_outgoing_matrix : matrixOf 0 1 b_S0_57_182_d2.outgoing = HighFiltrationD2Certificates.Data.d57_182.outputMatrix := rfl
+theorem b_S0_57_182_d2_outgoing_meaning (d : Vec 1 → Vec 0) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d57_182 HighFiltrationD2Certificates.Data.d57_182_kinds d) :
+    ∀ x, d x = eval (matrixOf 0 1 b_S0_57_182_d2.outgoing) x := by
+  intro x
+  rw [b_S0_57_182_d2_outgoing_matrix]
+  exact HighFiltrationD2Certificates.Data.d57_182_staircase_reconstruct d hz ha meaning x
+theorem b_S0_59_182_d2_incoming_matrix : matrixOf 0 1 b_S0_59_182_d2.incoming = HighFiltrationD2Certificates.Data.d57_181.outputMatrix := rfl
+theorem b_S0_59_182_d2_incoming_meaning (d : Vec 1 → Vec 0) (hz : d zero = zero)
+    (ha : ∀ x y, d (add x y) = add (d x) (d y))
+    (meaning : StaircaseMeaning HighFiltrationD2Certificates.Data.d57_181 HighFiltrationD2Certificates.Data.d57_181_kinds d) :
+    ∀ x, d x = eval (matrixOf 0 1 b_S0_59_182_d2.incoming) x := by
+  intro x
+  rw [b_S0_59_182_d2_incoming_matrix]
+  exact HighFiltrationD2Certificates.Data.d57_181_staircase_reconstruct d hz ha meaning x
+#print axioms b_S0_55_180_d2_outgoing_meaning
+#print axioms b_S0_51_178_d2_incoming_meaning
+end AggregateD5Conditional.HighD2
+
+namespace AggregateD5Conditional.DC2D4
+open LinearCertificates PageTransitionCertificates Data
+open Row2861D4Detector
+
+theorem source_comparison : b_S0_9_136_d3 = Higher.source := rfl
+theorem target_comparison : b_S0_13_139_d3 = Higher.upperSource := rfl
+def targetCoordinates := homologyEquivalence _ _ b_S0_13_139_d3.comparison
+  b_S0_13_139_d3_complete.2
+theorem source_named_coordinate :
+    (homologyEquivalence _ _ b_S0_9_136_d3.comparison b_S0_9_136_d3_complete.2).toCoordinates
+      Naturality.named = (fun i : Fin 2 => i.val == 0) :=
+  Row2861D4Detector.Matches.named_coordinates
+
+/-- The caller supplies the complete d3 interpretation, including DC2h6's
+prefix meanings, before the actual incoming d4 column is identified. -/
+theorem matched (d : ImportedMeaning.D3Data) (meaning : ImportedMeaning.Meaning d)
+    (ds : d.S → d.U) (dt : d.T → d.V)
+    (zeroPreserving : dt (ImportedMeaning.imageEquiv d meaning Naturality.zt) =
+      ImportedMeaning.targetImageEquiv d meaning Naturality.zv)
+    (naturality : ∀ x, dt (ImportedMeaning.imageEquiv d meaning (Naturality.f x)) =
+      ImportedMeaning.targetImageEquiv d meaning
+        (Naturality.g ((ImportedMeaning.targetEquiv d meaning).symm
+          (ds (ImportedMeaning.sourceEquiv d meaning x))))) :
+    ds (ImportedMeaning.sourceEquiv d meaning Naturality.named) =
+        ImportedMeaning.targetEquiv d meaning Naturality.zs ∧
+      ∀ i : Fin 1, matrixOf 1 2 b_S0_13_139_d4.incoming i 0 =
+        targetCoordinates.toCoordinates ((ImportedMeaning.targetEquiv d meaning).symm
+          (ds (ImportedMeaning.sourceEquiv d meaning Naturality.named))) i := by
+  have hz := ImportedMeaning.transported_d4_zero d meaning ds dt zeroPreserving naturality
+  refine ⟨hz, ?_⟩
+  rw [hz, (ImportedMeaning.targetEquiv d meaning).symm_apply_apply]
+  intro i
+  change _ = eval b_S0_13_139_d3.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 1, matrixOf 1 2 b_S0_13_139_d4.incoming i 0 = zero i from by decide) i
+
+#print axioms matched
+end AggregateD5Conditional.DC2D4
+
+namespace AggregateD5Conditional.DC2D3
+open LinearCertificates PageTransitionCertificates Data
+open Row2695Detector.Naturality
+
+theorem source_outgoing : b_S0_9_134_d2.outgoing = Row2695Detector.Comparison.source.outgoing := rfl
+theorem source_incoming : b_S0_9_134_d2.incoming = Row2695Detector.Comparison.source.incoming := rfl
+theorem target_comparison : b_S0_12_136_d2 = Row2695Detector.Comparison.upperSource := rfl
+def sourceCoordinates := homologyEquivalence _ _ b_S0_9_134_d2.comparison b_S0_9_134_d2_complete.2
+def targetCoordinates := homologyEquivalence _ _ b_S0_12_136_d2.comparison b_S0_12_136_d2_complete.2
+
+/-- Aggregate staircase order [local2,local3,local1] differs from the
+detector's [local1,local2,local3]. -/
+def sourceBasisChange : Matrix 3 3 := fun i j =>
+  (i.val == 0 && j.val == 1) || (i.val == 1 && j.val == 2) || (i.val == 2 && j.val == 0)
+theorem source_coordinates (x : S) : sourceCoordinates.toCoordinates x =
+    eval sourceBasisChange (Row2695Detector.Matches.sourceCoordinates.toCoordinates x) := by
+  induction x using Quot.inductionOn with
+  | h x =>
+    change eval b_S0_9_134_d2.comparison.projection x.val =
+      eval sourceBasisChange (eval Row2695Detector.Comparison.source.comparison.projection x.val)
+    exact (show ∀ v : Vec 5, eval b_S0_9_134_d2.comparison.projection v =
+      eval sourceBasisChange (eval Row2695Detector.Comparison.source.comparison.projection v)
+      from by decide) x.val
+theorem named_coordinate : sourceCoordinates.toCoordinates named =
+    (fun i : Fin 3 => i.val == 0) := by
+  funext i
+  exact (show ∀ i : Fin 3, sourceCoordinates.toCoordinates named i = (i.val == 0) from by decide) i
+theorem named_raw_representative : ∀ i : Fin 5,
+    b_S0_9_134_d2.comparison.inclusion i ⟨0, by decide⟩ = (i.val == 2) := by decide
+
+theorem matched (ds : S → U) (dt : T → V)
+    (zeroPreserving : dt zt = zv) (naturality : ∀ x, dt (f x) = g (ds x)) :
+    ds named = zs ∧ ∀ i : Fin 1, matrixOf 1 3 b_S0_12_136_d3.incoming i 0 =
+      targetCoordinates.toCoordinates (ds named) i := by
+  have hz := Row2695Detector.Naturality.named_d3_zero ds dt zeroPreserving naturality
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval b_S0_12_136_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 1, matrixOf 1 3 b_S0_12_136_d3.incoming i 0 = zero i from by decide) i
+
+#print axioms matched
+#print axioms source_coordinates
+end AggregateD5Conditional.DC2D3
+
+namespace AggregateD5Conditional.C2Rows3019
+open LinearCertificates PageTransitionCertificates Data
+open Row3019Detector.Naturality
+
+theorem source_outgoing : b_S0_11_138_d2.outgoing = Row3019Detector.Comparison.source.outgoing := rfl
+theorem source_incoming : b_S0_11_138_d2.incoming = Row3019Detector.Comparison.source.incoming := rfl
+theorem target_comparison : b_S0_14_140_d2 = Row3019Detector.Comparison.upperSource := rfl
+def sourceCoordinates := homologyEquivalence _ _ b_S0_11_138_d2.comparison b_S0_11_138_d2_complete.2
+def targetCoordinates := homologyEquivalence _ _ b_S0_14_140_d2.comparison b_S0_14_140_d2_complete.2
+
+/-- Staircase order is [local1,local2,local0], with no row-ID substitution. -/
+def sourceBasisChange : Matrix 3 3 := fun i j =>
+  (i.val == 0 && j.val == 1) || (i.val == 1 && j.val == 2) || (i.val == 2 && j.val == 0)
+theorem source_coordinates (x : S) : sourceCoordinates.toCoordinates x =
+    eval sourceBasisChange (Row3019Detector.Matches.sourceCoordinates.toCoordinates x) := by
+  induction x using Quot.inductionOn with
+  | h x =>
+    change eval b_S0_11_138_d2.comparison.projection x.val =
+      eval sourceBasisChange (eval Row3019Detector.Comparison.source.comparison.projection x.val)
+    exact (show ∀ v : Vec 4, eval b_S0_11_138_d2.comparison.projection v =
+      eval sourceBasisChange (eval Row3019Detector.Comparison.source.comparison.projection v)
+      from by decide) x.val
+
+theorem row3019_coordinate : sourceCoordinates.toCoordinates named =
+    (fun i : Fin 3 => i.val == 1) := by
+  funext i
+  exact (show ∀ i : Fin 3, sourceCoordinates.toCoordinates named i = (i.val == 1) from by decide) i
+theorem row3020_coordinate : sourceCoordinates.toCoordinates Row3020Detector.named =
+    (fun i : Fin 3 => i.val == 2) := by
+  funext i
+  exact (show ∀ i : Fin 3, sourceCoordinates.toCoordinates Row3020Detector.named i = (i.val == 2) from by decide) i
+theorem row3019_representative : ∀ i : Fin 4,
+    b_S0_11_138_d2.comparison.inclusion i ⟨1,by decide⟩ = (i.val == 2) := by decide
+theorem row3020_representative : ∀ i : Fin 4,
+    b_S0_11_138_d2.comparison.inclusion i ⟨2,by decide⟩ = (i.val == 0) := by decide
+
+/-- The full actual C2 source map is zero and the target map is injective.
+This identifies all columns, including the two retained raw NULL roles. -/
+theorem incoming_meaning (ds : S → U) (dt : T → V)
+    (zeroPreserving : dt zt = zv) (naturality : ∀ x, dt (f x) = g (ds x)) :
+    ∀ x, targetCoordinates.toCoordinates (ds x) =
+      eval (matrixOf 2 3 b_S0_14_140_d3.incoming) (sourceCoordinates.toCoordinates x) := by
+  intro x
+  rw [Row3020Detector.all_d3_zero ds dt zeroPreserving naturality x]
+  change eval b_S0_14_140_d2.comparison.projection zero = _
+  rw [eval_zero]
+  exact (show ∀ v : Vec 3, (zero : Vec 2) = eval (matrixOf 2 3 b_S0_14_140_d3.incoming) v
+    from by decide) (sourceCoordinates.toCoordinates x)
+
+theorem row3019_matched (ds : S → U) (dt : T → V)
+    (zeroPreserving : dt zt = zv) (naturality : ∀ x, dt (f x) = g (ds x)) :
+    ds named = zs ∧ ∀ i : Fin 2, matrixOf 2 3 b_S0_14_140_d3.incoming i 1 =
+      targetCoordinates.toCoordinates (ds named) i := by
+  have hz := Row3019Detector.Naturality.named_d3_zero ds dt zeroPreserving naturality
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval b_S0_14_140_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 2, matrixOf 2 3 b_S0_14_140_d3.incoming i 1 = zero i from by decide) i
+
+theorem row3020_matched (ds : S → U) (dt : T → V)
+    (zeroPreserving : dt zt = zv) (naturality : ∀ x, dt (f x) = g (ds x)) :
+    ds Row3020Detector.named = zs ∧ ∀ i : Fin 2, matrixOf 2 3 b_S0_14_140_d3.incoming i 2 =
+      targetCoordinates.toCoordinates (ds Row3020Detector.named) i := by
+  have hz := Row3020Detector.named_d3_zero ds dt zeroPreserving naturality
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval b_S0_14_140_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 2, matrixOf 2 3 b_S0_14_140_d3.incoming i 2 = zero i from by decide) i
+
+#print axioms incoming_meaning
+#print axioms row3019_matched
+#print axioms row3020_matched
+#print axioms source_coordinates
+end AggregateD5Conditional.C2Rows3019
+
+namespace AggregateD5Conditional.D5
+open LinearCertificates PageTransitionCertificates Data
+open Row2796D5Detector.Source
+
+theorem source_comparison : b_S0_8_135_d4 = Row2796D5Detector.Higher.source4 := rfl
+theorem target_comparison : b_S0_13_139_d4 = Row2796D5Detector.Higher.targetS := rfl
+
+theorem named_source_representative : ∀ i : Fin 2,
+    b_S0_8_135_d4.comparison.inclusion i ⟨0,by decide⟩ = named4 i := by decide
+
+theorem named_source_raw_projection :
+    eval b_S0_8_135_d4.comparison.projection
+      (eval b_S0_8_135_d3.comparison.projection
+        (eval b_S0_8_135_d2.comparison.projection (fun i => i.val == 2))) = named4 := by decide
+
+def ColumnMatches (ds : S → Row2796D5Detector.Target.U) : Prop :=
+  ds named = Row2796D5Detector.Target.zu ∧
+  ∀ i : Fin 1, matrixOf 1 2 b_S0_13_139_d5.incoming i 0 =
+    Row2796D5Detector.Target.ue.toCoordinates (ds named) i
+
+/-- Arbitrary source completions carry their actual-map compatibility.
+This theorem neither constructs a completion nor assigns an unknown source. -/
+theorem matched (c : Completion3) (d : Completion4 c)
+    (ds : S → Row2796D5Detector.Target.U)
+    (dt : Homology d.outgoing d.incoming → Row2796D5Detector.Target.V)
+    (zeroPreserving : dt (z c d) = Row2796D5Detector.Target.zv)
+    (naturality : ∀ x, dt (f c d x) = Row2796D5Detector.Target.g (ds x)) :
+    ColumnMatches ds := by
+  have hz := Row2796D5Detector.Source.named_d5_zero c d ds dt zeroPreserving naturality
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval Row2796D5Detector.Higher.targetS.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 1, matrixOf 1 2 b_S0_13_139_d5.incoming i 0 = zero i from by decide) i
+
+#print axioms matched
+#print axioms named_source_raw_projection
+end AggregateD5Conditional.D5

@@ -1,0 +1,34 @@
+'Row2773D4Leibniz.Semantics.sourceProduct_all_vectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+Row2773D4Leibniz/Semantics.lean:49:69: error: Application type mismatch: The argument
+  i
+has type
+  Fin 3
+but is expected to have type
+  Fin leftProduct.target.m
+in the application
+  leftProduct.product i
+Row2773D4Leibniz/Semantics.lean:52:2: error: Tactic `decide` failed for proposition
+  LinProgramCertificates.CertificateVerifier.check [] = true
+because its `Decidable` instance
+  instDecidableEqBool (LinProgramCertificates.CertificateVerifier.check []) true
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool` and `Bool.decEq`, reduction got stuck at the `Decidable` instance
+  match LinProgramCertificates.CertificateVerifier.check [], true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+Row2773D4Leibniz/Semantics.lean:63:2: error: Tactic `decide` failed for proposition
+  LinProgramCertificates.CertificateVerifier.check [] = true
+because its `Decidable` instance
+  instDecidableEqBool (LinProgramCertificates.CertificateVerifier.check []) true
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool` and `Bool.decEq`, reduction got stuck at the `Decidable` instance
+  match LinProgramCertificates.CertificateVerifier.check [], true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+'Row2773D4Leibniz.Semantics.leftProduct_all_vectors' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

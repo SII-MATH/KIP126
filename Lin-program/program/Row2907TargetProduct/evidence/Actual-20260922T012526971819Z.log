@@ -1,0 +1,49 @@
+Row2907TargetProduct/Actual.lean:76:62: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  P.product.multiply 4 factorDegree targetDegree (factorNext W.data W.factor)
+    ((S.differential 4 sourceDegree).toFun (sourceNext W.data W.source))
+in the target expression
+  pageCast S 4 ⋯
+      ((S.differential 4 (factorDegree.add sourceDegree)).toFun
+        (P.product.multiply 4 factorDegree sourceDegree (factorNext W.data W.factor) (sourceNext W.data W.source))) =
+    0 +
+      pageCast S 4 ⋯
+        (P.product.multiply 4 factorDegree (AdamsTarget 4 sourceDegree) (factorNext W.data W.factor)
+          ((S.differential 4 sourceDegree).toFun (sourceNext W.data W.source)))
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+W : Witness S pages P
+r : Bool
+T : TargetMeaning W r true
+formula :
+  pageCast S 4 ⋯
+      ((S.differential 4 (factorDegree.add sourceDegree)).toFun
+        (P.product.multiply 4 factorDegree sourceDegree (factorNext W.data W.factor) (sourceNext W.data W.source))) =
+    0 +
+      pageCast S 4 ⋯
+        (P.product.multiply 4 factorDegree (AdamsTarget 4 sourceDegree) (factorNext W.data W.factor)
+          ((S.differential 4 sourceDegree).toFun (sourceNext W.data W.source)))
+rightZero :
+  P.product.multiply 4 factorDegree targetDegree (factorNext W.data W.factor)
+      ((S.differential 4 sourceDegree).toFun (sourceNext W.data W.source)) =
+    0
+⊢ pageCast S 4 ⋯
+      ((S.differential 4 productDegree).toFun
+        (P.product.multiply 4 factorDegree sourceDegree (factorNext W.data W.factor) (sourceNext W.data W.source))) =
+    0
+'Row2907TargetProduct.Actual.TargetMeaning.page4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907TargetProduct.Actual.actual_E3_action' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907TargetProduct.Actual.nonzero_branch_cycle_product_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Row2907TargetProduct.Actual.nonzero_branch_E4_all_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907TargetProduct.Actual.nonzero_branch_product_d4_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Row2907TargetProduct.Actual.nonzero_branch_excluded' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Row2907TargetProduct.Actual.parameter_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

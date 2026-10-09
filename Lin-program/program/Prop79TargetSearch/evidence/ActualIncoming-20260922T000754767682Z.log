@@ -1,0 +1,12 @@
+Prop79TargetSearch/ActualIncoming.lean:33:4: error: Type mismatch: After simplification, term
+  result
+ has type
+  @Eq
+    (PageTransitionCertificates.Homology
+      (PageTransitionCertificates.matrixOf Finite.Cnu_14_139_d2.k Finite.Cnu_14_139_d2.m Finite.Cnu_14_139_d2.outgoing)
+      (PageTransitionCertificates.matrixOf Finite.Cnu_14_139_d2.m Finite.Cnu_14_139_d2.n Finite.Cnu_14_139_d2.incoming))
+    (dc (M.source x)) Naturality.zv
+but is expected to have type
+  @Eq Naturality.V (dc (M.source x)) Naturality.zv
+'Prop79TargetSearch.ActualIncoming.all_actual_incoming_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Prop79TargetSearch.ActualIncoming.actual_no_hit' depends on axioms: [propext, Classical.choice, Quot.sound]

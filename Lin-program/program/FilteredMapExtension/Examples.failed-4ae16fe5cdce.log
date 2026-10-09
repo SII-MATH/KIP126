@@ -1,0 +1,14 @@
+FilteredMapExtension/Examples.lean:92:63: error: Application type mismatch: The argument
+  rfl
+has type
+  ?m.23 = ?m.23
+but is expected to have type
+  (1, -1) ∈ ↑(AddSubgroup.comap sumFiltered.hom (G.group (0 + 2))).toAddSubmonoid
+in the application
+  ⟨trivial, rfl⟩
+'FilteredMapExtension.Examples.first_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.Examples.sum_source_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.Examples.sum_requires_correction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.Examples.corrected_same_class' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.Examples.corrected_nonzero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.Examples.length_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

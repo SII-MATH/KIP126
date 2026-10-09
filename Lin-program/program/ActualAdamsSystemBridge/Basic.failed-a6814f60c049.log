@@ -1,0 +1,15 @@
+ActualAdamsSystemBridge/Basic.lean:55:6: error: Type mismatch: After simplification, term
+  hy
+ has type
+  cast ⋯ id ((S.differential r e).toFun z) = x
+but is expected to have type
+  cast ⋯ ((S.differential r e).toFun z) = x
+ActualAdamsSystemBridge/Basic.lean:59:6: error: Type mismatch: After simplification, term
+  hy
+ has type
+  cast ⋯ ((S.differential r e).toFun y) = x
+but is expected to have type
+  cast ⋯ id ((S.differential r e).toFun y) = x
+'ActualAdamsSystemBridge.quotient_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsSystemBridge.incoming_image' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsSystemBridge.system' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

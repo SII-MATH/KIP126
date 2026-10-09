@@ -1,0 +1,118 @@
+Fact761ConstructedActual/Incoming.lean:71:70: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  T.target.equivalence 0
+in the target expression
+  T.target.equivalence 0 =
+    eval (matrixOf b3_130_3.k b3_130_3.m b3_130_3.outgoing) (T.previous.page3.coordinates.equivalence x)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+T : Source3Stage3 S pages
+x : (S.element 3 { filtration := 3, internal := 130 }).carrier
+⊢ T.target.equivalence 0 =
+    eval (matrixOf b3_130_3.k b3_130_3.m b3_130_3.outgoing) (T.previous.page3.coordinates.equivalence x)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    T.target
+  has type
+    Coordinates S 3 { filtration := 6, internal := 132 } 1
+  but is expected to have type
+    Coordinates S 3 (AdamsTarget 3 { filtration := 3, internal := 130 }) b3_130_3.k
+  in the application
+    T.target.equivalence
+Fact761ConstructedActual/Incoming.lean:80:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  T.previous.page3.coordinates.equivalence 0
+in the target expression
+  T.previous.page3.coordinates.equivalence 0 =
+    eval (matrixOf b3_130_3.m b3_130_3.n b3_130_3.incoming)
+      (T.source (ActualAdamsIncomingBridge.sourceZero S 3 { filtration := 3, internal := 130 }))
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+T : Source3Stage3 S pages
+x : ActualAdamsIncomingBridge.Source S 3 { filtration := 3, internal := 130 }
+eq : x = ActualAdamsIncomingBridge.sourceZero S 3 { filtration := 3, internal := 130 }
+⊢ T.previous.page3.coordinates.equivalence 0 =
+    eval (matrixOf b3_130_3.m b3_130_3.n b3_130_3.incoming)
+      (T.source (ActualAdamsIncomingBridge.sourceZero S 3 { filtration := 3, internal := 130 }))
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    T.previous.page3
+  has type
+    Chart { filtration := 3, internal := 130 } S 3 1
+  but is expected to have type
+    Fact721ConstructedActual.AdditiveCoordinates { filtration := 3, internal := 130 } S 3 b3_130_3.m
+  in the application
+    T.previous.page3.coordinates
+Fact761ConstructedActual/Incoming.lean:97:45: warning: Variable name `T` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Fact761ConstructedActual/Incoming.lean:109:70: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  T.target.equivalence 0
+in the target expression
+  T.target.equivalence 0 =
+    eval (matrixOf b3_130_4.k b3_130_4.m b3_130_4.outgoing) (T.previous.page4.coordinates.equivalence x)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+T : Source3Stage4 S pages
+x : (S.element 4 { filtration := 3, internal := 130 }).carrier
+⊢ T.target.equivalence 0 =
+    eval (matrixOf b3_130_4.k b3_130_4.m b3_130_4.outgoing) (T.previous.page4.coordinates.equivalence x)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    T.target
+  has type
+    Coordinates S 4 { filtration := 7, internal := 133 } 1
+  but is expected to have type
+    Coordinates S 4 (AdamsTarget 4 { filtration := 3, internal := 130 }) b3_130_4.k
+  in the application
+    T.target.equivalence
+Fact761ConstructedActual/Incoming.lean:118:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  T.previous.page4.coordinates.equivalence 0
+in the target expression
+  T.previous.page4.coordinates.equivalence 0 =
+    eval (matrixOf b3_130_4.m b3_130_4.n b3_130_4.incoming)
+      (T.emptySource (ActualAdamsIncomingBridge.sourceZero S 4 { filtration := 3, internal := 130 }))
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+T : Source3Stage4 S pages
+x : ActualAdamsIncomingBridge.Source S 4 { filtration := 3, internal := 130 }
+eq : x = ActualAdamsIncomingBridge.sourceZero S 4 { filtration := 3, internal := 130 }
+⊢ T.previous.page4.coordinates.equivalence 0 =
+    eval (matrixOf b3_130_4.m b3_130_4.n b3_130_4.incoming)
+      (T.emptySource (ActualAdamsIncomingBridge.sourceZero S 4 { filtration := 3, internal := 130 }))
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    T.previous.page4
+  has type
+    Chart { filtration := 3, internal := 130 } S 4 1
+  but is expected to have type
+    Fact721ConstructedActual.AdditiveCoordinates { filtration := 3, internal := 130 } S 4 b3_130_4.m
+  in the application
+    T.previous.page4.coordinates
+'Fact761ConstructedActual.Incoming.Empty4.page4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Incoming.Empty5.page3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Incoming.empty_incoming' depends on axioms: [propext, Quot.sound]
+'Fact761ConstructedActual.Incoming.Source3Stage3.step3' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Incoming.Source3Stage4.step4' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Incoming.Source3Stage5.whole_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

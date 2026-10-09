@@ -1,0 +1,37 @@
+Prop79IncomingSearch/Naturality.lean:34:17: error: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => zero = add ↑⟨_a, ⋯⟩ ↑⟨zero, zv._proof_1⟩
+Error: Application type mismatch: The argument
+  preservesCycles uppercompatible ⟨zero, Row2925Detector.Naturality.zs._proof_1⟩
+has type
+  InKernel (matrixOf upperTarget.k upperTarget.m upperTarget.outgoing)
+    (eval upperMiddleMap ↑⟨zero, Row2925Detector.Naturality.zs._proof_1⟩)
+but is expected to have type
+  InKernel (matrixOf upperTarget.k upperTarget.m upperTarget.outgoing) _a
+in the application
+  ⟨_a, ⋯⟩
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+⊢ zero = add ↑⟨eval upperMiddleMap ↑⟨zero, Row2925Detector.Naturality.zs._proof_1⟩, ⋯⟩ ↑⟨zero, zv._proof_1⟩
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    upperMiddleMap
+  has type
+    Matrix 4 3
+  but is expected to have type
+    Matrix upperTarget.m Row2925Detector.Comparison.upperSource.m
+  in the application
+    eval upperMiddleMap
+Prop79IncomingSearch/Naturality.lean:46:68: error: failed to synthesize
+  Decidable (upperTarget = CnuPageCertificates.wire)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'Prop79IncomingSearch.Naturality.source_named_image' depends on axioms: [propext, Quot.sound]
+'Prop79IncomingSearch.Naturality.upper_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Prop79IncomingSearch.Naturality.named_coordinates' depends on axioms: [propext, Quot.sound]
+'Prop79IncomingSearch.Naturality.target_exact' depends on axioms: [sorryAx]
+'Prop79IncomingSearch.Naturality.named_d3_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

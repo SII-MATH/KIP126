@@ -1,0 +1,707 @@
+{
+  "raw": [
+    2852,
+    11,
+    136,
+    "3",
+    null,
+    9995
+  ],
+  "direct": [
+    {
+      "active_trial": {
+        "end_line": 149557,
+        "fields": {
+          "depth": "1",
+          "dx": "1,3",
+          "id": "153714",
+          "info": "Get `S0 (125,11) d_4[3]=[1,3]`. Apply the Leibniz rule with `Ceta (0,1) d_4[0]=[]` and get `Ceta (125,12) d_4[6]=[5]`.\nHowever, `Ceta (124,16) [5]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149556
+      },
+      "degree_role": "source2852",
+      "end_line": 149557,
+      "fields": {
+        "depth": "1",
+        "dx": "1,3",
+        "id": "153714",
+        "info": "Get `S0 (125,11) d_4[3]=[1,3]`. Apply the Leibniz rule with `Ceta (0,1) d_4[0]=[]` and get `Ceta (125,12) d_4[6]=[5]`.\nHowever, `Ceta (124,16) [5]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153709",
+        "153710",
+        "153711",
+        "153712",
+        "153713"
+      ],
+      "start_line": 149556,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": {
+        "end_line": 149559,
+        "fields": {
+          "depth": "1",
+          "dx": "0",
+          "id": "153715",
+          "info": "Get `S0 (125,11) d_4[3]=[0]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (134,16) d_4[]=[1]`.\nHowever, `S0 (133,20) [1]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149558
+      },
+      "degree_role": "source2852",
+      "end_line": 149559,
+      "fields": {
+        "depth": "1",
+        "dx": "0",
+        "id": "153715",
+        "info": "Get `S0 (125,11) d_4[3]=[0]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (134,16) d_4[]=[1]`.\nHowever, `S0 (133,20) [1]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153710",
+        "153711",
+        "153712",
+        "153713",
+        "153714"
+      ],
+      "start_line": 149558,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": {
+        "end_line": 149561,
+        "fields": {
+          "depth": "1",
+          "dx": "0,1,3",
+          "id": "153716",
+          "info": "Get `S0 (125,11) d_4[3]=[0,1,3]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (134,16) d_4[]=[1]`.\nHowever, `S0 (133,20) [1]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149560
+      },
+      "degree_role": "source2852",
+      "end_line": 149561,
+      "fields": {
+        "depth": "1",
+        "dx": "0,1,3",
+        "id": "153716",
+        "info": "Get `S0 (125,11) d_4[3]=[0,1,3]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (134,16) d_4[]=[1]`.\nHowever, `S0 (133,20) [1]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153711",
+        "153712",
+        "153713",
+        "153714",
+        "153715"
+      ],
+      "start_line": 149560,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2852",
+      "end_line": 149562,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "153717",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "4",
+        "reason": "D",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153712",
+        "153713",
+        "153714",
+        "153715",
+        "153716"
+      ],
+      "start_line": 149562,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": {
+        "end_line": 149564,
+        "fields": {
+          "depth": "1",
+          "dx": "2",
+          "id": "153718",
+          "info": "Get `S0 (125,11) d_3[0]=[2]`. Apply the Leibniz rule with `S0 (31,5) d_3[0]=[]` and get `S0 (156,16) d_3[]=[0]`.\nHowever, `S0 (155,19) [0]` is not in B_2.",
+          "name": "S0",
+          "r": "3",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "0"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149563
+      },
+      "degree_role": "source2852",
+      "end_line": 149564,
+      "fields": {
+        "depth": "1",
+        "dx": "2",
+        "id": "153718",
+        "info": "Get `S0 (125,11) d_3[0]=[2]`. Apply the Leibniz rule with `S0 (31,5) d_3[0]=[]` and get `S0 (156,16) d_3[]=[0]`.\nHowever, `S0 (155,19) [0]` is not in B_2.",
+        "name": "S0",
+        "r": "3",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "0"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153713",
+        "153714",
+        "153715",
+        "153716",
+        "153717"
+      ],
+      "start_line": 149563,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2852",
+      "end_line": 149565,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "153719",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "3",
+        "reason": "D",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "0"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153714",
+        "153715",
+        "153716",
+        "153717",
+        "153718"
+      ],
+      "start_line": 149565,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": {
+        "end_line": 149568,
+        "fields": {
+          "depth": "1",
+          "dx": "",
+          "id": "153720",
+          "info": "Get `S0 (125,11) d_4[0]=[]`. Apply the Leibniz rule with `Ctheta5 (9,5) d_4[0]=[]` and get `Ctheta5 (134,16) d_4[2]=[]`.\nGet `Ctheta5 (134,16) d_4[2]=[]` where the element on the left-hand side already supports d_4.\nHowever, `Ctheta5 (133,20) [3]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "0"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149566
+      },
+      "degree_role": "source2852",
+      "end_line": 149568,
+      "fields": {
+        "depth": "1",
+        "dx": "",
+        "id": "153720",
+        "info": "Get `S0 (125,11) d_4[0]=[]`. Apply the Leibniz rule with `Ctheta5 (9,5) d_4[0]=[]` and get `Ctheta5 (134,16) d_4[2]=[]`.\nGet `Ctheta5 (134,16) d_4[2]=[]` where the element on the left-hand side already supports d_4.\nHowever, `Ctheta5 (133,20) [3]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "0"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153715",
+        "153716",
+        "153717",
+        "153718",
+        "153719"
+      ],
+      "start_line": 149566,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": {
+        "end_line": 149570,
+        "fields": {
+          "depth": "1",
+          "dx": "1,3",
+          "id": "153721",
+          "info": "Get `S0 (125,11) d_4[0]=[1,3]`. Apply the Leibniz rule with `Ceta (0,1) d_4[0]=[]` and get `Ceta (125,12) d_4[5]=[5]`.\nHowever, `Ceta (124,16) [5]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "0"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149569
+      },
+      "degree_role": "source2852",
+      "end_line": 149570,
+      "fields": {
+        "depth": "1",
+        "dx": "1,3",
+        "id": "153721",
+        "info": "Get `S0 (125,11) d_4[0]=[1,3]`. Apply the Leibniz rule with `Ceta (0,1) d_4[0]=[]` and get `Ceta (125,12) d_4[5]=[5]`.\nHowever, `Ceta (124,16) [5]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "0"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153716",
+        "153717",
+        "153718",
+        "153719",
+        "153720"
+      ],
+      "start_line": 149569,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": {
+        "end_line": 149572,
+        "fields": {
+          "depth": "1",
+          "dx": "0,1,3",
+          "id": "153722",
+          "info": "Get `S0 (125,11) d_4[0]=[0,1,3]`. Apply the Leibniz rule with `Ceta (0,1) d_4[0]=[]` and get `Ceta (125,12) d_4[5]=[3,5]`.\nHowever, `Ceta (124,16) [5]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "0"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149571
+      },
+      "degree_role": "source2852",
+      "end_line": 149572,
+      "fields": {
+        "depth": "1",
+        "dx": "0,1,3",
+        "id": "153722",
+        "info": "Get `S0 (125,11) d_4[0]=[0,1,3]`. Apply the Leibniz rule with `Ceta (0,1) d_4[0]=[]` and get `Ceta (125,12) d_4[5]=[3,5]`.\nHowever, `Ceta (124,16) [5]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "0"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153717",
+        "153718",
+        "153719",
+        "153720",
+        "153721"
+      ],
+      "start_line": 149571,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2852",
+      "end_line": 149573,
+      "fields": {
+        "depth": "0",
+        "dx": "0",
+        "id": "153723",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "4",
+        "reason": "D",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "0"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153718",
+        "153719",
+        "153720",
+        "153721",
+        "153722"
+      ],
+      "start_line": 149573,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2852",
+      "end_line": 459914,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "320518",
+        "info": "CW_nu_eta_2__S0_by_sigma",
+        "name": "S0",
+        "r": "5",
+        "reason": "N",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "1"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "320513",
+        "320514",
+        "320515",
+        "320516",
+        "320517"
+      ],
+      "start_line": 459914,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2852",
+      "end_line": 570577,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "1227441",
+        "info": "CW_nu_eta_2__S0_by_sigma",
+        "name": "S0",
+        "r": "10",
+        "reason": "N",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "1"
+      },
+      "file": "proofs-part2.csv",
+      "match": "degree",
+      "previous_ids": [
+        "1227436",
+        "1227437",
+        "1227438",
+        "1227439",
+        "1227440"
+      ],
+      "start_line": 570577,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2852",
+      "end_line": 935913,
+      "fields": {
+        "depth": "0",
+        "dx": "[NULL]",
+        "id": "2423248",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "5",
+        "reason": "[NULL]",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part3.csv",
+      "match": "degree",
+      "previous_ids": [
+        "2423243",
+        "2423244",
+        "2423245",
+        "2423246",
+        "2423247"
+      ],
+      "start_line": 935913,
+      "classification": "grey_hint_not_deduction"
+    }
+  ],
+  "exact_source": [
+    {
+      "active_trial": {
+        "end_line": 149557,
+        "fields": {
+          "depth": "1",
+          "dx": "1,3",
+          "id": "153714",
+          "info": "Get `S0 (125,11) d_4[3]=[1,3]`. Apply the Leibniz rule with `Ceta (0,1) d_4[0]=[]` and get `Ceta (125,12) d_4[6]=[5]`.\nHowever, `Ceta (124,16) [5]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149556
+      },
+      "degree_role": "source2852",
+      "end_line": 149557,
+      "fields": {
+        "depth": "1",
+        "dx": "1,3",
+        "id": "153714",
+        "info": "Get `S0 (125,11) d_4[3]=[1,3]`. Apply the Leibniz rule with `Ceta (0,1) d_4[0]=[]` and get `Ceta (125,12) d_4[6]=[5]`.\nHowever, `Ceta (124,16) [5]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153709",
+        "153710",
+        "153711",
+        "153712",
+        "153713"
+      ],
+      "start_line": 149556,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": {
+        "end_line": 149559,
+        "fields": {
+          "depth": "1",
+          "dx": "0",
+          "id": "153715",
+          "info": "Get `S0 (125,11) d_4[3]=[0]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (134,16) d_4[]=[1]`.\nHowever, `S0 (133,20) [1]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149558
+      },
+      "degree_role": "source2852",
+      "end_line": 149559,
+      "fields": {
+        "depth": "1",
+        "dx": "0",
+        "id": "153715",
+        "info": "Get `S0 (125,11) d_4[3]=[0]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (134,16) d_4[]=[1]`.\nHowever, `S0 (133,20) [1]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153710",
+        "153711",
+        "153712",
+        "153713",
+        "153714"
+      ],
+      "start_line": 149558,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": {
+        "end_line": 149561,
+        "fields": {
+          "depth": "1",
+          "dx": "0,1,3",
+          "id": "153716",
+          "info": "Get `S0 (125,11) d_4[3]=[0,1,3]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (134,16) d_4[]=[1]`.\nHowever, `S0 (133,20) [1]` is not in B_3.",
+          "name": "S0",
+          "r": "4",
+          "reason": "T",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149560
+      },
+      "degree_role": "source2852",
+      "end_line": 149561,
+      "fields": {
+        "depth": "1",
+        "dx": "0,1,3",
+        "id": "153716",
+        "info": "Get `S0 (125,11) d_4[3]=[0,1,3]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (134,16) d_4[]=[1]`.\nHowever, `S0 (133,20) [1]` is not in B_3.",
+        "name": "S0",
+        "r": "4",
+        "reason": "T",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153711",
+        "153712",
+        "153713",
+        "153714",
+        "153715"
+      ],
+      "start_line": 149560,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2852",
+      "end_line": 149562,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "153717",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "4",
+        "reason": "D",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153712",
+        "153713",
+        "153714",
+        "153715",
+        "153716"
+      ],
+      "start_line": 149562,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2852",
+      "end_line": 935913,
+      "fields": {
+        "depth": "0",
+        "dx": "[NULL]",
+        "id": "2423248",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "5",
+        "reason": "[NULL]",
+        "s": "11",
+        "stem": "125",
+        "t": "136",
+        "x": "3"
+      },
+      "file": "proofs-part3.csv",
+      "match": "degree",
+      "previous_ids": [
+        "2423243",
+        "2423244",
+        "2423245",
+        "2423246",
+        "2423247"
+      ],
+      "start_line": 935913,
+      "classification": "grey_hint_not_deduction"
+    }
+  ],
+  "requested_page_info": []
+}

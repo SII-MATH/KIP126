@@ -1,0 +1,11 @@
+Fact713RefinedComparisonFamily/Basic.lean:30:19: error: Application type mismatch: The argument
+  ha
+has type
+  a.key ∈ List.map Entry.key base
+but is expected to have type
+  a ∈ base
+in the application
+  disjoint a ha
+'Fact713RefinedComparisonFamily.checkCross_sound' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedComparisonFamily.unique_append' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713RefinedComparisonFamily.coherent_append' depends on axioms: [propext, sorryAx, Quot.sound]

@@ -1,0 +1,22 @@
+Fact713Row3247Source/Binding.lean:23:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  add rawSphere historySphere
+in the target expression
+  InImage (inc S0_18_141) (add rawSphere historySphere)
+
+⊢ InImage (inc S0_18_141) (add rawSphere historySphere)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    rawSphere
+  has type
+    Vec 3
+  but is expected to have type
+    Vec S0_18_141.m
+  in the application
+    add rawSphere
+'Fact713Row3247Source.Binding.correction_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.raw_history_same' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.raw_named' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.products_raw_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.raw_nulls' does not depend on any axioms

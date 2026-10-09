@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/ActualTraceRequestsNext/compile.py", line 31, in <module>
+    'dependencies_sha256': {str(p.relative_to(ROOT)): sha(p) for p in dependencies}}
+                                                      ^^^^^^
+  File "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/ActualTraceRequestsNext/compile.py", line 17, in <lambda>
+    sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+                                   ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/ActualTraceRequestsNext/Tactic.olean'

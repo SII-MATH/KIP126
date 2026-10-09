@@ -1,0 +1,13 @@
+valid /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/valid.jsonl:1: accepted 6 finite certificates
+unknown /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/unknown.jsonl:1:json: unknown/external_input/inventory_only is not a finite certificate
+external_input /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/external_input.jsonl:1:json: unknown/external_input/inventory_only is not a finite certificate
+inventory_only /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/inventory_only.jsonl:1:json: unknown/external_input/inventory_only is not a finite certificate
+unknown-field /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/unknown-field.jsonl:1:json: noncanonical JSON, duplicate or unknown field (use canonical serializer)
+duplicate-field /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/duplicate-field.jsonl:1:json: noncanonical JSON, duplicate or unknown field (use canonical serializer)
+missing-class /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/missing-class.jsonl:1:data: duplicate class, invalid degree/page, or invalid differential endpoints/degrees
+bad-degree /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/bad-degree.jsonl:1:data: duplicate class, invalid degree/page, or invalid differential endpoints/degrees
+bad-version /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/bad-version.jsonl:1:formatVersion: expected 1
+wrong-object /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/wrong-object.jsonl:1:certificates[0].object: object does not match data
+omitted-hit /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/omitted-hit.jsonl:1:certificates[0].evidence: wrong evidence kind, incomplete incoming list, absent differential, or invalid survivor witness
+malformed /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/tests/output/malformed.jsonl:1:json: offset 1: unexpected end of input
+Importer rejection tests passed

@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "frozen_files": 13,
+  "empty_E2_degrees": [
+    {
+      "page": 6,
+      "degree": [
+        4,
+        129
+      ]
+    },
+    {
+      "page": 7,
+      "degree": [
+        3,
+        128
+      ]
+    },
+    {
+      "page": 8,
+      "degree": [
+        2,
+        127
+      ]
+    },
+    {
+      "page": 9,
+      "degree": [
+        1,
+        126
+      ]
+    },
+    {
+      "page": 10,
+      "degree": [
+        0,
+        125
+      ]
+    }
+  ],
+  "finite_event_models": 46,
+  "later_outgoing_counterexamples_to_permanence": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "missing_tail_counterexample": "Incoming d6 hits an E6 nonzero class: BInfinity becomes true, showing tail hypothesis is necessary.",
+  "cutoff": "system index 4 is actual page 6; the theorem reuses the same original E2 trace and does not assume subsequent cycle conditions.",
+  "infinite_tail": "Lean splits r<=10 into the five checked degrees; r>10 has no legal source by filtration.",
+  "records": [
+    {
+      "module": "Fact763NoHit.Basic",
+      "axiom_reports": 3
+    },
+    {
+      "module": "Fact763NoHit.Tactic",
+      "axiom_reports": 0
+    },
+    {
+      "module": "ActualFiniteNoHit.Basic",
+      "axiom_reports": 3
+    }
+  ],
+  "review_source_sha256": "629d90c9545072224150d9ba66a4bcc1222e9ef2ac8991c33e8f9cbfbfc9ddec",
+  "limitation": "No outgoing permanence. Actual input meanings remain explicit; SQL identity and empty rows are not original-spectrum proofs."
+}

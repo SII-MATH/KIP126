@@ -1,0 +1,43 @@
+{
+  "accepted_incoming": 36,
+  "accepted_outgoing": 59,
+  "all23_supplied_target_projections_zero": true,
+  "cancellation_counterexample_checked": true,
+  "distinct_accepted_rows": 95,
+  "findings": [],
+  "inputs_sha256": {
+    "AggregateD5Conditional/event-results.json": "47ef1c3887a8cb598289dd0719df04cd11dc9c999b8d47e6d4e1705a5c3dfb59",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateEliminationCertificates/Basic.lean": "b4135b98434922f9f758b5b82606a2a5609eaecd4b8e906ede4a7d18fa285fb1",
+    "AggregateEliminationCertificates/Counterexample.lean": "e0dc301a82cd060bebb0b98d90dbc7154e294b715549e12ea5c4b393559d1e20",
+    "AggregateEliminationCertificates/Data.lean": "8a14670568aad2c3eb1afb6c4158f54c1dc9264d3b52091be086ed3e78e776e0",
+    "AggregateEliminationCertificates/Targets.lean": "d0e24285a3f86afb481de2a27acea1a54cd7adc4528f46600c78bcbc48574f2c",
+    "AggregateEliminationCertificates/mapping.json": "c915b613fee14280248b9ff28980c30d03d4c5f91ee69c3d6e2ec7ee6fb5f892",
+    "AggregateEliminationCertificates/review.py": "2aa8ced0829d5773bb42dc4a6c0be978b71c3514639454b42d89a974829cca54",
+    "AggregateTargetInventory/inventory.json": "5305d51f32ad48fffa3da528155cc97258b7a52e13d0a02086a297f8de5c5538",
+    "IndexedFamilyProducer/D5/bound95.jsonl": "0f2511eed6ee9ab21fe384356db99cd73f8651abc85cda7089039c448ad3a2cc",
+    "IndexedFamilyProducer/D5/provenance.json": "709ad16ecd16811a6adea27716d1163c3d883506ddd0fe5adee953c7a738cc23",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "inventory": 105,
+  "limitation": "95 counts distinct named staircase rows, not independent dimension eliminations.13 incoming rows need an additional target quotient/complex interpretation. No proof of a10-dimensional survivor space is asserted.",
+  "sentinel": 4,
+  "status": "exact_named_obstruction_mapping_and_combination_counterexample_passed",
+  "target_quotients_missing": [
+    3010,
+    3011,
+    3254,
+    3629,
+    3744,
+    3745,
+    4764,
+    4929,
+    5862,
+    5977,
+    6296,
+    7247,
+    3391
+  ],
+  "target_quotients_supplied": 23,
+  "unresolved": 6
+}

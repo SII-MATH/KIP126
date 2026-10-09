@@ -1,0 +1,218 @@
+Fact713NamedActual/Basic.lean:53:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page2 ?M).equivalence (endpoint2 ?S ?pages ?M).value
+in the target expression
+  eval (matrixOf wire2.k wire2.m wire2.outgoing) (M.page2.equivalence (endpoint2 S pages M).value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+⊢ eval (matrixOf wire2.k wire2.m wire2.outgoing) (M.page2.equivalence (endpoint2 S pages M).value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.page2
+  has type
+    Coordinates S 2 degree 2
+  but is expected to have type
+    Coordinates S 2 degree wire2.m
+  in the application
+    M.page2.equivalence
+Fact713NamedActual/Basic.lean:58:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page2 ?M).equivalence (endpoint2 ?S ?pages ?M).value
+in the target expression
+  InImage (matrixOf wire2.m wire2.n wire2.incoming) (M.page2.equivalence (endpoint2 S pages M).value)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+hb : PageBoundary S 2 degree (endpoint2 S pages M).value
+h : InImage (matrixOf wire2.m wire2.n wire2.incoming) (M.page2.equivalence (endpoint2 S pages M).value)
+⊢ False
+Fact713NamedActual/Basic.lean:63:34: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page2 ?M).equivalence (endpoint2 ?S ?pages ?M).value
+in the target expression
+  eval (matrixOf wire2.k wire2.m wire2.outgoing) (M.page2.equivalence (endpoint2 S pages M).value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+⊢ eval (matrixOf wire2.k wire2.m wire2.outgoing) (M.page2.equivalence (endpoint2 S pages M).value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.page2
+  has type
+    Coordinates S 2 degree 2
+  but is expected to have type
+    Coordinates S 2 degree wire2.m
+  in the application
+    M.page2.equivalence
+Fact713NamedActual/Basic.lean:65:8: warning: declaration uses `sorry`
+Fact713NamedActual/Basic.lean:82:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page3 ?M).equivalence (endpoint3 ?S ?pages ?M).value
+in the target expression
+  eval (matrixOf wire3.k wire3.m wire3.outgoing) (M.page3.equivalence (endpoint3 S pages M).value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+⊢ eval (matrixOf wire3.k wire3.m wire3.outgoing) (M.page3.equivalence (endpoint3 S pages M).value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.page3
+  has type
+    Coordinates S 3 degree 2
+  but is expected to have type
+    Coordinates S 3 degree wire3.m
+  in the application
+    M.page3.equivalence
+Fact713NamedActual/Basic.lean:87:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page3 ?M).equivalence (endpoint3 ?S ?pages ?M).value
+in the target expression
+  InImage (matrixOf wire3.m wire3.n wire3.incoming) (M.page3.equivalence (endpoint3 S pages M).value)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+hb : PageBoundary S 3 degree (endpoint3 S pages M).value
+h : InImage (matrixOf wire3.m wire3.n wire3.incoming) (M.page3.equivalence (endpoint3 S pages M).value)
+⊢ False
+Fact713NamedActual/Basic.lean:92:34: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page3 ?M).equivalence (endpoint3 ?S ?pages ?M).value
+in the target expression
+  eval (matrixOf wire3.k wire3.m wire3.outgoing) (M.page3.equivalence (endpoint3 S pages M).value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+⊢ eval (matrixOf wire3.k wire3.m wire3.outgoing) (M.page3.equivalence (endpoint3 S pages M).value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.page3
+  has type
+    Coordinates S 3 degree 2
+  but is expected to have type
+    Coordinates S 3 degree wire3.m
+  in the application
+    M.page3.equivalence
+Fact713NamedActual/Basic.lean:94:8: warning: declaration uses `sorry`
+Fact713NamedActual/Basic.lean:111:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page4 ?M).equivalence (endpoint4 ?S ?pages ?M).value
+in the target expression
+  eval (matrixOf wire4.k wire4.m wire4.outgoing) (M.page4.equivalence (endpoint4 S pages M).value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+⊢ eval (matrixOf wire4.k wire4.m wire4.outgoing) (M.page4.equivalence (endpoint4 S pages M).value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.page4
+  has type
+    Coordinates S 4 degree 1
+  but is expected to have type
+    Coordinates S 4 degree wire4.m
+  in the application
+    M.page4.equivalence
+Fact713NamedActual/Basic.lean:116:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page4 ?M).equivalence (endpoint4 ?S ?pages ?M).value
+in the target expression
+  InImage (matrixOf wire4.m wire4.n wire4.incoming) (M.page4.equivalence (endpoint4 S pages M).value)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+hb : PageBoundary S 4 degree (endpoint4 S pages M).value
+h : InImage (matrixOf wire4.m wire4.n wire4.incoming) (M.page4.equivalence (endpoint4 S pages M).value)
+⊢ False
+Fact713NamedActual/Basic.lean:121:34: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page4 ?M).equivalence (endpoint4 ?S ?pages ?M).value
+in the target expression
+  eval (matrixOf wire4.k wire4.m wire4.outgoing) (M.page4.equivalence (endpoint4 S pages M).value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+⊢ eval (matrixOf wire4.k wire4.m wire4.outgoing) (M.page4.equivalence (endpoint4 S pages M).value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.page4
+  has type
+    Coordinates S 4 degree 1
+  but is expected to have type
+    Coordinates S 4 degree wire4.m
+  in the application
+    M.page4.equivalence
+Fact713NamedActual/Basic.lean:123:8: warning: declaration uses `sorry`
+Fact713NamedActual/Basic.lean:140:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page5 ?M).equivalence (endpoint5 ?S ?pages ?M).value
+in the target expression
+  eval (matrixOf wire5.k wire5.m wire5.outgoing) (M.page5.equivalence (endpoint5 S pages M).value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+⊢ eval (matrixOf wire5.k wire5.m wire5.outgoing) (M.page5.equivalence (endpoint5 S pages M).value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.page5
+  has type
+    Coordinates S 5 degree 1
+  but is expected to have type
+    Coordinates S 5 degree wire5.m
+  in the application
+    M.page5.equivalence
+Fact713NamedActual/Basic.lean:145:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page5 ?M).equivalence (endpoint5 ?S ?pages ?M).value
+in the target expression
+  InImage (matrixOf wire5.m wire5.n wire5.incoming) (M.page5.equivalence (endpoint5 S pages M).value)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+hb : PageBoundary S 5 degree (endpoint5 S pages M).value
+h : InImage (matrixOf wire5.m wire5.n wire5.incoming) (M.page5.equivalence (endpoint5 S pages M).value)
+⊢ False
+Fact713NamedActual/Basic.lean:150:34: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Meanings.page5 ?M).equivalence (endpoint5 ?S ?pages ?M).value
+in the target expression
+  eval (matrixOf wire5.k wire5.m wire5.outgoing) (M.page5.equivalence (endpoint5 S pages M).value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+M : Meanings S pages
+⊢ eval (matrixOf wire5.k wire5.m wire5.outgoing) (M.page5.equivalence (endpoint5 S pages M).value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    M.page5
+  has type
+    Coordinates S 5 degree 1
+  but is expected to have type
+    Coordinates S 5 degree wire5.m
+  in the application
+    M.page5.equivalence
+Fact713NamedActual/Basic.lean:152:8: warning: declaration uses `sorry`
+'Fact713NamedActual.named_E2_binding' does not depend on any axioms
+'Fact713NamedActual.named_E6' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713NamedActual.cycle2' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713NamedActual.nonboundary2' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713NamedActual.cycle3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713NamedActual.nonboundary3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713NamedActual.cycle4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713NamedActual.nonboundary4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713NamedActual.cycle5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713NamedActual.nonboundary5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

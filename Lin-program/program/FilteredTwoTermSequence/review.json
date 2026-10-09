@@ -1,0 +1,37 @@
+{
+  "status": "literal_two_term_page_homology_replay_passed",
+  "counts": {
+    "filtered_maps": 3649,
+    "nonexhaustive_filtered_maps": 2470,
+    "differential_square_zero": 121454,
+    "homology_classes": 112544,
+    "homology_map_additive": 245870,
+    "homology_next_isomorphisms": 72980,
+    "initial_graded_pages": 14596,
+    "last_source_zero_incoming": 14596,
+    "absent_incoming_stable_target": 36490
+  },
+  "direct_records": {
+    "Algebra": {
+      "exit_code": 0,
+      "standard_reports": 3,
+      "current_object_matches_direct": true
+    },
+    "Basic": {
+      "exit_code": 0,
+      "standard_reports": 5,
+      "current_object_matches_direct": true
+    },
+    "Homology": {
+      "exit_code": 0,
+      "standard_reports": 6,
+      "current_object_matches_direct": true
+    }
+  },
+  "input_sha256": {
+    "Algebra.lean": "3d6adc86e6ae8077c61e3fff87f1e17bb28da7eacbde23d378b6fae7cb683e8c",
+    "Basic.lean": "3d5ef553508c5fa95e47b6524d179ac505b806b34c913d5383a325ce34332404",
+    "Homology.lean": "c7096877a692f99be17cdf1cea6d35ba682e4a3296b91a7231cc26e290615161",
+    "review.py": "1709889b0c4c5f309ed1a7d01cd66005ed4e009749a9f0cc9d248c02c10b95df"
+  }
+}

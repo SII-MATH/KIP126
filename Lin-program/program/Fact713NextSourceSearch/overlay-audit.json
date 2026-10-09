@@ -1,0 +1,70 @@
+{
+  "status": "complete_finite_overlay_audit_passed",
+  "baseline_preserved": 1249,
+  "all_comparisons": 1257,
+  "e12_available": 1254,
+  "e12_unresolved": 166,
+  "additional_blocks": 8,
+  "all_input_vectors": 2531,
+  "all_cycle_pairs": 9453,
+  "adjacent_differentials": 954,
+  "predecessor_dimensions": 2271,
+  "named_finite_trajectory": [
+    {
+      "page": 2,
+      "vector": [
+        1,
+        1
+      ],
+      "next": [
+        1,
+        0
+      ]
+    },
+    {
+      "page": 3,
+      "vector": [
+        1,
+        0
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 4,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 5,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 6,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    }
+  ],
+  "raw_unknown_preserved": true,
+  "input_sha256": {
+    "Fact713Row2773Refinement/refined.json": "d8eb3519ebdc7ca5a74bb67a639ea2d6c44afe3001654d2cab0724c5a83db23f",
+    "Fact713NextSourceSearch/refined.json": "3e814a14391b4be42809db7ccd1346e8353304c6aa5bb5a12ee59179bdc2629b",
+    "Fact713NextSourceSearch/audit_overlay.py": "c81577d8c1dec0259e073c5b2846994ab80105c9069617564087c31d5254d28f",
+    "Fact713NextSourceSearch/Overlay.lean": "9600e0727ccc3e2c3fe7ef37ca0fc9858e7c0df86dc3decc313fa94599bdff0f"
+  },
+  "scope": "Finite named E7 prefix. Actual prefix/differential/product meanings remain caller proofs, including inherited unknown zero-prefix interpretations. No actual E7/E12 claim."
+}

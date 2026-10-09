@@ -1,0 +1,28 @@
+ActualAdamsAdditiveFiltration/Subgroups.lean:16:4: error: Type mismatch: After simplification, term
+  h
+ has type
+  Cycles
+    { Page := fun n => (S.element (n + 2) d).carrier, Incoming := fun n => Incoming S (n + 2) d,
+      Outgoing := fun n => (S.element (n + 2) (AdamsTarget (n + 2) d)).carrier, zero := fun n => S.zero (n + 2) d,
+      zeroIncoming := fun x => Sum.inl (), zeroOutgoing := fun n => S.zero (n + 2) (AdamsTarget (n + 2) d),
+      incoming := fun n => incoming S (n + 2) d, outgoing := fun n => (S.differential (n + 2) d).toFun,
+      advance := fun n => advance S pages (n + 2) d, incoming_zero := ⋯, homology_zero := ⋯ }
+    n 0
+but is expected to have type
+  0 ∈
+    Cycles
+      { Page := fun n => (S.element (n + 2) d).carrier, Incoming := fun n => Incoming S (n + 2) d,
+        Outgoing := fun n => (S.element (n + 2) (AdamsTarget (n + 2) d)).carrier, zero := fun n => S.zero (n + 2) d,
+        zeroIncoming := fun x => Sum.inl (), zeroOutgoing := fun n => S.zero (n + 2) (AdamsTarget (n + 2) d),
+        incoming := fun n => incoming S (n + 2) d, outgoing := fun n => (S.differential (n + 2) d).toFun,
+        advance := fun n => advance S pages (n + 2) d, incoming_zero := ⋯, homology_zero := ⋯ }
+      n
+'ActualAdamsAdditiveFiltration.Z' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.B' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.B_le_Z' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.Z_antitone' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.B_monotone' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.equivalent_iff_sum_boundary' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

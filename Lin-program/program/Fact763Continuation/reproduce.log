@@ -1,0 +1,39 @@
+Complete incoming source E2->E3 dimension1->0; source E5->E6 dimension2->1
+{
+  "status": "old_quotient_bridge_and_complete_same_input_E6_passed",
+  "counts": {
+    "cycle_pairs": 3685,
+    "comparisons": 10,
+    "SQL_d2_columns": 2,
+    "coordinate_equivalence_values": 16,
+    "same_raw_quotient_bridge_values": 32,
+    "same_input_trace_steps": 4,
+    "whole_d5_candidates": 4,
+    "rejected_d5_candidates": 3,
+    "whole_d5_vectors": 4,
+    "request_bindings": 384,
+    "relabelled_E5_E6_models": 96
+  },
+  "old_to_staircase_columns": [
+    9,
+    6,
+    4,
+    8
+  ],
+  "staircase_to_old_columns": [
+    9,
+    6,
+    4,
+    8
+  ],
+  "incoming_source": "(5,130) complete E2dimension1 with nonzero d2, hence E3zero and E5zero",
+  "source_d5": "complete two-dimensional matrix [0,1]; known other column retained",
+  "inputs": {
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "Fact763Continuation/source.json": "0f5cbe6e7c29531bf9ab90c4f841c20bae9e46c50c1f3c285d0bd84492044284",
+    "Row2693D5Search/frozen-source.json": "3c143d103ae6c3ab6dee2bb972691f62818fe5f345729dc1cdc8618b12e8bd96",
+    "Fact763PageCertificates/comparison.json": "ddc0dc34d6cd147d76428db6bce6f9b20d71aad1faf138627b769a512911fa6b"
+  },
+  "limitation": "Conditional actual semantics are proved in Lean; finite tests alone do not prove topology or permanence."
+}
+4 files byte-identical

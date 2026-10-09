@@ -1,0 +1,35 @@
+Row2684D5Search/Semantics.lean:78:5: error: unknown tactic
+Row2684D5Search/Semantics.lean:77:67: error: unsolved goals
+R : Type u_1
+inst✝¹ : CommRing R
+inst✝ : CharP R 2
+v : ℕ → R
+h00 : ∀ rel ∈ product00.relations, evaluate v rel = 0
+h01 : ∀ rel ∈ product01.relations, evaluate v rel = 0
+h10 : ∀ rel ∈ product10.relations, evaluate v rel = 0
+h11 : ∀ rel ∈ product11.relations, evaluate v rel = 0
+x y : Vec 2
+j k : Fin 2
+⊢ (interpret (fun i => evaluate v (sourceBasis i)) fun i => tensor i j k) =
+    evaluate v (factorBasis j) * evaluate v (factorBasis k)
+Row2684D5Search/Semantics.lean:74:59: error: unsolved goals
+R : Type u_1
+inst✝¹ : CommRing R
+inst✝ : CharP R 2
+v : ℕ → R
+h00 : ∀ rel ∈ product00.relations, evaluate v rel = 0
+h01 : ∀ rel ∈ product01.relations, evaluate v rel = 0
+h10 : ∀ rel ∈ product10.relations, evaluate v rel = 0
+h11 : ∀ rel ∈ product11.relations, evaluate v rel = 0
+x y : Vec 2
+columns :
+  ∀ (j k : Fin 2),
+    (interpret (fun i => evaluate v (sourceBasis i)) fun i => tensor i j k) =
+      evaluate v (factorBasis j) * evaluate v (factorBasis k)
+⊢ interpret (fun i => evaluate v (sourceBasis i)) (product tensor x y) =
+    interpret (fun i => evaluate v (factorBasis i)) x * interpret (fun i => evaluate v (factorBasis i)) y
+'Row2684D5Search.Semantics.column00' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.Semantics.column01' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.Semantics.column10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.Semantics.column11' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.Semantics.all_products' depends on axioms: [propext, sorryAx]

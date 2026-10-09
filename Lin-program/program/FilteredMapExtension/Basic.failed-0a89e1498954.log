@@ -1,0 +1,70 @@
+FilteredMapExtension/Basic.lean:26:26: error(lean.invalidField): Invalid field `subgroupOf`: The environment does not contain `AddSubgroup.subgroupOf`, so it is not possible to project the field `subgroupOf` from an expression
+  corrections F G f s n
+of type `AddSubgroup A`
+FilteredMapExtension/Basic.lean:42:30: error(lean.invalidField): Invalid field `subgroupOf`: The environment does not contain `AddSubgroup.subgroupOf`, so it is not possible to project the field `subgroupOf` from an expression
+  targetRelations F G f s n
+of type `AddSubgroup B`
+FilteredMapExtension/Basic.lean:44:56: error: Application type mismatch: The argument
+  G
+has type
+  Filtration B
+of sort `Type u_2` but is expected to have type
+  ℕ
+of sort `Type` in the application
+  targetSubgroup F G
+FilteredMapExtension/Basic.lean:47:2: error(lean.unknownIdentifier): Unknown identifier `AddQuotientGroup.mk'`
+FilteredMapExtension/Basic.lean:49:48: error: Application type mismatch: The argument
+  G
+has type
+  Filtration B
+of sort `Type u_2` but is expected to have type
+  ℕ
+of sort `Type` in the application
+  TargetPage F G
+FilteredMapExtension/Basic.lean:50:2: error(lean.unknownIdentifier): Unknown identifier `AddQuotientGroup.mk'`
+FilteredMapExtension/Basic.lean:60:9: error(lean.unknownIdentifier): Unknown identifier `AddQuotientGroup.eq_zero_iff`
+FilteredMapExtension/Basic.lean:61:2: error: No goals to be solved
+FilteredMapExtension/Basic.lean:64:56: error: Application type mismatch: The argument
+  G
+has type
+  Filtration B
+of sort `Type u_2` but is expected to have type
+  ℕ
+of sort `Type` in the application
+  TargetPage F G
+FilteredMapExtension/Basic.lean:65:2: error(lean.unknownIdentifier): Unknown identifier `AddQuotientGroup.lift`
+FilteredMapExtension/Basic.lean:76:2: error(lean.unknownIdentifier): Unknown identifier `AddQuotientGroup.eq_iff_sub_mem`
+FilteredMapExtension/Basic.lean:81:2: error(lean.unknownIdentifier): Unknown identifier `AddQuotientGroup.eq_iff_sub_mem`
+FilteredMapExtension/Basic.lean:98:6: error(lean.unknownIdentifier): Unknown identifier `differential_class`
+FilteredMapExtension/Basic.lean:97:72: error: unsolved goals
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+s n : ℕ
+x : ↥(cycles F G f s n)
+⊢ sorry = 0 ↔ ∃ h ∈ corrections F G f s n, f.hom (↑x - h) ∈ G.group (s + n + 1)
+FilteredMapExtension/Basic.lean:116:30: error: unknown tactic
+FilteredMapExtension/Basic.lean:109:6: error(lean.unknownIdentifier): Unknown identifier `differential_class`
+FilteredMapExtension/Basic.lean:108:79: error: unsolved goals
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+s n : ℕ
+x : ↥(cycles F G f s n)
+y : ↥(G.group (s + n))
+⊢ sorry = sorry ↔ Extension f.hom (corrections F G f s n) (G.group (s + n + 1)) ↑x ↑y
+'FilteredMapExtension.differential' depends on axioms: [sorryAx]
+'FilteredMapExtension.sourceClass_eq' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.differential_zero_iff' depends on axioms: [propext, sorryAx, Quot.sound]
+FilteredMapExtension/Basic.lean:145:14: error(lean.unknownIdentifier): Unknown constant `differential_eq_iff_extension`
+'FilteredMapExtension.cycles_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.corrections_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.targetRelations_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

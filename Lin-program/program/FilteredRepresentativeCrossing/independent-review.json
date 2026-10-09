@@ -1,0 +1,58 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "finite_replay": {
+    "group": "Z/4",
+    "decreasing_four_level_filtrations": 15,
+    "interval_cases": 2880,
+    "ordered_lower_valid_equivalences": 1525,
+    "all_representative_checks": 14220,
+    "missing_lower_counterexamples": 245,
+    "empty_intervals": 720,
+    "reversed_intervals": 1080,
+    "commuting_squares": 88,
+    "extension_triples": 539008,
+    "full_square_transfers": 370304,
+    "missing_last_counterexamples": 51264
+  },
+  "semantic_checks": [
+    "ExactAt is actual subgroup membership at p and nonmembership at p+1.",
+    "NoCrossing quantifies all higher-source corrections and every p in the half-open interval.",
+    "Reverse implication requires only decreasingness; forward needs order and lower-image premise.",
+    "No infinite stabilization or convergence is used in the finite induction.",
+    "Representative equivalence uses one supplied genuine extension and all representative stability.",
+    "Square transfer supplies three extensions plus either first-map condition and final-map condition.",
+    "Empty and reversed intervals are vacuous; lower premise cannot be silently dropped."
+  ],
+  "limitations": [
+    "Finite Z/4 replay supports review and is not the proof of arbitrary groups.",
+    "Not identified with any of the paper essential extension-ESS/classical crossing definitions.",
+    "Detection, essentiality and boundary quotient comparison remain missing.",
+    "No claim that this is paper Theorem6.1, no new C++ certificate schema."
+  ],
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "exit_code": 0,
+      "standard_axiom_reports": 4,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Counterexamples",
+      "exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "standard_axiom_reports": 6,
+  "inputs_sha256": {
+    "FilteredRepresentativeCrossing/Basic.lean": "5a27503ec407ab3ff98ea53fb63dcdd914f13cbd6770a367be47cdd246ffae6e",
+    "FilteredRepresentativeCrossing/Counterexamples.lean": "6e5fc892d2bf8cbae4ce7c9e6bfdd6f6563af6f8d752e94ab0fc8be22a421db8",
+    "FilteredRepresentativeCrossing/README.md": "fe56c815e1f38e3fb117c0563437f865fc52b30b97002a40548d5b9fbeb05e8e",
+    "FilteredRepresentativeCrossing/independent-review.py": "4b1220487bc07da6253acae697dacf78d6467bf98780f0ac35148d5b00d8f872",
+    "GeneralizedLeibnizAudit/RepresentativeSquare.lean": "713204fb9411597f2c58d1989c00ccbb86f6ad7b0ce3d6f24a69582d30f945be"
+  }
+}

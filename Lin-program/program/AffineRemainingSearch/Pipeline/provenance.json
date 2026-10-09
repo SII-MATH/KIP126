@@ -1,0 +1,279 @@
+{
+  "branch_certificates": 2,
+  "branch_provenance": [
+    {
+      "E2_basis_ids": [
+        2698
+      ],
+      "E2_representative": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "actual_E4_dimension": 1,
+      "aggregate_incoming_coordinates": [
+        0,
+        1,
+        0
+      ],
+      "branch": 0,
+      "canonical_target_coordinates": [
+        0,
+        0,
+        1
+      ],
+      "complete_d3": {
+        "down": [
+          false,
+          false,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          true,
+          false
+        ],
+        "k": 1,
+        "m": 3,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "event2696": {
+        "E4_projection": [
+          0
+        ],
+        "d3_boundary": true,
+        "d3_cycle": true,
+        "raw_target": null
+      },
+      "event2697": {
+        "finite_d3_value_valid": true,
+        "source_coordinates": [
+          0,
+          0,
+          1
+        ],
+        "target_coordinates": [
+          1
+        ]
+      },
+      "stored_next_basis_coordinates": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "stored_next_basis_count": 2,
+      "stored_next_basis_independent": false
+    },
+    {
+      "E2_basis_ids": [
+        2697,
+        2698
+      ],
+      "E2_representative": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "actual_E4_dimension": 1,
+      "aggregate_incoming_coordinates": [
+        1,
+        1,
+        0
+      ],
+      "branch": 1,
+      "canonical_target_coordinates": [
+        0,
+        1,
+        1
+      ],
+      "complete_d3": {
+        "down": [
+          false,
+          false,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          true,
+          true,
+          false
+        ],
+        "k": 1,
+        "m": 3,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "event2696": {
+        "E4_projection": [
+          1
+        ],
+        "d3_boundary": false,
+        "d3_cycle": true,
+        "raw_target": null
+      },
+      "event2697": {
+        "finite_d3_value_valid": true,
+        "source_coordinates": [
+          0,
+          0,
+          1
+        ],
+        "target_coordinates": [
+          1
+        ]
+      },
+      "stored_next_basis_coordinates": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "stored_next_basis_count": 2,
+      "stored_next_basis_independent": false
+    }
+  ],
+  "branches": [
+    0,
+    1
+  ],
+  "conditional_premises": [
+    "row2574 two-product affine restriction",
+    "row2695 zero d3 detector semantics",
+    "row2696 earlier d3 prefix semantics",
+    "stored row2697 nonzero d3 value semantics"
+  ],
+  "distinct_paper_events": 1,
+  "event": 2697,
+  "executables_sha256": {
+    "FiniteEventProducer/finite-event-export": "7e5185a9b26e583118fa231d88e832a1b9c4d8c1adbc88bd1bc009d6d57b829b",
+    "FiniteEventProducer/indexed-event-export": "fc42a83a1aed1869a3241e310848892a178fb176edad5c8e2fd6b821c8f21932",
+    "IndexedFamilyProducer/indexed-family-export": "416acd475060ebdb7db978bbb3751e7d55dd0ff5ebf06806e7acfe76093c5658"
+  },
+  "family_entries_each": 3,
+  "incompatibility": "Both branch E4 quotients have dimension1; the older selected next-page list has two vectors and cannot be an independent complete basis. The sparse existing351family does not itself contain that conflicting d3/d4 block, so a pairwise merged-family failure is not asserted.",
+  "input_sha256": {
+    "AffineRemainingSearch/Branches.lean": "c0f401e2e1cc77d44297b40118bd5024614b42534cb6b3d6295cffd82ba151ff",
+    "AffineRemainingSearch/Data.lean": "d819a9e90f0a0ea0f388d4763821abd20e13f30c30fbb7e594e372f3cf78631b",
+    "AffineRemainingSearch/Links.lean": "c6ed21114be347644c8a8f22e9b88b84896bf8b5cd8de825dab5071528f80f89",
+    "AffineRemainingSearch/audit.json": "f0bd73fcb0538ac871413f6f3108d33cf878a8df4a53486d4c1636e68f29ce82",
+    "AffineRemainingSearch/event2697-branch0.json": "2802d912c30fcc906915ab8badaa8bd5dcfecf03bbd13575f11e07cfb61c23f7",
+    "AffineRemainingSearch/event2697-branch1.json": "6cd79545670216d075b144035e6a872e2a8c6c62055b2ecf337747b75ae7e51a"
+  },
+  "missing_neighbors": [
+    {
+      "object": "S0",
+      "page": 3,
+      "s": 6,
+      "t": 132
+    },
+    {
+      "object": "S0",
+      "page": 3,
+      "s": 12,
+      "t": 136
+    },
+    {
+      "object": "S0",
+      "page": 4,
+      "s": 9,
+      "t": 134
+    }
+  ],
+  "prior94_sha256": {
+    "AggregateHighD2Conditional/event-results.json": "e817407e42ea5ce9c7e1ebd6e89289fc23a351ab3817639b18767c6cbc426460",
+    "AggregateHighD2Conditional/source.json": "1d8efe310d883d1e6c0e68fca84684513ba39d754d10fb3284a78a9a9321959c",
+    "FiniteEventProducer/HighD2/all94.jsonl": "d47828c8d3fd3835c2e56caa7686c022b50f29cb621a341f28fd1b1641341d61",
+    "FiniteEventProducer/HighD2/indexed94.jsonl": "4c699bd70b1cbd37f93471ce03fb1f31be3ef2cf87c29c9a72f9c7e31b943ce3"
+  },
+  "raw_staircase": [
+    2697,
+    9,
+    134,
+    "1",
+    "0",
+    9997
+  ],
+  "requested_keys": [
+    {
+      "object": "S0",
+      "page": 2,
+      "s": 9,
+      "t": 134
+    },
+    {
+      "object": "S0",
+      "page": 2,
+      "s": 12,
+      "t": 136
+    },
+    {
+      "object": "S0",
+      "page": 3,
+      "s": 9,
+      "t": 134
+    }
+  ],
+  "schema": "affine_branch2697_pipeline/v1",
+  "scope": "Separate branch families contain exactly the event comparison and both required complete d2 paths. Their pairwise coherence does not cover absent neighboring comparisons or an Adams realization. Neither branch is added unconditionally to the prior94-event snapshot.",
+  "source_E2_basis_id": 2696,
+  "target_E2_basis_id": 2845
+}

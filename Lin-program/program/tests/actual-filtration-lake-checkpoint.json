@@ -1,0 +1,117 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 74654,
+  "observed_exit_code": 0,
+  "jobs": 2766,
+  "build_log": "tests/step4-actual-filtration-build.log",
+  "build_log_sha256": "27f8ba8b93fa645f6307fb8f1d9a7f8e3c4571549abf38a6e43eb3ff8302b670",
+  "individual_module_logs": {
+    "tests/step4-actual-filtration-build.log": "27f8ba8b93fa645f6307fb8f1d9a7f8e3c4571549abf38a6e43eb3ff8302b670"
+  },
+  "lakefile_sha256": "2646dc25e17c7ca816ab2a6e2a3b702d90e1dff79c905fcafba7c46a769d30c7",
+  "modules": [
+    {
+      "module": "ActualAdamsFiltration.Actual",
+      "source_sha256": "0ebae97fe28695725981f1ed79d91ee3df9edb2b00caf099c159e850425af4cb",
+      "olean_sha256": "143721e0cafaf5857a9f8f7eb9530c720937f4f82f567fe58aaa385890fef619",
+      "trace_sha256": "a23af4e3e1a4e8b1f60af67170bbeac1bc58886d7cd3c5418f065e7589ce3033"
+    },
+    {
+      "module": "ActualAdamsFiltration.Basic",
+      "source_sha256": "dc951fcd2770198683cc98551d9686547686f811c7688240e66bdc005a551bb5",
+      "olean_sha256": "40d59a670222aa631a8c59f73f1969eb0680a70cb24c8072f7d6c44987209e4c",
+      "trace_sha256": "683f8250a16d2ba9f1094b4a18a60a059cf6bf359f6fe6a8a4c8b1a27bc9c194"
+    },
+    {
+      "module": "ActualAdamsFiltration.Examples",
+      "source_sha256": "80d8a0584f7c7c9a1539307fbae5acf27ab267e7133909663f7fa2a96ca7979e",
+      "olean_sha256": "42405378b5987f20fa76b38828f4fc70398b211f9f7d0600a0f5beca34e05daf",
+      "trace_sha256": "77e1906886e3e79846ad68abd7f3d48d5f9708e1f5c8f6e3dbc0d80e3541ecc4"
+    },
+    {
+      "module": "ActualAdamsSystemBridge.Basic",
+      "source_sha256": "f6fab04ed4161c2f05e85c26b98b5bcb1589625f8a2843901aa0b407cc51a0f5",
+      "olean_sha256": "0b9644a6077ec94281bcbbed55996554ee5482b292e7f415aec73246bf4cc56a",
+      "trace_sha256": "7ea67a02be4b22acb8f7a74b2ae50e3bc51219702e2ce791cf5670d104d7f904"
+    },
+    {
+      "module": "ActualAdamsSystemBridge.Tail",
+      "source_sha256": "0365afa26e7b5e1e28ff0a6bca3beb1874a09b34d16634e13f70f4e3286cad8c",
+      "olean_sha256": "e9a2dd6d411b8f21dccd24684b49fb56961fd9a4906ada760dc7e99cca79caed",
+      "trace_sha256": "678563685995145f7768a354471755b22fb7f5fdb708b98b873a2cb536cc818a"
+    },
+    {
+      "module": "ActualAdamsSystemBridge.Trace",
+      "source_sha256": "b58db9baba1534108e37bd068bd0b1faffc5e3d196b35d08f5b67b22ebcc058b",
+      "olean_sha256": "bad10470d52cce241b0c85323ec385e85e9ed748efb98a8874ed0f4942dba6d1",
+      "trace_sha256": "f9fb4665fd3934d14985fc92f2870241835d16caa380fd0d1a81242a6767c518"
+    },
+    {
+      "module": "Fact764ConstrainedE5.Actual",
+      "source_sha256": "92a7327907b21eb9c119aec0f62a51eb81c3ee84440a8f95f99fc5a81eeaa2e6",
+      "olean_sha256": "58f4de5942b9af098c287025a1fda57b7a7584fde7ee2c9e2439bf34afd440a9",
+      "trace_sha256": "4beefc4242967e5fc23a4771796518829c9ef21f8b9b93fe807495653f793ca0"
+    },
+    {
+      "module": "Fact764ConstrainedE5.Conclusion",
+      "source_sha256": "a49257fd80ff571e43cc9d71c6148abee6891fade4a9eaa66fcf8c30cc3180ba",
+      "olean_sha256": "00ca929f4e53f5759811bada788cd300d5bd0bf5605941d4074ddaae1d00a1b6",
+      "trace_sha256": "05a860e28d3473b2be0843788198c6ca7123bc9d389a5c27f3071174fae1a8c4"
+    },
+    {
+      "module": "Fact764ConstrainedE5.Coordinates",
+      "source_sha256": "7b41ddb411da4b91a907193de3433341f52b45b95a102c054c6ff96aea2bde68",
+      "olean_sha256": "e3392b8c6fae08a1782fd35d60c3d996a8ba8bc6c582409d391a00b4e205c895",
+      "trace_sha256": "817126e6b4fb277a588984ff194ba8a09fc232920d59c1dd74fd2a61736f2327"
+    },
+    {
+      "module": "Fact764ConstrainedE5.Imported",
+      "source_sha256": "8f1c99881b7fe3270ec3b95c4cb60bf6ae22abd29c9973605cb473d0b08c4f4c",
+      "olean_sha256": "4cf9fe70e43add7ab57522ef6e03847c4db252633189b20315b7b700d4904ddc",
+      "trace_sha256": "99de08cf2bcba172b5247a7bb765fa37996339a309be5b31503690d7c70b9cfb"
+    },
+    {
+      "module": "Fact764ConstrainedE5.Obstructions",
+      "source_sha256": "c0b55dc4366e949d774a84149a589ca4a64d1b57da10ac003ae76606aec6d01c",
+      "olean_sha256": "0e656df8a60890cbc637ef8a259ffc270216cd3763f416fe4435907d7ad09273",
+      "trace_sha256": "8da2cc19f24955645e649dae5f804f8c3996b43db29972a2f66bc69e1eb460a1"
+    },
+    {
+      "module": "Fact764CycleFromProduct.Basic",
+      "source_sha256": "2515f98d6890f1184be9361265793363fed758cf85a19e612e8907fcc071e4b1",
+      "olean_sha256": "95a25952ee92424b6f3e6ec80d0b3b8101545fad1ede9625d52298aef333aee5",
+      "trace_sha256": "0b2dea52831e7f34378772fca403a6797175e1a3a8fbc6173acb2740af26338a"
+    },
+    {
+      "module": "Fact764CycleFromProduct.Data",
+      "source_sha256": "3701f735336bde852443b7567bfabf0715f21cbc00aa3a57f2ef40677ab80630",
+      "olean_sha256": "bff3c46040643fd79b5d64bf98fc0ead68c416bf990158154a92bccc35ae3736",
+      "trace_sha256": "216c893d39d055b5c2c1beaa0e3bddeb76565b7215044c291c46cf609c5fe385"
+    },
+    {
+      "module": "PermanentMapTailCertificates.Basic",
+      "source_sha256": "8429c2f4d443f8df0d1aa33788f3b58a30771cca7295bb3aa585e4af78cf239c",
+      "olean_sha256": "699f80143c535b6a9347dfdb3e18df5fb59f81d9ee6cd94a9702734b66f109f5",
+      "trace_sha256": "d7ab33cd8323c9f6d3cce6af976b6ef5d84c3b391884f00756ee65670cc32cfb"
+    },
+    {
+      "module": "PermanentMapTailCertificates.Certificate",
+      "source_sha256": "460c54501c1bca0dd8635978206788522c1a8698c3bbf686584dfe1847d45908",
+      "olean_sha256": "64356672e76f5813661f1b19029168d280767affb541a3d59d0079b19015b8df",
+      "trace_sha256": "22601b4101e2fbf46a33a3db754950c072f2b40a1692de5c65cec8d8300cf895"
+    },
+    {
+      "module": "PermanentMapTailCertificates.Examples",
+      "source_sha256": "b3290045d364abfddaaa4fea293d475cced03826b0f0ada4b6bd554a3a77e383",
+      "olean_sha256": "45866a1401e48d74ec547e6ab8b1d834f8096346b334f5b98fbe17f5af386fe8",
+      "trace_sha256": "e7d882aa69d25fa0e5551a9fc4105d13dfe1abc0cd4138ce5f167ec8e1be3fb8"
+    },
+    {
+      "module": "PermanentMapTailCertificates.Import",
+      "source_sha256": "5a2902e8105690ddea4a7df9fcab8f16d35e1ca12fd21f509e1d56e148ade6d3",
+      "olean_sha256": "d1ef53b18eb5077f34b8ab32b82191b9c7be8a8def7cac00c7d9a36c0d9e871c",
+      "trace_sha256": "3827f252562800d8411db4bb89e3c20e1b6b3bf9a430a88c8fb5ee47287e7ba9"
+    }
+  ]
+}

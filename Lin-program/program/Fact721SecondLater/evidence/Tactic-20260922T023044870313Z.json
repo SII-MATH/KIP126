@@ -1,0 +1,33 @@
+{
+  "source_sha256": "dca6c8ecea07d428dcec3142063480ba57ce11059804498cc18cb9eb0c9d8963",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact721SecondLater/Later.olean": "5144229e19a6c1cffe27113a797fdb229633581e4ba1623d100a20d7fd5a0fc6",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/lib/lean/Lean/Elab/Tactic.olean": "cc9e89c311871fa7e0f02ba6cdcb4e40d779b44bc1c28ed1cff1e4f1da9e8378"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact721SecondLater/Tactic.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact721SecondLater/Tactic.olean"
+  ],
+  "log": "evidence/Tactic-20260922T023044870313Z.log",
+  "external_input_sha256": {
+    "Fact721SecondLater/source.json": "c3bc6a90cdf99d7281608cd38e576c7b5063f6042d133bfeabeb2d0b5b0c5c4a",
+    "Fact721SecondLater/wire/i8d2.json": "deccb7c61991b1be414e1f0245fbc8b548160fe76c480dcdd9f6cac4741fdc4b",
+    "Fact721SecondLater/wire/i9d2.json": "1edd10ac29c29ebe6b3c5c86bb6f97f74e699ef6cf351cfe4429a607e29c4fe7",
+    "Fact721SecondLater/wire/ii8d2.json": "73acb93279a44007f89623a4bafd4924f3b038864de74d2ab905b09cd145e567",
+    "Fact721SecondLater/wire/o4d2.json": "ad96ba1d80832b017f95faf38fc913a614e73b8a948473d0fa56c76b0177d500",
+    "Fact721SecondLater/wire/o8d2.json": "2ecc3dafebd65c161a0c04c688da12b34d449fb7d909a3b0c42082b8b87d8f27",
+    "Fact721SecondLater/wire/t10d2.json": "41e1aae68e0239a46e0c7c68094345634a9b028ff7dc15ad2b51ecf0b2588ff7",
+    "Fact721SecondLater/wire/t4d2.json": "4149ec59ba0b962bef2b49749728619e893d9a08f4e4c280f90d68f274e72c48",
+    "Fact721SecondLater/wire/t4d3.json": "dacc0f00ba8d47e064c4a48f9f1d42ffd5725620a4cfc581980bd1dc76db86f4",
+    "Fact721SecondLater/wire/t8d2.json": "12f9a920fe53af6a1b5f31250cf49b113d4b0f6d1f4982de1dd6fe99fdf7571b",
+    "Fact721SecondLater/wire/t8d3.json": "b1d09c52903b4978690b4d1f423567f375cef77c5d6cc62f1df0209b981046f1",
+    "Fact721SecondLater/wire/t9d2.json": "3b117901aa1cd18b74f95aeef77057d9cdbc6b20ec89a02d5f5179ed041d0f3f"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "493fc4904ca3dee603f0569cd3ccd80c74a68711ebeafd03ebf23d45141c3ec9",
+  "inputs_stable": true,
+  "olean_sha256": "151758e151c6a438871b747be7eba15ad5401292b021d2fc1ab54879281fffe7"
+}

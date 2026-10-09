@@ -1,0 +1,24 @@
+FilteredMapExtension/NextPage.lean:39:14: error: Application type mismatch: The argument
+  AddSubgroup.sub_mem (G.group (s + (n + 1))) x.property.right y.property.right
+has type
+  Membership.mem.{u_2, u_2} (G.group (s + (n + 1))) (f.hom ↑x - f.hom ↑y)
+but is expected to have type
+  Membership.mem.{u_1, u_1} (↑(AddSubgroup.comap f.hom (G.group (s + (n + 1)))).toAddSubmonoid) (↑x - ↑y)
+in the application
+  ⟨hh.left, AddSubgroup.sub_mem (G.group (s + (n + 1))) x.property.right y.property.right⟩
+FilteredMapExtension/NextPage.lean:46:2: error: Type mismatch: After simplification, term
+  x.property.right
+ has type
+  Membership.mem.{u_1, u_1} ↑(AddSubgroup.comap f.hom (G.group (s + (n + 1)))).toAddSubmonoid ↑x
+but is expected to have type
+  Membership.mem.{u_2, u_2} (G.group (s + (n + 1))) (f.hom ↑((includeNext F G f s n) x))
+FilteredMapExtension/NextPage.lean:57:7: error: Type mismatch: After simplification, term
+  higher
+ has type
+  Membership.mem.{u_2, u_2} (G.group (s + (n + 1))) (f.hom (↑x - h))
+but is expected to have type
+  Membership.mem.{u_1, u_1} (↑(AddSubgroup.comap f.hom (G.group (s + (n + 1)))).toAddSubmonoid) (↑x - h)
+'FilteredMapExtension.nextToCurrent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.nextToCurrent_injective' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.current_cycle_has_next' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.nextPageEquivKernel' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

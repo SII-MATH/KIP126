@@ -1,0 +1,24 @@
+Fact721FirstD6DC2h6/Incoming4.lean:43:23: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (AdamsSpectralSequence.differential ?m.66 4 Row2773D4Leibniz.Actual.sourceDegree).toFun
+    (Fact713Ctheta4Continuation.Incoming.Input.named4 ?D)
+in the target expression
+  D.map.map 4 (AdamsTarget 4 sourceDegree)
+      ((S.differential 4 sourceDegree).toFun ((sp.nextPage 3 sourceDegree).toNext ⟦D.sphere.cycle3⟧)) =
+    0
+
+S T : AdamsSpectralSequence
+sp : CertifiedAdamsPages S
+tp : CertifiedAdamsPages T
+A : ModuleAction.Action S T
+P : CertifiedAdamsProduct S
+I : Stage2 S T sp tp
+M : ExtraSource.Meaning I A
+D : Input I M
+⊢ D.map.map 4 (AdamsTarget 4 sourceDegree)
+      ((S.differential 4 sourceDegree).toFun ((sp.nextPage 3 sourceDegree).toNext ⟦D.sphere.cycle3⟧)) =
+    0
+'Fact721FirstD6DC2h6.Incoming4.Input.sphere_d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming4.Input.source_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming4.Input.middle_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming4.Input.kernel_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming4.Input.whole_d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

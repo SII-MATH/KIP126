@@ -1,0 +1,39 @@
+{
+  "assert_requests": "passed",
+  "axiom_reports": 4,
+  "build_observation": [
+    {
+      "current_inputs": true,
+      "exit_code": 0,
+      "module": "Request",
+      "record_sha256": "b061e634df45dd0ae8fe422b5e01e833a1e84b7e76357048cfbfde76b3e0b3b5"
+    },
+    {
+      "current_inputs": true,
+      "exit_code": 0,
+      "module": "RequestExample",
+      "record_sha256": "8f8663a5228f501fe67bf1cbbf34a6b8b1445a2482d8436614cc00b6d7c9a4cd"
+    }
+  ],
+  "findings": [],
+  "inputs_sha256": {
+    "IndexedFamilyCertificates/Basic.lean": "aa153c63d766feb49491454acc083cebf8c18dd30c6270bf859c9e8777c52ab2",
+    "IndexedFamilyCertificates/Results.lean": "b303d5fae5912f30b3d67b5094b2f017fc358184f5bd56dd6bea75a192d7e0fb",
+    "SemanticTrajectoryCertificates/Event.lean": "f09e4372cc6a8ff421f3782cf1d98f7532d074364be377a3d933425682671a6e",
+    "SemanticTrajectoryCertificates/Indexed.lean": "2f2925a682781bfe71f1c9efc2ec378952ab756a1626b3c3d72c167f0bf022d8",
+    "SemanticTrajectoryCertificates/Request.lean": "7254637adde8a9a675e181ce625b4048d2c7356a6cd0bfc4f036a584b94a66fe",
+    "SemanticTrajectoryCertificates/RequestExample.lean": "fab37b7c9db2ddff9645678e1fe5133f3f1302352046f61cff28f91b850537d9"
+  },
+  "limitations": [
+    "SemanticRequest.interpretation is a proved mathematical input; tactics do not construct topology, true Adams pages or external naturality assumptions from strings.",
+    "This is a caller-bound finite semantic result under the inherited interpretations, not an unconditional original-topology theorem."
+  ],
+  "reviewed_claims": [
+    "ResultMatches fixes caller object/page/degree and entire input/output lists; the checker also validates BoundWire, so extra or missing list entries cannot hide behind default-false coordinate indexing.",
+    "RequestedHolds includes exact request matching, the same interpretation full-page Holds, caller-key DifferentialAt, and coordinates of the identical endpoint points in the semantic differential statement.",
+    "request_sound uses both halves of checkResult and does not infer semantic data from the certificate.",
+    "The batch uses the specific wire and interpretation paired with each SemanticRequest.",
+    "Five executable counterexamples reject wrong object, page, degree, source and target; the real6651 single and batch examples use caller-fixed values."
+  ],
+  "status": "independent_request_API_review_passed"
+}

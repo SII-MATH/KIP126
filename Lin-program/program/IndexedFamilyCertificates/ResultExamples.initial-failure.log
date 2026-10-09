@@ -1,0 +1,10 @@
+IndexedFamilyCertificates/ResultExamples.lean:11:2: error: Tactic `decide` proved that the proposition
+  LinProgramCertificates.CertificateVerifier.check certificate = true
+is false
+IndexedFamilyCertificates/ResultExamples.lean:30:87: error: Tactic `decide` proved that the proposition
+  Option.map LinProgramCertificates.VerificationFailure.location
+      (diagnoseResult family { object := "S0", page := 4, s := 18, t := 144 } [true, false, false] [true, false]
+        certificate) =
+    some "result.target"
+is false
+'IndexedFamilyCertificates.ResultExamples.event3744' depends on axioms: [propext, sorryAx, Quot.sound]

@@ -1,0 +1,229 @@
+"""Independent exhaustive F2 search validates synthesis and actual coset transfer."""
+import copy
+import hashlib
+import itertools
+import json
+from pathlib import Path
+import random
+import subprocess
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+EXE = HERE / 'representative-square-export'
+encode = lambda x: json.dumps(x, sort_keys=True, separators=(',', ':'))
+sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+vectors = lambda n: list(itertools.product([False, True], repeat=n))
+xor = lambda x, y: tuple(a != b for a, b in zip(x, y))
+
+
+def apply(matrix, rows, columns, x):
+    return tuple(bool(sum(matrix[i * columns + j] and x[j] for j in range(columns)) % 2)
+                 for i in range(rows))
+
+
+def image(matrix, rows, columns):
+    return {apply(matrix, rows, columns, x) for x in vectors(columns)}
+
+
+def extension(f, H, K, a, b, h, k, x, y):
+    corrections = image(H, a, h)
+    targets = image(K, b, k)
+    return any(xor(rep, x) in corrections and xor(apply(f, b, a, rep), y) in targets
+               for rep in vectors(a))
+
+
+def preserves(f, H, K, a, b, h, k):
+    targets = image(K, b, k)
+    return all(apply(f, b, a, correction) in targets for correction in image(H, a, h))
+
+
+def expected(data, branch='auto'):
+    a, b, c, d, ha, hb, hc, hd = (data[name] for name in ['a', 'b', 'c', 'd', 'ha', 'hb', 'hc', 'hd'])
+    f, p, q, g, H, K, J, L = (data[name] for name in ['f', 'p', 'q', 'g', 'higherA', 'higherB', 'higherC', 'higherD'])
+    x, y, z, w = (tuple(data[name]) for name in ['x', 'y', 'z', 'w'])
+    if not all(apply(q, d, b, apply(f, b, a, v)) == apply(g, d, c, apply(p, c, a, v)) for v in vectors(a)):
+        return False
+    if not extension(f, H, K, a, b, ha, hb, x, y):
+        return False
+    if not extension(p, H, J, a, c, ha, hc, x, z):
+        return False
+    if not extension(g, J, L, c, d, hc, hd, z, w):
+        return False
+    first_f = preserves(f, H, K, a, b, ha, hb)
+    first_p = preserves(p, H, J, a, c, ha, hc)
+    if not ((branch != 'p' and first_f) or (branch != 'f' and first_p)):
+        return False
+    return preserves(g, J, L, c, d, hc, hd)
+
+
+def validate(wire, source):
+    assert set(wire) == {'version', 'data', 'firstBranch', 'firstFactor', 'lastFactor',
+        'firstRep', 'firstSource', 'firstTarget', 'secondRep', 'secondSource', 'secondTarget',
+        'thirdRep', 'thirdSource', 'thirdTarget'}
+    assert wire['version'] == 1 and wire['data'] == source['data']
+    data = wire['data']
+    a, b, c, d, ha, hb, hc, hd = (data[name] for name in ['a', 'b', 'c', 'd', 'ha', 'hb', 'hc', 'hd'])
+    configurations = [('first', 'f', 'higherA', 'higherB', a, b, ha, hb, 'x', 'y'),
+                      ('second', 'p', 'higherA', 'higherC', a, c, ha, hc, 'x', 'z'),
+                      ('third', 'g', 'higherC', 'higherD', c, d, hc, hd, 'z', 'w')]
+    for name, f, H, K, aa, bb, hh, kk, x, y in configurations:
+        rep, u, v = (wire[name + field] for field in ['Rep', 'Source', 'Target'])
+        assert (len(rep), len(u), len(v)) == (aa, hh, kk)
+        assert all(type(bit) is bool for vector in [rep, u, v] for bit in vector)
+        assert apply(data[H], aa, hh, u) == xor(rep, data[x])
+        assert apply(data[K], bb, kk, v) == xor(apply(data[f], bb, aa, rep), data[y])
+    f_branch = preserves(data['f'], data['higherA'], data['higherB'], a, b, ha, hb)
+    assert wire['firstBranch'] == ('f' if source['firstBranch'] != 'p' and f_branch else 'p')
+    ff, K, rows, target_cols = ('f', 'higherB', b, hb) if wire['firstBranch'] == 'f' else ('p', 'higherC', c, hc)
+    assert len(wire['firstFactor']) == target_cols * ha
+    assert len(wire['lastFactor']) == hd * hc
+    for u in vectors(ha):
+        assert apply(data[ff], rows, a, apply(data['higherA'], a, ha, u)) == apply(
+            data[K], rows, target_cols, apply(wire['firstFactor'], target_cols, ha, u))
+    for u in vectors(hc):
+        assert apply(data['g'], d, c, apply(data['higherC'], c, hc, u)) == apply(
+            data['higherD'], d, hd, apply(wire['lastFactor'], hd, hc, u))
+    # Check the conclusion directly by all actual representatives and cosets,
+    # not by rerunning elimination or replaying the producer's witness formula.
+    assert extension(data['q'], data['higherB'], data['higherD'], b, d, hb, hd,
+                     tuple(data['y']), tuple(data['w']))
+
+
+def run(lines):
+    payload = '\n'.join(lines) + '\n'
+    return subprocess.run([str(EXE), '-'], input=payload, text=True, capture_output=True)
+
+
+rng = random.Random(764061)
+cases = []
+for _ in range(1200):
+    dimensions = [rng.randrange(3) for _ in range(8)]
+    a, b, c, d, ha, hb, hc, hd = dimensions
+    data = dict(zip(['a', 'b', 'c', 'd', 'ha', 'hb', 'hc', 'hd'], dimensions))
+    shapes = {'f': (b, a), 'p': (c, a), 'q': (d, b), 'g': (d, c),
+              'higherA': (a, ha), 'higherB': (b, hb), 'higherC': (c, hc), 'higherD': (d, hd),
+              'x': (a, 1), 'y': (b, 1), 'z': (c, 1), 'w': (d, 1)}
+    for name, (rows, cols) in shapes.items():
+        data[name] = [bool(rng.randrange(2)) for _ in range(rows * cols)]
+    cases.append({'version': 1, 'data': data, 'firstBranch': rng.choice(['auto', 'f', 'p'])})
+
+# Every scalar map/correction choice and every named quadruple is tested.
+for values in itertools.product([False, True], repeat=8):
+    for names in itertools.product([False, True], repeat=4):
+        data = dict.fromkeys(['a', 'b', 'c', 'd', 'ha', 'hb', 'hc', 'hd'], 1)
+        data.update({name: [value] for name, value in zip(
+            ['f', 'p', 'q', 'g', 'higherA', 'higherB', 'higherC', 'higherD'], values)})
+        data.update({name: [value] for name, value in zip(['x', 'y', 'z', 'w'], names)})
+        cases.append({'version': 1, 'data': data, 'firstBranch': 'auto'})
+
+accepted = [case for case in cases if expected(case['data'], case['firstBranch'])]
+rejected = [case for case in cases if not expected(case['data'], case['firstBranch'])]
+mixed = run([encode(case) for case in cases])
+assert mixed.returncode == 1
+outputs = mixed.stdout.splitlines()
+assert len(outputs) == len(accepted)
+for line, source in zip(outputs, accepted):
+    wire = json.loads(line)
+    assert line == encode(wire)
+    validate(wire, source)
+diagnostics = mixed.stderr.splitlines()
+rejected_rows = [i for i, case in enumerate(cases, 1) if not expected(case['data'], case['firstBranch'])]
+assert len(diagnostics) == len(rejected_rows)
+assert all(line.startswith(f'stdin:{row}: ') for line, row in zip(diagnostics, rejected_rows))
+
+valid_lines = [encode(case) for case in accepted]
+runs = [run(valid_lines) for _ in range(3)]
+assert all(result.returncode == 0 and not result.stderr for result in runs)
+assert runs[0].stdout == runs[1].stdout == runs[2].stdout
+(HERE / 'valid.input.jsonl').write_text('\n'.join(valid_lines) + '\n')
+(HERE / 'valid.jsonl').write_text(runs[0].stdout)
+
+selected = {}
+for line, source in zip(outputs, accepted):
+    wire = json.loads(line)
+    branch = wire['firstBranch']
+    if branch not in selected and all(source['data'][name] == 1 for name in ['a', 'b', 'c', 'd']):
+        if any(source['data'][name] == [True] for name in ['x', 'y', 'z', 'w']):
+            selected[branch] = wire
+    if 'zero' not in selected and all(source['data'][name] == 0 for name in ['a', 'b', 'c', 'd']):
+        selected['zero'] = wire
+assert set(selected) == {'f', 'p', 'zero'}
+for label, wire in selected.items():
+    (HERE / ('case_' + label + '.json')).write_text(encode(wire) + '\n')
+
+base = copy.deepcopy(accepted[0])
+bad = []
+def mutation(label, change):
+    case = copy.deepcopy(base)
+    change(case)
+    bad.append((label, encode(case)))
+
+mutation('unknown boolean', lambda v: v['data'].__setitem__('x', [None] * v['data']['a']))
+mutation('unknown field', lambda v: v.__setitem__('unknown', False))
+mutation('missing field', lambda v: v['data'].pop('f'))
+mutation('outer version', lambda v: v.__setitem__('version', 2))
+mutation('unknown branch', lambda v: v.__setitem__('firstBranch', 'unknown'))
+mutation('external input marker', lambda v: v.__setitem__('firstBranch', 'external_input'))
+mutation('unknown matrix', lambda v: v['data'].__setitem__('f', '?'))
+mutation('NULL matrix marker', lambda v: v['data'].__setitem__('f', '[NULL]'))
+mutation('possibly matrix marker', lambda v: v['data'].__setitem__('f', 'possibly'))
+mutation('dimension limit', lambda v: v['data'].__setitem__('a', 65))
+mutation('boolean dimension', lambda v: v['data'].__setitem__('a', True))
+mutation('negative dimension', lambda v: v['data'].__setitem__('a', -1))
+mutation('wrong vector length', lambda v: v['data'].__setitem__('x', [True] * (v['data']['a'] + 1)))
+bad.extend([('duplicate field', encode(base)[:-1] + ',"version":1}'),
+            ('unknown literal', encode(base).replace('"data":', '"data":null,"ignored":', 1)),
+            ('trailing JSON', encode(base) + '{}'), ('blank record', ''),
+            ('trailing NUL', encode(base) + '\x00'),
+            ('trailing NUL and junk', encode(base) + '\x00junk'),
+            ('whitespace then trailing NUL', encode(base) + ' \t\x00junk'),
+            ('deep JSON', '[' * 34 + '0' + ']' * 34)])
+bad_results = []
+for label, line in bad:
+    result = run([line])
+    assert result.returncode == 1 and not result.stdout, (label, result.stdout)
+    assert result.stderr.startswith('stdin:1: '), (label, result.stderr)
+    bad_results.append(dict(label=label, diagnostic=result.stderr.strip()))
+
+for numeric_bit in [0, 1]:
+    case = copy.deepcopy(selected['p'])
+    case = {'version': 1, 'data': case['data'], 'firstBranch': 'auto'}
+    case['data']['x'] = [numeric_bit]
+    result = run([encode(case)])
+    assert result.returncode == 1 and not result.stdout and 'expected Boolean' in result.stderr
+
+# Exercise the production limit with a nonsingular 64-dimensional example.
+size = 64
+identity = [i == j for i in range(size) for j in range(size)]
+large = dict.fromkeys(['a', 'b', 'c', 'd', 'ha', 'hb', 'hc', 'hd'], size)
+for name in ['f', 'p', 'q', 'g', 'higherA', 'higherB', 'higherC', 'higherD']:
+    large[name] = identity
+for name in ['x', 'y', 'z', 'w']:
+    large[name] = [bool(rng.randrange(2)) for _ in range(size)]
+large_input = {'version': 1, 'data': large, 'firstBranch': 'auto'}
+large_result = run([encode(large_input)])
+assert large_result.returncode == 0 and not large_result.stderr
+large_wire = json.loads(large_result.stdout)
+assert large_wire['firstFactor'] == identity and large_wire['lastFactor'] == identity
+for label, xname, yname in [('first', 'x', 'y'), ('second', 'x', 'z'), ('third', 'z', 'w')]:
+    assert tuple(large_wire[label+'Rep']) == tuple(large[yname])
+    assert tuple(large_wire[label+'Source']) == xor(large[xname], large[yname])
+    assert large_wire[label+'Target'] == [False] * size
+large_path = HERE / 'case_dimension64.json'
+large_path.write_text(encode(large_wire) + '\n')
+
+files = [HERE / 'export.cpp', HERE / 'Makefile', Path(__file__),
+         ROOT / 'IndexedFamilyProducer/json.hpp', ROOT / 'RepresentativeSquareCertificates/Basic.lean',
+         ROOT / 'RepresentativeSquareCertificates/Import.lean']
+audit = dict(status='independent_exhaustive_producer_checks_passed',
+    input_cases=len(cases), scalar_exhaustive_cases=4096, random_small_cases=1200,
+    accepted=len(accepted), rejected=len(rejected), accepted_branches={
+        label: sum(json.loads(line)['firstBranch'] == label for line in outputs) for label in ['f', 'p']},
+    repeat_runs=3, byte_identical=True, negative_cases=bad_results, largest_tested_dimension=64,
+    strict_boolean=True, mathematical_conclusion_checked_by='Exhaustive representatives and whole correction subgroups, independent of Gaussian elimination.',
+    scope='Algebraic representative-square transfer only; no actual filtered product or paper Theorem6.1 instance.',
+    input_sha256={str(p.relative_to(ROOT)): sha(p) for p in files},
+    valid_input_sha256=sha(HERE / 'valid.input.jsonl'), valid_output_sha256=sha(HERE / 'valid.jsonl'),
+    executable_sha256=sha(EXE))
+(HERE / 'audit.json').write_text(json.dumps(audit, indent=2) + '\n')
+print(f'{len(cases)} independent cases: {len(accepted)} accepted/{len(rejected)} rejected; 3 deterministic runs; strict negative cases pass')

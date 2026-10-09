@@ -1,0 +1,12 @@
+IndexedFamilyCertificates/Import.lean:19:31: error: Application type mismatch: The argument
+  w.object
+has type
+  String
+but is expected to have type
+  BoundWire
+in the application
+  Valid family w.object
+IndexedFamilyCertificates/Import.lean:24:8: warning: declaration uses `sorry`
+'IndexedFamilyCertificates.checkBound_sound' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedFamilyCertificates.Valid.differential' depends on axioms: [propext, Quot.sound]
+'IndexedFamilyCertificates.diagnose_none_iff' depends on axioms: [propext, Quot.sound]

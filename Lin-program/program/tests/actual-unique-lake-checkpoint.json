@@ -1,0 +1,93 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 36047,
+  "observed_exit_code": 0,
+  "jobs": 2799,
+  "build_log": "tests/step4-actual-unique-build.log",
+  "build_log_sha256": "11e7e994647e2a36236c45e9caa65024a2085253447ae4958dd5983aec1ac875",
+  "individual_module_logs": {
+    "tests/step4-actual-unique-build.log": "11e7e994647e2a36236c45e9caa65024a2085253447ae4958dd5983aec1ac875"
+  },
+  "lakefile_sha256": "b8e5e3c27dce5290375397cdbf077c9f768d16fab24f9991993a75199109af12",
+  "modules": [
+    {
+      "module": "ActualAdamsAdditiveQuotient.Basic",
+      "source_sha256": "081c0343d354e481e8912ca7dafb4447372aa2e5bed5138d67102d86469d6825",
+      "olean_sha256": "2c28f87714bb476b35e91c668734c9b1836185660ea9793d7467fbe3d5b983d7",
+      "trace_sha256": "6bf06a77be3c283e6e25294a023e3b0ac2bcffbc8139718f4d6a97eadbb9a993"
+    },
+    {
+      "module": "ActualAdamsProductTraceBridge.Assembly",
+      "source_sha256": "695e6af00c1b23a66864386997d119fc06af2037dfa9273547a6fca8e6a81d8f",
+      "olean_sha256": "4c6986edeab706dca24b2927d2c7658b9865e74f15c829e59724a193afd7dfa5",
+      "trace_sha256": "dd974266c96f6f4f89853f8c10c3e98c4e01aab9bfccfc44d99d6f6959b317c5"
+    },
+    {
+      "module": "ActualAdamsProductTraceBridge.Basic",
+      "source_sha256": "718e644cda549cc2c3046ef25de9701378c1073e5a435245bfa3ca8acaeddc6d",
+      "olean_sha256": "eeb21da49a943698de2d9b912f6628481c19a1c87f770aa7fbb39113a0fd0676",
+      "trace_sha256": "eddc696af87f58e88d47bf6e8f468207c78084f5c020b50fc7b86f696a1f667d"
+    },
+    {
+      "module": "ActualAdamsProductTraceBridge.Factors",
+      "source_sha256": "1b78a72e1f7c2e3e7a2becf3de1fe5be3c96862ab7d01f9f609405142f1ff0b0",
+      "olean_sha256": "70808252991c12fcf62c3e8cb90c7ea6a3ac12df64afd3d5825817c748d30e7a",
+      "trace_sha256": "86eaebad1e263ade566efb10b541ce72307805a5d76204579338918759a78849"
+    },
+    {
+      "module": "ActualAdamsProductTraceBridge.Named",
+      "source_sha256": "2eb3e44290d891b988c15b465b9c9d49b72f2a8c78f4d054f8c20623c8a0fd30",
+      "olean_sha256": "dc98338f2ccec584a4a3365e6fc85cf011b6d56780f0656cb5c55488d6a12f65",
+      "trace_sha256": "251ae029e6e0269e501c665fe4420f5cf78860306ded160463bd12469cff7e93"
+    },
+    {
+      "module": "ActualAdamsUniqueBridge.Basic",
+      "source_sha256": "11482b48459325156dd878e71a5abb3238b0dab46d225a4054365c851690d414",
+      "olean_sha256": "69c81cbb6afcded24575ee43ef10f481929a008691b189449c16280c4ae6ecf9",
+      "trace_sha256": "2b4164fe93f2e19f0c2acea087881e6658643d499f4c2b4d88dcdbcae471c903"
+    },
+    {
+      "module": "ActualAdamsUniqueBridge.Fact764",
+      "source_sha256": "87d498fb2196649ae5303d7ec19a8c4670fed8f55c861075976191ac81259d51",
+      "olean_sha256": "b5acd98fd1b21568220bc7dda532bba6da69ff5ad09ac639bd821c51f2846200",
+      "trace_sha256": "36457c60834278b10c99a54686ab33646b7cdd61071c7437a6b0da3ce7bb4436"
+    },
+    {
+      "module": "ActualAdamsUniqueBridge.Quotient",
+      "source_sha256": "4cc8f6895fba58d278d201aa8ea2318be3ad6fe6d102c332948d131d275b8630",
+      "olean_sha256": "74a99de53db985222a523117db809b03a05d1ddd9ae4f24da1bb046dfca9955d",
+      "trace_sha256": "36830b5205ea7ee79a63b75b2234cc4a36d9ecb5c0c28057a5095d58b3f9426f"
+    },
+    {
+      "module": "ActualAdamsUniqueNext.Basic",
+      "source_sha256": "238388e07a602c3954c63e663414c6a48a32cf830fa47182c32bb20690c8248b",
+      "olean_sha256": "372d1fe07599f7c223b54ec80361b5e0989c228aa77d74abea73c89365fd6dea",
+      "trace_sha256": "caaa5e770df7330966f2f8fac618e6186810497aada3404f80786cd64e0e4a97"
+    },
+    {
+      "module": "ActualAdamsUniqueNext.Fact764",
+      "source_sha256": "562f0ec8e05fca841a59bb65f420cc08170c15429b1f99700244355ce6e7ec18",
+      "olean_sha256": "4b08887d186bbfe2f6492114437a0ea4833a919176b2aa957b474546295b0cf3",
+      "trace_sha256": "dacb408482af17a2d0a942e179b538883ef8198010806313e75ed0311e91fb70"
+    },
+    {
+      "module": "Stem125ConstrainedE5.Basic",
+      "source_sha256": "f744185557b9561faee22cc586b097b25049eefe82e244547db9acd633f6ee48",
+      "olean_sha256": "1b67baff5b64d4087b7cfdf12622a0c078d4f7f9c2ac23873a59c1ba60c04323",
+      "trace_sha256": "65ec4cd4d31e1bbe1d254f14a6501a44485023b53fbad7416c2fd82e1763b040"
+    },
+    {
+      "module": "Stem125ConstrainedE5.Constraints",
+      "source_sha256": "b5db16df9557b59ce2838f8cb714e9af3856262c2cee028d798e99a6cee6abd9",
+      "olean_sha256": "16be366985d1d1ee14f0fd3eaf04164137712a8d93dff5577740ce5064f857d6",
+      "trace_sha256": "69c7ffdbd29346b792cf31887941e497207002d01bb3017ba76bc8d2e97d64aa"
+    },
+    {
+      "module": "Stem125ConstrainedE5.Whole",
+      "source_sha256": "38552be7c9fe2e7be2774b3362d44a7731b359f52ac76b345e2cd14fdc0a1bb8",
+      "olean_sha256": "06ccb96c355ecbd25eea41fb2c45a47ee4031c30e8d45bcaccb5262b669b5906",
+      "trace_sha256": "7888861aba0ad930292f627232a242de210a6d60ba12a889695e00e0c88e48be"
+    }
+  ]
+}

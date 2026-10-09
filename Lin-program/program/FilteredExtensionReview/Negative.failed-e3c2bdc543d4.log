@@ -1,0 +1,15 @@
+FilteredExtensionReview/Negative.lean:25:17: error: Tactic `rcases` failed: `negative13_0` is not a free variable
+w : FilteredExtensionCertificates.WireCertificate
+hw :
+  ((((((((((((w ∈ negative00 ∨ w ∈ negative01) ∨ w ∈ negative02) ∨ w ∈ negative03) ∨ w ∈ negative04) ∨ w ∈ negative05) ∨
+                  w ∈ negative06) ∨
+                w ∈ negative07) ∨
+              w ∈ negative08) ∨
+            w ∈ negative09) ∨
+          w ∈ negative10) ∨
+        w ∈ negative11) ∨
+      w ∈ negative12) ∨
+    w ∈ negative13
+⊢ FilteredExtensionCertificates.checkWire w = Except.ok false
+'FilteredExtensionReview.negative_count' does not depend on any axioms
+'FilteredExtensionReview.selected_mutations_rejected' depends on axioms: [propext, sorryAx]

@@ -1,0 +1,23 @@
+Row2925EtaD4/Naturality.lean:29:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (homologyEquivalence (matrixOf upperTarget.k upperTarget.m upperTarget.outgoing)
+        (matrixOf upperTarget.m upperTarget.n upperTarget.incoming) upperTarget.comparison ⋯).toCoordinates
+    (inducedMap uppercompatible ?x)
+in the target expression
+  ve.toCoordinates (g x) = fun x_1 => ue.toCoordinates x 1
+
+x : U
+⊢ ve.toCoordinates (g x) = fun x_1 => ue.toCoordinates x 1
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    1
+  has type
+    Fin 2
+  but is expected to have type
+    Fin upperSource.h
+  in the application
+    ue.toCoordinates x 1
+'Row2925EtaD4.Naturality.named_maps_zero' depends on axioms: [propext, Quot.sound]
+'Row2925EtaD4.Naturality.target_coordinate' depends on axioms: [propext, sorryAx, Quot.sound]
+'Row2925EtaD4.Naturality.named_second_coordinate_zero' depends on axioms: [propext, sorryAx, Quot.sound]

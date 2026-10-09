@@ -1,0 +1,88 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "scope": "Three frozen leaves: canonical cycle filtration, actual quotient realization, trace equivalence, and semantic counterexamples.",
+  "indexing": {
+    "system_n": "Adams page n+2",
+    "Z_n": "Prior outgoing pages 2 through n+1",
+    "Z_0": "All E2 elements",
+    "endpoint": "Adams page n+2 after exactly n cycle steps",
+    "boundary_n": "Prior-cycle initial elements whose representative is zero on page n+2",
+    "incoming_at_n": "Creates boundary at n+1, i.e. zero on page n+3"
+  },
+  "constructed_by_definition": [
+    "Z subsets from finite prior outgoing-cycle conditions",
+    "Boundary equivalence as equal actual n-page representatives",
+    "Local outgoing iff next Z and commuting advance square",
+    "Quotient injectivity from its defining fibers"
+  ],
+  "proved_completeness": [
+    "Every actual page element has an E2 ancestor satisfying every prior cycle condition, by repeated CycleSurjective.",
+    "The entire canonical quotient surjects onto every actual page.",
+    "Actual cycle surjectivity follows from CertifiedAdamsPages rightInverse and quotient representative elimination.",
+    "Trace and Cycles are equivalent using real cycle proofs and advance_on_cycle, with no separate compatibility premise."
+  ],
+  "not_eliminated": [
+    "Caller-supplied actual AdamsSpectralSequence and full differential maps",
+    "CertifiedAdamsPages full homology identifications",
+    "ZeroMeaning",
+    "Actual E2/Ext and spectrum/name realization",
+    "Identification of canonical Z/B predicates with independently defined additive paper subgroups",
+    "Additive quotient compatibility and convergence"
+  ],
+  "finite_replay": {
+    "transition_options": {
+      "1": 1,
+      "2": 7,
+      "4": 63
+    },
+    "two_transition_families": 543,
+    "initial_elements": 2172,
+    "local_elements": 6852,
+    "local_fiber_pairs": 24168,
+    "actual_trace_prefix_cases": 6852,
+    "noncycle_trace_rejections": 819,
+    "strong_permanent_cases": 297,
+    "nonzero_initial_boundary_cycles": 513,
+    "phantom_next_page_counterexample": true,
+    "scope": "Complete F2-linear incoming/outgoing complexes up to current dimension2, all zero-preserving quotient identifications, two arbitrary transitions then constant stable tails."
+  },
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "observed_exit_code": 0,
+      "standard_or_no_axiom_reports": 4,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": false
+    },
+    {
+      "module": "Actual",
+      "observed_exit_code": 0,
+      "standard_or_no_axiom_reports": 6,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": false
+    },
+    {
+      "module": "Examples",
+      "observed_exit_code": 0,
+      "standard_or_no_axiom_reports": 4,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": false
+    }
+  ],
+  "inputs_sha256": {
+    "ActualAdamsFiltration/Basic.lean": "dc951fcd2770198683cc98551d9686547686f811c7688240e66bdc005a551bb5",
+    "ActualAdamsFiltration/Actual.lean": "0ebae97fe28695725981f1ed79d91ee3df9edb2b00caf099c159e850425af4cb",
+    "ActualAdamsFiltration/Examples.lean": "80d8a0584f7c7c9a1539307fbae5acf27ab267e7133909663f7fa2a96ca7979e",
+    "ActualAdamsSystemBridge/Basic.lean": "f6fab04ed4161c2f05e85c26b98b5bcb1589625f8a2843901aa0b407cc51a0f5",
+    "ActualAdamsSystemBridge/Trace.lean": "b58db9baba1534108e37bd068bd0b1faffc5e3d196b35d08f5b67b22ebcc058b",
+    "ManualInputObligations/Typed.lean": "d38170dbe354b4af0ecd4ff56846d6144fde3250fa9209db61fd2781a4f98524",
+    "ManualInputObligations/Reference/AdamsHomology.lean": "527fc8f59f7dc609c70f359876ec4c83010df3801c5fad301b1b2d0dc4b92232",
+    "OutgoingCycleFiltrationCertificates/Basic.lean": "824e8dc62e440f6fcaa586fffa6626b908e9c52dd4058c1488d9a2edf74efc5f",
+    "OutgoingCycleFiltrationCertificates/Boundary.lean": "68ec56a66a45b05556aa1eb19ed215967bb9c8e5f60dbbe89b53e9f61dcd7648",
+    "OutgoingCycleFiltrationCertificates/Strong.lean": "291d13cd499c58fabfbcc180eb864d983272423dab654ddbada7a36c171d014f",
+    "OutgoingCycleFiltrationCertificates/Examples.lean": "6849e7d04c11edc4b053114dd9fba4d238e8851de7f3b54eb578d759e02eb869",
+    "OutgoingCycleCertificates/Examples.lean": "c9f828c89d2ce31dbc493ea69d27ca38ff4605762d9bc07323f93cf01cdd03f6"
+  }
+}

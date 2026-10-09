@@ -1,0 +1,90 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "finite": {
+    "original_choices": 480,
+    "retained_choices": 48,
+    "dimension_counts": {
+      "6": 8,
+      "5": 20,
+      "4": 16,
+      "3": 4
+    },
+    "original_centers": 45,
+    "explicit_centers": 17,
+    "zero_centers": 28,
+    "full_comparisons": 42,
+    "full_cycle_pairs": 846,
+    "enumerated_full_product_quotient_vectors": 1440,
+    "candidate_branch_pairs": 320,
+    "selected_pairs": [
+      [
+        8,
+        7
+      ],
+      [
+        18,
+        15
+      ]
+    ],
+    "noncycle_counterexamples": [
+      [
+        9,
+        7
+      ],
+      [
+        19,
+        15
+      ]
+    ]
+  },
+  "semantics": [
+    "embed preserves all other fields and identifies exactly the same original Product.Choice.",
+    "Whole quotient includes every explicit local quotient plus every arbitrary-neighbor zero-current quotient.",
+    "Complete local quotient equivalence gives actual finite cardinality and addition statements.",
+    "48 choices are local products; no simultaneous actual graded Adams realization is proved.",
+    "Named cycle is essential: branches9/19 satisfy the other obstruction constraints.",
+    "aggregate_from_product obtains only the named-cycle premise from the earlier common-ring Meaning; all obstruction/source/complex meanings remain inputs.",
+    "The earlier Meaning is ungraded with a caller-supplied zero target tower; no silent upgrade to the newer typed actual bridge is made."
+  ],
+  "not_claimed": [
+    "Actual joint family realization",
+    "Full target101 exclusion",
+    "Later permanence",
+    "Stable homotopy or convergence",
+    "Automatic interpretation of independent meanings in a single actual spectrum"
+  ],
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 8
+    },
+    {
+      "module": "Whole",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 5
+    },
+    {
+      "module": "Constraints",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 3
+    }
+  ],
+  "inputs_sha256": {
+    "Stem125ConstrainedE5/Basic.lean": "f744185557b9561faee22cc586b097b25049eefe82e244547db9acd633f6ee48",
+    "Stem125ConstrainedE5/Whole.lean": "38552be7c9fe2e7be2774b3362d44a7731b359f52ac76b345e2cd14fdc0a1bb8",
+    "Stem125ConstrainedE5/Constraints.lean": "b5db16df9557b59ce2838f8cb714e9af3856262c2cee028d798e99a6cee6abd9",
+    "Stem125ConstrainedE5/README.md": "76cd7c3d740ecee5d4a411819a5de81f4e3db2873bef077a5e8e5429b22dba85",
+    "Stem125E5Search/branches.json": "db3f9503b56460ec6860d76cdd445ebd63a30750e3def68afc61926d3fdb2987",
+    "Stem125E5Search/search.json": "0547da02505a480429886d36e44df6f4cb5baaf50aeb7783de3da1a32b1b97da",
+    "Stem125E5Search/Product.lean": "386974155d8e529db929448c5b9cee0e1f198d0f1c5a8e7c5629322662229533",
+    "Stem125E5Search/Zero.lean": "9fe33b1e2cf9d73c01a6dfbe9bdb022414e013c2b20a71e5592025047063e89c",
+    "Stem125E5Search/Family.lean": "ea1943c8a5e3b5ad78f0b45f6e6f477f0aa55b3afd5d427faa0846cd2bdf1a82",
+    "Stem125E4Search/Zero.lean": "67a00218a5fdc906d42a20d471239a8025f724e6efb2f23c07889bf1e6423a6e",
+    "Stem125HomologyCertificates/coverage.json": "310592d99961ba9d3af4012f3f76ae0a7a19298546176e68c1a286ba818436b1",
+    "Fact764ConstrainedE5/Conclusion.lean": "a49257fd80ff571e43cc9d71c6148abee6891fade4a9eaa66fcf8c30cc3180ba",
+    "Fact764CycleFromProduct/Basic.lean": "2515f98d6890f1184be9361265793363fed758cf85a19e612e8907fcc071e4b1"
+  }
+}

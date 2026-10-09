@@ -1,0 +1,52 @@
+{
+  "all_pair_checks": 18,
+  "branch_records": 2,
+  "common_events": 1,
+  "coverage": "Exactly3keys each;missingneighbor neverinterpreted aszero;old94eventbatch unchanged",
+  "cross_branch_rejected": true,
+  "family_entries_each": 3,
+  "generated_sha256": {
+    "Both.lean": "fa39e1c256ab762c537958459eaebc79600654f232102f125ac7fd0b4abd393d",
+    "Branch0.lean": "90e85681c46a630037d1f9a76516cad827dde46f3d9526b1f6836520f4a4d391",
+    "Branch1.lean": "3ac769395aa1bfb619c7db3043807f9e44582ab2e9481241859ae42df44217f8",
+    "bound0.json": "d0ac1a3ef9764fd09b1b1b364b420e91a1332bd561793c4475bbd612a4f6eb6a",
+    "bound1.json": "fe557f862d71922c50f5a6ed1d61ffce8f10eeb3f013928a63a5ae7d8be96e23",
+    "family0.input.json": "7043fbb88cd69714128deab59803dc9fe7aadf0ee28d76bc2f3c7526fc221390",
+    "family0.json": "7043fbb88cd69714128deab59803dc9fe7aadf0ee28d76bc2f3c7526fc221390",
+    "family1.input.json": "f8e6fe98b7c0cef88a7283b6111b7570c002d5ad5f5a57fc6206f71f9cc846a5",
+    "family1.json": "f8e6fe98b7c0cef88a7283b6111b7570c002d5ad5f5a57fc6206f71f9cc846a5",
+    "finite-branch0.json": "2802d912c30fcc906915ab8badaa8bd5dcfecf03bbd13575f11e07cfb61c23f7",
+    "finite-branch1.json": "6cd79545670216d075b144035e6a872e2a8c6c62055b2ecf337747b75ae7e51a",
+    "finite2.input.jsonl": "c9dbc32c10c7883851725bf8790da69b8449c4be38fa26e2e2fc4092d16c3aa4",
+    "finite2.jsonl": "c9dbc32c10c7883851725bf8790da69b8449c4be38fa26e2e2fc4092d16c3aa4",
+    "indexed-branch0.json": "6dff152060eadda7bdaf2cf2347b17e1f129ad281af5913383d27d6d614c5cbf",
+    "indexed-branch1.json": "edd4e2de490e5a9d1b785cf56382fa9c27af365a6085fc7a40f590106ab494f2",
+    "indexed2.input.jsonl": "6b542638029eca828cc4b6896cf775a73b67ef25753a112eba97b3e30ba74f3c",
+    "indexed2.jsonl": "6b542638029eca828cc4b6896cf775a73b67ef25753a112eba97b3e30ba74f3c",
+    "provenance.json": "769c2d3351c4d34ddf4ef8fa47fa1ff7805bfc8081f5e2b2e6fd64fc7e0163d1"
+  },
+  "negative_tests": [
+    {
+      "case": "cross_branch0",
+      "message": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/AffineRemainingSearch/Pipeline/indexed-branch1.json:1: event: full comparison differs from family"
+    },
+    {
+      "case": "cross_branch1",
+      "message": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/AffineRemainingSearch/Pipeline/indexed-branch0.json:1: event: full comparison differs from family"
+    },
+    {
+      "case": "missing_event_key",
+      "message": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/AffineRemainingSearch/Pipeline/indexed-branch0.json:1: event: missing family block"
+    }
+  ],
+  "prior_stages": 4,
+  "raw_source_basis": 2696,
+  "raw_target_basis": 2845,
+  "scripts_sha256": {
+    "generate.py": "76994c2372c2e68ede01e898f9caa0705e8e80359b4ab693d8a93fbe0c60d22f",
+    "prepare.py": "6b85569eabc61eac602bc03d155bca1d75357b66e899c8ee9bcfd99f381233a4",
+    "review.py": "e6a482f6f4c006fe1c483ba694584934568fa130002253ef3454a2f09d61cd17"
+  },
+  "source_sql_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "status": "independent_two_branch_CPP_family_audit_passed"
+}

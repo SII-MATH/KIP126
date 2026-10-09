@@ -1,0 +1,13 @@
+FilteredExtensionCertificates/Examples.lean:37:17: error: Tactic `rcases` failed: `{ version := 1,
+  data :=
+    { a := 0, b := 0, ha := 2, hb := 1, depth := 0, s := 3, n := 0, f := [], source := [], target := [], x := [],
+      y := [] },
+  sourceFactors := [], targetFactors := [], mapFactors := [], sourceMember := [false, false], imageMember := [false],
+  targetMember := [false], representative := [], sourceCorrection := [false, false],
+  targetCorrection := [false] }` is not a free variable
+'FilteredExtensionCertificates.Examples.correction_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.Examples.nonzero_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.Examples.empty_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.Examples.batch_count' does not depend on any axioms
+'FilteredExtensionCertificates.Examples.all_valid' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.Examples.correction_changed' does not depend on any axioms

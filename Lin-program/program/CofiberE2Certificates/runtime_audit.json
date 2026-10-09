@@ -1,0 +1,44 @@
+[
+  {
+    "name": "valid",
+    "expected_accept": true,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "name": "wrong-contraction",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/CofiberE2Certificates/runtime-tkop_zqp/wrong-contraction.json: S0__C2__S0, position 0: contraction mismatch at row 0, column 0\n"
+  },
+  {
+    "name": "wrong-degree",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/CofiberE2Certificates/runtime-tkop_zqp/wrong-degree.json: degree, position or matrix dimensions invalid\n"
+  },
+  {
+    "name": "wrong-position",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/CofiberE2Certificates/runtime-tkop_zqp/wrong-position.json: degree, position or matrix dimensions invalid\n"
+  },
+  {
+    "name": "missing-coordinates",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/CofiberE2Certificates/runtime-tkop_zqp/missing-coordinates.json: degree, position or matrix dimensions invalid\n"
+  },
+  {
+    "name": "unknown-field",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/CofiberE2Certificates/runtime-tkop_zqp/unknown-field.json: noncanonical/duplicate/unknown cofiber matrix JSON\n"
+  },
+  {
+    "name": "duplicate-field",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/CofiberE2Certificates/runtime-tkop_zqp/duplicate-field.json: noncanonical/duplicate/unknown cofiber matrix JSON\n"
+  }
+]

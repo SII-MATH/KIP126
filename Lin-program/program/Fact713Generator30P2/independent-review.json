@@ -1,0 +1,31 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "quotient_pairs": 45,
+  "axiom_reports": {
+    "Assembly": 1,
+    "Comparison": 8,
+    "Detection": 4,
+    "Maps": 6
+  },
+  "nonzero_remaining_Leibniz_map": true,
+  "reviewed": [
+    "whole factor map fixes the actual product without an independent factorization assumption",
+    "complete zero coefficient differential target gives coefficient cycle",
+    "injective P-squared target detects the generator differential",
+    "source named representative identifies the same actual product"
+  ],
+  "limitations": [
+    "P-squared named E3 PageCycle is an explicit mathematical premise",
+    "generator_cycle uses representative.property; next_is_boundary only records provenance",
+    "an E4 boundary equation alone cannot prove a selected E3 product is a cycle",
+    "h0 product cycle remains explicit in current Assembly; no unconditional row3247 or new family"
+  ],
+  "sources": {
+    "Fact713Generator30P2/Assembly.lean": "37a9046d78fe8a8c334391532e90eff7b2d0ebd00ba497628dc67e327b433312",
+    "Fact713Generator30P2/Comparison.lean": "d22b9a63985c22cff177597c9fa69ea63a37498df28dc0a7609065bf0a071589",
+    "Fact713Generator30P2/Detection.lean": "45d796a98130013b6e5d627d2397c8b49039e82431313c256b81cbd01767bbdc",
+    "Fact713Generator30P2/Maps.lean": "58fe6fed29711c4493f0f50bc06c20c44d5e59c16980d84aaf54fca1f534acc4",
+    "Fact713Generator30P2/provenance.json": "83d67fd17b58d493febdd17f2587947ba30d24bf4afcf2b2f98a1f6145470d08"
+  }
+}

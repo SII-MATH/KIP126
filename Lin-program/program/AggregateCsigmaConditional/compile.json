@@ -1,0 +1,49 @@
+[
+  {
+    "file": "Basic",
+    "exit_code": 0,
+    "seconds": 4.175906419754028,
+    "output": ""
+  },
+  {
+    "file": "Data",
+    "exit_code": 0,
+    "seconds": 44.17819023132324,
+    "output": ""
+  },
+  {
+    "file": "Events",
+    "exit_code": 0,
+    "seconds": 10.316815376281738,
+    "output": ""
+  },
+  {
+    "file": "Matches",
+    "exit_code": 1,
+    "seconds": 4.503783702850342,
+    "output": "AggregateCsigmaConditional/Matches.lean:7:88: error: failed to synthesize\n  Decidable (b_S0_12_138_d2 = Row2861Csigma.Comparison.upperSource)\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\nAggregateCsigmaConditional/Matches.lean:17:54: error(lean.synthInstanceFailed): failed to synthesize instance of type class\n  OfNat (Fin b_S0_9_136_d2.h) 0\nnumerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is\n  Fin b_S0_9_136_d2.h\ndue to the absence of the instance above\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\nAggregateCsigmaConditional/Matches.lean:31:104: error: Expected type must not contain free variables\n  matrixOf 1 2 b_S0_9_136_d3.outgoing i 0 = Row2861Csigma.Matches.candidateColumn i 0\n\nHint: Use the `+revert` option to automatically clean up and revert free variables\nAggregateCsigmaConditional/Matches.lean:34:105: error: Expected type must not contain free variables\n  matrixOf 1 2 b_S0_12_138_d3.incoming i 0 = Row2861Csigma.Matches.candidateColumn i 0\n\nHint: Use the `+revert` option to automatically clean up and revert free variables\n'AggregateCsigmaConditional.Matches.matched' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]\n'AggregateCsigmaConditional.Matches.source_named_coordinate' depends on axioms: [propext, Quot.sound]\n"
+  },
+  {
+    "file": "Matches",
+    "exit_code": 0,
+    "run_kind": "direct followup after fixing elaboration",
+    "source_sha256": "6826d5c82f659a150caba0e101a978a1aa72ce8b6edd0cbc4e92de629f39f40c",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  {
+    "file": "StageBasic",
+    "exit_code": 0,
+    "run_kind": "direct followup",
+    "source_sha256": "8e511b631f53364d0f4eaec6106051238fb568a245f1cf9b6ff0430305eb7f55"
+  },
+  {
+    "file": "EliminationStage",
+    "exit_code": 0,
+    "run_kind": "direct followup",
+    "source_sha256": "a59499369a119842de33108feffc23c238ac9949b53d77aa79b73b6b37c4bdfb"
+  }
+]

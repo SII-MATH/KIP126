@@ -1,0 +1,54 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["0e4d9ea6174a5a3f.olean"],
+  "m": false,
+  "i": "96d3c4c2943c1b3e.ilean",
+  "c": "aa35b1c5e7ac022e.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/Cli/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/batteries/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/Qq/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/aesop/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/proofwidgets/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/importGraph/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/plausible/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/KIP126/.lake/packages/mathlib/.lake/build/lib/lean:/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean /inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/LinProgramCertificates/Examples.lean -o /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/LinProgramCertificates/Examples.olean -i /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/LinProgramCertificates/Examples.ilean -c /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/ir/LinProgramCertificates/Examples.c --setup /inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/ir/LinProgramCertificates/Examples.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "LinProgramCertificates/Examples.lean:42:0: 'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "LinProgramCertificates/Examples.lean:43:0: 'KervaireProgram.check_sound' depends on axioms: [propext, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "LinProgramCertificates/Examples.lean:44:0: 'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "LinProgramCertificates/Examples.lean:45:0: 'KervaireProgram.importLine_sound' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "LinProgramCertificates/Examples.lean:46:0: 'KervaireProgram.dataWellFormed_sound' depends on axioms: [propext, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "LinProgramCertificates/Examples.lean:47:0: 'KervaireProgram.differentialWellFormed_sound' depends on axioms: [propext, Quot.sound]",
+   "level": "info"}],
+ "inputs":
+ [["LinProgramCertificates.Examples:deps",
+   [["deps",
+     [["LinProgramProgram/LinProgramCertificates:extraDep",
+       [["@LinProgramProgram:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["LinProgramCertificates.KervaireTactic transitive imports (legacy)",
+         "209091160e87897f"],
+        ["LinProgramCertificates.KervaireTactic:importAllArts",
+         "eb4da9b4929fbb65"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.32.2, commit f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+   "7508232886a2752a"],
+  ["/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/LinProgramCertificates/Examples.lean",
+   "62283bab21a61c4b"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: LinProgramCertificates.Examples", "32198e87b228004e"],
+  ["Package.id?: (some LinProgramProgram)", "7f4fb855624d8eb1"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "220cd215b2e4ea0b"}

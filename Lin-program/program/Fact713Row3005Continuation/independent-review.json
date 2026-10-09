@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "findings": [],
+  "frozen_files": 100,
+  "branches": [
+    {
+      "branch": 0,
+      "entries": 1431,
+      "counts": {
+        "quotient_pairs": 9861,
+        "consecutive": 925,
+        "adjacent": 1094,
+        "predecessors": 2775
+      }
+    },
+    {
+      "branch": 1,
+      "entries": 1431,
+      "counts": {
+        "quotient_pairs": 9861,
+        "consecutive": 925,
+        "adjacent": 1094,
+        "predecessors": 2775
+      }
+    }
+  ],
+  "target_early_collapse": {
+    "degree": [
+      19,
+      141
+    ],
+    "E2dimension": 2,
+    "E3dimension": 0,
+    "full_SQL_groups": 3,
+    "full_SQL_d2_columns": 6
+  },
+  "scope": "Main same-input nonzero E11 follows from full d2 target collapse to E3zero, transported to E10, and inherited Prefix10. Row3005 fills finite-family predecessors and yields its own same-input nonzeroE5. Complete actual E2 meanings and quotient laws remain explicit; no E12 theorem."
+}

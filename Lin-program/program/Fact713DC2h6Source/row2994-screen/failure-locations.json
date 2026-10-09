@@ -1,0 +1,7651 @@
+{
+  "status": "retained_failures_and_joint_kernel_recorded",
+  "source_row": [
+    2994,
+    17,
+    138,
+    "0,1,2",
+    null,
+    9000
+  ],
+  "incomplete_maps": 22,
+  "failures": [
+    {
+      "map": "S0__tmf",
+      "section": "maps",
+      "ordinal": 1,
+      "stages": [
+        {
+          "coordinates": [],
+          "degree": [
+            17,
+            138
+          ],
+          "generator_images": {
+            "0": "0,1",
+            "188": "",
+            "23": "7,2",
+            "422": "",
+            "436": ""
+          },
+          "input": [],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [],
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {
+            "455": ""
+          },
+          "input": [],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {
+            "0": "0,1",
+            "267": "",
+            "8": "6,1"
+          },
+          "input": [],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [],
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {
+            "0": "0,1",
+            "267": "",
+            "455": "",
+            "8": "6,1"
+          },
+          "input": [],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [],
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__CW_eta_nu_by_sigma",
+      "section": "maps_v2",
+      "ordinal": 26,
+      "stages": [
+        {
+          "coordinates": [
+            0,
+            1,
+            3
+          ],
+          "degree": [
+            18,
+            152
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              4
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              4
+            ],
+            [
+              [
+                436
+              ],
+              4
+            ]
+          ],
+          "reason": "d2 degree t=152 exceeds d2_t_max=150",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 6647,
+              "mon": "23,1,188,1,4"
+            },
+            {
+              "id": 6648,
+              "mon": "0,1,482,1,2"
+            },
+            {
+              "id": 6649,
+              "mon": "0,1,568,1,0"
+            },
+            {
+              "id": 6650,
+              "mon": "0,5,533,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  422
+                ],
+                4
+              ],
+              "multiplier": [
+                0
+              ],
+              "source": {
+                "database": "CW_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  17,
+                  151
+                ],
+                "kind": "target_relation",
+                "raw": "422,1,4;482,1,2",
+                "rowid": 25941,
+                "table": "CW_eta_nu_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  436
+                ],
+                4
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "CW_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  18,
+                  152
+                ],
+                "kind": "target_relation",
+                "raw": "436,1,4;495,1,2",
+                "rowid": 26812,
+                "table": "CW_eta_nu_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  495
+                ],
+                2
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "CW_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  18,
+                  152
+                ],
+                "kind": "target_relation",
+                "raw": "495,1,2;0,5,533,1,0",
+                "rowid": 26814,
+                "table": "CW_eta_nu_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            21,
+            154
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              4
+            ]
+          ],
+          "reason": "d2 degree t=154 exceeds d2_t_max=150",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 6889,
+              "mon": "16,1,209,1,6"
+            },
+            {
+              "id": 6890,
+              "mon": "0,3,481,1,2"
+            },
+            {
+              "id": 6891,
+              "mon": "0,17,324,1,2"
+            },
+            {
+              "id": 6892,
+              "mon": "586,1,0"
+            },
+            {
+              "id": 6893,
+              "mon": "0,3,69,1,138,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  455
+                ],
+                4
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "CW_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  21,
+                  154
+                ],
+                "kind": "target_relation",
+                "raw": "455,1,4;0,3,481,1,2",
+                "rowid": 28599,
+                "table": "CW_eta_nu_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            21,
+            154
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              4
+            ]
+          ],
+          "reason": "d2 degree t=154 exceeds d2_t_max=150",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 6889,
+              "mon": "16,1,209,1,6"
+            },
+            {
+              "id": 6890,
+              "mon": "0,3,481,1,2"
+            },
+            {
+              "id": 6891,
+              "mon": "0,17,324,1,2"
+            },
+            {
+              "id": 6892,
+              "mon": "586,1,0"
+            },
+            {
+              "id": 6893,
+              "mon": "0,3,69,1,138,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                4
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "CW_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  5,
+                  32
+                ],
+                "kind": "target_relation",
+                "raw": "8,1,4",
+                "rowid": 82,
+                "table": "CW_eta_nu_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            21,
+            154
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              4
+            ],
+            [
+              [
+                455
+              ],
+              4
+            ]
+          ],
+          "reason": "d2 degree t=154 exceeds d2_t_max=150",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 6889,
+              "mon": "16,1,209,1,6"
+            },
+            {
+              "id": 6890,
+              "mon": "0,3,481,1,2"
+            },
+            {
+              "id": 6891,
+              "mon": "0,17,324,1,2"
+            },
+            {
+              "id": 6892,
+              "mon": "586,1,0"
+            },
+            {
+              "id": 6893,
+              "mon": "0,3,69,1,138,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                4
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "CW_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  5,
+                  32
+                ],
+                "kind": "target_relation",
+                "raw": "8,1,4",
+                "rowid": 82,
+                "table": "CW_eta_nu_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  455
+                ],
+                4
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "CW_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  21,
+                  154
+                ],
+                "kind": "target_relation",
+                "raw": "455,1,4;0,3,481,1,2",
+                "rowid": 28599,
+                "table": "CW_eta_nu_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__CW_2_eta_nu_by_sigma",
+      "section": "maps_v2",
+      "ordinal": 27,
+      "stages": [
+        {
+          "coordinates": [
+            0,
+            1,
+            2
+          ],
+          "degree": [
+            18,
+            153
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              3
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              3
+            ],
+            [
+              [
+                436
+              ],
+              3
+            ]
+          ],
+          "reason": "d2 degree t=153 exceeds d2_t_max=150",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4266,
+              "mon": "23,1,188,1,3"
+            },
+            {
+              "id": 4267,
+              "mon": "495,1,2"
+            },
+            {
+              "id": 4268,
+              "mon": "0,1,482,1,2"
+            },
+            {
+              "id": 4269,
+              "mon": "581,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  422
+                ],
+                3
+              ],
+              "multiplier": [
+                0
+              ],
+              "source": {
+                "database": "CW_2_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  17,
+                  152
+                ],
+                "kind": "target_relation",
+                "raw": "422,1,3;482,1,2;0,1,475,1,2",
+                "rowid": 17424,
+                "table": "CW_2_eta_nu_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  475
+                ],
+                2
+              ],
+              "multiplier": [
+                0
+              ],
+              "source": {
+                "database": "CW_2_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  17,
+                  152
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,475,1,2;7,2,266,1,0",
+                "rowid": 17425,
+                "table": "CW_2_eta_nu_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  7,
+                  7,
+                  266
+                ],
+                0
+              ],
+              "multiplier": [
+                7,
+                7,
+                266
+              ],
+              "source": {
+                "database": "CW_2_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  1,
+                  1
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,0",
+                "rowid": 1,
+                "table": "CW_2_eta_nu_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  436
+                ],
+                3
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "CW_2_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  18,
+                  153
+                ],
+                "kind": "target_relation",
+                "raw": "436,1,3;495,1,2",
+                "rowid": 18043,
+                "table": "CW_2_eta_nu_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            0
+          ],
+          "degree": [
+            21,
+            155
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              3
+            ]
+          ],
+          "reason": "d2 degree t=155 exceeds d2_t_max=150",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4447,
+              "mon": "0,3,481,1,2"
+            },
+            {
+              "id": 4448,
+              "mon": "0,17,324,1,2"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  455
+                ],
+                3
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "CW_2_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  21,
+                  155
+                ],
+                "kind": "target_relation",
+                "raw": "455,1,3;0,3,481,1,2",
+                "rowid": 19170,
+                "table": "CW_2_eta_nu_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            21,
+            155
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              3
+            ]
+          ],
+          "reason": "d2 degree t=155 exceeds d2_t_max=150",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4447,
+              "mon": "0,3,481,1,2"
+            },
+            {
+              "id": 4448,
+              "mon": "0,17,324,1,2"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                3
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "CW_2_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  5,
+                  33
+                ],
+                "kind": "target_relation",
+                "raw": "8,1,3",
+                "rowid": 52,
+                "table": "CW_2_eta_nu_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            0
+          ],
+          "degree": [
+            21,
+            155
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              3
+            ],
+            [
+              [
+                455
+              ],
+              3
+            ]
+          ],
+          "reason": "d2 degree t=155 exceeds d2_t_max=150",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4447,
+              "mon": "0,3,481,1,2"
+            },
+            {
+              "id": 4448,
+              "mon": "0,17,324,1,2"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                3
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "CW_2_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  5,
+                  33
+                ],
+                "kind": "target_relation",
+                "raw": "8,1,3",
+                "rowid": 52,
+                "table": "CW_2_eta_nu_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  455
+                ],
+                3
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "CW_2_eta_nu_AdamsSS_t200.db",
+                "degree": [
+                  21,
+                  155
+                ],
+                "kind": "target_relation",
+                "raw": "455,1,3;0,3,481,1,2",
+                "rowid": 19170,
+                "table": "CW_2_eta_nu_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__Csigmasq",
+      "section": "maps_v2",
+      "ordinal": 57,
+      "stages": [
+        {
+          "coordinates": [
+            0,
+            1,
+            2
+          ],
+          "degree": [
+            17,
+            138
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5065,
+              "mon": "436,1,0"
+            },
+            {
+              "id": 5066,
+              "mon": "23,1,188,1,0"
+            },
+            {
+              "id": 5067,
+              "mon": "0,1,422,1,0"
+            },
+            {
+              "id": 5068,
+              "mon": "0,2,7,1,267,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5279,
+              "mon": "9,1,194,1,1"
+            },
+            {
+              "id": 5280,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5281,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5282,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [
+            2
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5279,
+              "mon": "9,1,194,1,1"
+            },
+            {
+              "id": 5280,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5281,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5282,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            1,
+            2
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5279,
+              "mon": "9,1,194,1,1"
+            },
+            {
+              "id": 5280,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5281,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5282,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__Ctheta4",
+      "section": "maps_v2",
+      "ordinal": 58,
+      "stages": [
+        {
+          "coordinates": [
+            2,
+            3,
+            4
+          ],
+          "degree": [
+            17,
+            138
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4449,
+              "mon": "208,1,1"
+            },
+            {
+              "id": 4450,
+              "mon": "0,5,187,1,1"
+            },
+            {
+              "id": 4451,
+              "mon": "436,1,0"
+            },
+            {
+              "id": 4452,
+              "mon": "23,1,188,1,0"
+            },
+            {
+              "id": 4453,
+              "mon": "0,1,422,1,0"
+            },
+            {
+              "id": 4454,
+              "mon": "0,2,7,1,267,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            0
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4664,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 4665,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 4666,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4664,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 4665,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 4666,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            0,
+            1
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4664,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 4665,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 4666,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__Ctheta5",
+      "section": "maps_v2",
+      "ordinal": 59,
+      "stages": [
+        {
+          "coordinates": [
+            1,
+            2,
+            3
+          ],
+          "degree": [
+            17,
+            138
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 3603,
+              "mon": "100,1,1"
+            },
+            {
+              "id": 3604,
+              "mon": "436,1,0"
+            },
+            {
+              "id": 3605,
+              "mon": "23,1,188,1,0"
+            },
+            {
+              "id": 3606,
+              "mon": "0,1,422,1,0"
+            },
+            {
+              "id": 3607,
+              "mon": "0,2,7,1,267,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            0
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 3784,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 3785,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 3786,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 3784,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 3785,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 3786,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            0,
+            1
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 3784,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 3785,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 3786,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__C2sigma",
+      "section": "maps_v2",
+      "ordinal": 60,
+      "stages": [
+        {
+          "coordinates": [
+            4,
+            5,
+            6
+          ],
+          "degree": [
+            17,
+            138
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5403,
+              "mon": "9,1,13,1,133,1,1"
+            },
+            {
+              "id": 5404,
+              "mon": "2,1,302,1,1"
+            },
+            {
+              "id": 5405,
+              "mon": "0,1,9,1,212,1,1"
+            },
+            {
+              "id": 5406,
+              "mon": "0,2,3,1,267,1,1"
+            },
+            {
+              "id": 5407,
+              "mon": "436,1,0"
+            },
+            {
+              "id": 5408,
+              "mon": "23,1,188,1,0"
+            },
+            {
+              "id": 5409,
+              "mon": "0,1,422,1,0"
+            },
+            {
+              "id": 5410,
+              "mon": "0,2,7,1,267,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            2
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5670,
+              "mon": "16,1,187,1,1"
+            },
+            {
+              "id": 5671,
+              "mon": "9,1,23,1,101,1,1"
+            },
+            {
+              "id": 5672,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5673,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5674,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [
+            3
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5670,
+              "mon": "16,1,187,1,1"
+            },
+            {
+              "id": 5671,
+              "mon": "9,1,23,1,101,1,1"
+            },
+            {
+              "id": 5672,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5673,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5674,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            2,
+            3
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5670,
+              "mon": "16,1,187,1,1"
+            },
+            {
+              "id": 5671,
+              "mon": "9,1,23,1,101,1,1"
+            },
+            {
+              "id": 5672,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5673,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5674,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__DC2h4",
+      "section": "maps_v2",
+      "ordinal": 64,
+      "stages": [
+        {
+          "coordinates": [
+            2,
+            3,
+            4
+          ],
+          "degree": [
+            17,
+            138
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "d2 degree t=138 exceeds d2_t_max=135",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4905,
+              "mon": "312"
+            },
+            {
+              "id": 4906,
+              "mon": "212,1,4"
+            },
+            {
+              "id": 4907,
+              "mon": "436,1,0"
+            },
+            {
+              "id": 4908,
+              "mon": "23,1,188,1,0"
+            },
+            {
+              "id": 4909,
+              "mon": "0,1,422,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "d2 degree t=140 exceeds d2_t_max=135",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5108,
+              "mon": "9,1,194,1,1"
+            },
+            {
+              "id": 5109,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5110,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "d2 degree t=140 exceeds d2_t_max=135",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5108,
+              "mon": "9,1,194,1,1"
+            },
+            {
+              "id": 5109,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5110,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "DC2h4_AdamsSS_t198.db",
+                "degree": [
+                  20,
+                  140
+                ],
+                "kind": "target_relation",
+                "raw": "0,2,8,1,267,1,0",
+                "rowid": 12395,
+                "table": "DC2h4_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "d2 degree t=140 exceeds d2_t_max=135",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5108,
+              "mon": "9,1,194,1,1"
+            },
+            {
+              "id": 5109,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5110,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "DC2h4_AdamsSS_t198.db",
+                "degree": [
+                  20,
+                  140
+                ],
+                "kind": "target_relation",
+                "raw": "0,2,8,1,267,1,0",
+                "rowid": 12395,
+                "table": "DC2h4_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__DC2h5",
+      "section": "maps_v2",
+      "ordinal": 65,
+      "stages": [
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "d2 degree t=140 exceeds d2_t_max=139",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4472,
+              "mon": "8,1,9,1,13,1,30"
+            },
+            {
+              "id": 4473,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 4474,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 4475,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [
+            2
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "d2 degree t=140 exceeds d2_t_max=139",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4472,
+              "mon": "8,1,9,1,13,1,30"
+            },
+            {
+              "id": 4473,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 4474,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 4475,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            1,
+            2
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "d2 degree t=140 exceeds d2_t_max=139",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 4472,
+              "mon": "8,1,9,1,13,1,30"
+            },
+            {
+              "id": 4473,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 4474,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 4475,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__Fphi",
+      "section": "maps_v2",
+      "ordinal": 67,
+      "stages": [
+        {
+          "coordinates": [],
+          "degree": [
+            17,
+            138
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 1985,
+              "mon": "6,1,300"
+            },
+            {
+              "id": 1986,
+              "mon": "359,1,1"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  422
+                ],
+                0
+              ],
+              "multiplier": [
+                0
+              ],
+              "source": {
+                "database": "Fphi_AdamsSS_t200.db",
+                "degree": [
+                  16,
+                  137
+                ],
+                "kind": "target_relation",
+                "raw": "422,1,0",
+                "rowid": 18339,
+                "table": "Fphi_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  23,
+                  188
+                ],
+                0
+              ],
+              "multiplier": [
+                188
+              ],
+              "source": {
+                "database": "Fphi_AdamsSS_t200.db",
+                "degree": [
+                  6,
+                  36
+                ],
+                "kind": "target_relation",
+                "raw": "23,1,0",
+                "rowid": 115,
+                "table": "Fphi_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  436
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "Fphi_AdamsSS_t200.db",
+                "degree": [
+                  17,
+                  138
+                ],
+                "kind": "target_relation",
+                "raw": "436,1,0",
+                "rowid": 19058,
+                "table": "Fphi_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "source"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 2118,
+              "mon": "381,1,1"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  455
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "Fphi_AdamsSS_t200.db",
+                "degree": [
+                  20,
+                  140
+                ],
+                "kind": "target_relation",
+                "raw": "455,1,0",
+                "rowid": 20574,
+                "table": "Fphi_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 2118,
+              "mon": "381,1,1"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "Fphi_AdamsSS_t200.db",
+                "degree": [
+                  4,
+                  18
+                ],
+                "kind": "target_relation",
+                "raw": "8,1,0",
+                "rowid": 18,
+                "table": "Fphi_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 2118,
+              "mon": "381,1,1"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "Fphi_AdamsSS_t200.db",
+                "degree": [
+                  4,
+                  18
+                ],
+                "kind": "target_relation",
+                "raw": "8,1,0",
+                "rowid": 18,
+                "table": "Fphi_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  455
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "Fphi_AdamsSS_t200.db",
+                "degree": [
+                  20,
+                  140
+                ],
+                "kind": "target_relation",
+                "raw": "455,1,0",
+                "rowid": 20574,
+                "table": "Fphi_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__CW_2_A_eta",
+      "section": "maps_v2",
+      "ordinal": 68,
+      "stages": [
+        {
+          "coordinates": [
+            2,
+            3,
+            4
+          ],
+          "degree": [
+            17,
+            138
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5289,
+              "mon": "421,1,1"
+            },
+            {
+              "id": 5290,
+              "mon": "17,1,209,1,1"
+            },
+            {
+              "id": 5291,
+              "mon": "436,1,0"
+            },
+            {
+              "id": 5292,
+              "mon": "23,1,188,1,0"
+            },
+            {
+              "id": 5293,
+              "mon": "0,1,422,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            3
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5580,
+              "mon": "2,1,404"
+            },
+            {
+              "id": 5581,
+              "mon": "447,1,1"
+            },
+            {
+              "id": 5582,
+              "mon": "1,1,420,1,1"
+            },
+            {
+              "id": 5583,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5584,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5585,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [
+            4
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5580,
+              "mon": "2,1,404"
+            },
+            {
+              "id": 5581,
+              "mon": "447,1,1"
+            },
+            {
+              "id": 5582,
+              "mon": "1,1,420,1,1"
+            },
+            {
+              "id": 5583,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5584,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5585,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            3,
+            4
+          ],
+          "degree": [
+            20,
+            140
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5580,
+              "mon": "2,1,404"
+            },
+            {
+              "id": 5581,
+              "mon": "447,1,1"
+            },
+            {
+              "id": 5582,
+              "mon": "1,1,420,1,1"
+            },
+            {
+              "id": 5583,
+              "mon": "455,1,0"
+            },
+            {
+              "id": 5584,
+              "mon": "0,2,8,1,267,1,0"
+            },
+            {
+              "id": 5585,
+              "mon": "0,3,17,1,209,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S1__CW_2_A_eta",
+      "section": "maps_v2",
+      "ordinal": 69,
+      "stages": [
+        {
+          "coordinates": [
+            1,
+            2
+          ],
+          "degree": [
+            17,
+            139
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                422
+              ],
+              1
+            ],
+            [
+              [
+                23,
+                188
+              ],
+              1
+            ],
+            [
+              [
+                436
+              ],
+              1
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5450,
+              "mon": "328,1,3"
+            },
+            {
+              "id": 5451,
+              "mon": "436,1,1"
+            },
+            {
+              "id": 5452,
+              "mon": "23,1,188,1,1"
+            },
+            {
+              "id": 5453,
+              "mon": "13,3,76,1,0"
+            },
+            {
+              "id": 5454,
+              "mon": "0,1,437,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  422
+                ],
+                1
+              ],
+              "multiplier": [
+                422
+              ],
+              "source": {
+                "database": "CW_2_A_eta_AdamsSS_t180.db",
+                "degree": [
+                  1,
+                  2
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,1;1,1,0",
+                "rowid": 1,
+                "table": "CW_2_A_eta_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  1,
+                  422
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  17,
+                  139
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "CW_2_A_eta_AdamsSS_t180.db",
+                "module_generator": 0,
+                "raw": "1,1,422,1",
+                "ring_degree": [
+                  17,
+                  139
+                ],
+                "rowid": 10613,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            20,
+            141
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                455
+              ],
+              1
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5743,
+              "mon": "346,1,3"
+            },
+            {
+              "id": 5744,
+              "mon": "455,1,1"
+            },
+            {
+              "id": 5745,
+              "mon": "8,2,201,1,0"
+            },
+            {
+              "id": 5746,
+              "mon": "0,4,422,1,0"
+            }
+          ],
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            20,
+            141
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              1
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5743,
+              "mon": "346,1,3"
+            },
+            {
+              "id": 5744,
+              "mon": "455,1,1"
+            },
+            {
+              "id": 5745,
+              "mon": "8,2,201,1,0"
+            },
+            {
+              "id": 5746,
+              "mon": "0,4,422,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                1
+              ],
+              "multiplier": [
+                0,
+                8,
+                267
+              ],
+              "source": {
+                "database": "CW_2_A_eta_AdamsSS_t180.db",
+                "degree": [
+                  1,
+                  2
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,1;1,1,0",
+                "rowid": 1,
+                "table": "CW_2_A_eta_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  1,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                8,
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  2,
+                  3
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "CW_2_A_eta_AdamsSS_t180.db",
+                "module_generator": 0,
+                "raw": "0,1,1,1",
+                "ring_degree": [
+                  2,
+                  3
+                ],
+                "rowid": 1,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            1
+          ],
+          "degree": [
+            20,
+            141
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                8,
+                267
+              ],
+              1
+            ],
+            [
+              [
+                455
+              ],
+              1
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 5743,
+              "mon": "346,1,3"
+            },
+            {
+              "id": 5744,
+              "mon": "455,1,1"
+            },
+            {
+              "id": 5745,
+              "mon": "8,2,201,1,0"
+            },
+            {
+              "id": 5746,
+              "mon": "0,4,422,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                1
+              ],
+              "multiplier": [
+                0,
+                8,
+                267
+              ],
+              "source": {
+                "database": "CW_2_A_eta_AdamsSS_t180.db",
+                "degree": [
+                  1,
+                  2
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,1;1,1,0",
+                "rowid": 1,
+                "table": "CW_2_A_eta_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  1,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                8,
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  2,
+                  3
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "CW_2_A_eta_AdamsSS_t180.db",
+                "module_generator": 0,
+                "raw": "0,1,1,1",
+                "ring_degree": [
+                  2,
+                  3
+                ],
+                "rowid": 1,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__S0_by_theta5",
+      "section": "maps_v2",
+      "ordinal": 72,
+      "stages": [
+        {
+          "coordinates": [],
+          "degree": [
+            19,
+            202
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              0,
+              18,
+              18,
+              422
+            ],
+            [
+              18,
+              18,
+              23,
+              188
+            ],
+            [
+              18,
+              18,
+              436
+            ]
+          ],
+          "reason": "d2 degree t=202 exceeds d2_t_max=177",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 10022,
+              "mon": "1,1,88,1,324,1"
+            },
+            {
+              "id": 10023,
+              "mon": "1,1,7,1,932,1"
+            },
+            {
+              "id": 10024,
+              "mon": "0,1,1207,1"
+            },
+            {
+              "id": 10025,
+              "mon": "0,1,1206,1"
+            },
+            {
+              "id": 10026,
+              "mon": "0,2,1185,1"
+            },
+            {
+              "id": 10027,
+              "mon": "0,2,1184,1"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                0,
+                18,
+                18,
+                422
+              ],
+              "multiplier": [
+                0,
+                18
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  17,
+                  169
+                ],
+                "kind": "target_relation",
+                "raw": "18,1,422,1;10,1,533,1",
+                "rowid": 26060,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                0,
+                10,
+                18,
+                533
+              ],
+              "multiplier": [
+                0,
+                18
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  17,
+                  169
+                ],
+                "kind": "target_relation",
+                "raw": "10,1,533,1;8,2,373,1;1,2,708,1",
+                "rowid": 26064,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                0,
+                1,
+                1,
+                18,
+                708
+              ],
+              "multiplier": [
+                1,
+                18,
+                708
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  2,
+                  3
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,1,1",
+                "rowid": 1,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                0,
+                8,
+                8,
+                18,
+                373
+              ],
+              "multiplier": [
+                0,
+                373
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  9,
+                  68
+                ],
+                "kind": "target_relation",
+                "raw": "8,2,18,1",
+                "rowid": 662,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                18,
+                18,
+                23,
+                188
+              ],
+              "multiplier": [
+                18,
+                188
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  68
+                ],
+                "kind": "target_relation",
+                "raw": "18,1,23,1",
+                "rowid": 654,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                18,
+                18,
+                436
+              ],
+              "multiplier": [
+                18
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  18,
+                  170
+                ],
+                "kind": "target_relation",
+                "raw": "18,1,436,1",
+                "rowid": 26822,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "source"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            22,
+            204
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              18,
+              18,
+              455
+            ]
+          ],
+          "reason": "d2 degree t=204 exceeds d2_t_max=177",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 10381,
+              "mon": "188,2"
+            },
+            {
+              "id": 10382,
+              "mon": "3,2,982,1"
+            },
+            {
+              "id": 10383,
+              "mon": "0,1,1244,1"
+            },
+            {
+              "id": 10384,
+              "mon": "0,1,8,1,55,1,324,1"
+            },
+            {
+              "id": 10385,
+              "mon": "0,2,2,1,1152,1"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                18,
+                18,
+                455
+              ],
+              "multiplier": [
+                18
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  21,
+                  172
+                ],
+                "kind": "target_relation",
+                "raw": "18,1,455,1",
+                "rowid": 28599,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            22,
+            204
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              0,
+              0,
+              8,
+              18,
+              18,
+              267
+            ]
+          ],
+          "reason": "d2 degree t=204 exceeds d2_t_max=177",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 10381,
+              "mon": "188,2"
+            },
+            {
+              "id": 10382,
+              "mon": "3,2,982,1"
+            },
+            {
+              "id": 10383,
+              "mon": "0,1,1244,1"
+            },
+            {
+              "id": 10384,
+              "mon": "0,1,8,1,55,1,324,1"
+            },
+            {
+              "id": 10385,
+              "mon": "0,2,2,1,1152,1"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                0,
+                0,
+                8,
+                18,
+                18,
+                267
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  6,
+                  82
+                ],
+                "kind": "target_relation",
+                "raw": "8,1,18,2",
+                "rowid": 1317,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            22,
+            204
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              0,
+              0,
+              8,
+              18,
+              18,
+              267
+            ],
+            [
+              18,
+              18,
+              455
+            ]
+          ],
+          "reason": "d2 degree t=204 exceeds d2_t_max=177",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 10381,
+              "mon": "188,2"
+            },
+            {
+              "id": 10382,
+              "mon": "3,2,982,1"
+            },
+            {
+              "id": 10383,
+              "mon": "0,1,1244,1"
+            },
+            {
+              "id": 10384,
+              "mon": "0,1,8,1,55,1,324,1"
+            },
+            {
+              "id": 10385,
+              "mon": "0,2,2,1,1152,1"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                0,
+                0,
+                8,
+                18,
+                18,
+                267
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  6,
+                  82
+                ],
+                "kind": "target_relation",
+                "raw": "8,1,18,2",
+                "rowid": 1317,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                18,
+                18,
+                455
+              ],
+              "multiplier": [
+                18
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  21,
+                  172
+                ],
+                "kind": "target_relation",
+                "raw": "18,1,455,1",
+                "rowid": 28599,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__S0_by_theta5sq",
+      "section": "maps_v2",
+      "ordinal": 73,
+      "stages": [
+        {
+          "degree": [
+            21,
+            266
+          ],
+          "reason": "E2 degree t=266 exceeds t_max=261",
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "degree": [
+            24,
+            268
+          ],
+          "reason": "E2 degree t=268 exceeds t_max=261",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "degree": [
+            24,
+            268
+          ],
+          "reason": "E2 degree t=268 exceeds t_max=261",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "degree": [
+            24,
+            268
+          ],
+          "reason": "E2 degree t=268 exceeds t_max=261",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__C2_by_h6",
+      "section": "maps_v2",
+      "ordinal": 83,
+      "stages": [
+        {
+          "degree": [
+            18,
+            202
+          ],
+          "reason": "E2 degree t=202 exceeds t_max=200",
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "degree": [
+            21,
+            204
+          ],
+          "reason": "E2 degree t=204 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "degree": [
+            21,
+            204
+          ],
+          "reason": "E2 degree t=204 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "degree": [
+            21,
+            204
+          ],
+          "reason": "E2 degree t=204 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__CW_2_eta_by_theta5sq",
+      "section": "maps_v2",
+      "ordinal": 84,
+      "stages": [
+        {
+          "degree": [
+            18,
+            266
+          ],
+          "reason": "E2 degree t=266 exceeds t_max=200",
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "degree": [
+            21,
+            268
+          ],
+          "reason": "E2 degree t=268 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "degree": [
+            21,
+            268
+          ],
+          "reason": "E2 degree t=268 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "degree": [
+            21,
+            268
+          ],
+          "reason": "E2 degree t=268 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__Csigmasq_by_2",
+      "section": "maps_v2",
+      "ordinal": 85,
+      "stages": [
+        {
+          "coordinates": [],
+          "degree": [
+            18,
+            154
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                422
+              ],
+              1
+            ],
+            [
+              [
+                0,
+                7,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                0,
+                23,
+                188
+              ],
+              1
+            ],
+            [
+              [
+                0,
+                436
+              ],
+              1
+            ],
+            [
+              [
+                7,
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                7,
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 7422,
+              "mon": "13,3,75,1,1"
+            },
+            {
+              "id": 7423,
+              "mon": "0,1,23,1,188,1,1"
+            },
+            {
+              "id": 7424,
+              "mon": "0,2,422,1,1"
+            },
+            {
+              "id": 7425,
+              "mon": "69,1,147,1,0"
+            },
+            {
+              "id": 7426,
+              "mon": "0,1,582,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  7,
+                  422
+                ],
+                0
+              ],
+              "multiplier": [
+                0
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  17,
+                  153
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "7,1,422,1",
+                "ring_degree": [
+                  17,
+                  153
+                ],
+                "rowid": 16358,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  436
+                ],
+                1
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  18,
+                  154
+                ],
+                "generator_degree": [
+                  0,
+                  15
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 1,
+                "raw": "0,1,436,1;0,1,23,1,188,1;0,2,422,1",
+                "ring_degree": [
+                  18,
+                  139
+                ],
+                "rowid": 10634,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  7,
+                  23,
+                  188
+                ],
+                0
+              ],
+              "multiplier": [
+                188
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  52
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "7,1,23,1",
+                "ring_degree": [
+                  7,
+                  52
+                ],
+                "rowid": 272,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  7,
+                  436
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  18,
+                  154
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "7,1,436,1",
+                "ring_degree": [
+                  18,
+                  154
+                ],
+                "rowid": 16891,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            2
+          ],
+          "degree": [
+            21,
+            156
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                455
+              ],
+              1
+            ],
+            [
+              [
+                7,
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 7775,
+              "mon": "13,3,80,1,1"
+            },
+            {
+              "id": 7776,
+              "mon": "1,1,447,1,1"
+            },
+            {
+              "id": 7777,
+              "mon": "0,1,455,1,1"
+            },
+            {
+              "id": 7778,
+              "mon": "0,4,17,1,209,1,1"
+            },
+            {
+              "id": 7779,
+              "mon": "13,1,357,1,0"
+            },
+            {
+              "id": 7780,
+              "mon": "8,1,23,1,188,1,0"
+            },
+            {
+              "id": 7781,
+              "mon": "1,1,587,1,0"
+            },
+            {
+              "id": 7782,
+              "mon": "0,2,18,1,278,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  7,
+                  455
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  21,
+                  156
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "7,1,455,1",
+                "ring_degree": [
+                  21,
+                  156
+                ],
+                "rowid": 18049,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            21,
+            156
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                8,
+                267
+              ],
+              1
+            ],
+            [
+              [
+                0,
+                0,
+                7,
+                8,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 7775,
+              "mon": "13,3,80,1,1"
+            },
+            {
+              "id": 7776,
+              "mon": "1,1,447,1,1"
+            },
+            {
+              "id": 7777,
+              "mon": "0,1,455,1,1"
+            },
+            {
+              "id": 7778,
+              "mon": "0,4,17,1,209,1,1"
+            },
+            {
+              "id": 7779,
+              "mon": "13,1,357,1,0"
+            },
+            {
+              "id": 7780,
+              "mon": "8,1,23,1,188,1,0"
+            },
+            {
+              "id": 7781,
+              "mon": "1,1,587,1,0"
+            },
+            {
+              "id": 7782,
+              "mon": "0,2,18,1,278,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                1
+              ],
+              "multiplier": [
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  36
+                ],
+                "generator_degree": [
+                  0,
+                  15
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 1,
+                "raw": "0,3,8,1",
+                "ring_degree": [
+                  7,
+                  21
+                ],
+                "rowid": 21,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  7,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  5,
+                  34
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "7,1,8,1",
+                "ring_degree": [
+                  5,
+                  34
+                ],
+                "rowid": 70,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            2
+          ],
+          "degree": [
+            21,
+            156
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                8,
+                267
+              ],
+              1
+            ],
+            [
+              [
+                0,
+                0,
+                7,
+                8,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                0,
+                455
+              ],
+              1
+            ],
+            [
+              [
+                7,
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 7775,
+              "mon": "13,3,80,1,1"
+            },
+            {
+              "id": 7776,
+              "mon": "1,1,447,1,1"
+            },
+            {
+              "id": 7777,
+              "mon": "0,1,455,1,1"
+            },
+            {
+              "id": 7778,
+              "mon": "0,4,17,1,209,1,1"
+            },
+            {
+              "id": 7779,
+              "mon": "13,1,357,1,0"
+            },
+            {
+              "id": 7780,
+              "mon": "8,1,23,1,188,1,0"
+            },
+            {
+              "id": 7781,
+              "mon": "1,1,587,1,0"
+            },
+            {
+              "id": 7782,
+              "mon": "0,2,18,1,278,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                1
+              ],
+              "multiplier": [
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  36
+                ],
+                "generator_degree": [
+                  0,
+                  15
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 1,
+                "raw": "0,3,8,1",
+                "ring_degree": [
+                  7,
+                  21
+                ],
+                "rowid": 21,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  7,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                0,
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  5,
+                  34
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "7,1,8,1",
+                "ring_degree": [
+                  5,
+                  34
+                ],
+                "rowid": 70,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  7,
+                  455
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  21,
+                  156
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Csigmasq_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "7,1,455,1",
+                "ring_degree": [
+                  21,
+                  156
+                ],
+                "rowid": 18049,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__Ctheta4_by_2",
+      "section": "maps_v2",
+      "ordinal": 86,
+      "stages": [
+        {
+          "coordinates": [],
+          "degree": [
+            18,
+            170
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                422
+              ],
+              1
+            ],
+            [
+              [
+                0,
+                18,
+                422
+              ],
+              0
+            ],
+            [
+              [
+                0,
+                23,
+                188
+              ],
+              1
+            ],
+            [
+              [
+                0,
+                436
+              ],
+              1
+            ],
+            [
+              [
+                18,
+                23,
+                188
+              ],
+              0
+            ],
+            [
+              [
+                18,
+                436
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 8983,
+              "mon": "13,3,75,1,1"
+            },
+            {
+              "id": 8984,
+              "mon": "0,1,23,1,188,1,1"
+            },
+            {
+              "id": 8985,
+              "mon": "0,2,422,1,1"
+            },
+            {
+              "id": 8986,
+              "mon": "761,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  18,
+                  422
+                ],
+                0
+              ],
+              "multiplier": [
+                0
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  17,
+                  169
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "18,1,422,1;10,1,533,1",
+                "ring_degree": [
+                  17,
+                  169
+                ],
+                "rowid": 26060,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  10,
+                  533
+                ],
+                0
+              ],
+              "multiplier": [
+                0
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  17,
+                  169
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "10,1,533,1;8,2,373,1;1,2,708,1",
+                "ring_degree": [
+                  17,
+                  169
+                ],
+                "rowid": 26064,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  1,
+                  1,
+                  708
+                ],
+                0
+              ],
+              "multiplier": [
+                1,
+                708
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  2,
+                  3
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,1,1,1",
+                "ring_degree": [
+                  2,
+                  3
+                ],
+                "rowid": 1,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  8,
+                  8,
+                  373
+                ],
+                0
+              ],
+              "multiplier": [
+                8
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  14,
+                  152
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,1,8,1,373,1;0,2,8,1,367,1",
+                "ring_degree": [
+                  14,
+                  152
+                ],
+                "rowid": 15837,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  8,
+                  367
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  18,
+                  170
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,2,8,2,367,1",
+                "ring_degree": [
+                  18,
+                  170
+                ],
+                "rowid": 26831,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  436
+                ],
+                1
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  18,
+                  170
+                ],
+                "generator_degree": [
+                  0,
+                  31
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 1,
+                "raw": "0,1,436,1;0,1,23,1,188,1;0,2,422,1",
+                "ring_degree": [
+                  18,
+                  139
+                ],
+                "rowid": 10634,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  18,
+                  23,
+                  188
+                ],
+                0
+              ],
+              "multiplier": [
+                188
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  68
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "18,1,23,1",
+                "ring_degree": [
+                  7,
+                  68
+                ],
+                "rowid": 654,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  18,
+                  436
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  18,
+                  170
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "18,1,436,1",
+                "ring_degree": [
+                  18,
+                  170
+                ],
+                "rowid": 26822,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "source"
+        },
+        {
+          "coordinates": [
+            2
+          ],
+          "degree": [
+            21,
+            172
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                455
+              ],
+              1
+            ],
+            [
+              [
+                18,
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 9374,
+              "mon": "13,3,80,1,1"
+            },
+            {
+              "id": 9375,
+              "mon": "1,1,447,1,1"
+            },
+            {
+              "id": 9376,
+              "mon": "0,1,455,1,1"
+            },
+            {
+              "id": 9377,
+              "mon": "0,4,17,1,209,1,1"
+            },
+            {
+              "id": 9378,
+              "mon": "1,1,64,1,209,1,0"
+            },
+            {
+              "id": 9379,
+              "mon": "0,1,17,1,475,1,0"
+            },
+            {
+              "id": 9380,
+              "mon": "0,2,760,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  18,
+                  455
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  21,
+                  172
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "18,1,455,1",
+                "ring_degree": [
+                  21,
+                  172
+                ],
+                "rowid": 28599,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            21,
+            172
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                8,
+                267
+              ],
+              1
+            ],
+            [
+              [
+                0,
+                0,
+                8,
+                18,
+                267
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 9374,
+              "mon": "13,3,80,1,1"
+            },
+            {
+              "id": 9375,
+              "mon": "1,1,447,1,1"
+            },
+            {
+              "id": 9376,
+              "mon": "0,1,455,1,1"
+            },
+            {
+              "id": 9377,
+              "mon": "0,4,17,1,209,1,1"
+            },
+            {
+              "id": 9378,
+              "mon": "1,1,64,1,209,1,0"
+            },
+            {
+              "id": 9379,
+              "mon": "0,1,17,1,475,1,0"
+            },
+            {
+              "id": 9380,
+              "mon": "0,2,760,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                1
+              ],
+              "multiplier": [
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  52
+                ],
+                "generator_degree": [
+                  0,
+                  31
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 1,
+                "raw": "0,3,8,1",
+                "ring_degree": [
+                  7,
+                  21
+                ],
+                "rowid": 21,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  18,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                0,
+                8
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  15,
+                  152
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "18,1,267,1;11,1,335,1;8,1,387,1;8,1,386,1",
+                "ring_degree": [
+                  15,
+                  152
+                ],
+                "rowid": 15856,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  8,
+                  386
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                0,
+                8
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  15,
+                  152
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "8,1,386,1;0,1,8,1,69,1,80,1;0,2,8,1,366,1",
+                "ring_degree": [
+                  15,
+                  152
+                ],
+                "rowid": 15865,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  8,
+                  8,
+                  366
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                8,
+                366
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  21
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,3,8,1",
+                "ring_degree": [
+                  7,
+                  21
+                ],
+                "rowid": 21,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  0,
+                  8,
+                  8,
+                  69,
+                  80
+                ],
+                0
+              ],
+              "multiplier": [
+                8,
+                69,
+                80
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  21
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,3,8,1",
+                "ring_degree": [
+                  7,
+                  21
+                ],
+                "rowid": 21,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  8,
+                  387
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                8,
+                8
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  12,
+                  135
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,1,387,1",
+                "ring_degree": [
+                  12,
+                  135
+                ],
+                "rowid": 9213,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  11,
+                  335
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                8,
+                335
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  4,
+                  23
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,1,11,1",
+                "ring_degree": [
+                  4,
+                  23
+                ],
+                "rowid": 25,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [
+            2
+          ],
+          "degree": [
+            21,
+            172
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                0,
+                8,
+                267
+              ],
+              1
+            ],
+            [
+              [
+                0,
+                0,
+                8,
+                18,
+                267
+              ],
+              0
+            ],
+            [
+              [
+                0,
+                455
+              ],
+              1
+            ],
+            [
+              [
+                18,
+                455
+              ],
+              0
+            ]
+          ],
+          "reason": "no d2 column",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 9374,
+              "mon": "13,3,80,1,1"
+            },
+            {
+              "id": 9375,
+              "mon": "1,1,447,1,1"
+            },
+            {
+              "id": 9376,
+              "mon": "0,1,455,1,1"
+            },
+            {
+              "id": 9377,
+              "mon": "0,4,17,1,209,1,1"
+            },
+            {
+              "id": 9378,
+              "mon": "1,1,64,1,209,1,0"
+            },
+            {
+              "id": 9379,
+              "mon": "0,1,17,1,475,1,0"
+            },
+            {
+              "id": 9380,
+              "mon": "0,2,760,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  0,
+                  8,
+                  267
+                ],
+                1
+              ],
+              "multiplier": [
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  52
+                ],
+                "generator_degree": [
+                  0,
+                  31
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 1,
+                "raw": "0,3,8,1",
+                "ring_degree": [
+                  7,
+                  21
+                ],
+                "rowid": 21,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  18,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                0,
+                8
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  15,
+                  152
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "18,1,267,1;11,1,335,1;8,1,387,1;8,1,386,1",
+                "ring_degree": [
+                  15,
+                  152
+                ],
+                "rowid": 15856,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  8,
+                  386
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                0,
+                8
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  15,
+                  152
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "8,1,386,1;0,1,8,1,69,1,80,1;0,2,8,1,366,1",
+                "ring_degree": [
+                  15,
+                  152
+                ],
+                "rowid": 15865,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  8,
+                  8,
+                  366
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                8,
+                366
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  21
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,3,8,1",
+                "ring_degree": [
+                  7,
+                  21
+                ],
+                "rowid": 21,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  0,
+                  8,
+                  8,
+                  69,
+                  80
+                ],
+                0
+              ],
+              "multiplier": [
+                8,
+                69,
+                80
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  21
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,3,8,1",
+                "ring_degree": [
+                  7,
+                  21
+                ],
+                "rowid": 21,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  8,
+                  387
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                8,
+                8
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  12,
+                  135
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,1,387,1",
+                "ring_degree": [
+                  12,
+                  135
+                ],
+                "rowid": 9213,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  8,
+                  11,
+                  335
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                8,
+                335
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  4,
+                  23
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "0,1,11,1",
+                "ring_degree": [
+                  4,
+                  23
+                ],
+                "rowid": 25,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  18,
+                  455
+                ],
+                0
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  21,
+                  172
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "Ctheta4_AdamsSS_t200.db",
+                "module_generator": 0,
+                "raw": "18,1,455,1",
+                "ring_degree": [
+                  21,
+                  172
+                ],
+                "rowid": 28599,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__Ctheta5_by_2",
+      "section": "maps_v2",
+      "ordinal": 87,
+      "stages": [
+        {
+          "degree": [
+            18,
+            202
+          ],
+          "reason": "E2 degree t=202 exceeds t_max=200",
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "degree": [
+            21,
+            204
+          ],
+          "reason": "E2 degree t=204 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "degree": [
+            21,
+            204
+          ],
+          "reason": "E2 degree t=204 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "degree": [
+            21,
+            204
+          ],
+          "reason": "E2 degree t=204 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__DC2h4_by_sigmasq",
+      "section": "maps_v2",
+      "ordinal": 89,
+      "stages": [
+        {
+          "coordinates": [],
+          "degree": [
+            18,
+            169
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                7,
+                422
+              ],
+              1
+            ],
+            [
+              [
+                7,
+                23,
+                188
+              ],
+              1
+            ],
+            [
+              [
+                7,
+                436
+              ],
+              1
+            ]
+          ],
+          "reason": "d2 degree t=169 exceeds d2_t_max=135",
+          "source_basis": [
+            {
+              "id": 2993,
+              "mon": "436,1"
+            },
+            {
+              "id": 2994,
+              "mon": "23,1,188,1"
+            },
+            {
+              "id": 2995,
+              "mon": "0,1,422,1"
+            },
+            {
+              "id": 2996,
+              "mon": "0,2,7,1,267,1"
+            }
+          ],
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 9983,
+              "mon": "610"
+            },
+            {
+              "id": 9984,
+              "mon": "69,1,147,1,1"
+            },
+            {
+              "id": 9985,
+              "mon": "8,2,69,1,80,1,0"
+            },
+            {
+              "id": 9986,
+              "mon": "0,1,3,1,648,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  7,
+                  422
+                ],
+                1
+              ],
+              "multiplier": [
+                7,
+                422
+              ],
+              "source": {
+                "database": "DC2h4_AdamsSS_t198.db",
+                "degree": [
+                  1,
+                  16
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,1;7,1,0",
+                "rowid": 1,
+                "table": "DC2h4_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  7,
+                  7,
+                  422
+                ],
+                0
+              ],
+              "multiplier": [
+                7
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  17,
+                  153
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "DC2h4_AdamsSS_t198.db",
+                "module_generator": 0,
+                "raw": "7,1,422,1",
+                "ring_degree": [
+                  17,
+                  153
+                ],
+                "rowid": 16358,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  7,
+                  23,
+                  188
+                ],
+                1
+              ],
+              "multiplier": [
+                188
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  7,
+                  67
+                ],
+                "generator_degree": [
+                  0,
+                  15
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "DC2h4_AdamsSS_t198.db",
+                "module_generator": 1,
+                "raw": "7,1,23,1",
+                "ring_degree": [
+                  7,
+                  52
+                ],
+                "rowid": 272,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  7,
+                  436
+                ],
+                1
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  18,
+                  169
+                ],
+                "generator_degree": [
+                  0,
+                  15
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "DC2h4_AdamsSS_t198.db",
+                "module_generator": 1,
+                "raw": "7,1,436,1",
+                "ring_degree": [
+                  18,
+                  154
+                ],
+                "rowid": 16891,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "source"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            21,
+            171
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                7,
+                455
+              ],
+              1
+            ]
+          ],
+          "reason": "d2 degree t=171 exceeds d2_t_max=135",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 10409,
+              "mon": "638"
+            },
+            {
+              "id": 10410,
+              "mon": "16,1,325"
+            },
+            {
+              "id": 10411,
+              "mon": "1,1,448,1,4"
+            },
+            {
+              "id": 10412,
+              "mon": "13,1,357,1,1"
+            },
+            {
+              "id": 10413,
+              "mon": "8,1,23,1,188,1,1"
+            },
+            {
+              "id": 10414,
+              "mon": "1,1,587,1,1"
+            },
+            {
+              "id": 10415,
+              "mon": "79,1,188,1,0"
+            },
+            {
+              "id": 10416,
+              "mon": "13,2,287,1,0"
+            },
+            {
+              "id": 10417,
+              "mon": "8,1,582,1,0"
+            },
+            {
+              "id": 10418,
+              "mon": "0,1,64,1,209,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  7,
+                  455
+                ],
+                1
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  21,
+                  171
+                ],
+                "generator_degree": [
+                  0,
+                  15
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "DC2h4_AdamsSS_t198.db",
+                "module_generator": 1,
+                "raw": "7,1,455,1",
+                "ring_degree": [
+                  21,
+                  156
+                ],
+                "rowid": 18049,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            21,
+            171
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                7,
+                8,
+                267
+              ],
+              1
+            ]
+          ],
+          "reason": "d2 degree t=171 exceeds d2_t_max=135",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 10409,
+              "mon": "638"
+            },
+            {
+              "id": 10410,
+              "mon": "16,1,325"
+            },
+            {
+              "id": 10411,
+              "mon": "1,1,448,1,4"
+            },
+            {
+              "id": 10412,
+              "mon": "13,1,357,1,1"
+            },
+            {
+              "id": 10413,
+              "mon": "8,1,23,1,188,1,1"
+            },
+            {
+              "id": 10414,
+              "mon": "1,1,587,1,1"
+            },
+            {
+              "id": 10415,
+              "mon": "79,1,188,1,0"
+            },
+            {
+              "id": 10416,
+              "mon": "13,2,287,1,0"
+            },
+            {
+              "id": 10417,
+              "mon": "8,1,582,1,0"
+            },
+            {
+              "id": 10418,
+              "mon": "0,1,64,1,209,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  7,
+                  8,
+                  267
+                ],
+                1
+              ],
+              "multiplier": [
+                0,
+                7,
+                8,
+                267
+              ],
+              "source": {
+                "database": "DC2h4_AdamsSS_t198.db",
+                "degree": [
+                  1,
+                  16
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,1;7,1,0",
+                "rowid": 1,
+                "table": "DC2h4_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  7,
+                  7,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                7,
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  5,
+                  34
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "DC2h4_AdamsSS_t198.db",
+                "module_generator": 0,
+                "raw": "7,1,8,1",
+                "ring_degree": [
+                  5,
+                  34
+                ],
+                "rowid": 70,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "target1"
+        },
+        {
+          "coordinates": [],
+          "degree": [
+            21,
+            171
+          ],
+          "generator_images": {},
+          "input": [
+            [
+              [
+                0,
+                0,
+                7,
+                8,
+                267
+              ],
+              1
+            ],
+            [
+              [
+                7,
+                455
+              ],
+              1
+            ]
+          ],
+          "reason": "d2 degree t=171 exceeds d2_t_max=135",
+          "source_basis": [
+            {
+              "id": 3134,
+              "mon": "455,1"
+            },
+            {
+              "id": 3135,
+              "mon": "0,2,8,1,267,1"
+            },
+            {
+              "id": 3136,
+              "mon": "0,3,17,1,209,1"
+            }
+          ],
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "target_basis": [
+            {
+              "id": 10409,
+              "mon": "638"
+            },
+            {
+              "id": 10410,
+              "mon": "16,1,325"
+            },
+            {
+              "id": 10411,
+              "mon": "1,1,448,1,4"
+            },
+            {
+              "id": 10412,
+              "mon": "13,1,357,1,1"
+            },
+            {
+              "id": 10413,
+              "mon": "8,1,23,1,188,1,1"
+            },
+            {
+              "id": 10414,
+              "mon": "1,1,587,1,1"
+            },
+            {
+              "id": 10415,
+              "mon": "79,1,188,1,0"
+            },
+            {
+              "id": 10416,
+              "mon": "13,2,287,1,0"
+            },
+            {
+              "id": 10417,
+              "mon": "8,1,582,1,0"
+            },
+            {
+              "id": 10418,
+              "mon": "0,1,64,1,209,1,0"
+            }
+          ],
+          "trace": [
+            {
+              "leading": [
+                [
+                  0,
+                  0,
+                  7,
+                  8,
+                  267
+                ],
+                1
+              ],
+              "multiplier": [
+                0,
+                7,
+                8,
+                267
+              ],
+              "source": {
+                "database": "DC2h4_AdamsSS_t198.db",
+                "degree": [
+                  1,
+                  16
+                ],
+                "kind": "target_relation",
+                "raw": "0,1,1;7,1,0",
+                "rowid": 1,
+                "table": "DC2h4_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  0,
+                  7,
+                  7,
+                  8,
+                  267
+                ],
+                0
+              ],
+              "multiplier": [
+                0,
+                7,
+                267
+              ],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  5,
+                  34
+                ],
+                "generator_degree": [
+                  0,
+                  0
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "DC2h4_AdamsSS_t198.db",
+                "module_generator": 0,
+                "raw": "7,1,8,1",
+                "ring_degree": [
+                  5,
+                  34
+                ],
+                "rowid": 70,
+                "table": "S0_AdamsE2_relations"
+              }
+            },
+            {
+              "leading": [
+                [
+                  7,
+                  455
+                ],
+                1
+              ],
+              "multiplier": [],
+              "source": {
+                "database": "S0_AdamsSS_t261.db",
+                "degree": [
+                  21,
+                  171
+                ],
+                "generator_degree": [
+                  0,
+                  15
+                ],
+                "kind": "lifted_ring_relation",
+                "module_database": "DC2h4_AdamsSS_t198.db",
+                "module_generator": 1,
+                "raw": "7,1,455,1",
+                "ring_degree": [
+                  21,
+                  156
+                ],
+                "rowid": 18049,
+                "table": "S0_AdamsE2_relations"
+              }
+            }
+          ],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__DC2h5_by_theta4",
+      "section": "maps_v2",
+      "ordinal": 90,
+      "stages": [
+        {
+          "degree": [
+            18,
+            201
+          ],
+          "reason": "E2 degree t=201 exceeds t_max=200",
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "degree": [
+            21,
+            203
+          ],
+          "reason": "E2 degree t=203 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "degree": [
+            21,
+            203
+          ],
+          "reason": "E2 degree t=203 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "degree": [
+            21,
+            203
+          ],
+          "reason": "E2 degree t=203 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    },
+    {
+      "map": "S0__DC2h6_by_theta5",
+      "section": "maps_v2",
+      "ordinal": 91,
+      "stages": [
+        {
+          "degree": [
+            18,
+            265
+          ],
+          "reason": "E2 degree t=265 exceeds t_max=200",
+          "source_degree": [
+            17,
+            138
+          ],
+          "source_indices": [
+            0,
+            1,
+            2
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "source"
+        },
+        {
+          "degree": [
+            21,
+            267
+          ],
+          "reason": "E2 degree t=267 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target"
+        },
+        {
+          "degree": [
+            21,
+            267
+          ],
+          "reason": "E2 degree t=267 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "target1"
+        },
+        {
+          "degree": [
+            21,
+            267
+          ],
+          "reason": "E2 degree t=267 exceeds t_max=200",
+          "source_degree": [
+            20,
+            140
+          ],
+          "source_indices": [
+            0,
+            1
+          ],
+          "status": "unknown",
+          "trace": [],
+          "label": "targetsum"
+        }
+      ]
+    }
+  ],
+  "complete_source_zero_maps": 20,
+  "undetected_nonzero_target_vectors": [
+    [
+      0,
+      1
+    ]
+  ],
+  "detects_first_only": [
+    "S0__S0_by_2",
+    "S0__CW_eta_nu",
+    "S0__CW_nu_eta_2",
+    "S0__CW_eta_nu_sigma"
+  ],
+  "consequence": "No subset of these complete source-zero maps jointly reflects zero on the full target.",
+  "scope": "Bounded numerical screen only; incomplete maps are not evidence of impossibility.",
+  "sha256": {
+    "record_failures.py": "e1b71934e48717535e96a1325b74e9919518426b00de86dbf7eee21c8b1efc50",
+    "lifted-search.json": "bf63e88d5b40703bce5c165f512fa43b3c5d6ddf7224bed79e04fd2bc51da266",
+    "candidates.json": "7b4a9ba18c2f21c5932e70b8c18235abd9ea8344a513b272b2e9772935d8ba37"
+  }
+}

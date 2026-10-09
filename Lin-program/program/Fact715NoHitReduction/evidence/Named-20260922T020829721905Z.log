@@ -1,0 +1,42 @@
+Fact715NoHitReduction/Named.lean:17:10: error: unexpected identifier; expected prec
+Fact715NoHitReduction/Named.lean:23:45: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact715NoHitReduction.ReductionInput.prefix`, so it is not possible to project the field `prefix` from an expression
+  C
+of type
+  ReductionInput S pages product initial
+Fact715NoHitReduction/Named.lean:29:42: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact715NoHitReduction.ReductionInput.prefix`, so it is not possible to project the field `prefix` from an expression
+  C
+of type
+  ReductionInput S pages product initial
+Fact715NoHitReduction/Named.lean:27:42: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+product : CertifiedAdamsProduct S
+initial : Fact715ConstructedActual.AdditiveCoordinates S 2 5
+C : ReductionInput S pages product initial
+⊢ (system S pages ⋯ degree).at (Fact715ConstructedActual.raw initial) 3 ≠ S.zero 5 degree
+Fact715NoHitReduction/Named.lean:46:5: warning: Variable name `binding` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Fact715NoHitReduction/Named.lean:63:43: error(lean.invalidField): Invalid field `prefix`: The environment does not contain `Fact715NoHitReduction.ReductionInput.prefix`, so it is not possible to project the field `prefix` from an expression
+  C
+of type
+  ReductionInput S pages product initial
+'Fact715NoHitReduction.ReductionInput.cutoff_cycle' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact715NoHitReduction.ReductionInput.cutoff_nonzero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact715NoHitReduction.ReductionInput.page9_nonzero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact715NoHitReduction.ReductionInput.raw_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715NoHitReduction.ReductionInput.named_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715NoHitReduction.ReductionInput.named_page9_nonzero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact715NoHitReduction.ReductionInput.conditional_not_hit' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact715NoHitReduction.ReductionInput.no_page9_trace_not_hit' depends on axioms: [propext, Classical.choice, Quot.sound]

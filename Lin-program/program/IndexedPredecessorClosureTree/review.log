@@ -1,0 +1,20 @@
+{
+  "status": "tree_path_coverage_and_original_checker_replayed",
+  "counts": {
+    "valid_path_members": 4704,
+    "shape_mutations": 1176,
+    "invalid_path_mutations": 3528,
+    "wrong_key_mutations": 3528,
+    "dimension_mutations": 3528,
+    "accepted_small_families": 1176,
+    "balanced_index_paths": 2950
+  },
+  "accepted_modules": [
+    "Basic",
+    "Tactic",
+    "Tests"
+  ],
+  "required_unique": "Path membership implies the original first-match lookup only with UniqueKeys; the sound theorem requires it explicitly.",
+  "complexity": "Tree.check visits every node once and three paths per higher leaf. Balanced depth <= ceil(log2 N); flatten binding is proved once and not evaluated in checker.",
+  "excluded_claim": "No topology realization or timing improvement is inferred from this structural replay."
+}

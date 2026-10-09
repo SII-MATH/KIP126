@@ -1,0 +1,11 @@
+Fact762NonzeroE6/Request.lean:70:78: error: Tactic `decide` proved that the proposition
+  Option.map (fun failure => (failure.1, failure.2.location))
+      (diagnoseBatch spec
+        [request,
+          let __src := request;
+          { version := __src.version, claim := __src.claim, source := __src.source, output := [] }]
+        1) =
+    some (2, "output")
+is false
+'Fact762NonzeroE6.request_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762NonzeroE6.batch_sound' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,31 @@
+{
+  "source_sha256": "a6de7cf98daf0777528978fcea20525810d4c2c26d7489d3cebb2282107a5714",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact713C2Row3005/MapSemantics.olean": "dce102d2a1debab8f642ec258783dde13d0eb5c6dc3bc283f92db5bb969bf417",
+    ".lake/build/lib/lean/Fact713C2Row3005/MapImported.olean": "60914f51ea0eaa21b6f02082de56c20f8e8e7e4076d53e5183cec47da59ba6cb",
+    ".lake/build/lib/lean/Fact762CsigmasqD5/Descent.olean": "e3a199b28c574f442b8c4cac3519df63664ad2fa9b052691d750b5fff91d4ab7",
+    ".lake/build/lib/lean/Fact715IncomingTail/Basic.olean": "4df25d710acfd18fb9e7cb45e5a09b0ea4b418017b88734969899f7b2b08ee07"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Row3005D4Search/Data.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3005D4Search/Data.olean"
+  ],
+  "log": "evidence/Data-20260922T023722414297Z.log",
+  "external_input_sha256": {
+    "Row3005D4Search/wire/empty2.json": "8bc8fd296e13d929b520a8b461c97d75a0cffae2cd6b1f3d4e0a4de81cc30125",
+    "Row3005D4Search/wire/empty3.json": "e00d6d1c9cff5782b89e894b76cee55323e9120a2c99aaf0e85130dbe6a3e4d0",
+    "Row3005D4Search/wire/sphere3.json": "da6e93b38cf51201c5fddcee46baa531f03f8c367b986d01603bd638b5e26498"
+  },
+  "observed_exit_code": 1,
+  "log_sha256": "c86ad929f5dfbd1f51006b837d88327150dd7915fdd45d404d9ab96b993fa42a",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/Fact713C2Row3005/MapSemantics.olean": "dce102d2a1debab8f642ec258783dde13d0eb5c6dc3bc283f92db5bb969bf417",
+    ".lake/build/lib/lean/Fact713C2Row3005/MapImported.olean": "60914f51ea0eaa21b6f02082de56c20f8e8e7e4076d53e5183cec47da59ba6cb",
+    ".lake/build/lib/lean/Fact762CsigmasqD5/Descent.olean": "e3a199b28c574f442b8c4cac3519df63664ad2fa9b052691d750b5fff91d4ab7",
+    ".lake/build/lib/lean/Fact715IncomingTail/Basic.olean": "4df25d710acfd18fb9e7cb45e5a09b0ea4b418017b88734969899f7b2b08ee07"
+  },
+  "inputs_stable": true
+}

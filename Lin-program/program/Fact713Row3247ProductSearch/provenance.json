@@ -1,0 +1,1751 @@
+{
+  "matrices": [
+    {
+      "name": "factor_8_54",
+      "kind": "factor",
+      "source_degree": [
+        8,
+        54
+      ],
+      "target_degree": [
+        20,
+        162
+      ],
+      "source": [
+        [
+          421,
+          "1,1,5,1,18,1,1"
+        ],
+        [
+          422,
+          "52,1,0"
+        ]
+      ],
+      "target": [
+        [
+          7533,
+          "209,1,30"
+        ],
+        [
+          7534,
+          "667,1,0"
+        ],
+        [
+          7535,
+          "13,1,23,1,189,1,0"
+        ],
+        [
+          7536,
+          "1,2,628,1,0"
+        ]
+      ],
+      "source_generators": [
+        0,
+        1
+      ],
+      "target_generators": [
+        0,
+        1,
+        30
+      ],
+      "raw_images": null,
+      "wire": {
+        "version": 1,
+        "filtration": 12,
+        "suspension": -96,
+        "sourceS": 8,
+        "sourceT": 54,
+        "targetS": 20,
+        "targetT": 162,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 2,
+          "targetGenerators": 3,
+          "rows": 4,
+          "cols": 2,
+          "images": [
+            [
+              [
+                [
+                  212
+                ],
+                [
+                  3,
+                  178
+                ]
+              ],
+              [],
+              []
+            ],
+            [
+              [],
+              [
+                [
+                  212
+                ],
+                [
+                  3,
+                  178
+                ]
+              ],
+              []
+            ]
+          ],
+          "source": [
+            [
+              [],
+              [
+                [
+                  1,
+                  5,
+                  18
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  52
+                ]
+              ],
+              []
+            ]
+          ],
+          "target": [
+            [
+              [],
+              [],
+              [
+                [
+                  209
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  667
+                ]
+              ],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  13,
+                  23,
+                  189
+                ]
+              ],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  1,
+                  1,
+                  628
+                ]
+              ],
+              [],
+              []
+            ]
+          ],
+          "relations": [
+            [
+              [],
+              [
+                [
+                  178
+                ]
+              ],
+              []
+            ],
+            [
+              [],
+              [
+                [
+                  1,
+                  212
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  3,
+                  52
+                ]
+              ],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  52,
+                  212
+                ],
+                [
+                  33,
+                  267
+                ]
+              ],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  33,
+                  267
+                ],
+                [
+                  32,
+                  268
+                ]
+              ],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  32,
+                  268
+                ],
+                [
+                  13,
+                  23,
+                  189
+                ]
+              ],
+              [],
+              []
+            ]
+          ],
+          "entries": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "terms": [
+            [
+              {
+                "relation": 0,
+                "multiplier": [
+                  [
+                    1,
+                    3,
+                    5,
+                    18
+                  ]
+                ]
+              },
+              {
+                "relation": 1,
+                "multiplier": [
+                  [
+                    5,
+                    18
+                  ]
+                ]
+              }
+            ],
+            [
+              {
+                "relation": 2,
+                "multiplier": [
+                  [
+                    178
+                  ]
+                ]
+              },
+              {
+                "relation": 3,
+                "multiplier": [
+                  []
+                ]
+              },
+              {
+                "relation": 4,
+                "multiplier": [
+                  []
+                ]
+              },
+              {
+                "relation": 5,
+                "multiplier": [
+                  []
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "relation_sources": [
+        {
+          "kind": "module",
+          "rowid": 4773,
+          "raw": "178,1,1",
+          "degree": [
+            12,
+            106
+          ]
+        },
+        {
+          "kind": "module",
+          "rowid": 7036,
+          "raw": "1,1,212,1,1",
+          "degree": [
+            14,
+            116
+          ]
+        },
+        {
+          "kind": "ring_lift",
+          "rowid": 490,
+          "raw": "3,1,52,1",
+          "module_generator": 0,
+          "degree": [
+            9,
+            62
+          ]
+        },
+        {
+          "kind": "ring_lift",
+          "rowid": 21356,
+          "raw": "52,1,212,1;33,1,267,1",
+          "module_generator": 0,
+          "degree": [
+            20,
+            162
+          ]
+        },
+        {
+          "kind": "ring_lift",
+          "rowid": 21357,
+          "raw": "33,1,267,1;32,1,268,1",
+          "module_generator": 0,
+          "degree": [
+            20,
+            162
+          ]
+        },
+        {
+          "kind": "ring_lift",
+          "rowid": 21375,
+          "raw": "32,1,268,1;13,1,23,1,189,1",
+          "module_generator": 0,
+          "degree": [
+            20,
+            162
+          ]
+        }
+      ]
+    },
+    {
+      "name": "factor_10_55",
+      "kind": "factor",
+      "source_degree": [
+        10,
+        55
+      ],
+      "target_degree": [
+        22,
+        163
+      ],
+      "source": [
+        [
+          432,
+          "30"
+        ]
+      ],
+      "target": [
+        [
+          7667,
+          "212,1,30"
+        ],
+        [
+          7668,
+          "13,4,75,1,0"
+        ],
+        [
+          7669,
+          "0,1,666,1,0"
+        ]
+      ],
+      "source_generators": [
+        30
+      ],
+      "target_generators": [
+        0,
+        30
+      ],
+      "raw_images": null,
+      "wire": {
+        "version": 1,
+        "filtration": 12,
+        "suspension": -96,
+        "sourceS": 10,
+        "sourceT": 55,
+        "targetS": 22,
+        "targetT": 163,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 2,
+          "rows": 3,
+          "cols": 1,
+          "images": [
+            [
+              [],
+              [
+                [
+                  212
+                ],
+                [
+                  3,
+                  178
+                ]
+              ]
+            ]
+          ],
+          "source": [
+            [
+              [
+                []
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [],
+              [
+                [
+                  212
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  13,
+                  13,
+                  13,
+                  13,
+                  75
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  666
+                ]
+              ],
+              []
+            ]
+          ],
+          "relations": [
+            [
+              [],
+              [
+                [
+                  3
+                ]
+              ]
+            ]
+          ],
+          "entries": [
+            true,
+            false,
+            false
+          ],
+          "terms": [
+            [
+              {
+                "relation": 0,
+                "multiplier": [
+                  [
+                    178
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "relation_sources": [
+        {
+          "kind": "module",
+          "rowid": 598,
+          "raw": "3,1,30",
+          "degree": [
+            11,
+            63
+          ]
+        }
+      ]
+    },
+    {
+      "name": "factor_12_56",
+      "kind": "factor",
+      "source_degree": [
+        12,
+        56
+      ],
+      "target_degree": [
+        24,
+        164
+      ],
+      "source": [],
+      "target": [
+        [
+          7788,
+          "23,1,316,1,0"
+        ],
+        [
+          7789,
+          "8,2,318,1,0"
+        ],
+        [
+          7790,
+          "0,4,646,1,0"
+        ]
+      ],
+      "source_generators": [],
+      "target_generators": [
+        0
+      ],
+      "raw_images": null,
+      "wire": {
+        "version": 1,
+        "filtration": 12,
+        "suspension": -96,
+        "sourceS": 12,
+        "sourceT": 56,
+        "targetS": 24,
+        "targetT": 164,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 0,
+          "targetGenerators": 1,
+          "rows": 3,
+          "cols": 0,
+          "images": [],
+          "source": [],
+          "target": [
+            [
+              [
+                [
+                  23,
+                  316
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  8,
+                  8,
+                  318
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  646
+                ]
+              ]
+            ]
+          ],
+          "relations": [],
+          "entries": [],
+          "terms": []
+        }
+      },
+      "relation_sources": []
+    },
+    {
+      "name": "factor_11_56",
+      "kind": "factor",
+      "source_degree": [
+        11,
+        56
+      ],
+      "target_degree": [
+        23,
+        164
+      ],
+      "source": [
+        [
+          443,
+          "1,1,42,1,1"
+        ]
+      ],
+      "target": [
+        [
+          7791,
+          "13,2,67,1,28"
+        ],
+        [
+          7792,
+          "626,1,1"
+        ],
+        [
+          7793,
+          "8,1,9,1,293,1,0"
+        ]
+      ],
+      "source_generators": [
+        1
+      ],
+      "target_generators": [
+        0,
+        1,
+        28
+      ],
+      "raw_images": null,
+      "wire": {
+        "version": 1,
+        "filtration": 12,
+        "suspension": -96,
+        "sourceS": 11,
+        "sourceT": 56,
+        "targetS": 23,
+        "targetT": 164,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 3,
+          "rows": 3,
+          "cols": 1,
+          "images": [
+            [
+              [],
+              [
+                [
+                  212
+                ],
+                [
+                  3,
+                  178
+                ]
+              ],
+              []
+            ]
+          ],
+          "source": [
+            [
+              [
+                [
+                  1,
+                  42
+                ]
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [],
+              [],
+              [
+                [
+                  13,
+                  13,
+                  67
+                ]
+              ]
+            ],
+            [
+              [],
+              [
+                [
+                  626
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  8,
+                  9,
+                  293
+                ]
+              ],
+              [],
+              []
+            ]
+          ],
+          "relations": [
+            [
+              [],
+              [
+                [
+                  178
+                ]
+              ],
+              []
+            ],
+            [
+              [],
+              [
+                [
+                  1,
+                  212
+                ]
+              ],
+              []
+            ]
+          ],
+          "entries": [
+            false,
+            false,
+            false
+          ],
+          "terms": [
+            [
+              {
+                "relation": 0,
+                "multiplier": [
+                  [
+                    1,
+                    3,
+                    42
+                  ]
+                ]
+              },
+              {
+                "relation": 1,
+                "multiplier": [
+                  [
+                    42
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "relation_sources": [
+        {
+          "kind": "module",
+          "rowid": 4773,
+          "raw": "178,1,1",
+          "degree": [
+            12,
+            106
+          ]
+        },
+        {
+          "kind": "module",
+          "rowid": 7036,
+          "raw": "1,1,212,1,1",
+          "degree": [
+            14,
+            116
+          ]
+        }
+      ]
+    },
+    {
+      "name": "factor_13_57",
+      "kind": "factor",
+      "source_degree": [
+        13,
+        57
+      ],
+      "target_degree": [
+        25,
+        165
+      ],
+      "source": [
+        [
+          458,
+          "8,1,19,1,1"
+        ]
+      ],
+      "target": [
+        [
+          7962,
+          "646"
+        ],
+        [
+          7963,
+          "13,4,80,1,0"
+        ],
+        [
+          7964,
+          "8,1,530,1,0"
+        ]
+      ],
+      "source_generators": [
+        1
+      ],
+      "target_generators": [
+        0,
+        1,
+        646
+      ],
+      "raw_images": null,
+      "wire": {
+        "version": 1,
+        "filtration": 12,
+        "suspension": -96,
+        "sourceS": 13,
+        "sourceT": 57,
+        "targetS": 25,
+        "targetT": 165,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 3,
+          "rows": 3,
+          "cols": 1,
+          "images": [
+            [
+              [],
+              [
+                [
+                  212
+                ],
+                [
+                  3,
+                  178
+                ]
+              ],
+              []
+            ]
+          ],
+          "source": [
+            [
+              [
+                [
+                  8,
+                  19
+                ]
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [],
+              [],
+              [
+                []
+              ]
+            ],
+            [
+              [
+                [
+                  13,
+                  13,
+                  13,
+                  13,
+                  80
+                ]
+              ],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  8,
+                  530
+                ]
+              ],
+              [],
+              []
+            ]
+          ],
+          "relations": [
+            [
+              [],
+              [
+                [
+                  178
+                ]
+              ],
+              []
+            ],
+            [
+              [],
+              [
+                [
+                  19,
+                  212
+                ],
+                [
+                  13,
+                  254
+                ]
+              ],
+              []
+            ],
+            [
+              [],
+              [
+                [
+                  13,
+                  254
+                ],
+                [
+                  8,
+                  8,
+                  201
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  8,
+                  530
+                ]
+              ],
+              [
+                [
+                  8,
+                  8,
+                  8,
+                  201
+                ]
+              ],
+              []
+            ]
+          ],
+          "entries": [
+            false,
+            false,
+            true
+          ],
+          "terms": [
+            [
+              {
+                "relation": 0,
+                "multiplier": [
+                  [
+                    3,
+                    8,
+                    19
+                  ]
+                ]
+              },
+              {
+                "relation": 1,
+                "multiplier": [
+                  [
+                    8
+                  ]
+                ]
+              },
+              {
+                "relation": 2,
+                "multiplier": [
+                  [
+                    8
+                  ]
+                ]
+              },
+              {
+                "relation": 3,
+                "multiplier": [
+                  []
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "relation_sources": [
+        {
+          "kind": "module",
+          "rowid": 4773,
+          "raw": "178,1,1",
+          "degree": [
+            12,
+            106
+          ]
+        },
+        {
+          "kind": "ring_lift",
+          "rowid": 11326,
+          "raw": "19,1,212,1;13,1,254,1",
+          "module_generator": 1,
+          "degree": [
+            21,
+            147
+          ]
+        },
+        {
+          "kind": "ring_lift",
+          "rowid": 11327,
+          "raw": "13,1,254,1;8,2,201,1",
+          "module_generator": 1,
+          "degree": [
+            21,
+            147
+          ]
+        },
+        {
+          "kind": "module",
+          "rowid": 36000,
+          "raw": "8,3,201,1,1;8,1,530,1,0",
+          "degree": [
+            25,
+            165
+          ]
+        }
+      ]
+    },
+    {
+      "name": "factor_15_58",
+      "kind": "factor",
+      "source_degree": [
+        15,
+        58
+      ],
+      "target_degree": [
+        27,
+        166
+      ],
+      "source": [],
+      "target": [
+        [
+          8103,
+          "659"
+        ],
+        [
+          8104,
+          "13,3,32,1,28"
+        ],
+        [
+          8105,
+          "8,1,173,1,25"
+        ]
+      ],
+      "source_generators": [],
+      "target_generators": [
+        25,
+        28,
+        659
+      ],
+      "raw_images": null,
+      "wire": {
+        "version": 1,
+        "filtration": 12,
+        "suspension": -96,
+        "sourceS": 15,
+        "sourceT": 58,
+        "targetS": 27,
+        "targetT": 166,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 0,
+          "targetGenerators": 3,
+          "rows": 3,
+          "cols": 0,
+          "images": [],
+          "source": [],
+          "target": [
+            [
+              [],
+              [],
+              [
+                []
+              ]
+            ],
+            [
+              [],
+              [
+                [
+                  13,
+                  13,
+                  13,
+                  32
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  8,
+                  173
+                ]
+              ],
+              [],
+              []
+            ]
+          ],
+          "relations": [],
+          "entries": [],
+          "terms": []
+        }
+      },
+      "relation_sources": []
+    }
+  ],
+  "comparisons": {
+    "Cnu_10_55": {
+      "rows": [
+        [
+          {
+            "id": 421,
+            "mon": "1,1,5,1,18,1,1",
+            "d2": ""
+          },
+          {
+            "id": 422,
+            "mon": "52,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 432,
+            "mon": "30",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 2,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "object": "Cnu",
+      "degree": [
+        10,
+        55
+      ],
+      "raw": [
+        [
+          432,
+          "0",
+          null,
+          9000
+        ]
+      ]
+    },
+    "Cnu_13_57": {
+      "rows": [
+        [
+          {
+            "id": 443,
+            "mon": "1,1,42,1,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 458,
+            "mon": "8,1,19,1,1",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "object": "Cnu",
+      "degree": [
+        13,
+        57
+      ],
+      "raw": [
+        [
+          458,
+          "0",
+          "1",
+          9996
+        ]
+      ]
+    },
+    "Cnu_22_163": {
+      "rows": [
+        [
+          {
+            "id": 7533,
+            "mon": "209,1,30",
+            "d2": ""
+          },
+          {
+            "id": 7534,
+            "mon": "667,1,0",
+            "d2": ""
+          },
+          {
+            "id": 7535,
+            "mon": "13,1,23,1,189,1,0",
+            "d2": ""
+          },
+          {
+            "id": 7536,
+            "mon": "1,2,628,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 7667,
+            "mon": "212,1,30",
+            "d2": ""
+          },
+          {
+            "id": 7668,
+            "mon": "13,4,75,1,0",
+            "d2": ""
+          },
+          {
+            "id": 7669,
+            "mon": "0,1,666,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 7788,
+            "mon": "23,1,316,1,0",
+            "d2": "3"
+          },
+          {
+            "id": 7789,
+            "mon": "8,2,318,1,0",
+            "d2": ""
+          },
+          {
+            "id": 7790,
+            "mon": "0,4,646,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 3,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 3,
+        "n": 4,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "object": "Cnu",
+      "degree": [
+        22,
+        163
+      ],
+      "raw": [
+        [
+          7667,
+          "1",
+          "1",
+          3
+        ],
+        [
+          7668,
+          "2",
+          null,
+          9000
+        ],
+        [
+          7669,
+          "0",
+          null,
+          9000
+        ]
+      ]
+    },
+    "Cnu_25_165": {
+      "rows": [
+        [
+          {
+            "id": 7791,
+            "mon": "13,2,67,1,28",
+            "d2": ""
+          },
+          {
+            "id": 7792,
+            "mon": "626,1,1",
+            "d2": ""
+          },
+          {
+            "id": 7793,
+            "mon": "8,1,9,1,293,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 7962,
+            "mon": "646",
+            "d2": ""
+          },
+          {
+            "id": 7963,
+            "mon": "13,4,80,1,0",
+            "d2": ""
+          },
+          {
+            "id": 7964,
+            "mon": "8,1,530,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 8103,
+            "mon": "659",
+            "d2": ""
+          },
+          {
+            "id": 8104,
+            "mon": "13,3,32,1,28",
+            "d2": ""
+          },
+          {
+            "id": 8105,
+            "mon": "8,1,173,1,25",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 3,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 3,
+        "n": 3,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "object": "Cnu",
+      "degree": [
+        25,
+        165
+      ],
+      "raw": [
+        [
+          7962,
+          "1",
+          "4",
+          4
+        ],
+        [
+          7963,
+          "2",
+          "1",
+          9996
+        ],
+        [
+          7964,
+          "0",
+          "1",
+          9997
+        ]
+      ]
+    },
+    "S0_12_108": {
+      "rows": [
+        [
+          {
+            "id": 1462,
+            "mon": "209,1",
+            "d2": ""
+          },
+          {
+            "id": 1463,
+            "mon": "0,1,8,1,13,1,69,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 1502,
+            "mon": "212,1",
+            "d2": "0"
+          },
+          {
+            "id": 1503,
+            "mon": "3,1,178,1",
+            "d2": "0"
+          }
+        ],
+        [
+          {
+            "id": 1533,
+            "mon": "0,1,2,1,195,1",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          true,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 2,
+        "outgoing": [
+          true,
+          true
+        ],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        12,
+        108
+      ],
+      "raw": [
+        [
+          1502,
+          "0,1",
+          null,
+          9000
+        ],
+        [
+          1503,
+          "1",
+          "0",
+          9998
+        ]
+      ]
+    },
+    "S0_15_110": {
+      "rows": [
+        [
+          {
+            "id": 1534,
+            "mon": "39,1,69,1",
+            "d2": "0"
+          },
+          {
+            "id": 1535,
+            "mon": "13,1,133,1",
+            "d2": ""
+          },
+          {
+            "id": 1536,
+            "mon": "0,1,212,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 1566,
+            "mon": "1,2,31,1,69,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 1613,
+            "mon": "8,1,13,1,80,1",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          true,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 3,
+        "outgoing": [
+          false
+        ],
+        "projection": [],
+        "up": [
+          true,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        15,
+        110
+      ],
+      "raw": [
+        [
+          1566,
+          "0",
+          "0",
+          2
+        ]
+      ]
+    }
+  },
+  "E3_maps": {
+    "factor_10_55": {
+      "source": 1,
+      "target": 3,
+      "entries": [
+        1,
+        0,
+        0
+      ]
+    },
+    "factor_13_57": {
+      "source": 1,
+      "target": 3,
+      "entries": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "source_sha256": {
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "Cnu_AdamsSS_t200.db": "e1274528151c3391f5e5f4de72f8428a68b5e145a07bb3cc946781efd9bfdbbe",
+    "map_AdamsSS_Cnu_to_S0_t200.db": "348873fdbe993aa6b266c34bb4eca6121ab4a44b086a951cb29026a19a0e57f1"
+  }
+}

@@ -1,0 +1,25 @@
+'FilteredExtensionReview.negative00_0_checked' depends on axioms: [propext, Quot.sound]
+'FilteredExtensionReview.negative00_1_checked' depends on axioms: [propext, Quot.sound]
+'FilteredExtensionReview.negative00_2_checked' depends on axioms: [propext, Quot.sound]
+'FilteredExtensionReview.negative00_3_checked' depends on axioms: [propext, Quot.sound]
+'FilteredExtensionReview.negative00_4_checked' depends on axioms: [propext, Quot.sound]
+'FilteredExtensionReview.negative00_5_checked' depends on axioms: [propext, Quot.sound]
+'FilteredExtensionReview.negative00_6_checked' depends on axioms: [propext, Quot.sound]
+'FilteredExtensionReview.negative00_7_checked' depends on axioms: [propext, Quot.sound]
+FilteredExtensionReview/Negative00.lean:53:17: error: Tactic `rcases` failed: `negative00_0` is not a free variable
+FilteredExtensionReview/Negative00.lean:52:25: warning: This simp argument is unused:
+  List.mem_cons
+
+Hint: Omit it from the simp argument list.
+  simp only [negative00, L̵i̵s̵t̵.̵m̵e̵m̵_̵c̵o̵n̵s̵,̵ ̵List.mem_singleton] at hw
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+FilteredExtensionReview/Negative00.lean:52:40: warning: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [negative00, List.mem_cons,̵ ̵L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵] at hw
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'FilteredExtensionReview.negative00_count' does not depend on any axioms
+'FilteredExtensionReview.negative00_rejected' depends on axioms: [propext, sorryAx, Quot.sound]

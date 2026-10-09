@@ -1,0 +1,50 @@
+Fact713Row3247Source/Binding.lean:9:61: error: failed to synthesize
+  Decidable (InKernel (out S0_18_141) rawSphere)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Fact713Row3247Source/Binding.lean:10:69: error: failed to synthesize
+  Decidable (InKernel (out S0_18_141) historySphere)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Fact713Row3247Source/Binding.lean:14:65: error: Ambiguous term
+  Cycle
+Possible interpretations:
+  _root_.Cycle ?m.3 : Type ?u.4
+  
+  PageTransitionCertificates.Cycle ?m.5 : Type
+Fact713Row3247Source/Binding.lean:15:77: error: Ambiguous term
+  Cycle
+Possible interpretations:
+  _root_.Cycle ?m.3 : Type ?u.4
+  
+  PageTransitionCertificates.Cycle ?m.5 : Type
+Fact713Row3247Source/Binding.lean:16:8: warning: declaration uses `sorry`
+Fact713Row3247Source/Binding.lean:18:2: warning: 'change InImage (inc S0_18_141) (add rawSphere historySphere)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Fact713Row3247Source/Binding.lean:19:2: warning: 'exact correction_boundary' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Fact713Row3247Source/Binding.lean:19:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+Fact713Row3247Source/Binding.lean:23:70: error: Tactic `decide` failed for proposition
+  (coordinates S0_18_141 S0_18_141_valid).toCoordinates rawClass =
+    (coordinates S0_18_141 S0_18_141_valid).toCoordinates namedSphere
+because its `Decidable` instance
+  Fintype.decidablePiFintype ((coordinates S0_18_141 S0_18_141_valid).toCoordinates rawClass)
+    ((coordinates S0_18_141 S0_18_141_valid).toCoordinates namedSphere)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decidable_of_decidable_of_iff`, `decidable_of_iff`, `instDecidableEqBool`, `Bool.decEq`, `Finset.decidableDforallFinset`, `Fintype.decidablePiFintype`, `List.decidableBAll`, `Multiset.decidableDforallMultiset`, and `Multiset.decidableForallMultiset`, reduction got stuck at the `Decidable` instance
+  match (coordinates S0_18_141 S0_18_141_valid).toCoordinates rawClass ↑⟨(fun i => i) ⟨0, ⋯⟩, ⋯⟩,
+    (coordinates S0_18_141 S0_18_141_valid).toCoordinates namedSphere ↑⟨(fun i => i) ⟨0, ⋯⟩, ⋯⟩ with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+'Fact713Row3247Source.Binding.correction_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.raw_history_same' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713Row3247Source.Binding.raw_named' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713Row3247Source.Binding.products_raw_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row3247Source.Binding.raw_nulls' does not depend on any axioms

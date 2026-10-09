@@ -1,0 +1,156 @@
+Checking KervaireProgram/Model
+Checking KervaireProgram/Certificate
+Checking KervaireProgram/Checker
+Checking KervaireProgram/Import
+Checking KervaireProgram/KervaireClaims
+Checking KervaireProgram
+Checking LinProgramCertificates/CertificateFormat
+Checking LinProgramCertificates/Verifier
+Checking LinProgramCertificates/Tactic
+Checking LinProgramCertificates/KervaireTactic
+Checking LinProgramCertificates/Examples
+'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.check_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.importLine_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KervaireProgram.dataWellFormed_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.differentialWellFormed_sound' depends on axioms: [propext, Quot.sound]
+Checking LinProgramCertificates
+Checking LinearCertificates/Basic
+Checking LinearCertificates/Checker
+Checking LinearCertificates/Diagnostics
+Checking LinearCertificates/Import
+Checking LinearCertificates/Examples
+'LinearCertificates.annihilates_image' depends on axioms: [propext, Quot.sound]
+'LinearCertificates.checkNotImage_sound' depends on axioms: [propext, Quot.sound]
+'LinearCertificates.checkChainMap_sound' depends on axioms: [propext, Quot.sound]
+Checking LinearCertificates/ImportExamples
+Checking LinearCertificates/ParserExamples
+'LinearCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+Checking LinearCertificates/GeneratedExamples
+Checking LinearCertificates/CheckMain
+Checking LinearCertificates
+Checking MilnorCertificates/Basic
+Checking MilnorCertificates/Import
+Checking MilnorCertificates/Examples
+Checking MilnorCertificates/FileExample
+Checking MilnorCertificates/ImportedExample
+'MilnorCertificates.check_sound' depends on axioms: [propext, Quot.sound]
+'MilnorCertificates.decode_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+Checking MilnorCertificates/CheckFile
+Checking MilnorCertificates
+Checking PropagationCertificates/Rules
+Checking PropagationCertificates/Tactic
+Checking PropagationCertificates/Import
+Checking PropagationCertificates/Level
+Checking PropagationCertificates/Branches
+'PropagationCertificates.Branches.check_sound' depends on axioms: [propext]
+'PropagationCertificates.Branches.exclude_sound' depends on axioms: [propext]
+Checking PropagationCertificates/MatrixNaturality
+Checking PropagationCertificates/Examples
+Checking PropagationCertificates/Main
+Checking PropagationCertificates
+Checking ResolutionCertificates/Basic
+Checking ResolutionCertificates/HomologyBasis
+'ResolutionCertificates.checkHomologyBasis_sound' depends on axioms: [propext, Quot.sound]
+Checking ResolutionCertificates/Import
+Checking ResolutionCertificates/Examples
+'ResolutionCertificates.checkContraction_sound' depends on axioms: [propext, Quot.sound]
+'ResolutionCertificates.checkHomotopy_sound' depends on axioms: [propext, Quot.sound]
+Checking ResolutionCertificates/CheckFile
+Checking ResolutionCertificates
+Checking PageCertificates/Model
+Checking PageCertificates/Checker
+Checking PageCertificates/Import
+Checking PageCertificates/Examples
+'PageCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+'PageCertificates.checkUnique_sound' depends on axioms: [propext, Quot.sound]
+'PageCertificates.checkHomology_sound' depends on axioms: [propext, Quot.sound]
+'PageCertificates.checkCandidates_sound' depends on axioms: [propext, Quot.sound]
+'PageCertificates.representative_survives' depends on axioms: [propext]
+Checking PageCertificates/CheckMain
+Checking PageCertificates
+Checking StaircaseCertificates/Basic
+Checking StaircaseCertificates/Import
+Checking StaircaseCertificates/Survival
+Checking StaircaseCertificates/Coherence
+Checking StaircaseCertificates/Named
+Checking StaircaseCertificates/FiniteClaims
+Checking StaircaseCertificates/CoherenceExamples
+'StaircaseCertificates.checkCoherent_sound' depends on axioms: [propext, Quot.sound]
+Checking StaircaseCertificates/QueryExamples
+'StaircaseCertificates.checkBasis_sound' depends on axioms: [propext, Quot.sound]
+'StaircaseCertificates.selected_iff_coordinates' depends on axioms: [propext]
+'StaircaseCertificates.checkNotSelected_sound' depends on axioms: [propext, Quot.sound]
+Checking StaircaseCertificates/CheckMain
+Checking StaircaseCertificates
+Checking PageTransitionCertificates/Basic
+Checking PageTransitionCertificates/Quotient
+Checking PageTransitionCertificates/Import
+Checking PageTransitionCertificates/Examples
+'PageTransitionCertificates.checkComparison_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.homologyEquivalence' depends on axioms: [propext, Quot.sound]
+Checking PageTransitionCertificates/InducedMap
+Checking PageTransitionCertificates/InducedExamples
+'PageTransitionCertificates.inducedMap' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.induced_coordinates_all' depends on axioms: [propext, Quot.sound]
+Checking PageTransitionCertificates/InducedImport
+Checking PageTransitionCertificates/InducedImportExamples
+'PageTransitionCertificates.checkInducedWire_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.WireInducedMap.coordinates' depends on axioms: [propext, Quot.sound]
+Checking PageTransitionCertificates/ImportExamples
+'PageTransitionCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+Checking PageTransitionCertificates/ParserExamples
+Checking PageTransitionCertificates/CheckFile
+Checking PageTransitionCertificates
+Checking NamedElementCertificates/Basic
+Checking NamedElementCertificates/Generated
+'NamedElementCertificates.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+Checking NamedElementCertificates/Tests
+Checking NamedElementCertificates/Evaluation
+Checking NamedElementCertificates/EvaluationExamples
+'NamedElementCertificates.check_sound_evaluate' depends on axioms: [propext, Classical.choice, Quot.sound]
+Checking NamedElementCertificates/Fact713
+Checking NamedElementCertificates/ModuleEvaluation
+Checking NamedElementCertificates/CnuBottomCell
+'NamedElementCertificates.ModuleExpressions.check_sound_evaluate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NamedElementCertificates.CnuBottomCell.named_bottom_cell_evaluation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Checking NamedElementCertificates/ModuleImport
+Checking NamedElementCertificates/ModuleImportExamples
+true
+Checking NamedElementCertificates/ModuleExported
+Checking NamedElementCertificates
+Checking AdvancedRuleCertificates/Connecting
+Checking AdvancedRuleCertificates/Affine
+Checking AdvancedRuleCertificates/AffineHomology
+Checking AdvancedRuleCertificates/Remark77
+Checking AdvancedRuleCertificates/Tactic
+Checking AdvancedRuleCertificates/Examples
+Checking AdvancedRuleCertificates/TacticExample
+'AdvancedRuleCertificates.checkConnecting_sound' depends on axioms: [propext]
+'AdvancedRuleCertificates.connecting_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AdvancedRuleCertificates.connecting_natural' depends on axioms: [propext]
+Checking AdvancedRuleCertificates
+Checking ProofAudit
+'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]
+'LinearCertificates.checkChainMap_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.checkComparison_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.homologyEquivalence' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.checkInducedWire_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.WireInducedMap.coordinates' depends on axioms: [propext, Quot.sound]
+'StaircaseCertificates.checkBasis_sound' depends on axioms: [propext, Quot.sound]
+'StaircaseCertificates.checkSurvives_sound' depends on axioms: [propext, Quot.sound]
+'StaircaseCertificates.checkCoherent_sound' depends on axioms: [propext, Quot.sound]
+'NamedElementCertificates.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NamedElementCertificates.check_sound_evaluate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NamedElementCertificates.ModuleExpressions.check_sound_evaluate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NamedElementCertificates.ModuleExpressions.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AdvancedRuleCertificates.AffineHomology.check_sound' depends on axioms: [propext, Quot.sound]
+'PropagationCertificates.MatrixNaturality.check_sound' depends on axioms: [propext, Quot.sound]

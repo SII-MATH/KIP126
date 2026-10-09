@@ -1,0 +1,39 @@
+{
+  "findings": [],
+  "module": "Row3151ActualTransport.Named",
+  "counts": {
+    "branches": 6,
+    "coordinate_models": 240,
+    "actual_steps": 960,
+    "full_incoming_elements": 11040,
+    "all_current_boundary_checks": 24960,
+    "all_cycle_quotient_checks": 7680,
+    "fixed_raw_bindings": 12,
+    "actual_named_events": 240
+  },
+  "rng_seed": 3151,
+  "reviewed_source_sha256": "382fdf7c3f3f070954a78486f174adf99cd05982d0f860d162e8022797b64852",
+  "reviewed_log_sha256": "ff3344acc62090b65868f655be40d48eb39b14464ad75143a5ab82b4daa25f14",
+  "upstream_observed_exit": 0,
+  "standard_only_reports": 12,
+  "reviewed_input_sha256": {
+    "Row3151FullNeighborhood/finite000.json": "24f11315fb07cf453dbbbbf2f9e36d5e30f700458df28eb974938e5854a8c9c6",
+    "Row3151FullNeighborhood/finite001.json": "86e512e3445cc77baf153390f74755ca15ccccf2da94006b1c5b81fadea7149d",
+    "Row3151FullNeighborhood/finite010.json": "1c9a93b01b5e9655b0e6369a9dc5c64356b7dc17e21566e0febce849d362950b",
+    "Row3151FullNeighborhood/finite011.json": "77847c721848bd035f43112bf655c79ceb2229b5c4b5a76fb4adf6f0e769e707",
+    "Row3151FullNeighborhood/finite100.json": "08f0f059e82e1f9768364361f42cdd190c6af016e233cd961f672ed4f955dcbd",
+    "Row3151FullNeighborhood/finite110.json": "56814312094d2bdca07bb5cf62edcb7d4da3c4c37654c297d842414d70fb5758"
+  },
+  "historical_direct_object": "e703515ba5b2725155e27afa4f83144539224249a6bc70125da6a7af1b57e720",
+  "current_object": "e703515ba5b2725155e27afa4f83144539224249a6bc70125da6a7af1b57e720",
+  "object_matches_direct": true,
+  "raw_binding": "fixed6D local2 source and5D local1 target; actual inputs are coordinate inverses",
+  "trace": "actual quotient maps produce E3/E4 endpoints, and full incoming meanings prove nonboundaries",
+  "remaining_obligations": [
+    "whole actual coordinate/differential/quotient meanings",
+    "known d4 column",
+    "identification of the coordinates with the intended topological Adams E2"
+  ],
+  "independent_recompilation": false,
+  "script_sha256": "902c33b747540aa8a616a17a7f5f79a1687c9f0455445246a8719992316e63e6"
+}

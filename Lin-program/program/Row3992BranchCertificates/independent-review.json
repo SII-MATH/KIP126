@@ -1,0 +1,46 @@
+{
+  "details": {
+    "all64_source_matrices_exhausted": true,
+    "branches": 8,
+    "distinct_events": 1,
+    "family_keys_each": 5,
+    "limitation": "Known column restates the supplied stored differential. This is completion consistency, not independent derivation of3992; accepted95 snapshot is unchanged.",
+    "modules": 3,
+    "premises": [
+      "known stored3749/3992 d4value",
+      "zero row3496 incoming prefix",
+      "row3564/x493/Leibniz source comparison meanings"
+    ],
+    "prior_steps_each": 4
+  },
+  "findings": [],
+  "inputs_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateLeibniz3564Conditional/Source.lean": "6cf5787426a458fe3f6e847544270f42ec2ca19a8b9f1cd796febd0a32dd7417",
+    "Row3992BranchCertificates/Checks.lean": "60d1336d65055f8c9d1c678fb89e2765fa1debcf65aeedb2c15ba2cf47e8efa1",
+    "Row3992BranchCertificates/Imports.lean": "2c2681dfa15ad21ef269c8283497875d423896646e6205282d9fa115eb52b48f",
+    "Row3992BranchCertificates/Semantics.lean": "6487c0a770a1f725918b79ef60b481b8ac100868bb71be9a105af65ac15be1d6",
+    "Row3992BranchCertificates/bound000.json": "8aa763e7f4b6b6bc55c0363c8828ce6cc2ce157b905d5678e394929f4e8b8946",
+    "Row3992BranchCertificates/bound001.json": "00e36aead6d28fb954a007d6b78efda5f4bc693fbbd5a3d94759771305452937",
+    "Row3992BranchCertificates/bound010.json": "fddf9b208df61f9e15c42eb2c95870860ea3862f53b870896b9d331270a5e425",
+    "Row3992BranchCertificates/bound011.json": "499727b25457c489c8df56448344959b3d34fb0bce97785e5ace314ef1a88252",
+    "Row3992BranchCertificates/bound100.json": "c03c40f06d16d36f377d21d62096944b7f941446639fd339d5dc427d2dd864e5",
+    "Row3992BranchCertificates/bound101.json": "965911db41ba308f3592a2d60a5d2576c88aa8ce1aa42e3ac7867729922b9b3c",
+    "Row3992BranchCertificates/bound110.json": "421404b8f821f778d9896ec458453854356f74bb6dcd61a33bad317f07d157f5",
+    "Row3992BranchCertificates/bound111.json": "a51e1944cfbf669a5fac47db1767146e2b3af6717b59f3a24d803f4172ffdedd",
+    "Row3992BranchCertificates/comparison000.json": "8b474717ca3d17beb351242a3f2515671ff52676baaaa0ca73682dbc7311b75e",
+    "Row3992BranchCertificates/comparison001.json": "d8d42fd989aa7648f773de89cc5b89cf323b7ae22002270f57f41b93d09d1a50",
+    "Row3992BranchCertificates/comparison010.json": "53538c2a2a51fe4f8aa14f3074a78b96c184dbc2fa99382d287af91e4a6d2655",
+    "Row3992BranchCertificates/comparison011.json": "28f11b241fa7907303f36e2c507bf3b9ce8156628238b574362417270b9f82c4",
+    "Row3992BranchCertificates/comparison100.json": "acd48a04d6677cf92afcb2503a3e4541ca7ccf1429343299c1990c6e9b2b73d0",
+    "Row3992BranchCertificates/comparison101.json": "084ee0d508f35008adb5e7b9fda74307a6ae3d9c796a45964b7bc1fdf49a88a3",
+    "Row3992BranchCertificates/comparison110.json": "4b9811a2dec766c95f9a33b569ba1b2cd08c038204e3a7b54bd803374d138b21",
+    "Row3992BranchCertificates/comparison111.json": "89e2457f2250f8263b67c27dad67708c2a1ae8c0a55924bde40cc0bcd319d7eb",
+    "Row3992BranchCertificates/compile-audit.json": "ea62018cf56ca64bb67a627617efd706597ab8e846085f930fa28a6e70b0734f",
+    "Row3992BranchCertificates/provenance.json": "0106a50bf09c16058a9f654c4d66189753ff0176a58698c919ce7513d603a2a2",
+    "Row3992BranchCertificates/review.json": "c691c3ca27ab866b8fa36cd433de0112cf8bfb179c7d2524fc15ce859b24806d",
+    "Row3992BranchCertificates/review.py": "53f9bb982d65eee660df12f3d4483c0d863d4211a1b49695e5a9278794e34b4e",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "independent_source_semantics_SQL_and_finite_replay_passed"
+}

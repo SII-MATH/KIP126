@@ -1,0 +1,78 @@
+import ActualAdamsSystemBridge.Tail
+import Fact762AssemblyCertificates.Assembly
+
+namespace ActualAdamsIncomingBridge
+open ManualInputObligations.Reference Fact762IncomingCertificates
+
+/-- Every actual incoming source degree is retained, including its zero
+representatives; no arbitrary source choice or stored subset is used. -/
+def incomingSystem (S : AdamsSpectralSequence) (d : Bidegree)
+    (target : ∀ r, (S.element r d).carrier) : IncomingSystem where
+  Source := fun r => ActualAdamsSystemBridge.Incoming S r d
+  Target := fun r => (S.element r d).carrier
+  zeroSource := fun _ => .inl ()
+  zeroTarget := fun r => S.zero r d
+  differential := fun r => ActualAdamsSystemBridge.incoming S r d
+  target := target
+  preservesZero := fun r => (S.zero_is_zero r d).symm
+
+theorem hit_iff (S : AdamsSpectralSequence) (d : Bidegree)
+    (target : ∀ r, (S.element r d).carrier) (r : Nat) :
+    (incomingSystem S d target).HitAt r ↔ PageBoundary S r d (target r) :=
+  ActualAdamsSystemBridge.incoming_image S r d (target r)
+
+theorem tail_zero (S : AdamsSpectralSequence) (d : Bidegree)
+    (target : ∀ r, (S.element r d).carrier) (r : Nat) (above : d.filtration < r) :
+    VanishesAt ((incomingSystem S d target).differential r)
+      ((incomingSystem S d target).zeroTarget r) :=
+  ActualAdamsSystemBridge.incoming_map_zero_above_filtration S r d above
+
+abbrev fact762Degree : Bidegree := ⟨14,139⟩
+
+/-- These are local whole-map and full-source routes. The tail bound follows
+from the actual target degree, rather than a supplied negative-tail premise. -/
+structure Conditions (S : AdamsSpectralSequence)
+    (target : ∀ r, (S.element r fact762Degree).carrier) where
+  page2 : ¬ (incomingSystem S fact762Degree target).HitAt 2
+  page3 : ¬ (incomingSystem S fact762Degree target).HitAt 3
+  page4 : Fact762AssemblyCertificates.Page4Route (incomingSystem S fact762Degree target)
+  page7 : Fact762AssemblyCertificates.Page7Route (incomingSystem S fact762Degree target)
+  zeroMaps : ∀ r, ProvedZeroSourcePage r →
+    VanishesAt ((incomingSystem S fact762Degree target).differential r)
+      ((incomingSystem S fact762Degree target).zeroTarget r)
+
+theorem only_six_or_twelve (S : AdamsSpectralSequence)
+    (target : ∀ r, (S.element r fact762Degree).carrier)
+    (conditions : Conditions S target) (r : Nat) (page : 2 ≤ r)
+    (nonzero : target r ≠ S.zero r fact762Degree)
+    (boundary : PageBoundary S r fact762Degree (target r)) : r = 6 ∨ r = 12 := by
+  let sys := incomingSystem S fact762Degree target
+  have hit : sys.HitAt r := (hit_iff S fact762Degree target r).mpr boundary
+  by_cases above : 14 < r
+  · exact False.elim (sys.no_hit_of_all_values r nonzero
+      (tail_zero S fact762Degree target r above) hit)
+  by_cases allowed : r = 6 ∨ r = 12
+  · exact allowed
+  have cases : r = 2 ∨ r = 3 ∨ r = 4 ∨ r = 7 ∨ ProvedZeroSourcePage r := by
+    unfold ProvedZeroSourcePage
+    omega
+  rcases cases with eq | eq | eq | eq | eq
+  · subst r; exact False.elim (conditions.page2 hit)
+  · subst r; exact False.elim (conditions.page3 hit)
+  · subst r; exact False.elim (sys.no_hit_of_all_values 4 nonzero conditions.page4.vanishes hit)
+  · subst r; exact False.elim (sys.no_hit_of_all_values 7 nonzero conditions.page7.vanishes hit)
+  · exact False.elim (sys.no_hit_of_all_values r nonzero (conditions.zeroMaps r eq) hit)
+
+theorem no_hit_elsewhere (S : AdamsSpectralSequence)
+    (target : ∀ r, (S.element r fact762Degree).carrier)
+    (conditions : Conditions S target) (r : Nat) (page : 2 ≤ r)
+    (nonzero : target r ≠ S.zero r fact762Degree) (notSix : r ≠ 6) (notTwelve : r ≠ 12) :
+    ¬ PageBoundary S r fact762Degree (target r) := by
+  intro h
+  exact (only_six_or_twelve S target conditions r page nonzero h).elim notSix notTwelve
+
+#print axioms hit_iff
+#print axioms tail_zero
+#print axioms only_six_or_twelve
+#print axioms no_hit_elsewhere
+end ActualAdamsIncomingBridge

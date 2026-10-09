@@ -1,0 +1,225 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Fact713Row2916Search.Maps",
+      "axiom_reports": 6,
+      "source_sha256": "f9b0a884f17b28356d48b613910054ad3ffd0098806e7c3725eeb1f3c479fb87",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ModuleToModuleCertificates/ShiftedImport.olean": "fabdc1864105914e3bf7f803664e51f4d96c8b14a94f5c7b7c6109816641ef48"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2916Search/Maps.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2916Search/Maps.olean"
+      ],
+      "log": "evidence/Maps-20260922T003537534945Z.log",
+      "external_input_sha256": {
+        "Fact713Row2916Search/wire/s11t136.json": "0dcf39ceae2ea9c696bb405c89274b7b0f7c8e715577122d758db15c5b88f7af",
+        "Fact713Row2916Search/wire/s13t137.json": "ef499097c3052cac9aa102ff9dc4b851ba6510e6383ad5b9e71978a7ee0819a7",
+        "Fact713Row2916Search/wire/s14t138.json": "8006bd9ca11a26b26095089f8732a1cfb289318a91e5690d57feb7a9817771c7",
+        "Fact713Row2916Search/wire/s15t138.json": "08a5e3cb58fbfd2d1a20446f5a099fd2e2a4373c618edc7c7b87e9b456cc5db6",
+        "Fact713Row2916Search/wire/s16t139.json": "fb00689697625b8d76925e691f65bd699de8849ca25a028fabe81144aeb90ccc",
+        "Fact713Row2916Search/wire/s18t140.json": "afeafde3a7abfe50fb90b6cee54317e40a25d570b80a4af87e04cbe293311d6e"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "e66309a145c876d31721c6537ecadb916c4a7bd9af400a488d3383f7ef84473f",
+      "inputs_stable": true,
+      "olean_sha256": "ba23f08dcc404f670f607ed7b164f0c4a1d987fb4914b2510de28bbf6054f9d0"
+    },
+    {
+      "module": "Fact713Row2916Search.Comparison",
+      "axiom_reports": 6,
+      "source_sha256": "9fa5cc876a8dd892eb3fd9f44d3eacd86da82a9628bd355e9bcf594476d8f9d9",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2916Search/Maps.olean": "ba23f08dcc404f670f607ed7b164f0c4a1d987fb4914b2510de28bbf6054f9d0",
+        ".lake/build/lib/lean/PageTransitionCertificates/InducedMap.olean": "00683f19bb38e7aad45da1e73459905cfe6f515671711dcb59ad28d32da982e8",
+        ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2916Search/Comparison.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2916Search/Comparison.olean"
+      ],
+      "log": "evidence/Comparison-20260922T003719284977Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "2b31e675ce8ac5051afc9ff7d379b44de88ebfe733c850f5172acb1ab0842bb3",
+      "inputs_stable": true,
+      "olean_sha256": "afca042f736a31cfb4f3d61bdc3a0a75e8db47983787cd726a86b30ee9873767"
+    },
+    {
+      "module": "Fact713Row2916Search.Naturality",
+      "axiom_reports": 3,
+      "source_sha256": "e03daafef6958f0de5ceebadefb6ae36a99a868e285712f36feb0ef2f2bc59d1",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2916Search/Comparison.olean": "afca042f736a31cfb4f3d61bdc3a0a75e8db47983787cd726a86b30ee9873767"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2916Search/Naturality.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2916Search/Naturality.olean"
+      ],
+      "log": "evidence/Naturality-20260922T003741083885Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "63c3c091565304dd198e584807d5370fcda14acd51e723f433e091736818b5c2",
+      "inputs_stable": true,
+      "olean_sha256": "f440a2c50fba9dbf269cab8fbcc86a950a584bda42f708002030b7d4166ebab6"
+    },
+    {
+      "module": "Fact713Row2916Search.MapSemantics",
+      "axiom_reports": 2,
+      "source_sha256": "89c0d02b6df869481a2c6f0053694552607ecee11404e8218a617192aed29b41",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2916Search/Maps.olean": "ba23f08dcc404f670f607ed7b164f0c4a1d987fb4914b2510de28bbf6054f9d0",
+        ".lake/build/lib/lean/ModuleToModuleCertificates/RingRelations.olean": "a5e2fc3f9e591b873e4b02bf2a2c0204b035b022ac45d7f1d8c57897d5cd81db"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2916Search/MapSemantics.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2916Search/MapSemantics.olean"
+      ],
+      "log": "evidence/MapSemantics-20260922T003743987119Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "c4a6b6cbbe1332854c25e54d8a389cc1b87abd0b4352ee83af8ad51c5a75054b",
+      "inputs_stable": true,
+      "olean_sha256": "5fee42a26ec124c022a2aabca2be9ddef63efb8535259c75cc399dd8fe731c68"
+    },
+    {
+      "module": "Fact713Row2916Search.Actual",
+      "axiom_reports": 2,
+      "source_sha256": "e70cf4dac07edee93135e26cc9694e33ba11814fdca968afbc1c9c098256f931",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2916Search/Naturality.olean": "f440a2c50fba9dbf269cab8fbcc86a950a584bda42f708002030b7d4166ebab6",
+        ".lake/build/lib/lean/Fact713D4SourceSearch/ActualDescent.olean": "c55231ad3f398d9506744d40d0f9c956a111f648653f71fc545faf9e8fb621ad"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2916Search/Actual.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2916Search/Actual.olean"
+      ],
+      "log": "evidence/Actual-20260922T003746684148Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "63a7221494a0ee2bf3d2f7ac502be3e18e5c8a471ea4889370ee0c9f3dc974af",
+      "inputs_stable": true,
+      "olean_sha256": "38e91deaf389583bee7f5a18977e2aeb0723e7d63b8096f11f32e60257136dac"
+    },
+    {
+      "module": "Fact713Row2916Search.CoordinateBridge",
+      "axiom_reports": 11,
+      "source_sha256": "b51a0d93bdb28451389b91caec9bac3e4c48502b2c2250598af2303d98ebe851",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2916Search/Actual.olean": "38e91deaf389583bee7f5a18977e2aeb0723e7d63b8096f11f32e60257136dac",
+        ".lake/build/lib/lean/Fact713ComparisonBatches/Batch06.olean": "445a1edead905aec034751fc59e66c5a4f238e65d28a667fb5741db1f8d9966b",
+        ".lake/build/lib/lean/Fact713ComparisonBatches/Batch07.olean": "eff6c45e22c314b1df4736cccdef400a0910682bb64418176db3c3736dbb34a1",
+        ".lake/build/lib/lean/HomologyCoordinateChoice/Basic.olean": "b99465e04715330374b347c8abf665a3bd279c21db8ed6824731ba8edd677a11"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2916Search/CoordinateBridge.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2916Search/CoordinateBridge.olean"
+      ],
+      "log": "evidence/CoordinateBridge-20260922T003824271781Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "ae9cbcaf9a91dd37a898a83a73f91172a8fb961025606d3f72f60c94639d9a57",
+      "inputs_stable": true,
+      "olean_sha256": "dcc8b9c2a986c802ce2674d007ad6834cc62da87a52772dcf8ec2ec7f3b38b85"
+    },
+    {
+      "module": "Fact713Row2916Search.Tactic",
+      "axiom_reports": 3,
+      "source_sha256": "6838f8a137542ae5e3bc9d7d5bd88e8c47db54be2c8d16ff3f69aa3c34ce02b3",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2916Search/CoordinateBridge.olean": "dcc8b9c2a986c802ce2674d007ad6834cc62da87a52772dcf8ec2ec7f3b38b85",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/lib/lean/Lean/Elab/Tactic.olean": "cc9e89c311871fa7e0f02ba6cdcb4e40d779b44bc1c28ed1cff1e4f1da9e8378"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713Row2916Search/Tactic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713Row2916Search/Tactic.olean"
+      ],
+      "log": "evidence/Tactic-20260922T003827798033Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "8b269eb79926f533b2487ab513f903afd0b650221cfc6e3e0eca5b188157a07f",
+      "inputs_stable": true,
+      "olean_sha256": "bcc9ce316f4cf39879c749fe2a32c117bbb27a8a4bc23379f27db23caf6f335b"
+    }
+  ],
+  "axiom_reports": 33,
+  "files": {
+    "Fact713Row2916Search/Actual-compile.json": "4256052ba93216e8cb80564a6051fbe2751ee9f077fb697613fc34a2c83a0d5c",
+    "Fact713Row2916Search/Actual.lean": "e70cf4dac07edee93135e26cc9694e33ba11814fdca968afbc1c9c098256f931",
+    "Fact713Row2916Search/Comparison-compile.json": "7cc8c3d1c5663b19bb34e65f5cf19624a1ad7f9cf3433ded01dcfc3eddf0d59f",
+    "Fact713Row2916Search/Comparison.lean": "9fa5cc876a8dd892eb3fd9f44d3eacd86da82a9628bd355e9bcf594476d8f9d9",
+    "Fact713Row2916Search/CoordinateBridge-compile.json": "44aa4090869427e5b30a172a7a6e534c86e016f8ab12d75e006b7391f32d2c99",
+    "Fact713Row2916Search/CoordinateBridge.lean": "b51a0d93bdb28451389b91caec9bac3e4c48502b2c2250598af2303d98ebe851",
+    "Fact713Row2916Search/MapSemantics-compile.json": "83e7dfc589cf465c6c20ad48a89510f53a016b54cb8f8caf51b3f93fa04359ef",
+    "Fact713Row2916Search/MapSemantics.lean": "89c0d02b6df869481a2c6f0053694552607ecee11404e8218a617192aed29b41",
+    "Fact713Row2916Search/Maps-compile.json": "eb6e06f8eaa3beef39c94a4bd88a17658d02b6f43f820ade9076409cab9050b4",
+    "Fact713Row2916Search/Maps.lean": "f9b0a884f17b28356d48b613910054ad3ffd0098806e7c3725eeb1f3c479fb87",
+    "Fact713Row2916Search/Naturality-compile.json": "8b2eada60a202a16ed44308b079938f5970987df691bf1c7447260e94c0217e8",
+    "Fact713Row2916Search/Naturality.lean": "e03daafef6958f0de5ceebadefb6ae36a99a868e285712f36feb0ef2f2bc59d1",
+    "Fact713Row2916Search/README.md": "a07bf6ec3970a5672e0eb166afb698a1e0dffbb2dda013b22216e440ce56571e",
+    "Fact713Row2916Search/Tactic-compile.json": "bd3557d422a751b90650f5ccb3a38ef66c6c5ce50eb1bb2a5975521b2e988e55",
+    "Fact713Row2916Search/Tactic.lean": "6838f8a137542ae5e3bc9d7d5bd88e8c47db54be2c8d16ff3f69aa3c34ce02b3",
+    "Fact713Row2916Search/audit.json": "d7194665b74ee1ff38f45638ec96b7bd52edf793975a9a51a89aac1069add54c",
+    "Fact713Row2916Search/audit.log": "d7194665b74ee1ff38f45638ec96b7bd52edf793975a9a51a89aac1069add54c",
+    "Fact713Row2916Search/audit.py": "80ad5a949c46b2fe7fe2483cb4ab86ca6337365ca10ccb3efb727e8d3eb1b2a9",
+    "Fact713Row2916Search/audit_matrices.py": "14916ab098f71e52cece706e3ca477d5af019ed87d193167ed23f0d3b68848fb",
+    "Fact713Row2916Search/comparison-source.json": "31d41dec5298e30643a5a4e8a225fcc1480383f11158bbf0f46103a6f6c37e2a",
+    "Fact713Row2916Search/compile.py": "15780171b1e4c024089921124f6d7311e57e8d1ad2418cc93081cf14594d3c4e",
+    "Fact713Row2916Search/evidence/Actual-20260922T003746684148Z.json": "4256052ba93216e8cb80564a6051fbe2751ee9f077fb697613fc34a2c83a0d5c",
+    "Fact713Row2916Search/evidence/Actual-20260922T003746684148Z.log": "63a7221494a0ee2bf3d2f7ac502be3e18e5c8a471ea4889370ee0c9f3dc974af",
+    "Fact713Row2916Search/evidence/Comparison-20260922T003719284977Z.json": "7cc8c3d1c5663b19bb34e65f5cf19624a1ad7f9cf3433ded01dcfc3eddf0d59f",
+    "Fact713Row2916Search/evidence/Comparison-20260922T003719284977Z.log": "2b31e675ce8ac5051afc9ff7d379b44de88ebfe733c850f5172acb1ab0842bb3",
+    "Fact713Row2916Search/evidence/CoordinateBridge-20260922T003750028310Z.json": "5187bc92e52ccf49bc475b8db7ab7118690671bb896c9e313c5dedd0dcd0680d",
+    "Fact713Row2916Search/evidence/CoordinateBridge-20260922T003750028310Z.log": "5ae6ab8274d7f8ce98947641ca0e6f5661d9765ffe08c9af7e43adadb1af7f77",
+    "Fact713Row2916Search/evidence/CoordinateBridge-20260922T003824271781Z.json": "44aa4090869427e5b30a172a7a6e534c86e016f8ab12d75e006b7391f32d2c99",
+    "Fact713Row2916Search/evidence/CoordinateBridge-20260922T003824271781Z.log": "ae9cbcaf9a91dd37a898a83a73f91172a8fb961025606d3f72f60c94639d9a57",
+    "Fact713Row2916Search/evidence/MapSemantics-20260922T003743987119Z.json": "83e7dfc589cf465c6c20ad48a89510f53a016b54cb8f8caf51b3f93fa04359ef",
+    "Fact713Row2916Search/evidence/MapSemantics-20260922T003743987119Z.log": "c4a6b6cbbe1332854c25e54d8a389cc1b87abd0b4352ee83af8ad51c5a75054b",
+    "Fact713Row2916Search/evidence/Maps-20260922T003537534945Z.json": "eb6e06f8eaa3beef39c94a4bd88a17658d02b6f43f820ade9076409cab9050b4",
+    "Fact713Row2916Search/evidence/Maps-20260922T003537534945Z.log": "e66309a145c876d31721c6537ecadb916c4a7bd9af400a488d3383f7ef84473f",
+    "Fact713Row2916Search/evidence/Naturality-20260922T003741083885Z.json": "8b2eada60a202a16ed44308b079938f5970987df691bf1c7447260e94c0217e8",
+    "Fact713Row2916Search/evidence/Naturality-20260922T003741083885Z.log": "63c3c091565304dd198e584807d5370fcda14acd51e723f433e091736818b5c2",
+    "Fact713Row2916Search/evidence/Tactic-20260922T003827798033Z.json": "bd3557d422a751b90650f5ccb3a38ef66c6c5ce50eb1bb2a5975521b2e988e55",
+    "Fact713Row2916Search/evidence/Tactic-20260922T003827798033Z.log": "8b269eb79926f533b2487ab513f903afd0b650221cfc6e3e0eca5b188157a07f",
+    "Fact713Row2916Search/export_maps.py": "f449ee807e34d1b1fa21b9af468cdb7de1beebdb6ab4ffb67d4aa2b0e06f2de0",
+    "Fact713Row2916Search/generate_comparison.py": "d34bcf7bf1891a61cc94e4ed251ec209a08db084762102b49bb1a660d6a1ec0b",
+    "Fact713Row2916Search/lifted-search.json": "beaa4887732558ea04ab805530f20a7191b02ed86d90f4237da3a0eaa45eb8da",
+    "Fact713Row2916Search/matrices.log": "dbbacead2941963200e7188795724bb0d25a9c367fb3268c038e1e6ab6ef1ace",
+    "Fact713Row2916Search/matrix-audit.json": "b8e868dd48ce3885a4fe37864ccad92248341dfd69e4c48bac22cd591be14b73",
+    "Fact713Row2916Search/matrix-audit.log": "b8e868dd48ce3885a4fe37864ccad92248341dfd69e4c48bac22cd591be14b73",
+    "Fact713Row2916Search/modules.txt": "ce27d3f31309f5d68232cbfe39b543838a36f1b7d6c1f1de5f1aa11eee0b2c18",
+    "Fact713Row2916Search/reproducibility.json": "127a35cbaad12202f77702580cd7f340baf4515dff502b57350738560dc5fb45",
+    "Fact713Row2916Search/search.log": "175064d92fe9436cef0332dcf3d82e9d0010188d927887b304f694e3a86bc829",
+    "Fact713Row2916Search/search.py": "59a216e57d6112a89c480c2132192fc6d88cdc1d788864bfe4c1f1148500312d",
+    "Fact713Row2916Search/source.json": "79c8bdd2c5e5ffcea4d99deb662c26e5fd210f564ae72c85cb6539605a884493",
+    "Fact713Row2916Search/wire/s11t136.json": "0dcf39ceae2ea9c696bb405c89274b7b0f7c8e715577122d758db15c5b88f7af",
+    "Fact713Row2916Search/wire/s13t137.json": "ef499097c3052cac9aa102ff9dc4b851ba6510e6383ad5b9e71978a7ee0819a7",
+    "Fact713Row2916Search/wire/s14t138.json": "8006bd9ca11a26b26095089f8732a1cfb289318a91e5690d57feb7a9817771c7",
+    "Fact713Row2916Search/wire/s15t138.json": "08a5e3cb58fbfd2d1a20446f5a099fd2e2a4373c618edc7c7b87e9b456cc5db6",
+    "Fact713Row2916Search/wire/s16t139.json": "fb00689697625b8d76925e691f65bd699de8849ca25a028fabe81144aeb90ccc",
+    "Fact713Row2916Search/wire/s18t140.json": "afeafde3a7abfe50fb90b6cee54317e40a25d570b80a4af87e04cbe293311d6e",
+    "Fact713Row2916Search/file-list.txt": "31324dcac8924d68a23cc02553cec97194d2fd5cf9f0371a7abba72a5229638d"
+  }
+}

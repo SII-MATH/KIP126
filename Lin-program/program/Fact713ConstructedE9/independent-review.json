@@ -1,0 +1,70 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "proof_evidence": {
+    "Basic": {
+      "source_sha256": "078c5f4c67f9262cd368804a355690aa25be7799ef807dfa388ff3bf380ebfc0",
+      "log_sha256": "7ba019df3a7049c45083fe5a368969ed8121e3c19f65eb0a4d6541ccb8b2f971",
+      "observed_exit_code": 0,
+      "axiom_reports": 4
+    },
+    "Trace": {
+      "source_sha256": "e8e4f72186d7987c4281a3bd544ce7e303c24f9e9db035bf6dffb2ba675fe70f",
+      "log_sha256": "591d3fddb213228d8ca91dc56b1a346e8b393477542a795916ec240debce4228",
+      "observed_exit_code": 0,
+      "axiom_reports": 6
+    },
+    "Request": {
+      "source_sha256": "8d4cc1a34fee6249ec40a72a074c0051fa0ad287ff3006fbf801c11832158568",
+      "log_sha256": "fec5faae5ea1b0a4ce1edca393a97b6824381e26ebbd9ef373e51f66c53ab2de",
+      "observed_exit_code": 0,
+      "axiom_reports": 2
+    }
+  },
+  "counts": {
+    "constructed_quotient_coordinates": 589824,
+    "actual_quotient_pairs": 1474560,
+    "derived_additivity_pairs": 1474560,
+    "same_raw_trace_steps": 258048,
+    "whole_incoming_elements": 552960,
+    "models": 36864,
+    "models_with_nonzero_zero_label": 36828,
+    "rejected_requests": 464,
+    "accepted_requests": 1,
+    "batch_pairs": 216225
+  },
+  "scope": "Conditional actual E9 for one fixed E2 input in the same S and pages; seven constructed quotient transitions.",
+  "supplied_tracked_coordinates": [
+    "E2"
+  ],
+  "constructed_tracked_coordinates": [
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7",
+    "E8",
+    "E9"
+  ],
+  "remaining_inputs": [
+    "Complete actual neighboring differential meanings for d2 through d8",
+    "Local zero and addition laws of actual quotient identifications",
+    "Interpretation of the initial E2 vector as the claimed sphere class",
+    "The new finite branch uses explicit named actual E3 cycle representatives; this E9 interface does not discharge them"
+  ],
+  "limitations": [
+    "Python model checks supplement the Lean proof and are not a proof of sphere meanings",
+    "Only the named request [true,true] -> [true] is accepted; this is not a generic spectral-sequence calculator"
+  ],
+  "input_sha256": {
+    "Fact713ConstructedE9/Basic.lean": "078c5f4c67f9262cd368804a355690aa25be7799ef807dfa388ff3bf380ebfc0",
+    "Fact713ConstructedE9/Trace.lean": "e8e4f72186d7987c4281a3bd544ce7e303c24f9e9db035bf6dffb2ba675fe70f",
+    "Fact713ConstructedE9/Request.lean": "8d4cc1a34fee6249ec40a72a074c0051fa0ad287ff3006fbf801c11832158568",
+    "Fact713ConstructedNamed/Basic.lean": "7bd9c7234c8157a1e017482af006fba30896028c521699f4cabedff86fb317e9",
+    "Fact713ConstructedE8/Trace.lean": "5f05215010d821723426835924c78b16a0672c89fbeddb9900a562e306921657",
+    "ActualAdamsHomologyCoordinates/Basic.lean": "de6e59f1752062308e73843a8f7b3dcd986cd674987d71a6d3d48c4ff901d95d",
+    "ActualAdamsHomologyCoordinates/Adapter.lean": "f77596734d2804856e28d3d993b2b1af82daf41675f2c4c94f2b4bdccfc6ba68",
+    "Fact713Row3247ConditionalBranches/zero-family.json": "198de6874f149356b7a7b9c695d4ffcdac3d8b6bfe848ada6651726ec69e192b",
+    "Fact713Row3247ConditionalBranches/residual-family.json": "1f617e30e454c80ac5451f4ea2e54a219ce791e884bf77fd072b817382284a23"
+  }
+}

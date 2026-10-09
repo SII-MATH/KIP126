@@ -1,0 +1,426 @@
+{
+  "matrices": {
+    "19,157": {
+      "degree": [
+        19,
+        157
+      ],
+      "source": [
+        [
+          4427,
+          "0,1,437",
+          null
+        ],
+        [
+          4428,
+          "13,1,251",
+          null
+        ],
+        [
+          4429,
+          "328,1,6",
+          null
+        ]
+      ],
+      "target": [
+        [
+          4499,
+          "451",
+          null
+        ],
+        [
+          4500,
+          "69,1,138,1,1",
+          null
+        ]
+      ],
+      "columns": [
+        {
+          "basis": [
+            4427,
+            "0,1,437",
+            null
+          ],
+          "coordinates": [],
+          "kind": "finite_known_cycle_prefix",
+          "staircase_row": 4428,
+          "trace": []
+        },
+        {
+          "basis": [
+            4428,
+            "13,1,251",
+            null
+          ],
+          "coordinates": [],
+          "kind": "finite_known_cycle_prefix",
+          "staircase_row": 4429,
+          "trace": []
+        },
+        {
+          "basis": [
+            4429,
+            "328,1,6",
+            null
+          ],
+          "coordinates": [],
+          "kind": "finite_known_cycle_prefix",
+          "staircase_row": 4427,
+          "trace": []
+        }
+      ],
+      "rows": 2,
+      "cols": 3,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "17,156": {
+      "degree": [
+        17,
+        156
+      ],
+      "source": [
+        [
+          4337,
+          "2,1,287,1,9",
+          null
+        ],
+        [
+          4338,
+          "0,1,604,1,0",
+          null
+        ],
+        [
+          4339,
+          "0,6,562,1,0",
+          null
+        ]
+      ],
+      "target": [
+        [
+          4427,
+          "0,1,437",
+          null
+        ],
+        [
+          4428,
+          "13,1,251",
+          null
+        ],
+        [
+          4429,
+          "328,1,6",
+          null
+        ]
+      ],
+      "columns": [
+        {
+          "basis": [
+            4337,
+            "2,1,287,1,9",
+            null
+          ],
+          "coefficient": [
+            2252,
+            "2,1,287,1",
+            "2,3"
+          ],
+          "coefficient_degree": [
+            14,
+            127
+          ],
+          "coefficient_image": [
+            [
+              0,
+              2,
+              286
+            ],
+            [
+              0,
+              0,
+              306
+            ]
+          ],
+          "generator": [
+            101,
+            "9",
+            ""
+          ],
+          "generator_degree": [
+            3,
+            29
+          ],
+          "generator_image": [],
+          "input": [
+            [
+              [
+                0,
+                0,
+                306
+              ],
+              9
+            ],
+            [
+              [
+                0,
+                2,
+                286
+              ],
+              9
+            ]
+          ],
+          "output": [],
+          "coordinates": [],
+          "trace": [
+            {
+              "origin": {
+                "kind": "module",
+                "rowid": 46,
+                "raw": "0,1,9;1,1,7",
+                "degree": [
+                  4,
+                  30
+                ]
+              },
+              "polynomial": [
+                [
+                  [
+                    0
+                  ],
+                  9
+                ],
+                [
+                  [
+                    1
+                  ],
+                  7
+                ]
+              ],
+              "multiplier": [
+                0,
+                306
+              ]
+            },
+            {
+              "origin": {
+                "kind": "module",
+                "rowid": 40,
+                "raw": "0,1,7",
+                "degree": [
+                  4,
+                  29
+                ]
+              },
+              "polynomial": [
+                [
+                  [
+                    0
+                  ],
+                  7
+                ]
+              ],
+              "multiplier": [
+                1,
+                306
+              ]
+            },
+            {
+              "origin": {
+                "kind": "module",
+                "rowid": 46,
+                "raw": "0,1,9;1,1,7",
+                "degree": [
+                  4,
+                  30
+                ]
+              },
+              "polynomial": [
+                [
+                  [
+                    0
+                  ],
+                  9
+                ],
+                [
+                  [
+                    1
+                  ],
+                  7
+                ]
+              ],
+              "multiplier": [
+                2,
+                286
+              ]
+            },
+            {
+              "origin": {
+                "kind": "module",
+                "rowid": 19456,
+                "raw": "286,1,7;287,1,6",
+                "degree": [
+                  17,
+                  151
+                ]
+              },
+              "polynomial": [
+                [
+                  [
+                    286
+                  ],
+                  7
+                ],
+                [
+                  [
+                    287
+                  ],
+                  6
+                ]
+              ],
+              "multiplier": [
+                1,
+                2
+              ]
+            },
+            {
+              "origin": {
+                "kind": "module",
+                "rowid": 47,
+                "raw": "1,1,6",
+                "degree": [
+                  5,
+                  30
+                ]
+              },
+              "polynomial": [
+                [
+                  [
+                    1
+                  ],
+                  6
+                ]
+              ],
+              "multiplier": [
+                2,
+                287
+              ]
+            }
+          ]
+        },
+        {
+          "basis": [
+            4338,
+            "0,1,604,1,0",
+            null
+          ],
+          "coordinates": [],
+          "kind": "finite_known_cycle_prefix",
+          "staircase_row": 4339,
+          "trace": []
+        },
+        {
+          "basis": [
+            4339,
+            "0,6,562,1,0",
+            null
+          ],
+          "coordinates": [],
+          "kind": "finite_known_cycle_prefix",
+          "staircase_row": 4337,
+          "trace": []
+        }
+      ],
+      "rows": 3,
+      "cols": 3,
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "comparisons": {
+    "19,157": {
+      "status": "complete",
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 3,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 3,
+        "n": 3,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "status": "three_complete_families_full_quotient_basis_bridge_and_zero_source_pass",
+  "cases": [
+    {
+      "case": "zero_b0",
+      "entries": 1365,
+      "previous_preserved": 1358,
+      "new_entries": 7,
+      "counts": {
+        "cycle_pairs": 9711,
+        "predecessor_dimensions": 2586,
+        "ordered_pairs": 1863225,
+        "consecutive": 862,
+        "adjacent": 1044
+      },
+      "next_obstruction": "unknown S0:17,138:d4:row2994; target dimension 2",
+      "family_sha256": "1808b4642d926ab1ec947b83506cd601cb47e2d2d8601d424e4e9f85ae35458c"
+    },
+    {
+      "case": "zero_b1",
+      "entries": 1365,
+      "previous_preserved": 1358,
+      "new_entries": 7,
+      "counts": {
+        "cycle_pairs": 9711,
+        "predecessor_dimensions": 2586,
+        "ordered_pairs": 1863225,
+        "consecutive": 862,
+        "adjacent": 1044
+      },
+      "next_obstruction": "unknown S0:17,138:d4:row2994; target dimension 2",
+      "family_sha256": "13679f14317b6115286584325bde4eccdd380f74ac8994715637e62701a24831"
+    },
+    {
+      "case": "residual",
+      "entries": 1386,
+      "previous_preserved": 1367,
+      "new_entries": 19,
+      "counts": {
+        "cycle_pairs": 9753,
+        "predecessor_dimensions": 2646,
+        "ordered_pairs": 1920996,
+        "consecutive": 882,
+        "adjacent": 1060
+      },
+      "next_obstruction": "unknown S0:16,140:d3:row3147; target dimension 2",
+      "family_sha256": "d80128ded4e5d3afdba2e2260d42abf1a4b0ac5b81dd667a0daaa232b4378122"
+    }
+  ],
+  "actual_a_selection": "false only under Row2907TargetProduct.Actual.TargetMeaning",
+  "actual_r_selected": false,
+  "remaining_b_selected": false,
+  "actual_model_counts": {
+    "full_quotient_coordinate_values": 8,
+    "whole_d4_input_values": 200,
+    "actual_source_E5_zero_models": 100
+  },
+  "parent_sha256": {
+    "Fact713Row2916Continuation/frozen-source.json": "bdf4bed3d37fe752ddbec35493e032d5520f7a8ee104c23a688408190aa85e41",
+    "Row2907D4Candidates/frozen-source.json": "fbad432ccccd864921e1813d4241aff4d6097ac34ae66c53e1e838100963461d"
+  }
+}

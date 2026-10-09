@@ -1,0 +1,182 @@
+{
+  "sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "blocks": [
+    {
+      "tag": "h0Target",
+      "center": [
+        4,
+        3
+      ],
+      "rows": [
+        [
+          [
+            2,
+            "0,2",
+            ""
+          ]
+        ],
+        [],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "tag": "h1Source",
+      "center": [
+        1,
+        2
+      ],
+      "rows": [
+        [],
+        [
+          [
+            3,
+            "1,1",
+            ""
+          ]
+        ],
+        [
+          [
+            4,
+            "0,3",
+            ""
+          ]
+        ]
+      ],
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "tag": "h1Target",
+      "center": [
+        4,
+        4
+      ],
+      "rows": [
+        [],
+        [
+          [
+            5,
+            "0,4",
+            ""
+          ]
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "tag": "productSource",
+      "center": [
+        2,
+        3
+      ],
+      "rows": [
+        [],
+        [],
+        [
+          [
+            5,
+            "0,4",
+            ""
+          ]
+        ]
+      ],
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "tag": "productTarget",
+      "center": [
+        5,
+        5
+      ],
+      "rows": [
+        [],
+        [
+          [
+            8,
+            "0,5",
+            ""
+          ]
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    }
+  ]
+}

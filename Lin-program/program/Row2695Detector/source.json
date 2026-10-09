@@ -1,0 +1,1328 @@
+{
+  "map": "S0__DC2h6",
+  "filtration": 0,
+  "suspension": 0,
+  "factor": {
+    "id": 0,
+    "mon": "0",
+    "degree": [
+      0,
+      0
+    ]
+  },
+  "raw_row": [
+    2695,
+    9,
+    134,
+    "2",
+    null,
+    9000
+  ],
+  "sources": {
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "DC2h6_AdamsSS_t200.db": "8ea004020e413f34a569b9d142e58c73c7661dd1acff35b0757dac9e73586162"
+  },
+  "source_metadata": {
+    "version": 3,
+    "change notes": "Add fil,from,to in version table of maps.",
+    "t_max": 261,
+    "d2_t_max": 177,
+    "timestamp": 1710516671
+  },
+  "target_metadata": {
+    "version": 3,
+    "change notes": "Add fil,from,to in version table of maps.",
+    "t_max": 200,
+    "d2_t_max": 146,
+    "timestamp": 1712843725
+  },
+  "matrices": [
+    {
+      "source_degree": [
+        7,
+        133
+      ],
+      "target_degree": [
+        7,
+        133
+      ],
+      "source": [
+        [
+          2631,
+          "1,1,69,1,76,1"
+        ],
+        [
+          2632,
+          "0,5,69,2"
+        ]
+      ],
+      "target": [
+        [
+          2795,
+          "85,1,1"
+        ],
+        [
+          2796,
+          "84,1,1"
+        ],
+        [
+          2797,
+          "0,5,69,2,0"
+        ]
+      ],
+      "wire": {
+        "version": 1,
+        "filtration": 0,
+        "suspension": 0,
+        "sourceS": 7,
+        "sourceT": 133,
+        "targetS": 7,
+        "targetT": 133,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 2,
+          "rows": 3,
+          "cols": 2,
+          "images": [
+            [
+              [
+                []
+              ],
+              []
+            ]
+          ],
+          "source": [
+            [
+              [
+                [
+                  1,
+                  69,
+                  76
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  69,
+                  69
+                ]
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [],
+              [
+                [
+                  85
+                ]
+              ]
+            ],
+            [
+              [],
+              [
+                [
+                  84
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  69,
+                  69
+                ]
+              ],
+              []
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  1,
+                  69
+                ]
+              ],
+              []
+            ]
+          ],
+          "entries": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "terms": [
+            [
+              {
+                "relation": 0,
+                "multiplier": [
+                  [
+                    76
+                  ]
+                ]
+              }
+            ],
+            []
+          ]
+        }
+      },
+      "relation_sources": [
+        {
+          "kind": "module",
+          "database": "DC2h6_AdamsSS_t200.db",
+          "table": "DC2h6_AdamsE2_relations",
+          "rowid": 2,
+          "raw": "1,1,69,1,0",
+          "degree": [
+            2,
+            66
+          ]
+        }
+      ]
+    },
+    {
+      "source_degree": [
+        9,
+        134
+      ],
+      "target_degree": [
+        9,
+        134
+      ],
+      "source": [
+        [
+          2695,
+          "391,1"
+        ],
+        [
+          2696,
+          "390,1"
+        ],
+        [
+          2697,
+          "69,1,82,1"
+        ],
+        [
+          2698,
+          "18,1,190,1"
+        ],
+        [
+          2699,
+          "0,1,375,1"
+        ]
+      ],
+      "target": [
+        [
+          2865,
+          "391,1,0"
+        ],
+        [
+          2866,
+          "390,1,0"
+        ],
+        [
+          2867,
+          "0,1,375,1,0"
+        ]
+      ],
+      "wire": {
+        "version": 1,
+        "filtration": 0,
+        "suspension": 0,
+        "sourceS": 9,
+        "sourceT": 134,
+        "targetS": 9,
+        "targetT": 134,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 1,
+          "rows": 3,
+          "cols": 5,
+          "images": [
+            [
+              [
+                []
+              ]
+            ]
+          ],
+          "source": [
+            [
+              [
+                [
+                  391
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  390
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  69,
+                  82
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  18,
+                  190
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  375
+                ]
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [
+                [
+                  391
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  390
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  375
+                ]
+              ]
+            ]
+          ],
+          "relations": [
+            [
+              [
+                [
+                  69,
+                  82
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  18,
+                  190
+                ]
+              ]
+            ]
+          ],
+          "entries": [
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "terms": [
+            [],
+            [],
+            [
+              {
+                "relation": 0,
+                "multiplier": [
+                  []
+                ]
+              }
+            ],
+            [
+              {
+                "relation": 1,
+                "multiplier": [
+                  []
+                ]
+              }
+            ],
+            []
+          ]
+        }
+      },
+      "relation_sources": [
+        {
+          "kind": "module",
+          "database": "DC2h6_AdamsSS_t200.db",
+          "table": "DC2h6_AdamsE2_relations",
+          "rowid": 320,
+          "raw": "69,1,82,1,0",
+          "degree": [
+            9,
+            134
+          ]
+        },
+        {
+          "kind": "module",
+          "database": "DC2h6_AdamsSS_t200.db",
+          "table": "DC2h6_AdamsE2_relations",
+          "rowid": 321,
+          "raw": "18,1,190,1,0",
+          "degree": [
+            9,
+            134
+          ]
+        }
+      ]
+    },
+    {
+      "source_degree": [
+        11,
+        135
+      ],
+      "target_degree": [
+        11,
+        135
+      ],
+      "source": [
+        [
+          2778,
+          "411,1"
+        ],
+        [
+          2779,
+          "410,1"
+        ],
+        [
+          2780,
+          "409,1"
+        ],
+        [
+          2781,
+          "0,1,389,1"
+        ],
+        [
+          2782,
+          "0,3,367,1"
+        ]
+      ],
+      "target": [
+        [
+          2958,
+          "23,1,24,1,1"
+        ],
+        [
+          2959,
+          "411,1,0"
+        ],
+        [
+          2960,
+          "410,1,0"
+        ],
+        [
+          2961,
+          "409,1,0"
+        ],
+        [
+          2962,
+          "0,1,389,1,0"
+        ],
+        [
+          2963,
+          "0,3,367,1,0"
+        ]
+      ],
+      "wire": {
+        "version": 1,
+        "filtration": 0,
+        "suspension": 0,
+        "sourceS": 11,
+        "sourceT": 135,
+        "targetS": 11,
+        "targetT": 135,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 2,
+          "rows": 6,
+          "cols": 5,
+          "images": [
+            [
+              [
+                []
+              ],
+              []
+            ]
+          ],
+          "source": [
+            [
+              [
+                [
+                  411
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  410
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  409
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  389
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  367
+                ]
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [],
+              [
+                [
+                  23,
+                  24
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  411
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  410
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  409
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  389
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  367
+                ]
+              ],
+              []
+            ]
+          ],
+          "relations": [],
+          "entries": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "terms": [
+            [],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      },
+      "relation_sources": []
+    },
+    {
+      "source_degree": [
+        10,
+        135
+      ],
+      "target_degree": [
+        10,
+        135
+      ],
+      "source": [
+        [
+          2783,
+          "413,1"
+        ],
+        [
+          2784,
+          "412,1"
+        ],
+        [
+          2785,
+          "0,1,391,1"
+        ],
+        [
+          2786,
+          "0,1,390,1"
+        ],
+        [
+          2787,
+          "0,2,375,1"
+        ]
+      ],
+      "target": [
+        [
+          2964,
+          "90,1,1"
+        ],
+        [
+          2965,
+          "89,1,1"
+        ],
+        [
+          2966,
+          "1,1,81,1,1"
+        ],
+        [
+          2967,
+          "413,1,0"
+        ],
+        [
+          2968,
+          "412,1,0"
+        ],
+        [
+          2969,
+          "0,1,391,1,0"
+        ],
+        [
+          2970,
+          "0,1,390,1,0"
+        ],
+        [
+          2971,
+          "0,2,375,1,0"
+        ]
+      ],
+      "wire": {
+        "version": 1,
+        "filtration": 0,
+        "suspension": 0,
+        "sourceS": 10,
+        "sourceT": 135,
+        "targetS": 10,
+        "targetT": 135,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 2,
+          "rows": 8,
+          "cols": 5,
+          "images": [
+            [
+              [
+                []
+              ],
+              []
+            ]
+          ],
+          "source": [
+            [
+              [
+                [
+                  413
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  412
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  391
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  390
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  375
+                ]
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [],
+              [
+                [
+                  90
+                ]
+              ]
+            ],
+            [
+              [],
+              [
+                [
+                  89
+                ]
+              ]
+            ],
+            [
+              [],
+              [
+                [
+                  1,
+                  81
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  413
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  412
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  391
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  390
+                ]
+              ],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  375
+                ]
+              ],
+              []
+            ]
+          ],
+          "relations": [],
+          "entries": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "terms": [
+            [],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      },
+      "relation_sources": []
+    },
+    {
+      "source_degree": [
+        12,
+        136
+      ],
+      "target_degree": [
+        12,
+        136
+      ],
+      "source": [
+        [
+          2845,
+          "1,1,387,1"
+        ],
+        [
+          2846,
+          "0,1,410,1"
+        ],
+        [
+          2847,
+          "0,1,409,1"
+        ],
+        [
+          2848,
+          "0,2,389,1"
+        ],
+        [
+          2849,
+          "0,4,367,1"
+        ]
+      ],
+      "target": [
+        [
+          3044,
+          "13,1,9"
+        ],
+        [
+          3045,
+          "1,1,387,1,0"
+        ],
+        [
+          3046,
+          "0,1,410,1,0"
+        ],
+        [
+          3047,
+          "0,1,409,1,0"
+        ],
+        [
+          3048,
+          "0,2,389,1,0"
+        ],
+        [
+          3049,
+          "0,4,367,1,0"
+        ]
+      ],
+      "wire": {
+        "version": 1,
+        "filtration": 0,
+        "suspension": 0,
+        "sourceS": 12,
+        "sourceT": 136,
+        "targetS": 12,
+        "targetT": 136,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 10,
+          "rows": 6,
+          "cols": 5,
+          "images": [
+            [
+              [
+                []
+              ],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              []
+            ]
+          ],
+          "source": [
+            [
+              [
+                [
+                  1,
+                  387
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  410
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  409
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  389
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  367
+                ]
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [
+                [
+                  13
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  1,
+                  387
+                ]
+              ],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  410
+                ]
+              ],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  409
+                ]
+              ],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  389
+                ]
+              ],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              []
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  367
+                ]
+              ],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              []
+            ]
+          ],
+          "relations": [],
+          "entries": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "terms": [
+            [],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      },
+      "relation_sources": []
+    },
+    {
+      "source_degree": [
+        14,
+        137
+      ],
+      "target_degree": [
+        14,
+        137
+      ],
+      "source": [
+        [
+          2911,
+          "23,1,181,1"
+        ],
+        [
+          2912,
+          "0,1,418,1"
+        ],
+        [
+          2913,
+          "0,3,386,1"
+        ]
+      ],
+      "target": [
+        [
+          3121,
+          "23,1,181,1,0"
+        ],
+        [
+          3122,
+          "0,1,418,1,0"
+        ],
+        [
+          3123,
+          "0,3,386,1,0"
+        ]
+      ],
+      "wire": {
+        "version": 1,
+        "filtration": 0,
+        "suspension": 0,
+        "sourceS": 14,
+        "sourceT": 137,
+        "targetS": 14,
+        "targetT": 137,
+        "algebra": {
+          "version": 1,
+          "sourceS": 0,
+          "sourceT": 0,
+          "targetS": 0,
+          "targetT": 0,
+          "sourceGenerators": 1,
+          "targetGenerators": 1,
+          "rows": 3,
+          "cols": 3,
+          "images": [
+            [
+              [
+                []
+              ]
+            ]
+          ],
+          "source": [
+            [
+              [
+                [
+                  23,
+                  181
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  418
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  386
+                ]
+              ]
+            ]
+          ],
+          "target": [
+            [
+              [
+                [
+                  23,
+                  181
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  418
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  0,
+                  0,
+                  386
+                ]
+              ]
+            ]
+          ],
+          "relations": [],
+          "entries": [
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            true
+          ],
+          "terms": [
+            [],
+            [],
+            []
+          ]
+        }
+      },
+      "relation_sources": []
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+make: Entering directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'
+mkdir -p tests/output
+./lin-cert-export self-test
+lin-cert-export self-test: ok
+./lin-cert-export manifest tests/output/lin-program-manifest.jsonl
+test "$(wc -l < tests/output/lin-program-manifest.jsonl)" -eq 295
+./lin-cert-export claims ../doc_data/kervaire_claims.csv tests/output/lin-program-claims.jsonl
+test "$(wc -l < tests/output/lin-program-claims.jsonl)" -eq 18
+./lin-cert-export adams examples/adams_sample.csv tests/output/lin-program-adams.jsonl
+./lin-cert-export proofs examples/proof_sample.csv tests/output/lin-program-proof.jsonl
+python3 tests/test_export.py
+Exporter: hashes, reproducibility, 17 claims, inventory, unknowns, malformed CSV, six finite result kinds passed
+python3 tests/assert_claim_coverage.py
+PASS: all 17 source claims accounted for; 17 retain explicit mathematical obligations
+python3 tests/audit_search_coverage.py
+Coverage audit passed: 70 configured maps, 96 cycle quotients; 95 ordinary factors, 13 detector blocks, 56 actual columns; 10 rejection checks. No searches rerun; no mathematical theorem asserted.
+python3 LinearCertificates/test_export.py
+PASS: 262 exhaustive certificates, deterministic JSONL, malformed input rejection
+python3 ResolutionCertificates/test_export.py
+resolution exporter: 4 accepted, 4 rejected, deterministic
+python3 PageTransitionCertificates/test_export.py
+PASS 75 homology comparisons, 230 noncomplex rejections, malformed inputs and determinism
+python3 PageTransitionCertificates/test_induced_export.py
+PASS 38 induced maps, 90 rejected maps/complexes, canonical deterministic output, batch and malformed input
+python3 PageTransitionCertificates/test_trajectory_export.py
+PASS trajectory producer: canonical deterministic output, page/shape/complex/empty rejection
+python3 NamedElementCertificates/test_module_export.py
+module packer: deterministic batch, crossing, zero rank, variable/unit distinction and 7 malformed inputs passed
+python3 PageProductCertificates/test_export.py
+2 actual products deterministic; noncycle producer rejected; mutation fixtures generated
+python3 GenericFreeComplexProducer/test.py
+25 producer tests passed
+python3 GenericFreeComplexProducer/component_test.py
+{'rank': 3, 'generators': 8, 'checked_products': 512, 'source_sha256': '99497bb465ded44e5b172e77527d636874f81e21c5706ea0c3eada5759180df4', 'certificate_sha256': '80a5b2e0f2eaa2375866ae084f7bef840bd6fd5cc476cf828df9f8acccea4346', 'status': 'independent source/tensor audit passed; Lean proof separately checked'}
+{'input_sha256': '0a02884d06db50dfba4cb5f76a6656847812d855b44fe43ea8e3354d27a0eec7', 'output_sha256': '0e670bb2b9c352b30e85ef6a756c73f7c000cc7aa225149003285eee68e6c428', 'components': 25, 'exact': 24, 'nonexact': [{'s': 0, 't': 0, 'reason': 'unaugmented complex retains sphere unit'}], 'status': 'independent actual Milnor matrix and contraction audit passed'}
+noncomplex and off-range bad-grading tests passed
+6 strict component parser/batch cases passed
+2 component resource recovery cases passed
+python3 GenericFreeComplexProducer/augmented_test.py
+{"status": "independent source/coproduct/matrix/contraction audit passed", "deterministic": true, "negative_cases": 9, "runs": [{"degree": 4, "components": 5, "input_sha256": "0a02884d06db50dfba4cb5f76a6656847812d855b44fe43ea8e3354d27a0eec7", "augmentation_sha256": "7fae28979e39e2b46ee2b1d5d8c670abfff87e41d03c095586a2e0826aea7f3c", "output_sha256": "90087acd54a6b1a849a794c41987cdbf57834b9f22b6dde476fd6e173b19a0b5", "source_sha256": "99497bb465ded44e5b172e77527d636874f81e21c5706ea0c3eada5759180df4"}, {"degree": 8, "components": 9, "input_sha256": "8aacc9fefe6db27686855b44038541940c4d039fa0d26f6eab04e500971b8d5d", "augmentation_sha256": "48d0abffd3fa5950c0c96135c86ac0676b06739d7fbe45294e871419f6feadf2", "output_sha256": "e6028966435753a6dee49cec876afe87c9f53cc53da0380c459924d16ee8b889", "source_sha256": "99497bb465ded44e5b172e77527d636874f81e21c5706ea0c3eada5759180df4"}]}
+python3 GenericFreeComplexProducer/augmented_review_test.py
+{"status": "passed", "regressions": 2}
+python3 FiniteEventProducer/test.py
+{'status': 'independent full comparison/trace/event audit passed', 'events': 87, 'pages': [2, 3, 4], 'earlier_stages': 78, 'negative_cases': 10, 'sha256': {'actual.input.jsonl': '5cc51672b0507138d3faf303b0ca168ff515ccc2ccaa952e49c583bfa3448f39', 'actual.jsonl': '5cc51672b0507138d3faf303b0ca168ff515ccc2ccaa952e49c583bfa3448f39', 'all87.input.jsonl': '85d8e5fc7bbc58aec365112dd96167ae7efa38449bd87661a6ff367d264da722', 'all87.jsonl': '85d8e5fc7bbc58aec365112dd96167ae7efa38449bd87661a6ff367d264da722', 'provenance.json': 'b9c2f43649ca19b49df90b1c57e98f4ea6b204e96f22b431e47f7dab79278579'}}
+python3 FiniteEventProducer/indexed_test.py
+{'status': '87 indexed events match original inventory degrees and contiguous prior pages', 'records': 87, 'prior_labels': 78, 'negative_cases': 9, 'sha256': 'cd342e89b41b62fda8421105ba08204cda23f7dcca1a1ca8d7652e9b09f02f91'}
+python3 FiniteEventProducer/D4/test.py
+{'status': '88 original-inventory and full finite/indexed trace checks passed', 'events': 88, 'unchanged_old_events': 87, 'new_event': 3254, 'prior_stages': 82, 'new_conditional_kinds': ['conditional_csigma', 'conditional_d4_module', 'conditional_h3_d0'], 'sha256': {'all88.jsonl': '294449e5ae07a2a46ea62d155845e368dd399b1a462959f25d29f6f228120f54', 'indexed88.jsonl': '51d0d431e970b58095ace696b888487f11b7689550c2a8555fb137edc442a356', 'event3254.json': '530fc3d2fb22e7e8023c8a983d26c92705bcb4b5dd798b297842ba60204a3391', 'indexed-event3254.json': 'beee8969cb0a231a7e7485a3779006ffd9ab0028e1ab97c888aa0e5bacb2c47c', 'provenance.json': 'e351203b139ea82b738f541cba7f73dab6edad507e5437e06c3d4876ce948226'}}
+python3 FiniteEventProducer/ThreeProduct/test.py
+{'status': '90 original-inventory and full finite/indexed trace checks passed', 'events': 90, 'source_blocks': 333, 'byte_unchanged_old_events': 88, 'new_events': [3744, 3745], 'prior_stages': 90, 'new_conditional_kinds': ['conditional_three_products'], 'sha256': {'all90.jsonl': '33260ac8aad44d4cd93e48ddc91ff7562a882a6d31fb9df6a1c26f76f5387a83', 'indexed90.jsonl': 'd303cb1d53f7ee61e5df473bc4335be156e264eb3d55693ff29b58e0ec8c5f12', 'event3744.json': 'c8b9ba06a45b7f4bc4800aa3dfbdb90474fa7913be557652021dd3fde7ec43c9', 'indexed-event3744.json': '2e250f8d04d4fc4c43572deac7d9e1bd5598de95b3fc3098fcef195c79a28bf7', 'event3745.json': '5e156ea84fa13ecbd80ada0982d6b2b6be40b026f74850f51abcf39740a61821', 'indexed-event3745.json': '036fc75e044fbabc0125d4fb0575e793119856b7e48e8416b872c541c82d8037', 'provenance.json': '7d242712e4808dfacefa01a7bcd73c59584cd0250af17b357f63635421ff97dd'}}
+make: Leaving directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'

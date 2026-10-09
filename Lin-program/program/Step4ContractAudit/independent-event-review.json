@@ -1,0 +1,99 @@
+{
+  "status": "current_snapshot_and_hardened_boundaries_pass",
+  "current_counts": {
+    "inventory": 105,
+    "excluded_sentinels": 4,
+    "event_slots": 101,
+    "known_values": 99,
+    "pending": [
+      2696,
+      2852
+    ],
+    "accepted": 95,
+    "known_unresolved": 4,
+    "outgoing": 59,
+    "incoming": 36,
+    "actual_indexed_records": 95,
+    "prior_steps": 102
+  },
+  "current_id_and_provenance_bijections": true,
+  "mutation_results": {
+    "non_null_unknown_'?'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_'[NULL]'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_'possibly'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_False": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_0": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_''": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_'00'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_'0,'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_'0,0'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'duplicate or unordered support')"
+    },
+    "non_null_unknown_'2,1'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'duplicate or unordered support')"
+    },
+    "non_null_unknown_'-1'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "non_null_unknown_'1 2'": {
+      "accepted": false,
+      "error": "AssertionError: (2435, 'noncanonical or unknown differential support')"
+    },
+    "missing_event_offset_by_duplicate_inventory_id": {
+      "accepted": false,
+      "error": "AssertionError: duplicate inventory id"
+    },
+    "omitted_known_unresolved_event_replaced_by_duplicate_pending": {
+      "accepted": false,
+      "error": "AssertionError: duplicate event id"
+    },
+    "pending_promoted_to_accepted": {
+      "accepted": false,
+      "error": "AssertionError: "
+    },
+    "pending_changed_to_known": {
+      "accepted": false,
+      "error": "AssertionError: "
+    },
+    "certificate_content_replaced_with_same_stage_lengths": {
+      "accepted": true
+    }
+  },
+  "findings": [],
+  "remaining_scope": "Coverage counts are metadata; certificate contents and indexed records are independently bound here through producer provenance. The coverage script alone does not replace the producer or Lean certificate check.",
+  "source_sha256": {
+    "Step4ContractAudit/audit_coverage.py": "2c074166912fb90da6f2b3a44e37bbdbd7d559c67aca8b8ccc39a61ba3c5d3d3",
+    "AggregateTargetInventory/inventory.json": "5305d51f32ad48fffa3da528155cc97258b7a52e13d0a02086a297f8de5c5538",
+    "AggregateD5Conditional/event-results.json": "47ef1c3887a8cb598289dd0719df04cd11dc9c999b8d47e6d4e1705a5c3dfb59",
+    "FiniteEventProducer/D5/all95.jsonl": "d57c5e0cc2e68c389d63adae551f0c16edfa91d296224cffcde03b6bedae1790",
+    "FiniteEventProducer/D5/indexed95.jsonl": "1c8401c1cbfa5d210d87a07c6bd6ca05c9d66cd8376119a83b08eca0bc604c83",
+    "FiniteEventProducer/D5/provenance.json": "55e8db223bab8fe3f92bda61470efc0e3a7ace156a2aefaf7bff4fee40b3eaeb"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "status": "passed_no_findings",
+  "counts": {
+    "axiom_reports": 11,
+    "derived_representatives": 4956,
+    "actual_quotient_and_add_pairs": 134220,
+    "constructed_steps": 408,
+    "derived_full_singleton_neighbors": 12,
+    "actual_models": 140,
+    "single_named_value_forces_whole_d5_zero": 512,
+    "missing_named_value_countermodels": 1536
+  },
+  "compiled": {
+    "Basic": {
+      "source_sha256": "c404c820f0b1f90ef21240c313741dc4bfff9f2f1e9ce1a2d7ddb0edd9d18d07",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact721ConstructedActual/Basic.olean": "2ccbb5c0aa78b58d3617439adc49c33b8b7018dced44209c3bf600c402761024",
+        ".lake/build/lib/lean/Prop79TargetSearch/Assembly.olean": "0d67eb453d564811aad760105a72892973055d749e094d9ce35cfea473a4e8e5"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "1b6e75094a7503e063c217103fa1546302935bffdd71432ad93bc3c62956cb4c",
+      "olean_sha256": "fa33cdf64d732a4f9f5bf7ead7b18c4a319081303962fc7c7a03036ef78a9c84"
+    },
+    "Assembly": {
+      "source_sha256": "88a9d2efecee5b18aaa716069f8dc36b17f61510d839c3c32b5321428e3a63a9",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Prop79NeighborCoordinates/Basic.olean": "fa33cdf64d732a4f9f5bf7ead7b18c4a319081303962fc7c7a03036ef78a9c84"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "f80a120f9de68aefae98f83deaa50f064ff10847707d1962fcbacb6fb51746c6",
+      "olean_sha256": "7c7672c766b9c2ac57dea27ddeb8379207eb3a164b41f0d1e0b6a4e97ac5b64d"
+    }
+  },
+  "review": {
+    "later_current_coordinates_are_derived": true,
+    "sourceEquiv_degree4": [
+      10,
+      136
+    ],
+    "outgoing_target_degree4": [
+      18,
+      142
+    ],
+    "sourceEquiv_degree5": [
+      9,
+      135
+    ],
+    "full_d5_zero_derived_from_single_named_value": true,
+    "no_self_reference_in_coordinate_meanings": true,
+    "d5_known_basis_remains_actual_mathematical_input": true,
+    "E6_or_permanence_claimed": false
+  },
+  "input_sha256": {
+    "Prop79NeighborCoordinates/independent_review.py": "37b89f0fd932f0294f374fe11e4b38cc0ddf9b7938cd2d597d9c4496add35b6d",
+    "Prop79NeighborCoordinates/frozen-source.json": "28686c512781910914b44a30a9d27b94432f38f41e05e21842e84d2d7cd4fda2",
+    "Prop79IncomingSearch/search.json": "485bfad505d242f35b76e4db88c7df62229a1ff018b0aece4409fbb253ab4867",
+    "ActualAdamsIncomingBridge/Basic.lean": "8897d3091bfaf63eb075fb3a541133e3b9a5f0eb97a62fa31d61027ae5c806c0",
+    "Fact721ConstructedActual/Basic.lean": "465356f485bcc9f7d1781737329a251b95d2df7142548ecdf1faa6cdbc34c634"
+  }
+}

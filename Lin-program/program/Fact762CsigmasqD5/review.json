@@ -1,0 +1,251 @@
+{
+  "status": "passed_independent_finite_replay",
+  "counts": {
+    "d2_columns": 172,
+    "d2_reductions": 113,
+    "map_columns": 235,
+    "map_reductions": 0,
+    "comparisons": 48,
+    "quotient_vectors": 1308,
+    "quotient_pairs": 223392,
+    "map_vectors": 5136,
+    "same_input_steps": 6,
+    "known_staircase_d2": 157
+  },
+  "trajectory": [
+    {
+      "object": "Csigmasq",
+      "page": 2,
+      "vector": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        0,
+        1
+      ]
+    },
+    {
+      "object": "Csigmasq",
+      "page": 3,
+      "vector": [
+        0,
+        1
+      ],
+      "next": [
+        0,
+        1
+      ]
+    },
+    {
+      "object": "Csigmasq",
+      "page": 4,
+      "vector": [
+        0,
+        1
+      ],
+      "next": [
+        0,
+        1
+      ]
+    },
+    {
+      "object": "S0",
+      "page": 2,
+      "vector": [
+        0,
+        1,
+        0
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "object": "S0",
+      "page": 3,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "object": "S0",
+      "page": 4,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    }
+  ],
+  "explicit_unproved_conditions": [
+    {
+      "object": "Csigmasq",
+      "source": [
+        11,
+        152
+      ],
+      "page": 3,
+      "row": [
+        7137,
+        "10",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        11,
+        152
+      ],
+      "page": 3,
+      "row": [
+        7138,
+        "6",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        15,
+        155
+      ],
+      "page": 3,
+      "row": [
+        7603,
+        "5",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        12,
+        153
+      ],
+      "page": 3,
+      "row": [
+        7322,
+        "6",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        12,
+        153
+      ],
+      "page": 3,
+      "row": [
+        7323,
+        "7",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        19,
+        158
+      ],
+      "page": 3,
+      "row": [
+        8100,
+        "0",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "S0",
+      "source": [
+        7,
+        134
+      ],
+      "page": 3,
+      "row": [
+        2708,
+        "0,1",
+        null,
+        9997
+      ],
+      "kind": "explicit_unproved_zero_d3_premise",
+      "coordinate": [
+        0
+      ],
+      "warning": "NULL9997 remains unknown; zero is an explicit branch assumption"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        19,
+        158
+      ],
+      "page": 4,
+      "row": [
+        8100,
+        "0",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        15,
+        155
+      ],
+      "page": 4,
+      "row": [
+        7603,
+        "5",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "S0",
+      "source": [
+        10,
+        136
+      ],
+      "page": 4,
+      "row": [
+        2858,
+        "2",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    }
+  ],
+  "hashes": {
+    "d2.json": "9a92e6b306001ae3493a527066cacc1cbd9abbfb3238a9816a6bd13e460420e2",
+    "search.json": "d6cc4e763ce87da652ad2e630c058ddd3bc0ea359fbf9e5306675b8861703db1",
+    "maps.json": "f9545c23cb7dbff69214894393667ae19c8241ada819d133b796b72fd48a51fe"
+  },
+  "limitation": "Independent checks establish finite identities. All actual staircase/Leibniz/quotient meanings and named source d5cycle remain mathematical inputs."
+}

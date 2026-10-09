@@ -1,0 +1,95 @@
+{
+  "status": "two_complete_actual_d3_branches_checked",
+  "counts": {
+    "cycle_pairs": 511,
+    "comparisons": 13,
+    "complete_SQL_groups": 27,
+    "SQL_d2_columns": 38,
+    "exact_coordinate_changes": 8,
+    "full_h2_product_columns": 7,
+    "polynomial_relation_steps": 7,
+    "all_cycle_product_inputs": 16,
+    "all_unknown_d3_values": 8,
+    "complete_unknown_branches": 2,
+    "relabelled_full_E3_models": 80640
+  },
+  "source": {
+    "basis_id": 2573,
+    "staircase_id": 2574,
+    "raw_NULL": true,
+    "degree": [
+      6,
+      132
+    ]
+  },
+  "target": {
+    "degree": [
+      9,
+      134
+    ],
+    "old_coordinates": [
+      "raw1",
+      "raw2",
+      "raw3"
+    ],
+    "current_coordinates": [
+      "raw2",
+      "raw3",
+      "raw1"
+    ],
+    "old_to_current_columns": [
+      4,
+      1,
+      2
+    ]
+  },
+  "h2_candidates": [
+    2,
+    3,
+    6,
+    7
+  ],
+  "d_squared_zero_candidates": [
+    2,
+    3
+  ],
+  "branch_incoming_columns": [
+    [
+      false,
+      true,
+      false
+    ],
+    [
+      true,
+      true,
+      false
+    ]
+  ],
+  "branch_projection_rows": [
+    [
+      true,
+      false,
+      false
+    ],
+    [
+      true,
+      true,
+      false
+    ]
+  ],
+  "same_E2_input_local": 2,
+  "complete_E4_dimension": 1,
+  "source_assumptions": [
+    "full actual E2/d2/product meanings and quotient product transition",
+    "recorded ss2866 d3 on constructed original E2 representatives",
+    "complete outgoing (9,134) d3 map preserving existing source rules",
+    "actual spectral sequence d3 squared zero and full canonical incoming source"
+  ],
+  "limitation": "No selection of unknown d3 is claimed. Actual branch is defined from the actual differential; original topology is not constructed.",
+  "sources": {
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "Row2574Detector/detect.json": "3ea3576b9feeb1783dd11ddf39f98fa10f791a83c62cdd3e02fcc9ff42c143cf",
+    "Row2574Detector/products-h2-provenance.json": "23b13cfaf62d6892ec8d673f7b1992a89ae41e79a69623c0c05ef18b296a5309",
+    "Fact715Source2574/source.json": "dfa1adac2f4960dc958b7cf19c66d37d1121159fa27b93715fd18c7b09a7c448"
+  }
+}

@@ -1,0 +1,42 @@
+Fact762SphereGDetection/ProductDescent.lean:66:48: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (D.leftMeaning.nextCoordinates ?pages ?valid ?zeroMeaning).equivalence
+    ((CertifiedAdamsPages.nextPage ?pages r a).toNext ⟦?x⟧)
+in the target expression
+  eval wc.comparison.projection (cc.equivalence ↑(multiplyCycle S P r a b x y)) =
+    PageProductCertificates.product D.nextTensor
+      ((D.leftMeaning.nextCoordinates pages ⋯ ⋯).equivalence ((pageEquiv pages) ⟦x⟧))
+      ((D.rightMeaning.nextCoordinates pages ⋯ ⋯).equivalence ((pageEquiv pages) ⟦y⟧))
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+r : ℕ
+a b : Bidegree
+wa wb wc : WireComparison
+ca : Coordinates S r a wa.m
+cb : Coordinates S r b wb.m
+cc : Coordinates S r (a.add b) wc.m
+D : Input S pages P r a b wa wb wc ca cb cc
+qx : PageHomology S r a
+qy : PageHomology S r b
+x : PageCycle S r a
+y : PageCycle S r b
+⊢ eval wc.comparison.projection (cc.equivalence ↑(multiplyCycle S P r a b x y)) =
+    PageProductCertificates.product D.nextTensor
+      ((D.leftMeaning.nextCoordinates pages ⋯ ⋯).equivalence ((pageEquiv pages) ⟦x⟧))
+      ((D.rightMeaning.nextCoordinates pages ⋯ ⋯).equivalence ((pageEquiv pages) ⟦y⟧))
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    multiplyCycle S P r a b x y
+  has type
+    PageCycle S r (a.add b)
+  but is expected to have type
+    { x // (S.differential r (a.add b)).toFun x = S.zero r (AdamsTarget r (a.add b)) }
+  in the application
+    ↑(multiplyCycle S P r a b x y)
+'Fact762SphereGDetection.ProductDescent.next_product_coordinates' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

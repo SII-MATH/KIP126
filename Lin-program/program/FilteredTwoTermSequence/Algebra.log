@@ -1,0 +1,13 @@
+FilteredTwoTermSequence/Algebra.lean:34:11: warning: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FilteredTwoTermSequence/Algebra.lean:34:13: warning: Variable name `y` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'FilteredTwoTermSequence.Algebra.outgoing_incoming' depends on axioms: [propext]
+'FilteredTwoTermSequence.Algebra.cycleProjection_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.Algebra.homologyEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]

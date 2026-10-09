@@ -1,0 +1,32 @@
+{
+  "status": "variable_dimension_neighborhood_review_passed",
+  "raw_unknowns_preserved": true,
+  "examined_matrix_pairs": 320,
+  "admissible_cases": [
+    "000",
+    "001",
+    "010",
+    "011",
+    "100",
+    "110"
+  ],
+  "distinct_events": 1,
+  "complete_comparisons": 54,
+  "adjacent_matrix_equalities": 12,
+  "consecutive_dimensions": 36,
+  "prior_endpoint_steps": 24,
+  "nonzero_incoming_cases": [
+    "001",
+    "011"
+  ],
+  "source_event_incoming_dimensions": [
+    1,
+    2
+  ],
+  "actual_adams_realization": false,
+  "frozen_aggregate_sha256": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+  "input_sha256": {
+    "provenance.json": "30bf94434bfcf6f7eb43f3fa5c7a6a0390108c2d814d1175e2f4d7514a85b55f",
+    "review.py": "6130437791b29c16b05c3907e63ae4cd03f87a3ab6d9cd2bedea51748713e6b5"
+  }
+}

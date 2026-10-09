@@ -1,0 +1,1101 @@
+ℹ [10/26] Replayed LinProgramCertificates.Examples
+info: LinProgramCertificates/Examples.lean:42:0: 'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:43:0: 'KervaireProgram.check_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:44:0: 'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:45:0: 'KervaireProgram.importLine_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LinProgramCertificates/Examples.lean:46:0: 'KervaireProgram.dataWellFormed_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:47:0: 'KervaireProgram.differentialWellFormed_sound' depends on axioms: [propext, Quot.sound]
+ℹ [23/26] Replayed LinearCertificates.ParserExamples
+info: LinearCertificates/ParserExamples.lean:13:0: 'LinearCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+ℹ [24/26] Replayed LinearCertificates.Examples
+info: LinearCertificates/Examples.lean:34:0: 'LinearCertificates.annihilates_image' depends on axioms: [propext, Quot.sound]
+info: LinearCertificates/Examples.lean:35:0: 'LinearCertificates.checkNotImage_sound' depends on axioms: [propext, Quot.sound]
+info: LinearCertificates/Examples.lean:36:0: 'LinearCertificates.checkChainMap_sound' depends on axioms: [propext, Quot.sound]
+ℹ [702/703] Replayed MilnorCertificates.Grading
+info: MilnorCertificates/Grading.lean:221:0: 'MilnorCertificates.coproduct_homogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/Grading.lean:222:0: 'MilnorCertificates.product_degree_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/Grading.lean:223:0: 'MilnorCertificates.sqOne_square_unbounded_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [779/790] Replayed MilnorCertificates.WindowSoundness
+info: MilnorCertificates/WindowSoundness.lean:73:0: 'MilnorCertificates.basis_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/WindowSoundness.lean:74:0: 'MilnorCertificates.check_all_monomials' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [781/790] Replayed MilnorCertificates.RankStability
+warning: MilnorCertificates/RankStability.lean:262:12: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: MilnorCertificates/RankStability.lean:272:0: 'MilnorCertificates.coproduct_pad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/RankStability.lean:273:0: 'MilnorCertificates.bounded_rank_stability' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/RankStability.lean:283:0: 'MilnorCertificates.high_coordinate_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/RankStability.lean:284:0: 'MilnorCertificates.coordinates_above_rank_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [782/790] Replayed MilnorCertificates.StableProduct
+info: MilnorCertificates/StableProduct.lean:96:0: 'MilnorCertificates.stable_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/StableProduct.lean:97:0: 'MilnorCertificates.sqOne_square_all_higher_ranks' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [783/790] Replayed MilnorCertificates.StableTactic
+info: MilnorCertificates/StableTactic.lean:55:0: 'MilnorCertificates.checkStable_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [832/842] Replayed MilnorCertificates.Frobenius
+warning: MilnorCertificates/Frobenius.lean:39:0: automatically included section variable(s) unused in theorem `MilnorCertificates.monomialValue_multiply`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MilnorCertificates/Frobenius.lean:81:0: automatically included section variable(s) unused in theorem `MilnorCertificates.monomialValue_unit`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: MilnorCertificates/Frobenius.lean:109:0: 'MilnorCertificates.tensorValue_frobenius' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [833/842] Replayed MilnorCertificates.GeneratorEvaluation
+warning: MilnorCertificates/GeneratorEvaluation.lean:10:0: automatically included section variable(s) unused in theorem `MilnorCertificates.generatorPower_value`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: MilnorCertificates/GeneratorEvaluation.lean:58:0: 'MilnorCertificates.generatorCoproduct_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/GeneratorEvaluation.lean:59:0: 'MilnorCertificates.generatorCoproduct_frobenius' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [834/842] Replayed MilnorCertificates.Coassociativity
+info: MilnorCertificates/Coassociativity.lean:118:0: 'MilnorCertificates.checkCoassociative_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/Coassociativity.lean:119:0: 'MilnorCertificates.generators_rank_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/Coassociativity.lean:120:0: 'MilnorCertificates.monomials_rank_two_degree_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [837/849] Replayed MilnorCertificates.FoldEvaluation
+info: MilnorCertificates/FoldEvaluation.lean:82:0: 'MilnorCertificates.tensorValue_fold' depends on axioms: [propext, Quot.sound]
+info: MilnorCertificates/FoldEvaluation.lean:83:0: 'MilnorCertificates.coproduct_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/FoldEvaluation.lean:84:0: 'MilnorCertificates.coproduct_generatorPower_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [838/849] Replayed MilnorCertificates.TriangleReindex
+warning: MilnorCertificates/TriangleReindex.lean:25:36: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: MilnorCertificates/TriangleReindex.lean:25:36: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: MilnorCertificates/TriangleReindex.lean:31:30: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: MilnorCertificates/TriangleReindex.lean:38:37: Variable name `h` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: MilnorCertificates/TriangleReindex.lean:88:0: 'MilnorCertificates.triangle_sum_reindex' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/TriangleReindex.lean:89:0: 'MilnorCertificates.triangular_frobenius_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/TriangleReindex.lean:90:0: 'MilnorCertificates.leftTriangle_nested' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/TriangleReindex.lean:91:0: 'MilnorCertificates.rightTriangle_nested' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [839/849] Replayed MilnorCertificates.IteratedEvaluation
+warning: MilnorCertificates/IteratedEvaluation.lean:11:0: automatically included section variable(s) unused in theorem `MilnorCertificates.sum_flatMap_value`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: MilnorCertificates/IteratedEvaluation.lean:84:0: automatically included section variable(s) unused in theorem `MilnorCertificates.list_range_sum`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: MilnorCertificates/IteratedEvaluation.lean:153:0: 'MilnorCertificates.generator_delta_coassociative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/IteratedEvaluation.lean:154:0: 'MilnorCertificates.tripleValue_coassociative' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [931/932] Replayed MilnorCertificates.ExponentEncoding
+warning: MilnorCertificates/ExponentEncoding.lean:25:43: This simp argument is unused:
+  Finsupp.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [̵e̵x̵p̵o̵n̵e̵n̵t̵E̵n̵c̵o̵d̵i̵n̵g̵,̵F̵i̵n̵s̵e̵t̵.̵s̵u̵m̵_̵a̵p̵p̵l̵y̵'̵,̵F̵i̵n̵s̵u̵p̵p̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵,̵h̵]̵[̲e̲x̲p̲o̲n̲e̲n̲t̲E̲n̲c̲o̲d̲i̲n̲g̲,̲ ̲F̲i̲n̲s̲e̲t̲.̲s̲u̲m̲_̲a̲p̲p̲l̲y̲'̲,̲ ̲h̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: MilnorCertificates/ExponentEncoding.lean:70:0: 'MilnorCertificates.exponentEncoding_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/ExponentEncoding.lean:71:0: 'MilnorCertificates.tripleEncoding_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1409/1426] Replayed MilnorCertificates.ImportedExample
+info: MilnorCertificates/ImportedExample.lean:6:0: 'MilnorCertificates.check_sound' depends on axioms: [propext, Quot.sound]
+info: MilnorCertificates/ImportedExample.lean:7:0: 'MilnorCertificates.decode_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1419/1461] Replayed PropagationCertificates.Branches
+info: PropagationCertificates/Branches.lean:146:0: 'PropagationCertificates.Branches.check_sound' depends on axioms: [propext]
+info: PropagationCertificates/Branches.lean:147:0: 'PropagationCertificates.Branches.exclude_sound' depends on axioms: [propext]
+ℹ [1430/1461] Replayed PageCertificates.Examples
+info: PageCertificates/Examples.lean:33:0: 'PageCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+info: PageCertificates/Examples.lean:34:0: 'PageCertificates.checkUnique_sound' depends on axioms: [propext, Quot.sound]
+info: PageCertificates/Examples.lean:35:0: 'PageCertificates.checkHomology_sound' depends on axioms: [propext, Quot.sound]
+info: PageCertificates/Examples.lean:36:0: 'PageCertificates.checkCandidates_sound' depends on axioms: [propext, Quot.sound]
+info: PageCertificates/Examples.lean:37:0: 'PageCertificates.representative_survives' depends on axioms: [propext]
+ℹ [1434/1461] Replayed ResolutionCertificates.HomologyBasis
+info: ResolutionCertificates/HomologyBasis.lean:93:0: 'ResolutionCertificates.checkHomologyBasis_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1437/1461] Replayed ResolutionCertificates.Examples
+info: ResolutionCertificates/Examples.lean:23:0: 'ResolutionCertificates.checkContraction_sound' depends on axioms: [propext, Quot.sound]
+info: ResolutionCertificates/Examples.lean:24:0: 'ResolutionCertificates.checkHomotopy_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1441/1482] Replayed MilnorCertificates.PolynomialExtraction
+info: MilnorCertificates/PolynomialExtraction.lean:103:0: 'MilnorCertificates.universalTriple_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/PolynomialExtraction.lean:104:0: 'MilnorCertificates.coproduct_coassociative' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [1442/1482] Replayed MilnorCertificates.DualAlgebra
+warning: MilnorCertificates/DualAlgebra.lean:100:21: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp [boolScalar, ̲h,̵h̵z]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: MilnorCertificates/DualAlgebra.lean:155:0: 'MilnorCertificates.dualMul_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/DualAlgebra.lean:156:0: 'MilnorCertificates.certified_dualMul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/DualAlgebra.lean:157:0: 'MilnorCertificates.certified_products_associative' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [1443/1482] Replayed MilnorCertificates.Counit
+warning: MilnorCertificates/Counit.lean:9:0: automatically included section variable(s) unused in theorem `MilnorCertificates.xiValue_zero`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: MilnorCertificates/Counit.lean:153:0: 'MilnorCertificates.counit_left_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1444/1482] Replayed MilnorCertificates.Unit
+info: MilnorCertificates/Unit.lean:105:0: 'MilnorCertificates.dualMul_unit_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/Unit.lean:106:0: 'MilnorCertificates.dualMul_unit_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/Unit.lean:107:0: 'MilnorCertificates.unitPolynomial_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/Unit.lean:108:0: 'MilnorCertificates.unitPolynomial_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1450/1482] Replayed StaircaseCertificates.QueryExamples
+info: StaircaseCertificates/QueryExamples.lean:19:0: 'StaircaseCertificates.checkBasis_sound' depends on axioms: [propext, Quot.sound]
+info: StaircaseCertificates/QueryExamples.lean:20:0: 'StaircaseCertificates.selected_iff_coordinates' depends on axioms: [propext]
+info: StaircaseCertificates/QueryExamples.lean:21:0: 'StaircaseCertificates.checkNotSelected_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1453/1482] Replayed StaircaseCertificates.CoherenceExamples
+info: StaircaseCertificates/CoherenceExamples.lean:17:0: 'StaircaseCertificates.checkCoherent_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1462/1482] Replayed PageTransitionCertificates.AdditiveQuotient
+info: PageTransitionCertificates/AdditiveQuotient.lean:55:0: 'PageTransitionCertificates.homologyAdd' depends on axioms: [propext, Quot.sound]
+info: PageTransitionCertificates/AdditiveQuotient.lean:56:0: 'PageTransitionCertificates.homologyCoordinates_add' depends on axioms: [propext, Quot.sound]
+info: PageTransitionCertificates/AdditiveQuotient.lean:73:0: 'PageTransitionCertificates.inducedMap_add' depends on axioms: [propext, Quot.sound]
+ℹ [1465/1482] Replayed PageTransitionCertificates.TrajectoryImportExamples
+info: PageTransitionCertificates/TrajectoryImportExamples.lean:17:0: 'PageTransitionCertificates.checkWireTrajectory_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1466/1482] Replayed PageTransitionCertificates.Examples
+info: PageTransitionCertificates/Examples.lean:38:0: 'PageTransitionCertificates.checkComparison_sound' depends on axioms: [propext, Quot.sound]
+info: PageTransitionCertificates/Examples.lean:39:0: 'PageTransitionCertificates.homologyEquivalence' depends on axioms: [propext, Quot.sound]
+ℹ [1467/1482] Replayed PageTransitionCertificates.InducedExamples
+info: PageTransitionCertificates/InducedExamples.lean:35:0: 'PageTransitionCertificates.inducedMap' depends on axioms: [propext, Quot.sound]
+info: PageTransitionCertificates/InducedExamples.lean:36:0: 'PageTransitionCertificates.induced_coordinates_all' depends on axioms: [propext, Quot.sound]
+ℹ [1468/1482] Replayed PageTransitionCertificates.TrajectoryExamples
+info: PageTransitionCertificates/TrajectoryExamples.lean:17:0: 'PageTransitionCertificates.checkTrajectory_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1469/1482] Replayed PageTransitionCertificates.ImportExamples
+info: PageTransitionCertificates/ImportExamples.lean:10:0: 'PageTransitionCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1470/1482] Replayed PageTransitionCertificates.InducedImportExamples
+info: PageTransitionCertificates/InducedImportExamples.lean:27:0: 'PageTransitionCertificates.checkInducedWire_sound' depends on axioms: [propext, Quot.sound]
+info: PageTransitionCertificates/InducedImportExamples.lean:28:0: 'PageTransitionCertificates.WireInducedMap.coordinates' depends on axioms: [propext, Quot.sound]
+⚠ [1474/1506] Replayed MilnorCertificates.BundledDual
+warning: MilnorCertificates/BundledDual.lean:88:29: This simp argument is unused:
+  rankDualAddCommGroup
+
+Hint: Omit it from the simp argument list.
+  simp [̵d̵u̵a̵l̵M̵u̵l̵,̵e̵x̵t̵e̵n̵d̵R̵a̵n̵k̵,̵r̵a̵n̵k̵D̵u̵a̵l̵A̵d̵d̵C̵o̵m̵m̵G̵r̵o̵u̵p̵]̵[̲d̲u̲a̲l̲M̲u̲l̲,̲ ̲e̲x̲t̲e̲n̲d̲R̲a̲n̲k̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: MilnorCertificates/BundledDual.lean:92:29: This simp argument is unused:
+  rankDualAddCommGroup
+
+Hint: Omit it from the simp argument list.
+  simp [̵d̵u̵a̵l̵M̵u̵l̵,̵e̵x̵t̵e̵n̵d̵R̵a̵n̵k̵,̵r̵a̵n̵k̵D̵u̵a̵l̵A̵d̵d̵C̵o̵m̵m̵G̵r̵o̵u̵p̵]̵[̲d̲u̲a̲l̲M̲u̲l̲,̲ ̲e̲x̲t̲e̲n̲d̲R̲a̲n̲k̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: MilnorCertificates/BundledDual.lean:120:0: 'MilnorCertificates.rankDualRing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/BundledDual.lean:121:0: 'MilnorCertificates.certified_rankDual_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1475/1506] Replayed MilnorCertificates.HomogeneousCoordinates
+info: MilnorCertificates/HomogeneousCoordinates.lean:123:0: 'MilnorCertificates.homogeneousEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/HomogeneousCoordinates.lean:124:0: 'MilnorCertificates.homogeneousBasis_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1476/1506] Replayed MilnorCertificates.GradedDual
+info: MilnorCertificates/GradedDual.lean:152:0: 'MilnorCertificates.finiteGradedSubring' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/GradedDual.lean:153:0: 'MilnorCertificates.finite_homogeneous_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/GradedDual.lean:154:0: 'MilnorCertificates.polynomialRankFunctional_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1477/1506] Replayed MilnorCertificates.FinitePolynomialAlgebra
+info: MilnorCertificates/FinitePolynomialAlgebra.lean:49:0: 'MilnorCertificates.finitePolynomial_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: MilnorCertificates/FinitePolynomialAlgebra.lean:50:0: 'MilnorCertificates.finitePolynomial_sum_products_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1489/1506] Replayed NamedElementCertificates.CnuBottomCell
+info: NamedElementCertificates/CnuBottomCell.lean:55:0: 'NamedElementCertificates.ModuleExpressions.check_sound_evaluate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: NamedElementCertificates/CnuBottomCell.lean:56:0: 'NamedElementCertificates.CnuBottomCell.named_bottom_cell_evaluation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1490/1506] Replayed NamedElementCertificates.Generated
+info: NamedElementCertificates/Generated.lean:45:0: 'NamedElementCertificates.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1494/1506] Replayed NamedElementCertificates.EvaluationExamples
+info: NamedElementCertificates/EvaluationExamples.lean:18:0: 'NamedElementCertificates.check_sound_evaluate' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1495/1506] Replayed NamedElementCertificates.ModuleImportExamples
+info: NamedElementCertificates/ModuleImportExamples.lean:22:0: true
+ℹ [1504/1506] Replayed AdvancedRuleCertificates.TacticExample
+info: AdvancedRuleCertificates/TacticExample.lean:8:0: 'AdvancedRuleCertificates.checkConnecting_sound' depends on axioms: [propext]
+info: AdvancedRuleCertificates/TacticExample.lean:9:0: 'AdvancedRuleCertificates.connecting_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AdvancedRuleCertificates/TacticExample.lean:10:0: 'AdvancedRuleCertificates.connecting_natural' depends on axioms: [propext]
+ℹ [1509/1524] Replayed ExtComplexCertificates.MilnorAction
+info: ExtComplexCertificates/MilnorAction.lean:58:0: 'ExtComplexCertificates.MilnorAction.matrix_entry_semantics' depends on axioms: [propext, Quot.sound]
+info: ExtComplexCertificates/MilnorAction.lean:59:0: 'ExtComplexCertificates.MilnorAction.action_relation' depends on axioms: [propext, Quot.sound]
+ℹ [1510/1524] Replayed ExtComplexCertificates.SqOneResolution
+info: ExtComplexCertificates/SqOneResolution.lean:103:0: 'ExtComplexCertificates.SqOneResolution.exact_every_degree' depends on axioms: [propext, Quot.sound]
+info: ExtComplexCertificates/SqOneResolution.lean:104:0: 'ExtComplexCertificates.SqOneResolution.restricted_differential_zero' depends on axioms: [propext, Quot.sound]
+info: ExtComplexCertificates/SqOneResolution.lean:105:0: 'ExtComplexCertificates.SqOneResolution.homCoordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1512/1524] Replayed ExtComplexCertificates.RawResolutionExample
+info: ExtComplexCertificates/RawResolutionExample.lean:16:0: 'ExtComplexCertificates.ActualResolution.actualResolutionSquareZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1514/1524] Replayed ExtComplexCertificates.ExactnessTactic
+info: ExtComplexCertificates/ExactnessTactic.lean:24:0: 'ExtComplexCertificates.ActualResolution.checkRawExact_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1515/1524] Replayed ExtComplexCertificates.MinimalHom
+info: ExtComplexCertificates/MinimalHom.lean:75:0: 'ExtComplexCertificates.ActualResolution.actual_minimal_hom' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1516/1524] Replayed ExtComplexCertificates.ActualResolutionRing
+info: ExtComplexCertificates/ActualResolutionRing.lean:80:0: 'ExtComplexCertificates.ActualResolution.queryRingCoefficient_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualResolutionRing.lean:81:0: 'ExtComplexCertificates.ActualResolution.actualResolutionRingSquareZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1517/1524] Replayed ExtComplexCertificates.ActualModuleComplex
+info: ExtComplexCertificates/ActualModuleComplex.lean:132:0: 'ExtComplexCertificates.ActualResolution.actualDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualModuleComplex.lean:133:0: 'ExtComplexCertificates.ActualResolution.differential_degree_descends' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [1518/1524] Replayed ExtComplexCertificates.ActualHomogeneousCoordinates
+warning: ExtComplexCertificates/ActualHomogeneousCoordinates.lean:110:46: Variable name `ht` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: ExtComplexCertificates/ActualHomogeneousCoordinates.lean:226:0: 'ExtComplexCertificates.ActualResolution.componentListCoordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualHomogeneousCoordinates.lean:227:0: 'ExtComplexCertificates.ActualResolution.reconstruct_extract_list' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualHomogeneousCoordinates.lean:228:0: 'ExtComplexCertificates.ActualResolution.reconstructListComponent_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [1522/1534] Replayed ExtComplexCertificates.ActualDifferentialCoordinates
+warning: ExtComplexCertificates/ActualDifferentialCoordinates.lean:43:25: This simp argument is unused:
+  decide_eq_true_eq
+
+Hint: Omit it from the simp argument list.
+  simp only [̵h̵s̵,̵t̵r̵u̵e̵_̵a̵n̵d̵,̵d̵e̵c̵i̵d̵e̵_̵e̵q̵_̵t̵r̵u̵e̵_̵e̵q̵]̵[̲h̲s̲,̲ ̲t̲r̲u̲e̲_̲a̲n̲d̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: ExtComplexCertificates/ActualDifferentialCoordinates.lean:206:0: 'ExtComplexCertificates.ActualResolution.differential_reconstruct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualDifferentialCoordinates.lean:207:0: 'ExtComplexCertificates.ActualResolution.actualDifferential_homogeneous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1539/1553] Replayed ExtComplexCertificates.ActualFiniteModule
+info: ExtComplexCertificates/ActualFiniteModule.lean:90:0: 'ExtComplexCertificates.ActualResolution.finiteDifferential_inclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualFiniteModule.lean:91:0: 'ExtComplexCertificates.ActualResolution.finiteDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [1540/1553] Replayed ExtComplexCertificates.ActualDegreeComplex
+warning: ExtComplexCertificates/ActualDegreeComplex.lean:23:17: This simp argument is unused:
+  ite_true
+
+Hint: Omit it from the simp argument list.
+  simp only [h,̵i̵t̵e̵_̵t̵r̵u̵e̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: ExtComplexCertificates/ActualDegreeComplex.lean:101:0: 'ExtComplexCertificates.ActualResolution.degreeDifferential_inclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualDegreeComplex.lean:102:0: 'ExtComplexCertificates.ActualResolution.degreeDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [1549/1560] Replayed ExtComplexCertificates.ActualHomogeneousExactness
+warning: ExtComplexCertificates/ActualHomogeneousExactness.lean:57:60: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: ExtComplexCertificates/ActualHomogeneousExactness.lean:190:0: 'ExtComplexCertificates.ActualResolution.actualPositiveHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [1550/1560] Replayed ExtComplexCertificates.ActualAugmentation
+warning: ExtComplexCertificates/ActualAugmentation.lean:125:78: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [dualMul, ̲hc, ̲List.map_cons, ̲List.map_nil, ̲List.sum_cons, ̲List.sum_nil,̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: ExtComplexCertificates/ActualAugmentation.lean:146:0: 'ExtComplexCertificates.ActualResolution.actualAugmentedHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualAugmentation.lean:147:0: 'ExtComplexCertificates.ActualResolution.actualAugmentation_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualAugmentation.lean:148:0: 'ExtComplexCertificates.ActualResolution.actualAugmentation_differential' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1551/1560] Replayed ExtComplexCertificates.ActualAugmentationHom
+info: ExtComplexCertificates/ActualAugmentationHom.lean:151:0: 'ExtComplexCertificates.ActualResolution.actualHom_differential_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualAugmentationHom.lean:152:0: 'ExtComplexCertificates.ActualResolution.homDimensionEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1552/1560] Replayed ExtComplexCertificates.ActualHomCohomology
+info: ExtComplexCertificates/ActualHomCohomology.lean:92:0: 'ExtComplexCertificates.ActualResolution.actualHomCohomologyEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1553/1560] Replayed ExtComplexCertificates.ActualFiniteExactness
+info: ExtComplexCertificates/ActualFiniteExactness.lean:77:0: 'ExtComplexCertificates.ActualResolution.finitePositiveHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualFiniteExactness.lean:78:0: 'ExtComplexCertificates.ActualResolution.finiteAugmentedHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualFiniteExactness.lean:79:0: 'ExtComplexCertificates.ActualResolution.finiteAugmentation_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1554/1560] Replayed ExtComplexCertificates.ActualFiniteHom
+info: ExtComplexCertificates/ActualFiniteHom.lean:154:0: 'ExtComplexCertificates.ActualResolution.FiniteHom.differential_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualFiniteHom.lean:155:0: 'ExtComplexCertificates.ActualResolution.FiniteHom.cohomologyCoordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1555/1560] Replayed ExtComplexCertificates.ActualDegreeExactness
+info: ExtComplexCertificates/ActualDegreeExactness.lean:54:0: 'ExtComplexCertificates.ActualResolution.degreePositiveExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualDegreeExactness.lean:55:0: 'ExtComplexCertificates.ActualResolution.degreeAugmentedExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1801/1849] Replayed ExtComplexCertificates.EquivariantExamples
+info: ExtComplexCertificates/EquivariantExamples.lean:28:0: 'ExtComplexCertificates.checkEquivariant_sound' depends on axioms: [propext, Quot.sound]
+info: ExtComplexCertificates/EquivariantExamples.lean:29:0: 'ExtComplexCertificates.equivariant_precompose' depends on axioms: [propext, Quot.sound]
+info: ExtComplexCertificates/EquivariantExamples.lean:30:0: 'ExtComplexCertificates.homDifferential_squared' depends on axioms: [propext, Quot.sound]
+ℹ [1803/1849] Replayed ExtComplexCertificates.PresentationExamples
+info: ExtComplexCertificates/PresentationExamples.lean:24:0: 'ExtComplexCertificates.checkPresentation_sound' depends on axioms: [propext, Quot.sound]
+info: ExtComplexCertificates/PresentationExamples.lean:25:0: 'ExtComplexCertificates.equivariant_polynomial' depends on axioms: [propext, Quot.sound]
+ℹ [1804/1849] Replayed ExtComplexCertificates.Examples
+info: ExtComplexCertificates/Examples.lean:16:0: 'ExtComplexCertificates.dual_pairing' depends on axioms: [propext, Quot.sound]
+info: ExtComplexCertificates/Examples.lean:17:0: 'ExtComplexCertificates.checkNonzeroHomClass_sound' depends on axioms: [propext, Quot.sound]
+ℹ [1808/1883] Replayed ExtComplexCertificates.ActualProjectiveComplex
+info: ExtComplexCertificates/ActualProjectiveComplex.lean:42:0: 'ExtComplexCertificates.ActualResolution.degreeModuleProjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualProjectiveComplex.lean:43:0: 'ExtComplexCertificates.ActualResolution.actualProjectiveChainComplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1810/1883] Replayed ExtComplexCertificates.ActualChainAugmentation
+info: ExtComplexCertificates/ActualChainAugmentation.lean:101:0: 'ExtComplexCertificates.ActualResolution.augmentationMorphism_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualChainAugmentation.lean:102:0: 'ExtComplexCertificates.ActualResolution.augmentationMorphism_epi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualChainAugmentation.lean:103:0: 'ExtComplexCertificates.ActualResolution.degreeZero_generator_augmentation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualChainAugmentation.lean:104:0: 'ExtComplexCertificates.ActualResolution.actualChainAugmentation_f_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualChainAugmentation.lean:105:0: 'ExtComplexCertificates.ActualResolution.actualChainAugmentation_generator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1811/1883] Replayed ExtComplexCertificates.ActualChainHomology
+info: ExtComplexCertificates/ActualChainHomology.lean:142:0: 'ExtComplexCertificates.ActualResolution.positiveChainHomology_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualChainHomology.lean:143:0: 'ExtComplexCertificates.ActualResolution.zeroChainHomologyAugmentationRange' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualChainHomology.lean:144:0: 'ExtComplexCertificates.ActualResolution.zeroChainHomologyField' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/ActualChainHomology.lean:145:0: 'ExtComplexCertificates.ActualResolution.zeroChainHomology_positive_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1812/1883] Replayed ExtComplexCertificates.GenericFreeComplex
+info: ExtComplexCertificates/GenericFreeComplex.lean:178:0: 'ExtComplexCertificates.GenericFreeComplex.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ExtComplexCertificates/GenericFreeComplex.lean:179:0: 'ExtComplexCertificates.GenericFreeComplex.coordinates_exact' depends on axioms: [propext, Quot.sound]
+info: ExtComplexCertificates/GenericFreeComplex.lean:180:0: 'ExtComplexCertificates.GenericFreeComplex.checkLinked_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1813/1883] Replayed ExtComplexCertificates.GenericFreeComplexImport
+info: ExtComplexCertificates/GenericFreeComplexImport.lean:113:0: 'ExtComplexCertificates.GenericFreeComplex.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ExtComplexCertificates/GenericFreeComplexImport.lean:114:0: 'ExtComplexCertificates.GenericFreeComplex.decodeWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1814/1883] Replayed ExtComplexCertificates.GenericHomogeneousCoordinates
+info: ExtComplexCertificates/GenericHomogeneousCoordinates.lean:195:0: 'ExtComplexCertificates.GenericFreeComplex.componentBasis_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericHomogeneousCoordinates.lean:196:0: 'ExtComplexCertificates.GenericFreeComplex.componentEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ExtComplexCertificates/GenericHomogeneousCoordinates.lean:197:0: 'ExtComplexCertificates.GenericFreeComplex.numberedComponentEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericHomogeneousCoordinates.lean:198:0: 'ExtComplexCertificates.GenericFreeComplex.orderedComponentEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1815/1883] Replayed ExtComplexCertificates.GenericDifferentialCoordinates
+info: ExtComplexCertificates/GenericDifferentialCoordinates.lean:147:0: 'ExtComplexCertificates.GenericFreeComplex.differential_coordinateVector' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericDifferentialCoordinates.lean:148:0: 'ExtComplexCertificates.GenericFreeComplex.differential_reconstruct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1816/1883] Replayed ExtComplexCertificates.GenericComponentImport
+info: ExtComplexCertificates/GenericComponentImport.lean:119:0: 'ExtComplexCertificates.GenericFreeComplex.checkArrow_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1817/1883] Replayed ExtComplexCertificates.GenericComponentExactness
+info: ExtComplexCertificates/GenericComponentExactness.lean:175:0: 'ExtComplexCertificates.GenericFreeComplex.listDifferential_reconstruct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericComponentExactness.lean:176:0: 'ExtComplexCertificates.GenericFreeComplex.checkPositiveComponent_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericComponentExactness.lean:177:0: 'ExtComplexCertificates.GenericFreeComplex.checkExactComponent_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1818/1883] Replayed ExtComplexCertificates.GenericComponentDiagnostics
+info: ExtComplexCertificates/GenericComponentDiagnostics.lean:85:0: 'ExtComplexCertificates.GenericFreeComplex.decodeComponent_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1819/1883] Replayed ExtComplexCertificates.GenericAugmentationHom
+info: ExtComplexCertificates/GenericAugmentationHom.lean:177:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.ringAugmentation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericAugmentationHom.lean:178:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.hom_differential_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericAugmentationHom.lean:179:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.bidegreeEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericAugmentationHom.lean:180:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.checkAugmentation_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1820/1883] Replayed ExtComplexCertificates.GenericAugmentationImport
+info: ExtComplexCertificates/GenericAugmentationImport.lean:86:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.checkAugmentation_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericAugmentationImport.lean:87:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.exact_minimal_hom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1821/1883] Replayed ExtComplexCertificates.GenericCheckDecomposition
+info: ExtComplexCertificates/GenericCheckDecomposition.lean:39:0: 'ExtComplexCertificates.GenericFreeComplex.wire_valid_of_sources' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1822/1883] Replayed ExtComplexCertificates.GenericAugmentedExactness
+info: ExtComplexCertificates/GenericAugmentedExactness.lean:93:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.augmentation_matrix_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericAugmentedExactness.lean:94:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.checkAugmented_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [1823/1883] Replayed ExtComplexCertificates.GenericAugmentedHomology
+warning: ExtComplexCertificates/GenericAugmentedHomology.lean:34:11: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ExtComplexCertificates/GenericAugmentedHomology.lean:34:13: Variable name `y` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: ExtComplexCertificates/GenericAugmentedHomology.lean:68:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.augmented_range_eq_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericAugmentedHomology.lean:69:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.augmentedH0EquivRange' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1825/1883] Replayed ExtComplexCertificates.GenericFreeComplexProducerExample
+info: ExtComplexCertificates/GenericFreeComplexProducerExample.lean:16:0: 'ExtComplexCertificates.GenericFreeComplex.producedT4_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ExtComplexCertificates/GenericFreeComplexProducerExample.lean:17:0: 'ExtComplexCertificates.GenericFreeComplex.producedT4_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1826/1883] Replayed ExtComplexCertificates.GenericComponentExamples
+info: ExtComplexCertificates/GenericComponentExamples.lean:81:0: 'ExtComplexCertificates.GenericFreeComplex.component15_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1827/1883] Replayed ExtComplexCertificates.GenericComponentTests
+info: ExtComplexCertificates/GenericComponentTests.lean:22:0: ["outgoing: source coordinates incomplete or wrong order", "outgoing: products dimension mismatch",
+  "outgoing: witnesses dimension mismatch", "outgoing: entries dimension mismatch"]
+info: ExtComplexCertificates/GenericComponentTests.lean:24:0: ["contraction dimensions mismatch", "contraction identity failed at (0,0)", "contraction identity failed at (1,1)"]
+info: ExtComplexCertificates/GenericComponentTests.lean:25:0: ["contraction identity failed at (0,0)"]
+ℹ [1828/1883] Replayed ExtComplexCertificates.GenericAugmentationExamples
+info: ExtComplexCertificates/GenericAugmentationExamples.lean:34:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.actualAugmentation_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ExtComplexCertificates/GenericAugmentationExamples.lean:35:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.actualExactHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1829/1883] Replayed ExtComplexCertificates.GenericAugmentedExamples
+info: ExtComplexCertificates/GenericAugmentedExamples.lean:29:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.augmentedActualExact0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1831/1883] Replayed ExtComplexCertificates.GenericFreeComplexProducerTests
+info: ExtComplexCertificates/GenericFreeComplexProducerTests.lean:11:0: rejected GenericFreeComplexProducer/tampered_product.json: composite (5,0): polynomial coefficients do not cancel; product (5,1,0): product coefficient mismatch at row 3: [1, 1, 0]
+info: ExtComplexCertificates/GenericFreeComplexProducerTests.lean:12:0: rejected GenericFreeComplexProducer/tampered_grading.json: edge (1,0): internal degree mismatch; edge (4,1): internal degree mismatch; edge (5,1): internal degree mismatch
+info: ExtComplexCertificates/GenericFreeComplexProducerTests.lean:13:0: rejected GenericFreeComplexProducer/tampered_dimensions.json: witnesses: expected n*n*n entries
+⚠ [1834/1883] Replayed BranchReplayCertificates.BasisSemantics
+warning: BranchReplayCertificates/BasisSemantics.lean:14:0: automatically included section variable(s) unused in theorem `BranchReplayCertificates.BasisSemantics.interpret_zero`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: BranchReplayCertificates/BasisSemantics.lean:31:38: This simp argument is unused:
+  add_comm
+
+Hint: Omit it from the simp argument list.
+  simp [add_assoc, add_left_comm,̵ ̵a̵d̵d̵_̵c̵o̵m̵m̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: BranchReplayCertificates/BasisSemantics.lean:48:0: automatically included section variable(s) unused in theorem `BranchReplayCertificates.BasisSemantics.interpret_mul`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: BranchReplayCertificates/BasisSemantics.lean:55:29: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [h̵x̵,̵ ̵mul_add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: BranchReplayCertificates/BasisSemantics.lean:73:0: automatically included section variable(s) unused in theorem `BranchReplayCertificates.BasisSemantics.decoded_evaluate`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: BranchReplayCertificates/BasisSemantics.lean:80:29: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [h̵x̵,̵ ̵evaluate]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: BranchReplayCertificates/BasisSemantics.lean:82:0: automatically included section variable(s) unused in theorem `BranchReplayCertificates.BasisSemantics.interpret_hom`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+ℹ [1838/1883] Replayed RealMapCertificates.Tests
+info: RealMapCertificates/Tests.lean:6:0: 'RealMapCertificates.substitute_hom' depends on axioms: [propext]
+info: RealMapCertificates/Tests.lean:7:0: 'RealMapCertificates.mapEvaluation_hom' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1840/1883] Replayed RealMapCertificates.SemanticExamples
+info: RealMapCertificates/SemanticExamples.lean:12:0: 'RealMapCertificates.matrixValid_hom' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1859/1902] Replayed ExtComplexCertificates.GenericAugmentedImport
+info: ExtComplexCertificates/GenericAugmentedImport.lean:75:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.decodeAugmented_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1863/1902] Replayed ExtComplexCertificates.GenericAugmentedImportTests
+info: ExtComplexCertificates/GenericAugmentedImportTests.lean:14:0: ["augmented contraction identity failed at (0,0)"]
+info: ExtComplexCertificates/GenericAugmentedImportTests.lean:17:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.importedAugmented_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1864/1902] Replayed ExtComplexCertificates.GenericAugmentedProducerExample
+info: ExtComplexCertificates/GenericAugmentedProducerExample.lean:19:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.generatedAugmented_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1866/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case0
+info: ExtComplexCertificates/GenericAugmentedT8/Case0.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1867/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case7
+info: ExtComplexCertificates/GenericAugmentedT8/Case7.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact7' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1868/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case4
+info: ExtComplexCertificates/GenericAugmentedT8/Case4.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1869/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case1
+info: ExtComplexCertificates/GenericAugmentedT8/Case1.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1870/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case8
+info: ExtComplexCertificates/GenericAugmentedT8/Case8.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact8' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1871/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case6
+info: ExtComplexCertificates/GenericAugmentedT8/Case6.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1872/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case5
+info: ExtComplexCertificates/GenericAugmentedT8/Case5.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact5' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1873/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case2
+info: ExtComplexCertificates/GenericAugmentedT8/Case2.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1874/1902] Replayed ExtComplexCertificates.GenericAugmentedT8.Case3
+info: ExtComplexCertificates/GenericAugmentedT8/Case3.lean:10:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact3' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [1930/1944] Replayed ModuleMapCertificates.MatrixSemantics
+warning: ModuleMapCertificates/MatrixSemantics.lean:23:29: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [h̵x̵,̵ ̵map_add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [1934/1944] Replayed ModuleMapCertificates.Actual
+info: ModuleMapCertificates/Actual.lean:89:0: 'ModuleMapCertificates.mapValid_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1935/1944] Replayed ModuleMapCertificates.MatrixActual
+info: ModuleMapCertificates/MatrixActual.lean:150:0: 'ModuleMapCertificates.matrixValid_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [1944/1984] Replayed ModuleToModuleCertificates.Basic
+warning: ModuleToModuleCertificates/Basic.lean:19:0: automatically included section variable(s) unused in theorem `ModuleToModuleCertificates.substitute_evaluate`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [1945/1984] Replayed ModuleToModuleCertificates.Matrix
+warning: ModuleToModuleCertificates/Matrix.lean:77:29: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [h̵x̵,̵ ̵map_add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [1950/1984] Replayed ModuleToModuleCertificates.Actual
+info: ModuleToModuleCertificates/Actual.lean:64:0: 'ModuleToModuleCertificates.checkMatrix_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1952/1984] Replayed ModuleToModuleCertificates.ShiftedActual
+info: ModuleToModuleCertificates/ShiftedActual.lean:48:0: 'ModuleToModuleCertificates.checkMatrix_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [1955/1984] Replayed ModuleToModuleCertificates.RingTarget
+warning: ModuleToModuleCertificates/RingTarget.lean:14:46: Variable name `hb` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [1957/1984] Replayed ModuleToModuleCertificates.WireTests
+info: ModuleToModuleCertificates/WireTests.lean:7:0: 'ModuleToModuleCertificates.Wire.allVectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1958/1984] Replayed ModuleToModuleCertificates.GeneralActual
+info: ModuleToModuleCertificates/GeneralActual.lean:78:0: 'ModuleToModuleCertificates.checkMatrix_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1968/1984] Replayed Row3325Detector.Combined
+info: Row3325Detector/Combined.lean:72:0: 'Row3325Detector.Combined.differential_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1969/1984] Replayed Row3325Detector.Matches
+info: Row3325Detector/Matches.lean:26:0: 'Row3325Detector.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1973/1984] Replayed Row2796Detector.Quotient
+info: Row2796Detector/Quotient.lean:61:0: 'Row2796Detector.Quotient.candidate_excluded' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1975/1984] Replayed Row2796Detector.Combined
+info: Row2796Detector/Combined.lean:77:0: 'Row2796Detector.Combined.differential_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1976/1984] Replayed Row2796Detector.Matches
+info: Row2796Detector/Matches.lean:25:0: 'Row2796Detector.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1977/2001] Replayed Row2925Detector.Naturality
+info: Row2925Detector/Naturality.lean:54:0: 'Row2925Detector.Naturality.named_d3_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1978/2001] Replayed Row2925Detector.Matches
+info: Row2925Detector/Matches.lean:44:0: 'Row2925Detector.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Row2925Detector/Matches.lean:45:0: 'Row2925Detector.Matches.named_coordinates' depends on axioms: [propext, Quot.sound]
+ℹ [1980/2001] Replayed Row2796D4Detector.Target
+info: Row2796D4Detector/Target.lean:42:0: 'Row2796D4Detector.Target.reflects_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1982/2001] Replayed Row2796D4Detector.Source
+info: Row2796D4Detector/Source.lean:57:0: 'Row2796D4Detector.Source.named_d4_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1985/2001] Replayed Fact715TrajectoryCertificates.MapActual
+info: Fact715TrajectoryCertificates/MapActual.lean:45:0: 'ModuleMapCertificates.mapValid_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1989/2001] Replayed Fact713C2Row3143.MapActual
+info: Fact713C2Row3143/MapActual.lean:26:0: 'ModuleMapCertificates.mapValid_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1990/2024] Replayed Fact713TrajectoryCertificates.Row3076
+info: Fact713TrajectoryCertificates/Row3076.lean:42:0: 'Fact713TrajectoryCertificates.Row3076.from_ceta_naturality' depends on axioms: [propext, Quot.sound]
+ℹ [1995/2024] Replayed Fact713C2Row3143.Naturality
+info: Fact713C2Row3143/Naturality.lean:50:0: 'Fact713C2Row3143.Naturality.sphere_zero_from_successor' depends on axioms: [propext, Quot.sound]
+ℹ [1998/2024] Replayed Fact713C2Row3143.Matches
+info: Fact713C2Row3143/Matches.lean:29:0: 'Fact713C2Row3143.Matches.matched_zero' depends on axioms: [propext, Quot.sound]
+ℹ [2000/2024] Replayed Fact713C2Row3005.MapActual
+info: Fact713C2Row3005/MapActual.lean:33:0: 'ModuleMapCertificates.mapValid_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2004/2024] Replayed Fact713C2Row3005.Matches
+info: Fact713C2Row3005/Matches.lean:23:0: 'Fact713C2Row3005.Matches.matched' depends on axioms: [propext, Quot.sound]
+ℹ [2007/2024] Replayed Row2693Detector.Quotient
+info: Row2693Detector/Quotient.lean:61:0: 'Row2693Detector.Quotient.candidate_excluded' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2009/2024] Replayed Row2693Detector.Combined
+info: Row2693Detector/Combined.lean:77:0: 'Row2693Detector.Combined.differential_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2010/2024] Replayed Row2693Detector.Matches
+info: Row2693Detector/Matches.lean:25:0: 'Row2693Detector.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2015/2028] Replayed Row2861Csigma.Naturality
+info: Row2861Csigma/Naturality.lean:50:0: 'Row2861Csigma.Naturality.named_d3_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2017/2028] Replayed Row2925Detector.Semantics
+info: Row2925Detector/Semantics.lean:30:0: 'Row2925Detector.Semantics.actual_all_vectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Row2925Detector/Semantics.lean:31:0: 'Row2925Detector.Semantics.ring_lift_vanishes' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2022/2028] Replayed AggregateThreeProductConditional.Matches
+info: AggregateThreeProductConditional/Matches.lean:37:0: 'AggregateThreeProductConditional.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateThreeProductConditional/Matches.lean:38:0: 'AggregateThreeProductConditional.Matches.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+info: AggregateThreeProductConditional/Matches.lean:69:0: 'AggregateThreeProductConditional.H3D0.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateThreeProductConditional/Matches.lean:104:0: 'AggregateThreeProductConditional.D4.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateThreeProductConditional/Matches.lean:172:0: 'AggregateThreeProductConditional.ThreeProducts.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateThreeProductConditional/Matches.lean:173:0: 'AggregateThreeProductConditional.ThreeProducts.target_coordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: AggregateThreeProductConditional/Matches.lean:174:0: 'AggregateThreeProductConditional.ThreeProducts.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+ℹ [2026/2044] Replayed AllClaimLeibnizConditionalCertificates.Matches
+info: AllClaimLeibnizConditionalCertificates/Matches.lean:61:0: 'AllClaimLeibnizConditionalCertificates.Matches.Prefix.matched' depends on axioms: [propext, Quot.sound]
+info: AllClaimLeibnizConditionalCertificates/Matches.lean:95:0: 'AllClaimLeibnizConditionalCertificates.Matches.Leibniz.conditional_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2036/2056] Replayed AggregateThreeProductConditional.Pipeline.Trace3744
+info: AggregateThreeProductConditional/Pipeline/Trace3744.lean:13:0: 'AggregateThreeProductConditional.Pipeline.Trace3744.source_d3_not_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: AggregateThreeProductConditional/Pipeline/Trace3744.lean:21:0: 'AggregateThreeProductConditional.Pipeline.Trace3744.target_d3_not_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2038/2056] Replayed AggregateThreeProductConditional.Pipeline.Executable3744
+info: AggregateThreeProductConditional/Pipeline/Executable3744.lean:24:0: 'AggregateThreeProductConditional.Pipeline.Executable3744.finite_valid' depends on axioms: [propext, Quot.sound]
+info: AggregateThreeProductConditional/Pipeline/Executable3744.lean:25:0: 'AggregateThreeProductConditional.Pipeline.Executable3744.indexed_valid' depends on axioms: [propext, Quot.sound]
+ℹ [2039/2056] Replayed AggregateThreeProductConditional.Pipeline.Trace3745
+info: AggregateThreeProductConditional/Pipeline/Trace3745.lean:13:0: 'AggregateThreeProductConditional.Pipeline.Trace3745.source_d3_not_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: AggregateThreeProductConditional/Pipeline/Trace3745.lean:21:0: 'AggregateThreeProductConditional.Pipeline.Trace3745.target_d3_not_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2040/2056] Replayed AggregateThreeProductConditional.Pipeline.Executable3745
+info: AggregateThreeProductConditional/Pipeline/Executable3745.lean:24:0: 'AggregateThreeProductConditional.Pipeline.Executable3745.finite_valid' depends on axioms: [propext, Quot.sound]
+info: AggregateThreeProductConditional/Pipeline/Executable3745.lean:25:0: 'AggregateThreeProductConditional.Pipeline.Executable3745.indexed_valid' depends on axioms: [propext, Quot.sound]
+ℹ [2046/2056] Replayed AggregateD4Conditional.Matches
+info: AggregateD4Conditional/Matches.lean:37:0: 'AggregateD4Conditional.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateD4Conditional/Matches.lean:38:0: 'AggregateD4Conditional.Matches.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+info: AggregateD4Conditional/Matches.lean:69:0: 'AggregateD4Conditional.H3D0.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateD4Conditional/Matches.lean:104:0: 'AggregateD4Conditional.D4.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2049/2061] Replayed AggregateD4Conditional.Executable3254
+info: AggregateD4Conditional/Executable3254.lean:26:0: 'AggregateD4Conditional.Executable3254.finite_valid' depends on axioms: [propext, Quot.sound]
+info: AggregateD4Conditional/Executable3254.lean:27:0: 'AggregateD4Conditional.Executable3254.indexed_valid' depends on axioms: [propext, Quot.sound]
+ℹ [2052/2061] Replayed Row2574Detector.Quotient
+info: Row2574Detector/Quotient.lean:126:0: 'Row2574Detector.Quotient.affine_fiber' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Row2574Detector/Quotient.lean:127:0: 'Row2574Detector.Quotient.differential_restricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2054/2061] Replayed Row2574Detector.Additional.Combined
+info: Row2574Detector/Additional/Combined.lean:80:0: 'Row2574Detector.Additional.kernel_fiber' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Row2574Detector/Additional/Combined.lean:81:0: 'Row2574Detector.Additional.two_candidate_restriction' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2059/2080] Replayed AggregateTwoDetectorConditional.Matches
+info: AggregateTwoDetectorConditional/Matches.lean:37:0: 'AggregateTwoDetectorConditional.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateTwoDetectorConditional/Matches.lean:38:0: 'AggregateTwoDetectorConditional.Matches.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+info: AggregateTwoDetectorConditional/Matches.lean:69:0: 'AggregateTwoDetectorConditional.H3D0.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2066/2080] Replayed AggregateCsigmaConditional.Matches
+info: AggregateCsigmaConditional/Matches.lean:37:0: 'AggregateCsigmaConditional.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateCsigmaConditional/Matches.lean:38:0: 'AggregateCsigmaConditional.Matches.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+ℹ [2069/2080] Replayed AggregateTargetInventory.Aggregate
+info: AggregateTargetInventory/Aggregate.lean:122:0: 'AggregateTargetInventory.Aggregate.forward_backward' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2070/2080] Replayed AggregateTargetInventory.EventAudit.SamePage
+info: AggregateTargetInventory/EventAudit/SamePage.lean:20:0: 'AggregateTargetInventory.EventAudit.SamePage.row2492_not_hit_same_page' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2075/2116] Replayed AggregateTargetInventory.EventAudit.ExecutableExamples
+info: AggregateTargetInventory/EventAudit/ExecutableExamples.lean:12:0: 'AggregateTargetInventory.EventAudit.Executable.check_sound' depends on axioms: [propext, Quot.sound]
+ℹ [2096/2116] Replayed AggregateTargetInventory.EventAudit.IndexedExamples
+info: AggregateTargetInventory/EventAudit/IndexedExamples.lean:9:0: 'AggregateTargetInventory.EventAudit.Indexed.check_sound' depends on axioms: [propext, Quot.sound]
+ℹ [2101/2116] Replayed Fact764TrajectoryAudit.MapActual
+info: Fact764TrajectoryAudit/MapActual.lean:33:0: 'ModuleMapCertificates.mapValid_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [2106/2116] Replayed SemilinearMapCertificates.AllVectors
+warning: SemilinearMapCertificates/AllVectors.lean:42:31: This simp argument is unused:
+  hy
+
+Hint: Omit it from the simp argument list.
+  simp [h̵y̵,̵ ̵map_add]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [2108/2116] Replayed AllClaimPrefixConditionalCertificates.Matches
+info: AllClaimPrefixConditionalCertificates/Matches.lean:61:0: 'AllClaimPrefixConditionalCertificates.Matches.Prefix.matched' depends on axioms: [propext, Quot.sound]
+ℹ [2110/2133] Replayed AllClaimC2ConditionalCertificates.Matches
+info: AllClaimC2ConditionalCertificates/Matches.lean:41:0: 'AllClaimC2ConditionalCertificates.Matches.C2.matched' depends on axioms: [propext, Quot.sound]
+ℹ [2116/2133] Replayed Fact713Ctheta4Certificates.Obstruction
+info: Fact713Ctheta4Certificates/Obstruction.lean:38:0: 'Fact713Ctheta4Certificates.Obstruction.target_not_exact' depends on axioms: [propext, Quot.sound]
+ℹ [2122/2133] Replayed AllClaimConditionalZeroCertificates.Matches
+info: AllClaimConditionalZeroCertificates/Matches.lean:25:0: 'AllClaimConditionalZeroCertificates.Matches.conditional_block' depends on axioms: [propext, Quot.sound]
+⚠ [2124/2133] Replayed Fact764TrajectoryAudit.LaterDetector
+warning: Fact764TrajectoryAudit/LaterDetector.lean:46:4: 'change (_ : Vec 3) = _' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [2127/2143] Replayed PageProductCertificates.H1QuotientLeibniz
+warning: PageProductCertificates/H1QuotientLeibniz.lean:56:66: This simp argument is unused:
+  matrixOf
+
+Hint: Omit it from the simp argument list.
+  simp only [H1Zero.productTarget, WireComparison.comparison,̵ ̵m̵a̵t̵r̵i̵x̵O̵f̵] at he
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [2130/2143] Replayed PageProductCertificates.Generated
+info: PageProductCertificates/Generated.lean:11:0: 'PageProductCertificates.Generated.first_valid' depends on axioms: [propext, Quot.sound]
+info: PageProductCertificates/Generated.lean:12:0: 'PageProductCertificates.Generated.second_valid' depends on axioms: [propext, Quot.sound]
+ℹ [2150/2163] Replayed SemilinearMapCertificates.Actual
+info: SemilinearMapCertificates/Actual.lean:46:0: 'SemilinearMapCertificates.valid_semilinear' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2152/2163] Replayed SemilinearMapCertificates.DiagnosticsTests
+info: SemilinearMapCertificates/DiagnosticsTests.lean:6:0: 'SemilinearMapCertificates.allVectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2158/2169] Replayed DerivedMapCertificates.Tests
+info: DerivedMapCertificates/Tests.lean:30:0: 'DerivedMapCertificates.checkComposition_sound' depends on axioms: [propext, Quot.sound]
+info: DerivedMapCertificates/Tests.lean:31:0: 'DerivedMapCertificates.checkFactor_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: DerivedMapCertificates/Tests.lean:32:0: 'DerivedMapCertificates.FactorWire.column_semantics' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2164/2184] Replayed CofiberE2Certificates.Tests
+info: CofiberE2Certificates/Tests.lean:21:0: 'CofiberE2Certificates.check_sound' depends on axioms: [propext, Quot.sound]
+ℹ [2165/2184] Replayed CofiberE2Certificates.TransportExample
+info: CofiberE2Certificates/TransportExample.lean:55:0: 'CofiberE2Certificates.Wire.transport_exact' depends on axioms: [propext, Quot.sound]
+info: CofiberE2Certificates/TransportExample.lean:56:0: 'CofiberE2Certificates.TransportExample.actual_sequence_exact' depends on axioms: [propext, Quot.sound]
+ℹ [2193/2208] Replayed AggregateTargetInventory.EventAudit.IndexedDiagnosticsTests
+info: AggregateTargetInventory/EventAudit/IndexedDiagnosticsTests.lean:27:0: sourceLabels[1].incoming.t: incoming.t + page = center.t + 1: left side 133, right side 132
+sourceLabels.length: expected 2, received 0
+finite.targetStages.length: expected 2, received 0
+targetDegree.s: targetDegree.s = sourceDegree.s + eventPage: left side 0, right side 10
+info: AggregateTargetInventory/EventAudit/IndexedDiagnosticsTests.lean:40:0: 'AggregateTargetInventory.EventAudit.Indexed.diagnoseIndexed_none_iff' depends on axioms: [propext, Quot.sound]
+info: AggregateTargetInventory/EventAudit/IndexedDiagnosticsTests.lean:41:0: 'AggregateTargetInventory.EventAudit.Indexed.diagnoseIndexed_sound' depends on axioms: [propext, Quot.sound]
+✔ [2207/2214] Built AggregateCnuConditional.Basic (61s)
+✔ [2208/2214] Built AggregateCnuConditional.Data (15s)
+✔ [2209/2214] Built AggregateCnuConditional.Events (4.4s)
+ℹ [2210/2214] Built AggregateCnuConditional.Matches (3.7s)
+info: AggregateCnuConditional/Matches.lean:37:0: 'AggregateCnuConditional.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:38:0: 'AggregateCnuConditional.Matches.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:69:0: 'AggregateCnuConditional.H3D0.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:104:0: 'AggregateCnuConditional.D4.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:172:0: 'AggregateCnuConditional.ThreeProducts.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:173:0: 'AggregateCnuConditional.ThreeProducts.target_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:174:0: 'AggregateCnuConditional.ThreeProducts.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:239:0: 'AggregateCnuConditional.CnuEta.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:240:0: 'AggregateCnuConditional.CnuEta.source_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: AggregateCnuConditional/Matches.lean:241:0: 'AggregateCnuConditional.CnuEta.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+✔ [2211/2214] Built AggregateCnuConditional (2.5s)
+ℹ [2213/2214] Built ProofAudit (53s)
+info: ProofAudit.lean:75:0: 'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:76:0: 'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:77:0: 'LinearCertificates.checkChainMap_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:78:0: 'PageTransitionCertificates.checkComparison_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:79:0: 'PageTransitionCertificates.homologyEquivalence' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:80:0: 'PageTransitionCertificates.checkInducedWire_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:81:0: 'PageTransitionCertificates.WireInducedMap.coordinates' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:82:0: 'StaircaseCertificates.checkBasis_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:83:0: 'StaircaseCertificates.checkSurvives_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:84:0: 'StaircaseCertificates.checkCoherent_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:85:0: 'NamedElementCertificates.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:86:0: 'NamedElementCertificates.check_sound_evaluate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:87:0: 'NamedElementCertificates.ModuleExpressions.check_sound_evaluate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:88:0: 'NamedElementCertificates.ModuleExpressions.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:89:0: 'AdvancedRuleCertificates.AffineHomology.check_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:90:0: 'PropagationCertificates.MatrixNaturality.check_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:92:0: 'PageTransitionCertificates.checkTrajectory_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:93:0: 'PageTransitionCertificates.checkWireTrajectory_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:94:0: 'ExtComplexCertificates.dual_pairing' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:95:0: 'RealMapCertificates.mapEvaluation_hom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:96:0: 'BranchReplayCertificates.reduction' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:97:0: 'BranchReplayCertificates.QuotientConclusion.whole_quotient_comparison' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:99:0: 'ExtComplexCertificates.checkEquivariant_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:100:0: 'ExtComplexCertificates.checkPresentation_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:101:0: 'ExtComplexCertificates.SqOneResolution.exact_every_degree' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:102:0: 'BranchReplayCertificates.ProductRefutation.compatibility_forces_bit' depends on axioms: [propext]
+info: ProofAudit.lean:104:0: 'ExtComplexCertificates.ActualResolution.checkRaw_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:105:0: 'BranchReplayCertificates.ProductBasisSemantics.allCoefficients25' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:106:0: 'BranchReplayCertificates.MapBasisSemantics.allCoefficients25' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:108:0: 'ExtComplexCertificates.ActualResolution.checkRawExact_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:110:0: 'MilnorCertificates.coproduct_homogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:111:0: 'MilnorCertificates.product_degree_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:112:0: 'MilnorCertificates.sqOne_square_unbounded_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:114:0: 'MilnorCertificates.check_all_monomials' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:115:0: 'MilnorCertificates.checkAll_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:116:0: 'MilnorCertificates.checkStable_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:117:0: 'MilnorCertificates.coproduct_pad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:118:0: 'MilnorCertificates.stable_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:119:0: 'MilnorCertificates.coproduct_coassociative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:120:0: 'MilnorCertificates.dualMul_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:121:0: 'MilnorCertificates.certified_products_associative' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:122:0: 'MilnorCertificates.dualMul_unit_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:123:0: 'MilnorCertificates.dualMul_unit_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:124:0: 'MilnorCertificates.unitPolynomial_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:125:0: 'PageTransitionCertificates.homologyCoordinates_add' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:126:0: 'PageTransitionCertificates.inducedMap_add' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:127:0: 'RealMapCertificates.matrixValid_hom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:128:0: 'ModuleMapCertificates.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:129:0: 'ModuleMapCertificates.matrixValid_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:130:0: 'CnuPageCertificates.targetClass_nonzero' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:131:0: 'MilnorCertificates.homogeneousDual_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:132:0: 'MilnorCertificates.degreeBounded_support_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:133:0: 'MilnorCertificates.finite_homogeneous_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:134:0: 'ExtComplexCertificates.ActualResolution.actualDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:135:0: 'ExtComplexCertificates.ActualResolution.differential_reconstruct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:136:0: 'ExtComplexCertificates.ActualResolution.actualPositiveHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:137:0: 'ExtComplexCertificates.ActualResolution.actualAugmentedHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:138:0: 'ExtComplexCertificates.ActualResolution.actualAugmentation_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:139:0: 'ExtComplexCertificates.ActualResolution.actualHom_differential_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:140:0: 'ExtComplexCertificates.ActualResolution.actualHomCohomologyEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:141:0: 'ModuleToModuleCertificates.unit_target_allVectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:142:0: 'Fact764TrajectoryAudit.Row3564.requested_ne_logged' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:143:0: 'Fact764TrajectoryAudit.C2Naturality.requested_zero_from_target_kernel' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:144:0: 'Fact764TrajectoryAudit.C2Naturality.target_kernel_iff' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:145:0: 'MilnorCertificates.finitePolynomial_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:146:0: 'MilnorCertificates.finitePolynomial_sum_products_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:147:0: 'SemilinearMapCertificates.valid_semilinear' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:148:0: 'SemilinearMapCertificates.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:149:0: 'SemilinearMapCertificates.allVectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:150:0: 'ExtComplexCertificates.ActualResolution.finiteModuleInclusion_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:151:0: 'ExtComplexCertificates.ActualResolution.finiteDifferential_inclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:152:0: 'ExtComplexCertificates.ActualResolution.finiteDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:153:0: 'ExtComplexCertificates.ActualResolution.finitePositiveHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:154:0: 'ExtComplexCertificates.ActualResolution.finiteAugmentedHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:155:0: 'ExtComplexCertificates.ActualResolution.finiteAugmentation_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:156:0: 'Fact764TrajectoryAudit.LaterDetector.from_D154545_conditions' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:157:0: 'ExtComplexCertificates.ActualResolution.FiniteHom.differential_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:158:0: 'ExtComplexCertificates.ActualResolution.FiniteHom.cohomologyFullEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:159:0: 'ExtComplexCertificates.ActualResolution.FiniteHom.cohomologyCoordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:160:0: 'ExtComplexCertificates.ActualResolution.degreeInclusion_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:161:0: 'ExtComplexCertificates.ActualResolution.degreeDifferential_inclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:162:0: 'ExtComplexCertificates.ActualResolution.degreeDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:163:0: 'ExtComplexCertificates.ActualResolution.degreePositiveExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:164:0: 'ExtComplexCertificates.ActualResolution.degreeAugmentedExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:165:0: 'ExtComplexCertificates.ActualResolution.degreeModuleProjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:166:0: 'ExtComplexCertificates.ActualResolution.actualProjectiveChainComplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:167:0: 'ExtComplexCertificates.ActualResolution.actualChain_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:168:0: 'ExtComplexCertificates.ActualResolution.augmentationMorphism_epi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:169:0: 'ExtComplexCertificates.ActualResolution.actualChainAugmentation_f_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:170:0: 'ExtComplexCertificates.ActualResolution.actualChainAugmentation_generator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:171:0: 'ExtComplexCertificates.ActualResolution.positiveChainHomology_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:172:0: 'ExtComplexCertificates.ActualResolution.zeroChainHomologyField' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:173:0: 'ExtComplexCertificates.ActualResolution.zeroChainHomology_positive_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:174:0: 'ExtComplexCertificates.GenericFreeComplex.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:175:0: 'ExtComplexCertificates.GenericFreeComplex.checkLinked_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:176:0: 'ExtComplexCertificates.GenericFreeComplex.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:177:0: 'ExtComplexCertificates.GenericFreeComplex.decodeWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:178:0: 'ExtComplexCertificates.GenericFreeComplex.producedT4_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:179:0: 'ExtComplexCertificates.GenericFreeComplex.orderedComponentEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:180:0: 'ExtComplexCertificates.GenericFreeComplex.differential_reconstruct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:181:0: 'ExtComplexCertificates.GenericFreeComplex.checkExactComponent_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:182:0: 'ExtComplexCertificates.GenericFreeComplex.decodeComponent_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:183:0: 'ExtComplexCertificates.GenericFreeComplex.component15_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:184:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.checkAugmentation_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:185:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.exact_minimal_hom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:186:0: 'ExtComplexCertificates.GenericFreeComplex.wire_valid_of_sources' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:187:0: 'AllClaimPrefixConditionalCertificates.Matches.Prefix.matched' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:188:0: 'Fact713C2Row3005.Matches.matched' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:189:0: 'Fact713C2Row3143.Matches.matched_zero' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:190:0: 'AllClaimC2ConditionalCertificates.Matches.C2.matched' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:191:0: 'AllClaimC2ConditionalCertificates.Matches.Ceta.matched' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:192:0: 'DerivedMapCertificates.CompositionWire.transport_linked' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:193:0: 'Row2693Detector.Combined.differential_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:194:0: 'Row2693Detector.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:195:0: 'Fact713Ctheta4Certificates.Obstruction.target_not_exact' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:196:0: 'CofiberE2Certificates.check_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:197:0: 'CofiberE2Certificates.Counterexamples.notComplex0' depends on axioms: [propext]
+info: ProofAudit.lean:198:0: 'CofiberE2Certificates.Wire.exact_under_interpretation' depends on axioms: [propext]
+info: ProofAudit.lean:199:0: 'CofiberE2Certificates.Wire.transport_exact' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:200:0: 'AllClaimZeroTargetCertificates.zero_quotient' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:201:0: 'AllClaimZeroTargetCertificates.differential_to_zero' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:202:0: 'AllClaimConditionalZeroCertificates.Matches.conditional_block' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:203:0: 'CofiberE2Certificates.Wire.transport_linked' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:204:0: 'Fact713TrajectoryCertificates.Row3076.from_ceta_naturality' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:205:0: 'DerivedMapCertificates.checkFactor_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:206:0: 'DerivedMapCertificates.checkComposition_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:207:0: 'DerivedMapCertificates.FactorWire.column_semantics' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:208:0: 'DerivedMapCertificates.FactorWire.allVectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:209:0: 'DerivedMapCertificates.CompositionWire.transport' depends on axioms: [propext]
+info: ProofAudit.lean:210:0: 'DerivedMapCertificates.Counterexample.two_sigma_squared_E2_nonzero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:212:0: 'AllClaimLeibnizConditionalCertificates.Matches.Leibniz.conditional_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:214:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.checkAugmented_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:215:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.augmentedH0EquivRange' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:217:0: 'AggregateTargetInventory.Aggregate.forward_backward' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:218:0: 'AggregateTargetInventory.Aggregate.backward_forward' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:220:0: 'AggregateTargetInventory.EventAudit.Events.event2435_target_in_image' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:222:0: 'AggregateTargetInventory.EventAudit.EliminationStage.event2572_target_zero_next' depends on axioms: [propext,
+ Quot.sound]
+info: ProofAudit.lean:224:0: 'AggregateTargetInventory.EventAudit.SamePage.row2492_not_hit_same_page' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:226:0: 'ExtComplexCertificates.GenericFreeComplex.GenericHom.AugmentedT8.exact8' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ProofAudit.lean:228:0: 'Row2861Csigma.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:230:0: 'AggregateTargetInventory.EventAudit.CoordinateLinks.event2492_inventory_basis_column' depends on axioms: [propext,
+ Quot.sound]
+info: ProofAudit.lean:231:0: 'AggregateTargetInventory.EventAudit.SemanticLinks.Ceta.actual_column' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:233:0: 'AggregateTargetInventory.EventAudit.TrajectoryCycles.event2492_source_cycle_d3' depends on axioms: [propext,
+ Quot.sound]
+info: ProofAudit.lean:235:0: 'AggregateCsigmaConditional.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:237:0: 'AggregateTargetInventory.EventAudit.NonboundaryBasic.nonzero_projection_not_boundary' depends on axioms: [propext,
+ Quot.sound]
+info: ProofAudit.lean:239:0: 'AggregateTargetInventory.EventAudit.Executable.check_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:241:0: 'AggregateTargetInventory.EventAudit.Indexed.check_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:243:0: 'AggregateTargetInventory.EventAudit.Indexed.diagnoseIndexed_sound' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:245:0: 'Row2796Detector.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:247:0: 'AggregateTwoDetectorConditional.H3D0.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:249:0: 'Row2574Detector.Quotient.differential_restricted' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:251:0: 'Row2574Detector.Additional.two_candidate_restriction' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:253:0: 'Row2796D4Detector.Source.named_d4_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:255:0: 'AggregateD4Conditional.D4.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:257:0: 'AggregateD4Conditional.Executable3254.indexed_valid' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:259:0: 'Row3325Detector.Matches.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:261:0: 'AggregateThreeProductConditional.ThreeProducts.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:263:0: 'AggregateThreeProductConditional.Pipeline.Executable3744.indexed_valid' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:264:0: 'AggregateThreeProductConditional.Pipeline.Executable3745.indexed_valid' depends on axioms: [propext, Quot.sound]
+info: ProofAudit.lean:266:0: 'Row2925Detector.Naturality.named_d3_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:268:0: 'AggregateCnuConditional.CnuEta.matched' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:269:0: 'AggregateCnuConditional.CnuEta.source_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ProofAudit.lean:270:0: 'AggregateCnuConditional.CnuEta.source_named_coordinate' depends on axioms: [propext, Quot.sound]
+Build completed successfully (2214 jobs).

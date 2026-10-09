@@ -1,0 +1,37 @@
+{
+  "branch_comparisons": 4,
+  "compatible_with_complete_kernel": [
+    1
+  ],
+  "exhaustive_affine_branches": 2,
+  "finite_events": 2,
+  "full_d2_comparisons": 4,
+  "generated_sha256": {
+    "Data.lean": "d819a9e90f0a0ea0f388d4763821abd20e13f30c30fbb7e594e372f3cf78631b",
+    "audit.json": "f0bd73fcb0538ac871413f6f3108d33cf878a8df4a53486d4c1636e68f29ce82",
+    "branch2574-0.json": "ebf9cb330afdf2cc00ebb26a355c0f65b601a8cf76f6ac44da56faa0b6f8d6eb",
+    "branch2574-1.json": "ee4b5187cf70339e77e7cd804030d54c1372d622f1547fdfcdbb32f542fb0351",
+    "branch2708-0.json": "7e4c11955d7f4403c4d2fa8dd2e1ead7d068dfe1caebbf5b4a0b23485d64d80f",
+    "branch2708-1.json": "6696ccbfedb0d173f474c5dd2e5b93615d5997bf80aa782528f8228130d9af92",
+    "d2source2697.json": "d20758e2cc7f75eead2341d578c3e1ea6e5f0dbafe2649351a1cea61148f9087",
+    "d2source2708.json": "a108a8aebda38e3043f5f4aa51cdf529cc1b5c582751de99bbe563352cb3466a",
+    "d2target2697.json": "114fff3cd1eb3bf7b22e8f29d2409a9c22ba76cea7c8a4cd4e6bd3bd11cfee43",
+    "d2target2708.json": "2992c2f5379f14d2960b0041c9825c9e1f928dc85da96c48e26c57a31737293a",
+    "event2697-branch0.json": "2802d912c30fcc906915ab8badaa8bd5dcfecf03bbd13575f11e07cfb61c23f7",
+    "event2697-branch1.json": "6cd79545670216d075b144035e6a872e2a8c6c62055b2ecf337747b75ae7e51a"
+  },
+  "input_sha256": {
+    "AggregateDC2h6Conditional/source.json": "ad7565992978dadab89b7ec4e0fc09b3e7e2d5d1a6ff6a1c348156ee37b45b8b",
+    "Row2574Detector/Additional/Combined.lean": "5b826265c4e00b47e2434e8692d76400e6b6929699ed1096552bda33ca56bcc2",
+    "Row2574Detector/target.json": "eda9ae6293db994875adae46a0e097ea9f6948fcd7febbb271b1830b876a4658"
+  },
+  "limitations": "Two2697 finite proofs share explicit basis-value premises.2696 has incompatible branch behavior and NULLd7target.2708 requires completekernel semantic premise, which is not inferred from rawNULL9997.",
+  "raw_unknowns_preserved": true,
+  "scripts_sha256": {
+    "audit.py": "4b92843ece521444ac8860c4f4e8c61b6862e64e94ed119abce1d66cf1fa2a7a",
+    "generate.py": "a84a4abcafe8cb41e3ac48b7bb42ae1de2236476323bb82e07df09ee43de7305",
+    "review.py": "ff2327c12eefc67a9f41557124d97927b7a097a7706e2a84a3fb68bea668280e"
+  },
+  "source_sql_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "status": "independent_full_branch_and_raw_input_audit_passed"
+}

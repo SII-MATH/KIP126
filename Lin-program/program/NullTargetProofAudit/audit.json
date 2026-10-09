@@ -1,0 +1,554 @@
+{
+  "2696": {
+    "raw": [
+      2696,
+      9,
+      134,
+      "3",
+      null,
+      9993
+    ],
+    "exact_source_rows": 3,
+    "all_degree_rows": 14,
+    "requested_page_rows": [
+      {
+        "active_trial": null,
+        "degree_role": "source2696",
+        "end_line": 935536,
+        "fields": {
+          "depth": "0",
+          "dx": "[NULL]",
+          "id": "2422885",
+          "info": "[NULL]",
+          "name": "S0",
+          "r": "7",
+          "reason": "[NULL]",
+          "s": "9",
+          "stem": "125",
+          "t": "134",
+          "x": "3"
+        },
+        "file": "proofs-part3.csv",
+        "match": "degree",
+        "previous_ids": [
+          "2422880",
+          "2422881",
+          "2422882",
+          "2422883",
+          "2422884"
+        ],
+        "start_line": 935536,
+        "classification": "grey_hint_not_deduction"
+      }
+    ],
+    "requested_page_info_count": 0,
+    "current_target_window": {
+      "first": 2,
+      "last": 3,
+      "basis_rows": [
+        [
+          3147,
+          16,
+          140,
+          "4",
+          null,
+          9000
+        ]
+      ],
+      "candidates": [
+        [],
+        [
+          4
+        ]
+      ],
+      "includes_zero": true,
+      "scope": "Current pinned staircase search window only; not a historical candidate list or Adams page computation."
+    },
+    "conclusion": "next_unresolved_page; no_nonzero_value_or_eventual_death_inferred"
+  },
+  "2852": {
+    "raw": [
+      2852,
+      11,
+      136,
+      "3",
+      null,
+      9995
+    ],
+    "exact_source_rows": 5,
+    "all_degree_rows": 13,
+    "requested_page_rows": [
+      {
+        "active_trial": null,
+        "degree_role": "source2852",
+        "end_line": 935913,
+        "fields": {
+          "depth": "0",
+          "dx": "[NULL]",
+          "id": "2423248",
+          "info": "[NULL]",
+          "name": "S0",
+          "r": "5",
+          "reason": "[NULL]",
+          "s": "11",
+          "stem": "125",
+          "t": "136",
+          "x": "3"
+        },
+        "file": "proofs-part3.csv",
+        "match": "degree",
+        "previous_ids": [
+          "2423243",
+          "2423244",
+          "2423245",
+          "2423246",
+          "2423247"
+        ],
+        "start_line": 935913,
+        "classification": "grey_hint_not_deduction"
+      }
+    ],
+    "requested_page_info_count": 0,
+    "current_target_window": {
+      "first": 2,
+      "last": 3,
+      "basis_rows": [
+        [
+          3147,
+          16,
+          140,
+          "4",
+          null,
+          9000
+        ]
+      ],
+      "candidates": [
+        [],
+        [
+          4
+        ]
+      ],
+      "includes_zero": true,
+      "scope": "Current pinned staircase search window only; not a historical candidate list or Adams page computation."
+    },
+    "conclusion": "next_unresolved_page; no_nonzero_value_or_eventual_death_inferred"
+  },
+  "proof_scan": {
+    "files": [
+      {
+        "file": "proofs-part1.csv",
+        "sha256": "c1ff2f0f922e29e5aa1c98d5c9cf79931038637d8c0e4f6ba88fa31aafc6b8cf",
+        "rows": 994567,
+        "selected": 2353,
+        "physical_lines": 2096450
+      },
+      {
+        "file": "proofs-part2.csv",
+        "sha256": "4e1afa9c66e6ce2ab98b48f15635ca84b9f599f74ae946888d8c40a0ce147bd0",
+        "rows": 1000000,
+        "selected": 6881,
+        "physical_lines": 2439696
+      },
+      {
+        "file": "proofs-part3.csv",
+        "sha256": "149d84c149c4f88046a5409bfdb99d85d7980f5cb077a2a432295d68feecdee4",
+        "rows": 677708,
+        "selected": 2764,
+        "physical_lines": 1504053
+      }
+    ],
+    "total_rows": 2672275,
+    "selected": 11998,
+    "counts": {
+      "common_target:XX:depth0": 1,
+      "source2696:d2:depth0": 2,
+      "common_target:N:depth0": 2,
+      "None:T:depth1": 6473,
+      "source2696:T:depth1": 3060,
+      "source2696:D:depth0": 2,
+      "source2852:T:depth1": 1882,
+      "source2852:D:depth0": 3,
+      "common_target:T:depth1": 495,
+      "common_target:D:depth0": 1,
+      "source2696:N:depth0": 7,
+      "source2852:N:depth0": 2,
+      "None:TI:depth1": 52,
+      "common_target:[NULL]:depth0": 1,
+      "source2696:[NULL]:depth0": 1,
+      "source2852:[NULL]:depth0": 1,
+      "None:T:depth2": 9,
+      "None:XY:depth0": 4
+    },
+    "scope": "All S0 proof rows at either source degree or the common target degree, plus exact listed info-text references. Trial anchors are chronology context, not a proved logical scope reconstruction.",
+    "scanner_sha256": "b1d42809c61220210d79e13d6a505482b86dd1e2ad0aa9f476c7976b7e2d506f"
+  },
+  "source": {
+    "ss/main.h": {
+      "sha256": "535a72430caed39826d8ab41e8beb3fa7286835309928a98b0247e7eb9b38eb5",
+      "excerpts": [
+        {
+          "start": 20,
+          "end": 25,
+          "lines": [
+            "inline constexpr int LEVEL_MAX = 10000;",
+            "inline constexpr int LEVEL_MIN = 2;",
+            "inline constexpr int R_PERM = 1000;",
+            "inline constexpr int LEVEL_PERM = LEVEL_MAX - R_PERM; /* Level of Permanant cycles */",
+            "",
+            "inline const auto NULL_DIFF = int1d{-1};"
+          ]
+        },
+        {
+          "start": 1156,
+          "end": 1162,
+          "lines": [
+            "inline std::optional<std::string> SerializeDiff(const int1d& dx)",
+            "{",
+            "    std::optional<std::string> result;",
+            "    if (dx == NULL_DIFF)",
+            "        return result;",
+            "    result = myio::Serialize(dx);",
+            "    return result;"
+          ]
+        }
+      ]
+    },
+    "ss/ss.cpp": {
+      "sha256": "2618cbb3906002064ed696e63dd603ab8a8900a55e43a2fb1d980482926353dc",
+      "excerpts": [
+        {
+          "start": 13,
+          "end": 38,
+          "lines": [
+            "bool IsPossTgt(const SSNodes& nodes_ss, AdamsDeg deg, int r_max)",
+            "{",
+            "    r_max = std::min(r_max, deg.s);",
+            "    for (int r1 = LEVEL_MIN; r1 <= r_max; ++r1) {",
+            "        AdamsDeg d_src = deg - AdamsDeg{r1, r1 - 1};",
+            "        if (nodes_ss.front().has(d_src) && GetMaxLevelWithND(nodes_ss.GetRecentSc(d_src)) >= LEVEL_MAX - r1)",
+            "            return true;",
+            "    }",
+            "    return false;",
+            "}",
+            "",
+            "size_t GetFirstIndexOfFixedLevels(const SSNodes& nodes_ss, AdamsDeg deg, int level_min)",
+            "{",
+            "    const auto& sc = nodes_ss.GetRecentSc(deg);",
+            "    size_t result = sc.levels.size();",
+            "    for (size_t i = sc.levels.size(); i-- > 0;) {",
+            "        if (sc.diffs[i] == NULL_DIFF || sc.levels[i] < level_min)",
+            "            break;",
+            "        if (i == 0 || sc.levels[i] != sc.levels[i - 1]) {",
+            "            int r = LEVEL_MAX - sc.levels[i];",
+            "            if (IsPossTgt(nodes_ss, deg + AdamsDeg{r, r - 1}, r - 1))",
+            "                break;",
+            "            else",
+            "                result = i;",
+            "        }",
+            "    }"
+          ]
+        },
+        {
+          "start": 58,
+          "end": 70,
+          "lines": [
+            "std::pair<int, int> Category::CountPossDrTgt(const SSNodes& nodes_ss, int t_max, const AdamsDeg& deg_tgt, int r) const",
+            "{",
+            "    std::pair<int, int> result;",
+            "    if (nodes_ss.front().has(deg_tgt)) {",
+            "        const auto& sc_tgt = nodes_ss.GetRecentSc(deg_tgt);",
+            "        result.first = (int)GetFirstIndexOnLevel(sc_tgt, r);",
+            "        result.second = (int)GetFirstIndexOfFixedLevels(nodes_ss, deg_tgt, LEVEL_MAX - r) - result.first;",
+            "    }",
+            "    else if (deg_tgt.t > t_max)",
+            "        result = {-1, 100000}; /* Infinitely many possibilities */",
+            "    else",
+            "        result = {-1, 0};",
+            "    return result;"
+          ]
+        },
+        {
+          "start": 314,
+          "end": 328,
+          "lines": [
+            "    if (dx == NULL_DIFF) {",
+            "        /* If the target is uncertain, insert it to the end of level N-r. */",
+            "        size_t first_Nmrp1 = GetFirstIndexOnLevel(sc, LEVEL_MAX - r + 1);",
+            "        x = lina::Residue(sc.basis.begin() + first_Nmr, sc.basis.begin() + first_Nmrp1, x);",
+            "        if (!x.empty())",
+            "            UpdateStaircase(nodes_ss, deg_x, sc, first_Nmrp1, x, NULL_DIFF, LEVEL_MAX - r, image_new, level_image_new);",
+            "    }",
+            "    else if (dx.empty()) {",
+            "        /* If the target is zero, insert it to the end of level N-r-1 */",
+            "        ++r;",
+            "        UpdateStaircase(nodes_ss, deg_x, sc, first_Nmr, x, NULL_DIFF, LEVEL_MAX - r, image_new, level_image_new);",
+            "    }",
+            "    else {",
+            "        /* Otherwise insert it to the beginning of level N-r */",
+            "        UpdateStaircase(nodes_ss, deg_x, sc, first_Nmr, x, dx, LEVEL_MAX - r, image_new, level_image_new);"
+          ]
+        }
+      ]
+    },
+    "ss/staircase.cpp": {
+      "sha256": "c8ff560bafe176307332ae4ca450f9fa210eeb86ed5af0805bc1614b622accae",
+      "excerpts": [
+        {
+          "start": 58,
+          "end": 61,
+          "lines": [
+            "size_t GetFirstIndexOnLevel(const Staircase& sc, int level)",
+            "{",
+            "    return std::lower_bound(sc.levels.begin(), sc.levels.end(), level) - sc.levels.begin();",
+            "}"
+          ]
+        },
+        {
+          "start": 86,
+          "end": 94,
+          "lines": [
+            "int GetMaxLevelWithND(const Staircase& sc)",
+            "{",
+            "    size_t i = sc.levels.size();",
+            "    while (i-- > 0) {",
+            "        if (sc.diffs[i] == NULL_DIFF)",
+            "            return sc.levels[i];",
+            "    }",
+            "    return -1;",
+            "}"
+          ]
+        },
+        {
+          "start": 115,
+          "end": 130,
+          "lines": [
+            "std::string Staircase::Str() const",
+            "{",
+            "    std::string result;",
+            "    for (size_t i = 0; i < levels.size(); ++i) {",
+            "        if (levels[i] < LEVEL_MAX / 2) {",
+            "            if (diffs[i] == NULL_DIFF)",
+            "                fmt::format_to(std::back_inserter(result), \"[{}]=d_{}[?]\\n\", myio::Serialize(basis[i]), levels[i]);",
+            "            else",
+            "                fmt::format_to(std::back_inserter(result), \"[{}]=d_{}[{}]\\n\", myio::Serialize(basis[i]), levels[i], myio::Serialize(diffs[i]));",
+            "        }",
+            "        else {",
+            "            if (diffs[i] == NULL_DIFF)",
+            "                fmt::format_to(std::back_inserter(result), \"d_{}[{}]=[?]\\n\", LEVEL_MAX - levels[i], myio::Serialize(basis[i]));",
+            "            else",
+            "                fmt::format_to(std::back_inserter(result), \"d_{}[{}]=[{}]\\n\", LEVEL_MAX - levels[i], myio::Serialize(basis[i]), myio::Serialize(diffs[i]));",
+            "        }"
+          ]
+        }
+      ]
+    },
+    "ss/mylog.cpp": {
+      "sha256": "a27e5ea37b00aec85f1ad697c86d232de5b39c6e88703500e87da097461e170f",
+      "excerpts": [
+        {
+          "start": 55,
+          "end": 58,
+          "lines": [
+            "void DbLog::InsertNullDiff(int depth, const std::string& name, alg::AdamsDeg deg_x, const alg::int1d& x, int r)",
+            "{",
+            "    Statement stmt(*this, \"INSERT INTO log (depth, name, s, t, r, x) VALUES (?1, ?2, ?3, ?4, ?5, ?6)\");",
+            "    stmt.bind_and_step(depth, name, deg_x.s, deg_x.t, r, myio::Serialize(x));"
+          ]
+        },
+        {
+          "start": 132,
+          "end": 135,
+          "lines": [
+            "void Logger::RollBackToCheckpoint(int checkpt)",
+            "{",
+            "    if (db_)",
+            "        db_.execute_cmd(fmt::format(\"DELETE FROM log WHERE id>{}\", checkpt));"
+          ]
+        },
+        {
+          "start": 150,
+          "end": 164,
+          "lines": [
+            "void Logger::LogDiff(int depth, EnumReason reason, const std::string& name, alg::AdamsDeg deg_x, int r, const alg::int1d& x, const alg::int1d& dx, const std::string& proof, SSFlag)",
+            "{",
+            "    std::string_view indent(INDENT, depth * 2);",
+            "    if (depth == 0)",
+            "        fmt::print(fmt::fg(dx.empty() ? fmt::color::white_smoke : fmt::color::light_green), \"{}{} t={} - {} {} d_{}{}={}\\n\", indent, GetReason(reason), deg_x.t, name, deg_x, r, x, dx);",
+            "",
+            "    if (depth > 0) { /* For depth>0 only log try */",
+            "        switch (reason) {",
+            "        case EnumReason::try1:",
+            "        case EnumReason::try2:",
+            "        case EnumReason::deduce:",
+            "        case EnumReason::deduce2:",
+            "            break;",
+            "        default:",
+            "            return;"
+          ]
+        },
+        {
+          "start": 209,
+          "end": 225,
+          "lines": [
+            "void Logger::LogGreyDiff(int depth, const std::string& name, alg::AdamsDeg deg_x, int r, const alg::int1d& x, const alg::int1d& dx, SSFlag)",
+            "{",
+            "    std::string_view indent(INDENT, depth * 2);",
+            "    if (depth == 0) {",
+            "        fmt::print(fmt::fg(fmt::color::gray), \"{}{} {} d_{}{}={}\\n\", indent, name, deg_x, r, x, dx);",
+            "        if (db_)",
+            "            db_.InsertDiff(depth, name, deg_x, x, dx, r); /* A hint of what is used */",
+            "    }",
+            "}",
+            "",
+            "void Logger::LogNullDiff(int depth, const std::string& name, alg::AdamsDeg deg_x, int r, const alg::int1d& x, SSFlag)",
+            "{",
+            "    std::string_view indent(INDENT, depth * 2);",
+            "    if (depth == 0) {",
+            "        fmt::print(fmt::fg(fmt::color::gray), \"{}{} {} d_{}{}=?\\n\", indent, name, deg_x, r, x);",
+            "        if (db_)",
+            "            db_.InsertNullDiff(depth, name, deg_x, x, r);"
+          ]
+        }
+      ]
+    },
+    "ss/deduce.cpp": {
+      "sha256": "f299dbdadf8c8efde296adacb048f679fd927d611e910c615775d42ebced3fec",
+      "excerpts": [
+        {
+          "start": 332,
+          "end": 386,
+          "lines": [
+            "SSRet Category::TryDiff(IndexUniv iCw, AdamsDeg deg_x, const int1d& x, const int1d& dx, int r, SSFlag flag, bool tryY)",
+            "{",
+            "    auto logid = Logger::GetCheckpoint();",
+            "",
+            "    AddNode(flag);",
+            "    SSRet rt = [&]() {",
+            "        SSRet rt;",
+            "        const std::string& name = GetCwName(iCw);",
+            "        if (rt += SetCwDiffGlobal(iCw, deg_x, x, dx, r, true, flag)) {",
+            "            if (tryY)",
+            "                Logger::LogDiff(depth_, EnumReason::try1, name, deg_x, r, x, dx, rt.err_msg, flag);",
+            "            else",
+            "                Logger::LogDiffInv(depth_, EnumReason::try2, name, deg_x + AdamsDeg(r, r - 1), r, x, dx, rt.err_msg, flag);",
+            "            return rt;",
+            "        }",
+            "",
+            "        if (depth_ == 1) {",
+            "            auto deg_dx = deg_x + AdamsDeg(r, r - 1);",
+            "            if (tryY)",
+            "                Logger::LogDiff(depth_, EnumReason::try1, name, deg_x, r, x, dx, \"\", flag);",
+            "            else",
+            "                Logger::LogDiffInv(depth_, EnumReason::try2, name, deg_x + AdamsDeg(r, r - 1), r, x, dx, \"\", flag);",
+            "            if (flag & SSFlag::deduce_zero) {",
+            "                if (tryY) {",
+            "                    if (dx.empty() && (rt += DeduceDiff4XDepth(iCw, deg_x, x, LEVEL_MAX - r, flag))) {",
+            "                        return rt;",
+            "                    }",
+            "                }",
+            "                else {",
+            "                    if (x.empty() && (rt += DeduceDiff4XDepth(iCw, deg_dx, dx, r, flag))) {",
+            "                        return rt;",
+            "                    }",
+            "                }",
+            "            }",
+            "            if (flag & SSFlag::deduce_pullback) {",
+            "                auto& index_maps_prev = iCw.isRing() ? rings_[iCw.index].ind_maps_prev : modules_[iCw.index].ind_maps_prev;",
+            "                for (size_t iMap : index_maps_prev) {",
+            "                    auto& map = maps_[iMap];",
+            "                    auto deg_x_prev = deg_x - map->deg;",
+            "                    auto& nodes_ss_prev = GetNodesSS(map->from);",
+            "                    if (!x.empty() && nodes_ss_prev.front().has(deg_x - map->deg) && (rt += DeduceDiffs4Deg(map->from, deg_x - map->deg, flag)))",
+            "                        return rt;",
+            "                    if (!dx.empty() && nodes_ss_prev.front().has(deg_dx - map->deg) && (rt += DeduceDiffs4Deg(map->from, deg_dx - map->deg, flag)))",
+            "                        return rt;",
+            "                }",
+            "            }",
+            "        }",
+            "        return rt;",
+            "    }();",
+            "    PopNode(flag);",
+            "",
+            "    if (!rt) /* if no contradiction */",
+            "        Logger::RollBackToCheckpoint(logid);",
+            "    else if (depth_ == 0 && !(flag & SSFlag::no_exclusions))",
+            "        Logger::LogExclusion(logid + 1);"
+          ]
+        },
+        {
+          "start": 412,
+          "end": 445,
+          "lines": [
+            "        if (nd.count == 0) {",
+            "            dx.clear();",
+            "            bNewDiff = true;",
+            "        }",
+            "        else {",
+            "            int1d dx1;",
+            "            int count_pass = 0;",
+            "            unsigned i_max = 1 << nd.count;",
+            "            const AdamsDeg deg_tgt = deg_src + AdamsDeg{r, r - 1};",
+            "            const auto& sc_tgt = nodes_ss.GetRecentSc(deg_tgt);",
+            "",
+            "            for (unsigned i = 0; i < i_max; ++i) {",
+            "                dx1.clear();",
+            "                for (int j : ut::two_exp(i))",
+            "                    dx1 = lina::add(dx1, sc_tgt.basis[(size_t)(nd.first + j)]);",
+            "",
+            "                if (exclusions && ut::has(*exclusions, dx1))",
+            "                    continue;",
+            "                if (TryDiff(iCw, deg_src, x, dx1, r, flag, true))",
+            "                    continue;",
+            "",
+            "                ++count_pass;",
+            "                if (!(flag & SSFlag::try_all) && count_pass > 1)",
+            "                    break;",
+            "                dx = std::move(dx1);",
+            "            }",
+            "            if (count_pass == 0) {",
+            "                if (depth_ == 0)",
+            "                    throw RunTimeError(fmt::format(\"Contradiction. name={} deg_x={} x=[{}] r={}\", name, deg, myio::Serialize(x), r));",
+            "                else",
+            "                    return SSRet::FAIL_SS();",
+            "            }",
+            "            else if (count_pass == 1)",
+            "                bNewDiff = true;"
+          ]
+        },
+        {
+          "start": 523,
+          "end": 540,
+          "lines": [
+            "    NullDiff nd;",
+            "    auto [diff1, level1] = GetDiffAndLevel(nodes_ss, deg, x);",
+            "    if (level1 < level || (level1 == level && diff1 != NULL_DIFF))",
+            "        return SSRet::CHANGE_AT_X(); /* d_r(x) is already known */",
+            "    else if (level1 > level)",
+            "        return SSRet::NUL();",
+            "",
+            "    nd.x = std::move(x);",
+            "    if (level > LEVEL_PERM) {",
+            "        int r = LEVEL_MAX - level;",
+            "        AdamsDeg deg_tgt = deg + AdamsDeg{r, r - 1};",
+            "",
+            "        auto [index, count] = CountPossDrTgt(nodes_ss, t_max, deg_tgt, r);",
+            "        if (count > deduce_count_max_)",
+            "            return SSRet::NUL();",
+            "        nd.r = r;",
+            "        nd.first = index;",
+            "        nd.count = count;"
+          ]
+        }
+      ]
+    }
+  },
+  "source_database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "audit_sha256": "c2fb179ee40907d68435513c5fb16aebbbfc27e512e096a698a188b26682ab52",
+  "trust": "CSV records and source-code behavior are provenance, not Lean mathematical proofs.",
+  "historical_state_replayed": false,
+  "semantic_regression": {
+    "zero_d4_stores_null_level": 9995,
+    "zero_d6_stores_null_level": 9993,
+    "null_and_zero_are_distinct": true
+  }
+}

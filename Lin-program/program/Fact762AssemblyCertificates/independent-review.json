@@ -1,0 +1,105 @@
+{
+  "assembly_partition": {
+    "allowed": [
+      6,
+      12
+    ],
+    "early": [
+      2,
+      3
+    ],
+    "finite_samples_plus_large_integers": 100,
+    "routed": [
+      4,
+      7
+    ],
+    "tail": "q>14",
+    "zero_source": [
+      5,
+      8,
+      9,
+      10,
+      11,
+      13,
+      14
+    ]
+  },
+  "build_observation": {
+    "historical_direct_modules": [
+      "Routes",
+      "Assembly"
+    ],
+    "note": "Historical direct records preserved; global Lake artifacts use separate checkpoint evidence.",
+    "source_and_log_match": true,
+    "standard_or_no_axiom_reports": 5
+  },
+  "findings": [],
+  "independent_kernel_replay": {
+    "admissible_matrix": [
+      0,
+      1
+    ],
+    "all_matrices_examined": 4,
+    "full_image": [
+      0,
+      1
+    ]
+  },
+  "inputs_sha256": {
+    "AffineRemainingSearch/Kernel.lean": "791b96bb131dd6852f42270eef4bea8dc299de936c74fad1a72076b377df6389",
+    "Fact762AssemblyCertificates/Assembly.lean": "e20aaf83e4fbc747609fbd1f0d5f27b8df75d787d948f8a15a0a022c4ef7d1e0",
+    "Fact762AssemblyCertificates/README.md": "95213c5d23c5f26c70ae9ae7b6717001f8a91049600d4121b82eb7d7c25dfe4b",
+    "Fact762AssemblyCertificates/Routes.lean": "a2d9ddef1d297dfdc9245b9fedf30d29bbb87657cb22565613da88a5f721c2e8",
+    "Fact762AssemblyCertificates/compile-audit.json": "de0ab7f0d9110a18f6987ab8b1817fbf196d0717554f7a6b91c708e902f961fa",
+    "Fact762AssemblyCertificates/review.json": "eb2b75c8f69edad21a7108cc95df0be2e030ccaf7964194b10faba6a7747a2e3",
+    "Fact762AssemblyCertificates/review.py": "08e40fe7cf0c4b9aacf75ca9b1a5c9937f96808bf257df64c656fdad8c9198f1",
+    "Fact762IncomingCertificates/Incoming.lean": "f747d1357c8ed1d68eae326a55c9d29247deccc3c4c980b6434f8848364864ac",
+    "Fact762IncomingCertificates/ZeroPropagation.lean": "f78379ab209e37175083d3244f5355a7dca35d593d28f896d776ce544b62471b",
+    "Fact762Source7Certificates/Propagation.lean": "b4b786758a5aa44b5bf67dbbca102bb683c6754328d42602e7fd663116bd527e",
+    "Fact762Source7Certificates/Semantics.lean": "e4913e98589d4bfc5b18f9486269660925a7f7548a770c1114cf10a8cef408ea",
+    "Row2708KernelConditional/Conflict.lean": "6a22be05e98dc60ac2b70ce7422f545760227a595e5c3aafb18500fc8409e61d"
+  },
+  "limitations": [
+    "Row2708 complete kernel and all actual coordinate/transition meanings remain unproved mathematical inputs.",
+    "The old proposed nonboundary cannot be retained when instantiating the complete-kernel branch.",
+    "The assembly does not prove an actual d6/d12 hit exists, establish outgoing-cycle behavior, or identify actual topology.",
+    "A queried target nonzero proof remains required to infer no hit from a zero differential."
+  ],
+  "raw_SQL_rows": {
+    "2707": [
+      2707,
+      7,
+      134,
+      "2",
+      null,
+      9990
+    ],
+    "2708": [
+      2708,
+      7,
+      134,
+      "0,1",
+      null,
+      9997
+    ],
+    "2858": [
+      2858,
+      10,
+      136,
+      "2",
+      null,
+      9000
+    ]
+  },
+  "reviewed_contracts": [
+    "The entire row2708 kernel, not a list of selected cycles, is constrained by KernelSpanned. The named cycle condition and complete kernel together force [0,1].",
+    "Surjectivity of the incoming image annihilates the full target quotient. The arbitrary outgoing dimension and complex law are retained.",
+    "The old row2858 nonboundary assertion is not an input; Conflict proves it is inconsistent with this complete-kernel branch. No theorem combines those incompatible premises.",
+    "Faithful coordinates and zero matching identify every actual page4 source as zero. Page4 differential vanishing then follows from actual zero preservation.",
+    "The page7 route retains full E3/E7 realization surjectivity and the full PageTower nextSurjective premise, as well as each named cycle/transition and actual d7 prefix.",
+    "The assembly requires nonzero only at the queried page q, not for every page. No Permanent or all-page nonboundary premise is present.",
+    "The page partition2..14 is exact, with all q>14 handled by an explicit integer negative-filtration source-absence premise."
+  ],
+  "reviewer": "certificate_pipeline_next",
+  "status": "no_findings_in_conditional_scope"
+}

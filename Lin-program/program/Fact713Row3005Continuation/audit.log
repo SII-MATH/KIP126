@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "branches": [
+    {
+      "case": "zero_b0",
+      "entries": 1431,
+      "new": 18,
+      "quotient_cycle_pairs": 9861,
+      "full_predecessor_checks": 2775,
+      "adjacent": 1094,
+      "consecutive": 925,
+      "main_nonzero_page": 11,
+      "row3005_nonzero_page": 5,
+      "next_blocker": "S0:6,132:d3:row2574; target dimension 3"
+    },
+    {
+      "case": "zero_b1",
+      "entries": 1431,
+      "new": 18,
+      "quotient_cycle_pairs": 9861,
+      "full_predecessor_checks": 2775,
+      "adjacent": 1094,
+      "consecutive": 925,
+      "main_nonzero_page": 11,
+      "row3005_nonzero_page": 5,
+      "next_blocker": "S0:6,132:d3:row2574; target dimension 3"
+    }
+  ],
+  "audit_source_sha256": "6b0707219aac15fabd94741db981f4c6b38e94d3bbc80623d7e65a7442d00276",
+  "scope": "Every full finite quotient and adjacency, exact inherited families, whole row3005 map from C2 top-cell naturality, both original named trajectories. Actual meanings remain explicit."
+}

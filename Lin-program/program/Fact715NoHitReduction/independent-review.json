@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "frozen_files": 44,
+  "modules": 5,
+  "counts": {
+    "sequences": 176,
+    "tail_sequences": 92,
+    "element_equivalences": 368,
+    "nonzero_cutoff_checks": 165,
+    "outgoing_deaths": 285,
+    "genuine_hits": 27,
+    "zero_hits": 116,
+    "omitted_tail_counterexamples": 87
+  },
+  "manual_review": [
+    "BInfinity equivalence uses full tail stabilization after q+1.",
+    "ExceptionalHit requires a genuine cycle at q; total advance returning zero after outgoing death is insufficient.",
+    "Earlier boundaries give zero exceptional images; named cutoff nonzero separately rules these out.",
+    "Actual indexing is cutoff3=E5, exceptional7=E9, next-boundary8=E10.",
+    "All actual incoming sources except d9 are handled by previously checked complete source collapses.",
+    "Certificate requires exact input binding and explicit D9Exclusion; it cannot synthesize the missing proof."
+  ],
+  "remaining": "The d9 exclusion itself is still unproved; this is an exact reduction."
+}

@@ -1,0 +1,24 @@
+{
+  "source_sha256": "e2c2eb25fc90b10792b0ed068fb7ab8380e7171938802c470762eeccecdca8b6",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Prop79IncomingSearch/Maps.olean": "82d535f9ecc7c097f41eec6c29c6a7adcd0b821bca81f7a36fb5dc2604b1d476",
+    ".lake/build/lib/lean/Row2925Detector/Naturality.olean": "4d83e6bf8afb38514de10a2c35a3beae4c6c4e6949ec5cd46588ea17087c4642",
+    ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Prop79IncomingSearch/Comparison.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/Comparison.olean"
+  ],
+  "log": "evidence/Comparison-20260922T000230989285Z.log",
+  "external_input_sha256": {
+    "Prop79IncomingSearch/bottom-wire/Cnu_11_137_d2.json": "c90c2f81fc8e53663a697a71430217ef838b2195532a83ddadd4fbfa06f22cee",
+    "Prop79IncomingSearch/bottom-wire/Cnu_14_139_d2.json": "53aa652e6ed1ff19f88636312cb346316429cfb03f1d40ed07e5d87d00b985d4"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "2549247dbb3ed5262fca3cfabdd8ba003f7797f38cbd01a631690f75cb6ccf1a",
+  "inputs_stable": true,
+  "olean_sha256": "07cd28767ea8a583e78c945a77012bf025c3caebb2a72b159316532013eb1496"
+}

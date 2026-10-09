@@ -1,0 +1,83 @@
+Row2773Leibniz/Data.lean:17:31: error: Row2773Leibniz/source.json: PageTransitionCertificates.WireComparison.version: Natural number expected
+Row2773Leibniz/Data.lean:18:42: error: Tactic `decide` failed for proposition
+  LinProgramCertificates.CertificateVerifier.check () = true
+because its `Decidable` instance
+  instDecidableEqBool (LinProgramCertificates.CertificateVerifier.check ()) true
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Nat.decEq`, `instDecidableShapeValid`, and `instDecidableShapeValid._aux_1`, reduction got stuck at the `Decidable` instance
+  match LinProgramCertificates.CertificateVerifier.check (), true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+'Row2773Leibniz.Data.sourceProduct0_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2773Leibniz.Data.sourceProduct1_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+Row2773Leibniz/Data.lean:33:126: error: failed to synthesize
+  Decidable (sourceProduct.left = eta ∧ sourceProduct.right = right ∧ sourceProduct.target = source)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2773Leibniz/Data.lean:35:77: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin sourceProduct.left.m) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin sourceProduct.left.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2773Leibniz/Data.lean:35:79: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin sourceProduct.right.m) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin sourceProduct.right.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2773Leibniz/Data.lean:38:77: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin sourceProduct.left.m) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin sourceProduct.left.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2773Leibniz/Data.lean:38:79: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin sourceProduct.right.m) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  Fin sourceProduct.right.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+'Row2773Leibniz.Data.leftProduct0_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2773Leibniz.Data.leftProduct1_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+Row2773Leibniz/Data.lean:52:125: error: failed to synthesize
+  Decidable (leftProduct.left = leftTarget ∧ leftProduct.right = right ∧ leftProduct.target = target)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2773Leibniz/Data.lean:54:73: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin leftProduct.left.m) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin leftProduct.left.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2773Leibniz/Data.lean:54:75: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin leftProduct.right.m) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin leftProduct.right.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2773Leibniz/Data.lean:57:73: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin leftProduct.left.m) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin leftProduct.left.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2773Leibniz/Data.lean:57:75: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin leftProduct.right.m) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  Fin leftProduct.right.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+'Row2773Leibniz.Data.sourceProduct_valid' depends on axioms: [propext, Quot.sound]
+'Row2773Leibniz.Data.leftProduct_valid' depends on axioms: [propext, Quot.sound]

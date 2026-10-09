@@ -1,0 +1,50 @@
+Fact721FirstD6DC2h6/Incoming4.lean:41:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (tp.nextPage ?r ?d).toNext ⟦D.map.cycle ?r ?d ?x⟧
+in the target expression
+  (T.differential 4 sourceDegree).toFun ((tp.nextPage 3 sourceDegree).toNext ⟦D.sphereCycle⟧) = 0
+
+S T : AdamsSpectralSequence
+sp : CertifiedAdamsPages S
+tp : CertifiedAdamsPages T
+A : ModuleAction.Action S T
+P : CertifiedAdamsProduct S
+I : Stage2 S T sp tp
+M : ExtraSource.Meaning I A
+D : Input I M
+⊢ (T.differential 4 sourceDegree).toFun ((tp.nextPage 3 sourceDegree).toNext ⟦D.sphereCycle⟧) = 0
+Fact721FirstD6DC2h6/Incoming4.lean:55:2: error: Type mismatch
+  (have this := of_decide_eq_true (id (Eq.refl true));
+    this)
+    ?m.222
+has type
+  ?m.222 =
+    add
+      (add (if ?m.222 ⟨0, ⋯⟩ = true then fun i => ↑i == 0 else zero)
+        (if ?m.222 ⟨1, ⋯⟩ = true then fun i => ↑i == 1 else zero))
+      (if ?m.222 ⟨2, ⋯⟩ = true then fun i => ↑i == 2 else zero)
+but is expected to have type
+  if I.source3.coordinates.equivalence x ⟨2, ⋯⟩ = true then
+    I.source3.coordinates.equivalence x =
+      add
+        (if I.source3.coordinates.equivalence x ⟨1, ⋯⟩ = true then
+          add (if I.source3.coordinates.equivalence x ⟨0, ⋯⟩ = true then fun i => ↑i == 0 else zero) fun i => ↑i == 1
+        else add (if I.source3.coordinates.equivalence x ⟨0, ⋯⟩ = true then fun i => ↑i == 0 else zero) zero)
+        fun i => ↑i == 2
+  else
+    I.source3.coordinates.equivalence x =
+      add
+        (if I.source3.coordinates.equivalence x ⟨1, ⋯⟩ = true then
+          add (if I.source3.coordinates.equivalence x ⟨0, ⋯⟩ = true then fun i => ↑i == 0 else zero) fun i => ↑i == 1
+        else add (if I.source3.coordinates.equivalence x ⟨0, ⋯⟩ = true then fun i => ↑i == 0 else zero) zero)
+        zero
+'Fact721FirstD6DC2h6.Incoming4.Input.sphere_d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming4.Input.source_decomposition' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact721FirstD6DC2h6.Incoming4.Input.middle_false' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming4.Input.kernel_decomposition' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact721FirstD6DC2h6.Incoming4.Input.whole_d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

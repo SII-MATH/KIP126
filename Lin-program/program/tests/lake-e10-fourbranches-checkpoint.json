@@ -1,0 +1,171 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 87182,
+  "observed_exit_code": 0,
+  "jobs": 3526,
+  "build_log": "tests/step4-e10-fourbranches-build.log",
+  "build_log_sha256": "081a5177808d59c3b386b377a2fcfadddcceacd26d2bc6a04e5dd10b203ef0bb",
+  "individual_module_logs": {
+    "tests/step4-e10-fourbranches-build.log": "081a5177808d59c3b386b377a2fcfadddcceacd26d2bc6a04e5dd10b203ef0bb"
+  },
+  "lakefile_sha256": "baa664e24efdc3bccc131fd48f745813ceee927a881aac9728f6dda5c313f7a0",
+  "modules": [
+    {
+      "module": "ActualTraceRequestsE10.Basic",
+      "source_sha256": "9b22680a53400a3c969a38645e6df959ff771d6095e2dd6ff51a851296b280d5",
+      "olean_sha256": "a0496066bc3af70117acb03910b3ea6a3d5c1b0cf38f98968e7b58b3c1d9f137",
+      "trace_sha256": "5d635c6fb4afcebdd89e187b6eb22bb5b7d94a44c21a994e5f3a5deb62eab77d"
+    },
+    {
+      "module": "ActualTraceRequestsE10.Examples",
+      "source_sha256": "cf4db8bfc1ec0691fd35e8112e55f4e5c5b1a0e5953fd649e99c3338a204feee",
+      "olean_sha256": "a8bee15a3e0961d4ed379e4a96a1926e59e063b44fb2d48045a75ba5e8bfb019",
+      "trace_sha256": "97404fd5aca4b2a7361ac457396df817b322bcd85342c03fc7f7fb604771156e"
+    },
+    {
+      "module": "ActualTraceRequestsE10.Tactic",
+      "source_sha256": "aafa23e9dc61ac2ae38d3d4973358acaf232deb04b96d12ad047f441aa52c5b2",
+      "olean_sha256": "058fefaa91190d22320f2f981a3c667a220549aa1b4ab0c73016cf19aa764e9d",
+      "trace_sha256": "f29fabd95336ba26d72340221642848ef0c8f736cbe59ca42452318ad6f1be26"
+    },
+    {
+      "module": "Fact713Row3143Continuation.ActualRule",
+      "source_sha256": "d039e615659d14c0ab4e69edb16b533a63ebf93320de5413acae2200ce40c9cf",
+      "olean_sha256": "301072357150110ca284097e1bc6d7a8d3aecad203756daad5f46a836619ea3e",
+      "trace_sha256": "92524a8ddb1700c1eca2c43ac49e1d8fed3d10c90068dbff26f284d112b3cfb6"
+    },
+    {
+      "module": "Fact713Row3143Continuation.Branches",
+      "source_sha256": "05bdd2c7143efe4cd22c4051622bd651ee87ac8311afe3d3f582b12c5d44692d",
+      "olean_sha256": "e24549bf97621f3a3885ca1b9b28a7015457816ef5f75478733fcdc0e8d42f7e",
+      "trace_sha256": "e278a3f54f12c65a59212249c024a7bc10a3607396733e5b03ee99ba6abf8f7d"
+    },
+    {
+      "module": "Fact713Row3143Continuation.Constructed",
+      "source_sha256": "b965c823b26e940ede8e0aaa59f719b64ef40f3c7a9a0b4c4147cd95b032219e",
+      "olean_sha256": "51cc527045b776edebb09e84abcdba56b650164334494db1c30210753f58d0d4",
+      "trace_sha256": "86db8d1e2680101899264e8e540bed7a5386ed01fad613d5330ee352a3695cf0"
+    },
+    {
+      "module": "Fact713Row3143Continuation.Data",
+      "source_sha256": "a9069eb740a43f3f861cc5f966ce08901e525f9000932b02447eee7537da206e",
+      "olean_sha256": "349156f97ec8044296288bc64b062309d15c3dc52eba1523fc87ff06e0cb83cb",
+      "trace_sha256": "99e41ddf16ed8ec30cdc43fcd691049cda100751c8bf077720de588a79780751"
+    },
+    {
+      "module": "Fact713Row3143Continuation.Request",
+      "source_sha256": "fcb8596e2616117747736851905996603581795c9ae25f161b9e9f97c2132536",
+      "olean_sha256": "77292a5243ea837adc9254967e2cb255a234e53acde4a6886bbc55b910b1a9a1",
+      "trace_sha256": "75742065df3376d46f5782c60c32f90c6500afbf2258c8dbf5663e98ff8ad8d5"
+    },
+    {
+      "module": "Fact713Row3143Continuation.ResidualCoherence",
+      "source_sha256": "7a1d046d3d2897e6f3c4629be0ddf918de9faddeb3f38a17858fa575f1d7e690",
+      "olean_sha256": "411cc58f81c07c7bd102a7914a4e894683af19408a87ad37312e13aac9d2c0de",
+      "trace_sha256": "5cdfe2f9b61faa0670facceeb9205ebf1c9c5d2d4b238b8f65dd44cf38a050ec"
+    },
+    {
+      "module": "Fact713Row3143Continuation.ResidualCross",
+      "source_sha256": "53e5cc5aae7eebd11e6fd5a11fb8f4a4aaac201322b64476cf4b40f213015d07",
+      "olean_sha256": "cf9867c37df868caef382e4e029f74eae2b472cf37b279db00e7e8a8aa5190e6",
+      "trace_sha256": "b119459fd951b53fac1ab0216f9f07960f864fdfdc97e5c4ea6eed6d0dd877bf"
+    },
+    {
+      "module": "Fact713Row3143Continuation.ResidualExtra",
+      "source_sha256": "fa3704346570997c33b5328e5a8aa76b6a59a55805a6b885768c26cc68ed7b9f",
+      "olean_sha256": "317b103937756407d6a1d38e7e2b702a8c5dc117e8ad41ac522e0f0de53e4cd3",
+      "trace_sha256": "6e52d8a07592bc74adb62dbc6682be26d18ddda0d099db0f767b89483c621b25"
+    },
+    {
+      "module": "Fact713Row3143Continuation.ZeroCoherence",
+      "source_sha256": "e033e2689b50d67302dc54c9681ec49779d4a891656ef163c1523d6f50752408",
+      "olean_sha256": "e5314bd2dd0c7c1aeb5f0dca680f5244de0e1e57720f1c7952d64d7772afbb7c",
+      "trace_sha256": "3a5a8cb39b3383c830294468a74a5b6181dfd45dd40cf7aabae75bdc3bb2ddcb"
+    },
+    {
+      "module": "Fact713Row3143Continuation.ZeroCross",
+      "source_sha256": "9a9ee276ef8e0b9ac1c27a2c01d91e94345924647a0e770f529ffba828209aa6",
+      "olean_sha256": "332b7abc9a634359d13eb6086d09225208f6f0801fabb951a83ecd55166808d3",
+      "trace_sha256": "7a17213d09e0d948b5a743552a46f20e3d8a12dcb5e5841f2c84ae123ca4e334"
+    },
+    {
+      "module": "Fact713Row3143Continuation.ZeroExtra",
+      "source_sha256": "72e9b7799418f6038cd5c69672215286167248933430df5d6c888f66c94efa3a",
+      "olean_sha256": "fef5c766c7dd9fa37350d7958f8a5eb49898b4dddbc7424c396fe127450d7aa8",
+      "trace_sha256": "2d354874286b11793e7f8276cbd841d74cc54555fb3b05f2f316b5cf8b5ca9a4"
+    },
+    {
+      "module": "Row3136FamilyBranches.Actual",
+      "source_sha256": "c102cf9b4f471a0f116217e9cdd228ff083d87ec0d7594571069e761080f9b11",
+      "olean_sha256": "81f5f7749f1fe3d87ba78abad692f499367826e745389591b2c16ce7885e48e7",
+      "trace_sha256": "21cca09a145bf7766105c0ee887d8b6739314a5ceccec0c8ac91aef03ce66cbe"
+    },
+    {
+      "module": "Row3136FamilyBranches.Branches",
+      "source_sha256": "349993521f4d231a8e9ed9a8f8e04f5206e7c5112856d2779e3f493ef894e366",
+      "olean_sha256": "5c175f5f8157cf1ddb27f51286bdfafad9cb3c865c883c330047623ef1f0d926",
+      "trace_sha256": "55c0ff7c9cf48ffafdaffcf39dc9f32a401e5d6580eacb491369144dfac3e6fb"
+    },
+    {
+      "module": "Row3136FamilyBranches.CoordinateBridge",
+      "source_sha256": "821409dca9c35db3075b7c692b616f5c375da2ee66476f3881afc0fcc8f7a898",
+      "olean_sha256": "57092f626829c7e65fd3dadbcb991ca14dd2a9eaa2e1a95c9961c045e71df378",
+      "trace_sha256": "8c0952a4bc8114758a95627aab1561d6ef33d04910ef0555766ce6235fa955eb"
+    },
+    {
+      "module": "Row3136FamilyBranches.Data",
+      "source_sha256": "d8a57c5fe2923c62d33d9bd78ef615e556a93c825f0effe22a4a1b423597744b",
+      "olean_sha256": "81ce4764e74830d4e18532af290a5f31f2320401aaabe3ff74d0e706c82f3892",
+      "trace_sha256": "1bab6a51eb3b66242bfb4b9c1e943897cbfa181da6a6e9f62e6ec819a9f93883"
+    },
+    {
+      "module": "Row3136FamilyBranches.ResidualA0Cross",
+      "source_sha256": "89d5445967dccf7f9c833847dac57464668054abd227dade6d200ea75b66bfc9",
+      "olean_sha256": "1f40890271c3a3073f1f93d0beb28e72b7b4d39b83dbe2b8379c1fec4ae4f300",
+      "trace_sha256": "46563355560082a1df2d80c3c0e88935d9dafaa40707bd81826f95132436adff"
+    },
+    {
+      "module": "Row3136FamilyBranches.ResidualA0Extra",
+      "source_sha256": "5971341688873ebd989eadb358951b1ed14d20ed15200abd8edb1b7fc3cfc801",
+      "olean_sha256": "3b98d72866e736fbe70bbb6392d236b4818289f3520f35101711fc9221f1d733",
+      "trace_sha256": "bf922b7ced6fcdf762fb3205da4678eb01bbd34ae3f6acf6bd0d882e66403f61"
+    },
+    {
+      "module": "Row3136FamilyBranches.ResidualA1Cross",
+      "source_sha256": "d98d04af5b4af5a8f9a7521f7eb2851c490aacffcc6f83c4bdc769bf56ae5b92",
+      "olean_sha256": "317e1dee04afeb4b7fa355f43502023d2e3036c104cbc6711183eac75f2caaff",
+      "trace_sha256": "909fac00199d0ef35422b758d4eef9524a56367491ac6674028a63b2f13c082d"
+    },
+    {
+      "module": "Row3136FamilyBranches.ResidualA1Extra",
+      "source_sha256": "4d21673403434119b6649e3ee7120cba7a133028fcde509aca59d25d4116f8d5",
+      "olean_sha256": "1fcf8028f618b8d1463e01fca3d7f03a76c36d3a87b3303ee8db7e77e9037732",
+      "trace_sha256": "eaa78cc529d137a61914b33e3e2d76d510db9262f2c395931bcf6849a0951df6"
+    },
+    {
+      "module": "Row3136FamilyBranches.ZeroA0Cross",
+      "source_sha256": "d20366844057301e544d7813099c385fb228ae9e8c22d38a224bd601ea971944",
+      "olean_sha256": "d71397d91ddda310503c15d29181eeba44902361de9e4cb09f4bc6f962badea0",
+      "trace_sha256": "b27c0cc56776654407c50aea7c5f1a53a467aeff62f768471aa658ae60005ea9"
+    },
+    {
+      "module": "Row3136FamilyBranches.ZeroA0Extra",
+      "source_sha256": "74a2c3d0812e593fa8bde6af72b53c5aabe508995540c0da675856adbf864814",
+      "olean_sha256": "c81275079d31d44877cf58bcf382c628e5935990141c04e466bcffaba06aaf78",
+      "trace_sha256": "5a555ae2789523b9ae39909bbe8f353fefd703f7b93fd5e85a94b128c026ea60"
+    },
+    {
+      "module": "Row3136FamilyBranches.ZeroA1Cross",
+      "source_sha256": "b568265fcdde1223f3818b63478b4bdabadf4079114ef4ab4dd9dde0fb5e31d7",
+      "olean_sha256": "490577d7271faf6213b92cdad458e7fb586ec4b73731a7113eb966a9e1f1d661",
+      "trace_sha256": "65ce4ed84ca71d8bef09f52b93f7c5a7bd5c4579143d1ffa9a67a494d6a28414"
+    },
+    {
+      "module": "Row3136FamilyBranches.ZeroA1Extra",
+      "source_sha256": "c02026a41a7b612eb79f820216416d55afeee515509f0f63181f3feeb635c537",
+      "olean_sha256": "8ed404a86835b3473cf2c033c7dd09190807b2a2ecb8ae5ac63144d516f79816",
+      "trace_sha256": "824347204ccfa4a5136af8ee0424da65808b856b41ef2c9447d75cc2705a2842"
+    }
+  ]
+}

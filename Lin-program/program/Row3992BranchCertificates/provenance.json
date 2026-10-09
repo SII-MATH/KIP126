@@ -1,0 +1,99 @@
+{
+  "additional_premises": [
+    "Row3564LeibnizDetector x493 prefix and full Leibniz semantics",
+    "row3496 d4 incoming-boundary prefix gives zero incoming column",
+    "stored row3749 / incoming3992 d4 value semantics: this is the event value being verified, not independently derived"
+  ],
+  "branches": [
+    "000",
+    "001",
+    "010",
+    "011",
+    "100",
+    "101",
+    "110",
+    "111"
+  ],
+  "conditional_uses": [
+    {
+      "block": "S0:21,147:d3",
+      "kind": "conditional_h1_x493_leibniz",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        3564,
+        "1",
+        null,
+        9000
+      ],
+      "source": [
+        18,
+        145
+      ],
+      "target_predecessor": "S0:21,147:d2"
+    }
+  ],
+  "distinct_events": 1,
+  "event": 3992,
+  "family_entries_each": 5,
+  "input_sha256": {
+    "AggregateLeibniz3564Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "AggregateLeibniz3564Conditional/source.json": "8896061fd1fa76f4fb6109f4920c5d0661e8b4da945767ed89f884182fbbc60c",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "prior_steps_each": 4,
+  "raw_rows": {
+    "3395": [
+      3395,
+      17,
+      143,
+      "0",
+      null,
+      9992
+    ],
+    "3496": [
+      3496,
+      17,
+      144,
+      "0",
+      "3",
+      4
+    ],
+    "3564": [
+      3564,
+      18,
+      145,
+      "1",
+      null,
+      9000
+    ],
+    "3749": [
+      3749,
+      21,
+      147,
+      "1",
+      "3",
+      9996
+    ],
+    "3750": [
+      3750,
+      21,
+      147,
+      "0",
+      null,
+      9996
+    ],
+    "3992": [
+      3992,
+      25,
+      150,
+      "3",
+      "1",
+      4
+    ]
+  },
+  "scope": "Eight separate finite families; no extension of accepted95 and no independent derivation of the stored3992 differential. Target d4 comparison and full Adams realization are not supplied.",
+  "source_basis_id": 3749,
+  "target_basis_id": 3995,
+  "unknown": "The entire row3750 d4 column ranges over all eight vectors. No candidate is selected or assumed to vanish."
+}

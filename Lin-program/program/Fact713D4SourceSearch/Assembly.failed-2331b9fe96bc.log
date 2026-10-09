@@ -1,0 +1,73 @@
+Fact713D4SourceSearch/Assembly.lean:40:6: error: Tactic `rewrite` failed: motive is not type correct:
+  fun _a =>
+    F.imageTarget.equivalence ((detector.differential 3 Incoming.sourceDegree).toFun (x ⋯)) =
+      eval (Naturality.incomingUnknown _a) (F.imageSource.equivalence (x ⋯))
+Error: Application type mismatch: The argument
+  F
+has type
+  Incoming.Forcing sphere detector w
+but is expected to have type
+  Incoming.Forcing sphere detector _a
+in the application
+  F.imageTarget
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+sphere detector : AdamsSpectralSequence
+w : Vec 4
+F : Incoming.Forcing sphere detector w
+u v : Bool
+x : ActualAdamsIncomingBridge.Source detector 3 Actual.targetDegree
+shape :
+  F.imageTarget.equivalence ((detector.differential 3 Incoming.sourceDegree).toFun (x ⋯)) =
+    eval (Naturality.incomingUnknown w) (F.imageSource.equivalence (x ⋯))
+⊢ F.imageTarget.equivalence (ActualAdamsIncomingBridge.differential detector 3 Actual.targetDegree x) =
+    eval (matrixOf (targetD u v).m (targetD u v).n (targetD u v).incoming) (incomingCoordinates F x)
+Fact713D4SourceSearch/Assembly.lean:65:9: error: unexpected token ':'; expected 'lemma'
+Fact713D4SourceSearch/Assembly.lean:83:21: error(lean.invalidField): Invalid field `sphereMeaning`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.sphereMeaning`, so it is not possible to project the field `sphereMeaning` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:84:41: error(lean.invalidField): Invalid field `partial`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.partial`, so it is not possible to project the field `partial` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:85:19: error(lean.invalidField): Invalid field `spherePages`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.spherePages`, so it is not possible to project the field `spherePages` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:86:19: error(lean.invalidField): Invalid field `detectorPages`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.detectorPages`, so it is not possible to project the field `detectorPages` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:89:18: error(lean.invalidField): Invalid field `sphereZero`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.sphereZero`, so it is not possible to project the field `sphereZero` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:90:18: error(lean.invalidField): Invalid field `detectorZero`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.detectorZero`, so it is not possible to project the field `detectorZero` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:95:18: error(lean.invalidField): Invalid field `currentMap`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.currentMap`, so it is not possible to project the field `currentMap` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:96:23: error(lean.invalidField): Invalid field `currentEquation`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.currentEquation`, so it is not possible to project the field `currentEquation` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:97:15: error(lean.invalidField): Invalid field `nextMap`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.nextMap`, so it is not possible to project the field `nextMap` from an expression
+  U
+of type
+  Upper sphere detector u v w F target
+Fact713D4SourceSearch/Assembly.lean:129:12: error(lean.invalidField): Invalid field `nextMap`: The environment does not contain `Fact713D4SourceSearch.Assembly.Upper.nextMap`, so it is not possible to project the field `nextMap` from an expression
+  upper
+of type
+  Upper sphere detector u v w F target
+'Fact713D4SourceSearch.Assembly.incomingCoordinates_surjective' depends on axioms: [propext, Quot.sound]
+'Fact713D4SourceSearch.Assembly.incomingEquation' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713D4SourceSearch.Assembly.targetMeaning' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713D4SourceSearch.Assembly.Upper.input' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713D4SourceSearch.Assembly.actual_d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

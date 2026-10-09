@@ -1,0 +1,41 @@
+{
+  "status": "byte_identical_regeneration",
+  "files": {
+    "Data.lean": "78dd5f8658ea7f6a36a93d84a832d3bd6b66498d530fc4bf5228550b416f1705",
+    "Semantics.lean": "59ede43c401cb4398cdd40683bb6095de6436839fc894b4a028da5aa1fa1f50d",
+    "provenance.json": "3f94d7f35eae6852d39beda7f051a43c6e56c46b55b60f540df5a63a4f1e61b6",
+    "d0.json": "9dc3a5feadbef49e1951a18371a9fe924c1e2b1047d035dc52a262e9aeb010ac",
+    "right.json": "050a3abcf00918a352666022f7c95273a11e785e4fe9b59c99fd1a69953f216f",
+    "leftTarget.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "rightTarget.json": "7d4cadc86c629be774542e466b0f252c0eb6ca6706c5b7a3c4d40cd6f83981ab",
+    "source.json": "a1894c02c25ce06ece78d6433b68094a6ded98a2fe0c7887ca44a2edb22aa52a",
+    "target.json": "b2f08903c3e2f6406b8014e8071389bd5d010b15f7f0d11949bff361f3116f12",
+    "leftD3Target.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "rightD3Target.json": "009d91f35e6169a4f984812a73e9c607e2082eee9e215b1a50049d5192f70aa6",
+    "detectorTarget.json": "6da8ecc714a976205e288d326427a5c68f39aca0ae14fe951e645d96f4b9034b",
+    "detectorIncoming.json": "84bf1ccbe438da04e190754c331137c8dffcaab713f4d1472ca5d4e18a00b7c4",
+    "detectorOutgoing.json": "80ae067c62e47130df025991044e41d3b99929e128381454a9217fe0b23823b0",
+    "detectorTargetIncoming.json": "7a5ec4fc1d89a00a196ebf96a4cc81910682fa711a7c80ca062e4321805382b5",
+    "detectorTargetOutgoing.json": "1354fa7601401dfc4a550a0f769d0892ffc83c497a9de2e96c0f0e9fded5111a",
+    "sourceProduct.json": "221f7a0df79361349ff1b89b91630ace03c3ca804c626edff7029638342b859a",
+    "rightProduct.json": "cf4f0b8bd339af5c4e0f0e65224c5971855007ef290d8adaa8758cbdd761f7c2",
+    "sourceProduct0.json": "277388160fbc624fb0edad6192d76e96ebd8149bec8c3aef555b39737f17995a",
+    "rightProduct0.json": "5776b7b7bafabd682850ec4a22f2a6795f026507bd2f27635e6daa9076e75ae4",
+    "rightProduct1.json": "0de13df3f9211d6ae9bed6c4243a53daf9c71aa3b325c120b6f4c3fc39b64f92",
+    "rightProduct2.json": "bcf215e322749191a7c64bb4ba4b70acb2293724a83b1af6e4973fa37ca95f0d"
+  },
+  "runs": [
+    {
+      "script": "generate.py",
+      "exit_code": 0,
+      "stdout": "13 complete comparisons; full d0 product columns; 2 quotient product certificates\nsourceProduct 0 [0] []\nrightProduct 0 [0] []\nrightProduct 1 [] [{'rowid': 11315, 'raw': '8,1,284,1;7,1,291,1', 'degree': [19, 141]}, {'rowid': 11316, 'raw': '7,1,291,1;0,3,437,1', 'degree': [19, 141]}, {'rowid': 12102, 'raw': '0,5,437,1', 'degree': [21, 143]}]\nrightProduct 2 [1] []\n",
+      "stderr": ""
+    },
+    {
+      "script": "generate_semantics.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

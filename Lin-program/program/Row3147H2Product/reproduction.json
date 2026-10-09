@@ -1,0 +1,28 @@
+{
+  "status": "byte_identical",
+  "files": 12,
+  "sha256": {
+    "Data.lean": "f370442752b32b90fdbdd9b9eeaaa96c48d2ad741d099e0041decb81a1d5aea9",
+    "product.batch": "e5d8961bd1f1fc9772c78de04fa7e1404672868797ab33d2e5b4da26fe05a5ab",
+    "source.json": "8d1900e24ef205c4629737d1154ab0f8e4890dbee00a87edf818f27964740bac",
+    "wire/column0.json": "889077146303d5c693cb838d3ab3117346bbca99d565531696d8c27a40f03015",
+    "wire/column1.json": "3eaaea0bdf34f599940fd909575335676e004d63abe8d1b60e72ffd324d863c4",
+    "wire/factor.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "wire/factorTarget.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "wire/product.json": "d7b0a98cd1f29f76f4e2db914419a9171448ba5797ef8d007cfe845a215f5c19",
+    "wire/productTensor.json": "c937ee6bcc1f0e21dfd162eb98654eb64e99af350d4adeea9ed19a8e9eae62d2",
+    "wire/source.json": "2747a0b2889e685fd39be1adc779755a01d11c1872f590908f29aee1ae52d00c",
+    "wire/source3.json": "76b2b833ea412b5de2c30995cd7f0147ad3369a1efd175cf643a7a6230946a08",
+    "wire/target.json": "58e3d280a5f0a6ede0fc4e7ee7cdccdfcb5d7b286aae279168dce82bebe29d88"
+  },
+  "commands": [
+    {
+      "script": "generate.py",
+      "observed_exit_code": 0
+    },
+    {
+      "script": "audit.py",
+      "observed_exit_code": 0
+    }
+  ]
+}

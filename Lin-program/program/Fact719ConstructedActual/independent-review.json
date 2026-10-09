@@ -1,0 +1,35 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "axiom_reports": {
+    "Basic": 8,
+    "Trace": 9,
+    "Tactic": 4
+  },
+  "complete_quotient_pairs": 16,
+  "fixed_bidegree": [
+    8,
+    130
+  ],
+  "raw_id": 2433,
+  "unknown_d6_preserved": true,
+  "reviewed_meanings": [
+    "Only initial tracked coordinates supplied",
+    "Full incoming source equivalence and differential equation at every stage",
+    "Faithful full outgoing coordinates and differential equation at every stage",
+    "Next coordinates and additivity derived through actual homology quotient",
+    "Exact supplied input identified by injective initial coordinates",
+    "Tactic calls soundness theorem with typed mathematical prefix and naming proof"
+  ],
+  "unproved": [
+    "Sphere initial E2 and neighboring differential interpretations",
+    "Lemma7.20 multiplicative extension",
+    "Any d6 value"
+  ],
+  "source_sha256": {
+    "Fact719ConstructedActual/Basic.lean": "531c436621f5434574c7d94c51a898fe20b537f087bae0798913830268fdb2cf",
+    "Fact719ConstructedActual/Trace.lean": "dfc220b67a96603b318bb3da91ec1ef8a60d4b195116de9869c8d6978fa8e107",
+    "Fact719ConstructedActual/Tactic.lean": "176c6177f5ff4b6a4db40b98c350bc63b63c86c1b38b06bc655a0b8306b47948",
+    "Fact719TrajectoryCertificates/source.json": "d21bf954adbf67f212548c8cb8e0eba4ea9a45036e99312a4f2813f785c9a68a"
+  }
+}
