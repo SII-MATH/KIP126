@@ -923,6 +923,53 @@ mathematical objects and conditions.
   follows from these fixed quotient identities alone.
 \end{proof}
 
+\begin{proposition}[Support compression preserves the complete native module target]
+  \label{prop:lin-native-module-support-compression}
+  \lean{KIP126.LinE2.NativeModuleCertificates.Support.restrict,KIP126.LinE2.NativeModuleCertificates.Support.embed,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_restrict,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_embed,KIP126.LinE2.NativeModuleCertificates.Support.check_sound_embed_projection,KIP126.LinE2.NativeModuleCertificates.Support.check_sound_restrict_projection}
+  \uses{def:lin-native-module-presentations,lem:lin-native-module-products}
+  \leanok
+  For arbitrary finite ranks $k,n$, an injection
+  $e:\operatorname{Fin}(k)\hookrightarrow\operatorname{Fin}(n)$ transports
+  expressions supported on its image without changing their evaluation in
+  any module over the original sphere algebra. Restriction requires that
+  every omitted coordinate of both expressions and every certificate
+  relation be empty. Extension assigns empty polynomials outside the image.
+  The existing module-expression checker may therefore run on $k$ coordinates
+  and conclude equality in the original target module on all $n$ generators.
+  No smaller quotient presentation is substituted for the target.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Reindex the finite sum along the injection and show the complementary
+  terms vanish. Apply the existing checker soundness theorem through the
+  same sphere quotient projection. This introduces neither a new checker
+  nor a characteristic or nontriviality assumption on the quotient.
+\end{proof}
+
+\begin{lemma}[A fixed CW map relation in the complete Ceta quotient]
+  \label{lem:lin-cw-map-maximal-support-relation}
+  \lean{KIP126.LinModule.CWMaxSupport.checker,KIP126.LinModule.CWMaxSupport.full_887_equality,KIP126.LinModule.CWMaxSupport.source_relation_mem,KIP126.LinModule.CWMaxSupport.row67028_image_zero}
+  \uses{prop:lin-native-module-support-compression,def:lin-native-complete-map-graphs}
+  \leanok
+  The original CW relation at SQLite row 67028 is
+  \texttt{2,1,766;79,1,196;90,1,187}, of bidegree $(29,199)$.
+  Evaluation under the complete recorded CW-to-Ceta generator graph
+  is zero in the full 887-generator Ceta quotient. Its certificate uses
+  29 target coordinates, 24 occurrences of original Ceta relations, and
+  five original sphere relations.
+  Native empty image strings are explicitly interpreted as zero.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Check the unchanged finite-expression verifier on the 29-coordinate
+  support, prove each target relation from original-table membership,
+  and embed the result in the full Ceta module. The three source-generator
+  images are checked against the complete graph literals, and the source
+  relation is checked against the complete CW relation table. This certifies
+  this one relation image. It does not certify every source relation,
+  quotient descent of the whole graph, grading, or an actual spectrum map.
+\end{proof}
+
 \begin{lemma}[All native target representatives for the CW branch]
   \label{lem:lin-cw-native-d2-quotient}
   \lean{KIP126.LinProgram.BranchD2Coordinates.incoming_decoded,KIP126.LinProgram.BranchD2Coordinates.outgoing_decoded,KIP126.LinProgram.BranchD2Coordinates.kernel_iff,KIP126.LinProgram.BranchD2Coordinates.image_iff,KIP126.LinProgram.BranchD2Coordinates.image_le_kernel,KIP126.LinProgram.BranchD2Coordinates.representatives_decoded,KIP126.LinProgram.BranchD2Coordinates.kernel_mod_image_representatives}

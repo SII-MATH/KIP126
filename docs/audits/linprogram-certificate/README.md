@@ -461,6 +461,26 @@ lake build KIP126.Checks.AdamsE2.LinModuleMapGrading
 
 本批正式定向构建1704 jobs、根库4922 jobs均通过；新增声明及整个887项次数证书的传递公理检查仅含标准逻辑三项，无实际模型、Main、Interface或固定StageInput依赖。来源清单26 sources / 119 artifacts、来源/接口声明的Lean核验、18项布局测试、15项Blueprint测试及活动依赖解析通过；Blueprint web、全部声明链接检查和diff检查通过。固定原生输入、文献来源、已有bindings和实际认证状态均未改变。
 
+## 完整目标中的 CW 原生关系证书
+
+`NativeModuleCertificates.Support.evaluate_restrict` 与 `evaluate_embed` 对任意有限秩和任意单射证明有限支撑重排保持求值。限制方向显式要求输入、输出和每条证书关系的所有省略坐标均为空；`check_sound_embed_projection` 复用既有模块表达式检查器，将小支撑上的检查结果解释到原完整目标中。它没有替换商模块或改变系数环。
+
+`CWMaxSupport.row67028_image_zero` 闭合原 CW SQLite row 67028 的原生目标：
+
+```text
+Presentation.evaluateRelation cwImages "2,1,766;79,1,196;90,1,187" = 0
+```
+
+该行原次数为 `(29,199)`。`cwImages` 直接读取完整844项官方 CW→Ceta 图，空字符串明确为零；三个实际图项、原始行 ID/次数和全部所用关系的原表成员性均由 Lean 核验。证书使用29个目标坐标、24次原 Ceta 关系和5条原球面关系，最终等式仍在原887生成元、76569关系的完整 Ceta 商中，系数仍为原2914生成元的球面商。
+
+```sh
+lake build KIP126.Checks.AdamsE2.LinCWMapSupport
+```
+
+这是单条原生关系的闭合证明，没有关系消失假设。全69263条 CW 关系、整张图的商下降、次数及实际谱映射比较仍需各自落实；本证书不改变实际认证状态。
+
+正式定向构建1701 jobs、包含该证书的根库构建4925 jobs均通过。17项声明的传递公理审计仅含 `propext`、`Classical.choice`、`Quot.sound`；检查同时核实证明继续调用原检查器及完整目标适配引理。来源清单26 sources / 119 artifacts、来源/接口字段的Lean核验、18项布局测试、15项Blueprint测试和活动依赖解析通过；Blueprint web、全部声明链接与diff检查通过。原文献、bindings、固定模型及认证状态保持原有含义。
+
 ## 后续依赖与实际接入边界
 
 | 目标 | 精确剩余义务 | 可复用模块 |
