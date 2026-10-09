@@ -127,6 +127,49 @@ I/J/K、这两条重编号规则以及 `desuspendPage_differential` 均通过独
 lake build KIP126.Checks.ClassicalAdams.LinSuspensionReplay
 ```
 
+## 种子 5487 输入中的两条闭合代数等式
+
+复用现有提取审计 `docs/audits/issue152/seed5487-next.json`，从同一 96 生成元闭包选取实际标识 `0,524288,524289,1048577,1572866`。完整闭包语义 SHA256 为 `088958541d91f6a987c825ab94a3266001cf94e6eccdf19757ac9b39d92c69fa`。原数据库的 `d、f` 字段与提取器计算的辅助见证 `d_f、f_d、associator` 明确区分；辅助见证可以被证书验证，其存在不等于原生算法正确性证明。
+
+`KIP126.Computation.Secondary.Seed5487.row1048577_d_squared` 证明实际行 `(s,v,t)=(2,1,4)` 的全部两条路径相消。`row1572866_d_f` 证明行 `(3,2,10)` 的原生 `f` 经原生第一微分后，恰等于辅助见证中的三项表达式。这两条函数等式覆盖所有目标生成元和所有原始八坐标 Milnor 单项式，不限制次数。缺失中间像返回 `none`，不能被当成零列。
+
+乘法语义是已有显式 Milnor 余乘法的对偶；直接复用远程导入的 `checkAll_sound` 与 `stable_product`。小秩的证书通过次数支撑定理覆盖窗口外系数，再扩到原始秩八。Lean 编译及公理审计通过，依赖仅标准逻辑三项；删除非零路径、缺少中间像、篡改输出的三项负例均通过。
+
+这些结果未证明整个 96 行闭包的全部等式、associator 公式、分解正合性/极小性或到同一实际球面 `d₂` 的比较。日志 5487 的实际微分仍未认证。
+
+从固定原程序重建并重放（数据库带时间戳，重建校验完整语义而非要求重建数据库字节相同）：
+
+```sh
+replay_dir=$(mktemp -d /tmp/kip126-secondary.XXXXXX)
+python3 - "$replay_dir" <<'PY_REPLAY'
+import hashlib, sys, zipfile
+from pathlib import Path
+archive = Path("Source/LWXMachine/source-code.zip")
+if hashlib.sha256(archive.read_bytes()).hexdigest() != "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15":
+    raise SystemExit("wrong source archive")
+zipfile.ZipFile(archive).extractall(sys.argv[1])
+PY_REPLAY
+cmake -S "$replay_dir/SSeqCpp-master" -B "$replay_dir/build" -DCMAKE_BUILD_TYPE=Release -DFMT_TEST=OFF -DBUILD_TESTING=OFF
+cmake --build "$replay_dir/build" --target Adams -j 4
+mkdir "$replay_dir/run"
+(cd "$replay_dir/run" && "$replay_dir/build/bin/Adams" res S0 45 && "$replay_dir/build/bin/Adams" d2 S0 45)
+python3 KIP126/LinProgram/Translate/extract-secondary-witness.py --resolution "$replay_dir/run/S0_Adams_res.db" --secondary "$replay_dir/run/S0_Adams_d2.db" --output "$replay_dir/witness.json"
+python3 KIP126/LinProgram/Translate/generate-secondary-seed5487.py --check --witness "$replay_dir/witness.json"
+lake build +KIP126.Checks.ClassicalAdams.LinSecondary5487:olean
+```
+
+已使用固定原程序在新目录实际重跑，完整 96 行语义及种子端点相同。单独运行生成器 `--check` 只核查固定选定内容；核验完整闭包必须传入 `--witness`。现有提取审计是重建记录；唯一 canonical 来源清单仍是 `docs/external-inputs.json`。
+
+## 实际单侧长层乘积的零微分规则
+
+`adamsSphereLongLayerStageTriangleIso_connecting_eq_zero` 和 `adamsSphereLongLayerStagePairingIso_connecting_eq_zero` 证明真实 `Q_s^r ⊗ T_t → Q_{s+t}^r` 配对保持第一个输入的零连接同态条件。`adamsDifferential_longLayerStagePairing_eq_zero` 随后给出该实际页代表元的零 `d_r`，保留全部 `r ≥ 1、s、t、n、m`。公理及导入边界审计通过，只有标准逻辑公理。与 secondary 证书的第三批联合正式构建通过（1749 jobs），三个新Blueprint节点的13项声明链接核验及 web 渲染通过。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.LinReplayStagePairing
+```
+
+双侧配对仍缺实际 `y : Q_s^r ⊗ Q_t^r → T_{s+t+r}[1]`，使其沿塔映射的悬移投影等于指定的 `adamsSphereLongLayerProductBoundary`；准确条件为 `adamsSphereLongLayerProduct_exists_iff_boundaryLift` 的右侧。现有每个长度的三角补全由独立选择构造，跨长度投影相容不能自动推出。即使这一点解决，实际 `BoundaryCompatible` 和两项 `RelativeBoundaryFormula` 仍需分别证明。因此单侧规则尚不完成 152097 的 E4 Leibniz 诊断。
+
 ## 后续依赖与实际接入边界
 
 | 目标 | 精确剩余义务 | 可复用模块 |
@@ -136,7 +179,7 @@ lake build KIP126.Checks.ClassicalAdams.LinSuspensionReplay
 | 目标非 B3 | 对 `(9,47)` 的 `x0³*x36`，证明同一比较下 `¬ IsBoundaryBy sphereAdamsData 3 (9,47) z`；完整早期差分/边界空间及相关 d2 种子都必须证明 | `State/Proofs` 的实际商页零判据 |
 | 来源到达 E4 | 对 `(4,42)[1]` 给出实际 `ReachesPage`；先前 C2h6/Ctheta5 路径的对象、映射和坐标不能由日志存在推出 | 既有实际 tower / top-cell 比较 |
 | 候选覆盖 | 对准确 context/window 构造 `CandidateCoverage`，排除全部其他候选；保留 trial 数量不是覆盖证明 | 既有 `CandidateElimination.sound` / `CandidateExhaustion.sound` |
-| secondary d2 种子 5487 | 已提取的有限链见证需要 Lean checker；还需分解的正合/极小性和实际 secondary operation 与同一球面 d2 的比较 | `Translate/extract-secondary-witness.py` 与 issue152 原有审计 |
+| secondary d2 种子 5487 | 已闭合选中行的 d² 与 d∘f 等式；整个96行、associator公式、分解正合/极小性与实际球面d2比较仍待证 | `Translate/extract-secondary-witness.py` 与 issue152 原有审计 |
 | 245131 实际认证 | 实例化上述来源及四条坐标比较；来源原始数据已补，双降悬通用定理已闭合；仍需实际比较 | `Naturality` |
 | 消费者迁移 | 只有实际已经供给的结果才接到同一 `literature`、`bindings.presentation`、`standardRouteModel`；不读取待构造的 `Interface.Solution.challenge2` 来制造 producer | 现有 `ComputationResults`/Main 消费层 |
 
@@ -167,7 +210,7 @@ leanblueprint web
 git diff --check
 ```
 
-来源清单（26 sources/116 artifacts）、来源审计22项、外部输入51项、边界布局18项、Blueprint frontier15项和活动依赖解析已通过。原有 E2、staircase、proofs、route 重建检查通过。统一六项 Lean 构建已通过（3504 jobs）；自然性条件封装与导入/公理审计通过；来源声明/module/field 的 Lean 校验通过；Blueprint web 渲染通过（固定 0.0.20 环境，仅原有 `relax` renderer 警告）。原生合同12项测试通过。第二批五目标正式构建通过（3498 jobs），包括固定原生坐标、双降悬、固定坐标自然性入口和同一presentation乘法运输。来源/字段静态核验与Blueprint渲染已重放；来源/字段Lean核验本轮重放及整个根库的完整声明检查都仍等待原有大型 `Main/Solution/Computation/Route.lean` 编译完成，尚不报告为通过。
+来源清单（26 sources/117 artifacts）、来源审计22项、外部输入51项、边界布局18项、Blueprint frontier15项和活动依赖解析已通过。原有 E2、staircase、proofs、route 重建检查通过。统一六项 Lean 构建已通过（3504 jobs）；自然性条件封装与导入/公理审计通过；来源声明/module/field 的 Lean 校验通过；Blueprint web 渲染通过（固定 0.0.20 环境，仅原有 `relax` renderer 警告）。原生合同12项测试通过。第二批五目标正式构建通过（3498 jobs），包括固定原生坐标、双降悬、固定坐标自然性入口和同一presentation乘法运输。来源/字段静态核验与Blueprint渲染已重放；来源/字段Lean核验本轮重放及整个根库的完整声明检查，仍待消费者迁移稳定后统一重建；尚不报告为通过。八个本轮Blueprint节点的46项声明已在定向编译环境中检查存在。
 
 本机的固定 renderer 位于 `/tmp/kip126-lean-retry-blueprint/bin`，重放时可将该目录加入 PATH 后运行 `leanblueprint web`。
 

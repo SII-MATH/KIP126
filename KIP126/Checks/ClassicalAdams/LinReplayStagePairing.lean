@@ -21,7 +21,10 @@ run_cmd do
       ``KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_hom₂,
       ``KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_ι,
       ``KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_δ,
-      ``KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_connecting] do
+      ``KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_connecting,
+      ``KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_connecting_eq_zero,
+      ``KIP126.Classical.Adams.adamsSphereLongLayerStagePairingIso_connecting_eq_zero,
+      ``KIP126.Classical.Adams.adamsDifferential_longLayerStagePairing_eq_zero] do
     for ax in (← collectAxioms decl) do
       unless logical.contains ax do
         throwError "unexpected axiom in geometric long-layer construction {decl}: {ax}"
@@ -31,3 +34,7 @@ run_cmd do
 #print axioms KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_connecting
 
 #print axioms KIP126.Classical.Adams.TowerDetection.Detects.exists_towerLift
+
+#print axioms KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_connecting_eq_zero
+#print axioms KIP126.Classical.Adams.adamsSphereLongLayerStagePairingIso_connecting_eq_zero
+#print axioms KIP126.Classical.Adams.adamsDifferential_longLayerStagePairing_eq_zero

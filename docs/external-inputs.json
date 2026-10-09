@@ -1245,6 +1245,74 @@
           "sha256": "ee6a6622777d04cce0f268eded8255a108714e4bf4fddc333321309475fa43b3"
         },
         {
+          "path": "Source/LWXMachine/source-code.zip",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+          "size": 5051993,
+          "downloaded_from": {
+            "record": "Source/LWXMachine/zenodo-record.json",
+            "filename": "source code.zip",
+            "url": "https://zenodo.org/api/records/14875701/files/source%20code.zip/content",
+            "version": "v126.3.cw49",
+            "checksum": "md5:66ce3684e92676604f8368191e35d5b3"
+          },
+          "notes": "Unmodified published C++ source archive used to rebuild the bounded seed5487 resolution and secondary lift data. Source authenticity and finite algebra certificates do not certify the actual sphere Adams differential.",
+          "reproduction": {
+            "existing_extraction_and_rebuild_record": "docs/audits/issue152/seed5487-next.json",
+            "build_commands": [
+              "cmake -S <extracted>/SSeqCpp-master -B <build> -DCMAKE_BUILD_TYPE=Release -DFMT_TEST=OFF -DBUILD_TESTING=OFF",
+              "cmake --build <build> --target Adams -j 4"
+            ],
+            "native_commands_in_fresh_working_directory": [
+              "<build>/bin/Adams res S0 45",
+              "<build>/bin/Adams d2 S0 45"
+            ],
+            "extraction_command": [
+              "python3",
+              "KIP126/LinProgram/Translate/extract-secondary-witness.py",
+              "--resolution",
+              "<run>/S0_Adams_res.db",
+              "--secondary",
+              "<run>/S0_Adams_d2.db",
+              "--output",
+              "<run>/witness.json"
+            ],
+            "fixed_input_check_command": [
+              "python3",
+              "KIP126/LinProgram/Translate/generate-secondary-seed5487.py",
+              "--check",
+              "--witness",
+              "<run>/witness.json"
+            ],
+            "lean_check_command": [
+              "lake",
+              "build",
+              "+KIP126.Checks.ClassicalAdams.LinSecondary5487:olean"
+            ],
+            "database_bytes": "The existing rebuild record pins its two database byte digests. Fresh runs can differ because of timestamps; replay requires the complete 96-row semantic fingerprint, selected records, closure IDs and seed endpoints to match."
+          },
+          "derived_outputs": {
+            "selected_witness": {
+              "path": "KIP126/LinProgram/Certificates/Secondary/Seed5487/source.json",
+              "sha256": "bffe6f3132deaa9582d58aa8fea08cefcce33f3d43d89dd7b3c41f44c679a6c5",
+              "complete_96_row_semantic_sha256": "088958541d91f6a987c825ab94a3266001cf94e6eccdf19757ac9b39d92c69fa",
+              "selected_five_row_semantic_sha256": "ba9cb96f4ad386fb4130167e58281286e57c145c909df15b0669318ff318f48e",
+              "closure_ids_sha256": "353a86fc9dc8a69e60f674d62dbf14ebface2bd29f2fa530dc0ef0804dc74f52",
+              "semantic_encoding": "UTF-8 JSON with sorted keys and comma/colon separators, without whitespace, for the indicated arrays"
+            },
+            "fixed_input": {
+              "path": "KIP126/LinProgram/Certificates/Secondary/Seed5487/Input.lean",
+              "sha256": "d130cebb18c9092bd4bca938653156758b29fa9adf7f76bb5479274ed7a70840"
+            },
+            "lean_algebra_statements": [
+              "KIP126.Computation.Secondary.Seed5487.row1048577_d_squared",
+              "KIP126.Computation.Secondary.Seed5487.row1572866_d_f"
+            ],
+            "scope": "Native d/f columns and extracted auxiliary d_f/f_d/associator expressions. The two Lean statements check one d-squared column and one d(f) composition at every rank-eight monomial, not all 96 chain equations, the secondary associator formula, resolution exactness/minimality, or the actual sphere Adams d2."
+          }
+        },
+        {
           "path": "Source/LWXMachine/lin-program-page.html",
           "kind": "machine_artifact",
           "required": true,

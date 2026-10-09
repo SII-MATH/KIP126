@@ -542,6 +542,45 @@ mathematical objects and conditions.
   foundational obligations. It reads no total computation delivery.
 \end{proposition}
 
+\begin{definition}[Native finite secondary-resolution composition]
+  \label{def:lin-secondary-native-composition}
+  \lean{KIP126.Computation.Secondary.NativeRow,KIP126.Computation.Secondary.resolvePaths,KIP126.Computation.Secondary.compose,KIP126.Computation.Secondary.expressionCoefficient}
+  A selected row retains its native generator identifier, degrees,
+  differential and secondary lift, together with auxiliary correction
+  expressions computed by the extractor.
+  Composition first resolves every intermediate generator image; absent
+  images return failure. Its coefficient function uses the dual of the
+  explicit Milnor coproduct and ranges over all target generators and every
+  monomial of the original arity. There is no degree cutoff in this semantics.
+  Auxiliary correction fields are input expressions, not assertions that
+  the secondary-associator formula or an Adams differential has been proved.
+\end{definition}
+
+\begin{proposition}[Two closed coefficient identities in the seed 5487 input]
+  \label{prop:lin-secondary-5487-selected-equalities}
+  \lean{KIP126.Computation.Secondary.Seed5487.row1048577_d_squared,KIP126.Computation.Secondary.Seed5487.row1572866_d_f}
+  \uses{def:lin-secondary-native-composition}
+  \leanok
+  In the selected native eight-coordinate data, row 1048577 at
+  $(s,v,t)=(2,1,4)$ has square-zero differential. For row 1572866 at
+  $(3,2,10)$, composing its supplied secondary lift with the supplied first
+  differential gives exactly the three-term auxiliary \texttt{d\_f} expression
+  computed by the extractor; that expression is not a native database column.
+  Both equalities quantify over every target generator and every
+  eight-coordinate monomial, with no degree restriction.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Resolve the two complete paths for each chosen expression. The existing
+  Milnor checker proves four products in small rank; its degree-support
+  theorem and rank stability extend them to all monomials at rank eight.
+  The two paths of the first expression cancel coefficientwise in
+  $\mathbb F_2$; the second yields its three specified terms.
+  These are actual fixed algebra-input equalities, not a proof for the
+  entire 96-generator closure, the independent associator construction,
+  resolution exactness, or the sphere $d_2$ in log 5487.
+\end{proof}
+
 \subsection{Low-degree data illustration}
 
 \begin{definition}[Low-degree table extracted from Lin's data]

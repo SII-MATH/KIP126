@@ -1283,6 +1283,30 @@ the surjectivity statement alone.
   \leanok
 \end{proof}
 
+\begin{proposition}[Actual long-layer multiplication by a tower stage]
+  \label{prop:h6-long-layer-stage-kernel}
+  \lean{KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso,KIP126.Classical.Adams.adamsSphereLongLayerStagePairingIso,KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_ι,KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_δ,KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_connecting_eq_zero,KIP126.Classical.Adams.adamsSphereLongLayerStagePairingIso_connecting_eq_zero,KIP126.Classical.Adams.adamsDifferential_longLayerStagePairing_eq_zero}
+  \uses{def:h6-tower-long-layer,prop:h6-tower-long-layer-differential,prop:h6-tower-smash-comparison}
+  \leanok
+  Tensoring the actual sphere-tower cofiber triangle with a tower stage
+  constructs a one-sided map $Q_s^r\wedge T_t\to Q_{s+t}^r$, with genuine
+  inclusion and connecting squares. For every $r\geq1$, natural stages
+  $s,t$ and integer homotopy degrees, if the first input has zero long
+  connecting homomorphism, the product also has zero connecting
+  homomorphism. Its image on the actual quotient page therefore has
+  zero $d_r$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Injectivity of homotopy desuspension turns the input condition into
+  zero postcomposition with the cofiber connecting map. Tensor it with
+  the tower-stage representative and use the actual connecting square.
+  Transport the integer stages and apply the established long-layer
+  formula for the actual page differential.
+  This does not construct $Q_s^r\wedge Q_t^r\to Q_{s+t}^r$, prove its
+  projection compatibility, or supply the two-term Leibniz rule.
+\end{proof}
+
 \begin{definition}[Lower lifts for the three square products]
   \label{def:h6-three-boundary-lifts}
   \lean{KIP126.Classical.Adams.SphereH6BoundaryLifts,KIP126.Classical.Adams.SphereH6BoundaryLifts.FitsProducts,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_boundaries,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_compatible}
