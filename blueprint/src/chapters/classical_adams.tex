@@ -475,6 +475,30 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   The applicability proof for this fixed object remains unfinished.
 \end{proposition}
 
+\begin{lemma}[Full-stem second-page vanishing and separated homotopy]
+  \label{lem:adams-e2-vanishing-separated}
+  \lean{KIP126.Classical.Adams.TowerDetection.filtration_raise_of_pageTwo_subsingleton,KIP126.Classical.Adams.TowerDetection.mem_all_filtrations_of_pageTwo_zero,KIP126.Classical.Adams.TowerDetection.homotopy_eq_zero_of_pageTwo_zero_of_separated}
+  \uses{def:adams-tower-filtration,def:h6-tower-internal-data,def:h6-tower-internal-sequence,prop:h6-tower-differential-laws}
+  \leanok
+  For any object $X$ and unit in the stated stable context, vanishing of
+  the entire $E_2^{s,t}(X)$ with $s\ge0$ implies
+  $F^s\pi_{t-s}X\subseteq F^{s+1}\pi_{t-s}X$.
+  Fix any integer $n$. If $E_2^{s,s+n}(X)=0$ for every $s\in\mathbb N$,
+  then every $x\in\pi_nX$ lies in every nonnegative filtration stage.
+  If this filtration is separated in degree $n$, then every such $x$ is zero.
+  Separation is an explicit premise; no finite window or additional
+  associated-graded convergence comparison replaces it.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Apply the actual quotient-page zero criterion to the image of a tower
+  lift. It supplies a next-stage lift with equal image at stage $s-1$.
+  Compose down to stage $-1$, which is the same constant tower object
+  as stage zero, to retain the image in $X$, including when $s=0$.
+  Starting from $F^0\pi_nX=\pi_nX$, induction reaches every natural stage;
+  the supplied separation property then gives zero.
+\end{proof}
+
 \begin{proposition}[Separation of the fixed sphere Adams filtration]
   \label{prop:fixed-sphere-adams-separated}
   \lean{KIP126.Def.standardSphereSeparated}

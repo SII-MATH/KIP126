@@ -1,3 +1,4 @@
+import KIP126.Interface.Solution.LinProgram.EtaNu
 import KIP126.Interface.Solution.LinProgram.NaturalityCW.Model
 import KIP126.Interface.Solution.LinProgram.NaturalityHighStem
 import KIP126.Def.ClassicalAdams.Suspension.Fourfold.Proofs
@@ -132,6 +133,48 @@ theorem row462481_from_cw (hzero : (shiftFunctor Sp (3 : ℤ)).map η ≫ ν = 0
       KIP126.Computation.LinProofs.Raw.NaturalityHighStem.output462481 :=
   NaturalityHighStem.row462481 P coordinates
     (row462480 hzero cwCoordinates coordinates source cw_source_comparison cw_target_comparison)
+    x1 y1 source_first target_first source_second target_second
+
+/-- Replay the same native output after deriving the CW null-composite from
+this same P and literature. The existing fixed-sphere separation theorem
+remains an explicit dependency of that derivation; actual source and coordinate
+premises are unchanged. This does not construct a total computation delivery. -/
+theorem row462481_from_literature
+    (bindings : KIP126.Challenge2.LiteratureBindings)
+    (results : KIP126.Challenge2.LiteratureResults bindings)
+    (P : LinE2Presentation)
+    (cwCoordinates : CWCoordinates (EtaNu.eta_nu_zero bindings results P))
+    (coordinates : CetaCoordinates) (source : SourceEquation (EtaNu.eta_nu_zero bindings results P) cwCoordinates)
+    (cw_source_comparison : cwToCetaE2 (EtaNu.eta_nu_zero bindings results P) (15, 144) (cwCoordinates 15 144 1) =
+      coordinates 15 140 1)
+    (cw_target_comparison : cwToCetaE2 (EtaNu.eta_nu_zero bindings results P) (18, 146) (cwCoordinates 18 146 0) =
+      coordinates 18 142 0)
+    (x1 : PageRepresentatives.Ambient standardFoundation.hf2
+      (Sphere (C := standardFoundation.Spectrum) 1) (15, 139))
+    (y1 : PageRepresentatives.Ambient standardFoundation.hf2
+      (Sphere (C := standardFoundation.Spectrum) 1) (18, 141))
+    (source_first :
+      (standardRouteModel.classicalSuspension (.shift 1 .sphere)).DesuspendsClass
+        15 140
+        (adamsInternalE2Induced standardFoundation.hf2.unit topCell (15, 140)
+          (coordinates 15 140 1)) x1)
+    (target_first :
+      (standardRouteModel.classicalSuspension (.shift 1 .sphere)).DesuspendsClass
+        18 142
+        (adamsInternalE2Induced standardFoundation.hf2.unit topCell (18, 142)
+          (coordinates 18 142 0)) y1)
+    (source_second :
+      (standardRouteModel.classicalSuspension .sphere).DesuspendsClass
+        15 139 x1
+        (P.comparison 15 138 (by decide) KIP126.LinE2.NaturalityHighStemCoordinates.source))
+    (target_second :
+      (standardRouteModel.classicalSuspension .sphere).DesuspendsClass
+        18 141 y1
+        (P.comparison 18 140 (by decide) KIP126.LinE2.NaturalityHighStemCoordinates.target)) :
+    KIP126.Challenge2.DifferentialStatement P
+      KIP126.Computation.LinProofs.Raw.NaturalityHighStem.output462481 :=
+  row462481_from_cw (EtaNu.eta_nu_zero bindings results P) P
+    cwCoordinates coordinates source cw_source_comparison cw_target_comparison
     x1 y1 source_first target_first source_second target_second
 
 end

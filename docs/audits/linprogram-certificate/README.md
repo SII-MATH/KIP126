@@ -337,7 +337,7 @@ lake build KIP126.Checks.ClassicalAdams.SuspensionConstruction \
 
 ## CW→Cη→sphere 的同模型条件重放
 
-`NaturalityCW.extension hzero` 从已证明的 η/ν cofiber 延拓与同一八面体定理只选择一次 g，定义 `CW hzero := cofib g`。`q hzero` 是这个 g 的实际连接映射后接 `shiftFourIso Ceta`，目标为原有 `Ceta[4]`。`fixed_triangles` 对同一个 g、CW 和 q 给出两条三角及同一 m,j 的四个交换方块。唯一新增显式数学前提是同一实际映射的 `η[3] ≫ ν = 0`；它仍未证明。`IsTriangulated` 来自原有同一 `StageInput.witness.tensorInput`，没有新增 Challenge2 字段或选择第二模型。
+`NaturalityCW.extension hzero` 从已证明的 η/ν cofiber 延拓与同一八面体定理只选择一次 g，定义 `CW hzero := cofib g`。`q hzero` 是这个 g 的实际连接映射后接 `shiftFourIso Ceta`，目标为原有 `Ceta[4]`。`fixed_triangles` 对同一个 g、CW 和 q 给出两条三角及同一 m,j 的四个交换方块。该接口的显式数学前提是同一实际映射的 `η[3] ≫ ν = 0`；下节新增推导在同一 presentation、literature 和公开分离性依赖下提供它，尚非无条件实际认证。`IsTriangulated` 来自原有同一 `StageInput.witness.tensorInput`，没有新增 Challenge2 字段或选择第二模型。
 
 `Suspension.Fourfold.desuspendFourInternalPage_hasDifferential` 对任意对象、全部整数页和次数，将两次既有双降悬组合；其结论是完整 `HasDifferential` 关系的运输。`quadShiftIso` 明确把四个逐次 [1] 悬移与 [4] 比较。`hasDifferential_desuspendFour` 还提供八条代表元关系的入口。通用声明的公理仅逻辑三项。
 
@@ -365,6 +365,27 @@ lake build KIP126.Checks.ClassicalAdams.LinFourfoldSuspension \
 
 四降悬与固定 CW 模型的正式构建通过（3498 jobs）；完整条件重放模块正式构建通过（3501 jobs）。原生合同全部16项测试与固定trace重建通过，包含 reason、NULL、坐标和次数的四类篡改拒绝。独立数学审阅确认全部量词、符号、同一对象选择及两端比较的作用；未新增公理、源交付或总认证读取。根库及新旧自然性审计正式构建通过（4895 jobs），Blueprint web、完整声明链接、活动依赖解析、18项布局检查、来源/接口静态和 Lean 核验均通过。编译后依赖审计同时检查私有辅助函数与内联投影；临时负例中经私有函数读取计算 results 的路径被准确拒绝。原有高 stem 重放模块内容保持不变。
 
+## 同一 presentation 与 literature 推导 CW 的零复合
+
+`LinE2.StemFour.component_subsingleton (s : ℕ) (hs : s < 4)` 证明完整原生 `E2At s (s+4)` 为零。它穷尽全部 2914 个生成元，次数不超过 7 时只可能使用原生 IDs 0、1、2；两个次数方程将全部单项式限定为 `x0^(s−2)*x1*x2`（且 `2≤s`）。原关系串 `1,1,2,1` 使其为零。证明针对定义齐次部分的所有单项式之张成空间，不使用 CSV 基底完备性，也不靠原有 `t>261` 截断推零。
+
+通用 `TowerDetection.filtration_raise_of_pageTwo_subsingleton` 从实际完整 E₂ 分量消失推出 `Fˢ⊆Fˢ⁺¹`。它复用真实商页的提升判据，在 stage −1 与 stage 0 的常值段合流，覆盖初始 `s=0`。`mem_all_filtrations_of_pageTwo_zero` 对任意整数 stem n 使用**全部**自然滤过；`homotopy_eq_zero_of_pageTwo_zero_of_separated` 再以该度的显式分离性推出所有同伦元素为零，没有额外假设 E∞ 与 associated graded 的比较。上述数据与通用定理均已闭合，公理仅标准逻辑三项。
+
+`Interface.Solution.LinProgram.EtaNu.pageTwo_stemFour_subsingleton` 取同一 bindings、依赖于它的 literature results 和同一个 `P`。低四个滤过由 `P.comparison` 搬运完整零分量（只需 `t≤7`）；所有 `s≥4` 由现有 `results.sphereVanishing` 的无界命题覆盖。`homotopy_four_zero` 显式调用现有 `Def.standardSphereSeparated 4`；`eta_nu_zero` 用标准 shift-add 同构，将同一实际 η、ν 的复合识别为四维茎元素并证明其为零，无需额外的乘法或检测比较。
+
+**这一固定模型推导仍不是实际闭合认证。** `P` 的数学比较、同一 literature 的无界消失线、固定基础及公开未完成的 `standardSphereSeparated` 都保留。尤其分离性是本条新入口使用的明确证明债；即使它与旧固定基础的传递公理集合都显示 `sorryAx`，也不能据此声称没有新增依赖。
+
+`NaturalityCW.row462481_from_literature` 将上述零复合用于既有 `CW hzero` 和既有重放，不选择第二个 CW，不读取待构造的总交付。原 `row462481_from_cw` 的完整声明保持不变。新入口仍要求同一个 CW 的实际 D462479、两个 CW→Cη 端点比较和四个 Cη→球面降悬比较，输出仍是固定 N462481：`d3:(15,138)[2]→(18,140)[2]`。模块／实际页识别、实际分支反驳和来源微分继续待证。
+
+```sh
+lake build KIP126.Checks.AdamsE2.LinStemFour \
+  KIP126.Checks.ClassicalAdams.TowerVanishing \
+  KIP126.Checks.ClassicalAdams.LinEtaNu \
+  KIP126.Checks.ClassicalAdams.LinNaturalityCW
+```
+
+本里程碑正式根库及新旧自然性审计构建通过（4914 jobs），新证明模块无新增警告。数据和通用定理的传递公理仅标准逻辑三项；固定模型审计对编译后的证明值、私有辅助声明和内联字段投影检查，强制保留 `P.comparison`、同一 `LiteratureResults.sphereVanishing` 和具名的 `standardSphereSeparated` 依赖，禁止三个新模块引入直接 `sorry`/项目公理或读取计算总交付。分离性与实际零复合的 `sorryAx` 单独输出，不作为已完成认证。原两个重放入口的完整声明和证明与上一提交逐字相同。Blueprint web、完整声明链接、活动依赖解析、15 项 Blueprint 检查、18 项布局检查及来源/接口静态与 Lean 检查均通过；原生输入、trace、合同及认证状态未改。
+
 ## 长层阶段乘积与指定系数乘积的比较
 
 `LongLayerStageComparison.defect_factors` 对所有 `r≥1`、自然阶段 `s,t`，证明已有长层—塔阶段配对投影与指定系数乘积之差，经实际张量长三角的连接映射因子化。其两端严格使用既有 `adamsSphereLongLayerStagePairingIso`、`adamsLongLayerProjection` 和 `adamsSphereLayerProduct`；`stageProjected_eq_actual` 检查 `t+(s+r)` 与 `(t+s)+r` 的真实 transport，没有另选三角补全。
@@ -390,7 +411,7 @@ lake build KIP126.Checks.ClassicalAdams.LongLayerStageComparison
 | 候选覆盖 | 对准确 context/window 构造 `CandidateCoverage`，排除全部其他候选；保留 trial 数量不是覆盖证明 | 既有 `CandidateElimination.sound` / `CandidateExhaustion.sound` |
 | secondary d2 种子 5487 | 已闭合选中行的 d² 与 d∘f 等式；整个96行、associator公式、分解正合/极小性与实际球面d2比较仍待证 | `Translate/extract-secondary-witness.py` 与 issue152 原有审计 |
 | 245131 实际认证 | 实例化上述来源及四条坐标比较；来源原始数据已补，双降悬通用定理已闭合；仍需实际比较 | `Naturality` |
-| 462481 实际认证 | Ceta 来源462480的实际微分、同一 topCell 的四条降悬坐标比较；CW→Cη→sphere 条件链已构造；实际仍需该 CW 构造的复合零与完整原生模块比较、实际d2坐标比较、完整源到达E3及所有祖先trial反驳 | `Naturality`、完整原生矩阵证书和 `row462481-trace.json` |
+| 462481 实际认证 | Ceta 来源462480的实际微分、同一 topCell 的四条降悬坐标比较；CW→Cη→sphere 条件链已构造；复合零现可由同一P、literature及未完成的固定分离性推导；实际仍需这些依赖落实与完整原生模块比较、实际d2坐标比较、完整源到达E3及所有祖先trial反驳 | `Naturality`、完整原生矩阵证书和 `row462481-trace.json` |
 | 消费者迁移 | 5541 已改用显式 one-line 文献和独立坐标证书；其实际基础仍待证，另外五条选定行尚依赖整表。只有实际已经供给的结果才接到同一 `literature`、`bindings.presentation`、`standardRouteModel`；不读取待构造的 `Interface.Solution.challenge2` 来制造 producer | 现有 `ComputationResults`/Main 消费层 |
 
 本次没有新项目公理、Challenge2 根字段、独立 literature、替代实际模型或总交付读取。较早复用的 `row5434` 是由同一 literature 中 one-line 定理和独立坐标证书得到的条件实际结果，不等于重放原生 secondary 算法。

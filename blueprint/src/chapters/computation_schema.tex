@@ -597,6 +597,47 @@ mathematical objects and conditions.
   retains the fixed model's foundational obligations.
 \end{proposition}
 
+\begin{lemma}[The complete native low-filtration stem-four component vanishes]
+  \label{lem:lin-stem-four-low}
+  \lean{KIP126.LinE2.StemFour.generator_internal_le_seven,KIP126.LinE2.StemFour.monomial_support,KIP126.LinE2.StemFour.monomial_classification,KIP126.LinE2.StemFour.monomial_projection_zero,KIP126.LinE2.StemFour.homogeneousPart_eq_bot,KIP126.LinE2.StemFour.component_subsingleton}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  In the original sphere quotient on all 2914 generators, for every
+  natural $s<4$, the entire homogeneous component $A^{s,s+4}$ is zero.
+  This is the span of all homogeneous monomials, not the archived basis span.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Exhausting all generator degrees shows that only IDs $0,1,2$ can
+  occur when internal degree is at most seven. The two degree equations
+  force $s\ge2$ and the monomial $x_0^{s-2}x_1x_2$.
+  The original relation string \texttt{1,1,2,1} kills it. Thus every
+  generator of the homogeneous submodule is zero. Neither basis
+  independence nor the high-degree cutoff is used to force this vanishing.
+\end{proof}
+
+\begin{proposition}[The CW null-composite from the same presentation and literature]
+  \label{prop:lin-eta-nu-from-stem-four}
+  \lean{KIP126.Interface.Solution.LinProgram.EtaNu.pageTwo_stemFour_subsingleton,KIP126.Interface.Solution.LinProgram.EtaNu.homotopy_four_zero,KIP126.Interface.Solution.LinProgram.EtaNu.eta_nu_zero}
+  \uses{lem:lin-stem-four-low,lem:adams-e2-vanishing-separated,def:computation-fixed-bindings,thm:external-sphere-vanishing,prop:fixed-sphere-adams-separated}
+  \notready
+  Retain one sphere presentation $P$ and the same literature bindings
+  and dependent results. For $s<4$, transport the entire native zero
+  component to the actual sphere $E_2$ using $P$; here $t=s+4\le7$.
+  For every $s\ge4$, the supplied unbounded positive-stem vanishing line
+  applies because $0<4<2s-3$. All nonnegative filtration pieces in stem
+  four therefore vanish. The fixed-sphere separation statement yields
+  $\pi_4S^0=0$. Precomposition by the standard shift-add isomorphism
+  then proves the actual fixed-route equation $\nu\circ\Sigma^3\eta=0$.
+
+  The presentation, the same literature vanishing result, and the fixed
+  foundation remain dependencies. In particular the public proof of
+  fixed-sphere separation is still unfinished and is used explicitly;
+  this is not an unconditional actual certification. No multiplication
+  or Hopf detection comparison, new source premise, or total computation
+  delivery is read to obtain the zero composite.
+\end{proposition}
+
 \begin{proposition}[One conditional CW cofiber on the fixed model]
   \label{prop:lin-cw-fixed-cofiber}
   \lean{KIP126.Interface.Solution.LinProgram.NaturalityCW.ExtensionPackage,KIP126.Interface.Solution.LinProgram.NaturalityCW.exists_extensionPackage,KIP126.Interface.Solution.LinProgram.NaturalityCW.extension,KIP126.Interface.Solution.LinProgram.NaturalityCW.extension_spec,KIP126.Interface.Solution.LinProgram.NaturalityCW.CW,KIP126.Interface.Solution.LinProgram.NaturalityCW.q,KIP126.Interface.Solution.LinProgram.NaturalityCW.fixed_triangles}
@@ -617,15 +658,17 @@ mathematical objects and conditions.
 
   The fixed foundation's existing tensor input supplies its octahedron
   instance. Its foundational proof remains unfinished. This construction
-  does not prove the composite-zero premise or identify the selected
-  $W$ with the pinned native \texttt{CW\_nu\_eta} module.
+  takes the composite-zero premise explicitly. Proposition~\ref{prop:lin-eta-nu-from-stem-four}
+  now derives it from the same presentation and literature, retaining the
+  unfinished separation dependency. Neither construction identifies the
+  selected $W$ with the pinned native \texttt{CW\_nu\_eta} module.
 \end{proposition}
 
 \begin{proposition}[Conditional replay from the CW record to the sphere]
   \label{prop:lin-native-naturality-cw-462481}
   \lean{KIP126.Computation.LinProofs.Raw.NaturalityHighStem.source462479Full,KIP126.Computation.LinProofs.Raw.NaturalityHighStem.cwMapSuspension,KIP126.Computation.LinProofs.Raw.NaturalityHighStem.native_cw_degree_shift}
-  \lean{KIP126.Interface.Solution.LinProgram.NaturalityCW.toQuadCeta,KIP126.Interface.Solution.LinProgram.NaturalityCW.cetaDesuspendFour,KIP126.Interface.Solution.LinProgram.NaturalityCW.cetaDesuspendFour_hasDifferential,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwSequence,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwToCetaE2,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwToCetaE2_hasDifferential,KIP126.Interface.Solution.LinProgram.NaturalityCW.CWCoordinates,KIP126.Interface.Solution.LinProgram.NaturalityCW.SourceEquation,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462480,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462481_from_cw}
-  \uses{prop:lin-cw-fixed-cofiber,prop:lin-ceta-tower-suspension,lem:adams-four-suspension-differential,prop:internal-page-naturality,prop:lin-native-naturality-462481,def:lin-map-catalogue}
+  \lean{KIP126.Interface.Solution.LinProgram.NaturalityCW.toQuadCeta,KIP126.Interface.Solution.LinProgram.NaturalityCW.cetaDesuspendFour,KIP126.Interface.Solution.LinProgram.NaturalityCW.cetaDesuspendFour_hasDifferential,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwSequence,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwToCetaE2,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwToCetaE2_hasDifferential,KIP126.Interface.Solution.LinProgram.NaturalityCW.CWCoordinates,KIP126.Interface.Solution.LinProgram.NaturalityCW.SourceEquation,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462480,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462481_from_cw,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462481_from_literature}
+  \uses{prop:lin-cw-fixed-cofiber,prop:lin-eta-nu-from-stem-four,prop:lin-ceta-tower-suspension,lem:adams-four-suspension-differential,prop:internal-page-naturality,prop:lin-native-naturality-462481,def:lin-map-catalogue}
   \notready
   Reassociate the target of the same actual $q$ by
   $\widetilde q=\kappa_4^{-1}\circ q$. Its induced second-page map,
@@ -648,9 +691,12 @@ mathematical objects and conditions.
   sphere desuspension-coordinate comparisons, its fixed sphere tower
   choices, and one presentation $P$. This yields the exact native
   $N462481$ statement $d_3[2]=[2]$ from $(15,138)$ to $(18,140)$.
-  The explicit remaining obligations are the actual zero composite,
-  the actual CW source differential, the two CW endpoint comparisons,
-  and the four sphere comparisons. Identification of both interpreted
+  The original entry retains the explicit zero-composite parameter.
+  The new literature entry supplies it using
+  Proposition~\ref{prop:lin-eta-nu-from-stem-four} with this same $P$ and
+  dependent literature results, preserving the unfinished separation
+  dependency. Both entries retain the actual CW source differential,
+  the two CW endpoint comparisons, and the four sphere comparisons. Identification of both interpreted
   coordinate families with their full pinned native modules, and the
   fixed foundation's proof obligations, remain separate.
   No native $D$ or $N$ tag, trial record, total computation result, or

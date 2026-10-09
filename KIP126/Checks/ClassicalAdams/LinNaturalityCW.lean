@@ -97,7 +97,8 @@ run_cmd do
   let modelAxioms ← collectAxioms ``KIP126.Classical.Adams.sphereAdamsModel
   for decl in [``extension, ``extension_spec, ``CW, ``q, ``fixed_triangles,
       ``toQuadCeta, ``cetaDesuspendFour, ``cetaDesuspendFour_hasDifferential,
-      ``cwToCetaE2, ``cwToCetaE2_hasDifferential, ``row462480, ``row462481_from_cw] do
+      ``cwToCetaE2, ``cwToCetaE2_hasDifferential, ``row462480, ``row462481_from_cw,
+      ``row462481_from_literature] do
     for ax in (← collectAxioms decl) do
       unless logical.contains ax || modelAxioms.contains ax do
         throwError "CW naturality adds an axiom beyond the fixed Def model: {decl}: {ax}"
@@ -106,6 +107,13 @@ run_cmd do
       ``cetaDesuspendFour_hasDifferential, ``cetaDesuspendFour, ``toQuadCeta, ``q,
       ``desuspendFourInternalPage_hasDifferential,
       ``KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential]
+  checkValueClosure ``row462481_from_literature
+    [``row462481_from_cw,
+      ``KIP126.Interface.Solution.LinProgram.EtaNu.eta_nu_zero,
+      ``KIP126.Interface.Solution.LinProgram.EtaNu.homotopy_four_zero,
+      ``KIP126.Def.standardSphereSeparated]
+  checkValueEdges ``row462481_from_literature
+    [``row462481_from_cw, ``KIP126.Interface.Solution.LinProgram.EtaNu.eta_nu_zero]
   checkValueEdges ``row462480 [``cwToCetaE2_hasDifferential]
   checkValueEdges ``row462481_from_cw [``row462480,
     ``KIP126.Interface.Solution.LinProgram.NaturalityHighStem.row462481]
@@ -132,3 +140,5 @@ example : cwMapSuspension = 4 := rfl
 
 #print axioms KIP126.Interface.Solution.LinProgram.NaturalityCW.row462480
 #print axioms KIP126.Interface.Solution.LinProgram.NaturalityCW.row462481_from_cw
+
+#print axioms KIP126.Interface.Solution.LinProgram.NaturalityCW.row462481_from_literature
