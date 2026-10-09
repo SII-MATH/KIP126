@@ -10,7 +10,9 @@
       "S0_AdamsE2_relations.csv",
       "S0_AdamsE2_basis.csv",
       "S0_AdamsSS_t261.db",
-      "ss.json"
+      "ss.json",
+      "Ceta_AdamsSS_t200.db",
+      "map_AdamsSS_Ceta_to_S0_t200.db"
     ],
     "native_map_catalogue": "KIP126/LinProgram/Raw/ss.json"
   },
@@ -302,9 +304,18 @@
       "target": "KIP126.Computation.LinProofs.Raw.Naturality.target245131",
       "output": "KIP126.Computation.LinProofs.Raw.Naturality.output245131"
     },
-    "conditional_statement_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245131",
+    "conditional_statement_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245131_native",
+    "general_conditional_statement_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245131",
+    "fixed_sphere_coordinate_declarations": [
+      "KIP126.LinE2.NaturalityCoordinates.source",
+      "KIP126.LinE2.NaturalityCoordinates.target",
+      "KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.source_hasCoordinates",
+      "KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.target_hasCoordinates"
+    ],
     "constructed_top_cell_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.topCell",
     "conditional_top_cell_naturality_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell",
+    "generic_double_desuspension_declaration": "KIP126.Classical.Adams.Suspension.TowerComparison.hasDifferential_desuspendTwice",
+    "fixed_double_desuspension_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.doubleDesuspensionCompatible",
     "source_equation": {
       "spectrum": "Ceta",
       "page": 3,
@@ -395,31 +406,266 @@
     },
     "status": "unverified-conditional-replay-target",
     "actual_row_certified": false,
-    "missing_trace": [
+    "archive_inputs": [
       {
         "role": "source_page_database",
         "path_named_by_ss_json": "Ceta_AdamsSS_t200.db",
-        "present_in_raw": false,
-        "pinned_by_raw_manifest": false,
-        "trace_extracted": false
+        "present_in_raw": true,
+        "pinned_by_raw_manifest": true,
+        "selected_rows_extracted": true
       },
       {
         "role": "map_matrix_database",
         "path_named_by_ss_json": "map_AdamsSS_Ceta_to_S0_t200.db",
-        "present_in_raw": false,
-        "pinned_by_raw_manifest": false,
-        "trace_extracted": false
+        "present_in_raw": true,
+        "pinned_by_raw_manifest": true,
+        "selected_rows_extracted": true
       }
     ],
+    "native_data_map": {
+      "scope": "selected native data map only; no actual Adams map comparison or source differential proof",
+      "schema": {
+        "Ceta_AdamsE2_basis": "CREATE TABLE Ceta_AdamsE2_basis (id INTEGER PRIMARY KEY, mon TEXT, repr TEXT, s SMALLINT, t SMALLINT, d2 TEXT)",
+        "Ceta_AdamsE2_generators": "CREATE TABLE Ceta_AdamsE2_generators (id INTEGER PRIMARY KEY, name TEXT UNIQUE, repr SMALLINT, s SMALLINT, t SMALLINT, cell SMALLINT, cell_coeff TEXT)",
+        "Ceta_AdamsE2_ss": "CREATE TABLE Ceta_AdamsE2_ss (id INTEGER PRIMARY KEY, s SMALLINT, t SMALLINT, base TEXT, diff TEXT, level SMALLINT)",
+        "map_AdamsE2_Ceta_to_S0": "CREATE TABLE map_AdamsE2_Ceta_to_S0 (id INTEGER PRIMARY KEY, map TEXT)",
+        "source_version": "CREATE TABLE version (id INTEGER PRIMARY KEY, name TEXT, value)",
+        "map_version": "CREATE TABLE version (id INTEGER PRIMARY KEY, name TEXT, value)"
+      },
+      "source_database_version": [
+        {
+          "id": 0,
+          "name": "version",
+          "value": 3
+        },
+        {
+          "id": 1,
+          "name": "change notes",
+          "value": "Add fil,from,to in version table of maps."
+        },
+        {
+          "id": 817812698,
+          "name": "t_max",
+          "value": 200
+        },
+        {
+          "id": 964058258,
+          "name": "d2_t_max",
+          "value": 170
+        },
+        {
+          "id": 1954841564,
+          "name": "timestamp",
+          "value": 1734870285
+        }
+      ],
+      "map_database_version": [
+        {
+          "id": 0,
+          "name": "version",
+          "value": 3
+        },
+        {
+          "id": 1,
+          "name": "change notes",
+          "value": "Add fil,from,to in version table of maps."
+        },
+        {
+          "id": 446174262,
+          "name": "from",
+          "value": "Ceta"
+        },
+        {
+          "id": 651971502,
+          "name": "filtration",
+          "value": 0
+        },
+        {
+          "id": 817812698,
+          "name": "t_max",
+          "value": 200
+        },
+        {
+          "id": 1585932889,
+          "name": "suspension",
+          "value": 2
+        },
+        {
+          "id": 1713085477,
+          "name": "to",
+          "value": "S0"
+        }
+      ],
+      "module_generators": [
+        {
+          "id": 1,
+          "name": "(h_0[2])",
+          "repr": 524289,
+          "s": 1,
+          "t": 3,
+          "cell": 2,
+          "cell_coeff": "0,1"
+        }
+      ],
+      "generator_images": [
+        {
+          "id": 1,
+          "map": "0,1"
+        }
+      ],
+      "coefficient_generators": [
+        {
+          "id": 0,
+          "name": "h_0",
+          "repr": 524288,
+          "s": 1,
+          "t": 1
+        },
+        {
+          "id": 7,
+          "name": "h_4",
+          "repr": 524292,
+          "s": 1,
+          "t": 16
+        },
+        {
+          "id": 8,
+          "name": "d_0",
+          "repr": 2097155,
+          "s": 4,
+          "t": 18
+        }
+      ],
+      "degree_slices": {
+        "source": {
+          "source_degree": [
+            2,
+            19
+          ],
+          "target_degree": [
+            2,
+            17
+          ],
+          "source_basis": [
+            {
+              "id": 69,
+              "mon": "7,1,1",
+              "repr": "1048587",
+              "s": 2,
+              "t": 19,
+              "d2": "",
+              "local_index": 0
+            }
+          ],
+          "target_basis": [
+            {
+              "id": 39,
+              "mon": "0,1,7,1",
+              "repr": "1048583",
+              "s": 2,
+              "t": 17,
+              "d2": "",
+              "local_index": 0
+            }
+          ],
+          "columns_as_target_coordinates": [
+            [
+              0
+            ]
+          ],
+          "matrix_rows": [
+            [
+              1
+            ]
+          ],
+          "source_log_coordinates": [
+            0
+          ],
+          "mapped_coordinates": [
+            0
+          ]
+        },
+        "target": {
+          "source_degree": [
+            5,
+            21
+          ],
+          "target_degree": [
+            5,
+            19
+          ],
+          "source_basis": [
+            {
+              "id": 80,
+              "mon": "8,1,1",
+              "repr": "2621447",
+              "s": 5,
+              "t": 21,
+              "d2": "",
+              "local_index": 0
+            }
+          ],
+          "target_basis": [
+            {
+              "id": 46,
+              "mon": "0,1,8,1",
+              "repr": "2621443",
+              "s": 5,
+              "t": 19,
+              "d2": "",
+              "local_index": 0
+            }
+          ],
+          "columns_as_target_coordinates": [
+            [
+              0
+            ]
+          ],
+          "matrix_rows": [
+            [
+              1
+            ]
+          ],
+          "source_log_coordinates": [
+            0
+          ],
+          "mapped_coordinates": [
+            0
+          ]
+        }
+      },
+      "source_staircase": {
+        "outgoing": {
+          "id": 69,
+          "s": 2,
+          "t": 19,
+          "base": "0",
+          "diff": "0",
+          "level": 9997
+        },
+        "incoming": {
+          "id": 80,
+          "s": 5,
+          "t": 21,
+          "base": "0",
+          "diff": "0",
+          "level": 3
+        }
+      },
+      "interpretation": "formal S0-linear extension of stored module-generator images; direct target monomial matches only",
+      "proof_status": "unverified-data-extraction"
+    },
+    "missing_trace": [
+      "The complete derivation of source log245130 is not replayed; reciprocal source staircase rows are recorded results.",
+      "Stored module-generator images and the two raw coordinate matrices are not comparisons with the actual topCell and fixed tower desuspensions."
+    ],
     "remaining_premises": [
-      "Identify KIP126.Interface.Solution.LinProgram.Naturality.CetaCoordinates at (2,19)[0] and (5,21)[0] with the missing archived Ceta source data; a supplied coordinate function alone is not that identification.",
+      "Identify KIP126.Interface.Solution.LinProgram.Naturality.CetaCoordinates at (2,19)[0] and (5,21)[0] with the now-pinned Ceta basis rows id69 and id80 in native_data_map; extracted records and a supplied coordinate function alone do not prove that actual identification.",
       "Prove KIP126.Interface.Solution.LinProgram.Naturality.SourceEquation coordinates: HasDifferential cetaSequence 3 (2,19) (5,21) (coordinates 2 19 0) (coordinates 5 21 0); the source D log alone is not a proof.",
-      "Supply x:E2At 2 17 and y:E2At 5 19 with the row245131 premises x_coordinates:HasCoordinates x [0] and y_coordinates:HasCoordinates y [0], interpreted through the same LinE2Presentation P.",
       "Prove row245131 premise source_first: the existing shifted-sphere classicalSuspension desuspends the actual topCell image of coordinates 2 19 0 to x1 at (2,18).",
       "Prove row245131 premise target_first: that same shifted-sphere classicalSuspension desuspends the actual topCell image of coordinates 5 21 0 to y1 at (5,20).",
-      "Prove row245131 premise source_second: the existing sphere classicalSuspension desuspends x1 at (2,18) to P.comparison 2 17 x.",
-      "Prove row245131 premise target_second: that same sphere classicalSuspension desuspends y1 at (5,20) to P.comparison 5 19 y.",
-      "Prove KIP126.Interface.Solution.LinProgram.Naturality.DoubleDesuspensionCompatible with its full quantification over pages, bidegrees, labels and representatives; the constructed topCell and row245130_topCell do not supply this universal compatibility."
+      "Prove row245131 premise source_second: the existing sphere classicalSuspension desuspends x1 at (2,18) to P.comparison 2 17 KIP126.LinE2.NaturalityCoordinates.source.",
+      "Prove row245131 premise target_second: that same sphere classicalSuspension desuspends y1 at (5,20) to P.comparison 5 19 KIP126.LinE2.NaturalityCoordinates.target."
     ]
   },
   "additional_missing_trace": {
@@ -488,7 +734,7 @@
       "offset": 55
     },
     "status": "unverified-target-without-source-trace",
-    "missing": "Ceta source equation and coordinate preimages for S0 (15,138)[2] -> (18,140)[2]; Ceta__S0 matrix and actual comparison"
+    "missing": "The row462481-specific Ceta source trace and coordinate preimages for S0 (15,138)[2] -> (18,140)[2] have not been extracted here; the Ceta and map databases are now pinned, while their actual comparison remains unproved"
   },
   "replay_commands": [
     "python3 KIP126/LinProgram/Translate/native-contract.py --check",

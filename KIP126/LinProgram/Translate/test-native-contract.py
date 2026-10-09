@@ -5,6 +5,8 @@ import csv
 import importlib.util
 import io
 import json
+import shutil
+import sqlite3
 from pathlib import Path
 import tempfile
 import unittest
@@ -84,6 +86,69 @@ class NativeContractTests(unittest.TestCase):
         self.assertTrue(self.expected["naturality"]["missing_trace"])
         self.assertFalse(self.expected["contract"]["actual_certification"])
         self.assertEqual(self.expected["contract"]["generated_proof_status"], "unverified")
+
+    def check_map_slice(self, ceta_path, map_path):
+        naturality = self.expected["naturality"]
+        sphere_path, _, _ = self.lowstem.pinned("S0_AdamsSS_t261.db")
+        with NATIVE.connect(ceta_path) as ceta, NATIVE.connect(map_path) as maps, NATIVE.connect(sphere_path) as sphere:
+            return NATIVE.native_ceta_map_slice(
+                ceta, maps, sphere, naturality["source_candidate_log"], naturality["target_log"],
+                naturality["native_map"], self.lowstem)
+
+    def test_recovered_map_slice_preserves_native_module_coordinates(self):
+        data = self.expected["naturality"]["native_data_map"]
+        self.assertEqual(data["generator_images"], [{"id": 1, "map": "0,1"}])
+        for side, source_id, monomial in (("source", 69, "7,1,1"), ("target", 80, "8,1,1")):
+            degree_slice = data["degree_slices"][side]
+            self.assertEqual(degree_slice["source_basis"][0]["id"], source_id)
+            self.assertEqual(degree_slice["source_basis"][0]["mon"], monomial)
+            self.assertEqual(degree_slice["matrix_rows"], [[1]])
+            self.assertEqual(degree_slice["mapped_coordinates"], [0])
+        self.assertEqual(data["proof_status"], "unverified-data-extraction")
+        self.assertFalse(self.expected["contract"]["actual_certification"])
+
+    def test_changed_database_map_is_rejected_by_hash_and_coordinates(self):
+        ceta_path, _, _ = self.lowstem.pinned("Ceta_AdamsSS_t200.db")
+        map_name = "map_AdamsSS_Ceta_to_S0_t200.db"
+        map_path, _, _ = self.lowstem.pinned(map_name)
+        with tempfile.TemporaryDirectory(prefix="lin-native-db-mutation-") as temporary:
+            raw = Path(temporary)
+            changed = raw / map_name
+            shutil.copyfile(map_path, changed)
+            with sqlite3.connect(changed) as db:
+                db.execute("UPDATE map_AdamsE2_Ceta_to_S0 SET map='' WHERE id=1")
+            (raw / "manifest.json").write_bytes((self.lowstem.RAW / "manifest.json").read_bytes())
+            with mock.patch.object(self.lowstem, "RAW", raw):
+                with self.assertRaisesRegex(ValueError, "pinned input mismatch"):
+                    self.lowstem.pinned(map_name)
+            with self.assertRaisesRegex(ValueError, "native map coordinates disagree"):
+                self.check_map_slice(ceta_path, changed)
+
+    def test_changed_source_basis_or_map_schema_is_rejected(self):
+        ceta_path, _, _ = self.lowstem.pinned("Ceta_AdamsSS_t200.db")
+        map_path, _, _ = self.lowstem.pinned("map_AdamsSS_Ceta_to_S0_t200.db")
+        with tempfile.TemporaryDirectory(prefix="lin-native-schema-mutation-") as temporary:
+            changed_source, changed_map = Path(temporary) / "source.db", Path(temporary) / "map.db"
+            shutil.copyfile(ceta_path, changed_source)
+            with sqlite3.connect(changed_source) as db:
+                db.execute("UPDATE Ceta_AdamsE2_basis SET mon='8,1,1' WHERE id=69")
+            with self.assertRaisesRegex(ValueError, "source module monomial degree mismatch"):
+                self.check_map_slice(changed_source, map_path)
+            shutil.copyfile(map_path, changed_map)
+            with sqlite3.connect(changed_map) as db:
+                db.execute("ALTER TABLE map_AdamsE2_Ceta_to_S0 ADD COLUMN unrecognized TEXT")
+            with self.assertRaisesRegex(ValueError, "native table schema changed"):
+                self.check_map_slice(ceta_path, changed_map)
+
+    def test_archive_member_cannot_change_with_same_source_version(self):
+        manifest = json.loads((self.lowstem.RAW / "manifest.json").read_text())
+        entry = next(f for f in manifest["files"] if f["path"] == "Ceta_AdamsSS_t200.db")
+        entry["sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "canonical source artifact"):
+            NATIVE.validate_ceta_archive_origin(manifest)
+        entry["extracted_from"]["member"] = "other-version/Ceta_AdamsSS_t200.db"
+        with self.assertRaisesRegex(ValueError, "fixed archive member"):
+            NATIVE.validate_ceta_archive_origin(manifest)
 
     def test_unknown_and_zero_encodings_remain_distinct(self):
         self.assertEqual(NATIVE.coordinates(""), [])

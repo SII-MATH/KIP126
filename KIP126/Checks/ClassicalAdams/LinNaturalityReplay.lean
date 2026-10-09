@@ -2,10 +2,10 @@ import KIP126.Interface.Solution.LinProgram.Naturality
 import Lean.Elab.Command
 
 /-! A replay on the fixed η cofiber and its actual top-cell map. The native
-output stays conditional on the source equation, actual map coordinates,
-and the universal double-desuspension law. Fixed-model foundational `sorryAx`
-dependencies are inherited and reported; this check does not certify the
-instance or supply the missing suspension rule. -/
+output stays conditional on the source equation and actual map coordinates.
+The universal double-desuspension law is now derived from the actual tower
+squares. Fixed-model foundational `sorryAx` dependencies are inherited and
+reported; this check does not certify the remaining instance obligations. -/
 
 open Lean Elab Command in
 run_cmd do
@@ -22,13 +22,16 @@ run_cmd do
   let logical := [``propext, ``Classical.choice, ``Quot.sound]
   for decl in [``KIP126.Computation.LinProofs.Raw.Naturality.output245131_in_export,
       ``KIP126.Computation.LinProofs.Raw.Naturality.native_source_degree_shift,
-      ``KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential] do
+      ``KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential,
+      ``KIP126.Classical.Adams.Suspension.TowerComparison.hasDifferential_desuspendTwice] do
     for ax in (← collectAxioms decl) do
       unless logical.contains ax do
         throwError "unexpected axiom in native transcription or generic naturality {decl}: {ax}"
   let modelAxioms ← collectAxioms ``KIP126.Classical.Adams.sphereAdamsModel
   for decl in [``KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell,
-      ``KIP126.Interface.Solution.LinProgram.Naturality.row245131] do
+      ``KIP126.Interface.Solution.LinProgram.Naturality.row245131,
+      ``KIP126.Interface.Solution.LinProgram.Naturality.doubleDesuspensionCompatible,
+      ``KIP126.Interface.Solution.LinProgram.Naturality.row245131_native] do
     for ax in (← collectAxioms decl) do
       unless logical.contains ax || modelAxioms.contains ax do
         throwError "naturality replay adds an axiom beyond the fixed Def model: {decl}: {ax}"
@@ -52,3 +55,5 @@ example : mapSuspension = 2 := rfl
 #print axioms KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential
 #print axioms KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell
 #print axioms KIP126.Interface.Solution.LinProgram.Naturality.row245131
+
+#print axioms KIP126.Interface.Solution.LinProgram.Naturality.row245131_native

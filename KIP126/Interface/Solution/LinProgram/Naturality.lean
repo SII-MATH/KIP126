@@ -1,6 +1,8 @@
 import KIP126.Interface.Challenge.Computation.Delivery
 import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
+import KIP126.Def.ClassicalAdams.Suspension.Internal.Proofs
 import KIP126.LinProgram.Raw.Naturality
+import KIP126.Interface.Solution.LinProgram.NaturalityCoordinates
 
 /-!
 # Conditional replay of native naturality log 245131
@@ -11,11 +13,10 @@ map from this cofiber to S⁰. The first theorem below proves naturality
 to ΣS¹ using the constructed tower map.
 
 The final native statement is conditional on the source differential,
-its actual coordinate comparisons through both fixed tower suspensions,
-and the universal compatibility of these two desuspensions with finite
-differentials. The last compatibility has no proof in the current library;
-it is displayed as an explicit premise. No computation delivery, table
-soundness theorem or consumer witness is read here.
+and its actual coordinate comparisons through both fixed tower suspensions.
+Compatibility of the two desuspensions with differentials is proved from
+the actual tower squares: the two single-desuspension signs cancel. No
+computation delivery, table soundness theorem or consumer witness is read here.
 -/
 
 namespace KIP126.Interface.Solution.LinProgram.Naturality
@@ -37,7 +38,7 @@ def topCell : Ceta ⟶ (Sphere (C := standardFoundation.Spectrum) 1)⟦(1 : ℤ)
   HasFunctorialCofiber.cofibδ standardRouteModel.auxiliary.etaMap
 
 /-- An explicit interpretation of the auxiliary Cη basis labels. Its
-agreement with the missing Cη data is still an instance obligation; this
+agreement with the pinned Cη data is still an instance obligation; this
 parameter neither chooses a second route model nor asserts a basis theorem. -/
 abbrev CetaCoordinates :=
   (s t : Nat) → Nat → cetaSequence.Page 2 ((s : ℤ), (t : ℤ))
@@ -63,11 +64,11 @@ theorem row245130_topCell (coordinates : CetaCoordinates)
         (coordinates 5 21 0)) :=
   adamsInternalE2Induced_hasDifferential standardFoundation.hf2.unit topCell source
 
-/-- The precise remaining universal suspension proposition on the same two
+/-- The universal suspension proposition on the same two
 fixed tower comparisons. It ranges over all pages, bidegrees and labels.
 Two successive desuspensions account for `sus = 2`; no single-desuspension
 same-sign differential rule is assumed (the tower connecting squares carry
-the suspension sign). This definition supplies no witness of the property. -/
+the suspension sign). The theorem below proves this property. -/
 def DoubleDesuspensionCompatible : Prop :=
   ∀ (r s t u v : ℤ)
     (sx : PageRepresentatives.Ambient standardFoundation.hf2
@@ -94,6 +95,14 @@ def DoubleDesuspensionCompatible : Prop :=
       r (s, t) (u, v) sx sy →
     HasDifferential sphereAdamsData r (s, t - 1 - 1) (u, v - 1 - 1) x y
 
+/-- The fixed comparisons satisfy the full universal statement by the generic
+actual two-desuspension theorem. Its fixed-model foundational dependencies
+are inherited; no extra compatibility premise is introduced. -/
+theorem doubleDesuspensionCompatible : DoubleDesuspensionCompatible := by
+  intro r s t u v sx sy x1 y1 x y hsx hsy hx hy h
+  exact (standardRouteModel.classicalSuspension .sphere).hasDifferential_desuspendTwice
+    (standardRouteModel.classicalSuspension (.shift 1 .sphere)) hsx hsy hx hy h
+
 private theorem statement_of_hasDifferential (P : LinE2Presentation)
     (row : KIP126.Computation.LinProofs.DifferentialRow)
     (hx : row.t ≤ 261) (hy : row.t + row.r - 1 ≤ 261)
@@ -109,12 +118,11 @@ private theorem statement_of_hasDifferential (P : LinE2Presentation)
     KIP126.Challenge2.DifferentialStatement P row :=
   ⟨hx, hy, x, y, x_coordinates, y_coordinates, h⟩
 
-/-- The full native output, with explicit remaining source, map-coordinate
-and universal suspension premises. The statement does not strengthen [0]
+/-- The full native output, with explicit remaining source and map-coordinate
+premises. The universal suspension law is proved above. The statement does not strengthen [0]
 to a nonzero later-page class or translate it to a paper name. -/
 theorem row245131 (P : LinE2Presentation) (coordinates : CetaCoordinates)
     (source : SourceEquation coordinates)
-    (desuspend : DoubleDesuspensionCompatible)
     (x : E2At 2 17) (y : E2At 5 19)
     (x_coordinates : KIP126.Challenge2.HasCoordinates x [0])
     (y_coordinates : KIP126.Challenge2.HasCoordinates y [0])
@@ -142,7 +150,7 @@ theorem row245131 (P : LinE2Presentation) (coordinates : CetaCoordinates)
       KIP126.Computation.LinProofs.Raw.Naturality.output245131 := by
   have h : HasDifferential sphereAdamsData 3 (2, 17) (5, 19)
       (P.comparison 2 17 (by decide) x) (P.comparison 5 19 (by decide) y) :=
-    desuspend 3 2 19 5 21
+    doubleDesuspensionCompatible 3 2 19 5 21
       (adamsInternalE2Induced standardFoundation.hf2.unit topCell (2, 19)
         (coordinates 2 19 0))
       (adamsInternalE2Induced standardFoundation.hf2.unit topCell (5, 21)
@@ -153,6 +161,38 @@ theorem row245131 (P : LinE2Presentation) (coordinates : CetaCoordinates)
   exact statement_of_hasDifferential P
     KIP126.Computation.LinProofs.Raw.Naturality.output245131
     (by decide) (by decide) x y x_coordinates y_coordinates h
+
+/-- Native endpoint using the two fixed archived sphere coordinates. Their
+coordinate witnesses are proved; the actual source differential and the four
+actual map comparisons remain explicit. -/
+theorem row245131_native (P : LinE2Presentation) (coordinates : CetaCoordinates)
+    (source : SourceEquation coordinates)
+    (x1 : PageRepresentatives.Ambient standardFoundation.hf2
+      (Sphere (C := standardFoundation.Spectrum) 1) (2, 18))
+    (y1 : PageRepresentatives.Ambient standardFoundation.hf2
+      (Sphere (C := standardFoundation.Spectrum) 1) (5, 20))
+    (source_first :
+      (standardRouteModel.classicalSuspension (.shift 1 .sphere)).DesuspendsClass
+        2 19
+        (adamsInternalE2Induced standardFoundation.hf2.unit topCell (2, 19)
+          (coordinates 2 19 0)) x1)
+    (target_first :
+      (standardRouteModel.classicalSuspension (.shift 1 .sphere)).DesuspendsClass
+        5 21
+        (adamsInternalE2Induced standardFoundation.hf2.unit topCell (5, 21)
+          (coordinates 5 21 0)) y1)
+    (source_second :
+      (standardRouteModel.classicalSuspension .sphere).DesuspendsClass
+        2 18 x1 (P.comparison 2 17 (by decide) KIP126.LinE2.NaturalityCoordinates.source))
+    (target_second :
+      (standardRouteModel.classicalSuspension .sphere).DesuspendsClass
+        5 20 y1 (P.comparison 5 19 (by decide) KIP126.LinE2.NaturalityCoordinates.target)) :
+    KIP126.Challenge2.DifferentialStatement P
+      KIP126.Computation.LinProofs.Raw.Naturality.output245131 := by
+  exact row245131 P coordinates source
+    KIP126.LinE2.NaturalityCoordinates.source KIP126.LinE2.NaturalityCoordinates.target
+    NaturalityCoordinates.source_hasCoordinates NaturalityCoordinates.target_hasCoordinates
+    x1 y1 source_first target_first source_second target_second
 
 end
 end KIP126.Interface.Solution.LinProgram.Naturality

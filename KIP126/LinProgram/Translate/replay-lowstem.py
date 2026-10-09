@@ -28,13 +28,28 @@ def pinned(name):
         raise ValueError("input absent from pinned manifest")
     path = RAW / name
     data = path.read_bytes()
-    if data.startswith(b"version https://git-lfs.github.com/spec/v1\n"):
-        digest = data.decode().split("oid sha256:")[1].splitlines()[0]
+    if data.startswith(b"version https://git-lfs.github.com/spec/v1"):
+        # Match the source-inventory boundary before an OID can become a path.
+        # A pointer's own identity/size must match, in addition to checking
+        # the actual cached bytes below. Missing bytes never fall back to
+        # pointer metadata for a computation input.
+        pointer = re.fullmatch(
+            rb"version https://git-lfs.github.com/spec/v1\noid sha256:([0-9a-f]{64})\nsize ([0-9]+)\n",
+            data,
+        )
+        if pointer is None:
+            raise ValueError(f"malformed Git LFS pointer: {name}")
+        digest, size = pointer[1].decode("ascii"), int(pointer[2])
+        if digest != entries[name]["sha256"] or size != entries[name]["size"]:
+            raise ValueError(f"Git LFS pointer OID/size mismatch: {name}")
         common = Path(subprocess.check_output(
             ["git", "rev-parse", "--path-format=absolute", "--git-common-dir"],
             cwd=ROOT, text=True).strip())
         path = common / "lfs/objects" / digest[:2] / digest[2:4] / digest
-        data = path.read_bytes()
+        try:
+            data = path.read_bytes()
+        except FileNotFoundError as exc:
+            raise FileNotFoundError(f"missing pinned Git LFS payload: {name} ({digest})") from exc
     digest = hashlib.sha256(data).hexdigest()
     if digest != entries[name]["sha256"] or len(data) != entries[name]["size"]:
         raise ValueError(f"pinned input mismatch: {name}")

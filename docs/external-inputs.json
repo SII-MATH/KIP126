@@ -1261,6 +1261,52 @@
           "kind": "machine_artifact",
           "required": true,
           "sha256": "a9a623bf7165e62fcf455e454fdf9195237491bf07bd148902e245aa1dba64d8"
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "ca0f379210e07d2908576c6e0ddb8889db9b17c8ef426a68b0831bb3f606b477",
+          "storage": "git-lfs",
+          "size": 3100672,
+          "extracted_from": {
+            "record": "Source/LWXMachine/zenodo-record.json",
+            "archive": "kervaire_database.rar",
+            "archive_size": 82746451,
+            "archive_checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+            "member": "kervaire-49/Ceta_AdamsSS_t200.db"
+          },
+          "extraction_command": [
+            "unrar",
+            "p",
+            "-inul",
+            "kervaire_database.rar",
+            "kervaire-49/Ceta_AdamsSS_t200.db"
+          ],
+          "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record"
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "3d4dbed8ede47c8b1b1ed3bcfea9a514c55210b329bd5888c6f07711b90865b8",
+          "storage": "git-lfs",
+          "size": 32768,
+          "extracted_from": {
+            "record": "Source/LWXMachine/zenodo-record.json",
+            "archive": "kervaire_database.rar",
+            "archive_size": 82746451,
+            "archive_checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+            "member": "kervaire-49/map_AdamsSS_Ceta_to_S0_t200.db"
+          },
+          "extraction_command": [
+            "unrar",
+            "p",
+            "-inul",
+            "kervaire_database.rar",
+            "kervaire-49/map_AdamsSS_Ceta_to_S0_t200.db"
+          ],
+          "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record"
         }
       ]
     },

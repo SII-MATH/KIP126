@@ -160,6 +160,71 @@ foundations established earlier.
   is not a substitute for these diagrams.
 \end{definition}
 
+\begin{lemma}[Signed desuspension on the actual Adams exact couple]
+  \label{lem:adams-suspension-exact-couple}
+  \lean{KIP126.Classical.Adams.Suspension.TowerComparison.desuspendTower,KIP126.Classical.Adams.Suspension.TowerComparison.desuspend_adamsI,KIP126.Classical.Adams.Suspension.TowerComparison.desuspend_adamsJ,KIP126.Classical.Adams.Suspension.TowerComparison.desuspend_adamsK}
+  \uses{def:mahowald-tower-suspension-comparison,def:classical-adams-ss}
+  \leanok
+  Given the specified actual tower comparison, desuspension commutes with
+  every tower transition $I$ and cofiber inclusion $J$, and anticommutes
+  with the connecting map $K$. These identities hold in all integer tower
+  stages and homotopy degrees, with their domain-sphere transports explicit.
+  They introduce no pagewise differential compatibility assumption.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Apply homotopy desuspension naturality to the tower and layer squares.
+  The connecting square includes its suspension sign; desuspend it twice
+  and use the connecting-homomorphism formula to obtain the negative sign
+  in the $K$ identity. This proves exact-couple compatibility for a supplied
+  tower comparison, not existence of that comparison or the native data
+  coordinate identifications.
+\end{proof}
+
+\begin{lemma}[Signed desuspension on quotient pages]
+  \label{lem:adams-suspension-pages}
+  \lean{KIP126.Classical.Adams.Suspension.TowerComparison.desuspendCycles,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendPage,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendPage_mkQ,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendPage_differential,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendCycles_mem_cycleSubmodule,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendCycles_mem_boundarySubmodule}
+  \uses{lem:adams-suspension-exact-couple,def:ss-elementwise-page-presentation}
+  \leanok
+  A supplied actual tower comparison induces linear desuspension maps on
+  all raw quotient pages, carrying bidegree $(s,t)$ to $(s,t-1)$. For every
+  natural page $r\geq1$ this map anticommutes with the actual differential,
+  with the target degree transport explicit. On the second-cycle ambient
+  module it preserves every finite and infinite cycle and boundary condition.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Desuspend a cycle lift and negate it using the signed $K$ identity.
+  The $I$ and $J$ squares give cycle and boundary preservation. Quotient
+  descent and independence of the differential lift give the signed
+  differential identity. Intersections and directed sums give the infinite
+  cycle and boundary statements. These constructions use the supplied tower
+  comparison; they do not prove its existence or identify any native basis.
+\end{proof}
+
+\begin{lemma}[Two actual desuspensions preserve differentials]
+  \label{lem:adams-double-suspension-differential}
+  \lean{KIP126.Classical.Adams.Suspension.TowerComparison.desuspendInternalPage,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendTwiceInternalPage,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendInternalPage_d,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendTwiceInternalPage_d,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendTwiceInternalPage_hasDifferential,KIP126.Classical.Adams.Suspension.TowerComparison.hasDifferential_desuspendTwice}
+  \uses{lem:adams-suspension-pages,prop:internal-page-naturality}
+  \leanok
+  Given actual tower comparisons for $X$ and $\Sigma X$, their canonical
+  internal page maps compose to a map from $\Sigma^2X$ to $X$, shifting
+  $(s,t)$ to $(s,t-2)$. This map commutes with the actual differentials.
+  For all integer pages, bidegrees and labels, four successive
+  \texttt{DesuspendsClass} relations therefore carry a supplied differential
+  on $\Sigma^2X$ to the corresponding differential on $X$.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Conjugate the raw quotient maps by the representative-preserving internal
+  page isomorphisms. Cycle and boundary preservation gives a single ambient
+  morphism whose canonical quotient maps are these maps. The two signed
+  differential squares cancel their negatives. Apply reindexed naturality
+  and the actual representative relations. No additional differential
+  compatibility, restricted page range or native coordinate identification
+  is assumed.
+\end{proof}
+
 % SOURCE: MainPaper/main.tex:1780-1917, representative choices in the proof of Theorem thm:158d451a.
 \begin{lemma}[Synchronized Mahowald representatives]
   \label{lem:mahowald-synchronized-representatives}

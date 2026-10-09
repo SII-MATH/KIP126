@@ -20,6 +20,24 @@ lean_lib KIP126 where
   globs := #[.andSubmodules `KIP126]
 
 /-!
+Reuse the imported Milnor certificate kernel in place. These non-default
+libraries expose only the nine modules used by the secondary algebra checks;
+the imported research project and its generated batches are not build targets.
+-/
+lean_lib MilnorCertificates where
+  srcDir := "Lin-program/program"
+  roots := #[`MilnorCertificates.StableProduct]
+  globs := #[.one `MilnorCertificates.Basic, .one `MilnorCertificates.Grading,
+    .one `MilnorCertificates.WindowSoundness, .one `MilnorCertificates.RankStability,
+    .one `MilnorCertificates.Import, .one `MilnorCertificates.GeneralTactic,
+    .one `MilnorCertificates.StableProduct]
+
+lean_lib LinProgramCertificates where
+  srcDir := "Lin-program/program"
+  roots := #[`LinProgramCertificates.Tactic]
+  globs := #[.one `LinProgramCertificates.Verifier, .one `LinProgramCertificates.Tactic]
+
+/-!
 Historical KIP-base, ported to the pinned toolchain. Its inherited assumptions
 are inventoried under migration/kip-base and must not enter KIP126's import graph.
 -/

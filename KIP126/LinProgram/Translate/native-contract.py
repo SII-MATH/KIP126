@@ -191,12 +191,167 @@ def bulk_lookup(row):
     return matches[0]
 
 
+def validate_ceta_archive_origin(manifest):
+    """The added inputs come from the already registered cw49 archive."""
+    canonical = json.loads((ROOT / "docs/external-inputs.json").read_text())
+    machine = next(s for s in canonical["sources"] if s["id"] == "lwx_machine")
+    artifacts = {a["path"]: a for a in machine["artifacts"]}
+    record_path = "Source/LWXMachine/zenodo-record.json"
+    record_bytes = (ROOT / record_path).read_bytes()
+    require(hashlib.sha256(record_bytes).hexdigest() == artifacts[record_path]["sha256"],
+            "registered Zenodo record hash mismatch")
+    record = json.loads(record_bytes)
+    require(record["id"] == 14875701 and record["metadata"]["version"] == manifest["version"],
+            "Ceta archive source version changed")
+    archive = next(f for f in record["files"] if f["key"] == "kervaire_database.rar")
+    for name in ("Ceta_AdamsSS_t200.db", "map_AdamsSS_Ceta_to_S0_t200.db"):
+        entry = next(f for f in manifest["files"] if f["path"] == name)
+        require(entry["extracted_from"] == {
+            "record": "Source/LWXMachine/zenodo-record.json",
+            "archive": archive["key"], "archive_size": archive["size"],
+            "archive_checksum": archive["checksum"], "member": "kervaire-49/" + name,
+        }, "Ceta input no longer identifies the fixed archive member")
+        registered = artifacts["KIP126/LinProgram/Raw/" + name]
+        require(all(registered[field] == entry[field] for field in ("size", "sha256", "extracted_from")),
+                "Ceta Raw input disagrees with canonical source artifact")
+
+
+def checked_schema(db, table, columns):
+    schema = db.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name=?", (table,)).fetchone()
+    require(schema is not None, f"missing native table: {table}")
+    actual = [dict(row) for row in db.execute(f'PRAGMA table_info("{table}")')]
+    require([(row["name"], row["type"]) for row in actual] == columns,
+            f"native table schema changed: {table}")
+    return schema[0]
+
+
+def native_ceta_map_slice(ceta, maps, sphere, source, target, mapping, lowstem):
+    """Selected raw coordinate matrices, not actual Adams map comparisons.
+
+    The observed map table stores images of MODULE GENERATORS. Extend these
+    stored polynomials formally S0-linearly to the selected basis monomials.
+    Only direct matches with the recorded target monomials are supported; a
+    required quotient reduction is refused rather than silently assumed.
+    """
+    schemas = {
+        "Ceta_AdamsE2_basis": checked_schema(ceta, "Ceta_AdamsE2_basis", [
+            ("id", "INTEGER"), ("mon", "TEXT"), ("repr", "TEXT"),
+            ("s", "SMALLINT"), ("t", "SMALLINT"), ("d2", "TEXT")]),
+        "Ceta_AdamsE2_generators": checked_schema(ceta, "Ceta_AdamsE2_generators", [
+            ("id", "INTEGER"), ("name", "TEXT"), ("repr", "SMALLINT"),
+            ("s", "SMALLINT"), ("t", "SMALLINT"), ("cell", "SMALLINT"), ("cell_coeff", "TEXT")]),
+        "Ceta_AdamsE2_ss": checked_schema(ceta, "Ceta_AdamsE2_ss", [
+            ("id", "INTEGER"), ("s", "SMALLINT"), ("t", "SMALLINT"),
+            ("base", "TEXT"), ("diff", "TEXT"), ("level", "SMALLINT")]),
+        "map_AdamsE2_Ceta_to_S0": checked_schema(maps, "map_AdamsE2_Ceta_to_S0", [
+            ("id", "INTEGER"), ("map", "TEXT")]),
+        "source_version": checked_schema(ceta, "version", [
+            ("id", "INTEGER"), ("name", "TEXT"), ("value", "")]),
+        "map_version": checked_schema(maps, "version", [
+            ("id", "INTEGER"), ("name", "TEXT"), ("value", "")]),
+    }
+    source_version = [dict(row) for row in ceta.execute("SELECT * FROM version ORDER BY id")]
+    map_version = [dict(row) for row in maps.execute("SELECT * FROM version ORDER BY id")]
+    metadata = {row["name"]: row["value"] for row in map_version}
+    require(len(metadata) == len(map_version), "duplicate map version metadata")
+    require((metadata.get("from"), metadata.get("to"), metadata.get("filtration"),
+             metadata.get("suspension"), metadata.get("t_max")) ==
+            (mapping["from"], mapping["to"], 0, mapping["sus"], mapping["t_max"]),
+            "map database metadata disagrees with ss.json")
+    validate_naturality(source, target, mapping)
+    source_equation, target_equation = equation(source), equation(target)
+    used_module_generators, used_images, used_ring_generators = {}, {}, {}
+
+    def ring_degree(monomial):
+        s, t = 0, 0
+        for generator, exponent in monomial:
+            row = sphere.execute("SELECT * FROM S0_AdamsE2_generators WHERE id=?", (generator,)).fetchone()
+            require(row is not None, "unknown S0 coefficient generator")
+            used_ring_generators[generator] = dict(row)
+            s += row["s"] * exponent
+            t += row["t"] * exponent
+        return s, t
+
+    slices = {}
+    for side in ("source", "target"):
+        source_degree = source_equation[side]["degree"]
+        target_degree = target_equation[side]["degree"]
+        source_basis = [dict(row) for row in ceta.execute(
+            "SELECT * FROM Ceta_AdamsE2_basis WHERE s=? AND t=? ORDER BY id", source_degree)]
+        target_basis = [dict(row) for row in sphere.execute(
+            "SELECT * FROM S0_AdamsE2_basis WHERE s=? AND t=? ORDER BY id", target_degree)]
+        require(source_basis and target_basis, "selected map source or target degree is absent")
+        for rows in (source_basis, target_basis):
+            for index, row in enumerate(rows):
+                require(row["id"] == rows[0]["id"] + index, "noncontiguous native local basis")
+                row["local_index"] = index
+        target_indices = {lowstem.mon(row["mon"]): row["local_index"] for row in target_basis}
+        require(len(target_indices) == len(target_basis), "duplicate target basis monomial")
+        columns = []
+        for row in source_basis:
+            code = row["mon"]
+            require(isinstance(code, str) and re.fullmatch(r"[0-9]+(?:,[0-9]+)*", code),
+                    "malformed native module monomial")
+            numbers = list(map(int, code.split(",")))
+            require(len(numbers) % 2 == 1, "native module monomial must end with a module generator")
+            generator = numbers[-1]
+            coefficient = lowstem.mon(",".join(map(str, numbers[:-1])))
+            g = ceta.execute("SELECT * FROM Ceta_AdamsE2_generators WHERE id=?", (generator,)).fetchone()
+            image = maps.execute("SELECT * FROM map_AdamsE2_Ceta_to_S0 WHERE id=?", (generator,)).fetchone()
+            require(g is not None and image is not None, "missing native module generator or image")
+            used_module_generators[generator], used_images[generator] = dict(g), dict(image)
+            cs, ct = ring_degree(coefficient)
+            require([cs + g["s"], ct + g["t"]] == source_degree, "source module monomial degree mismatch")
+            require(isinstance(image["map"], str), "SQL NULL generator image is unknown, not zero")
+            polynomial = lowstem.polynomial(image["map"]) if image["map"] else set()
+            for term in polynomial:
+                require(ring_degree(term) == (g["s"], g["t"] - mapping["sus"]),
+                        "native generator image degree mismatch")
+            value = {lowstem.mul(coefficient, term) for term in polynomial}
+            require(all(term in target_indices for term in value),
+                    "native map image requires an unsupported target-basis reduction")
+            columns.append(sorted(target_indices[term] for term in value))
+        result = set()
+        for index in source_equation[side]["coordinates"]:
+            require(index < len(columns), "source log coordinate outside native basis")
+            result.symmetric_difference_update(columns[index])
+        require(sorted(result) == target_equation[side]["coordinates"],
+                "native map coordinates disagree with naturality target log")
+        slices[side] = {
+            "source_degree": source_degree, "target_degree": target_degree,
+            "source_basis": source_basis, "target_basis": target_basis,
+            "columns_as_target_coordinates": columns,
+            "matrix_rows": [[int(j in column) for column in columns] for j in range(len(target_basis))],
+            "source_log_coordinates": source_equation[side]["coordinates"],
+            "mapped_coordinates": sorted(result),
+        }
+    outgoing = [dict(row) for row in ceta.execute(
+        "SELECT * FROM Ceta_AdamsE2_ss WHERE s=? AND t=? AND base=? AND diff=? AND level=?",
+        (source["s"], source["t"], source["x"], source["dx"], 10000 - source["r"]))]
+    incoming = [dict(row) for row in ceta.execute(
+        "SELECT * FROM Ceta_AdamsE2_ss WHERE s=? AND t=? AND base=? AND diff=? AND level=?",
+        (source["s"] + source["r"], source["t"] + source["r"] - 1,
+         source["dx"], source["x"], source["r"]))]
+    require(len(outgoing) == len(incoming) == 1, "source log lacks reciprocal native staircase rows")
+    return {
+        "scope": "selected native data map only; no actual Adams map comparison or source differential proof",
+        "schema": schemas, "source_database_version": source_version, "map_database_version": map_version,
+        "module_generators": [used_module_generators[i] for i in sorted(used_module_generators)],
+        "generator_images": [used_images[i] for i in sorted(used_images)],
+        "coefficient_generators": [used_ring_generators[i] for i in sorted(used_ring_generators)],
+        "degree_slices": slices, "source_staircase": {"outgoing": outgoing[0], "incoming": incoming[0]},
+        "interpretation": "formal S0-linear extension of stored module-generator images; direct target monomial matches only",
+        "proof_status": "unverified-data-extraction",
+    }
+
+
 def rebuild():
     lowstem = load_lowstem()
     config = pinned_map_catalogue(lowstem)
     paths, raw_bytes = {}, {}
     # Reuse the existing manifest and Git-worktree-aware LFS resolver.
     manifest = json.loads((LIN / "Raw/manifest.json").read_text())
+    validate_ceta_archive_origin(manifest)
     for entry in manifest["files"]:
         paths[entry["path"]], data, _ = lowstem.pinned(entry["path"])
         if entry["path"].endswith(".csv"):
@@ -234,13 +389,15 @@ def rebuild():
                 extra_coordinates["target"] == selected_extra[0]["target_basis"],
                 "selected row462481 coordinates differ from pinned sphere database")
         natural_coordinates = sphere_coordinates(sphere, target)
+        with connect(paths["Ceta_AdamsSS_t200.db"]) as ceta, connect(paths["map_AdamsSS_Ceta_to_S0_t200.db"]) as maps:
+            native_map_data = native_ceta_map_slice(ceta, maps, sphere, source, target, mapping, lowstem)
         natural_lookup, extra_lookup = bulk_lookup(target), bulk_lookup(extra)
-    missing = []
+    archive_inputs = []
     for role, name in (("source_page_database", modules[0]["path"]), ("map_matrix_database", mapping["path"])):
-        missing.append({"role": role, "path_named_by_ss_json": name,
-                        "present_in_raw": (LIN / "Raw" / name).is_file(),
-                        "pinned_by_raw_manifest": name in paths,
-                        "trace_extracted": False})
+        archive_inputs.append({"role": role, "path_named_by_ss_json": name,
+                               "present_in_raw": (LIN / "Raw" / name).is_file(),
+                               "pinned_by_raw_manifest": name in paths,
+                               "selected_rows_extracted": True})
     return {
         "schema_version": 1,
         "kind": "rebuildable-native-target-and-witness-snapshot",
@@ -292,24 +449,36 @@ def rebuild():
                 "target": "KIP126.Computation.LinProofs.Raw.Naturality.target245131",
                 "output": "KIP126.Computation.LinProofs.Raw.Naturality.output245131",
             },
-            "conditional_statement_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245131",
+            "conditional_statement_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245131_native",
+            "general_conditional_statement_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245131",
+            "fixed_sphere_coordinate_declarations": [
+                "KIP126.LinE2.NaturalityCoordinates.source",
+                "KIP126.LinE2.NaturalityCoordinates.target",
+                "KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.source_hasCoordinates",
+                "KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.target_hasCoordinates",
+            ],
             "constructed_top_cell_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.topCell",
             "conditional_top_cell_naturality_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell",
+            "generic_double_desuspension_declaration": "KIP126.Classical.Adams.Suspension.TowerComparison.hasDifferential_desuspendTwice",
+            "fixed_double_desuspension_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.doubleDesuspensionCompatible",
             "source_equation": equation(source), "target_equation": equation(target),
             "source_candidate_relation": "adjacent log only; an actual source-to-target trace still needs witnesses",
             "native_map": mapping, "native_source_module": modules[0],
             "sphere_coordinates": natural_coordinates, "bulk_lookup": natural_lookup,
             "status": "unverified-conditional-replay-target", "actual_row_certified": False,
-            "missing_trace": missing,
+            "archive_inputs": archive_inputs,
+            "native_data_map": native_map_data,
+            "missing_trace": [
+                "The complete derivation of source log245130 is not replayed; reciprocal source staircase rows are recorded results.",
+                "Stored module-generator images and the two raw coordinate matrices are not comparisons with the actual topCell and fixed tower desuspensions.",
+            ],
             "remaining_premises": [
-                "Identify KIP126.Interface.Solution.LinProgram.Naturality.CetaCoordinates at (2,19)[0] and (5,21)[0] with the missing archived Ceta source data; a supplied coordinate function alone is not that identification.",
+                "Identify KIP126.Interface.Solution.LinProgram.Naturality.CetaCoordinates at (2,19)[0] and (5,21)[0] with the now-pinned Ceta basis rows id69 and id80 in native_data_map; extracted records and a supplied coordinate function alone do not prove that actual identification.",
                 "Prove KIP126.Interface.Solution.LinProgram.Naturality.SourceEquation coordinates: HasDifferential cetaSequence 3 (2,19) (5,21) (coordinates 2 19 0) (coordinates 5 21 0); the source D log alone is not a proof.",
-                "Supply x:E2At 2 17 and y:E2At 5 19 with the row245131 premises x_coordinates:HasCoordinates x [0] and y_coordinates:HasCoordinates y [0], interpreted through the same LinE2Presentation P.",
                 "Prove row245131 premise source_first: the existing shifted-sphere classicalSuspension desuspends the actual topCell image of coordinates 2 19 0 to x1 at (2,18).",
                 "Prove row245131 premise target_first: that same shifted-sphere classicalSuspension desuspends the actual topCell image of coordinates 5 21 0 to y1 at (5,20).",
-                "Prove row245131 premise source_second: the existing sphere classicalSuspension desuspends x1 at (2,18) to P.comparison 2 17 x.",
-                "Prove row245131 premise target_second: that same sphere classicalSuspension desuspends y1 at (5,20) to P.comparison 5 19 y.",
-                "Prove KIP126.Interface.Solution.LinProgram.Naturality.DoubleDesuspensionCompatible with its full quantification over pages, bidegrees, labels and representatives; the constructed topCell and row245130_topCell do not supply this universal compatibility.",
+                "Prove row245131 premise source_second: the existing sphere classicalSuspension desuspends x1 at (2,18) to P.comparison 2 17 KIP126.LinE2.NaturalityCoordinates.source.",
+                "Prove row245131 premise target_second: that same sphere classicalSuspension desuspends y1 at (5,20) to P.comparison 5 19 KIP126.LinE2.NaturalityCoordinates.target.",
             ],
         },
         "additional_missing_trace": {
@@ -317,7 +486,7 @@ def rebuild():
             "selected_record_snapshot": "KIP126/LinProgram/Generated/Selected/records.json",
             "sphere_coordinates": extra_coordinates, "bulk_lookup": extra_lookup,
             "status": "unverified-target-without-source-trace",
-            "missing": "Ceta source equation and coordinate preimages for S0 (15,138)[2] -> (18,140)[2]; Ceta__S0 matrix and actual comparison",
+            "missing": "The row462481-specific Ceta source trace and coordinate preimages for S0 (15,138)[2] -> (18,140)[2] have not been extracted here; the Ceta and map databases are now pinned, while their actual comparison remains unproved",
         },
         "replay_commands": [
             "python3 KIP126/LinProgram/Translate/native-contract.py --check",

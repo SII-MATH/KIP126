@@ -9,6 +9,8 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest import mock
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -153,6 +155,86 @@ class SourceInventoryTests(unittest.TestCase):
                 }]}, "sources[0]", False, None,
             )
             self.assertTrue(any("resolves outside source directory" in e for e in validator.errors))
+
+    def lfs_fixture(self, root):
+        relative = "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db"
+        path = root / relative
+        path.parent.mkdir(parents=True)
+        payload = b"fixed native database fixture"
+        oid = hashlib.sha256(payload).hexdigest()
+        artifact = {"path": relative, "kind": "machine_artifact", "required": True,
+                    "sha256": oid, "storage": "git-lfs", "size": len(payload)}
+        path.write_text(f"version https://git-lfs.github.com/spec/v1\noid sha256:{oid}\nsize {len(payload)}\n")
+        source = {"id": "lwx_machine", "directory": "Source/LWXMachine", "artifacts": [artifact]}
+        return path, payload, artifact, source
+
+    def test_pointer_only_is_metadata_and_not_verified_content(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            _, _, _, source = self.lfs_fixture(root)
+            validator = InventoryValidator(root, root / "unused.json")
+            with mock.patch("check_source_inventory.subprocess.run", return_value=SimpleNamespace(returncode=1)):
+                validator._check_artifacts(source, "sources[0]", False, None)
+            self.assertEqual(validator.errors, [])
+            self.assertEqual(validator.lfs_pointer_only_count, 1)
+            self.assertEqual(validator.lfs_cached_payload_count, 0)
+
+    def test_lfs_pointer_oid_size_and_grammar_are_checked(self) -> None:
+        for mutation in ("oid", "size", "grammar"):
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                path, _, artifact, source = self.lfs_fixture(root)
+                text = path.read_text()
+                if mutation == "oid":
+                    text = text.replace(artifact["sha256"], "0" * 64)
+                elif mutation == "size":
+                    text = text.replace(f"size {artifact['size']}", "size 1")
+                else:
+                    text += "unrecognized extension\n"
+                path.write_text(text)
+                validator = InventoryValidator(root, root / "unused.json")
+                validator._check_artifacts(source, "sources[0]", False, None)
+                self.assertTrue(any("Git LFS pointer" in e for e in validator.errors))
+                self.assertEqual(validator.lfs_pointer_only_count, 0)
+                self.assertEqual(validator.lfs_cached_payload_count, 0)
+
+    def test_cached_lfs_payload_is_checked_by_actual_size_and_hash(self) -> None:
+        for mutation in (None, "size", "hash"):
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                _, payload, artifact, source = self.lfs_fixture(root)
+                common = root / "common-git"
+                oid = artifact["sha256"]
+                cached = common / "lfs/objects" / oid[:2] / oid[2:4] / oid
+                cached.parent.mkdir(parents=True)
+                cached.write_bytes(payload if mutation is None else payload[:-1] if mutation == "size" else b"x" * len(payload))
+                validator = InventoryValidator(root, root / "unused.json")
+                with mock.patch("check_source_inventory.subprocess.run", return_value=SimpleNamespace(returncode=0, stdout=str(common))):
+                    validator._check_artifacts(source, "sources[0]", False, None)
+                self.assertEqual(validator.lfs_pointer_only_count, 0)
+                if mutation is None:
+                    self.assertEqual(validator.errors, [])
+                    self.assertEqual(validator.lfs_cached_payload_count, 1)
+                else:
+                    self.assertTrue(any("cached Git LFS payload hash/size mismatch" in e for e in validator.errors))
+                    self.assertEqual(validator.lfs_cached_payload_count, 0)
+
+    def test_lin_database_exception_does_not_allow_nearby_paths_or_symlink_escapes(self) -> None:
+        for mutation in ("nearby", "symlink"):
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                path, payload, artifact, source = self.lfs_fixture(root)
+                if mutation == "nearby":
+                    artifact["path"] = "KIP126/LinProgram/Raw/Ceta_AdamsSS_t201.db"
+                    path.rename(root / artifact["path"])
+                else:
+                    outside = root / "cached.db"
+                    outside.write_bytes(payload)
+                    path.unlink()
+                    path.symlink_to(outside)
+                validator = InventoryValidator(root, root / "unused.json")
+                validator._check_artifacts(source, "sources[0]", False, None)
+                self.assertTrue(any("source directory" in e for e in validator.errors))
 
     def test_sha256_helper_reads_large_files_incrementally(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

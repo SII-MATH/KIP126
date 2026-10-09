@@ -53,12 +53,17 @@ the Adams and synthetic arguments.
 
 \begin{proposition}[Naturality of internal pages and representatives]
   \label{prop:internal-page-naturality}
-  \lean{KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Def.Comparison.StageInterfaces.internalNaturality}
+  \lean{KIP126.Core.SpectralSequence.SSDataMorphism.hasDifferential_reindexed,KIP126.Core.SpectralSequence.SSDataMorphism.representsOnPage_reindexed,KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Def.Comparison.StageInterfaces.internalNaturality}
   \uses{def:internal-canonical-page-map,prop:internal-page-calculus}
   \leanok
   The induced finite and infinite page maps preserve identity and composition.
-  They carry common representatives and differential equalities to those of
-  the target sequence. Preservation of nonzero classes requires an additional
+  Common representatives also transport through an arbitrary reindexing of
+  degrees when the starting pages agree, using the same ambient morphism
+  and its canonical quotient maps. No additivity of the reindexing is needed.
+  Differential equalities require the actual differential commutation and
+  compatibility of the reindexing with the differential-degree translation.
+  This applies to affine shifts as well as ordinary degree-preserving maps.
+  Ordinary morphisms carry both to those of the target sequence. Preservation of nonzero classes requires an additional
   hypothesis and is not asserted here.
 \end{proposition}
 \begin{proof}

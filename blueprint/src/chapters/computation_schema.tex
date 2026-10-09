@@ -457,6 +457,7 @@ mathematical objects and conditions.
 \begin{proposition}[Two closed products in the archived quotient]
   \label{prop:lin-native-products-152097}
   \lean{KIP126.LinE2.ReplayProducts.native_source_product_zero,KIP126.LinE2.ReplayProducts.native_target_product,KIP126.LinE2.ReplayProducts.relation26_mem,KIP126.LinE2.ReplayProducts.relation188_mem,KIP126.LinE2.ReplayProducts.relation190_mem}
+  \lean{KIP126.LinE2.ReplayCoordinates.source_mul_multiplier,KIP126.LinE2.ReplayCoordinates.multiplier_mul_trialTarget,KIP126.LinE2.ReplayCoordinates.source_value,KIP126.LinE2.ReplayCoordinates.multiplier_value,KIP126.LinE2.ReplayCoordinates.trialTarget_value,KIP126.LinE2.ReplayCoordinates.productTarget_value}
   \uses{def:lin-e2-catalogue}
   \leanok
   Write $x_i$ for the image of native generator $i$ in the fixed
@@ -467,8 +468,11 @@ mathematical objects and conditions.
     x_1x_9x_{13}=x_0^3x_{36}.
   \]
   The Lean statements retain the native monomial strings. They assert
-  equalities in this fixed data algebra, without a basis-independence
-  assertion or an actual sphere differential conclusion.
+  equalities in this fixed data algebra. The typed versions use the exact
+  archived coordinates $(4,42)[1]$, $(1,2)[0]$, $(8,45)[0]$ and $(9,47)[0]$;
+  raw catalogue membership, monomial values and homogeneous degrees are
+  checked separately. They make no basis-independence assertion or actual
+  sphere differential conclusion.
 \end{proposition}
 \begin{proof}
   \leanok
@@ -482,26 +486,58 @@ mathematical objects and conditions.
   exclusion and candidate coverage remain separate obligations.
 \end{proof}
 
+\begin{proposition}[Product identities through the same presentation]
+  \label{prop:lin-native-products-presentation}
+  \lean{KIP126.Interface.Solution.LinProgram.ReplayProducts.source_mul_multiplier,KIP126.Interface.Solution.LinProgram.ReplayProducts.multiplier_mul_trialTarget}
+  \uses{prop:lin-native-products-152097,def:computation-fixed-bindings}
+  \notready
+  Through one supplied Lin presentation $P$, the two typed native product
+  identities hold for $P$'s product and the images under its comparison.
+  The proofs use that same $P$'s multiplication comparison. They do not
+  construct $P$, compare its product with an actual higher-page tower
+  pairing, or prove the retained differential. The fixed model's existing
+  foundational dependencies remain explicit.
+\end{proposition}
+
+\begin{lemma}[Fixed native sphere coordinates for naturality]
+  \label{lem:lin-naturality-native-coordinates}
+  \lean{KIP126.LinE2.NaturalityCoordinates.sourceRow_mem,KIP126.LinE2.NaturalityCoordinates.targetRow_mem,KIP126.LinE2.NaturalityCoordinates.source_value,KIP126.LinE2.NaturalityCoordinates.target_value,KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.source_hasCoordinates,KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.target_hasCoordinates}
+  \uses{def:lin-e2-catalogue,def:lin-proofs-sphere-meaning}
+  \leanok
+  The fixed data classes $x_0x_7$ in $(2,17)$ and $x_0x_8$ in $(5,19)$
+  have the native coordinate list $[0]$. Exact archived rows, homogeneous
+  degrees and monomial values give singleton coordinate witnesses, without
+  a basis theorem, actual map comparison or differential premise.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Check membership of raw basis rows 39 and 46 and their literal monomial
+  values, then supply these singleton lists in the coordinate predicate.
+  The proofs have only standard logical axioms.
+\end{proof}
+
 \begin{proposition}[Conditional replay of native naturality record 245131]
   \label{prop:lin-native-naturality-245131}
-  \lean{KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell,KIP126.Interface.Solution.LinProgram.Naturality.row245131,KIP126.Interface.Solution.LinProgram.Naturality.DoubleDesuspensionCompatible}
-  \uses{def:lin-map-catalogue,def:lin-proofs-sphere-meaning,def:mahowald-tower-suspension-comparison,prop:internal-page-naturality}
+  \lean{KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell,KIP126.Interface.Solution.LinProgram.Naturality.row245131,KIP126.Interface.Solution.LinProgram.Naturality.row245131_native,KIP126.Interface.Solution.LinProgram.Naturality.doubleDesuspensionCompatible}
+  \uses{def:lin-map-catalogue,def:lin-proofs-sphere-meaning,lem:lin-naturality-native-coordinates,lem:adams-double-suspension-differential,prop:internal-page-naturality}
   \notready
   The adjacent native source candidate 245130 is the $C\eta$ equation
   $d_3[0]=[0]$ from $(2,19)$ to $(5,21)$. The native $N$ record 245131 is
   the sphere equation from $(2,17)$ to $(5,19)$ with the same page and
   coordinate lists. Its map is \texttt{Ceta\_\_S0}, of suspension shift two.
   Use the actual cofiber of the fixed route's $\eta$ map and its actual
-  connecting morphism to $\Sigma S^1$. Naturality transports a supplied
+  connecting morphism to $\Sigma S^1$. The native endpoint fixes the two
+  proved sphere coordinate witnesses while retaining the general conditional
+  interface. Naturality transports a supplied
   source equation to that target. Two specified tower desuspensions then
   yield the native sphere statement, conditional on four coordinate
-  comparisons and the universal finite-differential compatibility of these
-  same two desuspensions.
+  comparisons. The universal differential compatibility of these same two
+  desuspensions is now derived from their actual tower squares.
 
   The source-coordinate identification, source differential and coordinate
   comparisons are not supplied by adjacency or by the $D$ and $N$ tags.
-  The universal double-desuspension rule remains unproved; a single
-  suspension has a sign in its connecting square. The conditional theorem
+  A single suspension has a sign in its connecting square, and the two
+  signs cancel by the proved double-desuspension rule. The conditional theorem
   does not certify either log entry and retains the fixed model's existing
   foundational obligations. It reads no total computation delivery.
 \end{proposition}
