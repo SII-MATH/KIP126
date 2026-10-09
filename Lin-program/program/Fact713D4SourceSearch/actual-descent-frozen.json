@@ -1,0 +1,50 @@
+{
+  "status": "direct_compile_passed_and_source_frozen",
+  "compile": {
+    "source_sha256": "6d39e97a5677237ab1ad2c4d3293144046d22152c7f5062f90c0abe1098f508a",
+    "external_input_sha256": {},
+    "observed_exit_code": 0,
+    "log_sha256": "fa9bda61d71eb6fe6aaa2f45ec398441658d633918e42f176c7ae2cddc18f779",
+    "olean_sha256": "cb728680efc06cc2928d20c12ab92ca82c97c76c8012655b05b99041291f6f6d"
+  },
+  "axiom_reports": [
+    {
+      "name": "Fact713D4SourceSearch.ActualDescent.Input.mappedCycle",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "Fact713D4SourceSearch.ActualDescent.next_map_coordinates",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "Fact713D4SourceSearch.ActualDescent.next_all_zero",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "Fact713D4SourceSearch.ActualDescent.next_reflects_zero",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "files": {
+    "ActualDescent.lean": "6d39e97a5677237ab1ad2c4d3293144046d22152c7f5062f90c0abe1098f508a",
+    "actual_descent_model_check.py": "f2334ad9795ebaf123a028235a6efb75bb8ee6aa8532baeff1b59238c40664d8",
+    "actual-descent-model-check.json": "b0a771db4833f72beb6a2fcca8e3d26b079d77678f2aaf825fd1d104cebf9c51",
+    "ACTUAL_DESCENT_REVIEW.md": "6f0dfdd52ac97ca1d6ba8696ef4b1fa6c850e8996c9c2022a61e284b47ebdbfe"
+  }
+}

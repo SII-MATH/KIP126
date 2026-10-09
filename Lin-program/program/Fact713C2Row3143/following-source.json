@@ -1,0 +1,72 @@
+{
+  "source_degree": [
+    17,
+    141
+  ],
+  "source_rows": [
+    [
+      3288,
+      "1",
+      "0",
+      2
+    ],
+    [
+      3289,
+      "0",
+      null,
+      9000
+    ],
+    [
+      3290,
+      "2",
+      "0",
+      9998
+    ]
+  ],
+  "following_degree": [
+    20,
+    143
+  ],
+  "following_rows": [
+    [
+      3449,
+      "0",
+      "1",
+      9997
+    ],
+    [
+      3450,
+      "2",
+      "2",
+      9997
+    ],
+    [
+      3451,
+      "1",
+      "2",
+      9998
+    ]
+  ],
+  "following_target": [
+    23,
+    145
+  ],
+  "known_columns": [
+    [
+      false,
+      true,
+      false
+    ],
+    [
+      false,
+      false,
+      true
+    ]
+  ],
+  "external_premises": [
+    "successor d3 equals the two imported matrix columns",
+    "local d3 squared is zero",
+    "local C2-to-S0 naturality"
+  ],
+  "conclusion": "conditional zero of S0(17,140)d3 row3143; source NULL remains unknown"
+}

@@ -1,0 +1,13 @@
+import FilteredExtensionCertificates.Import
+
+namespace FilteredExtensionCertificates.Dimension64
+set_option maxRecDepth 100000
+set_option maxHeartbeats 32000000
+
+def wire : WireCertificate :=
+  filtered_extension_certificate% "FilteredExtensionProducer/case_dimension64.json"
+
+theorem valid : WireValid wire := by filtered_extension_cert using ()
+
+#print axioms valid
+end FilteredExtensionCertificates.Dimension64

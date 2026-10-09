@@ -1,0 +1,79 @@
+Row3151ActualTransport/Transport.lean:35:21: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  E.source.equivalence 0
+in the target expression
+  E.source.equivalence 0 =
+    eval E.inc (I.page4.equivalence (prefixEndpoint S pages a I rawPrefix prefix3 prefixCoordinate).value)
+
+case prefixCycle
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+a : Bool
+I : IncomingMeaning S pages a
+E : EventMeaning S a I.page4
+P : CertifiedAdamsProduct S
+eta : (S.element 4 Row2925EtaD4.Actual.etaDegree).carrier
+M : Row2925EtaD4.Actual.ProductMeaning S P eta
+named : (S.element 4 sourceDegree).carrier
+namedProduct : M.source named = Row2925EtaD4.Naturality.named
+namedCoordinate : E.source.equivalence named = fun i => ↑i == 0
+targetProduct :
+  ∀ (y : (S.element 4 targetDegree).carrier),
+    E.target.equivalence y = Row3152BranchCertificates.Actual.source4Coordinates S P eta M y
+known : (eval E.d fun i => ↑i == 1) = fun i => ↑i == 0
+rawPrefix : (S.element 2 incomingDegree).carrier
+prefix3 : Endpoint S pages 3 incomingDegree rawPrefix
+prefixCoordinate : I.page3.equivalence prefix3.value = fun i => ↑i == 0
+prefix4Cycle :
+  (S.differential 4 incomingDegree).toFun (prefixEndpoint S pages a I rawPrefix prefix3 prefixCoordinate).value = 0
+h :
+  E.source.equivalence 0 =
+    eval E.inc (I.page4.equivalence (prefixEndpoint S pages a I rawPrefix prefix3 prefixCoordinate).value)
+⊢ eval E.inc (Semantics.prefixVector a) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 4 (AdamsTarget 4 incomingDegree)).carrier
+  but is expected to have type
+    (S.element 4 sourceDegree).carrier
+  in the application
+    E.source.equivalence 0
+Row3151ActualTransport/Transport.lean:42:38: error: failed to synthesize
+  Decidable ((InImage (Semantics.incoming4 false false false) fun i => ↑i == 0 || false) ↔ (!false && false) = true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3151ActualTransport/Transport.lean:42:38: error: failed to synthesize
+  Decidable ((InImage (Semantics.incoming4 false false true) fun i => ↑i == 0 || false) ↔ (!false && true) = true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3151ActualTransport/Transport.lean:42:38: error: failed to synthesize
+  Decidable ((InImage (Semantics.incoming4 false true false) fun i => ↑i == 0 || true) ↔ (!false && false) = true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3151ActualTransport/Transport.lean:42:38: error: failed to synthesize
+  Decidable ((InImage (Semantics.incoming4 false true true) fun i => ↑i == 0 || true) ↔ (!false && true) = true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3151ActualTransport/Transport.lean:42:38: error: failed to synthesize
+  Decidable ((InImage (Semantics.incoming4 true false false) fun i => ↑i == 0 || false) ↔ (!true && false) = true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3151ActualTransport/Transport.lean:42:38: error: failed to synthesize
+  Decidable ((InImage (Semantics.incoming4 true false true) fun i => ↑i == 0 || false) ↔ (!true && true) = true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3151ActualTransport/Transport.lean:42:38: error: failed to synthesize
+  Decidable ((InImage (Semantics.incoming4 true true false) fun i => ↑i == 0 || true) ↔ (!true && false) = true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row3151ActualTransport/Transport.lean:42:38: error: failed to synthesize
+  Decidable ((InImage (Semantics.incoming4 true true true) fun i => ↑i == 0 || true) ↔ (!true && true) = true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'Row3151ActualTransport.six_actual_branches' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3151ActualTransport.kernel_boundary_cases' depends on axioms: [propext, sorryAx]
+'Row3151ActualTransport.actual_kernel_quotient' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3151ActualTransport.actual_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.checked_and_actual' depends on axioms: [propext, Classical.choice, Quot.sound]

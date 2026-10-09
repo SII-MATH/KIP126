@@ -1,0 +1,61 @@
+import RepresentativeSquareCertificates.Import
+
+namespace RepresentativeSquareProducer
+open RepresentativeSquareCertificates
+set_option maxRecDepth 100000
+set_option maxHeartbeats 16000000
+
+def firstWire : WireCertificate :=
+  representative_square_certificate% "RepresentativeSquareProducer/case_f.json"
+def secondWire : WireCertificate :=
+  representative_square_certificate% "RepresentativeSquareProducer/case_p.json"
+def zeroWire : WireCertificate :=
+  representative_square_certificate% "RepresentativeSquareProducer/case_zero.json"
+
+theorem first_valid : WireValid firstWire := by lin_cert using ()
+theorem second_valid : WireValid secondWire := by lin_cert using ()
+theorem zero_valid : WireValid zeroWire := by lin_cert using ()
+
+def checkBatch (wires : List WireCertificate) : Bool :=
+  wires.all fun w => match checkWire w with | .ok value => value | .error _ => false
+
+theorem checkBatch_sound (wires : List WireCertificate) (checked : checkBatch wires = true) :
+    ∀ w ∈ wires, WireValid w := by
+  intro w hw
+  have h := List.all_eq_true.mp checked w hw
+  cases eq : checkWire w with
+  | error e => simp [eq] at h
+  | ok b =>
+    simp only [eq] at h
+    exact checkWire_sound w (eq.trans (congrArg Except.ok h))
+
+open Lean Elab Term in
+elab "representative_square_batch% " path:str : term => do
+  let contents ← IO.FS.readFile path.getString
+  let lines := contents.trimAscii.toString.splitOn "\n"
+  let mut wires : List WireCertificate := []
+  for (line,i) in lines.zipIdx do
+    let wire ← match parse line with
+      | .ok wire => pure wire
+      | .error message => throwError "{path.getString}:{i+1}: {message}"
+    match diagnoseWire wire with
+    | .error message => throwError "{path.getString}:{i+1}: {message}"
+    | .ok (some failure) => throwError "{path.getString}:{i+1}: {failure.location}: {failure.message}"
+    | .ok none => wires := wire :: wires
+  return Lean.toExpr wires.reverse
+
+def allWires : List WireCertificate :=
+  representative_square_batch% "RepresentativeSquareProducer/valid.jsonl"
+
+theorem batch_count : allWires.length = 1480 := by decide
+
+theorem all_valid : ∀ w ∈ allWires, WireValid w :=
+  checkBatch_sound allWires (by decide)
+
+#print axioms first_valid
+#print axioms second_valid
+#print axioms zero_valid
+#print axioms checkBatch_sound
+#print axioms batch_count
+#print axioms all_valid
+end RepresentativeSquareProducer

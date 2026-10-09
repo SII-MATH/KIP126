@@ -1,0 +1,213 @@
+[
+  {
+    "module": "Actual",
+    "source_sha256": "25711cbde0804489dee6f7ab636c3cfa108a6b8a1a0ac1a7097b5661caece894",
+    "exit_code": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "command": [
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+      "-j1",
+      "Row2695Detector/Actual.lean",
+      "-o",
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2695Detector/Actual.olean"
+    ],
+    "inputs_sha256": {
+      "source.json": "2aa9bf6d4236b758e351cf421abd28f300a92c202e66777a29855d5019a16598",
+      "comparison-source.json": "94265d9499a5ece5ede2b7584ed1cbcb6dc099971e3d2f86ee75186f09958ce7",
+      "review.json": "22434bb65585587bfed61dd0df5c382e28563b3f770f4aa70d1180d39e90ab51",
+      "review.py": "35e267b6146c93f13318773dab9b52a875c9255ba4db57584f4774d7a205a776",
+      "export.py": "6a3f1bd57c954bb9a7b191711a13eac901bb7927533464c79401f7252c59e9d3",
+      "generate_comparison.py": "fd46d859289041be802851ce190f9bfbada449a7d04dc725c23e16851dff9b96",
+      "compile.py": "f85408956eefcb525d5f63b4b8595186837db6c652922822ebb7bec33de79c30",
+      "wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+      "wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+      "wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+      "wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+      "wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+      "wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6"
+    },
+    "olean_sha256": "46181fcf80559bf148cb84e5e4045d683f3965b539fb66abd769e9906d189557"
+  },
+  {
+    "module": "Comparison",
+    "source_sha256": "5c858c533d9ef54b86c9d8281921598f5bd08391d9acca7812a98c63963ed864",
+    "exit_code": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "command": [
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+      "-j1",
+      "Row2695Detector/Comparison.lean",
+      "-o",
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2695Detector/Comparison.olean"
+    ],
+    "inputs_sha256": {
+      "source.json": "2aa9bf6d4236b758e351cf421abd28f300a92c202e66777a29855d5019a16598",
+      "comparison-source.json": "94265d9499a5ece5ede2b7584ed1cbcb6dc099971e3d2f86ee75186f09958ce7",
+      "review.json": "22434bb65585587bfed61dd0df5c382e28563b3f770f4aa70d1180d39e90ab51",
+      "review.py": "35e267b6146c93f13318773dab9b52a875c9255ba4db57584f4774d7a205a776",
+      "export.py": "6a3f1bd57c954bb9a7b191711a13eac901bb7927533464c79401f7252c59e9d3",
+      "generate_comparison.py": "fd46d859289041be802851ce190f9bfbada449a7d04dc725c23e16851dff9b96",
+      "compile.py": "f85408956eefcb525d5f63b4b8595186837db6c652922822ebb7bec33de79c30",
+      "wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+      "wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+      "wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+      "wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+      "wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+      "wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6"
+    },
+    "olean_sha256": "73d69c3de54fca7ef031054a80959d5a4291bf6c00feb890be1388944f250824"
+  },
+  {
+    "module": "Naturality",
+    "source_sha256": "c90de7d6fd92534ddc04c5d8d18435ee70c9b742e93422151338e1db6bd3b2be",
+    "exit_code": 0,
+    "log_sha256": "0d0293c3290edacc111da12c04fa9330e3b2f3b7463a3f3b0646bdeba4a2d49d",
+    "command": [
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+      "-j1",
+      "Row2695Detector/Naturality.lean",
+      "-o",
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2695Detector/Naturality.olean"
+    ],
+    "inputs_sha256": {
+      "source.json": "2aa9bf6d4236b758e351cf421abd28f300a92c202e66777a29855d5019a16598",
+      "comparison-source.json": "94265d9499a5ece5ede2b7584ed1cbcb6dc099971e3d2f86ee75186f09958ce7",
+      "review.json": "22434bb65585587bfed61dd0df5c382e28563b3f770f4aa70d1180d39e90ab51",
+      "review.py": "35e267b6146c93f13318773dab9b52a875c9255ba4db57584f4774d7a205a776",
+      "export.py": "6a3f1bd57c954bb9a7b191711a13eac901bb7927533464c79401f7252c59e9d3",
+      "generate_comparison.py": "fd46d859289041be802851ce190f9bfbada449a7d04dc725c23e16851dff9b96",
+      "compile.py": "f85408956eefcb525d5f63b4b8595186837db6c652922822ebb7bec33de79c30",
+      "wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+      "wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+      "wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+      "wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+      "wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+      "wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6"
+    },
+    "olean_sha256": "9ca48b2ba21d8963bb92329cc61a7ef0bc5b9783ecfe22a12973d89be972e42d"
+  },
+  {
+    "module": "Matches",
+    "source_sha256": "f7f6378227527435418764950ccc82358c2573fe37aca9e49ec8471de9d0ee23",
+    "exit_code": 0,
+    "log_sha256": "11a5504db69f5dee517b2f55f329ef20bf5f758482c4c2a568cd428eb5cee47c",
+    "command": [
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+      "-j1",
+      "Row2695Detector/Matches.lean",
+      "-o",
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2695Detector/Matches.olean"
+    ],
+    "inputs_sha256": {
+      "source.json": "2aa9bf6d4236b758e351cf421abd28f300a92c202e66777a29855d5019a16598",
+      "comparison-source.json": "94265d9499a5ece5ede2b7584ed1cbcb6dc099971e3d2f86ee75186f09958ce7",
+      "review.json": "22434bb65585587bfed61dd0df5c382e28563b3f770f4aa70d1180d39e90ab51",
+      "review.py": "35e267b6146c93f13318773dab9b52a875c9255ba4db57584f4774d7a205a776",
+      "export.py": "6a3f1bd57c954bb9a7b191711a13eac901bb7927533464c79401f7252c59e9d3",
+      "generate_comparison.py": "fd46d859289041be802851ce190f9bfbada449a7d04dc725c23e16851dff9b96",
+      "compile.py": "f85408956eefcb525d5f63b4b8595186837db6c652922822ebb7bec33de79c30",
+      "wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+      "wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+      "wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+      "wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+      "wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+      "wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6"
+    },
+    "olean_sha256": "bd5d3986b3cd7cb3928ba417e225a774f2b736b3a037512e1abdcc6924227c79"
+  },
+  {
+    "module": "MapSemantics",
+    "source_sha256": "8db5d10f9264491ad242b15f2a0d9dbae7364576d694ba0b3e05534ba7e74b23",
+    "exit_code": 0,
+    "log_sha256": "d65f9dd13a069c34118b36d0dea00f90e39bf1a97e8df079696010aa8c9f7564",
+    "command": [
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+      "-j1",
+      "Row2695Detector/MapSemantics.lean",
+      "-o",
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2695Detector/MapSemantics.olean"
+    ],
+    "inputs_sha256": {
+      "source.json": "2aa9bf6d4236b758e351cf421abd28f300a92c202e66777a29855d5019a16598",
+      "comparison-source.json": "94265d9499a5ece5ede2b7584ed1cbcb6dc099971e3d2f86ee75186f09958ce7",
+      "review.json": "22434bb65585587bfed61dd0df5c382e28563b3f770f4aa70d1180d39e90ab51",
+      "review.py": "35e267b6146c93f13318773dab9b52a875c9255ba4db57584f4774d7a205a776",
+      "export.py": "6a3f1bd57c954bb9a7b191711a13eac901bb7927533464c79401f7252c59e9d3",
+      "generate_comparison.py": "fd46d859289041be802851ce190f9bfbada449a7d04dc725c23e16851dff9b96",
+      "compile.py": "f85408956eefcb525d5f63b4b8595186837db6c652922822ebb7bec33de79c30",
+      "wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+      "wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+      "wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+      "wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+      "wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+      "wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6"
+    },
+    "olean_sha256": "fe8004aa9db8597850578acbc6290a72180420aa6b2751635872ed5c290e3161"
+  },
+  {
+    "module": "Tests",
+    "source_sha256": "0cc3fc1b3febb11fd266f38291f781caf9dd41757a4f3cbeb7916cee54d8aae5",
+    "exit_code": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "command": [
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+      "-j1",
+      "Row2695Detector/Tests.lean",
+      "-o",
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2695Detector/Tests.olean"
+    ],
+    "inputs_sha256": {
+      "source.json": "2aa9bf6d4236b758e351cf421abd28f300a92c202e66777a29855d5019a16598",
+      "comparison-source.json": "94265d9499a5ece5ede2b7584ed1cbcb6dc099971e3d2f86ee75186f09958ce7",
+      "review.json": "22434bb65585587bfed61dd0df5c382e28563b3f770f4aa70d1180d39e90ab51",
+      "review.py": "35e267b6146c93f13318773dab9b52a875c9255ba4db57584f4774d7a205a776",
+      "export.py": "6a3f1bd57c954bb9a7b191711a13eac901bb7927533464c79401f7252c59e9d3",
+      "generate_comparison.py": "fd46d859289041be802851ce190f9bfbada449a7d04dc725c23e16851dff9b96",
+      "compile.py": "f85408956eefcb525d5f63b4b8595186837db6c652922822ebb7bec33de79c30",
+      "wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+      "wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+      "wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+      "wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+      "wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+      "wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6"
+    },
+    "olean_sha256": "90832382a2049ab91ca769b5c9a3e673a3a711e8460ecd1365645acaeefc0430"
+  },
+  {
+    "module": "CurrentImports",
+    "source_sha256": "c942f327fad537fa64dfc3d3c068dd99672e8dab129fe6da769775127fb33107",
+    "exit_code": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "command": [
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+      "-j1",
+      "Row2695Detector/CurrentImports.lean",
+      "-o",
+      "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2695Detector/CurrentImports.olean"
+    ],
+    "inputs_sha256": {
+      "source.json": "2aa9bf6d4236b758e351cf421abd28f300a92c202e66777a29855d5019a16598",
+      "comparison-source.json": "94265d9499a5ece5ede2b7584ed1cbcb6dc099971e3d2f86ee75186f09958ce7",
+      "review.json": "22434bb65585587bfed61dd0df5c382e28563b3f770f4aa70d1180d39e90ab51",
+      "review.py": "35e267b6146c93f13318773dab9b52a875c9255ba4db57584f4774d7a205a776",
+      "export.py": "6a3f1bd57c954bb9a7b191711a13eac901bb7927533464c79401f7252c59e9d3",
+      "generate_comparison.py": "fd46d859289041be802851ce190f9bfbada449a7d04dc725c23e16851dff9b96",
+      "compile.py": "f85408956eefcb525d5f63b4b8595186837db6c652922822ebb7bec33de79c30",
+      "wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+      "wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+      "wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+      "wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+      "wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+      "wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6"
+    },
+    "imported_sha256": {
+      "wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+      "wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+      "wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+      "wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+      "wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+      "wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6"
+    },
+    "olean_sha256": "b151f84e332c11c46e9d6432b00cbb53319eefebbe5c2f17145aca9508a4fe17"
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "counts": {
+    "initial_two_way_changes": 8,
+    "finite_quotient_pairs": 116,
+    "derived_coordinate_representatives": 288,
+    "actual_quotient_pairs": 1600,
+    "derived_addition_pairs": 544,
+    "same_raw_steps": 64,
+    "wrong_inputs_rejected": 136,
+    "first_models": 8,
+    "second_models": 16,
+    "whole_zero_maps": 1,
+    "missing_known_column_countermodels": 3
+  },
+  "raw_rows": [
+    {
+      "name": "first",
+      "staircase": [
+        2622,
+        11,
+        133,
+        "1",
+        null,
+        9000
+      ],
+      "basis": [
+        2622,
+        "69,1,79,1",
+        11,
+        133,
+        ""
+      ]
+    },
+    {
+      "name": "second",
+      "staircase": [
+        2684,
+        12,
+        134,
+        "0",
+        null,
+        9000
+      ],
+      "basis": [
+        2682,
+        "18,1,188,1",
+        12,
+        134,
+        ""
+      ]
+    }
+  ],
+  "axiom_reports": 22,
+  "claimed_endpoints": {
+    "first": 4,
+    "second": 5
+  },
+  "permanence_claimed": false,
+  "actual_branch_selected": false,
+  "residual_mathematics": [
+    "original actual E2, known columns and full neighboring differential meanings",
+    "actual detector naturality and source naming bindings",
+    "actual local quotient zero/addition laws",
+    "first d4 and second d5 onward",
+    "all-page outgoing tail vanishing and Adams realization"
+  ],
+  "input_sha256": {
+    "Fact721ConstructedActual/check_models.py": "d22e16d364e379748ee67927046043d98c9d869e856d6a643dc2734b257ea374",
+    "Fact721PageCertificates/first-comparison.json": "76b2b833ea412b5de2c30995cd7f0147ad3369a1efd175cf643a7a6230946a08",
+    "Fact721PageCertificates/second-comparison.json": "a32e947fa2ba6a781fb19c18911eec2975ec1f385e379dde49d2e2e851aaea6b",
+    "Fact713ComparisonBatches/Batch06.json": "c66fa59a8e59ca66f6235a00641b670af7868158cb2e02b3f7db78a0a945f5fc",
+    "Fact713DC2h6Source/wires/b_S0_11_133_d3.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+    "Fact713NextSourceSearch/wires/b_S0_12_134_d3.json": "a875b4a1fe9f5ac612910fdb5c9a24b6ac83e97c8695aa4cd793d5f2e7c66b51",
+    "Fact713D4ComparisonBranches/wire/b_S0_12_134_d4.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f"
+  }
+}

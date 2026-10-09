@@ -1,0 +1,111 @@
+Fact762SphereGDetection/Whole.lean:29:20: error: Function expected at
+  (have this := ?m.356;
+    this)
+    v
+but this term has type
+  ?m.354 v
+
+Note: Expected a function because this term is being applied to the argument
+  ‹_›
+Fact762SphereGDetection/Whole.lean:29:49: error: Expected type must not contain metavariables
+  (v : Vec 3) → ?m.354 v
+Fact762SphereGDetection/Whole.lean:29:20: error: Function expected at
+  (have this := ?m.363;
+    this)
+    v
+but this term has type
+  ?m.361 v
+
+Note: Expected a function because this term is being applied to the argument
+  ‹_›
+Fact762SphereGDetection/Whole.lean:29:49: error: Expected type must not contain metavariables
+  (v : Vec 3) → ?m.361 v
+Fact762SphereGDetection/Whole.lean:29:20: error: Function expected at
+  (have this := ?m.370;
+    this)
+    v
+but this term has type
+  ?m.368 v
+
+Note: Expected a function because this term is being applied to the argument
+  ‹_›
+Fact762SphereGDetection/Whole.lean:29:49: error: Expected type must not contain metavariables
+  (v : Vec 3) → ?m.368 v
+Fact762SphereGDetection/Whole.lean:29:20: error: Function expected at
+  (have this := ?m.377;
+    this)
+    v
+but this term has type
+  ?m.375 v
+
+Note: Expected a function because this term is being applied to the argument
+  ‹_›
+Fact762SphereGDetection/Whole.lean:29:49: error: Expected type must not contain metavariables
+  (v : Vec 3) → ?m.375 v
+Fact762SphereGDetection/Whole.lean:29:20: error: Function expected at
+  (have this := ?m.384;
+    this)
+    v
+but this term has type
+  ?m.382 v
+
+Note: Expected a function because this term is being applied to the argument
+  ‹_›
+Fact762SphereGDetection/Whole.lean:29:49: error: Expected type must not contain metavariables
+  (v : Vec 3) → ?m.382 v
+Fact762SphereGDetection/Whole.lean:29:20: error: Function expected at
+  (have this := ?m.391;
+    this)
+    v
+but this term has type
+  ?m.389 v
+
+Note: Expected a function because this term is being applied to the argument
+  ‹_›
+Fact762SphereGDetection/Whole.lean:29:49: error: Expected type must not contain metavariables
+  (v : Vec 3) → ?m.389 v
+Fact762SphereGDetection/Whole.lean:29:20: error: Function expected at
+  (have this := ?m.398;
+    this)
+    v
+but this term has type
+  ?m.396 v
+
+Note: Expected a function because this term is being applied to the argument
+  ‹_›
+Fact762SphereGDetection/Whole.lean:29:49: error: Expected type must not contain metavariables
+  (v : Vec 3) → ?m.396 v
+Fact762SphereGDetection/Whole.lean:29:20: error: Function expected at
+  (have this := ?m.405;
+    this)
+    v
+but this term has type
+  ?m.403 v
+
+Note: Expected a function because this term is being applied to the argument
+  ‹_›
+Fact762SphereGDetection/Whole.lean:29:49: error: Expected type must not contain metavariables
+  (v : Vec 3) → ?m.403 v
+Fact762SphereGDetection/Whole.lean:31:32: error: `simp` made no progress
+Fact762SphereGDetection/Whole.lean:31:43: warning: This simp argument is unused:
+  h0
+
+Hint: Omit it from the simp argument list.
+  simp only [h0̵,̵h̵1, ̲h2, ̲(S.differential r d).map_zero', ̲add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Fact762SphereGDetection/Whole.lean:31:46: warning: This simp argument is unused:
+  h1
+
+Hint: Omit it from the simp argument list.
+  simp only [h0, ̲h1̵,̵h̵2, ̲(S.differential r d).map_zero', ̲add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Fact762SphereGDetection/Whole.lean:31:49: warning: This simp argument is unused:
+  h2
+
+Hint: Omit it from the simp argument list.
+  simp only [h0, ̲h1,h̵2̵,̵ ̲(S.differential r d).map_zero', ̲add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'Fact762SphereGDetection.Whole.zero_of_three' depends on axioms: [propext, sorryAx, Quot.sound]

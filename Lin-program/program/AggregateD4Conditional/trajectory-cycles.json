@@ -1,0 +1,121 @@
+[
+  {
+    "staircase_id": 3254,
+    "event_page": 4,
+    "endpoints": [
+      {
+        "endpoint": "source",
+        "degree": [
+          12,
+          138
+        ],
+        "raw_local_indices": [
+          3
+        ],
+        "raw_vector": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:12,138:d2",
+            "coordinates": [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            "outgoing_value": [
+              0,
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:12,138:d3",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      },
+      {
+        "endpoint": "target",
+        "degree": [
+          16,
+          141
+        ],
+        "raw_local_indices": [
+          1
+        ],
+        "raw_vector": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "prior_stages": [
+          {
+            "page": 2,
+            "comparison": "S0:16,141:d2",
+            "coordinates": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "outgoing_value": [
+              0,
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          },
+          {
+            "page": 3,
+            "comparison": "S0:16,141:d3",
+            "coordinates": [
+              1
+            ],
+            "outgoing_value": [
+              0
+            ],
+            "status": "cycle",
+            "projection": [
+              1
+            ]
+          }
+        ],
+        "prior_cycles_verified": true,
+        "final_coordinates": [
+          1
+        ]
+      }
+    ],
+    "all_prior_cycles": true
+  }
+]

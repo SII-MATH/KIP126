@@ -1,0 +1,452 @@
+{
+  "all_cycle_pairs": 968,
+  "branch_results": [
+    {
+      "adjacent_pairs": 36,
+      "branch": 0,
+      "centers": 31,
+      "consecutive_pairs": 32,
+      "family_entries": 126,
+      "homology": 24,
+      "input": 44
+    },
+    {
+      "adjacent_pairs": 36,
+      "branch": 1,
+      "centers": 31,
+      "consecutive_pairs": 32,
+      "family_entries": 126,
+      "homology": 24,
+      "input": 44
+    }
+  ],
+  "conditional_dependencies": [
+    {
+      "block": "S0:12,136:d3",
+      "kind": "conditional_dc2h6_d3",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2695,
+        "2",
+        null,
+        9000
+      ],
+      "source": [
+        9,
+        134
+      ],
+      "target_predecessor": "S0:12,136:d2"
+    },
+    {
+      "block": "S0:13,138:d3",
+      "kind": "conditional_leibniz",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2858,
+        "2",
+        null,
+        9000
+      ],
+      "source": [
+        10,
+        136
+      ],
+      "target_predecessor": "S0:13,138:d2"
+    },
+    {
+      "block": "S0:14,139:d3",
+      "kind": "conditional_cnu_eta",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2925,
+        "1,2",
+        null,
+        9000
+      ],
+      "source": [
+        11,
+        137
+      ],
+      "target_predecessor": "S0:14,139:d2"
+    },
+    {
+      "basis_certificate": "d52_177",
+      "block": "S0:52,177:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        6651,
+        "8,2,469,1",
+        null
+      ],
+      "source": [
+        52,
+        177
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix",
+          "row": [
+            6651,
+            "0",
+            "0",
+            9996
+          ]
+        }
+      ]
+    },
+    {
+      "basis_certificate": "d54_180",
+      "block": "S0:54,180:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        7008,
+        "17,1,554,1",
+        null
+      ],
+      "source": [
+        54,
+        180
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix",
+          "row": [
+            7008,
+            "0",
+            "0",
+            9997
+          ]
+        }
+      ]
+    },
+    {
+      "basis_certificate": "d52_179",
+      "block": "S0:54,180:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        6894,
+        "0,51,324,1",
+        null
+      ],
+      "source": [
+        52,
+        179
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix",
+          "row": [
+            6894,
+            "0",
+            "0",
+            9995
+          ]
+        }
+      ]
+    },
+    {
+      "basis_certificate": "d57_182",
+      "block": "S0:57,182:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        7247,
+        "0,2,16,1,554,1",
+        null
+      ],
+      "source": [
+        57,
+        182
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            7247,
+            "0",
+            "0",
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "basis_certificate": "d55_181",
+      "block": "S0:57,182:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "object": "S0",
+      "page": 2,
+      "row": [
+        7163,
+        "0,1,17,1,554,1",
+        null
+      ],
+      "source": [
+        55,
+        181
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            7163,
+            "0",
+            "1",
+            5
+          ]
+        }
+      ]
+    }
+  ],
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "detector_coordinates_to_aggregate": "(v0,v1,v2) -> (v1,v2,v0)",
+  "limitations": [
+    "Actual Adams and E2 basis completeness, stored differential meanings, product/Leibniz conditions and prefix meanings remain explicit external mathematics.",
+    "Zero centers use a generic theorem for arbitrary neighboring dimensions and matrices; unknown neighboring pages are not fabricated.",
+    "Neither affine branch is selected; both full finite products have 24 coordinates.",
+    "No original 358-block or 95-event snapshot is modified."
+  ],
+  "new_blocks": 8,
+  "new_columns": 16,
+  "new_projected_cycles": 4,
+  "new_record_uses": [
+    {
+      "block": "S0:34,159:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        4764,
+        "0",
+        "0",
+        3
+      ],
+      "source": [
+        34,
+        159
+      ],
+      "target_predecessor": "S0:37,161:d2"
+    },
+    {
+      "block": "S0:34,159:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        4598,
+        "1",
+        "1",
+        3
+      ],
+      "source": [
+        31,
+        157
+      ],
+      "target_predecessor": "S0:34,159:d2"
+    },
+    {
+      "block": "S0:34,159:d3",
+      "kind": "stored_event",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        4599,
+        "0",
+        "0",
+        9997
+      ],
+      "source": [
+        31,
+        157
+      ],
+      "target_predecessor": "S0:34,159:d2"
+    },
+    {
+      "block": "S0:36,161:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        4929,
+        "1",
+        "0",
+        3
+      ],
+      "source": [
+        36,
+        161
+      ],
+      "target_predecessor": "S0:39,163:d2"
+    },
+    {
+      "block": "S0:36,161:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        4766,
+        "2",
+        "0",
+        3
+      ],
+      "source": [
+        33,
+        159
+      ],
+      "target_predecessor": "S0:36,161:d2"
+    },
+    {
+      "block": "S0:36,161:d3",
+      "kind": "stored_event",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        4767,
+        "0",
+        "1",
+        9997
+      ],
+      "source": [
+        33,
+        159
+      ],
+      "target_predecessor": "S0:36,161:d2"
+    },
+    {
+      "block": "S0:45,170:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        5862,
+        "0",
+        "0",
+        3
+      ],
+      "source": [
+        45,
+        170
+      ],
+      "target_predecessor": "S0:48,172:d2"
+    },
+    {
+      "block": "S0:45,170:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        5638,
+        "3",
+        "2",
+        4
+      ],
+      "source": [
+        42,
+        168
+      ],
+      "target_predecessor": "S0:45,170:d2"
+    },
+    {
+      "block": "S0:45,170:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        5639,
+        "2",
+        "0",
+        9996
+      ],
+      "source": [
+        42,
+        168
+      ],
+      "target_predecessor": "S0:45,170:d2"
+    },
+    {
+      "block": "S0:45,170:d3",
+      "kind": "stored_event",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        5640,
+        "0",
+        "0",
+        9997
+      ],
+      "source": [
+        42,
+        168
+      ],
+      "target_predecessor": "S0:45,170:d2"
+    },
+    {
+      "block": "S0:57,182:d3",
+      "kind": "stored_zero_prefix_or_boundary",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        7247,
+        "0",
+        "0",
+        3
+      ],
+      "source": [
+        57,
+        182
+      ],
+      "target_predecessor": "S0:60,184:d2"
+    },
+    {
+      "block": "S0:57,182:d3",
+      "kind": "stored_event",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        7008,
+        "0",
+        "0",
+        9997
+      ],
+      "source": [
+        54,
+        180
+      ],
+      "target_predecessor": "S0:57,182:d2"
+    }
+  ],
+  "source_hashes": {
+    "AggregateD5Conditional/event-results.json": "47ef1c3887a8cb598289dd0719df04cd11dc9c999b8d47e6d4e1705a5c3dfb59",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "Row2574Detector/Additional/Combined.lean": "5b826265c4e00b47e2434e8692d76400e6b6929699ed1096552bda33ca56bcc2",
+    "Stem125E4Search/Branches.lean": "e0529cf8afd7bb7ebd3ffab08f38f3cc5a7cc383d23633c842bf55fc9975a6ed",
+    "Stem125E4Search/Data.lean": "aef74921844cbc0a005dd446763f1473bcaa44f833e6198d5964aaf05f4813b7",
+    "Stem125E4Search/Family.lean": "9af7ac1aa3b5854cb88bf45847e0a3274f2f8b9b49dd3990081450cd8a5da67c",
+    "Stem125E4Search/Product.lean": "cb63bd1b2af1858836f5a00da8d79249bf7b9d880cdc2165e30b333ab49ce411",
+    "Stem125E4Search/Zero.lean": "67a00218a5fdc906d42a20d471239a8025f724e6efb2f23c07889bf1e6423a6e",
+    "Stem125E4Search/branch0.json": "ebf9cb330afdf2cc00ebb26a355c0f65b601a8cf76f6ac44da56faa0b6f8d6eb",
+    "Stem125E4Search/branch1.json": "ee4b5187cf70339e77e7cd804030d54c1372d622f1547fdfcdbb32f542fb0351",
+    "Stem125E4Search/coverage.json": "ede0b33c5c7d0486163627e2764ba821ab1c170dd417a5514a69f77e50213b65",
+    "Stem125E4Search/generate.py": "17413225d3437608ffed84940d895d5906e1d5057437b7d469239e2bc2145066",
+    "Stem125E4Search/review.py": "3048af79ca223199d55d49bac32c51f0b3670643b9b835ee9f8e8ac1e48994bd",
+    "Stem125E4Search/search.json": "0f081906a81db78346ea5e29e6bb745801212d102d026a39510d68554c5c5955",
+    "Stem125E4Search/search.py": "6826b14ed9cfb4ecb75fe0ee879730b93a843504a1beba274b2e0993ef8d305c"
+  },
+  "status": "isolated_E4_completion_review_passed",
+  "zero_centers": 14
+}

@@ -1,0 +1,21 @@
+Fact764NamedActualE5/Basic.lean:24:19: error: Ambiguous term
+  gDegree
+Possible interpretations:
+  ActualAdamsProductTraceBridge.gDegree : Bidegree
+  
+  ActualAdamsProductCycleBridge.gDegree : Bidegree
+Fact764NamedActualE5/Basic.lean:25:23: error: Ambiguous term
+  deltaDegree
+Possible interpretations:
+  ActualAdamsProductTraceBridge.deltaDegree : Bidegree
+  
+  ActualAdamsProductCycleBridge.deltaDegree : Bidegree
+Fact764NamedActualE5/Basic.lean:29:4: warning: declaration uses `sorry`
+Fact764NamedActualE5/Basic.lean:32:18: warning: declaration uses `sorry`
+Fact764NamedActualE5/Basic.lean:36:8: warning: declaration uses `sorry`
+'Fact764NamedActualE5.coordinates_complex' depends on axioms: [propext, Quot.sound]
+'Fact764NamedActualE5.Input.endpoint4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact764NamedActualE5.Input.cycle4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact764NamedActualE5.Witness.named_cycle' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact764NamedActualE5.Witness.finite_unique' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact764NamedActualE5.Witness.actual_unique' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

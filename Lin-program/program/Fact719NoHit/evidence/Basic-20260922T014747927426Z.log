@@ -1,0 +1,36 @@
+Fact719NoHit/Basic.lean:34:4: error: Tactic `subst` failed: did not find equation for eliminating 'd'
+
+case inr
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+zeros : ZeroMeaning S pages
+n : ℕ
+d : Bidegree
+empty : (e : Bidegree) → AdamsTarget (n + 2) e = d → Coordinates S 2 e 0
+e : Bidegree
+h : { _h // True }
+x : (S.element (n + 2) e).carrier
+hx : x = 0
+⊢ incoming S (n + 2) d (Sum.inr ⟨e, (h, x)⟩) = S.zero (n + 2) d
+Fact719NoHit/Basic.lean:50:22: error(nested.lean.propRecLargeElim): Tactic `cases` failed with a nested error:
+Tactic `induction` failed: recursor `Or.casesOn` can only eliminate into `Prop`
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+zeros : ZeroMeaning S pages
+E : EmptySources S
+n : ℕ
+hn : 4 ≤ n
+y : Incoming S (n + 2) degree
+above : ¬degree.filtration < n + 2
+e : Bidegree
+he : AdamsTarget (n + 2) e = degree
+hs : e.filtration + (n + 2) = 8
+ht : e.internal + ↑(n + 2) - 1 = 130
+choices : n = 4 ∨ n = 5 ∨ n = 6
+⊢ Coordinates S 2 e 0
+'Fact719NoHit.zero_later' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact719NoHit.incoming_zero_of_empty' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact719NoHit.whole_incoming_tail' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact719NoHit.raw_not_killed' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact719NoHit.named_not_killed' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

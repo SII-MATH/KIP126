@@ -1,0 +1,271 @@
+{
+  "generators": {
+    "files": 49,
+    "rows": 61730
+  },
+  "relations": {
+    "files": 49,
+    "rows": 4803608
+  },
+  "basis": {
+    "files": 49,
+    "rows": 432521
+  },
+  "ss": {
+    "files": 49,
+    "rows": 745446
+  },
+  "maps": {
+    "files": 180,
+    "rows": 210762
+  },
+  "cofseqs": {
+    "files": 61,
+    "rows": 321850
+  },
+  "spectra": {
+    "S0": {
+      "generators": 2914,
+      "relations": 231848,
+      "basis": 23822,
+      "ss": 23822
+    },
+    "Cnu": {
+      "generators": 1171,
+      "relations": 97621,
+      "basis": 14989,
+      "ss": 14989
+    },
+    "tmf": {
+      "generators": 13,
+      "relations": 72,
+      "basis": 0,
+      "ss": 24989
+    }
+  },
+  "windows": {
+    "S0:stem=122..127,s=0..25": {
+      "counts": {
+        "rows": 375,
+        "unknown_out": 17,
+        "known_out": 162,
+        "known_in": 165,
+        "permanent": 31
+      },
+      "known_out_by_r": {
+        "2": 87,
+        "3": 48,
+        "4": 18,
+        "5": 7,
+        "6": 1,
+        "7": 1
+      },
+      "E2_basis_rows": 375
+    },
+    "Cnu:stem=126..126,s=9..14": {
+      "counts": {
+        "rows": 26,
+        "known_in": 12,
+        "unknown_out": 3,
+        "known_out": 10,
+        "permanent": 1
+      },
+      "known_out_by_r": {
+        "2": 4,
+        "3": 4,
+        "4": 1,
+        "5": 1
+      },
+      "E2_basis_rows": 26
+    },
+    "S0:stem=125..125,s=0..25": {
+      "counts": {
+        "rows": 67,
+        "known_out": 38,
+        "known_in": 23,
+        "permanent": 4,
+        "unknown_out": 2
+      },
+      "known_out_by_r": {
+        "2": 27,
+        "3": 7,
+        "4": 3,
+        "5": 1
+      },
+      "E2_basis_rows": 67
+    }
+  },
+  "paper_tables": [
+    {
+      "id": "S7.T1",
+      "caption": "Table 1.  The classical Adams spectral sequence of  $S^{0}/\\nu$  for  $9\\leq s\\leq 14$  in stem 126",
+      "counts": {
+        "element_rows": 26,
+        "known_in": 12,
+        "known_out": 10,
+        "unknown": 3,
+        "permanent": 1
+      }
+    },
+    {
+      "id": "S8.T2",
+      "caption": "Table 2.  The classical Adams spectral sequence of  $S^{0}$  for  $s\\leq 25$  in stem 122",
+      "counts": {
+        "element_rows": 35,
+        "known_in": 16,
+        "known_out": 13,
+        "permanent": 5,
+        "empty_degree_rows": 2,
+        "unknown": 1
+      }
+    },
+    {
+      "id": "S8.T3",
+      "caption": "Table 3.  The classical Adams spectral sequence of  $S^{0}$  for  $s\\leq 25$  in stem 123",
+      "counts": {
+        "empty_degree_rows": 3,
+        "element_rows": 42,
+        "known_in": 22,
+        "known_out": 17,
+        "permanent": 2,
+        "unknown": 1
+      }
+    },
+    {
+      "id": "S8.T4",
+      "caption": "Table 4.  The classical Adams spectral sequence of  $S^{0}$  for  $13\\leq s\\leq 25$  in stem 124",
+      "counts": {
+        "element_rows": 43,
+        "known_in": 24,
+        "known_out": 13,
+        "permanent": 6
+      }
+    },
+    {
+      "id": "S8.T5",
+      "caption": "Table 5.  The classical Adams spectral sequence of  $S^{0}$  for  $s\\leq 12$  in stem 124",
+      "counts": {
+        "element_rows": 22,
+        "known_in": 10,
+        "known_out": 11,
+        "permanent": 1,
+        "empty_degree_rows": 1
+      }
+    },
+    {
+      "id": "S8.T6",
+      "caption": "Table 6.  The classical Adams spectral sequence of  $S^{0}$  for  $20\\leq s\\leq 25$  in stem 125",
+      "counts": {
+        "element_rows": 17,
+        "known_in": 5,
+        "ambiguous": 1,
+        "permanent": 1,
+        "known_out": 10
+      }
+    },
+    {
+      "id": "S8.T7",
+      "caption": "Table 7.  The classical Adams spectral sequence of  $S^{0}$  for  $s\\leq 19$  in stem 125",
+      "counts": {
+        "element_rows": 49,
+        "known_out": 27,
+        "known_in": 18,
+        "permanent": 2,
+        "unknown": 2,
+        "empty_degree_rows": 1
+      }
+    },
+    {
+      "id": "S8.T8",
+      "caption": "Table 8.  The classical Adams spectral sequence of  $S^{0}$  for  $11\\leq s\\leq 25$  in stem 126",
+      "counts": {
+        "element_rows": 47,
+        "known_in": 29,
+        "known_out": 14,
+        "ambiguous": 1,
+        "unknown": 2,
+        "permanent": 1
+      }
+    },
+    {
+      "id": "S8.T9",
+      "caption": "Table 9.  The classical Adams spectral sequence of  $S^{0}$  for  $s\\leq 10$  in stem 126",
+      "counts": {
+        "element_rows": 25,
+        "known_in": 10,
+        "permanent": 1,
+        "known_out": 9,
+        "unknown": 4,
+        "ambiguous": 1,
+        "empty_degree_rows": 1
+      }
+    },
+    {
+      "id": "S8.T10",
+      "caption": "Table 10.  The classical Adams spectral sequence of  $S^{0}$  for  $21\\leq s\\leq 25$  in stem 127",
+      "counts": {
+        "element_rows": 17,
+        "known_out": 11,
+        "known_in": 5,
+        "permanent": 1
+      }
+    },
+    {
+      "id": "S8.T11",
+      "caption": "Table 11.  The classical Adams spectral sequence of  $S^{0}$  for  $10\\leq s\\leq 20$  in stem 127",
+      "counts": {
+        "element_rows": 49,
+        "known_out": 22,
+        "known_in": 19,
+        "permanent": 8
+      }
+    },
+    {
+      "id": "S8.T12",
+      "caption": "Table 12.  The classical Adams spectral sequence of  $S^{0}$  for  $s\\leq 9$  in stem 127",
+      "counts": {
+        "element_rows": 24,
+        "permanent": 2,
+        "known_out": 14,
+        "known_in": 3,
+        "unknown": 5,
+        "empty_degree_rows": 1
+      }
+    }
+  ],
+  "empty_basis_files": [
+    "C2_C2_AdamsE2_basis.csv",
+    "C2_Ceta_AdamsE2_basis.csv",
+    "C2sigma_AdamsE2_basis.csv",
+    "CW_2_A_eta_AdamsE2_basis.csv",
+    "CW_2_V_eta_AdamsE2_basis.csv",
+    "CW_2sigma_sigma_AdamsE2_basis.csv",
+    "CW_eta_2_eta_Eq_2_nu_AdamsE2_basis.csv",
+    "CW_eta_2_eta_Eq_nu_2_AdamsE2_basis.csv",
+    "CW_sigma_2sigma_AdamsE2_basis.csv",
+    "Ceta_Ceta_AdamsE2_basis.csv",
+    "Cnu_Cnu_AdamsE2_basis.csv",
+    "Csigma_Csigma_AdamsE2_basis.csv",
+    "Csigmasq_AdamsE2_basis.csv",
+    "Ctheta4_AdamsE2_basis.csv",
+    "Ctheta5_AdamsE2_basis.csv",
+    "Fphi_AdamsE2_basis.csv",
+    "RP1_256_AdamsE2_basis.csv",
+    "RP3_256_AdamsE2_basis.csv",
+    "RP3_6_AdamsE2_basis.csv",
+    "tmf_AdamsE2_basis.csv"
+  ],
+  "stem125_all": {
+    "basis_rows": 105,
+    "s_min": 5,
+    "s_max": 57
+  },
+  "source_md5": {
+    "kervaire_csv.rar": "631257d058529916d62d858e0da27417",
+    "proofs.db.rar": "f4c5a97a96a822092ce1ceb57c0a9d43"
+  },
+  "paper_sha256": {
+    "kervaire-v2.html": "3c83685387abb63c4f2e282f95cb84c5a37ec1f30746998cb904628180c72d20",
+    "machine-v2.html": "274ecfc79539e98e17e041f1a1199d84d2721d1b2aa75dbf3221198c2f2206c7"
+  }
+}

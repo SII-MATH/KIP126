@@ -1,0 +1,108 @@
+{
+  "build_observation": {
+    "independent_recompile": false,
+    "meaning_compile_audit_sha256": "c742b09c05e4630e2a0242c6fec8c2b8805d35fabc77e203a362565563c4f478",
+    "modules": [
+      {
+        "current_olean_matches_historical_direct": true,
+        "exit_code": 0,
+        "module": "Meaning",
+        "source_and_log_match": true,
+        "standard_axiom_reports": 11
+      },
+      {
+        "current_olean_matches_historical_direct": true,
+        "exit_code": 0,
+        "module": "MeaningExamples",
+        "source_and_log_match": true,
+        "standard_axiom_reports": 4
+      },
+      {
+        "current_olean_matches_historical_direct": true,
+        "exit_code": 0,
+        "module": "MeaningCounterexamples",
+        "source_and_log_match": true,
+        "standard_axiom_reports": 4
+      }
+    ],
+    "note": "Direct records are retained unchanged; later Lake oleans require their separate checkpoint.",
+    "standard_axiom_reports": 19,
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "findings": [],
+  "independent_finite_countermodel_checks": {
+    "actual_incoming_image": [
+      false
+    ],
+    "actual_next_cardinality": 1,
+    "current_image": [
+      false
+    ],
+    "finite_homology_cardinality": 2,
+    "finite_incoming_image": [
+      false,
+      true
+    ],
+    "required_current_image": [
+      false,
+      true
+    ]
+  },
+  "inputs_sha256": {
+    "PageTransitionCertificates/AdditiveQuotient.lean": "ab2c7f82046f975d6f1d2b0fb0bd7fff2ded40523c215d84842dbb16d34278f6",
+    "PageTransitionCertificates/Quotient.lean": "8eb63718fa24c6445a22cd76478fe337663b1942c902fb41a180c6fa7e46383a",
+    "SemanticTrajectoryCertificates/Page.lean": "64539da0617101de775a1f59502308d34ac7c8d754165f0911d04ee1af65082f",
+    "Stem125HomologyCertificates/Basic.lean": "ab6bcfdbef256abe80fc313f43bad11b1beb404f75325ece008fb51b55348adf",
+    "Stem125HomologyCertificates/D2.lean": "77f7bd150d66b1dd8ea591a3b8ab3e8c56cb0b75cb3da59fa1823ea7d2ad7ba3",
+    "Stem125HomologyCertificates/MEANING.md": "2906ae49b42d9e7c2ab74f70bcf919f0610cefc40486c865acd4a18f2140a814",
+    "Stem125HomologyCertificates/Meaning.lean": "28aafea98b9c826d05d27f326374550887c03bc0b3c6dcd6712ece18d684f8ff",
+    "Stem125HomologyCertificates/MeaningCounterexamples.lean": "2dc4d638ff6d48a568afc6e093b7dff862f4024082225f9a5e22167897ca902a",
+    "Stem125HomologyCertificates/MeaningExamples.lean": "e815be02e8451580cf911c7ae565697d7029ae2b04a40673ced69e33dbe32da0"
+  },
+  "limitations": [
+    "WholeMeaning contains strong, explicit all-vector mathematical interpretation premises and completeness. It does not construct true Adams pages or prove raw-data realization.",
+    "The finite family must include all centers intended by an application; absent database centers are not proved zero.",
+    "Incoming coordinate surjectivity is sufficient and stronger than merely covering its image; it is explicitly documented.",
+    "Cardinality/additive equivalence is the exact stated result; no new topological convergence, permanence or stable-homotopy theorem follows."
+  ],
+  "reviewed_contracts": [
+    {
+      "check": "Current/outgoing injectivity, zeros and the all-current differential equation give exact actual-cycle/finite-kernel equivalence. Added current surjectivity realizes every finite cycle. No outgoing surjectivity is needed for the actual kernel.",
+      "theorem": "WholeMeaning / actualCycleEquiv"
+    },
+    {
+      "check": "Relation is defined using actual incoming map and actual addition, not finite equality. Forward direction uses all-incoming equation and current_add. Converse explicitly lifts every finite boundary coefficient through incoming_surjective and uses current injectivity. Missing incoming data cannot disappear.",
+      "theorem": "actual_boundary_iff"
+    },
+    {
+      "check": "Both quotient maps are constructed by Quot.lift on the derived cycle equivalence; actual_boundary_iff proves each is well-defined. Mutual inverse follows cycle bijectivity. With full checked HomologyComparison, quotient equality is exactly actual boundary relation, not merely a generated equivalence closure or coordinate identity.",
+      "theorem": "actualQuotientEquiv / actual_quotient_eq_iff"
+    },
+    {
+      "check": "Addition is independently defined on actual cycle representatives via the caller actual plus. Its cycle property and compatibility with both boundary representatives follow the all-current addition equation. Only afterward is the derived quotient/coordinate map proved to preserve this operation. There is no transported-addition tautology.",
+      "theorem": "actualHomologyAdd / actualCoordinateEquiv_add"
+    },
+    {
+      "check": "For arbitrary z, current surjectivity lifts finite inclusion(z); checked inclusion lies in the full kernel, hence is an actual cycle. next_cycle and projection*inclusion=id realize z. With next injectivity, nextCoordinateEquiv is derived and sends each cycle quotient to actual next(x). Every supplied actual Next value is represented by a current cycle. No next surjectivity or quotient-equivalence premise is present.",
+      "theorem": "next_coordinates_surjective / actualNextEquiv / every_next_class_represented"
+    },
+    {
+      "check": "Derived center equivalences are combined pointwise then flattened over the full stated finite index set. Cardinality and all-combination addition preservation concern actual quotient/Next types under explicit WholeMeaning at every center. No SQL completeness outside this index set is inferred.",
+      "theorem": "actual_total_card / actual_next_total_card / actualTotalFlatEquiv_add"
+    },
+    {
+      "check": "Certificate stores only proved semantic WholeMeaning terms. Executable checkTotal rechecks all finite matrices and requested coordinate count. Tactic applies verified soundness and kernel decide; it cannot manufacture semantic meaning or read proof fields from untrusted JSON.",
+      "theorem": "ActualTotalCertificate / actual_stem_homology_cert"
+    },
+    {
+      "check": "45-center 44-coordinate statements keep all actual meaning assumptions visible. Coordinate model supplies consistent complete fields. The incomplete-current model satisfies CompleteMeaning but misses one finite current class and has wrong next cardinality. The incomplete-incoming model has full current coordinates but its actual boundary image misses the finite nonzero boundary. Both failures isolate necessary completeness conditions.",
+      "theorem": "MeaningExamples / MeaningCounterexamples"
+    }
+  ],
+  "scope": "Meaning, MeaningExamples, MeaningCounterexamples and their PageData/finite quotient interfaces; the original four Stem125HomologyCertificates modules were reviewed separately.",
+  "status": "independent_actual_homology_meaning_review_passed"
+}

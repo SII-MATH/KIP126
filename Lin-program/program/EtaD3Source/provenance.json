@@ -1,0 +1,396 @@
+{
+  "raw_row": [
+    1,
+    "0,1,1,1",
+    2,
+    3
+  ],
+  "metadata": {
+    "version": 3,
+    "change notes": "Add fil,from,to in version table of maps.",
+    "t_max": 261,
+    "d2_t_max": 177,
+    "timestamp": 1710516671
+  },
+  "comparisons": {
+    "h0": {
+      "rows": [
+        [],
+        [
+          {
+            "id": 1,
+            "mon": "0,1",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        1,
+        1
+      ]
+    },
+    "eta": {
+      "rows": [
+        [],
+        [
+          {
+            "id": 3,
+            "mon": "1,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 4,
+            "mon": "0,3",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        1,
+        2
+      ]
+    },
+    "h0Target": {
+      "rows": [
+        [
+          {
+            "id": 2,
+            "mon": "0,2",
+            "d2": ""
+          }
+        ],
+        [],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        4,
+        3
+      ]
+    },
+    "etaTarget": {
+      "rows": [
+        [],
+        [
+          {
+            "id": 5,
+            "mon": "0,4",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        4,
+        4
+      ]
+    },
+    "zeroProductTarget": {
+      "rows": [
+        [],
+        [],
+        [
+          {
+            "id": 5,
+            "mon": "0,4",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        2,
+        3
+      ]
+    },
+    "detectTarget": {
+      "rows": [
+        [],
+        [
+          {
+            "id": 8,
+            "mon": "0,5",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        5,
+        5
+      ]
+    }
+  },
+  "raw_staircase_rows": {
+    "h0": [
+      [
+        1,
+        "0",
+        null,
+        9000
+      ]
+    ],
+    "eta": [
+      [
+        3,
+        "0",
+        null,
+        9000
+      ]
+    ],
+    "h0Target": [],
+    "etaTarget": [
+      [
+        5,
+        "0",
+        null,
+        9000
+      ]
+    ],
+    "zeroProductTarget": [],
+    "detectTarget": [
+      [
+        8,
+        "0",
+        null,
+        9000
+      ]
+    ]
+  },
+  "products": [
+    {
+      "name": "zeroProduct",
+      "column": 0,
+      "left_basis": {
+        "id": 1,
+        "mon": "0,1",
+        "d2": ""
+      },
+      "right_basis": {
+        "id": 3,
+        "mon": "1,1",
+        "d2": ""
+      },
+      "target_basis": [],
+      "left_degree": [
+        1,
+        1
+      ],
+      "right_degree": [
+        1,
+        2
+      ],
+      "target_degree": [
+        2,
+        3
+      ],
+      "bundle": {
+        "relations": [
+          [
+            [
+              0,
+              1
+            ]
+          ]
+        ],
+        "input": [
+          [
+            0,
+            1
+          ]
+        ],
+        "output": [],
+        "terms": [
+          {
+            "relation": 0,
+            "multiplier": [
+              []
+            ]
+          }
+        ]
+      },
+      "coordinates": [],
+      "relation_sources": [
+        {
+          "rowid": 1,
+          "raw": "0,1,1,1",
+          "degree": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "name": "detectProduct",
+      "column": 0,
+      "left_basis": {
+        "id": 1,
+        "mon": "0,1",
+        "d2": ""
+      },
+      "right_basis": {
+        "id": 5,
+        "mon": "0,4",
+        "d2": ""
+      },
+      "target_basis": [
+        {
+          "id": 8,
+          "mon": "0,5",
+          "d2": ""
+        }
+      ],
+      "left_degree": [
+        1,
+        1
+      ],
+      "right_degree": [
+        4,
+        4
+      ],
+      "target_degree": [
+        5,
+        5
+      ],
+      "bundle": {
+        "relations": [],
+        "input": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "output": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "terms": []
+      },
+      "coordinates": [
+        0
+      ],
+      "relation_sources": []
+    }
+  ],
+  "input_sha256": {
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "EtaD3Source/generate.py": "fabf07f71a7e7d3d5f67d138e587399e6105768fb39474ff6e77483ecbb7cd7e",
+    "Row3147MapSearch/search_lifted.py": "6b68970c3b595dd41338ac0755eafa214ea4b8ff395da3b5a47b06063e4882ff",
+    "RealMapCertificates/export.py": "5a2ef8e13db70aca3f9c4988867d892d98d2a4ee9c9e21abee5e134df6ce70bd"
+  },
+  "limitation": "Complete finite d2 quotients and polynomial products only; actual quotient and product meanings remain explicit. No NULL d3 prefix is used."
+}

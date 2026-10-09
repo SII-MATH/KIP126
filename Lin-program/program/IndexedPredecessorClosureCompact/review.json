@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "counts": {
+    "families": 1311,
+    "lookup_queries": 6435,
+    "duplicates": 594,
+    "matrix_mutations": 1287,
+    "missing_mutations": 297,
+    "dimension_mutations": 297
+  },
+  "modules": 4,
+  "standard_axiom_reports": 17,
+  "empty_axiom_reports": 6,
+  "sources": {
+    "Basic": "9f2ab4f849a9e42e6f56b44b15b02d7e6a5bcadd2ef121fab1395d2cd788dc1d",
+    "Diagnostics": "6adb46d2070a122063dd139edd0d9205cb87f527fbc4a9fe9c239f1c8ab8d40a",
+    "Tactic": "a0a0304aa78c2cfc6cf3780454d6f33a0c8ea7d7bed79c028da985a03ca26815",
+    "Tests": "af9ba41532abbd19865a7e98262adc1d42990ee8d89e5cde6e32d6fe14bdf292"
+  },
+  "historical_dependency_changes": [],
+  "semantic_equivalence": "Lean Bool equality check(project family)=old checkPredecessors, plus exact diagnostic equality",
+  "performance_mechanism": "Literal compact table is bound once; repeated lookup touches only Key and n/m/k/h, no matrix fields.",
+  "limitations": "Lookup remains O(N^2) in compact key comparisons. Real-family runtime must be measured in parent integration; no speedup factor claimed."
+}

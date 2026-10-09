@@ -1,0 +1,251 @@
+{
+  "status": "no_correctness_findings",
+  "raw_row": [
+    2773,
+    13,
+    135,
+    "1",
+    null,
+    9000
+  ],
+  "comparisons": {
+    "eta": {
+      "degree": [
+        1,
+        2
+      ],
+      "dimensions": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "cycles": 2,
+      "images": 1,
+      "sql_complete": true,
+      "whole_quotient_checked": true
+    },
+    "right": {
+      "degree": [
+        12,
+        133
+      ],
+      "dimensions": [
+        0,
+        2,
+        2,
+        1
+      ],
+      "cycles": 2,
+      "images": 1,
+      "sql_complete": true,
+      "whole_quotient_checked": true
+    },
+    "leftTarget": {
+      "degree": [
+        5,
+        5
+      ],
+      "dimensions": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "cycles": 2,
+      "images": 1,
+      "sql_complete": true,
+      "whole_quotient_checked": true
+    },
+    "rightTarget": {
+      "degree": [
+        16,
+        136
+      ],
+      "dimensions": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "cycles": 2,
+      "images": 1,
+      "sql_complete": true,
+      "whole_quotient_checked": true
+    },
+    "source": {
+      "degree": [
+        13,
+        135
+      ],
+      "dimensions": [
+        5,
+        3,
+        2,
+        2
+      ],
+      "cycles": 8,
+      "images": 2,
+      "sql_complete": true,
+      "whole_quotient_checked": true
+    },
+    "target": {
+      "degree": [
+        17,
+        138
+      ],
+      "dimensions": [
+        2,
+        4,
+        3,
+        1
+      ],
+      "cycles": 4,
+      "images": 2,
+      "sql_complete": true,
+      "whole_quotient_checked": true
+    }
+  },
+  "quotient_pair_checks": 96,
+  "products": [
+    {
+      "name": "sourceProduct",
+      "column": 0,
+      "relations": [],
+      "coordinates": [
+        1
+      ]
+    },
+    {
+      "name": "sourceProduct",
+      "column": 1,
+      "relations": [
+        1
+      ],
+      "coordinates": []
+    },
+    {
+      "name": "leftProduct",
+      "column": 0,
+      "relations": [
+        1
+      ],
+      "coordinates": []
+    },
+    {
+      "name": "leftProduct",
+      "column": 1,
+      "relations": [
+        9235
+      ],
+      "coordinates": []
+    },
+    {
+      "name": "rightProduct",
+      "column": 0,
+      "relations": [
+        6165
+      ],
+      "coordinates": [
+        3
+      ]
+    },
+    {
+      "name": "rightProduct",
+      "column": 1,
+      "relations": [
+        13
+      ],
+      "coordinates": []
+    }
+  ],
+  "whole_left_cartesian_products": 8,
+  "whole_right_boundary_products": 8,
+  "raw_boundary": [
+    2993,
+    17,
+    138,
+    "3",
+    "0",
+    2
+  ],
+  "whole_source_coordinate_swap": true,
+  "named_staircase3": [
+    1,
+    0
+  ],
+  "named_actual_next_coordinate": [
+    1
+  ],
+  "compiled": {
+    "Data": {
+      "source_sha256": "d58b9bf38690b7c85b05d7508f3d1bf369133576aecffbb883d73567723c23ed",
+      "external_input_sha256": {
+        "Row2773D4Leibniz/eta.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+        "Row2773D4Leibniz/right.json": "5e7c1aacc73c9c9374509c7e8a4329b4e066324c409c9de411f81f455531c9aa",
+        "Row2773D4Leibniz/leftTarget.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "Row2773D4Leibniz/rightTarget.json": "0b36bc1d35c4b7233869f3ab6e346f7af9f7261c28ce6734ed4659137630a619",
+        "Row2773D4Leibniz/source.json": "e422244d4905fc713fedab905c97962a722ef65b2867bf397a49f4cb5df73798",
+        "Row2773D4Leibniz/target.json": "cd071c43ac5ad16a4933f84780508180a8c074f2d5efd7475b586681d7c475be",
+        "Row2773D4Leibniz/sourceProduct.json": "234a73a05be6934751c710e1214068d6a789dc16432f9bb150c570b88b87a0b1",
+        "Row2773D4Leibniz/leftProduct.json": "2b29e1f0e219728934185e774e707b0102ecc8a55718493fd31ba9340ccca121",
+        "Row2773D4Leibniz/sourceProduct0.json": "46f5929683ae05afa81b56cd848ffa34f792f4167d744d6350987503db8f4ad9",
+        "Row2773D4Leibniz/sourceProduct1.json": "721eb538eefe06950139f721b9831f3ec215f0d3a80fe1d98793fac79586e24d",
+        "Row2773D4Leibniz/leftProduct0.json": "228143378f30dcae3dc89e60befd2584288fe0efdbf659bd3404ffc6bfbf330e",
+        "Row2773D4Leibniz/leftProduct1.json": "193ff1eda999e5bed5fb1e63d1cd73834a600c7978a0fa15946934d3f79517fb",
+        "Row2773D4Leibniz/rightProduct.json": "930d3f544cbf84d2262a7c5bcc9a2e5a2650f09fd7756e4d02e34f1c00fc16e2",
+        "Row2773D4Leibniz/rightProduct0.json": "0a09214f8fdd752aa767ee4600904946abeb8ee2526f6b62be0a774a05134214",
+        "Row2773D4Leibniz/rightProduct1.json": "3fa34b8a43df9182099b50ebbd85577e4ecc01587a9ec7ba6cdbe74db817aab2"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "57702f896820a31cfcacb1a0898d53fd22fcb8a62d0b321d9be0070749456629",
+      "olean_sha256": "151145b04ce9d16d1ff9cbcf2e1f40902fdcb67ee0f88472761d4cf2ed9798a2"
+    },
+    "Basic": {
+      "source_sha256": "0c4ed7f391b33524c5b704867244b12dd1759c136fdc08f1e75d30d57b1a6098",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "df0c7014a68a04da8c9aa0ba234f3db8ec8320cfdeada14e8f7e7dab620f808c",
+      "olean_sha256": "6225b54285510af8fb6b8aba54a5cfa5e448b5fee06c40c5170a5a4d2a21a70f"
+    },
+    "Semantics": {
+      "source_sha256": "db9104b33f6e04de96aeb5610e1c559e2151dbfda5d17f0d05dee1de97843953",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "a64efce4df60e820aac69337c7887ea282475d545ca571eda4c3cc07220536fe",
+      "olean_sha256": "ef27a51e8a73b168cbe33e30841a43673f0583beb98ab90c98f3582a4082321e"
+    },
+    "Descent": {
+      "source_sha256": "4827f12b87461187bc7a9b0c3ed30f3e967760117583883ee1e4c79b2002fc14",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "8419cc062fd2e680b885d9317e0cc409670a937f240fe3304d83617c692a8091",
+      "olean_sha256": "2c380dff4ea5941ea163b224668cc263e6db02d92076a5f989a1c471ce9e5255"
+    },
+    "Actual": {
+      "source_sha256": "3c31964c92678a5389048a9900dd942e9fd0cd491823902116e7bda8a7354045",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "9d01210f75a9dec39086cdee3e7cbacc748c513b0ecb4723c1f80e436baeefb2",
+      "olean_sha256": "2e3f169d722201485f2e866426b3d18067e8d64c287d33948a8d45aef365b3d1"
+    },
+    "CoordinateBridge": {
+      "source_sha256": "d80822a4fe7442a51f5f6172610179df1db4c5a17e78336ebd7c9f392bb38097",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "a68adf402f285e1e438403df547b549cd546dc02e6534cdf8eac1e3df935f676",
+      "olean_sha256": "1abab8abd608a1519159410b76df2f3c48fb728f61115dbf2d76944f21c0b67d"
+    }
+  },
+  "axiom_reports": 29,
+  "source_sha256": {
+    "Actual.lean": "3c31964c92678a5389048a9900dd942e9fd0cd491823902116e7bda8a7354045",
+    "Basic.lean": "0c4ed7f391b33524c5b704867244b12dd1759c136fdc08f1e75d30d57b1a6098",
+    "Data.lean": "d58b9bf38690b7c85b05d7508f3d1bf369133576aecffbb883d73567723c23ed",
+    "Semantics.lean": "db9104b33f6e04de96aeb5610e1c559e2151dbfda5d17f0d05dee1de97843953",
+    "CoordinateBridge.lean": "d80822a4fe7442a51f5f6172610179df1db4c5a17e78336ebd7c9f392bb38097",
+    "Descent.lean": "4827f12b87461187bc7a9b0c3ed30f3e967760117583883ee1e4c79b2002fc14"
+  },
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "limitation": "All actual quotient/product meanings are explicit mathematical premises; SQL provenance is not itself an Adams realization."
+}

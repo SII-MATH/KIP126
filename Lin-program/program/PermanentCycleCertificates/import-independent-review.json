@@ -1,0 +1,120 @@
+{
+  "build_observation": {
+    "current_Lake_checkpoint": {
+      "all_module_artifacts_verified": 12,
+      "jobs": 2498,
+      "observed_exit_code": 0,
+      "path": "tests/whole-homology-lake-checkpoint.json",
+      "scope_modules": [
+        "PermanentCycleCertificates.CheckFile",
+        "PermanentCycleCertificates.Import",
+        "PermanentCycleCertificates.ImportExamples"
+      ],
+      "sha256": "5ce559bb9abad66f5b26d7076482ff7a8f15b35ced33042f0d1d20daa8a5f5d6"
+    },
+    "direct_axiom_reports": 4,
+    "independent_Lean_recompile": false,
+    "modules": [
+      {
+        "compile_record_sha256": "c8a8cdc12398fdfa7b99b9ddfb02f7a163dfba9b36782e551750cfb7f0e02df0",
+        "current_Lake_artifact_verified": true,
+        "current_olean_matches_historical_direct": false,
+        "module": "Import",
+        "observed_direct_exit_code": 0,
+        "source_and_log_match": true
+      },
+      {
+        "compile_record_sha256": "f32179198d1083950bfc57c462b847fb76447f90722e853c9761895f11467121",
+        "current_Lake_artifact_verified": true,
+        "current_olean_matches_historical_direct": false,
+        "module": "ImportExamples",
+        "observed_direct_exit_code": 0,
+        "source_and_log_match": true
+      },
+      {
+        "compile_record_sha256": "ab9b771db1a54d6283bd96f8569428320b5de50e8fceb8d33ecbb8ef0801269c",
+        "current_Lake_artifact_verified": true,
+        "current_olean_matches_historical_direct": false,
+        "module": "CheckFile",
+        "observed_direct_exit_code": 0,
+        "source_and_log_match": true
+      }
+    ],
+    "note": "Historical direct records are not rewritten; a later full Lake build may replace oleans and requires its separate checkpoint.",
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "findings": [],
+  "independent_runtime_replay": {
+    "dependency_rebuild_fixture_cases": 2,
+    "existing_import_regression_preserved": true,
+    "link_rejection": true,
+    "literal_metacharacter_path": true,
+    "malformed_cases": 15,
+    "mixed_accepted": 2,
+    "mixed_total": 17,
+    "producer_bad_middle_line_recovers": true,
+    "write_failure": true
+  },
+  "inputs_sha256": {
+    "Makefile": "303dd3520da31256ca0667baa2b7449a4ae25ba4743bcea43973202207ba91cb",
+    "PageTransitionCertificates/TrajectoryImport.lean": "2b91a64336f1322d45f5f3ba00047459b990f63991f82f6c98e277fc3cd60efd",
+    "PageTransitionCertificates/export.cpp": "a4bf58464bb05fe5f23f11b701a4b192b48cfbaef213336b768755d9f058bbdb",
+    "PageTransitionCertificates/trajectory-export": "f0a83c03a4c526b83d7cd45996828866250d59b894bb9a2966a971667a417613",
+    "PageTransitionCertificates/trajectory_export.cpp": "8e6856efa23acf27dbbe6f140417a11d2f86a5b6d2646cf3cc143258f2532642",
+    "PermanentCycleCertificates/CheckFile.lean": "23fa2af186a0da1b02c9b9a2f4a6a77045a8e0f9cb88dab7e73af7cbc729a84a",
+    "PermanentCycleCertificates/Import.lean": "b4a2c9a88e3a3864aed8fa35c414640859259c5501b510c298b04579f0e9eea3",
+    "PermanentCycleCertificates/ImportExamples.lean": "d282b15c0273f36bb1c14d217391852729a4dc1f6c970f62065527b036a79d15",
+    "PermanentCycleCertificates/Makefile": "7f9c58fa5e78a590e14766503deb0d0c42bcd0b35f693adf1aaafe1467593e48",
+    "PermanentCycleCertificates/import-regression.json": "cbe9854b8cd677a3a1f8f9bcfdc1254f68f8c20d27272a32b98da92bd438720f",
+    "PermanentCycleCertificates/prefix-export": "bf38ad66abf868a8bf8ccdfb0d32f19591b71c2788b5e34acaa82fb9c53192e0",
+    "PermanentCycleCertificates/prefix_export.cpp": "3f6e3a6a61460f75d10206a06e26006ee5867ab6ddaa82aaab2f39ac375f5fb2",
+    "PermanentCycleCertificates/stable-prefix.input": "1ca576e0a9d3c3fd858b01d10b070a67eb0cf0265d1e764a2d643be4e9bb6fbb",
+    "PermanentCycleCertificates/stable-prefix.json": "7a56f68d3f0ab684a299d335943109e6d3f281fbad07e2abcd565c4fcb81a339",
+    "PermanentCycleCertificates/test_import.py": "44e979bed3a7390f42be312fe9f21a9d0239c703ed996c131ae1ddb98ed3845f"
+  },
+  "limitations": [
+    "Imported finite prefixes alone do not prove permanence; meaning and whole-tail vanishing must be supplied as checked Lean terms.",
+    "parsePrefix itself is strict canonical text; the file elaborator trims surrounding ASCII whitespace and the line CLI trims line endings/trailing ASCII whitespace before parsing.",
+    "C++ envelope checks and producer success are untrusted data handling; Lean independently rechecks all stages.",
+    "Producer buffers one trajectory output in memory and makes no streaming memory-bound claim."
+  ],
+  "resolved_findings": [
+    {
+      "issue": "Subdirectory Makefile originally failed to notice changed trajectory_export.cpp or included export.cpp when the dependent binary already existed.",
+      "resolution": "Root added both explicit C++ prerequisites to the nested trajectory-export target.",
+      "verification": "In isolated copies, set each source mtime newer than both binaries and run actual make all. Both cases compile trajectory_export.cpp and then prefix_export.cpp. No real source timestamps or build evidence were changed."
+    }
+  ],
+  "reviewed_contracts": [
+    {
+      "check": "JSON decoding is followed by exact reserialization, rejecting unknown or duplicate fields including nested objects. Success requires schema lin.permanent-prefix, version1, firstPage2, positive prefix, every full stage check and every Linked transition. The theorem reasons through every error branch and obtains actual checker success before producing w.Valid.",
+      "component": "parsePrefix / parsePrefix_sound"
+    },
+    {
+      "check": "JSON contains only finite stages. Actual PrefixMeaning and TailVanishing are Lean proof fields supplied by caller to assemble; neither is inferred from schema, file origin, finite acceptance or hashing. imported_permanent uses the checked finite prefix and both explicit mathematical terms. ImportExamples binds the literal file to the existing stable stage by definitional equality.",
+      "component": "assemble / imported_permanent / ImportExamples"
+    },
+    {
+      "check": "Every JSONL line is checked; malformed/blank lines record path and physical line, later valid lines are still counted, any rejected line returns exit1, empty input is rejected, IO failure returns1 and bad usage2. Console explicitly states finite acceptance still needs mathematical meaning and all-page tail proof.",
+      "component": "CheckFile"
+    },
+    {
+      "check": "Uses pipe/fork/dup2/execl with separate literal arguments, no shell. Child stdout/stderr is buffered until successful wait; failed child output becomes stderr diagnostic, not a certificate line. Envelope check enforces firstPage2 and version1; Lean subsequently checks all numerical semantics. NUL paths are rejected, batch failures identify input line and permit later successful records, empty batch and stream-write failure are rejected.",
+      "component": "prefix_export.cpp"
+    },
+    {
+      "check": "Independently replayed existing runtime tests in-memory with only the report-write line removed. Valid stable data exports deterministically; two valid Lean lines accepted; 15 malformed records and an incompatible-stage link rejected; batch resumes after failure; literal dollar/backtick/spaced paths remain literal; NUL/empty batches, missing input and /dev/full output fail.",
+      "component": "test_import.py"
+    },
+    {
+      "check": "Root already depends on trajectory_export.cpp plus export.cpp. Fixed subdirectory target delegates correctly, and prefix-export depends on the producer executable. Isolated actual rebuild experiments verified propagation for both source changes.",
+      "component": "Makefiles"
+    }
+  ],
+  "scope": "PermanentCycleCertificates Import, ImportExamples, CheckFile, prefix_export.cpp, test_import.py and both Makefile dependency chains; prior five mathematical modules are covered by independent-review.json.",
+  "status": "independent_prefix_import_review_passed"
+}

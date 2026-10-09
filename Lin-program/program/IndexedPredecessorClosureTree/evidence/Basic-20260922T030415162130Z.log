@@ -1,0 +1,24 @@
+IndexedPredecessorClosureTree/Basic.lean:127:85: error(lean.unknownIdentifier): Unknown constant `Bool.and_eq_true.mp`
+IndexedPredecessorClosureTree/Basic.lean:140:2: error: Type mismatch: After simplification, term
+  unique
+ has type
+  UniqueKeys family
+but is expected to have type
+  (List.map (fun x => x.key) family).Nodup
+IndexedPredecessorClosureTree/Basic.lean:161:8: error: Application type mismatch: The argument
+  family
+has type
+  Family
+but is expected to have type
+  Certificate ?m.4
+in the application
+  sound family
+'IndexedPredecessorClosureTree.Tree.get_mem' depends on axioms: [propext]
+'IndexedPredecessorClosureTree.lookup_of_member' depends on axioms: [propext, Quot.sound]
+'IndexedPredecessorClosureTree.checkPath_sound' depends on axioms: [propext, Quot.sound]
+'IndexedPredecessorClosureTree.checkLeaf_sound' depends on axioms: [propext, Quot.sound]
+'IndexedPredecessorClosureTree.checkTree_sound' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedPredecessorClosureTree.check_compact' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedPredecessorClosureTree.project_unique' depends on axioms: [propext, sorryAx]
+'IndexedPredecessorClosureTree.sound' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedPredecessorClosureTree.Certificate.sound' depends on axioms: [propext, sorryAx]

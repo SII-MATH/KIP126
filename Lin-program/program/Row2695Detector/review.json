@@ -1,0 +1,91 @@
+{
+  "E3_coordinate_maps": {
+    "source": [
+      1,
+      0,
+      0
+    ],
+    "target": [
+      0,
+      1
+    ]
+  },
+  "columns": 25,
+  "complete_d2_comparisons": 4,
+  "distinct_same_id_E2_basis_is_noncycle": true,
+  "failures": [],
+  "full_target_E3_dimension": 1,
+  "input_sha256": {
+    "Row2695Detector/Actual.lean": "25711cbde0804489dee6f7ab636c3cfa108a6b8a1a0ac1a7097b5661caece894",
+    "Row2695Detector/Comparison.lean": "5c858c533d9ef54b86c9d8281921598f5bd08391d9acca7812a98c63963ed864",
+    "Row2695Detector/comparison-source.json": "94265d9499a5ece5ede2b7584ed1cbcb6dc099971e3d2f86ee75186f09958ce7",
+    "Row2695Detector/export.py": "6a3f1bd57c954bb9a7b191711a13eac901bb7927533464c79401f7252c59e9d3",
+    "Row2695Detector/generate_comparison.py": "fd46d859289041be802851ce190f9bfbada449a7d04dc725c23e16851dff9b96",
+    "Row2695Detector/source.json": "2aa9bf6d4236b758e351cf421abd28f300a92c202e66777a29855d5019a16598",
+    "Row2695Detector/wire/s10t135.json": "4787d3670dc766f7d98036eba9a3dd382f628b2e1b9e12991b61d843d29666dd",
+    "Row2695Detector/wire/s11t135.json": "8abcbebeff6e06af0b3f9b131cee127aa71c2f0713068ab5ad1076442ea71e26",
+    "Row2695Detector/wire/s12t136.json": "344603bcb6d30aa66e3efb1ca0b2657173043ac1f26f40c643f4d07c059ed3c0",
+    "Row2695Detector/wire/s14t137.json": "a94140c712529b68fbd27f9053d1c1e3a094b63489b5063afb9c3c52aaa57684",
+    "Row2695Detector/wire/s7t133.json": "d916812251ba73c70be17bd908054661551effb849d227b5f6fd4ced81845226",
+    "Row2695Detector/wire/s9t134.json": "cc1d1121226944c73e896ce29a64c2056660a961d154c0616c1780393d0370d6",
+    "Row2695Search/lifted-search.json": "fe358e2be64ded02b9d1a5cad9bfb6b0976eb7b41c78cc4072160ebfaed42a4f",
+    "Row2695Search/review.json": "a193554fbd2001195cbd61704c483846086c4dc7d0a829f67ebef40f4bca0c65",
+    "Row2925Detector/source_independent_audit.py": "1cf431e8d8872f0917be82820712f92a09bb7b02d28736ae60c882bb46809fd7",
+    "upstream/category-inventory.json": "506dace295387da68b60bad6a7027bbfe916c9c8c2ac4846ea704133e37059e9"
+  },
+  "lifted_relations": 0,
+  "limitations": "Local d3 naturality, preservation of zero, interpretation of imported E2 relations and d2 values, and Adams realization remain explicit. Raw row2695 d3 is NULL.",
+  "matrices": 6,
+  "metadata": {
+    "DC2h6": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 146,
+      "t_max": 200,
+      "timestamp": 1712843725,
+      "version": 3
+    },
+    "S0": {
+      "change notes": "Add fil,from,to in version table of maps.",
+      "d2_t_max": 177,
+      "t_max": 261,
+      "timestamp": 1710516671,
+      "version": 3
+    }
+  },
+  "reduction_steps": 3,
+  "script_sha256": "35e267b6146c93f13318773dab9b52a875c9255ba4db57584f4774d7a205a776",
+  "source_E2_coordinates": [
+    0,
+    0,
+    1,
+    0,
+    0
+  ],
+  "source_E3_coordinates": [
+    0,
+    1,
+    0
+  ],
+  "source_basis_id": 2697,
+  "source_basis_ids": [
+    2695,
+    2696,
+    2697,
+    2698,
+    2699
+  ],
+  "source_staircase_id": 2695,
+  "sources": {
+    "DC2h6_AdamsSS_t200.db": "8ea004020e413f34a569b9d142e58c73c7661dd1acff35b0757dac9e73586162",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "independent_actual_map_and_full_d2_quotient_audit_passed",
+  "unknown_retained": [
+    2695,
+    9,
+    134,
+    "2",
+    null,
+    9000
+  ]
+}

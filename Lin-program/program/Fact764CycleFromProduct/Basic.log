@@ -1,0 +1,11 @@
+Fact764CycleFromProduct/Basic.lean:39:0: warning: automatically included section variable(s) unused in theorem `Fact764CycleFromProduct.named_polynomial`:
+  [CharP R 2]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CharP R 2] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+'Fact764CycleFromProduct.delta_target_zero_from_empty_coordinates' depends on axioms: [Quot.sound]
+'Fact764CycleFromProduct.fourth_power_cycle' depends on axioms: [propext]
+'Fact764CycleFromProduct.Meaning.named_cycle' depends on axioms: [propext, Quot.sound]
+'Fact764CycleFromProduct.unique_from_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact764CycleFromProduct.no_injective_zero_detector' depends on axioms: [propext, Quot.sound]

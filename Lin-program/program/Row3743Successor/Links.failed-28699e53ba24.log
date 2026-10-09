@@ -1,0 +1,21 @@
+Row3743Successor/Links.lean:34:25: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  eval b_S0_27_150_d3.comparison.projection source3.vector
+in the target expression
+  eval b_S0_27_150_d3.comparison.projection source3.vector = eval b_S0_31_153_d3.comparison.projection target3.vector
+
+⊢ eval b_S0_27_150_d3.comparison.projection source3.vector = eval b_S0_31_153_d3.comparison.projection target3.vector
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    b_S0_27_150_d3.comparison.projection
+  has type
+    Matrix b_S0_27_150_d3.h b_S0_27_150_d3.m
+  but is expected to have type
+    Matrix 1 b_S0_27_150_d3.m
+  in the application
+    eval b_S0_27_150_d3.comparison.projection
+'Row3743Successor.Links.source_E4' depends on axioms: [propext, Quot.sound]
+'Row3743Successor.Links.target_E4' depends on axioms: [propext, Quot.sound]
+'Row3743Successor.Links.raw_successor_projection' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3743Successor.Links.all_middle_coordinates' depends on axioms: [propext, Quot.sound]

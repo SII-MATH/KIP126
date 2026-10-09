@@ -1,0 +1,173 @@
+{
+  "status": "passed",
+  "counts": {
+    "sql_relations": 113,
+    "d2_columns": 172,
+    "quotient_pairs": 223392,
+    "cycles": 1308,
+    "comparisons": 48,
+    "sql_staircase_rows": 48,
+    "map_columns": 235,
+    "map_vectors": 5136,
+    "compatible_maps": 24,
+    "frozen_files": 279
+  },
+  "explicit_conditions": [
+    {
+      "object": "Csigmasq",
+      "source": [
+        11,
+        152
+      ],
+      "page": 3,
+      "row": [
+        7137,
+        "10",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        11,
+        152
+      ],
+      "page": 3,
+      "row": [
+        7138,
+        "6",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        15,
+        155
+      ],
+      "page": 3,
+      "row": [
+        7603,
+        "5",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        12,
+        153
+      ],
+      "page": 3,
+      "row": [
+        7322,
+        "6",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        12,
+        153
+      ],
+      "page": 3,
+      "row": [
+        7323,
+        "7",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        19,
+        158
+      ],
+      "page": 3,
+      "row": [
+        8100,
+        "0",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "S0",
+      "source": [
+        7,
+        134
+      ],
+      "page": 3,
+      "row": [
+        2708,
+        "0,1",
+        null,
+        9997
+      ],
+      "kind": "explicit_unproved_zero_d3_premise",
+      "coordinate": [
+        0
+      ],
+      "warning": "NULL9997 remains unknown; zero is an explicit branch assumption"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        19,
+        158
+      ],
+      "page": 4,
+      "row": [
+        8100,
+        "0",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "Csigmasq",
+      "source": [
+        15,
+        155
+      ],
+      "page": 4,
+      "row": [
+        7603,
+        "5",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    },
+    {
+      "object": "S0",
+      "source": [
+        10,
+        136
+      ],
+      "page": 4,
+      "row": [
+        2858,
+        "2",
+        null,
+        9000
+      ],
+      "kind": "explicit_unproved_finite_cycle_premise"
+    }
+  ],
+  "source_sha256": "6a87f51c683374ef44a775096c0ddf03415230c2d95bc50d7dbcb8a9b92c15ea",
+  "limitation": "SQL provenance and finite algebra only; actual E2 interpretations, quotient laws, naturality and named source d5 cycle remain premises. No E6 nonzero or permanence."
+}

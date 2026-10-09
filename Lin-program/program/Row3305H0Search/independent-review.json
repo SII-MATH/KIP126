@@ -1,0 +1,92 @@
+{
+  "status": "no_correctness_findings",
+  "complete_quotients": 6,
+  "all_vectors": 23,
+  "all_cycle_pairs": 57,
+  "polynomial_columns": 5,
+  "relation_reductions": 3,
+  "all_tensor_inputs": 24,
+  "quotient_pair_checks": 12,
+  "actual_relabelings": 221184,
+  "actual_differential_candidates": 442368,
+  "leibniz_accepted_zero_candidates": 221184,
+  "whole_source_canonical_to_staircase_identity": true,
+  "known_E2_right_basis": 3235,
+  "named_source_E2_basis": 3305,
+  "raw_unknown_retained": [
+    3305,
+    "0",
+    null,
+    9000
+  ],
+  "compiled": {
+    "Data": {
+      "source_sha256": "0b15ad1e1c28d0452eb0290ea00c35537c0c26dc89e9e7022f097d99a83bd567",
+      "external_input_sha256": {
+        "Row3305H0Search/h0.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "Row3305H0Search/leftTarget.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+        "Row3305H0Search/right.json": "5d161cc15b32fae172105151294c2a0ed792542489b874c29fc5e5833a585990",
+        "Row3305H0Search/rightProduct.json": "368596a23c098a64f30719c50efd98cb5156fde9e5f4455db571a706672b1cff",
+        "Row3305H0Search/rightProduct0.json": "6d41dd49e5fc6bfff56fd75bb5d71eedd3994f956b3d9823dfcb2663878eed64",
+        "Row3305H0Search/rightProduct1.json": "d139b99bc6e06d757ee9228510955683406a8e4449141153069ad2e21134b110",
+        "Row3305H0Search/rightTarget.json": "296e45be252a4b94f7b4689dc10bbe75144babb7bcd8925b98416b9db9dfd6fe",
+        "Row3305H0Search/source.json": "2f37d271d8cb87d4c27d8254777115f124ddfcfcc5c03064a9397a726e8164e2",
+        "Row3305H0Search/sourceProduct.json": "c0855ed6f64d7840b8dd7e887deecb853424b0f95d37217c268a328cd8ed42e5",
+        "Row3305H0Search/sourceProduct0.json": "3ad6f4f4dbecfb5977b5a24ecd83a46326c3eff9630c05a45c22ccdbc227fa39",
+        "Row3305H0Search/sourceProduct1.json": "48b512fe65bf3d47caf14ef9404fcc0cc3778c54cd1bbe1f33961b8d66dd9226",
+        "Row3305H0Search/sourceProduct2.json": "d0c23628a34f8ffe907c6861a962cdb6fe99138e1a2b1f0ccb144b4dae695e52",
+        "Row3305H0Search/target.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d"
+      },
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff",
+        ".lake/build/lib/lean/PageProductCertificates/Import.olean": "61954dd33f4b6e33565922ca1e479772406a06efc4907c48eb6e55230d0fb26b",
+        ".lake/build/lib/lean/NamedElementCertificates/Evaluation.olean": "8047d21d53200a652d3ad18030588afc2eaf47fc7b4c6b8b262aa3e02b9b007b",
+        ".lake/build/lib/lean/LinearCertificates/Checker.olean": "1e09e46fae607d38b1df5d075459befce6822135573ecb99ae19b01b54bbcf02"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "8e1149fe856a1cc4abd55e81db3e5bb87ec2adb2f7596c510b9f8643985e48cc",
+      "olean_sha256": "1c6c728f59019cf409474617be976018ca300445261eb910d93de5ac7a911263"
+    },
+    "Basic": {
+      "source_sha256": "5065bd370d11dbffb4cb65a858d646e5da734953a4daff11d20f0ccf6c0107d4",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3305H0Search/Data.olean": "1c6c728f59019cf409474617be976018ca300445261eb910d93de5ac7a911263"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "922ebbd866787e7440cee3f5021608209902443ab47388af1886fc0b78b0d58f",
+      "olean_sha256": "7571fa4d70b163e1ea29ad85b79a89071be0fb45d779299469d0265381291122"
+    },
+    "Semantics": {
+      "source_sha256": "2d9240ddc4711b48548948486c8a0e47c839df82916f63a9251ae7d6fe9740df",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3305H0Search/Basic.olean": "7571fa4d70b163e1ea29ad85b79a89071be0fb45d779299469d0265381291122",
+        ".lake/build/lib/lean/BranchReplayCertificates/BasisSemantics.olean": "b2cab866631df2c3b15bbdbc8856abd2451dcc62a63a620a7a42cf7f851671d5"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "3dcc7ae3b2f7cc8c6a7456dd661e0a78258d202054cb93d71671f9bf0dc507a8",
+      "olean_sha256": "5fea941e3a3839b4f27dc337d68dc3c655625d7fa5e2fa6b8f12f72e3c572b98"
+    },
+    "Actual": {
+      "source_sha256": "08c0d5c33dbe58832a3818ca1b8d9edb59f2518e9b1834693f6ee24b1f1b19cf",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3305H0Search/Basic.olean": "7571fa4d70b163e1ea29ad85b79a89071be0fb45d779299469d0265381291122",
+        ".lake/build/lib/lean/ActualAdamsProductCycleBridge/Basic.olean": "016845b4764690176d84b4f54a937df23d9650ed2b72e27827fe556f093c64d9"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "ac74f12b97fda53463b847ff1874521513c9779581a3b14bbd95a22705d1952e",
+      "olean_sha256": "0213999e40fe1e4687ba4c5cfdc6840e015ee38b2812cbfac33b43a9a893eb2b"
+    }
+  },
+  "source_sha256": {
+    "Actual.lean": "08c0d5c33dbe58832a3818ca1b8d9edb59f2518e9b1834693f6ee24b1f1b19cf",
+    "Basic.lean": "5065bd370d11dbffb4cb65a858d646e5da734953a4daff11d20f0ccf6c0107d4",
+    "Assembly.lean": "829e332584f2eefbb5565237e3c13b6928b1ee539bc9e16bdbd815586e589c79",
+    "Data.lean": "0b15ad1e1c28d0452eb0290ea00c35537c0c26dc89e9e7022f097d99a83bd567",
+    "Semantics.lean": "2d9240ddc4711b48548948486c8a0e47c839df82916f63a9251ae7d6fe9740df"
+  },
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "actual_signature": "Whole right-product zero uses every right differential value; no right d3 value or row3305 value is assumed."
+}

@@ -1,0 +1,47 @@
+{
+  "status": "two_full_families_whole_square_d5_and_same_input_E6_pass",
+  "cases": [
+    {
+      "case": "zero_b0",
+      "entries": 1385,
+      "previous_preserved": 1369,
+      "new_entries": 16,
+      "counts": {
+        "cycle_pairs": 9758,
+        "predecessor_dimensions": 2643,
+        "ordered_pairs": 1918225,
+        "consecutive": 881,
+        "adjacent": 1059
+      },
+      "next_obstruction": "unknown S0:16,140:d3:row3147; target dimension 2",
+      "family_sha256": "2a0a202fce9f69ec28b752e504be8c64dbd6ff863c2dc4be56e5bc419474d4da"
+    },
+    {
+      "case": "zero_b1",
+      "entries": 1385,
+      "previous_preserved": 1369,
+      "new_entries": 16,
+      "counts": {
+        "cycle_pairs": 9758,
+        "predecessor_dimensions": 2643,
+        "ordered_pairs": 1918225,
+        "consecutive": 881,
+        "adjacent": 1059
+      },
+      "next_obstruction": "unknown S0:16,140:d3:row3147; target dimension 2",
+      "family_sha256": "2ad1246da27c2d807cc50a2749fcd8563a71f67ce8e7eace74dd50c88ea1d75d"
+    }
+  ],
+  "actual_a_selection": "false only under complete TargetMeaning",
+  "actual_r_selection": "false only under Ctheta4 finite source d3 and full naturality meanings",
+  "remaining_b_selected": false,
+  "actual_model_counts": {
+    "actual_quotient_pairs": 384,
+    "same_input_E5_E6_models": 96,
+    "named_E2_bindings": 256
+  },
+  "parent_sha256": {
+    "Fact713Ctheta4Continuation/frozen-source.json": "24d8e14bb5cd3692f791294abdeaeb39861bb2767823f13f7f096b57cbfa45be",
+    "Row2684D5Search/frozen-source.json": "f18c5efe0186cbe057e6fdef96785974fb4294c04fb7a6a70125219789ee43f9"
+  }
+}

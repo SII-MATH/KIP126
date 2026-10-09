@@ -1,0 +1,1682 @@
+{
+  "results": [
+    {
+      "target": {
+        "rows": 1,
+        "cols": 2,
+        "entries": [
+          0,
+          0
+        ],
+        "comparisons": [
+          {
+            "down": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              false,
+              false,
+              true,
+              false,
+              false,
+              true
+            ],
+            "incoming": [
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 2,
+            "m": 3,
+            "n": 4,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true,
+              false,
+              false,
+              false,
+              true
+            ],
+            "up": [
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          {
+            "down": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              true,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false
+            ],
+            "k": 2,
+            "m": 2,
+            "n": 4,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "projection": [
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          }
+        ],
+        "matrices": [
+          {
+            "rows": 4,
+            "cols": 4,
+            "entries": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "source": [
+              [
+                4946,
+                "299,1,4",
+                "0"
+              ],
+              [
+                4947,
+                "334,1,3",
+                ""
+              ],
+              [
+                4948,
+                "455,1,0",
+                ""
+              ],
+              [
+                4949,
+                "0,3,17,1,209,1,0",
+                ""
+              ]
+            ],
+            "target": [
+              [
+                4264,
+                "13,1,207",
+                ""
+              ],
+              [
+                4265,
+                "299,1,4",
+                "1"
+              ],
+              [
+                4266,
+                "1,1,334,1,1",
+                ""
+              ],
+              [
+                4267,
+                "8,2,187,1,0",
+                ""
+              ]
+            ],
+            "traces": [
+              [],
+              [],
+              [],
+              []
+            ]
+          },
+          {
+            "rows": 2,
+            "cols": 3,
+            "entries": [
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "source": [
+              [
+                5053,
+                "0,1,347,1,2",
+                ""
+              ],
+              [
+                5054,
+                "471,1,0",
+                ""
+              ],
+              [
+                5055,
+                "0,1,454,1,0",
+                ""
+              ]
+            ],
+            "target": [
+              [
+                4385,
+                "8,1,89,1,25",
+                ""
+              ],
+              [
+                4386,
+                "0,1,347,1,2",
+                ""
+              ]
+            ],
+            "traces": [
+              [],
+              [],
+              []
+            ]
+          },
+          {
+            "rows": 2,
+            "cols": 2,
+            "entries": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "source": [
+              [
+                5166,
+                "8,1,208,1,6",
+                "1"
+              ],
+              [
+                5167,
+                "0,1,64,1,113,1,0",
+                ""
+              ]
+            ],
+            "target": [
+              [
+                4478,
+                "260,1,7",
+                "2"
+              ],
+              [
+                4479,
+                "8,2,194,1,0",
+                "1"
+              ]
+            ],
+            "traces": [
+              [
+                {
+                  "origin": {
+                    "kind": "module",
+                    "rowid": 78,
+                    "raw": "8,1,5;20,1,0",
+                    "degree": [
+                      7,
+                      33
+                    ]
+                  },
+                  "multiplier": [
+                    208
+                  ]
+                },
+                {
+                  "origin": {
+                    "kind": "ring_lift",
+                    "rowid": 11018,
+                    "raw": "20,1,208,1;17,1,219,1",
+                    "generator": 0,
+                    "degree": [
+                      24,
+                      140
+                    ]
+                  },
+                  "multiplier": []
+                },
+                {
+                  "origin": {
+                    "kind": "ring_lift",
+                    "rowid": 11020,
+                    "raw": "17,1,219,1;8,2,194,1",
+                    "generator": 0,
+                    "degree": [
+                      24,
+                      140
+                    ]
+                  },
+                  "multiplier": []
+                }
+              ],
+              []
+            ]
+          }
+        ],
+        "staircase": [
+          [
+            4385,
+            "1",
+            "1",
+            2
+          ],
+          [
+            4386,
+            "0",
+            "1",
+            5
+          ]
+        ]
+      },
+      "suspension": 2,
+      "source": {
+        "rows": 3,
+        "cols": 2,
+        "entries": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "comparisons": [
+          {
+            "down": [
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              true,
+              false,
+              true,
+              false,
+              false,
+              true,
+              false,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              true
+            ],
+            "k": 4,
+            "m": 4,
+            "n": 3,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          {
+            "down": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 3,
+            "inclusion": [
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 5,
+            "m": 5,
+            "n": 1,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false
+            ],
+            "projection": [
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          }
+        ],
+        "matrices": [
+          {
+            "rows": 1,
+            "cols": 3,
+            "entries": [
+              1,
+              0,
+              0
+            ],
+            "source": [
+              [
+                4713,
+                "383",
+                ""
+              ],
+              [
+                4714,
+                "23,1,188,1,0",
+                "3"
+              ],
+              [
+                4715,
+                "0,1,422,1,0",
+                "3"
+              ]
+            ],
+            "target": [
+              [
+                4056,
+                "334",
+                ""
+              ]
+            ],
+            "traces": [
+              [],
+              [],
+              []
+            ]
+          },
+          {
+            "rows": 5,
+            "cols": 4,
+            "entries": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "source": [
+              [
+                4819,
+                "392",
+                "2"
+              ],
+              [
+                4820,
+                "64,1,85",
+                "2"
+              ],
+              [
+                4821,
+                "0,1,8,1,267,1,0",
+                ""
+              ],
+              [
+                4822,
+                "0,2,17,1,209,1,0",
+                ""
+              ]
+            ],
+            "target": [
+              [
+                4142,
+                "342",
+                ""
+              ],
+              [
+                4143,
+                "64,1,73",
+                "1"
+              ],
+              [
+                4144,
+                "347,1,1",
+                ""
+              ],
+              [
+                4145,
+                "346,1,1",
+                "4"
+              ],
+              [
+                4146,
+                "420,1,0",
+                ""
+              ]
+            ],
+            "traces": [
+              [],
+              [],
+              [],
+              []
+            ]
+          },
+          {
+            "rows": 5,
+            "cols": 4,
+            "entries": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "source": [
+              [
+                4942,
+                "406",
+                ""
+              ],
+              [
+                4943,
+                "13,2,101,1,6",
+                ""
+              ],
+              [
+                4944,
+                "347,1,2",
+                ""
+              ],
+              [
+                4945,
+                "454,1,0",
+                "1"
+              ]
+            ],
+            "target": [
+              [
+                4259,
+                "13,1,206",
+                "1"
+              ],
+              [
+                4260,
+                "347,1,2",
+                ""
+              ],
+              [
+                4261,
+                "16,1,187,1,1",
+                ""
+              ],
+              [
+                4262,
+                "435,1,0",
+                ""
+              ],
+              [
+                4263,
+                "9,1,13,2,80,1,0",
+                ""
+              ]
+            ],
+            "traces": [
+              [],
+              [
+                {
+                  "origin": {
+                    "kind": "module",
+                    "rowid": 120,
+                    "raw": "13,1,5;29,1,0",
+                    "degree": [
+                      7,
+                      39
+                    ]
+                  },
+                  "multiplier": [
+                    13,
+                    101
+                  ]
+                },
+                {
+                  "origin": {
+                    "kind": "ring_lift",
+                    "rowid": 515,
+                    "raw": "13,1,29,1;9,1,32,1",
+                    "generator": 0,
+                    "degree": [
+                      11,
+                      63
+                    ]
+                  },
+                  "multiplier": [
+                    101
+                  ]
+                },
+                {
+                  "origin": {
+                    "kind": "ring_lift",
+                    "rowid": 5211,
+                    "raw": "32,1,101,1;13,2,80,1",
+                    "generator": 0,
+                    "degree": [
+                      17,
+                      117
+                    ]
+                  },
+                  "multiplier": [
+                    9
+                  ]
+                }
+              ],
+              [],
+              []
+            ]
+          }
+        ],
+        "staircase": [
+          [
+            4142,
+            "2,4",
+            "0",
+            3
+          ],
+          [
+            4143,
+            "4",
+            "2",
+            4
+          ],
+          [
+            4144,
+            "0",
+            null,
+            9000
+          ],
+          [
+            4145,
+            "1",
+            "1",
+            9998
+          ],
+          [
+            4146,
+            "3",
+            "4",
+            9998
+          ]
+        ]
+      },
+      "status": "complete"
+    },
+    {
+      "target": {
+        "rows": 2,
+        "cols": 2,
+        "entries": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "comparisons": [
+          {
+            "down": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              false,
+              false,
+              true,
+              false,
+              false,
+              true
+            ],
+            "incoming": [
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 2,
+            "m": 3,
+            "n": 4,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true,
+              false,
+              false,
+              false,
+              true
+            ],
+            "up": [
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          {
+            "down": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              true,
+              false,
+              false,
+              true
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 3,
+            "m": 2,
+            "n": 5,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "projection": [
+              true,
+              false,
+              false,
+              true
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          }
+        ],
+        "matrices": [
+          {
+            "rows": 5,
+            "cols": 4,
+            "entries": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "source": [
+              [
+                4946,
+                "299,1,4",
+                "0"
+              ],
+              [
+                4947,
+                "334,1,3",
+                ""
+              ],
+              [
+                4948,
+                "455,1,0",
+                ""
+              ],
+              [
+                4949,
+                "0,3,17,1,209,1,0",
+                ""
+              ]
+            ],
+            "target": [
+              [
+                5677,
+                "13,3,73",
+                ""
+              ],
+              [
+                5678,
+                "23,1,89,1,18",
+                ""
+              ],
+              [
+                5679,
+                "334,1,3",
+                ""
+              ],
+              [
+                5680,
+                "455,1,0",
+                ""
+              ],
+              [
+                5681,
+                "0,3,17,1,209,1,0",
+                ""
+              ]
+            ],
+            "traces": [
+              [],
+              [],
+              [],
+              []
+            ]
+          },
+          {
+            "rows": 2,
+            "cols": 3,
+            "entries": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            "source": [
+              [
+                5053,
+                "0,1,347,1,2",
+                ""
+              ],
+              [
+                5054,
+                "471,1,0",
+                ""
+              ],
+              [
+                5055,
+                "0,1,454,1,0",
+                ""
+              ]
+            ],
+            "target": [
+              [
+                5790,
+                "471,1,0",
+                ""
+              ],
+              [
+                5791,
+                "0,1,454,1,0",
+                ""
+              ]
+            ],
+            "traces": [
+              [
+                {
+                  "origin": {
+                    "kind": "module",
+                    "rowid": 21236,
+                    "raw": "347,1,2",
+                    "degree": [
+                      21,
+                      140
+                    ]
+                  },
+                  "multiplier": [
+                    0
+                  ]
+                }
+              ],
+              [],
+              []
+            ]
+          },
+          {
+            "rows": 3,
+            "cols": 2,
+            "entries": [
+              0,
+              0,
+              1,
+              0,
+              0,
+              1
+            ],
+            "source": [
+              [
+                5166,
+                "8,1,208,1,6",
+                "1"
+              ],
+              [
+                5167,
+                "0,1,64,1,113,1,0",
+                ""
+              ]
+            ],
+            "target": [
+              [
+                5908,
+                "8,1,149,1,18",
+                "1"
+              ],
+              [
+                5909,
+                "8,1,208,1,5",
+                "3"
+              ],
+              [
+                5910,
+                "0,1,64,1,113,1,0",
+                ""
+              ]
+            ],
+            "traces": [
+              [],
+              []
+            ]
+          }
+        ],
+        "staircase": [
+          [
+            5790,
+            "0",
+            null,
+            9000
+          ],
+          [
+            5791,
+            "1",
+            "3,4",
+            9997
+          ]
+        ]
+      },
+      "suspension": 0,
+      "source": {
+        "rows": 3,
+        "cols": 2,
+        "entries": [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "comparisons": [
+          {
+            "down": [
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              true,
+              false,
+              true,
+              false,
+              false,
+              true,
+              false,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              true
+            ],
+            "k": 4,
+            "m": 4,
+            "n": 3,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          {
+            "down": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 3,
+            "inclusion": [
+              true,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              true
+            ],
+            "k": 4,
+            "m": 4,
+            "n": 4,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "projection": [
+              true,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          }
+        ],
+        "matrices": [
+          {
+            "rows": 4,
+            "cols": 3,
+            "entries": [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            "source": [
+              [
+                4713,
+                "383",
+                ""
+              ],
+              [
+                4714,
+                "23,1,188,1,0",
+                "3"
+              ],
+              [
+                4715,
+                "0,1,422,1,0",
+                "3"
+              ]
+            ],
+            "target": [
+              [
+                5404,
+                "31,1,69,1,18",
+                ""
+              ],
+              [
+                5405,
+                "212,1,13",
+                ""
+              ],
+              [
+                5406,
+                "23,1,188,1,0",
+                "3"
+              ],
+              [
+                5407,
+                "0,1,422,1,0",
+                "3"
+              ]
+            ],
+            "traces": [
+              [],
+              [],
+              []
+            ]
+          },
+          {
+            "rows": 4,
+            "cols": 4,
+            "entries": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "source": [
+              [
+                4819,
+                "392",
+                "2"
+              ],
+              [
+                4820,
+                "64,1,85",
+                "2"
+              ],
+              [
+                4821,
+                "0,1,8,1,267,1,0",
+                ""
+              ],
+              [
+                4822,
+                "0,2,17,1,209,1,0",
+                ""
+              ]
+            ],
+            "target": [
+              [
+                5527,
+                "454",
+                ""
+              ],
+              [
+                5528,
+                "187,1,22",
+                ""
+              ],
+              [
+                5529,
+                "0,1,8,1,267,1,0",
+                ""
+              ],
+              [
+                5530,
+                "0,2,17,1,209,1,0",
+                ""
+              ]
+            ],
+            "traces": [
+              [],
+              [
+                {
+                  "origin": {
+                    "kind": "ring_lift",
+                    "rowid": 2306,
+                    "raw": "18,1,64,1",
+                    "generator": 31,
+                    "degree": [
+                      19,
+                      139
+                    ]
+                  },
+                  "multiplier": []
+                },
+                {
+                  "origin": {
+                    "kind": "module",
+                    "rowid": 20499,
+                    "raw": "64,1,96;187,1,22",
+                    "degree": [
+                      19,
+                      139
+                    ]
+                  },
+                  "multiplier": []
+                },
+                {
+                  "origin": {
+                    "kind": "ring_lift",
+                    "rowid": 10636,
+                    "raw": "64,1,105,1",
+                    "generator": 0,
+                    "degree": [
+                      19,
+                      139
+                    ]
+                  },
+                  "multiplier": []
+                }
+              ],
+              [],
+              []
+            ]
+          },
+          {
+            "rows": 4,
+            "cols": 4,
+            "entries": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "source": [
+              [
+                4942,
+                "406",
+                ""
+              ],
+              [
+                4943,
+                "13,2,101,1,6",
+                ""
+              ],
+              [
+                4944,
+                "347,1,2",
+                ""
+              ],
+              [
+                4945,
+                "454,1,0",
+                "1"
+              ]
+            ],
+            "target": [
+              [
+                5673,
+                "469",
+                ""
+              ],
+              [
+                5674,
+                "8,1,9,1,80,1,18",
+                ""
+              ],
+              [
+                5675,
+                "13,2,101,1,5",
+                ""
+              ],
+              [
+                5676,
+                "454,1,0",
+                "1"
+              ]
+            ],
+            "traces": [
+              [],
+              [],
+              [
+                {
+                  "origin": {
+                    "kind": "module",
+                    "rowid": 21236,
+                    "raw": "347,1,2",
+                    "degree": [
+                      21,
+                      140
+                    ]
+                  },
+                  "multiplier": []
+                }
+              ],
+              []
+            ]
+          }
+        ],
+        "staircase": [
+          [
+            5527,
+            "3",
+            "3",
+            2
+          ],
+          [
+            5528,
+            "1",
+            "1",
+            3
+          ],
+          [
+            5529,
+            "2",
+            null,
+            9000
+          ],
+          [
+            5530,
+            "0",
+            null,
+            9000
+          ]
+        ]
+      },
+      "status": "complete"
+    }
+  ]
+}

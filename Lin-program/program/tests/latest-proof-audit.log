@@ -1,0 +1,177 @@
+'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]
+'LinearCertificates.checkChainMap_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.checkComparison_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.homologyEquivalence' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.checkInducedWire_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.WireInducedMap.coordinates' depends on axioms: [propext, Quot.sound]
+'StaircaseCertificates.checkBasis_sound' depends on axioms: [propext, Quot.sound]
+'StaircaseCertificates.checkSurvives_sound' depends on axioms: [propext, Quot.sound]
+'StaircaseCertificates.checkCoherent_sound' depends on axioms: [propext, Quot.sound]
+'NamedElementCertificates.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NamedElementCertificates.check_sound_evaluate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NamedElementCertificates.ModuleExpressions.check_sound_evaluate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NamedElementCertificates.ModuleExpressions.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AdvancedRuleCertificates.AffineHomology.check_sound' depends on axioms: [propext, Quot.sound]
+'PropagationCertificates.MatrixNaturality.check_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.checkTrajectory_sound' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.checkWireTrajectory_sound' depends on axioms: [propext, Quot.sound]
+'ExtComplexCertificates.dual_pairing' depends on axioms: [propext, Quot.sound]
+'RealMapCertificates.mapEvaluation_hom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchReplayCertificates.reduction' depends on axioms: [propext, Quot.sound]
+'BranchReplayCertificates.QuotientConclusion.whole_quotient_comparison' depends on axioms: [propext, Quot.sound]
+'ExtComplexCertificates.checkEquivariant_sound' depends on axioms: [propext, Quot.sound]
+'ExtComplexCertificates.checkPresentation_sound' depends on axioms: [propext, Quot.sound]
+'ExtComplexCertificates.SqOneResolution.exact_every_degree' depends on axioms: [propext, Quot.sound]
+'BranchReplayCertificates.ProductRefutation.compatibility_forces_bit' depends on axioms: [propext]
+'ExtComplexCertificates.ActualResolution.checkRaw_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BranchReplayCertificates.ProductBasisSemantics.allCoefficients25' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'BranchReplayCertificates.MapBasisSemantics.allCoefficients25' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.checkRawExact_sound' depends on axioms: [propext, Quot.sound]
+'MilnorCertificates.coproduct_homogeneous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.product_degree_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.sqOne_square_unbounded_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.check_all_monomials' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.checkAll_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.checkStable_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.coproduct_pad' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.stable_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.coproduct_coassociative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.dualMul_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.certified_products_associative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.dualMul_unit_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.dualMul_unit_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.unitPolynomial_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PageTransitionCertificates.homologyCoordinates_add' depends on axioms: [propext, Quot.sound]
+'PageTransitionCertificates.inducedMap_add' depends on axioms: [propext, Quot.sound]
+'RealMapCertificates.matrixValid_hom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ModuleMapCertificates.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ModuleMapCertificates.matrixValid_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CnuPageCertificates.targetClass_nonzero' depends on axioms: [propext, Quot.sound]
+'MilnorCertificates.homogeneousDual_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.degreeBounded_support_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.finite_homogeneous_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.differential_reconstruct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualPositiveHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualAugmentedHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualAugmentation_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualHom_differential_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualHomCohomologyEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ModuleToModuleCertificates.unit_target_allVectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact764TrajectoryAudit.Row3564.requested_ne_logged' depends on axioms: [propext, Quot.sound]
+'Fact764TrajectoryAudit.C2Naturality.requested_zero_from_target_kernel' depends on axioms: [propext, Quot.sound]
+'Fact764TrajectoryAudit.C2Naturality.target_kernel_iff' depends on axioms: [propext, Quot.sound]
+'MilnorCertificates.finitePolynomial_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MilnorCertificates.finitePolynomial_sum_products_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SemilinearMapCertificates.valid_semilinear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SemilinearMapCertificates.checkWire_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SemilinearMapCertificates.allVectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ExtComplexCertificates.ActualResolution.finiteModuleInclusion_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.finiteDifferential_inclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.finiteDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.finitePositiveHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.finiteAugmentedHomogeneousExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.finiteAugmentation_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Fact764TrajectoryAudit.LaterDetector.from_D154545_conditions' depends on axioms: [propext, Quot.sound]
+'ExtComplexCertificates.ActualResolution.FiniteHom.differential_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.FiniteHom.cohomologyFullEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.FiniteHom.cohomologyCoordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.degreeInclusion_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.degreeDifferential_inclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.degreeDifferential_square_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.degreePositiveExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.degreeAugmentedExactness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.degreeModuleProjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualProjectiveChainComplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualChain_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.augmentationMorphism_epi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualChainAugmentation_f_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.actualChainAugmentation_generator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.positiveChainHomology_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.zeroChainHomologyField' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ExtComplexCertificates.ActualResolution.zeroChainHomology_positive_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Fact713Ctheta4Certificates.Obstruction.target_not_exact' depends on axioms: [propext, Quot.sound]
+'CofiberE2Certificates.check_sound' depends on axioms: [propext, Quot.sound]
+'CofiberE2Certificates.Counterexamples.notComplex0' depends on axioms: [propext]
+'CofiberE2Certificates.Wire.exact_under_interpretation' depends on axioms: [propext]
+'CofiberE2Certificates.Wire.transport_exact' depends on axioms: [propext, Quot.sound]
+'AllClaimZeroTargetCertificates.zero_quotient' depends on axioms: [propext, Quot.sound]
+'AllClaimZeroTargetCertificates.differential_to_zero' depends on axioms: [propext, Quot.sound]
+'AllClaimConditionalZeroCertificates.Matches.conditional_block' depends on axioms: [propext, Quot.sound]
+'CofiberE2Certificates.Wire.transport_linked' depends on axioms: [propext, Quot.sound]
+'Fact713TrajectoryCertificates.Row3076.from_ceta_naturality' depends on axioms: [propext, Quot.sound]
+'DerivedMapCertificates.checkFactor_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DerivedMapCertificates.checkComposition_sound' depends on axioms: [propext, Quot.sound]
+'DerivedMapCertificates.FactorWire.column_semantics' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DerivedMapCertificates.FactorWire.allVectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DerivedMapCertificates.CompositionWire.transport' depends on axioms: [propext]
+'DerivedMapCertificates.Counterexample.two_sigma_squared_E2_nonzero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

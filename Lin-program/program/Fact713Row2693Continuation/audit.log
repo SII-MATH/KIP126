@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "branches": [
+    {
+      "case": "zero_b0",
+      "entries": 1411,
+      "new": 8,
+      "quotient_cycle_pairs": 9814,
+      "adjacent": 1079,
+      "consecutive": 907,
+      "main_nonzero_page": 10,
+      "row2693_nonzero_page": 6,
+      "next_blocker": "S0:14,138:d4:row3005; target dimension 1"
+    },
+    {
+      "case": "zero_b1",
+      "entries": 1411,
+      "new": 8,
+      "quotient_cycle_pairs": 9814,
+      "adjacent": 1079,
+      "consecutive": 907,
+      "main_nonzero_page": 10,
+      "row2693_nonzero_page": 6,
+      "next_blocker": "S0:14,138:d4:row3005; target dimension 1"
+    }
+  ],
+  "audit_source_sha256": "4f4829cba6d8a4ddd9265d35709a4a658b166ec45721e3dfe473d00ec2eb6b86",
+  "scope": "Every full finite quotient and adjacency, exact inherited families, whole row2693 map with known second column, both original named trajectories. Actual meanings remain explicit."
+}

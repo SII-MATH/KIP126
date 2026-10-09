@@ -1,0 +1,421 @@
+{
+  "distinction": "row2708 CompleteKernel is not required to prove every listed conflict; changing the old selected basis does not fill NULL event targets or independently determine higher differential values.",
+  "event2696": {
+    "branch0_boundary": true,
+    "branch1_nonboundary": true,
+    "impossible_common_nonzero_d7": true,
+    "missing_target": true,
+    "next_basis_conflict": "both source branches have E4dimension1, stored list has2; cannot keep old basis"
+  },
+  "event2852": {
+    "missing_target": true,
+    "missing_target_trajectory": "row3147 d3 unknown in full2Dtarget; its nextpage stored representative is a cycle only for zero value",
+    "source_complete_through_E5": [
+      {
+        "page": 2,
+        "projection": [
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "page": 3,
+        "projection": [
+          1,
+          0
+        ]
+      },
+      {
+        "page": 4,
+        "projection": [
+          1
+        ]
+      }
+    ],
+    "target_degree": [
+      16,
+      140
+    ]
+  },
+  "event3152": {
+    "branches": [
+      {
+        "admissible_for_nonzero_event3152": true,
+        "event3152_source_is_d4_boundary": false,
+        "row2925_column": [
+          0,
+          0
+        ],
+        "source_d4_rank": 1
+      },
+      {
+        "admissible_for_nonzero_event3152": false,
+        "event3152_source_is_d4_boundary": true,
+        "row2925_column": [
+          0,
+          1
+        ],
+        "source_d4_rank": 2
+      },
+      {
+        "admissible_for_nonzero_event3152": true,
+        "event3152_source_is_d4_boundary": false,
+        "row2925_column": [
+          1,
+          0
+        ],
+        "source_d4_rank": 1
+      },
+      {
+        "admissible_for_nonzero_event3152": false,
+        "event3152_source_is_d4_boundary": true,
+        "row2925_column": [
+          1,
+          1
+        ],
+        "source_d4_rank": 2
+      }
+    ],
+    "independent_missing": "actual source nonboundary at E5 requires row2925 second coordinate false, independent of the stored3152 event; the d5 value is still supplied data",
+    "source_degree": [
+      15,
+      140
+    ],
+    "target_complete_through_E5": [
+      {
+        "page": 2,
+        "projection": [
+          1
+        ]
+      },
+      {
+        "page": 3,
+        "projection": [
+          1
+        ]
+      },
+      {
+        "page": 4,
+        "projection": [
+          1
+        ]
+      }
+    ]
+  },
+  "inputs_sha256": {
+    "AffineRemainingSearch/audit.json": "f0bd73fcb0538ac871413f6f3108d33cf878a8df4a53486d4c1636e68f29ce82",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "RemainingThreeAudit/Consequences.lean": "82263b0a493cdade186a298cad4f6a58eb7cfc5e58e79eceaf1daa1c6e8e2724",
+    "RemainingThreeAudit/audit.py": "6a14018c3fa60e7b7677a30deb4d7ad6ee76cf765db3f15f4668cf7e7c4e2d14",
+    "Row3151BranchCertificates/Semantics.lean": "2609c76ef21516188f95538142711843a6845dc35b882c6ab17b77c1909871e1",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "no_arbitrary_unknown_choice": true,
+  "no_new_event": true,
+  "raw_rows": {
+    "2696": [
+      2696,
+      9,
+      134,
+      "3",
+      null,
+      9993
+    ],
+    "2852": [
+      2852,
+      11,
+      136,
+      "3",
+      null,
+      9995
+    ],
+    "2925": [
+      2925,
+      11,
+      137,
+      "1,2",
+      null,
+      9000
+    ],
+    "2926": [
+      2926,
+      11,
+      137,
+      "2",
+      "1",
+      9996
+    ],
+    "3147": [
+      3147,
+      16,
+      140,
+      "4",
+      null,
+      9000
+    ],
+    "3148": [
+      3148,
+      16,
+      140,
+      "0",
+      "0,1,2",
+      9997
+    ],
+    "3152": [
+      3152,
+      15,
+      140,
+      "2",
+      "0",
+      9995
+    ]
+  },
+  "row3147_all_completions": [
+    {
+      "E4_dimension": 1,
+      "E4_projection": [
+        1
+      ],
+      "complete_comparison": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 3,
+        "n": 3,
+        "outgoing": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "row3147_value": [
+        0,
+        0
+      ],
+      "stored_row3147_is_cycle": true
+    },
+    {
+      "E4_dimension": 0,
+      "E4_projection": [],
+      "complete_comparison": {
+        "down": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 3,
+        "n": 3,
+        "outgoing": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "projection": [],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "row3147_value": [
+        0,
+        1
+      ],
+      "stored_row3147_is_cycle": false
+    },
+    {
+      "E4_dimension": 1,
+      "E4_projection": [
+        0
+      ],
+      "complete_comparison": {
+        "down": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 3,
+        "n": 3,
+        "outgoing": [
+          false,
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "row3147_value": [
+        1,
+        0
+      ],
+      "stored_row3147_is_cycle": false
+    },
+    {
+      "E4_dimension": 0,
+      "E4_projection": [],
+      "complete_comparison": {
+        "down": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 3,
+        "n": 3,
+        "outgoing": [
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        "projection": [],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "row3147_value": [
+        1,
+        1
+      ],
+      "stored_row3147_is_cycle": false
+    }
+  ]
+}

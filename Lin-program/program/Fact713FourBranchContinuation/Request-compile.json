@@ -1,0 +1,24 @@
+{
+  "source_sha256": "fde42594c284d71f06a4f39b46180a27a0478b4a193bbdf72ab764bfb3a42e6d",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact713FourBranchContinuation/Branches.olean": "ea93ae19f2417cd40d11b4db8c1187b3a9c15acb8f587531f72ad811d7ccd1cc",
+    ".lake/build/lib/lean/ActualTraceRequestsE10/Examples.olean": "a8bee15a3e0961d4ed379e4a96a1926e59e063b44fb2d48045a75ba5e8bfb019"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact713FourBranchContinuation/Request.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713FourBranchContinuation/Request.olean"
+  ],
+  "log": "evidence/Request-20260922T011752822298Z.log",
+  "external_input_sha256": {},
+  "observed_exit_code": 0,
+  "log_sha256": "c0c40d41849c7a71e81ed2ab3555b938f9cc140a70ac6e49e8c729caf6f1d47f",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/Fact713FourBranchContinuation/Branches.olean": "ea93ae19f2417cd40d11b4db8c1187b3a9c15acb8f587531f72ad811d7ccd1cc",
+    ".lake/build/lib/lean/ActualTraceRequestsE10/Examples.olean": "a8bee15a3e0961d4ed379e4a96a1926e59e063b44fb2d48045a75ba5e8bfb019"
+  },
+  "inputs_stable": true,
+  "olean_sha256": "a7446da66358f7fea90e661cf6db1b1e7f2870a86b75f5ac637691439bf5ce30"
+}

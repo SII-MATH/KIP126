@@ -1,0 +1,41 @@
+Fact713Row2693Continuation/Actual.lean:20:14: error: maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+Fact713Row2693Continuation/Actual.lean:45:46: error: Type mismatch: After simplification, term
+  same
+ has type
+  @Eq (S.element 5 (AdamsTarget 5 sourceDegree)).carrier ((S.differential 5 sourceDegree).toFun y) x
+but is expected to have type
+  @Eq (S.element 5 targetDegree).carrier ((S.differential 5 sourceDegree).toFun y) x
+Fact713Row2693Continuation/Actual.lean:49:2: error(lean.unknownIdentifier): Unknown identifier `Fact713H2Continuation.Actual.boundary_differential_zero`
+Fact713Row2693Continuation/Actual.lean:76:4: error: Type mismatch: After simplification, term
+  Fact763Continuation.Actual.whole_outgoing T.source (x (of_decide_eq_true (id (Eq.refl true))))
+ has type
+  @Eq (Vec Row2693D5Search.Data.target4.h)
+    (T.source.calculation.target.next.equivalence ((S.differential 5 Fact763Continuation.Actual.degree).toFun (x ⋯)))
+    (eval (matrixOf 1 2 Fact763Continuation.Data.source5.outgoing)
+      (T.source.calculation.product.input.nextTarget.equivalence (x ⋯)))
+but is expected to have type
+  @Eq (Vec Row2693D5Search.Data.target4.h)
+    (T.source.calculation.target.next.equivalence
+      (pageCast S 5 ⋯ ((S.differential 5 (ActualAdamsIncomingBridge.sourceDegree 5 targetDegree)).toFun (x ⋯))))
+    (eval (matrixOf 1 2 Data.b_S0_15_138_d5.incoming) (T.source.calculation.product.input.nextTarget.equivalence (x ⋯)))
+'Fact713Row2693Continuation.Actual.source_wire_exact' does not depend on any axioms
+'Fact713Row2693Continuation.Actual.inherited_source_exact' depends on axioms: [sorryAx]
+'Fact713Row2693Continuation.Actual.source_whole' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row2693Continuation.Actual.same_input_E6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row2693Continuation.Actual.target_is_boundary' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact713Row2693Continuation.Actual.target_d5_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row2693Continuation.Actual.TargetInput.incoming' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row2693Continuation.Actual.TargetInput.whole' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact713Row2693Continuation.Actual.TargetInput.page6' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact713Row2693Continuation.Actual.target_zero6' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

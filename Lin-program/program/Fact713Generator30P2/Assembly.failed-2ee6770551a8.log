@@ -1,0 +1,49 @@
+Fact713Generator30P2/Assembly.lean:7:12: error: unexpected token ':='; expected command
+Fact713Generator30P2/Assembly.lean:8:12: error: unexpected token ':='; expected command
+Fact713Generator30P2/Assembly.lean:14:23: error(lean.unknownIdentifier): Unknown identifier `R.h0Degree`
+Fact713Generator30P2/Assembly.lean:14:63: error(lean.unknownIdentifier): Unknown identifier `R.d0Degree`
+Fact713Generator30P2/Assembly.lean:15:18: error(lean.unknownIdentifier): Unknown identifier `R.Meaning`
+Fact713Generator30P2/Assembly.lean:16:22: error(lean.unknownIdentifier): Unknown identifier `R.sourceDegree`
+Fact713Generator30P2/Assembly.lean:18:22: error(lean.unknownIdentifier): Unknown identifier `R.sphereDegree`
+Fact713Generator30P2/Assembly.lean:26:32: error(lean.unknownIdentifier): Unknown identifier `F.coefficientDegree`
+Fact713Generator30P2/Assembly.lean:27:53: error(lean.unknownIdentifier): Unknown identifier `F.coefficientDegree`
+Fact713Generator30P2/Assembly.lean:29:34: error(lean.unknownIdentifier): Unknown identifier `R.d0Degree`
+Fact713Generator30P2/Assembly.lean:29:45: error(lean.unknownIdentifier): Unknown identifier `R.sourceDegree`
+Fact713Generator30P2/Assembly.lean:30:19: error(lean.unknownIdentifier): Unknown identifier `F.coefficientDegree`
+Fact713Generator30P2/Assembly.lean:30:39: error(lean.unknownIdentifier): Unknown identifier `F.generatorDegree`
+Fact713Generator30P2/Assembly.lean:31:53: error(lean.unknownIdentifier): Unknown identifier `R.h0Degree`
+Fact713Generator30P2/Assembly.lean:31:64: error(lean.unknownIdentifier): Unknown identifier `R.sourceDegree`
+Fact713Generator30P2/Assembly.lean:32:20: error(lean.unknownIdentifier): Unknown identifier `R.h0Degree`
+Fact713Generator30P2/Assembly.lean:32:31: error(lean.unknownIdentifier): Unknown identifier `R.sourceDegree`
+Fact713Generator30P2/Assembly.lean:33:21: error(lean.unknownIdentifier): Unknown identifier `R.sphereDegree`
+Fact713Generator30P2/Assembly.lean:35:22: error(lean.unknownIdentifier): Unknown identifier `F.product_cycle_of_generator_cycle`
+Fact713Generator30P2/Assembly.lean:33:45: error: unsolved goals
+S T : AdamsSpectralSequence
+A : Fact713Row3247Source.ModuleLeibniz.Action S T
+h0 : (S.element 3 sorry).carrier
+d0 : (S.element 3 sorry).carrier
+rowMeaning : sorry
+x : (T.element 3 sorry).carrier
+namedX : sorry = Fact713Row3247Source.JointDetection.namedSource
+y : (S.element 3 sorry).carrier
+namedY : sorry = Fact713Row3247Source.JointDetection.namedSphere
+p : (S.element 3 Detection.pDegree).carrier
+pMeaning : Detection.Meaning S T A p
+pages : CertifiedAdamsPages T
+boundary : Detection.BoundaryRepresentative T pages
+namedBoundary : pMeaning.product ↑boundary.representative = Detection.sourceMap Detection.namedGenerator
+g : (T.element 3 Detection.sourceDegree).carrier
+namedG : pMeaning.source g = Detection.namedGenerator
+coefficient : (S.element 3 sorry).carrier
+coefficientTarget :
+  (S.element 3 (AdamsTarget 3 sorry)).carrier ≃
+    Fact713Row3247Source.JointDetection.Q Fact713Row3247ProductSearch.Comparison.S0_15_110
+factorization : A.multiply 3 sorry sorry d0 x = A.multiply 3 sorry sorry coefficient sorry
+h0ProductCycle : (T.differential 3 (sorry.add sorry)).toFun (A.multiply 3 sorry sorry h0 x) = 0
+generatorCycle : (T.differential 3 Detection.sourceDegree).toFun g = 0
+⊢ (S.differential 3 sorry).toFun y = 0
+'Fact713Generator30P2.Assembly.R.F.row3247_d3_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+Fact713Generator30P2/Assembly.lean:42:0: error: Invalid name after `end`: Expected `R.F`, but found `Fact713Generator30P2.Assembly`
+
+Hint: If you meant to end the outer scope(s) `Fact713Generator30P2.Assembly`, you must end all the intervening scopes `Fact713Generator30P2.Assembly.R.F`:
+  end Fact713Generator30P2.Assembly.̲R̲.̲F̲

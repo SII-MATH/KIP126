@@ -1,0 +1,99 @@
+{
+  "status": "passed",
+  "counts": {
+    "finite_quotient_pairs": 2381,
+    "derived_coordinate_representatives": 544,
+    "actual_quotient_pairs": 8256,
+    "derived_addition_pairs": 4416,
+    "same_raw_steps": 48,
+    "wrong_inputs_rejected": 496,
+    "trace_models": 16,
+    "detector_whole_E3_coordinates": 4,
+    "accepted_whole_zero_d3_assignments": 1,
+    "unknown_column_countermodels_rejected": 2
+  },
+  "raw_staircase": [
+    2852,
+    11,
+    136,
+    "3",
+    null,
+    9995
+  ],
+  "raw_basis": [
+    2853,
+    "0,2,391,1",
+    11,
+    136,
+    ""
+  ],
+  "blocker_raw": [
+    3076,
+    15,
+    139,
+    "1,3",
+    null,
+    9000
+  ],
+  "compiled": {
+    "Basic": {
+      "source_sha256": "8e3d7cc65985c28e2a06a894c101d31203d6c83b474f3d08e54b27e7fba82644",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "90b5b3693bc0ccdd2bdf71639ef84094d950907b4f8a9ac98067ab6353e42919",
+      "olean_sha256": "45fde970b0e0272ffdc34db1528ce20c778ca7195010c4d158fe4037bc279061"
+    },
+    "Trace": {
+      "source_sha256": "5ea4af93735d89d8b47059d2ebc4f9d9d884f92d295cc48b827518465f967775",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "1a0855ebd5fc25e4cd59d6fa72f79b1f1f1ee93b734e4082abd04292465e9214",
+      "olean_sha256": "14c15fe810b1046850668bffbb40f4384d37908accdd45b316ae6f4c355c4c1d"
+    },
+    "Tactic": {
+      "source_sha256": "a14244bc15cdf4b2c1f06bc4a82d73178266e75321a1a079ddfbc06c307ddc71",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "eb33c88cdfed037e8307a9177780c6dd38455d407a45f648dabf13918fb46700",
+      "olean_sha256": "9326fcc2a39ba3eb2efee29d7b2b179cecf3584061697f6429de26810f92984c"
+    },
+    "Detector": {
+      "source_sha256": "465cbb5684a6bcbc2c2889773953a67ff7d5c7260ce59d435d4330de83e2858b",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "dbabe0eee6c47a3ae7ae76b63dfdb796bd7d3c8907d35e5c3768d02be0d7ebcf",
+      "olean_sha256": "80a39e225dababf54d395f9f8d8c57f948f7ae324d36d9790147a3191d65f1b0"
+    },
+    "Assembly": {
+      "source_sha256": "110a052af61c9eec3f228ea0e7f8d2a1a09d7ad6bc225fa19232b5c95e6c0eba",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "769a00a571e3ce68cc214818b9dcc8e632940571a722ce878a0333dc04b03643",
+      "olean_sha256": "e1a22a36b0a5579e14963798bed247d5dbc18ef67cdc7eb7e21007e8a876da4f"
+    }
+  },
+  "axiom_reports": 31,
+  "initial_coordinate_dimension": 5,
+  "constructed_dimensions": [
+    4,
+    2,
+    1
+  ],
+  "complete_prior_trajectory_comparisons": 13,
+  "complete_detector_d2_comparisons": 4,
+  "remaining_actual_premises": [
+    "initial E2 coordinates and full actual differential meanings",
+    "actual quotient zero/add laws and whole map transitions",
+    "actual Ceta-to-S0 d3 naturality",
+    "other known S0 d3 basis column zero",
+    "complete incoming d3 at the detector target",
+    "whole d4 equation in the derived target coordinates"
+  ],
+  "scope": "Conditional actual E5 trace from the fixed named input; no sphere realization, d5 survival, or extension theorem.",
+  "input_sha256": {
+    "Fact715ConstructedActual/check_models.py": "be3167a66818d9037e24a0d86f5e7f456d10fbdf1cc44f4e096ae2eb20c77757",
+    "Fact715TrajectoryCertificates/conditional-higher-source.json": "5f2e1a90616d132168d2b270a683752124e6fc3242e189f0bc2cb429c2bbd726",
+    "Fact715TrajectoryCertificates/comparison-source.json": "eac0e8cfb4938c2853798b4298cc11e4e16baf2f5217640e80c609ba88e28814",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

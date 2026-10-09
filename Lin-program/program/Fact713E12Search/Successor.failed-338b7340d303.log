@@ -1,0 +1,14 @@
+Fact713E12Search/Successor.lean:16:2: error: Type mismatch: After simplification, term
+  h0
+ has type
+  dot (successor 0) x = dot (successor 0) y
+but is expected to have type
+  x 0 = y 0
+Fact713E12Search/Successor.lean:42:2: error: Type mismatch: After simplification, term
+  hh
+ has type
+  (dot (B 0) fun x => true) = zero 0
+but is expected to have type
+  B 0 0 = false
+'Fact713E12Search.Successor.incoming_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713E12Search.Successor.finite_incoming_zero' depends on axioms: [propext, sorryAx, Quot.sound]

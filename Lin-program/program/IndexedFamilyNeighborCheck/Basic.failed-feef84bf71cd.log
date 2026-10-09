@@ -1,0 +1,16 @@
+IndexedFamilyNeighborCheck/Basic.lean:63:12: error(lean.unknownIdentifier): Unknown constant `Bool.and_eq_true.mp`
+IndexedFamilyNeighborCheck/Basic.lean:62:62: error: unsolved goals
+family : Family
+unique : UniqueKeys family
+a : Entry
+checked : checkOne family a = true
+b : Entry
+member : b ∈ family
+⊢ PairCompatible a b
+IndexedFamilyNeighborCheck/Basic.lean:114:31: error(lean.unknownIdentifier): Unknown constant `Bool.and_eq_true.mp`
+IndexedFamilyNeighborCheck/Basic.lean:115:42: error(lean.unknownIdentifier): Unknown constant `Bool.and_eq_true.mp`
+'IndexedFamilyNeighborCheck.lookup_member' depends on axioms: [propext, Quot.sound]
+'IndexedFamilyNeighborCheck.checkOne_sound' depends on axioms: [sorryAx]
+'IndexedFamilyNeighborCheck.coherent_of_entries' depends on axioms: [propext, sorryAx]
+'IndexedFamilyNeighborCheck.checker_sound' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedFamilyNeighborCheck.window_sound' depends on axioms: [propext, sorryAx, Quot.sound]

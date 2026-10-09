@@ -1,0 +1,603 @@
+{
+  "complete_comparisons": 355,
+  "unchanged_previous_comparisons": 351,
+  "finite_nonzero_events": 94,
+  "unresolved": 7,
+  "new_events": [],
+  "new_dc2h6_uses": [
+    {
+      "block": "S0:12,136:d3",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        9,
+        134
+      ],
+      "page": 3,
+      "row": [
+        2695,
+        "2",
+        null,
+        9000
+      ],
+      "kind": "conditional_dc2h6_d3",
+      "target_predecessor": "S0:12,136:d2"
+    },
+    {
+      "block": "S0:13,139:d4",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        9,
+        136
+      ],
+      "page": 4,
+      "row": [
+        2861,
+        "1",
+        null,
+        9000
+      ],
+      "kind": "conditional_dc2h6_d4",
+      "target_predecessor": "S0:13,139:d3"
+    }
+  ],
+  "all_accepted_prior_stages": 96,
+  "reconstructed_degrees": 25,
+  "raw_known_columns": 9,
+  "raw_null_columns_preserved": 15,
+  "conditional_column_roles": [
+    {
+      "block": "S0:52,177:d2",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        52,
+        177
+      ],
+      "page": 2,
+      "row": [
+        6651,
+        "8,2,469,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d52_177",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            6651,
+            "0",
+            "0",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:53,178:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        51,
+        177
+      ],
+      "page": 2,
+      "row": [
+        6652,
+        "8,2,470,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d51_177",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            6652,
+            "1",
+            "1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6653,
+            "0",
+            "0,1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:53,178:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        51,
+        177
+      ],
+      "page": 2,
+      "row": [
+        6653,
+        "0,13,686,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 1,
+      "basis_certificate": "d51_177",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            6652,
+            "1",
+            "1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6653,
+            "0",
+            "0,1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:56,180:d2",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        56,
+        180
+      ],
+      "page": 2,
+      "row": [
+        7006,
+        "8,1,661,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d56_180",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            7006,
+            "0",
+            "0",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:59,182:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        57,
+        181
+      ],
+      "page": 2,
+      "row": [
+        7161,
+        "0,1,8,1,661,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d57_181",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            7161,
+            "0",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:55,180:d2",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        55,
+        180
+      ],
+      "page": 2,
+      "row": [
+        7007,
+        "16,1,554,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d55_180",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            7007,
+            "0",
+            "0",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        }
+      ]
+    },
+    {
+      "block": "S0:55,180:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        53,
+        179
+      ],
+      "page": 2,
+      "row": [
+        6893,
+        "0,15,686,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d53_179",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            6893,
+            "0",
+            "0",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:56,181:d2",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        56,
+        181
+      ],
+      "page": 2,
+      "row": [
+        7162,
+        "0,1,16,1,554,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d56_181",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            7162,
+            "0",
+            "0",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        }
+      ]
+    },
+    {
+      "block": "S0:56,181:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        54,
+        180
+      ],
+      "page": 2,
+      "row": [
+        7008,
+        "17,1,554,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d54_180",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            7008,
+            "0",
+            "0",
+            9997
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:51,178:d2",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        51,
+        178
+      ],
+      "page": 2,
+      "row": [
+        6788,
+        "0,50,324,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d51_178",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            6788,
+            "0",
+            "0",
+            9995
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:51,178:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        49,
+        177
+      ],
+      "page": 2,
+      "row": [
+        6656,
+        "8,1,634,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d49_177",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            6656,
+            "1",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6657,
+            "0",
+            "0",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:51,178:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        49,
+        177
+      ],
+      "page": 2,
+      "row": [
+        6657,
+        "0,3,805,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 1,
+      "basis_certificate": "d49_177",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            6656,
+            "1",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6657,
+            "0",
+            "0",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:54,180:d2",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        54,
+        180
+      ],
+      "page": 2,
+      "row": [
+        7008,
+        "17,1,554,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d54_180",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            7008,
+            "0",
+            "0",
+            9997
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:54,180:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        52,
+        179
+      ],
+      "page": 2,
+      "row": [
+        6894,
+        "0,51,324,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d52_179",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            6894,
+            "0",
+            "0",
+            9995
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:57,182:d2",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        57,
+        182
+      ],
+      "page": 2,
+      "row": [
+        7247,
+        "0,2,16,1,554,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d57_182",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            7247,
+            "0",
+            "0",
+            3
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ]
+    },
+    {
+      "block": "S0:57,182:d2",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        55,
+        181
+      ],
+      "page": 2,
+      "row": [
+        7163,
+        "0,1,17,1,554,1",
+        null
+      ],
+      "kind": "conditional_d2_staircase",
+      "column": 0,
+      "basis_certificate": "d55_181",
+      "staircase_basis_evidence": [
+        {
+          "row": [
+            7163,
+            "0",
+            "1",
+            5
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ]
+    }
+  ],
+  "whole_matrix_meaning_links": 14,
+  "horizontal_pairs": 195,
+  "consecutive_pairs": 132,
+  "generated_sha256": {
+    "source.json": "ad7565992978dadab89b7ec4e0fc09b3e7e2d5d1a6ff6a1c348156ee37b45b8b",
+    "event-results.json": "b81d0be45c4916ad1ce1b21d4b4d2e5a1647edb06cc09b94da36608394a6ed57",
+    "Data.lean": "eac3c794a4091efe3a7c8aa4d2329761d0a10e118b4663a1b137102170f86a19",
+    "Events.lean": "10fd8c902fb1646b69c41447597d22d0510b5398dec53724d51b075a55864c0c"
+  },
+  "dependency_sha256": {
+    "AggregateDC2h6Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "AggregateDC2h6Conditional/generate.py": "010eff41b1eeb146feb89c1fc1b93a189be22664429bab823af2b19d3a63ee66",
+    "AggregateDC2h6Conditional/events.py": "36570c516ae66d170b9d4b0d47f5e09691f015869bdbe78e942e942fb892ad8f",
+    "AggregateDC2h6Conditional/review.py": "15ed3ce23fe310861ed547b70447b7241ce3f062071280e9ea076e70395f52cd",
+    "HighFiltrationD2Audit/report.json": "e27b7d014351c99cbbb4df8d49f2c68fef316fb7493008dd648ccbb74d5dd81b",
+    "HighFiltrationD2Certificates/Data.lean": "49f4b8d9fb0c18f885df8d8121ba8d17a1d3c696532f4e7dab1f7d478534613e",
+    "AggregateHighD2Conditional/source.json": "1d8efe310d883d1e6c0e68fca84684513ba39d754d10fb3284a78a9a9321959c",
+    "Row2861D4Detector/ImportedMeaning.lean": "becf78c0a8d2d11c387c9d657b511b2cb69390e9c261187c2531d812214d5793",
+    "Row2695Detector/Matches.lean": "f7f6378227527435418764950ccc82358c2573fe37aca9e49ec8471de9d0ee23",
+    "HighFiltrationD2Audit/wire/d43_171.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d45_172.json": "d98ea8436ee02413823f53adbc0d64ae7c6bc578efcbacd503f36f7e8c0836b4",
+    "HighFiltrationD2Audit/wire/d46_173.json": "d98ea8436ee02413823f53adbc0d64ae7c6bc578efcbacd503f36f7e8c0836b4",
+    "HighFiltrationD2Audit/wire/d47_174.json": "df1ff37d21b486f150ecdcdaec521774402f6bf05344f9a7dc1909edf1c74d22",
+    "HighFiltrationD2Audit/wire/d48_174.json": "6f4e0b3594853216473fe5a10b44ec5c012a79ba5d054cf0439c87449e8f4a7d",
+    "HighFiltrationD2Audit/wire/d49_175.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d49_177.json": "df1ff37d21b486f150ecdcdaec521774402f6bf05344f9a7dc1909edf1c74d22",
+    "HighFiltrationD2Audit/wire/d50_176.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d51_176.json": "284ae0249ccd9c937bf116bd03eb7d5cb9af6ae233a15c2d994a2fe41ba14cd4",
+    "HighFiltrationD2Audit/wire/d51_177.json": "d628438bcaaff0e94aff73fdbc2f7552f7b8a17d4c10dae01082861bbfeee579",
+    "HighFiltrationD2Audit/wire/d51_178.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d52_177.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d52_179.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d53_178.json": "284ae0249ccd9c937bf116bd03eb7d5cb9af6ae233a15c2d994a2fe41ba14cd4",
+    "HighFiltrationD2Audit/wire/d53_179.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d54_179.json": "77b67f838b3adb341d37680427c814192262929add76d9f348f7e2065b0962dd",
+    "HighFiltrationD2Audit/wire/d54_180.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d55_179.json": "284ae0249ccd9c937bf116bd03eb7d5cb9af6ae233a15c2d994a2fe41ba14cd4",
+    "HighFiltrationD2Audit/wire/d55_180.json": "14cb70cb3da5aedb74fb9ba8fb16347596f733c20032b1c3eb2ccf7ed1e8a9ad",
+    "HighFiltrationD2Audit/wire/d55_181.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d56_180.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d56_181.json": "14cb70cb3da5aedb74fb9ba8fb16347596f733c20032b1c3eb2ccf7ed1e8a9ad",
+    "HighFiltrationD2Audit/wire/d57_181.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d57_182.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d59_182.json": "284ae0249ccd9c937bf116bd03eb7d5cb9af6ae233a15c2d994a2fe41ba14cd4"
+  },
+  "interpretation_obligations": [
+    "full staircase basis values",
+    "incoming-boundary and later-prefix d2 meanings",
+    "linearity and zero preservation",
+    "earlier conditional finite-data meanings",
+    "actual Adams realization"
+  ]
+}

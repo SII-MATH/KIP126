@@ -1,0 +1,114 @@
+{
+  "status": "passed",
+  "counts": {
+    "comparisons": 36,
+    "cycle_vectors": 258,
+    "quotient_pairs": 7218,
+    "source_rows": 325,
+    "raw_queries": 108,
+    "named_steps": 4,
+    "source_steps": 3,
+    "modules": 11,
+    "standard_axiom_reports": 59,
+    "empty_axiom_reports": 1
+  },
+  "trajectory": [
+    {
+      "path": "named",
+      "page": 2,
+      "vector": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "next": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "named",
+      "page": 3,
+      "vector": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "next": [
+        0,
+        1
+      ]
+    },
+    {
+      "path": "named",
+      "page": 4,
+      "vector": [
+        0,
+        1
+      ],
+      "next": [
+        0,
+        1
+      ]
+    },
+    {
+      "path": "named",
+      "page": 5,
+      "vector": [
+        0,
+        1
+      ],
+      "next": [
+        0,
+        1
+      ]
+    },
+    {
+      "path": "source",
+      "page": 2,
+      "vector": [
+        1,
+        0
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "path": "source",
+      "page": 3,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "path": "source",
+      "page": 4,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    }
+  ],
+  "unknowns": {
+    "row2858": "NULL9000 retained; whole d3 derived by quotient Leibniz",
+    "row3080": "NULL9000 retained; whole d3 derived by complete zero target",
+    "row2438": "NULL9986 retained; finite d3,d4,d5 meanings are explicit premises"
+  },
+  "trust": "Only finite algebra and conditionally interpreted actual pages are proved. No original topological realization or unprovided prefix proof is inferred.",
+  "inputs": {
+    "source_sha256": "bdebc34aee442b810770266e2981d2e13f169c87ec758b6a24b9a74a7f5c33c6",
+    "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

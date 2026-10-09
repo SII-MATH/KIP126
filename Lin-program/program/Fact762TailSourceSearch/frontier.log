@@ -1,0 +1,201 @@
+{
+  "status": "concrete_sources_located_no_infinite_tail_proved",
+  "exact_target": {
+    "degree": [
+      14,
+      139
+    ],
+    "staircase": [
+      3080,
+      14,
+      139,
+      "1",
+      null,
+      9000
+    ],
+    "basis": [
+      3080,
+      "1,1,7,1,275,1"
+    ]
+  },
+  "raw_selected_nonempty_pages_after_d2": [
+    5,
+    9
+  ],
+  "metadata": {
+    "version": 3,
+    "change notes": "Add fil,from,to in version table of maps.",
+    "t_max": 261,
+    "d2_t_max": 177,
+    "timestamp": 1710516671
+  },
+  "map_search_counts": {
+    "exact_E3_lift": 13,
+    "no_E3_lift": 15,
+    "unknown": 15
+  },
+  "configured_direct_maps_scanned": 43,
+  "d5_source": {
+    "map": "Csigmasq__S0",
+    "filtration": 0,
+    "suspension": 15,
+    "source_degree": [
+      14,
+      154
+    ],
+    "staircase": [
+      [
+        7440,
+        14,
+        154,
+        "2",
+        "1",
+        2
+      ],
+      [
+        7441,
+        14,
+        154,
+        "4",
+        "5",
+        2
+      ],
+      [
+        7442,
+        14,
+        154,
+        "3",
+        "11",
+        5
+      ],
+      [
+        7443,
+        14,
+        154,
+        "1",
+        null,
+        9952
+      ],
+      [
+        7444,
+        14,
+        154,
+        "0",
+        "2",
+        9998
+      ],
+      [
+        7445,
+        14,
+        154,
+        "5",
+        "7",
+        9998
+      ]
+    ],
+    "basis": [
+      [
+        7440,
+        "449,1,1"
+      ],
+      [
+        7441,
+        "1,1,7,1,275,1,1"
+      ],
+      [
+        7442,
+        "0,2,425,1,1"
+      ],
+      [
+        7443,
+        "8,1,419,1,0"
+      ],
+      [
+        7444,
+        "0,1,8,1,414,1,0"
+      ],
+      [
+        7445,
+        "0,2,575,1,0"
+      ]
+    ],
+    "named_E2_basis_id": 7441,
+    "named_staircase_id": 7443,
+    "map_generator_image": [
+      [
+        1,
+        ";"
+      ]
+    ],
+    "proof_clue": {
+      "file": "proofs-part1.csv",
+      "line": 1425549,
+      "id": "721503",
+      "depth": "0",
+      "reason": "N",
+      "name": "S0",
+      "stem": "125",
+      "s": "14",
+      "t": "139",
+      "r": "5",
+      "x": "1",
+      "dx": "",
+      "info": "Csigmasq__S0"
+    },
+    "future_event_page": 48,
+    "gap": "No complete basis d2 column is stored for Csigmasq. Full staircase-coordinate interpretation and actual d5 naturality remain unproved."
+  },
+  "d9_source": {
+    "coefficient": "d0",
+    "coefficient_degree": [
+      4,
+      18
+    ],
+    "target_degree": [
+      23,
+      147
+    ],
+    "product_source_degree": [
+      18,
+      157
+    ],
+    "product_target_degree": [
+      27,
+      165
+    ],
+    "proof_clue": {
+      "file": "proofs-part3.csv",
+      "line": 890571,
+      "id": "2397125",
+      "depth": "1",
+      "reason": "T",
+      "name": "S0",
+      "stem": "125",
+      "s": "14",
+      "t": "139",
+      "r": "9",
+      "x": "1",
+      "dx": "0",
+      "info": "Get `S0 (125,14) d_9[1]=[0]`. Apply the Leibniz rule with `S0 (14,4) d_9[0]=[]` and get `S0 (139,18) d_9[]=[0]`.\nHowever, `S0 (138,27) [0]` is not in B_8."
+    },
+    "gap": "Need actual d0 cycle, product-source zero, full E9 target reflection and quotient/product meanings."
+  },
+  "strict_bound_audit": {
+    "nonnegative_filtration_bounds_only_incoming": true,
+    "raw_basis_coverage_ends_at_page": 123,
+    "d2_coverage_ends_at_page": 39,
+    "later_database_rows_are_not_vanishing_theorem": true,
+    "existing_all_page_vanishing_line_is_caller_premise": true,
+    "filtered_two_term_bounds_apply_to_extension_sequence_not_sphere_Adams": true,
+    "no_all_page_source_cycle_or_Adams_vanishing_bound_found": true
+  },
+  "recommendation": "Develop concrete d5 Csigmasq and d9 d0 finite detectors, but retain a separate genuine all-page Adams vanishing/structural proof obligation.",
+  "input_sha256": {
+    "Fact762TailSourceSearch/frontier.py": "315172a5e6e28c61b2240f7a72d5d8ffbf6301dd900abac35ce5883d85d24eab",
+    "Fact762TailSourceSearch/proof-events.json": "72456fb837c7e30a94fca2aa3e846ee9318b4d5dfd76b0770f7e8598cc80b960",
+    "Fact762TailSourceSearch/map-sources.json": "0ba5d23b2740d38f9a4f3776bb71be75158afabf165921d93d7b6ab4a411afd6",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "upstream/kervaire-49/Csigmasq_AdamsSS_t200.db": "4fa9cad9ffce2df67e196ca7f38b4c9e6030bac41b2e85e85e89ca8d95eaa98a",
+    "upstream/kervaire-49/map_AdamsSS_Csigmasq_to_S0_t200.db": "cbac44a8e31c64039918c84a169c3b5340636bf0332cf6c13c66feb96c2267c8"
+  }
+}

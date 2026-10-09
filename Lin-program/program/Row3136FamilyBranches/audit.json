@@ -1,0 +1,101 @@
+{
+  "status": "all_four_cases_complete_matrix_compatible",
+  "cases": [
+    {
+      "case": "zero_a0",
+      "entries": 1338,
+      "prior_entries": 1333,
+      "added": 5,
+      "graph_available": 1331,
+      "graph_missing": 89,
+      "adjacent": 1021,
+      "consecutive": 836,
+      "predecessor_dimensions": 2508,
+      "cycle_vectors": 2165,
+      "cycle_pairs": 9663,
+      "source_E4_dimension": 2,
+      "target_E4_dimension": 1,
+      "rebase": [],
+      "compatibility": "all_complete_old_and_new_keys_compatible"
+    },
+    {
+      "case": "zero_a1",
+      "entries": 1338,
+      "prior_entries": 1333,
+      "added": 5,
+      "graph_available": 1331,
+      "graph_missing": 89,
+      "adjacent": 1021,
+      "consecutive": 836,
+      "predecessor_dimensions": 2508,
+      "cycle_vectors": 2163,
+      "cycle_pairs": 9651,
+      "source_E4_dimension": 1,
+      "target_E4_dimension": 0,
+      "rebase": [],
+      "compatibility": "all_complete_old_and_new_keys_compatible"
+    },
+    {
+      "case": "residual_a0",
+      "entries": 1346,
+      "prior_entries": 1341,
+      "added": 5,
+      "graph_available": 1339,
+      "graph_missing": 81,
+      "adjacent": 1028,
+      "consecutive": 844,
+      "predecessor_dimensions": 2532,
+      "cycle_vectors": 2174,
+      "cycle_pairs": 9674,
+      "source_E4_dimension": 1,
+      "target_E4_dimension": 1,
+      "rebase": [],
+      "compatibility": "all_complete_old_and_new_keys_compatible"
+    },
+    {
+      "case": "residual_a1",
+      "entries": 1349,
+      "prior_entries": 1341,
+      "added": 8,
+      "graph_available": 1340,
+      "graph_missing": 80,
+      "adjacent": 1031,
+      "consecutive": 846,
+      "predecessor_dimensions": 2538,
+      "cycle_vectors": 2177,
+      "cycle_pairs": 9671,
+      "source_E4_dimension": 0,
+      "target_E4_dimension": 0,
+      "rebase": [
+        {
+          "object": "S0",
+          "degree": [
+            16,
+            137
+          ],
+          "page": 5,
+          "restored": 2907,
+          "kind": "rebase_after_forced_zero_d4_target",
+          "old": [],
+          "new": [
+            [
+              2907,
+              "1",
+              null,
+              9996
+            ]
+          ],
+          "warning": "Raw scheduled d4 event is not asserted nonzero; its exact value is NULL. This branch interprets it as zero because full target is zero."
+        }
+      ],
+      "compatibility": "all_complete_old_and_new_keys_compatible"
+    }
+  ],
+  "actual_branches_selected": false,
+  "raw_NULL_unchanged": true,
+  "limitation": "Rebased residual/nonzero case retains row2907 after forced-zero d4; no assertion that a raw scheduled NULL event is mathematically nonzero.",
+  "sha256": {
+    "Row3136FamilyBranches/audit.py": "aa561df14aa293d4425b6f5de18c2492ba66bd12d59ac77062bdeff8bd667bd7",
+    "Row3136FamilyBranches/generate.py": "cb564abae718e8ac6307f2a8e75134018a7fc4c35bd5af09e343b7dc44ec750c"
+  }
+}

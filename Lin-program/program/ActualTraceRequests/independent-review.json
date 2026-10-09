@@ -1,0 +1,125 @@
+{
+  "status": "passed_no_findings",
+  "counts": {
+    "frozen_files": 14,
+    "dependencies_sha256": 11,
+    "axiom_reports": 11,
+    "external_input_sha256": 4,
+    "same_requested_raw_trace_steps": 176,
+    "finite_semantic_requests": 42672,
+    "padding_truncation_aliases_rejected": 6192,
+    "accepted_same_trace_requests": 48,
+    "fact715_models": 16,
+    "fact719_models": 32
+  },
+  "compiled": {
+    "Basic": {
+      "source_sha256": "274ed52ac4e5dbfa158a5d0e6d0851c5398802d989c016aa4a1dd74ea2761616",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/LinProgramCertificates/Tactic.olean": "79648a3b1f3cd9d4eb8553c8d3921149a803772538ad06ac4b2c3c038d47cb84"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "d7379ee5f337830297732a3f5ee46b60f5324d9e8c79e55b83f516534592d77b",
+      "olean_sha256": "86968e39f0f8214f2427cd05db4dcccc7e977d02899c8eb019ce1db78cd8efcc"
+    },
+    "Import": {
+      "source_sha256": "4ccf4deb29ef557f5b03364a75b5bc7f311983cae67d658d9f2cbe61e582e931",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ActualTraceRequests/Basic.olean": "86968e39f0f8214f2427cd05db4dcccc7e977d02899c8eb019ce1db78cd8efcc"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "202ce0ccfdae10471982c77f3b9fcddd08755c4cf2d91472a4551678235cea42"
+    },
+    "Fact715": {
+      "source_sha256": "6b90147a8ca2e606fcfe8ff0181e60a97e62a7bf7134bb7cf1a4ffad6e3973a4",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ActualTraceRequests/Import.olean": "202ce0ccfdae10471982c77f3b9fcddd08755c4cf2d91472a4551678235cea42",
+        ".lake/build/lib/lean/Fact715ConstructedActual/Trace.olean": "b9c35d209021e89d80f918b00308e6b8d36ffab2ef26ed87a1dbc283b3b8a4ab"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "712b6ffff5dee02df40c9b4519b90316a43a0f686a1005d4505f1e7852124057",
+      "olean_sha256": "8e2ee1c262571d74f5f8bedb60e2103f055471bc9dee9d69fe4426f39e01172a"
+    },
+    "Fact719": {
+      "source_sha256": "b42224cd7c2cf986025e097da85efce4e6a80acbc742126c43dfc5d3c44df686",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ActualTraceRequests/Import.olean": "202ce0ccfdae10471982c77f3b9fcddd08755c4cf2d91472a4551678235cea42",
+        ".lake/build/lib/lean/Fact719ConstructedActual/Trace.olean": "b8870f6ab1ead78f3d2fb0e41f80b99be713f7f2626037155e88e4e79125f11d"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "7ada4fbe56d3cbd14fca092fa1b7ff0fe2a60a9a8c59d65d28a1d1ffe695e2e6",
+      "olean_sha256": "9ad7b6b0b0b339b02fc817697140a6fb003a2915bb6ea5afde92449f0954993a"
+    },
+    "Tactic": {
+      "source_sha256": "e33c6594cf766c5391438843fd62fdda5193cf957c2af4c5a67aa01921e78ac7",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ActualTraceRequests/Fact715.olean": "8e2ee1c262571d74f5f8bedb60e2103f055471bc9dee9d69fe4426f39e01172a",
+        ".lake/build/lib/lean/ActualTraceRequests/Fact719.olean": "9ad7b6b0b0b339b02fc817697140a6fb003a2915bb6ea5afde92449f0954993a"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "5076035e4af6b74cb7cf51b3cabc34ef71950e0eca541f34d1d71f11c7f740ae"
+    },
+    "Examples": {
+      "source_sha256": "1dece624894c42b15c6c397ab3d48ab0595b785c6c119a6bbde330b083f0c6da",
+      "external_input_sha256": {
+        "ActualTraceRequests/fact715.json": "41e4c49fbfb9b6b9c86ff111209b4a3ad7075b660ca0feaafdab87e52b02839f",
+        "ActualTraceRequests/fact715.jsonl": "ac4461aae8248b734c63c59b804aba3691918002c830d9660d7db926aa40dba8",
+        "ActualTraceRequests/fact719.json": "689582fd55f3a9c5db17bba31132c7cf4e551fbe34bd648e6adc608a2ab0b524",
+        "ActualTraceRequests/fact719.jsonl": "028c4de923a74ee265c6a813097dcf61863f24aa196047ebc2829021a26877e0"
+      },
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ActualTraceRequests/Tactic.olean": "5076035e4af6b74cb7cf51b3cabc34ef71950e0eca541f34d1d71f11c7f740ae"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "1986af24e54ead56809208f1c6864296a716bbc981feece3b7d3edf89d706b86",
+      "olean_sha256": "09bc0f5f048ffe0a27c6a8af823f889c91d8b65ba77af7cf49f3d518ed2fb966"
+    },
+    "ParserTests": {
+      "source_sha256": "17ee411c19f7c46e4fd1779cabe5ca39d2e0b1c7a79a0e43a4cac777386d481c",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ActualTraceRequests/Fact715.olean": "8e2ee1c262571d74f5f8bedb60e2103f055471bc9dee9d69fe4426f39e01172a",
+        ".lake/build/lib/lean/ActualTraceRequests/Fact719.olean": "9ad7b6b0b0b339b02fc817697140a6fb003a2915bb6ea5afde92449f0954993a"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "4e19bcf1619e7289ab9750d56b06debf350b9175658d9c854476bf6dee053d14"
+    }
+  },
+  "original_runtime": {
+    "session_id": 68127,
+    "observed_exit_code": 0,
+    "log_sha256": "9c037589173a26037860f15e1f3fdfd07a2c069c0c1431e1b031d2803c96406a",
+    "scope": "Lean --run ParserTests: canonical and malformed JSON/JSONL, exact line 2 diagnostics"
+  },
+  "independent_runtime": {
+    "observed_exit_code": 0,
+    "source_sha256": "cb752541bcb988e231ec0d31b6c0c054f30cd38c460e03b3a7d126e2cd8e3253",
+    "log_sha256": "43eb1fba90772e1a4c914b175b10c6eae5898ad0ffb0827f5e89cd73716d0b1c"
+  },
+  "generator_byte_identical_in_memory": true,
+  "frozen_sources_unchanged": true,
+  "scope": "Exact imported request binding to one conditional actual E5/E6 trace; no permanence or sphere realization.",
+  "notes": [
+    "The importer rejects an empty batch; checkBatch [] is true for the vacuous universal proposition.",
+    "Batch soundness covers exactly its supplied list and does not claim paper-wide completeness.",
+    "Tactic diagnostics refer callers to diagnose/diagnoseBatch; they do not automatically print an invalid field.",
+    "The semantic prefix remains typed Lean input containing full differential and quotient premises.",
+    "Standard Lean axioms are propext, Classical.choice and Quot.sound; no custom axioms or native reduction proof axiom."
+  ],
+  "input_sha256": {
+    "Fact715TrajectoryCertificates/conditional-higher-source.json": "5f2e1a90616d132168d2b270a683752124e6fc3242e189f0bc2cb429c2bbd726",
+    "ActualTraceRequests/fact715.json": "41e4c49fbfb9b6b9c86ff111209b4a3ad7075b660ca0feaafdab87e52b02839f",
+    "Fact719TrajectoryCertificates/source.json": "d21bf954adbf67f212548c8cb8e0eba4ea9a45036e99312a4f2813f785c9a68a",
+    "ActualTraceRequests/fact719.json": "689582fd55f3a9c5db17bba31132c7cf4e551fbe34bd648e6adc608a2ab0b524",
+    "ActualTraceRequests/frozen-source.json": "2ba5559b48b8c9bcc0d7435df7984bb7c0e5bc0d4fb87274280818b0e795d6f0",
+    "ActualTraceRequests/independent_review.py": "315ca799be71418e49f7f5a8d3ed70eae8dc474b19e2129a14f1dece80e734ee"
+  }
+}

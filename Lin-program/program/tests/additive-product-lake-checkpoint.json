@@ -1,0 +1,87 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 41556,
+  "observed_exit_code": 0,
+  "jobs": 2781,
+  "build_log": "tests/step4-additive-product-build.log",
+  "build_log_sha256": "166f7c6ae2fca64205c4a8067b54ad1d00ff94cd2e6952152fa4b70712c49562",
+  "individual_module_logs": {
+    "tests/step4-additive-product-build.log": "166f7c6ae2fca64205c4a8067b54ad1d00ff94cd2e6952152fa4b70712c49562"
+  },
+  "lakefile_sha256": "a11f577e0766ce481d90a5caeaf0d157601cc6e1469e00b437ddd047c387d8a1",
+  "modules": [
+    {
+      "module": "ActualAdamsAdditiveFiltration.Basic",
+      "source_sha256": "1608a3c3d1acbd9e0392773ee05b63e45d6f2ce5e1f3c62f419e28979ca5a8cd",
+      "olean_sha256": "c2bf1f3f324a8a79fce7c85e7e09aed98ef0a6b5ab94924dae427866971f5ddb",
+      "trace_sha256": "6622d306a9e2eefd977febb280436e4781b8caefbd823cc2a5be15b5afa3fe09"
+    },
+    {
+      "module": "ActualAdamsAdditiveFiltration.Counterexamples",
+      "source_sha256": "aa30b22923ccf76c8fd6a4ba76ee8e797c1540a90802c9cba7c984f86ab32be7",
+      "olean_sha256": "7fb8d6688a771280797f2cf04a69db7e4551a4a8420dfe5f9081818d2519af23",
+      "trace_sha256": "353f5c508b3a141814009068b6856dcfb488a08301da6244781d45ad900d8079"
+    },
+    {
+      "module": "ActualAdamsAdditiveFiltration.Quotient",
+      "source_sha256": "9002b24d12cd5dec38f5f9ae661a9b08aa7e92c45ac4ab7df05bffc58d4d6c60",
+      "olean_sha256": "caf6fee59016405432445694e4e44946ff51fbe0f82e2684f163e4f84005e461",
+      "trace_sha256": "5b65d4084579fe14f7264984dfb394cac050e48da0a3f10932ec5b8e25b994f7"
+    },
+    {
+      "module": "ActualAdamsAdditiveFiltration.Subgroups",
+      "source_sha256": "cc6434b5604b6b2054996650a1313fc09bdd9b0e3a9b3680ee25f2a893cc1e58",
+      "olean_sha256": "e78268379cf86d725efeae12117cfbe7e91e3f1d5dc4759e04bbe51807969e21",
+      "trace_sha256": "e734348f2749308114e0e7516f41c274fa359b3b5c3c3c2159099673de047933"
+    },
+    {
+      "module": "ActualAdamsProductCycleBridge.Basic",
+      "source_sha256": "82ca5e9092ff94160e5617d9c2d5e5c029a9290fb98f50d1cb83342aef9eeb2d",
+      "olean_sha256": "016845b4764690176d84b4f54a937df23d9650ed2b72e27827fe556f093c64d9",
+      "trace_sha256": "da625ca51bef3c0720c0e6864f6ea46b9fda371dda25c5403ee65e42805905a6"
+    },
+    {
+      "module": "ActualAdamsProductCycleBridge.Finite",
+      "source_sha256": "1d8799c09cf08b218479deb3da447a410c8d2ef8189b24b60b594e4a24fa3966",
+      "olean_sha256": "2a0d31270cc3747a4f041ea326a9929c934cd5a4099b71f071178499ae10eca5",
+      "trace_sha256": "aface6a8c64585eea3927050c85e03df09c20953df33074b19e94c6770cb748f"
+    },
+    {
+      "module": "ActualAdamsProductCycleBridge.Zero",
+      "source_sha256": "414513d15e9ab282ca7107ed15b4e4ca40a0783cee1cafbadc8134a9f3eccd09",
+      "olean_sha256": "95e7f67777562b40e04641dc0b667fb5afea54136f65beb44fdcb8d304d9d176",
+      "trace_sha256": "0277764e4b298188b49006bef394570cf9bfde659b9ef1595495827d7d4b9062"
+    },
+    {
+      "module": "Fact713E12Search.Data",
+      "source_sha256": "c7d3c2df7d68d7b9d99d5481d5e22b2143b250848004fad802604124e59801df",
+      "olean_sha256": "4d757bb373e0b17ca3e9b63cbab0589e35e729eca74deee22ceedb8f1ecddaf9",
+      "trace_sha256": "c5d2b4c459cca476c18f3cdc8d3455dd8add2a1158f68c02e85191acb63da865"
+    },
+    {
+      "module": "Fact713E12Search.Prefix",
+      "source_sha256": "f4ac8d3962ab3b5b64675f4af20abcf144f5d1573b31976da64e37b1d677494f",
+      "olean_sha256": "db1decfa668786133c39ada483a632b663ee3c45ed1e5f2c73c9e8a16126cf33",
+      "trace_sha256": "fa0d45773203f32849f5aa4db683efd182353304b2aaf82986a4b29171ce07d3"
+    },
+    {
+      "module": "Fact713E12Search.Successor",
+      "source_sha256": "8e40d84aba3b27dea7a944f7432f4c4d0285cd7e3cf2a2b52116d873abd7e7ca",
+      "olean_sha256": "231f361da3bd486b77b429534aa989f9c17ea27dfede8204197c2c54b5667188",
+      "trace_sha256": "1168f32646da80ffd0dbe974d1ec56801f66fbd0d078cad797e6342217a24179"
+    },
+    {
+      "module": "Fact713E12Search.SuccessorData",
+      "source_sha256": "ddb76319187814401862cf66ef8f7686d1bc2827ebcea011122e06833261e61f",
+      "olean_sha256": "45e216951d21d8c21bbf29336557470e78768e5dcb3b9eb9c5111d13dcd51ed6",
+      "trace_sha256": "e5a165bfd991e523294626197b40588418a54c2390f63d98c748a8311784d2c9"
+    },
+    {
+      "module": "Fact713E12Search.ZeroTargets",
+      "source_sha256": "e4ed042b124f89f74e847e26b2bf354bbd1e81ce75b6b3bd7a7505b8cae41ff8",
+      "olean_sha256": "d43c4919cf51da4edca4b0b4d3acd66b48e8849f158efa8e355fd2ed3d8141f9",
+      "trace_sha256": "b493dbe3a0346d0de1c380b3c5e148eae243f19f4fea0b43fcdbc57226a9bf45"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+ActualAdamsIncomingBridge/Nonvacuity.lean:9:12: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Module F2 (Fin 0 → F2)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+ActualAdamsIncomingBridge/Nonvacuity.lean:33:38: error: don't know how to synthesize placeholder
+context:
+x✝ : ℕ
+⊢ ℕ
+
+Note: Because this declaration's type has been explicitly provided, all parameter types and holes (e.g., `_`) in its header are resolved before its body is processed; information from the declaration body cannot be used to infer what these values should be
+ActualAdamsIncomingBridge/Nonvacuity.lean:34:63: warning: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  simp only [space,̵i̵f̵_̵p̵o̵s̵ ̵r̵f̵l̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ActualAdamsIncomingBridge/Nonvacuity.lean:36:35: error: Function expected at
+  target
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  r
+
+Hint: The identifier `target` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+ActualAdamsIncomingBridge/Nonvacuity.lean:69:2: error: failed to synthesize
+  Decidable
+    (∀ (x : Vec 2),
+      InKernel incoming x →
+        ∃ z y, x = add (eval AffineRemainingSearch.Kernel.survivor z) (eval AffineRemainingSearch.Kernel.incoming y))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+ActualAdamsIncomingBridge/Nonvacuity.lean:76:22: error: failed to synthesize
+  Decidable (InKernel incoming fun i => ↑i == 0)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+ActualAdamsIncomingBridge/Nonvacuity.lean:106:4: warning: declaration uses `sorry`
+ActualAdamsIncomingBridge/Nonvacuity.lean:118:42: error: Function expected at
+  target
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  r
+
+Hint: The identifier `target` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+ActualAdamsIncomingBridge/Nonvacuity.lean:119:25: error: Application type mismatch: The argument
+  target
+has type
+  x✝
+of sort `Sort u_1` but is expected to have type
+  (r : ℕ) → (model.element r fact762Degree).carrier
+of sort `Type` in the application
+  no_hit_elsewhere model target
+'ActualAdamsIncomingBridge.Nonvacuity.target_nonzero' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsIncomingBridge.Nonvacuity.source4_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsIncomingBridge.Nonvacuity.source7_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsIncomingBridge.Nonvacuity.conditions_inhabited' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'ActualAdamsIncomingBridge.Nonvacuity.model_no_hit_elsewhere' depends on axioms: [propext, sorryAx, Quot.sound]

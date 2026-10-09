@@ -1,0 +1,75 @@
+Fact713RefinedSourceSearch/Data.lean:65:36: error: Tactic `decide` failed for proposition
+  decodeSupport 3 unknownRow.base = some [true, false, false]
+because its `Decidable` instance
+  (decodeSupport 3 unknownRow.base).instDecidableEq (some [true, false, false])
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableEqList`, `instDecidableEqString`, `instDecidableOr`, `Bool.decEq`, `Nat.decLe`, `Nat.decLt`, `Option.instDecidableEq`, and `String.decEq`, reduction got stuck at the `Decidable` instance
+  match decodeSupport 3 unknownRow.base with
+  | none =>
+    match some [true, false, false] with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some [true, false, false] with
+    | none => isFalse ⋯
+    | some b =>
+      match (fun a b => instDecidableEqList a b) a b with
+      | isTrue h => isTrue ⋯
+      | isFalse n => isFalse ⋯
+Fact713RefinedSourceSearch/Data.lean:67:36: error: Tactic `decide` failed for proposition
+  decodeSupport 3 successorRow.base = some [false, false, true]
+because its `Decidable` instance
+  (decodeSupport 3 successorRow.base).instDecidableEq (some [false, false, true])
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableEqList`, `instDecidableEqString`, `instDecidableOr`, `Bool.decEq`, `Nat.decLe`, `Nat.decLt`, `Option.instDecidableEq`, and `String.decEq`, reduction got stuck at the `Decidable` instance
+  match decodeSupport 3 successorRow.base with
+  | none =>
+    match some [false, false, true] with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some [false, false, true] with
+    | none => isFalse ⋯
+    | some b =>
+      match (fun a b => instDecidableEqList a b) a b with
+      | isTrue h => isTrue ⋯
+      | isFalse n => isFalse ⋯
+Fact713RefinedSourceSearch/Data.lean:69:35: error: Tactic `decide` failed for proposition
+  successorRow.differential.bind (decodeSupport 3) = some [true, false, true]
+because its `Decidable` instance
+  (successorRow.differential.bind (decodeSupport 3)).instDecidableEq (some [true, false, true])
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableEqList`, `instDecidableEqString`, `instDecidableOr`, `Bool.decEq`, `Nat.decLe`, `Nat.decLt`, `Option.instDecidableEq`, and `String.decEq`, reduction got stuck at the `Decidable` instance
+  match successorRow.differential.bind (decodeSupport 3) with
+  | none =>
+    match some [true, false, true] with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some [true, false, true] with
+    | none => isFalse ⋯
+    | some b =>
+      match (fun a b => instDecidableEqList a b) a b with
+      | isTrue h => isTrue ⋯
+      | isFalse n => isFalse ⋯
+'Fact713RefinedSourceSearch.Data.row3476_projection' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedSourceSearch.Data.row3476_raw_support' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact713RefinedSourceSearch.Data.row3728_raw_support' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact713RefinedSourceSearch.Data.row3728_raw_target_support' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact713RefinedSourceSearch.Data.row3728_source_projection' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedSourceSearch.Data.row3728_target_projection' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedSourceSearch.Data.row3728_whole_matrix' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedSourceSearch.Data.row3476_inferred_finite_value' depends on axioms: [propext, Quot.sound]
+'Fact713RefinedSourceSearch.Data.row3476_actual_value' depends on axioms: [propext, Quot.sound]

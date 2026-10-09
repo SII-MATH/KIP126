@@ -1,0 +1,207 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 21030,
+  "observed_exit_code": 0,
+  "jobs": 3346,
+  "build_log": "tests/step4-prop79-target-requests-build.log",
+  "build_log_sha256": "9f522fd76bca31fd00f8b0f99b36249b4a66fbf0f9d2aaff4517708e09e18c48",
+  "individual_module_logs": {
+    "tests/step4-prop79-target-requests-build.log": "9f522fd76bca31fd00f8b0f99b36249b4a66fbf0f9d2aaff4517708e09e18c48"
+  },
+  "lakefile_sha256": "191d787c0026fd8e2e33601953f014983c40beca86dc27d4af851182c10d98f0",
+  "modules": [
+    {
+      "module": "ActualTraceRequests.Basic",
+      "source_sha256": "274ed52ac4e5dbfa158a5d0e6d0851c5398802d989c016aa4a1dd74ea2761616",
+      "olean_sha256": "2149b8ac603f200eb3eb7955c974b000c46ce877d06f9b4919239f984dca3b69",
+      "trace_sha256": "c1fd26911f91a54fef8acf53c354d1709b778f8fad12dad179c84ec1632e8534"
+    },
+    {
+      "module": "ActualTraceRequests.Examples",
+      "source_sha256": "1dece624894c42b15c6c397ab3d48ab0595b785c6c119a6bbde330b083f0c6da",
+      "olean_sha256": "2b8a5696dc2e5d483a6b886ce44e77cf6738def92570b645ebffd31272bbc7db",
+      "trace_sha256": "f6017f549c5b3998d2357dbd33e4cae98a5174fe8a9543259cc947821717975e"
+    },
+    {
+      "module": "ActualTraceRequests.Fact715",
+      "source_sha256": "6b90147a8ca2e606fcfe8ff0181e60a97e62a7bf7134bb7cf1a4ffad6e3973a4",
+      "olean_sha256": "2810015f40f1be0755a85ecce7c96c1a3bef789dfeac91bd4af13bc8fc687722",
+      "trace_sha256": "fd8a60b478ad87e333ede288d2e5d5c54150088c72e5aed58aaf02bb97c54470"
+    },
+    {
+      "module": "ActualTraceRequests.Fact719",
+      "source_sha256": "b42224cd7c2cf986025e097da85efce4e6a80acbc742126c43dfc5d3c44df686",
+      "olean_sha256": "9aae1fcb8000b05515c9077a922a41dcf95a3ca0b39366efaa106d873f9a7ab7",
+      "trace_sha256": "c24a9108bd57da1cff0db817ee8108e57c2ddc770861be176e8d7000b8c0d25f"
+    },
+    {
+      "module": "ActualTraceRequests.Import",
+      "source_sha256": "4ccf4deb29ef557f5b03364a75b5bc7f311983cae67d658d9f2cbe61e582e931",
+      "olean_sha256": "7b0cc97c92f10b84c481b6a73391d96af7c22455a07b9492f368d81661579f98",
+      "trace_sha256": "f6248ca1ce48ad6db30074d4a76270f9b3d545da7aa3da924ab9370deb71e6e8"
+    },
+    {
+      "module": "ActualTraceRequests.ParserTests",
+      "source_sha256": "17ee411c19f7c46e4fd1779cabe5ca39d2e0b1c7a79a0e43a4cac777386d481c",
+      "olean_sha256": "b1dc09f62cce5990a1a380311f54ea53f9e6b74807f2c8a4819c855255902e84",
+      "trace_sha256": "7c77804f616be6f81733007ec2bb15265141389a3e28afc69e4675defe5aa8ca"
+    },
+    {
+      "module": "ActualTraceRequests.Tactic",
+      "source_sha256": "e33c6594cf766c5391438843fd62fdda5193cf957c2af4c5a67aa01921e78ac7",
+      "olean_sha256": "9cca3244c7f0d5444ab96c332f36c790ae41a48d582bac39132dc0793681ea55",
+      "trace_sha256": "76a5c4ec79f68db01e6b28b79d6963be90fe52a71921135472dffc3f27a8fa68"
+    },
+    {
+      "module": "Fact713Row3247Source.Actual",
+      "source_sha256": "1e9f3642f3839cf36712be58634833b25c481ecefe9bb63deb4c2fcf4a8fb045",
+      "olean_sha256": "9f8ee99d9f248116b470e07d4050b08745bca8438a1d8bdb25870539f18314a2",
+      "trace_sha256": "72a6b271d6ee3ead536df271651d70c5862027aac32bce058d2f55786eeff7dc"
+    },
+    {
+      "module": "Fact713Row3247Source.Binding",
+      "source_sha256": "cacab9bb548ee934730eaf49f7d9dc41a5f90884656f503f9770c0d9b122c263",
+      "olean_sha256": "795bf5f82eac3e23e4813ff44c5d131c850a35d60ae5a115ee688ae92d3e4b90",
+      "trace_sha256": "0cd560295299b6142af80a3a187dcd385dba80b21b8eb1361cbc3777e2da79e6"
+    },
+    {
+      "module": "Fact713Row3247Source.Comparison",
+      "source_sha256": "b9c819e7b07c71fd7a070b3431eb837d60e57dbad0b8bf5feede55c695e3fc0b",
+      "olean_sha256": "e023921c2f1db80df497abc1e245a689cf640ad5d9b3b24181178a6d99ba99c2",
+      "trace_sha256": "fc6127306d39443a43693201d47b19d4efaf3fb7971a690133ca0995d558add8"
+    },
+    {
+      "module": "Fact713Row3247Source.JointDetection",
+      "source_sha256": "5e993ec71cbcc35c9374cbbcb1cc6dbf561236063a1ba6f8251f5b7e35e6d9ea",
+      "olean_sha256": "3c53efb8b2c4038834dd8f7ed835b7ba85252fb6598a887d9de76df20e5a37de",
+      "trace_sha256": "5c340f68515b00b1396a6db3431ad7754bc7baccf4b912d3d0b7841a637855fc"
+    },
+    {
+      "module": "Fact713Row3247Source.MapSemantics",
+      "source_sha256": "26ae786cdadc339acdaff9412f65e0d4e966813381c5a14a5c10fa68c0447048",
+      "olean_sha256": "2a86d067b5b7fc317d0370d069e9d870a49b8dd24a5ce9cbae7e5d473d71cc4c",
+      "trace_sha256": "d898d629cf8718fa26398c686cc8ff439f18d91afc54f9c9f5022d0d6ad0ee65"
+    },
+    {
+      "module": "Fact713Row3247Source.Maps",
+      "source_sha256": "f49b6e0062f64f9a6524de1fbf3c6aa9db4ba705b41b43033748738ad3606e0f",
+      "olean_sha256": "aebd7887a42dc445838eb66936814fbe9e74918881f383eb4df0d03ce379e033",
+      "trace_sha256": "1236167d382cc003c2d5c7b857bdd7e3a8ac6425809fbeecba653aae11e9a017"
+    },
+    {
+      "module": "Fact713Row3247Source.ModuleLeibniz",
+      "source_sha256": "4a2fe79531f69acfdbb7005181c680d616fb947aa7aff855898e0adfcf763611",
+      "olean_sha256": "aeccb585dce97d7d456aad8605376f52e6b48da9ef42fcb6287602c7351da215",
+      "trace_sha256": "29c343d581075b7c7080ddca61b261176074b178bbaa0e58dc932d6370e5b33e"
+    },
+    {
+      "module": "Fact721ConstructedActual.Basic",
+      "source_sha256": "465356f485bcc9f7d1781737329a251b95d2df7142548ecdf1faa6cdbc34c634",
+      "olean_sha256": "2ccbb5c0aa78b58d3617439adc49c33b8b7018dced44209c3bf600c402761024",
+      "trace_sha256": "c36dcc5bab1e20661454c413305b651e9d1fa24594dc2e20999db0ef583af020"
+    },
+    {
+      "module": "Fact721ConstructedActual.First",
+      "source_sha256": "a0a84f979c210a0f9c97cb65592d7b4b04dbacdb0adbbc5be59846f83da8fda6",
+      "olean_sha256": "228381b57ed4afcc959fadcbe37cf970e48aea6962b420034d791f2b632637df",
+      "trace_sha256": "9d0b1bcad3bf28300b2e6c4cfa05e6f43d3090777d8f63490510fa5741243d88"
+    },
+    {
+      "module": "Fact721ConstructedActual.Second",
+      "source_sha256": "28e3e72de983e6456a8323f9bcfc02d93e5c0278096b422c72c1098faf8a8a23",
+      "olean_sha256": "532ee4dbedd1961fed570a055c33a4fa0ca323a166ec1fd679fe66d3edce3a83",
+      "trace_sha256": "44728c2449d67914f1e1f8c1c1e71adc036f434bbefa77b60193f19d8ec89d74"
+    },
+    {
+      "module": "Fact721ConstructedActual.Tactic",
+      "source_sha256": "fca4499ee4b72dd51647e2e4798cb63e86566e1c5a31617d2848b8d6fbf98e24",
+      "olean_sha256": "2d37d0f1c4eb2da509b3a1fe45da013c4784e2b321252da056cd820fb35ff021",
+      "trace_sha256": "3a38797bb6d05fc2fb488252003446faba6d1ae8abab9e24124f3b811cb30486"
+    },
+    {
+      "module": "Prop79TargetSearch.Actual",
+      "source_sha256": "16e811545f5089f39655eaf3b3274363923d9ae26ae51d06da58cce790476f1d",
+      "olean_sha256": "b826d2eee40e1caf30768ee24d5c4b670f9291b57d0382aa4f298eeeaa9f3f70",
+      "trace_sha256": "1f96e95485fc993b457f03f0041ffef3faf380384b31083052f1cd5a58b14a1c"
+    },
+    {
+      "module": "Prop79TargetSearch.ActualIncoming",
+      "source_sha256": "734c66b1d1387a7fcb6511bc30e6a8e35b1e1897446b4f1d65faff65ea1a9931",
+      "olean_sha256": "75521a135b606864d6c3c7a822185e9f7a68978a176100f6f49cbdabd9866843",
+      "trace_sha256": "5902079d70d5f55d5000f125c5e93dbfa760952949ab4ca13770e2539fe0fd78"
+    },
+    {
+      "module": "Prop79TargetSearch.Assembly",
+      "source_sha256": "eb8eaa316315fb2063f20d7bad22e6053604a01953a3acea98762c324d6f6dcd",
+      "olean_sha256": "0d67eb453d564811aad760105a72892973055d749e094d9ce35cfea473a4e8e5",
+      "trace_sha256": "65798c09d1c4699d9d81b8afccbb301dfb200bf5c7e68d3b251e6ae6f90a5d2a"
+    },
+    {
+      "module": "Prop79TargetSearch.Comparison",
+      "source_sha256": "b8169d9e5bfa7581db1c3dec9181fd0c0fe9517df6a085a8ac636ce2014208ac",
+      "olean_sha256": "0998c578adaed4180dcf27af959ada0edc373e705498967f58681b01c45ac5bb",
+      "trace_sha256": "7d42897ea93b154b7c7b0ed6db26eae0f62ecaf1e1953e0ff02437cba5ba93f2"
+    },
+    {
+      "module": "Prop79TargetSearch.Constructed",
+      "source_sha256": "07833da947fb1dd5178672badda671bd9a29568af81eae31e9fb046e76934bec",
+      "olean_sha256": "a21437d42d422b2383da6f1f0503b72a4530fe1eed3560d99b5fd480c90fad4d",
+      "trace_sha256": "44d8c203bf534c894a9b3fbe11d679bc3c1ba62e7e3bd6934cf4fd0b2829dffa"
+    },
+    {
+      "module": "Prop79TargetSearch.DerivedStep",
+      "source_sha256": "1ed31ba783056e5ae80217c1982817cc224a94c5064350f67d0086f3a7437408",
+      "olean_sha256": "6df0dfb91a2425318a831d56402f3a19ea7b56078480cb0ac2a19d98f15c4863",
+      "trace_sha256": "86fb1d65629beb825f786e6b8fe2a6dbe06f231c7ff77a438a7112dab064a610"
+    },
+    {
+      "module": "Prop79TargetSearch.Finite",
+      "source_sha256": "a06b321ae57d0ff60e43015ac54160eef17938b3c0a7196c1d90aa1204f6b0c4",
+      "olean_sha256": "3f480fda61dacf2e1d9b301c71fd34ed46b92fcf2392dc72f2828fca0b4ff52f",
+      "trace_sha256": "df1d790e6d576e845c3bc1b41e291156c3bf4c83cbe263392e944a9bfc787b92"
+    },
+    {
+      "module": "Prop79TargetSearch.MapSemantics",
+      "source_sha256": "c36fb636d9faad5d7d5da760f94f6f7100cd33e75469469453ae2384f9646faa",
+      "olean_sha256": "f75c0561f48ddd6d78e777cc3c05fc595a7346fc63f7f1c1e9bbda2541157bbc",
+      "trace_sha256": "db0ea124fd3272f37bd6e8f2747ebe5ed60be8eec7d2a059cb88c8ba9f26dc3f"
+    },
+    {
+      "module": "Prop79TargetSearch.Maps",
+      "source_sha256": "df295f283197b4d3da3374a9b433ed0e04abca39c2c84ee595bee10d538bfc6c",
+      "olean_sha256": "7b5fad422055d57cbf852de22712dd5c8bdd8a64afc785428c99c9c053180670",
+      "trace_sha256": "954c132beb31261c42d3a94870a7896ec0153b5b1ce9893268e110be55cb2a7a"
+    },
+    {
+      "module": "Prop79TargetSearch.Naturality",
+      "source_sha256": "249d11618944a90c5a8878479ab26d3708fd2bb13aee903191271d4542733ebd",
+      "olean_sha256": "19cf7d5cbaabad717c484f93aa769a6a05fbff046dba42a6779c939d92cf07ce",
+      "trace_sha256": "d8dddc16336aa864b6d9265633140273f2a4a79b072300980bb0124614e80eb9"
+    },
+    {
+      "module": "Prop79TargetSearch.NoHit",
+      "source_sha256": "9a08e7185be5b069c7c02e959049e3efcf53bb849de9768011b15560bcc348b7",
+      "olean_sha256": "f9c5761b23053eb64e31cd877c8e1904ff250b8c4637b55b2d0e8998afb6bde0",
+      "trace_sha256": "9a7918df55366259dac4605315bef21de0103c7ec328828e78b07fe66727cd54"
+    },
+    {
+      "module": "Prop79TargetSearch.Tactic",
+      "source_sha256": "4cfcb69579cdbbaa53616fb9c55f7fd72a38a92159ad5ae923ac8477ad8f8976",
+      "olean_sha256": "4a45db6853ef40525f76383aafce1efedca2a4fcb397f6dfd7bb889d9beb4158",
+      "trace_sha256": "0a3a48e5718552460767049457de6eafcb44e65cfb5c479fd03190be9e8b5002"
+    },
+    {
+      "module": "Prop79TargetSearch.Trace",
+      "source_sha256": "dfddcd78819c2326de77daec5aafa842060039da0d995ae547057808853034ce",
+      "olean_sha256": "918a14564e129644efea1f03d9c1fff1eb9fe3c36cb799d36709f205f6138ada",
+      "trace_sha256": "6f7bae36283eee369b31e0b2c08b6d23da7a8879bce24843146843abf87a8b8e"
+    },
+    {
+      "module": "Prop79TargetSearch.ZeroSpaces",
+      "source_sha256": "6b85a02fd71f54141d5b49fd370349586d26dd3fef36146bfd86e73183763eeb",
+      "olean_sha256": "7a85486469be3c0a2b2a7f4e44f3cd8c421631d141c5ec9d2184230c438b54ea",
+      "trace_sha256": "6c9b278ff945b5666f8626f6376733312ea069a8378d904d9bbfaf5d6e351a6e"
+    }
+  ]
+}

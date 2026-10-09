@@ -1,0 +1,71 @@
+Checking KervaireProgram/Model
+Checking KervaireProgram/Certificate
+Checking KervaireProgram/Checker
+Checking KervaireProgram/Import
+Checking KervaireProgram/KervaireClaims
+Checking KervaireProgram
+Checking LinProgramCertificates/CertificateFormat
+Checking LinProgramCertificates/Verifier
+Checking LinProgramCertificates/Tactic
+Checking LinProgramCertificates/KervaireTactic
+Checking LinProgramCertificates/Examples
+'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.check_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.importLine_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KervaireProgram.dataWellFormed_sound' depends on axioms: [propext, Quot.sound]
+'KervaireProgram.differentialWellFormed_sound' depends on axioms: [propext, Quot.sound]
+Checking LinProgramCertificates
+Checking LinearCertificates/Basic
+Checking LinearCertificates/Checker
+Checking LinearCertificates/Diagnostics
+Checking LinearCertificates/Import
+Checking LinearCertificates/Examples
+'LinearCertificates.annihilates_image' depends on axioms: [propext, Quot.sound]
+'LinearCertificates.checkNotImage_sound' depends on axioms: [propext, Quot.sound]
+'LinearCertificates.checkChainMap_sound' depends on axioms: [propext, Quot.sound]
+Checking LinearCertificates/ImportExamples
+Checking LinearCertificates/ParserExamples
+'LinearCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+Checking LinearCertificates/GeneratedExamples
+Checking LinearCertificates/CheckMain
+Checking LinearCertificates
+Checking MilnorCertificates/Basic
+Checking MilnorCertificates/Import
+Checking MilnorCertificates/Examples
+Checking MilnorCertificates/FileExample
+Checking MilnorCertificates/ImportedExample
+'MilnorCertificates.check_sound' depends on axioms: [propext, Quot.sound]
+'MilnorCertificates.decode_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+Checking MilnorCertificates/CheckFile
+Checking MilnorCertificates
+Checking PropagationCertificates/Rules
+Checking PropagationCertificates/Tactic
+Checking PropagationCertificates/Import
+Checking PropagationCertificates/Level
+Checking PropagationCertificates/Branches
+'PropagationCertificates.Branches.check_sound' depends on axioms: [propext]
+'PropagationCertificates.Branches.exclude_sound' depends on axioms: [propext]
+Checking PropagationCertificates/Examples
+Checking PropagationCertificates/Main
+Checking PropagationCertificates
+Checking ResolutionCertificates/Basic
+Checking ResolutionCertificates/HomologyBasis
+'ResolutionCertificates.checkHomologyBasis_sound' depends on axioms: [propext, Quot.sound]
+Checking ResolutionCertificates/Import
+Checking ResolutionCertificates/Examples
+'ResolutionCertificates.checkContraction_sound' depends on axioms: [propext, Quot.sound]
+'ResolutionCertificates.checkHomotopy_sound' depends on axioms: [propext, Quot.sound]
+Checking ResolutionCertificates/CheckFile
+Checking ResolutionCertificates
+Checking PageCertificates/Model
+Checking PageCertificates/Checker
+Checking PageCertificates/Import
+Checking PageCertificates/Examples
+'PageCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+'PageCertificates.checkUnique_sound' depends on axioms: [propext, Quot.sound]
+'PageCertificates.checkHomology_sound' depends on axioms: [propext, Quot.sound]
+'PageCertificates.checkCandidates_sound' depends on axioms: [propext, Quot.sound]
+'PageCertificates.representative_survives' depends on axioms: [propext]
+Checking PageCertificates/CheckMain
+Checking PageCertificates

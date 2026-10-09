@@ -1,0 +1,13 @@
+✔ [8/15] Built KervaireProgram.Checker (1.9s)
+✔ [9/15] Built KervaireProgram.Import (2.1s)
+✔ [10/15] Built KervaireProgram.KervaireClaims (2.3s)
+✔ [11/15] Built LinProgramCertificates.KervaireTactic (1.8s)
+✔ [12/15] Built KervaireProgram (1.6s)
+ℹ [14/15] Built LinProgramCertificates.Examples (1.7s)
+info: LinProgramCertificates/Examples.lean:42:0: 'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:43:0: 'KervaireProgram.check_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:44:0: 'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:45:0: 'KervaireProgram.importLine_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LinProgramCertificates/Examples.lean:46:0: 'KervaireProgram.dataWellFormed_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:47:0: 'KervaireProgram.differentialWellFormed_sound' depends on axioms: [propext, Quot.sound]
+Build completed successfully (15 jobs).

@@ -1,0 +1,5276 @@
+[
+  {
+    "row": [
+      2576,
+      4,
+      132,
+      "0",
+      null,
+      9000
+    ],
+    "target_dimension": 2,
+    "counts": {
+      "target_zero": 84,
+      "candidate": 5,
+      "source_nonzero": 1,
+      "factor_not_d2_cycle": 5
+    },
+    "joint_kernel": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "factors": [
+      {
+        "id": 1,
+        "mon": "0,1",
+        "degree": [
+          1,
+          1
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 3,
+        "mon": "1,1",
+        "degree": [
+          1,
+          2
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 2,
+        "mon": "0,2",
+        "degree": [
+          2,
+          2
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 4,
+        "mon": "0,3",
+        "degree": [
+          3,
+          3
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 7,
+        "mon": "2,1",
+        "degree": [
+          1,
+          4
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": 6,
+        "mon": "1,2",
+        "degree": [
+          2,
+          4
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 5,
+        "mon": "0,4",
+        "degree": [
+          4,
+          4
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 9,
+        "mon": "0,1,2,1",
+        "degree": [
+          2,
+          5
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 8,
+        "mon": "0,5",
+        "degree": [
+          5,
+          5
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 11,
+        "mon": "0,2,2,1",
+        "degree": [
+          3,
+          6
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 10,
+        "mon": "0,6",
+        "degree": [
+          6,
+          6
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 12,
+        "mon": "0,7",
+        "degree": [
+          7,
+          7
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [],
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 15,
+        "mon": "3,1",
+        "degree": [
+          1,
+          8
+        ],
+        "source_image": [
+          1
+        ],
+        "target_images": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "source_nonzero"
+      },
+      {
+        "id": 14,
+        "mon": "2,2",
+        "degree": [
+          2,
+          8
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 13,
+        "mon": "0,8",
+        "degree": [
+          8,
+          8
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 17,
+        "mon": "0,1,3,1",
+        "degree": [
+          2,
+          9
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 16,
+        "mon": "0,9",
+        "degree": [
+          9,
+          9
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 20,
+        "mon": "1,1,3,1",
+        "degree": [
+          2,
+          10
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 19,
+        "mon": "0,2,3,1",
+        "degree": [
+          3,
+          10
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 18,
+        "mon": "0,10",
+        "degree": [
+          10,
+          10
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 23,
+        "mon": "4,1",
+        "degree": [
+          3,
+          11
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 22,
+        "mon": "0,3,3,1",
+        "degree": [
+          4,
+          11
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 21,
+        "mon": "0,11",
+        "degree": [
+          11,
+          11
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 25,
+        "mon": "1,2,3,1",
+        "degree": [
+          3,
+          12
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 24,
+        "mon": "0,12",
+        "degree": [
+          12,
+          12
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 27,
+        "mon": "1,1,4,1",
+        "degree": [
+          4,
+          13
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 26,
+        "mon": "0,13",
+        "degree": [
+          13,
+          13
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 29,
+        "mon": "5,1",
+        "degree": [
+          5,
+          14
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 28,
+        "mon": "0,14",
+        "degree": [
+          14,
+          14
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 30,
+        "mon": "0,15",
+        "degree": [
+          15,
+          15
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 35,
+        "mon": "7,1",
+        "degree": [
+          1,
+          16
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 34,
+        "mon": "3,2",
+        "degree": [
+          2,
+          16
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": 33,
+        "mon": "6,1",
+        "degree": [
+          5,
+          16
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 32,
+        "mon": "1,1,5,1",
+        "degree": [
+          6,
+          16
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 31,
+        "mon": "0,16",
+        "degree": [
+          16,
+          16
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 39,
+        "mon": "0,1,7,1",
+        "degree": [
+          2,
+          17
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": 38,
+        "mon": "0,1,3,2",
+        "degree": [
+          3,
+          17
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 37,
+        "mon": "0,1,6,1",
+        "degree": [
+          6,
+          17
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 36,
+        "mon": "0,17",
+        "degree": [
+          17,
+          17
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 44,
+        "mon": "1,1,7,1",
+        "degree": [
+          2,
+          18
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 43,
+        "mon": "0,2,7,1",
+        "degree": [
+          3,
+          18
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 42,
+        "mon": "8,1",
+        "degree": [
+          4,
+          18
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 41,
+        "mon": "0,2,6,1",
+        "degree": [
+          7,
+          18
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 40,
+        "mon": "0,18",
+        "degree": [
+          18,
+          18
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 47,
+        "mon": "0,3,7,1",
+        "degree": [
+          4,
+          19
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 46,
+        "mon": "0,1,8,1",
+        "degree": [
+          5,
+          19
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 45,
+        "mon": "0,19",
+        "degree": [
+          19,
+          19
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 53,
+        "mon": "2,1,7,1",
+        "degree": [
+          2,
+          20
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": 52,
+        "mon": "1,2,7,1",
+        "degree": [
+          3,
+          20
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 50,
+        "mon": "1,1,8,1",
+        "degree": [
+          5,
+          20
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 51,
+        "mon": "0,4,7,1",
+        "degree": [
+          5,
+          20
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 49,
+        "mon": "0,2,8,1",
+        "degree": [
+          6,
+          20
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 48,
+        "mon": "0,20",
+        "degree": [
+          20,
+          20
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 57,
+        "mon": "0,1,2,1,7,1",
+        "degree": [
+          3,
+          21
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 56,
+        "mon": "9,1",
+        "degree": [
+          4,
+          21
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 55,
+        "mon": "0,5,7,1",
+        "degree": [
+          6,
+          21
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [],
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 54,
+        "mon": "0,21",
+        "degree": [
+          21,
+          21
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 64,
+        "mon": "11,1",
+        "degree": [
+          3,
+          22
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "candidate"
+      },
+      {
+        "id": 62,
+        "mon": "10,1",
+        "degree": [
+          4,
+          22
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 63,
+        "mon": "0,2,2,1,7,1",
+        "degree": [
+          4,
+          22
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 61,
+        "mon": "0,1,9,1",
+        "degree": [
+          5,
+          22
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 60,
+        "mon": "1,2,8,1",
+        "degree": [
+          6,
+          22
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 59,
+        "mon": "0,6,7,1",
+        "degree": [
+          7,
+          22
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 58,
+        "mon": "0,22",
+        "degree": [
+          22,
+          22
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 69,
+        "mon": "0,1,10,1",
+        "degree": [
+          5,
+          23
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 68,
+        "mon": "0,2,9,1",
+        "degree": [
+          6,
+          23
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 67,
+        "mon": "12,1",
+        "degree": [
+          7,
+          23
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 66,
+        "mon": "0,7,7,1",
+        "degree": [
+          8,
+          23
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 65,
+        "mon": "0,23",
+        "degree": [
+          23,
+          23
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 73,
+        "mon": "2,2,7,1",
+        "degree": [
+          3,
+          24
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 72,
+        "mon": "13,1",
+        "degree": [
+          4,
+          24
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 71,
+        "mon": "0,3,9,1",
+        "degree": [
+          7,
+          24
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 70,
+        "mon": "0,24",
+        "degree": [
+          24,
+          24
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 76,
+        "mon": "0,1,13,1",
+        "degree": [
+          5,
+          25
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 75,
+        "mon": "1,1,12,1",
+        "degree": [
+          8,
+          25
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 74,
+        "mon": "0,25",
+        "degree": [
+          25,
+          25
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 81,
+        "mon": "2,1,11,1",
+        "degree": [
+          4,
+          26
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 80,
+        "mon": "1,1,13,1",
+        "degree": [
+          5,
+          26
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 79,
+        "mon": "0,2,13,1",
+        "degree": [
+          6,
+          26
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 78,
+        "mon": "14,1",
+        "degree": [
+          9,
+          26
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 77,
+        "mon": "0,26",
+        "degree": [
+          26,
+          26
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 83,
+        "mon": "4,1,7,1",
+        "degree": [
+          4,
+          27
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 82,
+        "mon": "0,27",
+        "degree": [
+          27,
+          27
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 87,
+        "mon": "2,1,13,1",
+        "degree": [
+          5,
+          28
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 86,
+        "mon": "15,1",
+        "degree": [
+          9,
+          28
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 85,
+        "mon": "1,1,14,1",
+        "degree": [
+          10,
+          28
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 84,
+        "mon": "0,28",
+        "degree": [
+          28,
+          28
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 91,
+        "mon": "1,1,4,1,7,1",
+        "degree": [
+          5,
+          29
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 90,
+        "mon": "0,1,2,1,13,1",
+        "degree": [
+          6,
+          29
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 89,
+        "mon": "0,1,15,1",
+        "degree": [
+          10,
+          29
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 88,
+        "mon": "0,29",
+        "degree": [
+          29,
+          29
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 95,
+        "mon": "17,1",
+        "degree": [
+          7,
+          30
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 94,
+        "mon": "16,1",
+        "degree": [
+          8,
+          30
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 93,
+        "mon": "0,2,15,1",
+        "degree": [
+          11,
+          30
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 92,
+        "mon": "0,30",
+        "degree": [
+          30,
+          30
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      }
+    ]
+  },
+  {
+    "row": [
+      2925,
+      11,
+      137,
+      "1,2",
+      null,
+      9000
+    ],
+    "target_dimension": 1,
+    "counts": {
+      "target_zero": 89,
+      "source_nonzero": 1,
+      "factor_not_d2_cycle": 5
+    },
+    "joint_kernel": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "factors": [
+      {
+        "id": 1,
+        "mon": "0,1",
+        "degree": [
+          1,
+          1
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 3,
+        "mon": "1,1",
+        "degree": [
+          1,
+          2
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 2,
+        "mon": "0,2",
+        "degree": [
+          2,
+          2
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 4,
+        "mon": "0,3",
+        "degree": [
+          3,
+          3
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 7,
+        "mon": "2,1",
+        "degree": [
+          1,
+          4
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 6,
+        "mon": "1,2",
+        "degree": [
+          2,
+          4
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 5,
+        "mon": "0,4",
+        "degree": [
+          4,
+          4
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 9,
+        "mon": "0,1,2,1",
+        "degree": [
+          2,
+          5
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 8,
+        "mon": "0,5",
+        "degree": [
+          5,
+          5
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 11,
+        "mon": "0,2,2,1",
+        "degree": [
+          3,
+          6
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 10,
+        "mon": "0,6",
+        "degree": [
+          6,
+          6
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 12,
+        "mon": "0,7",
+        "degree": [
+          7,
+          7
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 15,
+        "mon": "3,1",
+        "degree": [
+          1,
+          8
+        ],
+        "source_image": [
+          1,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "source_nonzero"
+      },
+      {
+        "id": 14,
+        "mon": "2,2",
+        "degree": [
+          2,
+          8
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 13,
+        "mon": "0,8",
+        "degree": [
+          8,
+          8
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 17,
+        "mon": "0,1,3,1",
+        "degree": [
+          2,
+          9
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 16,
+        "mon": "0,9",
+        "degree": [
+          9,
+          9
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 20,
+        "mon": "1,1,3,1",
+        "degree": [
+          2,
+          10
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 19,
+        "mon": "0,2,3,1",
+        "degree": [
+          3,
+          10
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 18,
+        "mon": "0,10",
+        "degree": [
+          10,
+          10
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 23,
+        "mon": "4,1",
+        "degree": [
+          3,
+          11
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 22,
+        "mon": "0,3,3,1",
+        "degree": [
+          4,
+          11
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 21,
+        "mon": "0,11",
+        "degree": [
+          11,
+          11
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 25,
+        "mon": "1,2,3,1",
+        "degree": [
+          3,
+          12
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 24,
+        "mon": "0,12",
+        "degree": [
+          12,
+          12
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 27,
+        "mon": "1,1,4,1",
+        "degree": [
+          4,
+          13
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 26,
+        "mon": "0,13",
+        "degree": [
+          13,
+          13
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 29,
+        "mon": "5,1",
+        "degree": [
+          5,
+          14
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 28,
+        "mon": "0,14",
+        "degree": [
+          14,
+          14
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 30,
+        "mon": "0,15",
+        "degree": [
+          15,
+          15
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 35,
+        "mon": "7,1",
+        "degree": [
+          1,
+          16
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 34,
+        "mon": "3,2",
+        "degree": [
+          2,
+          16
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 33,
+        "mon": "6,1",
+        "degree": [
+          5,
+          16
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 32,
+        "mon": "1,1,5,1",
+        "degree": [
+          6,
+          16
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 31,
+        "mon": "0,16",
+        "degree": [
+          16,
+          16
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 39,
+        "mon": "0,1,7,1",
+        "degree": [
+          2,
+          17
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 38,
+        "mon": "0,1,3,2",
+        "degree": [
+          3,
+          17
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 37,
+        "mon": "0,1,6,1",
+        "degree": [
+          6,
+          17
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 36,
+        "mon": "0,17",
+        "degree": [
+          17,
+          17
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 44,
+        "mon": "1,1,7,1",
+        "degree": [
+          2,
+          18
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 43,
+        "mon": "0,2,7,1",
+        "degree": [
+          3,
+          18
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 42,
+        "mon": "8,1",
+        "degree": [
+          4,
+          18
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 41,
+        "mon": "0,2,6,1",
+        "degree": [
+          7,
+          18
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 40,
+        "mon": "0,18",
+        "degree": [
+          18,
+          18
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 47,
+        "mon": "0,3,7,1",
+        "degree": [
+          4,
+          19
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 46,
+        "mon": "0,1,8,1",
+        "degree": [
+          5,
+          19
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 45,
+        "mon": "0,19",
+        "degree": [
+          19,
+          19
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 53,
+        "mon": "2,1,7,1",
+        "degree": [
+          2,
+          20
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 52,
+        "mon": "1,2,7,1",
+        "degree": [
+          3,
+          20
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 50,
+        "mon": "1,1,8,1",
+        "degree": [
+          5,
+          20
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 51,
+        "mon": "0,4,7,1",
+        "degree": [
+          5,
+          20
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 49,
+        "mon": "0,2,8,1",
+        "degree": [
+          6,
+          20
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 48,
+        "mon": "0,20",
+        "degree": [
+          20,
+          20
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 57,
+        "mon": "0,1,2,1,7,1",
+        "degree": [
+          3,
+          21
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 56,
+        "mon": "9,1",
+        "degree": [
+          4,
+          21
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 55,
+        "mon": "0,5,7,1",
+        "degree": [
+          6,
+          21
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 54,
+        "mon": "0,21",
+        "degree": [
+          21,
+          21
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 64,
+        "mon": "11,1",
+        "degree": [
+          3,
+          22
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 62,
+        "mon": "10,1",
+        "degree": [
+          4,
+          22
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 63,
+        "mon": "0,2,2,1,7,1",
+        "degree": [
+          4,
+          22
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 61,
+        "mon": "0,1,9,1",
+        "degree": [
+          5,
+          22
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 60,
+        "mon": "1,2,8,1",
+        "degree": [
+          6,
+          22
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 59,
+        "mon": "0,6,7,1",
+        "degree": [
+          7,
+          22
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 58,
+        "mon": "0,22",
+        "degree": [
+          22,
+          22
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 69,
+        "mon": "0,1,10,1",
+        "degree": [
+          5,
+          23
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 68,
+        "mon": "0,2,9,1",
+        "degree": [
+          6,
+          23
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 67,
+        "mon": "12,1",
+        "degree": [
+          7,
+          23
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 66,
+        "mon": "0,7,7,1",
+        "degree": [
+          8,
+          23
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 65,
+        "mon": "0,23",
+        "degree": [
+          23,
+          23
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 73,
+        "mon": "2,2,7,1",
+        "degree": [
+          3,
+          24
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 72,
+        "mon": "13,1",
+        "degree": [
+          4,
+          24
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 71,
+        "mon": "0,3,9,1",
+        "degree": [
+          7,
+          24
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 70,
+        "mon": "0,24",
+        "degree": [
+          24,
+          24
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 76,
+        "mon": "0,1,13,1",
+        "degree": [
+          5,
+          25
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 75,
+        "mon": "1,1,12,1",
+        "degree": [
+          8,
+          25
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 74,
+        "mon": "0,25",
+        "degree": [
+          25,
+          25
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 81,
+        "mon": "2,1,11,1",
+        "degree": [
+          4,
+          26
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 80,
+        "mon": "1,1,13,1",
+        "degree": [
+          5,
+          26
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 79,
+        "mon": "0,2,13,1",
+        "degree": [
+          6,
+          26
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 78,
+        "mon": "14,1",
+        "degree": [
+          9,
+          26
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 77,
+        "mon": "0,26",
+        "degree": [
+          26,
+          26
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 83,
+        "mon": "4,1,7,1",
+        "degree": [
+          4,
+          27
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 82,
+        "mon": "0,27",
+        "degree": [
+          27,
+          27
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 87,
+        "mon": "2,1,13,1",
+        "degree": [
+          5,
+          28
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 86,
+        "mon": "15,1",
+        "degree": [
+          9,
+          28
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 85,
+        "mon": "1,1,14,1",
+        "degree": [
+          10,
+          28
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 84,
+        "mon": "0,28",
+        "degree": [
+          28,
+          28
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 91,
+        "mon": "1,1,4,1,7,1",
+        "degree": [
+          5,
+          29
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 90,
+        "mon": "0,1,2,1,13,1",
+        "degree": [
+          6,
+          29
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 89,
+        "mon": "0,1,15,1",
+        "degree": [
+          10,
+          29
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 88,
+        "mon": "0,29",
+        "degree": [
+          29,
+          29
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 95,
+        "mon": "17,1",
+        "degree": [
+          7,
+          30
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 94,
+        "mon": "16,1",
+        "degree": [
+          8,
+          30
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 93,
+        "mon": "0,2,15,1",
+        "degree": [
+          11,
+          30
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 92,
+        "mon": "0,30",
+        "degree": [
+          30,
+          30
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      }
+    ]
+  },
+  {
+    "row": [
+      4306,
+      12,
+      153,
+      "1",
+      null,
+      9000
+    ],
+    "target_dimension": 1,
+    "counts": {
+      "target_zero": 55,
+      "factor_not_d2_cycle": 5,
+      "unknown": 35
+    },
+    "joint_kernel": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "factors": [
+      {
+        "id": 1,
+        "mon": "0,1",
+        "degree": [
+          1,
+          1
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 3,
+        "mon": "1,1",
+        "degree": [
+          1,
+          2
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 2,
+        "mon": "0,2",
+        "degree": [
+          2,
+          2
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 4,
+        "mon": "0,3",
+        "degree": [
+          3,
+          3
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 7,
+        "mon": "2,1",
+        "degree": [
+          1,
+          4
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 6,
+        "mon": "1,2",
+        "degree": [
+          2,
+          4
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 5,
+        "mon": "0,4",
+        "degree": [
+          4,
+          4
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 9,
+        "mon": "0,1,2,1",
+        "degree": [
+          2,
+          5
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 8,
+        "mon": "0,5",
+        "degree": [
+          5,
+          5
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 11,
+        "mon": "0,2,2,1",
+        "degree": [
+          3,
+          6
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 10,
+        "mon": "0,6",
+        "degree": [
+          6,
+          6
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 12,
+        "mon": "0,7",
+        "degree": [
+          7,
+          7
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 15,
+        "mon": "3,1",
+        "degree": [
+          1,
+          8
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 14,
+        "mon": "2,2",
+        "degree": [
+          2,
+          8
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 13,
+        "mon": "0,8",
+        "degree": [
+          8,
+          8
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 17,
+        "mon": "0,1,3,1",
+        "degree": [
+          2,
+          9
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 16,
+        "mon": "0,9",
+        "degree": [
+          9,
+          9
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 20,
+        "mon": "1,1,3,1",
+        "degree": [
+          2,
+          10
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 19,
+        "mon": "0,2,3,1",
+        "degree": [
+          3,
+          10
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 18,
+        "mon": "0,10",
+        "degree": [
+          10,
+          10
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 23,
+        "mon": "4,1",
+        "degree": [
+          3,
+          11
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 22,
+        "mon": "0,3,3,1",
+        "degree": [
+          4,
+          11
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 21,
+        "mon": "0,11",
+        "degree": [
+          11,
+          11
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 25,
+        "mon": "1,2,3,1",
+        "degree": [
+          3,
+          12
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 24,
+        "mon": "0,12",
+        "degree": [
+          12,
+          12
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 27,
+        "mon": "1,1,4,1",
+        "degree": [
+          4,
+          13
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 26,
+        "mon": "0,13",
+        "degree": [
+          13,
+          13
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 29,
+        "mon": "5,1",
+        "degree": [
+          5,
+          14
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 28,
+        "mon": "0,14",
+        "degree": [
+          14,
+          14
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 30,
+        "mon": "0,15",
+        "degree": [
+          15,
+          15
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 35,
+        "mon": "7,1",
+        "degree": [
+          1,
+          16
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 34,
+        "mon": "3,2",
+        "degree": [
+          2,
+          16
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 33,
+        "mon": "6,1",
+        "degree": [
+          5,
+          16
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 32,
+        "mon": "1,1,5,1",
+        "degree": [
+          6,
+          16
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 31,
+        "mon": "0,16",
+        "degree": [
+          16,
+          16
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 39,
+        "mon": "0,1,7,1",
+        "degree": [
+          2,
+          17
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 38,
+        "mon": "0,1,3,2",
+        "degree": [
+          3,
+          17
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 37,
+        "mon": "0,1,6,1",
+        "degree": [
+          6,
+          17
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 36,
+        "mon": "0,17",
+        "degree": [
+          17,
+          17
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 44,
+        "mon": "1,1,7,1",
+        "degree": [
+          2,
+          18
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 43,
+        "mon": "0,2,7,1",
+        "degree": [
+          3,
+          18
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 42,
+        "mon": "8,1",
+        "degree": [
+          4,
+          18
+        ],
+        "source_image": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 41,
+        "mon": "0,2,6,1",
+        "degree": [
+          7,
+          18
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 40,
+        "mon": "0,18",
+        "degree": [
+          18,
+          18
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 47,
+        "mon": "0,3,7,1",
+        "degree": [
+          4,
+          19
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 46,
+        "mon": "0,1,8,1",
+        "degree": [
+          5,
+          19
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 45,
+        "mon": "0,19",
+        "degree": [
+          19,
+          19
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 53,
+        "mon": "2,1,7,1",
+        "degree": [
+          2,
+          20
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 52,
+        "mon": "1,2,7,1",
+        "degree": [
+          3,
+          20
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 50,
+        "mon": "1,1,8,1",
+        "degree": [
+          5,
+          20
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 51,
+        "mon": "0,4,7,1",
+        "degree": [
+          5,
+          20
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 49,
+        "mon": "0,2,8,1",
+        "degree": [
+          6,
+          20
+        ],
+        "source_image": [
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 48,
+        "mon": "0,20",
+        "degree": [
+          20,
+          20
+        ],
+        "source_image": [],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 57,
+        "mon": "0,1,2,1,7,1",
+        "degree": [
+          3,
+          21
+        ],
+        "source_image": [
+          0,
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 56,
+        "mon": "9,1",
+        "degree": [
+          4,
+          21
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 55,
+        "mon": "0,5,7,1",
+        "degree": [
+          6,
+          21
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          [
+            0,
+            0
+          ]
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 54,
+        "mon": "0,21",
+        "degree": [
+          21,
+          21
+        ],
+        "source_image": [
+          0,
+          0
+        ],
+        "target_images": [
+          []
+        ],
+        "status": "target_zero"
+      },
+      {
+        "id": 64,
+        "mon": "11,1",
+        "degree": [
+          3,
+          22
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 18,177"
+      },
+      {
+        "id": 62,
+        "mon": "10,1",
+        "degree": [
+          4,
+          22
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 63,
+        "mon": "0,2,2,1,7,1",
+        "degree": [
+          4,
+          22
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 19,177"
+      },
+      {
+        "id": 61,
+        "mon": "0,1,9,1",
+        "degree": [
+          5,
+          22
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 20,177"
+      },
+      {
+        "id": 60,
+        "mon": "1,2,8,1",
+        "degree": [
+          6,
+          22
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 21,177"
+      },
+      {
+        "id": 59,
+        "mon": "0,6,7,1",
+        "degree": [
+          7,
+          22
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 22,177"
+      },
+      {
+        "id": 58,
+        "mon": "0,22",
+        "degree": [
+          22,
+          22
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 37,177"
+      },
+      {
+        "id": 69,
+        "mon": "0,1,10,1",
+        "degree": [
+          5,
+          23
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 68,
+        "mon": "0,2,9,1",
+        "degree": [
+          6,
+          23
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 21,178"
+      },
+      {
+        "id": 67,
+        "mon": "12,1",
+        "degree": [
+          7,
+          23
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 22,178"
+      },
+      {
+        "id": 66,
+        "mon": "0,7,7,1",
+        "degree": [
+          8,
+          23
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 23,178"
+      },
+      {
+        "id": 65,
+        "mon": "0,23",
+        "degree": [
+          23,
+          23
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 38,178"
+      },
+      {
+        "id": 73,
+        "mon": "2,2,7,1",
+        "degree": [
+          3,
+          24
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 15,177"
+      },
+      {
+        "id": 72,
+        "mon": "13,1",
+        "degree": [
+          4,
+          24
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 16,177"
+      },
+      {
+        "id": 71,
+        "mon": "0,3,9,1",
+        "degree": [
+          7,
+          24
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 19,177"
+      },
+      {
+        "id": 70,
+        "mon": "0,24",
+        "degree": [
+          24,
+          24
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 36,177"
+      },
+      {
+        "id": 76,
+        "mon": "0,1,13,1",
+        "degree": [
+          5,
+          25
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 17,178"
+      },
+      {
+        "id": 75,
+        "mon": "1,1,12,1",
+        "degree": [
+          8,
+          25
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 20,178"
+      },
+      {
+        "id": 74,
+        "mon": "0,25",
+        "degree": [
+          25,
+          25
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 37,178"
+      },
+      {
+        "id": 81,
+        "mon": "2,1,11,1",
+        "degree": [
+          4,
+          26
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 16,179"
+      },
+      {
+        "id": 80,
+        "mon": "1,1,13,1",
+        "degree": [
+          5,
+          26
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 17,179"
+      },
+      {
+        "id": 79,
+        "mon": "0,2,13,1",
+        "degree": [
+          6,
+          26
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 18,179"
+      },
+      {
+        "id": 78,
+        "mon": "14,1",
+        "degree": [
+          9,
+          26
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 21,179"
+      },
+      {
+        "id": 77,
+        "mon": "0,26",
+        "degree": [
+          26,
+          26
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 38,179"
+      },
+      {
+        "id": 83,
+        "mon": "4,1,7,1",
+        "degree": [
+          4,
+          27
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 16,180"
+      },
+      {
+        "id": 82,
+        "mon": "0,27",
+        "degree": [
+          27,
+          27
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 39,180"
+      },
+      {
+        "id": 87,
+        "mon": "2,1,13,1",
+        "degree": [
+          5,
+          28
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 17,181"
+      },
+      {
+        "id": 86,
+        "mon": "15,1",
+        "degree": [
+          9,
+          28
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 21,181"
+      },
+      {
+        "id": 85,
+        "mon": "1,1,14,1",
+        "degree": [
+          10,
+          28
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 22,181"
+      },
+      {
+        "id": 84,
+        "mon": "0,28",
+        "degree": [
+          28,
+          28
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 40,181"
+      },
+      {
+        "id": 91,
+        "mon": "1,1,4,1,7,1",
+        "degree": [
+          5,
+          29
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 17,182"
+      },
+      {
+        "id": 90,
+        "mon": "0,1,2,1,13,1",
+        "degree": [
+          6,
+          29
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 18,182"
+      },
+      {
+        "id": 89,
+        "mon": "0,1,15,1",
+        "degree": [
+          10,
+          29
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 22,182"
+      },
+      {
+        "id": 88,
+        "mon": "0,29",
+        "degree": [
+          29,
+          29
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 41,182"
+      },
+      {
+        "id": 95,
+        "mon": "17,1",
+        "degree": [
+          7,
+          30
+        ],
+        "status": "factor_not_d2_cycle"
+      },
+      {
+        "id": 94,
+        "mon": "16,1",
+        "degree": [
+          8,
+          30
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 20,183"
+      },
+      {
+        "id": 93,
+        "mon": "0,2,15,1",
+        "degree": [
+          11,
+          30
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 23,183"
+      },
+      {
+        "id": 92,
+        "mon": "0,30",
+        "degree": [
+          30,
+          30
+        ],
+        "status": "unknown",
+        "reason": "unknown d2 at 42,183"
+      }
+    ]
+  }
+]

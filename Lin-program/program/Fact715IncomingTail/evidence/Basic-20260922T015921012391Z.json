@@ -1,0 +1,27 @@
+{
+  "source_sha256": "ccdfe6f6191d82ccf6d4c9edc8259f9d2c92e8af719b2852abda49018a93a7b7",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact715IncomingTail/Data.olean": "def5ba266032154ac21755d6b1a4f6228837e60f587ec5520412fb8343ebaf21",
+    ".lake/build/lib/lean/Fact721ConstructedActual/Basic.olean": "2ccbb5c0aa78b58d3617439adc49c33b8b7018dced44209c3bf600c402761024",
+    ".lake/build/lib/lean/Row2773D4Leibniz/Descent.olean": "e96fb13f53db56542f923a46edf72de83917e2b14869ae369b0efcbaa5f2f3a9",
+    ".lake/build/lib/lean/ActualAdamsSystemBridge/Tail.olean": "e9a2dd6d411b8f21dccd24684b49fb56961fd9a4906ada760dc7e99cca79caed"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact715IncomingTail/Basic.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact715IncomingTail/Basic.olean"
+  ],
+  "log": "evidence/Basic-20260922T015921012391Z.log",
+  "external_input_sha256": {},
+  "observed_exit_code": 1,
+  "log_sha256": "cff3e70c01baf622c7afa79596ec6dae12f0562901e5a5e83ee8b462932b47c5",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/Fact715IncomingTail/Data.olean": "def5ba266032154ac21755d6b1a4f6228837e60f587ec5520412fb8343ebaf21",
+    ".lake/build/lib/lean/Fact721ConstructedActual/Basic.olean": "2ccbb5c0aa78b58d3617439adc49c33b8b7018dced44209c3bf600c402761024",
+    ".lake/build/lib/lean/Row2773D4Leibniz/Descent.olean": "e96fb13f53db56542f923a46edf72de83917e2b14869ae369b0efcbaa5f2f3a9",
+    ".lake/build/lib/lean/ActualAdamsSystemBridge/Tail.olean": "e9a2dd6d411b8f21dccd24684b49fb56961fd9a4906ada760dc7e99cca79caed"
+  },
+  "inputs_stable": true
+}

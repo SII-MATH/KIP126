@@ -1,0 +1,22 @@
+{
+  "source_sha256": "b4447490730829a7e9e839aac486f1ba4d5e76c9e3b346d336ab3e62f5f8bde3",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact721FirstLater/NoHit.olean": "c8ab0d1e59fcb086d161ef37c4059a820b6a0665e4fce36e7a853b4e637875b7",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/lib/lean/Lean/Elab/Tactic.olean": "cc9e89c311871fa7e0f02ba6cdcb4e40d779b44bc1c28ed1cff1e4f1da9e8378"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact721FirstLater/Tactic.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact721FirstLater/Tactic.olean"
+  ],
+  "log": "evidence/Tactic-20260922T024416983568Z.log",
+  "external_input_sha256": {
+    "Fact721FirstLater/source.json": "ddd5323fcf68b1d364c0203dbbf25b3c5fb6ce20078b69336953832789c60f44"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "bff5b56b6d9bd6cf44de1eb361619204755ee0ca1e25bfb8622802953e37ef40",
+  "inputs_stable": true,
+  "olean_sha256": "5a56a5e9525de38d1b2e5bff6dd85220fbb2be07f9715a8aa552dfe19e627124"
+}

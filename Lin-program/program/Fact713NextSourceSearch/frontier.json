@@ -1,0 +1,129 @@
+{
+  "old_shortest_path": [
+    "S0:9,132:d6",
+    "S0:3,127:d5",
+    "S0:8,131:d4",
+    "S0:12,134:d3"
+  ],
+  "new_d7_shortest_paths": [
+    {
+      "path": [
+        "S0:9,132:d7",
+        "S0:2,126:d6",
+        "S0:2,126:d5",
+        "S0:7,130:d4",
+        "S0:11,133:d3"
+      ],
+      "failure": {
+        "status": "unresolved",
+        "first_failure": "unknown S0:11,133:d3:row2622; target dimension 1",
+        "unresolved_predecessors": []
+      }
+    },
+    {
+      "path": [
+        "S0:9,132:d7",
+        "S0:2,126:d6",
+        "S0:8,131:d5",
+        "S0:13,135:d4",
+        "S0:17,138:d3"
+      ],
+      "failure": {
+        "status": "unresolved",
+        "first_failure": "unknown S0:17,138:d3:row2994; target dimension 2",
+        "unresolved_predecessors": []
+      }
+    }
+  ],
+  "raw_rows": {
+    "2684": [
+      2684,
+      12,
+      134,
+      "0",
+      null,
+      9000
+    ],
+    "2622": [
+      2622,
+      11,
+      133,
+      "1",
+      null,
+      9000
+    ],
+    "2431": [
+      2431,
+      9,
+      130,
+      "1",
+      null,
+      9000
+    ]
+  },
+  "ordinary_factor_route_rejected": {
+    "(1, 32)": [
+      [
+        105,
+        "18,1",
+        "0"
+      ]
+    ],
+    "(11, 102)": [
+      [
+        1303,
+        "188,1",
+        "0"
+      ],
+      [
+        1304,
+        "0,2,8,2,69,1",
+        ""
+      ]
+    ]
+  },
+  "note": "Both proposed monomial factors of row2684 have nonzero d2, so the ordinary E3 Leibniz factor route is invalid. C2h5 naturality supplies the separate conditional d3 theorem.",
+  "row2622_factor_details": {
+    "raw": [
+      2622,
+      11,
+      133,
+      "1",
+      null,
+      9000
+    ],
+    "representative_basis_id": 2622,
+    "monomial": "69,1,79,1",
+    "left_factor": {
+      "generator": 69,
+      "name": "h6",
+      "degree": [
+        1,
+        64
+      ],
+      "basis_id": 401,
+      "d2": "0"
+    },
+    "right_factor": {
+      "generator": 79,
+      "name": "Md0",
+      "degree": [
+        10,
+        69
+      ],
+      "basis_id": 488,
+      "d2": "",
+      "d3_target_degree": [
+        13,
+        71
+      ],
+      "d3_target_E2_empty": true
+    },
+    "target_degree": [
+      14,
+      135
+    ],
+    "target_E3_dimension": 1,
+    "issue": "h6 raw d2 is nonzero, so h6 is not an E3 factor; map or higher rule needed."
+  }
+}

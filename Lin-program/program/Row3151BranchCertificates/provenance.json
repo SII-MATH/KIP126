@@ -1,0 +1,104 @@
+{
+  "additional_premises": [
+    "complete kernel at S0(7,134)d3 and survivor cycle if this family is realized through row2708",
+    "row2707 d4 prefix gives zero incoming column",
+    "stored row2926 / incoming3151 d4 value semantics"
+  ],
+  "branches": [
+    "00",
+    "01",
+    "10",
+    "11"
+  ],
+  "conditional_uses": [
+    {
+      "block": "S0:11,137:d3",
+      "kind": "conditional_cnu_eta",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2925,
+        "1,2",
+        null,
+        9000
+      ],
+      "source": [
+        11,
+        137
+      ],
+      "target_predecessor": "S0:14,139:d2"
+    },
+    {
+      "block": "S0:11,137:d3",
+      "kind": "conditional_h3_d0",
+      "object": "S0",
+      "page": 3,
+      "row": [
+        2796,
+        "2",
+        null,
+        9000
+      ],
+      "source": [
+        8,
+        135
+      ],
+      "target_predecessor": "S0:11,137:d2"
+    }
+  ],
+  "distinct_events": 1,
+  "event": 3151,
+  "family_entries_each": 5,
+  "input_sha256": {
+    "AggregateD5Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "prior_steps_each": 4,
+  "raw_rows": {
+    "2707": [
+      2707,
+      7,
+      134,
+      "2",
+      null,
+      9990
+    ],
+    "2708": [
+      2708,
+      7,
+      134,
+      "0,1",
+      null,
+      9997
+    ],
+    "2925": [
+      2925,
+      11,
+      137,
+      "1,2",
+      null,
+      9000
+    ],
+    "2926": [
+      2926,
+      11,
+      137,
+      "2",
+      "1",
+      9996
+    ],
+    "3151": [
+      3151,
+      15,
+      140,
+      "1",
+      "2",
+      4
+    ]
+  },
+  "scope": "Four separate finite families; no extension of the accepted95 aggregate, no supplied target d4 comparison or full Adams realization.",
+  "source_basis_id": 2925,
+  "target_basis_id": 3151,
+  "unknown": "The entire row2925 d4 column ranges over all four vectors. No candidate is selected or assumed to vanish."
+}

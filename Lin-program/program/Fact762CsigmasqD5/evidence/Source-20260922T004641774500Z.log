@@ -1,0 +1,15 @@
+Fact762CsigmasqD5/Source.lean:79:4: error: Type mismatch
+  source3_cycle
+has type
+  InKernel (matrixOf 1 2 c14_154_3.outgoing) named
+but is expected to have type
+  InKernel (matrixOf c14_154_3.k c14_154_3.m c14_154_3.outgoing) named
+'Fact762CsigmasqD5.Source.Stage2.input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Stage3.input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Stage4.input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.map_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.map_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.coordinate3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.coordinate4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.coordinate5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact762CsigmasqD5.Source.Prefix.named_image' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

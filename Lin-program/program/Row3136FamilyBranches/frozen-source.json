@@ -1,0 +1,407 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Row3136FamilyBranches.Data",
+      "axiom_reports": 23,
+      "source_sha256": "d8a57c5fe2923c62d33d9bd78ef615e556a93c825f0effe22a4a1b423597744b",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713Row2431Continuation/Branches.olean": "610e80f7d7882cf5d01665c3ed1a7acaecb014a0492d10754727ac16b6d2085c",
+        ".lake/build/lib/lean/Row3305H0Search/Assembly.olean": "741cec225f7a3f1bd4f7e4c1ef2593d56fd979e9fca51b6ce12a1e6162afccfe",
+        ".lake/build/lib/lean/Row3136SquareCandidates/Parameters.olean": "da1b8cfcf2a67e09f4981cd2112a56fb29cf30edcf75367e7966de3adb180ce6"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/Data.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/Data.olean"
+      ],
+      "log": "evidence/Data-20260922T005754706271Z.log",
+      "external_input_sha256": {
+        "Row3136FamilyBranches/wire/ResidualA0_S0_20_140_d3.json": "562cbdf84af44fffcc60f7a6b82a1c36eb980a42c432dcfd043d05992f14bd43",
+        "Row3136FamilyBranches/wire/ResidualA0_S0_23_142_d3.json": "b0b78d894cfd27d631b4133ca82d4499b459853d2e34a32e5b09487321fc31f3",
+        "Row3136FamilyBranches/wire/ResidualA0_S0_26_144_d2.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+        "Row3136FamilyBranches/wire/ResidualA0_S0_26_144_d3.json": "6553c5b7f7db2097159dbde60bb8de89c1856b0e04a275673865920ef23e2a77",
+        "Row3136FamilyBranches/wire/ResidualA0_S0_29_146_d2.json": "bf5fb197d6c45fd129f437a6334bb266c966024f0d23493436b13898ca7550a7",
+        "Row3136FamilyBranches/wire/ResidualA1_S0_16_137_d4.json": "9dc3a5feadbef49e1951a18371a9fe924c1e2b1047d035dc52a262e9aeb010ac",
+        "Row3136FamilyBranches/wire/ResidualA1_S0_20_140_d3.json": "b0ed44e24ad2da265d3eff5c864773b126fa8f972f6b7a3f866e4ea018f59039",
+        "Row3136FamilyBranches/wire/ResidualA1_S0_23_142_d3.json": "2a8d7d01a6d509c95d7506f9c98926a6af78306405e1142bb31e5ac209271515",
+        "Row3136FamilyBranches/wire/ResidualA1_S0_25_144_d3.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "Row3136FamilyBranches/wire/ResidualA1_S0_26_144_d2.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+        "Row3136FamilyBranches/wire/ResidualA1_S0_26_144_d3.json": "6553c5b7f7db2097159dbde60bb8de89c1856b0e04a275673865920ef23e2a77",
+        "Row3136FamilyBranches/wire/ResidualA1_S0_28_146_d2.json": "5e64149ef35c36071b85867994e2a6f6fcfa2abb828990569dbd95e2a1239f3e",
+        "Row3136FamilyBranches/wire/ResidualA1_S0_29_146_d2.json": "bf5fb197d6c45fd129f437a6334bb266c966024f0d23493436b13898ca7550a7",
+        "Row3136FamilyBranches/wire/ZeroA0_S0_20_140_d3.json": "8a28ddb6c8a907e5942412e6fb35bc13b34fc987afc3396785c3fe2ddb6c4e46",
+        "Row3136FamilyBranches/wire/ZeroA0_S0_23_142_d3.json": "b0b78d894cfd27d631b4133ca82d4499b459853d2e34a32e5b09487321fc31f3",
+        "Row3136FamilyBranches/wire/ZeroA0_S0_26_144_d2.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+        "Row3136FamilyBranches/wire/ZeroA0_S0_26_144_d3.json": "6553c5b7f7db2097159dbde60bb8de89c1856b0e04a275673865920ef23e2a77",
+        "Row3136FamilyBranches/wire/ZeroA0_S0_29_146_d2.json": "bf5fb197d6c45fd129f437a6334bb266c966024f0d23493436b13898ca7550a7",
+        "Row3136FamilyBranches/wire/ZeroA1_S0_20_140_d3.json": "8f714491baf4cfa1abf50b2e2cfea236f234c9d75ecbfc0b794400b1223ae8a4",
+        "Row3136FamilyBranches/wire/ZeroA1_S0_23_142_d3.json": "2a8d7d01a6d509c95d7506f9c98926a6af78306405e1142bb31e5ac209271515",
+        "Row3136FamilyBranches/wire/ZeroA1_S0_26_144_d2.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+        "Row3136FamilyBranches/wire/ZeroA1_S0_26_144_d3.json": "6553c5b7f7db2097159dbde60bb8de89c1856b0e04a275673865920ef23e2a77",
+        "Row3136FamilyBranches/wire/ZeroA1_S0_29_146_d2.json": "bf5fb197d6c45fd129f437a6334bb266c966024f0d23493436b13898ca7550a7"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "214aac9f7530c13b26d2113863ad419ef2742b837a1a0bcad9f884935a747137",
+      "inputs_stable": true,
+      "olean_sha256": "622d0fd10246ce97d09c6c6ca524406744761a88cc14d3bf31007d0883b0d9c4"
+    },
+    {
+      "module": "Row3136FamilyBranches.ZeroA0Extra",
+      "axiom_reports": 1,
+      "source_sha256": "74a2c3d0812e593fa8bde6af72b53c5aabe508995540c0da675856adbf864814",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/Data.olean": "622d0fd10246ce97d09c6c6ca524406744761a88cc14d3bf31007d0883b0d9c4"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/ZeroA0Extra.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/ZeroA0Extra.olean"
+      ],
+      "log": "evidence/ZeroA0Extra-20260922T005758293291Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "9660b030fd53f502b806a5992d455b192875e5571091801b054d281367e6a3ae",
+      "inputs_stable": true,
+      "olean_sha256": "ef4529151b010522f65cf0d5a91624c48f7a034ca0926bc72c6ef934e1c414a9"
+    },
+    {
+      "module": "Row3136FamilyBranches.ZeroA0Cross",
+      "axiom_reports": 4,
+      "source_sha256": "d20366844057301e544d7813099c385fb228ae9e8c22d38a224bd601ea971944",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/ZeroA0Extra.olean": "ef4529151b010522f65cf0d5a91624c48f7a034ca0926bc72c6ef934e1c414a9"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/ZeroA0Cross.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/ZeroA0Cross.olean"
+      ],
+      "log": "evidence/ZeroA0Cross-20260922T005801259480Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "b2da45e0f6a76550f7f24c4794479155f0ebf0be409bac5490214a1d10ed8210",
+      "inputs_stable": true,
+      "olean_sha256": "1fcb2113ffb1415efca03b3960d5cc48e42ffd0c21b1a629939d25a5d3c9f904"
+    },
+    {
+      "module": "Row3136FamilyBranches.ZeroA1Extra",
+      "axiom_reports": 1,
+      "source_sha256": "c02026a41a7b612eb79f820216416d55afeee515509f0f63181f3feeb635c537",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/Data.olean": "622d0fd10246ce97d09c6c6ca524406744761a88cc14d3bf31007d0883b0d9c4"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/ZeroA1Extra.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/ZeroA1Extra.olean"
+      ],
+      "log": "evidence/ZeroA1Extra-20260922T005825884768Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "7b47521ed14be8090649225a31a119916d5de37ba5fe84f5ba8afd50868238bc",
+      "inputs_stable": true,
+      "olean_sha256": "c8370d152afa762c5946a02fcb262f914a92375e5c4bd8937424ba5e3f521b89"
+    },
+    {
+      "module": "Row3136FamilyBranches.ZeroA1Cross",
+      "axiom_reports": 4,
+      "source_sha256": "b568265fcdde1223f3818b63478b4bdabadf4079114ef4ab4dd9dde0fb5e31d7",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/ZeroA1Extra.olean": "c8370d152afa762c5946a02fcb262f914a92375e5c4bd8937424ba5e3f521b89"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/ZeroA1Cross.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/ZeroA1Cross.olean"
+      ],
+      "log": "evidence/ZeroA1Cross-20260922T005828867490Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "48b63f739e77b47db33af0cb3b97e81fb0a8cbbdd9404c2204ff8dea9718fc92",
+      "inputs_stable": true,
+      "olean_sha256": "e324a0ee8900c1674155bcbb522629216366dca1cf64ee6e68617677b905421d"
+    },
+    {
+      "module": "Row3136FamilyBranches.ResidualA0Extra",
+      "axiom_reports": 1,
+      "source_sha256": "5971341688873ebd989eadb358951b1ed14d20ed15200abd8edb1b7fc3cfc801",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/Data.olean": "622d0fd10246ce97d09c6c6ca524406744761a88cc14d3bf31007d0883b0d9c4"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/ResidualA0Extra.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/ResidualA0Extra.olean"
+      ],
+      "log": "evidence/ResidualA0Extra-20260922T005852669211Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "fb1d0a1f87e0499a6f70e177e9c666c66f7e3c50275f6bfd07eafab0aa321828",
+      "inputs_stable": true,
+      "olean_sha256": "ea741c0e1f1ab0df84401c71ccf89a4a455d047a35f630e47efdeb1e44887c33"
+    },
+    {
+      "module": "Row3136FamilyBranches.ResidualA0Cross",
+      "axiom_reports": 4,
+      "source_sha256": "89d5445967dccf7f9c833847dac57464668054abd227dade6d200ea75b66bfc9",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/ResidualA0Extra.olean": "ea741c0e1f1ab0df84401c71ccf89a4a455d047a35f630e47efdeb1e44887c33"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/ResidualA0Cross.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/ResidualA0Cross.olean"
+      ],
+      "log": "evidence/ResidualA0Cross-20260922T005855530995Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "dffb4e70c3b3bdbc98429e6db75e3383af7b26722ddf14cd7370c00b6b5c9b0a",
+      "inputs_stable": true,
+      "olean_sha256": "3fcd038da9219f551a19fdf64a3a1dc8a5bce93fe0a873620382b7624fa1d353"
+    },
+    {
+      "module": "Row3136FamilyBranches.ResidualA1Extra",
+      "axiom_reports": 1,
+      "source_sha256": "4d21673403434119b6649e3ee7120cba7a133028fcde509aca59d25d4116f8d5",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/Data.olean": "622d0fd10246ce97d09c6c6ca524406744761a88cc14d3bf31007d0883b0d9c4"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/ResidualA1Extra.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/ResidualA1Extra.olean"
+      ],
+      "log": "evidence/ResidualA1Extra-20260922T005920334141Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "4d322140a11bf7901eb2b432badb00e722a03176301d38fdab82b093cfac5c45",
+      "inputs_stable": true,
+      "olean_sha256": "ddd6ba3479c1f3821475d8e1b55b868280e0c15b418114b756a05dbfe54406a3"
+    },
+    {
+      "module": "Row3136FamilyBranches.ResidualA1Cross",
+      "axiom_reports": 4,
+      "source_sha256": "d98d04af5b4af5a8f9a7521f7eb2851c490aacffcc6f83c4bdc769bf56ae5b92",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/ResidualA1Extra.olean": "ddd6ba3479c1f3821475d8e1b55b868280e0c15b418114b756a05dbfe54406a3"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/ResidualA1Cross.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/ResidualA1Cross.olean"
+      ],
+      "log": "evidence/ResidualA1Cross-20260922T005923368355Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "6c91fca073ebc46bc1d4a98d3326b5c65c4b05bc47435baa5b84b59328611200",
+      "inputs_stable": true,
+      "olean_sha256": "2555477c5fcf8ee3836810596baf706f504d732fd2f924d07cbdc51355fc861d"
+    },
+    {
+      "module": "Row3136FamilyBranches.Branches",
+      "axiom_reports": 13,
+      "source_sha256": "349993521f4d231a8e9ed9a8f8e04f5206e7c5112856d2779e3f493ef894e366",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/ZeroA0Cross.olean": "1fcb2113ffb1415efca03b3960d5cc48e42ffd0c21b1a629939d25a5d3c9f904",
+        ".lake/build/lib/lean/Row3136FamilyBranches/ZeroA1Cross.olean": "e324a0ee8900c1674155bcbb522629216366dca1cf64ee6e68617677b905421d",
+        ".lake/build/lib/lean/Row3136FamilyBranches/ResidualA0Cross.olean": "3fcd038da9219f551a19fdf64a3a1dc8a5bce93fe0a873620382b7624fa1d353",
+        ".lake/build/lib/lean/Row3136FamilyBranches/ResidualA1Cross.olean": "2555477c5fcf8ee3836810596baf706f504d732fd2f924d07cbdc51355fc861d"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/Branches.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/Branches.olean"
+      ],
+      "log": "evidence/Branches-20260922T010006331072Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "9a6223efa2c4cbbb9c810cfc3f2aa878471dc6623b4cae026ca1dbf053b75efa",
+      "inputs_stable": true,
+      "olean_sha256": "4f7b0a4c9e001469e282fb6bd405b2e965aeb037bcaf805cfebad2c0c52e2bf1"
+    },
+    {
+      "module": "Row3136FamilyBranches.CoordinateBridge",
+      "axiom_reports": 10,
+      "source_sha256": "821409dca9c35db3075b7c692b616f5c375da2ee66476f3881afc0fcc8f7a898",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/Branches.olean": "4f7b0a4c9e001469e282fb6bd405b2e965aeb037bcaf805cfebad2c0c52e2bf1",
+        ".lake/build/lib/lean/PageTransitionCertificates/InducedMap.olean": "00683f19bb38e7aad45da1e73459905cfe6f515671711dcb59ad28d32da982e8"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/CoordinateBridge.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/CoordinateBridge.olean"
+      ],
+      "log": "evidence/CoordinateBridge-20260922T010049125415Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "487b52ca9addc8e12cac39d110f84410d706acdd8a7ca2896fae0eed7b204d26",
+      "inputs_stable": true,
+      "olean_sha256": "568998c0b75e9715163f58b89b1cd839f5fcfd23cc4e575236bc41d312235309"
+    },
+    {
+      "module": "Row3136FamilyBranches.Actual",
+      "axiom_reports": 9,
+      "source_sha256": "c102cf9b4f471a0f116217e9cdd228ff083d87ec0d7594571069e761080f9b11",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row3136FamilyBranches/CoordinateBridge.olean": "568998c0b75e9715163f58b89b1cd839f5fcfd23cc4e575236bc41d312235309"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row3136FamilyBranches/Actual.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row3136FamilyBranches/Actual.olean"
+      ],
+      "log": "evidence/Actual-20260922T010403348183Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "bdc0c973fed7a2bef867c6e503cfca847529ceecd437a2a099f0a36a76c4c4cf",
+      "inputs_stable": true,
+      "olean_sha256": "c157045ba956d8dfce791adff55e5868aaf9ae9d6eb7ca912e9ba9da72ebab1e"
+    }
+  ],
+  "axiom_reports": 75,
+  "dependency_note": "Direct dependency hashes are historical observations at compile time; root builds may later rebuild registered dependencies.",
+  "files": {
+    "Row3136FamilyBranches/Actual-compile.json": "75552c4dfae7c786a135eb51fb4f1bf8b4b574158fdd3047373b25ebb9b5866c",
+    "Row3136FamilyBranches/Actual.lean": "c102cf9b4f471a0f116217e9cdd228ff083d87ec0d7594571069e761080f9b11",
+    "Row3136FamilyBranches/Branches-compile.json": "711fb7652144391b226e08ef595eda9046a7322b5ab7d28bff4d2be759ad58c7",
+    "Row3136FamilyBranches/Branches.lean": "349993521f4d231a8e9ed9a8f8e04f5206e7c5112856d2779e3f493ef894e366",
+    "Row3136FamilyBranches/CoordinateBridge-compile.json": "ebf5cfb40a7bb7faf0df8718697f65f5d0886bc8e1ba74537748d9d3cd1c9eaf",
+    "Row3136FamilyBranches/CoordinateBridge.lean": "821409dca9c35db3075b7c692b616f5c375da2ee66476f3881afc0fcc8f7a898",
+    "Row3136FamilyBranches/Data-compile.json": "b58a8f74dc3b4444dcc9badd1857b01993e2d8c54ddc1481c3eec7ebd25aba3c",
+    "Row3136FamilyBranches/Data.lean": "d8a57c5fe2923c62d33d9bd78ef615e556a93c825f0effe22a4a1b423597744b",
+    "Row3136FamilyBranches/README.md": "32dd026ce71a55958e9c495ada6d1373d4556ed6a616f630bf3e97eab1c5bdef",
+    "Row3136FamilyBranches/ResidualA0Cross-compile.json": "f97a2481190e9ed28da9f9430bf559f37480f89c2d657fecb81672000567bc31",
+    "Row3136FamilyBranches/ResidualA0Cross.lean": "89d5445967dccf7f9c833847dac57464668054abd227dade6d200ea75b66bfc9",
+    "Row3136FamilyBranches/ResidualA0Extra-compile.json": "4914006b4389bd77704cb4534b9501836aa51e01933152965ff0f3b9b3a13161",
+    "Row3136FamilyBranches/ResidualA0Extra.lean": "5971341688873ebd989eadb358951b1ed14d20ed15200abd8edb1b7fc3cfc801",
+    "Row3136FamilyBranches/ResidualA1Cross-compile.json": "7adb3175bcae2ae04e6195200ed020d34a52a94356aa51a843daa1d46638ff7b",
+    "Row3136FamilyBranches/ResidualA1Cross.lean": "d98d04af5b4af5a8f9a7521f7eb2851c490aacffcc6f83c4bdc769bf56ae5b92",
+    "Row3136FamilyBranches/ResidualA1Extra-compile.json": "dd2944452ab0b2ac80bc7f6722f3211ae83884b2c94251e1739361643e74cb12",
+    "Row3136FamilyBranches/ResidualA1Extra.lean": "4d21673403434119b6649e3ee7120cba7a133028fcde509aca59d25d4116f8d5",
+    "Row3136FamilyBranches/ZeroA0Cross-compile.json": "ea3c001d016bc4dc85b413570312be4ee3f23f30a669bdba25d3ccfedf35ae48",
+    "Row3136FamilyBranches/ZeroA0Cross.lean": "d20366844057301e544d7813099c385fb228ae9e8c22d38a224bd601ea971944",
+    "Row3136FamilyBranches/ZeroA0Extra-compile.json": "702413b1a31109ef485e0fc7f16dcb8b3f197c5ee40f2f65893f75c8d22f9e71",
+    "Row3136FamilyBranches/ZeroA0Extra.lean": "74a2c3d0812e593fa8bde6af72b53c5aabe508995540c0da675856adbf864814",
+    "Row3136FamilyBranches/ZeroA1Cross-compile.json": "afe17d1ec5aeaca2c329794a587d2f8e791a7fa1a6a17dfb71ee7f666464d202",
+    "Row3136FamilyBranches/ZeroA1Cross.lean": "b568265fcdde1223f3818b63478b4bdabadf4079114ef4ab4dd9dde0fb5e31d7",
+    "Row3136FamilyBranches/ZeroA1Extra-compile.json": "7fa581060bf12f49aa4b3f414509bd8b12bbf961bbbec1efe97fbe3f69844de4",
+    "Row3136FamilyBranches/ZeroA1Extra.lean": "c02026a41a7b612eb79f820216416d55afeee515509f0f63181f3feeb635c537",
+    "Row3136FamilyBranches/audit.json": "5ebe6d1adda1dbda2c72f1939861b97dc7c0e64bc262c1b95b60410a3f7271dc",
+    "Row3136FamilyBranches/audit.log": "5ebe6d1adda1dbda2c72f1939861b97dc7c0e64bc262c1b95b60410a3f7271dc",
+    "Row3136FamilyBranches/audit.py": "aa561df14aa293d4425b6f5de18c2492ba66bd12d59ac77062bdeff8bd667bd7",
+    "Row3136FamilyBranches/branches/residual_a0.json": "291c2fa6b5329a81b0155a986f69422a2d4604ae94d3cc28663fd0922024a49d",
+    "Row3136FamilyBranches/branches/residual_a1.json": "fa881e435628cc17e907dd885e6eab71d17f69c941919fd7daabbfb597776e7e",
+    "Row3136FamilyBranches/branches/summary.json": "bea2fcb6952b46f70f78cad743b39cd61ae8a14ef1508990a19a9c5aba469bfd",
+    "Row3136FamilyBranches/branches/zero_a0.json": "94e9a662004f623968124244a491949dbc0d04ca56d9f3204718e64fb9297cdf",
+    "Row3136FamilyBranches/branches/zero_a1.json": "e8526c7fb4a57274f40b4b1ffd0ac5e218dcc0c4eca40d6d708fdb8f21b33241",
+    "Row3136FamilyBranches/compile.py": "7e7fa9be97fcfc2ed04166b77cf27626c13230f33a5e3fd39fd62af4b5c0efb3",
+    "Row3136FamilyBranches/conditional-signature.json": "661277f37d352ef422c233e817cb0fae224618462901c673fbc8bf3d8e621c3d",
+    "Row3136FamilyBranches/evidence/Actual-20260922T010135474224Z.json": "9b60ced16be6049d3d8ddf19cd72aab721912343b4c76187586e37021dfbb638",
+    "Row3136FamilyBranches/evidence/Actual-20260922T010135474224Z.log": "b6e94b4e4a7342f642be61e9ded14c1cab26dcda639d2adbdeccdbaf61c509cf",
+    "Row3136FamilyBranches/evidence/Actual-20260922T010258376000Z.json": "6f868030052a357086493ab76b5a38dda0bddd954092aba94e1d7113658fb62c",
+    "Row3136FamilyBranches/evidence/Actual-20260922T010258376000Z.log": "d365ca648610eaee44dbd0614312146273510ff4e2a6eb445142e4282d29b247",
+    "Row3136FamilyBranches/evidence/Actual-20260922T010326408242Z.json": "0e36c81a46e03a7514a395522671480a7b2f8c8dc42d51b222ce79c3ee21bc3f",
+    "Row3136FamilyBranches/evidence/Actual-20260922T010326408242Z.log": "7ed286a17c6a63e2efa5bc21274b9ba2ceee69baff3af18e60eda1dab87f091a",
+    "Row3136FamilyBranches/evidence/Actual-20260922T010403348183Z.json": "75552c4dfae7c786a135eb51fb4f1bf8b4b574158fdd3047373b25ebb9b5866c",
+    "Row3136FamilyBranches/evidence/Actual-20260922T010403348183Z.log": "bdc0c973fed7a2bef867c6e503cfca847529ceecd437a2a099f0a36a76c4c4cf",
+    "Row3136FamilyBranches/evidence/Branches-20260922T010006331072Z.json": "711fb7652144391b226e08ef595eda9046a7322b5ab7d28bff4d2be759ad58c7",
+    "Row3136FamilyBranches/evidence/Branches-20260922T010006331072Z.log": "9a6223efa2c4cbbb9c810cfc3f2aa878471dc6623b4cae026ca1dbf053b75efa",
+    "Row3136FamilyBranches/evidence/CoordinateBridge-20260922T010049125415Z.json": "ebf5cfb40a7bb7faf0df8718697f65f5d0886bc8e1ba74537748d9d3cd1c9eaf",
+    "Row3136FamilyBranches/evidence/CoordinateBridge-20260922T010049125415Z.log": "487b52ca9addc8e12cac39d110f84410d706acdd8a7ca2896fae0eed7b204d26",
+    "Row3136FamilyBranches/evidence/Data-20260922T005754706271Z.json": "b58a8f74dc3b4444dcc9badd1857b01993e2d8c54ddc1481c3eec7ebd25aba3c",
+    "Row3136FamilyBranches/evidence/Data-20260922T005754706271Z.log": "214aac9f7530c13b26d2113863ad419ef2742b837a1a0bcad9f884935a747137",
+    "Row3136FamilyBranches/evidence/ResidualA0Cross-20260922T005855530995Z.json": "f97a2481190e9ed28da9f9430bf559f37480f89c2d657fecb81672000567bc31",
+    "Row3136FamilyBranches/evidence/ResidualA0Cross-20260922T005855530995Z.log": "dffb4e70c3b3bdbc98429e6db75e3383af7b26722ddf14cd7370c00b6b5c9b0a",
+    "Row3136FamilyBranches/evidence/ResidualA0Extra-20260922T005852669211Z.json": "4914006b4389bd77704cb4534b9501836aa51e01933152965ff0f3b9b3a13161",
+    "Row3136FamilyBranches/evidence/ResidualA0Extra-20260922T005852669211Z.log": "fb1d0a1f87e0499a6f70e177e9c666c66f7e3c50275f6bfd07eafab0aa321828",
+    "Row3136FamilyBranches/evidence/ResidualA1Cross-20260922T005923368355Z.json": "7adb3175bcae2ae04e6195200ed020d34a52a94356aa51a843daa1d46638ff7b",
+    "Row3136FamilyBranches/evidence/ResidualA1Cross-20260922T005923368355Z.log": "6c91fca073ebc46bc1d4a98d3326b5c65c4b05bc47435baa5b84b59328611200",
+    "Row3136FamilyBranches/evidence/ResidualA1Extra-20260922T005920334141Z.json": "dd2944452ab0b2ac80bc7f6722f3211ae83884b2c94251e1739361643e74cb12",
+    "Row3136FamilyBranches/evidence/ResidualA1Extra-20260922T005920334141Z.log": "4d322140a11bf7901eb2b432badb00e722a03176301d38fdab82b093cfac5c45",
+    "Row3136FamilyBranches/evidence/ZeroA0Cross-20260922T005801259480Z.json": "ea3c001d016bc4dc85b413570312be4ee3f23f30a669bdba25d3ccfedf35ae48",
+    "Row3136FamilyBranches/evidence/ZeroA0Cross-20260922T005801259480Z.log": "b2da45e0f6a76550f7f24c4794479155f0ebf0be409bac5490214a1d10ed8210",
+    "Row3136FamilyBranches/evidence/ZeroA0Extra-20260922T005758293291Z.json": "702413b1a31109ef485e0fc7f16dcb8b3f197c5ee40f2f65893f75c8d22f9e71",
+    "Row3136FamilyBranches/evidence/ZeroA0Extra-20260922T005758293291Z.log": "9660b030fd53f502b806a5992d455b192875e5571091801b054d281367e6a3ae",
+    "Row3136FamilyBranches/evidence/ZeroA1Cross-20260922T005828867490Z.json": "afe17d1ec5aeaca2c329794a587d2f8e791a7fa1a6a17dfb71ee7f666464d202",
+    "Row3136FamilyBranches/evidence/ZeroA1Cross-20260922T005828867490Z.log": "48b63f739e77b47db33af0cb3b97e81fb0a8cbbdd9404c2204ff8dea9718fc92",
+    "Row3136FamilyBranches/evidence/ZeroA1Extra-20260922T005825884768Z.json": "7fa581060bf12f49aa4b3f414509bd8b12bbf961bbbec1efe97fbe3f69844de4",
+    "Row3136FamilyBranches/evidence/ZeroA1Extra-20260922T005825884768Z.log": "7b47521ed14be8090649225a31a119916d5de37ba5fe84f5ba8afd50868238bc",
+    "Row3136FamilyBranches/family-review.json": "6f7a812652c28f7bfd95b2e5c0eac1df7642b714dcd8de3a2a0fc14f914f5268",
+    "Row3136FamilyBranches/family-review.log": "6f7a812652c28f7bfd95b2e5c0eac1df7642b714dcd8de3a2a0fc14f914f5268",
+    "Row3136FamilyBranches/freeze.py": "0b2b41fa8f5022941a1ed0551742599acdca2b9270a80774cbb4c906aed55db5",
+    "Row3136FamilyBranches/generate.log": "984bc072c6c178a086cb6f8708c1d3cc73aa3aced98689fcc5b08e8dd0a784fe",
+    "Row3136FamilyBranches/generate.py": "cb564abae718e8ac6307f2a8e75134018a7fc4c35bd5af09e343b7dc44ec750c",
+    "Row3136FamilyBranches/initial-unrebased/generate.log": "d1286c6d69aac0fae8da42387a7471fb9dc97cfca970f3dd10f0c2e431ef1bab",
+    "Row3136FamilyBranches/initial-unrebased/generate.py": "ac8360cf94b794c2ae202009ec73a268c6c5d3f77b3895c58416a48f402ebc1b",
+    "Row3136FamilyBranches/initial-unrebased/residual_a0.json": "90d142b1c7c62c6632cd90b04a9f5883b2272d5f1e8a5d74ddc076bcb1e7c5b5",
+    "Row3136FamilyBranches/initial-unrebased/residual_a1.json": "7c1256ad6e052c36c314260fdeb74d736d2832d2996cb66d06d26803032074d4",
+    "Row3136FamilyBranches/initial-unrebased/summary.json": "4bd42a91d83a438211b2496a8ea24779b0d5fef2889e39ed734f4a8301e561a3",
+    "Row3136FamilyBranches/initial-unrebased/zero_a0.json": "8262b7e6cae47727db94af69768b423902b37b00c21f901878ace5007fa0130e",
+    "Row3136FamilyBranches/initial-unrebased/zero_a1.json": "1d204794224912fec6ca4d4f830fc43bcaf813fd3236fad674f49d2a3f493ba7",
+    "Row3136FamilyBranches/modules.txt": "4f5205655cd52056f56bbebb2ff81cb2566218619fb3fe2e4ae4c1edafc9fa29",
+    "Row3136FamilyBranches/package.json": "3101b77df4500fa1718fe6ac7e3075ef75f28d9e2fcddcffadf50a61d813c23c",
+    "Row3136FamilyBranches/package.py": "bf87a6adb5fe1cdf025e2ba4c7e2d640aa56fb09cd68f927dc0177002a634a63",
+    "Row3136FamilyBranches/reproduce.py": "b41139a43e364f25b159d3b347256bfd4feffdd0580bca5506947ca4d1db6c84",
+    "Row3136FamilyBranches/reproduction.json": "3732d10fdc59477fe715c8a44f9cf62632884011859d746852cfae83510c4eff",
+    "Row3136FamilyBranches/reproduction.log": "fdd1ff885bd0851d6e1f7347529c577d36f82002585357fbe0b8bb61e47b33c0",
+    "Row3136FamilyBranches/residual_a0-extra.json": "6a410334cb3fd220f61d0d57fcf498960affa62ecdc234f13ff74dc21e8bb145",
+    "Row3136FamilyBranches/residual_a0-family.json": "15c8d479052d7654d8fe922060e7a12ab15f5585ce55994e25ac281dcd84f1f0",
+    "Row3136FamilyBranches/residual_a1-extra.json": "1d164a2c68efb7107f9f598859e3f415c3f09ccbb04f9e1ef0cf6f6b6e23a475",
+    "Row3136FamilyBranches/residual_a1-family.json": "c11c438e79166f1610cd160f424e1d19f29873090947ffd1e53cf04097c2d06b",
+    "Row3136FamilyBranches/review_families.py": "2f590b10df7fc9e95eb413454fae246b6a233ea6ed92f8fef5956b324f0232e3",
+    "Row3136FamilyBranches/wire/ResidualA0_S0_20_140_d3.json": "562cbdf84af44fffcc60f7a6b82a1c36eb980a42c432dcfd043d05992f14bd43",
+    "Row3136FamilyBranches/wire/ResidualA0_S0_23_142_d3.json": "b0b78d894cfd27d631b4133ca82d4499b459853d2e34a32e5b09487321fc31f3",
+    "Row3136FamilyBranches/wire/ResidualA0_S0_26_144_d2.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+    "Row3136FamilyBranches/wire/ResidualA0_S0_26_144_d3.json": "6553c5b7f7db2097159dbde60bb8de89c1856b0e04a275673865920ef23e2a77",
+    "Row3136FamilyBranches/wire/ResidualA0_S0_29_146_d2.json": "bf5fb197d6c45fd129f437a6334bb266c966024f0d23493436b13898ca7550a7",
+    "Row3136FamilyBranches/wire/ResidualA1_S0_16_137_d4.json": "9dc3a5feadbef49e1951a18371a9fe924c1e2b1047d035dc52a262e9aeb010ac",
+    "Row3136FamilyBranches/wire/ResidualA1_S0_20_140_d3.json": "b0ed44e24ad2da265d3eff5c864773b126fa8f972f6b7a3f866e4ea018f59039",
+    "Row3136FamilyBranches/wire/ResidualA1_S0_23_142_d3.json": "2a8d7d01a6d509c95d7506f9c98926a6af78306405e1142bb31e5ac209271515",
+    "Row3136FamilyBranches/wire/ResidualA1_S0_25_144_d3.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Row3136FamilyBranches/wire/ResidualA1_S0_26_144_d2.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+    "Row3136FamilyBranches/wire/ResidualA1_S0_26_144_d3.json": "6553c5b7f7db2097159dbde60bb8de89c1856b0e04a275673865920ef23e2a77",
+    "Row3136FamilyBranches/wire/ResidualA1_S0_28_146_d2.json": "5e64149ef35c36071b85867994e2a6f6fcfa2abb828990569dbd95e2a1239f3e",
+    "Row3136FamilyBranches/wire/ResidualA1_S0_29_146_d2.json": "bf5fb197d6c45fd129f437a6334bb266c966024f0d23493436b13898ca7550a7",
+    "Row3136FamilyBranches/wire/ZeroA0_S0_20_140_d3.json": "8a28ddb6c8a907e5942412e6fb35bc13b34fc987afc3396785c3fe2ddb6c4e46",
+    "Row3136FamilyBranches/wire/ZeroA0_S0_23_142_d3.json": "b0b78d894cfd27d631b4133ca82d4499b459853d2e34a32e5b09487321fc31f3",
+    "Row3136FamilyBranches/wire/ZeroA0_S0_26_144_d2.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+    "Row3136FamilyBranches/wire/ZeroA0_S0_26_144_d3.json": "6553c5b7f7db2097159dbde60bb8de89c1856b0e04a275673865920ef23e2a77",
+    "Row3136FamilyBranches/wire/ZeroA0_S0_29_146_d2.json": "bf5fb197d6c45fd129f437a6334bb266c966024f0d23493436b13898ca7550a7",
+    "Row3136FamilyBranches/wire/ZeroA1_S0_20_140_d3.json": "8f714491baf4cfa1abf50b2e2cfea236f234c9d75ecbfc0b794400b1223ae8a4",
+    "Row3136FamilyBranches/wire/ZeroA1_S0_23_142_d3.json": "2a8d7d01a6d509c95d7506f9c98926a6af78306405e1142bb31e5ac209271515",
+    "Row3136FamilyBranches/wire/ZeroA1_S0_26_144_d2.json": "dede24bd5a00fc72d12ef73ea4d32154707365f49c9dec12c565f2f9cf3efa5d",
+    "Row3136FamilyBranches/wire/ZeroA1_S0_26_144_d3.json": "6553c5b7f7db2097159dbde60bb8de89c1856b0e04a275673865920ef23e2a77",
+    "Row3136FamilyBranches/wire/ZeroA1_S0_29_146_d2.json": "bf5fb197d6c45fd129f437a6334bb266c966024f0d23493436b13898ca7550a7",
+    "Row3136FamilyBranches/zero_a0-extra.json": "73d050c6f4b5c2b778d191105aa63302382d9ec54d39b197a423622636225b63",
+    "Row3136FamilyBranches/zero_a0-family.json": "cbcff417b2a11fca73f0f5a70ceb5e84164f0f630483c667d1491ea98b90c4d1",
+    "Row3136FamilyBranches/zero_a1-extra.json": "055ba40c32d2a07666fae598f2a56acda073ba118a7e5d7b9c0e07d75e336ec0",
+    "Row3136FamilyBranches/zero_a1-family.json": "e6aa82ed2d68835df8da4f651c60cb6029b106f2bd8f7b3d2bb2d56ce550a2bd",
+    "Row3136FamilyBranches/file-list.txt": "e831f12481e8139c68070d40410aa9f9f4c93de6e85ed3028f266434704b6031"
+  }
+}

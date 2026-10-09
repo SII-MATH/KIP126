@@ -1,0 +1,87 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 85519,
+  "observed_exit_code": 0,
+  "jobs": 2498,
+  "build_log": "tests/step4-whole-homology-build.log",
+  "build_log_sha256": "b5b7f391870d6814906fda903e63546f667e0f4c70a2bed0449d867e92628a65",
+  "individual_module_logs": {
+    "tests/step4-whole-homology-build.log": "b5b7f391870d6814906fda903e63546f667e0f4c70a2bed0449d867e92628a65"
+  },
+  "lakefile_sha256": "dfe207155bbb9e7bcd942c627141e463d087a9ca2f3a9f6ca620c7a68eea677a",
+  "modules": [
+    {
+      "module": "PermanentCycleCertificates.CheckFile",
+      "source_sha256": "23fa2af186a0da1b02c9b9a2f4a6a77045a8e0f9cb88dab7e73af7cbc729a84a",
+      "olean_sha256": "4d12c3644630290a33834a4b03f7f4ec195179c1a51860d7654ed01d66e9dc63",
+      "trace_sha256": "142cb09b338fec62f9c6e2741e7d725ac6990efe83c60921cad255f3d5c7138d"
+    },
+    {
+      "module": "PermanentCycleCertificates.Import",
+      "source_sha256": "b4a2c9a88e3a3864aed8fa35c414640859259c5501b510c298b04579f0e9eea3",
+      "olean_sha256": "78cbc74192b92bf074b522744f0adc6161977f44cb5b96cfe6e325c101406c20",
+      "trace_sha256": "5834f87111947b88d91c06e3586bc6fe861dee06da10d5cbb0cf52e9d22a8d6a"
+    },
+    {
+      "module": "PermanentCycleCertificates.ImportExamples",
+      "source_sha256": "d282b15c0273f36bb1c14d217391852729a4dc1f6c970f62065527b036a79d15",
+      "olean_sha256": "e955ea924f3e85d1a0f1b6d3a08d0845bedf40244613bb064077be363522021f",
+      "trace_sha256": "64f32709251f4cb69b4194f480014ec0ece998213283c4d6dfe5fad41917f488"
+    },
+    {
+      "module": "RemainingThreeAudit.Consequences",
+      "source_sha256": "82263b0a493cdade186a298cad4f6a58eb7cfc5e58e79eceaf1daa1c6e8e2724",
+      "olean_sha256": "f49e19422e992c7dee602f5b6760aba858ed4f93587e2d2689b0d84c18c4dcde",
+      "trace_sha256": "95f6d63f493cc7502784f058f96426088e00b4ff86142cc7f67032121fc1a8d5"
+    },
+    {
+      "module": "Stem125HomologyCertificates.Basic",
+      "source_sha256": "ab6bcfdbef256abe80fc313f43bad11b1beb404f75325ece008fb51b55348adf",
+      "olean_sha256": "3dcf518c5928787977029695d4de94f0c84a07f98d71d00c85729483a931b01c",
+      "trace_sha256": "f9ddf9847dfa37f22e8817300a441cbc8a34c602c9049fc5a229b5a9eb4e7067"
+    },
+    {
+      "module": "Stem125HomologyCertificates.D2",
+      "source_sha256": "77f7bd150d66b1dd8ea591a3b8ab3e8c56cb0b75cb3da59fa1823ea7d2ad7ba3",
+      "olean_sha256": "2f627ab318087c2ed4f73a308eddb541980c0268625854c702e6380ac894f6e5",
+      "trace_sha256": "c5c3b0cdc4ed65d22480d63a3dd5d9b22b26d23d39957a6817835a2f300aaf55"
+    },
+    {
+      "module": "Stem125HomologyCertificates.D3",
+      "source_sha256": "16de5554d7858953414562dade8423414bddb2a63461acdb4673e6e9b22997f7",
+      "olean_sha256": "01fbe3eb420424927590cb6d6f886972572604403f78b670c800a41d682711ae",
+      "trace_sha256": "502a650e4e162060e021e6cbcf8e9fdccf31e941065c218fa6a7003eaf583cbc"
+    },
+    {
+      "module": "Stem125HomologyCertificates.D4",
+      "source_sha256": "c7048493cc2f1c76e2496796dcbfa988e52cf2a3e21b77bbaa6325059cd764dc",
+      "olean_sha256": "ad3fec74f711c3bf8e3114799cfcf51ba5552c3b5e9ff001d468da2763a75252",
+      "trace_sha256": "ac20c26be0b35c08713d47a44e7fd7d1515804c66a137092d4c3e6fe09bb4c66"
+    },
+    {
+      "module": "UniqueHomologyCertificates.Basic",
+      "source_sha256": "17a8cc6085f476d49d63181e0210e3d3faec5f38ed20cea9fcdd9f95802b2ff7",
+      "olean_sha256": "27376397eaf36f426588a4fd00cffbd5f21bb9a38df4bc3c1010424078113c95",
+      "trace_sha256": "d394572f6286eadbddbbb1ede78a0068b96ceac958f8a69bd1f2af58930c6ed5"
+    },
+    {
+      "module": "UniqueHomologyCertificates.CheckFile",
+      "source_sha256": "21a725de42a3dc9af544ed5560b790e1ae3a6a6401972e58aa780a58101d4581",
+      "olean_sha256": "4e0009210503e808b223494529ab3e8ed5fc395ccf3ce04cfeb7346119eb5047",
+      "trace_sha256": "99ef8e6dc224ef959a98903106d27bf405ba6375e5e726338f2f9acef480ade8"
+    },
+    {
+      "module": "UniqueHomologyCertificates.Examples",
+      "source_sha256": "77e98444cf95fcfcb29bf1fbb838f0ae057674d99ec22e61c4ae4668b7d1bb24",
+      "olean_sha256": "8026a2cfbc4e0fb3bac07702666d9f6bbcb7646ac1e09bd321e830712ce1ff3b",
+      "trace_sha256": "b1d787dc6c0a24ee4858dd4653a3299d3bd137184c9edd70e90fee1804e048af"
+    },
+    {
+      "module": "UniqueHomologyCertificates.Import",
+      "source_sha256": "2eb821b575730c3e828361df888104a06d7cc1777fe8da37d0c8c4f6ceee3c8c",
+      "olean_sha256": "1c9aa6243a3a2f75319f5e4a6c3f213141022097b0304c1f26923ba6519b6797",
+      "trace_sha256": "f2f8b5942838d48a1bbbb8c60fe4dfe66f76ff522b69c637fa90adb76c6ec143"
+    }
+  ]
+}

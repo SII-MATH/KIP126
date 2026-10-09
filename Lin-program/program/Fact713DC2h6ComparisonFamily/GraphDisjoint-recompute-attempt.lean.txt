@@ -1,0 +1,29 @@
+import Fact713DC2h6ComparisonFamily.GraphData
+
+namespace Fact713DC2h6ComparisonFamily.GraphCoverage
+open IndexedFamilyCertificates
+set_option maxRecDepth 100000
+set_option maxHeartbeats 16000000
+
+theorem missing_disjoint_checked :
+    FamilyKeyOrder.checkOrder (sortBy (· ≤ ·) ((missing ++ familyKeys).map code)) = true := by decide
+
+theorem missing_family_nodup : (missing ++ familyKeys).Nodup := by
+  apply FamilyKeyOrder.nodup_of_map_nodup code
+  exact (sortBy_perm (· ≤ ·) ((missing ++ familyKeys).map code)).nodup
+    (FamilyKeyOrder.checkOrder_nodup _ missing_disjoint_checked)
+
+theorem outside_disjoint_checked :
+    FamilyKeyOrder.checkOrder (sortBy (· ≤ ·) ((outside ++ requested).map code)) = true := by decide
+
+theorem outside_requested_nodup : (outside ++ requested).Nodup := by
+  apply FamilyKeyOrder.nodup_of_map_nodup code
+  exact (sortBy_perm (· ≤ ·) ((outside ++ requested).map code)).nodup
+    (FamilyKeyOrder.checkOrder_nodup _ outside_disjoint_checked)
+
+theorem requested_nodup : requested.Nodup := (List.nodup_append.mp outside_requested_nodup).2.1
+
+#print axioms missing_family_nodup
+#print axioms outside_requested_nodup
+#print axioms requested_nodup
+end Fact713DC2h6ComparisonFamily.GraphCoverage

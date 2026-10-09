@@ -1,0 +1,121 @@
+{
+  "findings": [],
+  "independent_fixtures": [
+    {
+      "exit_code": 0,
+      "expected_success": true,
+      "name": "CRLF blank quoted lines escaped quotes unknown preservation",
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "expected_success": true,
+      "name": "logical record exactly 10 MiB",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "logical record 10 MiB plus one byte",
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "expected_success": true,
+      "name": "multiline exact limit including embedded LF",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "multiline over limit including embedded LF",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "unterminated multiline preserves start line",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "closing quote suffix rejected at record start",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "mismatched field count after multiline",
+      "passed": true
+    }
+  ],
+  "inputs_sha256": {
+    "cert_export.cpp": "b29516ecc948bed460d0d4f1b63c4fa03736d468994e7326c26e955e0329e06c",
+    "certificate_format.md": "ed153f63401f77a6866b443de7cb59954c711bc4a0744ea924fdb17301aa2e5c",
+    "lin-cert-export": "3fcf53ecb6cc20c44bc2d56a1006e9ac64242d0aa485968fe861ff8842627544",
+    "tests/actual-proof-stream-audit.json": "a1ce552102735fd1ce8b14068035b14cbf9ec75133848c1bc2242d655620322e",
+    "tests/actual-proof-stream.log": "b4e04e06a41ad5c57d653af80a0fdda016f5cd8c18c6ea68c1da52e912699d56",
+    "tests/test_actual_proof_stream.py": "589e74d4a43840f177e2a5f66ed7c6675abd63c1d835c78e880d43b53e824717",
+    "tests/test_export.py": "e6592944e2cc8db8d6af79b5b4855e75c5f90c3ed9e2f5f809dcc04d1d46600b"
+  },
+  "limit_semantics": {
+    "counted": "Normalized logical CSV record bytes, including delimiters, quote syntax and embedded LF; excluding the final physical line separator. Exactly the limit is accepted.",
+    "limit_bytes": 10485760,
+    "not_guaranteed": "This is not a hard peak-memory cap: getline materializes one physical line before the size check; field vectors and serialized output also allocate memory."
+  },
+  "observed_actual_replay": {
+    "files": [
+      {
+        "exact_fields": true,
+        "exact_physical_start_lines": true,
+        "exit_code": 0,
+        "input_sha256": "c1ff2f0f922e29e5aa1c98d5c9cf79931038637d8c0e4f6ba88fa31aafc6b8cf",
+        "multiline_records": 698276,
+        "output_sha256": "d215857bccd57efb397179a9038acf79595ee00980e91512357ecf6bf467e0ed",
+        "physical_lines": 2096450,
+        "records": 994567,
+        "source": "upstream/proofs_csv/proofs-part1.csv"
+      },
+      {
+        "exact_fields": true,
+        "exact_physical_start_lines": true,
+        "exit_code": 0,
+        "input_sha256": "4e1afa9c66e6ce2ab98b48f15635ca84b9f599f74ae946888d8c40a0ce147bd0",
+        "multiline_records": 925101,
+        "output_sha256": "fac9abf254b1c891e6af211408dcc5af61a60dd7bc90cbd313eb06669d2d5914",
+        "physical_lines": 2439696,
+        "records": 1000000,
+        "source": "upstream/proofs_csv/proofs-part2.csv"
+      },
+      {
+        "exact_fields": true,
+        "exact_physical_start_lines": true,
+        "exit_code": 0,
+        "input_sha256": "149d84c149c4f88046a5409bfdb99d85d7980f5cb077a2a432295d68feecdee4",
+        "multiline_records": 470960,
+        "output_sha256": "21dc00eb08d79667952f91848175ddbe238e2e2dcbe47b4f338c6fdd0fb39623",
+        "physical_lines": 1504053,
+        "records": 677708,
+        "source": "upstream/proofs_csv/proofs-part3.csv"
+      }
+    ],
+    "multiline_records": 2094337,
+    "physical_lines": 6040199,
+    "records": 2672275,
+    "rerun_by_reviewer": false
+  },
+  "reviewed_behaviors": [
+    "Physical line increments on every getline, including skipped blank lines and quoted embedded blank lines; source_row is captured before accumulation.",
+    "Quote parity locates only logical boundaries; csv_line separately rejects illegal quote positions and suffixes, decodes doubled quotes, and preserves commas/newlines within fields.",
+    "Raw values remain strings. Unknown, question mark, [NULL], possibly and empty fields are classified without interpreting them as zero or mathematical facts.",
+    "CRLF physical separators normalize to LF, including embedded quoted separators. Source SHA256 remains over exact input bytes.",
+    "Actual replay consumes every emitted record, compares every field with independent Python CSV parsing after CRLF normalization, checks physical start, record digest and original input digest, rejects early/extra output, and requires exporter exit zero."
+  ],
+  "status": "independent_stream_parser_and_replay_review_passed",
+  "test_limitations": [
+    "The full-data replay asserts field equality and line numbers; it does not separately assert every record status/unknown_markers or header digest. Targeted fixtures cover marker/status behavior, and the exporter regression covers envelope hashes.",
+    "Invalid lone-CR CSV line endings and generalized non-UTF8 input are outside the documented LF/CRLF UTF-8 archive format.",
+    "Archive-only event fields are provenance data, not proof-rule semantics or certified topology."
+  ]
+}

@@ -1,0 +1,15 @@
+Row2907D4Candidates/Finite.lean:14:63: error: Expected type must not contain free variables
+  ∀ (x_1 : Vec 1) (y_1 : Vec 2),
+    eval Data.c32_182_3.comparison.projection (action x y) =
+      action4 false (eval Data.c12_42_3.comparison.projection x) (eval (comparison false false).comparison.projection y)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+Row2907D4Candidates/Finite.lean:14:63: error: Expected type must not contain free variables
+  ∀ (x_1 : Vec 1) (y_1 : Vec 2),
+    eval Data.c32_182_3.comparison.projection (action x y) =
+      action4 true (eval Data.c12_42_3.comparison.projection x) (eval (comparison true false).comparison.projection y)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+'Row2907D4Candidates.quotient_action' depends on axioms: [propext, sorryAx]
+'Row2907D4Candidates.first_forced' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2907D4Candidates.named_column' depends on axioms: [propext, Classical.choice, Quot.sound]

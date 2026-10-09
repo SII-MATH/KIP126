@@ -1,0 +1,75 @@
+{
+  "status": "all_four_complete_families_and_both_parent_provenances_pass",
+  "cases": [
+    {
+      "case": "zero_a0",
+      "entries": 1355,
+      "row3136_preserved": 1338,
+      "row3143_preserved": 1350,
+      "new_entries": 17,
+      "counts": {
+        "cycle_pairs": 9689,
+        "predecessor_dimensions": 2559,
+        "ordered_pairs": 1836025,
+        "consecutive": 853,
+        "adjacent": 1035
+      },
+      "next_obstruction": "unknown S0:16,137:d4:row2907; target dimension 2",
+      "family_sha256": "b68de9887d308b0303948c285c02aa49263104faafe3d05cfb9f343221cf78f7"
+    },
+    {
+      "case": "zero_a1",
+      "entries": 1355,
+      "row3136_preserved": 1338,
+      "row3143_preserved": 1350,
+      "new_entries": 17,
+      "counts": {
+        "cycle_pairs": 9677,
+        "predecessor_dimensions": 2559,
+        "ordered_pairs": 1836025,
+        "consecutive": 853,
+        "adjacent": 1035
+      },
+      "next_obstruction": "unknown S0:16,137:d4:row2907; target dimension 1",
+      "family_sha256": "3b9b2b37cad09b0f2f02d84af3f1928780b3aaad73962a9202a70dace4442101"
+    },
+    {
+      "case": "residual_a0",
+      "entries": 1364,
+      "row3136_preserved": 1346,
+      "row3143_preserved": 1359,
+      "new_entries": 18,
+      "counts": {
+        "cycle_pairs": 9701,
+        "predecessor_dimensions": 2586,
+        "ordered_pairs": 1860496,
+        "consecutive": 862,
+        "adjacent": 1042
+      },
+      "next_obstruction": "unknown S0:16,137:d4:row2907; target dimension 1",
+      "family_sha256": "28f74a34a089d03e4e796bed332c6787445bce71661deb0b7b7f59e1e67feeaf"
+    },
+    {
+      "case": "residual_a1",
+      "entries": 1367,
+      "row3136_preserved": 1349,
+      "row3143_preserved": 1359,
+      "new_entries": 18,
+      "counts": {
+        "cycle_pairs": 9698,
+        "predecessor_dimensions": 2592,
+        "ordered_pairs": 1868689,
+        "consecutive": 864,
+        "adjacent": 1045
+      },
+      "next_obstruction": "unknown S0:11,133:d5:row2622; target dimension 1",
+      "family_sha256": "b981a61b7631f5ea7ab32d4713336b75853740d9b11bbe152b647b89bb57d1cb"
+    }
+  ],
+  "actual_a_selected": false,
+  "actual_r_selected": false,
+  "parent_signature_sha256": {
+    "Row3136FamilyBranches/conditional-signature.json": "661277f37d352ef422c233e817cb0fae224618462901c673fbc8bf3d8e621c3d",
+    "Fact713Row3143Continuation/conditional_signature.json": "a6e389828104e67ffc3e69dcabb9af7787b9e4fc4f1a1224018152bc21538874"
+  }
+}

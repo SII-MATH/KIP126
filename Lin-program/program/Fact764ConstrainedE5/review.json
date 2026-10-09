@@ -1,0 +1,146 @@
+{
+  "all_full_matrix_pairs_checked": 512,
+  "allowed_raw_candidates": [
+    7,
+    15
+  ],
+  "candidates_checked": 16,
+  "complex_choices": 20,
+  "constrained_indices": [
+    8,
+    9,
+    18,
+    19
+  ],
+  "full_cycle_pairs": 128,
+  "limitations": [
+    "Actual E2/page/basis completeness and true differential interpretations are premises.",
+    "Leibniz, factor cycle, known product differential, and naturality are actual algebraic premises.",
+    "Two obstructions do not imply named cycle: indices9/19 are checked counterexamples.",
+    "The named E5 class is not proved permanent at all later pages."
+  ],
+  "noncycle_counterexample_indices": [
+    9,
+    19
+  ],
+  "preserved_prior_blocks": 358,
+  "raw": {
+    "named_generators": [
+      [
+        13,
+        "g",
+        4,
+        24
+      ],
+      [
+        51,
+        "\\Delta h_1g",
+        9,
+        54
+      ]
+    ],
+    "source_E2": [
+      [
+        3748,
+        "530,1",
+        ""
+      ],
+      [
+        3749,
+        "1,1,510,1",
+        ""
+      ],
+      [
+        3750,
+        "0,3,500,1",
+        ""
+      ]
+    ],
+    "source_staircase": [
+      [
+        3748,
+        "2",
+        "4",
+        3
+      ],
+      [
+        3749,
+        "1",
+        "3",
+        9996
+      ],
+      [
+        3750,
+        "0",
+        null,
+        9996
+      ]
+    ],
+    "target_E2": [
+      [
+        3992,
+        "559,1",
+        "0"
+      ],
+      [
+        3993,
+        "558,1",
+        "0"
+      ],
+      [
+        3994,
+        "13,4,51,1",
+        ""
+      ],
+      [
+        3995,
+        "8,2,9,1,13,1,80,1",
+        ""
+      ]
+    ],
+    "target_staircase": [
+      [
+        3992,
+        "3",
+        "1",
+        4
+      ],
+      [
+        3993,
+        "2",
+        null,
+        9000
+      ],
+      [
+        3994,
+        "0,1",
+        null,
+        9000
+      ],
+      [
+        3995,
+        "1",
+        "0",
+        9998
+      ]
+    ]
+  },
+  "source_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateLeibniz3564Conditional/source.json": "8896061fd1fa76f4fb6109f4920c5d0661e8b4da945767ed89f884182fbbc60c",
+    "Fact764ConstrainedE5/Conclusion.lean": "a49257fd80ff571e43cc9d71c6148abee6891fade4a9eaa66fcf8c30cc3180ba",
+    "Fact764ConstrainedE5/Coordinates.lean": "7b41ddb411da4b91a907193de3433341f52b45b95a102c054c6ff96aea2bde68",
+    "Fact764ConstrainedE5/Imported.lean": "8f1c99881b7fe3270ec3b95c4cb60bf6ae22abd29c9973605cb473d0b08c4f4c",
+    "Fact764ConstrainedE5/Obstructions.lean": "c0b55dc4366e949d774a84149a589ca4a64d1b57da10ac003ae76606aec6d01c",
+    "Fact764ConstrainedE5/certificate0.json": "096a78543c1c08a7a3f9bcca6d3bbe295766516906628ca0f5290ec162eb2bf8",
+    "Fact764ConstrainedE5/certificate1.json": "897624c9648877b6545e7c116123f08298f7229dbf49081eb4cd6fc8fa169eec",
+    "Fact764ConstrainedE5/review.py": "43c8aa09752254fe49aed8763aa6fd7e8846a187c2d0213ab174142ff6adbd4d",
+    "Stem125E5Search/branches.json": "db3f9503b56460ec6860d76cdd445ebd63a30750e3def68afc61926d3fdb2987",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "conditional_fact764_E5_review_passed",
+  "unique_indices": [
+    8,
+    18
+  ]
+}

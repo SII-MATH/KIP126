@@ -1,0 +1,40 @@
+Fact713Row2994Constraint/CoordinateBridge.lean:72:12: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  M.target 0
+in the target expression
+  staircaseTargetCoordinates.toCoordinates (M.target 0) = zero
+
+case inl
+sphere detector : ManualInputObligations.Reference.AdamsSpectralSequence
+lower : (sphere.element 3 Actual.sourceDegree).carrier → (detector.element 3 Actual.sourceDegree).carrier
+upper : (sphere.element 3 Actual.targetDegree).carrier → (detector.element 3 Actual.targetDegree).carrier
+M : Actual.Meaning sphere detector lower upper
+naturality :
+  ∀ (x : (sphere.element 3 Actual.sourceDegree).carrier),
+    (detector.differential 3 Actual.sourceDegree).toFun (lower x) =
+      upper ((sphere.differential 3 Actual.sourceDegree).toFun x)
+x : (sphere.element 3 Actual.sourceDegree).carrier
+named : M.source x = Naturality.named
+hz : (sphere.differential 3 Actual.sourceDegree).toFun x = 0
+⊢ staircaseTargetCoordinates.toCoordinates (M.target 0) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (sphere.element 3 (ManualInputObligations.Reference.AdamsTarget 3 Actual.sourceDegree)).carrier
+  but is expected to have type
+    (sphere.element 3 Actual.targetDegree).carrier
+  in the application
+    M.target 0
+'Fact713Row2994Constraint.CoordinateBridge.source_all_coordinates' depends on axioms: [propext, Quot.sound]
+'Fact713Row2994Constraint.CoordinateBridge.target_all_coordinates' depends on axioms: [propext, Quot.sound]
+'Fact713Row2994Constraint.CoordinateBridge.target_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row2994Constraint.CoordinateBridge.named_staircase_coordinates' depends on axioms: [propext, Quot.sound]
+'Fact713Row2994Constraint.CoordinateBridge.residual_staircase_coordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Fact713Row2994Constraint.CoordinateBridge.actual_staircase_candidates' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

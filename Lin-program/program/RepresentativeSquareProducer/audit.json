@@ -1,0 +1,115 @@
+{
+  "status": "independent_exhaustive_producer_checks_passed",
+  "input_cases": 5296,
+  "scalar_exhaustive_cases": 4096,
+  "random_small_cases": 1200,
+  "accepted": 1480,
+  "rejected": 3816,
+  "accepted_branches": {
+    "f": 1230,
+    "p": 250
+  },
+  "repeat_runs": 3,
+  "byte_identical": true,
+  "negative_cases": [
+    {
+      "label": "unknown boolean",
+      "diagnostic": "stdin:1: unknown/null/string value at byte 187"
+    },
+    {
+      "label": "unknown field",
+      "diagnostic": "stdin:1: input: unknown field unknown"
+    },
+    {
+      "label": "missing field",
+      "diagnostic": "stdin:1: data: missing field f"
+    },
+    {
+      "label": "outer version",
+      "diagnostic": "stdin:1: version: expected 1"
+    },
+    {
+      "label": "unknown branch",
+      "diagnostic": "stdin:1: firstBranch: expected auto, f or p; unknown is not zero"
+    },
+    {
+      "label": "external input marker",
+      "diagnostic": "stdin:1: firstBranch: expected auto, f or p; unknown is not zero"
+    },
+    {
+      "label": "unknown matrix",
+      "diagnostic": "stdin:1: expected array"
+    },
+    {
+      "label": "NULL matrix marker",
+      "diagnostic": "stdin:1: expected array"
+    },
+    {
+      "label": "possibly matrix marker",
+      "diagnostic": "stdin:1: expected array"
+    },
+    {
+      "label": "dimension limit",
+      "diagnostic": "stdin:1: data.a: dimension resource limit64"
+    },
+    {
+      "label": "boolean dimension",
+      "diagnostic": "stdin:1: expected natural"
+    },
+    {
+      "label": "negative dimension",
+      "diagnostic": "stdin:1: expected natural"
+    },
+    {
+      "label": "wrong vector length",
+      "diagnostic": "stdin:1: data.x: dimension mismatch"
+    },
+    {
+      "label": "duplicate field",
+      "diagnostic": "stdin:1: duplicate field version"
+    },
+    {
+      "label": "unknown literal",
+      "diagnostic": "stdin:1: unknown/null/string value at byte 8"
+    },
+    {
+      "label": "trailing JSON",
+      "diagnostic": "stdin:1: trailing JSON"
+    },
+    {
+      "label": "blank record",
+      "diagnostic": "stdin:1: unknown/null/string value at byte 0"
+    },
+    {
+      "label": "trailing NUL",
+      "diagnostic": "stdin:1: trailing JSON"
+    },
+    {
+      "label": "trailing NUL and junk",
+      "diagnostic": "stdin:1: trailing JSON"
+    },
+    {
+      "label": "whitespace then trailing NUL",
+      "diagnostic": "stdin:1: trailing JSON"
+    },
+    {
+      "label": "deep JSON",
+      "diagnostic": "stdin:1: JSON depth limit32"
+    }
+  ],
+  "largest_tested_dimension": 64,
+  "strict_boolean": true,
+  "mathematical_conclusion_checked_by": "Exhaustive representatives and whole correction subgroups, independent of Gaussian elimination.",
+  "scope": "Algebraic representative-square transfer only; no actual filtered product or paper Theorem6.1 instance.",
+  "input_sha256": {
+    "RepresentativeSquareProducer/export.cpp": "e06003cfceef08ea396a6188bd984bc1707dc895dae8b472acadfbf8f6e1bbc8",
+    "RepresentativeSquareProducer/Makefile": "70c78cfe5de585fe27931ede98c42d9b955cc661af55edc7c891d41495d35212",
+    "RepresentativeSquareProducer/test.py": "e2e08fd96c606b7b7e681a7b34d0ee594b1ada8590ec9af50a72e9e202c72bd9",
+    "IndexedFamilyProducer/json.hpp": "7600670139f680ad74c92c1ffe99289ae8b349c24a2bae7861ca866d43df4be7",
+    "RepresentativeSquareCertificates/Basic.lean": "ef7b6a64f4a8ba3feaeef5e86fc118cdf3bfe883fd7e450597095022a86550f2",
+    "RepresentativeSquareCertificates/Import.lean": "2aee27deaee8bb68f15eb1e8cac9ef2b63e018f035fd5c735682c5a33a6d49c0"
+  },
+  "valid_input_sha256": "2fc64ff3c8562fc082022614346da9213b7b2723d854361cc547fd724cb4c4ea",
+  "valid_output_sha256": "4808fa9c3f2fcdc887fd71daeb09845f999ebfec162e00a2d1e7046ee253de9a",
+  "executable_sha256": "cf7f990bbeea5dc2bcaa6d400466757bbc646e6c4d636cd53b83566eb6dfab44"
+}

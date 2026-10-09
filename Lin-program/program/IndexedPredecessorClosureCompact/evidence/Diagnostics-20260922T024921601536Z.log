@@ -1,0 +1,28 @@
+IndexedPredecessorClosureCompact/Diagnostics.lean:36:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  diagnoseEntry (project ?family) (projectEntry ?entry)
+in the target expression
+  (match diagnoseEntry (List.map projectEntry family) (projectEntry entry) with
+    | some message => some (index, message)
+    | none => diagnoseEntries (List.map projectEntry family) (List.map projectEntry rest) (index + 1)) =
+    match IndexedPredecessorClosure.diagnoseEntry family entry with
+    | some message => some (index, message)
+    | none => IndexedPredecessorClosure.diagnoseEntries family rest (index + 1)
+
+case cons
+family : Family
+entry : IndexedFamilyCertificates.Entry
+rest : List IndexedFamilyCertificates.Entry
+ih :
+  ∀ (index : Nat),
+    diagnoseEntries (project family) (project rest) index = IndexedPredecessorClosure.diagnoseEntries family rest index
+index : Nat
+⊢ (match diagnoseEntry (List.map projectEntry family) (projectEntry entry) with
+    | some message => some (index, message)
+    | none => diagnoseEntries (List.map projectEntry family) (List.map projectEntry rest) (index + 1)) =
+    match IndexedPredecessorClosure.diagnoseEntry family entry with
+    | some message => some (index, message)
+    | none => IndexedPredecessorClosure.diagnoseEntries family rest (index + 1)
+'IndexedPredecessorClosureCompact.diagnoseEntry_project' depends on axioms: [propext]
+'IndexedPredecessorClosureCompact.diagnoseEntries_project' depends on axioms: [sorryAx]
+'IndexedPredecessorClosureCompact.diagnose_project' depends on axioms: [sorryAx]
+'IndexedPredecessorClosureCompact.diagnose_none_iff' depends on axioms: [propext, sorryAx, Quot.sound]

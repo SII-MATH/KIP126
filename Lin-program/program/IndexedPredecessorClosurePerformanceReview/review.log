@@ -1,0 +1,91 @@
+{
+  "status": "actual_bindings_and_exact_structural_costs_verified",
+  "families": [
+    {
+      "package": "Fact713Row2693Continuation",
+      "branch": 0,
+      "entries": 1413,
+      "higher_entries": 908,
+      "lookup_queries": 2724,
+      "list_find_key_comparisons": 1796859,
+      "nat_index_list_get_cons_steps": 1796859,
+      "balanced_path_nodes": 31462,
+      "max_balanced_path": 11,
+      "operation_count_ratio": 57.11203992117475,
+      "literal_binding": "exact ordered projection including n,m,k,h",
+      "first_match_keys_unique": true,
+      "witness_sha256": "0f65e9f3a6487114b0589563276de3cd2646c89ae7e3254e08a9c4c15b78d935",
+      "source_sha256": {
+        "Fact713Row2693Continuation/zero_b0-family.json": "531b1bad121322c5b0f3e1732e3bd6f247029391597604a7ab7b10ae15a11dbb",
+        "IndexedPredecessorClosureActual/Data.lean": "fbd64b27caf76891496202e24d2d328724ff5a32b5f74937fc4eeaf66600ae23"
+      }
+    },
+    {
+      "package": "Fact713Row2693Continuation",
+      "branch": 1,
+      "entries": 1413,
+      "higher_entries": 908,
+      "lookup_queries": 2724,
+      "list_find_key_comparisons": 1796859,
+      "nat_index_list_get_cons_steps": 1796859,
+      "balanced_path_nodes": 31462,
+      "max_balanced_path": 11,
+      "operation_count_ratio": 57.11203992117475,
+      "literal_binding": "exact ordered projection including n,m,k,h",
+      "first_match_keys_unique": true,
+      "witness_sha256": "e8d54cf6ea31aa140ab09dcc532f90d10d6a23cf4a19d68814fa3374ca4ba917",
+      "source_sha256": {
+        "Fact713Row2693Continuation/zero_b1-family.json": "f98367cc14f4b89e57e1068452cb31a51ff5dd27756ebfa9b3dcde5f1ed63e6e",
+        "IndexedPredecessorClosureActual/Data.lean": "fbd64b27caf76891496202e24d2d328724ff5a32b5f74937fc4eeaf66600ae23"
+      }
+    },
+    {
+      "package": "Fact713Row3005Continuation",
+      "branch": 0,
+      "entries": 1431,
+      "higher_entries": 925,
+      "lookup_queries": 2775,
+      "list_find_key_comparisons": 1861766,
+      "nat_index_list_get_cons_steps": 1861766,
+      "balanced_path_nodes": 32090,
+      "max_balanced_path": 11,
+      "operation_count_ratio": 58.01701464630726,
+      "literal_binding": "exact ordered projection including n,m,k,h",
+      "first_match_keys_unique": true,
+      "witness_sha256": "18eb18278b8a00aa5e0bf57ca789db73bdb66ae7c585b5d2d00628e822ac3505",
+      "source_sha256": {
+        "Fact713Row3005Continuation/zero_b0-family.json": "45c7eaa8dc80d24134f3c4bf98ff2590c557d18dcb956c041140c02acfbb56ff",
+        "Fact713Row3005Continuation/CompactData.lean": "a3c56b7a92a3f44046d9a54a295d18e25a4e4f3d132089a2ce064494145f428c"
+      }
+    },
+    {
+      "package": "Fact713Row3005Continuation",
+      "branch": 1,
+      "entries": 1431,
+      "higher_entries": 925,
+      "lookup_queries": 2775,
+      "list_find_key_comparisons": 1861766,
+      "nat_index_list_get_cons_steps": 1861766,
+      "balanced_path_nodes": 32090,
+      "max_balanced_path": 11,
+      "operation_count_ratio": 58.01701464630726,
+      "literal_binding": "exact ordered projection including n,m,k,h",
+      "first_match_keys_unique": true,
+      "witness_sha256": "3ec26f0a6804bd3966319d91b083df5b3fcf0043a2921c2dcc091cc11f77c2b7",
+      "source_sha256": {
+        "Fact713Row3005Continuation/zero_b1-family.json": "7c188350150c0615a6977b289f369c1c5f93f792c796c437a20d6423470eab14",
+        "Fact713Row3005Continuation/CompactData.lean": "a3c56b7a92a3f44046d9a54a295d18e25a4e4f3d132089a2ce064494145f428c"
+      }
+    }
+  ],
+  "semantic_review": "Compact.check_project and lookupH_project preserve exact first-match semantics, including duplicates.",
+  "algorithmic_finding": "Compact lookup is still a fresh linear List.find? per predecessor query. Nat indices with List.get remove key comparisons but retain the same quadratic cons traversal count.",
+  "proposed_binding": "Balanced literal metadata tree with flatten tree = project family; every higher row has three checked paths; use existing Coherent.unique to recover first-match lookup.",
+  "scope": "No implementation modified, no Lean launched, no speedup measured. Operation counts are exact structural models, not timing predictions.",
+  "audited_source_sha256": {
+    "IndexedPredecessorClosureCompact/Basic.lean": "9f2ab4f849a9e42e6f56b44b15b02d7e6a5bcadd2ef121fab1395d2cd788dc1d",
+    "IndexedPredecessorClosure/Basic.lean": "9f4bc27e110b782c37622faaace85a40d1002a7930e1bd4efdaa467315191af5",
+    "IndexedPredecessorClosureActual/Fact713.lean": "f9f06fcd4a9b426ebb7f1c70958cab6a4f932bf3d86dc9b31144939c5c4a8cc1",
+    "Fact713Row3005Continuation/Closure.lean": "851ee5eb4027605ddc80b6923a20d73a0e3b9c98f040f4a245e6a87efc4b27f1"
+  }
+}

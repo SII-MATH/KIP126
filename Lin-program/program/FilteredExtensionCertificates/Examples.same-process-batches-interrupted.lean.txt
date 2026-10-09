@@ -1,0 +1,146 @@
+import FilteredExtensionCertificates.Import
+
+namespace FilteredExtensionCertificates.Examples
+set_option maxRecDepth 100000
+set_option maxHeartbeats 16000000
+
+def correction : WireCertificate :=
+  filtered_extension_certificate% "FilteredExtensionProducer/case_correction.json"
+def nonzero : WireCertificate :=
+  filtered_extension_certificate% "FilteredExtensionProducer/case_nonzero.json"
+def empty : WireCertificate :=
+  filtered_extension_certificate% "FilteredExtensionProducer/case_empty.json"
+def batch00 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch00.jsonl"
+theorem batch00_valid : ∀ w ∈ batch00, WireValid w := checkBatch_sound batch00 (by decide)
+
+def batch01 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch01.jsonl"
+theorem batch01_valid : ∀ w ∈ batch01, WireValid w := checkBatch_sound batch01 (by decide)
+
+def batch02 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch02.jsonl"
+theorem batch02_valid : ∀ w ∈ batch02, WireValid w := checkBatch_sound batch02 (by decide)
+
+def batch03 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch03.jsonl"
+theorem batch03_valid : ∀ w ∈ batch03, WireValid w := checkBatch_sound batch03 (by decide)
+
+def batch04 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch04.jsonl"
+theorem batch04_valid : ∀ w ∈ batch04, WireValid w := checkBatch_sound batch04 (by decide)
+
+def batch05 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch05.jsonl"
+theorem batch05_valid : ∀ w ∈ batch05, WireValid w := checkBatch_sound batch05 (by decide)
+
+def batch06 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch06.jsonl"
+theorem batch06_valid : ∀ w ∈ batch06, WireValid w := checkBatch_sound batch06 (by decide)
+
+def batch07 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch07.jsonl"
+theorem batch07_valid : ∀ w ∈ batch07, WireValid w := checkBatch_sound batch07 (by decide)
+
+def batch08 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch08.jsonl"
+theorem batch08_valid : ∀ w ∈ batch08, WireValid w := checkBatch_sound batch08 (by decide)
+
+def batch09 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch09.jsonl"
+theorem batch09_valid : ∀ w ∈ batch09, WireValid w := checkBatch_sound batch09 (by decide)
+
+def batch10 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch10.jsonl"
+theorem batch10_valid : ∀ w ∈ batch10, WireValid w := checkBatch_sound batch10 (by decide)
+
+def batch11 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch11.jsonl"
+theorem batch11_valid : ∀ w ∈ batch11, WireValid w := checkBatch_sound batch11 (by decide)
+
+def batch12 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch12.jsonl"
+theorem batch12_valid : ∀ w ∈ batch12, WireValid w := checkBatch_sound batch12 (by decide)
+
+def batch13 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch13.jsonl"
+theorem batch13_valid : ∀ w ∈ batch13, WireValid w := checkBatch_sound batch13 (by decide)
+
+def batch14 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch14.jsonl"
+theorem batch14_valid : ∀ w ∈ batch14, WireValid w := checkBatch_sound batch14 (by decide)
+
+def batch15 : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionCertificates/batch15.jsonl"
+theorem batch15_valid : ∀ w ∈ batch15, WireValid w := checkBatch_sound batch15 (by decide)
+
+def batch : List WireCertificate := batch00 ++ batch01 ++ batch02 ++ batch03 ++ batch04 ++ batch05 ++ batch06 ++ batch07 ++ batch08 ++ batch09 ++ batch10 ++ batch11 ++ batch12 ++ batch13 ++ batch14 ++ batch15
+
+theorem correction_valid : WireValid correction := by filtered_extension_cert using ()
+theorem nonzero_valid : WireValid nonzero := by filtered_extension_cert using ()
+theorem empty_valid : WireValid empty := by filtered_extension_cert using ()
+theorem batch_count : batch.length = 604 := by decide
+theorem all_valid : ∀ w ∈ batch, WireValid w := by
+  intro w hw
+  simp only [batch,List.mem_append] at hw
+  rcases hw with h0 | h1 | h2 | h3 | h4 | h5 | h6 | h7 | h8 | h9 | h10 | h11 | h12 | h13 | h14 | h15
+  · exact batch00_valid w h0
+  · exact batch01_valid w h1
+  · exact batch02_valid w h2
+  · exact batch03_valid w h3
+  · exact batch04_valid w h4
+  · exact batch05_valid w h5
+  · exact batch06_valid w h6
+  · exact batch07_valid w h7
+  · exact batch08_valid w h8
+  · exact batch09_valid w h9
+  · exact batch10_valid w h10
+  · exact batch11_valid w h11
+  · exact batch12_valid w h12
+  · exact batch13_valid w h13
+  · exact batch14_valid w h14
+  · exact batch15_valid w h15
+
+/-- The fixed representative needs a nonzero higher-source correction. -/
+theorem correction_changed : correction.representative ≠ correction.data.x := by decide
+
+def diagnostic (text : String) : Option String :=
+  match parseBatch text with
+  | .ok _ => none
+  | .error e => some e
+
+def fixtureText : String := (Lean.toJson empty).compress
+#guard physicalLines "" = [""]
+#guard physicalLines "\n" = [""]
+#guard physicalLines "x\n" = ["x"]
+#guard physicalLines "\nx\n" = ["", "x"]
+#guard physicalLines "x\n\n" = ["x", ""]
+#guard diagnostic "" = some "line 1: empty record"
+#guard diagnostic "\n" = some "line 1: empty record"
+#guard diagnostic ("\n" ++ fixtureText ++ "\n") = some "line 1: empty record"
+#guard diagnostic (fixtureText ++ "\n\n" ++ fixtureText) = some "line 2: empty record"
+#guard diagnostic (fixtureText ++ "\r\n") = some "line 1: CR is not canonical; use LF"
+#guard diagnostic (fixtureText ++ "\n" ++ fixtureText ++ "\r\n") =
+  some "line 2: CR is not canonical; use LF"
+#guard diagnostic fixtureText = none
+#guard diagnostic (fixtureText ++ "\n") = none
+#guard diagnostic (fixtureText ++ "\n" ++ fixtureText ++ "\n") = none
+
+#guard checkWire {correction with representative := correction.data.x} = .ok false
+#guard checkWire {correction with data := {correction.data with y := [true]}} = .ok false
+#guard checkWire {correction with sourceFactors := [[false,false,false,false],[false,false,false,false]]}
+  = .ok false
+#guard checkWire {correction with targetFactors := [[false],[false]]} = .ok false
+#guard checkWire {correction with mapFactors := [[false,false],[false,false]]} = .ok false
+#guard checkWire {correction with sourceMember := [false,false]} = .ok false
+#guard checkWire {correction with imageMember := [false]} = .ok false
+#guard checkWire {correction with targetMember := [true]} = .ok false
+#guard checkWire {correction with sourceCorrection := [false,false]} = .ok false
+
+#print axioms correction_valid
+#print axioms nonzero_valid
+#print axioms empty_valid
+#print axioms batch_count
+#print axioms all_valid
+#print axioms correction_changed
+end FilteredExtensionCertificates.Examples

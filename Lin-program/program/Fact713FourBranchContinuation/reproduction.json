@@ -1,0 +1,34 @@
+{
+  "status": "byte_identical",
+  "files": 14,
+  "sha256": {
+    "ResidualA0.lean": "7f586de8591b5f28ea274a4ff6790eb06c6a694089bcd52a801724e2f85e28f7",
+    "ResidualA1.lean": "14216022315afb5155cac7f3abc9b384571a2d82febaf49742baa29aa5790c87",
+    "ZeroA0.lean": "51d1cbaf72873f604ca9be37c9caf6503b9afd3b036a4645841ef07a576978b1",
+    "ZeroA1.lean": "34d9eab77206bd5b19930046756ae4e14110d1f7ca6990a3f00fa7693d130718",
+    "branches/residual_a0.json": "677d1d898f0cd271e4a94f4acaea31f21c7d90c36f02cbc41422ed3d44092885",
+    "branches/residual_a1.json": "2d96a8f874da4b7077646cf837f1a247bc08f8f72ced1635daf3fe76cd1408a6",
+    "branches/summary.json": "2dd13c7f0de9d4a615e713add33c2a46b7a60a152b6e09082a4d526cefd079a6",
+    "branches/zero_a0.json": "ea67ec70b87595a5cabefc5b1077ae3aafcaa6b61ba657a426ebccb0324c9583",
+    "branches/zero_a1.json": "b3e8df7bd3a04ba886af6251ea65bc624fcc2ed085f8839f59ff3d4a3e7285f1",
+    "package.json": "db369ae63e14db5533fc0a600fc883ce953dc67aa4316f74e1a2eb994024e238",
+    "residual_a0-family.json": "28f74a34a089d03e4e796bed332c6787445bce71661deb0b7b7f59e1e67feeaf",
+    "residual_a1-family.json": "b981a61b7631f5ea7ab32d4713336b75853740d9b11bbe152b647b89bb57d1cb",
+    "zero_a0-family.json": "b68de9887d308b0303948c285c02aa49263104faafe3d05cfb9f343221cf78f7",
+    "zero_a1-family.json": "3b9b2b37cad09b0f2f02d84af3f1928780b3aaad73962a9202a70dace4442101"
+  },
+  "commands": [
+    {
+      "script": "generate.py",
+      "observed_exit_code": 0
+    },
+    {
+      "script": "package.py",
+      "observed_exit_code": 0
+    },
+    {
+      "script": "audit.py",
+      "observed_exit_code": 0
+    }
+  ]
+}

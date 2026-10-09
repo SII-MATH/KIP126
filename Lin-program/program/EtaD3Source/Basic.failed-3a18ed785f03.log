@@ -1,0 +1,14 @@
+EtaD3Source/Basic.lean:68:2: error: Type mismatch: After simplification, term
+  eq
+ has type
+  @Eq
+    (Homology (matrixOf etaTarget.k etaTarget.m etaTarget.outgoing)
+      (matrixOf etaTarget.m etaTarget.n etaTarget.incoming))
+    x (zeroQ etaTarget)
+but is expected to have type
+  @Eq (Q etaTarget) x (zeroQ etaTarget)
+'EtaD3Source.h0_target_all_zero' depends on axioms: [propext, Quot.sound]
+'EtaD3Source.zero_product_target_all_zero' depends on axioms: [propext, Quot.sound]
+'EtaD3Source.detect_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EtaD3Source.detect_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EtaD3Source.detect_reflects_zero' depends on axioms: [propext, sorryAx, Quot.sound]

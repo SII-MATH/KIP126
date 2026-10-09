@@ -1,0 +1,28 @@
+{
+  "source_sha256": "d1df16eb4931cdb4d872d8f34c58dccba37691181f6ba37d43a3465c56ad17d6",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact721SecondE6/Actual.olean": "dcf1046e6f13d8e522033082a0e0dff0a714a29d3f158a5f267d6a29872c113f",
+    ".lake/build/lib/lean/Fact721SecondE6/Targets.olean": "5933ddc6050a9f3b0365444763a3b00206bfdeebe21ff40eb410c9c63e861d08",
+    ".lake/build/lib/lean/ActualAdamsSystemBridge/Basic.olean": "0b9644a6077ec94281bcbbed55996554ee5482b292e7f415aec73246bf4cc56a"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact721SecondE6/Later.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact721SecondE6/Later.olean"
+  ],
+  "log": "evidence/Later-20260922T021639722051Z.log",
+  "external_input_sha256": {
+    "Fact721SecondE6/source.json": "d3ebb83f5fe4b854ab3b4f99314dd7b2746a30f867f6b6e5053f1d26f33b9091",
+    "Fact721SecondE6/wire/d6incoming2.json": "808de10b168b6097d8589595dca6fdbf6a619a39017390a44c122f1b2dc324eb",
+    "Fact721SecondE6/wire/d6outgoing2.json": "c0e5520e89428721007c733991805120acca26d3a0e10d62ba1c51bbce032696",
+    "Fact721SecondE6/wire/d6target2.json": "42239f718075c9c2d403816ea4da6fab0c63008f838430758a5b2e809ce38387",
+    "Fact721SecondE6/wire/d6target3.json": "f7cd73e86ef246103d4cb62e6f0158480c89b3199e252a56e84e6426ffb1c740",
+    "Fact721SecondE6/wire/d7target2.json": "5339730204312839710e45df9aca276252393696e250e23e208277d8035d7705"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "e34b9278beae5dbd85e11bf1f8b61d1066a77d3ad24864c3a5172796b86f37c6",
+  "inputs_stable": true,
+  "olean_sha256": "9c7281e3adbfeab020a331fa4076b5623dd367de94ee55cd5f577169f331879b"
+}

@@ -1,0 +1,57 @@
+IndexedPredecessorClosureCompact/Basic.lean:13:24: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Repr Key
+
+Hint: Adding the command `deriving instance Repr for IndexedFamilyCertificates.Key` may allow Lean to derive the missing instance.
+IndexedPredecessorClosureCompact/Basic.lean:28:23: error: unsolved goals
+case cons.false
+key : Key
+entry : IndexedFamilyCertificates.Entry
+rest : List IndexedFamilyCertificates.Entry
+ih :
+  Option.map Entry.h (List.find? (fun entry => entry.key == key) (List.map projectEntry rest)) =
+    Option.map WireComparison.h (Option.map Entry.wire (List.find? (fun entry => entry.key == key) rest))
+h : (entry.key == key) = false
+⊢ Option.map (Entry.h ∘ projectEntry) (List.find? ((fun entry => entry.key == key) ∘ projectEntry) rest) =
+    Option.map (WireComparison.h ∘ Entry.wire) (List.find? (fun entry => entry.key == key) rest)
+IndexedPredecessorClosureCompact/Basic.lean:30:41: warning: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp [h̵,̵ih]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+IndexedPredecessorClosureCompact/Basic.lean:30:43: warning: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  simp [h,̵i̵h̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+IndexedPredecessorClosureCompact/Basic.lean:62:8: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+case w
+family : Family
+⊢ family = family
+IndexedPredecessorClosureCompact/Basic.lean:79:73: error: Application type mismatch: The argument
+  certificate.table
+has type
+  Table
+but is expected to have type
+  Certificate ?m.2
+in the application
+  check certificate.table
+IndexedPredecessorClosureCompact/Basic.lean:82:59: error: Application type mismatch: The argument
+  accepted
+has type
+  certificate.check = true
+but is expected to have type
+  IndexedPredecessorClosureCompact.check certificate.table = true
+in the application
+  check_sound family certificate.table certificate.binding accepted
+'IndexedPredecessorClosureCompact.lookupH_project' depends on axioms: [sorryAx]
+'IndexedPredecessorClosureCompact.checkDimension_project' depends on axioms: [sorryAx]
+'IndexedPredecessorClosureCompact.checkEntry_project' depends on axioms: [propext, sorryAx]
+'IndexedPredecessorClosureCompact.check_project' depends on axioms: [propext, sorryAx]
+'IndexedPredecessorClosureCompact.check_iff' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedPredecessorClosureCompact.check_sound' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedPredecessorClosureCompact.Certificate.sound' depends on axioms: [propext, sorryAx, Quot.sound]

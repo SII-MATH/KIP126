@@ -1,0 +1,30 @@
+{
+  "status": "no_endpoint_correctness_findings",
+  "findings": [],
+  "modules": {
+    "Branches": {
+      "source_sha256": "69675e61bb000ecc8ff4a69a0ef25a4a2f2807a2f650cf39f22e09b57dd7d7b1",
+      "log_sha256": "4cdbc5459a2f803294417bfe577c25583bd39a58799bd778ecf82801e44b5ae1",
+      "axiom_reports": 8
+    },
+    "Tactic": {
+      "source_sha256": "f3d23afe95573a0676fe61ed38088e569da7ae86f84c72d5a176b82c3af1ba86",
+      "log_sha256": "c696175a2d3d026b1b5c97460653ffee6c8275f61befdcbbb2ff7d4cce9ad3d2",
+      "axiom_reports": 3
+    }
+  },
+  "axiom_reports": 11,
+  "counts": {
+    "whole_one_dimensional_map_elements": 8,
+    "zero_target_branches_rejected": 4,
+    "rejected_requests": 464,
+    "accepted_named_requests": 1,
+    "ordered_batch_pairs": 216225
+  },
+  "scope": "Branches and Tactic only; complements independent-core-review.json",
+  "limitations": [
+    "Residual/nonzero branch exclusion requires its complete actual E4 target interpretation",
+    "Whole target coefficient is derived only when actual target dimension is one",
+    "Exact canonical E3 caller input is bound to W.source before the same quotient transition"
+  ]
+}

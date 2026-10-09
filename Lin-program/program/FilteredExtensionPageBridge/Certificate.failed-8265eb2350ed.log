@@ -1,0 +1,13 @@
+FilteredExtensionPageBridge/Certificate.lean:55:9: error: Function expected at
+  sourceClass ?m.56 ?m.57 ?m.58 ?m.59 ?m.60
+but this term has type
+  ↥(cycles ?m.56 ?m.57 ?m.58 ?m.59 ?m.60) →+ SourcePage ?m.56 ?m.57 ?m.58 ?m.59 ?m.60
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨⟨D.x⟩, hcycle⟩
+'FilteredExtensionPageBridge.resultValid_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionPageBridge.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionPageBridge.page_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionPageBridge.leading_event' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionPageBridge.stableResultValid_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredExtensionPageBridge.check_stable_sound' depends on axioms: [propext, Classical.choice, Quot.sound]

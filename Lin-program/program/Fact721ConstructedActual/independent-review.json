@@ -1,0 +1,39 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "counts": {
+    "quotient_pairs": 116,
+    "coordinate_changes": 8,
+    "trace_steps": 5,
+    "countermodels": 3
+  },
+  "axiom_reports": {
+    "Basic": 3,
+    "First": 6,
+    "Second": 9,
+    "Tactic": 4
+  },
+  "endpoints": {
+    "first": 4,
+    "second": 5
+  },
+  "permanence_proved": false,
+  "reviewed": [
+    "source naming equation identifies the same actual element, not a differential value",
+    "full source d3 zero follows from detector-derived named column plus separate other known column",
+    "whole d4 zero theorem is coordinate-independent and needs no new source naming premise",
+    "all next coordinates derived from actual quotients of the same initial class",
+    "exact input binding and nonzero actual endpoint, no branch choice or outgoing tail assertion"
+  ],
+  "limitations": [
+    "initial and neighboring actual differential meanings remain explicit",
+    "detector naturality and source-name compatibility remain explicit",
+    "first d4 and second d5 onward, all-page permanence, sphere realization"
+  ],
+  "sources": {
+    "Fact721ConstructedActual/Basic.lean": "465356f485bcc9f7d1781737329a251b95d2df7142548ecdf1faa6cdbc34c634",
+    "Fact721ConstructedActual/First.lean": "a0a84f979c210a0f9c97cb65592d7b4b04dbacdb0adbbc5be59846f83da8fda6",
+    "Fact721ConstructedActual/Second.lean": "28e3e72de983e6456a8323f9bcfc02d93e5c0278096b422c72c1098faf8a8a23",
+    "Fact721ConstructedActual/Tactic.lean": "fca4499ee4b72dd51647e2e4798cb63e86566e1c5a31617d2848b8d6fbf98e24"
+  }
+}

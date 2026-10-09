@@ -1,0 +1,13 @@
+Row3152BranchCertificates/Generic.lean:32:18: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  eval ?A zero
+in the target expression
+  InKernel outgoing zero
+
+case refine_2
+n : ℕ
+he : ∀ (x : Vec 1), eval outgoing x = x
+hk : ∀ (x : Vec 1), InKernel outgoing x → x = zero
+⊢ InKernel outgoing zero
+'Row3152BranchCertificates.Generic.complete' depends on axioms: [propext, sorryAx, Quot.sound]
+'Row3152BranchCertificates.Generic.complex_forces_incoming_zero' depends on axioms: [propext, Quot.sound]
+'Row3152BranchCertificates.Generic.named_event' depends on axioms: [propext, Quot.sound]

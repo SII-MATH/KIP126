@@ -1,0 +1,90 @@
+{
+  "status": "passed_no_findings",
+  "counts": {
+    "axiom_reports": 38,
+    "whole_one_dimensional_zero_maps": 8,
+    "omitted_named_cycle_countermodels": 24,
+    "arbitrary_E3_element_not_forced_by_later_boundary": 1
+  },
+  "families": [
+    {
+      "branch": "zero",
+      "old_entries": 1290,
+      "entries": 1300,
+      "counts": {
+        "whole_homotopy_vectors": 2588,
+        "quotient_pairs": 9544,
+        "ordered_family_pairs": 1690000,
+        "consecutive_pages": 800,
+        "adjacent_maps": 991,
+        "same_named_finite_steps": 7,
+        "explicit_cycle_premise_uses": 2
+      }
+    },
+    {
+      "branch": "residual_rebased",
+      "old_entries": 1292,
+      "entries": 1302,
+      "counts": {
+        "whole_homotopy_vectors": 2591,
+        "quotient_pairs": 9546,
+        "ordered_family_pairs": 1695204,
+        "consecutive_pages": 802,
+        "adjacent_maps": 993,
+        "same_named_finite_steps": 7,
+        "explicit_cycle_premise_uses": 2
+      }
+    }
+  ],
+  "raw_later_boundary_associations": [
+    [
+      1078,
+      14,
+      82,
+      "0",
+      "0",
+      9996
+    ],
+    [
+      1183,
+      18,
+      85,
+      "0",
+      "0",
+      4
+    ],
+    [
+      4536,
+      12,
+      140,
+      "2",
+      "3",
+      9993
+    ],
+    [
+      5286,
+      19,
+      146,
+      "3",
+      "2",
+      7
+    ]
+  ],
+  "review": {
+    "E3_PageCycle_is_explicit_premise": true,
+    "later_boundary_equations_are_not_used_to_prove_initial_cycle": true,
+    "whole_source_equivalence_and_zero_law_explicit": true,
+    "previous_families_preserved_as_exact_prefixes": true,
+    "branch_conflict_not_merged": true,
+    "common_finite_E9_checked": true,
+    "d9_and_row2622_d4_absent_in_these_frozen_families": true
+  },
+  "input_sha256": {
+    "Fact713Row3247ConditionalBranches/second_review.py": "4512985e07ed8cc64625c535181f986681d6beb2dcd98c06827b3db739e46fd9",
+    "Fact713Row3247Boundaries/freeze.json": "7f0fe01cb92444bc3f45a8f63e1bb30ca94ca2f688b894fd442d48186ae45375",
+    "Fact713Row3247ConditionalBranches/freeze.json": "dba11923424e80da7e8adb7a28a0baa734e8f09c03d8ba1d6732e399c9fce558",
+    "Fact713Row3247ConditionalBranches/conditional_signature.json": "08232bde8ac0901f9c65800a65132657ed2d39c4d66f98bde619e8aac9f829a6",
+    "Fact713Row3247ConditionalBranches/zero-family.json": "198de6874f149356b7a7b9c695d4ffcdac3d8b6bfe848ada6651726ec69e192b",
+    "Fact713Row3247ConditionalBranches/residual-family.json": "1f617e30e454c80ac5451f4ea2e54a219ce791e884bf77fd072b817382284a23"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Row2907D4Candidates.Finite",
+      "axiom_reports": 3,
+      "source_sha256": "fe82af34a50d8c88ca8cf99f6a2165db74c9e2e88cee16cf1d89fbf4eeab0b41",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row2907TargetProduct/Branches.olean": "a2beb2c3e6465667b71312c9ca48d72a83fcf072f42889fc455245f8ac8e01da"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row2907D4Candidates/Finite.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2907D4Candidates/Finite.olean"
+      ],
+      "log": "evidence/Finite-20260922T013206584099Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "e9b9ddf103cc86aec77ad4fd56d187a540a02cc552f78e5a61738d84f4627214",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row2907TargetProduct/Branches.olean": "a2beb2c3e6465667b71312c9ca48d72a83fcf072f42889fc455245f8ac8e01da"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "c7357995ed8b90ba356f424e276783001410563937266395dbd2e2ca817b616c"
+    },
+    {
+      "module": "Row2907D4Candidates.Actual",
+      "axiom_reports": 6,
+      "source_sha256": "68b7776d3290032058fd2fb3eff730379bf451369dce2135f1a1d32c70ff44d4",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row2907D4Candidates/Finite.olean": "c7357995ed8b90ba356f424e276783001410563937266395dbd2e2ca817b616c"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row2907D4Candidates/Actual.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2907D4Candidates/Actual.olean"
+      ],
+      "log": "evidence/Actual-20260922T013236924385Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "099c09c0eccbff03350b157188950f90c690d165a4115dc77ce16fbf14a78da9",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row2907D4Candidates/Finite.olean": "c7357995ed8b90ba356f424e276783001410563937266395dbd2e2ca817b616c"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "bb9b560a8be184a298ab37a6e31c614b7cea0116103f2f49d63832816d4d34ac"
+    },
+    {
+      "module": "Row2907D4Candidates.Tactic",
+      "axiom_reports": 2,
+      "source_sha256": "c5f28d049d9489de24061160be2eabe32e67763c010b2ae74ebe6620da72f98f",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Row2907D4Candidates/Actual.olean": "bb9b560a8be184a298ab37a6e31c614b7cea0116103f2f49d63832816d4d34ac",
+        ".lake/build/lib/lean/Row2907PDeltaDetection/Tactic.olean": "381ebd612ce70d0190699c3b9ad36f461f4f2405c4dd4b74ec598f717964a07b"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Row2907D4Candidates/Tactic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2907D4Candidates/Tactic.olean"
+      ],
+      "log": "evidence/Tactic-20260922T013433583616Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "d27442e2d0a0c5ad77642e81b247ae5f4d00a900f156555b1bc2d145bb215723",
+      "dependencies_after_sha256": {
+        ".lake/build/lib/lean/Row2907D4Candidates/Actual.olean": "bb9b560a8be184a298ab37a6e31c614b7cea0116103f2f49d63832816d4d34ac",
+        ".lake/build/lib/lean/Row2907PDeltaDetection/Tactic.olean": "381ebd612ce70d0190699c3b9ad36f461f4f2405c4dd4b74ec598f717964a07b"
+      },
+      "inputs_stable": true,
+      "olean_sha256": "bd31e5996e64135c4082e6281aaabfc2cc8552343c8742ad4560af14842199e6"
+    }
+  ],
+  "axiom_reports": 11,
+  "dependency_note": "Direct dependency hashes are historical observations at compile time; root builds may later rebuild registered dependencies.",
+  "files": {
+    "Row2907D4Candidates/Actual-compile.json": "958eb9d27f3d3c509f8f37236dfa75131164b9e137d37059c364b3eaecffba9b",
+    "Row2907D4Candidates/Actual.lean": "68b7776d3290032058fd2fb3eff730379bf451369dce2135f1a1d32c70ff44d4",
+    "Row2907D4Candidates/Finite-compile.json": "f1b6ce2eb490e92b16d45fabe2991d6e851c3e23b656d376f98611b511289e5d",
+    "Row2907D4Candidates/Finite.lean": "fe82af34a50d8c88ca8cf99f6a2165db74c9e2e88cee16cf1d89fbf4eeab0b41",
+    "Row2907D4Candidates/README.md": "11dfa4b52146477753829d3dc59fd5a0867c71414728b6bf70d639efda36d568",
+    "Row2907D4Candidates/Tactic-compile.json": "588bc561c662ac88e3c25ccbe8b5620bdf4b21a4c8c9737a198aa4c9b5b86d25",
+    "Row2907D4Candidates/Tactic.lean": "c5f28d049d9489de24061160be2eabe32e67763c010b2ae74ebe6620da72f98f",
+    "Row2907D4Candidates/compile-current.log": "0e5a0dea44e215eaed82aebae48bc4ff4d808f16aa919bba08b189173eb1aa27",
+    "Row2907D4Candidates/compile.py": "6a097d8cc4a6c9150055dccf85b404ca9b4016e08254e1b08997d26a0713bf5e",
+    "Row2907D4Candidates/evidence/Actual-20260922T013209501934Z.json": "95abf9b45f7713002c46a7c8aa883d0c65c5910ac8aa4e07b03879db78dce550",
+    "Row2907D4Candidates/evidence/Actual-20260922T013209501934Z.log": "019537f65fbfec4d1e809ea5ab6970714ba77b7d7f96ecffed58cdf21ad4d8ed",
+    "Row2907D4Candidates/evidence/Actual-20260922T013236924385Z.json": "958eb9d27f3d3c509f8f37236dfa75131164b9e137d37059c364b3eaecffba9b",
+    "Row2907D4Candidates/evidence/Actual-20260922T013236924385Z.log": "099c09c0eccbff03350b157188950f90c690d165a4115dc77ce16fbf14a78da9",
+    "Row2907D4Candidates/evidence/Finite-20260922T013130018326Z.json": "60537182c7fe230d1878c39f76ea169153ed86b7469d9eb70ccb60823dd6794f",
+    "Row2907D4Candidates/evidence/Finite-20260922T013130018326Z.log": "98469d37a950353215405df829d7f8eaed2ccde465b272c42bc785f0fb2db631",
+    "Row2907D4Candidates/evidence/Finite-20260922T013206584099Z.json": "f1b6ce2eb490e92b16d45fabe2991d6e851c3e23b656d376f98611b511289e5d",
+    "Row2907D4Candidates/evidence/Finite-20260922T013206584099Z.log": "e9b9ddf103cc86aec77ad4fd56d187a540a02cc552f78e5a61738d84f4627214",
+    "Row2907D4Candidates/evidence/Tactic-20260922T013408609945Z.json": "ee95ffb51d376b8e1d58b09733df4d59eadb4ee6c5aa736a5365d21d947e10d5",
+    "Row2907D4Candidates/evidence/Tactic-20260922T013408609945Z.log": "c06d6ac489de2d6adeafcbc6882779896960a3d26e965bff37796fccf35c7096",
+    "Row2907D4Candidates/evidence/Tactic-20260922T013433583616Z.json": "588bc561c662ac88e3c25ccbe8b5620bdf4b21a4c8c9737a198aa4c9b5b86d25",
+    "Row2907D4Candidates/evidence/Tactic-20260922T013433583616Z.log": "d27442e2d0a0c5ad77642e81b247ae5f4d00a900f156555b1bc2d145bb215723",
+    "Row2907D4Candidates/freeze.py": "a0c534e73ee76265e9e39f6a2da662b7ee1c57362b5a033827c2b3173669f7f2",
+    "Row2907D4Candidates/modules.txt": "8fa458319fd42269875c08cc51ae6fb171c664f9deb1fee4a403769136e91cba",
+    "Row2907D4Candidates/file-list.txt": "b9e8cd51993a4cc62dccc746882c1432c86dba4fc99a4d573f6dede97d53195c"
+  }
+}

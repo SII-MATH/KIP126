@@ -1,0 +1,8 @@
+@DiagnosticCertificateVerifier.toCertificateVerifier : {P : Prop} →
+  [self : DiagnosticCertificateVerifier P] → CertificateVerifier P
+CertificateVerifier.Cert : (P : Prop) → [self : CertificateVerifier P] → Type
+@DiagnosticCertificateVerifier.diagnose : {P : Prop} →
+  [self : DiagnosticCertificateVerifier P] → CertificateVerifier.Cert P → Option VerificationFailure
+@CertificateVerifier.sound : ∀ {P : Prop} [self : CertificateVerifier P] (certificate : CertificateVerifier.Cert P),
+  CertificateVerifier.check certificate = true → P
+@Lean.Meta.synthInstance? : Lean.Expr → optParam (Option Nat) none → Lean.MetaM (Option Lean.Expr)

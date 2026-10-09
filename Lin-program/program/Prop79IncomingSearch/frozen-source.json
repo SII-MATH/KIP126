@@ -1,0 +1,281 @@
+{
+  "modules": [
+    "Prop79IncomingSearch.Maps",
+    "Prop79IncomingSearch.Comparison",
+    "Prop79IncomingSearch.Naturality",
+    "Prop79IncomingSearch.Actual",
+    "Prop79IncomingSearch.Finite",
+    "Prop79IncomingSearch.CoordinateBridge",
+    "Prop79IncomingSearch.MapSemantics",
+    "Prop79IncomingSearch.Incoming"
+  ],
+  "status": "frozen",
+  "source_sha256": {
+    "Prop79IncomingSearch/Actual.lean": "af72455551b3c8eceffdb27c713167ae77ff5ca7cdf6113f2ec2418af4e1a534",
+    "Prop79IncomingSearch/Comparison.lean": "e2c2eb25fc90b10792b0ed068fb7ab8380e7171938802c470762eeccecdca8b6",
+    "Prop79IncomingSearch/CoordinateBridge.lean": "6224f56adf4659ea95767f24c80dde032297fd71a664304a44d0a993ac02397e",
+    "Prop79IncomingSearch/Finite.lean": "a7f2ff8f68d49709b10e855fafbbffafe46d5a5233bff3a5057b8ef0d5c14df3",
+    "Prop79IncomingSearch/Incoming.lean": "589881b40ecff753b6fc8cc6813c4594fb02275dc1468983e12de6ef834ae85e",
+    "Prop79IncomingSearch/MapSemantics.lean": "8ef7ace1dcbf09591565cece4ced99ad8f63a625600b489dba484cf37178756f",
+    "Prop79IncomingSearch/Maps.lean": "f77b6e92fb4f38557a8d8ac4467dcc7fca43039cb7e99b6c0cc3a314a3aca908",
+    "Prop79IncomingSearch/Naturality.lean": "d11e4ebbc1d742905ebaabb32440d199d4accaf2aca6b809ec52f2b91c37e377",
+    "Prop79IncomingSearch/audit.py": "5768346bcbabecf5a91ab8811b6c6c94c76b835048d50eec700cf6eefe8730d1",
+    "Prop79IncomingSearch/bottom_inclusion.py": "694bdf9ddecbcc0daf7d05244e07f34a4ee7d936a10d3b2edf5f11045ed9d731",
+    "Prop79IncomingSearch/compile.py": "4ca90bb27eeb02e5761ac0ddeb66cbbd454b776b5fd1d512a73f4001b9785932",
+    "Prop79IncomingSearch/generate_lean.py": "01c030c68635edb560ae636d6333ebc37fd6dac2fe1c425b1cfd3c640ecf1936",
+    "Prop79IncomingSearch/search.py": "c1770fe7c964767eec1dbec53bef98a9d9a836782fe159b5b93824ae245663fc",
+    "Prop79IncomingSearch/README.md": "f53c05c18f4241462f0207a2dd8df0f8afcec7080b2fd804f0eb2c6a47f8a570",
+    "Prop79IncomingSearch/modules.txt": "9b9b47b5fb9c5ad9de458021e21400a54e4252d9e71bdd508526262fafb108a9",
+    "Prop79IncomingSearch/search.json": "485bfad505d242f35b76e4db88c7df62229a1ff018b0aece4409fbb253ab4867",
+    "Prop79IncomingSearch/bottom-inclusion.json": "d294df1b7bdec38389468ecd869bc027e3f2159635185d5a8f039a58d08dfa6a",
+    "Prop79IncomingSearch/failure-locations.json": "f4a12713004542cd4f3d6345e8b7e4ac3dc6449021328b587e33ed34e23c1b1a",
+    "Prop79IncomingSearch/reproducibility.json": "a9696469bb62fb198d5198c01c772026fb094e1684d18c60ed38fd2f77718962",
+    "Prop79IncomingSearch/wires/Cnu_10_136_d2.json": "ceb324bc6fbc73885bbeecb9495fde7ea38f3b74ddcc1fb9588f9b6ec6e893c8",
+    "Prop79IncomingSearch/wires/Cnu_10_136_d3.json": "713e8b6762ef8adebfda34969c0e1cc0c6dff52112bffce8baaacec765e41b1f",
+    "Prop79IncomingSearch/wires/Cnu_11_137_d2.json": "5fcbb4d5d18f73a82846c0c72c4f4a0e7323a4017a710d0f6212ed72f7254cae",
+    "Prop79IncomingSearch/wires/Cnu_12_137_d2.json": "009ec97784ef3c1d0a8510216a8c3d9d69bbd8e9ac9b706bbbb53ad0852a22fd",
+    "Prop79IncomingSearch/wires/Cnu_12_138_d2.json": "4b538a1e20503fd35c0ca8e5e5c9c081633e03d84d13e93a55b3c06d6b2dfd2b",
+    "Prop79IncomingSearch/wires/Cnu_13_138_d2.json": "3a87aeb76abe5a6d32d243d986e06e0e9f58099e5e7f0916935ba32401271352",
+    "Prop79IncomingSearch/wires/Cnu_13_138_d3.json": "7f822ff48af4656c50b596434911502976796cd75802467bca52d3bed8ee0d6d",
+    "Prop79IncomingSearch/wires/Cnu_14_139_d2.json": "7333296d8e0b0464ce3f8aae56853ac26adf2e1d82382c8b13546f3cb97b02a4",
+    "Prop79IncomingSearch/wires/Cnu_15_140_d2.json": "8d2c0728f6af8b400119ea6ae6439091a2d6c28e7017a5a8be737fa26775454d",
+    "Prop79IncomingSearch/wires/Cnu_15_140_d3.json": "c112b213606bc6e133f35b23f2146ecf5c4ac9bc8a892ef62df98b2041c56a5c",
+    "Prop79IncomingSearch/wires/Cnu_16_140_d2.json": "c7c48f86659294af4f2a0eef4cc0b4da987fa444da3658b72fefa17b6ffc3be6",
+    "Prop79IncomingSearch/wires/Cnu_16_141_d2.json": "e2d3205fcb0249e257d992bc348118c629898d135f66da604b8aa0cdda0eba5f",
+    "Prop79IncomingSearch/wires/Cnu_17_141_d2.json": "9ef87020570dafb9f3e9ea90fdd39c600f657545444ba7890f50fb8129f583d9",
+    "Prop79IncomingSearch/wires/Cnu_18_142_d2.json": "53980ebb024071398498e861bce032ae1431b2a353df7998e7f2872b4d93d620",
+    "Prop79IncomingSearch/wires/Cnu_18_142_d3.json": "15b1a9030d5b9a52ef53c7e1fff7a06a1d4dc044f76d52060d0ffe3f51c336e0",
+    "Prop79IncomingSearch/wires/Cnu_19_143_d2.json": "71c71c29137fc895d4c1f5f41ce0731b80aaeda0df75e6250986d207bff8ea12",
+    "Prop79IncomingSearch/wires/Cnu_19_143_d3.json": "7836828b1a31221c1d25555c9b24c5cc9de103e30f5683e8369ab14984dd9e45",
+    "Prop79IncomingSearch/wires/Cnu_20_144_d2.json": "c6ab3eca6ff3a76a0c80ebb866c1bf88497ff00cc9ffb9f991a1ff49a62b169d",
+    "Prop79IncomingSearch/wires/Cnu_21_144_d2.json": "6067cd2240e39a39ec9e653c182ece9f02380c1f495c91c5a5f7fbdcaa2b2904",
+    "Prop79IncomingSearch/wires/Cnu_22_145_d2.json": "3e0403076ad0e35362cb3b588c7f0a8f387bcbb12a60537ff797ae0d4bb269c5",
+    "Prop79IncomingSearch/wires/Cnu_23_146_d2.json": "f51f13de5e85838aa872dd25df57781ccbaa9d96dada648c190f6fe7701507c9",
+    "Prop79IncomingSearch/wires/Cnu_26_148_d2.json": "5a9ff9d6cfa62022f98ec74bdadeb0b511bb1472bdf906571e1100c056942896",
+    "Prop79IncomingSearch/wires/Cnu_2_130_d2.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+    "Prop79IncomingSearch/wires/Cnu_5_132_d2.json": "6bf1304a06daa55d7d9fa68eb1227050efb77c29e9929f9c882497ec20d069e8",
+    "Prop79IncomingSearch/wires/Cnu_5_132_d3.json": "a31b00d308f3a3bb0afb779c1de2d213876070f4486ec5cff3098a67e2d2cef1",
+    "Prop79IncomingSearch/wires/Cnu_6_133_d2.json": "a1aa23e1f1529fba787f224ec1619db99a024fb3802c8c8e333ccd95d73c141e",
+    "Prop79IncomingSearch/wires/Cnu_7_134_d2.json": "7d1ae319a0a6c3afe9a3ae1b14ad5bb8f23439994dfb65e4f302ebad38794e2c",
+    "Prop79IncomingSearch/wires/Cnu_8_134_d2.json": "09704274c87c1e2e12227ab3e650fedb31324bf0f4215da19ad5c50e4bc6ddc3",
+    "Prop79IncomingSearch/wires/Cnu_9_135_d2.json": "9d04f61f5d506a0a4ffcfb077a985b1965df4048023dae2d019355424b3406ca",
+    "Prop79IncomingSearch/wires/Cnu_9_135_d3.json": "44ea65112112d007cd8d3c673de0e0960b85aec224ef7d799ba636ea3c1789e8",
+    "Prop79IncomingSearch/wires/Cnu_9_135_d4.json": "1517d16145e327d2c1a6d73e71251fd58cdde73c171260af9a0dfa063cc4d472",
+    "Prop79IncomingSearch/bottom-wire/Cnu_11_137_d2.json": "c90c2f81fc8e53663a697a71430217ef838b2195532a83ddadd4fbfa06f22cee",
+    "Prop79IncomingSearch/bottom-wire/Cnu_14_139_d2.json": "53aa652e6ed1ff19f88636312cb346316429cfb03f1d40ed07e5d87d00b985d4",
+    "Prop79IncomingSearch/bottom-wire/S0_11_137_d2.json": "125feea6141a5193c858fa74312ae9de98357194b16b24649496ee4ac8fed077",
+    "Prop79IncomingSearch/bottom-wire/S0_14_139_d2.json": "8ab8d933b95414e6661fe8f18bc3d964977a5a83c93cdfe0ec1a39e6fbef0bc3",
+    "Prop79IncomingSearch/bottom-wire/s11t137.json": "3b2894e6526c026a04c86a381dfecd24c4acf30b4b30dcee599805886aec1218",
+    "Prop79IncomingSearch/bottom-wire/s12t138.json": "6ad2ca99ec826be99102cf8759a26f31d4f868fa807dfb5f5a50a94d4976e812",
+    "Prop79IncomingSearch/bottom-wire/s13t138.json": "049e5ea204a16ed27c504dc02cb015b5da3635fd02579e9c5f2f7909488d1739",
+    "Prop79IncomingSearch/bottom-wire/s14t139.json": "4cd79043eeba4f561703081d4ad51b28f48a46e87060b25f8a67971817ecffec",
+    "Prop79IncomingSearch/bottom-wire/s16t140.json": "cfd38d7c1fa97af6ee6bbe5221ba6afedccbda1ceb8dd4da9271779d1ed4ebc0",
+    "Prop79IncomingSearch/bottom-wire/s9t136.json": "1103153b7b79e116e462165759f7bbac42a3f4deb6315bd8fa8bd4206feaa591"
+  },
+  "direct_compile": {
+    "Maps": {
+      "source_sha256": "f77b6e92fb4f38557a8d8ac4467dcc7fca43039cb7e99b6c0cc3a314a3aca908",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/ModuleToModuleCertificates/ShiftedImport.olean": "fabdc1864105914e3bf7f803664e51f4d96c8b14a94f5c7b7c6109816641ef48"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Prop79IncomingSearch/Maps.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/Maps.olean"
+      ],
+      "log": "evidence/Maps-20260922T000141713416Z.log",
+      "external_input_sha256": {
+        "Prop79IncomingSearch/bottom-wire/s11t137.json": "3b2894e6526c026a04c86a381dfecd24c4acf30b4b30dcee599805886aec1218",
+        "Prop79IncomingSearch/bottom-wire/s12t138.json": "6ad2ca99ec826be99102cf8759a26f31d4f868fa807dfb5f5a50a94d4976e812",
+        "Prop79IncomingSearch/bottom-wire/s13t138.json": "049e5ea204a16ed27c504dc02cb015b5da3635fd02579e9c5f2f7909488d1739",
+        "Prop79IncomingSearch/bottom-wire/s14t139.json": "4cd79043eeba4f561703081d4ad51b28f48a46e87060b25f8a67971817ecffec",
+        "Prop79IncomingSearch/bottom-wire/s16t140.json": "cfd38d7c1fa97af6ee6bbe5221ba6afedccbda1ceb8dd4da9271779d1ed4ebc0",
+        "Prop79IncomingSearch/bottom-wire/s9t136.json": "1103153b7b79e116e462165759f7bbac42a3f4deb6315bd8fa8bd4206feaa591"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "79896ec67a06914d2ba011adf3a00935220c0aa3b7d056cbd6876404fc88af6d",
+      "inputs_stable": true,
+      "olean_sha256": "82d535f9ecc7c097f41eec6c29c6a7adcd0b821bca81f7a36fb5dc2604b1d476"
+    },
+    "Comparison": {
+      "source_sha256": "e2c2eb25fc90b10792b0ed068fb7ab8380e7171938802c470762eeccecdca8b6",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Prop79IncomingSearch/Maps.olean": "82d535f9ecc7c097f41eec6c29c6a7adcd0b821bca81f7a36fb5dc2604b1d476",
+        ".lake/build/lib/lean/Row2925Detector/Naturality.olean": "4d83e6bf8afb38514de10a2c35a3beae4c6c4e6949ec5cd46588ea17087c4642",
+        ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Prop79IncomingSearch/Comparison.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/Comparison.olean"
+      ],
+      "log": "evidence/Comparison-20260922T000230989285Z.log",
+      "external_input_sha256": {
+        "Prop79IncomingSearch/bottom-wire/Cnu_11_137_d2.json": "c90c2f81fc8e53663a697a71430217ef838b2195532a83ddadd4fbfa06f22cee",
+        "Prop79IncomingSearch/bottom-wire/Cnu_14_139_d2.json": "53aa652e6ed1ff19f88636312cb346316429cfb03f1d40ed07e5d87d00b985d4"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "2549247dbb3ed5262fca3cfabdd8ba003f7797f38cbd01a631690f75cb6ccf1a",
+      "inputs_stable": true,
+      "olean_sha256": "07cd28767ea8a583e78c945a77012bf025c3caebb2a72b159316532013eb1496"
+    },
+    "Naturality": {
+      "source_sha256": "d11e4ebbc1d742905ebaabb32440d199d4accaf2aca6b809ec52f2b91c37e377",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Prop79IncomingSearch/Comparison.olean": "07cd28767ea8a583e78c945a77012bf025c3caebb2a72b159316532013eb1496",
+        ".lake/build/lib/lean/CnuPageCertificates/BottomCell.olean": "e174a2c1a406eb72c6d6df985f7e1519f8ffe450ef82021ac87ec689e98cc15c"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Prop79IncomingSearch/Naturality.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/Naturality.olean"
+      ],
+      "log": "evidence/Naturality-20260922T000119083488Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "b2aec3cffdf42e11963c5c5eb25ff861747f9ae989d0e0183cbf667a6f7e6cf5",
+      "inputs_stable": true,
+      "olean_sha256": "afb42b9a687ec65280a0201c67f7e832c13eae933ccef5d1043b6eff5d6ac0bb"
+    },
+    "Actual": {
+      "source_sha256": "af72455551b3c8eceffdb27c713167ae77ff5ca7cdf6113f2ec2418af4e1a534",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Prop79IncomingSearch/Naturality.olean": "afb42b9a687ec65280a0201c67f7e832c13eae933ccef5d1043b6eff5d6ac0bb",
+        ".lake/build/lib/lean/ActualAdamsSystemBridge/Basic.olean": "0b9644a6077ec94281bcbbed55996554ee5482b292e7f415aec73246bf4cc56a"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Prop79IncomingSearch/Actual.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/Actual.olean"
+      ],
+      "log": "evidence/Actual-20260922T000138699662Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "9850d02e5823d3fd4f8263df26707b3d32ba687ffa26c333d35ce6e4f80f4e89",
+      "inputs_stable": true,
+      "olean_sha256": "4dff1abd209e70e9468e23ddfbb3b3f3fd8412c34debd2a1711a568bc0c98a00"
+    },
+    "Finite": {
+      "source_sha256": "a7f2ff8f68d49709b10e855fafbbffafe46d5a5233bff3a5057b8ef0d5c14df3",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Prop79IncomingSearch/Finite.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/Finite.olean"
+      ],
+      "log": "evidence/Finite-20260922T000240330753Z.log",
+      "external_input_sha256": {
+        "Prop79IncomingSearch/wires/Cnu_10_136_d2.json": "ceb324bc6fbc73885bbeecb9495fde7ea38f3b74ddcc1fb9588f9b6ec6e893c8",
+        "Prop79IncomingSearch/wires/Cnu_10_136_d3.json": "713e8b6762ef8adebfda34969c0e1cc0c6dff52112bffce8baaacec765e41b1f",
+        "Prop79IncomingSearch/wires/Cnu_11_137_d2.json": "5fcbb4d5d18f73a82846c0c72c4f4a0e7323a4017a710d0f6212ed72f7254cae",
+        "Prop79IncomingSearch/wires/Cnu_12_137_d2.json": "009ec97784ef3c1d0a8510216a8c3d9d69bbd8e9ac9b706bbbb53ad0852a22fd",
+        "Prop79IncomingSearch/wires/Cnu_12_138_d2.json": "4b538a1e20503fd35c0ca8e5e5c9c081633e03d84d13e93a55b3c06d6b2dfd2b",
+        "Prop79IncomingSearch/wires/Cnu_13_138_d2.json": "3a87aeb76abe5a6d32d243d986e06e0e9f58099e5e7f0916935ba32401271352",
+        "Prop79IncomingSearch/wires/Cnu_13_138_d3.json": "7f822ff48af4656c50b596434911502976796cd75802467bca52d3bed8ee0d6d",
+        "Prop79IncomingSearch/wires/Cnu_14_139_d2.json": "7333296d8e0b0464ce3f8aae56853ac26adf2e1d82382c8b13546f3cb97b02a4",
+        "Prop79IncomingSearch/wires/Cnu_15_140_d2.json": "8d2c0728f6af8b400119ea6ae6439091a2d6c28e7017a5a8be737fa26775454d",
+        "Prop79IncomingSearch/wires/Cnu_15_140_d3.json": "c112b213606bc6e133f35b23f2146ecf5c4ac9bc8a892ef62df98b2041c56a5c",
+        "Prop79IncomingSearch/wires/Cnu_16_140_d2.json": "c7c48f86659294af4f2a0eef4cc0b4da987fa444da3658b72fefa17b6ffc3be6",
+        "Prop79IncomingSearch/wires/Cnu_16_141_d2.json": "e2d3205fcb0249e257d992bc348118c629898d135f66da604b8aa0cdda0eba5f",
+        "Prop79IncomingSearch/wires/Cnu_17_141_d2.json": "9ef87020570dafb9f3e9ea90fdd39c600f657545444ba7890f50fb8129f583d9",
+        "Prop79IncomingSearch/wires/Cnu_18_142_d2.json": "53980ebb024071398498e861bce032ae1431b2a353df7998e7f2872b4d93d620",
+        "Prop79IncomingSearch/wires/Cnu_18_142_d3.json": "15b1a9030d5b9a52ef53c7e1fff7a06a1d4dc044f76d52060d0ffe3f51c336e0",
+        "Prop79IncomingSearch/wires/Cnu_19_143_d2.json": "71c71c29137fc895d4c1f5f41ce0731b80aaeda0df75e6250986d207bff8ea12",
+        "Prop79IncomingSearch/wires/Cnu_19_143_d3.json": "7836828b1a31221c1d25555c9b24c5cc9de103e30f5683e8369ab14984dd9e45",
+        "Prop79IncomingSearch/wires/Cnu_20_144_d2.json": "c6ab3eca6ff3a76a0c80ebb866c1bf88497ff00cc9ffb9f991a1ff49a62b169d",
+        "Prop79IncomingSearch/wires/Cnu_21_144_d2.json": "6067cd2240e39a39ec9e653c182ece9f02380c1f495c91c5a5f7fbdcaa2b2904",
+        "Prop79IncomingSearch/wires/Cnu_22_145_d2.json": "3e0403076ad0e35362cb3b588c7f0a8f387bcbb12a60537ff797ae0d4bb269c5",
+        "Prop79IncomingSearch/wires/Cnu_23_146_d2.json": "f51f13de5e85838aa872dd25df57781ccbaa9d96dada648c190f6fe7701507c9",
+        "Prop79IncomingSearch/wires/Cnu_26_148_d2.json": "5a9ff9d6cfa62022f98ec74bdadeb0b511bb1472bdf906571e1100c056942896",
+        "Prop79IncomingSearch/wires/Cnu_2_130_d2.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+        "Prop79IncomingSearch/wires/Cnu_5_132_d2.json": "6bf1304a06daa55d7d9fa68eb1227050efb77c29e9929f9c882497ec20d069e8",
+        "Prop79IncomingSearch/wires/Cnu_5_132_d3.json": "a31b00d308f3a3bb0afb779c1de2d213876070f4486ec5cff3098a67e2d2cef1",
+        "Prop79IncomingSearch/wires/Cnu_6_133_d2.json": "a1aa23e1f1529fba787f224ec1619db99a024fb3802c8c8e333ccd95d73c141e",
+        "Prop79IncomingSearch/wires/Cnu_7_134_d2.json": "7d1ae319a0a6c3afe9a3ae1b14ad5bb8f23439994dfb65e4f302ebad38794e2c",
+        "Prop79IncomingSearch/wires/Cnu_8_134_d2.json": "09704274c87c1e2e12227ab3e650fedb31324bf0f4215da19ad5c50e4bc6ddc3",
+        "Prop79IncomingSearch/wires/Cnu_9_135_d2.json": "9d04f61f5d506a0a4ffcfb077a985b1965df4048023dae2d019355424b3406ca",
+        "Prop79IncomingSearch/wires/Cnu_9_135_d3.json": "44ea65112112d007cd8d3c673de0e0960b85aec224ef7d799ba636ea3c1789e8",
+        "Prop79IncomingSearch/wires/Cnu_9_135_d4.json": "1517d16145e327d2c1a6d73e71251fd58cdde73c171260af9a0dfa063cc4d472"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "01bc0752a6c6d4158a4d97e08ffe4161e3e5678d09d9fc6419b5c57e4491673d",
+      "inputs_stable": true,
+      "olean_sha256": "f81896c1961a089d95843fa0a436959d2b4ac5ccfef46ba6516dd144bc7d4030"
+    },
+    "CoordinateBridge": {
+      "source_sha256": "6224f56adf4659ea95767f24c80dde032297fd71a664304a44d0a993ac02397e",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Prop79IncomingSearch/Naturality.olean": "afb42b9a687ec65280a0201c67f7e832c13eae933ccef5d1043b6eff5d6ac0bb",
+        ".lake/build/lib/lean/Prop79IncomingSearch/Finite.olean": "f81896c1961a089d95843fa0a436959d2b4ac5ccfef46ba6516dd144bc7d4030"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Prop79IncomingSearch/CoordinateBridge.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/CoordinateBridge.olean"
+      ],
+      "log": "evidence/CoordinateBridge-20260922T000318669954Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "e0dfd97a80e50d0b4c585f14dcf0b2b85d2afad07fcea5045c114110e757fd02",
+      "inputs_stable": true,
+      "olean_sha256": "3228b4d33e9d1ef0bd671ed73f05c0ce700577d971aa33fea04638973ec8a785"
+    },
+    "MapSemantics": {
+      "source_sha256": "8ef7ace1dcbf09591565cece4ced99ad8f63a625600b489dba484cf37178756f",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Prop79IncomingSearch/Maps.olean": "82d535f9ecc7c097f41eec6c29c6a7adcd0b821bca81f7a36fb5dc2604b1d476",
+        ".lake/build/lib/lean/ModuleToModuleCertificates/RingRelations.olean": "a5e2fc3f9e591b873e4b02bf2a2c0204b035b022ac45d7f1d8c57897d5cd81db"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Prop79IncomingSearch/MapSemantics.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/MapSemantics.olean"
+      ],
+      "log": "evidence/MapSemantics-20260922T000321564625Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "d45375ee68a5cf5c73a2e44d59913508ea4295dbfe5891c641312cd72ec4e481",
+      "inputs_stable": true,
+      "olean_sha256": "97ab18efacfc492af3a151f980705c0770065ece3a443ffbedccffc3fb66b24d"
+    },
+    "Incoming": {
+      "source_sha256": "589881b40ecff753b6fc8cc6813c4594fb02275dc1468983e12de6ef834ae85e",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Prop79IncomingSearch/CoordinateBridge.olean": "3228b4d33e9d1ef0bd671ed73f05c0ce700577d971aa33fea04638973ec8a785",
+        ".lake/build/lib/lean/Prop79IncomingSearch/Actual.olean": "4dff1abd209e70e9468e23ddfbb3b3f3fd8412c34debd2a1711a568bc0c98a00"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Prop79IncomingSearch/Incoming.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/Incoming.olean"
+      ],
+      "log": "evidence/Incoming-20260922T000531482648Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "500ea061da1e0d85b6d1d3f684a520581b04d5db5b6d8836e64d92d606412db4",
+      "inputs_stable": true,
+      "olean_sha256": "da4a9c700eadaa1eb15568e6d77d313cf462cc44e04101031b970ae0d6c84190"
+    }
+  },
+  "audit_sha256": "32be5f5d66922fa9f956d91303a9a2cde4da0b23ce4d06798c5c82f0a47eb033",
+  "axiom_reports": 32,
+  "scope": "Complete finite dependency audit and conditional actual row4180 d3zero plus all-column finite no-hit; no unconditional Prop7.9."
+}

@@ -1,0 +1,49 @@
+Row2693D5Search/LowH1.lean:66:34: warning: Variable name `target` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Row2693D5Search/LowH1.lean:119:8: error: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+B : Base S pages P
+D : Detector3 S pages P
+y : (S.element 3 h1Degree).carrier
+x : (S.element (2 + 1) h0Degree).carrier := ⋯
+v : (S.element (2 + 1) (AdamsTarget (2 + 1) h1Degree)).carrier
+hv : P.product.multiply (2 + 1) h0Degree (AdamsTarget (2 + 1) h1Degree) x v = 0
+⊢ Bidegree
+Row2693D5Search/LowH1.lean:129:8: error: don't know how to synthesize implicit argument `target`
+  @reflects S P (3 + 1) { filtration := 5, internal := 5 } ?m.62 D.input.nextLeft D.input.nextRight D.input.nextTarget
+    (next_product_coordinates D.input) x (Equiv.apply_symm_apply D.input.nextLeft.equivalence Finite.leftName) v hv
+context:
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+B : Base S pages P
+D : Detector4 S pages P
+y : (S.element 4 h1Degree).carrier
+x : (S.element (3 + 1) h0Degree).carrier := ⋯
+v : (S.element (3 + 1) (AdamsTarget (3 + 1) h1Degree)).carrier
+hv : P.product.multiply (3 + 1) h0Degree (AdamsTarget (3 + 1) h1Degree) x v = 0
+⊢ Bidegree
+Row2693D5Search/LowH1.lean:125:78: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+B : Base S pages P
+D : Detector4 S pages P
+y : (S.element 4 h1Degree).carrier
+x : (S.element (3 + 1) h0Degree).carrier := D.input.nextLeft.equivalence.symm Finite.leftName
+v : (S.element (3 + 1) (AdamsTarget (3 + 1) h1Degree)).carrier
+hv : P.product.multiply (3 + 1) h0Degree (AdamsTarget (3 + 1) h1Degree) x v = 0
+⊢ v = 0
+'Row2693D5Search.LowH1.Detector4.input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2693D5Search.LowH1.reflects' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2693D5Search.LowH1.empty_later' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2693D5Search.LowH1.product_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2693D5Search.LowH1.h1_zero' depends on axioms: [propext, Quot.sound]
+'Row2693D5Search.LowH1.d3_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2693D5Search.LowH1.d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

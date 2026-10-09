@@ -1,0 +1,43 @@
+{
+  "status": "unintegrated_draft_attempt_only",
+  "complete_blocks": 355,
+  "new_complete_blocks": 0,
+  "new_completed_conditional_roles": 0,
+  "finite_events": 94,
+  "unresolved": 7,
+  "attempted_conditional_roles": [
+    {
+      "object": "S0",
+      "source": [
+        11,
+        138
+      ],
+      "page": 3,
+      "row": [
+        3019,
+        "2",
+        null,
+        9000
+      ],
+      "kind": "conditional_c2_row3019",
+      "target_predecessor": "S0:14,140:d2"
+    }
+  ],
+  "raw_next_blocker": [
+    3020,
+    11,
+    138,
+    "0",
+    null,
+    9000
+  ],
+  "next_blocker_basis_id": 3018,
+  "compile_status": "not_compiled_not_registered",
+  "note": "The existing 355 blocks are byte/equality unchanged. Row3019 cannot complete the matrix while row3020 remains unknown.",
+  "inputs": {
+    "AggregateC2Row3019Conditional/source.json": "cb53f6e27dbefeb236e7f8d19e18d76c4627994b66c60145cd8b05482d1a9e36",
+    "AggregateC2Row3019Conditional/event-results.json": "b1313e0e94c4547816a493654aca0c20a4c45427918853b3ab24eb88bf67e423",
+    "AggregateDC2h6Conditional/source.json": "ad7565992978dadab89b7ec4e0fc09b3e7e2d5d1a6ff6a1c348156ee37b45b8b",
+    "AggregateDC2h6Conditional/event-results.json": "b81d0be45c4916ad1ce1b21d4b4d2e5a1647edb06cc09b94da36608394a6ed57"
+  }
+}

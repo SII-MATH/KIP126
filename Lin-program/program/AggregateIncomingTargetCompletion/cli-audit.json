@@ -1,0 +1,42 @@
+{
+  "status": "actual_family399_cli_and_requested_results_passed",
+  "runs": [
+    {
+      "module": "IndexedFamilyCertificates/CheckFile.lean",
+      "input": "bound95.jsonl",
+      "exit_code": 0,
+      "stdout": "399 coherent finite blocks; 95/95 bound events accepted\n",
+      "stderr": ""
+    },
+    {
+      "module": "IndexedFamilyCertificates/RequestCheckFile.lean",
+      "input": "requests95.jsonl",
+      "exit_code": 0,
+      "stdout": "399 coherent finite blocks; 95/95 requested results accepted\n",
+      "stderr": ""
+    },
+    {
+      "module": "IndexedFamilyCertificates/RequestCheckFile.lean",
+      "input": "mixed-requests.jsonl",
+      "exit_code": 1,
+      "stdout": "399 coherent finite blocks; 2/6 requested results accepted\n",
+      "stderr": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/AggregateIncomingTargetCompletion/tmpaj9mzo71/mixed-requests.jsonl:2: result.key: object, page or degree differs from goal\n/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/AggregateIncomingTargetCompletion/tmpaj9mzo71/mixed-requests.jsonl:3: result.source: input vector differs from goal\n/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/AggregateIncomingTargetCompletion/tmpaj9mzo71/mixed-requests.jsonl:4: result.target: output vector differs from goal\n/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/AggregateIncomingTargetCompletion/tmpaj9mzo71/mixed-requests.jsonl:5: request: noncanonical JSON or unknown/duplicate field\n"
+    }
+  ],
+  "preserved_events": 95,
+  "preserved_requested_results": 95,
+  "negative_result_cases": [
+    "wrong key",
+    "wrong input",
+    "wrong output",
+    "unknown field"
+  ],
+  "input_sha256": {
+    "AggregateIncomingTargetCompletion/family399.json": "df4415d5cce0f95e57f77a8e3fe5a9f3c60d2d5c46cff89b23ba8a73134e3326",
+    "AggregateIncomingTargetCompletion/bound95.jsonl": "0f2511eed6ee9ab21fe384356db99cd73f8651abc85cda7089039c448ad3a2cc",
+    "AggregateIncomingTargetCompletion/requests95.jsonl": "9e7f0dc9dc101ad2687deb1f1b60574ef426a3612ff6d2b251cc7099f613e65d",
+    "AggregateIncomingTargetCompletion/cli_test.py": "0b7dad0f3b8dfa926d9f3e1d1b2fe30d838e7484fabfc8471319e2db16bfa852",
+    "IndexedFamilyCertificates/CheckFile.lean": "e20bef65ba04feb79e3151aedd92ea00fc516d7432ae68b6c0df4d94f6eda666",
+    "IndexedFamilyCertificates/RequestCheckFile.lean": "27f5d0794d1fd6dd2fb785a7c6e4ffc5ad39514aa563a4f0bb1f7ca2129ab8d4"
+  }
+}

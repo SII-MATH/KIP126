@@ -1,0 +1,10 @@
+Fact721SecondNoHit/Tactic.lean:13:46: error: unexpected token '$'; expected '(', '_', '`(tactic|', 'do' or identifier
+Fact721SecondNoHit/Tactic.lean:13:55: error: unexpected identifier; expected prec
+Fact721SecondNoHit/Tactic.lean:15:45: error: unexpected token '_'; expected 'unicode(', identifier or string literal
+Fact721SecondNoHit/Tactic.lean:16:43: error: unexpected token ')'; expected 'unicode(', identifier or string literal
+Fact721SecondNoHit/Tactic.lean:21:31: error: Tactic `Fact721SecondNoHit.tacticFact721_second_no_hit_certUsing_With_` has not been implemented
+Fact721SecondNoHit/Tactic.lean:24:39: error: Tactic `Fact721SecondNoHit.tacticFact721_second_no_hit_certUsing_With_` has not been implemented
+Fact721SecondNoHit/Tactic.lean:29:6: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+'Fact721SecondNoHit.named_not_hit' depends on axioms: [propext, Classical.choice, Quot.sound]

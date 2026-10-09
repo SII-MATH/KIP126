@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "findings": [],
+  "frozen_files": 33,
+  "modules": 3,
+  "permuted_leaf_models": 3000,
+  "invalid_path_or_key_mutations": 18000,
+  "duplicate_counterexample": true,
+  "proof_review": "Inductive path membership plus UniqueKeys establishes original first-match lookup; tree-shape recursion covers every leaf; projection binding and compact equivalence recover original full-family predicate. Coherent remains separately required.",
+  "trust": "Tree and path data are untrusted. Kernel reduces check; soundness uses only standard axioms."
+}

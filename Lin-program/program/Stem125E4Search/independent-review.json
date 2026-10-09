@@ -1,0 +1,74 @@
+{
+  "build_evidence": {
+    "assert_current_exit": 0,
+    "direct_modules": 5,
+    "standard_only_axiom_reports": 10
+  },
+  "findings": [],
+  "independent_replay": {
+    "all_cycle_pairs": 968,
+    "all_degree_data_matches_readonly_SQL": true,
+    "all_generated_new_Lean_wire_literals_match": true,
+    "branches": [
+      {
+        "adjacent_pairs": 36,
+        "branch": 0,
+        "consecutive_pairs": 32,
+        "family_entries": 126,
+        "input_coordinates": 44,
+        "output_coordinates": 24
+      },
+      {
+        "adjacent_pairs": 36,
+        "branch": 1,
+        "consecutive_pairs": 32,
+        "family_entries": 126,
+        "input_coordinates": 44,
+        "output_coordinates": 24
+      }
+    ],
+    "detector_coordinate_vectors": 8,
+    "detector_raw_vectors": 32,
+    "full_homotopy_identities_checked_on_every_input_vector": true,
+    "new_SQL_derived_columns": 16,
+    "new_blocks": 8,
+    "out_of_d2_window_zero_source_preserves_unknown_target": true,
+    "partition": {
+      "nonzero": 31,
+      "prior_coordinates": 44,
+      "total": 45,
+      "zero": 14
+    }
+  },
+  "limitations": [
+    "This is a complete finite result over the 45 recorded E2 centers, conditional on actual basis completeness and differential/quotient meanings.",
+    "The closure preserves eight explicit inherited conditional uses; the row2574 product/Leibniz conditions are additional explicit premises.",
+    "Neither absent centers nor unknown neighboring maps are inferred zero.",
+    "Actual permanence, convergence and topology identifications are not supplied by this library."
+  ],
+  "proof_review": [
+    "Every cycle combination is covered by a complete comparison, not named-element counting.",
+    "The 31/14 index partition is bijective and linked to all 45 previous d2 blocks.",
+    "ZeroCenter allows arbitrary neighboring dimensions and matrices; uniqueness follows solely from Vec 0.",
+    "Both allowed affine columns are treated, with all outgoing basis values required; no branch is selected.",
+    "The coordinate permutation binds detector and aggregate coordinates on all raw vectors.",
+    "Each family has exactly one branch plus 125 shared predecessor records and checks every supplied overlap."
+  ],
+  "reviewer": "certificate_pipeline_next",
+  "source_sha256": {
+    "Stem125E4Search/Branches.lean": "e0529cf8afd7bb7ebd3ffab08f38f3cc5a7cc383d23633c842bf55fc9975a6ed",
+    "Stem125E4Search/Data.lean": "aef74921844cbc0a005dd446763f1473bcaa44f833e6198d5964aaf05f4813b7",
+    "Stem125E4Search/Family.lean": "9af7ac1aa3b5854cb88bf45847e0a3274f2f8b9b49dd3990081450cd8a5da67c",
+    "Stem125E4Search/Product.lean": "cb63bd1b2af1858836f5a00da8d79249bf7b9d880cdc2165e30b333ab49ce411",
+    "Stem125E4Search/README.md": "c161b83faf9eb22d8bba8c968626a4491f7c4155c6d583395bc2e899ae56eea5",
+    "Stem125E4Search/Zero.lean": "67a00218a5fdc906d42a20d471239a8025f724e6efb2f23c07889bf1e6423a6e",
+    "Stem125E4Search/compile-audit.json": "43c1f0456a4a171359578fab399a96f69a12f50dfe0bebe6965b32963ab102fe",
+    "Stem125E4Search/coverage.json": "ede0b33c5c7d0486163627e2764ba821ab1c170dd417a5514a69f77e50213b65",
+    "Stem125E4Search/generate.py": "17413225d3437608ffed84940d895d5906e1d5057437b7d469239e2bc2145066",
+    "Stem125E4Search/review.json": "ad60213132da8d04a4e38f3588ffbd52add09d5c81feea12e78e1d8c02a36eb3",
+    "Stem125E4Search/review.py": "3048af79ca223199d55d49bac32c51f0b3670643b9b835ee9f8e8ac1e48994bd",
+    "Stem125E4Search/search.json": "0f081906a81db78346ea5e29e6bb745801212d102d026a39510d68554c5c5955",
+    "Stem125E4Search/search.py": "6826b14ed9cfb4ecb75fe0ee879730b93a843504a1beba274b2e0993ef8d305c"
+  },
+  "status": "no_findings_in_complete_finite_conditional_scope"
+}

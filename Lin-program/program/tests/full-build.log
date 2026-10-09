@@ -1,0 +1,31 @@
+ℹ [10/430] Replayed LinProgramCertificates.Examples
+info: LinProgramCertificates/Examples.lean:42:0: 'KervaireProgram.checkResult_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:43:0: 'KervaireProgram.check_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:44:0: 'KervaireProgram.checkBundle_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:45:0: 'KervaireProgram.importLine_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: LinProgramCertificates/Examples.lean:46:0: 'KervaireProgram.dataWellFormed_sound' depends on axioms: [propext, Quot.sound]
+info: LinProgramCertificates/Examples.lean:47:0: 'KervaireProgram.differentialWellFormed_sound' depends on axioms: [propext, Quot.sound]
+ℹ [23/430] Replayed LinearCertificates.ParserExamples
+info: LinearCertificates/ParserExamples.lean:13:0: 'LinearCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+ℹ [24/430] Replayed LinearCertificates.Examples
+info: LinearCertificates/Examples.lean:34:0: 'LinearCertificates.annihilates_image' depends on axioms: [propext, Quot.sound]
+info: LinearCertificates/Examples.lean:35:0: 'LinearCertificates.checkNotImage_sound' depends on axioms: [propext, Quot.sound]
+info: LinearCertificates/Examples.lean:36:0: 'LinearCertificates.checkChainMap_sound' depends on axioms: [propext, Quot.sound]
+ℹ [505/578] Replayed MilnorCertificates.ImportedExample
+info: MilnorCertificates/ImportedExample.lean:6:0: 'MilnorCertificates.check_sound' depends on axioms: [propext, Quot.sound]
+info: MilnorCertificates/ImportedExample.lean:7:0: 'MilnorCertificates.decode_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [567/578] Replayed PageCertificates.Examples
+info: PageCertificates/Examples.lean:33:0: 'PageCertificates.checkWire_sound' depends on axioms: [propext, Quot.sound]
+info: PageCertificates/Examples.lean:34:0: 'PageCertificates.checkUnique_sound' depends on axioms: [propext, Quot.sound]
+info: PageCertificates/Examples.lean:35:0: 'PageCertificates.checkHomology_sound' depends on axioms: [propext, Quot.sound]
+info: PageCertificates/Examples.lean:36:0: 'PageCertificates.checkCandidates_sound' depends on axioms: [propext, Quot.sound]
+info: PageCertificates/Examples.lean:37:0: 'PageCertificates.representative_survives' depends on axioms: [propext]
+ℹ [571/578] Replayed ResolutionCertificates.HomologyBasis
+info: ResolutionCertificates/HomologyBasis.lean:93:0: 'ResolutionCertificates.checkHomologyBasis_sound' depends on axioms: [propext, Quot.sound]
+ℹ [574/578] Replayed ResolutionCertificates.Examples
+info: ResolutionCertificates/Examples.lean:23:0: 'ResolutionCertificates.checkContraction_sound' depends on axioms: [propext, Quot.sound]
+info: ResolutionCertificates/Examples.lean:24:0: 'ResolutionCertificates.checkHomotopy_sound' depends on axioms: [propext, Quot.sound]
+ℹ [576/578] Built PropagationCertificates.Branches (1.7s)
+info: PropagationCertificates/Branches.lean:146:0: 'PropagationCertificates.Branches.check_sound' depends on axioms: [propext]
+info: PropagationCertificates/Branches.lean:147:0: 'PropagationCertificates.Branches.exclude_sound' depends on axioms: [propext]
+Build completed successfully (578 jobs).

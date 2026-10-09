@@ -1,0 +1,67 @@
+{
+  "scope": "Static matrix-comparison predecessor DAG, not all possible product/naturality dependencies.",
+  "events": [
+    {
+      "event": 2696,
+      "event_page": 7,
+      "root": "S0:9,134:d7",
+      "closure_size": 176,
+      "newly_constrained_blocks": [],
+      "raw_target": null,
+      "exact_raw_status": "stored_outgoing",
+      "existing_failure": "unknown S0:6,132:d3:row2574; target dimension 3",
+      "statement": "No dependency path to new eta/d4/d5 blocks; NULL d7 target and full d4/d5/d6 source trajectory still missing."
+    },
+    {
+      "event": 2697,
+      "event_page": 3,
+      "root": "S0:9,134:d3",
+      "closure_size": 4,
+      "newly_constrained_blocks": [],
+      "raw_target": "0",
+      "exact_raw_status": "stored_outgoing",
+      "existing_failure": "unknown S0:6,132:d3:row2574; target dimension 3",
+      "statement": "No dependency path; existing affine two-branch finite d3 event already covers its branch ambiguity."
+    },
+    {
+      "event": 2852,
+      "event_page": 5,
+      "root": "S0:11,136:d5",
+      "closure_size": 36,
+      "newly_constrained_blocks": [],
+      "raw_target": null,
+      "exact_raw_status": "stored_outgoing",
+      "existing_failure": "unknown S0:6,132:d3:row2574; target dimension 3",
+      "statement": "No dependency path; NULL d5 target and row3147 target d3/d4 remain separate."
+    },
+    {
+      "event": 3151,
+      "event_page": 4,
+      "root": "S0:11,137:d4",
+      "closure_size": 13,
+      "newly_constrained_blocks": [
+        "S0:11,137:d4"
+      ],
+      "raw_target": "2",
+      "exact_raw_status": "stored_incoming",
+      "existing_failure": "unknown S0:7,134:d3:row2708; target dimension 1",
+      "statement": "New eta restricts second outgoing bit. FullNeighborhood now adds missing incoming dimension2 cases and nonzero kernel-image columns."
+    },
+    {
+      "event": 3992,
+      "event_page": 4,
+      "root": "S0:21,147:d4",
+      "closure_size": 13,
+      "newly_constrained_blocks": [],
+      "raw_target": "1",
+      "exact_raw_status": "stored_incoming",
+      "existing_failure": "unknown S0:18,145:d3:row3564; target dimension 3",
+      "statement": "No dependency path; existing eight-case finite event remains conditional on row3564 detector and known differential semantics."
+    }
+  ],
+  "inputs": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateD5Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "Row3151FullNeighborhood/remaining-audit.py": "eb9eb8da975d8577bda6cd145a19cb3dd5aa476c577dce993418ccbb71b446af"
+  }
+}

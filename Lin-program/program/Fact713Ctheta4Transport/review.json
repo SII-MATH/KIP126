@@ -1,0 +1,183 @@
+{
+  "status": "passed_independent_finite_replay",
+  "counts": {
+    "d2_columns": 58,
+    "d2_reductions": 44,
+    "map_columns": 84,
+    "map_reductions": 0,
+    "comparisons": 15,
+    "quotient_vectors": 263,
+    "quotient_pairs": 10989,
+    "map_vectors": 626,
+    "same_input_steps": 4,
+    "known_staircase_d2": 48,
+    "modules": 11,
+    "standard_axiom_reports": 141
+  },
+  "trajectory": [
+    {
+      "object": "Ctheta4",
+      "page": 2,
+      "vector": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "next": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "object": "Ctheta4",
+      "page": 3,
+      "vector": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "next": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "object": "S0",
+      "page": 2,
+      "vector": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "object": "S0",
+      "page": 3,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    }
+  ],
+  "explicit_unproved_conditions": [
+    {
+      "object": "Ctheta4",
+      "source": [
+        17,
+        169
+      ],
+      "page": 3,
+      "row": [
+        8806,
+        "6",
+        null,
+        9964
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "Ctheta4:20,171:d2"
+    },
+    {
+      "object": "Ctheta4",
+      "source": [
+        17,
+        169
+      ],
+      "page": 3,
+      "row": [
+        8807,
+        "5",
+        null,
+        9995
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "Ctheta4:20,171:d2"
+    },
+    {
+      "object": "Ctheta4",
+      "source": [
+        17,
+        169
+      ],
+      "page": 3,
+      "row": [
+        8808,
+        "4,7",
+        null,
+        9995
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "Ctheta4:20,171:d2"
+    },
+    {
+      "object": "Ctheta4",
+      "source": [
+        17,
+        169
+      ],
+      "page": 3,
+      "row": [
+        8809,
+        "7",
+        null,
+        9995
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "Ctheta4:20,171:d2"
+    },
+    {
+      "object": "Ctheta4",
+      "source": [
+        17,
+        169
+      ],
+      "page": 3,
+      "row": [
+        8810,
+        "0,1,2",
+        null,
+        9995
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "Ctheta4:20,171:d2"
+    }
+  ],
+  "named_d4_prefix": {
+    "object": "Ctheta4",
+    "row": 8810,
+    "base": "0,1,2",
+    "page": 4,
+    "raw_diff": null,
+    "raw_level": 9995,
+    "meaning": "Explicit finite actual prefix, not inferred from NULL or future level"
+  },
+  "degree_correction": {
+    "database_metadata": 30,
+    "checked_generator_shift": 31,
+    "reason": "top generator (0,31) maps to unit (0,0); metadata30 is not homogeneous"
+  },
+  "hashes": {
+    "ctheta-d2.json": "6a8d4a992207b18ac1559592e6ff2672aa2c9ab456e81cff51a6c9b87f6587af",
+    "ctheta-search.json": "a3492f27269fbb3cae3b9f25fefd902d92ff8aad13c8df6094903fc090d04925",
+    "maps.json": "0ea1ef75c6af2beaa892137cf0369b65d95988426889fdcc83a910305a315406"
+  },
+  "limitation": "Independent checks establish finite identities. All actual staircase/Leibniz/quotient meanings and named source finite d3/d4 prefixes remain mathematical inputs."
+}

@@ -1,0 +1,27 @@
+{
+  "status": "independent_read_only_review_passed",
+  "findings": [],
+  "counts": {
+    "quotient_pairs": 281,
+    "cycles": 25,
+    "comparisons": 5,
+    "SQL_d2_columns": 19,
+    "SQL_d3_columns": 3,
+    "complete_empty_incoming_E2": 3,
+    "exact_old_source_comparisons": 3,
+    "same_input_steps_to_E6": 4,
+    "complete_target_mutation_models": 88,
+    "same_input_E6_E7_E8_label_models": 8,
+    "standard_axiom_reports": 42,
+    "empty_axiom_reports": 5,
+    "modules": 7
+  },
+  "historical_dependency_changes": [],
+  "frozen_manifest_sha256": "2d4dcce77df8d835768ef82d1537c703abbcbc4c26608b3451b85cc79bb9f84f",
+  "review_script_sha256": "cbe070a6f318261e7207c4d75b19fa633ed0c36287040845af62a5d973df16f2",
+  "limitations": [
+    "No fresh compilation was run; frozen successful compiler records and object hashes were checked.",
+    "Actual E2 basis, stored differential, product, and quotient meanings remain explicit premises.",
+    "Same-input nonzero E8 is proved conditionally; permanence and topological realization are not asserted."
+  ]
+}

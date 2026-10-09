@@ -1,0 +1,45 @@
+{
+  "details": {
+    "conclusion": "d3(h1*x493)=0 for arbitrary dh1; no premise dh1=0",
+    "full_bilinear_tensors": 3,
+    "full_d2_comparisons": 6,
+    "homogeneous_relation_reduction_steps": 11,
+    "modules": 5,
+    "no_3992_dependency": true,
+    "polynomial_columns": 11,
+    "premises": [
+      "actual polynomial relation and d2 meanings",
+      "x493 explicit d3prefix",
+      "full two-term Leibniz for all quotient elements"
+    ]
+  },
+  "findings": [],
+  "inputs_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "Row3564LeibnizDetector/Matches.lean": "b3bb07c0a7eb9e478c0b8147fc5be30d420a0733cf1e0d1dcbca399ca458770a",
+    "Row3564LeibnizDetector/ProductSemantics.lean": "df8df66415dadf41be2f405505a5427e7159124c36e746606c0840655a003746",
+    "Row3564LeibnizDetector/Products_h04.lean": "6d96927a748fd2f7058b4d678c2d010a01c91c34e4d233d1d82ede6c5f865e9f",
+    "Row3564LeibnizDetector/Products_h1.lean": "b49fdd9b355ba3f2452423b57810e7672bcabfaf74b11dfe8a4f2b5e2dab2734",
+    "Row3564LeibnizDetector/Quotient.lean": "5871c996d062f0a826f1a2c3d7744de5701968934e80c416842ee72bcaa19140",
+    "Row3564LeibnizDetector/comparisons.json": "0c809bb79bd0ac5b394ecf1505bcd632301e778f904766d9c731d879403f13f3",
+    "Row3564LeibnizDetector/compile-audit.json": "531a3c8763d5c6825167a4661847a69dc3ae8e71a53f1e67af3ebf3a2c92cc72",
+    "Row3564LeibnizDetector/leftTerm.json": "3217896430c3597695590a733e5d42365dc6fe38bbe21180986ccb87bde6df22",
+    "Row3564LeibnizDetector/namedProduct.json": "3ac7cba13576921dc519ede14f23dca1ef569d4809d662b93cbb1bb6c945d9dd",
+    "Row3564LeibnizDetector/products_h04/basis3393.json": "4f2317a82648dccd77a5db08947a2d17c6d57eea6debc0b74a50411575ee923c",
+    "Row3564LeibnizDetector/products_h04/basis3394.json": "b2ab93e0288919b123c4cdde6c3de32ef1ec91abd98e5cd65b41914b7412265b",
+    "Row3564LeibnizDetector/products_h04/basis3395.json": "2d9c0c7c45cc414b25546fc46da33f00fd123dc1ef7c2055c1626d5f2e1f561f",
+    "Row3564LeibnizDetector/products_h04/basis3396.json": "cbbdb1a3d1e23b3e67ed8a1d5ad65f2a8a9c122bd400e7439fb65c8386bf27c4",
+    "Row3564LeibnizDetector/products_h1/basis3393.json": "c177cb5864c8c6f503963585588267d5154a2a97f62797d8731bd8b3295890f1",
+    "Row3564LeibnizDetector/products_h1/basis3394.json": "e18aef42362bf7f706a746402340cd53d40d8c455c593812c54f47f2a5ff18e6",
+    "Row3564LeibnizDetector/products_h1/basis3395.json": "3afe581726172e78ff82319b1a3face9c8344bf0e1a337294555e48817339399",
+    "Row3564LeibnizDetector/products_h1/basis3396.json": "f41faeffe360e221a8531304cb34029b05af98afe771677d040c83ef971eab8c",
+    "Row3564LeibnizDetector/products_h1/basis3556.json": "6f93871d0e6eb705842d7799c40693ed6f98ee4f78d1c07e5efa1132703e10a1",
+    "Row3564LeibnizDetector/products_h1/basis3557.json": "76d027930d2a8fa8d80e701c83011cd3b7c6bd3e0a08fe9d85427041c6559764",
+    "Row3564LeibnizDetector/products_h1/basis3558.json": "c73707c05f28f274446b0f0d838a762c49cfd78168a7113e48ca643374a925f3",
+    "Row3564LeibnizDetector/review.json": "7220dcb0ae976866d0f73e4a11ebc5f7f2adf32fa5c1caa6cc1b9251011509d8",
+    "Row3564LeibnizDetector/review.py": "1222964ab5b5cf9b7a4d82f6c5f7f4b263d337d50bd31dd7f92621cf9124fd6d",
+    "Row3564LeibnizDetector/rightTerm.json": "ddf7f707b109cd59f5d739fe48f4069ccebb6dccfe720d1dfc944f9d80764cb1",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "status": "independent_source_semantics_SQL_and_finite_replay_passed"
+}

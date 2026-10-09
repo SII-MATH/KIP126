@@ -1,0 +1,120 @@
+{
+  "status": "pass",
+  "counts": {
+    "cross_ordered_pairs": 19984,
+    "cross_consecutive": 7,
+    "cross_adjacent": 5,
+    "extra_ordered_pairs": 64,
+    "extra_adjacent": 2,
+    "extra_consecutive": 1,
+    "all_ordered_pairs": 1580049,
+    "all_consecutive": 757,
+    "all_adjacent": 954
+  },
+  "distinct_comparisons": 1257,
+  "e12_graph_available": 1254,
+  "e12_graph_unresolved": 166,
+  "outside_graph": 3,
+  "named_d2_through_d6_covered": true,
+  "requested_d7_absent": true,
+  "actual_adams_e7_claimed": false,
+  "direct_compilation": {
+    "Extra": {
+      "axiom_reports": 1,
+      "record": {
+        "source_sha256": "acbc669224470e9740320b2087d8d4e679c4ece5e307ef63ff01bfc8e5d366db",
+        "dependencies_sha256": {
+          ".lake/build/lib/lean/Fact713RefinedComparisonFamily/Basic.olean": "efa1e054b5b90496805c2e13c9588e6ee4e6ba965bddedfc80b030da74b2181c",
+          ".lake/build/lib/lean/Fact713NextSourceSearch/Overlay.olean": "fb2609b74c0391a102591dd0f239b1bb728075b4edd283326592bd277c3a4237"
+        },
+        "command": [
+          "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+          "-j1",
+          "Fact713NextComparisonFamily/Extra.lean",
+          "-o",
+          "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713NextComparisonFamily/Extra.olean"
+        ],
+        "log": "evidence/Extra-20260921T231346633756Z.log",
+        "observed_exit_code": 0,
+        "log_sha256": "ef8dae4ff1319a04ba66b53fb30374946886d6061621b83895071ca9a8f30534",
+        "inputs_stable": true,
+        "olean_sha256": "21b0415afa6384155490eeca8a0c7408a1ff1b417718cc88e791139a68d3df67"
+      },
+      "current_olean_matches": true
+    },
+    "Cross": {
+      "axiom_reports": 3,
+      "record": {
+        "source_sha256": "b1f3290b87c276a837a5aef37a8e972016f53cae09f6be3573afb79e84f6d942",
+        "dependencies_sha256": {
+          ".lake/build/lib/lean/Fact713NextComparisonFamily/Extra.olean": "21b0415afa6384155490eeca8a0c7408a1ff1b417718cc88e791139a68d3df67",
+          ".lake/build/lib/lean/Fact713Row2773ComparisonFamily/Cross.olean": "cfc93b0b5bdb3f9769559c1cda900c504ec58edda49359e93a7ef85aca8f0f14"
+        },
+        "command": [
+          "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+          "-j1",
+          "Fact713NextComparisonFamily/Cross.lean",
+          "-o",
+          "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713NextComparisonFamily/Cross.olean"
+        ],
+        "log": "evidence/Cross-20260921T231349694091Z.log",
+        "observed_exit_code": 0,
+        "log_sha256": "440d6265d3105f969232017cde6c1407bc2ccc4c7c5635a497d5db227307233b",
+        "inputs_stable": true,
+        "olean_sha256": "7c717a6d7c04ec0c367b7f5ac8b0282c2352df503784fd958ff469aaf09a94c2"
+      },
+      "current_olean_matches": true
+    },
+    "Coherence": {
+      "axiom_reports": 1,
+      "record": {
+        "source_sha256": "1ecb7723e7a782d19c676eb1db7dd25e3b6df487ae204144019499254b8066e3",
+        "dependencies_sha256": {
+          ".lake/build/lib/lean/Fact713NextComparisonFamily/Cross.olean": "7c717a6d7c04ec0c367b7f5ac8b0282c2352df503784fd958ff469aaf09a94c2",
+          ".lake/build/lib/lean/Fact713Row2773ComparisonFamily/Coherence.olean": "ce087d164c53b723da6f115772a8a394fe312ded11f0f399cbb4d6cc3226c1c0"
+        },
+        "command": [
+          "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+          "-j1",
+          "Fact713NextComparisonFamily/Coherence.lean",
+          "-o",
+          "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713NextComparisonFamily/Coherence.olean"
+        ],
+        "log": "evidence/Coherence-20260921T231419883530Z.log",
+        "observed_exit_code": 0,
+        "log_sha256": "51dfc2928561e0e356343a11c2cf9eeb25d8db2ff8704c0a8773956f1acfd940",
+        "inputs_stable": true,
+        "olean_sha256": "fd6ffee855702f5ea788dbcc0e57e371c070704923f7ae37aa203c8a27fa991b"
+      },
+      "current_olean_matches": true
+    },
+    "Coverage": {
+      "axiom_reports": 5,
+      "record": {
+        "source_sha256": "1eabfba590b783718cb4f6b42706bcb3dce355dcd528a26d712eab5a8ab6d0dd",
+        "dependencies_sha256": {
+          ".lake/build/lib/lean/Fact713NextComparisonFamily/Coherence.olean": "fd6ffee855702f5ea788dbcc0e57e371c070704923f7ae37aa203c8a27fa991b"
+        },
+        "command": [
+          "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+          "-j1",
+          "Fact713NextComparisonFamily/Coverage.lean",
+          "-o",
+          "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713NextComparisonFamily/Coverage.olean"
+        ],
+        "log": "evidence/Coverage-20260921T231423152860Z.log",
+        "observed_exit_code": 0,
+        "log_sha256": "e0ff56c5250f01938911dec16666513655f543a56ba37b7214b4c7da42c3dde6",
+        "inputs_stable": true,
+        "olean_sha256": "4de9d4079199195016d84d9a10e0d4597e17d9134190f63142354a71b3688474"
+      },
+      "current_olean_matches": true
+    }
+  },
+  "source_sha256": {
+    "Cross.lean": "b1f3290b87c276a837a5aef37a8e972016f53cae09f6be3573afb79e84f6d942",
+    "Coherence.lean": "1ecb7723e7a782d19c676eb1db7dd25e3b6df487ae204144019499254b8066e3",
+    "Extra.lean": "acbc669224470e9740320b2087d8d4e679c4ece5e307ef63ff01bfc8e5d366db",
+    "Coverage.lean": "1eabfba590b783718cb4f6b42706bcb3dce355dcd528a26d712eab5a8ab6d0dd"
+  }
+}

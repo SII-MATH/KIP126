@@ -1,0 +1,15 @@
+FiniteFilteredSquareCertificates/Basic.lean:175:12: error: Type mismatch: After simplification, term
+  firstStable
+ has type
+  @Eq Bool (checkPreserves D.square.f D.square.higherA D.square.higherB factor) true
+but is expected to have type
+  @Eq Bool (checkPreserves D.f (D.A (D.s + 1)) (D.B (D.s + D.n + 1)) factor) true
+FiniteFilteredSquareCertificates/Basic.lean:180:12: error: Type mismatch: After simplification, term
+  firstStable
+ has type
+  @Eq Bool (checkPreserves D.square.p D.square.higherA D.square.higherC factor) true
+but is expected to have type
+  @Eq Bool (checkPreserves D.p (D.A (D.s + 1)) (D.C (D.s + D.m + 1)) factor) true
+'FiniteFilteredSquareCertificates.checkFiltered_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteFilteredSquareCertificates.structure_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteFilteredSquareCertificates.check_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

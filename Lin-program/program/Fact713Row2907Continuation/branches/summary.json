@@ -1,0 +1,2754 @@
+{
+  "status": "row2907_d4_three_conditional_finite_cases",
+  "branches": [
+    {
+      "parent_case": "zero_a0",
+      "row2907_coefficient": 0,
+      "inherited_row3136_selection_changes": [],
+      "case_name": "zero_b0",
+      "row3136_coefficient": 0,
+      "selection_changes": [],
+      "attempted_new_rules": [],
+      "extra_requested": {
+        "S0:11,133:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:16,137:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              false,
+              false,
+              false,
+              true,
+              true,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false
+            ],
+            "k": 3,
+            "m": 3,
+            "n": 1,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              false,
+              true,
+              false,
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:6,129:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 1,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              false,
+              true
+            ],
+            "incoming": [
+              true,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 1,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true
+            ],
+            "up": [
+              true,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 3,
+              "row": [
+                2621,
+                "0,1",
+                "0",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:14,135:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 3,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2622_dc2h6_naturality",
+              "target_predecessor": "S0:14,135:d2",
+              "theorem": "Fact713DC2h6Source.Actual.actual_row2622_d3_zero",
+              "premise": "Complete actual maps and faithful quotient meanings, named source and actual d3 naturality."
+            },
+            {
+              "object": "S0",
+              "source": [
+                8,
+                131
+              ],
+              "page": 3,
+              "row": [
+                2488,
+                "0",
+                "0,1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:11,133:d2"
+            }
+          ]
+        },
+        "S0:16,137:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              false,
+              true
+            ],
+            "incoming": [
+              false,
+              true,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true
+            ],
+            "up": [
+              false,
+              false,
+              true,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 3,
+              "row": [
+                2906,
+                "2",
+                "0",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:19,139:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 3,
+              "row": [
+                2907,
+                "1",
+                null,
+                9996
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:19,139:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                13,
+                135
+              ],
+              "page": 3,
+              "row": [
+                2773,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2773_actual_leibniz",
+              "target_predecessor": "S0:16,137:d2",
+              "theorem": "Row2773Leibniz.Actual.actual_row2773_d3_zero",
+              "premise": "Complete actual quotient/product meanings and named factors. No NULL prefix or eta d3 value assumed."
+            },
+            {
+              "object": "S0",
+              "source": [
+                13,
+                135
+              ],
+              "page": 3,
+              "row": [
+                2774,
+                "0",
+                "2",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:16,137:d2"
+            }
+          ]
+        },
+        "S0:6,129:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 0,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              true
+            ],
+            "incoming": [],
+            "k": 2,
+            "m": 1,
+            "n": 0,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              true
+            ],
+            "up": [],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 4,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+              "target_predecessor": "S0:15,136:d3",
+              "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+              "coordinate_binding": "whole actual map; no named source binding required",
+              "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+            }
+          ]
+        },
+        "S0:16,137:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              true
+            ],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [
+              false
+            ],
+            "k": 2,
+            "m": 1,
+            "n": 1,
+            "outgoing": [
+              false,
+              true
+            ],
+            "projection": [],
+            "up": [
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 4,
+              "row": [
+                2907,
+                "1",
+                null,
+                9996
+              ],
+              "kind": "conditional_row2907_actual_whole_d4_candidate",
+              "target_predecessor": "S0:20,140:d3",
+              "canonical_column": [
+                1,
+                0
+              ],
+              "staircase_column": [
+                0,
+                1
+              ],
+              "remaining_coefficient": 0,
+              "theorem": "Row2907D4Candidates.Actual.whole_column",
+              "coordinate_binding": "Fact713Row2907Continuation.Actual.whole_column_in_staircase",
+              "premise": "Complete same-input product witness, known actual product d4, whole target d3 and E3 product meanings, actual quotient-product transitions; canonical-to-staircase full quotient bridge."
+            },
+            {
+              "object": "S0",
+              "source": [
+                12,
+                134
+              ],
+              "page": 4,
+              "row": [
+                2684,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2684_d4_actual_C2h5_naturality",
+              "target_predecessor": "S0:16,137:d3",
+              "theorem": "Fact713D4SourceSearch.Assembly.actual_d4_zero",
+              "coordinate_binding": "Fact713D4SourceSearch.CoordinateBridge.actual_next_unique",
+              "premise": "Complete actual E3 homology meanings, row2773 d3 incoming forcing, actual map quotient transitions and d4 naturality."
+            }
+          ]
+        },
+        "S0:6,129:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 0,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d5": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 1,
+            "inclusion": [
+              true
+            ],
+            "incoming": [],
+            "k": 0,
+            "m": 1,
+            "n": 0,
+            "outgoing": [],
+            "projection": [
+              true
+            ],
+            "up": [],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 5,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "checked_zero_codomain",
+              "target_predecessor": "S0:16,137:d4"
+            }
+          ]
+        },
+        "S0:16,137:d5": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:21,141:d4:row3240; target dimension 1"
+        },
+        "S0:6,129:d5": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 1,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d6": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:17,138:d4:row2994; target dimension 2"
+        },
+        "S0:16,137:d6": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:21,141:d4:row3240; target dimension 1"
+        },
+        "S0:6,129:d6": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:17,138:d4:row2994; target dimension 2"
+        },
+        "S0:23,142:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              true
+            ],
+            "h": 1,
+            "inclusion": [
+              true,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              true
+            ],
+            "projection": [
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3305,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row3305_actual_h0_product",
+              "target_predecessor": "S0:26,144:d2",
+              "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+              "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3306,
+                "1",
+                "1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:26,144:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                20,
+                140
+              ],
+              "page": 3,
+              "row": [
+                3135,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_named_actual_d3_theorem",
+              "target_predecessor": "S0:23,142:d2",
+              "theorem": "Row3135H0Leibniz.Actual.actual_row3135_d3_zero",
+              "premise": "Exact actual product/factor names, whole product meanings, known nonzero right d3."
+            },
+            {
+              "object": "S0",
+              "source": [
+                20,
+                140
+              ],
+              "page": 3,
+              "row": [
+                3136,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "explicit_row3136_two_candidate_branch",
+              "target_predecessor": "S0:23,142:d2",
+              "coefficient": 0,
+              "coordinates": [
+                0,
+                0
+              ],
+              "theorem": "Row3305H0Search.Assembly.actual_two_candidates",
+              "premise": "Complete actual target d3 meaning, row3305 actual h0 product and same-e0 binding derive u=0; this is one remaining case, not a chosen actual value."
+            }
+          ]
+        },
+        "S0:26,144:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [
+              false,
+              true
+            ],
+            "k": 0,
+            "m": 1,
+            "n": 2,
+            "outgoing": [],
+            "projection": [],
+            "up": [
+              false,
+              true
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                26,
+                144
+              ],
+              "page": 3,
+              "row": [
+                3471,
+                "1",
+                "1",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:29,146:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3305,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row3305_actual_h0_product",
+              "target_predecessor": "S0:26,144:d2",
+              "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+              "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3306,
+                "1",
+                "1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:26,144:d2"
+            }
+          ]
+        }
+      },
+      "previous_branch_preserved": 86,
+      "branch": "zero",
+      "assumed_staircase_d3": [
+        0,
+        0
+      ],
+      "baseline_preserved": 1272,
+      "changed_selection_rows": [],
+      "graph_available": 1356,
+      "graph_unresolved": 64,
+      "source_direct_comparison": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "source_next_selected_raw": [
+        [
+          2994,
+          "0,1,2",
+          null,
+          9000
+        ]
+      ],
+      "source_selection_compatible": true,
+      "source_result": {
+        "status": "finite_comparison_available",
+        "dimensions": {
+          "k": 2,
+          "m": 1,
+          "n": 1,
+          "h": 1
+        },
+        "unresolved_predecessors": []
+      },
+      "named_trajectory": [
+        {
+          "page": 2,
+          "vector": [
+            1,
+            1
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1,
+            0
+          ]
+        },
+        {
+          "page": 3,
+          "vector": [
+            1,
+            0
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 4,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 5,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 6,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 7,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 8,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 9,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 10,
+          "status": "unresolved",
+          "reason": "unknown S0:17,138:d4:row2994; target dimension 2"
+        }
+      ],
+      "scope": "Conditional finite case split requiring named actual E3 cycle representatives. A staircase selection mismatch is not a contradiction from topology; raw level9000 does not itself prove next-page survival."
+    },
+    {
+      "parent_case": "zero_a0",
+      "row2907_coefficient": 1,
+      "inherited_row3136_selection_changes": [],
+      "case_name": "zero_b1",
+      "row3136_coefficient": 0,
+      "selection_changes": [],
+      "attempted_new_rules": [],
+      "extra_requested": {
+        "S0:11,133:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:16,137:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              false,
+              false,
+              false,
+              true,
+              true,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false
+            ],
+            "k": 3,
+            "m": 3,
+            "n": 1,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              false,
+              true,
+              false,
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:6,129:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 1,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              false,
+              true
+            ],
+            "incoming": [
+              true,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 1,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true
+            ],
+            "up": [
+              true,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 3,
+              "row": [
+                2621,
+                "0,1",
+                "0",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:14,135:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 3,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2622_dc2h6_naturality",
+              "target_predecessor": "S0:14,135:d2",
+              "theorem": "Fact713DC2h6Source.Actual.actual_row2622_d3_zero",
+              "premise": "Complete actual maps and faithful quotient meanings, named source and actual d3 naturality."
+            },
+            {
+              "object": "S0",
+              "source": [
+                8,
+                131
+              ],
+              "page": 3,
+              "row": [
+                2488,
+                "0",
+                "0,1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:11,133:d2"
+            }
+          ]
+        },
+        "S0:16,137:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              false,
+              true
+            ],
+            "incoming": [
+              false,
+              true,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true
+            ],
+            "up": [
+              false,
+              false,
+              true,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 3,
+              "row": [
+                2906,
+                "2",
+                "0",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:19,139:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 3,
+              "row": [
+                2907,
+                "1",
+                null,
+                9996
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:19,139:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                13,
+                135
+              ],
+              "page": 3,
+              "row": [
+                2773,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2773_actual_leibniz",
+              "target_predecessor": "S0:16,137:d2",
+              "theorem": "Row2773Leibniz.Actual.actual_row2773_d3_zero",
+              "premise": "Complete actual quotient/product meanings and named factors. No NULL prefix or eta d3 value assumed."
+            },
+            {
+              "object": "S0",
+              "source": [
+                13,
+                135
+              ],
+              "page": 3,
+              "row": [
+                2774,
+                "0",
+                "2",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:16,137:d2"
+            }
+          ]
+        },
+        "S0:6,129:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 0,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              true
+            ],
+            "incoming": [],
+            "k": 2,
+            "m": 1,
+            "n": 0,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              true
+            ],
+            "up": [],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 4,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+              "target_predecessor": "S0:15,136:d3",
+              "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+              "coordinate_binding": "whole actual map; no named source binding required",
+              "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+            }
+          ]
+        },
+        "S0:16,137:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              true,
+              false
+            ],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [
+              false
+            ],
+            "k": 2,
+            "m": 1,
+            "n": 1,
+            "outgoing": [
+              true,
+              true
+            ],
+            "projection": [],
+            "up": [
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 4,
+              "row": [
+                2907,
+                "1",
+                null,
+                9996
+              ],
+              "kind": "conditional_row2907_actual_whole_d4_candidate",
+              "target_predecessor": "S0:20,140:d3",
+              "canonical_column": [
+                1,
+                1
+              ],
+              "staircase_column": [
+                1,
+                1
+              ],
+              "remaining_coefficient": 1,
+              "theorem": "Row2907D4Candidates.Actual.whole_column",
+              "coordinate_binding": "Fact713Row2907Continuation.Actual.whole_column_in_staircase",
+              "premise": "Complete same-input product witness, known actual product d4, whole target d3 and E3 product meanings, actual quotient-product transitions; canonical-to-staircase full quotient bridge."
+            },
+            {
+              "object": "S0",
+              "source": [
+                12,
+                134
+              ],
+              "page": 4,
+              "row": [
+                2684,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2684_d4_actual_C2h5_naturality",
+              "target_predecessor": "S0:16,137:d3",
+              "theorem": "Fact713D4SourceSearch.Assembly.actual_d4_zero",
+              "coordinate_binding": "Fact713D4SourceSearch.CoordinateBridge.actual_next_unique",
+              "premise": "Complete actual E3 homology meanings, row2773 d3 incoming forcing, actual map quotient transitions and d4 naturality."
+            }
+          ]
+        },
+        "S0:6,129:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 0,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d5": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 1,
+            "inclusion": [
+              true
+            ],
+            "incoming": [],
+            "k": 0,
+            "m": 1,
+            "n": 0,
+            "outgoing": [],
+            "projection": [
+              true
+            ],
+            "up": [],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 5,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "checked_zero_codomain",
+              "target_predecessor": "S0:16,137:d4"
+            }
+          ]
+        },
+        "S0:16,137:d5": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:21,141:d4:row3240; target dimension 1"
+        },
+        "S0:6,129:d5": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 1,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d6": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:17,138:d4:row2994; target dimension 2"
+        },
+        "S0:16,137:d6": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:21,141:d4:row3240; target dimension 1"
+        },
+        "S0:6,129:d6": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:17,138:d4:row2994; target dimension 2"
+        },
+        "S0:23,142:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              true
+            ],
+            "h": 1,
+            "inclusion": [
+              true,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              true
+            ],
+            "projection": [
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3305,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row3305_actual_h0_product",
+              "target_predecessor": "S0:26,144:d2",
+              "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+              "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3306,
+                "1",
+                "1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:26,144:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                20,
+                140
+              ],
+              "page": 3,
+              "row": [
+                3135,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_named_actual_d3_theorem",
+              "target_predecessor": "S0:23,142:d2",
+              "theorem": "Row3135H0Leibniz.Actual.actual_row3135_d3_zero",
+              "premise": "Exact actual product/factor names, whole product meanings, known nonzero right d3."
+            },
+            {
+              "object": "S0",
+              "source": [
+                20,
+                140
+              ],
+              "page": 3,
+              "row": [
+                3136,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "explicit_row3136_two_candidate_branch",
+              "target_predecessor": "S0:23,142:d2",
+              "coefficient": 0,
+              "coordinates": [
+                0,
+                0
+              ],
+              "theorem": "Row3305H0Search.Assembly.actual_two_candidates",
+              "premise": "Complete actual target d3 meaning, row3305 actual h0 product and same-e0 binding derive u=0; this is one remaining case, not a chosen actual value."
+            }
+          ]
+        },
+        "S0:26,144:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [
+              false,
+              true
+            ],
+            "k": 0,
+            "m": 1,
+            "n": 2,
+            "outgoing": [],
+            "projection": [],
+            "up": [
+              false,
+              true
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                26,
+                144
+              ],
+              "page": 3,
+              "row": [
+                3471,
+                "1",
+                "1",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:29,146:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3305,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row3305_actual_h0_product",
+              "target_predecessor": "S0:26,144:d2",
+              "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+              "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3306,
+                "1",
+                "1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:26,144:d2"
+            }
+          ]
+        }
+      },
+      "previous_branch_preserved": 86,
+      "branch": "zero",
+      "assumed_staircase_d3": [
+        0,
+        0
+      ],
+      "baseline_preserved": 1272,
+      "changed_selection_rows": [],
+      "graph_available": 1356,
+      "graph_unresolved": 64,
+      "source_direct_comparison": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "source_next_selected_raw": [
+        [
+          2994,
+          "0,1,2",
+          null,
+          9000
+        ]
+      ],
+      "source_selection_compatible": true,
+      "source_result": {
+        "status": "finite_comparison_available",
+        "dimensions": {
+          "k": 2,
+          "m": 1,
+          "n": 1,
+          "h": 1
+        },
+        "unresolved_predecessors": []
+      },
+      "named_trajectory": [
+        {
+          "page": 2,
+          "vector": [
+            1,
+            1
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1,
+            0
+          ]
+        },
+        {
+          "page": 3,
+          "vector": [
+            1,
+            0
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 4,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 5,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 6,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 7,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 8,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 9,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 10,
+          "status": "unresolved",
+          "reason": "unknown S0:17,138:d4:row2994; target dimension 2"
+        }
+      ],
+      "scope": "Conditional finite case split requiring named actual E3 cycle representatives. A staircase selection mismatch is not a contradiction from topology; raw level9000 does not itself prove next-page survival."
+    },
+    {
+      "parent_case": "residual_a0",
+      "row2907_coefficient": null,
+      "inherited_row3136_selection_changes": [],
+      "case_name": "residual",
+      "row3136_coefficient": 0,
+      "selection_changes": [],
+      "attempted_new_rules": [],
+      "extra_requested": {
+        "S0:11,133:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              true,
+              false,
+              true,
+              true
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:16,137:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "h": 2,
+            "inclusion": [
+              false,
+              false,
+              false,
+              true,
+              true,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false
+            ],
+            "k": 3,
+            "m": 3,
+            "n": 1,
+            "outgoing": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              false,
+              true,
+              false,
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:6,129:d2": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 1,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              false,
+              true
+            ],
+            "incoming": [
+              true,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 1,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true
+            ],
+            "up": [
+              true,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 3,
+              "row": [
+                2621,
+                "0,1",
+                "0",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:14,135:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 3,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2622_dc2h6_naturality",
+              "target_predecessor": "S0:14,135:d2",
+              "theorem": "Fact713DC2h6Source.Actual.actual_row2622_d3_zero",
+              "premise": "Complete actual maps and faithful quotient meanings, named source and actual d3 naturality."
+            },
+            {
+              "object": "S0",
+              "source": [
+                8,
+                131
+              ],
+              "page": 3,
+              "row": [
+                2488,
+                "0",
+                "0,1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:11,133:d2"
+            }
+          ]
+        },
+        "S0:16,137:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              false,
+              true
+            ],
+            "incoming": [
+              false,
+              true,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              false,
+              true
+            ],
+            "up": [
+              false,
+              false,
+              true,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 3,
+              "row": [
+                2906,
+                "2",
+                "0",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:19,139:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 3,
+              "row": [
+                2907,
+                "1",
+                null,
+                9996
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:19,139:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                13,
+                135
+              ],
+              "page": 3,
+              "row": [
+                2773,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2773_actual_leibniz",
+              "target_predecessor": "S0:16,137:d2",
+              "theorem": "Row2773Leibniz.Actual.actual_row2773_d3_zero",
+              "premise": "Complete actual quotient/product meanings and named factors. No NULL prefix or eta d3 value assumed."
+            },
+            {
+              "object": "S0",
+              "source": [
+                13,
+                135
+              ],
+              "page": 3,
+              "row": [
+                2774,
+                "0",
+                "2",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:16,137:d2"
+            }
+          ]
+        },
+        "S0:6,129:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 0,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              false
+            ],
+            "h": 1,
+            "inclusion": [
+              true
+            ],
+            "incoming": [],
+            "k": 2,
+            "m": 1,
+            "n": 0,
+            "outgoing": [
+              false,
+              false
+            ],
+            "projection": [
+              true
+            ],
+            "up": [],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 4,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+              "target_predecessor": "S0:15,136:d3",
+              "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+              "coordinate_binding": "whole actual map; no named source binding required",
+              "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+            }
+          ]
+        },
+        "S0:16,137:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              true
+            ],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [
+              false
+            ],
+            "k": 1,
+            "m": 1,
+            "n": 1,
+            "outgoing": [
+              true
+            ],
+            "projection": [],
+            "up": [
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                16,
+                137
+              ],
+              "page": 4,
+              "row": [
+                2907,
+                "1",
+                null,
+                9996
+              ],
+              "kind": "conditional_row2907_actual_whole_d4_candidate",
+              "target_predecessor": "S0:20,140:d3",
+              "canonical_column": [
+                1
+              ],
+              "staircase_column": [
+                1
+              ],
+              "remaining_coefficient": null,
+              "theorem": "Row2907TargetProduct.Branches.residual_whole_d4",
+              "coordinate_binding": "Fact713Row2907Continuation.Actual.whole_column_in_staircase",
+              "premise": "Complete same-input product witness, known actual product d4, whole target d3 and E3 product meanings, actual quotient-product transitions; canonical-to-staircase full quotient bridge."
+            },
+            {
+              "object": "S0",
+              "source": [
+                12,
+                134
+              ],
+              "page": 4,
+              "row": [
+                2684,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row2684_d4_actual_C2h5_naturality",
+              "target_predecessor": "S0:16,137:d3",
+              "theorem": "Fact713D4SourceSearch.Assembly.actual_d4_zero",
+              "coordinate_binding": "Fact713D4SourceSearch.CoordinateBridge.actual_next_unique",
+              "premise": "Complete actual E3 homology meanings, row2773 d3 incoming forcing, actual map quotient transitions and d4 naturality."
+            }
+          ]
+        },
+        "S0:6,129:d4": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 0,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d5": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 1,
+            "inclusion": [
+              true
+            ],
+            "incoming": [],
+            "k": 0,
+            "m": 1,
+            "n": 0,
+            "outgoing": [],
+            "projection": [
+              true
+            ],
+            "up": [],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 5,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "checked_zero_codomain",
+              "target_predecessor": "S0:16,137:d4"
+            }
+          ]
+        },
+        "S0:16,137:d5": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:21,141:d4:row3240; target dimension 1"
+        },
+        "S0:6,129:d5": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 1,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:11,133:d6": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 1,
+            "inclusion": [
+              true
+            ],
+            "incoming": [],
+            "k": 0,
+            "m": 1,
+            "n": 0,
+            "outgoing": [],
+            "projection": [
+              true
+            ],
+            "up": [],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                11,
+                133
+              ],
+              "page": 6,
+              "row": [
+                2622,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "checked_zero_codomain",
+              "target_predecessor": "S0:17,138:d5"
+            }
+          ]
+        },
+        "S0:16,137:d6": {
+          "status": "unresolved",
+          "first_failure": "unknown S0:21,141:d4:row3240; target dimension 1"
+        },
+        "S0:6,129:d6": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [],
+            "k": 1,
+            "m": 0,
+            "n": 0,
+            "outgoing": [],
+            "projection": [],
+            "up": [],
+            "version": 1
+          },
+          "uses": []
+        },
+        "S0:23,142:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [
+              false,
+              true
+            ],
+            "h": 1,
+            "inclusion": [
+              true,
+              false
+            ],
+            "incoming": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "k": 1,
+            "m": 2,
+            "n": 2,
+            "outgoing": [
+              false,
+              true
+            ],
+            "projection": [
+              true,
+              false
+            ],
+            "up": [
+              false,
+              false,
+              false,
+              false
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3305,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row3305_actual_h0_product",
+              "target_predecessor": "S0:26,144:d2",
+              "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+              "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3306,
+                "1",
+                "1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:26,144:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                20,
+                140
+              ],
+              "page": 3,
+              "row": [
+                3135,
+                "1",
+                null,
+                9000
+              ],
+              "kind": "conditional_named_actual_d3_theorem",
+              "target_predecessor": "S0:23,142:d2",
+              "theorem": "Row3135H0Leibniz.Actual.actual_row3135_d3_zero",
+              "premise": "Exact actual product/factor names, whole product meanings, known nonzero right d3."
+            },
+            {
+              "object": "S0",
+              "source": [
+                20,
+                140
+              ],
+              "page": 3,
+              "row": [
+                3136,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "explicit_row3136_two_candidate_branch",
+              "target_predecessor": "S0:23,142:d2",
+              "coefficient": 0,
+              "coordinates": [
+                0,
+                0
+              ],
+              "theorem": "Row3305H0Search.Assembly.actual_two_candidates",
+              "premise": "Complete actual target d3 meaning, row3305 actual h0 product and same-e0 binding derive u=0; this is one remaining case, not a chosen actual value."
+            }
+          ]
+        },
+        "S0:26,144:d3": {
+          "status": "complete",
+          "wire": {
+            "down": [],
+            "h": 0,
+            "inclusion": [],
+            "incoming": [
+              false,
+              true
+            ],
+            "k": 0,
+            "m": 1,
+            "n": 2,
+            "outgoing": [],
+            "projection": [],
+            "up": [
+              false,
+              true
+            ],
+            "version": 1
+          },
+          "uses": [
+            {
+              "object": "S0",
+              "source": [
+                26,
+                144
+              ],
+              "page": 3,
+              "row": [
+                3471,
+                "1",
+                "1",
+                3
+              ],
+              "kind": "stored_zero_prefix_or_boundary",
+              "target_predecessor": "S0:29,146:d2"
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3305,
+                "0",
+                null,
+                9000
+              ],
+              "kind": "conditional_row3305_actual_h0_product",
+              "target_predecessor": "S0:26,144:d2",
+              "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+              "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+            },
+            {
+              "object": "S0",
+              "source": [
+                23,
+                142
+              ],
+              "page": 3,
+              "row": [
+                3306,
+                "1",
+                "1",
+                9997
+              ],
+              "kind": "stored_event",
+              "target_predecessor": "S0:26,144:d2"
+            }
+          ]
+        }
+      },
+      "previous_branch_preserved": 95,
+      "branch": "residual_rebased",
+      "assumed_staircase_d3": [
+        1,
+        0
+      ],
+      "baseline_preserved": 1272,
+      "changed_selection_rows": [
+        2994,
+        3135
+      ],
+      "graph_available": 1372,
+      "graph_unresolved": 48,
+      "source_direct_comparison": {
+        "down": [
+          true,
+          false
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          true,
+          false
+        ],
+        "projection": [],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "source_next_selected_raw": [],
+      "source_selection_compatible": true,
+      "source_result": {
+        "status": "finite_comparison_available",
+        "dimensions": {
+          "k": 2,
+          "m": 1,
+          "n": 1,
+          "h": 0
+        },
+        "unresolved_predecessors": []
+      },
+      "named_trajectory": [
+        {
+          "page": 2,
+          "vector": [
+            1,
+            1
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1,
+            0
+          ]
+        },
+        {
+          "page": 3,
+          "vector": [
+            1,
+            0
+          ],
+          "outgoing": [
+            0,
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 4,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 5,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 6,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 7,
+          "vector": [
+            1
+          ],
+          "outgoing": [
+            0
+          ],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 8,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 9,
+          "vector": [
+            1
+          ],
+          "outgoing": [],
+          "is_boundary": false,
+          "next": [
+            1
+          ]
+        },
+        {
+          "page": 10,
+          "status": "unresolved",
+          "reason": "unknown S0:16,140:d3:row3147; target dimension 2"
+        }
+      ],
+      "scope": "Conditional finite case split requiring named actual E3 cycle representatives. A staircase selection mismatch is not a contradiction from topology; raw level9000 does not itself prove next-page survival."
+    }
+  ],
+  "sha256": {
+    "Fact713DC2h6Source/refined.json": "8d1a72bd4ff557b013c5f7202e19608e7a2a5209657e219a4fcf30007df5d8b9",
+    "Fact713DC2h6Source/refine.py": "74392e5c1513acf75a59c7171e5fb79845f27cb5bfd7688d6142d4ff7e21e0f6",
+    "Fact713Row2907Continuation/generate.py": "21bb27ae7eed5a3d3149ffdacde849f81537c5e749e943c001bf2e250d286268"
+  }
+}

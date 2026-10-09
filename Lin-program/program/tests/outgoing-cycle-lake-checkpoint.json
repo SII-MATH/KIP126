@@ -1,0 +1,63 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 85669,
+  "observed_exit_code": 0,
+  "jobs": 2532,
+  "build_log": "tests/step4-outgoing-cycle-build.log",
+  "build_log_sha256": "852525b26e89845f56c8c80235fecbb28753c428e14b9ad4f599f7eec8ba640e",
+  "individual_module_logs": {
+    "tests/step4-outgoing-cycle-build.log": "852525b26e89845f56c8c80235fecbb28753c428e14b9ad4f599f7eec8ba640e"
+  },
+  "lakefile_sha256": "7c04eace4c316da26a08f8c357a3d7c18adf47f63d820a2f026015e0cb59ac1c",
+  "modules": [
+    {
+      "module": "Fact762AssemblyCertificates.Assembly",
+      "source_sha256": "e20aaf83e4fbc747609fbd1f0d5f27b8df75d787d948f8a15a0a022c4ef7d1e0",
+      "olean_sha256": "cb27242928a1d5ad3c8a8667124d8437eaeb89a73748e48221a0eab9de68a88a",
+      "trace_sha256": "dab529a68f49265cc835cbfc4c83f91dd6f302545eef89a6e78cc51975f6fa1a"
+    },
+    {
+      "module": "Fact762AssemblyCertificates.Routes",
+      "source_sha256": "a2d9ddef1d297dfdc9245b9fedf30d29bbb87657cb22565613da88a5f721c2e8",
+      "olean_sha256": "112e84df7ebd9401e83b6e7a4d6142c6b7b936d6868328a9ff917ae89fe68c2b",
+      "trace_sha256": "7a1fb5579f6d91f0e0de52122265217c340b1901a551d3e16149e83b1e452336"
+    },
+    {
+      "module": "Fact762Source4Certificates.KernelBranch",
+      "source_sha256": "423bd2984757822b42b1c8a4f6f461e8a5b948131ee38d8105ae38e103d30592",
+      "olean_sha256": "92580b98f4033b7722fb7db66e691c4cc44328c01c32e9576b5849bb8546123e",
+      "trace_sha256": "d8d6638455a2dd29f8d508e91d5176eb771c50df9a695417c4eec1f11b99ee0c"
+    },
+    {
+      "module": "OutgoingCycleCertificates.Basic",
+      "source_sha256": "8b7551dd82a35d68d9fef23ca156cb1684ab592e31a7d14419b5674fdfbf9208",
+      "olean_sha256": "69f40705899d4da89cda884b8aaceab3e2f01585ad09008d37348422e3b4db75",
+      "trace_sha256": "06e1fd7670c44abd6a9e39976f9cbdd59f88b6ebf911c56b89906ce9277f3e61"
+    },
+    {
+      "module": "OutgoingCycleCertificates.CheckFile",
+      "source_sha256": "8fa38834aad99d522b94651d832e0a97437795b32b1cb69b46659159cfca5918",
+      "olean_sha256": "4619d7a6d549b759840ae59c88c0ea26a26f2dbb55accff65fc16d3a000cb164",
+      "trace_sha256": "af887ee961ccdee528e0e3db8ed9e8620faa886b1c61739e9f2a9f13229d5b6f"
+    },
+    {
+      "module": "OutgoingCycleCertificates.Examples",
+      "source_sha256": "c9f828c89d2ce31dbc493ea69d27ca38ff4605762d9bc07323f93cf01cdd03f6",
+      "olean_sha256": "4b8120537689bb5d2f63e17b5d11a1d60f6bd288c9e47c436753b7f0777c9786",
+      "trace_sha256": "0d4b3acc620897136653b16abeebd7a11b43a09651d098b628622d834f97c633"
+    },
+    {
+      "module": "OutgoingCycleCertificates.Import",
+      "source_sha256": "7e430d703f0841266e89b596fa9e06f579d76d74ec687344341af11f00b540a8",
+      "olean_sha256": "2d60f789f01d8a59ffbff00e022febe22c1cd838354c0bd73d749550f2f8e6c0",
+      "trace_sha256": "afc19b4fbc7f907477a482be353775cdaa34852449e75c43767880fbac6ab235"
+    },
+    {
+      "module": "OutgoingCycleCertificates.ImportExamples",
+      "source_sha256": "ac59561584690dd95a2186a057488ceae0a1e4246d27407076a487ee86499e7e",
+      "olean_sha256": "cccddbf897e29b113aa2d712b49471c1e9b3028bdc20aa108a44de0dbdb16b4b",
+      "trace_sha256": "ad6305992ba51c6c82f3c0a1ee1bf2707afacb471376672762308768527920df"
+    }
+  ]
+}

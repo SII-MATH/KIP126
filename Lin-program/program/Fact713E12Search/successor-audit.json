@@ -1,0 +1,103 @@
+{
+  "status": "successor_conditions_and_complete_finite_overlay_verified",
+  "preserved_comparisons": 1211,
+  "comparisons": 1234,
+  "all_input_vectors": 2485,
+  "all_cycle_pairs": 9349,
+  "adjacent_differential_matches": 933,
+  "successor_sources": [
+    {
+      "row": [
+        3242,
+        20,
+        141,
+        "0",
+        "1",
+        9996
+      ],
+      "target_e2_rows": [
+        [
+          3474,
+          "13,6",
+          ""
+        ],
+        [
+          3475,
+          "8,1,64,2",
+          ""
+        ],
+        [
+          3476,
+          "8,2,23,1,89,1",
+          ""
+        ]
+      ],
+      "raw_target_vector": [
+        0,
+        1,
+        0
+      ],
+      "projected_target": [
+        1,
+        0
+      ],
+      "unknown_incoming_row": 2999,
+      "conditions": [
+        "actual complete successor column meaning",
+        "faithful middle coordinates",
+        "actual zero coordinate laws",
+        "actual differential square zero"
+      ]
+    },
+    {
+      "row": [
+        3551,
+        24,
+        145,
+        "0",
+        "0,2",
+        9997
+      ],
+      "target_e2_rows": [
+        [
+          3729,
+          "8,2,42,1,64,1",
+          ""
+        ],
+        [
+          3730,
+          "8,2,9,1,13,2,32,1",
+          ""
+        ],
+        [
+          3731,
+          "0,1,516,1",
+          ""
+        ]
+      ],
+      "raw_target_vector": [
+        1,
+        0,
+        1
+      ],
+      "projected_target": [
+        1,
+        0
+      ],
+      "unknown_incoming_row": 3386,
+      "conditions": [
+        "actual complete successor column meaning",
+        "faithful middle coordinates",
+        "actual zero coordinate laws",
+        "actual differential square zero"
+      ]
+    }
+  ],
+  "meaning": "Both raw known events and coordinate interpretations remain external actual premises; this audit checks the finite projections and implications only.",
+  "input_sha256": {
+    "Fact713E12Search/search.json": "b092b909e211bcccb0aa261314167107fd6e9c84ad5be1fb0153a519e59b137c",
+    "Fact713E12Search/successor-search.json": "d0d7283e9fe616087389078d58613fd027b9781557f8436652401a31e0908328",
+    "Fact713E12Search/successor_audit.py": "73dd97727f64b8029f1f3d269e6623d024723b0ac90c3e8837d116fc2d891221",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

@@ -1,0 +1,29 @@
+IndexedFamilyNeighborCheck/Examples.lean:41:31: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  e = target ∨ e ∈ []
+
+case entries.inr.inr
+e : Entry
+h✝ : e = target ∨ e ∈ []
+⊢ KeyValid e.key ∧ e.wire.Valid
+IndexedFamilyNeighborCheck/Examples.lean:44:31: error: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  e = target ∨ e ∈ []
+
+case neighbors.inr.inr
+e : Entry
+h✝ : e = target ∨ e ∈ []
+⊢ checkOne [first, second, target] e = true
+IndexedFamilyNeighborCheck/Examples.lean:40:29: warning: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons,̵L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵] at he
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+IndexedFamilyNeighborCheck/Examples.lean:43:29: warning: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons,̵L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵] at he
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'IndexedFamilyNeighborCheck.Tests.batch_example' depends on axioms: [propext, sorryAx, Quot.sound]

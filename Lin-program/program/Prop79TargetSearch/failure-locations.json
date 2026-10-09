@@ -1,0 +1,357 @@
+{
+  "incoming_checks": [
+    {
+      "incoming_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "issues": [],
+      "page": 2,
+      "predecessors": [],
+      "source": [
+        12,
+        138
+      ],
+      "source_dimension": 4,
+      "status": "finite_no_hit",
+      "target": [
+        14,
+        139
+      ],
+      "target_coordinates": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "target_dimension": 4,
+      "uses": [
+        {
+          "finite_value": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "kind": "stored_d2",
+          "local": 0,
+          "page": 2,
+          "row": [
+            4307,
+            "356",
+            ""
+          ],
+          "source": [
+            12,
+            138
+          ],
+          "target": [
+            14,
+            139
+          ],
+          "target_dimension": 4,
+          "target_predecessor": null
+        },
+        {
+          "finite_value": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "kind": "stored_d2",
+          "local": 1,
+          "page": 2,
+          "row": [
+            4308,
+            "25,1,190,1,0",
+            ""
+          ],
+          "source": [
+            12,
+            138
+          ],
+          "target": [
+            14,
+            139
+          ],
+          "target_dimension": 4,
+          "target_predecessor": null
+        },
+        {
+          "finite_value": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "kind": "stored_d2",
+          "local": 2,
+          "page": 2,
+          "row": [
+            4309,
+            "3,1,336,1,0",
+            "3"
+          ],
+          "source": [
+            12,
+            138
+          ],
+          "target": [
+            14,
+            139
+          ],
+          "target_dimension": 4,
+          "target_predecessor": null
+        },
+        {
+          "finite_value": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "kind": "stored_d2",
+          "local": 3,
+          "page": 2,
+          "row": [
+            4310,
+            "0,10,69,2,0",
+            ""
+          ],
+          "source": [
+            12,
+            138
+          ],
+          "target": [
+            14,
+            139
+          ],
+          "target_dimension": 4,
+          "target_predecessor": null
+        }
+      ]
+    },
+    {
+      "incoming_matrix": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "issues": [],
+      "page": 3,
+      "predecessors": [
+        "Cnu:11,137:d2",
+        "Cnu:14,139:d2"
+      ],
+      "source": [
+        11,
+        137
+      ],
+      "source_dimension": 3,
+      "status": "finite_no_hit",
+      "target": [
+        14,
+        139
+      ],
+      "target_coordinates": [
+        1,
+        0
+      ],
+      "target_dimension": 2,
+      "uses": [
+        {
+          "finite_value": [
+            0,
+            0
+          ],
+          "kind": "incoming_boundary_zero_requires_meaning",
+          "local": 0,
+          "page": 3,
+          "row": [
+            4179,
+            "0",
+            "0",
+            3
+          ],
+          "source": [
+            11,
+            137
+          ],
+          "target": [
+            14,
+            139
+          ],
+          "target_dimension": 2,
+          "target_predecessor": "Cnu:14,139:d2"
+        },
+        {
+          "finite_value": [
+            0,
+            0
+          ],
+          "kind": "conditional_row4180_bottom_naturality",
+          "local": 1,
+          "page": 3,
+          "row": [
+            4180,
+            "1,2",
+            null,
+            9000
+          ],
+          "source": [
+            11,
+            137
+          ],
+          "target": [
+            14,
+            139
+          ],
+          "target_dimension": 2,
+          "target_predecessor": "Cnu:14,139:d2"
+        },
+        {
+          "finite_value": [
+            0,
+            0
+          ],
+          "kind": "future_outgoing_zero_prefix_requires_meaning",
+          "local": 2,
+          "page": 3,
+          "row": [
+            4181,
+            "2",
+            null,
+            9986
+          ],
+          "source": [
+            11,
+            137
+          ],
+          "target": [
+            14,
+            139
+          ],
+          "target_dimension": 2,
+          "target_predecessor": "Cnu:14,139:d2"
+        }
+      ]
+    },
+    {
+      "incoming_matrix": [
+        [],
+        []
+      ],
+      "issues": [],
+      "page": 4,
+      "predecessors": [
+        "Cnu:10,136:d3",
+        "Cnu:14,139:d3"
+      ],
+      "source": [
+        10,
+        136
+      ],
+      "source_dimension": 0,
+      "status": "finite_no_hit",
+      "target": [
+        14,
+        139
+      ],
+      "target_coordinates": [
+        1,
+        0
+      ],
+      "target_dimension": 2,
+      "uses": []
+    },
+    {
+      "incoming_matrix": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "issues": [],
+      "page": 5,
+      "predecessors": [
+        "Cnu:9,135:d4",
+        "Cnu:14,139:d4"
+      ],
+      "source": [
+        9,
+        135
+      ],
+      "source_dimension": 1,
+      "status": "finite_no_hit",
+      "target": [
+        14,
+        139
+      ],
+      "target_coordinates": [
+        1,
+        0
+      ],
+      "target_dimension": 2,
+      "uses": [
+        {
+          "finite_value": [
+            0,
+            0
+          ],
+          "kind": "future_outgoing_zero_prefix_requires_meaning",
+          "local": 0,
+          "page": 5,
+          "row": [
+            3994,
+            "1",
+            null,
+            9984
+          ],
+          "source": [
+            9,
+            135
+          ],
+          "target": [
+            14,
+            139
+          ],
+          "target_dimension": 2,
+          "target_predecessor": "Cnu:14,139:d4"
+        }
+      ]
+    }
+  ],
+  "required_frontier": {}
+}

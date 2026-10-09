@@ -1,0 +1,61 @@
+{
+  "status": "complete_finite_overlay_audit_passed",
+  "baseline_preserved": 1239,
+  "all_comparisons": 1249,
+  "e12_available": 1246,
+  "e12_unresolved": 174,
+  "additional_blocks": 10,
+  "all_input_vectors": 2515,
+  "all_cycle_pairs": 9409,
+  "adjacent_differentials": 947,
+  "predecessor_dimensions": 2247,
+  "named_finite_trajectory": [
+    {
+      "page": 2,
+      "vector": [
+        1,
+        1
+      ],
+      "next": [
+        1,
+        0
+      ]
+    },
+    {
+      "page": 3,
+      "vector": [
+        1,
+        0
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 4,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 5,
+      "vector": [
+        1
+      ],
+      "next": [
+        1
+      ]
+    }
+  ],
+  "raw_unknown_preserved": true,
+  "input_sha256": {
+    "Fact713RefinedSourceSearch/refined.json": "cd50a06cb4bd8697eaffdb4448e754148fdb8e240c3ac1582e4fe65304d50c6b",
+    "Fact713Row2773Refinement/refined.json": "d8eb3519ebdc7ca5a74bb67a639ea2d6c44afe3001654d2cab0724c5a83db23f",
+    "Fact713Row2773Refinement/audit.py": "771c31f052013a0291a4e286732e334cbfc8f1ba28060ce7578fd14653e74189",
+    "Fact713Row2773Refinement/Data.lean": "5aa506b8a0e07a25dcd70710f8b3b0122a6f58c9f753799649c01d4a022c5f33"
+  },
+  "scope": "Finite named E6 prefix. Actual prefix/differential/product meanings remain caller proofs, including inherited unknown zero-prefix interpretations. No actual E6/E12 claim."
+}

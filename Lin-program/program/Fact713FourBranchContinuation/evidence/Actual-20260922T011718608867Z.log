@@ -1,0 +1,44 @@
+Fact713FourBranchContinuation/Actual.lean:15:36: error: Ambiguous term
+  incomingDegree
+Possible interpretations:
+  Row3136FamilyBranches.Actual.incomingDegree : Bidegree
+  
+  Row3151ActualTransport.incomingDegree : Bidegree
+Fact713FourBranchContinuation/Actual.lean:16:60: error: Ambiguous term
+  incomingDegree
+Possible interpretations:
+  Row3136FamilyBranches.Actual.incomingDegree : Bidegree
+  
+  Row3151ActualTransport.incomingDegree : Bidegree
+Fact713FourBranchContinuation/Actual.lean:19:51: error: Ambiguous term
+  sourceDegree
+Possible interpretations:
+  Row3136FamilyBranches.Actual.sourceDegree : Bidegree
+  
+  Row3151ActualTransport.sourceDegree : Bidegree
+Fact713FourBranchContinuation/Actual.lean:23:48: error: Ambiguous term
+  incomingDegree
+Possible interpretations:
+  Row3136FamilyBranches.Actual.incomingDegree : Bidegree
+  
+  Row3151ActualTransport.incomingDegree : Bidegree
+Fact713FourBranchContinuation/Actual.lean:25:49: error: Ambiguous term
+  targetDegree
+Possible interpretations:
+  Row3136FamilyBranches.Actual.targetDegree : Bidegree
+  
+  Row3151ActualTransport.targetDegree : Bidegree
+Fact713FourBranchContinuation/Actual.lean:17:12: error: Function expected at
+  matrixOf
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  2
+
+Hint: The identifier `matrixOf` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+'Fact713FourBranchContinuation.Actual.actual_local_selection' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact713FourBranchContinuation.Actual.actual_row3143_column' depends on axioms: [propext, Classical.choice, Quot.sound]

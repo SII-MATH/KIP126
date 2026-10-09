@@ -1,0 +1,19 @@
+{
+  "source_sha256": "44899e99dc26ee38738a9a548b1749178b6c4fb75f0a27bc74249a7466dfe39e",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Prop79IncomingSearch/CoordinateBridge.olean": "3228b4d33e9d1ef0bd671ed73f05c0ce700577d971aa33fea04638973ec8a785",
+    ".lake/build/lib/lean/Prop79IncomingSearch/Actual.olean": "4dff1abd209e70e9468e23ddfbb3b3f3fd8412c34debd2a1711a568bc0c98a00"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Prop79IncomingSearch/Incoming.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79IncomingSearch/Incoming.olean"
+  ],
+  "log": "evidence/Incoming-20260922T000424921927Z.log",
+  "external_input_sha256": {},
+  "observed_exit_code": 1,
+  "log_sha256": "c0f13a04d9fec8f4dd3aad25ef1328342484bcc1ba13494d0ac8aad057f1d1ec",
+  "inputs_stable": true
+}

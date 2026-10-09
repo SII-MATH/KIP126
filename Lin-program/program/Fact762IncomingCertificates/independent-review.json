@@ -1,0 +1,99 @@
+{
+  "build_observation": {
+    "compile_record_sha256": "a64ea112cd779c6ac0e558a0c93a2701cf26f6e88546bd8835287bd2d49dd889",
+    "independent_recompile": false,
+    "later_Lake_note": "These are observations at review time; later Lake builds may replace direct oleans, requiring separate build evidence.",
+    "modules": [
+      {
+        "current_olean_matches": true,
+        "exit_code": 0,
+        "module": "Data",
+        "source_and_log_match": true
+      },
+      {
+        "current_olean_matches": true,
+        "exit_code": 0,
+        "module": "ZeroPropagation",
+        "source_and_log_match": true
+      },
+      {
+        "current_olean_matches": true,
+        "exit_code": 0,
+        "module": "Source8",
+        "source_and_log_match": true
+      },
+      {
+        "current_olean_matches": true,
+        "exit_code": 0,
+        "module": "Incoming",
+        "source_and_log_match": true
+      },
+      {
+        "current_olean_matches": true,
+        "exit_code": 0,
+        "module": "Tests",
+        "source_and_log_match": true
+      }
+    ],
+    "no_axiom_reports": 3,
+    "standard_axiom_reports": 8
+  },
+  "findings": [],
+  "independent_replays": {
+    "cycle_projections": 58,
+    "existing_review_replayed_without_overwrite": true,
+    "full_predecessor_comparisons": 123,
+    "higher_columns": 69,
+    "known_d2_columns": 244,
+    "nonzero_3bit_column_and_arbitrary_incoming_0_to_3_columns_kernel_cases": 105
+  },
+  "inputs_sha256": {
+    "AggregateD5Conditional/Data.lean": "43b0204c283f4347882f0d62f14d42f26e5b7b08f2fb1a29813d46ccc1b62a37",
+    "Fact762IncomingCertificates/Data.lean": "878ff5214b269e93aa592a7aded1a1805dd7f43451151ee158c710758e144e2f",
+    "Fact762IncomingCertificates/Incoming.lean": "f747d1357c8ed1d68eae326a55c9d29247deccc3c4c980b6434f8848364864ac",
+    "Fact762IncomingCertificates/README.md": "b6bde81cbb088ae4bf3931dd4519c5ec29ace038d0b39df5d2aa7de3a7fbde30",
+    "Fact762IncomingCertificates/Source8.lean": "bbf16ef44f66cfc2ed58153564f62d6fb763d468feb173833ce9bb27969c05ba",
+    "Fact762IncomingCertificates/Tests.lean": "0fc5c77e1e84af9773aa17142edb31f7455e30a7031c520ba75042d20a2559f5",
+    "Fact762IncomingCertificates/ZeroPropagation.lean": "f78379ab209e37175083d3244f5355a7dca35d593d28f896d776ce544b62471b",
+    "Fact762IncomingCertificates/audit.json": "38c82fa9ec59a61d8d031f8d3431f228f5610dfb1f5e8ab1494cf44da69a8048",
+    "Fact762IncomingCertificates/review.json": "4ae6e8f2fc10507c154d083e17bdf8a8adca68de4d30cf9b0a93108edfb38dfc",
+    "Fact762IncomingCertificates/review.py": "ba84de8b2ae8c4eabc63c30c0a2c9c4416557ec36f02da20a0560a8b4ebbc15c",
+    "Fact762PageCertificates/Survivor.lean": "915c71fa3fd8ff0e4c025a26c45b3236dcc45e3fae5511bacf757ae9aa2b8a41",
+    "Row2574Detector/Additional/Combined.lean": "5b826265c4e00b47e2434e8692d76400e6b6929699ed1096552bda33ca56bcc2",
+    "Row2574Detector/Quotient.lean": "2e1857a1226826a51b390fb759a25e3ffabe738dabe51de706968ef503d80a5a"
+  },
+  "limitations": [
+    "Complete incoming-page inventory is not an unconditional exclusion theorem for the actual paper class.",
+    "Source at r6 has full E6 coordinate dimension2 and unknown row2702 differential. Source at r12 has raw row2314 NULL9993 despite empty selected list; neither is silently zero.",
+    "Page4/page7 all-source vanishings and actual column/page/basis realizations remain explicit obligations.",
+    "The target is known only through the supplied finite prefix; queried target nonzero, shared named-class meaning and later-page transitions require mathematical proofs.",
+    "Empty negative-degree database queries and empty declared-window E2 bases provide finite data, not actual topology vanishing theorems."
+  ],
+  "reviewed_contracts": [
+    {
+      "check": "Finite d2 nonimage and full d3 zero map concern exact imported matrices. Four source quotient-zero results use complete comparisons at their true prior pages. source8 has full 1D source and arbitrary nonzero 3-coordinate outgoing column; quotient is zero for every incoming matrix and any incoming dimension. No incoming dimension is silently set to zero. Vec0 claims concern only the specified coordinate type.",
+      "module": "Data"
+    },
+    {
+      "check": "Existing h2 product affine-fiber theorem forces coordinate2 of d(named) true from explicit known product differential and full local Leibniz equation. Thus its 3-bit column is nonzero and full 1D finite kernel is zero. No unknown column is chosen. Applying that matrix to an actual differential still requires all-vector linear-coordinate interpretation; arbitrary function d is not silently declared linear.",
+      "module": "Source8"
+    },
+    {
+      "check": "Each actual next-page value has a preimage cycle by explicit nextSurjective. If all current values are zero, Subtype.ext identifies that cycle with zeroCycle; nextZero forces next-page zero. Induction handles every later page. Coordinate zero transport uses injectivity and zero preservation; source-zero no-hit explicitly assumes target nonzero.",
+      "module": "ZeroPropagation"
+    },
+    {
+      "check": "only_six_or_twelve partitions every queried q>=2: q>14 uses actual negative-filtration absence, 2/3 use supplied exclusions, 4/7 use full-source zero-map hypotheses, and 5/8/9/10/11/13/14 use supplied full-source zero theorems. The sole target-nonzero parameter is for the queried page, not all future pages. Target identities across pages and mathematical source realization are not supplied automatically.",
+      "module": "Incoming"
+    },
+    {
+      "check": "Bool local models show nonzero hits at pages4 and7 and failure of their vanishing claim; they are not asserted to satisfy the other assembly assumptions. Integer source-filtration tail and retention of pages6/12 as possible exceptions are checked.",
+      "module": "Tests"
+    },
+    {
+      "check": "Correctly distinguishes all 13 incoming-page inventory entries, finite exclusions, inherited conditional uses, actual all-source realizations, target prefix gaps, and unresolved pages4/7. Explicitly states the conditional assembly does not prove Fact7.6(2).",
+      "module": "README"
+    }
+  ],
+  "status": "independent_incoming_semantic_review_passed"
+}

@@ -1,0 +1,16 @@
+ActualTraceRequestsE10/Examples.lean:16:60: error: Expected type must not contain free variables
+  LinProgramCertificates.CertificateVerifier.check () = true
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+Certificate diagnostics require a closed certificate; checking the proof goal.
+ActualTraceRequestsE10/Examples.lean:17:60: error: Expected type must not contain free variables
+  LinProgramCertificates.CertificateVerifier.check () = true
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+ActualTraceRequestsE10/Examples.lean:19:9: warning: Variable name `P` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'ActualTraceRequestsE10.imported_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualTraceRequestsE10.imported_batch' depends on axioms: [propext, Classical.choice, Quot.sound]

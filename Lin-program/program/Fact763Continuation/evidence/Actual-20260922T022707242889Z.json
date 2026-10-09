@@ -1,0 +1,29 @@
+{
+  "source_sha256": "fb21394fbb1ec8a2db3db70a7d711c6f474fa7a291710f629f58ef084cf78461",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact763Continuation/Data.olean": "7fdc9f5388ea24046c0d1bc1d63fa1e26a8f3f0727b713000daeb2795647e34d",
+    ".lake/build/lib/lean/Fact763Continuation/Bridge.olean": "3803292b11fe74c65fd7352b1de6fc592968ea9674ad786f9180fb1810c5f5e9",
+    ".lake/build/lib/lean/ActualAdamsHomologyCoordinates/Adapter.olean": "137ceb64d72cffca65c8950f0f27f05ed9a5b0202a887c0dd13d463435934f5e",
+    ".lake/build/lib/lean/Fact761ConstructedActual/Local.olean": "3b96e3a8e524c65009317524921d3d844e675f316b06141e059fa046db4819e3",
+    ".lake/build/lib/lean/Prop79TargetSearch/ZeroSpaces.olean": "7a85486469be3c0a2b2a7f4e44f3cd8c421631d141c5ec9d2184230c438b54ea"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact763Continuation/Actual.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact763Continuation/Actual.olean"
+  ],
+  "log": "evidence/Actual-20260922T022707242889Z.log",
+  "external_input_sha256": {},
+  "observed_exit_code": 1,
+  "log_sha256": "6cef7d90464396aad69e8525afe5f86b5e4c40c9d5fd97aa3d9f3f1b3044cb15",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/Fact763Continuation/Data.olean": "7fdc9f5388ea24046c0d1bc1d63fa1e26a8f3f0727b713000daeb2795647e34d",
+    ".lake/build/lib/lean/Fact763Continuation/Bridge.olean": "3803292b11fe74c65fd7352b1de6fc592968ea9674ad786f9180fb1810c5f5e9",
+    ".lake/build/lib/lean/ActualAdamsHomologyCoordinates/Adapter.olean": "137ceb64d72cffca65c8950f0f27f05ed9a5b0202a887c0dd13d463435934f5e",
+    ".lake/build/lib/lean/Fact761ConstructedActual/Local.olean": "3b96e3a8e524c65009317524921d3d844e675f316b06141e059fa046db4819e3",
+    ".lake/build/lib/lean/Prop79TargetSearch/ZeroSpaces.olean": "7a85486469be3c0a2b2a7f4e44f3cd8c421631d141c5ec9d2184230c438b54ea"
+  },
+  "inputs_stable": true
+}

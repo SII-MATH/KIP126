@@ -1,0 +1,15 @@
+Fact713Row3247Boundaries/Basic.lean:20:4: error: Type mismatch
+  pageCast T last targetDegree_eq ((T.differential last sourceDegree).toFun boundarySource)
+has type
+  (T.element last targetDegree).carrier
+but is expected to have type
+  (T.element (last - 1 + 1) targetDegree).carrier
+Fact713Row3247Boundaries/Basic.lean:33:11: error: Type mismatch
+  (pages.nextPage 3 { filtration := 18, internal := 85 }).toNext ⟦B.first⟧ = ?m.50
+has type
+  Prop
+of sort `Type` but is expected to have type
+  Type
+of sort `Type 1`
+'Fact713Row3247Boundaries.p2Boundary' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3247Boundaries.bound_element_cycle' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

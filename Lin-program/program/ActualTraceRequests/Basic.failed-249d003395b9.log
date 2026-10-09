@@ -1,0 +1,15 @@
+ActualTraceRequests/Basic.lean:47:2: error: Tactic `split` failed: Could not split an `if` or `match` expression in the goal
+
+Hint: If you meant to destruct this structure, use the `cases` tactic instead
+
+Hint: Use `set_option trace.split.failure true` to display additional diagnostic information
+
+case isTrue
+spec : Specification
+request : Request
+h✝ : ¬request.version = 1
+⊢ some { kind := "actual_trace", location := "version", message := "expected version 1" } = none ↔
+    ((False ∧ request.claim = spec.claim) ∧ request.source = spec.source) ∧ request.output = spec.output
+'ActualTraceRequests.check_sound' depends on axioms: [propext]
+'ActualTraceRequests.diagnose_none_iff' depends on axioms: [sorryAx]
+'ActualTraceRequests.diagnoseBatch_none_iff' depends on axioms: [propext, sorryAx, Quot.sound]

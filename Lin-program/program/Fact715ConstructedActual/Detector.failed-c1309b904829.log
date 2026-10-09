@@ -1,0 +1,24 @@
+Fact715ConstructedActual/Detector.lean:66:26: error: Invalid rewrite argument: The pattern to be substituted is a metavariable (`?x`) in this equality
+  ?x = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (ceta.differential 3 cSource).toFun D.preimage
+  has type
+    (ceta.element 3 (AdamsTarget 3 cSource)).carrier
+  but is expected to have type
+    (ceta.element (2 + 1) cTarget).carrier
+  in the application
+    D.upper.nextMap ((ceta.differential 3 cSource).toFun D.preimage)
+'Fact715ConstructedActual.Detector.Input.named_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715ConstructedActual.Detector.Input.ceta_target_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715ConstructedActual.Detector.Input.upper_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715ConstructedActual.Detector.Input.named_d3_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact715ConstructedActual.Detector.Input.all_d3_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,125 @@
+FilteredExtensionCertificates/Basic.lean:45:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  eval K (eval (fun r j => factor r j.succ) fun j => v j.succ) i
+in the target expression
+  ((dot (K i) fun r => factor r 0 && v 0) ^^ dot (K i) (eval (fun r j => factor r j.succ) fun j => v j.succ)) =
+    (H i 0 && v 0 ^^ dot (fun j => H i j.succ) fun j => v j.succ)
+
+case succ
+a k : ℕ
+K : Matrix a k
+i : Fin a
+h : ℕ
+ih :
+  ∀ (H : Matrix a h) (factor : Matrix k h),
+    (∀ (i : Fin a) (j : Fin h), (dot (K i) fun r => factor r j) = H i j) →
+      ∀ (v : Vec h), eval K (eval factor v) i = eval H v i
+H : Matrix a (h + 1)
+factor : Matrix k (h + 1)
+equations : ∀ (i : Fin a) (j : Fin (h + 1)), (dot (K i) fun r => factor r j) = H i j
+v : Vec (h + 1)
+ht : eval K (eval (fun r j => factor r j.succ) fun j => v j.succ) i = eval (fun i j => H i j.succ) (fun j => v j.succ) i
+⊢ ((dot (K i) fun r => factor r 0 && v 0) ^^ dot (K i) (eval (fun r j => factor r j.succ) fun j => v j.succ)) =
+    (H i 0 && v 0 ^^ dot (fun j => H i j.succ) fun j => v j.succ)
+FilteredExtensionCertificates/Basic.lean:84:26: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `FilteredExtensionCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:84:45: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:88:19: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `FilteredExtensionCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:88:44: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:99:21: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:103:50: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `FilteredExtensionCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:104:50: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:105:29: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `FilteredExtensionCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:105:54: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:107:37: error: Function expected at
+  WellFormed
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  D
+
+Hint: The identifier `WellFormed` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+FilteredExtensionCertificates/Basic.lean:108:22: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `FilteredExtensionCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:110:37: error: Function expected at
+  WellFormed
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  D
+
+Hint: The identifier `WellFormed` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+FilteredExtensionCertificates/Basic.lean:111:22: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:113:32: error: Function expected at
+  WellFormed
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  D
+
+Hint: The identifier `WellFormed` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+FilteredExtensionCertificates/Basic.lean:118:8: error(lean.unknownIdentifier): Unknown identifier `WellFormed`
+FilteredExtensionCertificates/Basic.lean:120:7: error(lean.unknownIdentifier): Unknown identifier `filteredMap`
+FilteredExtensionCertificates/Basic.lean:122:64: error(lean.unknownIdentifier): Unknown identifier `filteredMap`
+FilteredExtensionCertificates/Basic.lean:123:7: error: Function expected at
+  sourceClass ?m.41 ?m.42 ?m.43 ?m.44 ?m.45
+but this term has type
+  ↥(cycles ?m.41 ?m.42 ?m.43 ?m.44 ?m.45) →+ SourcePage ?m.41 ?m.42 ?m.43 ?m.44 ?m.45
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨⟨D.x⟩, hx⟩
+FilteredExtensionCertificates/Basic.lean:123:43: error: Function expected at
+  targetClass ?m.51 ?m.52 ?m.53 ?m.54 ?m.55
+but this term has type
+  ↥(Filtration.group ?m.52 (?m.54 + ?m.55)) →+ TargetPage ?m.51 ?m.52 ?m.53 ?m.54 ?m.55
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨⟨D.y⟩, hy⟩
+FilteredExtensionCertificates/Basic.lean:128:16: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `FilteredExtensionCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:129:16: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:130:16: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:131:24: error(lean.invalidField): Invalid field `sourceAt`: The environment does not contain `FilteredExtensionCertificates.Data.sourceAt`, so it is not possible to project the field `sourceAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:131:45: error(lean.invalidField): Invalid field `targetAt`: The environment does not contain `FilteredExtensionCertificates.Data.targetAt`, so it is not possible to project the field `targetAt` from an expression
+  D
+of type `Data`
+FilteredExtensionCertificates/Basic.lean:143:10: error(lean.unknownIdentifier): Unknown identifier `WellFormed`
+FilteredExtensionCertificates/Basic.lean:146:2: error: No goals to be solved
+FilteredExtensionCertificates/Basic.lean:141:13: warning: declaration uses `sorry`
+'FilteredExtensionCertificates.factor_eval' depends on axioms: [propext, sorryAx, Quot.sound]
+'FilteredExtensionCertificates.checkFactor_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.checkDecreasing_sound' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificates.checkMap_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.check_sound' depends on axioms: [propext, sorryAx]

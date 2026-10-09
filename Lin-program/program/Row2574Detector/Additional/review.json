@@ -1,0 +1,40 @@
+{
+  "factor": {
+    "basis_id": 42,
+    "generator": 8,
+    "degree": [
+      4,
+      18
+    ],
+    "d2": ""
+  },
+  "rejected_factor": {
+    "basis_id": 35,
+    "reason": "h4 has nonzero d2 local0, so not E3 cycle"
+  },
+  "products": 7,
+  "bilinear_certificates": 2,
+  "source_product_raw_zero": true,
+  "remaining": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1
+    ]
+  ],
+  "unavailable_d2_search_entries": 39,
+  "certificate_sha256": {
+    "ann.json": "4ff2d55bb6526534fceac120de25ace457c12c40f768864334033d2310eb18c5",
+    "detect.json": "50f4cccbe5caa7baa8bff1e546362732da9f889b6d5e520ee6d2d5ae12cbcaba"
+  },
+  "external_premises": [
+    "existing h2 local Leibniz and row2866 value",
+    "generator8 local Leibniz and product differential zero preservation"
+  ],
+  "status": "two conditional candidates; no differential selected"
+}

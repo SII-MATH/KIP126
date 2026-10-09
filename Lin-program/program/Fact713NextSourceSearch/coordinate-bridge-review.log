@@ -1,0 +1,131 @@
+{
+  "status": "no_correctness_findings",
+  "modules": [
+    "Maps",
+    "Comparison",
+    "Naturality",
+    "MapSemantics",
+    "Actual",
+    "Overlay"
+  ],
+  "axiom_reports": 12,
+  "raw_row": [
+    2684,
+    12,
+    134,
+    "0",
+    null,
+    9000
+  ],
+  "raw_factors_with_nonzero_d2": [
+    [
+      105,
+      "18,1",
+      1,
+      32,
+      "0"
+    ],
+    [
+      1303,
+      "188,1",
+      11,
+      102,
+      "0"
+    ]
+  ],
+  "maps": 6,
+  "columns": 15,
+  "reductions": 6,
+  "full_comparisons": 4,
+  "full_chainmap_evaluations": 28,
+  "quotient_pair_checks": 192,
+  "induced_source_columns": [
+    0,
+    0
+  ],
+  "induced_target_columns": [
+    2,
+    4
+  ],
+  "target_zero_kernel_verified": true,
+  "detector_to_overlay_coordinate_columns": [
+    2,
+    1
+  ],
+  "old_preserved": 1249,
+  "overlay_added": 8,
+  "union": 1257,
+  "graph_available": 1254,
+  "graph_unresolved": 166,
+  "adjacent_equalities": 954,
+  "consecutive_dimensions": 757,
+  "finite_E7_trajectory": [
+    [
+      2,
+      3,
+      1
+    ],
+    [
+      3,
+      1,
+      1
+    ],
+    [
+      4,
+      1,
+      1
+    ],
+    [
+      5,
+      1,
+      1
+    ],
+    [
+      6,
+      1,
+      1
+    ]
+  ],
+  "scope": "Actual quotient meanings and actual d3 naturality remain premises; overlay finite E7 is not an actual sphere survival theorem."
+}
+{
+  "status": "no_correctness_findings",
+  "checks": [
+    {
+      "key": "S0:12,134:d2",
+      "forward": [
+        2,
+        1
+      ],
+      "backward": [
+        2,
+        1
+      ],
+      "cycles": 8
+    },
+    {
+      "key": "S0:15,136:d2",
+      "forward": [
+        2,
+        1
+      ],
+      "backward": [
+        2,
+        1
+      ],
+      "cycles": 4
+    }
+  ],
+  "axiom_reports": 6,
+  "compile": {
+    "source_sha256": "4cbbc8677e4dca6e2c9b68471c0e60a04d4591912d3f857eda50ec2e144786a2",
+    "external_input_sha256": {},
+    "observed_exit_code": 0,
+    "log_sha256": "31bb328a5a99309bfaff7cf99ba6e0805c33addce63b623b03cbd85c3596fdb1",
+    "olean_sha256": "635705696e77da4175eba419529191e74cb74bed504d749760f48a5c4eeada3a"
+  },
+  "named_detector_coordinate": 1,
+  "named_staircase_coordinate": 2,
+  "staircase_named_d3_column": 0,
+  "scope": "Actual column uses explicit Actual.Meaning, whole d3 naturality and named-class premise; coordinate equivalences are proved on all quotient elements."
+}

@@ -1,0 +1,13 @@
+Fact713D4SourceSearch/Assembly.lean:47:2: error: Type mismatch: After simplification, term
+  actualZero
+ has type
+  @Eq (Vec 4) (F.imageTarget.equivalence ((detector.differential 3 { filtration := 13, internal := 135 }).toFun (x ⋯)))
+    zero
+but is expected to have type
+  @Eq (Vec 4) (F.imageTarget.equivalence ((detector.differential 3 { filtration := 13, internal := 135 }).toFun (x ⋯)))
+    zero
+'Fact713D4SourceSearch.Assembly.incomingCoordinates_surjective' depends on axioms: [propext, Quot.sound]
+'Fact713D4SourceSearch.Assembly.incomingEquation' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713D4SourceSearch.Assembly.targetMeaning' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact713D4SourceSearch.Assembly.Upper.input' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713D4SourceSearch.Assembly.actual_d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

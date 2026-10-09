@@ -1,0 +1,50 @@
+{
+  "oracle": "independent exhaustive finite F2 sets/cosets",
+  "exhaustive_dimensions": [
+    0,
+    1,
+    2
+  ],
+  "exhaustive_filtration": "all F0 >= F1 >= F2=0 and G0 >= G1 >= G2=0",
+  "examined_filtered_map_candidates": 2641,
+  "accepted_filtered_maps": 1429,
+  "associated_graded_levels_checked": 2858,
+  "random_seed": 126,
+  "random_dimensions": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "random_filtered_maps_checked": 2000,
+  "random_levels_checked": 4000,
+  "cyclic_group_orders": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cyclic_candidates": 3680,
+  "cyclic_preserving_maps": 2960,
+  "cyclic_levels_checked": 5920,
+  "checks": [
+    "restricted image",
+    "quotient map kernel",
+    "induced levels",
+    "final incoming image",
+    "final kernel",
+    "remaining relations image",
+    "graded bijection",
+    "graded addition",
+    "iterated third quotient",
+    "source fullness",
+    "target exhaustion equivalence",
+    "restricted identity and target exhaustion counterexamples"
+  ],
+  "proof_status": "finite oracle only; Lean compilation recorded separately",
+  "script_sha256": "8bf8d485dfefff4ec1e14e5f2db60747e3a5f8ac7f1ac2b6d5fbd635e92c66a8"
+}

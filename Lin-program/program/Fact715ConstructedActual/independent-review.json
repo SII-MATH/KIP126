@@ -1,0 +1,40 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "quotient_pairs": 2381,
+  "detector_assignments": 4,
+  "accepted_assignments": 1,
+  "literal_Lean_wires_match": true,
+  "unknown_rows_preserved": [
+    2852,
+    3076
+  ],
+  "axiom_reports": {
+    "Basic": 8,
+    "Trace": 8,
+    "Tactic": 4,
+    "Detector": 6,
+    "Assembly": 5
+  },
+  "reviewed": [
+    "same initial element at all quotient steps",
+    "unknown d3 derived using actual naturality and complete zero Ceta codomain",
+    "all S0 columns proved using the separately supplied known column",
+    "derived actual E4 target used by final main d4 equation",
+    "tactic checks exact goal and initial naming proof"
+  ],
+  "limitations": [
+    "initial and neighboring actual Adams interpretations remain premises",
+    "main whole d4 equation remains a premise",
+    "no d5 survival or topological realization"
+  ],
+  "sources": {
+    "Fact715ConstructedActual/Assembly.lean": "110a052af61c9eec3f228ea0e7f8d2a1a09d7ad6bc225fa19232b5c95e6c0eba",
+    "Fact715ConstructedActual/Basic.lean": "8e3d7cc65985c28e2a06a894c101d31203d6c83b474f3d08e54b27e7fba82644",
+    "Fact715ConstructedActual/Detector.lean": "465cbb5684a6bcbc2c2889773953a67ff7d5c7260ce59d435d4330de83e2858b",
+    "Fact715ConstructedActual/Tactic.lean": "a14244bc15cdf4b2c1f06bc4a82d73178266e75321a1a079ddfbc06c307ddc71",
+    "Fact715ConstructedActual/Trace.lean": "5ea4af93735d89d8b47059d2ebc4f9d9d884f92d295cc48b827518465f967775",
+    "Fact715TrajectoryCertificates/conditional-higher-source.json": "5f2e1a90616d132168d2b270a683752124e6fc3242e189f0bc2cb429c2bbd726",
+    "Fact715TrajectoryCertificates/comparison-source.json": "eac0e8cfb4938c2853798b4298cc11e4e16baf2f5217640e80c609ba88e28814"
+  }
+}

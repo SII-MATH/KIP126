@@ -1,0 +1,3714 @@
+{
+  "status": "complete_local_frontier_enumeration",
+  "blocks": [
+    {
+      "key": "S0:11,133:d3",
+      "dimensions": {
+        "n": 1,
+        "m": 2,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "8,131,d3,row2488",
+          "raw": [
+            2488,
+            "0",
+            "0,1",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "11,133,d3,row2621",
+          "raw": [
+            2621,
+            "0,1",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "11,133,d3,row2622",
+          "raw": [
+            2622,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "11,133,d3,row2622": [
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "11,133,d3,row2622": [
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:12,134:d3",
+      "dimensions": {
+        "n": 2,
+        "m": 2,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "9,132,d3,row2569",
+          "raw": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 1,
+          "row_key": "9,132,d3,row2570",
+          "raw": [
+            2570,
+            "1",
+            "1,2",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "12,134,d3,row2683",
+          "raw": [
+            2683,
+            "1",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "12,134,d3,row2684",
+          "raw": [
+            2684,
+            "0",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 4,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "12,134,d3,row2684": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "12,134,d3,row2684": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "12,134,d3,row2684": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "12,134,d3,row2684": [
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:13,135:d3",
+      "dimensions": {
+        "n": 1,
+        "m": 2,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "10,133,d3,row2624",
+          "raw": [
+            2624,
+            "0,1",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "13,135,d3,row2773",
+          "raw": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "13,135,d3,row2774",
+          "raw": [
+            2774,
+            "0",
+            "2",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 4,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "13,135,d3,row2773": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "13,135,d3,row2773": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "13,135,d3,row2773": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "13,135,d3,row2773": [
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:13,137:d3",
+      "dimensions": {
+        "n": 1,
+        "m": 3,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "10,135,d3,row2784",
+          "raw": [
+            2784,
+            "0",
+            "0",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "13,137,d3,row2915",
+          "raw": [
+            2915,
+            "0",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "13,137,d3,row2916",
+          "raw": [
+            2916,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 2,
+          "row_key": "13,137,d3,row2917",
+          "raw": [
+            2917,
+            "2",
+            "0",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "13,137,d3,row2916": [
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "13,137,d3,row2916": [
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        1
+      ]
+    },
+    {
+      "key": "S0:14,135:d3",
+      "dimensions": {
+        "n": 2,
+        "m": 1,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "11,133,d3,row2621",
+          "raw": [
+            2621,
+            "0,1",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 1,
+          "row_key": "11,133,d3,row2622",
+          "raw": [
+            2622,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "14,135,d3,row2771",
+          "raw": [
+            2771,
+            "0",
+            null,
+            9994
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "11,133,d3,row2622": [
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "11,133,d3,row2622": [
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:15,136:d3",
+      "dimensions": {
+        "n": 2,
+        "m": 2,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "12,134,d3,row2683",
+          "raw": [
+            2683,
+            "1",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 1,
+          "row_key": "12,134,d3,row2684",
+          "raw": [
+            2684,
+            "0",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "15,136,d3,row2839",
+          "raw": [
+            2839,
+            "1",
+            null,
+            9994
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "15,136,d3,row2840",
+          "raw": [
+            2840,
+            "0",
+            null,
+            9995
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 4,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 2,
+          "row_values": {
+            "12,134,d3,row2684": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false,
+            false,
+            true
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "12,134,d3,row2684": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "12,134,d3,row2684": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            false,
+            true
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "12,134,d3,row2684": [
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        1,
+        2
+      ]
+    },
+    {
+      "key": "S0:16,137:d3",
+      "dimensions": {
+        "n": 2,
+        "m": 2,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "13,135,d3,row2773",
+          "raw": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 1,
+          "row_key": "13,135,d3,row2774",
+          "raw": [
+            2774,
+            "0",
+            "2",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "16,137,d3,row2906",
+          "raw": [
+            2906,
+            "2",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "16,137,d3,row2907",
+          "raw": [
+            2907,
+            "1",
+            null,
+            9996
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 4,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "13,135,d3,row2773": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "13,135,d3,row2773": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "13,135,d3,row2773": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "13,135,d3,row2773": [
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:16,138:d4",
+      "dimensions": {
+        "n": 1,
+        "m": 1,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "12,135,d4,row2777",
+          "raw": [
+            2777,
+            "2",
+            "1",
+            5
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "16,138,d4,row2999",
+          "raw": [
+            2999,
+            "2",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "16,138,d4,row2999": [
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "16,138,d4,row2999": [
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:16,139:d3",
+      "dimensions": {
+        "n": 3,
+        "m": 1,
+        "k": 0
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "13,137,d3,row2915",
+          "raw": [
+            2915,
+            "0",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 1,
+          "row_key": "13,137,d3,row2916",
+          "raw": [
+            2916,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 2,
+          "row_key": "13,137,d3,row2917",
+          "raw": [
+            2917,
+            "2",
+            "0",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "16,139,d3,row3074",
+          "raw": [
+            3074,
+            "0",
+            "2",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            []
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false,
+            true
+          ],
+          "outgoing": [],
+          "homology_dimension": 0,
+          "row_values": {
+            "13,137,d3,row2916": [
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            true
+          ],
+          "outgoing": [],
+          "homology_dimension": 0,
+          "row_values": {
+            "13,137,d3,row2916": [
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0
+      ]
+    },
+    {
+      "key": "S0:16,140:d3",
+      "dimensions": {
+        "n": 3,
+        "m": 3,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "13,138,d3,row3010",
+          "raw": [
+            3010,
+            "0",
+            "2",
+            4
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 1,
+          "row_key": "13,138,d3,row3011",
+          "raw": [
+            3011,
+            "2",
+            "1",
+            4
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 2,
+          "row_key": "13,138,d3,row3012",
+          "raw": [
+            3012,
+            "1",
+            "1",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "16,140,d3,row3146",
+          "raw": [
+            3146,
+            "1",
+            "1",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "16,140,d3,row3147",
+          "raw": [
+            3147,
+            "4",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 2,
+          "row_key": "16,140,d3,row3148",
+          "raw": [
+            3148,
+            "0",
+            "0,1,2",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 4,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "16,140,d3,row3147": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true,
+            false,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "16,140,d3,row3147": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "16,140,d3,row3147": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            true,
+            false,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "16,140,d3,row3147": [
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:17,138:d3",
+      "dimensions": {
+        "n": 1,
+        "m": 1,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "14,136,d3,row2841",
+          "raw": [
+            2841,
+            "0",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "17,138,d3,row2994",
+          "raw": [
+            2994,
+            "0,1,2",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 4,
+      "complex_maps": [
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            true,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:18,141:d3",
+      "dimensions": {
+        "n": 2,
+        "m": 1,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "15,139,d3,row3075",
+          "raw": [
+            3075,
+            "0",
+            "0",
+            4
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 1,
+          "row_key": "15,139,d3,row3076",
+          "raw": [
+            3076,
+            "1,3",
+            null,
+            9000
+          ],
+          "status": "conditional_ceta",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "18,141,d3,row3247",
+          "raw": [
+            3247,
+            "0,1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "18,141,d3,row3247": [
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "18,141,d3,row3247": [
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:19,142:d3",
+      "dimensions": {
+        "n": 3,
+        "m": 2,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "16,140,d3,row3146",
+          "raw": [
+            3146,
+            "1",
+            "1",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 1,
+          "row_key": "16,140,d3,row3147",
+          "raw": [
+            3147,
+            "4",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "role": "incoming",
+          "column": 2,
+          "row_key": "16,140,d3,row3148",
+          "raw": [
+            3148,
+            "0",
+            "0,1,2",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "19,142,d3,row3315",
+          "raw": [
+            3315,
+            "1,2",
+            "0",
+            3
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "19,142,d3,row3316",
+          "raw": [
+            3316,
+            "2",
+            "1",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 4,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "16,140,d3,row3147": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            true,
+            false,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "16,140,d3,row3147": [
+              1,
+              0
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0
+      ]
+    },
+    {
+      "key": "S0:20,140:d3",
+      "dimensions": {
+        "n": 1,
+        "m": 2,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "17,138,d3,row2994",
+          "raw": [
+            2994,
+            "0,1,2",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "20,140,d3,row3135",
+          "raw": [
+            3135,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "20,140,d3,row3136",
+          "raw": [
+            3136,
+            "0",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 64,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 2,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              1
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              1
+            ],
+            "20,140,d3,row3136": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              1
+            ],
+            "20,140,d3,row3136": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            true,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              1
+            ],
+            "20,140,d3,row3136": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              1,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              1,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              1,
+              0
+            ],
+            "20,140,d3,row3136": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            true,
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              1,
+              0
+            ],
+            "20,140,d3,row3136": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            false,
+            true,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              1,
+              1
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            false,
+            true,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              1,
+              1
+            ],
+            "20,140,d3,row3136": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              1,
+              1
+            ],
+            "20,140,d3,row3136": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            false
+          ],
+          "outgoing": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              0
+            ],
+            "20,140,d3,row3135": [
+              1,
+              1
+            ],
+            "20,140,d3,row3136": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true
+          ],
+          "outgoing": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              1
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true
+          ],
+          "outgoing": [
+            false,
+            false,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              1
+            ],
+            "20,140,d3,row3135": [
+              0,
+              1
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true
+          ],
+          "outgoing": [
+            true,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              1
+            ],
+            "20,140,d3,row3135": [
+              1,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true
+          ],
+          "outgoing": [
+            true,
+            false,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              0,
+              1
+            ],
+            "20,140,d3,row3135": [
+              1,
+              1
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            true,
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              0
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            true
+          ],
+          "outgoing": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              1
+            ],
+            "20,140,d3,row3135": [
+              0,
+              0
+            ],
+            "20,140,d3,row3136": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            true
+          ],
+          "outgoing": [
+            false,
+            false,
+            true,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              1
+            ],
+            "20,140,d3,row3135": [
+              0,
+              1
+            ],
+            "20,140,d3,row3136": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            true
+          ],
+          "outgoing": [
+            true,
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              1
+            ],
+            "20,140,d3,row3135": [
+              1,
+              0
+            ],
+            "20,140,d3,row3136": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            true
+          ],
+          "outgoing": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "17,138,d3,row2994": [
+              1,
+              1
+            ],
+            "20,140,d3,row3135": [
+              1,
+              1
+            ],
+            "20,140,d3,row3136": [
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "key": "S0:20,141:d4",
+      "dimensions": {
+        "n": 1,
+        "m": 1,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "16,138,d4,row2999",
+          "raw": [
+            2999,
+            "2",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "20,141,d4,row3242",
+          "raw": [
+            3242,
+            "0",
+            "1",
+            9996
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "16,138,d4,row2999": [
+              0
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0
+      ]
+    },
+    {
+      "key": "S0:21,143:d3",
+      "dimensions": {
+        "n": 1,
+        "m": 1,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "18,141,d3,row3247",
+          "raw": [
+            3247,
+            "0,1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "21,143,d3,row3386",
+          "raw": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 4,
+      "complex_maps": [
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "18,141,d3,row3247": [
+              0
+            ],
+            "21,143,d3,row3386": [
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "18,141,d3,row3247": [
+              0
+            ],
+            "21,143,d3,row3386": [
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true
+          ],
+          "outgoing": [
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "18,141,d3,row3247": [
+              1
+            ],
+            "21,143,d3,row3386": [
+              0
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:24,144:d4",
+      "dimensions": {
+        "n": 1,
+        "m": 2,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "20,141,d4,row3242",
+          "raw": [
+            3242,
+            "0",
+            "1",
+            9996
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "24,144,d4,row3475",
+          "raw": [
+            3475,
+            "1",
+            "0",
+            4
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "24,144,d4,row3476",
+          "raw": [
+            3476,
+            "0",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "24,144,d4,row3476": [
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "24,144,d4,row3476": [
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:24,145:d3",
+      "dimensions": {
+        "n": 1,
+        "m": 1,
+        "k": 2
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "21,143,d3,row3386",
+          "raw": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "24,145,d3,row3551",
+          "raw": [
+            3551,
+            "0",
+            "0,2",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 2,
+      "complex_maps": [
+        {
+          "incoming": [
+            false
+          ],
+          "outgoing": [
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "21,143,d3,row3386": [
+              0
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0
+      ]
+    },
+    {
+      "key": "S0:9,130:d3",
+      "dimensions": {
+        "n": 0,
+        "m": 1,
+        "k": 3
+      },
+      "conditions": [
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "9,130,d3,row2431",
+          "raw": [
+            2431,
+            "1",
+            null,
+            9000
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 8,
+      "complex_maps": [
+        {
+          "incoming": [],
+          "outgoing": [
+            false,
+            false,
+            false
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "9,130,d3,row2431": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [],
+          "outgoing": [
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "9,130,d3,row2431": [
+              0,
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [],
+          "outgoing": [
+            false,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "9,130,d3,row2431": [
+              0,
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [],
+          "outgoing": [
+            false,
+            true,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "9,130,d3,row2431": [
+              0,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [],
+          "outgoing": [
+            true,
+            false,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "9,130,d3,row2431": [
+              1,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [],
+          "outgoing": [
+            true,
+            false,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "9,130,d3,row2431": [
+              1,
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "incoming": [],
+          "outgoing": [
+            true,
+            true,
+            false
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "9,130,d3,row2431": [
+              1,
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [],
+          "outgoing": [
+            true,
+            true,
+            true
+          ],
+          "homology_dimension": 0,
+          "row_values": {
+            "9,130,d3,row2431": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        0,
+        1
+      ]
+    },
+    {
+      "key": "S0:9,134:d3",
+      "dimensions": {
+        "n": 1,
+        "m": 3,
+        "k": 1
+      },
+      "conditions": [
+        {
+          "role": "incoming",
+          "column": 0,
+          "row_key": "6,132,d3,row2574",
+          "raw": [
+            2574,
+            "0",
+            null,
+            9997
+          ],
+          "status": "all_possible_unknown_coordinates",
+          "possible_coordinates": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ],
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 0,
+          "row_key": "9,134,d3,row2695",
+          "raw": [
+            2695,
+            "2",
+            null,
+            9000
+          ],
+          "status": "conditional_dc2h6_d3",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 1,
+          "row_key": "9,134,d3,row2696",
+          "raw": [
+            2696,
+            "3",
+            null,
+            9993
+          ],
+          "status": "imported_prefix_or_boundary_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              0
+            ]
+          ]
+        },
+        {
+          "role": "outgoing",
+          "column": 2,
+          "row_key": "9,134,d3,row2697",
+          "raw": [
+            2697,
+            "1",
+            "0",
+            9997
+          ],
+          "status": "imported_known_event_requires_actual_meaning",
+          "possible_coordinates": [
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "full_maps_tested": 8,
+      "complex_maps": [
+        {
+          "incoming": [
+            false,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 2,
+          "row_values": {
+            "6,132,d3,row2574": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            false,
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "6,132,d3,row2574": [
+              0,
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            false,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "6,132,d3,row2574": [
+              1,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "incoming": [
+            true,
+            true,
+            false
+          ],
+          "outgoing": [
+            false,
+            false,
+            true
+          ],
+          "homology_dimension": 1,
+          "row_values": {
+            "6,132,d3,row2574": [
+              1,
+              1,
+              0
+            ]
+          }
+        }
+      ],
+      "possible_homology_dimensions": [
+        1,
+        2
+      ]
+    }
+  ],
+  "distinct_unknown_rows": {
+    "11,133,d3,row2622": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "12,134,d3,row2684": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "13,135,d3,row2773": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "13,137,d3,row2916": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "16,138,d4,row2999": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "16,140,d3,row3147": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "17,138,d3,row2994": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "18,141,d3,row3247": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "20,140,d3,row3135": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "20,140,d3,row3136": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "21,143,d3,row3386": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "24,144,d4,row3476": [
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ],
+    "6,132,d3,row2574": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ]
+    ],
+    "9,130,d3,row2431": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ]
+    ]
+  },
+  "full_maps_tested": 130,
+  "complex_maps": 85,
+  "scope": "Exact local choices subject to fixed imported/conditional known columns and complex law. Shared row choices and higher-page compatibility require a global joint solution; local choices are not asserted jointly realizable.",
+  "forbidden_inference": "No candidate is selected by matching the database next-page dimension or the desired E12 result. Imported NULL-prefix zero assumptions remain listed.",
+  "source_sha256": "b092b909e211bcccb0aa261314167107fd6e9c84ad5be1fb0153a519e59b137c"
+}

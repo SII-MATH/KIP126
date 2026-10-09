@@ -1,0 +1,18 @@
+FilteredTwoTermSequence/Homology.lean:67:4: error: Application type mismatch: The argument
+  targetCokernelEquivNext F G f t n
+has type
+  @AddEquiv (AllTargetPage F G f t n ⧸ (incomingD F G f t n).range) (AllTargetPage F G f t (n + 1))
+    (QuotientAddGroup.Quotient.addCommGroup
+              (incomingD F G f t n).range).toAddCommMonoid.toAddCommSemigroup.toAddCommMagma.toAdd
+    (QuotientAddGroup.Quotient.addCommGroup
+              (allTargetSubgroup F G f t (n + 1))).toAddCommMonoid.toAddCommSemigroup.toAddCommMagma.toAdd
+but is expected to have type
+  @AddEquiv ?m.26 ?m.30 AddZeroClass.toAddZero.toAdd AddZeroClass.toAddZero.toAdd
+in the application
+  (nextSourceEquivKernel F G f t n).symm.prodCongr (targetCokernelEquivNext F G f t n)
+'FilteredTwoTermSequence.pageD_incoming_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.incomingPage_is_pageD' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.pageHomologySplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.homologyEquivNext' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.initialPageEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.initial_differential_commutes' depends on axioms: [propext, Classical.choice, Quot.sound]

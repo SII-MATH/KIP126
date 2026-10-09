@@ -1,0 +1,53 @@
+{
+  "status": "independent_complete_finite_product_audit_passed",
+  "comparisons": 13,
+  "comparison_vectors": 62,
+  "cycle_pairs": 124,
+  "product_columns": 4,
+  "polynomial_reduction_steps": 3,
+  "cycle_product_pairs": 12,
+  "boundary_product_pairs": 12,
+  "source_row": [
+    3143,
+    17,
+    140,
+    "0",
+    null,
+    9000
+  ],
+  "right_target_e2_dimension": 3,
+  "right_target_e3_dimension": 1,
+  "complete_factor_e3_dimensions": [
+    1,
+    1
+  ],
+  "complete_result_target_e3_dimension": 1,
+  "left_d4_target_E3_zero": true,
+  "right_E3_product_nonzero": true,
+  "valid_route": "Known injective target d4 and differentialSq force right d4 zero",
+  "input_sha256": {
+    "Row3143D0Leibniz/audit.py": "8370d2e6ad67af4d20ffa7e9a38e432afc2fa252bf117e197d7933439a8036b7",
+    "Row3143D0Leibniz/provenance.json": "3f94d7f35eae6852d39beda7f051a43c6e56c46b55b60f540df5a63a4f1e61b6",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "Row3143D0Leibniz/d0.json": "9dc3a5feadbef49e1951a18371a9fe924c1e2b1047d035dc52a262e9aeb010ac",
+    "Row3143D0Leibniz/right.json": "050a3abcf00918a352666022f7c95273a11e785e4fe9b59c99fd1a69953f216f",
+    "Row3143D0Leibniz/leftTarget.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "Row3143D0Leibniz/rightTarget.json": "7d4cadc86c629be774542e466b0f252c0eb6ca6706c5b7a3c4d40cd6f83981ab",
+    "Row3143D0Leibniz/source.json": "a1894c02c25ce06ece78d6433b68094a6ded98a2fe0c7887ca44a2edb22aa52a",
+    "Row3143D0Leibniz/target.json": "b2f08903c3e2f6406b8014e8071389bd5d010b15f7f0d11949bff361f3116f12",
+    "Row3143D0Leibniz/leftD3Target.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "Row3143D0Leibniz/rightD3Target.json": "009d91f35e6169a4f984812a73e9c607e2082eee9e215b1a50049d5192f70aa6",
+    "Row3143D0Leibniz/detectorTarget.json": "6da8ecc714a976205e288d326427a5c68f39aca0ae14fe951e645d96f4b9034b",
+    "Row3143D0Leibniz/detectorIncoming.json": "84bf1ccbe438da04e190754c331137c8dffcaab713f4d1472ca5d4e18a00b7c4",
+    "Row3143D0Leibniz/detectorOutgoing.json": "80ae067c62e47130df025991044e41d3b99929e128381454a9217fe0b23823b0",
+    "Row3143D0Leibniz/detectorTargetIncoming.json": "7a5ec4fc1d89a00a196ebf96a4cc81910682fa711a7c80ca062e4321805382b5",
+    "Row3143D0Leibniz/detectorTargetOutgoing.json": "1354fa7601401dfc4a550a0f769d0892ffc83c497a9de2e96c0f0e9fded5111a",
+    "Row3143D0Leibniz/sourceProduct.json": "221f7a0df79361349ff1b89b91630ace03c3ca804c626edff7029638342b859a",
+    "Row3143D0Leibniz/rightProduct.json": "cf4f0b8bd339af5c4e0f0e65224c5971855007ef290d8adaa8758cbdd761f7c2",
+    "Row3143D0Leibniz/sourceProduct0.json": "277388160fbc624fb0edad6192d76e96ebd8149bec8c3aef555b39737f17995a",
+    "Row3143D0Leibniz/rightProduct0.json": "5776b7b7bafabd682850ec4a22f2a6795f026507bd2f27635e6daa9076e75ae4",
+    "Row3143D0Leibniz/rightProduct1.json": "0de13df3f9211d6ae9bed6c4243a53daf9c71aa3b325c120b6f4c3fc39b64f92",
+    "Row3143D0Leibniz/rightProduct2.json": "bcf215e322749191a7c64bb4ba4b70acb2293724a83b1af6e4973fa37ca95f0d"
+  },
+  "limitation": "Actual quotient, multiplication and class naming meanings remain explicit; raw NULL supplies no d3 prefix."
+}

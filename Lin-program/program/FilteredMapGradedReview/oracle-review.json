@@ -1,0 +1,159 @@
+{
+  "status": "independent_oracle_passed",
+  "findings": [],
+  "scope": "Five frozen graded comparison leaves; independent arbitrary-F0 and constant-nonzero-tail finite-group replay.",
+  "new_lean_edge_case_leaf_checked": false,
+  "counts": {
+    "filtered_maps": 4870,
+    "proper_source_F0": 2796,
+    "proper_target_G0": 1450,
+    "nonseparated_source": 1450,
+    "nonseparated_target": 2796,
+    "local_comparisons_and_source_recursions": 58440,
+    "initial_local_pages": 14610,
+    "event_and_essential_equivalences": 293018,
+    "noncycle_original_events": 2996,
+    "shifted_target_cokernel_recursions": 58440,
+    "all_target_monotone_surjections": 170450,
+    "all_target_initial_pages": 24350,
+    "all_target_cokernel_steps": 73050,
+    "source_zero_steps": 24350,
+    "source_zero_nonzero_kernels": 1106,
+    "truncated_stable_steps": 97400,
+    "whole_image_is_strictly_larger": 5398
+  },
+  "groups": [
+    {
+      "group": "Z/4",
+      "subgroups": 3,
+      "arbitrary_flags": 10,
+      "counts": {
+        "filtered_maps": 285,
+        "proper_source_F0": 140,
+        "proper_target_G0": 90,
+        "nonseparated_source": 90,
+        "nonseparated_target": 140,
+        "local_comparisons_and_source_recursions": 3420,
+        "initial_local_pages": 855,
+        "event_and_essential_equivalences": 15594,
+        "noncycle_original_events": 88,
+        "shifted_target_cokernel_recursions": 3420,
+        "all_target_monotone_surjections": 9975,
+        "all_target_initial_pages": 1425,
+        "all_target_cokernel_steps": 4275,
+        "source_zero_steps": 1425,
+        "source_zero_nonzero_kernels": 49,
+        "truncated_stable_steps": 5700,
+        "whole_image_is_strictly_larger": 318
+      }
+    },
+    {
+      "group": "(Z/2)^2",
+      "subgroups": 5,
+      "arbitrary_flags": 22,
+      "counts": {
+        "filtered_maps": 3649,
+        "proper_source_F0": 2152,
+        "proper_target_G0": 1054,
+        "nonseparated_source": 1054,
+        "nonseparated_target": 2152,
+        "local_comparisons_and_source_recursions": 43788,
+        "initial_local_pages": 10947,
+        "event_and_essential_equivalences": 190068,
+        "noncycle_original_events": 2196,
+        "shifted_target_cokernel_recursions": 43788,
+        "all_target_monotone_surjections": 127715,
+        "all_target_initial_pages": 18245,
+        "all_target_cokernel_steps": 54735,
+        "source_zero_steps": 18245,
+        "source_zero_nonzero_kernels": 885,
+        "truncated_stable_steps": 72980,
+        "whole_image_is_strictly_larger": 4134
+      }
+    },
+    {
+      "group": "Z/6",
+      "subgroups": 4,
+      "arbitrary_flags": 16,
+      "counts": {
+        "filtered_maps": 936,
+        "proper_source_F0": 504,
+        "proper_target_G0": 306,
+        "nonseparated_source": 306,
+        "nonseparated_target": 504,
+        "local_comparisons_and_source_recursions": 11232,
+        "initial_local_pages": 2808,
+        "event_and_essential_equivalences": 87356,
+        "noncycle_original_events": 712,
+        "shifted_target_cokernel_recursions": 11232,
+        "all_target_monotone_surjections": 32760,
+        "all_target_initial_pages": 4680,
+        "all_target_cokernel_steps": 14040,
+        "source_zero_steps": 4680,
+        "source_zero_nonzero_kernels": 172,
+        "truncated_stable_steps": 18720,
+        "whole_image_is_strictly_larger": 946
+      }
+    }
+  ],
+  "direct_records": {
+    "FilteredMapGradedComparison.Basic": {
+      "observed_direct_exit_code": 0,
+      "standard_axiom_reports": 7,
+      "historical_direct_olean_sha256": "399de16b41c88b57637b20978e596314dc645910c27db20b7b150e5edbd2cd4e",
+      "current_olean_sha256": "399de16b41c88b57637b20978e596314dc645910c27db20b7b150e5edbd2cd4e",
+      "current_object_matches_direct": true
+    },
+    "FilteredMapGradedComparison.Event": {
+      "observed_direct_exit_code": 0,
+      "standard_axiom_reports": 4,
+      "historical_direct_olean_sha256": "44ddac43faa03304aa9364c21570c5e0a5ab34f51e539aa1169030d4974abfc1",
+      "current_olean_sha256": "44ddac43faa03304aa9364c21570c5e0a5ab34f51e539aa1169030d4974abfc1",
+      "current_object_matches_direct": true
+    },
+    "FilteredMapGradedComparison.Recurrence": {
+      "observed_direct_exit_code": 0,
+      "standard_axiom_reports": 6,
+      "historical_direct_olean_sha256": "388e51b4d0028bec7c4f47eb6ef0fa5258b46aaf00def562d8fdc251dfc1e0bf",
+      "current_olean_sha256": "388e51b4d0028bec7c4f47eb6ef0fa5258b46aaf00def562d8fdc251dfc1e0bf",
+      "current_object_matches_direct": true
+    },
+    "FilteredMapGradedComparison.AllTargets": {
+      "observed_direct_exit_code": 0,
+      "standard_axiom_reports": 7,
+      "historical_direct_olean_sha256": "04d0e27e0cc6d7de8ebafe49bb9ba332fde402ebe9c1d390e001646cd1b984df",
+      "current_olean_sha256": "04d0e27e0cc6d7de8ebafe49bb9ba332fde402ebe9c1d390e001646cd1b984df",
+      "current_object_matches_direct": true
+    },
+    "FilteredMapGradedComparison.Examples": {
+      "observed_direct_exit_code": 0,
+      "standard_axiom_reports": 6,
+      "historical_direct_olean_sha256": "d795ee5b60420403601423cd90f59c6d1bc58e4310b9c0c3c914df53a8ada061",
+      "current_olean_sha256": "d795ee5b60420403601423cd90f59c6d1bc58e4310b9c0c3c914df53a8ada061",
+      "current_object_matches_direct": true
+    }
+  },
+  "input_sha256": {
+    "FilteredMapGradedReview/review.py": "af4f856680b3bb88111b2b7cd5fa36a9702eaa3db1b292a087301b3d4978c6db",
+    "FilteredMapGradedComparison/Basic.lean": "3d72ba765ddcc14619d9f4758a691057b3b3a87a1f216f8d4430f39240e69cf6",
+    "FilteredMapGradedComparison/Basic.log": "a71aa0f67bffc8394502ddd612c129ab3a4319419b7415e79ba3c6bc291803bc",
+    "FilteredMapGradedComparison/Basic-compile.json": "6fe1afb85b49af2ada147915141033782bb19881d11087ee368a3c50f489212c",
+    "FilteredMapGradedComparison/Event.lean": "a85d26a33b191945d9c89ce7defcca566d8220c6b5decb71d9120625ec6a54a8",
+    "FilteredMapGradedComparison/Event.log": "e3a8c699c4ba1c24b662820875e8cc3d78a3c1c4bb87cb8b1fb5e7da31d4b5e3",
+    "FilteredMapGradedComparison/Event-compile.json": "cc9cdb66d4fdb0b47a7fc49d940d13aa544a06adc4e90a91d7c8df01daf72a5e",
+    "FilteredMapGradedComparison/Recurrence.lean": "01d3a1f687e1163614fe7b9538d932f3e5af00fdba9860ae8fbb1fd7d934c543",
+    "FilteredMapGradedComparison/Recurrence.log": "c9a1596b767ae19cb85ad41467a142d0721011261353339b72bbc7745d372b89",
+    "FilteredMapGradedComparison/Recurrence-compile.json": "50e3fc5995c146e4061051b666ac12b0d9fd65c90ae37355eb8b58cac06c8476",
+    "FilteredMapGradedComparison/AllTargets.lean": "ceacd7834d4facde2605ab08faa8010d3cf32de7c389e3f9d75ad3f91f6c9d9c",
+    "FilteredMapGradedComparison/AllTargets.log": "f06926e0fed345862f3764820d18eefc34d51cb2b2845061e0f4a4f76638b7f2",
+    "FilteredMapGradedComparison/AllTargets-compile.json": "8c27b1cf55a31691e0df9453f826f1dec5b7c276319b7c169140f2a552da3cbc",
+    "FilteredMapGradedComparison/Examples.lean": "20e227a15c768307f24623feccea6c2d147fc9c9327aeb986f588e7c76643d92",
+    "FilteredMapGradedComparison/Examples.log": "9059e27fa9709d9cdf11066d44138cb1f5a6e6fc6ce84681ae48b897ba2b4aea",
+    "FilteredMapGradedComparison/Examples-compile.json": "82d9659586d6f4504c07c36b5717f0a5fe3d6e92f8df817b4021c0d663c05069"
+  },
+  "limits": [
+    "Finite replay is diagnostic evidence, not a proof for infinite groups.",
+    "No registered dependency was recompiled; preserved direct records bind historical object hashes.",
+    "No categorical page packaging, convergence, Adams-to-homotopy identification, synthetic ESS, or full Kervaire theorem follows."
+  ]
+}

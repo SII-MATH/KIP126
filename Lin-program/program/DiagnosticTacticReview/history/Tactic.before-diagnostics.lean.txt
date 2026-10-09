@@ -1,0 +1,33 @@
+import Lean.Elab.Tactic
+import LinProgramCertificates.Verifier
+
+namespace LinProgramCertificates
+
+open Lean Elab Tactic
+
+/-!
+## 自动化 tactic
+
+`lin_cert using c` 把目标命题作为 `P`，从对应的
+`CertificateVerifier P` 实例取出 `check` 与 `sound`，并让内核约简
+`check c = true`。这与手写 `exact verifier.sound c (by decide)` 等价，
+因此 tactic 本身不是信任边界。
+-/
+
+syntax (name := linCert) "lin_cert" " using " term : tactic
+
+elab_rules : tactic
+  | `(tactic| lin_cert using $certificate:term) =>
+      do
+        evalTactic (← `(tactic|
+          exact CertificateVerifier.sound $certificate (by decide)))
+
+/-- 显式诊断命令：不产生证明，只在证书被拒绝时给出位置和原因。
+具体 checker 可以在调用方把 `diagnose` 暴露给独立工具。 -/
+elab "lin_cert_diagnose" " using " certificate:term : tactic => do
+  let msg := m!"证书已交给内核检查；若失败，请检查证书版本、输入/输出编码以及 checker 的失败位置"
+  logInfo msg
+  evalTactic (← `(tactic|
+    exact CertificateVerifier.sound $certificate (by decide)))
+
+end LinProgramCertificates

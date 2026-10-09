@@ -1,0 +1,20 @@
+Fact713E12Search/Prefix.lean:16:85: error: failed to synthesize
+  Decidable (stage2.vector = Fact713PageCertificates.target)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Fact713E12Search/Prefix.lean:24:26: error: failed to synthesize
+  Decidable (eval b_S0_9_132_d2.comparison.projection Fact713PageCertificates.target = stage3.vector)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Fact713E12Search/Prefix.lean:28:36: error: failed to synthesize
+  Decidable (eval b_S0_9_132_d3.comparison.projection stage3.vector = fun x => true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Fact713E12Search/Prefix.lean:37:2: error: failed to synthesize
+  Decidable (zero = eval (matrixOf 2 2 b_S0_9_132_d3.outgoing) stage3.vector)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'Fact713E12Search.Prefix.finite_E4' depends on axioms: [propext, Quot.sound]
+'Fact713E12Search.Prefix.named_E3_coordinates' depends on axioms: [propext, sorryAx]
+'Fact713E12Search.Prefix.named_E4_coordinate' depends on axioms: [propext, sorryAx]
+'Fact713E12Search.Prefix.stored_first_column_requires_cycle' depends on axioms: [propext, sorryAx]

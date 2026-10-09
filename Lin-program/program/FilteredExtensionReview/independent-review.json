@@ -1,0 +1,107 @@
+{
+  "accepted_mutations": 5457,
+  "correction_has_nonzero_source_class_and_changes_actual_image": true,
+  "limitations": "Python is a regression oracle, not a Lean proof. Mutations accepted with alternative valid witnesses are permitted.",
+  "mutation_categories": {
+    "data.f": {
+      "accepted": 144,
+      "rejected": 153,
+      "semantically_false": 73,
+      "total": 297
+    },
+    "data.source": {
+      "accepted": 121,
+      "rejected": 470,
+      "semantically_false": 249,
+      "total": 591
+    },
+    "data.target": {
+      "accepted": 169,
+      "rejected": 338,
+      "semantically_false": 189,
+      "total": 507
+    },
+    "data.x": {
+      "accepted": 0,
+      "rejected": 407,
+      "semantically_false": 304,
+      "total": 407
+    },
+    "data.y": {
+      "accepted": 0,
+      "rejected": 381,
+      "semantically_false": 354,
+      "total": 381
+    },
+    "imageMember": {
+      "accepted": 536,
+      "rejected": 55,
+      "semantically_false": 0,
+      "total": 591
+    },
+    "mapFactors": {
+      "accepted": 561,
+      "rejected": 283,
+      "semantically_false": 0,
+      "total": 844
+    },
+    "representative": {
+      "accepted": 0,
+      "rejected": 407,
+      "semantically_false": 0,
+      "total": 407
+    },
+    "sourceCorrection": {
+      "accepted": 564,
+      "rejected": 44,
+      "semantically_false": 0,
+      "total": 608
+    },
+    "sourceFactors": {
+      "accepted": 924,
+      "rejected": 376,
+      "semantically_false": 0,
+      "total": 1300
+    },
+    "sourceMember": {
+      "accepted": 483,
+      "rejected": 125,
+      "semantically_false": 0,
+      "total": 608
+    },
+    "targetCorrection": {
+      "accepted": 571,
+      "rejected": 20,
+      "semantically_false": 0,
+      "total": 591
+    },
+    "targetFactors": {
+      "accepted": 848,
+      "rejected": 331,
+      "semantically_false": 0,
+      "total": 1179
+    },
+    "targetMember": {
+      "accepted": 536,
+      "rejected": 55,
+      "semantically_false": 0,
+      "total": 591
+    }
+  },
+  "negative_sha256": "244e6a3d985b3d5141346defa29e1484b38736281cc105b30da4cfa6033789b1",
+  "nonzero_target_class_not_in_relations": true,
+  "one_bit_mutations": 8902,
+  "rejected_mutations": 3445,
+  "selected_negative_records": 112,
+  "semantically_false_mutations": 1169,
+  "source_sha256": {
+    "FilteredExtensionProducer/case_correction.json": "a91a173fb32b80c2f94c3ae0c5adf96f5099fe83de495cb6c780dba3ba848873",
+    "FilteredExtensionProducer/case_dimension64.json": "ce98d334ea4169920be844e98f334d1c49bf2762001a2b5747896afbfef8e2d6",
+    "FilteredExtensionProducer/case_empty.json": "d42a027c7e60aea26fd8bf03a81e3dbc5a1259494a8697f46c31390a8264d881",
+    "FilteredExtensionProducer/case_nonzero.json": "737dbd5b47e16bf11acc033e20a2711ae54aa3069a216cdbb2f31646d7a8a003",
+    "FilteredExtensionProducer/valid.jsonl": "be0b556329b4b225752013fe92946d66d3da080ee8dd83c820d80252758600ef",
+    "FilteredExtensionReview/review.py": "461d22955d0c9e595f2169aa47510b9ade2eb062c904de4516e4f6844cb637c8"
+  },
+  "status": "independent_bitset_semantics_and_tampering_passed",
+  "valid_records": 604
+}

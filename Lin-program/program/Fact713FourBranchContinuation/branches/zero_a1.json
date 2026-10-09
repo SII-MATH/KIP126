@@ -1,0 +1,5196 @@
+{
+  "inherited_row3136_selection_changes": [
+    {
+      "object": "S0",
+      "degree": [
+        20,
+        140
+      ],
+      "page": 4,
+      "removed": 3136,
+      "kind": "conditional_source_d3_nonzero_or_target_boundary",
+      "old": [
+        [
+          3135,
+          "1",
+          null,
+          9000
+        ],
+        [
+          3136,
+          "0",
+          null,
+          9000
+        ]
+      ],
+      "new": [
+        [
+          3135,
+          "1",
+          null,
+          9000
+        ]
+      ]
+    },
+    {
+      "object": "S0",
+      "degree": [
+        23,
+        142
+      ],
+      "page": 4,
+      "removed": 3305,
+      "kind": "conditional_source_d3_nonzero_or_target_boundary",
+      "old": [
+        [
+          3305,
+          "0",
+          null,
+          9000
+        ]
+      ],
+      "new": []
+    }
+  ],
+  "case_name": "zero_a1",
+  "row3136_coefficient": 1,
+  "selection_changes": [],
+  "attempted_new_rules": [],
+  "extra_requested": {
+    "S0:11,133:d2": {
+      "status": "complete",
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 2,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "uses": []
+    },
+    "S0:16,137:d2": {
+      "status": "complete",
+      "wire": {
+        "down": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 3,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "uses": []
+    },
+    "S0:6,129:d2": {
+      "status": "complete",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "uses": []
+    },
+    "S0:11,133:d3": {
+      "status": "complete",
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true
+        ],
+        "incoming": [
+          true,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            11,
+            133
+          ],
+          "page": 3,
+          "row": [
+            2621,
+            "0,1",
+            "0",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:14,135:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            11,
+            133
+          ],
+          "page": 3,
+          "row": [
+            2622,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2622_dc2h6_naturality",
+          "target_predecessor": "S0:14,135:d2",
+          "theorem": "Fact713DC2h6Source.Actual.actual_row2622_d3_zero",
+          "premise": "Complete actual maps and faithful quotient meanings, named source and actual d3 naturality."
+        },
+        {
+          "object": "S0",
+          "source": [
+            8,
+            131
+          ],
+          "page": 3,
+          "row": [
+            2488,
+            "0",
+            "0,1",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:11,133:d2"
+        }
+      ]
+    },
+    "S0:16,137:d3": {
+      "status": "complete",
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 2,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            16,
+            137
+          ],
+          "page": 3,
+          "row": [
+            2906,
+            "2",
+            "0",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:19,139:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            16,
+            137
+          ],
+          "page": 3,
+          "row": [
+            2907,
+            "1",
+            null,
+            9996
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:19,139:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 3,
+          "row": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2773_actual_leibniz",
+          "target_predecessor": "S0:16,137:d2",
+          "theorem": "Row2773Leibniz.Actual.actual_row2773_d3_zero",
+          "premise": "Complete actual quotient/product meanings and named factors. No NULL prefix or eta d3 value assumed."
+        },
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 3,
+          "row": [
+            2774,
+            "0",
+            "2",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:16,137:d2"
+        }
+      ]
+    },
+    "S0:6,129:d3": {
+      "status": "complete",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "uses": []
+    },
+    "S0:11,133:d4": {
+      "status": "complete",
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 2,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            11,
+            133
+          ],
+          "page": 4,
+          "row": [
+            2622,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+          "target_predecessor": "S0:15,136:d3",
+          "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+          "coordinate_binding": "whole actual map; no named source binding required",
+          "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+        }
+      ]
+    },
+    "S0:16,137:d4": {
+      "status": "unresolved",
+      "first_failure": "unknown S0:16,137:d4:row2907; target dimension 1"
+    },
+    "S0:6,129:d4": {
+      "status": "complete",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "uses": []
+    },
+    "S0:11,133:d5": {
+      "status": "unresolved",
+      "first_failure": "unknown S0:16,137:d4:row2907; target dimension 1"
+    },
+    "S0:16,137:d5": {
+      "status": "unresolved",
+      "first_failure": "unknown S0:16,137:d4:row2907; target dimension 1"
+    },
+    "S0:6,129:d5": {
+      "status": "complete",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "uses": []
+    },
+    "S0:11,133:d6": {
+      "status": "unresolved",
+      "first_failure": "unknown S0:16,137:d4:row2907; target dimension 1"
+    },
+    "S0:16,137:d6": {
+      "status": "unresolved",
+      "first_failure": "unknown S0:16,137:d4:row2907; target dimension 1"
+    },
+    "S0:6,129:d6": {
+      "status": "unresolved",
+      "first_failure": "unknown S0:17,138:d4:row2994; target dimension 2"
+    },
+    "S0:23,142:d3": {
+      "status": "complete",
+      "wire": {
+        "down": [
+          false,
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 2,
+        "outgoing": [
+          false,
+          true
+        ],
+        "projection": [],
+        "up": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            23,
+            142
+          ],
+          "page": 3,
+          "row": [
+            3305,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "conditional_row3305_actual_h0_product",
+          "target_predecessor": "S0:26,144:d2",
+          "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+          "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+        },
+        {
+          "object": "S0",
+          "source": [
+            23,
+            142
+          ],
+          "page": 3,
+          "row": [
+            3306,
+            "1",
+            "1",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:26,144:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            20,
+            140
+          ],
+          "page": 3,
+          "row": [
+            3135,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_named_actual_d3_theorem",
+          "target_predecessor": "S0:23,142:d2",
+          "theorem": "Row3135H0Leibniz.Actual.actual_row3135_d3_zero",
+          "premise": "Exact actual product/factor names, whole product meanings, known nonzero right d3."
+        },
+        {
+          "object": "S0",
+          "source": [
+            20,
+            140
+          ],
+          "page": 3,
+          "row": [
+            3136,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "explicit_row3136_two_candidate_branch",
+          "target_predecessor": "S0:23,142:d2",
+          "coefficient": 1,
+          "coordinates": [
+            1,
+            0
+          ],
+          "theorem": "Row3305H0Search.Assembly.actual_two_candidates",
+          "premise": "Complete actual target d3 meaning, row3305 actual h0 product and same-e0 binding derive u=0; this is one remaining case, not a chosen actual value."
+        }
+      ]
+    },
+    "S0:26,144:d3": {
+      "status": "complete",
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          true
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 2,
+        "outgoing": [],
+        "projection": [],
+        "up": [
+          false,
+          true
+        ],
+        "version": 1
+      },
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            26,
+            144
+          ],
+          "page": 3,
+          "row": [
+            3471,
+            "1",
+            "1",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:29,146:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            23,
+            142
+          ],
+          "page": 3,
+          "row": [
+            3305,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "conditional_row3305_actual_h0_product",
+          "target_predecessor": "S0:26,144:d2",
+          "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+          "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+        },
+        {
+          "object": "S0",
+          "source": [
+            23,
+            142
+          ],
+          "page": 3,
+          "row": [
+            3306,
+            "1",
+            "1",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:26,144:d2"
+        }
+      ]
+    }
+  },
+  "previous_branch_preserved": 66,
+  "added_to_previous": {
+    "S0:21,143:d4": {
+      "object": "S0",
+      "center": [
+        21,
+        143
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 4,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:25,146:d3"
+        },
+        {
+          "object": "S0",
+          "source": [
+            17,
+            140
+          ],
+          "page": 4,
+          "row": [
+            3143,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "conditional_row3143_whole_actual_d4_zero",
+          "target_predecessor": "S0:21,143:d3",
+          "theorem": "Fact713Row3143Continuation.ActualRule.whole_d4_zero",
+          "coordinate_binding": "Fact713Row3143Continuation.ActualRule.actual_next_unique",
+          "premise": "Complete actual E3 source homology and full naming bridge, d0/right/source product meanings, known nonzero actual ss2149 d4 in constructed E4 coordinates, actual product quotient transition, local zero laws."
+        }
+      ],
+      "predecessors": [
+        "S0:17,140:d3",
+        "S0:21,143:d3",
+        "S0:25,146:d3"
+      ]
+    },
+    "S0:16,139:d5": {
+      "object": "S0",
+      "center": [
+        16,
+        139
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:11,135:d4",
+        "S0:16,139:d4",
+        "S0:21,143:d4"
+      ]
+    },
+    "S0:21,143:d5": {
+      "object": "S0",
+      "center": [
+        21,
+        143
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 5,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:26,147:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:16,139:d4",
+        "S0:21,143:d4",
+        "S0:26,147:d4"
+      ]
+    },
+    "S0:26,147:d5": {
+      "object": "S0",
+      "center": [
+        26,
+        147
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 5,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:26,147:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:21,143:d4",
+        "S0:26,147:d4",
+        "S0:31,151:d4"
+      ]
+    },
+    "S0:20,142:d6": {
+      "object": "S0",
+      "center": [
+        20,
+        142
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:14,137:d5",
+        "S0:20,142:d5",
+        "S0:26,147:d5"
+      ]
+    },
+    "S0:26,147:d6": {
+      "object": "S0",
+      "center": [
+        26,
+        147
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:20,142:d5",
+        "S0:26,147:d5",
+        "S0:32,152:d5"
+      ]
+    },
+    "S0:27,148:d6": {
+      "object": "S0",
+      "center": [
+        27,
+        148
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 6,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:27,148:d5"
+        }
+      ],
+      "predecessors": [
+        "S0:21,143:d5",
+        "S0:27,148:d5",
+        "S0:33,153:d5"
+      ]
+    },
+    "S0:32,152:d6": {
+      "object": "S0",
+      "center": [
+        32,
+        152
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:26,147:d5",
+        "S0:32,152:d5",
+        "S0:38,157:d5"
+      ]
+    },
+    "S0:13,136:d7": {
+      "object": "S0",
+      "center": [
+        13,
+        136
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:6,130:d6",
+        "S0:13,136:d6",
+        "S0:20,142:d6"
+      ]
+    },
+    "S0:19,141:d7": {
+      "object": "S0",
+      "center": [
+        19,
+        141
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:12,135:d6",
+        "S0:19,141:d6",
+        "S0:26,147:d6"
+      ]
+    },
+    "S0:20,142:d7": {
+      "object": "S0",
+      "center": [
+        20,
+        142
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:13,136:d6",
+        "S0:20,142:d6",
+        "S0:27,148:d6"
+      ]
+    },
+    "S0:25,146:d7": {
+      "object": "S0",
+      "center": [
+        25,
+        146
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            18,
+            140
+          ],
+          "page": 7,
+          "row": [
+            3139,
+            "1",
+            "0,1,3",
+            7
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:25,146:d6"
+        }
+      ],
+      "predecessors": [
+        "S0:18,140:d6",
+        "S0:25,146:d6",
+        "S0:32,152:d6"
+      ]
+    },
+    "S0:26,147:d7": {
+      "object": "S0",
+      "center": [
+        26,
+        147
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:19,141:d6",
+        "S0:26,147:d6",
+        "S0:33,153:d6"
+      ]
+    },
+    "S0:11,134:d8": {
+      "object": "S0",
+      "center": [
+        11,
+        134
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:3,127:d7",
+        "S0:11,134:d7",
+        "S0:19,141:d7"
+      ]
+    },
+    "S0:17,139:d8": {
+      "object": "S0",
+      "center": [
+        17,
+        139
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 8,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:17,139:d7"
+        }
+      ],
+      "predecessors": [
+        "S0:9,132:d7",
+        "S0:17,139:d7",
+        "S0:25,146:d7"
+      ]
+    },
+    "S0:18,140:d8": {
+      "object": "S0",
+      "center": [
+        18,
+        140
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:10,133:d7",
+        "S0:18,140:d7",
+        "S0:26,147:d7"
+      ]
+    },
+    "S0:9,132:d9": {
+      "object": "S0",
+      "center": [
+        9,
+        132
+      ],
+      "page": 9,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 9,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:18,140:d8"
+        }
+      ],
+      "predecessors": [
+        "S0:0,124:d8",
+        "S0:9,132:d8",
+        "S0:18,140:d8"
+      ]
+    }
+  },
+  "branch": "zero",
+  "assumed_staircase_d3": [
+    0,
+    0
+  ],
+  "baseline_preserved": 1272,
+  "changed_selection_rows": [],
+  "new_comparisons": {
+    "S0:17,138:d3": {
+      "object": "S0",
+      "center": [
+        17,
+        138
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 2,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            17,
+            138
+          ],
+          "page": 3,
+          "row": [
+            2994,
+            "0,1,2",
+            null,
+            9000
+          ],
+          "kind": "explicit_two_candidate_branch",
+          "branch": "zero",
+          "coordinates": [
+            0,
+            0
+          ],
+          "target_predecessor": "S0:20,140:d2",
+          "premise": "One case of actual_staircase_candidates, not an unconditional differential value."
+        },
+        {
+          "object": "S0",
+          "source": [
+            14,
+            136
+          ],
+          "page": 3,
+          "row": [
+            2841,
+            "0",
+            "0",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:17,138:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:14,136:d2",
+        "S0:17,138:d2",
+        "S0:20,140:d2"
+      ]
+    },
+    "S0:18,141:d3": {
+      "object": "S0",
+      "center": [
+        18,
+        141
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 2,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            18,
+            141
+          ],
+          "page": 3,
+          "row": [
+            3247,
+            "0,1",
+            null,
+            9000
+          ],
+          "kind": "conditional_actual_E3_cycle_representatives",
+          "target_predecessor": "S0:21,143:d2",
+          "theorem": "Fact713Row3247Boundaries.Actual.row3247_d3_zero",
+          "coordinate_binding": "Fact713Row3247Source.Binding.raw_named",
+          "required_actual_inputs": [
+            "Cnu P-squared product E3 cycle representative named by row1183",
+            "Cnu h0 product E3 cycle representative named by row5286",
+            "complete actual map, product, quotient meanings and factorization meanings"
+          ],
+          "provenance_only": [
+            "row1078 d4 targets row1183",
+            "row4536 d7 targets row5286"
+          ],
+          "warning": "The two named E3 cycles are explicit mathematical assumptions; later boundary equations do not establish them."
+        },
+        {
+          "object": "S0",
+          "source": [
+            15,
+            139
+          ],
+          "page": 3,
+          "row": [
+            3075,
+            "0",
+            "0",
+            4
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:18,141:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            15,
+            139
+          ],
+          "page": 3,
+          "row": [
+            3076,
+            "1,3",
+            null,
+            9000
+          ],
+          "kind": "conditional_ceta",
+          "target_predecessor": "S0:18,141:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:15,139:d2",
+        "S0:18,141:d2",
+        "S0:21,143:d2"
+      ]
+    },
+    "S0:21,143:d3": {
+      "object": "S0",
+      "center": [
+        21,
+        143
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 3,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_injective_successor",
+          "target_predecessor": "S0:24,145:d2",
+          "successor_row": 3551,
+          "premise": "Full actual successor coordinates [1,0], coordinate faithfulness and differential square zero."
+        },
+        {
+          "object": "S0",
+          "source": [
+            18,
+            141
+          ],
+          "page": 3,
+          "row": [
+            3247,
+            "0,1",
+            null,
+            9000
+          ],
+          "kind": "conditional_actual_E3_cycle_representatives",
+          "target_predecessor": "S0:21,143:d2",
+          "theorem": "Fact713Row3247Boundaries.Actual.row3247_d3_zero",
+          "coordinate_binding": "Fact713Row3247Source.Binding.raw_named",
+          "required_actual_inputs": [
+            "Cnu P-squared product E3 cycle representative named by row1183",
+            "Cnu h0 product E3 cycle representative named by row5286",
+            "complete actual map, product, quotient meanings and factorization meanings"
+          ],
+          "provenance_only": [
+            "row1078 d4 targets row1183",
+            "row4536 d7 targets row5286"
+          ],
+          "warning": "The two named E3 cycles are explicit mathematical assumptions; later boundary equations do not establish them."
+        }
+      ],
+      "predecessors": [
+        "S0:18,141:d2",
+        "S0:21,143:d2",
+        "S0:24,145:d2"
+      ]
+    },
+    "S0:12,134:d4": {
+      "object": "S0",
+      "center": [
+        12,
+        134
+      ],
+      "page": 4,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            12,
+            134
+          ],
+          "page": 4,
+          "row": [
+            2684,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2684_d4_actual_C2h5_naturality",
+          "target_predecessor": "S0:16,137:d3",
+          "theorem": "Fact713D4SourceSearch.Assembly.actual_d4_zero",
+          "coordinate_binding": "Fact713D4SourceSearch.CoordinateBridge.actual_next_unique",
+          "premise": "Complete actual E3 homology meanings, row2773 d3 incoming forcing, actual map quotient transitions and d4 naturality."
+        }
+      ],
+      "predecessors": [
+        "S0:8,131:d3",
+        "S0:12,134:d3",
+        "S0:16,137:d3"
+      ]
+    },
+    "S0:13,135:d4": {
+      "object": "S0",
+      "center": [
+        13,
+        135
+      ],
+      "page": 4,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 1,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 4,
+          "row": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2773_d4_actual_leibniz",
+          "target_predecessor": "S0:17,138:d3",
+          "theorem": "Row2773D4Leibniz.Actual.actual_row2773_d4_zero",
+          "coordinate_binding": "Row2773D4Leibniz.CoordinateBridge.actual_next_unique",
+          "premise": "E3 product meanings, actual full homology multiplicativity and eta d3 derivation."
+        },
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 4,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:13,135:d3"
+        }
+      ],
+      "predecessors": [
+        "S0:9,132:d3",
+        "S0:13,135:d3",
+        "S0:17,138:d3"
+      ]
+    },
+    "S0:22,144:d4": {
+      "object": "S0",
+      "center": [
+        22,
+        144
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            18,
+            141
+          ],
+          "page": 4,
+          "row": [
+            3247,
+            "0,1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:22,144:d3"
+        }
+      ],
+      "predecessors": [
+        "S0:18,141:d3",
+        "S0:22,144:d3",
+        "S0:26,147:d3"
+      ]
+    },
+    "S0:25,146:d4": {
+      "object": "S0",
+      "center": [
+        25,
+        146
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 4,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:25,146:d3"
+        }
+      ],
+      "predecessors": [
+        "S0:21,143:d3",
+        "S0:25,146:d3",
+        "S0:29,149:d3"
+      ]
+    },
+    "S0:7,130:d5": {
+      "object": "S0",
+      "center": [
+        7,
+        130
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:2,126:d4",
+        "S0:7,130:d4",
+        "S0:12,134:d4"
+      ]
+    },
+    "S0:8,131:d5": {
+      "object": "S0",
+      "center": [
+        8,
+        131
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:3,127:d4",
+        "S0:8,131:d4",
+        "S0:13,135:d4"
+      ]
+    },
+    "S0:13,135:d5": {
+      "object": "S0",
+      "center": [
+        13,
+        135
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 5,
+          "row": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:18,139:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:8,131:d4",
+        "S0:13,135:d4",
+        "S0:18,139:d4"
+      ]
+    },
+    "S0:18,139:d5": {
+      "object": "S0",
+      "center": [
+        18,
+        139
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 5,
+          "row": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:18,139:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:13,135:d4",
+        "S0:18,139:d4",
+        "S0:23,143:d4"
+      ]
+    },
+    "S0:27,148:d5": {
+      "object": "S0",
+      "center": [
+        27,
+        148
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:22,144:d4",
+        "S0:27,148:d4",
+        "S0:32,152:d4"
+      ]
+    },
+    "S0:30,150:d5": {
+      "object": "S0",
+      "center": [
+        30,
+        150
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:25,146:d4",
+        "S0:30,150:d4",
+        "S0:35,154:d4"
+      ]
+    },
+    "S0:1,125:d6": {
+      "object": "S0",
+      "center": [
+        1,
+        125
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-5,120:d5",
+        "S0:1,125:d5",
+        "S0:7,130:d5"
+      ]
+    },
+    "S0:2,126:d6": {
+      "object": "S0",
+      "center": [
+        2,
+        126
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-4,121:d5",
+        "S0:2,126:d5",
+        "S0:8,131:d5"
+      ]
+    },
+    "S0:7,130:d6": {
+      "object": "S0",
+      "center": [
+        7,
+        130
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:1,125:d5",
+        "S0:7,130:d5",
+        "S0:13,135:d5"
+      ]
+    },
+    "S0:8,131:d6": {
+      "object": "S0",
+      "center": [
+        8,
+        131
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:2,126:d5",
+        "S0:8,131:d5",
+        "S0:14,136:d5"
+      ]
+    },
+    "S0:13,135:d6": {
+      "object": "S0",
+      "center": [
+        13,
+        135
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            135
+          ],
+          "page": 6,
+          "row": [
+            2773,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:19,140:d5"
+        }
+      ],
+      "predecessors": [
+        "S0:7,130:d5",
+        "S0:13,135:d5",
+        "S0:19,140:d5"
+      ]
+    },
+    "S0:14,136:d6": {
+      "object": "S0",
+      "center": [
+        14,
+        136
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:8,131:d5",
+        "S0:14,136:d5",
+        "S0:20,141:d5"
+      ]
+    },
+    "S0:24,145:d6": {
+      "object": "S0",
+      "center": [
+        24,
+        145
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            18,
+            140
+          ],
+          "page": 6,
+          "row": [
+            3139,
+            "1",
+            "0,1,3",
+            7
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:24,145:d5"
+        }
+      ],
+      "predecessors": [
+        "S0:18,140:d5",
+        "S0:24,145:d5",
+        "S0:30,150:d5"
+      ]
+    },
+    "S0:33,153:d6": {
+      "object": "S0",
+      "center": [
+        33,
+        153
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:27,148:d5",
+        "S0:33,153:d5",
+        "S0:39,158:d5"
+      ]
+    },
+    "S0:1,125:d7": {
+      "object": "S0",
+      "center": [
+        1,
+        125
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-6,119:d6",
+        "S0:1,125:d6",
+        "S0:8,131:d6"
+      ]
+    },
+    "S0:2,126:d7": {
+      "object": "S0",
+      "center": [
+        2,
+        126
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-5,120:d6",
+        "S0:2,126:d6",
+        "S0:9,132:d6"
+      ]
+    },
+    "S0:8,131:d7": {
+      "object": "S0",
+      "center": [
+        8,
+        131
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:1,125:d6",
+        "S0:8,131:d6",
+        "S0:15,137:d6"
+      ]
+    },
+    "S0:9,132:d7": {
+      "object": "S0",
+      "center": [
+        9,
+        132
+      ],
+      "page": 7,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 7,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:16,138:d6"
+        }
+      ],
+      "predecessors": [
+        "S0:2,126:d6",
+        "S0:9,132:d6",
+        "S0:16,138:d6"
+      ]
+    },
+    "S0:15,137:d7": {
+      "object": "S0",
+      "center": [
+        15,
+        137
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:8,131:d6",
+        "S0:15,137:d6",
+        "S0:22,143:d6"
+      ]
+    },
+    "S0:17,139:d7": {
+      "object": "S0",
+      "center": [
+        17,
+        139
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:10,133:d6",
+        "S0:17,139:d6",
+        "S0:24,145:d6"
+      ]
+    },
+    "S0:9,132:d8": {
+      "object": "S0",
+      "center": [
+        9,
+        132
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 8,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:17,139:d7"
+        }
+      ],
+      "predecessors": [
+        "S0:1,125:d7",
+        "S0:9,132:d7",
+        "S0:17,139:d7"
+      ]
+    },
+    "S0:11,133:d4": {
+      "object": "S0",
+      "center": [
+        11,
+        133
+      ],
+      "page": 4,
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 2,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            11,
+            133
+          ],
+          "page": 4,
+          "row": [
+            2622,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+          "target_predecessor": "S0:15,136:d3",
+          "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+          "coordinate_binding": "whole actual map; no named source binding required",
+          "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+        }
+      ],
+      "predecessors": [
+        "S0:7,130:d3",
+        "S0:11,133:d3",
+        "S0:15,136:d3"
+      ]
+    },
+    "S0:15,136:d4": {
+      "object": "S0",
+      "center": [
+        15,
+        136
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 2,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            15,
+            136
+          ],
+          "page": 4,
+          "row": [
+            2839,
+            "1",
+            null,
+            9994
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:19,139:d3"
+        },
+        {
+          "object": "S0",
+          "source": [
+            15,
+            136
+          ],
+          "page": 4,
+          "row": [
+            2840,
+            "0",
+            null,
+            9995
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:19,139:d3"
+        },
+        {
+          "object": "S0",
+          "source": [
+            11,
+            133
+          ],
+          "page": 4,
+          "row": [
+            2622,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+          "target_predecessor": "S0:15,136:d3",
+          "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+          "coordinate_binding": "whole actual map; no named source binding required",
+          "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+        }
+      ],
+      "predecessors": [
+        "S0:11,133:d3",
+        "S0:15,136:d3",
+        "S0:19,139:d3"
+      ]
+    },
+    "S0:6,129:d5": {
+      "object": "S0",
+      "center": [
+        6,
+        129
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:1,125:d4",
+        "S0:6,129:d4",
+        "S0:11,133:d4"
+      ]
+    },
+    "S0:10,132:d5": {
+      "object": "S0",
+      "center": [
+        10,
+        132
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 2,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:5,128:d4",
+        "S0:10,132:d4",
+        "S0:15,136:d4"
+      ]
+    },
+    "S0:0,124:d6": {
+      "object": "S0",
+      "center": [
+        0,
+        124
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-6,119:d5",
+        "S0:0,124:d5",
+        "S0:6,129:d5"
+      ]
+    },
+    "S0:4,127:d6": {
+      "object": "S0",
+      "center": [
+        4,
+        127
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-2,122:d5",
+        "S0:4,127:d5",
+        "S0:10,132:d5"
+      ]
+    },
+    "S0:-7,118:d7": {
+      "object": "S0",
+      "center": [
+        -7,
+        118
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-14,112:d6",
+        "S0:-7,118:d6",
+        "S0:0,124:d6"
+      ]
+    },
+    "S0:-3,121:d7": {
+      "object": "S0",
+      "center": [
+        -3,
+        121
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-10,115:d6",
+        "S0:-3,121:d6",
+        "S0:4,127:d6"
+      ]
+    },
+    "S0:0,124:d7": {
+      "object": "S0",
+      "center": [
+        0,
+        124
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-7,118:d6",
+        "S0:0,124:d6",
+        "S0:7,130:d6"
+      ]
+    },
+    "S0:7,130:d7": {
+      "object": "S0",
+      "center": [
+        7,
+        130
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:0,124:d6",
+        "S0:7,130:d6",
+        "S0:14,136:d6"
+      ]
+    },
+    "S0:-11,114:d8": {
+      "object": "S0",
+      "center": [
+        -11,
+        114
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-19,107:d7",
+        "S0:-11,114:d7",
+        "S0:-3,121:d7"
+      ]
+    },
+    "S0:0,124:d8": {
+      "object": "S0",
+      "center": [
+        0,
+        124
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-8,117:d7",
+        "S0:0,124:d7",
+        "S0:8,131:d7"
+      ]
+    },
+    "S0:1,125:d8": {
+      "object": "S0",
+      "center": [
+        1,
+        125
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-7,118:d7",
+        "S0:1,125:d7",
+        "S0:9,132:d7"
+      ]
+    },
+    "S0:8,131:d8": {
+      "object": "S0",
+      "center": [
+        8,
+        131
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:0,124:d7",
+        "S0:8,131:d7",
+        "S0:16,138:d7"
+      ]
+    },
+    "S0:13,137:d3": {
+      "object": "S0",
+      "center": [
+        13,
+        137
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false,
+          false,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true,
+          false
+        ],
+        "incoming": [
+          true,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 3,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          false,
+          true,
+          false
+        ],
+        "up": [
+          true,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            137
+          ],
+          "page": 3,
+          "row": [
+            2915,
+            "0",
+            "0",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:16,139:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            13,
+            137
+          ],
+          "page": 3,
+          "row": [
+            2916,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_named_actual_d3_theorem",
+          "target_predecessor": "S0:16,139:d2",
+          "theorem": "Fact713Row2916Search.Actual.actual_row2916_d3_zero",
+          "coordinate_binding": "Fact713Row2916Search.CoordinateBridge.actual_staircase_column",
+          "premise": "Complete d2 actual meanings, current maps, actual quotient transitions, C2h5 d3 naturality, named derived source coordinate1."
+        },
+        {
+          "object": "S0",
+          "source": [
+            13,
+            137
+          ],
+          "page": 3,
+          "row": [
+            2917,
+            "2",
+            "0",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:16,139:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            10,
+            135
+          ],
+          "page": 3,
+          "row": [
+            2784,
+            "0",
+            "0",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:13,137:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:10,135:d2",
+        "S0:13,137:d2",
+        "S0:16,139:d2"
+      ]
+    },
+    "S0:16,139:d3": {
+      "object": "S0",
+      "center": [
+        16,
+        139
+      ],
+      "page": 3,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          false,
+          true
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 3,
+        "outgoing": [],
+        "projection": [],
+        "up": [
+          false,
+          false,
+          true
+        ],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            16,
+            139
+          ],
+          "page": 3,
+          "row": [
+            3074,
+            "0",
+            "2",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:19,141:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            13,
+            137
+          ],
+          "page": 3,
+          "row": [
+            2915,
+            "0",
+            "0",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:16,139:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            13,
+            137
+          ],
+          "page": 3,
+          "row": [
+            2916,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_named_actual_d3_theorem",
+          "target_predecessor": "S0:16,139:d2",
+          "theorem": "Fact713Row2916Search.Actual.actual_row2916_d3_zero",
+          "coordinate_binding": "Fact713Row2916Search.CoordinateBridge.actual_staircase_column",
+          "premise": "Complete d2 actual meanings, current maps, actual quotient transitions, C2h5 d3 naturality, named derived source coordinate1."
+        },
+        {
+          "object": "S0",
+          "source": [
+            13,
+            137
+          ],
+          "page": 3,
+          "row": [
+            2917,
+            "2",
+            "0",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:16,139:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:13,137:d2",
+        "S0:16,139:d2",
+        "S0:19,141:d2"
+      ]
+    },
+    "S0:12,136:d4": {
+      "object": "S0",
+      "center": [
+        12,
+        136
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:8,133:d3",
+        "S0:12,136:d3",
+        "S0:16,139:d3"
+      ]
+    },
+    "S0:16,139:d4": {
+      "object": "S0",
+      "center": [
+        16,
+        139
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:12,136:d3",
+        "S0:16,139:d3",
+        "S0:20,142:d3"
+      ]
+    },
+    "S0:20,142:d4": {
+      "object": "S0",
+      "center": [
+        20,
+        142
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:16,139:d3",
+        "S0:20,142:d3",
+        "S0:24,145:d3"
+      ]
+    },
+    "S0:20,142:d5": {
+      "object": "S0",
+      "center": [
+        20,
+        142
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            15,
+            138
+          ],
+          "page": 5,
+          "row": [
+            3001,
+            "1",
+            "3",
+            5
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:20,142:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:15,138:d4",
+        "S0:20,142:d4",
+        "S0:25,146:d4"
+      ]
+    },
+    "S0:25,146:d5": {
+      "object": "S0",
+      "center": [
+        25,
+        146
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:20,142:d4",
+        "S0:25,146:d4",
+        "S0:30,150:d4"
+      ]
+    },
+    "S0:14,137:d6": {
+      "object": "S0",
+      "center": [
+        14,
+        137
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:8,132:d5",
+        "S0:14,137:d5",
+        "S0:20,142:d5"
+      ]
+    },
+    "S0:19,141:d6": {
+      "object": "S0",
+      "center": [
+        19,
+        141
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:13,136:d5",
+        "S0:19,141:d5",
+        "S0:25,146:d5"
+      ]
+    },
+    "S0:25,146:d6": {
+      "object": "S0",
+      "center": [
+        25,
+        146
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:19,141:d5",
+        "S0:25,146:d5",
+        "S0:31,151:d5"
+      ]
+    },
+    "S0:12,135:d7": {
+      "object": "S0",
+      "center": [
+        12,
+        135
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:5,129:d6",
+        "S0:12,135:d6",
+        "S0:19,141:d6"
+      ]
+    },
+    "S0:18,140:d7": {
+      "object": "S0",
+      "center": [
+        18,
+        140
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          true
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [
+          true
+        ],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            18,
+            140
+          ],
+          "page": 7,
+          "row": [
+            3139,
+            "1",
+            "0,1,3",
+            7
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:25,146:d6"
+        },
+        {
+          "object": "S0",
+          "source": [
+            11,
+            134
+          ],
+          "page": 7,
+          "row": [
+            2687,
+            "0,1,3",
+            "1",
+            9993
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:18,140:d6"
+        }
+      ],
+      "predecessors": [
+        "S0:11,134:d6",
+        "S0:18,140:d6",
+        "S0:25,146:d6"
+      ]
+    },
+    "S0:10,133:d8": {
+      "object": "S0",
+      "center": [
+        10,
+        133
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:2,126:d7",
+        "S0:10,133:d7",
+        "S0:18,140:d7"
+      ]
+    },
+    "S0:9,130:d3": {
+      "object": "S0",
+      "center": [
+        9,
+        130
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 3,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            9,
+            130
+          ],
+          "page": 3,
+          "row": [
+            2431,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_row2431_whole_actual_d3_zero",
+          "target_predecessor": "S0:12,132:d2",
+          "theorem": "Fact713Row2431Search.Actual.actual_row2431_whole_d3_zero",
+          "coordinate_binding": "whole actual map; no named source restriction",
+          "premise": "Complete sphere/DC2h6 d2 actual meanings, whole current maps, actual quotient transitions and full d3 naturality."
+        }
+      ],
+      "predecessors": [
+        "S0:6,128:d2",
+        "S0:9,130:d2",
+        "S0:12,132:d2"
+      ]
+    },
+    "S0:5,127:d4": {
+      "object": "S0",
+      "center": [
+        5,
+        127
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:1,124:d3",
+        "S0:5,127:d3",
+        "S0:9,130:d3"
+      ]
+    },
+    "S0:0,123:d5": {
+      "object": "S0",
+      "center": [
+        0,
+        123
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-5,119:d4",
+        "S0:0,123:d4",
+        "S0:5,127:d4"
+      ]
+    },
+    "S0:-6,118:d6": {
+      "object": "S0",
+      "center": [
+        -6,
+        118
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-12,113:d5",
+        "S0:-6,118:d5",
+        "S0:0,123:d5"
+      ]
+    },
+    "S0:-13,112:d7": {
+      "object": "S0",
+      "center": [
+        -13,
+        112
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-20,106:d6",
+        "S0:-13,112:d6",
+        "S0:-6,118:d6"
+      ]
+    },
+    "S0:-21,105:d8": {
+      "object": "S0",
+      "center": [
+        -21,
+        105
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:-29,98:d7",
+        "S0:-21,105:d7",
+        "S0:-13,112:d7"
+      ]
+    },
+    "S0:20,140:d3": {
+      "object": "S0",
+      "center": [
+        20,
+        140
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1,
+          0
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            20,
+            140
+          ],
+          "page": 3,
+          "row": [
+            3135,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_named_actual_d3_theorem",
+          "target_predecessor": "S0:23,142:d2",
+          "theorem": "Row3135H0Leibniz.Actual.actual_row3135_d3_zero",
+          "premise": "Exact actual product/factor names, whole product meanings, known nonzero right d3."
+        },
+        {
+          "object": "S0",
+          "source": [
+            20,
+            140
+          ],
+          "page": 3,
+          "row": [
+            3136,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "explicit_row3136_two_candidate_branch",
+          "target_predecessor": "S0:23,142:d2",
+          "coefficient": 1,
+          "coordinates": [
+            1,
+            0
+          ],
+          "theorem": "Row3305H0Search.Assembly.actual_two_candidates",
+          "premise": "Complete actual target d3 meaning, row3305 actual h0 product and same-e0 binding derive u=0; this is one remaining case, not a chosen actual value."
+        },
+        {
+          "object": "S0",
+          "source": [
+            17,
+            138
+          ],
+          "page": 3,
+          "row": [
+            2994,
+            "0,1,2",
+            null,
+            9000
+          ],
+          "kind": "explicit_two_candidate_branch",
+          "branch": "zero",
+          "coordinates": [
+            0,
+            0
+          ],
+          "target_predecessor": "S0:20,140:d2",
+          "premise": "One case of actual_staircase_candidates, not an unconditional differential value."
+        }
+      ],
+      "predecessors": [
+        "S0:17,138:d2",
+        "S0:20,140:d2",
+        "S0:23,142:d2"
+      ]
+    },
+    "S0:26,144:d2": {
+      "object": "S0",
+      "center": [
+        26,
+        144
+      ],
+      "page": 2,
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true
+        ],
+        "incoming": [
+          true,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          0,
+          1
+        ]
+      ],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:23,142:d3": {
+      "object": "S0",
+      "center": [
+        23,
+        142
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false,
+          true
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 2,
+        "outgoing": [
+          false,
+          true
+        ],
+        "projection": [],
+        "up": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            23,
+            142
+          ],
+          "page": 3,
+          "row": [
+            3305,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "conditional_row3305_actual_h0_product",
+          "target_predecessor": "S0:26,144:d2",
+          "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+          "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+        },
+        {
+          "object": "S0",
+          "source": [
+            23,
+            142
+          ],
+          "page": 3,
+          "row": [
+            3306,
+            "1",
+            "1",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:26,144:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            20,
+            140
+          ],
+          "page": 3,
+          "row": [
+            3135,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "conditional_named_actual_d3_theorem",
+          "target_predecessor": "S0:23,142:d2",
+          "theorem": "Row3135H0Leibniz.Actual.actual_row3135_d3_zero",
+          "premise": "Exact actual product/factor names, whole product meanings, known nonzero right d3."
+        },
+        {
+          "object": "S0",
+          "source": [
+            20,
+            140
+          ],
+          "page": 3,
+          "row": [
+            3136,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "explicit_row3136_two_candidate_branch",
+          "target_predecessor": "S0:23,142:d2",
+          "coefficient": 1,
+          "coordinates": [
+            1,
+            0
+          ],
+          "theorem": "Row3305H0Search.Assembly.actual_two_candidates",
+          "premise": "Complete actual target d3 meaning, row3305 actual h0 product and same-e0 binding derive u=0; this is one remaining case, not a chosen actual value."
+        }
+      ],
+      "predecessors": [
+        "S0:20,140:d2",
+        "S0:23,142:d2",
+        "S0:26,144:d2"
+      ]
+    },
+    "S0:29,146:d2": {
+      "object": "S0",
+      "center": [
+        29,
+        146
+      ],
+      "page": 2,
+      "wire": {
+        "down": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "k": 3,
+        "m": 2,
+        "n": 2,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "projection": [],
+        "up": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:26,144:d3": {
+      "object": "S0",
+      "center": [
+        26,
+        144
+      ],
+      "page": 3,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [
+          false,
+          true
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 2,
+        "outgoing": [],
+        "projection": [],
+        "up": [
+          false,
+          true
+        ],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            26,
+            144
+          ],
+          "page": 3,
+          "row": [
+            3471,
+            "1",
+            "1",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:29,146:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            23,
+            142
+          ],
+          "page": 3,
+          "row": [
+            3305,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "conditional_row3305_actual_h0_product",
+          "target_predecessor": "S0:26,144:d2",
+          "theorem": "Row3305H0Search.Assembly.actual_parameter_zero",
+          "premise": "Whole target meaning and named actual h0 product bound to its first coordinate; no right-differential value supplied."
+        },
+        {
+          "object": "S0",
+          "source": [
+            23,
+            142
+          ],
+          "page": 3,
+          "row": [
+            3306,
+            "1",
+            "1",
+            9997
+          ],
+          "kind": "stored_event",
+          "target_predecessor": "S0:26,144:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:23,142:d2",
+        "S0:26,144:d2",
+        "S0:29,146:d2"
+      ]
+    },
+    "S0:21,143:d4": {
+      "object": "S0",
+      "center": [
+        21,
+        143
+      ],
+      "page": 4,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 4,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:25,146:d3"
+        },
+        {
+          "object": "S0",
+          "source": [
+            17,
+            140
+          ],
+          "page": 4,
+          "row": [
+            3143,
+            "0",
+            null,
+            9000
+          ],
+          "kind": "conditional_row3143_whole_actual_d4_zero",
+          "target_predecessor": "S0:21,143:d3",
+          "theorem": "Fact713Row3143Continuation.ActualRule.whole_d4_zero",
+          "coordinate_binding": "Fact713Row3143Continuation.ActualRule.actual_next_unique",
+          "premise": "Complete actual E3 source homology and full naming bridge, d0/right/source product meanings, known nonzero actual ss2149 d4 in constructed E4 coordinates, actual product quotient transition, local zero laws."
+        }
+      ],
+      "predecessors": [
+        "S0:17,140:d3",
+        "S0:21,143:d3",
+        "S0:25,146:d3"
+      ]
+    },
+    "S0:16,139:d5": {
+      "object": "S0",
+      "center": [
+        16,
+        139
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 1,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:11,135:d4",
+        "S0:16,139:d4",
+        "S0:21,143:d4"
+      ]
+    },
+    "S0:21,143:d5": {
+      "object": "S0",
+      "center": [
+        21,
+        143
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 5,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:26,147:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:16,139:d4",
+        "S0:21,143:d4",
+        "S0:26,147:d4"
+      ]
+    },
+    "S0:26,147:d5": {
+      "object": "S0",
+      "center": [
+        26,
+        147
+      ],
+      "page": 5,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 5,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:26,147:d4"
+        }
+      ],
+      "predecessors": [
+        "S0:21,143:d4",
+        "S0:26,147:d4",
+        "S0:31,151:d4"
+      ]
+    },
+    "S0:20,142:d6": {
+      "object": "S0",
+      "center": [
+        20,
+        142
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:14,137:d5",
+        "S0:20,142:d5",
+        "S0:26,147:d5"
+      ]
+    },
+    "S0:26,147:d6": {
+      "object": "S0",
+      "center": [
+        26,
+        147
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:20,142:d5",
+        "S0:26,147:d5",
+        "S0:32,152:d5"
+      ]
+    },
+    "S0:27,148:d6": {
+      "object": "S0",
+      "center": [
+        27,
+        148
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            21,
+            143
+          ],
+          "page": 6,
+          "row": [
+            3386,
+            "1",
+            null,
+            9000
+          ],
+          "kind": "checked_zero_codomain",
+          "target_predecessor": "S0:27,148:d5"
+        }
+      ],
+      "predecessors": [
+        "S0:21,143:d5",
+        "S0:27,148:d5",
+        "S0:33,153:d5"
+      ]
+    },
+    "S0:32,152:d6": {
+      "object": "S0",
+      "center": [
+        32,
+        152
+      ],
+      "page": 6,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:26,147:d5",
+        "S0:32,152:d5",
+        "S0:38,157:d5"
+      ]
+    },
+    "S0:13,136:d7": {
+      "object": "S0",
+      "center": [
+        13,
+        136
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:6,130:d6",
+        "S0:13,136:d6",
+        "S0:20,142:d6"
+      ]
+    },
+    "S0:19,141:d7": {
+      "object": "S0",
+      "center": [
+        19,
+        141
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:12,135:d6",
+        "S0:19,141:d6",
+        "S0:26,147:d6"
+      ]
+    },
+    "S0:20,142:d7": {
+      "object": "S0",
+      "center": [
+        20,
+        142
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:13,136:d6",
+        "S0:20,142:d6",
+        "S0:27,148:d6"
+      ]
+    },
+    "S0:25,146:d7": {
+      "object": "S0",
+      "center": [
+        25,
+        146
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            18,
+            140
+          ],
+          "page": 7,
+          "row": [
+            3139,
+            "1",
+            "0,1,3",
+            7
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:25,146:d6"
+        }
+      ],
+      "predecessors": [
+        "S0:18,140:d6",
+        "S0:25,146:d6",
+        "S0:32,152:d6"
+      ]
+    },
+    "S0:26,147:d7": {
+      "object": "S0",
+      "center": [
+        26,
+        147
+      ],
+      "page": 7,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:19,141:d6",
+        "S0:26,147:d6",
+        "S0:33,153:d6"
+      ]
+    },
+    "S0:11,134:d8": {
+      "object": "S0",
+      "center": [
+        11,
+        134
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:3,127:d7",
+        "S0:11,134:d7",
+        "S0:19,141:d7"
+      ]
+    },
+    "S0:17,139:d8": {
+      "object": "S0",
+      "center": [
+        17,
+        139
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 8,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:17,139:d7"
+        }
+      ],
+      "predecessors": [
+        "S0:9,132:d7",
+        "S0:17,139:d7",
+        "S0:25,146:d7"
+      ]
+    },
+    "S0:18,140:d8": {
+      "object": "S0",
+      "center": [
+        18,
+        140
+      ],
+      "page": 8,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": [
+        "S0:10,133:d7",
+        "S0:18,140:d7",
+        "S0:26,147:d7"
+      ]
+    },
+    "S0:9,132:d9": {
+      "object": "S0",
+      "center": [
+        9,
+        132
+      ],
+      "page": 9,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            9,
+            132
+          ],
+          "page": 9,
+          "row": [
+            2569,
+            "0,1",
+            null,
+            9988
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:18,140:d8"
+        }
+      ],
+      "predecessors": [
+        "S0:0,124:d8",
+        "S0:9,132:d8",
+        "S0:18,140:d8"
+      ]
+    }
+  },
+  "graph_available": 1348,
+  "graph_unresolved": 72,
+  "source_direct_comparison": {
+    "down": [
+      false,
+      false
+    ],
+    "h": 1,
+    "inclusion": [
+      true
+    ],
+    "incoming": [
+      false
+    ],
+    "k": 2,
+    "m": 1,
+    "n": 1,
+    "outgoing": [
+      false,
+      false
+    ],
+    "projection": [
+      true
+    ],
+    "up": [
+      false
+    ],
+    "version": 1
+  },
+  "source_next_selected_raw": [
+    [
+      2994,
+      "0,1,2",
+      null,
+      9000
+    ]
+  ],
+  "source_selection_compatible": true,
+  "source_result": {
+    "status": "finite_comparison_available",
+    "dimensions": {
+      "k": 2,
+      "m": 1,
+      "n": 1,
+      "h": 1
+    },
+    "unresolved_predecessors": []
+  },
+  "roots": [
+    {
+      "key": "S0:9,132:d2",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 2,
+        "m": 2,
+        "n": 3,
+        "h": 2
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d3",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d4",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d5",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d6",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d7",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d8",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d9",
+      "status": "finite_comparison_available",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "h": 1
+      },
+      "unresolved_predecessors": []
+    },
+    {
+      "key": "S0:9,132:d10",
+      "status": "unresolved",
+      "first_failure": "unknown S0:16,137:d4:row2907; target dimension 1",
+      "unresolved_predecessors": [
+        "S0:-1,123:d9",
+        "S0:19,141:d9"
+      ]
+    },
+    {
+      "key": "S0:9,132:d11",
+      "status": "unresolved",
+      "first_failure": "unknown S0:16,137:d4:row2907; target dimension 1",
+      "unresolved_predecessors": [
+        "S0:-2,122:d10",
+        "S0:9,132:d10",
+        "S0:20,142:d10"
+      ]
+    }
+  ],
+  "named_trajectory": [
+    {
+      "page": 2,
+      "vector": [
+        1,
+        1
+      ],
+      "outgoing": [
+        0,
+        0
+      ],
+      "is_boundary": false,
+      "next": [
+        1,
+        0
+      ]
+    },
+    {
+      "page": 3,
+      "vector": [
+        1,
+        0
+      ],
+      "outgoing": [
+        0,
+        0
+      ],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 4,
+      "vector": [
+        1
+      ],
+      "outgoing": [
+        0
+      ],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 5,
+      "vector": [
+        1
+      ],
+      "outgoing": [],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 6,
+      "vector": [
+        1
+      ],
+      "outgoing": [],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 7,
+      "vector": [
+        1
+      ],
+      "outgoing": [
+        0
+      ],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 8,
+      "vector": [
+        1
+      ],
+      "outgoing": [],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 9,
+      "vector": [
+        1
+      ],
+      "outgoing": [],
+      "is_boundary": false,
+      "next": [
+        1
+      ]
+    },
+    {
+      "page": 10,
+      "status": "unresolved",
+      "reason": "unknown S0:16,137:d4:row2907; target dimension 1"
+    }
+  ],
+  "scope": "Conditional finite case split requiring named actual E3 cycle representatives. A staircase selection mismatch is not a contradiction from topology; raw level9000 does not itself prove next-page survival."
+}

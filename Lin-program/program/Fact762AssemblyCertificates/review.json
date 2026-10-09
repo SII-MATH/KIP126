@@ -1,0 +1,320 @@
+{
+  "allowed": [
+    6,
+    12
+  ],
+  "finite_pages": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "inputs_sha256": {
+    "Fact762AssemblyCertificates/Assembly.lean": "e20aaf83e4fbc747609fbd1f0d5f27b8df75d787d948f8a15a0a022c4ef7d1e0",
+    "Fact762AssemblyCertificates/README.md": "95213c5d23c5f26c70ae9ae7b6717001f8a91049600d4121b82eb7d7c25dfe4b",
+    "Fact762AssemblyCertificates/Routes.lean": "a2d9ddef1d297dfdc9245b9fedf30d29bbb87657cb22565613da88a5f721c2e8",
+    "Fact762AssemblyCertificates/review.py": "08e40fe7cf0c4b9aacf75ca9b1a5c9937f96808bf257df64c656fdad8c9198f1",
+    "Fact762IncomingCertificates/Incoming.lean": "f747d1357c8ed1d68eae326a55c9d29247deccc3c4c980b6434f8848364864ac",
+    "Fact762Source4Certificates/KernelBranch.lean": "423bd2984757822b42b1c8a4f6f461e8a5b948131ee38d8105ae38e103d30592",
+    "Fact762Source7Certificates/Propagation.lean": "b4b786758a5aa44b5bf67dbbca102bb683c6754328d42602e7fd663116bd527e",
+    "Fact762Source7Certificates/Semantics.lean": "e4913e98589d4bfc5b18f9486269660925a7f7548a770c1114cf10a8cef408ea",
+    "Fact762Source7Certificates/independent-review.json": "7cb0d735a9052a75eede07cfaaa5e21153ac410e46ea583d476712e9ae5ec812"
+  },
+  "not_concluded": [
+    "actual topology realization",
+    "outgoing permanence",
+    "all-page nonboundary survival",
+    "actual existence of a d6 or d12 hit",
+    "unconditional Fact7.6(2)"
+  ],
+  "proof_routes": {
+    "assembly": "Calls the existing quantified all-source incoming theorem with the two route consequences.",
+    "page4": "Page4Route.vanishes invokes source4 full kernel/quotient/faithful-coordinate theorem.",
+    "page7": "Page7Route.vanishes invokes source7 full E3/PageTower/named-prefix/full E7 theorem."
+  },
+  "required_mathematics": [
+    "page2/3 actual nonimage proofs",
+    "row2708 survivor cycle and complete kernel",
+    "page4 faithful full source coordinates",
+    "row2632 actual cycle/transition/d7 prefix",
+    "full E3/E7 source realizations and actual PageTower",
+    "actual source zeros on seven listed pages",
+    "negative-filtration absence",
+    "queried target nonzero and meaning"
+  ],
+  "sampled_partition": [
+    {
+      "category": "early_nonimage",
+      "page": 2
+    },
+    {
+      "category": "early_nonimage",
+      "page": 3
+    },
+    {
+      "category": "routed",
+      "page": 4
+    },
+    {
+      "category": "zero_source",
+      "page": 5
+    },
+    {
+      "category": "allowed",
+      "page": 6
+    },
+    {
+      "category": "routed",
+      "page": 7
+    },
+    {
+      "category": "zero_source",
+      "page": 8
+    },
+    {
+      "category": "zero_source",
+      "page": 9
+    },
+    {
+      "category": "zero_source",
+      "page": 10
+    },
+    {
+      "category": "zero_source",
+      "page": 11
+    },
+    {
+      "category": "allowed",
+      "page": 12
+    },
+    {
+      "category": "zero_source",
+      "page": 13
+    },
+    {
+      "category": "zero_source",
+      "page": 14
+    },
+    {
+      "category": "tail",
+      "page": 15
+    },
+    {
+      "category": "tail",
+      "page": 16
+    },
+    {
+      "category": "tail",
+      "page": 17
+    },
+    {
+      "category": "tail",
+      "page": 18
+    },
+    {
+      "category": "tail",
+      "page": 19
+    },
+    {
+      "category": "tail",
+      "page": 20
+    },
+    {
+      "category": "tail",
+      "page": 21
+    },
+    {
+      "category": "tail",
+      "page": 22
+    },
+    {
+      "category": "tail",
+      "page": 23
+    },
+    {
+      "category": "tail",
+      "page": 24
+    },
+    {
+      "category": "tail",
+      "page": 25
+    },
+    {
+      "category": "tail",
+      "page": 26
+    },
+    {
+      "category": "tail",
+      "page": 27
+    },
+    {
+      "category": "tail",
+      "page": 28
+    },
+    {
+      "category": "tail",
+      "page": 29
+    },
+    {
+      "category": "tail",
+      "page": 30
+    },
+    {
+      "category": "tail",
+      "page": 31
+    },
+    {
+      "category": "tail",
+      "page": 32
+    },
+    {
+      "category": "tail",
+      "page": 33
+    },
+    {
+      "category": "tail",
+      "page": 34
+    },
+    {
+      "category": "tail",
+      "page": 35
+    },
+    {
+      "category": "tail",
+      "page": 36
+    },
+    {
+      "category": "tail",
+      "page": 37
+    },
+    {
+      "category": "tail",
+      "page": 38
+    },
+    {
+      "category": "tail",
+      "page": 39
+    },
+    {
+      "category": "tail",
+      "page": 40
+    },
+    {
+      "category": "tail",
+      "page": 41
+    },
+    {
+      "category": "tail",
+      "page": 42
+    },
+    {
+      "category": "tail",
+      "page": 43
+    },
+    {
+      "category": "tail",
+      "page": 44
+    },
+    {
+      "category": "tail",
+      "page": 45
+    },
+    {
+      "category": "tail",
+      "page": 46
+    },
+    {
+      "category": "tail",
+      "page": 47
+    },
+    {
+      "category": "tail",
+      "page": 48
+    },
+    {
+      "category": "tail",
+      "page": 49
+    },
+    {
+      "category": "tail",
+      "page": 50
+    },
+    {
+      "category": "tail",
+      "page": 51
+    },
+    {
+      "category": "tail",
+      "page": 52
+    },
+    {
+      "category": "tail",
+      "page": 53
+    },
+    {
+      "category": "tail",
+      "page": 54
+    },
+    {
+      "category": "tail",
+      "page": 55
+    },
+    {
+      "category": "tail",
+      "page": 56
+    },
+    {
+      "category": "tail",
+      "page": 57
+    },
+    {
+      "category": "tail",
+      "page": 58
+    },
+    {
+      "category": "tail",
+      "page": 59
+    },
+    {
+      "category": "tail",
+      "page": 60
+    },
+    {
+      "category": "tail",
+      "page": 61
+    },
+    {
+      "category": "tail",
+      "page": 62
+    },
+    {
+      "category": "tail",
+      "page": 63
+    },
+    {
+      "category": "tail",
+      "page": 64
+    }
+  ],
+  "scope": "Read-only contract review plus finite arithmetic checks; Lean proves arbitrary Nat q.",
+  "status": "assembly_premise_and_finite_partition_audit_passed",
+  "target_nonzero": "Only target q != zeroTarget q is a parameter of the queried theorem. No all-page nonzero field exists.",
+  "zero_source_pages": [
+    5,
+    8,
+    9,
+    10,
+    11,
+    13,
+    14
+  ]
+}

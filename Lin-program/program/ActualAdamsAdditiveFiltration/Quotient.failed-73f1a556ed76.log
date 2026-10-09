@@ -1,0 +1,5 @@
+ActualAdamsAdditiveFiltration/Quotient.lean:6:4: error(lean.dependsOnNoncomputable): failed to compile definition, consider marking it as 'noncomputable' because it depends on 'system', which is 'noncomputable'
+'ActualAdamsAdditiveFiltration.image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.image_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.image_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsAdditiveFiltration.quotientAdd_mk' depends on axioms: [propext, Classical.choice, Quot.sound]

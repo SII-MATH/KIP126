@@ -1,0 +1,24 @@
+ActualAdamsUniqueBridge/Fact764.lean:37:97: error: unexpected identifier; expected '}'
+ActualAdamsUniqueBridge/Fact764.lean:37:44: error: Type mismatch
+  c.coordinates
+has type
+  Coordinates S 4 degree (matrixOf c.wire.comparison.k c.wire.comparison.m c.wire.comparison.outgoing)
+    (matrixOf c.wire.comparison.m c.wire.comparison.n c.wire.comparison.incoming)
+but is expected to have type
+  Coordinates S 4 degree
+    (matrixOf (Fact764ConstrainedE5.Actual.wire false).comparison.k
+      (Fact764ConstrainedE5.Actual.wire false).comparison.m
+      (Fact764ConstrainedE5.Actual.wire false).comparison.outgoing)
+    (matrixOf (Fact764ConstrainedE5.Actual.wire false).comparison.m
+      (Fact764ConstrainedE5.Actual.wire false).comparison.n
+      (Fact764ConstrainedE5.Actual.wire false).comparison.incoming)
+ActualAdamsUniqueBridge/Fact764.lean:36:88: error: unsolved goals
+S : AdamsSpectralSequence
+x : (S.element 4 degree).carrier
+c : Certificate S 4 degree x
+wire : c.wire = Fact764ConstrainedE5.Actual.wire false
+bound : Certificate S 4 degree x := sorry
+⊢ IsUnique S 4 degree x
+'ActualAdamsUniqueBridge.Fact764.unique' depends on axioms: [propext, Quot.sound]
+'ActualAdamsUniqueBridge.Fact764.unique_by_tactic' depends on axioms: [propext, sorryAx, Quot.sound]
+'ActualAdamsUniqueBridge.Fact764.actual_e5_cardinality' depends on axioms: [propext, Classical.choice, Quot.sound]

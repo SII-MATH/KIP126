@@ -1,0 +1,8 @@
+FilteredExtensionCertificates.Dimension64.wire : WireCertificate
+FilteredExtensionCertificates/Dimension64.lean:35:2: error: Tactic `rfl` failed: The left-hand side
+  decode wire
+is not definitionally equal to the right-hand side
+  Except.ok ⟨input, certificate⟩
+
+⊢ decode wire = Except.ok ⟨input, certificate⟩
+'FilteredExtensionCertificates.Dimension64.decoded' depends on axioms: [propext, sorryAx]

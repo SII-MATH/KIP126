@@ -1,0 +1,1130 @@
+{
+  "raw_row": [
+    2773,
+    13,
+    135,
+    "1",
+    null,
+    9000
+  ],
+  "metadata": {
+    "version": 3,
+    "change notes": "Add fil,from,to in version table of maps.",
+    "t_max": 261,
+    "d2_t_max": 177,
+    "timestamp": 1710516671
+  },
+  "comparisons": {
+    "eta": {
+      "rows": [
+        [],
+        [
+          {
+            "id": 3,
+            "mon": "1,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 4,
+            "mon": "0,3",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 1,
+        "m": 1,
+        "n": 0,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        1,
+        2
+      ]
+    },
+    "right": {
+      "rows": [
+        [],
+        [
+          {
+            "id": 2619,
+            "mon": "1,1,351,1",
+            "d2": ""
+          },
+          {
+            "id": 2620,
+            "mon": "0,1,365,1",
+            "d2": "1"
+          }
+        ],
+        [
+          {
+            "id": 2679,
+            "mon": "385,1",
+            "d2": ""
+          },
+          {
+            "id": 2680,
+            "mon": "0,2,363,1",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          true
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [],
+        "k": 2,
+        "m": 2,
+        "n": 0,
+        "outgoing": [
+          false,
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        12,
+        133
+      ]
+    },
+    "leftTarget": {
+      "rows": [
+        [],
+        [
+          {
+            "id": 8,
+            "mon": "0,5",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        5,
+        5
+      ]
+    },
+    "rightTarget": {
+      "rows": [
+        [
+          {
+            "id": 2771,
+            "mon": "406,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 2837,
+            "mon": "7,1,266,1",
+            "d2": "1"
+          },
+          {
+            "id": 2838,
+            "mon": "3,2,267,1",
+            "d2": "1"
+          }
+        ],
+        [
+          {
+            "id": 2901,
+            "mon": "16,1,209,1",
+            "d2": ""
+          },
+          {
+            "id": 2902,
+            "mon": "0,1,2,1,359,1",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        16,
+        136
+      ]
+    },
+    "source": {
+      "rows": [
+        [
+          {
+            "id": 2685,
+            "mon": "387,1",
+            "d2": ""
+          },
+          {
+            "id": 2686,
+            "mon": "386,1",
+            "d2": "2"
+          },
+          {
+            "id": 2687,
+            "mon": "18,1,189,1",
+            "d2": ""
+          },
+          {
+            "id": 2688,
+            "mon": "0,1,69,1,80,1",
+            "d2": "2"
+          },
+          {
+            "id": 2689,
+            "mon": "0,2,366,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 2772,
+            "mon": "407,1",
+            "d2": ""
+          },
+          {
+            "id": 2773,
+            "mon": "1,2,351,1",
+            "d2": ""
+          },
+          {
+            "id": 2774,
+            "mon": "0,2,69,1,79,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 2839,
+            "mon": "7,1,267,1",
+            "d2": ""
+          },
+          {
+            "id": 2840,
+            "mon": "1,1,385,1",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "k": 2,
+        "m": 3,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        13,
+        135
+      ]
+    },
+    "target": {
+      "rows": [
+        [
+          {
+            "id": 2909,
+            "mon": "424,1",
+            "d2": "3"
+          },
+          {
+            "id": 2910,
+            "mon": "423,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 2993,
+            "mon": "436,1",
+            "d2": "0"
+          },
+          {
+            "id": 2994,
+            "mon": "23,1,188,1",
+            "d2": "0,2"
+          },
+          {
+            "id": 2995,
+            "mon": "0,1,422,1",
+            "d2": "2"
+          },
+          {
+            "id": 2996,
+            "mon": "0,2,7,1,267,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3064,
+            "mon": "0,1,22,1,188,1",
+            "d2": ""
+          },
+          {
+            "id": 3065,
+            "mon": "0,1,8,1,267,1",
+            "d2": ""
+          },
+          {
+            "id": 3066,
+            "mon": "0,2,17,1,209,1",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "k": 3,
+        "m": 4,
+        "n": 2,
+        "outgoing": [
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        "projection": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "object": "S0",
+      "degree": [
+        17,
+        138
+      ]
+    }
+  },
+  "raw_staircase_rows": {
+    "eta": [
+      [
+        3,
+        "0",
+        null,
+        9000
+      ]
+    ],
+    "right": [
+      [
+        2619,
+        "0",
+        null,
+        9992
+      ],
+      [
+        2620,
+        "1",
+        "1",
+        9998
+      ]
+    ],
+    "leftTarget": [
+      [
+        8,
+        "0",
+        null,
+        9000
+      ]
+    ],
+    "rightTarget": [
+      [
+        2837,
+        "0,1",
+        null,
+        9993
+      ],
+      [
+        2838,
+        "1",
+        "1",
+        9998
+      ]
+    ],
+    "source": [
+      [
+        2772,
+        "2",
+        "1",
+        2
+      ],
+      [
+        2773,
+        "1",
+        null,
+        9000
+      ],
+      [
+        2774,
+        "0",
+        "2",
+        9997
+      ]
+    ],
+    "target": [
+      [
+        2993,
+        "3",
+        "0",
+        2
+      ],
+      [
+        2994,
+        "0,1,2",
+        null,
+        9000
+      ],
+      [
+        2995,
+        "1,2",
+        "0",
+        9998
+      ],
+      [
+        2996,
+        "2",
+        "2",
+        9998
+      ]
+    ]
+  },
+  "products": [
+    {
+      "name": "sourceProduct",
+      "column": 0,
+      "left_basis": {
+        "id": 3,
+        "mon": "1,1",
+        "d2": ""
+      },
+      "right_basis": {
+        "id": 2619,
+        "mon": "1,1,351,1",
+        "d2": ""
+      },
+      "target_basis": [
+        {
+          "id": 2772,
+          "mon": "407,1",
+          "d2": ""
+        },
+        {
+          "id": 2773,
+          "mon": "1,2,351,1",
+          "d2": ""
+        },
+        {
+          "id": 2774,
+          "mon": "0,2,69,1,79,1",
+          "d2": ""
+        }
+      ],
+      "left_degree": [
+        1,
+        2
+      ],
+      "right_degree": [
+        12,
+        133
+      ],
+      "target_degree": [
+        13,
+        135
+      ],
+      "bundle": {
+        "relations": [],
+        "input": [
+          [
+            1,
+            1,
+            351
+          ]
+        ],
+        "output": [
+          [
+            1,
+            1,
+            351
+          ]
+        ],
+        "terms": []
+      },
+      "coordinates": [
+        1
+      ],
+      "relation_sources": []
+    },
+    {
+      "name": "sourceProduct",
+      "column": 1,
+      "left_basis": {
+        "id": 3,
+        "mon": "1,1",
+        "d2": ""
+      },
+      "right_basis": {
+        "id": 2620,
+        "mon": "0,1,365,1",
+        "d2": "1"
+      },
+      "target_basis": [
+        {
+          "id": 2772,
+          "mon": "407,1",
+          "d2": ""
+        },
+        {
+          "id": 2773,
+          "mon": "1,2,351,1",
+          "d2": ""
+        },
+        {
+          "id": 2774,
+          "mon": "0,2,69,1,79,1",
+          "d2": ""
+        }
+      ],
+      "left_degree": [
+        1,
+        2
+      ],
+      "right_degree": [
+        12,
+        133
+      ],
+      "target_degree": [
+        13,
+        135
+      ],
+      "bundle": {
+        "relations": [
+          [
+            [
+              0,
+              1
+            ]
+          ]
+        ],
+        "input": [
+          [
+            0,
+            1,
+            365
+          ]
+        ],
+        "output": [],
+        "terms": [
+          {
+            "relation": 0,
+            "multiplier": [
+              [
+                365
+              ]
+            ]
+          }
+        ]
+      },
+      "coordinates": [],
+      "relation_sources": [
+        {
+          "rowid": 1,
+          "raw": "0,1,1,1",
+          "degree": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "name": "leftProduct",
+      "column": 0,
+      "left_basis": {
+        "id": 8,
+        "mon": "0,5",
+        "d2": ""
+      },
+      "right_basis": {
+        "id": 2619,
+        "mon": "1,1,351,1",
+        "d2": ""
+      },
+      "target_basis": [
+        {
+          "id": 2993,
+          "mon": "436,1",
+          "d2": "0"
+        },
+        {
+          "id": 2994,
+          "mon": "23,1,188,1",
+          "d2": "0,2"
+        },
+        {
+          "id": 2995,
+          "mon": "0,1,422,1",
+          "d2": "2"
+        },
+        {
+          "id": 2996,
+          "mon": "0,2,7,1,267,1",
+          "d2": ""
+        }
+      ],
+      "left_degree": [
+        5,
+        5
+      ],
+      "right_degree": [
+        12,
+        133
+      ],
+      "target_degree": [
+        17,
+        138
+      ],
+      "bundle": {
+        "relations": [
+          [
+            [
+              0,
+              1
+            ]
+          ]
+        ],
+        "input": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            351
+          ]
+        ],
+        "output": [],
+        "terms": [
+          {
+            "relation": 0,
+            "multiplier": [
+              [
+                0,
+                0,
+                0,
+                0,
+                351
+              ]
+            ]
+          }
+        ]
+      },
+      "coordinates": [],
+      "relation_sources": [
+        {
+          "rowid": 1,
+          "raw": "0,1,1,1",
+          "degree": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "name": "leftProduct",
+      "column": 1,
+      "left_basis": {
+        "id": 8,
+        "mon": "0,5",
+        "d2": ""
+      },
+      "right_basis": {
+        "id": 2620,
+        "mon": "0,1,365,1",
+        "d2": "1"
+      },
+      "target_basis": [
+        {
+          "id": 2993,
+          "mon": "436,1",
+          "d2": "0"
+        },
+        {
+          "id": 2994,
+          "mon": "23,1,188,1",
+          "d2": "0,2"
+        },
+        {
+          "id": 2995,
+          "mon": "0,1,422,1",
+          "d2": "2"
+        },
+        {
+          "id": 2996,
+          "mon": "0,2,7,1,267,1",
+          "d2": ""
+        }
+      ],
+      "left_degree": [
+        5,
+        5
+      ],
+      "right_degree": [
+        12,
+        133
+      ],
+      "target_degree": [
+        17,
+        138
+      ],
+      "bundle": {
+        "relations": [
+          [
+            [
+              0,
+              0,
+              0,
+              365
+            ]
+          ]
+        ],
+        "input": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            365
+          ]
+        ],
+        "output": [],
+        "terms": [
+          {
+            "relation": 0,
+            "multiplier": [
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "coordinates": [],
+      "relation_sources": [
+        {
+          "rowid": 9235,
+          "raw": "0,3,365,1",
+          "degree": [
+            14,
+            135
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rightProduct",
+      "column": 0,
+      "left_basis": {
+        "id": 3,
+        "mon": "1,1",
+        "d2": ""
+      },
+      "right_basis": {
+        "id": 2837,
+        "mon": "7,1,266,1",
+        "d2": "1"
+      },
+      "target_basis": [
+        {
+          "id": 2993,
+          "mon": "436,1",
+          "d2": "0"
+        },
+        {
+          "id": 2994,
+          "mon": "23,1,188,1",
+          "d2": "0,2"
+        },
+        {
+          "id": 2995,
+          "mon": "0,1,422,1",
+          "d2": "2"
+        },
+        {
+          "id": 2996,
+          "mon": "0,2,7,1,267,1",
+          "d2": ""
+        }
+      ],
+      "left_degree": [
+        1,
+        2
+      ],
+      "right_degree": [
+        16,
+        136
+      ],
+      "target_degree": [
+        17,
+        138
+      ],
+      "bundle": {
+        "relations": [
+          [
+            [
+              1,
+              266
+            ],
+            [
+              0,
+              0,
+              267
+            ]
+          ]
+        ],
+        "input": [
+          [
+            1,
+            7,
+            266
+          ]
+        ],
+        "output": [
+          [
+            0,
+            0,
+            7,
+            267
+          ]
+        ],
+        "terms": [
+          {
+            "relation": 0,
+            "multiplier": [
+              [
+                7
+              ]
+            ]
+          }
+        ]
+      },
+      "coordinates": [
+        3
+      ],
+      "relation_sources": [
+        {
+          "rowid": 6165,
+          "raw": "1,1,266,1;0,2,267,1",
+          "degree": [
+            16,
+            122
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rightProduct",
+      "column": 1,
+      "left_basis": {
+        "id": 3,
+        "mon": "1,1",
+        "d2": ""
+      },
+      "right_basis": {
+        "id": 2838,
+        "mon": "3,2,267,1",
+        "d2": "1"
+      },
+      "target_basis": [
+        {
+          "id": 2993,
+          "mon": "436,1",
+          "d2": "0"
+        },
+        {
+          "id": 2994,
+          "mon": "23,1,188,1",
+          "d2": "0,2"
+        },
+        {
+          "id": 2995,
+          "mon": "0,1,422,1",
+          "d2": "2"
+        },
+        {
+          "id": 2996,
+          "mon": "0,2,7,1,267,1",
+          "d2": ""
+        }
+      ],
+      "left_degree": [
+        1,
+        2
+      ],
+      "right_degree": [
+        16,
+        136
+      ],
+      "target_degree": [
+        17,
+        138
+      ],
+      "bundle": {
+        "relations": [
+          [
+            [
+              1,
+              3,
+              3
+            ]
+          ]
+        ],
+        "input": [
+          [
+            1,
+            3,
+            3,
+            267
+          ]
+        ],
+        "output": [],
+        "terms": [
+          {
+            "relation": 0,
+            "multiplier": [
+              [
+                267
+              ]
+            ]
+          }
+        ]
+      },
+      "coordinates": [],
+      "relation_sources": [
+        {
+          "rowid": 13,
+          "raw": "1,1,3,2",
+          "degree": [
+            3,
+            18
+          ]
+        }
+      ]
+    }
+  ],
+  "input_sha256": {
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "Row2773D4Leibniz/generate.py": "75ad08706dc778b5956f38a7565c0c32416f4ffba3393e55982c0dd567c02e6d",
+    "Row3147MapSearch/search_lifted.py": "6b68970c3b595dd41338ac0755eafa214ea4b8ff395da3b5a47b06063e4882ff",
+    "RealMapCertificates/export.py": "5a2ef8e13db70aca3f9c4988867d892d98d2a4ee9c9e21abee5e134df6ce70bd"
+  },
+  "limitation": "Complete finite d2 quotients and polynomial products only; actual quotient and product meanings remain explicit. No NULL d3 prefix is used."
+}

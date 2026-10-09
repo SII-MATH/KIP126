@@ -1,0 +1,106 @@
+{
+  "status": "independent_review_passed_no_findings",
+  "finite_lists": {
+    "cases": 97656,
+    "accepted": 32,
+    "rejected": 97624
+  },
+  "arbitrary_encoding_cases": {
+    "cases": 110565,
+    "accepted": 801,
+    "unique_but_rejected": 4464,
+    "noninjective_encoding_accepted": 801
+  },
+  "fact713": {
+    "entries": 1234,
+    "adjacent_checks": 1233,
+    "strictly_increasing": true,
+    "first_code": 133710,
+    "last_code": 487334,
+    "minimum_gap": 1,
+    "page_range": [
+      2,
+      7
+    ],
+    "s_range": [
+      -54,
+      72
+    ],
+    "t_range": [
+      78,
+      186
+    ]
+  },
+  "compile_evidence": [
+    {
+      "module": "FamilyKeyOrder.Basic",
+      "observed_exit_code": 0,
+      "source_sha256": "56649250108c59087cd6507d0045499ce14014fcd8faa1402fccbf8aacc339d5",
+      "log_sha256": "d6a529d9705938e1668c5ba9bd7da1d9bdefbc503e84e1c95d95ecb6fc931a37",
+      "standard_reports": 4,
+      "current_object_matches_direct": true
+    },
+    {
+      "module": "FamilyKeyOrder.Examples",
+      "observed_exit_code": 0,
+      "source_sha256": "3daa94b83548ad8139e699953f3bfc845b775c88f1276ba6c4a0c4bd8b021698",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "standard_reports": 0,
+      "current_object_matches_direct": true
+    },
+    {
+      "module": "Fact713ComparisonBatches.Imported",
+      "observed_exit_code": 0,
+      "source_sha256": "a9e828466e905aa1b135c60260e571302adb96bf785bc0ff08afd5f9cbea7faa",
+      "log_sha256": "328cf99a36448d026946fa2a472f8ce89e08fd7757f81bf9816d7d1af703907a",
+      "standard_reports": 2,
+      "current_object_matches_direct": true
+    }
+  ],
+  "scope": "Sufficient uniqueness check only. No global encoding injectivity, converse uniqueness completeness, matrix validity, coverage or actual Adams realization is claimed.",
+  "input_sha256": {
+    "Fact713ComparisonBatches/Batch00.json": "7f9764d28da3c2cd9fbb16a14ff4a55da20e98eab21554bc45bc44d3dd166377",
+    "Fact713ComparisonBatches/Batch01.json": "e2f87a1e3346f11e2b8e1ee956c1391eb5c1ec89a053f12c80aef5cae43bc1b0",
+    "Fact713ComparisonBatches/Batch02.json": "b32e2fb2d6347ff4694d967b4fb6427d67150a3a7bd531f1eb4fb4312f3f396d",
+    "Fact713ComparisonBatches/Batch03.json": "49d2b303409f947a74a807ec62a09e9170e5961fa70fc1dc34e04a73b016a01a",
+    "Fact713ComparisonBatches/Batch04.json": "35cd9a78c9479cc7cde4ac4db0521bb384dd42fd2e2d61d25ed9b18af856731f",
+    "Fact713ComparisonBatches/Batch05.json": "ad6be5e4045c08182bcc92f7d1cba937f87e73203c936c08d34942e9aa55b3b8",
+    "Fact713ComparisonBatches/Batch06.json": "c66fa59a8e59ca66f6235a00641b670af7868158cb2e02b3f7db78a0a945f5fc",
+    "Fact713ComparisonBatches/Batch07.json": "1c0f7a2ab068496841d5c1f9d2ae49f963ed2f1d7fc9ccc10ef08e2d50aaaefa",
+    "Fact713ComparisonBatches/Batch08.json": "87a4055efcf17ba0978e9ad8bd4a997b4c267cf339286386be92ea611058601a",
+    "Fact713ComparisonBatches/Batch09.json": "c71a0046ae5d13eec646c99b4da25f4cf814d0948391b6773763c1ff512412b8",
+    "Fact713ComparisonBatches/Batch10.json": "42fcd9015e63ebef96adbae736fa8e67ef804675ad532b510ddbd85f45b2d768",
+    "Fact713ComparisonBatches/Batch11.json": "5a8257723b0e3ab6a6aa0e1da966f89b2fc66da0bcaa6191f5a21bbbd5a4a20d",
+    "Fact713ComparisonBatches/Batch12.json": "7acdfe9ce98b3ffcc3e56d3744933249eadaab079dc6b2be8bee77a9c8e7bd5d",
+    "Fact713ComparisonBatches/Batch13.json": "d3515525e58fcd792bfcbaf5499775dccbee773738a005e5a0f999a396f35da4",
+    "Fact713ComparisonBatches/Batch14.json": "6bf8f6264b82e6fa9e56fe65c0856b98863e03738f1b274f269b8dcc2c197403",
+    "Fact713ComparisonBatches/Batch15.json": "cbacb889004d7d45c59d7059a5c2f7e1f90aa0fe929dd87d161947f9364c442b",
+    "Fact713ComparisonBatches/Batch16.json": "221cd9859fb97b42ae0fbde007c6139529260d0f424c487ee8c6c70ce7eeff0f",
+    "Fact713ComparisonBatches/Batch17.json": "a05c8a7dde54f185e23d3b8d1c84452672b688791d396a8edd352710b2c87b16",
+    "Fact713ComparisonBatches/Batch18.json": "e3d2a21d747444242af6ed2ef094ac6668cb87e801a95575b7297517bc8dc437",
+    "Fact713ComparisonBatches/Batch19.json": "da665306fbbf160824f8ec5363f57d1c4510be3736cd550abbe15040b61ff79e",
+    "Fact713ComparisonBatches/Batch20.json": "9b2a3bc7f253dcb6b2612f5872993eca5a7ae8d88aeb4270012adb3b0a7e02e3",
+    "Fact713ComparisonBatches/Batch21.json": "a67167c3f221a1d11e7407f2a280c80413f4c8826741b891df8cd361263829e3",
+    "Fact713ComparisonBatches/Batch22.json": "b5d795e9ad4524b4549d54fdafab14505501b2fc43b3e6bd5a2f597b95ddc9ff",
+    "Fact713ComparisonBatches/Batch23.json": "fc8f14c7d2de8a5c522b94d99662406f7f1ed63f57824d7a6f9265e0139a2f17",
+    "Fact713ComparisonBatches/Batch24.json": "1596a2a429a6b6de8a0aa0715dfd2a26fac145158cebf6defa058db910379713",
+    "Fact713ComparisonBatches/Batch25.json": "cfac2711833772d2aa4a4c3feef1dbe7ea65526340f8cf459fd7f5cfaaa68ec6",
+    "Fact713ComparisonBatches/Batch26.json": "2a4be204dd4f2602c784c76a29196a81d61fb18a2cd9ea0d2b78b58a8fe1c9ac",
+    "Fact713ComparisonBatches/Batch27.json": "7f90e67e35cdf703bc0b31d0acd587cd4c75b6ac71cf9a23448bb041c7b36cfc",
+    "Fact713ComparisonBatches/Batch28.json": "efff08e5af97957aaab3606fbad06f6852037a0caca9258f6c2664247f277c85",
+    "Fact713ComparisonBatches/Batch29.json": "f6ea4164e06d3fc00d858dd5ced20dbeaf55c4fbe61f634ccf1942d4216123a6",
+    "Fact713ComparisonBatches/Batch30.json": "27cd2d6d390489f9ae1646c7d0232f141387af5332ae0da468ae0ac737b3016a",
+    "FamilyKeyOrder/Basic.lean": "56649250108c59087cd6507d0045499ce14014fcd8faa1402fccbf8aacc339d5",
+    "FamilyKeyOrder/Basic.log": "d6a529d9705938e1668c5ba9bd7da1d9bdefbc503e84e1c95d95ecb6fc931a37",
+    "FamilyKeyOrder/Basic-compile.json": "a8f23380c3084ba896a721397d3c6b0a382e07b1bba904d56cdc8695b3153e21",
+    "FamilyKeyOrder/Examples.lean": "3daa94b83548ad8139e699953f3bfc845b775c88f1276ba6c4a0c4bd8b021698",
+    "FamilyKeyOrder/Examples.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "FamilyKeyOrder/Examples-compile.json": "ea23a425084186b33fe8f0beb18031b0dfad3fe5e3a954c0e8a610cf152a998e",
+    "Fact713ComparisonBatches/Imported.lean": "a9e828466e905aa1b135c60260e571302adb96bf785bc0ff08afd5f9cbea7faa",
+    "Fact713ComparisonBatches/Imported.log": "328cf99a36448d026946fa2a472f8ce89e08fd7757f81bf9816d7d1af703907a",
+    "Fact713ComparisonBatches/Imported-compile.json": "f2e6edcdc1ee25767ea2dd33321a6362423b2bfc6dfb8f6a3ca3449cb7e05a29",
+    "FamilyKeyOrder/independent-review.py": "ec53d952e469658f9c193ea3a2c52980b512b5abed9a76c125211742b346ec4d",
+    "Fact713ComparisonBatches/family.json": "3b6aece24381ef709107ea3693e96753115540d7cb880f7f0b777305e311aa01",
+    "Fact713E12Search/successor-search.json": "d0d7283e9fe616087389078d58613fd027b9781557f8436652401a31e0908328"
+  }
+}

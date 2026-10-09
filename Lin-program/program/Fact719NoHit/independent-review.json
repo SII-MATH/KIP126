@@ -1,0 +1,48 @@
+{
+  "status": "pass_no_findings",
+  "frozen_files": 19,
+  "modules": 2,
+  "standard_only_axiom_reports": 7,
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "declared_bounds": {
+    "E2_t_max": 261,
+    "d2_t_max": 177
+  },
+  "raw_source_checks": [
+    {
+      "page": 6,
+      "degree": [
+        2,
+        125
+      ],
+      "basis_count": 0,
+      "staircase_count": 0,
+      "inside_E2_window": true
+    },
+    {
+      "page": 7,
+      "degree": [
+        1,
+        124
+      ],
+      "basis_count": 0,
+      "staircase_count": 0,
+      "inside_E2_window": true
+    },
+    {
+      "page": 8,
+      "degree": [
+        0,
+        123
+      ],
+      "basis_count": 0,
+      "staircase_count": 0,
+      "inside_E2_window": true
+    }
+  ],
+  "degree_equations_checked": 639837,
+  "zero_trace_models": 729,
+  "boundary_tail_models": 1512,
+  "indexing": "system n = actual E_(n+2); cutoff4 = E6; n4/5/6 incoming d6/7/8; n>=7 impossible source filtration",
+  "scope": "Every actual Incoming summand covered, including Unit zero; fixed input has nonzero E6 trace and is outside cumulative BInfinity, without outgoing permanence."
+}

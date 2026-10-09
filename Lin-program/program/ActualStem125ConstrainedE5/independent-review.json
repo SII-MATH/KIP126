@@ -1,0 +1,131 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "finite_replay": {
+    "full_wire_models": 42,
+    "relabelled_addition_pairs": 1464,
+    "full_actual_cycle_pairs": 846,
+    "next_representatives": 67,
+    "positive_centers": 17,
+    "zero_centers": 28,
+    "original_centers": 45,
+    "original_indices": {
+      "originalPositive": [
+        1,
+        4,
+        6,
+        8,
+        9,
+        10,
+        11,
+        13,
+        16,
+        17,
+        20,
+        26,
+        32,
+        36,
+        39,
+        40,
+        41
+      ],
+      "originalZero": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        12,
+        14,
+        15,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        37,
+        38,
+        42,
+        43,
+        44
+      ]
+    },
+    "named_degree": [
+      25,
+      150
+    ],
+    "retained_choices": 48,
+    "dimension_counts": {
+      "6": 8,
+      "5": 20,
+      "4": 16,
+      "3": 4
+    },
+    "whole_next_tuples": 1440
+  },
+  "semantic_checks": [
+    "All actual carriers and maps fixed by same S and pages.",
+    "Incoming is full Unit plus dependent sum over source degrees, not a selected list.",
+    "WholeMeaning supplies current/incoming completeness and current/target/next faithfulness.",
+    "Next-coordinate surjectivity and cardinality are conclusions, not certificate fields.",
+    "SameCoordinates holds on every actual named-degree current element; named_current uses it.",
+    "The numerical positive_bounds proof does not use _same; combined Certificate still requires it.",
+    "28 zero factors require faithful actual E4-to-Vec0 maps and actual homology surjectivity.",
+    "Tactic applies whole_bounds using mathematical meaning proofs and previously checked comparisons."
+  ],
+  "limitations": [
+    "Finite replays test concrete models and do not prove the Lean theorems.",
+    "Exactly 45 recorded centers; no exhaustion of all actual stem filtrations.",
+    "No actual sphere instance, global realization of 48 choices, later permanence or convergence.",
+    "Finite map/product obstruction meanings remain independent explicit hypotheses."
+  ],
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "exit_code": 0,
+      "standard_axiom_reports": 5,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Actual",
+      "exit_code": 0,
+      "standard_axiom_reports": 5,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Whole",
+      "exit_code": 0,
+      "standard_axiom_reports": 6,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "standard_axiom_reports": 16,
+  "inputs_sha256": {
+    "ActualStem125ConstrainedE5/Basic.lean": "bc4d5c4f0cc8b89d18bf342133228e729752b4459df84c5f03db07d48704822c",
+    "ActualStem125ConstrainedE5/Actual.lean": "1a510188d114e2d839b31958ab7a690ecbe481f32c21ea6bf55a290b736d0397",
+    "ActualStem125ConstrainedE5/Whole.lean": "d09cd81507409fe9cb27582c57a5617c3fbb576188ba9d46d531a250525fd583",
+    "ActualStem125ConstrainedE5/README.md": "dc7f725519e5b66ba2ff9c2bd5e92fa7b84abbf52d5590c9b1a4073106ace267",
+    "ActualStem125ConstrainedE5/independent-review.py": "f4352b9040439582dadfe2083b5f8626a21439332855b7fb1621bb2b7125f2e0",
+    "Stem125HomologyCertificates/Meaning.lean": "28aafea98b9c826d05d27f326374550887c03bc0b3c6dcd6712ece18d684f8ff",
+    "SemanticTrajectoryCertificates/Page.lean": "64539da0617101de775a1f59502308d34ac7c8d754165f0911d04ee1af65082f",
+    "Stem125E5Search/Product.lean": "386974155d8e529db929448c5b9cee0e1f198d0f1c5a8e7c5629322662229533",
+    "Stem125E5Search/branches.json": "db3f9503b56460ec6860d76cdd445ebd63a30750e3def68afc61926d3fdb2987",
+    "Stem125E5Search/search.json": "0547da02505a480429886d36e44df6f4cb5baaf50aeb7783de3da1a32b1b97da",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "Stem125HomologyCertificates/coverage.json": "310592d99961ba9d3af4012f3f76ae0a7a19298546176e68c1a286ba818436b1"
+  }
+}

@@ -1,0 +1,10 @@
+Row3152BranchCertificates/Semantics.lean:69:12: error: failed to synthesize
+  Decidable
+    (∀ (d : Matrix 1 2),
+      (eval d fun i => ↑i == 0) = zero → InKernel d RemainingThreeAudit.event3152Source → d = fun x x_1 => false)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'Row3152BranchCertificates.Semantics.both_paths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3152BranchCertificates.Semantics.both_comparisons' depends on axioms: [propext, Quot.sound]
+'Row3152BranchCertificates.Semantics.source_d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row3152BranchCertificates.Semantics.both_pinned' does not depend on any axioms

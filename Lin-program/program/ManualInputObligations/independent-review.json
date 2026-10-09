@@ -1,0 +1,176 @@
+{
+  "build_observation": [
+    {
+      "current_source_log": true,
+      "exit_code": 0,
+      "module": "ManualInputObligations.Reference.Foundations"
+    },
+    {
+      "current_source_log": true,
+      "exit_code": 0,
+      "module": "ManualInputObligations.Reference.AlgebraTopology"
+    },
+    {
+      "current_source_log": true,
+      "exit_code": 0,
+      "module": "ManualInputObligations.Reference.CohomologySteenrod"
+    },
+    {
+      "current_source_log": true,
+      "exit_code": 0,
+      "module": "ManualInputObligations.Reference.SteenrodAdams"
+    },
+    {
+      "current_source_log": true,
+      "exit_code": 0,
+      "module": "ManualInputObligations.Reference.AdamsHomology"
+    },
+    {
+      "current_source_log": true,
+      "exit_code": 0,
+      "module": "ManualInputObligations.Reference.AdamsRules"
+    },
+    {
+      "current_source_log": true,
+      "exit_code": 0,
+      "module": "ManualInputObligations.Typed"
+    }
+  ],
+  "contracts": [
+    "exact actual d5/d6/d3 equations",
+    "E2 products then quotient traces",
+    "explicit optional V2NameMatches",
+    "no inferred nonzero from type-only homology equivalence",
+    "ExternalProofs proof fields not generated from strings/status/hash"
+  ],
+  "copies": [
+    {
+      "body_identical": true,
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference",
+        "Umbrella Mathlib.Tactic replaced by existing Omega, Abel, NormNum and Real.Basic imports"
+      ],
+      "copy": "ManualInputObligations/Reference/Foundations.lean",
+      "original": "Reference/LinProgramReference/Foundations.lean"
+    },
+    {
+      "body_identical": true,
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference",
+        "Added Mathlib.Topology.Constructions and Mathlib.Topology.UniformSpace.Real to supply product/subspace and real topology instances used by unchanged pointed homotopy bodies"
+      ],
+      "copy": "ManualInputObligations/Reference/AlgebraTopology.lean",
+      "original": "Reference/LinProgramReference/AlgebraTopology.lean"
+    },
+    {
+      "body_identical": true,
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference"
+      ],
+      "copy": "ManualInputObligations/Reference/CohomologySteenrod.lean",
+      "original": "Reference/LinProgramReference/CohomologySteenrod.lean"
+    },
+    {
+      "body_identical": true,
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference"
+      ],
+      "copy": "ManualInputObligations/Reference/SteenrodAdams.lean",
+      "original": "Reference/LinProgramReference/SteenrodAdams.lean"
+    },
+    {
+      "body_identical": true,
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference"
+      ],
+      "copy": "ManualInputObligations/Reference/AdamsHomology.lean",
+      "original": "Reference/LinProgramReference/AdamsHomology.lean"
+    },
+    {
+      "body_identical": true,
+      "changes": [
+        "Module import path and namespace rewritten to isolated ManualInputObligations.Reference"
+      ],
+      "copy": "ManualInputObligations/Reference/AdamsRules.lean",
+      "original": "Reference/LinProgramReference/AdamsRules.lean"
+    }
+  ],
+  "findings": [],
+  "inputs_sha256": {
+    "ManualInputObligations/INDEPENDENT_REVIEW.md": "227cb956ca4d16f7af0c090c59a73a8e35fd7f6a512eee7d202a06b908ec4a84",
+    "ManualInputObligations/README.md": "97d530345236217aade7bb4733599aa559e8b05a64b077c4160208f23a1d2771",
+    "ManualInputObligations/Reference/AdamsHomology.lean": "527fc8f59f7dc609c70f359876ec4c83010df3801c5fad301b1b2d0dc4b92232",
+    "ManualInputObligations/Reference/AdamsRules.lean": "f5e899de1219c1df1056ff94aab36049ce54f0621d08f2e35c80564ebdde64ce",
+    "ManualInputObligations/Reference/AlgebraTopology.lean": "a04e55a385ecc61b64eb54c8675f691eec954855d9ff6cba7ca2b104275588fb",
+    "ManualInputObligations/Reference/CohomologySteenrod.lean": "726e956622bec7ef04310a4198543b29147ac5576fd4a97bcde5982c5136f523",
+    "ManualInputObligations/Reference/Foundations.lean": "8ecca340212441285b272a7fea2a2cfa78f28d05338a4fbf54f1923042c875e3",
+    "ManualInputObligations/Reference/SteenrodAdams.lean": "c19f01164e9738b444761d5251348028d2c386308911af720ff399443f812028",
+    "ManualInputObligations/Typed.lean": "d38170dbe354b4af0ecd4ff56846d6144fde3250fa9209db61fd2781a4f98524",
+    "ManualInputObligations/independent-review.py": "646640d57416a0959ff8f4d35f55f51ad8f779e907ba4e1fa0aa83e59fdd1281",
+    "ManualInputObligations/investigation.json": "1d96285e1d5c7911146f10309228d2313503f5191986ee1b7ff04cbb3fd807c5",
+    "ManualInputObligations/isolated-compile-audit.json": "00e4ed71c97d708061281ff78afc366333676a7beb958a1b963492df5eb09d9e",
+    "ManualInputObligations/reference-provenance.json": "d4658470a6178b9def8c7c829499c38e7cbe86af519004e8e3dc9c0ecd7f1bec"
+  },
+  "manual_records": [
+    {
+      "object": "S0",
+      "page": 5,
+      "source": [
+        25,
+        88
+      ],
+      "source_basis_id": 913,
+      "source_staircase_id": 913,
+      "target": [
+        30,
+        92
+      ],
+      "target_basis_id": 1017
+    },
+    {
+      "object": "S0",
+      "page": 6,
+      "source": [
+        56,
+        183
+      ],
+      "source_basis_id": 7371,
+      "source_staircase_id": 7370,
+      "target": [
+        62,
+        188
+      ],
+      "target_basis_id": 7947
+    },
+    {
+      "object": "tmf",
+      "page": 3,
+      "source": [
+        16,
+        112
+      ],
+      "source_basis_id": 2494,
+      "source_staircase_id": 2494,
+      "target": [
+        19,
+        114
+      ],
+      "target_basis_id": 2618
+    }
+  ],
+  "preserved_limitations": [
+    "PageHomologyIdentification lacks zero/add laws",
+    "GeneralizedLeibnizRule is ordinary same-page formula",
+    "old IsPermanentCycle is stronger than outgoing-only semantics",
+    "other inherited records retain uninterpreted Prop fields; Typed does not consume them as proofs"
+  ],
+  "status": "independent_typed_contract_raw_SQL_and_copy_review_passed",
+  "unproved": [
+    "actual sphere/tmf Adams realization",
+    "named Ext interpretations",
+    "endpoint cycle traces",
+    "image J d5/d6 proofs",
+    "Bruner-Rognes d3 proof",
+    "nonzero endpoints where needed"
+  ]
+}

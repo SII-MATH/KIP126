@@ -1,0 +1,110 @@
+Fact721SecondE6/Later.lean:28:38: error(lean.unknownIdentifier): Unknown identifier `pages`
+Fact721SecondE6/Later.lean:28:44: error(lean.unknownIdentifier): Unknown identifier `L.zeros`
+Fact721SecondE6/Later.lean:29:49: error(lean.unknownIdentifier): Unknown identifier `L.incoming6`
+Fact721SecondE6/Later.lean:33:9: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (S.differential 6 { filtration := 6, internal := 129 }).toFun 0
+in the target expression
+  pageCast S 6 ⋯ ((S.differential 6 { filtration := 6, internal := 129 }).toFun 0) = 0
+
+S : AdamsSpectralSequence
+x : ActualAdamsIncomingBridge.Source S 6 degree
+hx : x ⋯ = 0
+⊢ pageCast S 6 ⋯ ((S.differential 6 { filtration := 6, internal := 129 }).toFun 0) = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    Eq.refl true
+  has type
+    @Eq Bool true true
+  but is expected to have type
+    @Eq Bool (decide (6 ≤ degree.filtration)) true
+  in the application
+    id (Eq.refl true)
+Fact721SecondE6/Later.lean:38:38: error(lean.unknownIdentifier): Unknown identifier `pages`
+Fact721SecondE6/Later.lean:38:44: error(lean.unknownIdentifier): Unknown identifier `L.zeros`
+Fact721SecondE6/Later.lean:39:49: error(lean.unknownIdentifier): Unknown identifier `L.incoming7`
+Fact721SecondE6/Later.lean:43:9: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (S.differential 7 { filtration := 5, internal := 128 }).toFun 0
+in the target expression
+  pageCast S 7 ⋯ ((S.differential 7 { filtration := 5, internal := 128 }).toFun 0) = 0
+
+S : AdamsSpectralSequence
+x : ActualAdamsIncomingBridge.Source S 7 degree
+hx : x ⋯ = 0
+⊢ pageCast S 7 ⋯ ((S.differential 7 { filtration := 5, internal := 128 }).toFun 0) = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    Eq.refl true
+  has type
+    @Eq Bool true true
+  but is expected to have type
+    @Eq Bool (decide (7 ≤ degree.filtration)) true
+  in the application
+    id (Eq.refl true)
+Fact721SecondE6/Later.lean:46:3: error(lean.unknownIdentifier): Unknown identifier `L.target6Step3.whole_d6_zero`
+Fact721SecondE6/Later.lean:50:71: error: Invalid field notation: Function `cycle6` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:51:28: error: Invalid field notation: Function `cycle6` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:53:19: error: Invalid field notation: Function `endpoint7` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:55:62: error(lean.unknownIdentifier): Unknown identifier `S`
+Fact721SecondE6/Later.lean:55:64: error(lean.unknownIdentifier): Unknown identifier `pages`
+Fact721SecondE6/Later.lean:55:70: error(lean.unknownIdentifier): Unknown identifier `L.zeros`
+Fact721SecondE6/Later.lean:56:46: error(lean.unknownIdentifier): Unknown identifier `S`
+Fact721SecondE6/Later.lean:56:6: error(lean.unknownIdentifier): Unknown identifier `I.endpoint6.value`
+Fact721SecondE6/Later.lean:56:24: error(lean.unknownIdentifier): Unknown identifier `L.cycle6`
+Fact721SecondE6/Later.lean:57:17: error(lean.unknownIdentifier): Unknown identifier `S.zero_is_zero`
+Fact721SecondE6/Later.lean:58:65: error(lean.unknownIdentifier): Unknown identifier `S`
+Fact721SecondE6/Later.lean:58:76: error(lean.unknownIdentifier): Unknown identifier `I.endpoint6.value`
+Fact721SecondE6/Later.lean:59:8: error(lean.unknownIdentifier): Unknown identifier `I.nonzero6`
+Fact721SecondE6/Later.lean:61:41: error: Invalid field notation: Function `endpoint7` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:62:3: error(lean.unknownIdentifier): Unknown identifier `L.target7.whole_d7_zero`
+Fact721SecondE6/Later.lean:65:53: error: Invalid field notation: Function `endpoint7` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:65:71: error: Invalid field notation: Function `cycle7` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:66:10: error: Invalid field notation: Function `endpoint7` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:66:28: error: Invalid field notation: Function `cycle7` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:68:19: error: Invalid field notation: Function `endpoint8` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:70:62: error(lean.unknownIdentifier): Unknown identifier `S`
+Fact721SecondE6/Later.lean:70:64: error(lean.unknownIdentifier): Unknown identifier `pages`
+Fact721SecondE6/Later.lean:70:70: error(lean.unknownIdentifier): Unknown identifier `L.zeros`
+Fact721SecondE6/Later.lean:71:46: error(lean.unknownIdentifier): Unknown identifier `S`
+Fact721SecondE6/Later.lean:71:6: error(lean.unknownIdentifier): Unknown identifier `L.endpoint7.value`
+Fact721SecondE6/Later.lean:71:24: error(lean.unknownIdentifier): Unknown identifier `L.cycle7`
+Fact721SecondE6/Later.lean:72:17: error(lean.unknownIdentifier): Unknown identifier `S.zero_is_zero`
+Fact721SecondE6/Later.lean:73:65: error(lean.unknownIdentifier): Unknown identifier `S`
+Fact721SecondE6/Later.lean:73:76: error(lean.unknownIdentifier): Unknown identifier `L.endpoint7.value`
+Fact721SecondE6/Later.lean:74:8: error(lean.unknownIdentifier): Unknown identifier `L.nonzero7`
+Fact721SecondE6/Later.lean:78:43: error: Invalid field notation: Function `endpoint8` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:78:64: error: Invalid field notation: Function `endpoint8` does not have a usable parameter of type `LaterInput ...` for which to substitute `L`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondE6/Later.lean:81:10: error(lean.unknownIdentifier): Unknown identifier `L.endpoint8.trace`
+Fact721SecondE6/Later.lean:81:29: error(lean.unknownIdentifier): Unknown identifier `L.nonzero8`
+'Fact721SecondE6.LaterInput.incoming6_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondE6.LaterInput.incoming7_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondE6.LaterInput.cycle6' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondE6.LaterInput.nonzero7' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondE6.LaterInput.cycle7' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact721SecondE6.LaterInput.nonzero8' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondE6.LaterInput.same_input8' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "modules": 9,
+  "standard_axiom_reports": 41,
+  "branches": [
+    {
+      "file": "zero-family.json",
+      "old": 1300,
+      "total": 1314,
+      "quotient_pairs": 9576,
+      "adjacent": 1002,
+      "consecutive": 814,
+      "same_input_finite_E9": true
+    },
+    {
+      "file": "residual-family.json",
+      "old": 1302,
+      "total": 1322,
+      "quotient_pairs": 9587,
+      "adjacent": 1009,
+      "consecutive": 822,
+      "same_input_finite_E9": true
+    }
+  ],
+  "actual_whole_map_review": "No d4 value premise; full previous meanings retained",
+  "inputs": {
+    "Fact721FirstD4Continuation/independent_review.py": "d93dc80e10d93496b11bef1b61b7d035da2db1a71f7d0e34799c00b452ee8ae2",
+    "Fact721FirstD4Continuation/frozen-source.json": "2b12502cf6e64255ff3d2c830427467798d5fb2c262301d6a02d57975eed1ac9",
+    "Fact721FirstD4Continuation/ActualRule.lean": "8eba7d8481b06e07561bd0d3f4a8fbbcf3f2439e86df47a945da0d1752dc422d"
+  }
+}

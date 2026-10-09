@@ -1,0 +1,66 @@
+import FilteredExtensionCertificates.Import
+
+namespace FilteredExtensionCertificates.Examples
+set_option maxRecDepth 100000
+set_option maxHeartbeats 16000000
+
+def correction : WireCertificate :=
+  filtered_extension_certificate% "FilteredExtensionProducer/case_correction.json"
+def nonzero : WireCertificate :=
+  filtered_extension_certificate% "FilteredExtensionProducer/case_nonzero.json"
+def empty : WireCertificate :=
+  filtered_extension_certificate% "FilteredExtensionProducer/case_empty.json"
+def dimension64 : WireCertificate :=
+  filtered_extension_certificate% "FilteredExtensionProducer/case_dimension64.json"
+def batch : List WireCertificate :=
+  filtered_extension_batch% "FilteredExtensionProducer/valid.jsonl"
+
+theorem correction_valid : WireValid correction := by filtered_extension_cert using ()
+theorem nonzero_valid : WireValid nonzero := by filtered_extension_cert using ()
+theorem empty_valid : WireValid empty := by filtered_extension_cert using ()
+theorem batch_count : batch.length = 604 := by decide
+theorem all_valid : ∀ w ∈ batch, WireValid w := checkBatch_sound batch (by decide)
+
+/-- The fixed representative needs a nonzero higher-source correction. -/
+theorem correction_changed : correction.representative ≠ correction.data.x := by decide
+
+def diagnostic (text : String) : Option String :=
+  match parseBatch text with
+  | .ok _ => none
+  | .error e => some e
+
+def fixtureText : String := (Lean.toJson empty).compress
+#guard physicalLines "" = [""]
+#guard physicalLines "\n" = [""]
+#guard physicalLines "x\n" = ["x"]
+#guard physicalLines "\nx\n" = ["", "x"]
+#guard physicalLines "x\n\n" = ["x", ""]
+#guard diagnostic "" = some "line 1: empty record"
+#guard diagnostic "\n" = some "line 1: empty record"
+#guard diagnostic ("\n" ++ fixtureText ++ "\n") = some "line 1: empty record"
+#guard diagnostic (fixtureText ++ "\n\n" ++ fixtureText) = some "line 2: empty record"
+#guard diagnostic (fixtureText ++ "\r\n") = some "line 1: CR is not canonical; use LF"
+#guard diagnostic (fixtureText ++ "\n" ++ fixtureText ++ "\r\n") =
+  some "line 2: CR is not canonical; use LF"
+#guard diagnostic fixtureText = none
+#guard diagnostic (fixtureText ++ "\n") = none
+#guard diagnostic (fixtureText ++ "\n" ++ fixtureText ++ "\n") = none
+
+#guard checkWire {correction with representative := correction.data.x} = .ok false
+#guard checkWire {correction with data := {correction.data with y := [true]}} = .ok false
+#guard checkWire {correction with sourceFactors := [[false,false,false,false],[false,false,false,false]]}
+  = .ok false
+#guard checkWire {correction with targetFactors := [[false],[false]]} = .ok false
+#guard checkWire {correction with mapFactors := [[false,false],[false,false]]} = .ok false
+#guard checkWire {correction with sourceMember := [false,false]} = .ok false
+#guard checkWire {correction with imageMember := [false]} = .ok false
+#guard checkWire {correction with targetMember := [true]} = .ok false
+#guard checkWire {correction with sourceCorrection := [false,false]} = .ok false
+
+#print axioms correction_valid
+#print axioms nonzero_valid
+#print axioms empty_valid
+#print axioms batch_count
+#print axioms all_valid
+#print axioms correction_changed
+end FilteredExtensionCertificates.Examples

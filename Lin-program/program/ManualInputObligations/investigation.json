@@ -1,0 +1,313 @@
+{
+  "blocking_mathematics": [
+    "No constructed S0 or tmf Adams spectral sequence is linked to these concrete SQL bases.",
+    "No typed identification of the named E2 generators with actual Ext/topological classes is supplied.",
+    "The image-of-J arguments for manual1 and manual2 are not formalized.",
+    "The Bruner-Rognes power-operations argument for manual3 is not formalized.",
+    "The database name w_2 and expression w_2^2 at (16,112) are numerical identification data; the v2^16 meaning needs an explicit actual E2 equality.",
+    "P^6d0 is an atomic named E2 class in the database. Treating P as an E2 element and forming its sixth algebraic power is not justified.",
+    "Named source monomials must be evaluated at E2 then transported through actual cycle quotients. Re-forming h0^24*h6 on E5 or h0^55*h7 on E6 need not denote the original surviving source."
+  ],
+  "not_claimed": [
+    "No manual differential has been proved from image J or power operations.",
+    "SQL stored differentials merely corroborate the archived manual inputs and do not prove them.",
+    "No implication from input status, citation, hash, or matching degrees to the external differential proposition is supplied."
+  ],
+  "paper_excerpt": "There are three manually added differentials: d 5 \u200b h 0 24 \u200b h 6 = h 0 2 \u200b P 6 \u200b d 0 d_{5}h_{0}^{24}h_{6}=h_{0}^{2}P^{6}d_{0} and d 6 \u200b h 0 55 \u200b h 7 = h 0 2 \u200b x 126 , 60 d_{6}h_{0}^{55}h_{7}=h_{0}^{2}x_{126,60} in the Adams spectral sequence of S 0 S^{0} (from the image of J J ), and d 3 \u200b v 2 16 = \u03b2 5 \u200b g d_{3}v_{2}^{16}=\\beta^{5}g in the Adams spectral sequence of \ud835\udc61\ud835\udc5a\ud835\udc53 \\mathit{tmf} , derived from power operations (Bruner\u2013Rognes [ 12 ] ). ",
+  "recommended_contract": [
+    "Caller supplies actual AdamsSpectralSequence for S0 and tmf and actual E2 multiplication.",
+    "Caller supplies typed named E2 elements, generator/basis realization equations, and exact degree casts for evaluated monomials.",
+    "A finite trajectory indexed from page2 to page r carries actual PageCycle proofs and equations for the actual PageHomologyIdentification.toNext; its initial value is the evaluated E2 monomial.",
+    "For each manual input, the unresolved proposition is the actual differential equation at the terminal trajectory elements in the exact shifted bidegrees. Optional nonzero claims require separate proofs.",
+    "A structure of ExternalProofs has fields of those three fixed propositions. It is never populated by JSON or a string label and introduces no axiom.",
+    "A consumption theorem uses the corresponding proof field; any coordinate matrix binding still requires actual all-vector differential interpretation."
+  ],
+  "records": [
+    {
+      "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+      "generators": [
+        [
+          0,
+          "h_0",
+          1,
+          1
+        ],
+        [
+          69,
+          "h_6",
+          1,
+          64
+        ],
+        [
+          145,
+          "P^6d_0",
+          28,
+          90
+        ]
+      ],
+      "numerical_degree_checks": true,
+      "object": "S0",
+      "page": 5,
+      "source_basis": [
+        [
+          912,
+          "0,1,8,1,77,1",
+          ""
+        ],
+        [
+          913,
+          "0,24,69,1",
+          ""
+        ]
+      ],
+      "source_basis_columns": [
+        "id",
+        "mon",
+        "d2"
+      ],
+      "source_basis_id": 913,
+      "source_degree": [
+        25,
+        88
+      ],
+      "source_local_index": 1,
+      "source_mon": "0,24,69,1",
+      "source_staircase": [
+        [
+          912,
+          "0",
+          "0",
+          2
+        ],
+        [
+          913,
+          "1",
+          "0",
+          9995
+        ]
+      ],
+      "source_staircase_row": [
+        913,
+        "1",
+        "0",
+        9995
+      ],
+      "status": "external_input",
+      "target_basis": [
+        [
+          1017,
+          "0,2,145,1",
+          ""
+        ]
+      ],
+      "target_basis_id": 1017,
+      "target_degree": [
+        30,
+        92
+      ],
+      "target_local_index": 0,
+      "target_mon": "0,2,145,1",
+      "target_staircase": [
+        [
+          1017,
+          "0",
+          "1",
+          5
+        ]
+      ]
+    },
+    {
+      "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+      "generators": [
+        [
+          0,
+          "h_0",
+          1,
+          1
+        ],
+        [
+          324,
+          "h_7",
+          1,
+          128
+        ],
+        [
+          951,
+          "x_{126,60}",
+          60,
+          186
+        ]
+      ],
+      "numerical_degree_checks": true,
+      "object": "S0",
+      "page": 6,
+      "source_basis": [
+        [
+          7370,
+          "8,1,700,1",
+          null
+        ],
+        [
+          7371,
+          "0,55,324,1",
+          null
+        ]
+      ],
+      "source_basis_columns": [
+        "id",
+        "mon",
+        "d2"
+      ],
+      "source_basis_id": 7371,
+      "source_degree": [
+        56,
+        183
+      ],
+      "source_local_index": 1,
+      "source_mon": "0,55,324,1",
+      "source_staircase": [
+        [
+          7370,
+          "1",
+          "0",
+          9994
+        ],
+        [
+          7371,
+          "0",
+          "0",
+          9997
+        ]
+      ],
+      "source_staircase_row": [
+        7370,
+        "1",
+        "0",
+        9994
+      ],
+      "status": "external_input",
+      "target_basis": [
+        [
+          7947,
+          "0,2,951,1",
+          null
+        ]
+      ],
+      "target_basis_id": 7947,
+      "target_degree": [
+        62,
+        188
+      ],
+      "target_local_index": 0,
+      "target_mon": "0,2,951,1",
+      "target_staircase": [
+        [
+          7947,
+          "0",
+          "1",
+          6
+        ]
+      ]
+    },
+    {
+      "database_sha256": "bed7d1bf3ccdb21ddf55b9f2f2a1367b58a520dd1bebb033998b494b8f0208a0",
+      "generators": [
+        [
+          7,
+          "\\beta{}",
+          3,
+          18
+        ],
+        [
+          9,
+          "g",
+          4,
+          24
+        ],
+        [
+          12,
+          "w_2",
+          8,
+          56
+        ]
+      ],
+      "numerical_degree_checks": true,
+      "object": "tmf",
+      "page": 3,
+      "source_basis": [
+        [
+          2494,
+          "12,2",
+          "8388662"
+        ]
+      ],
+      "source_basis_columns": [
+        "id",
+        "mon",
+        "repr"
+      ],
+      "source_basis_id": 2494,
+      "source_degree": [
+        16,
+        112
+      ],
+      "source_local_index": 0,
+      "source_mon": "12,2",
+      "source_staircase": [
+        [
+          2494,
+          "0",
+          "0",
+          9997
+        ]
+      ],
+      "source_staircase_row": [
+        2494,
+        "0",
+        "0",
+        9997
+      ],
+      "status": "external_input",
+      "target_basis": [
+        [
+          2618,
+          "7,5,9,1",
+          "9961528"
+        ]
+      ],
+      "target_basis_id": 2618,
+      "target_degree": [
+        19,
+        114
+      ],
+      "target_local_index": 0,
+      "target_mon": "7,5,9,1",
+      "target_staircase": [
+        [
+          2618,
+          "0",
+          "0",
+          3
+        ]
+      ]
+    }
+  ],
+  "reference_capabilities": [
+    "AdamsSpectralSequence provides degree-indexed actual F2 carriers and linear differentials with square-zero.",
+    "AdamsPageProduct provides actual degree-indexed E2 multiplication with algebraic laws.",
+    "PageHomologyIdentification provides inverse maps between an actual boundary quotient and the next actual page.",
+    "DifferentialChannel stores an actual degree-correct differential equation but AdamsClass.compatible itself is only a Prop field, so a concrete finite representative trajectory is preferable."
+  ],
+  "schema": "manual-input-typed-obligation-investigation/v1",
+  "sources": {
+    "Reference/LinProgramReference/AdamsHomology.lean": "fe5a5cc852be5c675f478a1359914d25f8df661ce303596d46ab797d943581c3",
+    "Reference/LinProgramReference/AdamsRules.lean": "c0fff8b036b1d944d2fb5cb28aaac9b5d7bd76ec699232aff91f8861ee8563b6",
+    "Reference/LinProgramReference/Foundations.lean": "606f624e00893463d6c9c7221f0f831128cdc9c5234e89ebd7c23e367cd9cd33",
+    "Reference/LinProgramReference/KervaireMathematics.lean": "69395fe850565aa30278168e6f0cfa540588dea228ccab3385fc304f54ce48aa",
+    "Reference/LinProgramReference/SpectrumModels.lean": "8fda2e8f161a9ee4451ab62c509ea4e36ebe29f7366e8b7e7fa0b8921b55b98e",
+    "Reference/LinProgramReference/SteenrodAdams.lean": "327f2e6948f4a3f1dba6be461c2205b4472b849c02f8d21bd00d65fbb2a5ed59",
+    "doc_data/kervaire_claims.csv": "52306429c0b5529d538bc1cee1dc600ee74ff3a09b6c60dc15116ecf157104c6",
+    "program/AdvancedRuleCertificates/kervaire-v2.txt": "3933b920b0b65030619271dbeebc2a19d5bec82c51f22028ee15d6851c0f031e"
+  },
+  "status": "precise_typed_obligations_feasible_actual_theorems_unproved"
+}

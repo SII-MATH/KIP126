@@ -1,0 +1,132 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "source": {
+    "empty_E2_target_degrees": [
+      [
+        6,
+        25
+      ],
+      [
+        7,
+        26
+      ],
+      [
+        11,
+        55
+      ],
+      [
+        12,
+        56
+      ],
+      [
+        13,
+        57
+      ]
+    ],
+    "raw_named_basis_rows": {
+      "72": [
+        72,
+        "13,1",
+        "",
+        4,
+        24
+      ],
+      "296": [
+        296,
+        "51,1",
+        "",
+        9,
+        54
+      ],
+      "3994": [
+        3994,
+        "13,4,51,1",
+        "",
+        25,
+        150
+      ]
+    },
+    "unknown_incoming_row279": [
+      279,
+      "0",
+      null,
+      9000,
+      6,
+      52
+    ],
+    "local_squares": 6
+  },
+  "nontrivial_replay": {
+    "rings": "F2[t]/t^m for m=4,2,1",
+    "all_surjective_unital_ring_maps": {
+      "1->1": 1,
+      "2->1": 1,
+      "2->2": 1,
+      "4->1": 1,
+      "4->2": 1,
+      "4->4": 4
+    },
+    "two_transition_towers": 27,
+    "dimension_decreasing_towers": 11,
+    "product_trace_pairs": 6912,
+    "named_fourth_product_trace_pairs": 6912,
+    "nonzero_named_products_killed_by_quotient": 456,
+    "zero_preserving_linear_equivalences": 6,
+    "nonmultiplicative_counterexamples": 5
+  },
+  "semantics": [
+    "Transition is a full local cycle-pair multiplicativity equation; it does not contain any named trace.",
+    "trace_product inducts over two actual traces with endpoint alignment and only uses pages 2 <= q < r.",
+    "Factor traces are derived from full actual empty-target interpretations and actual homology identifications.",
+    "namedTrace composes squares at exactly the three degree pairs on pages2 and3.",
+    "True E2 name equality is used before constructing the named E4 trace.",
+    "Actual endpoint is identified with System.at initialName 2; its d4-cycle is independently derived from the fifth zero target.",
+    "Finite kernel transport uses the full actual differential equation and exact named coordinate condition."
+  ],
+  "not_claimed": [
+    "Derivation of multiplicativity from type/additive equivalences",
+    "Nonzero or nonboundary factor/endpoint",
+    "Proof of unknown incoming row279",
+    "Automatic actual faithfulness from five empty SQL queries",
+    "Actual all-cycle uniqueness without WholeMeaning",
+    "Cross-page generalized differential rule",
+    "Specific topology or convergence"
+  ],
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 2
+    },
+    {
+      "module": "Factors",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 4
+    },
+    {
+      "module": "Named",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 4
+    },
+    {
+      "module": "Assembly",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 4
+    }
+  ],
+  "inputs_sha256": {
+    "ActualAdamsProductTraceBridge/Basic.lean": "718e644cda549cc2c3046ef25de9701378c1073e5a435245bfa3ca8acaeddc6d",
+    "ActualAdamsProductTraceBridge/Factors.lean": "1b78a72e1f7c2e3e7a2becf3de1fe5be3c96862ab7d01f9f609405142f1ff0b0",
+    "ActualAdamsProductTraceBridge/Named.lean": "2eb3e44290d891b988c15b465b9c9d49b72f2a8c78f4d054f8c20623c8a0fd30",
+    "ActualAdamsProductTraceBridge/Assembly.lean": "695e6af00c1b23a66864386997d119fc06af2037dfa9273547a6fca8e6a81d8f",
+    "ActualAdamsProductTraceBridge/README.md": "72fd706d78689314d95e106c29c0e45b860768d26ae4c3b7dc495eb156686fc4",
+    "ManualInputObligations/Typed.lean": "d38170dbe354b4af0ecd4ff56846d6144fde3250fa9209db61fd2781a4f98524",
+    "ManualInputObligations/Reference/AdamsRules.lean": "f5e899de1219c1df1056ff94aab36049ce54f0621d08f2e35c80564ebdde64ce",
+    "ActualAdamsProductCycleBridge/Basic.lean": "82ca5e9092ff94160e5617d9c2d5e5c029a9290fb98f50d1cb83342aef9eeb2d",
+    "ActualAdamsProductCycleBridge/Zero.lean": "414513d15e9ab282ca7107ed15b4e4ca40a0783cee1cafbadc8134a9f3eccd09",
+    "ActualAdamsProductCycleBridge/Finite.lean": "1d8799c09cf08b218479deb3da447a410c8d2ef8189b24b60b594e4a24fa3966",
+    "ActualAdamsSystemBridge/Trace.lean": "b58db9baba1534108e37bd068bd0b1faffc5e3d196b35d08f5b67b22ebcc058b"
+  }
+}

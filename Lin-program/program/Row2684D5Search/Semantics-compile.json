@@ -1,0 +1,24 @@
+{
+  "source_sha256": "0d1f5561790cc9c9b88fca92f7f97aedd4281d8acf0235b95f2d883ecafe2a4d",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Row2684D5Search/Data.olean": "cc0342029a7ce3fcf953a69c2a0b1aa5afd18ede93fe46de3452f903e057fa5b",
+    ".lake/build/lib/lean/BranchReplayCertificates/BasisSemantics.olean": "b2cab866631df2c3b15bbdbc8856abd2451dcc62a63a620a7a42cf7f851671d5"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Row2684D5Search/Semantics.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2684D5Search/Semantics.olean"
+  ],
+  "log": "evidence/Semantics-20260922T015425485645Z.log",
+  "external_input_sha256": {},
+  "observed_exit_code": 0,
+  "log_sha256": "f205035aaf2d21e9bb3da0dd9e062eac36e04be26606f0949fada7ea45d7b914",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/Row2684D5Search/Data.olean": "cc0342029a7ce3fcf953a69c2a0b1aa5afd18ede93fe46de3452f903e057fa5b",
+    ".lake/build/lib/lean/BranchReplayCertificates/BasisSemantics.olean": "b2cab866631df2c3b15bbdbc8856abd2451dcc62a63a620a7a42cf7f851671d5"
+  },
+  "inputs_stable": true,
+  "olean_sha256": "0c55a33187557075f9c57bb4c2c4c6bdeb499d77828105b5d9178c35591fbfb1"
+}

@@ -1,0 +1,1001 @@
+
+
+1. 
+Introduction
+
+
+
+
+
+For a smooth framed manifold in dimension 
+$4k+2$
+, the Kervaire invariant, taking values in 
+$\mathbb{F}_{2}$
+, determines whether the manifold could be converted into a homotopy sphere via surgery – it takes value 0 if the manifold can be converted to a homotopy sphere and 1 otherwise. Formally speaking, the Kervaire invariant is defined as the Arf invariant of the quadratic refinement of the intersection pairing in the cohomology of the manifold with 
+$\mathbb{F}_{2}$
+ coefficients. Using this invariant, Kervaire 
+[ 33 ]
+ discovered a PL-manifold in dimension 10 that does not admit any smooth structure.
+
+
+
+
+
+
+The Kervaire invariant problem seeks to identify the dimensions in which there exist framed smooth manifolds with Kervaire invariant one. In these dimensions, exactly half of the cobordism classes of framed manifolds have Kervaire invariant one, and the other half have Kervaire invariant 0. The Kervaire invariant problem is closely related to many problems in differential topology, especially Kervaire–Milnor’s classification theorem 
+[ 34 ]
+ on exotic smooth structures on spheres.
+
+
+
+
+
+
+In this paper we prove the following Theorem 
+1.1
+.
+
+
+
+
+
+
+Theorem 1.1
+.
+
+
+
+
+There exist framed manifolds of Kervaire invariant one in dimension 126.
+
+
+
+
+
+
+
+
+Together with previous results by Browder 
+[ 10 ]
+, Mahowald–Tangora 
+[ 44 ]
+, Barratt–Jones–Mahowald 
+[ 4 ]
+, and Hill–Hopkins–Ravenel 
+[ 23 ]
+, this is the last case of the Kervaire invariant problem.
+
+
+
+
+
+
+Corollary 1.2
+.
+
+
+
+
+The dimensions that there exist framed manifolds of Kervaire invariant one are 2, 6, 14, 30, 62, and 126.
+
+
+
+
+
+
+
+
+In dimensions 2, 6, and 14, the product of spheres 
+$S^{1}\times S^{1},\ S^{3}\times S^{3},S^{7}\times S^{7}$
+ can be framed to have Kervarie invariant one.
+In dimension 30, an explicit framed manifold of Kervarie invariant one was constructed by J.Jones in 
+[ 32 ]
+. For dimensions 62 and 126, we would like to comment that no explicit manifold of Kervarie invariant one was known, although 
+$50\%$
+ of all framed manifolds in these two dimensions have Kervarie invariant one.
+
+
+
+
+
+
+Our Theorem 
+1.1
+ is a consequence of Browder’s theorem (Theorem 
+1.3
+) and the following main theorem of this paper, Theorem 
+1.4
+.
+
+
+
+
+
+
+Theorem 1.3
+ 
+(Browder 
+[ 10 ]
+)
+.
+
+
+
+
+There exist framed manifolds in dimension $n$ of Kervaire invariant one if and only if
+
+
+
+ (1)
+ 
+
+
+
+$n=2^{j+1}-2$
+, and
+
+ 
+ (2)
+ 
+
+
+
+the element 
+$h_{j}^{2}$
+ in the Adams spectral sequence survives to the 
+$E_{\infty}$
+-page.
+
+ 
+
+
+
+
+
+
+
+
+
+The Adams spectral sequence 
+[ 1 ]
+ converges to the stable homotopy groups of spheres, which, by Pontryagin’s theorem, correspond to framed manifolds up to framed cobordism. When the element 
+$h_{j}^{2}$
+ survives (see below for an introduction to the Adams spectral sequence and the element 
+$h_{j}^{2}$
+), the homotopy classes it detects are denoted by 
+$\theta_{j}\in\pi_{2^{j+1}-2}$
+. Browder showed that these classes correspond to framed manifolds with Kervaire invariant one.
+
+
+
+
+
+
+Theorem 1.4
+ 
+(Theorem 
+7.1
+)
+.
+
+
+
+
+The element $h_{6}^{2}$ survives to the $E_{\infty}$ -page in the Adams spectral sequence.
+
+
+
+
+
+
+
+
+In addition to Theorem 
+1.1
+, further implications of Theorem 
+1.4
+, particularly in manifold topology and unstable homotopy theory, can be found in 
+[ 47 , 42 , 23 , 3 ]
+, among others.
+
+
+
+
+
+
+Recall that the 2-primary Adams spectral sequence has the following form.
+
+
+
+
+
+
+
+
+
+
+$E_{2}^{s,t}=\mathrm{Ext}^{s,t}_{A}(\mathbb{F}_{2},\mathbb{F}_{2})\Longrightarrow\pi_{t-s}{S^{0}},$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$d_{r}:E_{r}^{s,t}\longrightarrow E_{r}^{s+r,t+r-1}.$
+
+
+
+
+
+
+
+Here the 
+$E_{2}$
+-page is the cohomology of the mod 2 Steenrod algebra A, 
+$S^{0}$
+ is the 2-completed sphere spectrum, and the spectral sequence converges to the 2-completed stable homotopy groups of spheres. In general, for a spectrum 
+$X$
+, its 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-Adams spectral sequence is denoted by 
+$E_{r}^{*,*}(X)$
+, converging to the 2-completed homotopy groups of 
+$X$
+.
+
+
+
+
+
+
+For the sphere, Adams 
+[ 1 ]
+ computed the Adams 
+$1$
+-line:
+
+
+
+
+
+
+
+
+
+
+$\mathrm{Ext}^{1,t}_{A}(\mathbb{F}_{2},\mathbb{F}_{2})=\begin{cases}\mathbb{F}_{2},\ \text{if}\ t=2^{j}\ \text{for some}\ j\geq 0,\\
+0,\ \text{otherwise}.\end{cases}$
+
+
+
+
+
+
+
+Denote by 
+$h_{j}$
+ the generator of 
+$\mathbb{F}_{2}$
+ in the bidegree 
+$(s,t)=(1,2^{j})$
+. Adams 
+[ 2 ]
+ proved that the element 
+$h_{j}$
+ survives in the Adams spectral sequence if and only if 
+$j\geq 3$
+, resolving the famous Hopf invariant problem. In fact, Adams proved that
+
+
+
+
+
+
+
+
+
+
+$d_{2}(h_{j})=h_{0}h_{j-1}^{2}\neq 0,\ \text{for}\ j\geq 4.$
+
+
+
+
+
+
+
+
+
+
+
+The Kervaire invariant element 
+$h_{j}^{2}$
+ lives on the Adams 2-line, which is generated by elements of the form 
+$\{h_{i}h_{j}\}$
+ that are subject to the relations 
+$h_{i}h_{i+1}=0$
+. Notably, 
+$h_{6}^{2}$
+ was the last unknown element on the Adams 2-line whose survival in the Adams spectral sequence remained uncertain prior to our work. As a corollary of Theorem 
+1.4
+, we have:
+
+
+
+
+
+
+Corollary 1.5
+.
+
+
+
+
+On the Adams 2-line, the only non-trivial elements that survive in the Adams spectral sequence are:
+
+
+
+
+
+
+
+
+
+
+$h_{0}h_{2},\ h_{0}h_{3},\ h_{2}h_{4},\ h_{1}h_{j}\ (j\geq 3),\ h_{j}^{2}\ (j\leq 6).$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+From Adams’s Hopf invariant one differentials, Lin’s computations of the Adams 4-line [ 40 ] , and the Leibniz rule, we know that the only elements that survive to the Adams $E_{3}$ -page are
+
+
+
+
+
+
+
+
+
+
+$h_{0}h_{2},\ h_{0}h_{3},\ h_{2}h_{4},\ h_{2}h_{5},\ h_{3}h_{5},\ h_{3}h_{6},\ h_{1}h_{j}\ (j\geq 3),\ h_{j}^{2}\ (j\leq 6).$
+
+
+
+
+
+
+
+May [ 45 ] proved that the first three elements and $h_{j}^{2}$ for $j\leq 3$ survive. Mahowald–Tangora [ 44 ] proved that $h_{2}h_{5}$ supports a nonzero $d_{3}$ -differential, $h_{3}h_{5}$ supports a nonzero $d_{4}$ -differential, and $h_{4}^{2}$ survives. Isaksen–Wang–Xu [ 29 ] proved that $h_{3}h_{6}$ supports a nonzero $d_{3}$ -differential. Mahowald [ 43 ] proved that $h_{1}h_{j}$ for $j\geq 3$ survive. Barratt–Jones–Mahowald [ 4 ] proved that $h_{5}^{2}$ survives (see [ 56 , 29 ] for alternative proofs). Hill–Hopkins–Ravenel [ 23 ] proved that $h_{j}^{2}$ supports nonzero differentials for $j\geq 7$ (the targets of these differentials are still unknown). Finally, by Theorem  1.4 , $h_{6}^{2}$ survives.
+∎
+
+
+
+
+
+
+
+
+Before Hill–Hopkins–Ravenel’s proof on the non-existence of 
+$\theta_{j}$
+ for 
+$j\geq 7$
+, Barratt–Jones–Mahowald 
+[ 3 ]
+ had an inductive argument trying to establish the existence of all 
+$\theta_{j}$
+: They proved that if there exists a 
+$\theta_{j}$
+ satisfying 
+$2\cdot\theta_{j}=0,\ \theta_{j}^{2}=0$
+, then there exists a 
+$\theta_{j+1}$
+ satisfying 
+$2\cdot\theta_{j+1}=0$
+. In particular, the problem of whether a 
+$\theta_{j+1}$
+ of order 2 exists is known as the strong Kervaire invariant problem. It was known that 
+$2\cdot\theta_{j}=0$
+ for 
+$j\leq 5$
+ (see 
+[ 44 ]
+ for 
+$j=4$
+ and 
+[ 56 , 29 ]
+ for 
+$j=5$
+). Although we prove that 
+$\theta_{6}$
+ exists in this paper, the following questions are still open:
+
+
+
+
+
+
+Question 1.6
+.
+
+
+
+
+Does there exist a $\theta_{6}$ that has order 2?
+
+
+
+
+
+
+
+
+Question 1.7
+.
+
+
+
+
+Does there exist a $\theta_{5}$ such that $\theta_{5}^{2}=0$ ?
+
+
+
+
+
+
+
+
+By Barratt–Jones–Mahowald’s theorem 
+[ 3 ]
+, if the answer to Question 
+1.7
+ is positive, then it would imply our Theorem 
+1.4
+ and a positive answer to Question 
+1.6
+. We plan to study these questions in a future project.
+
+
+
+
+
+
+
+
+As suggested by the proof of Corollary 
+1.5
+, computation of differentials in the Adams spectral sequence has a long history. See Section 2 of 
+[ 53 ]
+ for a brief summary at all primes and computations at the prime 2 up to around 60-stem. For more recent computations up to around 90-stem, see 
+[ 29 , 28 , 55 , 30 ]
+.
+
+
+
+
+
+
+Many methods were introduced to compute differentials in the Adams spectral sequence. We highlight some of the major methods as follows.
+
+
+
+ (1)
+ 
+
+
+
+Multiplicative structure of the Adams 
+$E_{2}$
+-page and the Leibniz rule. 
+
+
+
+
+
+
+
+
+By computing the Adams 
+$E_{2}$
+-page with its multiplicative structure via the May spectral sequence, and comparing with Toda’s unstable computations, May 
+[ 45 ]
+ computed all differentials up to the 28-stem.
+
+
+
+ 
+ (2)
+ 
+
+
+
+Higher product structure – interactions between Massey products and Toda brackets through Moss’s theorem 
+[ 48 ]
+.
+
+
+
+ 
+ (3)
+ 
+
+
+
+The Mahowald trick 
+[ 44 ]
+, which translates between differentials and extension problems.
+
+
+
+
+
+
+
+
+By using both Moss’s theorem and the Mahowald trick, Barratt–Mahowald–Tangora 
+[ 44 , 5 ]
+ computed all but one differentials up to the 45-stem; The remaining one was computed by Bruner 
+[ 11 ]
+ using power operations.
+
+
+
+ 
+ (4)
+ 
+
+
+
+Comparison with the motivic Adams spectral sequence via the Betti realization functor 
+[ 20 ]
+.
+
+
+
+
+
+
+
+
+By comparison via the Betti realization functor, Isaksen 
+[ 26 ]
+ gave rigorous arguments for all but one differentials in both the motivic and 
+classical
+ Adams spectral sequence up to the 59-stem; The remaining one was computed by Xu 
+[ 31 ]
+ using the higher Leibniz rule for motivic Massey products. 
+
+
+
+ 
+ (5)
+ 
+
+
+
+Wang–Xu’s 
+$\mathbb{R}P^{\infty}$
+-method 
+[ 53 ]
+.
+
+
+
+
+
+
+
+
+Using Lin’s algebraic Kahn–Priddy theorem 
+[ 39 ]
+, Wang–Xu introduced a technique to prove Adams differentials inductively using differentials in subquotients of 
+$\mathbb{R}P^{\infty}$
+, and completed computations of Adams differentials up to the 61-stem. (See also 
+[ 54 ]
+ for application of this method on extension problems.) 
+
+
+
+
+
+
+
+
+There is a nice geometric application of these differentials in stems 60 and 61. The sphere 
+$S^{61}$
+ has a unique smooth structure and it is the last odd dimensional case: The only ones are 
+$S^{1},\ S^{3},\ S^{5}$
+ and 
+$S^{61}$
+.
+
+
+
+ 
+ (6)
+ 
+
+
+
+Gheorghe–Isaksen–Wang–Xu’s motivic cofiber of tau method 
+[ 22 , 29 ]
+. 
+
+
+
+
+
+
+
+
+By identifying the algebraicity of the special fiber of a motivic deformation, Gheorghe–Wang–Xu 
+[ 22 ]
+ proved that the motivic Adams spectral sequence of the cofiber of tau is isomorphic to the algebraic Novikov spectral sequence for BP
+∗
+, which can be completely computed in a large range by Wang’s program 
+[ 52 ]
+. Then differentials in the classical Adams spectral sequence follow from naturality.
+
+
+
+
+
+
+
+
+Using this method, together with some others, Isaksen–Wang–Xu 
+[ 29 ]
+ computed Adams differentials up to the 90-stem, with only a few exceptions. 
+
+
+
+ 
+ (7)
+ 
+
+
+
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic/filtered spectra method 
+[ 50 , 13 , 18 , 17 ]
+.
+
+
+
+
+
+
+
+
+The homotopy ring of the 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic sphere 
+[ 50 , 16 ]
+ can be viewed as a tool to encode homotopical information of the classical Adams spectral sequence, in analog to the relation between the homotopy ring of the 
+$\mathbb{C}$
+-motivic sphere 
+[ 26 ]
+ and the Adams–Novikov spectral sequence. 
+
+
+
+
+
+
+
+
+By studying the 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic sphere, Burklund–Isaksen–Xu 
+[ 17 ]
+ proved a few Adams differentials up to the 90-stem that were left out by Isaksen–Wang–Xu 
+[ 29 ]
+.
+
+
+
+ 
+
+
+
+
+
+
+
+Our strategy for proving our main Theorem 
+1.4
+ that 
+$h_{6}^{2}$
+ survives is three-fold.
+
+
+
+
+
+
+
+ •
+ 
+
+
+
+Lin’s Program.
+
+
+
+
+
+
+By establishing the theory of noncommutative Gröbner bases for Steenrod algebras 
+[ 36 ]
+, Lin made computer programs that compute Ext groups in a very effective way. We use Lin’s program to compute the Adams 
+$E_{2}$
+-pages for a vast collection of finite spectra and the maps between them. For a detailed account of the range of Adams 
+$E_{2}$
+ data computed, see 
+[ 38 ]
+.
+
+
+
+
+
+
+
+
+Building on the theory of secondary Steenrod algebras 
+[ 6 , 49 , 19 ]
+, we also leverage Lin’s program to compute Adams 
+$d_{2}$
+-for certain finite spectra. Details on the 
+$d_{2}$
+-differentials we have computed can also be found in 
+[ 38 ]
+.
+
+
+
+
+
+
+
+
+Additionally, Lin’s program facilitates the propagation of differentials and extensions by employing the Leibniz rule and the naturality of Adams spectral sequences and extension spectral sequences (Definition 
+2.1
+). 
+
+
+
+ 
+ •
+ 
+
+
+
+The Generalized Leibniz Rule and the Generalized Mahowald Trick. 
+
+
+
+
+
+
+
+
+The use of 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic/filtered spectra allows us to discuss elements on the Adams 
+$E_{n}$
+-page as classes in the homotopy groups of certain synthetic spectra 
+[ 50 , 18 ]
+. In particular, naturality on synthetic homotopy groups allows us to discuss jump-of-filtration phenomena on any Adams 
+$E_{n}$
+-page in a rigorous way. 
+
+
+
+
+
+
+
+
+Using 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra, we develop the Generalized Leibniz Rule (Theorem 
+6.1
+) and the Generalized Mahowald Trick (Theorem 
+6.12
+), which can be viewed as generalizations of the classical Mahowald’s trick and geometric boundary theorem studies by Ravenel, Behrens and others 
+[ 51 , 8 , 41 , 14 ]
+. We then use them to further propagate differentials from the known ones.
+
+
+
+
+
+
+
+
+With the Generalized Leibniz Rule and the Generalized Mahowald Trick, Lin’s program becomes even more powerful, enabling the derivation of additional differentials. The program rigorously verifies the conditions of the relevant theorems and generates human-readable proofs 
+[ 37 ]
+ for all differentials computed by the machine. In the Appendix, readers will find tables of Adams differentials that are used in the proof of the main Theorem 
+1.4
+.
+
+
+
+ 
+ •
+ 
+
+
+
+The inductive approach and adhoc arguments near stem 126.
+
+
+
+
+
+
+
+
+By studying Barratt–Jones–Mahowald’s inductive approach 
+[ 3 ]
+ in the 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic context, Burklund–Xu (Proposition 7.19 of 
+[ 18 ]
+) proved that 
+$h_{6}^{2}$
+ is a permanent cycle in the classical Adams spectral sequence if and only if 
+$\lambda\eta\theta_{5}^{2}=0$
+ in the homotopy group of the synthetic sphere. Here 
+$\lambda$
+ is our notation for the synthetic deformation parameter, and 
+$\theta_{5}$
+ is any synthetic homotopy class that is detected by 
+$h_{5}^{2}$
+ on the Adams 
+$E_{2}$
+-page. 
+
+
+
+
+
+
+
+
+There are 105 additive generators in stem 125 of the classical Adams 
+$E_{2}$
+-page – these are the potential targets that could be hit by a nonzero differential from 
+$h_{6}^{2}$
+. Using Lin’s program and the inductive approach, we can rule out 101 out of the 105 elements.
+
+
+
+
+
+
+
+
+By further applying the Generalized Leibniz Rule and the Generalized Mahowald Trick, we can reduce the possibility of a nonzero differential supported by 
+$h_{6}^{2}$
+ to only one case: A nonzero 
+$d_{12}$
+ hits a certain element in stem 125, filtration 14 (see Proposition 
+7.8
+(2)). A necessary condition for this nonzero 
+$d_{12}$
+ is an 
+$\eta$
+-extension from stem 124, filtration 10 to stem 125, filtration 14 (see Proposition 
+7.8
+(5)). 
+
+
+
+
+
+
+
+
+By a careful inspection of the homotopy groups of the synthetic sphere (and on certain Adams 
+$E_{n}$
+-pages) near stem 126, we use adhoc arguments to prove that the 
+$\eta$
+-extension in the previous paragraph cannot happen (see Proposition 
+7.9
+) and conclude that 
+$h_{6}^{2}$
+ survives in the Adams spectral sequence. 
+
+
+
+ 
+
+
+
+
+
+
+
+Organization.
+ In Section 2, we setup and discuss properties of an extension spectral sequence for a map 
+$f:X\to Y$
+ between two spectra, whose 
+$E_{0}$
+-page is isomorphic to the direct sum of 
+$E_{\infty}$
+-pages of the Adams spectral sequences of 
+$X$
+ and 
+$Y$
+, and differentials correspond to 
+$f_{*}:\pi_{*}X\to\pi_{*}Y$
+, filtered by the Adams filtration. This setup allows us to discuss the jump-of-filtration phenomena rigorously. In Section 3, we recall and discuss certain properties of 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra. In Section 4, we discuss the extension spectral sequence from Section 2 in the context of 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra. In Section 5, we discuss extensions on a classical Adams 
+$E_{n}$
+-page, defined in terms of 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra. In Section 6, using the language of Sections 4 and 5, we develop the Generalized Leibniz Rule and the Generalized Mahowald Trick. In Section 7, we use the inductive approach, and ad hoc arguments prove that 
+$h_{6}^{2}$
+ survives in the Adams spectral sequence. Necessary information of the classical Adams spectral sequence for the final ad hoc arguments is included in the Appendix.
+
+
+
+
+
+
+
+
+Acknowledgement.
+ The second author is partially supported by grants NSFC-12325102, NSFC-12226002, the New Cornerstone Science Foundation, and Shanghai Pilot Program for Basic Research–Fudan University 21TQ1400100 (21TQ002). The third author is partially supported by NSF Grant DMS 2105462 and the AMS Centennial Research Fellowship.
+
+
+
+
+
+
+The authors express their deepest gratitude to Mark Behrens and Peter May for their invaluable guidance, insightful advice, and continuing support throughout this journey.
+
+
+
+
+
+
+We also extend our heartfelt thanks to Soren Galatius, Lars Hesselholt, Mike Hill, Mike Hopkins, Dan Isaksen, Ciprian Manolescu, Haynes Miller, Yi Ni, Doug Ravenel, Gang Tian, Chenyang Xu, and Weiping Zhang for their encouragement and support of this project. The authors also thank Yuchen Wu and Shangjie Zhang for helpful comments on the early drafts of this paper.
+
+
+
+
+
+
+This work is dedicated to the memory of Mark Mahowald, whose groundbreaking contributions to algebraic topology continue to inspire generations of mathematicians. His deep insights and unwavering passion for the field remain a guiding light in our endeavors.
+
+
+

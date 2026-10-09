@@ -1,0 +1,15 @@
+UniqueHomologyCertificates/Basic.lean:67:4: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Decidable (eval c.comparison.projection named ≠ zero)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+UniqueHomologyCertificates/Basic.lean:73:13: warning: declaration uses `sorry`
+UniqueHomologyCertificates/Basic.lean:69:8: warning: declaration uses `sorry`
+UniqueHomologyCertificates/Basic.lean:73:49: warning: This simp argument is unused:
+  decide_eq_true_eq
+
+Hint: Omit it from the simp argument list.
+  simp only [checkCertificate, Bool.and_eq_true,̵ ̵d̵e̵c̵i̵d̵e̵_̵e̵q̵_̵t̵r̵u̵e̵_̵e̵q̵] at checked
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'UniqueHomologyCertificates.sound' depends on axioms: [propext, Quot.sound]
+'UniqueHomologyCertificates.certificate_sound' depends on axioms: [propext, sorryAx, Quot.sound]

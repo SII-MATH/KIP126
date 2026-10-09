@@ -1,0 +1,132 @@
+{
+  "status": "no_correctness_findings",
+  "counts": {
+    "complete_raw_degrees": 49,
+    "quotient_pairs": 11224,
+    "homotopy_vectors": 732,
+    "complete_quotients": 37,
+    "whole_matrix_columns": 29,
+    "relation_steps": 8,
+    "chain_square_vectors": 136,
+    "full_induced_coordinates": 6,
+    "two_way_coordinate_vectors": 12,
+    "all_cycle_coordinate_equations": 24,
+    "linear_functions": 64,
+    "three_column_reconstructions": 512,
+    "accepted_zero_maps": 1,
+    "missing_named_column_countermodels": 3
+  },
+  "canonical_to_staircase_tables": {
+    "11,137": [
+      0,
+      1,
+      6,
+      7,
+      4,
+      5,
+      2,
+      3
+    ],
+    "14,139": [
+      0,
+      2,
+      1,
+      3
+    ]
+  },
+  "raw_source_columns": [
+    [
+      4179,
+      "0",
+      "0",
+      3
+    ],
+    [
+      4180,
+      "1,2",
+      null,
+      9000
+    ],
+    [
+      4181,
+      "2",
+      null,
+      9986
+    ]
+  ],
+  "raw_target": [
+    4411,
+    "2",
+    null,
+    9000
+  ],
+  "target_basis_id": 4412,
+  "actual_degree_squares": {
+    "sphere": [
+      [
+        11,
+        137
+      ],
+      [
+        14,
+        139
+      ]
+    ],
+    "eta_shifted_cnu": [
+      [
+        12,
+        143
+      ],
+      [
+        15,
+        145
+      ]
+    ],
+    "bottom_cnu": [
+      [
+        11,
+        137
+      ],
+      [
+        14,
+        139
+      ]
+    ]
+  },
+  "axiom_reports": {
+    "Maps": 6,
+    "Comparison": 4,
+    "Naturality": 5,
+    "Actual": 1,
+    "Finite": 4,
+    "CoordinateBridge": 5,
+    "MapSemantics": 2,
+    "Incoming": 5
+  },
+  "actual_non_circular_chain": [
+    "eta named source map is zero by finite whole-map theorem",
+    "eta d3 naturality and actual differential zero preservation imply eta target image zero",
+    "finite eta target map reflection and faithful actual target coordinates imply S0 named d3 zero",
+    "bottom map source lifting, bottom d3 naturality and bottom zero preservation imply Cnu named d3 zero"
+  ],
+  "limitations": [
+    "Actual named-zero theorem retains full actual map meanings and both naturality squares.",
+    "Complete no-hit theorem concerns the supplied finite homology dc; actual all-column no-hit needs its coordinate/differential interpretation.",
+    "Boundary and future-prefix columns retain explicit premises; target outgoing row4411 remains unknown.",
+    "No target survival, all-pages permanence, synthetic extension contradiction, or unconditional Proposition7.9."
+  ],
+  "source_sha256": {
+    "Prop79IncomingSearch/independent_review.py": "c68793b74296291def99534261172689e1ca847098e0400451703e30bbe6068d",
+    "Prop79IncomingSearch/frozen-source.json": "d24398d43b91473a87ecdb43c3e47e0a90c2d284de48a941a93bf2ceb49f8e07",
+    "Prop79IncomingSearch/search.json": "485bfad505d242f35b76e4db88c7df62229a1ff018b0aece4409fbb253ab4867",
+    "Prop79IncomingSearch/bottom-inclusion.json": "d294df1b7bdec38389468ecd869bc027e3f2159635185d5a8f039a58d08dfa6a",
+    "Prop79IncomingSearch/Maps.lean": "f77b6e92fb4f38557a8d8ac4467dcc7fca43039cb7e99b6c0cc3a314a3aca908",
+    "Prop79IncomingSearch/Comparison.lean": "e2c2eb25fc90b10792b0ed068fb7ab8380e7171938802c470762eeccecdca8b6",
+    "Prop79IncomingSearch/Naturality.lean": "d11e4ebbc1d742905ebaabb32440d199d4accaf2aca6b809ec52f2b91c37e377",
+    "Prop79IncomingSearch/Actual.lean": "af72455551b3c8eceffdb27c713167ae77ff5ca7cdf6113f2ec2418af4e1a534",
+    "Prop79IncomingSearch/Finite.lean": "a7f2ff8f68d49709b10e855fafbbffafe46d5a5233bff3a5057b8ef0d5c14df3",
+    "Prop79IncomingSearch/CoordinateBridge.lean": "6224f56adf4659ea95767f24c80dde032297fd71a664304a44d0a993ac02397e",
+    "Prop79IncomingSearch/MapSemantics.lean": "8ef7ace1dcbf09591565cece4ced99ad8f63a625600b489dba484cf37178756f",
+    "Prop79IncomingSearch/Incoming.lean": "589881b40ecff753b6fc8cc6813c4594fb02275dc1468983e12de6ef834ae85e"
+  }
+}

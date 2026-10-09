@@ -1,0 +1,19 @@
+AggregateIncomingTargetCompletion/Bundle.lean:58:42: error: Ambiguous term
+  Cycle
+Possible interpretations:
+  _root_.Cycle ?m.14 : Type ?u.14
+  
+  PageTransitionCertificates.Cycle ?m.16 : Type
+AggregateIncomingTargetCompletion/Bundle.lean:361:42: error: Ambiguous term
+  Cycle
+Possible interpretations:
+  _root_.Cycle ?m.18 : Type ?u.18
+  
+  PageTransitionCertificates.Cycle ?m.20 : Type
+'AggregateIncomingTargetCompletion.Bundle.all_bindings' depends on axioms: [propext, Quot.sound]
+'AggregateIncomingTargetCompletion.Bundle.exact_incoming_inventory' does not depend on any axioms
+AggregateIncomingTargetCompletion/Bundle.lean:365:14: error(lean.unknownIdentifier): Unknown constant `all_targets_zero`
+'AggregateIncomingTargetCompletion.Bundle.imported_exact' does not depend on any axioms
+'AggregateIncomingTargetCompletion.Bundle.imported_coherent' depends on axioms: [propext, Quot.sound]
+'AggregateIncomingTargetCompletion.Bundle.binding_image' depends on axioms: [propext, Quot.sound]
+AggregateIncomingTargetCompletion/Bundle.lean:369:14: error(lean.unknownIdentifier): Unknown constant `binding_quotient_zero`

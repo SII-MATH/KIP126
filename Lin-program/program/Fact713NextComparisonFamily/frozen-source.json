@@ -1,0 +1,97 @@
+{
+  "modules": [
+    "Fact713NextComparisonFamily.Extra",
+    "Fact713NextComparisonFamily.Cross",
+    "Fact713NextComparisonFamily.Coherence",
+    "Fact713NextComparisonFamily.Coverage"
+  ],
+  "source_sha256": {
+    "Fact713NextComparisonFamily/Coherence.lean": "1ecb7723e7a782d19c676eb1db7dd25e3b6df487ae204144019499254b8066e3",
+    "Fact713NextComparisonFamily/Coverage.lean": "1eabfba590b783718cb4f6b42706bcb3dce355dcd528a26d712eab5a8ab6d0dd",
+    "Fact713NextComparisonFamily/Cross.lean": "b1f3290b87c276a837a5aef37a8e972016f53cae09f6be3573afb79e84f6d942",
+    "Fact713NextComparisonFamily/Extra.lean": "acbc669224470e9740320b2087d8d4e679c4ece5e307ef63ff01bfc8e5d366db",
+    "Fact713NextComparisonFamily/compile.py": "08248209aff3656dbff1c50c3ec97323040a3437b5640ef6a9d2546fac7a7f04",
+    "Fact713NextComparisonFamily/package.py": "5da02edceb72630bd98334c408166ef596da29c9b572e3aeea7e4aca73a8dd59",
+    "Fact713NextComparisonFamily/audit.py": "90b8a02da1907ea0e6a95bff67fe808b5f62de3cdad3f0bc63a50c85f50c968b",
+    "Fact713NextComparisonFamily/manifest.json": "0f845b1319752f06a7ad29b24ae0ce1884436a4918522581659488da67dbada2",
+    "Fact713NextComparisonFamily/README.md": "cd1e2cf10461e41eea28ad4bbab24cb922bb41f63033f9b04648b0261cb4a6df"
+  },
+  "direct_compile": {
+    "Cross": {
+      "source_sha256": "b1f3290b87c276a837a5aef37a8e972016f53cae09f6be3573afb79e84f6d942",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713NextComparisonFamily/Extra.olean": "21b0415afa6384155490eeca8a0c7408a1ff1b417718cc88e791139a68d3df67",
+        ".lake/build/lib/lean/Fact713Row2773ComparisonFamily/Cross.olean": "cfc93b0b5bdb3f9769559c1cda900c504ec58edda49359e93a7ef85aca8f0f14"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713NextComparisonFamily/Cross.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713NextComparisonFamily/Cross.olean"
+      ],
+      "log": "evidence/Cross-20260921T231349694091Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "440d6265d3105f969232017cde6c1407bc2ccc4c7c5635a497d5db227307233b",
+      "inputs_stable": true,
+      "olean_sha256": "7c717a6d7c04ec0c367b7f5ac8b0282c2352df503784fd958ff469aaf09a94c2"
+    },
+    "Coherence": {
+      "source_sha256": "1ecb7723e7a782d19c676eb1db7dd25e3b6df487ae204144019499254b8066e3",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713NextComparisonFamily/Cross.olean": "7c717a6d7c04ec0c367b7f5ac8b0282c2352df503784fd958ff469aaf09a94c2",
+        ".lake/build/lib/lean/Fact713Row2773ComparisonFamily/Coherence.olean": "ce087d164c53b723da6f115772a8a394fe312ded11f0f399cbb4d6cc3226c1c0"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713NextComparisonFamily/Coherence.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713NextComparisonFamily/Coherence.olean"
+      ],
+      "log": "evidence/Coherence-20260921T231419883530Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "51dfc2928561e0e356343a11c2cf9eeb25d8db2ff8704c0a8773956f1acfd940",
+      "inputs_stable": true,
+      "olean_sha256": "fd6ffee855702f5ea788dbcc0e57e371c070704923f7ae37aa203c8a27fa991b"
+    },
+    "Extra": {
+      "source_sha256": "acbc669224470e9740320b2087d8d4e679c4ece5e307ef63ff01bfc8e5d366db",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713RefinedComparisonFamily/Basic.olean": "efa1e054b5b90496805c2e13c9588e6ee4e6ba965bddedfc80b030da74b2181c",
+        ".lake/build/lib/lean/Fact713NextSourceSearch/Overlay.olean": "fb2609b74c0391a102591dd0f239b1bb728075b4edd283326592bd277c3a4237"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713NextComparisonFamily/Extra.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713NextComparisonFamily/Extra.olean"
+      ],
+      "log": "evidence/Extra-20260921T231346633756Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "ef8dae4ff1319a04ba66b53fb30374946886d6061621b83895071ca9a8f30534",
+      "inputs_stable": true,
+      "olean_sha256": "21b0415afa6384155490eeca8a0c7408a1ff1b417718cc88e791139a68d3df67"
+    },
+    "Coverage": {
+      "source_sha256": "1eabfba590b783718cb4f6b42706bcb3dce355dcd528a26d712eab5a8ab6d0dd",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713NextComparisonFamily/Coherence.olean": "fd6ffee855702f5ea788dbcc0e57e371c070704923f7ae37aa203c8a27fa991b"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713NextComparisonFamily/Coverage.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713NextComparisonFamily/Coverage.olean"
+      ],
+      "log": "evidence/Coverage-20260921T231423152860Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "e0ff56c5250f01938911dec16666513655f543a56ba37b7214b4c7da42c3dde6",
+      "inputs_stable": true,
+      "olean_sha256": "4de9d4079199195016d84d9a10e0d4597e17d9134190f63142354a71b3688474"
+    }
+  },
+  "audit_sha256": "e78e8a44ae6cb7301e9ccf4241a6a33e6dd87ff87075aa52db84707ff9ba7638"
+}

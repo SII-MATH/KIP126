@@ -1,0 +1,37 @@
+ActualAdamsFiltration/Basic.lean:37:23: error(lean.unknownIdentifier): Unknown constant `Setoid.comap`
+ActualAdamsFiltration/Basic.lean:41:27: warning: Variable name `h` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ActualAdamsFiltration/Basic.lean:55:54: error: Type mismatch
+  h
+has type
+  x✝¹ ≈ x✝
+but is expected to have type
+  s.at (↑x✝¹) n = s.at (↑x✝) n
+ActualAdamsFiltration/Basic.lean:63:43: error: Application type mismatch: The argument
+  h
+has type
+  quotientMap s laws n ⟦x⟧ = quotientMap s laws n ⟦y⟧
+but is expected to have type
+  x ≈ y
+in the application
+  Quotient.sound h
+ActualAdamsFiltration/Basic.lean:93:14: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  h
+has type
+  ((filtration s laws).boundary n).1 ⟨x, hx⟩ ⟨(filtration s laws).zero, ⋯⟩
+which does not have the necessary form.
+ActualAdamsFiltration/Basic.lean:95:14: error: Application type mismatch: The argument
+  Eq.trans h (Eq.symm (at_zero s laws n))
+has type
+  s.at x n = s.at (s.zero 0) n
+but is expected to have type
+  ((filtration s laws).boundary n) ⟨x, hx⟩ ⟨(filtration s laws).zero, ⋯⟩
+in the application
+  Exists.intro hx (Eq.trans h (Eq.symm (at_zero s laws n)))
+'ActualAdamsFiltration.representative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsFiltration.realization' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsFiltration.boundary_iff_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsFiltration.permanent_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

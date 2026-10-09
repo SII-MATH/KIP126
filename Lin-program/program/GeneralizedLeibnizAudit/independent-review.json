@@ -1,0 +1,56 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "source_review": {
+    "version": "v2, 2025-02-22",
+    "exact_streamed_HTML_subtrees": 25,
+    "proof_comparison_references": 6,
+    "preserved_excerpts": 26,
+    "source_sha256": "3c83685387abb63c4f2e282f95cb84c5a37ec1f30746998cb904628180c72d20"
+  },
+  "algebra_replay": {
+    "group": "Z/4",
+    "commuting_additive_squares": 88,
+    "cases": 1824768,
+    "valid_transfers": 370304,
+    "only_first_stable_cases": 56384,
+    "only_second_stable_cases": 46016,
+    "nonzero_target_coset_cases": 5248,
+    "missing_last_stability_counterexamples": 51264,
+    "stability_iff_instances": 388,
+    "generalized_rule_index_checks": 4845
+  },
+  "distinctions": [
+    "Paper ZInfinity is the outgoing-cycle intersection and contains BInfinity; it is not nonzero permanence.",
+    "Definitions2.7,4.14,5.9 quantify distinct extension/differential crossings with exact filtration/page/essentiality conditions.",
+    "Reference.FilteredExtensions two-summand cancellation is not the paper crossing relation.",
+    "RepresentativeSquare.Extension is an existential additive coset witness, not a constructed filtered-map ESS differential.",
+    "HigherMapsInto is structural subgroup preservation; the paper no-crossing equivalence has not been proved for this model.",
+    "square_transfer derives the fourth extension from three witnesses and a commuting square; it does not assume the conclusion.",
+    "The unbounded representative-stability lemma matches the algebraic pattern of Corollary2.15, not full range-sensitive Theorem2.12 or Theorem6.1."
+  ],
+  "paper_theorem_6_1_formalized": false,
+  "missing": [
+    "Actual filtered homotopy/ESS construction and essentiality",
+    "Synthetic lambda truncations, connecting square and weight shifts",
+    "Classical/synthetic Z/B and extension double-quotient identifications",
+    "Exact no-crossing equivalences and differential translations of Propositions4.6/4.16/5.10 and Remark4.12"
+  ],
+  "build": {
+    "observed_exit_code": 0,
+    "standard_axiom_reports": 3
+  },
+  "inputs_sha256": {
+    "GeneralizedLeibnizAudit/RepresentativeSquare.lean": "713204fb9411597f2c58d1989c00ccbb86f6ad7b0ce3d6f24a69582d30f945be",
+    "GeneralizedLeibnizAudit/README.md": "98eeacdde8d5a929370f3bf4e9a8c1b16755514a7fa338bdfae7ec4f53be7686",
+    "GeneralizedLeibnizAudit/paper-excerpts.json": "6176010db7676fa0216f4e9a512a00d379acb70f53001296fa5918794c0f8b4a",
+    "GeneralizedLeibnizAudit/paper-excerpts.md": "d13e545cc332cc053326682e275db3efc4d9fb4dd4c40b3453221693b43ce5a4",
+    "GeneralizedLeibnizAudit/extract.py": "e279fb346b4affc8c004e5a048a048d9c17b162261c50c4196fea48075455476",
+    "AdvancedRuleCertificates/kervaire-v2.html": "3c83685387abb63c4f2e282f95cb84c5a37ec1f30746998cb904628180c72d20",
+    "AdvancedRuleCertificates/Connecting.lean": "6cb15fd795e000a0c78e9b9362c25b5df83df366c8dadad7f1861091452dff1b",
+    "ManualInputObligations/Reference/AdamsRules.lean": "f5e899de1219c1df1056ff94aab36049ce54f0621d08f2e35c80564ebdde64ce",
+    "PropagationCertificates/Rules.lean": "f6338bbf1f3f3cbee9eea78defc1df65381f8f8e479f4612445a50f1d9bd503c",
+    "../Reference/LinProgramReference/FilteredExtensions.lean": "78424b128fa3e80ad7d7d750b37903eb4d54358b6b9362c5f0efd8f752c4561a"
+  }
+}

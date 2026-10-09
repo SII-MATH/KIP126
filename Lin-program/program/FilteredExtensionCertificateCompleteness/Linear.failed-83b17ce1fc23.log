@@ -1,0 +1,41 @@
+FilteredExtensionCertificateCompleteness/Linear.lean:26:44: error: unsolved goals
+n : ℕ
+ih : ∀ (v : Vec n) (j : Fin n), dot v (basis j) = v j
+v : Vec (n + 1)
+j : Fin n
+tail : (fun i => basis j.succ i.succ) = basis j
+⊢ ¬0 = j.succ
+FilteredExtensionCertificateCompleteness/Linear.lean:39:19: error: Application type mismatch: The argument
+  congrArg ?m.22 (eval_basis M j)
+has type
+  ?m.22 (eval M (basis j)) = ?m.22 fun i => M i j
+but is expected to have type
+  (hom M) { bits := basis j } = { bits := fun i => M i j }
+in the application
+  Exists.intro { bits := basis j } (congrArg ?m.22 (eval_basis M j))
+'FilteredExtensionCertificateCompleteness.dot_basis' depends on axioms: [propext, sorryAx, Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkImage_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkFactor_complete' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkFactor_exists_iff' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkPreserves_complete' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkPreserves_exists_iff' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkExtension_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkExtension_exists_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

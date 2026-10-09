@@ -1,0 +1,182 @@
+import FilteredExtensionCertificates.Basic
+import RepresentativeSquareCertificates.Import
+
+namespace FilteredExtensionCertificates
+open LinearCertificates LinProgramCertificates
+
+structure WireData where
+  a : Nat
+  b : Nat
+  ha : Nat
+  hb : Nat
+  depth : Nat
+  s : Nat
+  n : Nat
+  f : List Bool
+  source : List (List Bool)
+  target : List (List Bool)
+  x : List Bool
+  y : List Bool
+  deriving Repr, Lean.FromJson, Lean.ToJson, Lean.ToExpr
+
+structure WireCertificate where
+  version : Nat
+  data : WireData
+  sourceFactors : List (List Bool)
+  targetFactors : List (List Bool)
+  mapFactors : List (List Bool)
+  sourceMember : List Bool
+  imageMember : List Bool
+  targetMember : List Bool
+  representative : List Bool
+  sourceCorrection : List Bool
+  targetCorrection : List Bool
+  deriving Repr, Lean.FromJson, Lean.ToJson, Lean.ToExpr
+
+def matrices (name : String) (depth m n : Nat) (bits : List (List Bool)) :
+    Except String (Fin depth → Matrix m n) := do
+  if bits.length != depth then throw s!"{name}: expected {depth} levels, got {bits.length}"
+  for (v,i) in bits.zipIdx do
+    if v.length != m*n then
+      throw s!"{name}[{i}]: expected {m*n} bits, got {v.length}"
+  return fun i r c => (bits[i.val]!)[r.val*n+c.val]!
+
+def decodeData (w : WireData) : Except String Data := do
+  let f ← RepresentativeSquareCertificates.matrix "data.f" w.b w.a w.f
+  let source ← matrices "data.source" w.depth w.a w.ha w.source
+  let target ← matrices "data.target" w.depth w.b w.hb w.target
+  let x ← RepresentativeSquareCertificates.vector "data.x" w.a w.x
+  let y ← RepresentativeSquareCertificates.vector "data.y" w.b w.y
+  return ⟨w.a,w.b,w.ha,w.hb,w.depth,w.s,w.n,f,source,target,x,y⟩
+
+def decodeCertificate (D : Data) (w : WireCertificate) : Except String (Certificate D) := do
+  let sourceFactors ← matrices "sourceFactors" D.depth D.ha D.ha w.sourceFactors
+  let targetFactors ← matrices "targetFactors" D.depth D.hb D.hb w.targetFactors
+  let mapFactors ← matrices "mapFactors" D.depth D.hb D.ha w.mapFactors
+  let sourceMember ← RepresentativeSquareCertificates.vector "sourceMember" D.ha w.sourceMember
+  let imageMember ← RepresentativeSquareCertificates.vector "imageMember" D.hb w.imageMember
+  let targetMember ← RepresentativeSquareCertificates.vector "targetMember" D.hb w.targetMember
+  let representative ← RepresentativeSquareCertificates.vector "representative" D.a w.representative
+  let sourceCorrection ← RepresentativeSquareCertificates.vector "sourceCorrection" D.ha w.sourceCorrection
+  let targetCorrection ← RepresentativeSquareCertificates.vector "targetCorrection" D.hb w.targetCorrection
+  return ⟨sourceFactors,targetFactors,mapFactors,sourceMember,imageMember,targetMember,
+    representative,sourceCorrection,targetCorrection⟩
+
+def decode (w : WireCertificate) : Except String ((D : Data) × Certificate D) := do
+  if w.version != 1 then throw "version: expected 1"
+  let D ← decodeData w.data
+  return ⟨D,← decodeCertificate D w⟩
+
+def parse (text : String) : Except String WireCertificate := do
+  let w : WireCertificate ← Lean.fromJson? (← Lean.Json.parse text)
+  if (Lean.toJson w).compress != text then
+    throw "noncanonical JSON, duplicate or unknown field"
+  return w
+
+def checkWire (w : WireCertificate) : Except String Bool := do
+  let parsed ← decode w
+  return check parsed.1 parsed.2
+
+/-- The exact complete filtration, map, source and result are embedded in the proposition. -/
+def WireValid (w : WireCertificate) : Prop :=
+  ∃ parsed, decode w = .ok parsed ∧ ResultValid parsed.1
+
+theorem checkWire_sound (w : WireCertificate) (h : checkWire w = .ok true) : WireValid w := by
+  cases he : decode w with
+  | error e => simp [checkWire,he,bind,Except.bind] at h
+  | ok parsed =>
+    have accepted : check parsed.1 parsed.2 = true := by
+      simpa [checkWire,he,bind,Except.bind,pure,Except.pure] using h
+    exact ⟨parsed,he,check_sound _ _ accepted⟩
+
+def checkBatch : List WireCertificate → Bool
+  | [] => true
+  | w :: ws => (match checkWire w with | .ok b => b | .error _ => false) && checkBatch ws
+
+theorem checkBatch_sound (ws : List WireCertificate) (h : checkBatch ws = true) :
+    ∀ w ∈ ws, WireValid w := by
+  induction ws with
+  | nil => simp
+  | cons w ws ih =>
+    simp only [checkBatch,Bool.and_eq_true] at h
+    have hw : checkWire w = .ok true := by
+      cases he : checkWire w with
+      | error e => simp [he] at h
+      | ok b => simpa [he] using h.1
+    intro v hv
+    rcases List.mem_cons.mp hv with hv | hv
+    · subst v
+      exact checkWire_sound _ hw
+    · exact ih h.2 _ hv
+
+instance (w : WireCertificate) : CertificateVerifier (WireValid w) where
+  Cert := Unit
+  check := fun _ => match checkWire w with | .ok b => b | .error _ => false
+  sound := by
+    intro _ h
+    cases he : checkWire w with
+    | error e => simp [he] at h
+    | ok b =>
+      simp only [he] at h
+      exact checkWire_sound w (he.trans (congrArg Except.ok h))
+
+def diagnoseFactor (name : String) (H : Matrix a h) (K : Matrix a k)
+    (factor : Matrix k h) : Option VerificationFailure :=
+  ((List.finRange a).flatMap (fun i => (List.finRange h).map (fun j => (i,j)))).findSome?
+    fun (i,j) => if dot (K i) (fun r => factor r j) != H i j then
+      some ⟨"filtered-extension",s!"{name}: row {i.val}, column {j.val}","factorization bits differ"⟩
+    else none
+
+def diagnose (D : Data) (cert : Certificate D) : Option VerificationFailure :=
+  ((List.finRange D.depth).findSome? fun i =>
+    (diagnoseFactor s!"sourceFactors[{i.val}]" (D.sourceAt (i.val+1)) (D.sourceAt i.val)
+      (cert.sourceFactors i)).orElse fun _ =>
+    (diagnoseFactor s!"targetFactors[{i.val}]" (D.targetAt (i.val+1)) (D.targetAt i.val)
+      (cert.targetFactors i)).orElse fun _ =>
+    RepresentativeSquareCertificates.diagnoseSquare s!"mapFactors[{i.val}]"
+      (cert.mapFactors i) D.f (D.sourceAt i.val) (D.targetAt i.val)).orElse fun _ =>
+  ((diagnoseImage (D.sourceAt D.s) D.x cert.sourceMember).map fun e =>
+    {e with location := s!"sourceMember: {e.location}"}).orElse fun _ =>
+  ((diagnoseImage (D.targetAt (D.s+D.n)) (eval D.f D.x) cert.imageMember).map fun e =>
+    {e with location := s!"imageMember: {e.location}"}).orElse fun _ =>
+  ((diagnoseImage (D.targetAt (D.s+D.n)) D.y cert.targetMember).map fun e =>
+    {e with location := s!"targetMember: {e.location}"}).orElse fun _ =>
+  RepresentativeSquareCertificates.diagnoseExtension "extension" D.f
+    (D.sourceAt (D.s+1)) (D.targetAt (D.s+D.n+1)) D.x D.y
+    cert.representative cert.sourceCorrection cert.targetCorrection
+
+def diagnoseWire (w : WireCertificate) : Except String (Option VerificationFailure) := do
+  let parsed ← decode w
+  return diagnose parsed.1 parsed.2
+
+def physicalLines (text : String) : List String :=
+  let lines := text.splitOn "\n"
+  if text.endsWith "\n" then lines.dropLast else lines
+
+def parseBatch (text : String) : Except String (List WireCertificate) :=
+  (physicalLines text).zipIdx.mapM fun (line,i) => do
+    if line.isEmpty then throw s!"line {i+1}: empty record"
+    if line.contains '\r' then throw s!"line {i+1}: CR is not canonical; use LF"
+    let w ← (parse line).mapError (fun e => s!"line {i+1}: {e}")
+    match ← (diagnoseWire w).mapError (fun e => s!"line {i+1}: {e}") with
+    | none => return w
+    | some e => throw s!"line {i+1}: {e.location}: {e.message}"
+
+elab "filtered_extension_certificate% " path:str : term => do
+  let text ← IO.FS.readFile path.getString
+  let ws ← match parseBatch text with
+    | .ok ws => pure ws
+    | .error e => throwError "{path.getString}: {e}"
+  match ws with
+  | [w] => return Lean.toExpr w
+  | _ => throwError "{path.getString}: expected exactly one record"
+
+elab "filtered_extension_batch% " path:str : term => do
+  let text ← IO.FS.readFile path.getString
+  match parseBatch text with
+  | .ok ws => return Lean.toExpr ws
+  | .error e => throwError "{path.getString}: {e}"
+
+#print axioms checkWire_sound
+#print axioms checkBatch_sound
+end FilteredExtensionCertificates

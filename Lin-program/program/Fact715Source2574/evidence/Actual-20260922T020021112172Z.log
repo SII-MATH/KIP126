@@ -1,0 +1,33 @@
+Fact715Source2574/Actual.lean:78:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (I.sourceMeaning.nextCoordinates ?pages ?valid ?zeroMeaning).equivalence
+    ((CertifiedAdamsPages.nextPage ?pages 2 sourceDegree).toNext ⟦?x⟧)
+in the target expression
+  (I.sourceMeaning.nextCoordinates pages Data.source_valid ⋯).equivalence I.value3 = fun x => true
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+I : Stage2 S pages P
+⊢ (I.sourceMeaning.nextCoordinates pages Data.source_valid ⋯).equivalence I.value3 = fun x => true
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    I.source
+  has type
+    Coordinates S 2 sourceDegree 2
+  but is expected to have type
+    Coordinates S 2 sourceDegree Data.source.m
+  in the application
+    @nextCoordinates S 2 sourceDegree Data.source I.source
+Fact715Source2574/Actual.lean:88:44: error(lean.unknownIdentifier): Unknown identifier `I.factorTarget3`
+Fact715Source2574/Actual.lean:121:16: error: Invalid field notation: Function `factor_d3_zero` does not have a usable parameter of type `Stage2 ...` for which to substitute `I`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+'Fact715Source2574.Actual.Stage2.name3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact715Source2574.Actual.Stage2.trace3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715Source2574.Actual.Stage2.factor_d3_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Fact715Source2574.Actual.Stage2.product_name' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715Source2574.Actual.Stage2.product_d3_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715Source2574.Actual.Stage2.named_d3_nonzero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact715Source2574.Actual.Stage2.cycle_is_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

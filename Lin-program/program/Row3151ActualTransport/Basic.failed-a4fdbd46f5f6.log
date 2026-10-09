@@ -1,0 +1,29 @@
+Row3151ActualTransport/Basic.lean:91:13: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  E.target.equivalence 0
+in the target expression
+  E.target.equivalence 0 = zero
+
+S : AdamsSpectralSequence
+a : Bool
+incoming : Coordinates S 4 incomingDegree (Semantics.incomingDimension a)
+E : EventMeaning S a incoming
+x : (S.element 4 incomingDegree).carrier
+square : (S.differential 4 sourceDegree).toFun ((S.differential 4 incomingDegree).toFun x) = 0
+⊢ E.target.equivalence 0 = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 4 (AdamsTarget 4 sourceDegree)).carrier
+  but is expected to have type
+    (S.element 4 targetDegree).carrier
+  in the application
+    E.target.equivalence 0
+'Row3151ActualTransport.prefix_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.prefix_nonboundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.prefix_endpoint_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.actual_complex' depends on axioms: [propext, sorryAx, Quot.sound]
+'Row3151ActualTransport.full_boundary_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row3151ActualTransport.actual_quotient_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]

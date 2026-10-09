@@ -1,0 +1,6 @@
+DiagnosticTacticReview/Actual.lean:13:4: warning: 'expect_cert_error "representative-square: stability: row 0, column 1: matrix composite bits differ" using
+  crossingCert' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'DiagnosticTacticReview.actual_good' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DiagnosticTacticReview.actual_stability_diagnostic' depends on axioms: [propext, Classical.choice, Quot.sound]

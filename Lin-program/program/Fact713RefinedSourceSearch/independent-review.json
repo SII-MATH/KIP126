@@ -1,0 +1,102 @@
+{
+  "findings": [],
+  "baseline_preserved": 1234,
+  "union_comparisons": 1239,
+  "e12_comparisons": 1236,
+  "e12_blocked": 184,
+  "new_e12_keys": [
+    "S0:19,140:d5",
+    "S0:24,144:d4"
+  ],
+  "new_external_closure_keys": [
+    "S0:28,147:d4",
+    "S0:32,150:d3",
+    "S0:35,152:d2"
+  ],
+  "successor_closure_size": 13,
+  "counts": {
+    "homotopy_vectors": 2496,
+    "cycle_pairs": 9375,
+    "adjacent_matches": 937,
+    "consecutive_matches": 739,
+    "predecessor_dimensions": 2217
+  },
+  "raw_unknown": [
+    3476,
+    24,
+    144,
+    "0",
+    null,
+    9000
+  ],
+  "raw_successor": [
+    3728,
+    28,
+    147,
+    "2",
+    "0,2",
+    9996
+  ],
+  "raw_support_projections": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      1
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      1
+    ]
+  ],
+  "scanned_unresolved": 36,
+  "only_scanned_injective_successor_row": 3476,
+  "actual_premises": [
+    "full actual successor value equation",
+    "faithful middle coordinates",
+    "actual differential square zero"
+  ],
+  "zero_coordinate_laws_required": false,
+  "scope": "conditional actual theorem; raw NULL retained; no full E12 or topology realization",
+  "input_sha256": {
+    "Fact713RefinedSourceSearch/refined.json": "cd50a06cb4bd8697eaffdb4448e754148fdb8e240c3ac1582e4fe65304d50c6b",
+    "Fact713RefinedSourceSearch/successors.json": "a3ea71cce14890cb11baf023abe0840e2e421ec60dd60b57d95e887d8ad32647",
+    "Fact713RefinedSourceSearch/manifest.json": "0c2ac85f09d840798f6d08fc7212fe005905464aaceb26f96abb2e7a5002a664",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "Fact713E12Search/successor-search.json": "d0d7283e9fe616087389078d58613fd027b9781557f8436652401a31e0908328"
+  },
+  "source_freeze_review_pending": false,
+  "build_records": [
+    {
+      "module": "Basic",
+      "reviewed_source_sha256": "f9f66f3872b832a570862348d8a57984a8fafee765957204ac43102c42fd8e90",
+      "reviewed_log_sha256": "a1cf4be860c3f2e31b3fe1a28c11b637739f0e92f3fddcd16198478e1093ac69",
+      "upstream_observed_exit": 0,
+      "standard_reports": 5
+    },
+    {
+      "module": "Data",
+      "reviewed_source_sha256": "b5358033335bf72cbfb64ab327151ad0b11b7fc5e07dbd54b6709bb8eaef595c",
+      "reviewed_log_sha256": "a14c7af27676cdab5c0fa75be11ddd9826c34bea89b8239b10fce181fa664ada",
+      "upstream_observed_exit": 0,
+      "standard_reports": 9
+    }
+  ],
+  "independent_recompilation": false,
+  "script_sha256": "e413769a85b0218f1fd1293be2d5f3032d299ea7a590c43120bfebe56296b55a"
+}

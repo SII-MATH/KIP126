@@ -1,0 +1,186 @@
+{
+  "status": "independent_final_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "finite_replay": {
+    "base_family": 384,
+    "additional_blocks": 15,
+    "final_family": 399,
+    "ordered_pairs": 159201,
+    "horizontal_links": 228,
+    "consecutive_links": 156,
+    "all_current_vectors": 2454,
+    "cycle_pairs": 17841,
+    "target3391_closure": 36,
+    "independent_successor_closure": 13,
+    "raw_sql_degrees": 26,
+    "new_d2_columns": 31,
+    "new_higher_columns": 11,
+    "new_selected_representatives": 8,
+    "preserved_events": 95,
+    "preserved_stage_bindings": 102,
+    "all_incoming_targets_present": 36,
+    "target_closure_conditional_uses": [
+      {
+        "key": "S0:13,139:d3",
+        "object": "S0",
+        "source": [
+          10,
+          137
+        ],
+        "page": 3,
+        "row": [
+          2929,
+          "3",
+          null,
+          9000
+        ],
+        "kind": "conditional_cw_2_eta",
+        "target_predecessor": "S0:13,139:d2"
+      },
+      {
+        "key": "S0:13,139:d4",
+        "object": "S0",
+        "source": [
+          9,
+          136
+        ],
+        "page": 4,
+        "row": [
+          2861,
+          "1",
+          null,
+          9000
+        ],
+        "kind": "conditional_dc2h6_d4",
+        "target_predecessor": "S0:13,139:d3"
+      },
+      {
+        "key": "S0:14,140:d3",
+        "object": "S0",
+        "source": [
+          11,
+          138
+        ],
+        "page": 3,
+        "row": [
+          3019,
+          "2",
+          null,
+          9000
+        ],
+        "kind": "conditional_c2_row3019",
+        "target_predecessor": "S0:14,140:d2"
+      },
+      {
+        "key": "S0:14,140:d3",
+        "object": "S0",
+        "source": [
+          11,
+          138
+        ],
+        "page": 3,
+        "row": [
+          3020,
+          "0",
+          null,
+          9000
+        ],
+        "kind": "conditional_c2_row3020",
+        "target_predecessor": "S0:14,140:d2"
+      },
+      {
+        "key": "S0:23,147:d4",
+        "object": "S0",
+        "source": [
+          23,
+          147
+        ],
+        "page": 4,
+        "row": [
+          3743,
+          "0",
+          null,
+          9000
+        ],
+        "kind": "conditional_successor_row3986",
+        "target_predecessor": "S0:27,150:d3"
+      },
+      {
+        "key": "S0:9,136:d3",
+        "object": "S0",
+        "source": [
+          9,
+          136
+        ],
+        "page": 3,
+        "row": [
+          2861,
+          "1",
+          null,
+          9000
+        ],
+        "kind": "conditional_csigma",
+        "target_predecessor": "S0:12,138:d2"
+      }
+    ]
+  },
+  "semantics": [
+    "Final family preserves all384 base blocks and all95 original events, adding15 full comparisons.",
+    "Known successor closure does not depend on row3743 d4 and has no conditional overrides.",
+    "Raw row3743 remains NULL9000; one new conditional_successor_row3986 interpretation is recorded.",
+    "Actual d-squared and known injective successor force whole incoming mapzero, with explicit actual meanings.",
+    "conditional_column_meaning binds that actual zero to same-degree zero numeric matrix for every actual source.",
+    "Target3391 full incoming equals event outgoing; exact event vector/preimage proves finite quotient zero.",
+    "All36 accepted incoming target comparison keys now exist; no new event or independence count asserted."
+  ],
+  "limitations": [
+    "No construction of full actual PageData/Meaning for target3391 or the399-entry family.",
+    "The numeric selected family is conditional on semantic interpretations including the known successor.",
+    "Existing target closure also retains5 earlier conditional uses, not only the new successor condition.",
+    "No claim about all outgoing event targets, actual sphere realization, permanence, convergence, or stable homotopy."
+  ],
+  "build_evidence": [
+    {
+      "module": "FinalData",
+      "exit_code": 0,
+      "standard_axiom_reports": 1,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "FinalFamily",
+      "exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "FinalTarget",
+      "exit_code": 0,
+      "standard_axiom_reports": 6,
+      "current_olean_exists": true,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "standard_axiom_reports": 9,
+  "input_sha256": {
+    "AggregateIncomingTargetCompletion/FinalData.lean": "f5a6348f02faab59c4252e73e08787948a182377529ea501511e6da430618a2e",
+    "AggregateIncomingTargetCompletion/FinalFamily.lean": "b3b10d2ce47c3cc261a9391ee921c4f9bacb57f0ed1b0e24cc2e3ba170dfd499",
+    "AggregateIncomingTargetCompletion/FinalTarget.lean": "ad8412d527e09ae21c6b705f119f014a2ac6987a06a168141386622ae1eddd6f",
+    "AggregateIncomingTargetCompletion/final-data.json": "c31b89960264efb9e5b15f257da16c02d918f3cfad3d835010f76220eec8841d",
+    "AggregateIncomingTargetCompletion/conditional3391-search.json": "657a0d0cda82d1fc29d20875faabb1bd478f12e57683da4e43a0a4cdfb7a00c9",
+    "AggregateIncomingTargetCompletion/README.md": "d6df39db8e7720e8147fdb1bda6240f2dd49dcfb4865949c7c68ad91cd151023",
+    "AggregateIncomingTargetCompletion/data.json": "5edf847f244024e554761eac3a4cdc98c4d6983f25549033c5b94afad139777d",
+    "AggregateIncomingTargetCompletion/independent-review.json": "e844d24c93c196d3ea242a21407bd7d3d18d77d3fd1b615290b2a569f8aa38fe",
+    "AggregateIncomingTargetCompletion/final-independent-review.py": "a5f1fefd9837ff05b7eea8f0a0911bd270437c0e99f8052f0d02f5fb33a3f119",
+    "Row3743Successor/source.json": "2d9ab8191a4d38bbbc159f178eb3de867a317427aaee63bf7565108709d077a4",
+    "Row3743Successor/Basic.lean": "357c0dfe2ec2dc86ed894541394fa60bdc7dcddef5cf61e141f04b0d91ad02b8",
+    "Row3743Successor/Named.lean": "460dc621c652c669e84051f0f6a345e679ed702bb490876641f74ad9c83355f9",
+    "Row3743SuccessorReview/independent-review.json": "0f60e41cece870ec17c51fc0ae914d5711975bef8f0e10aac5385a4dffdd2e42",
+    "Row3743SuccessorReview/raw-review.json": "215d045909b472417cb46c3d02d1a8cf67f3ef7211823489760db2c6b5c7b0e2",
+    "IndexedFamilyProducer/D5/bound95.jsonl": "0f2511eed6ee9ab21fe384356db99cd73f8651abc85cda7089039c448ad3a2cc",
+    "AggregateEliminationCertificates/mapping.json": "c915b613fee14280248b9ff28980c30d03d4c5f91ee69c3d6e2ec7ee6fb5f892",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "roots": [
+    "S0:20,141:d4",
+    "S0:24,145:d3"
+  ],
+  "keys": [
+    "S0:21,143:d2",
+    "S0:23,143:d2",
+    "S0:16,138:d3",
+    "S0:20,141:d3",
+    "S0:24,144:d3",
+    "S0:24,145:d3",
+    "S0:20,141:d4"
+  ],
+  "raw_successor_rows": [
+    {
+      "row": 3242,
+      "source": [
+        20,
+        141
+      ],
+      "page": 4,
+      "target": [
+        24,
+        144
+      ],
+      "raw_target": "1"
+    },
+    {
+      "row": 3551,
+      "source": [
+        24,
+        145
+      ],
+      "page": 3,
+      "target": [
+        27,
+        147
+      ],
+      "raw_target": "0,2"
+    }
+  ],
+  "limitation": "Comparison matrices use the conditionally derived zero incoming columns. Their full outgoing columns are independently projected from the stored known events. Actual known-event meanings and d-squared remain caller proofs."
+}

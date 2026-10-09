@@ -1,0 +1,49 @@
+import Fact713DC2h6ComparisonFamily.GraphPartitions
+
+namespace Fact713DC2h6ComparisonFamily.GraphCoverage
+open IndexedFamilyCertificates
+set_option maxRecDepth 100000
+set_option maxHeartbeats 16000000
+
+def missingCodes : List Nat := [475003, 540539, 606075, 538227, 537970, 603249, 471920, 671354, 474746, 540282, 605818, 535401, 474489, 540025, 408182, 473462, 344187, 409724, 475260, 540796, 409981, 475517, 541053, 346756, 543365, 608901, 281477, 347013, 543622, 281734, 347270, 412806, 478343, 281736, 281991, 347527, 413063, 478600, 216457, 281993, 413320, 413321, 282504, 479113, 348042, 413578, 282761, 217227, 282763, 348299, 217228, 217482, 283018, 479627, 545163, 283020, 348556, 348811, 479884, 545420, 217741, 283277, 348813, 414605, 480141, 545677, 611213, 217998, 283534, 410238, 475774, 218252, 677006, 283790, 349326, 414862, 480398, 545934, 611470, 283791, 218511, 284047, 349583, 415119, 480655, 546191, 284304, 349840, 415376, 480912, 284561, 350097, 415633, 415889, 350354, 415890, 285074, 350610, 416146, 481682, 350611, 350867, 416403, 481939, 351124, 416660, 482196, 351381, 416917, 482453, 547989, 417174, 482710, 548246, 351894, 417431, 482967, 548503, 614039, 417688, 483224, 417944, 418201, 418458, 484508, 484765, 485022, 550815, 410751, 279935, 411008, 476544, 345729, 411265, 476801, 345986, 411522, 477058, 542594, 346243, 411779, 477315, 542851, 608387, 215426, 674180, 739716, 477572, 543108, 608644, 215430]
+theorem missingCodes_eq : missingCodes = missing.map code := by decide
+
+def outsideCodes : List Nat := [285843, 221334, 156568]
+theorem outsideCodes_eq : outsideCodes = outside.map code := by decide
+
+theorem cached_codes (keys : List Key) : (cached keys).map Prod.fst = keys.map code := by
+  simp [cached, List.map_map, Function.comp_def]
+
+def missingFamilyCodes : List Nat := missingCodes ++ input.cachedFamily.map Prod.fst
+def outsideRequestCodes : List Nat := outsideCodes ++ input.cachedRequest.map Prod.fst
+
+theorem missingFamilyCodes_eq : missingFamilyCodes = (missing ++ familyKeys).map code := by
+  rw [missingFamilyCodes, missingCodes_eq, cache_family, cached_codes, List.map_append]
+
+theorem outsideRequestCodes_eq : outsideRequestCodes = (outside ++ requested).map code := by
+  rw [outsideRequestCodes, outsideCodes_eq, cache_request, cached_codes, List.map_append]
+
+theorem missing_disjoint_checked :
+    FamilyKeyOrder.checkOrder (sortBy (· ≤ ·) missingFamilyCodes) = true := by decide
+
+theorem missing_family_nodup : (missing ++ familyKeys).Nodup := by
+  apply FamilyKeyOrder.nodup_of_map_nodup code
+  rw [← missingFamilyCodes_eq]
+  exact (sortBy_perm (· ≤ ·) missingFamilyCodes).nodup
+    (FamilyKeyOrder.checkOrder_nodup _ missing_disjoint_checked)
+
+theorem outside_disjoint_checked :
+    FamilyKeyOrder.checkOrder (sortBy (· ≤ ·) outsideRequestCodes) = true := by decide
+
+theorem outside_requested_nodup : (outside ++ requested).Nodup := by
+  apply FamilyKeyOrder.nodup_of_map_nodup code
+  rw [← outsideRequestCodes_eq]
+  exact (sortBy_perm (· ≤ ·) outsideRequestCodes).nodup
+    (FamilyKeyOrder.checkOrder_nodup _ outside_disjoint_checked)
+
+theorem requested_nodup : requested.Nodup := (List.nodup_append.mp outside_requested_nodup).2.1
+
+#print axioms missing_family_nodup
+#print axioms outside_requested_nodup
+#print axioms requested_nodup
+end Fact713DC2h6ComparisonFamily.GraphCoverage

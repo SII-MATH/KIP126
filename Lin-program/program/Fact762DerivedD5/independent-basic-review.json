@@ -1,0 +1,16 @@
+{
+  "status": "pass_no_findings",
+  "basic_source_sha256": "f6d9038891d9ca525bd7c08d7a4fef7842c751ea28346848c33bf6dfea9d2012",
+  "axiom_reports": 4,
+  "fields_reviewed": [
+    "Source.Prefix only",
+    "same S and source targetPages detector",
+    "explicit E2 polynomial naming bridge"
+  ],
+  "new_source_d5_cycle_field": false,
+  "same_input_models": 80640,
+  "wrong_input_bindings_rejected": 564480,
+  "E6_zero_endpoint_models": 80640,
+  "E6_nonzero_endpoint_models": 80640,
+  "scope": "E5 nonzero and derived d5 zero imply an E6 trace; E6 nonzero is not asserted."
+}

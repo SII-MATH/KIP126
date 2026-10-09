@@ -1,0 +1,87 @@
+{
+  "raw_unknown": [
+    2574,
+    6,
+    132,
+    "0",
+    null,
+    9997
+  ],
+  "known_imported_differential": [
+    2866,
+    7,
+    136,
+    "0",
+    "3",
+    9997
+  ],
+  "products": 7,
+  "bilinear_certificates": 2,
+  "target_E3_dimension": 3,
+  "product_target_E3_dimension": 2,
+  "allowed_coordinates": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ]
+  ],
+  "proof_log_provenance": [
+    {
+      "file": "proofs-part3.csv",
+      "record": 47477,
+      "physical_end_line": 81836,
+      "id": "2047477",
+      "depth": "1",
+      "reason": "T",
+      "name": "S0",
+      "stem": "126",
+      "s": "6",
+      "t": "132",
+      "r": "3",
+      "x": "0",
+      "dx": "",
+      "info": "Get `S0 (126,6) d_4[0]=[]`. Apply the Leibniz rule with `S0 (3,1) d_4[0]=[]` and get `S0 (129,7) d_4[0]=[]`.\nGet `S0 (129,7) d_4[0]=[]` where the element on the left-hand side already supports d_3.\nHowever, `S0 (128,10) [3]` is not in B_2."
+    },
+    {
+      "file": "proofs-part3.csv",
+      "record": 47478,
+      "physical_end_line": 81839,
+      "id": "2047478",
+      "depth": "1",
+      "reason": "T",
+      "name": "S0",
+      "stem": "126",
+      "s": "6",
+      "t": "132",
+      "r": "3",
+      "x": "0",
+      "dx": "2",
+      "info": "Get `S0 (126,6) d_3[0]=[2]`. Apply the Leibniz rule with `S0 (3,1) d_3[0]=[]` and get `S0 (129,7) d_3[0]=[2]`.\nGet `S0 (129,7) d_3[0]=[2]` where the element on the left-hand side already supports d_3.\nHowever, `S0 (128,10) [3]` is not in B_2."
+    }
+  ],
+  "certificate_sha256": {
+    "ann.json": "3fa4c60a5cc4cf001310723bd022526b9e9e5132d1696b46857799c006bad69d",
+    "detect.json": "3ea3576b9feeb1783dd11ddf39f98fa10f791a83c62cdd3e02fcc9ff42c143cf"
+  },
+  "external_premises": [
+    "all-class local quotient h2 Leibniz square",
+    "product differential sends imported row2866 source to class e3"
+  ],
+  "status": "exact affine restriction; no source differential selected; no zero inference"
+}

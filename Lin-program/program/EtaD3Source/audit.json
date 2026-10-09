@@ -1,0 +1,85 @@
+{
+  "status": "passed",
+  "complete_d2_comparisons": 6,
+  "quotient_cycle_pairs": 18,
+  "full_product_columns": 2,
+  "ring_reduction_steps": 1,
+  "products": [
+    {
+      "name": "zeroProduct",
+      "all_input_pair_values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "detectProduct",
+      "all_input_pair_values": [
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "detector_kernel": [
+    0
+  ],
+  "raw_h0": [
+    1,
+    "0",
+    null,
+    9000
+  ],
+  "raw_eta": [
+    3,
+    "0",
+    null,
+    9000
+  ],
+  "axiom_reports": 14,
+  "compiled": {
+    "Data": {
+      "source_sha256": "fe667ef11fe2abce89c0aa5f09f352d2270b1a49683b10654bb20ebd8164b9e1",
+      "external_input_sha256": {
+        "EtaD3Source/h0.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "EtaD3Source/eta.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+        "EtaD3Source/h0Target.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+        "EtaD3Source/etaTarget.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "EtaD3Source/zeroProductTarget.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+        "EtaD3Source/detectTarget.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "EtaD3Source/zeroProduct.json": "5cbf3aea0367d6279393c70afc50601d9c4089fcdafb995264b1a9a4a84ee9fa",
+        "EtaD3Source/detectProduct.json": "51bd3dac9e8e8d19261d51a5846458e7418da45422fedc01c9517cced83a2399",
+        "EtaD3Source/zeroProduct0.json": "8040081c352f6397c46c318253923f6525b2815176da294d0f2abdbc0858c305",
+        "EtaD3Source/detectProduct0.json": "3c3752a9aeebc2634ce242712172d7e7e8893dc1c37e65f135f245477ad85340"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "760a604de9cf9eb9d5fa4b0118cede7904c6306b9160c392bcbdb36ea507ce70",
+      "olean_sha256": "df199c01430817503b118b623fee9875eb58c9aeb676d39e5a35c410abc56652"
+    },
+    "Basic": {
+      "source_sha256": "4b49ac9c2ca4dcbd07225d8a6ce95b15e0153917bf58723bb2b238bb0f325455",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "6def5d746769cbe092d97541dd15016e9d2aae56113d275e3e1eeaeac63da32d",
+      "olean_sha256": "12641d63c29965fd033d358e9aac7b26c7c98e6c008c1f0c24126bc562c242d2"
+    },
+    "Semantics": {
+      "source_sha256": "67aa7afd37cfbabfea18f54b245c90123584f6c0b39ce718476f8c9bce2bb09e",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "500324f77d6e75c6f165546cd3329724d435b706c0f83d7d2bfb96eb276fdb0e",
+      "olean_sha256": "d1185aad1a2164b3f30fbb2b705dad0b1962b2f923432abaca211509720c8efc"
+    },
+    "Actual": {
+      "source_sha256": "670e7dfa1d38cb392537967ab7c86d6ce676c3f21ad02ed5f35b87e0f899a1a3",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "52aa44a45e13548544ff081ba641e19891ec0aba01f6c0b33aee7ce19c4aead0",
+      "olean_sha256": "fcdaea80a7edff8e381668d3f8de92a7e36b66c63379b2be634976587e0c2910"
+    }
+  },
+  "scope": "Actual quotient and product meanings remain explicit; no unknown staircase differential is used."
+}

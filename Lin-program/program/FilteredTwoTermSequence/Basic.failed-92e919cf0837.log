@@ -1,0 +1,22 @@
+FilteredTwoTermSequence/Basic.lean:45:11: warning: Variable name `x` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FilteredTwoTermSequence/Basic.lean:45:13: warning: Variable name `y` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+FilteredTwoTermSequence/Basic.lean:93:4: error: Type mismatch: After simplification, term
+  targetAdvance_kernel_local F G f s n
+ has type
+  (allTargetAdvance F G f (s + n) n).ker = (targetD F G f s n).range
+but is expected to have type
+  (allTargetAdvance F G f (s + n) n).ker =
+    ((↑(⋯ ▸ AddEquiv.refl (AllTargetPage F G f (s + n - n + n) n))).comp (targetD F G f (s + n - n) n)).range
+'FilteredTwoTermSequence.pageD_square_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.incomingD_absent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.nextSourceEquivKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.targetAdvance_kernel' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredTwoTermSequence.targetCokernelEquivNext' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

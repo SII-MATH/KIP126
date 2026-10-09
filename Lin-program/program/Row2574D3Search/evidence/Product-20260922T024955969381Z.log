@@ -1,0 +1,18 @@
+Row2574D3Search/Product.lean:68:4: error: Type mismatch: After simplification, term
+  formula
+ has type
+  @Eq (S.element 3 ((AdamsTarget 3 factorDegree).add sourceDegree)).carrier
+    (id
+      ((S.differential 3 (factorDegree.add sourceDegree)).toFun
+        (P.product.multiply 3 factorDegree sourceDegree a D.original.value3)))
+    (id
+      (P.product.multiply 3 factorDegree (AdamsTarget 3 sourceDegree) a
+        ((S.differential 3 sourceDegree).toFun D.original.value3)))
+but is expected to have type
+  @Eq (S.element 3 (AdamsTarget 3 { filtration := 7, internal := 136 })).carrier
+    ((S.differential 3 { filtration := 7, internal := 136 }).toFun
+      (P.product.multiply 3 factorDegree sourceDegree a D.original.value3))
+    (P.product.multiply 3 factorDegree degree a ((S.differential 3 sourceDegree).toFun D.original.value3))
+'Row2574D3Search.Product.Input.productInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2574D3Search.Product.Input.product_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2574D3Search.Product.Input.detected' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

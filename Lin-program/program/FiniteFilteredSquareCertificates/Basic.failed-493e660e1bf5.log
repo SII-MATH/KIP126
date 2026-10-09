@@ -1,0 +1,13 @@
+FiniteFilteredSquareCertificates/Basic.lean:148:13: error: Type mismatch
+  congrArg ?m.127 (checkChainMap_sound D.p D.q D.f D.g commutes v.bits)
+has type
+  ?m.127 (eval D.q (eval D.f v.bits)) = ?m.127 (eval D.g (eval D.p v.bits))
+but is expected to have type
+  (hom D.q) ((hom D.f) v) = (hom D.g) ((hom D.p) v)
+FiniteFilteredSquareCertificates/Basic.lean:153:19: error: unexpected token 'structure'; expected rcasesPat
+FiniteFilteredSquareCertificates/Basic.lean:153:28: error: unexpected token '⟩'; expected identifier
+FiniteFilteredSquareCertificates/Basic.lean:159:2: error(lean.inferBinderTypeFailed): Failed to infer type of binder `refine`
+FiniteFilteredSquareCertificates/Basic.lean:159:9: error: unexpected token '⟨'; expected command
+'FiniteFilteredSquareCertificates.checkFiltered_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteFilteredSquareCertificates.structure_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FiniteFilteredSquareCertificates.check_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

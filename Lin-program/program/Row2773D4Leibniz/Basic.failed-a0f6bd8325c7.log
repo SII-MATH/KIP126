@@ -1,0 +1,19 @@
+Row2773D4Leibniz/Basic.lean:64:48: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin eta.m) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin eta.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+Row2773D4Leibniz/Basic.lean:64:59: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  OfNat (Fin rightTarget.m) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Fin rightTarget.m
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+'Row2773D4Leibniz.named_product' depends on axioms: [propext, Quot.sound]
+'Row2773D4Leibniz.left_all_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2773D4Leibniz.right_all_zero' depends on axioms: [propext, sorryAx, Quot.sound]
+'Row2773D4Leibniz.named_source_coordinates' depends on axioms: [propext, Quot.sound]
+'Row2773D4Leibniz.named_right_coordinates' depends on axioms: [propext, Quot.sound]

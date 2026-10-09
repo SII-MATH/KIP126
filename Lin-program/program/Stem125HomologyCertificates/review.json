@@ -1,0 +1,929 @@
+{
+  "SQL_known_d2_columns": 216,
+  "all_cycle_pairs_checked": 2302,
+  "conditional_NULL_d2_columns": [
+    {
+      "basis_id": 6651,
+      "block": "S0:52,177:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "raw_d2": null,
+      "source": [
+        52,
+        177
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix",
+          "row": [
+            6651,
+            "0",
+            "0",
+            9996
+          ]
+        }
+      ]
+    },
+    {
+      "basis_id": 7007,
+      "block": "S0:55,180:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "raw_d2": null,
+      "source": [
+        55,
+        180
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "stored_outgoing_d2",
+          "row": [
+            7007,
+            "0",
+            "0",
+            9998
+          ]
+        }
+      ]
+    },
+    {
+      "basis_id": 6893,
+      "block": "S0:55,180:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "raw_d2": null,
+      "source": [
+        53,
+        179
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            6893,
+            "0",
+            "0",
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "basis_id": 7162,
+      "block": "S0:56,181:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "raw_d2": null,
+      "source": [
+        56,
+        181
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "stored_outgoing_d2",
+          "row": [
+            7162,
+            "0",
+            "0",
+            9998
+          ]
+        }
+      ]
+    },
+    {
+      "basis_id": 7008,
+      "block": "S0:56,181:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "raw_d2": null,
+      "source": [
+        54,
+        180
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix",
+          "row": [
+            7008,
+            "0",
+            "0",
+            9997
+          ]
+        }
+      ]
+    },
+    {
+      "basis_id": 7247,
+      "block": "S0:57,182:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "raw_d2": null,
+      "source": [
+        57,
+        182
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            7247,
+            "0",
+            "0",
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "basis_id": 7163,
+      "block": "S0:57,182:d2",
+      "column": 0,
+      "kind": "conditional_d2_staircase",
+      "raw_d2": null,
+      "source": [
+        55,
+        181
+      ],
+      "staircase_basis_evidence": [
+        {
+          "kind": "incoming_boundary_d2_cycle_prefix",
+          "row": [
+            7163,
+            "0",
+            "1",
+            5
+          ]
+        }
+      ]
+    }
+  ],
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "inputs_sha256": {
+    "AggregateD5Conditional/Data.lean": "43b0204c283f4347882f0d62f14d42f26e5b7b08f2fb1a29813d46ccc1b62a37",
+    "AggregateD5Conditional/event-results.json": "47ef1c3887a8cb598289dd0719df04cd11dc9c999b8d47e6d4e1705a5c3dfb59",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateTargetInventory/Aggregate.lean": "cba5fce2b8a60629a76abbe5c840597e6c78dd5677b1f1ee617b720bb7726caa",
+    "AggregateTargetInventory/Bases.lean": "0061bafc323af74f98b0eac2a451bb87a4f287d9c4eeded1b72f03336739314d",
+    "AggregateTargetInventory/inventory.json": "5305d51f32ad48fffa3da528155cc97258b7a52e13d0a02086a297f8de5c5538",
+    "Stem125HomologyCertificates/Basic.lean": "ab6bcfdbef256abe80fc313f43bad11b1beb404f75325ece008fb51b55348adf",
+    "Stem125HomologyCertificates/D2.lean": "77f7bd150d66b1dd8ea591a3b8ab3e8c56cb0b75cb3da59fa1823ea7d2ad7ba3",
+    "Stem125HomologyCertificates/D3.lean": "16de5554d7858953414562dade8423414bddb2a63461acdb4673e6e9b22997f7",
+    "Stem125HomologyCertificates/D4.lean": "c7048493cc2f1c76e2496796dcbfa988e52cf2a3e21b77bbaa6325059cd764dc",
+    "Stem125HomologyCertificates/coverage.json": "310592d99961ba9d3af4012f3f76ae0a7a19298546176e68c1a286ba818436b1",
+    "Stem125HomologyCertificates/generate.py": "c2075f7c00428cbe91241ed9b7d1fa7b853bb9b80586c4ab45bac0eac19795e8",
+    "Stem125HomologyCertificates/review.py": "ec0bbbef3f8895fd78b7c556437de87c02f099a469a9753b10fc775088318ed3"
+  },
+  "limitations": [
+    "Finite imported complexes only; all actual Adams identifications and recorded conditional uses remain mathematical premises.",
+    "D3 and D4 are restricted products, not complete E4 or E5 pages. No missing block was assigned a zero matrix.",
+    "No inference subtracts accepted named events from E2 dimension; exact full-matrix ranks and boundary cosets determine the result."
+  ],
+  "local_boundary_cosets_checked": 187,
+  "pages": {
+    "2": {
+      "comparison_dependency_count": 45,
+      "homology_coordinate_count": 44,
+      "matrix_ranks": [
+        {
+          "filtration": 5,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 6,
+          "homology": 2,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 7,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 8,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 9,
+          "homology": 3,
+          "incoming_rank": 0,
+          "input": 5,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 10,
+          "homology": 1,
+          "incoming_rank": 1,
+          "input": 5,
+          "outgoing_rank": 3
+        },
+        {
+          "filtration": 11,
+          "homology": 4,
+          "incoming_rank": 0,
+          "input": 5,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 12,
+          "homology": 2,
+          "incoming_rank": 1,
+          "input": 5,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 13,
+          "homology": 3,
+          "incoming_rank": 2,
+          "input": 5,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 14,
+          "homology": 1,
+          "incoming_rank": 1,
+          "input": 3,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 15,
+          "homology": 2,
+          "incoming_rank": 1,
+          "input": 5,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 16,
+          "homology": 1,
+          "incoming_rank": 1,
+          "input": 4,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 17,
+          "homology": 0,
+          "incoming_rank": 1,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 18,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 19,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 3,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 20,
+          "homology": 1,
+          "incoming_rank": 1,
+          "input": 3,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 21,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 3,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 22,
+          "homology": 2,
+          "incoming_rank": 0,
+          "input": 4,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 23,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 24,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 25,
+          "homology": 3,
+          "incoming_rank": 0,
+          "input": 4,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 26,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 27,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 28,
+          "homology": 0,
+          "incoming_rank": 2,
+          "input": 4,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 29,
+          "homology": 1,
+          "incoming_rank": 1,
+          "input": 2,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 30,
+          "homology": 0,
+          "incoming_rank": 1,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 31,
+          "homology": 1,
+          "incoming_rank": 2,
+          "input": 3,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 33,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 34,
+          "homology": 1,
+          "incoming_rank": 1,
+          "input": 2,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 36,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 37,
+          "homology": 0,
+          "incoming_rank": 1,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 38,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 39,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 40,
+          "homology": 0,
+          "incoming_rank": 1,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 41,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 42,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 43,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 44,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 45,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 46,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 49,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 52,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 55,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 56,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 57,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        }
+      ],
+      "missing_nonzero_previous": [],
+      "source_use_kinds": {
+        "conditional_d2_staircase": 7
+      }
+    },
+    "3": {
+      "comparison_dependency_count": 112,
+      "homology_coordinate_count": 23,
+      "matrix_ranks": [
+        {
+          "filtration": 5,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 0,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 6,
+          "homology": 2,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 7,
+          "homology": 0,
+          "incoming_rank": 1,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 8,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 10,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 11,
+          "homology": 2,
+          "incoming_rank": 2,
+          "input": 4,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 12,
+          "homology": 0,
+          "incoming_rank": 2,
+          "input": 2,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 13,
+          "homology": 2,
+          "incoming_rank": 0,
+          "input": 3,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 14,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 15,
+          "homology": 2,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 16,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 17,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 0,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 18,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 19,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 20,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 21,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 22,
+          "homology": 2,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 23,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 25,
+          "homology": 3,
+          "incoming_rank": 0,
+          "input": 3,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 29,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 31,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 38,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 39,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 41,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 43,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 46,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 49,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 52,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        }
+      ],
+      "missing_nonzero_previous": [
+        {
+          "center": [
+            9,
+            134
+          ],
+          "filtration": 9,
+          "previous_h": 3,
+          "reason": "unknown S0:6,132:d3:row2574; target dimension 3"
+        },
+        {
+          "center": [
+            34,
+            159
+          ],
+          "filtration": 34,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            36,
+            161
+          ],
+          "filtration": 36,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            45,
+            170
+          ],
+          "filtration": 45,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            57,
+            182
+          ],
+          "filtration": 57,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        }
+      ],
+      "source_use_kinds": {
+        "checked_zero_codomain": 3,
+        "conditional_cnu_eta": 1,
+        "conditional_d2_staircase": 1,
+        "conditional_leibniz": 1,
+        "stored_event": 14,
+        "stored_zero_prefix_or_boundary": 59
+      }
+    },
+    "4": {
+      "comparison_dependency_count": 109,
+      "homology_coordinate_count": 2,
+      "matrix_ranks": [
+        {
+          "filtration": 6,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 2
+        },
+        {
+          "filtration": 7,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 0,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 8,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 0,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 11,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 2,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 18,
+          "homology": 1,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 0
+        },
+        {
+          "filtration": 31,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 39,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 43,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        },
+        {
+          "filtration": 52,
+          "homology": 0,
+          "incoming_rank": 0,
+          "input": 1,
+          "outgoing_rank": 1
+        }
+      ],
+      "missing_nonzero_previous": [
+        {
+          "center": [
+            13,
+            138
+          ],
+          "filtration": 13,
+          "previous_h": 2,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            14,
+            139
+          ],
+          "filtration": 14,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            15,
+            140
+          ],
+          "filtration": 15,
+          "previous_h": 2,
+          "reason": "unknown S0:11,137:d4:row2925; target dimension 2"
+        },
+        {
+          "center": [
+            16,
+            141
+          ],
+          "filtration": 16,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            21,
+            146
+          ],
+          "filtration": 21,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            22,
+            147
+          ],
+          "filtration": 22,
+          "previous_h": 2,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            25,
+            150
+          ],
+          "filtration": 25,
+          "previous_h": 3,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            46,
+            171
+          ],
+          "filtration": 46,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        },
+        {
+          "center": [
+            49,
+            174
+          ],
+          "filtration": 49,
+          "previous_h": 1,
+          "reason": "not attempted in this snapshot"
+        }
+      ],
+      "source_use_kinds": {
+        "conditional_c2_row3019": 1,
+        "conditional_c2_row3020": 1,
+        "conditional_ceta": 1,
+        "conditional_d2_staircase": 5,
+        "conditional_dc2h6_d3": 1,
+        "conditional_h0_h2_leibniz": 1,
+        "stored_event": 17,
+        "stored_zero_prefix_or_boundary": 60
+      }
+    }
+  },
+  "status": "full_combination_homology_replay_passed"
+}

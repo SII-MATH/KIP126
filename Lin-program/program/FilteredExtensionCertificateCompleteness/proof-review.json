@@ -1,0 +1,54 @@
+{
+  "modules": [
+    {
+      "module": "FilteredExtensionCertificateCompleteness.Linear",
+      "axiom_reports": 8,
+      "source_sha256": "1c7f0bc43a0fc05856b3ca1eabb8d0ba7e9202303edcbbd48cf97295360500ce",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "d41b1aa12b9176ec960974d3c0a0861bfe49988d1ad480cdd0a5acfbd83c6429",
+      "olean_sha256": "ce857283b43bb171d22e42ee888cf4fa1c870c048c5a2d7ebd87bc9a5ede5ba2"
+    },
+    {
+      "module": "FilteredExtensionCertificateCompleteness.Basic",
+      "axiom_reports": 5,
+      "source_sha256": "8aee506dbbf690d7acac8425e6a6afadd9d6f69e6a109ce0754e4d9e1f1f0edd",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "51449476f5f920ace48cbdc2a265bd12542cfb79f57d4131c504d9a6ff024cea",
+      "olean_sha256": "b086c8b1820dc13c804fdd80af222c1ee64f8ae5d63322cbdc7b0a649f2b14f1"
+    },
+    {
+      "module": "FilteredExtensionCertificateCompleteness.Search",
+      "axiom_reports": 7,
+      "source_sha256": "51d83b077317408f673f89b825e9b5d537b993febbb10e9c1f12ea511d8c129e",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "1c6360c6d045ef78b03af1e07c17d9f1979d8a596216112e91027cf2866d4c8b",
+      "olean_sha256": "e8e4fdf8ee4fbc756b0da7e6cfb71511d3c3e583ec3c426b9a492fba970126db"
+    },
+    {
+      "module": "FilteredExtensionCertificateCompleteness.Examples",
+      "axiom_reports": 8,
+      "source_sha256": "746da5a264ecd1fbe2b124355123b3e1fddf42b2c5300fa7496b500291128d34",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "b7d6ef9f86300b8b8649b7520d5a75b019de833d5ef968a360f5933480ab5e54",
+      "olean_sha256": "93c3cb5e450141febd88e1b3bf93d450c29d034accffab847cbf9ac42b5f6568"
+    }
+  ],
+  "observed_successful_direct_compilations": 4,
+  "standard_only_axiom_reports": 28,
+  "scope": "witness completeness for exact FilteredExtensionCertificates.ResultValid",
+  "search": "explicit exponential reference search, success iff ResultValid",
+  "efficient_cpp_completeness_claimed": false,
+  "excluded": [
+    "topological convergence",
+    "identification of actual Adams filtrations"
+  ],
+  "failed_attempts": [
+    "Examples.failed-8d6795c39cea.log",
+    "Linear.failed-83b17ce1fc23.log",
+    "Linear.failed-8c8847be82e6.log"
+  ]
+}

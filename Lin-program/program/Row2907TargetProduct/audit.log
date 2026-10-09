@@ -1,0 +1,73 @@
+{
+  "status": "all_complete_target_products_and_branch_exclusions_passed",
+  "cases": [
+    {
+      "residual": 0,
+      "coefficient": 0,
+      "target_E4_dimension": 2,
+      "counts": {
+        "product_quotient_pairs": 147456,
+        "rejected_d4_candidates": 36864,
+        "accepted_d4_candidates": 36864,
+        "carrier_models": 18432
+      }
+    },
+    {
+      "residual": 0,
+      "coefficient": 1,
+      "target_E4_dimension": 1,
+      "counts": {
+        "product_quotient_pairs": 6144,
+        "rejected_d4_candidates": 3072,
+        "carrier_models": 1536
+      }
+    },
+    {
+      "residual": 1,
+      "coefficient": 0,
+      "target_E4_dimension": 1,
+      "counts": {
+        "product_quotient_pairs": 12288,
+        "rejected_d4_candidates": 1536,
+        "accepted_d4_candidates": 1536,
+        "carrier_models": 1536
+      }
+    },
+    {
+      "residual": 1,
+      "coefficient": 1,
+      "target_E4_dimension": 0,
+      "counts": {
+        "product_quotient_pairs": 3072,
+        "rejected_d4_candidates": 768,
+        "carrier_models": 768
+      }
+    }
+  ],
+  "counts": {
+    "E2_cycle_products": 16,
+    "product_quotient_pairs": 168960,
+    "rejected_d4_candidates": 42240,
+    "accepted_d4_candidates": 38400,
+    "carrier_models": 22272,
+    "rejected_requests": 464,
+    "accepted_requests": 1,
+    "batch_pairs": 216225
+  },
+  "selected_residual": false,
+  "coefficient_forced_zero_under_actual_premises": true,
+  "actual_premises": [
+    "Row2907PDeltaDetection witness with known actual product differential",
+    "Entire actual target d3 source and incoming meanings in canonical coordinates",
+    "Whole E3 factor-target product equation with same factor and known-target charts",
+    "Actual factor-target quotient multiplication transition and local zero laws"
+  ],
+  "input_sha256": {
+    "Row2907TargetProduct/audit.py": "ee405b048fdf0385d44d06847100c7b4392c46f6c606e04892fc37af11a23fef",
+    "Row2907PDeltaDetection/wire/targetProduct.json": "363ca6df485a0dda60d813478b131e15ab061001465dda89dd02dd89eb1dd169",
+    "Row3136SquareCandidates/wire/u0a0r0_source.json": "8a28ddb6c8a907e5942412e6fb35bc13b34fc987afc3396785c3fe2ddb6c4e46",
+    "Row3136SquareCandidates/wire/u0a1r0_source.json": "f74e19c6548a598711292b2e7d8f6103164deedca5238c4b5f4ef62cb8d65dbe",
+    "Row3136SquareCandidates/wire/u0a0r1_source.json": "b165d93d2385cc852b8e0b59015dcab576f197d922da51dc6961f04aecc9d8f0",
+    "Row3136SquareCandidates/wire/u0a1r1_source.json": "2dc192bdb5ae99a0037c98e1c9e892e111ed5706bed395e0cee61ba4178c9ec5"
+  }
+}

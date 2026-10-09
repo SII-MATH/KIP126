@@ -1,0 +1,118 @@
+{
+  "scope": "four conditional finite families plus full local actual transport",
+  "branches_selected": false,
+  "old_family": "Fact713Row2431Continuation",
+  "cases": [
+    {
+      "case": "zero_a0",
+      "entries": 1338,
+      "prior_entries": 1333,
+      "added": 5,
+      "graph_available": 1331,
+      "graph_missing": 89,
+      "adjacent": 1021,
+      "consecutive": 836,
+      "predecessor_dimensions": 2508,
+      "cycle_vectors": 2165,
+      "cycle_pairs": 9663,
+      "source_E4_dimension": 2,
+      "target_E4_dimension": 1,
+      "rebase": [],
+      "compatibility": "all_complete_old_and_new_keys_compatible"
+    },
+    {
+      "case": "zero_a1",
+      "entries": 1338,
+      "prior_entries": 1333,
+      "added": 5,
+      "graph_available": 1331,
+      "graph_missing": 89,
+      "adjacent": 1021,
+      "consecutive": 836,
+      "predecessor_dimensions": 2508,
+      "cycle_vectors": 2163,
+      "cycle_pairs": 9651,
+      "source_E4_dimension": 1,
+      "target_E4_dimension": 0,
+      "rebase": [],
+      "compatibility": "all_complete_old_and_new_keys_compatible"
+    },
+    {
+      "case": "residual_a0",
+      "entries": 1346,
+      "prior_entries": 1341,
+      "added": 5,
+      "graph_available": 1339,
+      "graph_missing": 81,
+      "adjacent": 1028,
+      "consecutive": 844,
+      "predecessor_dimensions": 2532,
+      "cycle_vectors": 2174,
+      "cycle_pairs": 9674,
+      "source_E4_dimension": 1,
+      "target_E4_dimension": 1,
+      "rebase": [],
+      "compatibility": "all_complete_old_and_new_keys_compatible"
+    },
+    {
+      "case": "residual_a1",
+      "entries": 1349,
+      "prior_entries": 1341,
+      "added": 8,
+      "graph_available": 1340,
+      "graph_missing": 80,
+      "adjacent": 1031,
+      "consecutive": 846,
+      "predecessor_dimensions": 2538,
+      "cycle_vectors": 2177,
+      "cycle_pairs": 9671,
+      "source_E4_dimension": 0,
+      "target_E4_dimension": 0,
+      "rebase": [
+        {
+          "object": "S0",
+          "degree": [
+            16,
+            137
+          ],
+          "page": 5,
+          "restored": 2907,
+          "kind": "rebase_after_forced_zero_d4_target",
+          "old": [],
+          "new": [
+            [
+              2907,
+              "1",
+              null,
+              9996
+            ]
+          ],
+          "warning": "Raw scheduled d4 event is not asserted nonzero; its exact value is NULL. This branch interprets it as zero because full target is zero."
+        }
+      ],
+      "compatibility": "all_complete_old_and_new_keys_compatible"
+    }
+  ],
+  "actual_premises": [
+    "entire actual target d3 meaning including known row3306 column",
+    "row3305 product meanings and factor names with same-element e0 binding",
+    "arbitrary entire actual source matrix meaning",
+    "row3135 product meanings and factor names, known nonzero right d3, same-element e1 binding",
+    "entire actual incoming map in the explicitly selected row2994 branch",
+    "all old family actual interpretation premises retained"
+  ],
+  "actual_conclusions": [
+    "u=false",
+    "source matrix = [a,0;0,0] for a equal its first coefficient",
+    "one of four finite families with full local source/incoming/target matrix agreement",
+    "zero full target forces row2907 d4 zero in residual_a1 when supplied actual target equivalence"
+  ],
+  "limitations": [
+    "no actual a branch chosen",
+    "no actual row2994 branch chosen",
+    "no inference of actual realizations of all old entries",
+    "raw NULL is preserved",
+    "no topological contradiction from scheduling mismatch",
+    "finite E9 does not assert actual E9 without quotient meanings"
+  ]
+}

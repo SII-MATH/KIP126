@@ -1,0 +1,30 @@
+{
+  "status": "both_finite_candidate_branches_independently_audited",
+  "branches": [
+    {
+      "branch": "zero",
+      "baseline_preserved": 1272,
+      "comparisons": 1327,
+      "new_comparisons": 55,
+      "all_vectors": 2628,
+      "all_cycle_pairs": 9610,
+      "adjacent_differentials": 1012,
+      "predecessor_dimensions": 2481,
+      "finite_named_page": 9,
+      "sha256": "db5595a8a05501fad35fb8554ded51795cb11aa640fb9fbed77f1d73bb779e20"
+    },
+    {
+      "branch": "residual_rebased",
+      "baseline_preserved": 1272,
+      "comparisons": 1335,
+      "new_comparisons": 63,
+      "all_vectors": 2638,
+      "all_cycle_pairs": 9621,
+      "adjacent_differentials": 1019,
+      "predecessor_dimensions": 2505,
+      "finite_named_page": 9,
+      "sha256": "5d4baa65a6371f234c186bff65094ca70d13c846718cd808fc69fcf19d7c5d96"
+    }
+  ],
+  "limitation": "These are conditional finite branches, not a proof of actual E9 or an unconditional d3 value."
+}

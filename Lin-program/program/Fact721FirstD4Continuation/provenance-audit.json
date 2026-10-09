@@ -1,0 +1,136 @@
+{
+  "status": "all_inherited_provenance_and_new_unknown_rules_checked",
+  "branches": [
+    {
+      "branch": "zero",
+      "exact_old_records": 28,
+      "exact_family_prefix": 1300,
+      "new_comparisons": 14,
+      "row2622_uses": 2,
+      "new_unknown_uses": [
+        {
+          "comparison": "S0:11,133:d4",
+          "use": {
+            "object": "S0",
+            "source": [
+              11,
+              133
+            ],
+            "page": 4,
+            "row": [
+              2622,
+              "1",
+              null,
+              9000
+            ],
+            "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+            "target_predecessor": "S0:15,136:d3",
+            "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+            "coordinate_binding": "whole actual map; no named source binding required",
+            "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+          }
+        },
+        {
+          "comparison": "S0:15,136:d4",
+          "use": {
+            "object": "S0",
+            "source": [
+              11,
+              133
+            ],
+            "page": 4,
+            "row": [
+              2622,
+              "1",
+              null,
+              9000
+            ],
+            "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+            "target_predecessor": "S0:15,136:d3",
+            "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+            "coordinate_binding": "whole actual map; no named source binding required",
+            "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+          }
+        }
+      ]
+    },
+    {
+      "branch": "residual_rebased",
+      "exact_old_records": 30,
+      "exact_family_prefix": 1302,
+      "new_comparisons": 20,
+      "row2622_uses": 2,
+      "new_unknown_uses": [
+        {
+          "comparison": "S0:11,133:d4",
+          "use": {
+            "object": "S0",
+            "source": [
+              11,
+              133
+            ],
+            "page": 4,
+            "row": [
+              2622,
+              "1",
+              null,
+              9000
+            ],
+            "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+            "target_predecessor": "S0:15,136:d3",
+            "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+            "coordinate_binding": "whole actual map; no named source binding required",
+            "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+          }
+        },
+        {
+          "comparison": "S0:15,136:d4",
+          "use": {
+            "object": "S0",
+            "source": [
+              11,
+              133
+            ],
+            "page": 4,
+            "row": [
+              2622,
+              "1",
+              null,
+              9000
+            ],
+            "kind": "conditional_row2622_d4_whole_actual_C2h6_naturality",
+            "target_predecessor": "S0:15,136:d3",
+            "theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+            "coordinate_binding": "whole actual map; no named source binding required",
+            "premise": "Complete actual E3 homology meanings, actual current maps and quotient transitions, full target injection and d4 naturality."
+          }
+        },
+        {
+          "comparison": "S0:12,134:d6",
+          "use": {
+            "object": "S0",
+            "source": [
+              12,
+              134
+            ],
+            "page": 6,
+            "row": [
+              2684,
+              "0",
+              null,
+              9000
+            ],
+            "kind": "checked_zero_codomain",
+            "target_predecessor": "S0:18,139:d5"
+          }
+        }
+      ]
+    }
+  ],
+  "inherited_actual_cycle_inputs_preserved": true,
+  "sha256": {
+    "Fact721FirstD4Continuation/audit_provenance.py": "7cc8a3e8299b8574454f8b9dc3b8108c7a356106712ebe644a2a1f17a2d999b7",
+    "Fact721FirstD4Continuation/conditional_signature.json": "9ed84c1ff79ea22feaa6b7a0dd263268afff6db465fc5026e4e90eacf929c6ed",
+    "Fact713Row3247ConditionalBranches/conditional_signature.json": "08232bde8ac0901f9c65800a65132657ed2d39c4d66f98bde619e8aac9f829a6"
+  }
+}

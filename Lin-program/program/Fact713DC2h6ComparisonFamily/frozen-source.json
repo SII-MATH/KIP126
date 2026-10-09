@@ -1,0 +1,215 @@
+{
+  "modules": [
+    "Fact713DC2h6ComparisonFamily.Extra",
+    "Fact713DC2h6ComparisonFamily.Cross",
+    "Fact713DC2h6ComparisonFamily.Coherence",
+    "Fact713DC2h6ComparisonFamily.Coverage",
+    "Fact713DC2h6ComparisonFamily.GraphData",
+    "Fact713DC2h6ComparisonFamily.GraphPartitions",
+    "Fact713DC2h6ComparisonFamily.GraphDisjoint",
+    "Fact713DC2h6ComparisonFamily.GraphCoverage",
+    "Fact713DC2h6ComparisonFamily.GraphParserTests"
+  ],
+  "source_sha256": {
+    "Fact713DC2h6ComparisonFamily/Extra.lean": "40a9809b1cef30065eee97017f80981c96f81e0da05fac05d5de0a56bb281901",
+    "Fact713DC2h6ComparisonFamily/Cross.lean": "1e5de74cc902efe6f029ffb1b510ca8d1bdd186a05e905c656aacea544abc65b",
+    "Fact713DC2h6ComparisonFamily/Coherence.lean": "66fd1751248965618f909e39a6fcb0f1af772fbb1764a834edec79cb16e2479d",
+    "Fact713DC2h6ComparisonFamily/Coverage.lean": "d8f5e92ed163f0e34ef9e5825ae16eebd1db438012fa92f94a1cc6b9941a0651",
+    "Fact713DC2h6ComparisonFamily/GraphData.lean": "85b2aaea8f874baca97d8481f9591941f8e03fbbc6970b8eb09a5ab574b70e12",
+    "Fact713DC2h6ComparisonFamily/GraphPartitions.lean": "7e0447eea1a1c196acd3ff0bfe1cbb390a9f010f0239ff99738d689b3863fcff",
+    "Fact713DC2h6ComparisonFamily/GraphDisjoint.lean": "3ffb60e23ff67d5542b31bee84195b7e3a6da78d583db31a466447fb16e799d3",
+    "Fact713DC2h6ComparisonFamily/GraphCoverage.lean": "d87e9a2c4cacdad64cede80157d3194ca068b26552b4a2e0e291f6eb21cc5020",
+    "Fact713DC2h6ComparisonFamily/GraphParserTests.lean": "a5e0abd6317be93950f3f39793211ed834af12f3d607869b0481e5c053ccf440",
+    "Fact713DC2h6ComparisonFamily/compile.py": "8827170573dd93507bad960c8f8eb33b14ecce11e00c52205ed50b6c13751bf5",
+    "Fact713DC2h6ComparisonFamily/package.py": "455ac36720a75cb52bc37cede0ddc1851316972f460053f5cce69005646e83a5",
+    "Fact713DC2h6ComparisonFamily/audit.py": "dc3032db3c1409dd38ba736e4e2e6c99e170a26e7b806865510b22593457ec6d",
+    "Fact713DC2h6ComparisonFamily/parser_test.py": "03340f41376ba37062e4c9e943ec75883192f51f5f5d6fd4d10e16988a66fab4",
+    "Fact713DC2h6ComparisonFamily/modules.txt": "37b7485bf8cf5b48ad487ec4ea9df12ce1f19a2b3304100b4c5f7cb09b0d830d",
+    "Fact713DC2h6ComparisonFamily/manifest.json": "77666e0194b661902e4d05aa6850cf2b8b1b9ae08dac77c847429708daafe26f",
+    "Fact713DC2h6ComparisonFamily/family.json": "66724a278c4a5de3703c0581378a7bdb4cd49da3bc3b61b3b027dc155c490dd7",
+    "Fact713DC2h6ComparisonFamily/extra.json": "f28e39fb3f02eb75995f0a599117bd4e03a167c3d4eecf1284e4e42301693140",
+    "Fact713DC2h6ComparisonFamily/graph-gaps.json": "83e79cdc8f9673283706bce0e74dd1501908ee8f67535c61c78521a978be37a6",
+    "Fact713DC2h6ComparisonFamily/graph-proof.json": "85592a8dec23a9533f6b7985079cd1c465dfac5a74303755480946f80a4093c4",
+    "Fact713DC2h6ComparisonFamily/README.md": "8e71f5d322a7da164ed5c8b37bf444bc5570b655fef8cdddaafe5398a0f3414e"
+  },
+  "direct_compile": {
+    "Extra": {
+      "source_sha256": "40a9809b1cef30065eee97017f80981c96f81e0da05fac05d5de0a56bb281901",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713RefinedComparisonFamily/Basic.olean": "efa1e054b5b90496805c2e13c9588e6ee4e6ba965bddedfc80b030da74b2181c",
+        ".lake/build/lib/lean/Fact713DC2h6Source/Overlay.olean": "833410874ee3b1aafbb2ede6a9a5a6b760c634921469e1a2a6d5b5696a600aa1"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/Extra.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/Extra.olean"
+      ],
+      "log": "evidence/Extra-20260921T232520700388Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "229c985c0d3114a1a2553a6879cd2dbe37fa6486837a553b3d59bca8a660d664",
+      "inputs_stable": true,
+      "olean_sha256": "bf00f4d417e11c7b509584b4fb2365b49ab7bda409733331b16b5e4944f8ca20"
+    },
+    "Cross": {
+      "source_sha256": "1e5de74cc902efe6f029ffb1b510ca8d1bdd186a05e905c656aacea544abc65b",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/Extra.olean": "bf00f4d417e11c7b509584b4fb2365b49ab7bda409733331b16b5e4944f8ca20",
+        ".lake/build/lib/lean/Fact713NextComparisonFamily/Cross.olean": "bcc1b128e8cee34b30bcd9eaf328e828f01aa227721a893f94b19b83a1abdd0c"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/Cross.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/Cross.olean"
+      ],
+      "log": "evidence/Cross-20260921T232524128144Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "08ab80ff1c769ab0c4ff2b4a21cf5351fa141146525ad31253a4b178cd04109e",
+      "inputs_stable": true,
+      "olean_sha256": "d1959da7c784f9c3970d7bac8f512baecf9b6518bfa7c8bd8b4f09bfa502fcd9"
+    },
+    "Coherence": {
+      "source_sha256": "66fd1751248965618f909e39a6fcb0f1af772fbb1764a834edec79cb16e2479d",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/Cross.olean": "d1959da7c784f9c3970d7bac8f512baecf9b6518bfa7c8bd8b4f09bfa502fcd9",
+        ".lake/build/lib/lean/Fact713NextComparisonFamily/Coherence.olean": "4bac4a69c59f6ba5fcd788cfd342fc95bc34a8be1c2654fa55eb3eb5eefbed97"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/Coherence.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/Coherence.olean"
+      ],
+      "log": "evidence/Coherence-20260921T232616357104Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "d92f61df5963539b3a625f860bcf0e6522a51b7bb69c392c543861b10ec75aaa",
+      "inputs_stable": true,
+      "olean_sha256": "eaa43f89698c0a4a1e34fb6fc09145c5cfb668f2b26ee19287ad819f269ed6d8"
+    },
+    "Coverage": {
+      "source_sha256": "d8f5e92ed163f0e34ef9e5825ae16eebd1db438012fa92f94a1cc6b9941a0651",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/Coherence.olean": "eaa43f89698c0a4a1e34fb6fc09145c5cfb668f2b26ee19287ad819f269ed6d8"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/Coverage.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/Coverage.olean"
+      ],
+      "log": "evidence/Coverage-20260921T232619317371Z.log",
+      "observed_exit_code": 0,
+      "log_sha256": "879cc795dd5807ecc03e63831d803de172936520efab209b4f6278d4fe32f20b",
+      "inputs_stable": true,
+      "olean_sha256": "1fbbfbc6af87c5caa4e5debde07019289c9e21f6318fca0ad9eb1cafa3eee930"
+    },
+    "GraphData": {
+      "source_sha256": "85b2aaea8f874baca97d8481f9591941f8e03fbbc6970b8eb09a5ab574b70e12",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/Coverage.olean": "1fbbfbc6af87c5caa4e5debde07019289c9e21f6318fca0ad9eb1cafa3eee930"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/GraphData.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphData.olean"
+      ],
+      "log": "evidence/GraphData-20260921T235329000390Z.log",
+      "external_input_sha256": {
+        "Fact713DC2h6ComparisonFamily/graph-proof.json": "85592a8dec23a9533f6b7985079cd1c465dfac5a74303755480946f80a4093c4"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_stable": true,
+      "olean_sha256": "7965505d927eb2f1f0ddb375a0b77565deff176bc618ab53676fc266cd6816d5"
+    },
+    "GraphPartitions": {
+      "source_sha256": "7e0447eea1a1c196acd3ff0bfe1cbb390a9f010f0239ff99738d689b3863fcff",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphData.olean": "7965505d927eb2f1f0ddb375a0b77565deff176bc618ab53676fc266cd6816d5"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/GraphPartitions.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphPartitions.olean"
+      ],
+      "log": "evidence/GraphPartitions-20260921T234044350136Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "e2a90b76a0863aacfe64683d1b0ba66cf465c2556c83d1b3ae05b67520a226b3",
+      "inputs_stable": true,
+      "olean_sha256": "37a0ae1eae9c2aaf6a97b67ca977e50344f8c6e62ae2263f2bddd7357bbd27d6"
+    },
+    "GraphDisjoint": {
+      "source_sha256": "3ffb60e23ff67d5542b31bee84195b7e3a6da78d583db31a466447fb16e799d3",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphPartitions.olean": "37a0ae1eae9c2aaf6a97b67ca977e50344f8c6e62ae2263f2bddd7357bbd27d6"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/GraphDisjoint.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphDisjoint.olean"
+      ],
+      "log": "evidence/GraphDisjoint-20260921T235302449115Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "86859d39932e335a2187b5cb232b1ab6d1b8ec0c52c2d1916227b314fbe2cb4f",
+      "inputs_stable": true,
+      "olean_sha256": "337425818357626b7ddfb6009def72237ffaab4d55d852362e0b7729cb45b91e"
+    },
+    "GraphCoverage": {
+      "source_sha256": "d87e9a2c4cacdad64cede80157d3194ca068b26552b4a2e0e291f6eb21cc5020",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphPartitions.olean": "37a0ae1eae9c2aaf6a97b67ca977e50344f8c6e62ae2263f2bddd7357bbd27d6",
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphDisjoint.olean": "337425818357626b7ddfb6009def72237ffaab4d55d852362e0b7729cb45b91e"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/GraphCoverage.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphCoverage.olean"
+      ],
+      "log": "evidence/GraphCoverage-20260921T235325497072Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "83cb4288ffd9c42e8670640e976ff1a3a5db07665c32a917f340785eb9c38e01",
+      "inputs_stable": true,
+      "olean_sha256": "c9419a9e04555be848d3dde3e2afb17cbc606d37978830f7cca570de5e55fd36"
+    },
+    "GraphParserTests": {
+      "source_sha256": "a5e0abd6317be93950f3f39793211ed834af12f3d607869b0481e5c053ccf440",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphData.olean": "7965505d927eb2f1f0ddb375a0b77565deff176bc618ab53676fc266cd6816d5"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact713DC2h6ComparisonFamily/GraphParserTests.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713DC2h6ComparisonFamily/GraphParserTests.olean"
+      ],
+      "log": "evidence/GraphParserTests-20260921T234052759491Z.log",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_stable": true,
+      "olean_sha256": "cb21dd790b7355fb5588a4894b2515a98ecb5d1a672dbbb9a38045d9ccabb082"
+    }
+  },
+  "audit_sha256": "44d9ba900d568423538e0ace2882d619b54090110773c3c75687e5a76ade9a0d",
+  "parser_tests_sha256": "ae2c0ffcba5929a926c12823873cc4a1c7d6d3cd4920d1ecad193dcd8400ac18",
+  "axiom_reports": 26,
+  "status": "frozen",
+  "scope": "Exact finite comparison family and full imported key partition; no actual Adams realization theorem."
+}

@@ -1,0 +1,90 @@
+{
+  "status": "no_correctness_findings",
+  "modules": [
+    "Maps",
+    "Comparison",
+    "Naturality",
+    "MapSemantics",
+    "Actual",
+    "Overlay"
+  ],
+  "axiom_reports": 12,
+  "raw_row": [
+    2684,
+    12,
+    134,
+    "0",
+    null,
+    9000
+  ],
+  "raw_factors_with_nonzero_d2": [
+    [
+      105,
+      "18,1",
+      1,
+      32,
+      "0"
+    ],
+    [
+      1303,
+      "188,1",
+      11,
+      102,
+      "0"
+    ]
+  ],
+  "maps": 6,
+  "columns": 15,
+  "reductions": 6,
+  "full_comparisons": 4,
+  "full_chainmap_evaluations": 28,
+  "quotient_pair_checks": 192,
+  "induced_source_columns": [
+    0,
+    0
+  ],
+  "induced_target_columns": [
+    2,
+    4
+  ],
+  "target_zero_kernel_verified": true,
+  "detector_to_overlay_coordinate_columns": [
+    2,
+    1
+  ],
+  "old_preserved": 1249,
+  "overlay_added": 8,
+  "union": 1257,
+  "graph_available": 1254,
+  "graph_unresolved": 166,
+  "adjacent_equalities": 954,
+  "consecutive_dimensions": 757,
+  "finite_E7_trajectory": [
+    [
+      2,
+      3,
+      1
+    ],
+    [
+      3,
+      1,
+      1
+    ],
+    [
+      4,
+      1,
+      1
+    ],
+    [
+      5,
+      1,
+      1
+    ],
+    [
+      6,
+      1,
+      1
+    ]
+  ],
+  "scope": "Actual quotient meanings and actual d3 naturality remain premises; overlay finite E7 is not an actual sphere survival theorem."
+}

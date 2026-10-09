@@ -1,0 +1,121 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "proof_evidence": {
+    "Data": {
+      "source_sha256": "a9069eb740a43f3f861cc5f966ce08901e525f9000932b02447eee7537da206e",
+      "log_sha256": "482b3c8af35d77901fe7494b9db453225aa978c43f586893ba2fb79db19dd2fb",
+      "observed_exit_code": 0,
+      "axiom_reports": 18
+    },
+    "ZeroExtra": {
+      "source_sha256": "72e9b7799418f6038cd5c69672215286167248933430df5d6c888f66c94efa3a",
+      "log_sha256": "41b1061641a1704e67a0d51ea8664bcb967a1659566025423c88499b8019c494",
+      "observed_exit_code": 0,
+      "axiom_reports": 1
+    },
+    "ZeroCross": {
+      "source_sha256": "9a9ee276ef8e0b9ac1c27a2c01d91e94345924647a0e770f529ffba828209aa6",
+      "log_sha256": "2b33eb3358bc478a5b31ee51c9d5a9e5a48453202074f20832a70989e6c197e5",
+      "observed_exit_code": 0,
+      "axiom_reports": 3
+    },
+    "ZeroCoherence": {
+      "source_sha256": "e033e2689b50d67302dc54c9681ec49779d4a891656ef163c1523d6f50752408",
+      "log_sha256": "2e671620f273becff847cd7efa939311053e8eef64458aad02cb6e4c46854dd3",
+      "observed_exit_code": 0,
+      "axiom_reports": 1
+    },
+    "ResidualExtra": {
+      "source_sha256": "fa3704346570997c33b5328e5a8aa76b6a59a55805a6b885768c26cc68ed7b9f",
+      "log_sha256": "7f8bdb9460b973b507fe260adecdf55b4a13f9440e6e7ae13edd0b04957b5214",
+      "observed_exit_code": 0,
+      "axiom_reports": 1
+    },
+    "ResidualCross": {
+      "source_sha256": "53e5cc5aae7eebd11e6fd5a11fb8f4a4aaac201322b64476cf4b40f213015d07",
+      "log_sha256": "4492cf8108377e1a86e43449e86e91d2b8b5b56a9c52239ba720517b261642e4",
+      "observed_exit_code": 0,
+      "axiom_reports": 3
+    },
+    "ResidualCoherence": {
+      "source_sha256": "7a1d046d3d2897e6f3c4629be0ddf918de9faddeb3f38a17858fa575f1d7e690",
+      "log_sha256": "f66a80666a83394485eafa6c0c48571cc6790626bf743a200ee4b42166bf9b22",
+      "observed_exit_code": 0,
+      "axiom_reports": 1
+    },
+    "Branches": {
+      "source_sha256": "05bdd2c7143efe4cd22c4051622bd651ee87ac8311afe3d3f582b12c5d44692d",
+      "log_sha256": "72332aabd21542f0ad9a7d01bd1f6272969448e78b32ef880a471bc7845d107f",
+      "observed_exit_code": 0,
+      "axiom_reports": 10
+    },
+    "ActualRule": {
+      "source_sha256": "d039e615659d14c0ab4e69edb16b533a63ebf93320de5413acae2200ce40c9cf",
+      "log_sha256": "c7bf1bd65fb83af67e85dcaee30077353eb06b514889d84ebdb27cab9075a191",
+      "observed_exit_code": 0,
+      "axiom_reports": 9
+    },
+    "Constructed": {
+      "source_sha256": "b965c823b26e940ede8e0aaa59f719b64ef40f3c7a9a0b4c4147cd95b032219e",
+      "log_sha256": "a7a6e1b636fe9caae64b188bdd8a924b1ad40b5e7cc74d1145b767943c03620b",
+      "observed_exit_code": 0,
+      "axiom_reports": 9
+    },
+    "Request": {
+      "source_sha256": "fcb8596e2616117747736851905996603581795c9ae25f161b9e9f97c2132536",
+      "log_sha256": "c989b5d80d9eb1d330c40e887d30fbd80d81c88d2c6c9bf2184f407f856de678",
+      "observed_exit_code": 0,
+      "axiom_reports": 2
+    }
+  },
+  "counts": {
+    "constructed_quotient_coordinates": 1327104,
+    "actual_quotient_pairs": 3244032,
+    "derived_additivity_pairs": 3244032,
+    "same_raw_trace_steps": 589824,
+    "whole_incoming_elements": 1179648,
+    "models": 73728,
+    "models_with_nonzero_zero_label": 73692,
+    "rejected_requests": 464,
+    "accepted_requests": 1,
+    "batch_pairs": 216225
+  },
+  "scope": "Conditional actual E10 for one fixed E2 input in the same S and pages; eight constructed quotient transitions.",
+  "supplied_tracked_coordinates": [
+    "E2"
+  ],
+  "constructed_tracked_coordinates": [
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7",
+    "E8",
+    "E9",
+    "E10"
+  ],
+  "remaining_inputs": [
+    "Complete actual neighboring differential meanings for d2 through d9",
+    "Local zero and addition laws of actual quotient identifications",
+    "Interpretation of the initial E2 vector as the claimed sphere class",
+    "The new finite branch uses explicit named actual E3 cycle representatives; this E10 interface does not discharge them"
+  ],
+  "limitations": [
+    "Python model checks supplement the Lean proof and are not a proof of sphere meanings",
+    "Only the named request [true,true] -> [true] is accepted; this is not a generic spectral-sequence calculator"
+  ],
+  "input_sha256": {
+    "Fact713Row3143Continuation/Constructed.lean": "b965c823b26e940ede8e0aaa59f719b64ef40f3c7a9a0b4c4147cd95b032219e",
+    "Fact713Row3143Continuation/ActualRule.lean": "d039e615659d14c0ab4e69edb16b533a63ebf93320de5413acae2200ce40c9cf",
+    "Fact713Row3143Continuation/Request.lean": "fcb8596e2616117747736851905996603581795c9ae25f161b9e9f97c2132536",
+    "Fact713Row3143Continuation/source-d3.json": "ec044a87ef946c2c17a712ea3a980d31b555e2a2eb6f4f5dd1a8da6ed12688aa",
+    "Fact713Row3143Continuation/wire/b_S0_9_132_d9.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Fact713ConstructedNamed/Basic.lean": "7bd9c7234c8157a1e017482af006fba30896028c521699f4cabedff86fb317e9",
+    "Fact713ConstructedE8/Trace.lean": "5f05215010d821723426835924c78b16a0672c89fbeddb9900a562e306921657",
+    "ActualAdamsHomologyCoordinates/Basic.lean": "de6e59f1752062308e73843a8f7b3dcd986cd674987d71a6d3d48c4ff901d95d",
+    "ActualAdamsHomologyCoordinates/Adapter.lean": "f77596734d2804856e28d3d993b2b1af82daf41675f2c4c94f2b4bdccfc6ba68",
+    "Fact713Row3143Continuation/zero-family.json": "b678065a498e6ffe733ced1114b85b1e55ff6fd699f555265937a3a2b2796c9f",
+    "Fact713Row3143Continuation/residual-family.json": "053542491fb02fde39c9ca5efe4d92cb67b120df3cc9eaed5d5885fcb99a7470"
+  }
+}

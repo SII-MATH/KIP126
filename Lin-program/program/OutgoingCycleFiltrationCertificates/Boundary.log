@@ -1,0 +1,8 @@
+OutgoingCycleFiltrationCertificates/Boundary.lean:57:0: warning: Definition `Realization.boundaryCoherence` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+'OutgoingCycleFiltrationCertificates.Realization.next_boundary_iff_incoming' depends on axioms: [propext, Quot.sound]
+'OutgoingCycleFiltrationCertificates.Realization.boundary_next' depends on axioms: [propext, Quot.sound]
+'OutgoingCycleFiltrationCertificates.Realization.BInfinity_subset_ZInfinity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

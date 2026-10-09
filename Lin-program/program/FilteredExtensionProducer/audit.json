@@ -1,0 +1,145 @@
+{
+  "accepted": 604,
+  "byte_identical": true,
+  "depth_zero_and_index128_tested": true,
+  "deterministic_runs": 3,
+  "dimension_limit_tested": 64,
+  "executable_sha256": "6eb5eb6b72e46241f2eb5da8b8aded60dbb4f7a5cae6f9eb784a0a45536c1b25",
+  "input_cases": 2555,
+  "named_cases": 3,
+  "negative_cases": [
+    {
+      "error": "stdin:1: version: expected 1",
+      "name": "version"
+    },
+    {
+      "error": "stdin:1: input: unknown field unknown",
+      "name": "unknown field"
+    },
+    {
+      "error": "stdin:1: input: missing field data",
+      "name": "missing data"
+    },
+    {
+      "error": "stdin:1: unknown/null/string value at byte 163",
+      "name": "unknown entry None"
+    },
+    {
+      "error": "stdin:1: data.x: expected Boolean",
+      "name": "unknown entry ?"
+    },
+    {
+      "error": "stdin:1: data.x: expected Boolean",
+      "name": "unknown entry [NULL]"
+    },
+    {
+      "error": "stdin:1: data.x: expected Boolean",
+      "name": "unknown entry possibly"
+    },
+    {
+      "error": "stdin:1: data.x: expected Boolean",
+      "name": "unknown entry external_input"
+    },
+    {
+      "error": "stdin:1: data.f: expected Boolean",
+      "name": "numeric bool 0"
+    },
+    {
+      "error": "stdin:1: data.f: expected Boolean",
+      "name": "numeric bool 1"
+    },
+    {
+      "error": "stdin:1: data.a: resource limit64",
+      "name": "a limit"
+    },
+    {
+      "error": "stdin:1: data.b: resource limit64",
+      "name": "b limit"
+    },
+    {
+      "error": "stdin:1: data.ha: resource limit64",
+      "name": "ha limit"
+    },
+    {
+      "error": "stdin:1: data.hb: resource limit64",
+      "name": "hb limit"
+    },
+    {
+      "error": "stdin:1: data.depth: resource limit64",
+      "name": "depth limit"
+    },
+    {
+      "error": "stdin:1: data.s: resource limit64",
+      "name": "s limit"
+    },
+    {
+      "error": "stdin:1: data.n: resource limit64",
+      "name": "n limit"
+    },
+    {
+      "error": "stdin:1: expected natural",
+      "name": "boolean dimension"
+    },
+    {
+      "error": "stdin:1: expected natural",
+      "name": "negative dimension"
+    },
+    {
+      "error": "stdin:1: data.source: expected depth matrices",
+      "name": "depth length"
+    },
+    {
+      "error": "stdin:1: data.target[0]: dimension mismatch",
+      "name": "matrix length"
+    },
+    {
+      "error": "stdin:1: data.x: dimension mismatch",
+      "name": "vector length"
+    },
+    {
+      "error": "stdin:1: duplicate field version",
+      "name": "duplicate"
+    },
+    {
+      "error": "stdin:1: unknown/null/string value at byte 0",
+      "name": "blank"
+    },
+    {
+      "error": "stdin:1: trailing JSON",
+      "name": "trailing JSON"
+    },
+    {
+      "error": "stdin:1: trailing JSON",
+      "name": "trailing NUL"
+    },
+    {
+      "error": "stdin:1: trailing JSON",
+      "name": "NUL plus junk"
+    },
+    {
+      "error": "stdin:1: leading zero",
+      "name": "leading zero"
+    },
+    {
+      "error": "stdin:1: JSON depth limit32",
+      "name": "deep"
+    },
+    {
+      "error": "stdin:1: record byte limit10MB",
+      "name": "oversized"
+    }
+  ],
+  "random_cases": 1400,
+  "rejected": 1951,
+  "scalar_cases": 1152,
+  "scope": "Actual finite quotient-equation semantics; Lean must still check each output and prove its soundness.",
+  "source_sha256": {
+    "FilteredExtensionProducer/Makefile": "9abd32c5fd63ff3e994e43d10f9111b8bb75676b322e78e3e5f9c84e7f74312d",
+    "FilteredExtensionProducer/export.cpp": "0b1d67a0ea08768d4bca25e2d6501606460e5bed13ba2b16747698aabaeac8e8",
+    "FilteredExtensionProducer/test.py": "de688dd9b91eb9598e8f8c25b07784296138116172aab691570e38cffb2cd514",
+    "IndexedFamilyProducer/json.hpp": "7600670139f680ad74c92c1ffe99289ae8b349c24a2bae7861ca866d43df4be7"
+  },
+  "status": "independent_quotient_oracle_passed",
+  "valid_input_sha256": "821e76467433bb5a4308eb2490efc35f8dccd8eeef148c9e9934edfe2433e4c1",
+  "valid_output_sha256": "be0b556329b4b225752013fe92946d66d3da080ee8dd83c820d80252758600ef"
+}

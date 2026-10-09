@@ -1,0 +1,82 @@
+Fact721SecondLater/Targets.lean:82:18: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  I.t83.coordinates.equivalence 0
+in the target expression
+  I.t83.coordinates.equivalence 0 =
+    eval (matrixOf Data.t8d3.m Data.t8d3.n Data.t8d3.incoming)
+      (((ActualAdamsIncomingBridge.sourceEquiv S 3 { filtration := 20, internal := 141 } ⋯).trans
+          I.i83.coordinates.equivalence)
+        x)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+I : Stage2 S pages
+K : Known3 I
+zeros : ActualAdamsSystemBridge.ZeroMeaning S pages
+add : LocalAddMeaning pages 3 { filtration := 20, internal := 141 }
+x : ActualAdamsIncomingBridge.Source S 3 { filtration := 20, internal := 141 }
+⊢ I.t83.coordinates.equivalence 0 =
+    eval (matrixOf Data.t8d3.m Data.t8d3.n Data.t8d3.incoming)
+      (((ActualAdamsIncomingBridge.sourceEquiv S 3 { filtration := 20, internal := 141 } ⋯).trans
+          I.i83.coordinates.equivalence)
+        x)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 3 (AdamsTarget 3 { filtration := 17, internal := 139 })).carrier
+  but is expected to have type
+    (S.element 3 { filtration := 20, internal := 141 }).carrier
+  in the application
+    I.t83.coordinates.equivalence 0
+Fact721SecondLater/Targets.lean:98:18: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  I.t43.coordinates.equivalence 0
+in the target expression
+  I.t43.coordinates.equivalence 0 =
+    eval (matrixOf Data.t4d3.m Data.t4d3.n Data.t4d3.incoming)
+      (((ActualAdamsIncomingBridge.sourceEquiv S 3 { filtration := 24, internal := 144 } ⋯).trans
+          I.t93.coordinates.equivalence)
+        x)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+I : Stage2 S pages
+K : Known3 I
+zeros : ActualAdamsSystemBridge.ZeroMeaning S pages
+add : LocalAddMeaning pages 3 { filtration := 24, internal := 144 }
+x : ActualAdamsIncomingBridge.Source S 3 { filtration := 24, internal := 144 }
+⊢ I.t43.coordinates.equivalence 0 =
+    eval (matrixOf Data.t4d3.m Data.t4d3.n Data.t4d3.incoming)
+      (((ActualAdamsIncomingBridge.sourceEquiv S 3 { filtration := 24, internal := 144 } ⋯).trans
+          I.t93.coordinates.equivalence)
+        x)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 3 (AdamsTarget 3 { filtration := 21, internal := 142 })).carrier
+  but is expected to have type
+    (S.element 3 { filtration := 24, internal := 144 }).carrier
+  in the application
+    I.t43.coordinates.equivalence 0
+Fact721SecondLater/Targets.lean:112:3: error: Invalid field notation: Function `Known3.t8Step3` does not have a usable parameter of type `Known3 ...` for which to substitute `T.known`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+Fact721SecondLater/Targets.lean:114:3: error: Invalid field notation: Function `Known3.t4Step3` does not have a usable parameter of type `Known3 ...` for which to substitute `T.known`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+'Fact721SecondLater.Targets.Known3.ii8_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Known3.i9_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Known3.i8_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Known3.t9_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Known3.t8Step3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Known3.t4Step3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Stage3.t84' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Stage3.t44' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Known4.death4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Known4.target8_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Stage3.target9_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721SecondLater.Targets.Stage3.target10_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

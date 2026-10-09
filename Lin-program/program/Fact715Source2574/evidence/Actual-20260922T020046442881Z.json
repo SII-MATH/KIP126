@@ -1,0 +1,31 @@
+{
+  "source_sha256": "fabead80dc971667d20e1d0f2e66389f6beb571c283b70d79aad23fe3b4f431b",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact715Source2574/Finite.olean": "03c9c50a190620ada1b8da3f4d14a407bdf33842a9f2520e86fda71305f2a444",
+    ".lake/build/lib/lean/Fact762SphereGDetection/ProductDescent.olean": "a09418eeafa2060107f2686cf3970ebb0712e94cad6a79f347b533100adcd092",
+    ".lake/build/lib/lean/Fact761ConstructedActual/Local.olean": "20d03dae999c4355eec00ec4a5ddd97ba8313447e7297fe90bc953cca4b98621"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact715Source2574/Actual.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact715Source2574/Actual.olean"
+  ],
+  "log": "evidence/Actual-20260922T020046442881Z.log",
+  "external_input_sha256": {
+    "Fact715Source2574/source.json": "dfa1adac2f4960dc958b7cf19c66d37d1121159fa27b93715fd18c7b09a7c448",
+    "Fact715Source2574/wire/column0.json": "68465d7a34389578d41b82fce4b1690ac2dd1833cd48dad02152f642756514f9",
+    "Fact715Source2574/wire/column1.json": "cc339e0d5ef8cec64972c70024bd656404fb41de6bfc1ce9f72e45f95dde0b39",
+    "Fact715Source2574/wire/factor.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Fact715Source2574/wire/factorTarget.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "Fact715Source2574/wire/product.json": "2ff16e38cec490b45a552b111d1121b660aacee9549bdcd82cfd0297e8a2f3f0",
+    "Fact715Source2574/wire/productTensor.json": "3fa4c60a5cc4cf001310723bd022526b9e9e5132d1696b46857799c006bad69d",
+    "Fact715Source2574/wire/source.json": "b165d93d2385cc852b8e0b59015dcab576f197d922da51dc6961f04aecc9d8f0",
+    "Fact715Source2574/wire/target.json": "910964f02f3af9577555393dbeff99c28a24cb32870bf02976481491881e1c82"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "181e70e2c29376b9985188b9656d5a346eb455b10d00726735ead73b5e19f1e8",
+  "inputs_stable": true,
+  "olean_sha256": "72f1a47f90b7b5e467dfb91649a702b44f326ded53b88073f20fc85e7c923496"
+}

@@ -1,0 +1,258 @@
+{
+  "status": "conditional_four_case_finite_E10_with_actual_transport",
+  "actual_branches_selected": false,
+  "parents": [
+    {
+      "path": "Row3136FamilyBranches/conditional-signature.json",
+      "sha256": "661277f37d352ef422c233e817cb0fae224618462901c673fbc8bf3d8e621c3d",
+      "signature": {
+        "scope": "four conditional finite families plus full local actual transport",
+        "branches_selected": false,
+        "old_family": "Fact713Row2431Continuation",
+        "cases": [
+          {
+            "case": "zero_a0",
+            "entries": 1338,
+            "prior_entries": 1333,
+            "added": 5,
+            "graph_available": 1331,
+            "graph_missing": 89,
+            "adjacent": 1021,
+            "consecutive": 836,
+            "predecessor_dimensions": 2508,
+            "cycle_vectors": 2165,
+            "cycle_pairs": 9663,
+            "source_E4_dimension": 2,
+            "target_E4_dimension": 1,
+            "rebase": [],
+            "compatibility": "all_complete_old_and_new_keys_compatible"
+          },
+          {
+            "case": "zero_a1",
+            "entries": 1338,
+            "prior_entries": 1333,
+            "added": 5,
+            "graph_available": 1331,
+            "graph_missing": 89,
+            "adjacent": 1021,
+            "consecutive": 836,
+            "predecessor_dimensions": 2508,
+            "cycle_vectors": 2163,
+            "cycle_pairs": 9651,
+            "source_E4_dimension": 1,
+            "target_E4_dimension": 0,
+            "rebase": [],
+            "compatibility": "all_complete_old_and_new_keys_compatible"
+          },
+          {
+            "case": "residual_a0",
+            "entries": 1346,
+            "prior_entries": 1341,
+            "added": 5,
+            "graph_available": 1339,
+            "graph_missing": 81,
+            "adjacent": 1028,
+            "consecutive": 844,
+            "predecessor_dimensions": 2532,
+            "cycle_vectors": 2174,
+            "cycle_pairs": 9674,
+            "source_E4_dimension": 1,
+            "target_E4_dimension": 1,
+            "rebase": [],
+            "compatibility": "all_complete_old_and_new_keys_compatible"
+          },
+          {
+            "case": "residual_a1",
+            "entries": 1349,
+            "prior_entries": 1341,
+            "added": 8,
+            "graph_available": 1340,
+            "graph_missing": 80,
+            "adjacent": 1031,
+            "consecutive": 846,
+            "predecessor_dimensions": 2538,
+            "cycle_vectors": 2177,
+            "cycle_pairs": 9671,
+            "source_E4_dimension": 0,
+            "target_E4_dimension": 0,
+            "rebase": [
+              {
+                "object": "S0",
+                "degree": [
+                  16,
+                  137
+                ],
+                "page": 5,
+                "restored": 2907,
+                "kind": "rebase_after_forced_zero_d4_target",
+                "old": [],
+                "new": [
+                  [
+                    2907,
+                    "1",
+                    null,
+                    9996
+                  ]
+                ],
+                "warning": "Raw scheduled d4 event is not asserted nonzero; its exact value is NULL. This branch interprets it as zero because full target is zero."
+              }
+            ],
+            "compatibility": "all_complete_old_and_new_keys_compatible"
+          }
+        ],
+        "actual_premises": [
+          "entire actual target d3 meaning including known row3306 column",
+          "row3305 product meanings and factor names with same-element e0 binding",
+          "arbitrary entire actual source matrix meaning",
+          "row3135 product meanings and factor names, known nonzero right d3, same-element e1 binding",
+          "entire actual incoming map in the explicitly selected row2994 branch",
+          "all old family actual interpretation premises retained"
+        ],
+        "actual_conclusions": [
+          "u=false",
+          "source matrix = [a,0;0,0] for a equal its first coefficient",
+          "one of four finite families with full local source/incoming/target matrix agreement",
+          "zero full target forces row2907 d4 zero in residual_a1 when supplied actual target equivalence"
+        ],
+        "limitations": [
+          "no actual a branch chosen",
+          "no actual row2994 branch chosen",
+          "no inference of actual realizations of all old entries",
+          "raw NULL is preserved",
+          "no topological contradiction from scheduling mismatch",
+          "finite E9 does not assert actual E9 without quotient meanings"
+        ]
+      }
+    },
+    {
+      "path": "Fact713Row3143Continuation/conditional_signature.json",
+      "sha256": "a6e389828104e67ffc3e69dcabb9af7787b9e4fc4f1a1224018152bc21538874",
+      "signature": {
+        "status": "conditional_actual_interpretation",
+        "whole_theorem": "Fact713Row3247Boundaries.Whole.row3247_whole_d3_zero",
+        "finite_conclusion": "both_finite_E10",
+        "actual_conclusion_proved": false,
+        "named_actual_E3_cycle_representatives": [
+          {
+            "object": "Cnu",
+            "degree": [
+              18,
+              85
+            ],
+            "row": 1183,
+            "base": "0",
+            "later_boundary": {
+              "page": 4,
+              "source_degree": [
+                14,
+                82
+              ],
+              "source_row": 1078
+            }
+          },
+          {
+            "object": "Cnu",
+            "degree": [
+              19,
+              146
+            ],
+            "row": 5286,
+            "base": "3",
+            "later_boundary": {
+              "page": 7,
+              "source_degree": [
+                12,
+                140
+              ],
+              "source_row": 4536
+            }
+          }
+        ],
+        "requirements": [
+          "The two actual PageCycle values and their named full-coordinate bindings",
+          "Complete actual sphere/Cnu E3 quotient equivalences and source-zero law",
+          "Complete h0,d0,P-squared and alternate factor action meanings",
+          "Actual module Leibniz law and top-cell-map naturality",
+          "Actual representative transitions and endpoint boundary equations"
+        ],
+        "warning": "The cycle proof uses the supplied actual E3 PageCycle properties. Later-boundary equations associate provenance; they do not prove those properties from raw labels.",
+        "unresolved_next": {
+          "named_d10_d11": "row3136 d3 at (20,140), target dimension2",
+          "source_d4_comparison": "row2916 d4 incoming at (13,137), target dimension1"
+        },
+        "parent_signature_sha256": "08232bde8ac0901f9c65800a65132657ed2d39c4d66f98bde619e8aac9f829a6",
+        "new_whole_theorem": "Fact721FirstD4Search.Actual.actual_row2622_d4_zero",
+        "new_whole_inputs": [
+          "Complete sphere and C2h6 E3 homology meanings",
+          "Whole current map coordinate interpretations",
+          "Actual homology quotient map transitions",
+          "Whole d4 naturality"
+        ],
+        "new_rule_has_named_cycle_premise": false,
+        "prior_signature_sha256": "3e37f2702fe458a03f597417b2cfdb9e8dbcaf8086909044040ab14b253ef259",
+        "new_named_rules": [
+          {
+            "row": 2916,
+            "theorem": "Fact713Row2916Search.Actual.actual_row2916_d3_zero",
+            "actual_inputs": [
+              "complete d2 actual homology meanings",
+              "whole current map coordinate equations",
+              "actual quotient transitions",
+              "C2h5 d3 naturality",
+              "named derived source coordinate1"
+            ],
+            "effect": "13 complete comparisons in each branch"
+          },
+          {
+            "row": 3135,
+            "theorem": "Row3135H0Leibniz.Actual.actual_row3135_d3_zero",
+            "actual_inputs": [
+              "complete actual product/quotient meanings",
+              "named h0, right and source classes",
+              "known nonzero actual d3 of right factor from ss3066 to E2basis3236"
+            ],
+            "effect": "named column only; row3136 remains unknown, no complete d3 comparison"
+          }
+        ],
+        "new_whole_rule": {
+          "row": 2431,
+          "theorem": "Fact713Row2431Search.Actual.actual_row2431_whole_d3_zero",
+          "actual_inputs": [
+            "complete sphere/DC2h6 d2 meanings",
+            "whole current map meanings",
+            "actual quotient transition laws",
+            "d3 naturality"
+          ],
+          "named_source_required": false
+        },
+        "new_row3143_rule": {
+          "row": 3143,
+          "theorem": "Fact713Row3143Continuation.ActualRule.whole_d4_zero",
+          "actual_inputs": [
+            "Complete actual source d3 homology meanings and all-element source coordinate agreement",
+            "Named d0, right factor and source E3 product meanings",
+            "Known nonzero actual d4 at ss2149 in constructed E4 coordinates",
+            "Actual source product quotient transition and local zero laws"
+          ],
+          "scope": "Whole actual source d4; used as incoming column at (21,143), without claiming a full source d4 comparison"
+        },
+        "actual_E10_interface": "Fact713Row3143Continuation.Constructed.Prefix10; retains prior Prefix9 and requires complete actual d9 neighboring meanings",
+        "conditional_actual_E10_proved": true,
+        "actual_E10_scope": "For any supplied Prefix10 S pages, one actual E2 input has a nonzero constructed E10 endpoint in the same S and pages; sphere interpretation is not discharged."
+      }
+    }
+  ],
+  "retained_rebase": "row2907 retained at E5 and later only for residual_a1; no NULL event is asserted nonzero",
+  "new_actual_premises": [],
+  "combined_actual_theorems": [
+    "Fact713FourBranchContinuation.Actual.actual_local_selection",
+    "Fact713FourBranchContinuation.Actual.actual_row3143_column"
+  ],
+  "request_actual_premise": "Complete Fact713Row3143Continuation.Constructed.Prefix10 for the same S and pages; all neighboring meanings remain explicit.",
+  "new_blocker_by_case": {
+    "zero_a0": "unknown S0:16,137:d4:row2907; target dimension 2",
+    "zero_a1": "unknown S0:16,137:d4:row2907; target dimension 1",
+    "residual_a0": "unknown S0:16,137:d4:row2907; target dimension 1",
+    "residual_a1": "unknown S0:11,133:d5:row2622; target dimension 1"
+  }
+}

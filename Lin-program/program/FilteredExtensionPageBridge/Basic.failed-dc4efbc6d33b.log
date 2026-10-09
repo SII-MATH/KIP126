@@ -1,0 +1,63 @@
+FilteredExtensionPageBridge/Basic.lean:28:4: error: Type mismatch: After simplification, term
+  mapped
+ has type
+  @Eq (TargetPage F G f s n) ((differential F G f s n) z) ((allTargetEquivLocal F G f s n) ↑y)
+but is expected to have type
+  @Eq (TargetPage F G f s n) ((differential F G f s n) z) ((targetClass F G f s n) y)
+FilteredExtensionPageBridge/Basic.lean:33:6: error: Type mismatch: After simplification, term
+  h
+ has type
+  @Eq (TargetPage F G f s n) ((differential F G f s n) z) ((targetClass F G f s n) y)
+but is expected to have type
+  @Eq (TargetPage F G f s n) ((differential F G f s n) z) ((allTargetEquivLocal F G f s n) ↑y)
+FilteredExtensionPageBridge/Basic.lean:60:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (gradedClass H s) x = 0
+in the target expression
+  ↑x ∈ H.group s ∧ ↑x ∉ H.group (s + 1) ↔ (gradedClass H s) x ≠ 0
+
+A : Type u_1
+inst✝ : AddCommGroup A
+H : Filtration A
+s : ℕ
+x : ↥(H.group s)
+zero : (gradedClass H s) x = 0 ↔ ↑x ∈ H.group (s + 1)
+⊢ ↑x ∈ H.group s ∧ ↑x ∉ H.group (s + 1) ↔ (gradedClass H s) x ≠ 0
+FilteredExtensionPageBridge/Basic.lean:73:6: error: Type mismatch: After simplification, term
+  mapped
+ has type
+  @Eq (TargetPage F G f s n) ((targetClass F G f s n) y) ((allTargetEquivLocal F G f s n) 0.2)
+but is expected to have type
+  @Eq (TargetPage F G f s n) ((targetClass F G f s n) y) 0
+FilteredExtensionPageBridge/Basic.lean:75:6: error: Tactic `apply` failed: could not unify the conclusion of `Prod.ext rfl`
+  ?m.92 = ?m.92
+with the goal
+  targetElement F G f s n y = 0
+
+Note: The full type of `Prod.ext rfl` is
+  ?m.92.2 = ?m.92.2 → ?m.92 = ?m.92
+
+case mpr
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+s n : ℕ
+y : ↥(G.group (s + n))
+h : (targetClass F G f s n) y = 0
+⊢ targetElement F G f s n y = 0
+'FilteredExtensionPageBridge.page_equation_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionPageBridge.leadingPageEvent_iff_extension' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionPageBridge.exact_iff_graded_nonzero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionPageBridge.targetElement_nonzero_iff' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

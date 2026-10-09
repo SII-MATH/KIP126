@@ -1,0 +1,24 @@
+Fact715IncomingTail/Basic.lean:98:4: error: Tactic `generalize` failed: result is not type correct
+  ∀ (d : Bidegree), AdamsTarget r e = d → ActualAdamsSystemBridge.incoming S r d (Sum.inr ⟨e, (h, 0)⟩) = S.zero r d
+
+case neg.inr
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+E : EarlierSources S pages
+zeros : ZeroMeaning S pages
+r : ℕ
+lower : 5 ≤ r
+not5 : r ≠ 5
+not9 : r ≠ 9
+high : ¬degree.filtration < r
+e : Bidegree
+h : { _h // True }
+hs : e.filtration + r = 11
+ht : e.internal + ↑r - 1 = 136
+cases : r = 6 ∨ r = 7 ∨ r = 8 ∨ r = 10 ∨ r = 11
+⊢ AdamsTarget r e = degree → ActualAdamsSystemBridge.incoming S r degree (Sum.inr ⟨e, (h, 0)⟩) = S.zero r degree
+'Fact715IncomingTail.empty_later' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715IncomingTail.EarlierSources.empty6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715IncomingTail.EarlierSources.empty7' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715IncomingTail.EarlierSources.empty8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact715IncomingTail.EarlierSources.incoming_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

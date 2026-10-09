@@ -1,0 +1,1672 @@
+
+
+4. 
+Synthetic Extensions
+
+
+
+
+
+The extension spectral sequence introduced in Section 
+2
+ can be generalized for 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra. Consider a map 
+$f:X\to Y$
+ between two connective finite 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra
+1 1 
+ 1 
+ 
+ 
+ In our solution to the Kervaire invariant problem, we only consider finite synthetic spectra. However, the arguments in this section apply to any synthetic spectra for which the synthetic Adams spectral sequence strongly converges.
+. By filtering
+
+
+
+
+
+
+
+
+
+
+$0\to\pi_{*,*}X\xrightarrow{\pi_{*,*}f}\pi_{*,*}Y\to 0$
+
+
+
+
+
+
+
+using the Adams filtration, we obtain an 
+$f$
+-extension spectral sequence:
+
+
+
+
+
+
+
+
+
+
+$\prescript{f\!}{}{E}_{0}^{s,t,w}\cong E_{\infty}^{s,t,w}(X)\oplus E_{\infty}^{s,t,w}(Y)\Longrightarrow\Ker(\pi_{*,*}f)\oplus\Coker(\pi_{*,*}f)$
+
+
+
+
+
+
+
+with differential
+
+
+
+
+
+
+
+
+
+
+$d_{n}^{f}:\prescript{f\!}{}{Z}_{n-1}^{s,t,w}(X)\to E_{\infty}^{s+n,t+n,w}(Y)/\prescript{f\!}{}{B}_{n-1}^{s+n,t+n,w}(Y)$
+
+
+
+
+
+
+
+where 
+$\prescript{f\!}{}{Z}_{*}^{*,*,*}$
+ and 
+$\prescript{f\!}{}{B}_{*}^{*,*,*}$
+ are analogous to the notations in Notation 
+2.2
+, with the addition of an extra degree.
+
+
+
+
+
+
+In fact all the definitions and results in Section 
+2
+ remain valid in this synthetic setting, provided we include the extra weight degree in addition to the topological degree and ensure that all maps also preserve the weight degree. For convenience, we will not restate these results here but will occasionally refer to them and apply their synthetic versions when needed.
+
+
+
+
+
+
+Notation 4.1
+.
+
+
+
+
+There are certain special maps between synthetic spectra that we want to consider. For any 
+$n<m\leq\infty$
+ and a spectrum 
+$X$
+, we have the following distinguished triangles of 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-synthetic spectra
+
+
+
+
+
+
+
+
+
+
+$\Sigma^{0,-n}\nu X/\lambda^{m-n}\xrightarrow{\lambda^{n}}\nu X/\lambda^{m}\xrightarrow{~\rho_{n,m}~}\nu X/\lambda^{n}\xrightarrow{~\delta_{n,m}~}\Sigma^{1,-n}\nu X/\lambda^{m-n}.$
+
+
+
+
+
+
+
+We simply write 
+$\rho=\rho_{n,m}$
+, 
+$\delta=\delta_{n,m}$
+ by abuse of notation if 
+$n,m$
+ is understood in the context.
+When 
+$m=\infty$
+, this sequence is interpreted as
+
+
+
+
+
+
+
+
+
+
+$\Sigma^{0,-n}\nu X\xrightarrow{\lambda^{n}}\nu X\xrightarrow{~\rho~}\nu X/\lambda^{n}\xrightarrow{~\delta~}\Sigma^{1,-n}\nu X.$
+
+
+
+
+
+
+
+
+
+
+
+Many arguments for finite 
+$m$
+ implies the corresponding statement when 
+$m=\infty$
+ because of
+
+
+
+
+
+
+
+
+
+
+$\nu X=\varprojlim_{m}\nu X/\lambda^{m}$
+
+
+
+
+
+
+
+as shown in 
+[ 16 , Proposition A.13]
+.
+
+
+
+
+
+
+We also note that our grading for the triangulation translation functor is smashing with 
+$S^{1,0}$
+, which is consistent with 
+[ 16 , Appendix A]
+ but is different from 
+[ 18 , Section 7]
+.
+
+
+
+
+
+
+
+
+Proposition 4.2
+.
+
+
+
+
+The only nonzero differentials in the extension spectral sequences for the maps $\lambda^{n}$ and $\rho$ from Notation  4.1 are the $d_{0}$ ’s:
+
+
+
+
+
+
+
+
+
+
+$d^{\lambda^{n}}_{0}=\lambda^{n}\ \text{and}\ d^{\rho}_{0}=\rho.$
+
+
+
+
+
+
+
+As a result, these $d_{0}$ ’s have no crossings.
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+First, we show that the the following sequence is exact in the middle:
+
+
+
+
+
+
+
+(4.3)
+
+
+
+
+
+$\scalebox{1}{$E_{\infty}^{s,t,w}(\Sigma^{0,-n}\nu X/\lambda^{m-n})\xrightarrow{\lambda^{n}}E_{\infty}^{s,t,w}(\nu X/\lambda^{m})\xrightarrow{\rho}E_{\infty}^{s,t,w}(\nu X/\lambda^{n})$}.$
+
+
+
+
+
+
+
+We apply Proposition 3.11 and prove this case by case.
+
+
+
+
+
+
+When $t-w<0$ or $t-w\geq m$ , the middle group $E_{\infty}^{s,t,w}(\nu X/\lambda^{m})=0$ , so the sequence is exact in the middle.
+
+
+
+
+
+
+When $0\leq t-w<n$ , the sequence is isomorphic to
+
+
+
+
+
+
+
+
+
+
+$0\to Z^{s,t}_{m-t+w}(X)/B^{s,t}_{1+t-w}(X)\to Z^{s,t}_{n-t+w}(X)/B^{s,t}_{1+t-w}(X)$
+
+
+
+
+
+
+
+which is exact in the middle because the second map is clearly injective.
+
+
+
+
+
+
+When $n\leq t-w<m$ , the sequence is isomorphic to
+
+
+
+
+
+
+
+
+
+
+$Z^{s,t}_{m-t+w}(X)/B^{s,t}_{1+t-w-n}(X)\to Z^{s,t}_{m-t+w}(X)/B^{s,t}_{1+t-w}(X)\to 0$
+
+
+
+
+
+
+
+which is exact in the middle because the first map is clearly surjective.
+
+
+
+
+
+
+Thus, we have shown that ( 4.3 ) is always exact in the middle. Combined with Corollary 2.19 we conclude that all $d^{\lambda^{n}}_{i}$ , $d^{\rho}_{i}$ are trivial for $i>0$ .
+∎
+
+
+
+
+
+
+
+
+Remark 4.4
+.
+
+
+
+
+From the proof above, we see that in (
+4.3
+), 
+$\lambda^{n}$
+ is surjective or trivial, while 
+$\rho$
+ is injective or trivial.
+
+
+
+
+
+
+
+
+However, the 
+$\delta$
+-extension spectral sequence for
+
+
+
+
+
+
+
+
+
+
+$\delta:\nu X/\lambda^{n}\to\Sigma^{1,-n}\nu X/\lambda^{m-n}$
+
+
+
+
+
+
+
+is more complicated, as it encodes classical Adams differentials 
+$d_{2}$
+ through 
+$d_{m}$
+.
+
+
+
+
+
+
+Remark 4.5
+.
+
+
+
+
+For the convenience of readers to check gradings, whenever we write
+
+
+
+
+
+
+
+
+
+
+$d_{n}^{f}(x)=\lambda^{k}y$
+
+
+
+
+
+
+
+for 
+$f:\Sigma^{m,w}\nu X\to\nu Y$
+,
+
+$x\in E_{\infty}^{s_{1},t_{1},w_{1}}(\nu X)$
+ and
+
+$y\in E_{\infty}^{s_{2},t_{2},w_{2}}(\nu Y)$
+,
+the following conditions must hold:
+
+
+
+
+
+
+
+
+
+
+$s_{2}=s_{1}+n,\ t_{2}-s_{2}=t_{1}-s_{1}+m,\ \text{and}\ w_{2}=w_{1}+w.$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Proposition 4.6
+.
+
+
+
+
+Suppose in the classical Adams spectral sequence of $X$ we have $d_{r}(x)=y$ , where $x\in Z_{r-1}^{s,t}(X)$ and $y\in Z_{\infty}^{s+r,t+r-1}(X)$ . Consider the map
+
+
+
+
+
+
+
+
+
+
+$\delta:\nu X/\lambda^{n}\to\Sigma^{1,-n}\nu X/\lambda^{m-n}.$
+
+
+
+
+
+
+
+
+ (1)
+ 
+
+
+
+If 
+$r\geq n+1$
+, then we view 
+$x$
+ as an element of
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{s,t,t}(\nu X/\lambda^{n})\cong Z_{n}^{s,t}(X),$
+
+
+
+
+
+
+
+and 
+$\lambda^{r-n-1}y$
+ as an element of
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{s+r,t+r-1,t+n}(\nu X/\lambda^{m-n})\cong Z_{m-r+1}^{s+r,t+r-1}(X)/B_{r-n}^{s+r,t+r-1}(X).$
+
+
+
+
+
+
+
+We then have
+
+
+
+
+
+
+
+
+
+
+$d^{\delta}_{r}(x)=\lambda^{r-n-1}y,$
+
+
+
+
+
+
+
+which is trivial if 
+$r>m$
+.
+
+ 
+ (2)
+ 
+
+
+
+If 
+$r<n+1$
+, then we view 
+$\lambda^{n+1-r}x$
+ as an element of
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{s,t,t-n-1+r}(\nu X/\lambda^{n})\cong Z^{s,t}_{r-1}(X)/B^{s,t}_{n+2-r}(X),$
+
+
+
+
+
+
+
+and 
+$y$
+ as an element of
+
+
+
+
+
+
+
+
+
+
+$E_{\infty}^{s+r,t+r-1,t+r-1}(\nu X)\cong Z_{\infty}^{s+r,t+r-1}(X).$
+
+
+
+
+
+
+
+In this case, we have
+
+
+
+
+
+
+
+
+
+
+$d^{\delta}_{r}(\lambda^{n+1-r}x)=y.$
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+Since $\delta=\delta_{n,m}$ is the composition of $\rho$ and $\delta_{n,\infty}$ as the following
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\nu X/\lambda^{n}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\delta_{n,\infty}}$ $\scriptstyle{\delta_{n,m}}$ $\textstyle{\Sigma^{1,-n}\nu X\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\rho}$ $\textstyle{\Sigma^{1,-n}\nu X/\lambda^{m-n}}$
+
+
+
+
+
+
+
+it suffices to prove the case when $m=\infty$ by Corollary 2.17 . In the rest of the proof we will write $\delta_{n}=\delta_{n,\infty}$ .
+
+
+
+
+
+
+First, we prove by induction on $n$ that
+
+
+
+
+
+
+
+(4.7)
+
+
+
+
+
+$d^{\delta_{n}}_{r}(x)\equiv\lambda^{r-n-1}y\mod B_{r-1}^{s+r,t+r-1}(X)$
+
+
+
+
+
+
+
+when $r\geq n+1$ , and
+
+
+
+
+
+
+
+(4.8)
+
+
+
+
+
+$d^{\delta_{n}}_{r}(\lambda^{n+1-r}x)\equiv y\mod B_{r-1}^{s+r,t+r-1}(X)$
+
+
+
+
+
+
+
+when $r\leq n+1$ . (These two expressions coincide when $r=n+1$ .) For $n=1$ , the claim holds since the $\tau$ -Bockstein spectral sequence is isomorphic to the classical Adams spectral sequence. Now, assume $n\geq 2$ and the claim holds for $n-1$ .
+
+
+
+
+
+
+Consider the following commutative diagram.
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\Sigma^{0,-1}\nu X/\lambda^{n-1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\delta_{n-1}}$ $\scriptstyle{\lambda}$ $\textstyle{\nu X/\lambda^{n}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\delta_{n}}$ $\textstyle{\Sigma^{1,-n}\nu X}$
+
+
+
+
+
+
+
+By Corollary 2.16 , if $r\leq n$ , we have
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{n}}_{r}(\lambda^{n+1-r}x)=d^{\delta_{n-1}}_{r}(\lambda^{n-r}x)\equiv y\mod B_{r-1}^{s+r,t+r-1}(X).$
+
+
+
+
+
+
+
+If $r\geq n+1$ , $x$ can be viewed as an element of the $E_{\infty}$ -pages of $\nu X/\lambda^{n-1}$ or $\nu X/\lambda^{n}$ . We then have
+
+
+
+
+
+
+
+
+
+
+$\lambda d^{\delta_{n}}_{r}(x)=d^{\delta_{n}}_{r}(\lambda x)=d^{\delta_{n-1}}_{r}(x)\equiv\lambda^{r-n}y\mod B_{r-1}^{s+r,t+r-1}(X)$
+
+
+
+
+
+
+
+which implies
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{n}}_{r}(x)\equiv\lambda^{r-n-1}y\mod B_{r-1}^{s+r,t+r-1}(X),$
+
+
+
+
+
+
+
+since $r-n+1\leq r-1$ and hence the indeterminacy $B_{r-n+1}$ introduced by dividing $\lambda$ is contained in $B_{r-1}$ . The induction for ( 4.7 ) and ( 4.8 ) is now complete.
+
+
+
+
+
+
+We will show that
+ $B_{r-1}^{s+r,t+r-1}(X)$ in both equations are actually equal to the sum of images of $d^{\delta_{n}}_{0}$ through $d^{\delta_{n}}_{r-1}$ .
+Consider any $y^{\prime}\in B_{r-1}^{s+r,t+r-1}(X)$ and assume that $d_{r^{\prime}}x^{\prime}=y^{\prime}$ is an essential classical Adams differential for $2\leq r^{\prime}\leq r-1$ . If $r\geq n+1$ , using ( 4.7 ), we have
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{n}}_{r^{\prime}}(\lambda^{r-r^{\prime}}x)\equiv\lambda^{r-n-1}y^{\prime}\mod B_{r^{\prime}-1}^{s+r,t+r-1}(X),$
+
+
+
+
+
+
+
+and if $r\leq r^{\prime}+1$ , using ( 4.8 ), we have
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{n}}_{r^{\prime}}(\lambda^{n+1-r^{\prime}}x^{\prime})\equiv y^{\prime}\mod B_{r^{\prime}-1}^{s+r,t+r-1}(X).$
+
+
+
+
+
+
+
+Notice that the extra indeterminacy here is $B_{r^{\prime}-1}$ instead of $B_{r-1}$ . By induction on $r$ , this shows that $B_{r-1}^{s+r,t+r-1}(X)$ equals the sum of images of $d^{\delta_{n}}_{0}$ through $d^{\delta_{n}}_{r-1}$ .
+
+
+
+
+
+
+Therefore, we can omit $B_{r-1}^{s+r,t+r-1}(X)$ and simply write
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{n}}_{r}(x)=\lambda^{r-n-1}y$
+
+
+
+
+
+
+
+when $r\geq n+1$ , and
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{n}}_{r}(\lambda^{n+1-r}x)=y$
+
+
+
+
+
+
+
+when $r\leq n+1$ .
+∎
+
+
+
+
+
+
+
+
+Remark 4.9
+.
+
+
+
+
+The 
+$d^{\delta}_{r}(x)$
+ we calculated in Proposition 
+4.6
+ may be inessential.
+
+
+
+
+
+
+
+
+Corollary 4.10
+.
+
+
+
+
+For $x,y,\delta$ in Proposition 4.6 we always have
+
+
+
+
+
+
+
+(4.11)
+
+
+
+
+
+$d^{\delta}_{r}(\lambda^{a}x)=\lambda^{a+r-n-1}y$
+
+
+
+
+
+
+
+if $0\leq a\leq n$ and $0\leq a+r-n-1<m-n$ (the differential is trivial if $a$ exceeds this range).
+
+
+
+
+
+
+
+
+Remark 4.12
+.
+
+
+
+
+As indicated in the proof, the right-hand side of equation (
+4.11
+) (considered as a subset of 
+$Z_{\infty}^{s+r,t+r-1}(X)$
+) is a coset of
+
+
+
+
+
+
+
+
+
+
+$B_{r-1}^{s+r,t+r-1}(X)$
+
+
+
+
+
+
+
+which is the same as the value of the classical Adams differential 
+$d_{r}(x)=y$
+. This implies that the equation (
+4.11
+) holds if and only if 
+$d_{r}(x)=y$
+. Therefore the 
+$\delta$
+-ESS encodes the same information as the classical Adams spectral sequence.
+
+
+
+
+
+
+
+
+Example 4.13
+.
+
+
+
+
+We continue the discussion from Example 
+3.15
+ regarding the implications of the classical Adams differentials in the 14-stem:
+
+
+
+
+
+
+
+
+
+
+$d_{2}(h_{4})=h_{0}h_{3}^{2},\ d_{3}(h_{0}h_{4})=h_{0}d_{0}.$
+
+
+
+
+
+
+
+The reader is advised to begin by identifying the elements on the 
+$E_{\infty}$
+-pages of the synthetic Adams spectral sequences for 
+$S^{0,0}$
+ and 
+$S^{0,0}/\lambda^{k}$
+ for 
+$k=1,2,3$
+ in the relevant tridegrees, as illustrated in Example 
+3.15
+.
+
+
+
+
+
+
+For 
+$\delta_{1}:S^{0,0}/\lambda\rightarrow S^{1,-1}$
+, we have
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{\delta_{1}}(h_{4})=h_{0}h_{3}^{2},\ d_{3}^{\delta_{1}}(h_{0}h_{4})=\lambda h_{0}d_{0}.$
+
+
+
+
+
+
+
+For 
+$\delta_{2}:S^{0,0}/\lambda^{2}\rightarrow S^{1,-2}$
+, we have
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{\delta_{2}}(\lambda h_{4})=h_{0}h_{3}^{2},\ d_{3}^{\delta_{2}}(h_{0}h_{4})=h_{0}d_{0},\ d_{3}^{\delta_{2}}(\lambda h_{0}h_{4})=\lambda h_{0}d_{0}$
+
+
+
+
+
+
+
+For 
+$\delta_{3}:S^{0,0}/\lambda^{3}\rightarrow S^{1,-3}$
+, we have
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{\delta_{3}}(\lambda^{2}h_{4})=h_{0}h_{3}^{2},\ d_{3}^{\delta_{3}}(\lambda h_{0}h_{4})=h_{0}d_{0},\ d_{3}^{\delta_{3}}(\lambda^{2}h_{0}h_{4})=\lambda h_{0}d_{0}.$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Definition 4.14
+.
+
+
+
+
+Suppose 
+$r\geq n+1$
+ and 
+$d_{r}(x)=y$
+, where
+
+
+
+
+
+
+
+
+
+
+$x\in E_{2}^{s,t}(X),\hskip 14.22636pty\in E_{2}^{s+r,t+r-1}(X).$
+
+
+
+
+
+
+
+A crossing of 
+$d_{r}(x)=y$
+ on the 
+$E_{n+1}$
+-page refers to an essential Adams differential
+
+
+
+
+
+
+
+
+
+
+$d_{r-a-b}(x^{\prime})=y^{\prime},$
+
+
+
+
+
+
+
+where
+
+
+
+
+
+
+
+
+
+
+$x^{\prime}\in E_{2}^{s+a,t+a}(X),\hskip 14.22636pty^{\prime}\in E_{2}^{s+r-b,t+r-b-1}(X),$
+
+
+
+
+
+
+
+with 
+$0<a\leq n-1$
+ and 
+$0\leq b\leq r-n-1$
+. See Figure 
+3
+.
+
+
+
+
+
+
+
+
+Remark 4.15
+.
+
+
+
+
+The crossing defined here is opposite to crossings in Moss’s theorem.
+
+
+
+
+
+
+
+ $x~$ $x^{\prime}$ $y$ $y^{\prime}$ $d_{r}$ $d_{r^{\prime}}$ $s$ $s+a$ $s+n-1$ $s+n$ $s+n+1$ $s+r-b$ $s+r$ 
+ 
+ Figure 3. A crossing of $d_{r}(x)=y$ on the $E_{n+1}$ -page 
+
+
+
+
+
+The emphasis on a crossing occurring “on the 
+$E_{n+1}$
+-page" in Definition 
+4.14
+ may seem counter-intuitive. However, this is clarified in Proposition 
+4.16
+ and Example 
+4.18
+ that follow.
+
+
+
+
+
+
+Proposition 4.16
+.
+
+
+
+
+The Adams differential $d_{r}(x)=y$ has a crossing on the $E_{n+1}$ -page if and only if the corresponding $\delta_{n}$ -extension
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{n}}_{r}(x)=\lambda^{r-n-1}y$
+
+
+
+
+
+
+
+for
+
+
+
+
+
+
+
+
+
+
+$\delta_{n}:\nu X/\lambda^{n}\to\Sigma^{1,-n}\nu X$
+
+
+
+
+
+
+
+has a crossing.
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+By Propositions 3.11 , 3.12 and 4.6 , a crossing of $d^{\delta_{n}}_{r}(x)=\lambda^{r-n-1}y$ takes the form
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{n}}_{r-a-b}(\lambda^{a}x^{\prime})=\lambda^{r-n-1-b}y^{\prime},$
+
+
+
+
+
+
+
+where $0<a\leq n-1$ , $0\leq b\leq r-n-1$ ,
+
+
+
+
+
+
+
+
+
+
+$\lambda^{a}x^{\prime}\in E_{\infty}^{s+a,t+a,t}(\nu X/\lambda^{n})\cong Z_{n-a}^{s+a,t+a}(X)/B_{1+a}^{s+a,t+a}(X),$
+
+
+
+
+
+
+
+and
+
+
+
+
+
+
+
+
+
+
+$y^{\prime}\in E_{\infty}^{s+r-b,t+r-b-1}(\nu X).$
+
+
+
+
+
+
+
+By Corollary 4.10 , we see that this crossing corresponds to the classical Adams differential
+
+
+
+
+
+
+
+
+
+
+$d_{r-a-b}(x^{\prime})=y^{\prime}.$
+
+
+
+
+
+
+
+∎
+
+
+
+
+
+
+
+
+Remark 4.17
+.
+
+
+
+
+From Definition 
+4.14
+, it immediately follows that there are no crossings of any differential on the 
+$E_{2}$
+-page, as this would require 
+$0<a\leq n-1=0$
+. According to Proposition 
+4.16
+, this reflects the fact that 
+$\delta_{1}$
+-extensions have no crossings for degree reasons.
+
+
+
+
+
+
+
+
+Example 4.18
+.
+
+
+
+
+We examine the following classical Adams differentials from stem 38 to stem 37:
+
+
+
+
+
+
+
+
+
+
+$d_{3}(e_{1})=h_{1}t,\ d_{4}(h_{0}h_{3}h_{5})=h_{0}^{2}x,$
+
+
+
+
+
+
+
+where both targets, 
+$h_{1}t$
+ and 
+$h_{0}^{2}x$
+, reside within the same 
+$(s,t)$
+-bidegree in 
+$\mathrm{Ext}_{A}^{7,44}$
+.
+
+
+
+
+
+
+According to Definition 
+4.14
+, this nonzero 
+$d_{3}$
+-differential is a crossing of the 
+$d_{4}$
+-differential on both the 
+$E_{3}$
+-page and the 
+$E_{4}$
+-page, but not on the 
+$E_{2}$
+-page or any 
+$E_{r}$
+-page for 
+$r\geq 5$
+.
+
+
+
+
+
+
+This corresponds to the following facts:
+
+
+
+ (1)
+ 
+
+
+
+For the map 
+$\delta_{2}:S^{0,0}/\lambda^{2}\rightarrow S^{1,-2}$
+, the differential
+
+
+
+
+
+
+
+
+
+
+$d_{3}^{\delta_{2}}(\lambda e_{1})=\lambda h_{1}t$
+
+
+
+
+
+
+
+is a crossing for the differential
+
+
+
+
+
+
+
+
+
+
+$d_{4}^{\delta_{2}}(h_{0}h_{3}h_{5})=\lambda h_{0}^{2}x.$
+
+
+
+
+
+
+ 
+ (2)
+ 
+
+
+
+For the map 
+$\delta_{3}:S^{0,0}/\lambda^{3}\rightarrow S^{1,-3}$
+, the differential
+
+
+
+
+
+
+
+
+
+
+$d_{3}^{\delta_{3}}(\lambda e_{1})=h_{1}t$
+
+
+
+
+
+
+
+is a crossing for the differential
+
+
+
+
+
+
+
+
+
+
+$d_{4}^{\delta_{3}}(h_{0}h_{3}h_{5})=h_{0}^{2}x.$
+
+
+
+
+
+
+
+In both cases (1) and (2), the target elements have the same weight.
+
+ 
+ (3)
+ 
+
+
+
+In comparison, for the map 
+$\delta_{1}:S^{0,0}/\lambda\rightarrow S^{1,-1}$
+, we have the differential
+
+
+
+
+
+
+
+
+
+
+$d_{4}^{\delta_{1}}(h_{0}h_{3}h_{5})=\lambda^{2}h_{0}^{2}x,$
+
+
+
+
+
+
+
+which does not have any crossing differential. The only differential whose target resides in the same 
+$(s,t)$
+-bidegree is
+
+
+
+
+
+
+
+
+
+
+$d_{3}^{\delta_{1}}(e_{1})=\lambda h_{1}t,$
+
+
+
+
+
+
+
+but its target has a different weight.
+
+ 
+ (4)
+ 
+
+
+
+For later pages, specifically for 
+$r\geq 4$
+, and considering the synthetic spectrum 
+$S^{0,0}/\lambda^{r}$
+, there is still a crossing for the differential
+
+
+
+
+
+
+
+
+
+
+$d_{4}^{\delta_{r}}(\lambda^{r-3}h_{0}h_{3}h_{5})=h_{0}^{2}x.$
+
+
+
+
+
+
+
+However, the element 
+$h_{0}h_{3}h_{5}$
+ itself does not survive to the synthetic Adams 
+$E_{\infty}$
+-page, as it supports a nonzero Adams differential:
+
+
+
+
+
+
+
+
+
+
+$d_{4}(h_{0}h_{3}h_{5})=\lambda^{3}h_{0}^{2}x.$
+
+
+
+
+
+
+ 
+
+
+
+
+
+

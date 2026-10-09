@@ -1,0 +1,50 @@
+[
+  {
+    "name": "valid-factor",
+    "expected_accept": true,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "name": "valid-composition",
+    "expected_accept": true,
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "name": "wrong-entry",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/DerivedMapCertificates/runtime-cvapx4yz/wrong-entry.json: CW_2_eta__S0: output row 0, column 0 disagrees with composition\n"
+  },
+  {
+    "name": "wrong-intermediate-degree",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/DerivedMapCertificates/runtime-cvapx4yz/wrong-intermediate-degree.json: matrix dimensions or intermediate truncation invalid\n"
+  },
+  {
+    "name": "out-of-range",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/DerivedMapCertificates/runtime-cvapx4yz/out-of-range.json: matrix dimensions or intermediate truncation invalid\n"
+  },
+  {
+    "name": "sentinel-factor",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/DerivedMapCertificates/runtime-cvapx4yz/sentinel-factor.json: factor image, truncation, sentinel or dimensions invalid\n"
+  },
+  {
+    "name": "unknown-field",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/DerivedMapCertificates/runtime-cvapx4yz/unknown-field.json: noncanonical/duplicate/unknown factor JSON\n"
+  },
+  {
+    "name": "duplicate-field",
+    "expected_accept": false,
+    "exit_code": 1,
+    "output": "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/DerivedMapCertificates/runtime-cvapx4yz/duplicate-field.json: noncanonical/duplicate/unknown composition JSON\n"
+  }
+]

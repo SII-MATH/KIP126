@@ -1,0 +1,34 @@
+Fact762CsigmasqD5/D2.lean:65:2: error: Tactic `rfl` failed: The left-hand side
+  NamedElementCertificates.evaluate v [] • g 1
+is not definitionally equal to the right-hand side
+  0
+
+case false
+R M : Type
+inst✝³ : CommRing R
+inst✝² : CharP R 2
+inst✝¹ : AddCommGroup M
+inst✝ : Module R M
+w : Wire
+hw : w.Valid
+v : ℕ → R
+g : Fin 2 → M
+dR : R →+ R
+dM : M →+ M
+leibniz : ∀ (a : R) (x : M), dM (a • x) = dR a • x + a • dM x
+coefficient :
+  dR (NamedElementCertificates.evaluate v w.coefficient) = NamedElementCertificates.evaluate v w.coefficientDifferential
+bottom : dM (g 0) = 0
+top : dM (g 1) = NamedElementCertificates.evaluate v [[3, 3]] • g 0
+relations : ∀ rel ∈ w.reduction.relations, ModuleExpressions.evaluate v g (toExpression 2 rel) = 0
+hc :
+  ModuleExpressions.check (List.map (toExpression 2) w.reduction.relations) (toExpression 2 w.reduction.input)
+      (toExpression 2 w.reduction.output) w.reduction.terms =
+    true
+equality :
+  ModuleExpressions.evaluate v g (toExpression 2 w.expanded) =
+    ModuleExpressions.evaluate v g (toExpression 2 w.reduction.output)
+ht : w.top = false
+⊢ NamedElementCertificates.evaluate v [] • g 1 = 0
+'Fact762CsigmasqD5.D2.check_sound' depends on axioms: [propext]
+'Fact762CsigmasqD5.D2.differential_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

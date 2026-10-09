@@ -1,0 +1,35 @@
+make: Entering directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'
+rm -f lin-cert-export program-manifest.jsonl kervaire-claims.jsonl Row3152BranchCertificates/row3152-path-export
+g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic Row3152BranchCertificates/export.cpp -o Row3152BranchCertificates/row3152-path-export
+In file included from Row3152BranchCertificates/export.cpp:2:
+Row3152BranchCertificates/../IndexedFamilyProducer/json.hpp: In member function ‘Json Parser::parse()’:
+Row3152BranchCertificates/../IndexedFamilyProducer/json.hpp:34:5: warning: this ‘else’ clause does not guard... [-Wmisleading-indentation]
+   34 |     else throw std::runtime_error("unknown/null/string value at byte "+std::to_string(p));--depth;return result;}
+      |     ^~~~
+Row3152BranchCertificates/../IndexedFamilyProducer/json.hpp:34:91: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘else’
+   34 |     else throw std::runtime_error("unknown/null/string value at byte "+std::to_string(p));--depth;return result;}
+      |                                                                                           ^~
+g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic cert_export.cpp -o lin-cert-export
+mkdir -p tests/output
+./lin-cert-export self-test
+lin-cert-export self-test: ok
+./lin-cert-export manifest tests/output/lin-program-manifest.jsonl
+test "$(wc -l < tests/output/lin-program-manifest.jsonl)" -eq 295
+./lin-cert-export claims ../doc_data/kervaire_claims.csv tests/output/lin-program-claims.jsonl
+test "$(wc -l < tests/output/lin-program-claims.jsonl)" -eq 18
+./lin-cert-export adams examples/adams_sample.csv tests/output/lin-program-adams.jsonl
+./lin-cert-export proofs examples/proof_sample.csv tests/output/lin-program-proof.jsonl
+python3 tests/test_export.py
+Exporter: hashes, reproducibility, 17 claims, inventory, unknowns, malformed CSV, six finite result kinds passed
+python3 tests/assert_claim_coverage.py
+PASS: all 17 source claims accounted for; 17 retain explicit mathematical obligations
+python3 Step4ContractAudit/audit_coverage.py
+All 17 claims classified; three manual inputs remain inventory; 1 stale metadata fields
+{'field': 'known_events', 'reported': None, 'derived': 101}
+Traceback (most recent call last):
+  File "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/Step4ContractAudit/audit_coverage.py", line 63, in <module>
+    assert not discrepancies, "claim coverage metadata disagrees with the named current snapshot"
+           ^^^^^^^^^^^^^^^^^
+AssertionError: claim coverage metadata disagrees with the named current snapshot
+make: *** [Makefile:93: test] Error 1
+make: Leaving directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'

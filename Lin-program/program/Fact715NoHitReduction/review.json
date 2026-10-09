@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "counts": {
+    "models": 23,
+    "tail_models": 16,
+    "exact_equivalences": 16,
+    "nonzero_cutoff_cases": 10,
+    "outgoing_death_cases": 11,
+    "exceptional_hit_cases": 4,
+    "mutation_failures": 3,
+    "monotone_boundary_sequences": 10,
+    "modules": 5,
+    "standard_axiom_reports": 26,
+    "empty_axiom_reports": 0
+  },
+  "examples": {
+    "remaining_incoming_hit": {
+      "event": [
+        7,
+        "I"
+      ],
+      "E9_cycle": true,
+      "BInfinity": true
+    },
+    "outgoing_death_before_d9": {
+      "event": [
+        6,
+        "O"
+      ],
+      "E9_cycle": false,
+      "BInfinity": false
+    },
+    "missing_tail_assumption": {
+      "event": [
+        10,
+        "I"
+      ],
+      "E9_hit": false,
+      "BInfinity": true
+    }
+  },
+  "historical_dependency_changes": [],
+  "semantics": "BInfinity requires an actual cycle trace into a boundary. Outgoing death never becomes BInfinity merely because a total advance function later returns zero.",
+  "indexing": {
+    "cutoff_index": 3,
+    "cutoff_Adams_page": 5,
+    "exception_index": 7,
+    "exception_Adams_page": 9,
+    "boundary_index": 8,
+    "boundary_Adams_page": 10
+  },
+  "remaining_obligation": "D9Exclusion is not proved; conditional constructor requires it explicitly.",
+  "claims": "Exact reduction and conditional theorem, not completed Fact7.15."
+}

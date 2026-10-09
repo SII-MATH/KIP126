@@ -1,0 +1,71 @@
+{
+  "run": "tests/lake-input-cache-runs/run-kfgjwps9",
+  "cases": [
+    {
+      "name": "01-valid",
+      "observed_exit_code": 0,
+      "rebuilt": true,
+      "expected_rebuilt": true,
+      "input_sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58",
+      "log_sha256": "370141dfeb1a3c2c543b30dd45080fcb830d0070e462b195c1b92547874d4853"
+    },
+    {
+      "name": "02-cached",
+      "observed_exit_code": 0,
+      "rebuilt": false,
+      "expected_rebuilt": false,
+      "input_sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58",
+      "log_sha256": "f25dbfb8926108be3681339fb97c20a3ad55e4bb027bcceddb6e1cbe0f9d85d0"
+    },
+    {
+      "name": "03-changed-value-rejected",
+      "observed_exit_code": 1,
+      "rebuilt": false,
+      "expected_rebuilt": null,
+      "input_sha256": "aa67a169b0bba217aa0aa88a65346920c84c42447c36ba5f7ea65f422c1fe5d8",
+      "log_sha256": "1c6ad65aeab4ef92ed21b397d6a418edf4fb36e85d0230aa9d1168b084e64b19"
+    },
+    {
+      "name": "04-restored",
+      "observed_exit_code": 0,
+      "rebuilt": true,
+      "expected_rebuilt": true,
+      "input_sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58",
+      "log_sha256": "0f6a6a380a33ba69dada3514c4a6e5517eadbb20a01afee131bddecf943cf80f"
+    },
+    {
+      "name": "05-crlf-binary-change",
+      "observed_exit_code": 0,
+      "rebuilt": true,
+      "expected_rebuilt": true,
+      "input_sha256": "9b6dd0f55d1cea37555db317f53a0631f694bd46df8018cc2aeed3d9e2f32f5f",
+      "log_sha256": "d2a35346d9b9b13f27d5d1c1ddcb7cdb6cfe2181a0bc7bbb558f894e3f6f12a7"
+    },
+    {
+      "name": "06-unrelated-change",
+      "observed_exit_code": 0,
+      "rebuilt": false,
+      "expected_rebuilt": false,
+      "input_sha256": "9b6dd0f55d1cea37555db317f53a0631f694bd46df8018cc2aeed3d9e2f32f5f",
+      "log_sha256": "f25dbfb8926108be3681339fb97c20a3ad55e4bb027bcceddb6e1cbe0f9d85d0"
+    },
+    {
+      "name": "07-missing-input",
+      "observed_exit_code": 1,
+      "rebuilt": false,
+      "expected_rebuilt": null,
+      "input_sha256": null,
+      "log_sha256": "f4f80d2f755b33cfcd56aceabedcf3026110d0dceabf6b3c1789102b4cc488b1"
+    },
+    {
+      "name": "08-final-valid",
+      "observed_exit_code": 0,
+      "rebuilt": true,
+      "expected_rebuilt": true,
+      "input_sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58",
+      "log_sha256": "a92630e207bca3eb7123c9ca28374477ba6a585d5be8668081c86bcd0bfd486c"
+    }
+  ],
+  "generator_sha256": "62c98e59e2e79dac9919e42feae4e2432ffd034f1a8a9a65ebafbc7fbf0c0b7b",
+  "fixture_lakefile_sha256": "a8b771563619704ef595465082ae41965df7dc5aeca89cfdf291b7192951d58b"
+}

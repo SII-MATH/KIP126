@@ -1,0 +1,45 @@
+{
+  "additional_comparison_keys": [
+    "S0:19,140:d5",
+    "S0:24,144:d4",
+    "S0:28,147:d4",
+    "S0:32,150:d3",
+    "S0:35,152:d2"
+  ],
+  "new_e12_keys": [
+    "S0:19,140:d5",
+    "S0:24,144:d4"
+  ],
+  "reused_batch_bindings": {
+    "S0:24,144:d2": [
+      8,
+      8
+    ],
+    "S0:24,144:d3": [
+      17,
+      38
+    ],
+    "S0:28,147:d2": [
+      8,
+      27
+    ],
+    "S0:28,147:d3": [
+      18,
+      13
+    ],
+    "S0:32,150:d2": [
+      9,
+      7
+    ]
+  },
+  "baseline_comparisons": 1234,
+  "refined_e12_comparisons": 1236,
+  "successor_closure_comparisons": 13,
+  "total_distinct_comparisons": 1239,
+  "input_sha256": {
+    "Fact713E12Search/successor-search.json": "d0d7283e9fe616087389078d58613fd027b9781557f8436652401a31e0908328",
+    "Fact713RefinedSourceSearch/refined.json": "cd50a06cb4bd8697eaffdb4448e754148fdb8e240c3ac1582e4fe65304d50c6b",
+    "Fact713RefinedSourceSearch/generate.py": "c2ee720bbcf0a8198abc9e406f8d52477e94876a9b10e25b13a038c1eea8baad"
+  },
+  "limitation": "Finite conditional reconstruction. Actual complete known successor meaning remains a caller obligation; raw row3476 differential is NULL."
+}

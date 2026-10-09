@@ -1,0 +1,38 @@
+Fact761ConstructedActual/Row2858.lean:68:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  I.targetEquiv 0
+in the target expression
+  I.targetEquiv ((S.differential 3 sourceDegree).toFun (I.source3.coordinates.equivalence.symm fun x => true)) =
+    I.targetEquiv 0
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+I : D2Input S pages
+L : I.Leibniz
+finite : I.differential named = zeroSource
+⊢ I.targetEquiv ((S.differential 3 sourceDegree).toFun (I.source3.coordinates.equivalence.symm fun x => true)) =
+    I.targetEquiv 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (S.differential 3 sourceDegree).toFun (I.source3.coordinates.equivalence.symm fun x => true)
+  has type
+    (S.element 3 (AdamsTarget 3 sourceDegree)).carrier
+  but is expected to have type
+    (S.element 3 targetDegree).carrier
+  in the application
+    I.targetEquiv ((S.differential 3 sourceDegree).toFun (I.source3.coordinates.equivalence.symm fun x => true))
+'Fact761ConstructedActual.Row2858.D2Input.source_name' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Row2858.D2Input.target_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact761ConstructedActual.Row2858.D2Input.named_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Row2858.D2Input.whole_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact761ConstructedActual.Row2858.D2Input.incoming_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,6 @@
+import FilteredExtensionCertificates.Import
+namespace FilteredExtensionCertificates.Single
+def w : WireCertificate := filtered_extension_certificate% "FilteredExtensionCertificates/first.json"
+theorem valid : WireValid w := by filtered_extension_cert using ()
+#print axioms valid
+end FilteredExtensionCertificates.Single

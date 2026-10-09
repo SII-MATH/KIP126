@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "counts": {
+    "finite_quotient_pairs": 2381,
+    "derived_coordinate_representatives": 544,
+    "actual_quotient_pairs": 8256,
+    "derived_addition_pairs": 4416,
+    "same_raw_steps": 48,
+    "wrong_inputs_rejected": 496,
+    "trace_models": 16,
+    "detector_whole_E3_coordinates": 4,
+    "accepted_whole_zero_d3_assignments": 1,
+    "unknown_column_countermodels_rejected": 2
+  },
+  "raw_staircase": [
+    2852,
+    11,
+    136,
+    "3",
+    null,
+    9995
+  ],
+  "raw_basis": [
+    2853,
+    "0,2,391,1",
+    11,
+    136,
+    ""
+  ],
+  "blocker_raw": [
+    3076,
+    15,
+    139,
+    "1,3",
+    null,
+    9000
+  ],
+  "axiom_reports": 31,
+  "initial_coordinate_dimension": 5,
+  "constructed_dimensions": [
+    4,
+    2,
+    1
+  ],
+  "complete_prior_trajectory_comparisons": 13,
+  "complete_detector_d2_comparisons": 4,
+  "remaining_actual_premises": [
+    "initial E2 coordinates and full actual differential meanings",
+    "actual quotient zero/add laws and whole map transitions",
+    "actual Ceta-to-S0 d3 naturality",
+    "other known S0 d3 basis column zero",
+    "complete incoming d3 at the detector target",
+    "whole d4 equation in the derived target coordinates"
+  ],
+  "scope": "Conditional actual E5 trace from the fixed named input; no sphere realization, d5 survival, or extension theorem.",
+  "input_sha256": {
+    "Fact715ConstructedActual/check_models.py": "be3167a66818d9037e24a0d86f5e7f456d10fbdf1cc44f4e096ae2eb20c77757",
+    "Fact715TrajectoryCertificates/conditional-higher-source.json": "5f2e1a90616d132168d2b270a683752124e6fc3242e189f0bc2cb429c2bbd726",
+    "Fact715TrajectoryCertificates/comparison-source.json": "eac0e8cfb4938c2853798b4298cc11e4e16baf2f5217640e80c609ba88e28814",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

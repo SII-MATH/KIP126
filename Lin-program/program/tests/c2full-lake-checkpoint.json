@@ -1,0 +1,69 @@
+{
+  "schema": "observed-lake-checkpoint/v1",
+  "scope": "explicitly rebuilt local Lean modules; cached modules retain earlier evidence",
+  "session_id": 68420,
+  "observed_exit_code": 0,
+  "jobs": 2413,
+  "build_log": "tests/step4-c2full-build.log",
+  "build_log_sha256": "92eda28aa88ebcc91c17b084986d83eba7fd6d501b86f6de403c36c1d766bb65",
+  "individual_module_logs": {
+    "tests/step4-c2full-build.log": "92eda28aa88ebcc91c17b084986d83eba7fd6d501b86f6de403c36c1d766bb65"
+  },
+  "lakefile_sha256": "1061a3413813b8f1ba71fdee282b718c0257c02d8322da7c6cc632fe7dc8df6f",
+  "modules": [
+    {
+      "module": "AffineRemainingSearch",
+      "source_sha256": "7dedb6e059863c9c10541be10a57f7178e85450c53a62aeb9402f7409857d320",
+      "olean_sha256": "ce2ef66b3b0a35087e9a609ff48aca725a00595c65a018ab073785821a3a134f",
+      "trace_sha256": "8424a0af6ba66b00c159cb51fad1d6e137b32a529b7938958bb11d8273404c05"
+    },
+    {
+      "module": "AggregateC2Row3019Conditional",
+      "source_sha256": "381f98df4fc42de736d65826da1e27278b1a97d45e3d5d52d9061f2a212a9ca2",
+      "olean_sha256": "a2583e7d1ced37828ea376b8ea52739a8f46dd829a9a8f59c415e8d2cb9193a0",
+      "trace_sha256": "0171222ed75855f156f91df09fdafb8b3e469e7abc37d50231b3ecc81bff0197"
+    },
+    {
+      "module": "AggregateC2Row3019Conditional.Basic",
+      "source_sha256": "505d7ea12a753c244e5528cc58a2f49e50703369a59621bc0dc716b786df9bb9",
+      "olean_sha256": "f0502da43c2be0d729b56eed62251c4057f23d1f449bbe8ac87c909cd2a3be25",
+      "trace_sha256": "b4a28be447c216d339d03fd6fde7cd703e67862911fd28e3fe9988d27eca5fd7"
+    },
+    {
+      "module": "AggregateC2Row3019Conditional.Data",
+      "source_sha256": "0b7801ac08cfa5f1d3c846623c48eee6aa2433f03235780b1455f9306deaaa67",
+      "olean_sha256": "82d65b4b9ac59ae1e5cb9fc62031eb7900447197cf33b5961dfc22e8ea88d5d4",
+      "trace_sha256": "7617c8fca342ca659c21c0e907a4ef2786937b2d7a0a5b5d3c96eae27287806d"
+    },
+    {
+      "module": "AggregateC2Row3019Conditional.Events",
+      "source_sha256": "9efddc82d782cbe25fef48eab7ee133b002a1bc4ba648efdf9ebef0619e52440",
+      "olean_sha256": "e9d0275bc4eb1242f68784b795c9e048d24928a096e841c7dad68f209f414645",
+      "trace_sha256": "a9c41c405ebf45f0723a052f9f6b4cf0f8b5866d84262ce5931423bf7587c21b"
+    },
+    {
+      "module": "AggregateC2Row3019Conditional.Matches",
+      "source_sha256": "73efad37be1906c735c0c96504ec4f2dd3c5cffed443d04cfeb81fb229369618",
+      "olean_sha256": "03a958afce984296e05bee048abff22c0c3c5c978e6e4090ff2e2971f088a406",
+      "trace_sha256": "f8ced3499ca7671a7a24bc9c2ebc88aab8a0d3aa53714321bed474a041e17222"
+    },
+    {
+      "module": "ProofAudit",
+      "source_sha256": "da74886b739206d3a8640c356e569e0309c166d43cecc276cc57babad918a15e",
+      "olean_sha256": "809ffc8fdb3cffdc7612bc325fde18f4c101b1d1fe39bbe68cbf26c6a677e009",
+      "trace_sha256": "393f8c7cc6eaf91833588b5b04efe36cd9a7b47a15db2f3367ef541f748b4233"
+    },
+    {
+      "module": "Row3020Detector",
+      "source_sha256": "ab7afd7082e46f124f7fd078c28fefcd41f317d3b6ba3dd96b42e3cfecf57354",
+      "olean_sha256": "16a17b9f64ba8f75ae0faf0f568954992f91de463a66748a051cdb5a1782f964",
+      "trace_sha256": "c5013f9d4768504bf5b2b38a83a9ada27d38e19e7916536a89109e80eec5db00"
+    },
+    {
+      "module": "Row3020Detector.Meaning",
+      "source_sha256": "c84257627eccc92983565951effe397f744654850ce2653cb7ca15afad2d7ae6",
+      "olean_sha256": "ad1fa1c8d6e510d36bcb0e912ddb67352dfccfd510eba24f273afc4c77bd167d",
+      "trace_sha256": "f39349da94525c41dd0e453053be129ef306ec194fd7af0d112292be8457bf29"
+    }
+  ]
+}

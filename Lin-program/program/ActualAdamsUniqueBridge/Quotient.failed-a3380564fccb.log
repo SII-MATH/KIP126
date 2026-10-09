@@ -1,0 +1,15 @@
+ActualAdamsUniqueBridge/Quotient.lean:56:2: error: Tactic `decide` failed for proposition
+  Nat.card Bool = 2
+because its `Decidable` instance
+  instDecidableEqNat (Nat.card Bool) 2
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqNat`, `Classical.propDecidable`, and `Nat.decEq`, reduction got stuck at the `Decidable` instance
+  match h : (Nat.card Bool).beq 2 with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+'ActualAdamsUniqueBridge.quotient_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsUniqueBridge.quotient_dichotomy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsUniqueBridge.quotientEquivBool' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsUniqueBridge.homology_cardinality' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsUniqueBridge.actual_next_cardinality' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

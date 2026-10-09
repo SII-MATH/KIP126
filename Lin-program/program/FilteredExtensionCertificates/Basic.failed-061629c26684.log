@@ -1,0 +1,85 @@
+FilteredExtensionCertificates/Basic.lean:49:12: error: unsolved goals
+case succ.false
+a k : ℕ
+K : Matrix a k
+i : Fin a
+h : ℕ
+ih :
+  ∀ (H : Matrix a h) (factor : Matrix k h),
+    (∀ (i : Fin a) (j : Fin h), (dot (K i) fun r => factor r j) = H i j) →
+      ∀ (v : Vec h), eval K (eval factor v) i = eval H v i
+H : Matrix a (h + 1)
+factor : Matrix k (h + 1)
+equations : ∀ (i : Fin a) (j : Fin (h + 1)), (dot (K i) fun r => factor r j) = H i j
+v : Vec (h + 1)
+ht : dot (K i) (eval (fun r j => factor r j.succ) fun j => v j.succ) = dot (fun j => H i j.succ) fun j => v j.succ
+hv : v 0 = false
+⊢ ((dot (K i) fun r => false) ^^ dot (fun j => H i j.succ) fun j => v j.succ) =
+    dot (fun j => H i j.succ) fun j => v j.succ
+FilteredExtensionCertificates/Basic.lean:49:42: warning: This simp argument is unused:
+  dot_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [Bool.and_false, d̵o̵t̵_̵z̵e̵r̵o̵,̵ ̵hv, Bool.false_xor]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+FilteredExtensionCertificates/Basic.lean:49:52: warning: This simp argument is unused:
+  hv
+
+Hint: Omit it from the simp argument list.
+  simp only [Bool.and_false, dot_zero, h̵v̵,̵ ̵Bool.false_xor]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+FilteredExtensionCertificates/Basic.lean:50:25: warning: This simp argument is unused:
+  hv
+
+Hint: Omit it from the simp argument list.
+  simp only [h̵v̵,̵ ̵Bool.and_true, equations]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+FilteredExtensionCertificates/Basic.lean:99:6: error: Type mismatch: After simplification, term
+  zero_dot v.bits
+ has type
+  @Eq Bool (dot zero v.bits) false
+but is expected to have type
+  @Eq Bool
+    (({ toFun := fun x => { bits := eval (fun x x_1 => false) x.bits }, map_zero' := ⋯, map_add' := ⋯ } v).bits j)
+    (Vector.bits 0 j)
+FilteredExtensionCertificates/Basic.lean:101:58: error: Type mismatch: After simplification, term
+  h
+ has type
+  True
+but is expected to have type
+  (hom D.f) ((hom (D.sourceAt i)) v) ∈ higher (D.targetAt i)
+FilteredExtensionCertificates/Basic.lean:125:7: error: Function expected at
+  sourceClass ?m.31 ?m.32 ?m.33 ?m.34 ?m.35
+but this term has type
+  ↥(cycles ?m.31 ?m.32 ?m.33 ?m.34 ?m.35) →+ SourcePage ?m.31 ?m.32 ?m.33 ?m.34 ?m.35
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨⟨D.x⟩, hx⟩
+FilteredExtensionCertificates/Basic.lean:125:43: error: Function expected at
+  targetClass ?m.41 ?m.42 ?m.43 ?m.44 ?m.45
+but this term has type
+  ↥(Filtration.group ?m.42 (?m.44 + ?m.45)) →+ TargetPage ?m.41 ?m.42 ?m.43 ?m.44 ?m.45
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨⟨D.y⟩, hy⟩
+FilteredExtensionCertificates/Basic.lean:141:8: warning: declaration uses `sorry`
+FilteredExtensionCertificates/Basic.lean:149:2: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+FilteredExtensionCertificates/Basic.lean:148:2: warning: 'apply (differential_eq_iff_leading_extension _ _ _ _ _ _ _).mpr' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+FilteredExtensionCertificates/Basic.lean:149:2: warning: 'exact checkExtension_sound _ _ _ _ _ _ _ _ he' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'FilteredExtensionCertificates.factor_eval' depends on axioms: [propext, sorryAx, Quot.sound]
+'FilteredExtensionCertificates.checkFactor_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.checkDecreasing_sound' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificates.checkMap_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredExtensionCertificates.check_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

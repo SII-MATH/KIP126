@@ -1,0 +1,26 @@
+Prop79IncomingSearch/CoordinateBridge.lean:27:81: error: unsolved goals
+x : Naturality.T
+he : Naturality.coordinates.fromCoordinates (Naturality.coordinates.toCoordinates x) = x
+identity : ∀ (v : Vec 4), eval (fun i j => ↑i == ↑j) v = v
+⊢ eval Finite.Cnu_11_137_d2.comparison.projection
+      (eval Comparison.target.comparison.inclusion (Naturality.coordinates.toCoordinates x)) =
+    eval Finite.Cnu_11_137_d2.comparison.projection
+      (eval (fun i j => ↑i == ↑j)
+        (eval Comparison.target.comparison.inclusion
+          (Naturality.coordinates.toCoordinates
+            (Naturality.coordinates.fromCoordinates (Naturality.coordinates.toCoordinates x)))))
+Prop79IncomingSearch/CoordinateBridge.lean:33:42: warning: This simp argument is unused:
+  identity
+
+Hint: Omit it from the simp argument list.
+  simp only [coordinateMap, eval_compose,̵ ̵i̵d̵e̵n̵t̵i̵t̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'Prop79IncomingSearch.CoordinateBridge.named_source_coordinates' depends on axioms: [propext, Quot.sound]
+'Prop79IncomingSearch.CoordinateBridge.named_target_coordinates' depends on axioms: [propext, Quot.sound]
+'Prop79IncomingSearch.CoordinateBridge.all_source_coordinates' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Prop79IncomingSearch.CoordinateBridge.d4_source_zero' does not depend on any axioms
+'Prop79IncomingSearch.CoordinateBridge.d5_source_dimension' does not depend on any axioms

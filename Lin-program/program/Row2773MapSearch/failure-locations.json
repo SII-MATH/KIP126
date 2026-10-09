@@ -1,0 +1,507 @@
+{
+  "configured_maps": 70,
+  "fully_computed_maps": 49,
+  "incomplete_maps": 21,
+  "stage_failures": {
+    "no d2 column": 41,
+    "d2 degree t=151 exceeds d2_t_max=150": 3,
+    "unknown d2 in complete quotient at basis id 3991": 1,
+    "d2 degree t=152 exceeds d2_t_max=150": 3,
+    "unknown d2 in complete quotient at basis id 4553": 1,
+    "d2 degree t=137 exceeds d2_t_max=135": 3,
+    "d2 degree t=199 exceeds d2_t_max=177": 1,
+    "d2 degree t=201 exceeds d2_t_max=177": 3,
+    "E2 degree t=263 exceeds t_max=261": 1,
+    "E2 degree t=265 exceeds t_max=261": 3,
+    "unknown d2 in complete quotient at basis id 10948": 1,
+    "E2 degree t=201 exceeds t_max=200": 9,
+    "E2 degree t=263 exceeds t_max=200": 1,
+    "E2 degree t=265 exceeds t_max=200": 3,
+    "d2 degree t=166 exceeds d2_t_max=135": 1,
+    "d2 degree t=168 exceeds d2_t_max=135": 3,
+    "d2 degree t=198 exceeds d2_t_max=139": 1,
+    "E2 degree t=262 exceeds t_max=200": 1,
+    "E2 degree t=264 exceeds t_max=200": 3
+  },
+  "maps": [
+    {
+      "name": "S0__tmf",
+      "section": "maps",
+      "ordinal": 1,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__CW_eta_nu_by_sigma",
+      "section": "maps_v2",
+      "ordinal": 26,
+      "failures": [
+        {
+          "stage": "target",
+          "reason": "d2 degree t=151 exceeds d2_t_max=150"
+        },
+        {
+          "stage": "target1",
+          "reason": "d2 degree t=151 exceeds d2_t_max=150"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "d2 degree t=151 exceeds d2_t_max=150"
+        }
+      ]
+    },
+    {
+      "name": "S0__CW_2_eta_nu_by_sigma",
+      "section": "maps_v2",
+      "ordinal": 27,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 3991"
+        },
+        {
+          "stage": "target",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        },
+        {
+          "stage": "target1",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "d2 degree t=152 exceeds d2_t_max=150"
+        }
+      ]
+    },
+    {
+      "name": "S0__Csigmasq",
+      "section": "maps_v2",
+      "ordinal": 57,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__Ctheta4",
+      "section": "maps_v2",
+      "ordinal": 58,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__Ctheta5",
+      "section": "maps_v2",
+      "ordinal": 59,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__C2sigma",
+      "section": "maps_v2",
+      "ordinal": 60,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__DC2h4",
+      "section": "maps_v2",
+      "ordinal": 64,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 4553"
+        },
+        {
+          "stage": "target",
+          "reason": "d2 degree t=137 exceeds d2_t_max=135"
+        },
+        {
+          "stage": "target1",
+          "reason": "d2 degree t=137 exceeds d2_t_max=135"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "d2 degree t=137 exceeds d2_t_max=135"
+        }
+      ]
+    },
+    {
+      "name": "S0__Fphi",
+      "section": "maps_v2",
+      "ordinal": 67,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__CW_2_A_eta",
+      "section": "maps_v2",
+      "ordinal": 68,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S1__CW_2_A_eta",
+      "section": "maps_v2",
+      "ordinal": 69,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__S0_by_theta5",
+      "section": "maps_v2",
+      "ordinal": 72,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "d2 degree t=199 exceeds d2_t_max=177"
+        },
+        {
+          "stage": "target",
+          "reason": "d2 degree t=201 exceeds d2_t_max=177"
+        },
+        {
+          "stage": "target1",
+          "reason": "d2 degree t=201 exceeds d2_t_max=177"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "d2 degree t=201 exceeds d2_t_max=177"
+        }
+      ]
+    },
+    {
+      "name": "S0__S0_by_theta5sq",
+      "section": "maps_v2",
+      "ordinal": 73,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "E2 degree t=263 exceeds t_max=261"
+        },
+        {
+          "stage": "target",
+          "reason": "E2 degree t=265 exceeds t_max=261"
+        },
+        {
+          "stage": "target1",
+          "reason": "E2 degree t=265 exceeds t_max=261"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "E2 degree t=265 exceeds t_max=261"
+        }
+      ]
+    },
+    {
+      "name": "S0__C2_by_h6",
+      "section": "maps_v2",
+      "ordinal": 83,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "unknown d2 in complete quotient at basis id 10948"
+        },
+        {
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "stage": "target1",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        }
+      ]
+    },
+    {
+      "name": "S0__CW_2_eta_by_theta5sq",
+      "section": "maps_v2",
+      "ordinal": 84,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "E2 degree t=263 exceeds t_max=200"
+        },
+        {
+          "stage": "target",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        },
+        {
+          "stage": "target1",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "E2 degree t=265 exceeds t_max=200"
+        }
+      ]
+    },
+    {
+      "name": "S0__Csigmasq_by_2",
+      "section": "maps_v2",
+      "ordinal": 85,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__Ctheta4_by_2",
+      "section": "maps_v2",
+      "ordinal": 86,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target1",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "no d2 column"
+        }
+      ]
+    },
+    {
+      "name": "S0__Ctheta5_by_2",
+      "section": "maps_v2",
+      "ordinal": 87,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "no d2 column"
+        },
+        {
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "stage": "target1",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        }
+      ]
+    },
+    {
+      "name": "S0__DC2h4_by_sigmasq",
+      "section": "maps_v2",
+      "ordinal": 89,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "d2 degree t=166 exceeds d2_t_max=135"
+        },
+        {
+          "stage": "target",
+          "reason": "d2 degree t=168 exceeds d2_t_max=135"
+        },
+        {
+          "stage": "target1",
+          "reason": "d2 degree t=168 exceeds d2_t_max=135"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "d2 degree t=168 exceeds d2_t_max=135"
+        }
+      ]
+    },
+    {
+      "name": "S0__DC2h5_by_theta4",
+      "section": "maps_v2",
+      "ordinal": 90,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "d2 degree t=198 exceeds d2_t_max=139"
+        },
+        {
+          "stage": "target",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "stage": "target1",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "E2 degree t=201 exceeds t_max=200"
+        }
+      ]
+    },
+    {
+      "name": "S0__DC2h6_by_theta5",
+      "section": "maps_v2",
+      "ordinal": 91,
+      "failures": [
+        {
+          "stage": "source",
+          "reason": "E2 degree t=262 exceeds t_max=200"
+        },
+        {
+          "stage": "target",
+          "reason": "E2 degree t=264 exceeds t_max=200"
+        },
+        {
+          "stage": "target1",
+          "reason": "E2 degree t=264 exceeds t_max=200"
+        },
+        {
+          "stage": "targetsum",
+          "reason": "E2 degree t=264 exceeds t_max=200"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5580 @@
+{
+  "summary": {
+    "status": "independent_finite_identity_and_NULL_audit_passed",
+    "comparison_count": 1211,
+    "all_input_vectors": 2452,
+    "all_cycle_pairs": 9296,
+    "identical_adjacent_differentials": 914,
+    "complete_predecessor_closure": true,
+    "raw_differential_rows": 760,
+    "raw_NULL_row_pages": 82,
+    "raw_NULL_classifications": {
+      "stored_earlier_zero_prefix": 25,
+      "sentinel_unknown": 55,
+      "unknown_event": 2
+    },
+    "named_NULL_prefix_pages": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "conditional_sources": {
+      "conditional_h0_h2_leibniz": {
+        "row_key": "10,134,d3,row2693",
+        "source_files": [
+          "Row2693Detector/Matches.lean",
+          "Row2693Detector/Combined.lean"
+        ],
+        "actual_adams_proof_supplied": false,
+        "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+      },
+      "conditional_c2_successor": {
+        "row_key": "17,140,d3,row3143",
+        "source_files": [
+          "Fact713C2Row3143/Matches.lean",
+          "Fact713C2Row3143/Naturality.lean"
+        ],
+        "actual_adams_proof_supplied": false,
+        "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+      },
+      "conditional_c2_prefix": {
+        "row_key": "14,138,d3,row3005",
+        "source_files": [
+          "Fact713C2Row3005/Matches.lean",
+          "Fact713C2Row3005/Naturality.lean"
+        ],
+        "actual_adams_proof_supplied": false,
+        "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+      },
+      "conditional_dc2h6_d3": {
+        "row_key": "9,134,d3,row2695",
+        "source_files": [
+          "AggregateDC2h6Conditional/Matches.lean",
+          "Row2695Detector/Naturality.lean"
+        ],
+        "actual_adams_proof_supplied": false,
+        "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+      },
+      "conditional_ceta": {
+        "row_key": "15,139,d3,row3076",
+        "source_files": [
+          "Fact713TrajectoryCertificates/Row3076.lean",
+          "Fact715TrajectoryCertificates/Naturality.lean"
+        ],
+        "actual_adams_proof_supplied": false,
+        "scope": "Existing theorem is conditional on local algebra/naturality, finite data interpretation and source hypotheses. The new search reuses its numeric column while retaining these obligations."
+      }
+    },
+    "trust": "All finite matrix identities checked independently. These computations do not instantiate any actual Adams meaning or prove the named NULL zero-prefix assumptions.",
+    "input_sha256": {
+      "Fact713E12Search/search.json": "b092b909e211bcccb0aa261314167107fd6e9c84ad5be1fb0153a519e59b137c",
+      "Fact713E12Search/audit.py": "23eb6cfd38d814bc71417ece69db49ccecadff4ab97950664ece726275888ce6",
+      "Fact713TrajectoryAudit/dag.json": "e2f4057a2f56161d38657dff44320fdc66f311658213ee934becc27b1c248c1c"
+    }
+  },
+  "rows": [
+    {
+      "key": "2,128,d3,row2314",
+      "source": [
+        2,
+        128
+      ],
+      "target": [
+        5,
+        130
+      ],
+      "page": 3,
+      "row": [
+        2314,
+        "0",
+        null,
+        9993
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "5,130,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "8,130,d3,row2433",
+      "source": [
+        8,
+        130
+      ],
+      "target": [
+        11,
+        132
+      ],
+      "page": 3,
+      "row": [
+        2433,
+        "0",
+        null,
+        9994
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "8,130,d3",
+        "11,132,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "9,130,d3,row2431",
+      "source": [
+        9,
+        130
+      ],
+      "target": [
+        12,
+        132
+      ],
+      "page": 3,
+      "row": [
+        2431,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 3,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,130,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "9,130,d3,row2431",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2431,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          9,
+          130
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          12,
+          132
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 3,
+            "k": 2,
+            "m": 5,
+            "n": 1
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:12,132:d2",
+        "target_selected_dimension": 3,
+        "unknown": true,
+        "used_by": [
+          "9,130,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "9,132,d3,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        12,
+        134
+      ],
+      "page": 3,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d3",
+        "12,134,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "6,132,d3,row2574",
+      "source": [
+        6,
+        132
+      ],
+      "target": [
+        9,
+        134
+      ],
+      "page": 3,
+      "row": [
+        2574,
+        "0",
+        null,
+        9997
+      ],
+      "classification": "unknown_event",
+      "unknown": true,
+      "target_selected_dimension": 3,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,134,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "unknown_event",
+        "empty_e2_target": false,
+        "key": "6,132,d3,row2574",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2574,
+          "0",
+          null,
+          9997
+        ],
+        "source": [
+          6,
+          132
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "1",
+            "dx": "",
+            "file": "proofs-part3.csv",
+            "id": "2047477",
+            "info": "Get `S0 (126,6) d_4[0]=[]`. Apply the Leibniz rule with `S0 (3,1) d_4[0]=[]` and get `S0 (129,7) d_4[0]=[]`.\nGet `S0 (129,7) d_4[0]=[]` where the element on the left-hand side already supports d_3.\nHowever, `S0 (128,10) [3]` is not in B_2.",
+            "line": 47478,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "6",
+            "stem": "126",
+            "t": "132",
+            "x": "0"
+          },
+          {
+            "depth": "1",
+            "dx": "2",
+            "file": "proofs-part3.csv",
+            "id": "2047478",
+            "info": "Get `S0 (126,6) d_3[0]=[2]`. Apply the Leibniz rule with `S0 (3,1) d_3[0]=[]` and get `S0 (129,7) d_3[0]=[2]`.\nGet `S0 (129,7) d_3[0]=[2]` where the element on the left-hand side already supports d_3.\nHowever, `S0 (128,10) [3]` is not in B_2.",
+            "line": 47479,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "6",
+            "stem": "126",
+            "t": "132",
+            "x": "0"
+          },
+          {
+            "depth": "0",
+            "dx": "[NULL]",
+            "file": "proofs-part3.csv",
+            "id": "2421936",
+            "info": "[NULL]",
+            "line": 421933,
+            "name": "S0",
+            "r": "3",
+            "reason": "[NULL]",
+            "s": "6",
+            "stem": "126",
+            "t": "132",
+            "x": "0"
+          },
+          {
+            "depth": "0",
+            "dx": "[NULL]",
+            "file": "proofs-part3.csv",
+            "id": "2603892",
+            "info": "[NULL]",
+            "line": 603889,
+            "name": "S0",
+            "r": "3",
+            "reason": "[NULL]",
+            "s": "6",
+            "stem": "126",
+            "t": "132",
+            "x": "0"
+          }
+        ],
+        "target": [
+          9,
+          134
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 3,
+            "k": 5,
+            "m": 5,
+            "n": 2
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:9,134:d2",
+        "target_selected_dimension": 3,
+        "unknown": true,
+        "used_by": [
+          "9,134,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "9,134,d3,row2695",
+      "source": [
+        9,
+        134
+      ],
+      "target": [
+        12,
+        136
+      ],
+      "page": 3,
+      "row": [
+        2695,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,134,d3",
+        "12,136,d3"
+      ],
+      "mathematical_status": "explicit_conditional_source_theorem",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "9,134,d3,row2695",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "explicit_conditional_source_theorem",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:12,136:d3"
+          ],
+          "use": {
+            "kind": "conditional_dc2h6_d3",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              2695,
+              "2",
+              null,
+              9000
+            ],
+            "source": [
+              9,
+              134
+            ],
+            "target_predecessor": "S0:12,136:d2"
+          }
+        },
+        "row": [
+          2695,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          9,
+          134
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          12,
+          136
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 3,
+            "m": 5,
+            "n": 5
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:12,136:d2",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "9,134,d3",
+          "12,136,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "9,134,d3,row2696",
+      "source": [
+        9,
+        134
+      ],
+      "target": [
+        12,
+        136
+      ],
+      "page": 3,
+      "row": [
+        2696,
+        "3",
+        null,
+        9993
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,134,d3",
+        "12,136,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "10,134,d3,row2693",
+      "source": [
+        10,
+        134
+      ],
+      "target": [
+        13,
+        136
+      ],
+      "page": 3,
+      "row": [
+        2693,
+        "4",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "10,134,d3",
+        "13,136,d3"
+      ],
+      "mathematical_status": "explicit_conditional_source_theorem",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "10,134,d3,row2693",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "explicit_conditional_source_theorem",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:13,136:d3",
+            "S0:10,134:d3"
+          ],
+          "use": {
+            "kind": "conditional_h0_h2_leibniz",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              2693,
+              "4",
+              null,
+              9000
+            ],
+            "source": [
+              10,
+              134
+            ],
+            "target_predecessor": "S0:13,136:d2"
+          }
+        },
+        "row": [
+          2693,
+          "4",
+          null,
+          9000
+        ],
+        "source": [
+          10,
+          134
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "1",
+            "dx": "0",
+            "file": "proofs-part1.csv",
+            "id": "153579",
+            "info": "Get `S0 (124,10) d_3[4]=[0]`. Apply the Leibniz rule with `S0 (0,1) d_3[0]=[]` and get `S0 (124,11) d_3[4]=[1]`.\nHowever, `S0 (123,14) [1]` is not in B_2.",
+            "line": 148147,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "10",
+            "stem": "124",
+            "t": "134",
+            "x": "4"
+          },
+          {
+            "depth": "1",
+            "dx": "1",
+            "file": "proofs-part1.csv",
+            "id": "153580",
+            "info": "Get `S0 (124,10) d_3[4]=[1]`. Apply the Leibniz rule with `S0 (3,1) d_3[0]=[]` and get `S0 (127,11) d_3[]=[2]`.\nHowever, `S0 (126,14) [2]` is not in B_2.",
+            "line": 148148,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "10",
+            "stem": "124",
+            "t": "134",
+            "x": "4"
+          },
+          {
+            "depth": "1",
+            "dx": "0,1",
+            "file": "proofs-part1.csv",
+            "id": "153581",
+            "info": "Get `S0 (124,10) d_3[4]=[0,1]`. Apply the Leibniz rule with `S0 (0,1) d_3[0]=[]` and get `S0 (124,11) d_3[4]=[1]`.\nHowever, `S0 (123,14) [1]` is not in B_2.",
+            "line": 148149,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "10",
+            "stem": "124",
+            "t": "134",
+            "x": "4"
+          },
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "153582",
+            "info": "[NULL]",
+            "line": 148150,
+            "name": "S0",
+            "r": "3",
+            "reason": "D",
+            "s": "10",
+            "stem": "124",
+            "t": "134",
+            "x": "4"
+          }
+        ],
+        "target": [
+          13,
+          136
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 2,
+            "k": 2,
+            "m": 3,
+            "n": 5
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:13,136:d2",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "10,134,d3",
+          "13,136,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "11,133,d3,row2622",
+      "source": [
+        11,
+        133
+      ],
+      "target": [
+        14,
+        135
+      ],
+      "page": 3,
+      "row": [
+        2622,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "11,133,d3",
+        "14,135,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "11,133,d3,row2622",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2622,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          11,
+          133
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "1",
+            "dx": "0",
+            "file": "proofs-part1.csv",
+            "id": "153472",
+            "info": "Get `S0 (122,11) d_3[1]=[0]`. Apply the Leibniz rule with `C2 (2,1) d_3[0]=[]` and get `C2 (124,12) d_3[1]=[2]`.\nHowever, `C2 (123,15) [2]` is not in B_2.",
+            "line": 148040,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "11",
+            "stem": "122",
+            "t": "133",
+            "x": "1"
+          },
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "153473",
+            "info": "[NULL]",
+            "line": 148041,
+            "name": "S0",
+            "r": "3",
+            "reason": "D",
+            "s": "11",
+            "stem": "122",
+            "t": "133",
+            "x": "1"
+          }
+        ],
+        "target": [
+          14,
+          135
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 2,
+            "m": 1,
+            "n": 3
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:14,135:d2",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "11,133,d3",
+          "14,135,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "12,133,d3,row2619",
+      "source": [
+        12,
+        133
+      ],
+      "target": [
+        15,
+        135
+      ],
+      "page": 3,
+      "row": [
+        2619,
+        "0",
+        null,
+        9992
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": true,
+      "zero_target_candidate": false,
+      "used_by": [
+        "12,133,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "12,134,d3,row2684",
+      "source": [
+        12,
+        134
+      ],
+      "target": [
+        15,
+        136
+      ],
+      "page": 3,
+      "row": [
+        2684,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "12,134,d3",
+        "15,136,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d6",
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "12,134,d3,row2684",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2684,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          12,
+          134
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          15,
+          136
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 2,
+            "k": 3,
+            "m": 2,
+            "n": 3
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:15,136:d2",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "12,134,d3",
+          "15,136,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "13,134,d3,row2681",
+      "source": [
+        13,
+        134
+      ],
+      "target": [
+        16,
+        136
+      ],
+      "page": 3,
+      "row": [
+        2681,
+        "0",
+        null,
+        9993
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "13,134,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "13,135,d3,row2773",
+      "source": [
+        13,
+        135
+      ],
+      "target": [
+        16,
+        137
+      ],
+      "page": 3,
+      "row": [
+        2773,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "13,135,d3",
+        "16,137,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d4",
+          "S0:9,132:d5",
+          "S0:9,132:d6",
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "13,135,d3,row2773",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2773,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          13,
+          135
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          16,
+          137
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 2,
+            "k": 3,
+            "m": 3,
+            "n": 1
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:16,137:d2",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "13,135,d3",
+          "16,137,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "13,137,d3,row2916",
+      "source": [
+        13,
+        137
+      ],
+      "target": [
+        16,
+        139
+      ],
+      "page": 3,
+      "row": [
+        2916,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "13,137,d3",
+        "16,139,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "13,137,d3,row2916",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2916,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          13,
+          137
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          16,
+          139
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 3,
+            "m": 3,
+            "n": 5
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:16,139:d2",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "13,137,d3",
+          "16,139,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "14,135,d3,row2771",
+      "source": [
+        14,
+        135
+      ],
+      "target": [
+        17,
+        137
+      ],
+      "page": 3,
+      "row": [
+        2771,
+        "0",
+        null,
+        9994
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "14,135,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "11,136,d3,row2852",
+      "source": [
+        11,
+        136
+      ],
+      "target": [
+        14,
+        138
+      ],
+      "page": 3,
+      "row": [
+        2852,
+        "3",
+        null,
+        9995
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "14,138,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "14,138,d3,row3005",
+      "source": [
+        14,
+        138
+      ],
+      "target": [
+        17,
+        140
+      ],
+      "page": 3,
+      "row": [
+        3005,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "14,138,d3",
+        "17,140,d3"
+      ],
+      "mathematical_status": "explicit_conditional_source_theorem",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "14,138,d3,row3005",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "explicit_conditional_source_theorem",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:17,140:d3",
+            "S0:14,138:d3"
+          ],
+          "use": {
+            "kind": "conditional_c2_prefix",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              3005,
+              "2",
+              null,
+              9000
+            ],
+            "source": [
+              14,
+              138
+            ],
+            "target_predecessor": "S0:17,140:d2"
+          }
+        },
+        "row": [
+          3005,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          14,
+          138
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          17,
+          140
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 2,
+            "m": 4,
+            "n": 4
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:17,140:d2",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "14,138,d3",
+          "17,140,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "15,136,d3,row2839",
+      "source": [
+        15,
+        136
+      ],
+      "target": [
+        18,
+        138
+      ],
+      "page": 3,
+      "row": [
+        2839,
+        "1",
+        null,
+        9994
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "15,136,d3",
+        "18,138,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "15,136,d3,row2840",
+      "source": [
+        15,
+        136
+      ],
+      "target": [
+        18,
+        138
+      ],
+      "page": 3,
+      "row": [
+        2840,
+        "0",
+        null,
+        9995
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "15,136,d3",
+        "18,138,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "15,139,d3,row3076",
+      "source": [
+        15,
+        139
+      ],
+      "target": [
+        18,
+        141
+      ],
+      "page": 3,
+      "row": [
+        3076,
+        "1,3",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "15,139,d3",
+        "18,141,d3"
+      ],
+      "mathematical_status": "explicit_conditional_source_theorem",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "15,139,d3,row3076",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "explicit_conditional_source_theorem",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:15,139:d3"
+          ],
+          "use": {
+            "kind": "conditional_ceta",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              3076,
+              "1,3",
+              null,
+              9000
+            ],
+            "source": [
+              15,
+              139
+            ],
+            "target_predecessor": "S0:18,141:d2"
+          }
+        },
+        "row": [
+          3076,
+          "1,3",
+          null,
+          9000
+        ],
+        "source": [
+          15,
+          139
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "80011",
+            "info": "Ceta__S0",
+            "line": 74581,
+            "name": "S0",
+            "r": "3",
+            "reason": "N",
+            "s": "15",
+            "stem": "124",
+            "t": "139",
+            "x": "1,3"
+          }
+        ],
+        "target": [
+          18,
+          141
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 3,
+            "m": 3,
+            "n": 5
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:18,141:d2",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "15,139,d3",
+          "18,141,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "16,137,d3,row2907",
+      "source": [
+        16,
+        137
+      ],
+      "target": [
+        19,
+        139
+      ],
+      "page": 3,
+      "row": [
+        2907,
+        "1",
+        null,
+        9996
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "16,137,d3",
+        "19,139,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "16,138,d3,row2999",
+      "source": [
+        16,
+        138
+      ],
+      "target": [
+        19,
+        140
+      ],
+      "page": 3,
+      "row": [
+        2999,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "16,138,d3",
+        "19,140,d3"
+      ],
+      "mathematical_status": "complete_finite_zero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d6",
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "16,138,d3,row2999",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "complete_finite_zero_target",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:19,140:d3",
+            "S0:16,138:d3"
+          ],
+          "use": {
+            "kind": "checked_zero_codomain",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              2999,
+              "2",
+              null,
+              9000
+            ],
+            "source": [
+              16,
+              138
+            ],
+            "target_predecessor": "S0:19,140:d2"
+          }
+        },
+        "row": [
+          2999,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          16,
+          138
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          19,
+          140
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 4,
+            "m": 1,
+            "n": 2
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:19,140:d2",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "16,138,d3",
+          "19,140,d3"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "16,140,d3,row3147",
+      "source": [
+        16,
+        140
+      ],
+      "target": [
+        19,
+        142
+      ],
+      "page": 3,
+      "row": [
+        3147,
+        "4",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "16,140,d3",
+        "19,142,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "16,140,d3,row3147",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          3147,
+          "4",
+          null,
+          9000
+        ],
+        "source": [
+          16,
+          140
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          19,
+          142
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 2,
+            "k": 2,
+            "m": 4,
+            "n": 4
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:19,142:d2",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "16,140,d3",
+          "19,142,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "17,138,d3,row2994",
+      "source": [
+        17,
+        138
+      ],
+      "target": [
+        20,
+        140
+      ],
+      "page": 3,
+      "row": [
+        2994,
+        "0,1,2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "17,138,d3",
+        "20,140,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "17,138,d3,row2994",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2994,
+          "0,1,2",
+          null,
+          9000
+        ],
+        "source": [
+          17,
+          138
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part3.csv",
+            "id": "2149754",
+            "info": "Ctheta4__S0",
+            "line": 149755,
+            "name": "S0",
+            "r": "3",
+            "reason": "N",
+            "s": "17",
+            "stem": "121",
+            "t": "138",
+            "x": "0,1,2"
+          }
+        ],
+        "target": [
+          20,
+          140
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 2,
+            "k": 3,
+            "m": 3,
+            "n": 3
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:20,140:d2",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "17,138,d3",
+          "20,140,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "17,140,d3,row3143",
+      "source": [
+        17,
+        140
+      ],
+      "target": [
+        20,
+        142
+      ],
+      "page": 3,
+      "row": [
+        3143,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "17,140,d3",
+        "20,142,d3"
+      ],
+      "mathematical_status": "explicit_conditional_source_theorem",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "17,140,d3,row3143",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "explicit_conditional_source_theorem",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:20,142:d3",
+            "S0:17,140:d3"
+          ],
+          "use": {
+            "kind": "conditional_c2_successor",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              3143,
+              "0",
+              null,
+              9000
+            ],
+            "source": [
+              17,
+              140
+            ],
+            "target_predecessor": "S0:20,142:d2"
+          }
+        },
+        "row": [
+          3143,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          17,
+          140
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "15640",
+            "info": "C2__S0",
+            "line": 10210,
+            "name": "S0",
+            "r": "3",
+            "reason": "N",
+            "s": "17",
+            "stem": "123",
+            "t": "140",
+            "x": "0"
+          }
+        ],
+        "target": [
+          20,
+          142
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 2,
+            "m": 3,
+            "n": 3
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:20,142:d2",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "17,140,d3",
+          "20,142,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "14,139,d3,row3080",
+      "source": [
+        14,
+        139
+      ],
+      "target": [
+        17,
+        141
+      ],
+      "page": 3,
+      "row": [
+        3080,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "17,141,d3"
+      ],
+      "mathematical_status": "complete_finite_zero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "14,139,d3,row3080",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "complete_finite_zero_target",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:17,141:d3"
+          ],
+          "use": {
+            "kind": "checked_zero_codomain",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              3080,
+              "1",
+              null,
+              9000
+            ],
+            "source": [
+              14,
+              139
+            ],
+            "target_predecessor": "S0:17,141:d2"
+          }
+        },
+        "row": [
+          3080,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          14,
+          139
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          17,
+          141
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 4,
+            "m": 4,
+            "n": 5
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:17,141:d2",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "17,141,d3"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "18,141,d3,row3247",
+      "source": [
+        18,
+        141
+      ],
+      "target": [
+        21,
+        143
+      ],
+      "page": 3,
+      "row": [
+        3247,
+        "0,1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "18,141,d3",
+        "21,143,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "18,141,d3,row3247",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          3247,
+          "0,1",
+          null,
+          9000
+        ],
+        "source": [
+          18,
+          141
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          21,
+          143
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 4,
+            "m": 2,
+            "n": 4
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:21,143:d2",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "18,141,d3",
+          "21,143,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "20,140,d3,row3135",
+      "source": [
+        20,
+        140
+      ],
+      "target": [
+        23,
+        142
+      ],
+      "page": 3,
+      "row": [
+        3135,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "20,140,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "20,140,d3,row3135",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          3135,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          20,
+          140
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          23,
+          142
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 2,
+            "k": 2,
+            "m": 2,
+            "n": 4
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:23,142:d2",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "20,140,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "20,140,d3,row3136",
+      "source": [
+        20,
+        140
+      ],
+      "target": [
+        23,
+        142
+      ],
+      "page": 3,
+      "row": [
+        3136,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "20,140,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "20,140,d3,row3136",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          3136,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          20,
+          140
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "1",
+            "dx": "0",
+            "file": "proofs-part1.csv",
+            "id": "153974",
+            "info": "Get `S0 (120,20) d_3[0]=[0]`. Apply the Leibniz rule with `RP1_8 (7,0) d_3[0]=[]` and get `RP1_8 (127,20) d_3[1]=[3]`.\nHowever, `RP1_8 (126,23) [3]` is not in B_2.",
+            "line": 148542,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "20",
+            "stem": "120",
+            "t": "140",
+            "x": "0"
+          },
+          {
+            "depth": "1",
+            "dx": "1",
+            "file": "proofs-part1.csv",
+            "id": "153975",
+            "info": "Get `S0 (120,20) d_3[0]=[1]`. Apply the Leibniz rule with `S0 (14,4) d_3[0]=[]` and get `S0 (134,24) d_3[2]=[0]`.\nHowever, `S0 (133,27) [0]` is not in B_2.",
+            "line": 148543,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "20",
+            "stem": "120",
+            "t": "140",
+            "x": "0"
+          },
+          {
+            "depth": "1",
+            "dx": "0,1",
+            "file": "proofs-part1.csv",
+            "id": "153976",
+            "info": "Get `S0 (120,20) d_3[0]=[0,1]`. Apply the Leibniz rule with `S0 (14,4) d_3[0]=[]` and get `S0 (134,24) d_3[2]=[0]`.\nHowever, `S0 (133,27) [0]` is not in B_2.",
+            "line": 148544,
+            "name": "S0",
+            "r": "3",
+            "reason": "T",
+            "s": "20",
+            "stem": "120",
+            "t": "140",
+            "x": "0"
+          },
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "153977",
+            "info": "[NULL]",
+            "line": 148545,
+            "name": "S0",
+            "r": "3",
+            "reason": "D",
+            "s": "20",
+            "stem": "120",
+            "t": "140",
+            "x": "0"
+          }
+        ],
+        "target": [
+          23,
+          142
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 2,
+            "k": 2,
+            "m": 2,
+            "n": 4
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:23,142:d2",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "20,140,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "21,141,d3,row3240",
+      "source": [
+        21,
+        141
+      ],
+      "target": [
+        24,
+        143
+      ],
+      "page": 3,
+      "row": [
+        3240,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "21,141,d3"
+      ],
+      "mathematical_status": "complete_finite_zero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "21,141,d3,row3240",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "complete_finite_zero_target",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:21,141:d3"
+          ],
+          "use": {
+            "kind": "checked_zero_codomain",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              3240,
+              "1",
+              null,
+              9000
+            ],
+            "source": [
+              21,
+              141
+            ],
+            "target_predecessor": "S0:24,143:d2"
+          }
+        },
+        "row": [
+          3240,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          21,
+          141
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          24,
+          143
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 2,
+            "m": 1,
+            "n": 1
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:24,143:d2",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "21,141,d3"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "21,143,d3,row3386",
+      "source": [
+        21,
+        143
+      ],
+      "target": [
+        24,
+        145
+      ],
+      "page": 3,
+      "row": [
+        3386,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "21,143,d3",
+        "24,145,d3"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "21,143,d3,row3386",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          3386,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          21,
+          143
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          24,
+          145
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 2,
+            "m": 2,
+            "n": 3
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:24,145:d2",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "21,143,d3",
+          "24,145,d3"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "19,143,d3,row3390",
+      "source": [
+        19,
+        143
+      ],
+      "target": [
+        22,
+        145
+      ],
+      "page": 3,
+      "row": [
+        3390,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": true,
+      "zero_target_candidate": true,
+      "used_by": [
+        "22,145,d3"
+      ],
+      "mathematical_status": "complete_finite_zero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": true,
+        "key": "19,143,d3,row3390",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "complete_finite_zero_target",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:22,145:d3"
+          ],
+          "use": {
+            "kind": "checked_zero_codomain",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              3390,
+              "0",
+              null,
+              9000
+            ],
+            "source": [
+              19,
+              143
+            ],
+            "target_predecessor": "S0:22,145:d2"
+          }
+        },
+        "row": [
+          3390,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          19,
+          143
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          22,
+          145
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 1,
+            "m": 0,
+            "n": 2
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:22,145:d2",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "22,145,d3"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "24,144,d3,row3476",
+      "source": [
+        24,
+        144
+      ],
+      "target": [
+        27,
+        146
+      ],
+      "page": 3,
+      "row": [
+        3476,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "24,144,d3",
+        "27,146,d3"
+      ],
+      "mathematical_status": "complete_finite_zero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d6",
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "24,144,d3,row3476",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 3,
+        "resolution": "complete_finite_zero_target",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:24,144:d3",
+            "S0:27,146:d3"
+          ],
+          "use": {
+            "kind": "checked_zero_codomain",
+            "object": "S0",
+            "page": 3,
+            "row": [
+              3476,
+              "0",
+              null,
+              9000
+            ],
+            "source": [
+              24,
+              144
+            ],
+            "target_predecessor": "S0:27,146:d2"
+          }
+        },
+        "row": [
+          3476,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          24,
+          144
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          27,
+          146
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 3,
+            "m": 1,
+            "n": 1
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:27,146:d2",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "24,144,d3",
+          "27,146,d3"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "38,156,d3,row4485",
+      "source": [
+        38,
+        156
+      ],
+      "target": [
+        41,
+        158
+      ],
+      "page": 3,
+      "row": [
+        4485,
+        "0",
+        null,
+        9996
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": true,
+      "zero_target_candidate": false,
+      "used_by": [
+        "38,156,d3"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "8,130,d4,row2433",
+      "source": [
+        8,
+        130
+      ],
+      "target": [
+        12,
+        133
+      ],
+      "page": 4,
+      "row": [
+        2433,
+        "0",
+        null,
+        9994
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "8,130,d4"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "9,132,d4,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        13,
+        135
+      ],
+      "page": 4,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d4",
+        "13,135,d4"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "10,134,d4,row2693",
+      "source": [
+        10,
+        134
+      ],
+      "target": [
+        14,
+        137
+      ],
+      "page": 4,
+      "row": [
+        2693,
+        "4",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "10,134,d4",
+        "14,137,d4"
+      ],
+      "mathematical_status": "complete_finite_zero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "10,134,d4,row2693",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "complete_finite_zero_target",
+        "reused_value": {
+          "comparison_uses": [
+            "S0:14,137:d4",
+            "S0:10,134:d4"
+          ],
+          "use": {
+            "kind": "checked_zero_codomain",
+            "object": "S0",
+            "page": 4,
+            "row": [
+              2693,
+              "4",
+              null,
+              9000
+            ],
+            "source": [
+              10,
+              134
+            ],
+            "target_predecessor": "S0:14,137:d3"
+          }
+        },
+        "row": [
+          2693,
+          "4",
+          null,
+          9000
+        ],
+        "source": [
+          10,
+          134
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          14,
+          137
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 2,
+            "m": 2,
+            "n": 2
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:14,137:d3",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "10,134,d4",
+          "14,137,d4"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "11,133,d4,row2622",
+      "source": [
+        11,
+        133
+      ],
+      "target": [
+        15,
+        136
+      ],
+      "page": 4,
+      "row": [
+        2622,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "11,133,d4",
+        "15,136,d4"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "11,133,d4,row2622",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2622,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          11,
+          133
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "1",
+            "dx": "1",
+            "file": "proofs-part1.csv",
+            "id": "153474",
+            "info": "Get `S0 (122,11) d_4[1]=[1]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (131,16) d_4[0]=[2]`.\nHowever, `S0 (130,20) [2]` is not in B_3.",
+            "line": 148042,
+            "name": "S0",
+            "r": "4",
+            "reason": "T",
+            "s": "11",
+            "stem": "122",
+            "t": "133",
+            "x": "1"
+          },
+          {
+            "depth": "1",
+            "dx": "0",
+            "file": "proofs-part1.csv",
+            "id": "153475",
+            "info": "Get `S0 (122,11) d_4[1]=[0]`. Apply the Leibniz rule with `C2 (0,0) d_4[0]=[]` and get `C2 (122,11) d_4[1]=[0]`.\nHowever, `C2 (121,15) [0]` is not in B_3.",
+            "line": 148043,
+            "name": "S0",
+            "r": "4",
+            "reason": "T",
+            "s": "11",
+            "stem": "122",
+            "t": "133",
+            "x": "1"
+          },
+          {
+            "depth": "1",
+            "dx": "0,1",
+            "file": "proofs-part1.csv",
+            "id": "153476",
+            "info": "Get `S0 (122,11) d_4[1]=[0,1]`. Apply the Leibniz rule with `S0 (9,5) d_4[0]=[]` and get `S0 (131,16) d_4[0]=[2]`.\nHowever, `S0 (130,20) [2]` is not in B_3.",
+            "line": 148044,
+            "name": "S0",
+            "r": "4",
+            "reason": "T",
+            "s": "11",
+            "stem": "122",
+            "t": "133",
+            "x": "1"
+          },
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "153477",
+            "info": "[NULL]",
+            "line": 148045,
+            "name": "S0",
+            "r": "4",
+            "reason": "D",
+            "s": "11",
+            "stem": "122",
+            "t": "133",
+            "x": "1"
+          }
+        ],
+        "target": [
+          15,
+          136
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:12,134:d3:row2684; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:15,136:d3",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "11,133,d4",
+          "15,136,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "12,134,d4,row2684",
+      "source": [
+        12,
+        134
+      ],
+      "target": [
+        16,
+        137
+      ],
+      "page": 4,
+      "row": [
+        2684,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "12,134,d4",
+        "16,137,d4"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "12,134,d4,row2684",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2684,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          12,
+          134
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          16,
+          137
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:13,135:d3:row2773; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:16,137:d3",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "12,134,d4",
+          "16,137,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "13,135,d4,row2773",
+      "source": [
+        13,
+        135
+      ],
+      "target": [
+        17,
+        138
+      ],
+      "page": 4,
+      "row": [
+        2773,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "13,135,d4",
+        "17,138,d4"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "13,135,d4,row2773",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2773,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          13,
+          135
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          17,
+          138
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:17,138:d3:row2994; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:17,138:d3",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "13,135,d4",
+          "17,138,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "9,134,d4,row2695",
+      "source": [
+        9,
+        134
+      ],
+      "target": [
+        13,
+        137
+      ],
+      "page": 4,
+      "row": [
+        2695,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "13,137,d4"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "9,134,d4,row2695",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2695,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          9,
+          134
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "531758",
+            "info": "Csigma__S0",
+            "line": 526326,
+            "name": "S0",
+            "r": "4",
+            "reason": "N",
+            "s": "9",
+            "stem": "125",
+            "t": "134",
+            "x": "2"
+          }
+        ],
+        "target": [
+          13,
+          137
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:13,137:d3:row2916; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:13,137:d3",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "13,137,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "9,134,d4,row2696",
+      "source": [
+        9,
+        134
+      ],
+      "target": [
+        13,
+        137
+      ],
+      "page": 4,
+      "row": [
+        2696,
+        "3",
+        null,
+        9993
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "13,137,d4"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "13,137,d4,row2916",
+      "source": [
+        13,
+        137
+      ],
+      "target": [
+        17,
+        140
+      ],
+      "page": 4,
+      "row": [
+        2916,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "13,137,d4",
+        "17,140,d4"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "13,137,d4,row2916",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2916,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          13,
+          137
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          17,
+          140
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 1,
+            "m": 1,
+            "n": 1
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:17,140:d3",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "13,137,d4",
+          "17,140,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "14,135,d4,row2771",
+      "source": [
+        14,
+        135
+      ],
+      "target": [
+        18,
+        138
+      ],
+      "page": 4,
+      "row": [
+        2771,
+        "0",
+        null,
+        9994
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "14,135,d4"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "15,136,d4,row2839",
+      "source": [
+        15,
+        136
+      ],
+      "target": [
+        19,
+        139
+      ],
+      "page": 4,
+      "row": [
+        2839,
+        "1",
+        null,
+        9994
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "15,136,d4"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "15,136,d4,row2840",
+      "source": [
+        15,
+        136
+      ],
+      "target": [
+        19,
+        139
+      ],
+      "page": 4,
+      "row": [
+        2840,
+        "0",
+        null,
+        9995
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "15,136,d4"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "16,137,d4,row2907",
+      "source": [
+        16,
+        137
+      ],
+      "target": [
+        20,
+        140
+      ],
+      "page": 4,
+      "row": [
+        2907,
+        "1",
+        null,
+        9996
+      ],
+      "classification": "unknown_event",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "16,137,d4"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "unknown_event",
+        "empty_e2_target": false,
+        "key": "16,137,d4,row2907",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2907,
+          "1",
+          null,
+          9996
+        ],
+        "source": [
+          16,
+          137
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "1",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "153772",
+            "info": "Get `S0 (121,16) d_4[1]=[]`. Apply the Leibniz rule with `S0 (30,12) d_4[0]=[]` and get `S0 (151,28) d_4[1]=[]`.\nGet `S0 (151,28) d_4[1]=[]` where the element on the left-hand side already supports d_4.\nHowever, `S0 (150,32) [1]` is not in B_3.",
+            "line": 148340,
+            "name": "S0",
+            "r": "4",
+            "reason": "T",
+            "s": "16",
+            "stem": "121",
+            "t": "137",
+            "x": "1"
+          },
+          {
+            "depth": "1",
+            "dx": "1",
+            "file": "proofs-part1.csv",
+            "id": "153773",
+            "info": "Get `S0 (121,16) d_4[1]=[1]`. Apply the Leibniz rule with `S0 (30,12) d_4[0]=[]` and get `S0 (151,28) d_4[1]=[]`.\nGet `S0 (151,28) d_4[1]=[]` where the element on the left-hand side already supports d_4.\nHowever, `S0 (150,32) [1]` is not in B_3.",
+            "line": 148341,
+            "name": "S0",
+            "r": "4",
+            "reason": "T",
+            "s": "16",
+            "stem": "121",
+            "t": "137",
+            "x": "1"
+          },
+          {
+            "depth": "0",
+            "dx": "[NULL]",
+            "file": "proofs-part3.csv",
+            "id": "2423364",
+            "info": "[NULL]",
+            "line": 423361,
+            "name": "S0",
+            "r": "4",
+            "reason": "[NULL]",
+            "s": "16",
+            "stem": "121",
+            "t": "137",
+            "x": "1"
+          }
+        ],
+        "target": [
+          20,
+          140
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:20,140:d3:row3135; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:20,140:d3",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "16,137,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "16,138,d4,row2999",
+      "source": [
+        16,
+        138
+      ],
+      "target": [
+        20,
+        141
+      ],
+      "page": 4,
+      "row": [
+        2999,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "16,138,d4",
+        "20,141,d4"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d6",
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "16,138,d4,row2999",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2999,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          16,
+          138
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "82557",
+            "info": "Cnu__S0",
+            "line": 77127,
+            "name": "S0",
+            "r": "4",
+            "reason": "N",
+            "s": "16",
+            "stem": "122",
+            "t": "138",
+            "x": "2"
+          }
+        ],
+        "target": [
+          20,
+          141
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 0,
+            "m": 1,
+            "n": 2
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:20,141:d3",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "16,138,d4",
+          "20,141,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "17,138,d4,row2994",
+      "source": [
+        17,
+        138
+      ],
+      "target": [
+        21,
+        141
+      ],
+      "page": 4,
+      "row": [
+        2994,
+        "0,1,2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 2,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "17,138,d4"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "17,138,d4,row2994",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2994,
+          "0,1,2",
+          null,
+          9000
+        ],
+        "source": [
+          17,
+          138
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part3.csv",
+            "id": "2149764",
+            "info": "Ctheta4__S0",
+            "line": 149765,
+            "name": "S0",
+            "r": "4",
+            "reason": "N",
+            "s": "17",
+            "stem": "121",
+            "t": "138",
+            "x": "0,1,2"
+          }
+        ],
+        "target": [
+          21,
+          141
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 2,
+            "k": 0,
+            "m": 3,
+            "n": 2
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:21,141:d3",
+        "target_selected_dimension": 2,
+        "unknown": true,
+        "used_by": [
+          "17,138,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "17,140,d4,row3143",
+      "source": [
+        17,
+        140
+      ],
+      "target": [
+        21,
+        143
+      ],
+      "page": 4,
+      "row": [
+        3143,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "17,140,d4",
+        "21,143,d4"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "17,140,d4,row3143",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3143,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          17,
+          140
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "217850",
+            "info": "C2__S0",
+            "line": 212418,
+            "name": "S0",
+            "r": "4",
+            "reason": "N",
+            "s": "17",
+            "stem": "123",
+            "t": "140",
+            "x": "0"
+          }
+        ],
+        "target": [
+          21,
+          143
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:21,143:d3:row3386; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:21,143:d3",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "17,140,d4",
+          "21,143,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "14,138,d4,row3005",
+      "source": [
+        14,
+        138
+      ],
+      "target": [
+        18,
+        141
+      ],
+      "page": 4,
+      "row": [
+        3005,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "18,141,d4"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "14,138,d4,row3005",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3005,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          14,
+          138
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "63444",
+            "info": "C2__S0",
+            "line": 58014,
+            "name": "S0",
+            "r": "4",
+            "reason": "N",
+            "s": "14",
+            "stem": "124",
+            "t": "138",
+            "x": "2"
+          }
+        ],
+        "target": [
+          18,
+          141
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:18,141:d3:row3247; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:18,141:d3",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "18,141,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "18,141,d4,row3247",
+      "source": [
+        18,
+        141
+      ],
+      "target": [
+        22,
+        144
+      ],
+      "page": 4,
+      "row": [
+        3247,
+        "0,1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "18,141,d4",
+        "22,144,d4"
+      ],
+      "mathematical_status": "complete_finite_zero_target_before_source_ready",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "18,141,d4,row3247",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "complete_finite_zero_target_before_source_ready",
+        "row": [
+          3247,
+          "0,1",
+          null,
+          9000
+        ],
+        "source": [
+          18,
+          141
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          22,
+          144
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 1,
+            "m": 2,
+            "n": 2
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:22,144:d3",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "18,141,d4",
+          "22,144,d4"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "15,139,d4,row3076",
+      "source": [
+        15,
+        139
+      ],
+      "target": [
+        19,
+        142
+      ],
+      "page": 4,
+      "row": [
+        3076,
+        "1,3",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "19,142,d4"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "15,139,d4,row3076",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3076,
+          "1,3",
+          null,
+          9000
+        ],
+        "source": [
+          15,
+          139
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          19,
+          142
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:16,140:d3:row3147; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:19,142:d3",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "19,142,d4"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "16,140,d4,row3147",
+      "source": [
+        16,
+        140
+      ],
+      "target": [
+        20,
+        143
+      ],
+      "page": 4,
+      "row": [
+        3147,
+        "4",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "20,143,d4"
+      ],
+      "mathematical_status": "complete_finite_zero_target_before_source_ready",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "16,140,d4,row3147",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "complete_finite_zero_target_before_source_ready",
+        "row": [
+          3147,
+          "4",
+          null,
+          9000
+        ],
+        "source": [
+          16,
+          140
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          20,
+          143
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 2,
+            "m": 1,
+            "n": 0
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:20,143:d3",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "20,143,d4"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "21,143,d4,row3386",
+      "source": [
+        21,
+        143
+      ],
+      "target": [
+        25,
+        146
+      ],
+      "page": 4,
+      "row": [
+        3386,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "21,143,d4",
+        "25,146,d4"
+      ],
+      "mathematical_status": "complete_finite_zero_target_before_source_ready",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "21,143,d4,row3386",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "complete_finite_zero_target_before_source_ready",
+        "row": [
+          3386,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          21,
+          143
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          25,
+          146
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 0,
+            "m": 1,
+            "n": 2
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:25,146:d3",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "21,143,d4",
+          "25,146,d4"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "24,144,d4,row3476",
+      "source": [
+        24,
+        144
+      ],
+      "target": [
+        28,
+        147
+      ],
+      "page": 4,
+      "row": [
+        3476,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "24,144,d4"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "24,144,d4,row3476",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 4,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          3476,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          24,
+          144
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          28,
+          147
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 0,
+            "m": 1,
+            "n": 0
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:28,147:d3",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "24,144,d4"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "9,132,d5,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        14,
+        136
+      ],
+      "page": 5,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d5",
+        "14,136,d5"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "11,133,d5,row2622",
+      "source": [
+        11,
+        133
+      ],
+      "target": [
+        16,
+        137
+      ],
+      "page": 5,
+      "row": [
+        2622,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "11,133,d5"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "11,133,d5,row2622",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2622,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          11,
+          133
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          16,
+          137
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:12,134:d3:row2684; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:12,134:d3",
+            "S0:16,137:d3",
+            "S0:20,140:d3"
+          ]
+        },
+        "target_predecessor": "S0:16,137:d4",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "11,133,d5"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "12,134,d5,row2684",
+      "source": [
+        12,
+        134
+      ],
+      "target": [
+        17,
+        138
+      ],
+      "page": 5,
+      "row": [
+        2684,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "12,134,d5"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "12,134,d5,row2684",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2684,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          12,
+          134
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          17,
+          138
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:13,135:d3:row2773; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:13,135:d3",
+            "S0:17,138:d3"
+          ]
+        },
+        "target_predecessor": "S0:17,138:d4",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "12,134,d5"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "13,135,d5,row2773",
+      "source": [
+        13,
+        135
+      ],
+      "target": [
+        18,
+        139
+      ],
+      "page": 5,
+      "row": [
+        2773,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "13,135,d5",
+        "18,139,d5"
+      ],
+      "mathematical_status": "complete_finite_zero_target_before_source_ready",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "13,135,d5,row2773",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "complete_finite_zero_target_before_source_ready",
+        "row": [
+          2773,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          13,
+          135
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          18,
+          139
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 0,
+            "m": 0,
+            "n": 0
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:18,139:d4",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "13,135,d5",
+          "18,139,d5"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "10,134,d5,row2693",
+      "source": [
+        10,
+        134
+      ],
+      "target": [
+        15,
+        138
+      ],
+      "page": 5,
+      "row": [
+        2693,
+        "4",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "15,138,d5"
+      ],
+      "mathematical_status": "unresolved_value_with_complete_nonzero_target",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "10,134,d5,row2693",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "unresolved_value_with_complete_nonzero_target",
+        "row": [
+          2693,
+          "4",
+          null,
+          9000
+        ],
+        "source": [
+          10,
+          134
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          15,
+          138
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 1,
+            "k": 0,
+            "m": 2,
+            "n": 1
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:15,138:d4",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "15,138,d5"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "16,138,d5,row2999",
+      "source": [
+        16,
+        138
+      ],
+      "target": [
+        21,
+        142
+      ],
+      "page": 5,
+      "row": [
+        2999,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "16,138,d5",
+        "21,142,d5"
+      ],
+      "mathematical_status": "complete_finite_zero_target_before_source_ready",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "16,138,d5,row2999",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "complete_finite_zero_target_before_source_ready",
+        "row": [
+          2999,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          16,
+          138
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          21,
+          142
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 0,
+            "m": 0,
+            "n": 0
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:21,142:d4",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "16,138,d5",
+          "21,142,d5"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "17,140,d5,row3143",
+      "source": [
+        17,
+        140
+      ],
+      "target": [
+        22,
+        144
+      ],
+      "page": 5,
+      "row": [
+        3143,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "17,140,d5",
+        "22,144,d5"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "17,140,d5,row3143",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3143,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          17,
+          140
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          22,
+          144
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:18,141:d3:row3247; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:18,141:d3"
+          ]
+        },
+        "target_predecessor": "S0:22,144:d4",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "17,140,d5",
+          "22,144,d5"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "13,137,d5,row2916",
+      "source": [
+        13,
+        137
+      ],
+      "target": [
+        18,
+        141
+      ],
+      "page": 5,
+      "row": [
+        2916,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "18,141,d5"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "13,137,d5,row2916",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2916,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          13,
+          137
+        ],
+        "source_theorem_leads": [
+          {
+            "depth": "0",
+            "dx": "",
+            "file": "proofs-part1.csv",
+            "id": "93009",
+            "info": "C2__S0",
+            "line": 87579,
+            "name": "S0",
+            "r": "5",
+            "reason": "N",
+            "s": "13",
+            "stem": "124",
+            "t": "137",
+            "x": "1"
+          }
+        ],
+        "target": [
+          18,
+          141
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:18,141:d3:row3247; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:18,141:d3"
+          ]
+        },
+        "target_predecessor": "S0:18,141:d4",
+        "target_selected_dimension": 1,
+        "unknown": true,
+        "used_by": [
+          "18,141,d5"
+        ],
+        "zero_target_candidate": false
+      }
+    },
+    {
+      "key": "18,141,d5,row3247",
+      "source": [
+        18,
+        141
+      ],
+      "target": [
+        23,
+        145
+      ],
+      "page": 5,
+      "row": [
+        3247,
+        "0,1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "18,141,d5",
+        "23,145,d5"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "18,141,d5,row3247",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3247,
+          "0,1",
+          null,
+          9000
+        ],
+        "source": [
+          18,
+          141
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          23,
+          145
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:16,140:d3:row3147; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:19,142:d3"
+          ]
+        },
+        "target_predecessor": "S0:23,145:d4",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "18,141,d5",
+          "23,145,d5"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "21,143,d5,row3386",
+      "source": [
+        21,
+        143
+      ],
+      "target": [
+        26,
+        147
+      ],
+      "page": 5,
+      "row": [
+        3386,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "21,143,d5",
+        "26,147,d5"
+      ],
+      "mathematical_status": "complete_finite_zero_target_before_source_ready",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "21,143,d5,row3386",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 5,
+        "resolution": "complete_finite_zero_target_before_source_ready",
+        "row": [
+          3386,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          21,
+          143
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          26,
+          147
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 1,
+            "m": 0,
+            "n": 0
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:26,147:d4",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "21,143,d5",
+          "26,147,d5"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "9,132,d6,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        15,
+        137
+      ],
+      "page": 6,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d6",
+        "15,137,d6"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "12,134,d6,row2684",
+      "source": [
+        12,
+        134
+      ],
+      "target": [
+        18,
+        139
+      ],
+      "page": 6,
+      "row": [
+        2684,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "12,134,d6"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "12,134,d6,row2684",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 6,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2684,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          12,
+          134
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          18,
+          139
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:13,135:d3:row2773; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:13,135:d4"
+          ]
+        },
+        "target_predecessor": "S0:18,139:d5",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "12,134,d6"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "13,135,d6,row2773",
+      "source": [
+        13,
+        135
+      ],
+      "target": [
+        19,
+        140
+      ],
+      "page": 6,
+      "row": [
+        2773,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "13,135,d6"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "13,135,d6,row2773",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 6,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2773,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          13,
+          135
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          19,
+          140
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:24,144:d4:row3476; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:24,144:d4"
+          ]
+        },
+        "target_predecessor": "S0:19,140:d5",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "13,135,d6"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "16,138,d6,row2999",
+      "source": [
+        16,
+        138
+      ],
+      "target": [
+        22,
+        143
+      ],
+      "page": 6,
+      "row": [
+        2999,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "16,138,d6",
+        "22,143,d6"
+      ],
+      "mathematical_status": "complete_finite_zero_target_before_source_ready",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d7",
+          "S0:9,132:d8",
+          "S0:9,132:d9",
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "16,138,d6,row2999",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 6,
+        "resolution": "complete_finite_zero_target_before_source_ready",
+        "row": [
+          2999,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          16,
+          138
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          22,
+          143
+        ],
+        "target_comparison": {
+          "dimensions": {
+            "h": 0,
+            "k": 0,
+            "m": 0,
+            "n": 0
+          },
+          "status": "finite_comparison_available",
+          "unresolved_predecessors": []
+        },
+        "target_predecessor": "S0:22,143:d5",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "16,138,d6",
+          "22,143,d6"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "21,143,d6,row3386",
+      "source": [
+        21,
+        143
+      ],
+      "target": [
+        27,
+        148
+      ],
+      "page": 6,
+      "row": [
+        3386,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "21,143,d6",
+        "27,148,d6"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "21,143,d6,row3386",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 6,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3386,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          21,
+          143
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          27,
+          148
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:18,141:d3:row3247; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:22,144:d4"
+          ]
+        },
+        "target_predecessor": "S0:27,148:d5",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "21,143,d6",
+          "27,148,d6"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "17,140,d6,row3143",
+      "source": [
+        17,
+        140
+      ],
+      "target": [
+        23,
+        145
+      ],
+      "page": 6,
+      "row": [
+        3143,
+        "0",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "23,145,d6"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "17,140,d6,row3143",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 6,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3143,
+          "0",
+          null,
+          9000
+        ],
+        "source": [
+          17,
+          140
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          23,
+          145
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:18,141:d3:row3247; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:18,141:d4",
+            "S0:23,145:d4"
+          ]
+        },
+        "target_predecessor": "S0:23,145:d5",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "23,145,d6"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "18,141,d6,row3247",
+      "source": [
+        18,
+        141
+      ],
+      "target": [
+        24,
+        146
+      ],
+      "page": 6,
+      "row": [
+        3247,
+        "0,1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "24,146,d6"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "18,141,d6,row3247",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 6,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3247,
+          "0,1",
+          null,
+          9000
+        ],
+        "source": [
+          18,
+          141
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          24,
+          146
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:16,140:d3:row3147; target dimension 2",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:19,142:d4"
+          ]
+        },
+        "target_predecessor": "S0:24,146:d5",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "24,146,d6"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "9,132,d7,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        16,
+        138
+      ],
+      "page": 7,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 1,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d7",
+        "16,138,d7"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "16,138,d7,row2999",
+      "source": [
+        16,
+        138
+      ],
+      "target": [
+        23,
+        144
+      ],
+      "page": 7,
+      "row": [
+        2999,
+        "2",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "16,138,d7"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "16,138,d7,row2999",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 7,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          2999,
+          "2",
+          null,
+          9000
+        ],
+        "source": [
+          16,
+          138
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          23,
+          144
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:21,143:d3:row3386; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:23,144:d5",
+            "S0:29,149:d5"
+          ]
+        },
+        "target_predecessor": "S0:23,144:d6",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "16,138,d7"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "21,143,d7,row3386",
+      "source": [
+        21,
+        143
+      ],
+      "target": [
+        28,
+        149
+      ],
+      "page": 7,
+      "row": [
+        3386,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "21,143,d7",
+        "28,149,d7"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d10",
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "21,143,d7,row3386",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 7,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3386,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          21,
+          143
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          28,
+          149
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:13,137:d3:row2916; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:22,144:d5",
+            "S0:28,149:d5"
+          ]
+        },
+        "target_predecessor": "S0:28,149:d6",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "21,143,d7",
+          "28,149,d7"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "9,132,d8,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        17,
+        139
+      ],
+      "page": 8,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d8",
+        "17,139,d8"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "21,143,d8,row3386",
+      "source": [
+        21,
+        143
+      ],
+      "target": [
+        29,
+        150
+      ],
+      "page": 8,
+      "row": [
+        3386,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": true,
+      "used_by": [
+        "21,143,d8",
+        "29,150,d8"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": false,
+        "key": "21,143,d8,row3386",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 8,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3386,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          21,
+          143
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          29,
+          150
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:13,137:d3:row2916; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:22,144:d6",
+            "S0:29,150:d6"
+          ]
+        },
+        "target_predecessor": "S0:29,150:d7",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "21,143,d8",
+          "29,150,d8"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "9,132,d9,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        18,
+        140
+      ],
+      "page": 9,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d9"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "21,143,d9,row3386",
+      "source": [
+        21,
+        143
+      ],
+      "target": [
+        30,
+        151
+      ],
+      "page": 9,
+      "row": [
+        3386,
+        "1",
+        null,
+        9000
+      ],
+      "classification": "sentinel_unknown",
+      "unknown": true,
+      "target_selected_dimension": 0,
+      "empty_e2_target": true,
+      "zero_target_candidate": true,
+      "used_by": [
+        "30,151,d9"
+      ],
+      "mathematical_status": "unresolved_target_predecessor",
+      "resolution": {
+        "affected_roots": [
+          "S0:9,132:d11"
+        ],
+        "classification": "sentinel_unknown",
+        "empty_e2_target": true,
+        "key": "21,143,d9,row3386",
+        "lead_locator_note": "Historical lead line is CSV ordinal+1, not necessarily physical text line; event ID and file are primary locators.",
+        "page": 9,
+        "resolution": "unresolved_target_predecessor",
+        "row": [
+          3386,
+          "1",
+          null,
+          9000
+        ],
+        "source": [
+          21,
+          143
+        ],
+        "source_theorem_leads": [],
+        "target": [
+          30,
+          151
+        ],
+        "target_comparison": {
+          "first_failure": "unknown S0:13,137:d3:row2916; target dimension 1",
+          "status": "unresolved",
+          "unresolved_predecessors": [
+            "S0:22,144:d7",
+            "S0:30,151:d7",
+            "S0:38,158:d7"
+          ]
+        },
+        "target_predecessor": "S0:30,151:d8",
+        "target_selected_dimension": 0,
+        "unknown": true,
+        "used_by": [
+          "30,151,d9"
+        ],
+        "zero_target_candidate": true
+      }
+    },
+    {
+      "key": "9,132,d10,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        19,
+        141
+      ],
+      "page": 10,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d10"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    },
+    {
+      "key": "9,132,d11,row2569",
+      "source": [
+        9,
+        132
+      ],
+      "target": [
+        20,
+        142
+      ],
+      "page": 11,
+      "row": [
+        2569,
+        "0,1",
+        null,
+        9988
+      ],
+      "classification": "stored_earlier_zero_prefix",
+      "unknown": false,
+      "target_selected_dimension": 0,
+      "empty_e2_target": false,
+      "zero_target_candidate": false,
+      "used_by": [
+        "9,132,d11"
+      ],
+      "mathematical_status": "external_zero_prefix_provenance_required",
+      "explanation": "A later stored event level selects this row on earlier pages. Its NULL differential does not supply a Lean proof of earlier cycles; an actual page trajectory or independent source theorem is required."
+    }
+  ]
+}

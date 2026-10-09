@@ -1,0 +1,187 @@
+{
+  "status": "finite_snapshot_and_data_leaf_review_passed",
+  "preserved_comparisons": 1239,
+  "new_distinct_comparisons": 10,
+  "merged_comparisons": 1249,
+  "graph_comparisons": 1246,
+  "graph_unresolved": 174,
+  "new_checks": [
+    {
+      "key": "S0:10,133:d6",
+      "dimensions": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "cycles": 1,
+      "images": 1
+    },
+    {
+      "key": "S0:11,134:d7",
+      "dimensions": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "cycles": 1,
+      "images": 1
+    },
+    {
+      "key": "S0:13,135:d3",
+      "dimensions": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "cycles": 2,
+      "images": 1
+    },
+    {
+      "key": "S0:14,136:d5",
+      "dimensions": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "cycles": 1,
+      "images": 1
+    },
+    {
+      "key": "S0:15,137:d6",
+      "dimensions": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "cycles": 1,
+      "images": 1
+    },
+    {
+      "key": "S0:16,137:d3",
+      "dimensions": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "cycles": 4,
+      "images": 2
+    },
+    {
+      "key": "S0:4,128:d5",
+      "dimensions": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "cycles": 1,
+      "images": 1
+    },
+    {
+      "key": "S0:4,128:d6",
+      "dimensions": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cycles": 1,
+      "images": 1
+    },
+    {
+      "key": "S0:9,132:d4",
+      "dimensions": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "cycles": 2,
+      "images": 1
+    },
+    {
+      "key": "S0:9,132:d5",
+      "dimensions": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "cycles": 2,
+      "images": 1
+    }
+  ],
+  "whole_family_adjacent_equalities": 947,
+  "whole_family_consecutive_dimensions": 749,
+  "raw_null_preserved": true,
+  "conditional_theorem": "Row2773Leibniz.Actual.actual_row2773_d3_zero",
+  "snapshot_sha256": "d8eb3519ebdc7ca5a74bb67a639ea2d6c44afe3001654d2cab0724c5a83db23f",
+  "script_sha256": "83ca36f1c999c1cae16def84df21727ed89a5138c181234344f0d41260dcfaee",
+  "data_compilation": {
+    "source_sha256": "5aa506b8a0e07a25dcd70710f8b3b0122a6f58c9f753799649c01d4a022c5f33",
+    "external_input_sha256": {
+      "Fact713Row2773Refinement/wires/b_S0_10_133_d6.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+      "Fact713Row2773Refinement/wires/b_S0_11_134_d7.json": "acf23da773884b23ebe08c5d1a95f7303c24645970a83730d8ae6dde6c777711",
+      "Fact713Row2773Refinement/wires/b_S0_13_135_d3.json": "8f714491baf4cfa1abf50b2e2cfea236f234c9d75ecbfc0b794400b1223ae8a4",
+      "Fact713Row2773Refinement/wires/b_S0_14_136_d5.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+      "Fact713Row2773Refinement/wires/b_S0_15_137_d6.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+      "Fact713Row2773Refinement/wires/b_S0_16_137_d3.json": "1b2dc184b0f1edb6b82198427529ffafbab7c62fb4dee665d9fea3b4d30131e0",
+      "Fact713Row2773Refinement/wires/b_S0_4_128_d5.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+      "Fact713Row2773Refinement/wires/b_S0_4_128_d6.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+      "Fact713Row2773Refinement/wires/b_S0_9_132_d4.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+      "Fact713Row2773Refinement/wires/b_S0_9_132_d5.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b"
+    },
+    "observed_exit_code": 0,
+    "log_sha256": "f2f32c49a0d7130384980a2de63ef90ce237511f1043a01d095d35ef8fc2bf51",
+    "olean_sha256": "30d2d0b6db29127a6184adcac6a5af9a5c58405c3e6eb5a2e90c4577ba58ebee"
+  },
+  "finite_trajectory": [
+    {
+      "page": 2,
+      "input": [
+        true,
+        true
+      ],
+      "output": [
+        true,
+        false
+      ]
+    },
+    {
+      "page": 3,
+      "input": [
+        true,
+        false
+      ],
+      "output": [
+        true
+      ]
+    },
+    {
+      "page": 4,
+      "input": [
+        true
+      ],
+      "output": [
+        true
+      ]
+    },
+    {
+      "page": 5,
+      "input": [
+        true
+      ],
+      "output": [
+        true
+      ]
+    }
+  ],
+  "actual_E6_asserted": false,
+  "actual_link": "row2773_actual_column derives only the named actual zero column; full family realization remains external."
+}

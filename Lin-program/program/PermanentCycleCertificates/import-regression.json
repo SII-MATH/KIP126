@@ -1,0 +1,38 @@
+{
+  "status": "C++_producer_and_Lean_prefix_import_regression_passed",
+  "valid_lines": 2,
+  "rejected_cases": [
+    "schema",
+    "version",
+    "firstPage",
+    "stages",
+    "unknown_top",
+    "duplicate_top",
+    "unknown_stage",
+    "unknown_wire",
+    "duplicate_representative",
+    "zero",
+    "dimension",
+    "unknown",
+    "false_comparison",
+    "blank",
+    "nul"
+  ],
+  "rejected_link": true,
+  "batch_recovery": true,
+  "literal_metacharacter_path": true,
+  "output_write_failure": true,
+  "producer_stderr": "<temporary>/paths.txt:2: trajectory producer failed: stage 0: matrix: expected exact row-major bit count 1\n",
+  "lean_mixed_stdout": "2/17 finite prefixes accepted; permanence still requires proved meaning and all-page tail vanishing",
+  "inputs": {
+    "PermanentCycleCertificates/prefix_export.cpp": "3f6e3a6a61460f75d10206a06e26006ee5867ab6ddaa82aaab2f39ac375f5fb2",
+    "PermanentCycleCertificates/prefix-export": "bf38ad66abf868a8bf8ccdfb0d32f19591b71c2788b5e34acaa82fb9c53192e0",
+    "PermanentCycleCertificates/stable-prefix.input": "1ca576e0a9d3c3fd858b01d10b070a67eb0cf0265d1e764a2d643be4e9bb6fbb",
+    "PermanentCycleCertificates/stable-prefix.json": "7a56f68d3f0ab684a299d335943109e6d3f281fbad07e2abcd565c4fcb81a339",
+    "PermanentCycleCertificates/Import.lean": "b4a2c9a88e3a3864aed8fa35c414640859259c5501b510c298b04579f0e9eea3",
+    "PermanentCycleCertificates/CheckFile.lean": "23fa2af186a0da1b02c9b9a2f4a6a77045a8e0f9cb88dab7e73af7cbc729a84a",
+    "PermanentCycleCertificates/test_import.py": "44e979bed3a7390f42be312fe9f21a9d0239c703ed996c131ae1ddb98ed3845f",
+    "PageTransitionCertificates/trajectory_export.cpp": "8e6856efa23acf27dbbe6f140417a11d2f86a5b6d2646cf3cc143258f2532642",
+    "PageTransitionCertificates/trajectory-export": "f0a83c03a4c526b83d7cd45996828866250d59b894bb9a2966a971667a417613"
+  }
+}

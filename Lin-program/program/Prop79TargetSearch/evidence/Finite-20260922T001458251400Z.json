@@ -1,0 +1,23 @@
+{
+  "source_sha256": "a06b321ae57d0ff60e43015ac54160eef17938b3c0a7196c1d90aa1204f6b0c4",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff",
+    ".lake/build/lib/lean/Prop79IncomingSearch/Finite.olean": "ce6644301826cc1c489c130a61fbdf8f4664cbfdcd4a0077b42a5cfef915963c"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Prop79TargetSearch/Finite.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Prop79TargetSearch/Finite.olean"
+  ],
+  "log": "evidence/Finite-20260922T001458251400Z.log",
+  "external_input_sha256": {
+    "Prop79TargetSearch/wires/Cnu_14_139_d3.json": "6a6b87a2cbc7bfaec12a7e57b54283422b249db91fadfb1262eae4c333aeda7f",
+    "Prop79TargetSearch/wires/Cnu_14_139_d4.json": "4ceeba02fccea4ff2432ef55fad578740723a118a4f2bd5c546901b0db6e2fd9"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "60cd70409fb237580e164bad7446bc932b40dbc8487d98d0974655c666ce4d56",
+  "inputs_stable": true,
+  "olean_sha256": "61f749579c059a70d666fc136908bd2c930401d7e2c19aebe8fb554e095f4d09"
+}

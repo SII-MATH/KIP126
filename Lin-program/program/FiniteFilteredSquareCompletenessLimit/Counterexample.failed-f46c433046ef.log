@@ -1,0 +1,27 @@
+FiniteFilteredSquareCompletenessLimit/Counterexample.lean:52:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  higher ?M
+in the target expression
+  (fun i => higher (FilteredExtensionCertificates.level M i)) j ≤
+    (fun i => higher (FilteredExtensionCertificates.level M i)) i
+
+M : Fin input.depth → Matrix 1 0
+i j : ℕ
+h : i ≤ j
+⊢ (fun i => higher (FilteredExtensionCertificates.level M i)) j ≤
+    (fun i => higher (FilteredExtensionCertificates.level M i)) i
+FiniteFilteredSquareCompletenessLimit/Counterexample.lean:77:13: error: Ambiguous term
+  check
+Possible interpretations:
+  FiniteFilteredSquareCertificates.check : (D : FiniteFilteredSquareCertificates.Data) →
+    FiniteFilteredSquareCertificates.Certificate D → Bool
+  
+  RepresentativeSquareCertificates.check : (D : RepresentativeSquareCertificates.Data) →
+    RepresentativeSquareCertificates.Certificate D → Bool
+FiniteFilteredSquareCompletenessLimit/Counterexample.lean:77:2: error: `simp` made no progress
+'FiniteFilteredSquareCompletenessLimit.input_wellFormed' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FiniteFilteredSquareCompletenessLimit.result_valid' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FiniteFilteredSquareCompletenessLimit.no_certificate' depends on axioms: [propext, sorryAx]
+'FiniteFilteredSquareCompletenessLimit.not_complete' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

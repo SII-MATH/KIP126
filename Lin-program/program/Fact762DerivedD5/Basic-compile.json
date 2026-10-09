@@ -1,0 +1,24 @@
+{
+  "source_sha256": "f6d9038891d9ca525bd7c08d7a4fef7842c751ea28346848c33bf6dfea9d2012",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact762SphereGDetection/Constructed.olean": "1ae8eb03ad655c5933366c20b8d43e9913912b5017b9fc43c77000d6a77b206d",
+    ".lake/build/lib/lean/Fact762CsigmasqD5/Actual.olean": "9765cc7844bc0adcfe1ec3a68aad61b8581e445812f75eed9215e9f3b7f36acd"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact762DerivedD5/Basic.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact762DerivedD5/Basic.olean"
+  ],
+  "log": "evidence/Basic-20260922T014226490565Z.log",
+  "external_input_sha256": {},
+  "observed_exit_code": 0,
+  "log_sha256": "2b646cef4b2f7f3e32c036b88b8914c65b1d8f8ec25687712b4bc61dfc96fdd7",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/Fact762SphereGDetection/Constructed.olean": "1ae8eb03ad655c5933366c20b8d43e9913912b5017b9fc43c77000d6a77b206d",
+    ".lake/build/lib/lean/Fact762CsigmasqD5/Actual.olean": "9765cc7844bc0adcfe1ec3a68aad61b8581e445812f75eed9215e9f3b7f36acd"
+  },
+  "inputs_stable": true,
+  "olean_sha256": "d8a990e60a6834b3eb8370b7de12b2ea76bf5f179fd9c0ceea528d9e371fa193"
+}

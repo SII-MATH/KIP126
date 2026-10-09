@@ -1,0 +1,315 @@
+{
+  "event": 3152,
+  "distinct_events": 1,
+  "branch_first_bits": [
+    false,
+    true
+  ],
+  "raw_rows": {
+    "2925": [
+      2925,
+      11,
+      137,
+      "1,2",
+      null,
+      9000
+    ],
+    "2926": [
+      2926,
+      11,
+      137,
+      "2",
+      "1",
+      9996
+    ],
+    "3151": [
+      3151,
+      15,
+      140,
+      "1",
+      "2",
+      4
+    ],
+    "3152": [
+      3152,
+      15,
+      140,
+      "2",
+      "0",
+      9995
+    ],
+    "3485": [
+      3485,
+      20,
+      144,
+      "0",
+      "2",
+      5
+    ],
+    "2708": [
+      2708,
+      7,
+      134,
+      "0,1",
+      null,
+      9997
+    ],
+    "2858": [
+      2858,
+      10,
+      136,
+      "2",
+      null,
+      9000
+    ]
+  },
+  "prior_steps_each": 6,
+  "source_raw_e2_local": [
+    2
+  ],
+  "source_raw_e2_global": [
+    3152
+  ],
+  "target_raw_e2_local": [
+    0
+  ],
+  "target_raw_e2_global": [
+    3484
+  ],
+  "new_source_d4_outgoing_reason": "stored3152 d4 zero prefix plus d4 squared zero on known3151 boundary",
+  "new_source_d4_incoming": "full [b,1;0,0] from Row2925EtaD4 second-bit restriction and known3151 value",
+  "event_value_reason": "stored3152 d5 value, interpreted separately from its prefix and eta constraint",
+  "incoming_dimension": "unspecified; Generic.complete quantifies over every n; Actual proves the whole actual incoming map zero by d5 injectivity and d squared",
+  "forbidden_interpretation": "No n=0 wire is emitted for the event; zero boundary image is not an actual-source dimension assertion.",
+  "uses": [
+    {
+      "block": "S0:11,137:d3",
+      "object": "S0",
+      "source": [
+        11,
+        137
+      ],
+      "page": 3,
+      "row": [
+        2925,
+        "1,2",
+        null,
+        9000
+      ],
+      "kind": "conditional_cnu_eta",
+      "target_predecessor": "S0:14,139:d2"
+    },
+    {
+      "block": "S0:11,137:d3",
+      "object": "S0",
+      "source": [
+        11,
+        137
+      ],
+      "page": 3,
+      "row": [
+        2926,
+        "2",
+        "1",
+        9996
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:14,139:d2"
+    },
+    {
+      "block": "S0:11,137:d3",
+      "object": "S0",
+      "source": [
+        8,
+        135
+      ],
+      "page": 3,
+      "row": [
+        2796,
+        "2",
+        null,
+        9000
+      ],
+      "kind": "conditional_h3_d0",
+      "target_predecessor": "S0:11,137:d2"
+    },
+    {
+      "block": "S0:11,137:d3",
+      "object": "S0",
+      "source": [
+        8,
+        135
+      ],
+      "page": 3,
+      "row": [
+        2797,
+        "1",
+        null,
+        9991
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:11,137:d2"
+    },
+    {
+      "block": "S0:15,140:d3",
+      "object": "S0",
+      "source": [
+        15,
+        140
+      ],
+      "page": 3,
+      "row": [
+        3151,
+        "1",
+        "2",
+        4
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:18,142:d2"
+    },
+    {
+      "block": "S0:15,140:d3",
+      "object": "S0",
+      "source": [
+        15,
+        140
+      ],
+      "page": 3,
+      "row": [
+        3152,
+        "2",
+        "0",
+        9995
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:18,142:d2"
+    },
+    {
+      "block": "S0:15,140:d3",
+      "object": "S0",
+      "source": [
+        12,
+        138
+      ],
+      "page": 3,
+      "row": [
+        3016,
+        "3",
+        "1",
+        9996
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:15,140:d2"
+    },
+    {
+      "block": "S0:16,141:d3",
+      "object": "S0",
+      "source": [
+        16,
+        141
+      ],
+      "page": 3,
+      "row": [
+        3254,
+        "1",
+        "3",
+        4
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:19,143:d2"
+    },
+    {
+      "block": "S0:16,141:d3",
+      "object": "S0",
+      "source": [
+        13,
+        139
+      ],
+      "page": 3,
+      "row": [
+        3083,
+        "0",
+        "0",
+        9995
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:16,141:d2"
+    },
+    {
+      "block": "S0:20,144:d3",
+      "object": "S0",
+      "source": [
+        20,
+        144
+      ],
+      "page": 3,
+      "row": [
+        3485,
+        "0",
+        "2",
+        5
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:23,146:d2"
+    },
+    {
+      "block": "S0:20,144:d4",
+      "object": "S0",
+      "source": [
+        20,
+        144
+      ],
+      "page": 4,
+      "row": [
+        3485,
+        "0",
+        "2",
+        5
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:24,147:d3"
+    },
+    {
+      "block": "S0:20,144:d4",
+      "object": "S0",
+      "source": [
+        16,
+        141
+      ],
+      "page": 4,
+      "row": [
+        3254,
+        "1",
+        "3",
+        4
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:20,144:d3"
+    },
+    {
+      "block": "S0:24,147:d3",
+      "object": "S0",
+      "source": [
+        24,
+        147
+      ],
+      "page": 3,
+      "row": [
+        3739,
+        "0",
+        "0",
+        9996
+      ],
+      "kind": "stored_zero_prefix_or_boundary",
+      "target_predecessor": "S0:27,149:d2"
+    }
+  ],
+  "shared_snapshot_unchanged": true,
+  "source_sha256": {
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateD5Conditional/dag.json": "0dc048653b3769176f94220eb2a2e4315468863e1b47c81fee7523929650057d",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "Row3152BranchCertificates/prepare.py": "75f365c4ac47ba5f3924ea515ebd01cf0ca25392027ef907a8b9d814bf89af4c",
+    "Row3152BranchCertificates/export.cpp": "6e3d541dfa37412fac5e77c353279c89b4a6db6654ef5572e1cd0c1f048a8c8d"
+  }
+}

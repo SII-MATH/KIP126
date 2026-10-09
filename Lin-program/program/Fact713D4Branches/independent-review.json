@@ -1,0 +1,74 @@
+{
+  "status": "no_correctness_findings",
+  "branches": [
+    {
+      "branch": "zero",
+      "count": 1283,
+      "cyclepairs": 9512,
+      "adjacent": 976,
+      "consecutive": 783,
+      "raw_unknown_preserved": true
+    },
+    {
+      "branch": "residual_rebased",
+      "count": 1284,
+      "cyclepairs": 9510,
+      "adjacent": 977,
+      "consecutive": 784,
+      "raw_unknown_preserved": true
+    }
+  ],
+  "compiled": {
+    "ZeroData": {
+      "source_sha256": "9d3f4b0a752c9c955dae6f3685f43a41aa295baebb8a3216fe219880428ff55d",
+      "external_input_sha256": {
+        "Fact713D4Branches/wire/b_S0_13_135_d4.json": "ec044a87ef946c2c17a712ea3a980d31b555e2a2eb6f4f5dd1a8da6ed12688aa",
+        "Fact713D4Branches/wire/b_S0_13_135_d5.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+        "Fact713D4Branches/wire/b_S0_14_136_d6.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713D4Branches/wire/b_S0_15_137_d7.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713D4Branches/wire/b_S0_17_138_d3.json": "ee8858def8750535db317bb6de6e24bd08b75d8c252b04b3e484d276d5256e44",
+        "Fact713D4Branches/wire/b_S0_18_139_d5.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+        "Fact713D4Branches/wire/b_S0_2_126_d6.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713D4Branches/wire/b_S0_2_126_d7.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+        "Fact713D4Branches/wire/b_S0_8_131_d5.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+        "Fact713D4Branches/wire/b_S0_8_131_d6.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+        "Fact713D4Branches/wire/b_S0_9_132_d7.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "eeb03bc3305e692a063667d49f24e6ea031028f84e7309adc3d45e928990cf45",
+      "olean_sha256": "67d56bdd72acd687b8c906916e82807e348022087feea8fb14ba11d7f539eafc"
+    },
+    "ZeroExtra": {
+      "source_sha256": "ce5524b8687edaef468d3b277e2bf401f74b5668b10eb52fe3dc90e9d0416a54",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "7bd343a31b883731df17f4b393030f5d242902c0000e029669ebe607873736fe",
+      "olean_sha256": "9b70a5bb61f4cdcbada1a532d21b11f8b5baece81fd5e43edcaa2eea5a317939"
+    },
+    "ZeroCross": {
+      "source_sha256": "26264ccff2be08b99932861c1f8b5f40afdf8dc9551faecb3906e45369ce9cad",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "0df41b53617b4d7a6eb39c357a8191ee62bef3d0ce5a388ddab5c0fc653d3b3e",
+      "olean_sha256": "189512a7383e787aabf3ce44b9b0a0b6161d33840693800626ea57cc68883231"
+    },
+    "ZeroCoherence": {
+      "source_sha256": "1797a76d1cc8f9b7f946bd1d01140dd7cae55479465215e5629bf1a611dd3bfa",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "decf2b60964dfa0242b1d743be1229cb09942d7373423cc1feb4166e2a5def92",
+      "olean_sha256": "0ebed68d17ddb3c928cbcc7a3a8e117a139b8cbd042e6e6c314a684aedab5e3f"
+    },
+    "Branches": {
+      "source_sha256": "9c47a975681f3c0f7cb300d516cad186166f5477cb589d29b7ba664af13b2c32",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "8979fb99094dd143793b4f8be0e1d7981a95020122faf540e764c7005e26ab2a",
+      "olean_sha256": "510e3f638bb42a06717d6d53c187276b14121f9ea020082d4c2d9b1813a7f8d6"
+    }
+  },
+  "axiom_reports": 16,
+  "common_named_d2_d7": true,
+  "actual_branch_selection": false,
+  "scope": "Two separate coherent finite families; their shared named path reaches E8, while complete actual map meanings remain premises."
+}

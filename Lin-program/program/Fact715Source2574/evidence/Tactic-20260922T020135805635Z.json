@@ -1,0 +1,31 @@
+{
+  "source_sha256": "deed078ecfc4943a332bbeb1193d5f39dee7c0bc449ad4614557fe37f16ee094",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact715Source2574/Vanishing.olean": "6c695f240e79b8d7d2bee08cfbc46faf2ecd9d4e35a6b3e82b4e3a4fd7300456",
+    ".lake/build/lib/lean/Fact715Source2574/Recorded.olean": "2c7ce55b54c24e329f09e79ea2d949e080de4f4eca6e32e7df4f7db80d7e6650",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/lib/lean/Lean/Elab/Tactic.olean": "cc9e89c311871fa7e0f02ba6cdcb4e40d779b44bc1c28ed1cff1e4f1da9e8378"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact715Source2574/Tactic.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact715Source2574/Tactic.olean"
+  ],
+  "log": "evidence/Tactic-20260922T020135805635Z.log",
+  "external_input_sha256": {
+    "Fact715Source2574/source.json": "dfa1adac2f4960dc958b7cf19c66d37d1121159fa27b93715fd18c7b09a7c448",
+    "Fact715Source2574/wire/column0.json": "68465d7a34389578d41b82fce4b1690ac2dd1833cd48dad02152f642756514f9",
+    "Fact715Source2574/wire/column1.json": "cc339e0d5ef8cec64972c70024bd656404fb41de6bfc1ce9f72e45f95dde0b39",
+    "Fact715Source2574/wire/factor.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Fact715Source2574/wire/factorTarget.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "Fact715Source2574/wire/product.json": "2ff16e38cec490b45a552b111d1121b660aacee9549bdcd82cfd0297e8a2f3f0",
+    "Fact715Source2574/wire/productTensor.json": "3fa4c60a5cc4cf001310723bd022526b9e9e5132d1696b46857799c006bad69d",
+    "Fact715Source2574/wire/source.json": "b165d93d2385cc852b8e0b59015dcab576f197d922da51dc6961f04aecc9d8f0",
+    "Fact715Source2574/wire/target.json": "910964f02f3af9577555393dbeff99c28a24cb32870bf02976481491881e1c82"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "fabec80fd48121bf4e0e23d02045e151763daaa2aef1998711d7ba867a2cbeb2",
+  "inputs_stable": true,
+  "olean_sha256": "e8350f01853dc5677fcc9376995055647268f0ca4fa6c57158f78dccf4d2dc89"
+}

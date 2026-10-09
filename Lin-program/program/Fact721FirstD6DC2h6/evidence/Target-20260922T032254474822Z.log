@@ -1,0 +1,90 @@
+Fact721FirstD6DC2h6/Target.lean:73:57: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  I.target3.coordinates.equivalence 0
+in the target expression
+  I.target3.coordinates.equivalence 0 ⟨1, ⋯⟩ = false
+
+case inl
+S T : AdamsSpectralSequence
+sp : CertifiedAdamsPages S
+tp : CertifiedAdamsPages T
+I : ExtraSource.Stage2 S T sp tp
+D : Stage2 I
+F : PageMap.Map S T sp tp
+M : Meaning D F
+x : (T.element 3 incomingDegree).carrier
+a : (T.element (2 + 1) incomingDegree).carrier := D.incoming3.coordinates.equivalence.symm fun i => ↑i == 0
+b : (T.element (2 + 1) incomingDegree).carrier := D.incoming3.coordinates.equivalence.symm fun i => ↑i == 1
+cases :
+  ∀ (v : Vec 2),
+    v = zero ∨ (v = fun i => ↑i == 0) ∨ (v = fun i => ↑i == 1) ∨ v = add (fun i => ↑i == 0) fun i => ↑i == 1
+hz : D.incoming3.coordinates.equivalence x = zero
+same : x = 0
+⊢ I.target3.coordinates.equivalence 0 ⟨1, ⋯⟩ = false
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (T.element 3 (AdamsTarget 3 incomingDegree)).carrier
+  but is expected to have type
+    (T.element (2 + 1) ExtraSource.targetDegree).carrier
+  in the application
+    I.target3.coordinates.equivalence 0
+Fact721FirstD6DC2h6/Target.lean:81:27: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  I.target3.coordinates.equivalence 0
+in the target expression
+  I.target3.coordinates.equivalence 0 ⟨1, ⋯⟩ = false
+
+case inr.inr.inl
+S T : AdamsSpectralSequence
+sp : CertifiedAdamsPages S
+tp : CertifiedAdamsPages T
+I : ExtraSource.Stage2 S T sp tp
+D : Stage2 I
+F : PageMap.Map S T sp tp
+M : Meaning D F
+x : (T.element 3 incomingDegree).carrier
+a : (T.element (2 + 1) incomingDegree).carrier := D.incoming3.coordinates.equivalence.symm fun i => ↑i == 0
+b : (T.element (2 + 1) incomingDegree).carrier := D.incoming3.coordinates.equivalence.symm fun i => ↑i == 1
+cases :
+  ∀ (v : Vec 2),
+    v = zero ∨ (v = fun i => ↑i == 0) ∨ (v = fun i => ↑i == 1) ∨ v = add (fun i => ↑i == 0) fun i => ↑i == 1
+hb : D.incoming3.coordinates.equivalence x = fun i => ↑i == 1
+same : x = b
+⊢ I.target3.coordinates.equivalence 0 ⟨1, ⋯⟩ = false
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (T.element 3 (AdamsTarget 3 incomingDegree)).carrier
+  but is expected to have type
+    (T.element (2 + 1) ExtraSource.targetDegree).carrier
+  in the application
+    I.target3.coordinates.equivalence 0
+Fact721FirstD6DC2h6/Target.lean:95:4: error: Type mismatch: After simplification, term
+  hy
+ has type
+  @Eq (T.element 3 degree).carrier
+    (pageCast T 3 ⋯ ((T.differential 3 (ActualAdamsIncomingBridge.sourceDegree 3 degree)).toFun (y ⋯)))
+    (F.map 3 degree x)
+but is expected to have type
+  @Eq (T.element 3 (AdamsTarget 3 incomingDegree)).carrier ((T.differential 3 incomingDegree).toFun (y ⋯))
+    (F.map 3 degree x)
+Fact721FirstD6DC2h6/Target.lean:103:33: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Subsingleton (Fin Maps.targetSphere.h)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+'Fact721FirstD6DC2h6.Target.Meaning.map3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Target.Meaning.second_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Target.Meaning.incoming_last_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact721FirstD6DC2h6.Target.Meaning.boundary_reflects_zero' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact721FirstD6DC2h6.Target.Meaning.reflects4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

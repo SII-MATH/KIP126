@@ -1,0 +1,60 @@
+{
+  "reviewer": "/root/map_search_next",
+  "independent_scope": "Basic.lean only; Trace.lean was implemented by this reviewer.",
+  "status": "basic_independent_review_passed",
+  "findings": [],
+  "basic_semantics": [
+    "Incoming includes every actual source degree and every element, with exact AdamsTarget equality casts.",
+    "Unit contributes zero only, including when no nonnegative source degree exists.",
+    "incoming_image proves exact equality with the full PageBoundary definition.",
+    "quotient_zero_iff uses the actual quotient equivalence plus explicit ZeroMeaning.",
+    "advance agrees with the prescribed homology quotient on cycles; noncycles map to zero by convention.",
+    "system.homology_zero follows from the exact incoming-image and quotient-zero equivalences."
+  ],
+  "trace_implementation": [
+    "trace_at_transport proves actual transport along r=n+2 agrees with System.at by trace induction.",
+    "trace_at and endpoint_at specialize transport to the system page indexing.",
+    "incoming_cycle uses actual linear zero and differentialSq after eliminating the exact degree equality.",
+    "differentialLaws supplies zero-outgoing and full incoming-cycle laws without finite table assumptions."
+  ],
+  "independent_finite_replay": {
+    "full_linear_complexes": 58,
+    "zero_preserving_quotient_identifications": 63,
+    "element_checks": 252,
+    "exact_degree_cases": 1456,
+    "zero_preservation_counterexample": true,
+    "scope": "Finite sanity checks supplement Lean proofs; dependent transport is reviewed in Lean source."
+  },
+  "build_evidence": [
+    {
+      "module": "Basic",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 3,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Trace",
+      "observed_exit_code": 0,
+      "standard_axiom_reports": 5,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "inputs_sha256": {
+    "ActualAdamsSystemBridge/Basic.lean": "f6fab04ed4161c2f05e85c26b98b5bcb1589625f8a2843901aa0b407cc51a0f5",
+    "ActualAdamsSystemBridge/Trace.lean": "b58db9baba1534108e37bd068bd0b1faffc5e3d196b35d08f5b67b22ebcc058b",
+    "ManualInputObligations/Typed.lean": "d38170dbe354b4af0ecd4ff56846d6144fde3250fa9209db61fd2781a4f98524",
+    "ManualInputObligations/Reference/AdamsHomology.lean": "527fc8f59f7dc609c70f359876ec4c83010df3801c5fad301b1b2d0dc4b92232",
+    "ManualInputObligations/Reference/AdamsRules.lean": "f5e899de1219c1df1056ff94aab36049ce54f0621d08f2e35c80564ebdde64ce",
+    "ManualInputObligations/Reference/SteenrodAdams.lean": "c19f01164e9738b444761d5251348028d2c386308911af720ff399443f812028",
+    "PermanentCycleCertificates/System.lean": "06163bec82e9d0a515244f62d455c8bce8224c7054b6bc15a7a55bf19b95668c",
+    "OutgoingCycleFiltrationCertificates/Boundary.lean": "68ec56a66a45b05556aa1eb19ed215967bb9c8e5f60dbbe89b53e9f61dcd7648"
+  },
+  "limitations": [
+    "The actual graded sequence, certified quotient equivalences, and ZeroMeaning are supplied as mathematical arguments.",
+    "The Type quotient equivalence plus ZeroMeaning is not an additive next-page identification.",
+    "No spectrum-to-E2, named Ext-class, convergence, or stable-homotopy identification is constructed here.",
+    "Trace requires cycle evidence at every step and does not prove endpoint nonzeroness or immunity to incoming boundaries.",
+    "The total advance convention on noncycles does not assert that noncycles survive to a later Adams page.",
+    "The previous abstract TailVanishing Incoming-subsingleton assumption can be too strong for this unreduced sum type."
+  ]
+}

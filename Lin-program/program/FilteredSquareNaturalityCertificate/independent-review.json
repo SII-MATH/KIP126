@@ -1,0 +1,182 @@
+{
+  "status": "no_correctness_findings_in_two_reviewed_leaves",
+  "reviewed_modules": [
+    "Basic",
+    "Examples"
+  ],
+  "compiled": {
+    "Basic": {
+      "source_sha256": "9a7408b762292a21f088af152b44397ea591e51b6246fef31ee515506b085e7e",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "de52c01f9607483d9d308fd58bb5006812d1ec67e99183f195c7462314bcf059",
+      "olean_sha256": "80eb1cc486747177499c6635138b42537f76ab5ee0e04484a65e5b23c10094df",
+      "current_olean_sha256": "80eb1cc486747177499c6635138b42537f76ab5ee0e04484a65e5b23c10094df"
+    },
+    "Examples": {
+      "source_sha256": "7980434dde4bf7936d8519e77bb986231cd6e83428a82659134cd6ded4f769cf",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "d372cfe0d33c31497c943c1c3bd06b7e7ffce07a7bdca67dbdfc876073d8a592",
+      "olean_sha256": "35e55bf69229ae6b9e18a26fd20db9f841a444dc375c69096729290f639627ac",
+      "current_olean_sha256": "35e55bf69229ae6b9e18a26fd20db9f841a444dc375c69096729290f639627ac"
+    }
+  },
+  "axiom_reports": [
+    "'FilteredSquareNaturalityCertificate.of_wellFormed' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'FilteredSquareNaturalityCertificate.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'FilteredSquareNaturalityCertificate.of_wire_valid' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'FilteredSquareNaturalityCertificate.all_863_natural' depends on axioms: [propext, Classical.choice, Quot.sound]"
+  ],
+  "input_sha256": {
+    "FilteredSquareNaturalityCertificate/Basic.lean": "9a7408b762292a21f088af152b44397ea591e51b6246fef31ee515506b085e7e",
+    "FilteredSquareNaturalityCertificate/Examples.lean": "7980434dde4bf7936d8519e77bb986231cd6e83428a82659134cd6ded4f769cf",
+    "FiniteFilteredSquareCertificateCompleteness/Basic.lean": "a2aa79c92dfe5fd0c86a5f7588799aecdbe360ef18d96b7d702b779c7eaa09c6",
+    "FiniteFilteredSquareCertificates/Basic.lean": "2274e44f339991bf0effedb6334d84613e2cdcc6ce50b3ca0055161285ef9dd3",
+    "FiniteFilteredSquareCertificates/Import.lean": "2358845d7c0d4a24f990c9c9b68e5cc036908c06b22d2ef35274f4bbfeac319a",
+    "FiniteFilteredSquareProducer/Imported.lean": "fafbf58226fa56701dc7ed850a10f634340de70cdfb187718c9d764bfa5aab24",
+    "FilteredTwoTermNaturality/Basic.lean": "6eeabd9f91c3502fd33fb9f7cbdf37e040afb747a9f8709c732dcda1c5c57eca"
+  },
+  "batches": [
+    {
+      "batch": "batch00",
+      "rows": 40,
+      "wire_sha256": "0aec45fffd37905fbdbb97eab5c99ec3ea14acf3998686a42ca982f9b6a43fd6",
+      "module_sha256": "b13dc339fd059e1165b3887ed4538380a209080dfa437e6c6e74bd236206df2c"
+    },
+    {
+      "batch": "batch01",
+      "rows": 40,
+      "wire_sha256": "e0d60d9f402935002db99525ddbf2020afcb43f52f103d513099c8502a472cd9",
+      "module_sha256": "5d46fcf9cc2bb12cd4cde642e30ae8d9c77928b0185eaee74ce59504c80f4eff"
+    },
+    {
+      "batch": "batch02",
+      "rows": 40,
+      "wire_sha256": "7885f16e2ee7327599e5518f154cc7522049bed8cf0dae334d03aaa3c0da1cb2",
+      "module_sha256": "e5d035370038d8171efa1622c54a29c85a30c9f9e258ba4b03cc918bb68bd0ea"
+    },
+    {
+      "batch": "batch03",
+      "rows": 40,
+      "wire_sha256": "53d5f8cf2a1991410d40353a75ef18c0311feeb0179eddfcfa47247920f6f4c8",
+      "module_sha256": "017aa3c94e28c967030c5f18ef70c75c664cf6e1afd42d04ebeea1cbc1b4da4c"
+    },
+    {
+      "batch": "batch04",
+      "rows": 40,
+      "wire_sha256": "3e5929f655fac5354d2d320e44a0805706b889df8c9dd9eb038a17c233dbb290",
+      "module_sha256": "7c44d4c8d50356d502aa7127d696222903e053ee12f1ef75193b6155563859d8"
+    },
+    {
+      "batch": "batch05",
+      "rows": 40,
+      "wire_sha256": "a9d423ee6ae762868605a38d89eaa61f569e1006c383886030f9265c54317791",
+      "module_sha256": "129d985d3ce673bb602cf64cb8262c0f23e1f7771c5914b57c38664da609b376"
+    },
+    {
+      "batch": "batch06",
+      "rows": 40,
+      "wire_sha256": "345aab804404789f2285e2eaada6bf70a767ade2d8a28950559e9bbf9e84777a",
+      "module_sha256": "a01354dbdd699ca419e191654fee30eb59fd050d6d8590d96f0d59d94ccf8bf2"
+    },
+    {
+      "batch": "batch07",
+      "rows": 40,
+      "wire_sha256": "dab35be46cc84b488a025519faccb990d76924f405d6a2ea85594c225d6de0ae",
+      "module_sha256": "60fb50fd37708cc6343176b8afb62756a1bd17c0e28018fc5272d5e1f12b4249"
+    },
+    {
+      "batch": "batch08",
+      "rows": 40,
+      "wire_sha256": "8df322909a327944ccfd8b8ccf319252f5eeceeafe5ebde818c86a091eb61022",
+      "module_sha256": "2474bef1a19e8c81abb4f6c0e18b3e33ef854dd5d7d4af3410c0d6018278bc6b"
+    },
+    {
+      "batch": "batch09",
+      "rows": 40,
+      "wire_sha256": "94ee7e76265c80f9fed958945f508d90488b8f9eaaaeaca49c1c022d2c791537",
+      "module_sha256": "45fbd59414592aa7ef0e354baca8823ff673556061f9ae79bc123a98b1f5468d"
+    },
+    {
+      "batch": "batch10",
+      "rows": 40,
+      "wire_sha256": "492954e8b8478ce9cc1226a85ced3d37b09b838878fddca756391ff651889345",
+      "module_sha256": "e9e207034faa824d02aeda26ad68bcfc39189c1ec4ff87e65e2dc9ac3f893e42"
+    },
+    {
+      "batch": "batch11",
+      "rows": 40,
+      "wire_sha256": "220569f0363af9c75332c7fe0950afac1f046b17fda5d7dc95331e9942ed0159",
+      "module_sha256": "4e5f7dc97ed404adf40f482f21417a81cb06fcb8243eee5caa9c998a22eed956"
+    },
+    {
+      "batch": "batch12",
+      "rows": 40,
+      "wire_sha256": "67672de39ac66f30ef15349d4833a2d90cef0f55df1ab1e59665fdf3e3f50484",
+      "module_sha256": "c50572b7887202658ce4678b26ddde3aba3fd5bd53baa9756c65f29b8f28e258"
+    },
+    {
+      "batch": "batch13",
+      "rows": 40,
+      "wire_sha256": "335967d4feb42f227aa82a1ca1b879adf01ae59684b3d8fb34e6ab15d535be3d",
+      "module_sha256": "afdac964672d4bb192279cde6dfb1f79892be8230b04f8bdd1e1c7fec27532ce"
+    },
+    {
+      "batch": "batch14",
+      "rows": 40,
+      "wire_sha256": "e1cef81d3b368d34789762e5f7b908bf65eaf3b5ad1ace7ae1552a6d968f1fb3",
+      "module_sha256": "130930915ee563079292f0831ac062520c065552d1e4e18d9a0767e2bf73e169"
+    },
+    {
+      "batch": "batch15",
+      "rows": 40,
+      "wire_sha256": "03be1b55137344d177452e51c607518ddd555cf3537d198b9cbfc97bf13480c1",
+      "module_sha256": "9941fba0b7c97037061cd6839e321aa80f12d75eb33ed632226935f1df6e42bf"
+    },
+    {
+      "batch": "batch16",
+      "rows": 40,
+      "wire_sha256": "788b63b3f9ac7e21a3bf524fd2314bb2b86959b0ec3bdb479653967069409363",
+      "module_sha256": "fe0d6008a27b489df2fd369ef432b5090c9970f5687b95af017d1633b26b6b37"
+    },
+    {
+      "batch": "batch17",
+      "rows": 40,
+      "wire_sha256": "ebac67b4a6bec4ec67fc8a53a8b633e921017f5ad8e31932faccc6f3cc3b7f19",
+      "module_sha256": "a22cd10ce8cd61d9585f8750a65529e22ac2afb33430f6c5a4dbae9493a87b14"
+    },
+    {
+      "batch": "batch18",
+      "rows": 40,
+      "wire_sha256": "5a477596531e40783174fc821f6d9fae925658ec7a4f47b2321ec32583d05f60",
+      "module_sha256": "5fd4223c23b0482d321bf153b745d23a692fd1d79299b0ee13cdc5ebf2f65663"
+    },
+    {
+      "batch": "batch19",
+      "rows": 40,
+      "wire_sha256": "b04f2236e0af70672a50e08dd234c7e785c3070a5d566141ab8e278e80bdd160",
+      "module_sha256": "ec0919acdd5d4de9320c430be930c4468a45b9b8240deff088292c72063d61cd"
+    },
+    {
+      "batch": "batch20",
+      "rows": 40,
+      "wire_sha256": "abc955d84eac1135f354304a508a5623f382060b9da26ddd3f5a755955c3bd47",
+      "module_sha256": "a59e1a4324afcb7c7146ef60b5e999bfc19c167603d16aa39c1abb55137c3b8f"
+    },
+    {
+      "batch": "batch21",
+      "rows": 23,
+      "wire_sha256": "b04f40a85a5fc6c054c466f0ec181ce6aa0896ab5fccd97fce9820ce5ae3b87f",
+      "module_sha256": "dd4df38966e9f7ad5ad17867f097efeba1e849b90ed1a95de2124ea666eb57e3"
+    }
+  ],
+  "total_wires": 863,
+  "independent_recompilation": false,
+  "generic_quotient_naturality": "Separate agent reviews the generic construction; this review checks its exact instantiation and certificate link.",
+  "limitations": [
+    "Full existing square certificate is sufficient but not necessary for naturality.",
+    "All pages concern the finite data-derived filtered two-term sequence, not an Adams realization.",
+    "Batch transport reuses existing Lean-valid certificates and exact decode; this script does not replace their mathematical checks."
+  ]
+}

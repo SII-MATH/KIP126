@@ -1,0 +1,175 @@
+import AggregateThreeProductConditional.Events
+namespace AggregateThreeProductConditional.Matches
+open LinearCertificates PageTransitionCertificates Data Row2861Csigma.Naturality
+
+theorem source_outgoing : b_S0_9_136_d2.outgoing = Row2861Csigma.Comparison.source.outgoing := by decide
+theorem source_incoming : b_S0_9_136_d2.incoming = Row2861Csigma.Comparison.source.incoming := by decide
+theorem target_comparison : b_S0_12_138_d2 = Row2861Csigma.Comparison.upperSource := rfl
+
+def sourceCoordinates := homologyEquivalence _ _ b_S0_9_136_d2.comparison b_S0_9_136_d2_complete.2
+
+theorem source_named_coordinate :
+    sourceCoordinates.toCoordinates named = (fun i : Fin 2 => i.val == 0) := by
+  funext i
+  exact (show ∀ i : Fin 2, sourceCoordinates.toCoordinates named i = (i.val == 0) from by decide) i
+
+theorem source_named_representative :
+    ∀ i : Fin 5, b_S0_9_136_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 1) := by decide
+
+def ColumnMatches (ds : S → U) : Prop := ds named = zs ∧
+  (∀ i : Fin 1, matrixOf 1 2 b_S0_9_136_d3.outgoing i 0 = ue.toCoordinates (ds named) i) ∧
+  (∀ i : Fin 1, matrixOf 1 2 b_S0_12_138_d3.incoming i 0 = ue.toCoordinates (ds named) i)
+
+/-- Naturality and preservation of zero are explicit semantic premises.
+The imported unknown is only replaced under this interface. -/
+theorem matched (ds : S → U) (dt : T → V)
+    (zeroPreserving : dt zt = zv) (naturality : ∀ x, dt (f x) = g (ds x)) :
+    ColumnMatches ds := by
+  have h := Row2861Csigma.Matches.matched ds dt zeroPreserving naturality
+  refine ⟨h.1,?_,?_⟩
+  · intro i
+    have he : matrixOf 1 2 b_S0_9_136_d3.outgoing i 0 = Row2861Csigma.Matches.candidateColumn i 0 := by decide +revert
+    exact he.trans (h.2 i)
+  · intro i
+    have he : matrixOf 1 2 b_S0_12_138_d3.incoming i 0 = Row2861Csigma.Matches.candidateColumn i 0 := by decide +revert
+    exact he.trans (h.2 i)
+
+#print axioms matched
+#print axioms source_named_coordinate
+end AggregateThreeProductConditional.Matches
+
+namespace AggregateThreeProductConditional.H3D0
+open LinearCertificates PageTransitionCertificates Data
+open Row2796Detector.Quotient Row2796Detector.Combined
+
+theorem source_outgoing : b_S0_8_135_d2.outgoing = ann.right.outgoing := by decide
+theorem source_incoming : b_S0_8_135_d2.incoming = ann.right.incoming := by decide
+theorem target_outgoing : b_S0_11_137_d2.outgoing = detect.right.outgoing := by decide
+theorem target_incoming : b_S0_11_137_d2.incoming = detect.right.incoming := by decide
+
+theorem selected_source : ∀ i : Fin 7,
+  b_S0_8_135_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 2) := by decide
+
+def targetCoordinates := homologyEquivalence _ _ b_S0_11_137_d2.comparison b_S0_11_137_d2_complete.2
+
+def ColumnMatches (d : Q ann.right → Q detect.right) : Prop := d named = z detect.right ∧
+  ∀ i : Fin 2, matrixOf 2 2 b_S0_8_135_d3.outgoing i 0 = targetCoordinates.toCoordinates (d named) i
+
+theorem matched (d : Q ann.right → Q detect.right)
+    (d0 : Q ann0.target → Q detect0.target) (d2 : Q ann.target → Q detect.target)
+    (z0 : d0 (z ann0.target) = z detect0.target) (z2 : d2 (z ann.target) = z detect.target)
+    (l0 : ∀ x, d0 (annMap0 x) = detectMap0 (d x)) (l2 : ∀ x, d2 (annMap x) = detectMap (d x)) : ColumnMatches d := by
+  have hz := differential_zero d d0 d2 z0 z2 l0 l2
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval b_S0_11_137_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 2, matrixOf 2 2 b_S0_8_135_d3.outgoing i 0 = zero i from by decide) i
+#print axioms matched
+end AggregateThreeProductConditional.H3D0
+
+namespace AggregateThreeProductConditional.D4
+open LinearCertificates PageTransitionCertificates Data
+open Row2796D4Detector
+
+theorem source_comparison : b_S0_8_135_d3 = Comparison.namedSource := rfl
+theorem target_comparison : b_S0_12_138_d3 = Comparison.source := rfl
+
+theorem named_e4_representative : ∀ i : Fin 2,
+    b_S0_8_135_d3.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 0) := by decide
+
+theorem named_e2_representative : ∀ i : Fin 7,
+    b_S0_8_135_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 2) := by decide
+
+def ColumnMatches (ds : Source.S → Target.U) : Prop := ds Source.named = Target.zu ∧
+    ∀ i : Fin 1, matrixOf 1 2 b_S0_12_138_d4.incoming i 0 =
+      Target.ue.toCoordinates (ds Source.named) i
+
+/-- The only completed new role is the incoming column at (12,138), d4.
+The unknown module source differential is arbitrary; local naturality and
+zero preservation remain explicit. -/
+theorem matched (outT : Matrix 3 2) (inT : Matrix 2 4)
+    (ds : Source.S → Target.U) (dt : Homology outT inT → Target.V)
+    (zeroPreserving : dt (Source.z outT inT) = Target.zv)
+    (naturality : ∀ x, dt (Source.f outT inT x) = Target.g (ds x)) :
+    ColumnMatches ds := by
+  have hz := Source.named_d4_zero outT inT ds dt zeroPreserving naturality
+  refine ⟨hz, ?_⟩
+  rw [hz]
+  intro i
+  change _ = eval Comparison.source.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 1, matrixOf 1 2 b_S0_12_138_d4.incoming i 0 = zero i from by decide) i
+#print axioms matched
+end AggregateThreeProductConditional.D4
+
+namespace AggregateThreeProductConditional.ThreeProducts
+open LinearCertificates PageTransitionCertificates Data
+open Row3325Detector.Quotient
+
+theorem source_outgoing : b_S0_15_142_d2.outgoing = ann1.right.outgoing := by decide
+theorem source_incoming : b_S0_15_142_d2.incoming = ann1.right.incoming := by decide
+theorem target_outgoing : b_S0_18_144_d2.outgoing = detect1.right.outgoing := by decide
+theorem target_incoming : b_S0_18_144_d2.incoming = detect1.right.incoming := by decide
+
+def sourceCoordinates := homologyEquivalence _ _ b_S0_15_142_d2.comparison
+  b_S0_15_142_d2_complete.2
+def targetCoordinates := homologyEquivalence _ _ b_S0_18_144_d2.comparison
+  b_S0_18_144_d2_complete.2
+
+theorem source_named_coordinate :
+    sourceCoordinates.toCoordinates named = (fun i : Fin 2 => i.val == 0) := by
+  funext i
+  exact (show ∀ i : Fin 2,
+    sourceCoordinates.toCoordinates named i = (i.val == 0) from by decide) i
+
+theorem source_named_representative : ∀ i : Fin 5,
+    b_S0_15_142_d2.comparison.inclusion i ⟨0,by decide⟩ = (i.val == 2) := by decide
+
+/-- The aggregate uses staircase order, which differs from the detector basis. -/
+def targetBasisChange : Matrix 3 3 := fun i j =>
+  ((i.val == 0 || i.val == 1) && j.val == 0) ||
+  (i.val == 1 && j.val == 2) || (i.val == 2 && j.val == 1)
+
+theorem target_coordinates (x : Q detect1.right) :
+    targetCoordinates.toCoordinates x =
+      eval targetBasisChange (Row3325Detector.Combined.ce.toCoordinates x) := by
+  induction x using Quot.inductionOn with
+  | h x =>
+    change eval b_S0_18_144_d2.comparison.projection x.val =
+      eval targetBasisChange (eval detect1.right.comparison.projection x.val)
+    exact (show ∀ v : Vec 4,
+      eval b_S0_18_144_d2.comparison.projection v =
+        eval targetBasisChange (eval detect1.right.comparison.projection v) from by decide) x.val
+
+def ColumnMatches (d : Q ann1.right → Q detect1.right) : Prop :=
+  d named = z detect1.right ∧
+    ∀ i : Fin 3, matrixOf 3 2 b_S0_18_144_d3.incoming i 0 =
+      targetCoordinates.toCoordinates (d named) i
+
+/-- Three actual descended products justify this incoming column under their
+local Leibniz squares and zero preservation. The raw NULL is retained. -/
+theorem matched (d : Q ann1.right → Q detect1.right)
+    (d1 : Q ann1.target → Q detect1.target)
+    (d8 : Q ann8.target → Q detect8.target)
+    (d13 : Q ann13.target → Q detect13.target)
+    (z1 : d1 (z ann1.target) = z detect1.target)
+    (z8 : d8 (z ann8.target) = z detect8.target)
+    (z13 : d13 (z ann13.target) = z detect13.target)
+    (l1 : ∀ x, d1 (annMap1 x) = detectMap1 (d x))
+    (l8 : ∀ x, d8 (annMap8 x) = detectMap8 (d x))
+    (l13 : ∀ x, d13 (annMap13 x) = detectMap13 (d x)) : ColumnMatches d := by
+  have h := Row3325Detector.Matches.matched d d1 d8 d13 z1 z8 z13 l1 l8 l13
+  refine ⟨h.1, ?_⟩
+  rw [h.1]
+  intro i
+  change _ = eval b_S0_18_144_d2.comparison.projection zero i
+  rw [eval_zero]
+  exact (show ∀ i : Fin 3,
+    matrixOf 3 2 b_S0_18_144_d3.incoming i 0 = zero i from by decide) i
+
+#print axioms matched
+#print axioms target_coordinates
+#print axioms source_named_coordinate
+end AggregateThreeProductConditional.ThreeProducts

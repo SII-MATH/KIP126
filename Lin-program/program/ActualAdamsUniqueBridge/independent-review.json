@@ -1,0 +1,92 @@
+{
+  "status": "independent_actual_adams_unique_review_passed",
+  "findings": [],
+  "reviewer": "/root/certificate_pipeline_next",
+  "modules": [
+    "Basic",
+    "Quotient",
+    "Fact764"
+  ],
+  "proof_review": [
+    "IsUnique uses actual S.differential, all actual PageBoundary sources, and every actual cycle.",
+    "Incoming is Unit plus the Sigma of every source degree with the exact AdamsTarget equality. Unit supplies zero even when no nonnegative source degree exists.",
+    "boundary_iff reconstructs actual witnesses via incoming_surjective, incoming_all and current faithfulness; a selected row list would not suffice.",
+    "transport uses faithful outgoing coordinates to reflect the named cycle and current_add for the actual y+x boundary. It requires no current-coordinate surjectivity.",
+    "quotientEquivBool constructs a genuine equivalence with the actual PageHomology quotient and distinguishes the named class from the zero class using quotient_zero_iff.",
+    "actual_next_cardinality transports cardinality along the supplied nextPage equivalence. It does not claim that this arbitrary equivalence preserves zero or sends the named class to a nonzero next-page element.",
+    "check_sound recomputes finite semantic check in the Lean kernel; adams_unique_cert uses rfl/decide, with actual coordinates and named interpretation supplied as proof-bearing fields.",
+    "The canonical JSON importer rejects unknown/duplicate/noncanonical fields before materializing the finite wire. check_sound itself checks semantic comparison and named vector, not the outer metadata version; manually built wires still prove only the corresponding mathematical statement.",
+    "Fact764 binds the exact imported branch8/18 complete matrices, named vector [false,true,false], page4 and degree(25,150), yielding a conditional actual page5 cardinality theorem.",
+    "No actual sphere spectral sequence, actual coordinates, named monomial interpretation or convergence result is constructed."
+  ],
+  "finite_checks": {
+    "complexes": 272,
+    "unique_named_comparisons": 372,
+    "actual_coordinate_models": 549,
+    "proper_current_coordinate_models": 177,
+    "actual_cycle_checks": 2826,
+    "quotient_pair_checks": 16596,
+    "next_page_type_equivalences": 1098,
+    "missing_incoming_surjectivity_counterexample": true,
+    "missing_outgoing_faithfulness_counterexample": true,
+    "missing_current_faithfulness_counterexample": true,
+    "nonzero_next_page_counterexample": "The two-point transposition preserves cardinality but maps the nonzero class to next-page zero.",
+    "fact764_branches": [
+      {
+        "boolean": false,
+        "index": 8,
+        "cycle_count": 8,
+        "boundary_count": 4,
+        "quotient_cardinality": 2,
+        "all_cycle_pairs": 64
+      },
+      {
+        "boolean": true,
+        "index": 18,
+        "cycle_count": 8,
+        "boundary_count": 4,
+        "quotient_cardinality": 2,
+        "all_cycle_pairs": 64
+      }
+    ]
+  },
+  "build_evidence": {
+    "records": [
+      {
+        "module": "Basic",
+        "exit_code": 0,
+        "source_log_match": true,
+        "current_olean_matches_direct": true
+      },
+      {
+        "module": "Quotient",
+        "exit_code": 0,
+        "source_log_match": true,
+        "current_olean_matches_direct": true
+      },
+      {
+        "module": "Fact764",
+        "exit_code": 0,
+        "source_log_match": true,
+        "current_olean_matches_direct": true
+      }
+    ],
+    "standard_or_no_axiom_reports": 11
+  },
+  "input_sha256": {
+    "ActualAdamsUniqueBridge/Basic.lean": "11482b48459325156dd878e71a5abb3238b0dab46d225a4054365c851690d414",
+    "ActualAdamsUniqueBridge/Quotient.lean": "4cc8f6895fba58d278d201aa8ea2318be3ad6fe6d102c332948d131d275b8630",
+    "ActualAdamsUniqueBridge/Fact764.lean": "87d498fb2196649ae5303d7ec19a8c4670fed8f55c861075976191ac81259d51",
+    "ActualAdamsSystemBridge/Basic.lean": "f6fab04ed4161c2f05e85c26b98b5bcb1589625f8a2843901aa0b407cc51a0f5",
+    "ActualAdamsSystemBridge/Trace.lean": "b58db9baba1534108e37bd068bd0b1faffc5e3d196b35d08f5b67b22ebcc058b",
+    "ManualInputObligations/Reference/AdamsHomology.lean": "527fc8f59f7dc609c70f359876ec4c83010df3801c5fad301b1b2d0dc4b92232",
+    "UniqueHomologyCertificates/Basic.lean": "17a8cc6085f476d49d63181e0210e3d3faec5f38ed20cea9fcdd9f95802b2ff7",
+    "UniqueHomologyCertificates/Import.lean": "2eb821b575730c3e828361df888104a06d7cc1777fe8da37d0c8c4f6ceee3c8c",
+    "Fact764ConstrainedE5/Actual.lean": "92a7327907b21eb9c119aec0f62a51eb81c3ee84440a8f95f99fc5a81eeaa2e6",
+    "Fact764ConstrainedE5/Imported.lean": "8f1c99881b7fe3270ec3b95c4cb60bf6ae22abd29c9973605cb473d0b08c4f4c",
+    "Fact764ConstrainedE5/certificate0.json": "096a78543c1c08a7a3f9bcca6d3bbe295766516906628ca0f5290ec162eb2bf8",
+    "Fact764ConstrainedE5/certificate1.json": "897624c9648877b6545e7c116123f08298f7229dbf49081eb4cd6fc8fa169eec",
+    "Stem125E5Search/branches.json": "db3f9503b56460ec6860d76cdd445ebd63a30750e3def68afc61926d3fdb2987",
+    "ActualAdamsUniqueBridge/independent-review.py": "cd780bb2c3605f6bd73b722ab5d1d78ba35e757f402001d6ef3616fef18200f7"
+  }
+}

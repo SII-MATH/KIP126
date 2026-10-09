@@ -1,0 +1,82 @@
+FilteredCrossingCertificateCompleteness/Basic.lean:8:16: error: Ambiguous term
+  Data
+Possible interpretations:
+  FilteredExtensionCertificates.Data : Type
+  
+  RepresentativeSquareCertificates.Data : Type
+FilteredCrossingCertificateCompleteness/Basic.lean:13:45: error: Ambiguous term
+  Data
+Possible interpretations:
+  FilteredExtensionCertificates.Data : Type
+  
+  RepresentativeSquareCertificates.Data : Type
+FilteredCrossingCertificateCompleteness/Basic.lean:18:11: error(lean.unknownIdentifier): Unknown identifier `valid`
+FilteredCrossingCertificateCompleteness/Basic.lean:26:28: error: Ambiguous term
+  Data
+Possible interpretations:
+  FilteredExtensionCertificates.Data : Type
+  
+  RepresentativeSquareCertificates.Data : Type
+FilteredCrossingCertificateCompleteness/Basic.lean:33:23: error: unsolved goals
+D : sorry
+valid : FilteredCrossingCertificates.ResultValid sorry
+extension : ResultValid sorry
+stable : Stable D
+base : FilteredExtensionCertificates.Certificate sorry
+hbase : FilteredExtensionCertificates.check sorry base = true
+factor : Matrix sorry.hb sorry.ha
+hfactor : checkPreserves sorry sorry sorry factor = true
+⊢ (true && checkPreserves sorry.f (sorry.sourceAt (sorry.s + 1)) (sorry.targetAt (sorry.s + sorry.n + 1)) factor) = true
+FilteredCrossingCertificateCompleteness/Basic.lean:33:78: warning: This simp argument is unused:
+  hfactor
+
+Hint: Omit it from the simp argument list.
+  simp only [FilteredCrossingCertificates.check, ̲hbase,h̵f̵a̵c̵t̵o̵r̵,̵ ̲Bool.and_self]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+FilteredCrossingCertificateCompleteness/Basic.lean:33:86: warning: This simp argument is unused:
+  Bool.and_self
+
+Hint: Omit it from the simp argument list.
+  simp only [̵F̵i̵l̵t̵e̵r̵e̵d̵C̵r̵o̵s̵s̵i̵n̵g̵C̵e̵r̵t̵i̵f̵i̵c̵a̵t̵e̵s̵.̵c̵h̵e̵c̵k̵,̵h̵b̵a̵s̵e̵,̵h̵f̵a̵c̵t̵o̵r̵,̵B̵o̵o̵l̵.̵a̵n̵d̵_̵s̵e̵l̵f̵]̵[̲F̲i̲l̲t̲e̲r̲e̲d̲C̲r̲o̲s̲s̲i̲n̲g̲C̲e̲r̲t̲i̲f̲i̲c̲a̲t̲e̲s̲.̲c̲h̲e̲c̲k̲,̲ ̲h̲b̲a̲s̲e̲,̲ ̲h̲f̲a̲c̲t̲o̲r̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+FilteredCrossingCertificateCompleteness/Basic.lean:35:30: error: Ambiguous term
+  Data
+Possible interpretations:
+  FilteredExtensionCertificates.Data : Type
+  
+  RepresentativeSquareCertificates.Data : Type
+FilteredCrossingCertificateCompleteness/Basic.lean:43:28: error: Ambiguous term
+  Data
+Possible interpretations:
+  FilteredExtensionCertificates.Data : Type
+  
+  RepresentativeSquareCertificates.Data : Type
+FilteredCrossingCertificateCompleteness/Basic.lean:47:44: error: Ambiguous term
+  Data
+Possible interpretations:
+  FilteredExtensionCertificates.Data : Type
+  
+  RepresentativeSquareCertificates.Data : Type
+FilteredCrossingCertificateCompleteness/Basic.lean:55:11: error(lean.unknownIdentifier): Unknown identifier `valid`
+FilteredCrossingCertificateCompleteness/Basic.lean:60:11: error(lean.unknownIdentifier): Unknown identifier `valid`
+FilteredCrossingCertificateCompleteness/Basic.lean:48:89: error: unsolved goals
+D : sorry
+⊢ sorry
+'FilteredCrossingCertificateCompleteness.result_iff_extension_and_stable' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredCrossingCertificateCompleteness.check_complete' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredCrossingCertificateCompleteness.check_exists_iff' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredCrossingCertificateCompleteness.result_iff_all_representatives' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

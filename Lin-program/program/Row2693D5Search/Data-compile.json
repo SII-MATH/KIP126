@@ -1,0 +1,49 @@
+{
+  "source_sha256": "517eb3e597d2d6172c1d04d31ee502c87d282c04ba792f4cb6d0389402a06c2c",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/PageTransitionCertificates/Import.olean": "c3c56267e7564366f0bda4b9d2d335b08def29e28661c8d09dec8f70dee8e8ff",
+    ".lake/build/lib/lean/PageProductCertificates/Basic.olean": "baec7b54a2df8610bbf58fa1b4b9ac84f6d3f14346706a42a5e3a6c0a5766b3e",
+    ".lake/build/lib/lean/NamedElementCertificates/Evaluation.olean": "8047d21d53200a652d3ad18030588afc2eaf47fc7b4c6b8b262aa3e02b9b007b"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Row2693D5Search/Data.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2693D5Search/Data.olean"
+  ],
+  "log": "evidence/Data-20260922T021836671737Z.log",
+  "external_input_sha256": {
+    "Row2693D5Search/wire/correction00.json": "0025cb720f937678800ccf9ad7fcdba2c3cd6366365b60442a6bd3a95407e4ba",
+    "Row2693D5Search/wire/correction01.json": "5c413b8c1f1f88f57fd2977629b1c04312fdc3fe8f4b30a23beb86e47a654db7",
+    "Row2693D5Search/wire/emptyProduct2.json": "4e329062b6545b819c0ae7b0b0c66b9d4f9454d5b051f10a3ea9e6ff9611df97",
+    "Row2693D5Search/wire/h02.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Row2693D5Search/wire/h03.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Row2693D5Search/wire/left2.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+    "Row2693D5Search/wire/left3.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+    "Row2693D5Search/wire/left4.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+    "Row2693D5Search/wire/low300.json": "3c3752a9aeebc2634ce242712172d7e7e8893dc1c37e65f135f245477ad85340",
+    "Row2693D5Search/wire/low400.json": "27ae532d5ef36cee5f62d00266d10db3f74a4de9ac7b4fb2fc2f43d9e15441c8",
+    "Row2693D5Search/wire/main00.json": "fb674d0770bc80002f1a2171976470abe4b5f7fe3ffaed7115c48060450a1521",
+    "Row2693D5Search/wire/main01.json": "b14e395ba9ffcf61548424c11e1407e82475ac70b8f6bcc71476413b461a985f",
+    "Row2693D5Search/wire/product2.json": "1f298d267c9f27263b7fa1c6a1af5b2d780de93985e4dc8ca8ea37815999d48c",
+    "Row2693D5Search/wire/product3.json": "9232dc94cf86505792f65c5ad71751ebf4decb344322bffded9d1492db6cab6c",
+    "Row2693D5Search/wire/product4.json": "cef876a76d513c8db798a4a13b3a0462565f4fd331ca8a90ce5d50a6e090e797",
+    "Row2693D5Search/wire/right2.json": "ba503d0fe2bc2b14498866776bbc55a2229b277fa2b90fb341fee4eeb75e105d",
+    "Row2693D5Search/wire/right3.json": "8f714491baf4cfa1abf50b2e2cfea236f234c9d75ecbfc0b794400b1223ae8a4",
+    "Row2693D5Search/wire/right4.json": "c45e23879eba043192027fd0c1606b2b27aa8bb49aec729d1f35eae910a5858f",
+    "Row2693D5Search/wire/right5.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Row2693D5Search/wire/target2.json": "1340fddfdf38783ca7f78fa9a4bcecd3697582de54d2b8d55999b45039580bc1",
+    "Row2693D5Search/wire/target3.json": "36a826bac603fa715d008a23fa3023b585b1f46c5f961f8994a08a968287a869",
+    "Row2693D5Search/wire/target4.json": "06cbd607da9ff57650e4c94194813c27a0e5fd08ff75f1892ae438cd28f48961",
+    "Row2693D5Search/wire/tower42.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Row2693D5Search/wire/tower52.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Row2693D5Search/wire/tower53.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Row2693D5Search/wire/tower62.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "Row2693D5Search/wire/tower63.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "b9d6c1417baa6da46f1e11dc5a7dcb428cc5f6d4ba247eb1c602c3983a772874",
+  "inputs_stable": true,
+  "olean_sha256": "d9d4f3813297ce9fa8e959d5b54c9b16d5f17962a6703decb6c6ad426d130d8b"
+}

@@ -1,0 +1,6 @@
+import FilteredExtensionCertificates.Import
+namespace FilteredExtensionCertificates.Five
+def ws : List WireCertificate := filtered_extension_batch% "FilteredExtensionCertificates/five.jsonl"
+theorem valid : ∀ w ∈ ws, WireValid w := checkBatch_sound ws (by decide)
+#print axioms valid
+end FilteredExtensionCertificates.Five

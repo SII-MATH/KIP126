@@ -1,0 +1,71 @@
+{
+  "build": [
+    {
+      "actual_exit": 0,
+      "current_olean_matches_direct": true,
+      "module": "Basic",
+      "standard_or_none_reports": 6
+    },
+    {
+      "actual_exit": 0,
+      "current_olean_matches_direct": true,
+      "module": "Certificate",
+      "standard_or_none_reports": 6
+    },
+    {
+      "actual_exit": 0,
+      "current_olean_matches_direct": true,
+      "module": "Import",
+      "standard_or_none_reports": 2
+    },
+    {
+      "actual_exit": 0,
+      "current_olean_matches_direct": true,
+      "module": "Examples",
+      "standard_or_none_reports": 5
+    }
+  ],
+  "findings": [],
+  "finite_replay": {
+    "changing_five_page_tail_cases": 2048,
+    "cycle_pairs": 1842,
+    "good_pairs": 812,
+    "nonzero_cycle_boundary_pairs": 532,
+    "nonzero_good_pairs": 812,
+    "three_element_systems": 3486,
+    "zero_map_tail_systems": 4
+  },
+  "limitations": [
+    "No specific actual Adams tail vanishing is supplied.",
+    "No convergence or stable homotopy identification follows."
+  ],
+  "proof_review": [
+    "Full zero maps suffice because a nonzero element cannot equal their incoming image.",
+    "The existing actual homology_zero law propagates nonzero from every good tail element.",
+    "Strictly positive prefix length supplies start nonzero from its last good page.",
+    "All-page induction splits exactly at cutoff; outgoing-only result permits incoming death and zero.",
+    "Imported canonical stages attach explicit semantic/tail proofs; no parser manufactures them.",
+    "Both original finite checkers and their diagnostics are reused without weakened conditions."
+  ],
+  "reviewer": "/root/source_rules_next",
+  "source_sha256": {
+    "OutgoingCycleCertificates/Basic.lean": "8b7551dd82a35d68d9fef23ca156cb1684ab592e31a7d14419b5674fdfbf9208",
+    "PermanentCycleCertificates/Finite.lean": "7dc3591eb51ab15c0a4f07c4beeb06b4d8b2d74bf88247cf86b1d688a3416533",
+    "PermanentCycleCertificates/System.lean": "06163bec82e9d0a515244f62d455c8bce8224c7054b6bc15a7a55bf19b95668c",
+    "PermanentMapTailCertificates/Basic-compile.json": "5ef0cce9655d84ae98ab254688b55054034841e52d4c3a49dd49fbbbce79109b",
+    "PermanentMapTailCertificates/Basic.lean": "8429c2f4d443f8df0d1aa33788f3b58a30771cca7295bb3aa585e4af78cf239c",
+    "PermanentMapTailCertificates/Basic.log": "d7fdf9666f099dca5a357e47f9220cdc413cb0cdf14dde55090f978fbc61f404",
+    "PermanentMapTailCertificates/Certificate-compile.json": "420dfa8a5ef38fe16fcbef5c5b60abb452e87ce6fe69056456eac2aab8beacad",
+    "PermanentMapTailCertificates/Certificate.lean": "460c54501c1bca0dd8635978206788522c1a8698c3bbf686584dfe1847d45908",
+    "PermanentMapTailCertificates/Certificate.log": "ea04d62ed72b57a3069d316fb4d13bfc5c703e1360b09e3f71f66da9db53ff6c",
+    "PermanentMapTailCertificates/Examples-compile.json": "9481746ee844961612b21104bb79e0970809421da0d02906b3ac50f43184cc15",
+    "PermanentMapTailCertificates/Examples.lean": "b3290045d364abfddaaa4fea293d475cced03826b0f0ada4b6bd554a3a77e383",
+    "PermanentMapTailCertificates/Examples.log": "4a7cb1e678a7cc9bee229acbf91991c703945c38bd39150942a419a503502188",
+    "PermanentMapTailCertificates/Import-compile.json": "88408bf1c0bb1a8b23a6b0fdf719e384c2c197f1b5a7c5899e57001fed27f45c",
+    "PermanentMapTailCertificates/Import.lean": "5a2902e8105690ddea4a7df9fcab8f16d35e1ca12fd21f509e1d56e148ade6d3",
+    "PermanentMapTailCertificates/Import.log": "4aea50943172e24087289216ab8e303dc17584ffb93070d94a2cb024b01e1ade",
+    "PermanentMapTailCertificates/README.md": "f7e65e45ddb3960637e9c6e63122125acd4298b0ef78b610d3203c6bf965a0ae",
+    "PermanentMapTailCertificates/independent-review.py": "a0fda06fd3b340085e0368d410cebb46314a06f3a03c323cfd0a7252ca4a8034"
+  },
+  "status": "independent_review_passed"
+}

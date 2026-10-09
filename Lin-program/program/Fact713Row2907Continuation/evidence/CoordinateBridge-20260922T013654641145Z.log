@@ -1,0 +1,17 @@
+Fact713Row2907Continuation/CoordinateBridge.lean:22:50: error: Application type mismatch: The argument
+  currentEquiv v
+has type
+  Vec 2
+but is expected to have type
+  Vec (source r false).m
+in the application
+  eval (source r false).comparison.projection (currentEquiv v)
+'Fact713Row2907Continuation.CoordinateBridge.whole_projection' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Fact713Row2907Continuation.CoordinateBridge.zero_next' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact713Row2907Continuation.CoordinateBridge.zero_branch_column' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Fact713Row2907Continuation.CoordinateBridge.residual_column' depends on axioms: [propext, Classical.choice, Quot.sound]

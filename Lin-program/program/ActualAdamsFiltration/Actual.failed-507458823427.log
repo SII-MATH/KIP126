@@ -1,0 +1,12 @@
+ActualAdamsFiltration/Actual.lean:22:4: error: Type mismatch
+  hq
+has type
+  (pages.nextPage (n + 2) d).toNext q = y
+but is expected to have type
+  (pages.nextPage (n + 2) d).toNext ⟦⟨↑x, ⋯⟩⟧ = y
+'ActualAdamsFiltration.actual_cycle_surjective' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsFiltration.actualRealization' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualAdamsFiltration.traceFromCycles' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsFiltration.cycles_from_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsFiltration.cycles_iff_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualAdamsFiltration.actual_permanent_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

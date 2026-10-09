@@ -1,0 +1,128 @@
+{
+  "success": true,
+  "invocation": "direct lean -j1, serial modules",
+  "modules": [
+    {
+      "module": "HighFiltrationD2Certificates.Basic",
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "HighFiltrationD2Certificates/Basic.lean",
+        "-o",
+        ".lake/build/lib/lean/HighFiltrationD2Certificates/Basic.olean"
+      ],
+      "exit_code": 0,
+      "source": "HighFiltrationD2Certificates/Basic.lean",
+      "source_sha256": "2a6c773d7001f23820f0630fa0c31b033e321ec874dd5f9472731cd979eb3cf4",
+      "log": "HighFiltrationD2Audit/Basic.log",
+      "log_sha256": "f3b7aee408f7de6a5ebdd8d3f957a1b659caa6b15a9de664eed1e330c9e71731",
+      "output": ".lake/build/lib/lean/HighFiltrationD2Certificates/Basic.olean",
+      "output_sha256": "9de3ea121309243ddaf528f4f351751420caa01cf2e0e45e27f27a677863e1ab"
+    },
+    {
+      "module": "HighFiltrationD2Certificates.Data",
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "HighFiltrationD2Certificates/Data.lean",
+        "-o",
+        ".lake/build/lib/lean/HighFiltrationD2Certificates/Data.olean"
+      ],
+      "exit_code": 0,
+      "source": "HighFiltrationD2Certificates/Data.lean",
+      "source_sha256": "49f4b8d9fb0c18f885df8d8121ba8d17a1d3c696532f4e7dab1f7d478534613e",
+      "log": "HighFiltrationD2Audit/Data.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output": ".lake/build/lib/lean/HighFiltrationD2Certificates/Data.olean",
+      "output_sha256": "4bf2d8513380fe2fdd894810e2774cb5f690c683eee59122a23e1e9e07a6c6e9"
+    },
+    {
+      "module": "HighFiltrationD2Certificates.Comparisons",
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "HighFiltrationD2Certificates/Comparisons.lean",
+        "-o",
+        ".lake/build/lib/lean/HighFiltrationD2Certificates/Comparisons.olean"
+      ],
+      "exit_code": 0,
+      "source": "HighFiltrationD2Certificates/Comparisons.lean",
+      "source_sha256": "723f5d7fc5b8b21c10e390df4b0c797f0875e949bb270dd48d5292bde70ed4fd",
+      "log": "HighFiltrationD2Audit/Comparisons.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output": ".lake/build/lib/lean/HighFiltrationD2Certificates/Comparisons.olean",
+      "output_sha256": "6a68c3072bc1a4bd65a1f3dd89fe36311c2f40e549f5ec2eafd5856cf52df359"
+    },
+    {
+      "module": "HighFiltrationD2Certificates.Tests",
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "HighFiltrationD2Certificates/Tests.lean",
+        "-o",
+        ".lake/build/lib/lean/HighFiltrationD2Certificates/Tests.olean"
+      ],
+      "exit_code": 0,
+      "source": "HighFiltrationD2Certificates/Tests.lean",
+      "source_sha256": "7dbcfa1cc2f550707b3d694d6ea7fca17487b01837bd6200181e9390d7825522",
+      "log": "HighFiltrationD2Audit/Tests.log",
+      "log_sha256": "82ef3d1229bb46984dbb875ca5175fb46c64831c5c4c77bc7d7e7649d2cff5f3",
+      "output": ".lake/build/lib/lean/HighFiltrationD2Certificates/Tests.olean",
+      "output_sha256": "7ac32ace297bc678103bd021ce38da4927bfa6e153b0de86a5642a7fb038b1b8"
+    }
+  ],
+  "report_sha256": "e27b7d014351c99cbbb4df8d49f2c68fef316fb7493008dd648ccbb74d5dd81b",
+  "review_sha256": "6474fc456269da3abe1b76cc55e0ec5132824918290e01d3e46131cbd0be7c5f",
+  "lean_sources": {
+    "HighFiltrationD2Certificates/Basic.lean": "2a6c773d7001f23820f0630fa0c31b033e321ec874dd5f9472731cd979eb3cf4",
+    "HighFiltrationD2Certificates/Comparisons.lean": "723f5d7fc5b8b21c10e390df4b0c797f0875e949bb270dd48d5292bde70ed4fd",
+    "HighFiltrationD2Certificates/Data.lean": "49f4b8d9fb0c18f885df8d8121ba8d17a1d3c696532f4e7dab1f7d478534613e",
+    "HighFiltrationD2Certificates/Tests.lean": "7dbcfa1cc2f550707b3d694d6ea7fca17487b01837bd6200181e9390d7825522"
+  },
+  "certificate_inputs": {
+    "HighFiltrationD2Audit/wire/c45_172.json": "ee8858def8750535db317bb6de6e24bd08b75d8c252b04b3e484d276d5256e44",
+    "HighFiltrationD2Audit/wire/c48_174.json": "dacc0f00ba8d47e064c4a48f9f1d42ffd5725620a4cfc581980bd1dc76db86f4",
+    "HighFiltrationD2Audit/wire/c49_175.json": "b1d09c52903b4978690b4d1f423567f375cef77c5d6cc62f1df0209b981046f1",
+    "HighFiltrationD2Audit/wire/c51_176.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "HighFiltrationD2Audit/wire/c51_178.json": "6d3df9e5d09a7a20ef5ea8b9fe55f46c9e1bf95a1fa972861a95d72cf23c4d13",
+    "HighFiltrationD2Audit/wire/c52_177.json": "9dc3a5feadbef49e1951a18371a9fe924c1e2b1047d035dc52a262e9aeb010ac",
+    "HighFiltrationD2Audit/wire/c53_178.json": "3c512fa7e7a95635b2e84c4d334f206863efc7ec264173086d2fbdba1e6f4180",
+    "HighFiltrationD2Audit/wire/c54_180.json": "ec044a87ef946c2c17a712ea3a980d31b555e2a2eb6f4f5dd1a8da6ed12688aa",
+    "HighFiltrationD2Audit/wire/c55_179.json": "404588da6ae7d3140ce3848d89f8b6624017f803aeeb2bc12ae0e546c6afce7c",
+    "HighFiltrationD2Audit/wire/c55_180.json": "f8025c01f569b0647774c142ec9cbddbfb72cf2e7f0f8f966cdf6b632239061d",
+    "HighFiltrationD2Audit/wire/c56_180.json": "af70b36de03148369e9f39a412b1c71cbfd6617a56ee4c80c6645997687ebc2b",
+    "HighFiltrationD2Audit/wire/c56_181.json": "f8025c01f569b0647774c142ec9cbddbfb72cf2e7f0f8f966cdf6b632239061d",
+    "HighFiltrationD2Audit/wire/c57_182.json": "9dc3a5feadbef49e1951a18371a9fe924c1e2b1047d035dc52a262e9aeb010ac",
+    "HighFiltrationD2Audit/wire/c59_182.json": "9caebe1ac3486a40b43dd451412132699f06facdb3bf0f77e272d22b5f7be27f",
+    "HighFiltrationD2Audit/wire/d43_171.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d45_172.json": "d98ea8436ee02413823f53adbc0d64ae7c6bc578efcbacd503f36f7e8c0836b4",
+    "HighFiltrationD2Audit/wire/d46_173.json": "d98ea8436ee02413823f53adbc0d64ae7c6bc578efcbacd503f36f7e8c0836b4",
+    "HighFiltrationD2Audit/wire/d47_174.json": "df1ff37d21b486f150ecdcdaec521774402f6bf05344f9a7dc1909edf1c74d22",
+    "HighFiltrationD2Audit/wire/d48_174.json": "6f4e0b3594853216473fe5a10b44ec5c012a79ba5d054cf0439c87449e8f4a7d",
+    "HighFiltrationD2Audit/wire/d49_175.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d49_177.json": "df1ff37d21b486f150ecdcdaec521774402f6bf05344f9a7dc1909edf1c74d22",
+    "HighFiltrationD2Audit/wire/d50_176.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d51_176.json": "284ae0249ccd9c937bf116bd03eb7d5cb9af6ae233a15c2d994a2fe41ba14cd4",
+    "HighFiltrationD2Audit/wire/d51_177.json": "d628438bcaaff0e94aff73fdbc2f7552f7b8a17d4c10dae01082861bbfeee579",
+    "HighFiltrationD2Audit/wire/d51_178.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d52_177.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d52_179.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d53_178.json": "284ae0249ccd9c937bf116bd03eb7d5cb9af6ae233a15c2d994a2fe41ba14cd4",
+    "HighFiltrationD2Audit/wire/d53_179.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d54_179.json": "77b67f838b3adb341d37680427c814192262929add76d9f348f7e2065b0962dd",
+    "HighFiltrationD2Audit/wire/d54_180.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d55_179.json": "284ae0249ccd9c937bf116bd03eb7d5cb9af6ae233a15c2d994a2fe41ba14cd4",
+    "HighFiltrationD2Audit/wire/d55_180.json": "14cb70cb3da5aedb74fb9ba8fb16347596f733c20032b1c3eb2ccf7ed1e8a9ad",
+    "HighFiltrationD2Audit/wire/d55_181.json": "aa59633e36602a46ca7edf970067b44e49c0a9c58ee903a6a34e4d5f5c63dd63",
+    "HighFiltrationD2Audit/wire/d56_180.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d56_181.json": "14cb70cb3da5aedb74fb9ba8fb16347596f733c20032b1c3eb2ccf7ed1e8a9ad",
+    "HighFiltrationD2Audit/wire/d57_181.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d57_182.json": "721ce0c49fcf721618f926b996fa47924fd9cfd650417c92daaac1d593073dff",
+    "HighFiltrationD2Audit/wire/d59_182.json": "284ae0249ccd9c937bf116bd03eb7d5cb9af6ae233a15c2d994a2fe41ba14cd4"
+  },
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ]
+}

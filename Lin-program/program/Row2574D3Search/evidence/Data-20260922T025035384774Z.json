@@ -1,0 +1,31 @@
+{
+  "source_sha256": "61e92f587fb9be274be47923b4ff8886349c6dc2fcd90a4eb8c1d2099e6a670f",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact715Source2574/Recorded.olean": "6142373d51e15ce546c18bbfce26353f38f67d0514e603d2c78100d6c0a852cd",
+    ".lake/build/lib/lean/Fact715Source2574/Vanishing.olean": "aa2de18e3955ec89859b80edc94f50956b71c5be6ca3f4bfdbbc1ffa61fca7de",
+    ".lake/build/lib/lean/Row2574Detector/Quotient.olean": "1917f3f1a1705d1444908e55e594dd5a6329d079bfe2dc87884001be98b49368"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Row2574D3Search/Data.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Row2574D3Search/Data.olean"
+  ],
+  "log": "evidence/Data-20260922T025035384774Z.log",
+  "external_input_sha256": {
+    "Row2574D3Search/wire/current2.json": "d20758e2cc7f75eead2341d578c3e1ea6e5f0dbafe2649351a1cea61148f9087",
+    "Row2574D3Search/wire/current3_0.json": "ebf9cb330afdf2cc00ebb26a355c0f65b601a8cf76f6ac44da56faa0b6f8d6eb",
+    "Row2574D3Search/wire/current3_1.json": "ee4b5187cf70339e77e7cd804030d54c1372d622f1547fdfcdbb32f542fb0351",
+    "Row2574D3Search/wire/upper2.json": "114fff3cd1eb3bf7b22e8f29d2409a9c22ba76cea7c8a4cd4e6bd3bd11cfee43"
+  },
+  "observed_exit_code": 0,
+  "log_sha256": "3cf32beb991339e9e64325dc3d791fa0295b19ec7e0eae26b50a79f6469871dc",
+  "dependencies_after_sha256": {
+    ".lake/build/lib/lean/Fact715Source2574/Recorded.olean": "6142373d51e15ce546c18bbfce26353f38f67d0514e603d2c78100d6c0a852cd",
+    ".lake/build/lib/lean/Fact715Source2574/Vanishing.olean": "aa2de18e3955ec89859b80edc94f50956b71c5be6ca3f4bfdbbc1ffa61fca7de",
+    ".lake/build/lib/lean/Row2574Detector/Quotient.olean": "1917f3f1a1705d1444908e55e594dd5a6329d079bfe2dc87884001be98b49368"
+  },
+  "inputs_stable": true,
+  "olean_sha256": "33f8daf6d36e6432c684f458f66b2476f51676a1e39c096aea63205def1b9b1e"
+}

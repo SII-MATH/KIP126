@@ -1,0 +1,220 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/certificate_pipeline_next",
+  "raw": {
+    "21,147:E2": [
+      [
+        3748,
+        "530,1",
+        ""
+      ],
+      [
+        3749,
+        "1,1,510,1",
+        ""
+      ],
+      [
+        3750,
+        "0,3,500,1",
+        ""
+      ]
+    ],
+    "21,147:staircase": [
+      [
+        3748,
+        "2",
+        "4",
+        3
+      ],
+      [
+        3749,
+        "1",
+        "3",
+        9996
+      ],
+      [
+        3750,
+        "0",
+        null,
+        9996
+      ]
+    ],
+    "25,150:E2": [
+      [
+        3992,
+        "559,1",
+        "0"
+      ],
+      [
+        3993,
+        "558,1",
+        "0"
+      ],
+      [
+        3994,
+        "13,4,51,1",
+        ""
+      ],
+      [
+        3995,
+        "8,2,9,1,13,1,80,1",
+        ""
+      ]
+    ],
+    "25,150:staircase": [
+      [
+        3992,
+        "3",
+        "1",
+        4
+      ],
+      [
+        3993,
+        "2",
+        null,
+        9000
+      ],
+      [
+        3994,
+        "0,1",
+        null,
+        9000
+      ],
+      [
+        3995,
+        "1",
+        "0",
+        9998
+      ]
+    ],
+    "named_generators": [
+      [
+        13,
+        "g",
+        4,
+        24
+      ],
+      [
+        51,
+        "\\Delta h_1g",
+        9,
+        54
+      ]
+    ]
+  },
+  "all_source_vectors": 8,
+  "all_target_vectors": 16,
+  "obstruction_candidates": [
+    [
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "all_full_matrix_pairs": 512,
+  "exact_full_complex_count": 20,
+  "constrained_indices": [
+    8,
+    9,
+    18,
+    19
+  ],
+  "unique_indices": [
+    8,
+    18
+  ],
+  "noncycle_counterexamples": [
+    9,
+    19
+  ],
+  "all_cycle_pairs": 1088,
+  "byte_identical_producer_runs": 3,
+  "proof_review": [
+    "ProductMeaning derives residual zero from an actual candidate differential, cycle factor, known product differential and Leibniz equation; all four product columns and their relations are interpreted.",
+    "MapMeaning derives mapped residual zero from an actual ring map, candidate differential, naturality, mapped source zero and target differential zero; checked substitution columns require actual monomial meanings.",
+    "Both obstruction converses require explicit zero-reflection into finite earlier-boundary images. Raw logs and status tags cannot supply it.",
+    "Both full source columns are fixed. Full outgoing zero, or complex law plus a proved named cycle, is required to conclude unique nonzero homology.",
+    "Uniqueness quantifies all cycles and all linear combinations via the full homology comparison theorem.",
+    "The imported tactic certificate is indexed by the requested outgoing/incoming matrices and named vector."
+  ],
+  "build": {
+    "modules": [
+      {
+        "module": "Coordinates",
+        "exit_code": 0,
+        "source_log_match": true,
+        "current_olean_matches_direct": true
+      },
+      {
+        "module": "Conclusion",
+        "exit_code": 0,
+        "source_log_match": true,
+        "current_olean_matches_direct": true
+      },
+      {
+        "module": "Obstructions",
+        "exit_code": 0,
+        "source_log_match": true,
+        "current_olean_matches_direct": true
+      },
+      {
+        "module": "Imported",
+        "exit_code": 0,
+        "source_log_match": true,
+        "current_olean_matches_direct": true
+      }
+    ],
+    "standard_or_no_axiom_reports": 18
+  },
+  "inputs_sha256": {
+    "Fact764ConstrainedE5/Coordinates.lean": "7b41ddb411da4b91a907193de3433341f52b45b95a102c054c6ff96aea2bde68",
+    "Fact764ConstrainedE5/Conclusion.lean": "a49257fd80ff571e43cc9d71c6148abee6891fade4a9eaa66fcf8c30cc3180ba",
+    "Fact764ConstrainedE5/Obstructions.lean": "c0b55dc4366e949d774a84149a589ca4a64d1b57da10ac003ae76606aec6d01c",
+    "Fact764ConstrainedE5/Imported.lean": "8f1c99881b7fe3270ec3b95c4cb60bf6ae22abd29c9973605cb473d0b08c4f4c",
+    "Fact764ConstrainedE5/README.md": "fdbf04480d27f35b3f20444f031d401abd209d0a8d1458b21d1cb41fd923dc4c",
+    "Fact764ConstrainedE5/certificate0.json": "096a78543c1c08a7a3f9bcca6d3bbe295766516906628ca0f5290ec162eb2bf8",
+    "Fact764ConstrainedE5/certificate1.json": "897624c9648877b6545e7c116123f08298f7229dbf49081eb4cd6fc8fa169eec",
+    "Fact764ConstrainedE5/requests.txt": "7fc6da297763d7a41958776abc64a89bd825857269a69b30b8e942f740a59c43",
+    "Fact764ConstrainedE5/certificates.jsonl": "62f0ca97e4737e480008e57a7f295c37f21e0775134cd6bdfc3696adb1a41419",
+    "AggregateD5Conditional/source.json": "5114beae672833b29080c168cc8747ca2479a4267ddcdb0821d6b322b25decbc",
+    "AggregateLeibniz3564Conditional/source.json": "8896061fd1fa76f4fb6109f4920c5d0661e8b4da945767ed89f884182fbbc60c",
+    "Stem125E5Search/branches.json": "db3f9503b56460ec6860d76cdd445ebd63a30750e3def68afc61926d3fdb2987",
+    "BranchReplayCertificates/ProductRefutation.lean": "f727b99b011da0544e9c0cd1fcc24718a6a1001a6659eccda3a572ed0ed56816",
+    "BranchReplayCertificates/MapRefutation.lean": "c8a13e417d56ff0451c5171d1361607250378f0aa23f70796dd2f757e364d6c8",
+    "BranchReplayCertificates/ProductBasisSemantics.lean": "a9f7d9abf869b8b6e9612c3a518e81542db781c65675136d2267517436bef10e",
+    "BranchReplayCertificates/MapBasisSemantics.lean": "3f4809dfa44ce29149328e0063364505f286f0c8b0c33cc489ca1a8a67173fc0",
+    "upstream/kervaire-49/S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  },
+  "remaining": [
+    "Source E4 quotient depends on the conditional row3564 Leibniz input.",
+    "Basis3994 is the raw named monomial; staircase3994 is a different representative.",
+    "Unknown source row3750 d4 and target rows3993/3994 higher information remain unknown.",
+    "Actual graded Adams realization, basis completeness, zero-reflection and differential premises are not constructed.",
+    "This local conditional E5 uniqueness result does not prove full stem125 E5 uniqueness or later permanence."
+  ],
+  "import_test_evidence": {
+    "status": "source_agent_run_verified",
+    "valid_records": 2,
+    "invalid_records": 8,
+    "rejection_lines": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "fingerprints_current": true,
+    "audit_sha256": "8024f49d8d9a477b5cd396d4cc63a147ee082bc094d4d4e96e132b040d63c2fa"
+  }
+}

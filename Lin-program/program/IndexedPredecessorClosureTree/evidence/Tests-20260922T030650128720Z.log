@@ -1,0 +1,31 @@
+IndexedPredecessorClosureTree/Tests.lean:14:3: error: unexpected token 'paths'; expected identifier
+IndexedPredecessorClosureTree/Tests.lean:16:29: error: unexpected token 'paths'; expected ':=', 'where' or '|'
+IndexedPredecessorClosureTree/Tests.lean:27:47: error: unexpected token 'paths'; expected ':=', 'where' or '|'
+IndexedPredecessorClosureTree/Tests.lean:34:7: error: unexpected token 'unique'; expected identifier
+IndexedPredecessorClosureTree/Tests.lean:35:46: error: unexpected token 'paths'; expected '⟩'
+IndexedPredecessorClosureTree/Tests.lean:37:48: error: unexpected token 'unique'; expected term
+IndexedPredecessorClosureTree/Tests.lean:37:2: error: Tactic `decide` failed for proposition
+  certificate.check = true
+because its `Decidable` instance
+  instDecidableEqBool certificate.check true
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool` and `Bool.decEq`, reduction got stuck at the `Decidable` instance
+  match certificate.check, true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+IndexedPredecessorClosureTree/Tests.lean:46:14: error(lean.unknownIdentifier): Unknown constant `accepted`
+'IndexedPredecessorClosureTree.Tests.reject_wrong_key' depends on axioms: [propext]
+'IndexedPredecessorClosureTree.Tests.reject_invalid_path' depends on axioms: [propext]
+'IndexedPredecessorClosureTree.Tests.reject_missing_subtree' depends on axioms: [propext]
+IndexedPredecessorClosureTree/Tests.lean:50:14: error(lean.unknownIdentifier): Unknown constant `reject_dimension`
+'IndexedPredecessorClosureTree.Tests.reject_extra_path_tree' depends on axioms: [propext]
+'IndexedPredecessorClosureTree.Tests.binding' does not depend on any axioms
+IndexedPredecessorClosureTree/Tests.lean:53:7: error(lean.unknownIdentifier): Unknown constant `axioms`
+IndexedPredecessorClosureTree/Tests.lean:53:14: error: unexpected token 'unique'; expected command
+'IndexedPredecessorClosureTree.Tests.old_goal' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedPredecessorClosureTree.Tests.old_checker' depends on axioms: [propext, sorryAx, Quot.sound]
+'IndexedPredecessorClosureTree.Tests.duplicate_not_unique' does not depend on any axioms
+'IndexedPredecessorClosureTree.Tests.duplicate_first_match' does not depend on any axioms

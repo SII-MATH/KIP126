@@ -1,0 +1,34 @@
+Row2907PDeltaDetection/Basic.lean:17:61: error: failed to synthesize
+  Decidable (InKernel (out c12_42_2) fun x => true)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2907PDeltaDetection/Basic.lean:18:68: error: failed to synthesize
+  Decidable (InKernel (out c16_137_2) fun i => ↑i == 1)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2907PDeltaDetection/Basic.lean:19:69: error: failed to synthesize
+  Decidable (InKernel (out c28_179_2) fun i => ↑i == 1)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2907PDeltaDetection/Basic.lean:20:68: error: failed to synthesize
+  Decidable (InKernel (out c20_140_2) fun i => ↑i == 0)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2907PDeltaDetection/Basic.lean:21:73: error: failed to synthesize
+  Decidable (InKernel (out c32_182_2) fun i => ↑i == 1)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Row2907PDeltaDetection/Basic.lean:23:8: warning: declaration uses `sorry`
+Row2907PDeltaDetection/Basic.lean:30:8: warning: declaration uses `sorry`
+'Row2907PDeltaDetection.named_product' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.named_target_product' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.named_factor_coordinates' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.named_source_coordinates' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.named_product_coordinates' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.named_target_coordinates' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.named_known_target_coordinates' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Row2907PDeltaDetection.left_d3_target_zero' depends on axioms: [propext, Quot.sound]
+'Row2907PDeltaDetection.left_d4_target_zero' depends on axioms: [propext, Quot.sound]

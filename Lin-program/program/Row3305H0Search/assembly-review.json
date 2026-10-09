@@ -1,0 +1,20 @@
+{
+  "status": "no_correctness_findings",
+  "actual_target_models": 96,
+  "named_zero_models": 48,
+  "missing_binding_counterexamples": 48,
+  "actual_signature": "u-zero requires full TargetMeaning plus exact e0 actual source binding; actual_two_candidates retains these hypotheses and derives all-source 0/e0 via square zero.",
+  "compile": {
+    "source_sha256": "e65d0df78c1b1c38b084b80897ae1888810273b4acc82de2fdfd3525806a39a9",
+    "external_input_sha256": {},
+    "dependencies_sha256": {
+      ".lake/build/lib/lean/Row3305H0Search/Actual.olean": "0213999e40fe1e4687ba4c5cfdc6840e015ee38b2812cbfac33b43a9a893eb2b",
+      ".lake/build/lib/lean/Row3136SquareCandidates/Actual.olean": "6bbfe00f306f24416c9be706dfe10d75de7edd7ac67e260dee7d1e27dea83bc3"
+    },
+    "observed_exit_code": 0,
+    "log_sha256": "cbbec561d32926aa96ee730a8afb3a9315a546c0b7aeee726ebc5023bd4f3071",
+    "olean_sha256": "741cec225f7a3f1bd4f7e4c1ef2593d56fd979e9fca51b6ce12a1e6162afccfe"
+  },
+  "axiom_reports": 2,
+  "source_sha256": "e65d0df78c1b1c38b084b80897ae1888810273b4acc82de2fdfd3525806a39a9"
+}

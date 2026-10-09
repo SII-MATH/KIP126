@@ -1,0 +1,134 @@
+{
+  "events": 101,
+  "finite_nonzero_events": 90,
+  "unresolved": 11,
+  "complete_comparisons": 335,
+  "added_blocks": [
+    "S0:11,137:d3",
+    "S0:14,139:d3"
+  ],
+  "new_conditional_uses": [
+    {
+      "block": "S0:11,137:d3",
+      "role": "outgoing",
+      "object": "S0",
+      "source": [
+        11,
+        137
+      ],
+      "page": 3,
+      "row": [
+        2925,
+        "1,2",
+        null,
+        9000
+      ],
+      "kind": "conditional_cnu_eta",
+      "target_predecessor": "S0:14,139:d2"
+    },
+    {
+      "block": "S0:14,139:d3",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        11,
+        137
+      ],
+      "page": 3,
+      "row": [
+        2925,
+        "1,2",
+        null,
+        9000
+      ],
+      "kind": "conditional_cnu_eta",
+      "target_predecessor": "S0:14,139:d2"
+    }
+  ],
+  "source_basis_change": [
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "target_basis_change": [
+    [
+      1
+    ]
+  ],
+  "newly_completed_events": [],
+  "unchanged_previous_blocks": 333,
+  "generated_sha256": {
+    "source.json": "08616ca1c8c732ee42a9ae0f9204914b68c90ee644a5c3c28e20e603c8eee109",
+    "event-results.json": "7f6bd22a35eadfc0c68af75aa8e30f1044ba42e5775f94e6ebe6e8280e5149a3",
+    "Data.lean": "1190d972065b8786cc2619a354ab4d5be466a3867dc7dab633bad1fdc3de1124",
+    "Events.lean": "edea5531255eb0b350576526e467c147c09a58932d3e2ab3babffa946c3cdc5b"
+  },
+  "affected_unresolved_events": [
+    {
+      "event": 3151,
+      "newly_checked_predecessors": [
+        "S0:11,137:d3"
+      ],
+      "remaining_failure": "unknown S0:7,134:d3:row2708; target dimension 1"
+    },
+    {
+      "event": 3152,
+      "newly_checked_predecessors": [
+        "S0:11,137:d3",
+        "S0:14,139:d3"
+      ],
+      "remaining_failure": "unknown S0:7,134:d3:row2708; target dimension 1"
+    }
+  ],
+  "unresolved_reasons": [
+    {
+      "event": 2696,
+      "reason": "unknown S0:9,134:d3:row2695; target dimension 1"
+    },
+    {
+      "event": 2697,
+      "reason": "unknown S0:9,134:d3:row2695; target dimension 1"
+    },
+    {
+      "event": 2852,
+      "reason": "unknown S0:6,132:d3:row2574; target dimension 3"
+    },
+    {
+      "event": 3151,
+      "reason": "unknown S0:7,134:d3:row2708; target dimension 1"
+    },
+    {
+      "event": 3152,
+      "reason": "unknown S0:7,134:d3:row2708; target dimension 1"
+    },
+    {
+      "event": 3391,
+      "reason": "unknown S0:4,132:d3:row2576; target dimension 2"
+    },
+    {
+      "event": 3992,
+      "reason": "unknown S0:18,145:d3:row3564; target dimension 3"
+    },
+    {
+      "event": 6651,
+      "reason": "unknown vector"
+    },
+    {
+      "event": 7007,
+      "reason": "unknown vector"
+    },
+    {
+      "event": 7162,
+      "reason": "unknown vector"
+    },
+    {
+      "event": 7247,
+      "reason": "unknown vector"
+    }
+  ]
+}

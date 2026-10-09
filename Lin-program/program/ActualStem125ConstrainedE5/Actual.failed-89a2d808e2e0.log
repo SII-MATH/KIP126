@@ -1,0 +1,12 @@
+ActualStem125ConstrainedE5/Actual.lean:50:71: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HAdd (positivePage S pages c coordinates i).Current (positivePage S pages c coordinates i).Current ?m.7
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+ActualStem125ConstrainedE5/Actual.lean:69:18: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HAdd (positivePage S pages c coordinates x✝).Current (positivePage S pages c coordinates x✝).Current ?m.15
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+'ActualStem125ConstrainedE5.named_degree' depends on axioms: [propext, Quot.sound]
+'ActualStem125ConstrainedE5.named_dimension' depends on axioms: [propext, Quot.sound]
+'ActualStem125ConstrainedE5.positive_cardinality' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.positive_bounds' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

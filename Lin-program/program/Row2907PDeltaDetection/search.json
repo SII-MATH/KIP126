@@ -1,0 +1,3917 @@
+{
+  "roots": [
+    "S0:12,42:d3",
+    "S0:16,45:d3",
+    "S0:28,179:d3",
+    "S0:32,182:d3"
+  ],
+  "results": {
+    "S0:12,42:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 2,
+        "h": 1
+      }
+    },
+    "S0:13,43:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "h": 1
+      }
+    },
+    "S0:15,44:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "h": 0
+      }
+    },
+    "S0:16,45:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "h": 0
+      }
+    },
+    "S0:19,47:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "h": 0
+      }
+    },
+    "S0:25,177:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 1,
+        "m": 3,
+        "n": 3,
+        "h": 2
+      }
+    },
+    "S0:28,179:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 4,
+        "m": 2,
+        "n": 4,
+        "h": 1
+      }
+    },
+    "S0:29,180:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 3,
+        "n": 4,
+        "h": 2
+      }
+    },
+    "S0:31,181:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 4,
+        "m": 0,
+        "n": 3,
+        "h": 0
+      }
+    },
+    "S0:32,182:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 5,
+        "m": 3,
+        "n": 1,
+        "h": 1
+      }
+    },
+    "S0:35,184:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 3,
+        "m": 2,
+        "n": 4,
+        "h": 1
+      }
+    },
+    "S0:9,40:d2": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 1,
+        "m": 2,
+        "n": 1,
+        "h": 1
+      }
+    },
+    "S0:12,42:d3": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "h": 1
+      }
+    },
+    "S0:16,45:d3": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "h": 0
+      }
+    },
+    "S0:28,179:d3": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 0,
+        "m": 1,
+        "n": 2,
+        "h": 1
+      }
+    },
+    "S0:32,182:d3": {
+      "status": "finite_comparison",
+      "dimensions": {
+        "k": 1,
+        "m": 1,
+        "n": 2,
+        "h": 1
+      }
+    }
+  },
+  "graph": {
+    "degrees": {
+      "S0:9,40": {
+        "object": "S0",
+        "degree": [
+          9,
+          40
+        ],
+        "e2": [
+          [
+            164,
+            "0,1,8,1,9,1",
+            ""
+          ],
+          [
+            165,
+            "0,8,18,1",
+            ""
+          ]
+        ],
+        "staircase": [
+          [
+            164,
+            "0",
+            "0",
+            2
+          ],
+          [
+            165,
+            "1",
+            "0",
+            9996
+          ]
+        ]
+      },
+      "S0:7,39": {
+        "object": "S0",
+        "degree": [
+          7,
+          39
+        ],
+        "e2": [
+          [
+            159,
+            "29,1",
+            "0"
+          ]
+        ],
+        "staircase": [
+          [
+            159,
+            "0",
+            "0",
+            9998
+          ]
+        ]
+      },
+      "S0:11,41": {
+        "object": "S0",
+        "degree": [
+          11,
+          41
+        ],
+        "e2": [
+          [
+            174,
+            "0,5,23,1",
+            ""
+          ]
+        ],
+        "staircase": [
+          [
+            174,
+            "0",
+            "0",
+            3
+          ]
+        ]
+      },
+      "S0:12,42": {
+        "object": "S0",
+        "degree": [
+          12,
+          42
+        ],
+        "e2": [
+          [
+            181,
+            "31,1",
+            ""
+          ]
+        ],
+        "staircase": [
+          [
+            181,
+            "0",
+            "0,1",
+            4
+          ]
+        ]
+      },
+      "S0:10,41": {
+        "object": "S0",
+        "degree": [
+          10,
+          41
+        ],
+        "e2": [
+          [
+            175,
+            "0,2,8,1,9,1",
+            ""
+          ],
+          [
+            176,
+            "0,9,18,1",
+            ""
+          ]
+        ],
+        "staircase": [
+          [
+            175,
+            "0",
+            "0",
+            2
+          ],
+          [
+            176,
+            "1",
+            "0",
+            9996
+          ]
+        ]
+      },
+      "S0:14,43": {
+        "object": "S0",
+        "degree": [
+          14,
+          43
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:15,44": {
+        "object": "S0",
+        "degree": [
+          15,
+          44
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:13,43": {
+        "object": "S0",
+        "degree": [
+          13,
+          43
+        ],
+        "e2": [
+          [
+            191,
+            "0,1,31,1",
+            ""
+          ]
+        ],
+        "staircase": [
+          [
+            191,
+            "0",
+            "1",
+            4
+          ]
+        ]
+      },
+      "S0:17,45": {
+        "object": "S0",
+        "degree": [
+          17,
+          45
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:11,42": {
+        "object": "S0",
+        "degree": [
+          11,
+          42
+        ],
+        "e2": [
+          [
+            182,
+            "0,10,18,1",
+            ""
+          ]
+        ],
+        "staircase": [
+          [
+            182,
+            "0",
+            null,
+            9000
+          ]
+        ]
+      },
+      "S0:16,45": {
+        "object": "S0",
+        "degree": [
+          16,
+          45
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:14,44": {
+        "object": "S0",
+        "degree": [
+          14,
+          44
+        ],
+        "e2": [
+          [
+            199,
+            "0,2,31,1",
+            ""
+          ]
+        ],
+        "staircase": [
+          [
+            199,
+            "0",
+            "1",
+            4
+          ]
+        ]
+      },
+      "S0:18,46": {
+        "object": "S0",
+        "degree": [
+          18,
+          46
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:19,47": {
+        "object": "S0",
+        "degree": [
+          19,
+          47
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:17,46": {
+        "object": "S0",
+        "degree": [
+          17,
+          46
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:21,48": {
+        "object": "S0",
+        "degree": [
+          21,
+          48
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:25,177": {
+        "object": "S0",
+        "degree": [
+          25,
+          177
+        ],
+        "e2": [
+          [
+            6715,
+            "853,1",
+            null
+          ],
+          [
+            6716,
+            "8,1,9,1,23,1,188,1",
+            null
+          ],
+          [
+            6717,
+            "0,1,8,1,627,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            6715,
+            "1,2",
+            "0",
+            2
+          ],
+          [
+            6716,
+            "0,2",
+            "0",
+            9995
+          ],
+          [
+            6717,
+            "2",
+            "1",
+            9996
+          ]
+        ]
+      },
+      "S0:23,176": {
+        "object": "S0",
+        "degree": [
+          23,
+          176
+        ],
+        "e2": [
+          [
+            6585,
+            "832,1",
+            "1,2"
+          ],
+          [
+            6586,
+            "8,1,9,1,423,1",
+            ""
+          ],
+          [
+            6587,
+            "0,6,762,1",
+            ""
+          ]
+        ],
+        "staircase": [
+          [
+            6585,
+            "2",
+            "1",
+            2
+          ],
+          [
+            6586,
+            "1",
+            "1",
+            9996
+          ],
+          [
+            6587,
+            "0",
+            "1,2",
+            9998
+          ]
+        ]
+      },
+      "S0:27,178": {
+        "object": "S0",
+        "degree": [
+          27,
+          178
+        ],
+        "e2": [
+          [
+            6810,
+            "864,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            6810,
+            "0",
+            "0,3",
+            9997
+          ]
+        ]
+      },
+      "S0:28,179": {
+        "object": "S0",
+        "degree": [
+          28,
+          179
+        ],
+        "e2": [
+          [
+            6934,
+            "8,1,22,1,292,1",
+            null
+          ],
+          [
+            6935,
+            "8,2,492,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            6934,
+            "1",
+            "1",
+            9996
+          ],
+          [
+            6935,
+            "0",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "S0:26,178": {
+        "object": "S0",
+        "degree": [
+          26,
+          178
+        ],
+        "e2": [
+          [
+            6811,
+            "13,1,585,1",
+            null
+          ],
+          [
+            6812,
+            "13,3,23,1,83,1",
+            null
+          ],
+          [
+            6813,
+            "0,1,853,1",
+            null
+          ],
+          [
+            6814,
+            "0,2,8,1,627,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            6811,
+            "2,3",
+            "0",
+            2
+          ],
+          [
+            6812,
+            "3",
+            "3",
+            2
+          ],
+          [
+            6813,
+            "0,1",
+            "1",
+            4
+          ],
+          [
+            6814,
+            "1",
+            "0",
+            9997
+          ]
+        ]
+      },
+      "S0:30,180": {
+        "object": "S0",
+        "degree": [
+          30,
+          180
+        ],
+        "e2": [
+          [
+            7070,
+            "13,6,23,1",
+            null
+          ],
+          [
+            7071,
+            "8,2,499,1",
+            null
+          ],
+          [
+            7072,
+            "8,2,9,1,13,2,101,1",
+            null
+          ],
+          [
+            7073,
+            "1,1,862,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7070,
+            "2",
+            "0",
+            2
+          ],
+          [
+            7071,
+            "0,3",
+            "0",
+            3
+          ],
+          [
+            7072,
+            "3",
+            null,
+            9000
+          ],
+          [
+            7073,
+            "1",
+            "0,3",
+            9996
+          ]
+        ]
+      },
+      "S0:31,181": {
+        "object": "S0",
+        "degree": [
+          31,
+          181
+        ],
+        "e2": [],
+        "staircase": []
+      },
+      "S0:29,180": {
+        "object": "S0",
+        "degree": [
+          29,
+          180
+        ],
+        "e2": [
+          [
+            7074,
+            "13,6,24,1",
+            null
+          ],
+          [
+            7075,
+            "8,1,13,1,435,1",
+            null
+          ],
+          [
+            7076,
+            "8,1,9,1,13,3,80,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7074,
+            "2",
+            "0",
+            2
+          ],
+          [
+            7075,
+            "0",
+            "1",
+            3
+          ],
+          [
+            7076,
+            "1",
+            "2",
+            4
+          ]
+        ]
+      },
+      "S0:33,182": {
+        "object": "S0",
+        "degree": [
+          33,
+          182
+        ],
+        "e2": [
+          [
+            7276,
+            "138,1,160,1",
+            null
+          ],
+          [
+            7277,
+            "8,1,17,1,380,1",
+            null
+          ],
+          [
+            7278,
+            "8,4,219,1",
+            null
+          ],
+          [
+            7279,
+            "0,4,862,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7276,
+            "0,1,3",
+            "1",
+            4
+          ],
+          [
+            7277,
+            "3",
+            "4,5",
+            9998
+          ],
+          [
+            7278,
+            "1",
+            "1,3",
+            9998
+          ],
+          [
+            7279,
+            "2",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "S0:27,179": {
+        "object": "S0",
+        "degree": [
+          27,
+          179
+        ],
+        "e2": [
+          [
+            6936,
+            "8,1,23,1,292,1",
+            null
+          ],
+          [
+            6937,
+            "8,3,293,1",
+            null
+          ],
+          [
+            6938,
+            "5,1,64,1,187,1",
+            null
+          ],
+          [
+            6939,
+            "0,2,853,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            6936,
+            "3",
+            "2",
+            2
+          ],
+          [
+            6937,
+            "2",
+            "1",
+            3
+          ],
+          [
+            6938,
+            "1",
+            "1",
+            4
+          ],
+          [
+            6939,
+            "0",
+            "2",
+            9998
+          ]
+        ]
+      },
+      "S0:32,182": {
+        "object": "S0",
+        "degree": [
+          32,
+          182
+        ],
+        "e2": [
+          [
+            7280,
+            "17,2,278,1",
+            null
+          ],
+          [
+            7281,
+            "8,1,688,1",
+            null
+          ],
+          [
+            7282,
+            "8,3,13,1,194,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7280,
+            "1",
+            "1",
+            4
+          ],
+          [
+            7281,
+            "0",
+            "2",
+            9998
+          ],
+          [
+            7282,
+            "2",
+            "1",
+            9998
+          ]
+        ]
+      },
+      "S0:30,181": {
+        "object": "S0",
+        "degree": [
+          30,
+          181
+        ],
+        "e2": [
+          [
+            7186,
+            "889,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7186,
+            "0",
+            "0,2",
+            5
+          ]
+        ]
+      },
+      "S0:34,183": {
+        "object": "S0",
+        "degree": [
+          34,
+          183
+        ],
+        "e2": [
+          [
+            7422,
+            "8,2,529,1",
+            null
+          ],
+          [
+            7423,
+            "8,3,9,1,13,3,23,1",
+            null
+          ],
+          [
+            7424,
+            "8,6,101,1",
+            null
+          ],
+          [
+            7425,
+            "0,1,8,1,17,1,380,1",
+            null
+          ],
+          [
+            7426,
+            "0,5,862,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7422,
+            "2",
+            "0",
+            2
+          ],
+          [
+            7423,
+            "1",
+            "2",
+            2
+          ],
+          [
+            7424,
+            "0,3",
+            "1",
+            4
+          ],
+          [
+            7425,
+            "4",
+            "1,2",
+            9998
+          ],
+          [
+            7426,
+            "3",
+            "0",
+            9998
+          ]
+        ]
+      },
+      "S0:35,184": {
+        "object": "S0",
+        "degree": [
+          35,
+          184
+        ],
+        "e2": [
+          [
+            7533,
+            "0,2,8,1,17,1,380,1",
+            null
+          ],
+          [
+            7534,
+            "0,6,862,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7533,
+            "0",
+            "1",
+            9997
+          ],
+          [
+            7534,
+            "1",
+            "1,2",
+            9998
+          ]
+        ]
+      },
+      "S0:33,183": {
+        "object": "S0",
+        "degree": [
+          33,
+          183
+        ],
+        "e2": [
+          [
+            7427,
+            "8,1,17,1,404,1",
+            null
+          ],
+          [
+            7428,
+            "8,2,9,1,13,3,51,1",
+            null
+          ],
+          [
+            7429,
+            "8,5,13,1,80,1",
+            null
+          ],
+          [
+            7430,
+            "0,1,17,2,278,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7427,
+            "2,3",
+            "0",
+            2
+          ],
+          [
+            7428,
+            "1",
+            "2",
+            2
+          ],
+          [
+            7429,
+            "3",
+            "1",
+            9996
+          ],
+          [
+            7430,
+            "0",
+            null,
+            9996
+          ]
+        ]
+      },
+      "S0:37,185": {
+        "object": "S0",
+        "degree": [
+          37,
+          185
+        ],
+        "e2": [
+          [
+            7631,
+            "8,3,345,1",
+            null
+          ],
+          [
+            7632,
+            "0,6,64,1,246,1",
+            null
+          ],
+          [
+            7633,
+            "0,6,59,1,260,1",
+            null
+          ]
+        ],
+        "staircase": [
+          [
+            7631,
+            "1,2",
+            "1",
+            2
+          ],
+          [
+            7632,
+            "2",
+            "1",
+            9996
+          ],
+          [
+            7633,
+            "0",
+            "1",
+            9998
+          ]
+        ]
+      }
+    },
+    "blocks": {
+      "S0:9,40:d2": {
+        "object": "S0",
+        "center": [
+          9,
+          40
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:12,42:d2": {
+        "object": "S0",
+        "center": [
+          12,
+          42
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:15,44:d2": {
+        "object": "S0",
+        "center": [
+          15,
+          44
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:12,42:d3": {
+        "object": "S0",
+        "center": [
+          12,
+          42
+        ],
+        "page": 3,
+        "predecessors": [
+          "S0:9,40:d2",
+          "S0:12,42:d2",
+          "S0:15,44:d2"
+        ]
+      },
+      "S0:13,43:d2": {
+        "object": "S0",
+        "center": [
+          13,
+          43
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:16,45:d2": {
+        "object": "S0",
+        "center": [
+          16,
+          45
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:19,47:d2": {
+        "object": "S0",
+        "center": [
+          19,
+          47
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:16,45:d3": {
+        "object": "S0",
+        "center": [
+          16,
+          45
+        ],
+        "page": 3,
+        "predecessors": [
+          "S0:13,43:d2",
+          "S0:16,45:d2",
+          "S0:19,47:d2"
+        ]
+      },
+      "S0:25,177:d2": {
+        "object": "S0",
+        "center": [
+          25,
+          177
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:28,179:d2": {
+        "object": "S0",
+        "center": [
+          28,
+          179
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:31,181:d2": {
+        "object": "S0",
+        "center": [
+          31,
+          181
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:28,179:d3": {
+        "object": "S0",
+        "center": [
+          28,
+          179
+        ],
+        "page": 3,
+        "predecessors": [
+          "S0:25,177:d2",
+          "S0:28,179:d2",
+          "S0:31,181:d2"
+        ]
+      },
+      "S0:29,180:d2": {
+        "object": "S0",
+        "center": [
+          29,
+          180
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:32,182:d2": {
+        "object": "S0",
+        "center": [
+          32,
+          182
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:35,184:d2": {
+        "object": "S0",
+        "center": [
+          35,
+          184
+        ],
+        "page": 2,
+        "predecessors": []
+      },
+      "S0:32,182:d3": {
+        "object": "S0",
+        "center": [
+          32,
+          182
+        ],
+        "page": 3,
+        "predecessors": [
+          "S0:29,180:d2",
+          "S0:32,182:d2",
+          "S0:35,184:d2"
+        ]
+      }
+    }
+  },
+  "comparisons": {
+    "S0:12,42:d2": {
+      "object": "S0",
+      "center": [
+        12,
+        42
+      ],
+      "page": 2,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 2,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:13,43:d2": {
+      "object": "S0",
+      "center": [
+        13,
+        43
+      ],
+      "page": 2,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:15,44:d2": {
+      "object": "S0",
+      "center": [
+        15,
+        44
+      ],
+      "page": 2,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:16,45:d2": {
+      "object": "S0",
+      "center": [
+        16,
+        45
+      ],
+      "page": 2,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:19,47:d2": {
+      "object": "S0",
+      "center": [
+        19,
+        47
+      ],
+      "page": 2,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 0,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:25,177:d2": {
+      "object": "S0",
+      "center": [
+        25,
+        177
+      ],
+      "page": 2,
+      "wire": {
+        "down": [
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 3,
+        "n": 3,
+        "outgoing": [
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true
+        ],
+        "up": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            25,
+            177
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                6715,
+                "1,2",
+                "0",
+                2
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6716,
+                "0,2",
+                "0",
+                9995
+              ],
+              "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6717,
+                "2",
+                "1",
+                9996
+              ],
+              "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+            }
+          ]
+        }
+      ],
+      "predecessors": []
+    },
+    "S0:28,179:d2": {
+      "object": "S0",
+      "center": [
+        28,
+        179
+      ],
+      "page": 2,
+      "wire": {
+        "down": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 4,
+        "m": 2,
+        "n": 4,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          0,
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            28,
+            179
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                6934,
+                "1",
+                "1",
+                9996
+              ],
+              "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6935,
+                "0",
+                "2",
+                9998
+              ],
+              "kind": "stored_outgoing_d2"
+            }
+          ]
+        },
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            26,
+            178
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                6811,
+                "2,3",
+                "0",
+                2
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6812,
+                "3",
+                "3",
+                2
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6813,
+                "0,1",
+                "1",
+                4
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6814,
+                "1",
+                "0",
+                9997
+              ],
+              "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+            }
+          ]
+        }
+      ],
+      "predecessors": []
+    },
+    "S0:29,180:d2": {
+      "object": "S0",
+      "center": [
+        29,
+        180
+      ],
+      "page": 2,
+      "wire": {
+        "down": [],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 3,
+        "n": 4,
+        "outgoing": [],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            29,
+            180
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                7074,
+                "2",
+                "0",
+                2
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7075,
+                "0",
+                "1",
+                3
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7076,
+                "1",
+                "2",
+                4
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            }
+          ]
+        },
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            27,
+            179
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                6936,
+                "3",
+                "2",
+                2
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6937,
+                "2",
+                "1",
+                3
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6938,
+                "1",
+                "1",
+                4
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                6939,
+                "0",
+                "2",
+                9998
+              ],
+              "kind": "stored_outgoing_d2"
+            }
+          ]
+        }
+      ],
+      "predecessors": []
+    },
+    "S0:31,181:d2": {
+      "object": "S0",
+      "center": [
+        31,
+        181
+      ],
+      "page": 2,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 4,
+        "m": 0,
+        "n": 3,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            29,
+            180
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                7074,
+                "2",
+                "0",
+                2
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7075,
+                "0",
+                "1",
+                3
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7076,
+                "1",
+                "2",
+                4
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            }
+          ]
+        }
+      ],
+      "predecessors": []
+    },
+    "S0:32,182:d2": {
+      "object": "S0",
+      "center": [
+        32,
+        182
+      ],
+      "page": 2,
+      "wire": {
+        "down": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false
+        ],
+        "k": 5,
+        "m": 3,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            32,
+            182
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                7280,
+                "1",
+                "1",
+                4
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7281,
+                "0",
+                "2",
+                9998
+              ],
+              "kind": "stored_outgoing_d2"
+            },
+            {
+              "row": [
+                7282,
+                "2",
+                "1",
+                9998
+              ],
+              "kind": "stored_outgoing_d2"
+            }
+          ]
+        },
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            30,
+            181
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                7186,
+                "0",
+                "0,2",
+                5
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            }
+          ]
+        }
+      ],
+      "predecessors": []
+    },
+    "S0:35,184:d2": {
+      "object": "S0",
+      "center": [
+        35,
+        184
+      ],
+      "page": 2,
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 2,
+        "n": 4,
+        "outgoing": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1,
+          0
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            35,
+            184
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                7533,
+                "0",
+                "1",
+                9997
+              ],
+              "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7534,
+                "1",
+                "1,2",
+                9998
+              ],
+              "kind": "stored_outgoing_d2"
+            }
+          ]
+        },
+        {
+          "kind": "explicit_complete_staircase_d2_meaning",
+          "object": "S0",
+          "source": [
+            33,
+            183
+          ],
+          "page": 2,
+          "evidence": [
+            {
+              "row": [
+                7427,
+                "2,3",
+                "0",
+                2
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7428,
+                "1",
+                "2",
+                2
+              ],
+              "kind": "incoming_boundary_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7429,
+                "3",
+                "1",
+                9996
+              ],
+              "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+            },
+            {
+              "row": [
+                7430,
+                "0",
+                null,
+                9996
+              ],
+              "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+            }
+          ]
+        }
+      ],
+      "predecessors": []
+    },
+    "S0:9,40:d2": {
+      "object": "S0",
+      "center": [
+        9,
+        40
+      ],
+      "page": 2,
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true
+        ],
+        "incoming": [
+          true,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          true,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          0,
+          1
+        ]
+      ],
+      "uses": [],
+      "predecessors": []
+    },
+    "S0:12,42:d3": {
+      "object": "S0",
+      "center": [
+        12,
+        42
+      ],
+      "page": 3,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            12,
+            42
+          ],
+          "page": 3,
+          "row": [
+            181,
+            "0",
+            "0,1",
+            4
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:15,44:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            9,
+            40
+          ],
+          "page": 3,
+          "row": [
+            165,
+            "1",
+            "0",
+            9996
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:12,42:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:9,40:d2",
+        "S0:12,42:d2",
+        "S0:15,44:d2"
+      ]
+    },
+    "S0:16,45:d3": {
+      "object": "S0",
+      "center": [
+        16,
+        45
+      ],
+      "page": 3,
+      "wire": {
+        "down": [],
+        "h": 0,
+        "inclusion": [],
+        "incoming": [],
+        "k": 0,
+        "m": 0,
+        "n": 1,
+        "outgoing": [],
+        "projection": [],
+        "up": [],
+        "version": 1
+      },
+      "projection_rows": [],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            13,
+            43
+          ],
+          "page": 3,
+          "row": [
+            191,
+            "0",
+            "1",
+            4
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:16,45:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:13,43:d2",
+        "S0:16,45:d2",
+        "S0:19,47:d2"
+      ]
+    },
+    "S0:28,179:d3": {
+      "object": "S0",
+      "center": [
+        28,
+        179
+      ],
+      "page": 3,
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 2,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            28,
+            179
+          ],
+          "page": 3,
+          "row": [
+            6934,
+            "1",
+            "1",
+            9996
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:31,181:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            25,
+            177
+          ],
+          "page": 3,
+          "row": [
+            6716,
+            "0,2",
+            "0",
+            9995
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:28,179:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            25,
+            177
+          ],
+          "page": 3,
+          "row": [
+            6717,
+            "2",
+            "1",
+            9996
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:28,179:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:25,177:d2",
+        "S0:28,179:d2",
+        "S0:31,181:d2"
+      ]
+    },
+    "S0:32,182:d3": {
+      "object": "S0",
+      "center": [
+        32,
+        182
+      ],
+      "page": 3,
+      "wire": {
+        "down": [
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 1,
+        "n": 2,
+        "outgoing": [
+          false
+        ],
+        "projection": [
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      },
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "object": "S0",
+          "source": [
+            32,
+            182
+          ],
+          "page": 3,
+          "row": [
+            7280,
+            "1",
+            "1",
+            4
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:35,184:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            29,
+            180
+          ],
+          "page": 3,
+          "row": [
+            7075,
+            "0",
+            "1",
+            3
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:32,182:d2"
+        },
+        {
+          "object": "S0",
+          "source": [
+            29,
+            180
+          ],
+          "page": 3,
+          "row": [
+            7076,
+            "1",
+            "2",
+            4
+          ],
+          "kind": "stored_zero_prefix_or_boundary",
+          "target_predecessor": "S0:32,182:d2"
+        }
+      ],
+      "predecessors": [
+        "S0:29,180:d2",
+        "S0:32,182:d2",
+        "S0:35,184:d2"
+      ]
+    }
+  },
+  "reconstructed": {
+    "S0:25,177": {
+      "degree": [
+        25,
+        177
+      ],
+      "target_degree": [
+        27,
+        178
+      ],
+      "source_basis": [
+        [
+          6715,
+          "853,1",
+          null
+        ],
+        [
+          6716,
+          "8,1,9,1,23,1,188,1",
+          null
+        ],
+        [
+          6717,
+          "0,1,8,1,627,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          6810,
+          "864,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6715,
+          "1,2",
+          "0",
+          2
+        ],
+        [
+          6716,
+          "0,2",
+          "0",
+          9995
+        ],
+        [
+          6717,
+          "2",
+          "1",
+          9996
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0,
+        0
+      ],
+      "rows": 1,
+      "cols": 3,
+      "evidence": [
+        {
+          "row": [
+            6715,
+            "1,2",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6716,
+            "0,2",
+            "0",
+            9995
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6717,
+            "2",
+            "1",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 3,
+      "raw_d2_metadata_covers": true
+    },
+    "S0:28,179": {
+      "degree": [
+        28,
+        179
+      ],
+      "target_degree": [
+        30,
+        180
+      ],
+      "source_basis": [
+        [
+          6934,
+          "8,1,22,1,292,1",
+          null
+        ],
+        [
+          6935,
+          "8,2,492,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7070,
+          "13,6,23,1",
+          null
+        ],
+        [
+          7071,
+          "8,2,499,1",
+          null
+        ],
+        [
+          7072,
+          "8,2,9,1,13,2,101,1",
+          null
+        ],
+        [
+          7073,
+          "1,1,862,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6934,
+          "1",
+          "1",
+          9996
+        ],
+        [
+          6935,
+          "0",
+          "2",
+          9998
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "rows": 4,
+      "cols": 2,
+      "evidence": [
+        {
+          "row": [
+            6934,
+            "1",
+            "1",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6935,
+            "0",
+            "2",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 2,
+      "raw_d2_metadata_covers": false
+    },
+    "S0:26,178": {
+      "degree": [
+        26,
+        178
+      ],
+      "target_degree": [
+        28,
+        179
+      ],
+      "source_basis": [
+        [
+          6811,
+          "13,1,585,1",
+          null
+        ],
+        [
+          6812,
+          "13,3,23,1,83,1",
+          null
+        ],
+        [
+          6813,
+          "0,1,853,1",
+          null
+        ],
+        [
+          6814,
+          "0,2,8,1,627,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          6934,
+          "8,1,22,1,292,1",
+          null
+        ],
+        [
+          6935,
+          "8,2,492,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6811,
+          "2,3",
+          "0",
+          2
+        ],
+        [
+          6812,
+          "3",
+          "3",
+          2
+        ],
+        [
+          6813,
+          "0,1",
+          "1",
+          4
+        ],
+        [
+          6814,
+          "1",
+          "0",
+          9997
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "rows": 2,
+      "cols": 4,
+      "evidence": [
+        {
+          "row": [
+            6811,
+            "2,3",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6812,
+            "3",
+            "3",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6813,
+            "0,1",
+            "1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6814,
+            "1",
+            "0",
+            9997
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 4,
+      "raw_d2_metadata_covers": false
+    },
+    "S0:29,180": {
+      "degree": [
+        29,
+        180
+      ],
+      "target_degree": [
+        31,
+        181
+      ],
+      "source_basis": [
+        [
+          7074,
+          "13,6,24,1",
+          null
+        ],
+        [
+          7075,
+          "8,1,13,1,435,1",
+          null
+        ],
+        [
+          7076,
+          "8,1,9,1,13,3,80,1",
+          null
+        ]
+      ],
+      "target_basis": [],
+      "staircase": [
+        [
+          7074,
+          "2",
+          "0",
+          2
+        ],
+        [
+          7075,
+          "0",
+          "1",
+          3
+        ],
+        [
+          7076,
+          "1",
+          "2",
+          4
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "staircase_images": [
+        [],
+        [],
+        []
+      ],
+      "entries": [],
+      "rows": 0,
+      "cols": 3,
+      "evidence": [
+        {
+          "row": [
+            7074,
+            "2",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            7075,
+            "0",
+            "1",
+            3
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            7076,
+            "1",
+            "2",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 3,
+      "raw_d2_metadata_covers": false
+    },
+    "S0:27,179": {
+      "degree": [
+        27,
+        179
+      ],
+      "target_degree": [
+        29,
+        180
+      ],
+      "source_basis": [
+        [
+          6936,
+          "8,1,23,1,292,1",
+          null
+        ],
+        [
+          6937,
+          "8,3,293,1",
+          null
+        ],
+        [
+          6938,
+          "5,1,64,1,187,1",
+          null
+        ],
+        [
+          6939,
+          "0,2,853,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7074,
+          "13,6,24,1",
+          null
+        ],
+        [
+          7075,
+          "8,1,13,1,435,1",
+          null
+        ],
+        [
+          7076,
+          "8,1,9,1,13,3,80,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          6936,
+          "3",
+          "2",
+          2
+        ],
+        [
+          6937,
+          "2",
+          "1",
+          3
+        ],
+        [
+          6938,
+          "1",
+          "1",
+          4
+        ],
+        [
+          6939,
+          "0",
+          "2",
+          9998
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "rows": 3,
+      "cols": 4,
+      "evidence": [
+        {
+          "row": [
+            6936,
+            "3",
+            "2",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6937,
+            "2",
+            "1",
+            3
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6938,
+            "1",
+            "1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            6939,
+            "0",
+            "2",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 4,
+      "raw_d2_metadata_covers": false
+    },
+    "S0:32,182": {
+      "degree": [
+        32,
+        182
+      ],
+      "target_degree": [
+        34,
+        183
+      ],
+      "source_basis": [
+        [
+          7280,
+          "17,2,278,1",
+          null
+        ],
+        [
+          7281,
+          "8,1,688,1",
+          null
+        ],
+        [
+          7282,
+          "8,3,13,1,194,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7422,
+          "8,2,529,1",
+          null
+        ],
+        [
+          7423,
+          "8,3,9,1,13,3,23,1",
+          null
+        ],
+        [
+          7424,
+          "8,6,101,1",
+          null
+        ],
+        [
+          7425,
+          "0,1,8,1,17,1,380,1",
+          null
+        ],
+        [
+          7426,
+          "0,5,862,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          7280,
+          "1",
+          "1",
+          4
+        ],
+        [
+          7281,
+          "0",
+          "2",
+          9998
+        ],
+        [
+          7282,
+          "2",
+          "1",
+          9998
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "rows": 5,
+      "cols": 3,
+      "evidence": [
+        {
+          "row": [
+            7280,
+            "1",
+            "1",
+            4
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            7281,
+            "0",
+            "2",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        },
+        {
+          "row": [
+            7282,
+            "2",
+            "1",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 3,
+      "raw_d2_metadata_covers": false
+    },
+    "S0:30,181": {
+      "degree": [
+        30,
+        181
+      ],
+      "target_degree": [
+        32,
+        182
+      ],
+      "source_basis": [
+        [
+          7186,
+          "889,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7280,
+          "17,2,278,1",
+          null
+        ],
+        [
+          7281,
+          "8,1,688,1",
+          null
+        ],
+        [
+          7282,
+          "8,3,13,1,194,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          7186,
+          "0",
+          "0,2",
+          5
+        ]
+      ],
+      "basis_columns": [
+        [
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0,
+        0
+      ],
+      "rows": 3,
+      "cols": 1,
+      "evidence": [
+        {
+          "row": [
+            7186,
+            "0",
+            "0,2",
+            5
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 1,
+      "raw_d2_metadata_covers": false
+    },
+    "S0:35,184": {
+      "degree": [
+        35,
+        184
+      ],
+      "target_degree": [
+        37,
+        185
+      ],
+      "source_basis": [
+        [
+          7533,
+          "0,2,8,1,17,1,380,1",
+          null
+        ],
+        [
+          7534,
+          "0,6,862,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7631,
+          "8,3,345,1",
+          null
+        ],
+        [
+          7632,
+          "0,6,64,1,246,1",
+          null
+        ],
+        [
+          7633,
+          "0,6,59,1,260,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          7533,
+          "0",
+          "1",
+          9997
+        ],
+        [
+          7534,
+          "1",
+          "1,2",
+          9998
+        ]
+      ],
+      "basis_columns": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "inverse_rows": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ]
+      ],
+      "entries": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "rows": 3,
+      "cols": 2,
+      "evidence": [
+        {
+          "row": [
+            7533,
+            "0",
+            "1",
+            9997
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            7534,
+            "1",
+            "1,2",
+            9998
+          ],
+          "kind": "stored_outgoing_d2"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 2,
+      "raw_d2_metadata_covers": false
+    },
+    "S0:33,183": {
+      "degree": [
+        33,
+        183
+      ],
+      "target_degree": [
+        35,
+        184
+      ],
+      "source_basis": [
+        [
+          7427,
+          "8,1,17,1,404,1",
+          null
+        ],
+        [
+          7428,
+          "8,2,9,1,13,3,51,1",
+          null
+        ],
+        [
+          7429,
+          "8,5,13,1,80,1",
+          null
+        ],
+        [
+          7430,
+          "0,1,17,2,278,1",
+          null
+        ]
+      ],
+      "target_basis": [
+        [
+          7533,
+          "0,2,8,1,17,1,380,1",
+          null
+        ],
+        [
+          7534,
+          "0,6,862,1",
+          null
+        ]
+      ],
+      "staircase": [
+        [
+          7427,
+          "2,3",
+          "0",
+          2
+        ],
+        [
+          7428,
+          "1",
+          "2",
+          2
+        ],
+        [
+          7429,
+          "3",
+          "1",
+          9996
+        ],
+        [
+          7430,
+          "0",
+          null,
+          9996
+        ]
+      ],
+      "basis_columns": [
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "inverse_rows": [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "staircase_images": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "entries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "rows": 2,
+      "cols": 4,
+      "evidence": [
+        {
+          "row": [
+            7427,
+            "2,3",
+            "0",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            7428,
+            "1",
+            "2",
+            2
+          ],
+          "kind": "incoming_boundary_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            7429,
+            "3",
+            "1",
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        },
+        {
+          "row": [
+            7430,
+            "0",
+            null,
+            9996
+          ],
+          "kind": "later_outgoing_or_survival_d2_cycle_prefix"
+        }
+      ],
+      "raw_known_columns": 0,
+      "raw_unknown_columns": 4,
+      "raw_d2_metadata_covers": false
+    }
+  },
+  "known_record": [
+    6934,
+    28,
+    179,
+    "1",
+    "1",
+    9996
+  ],
+  "source_record": [
+    2907,
+    16,
+    137,
+    "1",
+    null,
+    9996
+  ],
+  "input_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "scope": "Known nonzero d4 and full staircase d2 meanings remain explicit actual premises. Raw source NULL d4 is not assumed nonzero; no branch selected."
+}

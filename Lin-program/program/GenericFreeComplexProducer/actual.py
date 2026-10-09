@@ -1,0 +1,9 @@
+"""Extract a differential-closed S0 raw generator region, preserving all edges."""
+import hashlib,json,pathlib,subprocess
+HERE=pathlib.Path(__file__).resolve().parent;ROOT=HERE.parent;source=ROOT/'ExtComplexCertificates/actual-s0/resolution.jsonl';raw=[json.loads(line) for line in source.read_text().splitlines()];rows=[r for r in raw if r['t']<=4];lookup={(r['s'],r['local_id']):i for i,r in enumerate(rows)};n=len(rows);edges=[[] for _ in range(n*n)];rank=3
+for i,r in enumerate(rows):
+ for term in r['differential']:
+  target=(r['s']-1,term['target_local_id'])
+  if target not in lookup:raise ValueError('region not closed under raw differential')
+  m=term['milnor'];assert all(x==0 for x in m[rank:]);edges[i*n+lookup[target]].append(m[:rank])
+wire=dict(version=1,rank=rank,n=n,homological=[r['s'] for r in rows],internal=[r['t'] for r in rows],edges=edges);text=json.dumps(wire,sort_keys=True,separators=(',',':'))+'\n';(HERE/'actual_t4.input.jsonl').write_text(text);p=subprocess.run([str(HERE/'generic-free-export')],input=text,capture_output=True,text=True,check=True);(HERE/'actual_t4.json').write_text(p.stdout);output=json.loads(p.stdout);nonzero=[(i,j,k) for i in range(n) for j in range(n) for k in range(n) if output['products'][(i*n+j)*n+k]];assert nonzero;assert any(sum(bool(output['products'][(i*n+j)*n+k]) for j in range(n))>=2 for i in range(n) for k in range(n));audit=dict(raw_source=str(source.relative_to(ROOT)),raw_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),generator_ids=[r['id'] for r in rows],rank=rank,n=n,products=n**3,nonzero_products=nonzero,scope='all raw S0 generators t<=4, closed under differential; higher Milnor coordinates checked zero before truncation',input_sha256=hashlib.sha256(text.encode()).hexdigest(),output_sha256=hashlib.sha256(p.stdout.encode()).hexdigest());(HERE/'actual_audit.json').write_text(json.dumps(audit,indent=2)+'\n');print(audit)

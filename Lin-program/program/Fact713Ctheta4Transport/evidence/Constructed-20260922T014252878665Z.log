@@ -1,0 +1,42 @@
+Fact713Ctheta4Transport/Constructed.lean:32:65: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  A.input.nextSource.equivalence A.value3
+in the target expression
+  InKernel (matrixOf c17_169_3.k c17_169_3.m c17_169_3.outgoing) (A.input.nextSource.equivalence A.value3)
+
+C S : AdamsSpectralSequence
+A : Stage2 C S
+transition : A.input.Transition
+sourceMeaning : Meaning C 3 Source.sourceDegree c17_169_3 A.input.nextSource
+targetMap :
+  (C.element 3 (AdamsTarget 3 Source.sourceDegree)).carrier → (S.element 3 (AdamsTarget 3 sphereDegree)).carrier
+targetZero : targetMap 0 = 0
+naturality :
+  ∀ (x : (C.element (2 + 1) Source.sourceDegree).carrier),
+    (S.differential 3 sphereDegree).toFun (A.input.nextMap x) =
+      targetMap ((C.differential 3 Source.sourceDegree).toFun x)
+additive :
+  ∀ (x y : (S.element (2 + 1) sphereDegree).carrier),
+    A.input.nextTarget.equivalence (x + y) = add (A.input.nextTarget.equivalence x) (A.input.nextTarget.equivalence y)
+outgoing : Coordinates S 3 (AdamsTarget 3 sphereDegree) 2
+incomingCoordinates : ActualAdamsIncomingBridge.Source S 3 sphereDegree ≃ Vec 1
+incoming :
+  ∀ (x : ActualAdamsIncomingBridge.Source S 3 sphereDegree),
+    A.input.nextTarget.equivalence (ActualAdamsIncomingBridge.differential S 3 sphereDegree x) =
+      eval (matrixOf 1 1 s17_138_3.incoming) (incomingCoordinates x)
+sourceZero : LocalZeroMeaning A.input.sourcePages 3 Source.sourceDegree
+sphereZero : LocalZeroMeaning A.input.targetPages 3 sphereDegree
+nextMap : (C.element 4 Source.sourceDegree).carrier → (S.element 4 sphereDegree).carrier
+⊢ InKernel (matrixOf c17_169_3.k c17_169_3.m c17_169_3.outgoing) (A.input.nextSource.equivalence A.value3)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    A.source
+  has type
+    Coordinates C 2 Source.sourceDegree 8
+  but is expected to have type
+    Coordinates C 2 Source.sourceDegree c17_169_2.m
+  in the application
+    @Input.nextSource C S 2 Source.sourceDegree sphereDegree c17_169_2 s17_138_2 A.source
+'Fact713Ctheta4Transport.Constructed.stage3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Ctheta4Transport.Constructed.result_sound' depends on axioms: [propext, Classical.choice, Quot.sound]

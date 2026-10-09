@@ -1,0 +1,2781 @@
+
+
+6. 
+The Generalized Leibniz Rule and Generalized Mahowald Trick
+
+
+
+
+
+Now, we introduce the theorem of the Generalized Leibniz Rule, a valuable tool for computing new Adams differentials.
+
+
+
+
+
+
+Theorem 6.1
+ 
+(Generalized Leibniz Rule)
+.
+
+
+
+
+Let $f:X\to Y$ be a map between two classical spectra.
+Suppose that $2\leq n\leq r$ , $e(f)\leq m\leq n-2+e(f)$ , $l\geq e(f)$ , and we have
+
+
+
+
+
+
+
+
+
+
+$x\in Z_{r-1}^{s,t}(X),\hskip 14.22636pty\in Z_{r-1-m+e(f)}^{s+m,t+m}(Y)$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$x_{\infty}\in Z_{\infty}^{s+r,t+r-1}(X),\hskip 14.22636pty_{\infty}\in Z_{\infty}^{s+r+l,t+r+l-1}(Y)$
+
+
+
+
+
+
+
+and the following conditions hold:
+
+
+
+ (1)
+ 
+
+
+
+$d_{r}(x)=x_{\infty}$
+,
+
+ 
+ (2)
+ 
+
+
+
+$d_{m}^{f,E_{n}}(x)=y$
+,
+
+ 
+ (3)
+ 
+
+
+
+$d_{l}^{f,E_{\infty}}(x_{\infty})=y_{\infty}$
+,
+
+ 
+ (4)
+ 
+
+
+
+the differential in (1) has no crossing on the 
+$E_{n}$
+-page or (2) has no crossing.
+
+ 
+ (5)
+ 
+
+
+
+the differential in (3) has no crossing.
+
+ 
+
+
+
+Then we have an Adams differential
+
+
+
+
+
+
+
+
+
+
+$d_{r+l-m}(y)=y_{\infty}.$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+Consider the commutative diagram of synthetic spectra
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\Sigma^{0,e(f)}\nu X/\lambda^{n-1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{f}_{n-1}}$ $\scriptstyle{\delta_{X}}$ $\textstyle{\nu Y/\lambda^{n-1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\delta_{Y}}$ $\textstyle{\Sigma^{1,-n+1+e(f)}\nu X\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{f}}$ $\textstyle{\Sigma^{1,-n+1}\nu Y.}$
+
+
+
+
+
+
+
+By condition (1) and Proposition 4.6 , we have
+
+
+
+
+
+
+
+(6.2)
+
+
+
+
+
+$d^{\delta_{X}}_{r}(x)=\lambda^{r-n}x_{\infty}.$
+
+
+
+
+
+
+
+By conditions (2) and (3), and Definition 5.4 , we have
+
+
+
+
+
+
+
+(6.3)
+
+
+
+
+
+$d^{\hat{f}_{n-1}}_{m}(x)=\lambda^{m-e(f)}y$
+
+
+
+
+
+
+
+and
+
+
+
+
+
+
+
+
+
+
+$d^{\hat{f}}_{l}(x_{\infty})=\lambda^{l-e(f)}y_{\infty},$
+
+
+
+
+
+
+
+which implies
+
+
+
+
+
+
+
+(6.4)
+
+
+
+
+
+$d^{\hat{f}}_{l}(\lambda^{r-n}x_{\infty})=\lambda^{r+l-n-e(f)}y_{\infty}.$
+
+
+
+
+
+
+
+
+
+
+
+Applying Proposition 4.16 and Proposition 5.10 to conditions (4) and (5), we know that the differential in ( 6.2 ) or ( 6.3 ) has no crossing, and that the differential in ( 6.4 ) has no crossing.
+
+
+
+
+
+
+Therefore, we can apply Corollary 2.15 and obtain
+
+
+
+
+
+
+
+
+
+
+$d^{\delta_{Y}}_{r+l-m}(\lambda^{m-e(f)}y)=\lambda^{r+l-n-e(f)}y_{\infty}.$
+
+
+
+
+
+
+
+By Remark 4.12 , this is equivalent to
+
+
+
+
+
+
+
+
+
+
+$d_{r+l-m}(y)=y_{\infty}.$
+
+
+
+
+
+
+
+∎
+
+
+
+
+
+
+
+
+Remark 6.5
+.
+
+
+
+
+We can further generalize Theorem 
+6.1
+ by using the conditions in Theorem 
+2.12
+ rather than those Corollary 
+2.15
+. We leave this generalization to the reader.
+
+
+
+
+
+
+
+
+We emphasize that the no-crossing conditions in Theorem 
+6.1
+, the Generalized Leibniz Rule, are crucial. We first demonstrate the strength of the Generalized Leibniz Rule with Example 
+6.7
+, which uses a 
+$d_{2}$
+-differential to prove a 
+$d_{3}$
+-differential in the classical Adams spectral sequence. Additionally, Example 
+6.8
+ shows that, without the no-crossing condition, the conclusion could be false.
+
+
+
+
+
+
+Remark 6.6
+.
+
+
+
+
+A version of the Generalized Leibniz Rule without the no-crossing conditions is presented in the synthetic setting in Chua’s work 
+[ 19 , Theorem 12.9]
+. However, there is no doubt that this version is incorrect. Indeed, Example 
+6.8
+ is a counter-example to Chua’s theorem. For further details, see Remark 
+6.10
+.
+
+
+
+
+
+
+
+
+Example 6.7
+.
+
+
+
+
+We show that the Generalized Leibniz Rule can be used to prove the following classical Adams differential
+
+
+
+
+
+
+
+
+
+
+$d_{3}(h_{2}h_{5})=h_{0}p,$
+
+
+
+
+
+
+
+using the classical Hopf invariant one differential
+
+
+
+
+
+
+
+
+
+
+$d_{2}(h_{5})=h_{0}h_{4}^{2},$
+
+
+
+
+
+
+
+and the 
+$(f,E_{3})$
+-extension
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{3}}(h_{0}h_{4}^{2})=h_{0}p,$
+
+
+
+
+
+
+
+for the map 
+$f=\nu:S^{3}\rightarrow S^{0}$
+ from Example 
+5.8
+.
+
+
+
+
+
+
+Specifically, we have:
+
+
+
+
+
+
+
+
+
+
+$n=2,\ r=2,\ s=1,\ t=35,\ m=1,\ l=2,\ e(f)=1,$
+
+
+
+
+
+
+
+and
+
+
+
+
+
+
+
+
+
+
+$x=h_{5}\in\mathrm{Ext}_{A}^{1,32}\cong Z_{1}^{1,35}(S^{3}),\ y=h_{2}h_{5}\in\mathrm{Ext}_{A}^{2,36}\cong Z_{1}^{2,36}(S^{0}),$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$x_{\infty}=h_{0}h_{4}^{2}\in\mathrm{Ext}_{A}^{3,33}\cong Z_{\infty}^{3,36}(S^{3}),\ y_{\infty}=h_{0}p\in\mathrm{Ext}_{A}^{5,38}\cong Z_{\infty}^{5,38}(S^{0}).$
+
+
+
+
+
+
+
+In terms of the conditions in Theorem 
+6.1
+, we have:
+
+
+
+ (1)
+ 
+
+
+
+$d_{2}(h_{5})=h_{0}h_{4}^{2}$
+,
+
+ 
+ (2)
+ 
+
+
+
+$d_{1}^{f,E_{2}}(h_{5})=h_{2}h_{5}$
+, from Example 
+5.8
+(1),
+
+ 
+ (3)
+ 
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{4}^{2})=h_{0}p$
+, from Example 
+5.8
+(3),
+
+ 
+ (4)
+ 
+
+
+
+
+ (a)
+ 
+
+
+
+the differential in (1) has no crossing, from Remark 
+4.17
+, and
+
+ 
+ (b)
+ 
+
+
+
+the differential in (2) has no crossing, from Example 
+5.13
+(1),
+
+ 
+
+
+ 
+ (5)
+ 
+
+
+
+the differential in (3) has no crossing, from Example 
+5.13
+(3).
+
+ 
+
+
+
+Since all conditions of Theorem 
+6.1
+ are satisfied, we conclude that there is a classical Adams differential
+
+
+
+
+
+
+
+
+
+
+$d_{3}(h_{2}h_{5})=h_{0}p.$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Example 6.8
+.
+
+
+
+
+We show that, without the no crossing conditions, the Generalized Leibniz Rule could lead to incorrect conclusions.
+
+
+
+
+
+
+Consider the map 
+$f=2:S^{0}\rightarrow S^{0}$
+, and the classical Hopf invariant one differential
+
+
+
+
+
+
+
+
+
+
+$d_{2}(h_{4})=h_{0}h_{3}^{2}.$
+
+
+
+
+
+
+
+Set
+
+
+
+
+
+
+
+
+
+
+$n=2,\ r=2,\ s=1,\ t=16,\ m=1,\ l=2,\ e(f)=1,$
+
+
+
+
+
+
+
+and
+
+
+
+
+
+
+
+
+
+
+$x=h_{4}\in\mathrm{Ext}_{A}^{1,16}\cong Z_{1}^{1,16}(S^{0}),\ y=h_{0}h_{4}\in\mathrm{Ext}_{A}^{2,17}\cong Z_{1}^{2,17}(S^{0}),$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$x_{\infty}=h_{0}h_{3}^{2}\in\mathrm{Ext}_{A}^{3,17}\cong Z_{\infty}^{3,17}(S^{0}),\ y_{\infty}=0\in\mathrm{Ext}_{A}^{5,19}\cong Z_{\infty}^{5,19}(S^{0}).$
+
+
+
+
+
+
+
+In terms of the conditions in Theorem 
+6.1
+, we have:
+
+
+
+ (1)
+ 
+
+
+
+$d_{2}(h_{4})=h_{0}h_{3}^{2}$
+,
+
+ 
+ (2)
+ 
+
+
+
+$d_{1}^{f,E_{2}}(h_{4})=h_{0}h_{4}$
+, since the product of 
+$h_{4}$
+ by 
+$h_{0}$
+ is 
+$h_{0}h_{4}$
+ in Ext,
+
+ 
+ (3)
+ 
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=0$
+, from Example 
+5.8
+(4),
+
+ 
+ (4)
+ 
+
+
+
+
+ (a)
+ 
+
+
+
+the differential in (1) has no crossing, from Remark 
+4.17
+, and
+
+ 
+ (b)
+ 
+
+
+
+the differential in (2) has no crossing, for degree reasons,
+
+ 
+
+
+ 
+ (5)
+ 
+
+
+
+the differential in (3) has a crossing:
+
+
+
+
+
+
+
+
+
+
+$d_{1}^{f,E_{\infty}}(d_{0})=h_{0}d_{0},$
+
+
+
+
+
+
+
+from Example 
+5.13
+(4).
+
+ 
+
+
+
+For condition 
+$(5)$
+, if there were no crossing for the differential in 
+$(3)$
+, then the Generalized Leibniz Rule would imply a classical Adams differential
+
+
+
+
+
+
+
+
+
+
+$d_{3}(h_{0}h_{4})=0,$
+
+
+
+
+
+
+
+which is incorrect. This example illustrates that the no-crossing conditions are essential when applying the Generalized Leibniz Rule.
+
+
+
+
+
+
+
+
+Remark 6.9
+.
+
+
+
+
+As noted in Example 
+5.8
+(4) and Example 
+5.13
+(4), the essential 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{1}^{f,E_{\infty}}(d_{0})=h_{0}d_{0},$
+
+
+
+
+
+
+
+is a crossing for both the 
+$(f,E_{\infty})$
+-extension,
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=0,$
+
+
+
+
+
+
+
+and the inessential 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=h_{0}d_{0}.$
+
+
+
+
+
+
+
+This indicates that, in Example 
+6.8
+, if we were to disregard the no-crossing condition (5), and apply the Generalized Leibniz Rule to these two cases of the 
+$(f,E_{\infty})$
+-extensions, we would arrive at two conflicting classical statements:
+
+
+
+
+
+
+
+
+
+
+$d_{3}(h_{0}h_{4})=0,\ d_{3}(h_{0}h_{4})=h_{0}d_{0}.$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Remark 6.10
+.
+
+
+
+
+In Chua’s work 
+[ 19 , Theorem 12.9]
+, it is stated that for a synthetic map 
+$\alpha:X\rightarrow Y$
+, and an element 
+$x\in\pi_{*,*}X/\lambda$
+, there exists a differential from a maximal 
+$\alpha$
+-extension of 
+$x$
+ to a maximal 
+$\alpha$
+-extension of 
+$d_{r}(x)$
+. According to 
+[ 19 , Definition 12.5]
+, a maximal 
+$\alpha$
+-extension of 
+$x^{\prime}$
+ is defined as 
+$\alpha[x^{\prime}]$
+, where 
+$[x^{\prime}]$
+ represents a lift of 
+$x^{\prime}$
+ to the 
+$E_{r^{\prime}}$
+-page, chosen such that 
+$\alpha[x^{\prime}]$
+ is the most 
+$\lambda$
+-divisible among all such lifts.
+
+
+
+
+
+
+In the context of Example 
+6.8
+, let 
+$r=2,r^{\prime}=\infty$
+,
+
+
+
+
+
+
+
+
+
+
+$\alpha=[h_{0}]:S^{0,1}\rightarrow S^{0,0},$
+
+
+
+
+
+
+
+and consider 
+$x=h_{4}$
+ in Ext, with 
+$x^{\prime}=d_{2}(x)=h_{0}h_{3}^{2}$
+.
+
+
+
+
+
+
+As noted in Example 
+5.8
+(4), the 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=0$
+
+
+
+
+
+
+
+is equivalent to the existence of a synthetic homotopy class 
+$[h_{0}h_{3}^{2}]$
+ in 
+$\pi_{14,17}S^{0,0}$
+, such that
+
+
+
+
+
+
+
+
+
+
+$[h_{0}h_{3}^{2}]\cdot[h_{0}]=0\ \text{in}\ \pi_{14,18}S^{0,0}.$
+
+
+
+
+
+
+
+Similarly, the inessential 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=h_{0}d_{0}$
+
+
+
+
+
+
+
+implies the existence of another synthetic homotopy class 
+$[h_{0}h_{3}^{2}]$
+ in 
+$\pi_{14,17}S^{0,0}$
+, such that
+
+
+
+
+
+
+
+
+
+
+$[h_{0}h_{3}^{2}]\cdot[h_{0}]=[h_{0}d_{0}]\ \text{in}\ \pi_{14,18}S^{0,0}.$
+
+
+
+
+
+
+
+Between these two lifts of 
+$h_{0}h_{3}^{2}$
+, the first 
+$[h_{0}h_{3}^{2}]$
+ is clearly the maximal 
+$[h_{0}]$
+-extension according to Chua’s definition 
+[ 19 , Definition 12.5]
+. Consequently, the incorrect version of the Generalized Leibniz Rule in 
+[ 19 , Theorem 12.9]
+, would lead to an incorrect conclusion:
+
+
+
+
+
+
+
+
+
+
+$d_{3}(h_{0}h_{4})=0.$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Next, we discuss the Generalized Mahowald Trick.
+
+
+
+
+
+
+In order to apply the Generalized Leibniz Rule, we need to provide a method for computing extensions on specific Adams 
+$E_{k}$
+-pages, such as the 
+$(f,E_{3})$
+-extension 
+$d_{2}^{f,E_{3}}(h_{0}h_{4}^{2})=h_{0}p$
+ in Example 
+6.7
+. This is provided by Theorem 
+6.12
+ (the Generalized Mahowald Trick). The crux of the proof of the Generalized Mahowald Trick lies in the following lemma.
+
+
+
+
+
+
+Lemma 6.11
+ 
+(May 
+[ 46 ]
+)
+.
+
+
+
+
+Let $X\to Y\to Z\to\Sigma X$ and $X^{\prime}\to Y^{\prime}\to Z^{\prime}\to\Sigma X^{\prime}$ be distinguished triangles of (synthetic) spectra. By smashing these distinguished triangles together, we obtain the following commutative diagram of cofiber sequences:
+
+
+
+
+
+
+
+
+
+
+$\textstyle{X\wedge X^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{Y\wedge X^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{Z\wedge X^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{X\wedge Y^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{Y\wedge Y^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{Z\wedge Y^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{X\wedge Z^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{Y\wedge Z^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{Z\wedge Z^{\prime}}$
+
+
+
+
+
+
+
+If $a\in\pi_{n}(X\wedge Z^{\prime})$ and $b\in\pi_{n}(Y\wedge Y^{\prime})$ map to the same element in $\pi_{n}(Y\wedge Z^{\prime})$ , then there exists $c\in\pi_{n}(Z\wedge X^{\prime})$ such that
+
+
+
+ (1)
+ 
+
+
+
+$b$
+ and 
+$c$
+ map to the same element in 
+$\pi_{n}(Z\wedge Y^{\prime})$
+, and
+
+ 
+ (2)
+ 
+
+
+
+$a$
+ and 
+$c$
+ map to the same element via boundary maps in 
+$\pi_{n-1}(X\wedge X^{\prime})$
+.
+
+ 
+
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+The proof follows directly from [ 46 , Lemma 4.6] .
+
+
+
+
+
+
+In fact, consider $V$ in Axiom TC3 of [ 46 , Section 4] and the corresponding commutative diagram. By [ 46 , Lemma 4.6] we know that $V$ is the pull back of the following diagram.
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces V\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\lrcorner}$ $\textstyle{Y\wedge Y^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{X\wedge Z^{\prime}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{Y\wedge Z^{\prime}}$
+
+
+
+
+
+
+
+Since $a$ and $b$ map to the same element in $\pi_{n}(Y\wedge Z^{\prime})$ , we know that we can find $v\in V$ such that $v$ maps to $a$ in $\pi_{n}(X\wedge Z^{\prime})$ and $b$ in $\pi_{n}(Y\wedge Y^{\prime})$ . Then we let $c=j_{3}(v)\in\pi_{n}(Z\wedge X^{\prime})$ , where $j_{3}:V\rightarrow Z\wedge X^{\prime}$ is the map in the commutative diagram in Axiom TC3 of [ 46 , Section 4] . This lemma follows from the commutativity of the diagram.
+∎
+
+
+
+
+
+
+
+
+Theorem 6.12
+ 
+(Generalized Mahowald Trick)
+.
+
+
+
+
+Consider a distinguished triangle of spectra
+
+
+
+
+
+
+
+
+
+
+$X\xrightarrow{f}Y\xrightarrow{g}Z\xrightarrow{h}\Sigma X$
+
+
+
+
+
+
+
+with $e(f)+e(g)+e(h)=1$ .
+Suppose that $r=n+m+l$ , $n_{1}=n-e(f)\geq 1$ , $m_{1}=m-e(g)\geq 0$ , $l_{1}=l-e(h)\geq 0$ , and
+
+
+
+
+
+
+
+
+
+
+$\begin{array}[]{ll}x\in Z_{n_{1}}^{s+l,t+l-1}(X),&y\in Z_{m_{1}+1}^{s+n+l,t+n+l-1}(Y),\\
+\bar{x}\in Z_{r-1}^{s,t}(Z),&\bar{y}\in Z_{\infty}^{s+r,t+r-1}(Z),\end{array}$
+
+
+
+
+
+
+
+such that
+
+
+
+ (1)
+ 
+
+
+
+$d^{h,E_{r^{\prime}}}_{l}\bar{x}=x$
+, where 
+$r^{\prime}=r-m_{1}=n_{1}+l_{1}+1$
+,
+
+ 
+ (2)
+ 
+
+
+
+$d_{r}\bar{x}=\bar{y}$
+,
+
+ 
+ (3)
+ 
+
+
+
+the 
+$(h,E_{r^{\prime}})$
+-extension in (1) has no crossing, or the Adams differential (2) has no crossing on the 
+$E_{r^{\prime}}$
+-page,
+
+ 
+ (4)
+ 
+
+
+
+$d^{g,E_{m_{1}+2}}_{m}y=\bar{y}$
+.
+
+ 
+
+
+
+Then we have $x\in Z_{n+m+e(h)}^{s+l,t+l-1}(X)$ and
+
+
+
+
+
+
+
+
+
+
+$d^{f,E_{n+m+1+e(h)}}_{n}x\equiv y\mod B_{r^{\prime}}^{s+n+l,t+n+l-1}(Y).$
+
+
+
+
+
+
+
+(See Figure 6 .)
+
+
+
+
+
+
+
+ $x$ $y$ $\bar{x}$ $\bar{y}$ $\Sigma x$ $d^{f,E_{n+m+e(h)+1}}_{n}(\mathrm{mod}~B_{r^{\prime}})$ $d^{g,E_{m-e(g)+2}}_{m}$ $d_{r}$ $d^{h,E_{r^{\prime}}}_{l}$ $s$ $s+l$ $s+l+n$ $s+r$ $E_{2}(X)$ $E_{2}(Y)$ $E_{2}(Z)$ $E_{2}(\Sigma X)$ 
+ 
+ Figure 6. A demonstration of Theorem 6.12 
+
+
+
+
+ 
+ $\textstyle{\bigwedge}$ $\textstyle{\nu X\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{f}}$ $\textstyle{\Sigma^{0,-\!e(f)}\nu Y\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{g}}$ $\textstyle{\Sigma^{0,-\!e(f)\!-\!e(g)}\nu Z\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{h}}$ $\textstyle{\Sigma^{1,0}\nu X}$ $\textstyle{S^{0,0}/\lambda^{r}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\rho}$ $\textstyle{[\lambda^{l_{1}}x]\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{S^{0,0}/\lambda^{r^{\prime}-1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\delta_{r^{\prime}-1}}$ $\textstyle{[\bar{x}]\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{[\lambda^{l_{1}}x]}$ $\textstyle{S^{1,-r^{\prime}+1}/\lambda^{m_{1}+1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\lambda^{r^{\prime}-1}}$ $\textstyle{[y]\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{[\lambda^{m_{1}}\bar{y}]}$ $\textstyle{S^{1,0}/\lambda^{r}}$ $\textstyle{[\lambda^{l_{1}}x]\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{[\lambda^{r^{\prime}-1}y]}$ 
+ 
+ Figure 7. Elements in the homotopy groups of the smash products 
+
+
+
+
+
+Proof.
+
+
+
+
+Consider the following two distinguished triangles of synthetic spectra
+
+
+
+
+
+
+
+
+
+
+$\displaystyle\nu X\xrightarrow{\hat{f}}\Sigma^{0,-e(f)}\nu Y\xrightarrow{\hat{g}}\Sigma^{0,-e(f)-e(g)}\nu Z\xrightarrow{\hat{h}}\Sigma^{0,-1}\nu\Sigma X=\Sigma^{1,0}\nu X$
+
+
+
+
+
+
+
+
+
+
+$\displaystyle S^{0,0}/\lambda^{r}\xrightarrow{\rho}S^{0,0}/\lambda^{r^{\prime}-1}\xrightarrow{\delta_{r^{\prime}-1}}S^{1,-r^{\prime}+1}/\lambda^{m_{1}+1}\xrightarrow{\lambda^{r^{\prime}-1}}S^{1,0}/\lambda^{r}$
+
+
+
+
+
+
+
+and their smash product. See Figure 7 .
+
+
+
+
+
+
+By condition (1), we have
+
+
+
+
+
+
+
+(6.13)
+
+
+
+
+
+$d^{\hat{h}_{r^{\prime}-1}}_{l}(\bar{x})=\lambda^{l_{1}}x$
+
+
+
+
+
+
+
+where $\hat{h}_{r^{\prime}-1}$ is the map $\Sigma^{0,e(h)}\nu Z/\lambda^{r^{\prime}-1}\to\nu X/\lambda^{r^{\prime}-1}$ induced by $\hat{h}$ .
+By condition (2), we have
+
+
+
+
+
+
+
+(6.14)
+
+
+
+
+
+$d^{\delta_{r^{\prime}-1}}_{r}(\bar{x})=\lambda^{m_{1}}\bar{y}.$
+
+
+
+
+
+
+
+
+
+
+
+Applying Proposition 4.16 and Proposition 5.10 to condition (3), we know that the differential in ( 6.13 ) or the differential in ( 6.14 ) has no crossing. Hence, there exists
+
+
+
+
+
+
+
+
+
+
+$[\bar{x}]\in\{\bar{x}\}\subset\pi_{t-s,t}(\nu Z/\lambda^{r^{\prime}-1})$
+
+
+
+
+
+
+
+such that
+
+
+
+
+
+
+
+
+
+
+$\hat{h}_{r^{\prime}-1}([\bar{x}])\in\{\lambda^{l_{1}}x\}\subset\pi_{t-s-1,t-1+e(h)}(\nu X/\lambda^{r^{\prime}-1})$
+
+
+
+
+
+
+
+and
+
+
+
+
+
+
+
+
+
+
+$\delta_{r^{\prime}-1}([\bar{x}])\in\{\lambda^{m_{1}}\bar{y}\}\subset\pi_{t-s-1,t+r^{\prime}-1}(\nu Z/\lambda^{m_{1}+1}).$
+
+
+
+
+
+
+
+
+
+
+
+By condition (4), we have
+
+
+
+
+
+
+
+
+
+
+$d^{\hat{g}_{m_{1}+1}}_{m}(y)=\lambda^{m_{1}}\bar{y}.$
+
+
+
+
+
+
+
+This implies that there exists
+
+
+
+
+
+
+
+
+
+
+$[y]\in\{y\}\subset\pi_{t-s-1,t+n+l-1}(\nu Y/\lambda^{m_{1}+1})$
+
+
+
+
+
+
+
+such that
+
+
+
+
+
+
+
+
+
+
+$\hat{g}_{m_{1}+1}([y])\in\{\lambda^{m_{1}}\bar{y}\}\subset\pi_{t-s-1,t+r^{\prime}-1}(\nu Z/\lambda^{m_{1}+1}),$
+
+
+
+
+
+
+
+where $\hat{g}_{m_{1}+1}$ is the map $\Sigma^{0,e(g)}\nu Y/\lambda^{m_{1}+1}\to\nu Z/\lambda^{m_{1}+1}$ induced by $\hat{g}$ .
+
+
+
+
+
+
+Due to degree reasons (Proposition 3.12 ), $\lambda^{m_{1}}\bar{y}$ detects a unique element in homotopy,
+
+
+
+
+
+
+
+
+
+
+$[\lambda^{m_{1}}\bar{y}]\in\pi_{t-s-1,t+r^{\prime}-1}(\nu Z)/\lambda^{m_{1}+1}.$
+
+
+
+
+
+
+
+Therefore, we have
+
+
+
+
+
+
+
+
+
+
+$\delta_{r^{\prime}-1}([\bar{x}])=\hat{g}_{m_{1}+1}([y])=[\lambda^{m_{1}}\bar{y}],$
+
+
+
+
+
+
+
+By Lemma 6.11 , there exists
+
+
+
+
+
+
+
+
+
+
+$[\lambda^{l_{1}}x]\in\pi_{t-s-1,t-1+e(h)}(\nu X/\lambda^{r}),$
+
+
+
+
+
+
+
+such that
+
+
+
+
+
+
+
+(6.15)
+
+
+
+
+
+$\displaystyle\rho([\lambda^{l_{1}}x])=\hat{h}_{r^{\prime}-1}([\bar{x}]),$
+
+
+
+
+
+
+
+(6.16)
+
+
+
+
+
+$\displaystyle\hat{f}_{r}([\lambda^{l_{1}}x])=\lambda^{r^{\prime}-1}[y],$
+
+
+
+
+
+
+
+where $\rho$ is the map $\nu X/\lambda^{r}\to\nu X/\lambda^{r^{\prime}-1}$ , and $\hat{f}_{r}$ is the map $\Sigma^{0,e(f)}\nu X/\lambda^{r}\to\nu Y/\lambda^{r}$ induced by $\hat{f}$ .
+
+
+
+
+
+
+The equality in ( 6.15 ) indicates that $[\lambda^{l_{1}}x]$ can be lifted to the $E_{\infty}$ -page of $\nu X/\lambda^{r}$ , so we have
+
+
+
+
+
+
+
+
+
+
+$x\in Z_{n+m+e(h)}^{s+l,t+l-1}(X).$
+
+
+
+
+
+
+
+The equation in ( 6.16 ) indicates that
+
+
+
+
+
+
+
+
+
+
+$d^{\hat{f}_{r}}_{n}(\lambda^{l_{1}}x)=\lambda^{r^{\prime}-1}y.$
+
+
+
+
+
+
+
+Therefore, by dividing $\lambda^{l_{1}}$ , we have
+
+
+
+
+
+
+
+
+
+
+$d^{\hat{f}_{n+m+e(h)}}_{n}(x)\equiv\lambda^{n_{1}}y\mod B_{r^{\prime}}^{s+n+l,t+n+l-1}(Y)$
+
+
+
+
+
+
+
+for $x$ in the $E_{\infty}$ page of $\nu X/\lambda^{r-l_{1}}=\nu X/\lambda^{n+m+e(h)}$ . By definition, this is equivalent to
+
+
+
+
+
+
+
+
+
+
+$d^{f,E_{n+m+1+e(h)}}_{n}x\equiv y\mod B_{r^{\prime}}^{s+n+l,t+n+l-1}(Y).$
+
+
+
+
+
+
+
+∎
+
+
+
+
+
+
+
+
+We refer to Theorem 
+6.12
+ as the Generalized Mahowald Trick, as this approach was first utilized by Mahowald and his collaborators in various works (see, for example, 
+[ 44 ]
+), particularly in the case where 
+$m_{1}=l_{1}=0$
+. The synthetic setting advances this method by allowing for the consideration of cases where 
+$m_{1}>0,l_{1}>0$
+ as well.
+
+
+
+
+
+
+Remark 6.17
+.
+
+
+
+
+Several versions of classical generalizations of Mahowald’s original trick appear in the literature and are often referred to as geometric boundary theorems. Notable examples include the works of Behrens 
+[ 8 ]
+, and Ma 
+[ 41 ]
+.
+
+
+
+
+
+
+
+
+Remark 6.18
+.
+
+
+
+
+A synthetic generalization of the Mahowald Trick, again lacking any no-crossing conditions, is also presented in Chua’s work 
+[ 19 , Theorem 12.11]
+. This version is also incorrect for similar reasons.
+
+
+
+
+
+
+
+
+Example 6.19
+.
+
+
+
+
+We apply the Generalized Mahowald Trick to prove the claim in Example 
+5.8
+(2) regarding an 
+$(f,E_{3})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{3}}(h_{0}h_{4}^{2})=h_{0}p,$
+
+
+
+
+
+
+
+for the map 
+$f=\nu:S^{3}\rightarrow S^{0}$
+.
+
+
+
+
+
+
+Specifically, let 
+$X=S^{3},Y=S^{0},Z=S^{0}/\nu$
+, where 
+$Z$
+ is the cofiber of 
+$\nu\in\pi_{3}$
+, we have a distinguished triangle
+
+
+
+
+
+
+
+
+
+
+$\textstyle{S^{3}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\nu}$ $\textstyle{S^{0}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{i}$ $\textstyle{S^{0}/\nu\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{q}$ $\textstyle{S^{4}.}$
+
+
+
+
+
+
+
+We set
+
+
+
+
+
+
+
+
+
+
+$f=\nu,\ g=i,\ h=q,\ e(f)=1,\ e(g)=0,\ e(h)=0.$
+
+
+
+
+
+
+
+The short exact sequence on 
+$\mathrm{H}{\mathbb{F}}_{2}$
+-homology
+
+
+
+
+
+
+
+
+
+
+$\textstyle{0\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{{\mathrm{H}{\mathbb{F}}_{2}}_{*}S^{0}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{i_{*}}$ $\textstyle{{\mathrm{H}{\mathbb{F}}_{2}}_{*}S^{0}/\nu\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{q_{*}}$ $\textstyle{{\mathrm{H}{\mathbb{F}}_{2}}_{*}S^{4}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\textstyle{0,}$
+
+
+
+
+
+
+
+induces a long exact sequence on Ext-groups
+
+
+
+
+
+
+
+
+
+
+$\lx@xy@svg{\hbox{\raise 2.5pt\hbox{\kern 6.75pt\hbox{\ignorespaces\ignorespaces\ignorespaces\hbox{\vtop{\halign{\entry@#!@&&\entry@@#!@\cr&&&&\crcr}}}\ignorespaces{\hbox{\kern-6.75pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\raise-2.5pt\hbox{$\textstyle{\cdots\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$}}}}}}}\ignorespaces\ignorespaces\ignorespaces\ignorespaces{}{\hbox{\lx@xy@droprule}}\ignorespaces\ignorespaces\ignorespaces{\hbox{\kern 10.27022pt\raise 5.93056pt\hbox{{}\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\hbox{\hbox{\kern 0.0pt\raise-1.93056pt\hbox{$\scriptstyle{\cdot h_{2}}$}}}\kern 3.0pt}}}}}}\ignorespaces{\hbox{\kern 30.75pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\lx@xy@tip{1}\lx@xy@tip{-1}}}}}}{\hbox{\lx@xy@droprule}}{\hbox{\lx@xy@droprule}}{\hbox{\kern 30.75pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\raise-2.5pt\hbox{$\textstyle{{\mathrm{Ext}}_{A}^{*,*}(S^{0})\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$}}}}}}}\ignorespaces\ignorespaces\ignorespaces\ignorespaces{}{\hbox{\lx@xy@droprule}}\ignorespaces\ignorespaces\ignorespaces{\hbox{\kern 88.14793pt\raise 5.81596pt\hbox{{}\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\hbox{\hbox{\kern 0.0pt\raise-1.81596pt\hbox{$\scriptstyle{i_{*}}$}}}\kern 3.0pt}}}}}}\ignorespaces{\hbox{\kern 106.65286pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\lx@xy@tip{1}\lx@xy@tip{-1}}}}}}{\hbox{\lx@xy@droprule}}{\hbox{\lx@xy@droprule}}{\hbox{\kern 106.65286pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\raise-2.5pt\hbox{$\textstyle{{\mathrm{Ext}}_{A}^{*,*}(S^{0}/\nu)\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$}}}}}}}\ignorespaces\ignorespaces\ignorespaces\ignorespaces{}{\hbox{\lx@xy@droprule}}\ignorespaces\ignorespaces\ignorespaces{\hbox{\kern 175.66928pt\raise 5.1875pt\hbox{{}\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\hbox{\hbox{\kern 0.0pt\raise-0.8264pt\hbox{$\scriptstyle{q_{*}}$}}}\kern 3.0pt}}}}}}\ignorespaces{\hbox{\kern 194.71774pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\lx@xy@tip{1}\lx@xy@tip{-1}}}}}}{\hbox{\lx@xy@droprule}}{\hbox{\lx@xy@droprule}}{\hbox{\kern 194.71774pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\raise-2.5pt\hbox{$\textstyle{{\mathrm{Ext}}_{A}^{*,*}(S^{4})\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$}}}}}}}\ignorespaces\ignorespaces\ignorespaces\ignorespaces{}{\hbox{\lx@xy@droprule}}\ignorespaces\ignorespaces\ignorespaces{\hbox{\kern 250.14082pt\raise 5.93056pt\hbox{{}\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\hbox{\hbox{\kern 0.0pt\raise-1.93056pt\hbox{$\scriptstyle{\cdot h_{2}}$}}}\kern 3.0pt}}}}}}\ignorespaces{\hbox{\kern 270.6206pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\lx@xy@tip{1}\lx@xy@tip{-1}}}}}}{\hbox{\lx@xy@droprule}}{\hbox{\lx@xy@droprule}}{\hbox{\kern 270.6206pt\raise 0.0pt\hbox{\hbox{\kern 0.0pt\raise 0.0pt\hbox{\hbox{\kern 3.0pt\raise-2.5pt\hbox{$\textstyle{\cdots}$}}}}}}}\ignorespaces}}}}\ignorespaces.$
+
+
+
+
+
+
+
+We use Atiyah–Hirzebruch notation (as in 
+[ 53 , 54 , Notation 3.3]
+) to denote elements in 
+${\mathrm{Ext}}_{A}^{*,*}(S^{0}/\nu)$
+. Specifically, if an element 
+$x$
+ in 
+${\mathrm{Ext}}_{A}^{*,*}(S^{0}/\nu)$
+ satisfies
+
+
+
+
+
+
+
+
+
+
+$q_{*}(x)=a\neq 0\in\mathrm{Ext}_{A}^{*,*}(S^{4}),$
+
+
+
+
+
+
+
+we denote 
+$x$
+ by 
+$a[4]$
+; otherwise, due to exactness,
+
+
+
+
+
+
+
+
+
+
+$x=i_{*}(b)\ \text{for some}\ b\in\mathrm{Ext}_{A}^{*,*}(S^{0}),$
+
+
+
+
+
+
+
+and in this case, we denote 
+$x$
+ by 
+$b[0]$
+.
+
+
+
+
+
+
+We have
+
+
+
+
+
+
+
+
+
+
+$m=0,\ l=0,\ n=2,\ r=2,\ r^{\prime}=2,\ n_{1}=1,\ m_{1}=0,\ l_{1}=0,$
+
+
+
+
+
+
+
+and
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$\displaystyle x$
+
+
+$\displaystyle=h_{0}h_{4}^{2}$
+
+
+
+
+
+$\displaystyle\in\mathrm{Ext}_{A}^{3,33}$
+
+
+
+
+
+$\displaystyle\cong Z_{1}^{3,36}(S^{3}),$
+
+
+
+
+
+
+
+
+
+
+$\displaystyle\bar{x}$
+
+
+$\displaystyle=h_{0}h_{4}^{2}[4]$
+
+
+
+
+
+$\displaystyle\in\mathrm{Ext}_{A}^{3,37}(S^{0}/\nu)$
+
+
+
+
+
+$\displaystyle\cong Z_{1}^{3,37}(S^{0}/\nu),$
+
+
+
+
+
+
+
+
+
+
+$\displaystyle y$
+
+
+$\displaystyle=h_{0}p$
+
+
+
+
+
+$\displaystyle\in\mathrm{Ext}_{A}^{5,38}$
+
+
+
+
+
+$\displaystyle\cong Z_{1}^{5,38}(S^{0}),$
+
+
+
+
+
+
+
+
+
+
+$\displaystyle\bar{y}$
+
+
+$\displaystyle=h_{0}p[0]$
+
+
+
+
+
+$\displaystyle\in\mathrm{Ext}_{A}^{5,38}(S^{0}/\nu)$
+
+
+
+
+
+$\displaystyle\cong Z_{\infty}^{5,38}(S^{0}/\nu).$
+
+
+
+
+
+
+
+For conditions in Theorem 
+6.12
+, we have:
+
+
+
+ (1)
+ 
+
+
+
+$d_{0}^{h,E_{2}}(h_{0}h_{4}^{2}[4])=h_{0}h_{4}^{2}$
+, since in Ext 
+$h_{2}\cdot h_{0}h_{4}^{2}=0$
+.
+
+ 
+ (2)
+ 
+
+
+
+$d_{2}(h_{0}h_{4}^{2}[4])=h_{0}p[0]$
+. This is a classical Adams 
+$d_{2}$
+-differential for 
+$S^{0}/\nu$
+, and can be computed using Lin’s computer program via the method of the secondary Steenrod algebra 
+[ 6 , 49 , 19 ]
+.
+
+ 
+ (3)
+ 
+
+
+
+
+ (a)
+ 
+
+
+
+The differential in (1) has no crossing, as it is a 
+$d_{0}$
+-differential, and
+
+ 
+ (b)
+ 
+
+
+
+the differential in (2) has no crossing, from Remark 
+4.17
+.
+
+ 
+
+
+ 
+ (4)
+ 
+
+
+
+$d_{0}^{g,E_{2}}(h_{0}p)=h_{0}p[0]$
+, as 
+$h_{0}p$
+ is not divisible by 
+$h_{2}$
+ in Ext.
+
+ 
+
+
+
+Since all conditions of Theorem 
+6.12
+ are satisfied, we conclude that 
+$x=h_{0}h_{4}^{2}$
+ survives to the 
+$E_{3}$
+-page, and there is an 
+$(f,E_{3})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{3}}(h_{0}h_{4}^{2})=h_{0}p,$
+
+
+
+
+
+
+
+as promised.
+
+
+
+
+
+
+
+
+The outcome of the Generalized Mahowald Trick, as stated in Theorem 
+6.12
+, is an 
+$f$
+-extension on a specific Adams page, such as the 
+$(f,E_{3})$
+-extension 
+$d_{2}^{f,E_{3}}(h_{0}h_{4}^{2})=h_{0}p$
+ in Example 
+5.8
+(2) and Example 
+6.19
+. In practice, the source of an 
+$(f,E_{r})$
+-extension may survive to later Adams pages, prompting interest in the 
+$(f,E_{>r})$
+-extensions, such as the 
+$(f,E_{\infty})$
+-extension 
+$d_{2}^{f,E_{\infty}}(h_{0}h_{4}^{2})=h_{0}p$
+ in Example 
+5.8
+(3), which is applied in Example 
+6.7
+. The following Propositions 
+6.20
+ and 
+6.23
+ describe the relationships between extensions across different pages.
+
+
+
+
+
+
+Proposition 6.20
+.
+
+
+
+
+Suppose that we have an $(f,E_{r})$ -extension $d^{f,E_{r}}_{n}(x)=y$ , where $x\in Z_{r-1}^{s,t}(X)$ and $y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y)$ . Then for all $2\leq r^{\prime}<r$ , we also have
+
+
+
+
+
+
+
+(6.21)
+
+
+
+
+
+$d^{f,E_{r^{\prime}}}_{n}(x)=y.$
+
+
+
+
+
+
+
+
+
+
+
+Furthermore, if $d^{f,E_{r}}_{n}(x)=y$ is essential and $n\leq r^{\prime}-2+e(f)$ , then ( 6.21 ) is inessential if and only if there exists some $0<a^{\prime}\leq n-e(f)$ and an element
+
+
+
+
+
+
+
+
+
+
+$x^{\prime}\in Z_{r^{\prime}-1-a^{\prime}}^{s+a^{\prime},t+a^{\prime}}(X)\backslash Z_{r-1-a^{\prime}}^{s+a^{\prime},t+a^{\prime}}(X)$
+
+
+
+
+
+
+
+such that
+
+
+
+
+
+
+
+
+
+
+$d^{\hat{f}_{r^{\prime}-1}}_{n-a^{\prime}-b}(\lambda^{a^{\prime}}x^{\prime})=\lambda^{n-b-e(f)}y^{\prime}$
+
+
+
+
+
+
+
+for some $b\geq 0$ .
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+Consider the following commutative diagram:
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\Sigma^{0,e(f)}\nu X/\lambda^{r-1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{f}_{r-1}}$ $\scriptstyle{\rho_{X}}$ $\textstyle{\nu Y/\lambda^{r-1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\rho_{Y}}$ $\textstyle{\Sigma^{0,e(f)}\nu X/\lambda^{r^{\prime}-1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{f}_{r^{\prime}-1}}$ $\textstyle{\nu Y/\lambda^{r^{\prime}-1}}$
+
+
+
+
+
+
+
+By Corollary 2.18 , $(\rho_{X},\rho_{Y})$ induces a map from the $\hat{f}_{r-1}$ -ESS to the $\hat{f}_{r^{\prime}-1}$ -ESS. Therefore, by naturality,
+
+
+
+
+
+
+
+
+
+
+$d^{\hat{f}_{r-1}}_{n}(x)=\lambda^{n-e(f)}y\ \text{implies}\ d^{\hat{f}_{r^{\prime}-1}}_{n}(x)=\lambda^{n-e(f)}y,$
+
+
+
+
+
+
+
+which, by definition, is
+
+
+
+
+
+
+
+
+
+
+$d^{f,E_{r^{\prime}}}_{n}(x)=y.$
+
+
+
+
+
+
+
+
+
+
+
+Next, we prove the second part of the proposition. By Definition 5.4 , the $(f,E_{r})$ -extension ( 6.21 ) is inessential if and only if
+there exists $0<a\leq n-e(f)$ and
+
+
+
+
+
+
+
+
+
+
+$\lambda^{a}x^{\prime}\in E_{\infty}^{s+a,t+a,t}(\nu X/\lambda^{r^{\prime}-1})\cong Z_{r^{\prime}-1-a}^{s+a,t+a}(X)/B_{1+a}^{s+a,t+a}(X),$
+
+
+
+
+
+
+
+such that
+
+
+
+
+
+
+
+(6.22)
+
+
+
+
+
+$d^{\hat{f}_{r^{\prime}-1}}_{n-a}(\lambda^{a}x^{\prime})=\lambda^{n-e(f)}y,$
+
+
+
+
+
+
+
+and this differential is not induced by $(\rho_{X},\rho_{Y})$ , as we assume that $d^{f,E_{r}}_{n}(x)=y$ is essential.
+
+
+
+
+
+
+There are two scenarios where this differential is not induced by $(\rho_{X},\rho_{Y})$ . The first case occurs when $\lambda^{a}x^{\prime}$ is not in the image of $\rho_{X}$ at all, which is equivalent to $x^{\prime}\notin Z_{r-1-a}^{s+a,t+a}(X)$ . (See Figure 8 .)
+
+
+
+
+
+ $x$ $x^{\prime}$ $y$ $d_{\geq r^{\prime}}$ $d_{*}$ $d^{f,E_{r^{\prime}}}_{>n}$ $d^{f,E_{r}}_{n}$ $d^{f,E_{r^{\prime}-a}}_{n-a}$ $s$ $s+a$ $s+n$ $s+r^{\prime}$ $s+r$ $E_{2}(X)$ $E_{2}(Y)$ 
+ 
+ Figure 8. Extensions across pages 
+
+
+
+
+
+The second case occurs when $\lambda^{a}x^{\prime}$ is in the image of $\rho_{X}$ , but it supports an essential $\hat{f}_{r-1}$ -extension that is strictly shorter than the differential ( 6.22 ).
+
+
+
+
+
+
+To further explore this scenario, we replace $x$ with $\lambda^{a}x^{\prime}$ and analyze successive essential extensions. This process is repeated iteratively until the first case is reached. Ultimately, this leads to the existence of some $0<a^{\prime}\leq n-e(f)$ and an element
+
+
+
+
+
+
+
+
+
+
+$x^{\prime\prime}\in Z_{r^{\prime}-1-a^{\prime}}^{s+a^{\prime},t+a^{\prime}}(X)\backslash Z_{r-1-a^{\prime}}^{s+a^{\prime},t+a^{\prime}}(X)$
+
+
+
+
+
+
+
+such that
+
+
+
+
+
+
+
+
+
+
+$d^{\hat{f}_{r^{\prime}-1}}_{n-a^{\prime}-b}(\lambda^{a^{\prime}}x^{\prime\prime})=\lambda^{n-b-e(f)}y^{\prime}$
+
+
+
+
+
+
+
+for some $b>0$ . This represents a crossing of $d^{\hat{f}_{r^{\prime}-1}}_{n}(x)=\lambda^{n-e(f)}y$ .
+
+
+
+
+
+
+∎
+
+
+
+
+
+
+
+
+The following Corollary 
+6.23
+ is the contrapositive statement of the second part of Proposition 
+6.20
+.
+
+
+
+
+
+
+Corollary 6.23
+.
+
+
+
+
+Suppose $r\geq r^{\prime}$ and there exists an $(f,E_{r^{\prime}})$ -extension
+
+
+
+
+
+
+
+
+
+
+$d^{f,E_{r^{\prime}}}_{n}(x)=y$
+
+
+
+
+
+
+
+for $x\in Z_{r-1}^{s,t}(X)$ and $y\in Z_{r^{\prime}-1-n+e(f)}^{s+n,t+n}(Y)$ . Assume that this extension has no crossing of the form $d^{f,E_{r^{\prime}-a}}_{n-a-b}(x^{\prime})=y^{\prime}$ for any $b>0$ , $0<a\leq n-e(f)$ , and
+
+
+
+
+
+
+
+
+
+
+$x^{\prime}\in Z_{r^{\prime}-1-a}^{s+a,t+a}(X)\backslash Z_{r-1-a}^{s+a,t+a}(X).$
+
+
+
+
+
+
+
+Under these conditions, we also have an $(f,E_{r})$ -extension
+
+
+
+
+
+
+
+
+
+
+$d^{f,E_{r}}_{n}(x)=y.$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Example 6.24
+.
+
+
+
+
+In Example 
+6.19
+, we use the Generalized Mahowald Trick to establish the 
+$(f,E_{3})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{3}}(h_{0}h_{4}^{2})=h_{0}p,$
+
+
+
+
+
+
+
+for the map 
+$f=\nu:S^{3}\rightarrow S^{0}$
+, as discussed
+in Example 
+5.8
+(2). However, to apply the Generalized Leibniz Rule in proving the classical Adams differential
+
+
+
+
+
+
+
+
+
+
+$d_{3}(h_{2}h_{5})=h_{0}p$
+
+
+
+
+
+
+
+in Example 
+6.7
+, we need the 
+$E_{\infty}$
+-page version of the 
+$(f,E_{3})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{4}^{2})=h_{0}p.$
+
+
+
+
+
+
+
+We apply Corollary 
+6.23
+ to confirm this.
+
+
+
+
+
+
+As checked in Example 
+5.13
+(2), the 
+$(f,E_{3})$
+-extension has no crossing. Consequently, by Corollary 
+6.23
+, we obtain the required 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{4}^{2})=h_{0}p.$
+
+
+
+
+
+
+
+
+
+

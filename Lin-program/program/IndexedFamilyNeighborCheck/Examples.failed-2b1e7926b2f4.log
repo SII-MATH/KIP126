@@ -1,0 +1,13 @@
+IndexedFamilyNeighborCheck/Examples.lean:41:39: error: failed to synthesize
+  Decidable (KeyValid first.key ∧ first.wire.Valid)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+IndexedFamilyNeighborCheck/Examples.lean:41:39: error: failed to synthesize
+  Decidable (KeyValid second.key ∧ second.wire.Valid)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+IndexedFamilyNeighborCheck/Examples.lean:41:39: error: failed to synthesize
+  Decidable (KeyValid target.key ∧ target.wire.Valid)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+'IndexedFamilyNeighborCheck.Tests.batch_example' depends on axioms: [propext, sorryAx, Quot.sound]

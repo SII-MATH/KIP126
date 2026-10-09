@@ -1,0 +1,15 @@
+IndexedPredecessorClosureCompact/Basic.lean:32:85: warning: This simp argument is unused:
+  if_true
+
+Hint: Omit it from the simp argument list.
+  simp only [lookupH, ̲project, ̲List.map_cons, ̲List.find?_cons, ̲projectEntry, ̲lookup, ̲h,i̵f̵_̵t̵r̵u̵e̵,̵
+         ̵ ̵Option.map_some]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'IndexedPredecessorClosureCompact.lookupH_project' depends on axioms: [propext]
+'IndexedPredecessorClosureCompact.checkDimension_project' depends on axioms: [propext]
+'IndexedPredecessorClosureCompact.checkEntry_project' depends on axioms: [propext]
+'IndexedPredecessorClosureCompact.check_project' depends on axioms: [propext, Quot.sound]
+'IndexedPredecessorClosureCompact.check_iff' depends on axioms: [propext, Quot.sound]
+'IndexedPredecessorClosureCompact.check_sound' depends on axioms: [propext, Quot.sound]
+'IndexedPredecessorClosureCompact.Certificate.sound' depends on axioms: [propext, Quot.sound]

@@ -1,0 +1,70 @@
+{
+  "schema": "row2576d4_lake_build_audit/v1",
+  "exit_code": 0,
+  "exit_code_observed_by": "root exec session3439, actual tool completion",
+  "log": "tests/step4-family-build.log",
+  "log_sha256": "24b94a483b344c571c45f496e7f11434de778e742f27f0b315112daefd6a3abb",
+  "modules": {
+    "Actual": {
+      "source_sha256": "51472b070d126b3c336c754fe98b801eebae5b600b9638641e1a4e2036227ed6",
+      "olean_sha256": "3e29c3e2007a9d270cd1d1f058d0d853c681998c011ec05cb9a4d779c3fc5060",
+      "build_record": "\u2714 [2265/2285] Built Row2576D4Detector.Actual (67s)"
+    },
+    "Comparison": {
+      "source_sha256": "c49d61926f422c7d12e50e33de4672d9e5b14984829fb47aef0fae959f40ead6",
+      "olean_sha256": "de9366374c8c88ff43b057cefaf2d690ec8a8a9730d99c7f96e8d0ad61b2fa6d",
+      "build_record": "\u2714 [2269/2285] Built Row2576D4Detector.Comparison (4.0s)"
+    },
+    "Target": {
+      "source_sha256": "4655cbacacdae71a04a3fbaff5c61b055bbf20b7a33700c93f40d695d27f6140",
+      "olean_sha256": "38389f2a4e818071bbba6aaf39dbdb18b4df54ecc54ae43c79f3f4ea0ee9872f",
+      "build_record": "\u2139 [2270/2285] Built Row2576D4Detector.Target (2.6s)"
+    },
+    "Source": {
+      "source_sha256": "a64dcc19c14e468014b6687235eedbca91d6c3314494348be7ac938c18966b97",
+      "olean_sha256": "7092aa9030c500a362c506c6cefe99ecc500d40605ece3322d5a0cee5cc4b41c",
+      "build_record": "\u26a0 [2272/2285] Built Row2576D4Detector.Source (2.5s)"
+    },
+    "Matches": {
+      "source_sha256": "feb19497f17c24a328c13898fe1ff786dc1954aaa0e230dcc6617666142fddbe",
+      "olean_sha256": "f7ad6ccbc53cbc198131289212460d51424ad46610ddcde511906571604c45a7",
+      "build_record": "\u2139 [2275/2285] Built Row2576D4Detector.Matches (2.3s)"
+    },
+    "MapSemantics": {
+      "source_sha256": "07b59b81cb84f091ba36086ea0cacde9a432c8053cf77cbf0c5a308a61a3ae29",
+      "olean_sha256": "d3222227969409b40e76b90ae060b67afae2e86297775176e1d6a3dde228f81e",
+      "build_record": "\u2139 [2266/2285] Built Row2576D4Detector.MapSemantics (2.5s)"
+    },
+    "ImportedBoundary": {
+      "source_sha256": "35eaa870bde1be42cd6ccfbd0b444ce0dbfc537c84554c465541ed3d5fcff8e5",
+      "olean_sha256": "dc3f46a1dacef68410d36c677fe2869f4ce5e79e7a77f71735e759d88338b927",
+      "build_record": "\u2139 [2276/2285] Built Row2576D4Detector.ImportedBoundary (2.4s)"
+    },
+    "Tests": {
+      "source_sha256": "e5c3376269aec60bcd21a1ce700427198f3d554bc62b2c2c2c5f6b5646627072",
+      "olean_sha256": "178aef76ba03e5027acc276915df32c2280b61639ee0b183f4b92d946e32c67d",
+      "build_record": "\u2714 [2277/2285] Built Row2576D4Detector.Tests (2.6s)"
+    },
+    "CurrentImports": {
+      "source_sha256": "b27037d89bfc355d51d5e67fb48e9ceb5f532247a3fb4efb230dcb472d309215",
+      "olean_sha256": "b20a7d5a487b6f158fea022506f76c4f2619429525e4529f45d941a828573330",
+      "build_record": "\u2714 [2278/2285] Built Row2576D4Detector.CurrentImports (2.0s)"
+    }
+  },
+  "imported_sha256": {
+    "wire/s10t136.json": "777ec747c1d64a7d2c196689c764d05085b434b44ddc43c8f0e4d5d0768a3587",
+    "wire/s11t137.json": "12f05efc8f6c19ef97a6ab69b49276f1871f62fc5f174b321ac4572d7f01bf45",
+    "wire/s13t138.json": "9fc1900012291a97b9b36d4770165ec607f5a9d16c1ae6eaceac2a2335551723",
+    "wire/s2t131.json": "1241cba3db5ac8d67aebb512fd13107ef034c72da741a8df0d39811caf88adb5",
+    "wire/s3t132.json": "738ea345f133cb8a78e97b8e04b1c66151e0a3a1a1c8929cf81bfe8f4712740e",
+    "wire/s4t132.json": "d71b547ec2b8b5d628b21815b0fa8646b9fad886bb4879c8dbf84fb5268d2afa",
+    "wire/s5t133.json": "3948fd8a3cbd5d84997c481b351c42a34234fb6ce91a91b0e1deabefd0f1a11f",
+    "wire/s6t133.json": "14256c0fc708f468c0f83de02472c31dca93678561ed294d95d9953b2d764bbe",
+    "wire/s6t134.json": "5021573cc5223790e5d99a384be39c8c3fc6461b51eddf41cb78ad915f47f7d7",
+    "wire/s7t134.json": "19b8a6da32bf0d781c358754aad2bb19ec664b629a315d8f10f014c8d77ae1ee",
+    "wire/s8t135.json": "9d4a706a5e9718f463efeed8db26f080337f563743b7d9916dacbd3f173a24c5",
+    "wire/s9t136.json": "e536bb967a9e2418f9e46cf51ee093c4689da0a86cf9f75b871dd79e5fdcfc7f"
+  },
+  "historical_direct_audit_sha256": "3a71c61e6dc52683c15a7a792b9263450c31570b2d6f148461b7f3176b9966ea",
+  "reason": "Lake emits olean metadata different from the prior direct build; both compile records retain their separate provenance."
+}

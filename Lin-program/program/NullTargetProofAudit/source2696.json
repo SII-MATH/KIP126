@@ -1,0 +1,559 @@
+{
+  "raw": [
+    2696,
+    9,
+    134,
+    "3",
+    null,
+    9993
+  ],
+  "direct": [
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 576,
+      "fields": {
+        "depth": "0",
+        "dx": "3,4",
+        "id": "6006",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "2",
+        "reason": "d2",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "0"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "6001",
+        "6002",
+        "6003",
+        "6004",
+        "6005"
+      ],
+      "start_line": 576,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 577,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "6007",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "2",
+        "reason": "d2",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "1"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "6002",
+        "6003",
+        "6004",
+        "6005",
+        "6006"
+      ],
+      "start_line": 577,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": {
+        "end_line": 149295,
+        "fields": {
+          "depth": "1",
+          "dx": "0",
+          "id": "153575",
+          "info": "Get `S0 (125,9) d_3[2,3]=[0]`. Apply the Leibniz rule with `C2 (2,1) d_3[0]=[]` and get `C2 (127,10) d_3[]=[3]`.\nHowever, `C2 (126,13) [3]` is not in B_2.",
+          "name": "S0",
+          "r": "3",
+          "reason": "T",
+          "s": "9",
+          "stem": "125",
+          "t": "134",
+          "x": "2,3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149294
+      },
+      "degree_role": "source2696",
+      "end_line": 149295,
+      "fields": {
+        "depth": "1",
+        "dx": "0",
+        "id": "153575",
+        "info": "Get `S0 (125,9) d_3[2,3]=[0]`. Apply the Leibniz rule with `C2 (2,1) d_3[0]=[]` and get `C2 (127,10) d_3[]=[3]`.\nHowever, `C2 (126,13) [3]` is not in B_2.",
+        "name": "S0",
+        "r": "3",
+        "reason": "T",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "2,3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153570",
+        "153571",
+        "153572",
+        "153573",
+        "153574"
+      ],
+      "start_line": 149294,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 149296,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "153576",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "3",
+        "reason": "D",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "2,3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153571",
+        "153572",
+        "153573",
+        "153574",
+        "153575"
+      ],
+      "start_line": 149296,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": {
+        "end_line": 149298,
+        "fields": {
+          "depth": "1",
+          "dx": "0",
+          "id": "153577",
+          "info": "Get `S0 (125,9) d_3[3]=[0]`. Apply the Leibniz rule with `C2 (2,1) d_3[0]=[]` and get `C2 (127,10) d_3[1]=[3]`.\nHowever, `C2 (126,13) [3]` is not in B_2.",
+          "name": "S0",
+          "r": "3",
+          "reason": "T",
+          "s": "9",
+          "stem": "125",
+          "t": "134",
+          "x": "3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149297
+      },
+      "degree_role": "source2696",
+      "end_line": 149298,
+      "fields": {
+        "depth": "1",
+        "dx": "0",
+        "id": "153577",
+        "info": "Get `S0 (125,9) d_3[3]=[0]`. Apply the Leibniz rule with `C2 (2,1) d_3[0]=[]` and get `C2 (127,10) d_3[1]=[3]`.\nHowever, `C2 (126,13) [3]` is not in B_2.",
+        "name": "S0",
+        "r": "3",
+        "reason": "T",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153572",
+        "153573",
+        "153574",
+        "153575",
+        "153576"
+      ],
+      "start_line": 149297,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 149299,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "153578",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "3",
+        "reason": "D",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153573",
+        "153574",
+        "153575",
+        "153576",
+        "153577"
+      ],
+      "start_line": 149299,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 309660,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "250533",
+        "info": "Ceta__S0",
+        "name": "S0",
+        "r": "4",
+        "reason": "N",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "2,3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "250528",
+        "250529",
+        "250530",
+        "250531",
+        "250532"
+      ],
+      "start_line": 309660,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 309717,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "250584",
+        "info": "Ceta__S0",
+        "name": "S0",
+        "r": "5",
+        "reason": "N",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "2,3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "250579",
+        "250580",
+        "250581",
+        "250582",
+        "250583"
+      ],
+      "start_line": 309717,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 947447,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "531758",
+        "info": "Csigma__S0",
+        "name": "S0",
+        "r": "4",
+        "reason": "N",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "2"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "531753",
+        "531754",
+        "531755",
+        "531756",
+        "531757"
+      ],
+      "start_line": 947447,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 1423744,
+      "fields": {
+        "depth": "0",
+        "dx": "0",
+        "id": "720643",
+        "info": "Csigmasq__S0",
+        "name": "S0",
+        "r": "3",
+        "reason": "N",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "1"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "720638",
+        "720639",
+        "720640",
+        "720641",
+        "720642"
+      ],
+      "start_line": 1423744,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 1266652,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "1508327",
+        "info": "C2h6__S0_by_theta5",
+        "name": "S0",
+        "r": "7",
+        "reason": "N",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "2"
+      },
+      "file": "proofs-part2.csv",
+      "match": "degree",
+      "previous_ids": [
+        "1508322",
+        "1508323",
+        "1508324",
+        "1508325",
+        "1508326"
+      ],
+      "start_line": 1266652,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 22867,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "2022864",
+        "info": "C2h6__S0_by_theta5",
+        "name": "S0",
+        "r": "999",
+        "reason": "N",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "2"
+      },
+      "file": "proofs-part3.csv",
+      "match": "degree",
+      "previous_ids": [
+        "2022859",
+        "2022860",
+        "2022861",
+        "2022862",
+        "2022863"
+      ],
+      "start_line": 22867,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 424354,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "2195908",
+        "info": "CW_2_V_eta__S2",
+        "name": "S0",
+        "r": "6",
+        "reason": "N",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "2,3"
+      },
+      "file": "proofs-part3.csv",
+      "match": "degree",
+      "previous_ids": [
+        "2195903",
+        "2195904",
+        "2195905",
+        "2195906",
+        "2195907"
+      ],
+      "start_line": 424354,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 935536,
+      "fields": {
+        "depth": "0",
+        "dx": "[NULL]",
+        "id": "2422885",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "7",
+        "reason": "[NULL]",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "3"
+      },
+      "file": "proofs-part3.csv",
+      "match": "degree",
+      "previous_ids": [
+        "2422880",
+        "2422881",
+        "2422882",
+        "2422883",
+        "2422884"
+      ],
+      "start_line": 935536,
+      "classification": "grey_hint_not_deduction"
+    }
+  ],
+  "exact_source": [
+    {
+      "active_trial": {
+        "end_line": 149298,
+        "fields": {
+          "depth": "1",
+          "dx": "0",
+          "id": "153577",
+          "info": "Get `S0 (125,9) d_3[3]=[0]`. Apply the Leibniz rule with `C2 (2,1) d_3[0]=[]` and get `C2 (127,10) d_3[1]=[3]`.\nHowever, `C2 (126,13) [3]` is not in B_2.",
+          "name": "S0",
+          "r": "3",
+          "reason": "T",
+          "s": "9",
+          "stem": "125",
+          "t": "134",
+          "x": "3"
+        },
+        "file": "proofs-part1.csv",
+        "start_line": 149297
+      },
+      "degree_role": "source2696",
+      "end_line": 149298,
+      "fields": {
+        "depth": "1",
+        "dx": "0",
+        "id": "153577",
+        "info": "Get `S0 (125,9) d_3[3]=[0]`. Apply the Leibniz rule with `C2 (2,1) d_3[0]=[]` and get `C2 (127,10) d_3[1]=[3]`.\nHowever, `C2 (126,13) [3]` is not in B_2.",
+        "name": "S0",
+        "r": "3",
+        "reason": "T",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153572",
+        "153573",
+        "153574",
+        "153575",
+        "153576"
+      ],
+      "start_line": 149297,
+      "classification": "hypothetical_trial_surviving_log_rollback"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 149299,
+      "fields": {
+        "depth": "0",
+        "dx": "",
+        "id": "153578",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "3",
+        "reason": "D",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "3"
+      },
+      "file": "proofs-part1.csv",
+      "match": "degree",
+      "previous_ids": [
+        "153573",
+        "153574",
+        "153575",
+        "153576",
+        "153577"
+      ],
+      "start_line": 149299,
+      "classification": "depth0_recorded_rule_requires_mathematical_interpretation"
+    },
+    {
+      "active_trial": null,
+      "degree_role": "source2696",
+      "end_line": 935536,
+      "fields": {
+        "depth": "0",
+        "dx": "[NULL]",
+        "id": "2422885",
+        "info": "[NULL]",
+        "name": "S0",
+        "r": "7",
+        "reason": "[NULL]",
+        "s": "9",
+        "stem": "125",
+        "t": "134",
+        "x": "3"
+      },
+      "file": "proofs-part3.csv",
+      "match": "degree",
+      "previous_ids": [
+        "2422880",
+        "2422881",
+        "2422882",
+        "2422883",
+        "2422884"
+      ],
+      "start_line": 935536,
+      "classification": "grey_hint_not_deduction"
+    }
+  ],
+  "requested_page_info": []
+}

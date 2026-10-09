@@ -1,0 +1,46 @@
+Fact763Continuation/Actual.lean:68:87: error: failed to synthesize
+  Decidable (basis2 0 = Row2693D5Search.Finite.product5Name)
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+Fact763Continuation/Actual.lean:92:15: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (S.differential 5 degree).toFun (?x + ?y)
+in the target expression
+  (S.differential 5 degree).toFun (a + b) = (S.differential 5 degree).toFun b
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+D : Input S pages P
+x : (S.element 5 degree).carrier
+a : (S.element (4 + 1) (Row2693D5Search.Product.leftDegree.add Row2693D5Search.Product.rightDegree)).carrier :=
+  D.calculation.product.input.nextTarget.equivalence.symm (basis2 0)
+b : (S.element (4 + 1) (Row2693D5Search.Product.leftDegree.add Row2693D5Search.Product.rightDegree)).carrier :=
+  D.calculation.product.input.nextTarget.equivalence.symm (basis2 1)
+ha : (S.differential 5 degree).toFun a = 0
+coordinates : ∀ (v : Vec 2), v = zero ∨ v = basis2 0 ∨ v = basis2 1 ∨ v = add (basis2 0) (basis2 1)
+hx : D.calculation.product.input.nextTarget.equivalence x = add (basis2 0) (basis2 1)
+sum_name : D.calculation.product.input.nextTarget.equivalence (a + b) = add (basis2 0) (basis2 1)
+same : x = a + b
+⊢ (S.differential 5 degree).toFun (a + b) = (S.differential 5 degree).toFun b
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    a + b
+  has type
+    (S.element (4 + 1) (Row2693D5Search.Product.leftDegree.add Row2693D5Search.Product.rightDegree)).carrier
+  but is expected to have type
+    (S.element 5 degree).carrier
+  in the application
+    (S.differential 5 degree).toFun (a + b)
+'Fact763Continuation.Actual.additive_two_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.Incoming.page3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.Incoming.page5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.Input.current_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.whole_outgoing' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.Input.incomingSource' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.Input.whole' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.Input.page6' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.coordinate6' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.nonzero6' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact763Continuation.Actual.same_input_E6' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

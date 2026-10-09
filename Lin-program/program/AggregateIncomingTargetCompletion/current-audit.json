@@ -1,0 +1,64 @@
+{
+  "status": "base_twelve_and_conditional_final_target_builds_verified",
+  "build_records": [
+    {
+      "module": "Data",
+      "exit_code": 0,
+      "source_log_match": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Family",
+      "exit_code": 0,
+      "source_log_match": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "Targets",
+      "exit_code": 0,
+      "source_log_match": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "FinalData",
+      "exit_code": 0,
+      "source_log_match": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "FinalFamily",
+      "exit_code": 0,
+      "source_log_match": true,
+      "current_olean_matches_direct": true
+    },
+    {
+      "module": "FinalTarget",
+      "exit_code": 0,
+      "source_log_match": true,
+      "current_olean_matches_direct": true
+    }
+  ],
+  "standard_or_no_axiom_reports": 27,
+  "base_completed_incoming_rows": 12,
+  "final_completed_incoming_rows": 13,
+  "all_supplied_incoming_rows": 36,
+  "original_named_events_preserved": 95,
+  "base_comparisons": 384,
+  "final_comparisons": 399,
+  "final_additional_condition": "Row3743Successor actual known-event and faithful coordinate meaning; raw NULL retained.",
+  "input_sha256": {
+    "AggregateIncomingTargetCompletion/Data.lean": "90f2ce9d298d49f1b6d0051449024580b0c6b552ca5212b05fc8c52e647bc98c",
+    "AggregateIncomingTargetCompletion/Family.lean": "6e4e264c1570fc2b07bf72944f8cec611166d81f2456e4026c5172e22816fc6c",
+    "AggregateIncomingTargetCompletion/Targets.lean": "bf638dc59bb639c547533ba8248f02abd56a0f65a956117b33ac6489649dbfcf",
+    "AggregateIncomingTargetCompletion/FinalData.lean": "f5a6348f02faab59c4252e73e08787948a182377529ea501511e6da430618a2e",
+    "AggregateIncomingTargetCompletion/FinalFamily.lean": "b3b10d2ce47c3cc261a9391ee921c4f9bacb57f0ed1b0e24cc2e3ba170dfd499",
+    "AggregateIncomingTargetCompletion/FinalTarget.lean": "ad8412d527e09ae21c6b705f119f014a2ac6987a06a168141386622ae1eddd6f",
+    "AggregateIncomingTargetCompletion/data.json": "5edf847f244024e554761eac3a4cdc98c4d6983f25549033c5b94afad139777d",
+    "AggregateIncomingTargetCompletion/conditional3391-search.json": "657a0d0cda82d1fc29d20875faabb1bd478f12e57683da4e43a0a4cdfb7a00c9",
+    "AggregateIncomingTargetCompletion/final-data.json": "c31b89960264efb9e5b15f257da16c02d918f3cfad3d835010f76220eec8841d",
+    "AggregateIncomingTargetCompletion/generate.py": "82f6f97cf5576ce90b8630321660e3e58ae0aee8ce9f899000763feb68048cdb",
+    "AggregateIncomingTargetCompletion/search_final.py": "c44b6b1a6527d6dd19b97d432eb527b9b6832434863011d0312c21ac9c958707",
+    "AggregateIncomingTargetCompletion/final_generate.py": "6b25a3fac36a248624a83658d7ff1777533e0a3f770b0e2a781be0f607fa1bd7",
+    "AggregateIncomingTargetCompletion/assert_current.py": "7bd145105f762d9caa76be45b4fc7ce5c2dd039458d82a1b260c867485f179ce"
+  }
+}

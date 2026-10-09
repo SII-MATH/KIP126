@@ -1,0 +1,35 @@
+{
+  "status": "both_complete_families_and_common_finite_E8_audited",
+  "branches": [
+    {
+      "branch": "zero",
+      "comparisons": 1283,
+      "ordered_pairs": 1646089,
+      "adjacent": 976,
+      "consecutive": 783,
+      "graph_available": 1280,
+      "graph_missing": 140,
+      "baseline_preserved": 1272,
+      "finite_named_page": 8
+    },
+    {
+      "branch": "residual_rebased",
+      "comparisons": 1284,
+      "ordered_pairs": 1648656,
+      "adjacent": 977,
+      "consecutive": 784,
+      "graph_available": 1281,
+      "graph_missing": 139,
+      "baseline_preserved": 1272,
+      "finite_named_page": 8
+    }
+  ],
+  "common_named_wires_d2_through_d7": true,
+  "unknown_row2994_preserved": true,
+  "input_sha256": {
+    "Fact713D4Branches/audit_families.py": "c3863f75b9092635e15b354e1e69f7d450e6736dbc477476af3bb6ca09dc7517",
+    "Fact713D4Branches/zero-family.json": "38919bda9c09083623cc5d830c5ba1bf9f149db8916b0f72138c38fbdc74af82",
+    "Fact713D4Branches/residual-family.json": "c89775129206aba5a0cabd25050bd700246191c68eb448bad233b576960ee6a3"
+  },
+  "limitation": "Finite branches share a named trajectory. Actual E8 still requires complete actual meanings."
+}

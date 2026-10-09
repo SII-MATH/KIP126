@@ -1,0 +1,46 @@
+FilteredExtensionCertificateCompleteness/Linear.lean:30:8: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 0
+  a ≥ 0
+  a - b ≤ 0
+where
+ a := ↑↑j.succ
+ b := ↑n
+FilteredExtensionCertificateCompleteness/Linear.lean:44:2: error: Tactic `apply` failed: could not unify the conclusion of `@Vector.ext`
+  ?xs = ?ys
+with the goal
+  (hom M) { bits := basis j } = { bits := fun i => M i j }
+
+Note: The full type of `@Vector.ext` is
+  ∀ {α : Type ?u.12} {n : ℕ} {xs ys : _root_.Vector α n}, (∀ (i : ℕ) (x : i < n), xs[i] = ys[i]) → xs = ys
+
+a h : ℕ
+M : Matrix a h
+j : Fin h
+⊢ (hom M) { bits := basis j } = { bits := fun i => M i j }
+'FilteredExtensionCertificateCompleteness.dot_basis' depends on axioms: [propext, sorryAx, Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkImage_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkFactor_complete' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkFactor_exists_iff' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkPreserves_complete' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkPreserves_exists_iff' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkExtension_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.checkExtension_exists_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

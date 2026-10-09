@@ -1,0 +1,118 @@
+Row2684D5Search/Descent.lean:57:39: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  C.initial.equivalence C.endpoint2.value
+in the target expression
+  eval (matrixOf Data.source2.k Data.source2.m Data.source2.outgoing) (C.initial.equivalence C.endpoint2.value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+r : ℕ
+d : Bidegree
+w : WireComparison
+c : Coordinates S r d w.m
+C : SourcePrefix S pages
+⊢ eval (matrixOf Data.source2.k Data.source2.m Data.source2.outgoing) (C.initial.equivalence C.endpoint2.value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    C.initial
+  has type
+    Coordinates S 2 sourceDegree 3
+  but is expected to have type
+    Coordinates S 2 sourceDegree Data.source2.m
+  in the application
+    C.initial.equivalence
+Row2684D5Search/Descent.lean:58:8: warning: declaration uses `sorry`
+Row2684D5Search/Descent.lean:63:39: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (C.step2.next Data.source2_valid).equivalence C.endpoint3.value
+in the target expression
+  eval (matrixOf Data.source3.k Data.source3.m Data.source3.outgoing)
+      ((C.step2.next Data.source2_valid).equivalence C.endpoint3.value) =
+    zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+r : ℕ
+d : Bidegree
+w : WireComparison
+c : Coordinates S r d w.m
+C : SourcePrefix S pages
+⊢ eval (matrixOf Data.source3.k Data.source3.m Data.source3.outgoing)
+      ((C.step2.next Data.source2_valid).equivalence C.endpoint3.value) =
+    zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    C.initial
+  has type
+    Coordinates S 2 sourceDegree 3
+  but is expected to have type
+    Coordinates S 2 sourceDegree Data.source2.m
+  in the application
+    @Step.next S pages 2 sourceDegree Data.source2 C.initial
+Row2684D5Search/Descent.lean:64:8: warning: declaration uses `sorry`
+Row2684D5Search/Descent.lean:69:39: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (C.step3.next Data.source3_valid).equivalence C.endpoint4.value
+in the target expression
+  eval (matrixOf Data.source4.k Data.source4.m Data.source4.outgoing)
+      ((C.step3.next Data.source3_valid).equivalence C.endpoint4.value) =
+    zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+r : ℕ
+d : Bidegree
+w : WireComparison
+c : Coordinates S r d w.m
+C : SourcePrefix S pages
+⊢ eval (matrixOf Data.source4.k Data.source4.m Data.source4.outgoing)
+      ((C.step3.next Data.source3_valid).equivalence C.endpoint4.value) =
+    zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    C.initial
+  has type
+    Coordinates S 2 sourceDegree 3
+  but is expected to have type
+    Coordinates S 2 sourceDegree Data.source2.m
+  in the application
+    @Step.next S pages 2 sourceDegree Data.source2 C.initial
+Row2684D5Search/Descent.lean:70:8: warning: declaration uses `sorry`
+Row2684D5Search/Descent.lean:92:39: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  C.initial.equivalence C.endpoint2.value
+in the target expression
+  eval (matrixOf Data.factor2.k Data.factor2.m Data.factor2.outgoing) (C.initial.equivalence C.endpoint2.value) = zero
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+r : ℕ
+d : Bidegree
+w : WireComparison
+c : Coordinates S r d w.m
+C : FactorPrefix S pages
+⊢ eval (matrixOf Data.factor2.k Data.factor2.m Data.factor2.outgoing) (C.initial.equivalence C.endpoint2.value) = zero
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    C.initial
+  has type
+    Coordinates S 2 factorDegree 2
+  but is expected to have type
+    Coordinates S 2 factorDegree Data.factor2.m
+  in the application
+    C.initial.equivalence
+Row2684D5Search/Descent.lean:93:8: warning: declaration uses `sorry`
+'Row2684D5Search.Step.cycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.Step.coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.SourcePrefix.coordinate3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2684D5Search.SourcePrefix.coordinate4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2684D5Search.SourcePrefix.coordinate5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2684D5Search.FactorPrefix.coordinate3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2684D5Search.FactorPrefix.empty3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.FactorPrefix.empty4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.FactorPrefix.cycle4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2684D5Search.FactorPrefix.endpoint5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

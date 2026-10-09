@@ -1,0 +1,48 @@
+FilteredMapExtension/Basic.lean:63:8: error: Function expected at
+  le_sup_right
+but this term has type
+  ?m.47 ≤ ?m.46 ⊔ ?m.47
+
+Note: Expected a function because this term is being applied to the argument
+  (AddSubgroup.mem_map.mpr ⟨x.val, hx, rfl⟩)
+Try this:
+  [apply] abel_nf
+FilteredMapExtension/Basic.lean:116:4: error: unsolved goals
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+s n : ℕ
+x : ↥(cycles F G f s n)
+y : ↥(G.group (s + n))
+h : A
+hh : h ∈ corrections F G f s n
+he : ↑((cycleMap F G f s n) x) - ↑y - f.hom h ∈ G.group (s + n + 1)
+⊢ f.hom ↑x + (-1 • f.hom h + -1 • ↑y) = -1 • f.hom h + (-1 • ↑y + ↑((cycleMap F G f s n) x))
+Try this:
+  [apply] abel_nf
+FilteredMapExtension/Basic.lean:122:4: error: unsolved goals
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+s n : ℕ
+x : ↥(cycles F G f s n)
+y : ↥(G.group (s + n))
+a : A
+ha : SameLeading (corrections F G f s n) a ↑x
+hfa : SameLeading (G.group (s + n + 1)) (f.hom a) ↑y
+⊢ -1 • ↑y + f.hom a ∈ G.group (s + (n + 1)) ↔ SameLeading (G.group (s + (n + 1))) (f.hom a) ↑y
+'FilteredMapExtension.differential' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.sourceClass_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.differential_zero_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.differential_eq_iff_extension' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'FilteredMapExtension.cycles_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.corrections_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredMapExtension.targetRelations_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

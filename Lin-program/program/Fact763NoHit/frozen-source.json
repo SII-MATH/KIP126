@@ -1,0 +1,67 @@
+{
+  "status": "frozen_successfully_checked_source",
+  "modules": [
+    {
+      "module": "Fact763NoHit.Basic",
+      "source_sha256": "d49425dd5c7cbbf1a90c81583fee45c9d5212b5069a9908c1406daad207fb653",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact763Continuation/Tactic.olean": "6c0f914473d11ae29bcf18ae5491455533d39e8c3d7b1f7428404fbd0df89232",
+        ".lake/build/lib/lean/Fact715IncomingTail/Basic.olean": "4df25d710acfd18fb9e7cb45e5a09b0ea4b418017b88734969899f7b2b08ee07",
+        ".lake/build/lib/lean/ActualFiniteNoHit/Basic.olean": "44f005d5f3ca63eba173331b21ab08dc46e1267751418290c8b25fa3492eed58"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact763NoHit/Basic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact763NoHit/Basic.olean"
+      ],
+      "log": "evidence/Basic-20260922T031737088482Z.log",
+      "external_input_sha256": {
+        "Fact763NoHit/source.json": "f33bdd564f778f2b3a211f02aeb99e7c43bf882a8d5c3f101ad096ef81d38b42"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "4327f8dbb15ccb1a30eb57d5dc9764e6245361db924fa050830dedfd230868d8",
+      "inputs_stable": true,
+      "olean_sha256": "950a236c9c1248cbca25568deec64b8cdf3a8c234fb21e3fa6345d49393ab70d"
+    },
+    {
+      "module": "Fact763NoHit.Tactic",
+      "source_sha256": "b85572de021ae5dba83e81e1b589b989a1a8557edb70675175cfd410a0d2e3bf",
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/Fact763NoHit/Basic.olean": "950a236c9c1248cbca25568deec64b8cdf3a8c234fb21e3fa6345d49393ab70d"
+      },
+      "command": [
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+        "-j1",
+        "Fact763NoHit/Tactic.lean",
+        "-o",
+        "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact763NoHit/Tactic.olean"
+      ],
+      "log": "evidence/Tactic-20260922T031742622245Z.log",
+      "external_input_sha256": {
+        "Fact763NoHit/source.json": "f33bdd564f778f2b3a211f02aeb99e7c43bf882a8d5c3f101ad096ef81d38b42"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_stable": true,
+      "olean_sha256": "20ed4817eeffe6f83ef9ba1024310860717d472f01dd1e1519c6f107db9d11fe"
+    }
+  ],
+  "axiom_reports": 3,
+  "files": {
+    "Basic-compile.json": "050dd86a0da029b5668f043ea278b6902ecd66754748dc3b3e5176572f6d66da",
+    "Basic.lean": "d49425dd5c7cbbf1a90c81583fee45c9d5212b5069a9908c1406daad207fb653",
+    "README.md": "a8a4a81efe3b9b8bf235c8fa0b6cb077e019f58c24354d863a7d3299f03b2549",
+    "Tactic-compile.json": "39c6338a177fc787143e59e8e462d3e16452fb3647f6f00ef619cb98dd0d499c",
+    "Tactic.lean": "b85572de021ae5dba83e81e1b589b989a1a8557edb70675175cfd410a0d2e3bf",
+    "compile-current.log": "9e5a7704f46fb7f9fd0cd524476e3c5fc2c41c31cfce5435fd704869e8eb4021",
+    "compile.py": "e10c00cb47abc58cb236473229f49e4c8de8da131b91aeda88aa537c0ad01e97",
+    "evidence/Basic-20260922T031737088482Z.json": "050dd86a0da029b5668f043ea278b6902ecd66754748dc3b3e5176572f6d66da",
+    "evidence/Basic-20260922T031737088482Z.log": "4327f8dbb15ccb1a30eb57d5dc9764e6245361db924fa050830dedfd230868d8",
+    "evidence/Tactic-20260922T031742622245Z.json": "39c6338a177fc787143e59e8e462d3e16452fb3647f6f00ef619cb98dd0d499c",
+    "evidence/Tactic-20260922T031742622245Z.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "modules.txt": "be95341c21a8cd7643274bed7064f0ac5675e9c54673f6cf0eaeb323d2a5e394",
+    "source.json": "f33bdd564f778f2b3a211f02aeb99e7c43bf882a8d5c3f101ad096ef81d38b42"
+  }
+}

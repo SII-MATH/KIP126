@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "entries": 1413,
+  "queries": 2724,
+  "maximum_path": 11,
+  "independently_parsed_Lean_trees": true,
+  "all_family_entries_bound": true,
+  "rejected": [
+    "missing required incoming path",
+    "changed required dimension",
+    "shape mismatch"
+  ],
+  "retained_records": [
+    {
+      "module": "IndexedPredecessorClosureTree.Basic",
+      "axiom_reports": 9
+    },
+    {
+      "module": "IndexedPredecessorClosureTreeActual.Data",
+      "axiom_reports": 0
+    },
+    {
+      "module": "IndexedPredecessorClosureTreeActual.Fact713",
+      "axiom_reports": 6
+    }
+  ],
+  "producer_frozen_files": 16,
+  "review_source_sha256": "230b18c58e8251f3002ead70c4cb6ff72da2b49f0fbf8f5d71a2b338a46c525f",
+  "result": "The balanced certificate establishes the original full PredecessorClosed predicate for both complete families using existing key uniqueness; prior terminated attempts are not accepted."
+}

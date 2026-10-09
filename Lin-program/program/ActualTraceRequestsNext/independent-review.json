@@ -1,0 +1,33 @@
+{
+  "status": "no_correctness_findings",
+  "frozen_files": 24,
+  "compiled_modules": 5,
+  "imported_positive_examples": 8,
+  "negative_tactic_checks": 6,
+  "independent_request_cases": 64008,
+  "accepted_requests": 4,
+  "diagnostic_counts": {
+    "version": 42672,
+    "source.length": 3332,
+    "source": 196,
+    "output.length": 18,
+    "output": 6,
+    "accepted": 4,
+    "claim": 17780
+  },
+  "runtime_evidence": {
+    "observed_exit_code": 0,
+    "source_sha256": "55466f8d1e29bdb4cbb4986962ed255f420fe0446c64e940968ddbb622b4be68",
+    "log_sha256": "1069474b8482e51c0b1f0b830e89fe0d5578b36e805349bc24d0d2876c85138f"
+  },
+  "data_only_request": true,
+  "typed_actual_prefix_required": true,
+  "claim_endpoint_exact": true,
+  "same_input_trace_and_output_bound": true,
+  "prop79_full_d5_incoming_separate": true,
+  "scope": "Conditional actual endpoints only; JSON supplies no actual mathematics, E12, permanence or d5 outgoing theorem.",
+  "sha256": {
+    "ActualTraceRequestsNext/independent_review.py": "04087d788a40ba0625299ca53a61255869cc5b5a7d57dc9f7c324002d99e485e",
+    "ActualTraceRequestsNext/frozen-source.json": "d8de5155ee1999d02180a9662747cbbd4fc99fe68f4f7d88eb67ad586b190cd5"
+  }
+}

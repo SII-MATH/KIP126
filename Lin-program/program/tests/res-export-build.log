@@ -1,0 +1,25 @@
+make: Entering directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'
+g++ -O2 -Wall -Wextra -Wpedantic -std=c++20 -I ExtComplexCertificates/SSeqCpp-build-source/include -I ExtComplexCertificates/SSeqCpp-build-source/thirdparty/fmt/include ExtComplexCertificates/res_export.cpp -lsqlite3 -o ExtComplexCertificates/res-export
+In file included from ExtComplexCertificates/SSeqCpp-build-source/include/algebras/steenrod.h:9,
+                 from ExtComplexCertificates/res_export.cpp:3:
+ExtComplexCertificates/SSeqCpp-build-source/include/algebras/myexception.h: In constructor ‘ErrorIdMsg::ErrorIdMsg(unsigned int, const char*)’:
+ExtComplexCertificates/SSeqCpp-build-source/include/algebras/myexception.h:43:18: warning: ‘ErrorIdMsg::id_’ will be initialized after [-Wreorder]
+   43 |     unsigned int id_;
+      |                  ^~~
+ExtComplexCertificates/SSeqCpp-build-source/include/algebras/myexception.h:46:93: warning:   base ‘ErrorMsg’ [-Wreorder]
+   46 |     ErrorIdMsg(unsigned int error_id, const char* message) : id_(error_id), ErrorMsg(message) {}
+      |                                                                                             ^
+ExtComplexCertificates/SSeqCpp-build-source/include/algebras/myexception.h:46:5: warning:   when initialized here [-Wreorder]
+   46 |     ErrorIdMsg(unsigned int error_id, const char* message) : id_(error_id), ErrorMsg(message) {}
+      |     ^~~~~~~~~~
+ExtComplexCertificates/SSeqCpp-build-source/include/algebras/myexception.h: In constructor ‘ErrorIdMsg::ErrorIdMsg(unsigned int, std::string)’:
+ExtComplexCertificates/SSeqCpp-build-source/include/algebras/myexception.h:43:18: warning: ‘ErrorIdMsg::id_’ will be initialized after [-Wreorder]
+   43 |     unsigned int id_;
+      |                  ^~~
+ExtComplexCertificates/SSeqCpp-build-source/include/algebras/myexception.h:47:104: warning:   base ‘ErrorMsg’ [-Wreorder]
+   47 |     ErrorIdMsg(unsigned int error_id, std::string message) : id_(error_id), ErrorMsg(std::move(message)) {}
+      |                                                                                                        ^
+ExtComplexCertificates/SSeqCpp-build-source/include/algebras/myexception.h:47:5: warning:   when initialized here [-Wreorder]
+   47 |     ErrorIdMsg(unsigned int error_id, std::string message) : id_(error_id), ErrorMsg(std::move(message)) {}
+      |     ^~~~~~~~~~
+make: Leaving directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'

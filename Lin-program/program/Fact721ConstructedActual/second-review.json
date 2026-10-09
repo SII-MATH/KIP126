@@ -1,0 +1,156 @@
+{
+  "status": "no_correctness_findings",
+  "findings": [],
+  "counts": {
+    "all_coordinate_vectors": 8,
+    "cycle_coordinate_checks": 12,
+    "named_relabelings": 48,
+    "wrong_binding_counterexamples": 48
+  },
+  "cases": [
+    {
+      "name": "First",
+      "raw_row": 2622,
+      "basis_row": 2622,
+      "canonical_named": [
+        0,
+        1
+      ],
+      "staircase_named": [
+        0,
+        1
+      ],
+      "all_changes": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "meaning": "DetectorInput.binding is an explicit equation on the source class; it contains no differential value."
+    },
+    {
+      "name": "Second",
+      "raw_row": 2684,
+      "basis_row": 2682,
+      "canonical_named": [
+        1,
+        0
+      ],
+      "staircase_named": [
+        0,
+        1
+      ],
+      "all_changes": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "meaning": "DetectorInput.binding is an explicit equation on the source class; it contains no differential value."
+    }
+  ],
+  "axiom_reports": {
+    "Basic": 3,
+    "First": 6,
+    "Second": 9,
+    "Tactic": 4
+  },
+  "reviewed": [
+    "The same derived E3 element is passed to the actual detector theorem.",
+    "The naming equation is an explicit compatibility premise, not automatically discharged by the finite coordinate bridge.",
+    "No global injectivity of the source-meaning function is required by the zero-reflection argument.",
+    "Both basis columns are used before asserting that the whole actual d3 map is zero.",
+    "Second D4 assembly uses an already-whole actual map theorem and cannot choose an unknown branch."
+  ],
+  "limitations": [
+    "Actual realization, full initial/neighboring map meanings, naming equations and naturality remain premises.",
+    "Finite canonical/staircase equivalence alone cannot establish equality to an arbitrary actual detector source meaning.",
+    "First endpoint is E4, second E5; neither theorem establishes permanence."
+  ],
+  "sources": {
+    "Fact721ConstructedActual/Basic.lean": "465356f485bcc9f7d1781737329a251b95d2df7142548ecdf1faa6cdbc34c634",
+    "Fact721ConstructedActual/First.lean": "a0a84f979c210a0f9c97cb65592d7b4b04dbacdb0adbbc5be59846f83da8fda6",
+    "Fact721ConstructedActual/Second.lean": "28e3e72de983e6456a8323f9bcfc02d93e5c0278096b422c72c1098faf8a8a23",
+    "Fact721ConstructedActual/Tactic.lean": "fca4499ee4b72dd51647e2e4798cb63e86566e1c5a31617d2848b8d6fbf98e24",
+    "Fact713DC2h6Source/Actual.lean": "8be5edfe8b4743f2c2afaad5146dc56a077784d5129fdde6e2c2355828697ebc",
+    "Fact713DC2h6Source/Overlay.lean": "8feee5bd27029252e4467b48d77a3b408fe15cba5e45227464e0454d8274a14d",
+    "Fact713NextSourceSearch/Actual.lean": "49c22ad0595c8071eb7a5acd6c4f0d36593c6d581b24b76ff5ec07482ee650f6",
+    "Fact713NextSourceSearch/CoordinateBridge.lean": "4cbbc8677e4dca6e2c9b68471c0e60a04d4591912d3f857eda50ec2e144786a2",
+    "Fact713ComparisonBatches/Batch06.json": "c66fa59a8e59ca66f6235a00641b670af7868158cb2e02b3f7db78a0a945f5fc",
+    "Fact713DC2h6Source/comparison-source.json": "b97d2cf0d14f3f47436fd2008d45a06dcf9a1e5ca45242ffb12c5b046cd20527",
+    "Fact713NextSourceSearch/comparison-source.json": "3b80f83f1d2da1563c711d61ba8c85773f2ab30d5bb22a9e22e77f0701d317d1",
+    "Fact721ConstructedActual/second_review.py": "6726172f3355fad3ef18d185eaf47cef6902c1a4e27265b0f4d7dcdf217e165b"
+  }
+}

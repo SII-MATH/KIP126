@@ -1,0 +1,255 @@
+Row2907PDeltaDetection/Actual.lean:14:18: error: Application type mismatch: The argument
+  pages
+has type
+  ?m.1
+but is expected to have type
+  CertifiedAdamsPages S
+in the application
+  Prefix S pages
+Row2907PDeltaDetection/Actual.lean:31:28: error: Function expected at
+  Meaning
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Meaning` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Row2907PDeltaDetection/Actual.lean:37:33: error: Function expected at
+  Meaning
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Meaning` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Row2907PDeltaDetection/Actual.lean:44:6: error: No goals to be solved
+Row2907PDeltaDetection/Actual.lean:60:30: error: Function expected at
+  Meaning
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Meaning` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Row2907PDeltaDetection/Actual.lean:61:100: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+a : (S.element 3 factorDegree).carrier
+namedA : sorry = namedFactor
+⊢ C.factor4.equivalence (factorNext C a) = fun x => true
+Row2907PDeltaDetection/Actual.lean:67:30: error: Function expected at
+  Meaning
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Meaning` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Row2907PDeltaDetection/Actual.lean:68:100: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+b : (S.element 3 sourceDegree).carrier
+namedB : sorry = namedSource
+⊢ C.source4.equivalence (sourceNext C b) = fun x => true
+Row2907PDeltaDetection/Actual.lean:75:31: error: Function expected at
+  Meaning
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Meaning` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Row2907PDeltaDetection/Actual.lean:76:104: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+x : (S.element 3 productDegree).carrier
+namedX : sorry = namedProduct
+⊢ C.product4.equivalence (productNext C x) = fun x => true
+Row2907PDeltaDetection/Actual.lean:83:32: error: Function expected at
+  Meaning
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Meaning` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Row2907PDeltaDetection/Actual.lean:89:106: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+transition : Transition S pages P 3 factorDegree sourceDegree
+a : (S.element 3 factorDegree).carrier
+b : (S.element 3 sourceDegree).carrier
+x : (S.element 3 productDegree).carrier
+namedA : sorry = namedFactor
+namedB : sorry = namedSource
+namedX : sorry = namedProduct
+⊢ productNext C x = P.product.multiply 4 factorDegree sourceDegree (factorNext C a) (sourceNext C b)
+Row2907PDeltaDetection/Actual.lean:99:32: error: Function expected at
+  Meaning
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Meaning` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Row2907PDeltaDetection/Actual.lean:106:58: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+K : KnownDifferential C
+transition : Transition S pages P 3 factorDegree sourceDegree
+zeroMeaning : LocalZeroMeaning pages 3 leftD4Degree
+a : (S.element 3 factorDegree).carrier
+b : (S.element 3 sourceDegree).carrier
+x : (S.element 3 productDegree).carrier
+namedA : sorry = namedFactor
+namedB : sorry = namedSource
+namedX : sorry = namedProduct
+assumedZero : (S.differential 4 sourceDegree).toFun (sourceNext C b) = 0
+⊢ (S.differential 4 productDegree).toFun
+      (P.product.multiply 4 factorDegree sourceDegree (factorNext C a) (sourceNext C b)) =
+    0
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+K : KnownDifferential C
+transition : Transition S pages P 3 factorDegree sourceDegree
+zeroMeaning : LocalZeroMeaning pages 3 leftD4Degree
+a : (S.element 3 factorDegree).carrier
+b : (S.element 3 sourceDegree).carrier
+x : (S.element 3 productDegree).carrier
+namedA : sorry = namedFactor
+namedB : sorry = namedSource
+namedX : sorry = namedProduct
+assumedZero : (S.differential 4 sourceDegree).toFun (sourceNext C b) = 0
+⊢ Sort ?u.37
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+K : KnownDifferential C
+transition : Transition S pages P 3 factorDegree sourceDegree
+zeroMeaning : LocalZeroMeaning pages 3 leftD4Degree
+a : (S.element 3 factorDegree).carrier
+b : (S.element 3 sourceDegree).carrier
+x : (S.element 3 productDegree).carrier
+namedA : sorry = namedFactor
+namedB : sorry = namedSource
+namedX : sorry = namedProduct
+assumedZero : (S.differential 4 sourceDegree).toFun (sourceNext C b) = 0
+⊢ ?m.51
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+K : KnownDifferential C
+transition : Transition S pages P 3 factorDegree sourceDegree
+zeroMeaning : LocalZeroMeaning pages 3 leftD4Degree
+a : (S.element 3 factorDegree).carrier
+b : (S.element 3 sourceDegree).carrier
+x : (S.element 3 productDegree).carrier
+namedA : sorry = namedFactor
+namedB : sorry = namedSource
+namedX : sorry = namedProduct
+assumedZero : (S.differential 4 sourceDegree).toFun (sourceNext C b) = 0
+⊢ Sort ?u.35
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+K : KnownDifferential C
+transition : Transition S pages P 3 factorDegree sourceDegree
+zeroMeaning : LocalZeroMeaning pages 3 leftD4Degree
+a : (S.element 3 factorDegree).carrier
+b : (S.element 3 sourceDegree).carrier
+x : (S.element 3 productDegree).carrier
+namedA : sorry = namedFactor
+namedB : sorry = namedSource
+namedX : sorry = namedProduct
+assumedZero : (S.differential 4 sourceDegree).toFun (sourceNext C b) = 0
+⊢ ?m.44
+Row2907PDeltaDetection/Actual.lean:113:47: error: Function expected at
+  Meaning
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  S
+
+Hint: The identifier `Meaning` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+Row2907PDeltaDetection/Actual.lean:121:43: error: unsolved goals
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+C : Prefix S pages
+x✝ : Sort u_1
+Meaning : x✝
+M : sorry
+K : KnownDifferential C
+transition : Transition S pages P 3 factorDegree sourceDegree
+zeroMeaning : LocalZeroMeaning pages 3 leftD4Degree
+a : (S.element 3 factorDegree).carrier
+b : (S.element 3 sourceDegree).carrier
+x : (S.element 3 productDegree).carrier
+namedA : sorry = namedFactor
+namedB : sorry = namedSource
+namedX : sorry = namedProduct
+y : (S.element 4 sourceDegree).carrier
+namedY : C.source4.equivalence y = fun x => true
+⊢ (S.differential 4 sourceDegree).toFun y ≠ 0
+'Row2907PDeltaDetection.Actual.factor_d4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Actual.named_factorization' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Actual.factor_next_name' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Actual.source_next_name' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Actual.product_next_name' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Actual.next_factorization' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Actual.row2907_d4_nonzero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2907PDeltaDetection.Actual.row2907_d4_nonzero_in_coordinates' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

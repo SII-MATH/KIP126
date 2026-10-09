@@ -1,0 +1,1462 @@
+
+
+5. 
+Extensions on a classical 
+$E_{r}$
+-page
+
+
+
+
+
+To state the Generalized Leibniz Rule in terms of the classical Adams spectral sequence, we need to define 
+$f$
+-extensions not only on homotopy groups but 
+on the $E_{r}$ -page
+ as well.
+
+
+
+
+
+
+Notation 5.1
+.
+
+
+
+
+For a map between classical spectra 
+$f:X\to Y$
+, consider the associated synthetic map from Notation 
+3.19
+
+
+
+
+
+
+
+
+
+
+$\hat{f}:\Sigma^{0,e(f)}\nu X\to\nu Y.$
+
+
+
+
+
+
+
+For any 
+$2\leq r\leq\infty$
+, we denote the following mod 
+$\lambda^{r-1}$
+ reduction maps by 
+$\hat{f}_{r-1}$
+:
+
+
+
+
+
+
+
+
+
+
+$\hat{f}_{r-1}:\Sigma^{0,e(f)}\nu X/\lambda^{r-1}\to\nu Y/\lambda^{r-1}.$
+
+
+
+
+
+
+
+
+
+
+
+
+
+The 
+$E_{0}$
+-page of the 
+$\hat{f}_{r-1}$
+-ESS is isomorphic to
+
+
+
+
+
+
+
+
+
+
+$\displaystyle\prescript{\hat{f}_{r-1}\!}{}{E}_{0}^{s,t,t-k+e(f)}\cong$
+
+
+$\displaystyle E_{\infty}^{s,t,t-k}(\nu X/\lambda^{r-1})\oplus E_{\infty}^{s,t,t-k+e(f)}(\nu Y/\lambda^{r-1})$
+
+
+
+
+
+
+
+
+
+
+$\displaystyle\cong$
+
+
+$\displaystyle\big(Z_{r-1-k}^{s,t}(X)/B_{1+k}^{s,t}(X)\big)\oplus\big(Z_{r-1-k+e(f)}^{s,t}(Y)/B_{1+k-e(f)}^{s,t}(Y)\big).$
+
+
+
+
+
+
+
+A nontrivial 
+$d^{\hat{f}_{r-1}}_{n}$
+ differential can be interpreted as a map from the subgroup
+
+
+
+
+
+
+
+(5.2)
+
+
+
+
+
+$\prescript{\hat{f}_{r-1}\!}{}{Z}_{n-1}^{s,t,t-k}(X)\subset Z_{r-1-k}^{s,t}(X)/B_{1+k}^{s,t}(X)$
+
+
+
+
+
+
+
+to the quotient group
+
+
+
+
+
+
+
+(5.3)
+
+
+
+
+
+$\big(Z_{r-1-k-n+e(f)}^{s+n,t+n}(Y)/B_{1+k+n-e(f)}^{s+n,t+n}(Y)\big)/\prescript{\hat{f}_{r-1}\!}{}{B}_{n-1}^{s+n,t+n,t-k}(Y).$
+
+
+
+
+
+
+
+The differential 
+$d^{\hat{f}_{r-1}}_{n}$
+ is trivial for degree reasons when
+
+
+
+
+
+
+
+
+
+
+$n<\mathrm{AF}(f)\text{ or }n>r-2-k+e(f).$
+
+
+
+
+
+
+
+
+
+
+
+Definition 5.4
+.
+
+
+
+
+Let 
+$x\in Z^{s,t}_{r-1}(X)$
+ and 
+$y\in Z^{s+n,t+n}_{r-1-n+e(f)}(Y)$
+ for some
+
+
+
+
+
+
+
+
+
+
+$e(f)\leq n\leq r-2+e(f).$
+
+
+
+
+
+
+
+We say that there is an 
+$(f,E_{r})$
+-extension from 
+$x$
+ to 
+$y$
+, denoted by
+
+
+
+
+
+
+
+(5.5)
+
+
+
+
+
+$d_{n}^{f,E_{r}}(x)=y$
+
+
+
+
+
+
+
+if there exists a synthetic 
+$\hat{f}_{r-1}$
+-extension
+
+
+
+
+
+
+
+(5.6)
+
+
+
+
+
+$d_{n}^{\hat{f}_{r-1}}(x)=\lambda^{n-e(f)}y.$
+
+
+
+
+
+
+
+where 
+$x$
+ is viewed as an element of the subgroup (
+5.2
+) with 
+$k=0$
+, and 
+$\lambda^{n-e(f)}y$
+ is viewed as an element of the quotient group (
+5.3
+) with 
+$k=0$
+.
+
+
+
+
+
+
+We say that this 
+$(f,E_{r})$
+-extension in (
+5.5
+) is 
+essential
+ if the corresponding synthetic 
+$\hat{f}_{r-1}$
+-extension in (
+5.6
+) is an essential differential in the 
+$\hat{f}_{r-1}$
+-ESS.
+
+
+
+
+
+
+For 
+$r=\infty$
+, we similar define an 
+$(f,E_{\infty})$
+-extension using the corresponding synthetic 
+$\hat{f}$
+-extension.
+
+
+
+
+
+
+
+ $x$ $y$ $d_{\geq r}$ $d_{\geq r-n+e(f)}$ $d^{f,E_{r}}_{n}$ $s$ $s+n$ $s+r$ $E_{2}(X)$ $E_{2}(Y)$ $x$ $\lambda^{n-e(f)}y$ $d^{\hat{f}_{r-1}}_{n}$ $s$ $s+n$ $s+r$ $E_{\infty}^{*,t-s+*,t}(\nu X/\lambda^{r-1})$ $E_{\infty}^{*,t-s+*,t}(\nu Y/\lambda^{r-1})$ 
+ 
+ Figure 4. $(f,E_{r})$ -extension 
+
+
+
+
+
+Remark 5.7
+.
+
+
+
+
+Consider an 
+$(f,E_{r})$
+-extension 
+$d_{n}^{f,E_{r}}(x)=y$
+ in (
+5.5
+).
+The element 
+$y$
+ should be interpreted as a coset with indeterminacy given by 
+$B_{1+n-e(f)}^{s+n,t+n}(Y)$
+, plus the sum of images of 
+$d^{\hat{f}_{r-1}}_{<n}$
+ differentials. This 
+$(f,E_{r})$
+-extension is 
+essential
+ if this coset does not contain 0.
+
+
+
+
+
+
+
+
+Example 5.8
+.
+
+
+
+
+We present the following examples of 
+$(f,E_{r})$
+-extensions.
+
+
+
+ (1)
+ 
+
+
+
+Consider 
+$f=\nu:S^{3}\rightarrow S^{0}$
+. We have an 
+$(f,E_{2})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{1}^{f,E_{2}}(h_{5})=h_{2}h_{5},$
+
+
+
+
+
+
+
+where 
+$h_{5}\in\mathrm{Ext}_{A}^{1,32}$
+ and 
+$h_{2}h_{5}\in\mathrm{Ext}_{A}^{2,36}$
+.
+
+
+
+
+
+
+In fact, the classical homotopy class 
+$\nu\in\pi_{3}$
+ is detected by 
+$h_{2}$
+ with 
+$\mathrm{AF}=1$
+ in Ext, and this 
+$(f,E_{2})$
+-extension simply states that, in Ext, the product of 
+$h_{5}$
+ by 
+$h_{2}$
+ is 
+$h_{2}h_{5}$
+.
+
+ 
+ (2)
+ 
+
+
+
+For the same map 
+$f$
+ as in 
+$(1)$
+, we have an 
+$(f,E_{3})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{3}}(h_{0}h_{4}^{2})=h_{0}p,$
+
+
+
+
+
+
+
+where 
+$h_{0}h_{4}^{2}\in\mathrm{Ext}_{A}^{3,33}$
+ and 
+$h_{0}p\in\mathrm{Ext}_{A}^{5,38}$
+.
+
+
+
+
+
+
+By definition, 
+$\hat{f}=[h_{2}]$
+, detected by 
+$h_{2}$
+ in tridegree 
+$(s,t,w)=(3,4,4)$
+ of the synthetic Adams 
+$E_{2}$
+-page. This 
+$(f,E_{3})$
+-extension states that for the synthetic map
+
+
+
+
+
+
+
+
+
+
+$\hat{f_{2}}=[h_{2}]/\lambda^{2}:S^{3,4}/\lambda^{2}\rightarrow S^{0,0}/\lambda^{2},$
+
+
+
+
+
+
+
+there exists a synthetic 
+$\hat{f_{2}}$
+-extension
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{\hat{f_{2}}}(h_{0}h_{4}^{2})=\lambda h_{0}p.$
+
+
+
+
+
+
+
+This is equivalent to the existence of a synthetic homotopy class 
+$[h_{0}h_{4}^{2}]$
+ in 
+$\pi_{30+3,33+4}S^{3,4}/\lambda^{2}$
+, detected by 
+$h_{0}h_{4}^{2}$
+ on the synthetic Adams 
+$E_{\infty}$
+-page, that maps to the unique class 
+$[\lambda h_{0}p]$
+ in 
+$\pi_{33,37}S^{0,0}/\lambda^{2}$
+, detected by 
+$\lambda h_{0}p$
+ on the synthetic Adams 
+$E_{\infty}$
+-page. In other words, we have
+
+
+
+
+
+
+
+
+
+
+$[h_{0}h_{4}^{2}]\cdot[h_{2}]=[\lambda h_{0}p]\ \text{in}\ \pi_{33,37}S^{0,0}/\lambda^{2}.$
+
+
+
+
+
+
+
+
+
+
+
+We will justify this 
+$(f,E_{3})$
+-extension later on in Example 
+6.19
+ using the Generalized Mahowald Trick, Theorem 
+6.12
+.
+
+ 
+ (3)
+ 
+
+
+
+For the same map 
+$f$
+ as in 
+$(1)$
+, we also have an 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{4}^{2})=h_{0}p.$
+
+
+
+
+
+
+
+This is equivalent of saying that the relation in 
+$\pi_{33,37}S^{0,0}/\lambda^{2}$
+ from 
+$(2)$
+, can be lifted to a relation
+
+
+
+
+
+
+
+
+
+
+$[h_{0}h_{4}^{2}]\cdot[h_{2}]=[\lambda h_{0}p]\ \text{in}\ \pi_{33,37}S^{0,0},$
+
+
+
+
+
+
+
+for some classes 
+$[h_{0}h_{4}^{2}]$
+ in 
+$\pi_{30+3,33+4}S^{3,4}$
+ and 
+$[\lambda h_{0}p]$
+ in 
+$\pi_{33,37}S^{0,0}$
+.
+
+
+
+
+
+
+We will justify this 
+$(f,E_{\infty})$
+-extension later on in Example 
+6.24
+ using Corollary 
+6.23
+, which allows us to stretch extensions across pages.
+
+ 
+ (4)
+ 
+
+
+
+Consider 
+$f=2:S^{0}\rightarrow S^{0}$
+. We have an 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=0.$
+
+
+
+
+
+
+
+By definition, 
+$\hat{f}=[h_{0}]$
+, detected by 
+$h_{0}$
+ in tridegree 
+$(s,t,w)=(1,1,1)$
+ of the synthetic Adams 
+$E_{2}$
+-page. We remark that there is a relation 
+$\lambda\cdot[h_{0}]=2$
+ in 
+$\pi_{0,0}S^{0,0}$
+. For the synthetic map 
+$[h_{0}]:S^{0,1}\rightarrow S^{0,0}$
+,
+this 
+$(f,E_{\infty})$
+-extension is equivalent to the existence of a synthetic homotopy class 
+$[h_{0}h_{3}^{2}]$
+ in 
+$\pi_{14,17}S^{0,0}$
+, such that
+
+
+
+
+
+
+
+
+
+
+$[h_{0}h_{3}^{2}]\cdot[h_{0}]=0\ \text{in}\ \pi_{14,18}S^{0,0}.$
+
+
+
+
+
+
+
+In fact, by inspection, we learn that 
+$\pi_{14,18}S^{0,0}\cong\mathbb{Z}/2$
+, generated by 
+$[\lambda h_{0}d_{0}]$
+, which is an 
+$[h_{0}]$
+-multiple of a class 
+$[\lambda d_{0}]$
+ in a higher Adams filtration than 
+$h_{0}h_{3}^{2}$
+. Therefore, there exists a class 
+$[h_{0}h_{3}^{2}]$
+ whose 
+$[h_{0}]$
+-multiple is zero.
+
+
+
+
+
+
+In other words, we have an essential 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{1}^{f,E_{\infty}}(d_{0})=h_{0}d_{0},$
+
+
+
+
+
+
+
+which makes the following alternative 
+$(f,E_{\infty})$
+-extension inessential:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=h_{0}d_{0}.$
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+Definition 5.9
+.
+
+
+
+
+A crossing of the 
+$(f,E_{r})$
+-extension 
+$d_{n}^{f,E_{r}}(x)=y$
+ in (
+5.5
+) is defined as an essential 
+$(f,E_{r-a})$
+-extension from some 
+$x^{\prime}\in Z_{r-1-a}^{s+a,t+a}(X)$
+ to
+
+
+
+
+
+
+
+
+
+
+$y^{\prime}\in Z_{r-1-n+b+e(f)}^{s+n-b,t+n-b}(Y)\backslash B_{1+n-b-e(f)}^{s+n-b,t+n-b}(Y)$
+
+
+
+
+
+
+
+(where 
+$\backslash$
+ denotes the difference of sets and it means that 
+$y^{\prime}$
+ should survive to the classical Adams 
+$E_{r-n+b+e(f)}$
+ page while it should not be hit by an Adams differential of length at most 
+$1+n-b-e(f)$
+) for 
+$0<a\leq r-2$
+ and 
+$0\leq b\leq n-a-e(f)$
+. See Figure 
+5
+.
+
+
+
+
+
+
+
+ $x$ $y$ $x^{\prime}$ $y^{\prime}$ $d_{\geq r}$ $d_{\geq{r-a}}$ $d_{\geq r-n+e(f)}$ $d_{\geq r-n+b+e(f)}$ $d^{f,E_{r}}_{n}$ $d^{f,E_{r-a}}_{n-a-b}$ $s$ $s+a$ $s+n-b$ $s+n$ $s+r$ $E_{2}(X)$ $E_{2}(Y)$ $x$ $\lambda^{n-e(f)}y$ $\lambda^{a}x^{\prime}$ $\lambda^{n-b-e(f)}y^{\prime}$ $d^{\hat{f}_{r-1}}_{n}$ $d^{\hat{f}_{r-1}}_{n-a-b}$ $s$ $s+a$ $s+n-b$ $s+n$ $s+r$ $E_{\infty}^{*,t-s+*,t}(\nu X/\lambda^{r-1})$ $E_{\infty}^{*,t-s+*,t}(\nu Y/\lambda^{r-1})$ 
+ 
+ Figure 5. A crossing of an $(f,E_{r})$ -extension 
+
+
+
+
+
+Proposition 5.10
+.
+
+
+
+
+An $(f,E_{r})$ -extension $d_{n}^{f,E_{r}}(x)=y$ ( 5.5 ) has a crossing if and only if the synthetic $\hat{f}_{r-1}$ -extension $d_{n}^{\hat{f}_{r-1}}(x)=\lambda^{n-e(f)}y$ ( 5.6 ) has a crossing.
+
+
+
+
+
+
+
+
+Proof.
+
+
+
+
+By definition a crossing of the synthetic extension ( 5.6 ) has form
+
+
+
+
+
+
+
+(5.11)
+
+
+
+
+
+$d_{n-a-b}^{\hat{f}_{r}}(\lambda^{a}x^{\prime})=\lambda^{n-b-e(f)}y^{\prime}$
+
+
+
+
+
+
+
+for some $x^{\prime}\in Z_{r-1-a}^{s+a,t+a}(X)$ and $y^{\prime}\in Z_{r-1-n+b+e(f)}^{s+n-b,t+n-b}(Y)$ . Consider the following commutative diagram
+
+
+
+
+
+
+
+
+
+
+$\textstyle{\Sigma^{0,e(f)}\nu X/\lambda^{r-1-a}\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{f}_{r-1-a}}$ $\scriptstyle{\lambda^{a}}$ $\textstyle{\nu Y/\lambda^{r-1-a}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\lambda^{a}}$ $\textstyle{\Sigma^{0,e(f)+a}\nu X/\lambda^{r-1}\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\hat{f}_{r-1}}$ $\textstyle{\Sigma^{0,a}\nu Y/\lambda^{r-1}}$
+
+
+
+
+
+
+
+We see that ( 5.11 ) lifts to
+
+
+
+
+
+
+
+(5.12)
+
+
+
+
+
+$d_{n-a-b}^{\hat{f}_{r-1-a}}(x^{\prime})=\lambda^{n-a-b-e(f)}y^{\prime\prime}$
+
+
+
+
+
+
+
+for some $y^{\prime\prime}\in Z_{r-1-n+b+e(f)}^{s+n-b,t+n-b}(Y)$ such that
+
+
+
+
+
+
+
+
+
+
+$y^{\prime\prime}\equiv y^{\prime}\mod B_{1+n-b-e(f)}^{s+n-b,t+n-b}(Y)$
+
+
+
+
+
+
+
+where the indeterminacy $B_{1+n-b-e(f)}^{s+n-b,t+n-b}(Y)$ is introduced by dividing $\lambda^{a}$ .
+Therefore, the differential ( 5.11 ) is essential if and only if the differential ( 5.12 ) is essential and $y^{\prime\prime}\notin B_{1+n-b-e(f)}^{s+n-b,t+n-b}(Y)$ . This completes the proof.
+∎
+
+
+
+
+
+
+
+
+The above Definition 
+5.9
+, and Proposition 
+5.10
+ can be similarly defined and stated for the case 
+$r=\infty$
+.
+
+
+
+
+
+
+Example 5.13
+.
+
+
+
+
+For the four 
+$(f,E_{r})$
+-extensions in Example 
+5.8
+, we consider their crossings.
+
+
+
+ (1)
+ 
+
+
+
+For 
+$f=\nu:S^{3}\rightarrow S^{0}$
+, with an 
+$(f,E_{2})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{1}^{f,E_{2}}(h_{5})=h_{2}h_{5},$
+
+
+
+
+
+
+
+there are no crossings for degree reasons. In fact, since the map 
+$\hat{f}_{1}=[h_{2}]/\lambda$
+ has 
+$\mathrm{AF}=1$
+, 
+$d_{1}^{\hat{f}_{1}}$
+-extensions have no crossings.
+
+ 
+ (2)
+ 
+
+
+
+For 
+$f=\nu:S^{3}\rightarrow S^{0}$
+, with an 
+$(f,E_{3})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{3}}(h_{0}h_{4}^{2})=h_{0}p,$
+
+
+
+
+
+
+
+we can verify that it has no crossings from two perspectives.
+
+
+
+
+
+
+First, by Definition 
+5.9
+, a crossing of this 
+$(f,E_{3})$
+-extension would have 
+$n=2$
+, 
+$e(f)=1$
+, which implies 
+$a=1,b=0$
+. This corresponds to an essential 
+$(f,E_{2})$
+-extension from some
+
+
+
+
+
+
+
+
+
+
+$x^{\prime}\in Z_{1}^{4,37}(S^{3})\cong\mathrm{Ext}_{A}^{4,37}(S^{3})\cong\mathbb{F}_{2},$
+
+
+
+
+
+
+
+generated by 
+$h_{0}^{2}h_{4}^{2}$
+, to some
+
+
+
+
+
+
+
+
+
+
+$y^{\prime}\in Z_{1}^{5,38}(S^{0})\cong\mathrm{Ext}_{A}^{5,38}(S^{0})\cong\mathbb{F}_{2},$
+
+
+
+
+
+
+
+generated by 
+$h_{0}p$
+. However, since in Ext we have
+
+
+
+
+
+
+
+
+
+
+$h_{0}^{2}h_{4}^{2}\cdot h_{2}=0\neq h_{0}p,$
+
+
+
+
+
+
+
+this 
+$(f,E_{3})$
+-extension has no crossing.
+
+
+
+
+
+
+Alternatively, as seen in Example 
+5.8
+(2), this is equivalent to a synthetic 
+$\hat{f_{2}}$
+-extension
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{\hat{f_{2}}}(h_{0}h_{4}^{2})=\lambda h_{0}p,$
+
+
+
+
+
+
+
+where
+
+
+
+
+
+
+
+
+
+
+$\hat{f_{2}}=[h_{2}]/\lambda^{2}:S^{3,4}/\lambda^{2}\rightarrow S^{0,0}/\lambda^{2}.$
+
+
+
+
+
+
+
+By Proposition 
+5.10
+, this 
+$(f,E_{3})$
+-extension has a crossing if and only if the synthetic 
+$\hat{f_{2}}$
+-extension has a crossing, which is a non-trivial differential of the form
+
+
+
+
+
+
+
+
+
+
+$d_{1}^{\hat{f_{2}}}(x^{\prime})=y^{\prime}.$
+
+
+
+
+
+
+
+For degree reasons, the only possible candidates are
+
+
+
+
+
+
+
+
+
+
+$x^{\prime}=\lambda h_{0}^{2}h_{4}^{2},\ y^{\prime}=\lambda h_{0}p.$
+
+
+
+
+
+
+
+This again contradicts the relation in Ext, confirming that there is no crossing.
+
+ 
+ (3)
+ 
+
+
+
+For 
+$f=\nu:S^{3}\rightarrow S^{0}$
+, with an 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{4}^{2})=h_{0}p,$
+
+
+
+
+
+
+
+we can similarly confirm, using both perspectives outlined in 
+$(2)$
+, that it has no crossings.
+
+ 
+ (4)
+ 
+
+
+
+For 
+$f=2:S^{0}\rightarrow S^{0}$
+, with an 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=0,$
+
+
+
+
+
+
+
+the discussion in Example 
+5.8
+(4) can be rephrased to indicate a crossing of the form
+
+
+
+
+
+
+
+
+
+
+$d_{1}^{f,E_{\infty}}(d_{0})=h_{0}d_{0}.$
+
+
+
+
+
+
+
+We comment that this 
+$d_{1}$
+-differential is also a crossing of the inessential 
+$(f,E_{\infty})$
+-extension:
+
+
+
+
+
+
+
+
+
+
+$d_{2}^{f,E_{\infty}}(h_{0}h_{3}^{2})=h_{0}d_{0}.$
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+Proposition 5.14
+.
+
+
+
+
+Consider $f:X\to Y$ , $x\in Z_{\infty}^{s,t}(X)$ and $y\in Z_{\infty}^{s+n,t+n}(Y)$ .
+Then
+
+
+
+
+
+
+
+
+
+
+$d^{f,E_{\infty}}_{n}(x)=y$
+
+
+
+
+
+
+
+implies that
+
+
+
+
+
+
+
+
+
+
+$d^{f}_{n}(x+B_{\infty}^{s,t}(X))=y+B_{\infty}^{s,t}(Y).$
+
+
+
+
+
+
+
+
+
+
+
+
+
+(The implied differential could be inessential.)
+
+
+
+
+
+
+Proof.
+
+
+
+
+This follows directly from inverting $\lambda$ , which induces a map of spectral sequences from the $\hat{f}$ -ESS to the $f$ -ESS. The induced map on the $E_{0}$ -pages are of the following form:
+
+
+
+
+
+
+
+
+
+
+$\textstyle{Z_{\infty}^{s,t}(X)/B_{1+t-w}^{s,t}(X)\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{d^{\hat{f}}_{0}}$ $\scriptstyle{\lambda^{-1}}$ $\textstyle{Z_{\infty}^{s,t}(Y)/B_{1+t-w-e(f)}^{s,t}(Y)\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{\lambda^{-1}}$ $\textstyle{E_{\infty}^{s,t}(X)\ignorespaces\ignorespaces\ignorespaces\ignorespaces}$ $\scriptstyle{d^{f}_{0}}$ $\textstyle{E_{\infty}^{s,t}(Y)}$
+
+
+
+
+
+
+
+∎
+
+
+
+
+
+
+
+
+Remark 5.15
+.
+
+
+
+
+Since the synthetic Adams 
+$E_{\infty}$
+-page contains more information than the classical Adams 
+$E_{\infty}$
+-page, the 
+$(f,E_{\infty})$
+-extensions similarly provide more information compared to the classical 
+$f$
+-extensions.
+
+
+
+
+

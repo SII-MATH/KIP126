@@ -1,0 +1,26 @@
+make: Entering directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'
+rm -f lin-cert-export program-manifest.jsonl kervaire-claims.jsonl
+g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic PageTransitionCertificates/export.cpp -o PageTransitionCertificates/page-transition-export
+g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic cert_export.cpp -o lin-cert-export
+mkdir -p tests/output
+./lin-cert-export self-test
+lin-cert-export self-test: ok
+./lin-cert-export manifest tests/output/lin-program-manifest.jsonl
+test "$(wc -l < tests/output/lin-program-manifest.jsonl)" -eq 295
+./lin-cert-export claims ../doc_data/kervaire_claims.csv tests/output/lin-program-claims.jsonl
+test "$(wc -l < tests/output/lin-program-claims.jsonl)" -eq 18
+./lin-cert-export adams examples/adams_sample.csv tests/output/lin-program-adams.jsonl
+./lin-cert-export proofs examples/proof_sample.csv tests/output/lin-program-proof.jsonl
+python3 tests/test_export.py
+Exporter: hashes, reproducibility, 17 claims, inventory, unknowns, malformed CSV, six finite result kinds passed
+python3 LinearCertificates/test_export.py
+PASS: 262 exhaustive certificates, deterministic JSONL, malformed input rejection
+python3 ResolutionCertificates/test_export.py
+resolution exporter: 4 accepted, 4 rejected, deterministic
+python3 PageTransitionCertificates/test_export.py
+PASS 75 homology comparisons, 230 noncomplex rejections, malformed inputs and determinism
+python3 PageTransitionCertificates/test_induced_export.py
+PASS 38 induced maps, 90 rejected maps/complexes, canonical deterministic output, batch and malformed input
+python3 NamedElementCertificates/test_module_export.py
+module packer: deterministic batch, crossing, zero rank, variable/unit distinction and 7 malformed inputs passed
+make: Leaving directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'

@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "counts": {
+    "one_stage_actual_homology_models": 4,
+    "zero_after_hit": 8752,
+    "all_cycles_from_finite_before_hit": 6713,
+    "five_stage_systems": 1024,
+    "natural_same_input_cycle_transports": 4432,
+    "two_stage_natural_maps": 3072,
+    "faithful_cycle_reflections": 656,
+    "faithful_full_map_tail_pulls": 104,
+    "surjective_full_map_tail_pushes": 64,
+    "missing_quotient_compatibility_countermodels": 1,
+    "missing_outgoing_faithfulness_countermodels": 1,
+    "axiom_reports": 25
+  },
+  "compiled": {
+    "Basic": {
+      "source_sha256": "b69aac55b81182c22b06c93cafe3e80e791117d5c70d7c86db58d0567194925f",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/PermanentMapTailCertificates/Basic.olean": "699f80143c535b6a9347dfdb3e18df5fb59f81d9ee6cd94a9702734b66f109f5",
+        ".lake/build/lib/lean/OutgoingCycleFiltrationCertificates/Boundary.olean": "e3c582c0d16201c11b7aac2ffe8dfd35aa60cac325d0cb615d88529ed78ac488"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "f29b50581eb87ab647129a410ff9f4bc6a303e011915e5750a144d1961ca9e5e",
+      "olean_sha256": "1c10c2758818971e09f2095227d178bc75b409c5bce51ccb7729a274a6f160d7"
+    },
+    "Hit": {
+      "source_sha256": "09f9f22b8daf2be8b09e8198ed9e983e765710d48bcec81bd097e8bf4928fba8",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/OutgoingCycleMapTransport/Basic.olean": "1c10c2758818971e09f2095227d178bc75b409c5bce51ccb7729a274a6f160d7",
+        ".lake/build/lib/lean/OutgoingCycleCertificates/Import.olean": "2d60f789f01d8a59ffbff00e022febe22c1cd838354c0bd73d749550f2f8e6c0"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "c2c90b20d7b8f6b9f2da2db3d2eca8d85f7216d2f2ff4c0e7e0dbc1020ce328d",
+      "olean_sha256": "b24854fdddae09ed5b6ff2a75d9e8fd93146f56cae87c274610cd7fd110c355d"
+    },
+    "Filtration": {
+      "source_sha256": "aa9e9d703d54af906e4cab7a60bd7e5827eec3a1f2bb8be6d06fe4ba185ff0ef",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/OutgoingCycleMapTransport/Hit.olean": "b24854fdddae09ed5b6ff2a75d9e8fd93146f56cae87c274610cd7fd110c355d"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "cf331c7e1acec925c0e59cd275d9e86d8317dc3fa800f8954549cbf47848b883",
+      "olean_sha256": "232f084098d80c28b80a36e689ebe435267ff67dfe72fd812eaf264cbb06797f"
+    },
+    "Fact762": {
+      "source_sha256": "08e8bedf2a310966350e5a04913ce0d02168f8e9b5e656ce6e3462062344cd78",
+      "external_input_sha256": {},
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/OutgoingCycleMapTransport/Filtration.olean": "232f084098d80c28b80a36e689ebe435267ff67dfe72fd812eaf264cbb06797f",
+        ".lake/build/lib/lean/ActualPermanenceBoundary/Cases.olean": "0f6c09ac9270fdff6fc5c55270b81f4544a36aaf46188db8bbb958d30bb6d812"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "db993bd4ae085d08a74c16f3edc320c87e8bddcaef705511a6f96c34930356ca",
+      "olean_sha256": "4be2d2ae4822f58caeec33977faea4a1d83716a293a32c9c55c99db5cda4d4a1"
+    },
+    "Examples": {
+      "source_sha256": "0590d044d92f9acac8081118763c7faa254437e00989a5e80525545dd82c66b6",
+      "external_input_sha256": {
+        "OutgoingCycleMapTransport/hit-prefix.json": "562f0c34ee3ce4157eba6dbd329f395cdd6d148c97d158ef69085fab769ac078"
+      },
+      "dependencies_sha256": {
+        ".lake/build/lib/lean/OutgoingCycleMapTransport/Fact762.olean": "4be2d2ae4822f58caeec33977faea4a1d83716a293a32c9c55c99db5cda4d4a1",
+        ".lake/build/lib/lean/PermanentMapTailCertificates/Examples.olean": "45866a1401e48d74ec547e6ab8b1d834f8096346b334f5b98fbe17f5af386fe8",
+        ".lake/build/lib/lean/PermanentCycleCertificates/Counterexamples.olean": "471dba0e76a393516e56e52ea8cb001380f6d05a965fcd3b5ddab69212536434"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "35a601f0f363750f4a720fb6530dbe9c6d706883894d5eefa877772efbee9a62",
+      "olean_sha256": "d22e52193e1054e4f23d8471d83e61b8acdd5635f9bc16e3e387bbfd569863da"
+    }
+  },
+  "scope": "Universal all-page map transport and hit-branch tail theorem; no unconditional Fact7.6(2) instance.",
+  "fact762_tail_removed_on_proved_hit_branch": true,
+  "fact762_no_hit_branch_resolved": false,
+  "paper_realization_supplied": false,
+  "input_sha256": {
+    "OutgoingCycleMapTransport/check_models.py": "4894f41b375f2376583bb9587551e5ef10bf29d8bfedb0d690d1c4773297da45",
+    "Fact762PageCertificates/comparison.json": "8ab8d933b95414e6661fe8f18bc3d964977a5a83c93cdfe0ec1a39e6fbef0bc3",
+    "ActualPermanenceBoundary/Cases.lean": "d6f9998c054ae1d81796c5f2a7d573b63141c5f6a86a82330fdabba483c310f6",
+    "OutgoingCycleFiltrationCertificates/Basic.lean": "824e8dc62e440f6fcaa586fffa6626b908e9c52dd4058c1488d9a2edf74efc5f",
+    "OutgoingCycleFiltrationCertificates/Boundary.lean": "68ec56a66a45b05556aa1eb19ed215967bb9c8e5f60dbbe89b53e9f61dcd7648"
+  }
+}

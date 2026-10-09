@@ -1,0 +1,70 @@
+{
+  "findings": [],
+  "counts": {
+    "homomorphism_filtration_candidates": 11341,
+    "preserving_maps": 8674,
+    "unequal_group_preserving_maps": 5196,
+    "injections": 130110,
+    "addition_checks": 368075,
+    "bounded_surjections": 57394,
+    "unbounded_surjections": 63028,
+    "unbounded_failures": 9688,
+    "proper_source_initial": 4266
+  },
+  "first_unbounded_failure": {
+    "source_order": 2,
+    "target_order": 2,
+    "source": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0
+      ]
+    ],
+    "target": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "coefficient": 1,
+    "s": 1,
+    "n": 0,
+    "graded_cardinality": 1,
+    "source_page_cardinality": 2
+  },
+  "oracle": "cyclic source and target groups of every order 1..8; all three-level decreasing flags with constant tail",
+  "indices": "s=0..2, n=0..4; unequal groups, proper F0, constant nonzero tails included",
+  "proof_review": "read-only source and current recorded direct logs; no independent recompilation claimed",
+  "modules": [
+    {
+      "module": "FilteredMapKernelGraded.Basic",
+      "reviewed_source_sha256": "2f77a7b5c72bc57a7744d059c640a75c8ad5375a26dbc2e4ea06df51affd1432",
+      "reviewed_log_sha256": "a5a8ec2c5c9757f4e81918ecffc6412afcbf8ec1f2505d22de29173d04bd205a",
+      "upstream_recorded_exit": 0,
+      "standard_only_axiom_reports": 5
+    },
+    {
+      "module": "FilteredMapKernelGraded.Examples",
+      "reviewed_source_sha256": "f3f5f21cd31a6cbf990595a451539ab866b3faf58ae6f3039ea4f38431bcbfdb",
+      "reviewed_log_sha256": "3b1c792d0f6787821eb3ef3c68aa73646a0450c7067629ec132d58e557980ffe",
+      "upstream_recorded_exit": 0,
+      "standard_only_axiom_reports": 3
+    }
+  ],
+  "script_sha256": "e9efc98a6907cbb3208dde9a2342b063f786089a873340bfa1975df6e63fc4f9"
+}

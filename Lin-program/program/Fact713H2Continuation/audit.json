@@ -1,0 +1,48 @@
+{
+  "status": "two_full_families_named_h2_d3_and_same_input_E4_pass",
+  "cases": [
+    {
+      "case": "zero_b0",
+      "entries": 1403,
+      "previous_preserved": 1385,
+      "new_entries": 18,
+      "counts": {
+        "cycle_pairs": 9794,
+        "predecessor_dimensions": 2697,
+        "ordered_pairs": 1968409,
+        "consecutive": 899,
+        "adjacent": 1073
+      },
+      "next_obstruction": "unknown S0:10,134:d5:row2693; target dimension 1",
+      "family_sha256": "e24fa9daa0513c6f09808d8244b3b2f025cbaf36b4e25e7f4b9c4f6849d5843b"
+    },
+    {
+      "case": "zero_b1",
+      "entries": 1403,
+      "previous_preserved": 1385,
+      "new_entries": 18,
+      "counts": {
+        "cycle_pairs": 9794,
+        "predecessor_dimensions": 2697,
+        "ordered_pairs": 1968409,
+        "consecutive": 899,
+        "adjacent": 1073
+      },
+      "next_obstruction": "unknown S0:10,134:d5:row2693; target dimension 1",
+      "family_sha256": "7126f55de24256aad62e872b6f3a0aec63ee2617f46468e00f8bae2753a4b872"
+    }
+  ],
+  "remaining_b_selected": false,
+  "actual_model_counts": {
+    "whole_d3_candidates": 64,
+    "rejected_d3_candidates": 63,
+    "whole_d3_vector_checks": 8,
+    "full_source_cycle_quotient_pairs": 16,
+    "same_input_E3_E4_models": 384,
+    "named_binding_tests": 3072
+  },
+  "parent_sha256": {
+    "Fact713SquareContinuation/frozen-source.json": "143bcca5913ca8648b5aced9ff52e0b4aefa8de4d51c8818638cdfe3dd1847bf",
+    "Row3147H2Product/frozen-source.json": "2cc12d1677f78d982d2dc2dd4ed4724f9cb5b7aff52c3a1c6af0d666b29d8458"
+  }
+}

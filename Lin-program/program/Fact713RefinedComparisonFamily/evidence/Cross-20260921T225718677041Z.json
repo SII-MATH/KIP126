@@ -1,0 +1,19 @@
+{
+  "source_sha256": "5779594ca2bb3bbc3ca9725d3fddaa0f58ab93b47deb9226d4a9cc221bc860aa",
+  "dependencies_sha256": {
+    ".lake/build/lib/lean/Fact713RefinedComparisonFamily/Extra.olean": "823c73eb495e11e27514c0642d5ddd02b7fe9598cf913255677fdd534d61f45b",
+    ".lake/build/lib/lean/Fact713ComparisonBatches/Imported.olean": "2850132192d5764ea4837351c4e9fff5115f1fed324af31421e2e818b934de99"
+  },
+  "command": [
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/.elan/toolchains/leanprover--lean4---v4.32.2/bin/lean",
+    "-j1",
+    "Fact713RefinedComparisonFamily/Cross.lean",
+    "-o",
+    "/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program/.lake/build/lib/lean/Fact713RefinedComparisonFamily/Cross.olean"
+  ],
+  "log": "evidence/Cross-20260921T225718677041Z.log",
+  "observed_exit_code": 0,
+  "log_sha256": "f880a9d868304c8eb07a10b302ce5f10771ba25106f551f0320e2bf1b469b100",
+  "inputs_stable": true,
+  "olean_sha256": "c676920e8d31a3c5318a7766aa00ae8e4d03614b3dd3aa1c15cb55b2835433a9"
+}

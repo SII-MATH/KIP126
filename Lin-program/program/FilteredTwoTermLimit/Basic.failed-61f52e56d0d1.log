@@ -1,0 +1,27 @@
+FilteredTwoTermLimit/Basic.lean:50:2: error: Tactic `apply` failed: could not unify the conclusion of `Prod.ext rfl`
+  ?m.128 = ?m.128
+with the goal
+  (0, (targetD F G f t n) ((sourceClass F G f t n) z)) = (0, 0)
+
+Note: The full type of `Prod.ext rfl` is
+  ?m.128.2 = ?m.128.2 → ?m.128 = ?m.128
+
+A : Type u_1
+B : Type u_2
+inst✝¹ : AddCommGroup A
+inst✝ : AddCommGroup B
+F : Filtration A
+G : Filtration B
+f : FilteredMap F G
+q t n : ℕ
+bounded : G.group q = ⊥
+sourceLate : q ≤ t + n
+b : AllTargetPage F G f t n
+z : ↥(cycles F G f t n)
+killed : f.hom ↑z = 0
+cy : (cycleMap F G f t n) z = 0
+⊢ (0, (targetD F G f t n) ((sourceClass F G f t n) z)) = (0, 0)
+'FilteredTwoTermLimit.targetStableEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermLimit.pageEquivHomology' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermLimit.boundedPageEquivHomology' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FilteredTwoTermLimit.stable_differential_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

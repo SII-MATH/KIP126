@@ -1,0 +1,25 @@
+{
+  "leaves": {
+    "Actual": {
+      "axiom_reports": 2,
+      "compile_record_sha256": "c0e1fd7ba6195f63dfb8415730bd360063f163dd2803bb659c7a3c76289642fe",
+      "shadow_olean_sha256": "2f52fa9196b1990846c3e4077797439065ca167429e93973f60f4f915aa172cb",
+      "source_sha256": "11bff4a70a1db75618346dcec7705d8bcb9fd3df9b8e6404e6f63aa5ec510ecf"
+    },
+    "Examples": {
+      "axiom_reports": 5,
+      "compile_record_sha256": "501448547767072bb80d890b859e4923761041d3b8f1b5cf14bfd9e8f4c0ae40",
+      "shadow_olean_sha256": "f5454888e367deee52ca274f3874508e7a1e1043f8c653eaea23a907ea390f53",
+      "source_sha256": "ea82d7625c747deda768bf2d6e9d3239e93fd4a57596215bf54277c6577b2562"
+    },
+    "Tactic": {
+      "axiom_reports": 0,
+      "compile_record_sha256": "67ea23ed35b9cddc1336ff6368d8f971fc1121486f62543c215cad952b5892a4",
+      "shadow_olean_sha256": "025666afc38dc0a5b0a325a9064b1bdbf1348e9f6aead817b6e287e714cccea8",
+      "source_sha256": "b5d301c442c9e78b6929188a49bed513049f5fbb06c53bd627497490ea69f73d"
+    }
+  },
+  "review_sha256": "f29dd3491eb3fba993433a8fa4a2ffebdf615084d733bf16808293a23f07137f",
+  "scope": "Diagnostic runtime only affects errors; every accepted target still needs verifier soundness and kernel Boolean proof.",
+  "status": "independent_source_and_shadow_proof_review_passed"
+}

@@ -1,0 +1,912 @@
+{
+  "comparisons": [
+    {
+      "center": [
+        5,
+        5
+      ],
+      "name": "deta",
+      "object": "S0",
+      "page": 2,
+      "predecessors": [],
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        5,
+        5
+      ],
+      "name": "deta",
+      "object": "S0",
+      "page": 3,
+      "predecessors": [
+        "S0:2,3:d2",
+        "S0:5,5:d2",
+        "S0:8,7:d2"
+      ],
+      "projection_rows": [
+        [
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "checked_zero_codomain",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            8,
+            "0",
+            null,
+            9000
+          ],
+          "source": [
+            5,
+            5
+          ],
+          "target_predecessor": "S0:8,7:d2"
+        }
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [],
+        "k": 0,
+        "m": 1,
+        "n": 0,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        11,
+        137
+      ],
+      "name": "source",
+      "object": "S0",
+      "page": 2,
+      "predecessors": [],
+      "projection_rows": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "uses": [],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "k": 5,
+        "m": 6,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        11,
+        137
+      ],
+      "name": "source",
+      "object": "S0",
+      "page": 3,
+      "predecessors": [
+        "S0:8,135:d2",
+        "S0:11,137:d2",
+        "S0:14,139:d2"
+      ],
+      "projection_rows": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "conditional_cnu_eta",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            2925,
+            "1,2",
+            null,
+            9000
+          ],
+          "source": [
+            11,
+            137
+          ],
+          "target_predecessor": "S0:14,139:d2"
+        },
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            2926,
+            "2",
+            "1",
+            9996
+          ],
+          "source": [
+            11,
+            137
+          ],
+          "target_predecessor": "S0:14,139:d2"
+        },
+        {
+          "kind": "conditional_h3_d0",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            2796,
+            "2",
+            null,
+            9000
+          ],
+          "source": [
+            8,
+            135
+          ],
+          "target_predecessor": "S0:11,137:d2"
+        },
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            2797,
+            "1",
+            null,
+            9991
+          ],
+          "source": [
+            8,
+            135
+          ],
+          "target_predecessor": "S0:11,137:d2"
+        }
+      ],
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 2,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        15,
+        140
+      ],
+      "name": "target",
+      "object": "S0",
+      "page": 2,
+      "predecessors": [],
+      "projection_rows": [
+        [
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "uses": [],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "k": 4,
+        "m": 5,
+        "n": 3,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        15,
+        140
+      ],
+      "name": "target",
+      "object": "S0",
+      "page": 3,
+      "predecessors": [
+        "S0:12,138:d2",
+        "S0:15,140:d2",
+        "S0:18,142:d2"
+      ],
+      "projection_rows": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            3151,
+            "1",
+            "2",
+            4
+          ],
+          "source": [
+            15,
+            140
+          ],
+          "target_predecessor": "S0:18,142:d2"
+        },
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            3152,
+            "2",
+            "0",
+            9995
+          ],
+          "source": [
+            15,
+            140
+          ],
+          "target_predecessor": "S0:18,142:d2"
+        },
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            3016,
+            "3",
+            "1",
+            9996
+          ],
+          "source": [
+            12,
+            138
+          ],
+          "target_predecessor": "S0:15,140:d2"
+        }
+      ],
+      "wire": {
+        "down": [],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 0,
+        "m": 2,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        16,
+        142
+      ],
+      "name": "targetProduct",
+      "object": "S0",
+      "page": 2,
+      "predecessors": [],
+      "projection_rows": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "uses": [],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          false,
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "k": 2,
+        "m": 3,
+        "n": 3,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    {
+      "center": [
+        16,
+        142
+      ],
+      "name": "targetProduct",
+      "object": "S0",
+      "page": 3,
+      "predecessors": [
+        "S0:13,140:d2",
+        "S0:16,142:d2",
+        "S0:19,144:d2"
+      ],
+      "projection_rows": [
+        [
+          0,
+          1
+        ]
+      ],
+      "uses": [
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            3322,
+            "1",
+            "0",
+            3
+          ],
+          "source": [
+            16,
+            142
+          ],
+          "target_predecessor": "S0:19,144:d2"
+        },
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            3323,
+            "0",
+            "2,4",
+            6
+          ],
+          "source": [
+            16,
+            142
+          ],
+          "target_predecessor": "S0:19,144:d2"
+        },
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            3160,
+            "1",
+            "0",
+            3
+          ],
+          "source": [
+            13,
+            140
+          ],
+          "target_predecessor": "S0:16,142:d2"
+        },
+        {
+          "kind": "stored_zero_prefix_or_boundary",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            3161,
+            "2",
+            "0",
+            4
+          ],
+          "source": [
+            13,
+            140
+          ],
+          "target_predecessor": "S0:16,142:d2"
+        },
+        {
+          "kind": "stored_event",
+          "object": "S0",
+          "page": 3,
+          "row": [
+            3162,
+            "0",
+            "1",
+            9997
+          ],
+          "source": [
+            13,
+            140
+          ],
+          "target_predecessor": "S0:16,142:d2"
+        }
+      ],
+      "wire": {
+        "down": [
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "k": 1,
+        "m": 2,
+        "n": 3,
+        "outgoing": [
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "version": 1
+      }
+    }
+  ],
+  "products": [
+    {
+      "name": "leftTerm",
+      "page": 2,
+      "tensor": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "name": "leftTerm",
+      "page": 3,
+      "tensor": [
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ]
+}

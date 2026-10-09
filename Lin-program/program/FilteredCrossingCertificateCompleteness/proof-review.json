@@ -1,0 +1,34 @@
+{
+  "modules": [
+    {
+      "module": "FilteredCrossingCertificateCompleteness.Basic",
+      "axiom_reports": 4,
+      "source_sha256": "c83bd12dfeff72ca88dc80572bf705ab395da9c5956cf0deb1b8ccba0acf5e4a",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "15eb79ab9555bee48ee411175b7609cd580cd49234b0d7d0421cc3bda39a47b1",
+      "olean_sha256": "9e0ff8e8b2c85625aaa9683e195825f380a6f90fa639fe555ab6ceed6d977b9e"
+    },
+    {
+      "module": "FilteredCrossingCertificateCompleteness.Search",
+      "axiom_reports": 7,
+      "source_sha256": "b1260eb0c6fd1f610f465f4a7d2e02da374321e7792268b0d2602af74ceae720",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "e6ce90654c4216c7c05259b25da1263a258d21a465b888dfc51dfef61301233f",
+      "olean_sha256": "3f88259fb84e8e2cc905d376d7a39b14bebc6db0510e41ff1e7c38a2d6015791"
+    }
+  ],
+  "observed_successful_direct_compilations": 2,
+  "standard_only_axiom_reports": 11,
+  "scope": "witness completeness for exact FilteredCrossingCertificates.ResultValid",
+  "search": "explicit exponential reference search, success iff ResultValid",
+  "efficient_cpp_completeness_claimed": false,
+  "excluded": [
+    "topological convergence",
+    "identification of actual Adams filtrations"
+  ],
+  "failed_attempts": [
+    "Basic.failed-cfdea5637db4.log"
+  ]
+}

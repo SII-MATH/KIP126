@@ -1,0 +1,201 @@
+{
+  "status": "passed",
+  "comparisons": 2,
+  "quotient_pairs": 320,
+  "SQL_d2_columns": 17,
+  "row2917_event": [
+    13,
+    137,
+    "2",
+    "0",
+    9997
+  ],
+  "raw_source_basis": [
+    2916,
+    "7,1,275,1",
+    ""
+  ],
+  "SS_row2916_remains_unknown": [
+    "1",
+    null,
+    9000
+  ],
+  "full_map_coordinate_changes": 672,
+  "compilation": [
+    {
+      "module": "Fact763E7.Data",
+      "reports": 5
+    },
+    {
+      "module": "Fact763E7.Actual",
+      "reports": 7
+    },
+    {
+      "module": "Fact763E7.Tactic",
+      "reports": 1
+    }
+  ],
+  "frozen_files": null,
+  "source_records": [
+    {
+      "name": "source2",
+      "degree": [
+        13,
+        137
+      ],
+      "raw_rows": [
+        [
+          [
+            2850,
+            "69,1,89,1",
+            ""
+          ],
+          [
+            2851,
+            "1,1,389,1",
+            ""
+          ],
+          [
+            2852,
+            "1,1,388,1",
+            ""
+          ],
+          [
+            2853,
+            "0,2,391,1",
+            ""
+          ],
+          [
+            2854,
+            "0,3,375,1",
+            "3"
+          ]
+        ],
+        [
+          [
+            2914,
+            "76,1,82,1",
+            ""
+          ],
+          [
+            2915,
+            "9,1,251,1",
+            ""
+          ],
+          [
+            2916,
+            "7,1,275,1",
+            ""
+          ],
+          [
+            2917,
+            "0,5,367,1",
+            ""
+          ]
+        ],
+        [
+          [
+            3000,
+            "438,1",
+            ""
+          ],
+          [
+            3001,
+            "7,1,279,1",
+            ""
+          ],
+          [
+            3002,
+            "0,2,418,1",
+            ""
+          ]
+        ]
+      ],
+      "dimensions": [
+        3,
+        4,
+        5,
+        3
+      ]
+    },
+    {
+      "name": "target2",
+      "degree": [
+        16,
+        139
+      ],
+      "raw_rows": [
+        [
+          [
+            3003,
+            "440,1",
+            "1"
+          ],
+          [
+            3004,
+            "439,1",
+            "1,2"
+          ],
+          [
+            3005,
+            "23,1,190,1",
+            ""
+          ],
+          [
+            3006,
+            "1,1,418,1",
+            ""
+          ],
+          [
+            3007,
+            "1,1,417,1",
+            ""
+          ]
+        ],
+        [
+          [
+            3072,
+            "1,1,424,1",
+            ""
+          ],
+          [
+            3073,
+            "0,1,438,1",
+            ""
+          ],
+          [
+            3074,
+            "0,3,418,1",
+            ""
+          ]
+        ],
+        [
+          [
+            3138,
+            "8,1,279,1",
+            ""
+          ],
+          [
+            3139,
+            "1,1,436,1",
+            ""
+          ],
+          [
+            3140,
+            "0,2,437,1",
+            ""
+          ]
+        ]
+      ],
+      "dimensions": [
+        3,
+        3,
+        5,
+        1
+      ]
+    }
+  ],
+  "reviewed_logic": "Complete E3 target dimension1 plus one recorded nonzero d3 witness yields every target class a boundary; complete E4 zero follows from quotient surjectivity, then E6 zero. Same original E2 trace extends previous nonzeroE6 to nonzeroE7 using whole incoming source zero.",
+  "no_circular_premise": "No desired d6 value, E7 existence/nonzero, targetE4 zero, or unknown row2916 differential is supplied.",
+  "review_sha256": "e6158d95eee184660dcda03a1eabd028f0e7b9c85dbedd390e6d8c00782ade9a"
+}

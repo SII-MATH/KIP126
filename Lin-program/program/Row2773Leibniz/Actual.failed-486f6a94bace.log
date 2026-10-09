@@ -1,0 +1,26 @@
+Row2773Leibniz/Actual.lean:47:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  pageCast S ?r ⋯ ((S.differential ?r (Bidegree.add ?d ?e)).toFun (P.product.multiply ?r ?d ?e ?x ?y))
+in the target expression
+  pageCast S 3 ⋯ ((S.differential 3 sourceDegree).toFun (P.product.multiply 3 etaDegree rightDegree a b)) = 0
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+M : Meaning S P
+a : (S.element 3 etaDegree).carrier
+b : (S.element 3 rightDegree).carrier
+leftZero : P.product.multiply 3 (AdamsTarget 3 etaDegree) rightDegree ((S.differential 3 etaDegree).toFun a) b = 0
+⊢ pageCast S 3 ⋯ ((S.differential 3 sourceDegree).toFun (P.product.multiply 3 etaDegree rightDegree a b)) = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    P.product.multiply 3 etaDegree rightDegree a b
+  has type
+    (S.element 3 (etaDegree.add rightDegree)).carrier
+  but is expected to have type
+    (S.element 3 sourceDegree).carrier
+  in the application
+    (S.differential 3 sourceDegree).toFun (P.product.multiply 3 etaDegree rightDegree a b)
+'Row2773Leibniz.Actual.actual_right_d3_zero' depends on axioms: [propext, Quot.sound]
+'Row2773Leibniz.Actual.actual_product_d3_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2773Leibniz.Actual.actual_row2773_d3_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1,0 +1,22 @@
+IndexedPredecessorClosureCompact/Diagnostics.lean:34:23: error: unsolved goals
+case cons.none
+family : Family
+entry : IndexedFamilyCertificates.Entry
+rest : List IndexedFamilyCertificates.Entry
+ih :
+  ∀ (index : Nat),
+    diagnoseEntries (project family) (project rest) index = IndexedPredecessorClosure.diagnoseEntries family rest index
+index : Nat
+⊢ diagnoseEntries (List.map projectEntry family) (List.map projectEntry rest) (index + 1) =
+    IndexedPredecessorClosure.diagnoseEntries family rest (index + 1)
+IndexedPredecessorClosureCompact/Diagnostics.lean:37:73: warning: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵i̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'IndexedPredecessorClosureCompact.diagnoseEntry_project' depends on axioms: [propext]
+'IndexedPredecessorClosureCompact.diagnoseEntries_project' depends on axioms: [sorryAx]
+'IndexedPredecessorClosureCompact.diagnose_project' depends on axioms: [sorryAx]
+'IndexedPredecessorClosureCompact.diagnose_none_iff' depends on axioms: [propext, sorryAx, Quot.sound]

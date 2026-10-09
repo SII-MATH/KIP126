@@ -1,0 +1,77 @@
+{
+  "status": "complete_families_full_quotients_and_conditional_actual_bridge_pass",
+  "cases": [
+    {
+      "case": "zero_a0",
+      "entries": 1358,
+      "previous_preserved": 1355,
+      "new_entries": 3,
+      "counts": {
+        "cycle_pairs": 9698,
+        "predecessor_dimensions": 2568,
+        "ordered_pairs": 1844164,
+        "consecutive": 856,
+        "adjacent": 1038
+      },
+      "next_obstruction": "unknown S0:16,137:d4:row2907; target dimension 2",
+      "family_sha256": "5f5fc741850f5488c3fd0ec8a4a7c120896d5adc54a21475fafc1d1787737beb"
+    },
+    {
+      "case": "zero_a1",
+      "entries": 1358,
+      "previous_preserved": 1355,
+      "new_entries": 3,
+      "counts": {
+        "cycle_pairs": 9686,
+        "predecessor_dimensions": 2568,
+        "ordered_pairs": 1844164,
+        "consecutive": 856,
+        "adjacent": 1038
+      },
+      "next_obstruction": "unknown S0:16,137:d4:row2907; target dimension 1",
+      "family_sha256": "9acabd073e94c8109ae77a56d07ff7f4028018f0f4bedfeaad94c623a1ac9679"
+    },
+    {
+      "case": "residual_a0",
+      "entries": 1367,
+      "previous_preserved": 1364,
+      "new_entries": 3,
+      "counts": {
+        "cycle_pairs": 9710,
+        "predecessor_dimensions": 2595,
+        "ordered_pairs": 1868689,
+        "consecutive": 865,
+        "adjacent": 1045
+      },
+      "next_obstruction": "unknown S0:16,137:d4:row2907; target dimension 1",
+      "family_sha256": "96bcff7ca8e5ddb24132dc01f816cf18a73d72df56bfc1f90017798d1723dcce"
+    },
+    {
+      "case": "residual_a1",
+      "entries": 1370,
+      "previous_preserved": 1367,
+      "new_entries": 3,
+      "counts": {
+        "cycle_pairs": 9707,
+        "predecessor_dimensions": 2601,
+        "ordered_pairs": 1876900,
+        "consecutive": 867,
+        "adjacent": 1048
+      },
+      "next_obstruction": "unknown S0:11,133:d5:row2622; target dimension 1",
+      "family_sha256": "82262373102f0ee09483d0fc661421465192baf4d12a9b8a80b1f4ee74e3b287"
+    }
+  ],
+  "actual_a_selection": "false only under Row2907TargetProduct.Actual.TargetMeaning",
+  "actual_r_selected": false,
+  "actual_model_counts": {
+    "same_input_quotient_pairs": 64,
+    "counterfeit_columns_rejected": 48,
+    "same_input_carrier_models": 16
+  },
+  "parent_sha256": {
+    "Fact713FourBranchContinuation/frozen-source.json": "9ace25c060e79dceb221e256de8b2641f812848c73565197b35c3a5de1d96203",
+    "Row2916D4Search/frozen-source.json": "4b7771179b7f99e4840b249c1cd1a9c9896f2fa88941852b6d09efc4b8bd1463",
+    "Row2907TargetProduct/frozen-source.json": "da384e288b0e84111b6067a0a72b2289613833e497a2df0f1515a601dd0aca2e"
+  }
+}

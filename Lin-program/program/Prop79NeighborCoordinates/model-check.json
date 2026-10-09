@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "counts": {
+    "finite_quotient_pairs": 1126,
+    "actual_quotient_pairs": 16998,
+    "constructed_steps": 60,
+    "actual_models": 22,
+    "missing_prefix_countermodels": 3
+  },
+  "axiom_reports": {
+    "Basic": 7,
+    "Assembly": 4
+  },
+  "derived_neighbors": [
+    "incoming d4 E4 dimension0",
+    "outgoing d4 E4 dimension0",
+    "incoming d5 E5 dimension1"
+  ],
+  "remaining": [
+    "initial complete additive coordinates for each neighboring degree",
+    "whole known neighboring actual differential meanings and local quotient laws",
+    "one actual d5-zero theorem on the constructed incoming E5 basis element"
+  ],
+  "sources": {
+    "Prop79NeighborCoordinates/Assembly.lean": "88a9d2efecee5b18aaa716069f8dc36b17f61510d839c3c32b5321428e3a63a9",
+    "Prop79NeighborCoordinates/Basic.lean": "c404c820f0b1f90ef21240c313741dc4bfff9f2f1e9ce1a2d7ddb0edd9d18d07",
+    "Prop79IncomingSearch/search.json": "485bfad505d242f35b76e4db88c7df62229a1ff018b0aece4409fbb253ab4867"
+  }
+}

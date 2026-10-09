@@ -1,0 +1,40 @@
+{
+  "findings": [],
+  "counts": {
+    "families": 52989,
+    "unique_families": 27426,
+    "duplicates": 25563,
+    "accepted": 1399,
+    "lookup_pair_equivalences": 27426
+  },
+  "actual_family_entries": 1234,
+  "actual_full_pairs": 1522756,
+  "modules": [
+    {
+      "module": "Basic",
+      "source_sha256": "0f36f3a4d3a8fd4c30e776fc14faf8bcb6855b1789d7107602d0c39665076a9e",
+      "log_sha256": "457a29673f55048cd1402a967d9b0b263908ea9b1b920cf0d624c6d309ee7bce",
+      "upstream_observed_exit": 0,
+      "standard_axiom_reports": 5
+    },
+    {
+      "module": "Examples",
+      "source_sha256": "ccaa788d71aca1b0fd00faced3dc6e01d69be9b3c65761f33240c5d362223937",
+      "log_sha256": "edb7055b69ece94aece529f50c3a36d742f9673ef948f4d5cb3436d9b988ea7a",
+      "upstream_observed_exit": 0,
+      "standard_axiom_reports": 1
+    }
+  ],
+  "negative_cases": [
+    "duplicate hides conflicting second neighbor",
+    "same dimensions unequal matrix",
+    "missing neighbor allows pair compatibility but fails requested coverage",
+    "invalid key",
+    "invalid wire",
+    "negative auxiliary degrees",
+    "different object"
+  ],
+  "scope": "same existing Coherent and explicit CoversKeys contracts; list lookup remains linear",
+  "independent_recompilation": false,
+  "script_sha256": "a0da555b71e6673a9efbad723e97e2090f53dc56678c77f9693b958298ab757b"
+}

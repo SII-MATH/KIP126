@@ -1,0 +1,164 @@
+{
+  "status": "independent_review_passed_after_parser_and_batch_line_fixes",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "resolved_findings": [
+    {
+      "issue": "Trailing NUL was treated as EOF by Parser.peek, accepting trailing garbage.",
+      "fix": "Current produce skips JSON whitespace then compares parser.p with line.size().",
+      "independently_retested": [
+        "NUL",
+        "NUL+junk",
+        "whitespace+NUL+junk"
+      ],
+      "mathematical_impact": "No Lean soundness impact; invalid JSON transport acceptance fixed."
+    },
+    {
+      "issue": "Batch trimAscii hid leading blank records and shifted physical line diagnostics.",
+      "fix": "physicalLines removes only one terminal LF; parseBatch preserves and rejects blank/CR records.",
+      "compiled_regression_guards": 17,
+      "mathematical_impact": "No Lean soundness impact; strict import and failure location corrected."
+    }
+  ],
+  "independent_replay": {
+    "all_scalar_all_branch_cases": 12288,
+    "random_dim0_to3_cases": 1800,
+    "total_cases": 14088,
+    "accepted": 3408,
+    "rejected": 10680,
+    "mixed_runs_byte_identical": true,
+    "physical_rejection_rows_checked": 10680,
+    "exact_imported_fixture_records": 1480,
+    "fixture_byte_identical": true,
+    "streaming_negative_cases": [
+      {
+        "label": "trailing NUL",
+        "diagnostic": "stdin:2: trailing JSON"
+      },
+      {
+        "label": "trailing NUL suffix",
+        "diagnostic": "stdin:2: trailing JSON"
+      },
+      {
+        "label": "whitespace then NUL suffix",
+        "diagnostic": "stdin:2: trailing JSON"
+      },
+      {
+        "label": "trailing object",
+        "diagnostic": "stdin:2: trailing JSON"
+      },
+      {
+        "label": "duplicate version",
+        "diagnostic": "stdin:2: duplicate field version"
+      },
+      {
+        "label": "blank",
+        "diagnostic": "stdin:2: unknown/null/string value at byte 0"
+      },
+      {
+        "label": "nested depth",
+        "diagnostic": "stdin:2: JSON depth limit32"
+      },
+      {
+        "label": "record byte limit",
+        "diagnostic": "stdin:2: record byte limit10MB"
+      },
+      {
+        "label": "unknown outer",
+        "diagnostic": "stdin:2: input: unknown field unknown"
+      },
+      {
+        "label": "version",
+        "diagnostic": "stdin:2: version: expected 1"
+      },
+      {
+        "label": "unknown branch",
+        "diagnostic": "stdin:2: firstBranch: expected auto, f or p; unknown is not zero"
+      },
+      {
+        "label": "external marker",
+        "diagnostic": "stdin:2: firstBranch: expected auto, f or p; unknown is not zero"
+      },
+      {
+        "label": "unknown matrix",
+        "diagnostic": "stdin:2: expected array"
+      },
+      {
+        "label": "NULL matrix",
+        "diagnostic": "stdin:2: expected array"
+      },
+      {
+        "label": "possibly matrix",
+        "diagnostic": "stdin:2: expected array"
+      },
+      {
+        "label": "dimension65",
+        "diagnostic": "stdin:2: data.a: dimension resource limit64"
+      },
+      {
+        "label": "negative dimension",
+        "diagnostic": "stdin:2: expected natural"
+      },
+      {
+        "label": "boolean dimension",
+        "diagnostic": "stdin:2: expected natural"
+      },
+      {
+        "label": "numeric bit0",
+        "diagnostic": "stdin:2: data.x: expected Boolean"
+      },
+      {
+        "label": "numeric bit1",
+        "diagnostic": "stdin:2: data.x: expected Boolean"
+      },
+      {
+        "label": "null bit",
+        "diagnostic": "stdin:2: unknown/null/string value at byte 187"
+      },
+      {
+        "label": "wrong vector",
+        "diagnostic": "stdin:2: data.x: dimension mismatch"
+      }
+    ],
+    "dimension64_fullrank": true,
+    "dimension64_rank32": true
+  },
+  "semantic_checks": [
+    "Independent oracle enumerates entire image subgroups and all representatives, not elimination.",
+    "Every emitted witness and full factor equation checked; actual fourth extension checked independently.",
+    "Auto selects f first exactly when its full factor exists; explicit branches are respected.",
+    "Mixed streams continue after errors and return exit1 with physical line diagnostics.",
+    "Imported theorem includes count1480 and kernel reduction plus proved batch soundness.",
+    "Elaborators construct literal wire data only, and do not provide semantic proof assumptions."
+  ],
+  "limitations": [
+    "C++ resource cap is64 while Lean finite types are not restricted to64.",
+    "Batch certificates contain no input line provenance; stderr and exit status must be retained.",
+    "External file inputs must be included in rebuild dependency tracking.",
+    "Actual paper filtrations, essential no-crossing, synthetic ESS and Theorem6.1 not instantiated."
+  ],
+  "build_evidence": {
+    "module": "Imported",
+    "exit_code": 0,
+    "standard_axiom_reports": 6,
+    "current_olean_exists": true,
+    "current_olean_matches_direct": true
+  },
+  "input_sha256": {
+    "RepresentativeSquareProducer/export.cpp": "e06003cfceef08ea396a6188bd984bc1707dc895dae8b472acadfbf8f6e1bbc8",
+    "RepresentativeSquareProducer/Imported.lean": "44fd4f2ca1315d5a36a0b6f71289facbb0eff3fd49b3fa99db0d3c4997addaf7",
+    "RepresentativeSquareProducer/README.md": "0c4fbd5337261a1d247db3f4b323b214d7647f6887231be9d3a2a5f2e189d1e8",
+    "RepresentativeSquareProducer/valid.input.jsonl": "2fc64ff3c8562fc082022614346da9213b7b2723d854361cc547fd724cb4c4ea",
+    "RepresentativeSquareProducer/valid.jsonl": "4808fa9c3f2fcdc887fd71daeb09845f999ebfec162e00a2d1e7046ee253de9a",
+    "RepresentativeSquareProducer/case_f.json": "3a941220e18e95798a4f5fd7932d8a2c10db0f58687e3ccd9e0fb28bd52e9ab8",
+    "RepresentativeSquareProducer/case_p.json": "8aac03624f7eec961d3d3f011e174e4b1478ad02c0affdade5ec8968d99ba251",
+    "RepresentativeSquareProducer/case_zero.json": "c4fd4c0fb1077743a91208e33d3558ea313d2a40e015d5feab0363569326d636",
+    "RepresentativeSquareProducer/case_dimension64.json": "6588e1acc4c4561de309e53b4bd28da4d02adc60a1938d3e9f8f043ecf07970f",
+    "RepresentativeSquareProducer/audit.json": "18bc8d3fd18d46d503059e2cae5e569bf433e038241eccd23ee9a208bb917bcd",
+    "RepresentativeSquareProducer/nul-fix-before.json": "7a2c4abbbb47a244fddb4339ff9426465ff7f3b41cc5cbb8012a925359c93a09",
+    "RepresentativeSquareProducer/nul-fix-audit.json": "fa86acfd0a133984982f9fa5f71665434bd38a1a3f2d0a0d573a315320d3537a",
+    "RepresentativeSquareProducer/independent-review.py": "e15c2e8934f946e4ec40aafac4fb7d80046e7be0262d0b87c915bb274aa44487",
+    "IndexedFamilyProducer/json.hpp": "7600670139f680ad74c92c1ffe99289ae8b349c24a2bae7861ca866d43df4be7",
+    "RepresentativeSquareCertificates/independent-review.py": "80b94e5cf638ac08f71c4ded62aac1e7df2ad6c42fd1ea417068d6186110b7a9"
+  }
+}

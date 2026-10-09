@@ -1,0 +1,34 @@
+Row2773D4Leibniz/CoordinateBridge.lean:52:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  current.equivalence ?x
+in the target expression
+  (M.nextCoordinates pages staircase3_valid zeroMeaning).equivalence
+      ((pages.nextPage 3 Actual.sourceDegree).toNext ⟦x⟧) =
+    eval staircase3.comparison.projection (current.equivalence ↑x)
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+P : CertifiedAdamsProduct S
+old : Row2773Leibniz.Actual.Meaning S P
+current : Coordinates S 3 Actual.sourceDegree 2
+M : ActualAdamsHomologyCoordinates.Meaning S 3 Actual.sourceDegree staircase3 current
+zeroMeaning : ActualAdamsHomologyCoordinates.Meaning.LocalZeroMeaning pages 3 Actual.sourceDegree
+binding :
+  ∀ (x : (S.element 3 Actual.sourceDegree).carrier),
+    current.equivalence x = staircase2Coordinates.toCoordinates (old.source x)
+x : PageCycle S 3 Actual.sourceDegree
+named : old.source ↑x = Row2773Leibniz.namedSource
+formula :
+  (M.nextCoordinates pages staircase3_valid zeroMeaning).equivalence
+      ((pages.nextPage 3 Actual.sourceDegree).toNext ⟦x⟧) =
+    eval staircase3.comparison.projection (current.equivalence ↑x)
+⊢ (M.nextCoordinates pages staircase3_valid zeroMeaning).equivalence
+      ((pages.nextPage 3 Actual.sourceDegree).toNext ⟦x⟧) =
+    fun x => true
+'Row2773D4Leibniz.CoordinateBridge.source_all_coordinates' depends on axioms: [propext, Quot.sound]
+'Row2773D4Leibniz.CoordinateBridge.source_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2773D4Leibniz.CoordinateBridge.named_staircase3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Row2773D4Leibniz.CoordinateBridge.actual_next_name' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Row2773D4Leibniz.CoordinateBridge.actual_next_unique' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

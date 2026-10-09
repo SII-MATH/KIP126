@@ -1,0 +1,7 @@
+import Fact713D4ComparisonBranches.ZeroCross
+namespace Fact713D4ComparisonBranches.Zero
+open IndexedFamilyCertificates
+theorem family_coherent : Coherent family :=
+  Fact713RefinedComparisonFamily.coherent_append _ _ Fact713D4Branches.Zero.family_coherent extra_coherent cross_checked
+#print axioms family_coherent
+end Fact713D4ComparisonBranches.Zero

@@ -1,0 +1,353 @@
+[
+  {
+    "id": "strategy-e2",
+    "section_or_location": "Introduction §1",
+    "object": "49 finite CW spectra",
+    "input_or_condition": "CW spectra and Steenrod-algebra data",
+    "output_or_conclusion": "Adams E2 pages and maps",
+    "source_tables": "",
+    "status_for_formalization": "required input inventory",
+    "certificate_design": "resolution/E2/map",
+    "required_witness": "CW Steenrod module; finite differential matrices; basis changes; multiplication/map matrices",
+    "implemented_boundary": "finite Milnor coproduct pairing; F2 maps/complexes/exactness; no CW/Steenrod-module-to-Ext comparison",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "MilnorCertificates",
+      "LinearCertificates",
+      "ResolutionCertificates",
+      "ResolutionCertificates.HomologyBasis"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "PageTransitionCertificates"
+    ]
+  },
+  {
+    "id": "strategy-d2",
+    "section_or_location": "Introduction §1",
+    "object": "selected finite spectra",
+    "input_or_condition": "secondary Steenrod algebra data",
+    "output_or_conclusion": "selected Adams d2 differentials",
+    "source_tables": "",
+    "status_for_formalization": "required input inventory",
+    "certificate_design": "secondary-d2",
+    "required_witness": "secondary operations and correction homotopies",
+    "implemented_boundary": "all 49 source databases exported; 9740 appendix range linear queries; no secondary-operation correctness theorem",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": []
+  },
+  {
+    "id": "strategy-propagation",
+    "section_or_location": "Introduction §1",
+    "object": "all configured spectra/maps/cofiber sequences",
+    "input_or_condition": "E2 pages, maps, d2 and propagation rules",
+    "output_or_conclusion": "propagated Adams differentials and extensions",
+    "source_tables": "",
+    "status_for_formalization": "required checker boundary",
+    "certificate_design": "proof DAG",
+    "required_witness": "rule tags, premise indices, map/cofiber IDs, degree and range side conditions",
+    "implemented_boundary": "conditional ordinary zero/linearity/Leibniz/naturality DAG with explicit premise proofs; actual 20 source tags audited; advanced rule replay missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "PropagationCertificates",
+      "PropagationCertificates.Branches"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "AdvancedRuleCertificates.Connecting",
+      "PropagationCertificates.MatrixNaturality",
+      "PageTransitionCertificates.InducedMap"
+    ]
+  },
+  {
+    "id": "strategy-101-105",
+    "section_or_location": "Introduction §1",
+    "object": "stem 125 targets of h6^2",
+    "input_or_condition": "105 additive generators plus inductive input",
+    "output_or_conclusion": "101 targets ruled out",
+    "source_tables": "2-9",
+    "status_for_formalization": "aggregate computational conclusion",
+    "certificate_design": "ruledOut + proof DAG",
+    "required_witness": "all 105 target classes; 101 distinct elimination derivations; inductive premises",
+    "implemented_boundary": "finite vector elimination witnesses available; actual 101 exclusions and induction closure not reconstructed",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [],
+    "source_data_available": true,
+    "continuation_modules": []
+  },
+  {
+    "id": "fact-7.6-1",
+    "section_or_location": "§7 Fact 7.6(1)",
+    "object": "x126,8,4 + x126,8",
+    "input_or_condition": "Appendix E2/differential tables",
+    "output_or_conclusion": "survives to E6",
+    "source_tables": "5;6;7;9",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "survives",
+    "required_witness": "named sum as class; incoming and outgoing records through page 5",
+    "implemented_boundary": "actual named sum and staircase coordinates verified; bounded finite filtration survival through page6; Adams comparison missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates"
+    ]
+  },
+  {
+    "id": "fact-7.6-2",
+    "section_or_location": "§7 Fact 7.6(2)",
+    "object": "h1 h4 x109,12",
+    "input_or_condition": "survival and possible source targets",
+    "output_or_conclusion": "permanent; only d6 or d12 can kill it",
+    "source_tables": "5;6;7;9",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "permanent + candidate restriction",
+    "required_witness": "product class; all incoming/outgoing; possible killers at pages 6 and 12",
+    "implemented_boundary": "actual scalar expression and staircase coordinates verified; permanence and killer restriction in actual Adams sequence missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates"
+    ]
+  },
+  {
+    "id": "fact-7.6-3",
+    "section_or_location": "§7 Fact 7.6(3)",
+    "object": "h0^2 x124,8",
+    "input_or_condition": "Adams differential table",
+    "output_or_conclusion": "survives to E-infinity",
+    "source_tables": "5;7",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "permanent",
+    "required_witness": "product class; complete finite incident records",
+    "implemented_boundary": "actual scalar expression and staircase coordinates verified; infinite-page comparison missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates"
+    ]
+  },
+  {
+    "id": "fact-7.6-4",
+    "section_or_location": "§7 Fact 7.6(4)",
+    "object": "g^4 Delta h1 g",
+    "input_or_condition": "stem 125 filtration 25",
+    "output_or_conclusion": "only survivor through E5",
+    "source_tables": "6;7",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "unique survivor through page 5",
+    "required_witness": "all candidates at (stem,s)=(125,25); survivor; elimination witnesses",
+    "implemented_boundary": "actual scalar expression verified; raw staircase has two permanent sentinels; hypothetical d4 exclusion needed",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates"
+    ]
+  },
+  {
+    "id": "remark-7.7",
+    "section_or_location": "§7 Remark 7.7",
+    "object": "x126,6",
+    "input_or_condition": "d3 output with a possible summand",
+    "output_or_conclusion": "nonzero and cannot kill h1 h4 x109,12",
+    "source_tables": "9",
+    "status_for_formalization": "candidate-set specification",
+    "certificate_design": "candidate differential set",
+    "required_witness": "known part; possible summands; nonzero and forbidden-target witnesses",
+    "implemented_boundary": "actual known/optional target coordinates give an affine set proved uniformly nonzero; identification with allowed Adams targets missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates",
+      "AdvancedRuleCertificates.Remark77"
+    ]
+  },
+  {
+    "id": "fact-7.13",
+    "section_or_location": "§7 Fact 7.13",
+    "object": "x123,9 + h0 x123,8; x125,8",
+    "input_or_condition": "Appendix tables",
+    "output_or_conclusion": "survives to E12; exact d2(x125,8)",
+    "source_tables": "3;7",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "survives + differential",
+    "required_witness": "sum class through page 11 AND exact d2(x125,8)",
+    "implemented_boundary": "actual named expressions, relation reduction and d2 matrix value verified; bounded finite survival through12; Adams comparison missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates",
+      "NamedElementCertificates.Fact713",
+      "NamedElementCertificates.EvaluationExamples"
+    ]
+  },
+  {
+    "id": "fact-7.15",
+    "section_or_location": "§7 Fact 7.15",
+    "object": "h0^2 x125,9,2",
+    "input_or_condition": "Adams differential table",
+    "output_or_conclusion": "survives to E5",
+    "source_tables": "7",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "survives",
+    "required_witness": "product class through page 4",
+    "implemented_boundary": "actual named expression and bounded finite survival through5; Adams comparison missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates"
+    ]
+  },
+  {
+    "id": "fact-7.19",
+    "section_or_location": "§7 Fact 7.19",
+    "object": "h1 x121,7",
+    "input_or_condition": "Adams differential table",
+    "output_or_conclusion": "survives to E6",
+    "source_tables": "2",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "survives",
+    "required_witness": "product class through page 5",
+    "implemented_boundary": "actual named expression and bounded finite survival through6; Adams comparison missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates"
+    ]
+  },
+  {
+    "id": "fact-7.21",
+    "section_or_location": "§7 Fact 7.21",
+    "object": "h6 M d0; h5 x91,11",
+    "input_or_condition": "Adams differential table",
+    "output_or_conclusion": "both are permanent cycles",
+    "source_tables": "2",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "permanent + permanent",
+    "required_witness": "both h6 M d0 and h5 x91,11",
+    "implemented_boundary": "both actual scalar expressions and coordinates verified; actual infinite-page permanence missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates",
+      "StaircaseCertificates"
+    ]
+  },
+  {
+    "id": "prop-7.9",
+    "section_or_location": "§7 Proposition 7.9",
+    "object": "S0/nu stem 126",
+    "input_or_condition": "h1 h4 x109,12[0]; r<=5",
+    "output_or_conclusion": "not killed by any d_r; contradiction to the remaining case",
+    "source_tables": "1",
+    "status_for_formalization": "Lean lemma",
+    "certificate_design": "notHit + topological bridge",
+    "required_witness": "S0/nu class; incident range 2..5; contradiction premises",
+    "implemented_boundary": "actual Cnu local2/global4412 and bottom-cell module expression evaluated; arbitrary module-relation checker proved; actual Adams notHit and topology contradiction missing",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [
+      "LinearCertificates",
+      "PageCertificates"
+    ],
+    "source_data_available": true,
+    "continuation_modules": [
+      "NamedElementCertificates.ModuleEvaluation",
+      "NamedElementCertificates.CnuBottomCell"
+    ]
+  },
+  {
+    "id": "manual-1",
+    "section_or_location": "§8 Appendix",
+    "object": "S0",
+    "input_or_condition": "manually added differential",
+    "output_or_conclusion": "d5(h0^24 h6)=h0^2 P^6 d0",
+    "source_tables": "",
+    "status_for_formalization": "external theorem/input",
+    "certificate_design": "external theorem/input",
+    "required_witness": "cited theorem, exact source/target expression and bidegrees",
+    "implemented_boundary": "external input retained; no source theorem proof supplied",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [],
+    "source_data_available": true,
+    "continuation_modules": []
+  },
+  {
+    "id": "manual-2",
+    "section_or_location": "§8 Appendix",
+    "object": "S0",
+    "input_or_condition": "manually added differential",
+    "output_or_conclusion": "d6(h0^55 h7)=h0^2 x126,60",
+    "source_tables": "",
+    "status_for_formalization": "external theorem/input",
+    "certificate_design": "external theorem/input",
+    "required_witness": "cited theorem, exact source/target expression and bidegrees",
+    "implemented_boundary": "external input retained; no source theorem proof supplied",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [],
+    "source_data_available": true,
+    "continuation_modules": []
+  },
+  {
+    "id": "manual-3",
+    "section_or_location": "§8 Appendix",
+    "object": "tmf",
+    "input_or_condition": "power-operations input",
+    "output_or_conclusion": "d3(v2^16)=beta^5 g",
+    "source_tables": "",
+    "status_for_formalization": "external theorem/input",
+    "certificate_design": "external theorem/input",
+    "required_witness": "cited theorem, exact source/target expression and bidegrees",
+    "implemented_boundary": "external input retained; no source theorem proof supplied",
+    "proof_status": "not_proved_from_paper_objects",
+    "available_modules": [],
+    "source_data_available": true,
+    "continuation_modules": []
+  }
+]

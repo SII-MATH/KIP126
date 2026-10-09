@@ -1,0 +1,137 @@
+{
+  "build_observation": [
+    {
+      "direct_olean_matches_now": true,
+      "exit_code": 0,
+      "module": "Basic",
+      "source_log_matched": true,
+      "standard_axiom_reports": 2
+    },
+    {
+      "direct_olean_matches_now": true,
+      "exit_code": 0,
+      "module": "Cases",
+      "source_log_matched": true,
+      "standard_axiom_reports": 8
+    }
+  ],
+  "compilation": "Parent owns current compilation; this review does not certify its current success or historical logs.",
+  "findings": [],
+  "finite_checks": [
+    {
+      "case": "Fact762",
+      "degree": [
+        14,
+        139
+      ],
+      "dimensions": {
+        "h": 1,
+        "k": 5,
+        "m": 3,
+        "n": 5
+      },
+      "full_incoming_vectors_checked": 32,
+      "local_coordinate": 1,
+      "projected_vector": [
+        1
+      ]
+    },
+    {
+      "case": "Fact763",
+      "degree": [
+        10,
+        134
+      ],
+      "dimensions": {
+        "h": 4,
+        "k": 3,
+        "m": 5,
+        "n": 2
+      },
+      "full_incoming_vectors_checked": 4,
+      "local_coordinate": 4,
+      "projected_vector": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "case": "Fact721First",
+      "degree": [
+        11,
+        133
+      ],
+      "dimensions": {
+        "h": 2,
+        "k": 1,
+        "m": 2,
+        "n": 2
+      },
+      "full_incoming_vectors_checked": 4,
+      "local_coordinate": 1,
+      "projected_vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "case": "Fact721Second",
+      "degree": [
+        12,
+        134
+      ],
+      "dimensions": {
+        "h": 2,
+        "k": 1,
+        "m": 3,
+        "n": 3
+      },
+      "full_incoming_vectors_checked": 8,
+      "local_coordinate": 0,
+      "projected_vector": [
+        1,
+        0
+      ]
+    }
+  ],
+  "inputs_sha256": {
+    "ActualPermanenceBoundary/Basic.lean": "d2b54cb2c82f7e8a999d2b85504a0b9473e589850a1944cffb824deacce8a4f9",
+    "ActualPermanenceBoundary/Cases.lean": "d6f9998c054ae1d81796c5f2a7d573b63141c5f6a86a82330fdabba483c310f6",
+    "ActualPermanenceBoundary/README.md": "8cc9710336910a6502b70f24cd42254fe974934914c4db0b60402c09cd9f5dd1",
+    "ActualPermanenceBoundary/independent-review.py": "d1238b8e0c262bdf04b8b649a8645b2233d18276b0aa6a8965e6da41356f31eb",
+    "Fact721PageCertificates/First.lean": "7bcd29a8400682e6aec94179b5b4a13b866e39ed263b0ce7ba0a596c08aa28ea",
+    "Fact721PageCertificates/Second.lean": "f6e27b56f97c8a0b4e945496ef09a57dfa531ac3acb2fde5272f7dcc26d37816",
+    "Fact721PageCertificates/first-comparison.json": "76b2b833ea412b5de2c30995cd7f0147ad3369a1efd175cf643a7a6230946a08",
+    "Fact721PageCertificates/second-comparison.json": "a32e947fa2ba6a781fb19c18911eec2975ec1f385e379dde49d2e2e851aaea6b",
+    "Fact762IncomingCertificates/review.py": "ba84de8b2ae8c4eabc63c30c0a2c9c4416557ec36f02da20a0560a8b4ebbc15c",
+    "Fact762PageCertificates/Survivor.lean": "915c71fa3fd8ff0e4c025a26c45b3236dcc45e3fae5511bacf757ae9aa2b8a41",
+    "Fact762PageCertificates/comparison.json": "8ab8d933b95414e6661fe8f18bc3d964977a5a83c93cdfe0ec1a39e6fbef0bc3",
+    "Fact763PageCertificates/Survivor.lean": "fa170577f4eeb5b3bb813f2ed99cee0ae096b32f6b819dbb5196ccb344a09116",
+    "Fact763PageCertificates/comparison.json": "ddc0dc34d6cd147d76428db6bce6f9b20d71aad1faf138627b769a512911fa6b",
+    "LinProgramCertificates/Tactic.lean": "8855f954a638c04c51914c4f78bcdae26d566cf3ae837f82c939ecf50185a88e",
+    "PageTransitionCertificates/Trajectory.lean": "514f2c74c3f16bf0a26b8a353d11c70e3960ead242e3f99e161fe75a1d8dcdc3",
+    "PermanentCycleCertificates/Finite.lean": "7dc3591eb51ab15c0a4f07c4beeb06b4d8b2d74bf88247cf86b1d688a3416533",
+    "PermanentCycleCertificates/System.lean": "06163bec82e9d0a515244f62d455c8bce8224c7054b6bc15a7a55bf19b95668c",
+    "SemanticTrajectoryCertificates/Page.lean": "64539da0617101de775a1f59502308d34ac7c8d754165f0911d04ee1af65082f"
+  },
+  "limitations": [
+    "TailVanishing s1 is strong full-space vanishing from Adams page3 onward and is not established for these four actual targets.",
+    "These are conditional interfaces, not proofs of actual Kervaire permanence or a way to turn finite truncation into infinite permanence.",
+    "System is an abstract page model; topology, actual full coordinate meaning and homology transition laws remain caller inputs.",
+    "Named polynomial evaluation and identification with the original topological element require the existing expression semantics and their interpretation; a coordinate equality alone does not prove that identification."
+  ],
+  "semantic_checks": {
+    "actual_transition": "System.homology_zero states the actual cycle-to-next zero iff incoming image law; it is a caller-supplied mathematical premise.",
+    "full_incoming": "Meaning.incoming_all quantifies over every actual incoming element, not named database rows.",
+    "full_outgoing": "Meaning.outgoing_all plus outgoing coordinate injectivity transports the zero matrix value to the actual outgoing value.",
+    "named_binding": "Each singleton stage is the named module wire and List.ofFn target; named coordinates are explicit caller evidence.",
+    "nonboundary_surjectivity": "Surjectivity of finite incoming coordinates is unnecessary to transport nonimage to actual nonimage; every actual incoming image has a checked finite coordinate.",
+    "page_offset": "System index0 is Adams page2; singleton stages have length1 and TailVanishing s1 starts at index1, Adams page3.",
+    "tactic_binding": "Certificate is indexed by the same System and starting element as the Permanent goal; permanent_cert expands to verifier.sound with kernel decide on finite stages.",
+    "tail_non_circular": "TailVanishing quantifies over full incoming/outgoing spaces and does not mention the named element or Permanent."
+  },
+  "status": "independent_semantic_review_and_four_finite_replays_passed",
+  "tactic_update_review": "permanent_cert uses verifier.sound with first | rfl | decide. Both branches produce a kernel-checked proof of exactly check c = true; proof-field reduction introduces no evaluator or trust bypass."
+}

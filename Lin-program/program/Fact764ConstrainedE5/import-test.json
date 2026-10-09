@@ -1,0 +1,16 @@
+{
+  "all_valid_exit": 0,
+  "diagnostics": "mixed.jsonl:2: named: expected a cycle representing a nonzero homology class\nmixed.jsonl:3: named: vector dimension mismatch\nmixed.jsonl:4: version: expected 1\nmixed.jsonl:5: comparison: outgoing*inclusion[0,0]\nmixed.jsonl:6: comparison: homotopy[1,2]\nmixed.jsonl:7: comparison: projection*inclusion[0,0]\nmixed.jsonl:8: noncanonical JSON or unknown/duplicate field\nmixed.jsonl:9: noncanonical JSON or unknown/duplicate field\n",
+  "invalid_records": 8,
+  "mixed_exit": 1,
+  "mixed_stdout": "2/10 unique nonzero finite homology classes accepted\n",
+  "source_sha256": {
+    "Fact764ConstrainedE5/certificate0.json": "096a78543c1c08a7a3f9bcca6d3bbe295766516906628ca0f5290ec162eb2bf8",
+    "Fact764ConstrainedE5/certificate1.json": "897624c9648877b6545e7c116123f08298f7229dbf49081eb4cd6fc8fa169eec",
+    "Fact764ConstrainedE5/test_import.py": "f7765fd7c6d9afabb6d391d70a00181d2df1bf9462a6bde0e6280836e323152d",
+    "UniqueHomologyCertificates/CheckFile.lean": "21a725de42a3dc9af544ed5560b790e1ae3a6a6401972e58aa780a58101d4581",
+    "UniqueHomologyCertificates/Import.lean": "2eb821b575730c3e828361df888104a06d7cc1777fe8da37d0c8c4f6ceee3c8c"
+  },
+  "status": "passed",
+  "valid_records": 2
+}

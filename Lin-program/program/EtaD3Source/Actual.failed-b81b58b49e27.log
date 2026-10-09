@@ -1,0 +1,30 @@
+EtaD3Source/Actual.lean:58:30: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  M.detectTarget 0
+in the target expression
+  detectMul namedH0 (M.etaTarget ((S.differential 3 etaDegree).toFun b)) = M.detectTarget 0
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+M : Meaning S P
+a : (S.element 3 h0Degree).carrier
+named : M.h0 a = namedH0
+b : (S.element 3 etaDegree).carrier
+formula :
+  0 = pageCast S 3 ⋯ (P.product.multiply 3 h0Degree (AdamsTarget 3 etaDegree) a ((S.differential 3 etaDegree).toFun b))
+multiplied : P.product.multiply 3 h0Degree (AdamsTarget 3 etaDegree) a ((S.differential 3 etaDegree).toFun b) = 0
+decoded : detectMul namedH0 (M.etaTarget ((S.differential 3 etaDegree).toFun b)) = M.detectTarget 0
+⊢ (S.differential 3 etaDegree).toFun b = 0
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 3 (h0Degree.add (AdamsTarget 3 etaDegree))).carrier
+  but is expected to have type
+    (S.element 3 detectDegree).carrier
+  in the application
+    M.detectTarget 0
+'EtaD3Source.Actual.h0_d3_zero' depends on axioms: [propext, Quot.sound]
+'EtaD3Source.Actual.h0_eta_product_zero' depends on axioms: [propext, Quot.sound]
+'EtaD3Source.Actual.eta_d3_zero' depends on axioms: [propext, sorryAx, Quot.sound]

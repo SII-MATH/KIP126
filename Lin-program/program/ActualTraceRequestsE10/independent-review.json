@@ -1,0 +1,30 @@
+{
+  "status": "no_findings",
+  "findings": [],
+  "modules": 3,
+  "standard_axiom_reports": 4,
+  "frozen_files": 31,
+  "counts": {
+    "requests": 10668,
+    "rejected": 10667,
+    "batch_line_checks": 10668
+  },
+  "inherited_runtime": {
+    "malformed_records": 18,
+    "malformed_batches": 6,
+    "parser_line_locations": 6,
+    "valid_batches": 10
+  },
+  "checked": [
+    "same actual Prefix10 is used by soundness and tactic",
+    "claim and version match before delegated full input/output semantics",
+    "strict shared canonical parser reused without relaxing fields",
+    "eight negative tactic examples in accepted Examples module",
+    "diagnostics use explicit functions; unsupported generic instance omitted"
+  ],
+  "limitations": [
+    "Only the named E10 request is supported",
+    "Actual Prefix10 carries the explicit neighboring mathematical meanings",
+    "No frozen Lean source or object was recompiled in this review"
+  ]
+}

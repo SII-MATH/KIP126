@@ -1,0 +1,133 @@
+{
+  "findings": [],
+  "history": "tests/proof-stream-review-before-manual-status.json preserves the preceding parser review and replay fingerprints.",
+  "independent_fixtures": [
+    {
+      "exit_code": 0,
+      "expected_success": true,
+      "name": "CRLF blank quoted lines escaped quotes unknown preservation",
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "expected_success": true,
+      "name": "logical record exactly 10 MiB",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "logical record 10 MiB plus one byte",
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "expected_success": true,
+      "name": "multiline exact limit including embedded LF",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "multiline over limit including embedded LF",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "unterminated multiline preserves start line",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "closing quote suffix rejected at record start",
+      "passed": true
+    },
+    {
+      "exit_code": 1,
+      "expected_success": false,
+      "name": "mismatched field count after multiline",
+      "passed": true
+    },
+    {
+      "exit_code": 0,
+      "expected_success": true,
+      "name": "manual M status wins over unknown while preserving raw markers; nonmanual status unchanged",
+      "passed": true
+    }
+  ],
+  "inputs_sha256": {
+    "cert_export.cpp": "0ef376a4f88a6ec5a7657e5201e288463c7a89f28a1ea2fb127fbc02b54d0f66",
+    "certificate_format.md": "ed153f63401f77a6866b443de7cb59954c711bc4a0744ea924fdb17301aa2e5c",
+    "lin-cert-export": "9efdc8914ffbe51ea466e961c6c1e66e9c10075511d91e9e23180d2a9845a9ee",
+    "tests/actual-proof-stream-audit.json": "323d14aaebbe5a2e61bdf9eefa5aa8700ef31f27a8405847504636554c7b3f94",
+    "tests/actual-proof-stream.log": "e9c93e4d3385a0745775557ee99360d29a75ed6c76bad42b38b1c46dfac4eca8",
+    "tests/test_actual_proof_stream.py": "cc04d1b5ca57030bec3be3035cb7c3cf4d6f9680295bef687c85de8ef77cf218",
+    "tests/test_export.py": "97fea899f6d484027588a8c5f95627a0e9d67d44f6aa9367a8b3d4ebd801748d"
+  },
+  "limit_semantics": {
+    "counted": "Normalized logical CSV record bytes, including delimiters, quote syntax and embedded LF; excluding the final physical line separator. Exactly the limit is accepted.",
+    "limit_bytes": 10485760,
+    "not_guaranteed": "This is not a hard peak-memory cap: getline materializes one physical line before the size check; field vectors and serialized output also allocate memory."
+  },
+  "observed_actual_replay": {
+    "files": [
+      {
+        "exact_fields": true,
+        "exact_physical_start_lines": true,
+        "exit_code": 0,
+        "input_sha256": "c1ff2f0f922e29e5aa1c98d5c9cf79931038637d8c0e4f6ba88fa31aafc6b8cf",
+        "manual_external_inputs": 3,
+        "multiline_records": 698276,
+        "output_sha256": "de97a98538a65b37bae294aedbd136828dd5e2e752243fd4552d28652f6530fa",
+        "physical_lines": 2096450,
+        "records": 994567,
+        "source": "upstream/proofs_csv/proofs-part1.csv"
+      },
+      {
+        "exact_fields": true,
+        "exact_physical_start_lines": true,
+        "exit_code": 0,
+        "input_sha256": "4e1afa9c66e6ce2ab98b48f15635ca84b9f599f74ae946888d8c40a0ce147bd0",
+        "manual_external_inputs": 0,
+        "multiline_records": 925101,
+        "output_sha256": "fac9abf254b1c891e6af211408dcc5af61a60dd7bc90cbd313eb06669d2d5914",
+        "physical_lines": 2439696,
+        "records": 1000000,
+        "source": "upstream/proofs_csv/proofs-part2.csv"
+      },
+      {
+        "exact_fields": true,
+        "exact_physical_start_lines": true,
+        "exit_code": 0,
+        "input_sha256": "149d84c149c4f88046a5409bfdb99d85d7980f5cb077a2a432295d68feecdee4",
+        "manual_external_inputs": 0,
+        "multiline_records": 470960,
+        "output_sha256": "21dc00eb08d79667952f91848175ddbe238e2e2dcbe47b4f338c6fdd0fb39623",
+        "physical_lines": 1504053,
+        "records": 677708,
+        "source": "upstream/proofs_csv/proofs-part3.csv"
+      }
+    ],
+    "manual_external_inputs": 3,
+    "multiline_records": 2094337,
+    "physical_lines": 6040199,
+    "records": 2672275,
+    "rerun_by_reviewer": false
+  },
+  "reviewed_behaviors": [
+    "Physical line increments on every getline, including skipped blank lines and quoted embedded blank lines; source_row is captured before accumulation.",
+    "Quote parity locates only logical boundaries; csv_line separately rejects illegal quote positions and suffixes, decodes doubled quotes, and preserves commas/newlines within fields.",
+    "Raw values remain strings. Unknown, question mark, [NULL], possibly and empty fields are classified without interpreting them as zero or mathematical facts.",
+    "CRLF physical separators normalize to LF, including embedded quoted separators. Source SHA256 remains over exact input bytes.",
+    "Actual replay consumes every emitted record, compares every field with independent Python CSV parsing after CRLF normalization, checks physical start, record digest and original input digest, rejects early/extra output, and requires exporter exit zero.",
+    "Manual reason M is detected by header name, even with unknown markers, and status external_input takes precedence. The full replay asserts every actual M record retains external_input and exactly three exist across all files."
+  ],
+  "status": "independent_stream_parser_and_replay_review_passed",
+  "test_limitations": [
+    "The full-data replay asserts all field equality, line numbers, record/input digests, and all manual external statuses. It does not separately assert all nonmanual status/marker arrays or header digest; targeted fixtures cover those marker/status semantics and envelope hashes.",
+    "Invalid lone-CR CSV line endings and generalized non-UTF8 input are outside the documented LF/CRLF UTF-8 archive format.",
+    "Archive-only event fields are provenance data, not proof-rule semantics or certified topology."
+  ]
+}

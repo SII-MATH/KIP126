@@ -1,0 +1,140 @@
+{
+  "status": "independent_review_passed",
+  "findings": [],
+  "reviewer": "/root/map_search_next",
+  "reconstruction": {
+    "dag_nodes": 1420,
+    "raw_SQL_degrees": 681,
+    "baseline_comparisons": 1211,
+    "conditional_overlay_comparisons": 1234,
+    "remaining_blocked": 186,
+    "full_input_vectors": 2485,
+    "cycle_pairs": 9349,
+    "shared_differential_maps": 933,
+    "raw_d2_columns": 852,
+    "higher_columns": 312,
+    "conditional_use_counts": {
+      "conditional_h0_h2_leibniz": 2,
+      "conditional_dc2h6_d3": 1,
+      "conditional_c2_prefix": 2,
+      "conditional_ceta": 1,
+      "conditional_injective_successor": 3,
+      "conditional_c2_successor": 2
+    },
+    "Lean_subset": 85,
+    "zero_quotients": 13
+  },
+  "frontier": {
+    "local_assignments": 130,
+    "local_complexes": 85,
+    "globally_coherent_family_proved": false
+  },
+  "unknowns": {
+    "raw_NULL_row_pages": 82,
+    "stored_earlier_zero_NULL_pages": 25,
+    "named_NULL_pages": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "named_actual_cycle_provenance_proved": false
+  },
+  "successors": {
+    "raw_rows": [
+      [
+        3242,
+        20,
+        141,
+        "0",
+        "1",
+        9996
+      ],
+      [
+        3551,
+        24,
+        145,
+        "0",
+        "0,2",
+        9997
+      ]
+    ],
+    "full_projected_columns": [
+      [
+        true,
+        false
+      ],
+      [
+        true,
+        false
+      ]
+    ],
+    "actual_inputs": [
+      "Complete actual successor equation",
+      "Faithful middle coordinates",
+      "Zero coordinate laws",
+      "Actual differential square zero"
+    ]
+  },
+  "semantics": [
+    "Finite E4 prefix uses conditional named row2569 zero; no independent actual E4 survival proof.",
+    "All 13 zero theorems concern full finite quotients; actual application needs full quotient meaning.",
+    "Successor injectivity is proved for the complete 2-by-1 map; actual square-zero forces the full incoming map zero.",
+    "No desired-zero premise is used in successor proofs.",
+    "Row3386 conditionalzero does not resolve its whole comparison, whose incoming row3247 remains unknown.",
+    "85 Lean finite comparisons are distinguished from the 1234 executable-audit comparisons."
+  ],
+  "build_evidence": [
+    {
+      "module": "Data",
+      "observed_exit_code": 0,
+      "standard_or_no_axiom_reports": 1
+    },
+    {
+      "module": "Prefix",
+      "observed_exit_code": 0,
+      "standard_or_no_axiom_reports": 4
+    },
+    {
+      "module": "ZeroTargets",
+      "observed_exit_code": 0,
+      "standard_or_no_axiom_reports": 13
+    },
+    {
+      "module": "Successor",
+      "observed_exit_code": 0,
+      "standard_or_no_axiom_reports": 2
+    },
+    {
+      "module": "SuccessorData",
+      "observed_exit_code": 0,
+      "standard_or_no_axiom_reports": 4
+    }
+  ],
+  "inputs_sha256": {
+    "Fact713E12Search/Data.lean": "c7d3c2df7d68d7b9d99d5481d5e22b2143b250848004fad802604124e59801df",
+    "Fact713E12Search/Prefix.lean": "f4ac8d3962ab3b5b64675f4af20abcf144f5d1573b31976da64e37b1d677494f",
+    "Fact713E12Search/ZeroTargets.lean": "e4ed042b124f89f74e847e26b2bf354bbd1e81ce75b6b3bd7a7505b8cae41ff8",
+    "Fact713E12Search/Successor.lean": "8e40d84aba3b27dea7a944f7432f4c4d0285cd7e3cf2a2b52116d873abd7e7ca",
+    "Fact713E12Search/SuccessorData.lean": "ddb76319187814401862cf66ef8f7686d1bc2827ebcea011122e06833261e61f",
+    "Fact713E12Search/README.md": "8b269b907da6c538a00378eb03d3db3c5f422345c11c36b848fb9e568b052a90",
+    "Fact713E12Search/search.json": "b092b909e211bcccb0aa261314167107fd6e9c84ad5be1fb0153a519e59b137c",
+    "Fact713E12Search/successor-search.json": "d0d7283e9fe616087389078d58613fd027b9781557f8436652401a31e0908328",
+    "Fact713E12Search/NULL-obligations.json": "a7b18992fe532e7a1c9c65e3aeb737c1255cfb98835cb3bb9e375fc5f402fa85",
+    "Fact713E12Search/frontier.json": "310180ba819a165a21ebfd42002e682cf014f4548eca177ed9c0f8a763a395b4",
+    "Fact713E12Search/generated-manifest.json": "d643bb7b960b9e6b5f899ee4d696e5ea84b39852bc771d1d55843d922b91e1ba",
+    "Fact713E12Search/successor-manifest.json": "2c84016e7febdb62a85c71d116065f09fd76925150a4fb0418659c2d2cb10d07",
+    "Fact713TrajectoryAudit/dag.json": "e2f4057a2f56161d38657dff44320fdc66f311658213ee934becc27b1c248c1c"
+  },
+  "not_claimed": [
+    "Actual E12 survival",
+    "Independent proofs of the named nine zero-prefix values",
+    "A globally compatible frontier assignment",
+    "Actual topology/Ext/page meanings"
+  ]
+}

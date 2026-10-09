@@ -1,0 +1,35 @@
+{
+  "status": "both_complete_families_and_common_conditional_finite_E10_audited",
+  "branches": [
+    {
+      "branch": "zero",
+      "comparisons": 1350,
+      "ordered_pairs": 1822500,
+      "adjacent": 1031,
+      "consecutive": 850,
+      "graph_available": 1347,
+      "graph_missing": 73,
+      "baseline_preserved": 1272,
+      "finite_named_page": 10
+    },
+    {
+      "branch": "residual_rebased",
+      "comparisons": 1359,
+      "ordered_pairs": 1846881,
+      "adjacent": 1038,
+      "consecutive": 859,
+      "graph_available": 1356,
+      "graph_missing": 64,
+      "baseline_preserved": 1272,
+      "finite_named_page": 10
+    }
+  ],
+  "common_named_wires_d2_through_d9": true,
+  "unknown_row2994_preserved": true,
+  "input_sha256": {
+    "Fact713Row3143Continuation/audit_families.py": "12df8ade4ae56d07cf95d0096db60cdf6f6d5f0936e09d177ec575b6b8087354",
+    "Fact713Row3143Continuation/zero-family.json": "b678065a498e6ffe733ced1114b85b1e55ff6fd699f555265937a3a2b2796c9f",
+    "Fact713Row3143Continuation/residual-family.json": "053542491fb02fde39c9ca5efe4d92cb67b120df3cc9eaed5d5885fcb99a7470"
+  },
+  "limitation": "Finite branches share a named trajectory. Actual E10 still requires complete actual meanings."
+}

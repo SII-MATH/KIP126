@@ -1,0 +1,108 @@
+{
+  "events": 101,
+  "finite_nonzero_events": 90,
+  "unresolved": 11,
+  "complete_comparisons": 333,
+  "added_blocks": [
+    "S0:18,144:d3",
+    "S0:18,144:d4"
+  ],
+  "newly_completed_events": [
+    "event3744",
+    "event3745"
+  ],
+  "new_conditional_uses": [
+    {
+      "block": "S0:18,144:d3",
+      "role": "incoming",
+      "object": "S0",
+      "source": [
+        15,
+        142
+      ],
+      "page": 3,
+      "row": [
+        3325,
+        "2",
+        null,
+        9000
+      ],
+      "kind": "conditional_three_products",
+      "target_predecessor": "S0:18,144:d2"
+    }
+  ],
+  "dependent_events": [
+    3744,
+    3745
+  ],
+  "target_basis_change": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0
+    ]
+  ],
+  "source_outgoing_comparison_complete": false,
+  "generated_sha256": {
+    "Data.lean": "85b65f412a1aa6340f32787cb907dbb8e11b1044033caa80185377fb3dd7d484",
+    "Events.lean": "a899ff3ae9b114af23e12416a5f89f4c0d7d4d7ceb1ef27132d36f3b4783852b",
+    "source.json": "dd8180dfd4fd0f4ea33729f82a25e6ff4a5b160c56c48622954abd013781d23c",
+    "event-results.json": "7f6bd22a35eadfc0c68af75aa8e30f1044ba42e5775f94e6ebe6e8280e5149a3"
+  },
+  "unresolved_reasons": [
+    {
+      "event": 2696,
+      "reason": "unknown S0:9,134:d3:row2695; target dimension 1"
+    },
+    {
+      "event": 2697,
+      "reason": "unknown S0:9,134:d3:row2695; target dimension 1"
+    },
+    {
+      "event": 2852,
+      "reason": "unknown S0:6,132:d3:row2574; target dimension 3"
+    },
+    {
+      "event": 3151,
+      "reason": "unknown S0:7,134:d3:row2708; target dimension 1"
+    },
+    {
+      "event": 3152,
+      "reason": "unknown S0:7,134:d3:row2708; target dimension 1"
+    },
+    {
+      "event": 3391,
+      "reason": "unknown S0:4,132:d3:row2576; target dimension 2"
+    },
+    {
+      "event": 3992,
+      "reason": "unknown S0:18,145:d3:row3564; target dimension 3"
+    },
+    {
+      "event": 6651,
+      "reason": "unknown vector"
+    },
+    {
+      "event": 7007,
+      "reason": "unknown vector"
+    },
+    {
+      "event": 7162,
+      "reason": "unknown vector"
+    },
+    {
+      "event": 7247,
+      "reason": "unknown vector"
+    }
+  ]
+}

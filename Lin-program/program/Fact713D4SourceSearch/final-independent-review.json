@@ -1,0 +1,525 @@
+{
+  "status": "no_unresolved_correctness_findings",
+  "modules": [
+    "Maps",
+    "MapSemantics",
+    "Comparison",
+    "Parameters",
+    "Naturality",
+    "Incoming",
+    "ActualDescent",
+    "Actual",
+    "Assembly",
+    "CoordinateBridge"
+  ],
+  "compiled": {
+    "Maps": {
+      "compile": {
+        "source_sha256": "42fc38c6d0ec8bf0fa3324337c0b435b8b6712579f9d01d8006669c804e18958",
+        "external_input_sha256": {
+          "Fact713D4SourceSearch/wire/s10t133.json": "6e7fa86662b0b003235d80a1d8283028f3c3441b8d3c8cbd3957800797d8bb20",
+          "Fact713D4SourceSearch/wire/s11t133.json": "ddbb1c20c35c5b9c65b9bc52ae0954a3e6e00bdb932ee9bb8af76e4fa16d4824",
+          "Fact713D4SourceSearch/wire/s11t134.json": "baa549ef1eea14d75477df02a7353b71d4e9b89b491a350b0d285cbf0ba6877b",
+          "Fact713D4SourceSearch/wire/s12t134.json": "e19ad74016c6b6a399a6e03377bc5cee437cb5cb85875c24201ddd92c96edf7f",
+          "Fact713D4SourceSearch/wire/s13t135.json": "aae96618451b46634b42abc6968f7647add1a67e3ca3c9a124c90dddf7035e5c",
+          "Fact713D4SourceSearch/wire/s14t135.json": "30fd69b31f1b293e747b9f2f44609a968b024eb290aa1c43101070c02b5df579",
+          "Fact713D4SourceSearch/wire/s14t136.json": "477d099d32eb087e1008d884513a3aa537875e33bc26d7546601aceee098964b",
+          "Fact713D4SourceSearch/wire/s15t136.json": "e4dcfef323792afa6a5abe1f929be545b6815a9828e63d2335d70846cdfa5537",
+          "Fact713D4SourceSearch/wire/s16t137.json": "276773703f649d03aaf3694322a847f62ae5f1979e974047e6989e50d5166137",
+          "Fact713D4SourceSearch/wire/s17t137.json": "152c56fbe6a1f7f75667a2d01a6294d168f9d7cd518503d8de41cef933e4ae28",
+          "Fact713D4SourceSearch/wire/s17t138.json": "78a5a5af34ed26ba52e95c837d992925e01f30a0f14f109cc93f45f38536854f",
+          "Fact713D4SourceSearch/wire/s18t138.json": "e3ce5b874d71f160904f84e8e96b54229133f6a5c45d26ba01725edb5847b632",
+          "Fact713D4SourceSearch/wire/s19t139.json": "c4e19697ed0fd70d3762a89e5fa8b2989cfffbe8d7f0d77f14d3e6e56c8e4cc0",
+          "Fact713D4SourceSearch/wire/s21t140.json": "ade5ed79a34ebf2523b327d8c618537f44be1ac3bd8d530cc1d29ecd73446452",
+          "Fact713D4SourceSearch/wire/s7t131.json": "6c40d84b0f283e66c539ca7db97cd5370be277d2532cb77d4c68420293025d48",
+          "Fact713D4SourceSearch/wire/s9t132.json": "e2a40620d7dbde698fdeb2e2d664be0fe538e6f37dacc6991565e47573a87812"
+        },
+        "observed_exit_code": 0,
+        "log_sha256": "dc7564f123ccbdfbe487cc2673b73a0ee6f16d9c9b692799b61650cf625b0202",
+        "olean_sha256": "f1c9cd40ba059a63a46e9aa7bf0a71cfa1a15cb2d5d257400e8f2bdcf4b7bb2b"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.Maps.m12_134_valid",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Maps.m15_136_valid",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "MapSemantics": {
+      "compile": {
+        "source_sha256": "c5f2d061854fabaff2619517deb74d718c2993544f8fc3a7892fd7f1646aecae",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "fbfcb76852d33fd167872e4861900ef51ce7c5d775f4daa8283a1627124b01cb",
+        "olean_sha256": "64544d1bb2bc16bb3707cfbf64d98b78721d900a5432da5a4425777b49600713"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.Semantics.actual_all_vectors",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Semantics.ring_lift_vanishes",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "Comparison": {
+      "compile": {
+        "source_sha256": "8a9fb5e26ea99d8bf7bf315bfd70067726660204b852f5e461a2c346fd813332",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "89fda3cbce309ab49192438fb90933ad9c4c18bf062e535ebbf0c95af99c10e3",
+        "olean_sha256": "9184496405b0f71cb12ba223704fe9d46fdc951ab058301c10ea863e45c36471"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.Comparison.si_compatible",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Comparison.s_compatible",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Comparison.so_compatible",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Comparison.ti_compatible",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Comparison.t_compatible",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Comparison.to_compatible",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "Parameters": {
+      "compile": {
+        "source_sha256": "149fb56d35dbb38a792d0213e8052820e7896352d42d2e75036a76d1ba2ad774",
+        "external_input_sha256": {
+          "Fact713D4SourceSearch/d3wire/sourceD000.json": "38fc7c61970403bc6319e36c87d82f22570eb5498b4611b36fd1d8cdce672e39",
+          "Fact713D4SourceSearch/d3wire/sourceD001.json": "8b71fd45b6998938fdc888fc9c3cf89d9e6fc0664f503b850ce01d95793f381e",
+          "Fact713D4SourceSearch/d3wire/sourceD010.json": "bc6d2b1d3f0dc8d79f640fd6362861f3c6ebc9a85c09a8d1577ae9415172d561",
+          "Fact713D4SourceSearch/d3wire/sourceD011.json": "e7a398af2c61862ffd39bd0a1f44a967d4b6032250fab8293e4ac64c3812fba9",
+          "Fact713D4SourceSearch/d3wire/sourceD100.json": "066b19a7245dc99bb94e7bc0426fa358044d5a21bf2c724e7b1cecf1096f0305",
+          "Fact713D4SourceSearch/d3wire/sourceD101.json": "f59c5b2a5b3b337cc947aa876bfdf1afa3bfa141d48242e0ba7ae9eb43054b74",
+          "Fact713D4SourceSearch/d3wire/sourceD110.json": "3a69ea69ae18c00dcdb3a296f2288fc3265e1f0d0ea04c88ff683d1d88046082",
+          "Fact713D4SourceSearch/d3wire/sourceD111.json": "5235db9ab2e6e07e81396091fc341e9a1a2ab9709a1dbb156c963f00ce361f90",
+          "Fact713D4SourceSearch/d3wire/sourceS.json": "340966bf64f0abe96409f63261def9d41905cf41a91ff57b4ac07ef0ba9796df",
+          "Fact713D4SourceSearch/d3wire/targetD00.json": "b24b2447206a86e8471874e6487a3d709d0e1841c05879a328e6cda0b2ca2f44",
+          "Fact713D4SourceSearch/d3wire/targetD01.json": "51eba7d885d83687ce25ff0c5e7a28d840b95dcc16293c0c2713bdc32ecfcb6e",
+          "Fact713D4SourceSearch/d3wire/targetD10.json": "c23d82a169fb5b9e064a5ea8b9ce66cacb702be8dca61a664766648d43d235df",
+          "Fact713D4SourceSearch/d3wire/targetD11.json": "765ae8a5936e3c2aa462a31066c170125a6845d8155c97ed023afc8e1381e083",
+          "Fact713D4SourceSearch/d3wire/targetS.json": "4255ddffa44d74d4cfcc886d239c0788bc1d15ec9b3f729ce7e14f44fced9693"
+        },
+        "observed_exit_code": 0,
+        "log_sha256": "95ad18c338b63a79348446f8008510f0ac8ee4f895ac4ce9b946c48c95088151",
+        "olean_sha256": "149df06da55d2efe6d57231b660e28447a0e8295ac0a29f3da3005f309bbb31b"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.Parameters.sourceD_valid",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Parameters.targetD_valid",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Parameters.source_compatible",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Parameters.target_compatible",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "Naturality": {
+      "compile": {
+        "source_sha256": "cbd376b92901d9f501dcb21f97526e8b0489a6bae237a895f14510c25edf01d1",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "888a48c8897d0374e19a2be38650b8eab58ad4d97ae6ff31cea000e442b3ca2f",
+        "olean_sha256": "312a55f168166752ce2ecc8e92b656e8fb08efd448c17c81e2ee96d97e1070ee"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.Naturality.f_all_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Naturality.g_reflects_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Naturality.named_d4_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Naturality.incoming_naturality_forces_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "Incoming": {
+      "compile": {
+        "source_sha256": "65e7a2086d70b4b3af6dc5820350ee7b12a39bded4344e92a318f933cd654f61",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "3be12538c42448bdec6b8ad61c3c9f22c5f3a6527c9f1f29ae49c98ff55ff19e",
+        "olean_sha256": "be562645cf7a2d04f36b5da4189c7ad9c14433425ded7058044795a960fecbdf"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.Incoming.map_named",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Incoming.actual_unknown_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Incoming.Forcing.zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "ActualDescent": {
+      "compile": {
+        "source_sha256": "6d39e97a5677237ab1ad2c4d3293144046d22152c7f5062f90c0abe1098f508a",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "fa9bda61d71eb6fe6aaa2f45ec398441658d633918e42f176c7ae2cddc18f779",
+        "olean_sha256": "cb728680efc06cc2928d20c12ab92ca82c97c76c8012655b05b99041291f6f6d"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.ActualDescent.Input.mappedCycle",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.ActualDescent.next_map_coordinates",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.ActualDescent.next_all_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.ActualDescent.next_reflects_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "Actual": {
+      "compile": {
+        "source_sha256": "65e1e8048f9e214efea1aaa9ef3d2b2f0c30745b139cde6bb4ff81a3c7b7eb7f",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "7e51af0b7eb68160d7f2ce1ca9acf1aa727ba42f60f611db790ff20e323fd580",
+        "olean_sha256": "86ce5e3382eba80befb22f037eab5e0b86ea3502e7848040dda34b5ba0af7f04"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.Actual.actual_row2684_d4_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "Assembly": {
+      "compile": {
+        "source_sha256": "23ec6c18c9144fcdca5a0f64485122444621e9959c84ff9e57378a6cede78e8c",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "32b9b41a4aeee83a0fee52faab2e77d432f6a2a617d0fb870d956000b9af3d9d",
+        "olean_sha256": "07727c5004c5e218669323212edc0ff12282cf4d9ef5e27587d2b6f098547821"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.Assembly.incomingCoordinates_surjective",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Assembly.incomingEquation",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Assembly.targetMeaning",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Assembly.Upper.input",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.Assembly.actual_d4_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    "CoordinateBridge": {
+      "compile": {
+        "source_sha256": "77166a66e9e18b827ddd576049d3f82ea26148337b0d73586eb2fedb3d31493f",
+        "external_input_sha256": {},
+        "observed_exit_code": 0,
+        "log_sha256": "f8bd24883ce202463f9a820a6e4cd823eac0a0d6979fbf58e555177761eaf28d",
+        "olean_sha256": "218eafa63a9596f6ab229c1c17f813197abb65c36591c3b9bec37ce0e4eb218e"
+      },
+      "reports": [
+        {
+          "name": "Fact713D4SourceSearch.CoordinateBridge.sourceE3_all",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.CoordinateBridge.targetE3_all",
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.CoordinateBridge.sourceE3_swap",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.CoordinateBridge.targetE3_swap",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.CoordinateBridge.sourceE4_induced",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.CoordinateBridge.targetE4_induced",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.CoordinateBridge.actual_next_name",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "Fact713D4SourceSearch.CoordinateBridge.actual_next_unique",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    }
+  },
+  "axiom_reports": 39,
+  "resolved_findings": [
+    {
+      "location": "sourceS.incoming",
+      "original": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "corrected": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "reason": "Raw incoming staircase basis (e0+e1,e1) differs from E2-ordered E3 basis (e0,e1). Both columns hit e1."
+    }
+  ],
+  "independent_counts": {
+    "matrices": 16,
+    "columns": 44,
+    "relation_steps": 20,
+    "complete_d2_quotients": 12,
+    "whole_d2_square_vectors": 114,
+    "quotient_pair_checks": 1071,
+    "parameter_d3_quotients": 14,
+    "tested_unknown_assignments": 512,
+    "accepted_assignments": 32,
+    "coordinate_bridge_checks": 40
+  },
+  "raw_d3_column_checks": 34,
+  "actual_model_counts": {
+    "models_with_nonzero_zero_label": 384,
+    "whole_cycle_transitions": 1024,
+    "representative_independence_pairs": 512,
+    "whole_next_coordinate_equations": 512,
+    "whole_source_zero_checks": 256,
+    "whole_descent_models": 256,
+    "whole_target_zero_reflection_checks": 256,
+    "missing_transition_countermodels": 128
+  },
+  "actual_chain": [
+    "Incoming.Forcing.zero derives unknown column zero using earlier row2773 theorem",
+    "Assembly.incomingCoordinates_surjective and incomingEquation construct full target incoming meaning",
+    "Assembly.targetMeaning plus complete current meanings construct both actual quotient coordinates",
+    "ActualDescent.next_map_coordinates derives the whole next-map equation from actual quotient transitions",
+    "Actual.actual_row2684_d4_zero and Assembly.actual_d4_zero apply whole source-zero and target-zero-reflection with actual d4 naturality",
+    "CoordinateBridge gives whole E3/E4 coordinate changes and derives next naming/uniqueness"
+  ],
+  "scope": "Conditional actual Adams-object theorem with complete explicit meanings; no sphere realization or unconditioned topological conclusion.",
+  "file_sha256": {
+    "final_independent_review.py": "43a3f8c3223d39872670b4a5ea18a7f671aaa6b3538425658236eeba3847e83f",
+    "candidate-independent-review.json": "8d73a18475892e5f13acdda1997fae5fc29e6a3f5590e3020c71b99a9f2bbfc0",
+    "actual-descent-model-check.json": "b0a771db4833f72beb6a2fcca8e3d26b079d77678f2aaf825fd1d104cebf9c51",
+    "comparison-replay.json": "cd658c2d812e0ed83d9609cc1cb46751097662ce8ad1224a4e3c7125a3f5f15f",
+    "Maps.lean": "42fc38c6d0ec8bf0fa3324337c0b435b8b6712579f9d01d8006669c804e18958",
+    "MapSemantics.lean": "c5f2d061854fabaff2619517deb74d718c2993544f8fc3a7892fd7f1646aecae",
+    "Comparison.lean": "8a9fb5e26ea99d8bf7bf315bfd70067726660204b852f5e461a2c346fd813332",
+    "Parameters.lean": "149fb56d35dbb38a792d0213e8052820e7896352d42d2e75036a76d1ba2ad774",
+    "Naturality.lean": "cbd376b92901d9f501dcb21f97526e8b0489a6bae237a895f14510c25edf01d1",
+    "Incoming.lean": "65e7a2086d70b4b3af6dc5820350ee7b12a39bded4344e92a318f933cd654f61",
+    "ActualDescent.lean": "6d39e97a5677237ab1ad2c4d3293144046d22152c7f5062f90c0abe1098f508a",
+    "Actual.lean": "65e1e8048f9e214efea1aaa9ef3d2b2f0c30745b139cde6bb4ff81a3c7b7eb7f",
+    "Assembly.lean": "23ec6c18c9144fcdca5a0f64485122444621e9959c84ff9e57378a6cede78e8c",
+    "CoordinateBridge.lean": "77166a66e9e18b827ddd576049d3f82ea26148337b0d73586eb2fedb3d31493f"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "status": "independent_source_review_passed",
+  "direct_records": {
+    "Basic": {
+      "observed_exit_code": 0,
+      "standard_reports": 3,
+      "source_sha256": "3416cf4aa079a1e30546d3d1683a227d72746385e340c3e7b39930631af18a69",
+      "log_sha256": "03dbe935a7428c84f62b61c181ccd704d44eeab0176c07894a4c2d5f37c205b4",
+      "current_object_matches_direct": true
+    },
+    "Examples": {
+      "observed_exit_code": 0,
+      "standard_reports": 4,
+      "source_sha256": "ee2096eedba25e40982bfb348d65b0b3b968a8ed44de3a3b13017e86fd573a4b",
+      "log_sha256": "21d8f02c374be6bb2e6bf6972f2c8103759e04caf66efdd307f25c55fbb1817c",
+      "current_object_matches_direct": true
+    }
+  },
+  "script_sha256": "e409f45af11182d2cd773a517d37eb8581eb0fbeabace6d3f19e3bd86eedab54",
+  "findings": [],
+  "assumptions": [
+    "actual finite source A",
+    "actual decreasing target filtration G",
+    "target filtration separates all elements",
+    "the specified map preserves filtrations"
+  ],
+  "conclusion": "common image-detection depth and nonempty actual page additive equivalences at all sufficiently late indices",
+  "example": "A=ZMod2; B=Nat->ZMod2; target tails have zero intersection but every level is nonzero",
+  "not_concluded": [
+    "global target filtration bound",
+    "source or target exhaustion",
+    "finite input models actual homotopy groups",
+    "Adams strong convergence"
+  ]
+}

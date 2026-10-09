@@ -1,0 +1,26 @@
+make: Entering directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'
+python3 tests/test_res_export.py
+PASS raw resolution export deterministic,16 records,NULL and malformed BLOB rejected
+python3 CnuPageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact713PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact761PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact715PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact719PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact762PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact763PageCertificates/review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact721PageCertificates/first-review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 Fact721PageCertificates/second-review.py --check
+3 source blocks, exact C++ certificate, and 4 unknown rejection cases verified
+python3 NamedPageComparison/review.py
+Actual E3 representative columns match: 4;0,3;3;2. Unknown d6/d17 values retained.
+python3 NamedPageComparison/review_d3.py
+d3 actual known columns and pre-first-unknown zero prefixes verified; incoming E3 dimension0
+make: Leaving directory '/inspire/hdd/global_user/baokangjie-CZXS25250151/Lin-program/program'

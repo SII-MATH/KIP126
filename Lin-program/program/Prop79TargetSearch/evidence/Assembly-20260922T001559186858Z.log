@@ -1,0 +1,6 @@
+Prop79TargetSearch/Assembly.lean:18:3: error: unexpected token 'named'; expected '_' or identifier
+Prop79TargetSearch/Assembly.lean:45:17: error: unexpected token 'named'; expected ')', ',' or ':'
+Prop79TargetSearch/Assembly.lean:52:4: error(lean.dependsOnNoncomputable): failed to compile definition, consider marking it as 'noncomputable' because it depends on 'Prefix4.page4', which is 'noncomputable'
+'Prop79TargetSearch.Assembly.prefix4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Prop79TargetSearch.Assembly.prefix5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Prop79TargetSearch.Assembly.page5' depends on axioms: [propext, Classical.choice, Quot.sound]

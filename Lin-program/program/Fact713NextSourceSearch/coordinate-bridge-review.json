@@ -1,0 +1,41 @@
+{
+  "status": "no_correctness_findings",
+  "checks": [
+    {
+      "key": "S0:12,134:d2",
+      "forward": [
+        2,
+        1
+      ],
+      "backward": [
+        2,
+        1
+      ],
+      "cycles": 8
+    },
+    {
+      "key": "S0:15,136:d2",
+      "forward": [
+        2,
+        1
+      ],
+      "backward": [
+        2,
+        1
+      ],
+      "cycles": 4
+    }
+  ],
+  "axiom_reports": 6,
+  "compile": {
+    "source_sha256": "4cbbc8677e4dca6e2c9b68471c0e60a04d4591912d3f857eda50ec2e144786a2",
+    "external_input_sha256": {},
+    "observed_exit_code": 0,
+    "log_sha256": "31bb328a5a99309bfaff7cf99ba6e0805c33addce63b623b03cbd85c3596fdb1",
+    "olean_sha256": "635705696e77da4175eba419529191e74cb74bed504d749760f48a5c4eeada3a"
+  },
+  "named_detector_coordinate": 1,
+  "named_staircase_coordinate": 2,
+  "staircase_named_d3_column": 0,
+  "scope": "Actual column uses explicit Actual.Meaning, whole d3 naturality and named-class premise; coordinate equivalences are proved on all quotient elements."
+}

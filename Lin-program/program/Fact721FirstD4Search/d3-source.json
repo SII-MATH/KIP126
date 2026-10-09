@@ -1,0 +1,162 @@
+{
+  "wires": {
+    "sourceS": {
+      "down": [
+        false,
+        false
+      ],
+      "h": 1,
+      "inclusion": [
+        true,
+        false
+      ],
+      "incoming": [
+        true,
+        true
+      ],
+      "k": 1,
+      "m": 2,
+      "n": 1,
+      "outgoing": [
+        false,
+        false
+      ],
+      "projection": [
+        true,
+        true
+      ],
+      "up": [
+        false,
+        true
+      ],
+      "version": 1
+    },
+    "sourceD": {
+      "down": [
+        false
+      ],
+      "h": 0,
+      "inclusion": [],
+      "incoming": [
+        true,
+        true
+      ],
+      "k": 1,
+      "m": 1,
+      "n": 2,
+      "outgoing": [
+        false
+      ],
+      "projection": [],
+      "up": [
+        true,
+        false
+      ],
+      "version": 1
+    },
+    "targetS": {
+      "down": [
+        false,
+        false
+      ],
+      "h": 2,
+      "inclusion": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "incoming": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "k": 1,
+      "m": 2,
+      "n": 2,
+      "outgoing": [
+        false,
+        false
+      ],
+      "projection": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "up": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "version": 1
+    },
+    "targetD": {
+      "down": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "h": 2,
+      "inclusion": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "incoming": [
+        false,
+        false
+      ],
+      "k": 3,
+      "m": 2,
+      "n": 1,
+      "outgoing": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "projection": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "up": [
+        false,
+        false
+      ],
+      "version": 1
+    }
+  },
+  "conditional_sphere_columns": [
+    {
+      "row": 2622,
+      "degree": [
+        11,
+        133
+      ],
+      "page": 3,
+      "theorem": "Fact713DC2h6Source.Actual.actual_row2622_d3_zero"
+    },
+    {
+      "row": 2684,
+      "degree": [
+        12,
+        134
+      ],
+      "page": 3,
+      "theorem": "Fact713NextSourceSearch.Actual.actual_row2684_d3_zero"
+    }
+  ],
+  "coordinate_note": "S0 source incoming column is (1,1) in canonical E2 order. C2h6 incoming staircase vectors (1,1),(0,1) have d3 values 0,1, so BOTH canonical source columns are 1.",
+  "status": "conditional_finite_complexes_only"
+}

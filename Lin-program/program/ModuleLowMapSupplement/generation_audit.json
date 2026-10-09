@@ -1,0 +1,5220 @@
+{
+  "maps": 135,
+  "generated": 199,
+  "unresolved": 0,
+  "batches": 2,
+  "records": [
+    {
+      "name": "C2__CW_2_eta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Ceta__CW_eta_2",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Ceta__CW_eta_nu",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Cnu__CW_nu_eta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Cnu__CW_nu_sigma",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_nu_sigma__Csigma",
+      "filtration": 0,
+      "suspension": 4,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            22,
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map010/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_sigma_nu__Cnu",
+      "filtration": 0,
+      "suspension": 8,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_eta__Ceta",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 2,
+          "target_t": 7,
+          "source_ids": [
+            8,
+            9
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            16
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map012/s2t8.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 2,
+          "target_t": 8,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            20
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map012/s2t9.json"
+        },
+        {
+          "s": 3,
+          "t": 12,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            21
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            32
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 7
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map012/s3t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_eta_2__C2",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "CW_eta_nu__Cnu",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "CW_nu_eta__Ceta",
+      "filtration": 0,
+      "suspension": 4,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 2,
+          "target_t": 5,
+          "source_ids": [
+            19,
+            20
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            10
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map015/s2t9.json"
+        }
+      ]
+    },
+    {
+      "name": "C2__Q_CW_nu_eta_2",
+      "filtration": 1,
+      "suspension": -5,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 4,
+          "target_s": 2,
+          "target_t": 10,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            24
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map016/s1t4.json"
+        },
+        {
+          "s": 2,
+          "t": 5,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            5
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            28
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map016/s2t5.json"
+        },
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 14,
+          "source_ids": [
+            7
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            39
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map016/s2t8.json"
+        },
+        {
+          "s": 2,
+          "t": 11,
+          "target_s": 3,
+          "target_t": 17,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            56
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 15
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map016/s2t11.json"
+        },
+        {
+          "s": 3,
+          "t": 7,
+          "target_s": 4,
+          "target_t": 13,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            34
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map016/s3t7.json"
+        }
+      ]
+    },
+    {
+      "name": "Cnu__Q_CW_2_eta_nu",
+      "filtration": 1,
+      "suspension": -2,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 1,
+          "target_s": 2,
+          "target_t": 4,
+          "source_ids": [
+            1
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            3
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s1t1.json"
+        },
+        {
+          "s": 2,
+          "t": 2,
+          "target_s": 3,
+          "target_t": 5,
+          "source_ids": [
+            2
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s2t2.json"
+        },
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s2t8.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 12,
+          "source_ids": [
+            18,
+            19
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            14,
+            15
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s2t9.json"
+        },
+        {
+          "s": 3,
+          "t": 3,
+          "target_s": 4,
+          "target_t": 6,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s3t3.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 4,
+          "target_t": 13,
+          "source_ids": [
+            22,
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            16
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s3t10.json"
+        },
+        {
+          "s": 4,
+          "t": 4,
+          "target_s": 5,
+          "target_t": 7,
+          "source_ids": [
+            5
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s4t4.json"
+        },
+        {
+          "s": 4,
+          "t": 11,
+          "target_s": 5,
+          "target_t": 14,
+          "source_ids": [
+            27
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            18
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s4t11.json"
+        },
+        {
+          "s": 5,
+          "t": 5,
+          "target_s": 6,
+          "target_t": 8,
+          "source_ids": [
+            7
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s5t5.json"
+        },
+        {
+          "s": 6,
+          "t": 6,
+          "target_s": 7,
+          "target_t": 9,
+          "source_ids": [
+            8
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s6t6.json"
+        },
+        {
+          "s": 7,
+          "t": 7,
+          "target_s": 8,
+          "target_t": 10,
+          "source_ids": [
+            10
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s7t7.json"
+        },
+        {
+          "s": 8,
+          "t": 8,
+          "target_s": 9,
+          "target_t": 11,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s8t8.json"
+        },
+        {
+          "s": 9,
+          "t": 9,
+          "target_s": 10,
+          "target_t": 12,
+          "source_ids": [
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s9t9.json"
+        },
+        {
+          "s": 10,
+          "t": 10,
+          "target_s": 11,
+          "target_t": 13,
+          "source_ids": [
+            20
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s10t10.json"
+        },
+        {
+          "s": 11,
+          "t": 11,
+          "target_s": 12,
+          "target_t": 14,
+          "source_ids": [
+            25
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s11t11.json"
+        },
+        {
+          "s": 12,
+          "t": 12,
+          "target_s": 13,
+          "target_t": 15,
+          "source_ids": [
+            29
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map017/s12t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_2_eta_nu__CW_eta_nu",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 4,
+          "t": 12,
+          "target_s": 4,
+          "target_t": 11,
+          "source_ids": [
+            17
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            30
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map018/s4t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_2_eta__CW_2_eta_nu",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_nu_eta_2__CW_eta_2",
+      "filtration": 0,
+      "suspension": 4,
+      "blocks": []
+    },
+    {
+      "name": "CW_nu_eta__CW_nu_eta_2",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "C2__CW_sigma_nu_by_eta",
+      "filtration": 1,
+      "suspension": -13,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 22,
+          "source_ids": [
+            7
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            80
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 13
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map024/s2t8.json"
+        },
+        {
+          "s": 3,
+          "t": 12,
+          "target_s": 4,
+          "target_t": 26,
+          "source_ids": [
+            14,
+            15
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            115,
+            116
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 22
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map024/s3t12.json"
+        }
+      ]
+    },
+    {
+      "name": "Ceta__Csigma_by_nu",
+      "filtration": 1,
+      "suspension": -11,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 8,
+          "target_s": 2,
+          "target_t": 20,
+          "source_ids": [
+            21
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            63
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map025/s1t8.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 21,
+          "source_ids": [
+            24
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            69
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map025/s2t9.json"
+        },
+        {
+          "s": 2,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 22,
+          "source_ids": [
+            28
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            76
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 14
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map025/s2t10.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 4,
+          "target_t": 22,
+          "source_ids": [
+            27
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            74,
+            75
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map025/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "Csigma__Ceta_by_nu",
+      "filtration": 1,
+      "suspension": -5,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 1,
+          "target_s": 2,
+          "target_t": 7,
+          "source_ids": [
+            1
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            16
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s1t1.json"
+        },
+        {
+          "s": 1,
+          "t": 2,
+          "target_s": 2,
+          "target_t": 8,
+          "source_ids": [
+            3
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            20
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s1t2.json"
+        },
+        {
+          "s": 2,
+          "t": 2,
+          "target_s": 3,
+          "target_t": 8,
+          "source_ids": [
+            2
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            19
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s2t2.json"
+        },
+        {
+          "s": 2,
+          "t": 4,
+          "target_s": 3,
+          "target_t": 10,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            27
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s2t4.json"
+        },
+        {
+          "s": 2,
+          "t": 5,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            9
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            32
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 7
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s2t5.json"
+        },
+        {
+          "s": 3,
+          "t": 3,
+          "target_s": 4,
+          "target_t": 9,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s3t3.json"
+        },
+        {
+          "s": 3,
+          "t": 6,
+          "target_s": 4,
+          "target_t": 12,
+          "source_ids": [
+            11
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s3t6.json"
+        },
+        {
+          "s": 4,
+          "t": 4,
+          "target_s": 5,
+          "target_t": 10,
+          "source_ids": [
+            5
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s4t4.json"
+        },
+        {
+          "s": 5,
+          "t": 5,
+          "target_s": 6,
+          "target_t": 11,
+          "source_ids": [
+            8
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s5t5.json"
+        },
+        {
+          "s": 6,
+          "t": 6,
+          "target_s": 7,
+          "target_t": 12,
+          "source_ids": [
+            10
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s6t6.json"
+        },
+        {
+          "s": 7,
+          "t": 7,
+          "target_s": 8,
+          "target_t": 13,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s7t7.json"
+        },
+        {
+          "s": 8,
+          "t": 8,
+          "target_s": 9,
+          "target_t": 14,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s8t8.json"
+        },
+        {
+          "s": 9,
+          "t": 9,
+          "target_s": 10,
+          "target_t": 15,
+          "source_ids": [
+            15
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s9t9.json"
+        },
+        {
+          "s": 10,
+          "t": 10,
+          "target_s": 11,
+          "target_t": 16,
+          "source_ids": [
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s10t10.json"
+        },
+        {
+          "s": 11,
+          "t": 11,
+          "target_s": 12,
+          "target_t": 17,
+          "source_ids": [
+            17
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s11t11.json"
+        },
+        {
+          "s": 12,
+          "t": 12,
+          "target_s": 13,
+          "target_t": 18,
+          "source_ids": [
+            19
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map026/s12t12.json"
+        }
+      ]
+    },
+    {
+      "name": "Csigma__CW_2_eta_by_nu",
+      "filtration": 1,
+      "suspension": -6,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 2,
+          "target_s": 3,
+          "target_t": 9,
+          "source_ids": [
+            2
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            12
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s2t2.json"
+        },
+        {
+          "s": 2,
+          "t": 4,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            17
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s2t4.json"
+        },
+        {
+          "s": 3,
+          "t": 3,
+          "target_s": 4,
+          "target_t": 10,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s3t3.json"
+        },
+        {
+          "s": 3,
+          "t": 6,
+          "target_s": 4,
+          "target_t": 13,
+          "source_ids": [
+            11
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            23
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 7
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s3t6.json"
+        },
+        {
+          "s": 3,
+          "t": 11,
+          "target_s": 4,
+          "target_t": 18,
+          "source_ids": [
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            37
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 15
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s3t11.json"
+        },
+        {
+          "s": 4,
+          "t": 4,
+          "target_s": 5,
+          "target_t": 11,
+          "source_ids": [
+            5
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s4t4.json"
+        },
+        {
+          "s": 5,
+          "t": 5,
+          "target_s": 6,
+          "target_t": 12,
+          "source_ids": [
+            8
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s5t5.json"
+        },
+        {
+          "s": 6,
+          "t": 6,
+          "target_s": 7,
+          "target_t": 13,
+          "source_ids": [
+            10
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s6t6.json"
+        },
+        {
+          "s": 7,
+          "t": 7,
+          "target_s": 8,
+          "target_t": 14,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s7t7.json"
+        },
+        {
+          "s": 8,
+          "t": 8,
+          "target_s": 9,
+          "target_t": 15,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s8t8.json"
+        },
+        {
+          "s": 9,
+          "t": 9,
+          "target_s": 10,
+          "target_t": 16,
+          "source_ids": [
+            15
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s9t9.json"
+        },
+        {
+          "s": 10,
+          "t": 10,
+          "target_s": 11,
+          "target_t": 17,
+          "source_ids": [
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s10t10.json"
+        },
+        {
+          "s": 11,
+          "t": 11,
+          "target_s": 12,
+          "target_t": 18,
+          "source_ids": [
+            17
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s11t11.json"
+        },
+        {
+          "s": 12,
+          "t": 12,
+          "target_s": 13,
+          "target_t": 19,
+          "source_ids": [
+            19
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map027/s12t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_2_eta_nu_sigma__CW_eta_nu_sigma",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 4,
+          "t": 12,
+          "target_s": 4,
+          "target_t": 11,
+          "source_ids": [
+            17
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            30
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map028/s4t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_2_eta_nu__CW_2_eta_nu_sigma",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_eta_2__Csigma_by_nu",
+      "filtration": 1,
+      "suspension": -11,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 8,
+          "target_s": 2,
+          "target_t": 20,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            63
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map030/s1t8.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 21,
+          "source_ids": [
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            69
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map030/s2t9.json"
+        },
+        {
+          "s": 2,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 22,
+          "source_ids": [
+            19
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            76
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 14
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map030/s2t10.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 4,
+          "target_t": 22,
+          "source_ids": [
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            74,
+            75
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map030/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_eta_nu_sigma__CW_nu_sigma",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "CW_eta_nu__CW_eta_nu_sigma",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_nu_sigma__C2_by_eta",
+      "filtration": 1,
+      "suspension": -2,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 1,
+          "target_s": 2,
+          "target_t": 4,
+          "source_ids": [
+            1
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            3
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s1t1.json"
+        },
+        {
+          "s": 2,
+          "t": 2,
+          "target_s": 3,
+          "target_t": 5,
+          "source_ids": [
+            2
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s2t2.json"
+        },
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s2t8.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 12,
+          "source_ids": [
+            18,
+            19
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            14,
+            15
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s2t9.json"
+        },
+        {
+          "s": 3,
+          "t": 3,
+          "target_s": 4,
+          "target_t": 6,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s3t3.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 4,
+          "target_t": 13,
+          "source_ids": [
+            22,
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            16
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s3t10.json"
+        },
+        {
+          "s": 4,
+          "t": 4,
+          "target_s": 5,
+          "target_t": 7,
+          "source_ids": [
+            5
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s4t4.json"
+        },
+        {
+          "s": 4,
+          "t": 11,
+          "target_s": 5,
+          "target_t": 14,
+          "source_ids": [
+            27
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            18
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s4t11.json"
+        },
+        {
+          "s": 5,
+          "t": 5,
+          "target_s": 6,
+          "target_t": 8,
+          "source_ids": [
+            7
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s5t5.json"
+        },
+        {
+          "s": 6,
+          "t": 6,
+          "target_s": 7,
+          "target_t": 9,
+          "source_ids": [
+            8
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s6t6.json"
+        },
+        {
+          "s": 7,
+          "t": 7,
+          "target_s": 8,
+          "target_t": 10,
+          "source_ids": [
+            10
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s7t7.json"
+        },
+        {
+          "s": 8,
+          "t": 8,
+          "target_s": 9,
+          "target_t": 11,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s8t8.json"
+        },
+        {
+          "s": 9,
+          "t": 9,
+          "target_s": 10,
+          "target_t": 12,
+          "source_ids": [
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s9t9.json"
+        },
+        {
+          "s": 10,
+          "t": 10,
+          "target_s": 11,
+          "target_t": 13,
+          "source_ids": [
+            20
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s10t10.json"
+        },
+        {
+          "s": 11,
+          "t": 11,
+          "target_s": 12,
+          "target_t": 14,
+          "source_ids": [
+            25
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s11t11.json"
+        },
+        {
+          "s": 12,
+          "t": 12,
+          "target_s": 13,
+          "target_t": 15,
+          "source_ids": [
+            29
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map036/s12t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_sigma_nu_eta_2__CW_nu_eta_2",
+      "filtration": 0,
+      "suspension": 8,
+      "blocks": []
+    },
+    {
+      "name": "CW_sigma_nu_eta__CW_nu_eta",
+      "filtration": 0,
+      "suspension": 8,
+      "blocks": []
+    },
+    {
+      "name": "CW_sigma_nu_eta__CW_sigma_nu_eta_2",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Csigma__CW_sigma_nu",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_sigma_nu__CW_sigma_nu_eta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Csigma__Csigmasq",
+      "filtration": 0,
+      "suspension": -7,
+      "blocks": []
+    },
+    {
+      "name": "C2h4__Csigmasq",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 7,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map050/s3t7.json"
+        }
+      ]
+    },
+    {
+      "name": "Csigmasq__DC2h4",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Csigmasq__Csigma",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Csigmasq__C2_by_sigmasq",
+      "filtration": 1,
+      "suspension": -15,
+      "blocks": []
+    },
+    {
+      "name": "C2__C2h4",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "DC2h4__C2",
+      "filtration": 0,
+      "suspension": 15,
+      "blocks": []
+    },
+    {
+      "name": "C2__C2h5",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "C2h5__Ctheta4",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 7,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map062/s3t7.json"
+        }
+      ]
+    },
+    {
+      "name": "Ctheta4__DC2h5",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "DC2h5__C2",
+      "filtration": 0,
+      "suspension": 31,
+      "blocks": []
+    },
+    {
+      "name": "Ctheta4__C2_by_theta4",
+      "filtration": 1,
+      "suspension": -31,
+      "blocks": []
+    },
+    {
+      "name": "C2__C2h6",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "C2h6__Ctheta5",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 7,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map073/s3t7.json"
+        }
+      ]
+    },
+    {
+      "name": "Ctheta5__DC2h6",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "DC2h6__C2",
+      "filtration": 0,
+      "suspension": 63,
+      "blocks": []
+    },
+    {
+      "name": "C2__Q_CW_2_theta5_2_Eq_eta_theta5",
+      "filtration": 1,
+      "suspension": -63,
+      "blocks": []
+    },
+    {
+      "name": "Ctheta5__Q_CW_2_theta5_2_Eq_eta_theta5",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 4,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map082/s2t4.json"
+        },
+        {
+          "s": 3,
+          "t": 12,
+          "target_s": 4,
+          "target_t": 14,
+          "source_ids": [
+            25
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            19
+          ],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map082/s3t12.json"
+        }
+      ]
+    },
+    {
+      "name": "DC2h6__Q_CW_2_theta5_2_Eq_eta_theta5",
+      "filtration": 1,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "C2_C2__C2",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": []
+    },
+    {
+      "name": "C2__C2_C2",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_eta__Q_RP1_6",
+      "filtration": 1,
+      "suspension": 3,
+      "blocks": []
+    },
+    {
+      "name": "Ceta_Ceta__Ceta",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "Ceta__Ceta_Ceta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Cnu_Cnu__Cnu",
+      "filtration": 0,
+      "suspension": 4,
+      "blocks": []
+    },
+    {
+      "name": "Cnu__Cnu_Cnu",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Csigma_Csigma__CW_sigma_2sigma",
+      "filtration": 0,
+      "suspension": 4,
+      "blocks": []
+    },
+    {
+      "name": "Csigma_Csigma__Csigma",
+      "filtration": 0,
+      "suspension": 8,
+      "blocks": []
+    },
+    {
+      "name": "Csigma__CW_sigma_2sigma",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Csigma__Csigma_Csigma",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "C2sigma__CW_2sigma_sigma",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_sigma_2sigma__C2sigma",
+      "filtration": 0,
+      "suspension": 8,
+      "blocks": []
+    },
+    {
+      "name": "C2_C2__CW_2_V_eta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 8,
+          "source_ids": [
+            11
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            14
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 9
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map098/s3t8.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_2_A_eta__C2_C2",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Ceta__Joker",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Ceta__Q_Joker",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_eta__Joker",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_eta_2__Q_Joker",
+      "filtration": 1,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Joker__Ceta",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "Joker__CW_eta_2",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 2,
+          "target_t": 8,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            12
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map113/s2t9.json"
+        },
+        {
+          "s": 4,
+          "t": 12,
+          "target_s": 4,
+          "target_t": 11,
+          "source_ids": [
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            21
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map113/s4t12.json"
+        }
+      ]
+    },
+    {
+      "name": "C2__Q_Joker",
+      "filtration": 1,
+      "suspension": -2,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 4,
+          "target_s": 2,
+          "target_t": 7,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            12
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map114/s1t4.json"
+        },
+        {
+          "s": 2,
+          "t": 5,
+          "target_s": 3,
+          "target_t": 8,
+          "source_ids": [
+            5
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            14
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 9
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map114/s2t5.json"
+        },
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            7
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            22
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map114/s2t8.json"
+        },
+        {
+          "s": 3,
+          "t": 7,
+          "target_s": 4,
+          "target_t": 10,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 9
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map114/s3t7.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_2_V_eta__Joker",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Joker__CW_2_A_eta",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_A_eta__Q_Joker",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": []
+    },
+    {
+      "name": "C2_Ceta__C2",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "C2_Ceta__Ceta",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": []
+    },
+    {
+      "name": "C2__C2_Ceta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Ceta__C2_Ceta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Cnu__Q_CW_eta_nu_eta_Eq_nu_nu",
+      "filtration": 1,
+      "suspension": -3,
+      "blocks": []
+    },
+    {
+      "name": "Csigma__Q_CW_nu_sigma_nu_Eq_sigma_sigma",
+      "filtration": 1,
+      "suspension": -7,
+      "blocks": []
+    },
+    {
+      "name": "CW_nu_eta__Q_CW_eta_nu_eta_Eq_nu_nu",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 4,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map125/s2t4.json"
+        },
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 10,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            22,
+            23
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map125/s2t8.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            19,
+            20
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            28
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map125/s2t9.json"
+        },
+        {
+          "s": 3,
+          "t": 9,
+          "target_s": 4,
+          "target_t": 11,
+          "source_ids": [
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            27
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map125/s3t9.json"
+        },
+        {
+          "s": 4,
+          "t": 10,
+          "target_s": 5,
+          "target_t": 12,
+          "source_ids": [
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "ring",
+              "rowid": 9
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map125/s4t10.json"
+        },
+        {
+          "s": 5,
+          "t": 11,
+          "target_s": 6,
+          "target_t": 13,
+          "source_ids": [
+            27
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "ring",
+              "rowid": 9
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map125/s5t11.json"
+        },
+        {
+          "s": 6,
+          "t": 12,
+          "target_s": 7,
+          "target_t": 14,
+          "source_ids": [
+            33
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "ring",
+              "rowid": 9
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map125/s6t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_sigma_nu__Q_CW_nu_sigma_nu_Eq_sigma_sigma",
+      "filtration": 1,
+      "suspension": -3,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 12,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 7
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map126/s2t8.json"
+        }
+      ]
+    },
+    {
+      "name": "C2__CW_eta_2_eta_Eq_2_nu",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "C2__Q_CW_eta_2_eta_Eq_nu_2",
+      "filtration": 1,
+      "suspension": -3,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 12,
+          "source_ids": [
+            7
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 7
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map128/s2t8.json"
+        },
+        {
+          "s": 3,
+          "t": 7,
+          "target_s": 4,
+          "target_t": 11,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            21
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map128/s3t7.json"
+        }
+      ]
+    },
+    {
+      "name": "Cnu__Q_CW_eta_2_eta_Eq_2_nu",
+      "filtration": 1,
+      "suspension": 0,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 4,
+          "target_t": 11,
+          "source_ids": [
+            22,
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            21
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 8
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map129/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_2_eta__Q_CW_eta_2_eta_Eq_2_nu",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map130/s2t9.json"
+        },
+        {
+          "s": 2,
+          "t": 11,
+          "target_s": 3,
+          "target_t": 13,
+          "source_ids": [
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            17
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map130/s2t11.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_2_eta__Q_CW_eta_2_eta_Eq_nu_2",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 10,
+          "source_ids": [
+            8,
+            9
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            22,
+            23
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map131/s2t8.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            28
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map131/s2t9.json"
+        },
+        {
+          "s": 3,
+          "t": 9,
+          "target_s": 4,
+          "target_t": 11,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            27
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map131/s3t9.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_eta_2_eta_Eq_2_nu__Cnu",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 11,
+          "target_s": 3,
+          "target_t": 10,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            22,
+            23
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map132/s3t11.json"
+        },
+        {
+          "s": 3,
+          "t": 12,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            17
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            28
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map132/s3t12.json"
+        },
+        {
+          "s": 4,
+          "t": 12,
+          "target_s": 4,
+          "target_t": 11,
+          "source_ids": [
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            27
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map132/s4t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_eta_2_eta_Eq_2_nu__CW_2_eta",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 11,
+          "target_s": 3,
+          "target_t": 9,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            12
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map133/s3t11.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_eta_2_eta_Eq_nu_2__C2",
+      "filtration": 0,
+      "suspension": 4,
+      "blocks": []
+    },
+    {
+      "name": "CW_eta_2_eta_Eq_nu_2__CW_2_eta",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "CW_eta_2__CW_eta_2_eta_Eq_2_nu",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_eta_2__CW_eta_2_eta_Eq_nu_2",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Cnu__CW_eta_2_eta_Eq_nu_2",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 2,
+          "target_t": 8,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map138/s2t8.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 10,
+          "source_ids": [
+            22,
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            16
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            },
+            {
+              "kind": "module",
+              "rowid": 7
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map138/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "C2__CW_2_V_eta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_V_eta__C2_Ceta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_V_eta__CW_eta_2_eta_Eq_2_nu",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "Ceta__CW_2_V_eta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 4,
+          "target_s": 2,
+          "target_t": 4,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            3
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s2t4.json"
+        },
+        {
+          "s": 2,
+          "t": 7,
+          "target_s": 2,
+          "target_t": 7,
+          "source_ids": [
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            12
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s2t7.json"
+        },
+        {
+          "s": 3,
+          "t": 5,
+          "target_s": 3,
+          "target_t": 5,
+          "source_ids": [
+            9
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            5
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s3t5.json"
+        },
+        {
+          "s": 3,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 8,
+          "source_ids": [
+            19
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            14
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s3t8.json"
+        },
+        {
+          "s": 3,
+          "t": 12,
+          "target_s": 3,
+          "target_t": 12,
+          "source_ids": [
+            36
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            27,
+            28
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s3t12.json"
+        },
+        {
+          "s": 4,
+          "t": 6,
+          "target_s": 4,
+          "target_t": 6,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            7
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s4t6.json"
+        },
+        {
+          "s": 5,
+          "t": 7,
+          "target_s": 5,
+          "target_t": 7,
+          "source_ids": [
+            15
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            10
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s5t7.json"
+        },
+        {
+          "s": 6,
+          "t": 8,
+          "target_s": 6,
+          "target_t": 8,
+          "source_ids": [
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            13
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s6t8.json"
+        },
+        {
+          "s": 7,
+          "t": 9,
+          "target_s": 7,
+          "target_t": 9,
+          "source_ids": [
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            17
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s7t9.json"
+        },
+        {
+          "s": 8,
+          "t": 10,
+          "target_s": 8,
+          "target_t": 10,
+          "source_ids": [
+            26
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            19
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s8t10.json"
+        },
+        {
+          "s": 9,
+          "t": 11,
+          "target_s": 9,
+          "target_t": 11,
+          "source_ids": [
+            30
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            21
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s9t11.json"
+        },
+        {
+          "s": 10,
+          "t": 12,
+          "target_s": 10,
+          "target_t": 12,
+          "source_ids": [
+            35
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            25
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map142/s10t12.json"
+        }
+      ]
+    },
+    {
+      "name": "C2_Ceta__CW_2_A_eta",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_A_eta__C2",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_A_eta__Ceta",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "CW_2_A_eta__Q_CW_eta_2_eta_Eq_nu_2",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": []
+    },
+    {
+      "name": "CW_eta_2_eta_Eq_nu_2__CW_2_A_eta",
+      "filtration": 0,
+      "suspension": 3,
+      "blocks": []
+    },
+    {
+      "name": "Ceta__Q_CW_eta_2_eta_Eq_2_nu",
+      "filtration": 1,
+      "suspension": -2,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 1,
+          "target_s": 2,
+          "target_t": 4,
+          "source_ids": [
+            1
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            3
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s1t1.json"
+        },
+        {
+          "s": 1,
+          "t": 4,
+          "target_s": 2,
+          "target_t": 7,
+          "source_ids": [
+            7
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            12
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s1t4.json"
+        },
+        {
+          "s": 2,
+          "t": 2,
+          "target_s": 3,
+          "target_t": 5,
+          "source_ids": [
+            2
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            5
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s2t2.json"
+        },
+        {
+          "s": 2,
+          "t": 4,
+          "target_s": 3,
+          "target_t": 7,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            11
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s2t4.json"
+        },
+        {
+          "s": 2,
+          "t": 5,
+          "target_s": 3,
+          "target_t": 8,
+          "source_ids": [
+            10
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            14
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s2t5.json"
+        },
+        {
+          "s": 2,
+          "t": 8,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            20
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            22
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            },
+            {
+              "kind": "module",
+              "rowid": 14
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s2t8.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 12,
+          "source_ids": [
+            24
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            27,
+            28
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s2t9.json"
+        },
+        {
+          "s": 2,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 13,
+          "source_ids": [
+            28
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            31
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 15
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s2t10.json"
+        },
+        {
+          "s": 3,
+          "t": 3,
+          "target_s": 4,
+          "target_t": 6,
+          "source_ids": [
+            3
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            7
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s3t3.json"
+        },
+        {
+          "s": 3,
+          "t": 5,
+          "target_s": 4,
+          "target_t": 8,
+          "source_ids": [
+            9
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s3t5.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 4,
+          "target_t": 13,
+          "source_ids": [
+            27
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            30
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s3t10.json"
+        },
+        {
+          "s": 3,
+          "t": 12,
+          "target_s": 4,
+          "target_t": 15,
+          "source_ids": [
+            36
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            38
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "module",
+              "rowid": 24
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s3t12.json"
+        },
+        {
+          "s": 4,
+          "t": 4,
+          "target_s": 5,
+          "target_t": 7,
+          "source_ids": [
+            5
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            10
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s4t4.json"
+        },
+        {
+          "s": 4,
+          "t": 6,
+          "target_s": 5,
+          "target_t": 9,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s4t6.json"
+        },
+        {
+          "s": 4,
+          "t": 11,
+          "target_s": 5,
+          "target_t": 14,
+          "source_ids": [
+            31
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            33
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 23
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s4t11.json"
+        },
+        {
+          "s": 5,
+          "t": 5,
+          "target_s": 6,
+          "target_t": 8,
+          "source_ids": [
+            8
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            13
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s5t5.json"
+        },
+        {
+          "s": 5,
+          "t": 7,
+          "target_s": 6,
+          "target_t": 10,
+          "source_ids": [
+            15
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s5t7.json"
+        },
+        {
+          "s": 6,
+          "t": 6,
+          "target_s": 7,
+          "target_t": 9,
+          "source_ids": [
+            11
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            17
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s6t6.json"
+        },
+        {
+          "s": 6,
+          "t": 8,
+          "target_s": 7,
+          "target_t": 11,
+          "source_ids": [
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s6t8.json"
+        },
+        {
+          "s": 7,
+          "t": 7,
+          "target_s": 8,
+          "target_t": 10,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            19
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s7t7.json"
+        },
+        {
+          "s": 7,
+          "t": 9,
+          "target_s": 8,
+          "target_t": 12,
+          "source_ids": [
+            23
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s7t9.json"
+        },
+        {
+          "s": 8,
+          "t": 8,
+          "target_s": 9,
+          "target_t": 11,
+          "source_ids": [
+            17
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            21
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s8t8.json"
+        },
+        {
+          "s": 8,
+          "t": 10,
+          "target_s": 9,
+          "target_t": 13,
+          "source_ids": [
+            26
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s8t10.json"
+        },
+        {
+          "s": 9,
+          "t": 9,
+          "target_s": 10,
+          "target_t": 12,
+          "source_ids": [
+            22
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            25
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s9t9.json"
+        },
+        {
+          "s": 9,
+          "t": 11,
+          "target_s": 10,
+          "target_t": 14,
+          "source_ids": [
+            30
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s9t11.json"
+        },
+        {
+          "s": 10,
+          "t": 10,
+          "target_s": 11,
+          "target_t": 13,
+          "source_ids": [
+            25
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            29
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s10t10.json"
+        },
+        {
+          "s": 10,
+          "t": 12,
+          "target_s": 11,
+          "target_t": 15,
+          "source_ids": [
+            35
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s10t12.json"
+        },
+        {
+          "s": 11,
+          "t": 11,
+          "target_s": 12,
+          "target_t": 14,
+          "source_ids": [
+            29
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            32
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s11t11.json"
+        },
+        {
+          "s": 12,
+          "t": 12,
+          "target_s": 13,
+          "target_t": 15,
+          "source_ids": [
+            34
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            36
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map149/s12t12.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_eta_2__Fphi",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "RP5_8__RP3_4",
+      "filtration": 1,
+      "suspension": 0,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 5,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map151/s2t5.json"
+        }
+      ]
+    },
+    {
+      "name": "CW_eta_2__RP1_6",
+      "filtration": 0,
+      "suspension": -3,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 2,
+          "target_s": 2,
+          "target_t": 5,
+          "source_ids": [
+            2
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            4
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s2t2.json"
+        },
+        {
+          "s": 3,
+          "t": 3,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            3
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s3t3.json"
+        },
+        {
+          "s": 3,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 12,
+          "source_ids": [
+            15
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            18,
+            19
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 9
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s3t9.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 13,
+          "source_ids": [
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            23,
+            24
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s3t10.json"
+        },
+        {
+          "s": 4,
+          "t": 4,
+          "target_s": 4,
+          "target_t": 7,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s4t4.json"
+        },
+        {
+          "s": 4,
+          "t": 11,
+          "target_s": 4,
+          "target_t": 14,
+          "source_ids": [
+            21
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            26
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s4t11.json"
+        },
+        {
+          "s": 5,
+          "t": 5,
+          "target_s": 5,
+          "target_t": 8,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s5t5.json"
+        },
+        {
+          "s": 6,
+          "t": 6,
+          "target_s": 6,
+          "target_t": 9,
+          "source_ids": [
+            7
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s6t6.json"
+        },
+        {
+          "s": 7,
+          "t": 7,
+          "target_s": 7,
+          "target_t": 10,
+          "source_ids": [
+            9
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s7t7.json"
+        },
+        {
+          "s": 8,
+          "t": 8,
+          "target_s": 8,
+          "target_t": 11,
+          "source_ids": [
+            11
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s8t8.json"
+        },
+        {
+          "s": 9,
+          "t": 9,
+          "target_s": 9,
+          "target_t": 12,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s9t9.json"
+        },
+        {
+          "s": 10,
+          "t": 10,
+          "target_s": 10,
+          "target_t": 13,
+          "source_ids": [
+            17
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s10t10.json"
+        },
+        {
+          "s": 11,
+          "t": 11,
+          "target_s": 11,
+          "target_t": 14,
+          "source_ids": [
+            20
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s11t11.json"
+        },
+        {
+          "s": 12,
+          "t": 12,
+          "target_s": 12,
+          "target_t": 15,
+          "source_ids": [
+            22
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map152/s12t12.json"
+        }
+      ]
+    },
+    {
+      "name": "RP1_6__CW_2_eta",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 9,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            12
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 4
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map153/s3t10.json"
+        },
+        {
+          "s": 3,
+          "t": 12,
+          "target_s": 3,
+          "target_t": 11,
+          "source_ids": [
+            18,
+            19
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            17
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map153/s3t12.json"
+        }
+      ]
+    },
+    {
+      "name": "Fphi__RP1_256",
+      "filtration": 0,
+      "suspension": 1,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 12,
+          "target_s": 2,
+          "target_t": 11,
+          "source_ids": [
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            15,
+            16
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map154/s2t12.json"
+        }
+      ]
+    },
+    {
+      "name": "RP1_4__CP1_2",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": []
+    },
+    {
+      "name": "RP1_256__RPm7_0",
+      "filtration": 1,
+      "suspension": -7,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 3,
+          "target_s": 2,
+          "target_t": 11,
+          "source_ids": [
+            1
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            16,
+            17,
+            18
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map157/s1t3.json"
+        },
+        {
+          "s": 2,
+          "t": 5,
+          "target_s": 3,
+          "target_t": 13,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            25,
+            26
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            },
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map157/s2t5.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 17,
+          "source_ids": [
+            9,
+            10
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            35,
+            36
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 16
+            },
+            {
+              "kind": "ring",
+              "rowid": 2
+            },
+            {
+              "kind": "ring",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map157/s2t9.json"
+        },
+        {
+          "s": 2,
+          "t": 11,
+          "target_s": 3,
+          "target_t": 19,
+          "source_ids": [
+            15,
+            16
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            45,
+            46
+          ],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 7
+            },
+            {
+              "kind": "ring",
+              "rowid": 6
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            },
+            {
+              "kind": "ring",
+              "rowid": 6
+            },
+            {
+              "kind": "ring",
+              "rowid": 13
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map157/s2t11.json"
+        }
+      ]
+    },
+    {
+      "name": "RP1_10__RP7_10",
+      "filtration": 0,
+      "suspension": 4,
+      "blocks": []
+    },
+    {
+      "name": "RP9_16__RP1_8",
+      "filtration": 1,
+      "suspension": -7,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 3,
+          "target_s": 2,
+          "target_t": 11,
+          "source_ids": [
+            1
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            16,
+            17,
+            18
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map159/s1t3.json"
+        },
+        {
+          "s": 2,
+          "t": 5,
+          "target_s": 3,
+          "target_t": 13,
+          "source_ids": [
+            4
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            25,
+            26
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            },
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map159/s2t5.json"
+        },
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 3,
+          "target_t": 17,
+          "source_ids": [
+            9,
+            10
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            35,
+            36
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 16
+            },
+            {
+              "kind": "ring",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map159/s2t9.json"
+        },
+        {
+          "s": 2,
+          "t": 11,
+          "target_s": 3,
+          "target_t": 19,
+          "source_ids": [
+            16,
+            17,
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            45,
+            46
+          ],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 7
+            },
+            {
+              "kind": "module",
+              "rowid": 6
+            },
+            {
+              "kind": "ring",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map159/s2t11.json"
+        }
+      ]
+    },
+    {
+      "name": "RP3_4__RP1_2",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 7,
+          "target_s": 4,
+          "target_t": 9,
+          "source_ids": [
+            6
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map160/s3t7.json"
+        }
+      ]
+    },
+    {
+      "name": "RP5_6__RP3_4",
+      "filtration": 1,
+      "suspension": -1,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 4,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            3
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map161/s2t4.json"
+        },
+        {
+          "s": 3,
+          "t": 12,
+          "target_s": 4,
+          "target_t": 14,
+          "source_ids": [
+            14,
+            15
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            19
+          ],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map161/s3t12.json"
+        }
+      ]
+    },
+    {
+      "name": "RP1_4__RP2_4",
+      "filtration": 0,
+      "suspension": 2,
+      "blocks": [
+        {
+          "s": 1,
+          "t": 4,
+          "target_s": 1,
+          "target_t": 2,
+          "source_ids": [
+            3
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            4
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map162/s1t4.json"
+        },
+        {
+          "s": 2,
+          "t": 12,
+          "target_s": 2,
+          "target_t": 10,
+          "source_ids": [
+            17,
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            25,
+            26
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map162/s2t12.json"
+        }
+      ]
+    },
+    {
+      "name": "RP3_5__RP3_6",
+      "filtration": 0,
+      "suspension": -3,
+      "blocks": []
+    },
+    {
+      "name": "RP3_4__RP3_6",
+      "filtration": 0,
+      "suspension": -3,
+      "blocks": []
+    },
+    {
+      "name": "RP1_2__RP1_4",
+      "filtration": 0,
+      "suspension": -1,
+      "blocks": []
+    },
+    {
+      "name": "RP1_4__RP1_6",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "RP1_6__RP1_8",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "RP1_8__RP1_10",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 11,
+          "target_s": 2,
+          "target_t": 11,
+          "source_ids": [
+            16,
+            17,
+            18
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            15,
+            16
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map168/s2t11.json"
+        }
+      ]
+    },
+    {
+      "name": "RP1_10__RP1_12",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "RP1_12__RP1_256",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "RP1_6__RP3_6",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 10,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            7
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 6
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map171/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "RP3_6__RP5_6",
+      "filtration": 0,
+      "suspension": 5,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 2,
+          "target_t": 4,
+          "source_ids": [
+            5
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            3
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map172/s2t9.json"
+        }
+      ]
+    },
+    {
+      "name": "RP1_4__RP3_4",
+      "filtration": 0,
+      "suspension": 3,
+      "blocks": []
+    },
+    {
+      "name": "RP1_6__RP5_6",
+      "filtration": 0,
+      "suspension": 5,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 2,
+          "target_t": 4,
+          "source_ids": [
+            8,
+            9
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            3
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map174/s2t9.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 5,
+          "source_ids": [
+            12
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map174/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "RP1_8__RP5_8",
+      "filtration": 0,
+      "suspension": 4,
+      "blocks": [
+        {
+          "s": 2,
+          "t": 9,
+          "target_s": 2,
+          "target_t": 5,
+          "source_ids": [
+            9,
+            10
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            4
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map175/s2t9.json"
+        },
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 6,
+          "source_ids": [
+            14
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map175/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "RP1_12__RP9_12",
+      "filtration": 0,
+      "suspension": 8,
+      "blocks": []
+    },
+    {
+      "name": "RP1_256__RP3_256",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 3,
+          "target_t": 10,
+          "source_ids": [
+            13
+          ],
+          "status": "generated_unverified",
+          "target_ids": [
+            8
+          ],
+          "relations": [
+            {
+              "kind": "module",
+              "rowid": 5
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map177/s3t10.json"
+        }
+      ]
+    },
+    {
+      "name": "RP3_6__RP3_256",
+      "filtration": 0,
+      "suspension": 0,
+      "blocks": []
+    },
+    {
+      "name": "RP3_256__RP1_2",
+      "filtration": 1,
+      "suspension": 2,
+      "blocks": [
+        {
+          "s": 3,
+          "t": 10,
+          "target_s": 4,
+          "target_t": 9,
+          "source_ids": [
+            8
+          ],
+          "status": "generated_unverified",
+          "target_ids": [],
+          "relations": [
+            {
+              "kind": "ring",
+              "rowid": 3
+            },
+            {
+              "kind": "module",
+              "rowid": 2
+            },
+            {
+              "kind": "module",
+              "rowid": 1
+            }
+          ],
+          "certificate": "ModuleLowMapSupplement/map179/s3t10.json"
+        }
+      ]
+    }
+  ]
+}

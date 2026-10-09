@@ -1,0 +1,68 @@
+{
+  "status": "complete_raw_row2994_constraint_audit_passed",
+  "matrices": 6,
+  "columns": 18,
+  "reductions": 7,
+  "lifted_relations": 0,
+  "full_comparisons": 4,
+  "full_compatible_maps": 2,
+  "coordinate_maps": {
+    "source": [
+      0
+    ],
+    "target": [
+      0,
+      0,
+      1,
+      0
+    ]
+  },
+  "source_dimension": 1,
+  "source_named_coordinates": [
+    1
+  ],
+  "staircase_row": 2994,
+  "target_dimension": 2,
+  "detector_target_dimension": 2,
+  "target_kernel": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "affine_pairs_checked": 16,
+  "coordinate_changes": {
+    "source": [
+      1
+    ],
+    "target": [
+      0,
+      1,
+      1,
+      0
+    ]
+  },
+  "staircase_residual": [
+    1,
+    0
+  ],
+  "raw_unknown_retained": [
+    2994,
+    17,
+    138,
+    "0,1,2",
+    null,
+    9000
+  ],
+  "input_sha256": {
+    "Fact713Row2994Constraint/audit_detector.py": "c2c17e98c9d529e1261902a317f1fd853f6a2f10e4a5f914ae964ef87e18a8a2",
+    "Fact713Row2994Constraint/source.json": "7168979e67c62acb0b868669b9f9d467206f6e22533adc5a0735398ea5bec637",
+    "Fact713Row2994Constraint/comparison-source.json": "75c7b115172ff423d4c7e2bbfbabc0695638d95b270ea6d68077fa5f795b2f0a",
+    "upstream/category-inventory.json": "506dace295387da68b60bad6a7027bbfe916c9c8c2ac4846ea704133e37059e9"
+  },
+  "scope": "Finite two-candidate restriction only. No d3-zero claim. Lean sources are prepared, not compiled during root audit."
+}

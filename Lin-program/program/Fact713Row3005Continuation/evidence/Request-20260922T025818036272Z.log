@@ -1,0 +1,42 @@
+Fact713Row3005Continuation/Request.lean:37:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  Fact713Row3143Continuation.Constructed.requestRaw P.previous [true, true]
+in the target expression
+  ∃ x,
+    Nonempty
+        (Trace S pages Fact713ConstructedNamed.degree 11
+          (Fact713Row3143Continuation.Constructed.requestRaw P.previous spec.source) x) ∧
+      x ≠ 0 ∧ P.page11.coordinates.equivalence x = fun i => spec.output[↑i]?.getD false
+
+case refine_3
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+b : Bool
+P : Prefix11 S pages
+request : ActualTraceRequests.Request
+accepted : ActualTraceRequests.check spec request = true
+hv : request.version = 1
+hc : request.claim = spec.claim
+hs : request.source = spec.source
+ho : request.output = spec.output
+raw : Fact713Row3143Continuation.Constructed.requestRaw P.previous [true, true] = P.raw
+output : (fun i => [true][↑i]?.getD false) = vector11
+⊢ ∃ x,
+    Nonempty
+        (Trace S pages Fact713ConstructedNamed.degree 11
+          (Fact713Row3143Continuation.Constructed.requestRaw P.previous spec.source) x) ∧
+      x ≠ 0 ∧ P.page11.coordinates.equivalence x = fun i => spec.output[↑i]?.getD false
+Fact713Row3005Continuation/Request.lean:64:9: warning: Variable name `b` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Fact713Row3005Continuation/Request.lean:64:20: warning: Variable name `P` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Fact713Row3005Continuation.request_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.batch_sound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.imported_single' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.imported_batch' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact713Row3005Continuation.source_sound' depends on axioms: [propext, Classical.choice, Quot.sound]

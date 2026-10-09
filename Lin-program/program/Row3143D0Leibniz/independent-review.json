@@ -1,0 +1,48 @@
+{
+  "status": "passed_no_findings",
+  "frozen_files": 89,
+  "leaves": 8,
+  "axiom_reports": 57,
+  "dependency_hashes": 17,
+  "external_hashes": 20,
+  "counts": {
+    "comparisons": 13,
+    "complete_rows": 72,
+    "cycles": 32,
+    "quotient_pairs": 124,
+    "renamed_squarezero": 16,
+    "no_known_nonzero_countermodels": 16,
+    "no_squarezero_countermodels": 16,
+    "same_input_product_models": 64
+  },
+  "known_event": {
+    "row": 2149,
+    "basis": 2150,
+    "target_basis": 2277,
+    "page": 4,
+    "source": [
+      17,
+      125
+    ],
+    "target": [
+      21,
+      128
+    ]
+  },
+  "requested_event": {
+    "row": 3143,
+    "basis": 3141,
+    "page": 4,
+    "source": [
+      17,
+      140
+    ],
+    "raw_diff": null
+  },
+  "scope": "The known d4 is an explicit actual nonzero meaning. No event value of row3143 or E4 named factorization is supplied. Six full E2 inputs construct detector E3 and E4 coordinates; source named input is E3 and actual relation/product/quotient interpretations remain explicit.",
+  "hashes": {
+    "frozen": "2d9f8b2137eb05074d4ed6e29727ee3ac7e720b96de8c2959ad106d7800e8e02",
+    "provenance": "3f94d7f35eae6852d39beda7f051a43c6e56c46b55b60f540df5a63a4f1e61b6",
+    "database": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+  }
+}

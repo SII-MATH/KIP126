@@ -1,0 +1,29 @@
+Fact721FirstD6DC2h6/Incoming5.lean:32:55: error: Type mismatch
+  matrix
+has type
+  Matrix 3 3
+but is expected to have type
+  Vec 3
+Fact721FirstD6DC2h6/Incoming5.lean:38:8: warning: declaration uses `sorry`
+Fact721FirstD6DC2h6/Incoming5.lean:53:93: error: Type mismatch
+  zero
+has type
+  ∀ (self : Input ?m.38 ?m.39), LocalZeroMeaning ?m.36 2 degree
+of sort `Prop` but is expected to have type
+  Vec 2
+of sort `Type`
+Fact721FirstD6DC2h6/Incoming5.lean:58:93: error: Type mismatch
+  zero
+has type
+  ∀ (self : Input ?m.38 ?m.39), LocalZeroMeaning ?m.36 2 degree
+of sort `Prop` but is expected to have type
+  Vec 1
+of sort `Type`
+'Fact721FirstD6DC2h6.Incoming5.compatible' depends on axioms: [propext, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming5.finite_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming5.Input.onto3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming5.Input.sphere3_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming5.Input.sphere4_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming5.Input.onto4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming5.Input.onto5' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact721FirstD6DC2h6.Incoming5.Input.whole_d5_zero' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

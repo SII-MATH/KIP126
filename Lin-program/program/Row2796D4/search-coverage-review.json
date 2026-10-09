@@ -1,0 +1,796 @@
+{
+  "configured_map_search": {
+    "changed_classifications": [
+      {
+        "coverage_status": "unknown_outside_E2_window",
+        "database": "S0_AdamsSS_t261.db",
+        "map": "S0__S0_by_theta5sq",
+        "ordinal": 73,
+        "outside_degrees": [
+          [
+            12,
+            263
+          ],
+          [
+            16,
+            266
+          ]
+        ],
+        "recorded_status": "target_literal_zero",
+        "requested_source": [
+          12,
+          263
+        ],
+        "requested_target": [
+          16,
+          266
+        ],
+        "section": "maps_v2",
+        "t_max": 261
+      }
+    ],
+    "coverage_corrected_counts": {
+      "candidate_needs_E4": 1,
+      "source_not_literal_zero": 24,
+      "target_literal_zero": 24,
+      "unknown": 21
+    },
+    "historical_counts": {
+      "candidate_needs_E4": 1,
+      "source_not_literal_zero": 24,
+      "target_literal_zero": 25,
+      "unknown": 20
+    },
+    "note": "Conservative correction for declared E2 window only; in-range reductions are not re-run.",
+    "out_of_E2_window": [
+      {
+        "coverage_status": "unknown_outside_E2_window",
+        "database": "S0_AdamsSS_t261.db",
+        "map": "S0__S0_by_theta5sq",
+        "ordinal": 73,
+        "outside_degrees": [
+          [
+            12,
+            263
+          ],
+          [
+            16,
+            266
+          ]
+        ],
+        "recorded_status": "target_literal_zero",
+        "requested_source": [
+          12,
+          263
+        ],
+        "requested_target": [
+          16,
+          266
+        ],
+        "section": "maps_v2",
+        "t_max": 261
+      },
+      {
+        "coverage_status": "unknown_outside_E2_window",
+        "database": "C2_AdamsSS_t200.db",
+        "map": "S0__C2_by_h6",
+        "ordinal": 83,
+        "outside_degrees": [
+          [
+            13,
+            202
+          ]
+        ],
+        "recorded_status": "unknown",
+        "requested_source": [
+          9,
+          199
+        ],
+        "requested_target": [
+          13,
+          202
+        ],
+        "section": "maps_v2",
+        "t_max": 200
+      },
+      {
+        "coverage_status": "unknown_outside_E2_window",
+        "database": "CW_2_eta_AdamsSS_t200.db",
+        "map": "S0__CW_2_eta_by_theta5sq",
+        "ordinal": 84,
+        "outside_degrees": [
+          [
+            9,
+            263
+          ],
+          [
+            13,
+            266
+          ]
+        ],
+        "recorded_status": "unknown",
+        "requested_source": [
+          9,
+          263
+        ],
+        "requested_target": [
+          13,
+          266
+        ],
+        "section": "maps_v2",
+        "t_max": 200
+      },
+      {
+        "coverage_status": "unknown_outside_E2_window",
+        "database": "Ctheta5_AdamsSS_t200.db",
+        "map": "S0__Ctheta5_by_2",
+        "ordinal": 87,
+        "outside_degrees": [
+          [
+            13,
+            202
+          ]
+        ],
+        "recorded_status": "unknown",
+        "requested_source": [
+          9,
+          199
+        ],
+        "requested_target": [
+          13,
+          202
+        ],
+        "section": "maps_v2",
+        "t_max": 200
+      },
+      {
+        "coverage_status": "unknown_outside_E2_window",
+        "database": "DC2h5_AdamsSS_t200.db",
+        "map": "S0__DC2h5_by_theta4",
+        "ordinal": 90,
+        "outside_degrees": [
+          [
+            13,
+            201
+          ]
+        ],
+        "recorded_status": "unknown",
+        "requested_source": [
+          9,
+          198
+        ],
+        "requested_target": [
+          13,
+          201
+        ],
+        "section": "maps_v2",
+        "t_max": 200
+      },
+      {
+        "coverage_status": "unknown_outside_E2_window",
+        "database": "DC2h6_AdamsSS_t200.db",
+        "map": "S0__DC2h6_by_theta5",
+        "ordinal": 91,
+        "outside_degrees": [
+          [
+            9,
+            262
+          ],
+          [
+            13,
+            265
+          ]
+        ],
+        "recorded_status": "unknown",
+        "requested_source": [
+          9,
+          262
+        ],
+        "requested_target": [
+          13,
+          265
+        ],
+        "section": "maps_v2",
+        "t_max": 200
+      }
+    ],
+    "records": 70
+  },
+  "database_sha256": {
+    "C2_AdamsSS_t200.db": "87976dfa0101429e65d4064525176f3f755a969617f1366e6d6571aa79625b8e",
+    "C2h4_AdamsSS_t200.db": "d1ccef3df3c11bba5a0033f00004cbd530e3bbe74ec8e846819d0e6465800b11",
+    "C2h5_AdamsSS_t200.db": "09ce104df05722024614b4909c84d35790f1d36fec8abc18576717608a6091b3",
+    "C2h6_AdamsSS_t200.db": "87d92d91edd62bd914c89370699b30ef7405eace68b75a08a1c500e96eaa9e88",
+    "C2sigma_AdamsSS_t200.db": "c060c74fd8106393a142935bf3a834ba480c8a475d4372ac266625951cc327fb",
+    "CW_2_A_eta_AdamsSS_t180.db": "5dcc45738a89d3aadb79e95f90e77af14898fa94377cffd2d386889a4993e973",
+    "CW_2_eta_AdamsSS_t200.db": "d09387bd964b7359139962bd01e2b4782d9fce637ed79f27ce68c6152b5fefcf",
+    "CW_2_eta_nu_AdamsSS_t200.db": "295659d77e63d8f411ab57c541f1b2ed2391b60e770137eb65f70f59638ffc4b",
+    "CW_2_eta_nu_sigma_AdamsSS_t200.db": "36d5d5bdda53ffd333e4fc3be96bf902eae9428a61e9eaff725daca0f7991f6f",
+    "CW_eta_2_AdamsSS_t200.db": "fc78e9509a2fc83695d641947d2256e5cc9333538f65ee64dad3908e1fc4cb2c",
+    "CW_eta_nu_AdamsSS_t200.db": "90348cf74380b68dca4c6bcac1ff372289ab1a2c5dd58ebd2ea3c0751f0497ae",
+    "CW_eta_nu_sigma_AdamsSS_t200.db": "a4a891258b33dd47329a869351733a95610f948aa653cd053dfe2dd5aaea17bb",
+    "CW_nu_eta_2_AdamsSS_t200.db": "21bfdc04681038169ac5bc6ae17b87123f270c28d7b62e9f291db742b8a08094",
+    "CW_nu_eta_AdamsSS_t200.db": "8007f076e6bb78f269849758db8ec347625896607dd54d31e9fc0df770aec278",
+    "CW_nu_sigma_AdamsSS_t200.db": "5ac64eb20944dca239663578d687c442a5295b9be9007895013cb47b067e4165",
+    "CW_sigma_nu_AdamsSS_t200.db": "a208b9abfa15901d8b3f9a5cc05cafd49ee73083c5595f24e8bcfe7c66580156",
+    "Ceta_AdamsSS_t200.db": "ca0f379210e07d2908576c6e0ddb8889db9b17c8ef426a68b0831bb3f606b477",
+    "Cnu_AdamsSS_t200.db": "e1274528151c3391f5e5f4de72f8428a68b5e145a07bb3cc946781efd9bfdbbe",
+    "Csigma_AdamsSS_t200.db": "96c380f9893f2c3e0445c03cdddc6b242b3d163655cf9a9b007360c93b3b4680",
+    "Csigmasq_AdamsSS_t200.db": "4fa9cad9ffce2df67e196ca7f38b4c9e6030bac41b2e85e85e89ca8d95eaa98a",
+    "Ctheta4_AdamsSS_t200.db": "06dd759b3d36ed099ea66c54c89a10b0b6f0da2e838e625a6e85283cb1384cbe",
+    "Ctheta5_AdamsSS_t200.db": "e8b5ad370614e4350bbc747893b6c26b8e637115236b8b2c0a713c65b9de403c",
+    "DC2h4_AdamsSS_t198.db": "107d2d4beba90d707b5bbc0ed919e6ef0158046f6a9b51f3dce9d55847155c40",
+    "DC2h5_AdamsSS_t200.db": "293f98b1f559d8ef5b7dea5a757aeb28f2e64c85a8bbb43e98f424ea4bab91f2",
+    "DC2h6_AdamsSS_t200.db": "8ea004020e413f34a569b9d142e58c73c7661dd1acff35b0757dac9e73586162",
+    "Fphi_AdamsSS_t200.db": "8d6e146645492dca83b178de5ac99574fd2bae8781ec93e88c239aeae2c93324",
+    "S0_AdamsSS_t261.db": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+    "tmf_AdamsSS_t261.db": "bed7d1bf3ccdb21ddf55b9f2f2a1367b58a520dd1bebb033998b494b8f0208a0"
+  },
+  "input_sha256": {
+    "AggregateTwoDetectorConditional/source.json": "c4cbb4b2747a73cee298f529a5a3e9b7e9b94fd78dbf62bfe3aae572b663ca27",
+    "Row2796D4/map-e4.json": "601950bbc54a3553b99b3064ce08659e2f488b7e242057548d3d1f92bddb5506",
+    "Row2796D4/maps-search.json": "48f3acb464d3460ac4f66fe842f3f25e0314cb9e696f20ed3f50f8aa50507081",
+    "Row2796D4/search.json": "2732bc064cd25d309bd80d2d06000d0c525741feafd86f98b8031ec50fd82ddc",
+    "Row2796D4/search.py": "28619758bcfef9c0cb5eb151a3e8e27de0bb0d28b86102e96fd41d2c19fd60c0",
+    "Row2796D4/search_maps.py": "2e899d95dbcced168818b5dc6f16829ad3ab8a21084c5c0ddedb6a3291cfd01a",
+    "Row2796D4Detector/Comparison.lean": "2b0bdea3a7ae3b294627023230b43355ea084969072d34bb5997f9c3ae9497d3",
+    "Row2796D4Detector/generate.py": "3b40759272bc77a8467742548b3e6ade0e340130f868520c94a72b373c513243",
+    "Row2796D4Detector/source.json": "f418f39dce0a4f7af71c42df87c7e1e7425228dd968df416474c5d2c7a1f2c0d",
+    "upstream/category-inventory.json": "506dace295387da68b60bad6a7027bbfe916c9c8c2ac4846ea704133e37059e9"
+  },
+  "ordinary_factor_search": {
+    "E2_t_max": 261,
+    "counts": {
+      "source_not_literal_zero": 2,
+      "target_literal_zero": 93
+    },
+    "factor_t_max": 30,
+    "max_product_t": 168,
+    "note": "Literal E2 search only. No candidate requested E4; these statuses are not quotient claims.",
+    "out_of_coverage": 0,
+    "records": 95
+  },
+  "registered_detector": {
+    "actual_matrices": [
+      {
+        "columns": 3,
+        "rows": 5,
+        "source": [
+          7,
+          135
+        ],
+        "target": [
+          8,
+          142
+        ]
+      },
+      {
+        "columns": 5,
+        "rows": 6,
+        "source": [
+          9,
+          136
+        ],
+        "target": [
+          10,
+          143
+        ]
+      },
+      {
+        "columns": 6,
+        "rows": 10,
+        "source": [
+          11,
+          137
+        ],
+        "target": [
+          12,
+          144
+        ]
+      },
+      {
+        "columns": 6,
+        "rows": 10,
+        "source": [
+          10,
+          137
+        ],
+        "target": [
+          11,
+          144
+        ]
+      },
+      {
+        "columns": 5,
+        "rows": 8,
+        "source": [
+          12,
+          138
+        ],
+        "target": [
+          13,
+          145
+        ]
+      },
+      {
+        "columns": 3,
+        "rows": 4,
+        "source": [
+          14,
+          139
+        ],
+        "target": [
+          15,
+          146
+        ]
+      },
+      {
+        "columns": 3,
+        "rows": 4,
+        "source": [
+          13,
+          139
+        ],
+        "target": [
+          14,
+          146
+        ]
+      },
+      {
+        "columns": 5,
+        "rows": 6,
+        "source": [
+          15,
+          140
+        ],
+        "target": [
+          16,
+          147
+        ]
+      },
+      {
+        "columns": 4,
+        "rows": 6,
+        "source": [
+          17,
+          141
+        ],
+        "target": [
+          18,
+          148
+        ]
+      },
+      {
+        "columns": 4,
+        "rows": 4,
+        "source": [
+          6,
+          134
+        ],
+        "target": [
+          7,
+          141
+        ]
+      },
+      {
+        "columns": 7,
+        "rows": 9,
+        "source": [
+          8,
+          135
+        ],
+        "target": [
+          9,
+          142
+        ]
+      },
+      {
+        "columns": 5,
+        "rows": 9,
+        "source": [
+          10,
+          136
+        ],
+        "target": [
+          11,
+          143
+        ]
+      }
+    ],
+    "affected_by_search_coverage_bug": false,
+    "columns": 56,
+    "comparison_input_closure": [
+      {
+        "blocks": [
+          {
+            "basis_degrees": [
+              [
+                9,
+                136
+              ],
+              [
+                11,
+                137
+              ],
+              [
+                13,
+                138
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              11,
+              137
+            ],
+            "key": "S0:11,137:d2",
+            "page": 2
+          },
+          {
+            "basis_degrees": [
+              [
+                10,
+                137
+              ],
+              [
+                12,
+                138
+              ],
+              [
+                14,
+                139
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              12,
+              138
+            ],
+            "key": "S0:12,138:d2",
+            "page": 2
+          },
+          {
+            "conditional_uses": [
+              {
+                "kind": "conditional_csigma",
+                "object": "S0",
+                "page": 3,
+                "row": [
+                  2861,
+                  "1",
+                  null,
+                  9000
+                ],
+                "source": [
+                  9,
+                  136
+                ],
+                "target_predecessor": "S0:12,138:d2"
+              }
+            ],
+            "degree": [
+              12,
+              138
+            ],
+            "key": "S0:12,138:d3",
+            "page": 3
+          },
+          {
+            "basis_degrees": [
+              [
+                13,
+                139
+              ],
+              [
+                15,
+                140
+              ],
+              [
+                17,
+                141
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              15,
+              140
+            ],
+            "key": "S0:15,140:d2",
+            "page": 2
+          },
+          {
+            "basis_degrees": [
+              [
+                3,
+                132
+              ],
+              [
+                5,
+                133
+              ],
+              [
+                7,
+                134
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              5,
+              133
+            ],
+            "key": "S0:5,133:d2",
+            "page": 2
+          },
+          {
+            "basis_degrees": [
+              [
+                6,
+                134
+              ],
+              [
+                8,
+                135
+              ],
+              [
+                10,
+                136
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              8,
+              135
+            ],
+            "key": "S0:8,135:d2",
+            "page": 2
+          },
+          {
+            "conditional_uses": [
+              {
+                "kind": "conditional_h3_d0",
+                "object": "S0",
+                "page": 3,
+                "row": [
+                  2796,
+                  "2",
+                  null,
+                  9000
+                ],
+                "source": [
+                  8,
+                  135
+                ],
+                "target_predecessor": "S0:11,137:d2"
+              }
+            ],
+            "degree": [
+              8,
+              135
+            ],
+            "key": "S0:8,135:d3",
+            "page": 3
+          },
+          {
+            "basis_degrees": [
+              [
+                7,
+                135
+              ],
+              [
+                9,
+                136
+              ],
+              [
+                11,
+                137
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              9,
+              136
+            ],
+            "key": "S0:9,136:d2",
+            "page": 2
+          }
+        ],
+        "database": "S0_AdamsSS_t261.db",
+        "max_E2_basis_t": 141,
+        "max_d2_center_t": 140,
+        "metadata": {
+          "change notes": "Add fil,from,to in version table of maps.",
+          "d2_t_max": 177,
+          "t_max": 261,
+          "timestamp": 1710516671,
+          "version": 3
+        },
+        "object": "S0",
+        "recursive_block_count": 8,
+        "roots": [
+          "S0:9,136:d2",
+          "S0:12,138:d2",
+          "S0:15,140:d2",
+          "S0:8,135:d2",
+          "S0:12,138:d3",
+          "S0:8,135:d3"
+        ]
+      },
+      {
+        "blocks": [
+          {
+            "basis_degrees": [
+              [
+                8,
+                142
+              ],
+              [
+                10,
+                143
+              ],
+              [
+                12,
+                144
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              10,
+              143
+            ],
+            "key": "CW_nu_eta:10,143:d2",
+            "page": 2
+          },
+          {
+            "basis_degrees": [
+              [
+                11,
+                144
+              ],
+              [
+                13,
+                145
+              ],
+              [
+                15,
+                146
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              13,
+              145
+            ],
+            "key": "CW_nu_eta:13,145:d2",
+            "page": 2
+          },
+          {
+            "conditional_uses": [],
+            "degree": [
+              13,
+              145
+            ],
+            "key": "CW_nu_eta:13,145:d3",
+            "page": 3
+          },
+          {
+            "basis_degrees": [
+              [
+                14,
+                146
+              ],
+              [
+                16,
+                147
+              ],
+              [
+                18,
+                148
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              16,
+              147
+            ],
+            "key": "CW_nu_eta:16,147:d2",
+            "page": 2
+          },
+          {
+            "basis_degrees": [
+              [
+                7,
+                141
+              ],
+              [
+                9,
+                142
+              ],
+              [
+                11,
+                143
+              ]
+            ],
+            "d2_columns_rechecked": true,
+            "degree": [
+              9,
+              142
+            ],
+            "key": "CW_nu_eta:9,142:d2",
+            "page": 2
+          }
+        ],
+        "database": "CW_nu_eta_AdamsSS_t200.db",
+        "max_E2_basis_t": 148,
+        "max_d2_center_t": 147,
+        "metadata": {
+          "change notes": "Add fil,from,to in version table of maps.",
+          "d2_t_max": 150,
+          "t_max": 200,
+          "timestamp": 1734865204,
+          "version": 3
+        },
+        "object": "CW_nu_eta",
+        "recursive_block_count": 5,
+        "roots": [
+          "CW_nu_eta:10,143:d2",
+          "CW_nu_eta:13,145:d2",
+          "CW_nu_eta:16,147:d2",
+          "CW_nu_eta:9,142:d2",
+          "CW_nu_eta:13,145:d3"
+        ]
+      }
+    ],
+    "limitations": "Coverage does not prove topology or unknown differentials. Existing local d4 naturality/zero-preservation and prior conditional d3 inputs remain explicit."
+  },
+  "schema": "row2796_search_coverage_review/v1",
+  "scope": "Existing numerical searches and the exact registered detector input closure; no full search rerun and no Lean source changes.",
+  "sole_candidate": {
+    "factor_basis_id": 11,
+    "factor_degree": [
+      1,
+      7
+    ],
+    "factor_monomial": "2",
+    "map": {
+      "factor": [
+        6,
+        1,
+        0
+      ],
+      "from": "S0",
+      "name": "S0__CW_nu_eta_by_2",
+      "to": "CW_nu_eta"
+    },
+    "note": "Source quotient still retains unknown row5232; registered detector uses its zero E3 map and arbitrary compatible source-target matrices.",
+    "numerical_E4_coordinates": [
+      0,
+      1,
+      0
+    ],
+    "ordinal": 25,
+    "section": "maps_v2",
+    "source": {
+      "coordinates": [],
+      "degree": [
+        9,
+        142
+      ],
+      "relation_rowids": [
+        12228
+      ]
+    },
+    "target": {
+      "coordinates": [
+        5
+      ],
+      "degree": [
+        13,
+        145
+      ],
+      "relation_rowids": [
+        13591
+      ]
+    },
+    "within_E2_and_d2_windows": true
+  },
+  "status": "read_only_metadata_and_selected_column_audit"
+}

@@ -1,0 +1,20 @@
+ActualStem125ConstrainedE5/Whole.lean:40:4: error: Tactic `apply` failed: could not unify the conclusion of `Prod.ext rfl`
+  ?m.19 = ?m.19
+with the goal
+  (fun x => (x, fun x => 0)) x.1 = x
+
+Note: The full type of `Prod.ext rfl` is
+  ?m.19.2 = ?m.19.2 → ?m.19 = ?m.19
+
+S : AdamsSpectralSequence
+pages : CertifiedAdamsPages S
+zeros : ActualAdamsSystemBridge.ZeroMeaning S pages
+meaning : ZeroMeaning S
+x : PositiveNext S × ZeroNext S
+⊢ (fun x => (x, fun x => 0)) x.1 = x
+'ActualStem125ConstrainedE5.zero_next' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.wholePositiveEquiv' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.whole_cardinality' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.whole_bounds' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'ActualStem125ConstrainedE5.by_tactic' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

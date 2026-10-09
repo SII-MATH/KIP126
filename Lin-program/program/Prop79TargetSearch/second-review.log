@@ -1,0 +1,40 @@
+{
+  "status": "passed_no_findings",
+  "counts": {
+    "dependencies_sha256": 26,
+    "external_input_sha256": 11,
+    "axiom_reports": 54,
+    "actual_quotient_pairs": 24576,
+    "derived_addition_pairs": 12288,
+    "same_raw_steps": 768,
+    "actual_complete_incoming_vectors": 6912,
+    "actual_nonboundary_pages": 1024,
+    "wrong_inputs_rejected": 3840,
+    "actual_models": 256,
+    "linear_outgoing_maps": 16,
+    "whole_zero_after_both_columns": 1,
+    "missing_future_prefix_countermodels": 3,
+    "missing_faithfulness_countermodels": 1,
+    "no_E6_from_four_nonboundaries_countermodels": 1
+  },
+  "review": {
+    "actual_source_coordinate_self_reference": false,
+    "prefix4_constructs_both_unknown_d3_values": true,
+    "prefix5_uses_full_zero_dimensional_neighbor_coordinates": true,
+    "page5_whole_incoming_prefix_is_explicit_mathematical_premise": true,
+    "result_uses_one_raw_input_and_four_actual_nonboundary_claims": true,
+    "E6_or_permanence_claimed": false
+  },
+  "input_sha256": {
+    "Prop79TargetSearch/second_review.py": "5c6e739df525bd858ba59ab5f60599c052a831ad74b53884635c9d8b28cabc5c",
+    "Prop79TargetSearch/search.json": "ee4da018166156e72f56f865c479e70868e46cdd68f22cf259a4af4810059c78",
+    "Prop79TargetSearch/frozen-source.json": "8fc7a83353bbe877d344c9462fc49325f81c30d238c1a167aae1ae0982ac0700",
+    "Prop79TargetSearch/Assembly.lean": "eb8eaa316315fb2063f20d7bad22e6053604a01953a3acea98762c324d6f6dcd",
+    "Prop79TargetSearch/Actual.lean": "16e811545f5089f39655eaf3b3274363923d9ae26ae51d06da58cce790476f1d",
+    "Prop79TargetSearch/ActualIncoming.lean": "734c66b1d1387a7fcb6511bc30e6a8e35b1e1897446b4f1d65faff65ea1a9931",
+    "Prop79TargetSearch/Constructed.lean": "07833da947fb1dd5178672badda671bd9a29568af81eae31e9fb046e76934bec",
+    "Prop79TargetSearch/Trace.lean": "dfddcd78819c2326de77daec5aafa842060039da0d995ae547057808853034ce",
+    "Prop79TargetSearch/DerivedStep.lean": "1ed31ba783056e5ae80217c1982817cc224a94c5064350f67d0086f3a7437408",
+    "Prop79TargetSearch/ZeroSpaces.lean": "6b85a02fd71f54141d5b49fd370349586d26dd3fef36146bfd86e73183763eeb"
+  }
+}

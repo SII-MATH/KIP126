@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "counts": {
+    "one_stage_actual_homology_models": 4,
+    "zero_after_hit": 8752,
+    "all_cycles_from_finite_before_hit": 6713,
+    "five_stage_systems": 1024,
+    "natural_same_input_cycle_transports": 4432,
+    "two_stage_natural_maps": 3072,
+    "faithful_cycle_reflections": 656,
+    "faithful_full_map_tail_pulls": 104,
+    "surjective_full_map_tail_pushes": 64,
+    "missing_quotient_compatibility_countermodels": 1,
+    "missing_outgoing_faithfulness_countermodels": 1,
+    "axiom_reports": 25
+  },
+  "scope": "Universal all-page map transport and hit-branch tail theorem; no unconditional Fact7.6(2) instance.",
+  "fact762_tail_removed_on_proved_hit_branch": true,
+  "fact762_no_hit_branch_resolved": false,
+  "paper_realization_supplied": false,
+  "input_sha256": {
+    "OutgoingCycleMapTransport/check_models.py": "4894f41b375f2376583bb9587551e5ef10bf29d8bfedb0d690d1c4773297da45",
+    "Fact762PageCertificates/comparison.json": "8ab8d933b95414e6661fe8f18bc3d964977a5a83c93cdfe0ec1a39e6fbef0bc3",
+    "ActualPermanenceBoundary/Cases.lean": "d6f9998c054ae1d81796c5f2a7d573b63141c5f6a86a82330fdabba483c310f6",
+    "OutgoingCycleFiltrationCertificates/Basic.lean": "824e8dc62e440f6fcaa586fffa6626b908e9c52dd4058c1488d9a2edf74efc5f",
+    "OutgoingCycleFiltrationCertificates/Boundary.lean": "68ec56a66a45b05556aa1eb19ed215967bb9c8e5f60dbbe89b53e9f61dcd7648"
+  }
+}

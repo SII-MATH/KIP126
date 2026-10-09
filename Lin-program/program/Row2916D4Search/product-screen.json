@@ -1,0 +1,2491 @@
+[
+  {
+    "object": "Ceta",
+    "label": "source",
+    "coefficient": [
+      181
+    ],
+    "source_degree": [
+      5,
+      38
+    ],
+    "target_degree": [
+      13,
+      139
+    ],
+    "source_comparison": {
+      "rows": [
+        [
+          {
+            "id": 217,
+            "mon": "0,1,2,1,18,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 228,
+            "mon": "15",
+            "d2": ""
+          },
+          {
+            "id": 229,
+            "mon": "0,3,18,1,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 239,
+            "mon": "23,1,1",
+            "d2": ""
+          },
+          {
+            "id": 240,
+            "mon": "29,1,0",
+            "d2": "1"
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "target_comparison": {
+      "rows": [
+        [
+          {
+            "id": 4788,
+            "mon": "92,1,47",
+            "d2": ""
+          },
+          {
+            "id": 4789,
+            "mon": "0,1,391,1,1",
+            "d2": ""
+          },
+          {
+            "id": 4790,
+            "mon": "0,2,375,1,1",
+            "d2": "2"
+          },
+          {
+            "id": 4791,
+            "mon": "0,1,428,1,0",
+            "d2": ""
+          },
+          {
+            "id": 4792,
+            "mon": "0,1,3,1,333,1,0",
+            "d2": ""
+          },
+          {
+            "id": 4793,
+            "mon": "0,10,324,1,0",
+            "d2": "3"
+          }
+        ],
+        [
+          {
+            "id": 4889,
+            "mon": "287",
+            "d2": "3"
+          },
+          {
+            "id": 4890,
+            "mon": "181,1,15",
+            "d2": ""
+          },
+          {
+            "id": 4891,
+            "mon": "0,4,367,1,1",
+            "d2": ""
+          },
+          {
+            "id": 4892,
+            "mon": "0,11,69,2,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 5009,
+            "mon": "189,1,15",
+            "d2": ""
+          },
+          {
+            "id": 5010,
+            "mon": "0,1,418,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5011,
+            "mon": "456,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5012,
+            "mon": "67,1,107,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5013,
+            "mon": "0,1,449,1,0",
+            "d2": "3"
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "k": 5,
+        "m": 4,
+        "n": 6,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "version": 1
+      }
+    },
+    "columns": [
+      {
+        "source": {
+          "id": 228,
+          "mon": "15",
+          "d2": ""
+        },
+        "output": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "projection": [
+          1
+        ],
+        "trace": []
+      },
+      {
+        "source": {
+          "id": 229,
+          "mon": "0,3,18,1,1",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 3768,
+              "raw": "181,1,1"
+            },
+            "multiplier": [
+              0,
+              0,
+              0,
+              18
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "object": "Ceta",
+    "label": "rightTerm",
+    "coefficient": [
+      181
+    ],
+    "source_degree": [
+      8,
+      40
+    ],
+    "target_degree": [
+      16,
+      141
+    ],
+    "source_comparison": {
+      "rows": [
+        [
+          {
+            "id": 241,
+            "mon": "0,4,18,1,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 252,
+            "mon": "0,1,23,1,1",
+            "d2": ""
+          },
+          {
+            "id": 253,
+            "mon": "0,1,29,1,0",
+            "d2": "0"
+          }
+        ],
+        [
+          {
+            "id": 265,
+            "mon": "0,2,8,1,9,1,0",
+            "d2": ""
+          },
+          {
+            "id": 266,
+            "mon": "0,9,18,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "h": 1,
+        "inclusion": [
+          true,
+          false
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          true,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "target_comparison": {
+      "rows": [
+        [
+          {
+            "id": 5014,
+            "mon": "295",
+            "d2": ""
+          },
+          {
+            "id": 5015,
+            "mon": "294",
+            "d2": "0,3"
+          },
+          {
+            "id": 5016,
+            "mon": "190,1,14",
+            "d2": ""
+          },
+          {
+            "id": 5017,
+            "mon": "457,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5018,
+            "mon": "68,1,107,1,0",
+            "d2": "3"
+          },
+          {
+            "id": 5019,
+            "mon": "0,12,69,2,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 5154,
+            "mon": "438,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5155,
+            "mon": "0,2,418,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5156,
+            "mon": "473,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5157,
+            "mon": "0,1,67,1,107,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5158,
+            "mon": "0,2,449,1,0",
+            "d2": "1"
+          }
+        ],
+        [
+          {
+            "id": 5253,
+            "mon": "0,1,437,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5254,
+            "mon": "0,4,440,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "h": 2,
+        "inclusion": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 5,
+        "n": 6,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "columns": [
+      {
+        "source": {
+          "id": 252,
+          "mon": "0,1,23,1,1",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 3768,
+              "raw": "181,1,1"
+            },
+            "multiplier": [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      {
+        "source": {
+          "id": 253,
+          "mon": "0,1,29,1,0",
+          "d2": "0"
+        },
+        "output": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "ring_lift",
+              "rowid": 2992,
+              "raw": "0,1,181,1",
+              "generator": 0
+            },
+            "multiplier": [
+              29
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "object": "Ceta",
+    "label": "leftTerm",
+    "coefficient": [
+      23,
+      76
+    ],
+    "source_degree": [
+      5,
+      38
+    ],
+    "target_degree": [
+      16,
+      141
+    ],
+    "source_comparison": {
+      "rows": [
+        [
+          {
+            "id": 217,
+            "mon": "0,1,2,1,18,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 228,
+            "mon": "15",
+            "d2": ""
+          },
+          {
+            "id": 229,
+            "mon": "0,3,18,1,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 239,
+            "mon": "23,1,1",
+            "d2": ""
+          },
+          {
+            "id": 240,
+            "mon": "29,1,0",
+            "d2": "1"
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "target_comparison": {
+      "rows": [
+        [
+          {
+            "id": 5014,
+            "mon": "295",
+            "d2": ""
+          },
+          {
+            "id": 5015,
+            "mon": "294",
+            "d2": "0,3"
+          },
+          {
+            "id": 5016,
+            "mon": "190,1,14",
+            "d2": ""
+          },
+          {
+            "id": 5017,
+            "mon": "457,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5018,
+            "mon": "68,1,107,1,0",
+            "d2": "3"
+          },
+          {
+            "id": 5019,
+            "mon": "0,12,69,2,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 5154,
+            "mon": "438,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5155,
+            "mon": "0,2,418,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5156,
+            "mon": "473,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5157,
+            "mon": "0,1,67,1,107,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5158,
+            "mon": "0,2,449,1,0",
+            "d2": "1"
+          }
+        ],
+        [
+          {
+            "id": 5253,
+            "mon": "0,1,437,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5254,
+            "mon": "0,4,440,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "h": 2,
+        "inclusion": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 5,
+        "n": 6,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "columns": [
+      {
+        "source": {
+          "id": 228,
+          "mon": "15",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 990,
+              "raw": "23,1,15;24,1,14"
+            },
+            "multiplier": [
+              76
+            ]
+          },
+          {
+            "origin": {
+              "kind": "ring_lift",
+              "rowid": 3125,
+              "raw": "24,1,76,1;7,1,139,1",
+              "generator": 14
+            },
+            "multiplier": []
+          },
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 320,
+              "raw": "7,1,14"
+            },
+            "multiplier": [
+              139
+            ]
+          }
+        ]
+      },
+      {
+        "source": {
+          "id": 229,
+          "mon": "0,3,18,1,1",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 801,
+              "raw": "76,1,1"
+            },
+            "multiplier": [
+              0,
+              0,
+              0,
+              18,
+              23
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "object": "Ceta",
+    "label": "leftTermOther",
+    "coefficient": [
+      0,
+      189
+    ],
+    "source_degree": [
+      5,
+      38
+    ],
+    "target_degree": [
+      16,
+      141
+    ],
+    "source_comparison": {
+      "rows": [
+        [
+          {
+            "id": 217,
+            "mon": "0,1,2,1,18,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 228,
+            "mon": "15",
+            "d2": ""
+          },
+          {
+            "id": 229,
+            "mon": "0,3,18,1,1",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 239,
+            "mon": "23,1,1",
+            "d2": ""
+          },
+          {
+            "id": 240,
+            "mon": "29,1,0",
+            "d2": "1"
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 2,
+        "inclusion": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 2,
+        "n": 1,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "target_comparison": {
+      "rows": [
+        [
+          {
+            "id": 5014,
+            "mon": "295",
+            "d2": ""
+          },
+          {
+            "id": 5015,
+            "mon": "294",
+            "d2": "0,3"
+          },
+          {
+            "id": 5016,
+            "mon": "190,1,14",
+            "d2": ""
+          },
+          {
+            "id": 5017,
+            "mon": "457,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5018,
+            "mon": "68,1,107,1,0",
+            "d2": "3"
+          },
+          {
+            "id": 5019,
+            "mon": "0,12,69,2,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 5154,
+            "mon": "438,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5155,
+            "mon": "0,2,418,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5156,
+            "mon": "473,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5157,
+            "mon": "0,1,67,1,107,1,0",
+            "d2": ""
+          },
+          {
+            "id": 5158,
+            "mon": "0,2,449,1,0",
+            "d2": "1"
+          }
+        ],
+        [
+          {
+            "id": 5253,
+            "mon": "0,1,437,1,1",
+            "d2": ""
+          },
+          {
+            "id": 5254,
+            "mon": "0,4,440,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "h": 2,
+        "inclusion": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "incoming": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 2,
+        "m": 5,
+        "n": 6,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "projection": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "columns": [
+      {
+        "source": {
+          "id": 228,
+          "mon": "15",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 110,
+              "raw": "0,1,15"
+            },
+            "multiplier": [
+              189
+            ]
+          }
+        ]
+      },
+      {
+        "source": {
+          "id": 229,
+          "mon": "0,3,18,1,1",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 4228,
+              "raw": "0,2,189,1,1"
+            },
+            "multiplier": [
+              0,
+              0,
+              18
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "object": "C2",
+    "label": "source",
+    "coefficient": [
+      181
+    ],
+    "source_degree": [
+      5,
+      37
+    ],
+    "target_degree": [
+      13,
+      138
+    ],
+    "source_comparison": {
+      "rows": [
+        [
+          {
+            "id": 98,
+            "mon": "1,2,18,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 102,
+            "mon": "16",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    "target_comparison": {
+      "rows": [
+        [
+          {
+            "id": 2930,
+            "mon": "389,1,1",
+            "d2": ""
+          },
+          {
+            "id": 2931,
+            "mon": "388,1,1",
+            "d2": ""
+          },
+          {
+            "id": 2932,
+            "mon": "427,1,0",
+            "d2": ""
+          },
+          {
+            "id": 2933,
+            "mon": "1,1,413,1,0",
+            "d2": ""
+          },
+          {
+            "id": 2934,
+            "mon": "1,1,412,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3032,
+            "mon": "366",
+            "d2": ""
+          },
+          {
+            "id": 3033,
+            "mon": "7,1,243",
+            "d2": ""
+          },
+          {
+            "id": 3034,
+            "mon": "82,1,61",
+            "d2": ""
+          },
+          {
+            "id": 3035,
+            "mon": "181,1,16",
+            "d2": ""
+          },
+          {
+            "id": 3036,
+            "mon": "24,1,190,1,0",
+            "d2": ""
+          },
+          {
+            "id": 3037,
+            "mon": "3,1,335,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3103,
+            "mon": "189,1,16",
+            "d2": ""
+          },
+          {
+            "id": 3104,
+            "mon": "448,1,0",
+            "d2": ""
+          },
+          {
+            "id": 3105,
+            "mon": "3,2,287,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 6,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 6,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "columns": [
+      {
+        "source": {
+          "id": 102,
+          "mon": "16",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "trace": []
+      }
+    ]
+  },
+  {
+    "object": "C2",
+    "label": "rightTerm",
+    "coefficient": [
+      181
+    ],
+    "source_degree": [
+      8,
+      39
+    ],
+    "target_degree": [
+      16,
+      140
+    ],
+    "source_comparison": {
+      "rows": [
+        [
+          {
+            "id": 108,
+            "mon": "28,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 112,
+            "mon": "8,1,9,1,0",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    "target_comparison": {
+      "rows": [
+        [
+          {
+            "id": 3106,
+            "mon": "373",
+            "d2": ""
+          },
+          {
+            "id": 3107,
+            "mon": "418,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3108,
+            "mon": "417,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3109,
+            "mon": "449,1,0",
+            "d2": ""
+          },
+          {
+            "id": 3110,
+            "mon": "1,1,7,1,275,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3175,
+            "mon": "424,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3176,
+            "mon": "9,1,261,1,0",
+            "d2": ""
+          },
+          {
+            "id": 3177,
+            "mon": "1,1,438,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3285,
+            "mon": "8,1,248",
+            "d2": ""
+          },
+          {
+            "id": 3286,
+            "mon": "436,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3287,
+            "mon": "9,1,267,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 3,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 3,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "columns": [
+      {
+        "source": {
+          "id": 112,
+          "mon": "8,1,9,1,0",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "ring_lift",
+              "rowid": 5539,
+              "raw": "8,1,181,1",
+              "generator": 0
+            },
+            "multiplier": [
+              9
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "object": "C2",
+    "label": "leftTerm",
+    "coefficient": [
+      23,
+      76
+    ],
+    "source_degree": [
+      5,
+      37
+    ],
+    "target_degree": [
+      16,
+      140
+    ],
+    "source_comparison": {
+      "rows": [
+        [
+          {
+            "id": 98,
+            "mon": "1,2,18,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 102,
+            "mon": "16",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    "target_comparison": {
+      "rows": [
+        [
+          {
+            "id": 3106,
+            "mon": "373",
+            "d2": ""
+          },
+          {
+            "id": 3107,
+            "mon": "418,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3108,
+            "mon": "417,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3109,
+            "mon": "449,1,0",
+            "d2": ""
+          },
+          {
+            "id": 3110,
+            "mon": "1,1,7,1,275,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3175,
+            "mon": "424,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3176,
+            "mon": "9,1,261,1,0",
+            "d2": ""
+          },
+          {
+            "id": 3177,
+            "mon": "1,1,438,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3285,
+            "mon": "8,1,248",
+            "d2": ""
+          },
+          {
+            "id": 3286,
+            "mon": "436,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3287,
+            "mon": "9,1,267,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 3,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 3,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "columns": [
+      {
+        "source": {
+          "id": 102,
+          "mon": "16",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 4538,
+              "raw": "76,1,16;1,1,174,1,1;196,1,0"
+            },
+            "multiplier": [
+              23
+            ]
+          },
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 126,
+              "raw": "23,1,1;29,1,0"
+            },
+            "multiplier": [
+              1,
+              174
+            ]
+          },
+          {
+            "origin": {
+              "kind": "ring_lift",
+              "rowid": 129,
+              "raw": "1,1,29,1",
+              "generator": 0
+            },
+            "multiplier": [
+              174
+            ]
+          },
+          {
+            "origin": {
+              "kind": "ring_lift",
+              "rowid": 10894,
+              "raw": "23,1,196,1",
+              "generator": 0
+            },
+            "multiplier": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "object": "C2",
+    "label": "leftTermOther",
+    "coefficient": [
+      0,
+      189
+    ],
+    "source_degree": [
+      5,
+      37
+    ],
+    "target_degree": [
+      16,
+      140
+    ],
+    "source_comparison": {
+      "rows": [
+        [
+          {
+            "id": 98,
+            "mon": "1,2,18,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 102,
+            "mon": "16",
+            "d2": ""
+          }
+        ],
+        []
+      ],
+      "wire": {
+        "down": [],
+        "h": 1,
+        "inclusion": [
+          true
+        ],
+        "incoming": [
+          false
+        ],
+        "k": 0,
+        "m": 1,
+        "n": 1,
+        "outgoing": [],
+        "projection": [
+          true
+        ],
+        "up": [
+          false
+        ],
+        "version": 1
+      }
+    },
+    "target_comparison": {
+      "rows": [
+        [
+          {
+            "id": 3106,
+            "mon": "373",
+            "d2": ""
+          },
+          {
+            "id": 3107,
+            "mon": "418,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3108,
+            "mon": "417,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3109,
+            "mon": "449,1,0",
+            "d2": ""
+          },
+          {
+            "id": 3110,
+            "mon": "1,1,7,1,275,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3175,
+            "mon": "424,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3176,
+            "mon": "9,1,261,1,0",
+            "d2": ""
+          },
+          {
+            "id": 3177,
+            "mon": "1,1,438,1,0",
+            "d2": ""
+          }
+        ],
+        [
+          {
+            "id": 3285,
+            "mon": "8,1,248",
+            "d2": ""
+          },
+          {
+            "id": 3286,
+            "mon": "436,1,1",
+            "d2": ""
+          },
+          {
+            "id": 3287,
+            "mon": "9,1,267,1,0",
+            "d2": ""
+          }
+        ]
+      ],
+      "wire": {
+        "down": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "h": 3,
+        "inclusion": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "incoming": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "k": 3,
+        "m": 3,
+        "n": 5,
+        "outgoing": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "projection": [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "up": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "version": 1
+      }
+    },
+    "columns": [
+      {
+        "source": {
+          "id": 102,
+          "mon": "16",
+          "d2": ""
+        },
+        "output": [
+          0,
+          0,
+          0
+        ],
+        "projection": [
+          0,
+          0,
+          0
+        ],
+        "trace": [
+          {
+            "origin": {
+              "kind": "module",
+              "rowid": 111,
+              "raw": "0,1,16"
+            },
+            "multiplier": [
+              189
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

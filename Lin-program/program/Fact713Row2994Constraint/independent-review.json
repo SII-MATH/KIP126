@@ -1,0 +1,126 @@
+{
+  "status": "no_correctness_findings",
+  "modules": [
+    "Maps",
+    "Comparison",
+    "Naturality",
+    "MapSemantics",
+    "Actual",
+    "CoordinateBridge"
+  ],
+  "compiled": {
+    "Maps": {
+      "source_sha256": "6b920fe8ae08edc57215c644a9431c70cf27b0ca8e5f417cd7836a42796f1a5e",
+      "external_input_sha256": {
+        "Fact713Row2994Constraint/wire/s15t137.json": "a91b6ab7760f77cb93eaa27a829d892c58799bcc9349c4aa8a0fd050cfaa41c3",
+        "Fact713Row2994Constraint/wire/s17t138.json": "784451247efda4ce23deae3bb63ed7a29ea08e543f1a1034f21f6e861c14cf88",
+        "Fact713Row2994Constraint/wire/s18t139.json": "212912dbc2aac63816a215298457cf5d622f02d2243e5c496c15c58bf35fce7a",
+        "Fact713Row2994Constraint/wire/s19t139.json": "af6963fbdd72d5f6f20e08d47e314be8af1348f0f6f56c3c7c000f0854d5259c",
+        "Fact713Row2994Constraint/wire/s20t140.json": "963793f6122485710e76c398a2350c575fc07ebefa7e28a3f6bb8426281cb916",
+        "Fact713Row2994Constraint/wire/s22t141.json": "201fcf4e52c0965e0751b0ca300acaf40f5365d93f362f069c99f3b33241a531"
+      },
+      "observed_exit_code": 0,
+      "log_sha256": "c86c085a1c9d6a57b2f8aa90af9402f49aee8700b79261d9453a110d6cb131c9",
+      "olean_sha256": "f93c7c30196197f3b291d58e27d60b4c1e8628e3d11e7d4c90b5a35b9d93790e"
+    },
+    "Comparison": {
+      "source_sha256": "78431411744d60aea12c536bbe7600fa5630f555884d53b6224ff32984af09bc",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "b72b4786d958a6628a47998561091cc5921d194930008d128071339648179dfa",
+      "olean_sha256": "b3e6ee12bf658ff74ba2fb6f4c9148f07771c7b135c10cbb6ff9c58636428c71"
+    },
+    "Naturality": {
+      "source_sha256": "a9fbb4740a3fe47eb18d7195f1d3280c7a34af4d734ffed6cda249eb4a1a27ec",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "11812551fa5cac2e663b006974fe1009918aeb7360c8ef29ab1c92eb87d88bb8",
+      "olean_sha256": "f0f01416c5ca8717b35f55039a0a344d690139cb1c24cfdfe67cdd685caa149d"
+    },
+    "MapSemantics": {
+      "source_sha256": "4d9607fd17f915cdd8bb48ab279cbdd66b1a68e3d8bbd7645ab25cf6b9bf29b6",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "760e11e053d5517cec59488477340a976eee3701bf81e6b5afd635a0eb63a9e6",
+      "olean_sha256": "856df87e98c6eda8acdb3ad9a17ff2993fae0eaf9b5824f818bb39dda5c81d66"
+    },
+    "Actual": {
+      "source_sha256": "50bb6828340b8f44c0c1feedc337205f24ad3d819d81253452da469565e19bb0",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "c5ec197ae1001b76d4f6abc28eea0b1d439de16c4d776e39c2673bcc0f706ccb",
+      "olean_sha256": "8621de6cee1c8658ade4023c067ce81ee74c11d27e5d183ca6ac70f87f75099c"
+    },
+    "CoordinateBridge": {
+      "source_sha256": "298ff7155a2eae6e1a0a22cadb4a8355921d8e032816ede3692736f1581e736c",
+      "external_input_sha256": {},
+      "observed_exit_code": 0,
+      "log_sha256": "8307e510825402473677a124af1cf7e5229614cda936b4ffbc65bb5621080fca",
+      "olean_sha256": "5336ccf5b2f1cd361a1b991970a4a7feb182b96c093db2a04768f1c067e813d0"
+    }
+  },
+  "axiom_reports": 21,
+  "raw_row": [
+    2994,
+    17,
+    138,
+    "0,1,2",
+    null,
+    9000
+  ],
+  "matrices": 6,
+  "columns": 18,
+  "reductions": 7,
+  "full_comparisons": 4,
+  "quotient_cycle_pairs": 208,
+  "full_input_vectors": 56,
+  "whole_chainmap_vectors": 36,
+  "named_raw_image": 7,
+  "named_boundary_preimage": 1,
+  "boundary_preimage_basis": 2803,
+  "induced_source_columns": [
+    0
+  ],
+  "induced_target_columns": [
+    2,
+    0
+  ],
+  "target_kernel": [
+    0,
+    2
+  ],
+  "affine_pairs": 16,
+  "quotient_coordinate_changes": [
+    {
+      "tag": "source",
+      "index": 11,
+      "forward": [
+        1
+      ],
+      "inverse": [
+        1
+      ],
+      "cycles": 4
+    },
+    {
+      "tag": "upperSource",
+      "index": 25,
+      "forward": [
+        2,
+        1
+      ],
+      "inverse": [
+        2,
+        1
+      ],
+      "cycles": 8
+    }
+  ],
+  "staircase_residual": 1,
+  "input_sha256": {
+    "Fact713Row2994Constraint/source.json": "7168979e67c62acb0b868669b9f9d467206f6e22533adc5a0735398ea5bec637",
+    "Fact713Row2994Constraint/comparison-source.json": "75c7b115172ff423d4c7e2bbfbabc0695638d95b270ea6d68077fa5f795b2f0a",
+    "Fact713ComparisonBatches/Batch07.json": "1c0f7a2ab068496841d5c1f9d2ae49f963ed2f1d7fc9ccc10ef08e2d50aaaefa"
+  },
+  "scope": "Actual whole coordinate meanings and actual d3 naturality are premises. The detector restricts the differential to zero or the nonzero residual; neither branch is selected. Raw NULL is retained and this does not prove E8 survival."
+}

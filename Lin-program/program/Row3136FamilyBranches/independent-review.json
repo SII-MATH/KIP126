@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "case": "zero_a0",
+      "entries": 1338,
+      "prefix": 1333,
+      "quotient_pairs": 9663,
+      "adjacent": 1021,
+      "consecutive": 836,
+      "source_h": 2,
+      "target_h": 1
+    },
+    {
+      "case": "zero_a1",
+      "entries": 1338,
+      "prefix": 1333,
+      "quotient_pairs": 9651,
+      "adjacent": 1021,
+      "consecutive": 836,
+      "source_h": 1,
+      "target_h": 0
+    },
+    {
+      "case": "residual_a0",
+      "entries": 1346,
+      "prefix": 1341,
+      "quotient_pairs": 9674,
+      "adjacent": 1028,
+      "consecutive": 844,
+      "source_h": 1,
+      "target_h": 1
+    },
+    {
+      "case": "residual_a1",
+      "entries": 1349,
+      "prefix": 1341,
+      "quotient_pairs": 9671,
+      "adjacent": 1031,
+      "consecutive": 846,
+      "source_h": 0,
+      "target_h": 0
+    }
+  ],
+  "actual_models": {
+    "actual_models_accepted": 1152,
+    "target_parameter_rejected": 2304,
+    "second_column_rejected": 13824,
+    "square_zero_rejected": 1152
+  },
+  "frozen_files": 116,
+  "modules": 12,
+  "standard_axiom_reports": 75,
+  "reviewer_source_sha256": "c00e67b9d5d9b9c0d902551a1ddf8c8e00b74587a1d6b783873fec9b3c6576c3",
+  "limitation": "All four finite branches retained; no actual branch choice or realization of other whole-family meanings inferred. The raw NULL d4 schedule is not a nonzero theorem."
+}

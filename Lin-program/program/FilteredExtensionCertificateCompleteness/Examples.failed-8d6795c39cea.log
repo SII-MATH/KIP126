@@ -1,0 +1,50 @@
+FilteredExtensionCertificateCompleteness/Examples.lean:21:46: error: Application type mismatch: The argument
+  decide
+has type
+  (p : Prop) → [h : Decidable p] → Bool
+but is expected to have type
+  Data
+in the application
+  searchCheck_sound decide
+FilteredExtensionCertificateCompleteness/Examples.lean:21:46: error(lean.unknownIdentifier): Unknown identifier `kernel✝`
+FilteredExtensionCertificateCompleteness/Examples.lean:21:46: error: Tactic `apply` failed: could not unify the type of `?m.7 + sorry`
+  ?m.5
+with the goal
+  ResultValid empty
+
+⊢ ResultValid empty
+FilteredExtensionCertificateCompleteness/Examples.lean:38:52: error: Application type mismatch: The argument
+  decide
+has type
+  (p : Prop) → [h : Decidable p] → Bool
+but is expected to have type
+  Data
+in the application
+  searchCheck_sound decide
+FilteredExtensionCertificateCompleteness/Examples.lean:38:52: error(lean.unknownIdentifier): Unknown identifier `kernel✝`
+FilteredExtensionCertificateCompleteness/Examples.lean:38:52: error: Tactic `apply` failed: could not unify the type of `?m.7 + sorry`
+  ?m.5
+with the goal
+  ResultValid identity
+
+⊢ ResultValid identity
+'FilteredExtensionCertificateCompleteness.Examples.empty_valid' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.Examples.identity_valid' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.Examples.wrong_output_invalid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.Examples.beyond_depth_invalid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.Examples.not_decreasing_invalid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FilteredExtensionCertificateCompleteness.Examples.semantic_witness_is_enough' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

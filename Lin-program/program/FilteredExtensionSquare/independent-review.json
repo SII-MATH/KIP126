@@ -1,0 +1,35 @@
+{
+  "status": "independent_extension_square_review_passed",
+  "counts": {
+    "has_extension_equivalences": 301824,
+    "original_not_cycle_but_correctable": 2376,
+    "commuting_filtered_squares": 928,
+    "fourth_extension_checks": 165152,
+    "length_zero_outputs": 55360,
+    "nonzero_input_output": 10192,
+    "positive_length_outputs": 109792
+  },
+  "direct_records": {
+    "Basic": {
+      "direct_exit_code": 0,
+      "standard_axiom_reports": 2,
+      "current_object_matches_direct": true
+    },
+    "Square": {
+      "direct_exit_code": 0,
+      "standard_axiom_reports": 1,
+      "current_object_matches_direct": true
+    },
+    "Examples": {
+      "direct_exit_code": 0,
+      "standard_axiom_reports": 3,
+      "current_object_matches_direct": true
+    }
+  },
+  "scope": "Actual quotient equations on filtered additive groups, without a paper ESS/topology identification.",
+  "input_sha256": {
+    "Basic.lean": "3dceee8484b891e129d91b11c66e7aa3fedea76c6d33e60d9abf8b8369051d36",
+    "Square.lean": "bd3ae65918504e7495141d0b245bd5964ffd587841c941823c59aa8e7165cf59",
+    "Examples.lean": "c896ef0aa3b192bc463bd693e153aa312c44c0f8aa9509483d02c0ad6ddad34b"
+  }
+}

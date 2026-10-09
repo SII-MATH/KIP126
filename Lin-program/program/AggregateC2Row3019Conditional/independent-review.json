@@ -1,0 +1,109 @@
+{
+  "status": "independent_357_block_two_role_and_whole_incoming_audit_passed",
+  "findings": [],
+  "blocks": 357,
+  "old_blocks_unchanged": 355,
+  "new_keys": [
+    "S0:14,140:d3",
+    "S0:18,143:d4"
+  ],
+  "new_conditional_roles": [
+    {
+      "key": "S0:14,140:d3",
+      "column": 1,
+      "object": "S0",
+      "source": [
+        11,
+        138
+      ],
+      "page": 3,
+      "row": [
+        3019,
+        "2",
+        null,
+        9000
+      ],
+      "kind": "conditional_c2_row3019",
+      "target_predecessor": "S0:14,140:d2"
+    },
+    {
+      "key": "S0:14,140:d3",
+      "column": 2,
+      "object": "S0",
+      "source": [
+        11,
+        138
+      ],
+      "page": 3,
+      "row": [
+        3020,
+        "0",
+        null,
+        9000
+      ],
+      "kind": "conditional_c2_row3020",
+      "target_predecessor": "S0:14,140:d2"
+    }
+  ],
+  "canonical_to_aggregate_coordinate_matrix": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0
+  ],
+  "aggregate_source_basis_order": [
+    1,
+    2,
+    0
+  ],
+  "row3019_column": 1,
+  "row3020_column": 2,
+  "full_incoming_shape": [
+    2,
+    3
+  ],
+  "all8_input_vectors_zero": true,
+  "whole_matrix_semantic_theorem": "AggregateC2Row3019Conditional.C2Rows3019.incoming_meaning",
+  "whole_matrix_premises": [
+    "arbitrary ds:S->U",
+    "arbitrary dt:T->V",
+    "zeroPreserving",
+    "naturality forall source classes"
+  ],
+  "finite_nonzero_events": 94,
+  "new_events": [],
+  "unresolved": 7,
+  "changed_event_status_record_only": [
+    3391
+  ],
+  "event3391": {
+    "staircase_id": 3391,
+    "classification": "stored_incoming",
+    "event_page": 5,
+    "root": "S0:13,139:d5",
+    "status": "unresolved",
+    "reason": "unknown S0:8,135:d5:row2796; target dimension 1"
+  },
+  "compile_status": "Ongoing four-module build not certified by independent review",
+  "limitation": "Finite conditional interpretation only. Source rawNULL retained, whole incoming theorem does not assert missing outgoing block or close event3391.",
+  "input_sha256": {
+    "AggregateC2Row3019Conditional/source.json": "938cd2b4801d326cae1c6af1eab091a37964919e32ff7ffd29f52edfc6002f08",
+    "AggregateC2Row3019Conditional/Data.lean": "0b7801ac08cfa5f1d3c846623c48eee6aa2433f03235780b1455f9306deaaa67",
+    "AggregateC2Row3019Conditional/Matches.lean": "73efad37be1906c735c0c96504ec4f2dd3c5cffed443d04cfeb81fb229369618",
+    "AggregateC2Row3019Conditional/Basic.lean": "505d7ea12a753c244e5528cc58a2f49e50703369a59621bc0dc716b786df9bb9",
+    "AggregateC2Row3019Conditional/Events.lean": "9efddc82d782cbe25fef48eab7ee133b002a1bc4ba648efdf9ebef0619e52440",
+    "AggregateC2Row3019Conditional/event-results.json": "cbedbe2e5ba22255986dea73586765e0a7cb7175366aec8a1e731d12514bb462",
+    "AggregateC2Row3019Conditional/review.json": "64f7d5e92c4092e5a9403b163b6b2b560cb68d0343b1278afe7429aea4d85b62",
+    "AggregateC2Row3019Conditional/generate.py": "222b3c743f10961a9bd83bd61c49094a9b0d9f3078a4baee7d430576f597f57f",
+    "AggregateC2Row3019Conditional/events.py": "d854806ee5ee478711b2e0311fbb7cf9b4fee6c3d6d23b0f4ffa7178cd3c7635",
+    "AggregateDC2h6Conditional/source.json": "ad7565992978dadab89b7ec4e0fc09b3e7e2d5d1a6ff6a1c348156ee37b45b8b",
+    "AggregateDC2h6Conditional/event-results.json": "b81d0be45c4916ad1ce1b21d4b4d2e5a1647edb06cc09b94da36608394a6ed57",
+    "Row3020Detector/Meaning.lean": "c84257627eccc92983565951effe397f744654850ce2653cb7ca15afad2d7ae6",
+    "Row3020Detector/review.json": "5c9fe347b3f0f4bb71728e31a8426f81921a2ec13574f408232052e51fdc0d65"
+  }
+}

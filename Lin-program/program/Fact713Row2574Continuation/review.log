@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "entries": 1434,
+  "paths": 2781,
+  "tree_depth": 11,
+  "cases": [
+    "zero_b0_c0",
+    "zero_b0_c1",
+    "zero_b1_c0",
+    "zero_b1_c1"
+  ],
+  "rejected": [
+    "wrong tree shape",
+    "missing predecessor path",
+    "wrong incoming dimension"
+  ],
+  "modules": [
+    {
+      "module": "Fact713Row2574Continuation.Data",
+      "axiom_reports": 2
+    },
+    {
+      "module": "Fact713Row2574Continuation.ZeroB0C0",
+      "axiom_reports": 2
+    },
+    {
+      "module": "Fact713Row2574Continuation.ZeroB0C1",
+      "axiom_reports": 2
+    },
+    {
+      "module": "Fact713Row2574Continuation.ZeroB1C0",
+      "axiom_reports": 2
+    },
+    {
+      "module": "Fact713Row2574Continuation.ZeroB1C1",
+      "axiom_reports": 2
+    },
+    {
+      "module": "Fact713Row2574Continuation.Branches",
+      "axiom_reports": 10
+    },
+    {
+      "module": "Fact713Row2574Continuation.Actual",
+      "axiom_reports": 5
+    },
+    {
+      "module": "Fact713Row2574Continuation.TreeData",
+      "axiom_reports": 0
+    },
+    {
+      "module": "Fact713Row2574Continuation.Closure",
+      "axiom_reports": 4
+    },
+    {
+      "module": "Fact713Row2574Continuation.Request",
+      "axiom_reports": 3
+    }
+  ],
+  "script_sha256": "a96d26799a61b41bedc2be4add1473db1a208f9c1d0e71f8bb68eb29e00302c3",
+  "scope": "Full predecessor closure for both exact frozen families; no change to actual mathematical premises."
+}

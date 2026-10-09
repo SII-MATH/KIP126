@@ -1,0 +1,121 @@
+Fact762SphereGDetection/Incoming.lean:31:47: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  target.equivalence 0
+in the target expression
+  target.equivalence 0 = eval (matrixOf 3 2 Data.w23_167_3.incoming) (source.equivalence 0)
+
+case inl
+S : AdamsSpectralSequence
+source : Coordinates S 3 degree 2
+target : Coordinates S 3 targetDegree 3
+sourceAdd :
+  ∀ (x y : (S.element 3 degree).carrier), source.equivalence (x + y) = add (source.equivalence x) (source.equivalence y)
+targetAdd :
+  ∀ (x y : (S.element 3 targetDegree).carrier),
+    target.equivalence (x + y) = add (target.equivalence x) (target.equivalence y)
+first : (S.differential 3 degree).toFun (source.equivalence.symm fun i => ↑i == 0) = 0
+second :
+  target.equivalence ((S.differential 3 degree).toFun (source.equivalence.symm fun i => ↑i == 1)) = fun i => ↑i == 0
+x : (S.element 3 degree).carrier
+a : (S.element 3 degree).carrier := source.equivalence.symm fun i => ↑i == 0
+b : (S.element 3 degree).carrier := source.equivalence.symm fun i => ↑i == 1
+ca : source.equivalence a = fun i => ↑i == 0
+cb : source.equivalence b = fun i => ↑i == 1
+casesV :
+  ∀ (v : Vec 2),
+    v = zero ∨ (v = fun i => ↑i == 0) ∨ (v = fun i => ↑i == 1) ∨ v = add (fun i => ↑i == 0) fun i => ↑i == 1
+h : source.equivalence x = zero
+hx : x = 0
+⊢ target.equivalence 0 = eval (matrixOf 3 2 Data.w23_167_3.incoming) (source.equivalence 0)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 3 (AdamsTarget 3 degree)).carrier
+  but is expected to have type
+    (S.element 3 targetDegree).carrier
+  in the application
+    target.equivalence 0
+Fact762SphereGDetection/Incoming.lean:33:17: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  target.equivalence 0
+in the target expression
+  target.equivalence 0 = eval (matrixOf 3 2 Data.w23_167_3.incoming) (source.equivalence a)
+
+case inr.inl
+S : AdamsSpectralSequence
+source : Coordinates S 3 degree 2
+target : Coordinates S 3 targetDegree 3
+sourceAdd :
+  ∀ (x y : (S.element 3 degree).carrier), source.equivalence (x + y) = add (source.equivalence x) (source.equivalence y)
+targetAdd :
+  ∀ (x y : (S.element 3 targetDegree).carrier),
+    target.equivalence (x + y) = add (target.equivalence x) (target.equivalence y)
+first : (S.differential 3 degree).toFun (source.equivalence.symm fun i => ↑i == 0) = 0
+second :
+  target.equivalence ((S.differential 3 degree).toFun (source.equivalence.symm fun i => ↑i == 1)) = fun i => ↑i == 0
+x : (S.element 3 degree).carrier
+a : (S.element 3 degree).carrier := source.equivalence.symm fun i => ↑i == 0
+b : (S.element 3 degree).carrier := source.equivalence.symm fun i => ↑i == 1
+ca : source.equivalence a = fun i => ↑i == 0
+cb : source.equivalence b = fun i => ↑i == 1
+casesV :
+  ∀ (v : Vec 2),
+    v = zero ∨ (v = fun i => ↑i == 0) ∨ (v = fun i => ↑i == 1) ∨ v = add (fun i => ↑i == 0) fun i => ↑i == 1
+h : source.equivalence x = fun i => ↑i == 0
+hx : x = a
+⊢ target.equivalence 0 = eval (matrixOf 3 2 Data.w23_167_3.incoming) (source.equivalence a)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    0
+  has type
+    (S.element 3 (AdamsTarget 3 degree)).carrier
+  but is expected to have type
+    (S.element 3 targetDegree).carrier
+  in the application
+    target.equivalence 0
+Fact762SphereGDetection/Incoming.lean:40:46: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  target.equivalence (?x + ?y)
+in the target expression
+  target.equivalence ((S.differential 3 degree).toFun a + (S.differential 3 degree).toFun b) =
+    eval (matrixOf 3 2 Data.w23_167_3.incoming) (source.equivalence (a + b))
+
+case inr.inr.inr
+S : AdamsSpectralSequence
+source : Coordinates S 3 degree 2
+target : Coordinates S 3 targetDegree 3
+sourceAdd :
+  ∀ (x y : (S.element 3 degree).carrier), source.equivalence (x + y) = add (source.equivalence x) (source.equivalence y)
+targetAdd :
+  ∀ (x y : (S.element 3 targetDegree).carrier),
+    target.equivalence (x + y) = add (target.equivalence x) (target.equivalence y)
+first : (S.differential 3 degree).toFun (source.equivalence.symm fun i => ↑i == 0) = 0
+second :
+  target.equivalence ((S.differential 3 degree).toFun (source.equivalence.symm fun i => ↑i == 1)) = fun i => ↑i == 0
+x : (S.element 3 degree).carrier
+a : (S.element 3 degree).carrier := source.equivalence.symm fun i => ↑i == 0
+b : (S.element 3 degree).carrier := source.equivalence.symm fun i => ↑i == 1
+ca : source.equivalence a = fun i => ↑i == 0
+cb : source.equivalence b = fun i => ↑i == 1
+casesV :
+  ∀ (v : Vec 2),
+    v = zero ∨ (v = fun i => ↑i == 0) ∨ (v = fun i => ↑i == 1) ∨ v = add (fun i => ↑i == 0) fun i => ↑i == 1
+h : source.equivalence x = add (fun i => ↑i == 0) fun i => ↑i == 1
+hx : x = a + b
+⊢ target.equivalence ((S.differential 3 degree).toFun a + (S.differential 3 degree).toFun b) =
+    eval (matrixOf 3 2 Data.w23_167_3.incoming) (source.equivalence (a + b))
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (S.differential 3 degree).toFun a + (S.differential 3 degree).toFun b
+  has type
+    (S.element 3 (AdamsTarget 3 degree)).carrier
+  but is expected to have type
+    (S.element 3 targetDegree).carrier
+  in the application
+    target.equivalence ((S.differential 3 degree).toFun a + (S.differential 3 degree).toFun b)
+'Fact762SphereGDetection.Incoming.all_vectors' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Fact762SphereGDetection.Incoming.full_incoming' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

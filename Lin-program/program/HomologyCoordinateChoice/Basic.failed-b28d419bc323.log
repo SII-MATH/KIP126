@@ -1,0 +1,27 @@
+HomologyCoordinateChoice/Basic.lean:11:63: error: expected token
+HomologyCoordinateChoice/Basic.lean:29:6: error: Application type mismatch: The argument
+  (homologyEquivalence outgoing incoming first hf).toCoordinates x
+has type
+  Vec h
+but is expected to have type
+  Fin h
+in the application
+  equivalence outgoing incoming first second hf hs ((homologyEquivalence outgoing incoming first hf).toCoordinates x)
+HomologyCoordinateChoice/Basic.lean:30:6: error: Type mismatch
+  (homologyEquivalence outgoing incoming second hs).toCoordinates x
+has type
+  Vec j
+but is expected to have type
+  Bool
+HomologyCoordinateChoice/Basic.lean:31:9: error: Type mismatch
+  (homologyEquivalence outgoing incoming second hs).toCoordinates
+      ((homologyEquivalence outgoing incoming first hf).fromCoordinates
+        ((homologyEquivalence outgoing incoming first hf).toCoordinates x)) =
+    ?m.74
+has type
+  Prop
+of sort `Type` but is expected to have type
+  Sort u_1
+of sort `Type u_1`
+'HomologyCoordinateChoice.equivalence' depends on axioms: [propext, sorryAx]
+'HomologyCoordinateChoice.coordinates_compatible' does not depend on any axioms

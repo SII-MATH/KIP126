@@ -1,0 +1,47 @@
+Fact762SphereGDetection/DerivedMeaning.lean:71:70: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  current.equivalence 0
+in the target expression
+  current.equivalence 0 =
+    eval (matrixOf Data.w23_167_4.m Data.w23_167_4.n Data.w23_167_4.incoming)
+      (source (ActualAdamsIncomingBridge.sourceZero S 4 Detector.targetDegree))
+
+S : AdamsSpectralSequence
+P : CertifiedAdamsProduct S
+current : Coordinates S 4 Detector.targetDegree 2
+additive :
+  ∀ (x y : (S.element 4 Detector.targetDegree).carrier),
+    current.equivalence (x + y) = add (current.equivalence x) (current.equivalence y)
+target : Coordinates S 4 (AdamsTarget 4 Detector.targetDegree) 2
+source : ActualAdamsIncomingBridge.Source S 4 Detector.targetDegree ≃ Vec 0
+g : (S.element 4 Detector.leftDegree).carrier
+y : (S.element 4 Detector.rightDegree).carrier
+h0 : (S.element 4 { filtration := 1, internal := 1 }).carrier
+z : (S.element 4 { filtration := 22, internal := 166 }).carrier
+gCycle : (S.differential 4 Detector.leftDegree).toFun g = 0
+yCycle : (S.differential 4 Detector.rightDegree).toFun y = 0
+h0Cycle : (S.differential 4 { filtration := 1, internal := 1 }).toFun h0 = 0
+zPrefix : (S.differential 4 { filtration := 22, internal := 166 }).toFun z = 0
+gName : current.equivalence (P.product.multiply 4 Detector.leftDegree Detector.rightDegree g y) = fun i => ↑i == 0
+h0Name :
+  current.equivalence
+      (P.product.multiply 4 { filtration := 1, internal := 1 } { filtration := 22, internal := 166 } h0 z) =
+    fun i => ↑i == 1
+x : ActualAdamsIncomingBridge.Source S 4 Detector.targetDegree
+eq : x = ActualAdamsIncomingBridge.sourceZero S 4 Detector.targetDegree
+⊢ current.equivalence 0 =
+    eval (matrixOf Data.w23_167_4.m Data.w23_167_4.n Data.w23_167_4.incoming)
+      (source (ActualAdamsIncomingBridge.sourceZero S 4 Detector.targetDegree))
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    current
+  has type
+    Coordinates S 4 Detector.targetDegree 2
+  but is expected to have type
+    Coordinates S 4 Detector.targetDegree Data.w23_167_4.m
+  in the application
+    current.equivalence
+'Fact762SphereGDetection.DerivedMeaning.zeroOutgoing' depends on axioms: [propext, Quot.sound]
+'Fact762SphereGDetection.DerivedMeaning.detector3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Fact762SphereGDetection.DerivedMeaning.detector4' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

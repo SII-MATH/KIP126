@@ -1,0 +1,9 @@
+atom x 0
+atom dx 1
+fact f x dx
+external f
+use f
+step_zero
+linearity f f
+leibniz f f
+naturality 0 f
