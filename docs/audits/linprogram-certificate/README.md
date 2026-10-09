@@ -445,6 +445,22 @@ lake build KIP126.Checks.AdamsE2.LinNativeModuleMapGraphs
 
 完整关系认证的独立规模实验另已在 Lean 中核验 Ceta 原始行 `1–512` 和 `31233–31744`，共1024条，包含全见证中最长的56步归约（row31479）。这些是临时原型结果，尚未作为正式全图证书安装；其完整887个像仍须通过生产版定义绑定到上述正式原生图，再核验全部76569条关系并构造商映射。完整商映射及实际模型比较的认证状态均保持 false。
 
+## 完整 Ceta 原生图的次数与商映射限制
+
+`Presentation.homogeneousSpan` 和 `homogeneousPart` 在同一个完整商模块中取所有系数单项式乘全部生成元的 F₂ 张成空间，次数为整数双次数。没有增加关系、次数截断或零值约定，也没有断言这些子空间构成直和分解。`coefficientPart_nat` 证明非负次数的球面系数子空间与原 `LinE2.homogeneousPart` 严格相等，保留原 `E2At` 的底层值。
+
+`map_mem_homogeneousSpan`、`desc_mem_homogeneousSpan` 保留所有生成元、所有整数次数和齐次部分中的所有元素。若全部生成元像有同一次数偏移，则完整线性映射保持相应子空间；商下降仍必须证明每条原始关系为零。
+
+`NativeMapCertificates.ceta_nativeImage_mem` 已由 Lean 内核核验原图全部887个像，次数精确为原 Ceta 生成元次数加 `(0,-2)`。解释直接读取 `RawData.Maps.CetaToSphere.imageCode`；空字符串解释为零，ID0 的负目标次数保留。`Ceta.generatorRow_present` 证明完整输入行存在，次数读取不使用默认行；球面生成元的次数直接复用原2914行表。`cetaDescAt` 对任意自然数 s/t 将同一完整商的 `(s,t+2)` 齐次子空间线性映到原 `E2At s t`，唯一未供应的下降前提仍是全部76569条原关系消失，不是一个关系子集。
+
+```sh
+lake build KIP126.Checks.AdamsE2.LinModuleMapGrading
+```
+
+这些定理不提供 Ceta 的实际 Ext 比较、实际 cofiber 映射识别或源微分，也不完成 CW 原生图的次数认证。完整商映射及实际模型比较仍未标为已认证。
+
+本批正式定向构建1704 jobs、根库4922 jobs均通过；新增声明及整个887项次数证书的传递公理检查仅含标准逻辑三项，无实际模型、Main、Interface或固定StageInput依赖。来源清单26 sources / 119 artifacts、来源/接口声明的Lean核验、18项布局测试、15项Blueprint测试及活动依赖解析通过；Blueprint web、全部声明链接检查和diff检查通过。固定原生输入、文献来源、已有bindings和实际认证状态均未改变。
+
 ## 后续依赖与实际接入边界
 
 | 目标 | 精确剩余义务 | 可复用模块 |

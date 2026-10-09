@@ -779,10 +779,11 @@ mathematical objects and conditions.
   while missing, SQL NULL or unknown images are rejected during transcription.
 
   These finite graphs are data. The exporter verifies native shifted degrees
-  against all original source, target and sphere generators. This is not a
-  Lean proof of grading compatibility, quotient descent or agreement with
-  an actual spectrum map. The full relation certificates must still be
-  supplied to Proposition~\ref{prop:lin-native-module-map-descent}.
+  against all original source, target and sphere generators. Independent Lean
+  grading of the entire Ceta graph is supplied by
+  Proposition~\ref{prop:lin-native-ceta-map-grading}; full relation certificates
+  must still be supplied to Proposition~\ref{prop:lin-native-module-map-descent}.
+  Neither the graphs nor these degree checks identify an actual spectrum map.
 \end{definition}
 
 \begin{proposition}[Maps out of the complete native module quotient]
@@ -807,6 +808,68 @@ mathematical objects and conditions.
   but their native generator images and all relation certificates must still
   be supplied. This universal property alone is not a certified native map,
   a grading comparison, or a comparison with the actual spectrum map.
+\end{proof}
+
+\begin{definition}[Integer homogeneous spans of the native quotients]
+  \label{def:lin-native-homogeneous-spans}
+  \lean{KIP126.LinModule.Presentation.coefficientDegree,KIP126.LinModule.Presentation.homogeneousSpan,KIP126.LinModule.Presentation.homogeneousPart}
+  \lean{KIP126.LinModule.Ceta.generatorRow_present,KIP126.LinModule.Ceta.generatorData,KIP126.LinModule.Ceta.generatorDegree,KIP126.LinModule.NativeMapCertificates.coefficientPart}
+  \uses{def:lin-native-module-presentations}
+  \leanok
+  In the same full module quotient, span over $\mathbb F_2$ all elements
+  $q(x^m)e_i$ with $\deg(m)+\deg(e_i)=d\in\mathbb Z^2$.
+  All coefficient monomials and all native module generators are allowed;
+  no extra truncation or zero relation is imposed. The full Ceta row-presence
+  proof supplies each generator's recorded degree without a default row.
+  Taking one generator of degree zero and value one in the original sphere
+  quotient gives its integer-indexed coefficient spans.
+  These spans do not assert direct-sum independence or an actual Ext comparison.
+\end{definition}
+
+\begin{proposition}[Homogeneous spans under complete quotient descent]
+  \label{prop:lin-native-homogeneous-descent}
+  \lean{KIP126.LinModule.Presentation.coefficientDegree_add,KIP126.LinModule.Presentation.coefficientDegree_zero,KIP126.LinModule.Presentation.generator_mem_homogeneousSpan,KIP126.LinModule.Presentation.monomial_smul_mem_homogeneousSpan,KIP126.LinModule.Presentation.smul_mem_homogeneousSpan,KIP126.LinModule.Presentation.map_mem_homogeneousSpan,KIP126.LinModule.Presentation.desc_mem_homogeneousSpan,KIP126.LinModule.NativeMapCertificates.coefficientPart_nat}
+  \uses{def:lin-native-homogeneous-spans,prop:lin-native-module-map-descent}
+  \leanok
+  Multiplication by a coefficient of bidegree $(s,t)$ shifts every module
+  span by $(s,t)$. An $A$-linear map whose complete generator family has
+  degree shift $\delta$ sends every span of degree $d$ into degree $d+\delta$.
+  This applies to the original quotient descent, conditional on vanishing
+  of all original relations. At nonnegative degrees the coefficient span
+  is exactly the previously defined sphere homogeneous submodule, not a
+  replacement graded model.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Induct on the original homogeneous spans. Products of coefficient
+  monomials add their degrees; linearity handles sums and scalar multiples.
+  Apply the complete quotient's generator computation law to the descent.
+\end{proof}
+
+\begin{proposition}[Degrees of the complete native Ceta-to-sphere graph]
+  \label{prop:lin-native-ceta-map-grading}
+  \lean{KIP126.LinModule.NativeMapCertificates.nativeImage,KIP126.LinModule.NativeMapCertificates.parseNativeCode,KIP126.LinModule.NativeMapCertificates.evaluate_parseNativeCode,KIP126.LinModule.NativeMapCertificates.homogeneousPolynomialCheck,KIP126.LinModule.NativeMapCertificates.homogeneousPolynomialCheck_sound}
+  \lean{KIP126.LinModule.NativeMapCertificates.ceta_degree_all,KIP126.LinModule.NativeMapCertificates.ceta_nativeImage_mem,KIP126.LinModule.NativeMapCertificates.ceta_desc_mem,KIP126.LinModule.NativeMapCertificates.cetaDescAt,KIP126.LinModule.NativeMapCertificates.cetaDescAt_val}
+  \uses{def:lin-native-complete-map-graphs,prop:lin-native-homogeneous-descent}
+  \leanok
+  Every one of the 887 original generator images belongs to the sphere
+  coefficient span of its original degree plus $(0,-2)$. Parse the official
+  graph entry itself; its empty string evaluates to zero, including the
+  generator whose shifted degree is $(0,-2)$. Integer subtraction is retained.
+  If every one of the 76569 original source relations vanishes under these
+  same images, the resulting full quotient map restricts for every
+  $s,t\in\mathbb N$ to an $\mathbb F_2$-linear map from the source span
+  of degree $(s,t+2)$ to the existing $\mathrm{E2At}(s,t)$.
+  The full relation hypothesis and actual spectrum-map comparison are still
+  separate obligations; no bounded replacement map is substituted.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Prove parsing and evaluation agree for every string, with the native zero
+  convention explicit. The kernel checks every monomial in all original
+  images against the original generator degrees. Polynomial evaluation lies
+  in the corresponding span. Apply homogeneous descent and the equality
+  with the original nonnegative sphere submodules.
 \end{proof}
 
 \begin{lemma}[Native module quotient reductions for the naturality chain]
