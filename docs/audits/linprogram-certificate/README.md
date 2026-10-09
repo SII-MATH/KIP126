@@ -261,15 +261,19 @@ lake build KIP126.Checks.ClassicalAdams.LinH6OneLineProducer \
 
 现有 `standardRouteModel.auxiliary` 已有实际 η、ν；同一 literature 的 `ClassicalSourceBinding` 可以绑定这些映射，但现有结果没有给出所需的 `ν ∘ (Σ³η) = 0`。原生配置中空的 ην/νη 乘积记录不提供这个实际复合为零的证明。
 
-一条可复用的构造路线是在同一个 η-cofiber 上，由上述复合零和 `Triangle.yoneda_exact₂` 取得 `g : Σ³Cη → S⁰`，使其沿 `Σ³` 底胞限制为同一 ν。随后令 `X := cofib g`，以 `cofibδ g` 后接规范悬移合成同构作为 `X → Σ⁴Cη`；与实际 `Cν → X → S⁶` 三角的比较可由同一范畴的八面体公理构造。悬移三角的三条箭头在奇数次悬移时均带符号，必须显式处理，不能把 shift-distinguished 当成箭头逐项不变。
+一条可复用的构造路线是在同一个 η-cofiber 上，由上述复合零和 `Triangle.yoneda_exact₂` 取得 `g : Σ³Cη → S⁰`，使其沿 `Σ³` 底胞限制为同一 ν。随后令 `X := cofib g`，以 `cofibδ g` 后接规范悬移合成同构作为 `X → Σ⁴Cη`。这一构造及另一条 `Cν → X → S⁶` 三角现已由同一个八面体在通用层证明，见下文；实际模型中的零复合及原生比较仍待证。悬移三角的三条箭头在奇数次悬移时均带符号，必须显式处理，不能把 shift-distinguished 当成箭头逐项不变。
 
-`StableHomotopy.CofiberExtension.exists_extension_of_shift_comp_zero` 已从实际移位三角的 `Triangle.yoneda_exact₂` 证明任意整数移位的延拓存在；`exists_eta_nu_extension` 是同一 η/ν 的三次移位特化。两条定理保留全部对象及量词，显式假设复合为零。奇数移位的符号由对延拓乘 `(-1)^n` 处理，没有新增符号兼容性输入。
+`StableHomotopy.CofiberExtension.exists_extension_of_shift_comp_zero` 已从实际移位三角的 `Triangle.yoneda_exact₂` 证明任意整数移位的延拓存在；`exists_eta_nu_extension` 是同一 η/ν 的三次移位特化。两条定理保留全部对象及量词，显式假设复合为零。现统一通过 `shiftedCofiberTriangle_distinguished` 规范化三角：同构的三个分量为 `1,(-1)^n,1`，前两条箭头变为正号，连接映射保留真实符号。原两条公开定理的完整类型不变，没有新增符号兼容性输入。
 
 ```sh
 lake build KIP126.Checks.StableHomotopy.CofiberExtension
 ```
 
-独立编译及正式根库构建、公理/导入审计均通过，只有标准逻辑三项。准确待证内容包括：实际复合零；指定延拓与固定原生模块的比较；两个选定余纤维三角的比较；上述实际商映射在所用坐标上的等式。现 route 的 `ClassicalObject` 悬移比较覆盖 sphere/Cν/detector 及其 shifts，未覆盖 Cη；还需在同一 foundation 上为 Cη 及前三次悬移构造实际 `TowerComparison`，才可完成 CW→Cη 的四次降悬。没有新增源假设、Challenge2 字段或替代模型来掩盖这些义务。
+独立编译及正式根库构建、公理/导入审计均通过，只有标准逻辑三项。`cofiber_triangle_of_extension` 保留任意整数移位、全部对象及任意满足限制等式的延拓，构造同一八面体的 `m,j`、旋转后三角与全部四个交换方块。`exists_eta_nu_cofiber_triangles` 从明确的 `η[3] ≫ ν = 0` 同时给出一组 `g,m,j`、两个规范次数的三角以及四方块：`S⁰ → C(g) → Σ⁴Cη` 和 `Cν → C(g) → S⁶`。`q` 是 `cofibδ g` 后接已定义的 `shiftFourIso`；`Cν → C(g)` 始终使用同一个八面体的 `j`，没有无证明替换为另选的 `cofibMap`。
+
+这个里程碑服务于固定原生日志 462479 的 CW 源对象，以及 462480 所用 `CW_nu_eta__Ceta` 的 shift-four 映射。它只解决条件构造与三角比较，未给出这两条实际微分或原生模块的识别。同一固定 foundation 的八面体实例已有 `Foundation.TensorInput.triangulated`，可从 `Def.StageInput.witness.tensorInput` 取得，独立核验通过；无需增加 Challenge2 字段或换一个 foundation。该实例仍继承原基础未完成证明。
+
+新构造已独立 Lean 核验，只依赖标准逻辑三项；正式公理/导入检查通过（1561 jobs），根库构建通过（4886 jobs）。Blueprint web、完整声明检查、活动依赖解析、18项布局检查及来源/接口静态审计均通过。两条旧延拓定理的完整类型与上一提交逐字一致，新增量词与符号也经独立复核。准确剩余内容是实际复合零、固定原生模块与选定 `C(g)` 的比较，以及上述实际商映射在所用坐标上的等式。现 route 的 `ClassicalObject` 悬移比较覆盖 sphere/Cν/detector 及其 shifts，未覆盖 Cη；还需在同一 foundation 上为 Cη 及前三次悬移构造实际 `TowerComparison`，才可完成 CW→Cη 的四次降悬。没有新增源假设、Challenge2 字段或替代模型来掩盖这些义务。
 
 ## 后续依赖与实际接入边界
 
