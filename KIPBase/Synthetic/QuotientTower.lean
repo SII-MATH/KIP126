@@ -90,6 +90,63 @@ theorem rho_trans (T : FiniteLambdaQuotientTower X)
     T.rho i j hij ≫ T.rho k i hki = T.rho k j (hki.trans hij) :=
   T.rho_comp hki hij
 
+/-- Exactness of the adjacent finite-quotient triangle: a class in
+`X/λ^(i+1)` whose restriction to `X/λ` vanishes comes from the first
+edge of the distinguished `λ-ρ-δ` triangle. -/
+theorem exists_adjacent_lambda_preimage (Q : FiniteLambdaQuotientTower X)
+    (S : Syn) (i : ℕ) (hi : 0 < i)
+    (a : S ⟶ XModLambdaN X (i + 1))
+    (ha : a ≫ Q.rho 1 (i + 1) (by omega) = 0) :
+    ∃ z : S ⟶ (SyntheticCategory.biShift (0, -1)).obj (XModLambdaN X i),
+      z ≫ (Q.triangle (by omega : 0 < 1) (by omega : 1 < i + 1)).lambdaMap = a := by
+  let hlt : 1 < i + 1 := by omega
+  let D := Q.triangle (by omega : 0 < 1) hlt
+  have hz : a ≫ D.rho = 0 := by
+    rw [Q.triangle_rho (by omega : 0 < 1) hlt]
+    exact ha
+  obtain ⟨z, hz'⟩ := Triangle.coyoneda_exact₂ _ D.distinguished a hz
+  exact ⟨z, hz'.symm⟩
+
+/-- The exactness step in independence of a finite-quotient lift. Once the
+boundary of the first triangle edge belongs to a specified boundary group,
+any two lifts of the same class have equal boundaries modulo that group. -/
+theorem adjacent_lift_boundary_difference
+    (Q : FiniteLambdaQuotientTower X) (S : Syn) (i : ℕ) (hi : 0 < i)
+    {A : Type*} [AddCommGroup A] (d : (S ⟶ XModLambdaN X (i + 1)) →+ A)
+    (B : AddSubgroup A)
+    (hfirst : ∀ z : S ⟶ (SyntheticCategory.biShift (0, -1)).obj
+        (XModLambdaN X i),
+      d (z ≫ (Q.triangle (by omega : 0 < 1)
+        (by omega : 1 < i + 1)).lambdaMap) ∈ B)
+    (a b : S ⟶ XModLambdaN X (i + 1))
+    (hab : a ≫ Q.rho 1 (i + 1) (by omega) =
+      b ≫ Q.rho 1 (i + 1) (by omega)) :
+    d a - d b ∈ B := by
+  have hzero : (a - b) ≫ Q.rho 1 (i + 1) (by omega) = 0 := by
+    rw [Preadditive.sub_comp, hab, sub_self]
+  obtain ⟨z, hz⟩ := Q.exists_adjacent_lambda_preimage S i hi (a - b) hzero
+  rw [← map_sub, ← hz]
+  exact hfirst z
+
+/-- The same statement at the quotient level: a boundary class modulo `B`
+depends only on the restriction of its chosen finite-quotient lift. -/
+theorem adjacent_lift_boundary_eq_mod
+    (Q : FiniteLambdaQuotientTower X) (S : Syn) (i : ℕ) (hi : 0 < i)
+    {A : Type*} [AddCommGroup A] (d : (S ⟶ XModLambdaN X (i + 1)) →+ A)
+    (B : AddSubgroup A)
+    (hfirst : ∀ z : S ⟶ (SyntheticCategory.biShift (0, -1)).obj
+        (XModLambdaN X i),
+      d (z ≫ (Q.triangle (by omega : 0 < 1)
+        (by omega : 1 < i + 1)).lambdaMap) ∈ B)
+    (a b : S ⟶ XModLambdaN X (i + 1))
+    (hab : a ≫ Q.rho 1 (i + 1) (by omega) =
+      b ≫ Q.rho 1 (i + 1) (by omega)) :
+    (QuotientAddGroup.mk (d a : A) : A ⧸ B) =
+      (QuotientAddGroup.mk (d b : A) : A ⧸ B) := by
+  apply QuotientAddGroup.eq.mpr
+  have h := Q.adjacent_lift_boundary_difference S i hi d B hfirst a b hab
+  convert B.neg_mem h using 1 <;> abel
+
 /-- canonical 商映射与有限塔的限制映射相容。 -/
 theorem incl_comp_rho (T : FiniteLambdaQuotientTower X)
     {i j : ℕ} (hij : i ≤ j) :
@@ -197,7 +254,8 @@ theorem Hom.comp
     (hi : 0 < i) (hij : i < j) :
     (Hom.id T).triangleMorphism hi hij =
       𝟙 (T.triangle hi hij).toTriangle := by
-  ext <;> simp [Hom.triangleMorphism, LambdaRhoDeltaTriangle.toTriangle]
+  ext <;> simp [Hom.triangleMorphism, LambdaRhoDeltaTriangle.toTriangle,
+    Triangle.mk]
 
 /-- 组装三角形态射与塔态射复合相容。 -/
 theorem Hom.triangleMorphism_comp
@@ -210,7 +268,7 @@ theorem Hom.triangleMorphism_comp
     (F.comp G).triangleMorphism hi hij =
       F.triangleMorphism hi hij ≫ G.triangleMorphism hi hij := by
   ext <;> simp [Hom.triangleMorphism, LambdaRhoDeltaTriangle.toTriangle,
-    XModLambdaN.map_comp]
+    XModLambdaN.map_comp, Triangle.mk]
 
 /-! ### 有限 λ-商塔组成的范畴 -/
 
@@ -393,8 +451,12 @@ noncomputable def quotientCone (A : Bundled (Syn := Syn)) : Cone A.diagram where
         (lambdaPow (n.unop + 1) A.obj)
       naturality := by
         intro m n f
-        simp only [Functor.const_obj_obj, Functor.const_obj_map,
-          Category.id_comp]
+        change (𝟙 A.obj) ≫ syn_functorial_cofiber.cofibι
+            (lambdaPow (n.unop + 1) A.obj) =
+          syn_functorial_cofiber.cofibι (lambdaPow (m.unop + 1) A.obj) ≫
+            A.tower.rho (n.unop + 1) (m.unop + 1)
+              (Nat.add_le_add_right (leOfHom f.unop) 1)
+        rw [Category.id_comp]
         exact (A.tower.incl_rho
           (Nat.add_le_add_right (leOfHom f.unop) 1)).symm }
 
@@ -509,7 +571,7 @@ theorem infiniteLambdaRhoDeltaTriangleMorphism_id
     infiniteLambdaRhoDeltaTriangleMorphism (𝟙 X) n hn =
       𝟙 (infiniteLambdaRhoDeltaTriangle X n hn) := by
   ext <;> simp [infiniteLambdaRhoDeltaTriangleMorphism,
-    infiniteLambdaRhoDeltaTriangle, XModLambdaN]
+    infiniteLambdaRhoDeltaTriangle, XModLambdaN, Triangle.mk]
 
 /-- 完整端三角形态射保持底层态射的复合。 -/
 theorem infiniteLambdaRhoDeltaTriangleMorphism_comp
@@ -519,7 +581,7 @@ theorem infiniteLambdaRhoDeltaTriangleMorphism_comp
       infiniteLambdaRhoDeltaTriangleMorphism f n hn ≫
         infiniteLambdaRhoDeltaTriangleMorphism g n hn := by
   ext <;> simp [infiniteLambdaRhoDeltaTriangleMorphism,
-    infiniteLambdaRhoDeltaTriangle, XModLambdaN.map_comp]
+    infiniteLambdaRhoDeltaTriangle, XModLambdaN.map_comp, Triangle.mk] <;> rfl
 
 /-- 固定正指数后，完整端 λ-ρ-δ 三角形关于 synthetic 对象函子化。 -/
 noncomputable def infiniteLambdaRhoDeltaTriangleFunctor

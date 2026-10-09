@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 
 import KIPBase.SpectralSequence.Exactness
+import KIPBase.SpectralSequence.MorphismCriterion
 import KIPBase.SpectralSequence.ShiftedDifferential
 
 /-!
