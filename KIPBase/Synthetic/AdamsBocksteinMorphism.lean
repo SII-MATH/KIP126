@@ -2691,6 +2691,44 @@ theorem NuSynAdamsGeometricComparison.adamsDifferential_to_bocksteinPage
     rfl, hcap, hdiff, htarget,
     C.cap_boundary_eq_prescribed_adams_target s n t x y hxy c hc, hyB⟩
 
+/-- Every Adams target-page class has a divided representative in the free
+lambda layer. No assumption that the class is a differential image is used. -/
+theorem NuSynAdamsGeometricComparison.exists_divided_target_of_page
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
+    (s n : ℕ) (t : ℤ)
+    (y : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ),
+          t + ((n + 2 : ℕ) : ℤ) - 1, t)) :
+    ∃ dividedTarget :
+      NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        (shiftFunctor Syn (1 : ℤ)).obj
+          ((SyntheticCategory.biShift (0, -((n + 1 : ℕ) : ℤ))).obj
+            (M.input.layer (s + (n + 2)))),
+      C.targetEquiv s (n + 2) (by omega) t y =
+        QuotientAddGroup.mk
+          (dividedTarget ≫ (shiftFunctor Syn (1 : ℤ)).map
+            (lambdaPow (n + 1) (M.input.layer (s + (n + 2))))) := by
+  let sphere := NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t
+  let targetClass := C.targetEquiv s (n + 2) (by omega) t y
+  obtain ⟨q, hq⟩ := QuotientAddGroup.mk'_surjective
+    (M.input.targetAmbiguity sphere s (n + 2) (by omega)) targetClass
+  obtain ⟨dividedTarget, hdivided⟩ :=
+    (M.freeLayers (s + (n + 2))).shiftMulHom_surjective
+      (t - (s : ℤ)) (t - (s : ℤ) + (s : ℤ)) (n + 1)
+      (by omega) q
+  change dividedTarget ≫ (shiftFunctor Syn (1 : ℤ)).map
+      (lambdaPow (n + 1) (M.input.layer (s + (n + 2)))) = q at hdivided
+  refine ⟨dividedTarget, ?_⟩
+  calc
+    targetClass = QuotientAddGroup.mk q := hq.symm
+    _ = QuotientAddGroup.mk
+      (dividedTarget ≫ (shiftFunctor Syn (1 : ℤ)).map
+        (lambdaPow (n + 1) (M.input.layer (s + (n + 2))))) := by
+          rw [← hdivided]
+
 /-- The additive map on Adams differential images sends a specified
 differential target to the actual target page class obtained from the same
 geometric cap. This identifies the image map with the geometric boundary
