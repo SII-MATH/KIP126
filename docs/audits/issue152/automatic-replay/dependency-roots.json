@@ -1,0 +1,693 @@
+{
+  "status": "dependency-investigation-only; no-Lean-proof-of-row152098; closure-not-complete",
+  "target_id": 152098,
+  "proofs_db_sha256": "3a460683c023ee2d8f7e8f904ecef9044a474d88bb7184731e54978ba7dac248",
+  "raw_records": [
+    {
+      "id": 5487,
+      "depth": 0,
+      "reason": "d2",
+      "name": "S0",
+      "stem": 38,
+      "s": 6,
+      "t": 44,
+      "r": 2,
+      "x": "0",
+      "dx": "1",
+      "info": null
+    },
+    {
+      "id": 7441,
+      "depth": 0,
+      "reason": "d2",
+      "name": "C2",
+      "stem": 38,
+      "s": 8,
+      "t": 46,
+      "r": 2,
+      "x": "0",
+      "dx": "",
+      "info": null
+    },
+    {
+      "id": 7560,
+      "depth": 0,
+      "reason": "N",
+      "name": "CW_eta_2",
+      "stem": 41,
+      "s": 9,
+      "t": 50,
+      "r": 2,
+      "x": "0",
+      "dx": "",
+      "info": "C2__Q_CW_eta_2_eta_Eq_nu_2"
+    },
+    {
+      "id": 7575,
+      "depth": 0,
+      "reason": "N",
+      "name": "RP1_6",
+      "stem": 44,
+      "s": 9,
+      "t": 53,
+      "r": 2,
+      "x": "0",
+      "dx": "",
+      "info": "CW_eta_2__RP1_6"
+    },
+    {
+      "id": 7584,
+      "depth": 0,
+      "reason": "N",
+      "name": "RP3_6",
+      "stem": 44,
+      "s": 9,
+      "t": 53,
+      "r": 2,
+      "x": "0",
+      "dx": "",
+      "info": "RP1_6__RP3_6"
+    },
+    {
+      "id": 7585,
+      "depth": 0,
+      "reason": "N",
+      "name": "C2",
+      "stem": 39,
+      "s": 9,
+      "t": 48,
+      "r": 3,
+      "x": "0",
+      "dx": "",
+      "info": "RP3_6__RP5_6"
+    },
+    {
+      "id": 7586,
+      "depth": 0,
+      "reason": "N",
+      "name": "S0",
+      "stem": 38,
+      "s": 9,
+      "t": 47,
+      "r": 3,
+      "x": "0",
+      "dx": "",
+      "info": "C2__S0"
+    },
+    {
+      "id": 36144,
+      "depth": 0,
+      "reason": "d2",
+      "name": "Ceta",
+      "stem": 34,
+      "s": 7,
+      "t": 41,
+      "r": 2,
+      "x": "0",
+      "dx": "0",
+      "info": null
+    },
+    {
+      "id": 36145,
+      "depth": 0,
+      "reason": "N",
+      "name": "CW_eta_2",
+      "stem": 34,
+      "s": 7,
+      "t": 41,
+      "r": 2,
+      "x": "0",
+      "dx": "",
+      "info": "Ceta__CW_eta_2"
+    },
+    {
+      "id": 36146,
+      "depth": 0,
+      "reason": "N",
+      "name": "S0",
+      "stem": 37,
+      "s": 8,
+      "t": 45,
+      "r": 3,
+      "x": "0",
+      "dx": "",
+      "info": "CW_eta_2__Q_CW_nu_eta_2"
+    },
+    {
+      "id": 97918,
+      "depth": 0,
+      "reason": "G",
+      "name": "C2h6",
+      "stem": 102,
+      "s": 2,
+      "t": 104,
+      "r": 3,
+      "x": "0",
+      "dx": "",
+      "info": null
+    },
+    {
+      "id": 97919,
+      "depth": 0,
+      "reason": "N",
+      "name": "Ctheta5",
+      "stem": 101,
+      "s": 2,
+      "t": 103,
+      "r": 3,
+      "x": "0",
+      "dx": "",
+      "info": "C2h6__Ctheta5"
+    },
+    {
+      "id": 97921,
+      "depth": 0,
+      "reason": "N",
+      "name": "S0",
+      "stem": 38,
+      "s": 2,
+      "t": 40,
+      "r": 3,
+      "x": "0",
+      "dx": "",
+      "info": "Ctheta5__S0"
+    },
+    {
+      "id": 152092,
+      "depth": 1,
+      "reason": "T",
+      "name": "S0",
+      "stem": 34,
+      "s": 3,
+      "t": 37,
+      "r": 13,
+      "x": "0",
+      "dx": "0",
+      "info": "Get `S0 (34,3) d_13[0]=[0]`. Apply the Leibniz rule with `C2 (2,1) d_13[0]=[]` and get `C2 (36,4) d_13[]=[0]`.\nHowever, `C2 (35,17) [0]` is not in B_12."
+    },
+    {
+      "id": 152093,
+      "depth": 0,
+      "reason": "D",
+      "name": "S0",
+      "stem": 34,
+      "s": 3,
+      "t": 37,
+      "r": 13,
+      "x": "0",
+      "dx": "",
+      "info": null
+    },
+    {
+      "id": 152094,
+      "depth": 1,
+      "reason": "T",
+      "name": "S0",
+      "stem": 34,
+      "s": 3,
+      "t": 37,
+      "r": 14,
+      "x": "0",
+      "dx": "0",
+      "info": "Get `S0 (34,3) d_14[0]=[0]`. Apply the Leibniz rule with `S0 (1,1) d_14[0]=[]` and get `S0 (35,4) d_14[]=[0]`.\nHowever, `S0 (34,18) [0]` is not in B_13."
+    },
+    {
+      "id": 152095,
+      "depth": 0,
+      "reason": "D",
+      "name": "S0",
+      "stem": 34,
+      "s": 3,
+      "t": 37,
+      "r": 14,
+      "x": "0",
+      "dx": "",
+      "info": null
+    },
+    {
+      "id": 152097,
+      "depth": 1,
+      "reason": "T",
+      "name": "S0",
+      "stem": 38,
+      "s": 4,
+      "t": 42,
+      "r": 4,
+      "x": "1",
+      "dx": "0",
+      "info": "Get `S0 (38,4) d_4[1]=[0]`. Apply the Leibniz rule with `S0 (1,1) d_4[0]=[]` and get `S0 (39,5) d_4[]=[0]`.\nHowever, `S0 (38,9) [0]` is not in B_3."
+    },
+    {
+      "id": 152098,
+      "depth": 0,
+      "reason": "D",
+      "name": "S0",
+      "stem": 38,
+      "s": 4,
+      "t": 42,
+      "r": 4,
+      "x": "1",
+      "dx": "",
+      "info": null
+    },
+    {
+      "id": 93992,
+      "depth": 0,
+      "reason": "G",
+      "name": "CW_sigma_nu_eta",
+      "stem": 48,
+      "s": 3,
+      "t": 51,
+      "r": 4,
+      "x": "0",
+      "dx": "",
+      "info": null
+    },
+    {
+      "id": 93993,
+      "depth": 0,
+      "reason": "N",
+      "name": "CW_nu_eta",
+      "stem": 40,
+      "s": 3,
+      "t": 43,
+      "r": 4,
+      "x": "0",
+      "dx": "",
+      "info": "CW_sigma_nu_eta__CW_nu_eta"
+    },
+    {
+      "id": 93994,
+      "depth": 0,
+      "reason": "N",
+      "name": "Ceta",
+      "stem": 36,
+      "s": 3,
+      "t": 39,
+      "r": 5,
+      "x": "0",
+      "dx": "",
+      "info": "CW_nu_eta__Ceta"
+    },
+    {
+      "id": 93995,
+      "depth": 0,
+      "reason": "N",
+      "name": "S0",
+      "stem": 34,
+      "s": 3,
+      "t": 37,
+      "r": 12,
+      "x": "0",
+      "dx": "",
+      "info": "Ceta__S0"
+    }
+  ],
+  "historical_chains": [
+    {
+      "purpose": "source h3h5 survives through d3; multiply by h0 squared to obtain target-source x",
+      "ids": [
+        97918,
+        97919,
+        97921
+      ],
+      "interpretation": "The G root in C2h6 propagates through Ctheta5 to h3h5. These are proposed source-log dependencies, not proof terms. A direct C2h6-to-S0 map can bypass the Ctheta5 coordinate table."
+    },
+    {
+      "purpose": "historical d3-cycle evidence for z=h0^3*x38,6",
+      "ids": [
+        7441,
+        7560,
+        7575,
+        7584,
+        7585,
+        7586
+      ],
+      "interpretation": "Degree-compatible ancestry. Matching coordinates and actual maps remain to be certified. Zero-differential propagation can skip pages via NextRTgt; r increments do not follow from naturality alone."
+    },
+    {
+      "purpose": "historical d3-cycle evidence for e0g",
+      "ids": [
+        36144,
+        36145,
+        36146
+      ],
+      "interpretation": "A nonzero d2 in Ceta has zero image in CW_eta_2, then propagates to sphere. The r=3 output additionally uses next-target state."
+    }
+  ],
+  "sphere_only_contradiction_reduction": [
+    "Seed5487 makes the second basis vector h0^3*x37,5 at(8,45) a d2 boundary, leaving at most the coefficient of e0g in an actual E4 target representative.",
+    "Incoming d2 source for z at(9,47) is (7,46), with sole basis h1*x38,6. Seed5487 and h0*h1=0 imply its d2 is zero.",
+    "Incoming d3 source for z is (6,45), an empty slice in the nonempty sphere E2 catalogue. With certified spanning/comparison this excludes all d3 boundaries there.",
+    "Under a candidate d4 value, actual Leibniz and h1 survival produce a representative of z; therefore an independent historical proof that z cycles through d3 can be avoided. Non-membership in B3 must still be certified against actual boundaries.",
+    "Similarly, candidate-representation arguments can avoid separately certifying that e0g cycles through d3; the actual d4 target is already represented. These reductions are mathematical plans, not implemented Lean proofs."
+  ],
+  "source_survival_alternative": {
+    "data": "C2h6 basis at(2,104) is h3 times module generator134. Generator134 maps to sphere h5 under the direct mapC2h6_to_S0. The map has suspension64, giving h3h5 at(2,40).",
+    "degree_exclusions": [
+      "C2h6(4,105) is empty in its nonempty basis CSV",
+      "C2h6(5,106) is empty in its nonempty basis CSV"
+    ],
+    "required_mathematics": [
+      "Construct actual C2h6 and the top-cell map",
+      "Certify its E2 presentation and the empty-degree spanning statements",
+      "Prove actual naturality and the E2 generator-map agreement",
+      "Use actual higher-page multiplication by h0 squared"
+    ],
+    "warning": "The tempting sphere-only argument d3(h0^2*h3h5)=h0^2*d3(h3h5) does NOT close from seed5487: h0^2*x37,5 is not the boundary in5487; that seed hits h0^3*x37,5.",
+    "source_definition": {
+      "locator": "Source/LWXMachine/source/ms.tex:202, with naming definition at183-189 and existence discussion226",
+      "statement": "C2h6 = CW_2_theta5. This is a three-cell construction with C2 -> C2h6 -> suspension64 S0 and S0 -> C2h6 -> suspension1 Ctheta5.",
+      "existing_input": "LiteratureResults.classical_theta5_order_two states theta5+theta5=0. It can support the required existence construction; choosing cofiber diagrams alone does not certify the CSV E2 presentation or generator maps.",
+      "status": "construction-plan; not implemented; no new external field proposed"
+    }
+  },
+  "independent_roots_and_gaps": [
+    {
+      "root": 5487,
+      "kind": "primitive computed nonzero d2",
+      "statement": "d2(x38,6)=h0^3*x37,5",
+      "status": "No existing LiteratureResults field gives this result. adamsOneLine_d2 gives only d2(h_j)=h0*h_(j-1)^2. A secondary-operation certificate/correctness theorem or a genuine independently proved alternate differential is required."
+    },
+    {
+      "root": 97918,
+      "kind": "degree root in intermediate spectrum",
+      "status": "Targets are empty in C2h6 CSV; actual C2h6/E2 comparison and map existence are not provided by the log."
+    },
+    {
+      "root": 7441,
+      "kind": "primitive computed zero d2 in C2",
+      "status": "Historical state route needs this seed and multiple actual map comparisons. Can potentially bypass this whole chain using sphere incoming-boundary reduction."
+    },
+    {
+      "root": 36144,
+      "kind": "primitive computed nonzero d2 in Ceta",
+      "status": "Historical e0g-cycle route requires this seed plus two actual map comparisons. Can potentially bypass via candidate representations."
+    },
+    {
+      "root": "actual E2 coordinates",
+      "kind": "comparison and exhaustive basis",
+      "status": "LinE2Presentation is an explicit bounded E2 equivalence, not currently constructed. LinBasisTable is a separate unfinished certification. Raw empty/basis lists do not prove actual dimensions or nonzero classes."
+    },
+    {
+      "root": "actual E4 multiplication",
+      "kind": "spectrum/tower mathematics",
+      "status": "Existing LinE2Presentation.product is an arbitrary E2 bilinear comparison field. It does not supply actual later-page products, naturality, Leibniz, or cycle/boundary compatibility."
+    }
+  ],
+  "comparison_152095": {
+    "status": "less suitable as first actual-object example",
+    "reason": "Its source at r14 already depends on r13 trial152092 in C2 and naturality93995 through Ceta/CW_nu_eta/CW_sigma_nu_eta. Boundary non-membership up toB13 additionally needs more incoming degrees and early d2 seeds5481/5488. Same-sphere last log line does not imply a sphere-only dependency cone.",
+    "source_history": [
+      71646,
+      93995,
+      152093
+    ],
+    "naturality_chain_to_degree_root": [
+      93992,
+      93993,
+      93994,
+      93995
+    ],
+    "preceding_trial": [
+      152092,
+      152093
+    ]
+  },
+  "basis_slices": {
+    "S0": {
+      "4,42": [
+        {
+          "index": "0",
+          "mon": "35,1",
+          "stem": "38",
+          "s": "4",
+          "d2": ""
+        },
+        {
+          "index": "1",
+          "mon": "0,2,3,1,18,1",
+          "stem": "38",
+          "s": "4",
+          "d2": ""
+        }
+      ],
+      "2,40": [
+        {
+          "index": "0",
+          "mon": "3,1,18,1",
+          "stem": "38",
+          "s": "2",
+          "d2": ""
+        }
+      ],
+      "5,42": [
+        {
+          "index": "0",
+          "mon": "34,1",
+          "stem": "37",
+          "s": "5",
+          "d2": ""
+        }
+      ],
+      "6,44": [
+        {
+          "index": "0",
+          "mon": "36,1",
+          "stem": "38",
+          "s": "6",
+          "d2": "1"
+        },
+        {
+          "index": "1",
+          "mon": "1,1,34,1",
+          "stem": "38",
+          "s": "6",
+          "d2": ""
+        }
+      ],
+      "8,45": [
+        {
+          "index": "0",
+          "mon": "9,1,13,1",
+          "stem": "37",
+          "s": "8",
+          "d2": ""
+        },
+        {
+          "index": "1",
+          "mon": "0,3,34,1",
+          "stem": "37",
+          "s": "8",
+          "d2": ""
+        }
+      ],
+      "9,47": [
+        {
+          "index": "0",
+          "mon": "0,3,36,1",
+          "stem": "38",
+          "s": "9",
+          "d2": ""
+        }
+      ],
+      "7,46": [
+        {
+          "index": "0",
+          "mon": "1,1,36,1",
+          "stem": "39",
+          "s": "7",
+          "d2": ""
+        }
+      ],
+      "6,45": [],
+      "7,44": [
+        {
+          "index": "0",
+          "mon": "1,1,33,1",
+          "stem": "37",
+          "s": "7",
+          "d2": ""
+        },
+        {
+          "index": "1",
+          "mon": "0,2,34,1",
+          "stem": "37",
+          "s": "7",
+          "d2": ""
+        }
+      ]
+    },
+    "C2h6": {
+      "2,104": [
+        {
+          "index": "0",
+          "mon": "3,1,134",
+          "stem": "102",
+          "s": "2",
+          "d2": ""
+        }
+      ],
+      "4,105": [],
+      "5,106": []
+    }
+  },
+  "map_metadata": {
+    "C2__Q_CW_eta_2_eta_Eq_nu_2": {
+      "fil": 1,
+      "from": "C2",
+      "name": "C2__Q_CW_eta_2_eta_Eq_nu_2",
+      "path": "map_AdamsSS_C2_to_Q_CW_eta_2_eta_Eq_nu_2_t196.db",
+      "sus": -3,
+      "t_max": 196,
+      "to": "CW_eta_2"
+    },
+    "CW_eta_2__RP1_6": {
+      "from": "CW_eta_2",
+      "name": "CW_eta_2__RP1_6",
+      "path": "map_AdamsSS_CW_eta_2_to_RP1_6_t180.db",
+      "sus": -3,
+      "t_max": 180,
+      "to": "RP1_6"
+    },
+    "RP1_6__RP3_6": {
+      "from": "RP1_6",
+      "name": "RP1_6__RP3_6",
+      "path": "map_AdamsSS_RP1_6_to_RP3_6_t179.db",
+      "t_max": 179,
+      "to": "RP3_6"
+    },
+    "RP3_6__RP5_6": {
+      "from": "RP3_6",
+      "name": "RP3_6__RP5_6",
+      "path": "map_AdamsSS_RP3_6_to_RP5_6_t191.db",
+      "sus": 5,
+      "t_max": 191,
+      "to": "C2"
+    },
+    "C2__S0": {
+      "from": "C2",
+      "name": "C2__S0",
+      "path": "map_AdamsSS_C2_to_S0_t200.db",
+      "sus": 1,
+      "t_max": 200,
+      "to": "S0",
+      "type": "top_cell"
+    },
+    "Ceta__CW_eta_2": {
+      "from": "Ceta",
+      "name": "Ceta__CW_eta_2",
+      "path": "map_AdamsSS_Ceta_to_CW_eta_2_t180.db",
+      "t_max": 180,
+      "to": "CW_eta_2",
+      "type": "skeleton"
+    },
+    "CW_eta_2__Q_CW_nu_eta_2": {
+      "fil": 1,
+      "from": "CW_eta_2",
+      "name": "CW_eta_2__Q_CW_nu_eta_2",
+      "path": "map_AdamsSS_CW_eta_2_to_Q_CW_nu_eta_2_t200.db",
+      "sus": -3,
+      "t_max": 200,
+      "to": "S0"
+    },
+    "C2h6__Ctheta5": {
+      "from": "C2h6",
+      "name": "C2h6__Ctheta5",
+      "path": "map_AdamsSS_C2h6_to_Ctheta5_t200.db",
+      "sus": 1,
+      "t_max": 200,
+      "to": "Ctheta5"
+    },
+    "Ctheta5__S0": {
+      "from": "Ctheta5",
+      "name": "Ctheta5__S0",
+      "path": "map_AdamsSS_Ctheta5_to_S0_t200.db",
+      "sus": 63,
+      "t_max": 200,
+      "to": "S0"
+    },
+    "C2h6__S0": {
+      "from": "C2h6",
+      "name": "C2h6__S0",
+      "path": "map_AdamsSS_C2h6_to_S0_t200.db",
+      "sus": 64,
+      "t_max": 200,
+      "to": "S0",
+      "type": "top_cell"
+    }
+  },
+  "csv_artifacts": {
+    "S0_AdamsE2_basis.csv": {
+      "bytes": 1408908,
+      "sha256": "6a337964ad3ac02b729a46fd839dced7cb6764d14d4cea413163987eba8de871",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "C2_AdamsE2_basis.csv": {
+      "bytes": 570058,
+      "sha256": "54f3ed3eaf10580904859068e347ab90ef975e74bffc91264a96696717360724",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "Ceta_AdamsE2_basis.csv": {
+      "bytes": 896558,
+      "sha256": "f56dc686141386a24243f68ad98c61918d70c79e372caaca373d56af1113747d",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "CW_eta_2_AdamsE2_basis.csv": {
+      "bytes": 650012,
+      "sha256": "4b7f7518f00846f8fab9bf4186beabe05f1e72e783f772960e3a2d4a52f33747",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "C2h6_AdamsE2_basis.csv": {
+      "bytes": 715548,
+      "sha256": "28fabd42c23590a4a5898b5efee0c75b0fef862ad0f188016ae39bf713f5258a",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "RP3_6_AdamsE2_basis.csv": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "note": "zero-byte CSV is missing data, never a zero-group certificate"
+    },
+    "Ctheta5_AdamsE2_basis.csv": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "note": "zero-byte CSV is missing data, never a zero-group certificate"
+    },
+    "map_C2h6_to_S0.csv": {
+      "bytes": 38658,
+      "sha256": "9d870cf250a3442604b8fa5c05d093b1ad1bbd7fcde6f4af3d5a542c4cea5671",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "map_C2h6_to_Ctheta5.csv": {
+      "bytes": 85930,
+      "sha256": "bfdb5adfb38903c9039901a64331c2c2a5b83b634c74eaf9ab44aec7301e5314",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "map_Ctheta5_to_S0.csv": {
+      "bytes": 40,
+      "sha256": "f25f33101b2c92b07af715a82fa1798938a4d57ca4c904816975f291f9f317aa",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "map_C2_to_S0.csv": {
+      "bytes": 48070,
+      "sha256": "33a8386709ed07bc56daa02fd056e7068e96ea7fb7c2e6cf195eb74248fa5c7b",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "map_Ceta_to_CW_eta_2.csv": {
+      "bytes": 32950,
+      "sha256": "6c1f991ce630a7ca29d51ee630351a0b267f999ef88002a72c692fea87f893c3",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    },
+    "map_CW_eta_2_to_Q_CW_nu_eta_2.csv": {
+      "bytes": 37576,
+      "sha256": "0a08da983e81c20ef928379a4356415ecb7461cd6d8b801f361877361388db6e",
+      "note": "archive data only; no actual-spectrum comparison follows from this hash"
+    }
+  },
+  "source_rule_locations": {
+    "zero_target_page_skipping": "ss/category.cpp Category::SetModuleDiffGlobal and SetRingDiffGlobal call NextRTgt(...,r+1)-1 for zero values before propagating",
+    "non_boundary_test": "ss/ss.cpp SetImageSc uses IsPossTgt scanning all earlier page incoming-source state; it does not merely look up one row",
+    "primitive_d2": "ss/loadsave.cpp loadD2 imports basis_d2 and logs only new entries before SetRingDiffGlobal/SetModuleDiffGlobal"
+  },
+  "recommendation": "Keep152098 as a fail-closed test of a genuine actual-page rule; certify sphere basis slices, source survival and seed5487 before claiming its DifferentialStatement. A complete proof with present literature alone is not established. Implement generic actual-sequence rule lemmas with honest explicit mathematical hypotheses, but do not promote missing roots to Challenge2 fields or call those conditional lemmas completed row proofs."
+}
