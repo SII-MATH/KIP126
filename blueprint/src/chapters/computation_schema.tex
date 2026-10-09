@@ -301,6 +301,26 @@ mathematical objects and conditions.
   remain to be specified.
 \end{definition}
 
+\begin{lemma}[Zero-source differential refutation in the complete context]
+  \label{lem:lin-zero-source-refutation}
+  \lean{KIP126.Core.SpectralSequence.HasDifferential.isBoundaryBy_of_source_zero,KIP126.Core.SpectralSequence.not_hasDifferential_zero_of_not_isBoundaryBy,KIP126.Computation.LinProofs.Branch.TrialRefuted.of_zero_source}
+  \uses{prop:internal-page-calculus,def:lin-conditional-branches}
+  \leanok
+  For every internal module spectral sequence, page $r\ge3$, degrees
+  $p,q$, and $E_2$ label $y$, an actual equation $d_r(0)=y$ implies
+  $y\in B_{r-1}$. Thus a proved earlier-boundary exclusion refutes this
+  equation under the same complete ancestor context.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Uniqueness of common representatives makes the source page class zero.
+  Linearity makes its differential zero, and the actual quotient-page
+  zero criterion gives the earlier boundary. For the diagnostic in trial
+  152097 the degrees are $(5,44)$ and $(9,47)$ and $r=4$. The rule does not
+  supply the diagnostic's Leibniz premise or its assertion that the target
+  is outside $B_3$; these remain mathematical obligations.
+\end{proof}
+
 % SOURCE: LWXMachine, Section 2.1, Notations 2.1--2.5.
 \begin{definition}[Finite Adams $E_2$ presentations]
   \label{def:lin-e2-page-catalogue}
@@ -431,6 +451,60 @@ mathematical objects and conditions.
   A nonempty coordinate list does not by itself imply nonvanishing
   on $E_r$.
 \end{definition}
+
+\subsection{Fixed native certificates and conditional replay}
+
+\begin{proposition}[Two closed products in the archived quotient]
+  \label{prop:lin-native-products-152097}
+  \lean{KIP126.LinE2.ReplayProducts.native_source_product_zero,KIP126.LinE2.ReplayProducts.native_target_product,KIP126.LinE2.ReplayProducts.relation26_mem,KIP126.LinE2.ReplayProducts.relation188_mem,KIP126.LinE2.ReplayProducts.relation190_mem}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  Write $x_i$ for the image of native generator $i$ in the fixed
+  2914-generator truncated CSV quotient. The products appearing in the
+  diagnostic of trial 152097 satisfy
+  \[
+    x_0^2x_1x_3x_{18}=0,\qquad
+    x_1x_9x_{13}=x_0^3x_{36}.
+  \]
+  The Lean statements retain the native monomial strings. They assert
+  equalities in this fixed data algebra, without a basis-independence
+  assertion or an actual sphere differential conclusion.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Kernel-checked newline decompositions prove membership of the exact
+  native relations numbered 26, 188 and 190 (one-based, excluding the CSV
+  header). Together with relation 1 these vanish in the defining ideal.
+  The auxiliary polynomial identities then prove the products in the
+  quotient. Transitive axiom checks reject admitted proofs and project
+  axioms. This does not certify the retained differential record 152098:
+  its actual page representatives, Leibniz calculation, earlier-boundary
+  exclusion and candidate coverage remain separate obligations.
+\end{proof}
+
+\begin{proposition}[Conditional replay of native naturality record 245131]
+  \label{prop:lin-native-naturality-245131}
+  \lean{KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell,KIP126.Interface.Solution.LinProgram.Naturality.row245131,KIP126.Interface.Solution.LinProgram.Naturality.DoubleDesuspensionCompatible}
+  \uses{def:lin-map-catalogue,def:lin-proofs-sphere-meaning,def:mahowald-tower-suspension-comparison,prop:internal-page-naturality}
+  \notready
+  The adjacent native source candidate 245130 is the $C\eta$ equation
+  $d_3[0]=[0]$ from $(2,19)$ to $(5,21)$. The native $N$ record 245131 is
+  the sphere equation from $(2,17)$ to $(5,19)$ with the same page and
+  coordinate lists. Its map is \texttt{Ceta\_\_S0}, of suspension shift two.
+  Use the actual cofiber of the fixed route's $\eta$ map and its actual
+  connecting morphism to $\Sigma S^1$. Naturality transports a supplied
+  source equation to that target. Two specified tower desuspensions then
+  yield the native sphere statement, conditional on four coordinate
+  comparisons and the universal finite-differential compatibility of these
+  same two desuspensions.
+
+  The source-coordinate identification, source differential and coordinate
+  comparisons are not supplied by adjacency or by the $D$ and $N$ tags.
+  The universal double-desuspension rule remains unproved; a single
+  suspension has a sign in its connecting square. The conditional theorem
+  does not certify either log entry and retains the fixed model's existing
+  foundational obligations. It reads no total computation delivery.
+\end{proposition}
 
 \subsection{Low-degree data illustration}
 

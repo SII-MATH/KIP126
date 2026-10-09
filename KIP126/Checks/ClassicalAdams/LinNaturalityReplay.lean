@@ -1,0 +1,54 @@
+import KIP126.Interface.Solution.LinProgram.Naturality
+import Lean.Elab.Command
+
+/-! A replay on the fixed η cofiber and its actual top-cell map. The native
+output stays conditional on the source equation, actual map coordinates,
+and the universal double-desuspension law. Fixed-model foundational `sorryAx`
+dependencies are inherited and reported; this check does not certify the
+instance or supply the missing suspension rule. -/
+
+open Lean Elab Command in
+run_cmd do
+  let env ← getEnv
+  for mod in env.allImportedModuleNames do
+    if (`KIP126.Main).isPrefixOf mod ||
+        mod == `KIP126.Interface.Solution.Challenge2 ||
+        mod == `KIP126.Interface.Solution.LinProgram.BasisTable ||
+        mod == `KIP126.Interface.Solution.LinProgram.Multiplication ||
+        mod == `KIP126.Interface.Solution.LinProgram.Differentials ||
+        mod == `KIP126.Interface.Solution.LinProgram.Staircase ||
+        mod == `KIP126.Interface.Solution.LinProgram.Route.Certification then
+      throwError "naturality replay imported a consumer or aggregate certification: {mod}"
+  let logical := [``propext, ``Classical.choice, ``Quot.sound]
+  for decl in [``KIP126.Computation.LinProofs.Raw.Naturality.output245131_in_export,
+      ``KIP126.Computation.LinProofs.Raw.Naturality.native_source_degree_shift,
+      ``KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential] do
+    for ax in (← collectAxioms decl) do
+      unless logical.contains ax do
+        throwError "unexpected axiom in native transcription or generic naturality {decl}: {ax}"
+  let modelAxioms ← collectAxioms ``KIP126.Classical.Adams.sphereAdamsModel
+  for decl in [``KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell,
+      ``KIP126.Interface.Solution.LinProgram.Naturality.row245131] do
+    for ax in (← collectAxioms decl) do
+      unless logical.contains ax || modelAxioms.contains ax do
+        throwError "naturality replay adds an axiom beyond the fixed Def model: {decl}: {ax}"
+
+open KIP126.Computation.LinProofs.Raw.Naturality in
+example : output245131 = ⟨245131, "N", 2, 17, 3, [0], [0]⟩ := rfl
+
+open KIP126.Computation.LinProofs.Raw.Naturality in
+example : sourceCandidate245130 =
+    ⟨245130, some 0, some "D", some "Ceta", some 17, some 2,
+      some 19, some 3, some "0", some "0", none⟩ := rfl
+
+open KIP126.Computation.LinProofs.Raw.Naturality in
+example : target245131 =
+    ⟨245131, some 0, some "N", some "S0", some 15, some 2,
+      some 17, some 3, some "0", some "0", some "Ceta__S0"⟩ := rfl
+
+open KIP126.Computation.LinProofs.Raw.Naturality in
+example : mapSuspension = 2 := rfl
+
+#print axioms KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential
+#print axioms KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell
+#print axioms KIP126.Interface.Solution.LinProgram.Naturality.row245131

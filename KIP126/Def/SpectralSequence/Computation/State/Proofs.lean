@@ -111,6 +111,30 @@ theorem RepresentsOnPage.eq_zero_iff_isBoundaryBy
       · exact cokernel.condition_apply _ b
     exact hrep.unique hrep0
 
+/-- A differential equation with the zero E₂ source label can only target an
+E₂ label already in the cumulative boundary space before that differential.
+The page bound is exactly the range in which `IsBoundaryBy (r - 1)` is defined.
+This uses actual common representatives, not a program boundary-span test. -/
+theorem HasDifferential.isBoundaryBy_of_source_zero
+    {E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)} {r : ℤ} {p q : ℤ × ℤ}
+    {y : E.Page 2 q} (hr : 3 ≤ r) (h : HasDifferential E r p q 0 y) :
+    IsBoundaryBy E (r - 1) q y := by
+  obtain ⟨k, rfl⟩ : ∃ k : ℤ, r = k + 1 := ⟨r - 1, by omega⟩
+  obtain ⟨hdeg, xr, yr, hx, hy, hd⟩ := h
+  have hx0 : xr = 0 := hx.unique (RepresentsOnPage.zero (by omega))
+  have hy0 : yr = 0 := by
+    simpa only [hx0, ModuleCat.comp_apply, map_zero] using hd.symm
+  simpa only [add_sub_cancel_right] using
+    (hy.eq_zero_iff_isBoundaryBy (by omega)).mp hy0
+
+/-- An actual earlier-boundary exclusion refutes a zero-source equation.
+A database diagnostic asserting this exclusion is not a proof of the premise. -/
+theorem not_hasDifferential_zero_of_not_isBoundaryBy
+    {E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)} {r : ℤ} {p q : ℤ × ℤ}
+    {y : E.Page 2 q} (hr : 3 ≤ r) (hy : ¬ IsBoundaryBy E (r - 1) q y) :
+    ¬ HasDifferential E r p q 0 y :=
+  fun h => hy (h.isBoundaryBy_of_source_zero hr)
+
 /-- A label excluded from the actual cumulative boundary space has a nonzero
 next-page continuation whenever a continuation exists. -/
 theorem ReachesPage.survives_of_not_isBoundaryBy

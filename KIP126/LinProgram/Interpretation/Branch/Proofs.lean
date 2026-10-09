@@ -1,4 +1,5 @@
 import KIP126.LinProgram.Interpretation.Branch.Predicates
+import KIP126.Def.SpectralSequence.Computation.State.Proofs
 
 /-! Sound inference rules for the existing actual-equation interpretation.
 Coverage and refutations are mathematical proof obligations, not log fields.
@@ -47,6 +48,22 @@ theorem EquationConflict.sound {context : List (FiniteEquation E)}
     Contradiction context := by
   intro hc
   exact h.2 hc (h.1 hc)
+
+/-- A zero-source equation is refuted by an actual earlier-boundary exclusion
+under the same complete context. This is the mathematical contradiction at
+the end of diagnostics such as log 152097; obtaining its zero-source equation
+from the nonzero-source trial still requires the actual Leibniz calculation. -/
+theorem TrialRefuted.of_zero_source {context : List (FiniteEquation E)}
+    {trial : FiniteEquation E} (hr : 3 ≤ trial.r) (hx : trial.source = 0)
+    (hy : ContextHolds context →
+      ¬ IsBoundaryBy (E trial.object) (trial.r - 1) trial.targetDegree trial.target) :
+    TrialRefuted context trial := by
+  intro hc ht
+  apply hy hc
+  have h : HasDifferential (E trial.object) trial.r trial.sourceDegree
+      trial.targetDegree 0 trial.target := by
+    simpa only [FiniteEquation.Statement, hx] using ht
+  exact h.isBoundaryBy_of_source_zero hr
 
 /-- Refute a trial by a contradiction in the context that includes it. -/
 theorem TrialRefuted.of_contradiction_cons {context : List (FiniteEquation E)}

@@ -544,6 +544,14 @@ class InventoryValidator:
                 self.error(f"{artifact_where}.path", f"duplicate artifact path {path_value!r}")
             seen.add(path_value)
             directory = str(source.get("directory", "")).rstrip("/")
+            # The architecture keeps native Lin inputs under LinProgram, while
+            # their provenance belongs to the existing LWX machine source.
+            # This exact registered artifact is the sole location exception;
+            # hash, required-file, safe-path and resolved-directory checks stay.
+            if (source.get("id"), artifact_kind, path_value) == (
+                "lwx_machine", "machine_artifact", "KIP126/LinProgram/Raw/ss.json"
+            ):
+                directory = "KIP126/LinProgram/Raw"
             if directory and not path_value.startswith(directory + "/"):
                 self.error(
                     f"{artifact_where}.path",

@@ -114,6 +114,46 @@ class SourceInventoryTests(unittest.TestCase):
         errors = self.validate_document(document)
         self.assertTrue(any("requires kind" in error for error in errors))
 
+    def test_registered_lin_configuration_retains_source_and_hash_boundary(self) -> None:
+        document = self.read_inventory()
+        machine = next(s for s in document["sources"] if s["id"] == "lwx_machine")
+        artifact = next(a for a in machine["artifacts"] if a["path"] == "KIP126/LinProgram/Raw/ss.json")
+        artifact["sha256"] = "0" * 64
+        errors = self.validate_document(document)
+        self.assertTrue(any("ss.json" in error and "hash mismatch" in error for error in errors))
+
+        machine["artifacts"].remove(artifact)
+        browder = next(s for s in document["sources"] if s["id"] == "browder")
+        browder["artifacts"].append(artifact)
+        errors = self.validate_document(document)
+        self.assertTrue(any("inside source directory" in error for error in errors))
+
+    def test_lin_configuration_exception_rejects_other_raw_paths(self) -> None:
+        document = self.read_inventory()
+        machine = next(s for s in document["sources"] if s["id"] == "lwx_machine")
+        artifact = next(a for a in machine["artifacts"] if a["path"] == "KIP126/LinProgram/Raw/ss.json")
+        artifact["path"] = "KIP126/LinProgram/Raw/other.json"
+        artifact["required"] = False
+        errors = self.validate_document(document)
+        self.assertTrue(any("inside source directory" in error for error in errors))
+
+    def test_lin_configuration_symlink_cannot_escape_raw_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            raw = root / "KIP126/LinProgram/Raw"
+            raw.mkdir(parents=True)
+            outside = root / "outside.json"
+            outside.write_text("{}", encoding="utf-8")
+            (raw / "ss.json").symlink_to(outside)
+            validator = InventoryValidator(root, root / "unused.json")
+            validator._check_artifacts(
+                {"id": "lwx_machine", "directory": "Source/LWXMachine", "artifacts": [{
+                    "path": "KIP126/LinProgram/Raw/ss.json", "kind": "machine_artifact",
+                    "required": True, "sha256": hashlib.sha256(b"{}").hexdigest(),
+                }]}, "sources[0]", False, None,
+            )
+            self.assertTrue(any("resolves outside source directory" in e for e in validator.errors))
+
     def test_sha256_helper_reads_large_files_incrementally(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "large.bin"
