@@ -1,7 +1,17 @@
+import KIPBase.Section7.BjmBxCriterion
+
 namespace KIPBase.Section8
 
-/-- The assertion represented by Table 9.  Its individual entries will be
-stated as consequences when they are introduced in Section 8. -/
-axiom table9 : Prop
+open KIPBase.Section7
+
+/-- The Table 9 exclusion used in Remark 7.7. -/
+def Table9Statement : Prop :=
+  ¬ ∃ r, Near126E2.Differential r Near126E2.x126_6.val
+    Near126E2.h1h4x109_12
+
+theorem table9 : Table9Statement :=
+  KIPBase.Section7.Near126E2.table9
+
+theorem table9_remark7_7 : Table9Statement := table9
 
 end KIPBase.Section8

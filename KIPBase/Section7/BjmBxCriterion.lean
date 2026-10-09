@@ -147,10 +147,24 @@ axiom fact7_6 :
     SurvivesToEInfinity h0SqX124_8 ∧
     IsUniqueSurvivorOnPage gPow4DeltaH1g 5
 
+/-- The Table 5 entries are projections of Fact 7.6. -/
+theorem table5 :
+    SurvivesToEInfinity h0SqX124_8 ∧
+    IsUniqueSurvivorOnPage gPow4DeltaH1g 5 :=
+  ⟨fact7_6.2.2.2.1, fact7_6.2.2.2.2⟩
+
+/-- The Table 6 entry is a projection of Fact 7.6. -/
+theorem table6 : IsPermanentCycle h1h4x109_12 := fact7_6.2.1
+
 /-- The paper's Remark 7.7: the nonzero `d₃` on `x_{126,6}` prevents it
 from being an incoming differential that kills `h₁h₄x_{109,12}`. -/
-axiom remark7_7 :
-    ¬ ∃ r, Differential r x126_6.val h1h4x109_12
+axiom table9 :
+  ¬ ∃ r, Differential r x126_6.val h1h4x109_12
+
+/-- Remark 7.7, read from Table 9. -/
+theorem remark7_7 :
+  ¬ ∃ r, Differential r x126_6.val h1h4x109_12 :=
+  table9
 
 /-- The three named Ext classes occurring in Fact 7.13. -/
 structure Fact7_13Classes where
@@ -167,13 +181,20 @@ noncomputable def Fact7_13Classes.x123_9_add_h0_x123_8
 noncomputable def Fact7_13Classes.d2Target (D : Fact7_13Classes) : E2 :=
   h1.val * D.x123_9_add_h0_x123_8 + h0SqX124_8
 
-/-- Fact 7.13: the displayed stem-123 class reaches `E₁₂` without being
-killed, and it is the indicated summand of the target of `d₂(x_{125,8})`. -/
-axiom fact7_13 :
+/-- Table 3 of the Appendix, restricted to the entries used in Fact 7.13. -/
+axiom table3 :
   ∃ D : Fact7_13Classes,
     SurvivesToPage D.x123_9_add_h0_x123_8 12 ∧
     (∀ r source, ¬ Differential r source D.x123_9_add_h0_x123_8) ∧
     Differential 2 D.x125_8.val D.d2Target
+
+/-- Fact 7.13, read from Table 3. -/
+theorem fact7_13 :
+  ∃ D : Fact7_13Classes,
+    SurvivesToPage D.x123_9_add_h0_x123_8 12 ∧
+    (∀ r source, ¬ Differential r source D.x123_9_add_h0_x123_8) ∧
+    Differential 2 D.x125_8.val D.d2Target :=
+  table3
 
 /-- The Ext class whose `h₀²`-multiple occurs in Fact 7.15. -/
 structure Fact7_15Classes where
@@ -183,12 +204,18 @@ structure Fact7_15Classes where
 noncomputable def Fact7_15Classes.h0SqX125_9_2 (D : Fact7_15Classes) : E2 :=
   h0.val * h0.val * D.x125_9_2.val
 
-/-- Fact 7.15: `h₀²x_{125,9,2}` survives to `E₅` and is not killed by a
-classical Adams differential. -/
-axiom fact7_15 :
+/-- Table 7 of the Appendix, restricted to the entry used in Fact 7.15. -/
+axiom table7 :
   ∃ D : Fact7_15Classes,
     SurvivesToPage D.h0SqX125_9_2 5 ∧
       (∀ r source, ¬ Differential r source D.h0SqX125_9_2)
+
+/-- Fact 7.15, read from Table 7. -/
+theorem fact7_15 :
+  ∃ D : Fact7_15Classes,
+    SurvivesToPage D.h0SqX125_9_2 5 ∧
+      (∀ r source, ¬ Differential r source D.h0SqX125_9_2) :=
+  table7
 
 /-- The Ext class whose `h₁`-multiple occurs in Fact 7.19. -/
 structure Fact7_19Classes where
@@ -198,47 +225,36 @@ structure Fact7_19Classes where
 noncomputable def Fact7_19Classes.h1X121_7 (D : Fact7_19Classes) : E2 :=
   h1.val * D.x121_7.val
 
-/-- Fact 7.19: `h₁x_{121,7}` survives to `E₆` and is not killed by a
-classical Adams differential. -/
-axiom fact7_19 :
-  ∃ D : Fact7_19Classes,
-    SurvivesToPage D.h1X121_7 6 ∧
-      (∀ r source, ¬ Differential r source D.h1X121_7)
-
 /-- The two Ext classes in Fact 7.21. -/
 structure Fact7_21Classes where
   h6Md0 : E2At 11 133
   h5X91_11 : E2At 12 134
 
-/-- Fact 7.21: both displayed classes are permanent cycles in the classical
-Adams spectral sequence. -/
-axiom fact7_21 :
+/-- Table 2 of the Appendix, restricted to the entries used in Section 7. -/
+axiom table2 :
+  (∃ D : Fact7_19Classes,
+    SurvivesToPage D.h1X121_7 6 ∧
+      (∀ r source, ¬ Differential r source D.h1X121_7)) ∧
   ∃ D : Fact7_21Classes,
     IsPermanentCycle D.h6Md0.val ∧ IsPermanentCycle D.h5X91_11.val
 
+/-- Fact 7.19, read from Table 2. -/
+theorem fact7_19 :
+  ∃ D : Fact7_19Classes,
+    SurvivesToPage D.h1X121_7 6 ∧
+      (∀ r source, ¬ Differential r source D.h1X121_7) :=
+  table2.1
+
+/-- Fact 7.21, read from Table 2. -/
+theorem fact7_21 :
+  ∃ D : Fact7_21Classes,
+    IsPermanentCycle D.h6Md0.val ∧ IsPermanentCycle D.h5X91_11.val :=
+  table2.2
+
 /-- Proposition 7.8(3): the possible `d₆` on
 `x_{126,8,4}+x_{126,8}` vanishes. -/
-opaque C3 : Prop
-
-/-- Proposition 7.8(4): some `θ₅` has square detected by
-`λ⁶ h₀²x_{124,8}`. -/
-opaque C4 : Prop
-
-/-- Proposition 7.8(5): some lift of `h₀²x_{124,8}` has the specified
-`λ³η`-extension detected by `λ⁶h₁h₄x_{109,12}`. -/
-opaque C5 : Prop
-
-/-- Proposition 7.8, first conclusion: exactly one of permanent survival of
-`h₆²` and the specified nonzero `d₁₂` occurs. -/
-theorem proposition7_8_dichotomy :
-    Xor (SurvivesToEInfinity h6Sq) (Differential 12 h6Sq h1h4x109_12) := by
-  sorry
-
-/-- Proposition 7.8, second conclusion: the specified `d₁₂` occurs exactly
-when `C₃`, `C₄`, and `C₅` all hold. -/
-theorem proposition7_8_d12_iff :
-    Differential 12 h6Sq h1h4x109_12 ↔ C3 ∧ C4 ∧ C5 := by
-  sorry
+def C3 : Prop :=
+  ∀ target, ¬ Differential 6 x126_8_4_add_x126_8 target
 
 end Near126E2
 
@@ -385,8 +401,8 @@ axiom selectedBindings : Theta5Bindings 𝒮 Syn
 /-- A synthetic class detected by the standard classical `h₅²` label. -/
 opaque Theta5Detected (theta5 : BiHom 62 64 (S_0_0 : Syn)) : Prop
 
-/-- The synthetic class detected by the classical class `h₆`, in bidegree
-`(63,64)`. -/
+/-- A chosen synthetic class in bidegree `(63,64)`. Detection by the classical
+`h₆` requires separate comparison data. -/
 axiom syntheticH6 : BiHom 63 64 (S_0_0 : Syn)
 
 /-- The comparison datum identifies the named classical `h₆` generator with
@@ -454,14 +470,215 @@ axiom delta1_h6Square_eq_lambdaEtaTheta5Square :
     delta1 Syn (syntheticH6SquareModLambda Syn) =
       lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5
 
-/-- The if direction of Theorem 7.3(2), proved by the `δ₁`-Bockstein to
-synthetic Adams degree comparison of page 46. -/
+/-- The current `h₆²` class in `S/λ` has a lift by its definition. -/
+theorem syntheticH6SquareModLambda_has_lift :
+    ∃ lift : BiHom 126 128 (S_0_0 : Syn),
+      lift ≫ XModLambda.incl (S_0_0 : Syn) =
+        syntheticH6SquareModLambda Syn := by
+  exact ⟨syntheticH6Square Syn, rfl⟩
+
+/-- The boundary vanishes on the image of the cofiber inclusion. -/
+theorem delta1_of_incl_zero (x : BiHom 126 128 (S_0_0 : Syn)) :
+    delta1 Syn (x ≫ XModLambda.incl (S_0_0 : Syn)) =
+      zeroTarget Syn := by
+  let e := susp_invariance (Syn := Syn) 125 129 1 (-1) (S_0_0 : Syn)
+  let eAdd : (Smn 125 129 ⟶ (S_0_0 : Syn)) ≃+
+      (Smn 126 128 ⟶ (SyntheticCategory.biShift (1, -1)).obj
+        (S_0_0 : Syn)) :=
+    { e with
+      map_add' := by
+        intro a b
+        simp [e, susp_invariance] }
+  have htriangle : XModLambda.incl (S_0_0 : Syn) ≫
+      XModLambda.proj (S_0_0 : Syn) = 0 :=
+    lambdaBockstein_incl_comp_connecting (S_0_0 : Syn)
+  have hcomp : (x ≫ XModLambda.incl (S_0_0 : Syn)) ≫
+      XModLambda.proj (S_0_0 : Syn) = 0 := by
+    rw [Category.assoc, htriangle, comp_zero]
+  have hboundary : (x ≫ XModLambda.incl (S_0_0 : Syn)) ≫
+      XModLambda.proj (S_0_0 : Syn) ≫
+      (lambdaBoundaryTargetIso Syn).hom = 0 := by
+    rw [← Category.assoc, hcomp, zero_comp]
+  change e.symm ((x ≫ XModLambda.incl (S_0_0 : Syn)) ≫
+      XModLambda.proj (S_0_0 : Syn) ≫
+      (lambdaBoundaryTargetIso Syn).hom) = 0
+  exact (congrArg e.symm hboundary).trans eAdd.symm.map_zero
+
+/-- Exactness of the λ-cofiber triangle at `π₁₂₆,₁₂₈(S/λ)`. -/
+theorem delta1_zero_iff_lifts
+    (x : BiHom 126 128 (XModLambda (S_0_0 : Syn))) :
+    delta1 Syn x = zeroTarget Syn ↔
+      ∃ lift : BiHom 126 128 (S_0_0 : Syn),
+        lift ≫ XModLambda.incl (S_0_0 : Syn) = x := by
+  constructor
+  · intro h
+    let e := susp_invariance (Syn := Syn) 125 129 1 (-1) (S_0_0 : Syn)
+    let eAdd : (Smn 125 129 ⟶ (S_0_0 : Syn)) ≃+
+        (Smn 126 128 ⟶ (SyntheticCategory.biShift (1, -1)).obj
+          (S_0_0 : Syn)) :=
+      { e with
+        map_add' := by
+          intro a b
+          simp [e, susp_invariance] }
+    have hzero : e.symm 0 = 0 := eAdd.symm.map_zero
+    have htarget : x ≫ XModLambda.proj (S_0_0 : Syn) ≫
+        (lambdaBoundaryTargetIso Syn).hom = 0 := by
+      apply e.symm.injective
+      change e.symm (x ≫ XModLambda.proj (S_0_0 : Syn) ≫
+        (lambdaBoundaryTargetIso Syn).hom) = 0 at h
+      exact h.trans hzero.symm
+    have hproj : x ≫ XModLambda.proj (S_0_0 : Syn) = 0 := by
+      apply (cancel_mono (lambdaBoundaryTargetIso Syn).hom).mp
+      calc
+        (x ≫ XModLambda.proj (S_0_0 : Syn)) ≫
+            (lambdaBoundaryTargetIso Syn).hom =
+          x ≫ XModLambda.proj (S_0_0 : Syn) ≫
+            (lambdaBoundaryTargetIso Syn).hom :=
+          Category.assoc _ _ _
+        _ = 0 := htarget
+        _ = (0 : Smn 126 128 ⟶
+          ((SyntheticCategory.biShift (0, -1) ⋙
+            shiftFunctor Syn (1 : ℤ)).obj (S_0_0 : Syn))) ≫
+              (lambdaBoundaryTargetIso Syn).hom := by simp
+    obtain ⟨lift, hlift⟩ := Triangle.coyoneda_exact₃ _
+      (XModLambda.triangle_distinguished (S_0_0 : Syn)) x hproj
+    exact ⟨lift, hlift.symm⟩
+  · rintro ⟨lift, rfl⟩
+    exact delta1_of_incl_zero Syn lift
+
+/-- With the present definition, the boundary of `h₆²` vanishes automatically. -/
+theorem delta1_syntheticH6SquareModLambda_zero :
+    delta1 Syn (syntheticH6SquareModLambda Syn) =
+      zeroTarget Syn := by
+  exact delta1_of_incl_zero Syn (syntheticH6Square Syn)
+
+/-- The present boundary axiom forces the proposed condition for every
+detected `θ₅`, without a permanence argument. -/
+theorem lambdaEtaThetaSquare_zero_of_detected
+    (theta5 : BiHom 62 64 (S_0_0 : Syn))
+    (hdetected : Theta5Detected (Syn := Syn) theta5) :
+    lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5 =
+      zeroTarget Syn := by
+  calc
+    lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5 =
+        delta1 Syn (syntheticH6SquareModLambda Syn) :=
+      (delta1_h6Square_eq_lambdaEtaTheta5Square 𝒮 Syn theta5 hdetected).symm
+    _ = zeroTarget Syn := delta1_syntheticH6SquareModLambda_zero Syn
+
+/-- Data required to compare a genuine `S/λ` representative of `h₆²` with
+the classical Adams class. This type does not assert that such data exist. -/
+structure H6SquareBoundaryInterface where
+  classModLambda : BiHom 126 128 (XModLambda (S_0_0 : Syn))
+  boundary_formula : ∀ theta5 : BiHom 62 64 (S_0_0 : Syn),
+    Theta5Detected (Syn := Syn) theta5 →
+      delta1 Syn classModLambda =
+        lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5
+  permanent_of_boundary_zero :
+    delta1 Syn classModLambda = zeroTarget Syn → h6Permanent 𝒮
+
+/-- Taking the old, automatically liftable class as the interface's class
+already requires a proof of classical permanence. -/
+theorem H6SquareBoundaryInterface.old_class_forces_permanence
+    (D : H6SquareBoundaryInterface 𝒮 Syn)
+    (hclass : D.classModLambda = syntheticH6SquareModLambda Syn) :
+    h6Permanent 𝒮 := by
+  apply D.permanent_of_boundary_zero
+  rw [hclass]
+  exact delta1_syntheticH6SquareModLambda_zero Syn
+
+/-- A comparison in bidegree `(2,128)` between the classical Adams `E₂`
+page and the homotopy of the synthetic λ-cofiber. -/
+structure H6SquareE2CofiberComparison where
+  pageEquiv : (AdamsSS 𝒮 SphereSpectrum).Page 2 (2, 128) ≃
+    BiHom 126 128 (XModLambda (S_0_0 : Syn))
+
+/-- Missing comparison identifying classical `E₂^{2,128}` with
+`π₁₂₆,₁₂₈(S/λ)` for the chosen classical and synthetic models. -/
+theorem h6SquareE2CofiberComparison_exists :
+    Nonempty (H6SquareE2CofiberComparison 𝒮 Syn) := by
+  sorry
+
+noncomputable def chosenH6SquareE2CofiberComparison :
+    H6SquareE2CofiberComparison 𝒮 Syn :=
+  Classical.choice (h6SquareE2CofiberComparison_exists 𝒮 Syn)
+
+/-- The representative of the classical `h₆²` page class in `S/λ`, obtained
+through the comparison above. -/
+noncomputable def h6SquareCofiberClass :
+    BiHom 126 128 (XModLambda (S_0_0 : Syn)) :=
+  (chosenH6SquareE2CofiberComparison 𝒮 Syn).pageEquiv (h6Square 𝒮)
+
+/-- Missing boundary calculation for the `S/λ` representative of `h₆²`. -/
+theorem delta1_h6SquareCofiberClass_eq_lambdaEtaTheta5Square
+    (theta5 : BiHom 62 64 (S_0_0 : Syn))
+    (hdetected : Theta5Detected (Syn := Syn) theta5) :
+    delta1 Syn (h6SquareCofiberClass 𝒮 Syn) =
+      lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5 := by
+  sorry
+
+/-- Missing comparison: a lift of the chosen `S/λ` representative must
+detect the named classical Adams `h₆²` class in the abutment. -/
+theorem h6Permanent_of_h6SquareCofiberClass_lift
+    (hlift : ∃ lift : BiHom 126 128 (S_0_0 : Syn),
+      lift ≫ XModLambda.incl (S_0_0 : Syn) =
+        h6SquareCofiberClass 𝒮 Syn) :
+    h6Permanent 𝒮 := by
+  sorry
+
+/-- Vanishing of the boundary gives a lift by cofiber exactness; the
+remaining step is the classical Adams detection comparison above. -/
+theorem h6Permanent_of_delta1_h6SquareCofiberClass_zero
+    (hzero : delta1 Syn (h6SquareCofiberClass 𝒮 Syn) = zeroTarget Syn) :
+    h6Permanent 𝒮 := by
+  exact h6Permanent_of_h6SquareCofiberClass_lift 𝒮 Syn
+    ((delta1_zero_iff_lifts Syn (h6SquareCofiberClass 𝒮 Syn)).mp hzero)
+
+noncomputable def chosenH6SquareBoundaryInterface :
+    H6SquareBoundaryInterface 𝒮 Syn where
+  classModLambda := h6SquareCofiberClass 𝒮 Syn
+  boundary_formula :=
+    delta1_h6SquareCofiberClass_eq_lambdaEtaTheta5Square 𝒮 Syn
+  permanent_of_boundary_zero :=
+    h6Permanent_of_delta1_h6SquareCofiberClass_zero 𝒮 Syn
+
+/-- The formal implication needed for Theorem 7.3(2), stated for an arbitrary
+class in `S/λ` together with its boundary and classical comparison data. -/
+theorem h6Permanent_of_boundary_class
+    (q : BiHom 126 128 (XModLambda (S_0_0 : Syn)))
+    (hboundary : ∀ theta5 : BiHom 62 64 (S_0_0 : Syn),
+      Theta5Detected (Syn := Syn) theta5 →
+        delta1 Syn q =
+          lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5)
+    (hcompare : delta1 Syn q = zeroTarget Syn → h6Permanent 𝒮)
+    (theta5 : BiHom 62 64 (S_0_0 : Syn))
+    (hdetected : Theta5Detected (Syn := Syn) theta5)
+    (hzero : lambdaEtaThetaSquare 𝒮 Syn
+      (selectedBindings 𝒮 Syn) theta5 = zeroTarget Syn) :
+    h6Permanent 𝒮 := by
+  apply hcompare
+  exact (hboundary theta5 hdetected).trans hzero
+
+/-- The if direction of Theorem 7.3(2), conditional on the complete boundary
+comparison interface. -/
+theorem theorem7_3_2_if_of_interface
+    (D : H6SquareBoundaryInterface 𝒮 Syn) :
+    (∃ theta5 : BiHom 62 64 (S_0_0 : Syn),
+      Theta5Detected (Syn := Syn) theta5 ∧
+        lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5 =
+          zeroTarget Syn) → h6Permanent 𝒮 := by
+  rintro ⟨theta5, hdetected, hzero⟩
+  exact h6Permanent_of_boundary_class 𝒮 Syn D.classModLambda
+    D.boundary_formula D.permanent_of_boundary_zero theta5 hdetected hzero
+
+/-- The if direction of Theorem 7.3(2), using the three explicit comparison
+obligations above. -/
 theorem theorem7_3_2_if :
     (∃ theta5 : BiHom 62 64 (S_0_0 : Syn),
       Theta5Detected (Syn := Syn) theta5 ∧
         lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5 = zeroTarget Syn) →
       h6Permanent 𝒮 := by
-  sorry
+  exact theorem7_3_2_if_of_interface 𝒮 Syn
+    (chosenH6SquareBoundaryInterface 𝒮 Syn)
 
 /-- The order-two condition on a synthetic `θ₅`. -/
 noncomputable def Theta5OrderTwo (theta5 : BiHom 62 64 (S_0_0 : Syn)) : Prop :=
@@ -737,6 +954,17 @@ axiom af12_indeterminacy_preserves_theta5_square_AF10_detection :
 axiom theta5_detected_exists :
   ∃ theta5 : BiHom 62 64 (S_0_0 : Syn), Theta5Detected (Syn := Syn) theta5
 
+/-- Under the current `h₆²` boundary axiom, the condition in Theorem 7.3(2)
+is automatic once a detected `θ₅` exists. -/
+theorem theorem7_3_2_condition_automatic :
+    ∃ theta5 : BiHom 62 64 (S_0_0 : Syn),
+      Theta5Detected (Syn := Syn) theta5 ∧
+        lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5 =
+          zeroTarget Syn := by
+  obtain ⟨theta5, hdetected⟩ := theta5_detected_exists (Syn := Syn)
+  exact ⟨theta5, hdetected,
+    lambdaEtaThetaSquare_zero_of_detected 𝒮 Syn theta5 hdetected⟩
+
 /-- Statement (4) of Proposition 7.8. -/
 def Statement7_8_4 : Prop :=
   ∃ theta5 : BiHom 62 64 (S_0_0 : Syn),
@@ -853,39 +1081,154 @@ theorem lemma7_11 : Statement7_8_5 (Syn := Syn) ↔
     obtain ⟨x, hx⟩ := h0SquareX124_8_representative_exists (Syn := Syn)
     exact ⟨x, hx, h x hx⟩
 
-/-- Page 46: statements (3), (4'), and (5') force the nonzero classical
-Adams differential `d₁₂(h₆²) = h₁h₄x_{109,12}`. -/
-theorem d12_h6Sq_eq_h1h4x109_12_of_statement3_4prime_5prime :
+/-- Both candidate incoming differentials have target bidegree `(14,139)`
+under the actual Adams spectral sequence's degree rule. -/
+theorem incoming_bidegrees :
+    ((8, 134) : ℤ × ℤ) + (AdamsSS 𝒮 SphereSpectrum).diffDeg 6 = (14, 139) ∧
+    ((2, 128) : ℤ × ℤ) + (AdamsSS 𝒮 SphereSpectrum).diffDeg 12 = (14, 139) := by
+  rw [adamsSS_diffDeg (𝒮 := 𝒮) SphereSpectrum]
+  constructor <;> norm_num [adamsDiffDeg]
+
+/-- Fact 7.6 leaves only a `d₆` or `d₁₂` incoming to the displayed target;
+statement (3) excludes the `d₆` case. -/
+theorem d12_h6Sq_of_incoming_and_statement3
+    (h3 : Near126E2.C3)
+    (hincoming : ∃ r source,
+      Near126E2.Differential r source Near126E2.h1h4x109_12) :
+    Near126E2.Differential 12 Near126E2.h6Sq Near126E2.h1h4x109_12 := by
+  obtain ⟨r, source, hd⟩ := hincoming
+  rcases Near126E2.fact7_6.2.2.1 r source hd with
+    ⟨hr, hsource⟩ | ⟨hr, hsource⟩
+  · subst r
+    subst source
+    exact False.elim (h3 _ hd)
+  · subst r
+    subst source
+    exact hd
+
+/-- Under statement (3), any incoming differential to the named target is
+equivalent to the displayed `d₁₂` case. -/
+theorem incoming_h1h4x109_12_iff_d12_of_statement3
+    (h3 : Near126E2.C3) :
+    (∃ r source,
+      Near126E2.Differential r source Near126E2.h1h4x109_12) ↔
+      Near126E2.Differential 12 Near126E2.h6Sq
+        Near126E2.h1h4x109_12 := by
+  constructor
+  · exact d12_h6Sq_of_incoming_and_statement3 h3
+  · intro hd12
+    exact ⟨12, Near126E2.h6Sq, hd12⟩
+
+/-- The actual `d₁₂` occurrence in the boundary ESS at homotopy degree
+`(126,128)`, from Bockstein bidegree `(2,1)` to its differential target. -/
+def Delta1BocksteinD12Occurs : Prop :=
+  let E := delta1BocksteinESS Syn (126, 128)
+  ∃ source : E.Page 12 (2, 1),
+    ∃ target : E.Page 12 ((2, 1) + E.diffDeg 12),
+      source ≠ 0 ∧ target ≠ 0 ∧ (E.d 12 (2, 1)).hom source = target
+
+/-- The page target in `Delta1BocksteinD12Occurs` is bidegree `(14,0)`:
+the boundary ESS differential has degree `(r,-1)`. -/
+theorem delta1Bockstein_d12_target_degree :
+    ((2, 1) : ℤ × ℤ) +
+        (delta1BocksteinESS Syn (126, 128)).diffDeg 12 = (14, 0) := by
+  simp [delta1BocksteinESS, canonicalLambdaPowerBocksteinESS,
+    SyntheticExtensionCoreData.ess]
+
+/-- The source and target of the actual `δ₁`-Bockstein `d₁₂`, after the
+page-46 affine regrading, have synthetic Adams tridegrees `(2,128,128)` and
+`(14,139,128)`. The first coordinate and internal degree therefore agree
+with the classical `h₆²` and `h₁h₄x_{109,12}` bidegrees. -/
+theorem delta1Bockstein_d12_reindexed_degrees :
+    delta1BocksteinToSyntheticDegree (126, 128) (2, 1) =
+        (2, 128, 128) ∧
+    delta1BocksteinToSyntheticDegree (126, 128)
+        ((2, 1) + (delta1BocksteinESS Syn (126, 128)).diffDeg 12) =
+        (14, 139, 128) := by
+  constructor
+  · norm_num [delta1BocksteinToSyntheticDegree]
+  · rw [delta1Bockstein_d12_target_degree]
+    norm_num [delta1BocksteinToSyntheticDegree]
+
+/-- An occurrence witness certifies that the actual boundary-ESS map
+`d₁₂` is nonzero. -/
+theorem delta1BocksteinD12Occurs.differential_ne
+    (h : Delta1BocksteinD12Occurs (Syn := Syn)) :
+    let E := delta1BocksteinESS Syn (126, 128)
+    E.d 12 (2, 1) ≠ 0 := by
+  dsimp [Delta1BocksteinD12Occurs] at h
+  obtain ⟨source, target, hsource, htarget, hrel⟩ := h
+  change (delta1BocksteinESS Syn (126, 128)).d 12 (2, 1) ≠ 0
+  intro hzero
+  apply htarget
+  have hzeroHom := congrArg (fun d => d.hom) hzero
+  rw [hzeroHom] at hrel
+  simpa using hrel.symm
+
+/-- The page-46 comparison obligations, split at the actual boundary-ESS
+`d₁₂`. The first field computes the nonzero boundary from (3), (4′), and
+(5′). The second realizes it as a nonzero `δ₁`-Bockstein differential. The
+third compares that actual differential with the named Adams-page label.
+
+This is explicit input data, not a global axiom or an arbitrary equivalence
+of E₂ pages. The third field still needs a construction from the actual
+classical Adams spectral sequence before Proposition 7.8 is unconditional. -/
+structure Proposition78DifferentialInterface where
+  nonzeroBoundary_of_conditions :
     Near126E2.C3 → Statement7_10_4prime (Syn := Syn) →
       Statement7_11_5prime (Syn := Syn) →
+        ∃ theta5 : BiHom 62 64 (S_0_0 : Syn),
+          Theta5Detected (Syn := Syn) theta5 ∧
+            lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5 ≠
+              zeroTarget Syn
+  bockstein_of_nonzeroBoundary :
+    ∀ theta5 : BiHom 62 64 (S_0_0 : Syn),
+      Theta5Detected (Syn := Syn) theta5 →
+      lambdaEtaThetaSquare 𝒮 Syn (selectedBindings 𝒮 Syn) theta5 ≠
+        zeroTarget Syn →
+        Delta1BocksteinD12Occurs (Syn := Syn)
+  formal_incoming_of_bockstein :
+    Delta1BocksteinD12Occurs (Syn := Syn) →
+      ∃ r source,
+        Near126E2.Differential r source Near126E2.h1h4x109_12
+
+/-- The page-46 incoming differential follows from the two explicit
+comparison maps in `Proposition78DifferentialInterface`. First, derive the
+actual nonzero differential in the boundary ESS. -/
+theorem delta1BocksteinD12_of_statement3_4prime_5prime
+    (D : Proposition78DifferentialInterface 𝒮 Syn)
+    (h3 : Near126E2.C3)
+    (h4 : Statement7_10_4prime (Syn := Syn))
+    (h5 : Statement7_11_5prime (Syn := Syn)) :
+    Delta1BocksteinD12Occurs (Syn := Syn) := by
+  obtain ⟨theta5, hdetected, hboundary⟩ := D.nonzeroBoundary_of_conditions h3 h4 h5
+  exact D.bockstein_of_nonzeroBoundary theta5 hdetected hboundary
+
+/-- Translate the actual boundary-ESS differential to the formal named
+incoming-differential predicate. -/
+theorem incoming_h1h4x109_12_of_statement3_4prime_5prime :
+    Proposition78DifferentialInterface 𝒮 Syn →
+      Near126E2.C3 → Statement7_10_4prime (Syn := Syn) →
+      Statement7_11_5prime (Syn := Syn) →
+        ∃ r source,
+          Near126E2.Differential r source Near126E2.h1h4x109_12 := by
+  intro D h3 h4 h5
+  exact D.formal_incoming_of_bockstein
+    (delta1BocksteinD12_of_statement3_4prime_5prime 𝒮 Syn D h3 h4 h5)
+
+/-- Page 46: with the comparison interface, statements (3), (4'), and (5')
+force the formal `d₁₂(h₆²) = h₁h₄x_{109,12}` differential predicate. -/
+theorem d12_h6Sq_eq_h1h4x109_12_of_statement3_4prime_5prime :
+    Proposition78DifferentialInterface 𝒮 Syn →
+      Near126E2.C3 → Statement7_10_4prime (Syn := Syn) →
+      Statement7_11_5prime (Syn := Syn) →
         Near126E2.Differential 12 Near126E2.h6Sq Near126E2.h1h4x109_12 := by
-  sorry
+  intro D h3 h4prime h5prime
+  exact d12_h6Sq_of_incoming_and_statement3 h3
+    (incoming_h1h4x109_12_of_statement3_4prime_5prime 𝒮 Syn D h3 h4prime h5prime)
 
 /-- Statement (3) of Proposition 7.8: the possible `d₆` is zero. -/
 def Statement7_8_3 : Prop := Near126E2.C3
-
-/-- Fact 7.6(2), together with synthetic Adams rigidity, identifies the
-specified nonzero AF=14 detection with statement (3). -/
-axiom fact7_6_rigidity_AF14_detection_iff_statement7_8_3 :
-  ∀ x, H0SquareX124_8Representative (Syn := Syn) x →
-    (Lambda3EtaH0SquareDetectedAtAF14 Syn x ↔ Statement7_8_3)
-
-/-- Remark 7.12: statement (5') is equivalent to statement (3). -/
-theorem remark7_12 : Statement7_11_5prime (Syn := Syn) ↔
-    Statement7_8_3 := by
-  constructor
-  · intro h
-    obtain ⟨x, hx⟩ := h0SquareX124_8_representative_exists (Syn := Syn)
-    exact (fact7_6_rigidity_AF14_detection_iff_statement7_8_3 (Syn := Syn) x hx).mp
-      (h x hx)
-  · intro h x hx
-    exact (fact7_6_rigidity_AF14_detection_iff_statement7_8_3 (Syn := Syn) x hx).mpr h
-
-/-- Using Lemma 7.11, statement (5) may also be interchanged with
-statement (3). -/
-theorem statement7_8_5_iff_statement7_8_3 : Statement7_8_5 (Syn := Syn) ↔
-    Statement7_8_3 :=
-  lemma7_11 (Syn := Syn) |>.trans (remark7_12 (Syn := Syn))
 
 /-- The first case in the last part of the proof of Proposition 7.8:
 failure of (4) gives the vanishing required by Theorem 7.3(2). -/
@@ -947,6 +1290,22 @@ theorem h6Permanent_of_not_all_statement7_8_3_4_5
       · exact h6Permanent_of_statement7_8_4_5_and_not_3 𝒮 Syn h4 h5 h3
     · exact h6Permanent_of_statement7_8_4_and_not_5 𝒮 Syn h4 h5
   · exact h6Permanent_of_not_statement7_8_4 𝒮 Syn h4
+
+/-- Outstanding comparison between the concrete `E₂` label and the actual
+classical Adams class. The forward and reverse implications also require
+control of incoming differentials: `AdamsDetection.PermanentCycle` permits
+a zero `E∞` class, whereas `SurvivesToEInfinity` demands a nonzero one. -/
+theorem near126_h6Sq_survives_iff_h6Permanent :
+    Near126E2.SurvivesToEInfinity Near126E2.h6Sq ↔ h6Permanent 𝒮 := by
+  sorry
+
+/-- Outstanding interpretation of the opaque `Near126E2.Differential`
+predicate as a nonzero differential on the actual classical Adams page;
+only after that comparison does it exclude permanence. -/
+theorem near126_d12_excludes_h6Permanent :
+    Near126E2.Differential 12 Near126E2.h6Sq Near126E2.h1h4x109_12 →
+      ¬ h6Permanent 𝒮 := by
+  sorry
 
 /-- The page-49 computation used in Lemma 7.16: under (3), the class
 `λ⁶[h₁h₄x_{109,12}]` remains nonzero in `S/λ⁹`. -/
@@ -1014,9 +1373,12 @@ theorem lemma7_20 :
 (3) and (5′), Lemma 7.20 and Corollary 7.18 would force the class
 `h₁h₄x_{109,12}[0]` in the classical Adams spectral sequence of `S/ν` to
 be killed by a differential of length at most five, contrary to Table 1. -/
+axiom table1 :
+    Statement7_8_3 → Statement7_11_5prime (Syn := Syn) → False
+
 theorem proposition7_9_table1_contradiction
-    (h3 : Statement7_8_3) (h5prime : Statement7_11_5prime (Syn := Syn)) : False := by
-  sorry
+    (h3 : Statement7_8_3) (h5prime : Statement7_11_5prime (Syn := Syn)) : False :=
+  table1 (Syn := Syn) h3 h5prime
 
 /-- Proposition 7.9 in the statement-(3)/(5) formulation of Proposition
 7.8: if (3) holds, then (5) is false. -/
@@ -1026,11 +1388,83 @@ theorem proposition7_9_statement7_8 :
   exact proposition7_9_table1_contradiction Syn h3
     ((lemma7_11 (Syn := Syn)).mp h5)
 
-/-- The original `Near126E2.C5` interface is precisely statement (5) in
-the synthetic formulation of Proposition 7.8. -/
+namespace Near126E2
+
+/-- Proposition 7.8(4), stated using the synthetic detection condition. -/
+def C4 (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
+    [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn] : Prop :=
+  Statement7_8_4 (Syn := Syn)
+
+/-- Proposition 7.8(5), stated using the synthetic extension condition. -/
+def C5 (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
+    [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn] : Prop :=
+  Statement7_8_5 (Syn := Syn)
+
+/-- Proposition 7.8: the specified `d₁₂` occurs exactly when (3), (4), (5) hold. -/
+theorem proposition7_8_d12_of_conditions (Syn : Type u') [Category.{v'} Syn]
+    [Preadditive Syn] [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (D : Proposition78DifferentialInterface 𝒮 Syn)
+    (h : C3 ∧ C4 Syn ∧ C5 Syn) :
+    Differential 12 h6Sq h1h4x109_12 := by
+  obtain ⟨h3, h4, h5⟩ := h
+  exact d12_h6Sq_eq_h1h4x109_12_of_statement3_4prime_5prime 𝒮 Syn D h3
+    ((lemma7_10 (Syn := Syn)).mp h4)
+    ((lemma7_11 (Syn := Syn)).mp h5)
+
+/-- The necessary direction of Proposition 7.8 requires the converse
+comparison from a classical `d₁₂` to the synthetic conditions. -/
+theorem proposition7_8_conditions_of_d12 (𝒮 : Type u)
+    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮]
+    (Syn : Type u') [Category.{v'} Syn]
+    [Preadditive Syn] [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (h : Differential 12 h6Sq h1h4x109_12) : C3 ∧ C4 Syn ∧ C5 Syn := by
+  by_contra hnot
+  have hpermanent := h6Permanent_of_not_all_statement7_8_3_4_5 𝒮 Syn hnot
+  exact (near126_d12_excludes_h6Permanent 𝒮 h) hpermanent
+
+theorem proposition7_8_d12_iff (𝒮 : Type u)
+    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮]
+    (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
+    [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (D : Proposition78DifferentialInterface 𝒮 Syn) :
+    Differential 12 h6Sq h1h4x109_12 ↔ C3 ∧ C4 Syn ∧ C5 Syn := by
+  exact ⟨proposition7_8_conditions_of_d12 𝒮 Syn,
+    proposition7_8_d12_of_conditions 𝒮 Syn D⟩
+
+/-- Proposition 7.8: exactly one of survival and the specified `d₁₂` occurs. -/
+theorem proposition7_8_dichotomy (𝒮 : Type u)
+    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮]
+    (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
+    [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (D : Proposition78DifferentialInterface 𝒮 Syn) :
+    Xor (SurvivesToEInfinity h6Sq) (Differential 12 h6Sq h1h4x109_12) := by
+  by_cases hall : C3 ∧ C4 Syn ∧ C5 Syn
+  · have hd12 := proposition7_8_d12_of_conditions 𝒮 Syn D hall
+    exact Or.inr ⟨hd12, fun hsurvives =>
+      near126_d12_excludes_h6Permanent 𝒮 hd12
+        ((near126_h6Sq_survives_iff_h6Permanent 𝒮).mp hsurvives)⟩
+  · have hpermanent := h6Permanent_of_not_all_statement7_8_3_4_5 𝒮 Syn hall
+    exact Or.inl ⟨(near126_h6Sq_survives_iff_h6Permanent 𝒮).mpr hpermanent,
+      fun hd12 => near126_d12_excludes_h6Permanent 𝒮 hd12 hpermanent⟩
+
+end Near126E2
+
+/-- The original `Near126E2.C5` interface is statement (5). -/
 theorem statement7_8_5_iff_near126_C5 :
-    Statement7_8_5 (Syn := Syn) ↔ Near126E2.C5 := by
-  sorry
+    Statement7_8_5 (Syn := Syn) ↔ Near126E2.C5 Syn := by
+  rfl
 
 namespace Near126E2
 
@@ -1038,20 +1472,23 @@ namespace Near126E2
 theorem proposition7_9 (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
-    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn] : C3 → ¬ C5 := by
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn] : C3 → ¬ C5 Syn := by
   intro h3 h5
   apply proposition7_9_statement7_8 (Syn := Syn) h3
   exact (statement7_8_5_iff_near126_C5 (Syn := Syn)).mpr h5
 
 /-- Theorem 7.1: `h₆²` is a permanent cycle. -/
-theorem h6Sq_permanent_cycle (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
+theorem h6Sq_permanent_cycle (𝒮 : Type u)
+    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮]
+    (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
-    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn] :
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (D : Proposition78DifferentialInterface 𝒮 Syn) :
     SurvivesToEInfinity h6Sq := by
-  rcases proposition7_8_dichotomy with ⟨hsurvives, _⟩ | ⟨hd12, _⟩
+  rcases proposition7_8_dichotomy 𝒮 Syn D with ⟨hsurvives, _⟩ | ⟨hd12, _⟩
   · exact hsurvives
-  · obtain ⟨hc3, _, hc5⟩ := proposition7_8_d12_iff.mp hd12
+  · obtain ⟨hc3, _, hc5⟩ := (proposition7_8_d12_iff 𝒮 Syn D).mp hd12
     exact False.elim (proposition7_9 Syn hc3 hc5)
 
 end Near126E2
