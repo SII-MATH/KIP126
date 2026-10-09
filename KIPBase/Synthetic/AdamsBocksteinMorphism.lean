@@ -5,6 +5,7 @@ import KIPBase.Synthetic.GeometricAdamsLegacy
 import KIPBase.Synthetic.ErPageExtension
 import KIPBase.Synthetic.GeometricAdamsShift
 import KIPBase.Synthetic.LambdaBoundaryNaturality
+import KIPBase.Synthetic.QuotientTower
 
 /-!
 # Reindexed Adams--lambda-Bockstein comparison
@@ -2690,6 +2691,55 @@ theorem NuSynAdamsGeometricComparison.adamsDifferential_to_bocksteinPage
     rfl, hcap, hdiff, htarget,
     C.cap_boundary_eq_prescribed_adams_target s n t x y hxy c hc, hyB⟩
 
+/-- The additive map on Adams differential images sends a specified
+differential target to the actual target page class obtained from the same
+geometric cap. This identifies the image map with the geometric boundary
+on every represented differential. -/
+theorem NuSynAdamsGeometricComparison.differentialImage_map_eq_geometric_target
+    [SyntheticShiftCofiberCompatibility (Syn := Syn)]
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
+    (s n : ℕ) (t : ℤ)
+    (x : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ) ((s : ℤ), t, t))
+    (y : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ),
+          t + ((n + 2 : ℕ) : ℤ) - 1, t))
+    (hxy : (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+      ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x = y) :
+    let degree := lambdaBocksteinGeneratorDegree (s : ℤ) t
+    let B := canonicalLambdaBocksteinESS ((nu 𝒮 Syn).obj X) degree
+    ∃ (bOne : Smn (Syn := Syn) degree.1 degree.2 ⟶
+        (shiftFunctor Syn (1 : ℤ)).obj
+          ((SyntheticCategory.biShift (0, (-1 : ℤ))).obj
+            ((nu 𝒮 Syn).obj X)))
+      (yPage : AddCommGrpCat.of ℤ ⟶
+        B.Page ((n + 2 : ℕ) : ℤ)
+          ((s : ℤ) + ((n + 2 : ℕ) : ℤ), 0)),
+      LambdaBocksteinTargetPageRep (Syn := Syn)
+        ((nu 𝒮 Syn).obj X) degree ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ)) bOne yPage ∧
+      (C.adamsDifferentialImageToBocksteinImage s n t
+        ⟨y, ⟨x, hxy⟩⟩).val = yPage.hom 1 := by
+  dsimp only
+  obtain ⟨_, bOne, _, yPage, _, _, _, hrep, hdiff⟩ :=
+    C.exists_targetRep_comm_of_adams_differential s n t x y hxy
+  refine ⟨bOne, yPage, hrep, ?_⟩
+  have hmap := C.adamsDifferentialImageToBocksteinImage_apply s n t x
+  dsimp only at hmap
+  have hvalue := congrArg Subtype.val hmap
+  have hsource :
+      (⟨y, ⟨x, hxy⟩⟩ :
+        (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+          ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom.range) =
+      ⟨(synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+          ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x, ⟨x, rfl⟩⟩ :=
+    Subtype.ext hxy.symm
+  rw [hsource]
+  exact hvalue.trans hdiff
+
 /-- The geometric E₂ source comparison extends to all affine degrees while
 carrying every later Adams cycle subobject into the corresponding
 λ-Bockstein cycle subobject. -/
@@ -2739,5 +2789,674 @@ theorem NuSynAdamsGeometricComparison.exists_e2_underlying_morphism_base
       C.E2UnderlyingAgreesAtSource s t Φ ∧
         Φ.PreservesZ ∧ Φ.PreservesB ∧ Φ.CommutesD2 := by
   sorry
+
+/-! ### The direct lambda-lift Bockstein input
+
+For a coherent tower of finite lambda quotients, the starting group is the
+homotopy group of `X / lambda`.  A class belongs to the `i`-th cycle group
+exactly when it lifts along the restriction `X / lambda^(i + 1) -> X / lambda`.
+
+The boundary of such a lift has a mandatory suspension and weight shift.  The
+following `obstruction` is the literal composite
+`X / lambda^(i + 1) -> Sigma^{1,-i-1} X ->
+ Sigma^{1,-i-1}(X / lambda)`; after the standard homotopy regrading this is
+the differential specified by the lambda-Bockstein construction.
+-/
+
+/-- The initial group of the direct lambda-lift Bockstein construction. -/
+abbrev lambdaLiftBocksteinV (X T : Syn) : Type _ :=
+  T ⟶ XModLambdaN X 1
+
+/-- Reduction of a class modulo `lambda^(i+1)` to a class modulo `lambda`. -/
+noncomputable def lambdaLiftBocksteinLift
+    (Q : FiniteLambdaQuotientTower X) (T : Syn) (i : ℕ) :
+    (T ⟶ XModLambdaN X (i + 1)) →+ lambdaLiftBocksteinV X T where
+  toFun a := a ≫ Q.rho 1 (i + 1) (Nat.succ_le_succ (Nat.zero_le i))
+  map_zero' := zero_comp
+  map_add' _ _ := by simp only [Preadditive.add_comp]
+
+/-- `Z_i` consists of exactly those mod-`lambda` classes which lift to
+modulo `lambda^(i+1)`. -/
+noncomputable def lambdaLiftBocksteinZ
+    (Q : FiniteLambdaQuotientTower X) (T : Syn) (i : ℕ) :
+    AddSubgroup (lambdaLiftBocksteinV X T) :=
+  (lambdaLiftBocksteinLift Q T i).range
+
+/-- The differential obstruction associated to a specified lift.  It is the
+cofiber boundary followed by the shifted reduction `X -> X / lambda`.
+The target is deliberately displayed with its suspension and weight shift;
+the spectral-sequence target is obtained from it by homotopy regrading. -/
+noncomputable def lambdaLiftBocksteinObstruction
+    (X T : Syn) (i : ℕ) :
+    (T ⟶ XModLambdaN X (i + 1)) →+
+      (T ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+        ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).obj
+          (XModLambdaN X 1))) where
+  toFun a := a ≫ syn_functorial_cofiber.cofibδ (lambdaPow (i + 1) X) ≫
+    (shiftFunctor Syn (1 : ℤ)).map
+      ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).map
+        (syn_functorial_cofiber.cofibι (lambdaPow 1 X)))
+  map_zero' := by
+    simp only [zero_comp]
+  map_add' _ _ := by
+    simp only [Preadditive.add_comp]
+
+/-- The boundary-and-reduction map attached to an arbitrary positive lambda
+power.  The page-indexed obstruction above is this map at power `i+1`. -/
+noncomputable def lambdaPowerBocksteinBoundaryImage
+    (X T : Syn) (n : ℕ) :
+    (T ⟶ XModLambdaN X n) →+
+      (T ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+        ((SyntheticCategory.biShift (0, -(n : ℤ))).obj
+          (XModLambdaN X 1))) where
+  toFun a := a ≫ syn_functorial_cofiber.cofibδ (lambdaPow n X) ≫
+    (shiftFunctor Syn (1 : ℤ)).map
+      ((SyntheticCategory.biShift (0, -(n : ℤ))).map
+        (syn_functorial_cofiber.cofibι (lambdaPow 1 X)))
+  map_zero' := by simp only [zero_comp]
+  map_add' _ _ := by simp only [Preadditive.add_comp]
+
+/-- The incoming-boundary subgroup at filtration `i`, before identifying the
+suspended target with its regraded homotopy group.  Thus this is literally
+the image of
+`X / lambda^(i+1) -> Sigma^{1,-i-1} X ->
+ Sigma^{1,-i-1}(X / lambda)`.
+
+For `T = S^{m,w}`, suspension invariance identifies its ambient group with
+`pi_{m-1,w+i+1}(X / lambda)`, which is the target bidegree of the
+lambda-Bockstein differential. -/
+noncomputable def lambdaLiftBocksteinNextBoundaryImage
+    (X T : Syn) (i : ℕ) :
+    AddSubgroup
+      (T ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+        ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).obj
+          (XModLambdaN X 1))) :=
+  (lambdaLiftBocksteinObstruction X T i).range
+
+/-- Membership in `B_i` is exactly representation by the boundary of a
+finite-quotient class. -/
+theorem mem_lambdaLiftBocksteinNextBoundaryImage_iff
+    (X T : Syn) (i : ℕ)
+    (x : T ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).obj
+        (XModLambdaN X 1))) :
+    x ∈ lambdaLiftBocksteinNextBoundaryImage X T i ↔
+      ∃ a : T ⟶ XModLambdaN X (i + 1),
+        lambdaLiftBocksteinObstruction X T i a = x :=
+  Iff.rfl
+
+/-- Isomorphisms of source and target induce an additive equivalence on Hom
+groups. -/
+private noncomputable def lambdaLiftHomCongrAddEquiv
+    {A B C D : Syn} (e : A ≅ B) (f : C ≅ D) :
+    (A ⟶ C) ≃+ (B ⟶ D) where
+  toFun x := e.inv ≫ x ≫ f.hom
+  invFun x := e.hom ≫ x ≫ f.inv
+  left_inv x := by simp [Category.assoc]
+  right_inv x := by simp [Category.assoc]
+  map_add' x y := by simp only [Preadditive.add_comp, Preadditive.comp_add]
+
+/-- The additive form of suspension invariance. -/
+private noncomputable def lambdaLiftSuspAddEquiv
+    (Y : Syn) (m w : ℤ) (n : ℕ) :
+    (Smn (Syn := Syn) (m - 1) (w + n) ⟶ Y) ≃+
+      (Smn (Syn := Syn) m w ⟶
+        (SyntheticCategory.biShift (1, -(n : ℤ))).obj Y) := by
+  let F := SyntheticCategory.biShift (Syn := Syn) (1, -(n : ℤ))
+  let sphereIso : F.obj (Smn (Syn := Syn) (m - 1) (w + n)) ≅
+      Smn (Syn := Syn) m w := by
+    change (SyntheticCategory.biShift (1, -(n : ℤ))).obj
+        ((SyntheticCategory.biShift (m - 1, w + n)).obj S_0_0) ≅
+      (SyntheticCategory.biShift (m, w)).obj S_0_0
+    exact (SyntheticCategory.biShift_comp
+      (m - 1, w + n) (1, -(n : ℤ))).app S_0_0 ≪≫
+        eqToIso (by
+          congr 1
+          exact congrArg SyntheticCategory.biShift
+            (by ext <;> simp <;> omega))
+  let shiftEquiv :
+      (Smn (Syn := Syn) (m - 1) (w + n) ⟶ Y) ≃+
+        (F.obj (Smn (Syn := Syn) (m - 1) (w + n)) ⟶ F.obj Y) :=
+    AddEquiv.ofBijective F.mapAddHom
+      ((biShift_fullyFaithful (Syn := Syn) (1, -(n : ℤ))).map_bijective _ _)
+  exact shiftEquiv.trans (lambdaLiftHomCongrAddEquiv sphereIso (Iso.refl _))
+
+private theorem lambdaLiftSuspAddEquiv_naturality
+    {Y Z : Syn} (f : Y ⟶ Z) (m w : ℤ) (n : ℕ)
+    (a : Smn (Syn := Syn) m w ⟶
+      (SyntheticCategory.biShift (1, -(n : ℤ))).obj Y) :
+    (lambdaLiftSuspAddEquiv Z m w n).symm
+        (a ≫ (SyntheticCategory.biShift (1, -(n : ℤ))).map f) =
+      (lambdaLiftSuspAddEquiv Y m w n).symm a ≫ f := by
+  let F := SyntheticCategory.biShift (Syn := Syn) (1, -(n : ℤ))
+  have hmap (g : Smn (Syn := Syn) (m - 1) (w + n) ⟶ Y) :
+      lambdaLiftSuspAddEquiv Z m w n (g ≫ f) =
+        lambdaLiftSuspAddEquiv Y m w n g ≫ F.map f := by
+    simp [lambdaLiftSuspAddEquiv, lambdaLiftHomCongrAddEquiv,
+      F, Functor.map_comp, Category.assoc]
+  apply (lambdaLiftSuspAddEquiv Z m w n).injective
+  rw [AddEquiv.apply_symm_apply, hmap, AddEquiv.apply_symm_apply]
+
+/-- Suspension and weight regrading for a boundary target. -/
+noncomputable def lambdaBoundaryTargetReindexEquiv
+    (Y : Syn) (m w : ℤ) (i : ℕ) :
+    (Smn (Syn := Syn) m w ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).obj
+        Y)) ≃+
+      (Smn (Syn := Syn) (m - 1) (w + (i + 1 : ℕ)) ⟶ Y) :=
+  (lambdaLiftHomCongrAddEquiv (Iso.refl _)
+    (LambdaPowerBoundary.targetIso Y (i + 1))).trans
+      (lambdaLiftSuspAddEquiv Y m w (i + 1)).symm
+
+/-- The same regrading, indexed directly by the lambda power. -/
+noncomputable def lambdaPowerBoundaryTargetReindexEquiv
+    (Y : Syn) (m w : ℤ) (n : ℕ) :
+    (Smn (Syn := Syn) m w ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -(n : ℤ))).obj Y)) ≃+
+      (Smn (Syn := Syn) (m - 1) (w + n) ⟶ Y) :=
+  (lambdaLiftHomCongrAddEquiv (Iso.refl _)
+    (LambdaPowerBoundary.targetIso Y n)).trans
+      (lambdaLiftSuspAddEquiv Y m w n).symm
+
+/-- The correct zero-indexed incoming-boundary group.  `B 0` is zero; for
+`i > 0`, it is the image of the boundary from `X / lambda^i`. -/
+noncomputable def lambdaLiftBocksteinB
+    (X T : Syn) (i : ℕ) :
+    AddSubgroup (T ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -(i : ℤ))).obj
+        (XModLambdaN X 1))) :=
+  if i = 0 then ⊥ else (lambdaPowerBocksteinBoundaryImage X T i).range
+
+/-- The incoming-boundary group in its target homotopy bidegree. -/
+noncomputable def lambdaLiftBocksteinBReindexed
+    (X : Syn) (m w : ℤ) (i : ℕ) :
+    AddSubgroup (lambdaLiftBocksteinV X
+      (Smn (Syn := Syn) (m - 1) (w + i))) :=
+  (lambdaLiftBocksteinB X (Smn m w) i).map
+    (lambdaPowerBoundaryTargetReindexEquiv (XModLambdaN X 1) m w i).toAddMonoidHom
+
+/-- Power-indexed target regrading commutes with postcomposition. -/
+theorem lambdaPowerBoundaryTargetReindexEquiv_naturality
+    {Y Z : Syn} (f : Y ⟶ Z) (m w : ℤ) (n : ℕ)
+    (a : Smn (Syn := Syn) m w ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -(n : ℤ))).obj Y)) :
+    lambdaPowerBoundaryTargetReindexEquiv Z m w n
+        (a ≫ (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -(n : ℤ))).map f)) =
+      lambdaPowerBoundaryTargetReindexEquiv Y m w n a ≫ f := by
+  have htarget :
+      (LambdaPowerBoundary.targetIso Y n).hom ≫
+        (SyntheticCategory.biShift (1, -(n : ℤ))).map f =
+      (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -(n : ℤ))).map f) ≫
+        (LambdaPowerBoundary.targetIso Z n).hom := by
+    have hidx : ((0 : ℤ), -(n : ℤ)) + ((1 : ℤ), 0) =
+        ((1 : ℤ), -(n : ℤ)) := by
+      ext <;> simp
+    have hfun :
+        SyntheticCategory.biShift (Syn := Syn) ((0, -(n : ℤ)) + (1, 0)) =
+          SyntheticCategory.biShift (Syn := Syn) (1, -(n : ℤ)) := by
+      exact congrArg
+        (fun p : ℤ × ℤ => (SyntheticCategory.biShift (Syn := Syn) p : Syn ⥤ Syn)) hidx
+    have hEq : ∀ {F G : Syn ⥤ Syn} (p : F = G),
+        eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Y) p) ≫ G.map f =
+          F.map f ≫ eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Z) p) := by
+      intro F G p
+      cases p
+      simp
+    have hE := hEq hfun
+    have hObj (W : Syn) :
+        (eqToIso (by simp :
+          (SyntheticCategory.biShift (Syn := Syn)
+            ((0, -(n : ℤ)) + (1, 0))).obj W =
+          (SyntheticCategory.biShift (Syn := Syn) (1, -(n : ℤ))).obj W)).hom =
+        eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj W) hfun) := by
+      rfl
+    have hC := (SyntheticCategory.biShift_comp
+      (0, -(n : ℤ)) (1, 0)).hom.naturality f
+    have hcombined := (congrArg
+      (fun g => (SyntheticCategory.biShift_comp
+        (0, -(n : ℤ)) (1, 0)).hom.app Y ≫ g) hE).trans
+      (by
+        simpa only [Category.assoc] using
+          congrArg (fun g => g ≫
+            eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Z) hfun)) hC.symm)
+    have hCompat := (SyntheticCategory.biShift_compat (Syn := Syn) 1).inv.naturality
+      ((SyntheticCategory.biShift (0, -(n : ℤ))).map f)
+    let cY := (SyntheticCategory.biShift_compat (Syn := Syn) 1).inv.app
+      ((SyntheticCategory.biShift (0, -(n : ℤ))).obj Y)
+    let cZ := (SyntheticCategory.biShift_compat (Syn := Syn) 1).inv.app
+      ((SyntheticCategory.biShift (0, -(n : ℤ))).obj Z)
+    calc
+      (LambdaPowerBoundary.targetIso Y n).hom ≫
+          (SyntheticCategory.biShift (1, -(n : ℤ))).map f =
+        cY ≫ ((SyntheticCategory.biShift_comp
+          (0, -(n : ℤ)) (1, 0)).hom.app Y ≫
+          eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Y) hfun) ≫
+          (SyntheticCategory.biShift (1, -(n : ℤ))).map f) := by
+            simp [LambdaPowerBoundary.targetIso, cY, Category.assoc, hObj]
+      _ = cY ≫ ((SyntheticCategory.biShift (0, -(n : ℤ)) ⋙
+          SyntheticCategory.biShift (1, 0)).map f ≫
+          (SyntheticCategory.biShift_comp
+            (0, -(n : ℤ)) (1, 0)).hom.app Z ≫
+          eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Z) hfun)) :=
+            congrArg (fun g => cY ≫ g) hcombined
+      _ = (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -(n : ℤ))).map f) ≫
+          cZ ≫ (SyntheticCategory.biShift_comp
+            (0, -(n : ℤ)) (1, 0)).hom.app Z ≫
+          eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Z) hfun) := by
+            simp only [Functor.comp_map]
+            calc
+              cY ≫ (SyntheticCategory.biShift (1, 0)).map
+                  ((SyntheticCategory.biShift (0, -(n : ℤ))).map f) ≫
+                  (SyntheticCategory.biShift_comp
+                    (0, -(n : ℤ)) (1, 0)).hom.app Z ≫
+                  eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Z) hfun) =
+                (cY ≫ (SyntheticCategory.biShift (1, 0)).map
+                    ((SyntheticCategory.biShift (0, -(n : ℤ))).map f)) ≫
+                  ((SyntheticCategory.biShift_comp
+                    (0, -(n : ℤ)) (1, 0)).hom.app Z ≫
+                    eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Z) hfun)) := by
+                    simp only [Category.assoc]
+              _ = ((shiftFunctor Syn (1 : ℤ)).map
+                    ((SyntheticCategory.biShift (0, -(n : ℤ))).map f) ≫ cZ) ≫
+                  ((SyntheticCategory.biShift_comp
+                    (0, -(n : ℤ)) (1, 0)).hom.app Z ≫
+                    eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Z) hfun)) :=
+                    congrArg (fun g => g ≫
+                      ((SyntheticCategory.biShift_comp
+                        (0, -(n : ℤ)) (1, 0)).hom.app Z ≫
+                        eqToHom (congrArg (fun H : Syn ⥤ Syn => H.obj Z) hfun)))
+                      hCompat.symm
+              _ = _ := by simp only [Category.assoc]
+      _ = (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -(n : ℤ))).map f) ≫
+          (LambdaPowerBoundary.targetIso Z n).hom := by
+            simp [LambdaPowerBoundary.targetIso, cZ, Category.assoc, hObj]
+  simp only [lambdaPowerBoundaryTargetReindexEquiv, AddEquiv.trans_apply,
+    lambdaLiftHomCongrAddEquiv, Iso.refl_inv, Category.id_comp]
+  change (lambdaLiftSuspAddEquiv Z m w n).symm
+      ((a ≫ (shiftFunctor Syn (1 : ℤ)).map
+        ((SyntheticCategory.biShift (0, -(n : ℤ))).map f)) ≫
+          (LambdaPowerBoundary.targetIso Z n).hom) =
+    (lambdaLiftSuspAddEquiv Y m w n).symm
+      (a ≫ (LambdaPowerBoundary.targetIso Y n).hom) ≫ f
+  rw [Category.assoc, ← htarget, ← Category.assoc]
+  exact lambdaLiftSuspAddEquiv_naturality f m w n
+    (a ≫ (LambdaPowerBoundary.targetIso Y n).hom)
+
+/-- The zero-indexed incoming boundaries are contained in the corresponding
+lift cycles. -/
+theorem lambdaLiftBocksteinBReindexed_le_Z
+    (Q : FiniteLambdaQuotientTower X) (m w : ℤ) (i : ℕ) :
+    lambdaLiftBocksteinBReindexed X m w i ≤
+      lambdaLiftBocksteinZ Q
+        (Smn (Syn := Syn) (m - 1) (w + i)) i := by
+  by_cases hi : i = 0
+  · subst i
+    simp only [lambdaLiftBocksteinBReindexed, lambdaLiftBocksteinB,
+      ↓reduceIte, AddSubgroup.map_bot]
+    exact bot_le
+  · intro x hx
+    rcases hx with ⟨b, hb, rfl⟩
+    simp only [lambdaLiftBocksteinB, if_neg hi] at hb
+    rcases hb with ⟨a, rfl⟩
+    let bLiftRaw : Smn (Syn := Syn) m w ⟶
+        (shiftFunctor Syn (1 : ℤ)).obj
+          ((SyntheticCategory.biShift (0, -(i : ℤ))).obj
+            (XModLambdaN X (i + 1))) :=
+      a ≫ syn_functorial_cofiber.cofibδ (lambdaPow i X) ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -(i : ℤ))).map
+            (syn_functorial_cofiber.cofibι (lambdaPow (i + 1) X)))
+    let bLift : Smn (Syn := Syn) (m - 1) (w + i) ⟶
+        XModLambdaN X (i + 1) :=
+      lambdaPowerBoundaryTargetReindexEquiv
+        (XModLambdaN X (i + 1)) m w i bLiftRaw
+    refine ⟨bLift, ?_⟩
+    change bLift ≫ Q.rho 1 (i + 1) (Nat.succ_le_succ (Nat.zero_le i)) =
+      lambdaPowerBoundaryTargetReindexEquiv (XModLambdaN X 1) m w i
+        (lambdaPowerBocksteinBoundaryImage X (Smn m w) i a)
+    rw [← lambdaPowerBoundaryTargetReindexEquiv_naturality
+      (Q.rho 1 (i + 1) (Nat.succ_le_succ (Nat.zero_le i))) m w i bLiftRaw]
+    dsimp only [bLiftRaw, bLift, lambdaPowerBocksteinBoundaryImage]
+    simp only [Category.assoc, ← Functor.map_comp]
+    have hι := Q.incl_comp_rho (Nat.succ_le_succ (Nat.zero_le i))
+    have h := congrArg (fun g : X ⟶ XModLambdaN X 1 =>
+      lambdaPowerBoundaryTargetReindexEquiv (XModLambdaN X 1) m w i
+        (a ≫ syn_functorial_cofiber.cofibδ (lambdaPow i X) ≫
+          (shiftFunctor Syn (1 : ℤ)).map
+            ((SyntheticCategory.biShift (0, -(i : ℤ))).map g))) hι
+    exact h
+
+/-- The `j`-th incoming-boundary image, placed in a fixed target bidegree.
+The source weight is shifted by `-j`, so all such images have the same
+target group. -/
+noncomputable def lambdaLiftBocksteinBoundaryAt
+    (X : Syn) (m w : ℤ) (j : ℕ) :
+    AddSubgroup (lambdaLiftBocksteinV X (Smn (Syn := Syn) m w)) := by
+  have hm : (m + 1) - 1 = m := by omega
+  have hw : (w - (j : ℤ)) + (j : ℤ) = w := by omega
+  have hidx : ((m + 1) - 1, (w - (j : ℤ)) + (j : ℤ)) = (m, w) :=
+    Prod.ext hm hw
+  let e : Smn (Syn := Syn) ((m + 1) - 1) ((w - (j : ℤ)) + j) =
+      Smn (Syn := Syn) m w := congrArg
+        (fun p => (SyntheticCategory.biShift p).obj S_0_0) hidx
+  exact Eq.mp (congrArg (fun T : Syn => AddSubgroup (lambdaLiftBocksteinV X T)) e)
+    (lambdaLiftBocksteinBReindexed X (m + 1) (w - (j : ℤ)) j)
+
+/-- The boundary filtration is the cumulative sum of all incoming boundary
+images through stage `i`. -/
+noncomputable def lambdaLiftBocksteinBCumulative
+    (X : Syn) (m w : ℤ) (i : ℕ) :
+    AddSubgroup (lambdaLiftBocksteinV X (Smn (Syn := Syn) m w)) :=
+  ⨆ j : Fin (i + 1), lambdaLiftBocksteinBoundaryAt X m w j.val
+
+/-- Cumulative incoming boundaries are increasing. -/
+theorem lambdaLiftBocksteinBCumulative_mono
+    (X : Syn) (m w : ℤ) {i j : ℕ} (hij : i ≤ j) :
+    lambdaLiftBocksteinBCumulative X m w i ≤
+      lambdaLiftBocksteinBCumulative X m w j := by
+  apply iSup_le
+  intro k
+  apply le_iSup_of_le ⟨k.val, Nat.lt_succ_iff.mpr (k.is_le.trans hij)⟩
+  rfl
+
+/-- The direct incoming-boundary image, regarded as a subgroup of the
+lift-cycle group.  By definition this is the image of
+`X / lambda^i -> X -> X / lambda` in the fixed target bidegree. -/
+noncomputable def lambdaLiftBocksteinBInZ
+    (Q : FiniteLambdaQuotientTower X) (m w : ℤ) (i : ℕ) :
+    AddSubgroup (lambdaLiftBocksteinZ Q (Smn (Syn := Syn) m w) i) :=
+  (lambdaLiftBocksteinBoundaryAt X m w i).comap
+    (lambdaLiftBocksteinZ Q (Smn (Syn := Syn) m w) i).subtype
+
+/-- The `i`-th page group in a fixed homotopy bidegree. -/
+abbrev lambdaLiftBocksteinPage
+    {X : Syn} (Q : FiniteLambdaQuotientTower X) (m w : ℤ) (i : ℕ) : Type _ :=
+  (↑(lambdaLiftBocksteinZ Q (Smn (Syn := Syn) m w) i) : Type _) ⧸
+    lambdaLiftBocksteinBInZ Q m w i
+
+/-- Suspension and weight regrading of the target of the `i`-th boundary. -/
+noncomputable def lambdaLiftBocksteinTargetReindexEquiv
+    (X : Syn) (m w : ℤ) (i : ℕ) :
+    (Smn (Syn := Syn) m w ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).obj
+        (XModLambdaN X 1))) ≃+
+      lambdaLiftBocksteinV X
+        (Smn (Syn := Syn) (m - 1) (w + (i + 1 : ℕ))) :=
+  lambdaBoundaryTargetReindexEquiv (XModLambdaN X 1) m w i
+
+/-- Regrading a boundary target commutes with postcomposition. -/
+theorem lambdaBoundaryTargetReindexEquiv_naturality
+    {Y Z : Syn} (f : Y ⟶ Z) (m w : ℤ) (i : ℕ)
+    (a : Smn (Syn := Syn) m w ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).obj Y)) :
+    lambdaBoundaryTargetReindexEquiv Z m w i
+        (a ≫ (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).map f)) =
+      lambdaBoundaryTargetReindexEquiv Y m w i a ≫ f := by
+  exact lambdaPowerBoundaryTargetReindexEquiv_naturality f m w (i + 1) a
+
+/-- `B_i` transported into its actual target homotopy bidegree. -/
+noncomputable def lambdaLiftBocksteinNextBoundaryImageReindexed
+    (X : Syn) (m w : ℤ) (i : ℕ) :
+    AddSubgroup (lambdaLiftBocksteinV X
+      (Smn (Syn := Syn) (m - 1) (w + (i + 1 : ℕ)))) :=
+  (lambdaLiftBocksteinNextBoundaryImage X (Smn m w) i).map
+    (lambdaLiftBocksteinTargetReindexEquiv X m w i).toAddMonoidHom
+
+/-- A regraded target class is in `B_i` exactly when it is the regraded
+boundary of a class modulo `lambda^(i+1)`. -/
+theorem mem_lambdaLiftBocksteinNextBoundaryImageReindexed_iff
+    (X : Syn) (m w : ℤ) (i : ℕ)
+    (x : lambdaLiftBocksteinV X
+      (Smn (Syn := Syn) (m - 1) (w + (i + 1 : ℕ)))) :
+    x ∈ lambdaLiftBocksteinNextBoundaryImageReindexed X m w i ↔
+      ∃ a : Smn (Syn := Syn) m w ⟶ XModLambdaN X (i + 1),
+        lambdaLiftBocksteinTargetReindexEquiv X m w i
+          (lambdaLiftBocksteinObstruction X (Smn m w) i a) = x := by
+  constructor
+  · rintro ⟨y, ⟨a, rfl⟩, hy⟩
+    exact ⟨a, hy⟩
+  · rintro ⟨a, ha⟩
+    exact ⟨lambdaLiftBocksteinObstruction X (Smn m w) i a,
+      ⟨a, rfl⟩, ha⟩
+
+/-- Every incoming `i`-boundary has an `i`-lift.  The lift is obtained by
+retaining the boundary in `X / lambda^(i+1)` and only then applying the tower
+restriction to `X / lambda`. -/
+theorem lambdaLiftBocksteinNextBoundaryImageReindexed_le_Z
+    (Q : FiniteLambdaQuotientTower X) (m w : ℤ) (i : ℕ) :
+    lambdaLiftBocksteinNextBoundaryImageReindexed X m w i ≤
+      lambdaLiftBocksteinZ Q
+        (Smn (Syn := Syn) (m - 1) (w + (i + 1 : ℕ))) i := by
+  intro x hx
+  obtain ⟨a, ha⟩ :=
+    (mem_lambdaLiftBocksteinNextBoundaryImageReindexed_iff X m w i x).mp hx
+  let n : ℕ := i + 1
+  let bLiftRaw : Smn (Syn := Syn) m w ⟶
+      (shiftFunctor Syn (1 : ℤ)).obj
+        ((SyntheticCategory.biShift (0, -(n : ℤ))).obj
+          (XModLambdaN X n)) :=
+    a ≫ syn_functorial_cofiber.cofibδ (lambdaPow n X) ≫
+      (shiftFunctor Syn (1 : ℤ)).map
+        ((SyntheticCategory.biShift (0, -(n : ℤ))).map
+          (syn_functorial_cofiber.cofibι (lambdaPow n X)))
+  let bLift : Smn (Syn := Syn) (m - 1) (w + (i + 1 : ℕ)) ⟶
+      XModLambdaN X n :=
+    lambdaBoundaryTargetReindexEquiv (XModLambdaN X n) m w i bLiftRaw
+  refine ⟨bLift, ?_⟩
+  rw [← ha]
+  change bLift ≫ Q.rho 1 n (Nat.succ_le_succ (Nat.zero_le i)) =
+    lambdaLiftBocksteinTargetReindexEquiv X m w i
+      (lambdaLiftBocksteinObstruction X (Smn m w) i a)
+  rw [← lambdaBoundaryTargetReindexEquiv_naturality
+    (Q.rho 1 n (Nat.succ_le_succ (Nat.zero_le i))) m w i bLiftRaw]
+  dsimp only [bLiftRaw, n, lambdaLiftBocksteinObstruction,
+    lambdaLiftBocksteinTargetReindexEquiv]
+  simp only [Category.assoc, ← Functor.map_comp]
+  have hι := Q.incl_comp_rho (Nat.succ_le_succ (Nat.zero_le i))
+  have h := congrArg (fun g : X ⟶ XModLambdaN X 1 =>
+    lambdaBoundaryTargetReindexEquiv (XModLambdaN X 1) m w i
+      (a ≫ syn_functorial_cofiber.cofibδ (lambdaPow (i + 1) X) ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -((i + 1 : ℕ) : ℤ))).map g))) hι
+  exact h
+
+/-- Membership in the direct `Z_i` filtration is precisely the existence of
+a lift to the finite quotient `X / lambda^(i+1)`. -/
+theorem mem_lambdaLiftBocksteinZ_iff
+    (Q : FiniteLambdaQuotientTower X) (T : Syn) (i : ℕ)
+    (x : lambdaLiftBocksteinV X T) :
+    x ∈ lambdaLiftBocksteinZ Q T i ↔
+      ∃ a : T ⟶ XModLambdaN X (i + 1),
+        lambdaLiftBocksteinLift Q T i a = x :=
+  Iff.rfl
+
+/-- Restricting a lift along the finite quotient tower does not change its
+mod-`lambda` reduction. -/
+theorem lambdaLiftBocksteinLift_restrict
+    (Q : FiniteLambdaQuotientTower X) (T : Syn)
+    {i j : ℕ} (hij : i ≤ j) (a : T ⟶ XModLambdaN X (j + 1)) :
+    lambdaLiftBocksteinLift Q T i
+        (a ≫ Q.rho (i + 1) (j + 1) (Nat.succ_le_succ hij)) =
+      lambdaLiftBocksteinLift Q T j a := by
+  change (a ≫ Q.rho (i + 1) (j + 1) (Nat.succ_le_succ hij)) ≫
+      Q.rho 1 (i + 1) (Nat.succ_le_succ (Nat.zero_le i)) =
+    a ≫ Q.rho 1 (j + 1) (Nat.succ_le_succ (Nat.zero_le j))
+  rw [Category.assoc, Q.rho_trans
+    (Nat.succ_le_succ (Nat.zero_le i)) (Nat.succ_le_succ hij)]
+
+/-- The lift filtration is decreasing: a lift modulo a larger power of
+`lambda` supplies a lift modulo every smaller power. -/
+theorem lambdaLiftBocksteinZ_anti
+    (Q : FiniteLambdaQuotientTower X) (T : Syn)
+    {i j : ℕ} (hij : i ≤ j) :
+    lambdaLiftBocksteinZ Q T j ≤ lambdaLiftBocksteinZ Q T i := by
+  rintro x ⟨a, rfl⟩
+  refine ⟨a ≫ Q.rho (i + 1) (j + 1) (Nat.succ_le_succ hij), ?_⟩
+  exact lambdaLiftBocksteinLift_restrict Q T hij a
+
+/-- A chosen finite-quotient lift of a lift-cycle. -/
+noncomputable def lambdaLiftBocksteinChosenLift
+    (Q : FiniteLambdaQuotientTower X) (T : Syn) (i : ℕ)
+    (x : lambdaLiftBocksteinZ Q T i) : T ⟶ XModLambdaN X (i + 1) :=
+  Classical.choose ((mem_lambdaLiftBocksteinZ_iff Q T i x.val).mp x.property)
+
+theorem lambdaLiftBocksteinChosenLift_spec
+    (Q : FiniteLambdaQuotientTower X) (T : Syn) (i : ℕ)
+    (x : lambdaLiftBocksteinZ Q T i) :
+    lambdaLiftBocksteinLift Q T i
+      (lambdaLiftBocksteinChosenLift Q T i x) = x.val :=
+  Classical.choose_spec ((mem_lambdaLiftBocksteinZ_iff Q T i x.val).mp x.property)
+
+/-- The raw `i`-th Bockstein boundary of a lift-cycle, in its regraded target
+homotopy group. -/
+noncomputable def lambdaLiftBocksteinRawDifferential
+    (Q : FiniteLambdaQuotientTower X) (m w : ℤ) (i : ℕ) :
+    lambdaLiftBocksteinZ Q (Smn (Syn := Syn) m w) i →
+      lambdaLiftBocksteinV X
+        (Smn (Syn := Syn) (m - 1) (w + (i + 1 : ℕ))) :=
+  fun x => lambdaLiftBocksteinTargetReindexEquiv X m w i
+    (lambdaLiftBocksteinObstruction X (Smn m w) i
+      (lambdaLiftBocksteinChosenLift Q (Smn m w) i x))
+
+/-- The raw boundary of an `i`-cycle is again an `i`-cycle in the target
+bidegree. -/
+theorem lambdaLiftBocksteinRawDifferential_mem_Z
+    (Q : FiniteLambdaQuotientTower X) (m w : ℤ) (i : ℕ)
+    (x : lambdaLiftBocksteinZ Q (Smn (Syn := Syn) m w) i) :
+    lambdaLiftBocksteinRawDifferential Q m w i x ∈
+      lambdaLiftBocksteinZ Q
+        (Smn (Syn := Syn) (m - 1) (w + (i + 1 : ℕ))) i := by
+  apply lambdaLiftBocksteinNextBoundaryImageReindexed_le_Z Q m w i
+  refine ⟨lambdaLiftBocksteinObstruction X (Smn m w) i
+      (lambdaLiftBocksteinChosenLift Q (Smn m w) i x), ?_, rfl⟩
+  exact ⟨lambdaLiftBocksteinChosenLift Q (Smn m w) i x, rfl⟩
+
+/-- The initial underlying morphism for the direct lambda-lift Bockstein
+spectral sequence.  This is exactly the already constructed geometric E₂
+comparison; no second choice of components is made. -/
+abbrev ClassicalAdamsToLambdaLiftBocksteinUnderlyingMorphism
+    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮] (X : 𝒮) :=
+  ClassicalAdamsToLambdaBocksteinUnderlyingMorphism (Syn := Syn) 𝒮 X
+
+/-- Register the existing geometric E₂ comparison as the underlying map for
+the direct lambda-lift construction. -/
+noncomputable def classicalAdamsToLambdaLiftBocksteinUnderlyingMorphism
+    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮] (X : 𝒮) :
+    ClassicalAdamsToLambdaLiftBocksteinUnderlyingMorphism
+      (Syn := Syn) 𝒮 X :=
+  classicalAdamsToLambdaBocksteinUnderlyingMorphism (Syn := Syn) 𝒮 X
+
+@[simp] theorem classicalAdamsToLambdaLiftBocksteinUnderlyingMorphism_φ
+    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮]
+    (X : 𝒮) (s t : ℤ) :
+    (classicalAdamsToLambdaLiftBocksteinUnderlyingMorphism
+      (Syn := Syn) 𝒮 X).φ s t =
+      (classicalAdamsToLambdaBocksteinUnderlyingMorphism
+        (Syn := Syn) 𝒮 X).φ s t :=
+  rfl
+
+/-- Under `(m,w) = (t-s,t)`, Adams page `i+2` is equivalent to the
+direct lambda-lift Bockstein page `i`.  The initial component is the
+geometric underlying comparison registered above. -/
+theorem classicalAdamsToLambdaLiftBockstein_pageEquivalence
+    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮]
+    (X : 𝒮) (Q : FiniteLambdaQuotientTower ((nu 𝒮 Syn).obj X))
+    (i : ℕ) (m w : ℤ) :
+    Nonempty (↑((StableHomotopy.AdamsSS 𝒮 X).Page ((i + 2 : ℕ) : ℤ)
+      (w - m, w)) ≃+
+      lambdaLiftBocksteinPage Q m w i) := by
+  sorry
+
+/-- The initial component required for the comparison morphism is the fixed
+geometric underlying map. -/
+theorem classicalAdamsToLambdaLiftBockstein_initial_component
+    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮]
+    (X : 𝒮) (s t : ℤ) :
+    (classicalAdamsToLambdaLiftBocksteinUnderlyingMorphism
+      (Syn := Syn) 𝒮 X).φ s t =
+      (classicalAdamsToLambdaBocksteinUnderlyingMorphism
+        (Syn := Syn) 𝒮 X).φ s t := by
+  rfl
+
+/-- Cycle preservation required to extend the geometric E₂ map to the
+direct lambda-lift comparison morphism. -/
+theorem classicalAdamsToLambdaLiftBockstein_preserves_Z
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M) (s : ℕ) (t : ℤ) :
+    ∃ Φ : C.BoundaryESSUnderlyingCandidate s t,
+      C.E2UnderlyingAgreesAtSource s t Φ ∧ Φ.PreservesZ := by
+  sorry
+
+/-- Boundary preservation required to extend the geometric E₂ map to the
+direct lambda-lift comparison morphism. -/
+theorem classicalAdamsToLambdaLiftBockstein_preserves_B
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M) (s : ℕ) (t : ℤ) :
+    ∃ Φ : C.BoundaryESSUnderlyingCandidate s t,
+      C.E2UnderlyingAgreesAtSource s t Φ ∧ Φ.PreservesB := by
+  sorry
+
+/-- First-differential compatibility required for the comparison morphism. -/
+theorem classicalAdamsToLambdaLiftBockstein_commutes_d2
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M) (s : ℕ) (t : ℤ) :
+    ∃ Φ : C.BoundaryESSUnderlyingCandidate s t,
+      C.E2UnderlyingAgreesAtSource s t Φ ∧ Φ.CommutesD2 := by
+  sorry
+
+/-- The four base conditions are supplied by one common underlying family;
+this is the base datum for the inductive spectral-sequence morphism. -/
+theorem classicalAdamsToLambdaLiftBockstein_morphism_base
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M) (s : ℕ) (t : ℤ) :
+    ∃ Φ : C.BoundaryESSUnderlyingCandidate s t,
+      C.E2UnderlyingAgreesAtSource s t Φ ∧ Φ.PreservesZ ∧
+        Φ.PreservesB ∧ Φ.CommutesD2 := by
+  sorry
+
+/-- The Adams `E₂` group of `nu X` is identified with the first geometric
+page of its abstract Adams tower.  The right hand side is defined directly
+from disk representatives, their graded-piece sources, and their boundaries. -/
+theorem NuSynAdamsGeometricModel.adamsE2_geometricPageOne_equiv
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} (M : NuSynAdamsGeometricModel 𝒮 Syn X)
+    (s : ℕ) (t : ℤ) :
+    Nonempty (↑((SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page 2
+      (s, t, t)) ≃+
+      M.input.PageGroup
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s 1 le_rfl) := by
+  sorry
+
+/-- On the geometric page representing Adams `E₂`, every graded-piece class
+is represented by a disk. -/
+theorem NuSynAdamsGeometricModel.adamsE2_geometric_Z
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} (M : NuSynAdamsGeometricModel 𝒮 Syn X)
+    (s : ℕ) (t : ℤ) :
+    M.input.sourceCycles
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s 1 le_rfl = ⊤ :=
+  M.input.sourceCycles_one _ s
+
+/-- On the geometric page representing Adams `E₂`, no disk boundary has yet
+entered from a shorter stage. -/
+theorem NuSynAdamsGeometricModel.adamsE2_geometric_B
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} (M : NuSynAdamsGeometricModel 𝒮 Syn X)
+    (s : ℕ) (t : ℤ) :
+    M.input.incomingBoundaries
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s 1 le_rfl = ⊥ :=
+  M.input.incomingBoundaries_one _ s
 
 end KIPBase.Synthetic

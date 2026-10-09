@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "title": "KIPBase Lean 声明进度清单",
-  "recorded_at": "2026-10-08",
+  "recorded_at": "2026-10-09",
   "coverage": "all named declarations under KIPBase/**/*.lean",
   "status_semantics": {
     "blocked": "声明的代码范围内仍有 sorry。",
@@ -9,23 +9,23 @@
     "axiom_backed": "声明以 axiom 形式给出，或其数学内容没有证明体。"
   },
   "summary": {
-    "files": 100,
-    "declarations": 2418,
-    "blocked": 25,
-    "axiom_backed": 124,
+    "files": 102,
+    "declarations": 2533,
+    "blocked": 30,
+    "axiom_backed": 116,
     "by_kind": {
-      "abbrev": 95,
-      "axiom": 124,
-      "class": 16,
-      "def": 944,
+      "abbrev": 98,
+      "axiom": 116,
+      "class": 18,
+      "def": 979,
       "inductive": 2,
       "instance": 35,
       "lemma": 38,
-      "opaque": 13,
-      "structure": 124,
-      "theorem": 1027
+      "opaque": 10,
+      "structure": 128,
+      "theorem": 1109
     },
-    "no_sorry_body": 2269
+    "no_sorry_body": 2387
   },
   "files": [
     {
@@ -687,883 +687,1105 @@
         {
           "name": "pageProduct",
           "kind": "def",
-          "line": 17,
+          "line": 18,
           "status": "no_sorry_body"
         },
         {
           "name": "h5Square",
           "kind": "def",
-          "line": 29,
+          "line": 30,
           "status": "no_sorry_body"
         },
         {
           "name": "h6Square",
           "kind": "def",
-          "line": 33,
+          "line": 34,
           "status": "no_sorry_body"
         },
         {
           "name": "h6Permanent",
           "kind": "def",
-          "line": 37,
+          "line": 38,
           "status": "no_sorry_body"
         },
         {
           "name": "generator_mem",
           "kind": "theorem",
-          "line": 48,
+          "line": 50,
           "status": "no_sorry_body"
         },
         {
           "name": "generatorClass",
           "kind": "def",
-          "line": 55,
+          "line": 56,
           "status": "no_sorry_body"
         },
         {
           "name": "h0",
           "kind": "def",
-          "line": 59,
+          "line": 61,
           "status": "no_sorry_body"
         },
         {
           "name": "h1",
           "kind": "def",
-          "line": 63,
+          "line": 65,
           "status": "no_sorry_body"
         },
         {
           "name": "h4",
           "kind": "def",
-          "line": 67,
+          "line": 69,
           "status": "no_sorry_body"
         },
         {
           "name": "g",
           "kind": "def",
-          "line": 71,
+          "line": 73,
           "status": "no_sorry_body"
         },
         {
           "name": "deltaH1g",
           "kind": "def",
-          "line": 75,
+          "line": 77,
           "status": "no_sorry_body"
         },
         {
           "name": "x109_12",
           "kind": "def",
-          "line": 79,
+          "line": 81,
           "status": "no_sorry_body"
         },
         {
           "name": "x126_8",
           "kind": "def",
-          "line": 83,
+          "line": 85,
           "status": "no_sorry_body"
         },
         {
           "name": "x126_8_4",
           "kind": "def",
-          "line": 87,
+          "line": 89,
           "status": "no_sorry_body"
         },
         {
           "name": "x124_8",
           "kind": "def",
-          "line": 91,
+          "line": 93,
           "status": "no_sorry_body"
         },
         {
           "name": "h1h4x109_12",
           "kind": "def",
-          "line": 95,
+          "line": 97,
           "status": "no_sorry_body"
         },
         {
           "name": "x126_8_4_add_x126_8",
           "kind": "def",
-          "line": 99,
+          "line": 101,
           "status": "no_sorry_body"
         },
         {
           "name": "h0SqX124_8",
           "kind": "def",
-          "line": 103,
+          "line": 105,
           "status": "no_sorry_body"
         },
         {
           "name": "gPow4DeltaH1g",
           "kind": "def",
-          "line": 107,
+          "line": 109,
           "status": "no_sorry_body"
         },
         {
           "name": "h6",
           "kind": "def",
-          "line": 111,
+          "line": 113,
           "status": "no_sorry_body"
         },
         {
           "name": "h6Sq",
           "kind": "def",
-          "line": 115,
+          "line": 117,
           "status": "no_sorry_body"
         },
         {
           "name": "x126_6",
           "kind": "def",
-          "line": 118,
+          "line": 121,
           "status": "no_sorry_body"
         },
         {
           "name": "SurvivesToPage",
           "kind": "opaque",
-          "line": 123,
+          "line": 125,
           "status": "no_sorry_body"
         },
         {
           "name": "IsPermanentCycle",
           "kind": "opaque",
-          "line": 126,
+          "line": 128,
           "status": "no_sorry_body"
         },
         {
           "name": "SurvivesToEInfinity",
           "kind": "opaque",
-          "line": 129,
+          "line": 131,
           "status": "no_sorry_body"
         },
         {
           "name": "Differential",
           "kind": "opaque",
-          "line": 132,
+          "line": 134,
           "status": "no_sorry_body"
         },
         {
           "name": "IsUniqueSurvivorOnPage",
           "kind": "opaque",
-          "line": 135,
+          "line": 137,
           "status": "no_sorry_body"
         },
         {
           "name": "fact7_6",
           "kind": "axiom",
-          "line": 138,
+          "line": 141,
+          "status": "axiom_backed"
+        },
+        {
+          "name": "table5",
+          "kind": "theorem",
+          "line": 151,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table6",
+          "kind": "theorem",
+          "line": 157,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table9",
+          "kind": "axiom",
+          "line": 161,
           "status": "axiom_backed"
         },
         {
           "name": "remark7_7",
-          "kind": "axiom",
-          "line": 149,
-          "status": "axiom_backed"
+          "kind": "theorem",
+          "line": 165,
+          "status": "no_sorry_body"
         },
         {
           "name": "Fact7_13Classes",
           "kind": "structure",
-          "line": 154,
+          "line": 170,
           "status": "no_sorry_body"
         },
         {
           "name": "Fact7_13Classes.x123_9_add_h0_x123_8",
           "kind": "def",
-          "line": 160,
+          "line": 176,
           "status": "no_sorry_body"
         },
         {
           "name": "Fact7_13Classes.d2Target",
           "kind": "def",
-          "line": 165,
-          "status": "no_sorry_body"
-        },
-        {
-          "name": "fact7_13",
-          "kind": "axiom",
-          "line": 169,
-          "status": "axiom_backed"
-        },
-        {
-          "name": "Fact7_15Classes",
-          "kind": "structure",
-          "line": 177,
-          "status": "no_sorry_body"
-        },
-        {
-          "name": "Fact7_15Classes.h0SqX125_9_2",
-          "kind": "def",
           "line": 181,
           "status": "no_sorry_body"
         },
         {
-          "name": "fact7_15",
+          "name": "table3",
           "kind": "axiom",
           "line": 185,
           "status": "axiom_backed"
         },
         {
+          "name": "fact7_13",
+          "kind": "theorem",
+          "line": 192,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "Fact7_15Classes",
+          "kind": "structure",
+          "line": 200,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "Fact7_15Classes.h0SqX125_9_2",
+          "kind": "def",
+          "line": 204,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table7",
+          "kind": "axiom",
+          "line": 208,
+          "status": "axiom_backed"
+        },
+        {
+          "name": "fact7_15",
+          "kind": "theorem",
+          "line": 214,
+          "status": "no_sorry_body"
+        },
+        {
           "name": "Fact7_19Classes",
           "kind": "structure",
-          "line": 192,
+          "line": 221,
           "status": "no_sorry_body"
         },
         {
           "name": "Fact7_19Classes.h1X121_7",
           "kind": "def",
-          "line": 196,
+          "line": 225,
           "status": "no_sorry_body"
-        },
-        {
-          "name": "fact7_19",
-          "kind": "axiom",
-          "line": 200,
-          "status": "axiom_backed"
         },
         {
           "name": "Fact7_21Classes",
           "kind": "structure",
-          "line": 207,
+          "line": 229,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table2",
+          "kind": "axiom",
+          "line": 234,
+          "status": "axiom_backed"
+        },
+        {
+          "name": "fact7_19",
+          "kind": "theorem",
+          "line": 242,
           "status": "no_sorry_body"
         },
         {
           "name": "fact7_21",
-          "kind": "axiom",
-          "line": 212,
-          "status": "axiom_backed"
+          "kind": "theorem",
+          "line": 249,
+          "status": "no_sorry_body"
         },
         {
           "name": "C3",
-          "kind": "opaque",
-          "line": 218,
+          "kind": "def",
+          "line": 256,
           "status": "no_sorry_body"
-        },
-        {
-          "name": "C4",
-          "kind": "opaque",
-          "line": 222,
-          "status": "no_sorry_body"
-        },
-        {
-          "name": "C5",
-          "kind": "opaque",
-          "line": 226,
-          "status": "no_sorry_body"
-        },
-        {
-          "name": "proposition7_8_dichotomy",
-          "kind": "theorem",
-          "line": 230,
-          "status": "blocked"
-        },
-        {
-          "name": "proposition7_8_d12_iff",
-          "kind": "theorem",
-          "line": 236,
-          "status": "blocked"
         },
         {
           "name": "syntheticSphereProduct",
           "kind": "def",
-          "line": 261,
+          "line": 278,
           "status": "no_sorry_body"
         },
         {
           "name": "syntheticSphereAction",
           "kind": "def",
-          "line": 270,
+          "line": 289,
           "status": "no_sorry_body"
         },
         {
           "name": "HasEInftyClass",
           "kind": "def",
-          "line": 284,
+          "line": 301,
           "status": "no_sorry_body"
         },
         {
           "name": "EInftyDetects",
           "kind": "def",
-          "line": 293,
+          "line": 310,
           "status": "no_sorry_body"
         },
         {
           "name": "DetectsAbutment",
           "kind": "def",
-          "line": 304,
+          "line": 321,
           "status": "no_sorry_body"
         },
         {
           "name": "PermanentCycle",
           "kind": "def",
-          "line": 311,
+          "line": 328,
           "status": "no_sorry_body"
         },
         {
           "name": "permanent_of_detects",
           "kind": "theorem",
-          "line": 316,
+          "line": 333,
           "status": "no_sorry_body"
         },
         {
           "name": "SphereE2SyntheticE2Comparison",
           "kind": "structure",
-          "line": 326,
+          "line": 346,
           "status": "no_sorry_body"
         },
         {
           "name": "sphereE2SyntheticE2Comparison_exists",
           "kind": "theorem",
-          "line": 333,
+          "line": 353,
           "status": "blocked"
         },
         {
           "name": "SphereE2ClassDetects",
           "kind": "def",
-          "line": 340,
+          "line": 360,
           "status": "no_sorry_body"
         },
         {
           "name": "toSyntheticAdamsReindexedBiHom",
           "kind": "def",
-          "line": 352,
+          "line": 371,
           "status": "no_sorry_body"
         },
         {
           "name": "Theta5Bindings",
           "kind": "structure",
-          "line": 363,
+          "line": 380,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaEtaThetaSquare",
           "kind": "def",
-          "line": 371,
+          "line": 388,
           "status": "no_sorry_body"
         },
         {
           "name": "zeroTarget",
           "kind": "def",
-          "line": 377,
+          "line": 394,
           "status": "no_sorry_body"
         },
         {
           "name": "selectedBindings",
           "kind": "axiom",
-          "line": 382,
+          "line": 399,
           "status": "axiom_backed"
         },
         {
           "name": "Theta5Detected",
           "kind": "opaque",
-          "line": 384,
+          "line": 402,
           "status": "no_sorry_body"
         },
         {
           "name": "syntheticH6",
           "kind": "axiom",
-          "line": 387,
+          "line": 406,
           "status": "axiom_backed"
         },
         {
           "name": "SphereE2SyntheticNamedBindings",
           "kind": "structure",
-          "line": 391,
+          "line": 411,
           "status": "no_sorry_body"
         },
         {
           "name": "syntheticH6Square",
           "kind": "def",
-          "line": 399,
+          "line": 417,
           "status": "no_sorry_body"
         },
         {
           "name": "syntheticH6SquareModLambda",
           "kind": "def",
-          "line": 403,
+          "line": 421,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBoundaryTargetIso",
           "kind": "def",
-          "line": 408,
+          "line": 426,
           "status": "no_sorry_body"
         },
         {
           "name": "delta1",
           "kind": "def",
-          "line": 416,
+          "line": 435,
           "status": "no_sorry_body"
         },
         {
           "name": "delta1BocksteinESS",
           "kind": "def",
-          "line": 423,
+          "line": 442,
           "status": "no_sorry_body"
         },
         {
           "name": "delta1BocksteinToSyntheticDegree",
           "kind": "def",
-          "line": 428,
+          "line": 448,
           "status": "no_sorry_body"
         },
         {
           "name": "delta1Bockstein_degree_compat",
           "kind": "theorem",
-          "line": 435,
+          "line": 454,
           "status": "no_sorry_body"
         },
         {
           "name": "delta1_h6Square_eq_lambdaEtaTheta5Square",
           "kind": "axiom",
-          "line": 449,
+          "line": 468,
           "status": "axiom_backed"
+        },
+        {
+          "name": "syntheticH6SquareModLambda_has_lift",
+          "kind": "theorem",
+          "line": 474,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "delta1_of_incl_zero",
+          "kind": "theorem",
+          "line": 481,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "delta1_zero_iff_lifts",
+          "kind": "theorem",
+          "line": 508,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "delta1_syntheticH6SquareModLambda_zero",
+          "kind": "theorem",
+          "line": 550,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaEtaThetaSquare_zero_of_detected",
+          "kind": "theorem",
+          "line": 557,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "H6SquareBoundaryInterface",
+          "kind": "structure",
+          "line": 570,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "H6SquareBoundaryInterface.old_class_forces_permanence",
+          "kind": "theorem",
+          "line": 581,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "H6SquareE2CofiberComparison",
+          "kind": "structure",
+          "line": 591,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "h6SquareE2CofiberComparison_exists",
+          "kind": "theorem",
+          "line": 597,
+          "status": "blocked"
+        },
+        {
+          "name": "chosenH6SquareE2CofiberComparison",
+          "kind": "def",
+          "line": 601,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "h6SquareCofiberClass",
+          "kind": "def",
+          "line": 607,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "delta1_h6SquareCofiberClass_eq_lambdaEtaTheta5Square",
+          "kind": "theorem",
+          "line": 612,
+          "status": "blocked"
+        },
+        {
+          "name": "h6Permanent_of_h6SquareCofiberClass_lift",
+          "kind": "theorem",
+          "line": 621,
+          "status": "blocked"
+        },
+        {
+          "name": "h6Permanent_of_delta1_h6SquareCofiberClass_zero",
+          "kind": "theorem",
+          "line": 630,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "chosenH6SquareBoundaryInterface",
+          "kind": "def",
+          "line": 636,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "in",
+          "kind": "class",
+          "line": 645,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "h6Permanent_of_boundary_class",
+          "kind": "theorem",
+          "line": 646,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "theorem7_3_2_if_of_interface",
+          "kind": "theorem",
+          "line": 663,
+          "status": "no_sorry_body"
         },
         {
           "name": "theorem7_3_2_if",
           "kind": "theorem",
-          "line": 456,
-          "status": "blocked"
+          "line": 675,
+          "status": "no_sorry_body"
         },
         {
           "name": "Theta5OrderTwo",
           "kind": "def",
-          "line": 465,
+          "line": 684,
           "status": "no_sorry_body"
         },
         {
           "name": "AdamsFiltrationAtLeast",
           "kind": "opaque",
-          "line": 471,
+          "line": 690,
           "status": "no_sorry_body"
         },
         {
           "name": "theta5Difference",
           "kind": "def",
-          "line": 475,
+          "line": 693,
           "status": "no_sorry_body"
         },
         {
           "name": "theta5Square",
           "kind": "def",
-          "line": 481,
+          "line": 699,
           "status": "no_sorry_body"
         },
         {
           "name": "theta5SquareDifference",
           "kind": "def",
-          "line": 485,
+          "line": 703,
           "status": "no_sorry_body"
         },
         {
           "name": "Theta5IndeterminacyAtLeast",
           "kind": "def",
-          "line": 491,
+          "line": 711,
           "status": "no_sorry_body"
         },
         {
           "name": "Theta5SquareIndeterminacyAtLeast",
           "kind": "def",
-          "line": 497,
+          "line": 717,
           "status": "no_sorry_body"
         },
         {
           "name": "H0SquareX124_8Representative",
           "kind": "opaque",
-          "line": 503,
+          "line": 722,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaSixH0Square",
           "kind": "def",
-          "line": 506,
+          "line": 725,
           "status": "no_sorry_body"
         },
         {
           "name": "Theta5SquareDetectedAtAF10",
           "kind": "def",
-          "line": 516,
+          "line": 736,
           "status": "no_sorry_body"
         },
         {
           "name": "theta5Square_eq_lambdaSixH0Square_of_AF10_detection",
           "kind": "theorem",
-          "line": 523,
+          "line": 742,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaPowerAction",
           "kind": "def",
-          "line": 532,
+          "line": 751,
           "status": "no_sorry_body"
         },
         {
           "name": "IsLambdaTorsion",
           "kind": "def",
-          "line": 543,
+          "line": 762,
           "status": "no_sorry_body"
         },
         {
           "name": "stem124_lambda_torsion_lower_bound",
           "kind": "theorem",
-          "line": 550,
+          "line": 771,
           "status": "blocked"
         },
         {
           "name": "stem124_weight128_has_no_lambda_torsion",
           "kind": "theorem",
-          "line": 558,
+          "line": 777,
           "status": "no_sorry_body"
         },
         {
           "name": "sphereModLambdaNine",
           "kind": "abbrev",
-          "line": 567,
+          "line": 786,
           "status": "no_sorry_body"
         },
         {
           "name": "toSphereModLambdaNine",
           "kind": "def",
-          "line": 570,
+          "line": 789,
           "status": "no_sorry_body"
         },
         {
           "name": "Lemma7_14Data",
           "kind": "structure",
-          "line": 575,
+          "line": 795,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaThreeEtaAlpha1",
           "kind": "def",
-          "line": 582,
+          "line": 800,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaThreeModLambdaNineH0Square",
           "kind": "def",
-          "line": 588,
+          "line": 806,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaSixAlpha2",
           "kind": "def",
-          "line": 593,
+          "line": 811,
           "status": "no_sorry_body"
         },
         {
           "name": "etaAlpha2",
           "kind": "def",
-          "line": 598,
+          "line": 816,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaAlpha3",
           "kind": "def",
-          "line": 603,
+          "line": 821,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaThreeAlpha1H0",
           "kind": "def",
-          "line": 608,
+          "line": 826,
           "status": "no_sorry_body"
         },
         {
           "name": "lemma7_14",
           "kind": "theorem",
-          "line": 614,
+          "line": 834,
           "status": "blocked"
         },
         {
           "name": "theta5Square_three_possibilities",
           "kind": "axiom",
-          "line": 633,
+          "line": 854,
           "status": "axiom_backed"
         },
         {
           "name": "lambdaEtaTheta5Square_is_lambda10_multiple_of_second_alternative",
           "kind": "theorem",
-          "line": 647,
+          "line": 867,
           "status": "blocked"
         },
         {
           "name": "lambdaEtaTheta5Square_is_lambda10_multiple_of_third_alternative",
           "kind": "theorem",
-          "line": 658,
+          "line": 878,
           "status": "blocked"
         },
         {
           "name": "lambdaEtaTheta5Square_eq_zero_of_lambda10_multiple",
           "kind": "theorem",
-          "line": 669,
+          "line": 890,
           "status": "blocked"
         },
         {
           "name": "theta5_order_two",
           "kind": "axiom",
-          "line": 681,
+          "line": 900,
           "status": "axiom_backed"
         },
         {
           "name": "theta5_indeterminacy_AF_ge_6",
           "kind": "axiom",
-          "line": 686,
+          "line": 906,
           "status": "axiom_backed"
         },
         {
           "name": "theta5_square_difference_of_order_two",
           "kind": "axiom",
-          "line": 693,
+          "line": 913,
           "status": "axiom_backed"
         },
         {
           "name": "adams_filtration_comp",
           "kind": "axiom",
-          "line": 700,
+          "line": 919,
           "status": "axiom_backed"
         },
         {
           "name": "theta5_square_indeterminacy_AF_ge_12",
           "kind": "theorem",
-          "line": 708,
+          "line": 928,
           "status": "no_sorry_body"
         },
         {
           "name": "af12_indeterminacy_preserves_theta5_square_AF10_detection",
           "kind": "axiom",
-          "line": 727,
+          "line": 947,
           "status": "axiom_backed"
         },
         {
           "name": "theta5_detected_exists",
           "kind": "axiom",
-          "line": 735,
+          "line": 954,
           "status": "axiom_backed"
+        },
+        {
+          "name": "theorem7_3_2_condition_automatic",
+          "kind": "theorem",
+          "line": 959,
+          "status": "no_sorry_body"
         },
         {
           "name": "Statement7_8_4",
           "kind": "def",
-          "line": 739,
+          "line": 969,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaEtaTheta5Square_eq_zero_of_not_statement7_8_4",
           "kind": "theorem",
-          "line": 744,
+          "line": 975,
           "status": "no_sorry_body"
         },
         {
           "name": "Statement7_10_4prime",
           "kind": "def",
-          "line": 759,
+          "line": 989,
           "status": "no_sorry_body"
         },
         {
           "name": "lemma7_10",
           "kind": "theorem",
-          "line": 764,
+          "line": 995,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaThreeEtaH0Square",
           "kind": "def",
-          "line": 778,
+          "line": 1009,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaSixH1H4X109_12",
           "kind": "def",
-          "line": 787,
+          "line": 1018,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaThreeEtaH0Square_eq_lambdaSixH1H4X109_12",
           "kind": "axiom",
-          "line": 798,
+          "line": 1028,
           "status": "axiom_backed"
         },
         {
           "name": "Lambda3EtaH0SquareDetectedAtAF14",
           "kind": "opaque",
-          "line": 804,
+          "line": 1035,
           "status": "no_sorry_body"
         },
         {
           "name": "Lambda3EtaH0SquareIndeterminacyAtLeast",
           "kind": "opaque",
-          "line": 809,
+          "line": 1039,
           "status": "no_sorry_body"
         },
         {
           "name": "lambda3_eta_h0Square_indeterminacy_AF_ge_15",
           "kind": "axiom",
-          "line": 813,
+          "line": 1044,
           "status": "axiom_backed"
         },
         {
           "name": "af15_indeterminacy_preserves_lambda3_eta_h0Square_AF14_detection",
           "kind": "axiom",
-          "line": 820,
+          "line": 1050,
           "status": "axiom_backed"
         },
         {
           "name": "h0SquareX124_8_representative_exists",
           "kind": "axiom",
-          "line": 826,
+          "line": 1056,
           "status": "axiom_backed"
         },
         {
           "name": "Statement7_8_5",
           "kind": "def",
-          "line": 831,
+          "line": 1061,
           "status": "no_sorry_body"
         },
         {
           "name": "Statement7_11_5prime",
           "kind": "def",
-          "line": 837,
+          "line": 1067,
           "status": "no_sorry_body"
         },
         {
           "name": "lemma7_11",
           "kind": "theorem",
-          "line": 843,
+          "line": 1074,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "incoming_bidegrees",
+          "kind": "theorem",
+          "line": 1086,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "d12_h6Sq_of_incoming_and_statement3",
+          "kind": "theorem",
+          "line": 1094,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "incoming_h1h4x109_12_iff_d12_of_statement3",
+          "kind": "theorem",
+          "line": 1111,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "Delta1BocksteinD12Occurs",
+          "kind": "def",
+          "line": 1124,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "delta1Bockstein_d12_target_degree",
+          "kind": "theorem",
+          "line": 1132,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "delta1Bockstein_d12_reindexed_degrees",
+          "kind": "theorem",
+          "line": 1142,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "delta1BocksteinD12Occurs.differential_ne",
+          "kind": "theorem",
+          "line": 1155,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "Proposition78DifferentialInterface",
+          "kind": "structure",
+          "line": 1176,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "delta1BocksteinD12_of_statement3_4prime_5prime",
+          "kind": "theorem",
+          "line": 1198,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "incoming_h1h4x109_12_of_statement3_4prime_5prime",
+          "kind": "theorem",
+          "line": 1209,
           "status": "no_sorry_body"
         },
         {
           "name": "d12_h6Sq_eq_h1h4x109_12_of_statement3_4prime_5prime",
           "kind": "theorem",
-          "line": 855,
-          "status": "blocked"
+          "line": 1221,
+          "status": "no_sorry_body"
         },
         {
           "name": "Statement7_8_3",
           "kind": "def",
-          "line": 863,
-          "status": "no_sorry_body"
-        },
-        {
-          "name": "fact7_6_rigidity_AF14_detection_iff_statement7_8_3",
-          "kind": "axiom",
-          "line": 866,
-          "status": "axiom_backed"
-        },
-        {
-          "name": "remark7_12",
-          "kind": "theorem",
-          "line": 872,
-          "status": "no_sorry_body"
-        },
-        {
-          "name": "statement7_8_5_iff_statement7_8_3",
-          "kind": "theorem",
-          "line": 883,
+          "line": 1231,
           "status": "no_sorry_body"
         },
         {
           "name": "h6Permanent_of_not_statement7_8_4",
           "kind": "theorem",
-          "line": 889,
+          "line": 1235,
           "status": "no_sorry_body"
         },
         {
           "name": "exists_lambdaEtaTheta5Square_eq_zero_of_statement7_8_4_and_not_5",
           "kind": "theorem",
-          "line": 898,
+          "line": 1245,
           "status": "blocked"
         },
         {
           "name": "h6Permanent_of_statement7_8_4_and_not_5",
           "kind": "theorem",
-          "line": 909,
+          "line": 1254,
           "status": "no_sorry_body"
         },
         {
           "name": "exists_lambdaEtaTheta5Square_eq_zero_of_statement7_8_4_5_and_not_3",
           "kind": "theorem",
-          "line": 916,
+          "line": 1263,
           "status": "blocked"
         },
         {
           "name": "h6Permanent_of_statement7_8_4_5_and_not_3",
           "kind": "theorem",
-          "line": 928,
+          "line": 1273,
           "status": "no_sorry_body"
         },
         {
           "name": "h6Permanent_of_not_all_statement7_8_3_4_5",
           "kind": "theorem",
-          "line": 937,
+          "line": 1283,
           "status": "no_sorry_body"
+        },
+        {
+          "name": "near126_h6Sq_survives_iff_h6Permanent",
+          "kind": "theorem",
+          "line": 1298,
+          "status": "blocked"
+        },
+        {
+          "name": "near126_d12_excludes_h6Permanent",
+          "kind": "theorem",
+          "line": 1305,
+          "status": "blocked"
         },
         {
           "name": "lambdaSix_h1h4x109_12_nonzero_in_modLambdaNine_of_statement7_8_3",
           "kind": "theorem",
-          "line": 950,
+          "line": 1312,
           "status": "blocked"
         },
         {
           "name": "LambdaFourH0SqX125_9_2Class",
           "kind": "structure",
-          "line": 960,
+          "line": 1321,
           "status": "no_sorry_body"
         },
         {
           "name": "lemma7_16",
           "kind": "theorem",
-          "line": 964,
+          "line": 1327,
           "status": "blocked"
         },
         {
           "name": "corollary7_18",
           "kind": "theorem",
-          "line": 978,
+          "line": 1341,
           "status": "no_sorry_body"
         },
         {
           "name": "Lemma7_20Data",
           "kind": "structure",
-          "line": 993,
+          "line": 1356,
           "status": "no_sorry_body"
         },
         {
           "name": "lemma7_20",
           "kind": "theorem",
-          "line": 1001,
+          "line": 1364,
           "status": "blocked"
+        },
+        {
+          "name": "table1",
+          "kind": "axiom",
+          "line": 1376,
+          "status": "axiom_backed"
         },
         {
           "name": "proposition7_9_table1_contradiction",
           "kind": "theorem",
-          "line": 1012,
-          "status": "blocked"
+          "line": 1379,
+          "status": "no_sorry_body"
         },
         {
           "name": "proposition7_9_statement7_8",
           "kind": "theorem",
-          "line": 1020,
+          "line": 1385,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "C4",
+          "kind": "def",
+          "line": 1394,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "C5",
+          "kind": "def",
+          "line": 1401,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "proposition7_8_d12_of_conditions",
+          "kind": "theorem",
+          "line": 1408,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "proposition7_8_conditions_of_d12",
+          "kind": "theorem",
+          "line": 1422,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "proposition7_8_d12_iff",
+          "kind": "theorem",
+          "line": 1433,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "proposition7_8_dichotomy",
+          "kind": "theorem",
+          "line": 1445,
           "status": "no_sorry_body"
         },
         {
           "name": "statement7_8_5_iff_near126_C5",
           "kind": "theorem",
-          "line": 1028,
-          "status": "blocked"
+          "line": 1465,
+          "status": "no_sorry_body"
         },
         {
           "name": "proposition7_9",
           "kind": "theorem",
-          "line": 1036,
+          "line": 1472,
           "status": "no_sorry_body"
         },
         {
           "name": "h6Sq_permanent_cycle",
           "kind": "theorem",
-          "line": 1045,
+          "line": 1481,
           "status": "no_sorry_body"
         },
         {
           "name": "remark7_17",
           "kind": "theorem",
-          "line": 1058,
+          "line": 1498,
           "status": "blocked"
         }
       ]
@@ -1572,15 +1794,9 @@
       "path": "KIPBase/Section7/Table1.lean",
       "declarations": [
         {
-          "name": "table1",
-          "kind": "axiom",
-          "line": 10,
-          "status": "axiom_backed"
-        },
-        {
           "name": "table1_contradiction",
           "kind": "theorem",
-          "line": 19,
+          "line": 12,
           "status": "no_sorry_body"
         }
       ]
@@ -1622,10 +1838,28 @@
       "path": "KIPBase/Section8/Table2.lean",
       "declarations": [
         {
+          "name": "Table2Statement",
+          "kind": "def",
+          "line": 9,
+          "status": "no_sorry_body"
+        },
+        {
           "name": "table2",
-          "kind": "axiom",
-          "line": 2,
-          "status": "axiom_backed"
+          "kind": "theorem",
+          "line": 18,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table2_fact7_19",
+          "kind": "theorem",
+          "line": 21,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table2_fact7_21",
+          "kind": "theorem",
+          "line": 27,
+          "status": "no_sorry_body"
         }
       ]
     },
@@ -1633,10 +1867,22 @@
       "path": "KIPBase/Section8/Table3.lean",
       "declarations": [
         {
+          "name": "Table3Statement",
+          "kind": "def",
+          "line": 8,
+          "status": "no_sorry_body"
+        },
+        {
           "name": "table3",
-          "kind": "axiom",
-          "line": 2,
-          "status": "axiom_backed"
+          "kind": "theorem",
+          "line": 15,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table3_fact7_13",
+          "kind": "theorem",
+          "line": 18,
+          "status": "no_sorry_body"
         }
       ]
     },
@@ -1655,10 +1901,28 @@
       "path": "KIPBase/Section8/Table5.lean",
       "declarations": [
         {
+          "name": "Table5Statement",
+          "kind": "def",
+          "line": 8,
+          "status": "no_sorry_body"
+        },
+        {
           "name": "table5",
-          "kind": "axiom",
-          "line": 2,
-          "status": "axiom_backed"
+          "kind": "theorem",
+          "line": 12,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table5_h0SqX124_8_survives",
+          "kind": "theorem",
+          "line": 15,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table5_gPow4DeltaH1g_unique_on_E5",
+          "kind": "theorem",
+          "line": 18,
+          "status": "no_sorry_body"
         }
       ]
     },
@@ -1666,10 +1930,22 @@
       "path": "KIPBase/Section8/Table6.lean",
       "declarations": [
         {
+          "name": "Table6Statement",
+          "kind": "def",
+          "line": 8,
+          "status": "no_sorry_body"
+        },
+        {
           "name": "table6",
-          "kind": "axiom",
-          "line": 2,
-          "status": "axiom_backed"
+          "kind": "theorem",
+          "line": 11,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table6_h1h4x109_12_permanent",
+          "kind": "theorem",
+          "line": 14,
+          "status": "no_sorry_body"
         }
       ]
     },
@@ -1677,10 +1953,22 @@
       "path": "KIPBase/Section8/Table7.lean",
       "declarations": [
         {
+          "name": "Table7Statement",
+          "kind": "def",
+          "line": 8,
+          "status": "no_sorry_body"
+        },
+        {
           "name": "table7",
-          "kind": "axiom",
-          "line": 2,
-          "status": "axiom_backed"
+          "kind": "theorem",
+          "line": 13,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table7_fact7_15",
+          "kind": "theorem",
+          "line": 16,
+          "status": "no_sorry_body"
         }
       ]
     },
@@ -1699,10 +1987,99 @@
       "path": "KIPBase/Section8/Table9.lean",
       "declarations": [
         {
+          "name": "Table9Statement",
+          "kind": "def",
+          "line": 8,
+          "status": "no_sorry_body"
+        },
+        {
           "name": "table9",
-          "kind": "axiom",
-          "line": 2,
-          "status": "axiom_backed"
+          "kind": "theorem",
+          "line": 12,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table9_remark7_7",
+          "kind": "theorem",
+          "line": 15,
+          "status": "no_sorry_body"
+        }
+      ]
+    },
+    {
+      "path": "KIPBase/Section8/Tables.lean",
+      "declarations": [
+        {
+          "name": "LaterTables",
+          "kind": "def",
+          "line": 17,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table2_of_laterTables",
+          "kind": "theorem",
+          "line": 23,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table3_of_laterTables",
+          "kind": "theorem",
+          "line": 25,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table4_of_laterTables",
+          "kind": "theorem",
+          "line": 27,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table5_of_laterTables",
+          "kind": "theorem",
+          "line": 29,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table6_of_laterTables",
+          "kind": "theorem",
+          "line": 31,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table7_of_laterTables",
+          "kind": "theorem",
+          "line": 33,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table8_of_laterTables",
+          "kind": "theorem",
+          "line": 35,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table9_of_laterTables",
+          "kind": "theorem",
+          "line": 37,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table10_of_laterTables",
+          "kind": "theorem",
+          "line": 39,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table11_of_laterTables",
+          "kind": "theorem",
+          "line": 41,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "table12_of_laterTables",
+          "kind": "theorem",
+          "line": 43,
+          "status": "no_sorry_body"
         }
       ]
     },
@@ -2059,271 +2436,271 @@
         {
           "name": "Filtration.CompleteSeparated",
           "kind": "structure",
-          "line": 26,
+          "line": 35,
           "status": "no_sorry_body"
         },
         {
           "name": "PageLevelConvention",
           "kind": "structure",
-          "line": 39,
+          "line": 47,
           "status": "no_sorry_body"
         },
         {
           "name": "adamsPageLevelConvention",
           "kind": "def",
-          "line": 59,
+          "line": 64,
           "status": "no_sorry_body"
         },
         {
           "name": "ReindexedSpectralSequenceMorphism",
           "kind": "structure",
-          "line": 74,
+          "line": 82,
           "status": "no_sorry_body"
         },
         {
           "name": "ReindexedSpectralSequenceMorphism.differential_comm",
           "kind": "theorem",
-          "line": 94,
+          "line": 98,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.shiftFiltrationSpectralSequencePageIso_nat",
           "kind": "theorem",
-          "line": 106,
+          "line": 109,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.shiftFiltrationReindexedMorphism",
           "kind": "def",
-          "line": 114,
+          "line": 119,
           "status": "no_sorry_body"
         },
         {
           "name": "ShiftedFilteredComplexMorphism.toReindexedSpectralSequenceMorphism",
           "kind": "def",
-          "line": 168,
+          "line": 172,
           "status": "no_sorry_body"
         },
         {
           "name": "HomotopyCommSquare.shiftedESSReindexedMorphism",
           "kind": "def",
-          "line": 244,
+          "line": 248,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.IsCycleAt",
           "kind": "def",
-          "line": 263,
+          "line": 268,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.IsBoundaryAt",
           "kind": "def",
-          "line": 270,
+          "line": 273,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.SurvivesThrough",
           "kind": "abbrev",
-          "line": 275,
+          "line": 278,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.IsPermanentRepresentative",
           "kind": "abbrev",
-          "line": 280,
+          "line": 283,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.RepresentsNonzeroAt",
           "kind": "def",
-          "line": 285,
+          "line": 288,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.representsNonzeroAt_iff",
           "kind": "theorem",
-          "line": 291,
+          "line": 295,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.permanent_nonzero_iff",
           "kind": "theorem",
-          "line": 331,
+          "line": 334,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.differentialRelation_iff_lifts",
           "kind": "theorem",
-          "line": 338,
+          "line": 345,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.GeneralCrossingRange",
           "kind": "def",
-          "line": 361,
+          "line": 369,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.GeneralCrossing",
           "kind": "abbrev",
-          "line": 381,
+          "line": 384,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.generalCrossingRange_to_essential",
           "kind": "theorem",
-          "line": 390,
+          "line": 394,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.EssentialCrossingRange",
           "kind": "def",
-          "line": 428,
+          "line": 431,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.NoGeneralCrossingRange",
           "kind": "def",
-          "line": 443,
+          "line": 446,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.noGeneralCrossingRange_iff_noEssential",
           "kind": "theorem",
-          "line": 452,
+          "line": 456,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.NoGeneralCrossingRange.higher_source_image_deeper",
           "kind": "theorem",
-          "line": 473,
+          "line": 478,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.NoGeneralCrossingRange.uniformDetection",
           "kind": "theorem",
-          "line": 560,
+          "line": 564,
           "status": "no_sorry_body"
         },
         {
           "name": "UniformDetection.noGeneralCrossingRange",
           "kind": "theorem",
-          "line": 659,
+          "line": 664,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.noGeneralCrossingRange_iff_uniformDetection",
           "kind": "theorem",
-          "line": 789,
+          "line": 793,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.NoGeneralCrossing",
           "kind": "abbrev",
-          "line": 806,
+          "line": 810,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.noGeneralCrossing_iff_uniformDetection",
           "kind": "theorem",
-          "line": 816,
+          "line": 820,
           "status": "no_sorry_body"
         },
         {
           "name": "FilteredComplex.generalCrossing_to_essential",
           "kind": "theorem",
-          "line": 829,
+          "line": 834,
           "status": "no_sorry_body"
         },
         {
           "name": "imageSubobject_eq_top_of_zero_comp_epi_blueprint",
           "kind": "theorem",
-          "line": 848,
+          "line": 852,
           "status": "no_sorry_body"
         },
         {
           "name": "imageSubobject_ofLE_bot_comp_eq_bot_blueprint",
           "kind": "theorem",
-          "line": 864,
+          "line": 866,
           "status": "no_sorry_body"
         },
         {
           "name": "BoundedExtensionSS.source_boundary_eq_bot",
           "kind": "theorem",
-          "line": 875,
+          "line": 879,
           "status": "no_sorry_body"
         },
         {
           "name": "BoundedExtensionSS.target_cycle_eq_top",
           "kind": "theorem",
-          "line": 915,
+          "line": 919,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.boundaryQuotient",
           "kind": "def",
-          "line": 948,
+          "line": 951,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.pageIsoCycleObjectOfBoundaryEqBot",
           "kind": "def",
-          "line": 953,
+          "line": 956,
           "status": "no_sorry_body"
         },
         {
           "name": "SSData.pageIsoBoundaryQuotientOfCycleEqTop",
           "kind": "def",
-          "line": 965,
+          "line": 968,
           "status": "no_sorry_body"
         },
         {
           "name": "BoundedExtensionSS.pageDecompositionIso",
           "kind": "def",
-          "line": 975,
+          "line": 980,
           "status": "no_sorry_body"
         },
         {
           "name": "ConvergenceDetectionWitness",
           "kind": "structure",
-          "line": 997,
+          "line": 1004,
           "status": "no_sorry_body"
         },
         {
           "name": "HomotopyCommSquare.essFilteredComplexMorphism",
           "kind": "def",
-          "line": 1016,
+          "line": 1021,
           "status": "no_sorry_body"
         },
         {
           "name": "HomotopyCommSquare.essBoundedMorphism",
           "kind": "def",
-          "line": 1035,
+          "line": 1038,
           "status": "no_sorry_body"
         },
         {
           "name": "HomotopyCommSquare.essSpectralSequenceMorphismRaw",
           "kind": "def",
-          "line": 1049,
+          "line": 1053,
           "status": "no_sorry_body"
         },
         {
           "name": "HomotopyCommSquare.essSpectralSequenceMorphism",
           "kind": "def",
-          "line": 1067,
+          "line": 1071,
           "status": "no_sorry_body"
         },
         {
           "name": "HomotopyCommSquare.essPageMap_comm",
           "kind": "theorem",
-          "line": 1084,
+          "line": 1087,
           "status": "no_sorry_body"
         },
         {
           "name": "essPermanentCycle_of_zero_composite",
           "kind": "theorem",
-          "line": 1110,
+          "line": 1118,
           "status": "no_sorry_body"
         }
       ]
@@ -4283,6 +4660,35 @@
           "name": "FilteredComplex.weakConvergence",
           "kind": "def",
           "line": 4124,
+          "status": "no_sorry_body"
+        }
+      ]
+    },
+    {
+      "path": "KIPBase/SpectralSequence/MorphismCriterion.lean",
+      "declarations": [
+        {
+          "name": "DifferentialMorphismCriterion",
+          "kind": "structure",
+          "line": 17,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "DifferentialMorphismCriterion.toSSDataMorphism",
+          "kind": "def",
+          "line": 53,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "DifferentialMorphismCriterion.toMorphism",
+          "kind": "def",
+          "line": 86,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "DifferentialMorphismCriterion.exists_morphism",
+          "kind": "theorem",
+          "line": 131,
           "status": "no_sorry_body"
         }
       ]
@@ -6835,668 +7241,944 @@
         {
           "name": "pageToEarlierOfBoundariesEq",
           "kind": "def",
-          "line": 46,
+          "line": 50,
           "status": "no_sorry_body"
         },
         {
-          "name": "page",
+          "name": "pageπ_pageToEarlierOfBoundariesEq",
           "kind": "theorem",
-          "line": 61,
+          "line": 63,
           "status": "no_sorry_body"
         },
         {
           "name": "pageToEarlierOfBoundariesEq_represents",
           "kind": "theorem",
-          "line": 70,
+          "line": 74,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalLambdaBocksteinSourceToE2Data",
           "kind": "def",
-          "line": 96,
+          "line": 100,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinToAdamsReindex",
           "kind": "def",
-          "line": 112,
+          "line": 122,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinToAdamsReindex_add_diff",
           "kind": "theorem",
-          "line": 130,
+          "line": 134,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinToAdamsReindex_degree_compat",
           "kind": "theorem",
-          "line": 138,
+          "line": 142,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinToAdamsReindex_sub_diff",
           "kind": "theorem",
-          "line": 150,
+          "line": 155,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinAdamsTarget_freeRange",
           "kind": "theorem",
-          "line": 188,
+          "line": 193,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinAdamsTargetClassicalIso",
           "kind": "def",
-          "line": 196,
+          "line": 201,
           "status": "no_sorry_body"
         },
         {
           "name": "synAdams_differential_eq_zero_iff_lambdaPow",
           "kind": "theorem",
-          "line": 211,
+          "line": 218,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinBoundaryTarget_AFGe_iff",
           "kind": "theorem",
-          "line": 244,
+          "line": 249,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep",
           "kind": "def",
-          "line": 257,
+          "line": 262,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep.unique",
           "kind": "theorem",
-          "line": 282,
+          "line": 287,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep.sub",
           "kind": "theorem",
-          "line": 343,
+          "line": 348,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep.eq_zero_of_mem_next",
           "kind": "theorem",
-          "line": 391,
+          "line": 395,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep.eq_of_sub_mem_next",
           "kind": "theorem",
-          "line": 467,
+          "line": 471,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinTarget_page_eq_zero_of_boundary",
           "kind": "theorem",
-          "line": 490,
+          "line": 495,
           "status": "no_sorry_body"
         },
         {
           "name": "ElementPageRel.eq_zero_of_zero_source_relation",
           "kind": "theorem",
-          "line": 522,
+          "line": 528,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinOccursOn.exists_targetPageRep",
           "kind": "theorem",
-          "line": 550,
+          "line": 554,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinOccursOn.exists_page_differential_reps",
           "kind": "theorem",
-          "line": 590,
+          "line": 596,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_targetPageRep_of_adams_differential",
           "kind": "theorem",
-          "line": 640,
+          "line": 645,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_page_differential_reps_of_adams_differential",
           "kind": "theorem",
-          "line": 677,
+          "line": 681,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_bockstein_differential_targetRep",
           "kind": "theorem",
-          "line": 720,
+          "line": 725,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "by",
+          "kind": "class",
+          "line": 795,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adams_cycle_maps_to_bockstein_cycle",
           "kind": "theorem",
-          "line": 788,
+          "line": 796,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsCyclesToBocksteinCycles",
           "kind": "def",
-          "line": 892,
+          "line": 897,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsDifferentialImageToBocksteinImage",
           "kind": "def",
-          "line": 911,
+          "line": 917,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsDifferentialImageToBocksteinImage_apply",
           "kind": "theorem",
-          "line": 945,
+          "line": 949,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_reindexedBocksteinTarget_of_adams_differential",
           "kind": "theorem",
-          "line": 991,
+          "line": 1006,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_targetRep_comm_of_adams_differential",
           "kind": "theorem",
-          "line": 1088,
+          "line": 1094,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adams_differential_eq_divided_cap_boundary",
           "kind": "theorem",
-          "line": 1187,
+          "line": 1191,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.cap_boundary_eq_prescribed_adams_target",
           "kind": "theorem",
-          "line": 1222,
+          "line": 1227,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep.pageClass",
           "kind": "def",
-          "line": 1253,
+          "line": 1258,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep.pageClass_spec",
           "kind": "theorem",
-          "line": 1268,
+          "line": 1272,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep.eq_pageClass",
           "kind": "theorem",
-          "line": 1282,
+          "line": 1286,
           "status": "no_sorry_body"
         },
         {
           "name": "LambdaBocksteinTargetPageRep.exists_of_page",
           "kind": "theorem",
-          "line": 1299,
+          "line": 1304,
           "status": "no_sorry_body"
         },
         {
           "name": "AffineReindexedUnderlyingMorphism",
           "kind": "structure",
-          "line": 1367,
+          "line": 1375,
           "status": "no_sorry_body"
         },
         {
           "name": "ofVIsos",
           "kind": "def",
-          "line": 1383,
+          "line": 1387,
           "status": "no_sorry_body"
         },
         {
           "name": "ofE2PageMaps",
           "kind": "def",
-          "line": 1395,
+          "line": 1399,
           "status": "no_sorry_body"
         },
         {
           "name": "AdamsToBoundaryESSUnderlyingMorphism",
           "kind": "abbrev",
-          "line": 1407,
+          "line": 1411,
           "status": "no_sorry_body"
         },
         {
           "name": "AdamsToBoundaryESSUnderlyingMorphism.ofE2PageMaps",
           "kind": "def",
-          "line": 1415,
+          "line": 1420,
           "status": "no_sorry_body"
         },
         {
           "name": "AdamsToBoundaryESSUnderlyingMorphism.PreservesZ",
           "kind": "def",
-          "line": 1437,
+          "line": 1442,
           "status": "no_sorry_body"
         },
         {
           "name": "AdamsToBoundaryESSUnderlyingMorphism.PreservesB",
           "kind": "def",
-          "line": 1453,
+          "line": 1456,
           "status": "no_sorry_body"
         },
         {
           "name": "AdamsToBoundaryESSUnderlyingMorphism.CommutesD2",
           "kind": "def",
-          "line": 1467,
+          "line": 1472,
           "status": "no_sorry_body"
         },
         {
           "name": "AffineReindexedSpectralSequenceEquivalence",
           "kind": "structure",
-          "line": 1482,
+          "line": 1492,
           "status": "no_sorry_body"
         },
         {
           "name": "adamsToBocksteinPageMap",
           "kind": "def",
-          "line": 1507,
+          "line": 1510,
           "status": "no_sorry_body"
         },
         {
           "name": "adamsToBocksteinPageMap_comm",
           "kind": "theorem",
-          "line": 1517,
+          "line": 1520,
           "status": "no_sorry_body"
         },
         {
           "name": "AffineReindexedSpectralSequenceMorphism",
           "kind": "structure",
-          "line": 1543,
+          "line": 1552,
           "status": "no_sorry_body"
         },
         {
           "name": "ofEquivalence",
           "kind": "def",
-          "line": 1568,
+          "line": 1572,
           "status": "no_sorry_body"
         },
         {
           "name": "affineReindexedPageEquivSucc",
           "kind": "def",
-          "line": 1587,
+          "line": 1603,
           "status": "no_sorry_body"
         },
         {
           "name": "affineReindexedPageHomSucc",
           "kind": "def",
-          "line": 1612,
+          "line": 1618,
           "status": "no_sorry_body"
         },
         {
           "name": "AffineReindexedPageComplexMap",
           "kind": "structure",
-          "line": 1629,
+          "line": 1635,
           "status": "no_sorry_body"
         },
         {
           "name": "AffineReindexedSinglePageMap",
           "kind": "structure",
-          "line": 1649,
+          "line": 1654,
           "status": "no_sorry_body"
         },
         {
           "name": "ofSinglePageMap",
           "kind": "def",
-          "line": 1668,
+          "line": 1673,
           "status": "no_sorry_body"
         },
         {
           "name": "ofMorphism",
           "kind": "def",
-          "line": 1710,
+          "line": 1713,
           "status": "no_sorry_body"
         },
         {
           "name": "toShortComplexHom",
           "kind": "def",
-          "line": 1724,
+          "line": 1728,
           "status": "no_sorry_body"
         },
         {
           "name": "succ",
           "kind": "def",
-          "line": 1736,
+          "line": 1740,
           "status": "no_sorry_body"
         },
         {
           "name": "AffineReindexedSinglePageMap.succPageMap",
           "kind": "def",
-          "line": 1751,
+          "line": 1756,
           "status": "no_sorry_body"
         },
         {
           "name": "AffineReindexedSpectralSequenceMorphism.succPageMap",
           "kind": "def",
-          "line": 1764,
+          "line": 1769,
           "status": "no_sorry_body"
         },
         {
           "name": "CanonicalAdamsLambdaBocksteinEquivalence",
           "kind": "abbrev",
-          "line": 1782,
+          "line": 1785,
           "status": "no_sorry_body"
         },
         {
           "name": "CanonicalAdamsToLambdaBocksteinMorphism",
           "kind": "abbrev",
-          "line": 1789,
+          "line": 1793,
           "status": "no_sorry_body"
         },
         {
           "name": "CanonicalAdamsLambdaBocksteinEquivalence.ofPages",
           "kind": "def",
-          "line": 1797,
+          "line": 1802,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinInitialV",
           "kind": "abbrev",
-          "line": 1825,
+          "line": 1834,
           "status": "no_sorry_body"
         },
         {
           "name": "CanonicalAdamsToLambdaBocksteinUnderlyingMorphism",
           "kind": "structure",
-          "line": 1837,
+          "line": 1842,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalAdamsToLambdaBocksteinUnderlyingMorphism",
           "kind": "def",
-          "line": 1845,
+          "line": 1850,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalAdamsToLambdaBocksteinUnderlyingMorphism_component_isIso",
           "kind": "instance",
-          "line": 1864,
+          "line": 1868,
           "status": "no_sorry_body"
         },
         {
           "name": "classicalAdamsToLambdaBocksteinUnderlyingMap",
           "kind": "def",
-          "line": 1875,
+          "line": 1880,
           "status": "no_sorry_body"
         },
         {
           "name": "ClassicalAdamsToLambdaBocksteinUnderlyingMorphism",
           "kind": "structure",
-          "line": 1890,
+          "line": 1895,
           "status": "no_sorry_body"
         },
         {
           "name": "classicalAdamsToLambdaBocksteinUnderlyingMorphism",
           "kind": "def",
-          "line": 1899,
+          "line": 1903,
           "status": "no_sorry_body"
         },
         {
           "name": "classicalAdamsToLambdaBocksteinUnderlyingInverse",
           "kind": "def",
-          "line": 1906,
+          "line": 1909,
           "status": "no_sorry_body"
         },
         {
           "name": "classicalAdamsToLambdaBocksteinUnderlyingIso",
           "kind": "def",
-          "line": 1918,
+          "line": 1923,
           "status": "no_sorry_body"
         },
         {
           "name": "classicalAdamsInitialGradedV",
           "kind": "def",
-          "line": 1971,
+          "line": 1974,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaBocksteinInitialGradedV",
           "kind": "def",
-          "line": 1977,
+          "line": 1980,
           "status": "no_sorry_body"
         },
         {
           "name": "ClassicalAdamsToLambdaBocksteinUnderlyingMorphism.asGradedHom",
           "kind": "def",
-          "line": 1982,
+          "line": 1986,
           "status": "no_sorry_body"
         },
         {
           "name": "classicalAdamsToLambdaBocksteinUnderlyingGradedIso",
           "kind": "def",
-          "line": 1991,
+          "line": 1995,
           "status": "no_sorry_body"
         },
         {
           "name": "classicalAdamsToLambdaBocksteinUnderlyingMorphism_isIso",
           "kind": "instance",
-          "line": 2008,
+          "line": 2012,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalUnderlying_finiteBoundarySource_square",
           "kind": "theorem",
-          "line": 2020,
+          "line": 2024,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalUnderlying_finiteBoundarySource",
           "kind": "theorem",
-          "line": 2059,
+          "line": 2063,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalLambdaBocksteinRawE0ReindexedE2Equiv",
           "kind": "def",
-          "line": 2079,
+          "line": 2083,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalAdamsE2ToLambdaBocksteinRawE0SourceMap",
           "kind": "def",
-          "line": 2094,
+          "line": 2099,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalAdamsE2ToLambdaBocksteinRawE0SourceMapAll",
           "kind": "def",
-          "line": 2109,
+          "line": 2116,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalLambdaBocksteinRawE0Source_isZero_offDiagonal",
           "kind": "theorem",
-          "line": 2130,
+          "line": 2134,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalLambdaBocksteinE2Source_isZero_offDiagonal",
           "kind": "theorem",
-          "line": 2148,
+          "line": 2152,
           "status": "no_sorry_body"
         },
         {
           "name": "canonicalAdamsE2ToLambdaBocksteinRawE0SourceMapAll_isIso",
           "kind": "theorem",
-          "line": 2163,
+          "line": 2168,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_modLambda_representative_boundary_filtration_two",
           "kind": "theorem",
-          "line": 2181,
+          "line": 2186,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.capLiftsBocksteinSourceClasses_zero",
           "kind": "theorem",
-          "line": 2241,
+          "line": 2247,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.reindexedSourcePageMap",
           "kind": "def",
-          "line": 2286,
+          "line": 2291,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.capPageToBocksteinBoundaryPageHom",
           "kind": "def",
-          "line": 2304,
+          "line": 2309,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.capPageToBocksteinBoundaryPageHom_apply",
           "kind": "theorem",
-          "line": 2327,
+          "line": 2331,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsToBocksteinBoundaryPageHom",
           "kind": "def",
-          "line": 2343,
+          "line": 2347,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsToBocksteinBoundaryPageHom_apply",
           "kind": "theorem",
-          "line": 2362,
+          "line": 2366,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsE2ToBocksteinE2SourceMap",
           "kind": "def",
-          "line": 2377,
+          "line": 2382,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.e2UnderlyingSourceMap",
           "kind": "def",
-          "line": 2390,
+          "line": 2394,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsE2ToBocksteinE2SourceMap_apply",
           "kind": "theorem",
-          "line": 2407,
+          "line": 2410,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsE2ToBocksteinE2SourceMapAtWeight",
           "kind": "def",
-          "line": 2419,
+          "line": 2425,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsE2ToBocksteinE2SourceMap_injective",
           "kind": "theorem",
-          "line": 2438,
+          "line": 2441,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsE2ToBocksteinE2SourceMap_surjective",
           "kind": "theorem",
-          "line": 2447,
+          "line": 2452,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsE2ToBocksteinE2SourceMap_isIso",
           "kind": "theorem",
-          "line": 2459,
+          "line": 2463,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsE2ToBocksteinE2SourceIso",
           "kind": "def",
-          "line": 2476,
+          "line": 2481,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.classicalAdamsE2ToBocksteinE2SourceIso",
           "kind": "def",
-          "line": 2498,
+          "line": 2504,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.reindexedTargetPageEquiv",
           "kind": "def",
-          "line": 2515,
+          "line": 2520,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.BoundaryESSUnderlyingCandidate",
           "kind": "abbrev",
-          "line": 2535,
+          "line": 2552,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.E2UnderlyingAgreesAtSource",
           "kind": "def",
-          "line": 2558,
+          "line": 2562,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.e2UnderlyingFromSource",
           "kind": "def",
-          "line": 2567,
+          "line": 2574,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.e2UnderlyingFromSource_agrees",
           "kind": "theorem",
-          "line": 2586,
+          "line": 2588,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.e2UnderlyingFromSource_eq_pageMap",
           "kind": "theorem",
-          "line": 2596,
+          "line": 2600,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.adamsDifferential_to_bocksteinPage",
           "kind": "theorem",
-          "line": 2612,
+          "line": 2619,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "NuSynAdamsGeometricComparison.differentialImage_map_eq_geometric_target",
+          "kind": "theorem",
+          "line": 2698,
           "status": "no_sorry_body"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_e2_underlying_preserves_Z",
           "kind": "theorem",
-          "line": 2692,
+          "line": 2746,
           "status": "blocked"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_e2_underlying_preserves_B",
           "kind": "theorem",
-          "line": 2704,
+          "line": 2757,
           "status": "blocked"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_e2_underlying_commutes_d2",
           "kind": "theorem",
-          "line": 2715,
+          "line": 2770,
           "status": "blocked"
         },
         {
           "name": "NuSynAdamsGeometricComparison.exists_e2_underlying_morphism_base",
           "kind": "theorem",
-          "line": 2728,
+          "line": 2783,
           "status": "blocked"
+        },
+        {
+          "name": "lambdaLiftBocksteinV",
+          "kind": "abbrev",
+          "line": 2807,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinLift",
+          "kind": "def",
+          "line": 2811,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinZ",
+          "kind": "def",
+          "line": 2820,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinObstruction",
+          "kind": "def",
+          "line": 2829,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaPowerBocksteinBoundaryImage",
+          "kind": "def",
+          "line": 2846,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinNextBoundaryImage",
+          "kind": "def",
+          "line": 2868,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "mem_lambdaLiftBocksteinNextBoundaryImage_iff",
+          "kind": "theorem",
+          "line": 2878,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftHomCongrAddEquiv",
+          "kind": "def",
+          "line": 2890,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftSuspAddEquiv",
+          "kind": "def",
+          "line": 2900,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftSuspAddEquiv_naturality",
+          "kind": "theorem",
+          "line": 2924,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaBoundaryTargetReindexEquiv",
+          "kind": "def",
+          "line": 2941,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaPowerBoundaryTargetReindexEquiv",
+          "kind": "def",
+          "line": 2952,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinB",
+          "kind": "def",
+          "line": 2963,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinBReindexed",
+          "kind": "def",
+          "line": 2971,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaPowerBoundaryTargetReindexEquiv_naturality",
+          "kind": "theorem",
+          "line": 2979,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinBReindexed_le_Z",
+          "kind": "theorem",
+          "line": 3091,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinBoundaryAt",
+          "kind": "def",
+          "line": 3136,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinBCumulative",
+          "kind": "def",
+          "line": 3151,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinBCumulative_mono",
+          "kind": "theorem",
+          "line": 3157,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinBInZ",
+          "kind": "def",
+          "line": 3169,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinPage",
+          "kind": "abbrev",
+          "line": 3176,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinTargetReindexEquiv",
+          "kind": "def",
+          "line": 3182,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaBoundaryTargetReindexEquiv_naturality",
+          "kind": "theorem",
+          "line": 3192,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinNextBoundaryImageReindexed",
+          "kind": "def",
+          "line": 3203,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "mem_lambdaLiftBocksteinNextBoundaryImageReindexed_iff",
+          "kind": "theorem",
+          "line": 3212,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinNextBoundaryImageReindexed_le_Z",
+          "kind": "theorem",
+          "line": 3230,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "mem_lambdaLiftBocksteinZ_iff",
+          "kind": "theorem",
+          "line": 3270,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinLift_restrict",
+          "kind": "theorem",
+          "line": 3280,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinZ_anti",
+          "kind": "theorem",
+          "line": 3294,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinChosenLift",
+          "kind": "def",
+          "line": 3303,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinChosenLift_spec",
+          "kind": "theorem",
+          "line": 3308,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinRawDifferential",
+          "kind": "def",
+          "line": 3317,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "lambdaLiftBocksteinRawDifferential_mem_Z",
+          "kind": "theorem",
+          "line": 3328,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "ClassicalAdamsToLambdaLiftBocksteinUnderlyingMorphism",
+          "kind": "abbrev",
+          "line": 3342,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "classicalAdamsToLambdaLiftBocksteinUnderlyingMorphism",
+          "kind": "def",
+          "line": 3348,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "classicalAdamsToLambdaLiftBockstein_pageEquivalence",
+          "kind": "theorem",
+          "line": 3366,
+          "status": "blocked"
+        },
+        {
+          "name": "classicalAdamsToLambdaLiftBockstein_initial_component",
+          "kind": "theorem",
+          "line": 3377,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "classicalAdamsToLambdaLiftBockstein_preserves_Z",
+          "kind": "theorem",
+          "line": 3388,
+          "status": "blocked"
+        },
+        {
+          "name": "classicalAdamsToLambdaLiftBockstein_preserves_B",
+          "kind": "theorem",
+          "line": 3398,
+          "status": "blocked"
+        },
+        {
+          "name": "classicalAdamsToLambdaLiftBockstein_commutes_d2",
+          "kind": "theorem",
+          "line": 3407,
+          "status": "blocked"
+        },
+        {
+          "name": "classicalAdamsToLambdaLiftBockstein_morphism_base",
+          "kind": "theorem",
+          "line": 3417,
+          "status": "blocked"
+        },
+        {
+          "name": "NuSynAdamsGeometricModel.adamsE2_geometricPageOne_equiv",
+          "kind": "theorem",
+          "line": 3429,
+          "status": "blocked"
+        },
+        {
+          "name": "NuSynAdamsGeometricModel.adamsE2_geometric_Z",
+          "kind": "theorem",
+          "line": 3442,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "NuSynAdamsGeometricModel.adamsE2_geometric_B",
+          "kind": "theorem",
+          "line": 3453,
+          "status": "no_sorry_body"
         }
       ]
     },
@@ -12601,325 +13283,343 @@
         {
           "name": "LambdaRhoDeltaTriangle",
           "kind": "structure",
-          "line": 18,
+          "line": 24,
           "status": "no_sorry_body"
         },
         {
           "name": "toTriangle",
           "kind": "def",
-          "line": 39,
+          "line": 41,
           "status": "no_sorry_body"
         },
         {
           "name": "toTriangle_distinguished",
           "kind": "theorem",
-          "line": 43,
+          "line": 45,
           "status": "no_sorry_body"
         },
         {
           "name": "lambda_comp_rho",
           "kind": "theorem",
-          "line": 48,
+          "line": 50,
           "status": "no_sorry_body"
         },
         {
           "name": "rho_comp_delta",
           "kind": "theorem",
-          "line": 53,
+          "line": 55,
           "status": "no_sorry_body"
         },
         {
           "name": "FiniteLambdaQuotientTower",
           "kind": "structure",
-          "line": 60,
+          "line": 68,
           "status": "no_sorry_body"
         },
         {
           "name": "rho_trans",
           "kind": "theorem",
-          "line": 87,
+          "line": 88,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "exists_adjacent_lambda_preimage",
+          "kind": "theorem",
+          "line": 96,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "adjacent_lift_boundary_difference",
+          "kind": "theorem",
+          "line": 113,
+          "status": "no_sorry_body"
+        },
+        {
+          "name": "adjacent_lift_boundary_eq_mod",
+          "kind": "theorem",
+          "line": 133,
           "status": "no_sorry_body"
         },
         {
           "name": "incl_comp_rho",
           "kind": "theorem",
-          "line": 92,
+          "line": 151,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom",
           "kind": "structure",
-          "line": 99,
+          "line": 160,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.rho_comm",
           "kind": "theorem",
-          "line": 119,
+          "line": 177,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.triangleMorphism",
           "kind": "def",
-          "line": 126,
+          "line": 188,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.id",
           "kind": "theorem",
-          "line": 148,
+          "line": 207,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.comp",
           "kind": "theorem",
-          "line": 159,
+          "line": 218,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.triangleMorphism_comp",
           "kind": "theorem",
-          "line": 201,
+          "line": 261,
           "status": "no_sorry_body"
         },
         {
           "name": "Bundled",
           "kind": "structure",
-          "line": 214,
+          "line": 276,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom",
           "kind": "structure",
-          "line": 225,
+          "line": 285,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.ext",
           "kind": "theorem",
-          "line": 234,
+          "line": 292,
           "status": "no_sorry_body"
         },
         {
           "name": "id_map",
           "kind": "theorem",
-          "line": 251,
+          "line": 309,
           "status": "no_sorry_body"
         },
         {
           "name": "comp_map",
           "kind": "theorem",
-          "line": 256,
+          "line": 314,
           "status": "no_sorry_body"
         },
         {
           "name": "forget",
           "kind": "def",
-          "line": 260,
+          "line": 320,
           "status": "no_sorry_body"
         },
         {
           "name": "level",
           "kind": "def",
-          "line": 267,
+          "line": 327,
           "status": "no_sorry_body"
         },
         {
           "name": "level_obj",
           "kind": "theorem",
-          "line": 273,
+          "line": 331,
           "status": "no_sorry_body"
         },
         {
           "name": "level_map",
           "kind": "theorem",
-          "line": 278,
+          "line": 336,
           "status": "no_sorry_body"
         },
         {
           "name": "rhoNatTrans",
           "kind": "def",
-          "line": 281,
+          "line": 341,
           "status": "no_sorry_body"
         },
         {
           "name": "rhoNatTrans_self",
           "kind": "theorem",
-          "line": 292,
+          "line": 350,
           "status": "no_sorry_body"
         },
         {
           "name": "rhoNatTrans_comp",
           "kind": "theorem",
-          "line": 296,
+          "line": 356,
           "status": "no_sorry_body"
         },
         {
           "name": "shiftedLevel",
           "kind": "def",
-          "line": 303,
+          "line": 363,
           "status": "no_sorry_body"
         },
         {
           "name": "shiftedLevel_obj",
           "kind": "theorem",
-          "line": 309,
+          "line": 367,
           "status": "no_sorry_body"
         },
         {
           "name": "shiftedLevel_map",
           "kind": "theorem",
-          "line": 315,
+          "line": 373,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaNatTrans",
           "kind": "def",
-          "line": 321,
+          "line": 381,
           "status": "no_sorry_body"
         },
         {
           "name": "deltaNatTrans",
           "kind": "def",
-          "line": 329,
+          "line": 389,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaNatTrans_comp_rhoNatTrans",
           "kind": "theorem",
-          "line": 337,
+          "line": 397,
           "status": "no_sorry_body"
         },
         {
           "name": "rhoNatTrans_comp_deltaNatTrans",
           "kind": "theorem",
-          "line": 347,
+          "line": 407,
           "status": "no_sorry_body"
         },
         {
           "name": "triangleFunctor",
           "kind": "def",
-          "line": 357,
+          "line": 418,
           "status": "no_sorry_body"
         },
         {
           "name": "diagram",
           "kind": "def",
-          "line": 368,
+          "line": 430,
           "status": "no_sorry_body"
         },
         {
           "name": "diagram_obj",
           "kind": "theorem",
-          "line": 384,
+          "line": 442,
           "status": "no_sorry_body"
         },
         {
           "name": "quotientCone",
           "kind": "def",
-          "line": 387,
+          "line": 447,
           "status": "no_sorry_body"
         },
         {
-          "name": "quotientCone_",
+          "name": "quotientCone_π_app",
           "kind": "theorem",
-          "line": 402,
+          "line": 464,
           "status": "no_sorry_body"
         },
         {
           "name": "IsLambdaAdicComplete",
           "kind": "def",
-          "line": 406,
+          "line": 472,
           "status": "no_sorry_body"
         },
         {
           "name": "IsLambdaAdicComplete.comparisonIso",
           "kind": "def",
-          "line": 412,
+          "line": 477,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.diagramNatTrans",
           "kind": "def",
-          "line": 420,
+          "line": 484,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.diagramNatTrans_app",
           "kind": "theorem",
-          "line": 431,
+          "line": 493,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.quotientConeMorphism",
           "kind": "def",
-          "line": 435,
+          "line": 500,
           "status": "no_sorry_body"
         },
         {
           "name": "Hom.quotientConeMorphism_hom",
           "kind": "theorem",
-          "line": 446,
+          "line": 508,
           "status": "no_sorry_body"
         },
         {
           "name": "diagramFunctor",
           "kind": "def",
-          "line": 450,
+          "line": 514,
           "status": "no_sorry_body"
         },
         {
           "name": "infiniteLambdaRhoDeltaTriangle",
           "kind": "def",
-          "line": 466,
+          "line": 535,
           "status": "no_sorry_body"
         },
         {
           "name": "infiniteLambdaRhoDeltaTriangle_distinguished",
           "kind": "theorem",
-          "line": 478,
+          "line": 542,
           "status": "no_sorry_body"
         },
         {
           "name": "infinite_lambda_comp_rho",
           "kind": "theorem",
-          "line": 484,
+          "line": 549,
           "status": "no_sorry_body"
         },
         {
           "name": "infiniteLambdaRhoDeltaTriangleMorphism",
           "kind": "def",
-          "line": 492,
+          "line": 556,
           "status": "no_sorry_body"
         },
         {
           "name": "infiniteLambdaRhoDeltaTriangleMorphism_id",
           "kind": "theorem",
-          "line": 507,
+          "line": 569,
           "status": "no_sorry_body"
         },
         {
           "name": "infiniteLambdaRhoDeltaTriangleMorphism_comp",
           "kind": "theorem",
-          "line": 513,
+          "line": 577,
           "status": "no_sorry_body"
         },
         {
           "name": "infiniteLambdaRhoDeltaTriangleFunctor",
           "kind": "def",
-          "line": 523,
+          "line": 587,
           "status": "no_sorry_body"
         },
         {
           "name": "lambdaPowNatTrans_comp_inclNatTrans",
           "kind": "theorem",
-          "line": 531,
+          "line": 595,
           "status": "no_sorry_body"
         },
         {
           "name": "inclNatTrans_comp_projNatTrans",
           "kind": "theorem",
-          "line": 538,
+          "line": 602,
           "status": "no_sorry_body"
         }
       ]
