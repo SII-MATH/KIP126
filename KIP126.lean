@@ -1,3 +1,9 @@
+import KIP126.Def.StableHomotopy.Implementation.TensorCompatibility.Proofs
+import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.BoundaryTower.Connecting.Proofs
+import KIP126.LinProgram.Generated.ModuleMaps.CetaToSphere
+import KIP126.LinProgram.Generated.ModuleMaps.CWToCeta
+import KIP126.LinProgram.Model.ModulePresentation.Maps
+import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.BoundaryTower.Proofs
 import KIP126.LinProgram.Certificates.StemFour
 import KIP126.Def.ClassicalAdams.Detection.Vanishing
 import KIP126.LinProgram.Certificates.NaturalityModuleProducts

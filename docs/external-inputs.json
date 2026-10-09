@@ -1414,7 +1414,43 @@
             "kervaire_database.rar",
             "kervaire-49/map_AdamsSS_Ceta_to_S0_t200.db"
           ],
-          "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record"
+          "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record",
+          "derived_outputs": {
+            "complete_module_map_graph": [
+              {
+                "path": "KIP126/LinProgram/Generated/ModuleMaps/CetaToSphere.json",
+                "size": 32160,
+                "sha256": "ecf726679e97059f6107a51703bb504edb21a0fee1c34e8588482e64a32ad9f5"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/ModuleMaps/CetaToSphere.lean",
+                "size": 26780,
+                "sha256": "66895505afe8bfdd24039cde31bb6013ab3b61c463471d7d1e87c99bb1fb3fb3"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/ModuleMaps/Data.lean",
+                "size": 394,
+                "sha256": "2c5d30fa83c9e69b00859b788e46001bbaea240e71f0c49bf5a238eb21c3f1bd"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/ModuleMaps/manifest.json",
+                "size": 1072,
+                "sha256": "b2dba5a16799d44bb4ddf02b84ef51e13d70b26a93737ddd8de64e7daded7b54"
+              }
+            ],
+            "generator_count": 887,
+            "coefficient_algebra": "KIP126.LinE2.E2",
+            "blueprint_label": "def:lin-native-complete-map-graphs",
+            "replay_command": [
+              "python3",
+              "-B",
+              "KIP126/LinProgram/Translate/generate-module-maps.py",
+              "--check"
+            ],
+            "mathematical_map_certified": false,
+            "actual_model_comparison_certified": false,
+            "scope": "Complete original native graph. Empty strings retain recorded zero; missing/NULL/unknown images are not defaulted. No quotient descent, graded map or actual spectrum-map comparison is certified."
+          }
         },
         {
           "path": "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
@@ -1475,6 +1511,65 @@
               "build",
               "KIP126.Checks.AdamsE2.LinNaturalityModuleProducts"
             ]
+          }
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "3ba9ac7841d0e9287b10f8550abd7ce0746a5715bfad1c60a42edb93ba554272",
+          "storage": "git-lfs",
+          "size": 36864,
+          "extracted_from": {
+            "record": "Source/LWXMachine/zenodo-record.json",
+            "archive": "kervaire_database.rar",
+            "archive_size": 82746451,
+            "archive_checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+            "member": "kervaire-49/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db"
+          },
+          "extraction_command": [
+            "unrar",
+            "p",
+            "-inul",
+            "kervaire_database.rar",
+            "kervaire-49/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db"
+          ],
+          "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record",
+          "derived_outputs": {
+            "complete_module_map_graph": [
+              {
+                "path": "KIP126/LinProgram/Generated/ModuleMaps/CWToCeta.json",
+                "size": 37349,
+                "sha256": "d31073229b39476192ba7de8117df680a907e1f57ee786ef0bddbd32c8d3815b"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/ModuleMaps/CWToCeta.lean",
+                "size": 31993,
+                "sha256": "aca34c9cef912de105bd3c9dfa2c1ee2482ddb595a36092ab5bbde1c90d78110"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/ModuleMaps/Data.lean",
+                "size": 394,
+                "sha256": "2c5d30fa83c9e69b00859b788e46001bbaea240e71f0c49bf5a238eb21c3f1bd"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/ModuleMaps/manifest.json",
+                "size": 1072,
+                "sha256": "b2dba5a16799d44bb4ddf02b84ef51e13d70b26a93737ddd8de64e7daded7b54"
+              }
+            ],
+            "generator_count": 844,
+            "coefficient_algebra": "KIP126.LinE2.E2",
+            "blueprint_label": "def:lin-native-complete-map-graphs",
+            "replay_command": [
+              "python3",
+              "-B",
+              "KIP126/LinProgram/Translate/generate-module-maps.py",
+              "--check"
+            ],
+            "mathematical_map_certified": false,
+            "actual_model_comparison_certified": false,
+            "scope": "Complete original native graph. Empty strings retain recorded zero; missing/NULL/unknown images are not defaulted. No quotient descent, graded map or actual spectrum-map comparison is certified."
           }
         }
       ]

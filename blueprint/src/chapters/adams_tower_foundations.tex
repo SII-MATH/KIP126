@@ -224,14 +224,15 @@ assert the permanence of a named class.
 
 \begin{proposition}[The transported pairing preserves the first-input transition]
   \label{prop:h6-existing-tower-pairing-left-transition}
-  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingIso_comparison,KIP126.Classical.Adams.adamsTowerSpherePairingIso_step_left}
+  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingIso_comparison,KIP126.Classical.Adams.adamsTowerSpherePairingIso_step_left,KIP126.Classical.Adams.adamsTowerSpherePairingIso_map_left}
   \uses{def:h6-existing-tower-pairing,prop:h6-smash-pairing-left-transition}
   \leanok
   With monoidal additivity, the pairing satisfies the defining comparison
   square and
   $\mu_{s+1,t}T_{t+s+1,t+s}=(T_{s+1,s}\wedge\mathrm{id})\mu_{s,t}$
-  for the actual sphere tower maps. This does not yet assert a full
-  multiplicative tower: the second-input transition is proved only under the
+  for the actual sphere tower maps. Iteration gives the same square for
+  every composite first-input transition from stage $s$ to $z\le s$.
+  This does not yet assert a full multiplicative tower: the second-input transition is proved only under the
   additional condition below; its fixed witness, the full two-term boundary
   product formula, and comparison with Lin multiplication remain unproved.
   In particular it is not a witness of \texttt{SecondDifferentialLeibniz}.
@@ -675,8 +676,35 @@ nor a t-structure detecting its bounds from homotopy groups.
     \beta_{X,\Sigma B}c_X^R(B)=c_X^L(B)\Sigma\beta_{X,B}.
   \]
   This concerns the ambient structures. It does not assert that the
-  tower pairing is symmetric, and no fixed-foundation witness is provided.
+  tower pairing is symmetric. The following construction supplies this
+  compatibility from the left-shift equality of the same tensor input.
 \end{definition}
+
+\begin{proposition}[Braiding compatibility from the specified tensor input]
+  \label{prop:h6-braiding-from-tensor-input}
+  \lean{KIP126.StableHomotopy.tensorSuspensionBraidingCompatibility_of_leftShift_eq,KIP126.Foundation.TensorInput.tensorSuspensionBraidingCompatibility}
+  \uses{def:h6-tensor-suspension-braiding,def:stage-zero-cooperation-contract}
+  \leanok
+  Suppose the left-tensor shift structure is the transport of the given
+  right-tensor shift structure along the inverse braiding isomorphism.
+  Then, for all objects $X,B$, the existing comparisons satisfy
+  \[
+    \beta_{X,\Sigma B}c_X^R(B)=c_X^L(B)\Sigma\beta_{X,B}.
+  \]
+  The existing \texttt{TensorInput.leftShift\_eq} supplies exactly this
+  hypothesis on the same foundation. No new field, replacement shift
+  structure, symmetry of an Adams pairing, or actual-page comparison is
+  introduced. The separate right-variable naturality and associator
+  conditions in \texttt{RightTensorSuspensionCompatibility} remain open.
+\end{proposition}
+\begin{proof}
+  Mathlib's transport of a shift structure along a functor isomorphism
+  makes that isomorphism commute with shifts. The inverse isomorphism
+  therefore also commutes with shifts. Evaluate its natural transformation
+  equation at $B$ and suspension one. Substitute the supplied equality
+  of the entire left-shift family; the right-shift family is unchanged.
+  \leanok
+\end{proof}
 
 \begin{proposition}[Transporting a boundary past a braiding]
   \label{prop:h6-braided-boundary-transport}
@@ -1344,6 +1372,80 @@ the surjectivity statement alone.
   Contravariant exactness of this actual tensored distinguished triangle
   factors their difference through its third arrow. Precomposing with
   $a\wedge b$ kills that arrow when $\delta_s^ra=0$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Boundary action on inputs with zero connecting image]
+  \label{prop:h6-boundary-tower-action}
+  \lean{KIP126.Classical.Adams.BoundaryTowerAction.tower_kernel_left,KIP126.Classical.Adams.BoundaryTowerAction.tower_boundary_kernel_left,KIP126.Classical.Adams.BoundaryTowerAction.coefficient_mem_boundaries,KIP126.Classical.Adams.BoundaryTowerAction.e1Product_mem_boundaries,KIP126.Classical.Adams.BoundaryTowerAction.boundary_mul_kerK,KIP126.Classical.Adams.BoundaryTowerAction.boundary_mul_longLayer_zeroK,KIP126.Classical.Adams.BoundaryTowerAction.boundary_mul_sameK}
+  \uses{prop:h6-existing-tower-pairing-left-transition,prop:h6-coefficient-layer-product-unit,def:h6-specified-sphere-pairing,def:h6-tower-pages,prop:h6-tower-long-layer-cycles,thm:stable-homotopy-long-exact}
+  \leanok
+  Retain the specified coefficient ring, braiding, additive tensor product,
+  and exact right-tensor suspension structures. For every $r\ge1$,
+  natural stages $s,t$ and integer internal degrees $u,v$, the fixed
+  coefficient product satisfies
+  \[
+    P(B_r^{s,u},\ker K^{t,v})\subseteq B_r^{s+t,u+v}.
+  \]
+  For $x\in B_r^{s,u}$ and $K(y)=K(y')$, it follows that
+  $P(x,y)-P(x,y')\in B_r^{s+t,u+v}$.
+  In particular, a long-layer input with zero long connecting image
+  satisfies the first assertion after projection to the one-step layer.
+  All positive pages are included, even when $s-r+1<0$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Represent the boundary as $Ja$ with $I_{s-r+1,s}a=0$.
+  Exactness gives a tower representative $b$ for an input in $\ker K$.
+  The full first-input tower transition square makes the paired tower
+  class vanish under the required lower transition. When an integer
+  stage is negative, its natural truncation and one further tower
+  transition give the same conclusion. The coefficient unit restriction
+  identifies its $J$ image with the specified product. Bilinearity applied
+  to $y-y'$ gives the second assertion; the long-layer connecting square
+  gives the stated specialization.
+
+  A general finite-page cycle only has $K(y)\in\operatorname{im}I_{t+1,t+r}$,
+  which need not be zero. This result does not shrink or discharge the
+  full \texttt{BoundaryCompatible} or the two remaining
+  \texttt{CrossBoundaryCompatible} conditions. No right-input transition
+  condition, new long-layer pairing, or Lin-product comparison is assumed.
+\end{proof}
+
+\begin{proposition}[The exact residual connecting-image domain]
+  \label{prop:h6-boundary-connecting-action}
+  \lean{KIP126.Classical.Adams.BoundaryConnectingAction.longK_range,KIP126.Classical.Adams.BoundaryConnectingAction.projectedLongK_range,KIP126.Classical.Adams.BoundaryConnectingAction.existsUnique_boundary_action,KIP126.Classical.Adams.BoundaryConnectingAction.boundary_mul_same_projected_longK}
+  \uses{prop:h6-boundary-tower-action,prop:h6-tower-long-layer-cycles,thm:stable-homotopy-long-exact}
+  \leanok
+  For arbitrary positive $r$ and integer bidegrees, exactness of the
+  actual long and one-step triangles gives
+  \[
+    \operatorname{im}K_r=\ker I_{t,t+r},\qquad
+    \operatorname{im}(K\pi_r)=
+      \ker I_{t,t+1}\cap\operatorname{im}I_{t+1,t+r}.
+  \]
+  All maps act in the connecting homotopy degree. For every fixed
+  genuine boundary $x\in B_r^{s,u}$, the specified coefficient product
+  with an arbitrary long-layer representative induces a unique linear map
+  \[
+    \operatorname{im}(K\pi_r)\longrightarrow E_1^{s+t,u+v}/B_r^{s+t,u+v},
+    \qquad K\pi_r(b)\longmapsto [P(x,\pi_r(b))].
+  \]
+  Here $s,t$ range over all nonnegative filtrations, and $u,v$ are
+  arbitrary integers. The codomain is the ambient quotient, not an
+  assumed actual quotient page. Neither cycle closure nor vanishing of
+  this residual map is asserted. The original full boundary condition
+  and the two-long-layer product remain unresolved.
+\end{proposition}
+\begin{proof}
+  Exactness identifies the image of the long connecting map with its
+  tower-map kernel. Its image in the one-step tower lies in the displayed
+  intersection. Conversely lift an element through $I_{t+1,t+r}$; its
+  composite to stage $t$ vanishes, so long-triangle exactness supplies a
+  long-layer representative. The previously proved boundary action kills
+  the kernel of $K\pi_r$. The first isomorphism theorem for modules gives
+  the unique linear factorization; equality of projected connecting
+  images therefore gives equality modulo actual boundaries.
   \leanok
 \end{proof}
 

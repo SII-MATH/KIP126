@@ -609,6 +609,7 @@ class InventoryValidator:
                 "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
                 "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
                 "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
+                "KIP126/LinProgram/Raw/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
             }:
                 directory = "KIP126/LinProgram/Raw"
             if directory and not path_value.startswith(directory + "/"):
@@ -673,6 +674,7 @@ class InventoryValidator:
                     "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
                     "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
                     "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
+                    "KIP126/LinProgram/Raw/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
                 }
             )
             if registered_lin_database and self._check_lin_lfs_artifact(path, artifact, artifact_where):

@@ -764,6 +764,51 @@ mathematical objects and conditions.
   identification with actual Ext or with an actual Adams page.
 \end{definition}
 
+\begin{definition}[Complete fixed native module-map graphs]
+  \label{def:lin-native-complete-map-graphs}
+  \lean{KIP126.LinModule.RawData.Maps.ImageRow,KIP126.LinModule.RawData.Maps.CetaToSphere.rows,KIP126.LinModule.RawData.Maps.CetaToSphere.imageCodes_size,KIP126.LinModule.RawData.Maps.CetaToSphere.imageCode,KIP126.LinModule.RawData.Maps.CWToCeta.rows,KIP126.LinModule.RawData.Maps.CWToCeta.imageCodes_size,KIP126.LinModule.RawData.Maps.CWToCeta.imageCode}
+  \uses{def:lin-native-module-presentations,def:lin-map-catalogue}
+  \leanok
+  The same authenticated release gives all 887 Ceta-to-sphere generator
+  images and all 844 CW-to-Ceta images, in original source ID order.
+  Their filtrations are zero and suspensions are two and four, respectively.
+  Preserve the original map strings, complete database schema and version
+  metadata, including the CW timestamp and absence of a map-type field.
+  A typed index into the full source family always has an image; no missing
+  row defaults to zero. The actual empty image strings remain recorded zeros,
+  while missing, SQL NULL or unknown images are rejected during transcription.
+
+  These finite graphs are data. The exporter verifies native shifted degrees
+  against all original source, target and sphere generators. This is not a
+  Lean proof of grading compatibility, quotient descent or agreement with
+  an actual spectrum map. The full relation certificates must still be
+  supplied to Proposition~\ref{prop:lin-native-module-map-descent}.
+\end{definition}
+
+\begin{proposition}[Maps out of the complete native module quotient]
+  \label{prop:lin-native-module-map-descent}
+  \lean{KIP126.LinModule.Presentation.evaluateRelation,KIP126.LinModule.Presentation.linearCombination_ofPowers,KIP126.LinModule.Presentation.linearCombination_monomialVector,KIP126.LinModule.Presentation.linearCombination_relationVector,KIP126.LinModule.Presentation.definingSubmodule_le_ker,KIP126.LinModule.Presentation.desc,KIP126.LinModule.Presentation.desc_projection,KIP126.LinModule.Presentation.desc_generator,KIP126.LinModule.Presentation.desc_ofPowers,KIP126.LinModule.Presentation.desc_monomialVector,KIP126.LinModule.Presentation.desc_relationVector,KIP126.LinModule.Presentation.hom_ext,KIP126.LinModule.Presentation.desc_unique,KIP126.LinModule.Presentation.existsUnique_desc}
+  \uses{def:lin-native-module-presentations}
+  \leanok
+  Let $A$ be the same sphere quotient, $M$ any $A$-module, and
+  $g:\operatorname{Fin}(n)\to M$ a proposed image for every generator.
+  If evaluation of every original relation is zero, there is a unique
+  $A$-linear map from the full presented module to $M$ sending $e_i$ to $g(i)$.
+  Its value on every native word and relation is the existing parser's
+  linear evaluation; no degree cutoff or subset of relations is substituted.
+\end{proposition}
+\begin{proof}
+  \leanok
+  The standard free-module linear combination evaluates every word.
+  Vanishing of all relation evaluations puts their entire span in its kernel.
+  Apply the usual quotient lift and compute it on the quotient generators.
+  Any two such maps agree on every free generator, hence on the whole quotient.
+  The full Ceta-to-sphere and CW-to-Ceta types instantiate this theorem,
+  but their native generator images and all relation certificates must still
+  be supplied. This universal property alone is not a certified native map,
+  a grading comparison, or a comparison with the actual spectrum map.
+\end{proof}
+
 \begin{lemma}[Native module quotient reductions for the naturality chain]
   \label{lem:lin-native-module-products}
   \lean{KIP126.LinModule.Presentation.native_relation_zero,KIP126.LinModule.Presentation.projection_ofPowers,KIP126.LinModule.Presentation.relation_mem_of_chunk}

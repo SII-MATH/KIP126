@@ -400,12 +400,57 @@ lake build KIP126.Checks.ClassicalAdams.LongLayerStageComparison
 
 本轮完成后，根库及新旧自然性、商模和消费者审计构建通过（4913 jobs）；Blueprint web、完整声明链接及活动依赖解析通过。来源清单为 26 sources / 118 artifacts，22 项来源测试、51 项外部输入测试、18 项布局测试、15 项 Blueprint 测试均通过；来源/接口声明的 Lean 核验也通过。完整模块重生及15项模块输入测试通过，原生合同16项与 pinned 输入7项测试通过。原生合同快照只新增已检查 CW 数据库名，原生目标、前提和认证状态未改变；462481 trace 字节及摘要保持不变。原固定模型的基础待证命题继续公开保留，本轮闭合证书和新通用比较不引入这些依赖。
 
+## 全页边界作用与完整商模块映射的通用定理
+
+`BoundaryTowerAction.boundary_mul_kerK` 对任意 `r≥1`、自然滤过 s/t 和任意整数内次数 u/v，证明指定系数乘积满足 `P(B_r,ker K) ⊆ B_r`。实际长正合列给出 ker K 输入的塔代表，真实第一输入复合过渡方块保持被杀条件，再由同一系数乘积的单位限制识别边界。`tower_boundary_kernel_left` 处理全部负下界 `s−r+1<0`，没有增加 `r≤s+1` 的限制。
+
+`boundary_mul_sameK` 进一步证明：固定真实边界 x，若 `K(y)=K(y′)`，则 `P(x,y)−P(x,y′)∈B_r`。因此对这个边界输入，乘积模边界只依赖另一输入的连接像。`boundary_mul_longLayer_zeroK` 由真实长层连接方块得到相应特化。
+
+这些定理保留完整页范围，但**不完成原来的全循环边界相容性**：一般 r-cycle 只满足 `K(y)∈im I_(t+1,t+r)`，不必满足 K(y)=0。特别是 H6 左 cross 仍要求所有 `a:π₆₂T₃`（`I_(2,3)a=0`）和所有 `b:π₆₃Q₁²` 都满足 `P(Ja,πb)∈B₂^(4,129)`，右 cross 也仍待证。不能把 h6 的任意代表改为零长连接像，因为这会与同一文献给出的非零 d2 相冲突。原 `BoundaryCompatible`/`CrossBoundaryCompatible` 声明和状态不改。
+
+`LinModule.Presentation.desc` 和 `existsUnique_desc` 复用标准 `Finsupp.linearCombination`、原 `evaluatePowers`、完整定义关系子模及 `Submodule.liftQ`。对任意 n、所有完整 relations、任意 E2 模块 M，若每条关系在指定的全部生成元像下为零，则构造唯一的 `Model n relations →ₗ[E2] M`，并证明每个生成元、任意原生词和关系的计算律。检查实例保留整个 Ceta→原 E2 与整个 CW→Ceta 类型，没有选择小型替代商或改变系数环。
+
+该下降定理不替代完整原生映射的关系证书。两图全部原生像已独立固定（见下节）；75,347 条 Ceta 及 67,929 条 CW 非形式零关系的多项式约化见证已有 Python 重放结果，但尚未全部由 Lean 核验，不能据此构造已认证 map 或升级实际自然性状态。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.BoundaryTowerAction \
+  KIP126.Checks.AdamsE2.LinModuleMaps
+```
+
+`BoundaryConnectingAction.projectedLongK_range` 再由实际长、短三角的正合性证明精确等式 `range(K∘π_r)=ker I_(t,t+1) ∩ range I_(t+1,t+r)`。`existsUnique_boundary_action` 将固定边界与任意长层输入的乘积唯一降到这个真实连接像空间，目标为 **ambient E1/B_r**，不是未经证明的实际页。H6 左 cross 因而精确剩下 `ker(I_(1,2):π₆₂T₂→π₆₂T₁) ∩ range(I_(2,3):π₆₂T₃→π₆₂T₂)` 上的作用消失，第一输入仍为所有被 I_(2,3) 杀掉的 π₆₂T₃ 类。这个作用尚未证为零，也未被增加为新的接口字段。
+
+`Foundation.TensorInput.tensorSuspensionBraidingCompatibility` 直接由现有 `leftShift_eq` 与 Mathlib 的 shift transport 推出同一 foundation 的悬移—辫交换兼容性，消去这一个独立结构前提。它不改换左右悬移，也不增加 TensorInput 字段。`RightTensorSuspensionCompatibility` 的右参数自然性及结合子条件仍待构造；每个 tensorRight 单独具有 CommShift 不蕴含整个参数族的这两张交换图。即使有它们，系数公式中的 `BoundaryRight` 与有序 `NextRight` 之间在完整双 kernel 上的差仍待消去，不能用已证的第一输入过渡规则代替。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.BoundaryConnectingAction \
+  KIP126.Checks.ClassicalAdams.TensorBraidingCompatibility
+```
+
+## 两张完整原生模块映射图
+
+`Generated/ModuleMaps` 固定同一 `v126.3.cw49` 的完整 Ceta→S0 图（887 行、IDs 0–886）和 CW_nu_eta→Ceta 图（844 行、IDs 0–843），滤过均为 0，悬移分别为 2、4。原始 `id,map`、完整 schema、version 与 ss.json 条目保存在 JSON；CW 的原 timestamp `1690291275` 及缺少 type 字段的事实原样保留。Lean 使用完整数组及 `Fin sourceGeneratorCount` 索引，不给缺失行设置默认零。两图 ID 0 的空字符串是已记录零；SQL NULL、未知哨兵和缺失 ID 不被当成零。后续数学解释必须保留该图语义，不能直接借用把空单项式视为单位元的关系解析器。
+
+新固定原库 `map_AdamsSS_CW_nu_eta_to_Ceta_t200.db` 为 36864 bytes，SHA256 `3ba9ac7841d0e9287b10f8550abd7ce0746a5715bfad1c60a42edb93ba554272`。它来自同一已认证 RAR，纳入既有 `lwx_machine` 和 Git LFS。`generate-module-maps.py` 复用完整模块导出器的同归档、同球面、全关系核查，在 SQLite 解释前逐字比较两图的归档实体与 pinned 实体，并核对 canonical 来源身份。全图每项的球面指数、目标模块 ID 和悬移后次数均核验。
+
+`--check` 从原始归档重建所有文件，逐字比较输出并核对 canonical manifest 中的派生摘要与未认证状态。`mathematical_map_certified` 与 `actual_model_comparison_certified` 都保持 false。完整图数据、公理及所有 ID 顺序检查不构成全关系消失、分次线性或实际映射比较的证明。
+
+```sh
+python3 -B KIP126/LinProgram/Translate/generate-module-maps.py --check
+python3 -B KIP126/LinProgram/Translate/test-module-maps.py \
+  --output-dir KIP126/LinProgram/Generated/ModuleMaps
+lake build KIP126.Checks.AdamsE2.LinNativeModuleMapGraphs
+```
+
+本轮根库及边界作用、连接像、悬移兼容、完整商映射、原生图和既有自然性检查全部通过（4923 jobs）。新增闭合数学声明的公理审计仅含 `propext`、`Classical.choice`、`Quot.sound`；原固定模型自然性定理仍公开报告 `sorryAx`。完整图重生与19项测试、原生合同16项测试、pinned 输入7项测试通过。来源清单为26 sources / 119 artifacts，来源22项、外部输入51项、布局18项、Blueprint15项测试通过；外部来源声明的 Lean 检查、Blueprint web、全部声明链接检查和 diff 检查均通过。独立复核确认没有新增公理、收窄原目标或将生成图标为已认证映射。
+
+完整关系认证的独立规模实验另已在 Lean 中核验 Ceta 原始行 `1–512` 和 `31233–31744`，共1024条，包含全见证中最长的56步归约（row31479）。这些是临时原型结果，尚未作为正式全图证书安装；其完整887个像仍须通过生产版定义绑定到上述正式原生图，再核验全部76569条关系并构造商映射。完整商映射及实际模型比较的认证状态均保持 false。
+
 ## 后续依赖与实际接入边界
 
 | 目标 | 精确剩余义务 | 可复用模块 |
 | --- | --- | --- |
 | 152097 反驳 | 在同一实际 E4 上构造乘积，证明与两条已闭合 CSV 等式兼容，并从 trial 的微分和 multiplier 的零微分得到诊断的零源微分 | `TowerLongLayer/Pairing`、`ReplayProducts`、`TrialRefuted` |
-| E4 Leibniz | 构造实际长层配对的 `ProjectionCompatible`、`BoundaryCompatible` 和 `RelativeBoundaryFormula` 实例；最后一个命题不能重新作为黑箱输入并声称已解决 | `TowerLongLayer/Pairing/Sphere/Stage` 的既有闭合三角比较及新 `Comparison`；仅零长连接代表的投影比较已证 |
+| E4 Leibniz | 构造实际长层配对的 `ProjectionCompatible`、`BoundaryCompatible` 和 `RelativeBoundaryFormula` 实例；最后一个命题不能重新作为黑箱输入并声称已解决 | `TowerLongLayer/Pairing/Sphere/Stage` 的既有闭合三角比较及新 `Comparison`；零长连接代表的投影比较及 `B_r×ker K⊆B_r` 已证，一般循环的非零连接像作用仍待证 |
 | 目标非 B3 | 对 `(9,47)` 的 `x0³*x36`，证明同一比较下 `¬ IsBoundaryBy sphereAdamsData 3 (9,47) z`；完整早期差分/边界空间及相关 d2 种子都必须证明 | `State/Proofs` 的实际商页零判据 |
 | 来源到达 E4 | 对 `(4,42)[1]` 给出实际 `ReachesPage`；先前 C2h6/Ctheta5 路径的对象、映射和坐标不能由日志存在推出 | 既有实际 tower / top-cell 比较 |
 | 候选覆盖 | 对准确 context/window 构造 `CandidateCoverage`，排除全部其他候选；保留 trial 数量不是覆盖证明 | 既有 `CandidateElimination.sound` / `CandidateExhaustion.sound` |
