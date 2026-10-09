@@ -273,7 +273,25 @@ lake build KIP126.Checks.StableHomotopy.CofiberExtension
 
 这个里程碑服务于固定原生日志 462479 的 CW 源对象，以及 462480 所用 `CW_nu_eta__Ceta` 的 shift-four 映射。它只解决条件构造与三角比较，未给出这两条实际微分或原生模块的识别。同一固定 foundation 的八面体实例已有 `Foundation.TensorInput.triangulated`，可从 `Def.StageInput.witness.tensorInput` 取得，独立核验通过；无需增加 Challenge2 字段或换一个 foundation。该实例仍继承原基础未完成证明。
 
-新构造已独立 Lean 核验，只依赖标准逻辑三项；正式公理/导入检查通过（1561 jobs），根库构建通过（4886 jobs）。Blueprint web、完整声明检查、活动依赖解析、18项布局检查及来源/接口静态审计均通过。两条旧延拓定理的完整类型与上一提交逐字一致，新增量词与符号也经独立复核。准确剩余内容是实际复合零、固定原生模块与选定 `C(g)` 的比较，以及上述实际商映射在所用坐标上的等式。现 route 的 `ClassicalObject` 悬移比较覆盖 sphere/Cν/detector 及其 shifts，未覆盖 Cη；还需在同一 foundation 上为 Cη 及前三次悬移构造实际 `TowerComparison`，才可完成 CW→Cη 的四次降悬。没有新增源假设、Challenge2 字段或替代模型来掩盖这些义务。
+新构造已独立 Lean 核验，只依赖标准逻辑三项；正式公理/导入检查通过（1561 jobs），根库构建通过（4886 jobs）。Blueprint web、完整声明检查、活动依赖解析、18项布局检查及来源/接口静态审计均通过。两条旧延拓定理的完整类型与上一提交逐字一致，新增量词与符号也经独立复核。准确剩余内容是实际复合零、固定原生模块与选定 `C(g)` 的比较，以及上述实际商映射在所用坐标上的等式。现 route 的 `ClassicalObject` 悬移比较覆盖 sphere/Cν/detector 及其 shifts。下述新构造已从同一 foundation 取得 Cη 及任意整数悬移的实际 `TowerComparison`；CW→Cη 的四次降悬组合、原生坐标比较和来源微分仍须落实。没有新增源假设、Challenge2 字段或替代模型来掩盖这些义务。
+
+## 从同一 foundation 构造 Cη 悬移比较
+
+`Suspension.Construction.towerComparison H X` 现对任意对象 X 构造现有 `TowerComparison` 的所有字段。输入只有既有稳定范畴、选定 cofiber、`tensorLeft H.HF2` 的悬移结构及同一实际单位自然变换的悬移相容性；不要求额外的塔交换律、页等价或张量正合性。
+
+单步 `fiberIso_hom_ι` 由同一单位方块和旋转三角补全证明正号的 fiber inclusion 方块；`towerIso_mapAt` 覆盖全部整数 `s ≤ t`，包括原有常值负层。层比较从规范悬移的 cofiber 三角构造，`cofiberIso_connecting` 保留准确负号及 `shiftFunctorComm C 1 1`。零层严格取恒等同构。数据构造、交换律证明与最后的完整比较装配分别存放，未改现有 `TowerComparison` 类型。
+
+`Interface.Solution.LinProgram.Naturality.cetaTowerComparison` 以及 `cetaShiftTowerComparison n` 已在原有实际 Cη 上实例化，其中 n 是任意整数。二者同时从同一个 `Def.StageInput.witness.tensorInput` 取得 tensor 和 unit 的实例。原 route 的两份 sphere 比较保留；六个原自然性公开定理的完整类型逐字不变，没有新增 Challenge2 字段或另选模型。
+
+这个里程碑服务于固定日志 462479→462480 的 `CW_nu_eta__Ceta`（shift four），以及其后 462481 的 Cη→sphere 自然性链。它解决塔比较的构造，尚未证明不同三角补全选择的独立性、实际 ην 复合为零、CW/Cη 原生模块的比较或实际来源微分。四次降悬的组合与全部原生坐标等式也仍待接入；不能据此标记 462480/462481 为实际认证。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.SuspensionConstruction \
+  KIP126.Checks.ClassicalAdams.LinNaturalityHighStem \
+  KIP126.Checks.ClassicalAdams.LinNaturalityReplay
+```
+
+通用构造及其全整数、符号和导入审计已独立核验，公理仅标准逻辑三项。含固定 Cη 实例的正式构建通过（3498 jobs）；固定实例继承原有基础 `sorryAx`，未扩大基础公理集合。固定 Blueprint 节点继续为 `notready`；通用条件构造为 `leanok`。根库和新旧自然性检查通过（4891 jobs）；Blueprint web、完整声明链接、活动标签/依赖解析、18 项边界布局检查及来源/接口静态和 Lean 检查均通过。独立复核确认负号、全整数范围及同一单位结构没有改变；六个原自然性定理的公开类型与上一提交逐字一致。
 
 ## 后续依赖与实际接入边界
 
@@ -315,7 +333,8 @@ lake build +KIP126:olean \
   KIP126.Checks.SpectralSequence.PageThree \
   KIP126.Checks.AdamsE2.LinNaturalityHighStemProducts \
   KIP126.Checks.ClassicalAdams.LinSecondary5487 \
-  KIP126.Checks.StableHomotopy.CofiberExtension
+  KIP126.Checks.StableHomotopy.CofiberExtension \
+  KIP126.Checks.ClassicalAdams.SuspensionConstruction
 python3 scripts/check_source_inventory.py
 python3 -m scripts.test_check_source_inventory
 python3 -m scripts.test_external_inputs

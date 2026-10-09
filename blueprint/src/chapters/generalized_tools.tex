@@ -147,7 +147,7 @@ foundations established earlier.
   \uses{def:hf2-adams-tower,def:ss-elementwise-page-presentation}
   \lean{KIP126.Classical.Adams.Suspension.TowerComparison}
   \lean{KIP126.Classical.Adams.Suspension.TowerComparison.DesuspendsClass}
-  \notready
+  \leanok
   A suspension comparison identifies every term of the actual Adams tower
   of $\Sigma X$ with the suspension of the corresponding term for $X$,
   is the identity at stage zero, and commutes with all tower maps. Its
@@ -155,10 +155,50 @@ foundations established earlier.
   the connecting maps, including the suspension sign. Two $E_2$ labels
   are related when they have raw second-cycle representatives whose
   actual first-page maps agree after this desuspension and whose quotient
-  classes are the specified labels. Existence and independence of this
-  comparison have not been constructed; an arbitrary $E_2$ equivalence
-  is not a substitute for these diagrams.
+  classes are the specified labels. The construction below supplies a
+  comparison from the specified tensor and unit suspension structures.
+  Independence of triangle-completion choices and native coordinate
+  identifications are not asserted by this definition or construction.
 \end{definition}
+
+\begin{proposition}[Suspension comparison for every object]
+  \label{prop:adams-suspension-construction}
+  \lean{KIP126.Classical.Adams.Suspension.Construction.fiberTriangleIso,KIP126.Classical.Adams.Suspension.Construction.fiberIso,KIP126.Classical.Adams.Suspension.Construction.fiberIso_hom_ι,KIP126.Classical.Adams.Suspension.Construction.towerIso,KIP126.Classical.Adams.Suspension.Construction.towerIso_mapAt,KIP126.Classical.Adams.Suspension.Construction.cofiberTriangleIso,KIP126.Classical.Adams.Suspension.Construction.cofiberIso,KIP126.Classical.Adams.Suspension.Construction.cofiberIso_inclusion,KIP126.Classical.Adams.Suspension.Construction.cofiberIso_connecting,KIP126.Classical.Adams.Suspension.Construction.towerComparisonOfTower,KIP126.Classical.Adams.Suspension.Construction.towerComparison}
+  \uses{def:mahowald-tower-suspension-comparison,def:h6-fiber-tower,prop:shifted-cofiber-extension,def:mathlib-pretriangulated}
+  \leanok
+  In any supplied stable-homotopy context with chosen cofibers, fix $H$
+  and a suspension structure on $H\wedge-$ with which the actual unit
+  natural transformation $\mathrm{id}\to H\wedge-$ commutes.
+  For every object $X$, construct a suspension comparison of its actual
+  Adams tower. All integer stages and every transition $s\le t$ occur;
+  the comparison at stage zero is the identity.
+
+  Write $\tau_s:T_s(\Sigma X)\cong\Sigma T_s(X)$ and
+  $\ell_s:Q_s(\Sigma X)\cong\Sigma Q_s(X)$ for the constructed maps,
+  and use primes for the inclusions and boundaries over $\Sigma X$.
+  For every $s\in\mathbb Z$ they satisfy
+  \[
+    \ell_s\circ\iota'_s=(\Sigma\iota_s)\circ\tau_s,
+    \qquad
+    c_{1,1}\circ(\Sigma\delta_s)\circ\ell_s
+      =-\bigl((\Sigma\tau_{s+1})\circ\delta'_s\bigr),
+  \]
+  where $c_{1,1}$ is the specified shift-commutation isomorphism.
+  The unit and tensor suspension structures are the only extra inputs;
+  tensor exactness, the octahedron axiom, a page equivalence, and native
+  coordinate comparisons are not hypotheses of this constructor.
+\end{proposition}
+\begin{proof}
+  \leanok
+  The unit's shift compatibility gives the square for one fiber step.
+  Complete the rotated fiber triangles to an isomorphism; the negative
+  second component cancels the shift signs, giving a positive fiber
+  inclusion square. Recurse through the chosen fibers, compose the step
+  squares, and use the existing constant extension to negative stages.
+  Complete the layer cofiber triangles against the normalized shifted
+  triangles. Their second and third squares give precisely the displayed
+  inclusion and signed connecting laws.
+\end{proof}
 
 \begin{lemma}[Signed desuspension on the actual Adams exact couple]
   \label{lem:adams-suspension-exact-couple}

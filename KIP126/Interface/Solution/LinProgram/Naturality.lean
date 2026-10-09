@@ -1,6 +1,7 @@
 import KIP126.Interface.Challenge.Computation.Delivery
 import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
 import KIP126.Def.ClassicalAdams.Suspension.Internal.Proofs
+import KIP126.Def.ClassicalAdams.Suspension.Construction.Comparison.Data
 import KIP126.LinProgram.Raw.Naturality
 import KIP126.Interface.Solution.LinProgram.NaturalityCoordinates
 
@@ -32,6 +33,19 @@ abbrev Ceta : standardFoundation.Spectrum :=
 
 abbrev cetaSequence :=
   adamsTowerInternalSpectralSequence standardFoundation.hf2.unit Ceta
+
+/-- Construct the auxiliary object's comparison from the same fixed foundation.
+This does not replace the existing sphere comparisons or identify native labels. -/
+def cetaTowerComparison : Suspension.TowerComparison standardFoundation.hf2 Ceta := by
+  letI : Foundation.TensorInput standardFoundation := Def.StageInput.witness.tensorInput
+  exact Suspension.Construction.towerComparison standardFoundation.hf2 Ceta
+
+/-- The same construction applies at every integer shift of this Cη.
+In particular it supplies the three shifted comparisons needed by shift four. -/
+def cetaShiftTowerComparison (n : ℤ) :
+    Suspension.TowerComparison standardFoundation.hf2 (Ceta⟦n⟧) := by
+  letI : Foundation.TensorInput standardFoundation := Def.StageInput.witness.tensorInput
+  exact Suspension.Construction.towerComparison standardFoundation.hf2 (Ceta⟦n⟧)
 
 /-- The actual cofiber connecting map; its target retains both suspensions. -/
 def topCell : Ceta ⟶ (Sphere (C := standardFoundation.Spectrum) 1)⟦(1 : ℤ)⟧ :=

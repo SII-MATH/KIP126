@@ -561,6 +561,22 @@ mathematical objects and conditions.
   singleton coordinate witnesses. Only standard logical axioms occur.
 \end{proof}
 
+\begin{proposition}[Constructed suspension comparisons on the same eta cofiber]
+  \label{prop:lin-ceta-tower-suspension}
+  \lean{KIP126.Interface.Solution.LinProgram.Naturality.cetaTowerComparison,KIP126.Interface.Solution.LinProgram.Naturality.cetaShiftTowerComparison}
+  \uses{prop:adams-suspension-construction,def:stage-zero-cooperation-contract,def:computation-fixed-bindings}
+  \notready
+  For the same fixed $C\eta$ already used in naturality replay, construct
+  an actual tower suspension comparison, and one for $\Sigma^nC\eta$
+  for every integer $n$. Both tensor and unit suspension instances come
+  from the same fixed foundation's existing tensor input. The original
+  sphere comparisons used by the route are retained.
+  These wrappers inherit the unfinished fixed foundation. They establish
+  the specified tower and layer diagrams but no native-coordinate
+  identification, source differential, composite-zero premise, or
+  independence from other choices of triangle completion.
+\end{proposition}
+
 \begin{proposition}[Conditional replay of native naturality record 462481]
   \label{prop:lin-native-naturality-462481}
   \lean{KIP126.Interface.Solution.LinProgram.NaturalityHighStem.SourceEquation,KIP126.Interface.Solution.LinProgram.NaturalityHighStem.row462481,KIP126.Computation.LinProofs.Raw.NaturalityHighStem.output462481_in_export}

@@ -30,7 +30,9 @@ run_cmd do
       unless logical.contains ax do
         throwError "unexpected axiom in closed native coordinate certificate {decl}: {ax}"
   let modelAxioms ← collectAxioms ``KIP126.Classical.Adams.sphereAdamsModel
-  for decl in [``KIP126.Interface.Solution.LinProgram.Naturality.topCell_hasDifferential_desuspendTwice,
+  for decl in [``KIP126.Interface.Solution.LinProgram.Naturality.cetaTowerComparison,
+      ``KIP126.Interface.Solution.LinProgram.Naturality.cetaShiftTowerComparison,
+      ``KIP126.Interface.Solution.LinProgram.Naturality.topCell_hasDifferential_desuspendTwice,
       ``KIP126.Interface.Solution.LinProgram.Naturality.statement_of_hasDifferential,
       ``KIP126.Interface.Solution.LinProgram.Naturality.row245131,
       ``KIP126.Interface.Solution.LinProgram.NaturalityHighStem.row462481] do
