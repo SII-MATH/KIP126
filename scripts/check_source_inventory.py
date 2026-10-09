@@ -607,6 +607,7 @@ class InventoryValidator:
             if source.get("id") == "lwx_machine" and artifact_kind == "machine_artifact" and path_value in {
                 "KIP126/LinProgram/Raw/ss.json",
                 "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
+                "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
                 "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
             }:
                 directory = "KIP126/LinProgram/Raw"
@@ -668,8 +669,11 @@ class InventoryValidator:
                 continue
             registered_lin_database = (
                 source.get("id") == "lwx_machine" and artifact_kind == "machine_artifact" and
-                path_value in {"KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
-                               "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db"}
+                path_value in {
+                    "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
+                    "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
+                    "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
+                }
             )
             if registered_lin_database and self._check_lin_lfs_artifact(path, artifact, artifact_where):
                 self.artifact_count += 1

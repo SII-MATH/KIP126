@@ -1307,6 +1307,46 @@ the surjectivity statement alone.
   projection compatibility, or supply the two-term Leibniz rule.
 \end{proof}
 
+\begin{proposition}[The actual long-stage projection comparison]
+  \label{prop:h6-long-stage-projection-comparison}
+  \lean{KIP126.Classical.Adams.LongLayerStageComparison.projectionNat,KIP126.Classical.Adams.LongLayerStageComparison.projectionNat_eq,KIP126.Classical.Adams.LongLayerStageComparison.stageProjected,KIP126.Classical.Adams.LongLayerStageComparison.coefficientAction,KIP126.Classical.Adams.LongLayerStageComparison.stageProjected_eq_actual,KIP126.Classical.Adams.LongLayerStageComparison.defect_factors,KIP126.Classical.Adams.LongLayerStageComparison.actual_eq_on_representatives}
+  \uses{prop:h6-long-layer-stage-kernel,prop:h6-coefficient-layer-product-unit,prop:h6-tower-long-layer-cycles,def:mathlib-pretriangulated}
+  \leanok
+  Retain the specified coefficient ring, braiding, additive tensor product,
+  and the given exact right-tensor suspension structures. For every
+  $r\ge1$ and natural stages $s,t$, write $Q_s^r=C(T_{s+r}\to T_s)$,
+  $\pi_s:Q_s^r\to L_s$, $\iota_t:T_t\to L_t$, and let
+  $M:Q_s^r\wedge T_t\to Q_{t+s}^r$ be the already constructed
+  long-stage isomorphism. Write $P:L_s\wedge L_t\to L_{t+s}$ for the
+  specified coefficient product. There is a map
+  $k:\Sigma(T_{s+r}\wedge T_t)\to L_{t+s}$ with
+  \[
+    \pi_{t+s}M-P(\pi_s\wedge\iota_t)
+      =k\,c_{T_t}(T_{s+r})\,(\delta_s^r\wedge\mathrm{id}_{T_t}),
+  \]
+  where $c_{T_t}$ is the specified suspension comparison of right tensoring.
+  In particular, for every pair of objects $A,B$, every $a:A\to Q_s^r$
+  and $b:B\to T_t$ with $\delta_s^ra=0$, one has the strict equality
+  \[
+    \pi_{t+s}M(a\wedge b)=P((\pi_sa)\wedge(\iota_tb)).
+  \]
+  All maps are the existing choices, including the genuine associativity
+  transport from $t+(s+r)$ to $(t+s)+r$; no new triangle completion is used.
+  Zero long connecting composite is stronger than being a general
+  finite-page cycle. The obstruction factorization does not assert that
+  $k$ vanishes, construct a product of two long layers, prove
+  \texttt{BoundaryCompatible}, establish Leibniz, or identify Lin products.
+\end{proposition}
+\begin{proof}
+  The long projection takes the actual cofiber inclusion to the one-step
+  inclusion. The chosen stage triangle and the coefficient unit law therefore
+  give the same restriction along $T_s\wedge T_t\to Q_s^r\wedge T_t$.
+  Contravariant exactness of this actual tensored distinguished triangle
+  factors their difference through its third arrow. Precomposing with
+  $a\wedge b$ kills that arrow when $\delta_s^ra=0$.
+  \leanok
+\end{proof}
+
 \begin{definition}[Lower lifts for the three square products]
   \label{def:h6-three-boundary-lifts}
   \lean{KIP126.Classical.Adams.SphereH6BoundaryLifts,KIP126.Classical.Adams.SphereH6BoundaryLifts.FitsProducts,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_boundaries,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_compatible}

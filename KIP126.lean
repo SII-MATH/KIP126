@@ -1,3 +1,5 @@
+import KIP126.LinProgram.Certificates.NaturalityModuleProducts
+import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Stage.Comparison.Proofs
 import KIP126.Interface.Solution.LinProgram.NaturalityCW
 import KIP126.Interface.Solution.Literature.StandardSphere
 import KIP126.Def.StableHomotopy.Context.CofiberExtension.Proofs

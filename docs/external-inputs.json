@@ -1353,7 +1353,45 @@
             "kervaire_database.rar",
             "kervaire-49/Ceta_AdamsSS_t200.db"
           ],
-          "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record"
+          "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record",
+          "derived_outputs": {
+            "complete_module_presentation": [
+              {
+                "path": "KIP126/LinProgram/Generated/Modules/Ceta.json",
+                "size": 4643937,
+                "sha256": "8fb6a06346636ee47065b43df88768cf393823c6e669e286eb6e40eab38becd2"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Modules/Ceta.lean",
+                "size": 2437386,
+                "sha256": "41b41fbe716112049c7125082da8502c0500969b6b6c73c992d332df60596aa0"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Modules/manifest.json",
+                "size": 1754,
+                "sha256": "37f6055dc8024460d58fed2fd1fcae18a2596f68be66fe1450efddd0bd11cc36"
+              }
+            ],
+            "generator_count": 887,
+            "relation_count": 76569,
+            "coefficient_algebra": "KIP126.LinE2.E2",
+            "blueprint_label": "def:lin-native-module-presentations",
+            "replay_command": [
+              "python3",
+              "-B",
+              "KIP126/LinProgram/Translate/generate-module-presentations.py",
+              "--check"
+            ],
+            "scope": "All original module generators and relations. Native t_max is metadata only; no added high-degree zero relations and no actual Ext, map, differential, or boundary claim.",
+            "lean_algebra_statements": [
+              "KIP126.LinModule.NaturalityModuleProducts.native_ceta_strings"
+            ],
+            "lean_check_command": [
+              "lake",
+              "build",
+              "KIP126.Checks.AdamsE2.LinNaturalityModuleProducts"
+            ]
+          }
         },
         {
           "path": "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
@@ -1377,6 +1415,67 @@
             "kervaire-49/map_AdamsSS_Ceta_to_S0_t200.db"
           ],
           "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record"
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "8007f076e6bb78f269849758db8ec347625896607dd54d31e9fc0df770aec278",
+          "storage": "git-lfs",
+          "size": 2727936,
+          "extracted_from": {
+            "record": "Source/LWXMachine/zenodo-record.json",
+            "archive": "kervaire_database.rar",
+            "archive_size": 82746451,
+            "archive_checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+            "member": "kervaire-49/CW_nu_eta_AdamsSS_t200.db"
+          },
+          "extraction_command": [
+            "unrar",
+            "p",
+            "-inul",
+            "kervaire_database.rar",
+            "kervaire-49/CW_nu_eta_AdamsSS_t200.db"
+          ],
+          "extraction_output": "stdout is the artifact bytes; first verify the archive size and checksum against the registered Zenodo record",
+          "derived_outputs": {
+            "complete_module_presentation": [
+              {
+                "path": "KIP126/LinProgram/Generated/Modules/CWNuEta.json",
+                "size": 4116066,
+                "sha256": "2ca0b43573570c21b70abe93c13e439177c870af990616e448aa24995cf35dee"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Modules/CWNuEta.lean",
+                "size": 2111151,
+                "sha256": "88e02315cec0c6bdfc15d0adb507cdab8f0200d397945570b5b9a4bfa1d4872d"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Modules/manifest.json",
+                "size": 1754,
+                "sha256": "37f6055dc8024460d58fed2fd1fcae18a2596f68be66fe1450efddd0bd11cc36"
+              }
+            ],
+            "generator_count": 844,
+            "relation_count": 69263,
+            "coefficient_algebra": "KIP126.LinE2.E2",
+            "blueprint_label": "def:lin-native-module-presentations",
+            "replay_command": [
+              "python3",
+              "-B",
+              "KIP126/LinProgram/Translate/generate-module-presentations.py",
+              "--check"
+            ],
+            "scope": "All original module generators and relations. Native t_max is metadata only; no added high-degree zero relations and no actual Ext, map, differential, or boundary claim.",
+            "lean_algebra_statements": [
+              "KIP126.LinModule.NaturalityModuleProducts.native_cw_strings"
+            ],
+            "lean_check_command": [
+              "lake",
+              "build",
+              "KIP126.Checks.AdamsE2.LinNaturalityModuleProducts"
+            ]
+          }
         }
       ]
     },

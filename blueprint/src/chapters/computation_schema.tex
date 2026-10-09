@@ -680,6 +680,95 @@ mathematical objects and conditions.
   boundary exclusion or differential follows from these equalities alone.
 \end{proof}
 
+\begin{definition}[Complete native eta-cofiber and CW module presentations]
+  \label{def:lin-native-module-presentations}
+  \lean{KIP126.LinModule.RawData.Ceta.generatorCount,KIP126.LinModule.RawData.Ceta.relationCount,KIP126.LinModule.RawData.Ceta.relations,KIP126.LinModule.RawData.CWNuEta.generatorCount,KIP126.LinModule.RawData.CWNuEta.relationCount,KIP126.LinModule.RawData.CWNuEta.relations}
+  \lean{KIP126.LinModule.Presentation.Free,KIP126.LinModule.Presentation.definingSubmodule,KIP126.LinModule.Presentation.Model,KIP126.LinModule.Presentation.projection}
+  \lean{KIP126.LinModule.Ceta.Model,KIP126.LinModule.Ceta.generator,KIP126.LinModule.Ceta.monomial,KIP126.LinModule.CWNuEta.Model,KIP126.LinModule.CWNuEta.generator,KIP126.LinModule.CWNuEta.monomial}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  Let $A=\mathrm{LinE2.E2}$ be the same fixed sphere quotient as in
+  Definition~\ref{def:lin-e2-catalogue}, with all 2914 sphere generators
+  and 231848 sphere relations. For a finite native module generator set
+  of size $n$ and its complete ordered relation list $\mathcal R$, put
+  \[
+    F_n=\bigoplus_{j\in\operatorname{Fin}(n)}A e_j,
+    \qquad
+    M_{\mathcal R}=F_n/
+      \langle\operatorname{relationVector}(r):r\in\mathcal R\rangle_A.
+  \]
+  A native term $i_1,a_1,\ldots,i_k,a_k,j$ denotes
+  $x_{i_1}^{a_1}\cdots x_{i_k}^{a_k}e_j$; semicolons separate the
+  summands of a relation. The module monomial is its quotient image.
+
+  Use all 887 generators, with native IDs $0,\ldots,886$, and all
+  76569 relations of the fixed \texttt{Ceta} database. Use all 844
+  generators, with IDs $0,\ldots,843$, and all 69263 relations of the
+  fixed \texttt{CW\_nu\_eta} database. These are the same
+  v126.3.cw49 archive and coefficient ring as the sphere data.
+  Original IDs, degrees, representation fields and nullable generator
+  metadata are retained. Relation rowids are one-based and relation
+  lists preserve their complete original order.
+
+  Both module databases record internal-degree limit 200; their
+  recorded $d_2$ limits are 170 and 150 respectively. These bounds
+  are metadata only: no additional high-degree zero relation is imposed
+  on either module. The sphere coefficient algebra's existing degree-261
+  truncation is unchanged. Neither module definition asserts an
+  identification with actual Ext or with an actual Adams page.
+\end{definition}
+
+\begin{lemma}[Native module quotient reductions for the naturality chain]
+  \label{lem:lin-native-module-products}
+  \lean{KIP126.LinModule.Presentation.native_relation_zero,KIP126.LinModule.Presentation.projection_ofPowers,KIP126.LinModule.Presentation.relation_mem_of_chunk}
+  \lean{KIP126.LinModule.NaturalityModuleProducts.ceta13125_mem,KIP126.LinModule.NaturalityModuleProducts.ceta13126_mem,KIP126.LinModule.NaturalityModuleProducts.cw13675_mem}
+  \lean{KIP126.LinE2.NativeModuleCertificates.ceta_check,KIP126.LinE2.NativeModuleCertificates.cw_check,KIP126.LinE2.NativeModuleCertificates.check_sound_projection}
+  \lean{KIP126.LinModule.NaturalityModuleProducts.native_ceta_map_column0,KIP126.LinModule.NaturalityModuleProducts.native_cw_ancestor_product,KIP126.LinModule.NaturalityModuleProducts.native_ceta_strings,KIP126.LinModule.NaturalityModuleProducts.native_cw_strings}
+  \uses{def:lin-native-module-presentations}
+  \leanok
+  In the complete fixed native modules, one has
+  \[
+    x_{195}e_{12}=x_{67}x_{107}e_0
+       \quad\text{in }M_{C\eta},
+    \qquad
+    x_3e_{240}=x_{438}e_2+x_0^2x_{418}e_2
+       \quad\text{in }M_{\mathrm{CW}_{\nu,\eta}}.
+  \]
+  The original string targets are
+  \texttt{195,1,12 = 67,1,107,1,0} and
+  \texttt{3,1,240 = 438,1,2 + 0,2,418,1,2}.
+  Their bidegrees are $(15,140)$ and $(16,145)$.
+  These equalities have no assumed relation-vanishing or actual-page
+  premise. The first reduces the additional zero-indexed source column
+  of the recorded CW-to-Ceta map; the second is a module product in an
+  independent reconstruction of a prior differential input.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Certify exact membership of Ceta SQLite relation rows 13125 and
+  13126, and CW relation row 13675, in the full relation lists.
+  In zero-based indexing these are 13124, 13125 and 13674.
+  Their original three-term relations are
+  \[
+    x_{195}e_{12}+x_{385}e_2+x_{456}e_0=0,
+    \qquad
+    x_{385}e_2+x_{456}e_0+x_{67}x_{107}e_0=0,
+  \]
+  and $x_3e_{240}+x_{438}e_2+x_0^2x_{418}e_2=0$.
+  Submodule membership proves that these relations vanish in the
+  defined quotients. Apply the existing characteristic-two module
+  certificate checker to the sum of the first two relations and to
+  the third relation, checking all 887 and 844 module coordinates.
+  The generic checker is used through the original sphere quotient
+  projection; it introduces no new mathematical axiom or nontriviality
+  premise. Parsing and projection then give the native string statements.
+
+  No actual module presentation comparison, spectrum-map equation,
+  $d_3$ statement, multiplier-cycle assertion, module Leibniz rule,
+  boundary exclusion, candidate coverage or historical log-parent edge
+  follows from these fixed quotient identities alone.
+\end{proof}
+
 \begin{lemma}[All native target representatives for the CW branch]
   \label{lem:lin-cw-native-d2-quotient}
   \lean{KIP126.LinProgram.BranchD2Coordinates.incoming_decoded,KIP126.LinProgram.BranchD2Coordinates.outgoing_decoded,KIP126.LinProgram.BranchD2Coordinates.kernel_iff,KIP126.LinProgram.BranchD2Coordinates.image_iff,KIP126.LinProgram.BranchD2Coordinates.image_le_kernel,KIP126.LinProgram.BranchD2Coordinates.representatives_decoded,KIP126.LinProgram.BranchD2Coordinates.kernel_mod_image_representatives}

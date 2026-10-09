@@ -21,7 +21,7 @@ lean_lib KIP126 where
 
 /-!
 Reuse the imported Milnor certificate kernel in place. These non-default
-libraries expose only the nine modules used by the secondary algebra checks;
+libraries expose only the certificate kernels used by the local algebra checks;
 the imported research project and its generated batches are not build targets.
 -/
 lean_lib MilnorCertificates where
@@ -36,6 +36,12 @@ lean_lib LinProgramCertificates where
   srcDir := "Lin-program/program"
   roots := #[`LinProgramCertificates.Tactic]
   globs := #[.one `LinProgramCertificates.Verifier, .one `LinProgramCertificates.Tactic]
+
+lean_lib NamedElementCertificates where
+  srcDir := "Lin-program/program"
+  roots := #[`NamedElementCertificates.ModuleEvaluation]
+  globs := #[.one `NamedElementCertificates.Basic,
+    .one `NamedElementCertificates.Evaluation, .one `NamedElementCertificates.ModuleEvaluation]
 
 /-!
 Historical KIP-base, ported to the pinned toolchain. Its inherited assumptions

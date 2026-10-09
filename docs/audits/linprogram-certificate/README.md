@@ -148,7 +148,49 @@ lake build +KIP126.Checks.AdamsE2.LinBranchD2Coordinates:olean
 lake build KIP126.Checks.AdamsE2.LinNaturalityHighStemProducts
 ```
 
-三条定理均经独立 Lean 编译、公理/导入审计与错配目标拒绝，公理只有标准逻辑三项。第一条供 Ceta→S0 完整矩阵的额外列化简使用；选中向量原本不需要它。后两条供上游原生代数诊断及历史输入重构使用。两条 Ceta 模块关系及一条 CW 模块关系仍待证；上述球面商等式不解决实际模作用、实际页比较或历史微分来源。
+三条定理均经独立 Lean 编译、公理/导入审计与错配目标拒绝，公理只有标准逻辑三项。第一条供 Ceta→S0 完整矩阵的额外列化简使用；选中向量原本不需要它。后两条供上游原生代数诊断及历史输入重构使用。这三条完整原生模块关系及对应商模等式见下节；上述球面商等式本身不解决实际模作用、实际页比较或历史微分来源。
+
+## 完整原生模块与两项固定商模等式
+
+`LinModule.Ceta.Model` 和 `LinModule.CWNuEta.Model` 分别使用完整的原生模块生成元和关系。系数环仍是原有 `KIP126.LinE2.E2`，保留其全部 2914 个球面生成元、231848 条球面关系及原有 `t>261` 截断。模块模型是 `Fin n →₀ LinE2.E2` 对全部原生模块关系张成子模的商；原库 `t_max=200` 只记录已计算范围，没有添加模块高次为零的关系。
+
+| 原生对象 | 完整生成元 ID | 完整关系 SQLite rowid | 原库 E2 / d2 上限 |
+| --- | --- | --- | --- |
+| Ceta | `0–886`，887 个 | `1–76569`，76569 条 | `t_max=200`，`d2_t_max=170` |
+| CW_nu_eta | `0–843`，844 个 | `1–69263`，69263 条 | `t_max=200`，`d2_t_max=150` |
+
+`Generated/Modules/Ceta.json` 与 `CWNuEta.json` 保留生成元全部原始字段 `id,name,repr,s,t,cell,cell_coeff`、每条关系的 `sqlite_rowid,rel,s,t`、原生次序、schema 和版本元数据。CW 的 607 个 NULL 名称以及相应 NULL cell 数据原样保留，不被替换为零。Lean 数据保留同一完整生成元族、原关系串和次数；每 512 条关系构成一个 `relationChunk`，`relations` 恰为各块顺序连接，没有添加空关系。
+
+`Translate/generate-module-presentations.py` 复用已有 pinned 输入加载器和 RAR 认证。CW 原库按既有 LFS 规则纳入 `Raw/manifest.json` 及唯一 canonical 清单的 `lwx_machine` 条目，大小 2727936 字节，SHA256 `8007f076e6bb78f269849758db8ec347625896607dd54d31e9fc0df770aec278`。导出器将 S0、Ceta、CW 和 `ss.json` 与同一认证 `v126.3.cw49` 归档逐字节比较，并将球面全部生成元、全部关系与现有 CSV 按原顺序逐行核对。两个模块的全部 204928 个关系项均检查生成元范围、幂编码和同质次数，不通过另选系数环或缩小生成元范围验证目标。
+
+本轮固定的两个结论均在上述完整商模中，不附加原生关系消失假设：
+
+```text
+KIP126.LinModule.NaturalityModuleProducts.native_ceta_strings:
+  Ceta.monomial "195,1,12" = Ceta.monomial "67,1,107,1,0"
+
+KIP126.LinModule.NaturalityModuleProducts.native_cw_strings:
+  CWNuEta.monomial "3,1,240" =
+    CWNuEta.monomial "438,1,2" + CWNuEta.monomial "0,2,418,1,2"
+```
+
+| 固定关系来源 | 完整原生关系串 | 次数 `(s,t)` |
+| --- | --- | --- |
+| Ceta rowid 13125 | `195,1,12;385,1,2;456,1,0` | `(15,140)` |
+| Ceta rowid 13126 | `385,1,2;456,1,0;67,1,107,1,0` | `(15,140)` |
+| CW_nu_eta rowid 13675 | `3,1,240;438,1,2;0,2,418,1,2` | `(16,145)` |
+
+三个 rowid 分别对应零基行号 `13124、13125、13674`，在 512 条分块中的位置为 Ceta 第 25 块 `324、325`、CW 第 26 块 `362`。局部成员证明接到全部关系表；`Presentation.native_relation_zero` 从定义子模成员性证明原生关系在商中为零。复用既有 `NamedElementCertificates.ModuleExpressions.check_sound_evaluate` 检查所有 887/844 个模块坐标上的证书：Ceta 的两条关系各用一次，CW 的一条关系用一次。最终定理不读取实际模型、整表认证或待构造总交付。
+
+```sh
+python3 -B KIP126/LinProgram/Translate/generate-module-presentations.py --check
+python3 -B KIP126/LinProgram/Translate/test-module-presentations.py
+lake build +KIP126.Checks.AdamsE2.LinNaturalityModuleProducts:olean
+```
+
+数据结果：完整重生及字节一致性检查通过，15 项测试通过，覆盖漏行、行号/次序变化、NULL/空关系、越界模块/球面生成元、错误幂和次数、截断范围变化、错误 schema 及生成文件篡改。canonical 来源、派生输出和已安装脚本的 31 项一致性检查也通过。两项固定商模定理、原生行及成员性检查、传递公理/导入审计和负例检查正式构建通过（1694 jobs）；公理仅 `propext`、`Classical.choice`、`Quot.sound`，无 `sorryAx`、项目公理或实际模型/总交付依赖。这里认证的是完整固定数据商模中的等式。
+
+这些等式分别服务于 CW→Ceta 完整矩阵的额外第零列约化及一个历史微分输入的原生模乘法重构。它们不证明完整原生商模与同一实际 Ceta/CW 页的比较、实际映射坐标、实际 d3、历史乘子的循环性、实际模 Leibniz、边界排除或候选完备性。特别是历史原生日志之间没有 parent-id 边，商模等式不能把独立代数重构升级为已证历史依赖；462479/462480/462481 的实际认证状态保持未完成。
 
 ## 从原生核/像商接到实际 E3 页
 
@@ -323,12 +365,26 @@ lake build KIP126.Checks.ClassicalAdams.LinFourfoldSuspension \
 
 四降悬与固定 CW 模型的正式构建通过（3498 jobs）；完整条件重放模块正式构建通过（3501 jobs）。原生合同全部16项测试与固定trace重建通过，包含 reason、NULL、坐标和次数的四类篡改拒绝。独立数学审阅确认全部量词、符号、同一对象选择及两端比较的作用；未新增公理、源交付或总认证读取。根库及新旧自然性审计正式构建通过（4895 jobs），Blueprint web、完整声明链接、活动依赖解析、18项布局检查、来源/接口静态和 Lean 核验均通过。编译后依赖审计同时检查私有辅助函数与内联投影；临时负例中经私有函数读取计算 results 的路径被准确拒绝。原有高 stem 重放模块内容保持不变。
 
+## 长层阶段乘积与指定系数乘积的比较
+
+`LongLayerStageComparison.defect_factors` 对所有 `r≥1`、自然阶段 `s,t`，证明已有长层—塔阶段配对投影与指定系数乘积之差，经实际张量长三角的连接映射因子化。其两端严格使用既有 `adamsSphereLongLayerStagePairingIso`、`adamsLongLayerProjection` 和 `adamsSphereLayerProduct`；`stageProjected_eq_actual` 检查 `t+(s+r)` 与 `(t+s)+r` 的真实 transport，没有另选三角补全。
+
+`actual_eq_on_representatives` 对任意来源对象 A、B 和代表 a、b，若 a 的长连接复合为零，则两种乘积在这些代表上严格相等。证明由已有两个 inclusion 方块得到相同限制，再用同一个实际张量三角的反变正合性因子化差映射。所有正长 r、自然 s,t 和来源对象量词保留。
+
+```sh
+lake build KIP126.Checks.ClassicalAdams.LongLayerStageComparison
+```
+
+数据、证明和检查模块均已独立核验，正式检查通过；公理仅标准逻辑三项，无 LinProgram、Interface、Main 或固定 StageInput 依赖。这个比较服务于 152097 的实际乘法接入，但目前未识别该日志代表满足上述条件：零长连接复合强于一般 E_r-cycle。完整双长层配对的边界 lift y、全部 `BoundaryCompatible`、相对两项边界公式和 Lin 乘积比较仍未闭合，不能由本定理宣布 E4 Leibniz 已完成。
+
+本轮完成后，根库及新旧自然性、商模和消费者审计构建通过（4913 jobs）；Blueprint web、完整声明链接及活动依赖解析通过。来源清单为 26 sources / 118 artifacts，22 项来源测试、51 项外部输入测试、18 项布局测试、15 项 Blueprint 测试均通过；来源/接口声明的 Lean 核验也通过。完整模块重生及15项模块输入测试通过，原生合同16项与 pinned 输入7项测试通过。原生合同快照只新增已检查 CW 数据库名，原生目标、前提和认证状态未改变；462481 trace 字节及摘要保持不变。原固定模型的基础待证命题继续公开保留，本轮闭合证书和新通用比较不引入这些依赖。
+
 ## 后续依赖与实际接入边界
 
 | 目标 | 精确剩余义务 | 可复用模块 |
 | --- | --- | --- |
 | 152097 反驳 | 在同一实际 E4 上构造乘积，证明与两条已闭合 CSV 等式兼容，并从 trial 的微分和 multiplier 的零微分得到诊断的零源微分 | `TowerLongLayer/Pairing`、`ReplayProducts`、`TrialRefuted` |
-| E4 Leibniz | 构造实际长层配对的 `ProjectionCompatible`、`BoundaryCompatible` 和 `RelativeBoundaryFormula` 实例；最后一个命题不能重新作为黑箱输入并声称已解决 | `TowerLongLayer/Pairing/Sphere/Stage` 的既有闭合三角比较 |
+| E4 Leibniz | 构造实际长层配对的 `ProjectionCompatible`、`BoundaryCompatible` 和 `RelativeBoundaryFormula` 实例；最后一个命题不能重新作为黑箱输入并声称已解决 | `TowerLongLayer/Pairing/Sphere/Stage` 的既有闭合三角比较及新 `Comparison`；仅零长连接代表的投影比较已证 |
 | 目标非 B3 | 对 `(9,47)` 的 `x0³*x36`，证明同一比较下 `¬ IsBoundaryBy sphereAdamsData 3 (9,47) z`；完整早期差分/边界空间及相关 d2 种子都必须证明 | `State/Proofs` 的实际商页零判据 |
 | 来源到达 E4 | 对 `(4,42)[1]` 给出实际 `ReachesPage`；先前 C2h6/Ctheta5 路径的对象、映射和坐标不能由日志存在推出 | 既有实际 tower / top-cell 比较 |
 | 候选覆盖 | 对准确 context/window 构造 `CandidateCoverage`，排除全部其他候选；保留 trial 数量不是覆盖证明 | 既有 `CandidateElimination.sound` / `CandidateExhaustion.sound` |
@@ -367,6 +423,10 @@ lake build +KIP126:olean \
   KIP126.Checks.ClassicalAdams.SuspensionConstruction \
   KIP126.Checks.ClassicalAdams.LinFourfoldSuspension \
   KIP126.Checks.ClassicalAdams.LinNaturalityCW
+lake build KIP126.Checks.AdamsE2.LinNaturalityModuleProducts \
+  KIP126.Checks.ClassicalAdams.LongLayerStageComparison
+python3 -B KIP126/LinProgram/Translate/generate-module-presentations.py --check
+python3 -B KIP126/LinProgram/Translate/test-module-presentations.py
 python3 scripts/check_source_inventory.py
 python3 -m scripts.test_check_source_inventory
 python3 -m scripts.test_external_inputs
